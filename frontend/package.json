@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "cytoscape": "^3.34.0",
+    "cytoscape-cose-bilkent": "^4.1.0",
+    "cytoscape-expand-collapse": "^4.1.1",
     "d3": "^7.9.0",
     "lucide-react": "^1.17.0",
     "maplibre-gl": "^5.24.0",

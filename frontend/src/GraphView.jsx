@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import cytoscape from 'cytoscape'
+import coseBilkent from 'cytoscape-cose-bilkent'
+import expandCollapse from 'cytoscape-expand-collapse'
+cytoscape.use(coseBilkent)
+cytoscape.use(expandCollapse)
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 const DEFAULT_NODE = 'recjNRR60PAuFtjha' // 모세
@@ -11,17 +15,11 @@ const TYPE_COLOR = {
   PeopleGroup: '#8e44ad',
 }
 
-function buildPositions(centerId, neighbors, W, H) {
-  const PAD = 60
-  const cx = W / 2
-  const cy = H / 2
-  const R = Math.min(W - PAD * 2, H - PAD * 2) / 2
-  const positions = { [centerId]: { x: cx, y: cy } }
-  neighbors.forEach((n, i) => {
-    const angle = (i / neighbors.length) * 2 * Math.PI - Math.PI / 2
-    positions[n.id] = { x: cx + R * Math.cos(angle), y: cy + R * Math.sin(angle) }
-  })
-  return positions
+const TYPE_LABEL_KO = {
+  Person: '관련 인물',
+  Event: '관련 사건',
+  PeopleGroup: '관련 그룹',
+  Place: '관련 장소',
 }
 
 export default function GraphView({ onSelectNode, selectedNode }) {
@@ -39,34 +37,46 @@ export default function GraphView({ onSelectNode, selectedNode }) {
     const id = selectedNode || DEFAULT_NODE
     let cy = null
 
-    fetch(`${API_URL}/node/${id}`)
-      .then(r => r.json())
-      .then(data => {
+    Promise.all([
+      fetch(`${API_URL}/node/${id}`).then(r => r.json()),
+      fetch(`${API_URL}/node/${id}/neighbors/grouped`).then(r => r.json()),
+    ])
+      .then(([data, grouped]) => {
         const center = { id: data.id, label: data.nameKo || data.name, nodeType: data.label }
-        const neighbors = data.neighbors || []
+        const totalNeighborCount = Object.values(grouped).reduce((sum, arr) => sum + arr.length, 0)
 
         if (selectedNode) {
           setOverlay({
             name: data.name,
             nameKo: data.nameKo || data.name,
             label: data.label,
-            neighborCount: neighbors.length,
+            neighborCount: totalNeighborCount,
           })
         }
 
-        const W = containerRef.current.clientWidth || window.innerWidth
-        const H = containerRef.current.clientHeight || window.innerHeight
-        const positions = buildPositions(center.id, neighbors, W, H)
-
         const nodes = [
           { data: { id: center.id, label: center.label, nodeType: center.nodeType, isCenter: 1 } },
-          ...neighbors.map(n => ({
-            data: { id: n.id, label: n.nameKo || n.name, nodeType: n.label, isCenter: 0 },
-          })),
         ]
-        const edges = neighbors.map((n, i) => ({
-          data: { id: `e${i}`, source: center.id, target: n.id, relation: n.relation },
-        }))
+        const edges = []
+
+        Object.entries(TYPE_LABEL_KO).forEach(([type, labelKo]) => {
+          const group = grouped[type] || []
+          if (group.length === 0) return
+
+          const parentId = `group-${type}`
+          nodes.push({
+            data: { id: parentId, label: `${labelKo} (${group.length})`, nodeType: 'GroupParent' },
+          })
+
+          group.forEach((n, i) => {
+            nodes.push({
+              data: { id: n.id, label: n.nameKo || n.name, nodeType: type, isCenter: 0, parent: parentId },
+            })
+            edges.push({
+              data: { id: `e-${type}-${i}`, source: center.id, target: n.id, relation: n.relation },
+            })
+          })
+        })
 
         cy = cytoscape({
           container: containerRef.current,
@@ -93,19 +103,41 @@ export default function GraphView({ onSelectNode, selectedNode }) {
               selector: 'node[isCenter = 1]',
               style: { 'width': 26, 'height': 26, 'border-width': 3, 'border-color': '#333', 'font-size': '11px', 'font-weight': 'bold' },
             },
+            {
+              selector: 'node[nodeType = "GroupParent"]',
+              style: {
+                'background-color': '#f5f5f5',
+                'border-width': 2,
+                'border-color': '#ccc',
+                'label': 'data(label)',
+                'font-size': '10px',
+                'text-valign': 'top',
+                'text-halign': 'center',
+                'color': '#555',
+                'text-margin-y': -4,
+              },
+            },
             { selector: 'edge', style: { 'width': 1, 'line-color': '#ddd', 'curve-style': 'bezier' } },
           ],
           layout: {
-            name: 'preset',
-            positions: node => positions[node.id()],
-            fit: false,
+            name: 'cose-bilkent',
             animate: false,
+            randomize: false,
+            nodeDimensionsIncludeLabels: true,
           },
           zoom: 1,
           pan: { x: 0, y: 0 },
           userZoomingEnabled: true,
           userPanningEnabled: true,
         })
+
+        const ecApi = cy.expandCollapse({
+          layoutBy: { name: 'cose-bilkent', animate: false, randomize: false },
+          undoable: false,
+          fisheye: false,
+          animate: false,
+        })
+        ecApi.collapseAll()
 
         cy.on('tap', 'node', evt => onSelectNode(evt.target.id()))
         cyRef.current = cy
@@ -149,7 +181,6 @@ export default function GraphView({ onSelectNode, selectedNode }) {
         </div>
       )}
 
-      {/* 하단 오버레이 */}
       {overlay && (
         <div style={{
           position: 'absolute', bottom: 0, left: 0, right: 0,

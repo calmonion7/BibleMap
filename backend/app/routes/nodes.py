@@ -68,6 +68,40 @@ def get_node_places(node_id: str):
         return places
 
 
+@router.get("/node/{node_id}/neighbors/grouped")
+def get_node_neighbors_grouped(node_id: str):
+    driver = get_driver()
+    with driver.session() as session:
+        result = session.run(
+            "MATCH (n {theographic_id: $id})-[r]-(m) RETURN m, type(r) AS rel, labels(m) AS mlabels",
+            id=node_id
+        )
+
+        grouped = {"Person": [], "Event": [], "PeopleGroup": [], "Place": []}
+        counts = {k: 0 for k in grouped}
+
+        for nr in result:
+            m_props = dict(nr["m"])
+            mlabels = nr["mlabels"]
+            label = mlabels[0] if mlabels else None
+            if label not in grouped:
+                continue
+            if counts[label] >= 30:
+                continue
+            m_name = m_props.get("name") or m_props.get("title", "")
+            m_name_ko = m_props.get("nameKo")
+            grouped[label].append({
+                "id": m_props.get("theographic_id", ""),
+                "name": m_name,
+                "nameKo": m_name_ko if m_name_ko is not None else m_name,
+                "nameKoMissing": m_name_ko is None,
+                "relation": nr["rel"],
+            })
+            counts[label] += 1
+
+        return grouped
+
+
 @router.get("/node/{node_id}")
 def get_node(node_id: str):
     driver = get_driver()
