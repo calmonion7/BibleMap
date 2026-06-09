@@ -36,17 +36,23 @@ def inject(driver, label, mappings):
 def main():
     people = load_json("people.json")
     places = load_json("places.json")
+    events = load_json("events.json")
+    groups = load_json("groups.json")
 
     driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
     try:
         person_count = inject(driver, "Person", people)
         place_count = inject(driver, "Place", places)
+        event_count = inject(driver, "Event", events)
+        group_count = inject(driver, "PeopleGroup", groups)
     finally:
         driver.close()
 
-    print(f"Person nodes updated: {person_count}")
-    print(f"Place nodes updated:  {place_count}")
-    print(f"Total:                {person_count + place_count}")
+    print(f"Person nodes updated:      {person_count}")
+    print(f"Place nodes updated:       {place_count}")
+    print(f"Event nodes updated:       {event_count}")
+    print(f"PeopleGroup nodes updated: {group_count}")
+    print(f"Total:                     {person_count + place_count + event_count + group_count}")
 
 
 if __name__ == "__main__":

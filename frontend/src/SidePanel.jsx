@@ -2,6 +2,17 @@ import { useState, useEffect } from 'react'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
+const REL_KO = {
+  PARENT_OF: '부모',
+  CHILD_OF: '자녀',
+  SIBLING_OF: '형제·자매',
+  PARTNER_OF: '배우자',
+  MEMBER_OF: '소속',
+  HAS_PARTICIPANT: '참여',
+  OCCURS_AT: '발생 장소',
+  PART_OF: '상위 사건',
+}
+
 function SidePanel({ nodeId, onSelectNode = () => {} }) {
   const [node, setNode] = useState(null)
   const [error, setError] = useState(null)
@@ -35,7 +46,7 @@ function SidePanel({ nodeId, onSelectNode = () => {} }) {
               style={{ border: 'none', background: 'none', cursor: 'pointer', color: 'inherit', padding: 0, font: 'inherit', textAlign: 'left' }}
               onClick={() => onSelectNode(n.id)}
             >
-              {n.nameKoMissing ? n.name + ' (미번역)' : n.nameKo + ' (' + n.name + ')'} [{n.relation}]
+              {n.nameKoMissing ? n.name + ' (미번역)' : n.nameKo + ' (' + n.name + ')'} [{REL_KO[n.relation] || n.relation}]
             </button>
           </li>
         ))}

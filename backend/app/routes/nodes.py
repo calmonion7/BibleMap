@@ -3,6 +3,70 @@ from ..db import get_driver
 
 router = APIRouter()
 
+@router.get("/node/{node_id}/places")
+def get_node_places(node_id: str):
+    driver = get_driver()
+    with driver.session() as session:
+        result = session.run(
+            "MATCH (n {theographic_id: $id}) RETURN labels(n) AS labels",
+            id=node_id
+        )
+        record = result.single()
+        if not record:
+            raise HTTPException(status_code=404, detail="Node not found")
+        labels = record["labels"]
+        label = labels[0] if labels else "Unknown"
+
+        if label == "Person":
+            places_result = session.run(
+                """
+                MATCH (n {theographic_id: $id})-[:HAS_PARTICIPANT]->(e:Event)-[:OCCURS_AT]->(p:Place)
+                WHERE p.latitude IS NOT NULL AND p.longitude IS NOT NULL
+                RETURN p, false AS isPrimary
+                """,
+                id=node_id
+            )
+        elif label == "Event":
+            places_result = session.run(
+                """
+                MATCH (n {theographic_id: $id})-[:OCCURS_AT]->(p:Place)
+                WHERE p.latitude IS NOT NULL AND p.longitude IS NOT NULL
+                RETURN p, true AS isPrimary
+                """,
+                id=node_id
+            )
+        else:
+            places_result = session.run(
+                """
+                MATCH (p:Place {theographic_id: $id})
+                WHERE p.latitude IS NOT NULL AND p.longitude IS NOT NULL
+                RETURN p, true AS isPrimary
+                """,
+                id=node_id
+            )
+
+        places = []
+        seen = set()
+        for record in places_result:
+            p = record["p"]
+            props = dict(p)
+            tid = props.get("theographic_id", "")
+            if tid in seen:
+                continue
+            seen.add(tid)
+            name = props.get("name", "")
+            name_ko = props.get("nameKo")
+            places.append({
+                "id": tid,
+                "name": name,
+                "nameKo": name_ko if name_ko else name,
+                "lat": float(props.get("latitude", 0)),
+                "lng": float(props.get("longitude", 0)),
+                "isPrimary": record["isPrimary"],
+            })
+        return places
+
+
 @router.get("/node/{node_id}")
 def get_node(node_id: str):
     driver = get_driver()

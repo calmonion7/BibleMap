@@ -18,6 +18,7 @@ def get_events():
             events.append({
                 "id": props.get("theographic_id", ""),
                 "title": props.get("title", ""),
+                "nameKo": props.get("nameKo"),
                 "startDate": props.get("startDate", ""),
                 "sortKey": float(props.get("sortKey", 0)),
             })

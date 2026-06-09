@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Map, Clock, Network, Search } from 'lucide-react'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
 import TimelineView from './TimelineView'
@@ -7,9 +8,9 @@ import GraphView from './GraphView'
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 const TABS = [
-  { key: 'map', label: '지도' },
-  { key: 'timeline', label: '타임라인' },
-  { key: 'graph', label: '그래프' },
+  { key: 'map', icon: Map },
+  { key: 'timeline', icon: Clock },
+  { key: 'graph', icon: Network },
 ]
 
 function App() {
@@ -46,33 +47,55 @@ function App() {
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: NAV_H,
         display: 'flex', alignItems: 'center',
-        background: 'white', borderBottom: '1px solid #ddd',
-        zIndex: 20, boxShadow: '0 1px 4px rgba(0,0,0,0.1)',
+        background: '#1a1a2e', borderBottom: 'none',
+        zIndex: 20, boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
       }}>
-        {TABS.map(tab => (
-          <button
-            key={tab.key}
-            onClick={() => handleTabClick(tab.key)}
-            style={{
-              padding: '8px 16px', height: '100%',
-              fontWeight: activeView === tab.key ? 'bold' : 'normal',
-              borderBottom: activeView === tab.key ? '2px solid #333' : '2px solid transparent',
-              border: 'none', background: 'none', cursor: 'pointer',
-            }}
-          >
-            {tab.label}
-          </button>
-        ))}
-        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', padding: '4px 8px', position: 'relative' }}>
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
-            onKeyDown={e => e.key === 'Enter' && handleSearch()}
-            placeholder="검색..."
-            style={{ padding: '4px 8px', marginRight: '4px', border: '1px solid #ccc', borderRadius: '4px' }}
-          />
-          <button onClick={handleSearch} style={{ padding: '4px 8px', cursor: 'pointer' }}>검색</button>
+        {TABS.map(tab => {
+          const Icon = tab.icon
+          const active = activeView === tab.key
+          return (
+            <button
+              key={tab.key}
+              onClick={() => handleTabClick(tab.key)}
+              style={{
+                padding: '0 18px', height: '100%',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: active ? 'white' : 'rgba(255,255,255,0.5)',
+                borderBottom: active ? '2px solid #7c9cfc' : '2px solid transparent',
+                border: 'none', background: 'none', cursor: 'pointer',
+                transition: 'color 0.15s',
+              }}
+            >
+              <Icon size={20} />
+            </button>
+          )
+        })}
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', padding: '0 8px', position: 'relative' }}>
+          <div style={{ flex: 1, position: 'relative' }}>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && handleSearch()}
+              placeholder="검색..."
+              style={{
+                width: '100%', padding: '6px 36px 6px 12px', boxSizing: 'border-box',
+                background: 'rgba(255,255,255,0.1)', color: 'white',
+                border: '1px solid rgba(255,255,255,0.2)', borderRadius: 8,
+                outline: 'none', fontSize: 14,
+              }}
+            />
+            <button
+              onClick={handleSearch}
+              style={{
+                position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)',
+                background: 'none', border: 'none', cursor: 'pointer',
+                color: 'rgba(255,255,255,0.6)', display: 'flex', alignItems: 'center', padding: 0,
+              }}
+            >
+              <Search size={16} />
+            </button>
+          </div>
           {showDropdown && (
             <div style={{
               position: 'absolute', top: '100%', right: 0,

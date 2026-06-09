@@ -1,114 +1,139 @@
 import { useEffect, useRef, useState } from 'react'
-import * as d3 from 'd3'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
+function parseYear(startDate) {
+  if (!startDate) return ''
+  if (startDate.startsWith('-')) {
+    const year = startDate.slice(1).split('-')[0].replace(/^0+/, '') || '0'
+    return 'BC ' + year
+  }
+  const year = startDate.split('-')[0].replace(/^0+/, '') || '1'
+  return 'AD ' + year
+}
+
 function TimelineView({ onSelectNode, selectedNode }) {
-  const svgRef = useRef(null)
   const [events, setEvents] = useState([])
+  const [openGroup, setOpenGroup] = useState(null)
+  const containerRef = useRef(null)
 
   useEffect(() => {
-    fetch(API_URL + '/events')
+    fetch(`${API_URL}/events`)
       .then(r => r.json())
-      .then(setEvents)
+      .then(data => setEvents(data))
       .catch(() => {})
   }, [])
 
   useEffect(() => {
-    if (!events.length || !svgRef.current) return
-
-    const container = svgRef.current.parentElement
-    const W = container.clientWidth || 800
-    const H = container.clientHeight || 400
-    const margin = { top: 40, right: 40, bottom: 60, left: 40 }
-
-    const svg = d3.select(svgRef.current)
-    svg.selectAll('*').remove()
-    svg.attr('width', W).attr('height', H)
-
-    const xScale = d3.scaleLinear()
-      .domain(d3.extent(events, d => d.sortKey))
-      .range([margin.left, W - margin.right])
-
-    const g = svg.append('g')
-
-    const zoom = d3.zoom()
-      .scaleExtent([0.1, 20])
-      .on('zoom', event => { g.attr('transform', event.transform) })
-    svg.call(zoom)
-
-    const xAxis = d3.axisBottom(xScale)
-      .tickFormat(d => d < 0 ? `BC ${Math.abs(Math.round(d))}` : `AD ${Math.round(d)}`)
-    g.append('g')
-      .attr('transform', `translate(0, ${H / 2})`)
-      .call(xAxis)
-
-    g.append('line')
-      .attr('x1', margin.left).attr('x2', W - margin.right)
-      .attr('y1', H / 2).attr('y2', H / 2)
-      .attr('stroke', '#ccc').attr('stroke-width', 1)
-
-    events.forEach((ev, i) => {
-      const x = xScale(ev.sortKey)
-      const above = i % 2 === 0
-      const y = H / 2 + (above ? -30 : 30)
-
-      g.append('circle')
-        .attr('cx', x).attr('cy', H / 2)
-        .attr('id', `ev-${ev.id}`)
-        .attr('r', 5)
-        .attr('fill', '#4a90d9')
-        .attr('cursor', 'pointer')
-        .on('click', () => onSelectNode(ev.id))
-
-      g.append('text')
-        .attr('x', x).attr('y', y)
-        .attr('text-anchor', 'middle')
-        .attr('font-size', '10px')
-        .attr('fill', '#333')
-        .attr('pointer-events', 'none')
-        .text(ev.title.length > 15 ? ev.title.slice(0, 15) + '…' : ev.title)
-    })
-  }, [events, onSelectNode])
-
-  // selectedNode 변경 시 하이라이트
-  useEffect(() => {
-    if (!events.length) return
-
-    // 모든 원 초기화
-    events.forEach(ev => {
-      const el = document.getElementById(`ev-${ev.id}`)
-      if (el) el.setAttribute('fill', '#4a90d9')
-    })
-
-    if (!selectedNode) return
-
-    // 직접 Event 선택
-    const direct = document.getElementById(`ev-${selectedNode}`)
-    if (direct) {
-      direct.setAttribute('fill', '#e03131')
-      return
+    if (openGroup === null) return
+    const handler = (e) => {
+      if (containerRef.current && !containerRef.current.contains(e.target)) {
+        setOpenGroup(null)
+      }
     }
+    document.addEventListener('click', handler)
+    return () => document.removeEventListener('click', handler)
+  }, [openGroup])
 
-    // Person/Place 선택 → 관련 Event 이웃 하이라이트
-    const ctrl = new AbortController()
-    fetch(`${API_URL}/node/${selectedNode}`, { signal: ctrl.signal })
-      .then(r => r.json())
-      .then(data => {
-        ;(data.neighbors || [])
-          .filter(n => n.label === 'Event')
-          .forEach(n => {
-            const el = document.getElementById(`ev-${n.id}`)
-            if (el) el.setAttribute('fill', '#e03131')
-          })
-      })
-      .catch(() => {})
-    return () => ctrl.abort()
-  }, [selectedNode, events])
+  const groupMap = new Map()
+  for (const ev of events) {
+    const key = ev.startDate ?? ''
+    if (!groupMap.has(key)) groupMap.set(key, [])
+    groupMap.get(key).push(ev)
+  }
+
+  const groups = Array.from(groupMap.entries())
+    .map(([startDate, members]) => {
+      const sortKey = members[0].sortKey ?? startDate
+      const rep = members.find(e => e.nameKo) || members[0]
+      return { startDate, members, sortKey, rep }
+    })
+    .sort((a, b) => {
+      if (a.sortKey < b.sortKey) return -1
+      if (a.sortKey > b.sortKey) return 1
+      return 0
+    })
 
   return (
-    <div style={{ width: '100%', height: '100%', overflow: 'hidden', background: '#fafafa' }}>
-      <svg ref={svgRef} style={{ display: 'block' }} />
+    <div
+      ref={containerRef}
+      style={{ width: '100%', height: '100%', overflowY: 'auto', background: '#fafafa', position: 'relative' }}
+    >
+      {groups.map(({ startDate, members, rep }) => {
+        const isSelected = selectedNode && members.some(e => e.id === selectedNode)
+        const yearLabel = parseYear(startDate)
+        const isSingle = members.length === 1
+        const groupKey = startDate
+
+        return (
+          <div
+            key={groupKey}
+            style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              padding: '4px 8px',
+              minHeight: '28px',
+              backgroundColor: isSelected ? '#fff3cd' : 'transparent',
+              cursor: isSingle ? 'pointer' : 'default',
+              position: 'relative',
+            }}
+            onClick={isSingle ? () => onSelectNode && onSelectNode(members[0].id) : undefined}
+          >
+            <div style={{ minWidth: 80, textAlign: 'right', color: '#666', fontSize: '12px', paddingTop: 2 }}>
+              {yearLabel}
+            </div>
+            <div style={{ borderLeft: '2px solid #ccc', margin: '0 12px', alignSelf: 'stretch', minHeight: 20 }} />
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', paddingTop: 2 }}>
+              <span
+                style={{ fontSize: '13px', cursor: 'pointer', color: '#222' }}
+                onClick={!isSingle ? (e) => { e.stopPropagation(); onSelectNode && onSelectNode(rep.id) } : undefined}
+              >
+                {rep.nameKo || rep.title}
+              </span>
+              {!isSingle && (
+                <button
+                  style={{ fontSize: '11px', color: '#4a90d9', marginLeft: '8px', cursor: 'pointer', background: 'none', border: 'none', padding: '0' }}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setOpenGroup(openGroup === groupKey ? null : groupKey)
+                  }}
+                >
+                  외 {members.length - 1}건
+                </button>
+              )}
+              {openGroup === groupKey && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    left: 104,
+                    top: '100%',
+                    backgroundColor: '#fff',
+                    border: '1px solid #ddd',
+                    borderRadius: '4px',
+                    padding: '4px 0',
+                    zIndex: 100,
+                    minWidth: '200px',
+                    maxHeight: '200px',
+                    overflowY: 'auto',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                  }}
+                  onClick={e => e.stopPropagation()}
+                >
+                  {members.map(ev => (
+                    <div
+                      key={ev.id}
+                      style={{ padding: '4px 12px', fontSize: '13px', cursor: 'pointer', color: '#222' }}
+                      onClick={() => { onSelectNode && onSelectNode(ev.id); setOpenGroup(null) }}
+                    >
+                      {ev.nameKo || ev.title}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        )
+      })}
     </div>
   )
 }
