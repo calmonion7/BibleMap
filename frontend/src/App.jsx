@@ -104,7 +104,11 @@ function App() {
       <div style={{ position: 'absolute', inset: 0 }}>
         {activeView === 'map' && <MapView onSelectNode={setSelectedNode} selectedNode={selectedNode} />}
         {activeView === 'timeline' && <TimelineView onSelectNode={setSelectedNode} selectedNode={selectedNode} />}
-        {activeView === 'graph' && <GraphView onSelectNode={setSelectedNode} selectedNode={selectedNode} />}
+        {activeView === 'graph' && (
+          <div style={{ position: 'absolute', top: NAV_H, left: 0, right: 0, bottom: 0 }}>
+            <GraphView onSelectNode={setSelectedNode} selectedNode={selectedNode} />
+          </div>
+        )}
       </div>
 
       {/* 오버레이 패널 — 그래프 뷰 제외, 우측에서 슬라이드인 */}
