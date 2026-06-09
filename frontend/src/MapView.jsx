@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 
@@ -20,6 +20,7 @@ function placesToGeoJSON(places) {
 export default function MapView({ onSelectNode, selectedNode }) {
   const mapContainer = useRef(null)
   const mapRef = useRef(null)
+  const [mapLoaded, setMapLoaded] = useState(false)
 
   useEffect(() => {
     const map = new maplibregl.Map({
@@ -49,9 +50,9 @@ export default function MapView({ onSelectNode, selectedNode }) {
         type: 'circle',
         source: 'places-source',
         paint: {
-          'circle-radius': ['case', ['get', 'isPrimary'], 10, 7],
-          'circle-color': ['case', ['get', 'isPrimary'], '#e03131', '#4a90d9'],
-          'circle-stroke-width': ['case', ['get', 'isPrimary'], 2.5, 2],
+          'circle-radius': ['case', ['==', ['get', 'isPrimary'], true], 10, 7],
+          'circle-color': ['case', ['==', ['get', 'isPrimary'], true], '#e03131', '#4a90d9'],
+          'circle-stroke-width': ['case', ['==', ['get', 'isPrimary'], true], 2.5, 2],
           'circle-stroke-color': '#ffffff',
         },
       })
@@ -88,14 +89,20 @@ export default function MapView({ onSelectNode, selectedNode }) {
       })
 
       mapRef.current = map
+      setMapLoaded(true)
     })
 
-    return () => map.remove()
+    return () => {
+      mapRef.current = null
+      setMapLoaded(false)
+      map.remove()
+    }
   }, [onSelectNode])
 
   useEffect(() => {
+    if (!mapLoaded) return
     const map = mapRef.current
-    if (!map || !map.getSource('places-source')) return
+    if (!map) return
 
     if (!selectedNode) {
       map.getSource('places-source').setData(EMPTY_GEOJSON)
@@ -107,12 +114,14 @@ export default function MapView({ onSelectNode, selectedNode }) {
     fetch(`${API_URL}/node/${selectedNode}/places`, { signal: ctrl.signal })
       .then((res) => res.json())
       .then((places) => {
-        map.getSource('places-source').setData(placesToGeoJSON(places))
+        if (mapRef.current === map) {
+          map.getSource('places-source').setData(placesToGeoJSON(places))
+        }
       })
       .catch(() => {})
 
     return () => ctrl.abort()
-  }, [selectedNode])
+  }, [selectedNode, mapLoaded])
 
   return <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />
 }
