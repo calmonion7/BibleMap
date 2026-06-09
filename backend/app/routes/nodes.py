@@ -20,7 +20,8 @@ def get_node_places(node_id: str):
         if label == "Person":
             places_result = session.run(
                 """
-                MATCH (n {theographic_id: $id})-[:HAS_PARTICIPANT]->(e:Event)-[:OCCURS_AT]->(p:Place)
+                MATCH (e:Event)-[:HAS_PARTICIPANT]->(n {theographic_id: $id})
+                MATCH (e)-[:OCCURS_AT]->(p:Place)
                 WHERE p.latitude IS NOT NULL AND p.longitude IS NOT NULL
                 RETURN p, false AS isPrimary
                 """,
