@@ -1,11 +1,704 @@
 {
-  "recpqKANUDcRgN4HU": { "ko": "바벨론", "alias": [] },
-  "recRxBBePxyyV6TFO": { "ko": "가나안", "alias": [] },
-  "recfrXyxhuYOczKTm": { "ko": "이집트", "alias": ["애굽"] },
-  "recmL1lWBqWP3mAq3": { "ko": "갈릴리", "alias": [] },
-  "recL1WV82pXaRBQ59": { "ko": "예루살렘", "alias": [] },
-  "recmRfnw4XzPBH9jc": { "ko": "나사렛", "alias": [] },
-  "rec5dSSsOutWlH2fW": { "ko": "요단강", "alias": [] },
-  "rec5Yu6987dc60uKz": { "ko": "시내산", "alias": [] },
-  "rec6V51IWkgvAcnOU": { "ko": "시내", "alias": [] }
+  "rec2QcD6jrQCxSGp2": {
+    "ko": "악갓",
+    "alias": []
+  },
+  "recj2XUqaJxCKA6qs": {
+    "ko": "아가야",
+    "alias": []
+  },
+  "recqAEHPEI3gAP9H8": {
+    "ko": "아드마",
+    "alias": []
+  },
+  "recdx9jGjxLSDKDOw": {
+    "ko": "아드라뭇데노",
+    "alias": []
+  },
+  "recnaZntafDFrVRTN": {
+    "ko": "아드리아",
+    "alias": []
+  },
+  "recedRWoiFNdeGFm4": {
+    "ko": "아이",
+    "alias": []
+  },
+  "recAt5Dc8ewQhhW5f": {
+    "ko": "아겔다마",
+    "alias": [
+      "피밭"
+    ]
+  },
+  "recBH7NuHKP1aJEqF": {
+    "ko": "알렉산드리아",
+    "alias": []
+  },
+  "recjAd4VSbzamAXaB": {
+    "ko": "암비볼리",
+    "alias": []
+  },
+  "recKAFuMIt8BAi2OH": {
+    "ko": "안디옥",
+    "alias": [
+      "수리아"
+    ]
+  },
+  "recevhMicAECGWRVk": {
+    "ko": "안디옥",
+    "alias": [
+      "비시디아"
+    ]
+  },
+  "recHrXj4CZl6AH9TQ": {
+    "ko": "안디바드리",
+    "alias": []
+  },
+  "recHMM1wYdWhsiv6D": {
+    "ko": "아볼로니아",
+    "alias": []
+  },
+  "recL30tpeUpd8vHsg": {
+    "ko": "압비오 광장",
+    "alias": []
+  },
+  "recCn3rjVhgRbVWqk": {
+    "ko": "아라랏",
+    "alias": []
+  },
+  "recaLSmBP3GuhC5ip": {
+    "ko": "아레오바고",
+    "alias": []
+  },
+  "recpCMN0bRpzByjaR": {
+    "ko": "아시아",
+    "alias": []
+  },
+  "recAiXXgqL914wNA9": {
+    "ko": "앗수르",
+    "alias": []
+  },
+  "recRYZ3EbNAloBZSA": {
+    "ko": "앗소",
+    "alias": []
+  },
+  "recIJFRcqI6KbKgXb": {
+    "ko": "앗수르",
+    "alias": [
+      "앗시리아"
+    ]
+  },
+  "rec6n0u78dB1QOA1Z": {
+    "ko": "아테네",
+    "alias": []
+  },
+  "recgETRLKLXHedXj3": {
+    "ko": "앗달리아",
+    "alias": []
+  },
+  "recFPceE2ivY1B3sX": {
+    "ko": "바알브올",
+    "alias": []
+  },
+  "recO7At5WvGRe0Xsu": {
+    "ko": "바벨",
+    "alias": []
+  },
+  "recpqKANUDcRgN4HU": {
+    "ko": "바벨론",
+    "alias": []
+  },
+  "recgdvRbWEPMp5I0z": {
+    "ko": "바산",
+    "alias": []
+  },
+  "rec232gzESK5PLtd0": {
+    "ko": "아름다운 문",
+    "alias": []
+  },
+  "rech04nnKCaXqzU0U": {
+    "ko": "베뢰아",
+    "alias": []
+  },
+  "recJK76HLZSOzxTWW": {
+    "ko": "벧엘",
+    "alias": []
+  },
+  "rec5XS12X23Uadj5G": {
+    "ko": "비두니아",
+    "alias": []
+  },
+  "recKrSp5YmwkgRKv0": {
+    "ko": "가이사랴",
+    "alias": []
+  },
+  "recormCJYTGZIW2m0": {
+    "ko": "갈라",
+    "alias": []
+  },
+  "recTCLydxA9SiyYUl": {
+    "ko": "갈레",
+    "alias": []
+  },
+  "recRxBBePxyyV6TFO": {
+    "ko": "가나안",
+    "alias": []
+  },
+  "recNSkNykAbbf9sRg": {
+    "ko": "갑바도기아",
+    "alias": []
+  },
+  "recASJJNAAnhodvWY": {
+    "ko": "겐그레아",
+    "alias": []
+  },
+  "rectQcNZqgNSFBmfm": {
+    "ko": "길리기아",
+    "alias": []
+  },
+  "recP4vOUr0U8xrio6": {
+    "ko": "크니도",
+    "alias": []
+  },
+  "recgeNFbkdcvVBH0o": {
+    "ko": "고스",
+    "alias": []
+  },
+  "recQThsW3uau1oxf9": {
+    "ko": "고린도",
+    "alias": []
+  },
+  "rec6yittVQwxJlpye": {
+    "ko": "그레데",
+    "alias": []
+  },
+  "recaHkhAvEICQr7fB": {
+    "ko": "구스",
+    "alias": []
+  },
+  "receEjvf5hXhkgVuZ": {
+    "ko": "구브로",
+    "alias": []
+  },
+  "recZNlnoE1DDb6iiz": {
+    "ko": "구레네",
+    "alias": []
+  },
+  "recR67sC02MfTx4al": {
+    "ko": "다메섹",
+    "alias": []
+  },
+  "recMQPFxBneofA9nV": {
+    "ko": "더베",
+    "alias": []
+  },
+  "recLIUK6VRKNjnGo6": {
+    "ko": "에덴",
+    "alias": []
+  },
+  "recLcxRZbz3yIQB7b": {
+    "ko": "에돔",
+    "alias": []
+  },
+  "recfrXyxhuYOczKTm": {
+    "ko": "이집트",
+    "alias": [
+      "애굽"
+    ]
+  },
+  "rectZ9CHWAIqw2hu2": {
+    "ko": "엔돌",
+    "alias": []
+  },
+  "recBYO9ocr5Gssb47": {
+    "ko": "에베소",
+    "alias": []
+  },
+  "recken6owpkwjiRU0": {
+    "ko": "에브라다",
+    "alias": [
+      "베들레헴"
+    ]
+  },
+  "recMrWeiaOEOsvqsw": {
+    "ko": "에렉",
+    "alias": []
+  },
+  "recJ0N5yStBk9CjXA": {
+    "ko": "유브라데",
+    "alias": []
+  },
+  "rec9KPrYOwTjrP0jA": {
+    "ko": "미항",
+    "alias": []
+  },
+  "recuiNskL8Wft4eRh": {
+    "ko": "갈라디아",
+    "alias": []
+  },
+  "recmL1lWBqWP3mAq3": {
+    "ko": "갈릴리",
+    "alias": []
+  },
+  "recDWNfN3f6E04V4m": {
+    "ko": "가드",
+    "alias": []
+  },
+  "recNzNKGhPz5qS3Kc": {
+    "ko": "가사",
+    "alias": []
+  },
+  "recOo6VrfkSNgeyjD": {
+    "ko": "그발",
+    "alias": []
+  },
+  "recNwG4bBkZyEhAT4": {
+    "ko": "그랄",
+    "alias": []
+  },
+  "recENvrIbE4FauMl3": {
+    "ko": "기혼",
+    "alias": []
+  },
+  "recPoImnA7S93jcHx": {
+    "ko": "길르앗",
+    "alias": []
+  },
+  "rec34nlC2Rt0dlYyu": {
+    "ko": "고모라",
+    "alias": []
+  },
+  "recpmPd6JhbqhqA0Q": {
+    "ko": "그리스",
+    "alias": []
+  },
+  "recyuzIRhPm1IFEu0": {
+    "ko": "하란",
+    "alias": []
+  },
+  "recImfyUAcGhifF6h": {
+    "ko": "하윌라",
+    "alias": []
+  },
+  "recJSfVnIcPibY6aX": {
+    "ko": "헤브론",
+    "alias": []
+  },
+  "recrpaouE7oxrv5jy": {
+    "ko": "헤르몬",
+    "alias": []
+  },
+  "recEbjQiiu1RDI51G": {
+    "ko": "미살 산",
+    "alias": []
+  },
+  "recufFfLnRDrtxLnL": {
+    "ko": "호렙",
+    "alias": [
+      "시내산"
+    ]
+  },
+  "recy6BBIMIGwmihwL": {
+    "ko": "이고니온",
+    "alias": []
+  },
+  "rec17BV2zJmVUdbIV": {
+    "ko": "이탈리아",
+    "alias": []
+  },
+  "recL1WV82pXaRBQ59": {
+    "ko": "예루살렘",
+    "alias": []
+  },
+  "recIeuZZMsolnZA6n": {
+    "ko": "욥바",
+    "alias": []
+  },
+  "rec5dSSsOutWlH2fW": {
+    "ko": "요단강",
+    "alias": []
+  },
+  "recAalC2QoLT7cJKN": {
+    "ko": "유다",
+    "alias": [
+      "유대"
+    ]
+  },
+  "recbFkcAeBmrPDZvG": {
+    "ko": "가데스",
+    "alias": []
+  },
+  "recuBx2LEnNR6q2X3": {
+    "ko": "게달",
+    "alias": []
+  },
+  "recLH8aOU6qflWJw8": {
+    "ko": "기손",
+    "alias": []
+  },
+  "rec96kSfuZ37JXQ5w": {
+    "ko": "라사",
+    "alias": []
+  },
+  "recCXgnK86jc1U9IB": {
+    "ko": "레바논",
+    "alias": []
+  },
+  "rec39FxmiUeVmCNUZ": {
+    "ko": "리비아",
+    "alias": []
+  },
+  "rectv2C0kvcJoF4Jg": {
+    "ko": "루가오니아",
+    "alias": []
+  },
+  "recdFgkZ8GAyZxHL3": {
+    "ko": "루기아",
+    "alias": []
+  },
+  "recL4DQQ2ghOhOCZI": {
+    "ko": "룻다",
+    "alias": []
+  },
+  "recbm5ZBUjTQ5uAGT": {
+    "ko": "루스드라",
+    "alias": []
+  },
+  "recly2TmP9CBHh8OQ": {
+    "ko": "마게도냐",
+    "alias": []
+  },
+  "recHGqci8tWKDU549": {
+    "ko": "멜리데",
+    "alias": []
+  },
+  "rec1irrySVGkYieCr": {
+    "ko": "므리바",
+    "alias": []
+  },
+  "recj67MFyFn1Bmgeq": {
+    "ko": "메사",
+    "alias": []
+  },
+  "recYCmiFv6zLQJNak": {
+    "ko": "메섹",
+    "alias": []
+  },
+  "rec8Dy0OPNtiTqsoS": {
+    "ko": "메소보다미아",
+    "alias": []
+  },
+  "recBZhqAvy5xhTNRn": {
+    "ko": "미디안",
+    "alias": []
+  },
+  "recFNqP8D15s6WRhp": {
+    "ko": "밀레도",
+    "alias": []
+  },
+  "recIaxpnDTIW0Xxx8": {
+    "ko": "미둘레네",
+    "alias": []
+  },
+  "recUn6eVJDoG4xI0j": {
+    "ko": "모압",
+    "alias": []
+  },
+  "recyFR0y4HsEM2kds": {
+    "ko": "모레",
+    "alias": []
+  },
+  "rec5Yu6987dc60uKz": {
+    "ko": "시내산",
+    "alias": []
+  },
+  "rechZwu8ZbWlB6fyU": {
+    "ko": "시온산",
+    "alias": []
+  },
+  "rec958YxYsJUBHZJw": {
+    "ko": "무라",
+    "alias": []
+  },
+  "recZa3ykkleK0kwMp": {
+    "ko": "무시아",
+    "alias": []
+  },
+  "recmRfnw4XzPBH9jc": {
+    "ko": "나사렛",
+    "alias": []
+  },
+  "rec8zPv0ewysxQo9l": {
+    "ko": "네아볼리",
+    "alias": []
+  },
+  "recsX4et9ux7g07Zg": {
+    "ko": "네겝",
+    "alias": [
+      "남방"
+    ]
+  },
+  "rec3M96xTBxHixX5Z": {
+    "ko": "니고볼리",
+    "alias": []
+  },
+  "rec5WK4QGcKa48pA6": {
+    "ko": "니느웨",
+    "alias": []
+  },
+  "recdQjZKTnAnIH91s": {
+    "ko": "놋",
+    "alias": []
+  },
+  "recPkpwSKDIF9jQ3T": {
+    "ko": "오빌",
+    "alias": []
+  },
+  "reczIMmvXFugsrx16": {
+    "ko": "밤빌리아",
+    "alias": []
+  },
+  "recwmQgLTTKcYdJjk": {
+    "ko": "바보",
+    "alias": []
+  },
+  "recYUgRXpxE62Lj08": {
+    "ko": "바다라",
+    "alias": []
+  },
+  "recxdLVLPiSKfK2iB": {
+    "ko": "버가",
+    "alias": []
+  },
+  "recPxaops7Ly4tP4B": {
+    "ko": "뵈니게",
+    "alias": []
+  },
+  "recToD2yiguR5xCQ0": {
+    "ko": "베니게",
+    "alias": []
+  },
+  "recv6STuRUsKfnjFn": {
+    "ko": "빌립보",
+    "alias": []
+  },
+  "recirR7tLEeni78L3": {
+    "ko": "블레셋",
+    "alias": []
+  },
+  "rec5aklHvut8pLc3y": {
+    "ko": "비손",
+    "alias": []
+  },
+  "rec6u7A9chuSPypVx": {
+    "ko": "비시디아",
+    "alias": []
+  },
+  "recGGj6qjPjQ76jkF": {
+    "ko": "요단 평지",
+    "alias": []
+  },
+  "recbCU03lFSJIIVGi": {
+    "ko": "본도",
+    "alias": []
+  },
+  "recCdyPm5ehwB2lsH": {
+    "ko": "돌레마이",
+    "alias": []
+  },
+  "recxF6Nx69b2BrqS7": {
+    "ko": "보디올",
+    "alias": []
+  },
+  "recFinINtrGjUmVDi": {
+    "ko": "라합",
+    "alias": []
+  },
+  "recDQoz6r4QxWn5E3": {
+    "ko": "홍해",
+    "alias": []
+  },
+  "rec1AHST2tmCaaj2L": {
+    "ko": "르호봇",
+    "alias": []
+  },
+  "recsvPka5cfmzpl88": {
+    "ko": "레센",
+    "alias": []
+  },
+  "recTvK2Bl2yXXda6Z": {
+    "ko": "레기온",
+    "alias": []
+  },
+  "rec8dzrUxJExdCl68": {
+    "ko": "로도",
+    "alias": []
+  },
+  "recDDkVF36ecPUge4": {
+    "ko": "로마",
+    "alias": []
+  },
+  "recthAC8bEi71Zdg1": {
+    "ko": "살라미",
+    "alias": []
+  },
+  "recXmfE7tECVVSN23": {
+    "ko": "살렘",
+    "alias": []
+  },
+  "rec87ltw24GIvuFnT": {
+    "ko": "살모네",
+    "alias": []
+  },
+  "recEP3QZ3HUmIkv4Q": {
+    "ko": "사마리아",
+    "alias": []
+  },
+  "recBFy69KCIkfYLFS": {
+    "ko": "사모",
+    "alias": []
+  },
+  "recIbOYJZX6WTiTYy": {
+    "ko": "사모드라게",
+    "alias": []
+  },
+  "recZzd6UIbBEJciWQ": {
+    "ko": "사론",
+    "alias": []
+  },
+  "recaljrl2Vew430Ta": {
+    "ko": "스바",
+    "alias": []
+  },
+  "recf5gqGGUdNN4pas": {
+    "ko": "실루기아",
+    "alias": []
+  },
+  "recIdWp3oamvlTdUY": {
+    "ko": "스발",
+    "alias": []
+  },
+  "recPLjuDonDk53ED5": {
+    "ko": "스바",
+    "alias": []
+  },
+  "recUySlrBva4ffoVs": {
+    "ko": "세겜",
+    "alias": []
+  },
+  "recPt1Ig1xZkj2YWS": {
+    "ko": "실로",
+    "alias": []
+  },
+  "rechl3VIoaKFb2C9f": {
+    "ko": "시날",
+    "alias": []
+  },
+  "recxiSg5QZWkj9Hy3": {
+    "ko": "시돈",
+    "alias": []
+  },
+  "rec6V51IWkgvAcnOU": {
+    "ko": "시내",
+    "alias": []
+  },
+  "recWQDkxXj0IjAdkn": {
+    "ko": "시룐",
+    "alias": []
+  },
+  "recEwQ7ucCWe9yVvi": {
+    "ko": "소돔",
+    "alias": []
+  },
+  "reclfB8zbauosDusS": {
+    "ko": "솔로몬 행각",
+    "alias": []
+  },
+  "recF0VYuuueFj48tB": {
+    "ko": "직가",
+    "alias": []
+  },
+  "recOq0zSXdflaLQcJ": {
+    "ko": "수라구사",
+    "alias": []
+  },
+  "recEoYRAyVeAancS0": {
+    "ko": "수리아",
+    "alias": []
+  },
+  "rec6H5AYVxAT8ixmx": {
+    "ko": "수르디스",
+    "alias": []
+  },
+  "recmyzVBdbLEBB0Y0": {
+    "ko": "다볼",
+    "alias": []
+  },
+  "rec8hi9Ksp4awz9FJ": {
+    "ko": "다시스",
+    "alias": []
+  },
+  "recyT2hLNYpIFXcAs": {
+    "ko": "다소",
+    "alias": []
+  },
+  "recIc4TxQa0rpOszp": {
+    "ko": "데살로니가",
+    "alias": []
+  },
+  "rechxoZ6BVvibQbVa": {
+    "ko": "세 여관",
+    "alias": []
+  },
+  "recV6eT82m0GLrB42": {
+    "ko": "두아디라",
+    "alias": []
+  },
+  "rec2XOUoZFY6AaNQ4": {
+    "ko": "힛데겔",
+    "alias": []
+  },
+  "recOEIhMwampGbSqk": {
+    "ko": "드로아",
+    "alias": []
+  },
+  "recdtc3DhxF0SAJRL": {
+    "ko": "드로길리온",
+    "alias": []
+  },
+  "reco9Wc4YyNXZq43z": {
+    "ko": "두로",
+    "alias": []
+  },
+  "recgQtoCtBjbsPwAw": {
+    "ko": "우르",
+    "alias": []
+  },
+  "recI0bhf2ewWIHMRC": {
+    "ko": "바가 골짜기",
+    "alias": []
+  },
+  "recGrj7fktYfxmcbO": {
+    "ko": "숙곳 골짜기",
+    "alias": []
+  },
+  "recvt2PQbAxcUQYmR": {
+    "ko": "살몬",
+    "alias": []
+  },
+  "rec4vcolAuZ1BVvOs": {
+    "ko": "스보임",
+    "alias": []
+  },
+  "reczPjeq0UdahiRrn": {
+    "ko": "시온",
+    "alias": []
+  },
+  "rechfrPEswg8S257T": {
+    "ko": "소안",
+    "alias": []
+  },
+  "reciwuMXIVWYdwnZw": {
+    "ko": "소알",
+    "alias": []
+  }
 }

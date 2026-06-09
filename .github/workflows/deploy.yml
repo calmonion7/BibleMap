@@ -1,0 +1,16 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [worktree-wise-sprouting-hellman]
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Pull & Deploy
+        run: |
+          cd /Users/calmonion/Project/BibleMap/.claude/worktrees/wise-sprouting-hellman
+          git fetch origin
+          git reset --hard origin/worktree-wise-sprouting-hellman
+          bash deploy.sh

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
-function SidePanel({ nodeId }) {
+function SidePanel({ nodeId, onSelectNode = () => {} }) {
   const [node, setNode] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -31,7 +31,12 @@ function SidePanel({ nodeId }) {
       <ul>
         {node.neighbors.map(n => (
           <li key={n.id}>
-            {n.nameKoMissing ? n.name + ' (미번역)' : n.nameKo + ' (' + n.name + ')'} [{n.relation}]
+            <button
+              style={{ border: 'none', background: 'none', cursor: 'pointer', color: 'inherit', padding: 0, font: 'inherit', textAlign: 'left' }}
+              onClick={() => onSelectNode(n.id)}
+            >
+              {n.nameKoMissing ? n.name + ' (미번역)' : n.nameKo + ' (' + n.name + ')'} [{n.relation}]
+            </button>
           </li>
         ))}
       </ul>

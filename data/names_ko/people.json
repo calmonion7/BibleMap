@@ -1,22 +1,1296 @@
 {
-  "recv0dAY2ULzJ687g": { "ko": "아론", "alias": [] },
-  "reccdFYIq50NyxNej": { "ko": "아브라함", "alias": [] },
-  "rec1ZMFtfbEvoGC73": { "ko": "다윗", "alias": [] },
-  "recqIoG1fkaNWJ1y0": { "ko": "이삭", "alias": [] },
-  "recit3DiamFt2zO0S": { "ko": "이사야", "alias": [] },
-  "recLuZtSmAO6erIsc": { "ko": "여호수아", "alias": [] },
-  "recjNRR60PAuFtjha": { "ko": "모세", "alias": [] },
-  "recgkzNX07a7kGFYL": { "ko": "바울", "alias": ["사울 (다소)"] },
-  "recZsS2Zu0zIDwqdv": { "ko": "사무엘", "alias": [] },
-  "rechda7WMDuW1jBTq": { "ko": "사라", "alias": [] },
-  "rec0BAacWSGBXZ0zI": { "ko": "솔로몬", "alias": [] },
-  "recsU2ZSdzBvDqzgI": { "ko": "야곱", "alias": ["이스라엘"] },
-  "rechuDYJoK32gmrME": { "ko": "요셉", "alias": [] },
-  "recgkFqZovgbr3pAi": { "ko": "예수", "alias": ["예수 그리스도"] },
-  "recnheSkryxih4g9J": { "ko": "마리아", "alias": ["예수의 어머니"] },
-  "recNRRITyGzXsl4yp": { "ko": "세례 요한", "alias": [] },
-  "rechkAyIwugqcLaaY": { "ko": "야고보", "alias": ["세베대의 아들"] },
-  "rec9fHLTg7VkJ0h4l": { "ko": "야고보", "alias": ["알패오의 아들"] },
-  "recRuqBdtrgeag4gT": { "ko": "야고보", "alias": ["예수의 형제"] },
-  "recX9MMADoVI2CSP1": { "ko": "베드로", "alias": ["시몬 베드로"] }
+  "recv0dAY2ULzJ687g": {
+    "ko": "아론",
+    "alias": []
+  },
+  "reccpdazfRa8RGKt6": {
+    "ko": "아벨",
+    "alias": []
+  },
+  "rec9mgBd0DEYP7Xzf": {
+    "ko": "아비마엘",
+    "alias": []
+  },
+  "recT2bBHUbJYLIUdu": {
+    "ko": "아비멜렉",
+    "alias": [
+      "그랄 왕"
+    ]
+  },
+  "rec8lYNa5C3L0QjP7": {
+    "ko": "아비람",
+    "alias": [
+      "엘리압의 아들"
+    ]
+  },
+  "reccdFYIq50NyxNej": {
+    "ko": "아브라함",
+    "alias": [
+      "아브람"
+    ]
+  },
+  "recnvCUsCVAGQNSG1": {
+    "ko": "아다",
+    "alias": [
+      "라멕의 아내"
+    ]
+  },
+  "recyYgUiSETdWFgEP": {
+    "ko": "아담",
+    "alias": []
+  },
+  "reccGvYVWC07oP72J": {
+    "ko": "에네아",
+    "alias": []
+  },
+  "rec9U2V2vDcrrvk6v": {
+    "ko": "아가보",
+    "alias": []
+  },
+  "recMxoVUt13ExT48g": {
+    "ko": "아그립바",
+    "alias": []
+  },
+  "reckOl2eiImdo5by5": {
+    "ko": "아굴",
+    "alias": []
+  },
+  "recO4kahcK4q0EoQZ": {
+    "ko": "알렉산더",
+    "alias": [
+      "시몬의 아들"
+    ]
+  },
+  "recq9MiOV10lqQuRh": {
+    "ko": "알렉산더",
+    "alias": [
+      "에베소의 유대인"
+    ]
+  },
+  "rectcG7JAdYEU3rzF": {
+    "ko": "알모닷",
+    "alias": []
+  },
+  "reczWOq6vDAOEciY7": {
+    "ko": "알패오",
+    "alias": []
+  },
+  "recAJDR6QL4Q2RNfP": {
+    "ko": "아모리",
+    "alias": []
+  },
+  "rectIYECURYGmE2mR": {
+    "ko": "아므라벨",
+    "alias": []
+  },
+  "recb6FvYFkuwIhcvx": {
+    "ko": "아나밈",
+    "alias": []
+  },
+  "reciQ6JZbbGyzAk2N": {
+    "ko": "아나니아",
+    "alias": [
+      "삽비라의 남편"
+    ]
+  },
+  "recmTY4FOegpNmW1w": {
+    "ko": "아나니아",
+    "alias": [
+      "다메섹의 제자"
+    ]
+  },
+  "reckMG16ukBhsbJ0Q": {
+    "ko": "아나니아",
+    "alias": [
+      "대제사장"
+    ]
+  },
+  "recpvMKljbEMuiK9e": {
+    "ko": "안드레",
+    "alias": []
+  },
+  "recrX6dsP8y3Jqib0": {
+    "ko": "아넬",
+    "alias": []
+  },
+  "recGotpPx4VIXOGPr": {
+    "ko": "안나스",
+    "alias": []
+  },
+  "recoxUPwUPGU1IP9X": {
+    "ko": "아볼로",
+    "alias": []
+  },
+  "recWrHJyDw8JiJHZv": {
+    "ko": "압비아",
+    "alias": []
+  },
+  "rec5L6bAZR3j8fYAE": {
+    "ko": "아굴라",
+    "alias": []
+  },
+  "recT8u51EoS9dm05Q": {
+    "ko": "아람",
+    "alias": [
+      "셈의 아들"
+    ]
+  },
+  "rec9yeIB6RsFeHdat": {
+    "ko": "아람",
+    "alias": [
+      "그무엘의 아들"
+    ]
+  },
+  "recPLGfjpMoSjN9kP": {
+    "ko": "아킵보",
+    "alias": []
+  },
+  "recKv9p7E4l9F8vZc": {
+    "ko": "아리옥",
+    "alias": [
+      "엘라살 왕"
+    ]
+  },
+  "recFAk8M3Dk8tn9Xo": {
+    "ko": "아리스다고",
+    "alias": []
+  },
+  "recz9MN2QH7wCtGFr": {
+    "ko": "아르기",
+    "alias": []
+  },
+  "recDncefA67SnXVsu": {
+    "ko": "아르박삿",
+    "alias": []
+  },
+  "recJBKvwwku4FtuD1": {
+    "ko": "아데마",
+    "alias": []
+  },
+  "rec53NDRN1UJoufjW": {
+    "ko": "아르왓",
+    "alias": []
+  },
+  "recwrDYUkCdyU3t85": {
+    "ko": "아삽",
+    "alias": [
+      "레위인"
+    ]
+  },
+  "rec5rfVTS2lfddsE6": {
+    "ko": "아스그나스",
+    "alias": []
+  },
+  "recSlH57E2nlC5aif": {
+    "ko": "앗수르",
+    "alias": []
+  },
+  "recU1v1l7ZuJsuK0g": {
+    "ko": "아우구스도",
+    "alias": []
+  },
+  "recUA9Fc2yoNk8c5d": {
+    "ko": "바나바",
+    "alias": []
+  },
+  "reck1Wm4tMYN0F2hz": {
+    "ko": "바사바 유스도",
+    "alias": []
+  },
+  "recb1JorKSXGAF6Vg": {
+    "ko": "바돌로매",
+    "alias": []
+  },
+  "recBOUtTncbBlfEn9": {
+    "ko": "베냐민",
+    "alias": []
+  },
+  "recN0zIRz9yMn1ELa": {
+    "ko": "베라",
+    "alias": []
+  },
+  "rec46MqJI7uxMvviP": {
+    "ko": "버니게",
+    "alias": []
+  },
+  "reccN1xlFTOq0eIxu": {
+    "ko": "브두엘",
+    "alias": []
+  },
+  "recfUfN1DZAUfbMSB": {
+    "ko": "비르사",
+    "alias": []
+  },
+  "recHruqTiLtGQDY5Y": {
+    "ko": "블라스도",
+    "alias": []
+  },
+  "rechjMXjFfG41iAfc": {
+    "ko": "가야바",
+    "alias": []
+  },
+  "recYqSnSPlrNvnE1m": {
+    "ko": "가인",
+    "alias": []
+  },
+  "recyuyvniLPCMOZyl": {
+    "ko": "가이난",
+    "alias": []
+  },
+  "recGc4mBQC3rOkQ8m": {
+    "ko": "가나안",
+    "alias": []
+  },
+  "rec3cb9xTBNrinUYl": {
+    "ko": "간다게",
+    "alias": []
+  },
+  "rec4iUMAiYL1tLnJB": {
+    "ko": "갑도림",
+    "alias": []
+  },
+  "reczCNpUoLpJhVJES": {
+    "ko": "가슬루힘",
+    "alias": []
+  },
+  "recNhWOxmtfWTewqI": {
+    "ko": "그돌라오멜",
+    "alias": []
+  },
+  "reca2h9BWH2TZsC0L": {
+    "ko": "글라우디오",
+    "alias": [
+      "로마 황제"
+    ]
+  },
+  "recTx6ajkAepIsmh5": {
+    "ko": "글라우디오 루시아",
+    "alias": []
+  },
+  "recq0lOFoVY6zUYkV": {
+    "ko": "고넬료",
+    "alias": []
+  },
+  "recg4drIqr3DPIeyY": {
+    "ko": "그리스보",
+    "alias": []
+  },
+  "recu8J5n677Bmu6qP": {
+    "ko": "구스",
+    "alias": [
+      "함의 아들"
+    ]
+  },
+  "rec1m2Sxz6hjKkkfn": {
+    "ko": "다마리",
+    "alias": []
+  },
+  "rec3iMYLIVkttjae6": {
+    "ko": "다단",
+    "alias": []
+  },
+  "reczVnaIwayhs7vVk": {
+    "ko": "바로의 딸",
+    "alias": []
+  },
+  "rec1ZMFtfbEvoGC73": {
+    "ko": "다윗",
+    "alias": []
+  },
+  "recGr5LKikJh1BOPW": {
+    "ko": "드단",
+    "alias": [
+      "라아마의 아들"
+    ]
+  },
+  "recYie5WTs6Dokoci": {
+    "ko": "데마",
+    "alias": []
+  },
+  "recnjSr5ffVmmz3Rf": {
+    "ko": "데메드리오",
+    "alias": []
+  },
+  "recWH2h1MvOkrAHuQ": {
+    "ko": "디아나",
+    "alias": [
+      "아데미"
+    ]
+  },
+  "recstOyp7y2r481de": {
+    "ko": "디글라",
+    "alias": []
+  },
+  "recUHG987DvnUEI3I": {
+    "ko": "디오누시오",
+    "alias": []
+  },
+  "recjKzpDbTTRHsKft": {
+    "ko": "도다님",
+    "alias": []
+  },
+  "recDt7JkmnmKqdnB7": {
+    "ko": "도르가",
+    "alias": [
+      "다비다"
+    ]
+  },
+  "recqk9LM9GPdK91aw": {
+    "ko": "드루실라",
+    "alias": []
+  },
+  "recdGgplGOiPIePNO": {
+    "ko": "에발",
+    "alias": [
+      "욕단의 아들"
+    ]
+  },
+  "recRO35quNb37mHVy": {
+    "ko": "에벨",
+    "alias": []
+  },
+  "recwvoWxx6OGXX1eK": {
+    "ko": "엘람",
+    "alias": [
+      "셈의 아들"
+    ]
+  },
+  "recCrfjxqlGfwYD1V": {
+    "ko": "엘리에셀",
+    "alias": [
+      "아브라함의 종"
+    ]
+  },
+  "recfJvFV3m8KEUZvy": {
+    "ko": "엘리사",
+    "alias": []
+  },
+  "rec7HJs9Qvg0Oh8ZU": {
+    "ko": "엘루마",
+    "alias": [
+      "바예수"
+    ]
+  },
+  "recCoSSvTtFmv69oV": {
+    "ko": "에녹",
+    "alias": [
+      "가인의 아들"
+    ]
+  },
+  "recj26MAojx8FuOsa": {
+    "ko": "에녹",
+    "alias": [
+      "므두셀라의 아버지"
+    ]
+  },
+  "reco5AjdpK6pP1m0n": {
+    "ko": "에노스",
+    "alias": []
+  },
+  "recYnB4aUknpa5wW8": {
+    "ko": "에바브라",
+    "alias": []
+  },
+  "recEtv9ql7Hh4XAW4": {
+    "ko": "에브라임",
+    "alias": []
+  },
+  "recfi3ywdyFSeO31x": {
+    "ko": "에라스도",
+    "alias": []
+  },
+  "recUQWSZuOecG4z1Q": {
+    "ko": "에서",
+    "alias": [
+      "에돔"
+    ]
+  },
+  "rec9xUjJh4H6OZ18O": {
+    "ko": "에스골",
+    "alias": []
+  },
+  "recuqHd9gHVWFFHNK": {
+    "ko": "유두고",
+    "alias": []
+  },
+  "recXhV7rg0zIf4OIB": {
+    "ko": "하와",
+    "alias": []
+  },
+  "recSRPfTSaf7TsRiN": {
+    "ko": "벨릭스",
+    "alias": []
+  },
+  "rec0zIJdjqEtO0FEo": {
+    "ko": "가이오",
+    "alias": [
+      "마게도냐 사람"
+    ]
+  },
+  "recaje5t0dU5Lgj3F": {
+    "ko": "가이오",
+    "alias": [
+      "더베 사람"
+    ]
+  },
+  "recrCz8fr3Xs1Ckc1": {
+    "ko": "갈리오",
+    "alias": []
+  },
+  "reciIAjF1PRn4qPbM": {
+    "ko": "가말리엘",
+    "alias": []
+  },
+  "rec1kYEN48GKrAXfE": {
+    "ko": "게델",
+    "alias": []
+  },
+  "rec4l7RDJjVHkcR4T": {
+    "ko": "기르가스",
+    "alias": []
+  },
+  "reccZB8SVU5bEMcgo": {
+    "ko": "하나님",
+    "alias": []
+  },
+  "rec3qpjLAgX47JxyF": {
+    "ko": "고멜",
+    "alias": [
+      "야벳의 아들"
+    ]
+  },
+  "recXXk24PymJZM88N": {
+    "ko": "하도람",
+    "alias": []
+  },
+  "recL1zd3NT68owBAG": {
+    "ko": "하갈",
+    "alias": []
+  },
+  "recN6jpLG2OGhtemf": {
+    "ko": "함",
+    "alias": []
+  },
+  "recQGAZUpok9ohqw7": {
+    "ko": "하맛",
+    "alias": []
+  },
+  "rec695igxX8mX64XC": {
+    "ko": "하몰",
+    "alias": []
+  },
+  "recAZ1svRqs8DDACR": {
+    "ko": "하란",
+    "alias": [
+      "아브라함의 형제"
+    ]
+  },
+  "recbAgdJ7CCF50ohK": {
+    "ko": "하윌라",
+    "alias": [
+      "구스의 아들"
+    ]
+  },
+  "recRRl6AHhxfLBux0": {
+    "ko": "하윌라",
+    "alias": [
+      "욕단의 아들"
+    ]
+  },
+  "recRXVxC1fI6jSxfS": {
+    "ko": "하살마웻",
+    "alias": []
+  },
+  "recmjoavfsyFJcm9S": {
+    "ko": "헤벨",
+    "alias": []
+  },
+  "recV4ujd4P2vfpd2D": {
+    "ko": "헤롯 안디바",
+    "alias": []
+  },
+  "recGjoYsVY3r2JVso": {
+    "ko": "헤롯 아그립바",
+    "alias": []
+  },
+  "recQj11G0vIoqJYid": {
+    "ko": "헷",
+    "alias": []
+  },
+  "rec10srs5ydaLS7CM": {
+    "ko": "히위",
+    "alias": []
+  },
+  "reco82mzy0XTzaOgv": {
+    "ko": "성령",
+    "alias": []
+  },
+  "recACHdJjz5IotFXw": {
+    "ko": "훌",
+    "alias": []
+  },
+  "rec5ZruSfa4sU2oCU": {
+    "ko": "이랏",
+    "alias": []
+  },
+  "recqIoG1fkaNWJ1y0": {
+    "ko": "이삭",
+    "alias": []
+  },
+  "recit3DiamFt2zO0S": {
+    "ko": "이사야",
+    "alias": []
+  },
+  "recTm23wkG8napV5L": {
+    "ko": "이스가",
+    "alias": []
+  },
+  "recsU2ZSdzBvDqzgI": {
+    "ko": "야곱",
+    "alias": [
+      "이스라엘"
+    ]
+  },
+  "recM7jGUn5m3a7JHR": {
+    "ko": "이디엘",
+    "alias": []
+  },
+  "recOHEV7ktu3ugWOD": {
+    "ko": "야발",
+    "alias": []
+  },
+  "recaK8xpsOSVcWMc2": {
+    "ko": "야빈",
+    "alias": [
+      "하솔 왕"
+    ]
+  },
+  "recVO7GMRC029fBuy": {
+    "ko": "야케",
+    "alias": []
+  },
+  "rechkAyIwugqcLaaY": {
+    "ko": "야고보",
+    "alias": [
+      "세베대의 아들"
+    ]
+  },
+  "rec9fHLTg7VkJ0h4l": {
+    "ko": "야고보",
+    "alias": [
+      "알패오의 아들"
+    ]
+  },
+  "recRuqBdtrgeag4gT": {
+    "ko": "야고보",
+    "alias": [
+      "예수의 형제"
+    ]
+  },
+  "recya4tTkl2NXT35H": {
+    "ko": "야벳",
+    "alias": []
+  },
+  "rechDI5vmWFtiVmYq": {
+    "ko": "야렛",
+    "alias": []
+  },
+  "recFgALWbY8KpUwCH": {
+    "ko": "야손",
+    "alias": []
+  },
+  "reco9eoVJ4n0TOQNx": {
+    "ko": "야완",
+    "alias": []
+  },
+  "recWK5SZ6JeIFe32y": {
+    "ko": "여부스",
+    "alias": []
+  },
+  "recQkQ6wN9kIVFY94": {
+    "ko": "여두둔",
+    "alias": [
+      "에단"
+    ]
+  },
+  "recfQpbmpDRHmWHbB": {
+    "ko": "예라",
+    "alias": []
+  },
+  "rec9lplwEhGgkXdOn": {
+    "ko": "이새",
+    "alias": []
+  },
+  "recgkFqZovgbr3pAi": {
+    "ko": "예수",
+    "alias": [
+      "예수 그리스도"
+    ]
+  },
+  "rec7fgLqaIfnp70hX": {
+    "ko": "이들랍",
+    "alias": []
+  },
+  "recCwCcYmfCxaZ9J6": {
+    "ko": "요밥",
+    "alias": [
+      "욕단의 아들"
+    ]
+  },
+  "reckEj8sJo3TSIHXr": {
+    "ko": "요엘",
+    "alias": []
+  },
+  "recNRRITyGzXsl4yp": {
+    "ko": "세례 요한",
+    "alias": []
+  },
+  "recvAB7vkczUEFH8Z": {
+    "ko": "요한",
+    "alias": [
+      "사도"
+    ]
+  },
+  "recfvViTrCO4UyG8T": {
+    "ko": "요한",
+    "alias": [
+      "대제사장의 친족"
+    ]
+  },
+  "recASuQRC4jxc1Zmv": {
+    "ko": "욕단",
+    "alias": []
+  },
+  "rechuDYJoK32gmrME": {
+    "ko": "요셉",
+    "alias": [
+      "야곱의 아들"
+    ]
+  },
+  "recLuZtSmAO6erIsc": {
+    "ko": "여호수아",
+    "alias": []
+  },
+  "recVhnKz7p6Itqx94": {
+    "ko": "유발",
+    "alias": []
+  },
+  "rec0rm6yYA4YUQrkh": {
+    "ko": "유다",
+    "alias": [
+      "족장"
+    ]
+  },
+  "rec87gwGfBFi3eIZx": {
+    "ko": "유다",
+    "alias": [
+      "갈릴리 사람"
+    ]
+  },
+  "recAK4AXJIq3Kjxlk": {
+    "ko": "유다",
+    "alias": [
+      "다메섹의 유대인"
+    ]
+  },
+  "recakt9CAUAwg46xw": {
+    "ko": "유다 바사바",
+    "alias": []
+  },
+  "rec95raiD3sLuptbO": {
+    "ko": "가룟 유다",
+    "alias": []
+  },
+  "reclOIbdzOMEvWssM": {
+    "ko": "율리오",
+    "alias": []
+  },
+  "recwOtD0vLzJno5ol": {
+    "ko": "유스도",
+    "alias": []
+  },
+  "recz3nyrwezX2XB6C": {
+    "ko": "기스",
+    "alias": []
+  },
+  "rech1O2z6NdRSRJvK": {
+    "ko": "깃딤",
+    "alias": []
+  },
+  "rece4MdvDF2ule9OY": {
+    "ko": "고라",
+    "alias": [
+      "레위인"
+    ]
+  },
+  "recrXQC6zQIX97CmN": {
+    "ko": "라멕",
+    "alias": [
+      "가인의 후손"
+    ]
+  },
+  "recmpe4tTxcQ9YpS5": {
+    "ko": "라멕",
+    "alias": [
+      "노아의 아버지"
+    ]
+  },
+  "recjr23nobw1dkYdl": {
+    "ko": "다대오",
+    "alias": [
+      "레베오"
+    ]
+  },
+  "recM6Ke1jbGU3vNpQ": {
+    "ko": "르하빔",
+    "alias": []
+  },
+  "recdIZxgxO61iLEXm": {
+    "ko": "레위",
+    "alias": [
+      "족장"
+    ]
+  },
+  "recH5aFqTzpwfDSRi": {
+    "ko": "롯",
+    "alias": []
+  },
+  "recJoaU9LLP6CpcRV": {
+    "ko": "루기오",
+    "alias": []
+  },
+  "recFF4kBvfcodp6aG": {
+    "ko": "룻",
+    "alias": []
+  },
+  "recHxtSJye0RKVzdJ": {
+    "ko": "루딤",
+    "alias": []
+  },
+  "recFqCoLVEfASibXd": {
+    "ko": "누가",
+    "alias": []
+  },
+  "recL7FKDcTneTvG5r": {
+    "ko": "루디아",
+    "alias": []
+  },
+  "recFlzqbNiJcupEr2": {
+    "ko": "마대",
+    "alias": []
+  },
+  "recLBnQVeTd9j1iGb": {
+    "ko": "마곡",
+    "alias": []
+  },
+  "recGo4Uek8ZB1jrJQ": {
+    "ko": "마할랄렐",
+    "alias": []
+  },
+  "recjSwiGiy5p8CTUI": {
+    "ko": "마므레",
+    "alias": []
+  },
+  "recTdhPP0f5tiVz2Z": {
+    "ko": "마나엔",
+    "alias": []
+  },
+  "rec1YbscOE9IyJ5ey": {
+    "ko": "므낫세",
+    "alias": [
+      "요셉의 아들"
+    ]
+  },
+  "rec3LAlubKgbPw9H9": {
+    "ko": "요한 마가",
+    "alias": []
+  },
+  "recnheSkryxih4g9J": {
+    "ko": "마리아",
+    "alias": [
+      "예수의 어머니"
+    ]
+  },
+  "rec8Z7vWWsitSvAKJ": {
+    "ko": "마리아",
+    "alias": [
+      "요한 마가의 어머니"
+    ]
+  },
+  "recw0MQvn8ztexlJX": {
+    "ko": "마스",
+    "alias": []
+  },
+  "recVRtBEdN8mgLhHN": {
+    "ko": "마태",
+    "alias": []
+  },
+  "recAKZBlllSFGbCSM": {
+    "ko": "맛디아",
+    "alias": []
+  },
+  "recKXlRClK5LyUAS0": {
+    "ko": "므후야엘",
+    "alias": []
+  },
+  "recV4oVk0yumm0aol": {
+    "ko": "멜기세덱",
+    "alias": []
+  },
+  "recca9oZ4wL4Gg4SK": {
+    "ko": "메섹",
+    "alias": []
+  },
+  "recpC0LDC57FA04Wd": {
+    "ko": "므두사엘",
+    "alias": []
+  },
+  "recLggPghs0fnCfHB": {
+    "ko": "므두셀라",
+    "alias": []
+  },
+  "recu1NkHTdTZhdbo7": {
+    "ko": "밀가",
+    "alias": [
+      "나홀의 아내"
+    ]
+  },
+  "rec2cmOCjW7sHxc3x": {
+    "ko": "미스라임",
+    "alias": []
+  },
+  "recxDDC0jtl9bpc63": {
+    "ko": "나손",
+    "alias": []
+  },
+  "recjNRR60PAuFtjha": {
+    "ko": "모세",
+    "alias": []
+  },
+  "recHxZ1b7KH2n3MBw": {
+    "ko": "나아마",
+    "alias": [
+      "가인의 후손"
+    ]
+  },
+  "recyVuQvM4Ue7gOd4": {
+    "ko": "나홀",
+    "alias": [
+      "데라의 아버지"
+    ]
+  },
+  "reco9eltuMG5wxarS": {
+    "ko": "나홀",
+    "alias": [
+      "아브라함의 형제"
+    ]
+  },
+  "recmAUAIwW85ajksn": {
+    "ko": "납달리",
+    "alias": []
+  },
+  "rec26Bpj5F4U24VOT": {
+    "ko": "납두힘",
+    "alias": []
+  },
+  "rec7UEVhahn1AN5MV": {
+    "ko": "니가노르",
+    "alias": []
+  },
+  "recENDxs6LhpYVesQ": {
+    "ko": "니골라",
+    "alias": []
+  },
+  "recRWDs7WSuytkhlK": {
+    "ko": "니므롯",
+    "alias": []
+  },
+  "recVMHzYdllgvTo09": {
+    "ko": "노아",
+    "alias": []
+  },
+  "rec1jHj7xGKocQO5m": {
+    "ko": "옥",
+    "alias": []
+  },
+  "recCzplVyZiEXoB0c": {
+    "ko": "오네시모",
+    "alias": []
+  },
+  "reclDIF1F7dgXY6zR": {
+    "ko": "오빌",
+    "alias": []
+  },
+  "rec7dVcBSYkiLTKfA": {
+    "ko": "오렙",
+    "alias": []
+  },
+  "rec54tnooMhFm0eRs": {
+    "ko": "바메나",
+    "alias": []
+  },
+  "recF8uGG3jSVwLuCZ": {
+    "ko": "바드루심",
+    "alias": []
+  },
+  "recgkzNX07a7kGFYL": {
+    "ko": "바울",
+    "alias": [
+      "사울 (다소)"
+    ]
+  },
+  "recIkDyjqErbTqdt0": {
+    "ko": "벨렉",
+    "alias": []
+  },
+  "recX9MMADoVI2CSP1": {
+    "ko": "베드로",
+    "alias": [
+      "시몬 베드로"
+    ]
+  },
+  "recd1WK44ltaGtsK0": {
+    "ko": "바로",
+    "alias": [
+      "아브라함 시대"
+    ]
+  },
+  "recT5VXFTSilSlzVX": {
+    "ko": "바로",
+    "alias": [
+      "요셉 시대"
+    ]
+  },
+  "recOdl9oB4UWmbiqP": {
+    "ko": "바로",
+    "alias": [
+      "출애굽 시대"
+    ]
+  },
+  "recjWMggmneBxkOCQ": {
+    "ko": "비골",
+    "alias": []
+  },
+  "recM8NYTQiIiuZPjy": {
+    "ko": "빌레몬",
+    "alias": []
+  },
+  "recg3914bVvyjBOfN": {
+    "ko": "빌립",
+    "alias": [
+      "사도"
+    ]
+  },
+  "recNsU6uPfTysNEKM": {
+    "ko": "빌립",
+    "alias": [
+      "전도자"
+    ]
+  },
+  "recPDRskzPNTboSMu": {
+    "ko": "비느하스",
+    "alias": [
+      "레위인"
+    ]
+  },
+  "recpGmQBtXTku3y4X": {
+    "ko": "붓",
+    "alias": []
+  },
+  "reczuS92gSUORr83E": {
+    "ko": "본디오 빌라도",
+    "alias": []
+  },
+  "reckKYeZ5P0KFuSkB": {
+    "ko": "베스도",
+    "alias": []
+  },
+  "recOpU2GjcCC2kTg9": {
+    "ko": "브리스길라",
+    "alias": []
+  },
+  "recBrJHsa3lWJqOc7": {
+    "ko": "브로고로",
+    "alias": []
+  },
+  "rec6Vi2UMzYFGsbHu": {
+    "ko": "보블리오",
+    "alias": []
+  },
+  "recElaCme6hM7G3x2": {
+    "ko": "라아마",
+    "alias": []
+  },
+  "recmCYRmiSdCy63Fc": {
+    "ko": "르우",
+    "alias": []
+  },
+  "recyCV9EfoJbwSIj2": {
+    "ko": "로다",
+    "alias": []
+  },
+  "recGeBDHbdX0YjQIQ": {
+    "ko": "리밧",
+    "alias": []
+  },
+  "recJwvpap4CQkuY0k": {
+    "ko": "삽다",
+    "alias": []
+  },
+  "recsQgC3n44wMNpJn": {
+    "ko": "삽드가",
+    "alias": []
+  },
+  "recMoCCDPVw5IzYq8": {
+    "ko": "살라",
+    "alias": []
+  },
+  "recZsS2Zu0zIDwqdv": {
+    "ko": "사무엘",
+    "alias": []
+  },
+  "recPzUsFBorefZzaf": {
+    "ko": "삽비라",
+    "alias": []
+  },
+  "rechda7WMDuW1jBTq": {
+    "ko": "사라",
+    "alias": [
+      "사래"
+    ]
+  },
+  "recLFwe2uKBqJwmWn": {
+    "ko": "사탄",
+    "alias": [
+      "마귀"
+    ]
+  },
+  "recqpdBK0N5U5Gchx": {
+    "ko": "스게와",
+    "alias": []
+  },
+  "recpxGHANrL021JBx": {
+    "ko": "스바",
+    "alias": []
+  },
+  "recbpq2RvTy7pRREx": {
+    "ko": "세군도",
+    "alias": []
+  },
+  "reckNx0iiAT5LBO0f": {
+    "ko": "서기오 바울",
+    "alias": []
+  },
+  "rec5I7GZ9sLwh0hI2": {
+    "ko": "스룩",
+    "alias": []
+  },
+  "recdvASnxGfjfmvDM": {
+    "ko": "셋",
+    "alias": []
+  },
+  "rec3vGEe1ev10AnLa": {
+    "ko": "스바",
+    "alias": [
+      "라아마의 아들"
+    ]
+  },
+  "recsAyydpaHIaPZFn": {
+    "ko": "스바",
+    "alias": [
+      "욕단의 아들"
+    ]
+  },
+  "recfDNqHzhyepDV2z": {
+    "ko": "세겜",
+    "alias": []
+  },
+  "rect3JuPyp6mK5kHu": {
+    "ko": "셀렙",
+    "alias": []
+  },
+  "recOCbR2kuXoxyvkq": {
+    "ko": "셈",
+    "alias": []
+  },
+  "reckdErW6hRQJZs7R": {
+    "ko": "세메벨",
+    "alias": []
+  },
+  "recvqJJbKAZ0BXodu": {
+    "ko": "시납",
+    "alias": []
+  },
+  "recyWfFMHv6ZLJkxq": {
+    "ko": "시혼",
+    "alias": []
+  },
+  "recSo7V3yW4zpZBLM": {
+    "ko": "실라",
+    "alias": []
+  },
+  "recTfg42AmArtOXRy": {
+    "ko": "시므온",
+    "alias": []
+  },
+  "recONdJVwpYA57oAi": {
+    "ko": "시몬",
+    "alias": [
+      "셀롯인"
+    ]
+  },
+  "rec7mbq5BahDRoSlS": {
+    "ko": "시몬",
+    "alias": [
+      "마술사"
+    ]
+  },
+  "recTa6EpjvdBbC1Uk": {
+    "ko": "시몬",
+    "alias": [
+      "피장"
+    ]
+  },
+  "recnuE13gAffOKArZ": {
+    "ko": "시니",
+    "alias": []
+  },
+  "recCQlDLuGURuOOBb": {
+    "ko": "시스라",
+    "alias": [
+      "군대 장관"
+    ]
+  },
+  "rec0BAacWSGBXZ0zI": {
+    "ko": "솔로몬",
+    "alias": []
+  },
+  "recgcmzon0jqDT74V": {
+    "ko": "소바더",
+    "alias": []
+  },
+  "rec5Qv1iQh9VuWNsS": {
+    "ko": "소스데네",
+    "alias": []
+  },
+  "recUipM9EEsnFSZI0": {
+    "ko": "스데반",
+    "alias": []
+  },
+  "rec4vVuRw0bF7M5zX": {
+    "ko": "다시스",
+    "alias": [
+      "야완의 아들"
+    ]
+  },
+  "recXBYSWubfkpqNQm": {
+    "ko": "데라",
+    "alias": []
+  },
+  "recMs3SHZ5C9skUDe": {
+    "ko": "더둘로",
+    "alias": []
+  },
+  "recytMLu9bVfa3vfQ": {
+    "ko": "데오빌로",
+    "alias": []
+  },
+  "recccnQAanNXLnK3z": {
+    "ko": "드다",
+    "alias": []
+  },
+  "reckJ4vuXzqDbTrMP": {
+    "ko": "도마",
+    "alias": []
+  },
+  "recfYEuAztqDu7XrZ": {
+    "ko": "디달",
+    "alias": []
+  },
+  "recRntSbWQfnHjHYu": {
+    "ko": "디몬",
+    "alias": []
+  },
+  "recIRlDcRDv2MBfxW": {
+    "ko": "디모데",
+    "alias": []
+  },
+  "rectRjrYK45UXLVuC": {
+    "ko": "디라스",
+    "alias": []
+  },
+  "rectkXUkoQk15fBk0": {
+    "ko": "디도",
+    "alias": []
+  },
+  "rec7JvUvmgmOm0KlQ": {
+    "ko": "도갈마",
+    "alias": []
+  },
+  "receoHTP3qEbiD7HB": {
+    "ko": "드로비모",
+    "alias": []
+  },
+  "reczT8CLiw0InpQ6G": {
+    "ko": "두발",
+    "alias": []
+  },
+  "recoQd6Yn0SynMgUs": {
+    "ko": "두발가인",
+    "alias": []
+  },
+  "reciJDq0wUbyVGePr": {
+    "ko": "두기고",
+    "alias": []
+  },
+  "rec1zgAipGKoF7ptB": {
+    "ko": "두란노",
+    "alias": []
+  },
+  "rectvsdCmkkVBi3zt": {
+    "ko": "우갈",
+    "alias": []
+  },
+  "reczOruMK7HuHQKCh": {
+    "ko": "우스",
+    "alias": [
+      "아람의 아들"
+    ]
+  },
+  "recFdaXVBStuipt5G": {
+    "ko": "우살",
+    "alias": []
+  },
+  "rechXwK5tLNyMXgrM": {
+    "ko": "살문나",
+    "alias": []
+  },
+  "recucD2O1lew9zZg3": {
+    "ko": "세바",
+    "alias": []
+  },
+  "recZ6YiBydClBiVVJ": {
+    "ko": "스불론",
+    "alias": []
+  },
+  "recE9JL6NWRxMRIWP": {
+    "ko": "세엡",
+    "alias": []
+  },
+  "recO0XhAaIvujR9g7": {
+    "ko": "스말",
+    "alias": []
+  },
+  "recpbEWYH8dudeOvp": {
+    "ko": "세나",
+    "alias": []
+  },
+  "recVcQCNMknBd4BZF": {
+    "ko": "시돈",
+    "alias": []
+  },
+  "recQ5FX4gM2QUZg0z": {
+    "ko": "씰라",
+    "alias": []
+  }
 }
