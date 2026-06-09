@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from fastapi.responses import JSONResponse
 from ..db import get_driver
 
 router = APIRouter()
@@ -22,4 +23,4 @@ def get_events():
                 "startDate": props.get("startDate", ""),
                 "sortKey": float(props.get("sortKey", 0)),
             })
-        return events
+        return JSONResponse(content=events, headers={"Cache-Control": "no-store"})

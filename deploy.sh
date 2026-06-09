@@ -32,8 +32,16 @@ cd "$WORKTREE"
 docker compose -p biblemap build api
 log "      완료."
 
-log "[3/3] 컨테이너 재시작..."
+log "[3/4] 컨테이너 재시작..."
 docker compose -p biblemap up -d api nginx
+log "      완료."
+
+log "[4/4] 한글 이름 주입..."
+for i in $(seq 1 15); do
+  python3 "$WORKTREE/backend/scripts/inject_ko_names.py" 2>/dev/null && break
+  log "      Neo4j 준비 대기 중... ($i/15)"
+  sleep 2
+done
 log "      완료."
 
 log "=== 배포 완료 ==="
