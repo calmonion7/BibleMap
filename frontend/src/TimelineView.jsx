@@ -57,7 +57,7 @@ function TimelineView({ onSelectNode, selectedNode }) {
   return (
     <div
       ref={containerRef}
-      style={{ width: '100%', height: '100%', overflowY: 'auto', background: '#fafafa', position: 'relative' }}
+      style={{ width: '100%', height: '100%', overflowY: 'auto', background: '#fafafa', position: 'relative', paddingTop: 16 }}
     >
       {groups.map(({ startDate, members, rep }) => {
         const isSelected = selectedNode && members.some(e => e.id === selectedNode)
