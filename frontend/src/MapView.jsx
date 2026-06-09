@@ -53,7 +53,8 @@ export default function MapView({ onSelectNode, selectedNode }) {
   useEffect(() => {
     markersRef.current.forEach((el) => {
       el.style.background = '#4a90d9'
-      el.style.transform = ''
+      el.style.width = '12px'
+      el.style.height = '12px'
     })
 
     if (!selectedNode) return
@@ -69,14 +70,16 @@ export default function MapView({ onSelectNode, selectedNode }) {
             const el = markersRef.current.get(n.id)
             if (el) {
               el.style.background = '#e03131'
-              el.style.transform = 'scale(1.4)'
+              el.style.width = '17px'
+              el.style.height = '17px'
             }
           })
         } else if (data.label === 'Place') {
           const el = markersRef.current.get(selectedNode)
           if (el) {
             el.style.background = '#e03131'
-            el.style.transform = 'scale(1.4)'
+            el.style.width = '17px'
+            el.style.height = '17px'
           }
         }
       })
