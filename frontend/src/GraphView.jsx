@@ -11,9 +11,22 @@ const TYPE_COLOR = {
   PeopleGroup: '#8e44ad',
 }
 
+function buildPositions(centerId, neighbors, W, H) {
+  const PAD = 60
+  const cx = W / 2
+  const cy = H / 2
+  const R = Math.min(W - PAD * 2, H - PAD * 2) / 2
+  const positions = { [centerId]: { x: cx, y: cy } }
+  neighbors.forEach((n, i) => {
+    const angle = (i / neighbors.length) * 2 * Math.PI - Math.PI / 2
+    positions[n.id] = { x: cx + R * Math.cos(angle), y: cy + R * Math.sin(angle) }
+  })
+  return positions
+}
+
 export default function GraphView({ onSelectNode, selectedNode }) {
   const containerRef = useRef(null)
-  const [overlay, setOverlay] = useState(null) // { name, nameKo, label, neighborCount }
+  const [overlay, setOverlay] = useState(null)
 
   useEffect(() => {
     const id = selectedNode || DEFAULT_NODE
@@ -33,6 +46,10 @@ export default function GraphView({ onSelectNode, selectedNode }) {
             neighborCount: neighbors.length,
           })
         }
+
+        const W = containerRef.current.clientWidth || window.innerWidth
+        const H = containerRef.current.clientHeight || window.innerHeight
+        const positions = buildPositions(center.id, neighbors, W, H)
 
         const nodes = [
           { data: { id: center.id, label: center.label, nodeType: center.nodeType, isCenter: 1 } },
@@ -72,23 +89,18 @@ export default function GraphView({ onSelectNode, selectedNode }) {
             { selector: 'edge', style: { 'width': 1, 'line-color': '#ddd', 'curve-style': 'bezier' } },
           ],
           layout: {
-            name: 'concentric',
-            concentric: n => (n.data('isCenter') === 1 ? 2 : 1),
-            levelWidth: () => 1,
-            minNodeSpacing: 20,
-            fit: true,
-            padding: 50,
+            name: 'preset',
+            positions: node => positions[node.id()],
+            fit: false,
             animate: false,
           },
+          zoom: 1,
+          pan: { x: 0, y: 0 },
+          userZoomingEnabled: true,
+          userPanningEnabled: true,
         })
 
-        cy.on('tap', 'node', evt => {
-          const nodeId = evt.target.id()
-          onSelectNode(nodeId)
-        })
-
-        // 컨테이너 크기 재계산 후 맞춤 (레이아웃 완료 대기)
-        setTimeout(() => { if (cy) { cy.resize(); cy.fit(undefined, 50) } }, 200)
+        cy.on('tap', 'node', evt => onSelectNode(evt.target.id()))
       })
       .catch(() => {})
 
@@ -105,6 +117,7 @@ export default function GraphView({ onSelectNode, selectedNode }) {
         background: 'rgba(255,255,255,0.9)', borderRadius: 6,
         padding: '6px 10px', fontSize: 11, lineHeight: 1.8,
         boxShadow: '0 1px 4px rgba(0,0,0,0.15)',
+        pointerEvents: 'none',
       }}>
         {Object.entries(TYPE_COLOR).map(([type, color]) => (
           <div key={type} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -114,7 +127,7 @@ export default function GraphView({ onSelectNode, selectedNode }) {
         ))}
       </div>
 
-      {/* 하단 오버레이 — 노드 클릭 시 */}
+      {/* 하단 오버레이 */}
       {overlay && (
         <div style={{
           position: 'absolute', bottom: 0, left: 0, right: 0,
