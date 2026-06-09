@@ -76,6 +76,8 @@ export default function GraphView({ onSelectNode, selectedNode }) {
             concentric: n => (n.data('isCenter') === 1 ? 2 : 1),
             levelWidth: () => 1,
             minNodeSpacing: 20,
+            fit: true,
+            padding: 50,
             animate: false,
           },
         })
@@ -85,10 +87,8 @@ export default function GraphView({ onSelectNode, selectedNode }) {
           onSelectNode(nodeId)
         })
 
-        // 컨테이너 크기 재계산 후 맞춤
-        requestAnimationFrame(() => {
-          if (cy) { cy.resize(); cy.fit(undefined, 40) }
-        })
+        // 컨테이너 크기 재계산 후 맞춤 (레이아웃 완료 대기)
+        setTimeout(() => { if (cy) { cy.resize(); cy.fit(undefined, 50) } }, 200)
       })
       .catch(() => {})
 
