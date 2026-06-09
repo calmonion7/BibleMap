@@ -26,8 +26,14 @@ function buildPositions(centerId, neighbors, W, H) {
 
 export default function GraphView({ onSelectNode, selectedNode }) {
   const containerRef = useRef(null)
+  const cyRef = useRef(null)
   const [overlay, setOverlay] = useState(null)
   const [showLegend, setShowLegend] = useState(false)
+
+  useEffect(() => {
+    if (!cyRef.current) return
+    cyRef.current.fit(cyRef.current.elements(), overlay ? 100 : 40)
+  }, [overlay])
 
   useEffect(() => {
     const id = selectedNode || DEFAULT_NODE
@@ -102,11 +108,12 @@ export default function GraphView({ onSelectNode, selectedNode }) {
         })
 
         cy.on('tap', 'node', evt => onSelectNode(evt.target.id()))
+        cyRef.current = cy
         cy.fit(cy.elements(), 40)
       })
       .catch(() => {})
 
-    return () => { if (cy) cy.destroy() }
+    return () => { if (cy) { cy.destroy(); cyRef.current = null } }
   }, [selectedNode, onSelectNode])
 
   return (
