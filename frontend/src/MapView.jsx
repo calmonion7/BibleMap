@@ -6,6 +6,13 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 const EMPTY_GEOJSON = { type: 'FeatureCollection', features: [] }
 
+const LABEL_TYPES = {
+  Person: '인물',
+  Place: '장소',
+  Event: '사건',
+  PeopleGroup: '민족',
+}
+
 function placesToGeoJSON(places) {
   return {
     type: 'FeatureCollection',
@@ -17,9 +24,10 @@ function placesToGeoJSON(places) {
   }
 }
 
-export default function MapView({ onSelectNode, selectedNode }) {
+export default function MapView({ onSelectNode, selectedNode, selectedNodeLabel }) {
   const mapContainer = useRef(null)
   const mapRef = useRef(null)
+  const popupRef = useRef(null)
   const [mapLoaded, setMapLoaded] = useState(false)
 
   useEffect(() => {
@@ -29,6 +37,7 @@ export default function MapView({ onSelectNode, selectedNode }) {
       zoom: 5,
       style: {
         version: 8,
+        glyphs: 'https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf',
         sources: {
           esri: {
             type: 'raster',
@@ -46,13 +55,24 @@ export default function MapView({ onSelectNode, selectedNode }) {
       map.addSource('places-source', { type: 'geojson', data: EMPTY_GEOJSON })
 
       map.addLayer({
+        id: 'places-circle-shadow',
+        type: 'circle',
+        source: 'places-source',
+        paint: {
+          'circle-radius': ['case', ['==', ['get', 'isPrimary'], true], 14, 11],
+          'circle-color': 'rgba(0,0,0,0.2)',
+          'circle-translate': [1, 2],
+        },
+      })
+
+      map.addLayer({
         id: 'places-circle',
         type: 'circle',
         source: 'places-source',
         paint: {
-          'circle-radius': ['case', ['==', ['get', 'isPrimary'], true], 10, 7],
-          'circle-color': ['case', ['==', ['get', 'isPrimary'], true], '#e03131', '#4a90d9'],
-          'circle-stroke-width': ['case', ['==', ['get', 'isPrimary'], true], 2.5, 2],
+          'circle-radius': ['case', ['==', ['get', 'isPrimary'], true], 11, 8],
+          'circle-color': ['case', ['==', ['get', 'isPrimary'], true], '#f5a623', '#4a90d9'],
+          'circle-stroke-width': 2.5,
           'circle-stroke-color': '#ffffff',
         },
       })
@@ -63,21 +83,58 @@ export default function MapView({ onSelectNode, selectedNode }) {
         source: 'places-source',
         layout: {
           'text-field': ['get', 'label'],
-          'text-size': 12,
+          'text-font': ['Noto Sans Regular'],
+          'text-size': 13,
           'text-anchor': 'left',
-          'text-offset': [0.8, 0],
+          'text-offset': [1.2, 0],
           'text-allow-overlap': false,
           'text-ignore-placement': false,
+          'text-padding': 4,
         },
         paint: {
           'text-color': '#1a1a2e',
-          'text-halo-color': '#ffffff',
-          'text-halo-width': 1.5,
+          'text-halo-color': 'rgba(255,255,255,0.95)',
+          'text-halo-width': 2,
+          'text-halo-blur': 0.5,
         },
       })
 
       map.on('click', 'places-circle', (e) => {
-        const id = e.features[0].properties.id
+        const { id, label, isPrimary } = e.features[0].properties
+        const coords = e.features[0].geometry.coordinates.slice()
+
+        if (popupRef.current) popupRef.current.remove()
+
+        const typeLabel = isPrimary ? '📍 선택된 장소' : '📍 관련 장소'
+
+        const popup = new maplibregl.Popup({
+          closeButton: true,
+          closeOnClick: false,
+          maxWidth: '220px',
+          offset: 14,
+        })
+          .setLngLat(coords)
+          .setHTML(`
+            <div style="
+              font-family: system-ui, -apple-system, sans-serif;
+              padding: 4px 2px;
+            ">
+              <div style="
+                font-size: 15px;
+                font-weight: 700;
+                color: #1a1a2e;
+                margin-bottom: 4px;
+              ">${label}</div>
+              <div style="
+                font-size: 11px;
+                color: #7c8db0;
+                letter-spacing: 0.3px;
+              ">${typeLabel}</div>
+            </div>
+          `)
+          .addTo(map)
+
+        popupRef.current = popup
         if (id) onSelectNode(id)
       })
 
@@ -88,11 +145,20 @@ export default function MapView({ onSelectNode, selectedNode }) {
         map.getCanvas().style.cursor = ''
       })
 
+      map.on('click', (e) => {
+        const features = map.queryRenderedFeatures(e.point, { layers: ['places-circle'] })
+        if (!features.length && popupRef.current) {
+          popupRef.current.remove()
+          popupRef.current = null
+        }
+      })
+
       mapRef.current = map
       setMapLoaded(true)
     })
 
     return () => {
+      if (popupRef.current) { popupRef.current.remove(); popupRef.current = null }
       mapRef.current = null
       setMapLoaded(false)
       map.remove()
@@ -105,6 +171,7 @@ export default function MapView({ onSelectNode, selectedNode }) {
     if (!map) return
 
     if (!selectedNode) {
+      if (popupRef.current) { popupRef.current.remove(); popupRef.current = null }
       map.getSource('places-source').setData(EMPTY_GEOJSON)
       return
     }
@@ -116,6 +183,13 @@ export default function MapView({ onSelectNode, selectedNode }) {
       .then((places) => {
         if (mapRef.current === map) {
           map.getSource('places-source').setData(placesToGeoJSON(places))
+          if (places.length > 0) {
+            const bounds = places.reduce(
+              (b, p) => b.extend([p.lng, p.lat]),
+              new maplibregl.LngLatBounds([places[0].lng, places[0].lat], [places[0].lng, places[0].lat])
+            )
+            map.fitBounds(bounds, { padding: 80, maxZoom: 10, duration: 600 })
+          }
         }
       })
       .catch(() => {})

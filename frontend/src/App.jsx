@@ -98,23 +98,32 @@ function App() {
           </div>
           {showDropdown && (
             <div style={{
-              position: 'absolute', top: '100%', right: 0,
-              background: 'white', border: '1px solid #ccc', borderRadius: '4px',
-              minWidth: '220px', maxHeight: '300px', overflowY: 'auto',
-              zIndex: 100, boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+              position: 'absolute', top: 'calc(100% + 6px)', right: 0,
+              background: '#1e2040', border: '1px solid rgba(124,156,252,0.25)',
+              borderRadius: 10, minWidth: '240px', maxHeight: '320px', overflowY: 'auto',
+              zIndex: 100, boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
             }}>
               {searchResults.length === 0 ? (
-                <div style={{ padding: '8px 12px', color: '#666' }}>결과 없음</div>
+                <div style={{ padding: '12px 16px', color: 'rgba(255,255,255,0.4)', fontSize: 13 }}>결과 없음</div>
               ) : (
                 searchResults.map(r => (
                   <div
                     key={r.id}
                     onClick={() => handleSelectResult(r)}
-                    style={{ padding: '8px 12px', cursor: 'pointer', borderBottom: '1px solid #eee' }}
-                    onMouseEnter={e => e.currentTarget.style.background = '#f5f5f5'}
-                    onMouseLeave={e => e.currentTarget.style.background = 'white'}
+                    style={{
+                      padding: '10px 16px', cursor: 'pointer',
+                      borderBottom: '1px solid rgba(255,255,255,0.06)',
+                      display: 'flex', alignItems: 'center', gap: 10,
+                      color: 'white',
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.background = 'rgba(124,156,252,0.12)'}
+                    onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                   >
-                    {r.nameKo} <span style={{ color: '#888', fontSize: '0.85em' }}>({r.label})</span>
+                    <span style={{ fontSize: 14, fontWeight: 500 }}>{r.nameKo}</span>
+                    <span style={{
+                      fontSize: 10, color: '#7c9cfc', background: 'rgba(124,156,252,0.15)',
+                      borderRadius: 4, padding: '2px 6px', flexShrink: 0,
+                    }}>{r.label}</span>
                   </div>
                 ))
               )}
