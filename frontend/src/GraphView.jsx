@@ -27,7 +27,6 @@ function buildPositions(centerId, neighbors, W, H) {
 export default function GraphView({ onSelectNode, selectedNode }) {
   const containerRef = useRef(null)
   const [overlay, setOverlay] = useState(null)
-  const [showLegend, setShowLegend] = useState(false)
 
   useEffect(() => {
     const id = selectedNode || DEFAULT_NODE
@@ -113,36 +112,6 @@ export default function GraphView({ onSelectNode, selectedNode }) {
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
       <div ref={containerRef} style={{ width: '100%', height: '100%' }} />
 
-      {/* 범례 토글 버튼 */}
-      <button
-        onClick={() => setShowLegend(v => !v)}
-        style={{
-          position: 'absolute', top: 56, right: 8,
-          width: 28, height: 28, borderRadius: '50%',
-          border: '1px solid #ccc', background: 'rgba(255,255,255,0.9)',
-          cursor: 'pointer', fontSize: 14, lineHeight: 1,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 1px 4px rgba(0,0,0,0.15)',
-        }}
-      >ⓘ</button>
-
-      {/* 범례 */}
-      {showLegend && (
-        <div style={{
-          position: 'absolute', top: 90, right: 8,
-          background: 'rgba(255,255,255,0.95)', borderRadius: 6,
-          padding: '6px 10px', fontSize: 11, lineHeight: 1.8,
-          boxShadow: '0 1px 4px rgba(0,0,0,0.15)',
-          pointerEvents: 'none',
-        }}>
-          {Object.entries(TYPE_COLOR).map(([type, color]) => (
-            <div key={type} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-              <span style={{ width: 10, height: 10, borderRadius: '50%', background: color, display: 'inline-block' }} />
-              {type}
-            </div>
-          ))}
-        </div>
-      )}
 
       {/* 하단 오버레이 */}
       {overlay && (
