@@ -84,6 +84,11 @@ export default function GraphView({ onSelectNode, selectedNode }) {
           const nodeId = evt.target.id()
           onSelectNode(nodeId)
         })
+
+        // 컨테이너 크기 재계산 후 맞춤
+        requestAnimationFrame(() => {
+          if (cy) { cy.resize(); cy.fit(undefined, 40) }
+        })
       })
       .catch(() => {})
 
