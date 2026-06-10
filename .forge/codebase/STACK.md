@@ -1,66 +1,103 @@
 ---
-last_mapped_commit: no-commits-yet
-mapped: 2026-06-08
+last_mapped_commit: 26240c7cf18f421b2f8baa4fd6584f40eede57b0
+mapped: 2026-06-11
 ---
 
-# 기술 스택
+# STACK
 
-> 아직 소스 코드가 없는 기획 단계. `BIBLEMAP_PLAN.md` 기준으로 확정된 스택을 기록한다.
+BibleMap의 기술 스택 — 언어, 런타임, 프레임워크, 의존성, 빌드/설정 파일. 백엔드와 프론트엔드를 모두 다룬다.
 
-## 언어
+## 전체 구조
 
-| 영역 | 언어 |
-|---|---|
-| 백엔드 | Python 3.x |
-| 프론트엔드 | JavaScript / TypeScript (React 19) |
-| DB 쿼리 | Cypher (Neo4j) |
-| 인프라 설정 | YAML (docker-compose, cloudflared) |
+모노레포 형태로 단일 Git 저장소 안에 백엔드(`backend/`)와 프론트엔드(`frontend/`)가 함께 있다. 배포는 Docker Compose 기반이며 Neo4j, FastAPI API, Nginx 세 컨테이너로 구성된다.
 
-## 런타임 & 빌드 도구
+- `backend/` — Python FastAPI API 서버 + 데이터 적재 스크립트
+- `frontend/` — React + Vite SPA
+- `data/names_ko/` — 한글 이름 매핑 JSON 데이터(`events.json`, `groups.json`, `people.json`, `places.json`)
+- `nginx/nginx.conf` — 정적 파일 서빙 + API 리버스 프록시
+- `docker-compose.yml` — 3개 서비스 오케스트레이션
+- `deploy.sh`, `scripts/auto-deploy-poll.sh` — 배포 스크립트
 
-- **프론트엔드**: Vite (React 19 + Vite 조합 확정)
-- **백엔드**: Python (uvicorn + FastAPI)
-- **컨테이너**: Docker, Docker Compose (`neo4j:5` 공식 이미지, arm64 네이티브)
+## 백엔드
 
-## 프레임워크 & 핵심 라이브러리
+### 언어 / 런타임
 
-### 백엔드
+- **Python 3.12** — 빌드 이미지 기준(`backend/Dockerfile`의 `FROM python:3.12-slim`). README(`README.md`)는 로컬 개발 사전 준비로 Python 3.11+를 명시한다.
+- 패키지 매니저: **pip**(`pip install --no-cache-dir -r requirements.txt`).
 
-| 패키지 | 용도 |
-|---|---|
-| `fastapi` | HTTP API 서버 |
-| `neo4j` | 공식 Python Neo4j 드라이버 |
-| `uvicorn` | ASGI 서버 |
+### 프레임워크 / 핵심 의존성
 
-### 프론트엔드
+`backend/requirements.txt`에 고정 버전으로 명시:
 
-| 패키지 | 용도 |
-|---|---|
-| `react` 19 | UI 프레임워크 |
-| `vite` | 번들러/빌드 도구 |
-| `maplibre-gl` | 지도 뷰 (오픈소스, 역사 지도 타일 오버레이 지원) |
-| `react-force-graph` 또는 `cytoscape.js` | 관계도 뷰 (focus+context 지원 여부가 선택 기준) |
-| `vis-timeline` 또는 D3 커스텀 | 타임라인 뷰 |
+- **fastapi 0.136.3** — 웹 프레임워크(`backend/app/main.py`에서 `FastAPI`, `CORSMiddleware`, `APIRouter` 사용)
+- **uvicorn 0.49.0** — ASGI 서버. 컨테이너 기동 명령은 `uvicorn app.main:app --host 0.0.0.0 --port 8000`(`backend/Dockerfile`), 로컬은 `python3 -m uvicorn backend.app.main:app --reload`(`README.md`)
+- **neo4j 6.2.0** — Neo4j 공식 Python 드라이버(`backend/app/db.py`에서 `GraphDatabase.driver` 사용)
 
-## 데이터베이스
+### 애플리케이션 구조
 
-- **Neo4j 5** (로컬 Docker self-host 확정)
-- 이미지: `neo4j:5` (arm64 네이티브)
-- 볼륨 마운트로 데이터 영속화
-- 포트: `127.0.0.1:7474:7474` (HTTP, 로컬 관리용), `127.0.0.1:7687:7687` (Bolt, 퍼블릭 노출 금지)
-- FastAPI → Neo4j 연결: compose 내부 서비스명 `bolt://neo4j:7687`
+- `backend/app/main.py` — 앱 진입점. CORS 미들웨어(`allow_origins=["*"]`), lifespan 훅에서 Neo4j 인덱스 생성, 4개 라우터 등록
+- `backend/app/db.py` — Neo4j 드라이버 싱글턴(`get_driver`)
+- `backend/app/routes/` — API 라우터 모듈
+  - `nodes.py` — `GET /node/{node_id}`, `GET /node/{node_id}/places`, `GET /node/{node_id}/neighbors/grouped`
+  - `places.py` — `GET /places`
+  - `events.py` — `GET /events`
+  - `search.py` — `GET /search`(쿼리 파라미터)
+- `backend/scripts/` — 일회성 데이터 적재 스크립트(`load_theographic.py`, `inject_ko_names.py`)
 
-## 인프라 / 배포
+라우트는 직접 Cypher 쿼리를 실행한다(`session.run(...)`). ORM/쿼리 빌더 계층은 없다.
 
-| 구성요소 | 도구 | 비고 |
-|---|---|---|
-| 프론트엔드 호스팅 | Vercel | PortfoliOn과 동일 패턴 |
-| 백엔드 공개 노출 | Cloudflare Tunnel (cloudflared) | 기존 taebro.com 터널에 ingress 규칙 추가 |
-| 컨테이너 오케스트레이션 | Docker Compose | `neo4j` + `api` 두 서비스, 단일 내부 네트워크 |
-| 상시 가동 | Docker Desktop 자동 시작 + `restart: unless-stopped` | 재부팅 후 자동 복구 |
+## 프론트엔드
 
-## 설정 파일 (계획)
+### 언어 / 런타임 / 빌드
 
-- `docker-compose.yml` — neo4j + FastAPI api 서비스 정의
-- `~/.cloudflared/config.yml` — ingress 규칙 (`biblemap.taebro.com` → `http://localhost:8000`)
-- `data/names_ko/` — 한글 이름 매핑 JSON (레포에서 버전 관리)
+- **JavaScript(JSX, ESM)** — `frontend/package.json`의 `"type": "module"`
+- **Node.js 18+**(`README.md`), 패키지 매니저: **npm**(`frontend/package-lock.json` 존재)
+- **Vite 8.0.12** — 빌드 도구 겸 개발 서버(`frontend/vite.config.js`). 설정은 `@vitejs/plugin-react`만 적용한 최소 구성
+- 스크립트(`frontend/package.json`): `dev`(vite), `build`(vite build), `lint`(eslint .), `preview`(vite preview)
+
+### 프레임워크 / 핵심 의존성
+
+`frontend/package.json` dependencies:
+
+- **react 19.2.6 / react-dom 19.2.6** — UI 프레임워크
+- **maplibre-gl 5.24.0** — 지도 렌더링(`frontend/src/MapView.jsx`, `maplibre-gl/dist/maplibre-gl.css` 임포트)
+- **cytoscape 3.34.0** + **cytoscape-cose-bilkent 4.1.0** + **cytoscape-expand-collapse 4.1.1** — 그래프 뷰 렌더링/레이아웃/접기·펼치기(`frontend/src/GraphView.jsx`)
+- **d3 7.9.0** — 데이터 시각화(타임라인 등)
+- **lucide-react 1.17.0** — 아이콘
+
+devDependencies: **eslint 10.3.0**(+ `@eslint/js`, `eslint-plugin-react-hooks`, `eslint-plugin-react-refresh`, `globals`), `@vitejs/plugin-react 6.0.1`, `@types/react`, `@types/react-dom`.
+
+### 애플리케이션 구조 (`frontend/src/`)
+
+- `main.jsx` — React 진입점
+- `App.jsx` — 루트 컴포넌트, 검색(`/search` 호출) 및 뷰 조정
+- `MapView.jsx` — MapLibre GL 지도 뷰
+- `GraphView.jsx` — Cytoscape 그래프 뷰
+- `TimelineView.jsx` — 타임라인 뷰(`/events` 호출)
+- `SidePanel.jsx` — 노드 상세 패널(`/node/{id}` 호출)
+- `index.css`, `App.css` — 스타일
+- `index.html` — Vite 엔트리 HTML
+- `public/` — 정적 자산(`favicon.svg`, `icons.svg`)
+- `eslint.config.js` — flat config 형식 ESLint 설정(`dist` 무시, JS/JSX 대상)
+
+빌드 산출물은 `frontend/dist/`(gitignore됨, `frontend/.gitignore` 및 루트 `.gitignore`).
+
+## 설정 / 환경 파일
+
+- 루트 `.env` / `.env.example` — `NEO4J_AUTH=neo4j/<password>` 형식. `.env`는 gitignore됨(`.gitignore`)
+- `frontend/.env.production` — `VITE_API_URL=/api`(프로덕션에서 Nginx 프록시 경로 사용)
+- 프론트엔드 API 베이스는 `import.meta.env.VITE_API_URL`을 읽고, 미설정 시 `http://localhost:8000`으로 폴백(`App.jsx`, `MapView.jsx`, `GraphView.jsx`, `TimelineView.jsx`, `SidePanel.jsx`)
+
+## 컨테이너 / 인프라
+
+- `backend/Dockerfile` — `python:3.12-slim` 베이스, requirements 설치 후 `app/` 복사, uvicorn 기동
+- `docker-compose.yml` — 3개 서비스
+  - `neo4j` — 이미지 `neo4j:5`, 포트 7474/7687을 `127.0.0.1`에만 바인딩, 데이터 볼륨 `neo4j_data`
+  - `api` — `./backend` 빌드, `./data`를 `/app/data`로 마운트, neo4j 의존
+  - `nginx` — 이미지 `nginx:alpine`, 호스트 8080→컨테이너 80, `frontend/dist`와 `nginx/nginx.conf`를 읽기 전용 마운트
+- `nginx/nginx.conf` — `/api/`를 `http://api:8000/`로 프록시, SPA fallback(`try_files $uri /index.html`), 정적 자산 캐시 헤더
+
+## 데이터
+
+- `data/names_ko/` — 한글 이름·별칭 매핑 JSON 4종. `backend/scripts/inject_ko_names.py`가 이 디렉터리를 읽어 Neo4j 노드에 `nameKo`, `aliasesKo` 속성을 주입
+- 원본 그래프 데이터는 외부 소스에서 적재(상세는 `INTEGRATIONS.md` 참조)
