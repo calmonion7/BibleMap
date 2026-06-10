@@ -36,6 +36,17 @@ def get_node_places(node_id: str):
                 """,
                 id=node_id
             )
+        elif label == "PeopleGroup":
+            places_result = session.run(
+                """
+                MATCH (n:PeopleGroup {theographic_id: $id})<-[:MEMBER_OF]-(person:Person)
+                MATCH (e:Event)-[:HAS_PARTICIPANT]->(person)
+                MATCH (e)-[:OCCURS_AT]->(p:Place)
+                WHERE p.latitude IS NOT NULL AND p.longitude IS NOT NULL
+                RETURN p, false AS isPrimary
+                """,
+                id=node_id
+            )
         else:
             places_result = session.run(
                 """
