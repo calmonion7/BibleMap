@@ -3,6 +3,8 @@ from ..db import get_driver
 
 router = APIRouter()
 
+SEARCH_LIMIT = 20
+
 @router.get("/search")
 def search(q: str = Query("")):
     if not q.strip():
@@ -10,12 +12,12 @@ def search(q: str = Query("")):
     driver = get_driver()
     with driver.session() as session:
         result = session.run(
-            """
+            f"""
             MATCH (n)
             WHERE (n.nameKo CONTAINS $q OR n.name CONTAINS $q)
             AND n.theographic_id IS NOT NULL
             RETURN n, labels(n) AS labels
-            LIMIT 20
+            LIMIT {SEARCH_LIMIT}
             """,
             q=q
         )

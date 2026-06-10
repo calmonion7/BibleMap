@@ -3,6 +3,9 @@ from ..db import get_driver
 
 router = APIRouter()
 
+MAX_NEIGHBORS_PER_TYPE = 30
+NODE_NEIGHBOR_LIMIT = 50
+
 @router.get("/node/{node_id}/places")
 def get_node_places(node_id: str):
     driver = get_driver()
@@ -68,12 +71,17 @@ def get_node_places(node_id: str):
             seen.add(tid)
             name = props.get("name", "")
             name_ko = props.get("nameKo")
+            try:
+                lat = float(props.get("latitude", 0))
+                lng = float(props.get("longitude", 0))
+            except (TypeError, ValueError):
+                continue
             places.append({
                 "id": tid,
                 "name": name,
                 "nameKo": name_ko if name_ko else name,
-                "lat": float(props.get("latitude", 0)),
-                "lng": float(props.get("longitude", 0)),
+                "lat": lat,
+                "lng": lng,
                 "isPrimary": record["isPrimary"],
             })
         return places
@@ -97,7 +105,7 @@ def get_node_neighbors_grouped(node_id: str):
             label = mlabels[0] if mlabels else None
             if label not in grouped:
                 continue
-            if counts[label] >= 30:
+            if counts[label] >= MAX_NEIGHBORS_PER_TYPE:
                 continue
             m_name = m_props.get("name") or m_props.get("title", "")
             m_name_ko = m_props.get("nameKo")
@@ -136,7 +144,7 @@ def get_node(node_id: str):
 
         # 이웃 조회
         neighbors_result = session.run(
-            "MATCH (n {theographic_id: $id})-[r]-(m) RETURN m, type(r) AS rel, labels(m) AS mlabels LIMIT 50",
+            f"MATCH (n {{theographic_id: $id}})-[r]-(m) RETURN m, type(r) AS rel, labels(m) AS mlabels LIMIT {NODE_NEIGHBOR_LIMIT}",
             id=node_id
         )
 
