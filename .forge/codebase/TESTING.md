@@ -1,57 +1,103 @@
 ---
-last_mapped_commit: 26240c7cf18f421b2f8baa4fd6584f40eede57b0
+last_mapped_commit: 60962d0693f3bfaf4b8d24ce6f97d7b392770d85
 mapped: 2026-06-11
 ---
 
-# 테스트
+# TESTING
 
-## 현황: 자동화 테스트가 전혀 없다
+## 자동화 테스트 현황: 없음
 
-BibleMap에는 테스트 코드, 테스트 프레임워크, 테스트 설정이 **하나도 없다.** (커밋 `26240c7` 기준)
+이 프로젝트에는 **자동화 테스트 스위트가 존재하지 않는다.** 현재 커밋 기준 확인한 사실:
 
-확인한 사실:
+- 테스트 파일 없음. `*test*`, `*spec*`, `conftest.py`를 `node_modules`/`.git` 밖에서 검색해도 0건.
+- 테스트 프레임워크 의존성 없음:
+  - `backend/requirements.txt`에 `pytest`/`unittest` 류 없음 (운영 의존성 `fastapi`, `neo4j`, `uvicorn`뿐).
+  - `frontend/package.json`에 `vitest`/`jest`/`@testing-library` 없음.
+- 테스트 실행 스크립트 없음: `frontend/package.json`의 `scripts`는 `dev`/`build`/`lint`/`preview`만. `test` 스크립트 자체가 없다.
+- 커버리지 도구·설정·리포트 없음.
+- CI(`.github/workflows/deploy.yml`)는 테스트를 돌리지 않는다 — push 시 self-hosted 러너에서 `deploy.sh`만 실행한다.
 
-- 테스트 파일 없음 — `*test*`, `*spec*`, `conftest.py` 등 어떤 패턴으로도 검색되지 않는다 (`backend/`, `frontend/src/` 전체).
-- 백엔드: `backend/requirements.txt`에 `pytest`/`unittest`/`mock` 등 테스트 의존성이 없다. `pyproject.toml`/`setup.cfg`/`tox.ini`/`pytest.ini` 같은 설정 파일도 없다.
-- 프론트엔드: `frontend/package.json`에 `test` 스크립트가 없고(`dev`/`build`/`lint`/`preview`만), Jest/Vitest/Testing Library/Playwright 등 테스트 의존성이 없다.
-- CI: `.github/workflows/deploy.yml`는 배포만 수행한다. 테스트/린트 게이트가 없다 — `main` push 시 `git reset --hard` 후 곧장 `deploy.sh`를 돌린다.
+아래는 테스트를 만들어내지 말고, **실제로 변경을 검증하는 방법**(린트/빌드/컴파일/구성검증/수동 curl)을 정리한 것이다.
 
-## 현재 존재하는 검증 수단
+## 변경 검증 방법 (실제 사용되는 게이트)
 
-테스트는 아니지만 코드 품질·런타임을 확인하는 메커니즘:
+### 프론트엔드 — 빌드 & 린트
 
-- **ESLint** (`frontend/eslint.config.js`) — `npm run lint`로 실행 가능. 정적 분석만, 테스트는 아니다.
-- **런타임 진행 로그** — 데이터 적재 스크립트(`backend/scripts/load_theographic.py`, `inject_ko_names.py`)는 단계별 `print(...)`와 처리 건수 출력으로 결과를 사람이 눈으로 검증하게 돼 있다. 자동 단언은 없다.
-- **배포 재시도 가드** — `deploy.sh`는 한글 이름 주입을 최대 15회 재시도하며 성공/대기 로그를 남긴다.
+`frontend/`에서:
 
-수동 검증 흐름은 `README.md`의 로컬 실행 절차(Neo4j 기동 → 데이터 적재 → API 서버 → 프론트엔드 `npm run dev`)에 의존한다.
+- 빌드 통과 여부: `npm run build` (= `vite build`). 빌드가 깨지지 않으면 1차 통과로 간주한다. 배포 스크립트도 이 명령으로 산출물을 만든다(`deploy.sh` `[1/3] 프론트엔드 빌드` → `npm install --silent && npm run build --silent`).
+- 정적 분석: `npm run lint` (= `eslint .`). flat config(`frontend/eslint.config.js`)는 `@eslint/js` recommended + `eslint-plugin-react-hooks` + `eslint-plugin-react-refresh`를 적용하고 `dist`를 무시한다. (단, `deploy.sh`는 lint를 실행하지 않으므로 lint는 수동 게이트다.)
+- 로컬 동작 확인: `npm run dev` (Vite, http://localhost:5173).
 
-## 테스트를 도입한다면 (현재 코드 기준 셋업 제안)
+### 백엔드 — 문법 컴파일 체크
 
-요청 시 참고할 수 있는, 기존 스택과 정합하는 최소 셋업:
+자동 테스트가 없으므로 최소 게이트는 Python 컴파일이다(프로젝트 루트 기준 절대경로 사용):
 
-### 백엔드 (Python / FastAPI + Neo4j)
+```bash
+python3 -m py_compile \
+  backend/app/main.py \
+  backend/app/db.py \
+  backend/app/routes/nodes.py \
+  backend/app/routes/events.py \
+  backend/app/routes/search.py \
+  backend/scripts/inject_ko_names.py \
+  backend/scripts/load_theographic.py
+```
 
-- 프레임워크: `pytest`를 `backend/requirements.txt`(또는 별도 dev 의존성 파일)에 추가.
-- API 테스트: FastAPI의 `TestClient`(starlette) 또는 `httpx`로 라우트 엔드포인트 검증.
-- Neo4j 의존성 처리가 핵심 난점 — 라우트 핸들러가 `get_driver()`(전역 싱글톤, `backend/app/db.py`)를 직접 호출하므로 다음 중 하나가 필요하다:
-  - `get_driver`를 모킹/패치 (단위 테스트).
-  - 또는 `testcontainers`/도커로 일회용 Neo4j 인스턴스를 띄워 통합 테스트.
-- 순수 함수(예: `load_theographic.py`의 `filter_published`, `TimelineView`의 연도 파싱 같은 로직)는 DB 없이 단위 테스트하기 쉽다.
+import 그래프까지 확인하려면 의존성 설치 후 모듈 import가 깨지지 않는지 본다: `pip install -r backend/requirements.txt` 후 `python3 -c "import backend.app.main"`. 단, `backend/app/db.py`의 `get_driver()`는 지연 초기화이고 import 시점에는 DB에 붙지 않으므로, import만으로는 `NEO4J_PASSWORD` 미설정 `RuntimeError`가 나지 않는다(드라이버를 실제로 쓸 때 터진다).
 
-### 프론트엔드 (React / Vite)
+### 구성(Compose) 검증
 
-- 프레임워크: Vitest(Vite 네이티브) + `@testing-library/react` + `jsdom`. `package.json`에 `"test": "vitest"` 스크립트 추가.
-- 테스트 대상으로 자연스러운 순수 함수: `placesToGeoJSON` (`MapView.jsx`), `parseYear` (`TimelineView.jsx`).
-- 컴포넌트 테스트는 `fetch` 모킹(예: MSW 또는 `vi.fn()`)이 필요하다 — 모든 데이터 컴포넌트가 직접 `fetch`를 호출하기 때문.
-- maplibre-gl / cytoscape를 쓰는 컴포넌트(`MapView.jsx`, `GraphView.jsx`)는 캔버스/WebGL 의존성 때문에 jsdom에서 모킹이 필요하다.
+스택 정의가 유효한지 확인:
 
-### 모킹 / 픽스처
+```bash
+docker compose config
+```
 
-- 현재 모킹 인프라는 전무하다.
-- 한글 이름 매핑 픽스처는 `data/names_ko/*.json` 실제 파일을 축약해 재사용할 수 있다.
+`docker-compose.yml`은 `NEO4J_PASSWORD`를 `${NEO4J_PASSWORD:?...}`로 강제하므로, `NEO4J_PASSWORD`가 환경/`.env`에 없으면 `docker compose config`/`up`이 실패한다. 검증 시 `.env`(루트, `.gitignore` 대상)에 비밀번호가 있어야 한다.
 
-### 커버리지 / CI
+### 수동 / 라이브 검증 (curl로 실제 스택 확인)
 
-- 커버리지 측정 도구 없음. 도입 시 `pytest-cov`(백엔드), Vitest `--coverage`(프론트).
-- CI에 게이트가 없으므로, 테스트를 의미 있게 만들려면 `.github/workflows/`에 테스트 잡을 추가해 배포 전 단계로 걸어야 한다.
+기능 검증은 실제로 스택을 띄워 엔드포인트를 호출하는 식으로 한다. 기동 순서는 `README.md` 참고:
+
+1. `docker compose up -d` (Neo4j 기동).
+2. 최초 1회 데이터 적재: `python3 backend/scripts/load_theographic.py` → `python3 backend/scripts/inject_ko_names.py` (두 스크립트 모두 `NEO4J_PASSWORD` 필요, 미설정 시 즉시 `RuntimeError`).
+3. API: `python3 -m uvicorn backend.app.main:app --reload` (http://localhost:8000). (README 주의: `uvicorn` 직접 호출은 PATH 문제 소지가 있어 `python3 -m uvicorn` 사용.)
+4. 프론트엔드: `cd frontend && npm install && npm run dev`.
+
+API가 떴으면 라이브 curl로 라우트를 확인한다(엔드포인트는 모두 GET):
+
+```bash
+curl 'http://localhost:8000/search?q=모세'
+curl 'http://localhost:8000/node/<theographic_id>'
+curl 'http://localhost:8000/node/<theographic_id>/places'
+curl 'http://localhost:8000/node/<theographic_id>/neighbors/grouped'
+curl 'http://localhost:8000/events'
+```
+
+검증 포인트:
+- 없는 노드는 404 + `{"detail":"Node not found"}` (`backend/app/routes/nodes.py`).
+- 빈 검색어는 200 + `[]` (`backend/app/routes/search.py`, `if not q.strip(): return []`).
+- `/events`는 `Cache-Control: no-store` 헤더 동반(`backend/app/routes/events.py`).
+- 응답에 `nameKo`/`nameKoMissing` 필드가 한국어 이름 주입 결과를 반영하는지(주입은 `inject_ko_names.py`).
+- 좌표 결측 Place가 `/node/.../places`에서 제외되는지(`float` 캐스팅 실패 시 `continue`).
+
+### 배포 파이프라인이 사실상의 통합 검증
+
+`deploy.sh`(self-hosted GitHub Actions 러너가 `main` push마다 실행, `.github/workflows/deploy.yml`)가 "끝까지 도느냐"가 통합 게이트 역할을 한다:
+
+1. `npm install` + `npm run build` (프론트 빌드 깨지면 `set -e`로 중단).
+2. `docker compose -p biblemap build api` (백엔드 이미지 빌드).
+3. `docker compose -p biblemap up -d api nginx` (재기동).
+4. `python3 backend/scripts/inject_ko_names.py`를 최대 15회 재시도하며 Neo4j 준비를 기다림. 15회 모두 실패하면 `exit 1`로 배포 중단. → 한국어 이름 주입(=DB 연결+쓰기)이 성공해야만 배포가 성공으로 간주된다.
+
+## 모킹
+
+모킹 프레임워크·픽스처·스텁이 **없다**. 테스트가 없으므로 mock도 없다. 외부 의존성(Neo4j, ArcGIS 타일, theographic GitHub raw JSON)은 모두 라이브 호출로만 검증된다.
+
+## 새 테스트를 추가하려는 경우 (참고)
+
+현재 도입된 게 없으므로, 추가한다면 다음이 자연스러운 후보다(아직 미설정 — 추가 시 의존성·스크립트도 함께 넣어야 함):
+
+- 백엔드: `pytest` + FastAPI `TestClient`. Neo4j 의존을 끊으려면 `backend/app/db.py`의 `get_driver()`를 모킹/주입해야 한다(현재는 전역 싱글턴 지연 초기화라 그대로는 단위 테스트가 어렵다).
+- 프론트엔드: `vitest` + `@testing-library/react` (Vite 프로젝트이므로 vitest가 정합).

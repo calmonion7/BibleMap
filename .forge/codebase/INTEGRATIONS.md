@@ -1,60 +1,89 @@
 ---
-last_mapped_commit: 26240c7cf18f421b2f8baa4fd6584f40eede57b0
+last_mapped_commit: 60962d0693f3bfaf4b8d24ce6f97d7b392770d85
 mapped: 2026-06-11
 ---
 
 # INTEGRATIONS
 
-BibleMap의 외부 연동 — 데이터베이스, 외부 API/데이터 소스, 지도 타일 서비스, 배포(CI/CD·호스팅). 인증 제공자, 결제, 웹훅 등 별도 연동은 코드베이스에서 발견되지 않았다.
+BibleMap이 의존하는 외부 시스템, 데이터베이스, 외부 서비스, 데이터 소스를 정리한 구현 사실 문서.
 
-## 데이터베이스 — Neo4j
+## 데이터베이스: Neo4j
 
-- **Neo4j** 그래프 데이터베이스가 유일한 영속 저장소다.
-- 백엔드 연결: `backend/app/db.py`의 `GraphDatabase.driver(uri, auth=(user, password))`. 환경변수 `NEO4J_URI`(기본 `bolt://localhost:7687`), `NEO4J_USER`(기본 `neo4j`), `NEO4J_PASSWORD`(기본 `biblemap123`)로 설정.
-- 프로토콜: **Bolt**(`bolt://`). Docker 환경에서는 `bolt://neo4j:7687`(`docker-compose.yml`의 `api` 서비스 환경변수).
-- 컨테이너: `docker-compose.yml`에서 이미지 `neo4j:5`, 포트 7474(HTTP/Neo4j Browser)·7687(Bolt)을 `127.0.0.1`에만 바인딩(외부 노출 안 함), 데이터는 named volume `neo4j_data`에 영속화. 인증은 `NEO4J_AUTH`(기본 `neo4j/biblemap123`).
-- 인증 정보: 루트 `.env`의 `NEO4J_AUTH=neo4j/<password>` 형식(`.env.example`). `.env`는 gitignore됨.
-- 인덱스: 앱 기동 시(`backend/app/main.py` lifespan) 및 적재 스크립트(`backend/scripts/load_theographic.py`)에서 `Person`, `Place`, `Event`, `PeopleGroup` 라벨의 `theographic_id`에 인덱스를 생성.
+유일한 데이터 저장소. 그래프 DB로 인물/장소/사건/그룹 노드와 관계를 보관.
 
-## 외부 데이터 소스 — Theographic (GitHub raw)
+### 연결 (`backend/app/db.py`)
 
-데이터 적재 스크립트 `backend/scripts/load_theographic.py`가 GitHub에서 원본 JSON을 직접 내려받는다(`urllib.request`).
+- 공식 `neo4j` Python 드라이버 사용. `GraphDatabase.driver(uri, auth=(user, password))`.
+- 모듈 전역 싱글턴(`_driver`), `get_driver()`로 lazy 초기화.
+- 연결 파라미터:
+  - URI: 환경 변수 `NEO4J_URI` (기본 `bolt://localhost:7687`).
+  - 사용자: 환경 변수 `NEO4J_USER` (기본 `neo4j`).
+  - 비밀번호: 환경 변수 `NEO4J_PASSWORD`. **기본값 없음** — 미설정 시 `RuntimeError`(fail-fast).
 
-- 소스 저장소: `robertrouse/theographic-bible-metadata` (GitHub, master 브랜치 raw 콘텐츠)
-- 다운로드 URL 4종(`raw.githubusercontent.com`):
-  - `.../json/people.json`
-  - `.../json/places.json`
-  - `.../json/events.json`
-  - `.../json/peopleGroups.json`
-- 인증 없는 공개 raw 콘텐츠 GET 요청. 적재 후 Neo4j에 노드·관계로 MERGE.
-- 한글 이름 데이터는 외부가 아니라 로컬 `data/names_ko/`에서 주입(`backend/scripts/inject_ko_names.py`).
+### 배포/컨테이너 (`docker-compose.yml`)
 
-## 지도 타일 / 폰트 서비스 (프론트엔드)
+- 이미지 `neo4j:5`. 데이터 볼륨 `neo4j_data:/data`.
+- 인증은 `NEO4J_AUTH=neo4j/${NEO4J_PASSWORD:?...}`로 **파생**됨 — `NEO4J_AUTH`를 독립 설정하지 않고 `NEO4J_PASSWORD`에서 조합. 변수 미설정 시 compose가 실패.
+- API 컨테이너는 내부 네트워크 호스트명 `neo4j`로 접속(`NEO4J_URI=bolt://neo4j:7687`).
+- 포트 `7474`(HTTP)/`7687`(Bolt)는 `127.0.0.1`에만 바인딩되어 호스트 로컬에서만 접근 가능.
 
-`frontend/src/MapView.jsx`의 MapLibre GL 스타일이 외부 서비스에 직접 의존한다.
+### 스키마/인덱스
 
-- **Esri / ArcGIS Online 래스터 타일** — 베이스맵. 타일 URL:
-  `https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}` (NatGeo World Map, `tileSize: 256`)
-- **Protomaps basemaps-assets 글리프** — 라벨 폰트:
-  `https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf`
-- 두 서비스 모두 API 키·토큰 없이 사용한다. 코드베이스 전체에서 지도/외부 API 키 또는 토큰은 발견되지 않았다.
+- 노드 라벨: `Person`, `Place`, `Event`, `PeopleGroup`. 공통 식별자 `theographic_id`.
+- 인덱스: 네 라벨의 `theographic_id`에 대해 `CREATE INDEX ... IF NOT EXISTS`. 앱 시작 시 `backend/app/main.py`의 `lifespan`이, 적재 시 `backend/scripts/load_theographic.py`의 `create_indexes()`가 생성.
+- 관계 타입: `PARENT_OF`, `CHILD_OF`, `SIBLING_OF`, `PARTNER_OF`, `MEMBER_OF`, `HAS_PARTICIPANT`, `OCCURS_AT`, `PART_OF` (적재는 `backend/scripts/load_theographic.py`, 한글 라벨 매핑은 `frontend/src/SidePanel.jsx`의 `REL_KO`).
 
-## 백엔드 ↔ 프론트엔드 연동
+## 외부 데이터 소스: Theographic Bible Metadata
 
-- 프론트엔드는 `import.meta.env.VITE_API_URL`(미설정 시 `http://localhost:8000`)을 베이스로 백엔드 REST API를 호출. 호출 엔드포인트: `/search`(`App.jsx`), `/events`(`TimelineView.jsx`), `/node/{id}`·`/node/{id}/places`·`/node/{id}/neighbors/grouped`(`SidePanel.jsx`, `MapView.jsx`, `GraphView.jsx`).
-- 프로덕션에서는 `frontend/.env.production`의 `VITE_API_URL=/api`로 설정되어, Nginx가 `/api/`를 `http://api:8000/`로 리버스 프록시(`nginx/nginx.conf`).
-- 백엔드 CORS: `backend/app/main.py`에서 모든 오리진/메서드/헤더 허용(`allow_origins=["*"]`).
+성경 메타데이터 원본. GitHub raw로 직접 fetch.
 
-## 배포 / 호스팅 (CI/CD)
+### 적재 스크립트 (`backend/scripts/load_theographic.py`)
 
-- **GitHub Actions** — `.github/workflows/deploy.yml`. `main` 브랜치 push 시 `self-hosted` 러너에서 실행. 워크트리(`/Users/calmonion/Project/BibleMap/.claude/worktrees/wise-sprouting-hellman`)에서 `git fetch` → `git reset --hard origin/main` → `bash deploy.sh`.
-- **자체 호스팅(self-hosted) 배포** — 클라우드 호스팅 PaaS가 아니라 로컬/온프레미스 머신(macOS, 로그 경로 `/Users/calmonion/Library/Logs/...`)에서 Docker Compose로 구동.
-- `deploy.sh` — 프론트엔드 빌드(`npm install && npm run build`) → `docker compose -p biblemap build api` → `docker compose -p biblemap up -d api nginx` → `inject_ko_names.py`로 한글 이름 주입(Neo4j 준비될 때까지 최대 15회 재시도). `/tmp/biblemap-deploy.lock` 락 파일로 동시 배포 방지. macOS 키체인 우회를 위해 임시 `DOCKER_CONFIG` 사용.
-- `scripts/auto-deploy-poll.sh` — GitHub Actions의 대안/보완 폴링 배포. 2분 주기로 `origin/worktree-wise-sprouting-hellman`을 `git fetch`해 새 커밋 감지 시 `git reset --hard` 후 `deploy.sh` 실행. 동일 락 파일 공유.
-- 호스팅 표면: Nginx가 호스트 8080 포트로 정적 프론트엔드 + `/api` 프록시 서빙(`docker-compose.yml`, `nginx/nginx.conf`).
+- `urllib.request`로 다음 4개 URL을 받아 Neo4j에 적재(`URLS` 딕셔너리):
+  - people: `https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/people.json`
+  - places: `https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/places.json`
+  - events: `https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/events.json`
+  - peopleGroups: `https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/peopleGroups.json`
+- `status == "publish"`인 레코드만 필터(`filter_published`). `status` 필드가 없는 엔티티(Event, PeopleGroup)는 전체 포함.
+- 노드(Person/Place/Event/PeopleGroup)와 관계를 `MERGE`로 적재. 위경도가 있는 Place만 지도에서 활용됨.
 
-## 발견되지 않은 연동
+### 한글 이름 데이터 (로컬)
 
-- 인증/인가 제공자(OAuth, JWT 발급자 등) 없음 — API에 인증 계층 없음.
-- 결제, 이메일, 메시징, 분석, 에러 트래킹, 객체 스토리지 등 외부 SaaS 연동 없음.
-- 웹훅 수신/발신 엔드포인트 없음(GitHub Actions push 트리거는 표준 CI 이벤트).
+- `data/names_ko/{people,places,events,groups}.json` — `theographic_id → {ko, alias}` 매핑.
+- `backend/scripts/inject_ko_names.py`가 이를 읽어 노드에 `nameKo`/`aliasesKo` 속성을 주입(`SET p.nameKo = $ko, p.aliasesKo = $alias`). `deploy.sh` 4단계에서 실행.
+
+## 프론트엔드 외부 서비스 (지도)
+
+`frontend/src/MapView.jsx`에서 MapLibre GL을 인라인 스타일 객체(`version: 8`)로 구성.
+
+### 타일 서비스
+
+- 래스터 타일 소스: ArcGIS Online NatGeo World Map —
+  `https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}` (`tileSize: 256`).
+
+### 글리프(폰트) 서비스
+
+- 글리프 URL: Protomaps basemaps assets —
+  `https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf`.
+- 라벨 폰트 스택: `['Noto Sans Regular']` (`places-label` 심볼 레이어).
+
+이 두 외부 호스트는 API 키 없이 직접 호출되며, 별도 토큰/인증이 없음.
+
+## 인증 제공자
+
+없음. 애플리케이션 레벨 인증/인가 없음.
+
+- 백엔드 CORS는 `allow_origins=["*"]`, `allow_credentials=False`, `allow_methods=["GET"]` (`backend/app/main.py`) — 읽기 전용 공개 API.
+- Neo4j 자격증명만이 유일한 시크릿이며 환경 변수 `NEO4J_PASSWORD`로 주입(코드에 기본값 없음).
+
+## 백엔드 API 표면 (프론트엔드가 소비)
+
+프론트엔드는 `VITE_API_URL`(프로덕션 `/api`, 개발 `http://localhost:8000`)을 베이스로 다음 엔드포인트를 호출.
+
+- `GET /node/{id}` — 노드 상세 + 이웃 (`SidePanel.jsx`, `GraphView.jsx`).
+- `GET /node/{id}/neighbors/grouped` — 타입별 그룹 이웃 (`GraphView.jsx`).
+- `GET /node/{id}/places` — 노드와 연관된 지도 표시용 Place 목록 (`MapView.jsx`).
+- `GET /events` — 타임라인용 사건 목록 (`TimelineView.jsx`).
+- `GET /search?q=` — 한글/영문 이름 검색 (`App.jsx`).
+
+nginx가 `/api/` 요청을 `http://api:8000/`로 프록시(`nginx/nginx.conf`).

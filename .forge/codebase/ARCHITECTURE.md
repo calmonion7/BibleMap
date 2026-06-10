@@ -1,80 +1,120 @@
 ---
-last_mapped_commit: 26240c7cf18f421b2f8baa4fd6584f40eede57b0
+last_mapped_commit: 60962d0693f3bfaf4b8d24ce6f97d7b392770d85
 mapped: 2026-06-11
 ---
 
 # ARCHITECTURE
 
-## 전체 구조
+## 전체 패턴
 
-3티어 구성이다.
+세 개의 컨테이너로 구성된 단일 페이지 앱(SPA) + 그래프 DB 백엔드 구조다.
 
-1. 데이터 저장소: Neo4j (그래프 DB). 노드 레이블 `Person` / `Place` / `Event` / `PeopleGroup`, 관계 `PARENT_OF` / `CHILD_OF` / `SIBLING_OF` / `PARTNER_OF` / `MEMBER_OF` / `HAS_PARTICIPANT` / `OCCURS_AT` / `PART_OF`. 모든 노드는 `theographic_id` 프로퍼티로 식별된다.
-2. 백엔드: FastAPI (Python). Neo4j에 Cypher 쿼리를 던지고 JSON을 반환하는 얇은 read-only API. `backend/app/main.py`가 진입점.
-3. 프론트엔드: React 19 + Vite SPA. 세 가지 뷰(Map / Timeline / Graph)가 같은 `selectedNode` 상태를 공유한다. `frontend/src/main.jsx` → `frontend/src/App.jsx`가 진입점.
+- **프론트엔드**: React 19 + Vite로 빌드된 정적 SPA. 빌드 산출물(`frontend/dist/`)을 nginx가 정적 서빙한다.
+- **리버스 프록시**: `nginx:alpine`. 정적 자산 서빙과 `/api/` 경로의 백엔드 프록시를 겸한다.
+- **백엔드**: FastAPI(`uvicorn` 실행) — `python:3.12-slim` 컨테이너. 읽기 전용 JSON API.
+- **데이터베이스**: Neo4j 5 그래프 DB. Bolt 프로토콜(`bolt://neo4j:7687`)로 접속.
 
-배포 시에는 nginx가 정적 프론트엔드를 서빙하고 `/api/` 경로를 FastAPI로 리버스 프록시한다.
+오케스트레이션은 `docker-compose.yml`(프로젝트명 `biblemap`)이 담당하며 `neo4j`, `api`, `nginx` 세 서비스를 정의한다.
 
-## 백엔드 — 데이터 서빙
+## 레이어
 
-### 진입점과 부팅
-- `backend/app/main.py`: `FastAPI` 앱 생성. CORS는 전체 허용(`allow_origins=["*"]`). `lifespan`에서 4개 레이블에 대해 `theographic_id` 인덱스를 `IF NOT EXISTS`로 생성(실패해도 무시). 라우터 4개를 `include_router`로 등록.
-- `backend/app/db.py`: `get_driver()` — 모듈 전역 싱글턴 드라이버. 접속 정보는 환경변수 `NEO4J_URI` / `NEO4J_USER` / `NEO4J_PASSWORD`(기본값 `bolt://localhost:7687`, `neo4j`, `biblemap123`).
+```
+[브라우저]
+   │  (정적 HTML/JS/CSS, fetch /api/...)
+   ▼
+[nginx]  nginx/nginx.conf  (:80 → 호스트 :8080)
+   │  location /api/  → proxy_pass http://api:8000/
+   │  location /      → try_files $uri /index.html  (SPA fallback)
+   ▼
+[FastAPI / uvicorn]  backend/app/main.py  (:8000)
+   │  라우터: nodes, events, search
+   │  Neo4j 드라이버 싱글톤
+   ▼
+[Neo4j 5]  bolt://neo4j:7687
+```
 
-### 라우트 (모두 GET, 동기 함수, 요청마다 `driver.session()` 열고 닫음)
-- `backend/app/routes/nodes.py`
-  - `GET /node/{node_id}` — 노드 1개 + 이웃 최대 50개. `name`/`nameKo`/`theographic_id`/`aliasesKo`를 제외한 나머지 프로퍼티를 `properties`로 반환. `nameKoMissing`(한글명 부재 여부) 플래그 포함.
-  - `GET /node/{node_id}/neighbors/grouped` — 이웃을 `Person`/`Event`/`PeopleGroup`/`Place` 4개 버킷으로 그룹핑, 버킷당 최대 30개. GraphView가 사용.
-  - `GET /node/{node_id}/places` — 노드 레이블에 따라 지도에 찍을 장소를 분기 조회. `Person`은 참여 이벤트의 발생지, `Event`는 직접 발생지(`isPrimary=true`), `PeopleGroup`은 `MEMBER_OF` 구성원의 이벤트 발생지, `Place`는 자기 자신. 위/경도 NULL은 제외. MapView가 사용.
-- `backend/app/routes/places.py`
-  - `GET /places` — 위/경도가 있는 전체 `Place` 목록. (현재 프론트엔드 어느 뷰도 직접 호출하지 않음. MapView는 `/node/{id}/places`만 사용.)
-- `backend/app/routes/events.py`
-  - `GET /events` — `startDate`가 있는 전체 `Event`를 `sortKey` 오름차순. `Cache-Control: no-store` 헤더. TimelineView가 사용.
-- `backend/app/routes/search.py`
-  - `GET /search?q=` — `nameKo` 또는 `name`에 `CONTAINS` 매칭, 최대 20개. App 상단 검색창이 사용.
+## 데이터 흐름
 
-응답 객체는 `id`(=theographic_id), `name`(영문), `nameKo`(없으면 영문 fallback), `label`(레이블), 관계명(`relation`) 등으로 정규화된다.
+1. 브라우저가 SPA를 로드한다. 프론트엔드의 API 베이스 URL은 환경변수 `VITE_API_URL`로 주입된다. 프로덕션 빌드는 `frontend/.env.production`에서 `VITE_API_URL=/api`(상대 경로)를 쓰고, 로컬 개발 기본값은 각 컴포넌트에서 `'http://localhost:8000'`이다.
+2. 프론트엔드가 `fetch(`${API_BASE}/...`)`로 API를 호출한다 → 프로덕션에서는 `/api/...`로 나간다.
+3. nginx가 `location /api/`를 잡아 `http://api:8000/`으로 프록시한다(경로 끝 슬래시로 `/api` prefix가 제거되어 백엔드에는 `/node/...`, `/events`, `/search` 형태로 도달).
+4. FastAPI 라우트 핸들러가 `get_driver()`로 Neo4j 드라이버 싱글톤을 얻고, `driver.session()` 블록 안에서 Cypher 쿼리를 실행한다.
+5. 쿼리 결과(노드 속성 dict)를 JSON 직렬화해 반환한다.
 
-### 데이터 적재 (런타임 경로 아님 — 배포/세팅 스크립트)
-- `backend/scripts/load_theographic.py`: GitHub의 theographic-bible-metadata JSON(people/places/events/peopleGroups)을 받아 `status == "publish"`만 필터링한 뒤 Neo4j에 노드/관계를 `MERGE`로 배치 적재. `__main__`에서 직접 실행.
-- `backend/scripts/inject_ko_names.py`: `data/names_ko/*.json`의 한글명/별칭을 기존 노드에 `nameKo`/`aliasesKo` 프로퍼티로 주입(`MATCH ... SET`). `deploy.sh`의 마지막 단계가 호출.
+데이터는 **읽기 전용**이다. API에 쓰기 경로가 없고, 데이터 적재는 별도의 오프라인 스크립트(`backend/scripts/`)로만 이뤄진다.
 
-## 프론트엔드 — 뷰와 상태
+## 핵심 추상화
 
-### 상태 모델
-`frontend/src/App.jsx`가 단일 소스. `useState`로 보유:
-- `selectedNode` — 현재 선택 노드의 `theographic_id`(문자열) 또는 `null`. 세 뷰와 SidePanel이 공유하는 핵심 동기화 키.
-- `activeView` — `'map'` / `'timeline'` / `'graph'`. 탭 전환.
-- `searchQuery` / `searchResults` / `showDropdown` — 상단 검색.
+### Neo4j 드라이버 싱글톤 — `backend/app/db.py`
 
-뷰 컴포넌트는 모두 `{ onSelectNode, selectedNode }` 인터페이스를 받는다. 어느 뷰에서 노드를 클릭하든 `setSelectedNode`로 같은 상태를 갱신하므로 뷰 간 선택이 일관된다. `API_BASE`/`API_URL`은 각 파일에서 `import.meta.env.VITE_API_URL || 'http://localhost:8000'`로 정의.
+`get_driver()` 함수가 모듈 전역 `_driver`를 지연 초기화(lazy)하는 싱글톤. 최초 호출 시 `NEO4J_URI`(기본 `bolt://localhost:7687`), `NEO4J_USER`(기본 `neo4j`), `NEO4J_PASSWORD`(환경변수, 미설정 시 `RuntimeError`)로 `GraphDatabase.driver`를 생성한다. 이후 호출은 같은 인스턴스를 재사용한다. 모든 라우트가 이 함수를 통해 DB에 접근한다.
 
-### 뷰별 데이터 흐름
-- 지도 `frontend/src/MapView.jsx` — MapLibre GL. ESRI NatGeo 래스터 타일. `selectedNode`가 바뀌면 `GET /node/{id}/places`를 호출해 GeoJSON 소스(`places-source`)를 갱신하고 `fitBounds`로 화면 이동. 마커 클릭 → `onSelectNode(id)` + 팝업. `selectedNode`가 없으면 마커를 비운다. `AbortController`로 이전 요청 취소.
-- 타임라인 `frontend/src/TimelineView.jsx` — 마운트 시 `GET /events` 1회. 같은 `startDate`끼리 클라이언트에서 그룹핑 후 `sortKey`로 정렬. 단건은 행 클릭, 그룹은 "외 N건" 드롭다운. 선택 항목은 `selectedNode`와 비교해 하이라이트.
-- 그래프 `frontend/src/GraphView.jsx` — Cytoscape + cose-bilkent 레이아웃 + expand-collapse 플러그인. `selectedNode`(없으면 기본값 모세 `recjNRR60PAuFtjha`)에 대해 `GET /node/{id}`와 `GET /node/{id}/neighbors/grouped`를 `Promise.all`로 동시 호출. 중심 노드 1개 + 타입별 컴파운드 부모 노드(`GroupParent`) + 이웃 노드로 그래프 구성, 초기에 `collapseAll()`. 노드 탭 → `onSelectNode`(단, `GroupParent`는 무시). 하단 오버레이로 선택 노드 요약 표시.
-- 사이드패널 `frontend/src/SidePanel.jsx` — Map/Timeline 뷰에서만 표시(Graph는 자체 오버레이 사용, `App.jsx`에서 `activeView !== 'graph'` 조건). `GET /node/{id}`로 노드 + 이웃 리스트를 받아 렌더. 이웃 버튼 클릭 → `onSelectNode`로 재탐색(드릴다운).
+### FastAPI lifespan 인덱스 생성 — `backend/app/main.py`
 
-### 뷰 ↔ 패널 배치 (App.jsx)
-- 상단 48px 플로팅 내비게이션 바(탭 + 검색 드롭다운).
-- 전체화면 뷰 컨테이너. Graph만 내비 높이만큼 top 오프셋.
-- 우측 360px 슬라이드인 오버레이 패널(SidePanel), `selectedNode` 유무로 `translateX` 토글. Graph 뷰에서는 렌더하지 않음.
+`@asynccontextmanager`로 정의된 `lifespan`이 앱 기동 시 한 번 실행된다. `Person`, `Place`, `Event`, `PeopleGroup` 라벨 각각에 대해 `theographic_id` 속성 인덱스를 `CREATE INDEX ... IF NOT EXISTS`로 만든다. 인덱스 생성이 실패하면 `logging.exception`으로 로깅만 하고 인덱스 없이 계속 진행한다(앱 기동을 막지 않는다).
 
-## 데이터 플로우 요약
+### CORS 설정 — `backend/app/main.py`
 
-선택(클릭/검색) → `App.selectedNode` 갱신 → 활성 뷰 + SidePanel이 각자 `GET /node/{id}...` 류 호출 → FastAPI가 Cypher 실행 후 정규화 JSON 반환 → 뷰 갱신. 검색은 `GET /search` → 드롭다운 → 선택 시 `selectedNode` 설정.
+`CORSMiddleware`를 다음 설정으로 등록한다:
 
-## 인프라 / 배포
+- `allow_origins=["*"]`
+- `allow_credentials=False`
+- `allow_methods=["GET"]`
+- `allow_headers=["*"]`
 
-- `docker-compose.yml`: `neo4j`(neo4j:5, 7474/7687을 127.0.0.1에만 바인딩), `api`(`./backend` 빌드, `NEO4J_URI=bolt://neo4j:7687`, `./data`를 `/app/data`로 마운트), `nginx`(nginx:alpine, 호스트 8080 → 컨테이너 80, `frontend/dist`를 read-only 서빙). Compose 프로젝트명 `biblemap`.
-- `nginx/nginx.conf`: `/api/`를 `http://api:8000/`로 프록시(경로 prefix 제거), `index.html`은 no-cache, 해시 정적 자산은 1년 immutable, SPA fallback `try_files $uri /index.html`. 프로덕션에서 프론트엔드의 `VITE_API_URL`은 `/api`(`frontend/.env.production`).
-- `backend/Dockerfile`: python:3.12-slim, `uvicorn app.main:app --host 0.0.0.0 --port 8000`.
-- `deploy.sh`: 프론트 빌드(`npm install && npm run build`) → API 이미지 빌드 → `api`/`nginx` 재기동 → Neo4j 준비될 때까지 재시도하며 `inject_ko_names.py` 실행. `/tmp/biblemap-deploy.lock`으로 동시 실행 방지.
-- 자동 배포: `.github/workflows/deploy.yml`(self-hosted runner, main push 시 worktree에서 `git reset --hard` 후 `deploy.sh`)와 `scripts/auto-deploy-poll.sh`(2분 폴링, 새 커밋 시 동일 배포). 둘 다 같은 lock 파일을 공유.
+GET 전용·자격증명 비허용이라 읽기 전용 공개 API 성격과 일치한다.
 
-## 핵심 추상화 / 규약
+### `theographic_id` — 노드 식별 키
 
-- `theographic_id`가 전 계층 공통 식별자. 백엔드 응답의 `id`, 프론트의 `selectedNode`, 검색/이웃 링크가 모두 이 값.
-- `nameKo` 우선 + 영문 `name` fallback, `nameKoMissing` 플래그로 미번역 표시. 한글명은 별도 적재 단계(`inject_ko_names.py`)로 주입되는 오버레이.
-- 백엔드는 상태 비저장 read-only. 비즈니스 로직은 라우트 함수 안의 Cypher에 인라인되어 있고 별도 서비스/리포지토리 레이어는 없다.
-- 프론트엔드는 상태 라이브러리 없이 `App.jsx`의 `useState` + props drilling. 데이터 페칭은 각 컴포넌트의 `useEffect` 안에서 `fetch` 직접 호출(공용 API 클라이언트 모듈 없음).
+모든 노드는 외부 데이터셋(theographic-bible-metadata)의 레코드 id를 `theographic_id` 속성으로 갖는다. API의 `node_id` 경로 파라미터, 검색·이웃 조회, 인덱스가 모두 이 키를 기준으로 동작한다. 프론트엔드가 노드를 선택·연결할 때 쓰는 식별자도 이 값이다(`{ id }`로 직렬화됨).
+
+## 진입점
+
+- **백엔드**: `backend/app/main.py` — `app = FastAPI(lifespan=lifespan)`. `uvicorn app.main:app`(Dockerfile CMD)으로 실행.
+- **프론트엔드**: `frontend/src/main.jsx` → `App.jsx` 렌더. `index.html`이 `main.jsx`를 모듈로 로드.
+
+## API 라우트 — `backend/app/routes/`
+
+라우터는 prefix 없이 등록되며(`APIRouter()`), `main.py`에서 `include_router`로 합쳐진다. 실제 존재하는 라우트는 다음과 같다.
+
+### `backend/app/routes/nodes.py`
+
+- `GET /node/{node_id}/places` — 노드 라벨(Person/Event/PeopleGroup/그 외 Place)에 따라 분기 Cypher로 위·경도가 있는 연관 `Place`를 모은다. `isPrimary` 플래그(Event/Place는 true, Person/PeopleGroup은 false)와 `lat`/`lng`(float 파싱 실패 시 해당 항목 스킵), `nameKo`(없으면 `name` 폴백)를 담은 배열 반환. 중복 `theographic_id`는 제거.
+- `GET /node/{node_id}/neighbors/grouped` — 노드의 직접 이웃을 라벨별(`Person`/`Event`/`PeopleGroup`/`Place`)로 묶어 반환. 타입별 최대 `MAX_NEIGHBORS_PER_TYPE = 30`개. `nameKoMissing` 플래그 포함.
+- `GET /node/{node_id}` — 노드 단건 + 라벨 + 이웃 목록(`LIMIT NODE_NEIGHBOR_LIMIT = 50`) + 기타 속성(`name`/`nameKo`/`theographic_id`/`aliasesKo` 제외). 없으면 404.
+
+상수: `MAX_NEIGHBORS_PER_TYPE = 30`, `NODE_NEIGHBOR_LIMIT = 50`.
+
+### `backend/app/routes/events.py`
+
+- `GET /events` — `startDate`가 있는 모든 `Event`를 `sortKey` 오름차순으로 반환(`id`/`title`/`nameKo`/`startDate`/`sortKey`). `Cache-Control: no-store` 헤더를 단 `JSONResponse`로 응답.
+
+### `backend/app/routes/search.py`
+
+- `GET /search?q=` — `nameKo` 또는 `name`에 `q`가 포함되고 `theographic_id`가 있는 노드를 `LIMIT SEARCH_LIMIT = 20`개 반환. `q`가 공백이면 빈 배열. 항목은 `id`/`label`/`name`/`nameKo`.
+
+상수: `SEARCH_LIMIT = 20`.
+
+### 제거된 라우트
+
+`GET /places`(전역 장소 목록)는 데드 엔드포인트로 **제거되었다**(커밋 `34bee1d`). 현재 코드에 존재하지 않으며, 장소 조회는 `GET /node/{node_id}/places`로만 가능하다.
+
+## 프론트엔드 뷰 구성 — `frontend/src/`
+
+`App.jsx`가 상단 내비게이션(지도/타임라인/그래프 탭 + 검색)과 선택 노드 상태(`selectedNode`)를 관리하는 셸이다. 세 뷰가 같은 `selectedNode`를 공유한다.
+
+- **MapView** (`MapView.jsx`) — MapLibre GL 지도. 선택 노드의 `/node/{id}/places`를 받아 마커로 표시, `fitBounds`로 줌. 기저 타일은 ArcGIS NatGeo 래스터.
+- **TimelineView** (`TimelineView.jsx`) — `/events`를 받아 `startDate`별로 묶고 `sortKey`로 정렬한 연표.
+- **GraphView** (`GraphView.jsx`) — Cytoscape(cose-bilkent 레이아웃 + expand-collapse). `/node/{id}`와 `/node/{id}/neighbors/grouped`를 받아 중심 노드 + 타입별 그룹 노드 그래프를 그린다. 기본 중심 노드는 모세(`recjNRR60PAuFtjha`).
+- **SidePanel** (`SidePanel.jsx`) — `/node/{id}`를 받아 노드 상세 + 이웃 리스트를 우측 패널에 표시(지도·타임라인 뷰에서만).
+
+## 데이터 적재 (오프라인) — `backend/scripts/`
+
+- `load_theographic.py` — GitHub의 theographic-bible-metadata JSON을 받아 Neo4j에 노드(`Person`/`Place`/`Event`/`PeopleGroup`)와 관계(`PARENT_OF`/`CHILD_OF`/`SIBLING_OF`/`PARTNER_OF`/`MEMBER_OF`/`HAS_PARTICIPANT`/`OCCURS_AT`/`PART_OF`)를 배치 `MERGE`로 적재. 인덱스도 생성.
+- `inject_ko_names.py` — `data/names_ko/`의 한글 이름 매핑을 기존 노드에 `nameKo`/`aliasesKo` 속성으로 주입(`SET`). `deploy.sh`가 배포 마지막 단계에서 Neo4j 준비를 기다리며 최대 15회 재시도로 실행한다.
+
+## 배포
+
+- `deploy.sh` — 프론트 빌드 → `api` 이미지 빌드 → `api`·`nginx` 컨테이너 재기동 → 한글 이름 주입. lock 파일(`/tmp/biblemap-deploy.lock`)로 동시 실행 방지. `.env`에서 `NEO4J_PASSWORD` 로드.
+- `.github/workflows/deploy.yml` — `main` 푸시 시 self-hosted 러너에서 워크트리를 `origin/main`으로 reset 후 `deploy.sh` 실행.
+- `scripts/auto-deploy-poll.sh` — 2분 폴링으로 새 커밋 감지 시 자동 배포(워크트리 브랜치 기준). `deploy.sh`와 같은 lock 공유.
