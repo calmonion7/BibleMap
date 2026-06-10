@@ -6,13 +6,6 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 const EMPTY_GEOJSON = { type: 'FeatureCollection', features: [] }
 
-const LABEL_TYPES = {
-  Person: '인물',
-  Place: '장소',
-  Event: '사건',
-  PeopleGroup: '민족',
-}
-
 function placesToGeoJSON(places) {
   return {
     type: 'FeatureCollection',
@@ -24,7 +17,7 @@ function placesToGeoJSON(places) {
   }
 }
 
-export default function MapView({ onSelectNode, selectedNode, selectedNodeLabel }) {
+export default function MapView({ onSelectNode, selectedNode }) {
   const mapContainer = useRef(null)
   const mapRef = useRef(null)
   const popupRef = useRef(null)
