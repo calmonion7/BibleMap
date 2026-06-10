@@ -6,7 +6,9 @@ from neo4j import GraphDatabase
 
 NEO4J_URI = os.environ.get("NEO4J_URI", "bolt://localhost:7687")
 NEO4J_USER = os.environ.get("NEO4J_USER", "neo4j")
-NEO4J_PASSWORD = os.environ.get("NEO4J_PASSWORD", "biblemap123")
+NEO4J_PASSWORD = os.environ.get("NEO4J_PASSWORD")
+if not NEO4J_PASSWORD:
+    raise RuntimeError("NEO4J_PASSWORD 환경변수가 설정되지 않았습니다")
 
 URLS = {
     "people":       "https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/people.json",

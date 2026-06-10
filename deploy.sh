@@ -21,6 +21,11 @@ TMP_DOCKER_CONFIG=$(mktemp -d)
 echo '{"auths":{}}' > "$TMP_DOCKER_CONFIG/config.json"
 export DOCKER_CONFIG="$TMP_DOCKER_CONFIG"
 
+# .env에서 NEO4J_PASSWORD 로드 — 호스트에서 직접 실행하는 inject 스크립트가 동일 비번을 쓰도록
+if [ -f "$WORKTREE/.env" ]; then
+  set -a; . "$WORKTREE/.env"; set +a
+fi
+
 log "[1/3] 프론트엔드 빌드..."
 cd "$WORKTREE/frontend"
 npm install --silent
@@ -37,11 +42,19 @@ docker compose -p biblemap up -d api nginx
 log "      완료."
 
 log "[4/4] 한글 이름 주입..."
+injected=false
 for i in $(seq 1 15); do
-  python3 "$WORKTREE/backend/scripts/inject_ko_names.py" 2>/dev/null && break
+  if python3 "$WORKTREE/backend/scripts/inject_ko_names.py" 2>/dev/null; then
+    injected=true
+    break
+  fi
   log "      Neo4j 준비 대기 중... ($i/15)"
   sleep 2
 done
+if [ "$injected" != true ]; then
+  log "      한글 이름 주입 실패 — 15회 재시도 후에도 미성공. 배포 중단."
+  exit 1
+fi
 log "      완료."
 
 log "=== 배포 완료 ==="
