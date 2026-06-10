@@ -1,7 +1,8 @@
+import logging
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routes import nodes, places, events, search
+from .routes import nodes, events, search
 
 
 @asynccontextmanager
@@ -16,7 +17,7 @@ async def lifespan(app):
                     f"FOR (n:{label}) ON (n.theographic_id)"
                 )
     except Exception:
-        pass
+        logging.exception("Neo4j 인덱스 생성 실패 — 인덱스 없이 계속 진행합니다")
     yield
 
 
@@ -29,6 +30,5 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(nodes.router)
-app.include_router(places.router)
 app.include_router(events.router)
 app.include_router(search.router)
