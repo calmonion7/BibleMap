@@ -27,6 +27,7 @@ export default function GraphView({ onSelectNode, selectedNode }) {
   const cyRef = useRef(null)
   const [overlay, setOverlay] = useState(null)
   const [showLegend, setShowLegend] = useState(false)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     if (!cyRef.current) return
@@ -36,12 +37,14 @@ export default function GraphView({ onSelectNode, selectedNode }) {
   useEffect(() => {
     const id = selectedNode || DEFAULT_NODE
     let cy = null
+    let cancelled = false
 
     Promise.all([
-      fetch(`${API_URL}/node/${id}`).then(r => r.json()),
-      fetch(`${API_URL}/node/${id}/neighbors/grouped`).then(r => r.json()),
+      fetch(`${API_URL}/node/${id}`).then(r => r.ok ? r.json() : Promise.reject(r.status)),
+      fetch(`${API_URL}/node/${id}/neighbors/grouped`).then(r => r.ok ? r.json() : Promise.reject(r.status)),
     ])
       .then(([data, grouped]) => {
+        if (!cancelled) setError(false)
         const center = { id: data.id, label: data.nameKo || data.name, nodeType: data.label }
         const totalNeighborCount = Object.values(grouped).reduce((sum, arr) => sum + arr.length, 0)
 
@@ -149,14 +152,24 @@ export default function GraphView({ onSelectNode, selectedNode }) {
         cyRef.current = cy
         cy.fit(cy.elements(), 40)
       })
-      .catch(() => {})
+      .catch(() => { if (!cancelled) setError(true) })
 
-    return () => { if (cy) { cy.destroy(); cyRef.current = null } }
+    return () => { cancelled = true; if (cy) { cy.destroy(); cyRef.current = null } }
   }, [selectedNode, onSelectNode])
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
       <div ref={containerRef} style={{ width: '100%', height: '100%' }} />
+
+      {error && (
+        <div style={{
+          position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          color: '#999', fontSize: 14, pointerEvents: 'none',
+        }}>
+          그래프를 불러오지 못했습니다
+        </div>
+      )}
 
       <button
         onClick={() => setShowLegend(v => !v)}

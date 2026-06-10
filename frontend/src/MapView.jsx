@@ -22,6 +22,7 @@ export default function MapView({ onSelectNode, selectedNode }) {
   const mapRef = useRef(null)
   const popupRef = useRef(null)
   const [mapLoaded, setMapLoaded] = useState(false)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     const map = new maplibregl.Map({
@@ -172,9 +173,10 @@ export default function MapView({ onSelectNode, selectedNode }) {
     const ctrl = new AbortController()
 
     fetch(`${API_URL}/node/${selectedNode}/places`, { signal: ctrl.signal })
-      .then((res) => res.json())
+      .then((res) => res.ok ? res.json() : Promise.reject(res.status))
       .then((places) => {
         if (mapRef.current === map) {
+          setError(false)
           map.getSource('places-source').setData(placesToGeoJSON(places))
           if (places.length > 0) {
             const bounds = places.reduce(
@@ -185,10 +187,26 @@ export default function MapView({ onSelectNode, selectedNode }) {
           }
         }
       })
-      .catch(() => {})
+      .catch((e) => {
+        if (e?.name !== 'AbortError' && mapRef.current === map) setError(true)
+      })
 
     return () => ctrl.abort()
   }, [selectedNode, mapLoaded])
 
-  return <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />
+  return (
+    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+      <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />
+      {error && selectedNode && (
+        <div style={{
+          position: 'absolute', top: 12, left: '50%', transform: 'translateX(-50%)',
+          background: 'rgba(220,53,69,0.95)', color: 'white',
+          padding: '8px 16px', borderRadius: 8, fontSize: 13, zIndex: 10,
+          boxShadow: '0 2px 8px rgba(0,0,0,0.25)',
+        }}>
+          장소를 불러오지 못했습니다
+        </div>
+      )}
+    </div>
+  )
 }

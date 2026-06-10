@@ -14,14 +14,15 @@ function parseYear(startDate) {
 
 function TimelineView({ onSelectNode, selectedNode }) {
   const [events, setEvents] = useState([])
+  const [error, setError] = useState(false)
   const [openGroup, setOpenGroup] = useState(null)
   const containerRef = useRef(null)
 
   useEffect(() => {
     fetch(`${API_URL}/events`)
-      .then(r => r.json())
+      .then(r => r.ok ? r.json() : Promise.reject(r.status))
       .then(data => setEvents(data))
-      .catch(() => {})
+      .catch(() => setError(true))
   }, [])
 
   useEffect(() => {
@@ -53,6 +54,14 @@ function TimelineView({ onSelectNode, selectedNode }) {
       if (a.sortKey > b.sortKey) return 1
       return 0
     })
+
+  if (error) {
+    return (
+      <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fafafa', color: '#999', fontSize: 14 }}>
+        사건을 불러오지 못했습니다
+      </div>
+    )
+  }
 
   return (
     <div

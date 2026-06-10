@@ -18,6 +18,7 @@ function App() {
   const [activeView, setActiveView] = useState('map')
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState([])
+  const [searchError, setSearchError] = useState(false)
   const [showDropdown, setShowDropdown] = useState(false)
 
   function handleTabClick(key) {
@@ -26,12 +27,15 @@ function App() {
 
   async function handleSearch() {
     if (!searchQuery.trim()) return
+    setSearchError(false)
     try {
       const res = await fetch(`${API_BASE}/search?q=${encodeURIComponent(searchQuery)}`)
+      if (!res.ok) throw new Error(res.status)
       const data = await res.json()
       setSearchResults(data)
     } catch {
       setSearchResults([])
+      setSearchError(true)
     }
     setShowDropdown(true)
   }
@@ -107,7 +111,9 @@ function App() {
               borderRadius: 10, minWidth: '240px', maxHeight: '320px', overflowY: 'auto',
               zIndex: 100, boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
             }}>
-              {searchResults.length === 0 ? (
+              {searchError ? (
+                <div style={{ padding: '12px 16px', color: '#ff9b9b', fontSize: 13 }}>검색에 실패했습니다</div>
+              ) : searchResults.length === 0 ? (
                 <div style={{ padding: '12px 16px', color: 'rgba(255,255,255,0.4)', fontSize: 13 }}>결과 없음</div>
               ) : (
                 searchResults.map(r => (
