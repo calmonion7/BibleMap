@@ -139,7 +139,13 @@ export default function GraphView({ onSelectNode, selectedNode }) {
         })
         ecApi.collapseAll()
 
-        cy.on('tap', 'node', evt => onSelectNode(evt.target.id()))
+        cy.on('tap', 'node', evt => {
+          if (evt.target.data('nodeType') === 'GroupParent') return
+          onSelectNode(evt.target.id())
+        })
+        cy.on('expandcollapse.afterexpand expandcollapse.aftercollapse', () => {
+          cy.fit(cy.elements(), 40)
+        })
         cyRef.current = cy
         cy.fit(cy.elements(), 40)
       })
