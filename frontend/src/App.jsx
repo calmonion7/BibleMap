@@ -26,9 +26,13 @@ function App() {
 
   async function handleSearch() {
     if (!searchQuery.trim()) return
-    const res = await fetch(`${API_BASE}/search?q=${encodeURIComponent(searchQuery)}`)
-    const data = await res.json()
-    setSearchResults(data)
+    try {
+      const res = await fetch(`${API_BASE}/search?q=${encodeURIComponent(searchQuery)}`)
+      const data = await res.json()
+      setSearchResults(data)
+    } catch {
+      setSearchResults([])
+    }
     setShowDropdown(true)
   }
 
