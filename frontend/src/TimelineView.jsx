@@ -44,7 +44,7 @@ function TimelineView({ onSelectNode, selectedNode }) {
 
   const groups = Array.from(groupMap.entries())
     .map(([startDate, members]) => {
-      const sortKey = members[0].sortKey ?? startDate
+      const sortKey = members[0].sortKey ?? 0
       const rep = members.find(e => e.nameKo) || members[0]
       return { startDate, members, sortKey, rep }
     })
