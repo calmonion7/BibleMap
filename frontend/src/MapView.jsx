@@ -183,7 +183,13 @@ export default function MapView({ onSelectNode, selectedNode }) {
               (b, p) => b.extend([p.lng, p.lat]),
               new maplibregl.LngLatBounds([places[0].lng, places[0].lat], [places[0].lng, places[0].lat])
             )
-            map.fitBounds(bounds, { padding: 80, maxZoom: 10, duration: 600 })
+            // 모바일은 하단 시트(App.jsx SHEET_VH=55vh)와 상단 네비가 지도를 가리므로,
+            // 가려진 만큼 패딩을 더해 마커가 보이는 상단 띠 영역에 들어오게 한다. (0.55는 SHEET_VH와 일치)
+            const isMobile = window.innerWidth <= 768
+            const padding = isMobile
+              ? { top: 70, bottom: Math.round(window.innerHeight * 0.55) + 20, left: 40, right: 40 }
+              : 80
+            map.fitBounds(bounds, { padding, maxZoom: 10, duration: 600 })
           }
         }
       })

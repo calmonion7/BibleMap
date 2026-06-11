@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Map, Clock, Network, Search } from 'lucide-react'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
@@ -13,6 +13,11 @@ const TABS = [
   { key: 'graph', icon: Network },
 ]
 
+// 모바일(좁은 뷰포트) 분기 — 이 폭 이하에서 상세 패널을 우측 사이드패널 대신 하단 시트로 띄운다.
+const MOBILE_QUERY = '(max-width: 768px)'
+// 하단 시트 높이(뷰포트 대비 vh). MapView.jsx의 fitBounds 하단 패딩 비율(0.55)과 반드시 일치시킨다.
+const SHEET_VH = 55
+
 function App() {
   const [selectedNode, setSelectedNode] = useState(null)
   const [activeView, setActiveView] = useState('map')
@@ -20,6 +25,14 @@ function App() {
   const [searchResults, setSearchResults] = useState([])
   const [searchError, setSearchError] = useState(false)
   const [showDropdown, setShowDropdown] = useState(false)
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia(MOBILE_QUERY).matches)
+
+  useEffect(() => {
+    const mq = window.matchMedia(MOBILE_QUERY)
+    const onChange = (e) => setIsMobile(e.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
 
   function handleTabClick(key) {
     setActiveView(key)
@@ -153,15 +166,22 @@ function App() {
         )}
       </div>
 
-      {/* 오버레이 패널 — 그래프 뷰 제외, 우측에서 슬라이드인 */}
+      {/* 오버레이 패널 — 그래프 뷰 제외. 데스크톱: 우측 슬라이드인 / 모바일: 하단 시트(지도·마커가 위에 보이도록) */}
       {activeView !== 'graph' && (
         <div style={{
-          position: 'absolute', top: NAV_H, right: 0, bottom: 0, width: 360,
-          background: 'white', overflowY: 'auto',
-          boxShadow: '-3px 0 12px rgba(0,0,0,0.15)',
-          zIndex: 10,
-          transform: selectedNode ? 'translateX(0)' : 'translateX(100%)',
+          position: 'absolute', background: 'white', overflowY: 'auto', zIndex: 10,
           transition: 'transform 0.25s ease',
+          ...(isMobile
+            ? {
+                left: 0, right: 0, bottom: 0, height: `${SHEET_VH}vh`,
+                boxShadow: '0 -3px 12px rgba(0,0,0,0.15)',
+                transform: selectedNode ? 'translateY(0)' : 'translateY(100%)',
+              }
+            : {
+                top: NAV_H, right: 0, bottom: 0, width: 360,
+                boxShadow: '-3px 0 12px rgba(0,0,0,0.15)',
+                transform: selectedNode ? 'translateX(0)' : 'translateX(100%)',
+              }),
         }}>
           <button
             onClick={() => setSelectedNode(null)}
