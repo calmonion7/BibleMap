@@ -1,5 +1,5 @@
 ---
-last_mapped_commit: 60962d0693f3bfaf4b8d24ce6f97d7b392770d85
+last_mapped_commit: 60716ea24a78866177eb8fe28dee9c43ced5ff0f
 mapped: 2026-06-11
 ---
 
@@ -26,7 +26,7 @@ mapped: 2026-06-11
 `frontend/`에서:
 
 - 빌드 통과 여부: `npm run build` (= `vite build`). 빌드가 깨지지 않으면 1차 통과로 간주한다. 배포 스크립트도 이 명령으로 산출물을 만든다(`deploy.sh` `[1/3] 프론트엔드 빌드` → `npm install --silent && npm run build --silent`).
-- 정적 분석: `npm run lint` (= `eslint .`). flat config(`frontend/eslint.config.js`)는 `@eslint/js` recommended + `eslint-plugin-react-hooks` + `eslint-plugin-react-refresh`를 적용하고 `dist`를 무시한다. (단, `deploy.sh`는 lint를 실행하지 않으므로 lint는 수동 게이트다.)
+- 정적 분석: `npm run lint` (= `eslint .`). flat config(`frontend/eslint.config.js`)는 `@eslint/js` recommended + `eslint-plugin-react-hooks` **v7**의 `flat.recommended` + `eslint-plugin-react-refresh`(`configs.vite`)를 적용하고 `dist`를 무시한다. react-hooks v7의 `flat.recommended`에는 `react-hooks/set-state-in-effect` 규칙이 포함돼 effect 본문 내 동기 setState를 플래그하므로, 린트 실행 시 `SidePanel.jsx`의 effect(본문에서 `setLoading(true)`/`setError(null)` 호출)가 이 규칙을 위반한다(기존 위반, 미수정). (단, `deploy.sh`는 lint를 실행하지 않으므로 lint는 수동 게이트다.)
 - 로컬 동작 확인: `npm run dev` (Vite, http://localhost:5173).
 
 ### 백엔드 — 문법 컴파일 체크

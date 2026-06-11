@@ -1,5 +1,5 @@
 ---
-last_mapped_commit: 60962d0693f3bfaf4b8d24ce6f97d7b392770d85
+last_mapped_commit: 60716ea24a78866177eb8fe28dee9c43ced5ff0f
 mapped: 2026-06-11
 ---
 
@@ -103,21 +103,28 @@ DB 접속 정보는 환경변수에서 읽되, 변수마다 처리가 다르다.
 
 - 컴포넌트: `PascalCase` (`MapView`). 파일명도 컴포넌트명과 동일한 PascalCase `.jsx`.
 - 함수/변수/핸들러: `camelCase`. 이벤트 핸들러는 `handle<동작>` 접두(`handleTabClick`, `handleSearch`, `handleSelectResult`).
-- 모듈 상수: `UPPER_SNAKE_CASE` (`API_BASE`/`API_URL`, `EMPTY_GEOJSON`, `DEFAULT_NODE`, `NAV_H`, `BATCH_*` 없음). 한국어 라벨 매핑 객체도 상수(`REL_KO`, `TYPE_COLOR`, `TYPE_LABEL_KO`, `TABS`).
+- 모듈 상수: `UPPER_SNAKE_CASE` (`API_BASE`/`API_URL`, `EMPTY_GEOJSON`, `DEFAULT_NODE`, `NAV_H`). 한국어 라벨 매핑 객체도 상수(`REL_KO`, `TYPE_COLOR`, `TYPE_LABEL_KO`, `TABS`).
 - prop 콜백은 `on<이벤트>` 접두(`onSelectNode`).
 
 ### API 호출 / fetch 패턴
 
 - API 베이스 URL은 매 컴포넌트 상단에서 환경변수 + 폴백으로 정의: `const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'` (`App.jsx`는 변수명만 `API_BASE`). 프로덕션은 `frontend/.env.production`의 `VITE_API_URL=/api` (nginx가 `/api/`를 백엔드로 프록시 — `nginx/nginx.conf`).
-- 표준 라이브러리 `fetch`만 사용(axios 등 없음). 두 스타일 혼재:
-  - `async/await` + `try/catch`: `App.jsx`의 `handleSearch`는 `await fetch(...)` 후 `catch { setSearchResults([]) }`로 실패 시 빈 배열.
-  - 프라미스 체인 + `.catch()`: `useEffect` 안의 데이터 로딩은 `fetch(...).then(r => r.json()).then(setState).catch(() => {})` 형태(`TimelineView.jsx`, `MapView.jsx`, `GraphView.jsx`).
-- **에러는 대체로 조용히 삼킨다**: 대부분 `.catch(() => {})`로 무시. 사용자 메시지를 띄우는 곳은 `SidePanel.jsx`뿐 — `error` 상태를 두고 `setError(String(e))` 후 `오류: {error}` 렌더.
-- HTTP 상태 검증은 `SidePanel.jsx`만 명시적으로 함: `.then(r => r.ok ? r.json() : Promise.reject(r.status))`. 나머지는 `r.json()` 바로 호출.
+- 표준 라이브러리 `fetch`만 사용(axios 등 없음). 두 호출 스타일이 용도별로 나뉜다:
+  - `async/await` + `try/catch`: 버튼/엔터로 트리거되는 명령형 호출(`App.jsx`의 `handleSearch`).
+  - 프라미스 체인 + `.catch()`: `useEffect` 안의 데이터 로딩(`TimelineView.jsx`, `MapView.jsx`, `GraphView.jsx`, `SidePanel.jsx`).
+- **HTTP 상태 검증이 모든 뷰에서 일관**된다: `fetch(...).then(r => r.ok ? r.json() : Promise.reject(...))` 형태로 `r.ok`를 먼저 검사하고 실패 시 `Promise.reject`(대개 `r.status`)로 빠진다. `App.jsx`의 async 버전도 `if (!res.ok) throw new Error(res.status)`로 동일하게 검사한다. 더는 `r.json()`을 무조건 호출하지 않는다.
+- **에러 처리도 모든 뷰에서 일관**된다(과거의 "조용히 삼킨다"는 폐기됨). 각 뷰가 로컬 `error` `useState`를 두고, `.catch`에서 `setError(...)`로 켠 뒤 조건부로 한국어 에러 UI를 렌더한다:
+  - `App.jsx`: `searchError` 상태 → 드롭다운에 "검색에 실패했습니다".
+  - `TimelineView.jsx`: `error` 상태 → 전체 영역 중앙에 "사건을 불러오지 못했습니다".
+  - `MapView.jsx`: `error` 상태 → 지도 위 플로팅 배너 "장소를 불러오지 못했습니다". 단 `error && selectedNode`일 때만 렌더(노드 선택 해제 시 배너 숨김).
+  - `GraphView.jsx`: `error` 상태 → 컨테이너 위 오버레이 "그래프를 불러오지 못했습니다".
+  - `SidePanel.jsx`: `error`에 `setError(String(e))` → `오류: {error}` 렌더(상태 코드 문자열 노출).
+- **에러 리셋 위치 규약**: 재요청 시 `setError(false)`(또는 `null`)는 effect 본문에서 동기적으로 호출하지 않고 비동기 `.then` 콜백 안에서 호출한다(`MapView.jsx`는 `.then((places) => { setError(false); ... })`, `GraphView.jsx`는 `.then(([data, grouped]) => { if (!cancelled) setError(false); ... })`). 이는 아래 ESLint의 `react-hooks/set-state-in-effect` 규칙(effect 본문 내 동기 setState 금지)을 만족시키기 위함이다. **예외**: `SidePanel.jsx`의 effect는 본문에서 `setLoading(true)`/`setError(null)`을 동기 호출하고 있어 이 규칙을 위반한다(기존부터 존재하는 위반, 본 매핑 시점 미수정).
 - 로딩/에러 상태 분기(SidePanel): `if (!nodeId) return ...` → `if (loading || !node) return <p>로딩 중...</p>` → `if (error) return <p>오류: {error}</p>` 순서의 가드 패턴.
 - 경합/누수 방지:
-  - 동시 다발 호출은 `Promise.all([...])`로 묶음(`GraphView.jsx`).
-  - `MapView.jsx`는 `AbortController`(`ctrl.signal`)로 effect cleanup 시 `ctrl.abort()` + `mapRef.current === map` 가드로 stale 응답 차단.
+  - 동시 다발 호출은 `Promise.all([...])`로 묶음(`GraphView.jsx`: `/node/{id}`와 `/node/{id}/neighbors/grouped` 병렬).
+  - `MapView.jsx`는 `AbortController`(`ctrl.signal`)로 effect cleanup 시 `ctrl.abort()` + `.catch`에서 `e?.name !== 'AbortError'` 예외 처리 + `mapRef.current === map` 가드로 stale 응답 차단(렌더 시에도 `error && selectedNode` 가드).
+  - `GraphView.jsx`는 effect 스코프의 `cancelled` 플래그로 cleanup 후 setState 차단.
 
 ### prop 관례
 
@@ -128,14 +135,16 @@ DB 접속 정보는 환경변수에서 읽되, 변수마다 처리가 다르다.
 ### 스타일링
 
 - **인라인 스타일(`style={{...}}`) 전면 사용**. CSS Module / styled-components 없음. 공유 CSS는 `frontend/src/index.css`, `frontend/src/App.css`에만.
-- 색상은 하드코딩 헥스(`#1a1a2e`, `#7c9cfc`, `#4a90d9` 등). 디자인 토큰/테마 시스템 없음. 타입별 색은 상수 맵으로 분리(`TYPE_COLOR` in `GraphView.jsx`).
+- 색상은 하드코딩 헥스(`#1a1a2e`, `#7c9cfc`, `#4a90d9` 등). 디자인 토큰/테마 시스템 없음. 타입별 색은 상수 맵으로 분리(`TYPE_COLOR` in `GraphView.jsx`). 에러 UI 색도 하드코딩(검색 실패 `#ff9b9b`, MapView 배너 `rgba(220,53,69,0.95)`).
 - 주석은 한국어, 섹션 구분용(예: `{/* 내비게이션 바 — 지도 위에 플로팅 */}`).
 
 ### 한국어 UI 관례
 
 - 한국어 라벨 매핑을 상수 객체로 분리: 관계명 `REL_KO`(`SidePanel.jsx`), 노드 타입 `TYPE_LABEL_KO`(`GraphView.jsx`).
 - 미번역 노출 규약: 백엔드 `nameKoMissing`이 true면 `name + ' (미번역)'`, 아니면 `nameKo + ' (' + name + ')'` (`SidePanel.jsx`). 관계 라벨은 `REL_KO[n.relation] || n.relation`로 폴백.
+- 사용자 대면 에러 메시지는 모두 한국어 문자열로 하드코딩(위 fetch 패턴 참고).
 - 연·월 표기는 `parseYear`로 BC/AD 변환(`TimelineView.jsx`): `-`로 시작하면 `BC`, 아니면 `AD`, 선행 0 제거(`replace(/^0+/, '')`).
+- 타임라인 그룹 정렬은 숫자 `sortKey` 기준(`members[0].sortKey ?? 0`)으로 비교한다.
 
 ### 외부 라이브러리 통합 (지도/그래프)
 
@@ -146,6 +155,7 @@ DB 접속 정보는 환경변수에서 읽되, 변수마다 처리가 다르다.
 
 ### 린트 / 빌드
 
-- ESLint flat config(`frontend/eslint.config.js`): `@eslint/js` recommended + `eslint-plugin-react-hooks` + `eslint-plugin-react-refresh`, `dist` 무시. 스크립트는 `npm run lint`(`eslint .`).
+- ESLint flat config(`frontend/eslint.config.js`): `@eslint/js` recommended + `eslint-plugin-react-hooks` **v7**의 `flat.recommended` + `eslint-plugin-react-refresh`의 `configs.vite`, `dist` 무시. 스크립트는 `npm run lint`(`eslint .`).
+  - react-hooks v7의 `flat.recommended`에는 `react-hooks/set-state-in-effect` 규칙이 포함된다 — effect 본문에서 동기적으로 setState 호출하는 것을 플래그한다. 프론트엔드 fetch 코드가 에러 리셋을 `.then` 콜백으로 미룬 이유다(위 fetch 패턴 참고). `SidePanel.jsx`의 effect는 이 규칙을 여전히 위반한다(기존 위반).
 - 빌드/실행: Vite(`frontend/vite.config.js`, `@vitejs/plugin-react`만 등록). `npm run dev`/`build`/`preview`(`frontend/package.json`).
 - React 19, 의존성은 caret(`^`) 범위.
