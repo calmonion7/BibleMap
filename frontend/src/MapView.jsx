@@ -45,6 +45,110 @@ export default function MapView({ onSelectNode, selectedNode }) {
       },
     })
 
+    // 애니메이션 상태 (React state 아님 — 프레임마다 리렌더 없음)
+    let animFrame = null
+    let expandAbortCtrl = null
+    const expandedPlace = { current: null } // { id, lng, lat, events, targets }
+    let destroyed = false
+
+    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3) }
+
+    function ringPositions(lng, lat, n, R) {
+      return Array.from({ length: n }, (_, i) => {
+        const angle = (2 * Math.PI / n) * i - Math.PI / 2
+        return [lng + R * Math.cos(angle), lat + R * Math.sin(angle)]
+      })
+    }
+
+    function buildEventGeoJSON(events, positions) {
+      return {
+        type: 'FeatureCollection',
+        features: events.map((ev, i) => ({
+          type: 'Feature',
+          geometry: { type: 'Point', coordinates: positions[i] },
+          properties: { id: ev.id, label: ev.nameKo || ev.name },
+        })),
+      }
+    }
+
+    function collapseRing() {
+      if (!expandedPlace.current) return
+      if (animFrame) { cancelAnimationFrame(animFrame); animFrame = null }
+
+      const { lng, lat, events, targets } = expandedPlace.current
+      expandedPlace.current = null
+
+      const start = performance.now()
+      const DURATION = 400
+
+      function animate(now) {
+        if (destroyed) return
+        const t = Math.min((now - start) / DURATION, 1)
+        const factor = 1 - easeOutCubic(t) // 1→0: 링 위치 → 중심
+        const positions = targets.map(([tlng, tlat]) => [
+          lng + (tlng - lng) * factor,
+          lat + (tlat - lat) * factor,
+        ])
+        map.getSource('event-ring-source').setData(buildEventGeoJSON(events, positions))
+        if (t < 1) {
+          animFrame = requestAnimationFrame(animate)
+        } else {
+          animFrame = null
+          map.getSource('event-ring-source').setData(EMPTY_GEOJSON)
+        }
+      }
+      animFrame = requestAnimationFrame(animate)
+    }
+
+    async function expandPlace(placeId, placeLng, placeLat) {
+      if (expandAbortCtrl) expandAbortCtrl.abort()
+      expandAbortCtrl = new AbortController()
+      const signal = expandAbortCtrl.signal
+
+      let grouped
+      try {
+        const res = await fetch(`${API_URL}/node/${placeId}/neighbors/grouped`, { signal })
+        if (!res.ok) return
+        grouped = await res.json()
+      } catch {
+        return
+      }
+
+      if (destroyed) return
+
+      const events = (grouped.Event || []).filter(ev => ev.id)
+      if (!events.length) return
+
+      // zoom-adaptive 링 반경: 화면 80px를 현재 zoom에서 degrees로 변환
+      const center = map.project([placeLng, placeLat])
+      const edgePoint = map.unproject([center.x + 80, center.y])
+      const R = Math.abs(edgePoint.lng - placeLng)
+
+      const targets = ringPositions(placeLng, placeLat, events.length, R)
+      expandedPlace.current = { id: placeId, lng: placeLng, lat: placeLat, events, targets }
+
+      if (animFrame) { cancelAnimationFrame(animFrame); animFrame = null }
+      const start = performance.now()
+      const DURATION = 400
+
+      function animate(now) {
+        if (destroyed) return
+        const t = Math.min((now - start) / DURATION, 1)
+        const factor = easeOutCubic(t) // 0→1: 중심 → 링 위치
+        const positions = targets.map(([tlng, tlat]) => [
+          placeLng + (tlng - placeLng) * factor,
+          placeLat + (tlat - placeLat) * factor,
+        ])
+        map.getSource('event-ring-source').setData(buildEventGeoJSON(events, positions))
+        if (t < 1) {
+          animFrame = requestAnimationFrame(animate)
+        } else {
+          animFrame = null
+        }
+      }
+      animFrame = requestAnimationFrame(animate)
+    }
+
     map.on('load', () => {
       map.addSource('places-source', { type: 'geojson', data: EMPTY_GEOJSON })
 
@@ -93,9 +197,71 @@ export default function MapView({ onSelectNode, selectedNode }) {
         },
       })
 
+      // 사건 링 레이어
+      map.addSource('event-ring-source', { type: 'geojson', data: EMPTY_GEOJSON })
+
+      map.addLayer({
+        id: 'event-ring-shadow',
+        type: 'circle',
+        source: 'event-ring-source',
+        paint: {
+          'circle-radius': 12,
+          'circle-color': 'rgba(0,0,0,0.2)',
+          'circle-translate': [1, 2],
+        },
+      })
+
+      map.addLayer({
+        id: 'event-ring-circle',
+        type: 'circle',
+        source: 'event-ring-source',
+        paint: {
+          'circle-radius': 9,
+          'circle-color': '#9b59b6',
+          'circle-stroke-width': 2,
+          'circle-stroke-color': '#ffffff',
+        },
+      })
+
+      map.addLayer({
+        id: 'event-ring-label',
+        type: 'symbol',
+        source: 'event-ring-source',
+        layout: {
+          'text-field': ['get', 'label'],
+          'text-font': ['Noto Sans Regular'],
+          'text-size': 12,
+          'text-anchor': 'left',
+          'text-offset': [1.0, 0],
+          'text-allow-overlap': false,
+          'text-padding': 3,
+        },
+        paint: {
+          'text-color': '#1a1a2e',
+          'text-halo-color': 'rgba(255,255,255,0.95)',
+          'text-halo-width': 2,
+        },
+      })
+
       map.on('click', 'places-circle', (e) => {
         const { id, label, isPrimary } = e.features[0].properties
         const coords = e.features[0].geometry.coordinates.slice()
+
+        if (expandedPlace.current?.id === id) {
+          // 같은 장소 재클릭 → 링 접힘
+          collapseRing()
+          return
+        }
+
+        // 다른 장소 클릭 → 기존 링 즉시 제거 후 새 링 펼침
+        if (expandAbortCtrl) { expandAbortCtrl.abort(); expandAbortCtrl = null }
+        if (animFrame) { cancelAnimationFrame(animFrame); animFrame = null }
+        if (expandedPlace.current) {
+          expandedPlace.current = null
+          map.getSource('event-ring-source').setData(EMPTY_GEOJSON)
+        }
+
+        expandPlace(id, coords[0], coords[1])
 
         if (popupRef.current) popupRef.current.remove()
 
@@ -139,11 +305,25 @@ export default function MapView({ onSelectNode, selectedNode }) {
         map.getCanvas().style.cursor = ''
       })
 
+      // 사건 버블 클릭 → 사건 상세로 이동, 링 유지
+      map.on('click', 'event-ring-circle', (e) => {
+        const { id } = e.features[0].properties
+        if (id) onSelectNode(id)
+      })
+
+      map.on('mouseenter', 'event-ring-circle', () => {
+        map.getCanvas().style.cursor = 'pointer'
+      })
+      map.on('mouseleave', 'event-ring-circle', () => {
+        map.getCanvas().style.cursor = ''
+      })
+
       map.on('click', (e) => {
-        const features = map.queryRenderedFeatures(e.point, { layers: ['places-circle'] })
-        if (!features.length && popupRef.current) {
-          popupRef.current.remove()
-          popupRef.current = null
+        const placeFeatures = map.queryRenderedFeatures(e.point, { layers: ['places-circle'] })
+        const eventFeatures = map.queryRenderedFeatures(e.point, { layers: ['event-ring-circle'] })
+        if (!placeFeatures.length && !eventFeatures.length) {
+          collapseRing()
+          if (popupRef.current) { popupRef.current.remove(); popupRef.current = null }
         }
       })
 
@@ -152,6 +332,9 @@ export default function MapView({ onSelectNode, selectedNode }) {
     })
 
     return () => {
+      destroyed = true
+      if (animFrame) cancelAnimationFrame(animFrame)
+      if (expandAbortCtrl) expandAbortCtrl.abort()
       if (popupRef.current) { popupRef.current.remove(); popupRef.current = null }
       mapRef.current = null
       setMapLoaded(false)
