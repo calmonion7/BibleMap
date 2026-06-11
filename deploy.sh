@@ -19,6 +19,11 @@ log "=== BibleMap 배포 시작 ==="
 # macOS 키체인 우회 (CI 환경)
 TMP_DOCKER_CONFIG=$(mktemp -d)
 echo '{"auths":{}}' > "$TMP_DOCKER_CONFIG/config.json"
+# docker는 $DOCKER_CONFIG/cli-plugins에서 compose 플러그인을 찾으므로 기본 위치를 연결
+# (이게 없으면 임시 config에 cli-plugins가 없어 `docker compose`가 인식되지 않음)
+if [ -d "$HOME/.docker/cli-plugins" ]; then
+  ln -sf "$HOME/.docker/cli-plugins" "$TMP_DOCKER_CONFIG/cli-plugins"
+fi
 export DOCKER_CONFIG="$TMP_DOCKER_CONFIG"
 
 # .env에서 NEO4J_PASSWORD 로드 — 호스트에서 직접 실행하는 inject 스크립트가 동일 비번을 쓰도록
