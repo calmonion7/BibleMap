@@ -1,83 +1,159 @@
 ---
-last_mapped_commit: 60716ea24a78866177eb8fe28dee9c43ced5ff0f
+last_mapped_commit: 288b14e23c889de294d34d0f794867d4e313a421
 mapped: 2026-06-11
 ---
 
-# 기술 부채 · 알려진 이슈 · 리스크 영역
+# CONCERNS — 기술 부채 · 알려진 이슈 · 취약 영역
 
-직전 맵(`60962d0`) 이후 CI 배포 경로·죽은 폴 스크립트·프론트 무음 fetch 실패가 정리되었다. 이 문서는 HEAD `60716ea` 기준으로 **현재도 열려 있는** 항목만 기록한다. 이미 해소된 항목은 맨 아래 "해소 확인" 절에 검증 결과만 남긴다.
+HEAD `288b14e` 기준으로 **현재 열려 있는** 항목만 기록한다. 각 항목은 실제 코드를 읽어
+`파일:라인`으로 검증했다. 도메인 용어 정의는 여기서 다루지 않는다(그건 CONTEXT.md 몫). 여기는
+구현 사실만 적는다.
 
-## 린트 / 빌드 신뢰성
+심각도 표기: 🔴 운영 위험 / 🟡 잠재·조건부 / 🟢 의도적 수용 또는 사소.
 
-### `eslint-plugin-react-hooks` v7로 인한 lint 실패 — `SidePanel.jsx`가 현재 lint FAIL
-`frontend/package.json:27`은 `"eslint-plugin-react-hooks": "^7.1.1"`을 캐럿 범위로 잡고 있다. v7이 새로 도입한 `react-hooks/set-state-in-effect` 규칙이 코드베이스의 effect-내-동기-setState 패턴을 에러로 잡는다. `npx eslint .`를 돌리면 현재 `frontend/src/SidePanel.jsx:23`(`useEffect` 안 `if (!nodeId) { setNode(null); ... }`의 동기 `setNode`)에서 1건 에러로 **lint가 실패**한다(다른 뷰는 fetch-then-setState라 비동기 콜백 안에서 호출돼 이 규칙에 안 걸리지만, `SidePanel`만 effect 본문에서 동기로 호출). 정책 미결: 규칙 핀/다운그레이드 vs effect 리팩터. 캐럿 범위 lint 플러그인은 조용히 드리프트해 다음 `npm install`에서 또 다른 규칙이 추가될 수 있다(`frontend/eslint.config.js:14`이 `reactHooks.configs.flat.recommended`를 그대로 extends).
+---
 
-## 설정 / 배포 부채
+## 인프라 · 배포
 
-### `deploy.sh`가 메인 개발 레포에서 `git reset --hard origin/main` 실행
-`.github/workflows/deploy.yml:13-16`은 `/Users/calmonion/Project/BibleMap`(별도 클론이 아닌 **메인 개발 레포**)에서 `git fetch origin` → `git reset --hard origin/main` → `bash deploy.sh`를 돈다(별도 클론 대신 이 옵션이 선택됨). 편집 중 커밋 안 된 추적 파일(WIP)이 있는 상태에서 배포가 발화하면 `reset --hard`가 무경고로 폐기한다. "커밋된 작업만 push" 규율로만 완화되며, 도구적 가드는 없다.
+### 🔴 `deploy.sh`가 dev 메인 저장소에서 `git reset --hard origin/main`을 돈다
+`.github/workflows/deploy.yml:13-16` — 셀프호스티드 러너가 `/Users/calmonion/Project/BibleMap`
+(= 개발에 쓰는 그 작업 트리)에서 `git fetch origin` 후 `git reset --hard origin/main`을 실행하고
+`bash deploy.sh`를 호출한다. 별도 배포용 클론이 아니라 **개발 작업 트리 자체**이므로, push 시점에
+커밋되지 않은 추적 파일(WIP)이 있으면 경고 없이 모두 폐기된다. 또 `deploy.sh:4`의 `WORKTREE`는
+스크립트 위치 기준이라 같은 디렉터리를 가리킨다. dev 머신이 곧 배포 타깃이라는 구조적 위험.
 
-### `deploy.sh` 단계 번호 불일치
-`deploy.sh`의 로그가 `[1/3]`(`:34`), `[2/3]`(`:40`)로 시작했다가 `[3/4]`(`:45`), `[4/4]`(`:49`)로 바뀐다. 단계 추가 시 앞 번호를 갱신하지 않은 흔적으로, 기능엔 영향 없으나 손이 덜 닿은 신호.
+### 🟡 `deploy.sh` 단계 번호 불일치 `[1/3]`→`[3/4]`
+`deploy.sh:34` `[1/3]`, `:41` `[2/3]`로 시작했다가 `:45` `[3/4]`, `:49` `[4/4]`로 바뀐다.
+실제 단계는 4개(프론트 빌드 / API 이미지 빌드 / 컨테이너 재시작 / 한글 주입)이므로
+앞의 `/3` 두 줄이 오기. 동작에는 영향 없으나 로그만 보면 진행률이 어긋나 보인다.
 
-### `inject_ko_names`를 15회 고정 재시도로 Neo4j 기동 대기
-`deploy.sh:50-62`는 2초 간격 15회 루프로 Neo4j 준비를 폴링한다. 헬스체크 대신 고정 재시도라 기동이 약 30초보다 오래 걸리면 한글 이름 주입이 누락된다(단, 15회 모두 실패 시 `exit 1`로 배포를 중단하므로 "조용히 완료"되지는 않는다).
+### 🟡 `inject_ko_names` — healthcheck 없이 고정 15회 재시도
+`deploy.sh:51-62` — Neo4j가 뜰 때까지 `python3 ... inject_ko_names.py`를 `seq 1 15` 동안
+2초 간격으로(`sleep 2`) 그냥 재시도한다. compose에 Neo4j healthcheck/`depends_on: condition`이
+없어서(`docker-compose.yml:2-11`, `:20-23`은 단순 `depends_on`) 준비 신호를 모른 채 최대 ~30초
+폴링이다. 머신이 느리거나 첫 부팅 시 인덱스 빌드가 길면 15회로 부족할 수 있고, 실패하면
+`exit 1`로 배포 전체가 중단된다(`:59-61`).
 
-### Dockerfile이 `data/`를 복사하지 않음 — inject 스크립트가 호스트 직접 실행 + 마운트에 의존
-`backend/Dockerfile:5`은 `COPY app/ ./app/`만 한다. `data/`는 이미지에 없고 `docker-compose.yml`의 `./data:/app/data` 볼륨 마운트(api 서비스)에 의존한다. `inject_ko_names.py:16`은 `Path(__file__).parent.parent.parent / "data" / "names_ko"`로 경로를 계산하는데, `deploy.sh:52`는 이 스크립트를 **호스트에서 직접**(`python3 .../inject_ko_names.py`) 실행한다. 적재 경로가 호스트 디렉터리 구조에 결합돼 있어 레이아웃이 바뀌면 조용히 깨진다.
+### 🟡 `backend/Dockerfile`이 `data/`를 복사하지 않음 — 볼륨 마운트 + 호스트 직접 실행에 의존
+`backend/Dockerfile:5`는 `COPY app/ ./app/`만 한다. `data/`(현재 `data/names_ko/`의 4개 JSON:
+events·groups·people·places)는 `docker-compose.yml:19-20`의 `./data:/app/data` 볼륨 마운트로만
+컨테이너에 들어간다. 게다가 `inject_ko_names.py`는 컨테이너가 아니라 **호스트에서 직접**
+실행되며(`deploy.sh:52`), `DATA_DIR = Path(__file__).parent.parent.parent / "data" / "names_ko"`
+(`inject_ko_names.py:16`)로 호스트 경로를 읽는다. 즉 이미지는 데이터에 대해 self-contained가
+아니고, compose 마운트 또는 호스트 파일 배치가 어긋나면 조용히 빈 데이터가 된다.
+`backend/.dockerignore`도 없다.
 
-## 보안 (잠재)
+### 🟢 프론트 번들 >500kB(minified) — Vite chunk-size 경고가 매 빌드 발생
+maplibre-gl + cytoscape(+cose-bilkent, expand-collapse) 때문에 메인 청크가 500kB 기본 한계를
+넘는다. `frontend/vite.config.js`에 `build.chunkSizeWarningLimit`이나 `manualChunks` 설정이
+전혀 없어(현재 `plugins: [react()]`만), `npm run build`(= `deploy.sh:37`)마다 경고가 뜬다.
+기능상 문제는 아니나 빌드 로그 노이즈이며 초기 로드 비용 신호.
 
-### Cypher 쿼리에 라벨/타입을 f-string으로 직접 보간 (잠재)
-라벨/타입을 문자열 포매팅으로 쿼리에 끼워 넣는 지점들: `backend/app/main.py:16-17`(lifespan 인덱스, `f"CREATE INDEX {label.lower()}_tid ... FOR (n:{label}) ..."`), `backend/app/routes/nodes.py:147`(`f"... LIMIT {NODE_NEIGHBOR_LIMIT}"`), `backend/scripts/inject_ko_names.py:25-27`(`f"MATCH (p:{label} {{theographic_id: $id}}) ..."`). 보간되는 값이 모두 코드 내부 상수(라벨 화이트리스트 `['Person','Place','Event','PeopleGroup']`, 정수 상수)라 현재 주입 위험은 없다. 값 파라미터(`$id`, `$q`, `$ko`, `$alias`)는 모두 올바르게 바인딩되며 사용자 입력 경로는 안전하다. 외부 입력이 라벨/타입 경로로 흘러들 경우에만 취약해지는 잠재 구조.
+---
 
-### `MapView` 팝업 HTML 문자열 주입 (잠재)
-`frontend/src/MapView.jsx:111-128`의 `.setHTML(...)`에 `${label}`(장소명 `nameKo`)과 `${typeLabel}`을 직접 보간한다. 장소명은 통제된 정적 데이터셋에서 오므로 현재 XSS 위험은 없으나, 이름 데이터가 외부 입력으로 확장될 경우에만 취약해지는 잠재 구조.
+## 프론트엔드
 
-## 반복적으로 패치된 취약 영역 (커밋 히스토리 기준)
+### 🔴 `MapView` 외부 타일·폰트 의존, 폴백 없음
+`frontend/src/MapView.jsx:34` glyphs를 `https://protomaps.github.io/basemaps-assets/fonts/...`,
+`:38-39` 래스터 타일을 `https://server.arcgisonline.com/.../NatGeo_World_Map/...`에서 받는다.
+둘 다 외부 무료 호스트이며 폴백/셀프호스팅이 없다. 외부 서비스가 죽거나 차단되면 지도가
+바탕 없이 비고, 라벨 폰트(`:80` `'Noto Sans Regular'`)도 깨진다. 코드상 타일/글리프 로드
+실패에 대한 에러 처리는 없다(`error` 상태는 `:175`의 `/places` fetch 실패만 잡음).
 
-### GraphView 레이아웃/fit 타이밍 + 노드 변경마다 cy 전파괴·재생성
-`frontend/src/GraphView.jsx`의 렌더링·fit 타이밍은 과거 다수 패치된 핫스팟이다. 현재 코드에도 fit 호출이 3곳에 분산돼 타이밍 의존이 남아 있다: `overlay` 변경 시 fit(`GraphView.jsx:32-35`), 초기 fit(`:153`), expand/collapse 후 fit(`:149-151`). 또한 메인 useEffect(`:37-158`)의 deps가 `[selectedNode, onSelectNode]`라 `selectedNode`가 바뀔 때마다 cleanup에서 `cy.destroy()`(`:157`)하고 두 번의 fetch(`:42-45`) 후 cytoscape 인스턴스를 통째로 재생성하며 `expandCollapse`/`collapseAll`(`:137-143`)을 다시 초기화한다. 노드 전환이 잦으면 매번 cose-bilkent 레이아웃을 재계산해 비용이 크다. 이 둘은 같은 뿌리의 부채.
+### 🟡 App↔MapView 시트 높이·모바일 분기 상수가 두 파일에 수동 동기화
+- `frontend/src/App.jsx:19` `SHEET_VH = 55` (하단 시트 높이)와
+  `frontend/src/MapView.jsx:190` `fitBounds` 패딩의 `window.innerHeight * 0.55`가 **반드시 일치**
+  해야 한다. 한쪽만 바꾸면 모바일에서 마커가 시트에 다시 가려진다. 주석으로 경고는 달려 있으나
+  (`App.jsx:18`, `MapView.jsx:186-187`) 컴파일러가 강제하지 못하는 수동 결합이다.
+- 모바일 분기 임계값도 중복: `App.jsx:17` `MOBILE_QUERY = '(max-width: 768px)'`(matchMedia)
+  vs `MapView.jsx:188` `window.innerWidth <= 768`. 768px가 두 군데 하드코딩.
 
-### `MapView` 비동기 fetch 경쟁 조건 가드 (잔재)
-`frontend/src/MapView.jsx:178`의 `if (mapRef.current === map)` 및 `:191`의 동일 가드는 과거 경쟁 조건 패치의 잔재로, 비동기 fetch 응답이 맵 재생성 이후 도착하는 케이스를 방어한다(추가로 `AbortController` `:173,194`도 함께 사용). 맵 재생성 트리거(`onSelectNode` deps, `:160`)가 바뀌면 다시 깨질 수 있는 영역.
+### 🟡 `MapView` 팝업 `.setHTML` 문자열 보간 — 데이터가 외부화되면 XSS 가능
+`MapView.jsx:111-128`이 `setHTML`에 `${label}`(장소명)을 직접 끼워 넣는다. 현재 `label`은 우리
+DB의 `nameKo`라 사실상 안전하지만, 향후 이름 데이터가 외부/사용자 입력으로 바뀌면 즉시 XSS
+경로가 된다. 정적 데이터라는 전제에만 의존.
 
-## 버그 가능성 / 취약한 로직
+### 🟡 GraphView fit/cy 타이밍 + selectedNode 변경마다 전체 destroy/recreate
+`frontend/src/GraphView.jsx:37-158` — `selectedNode`(또는 `onSelectNode`)가 바뀔 때마다 effect가
+cytoscape 인스턴스를 통째로 새로 만들고(`:84`), cleanup에서 `cy.destroy()`(`:157`)한다. 노드
+하나 바꿔도 그래프 전체 재생성·재레이아웃이다(`cose-bilkent`, `expandCollapse`,
+`collapseAll`). `:32-35`의 fit effect와 `:153`/`:150-151`의 fit 호출이 별도 타이밍으로 얽혀 있어,
+오버레이 토글·확장/축소·노드 전환이 겹치면 화면 점프나 깜빡임 여지가 있다.
 
-### `/events`의 sortKey 무가드 `float()` 파싱
-`backend/app/routes/events.py:24`는 `float(props.get("sortKey", 0))`를 try/except 없이 호출한다. `nodes.py`의 좌표 파싱(`nodes.py:74-78`)은 try/except로 견고화됐으나 `events.py`의 sortKey 파싱에는 같은 가드가 없다. 데이터에 숫자 파싱 불가능한 `sortKey`가 섞이면 `/events` 요청 전체가 500으로 실패한다. 현재 데이터는 정상이라 잠재적이며, 좌표 견고화와 짝이 안 맞는 비대칭.
+### 🟢 GraphView 하드코딩 기본 노드 (모세 id)
+`GraphView.jsx:9` `DEFAULT_NODE = 'recjNRR60PAuFtjha'`(주석 "모세"). `selectedNode`가 없을 때의
+초기 그래프를 이 특정 theographic_id에 고정(`:38`). 이 id가 DB에서 사라지면 초기 그래프가
+에러 상태(`:155`, "그래프를 불러오지 못했습니다")가 된다. 정적 데이터라 사실상 안정적.
 
-### `/node/{id}/places`가 빈 배열일 때 무피드백
-`backend/app/routes/nodes.py:9-87`은 노드가 없으면 404(`:18-19`)를 반환하지만, 노드는 있으나 연결된 장소가 없으면 빈 리스트를 반환한다. 프론트(`MapView.jsx:181`)는 `places.length > 0`만 확인해 빈 결과를 조용히 처리하므로 "선택했는데 지도에 아무것도 안 뜬다"는 무피드백 상태가 발생할 수 있다(이 클래스 버그가 `26240c7`에서 PeopleGroup 경로에 대해 실제로 수정된 전례 있음).
+### 🟢 `/node/{id}/places` 빈 배열에 대한 사용자 피드백 없음
+`MapView.jsx:177-194` — `/places`가 `[]`를 주면 `setData(EMPTY_GEOJSON)`만 하고 `fitBounds`도
+건너뛴다(`:181`). 좌표가 없는 노드를 고르면 지도가 조용히 비어 "왜 아무것도 안 뜨지?" 상태가
+된다. (에러 배너 `:206`은 fetch 실패에만 뜬다.)
 
-### 좌표 누락 노드의 무음 스킵 (의도된 동작이나 사용자엔 무피드백)
-`backend/app/routes/nodes.py:74-78`은 위경도 `float()` 파싱 실패 시 해당 장소를 `continue`로 건너뛴다(요청은 500 없이 성공). 견고화 자체는 의도된 동작이지만, 스킵된 장소에 대한 사용자/로그 피드백이 전혀 없어 "일부 마커가 조용히 누락"될 수 있다.
+---
 
-## 성능
+## 백엔드
 
-### 전체 노드 스캔 검색 (인덱스 미사용) — 의도적으로 받아들인 결정
-`backend/app/routes/search.py:14-23`의 검색은 `MATCH (n) WHERE (n.nameKo CONTAINS $q OR n.name CONTAINS $q)`로 전체 노드를 풀스캔한다. 생성되는 인덱스(`main.py:16-17`)는 `theographic_id` 단일 키라 이 `CONTAINS` 검색을 가속하지 못하며 풀텍스트 인덱스는 없다. **다만 데이터셋이 정적 ~930개 노드 규모라 실질적 성능 문제가 아니다.** 선행 작업에서 풀텍스트 인덱스 추가를 "조숙한 최적화"로 판단해 의도적으로 드롭했다. 긴급 부채가 아니라 기록용 결정 사항.
+### 🟡 Cypher 라벨/타입 f-string 보간 (값은 내부 상수)
+다음 위치들이 쿼리 문자열에 파이썬 변수를 f-string으로 끼워 넣는다. 현재 끼우는 값은 전부
+내부 상수/리터럴이라 인젝션 표면이 아니지만, 향후 외부 입력이 흘러들면 위험해진다:
+- `backend/app/main.py:16-17` — 라벨(`Person`/`Place`/`Event`/`PeopleGroup`)로 인덱스 생성.
+- `backend/app/routes/nodes.py:147` — `LIMIT {NODE_NEIGHBOR_LIMIT}`(상수 50).
+- `backend/app/routes/search.py:15-21` — `LIMIT {SEARCH_LIMIT}`(상수 20). 검색어 `q`는 정상적으로
+  파라미터 바인딩(`q=q`)하므로 안전.
+- `backend/scripts/inject_ko_names.py:25-26` — `MATCH (p:{label} ...)` 라벨 보간(`inject` 인자).
+- `backend/scripts/load_theographic.py:37-42` — 인덱스 DDL 리터럴.
 
-## 기타 견고성
+### 🟡 `events.py` 가드 없는 `float(sortKey)`
+`backend/app/routes/events.py:24` `"sortKey": float(props.get("sortKey", 0))`. `sortKey`가 None이
+아닌 비숫자 문자열이면 `ValueError`로 `/events` 응답 전체가 500이 된다. `get`의 기본값 0은
+키 부재만 막고, 잘못된 타입은 못 막는다. 데이터 적재(`load_theographic.py:117`)가 원천
+`f.get("sortKey")`를 그대로 넣으므로 원천 데이터 형태에 의존.
 
-### MapView 외부 타일/폰트 서버 의존 — 폴백 없음
-`frontend/src/MapView.jsx:34`(protomaps 폰트 glyphs, `protomaps.github.io/...`), `:39`(ArcGIS NatGeo 타일, `server.arcgisonline.com/...`)가 외부 서비스에 하드코딩돼 있다. 해당 서비스 다운·정책 변경·요청 제한 시 지도가 깨진다. 폴백이 없다.
+### 🟡 이웃 컷 매직넘버 — 조용한 잘림
+`backend/app/routes/nodes.py:6-7` `MAX_NEIGHBORS_PER_TYPE = 30`, `NODE_NEIGHBOR_LIMIT = 50`.
+- `/node/{id}`(`:147`)는 이웃을 50개로 LIMIT — 51번째부터는 응답에서 그냥 사라지고
+  SidePanel은 잘렸다는 표시 없이 일부만 보여준다.
+- `/node/{id}/neighbors/grouped`(`:108`)는 타입별 30개를 넘으면 `continue`로 버린다.
+두 경로 모두 "더 있음" 신호가 없어 사용자는 전체를 봤다고 오인한다.
 
-### 이웃 컷 매직 넘버로 인한 무음 누락
-이웃 제한은 `nodes.py:6-7`의 `MAX_NEIGHBORS_PER_TYPE = 30`, `NODE_NEIGHBOR_LIMIT = 50` 상수로 추출돼 매직 넘버 자체는 정리됐다. 다만 큰 허브 노드(예: 다윗, 예수)는 타입별 30개 컷(`nodes.py:108`)과 LIMIT 50(`nodes.py:147`)으로 인해 일부 이웃이 조용히 누락되며, 사용자에게 "더 있음" 표시가 없다.
+### 🟢 검색 풀스캔 `CONTAINS` (정적 ~930노드 전제로 의도적 수용)
+`backend/app/routes/search.py:16-22` — `MATCH (n) WHERE n.nameKo CONTAINS $q OR n.name CONTAINS $q`.
+인덱스 없는 전체 노드 substring 스캔이다. 노드가 ~930개로 작고 정적이라 의도적으로 받아들인
+선택. 데이터가 크게 늘면 풀텍스트 인덱스로 교체 필요.
 
-### GraphView 기본 노드 하드코딩
-`frontend/src/GraphView.jsx:9` `DEFAULT_NODE = 'recjNRR60PAuFtjha' // 모세`로 모세의 theographic_id가 박혀 있다. 데이터 재적재 시 이 ID가 바뀌면 그래프 초기 화면이 빈 상태(혹은 fetch 실패 → 에러 UI)가 된다.
+### 🟢 CORS `allow_origins=["*"]`
+`backend/app/main.py:27` 모든 오리진 허용. `allow_credentials=False`, `allow_methods=["GET"]`로
+읽기 전용 공개 API라는 전제. 인증/쓰기가 생기면 재검토 대상.
 
-## 해소 확인 (직전 맵 `60962d0` 대비 — 더 이상 열린 이슈 아님)
+---
 
-직전 CONCERNS에 열린 이슈로 있었으나 HEAD `60716ea`에서 해소된 항목들. 검증 결과만 남긴다.
+## 해소 확인 (resolved since last map)
 
-- **CI 배포가 제거된 워크트리 절대 경로에 하드코딩** → 해소. `.github/workflows/deploy.yml:13`이 `cd /Users/calmonion/Project/BibleMap`(메인 레포)로 수정되어 push→deploy가 동작(`1f0e772`, `60716ea`). (단, 동일 레포 `git reset --hard`로 인한 WIP 폐기 리스크는 위 "설정/배포 부채"에 별도 기록.)
-- **`scripts/auto-deploy-poll.sh` (낡은 경로/머지된 브랜치 폴링)** → 해소. 파일이 제거됨(`scripts/` 디렉터리 자체가 없고 `git ls-files scripts/`가 0건, `1f0e772`).
-- **프론트엔드 fetch 실패의 무음 처리 / 에러 UI 부재** → 해소. 모든 뷰가 한글 에러 UI를 노출(`b75b1c5`): `App.jsx:30-39`(검색, `searchError` 상태 → `:114-115` "검색에 실패했습니다"), `MapView.jsx:190-191`(`setError(true)` → `:200-208` "장소를 불러오지 못했습니다"), `TimelineView.jsx:25`(`setError(true)` → `:58-64` "사건을 불러오지 못했습니다"), `GraphView.jsx:155`(`setError(true)` → `:164-172` "그래프를 불러오지 못했습니다"). `SidePanel.jsx:31,36`도 `error` 상태를 화면에 노출.
-- **CORS 전체 개방 + credentials 조합** → 해소(유지). `backend/app/main.py:27-29`이 `allow_credentials=False`, `allow_methods=["GET"]`.
-- **기본 Neo4j 비밀번호 하드코딩** → 해소(유지). `backend/app/db.py:11-13`, `inject_ko_names.py:12-14` 모두 `NEO4J_PASSWORD` 미설정 시 `RuntimeError` fail-fast. `docker-compose.yml`은 `${NEO4J_PASSWORD:?...}`를 쓰고 `NEO4J_AUTH`를 거기서 파생.
-- **lifespan 인덱스 `except Exception: pass` 무음 삼킴** → 해소(유지). `main.py:19-20`이 `logging.exception(...)`으로 로깅.
-- **TimelineView 정렬 키 타입 혼합** → 해소(유지). `TimelineView.jsx:48`이 `members[0].sortKey ?? 0`(숫자 폴백)으로 일원화.
-- **좌표 `float()` 무가드 파싱** → `nodes.py:74-78`에서 try/except로 견고화(깨진 좌표는 해당 장소만 스킵, 500 없음). 단, `events.py:24` sortKey 파싱에는 동일 가드가 없어 위 "버그 가능성"에 별도 기록.
+### ✅ SidePanel react-hooks `set-state-in-effect` lint 실패 — 해소
+task 13에서 SidePanel을 재작성. 이제 effect 안에서 setState를 비동기 fetch 콜백에서만
+호출하고(`frontend/src/SidePanel.jsx:31-39`), loading/ready는 `state.id === nodeId` 파생으로
+계산한다(`:41-43`). **검증:** `cd frontend && npx eslint .` 실행 결과 **exit 0**(경고·에러 0건).
+
+### ✅ 모바일 "지도 마커가 패널에 가려짐" — 해소
+task 12에서 App을 반응형 하단 시트로 바꿈. `frontend/src/App.jsx:189-204`가 `isMobile`일 때
+패널을 우측 사이드패널 대신 하단 시트로 띄우고(`bottom:0, height:55vh`), `MapView.jsx:188-192`가
+`fitBounds` 패딩에 시트 높이만큼(`innerHeight*0.55+20`)을 더해 마커를 가려지지 않는 상단 띠로
+모은다. **검증:** 두 파일에서 반응형 분기와 패딩 보정 로직을 코드로 확인.
+
+---
+
+## 정정 (이번 맵에서 사실 확인 후 수정)
+
+### ⚠️ `/node/{id}/neighbors/grouped`는 dead 엔드포인트가 **아님**
+직전 추정과 달리, 이 엔드포인트(`backend/app/routes/nodes.py:90-121`)는 **GraphView가 실제로
+사용 중**이다. `frontend/src/GraphView.jsx:42-45`가 `/node/${id}`와
+`/node/${id}/neighbors/grouped`를 `Promise.all`로 동시에 호출해 그룹별 노드를 그린다
+(`:46-82`에서 `grouped[type]`로 부모-자식 노드 구성). SidePanel만 `/node/{id}` 단일 호출로
+클라이언트에서 그룹핑(`frontend/src/SidePanel.jsx:31-56`)할 뿐이다. **검증:**
+`grep -rn "neighbors/grouped"` → `GraphView.jsx:44` 호출 + `nodes.py:90` 정의 두 곳 매칭.
+따라서 이 항목은 미해결 부채가 아니라 **활성 엔드포인트**다.
+
+부수적으로 GraphView는 같은 노드 데이터를 두 엔드포인트(`/node/{id}` + `.../neighbors/grouped`)로
+중복 조회한다는 점은 남는다 — `/node/{id}`도 이미 `label`+`relation`을 가진 `neighbors`를
+주므로(`nodes.py:157-164`), 한 번의 호출로 합칠 여지가 있는 잠재 정리 거리(🟢).
