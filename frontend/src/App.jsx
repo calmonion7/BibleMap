@@ -26,6 +26,7 @@ function App() {
   const [searchError, setSearchError] = useState(false)
   const [showDropdown, setShowDropdown] = useState(false)
   const [isMobile, setIsMobile] = useState(() => window.matchMedia(MOBILE_QUERY).matches)
+  const [history, setHistory] = useState([])
 
   useEffect(() => {
     const mq = window.matchMedia(MOBILE_QUERY)
@@ -53,7 +54,25 @@ function App() {
     setShowDropdown(true)
   }
 
+  // 노드 선택 — 직전 노드를 히스토리에 쌓아 패널 뒤로가기를 지원
+  function selectNode(id) {
+    if (id === selectedNode) return
+    if (selectedNode) setHistory(h => [...h, selectedNode])
+    setSelectedNode(id)
+  }
+
+  function goBack() {
+    setSelectedNode(history[history.length - 1] ?? null)
+    setHistory(h => h.slice(0, -1))
+  }
+
+  function closePanel() {
+    setHistory([])
+    setSelectedNode(null)
+  }
+
   function handleSelectResult(result) {
+    setHistory([]) // 새 검색은 새 탐색 컨텍스트 — 히스토리 리셋
     setSelectedNode(result.id)
     setShowDropdown(false)
     setSearchQuery('')
@@ -157,11 +176,11 @@ function App() {
 
       {/* 전체화면 뷰 */}
       <div style={{ position: 'absolute', inset: 0 }}>
-        {activeView === 'map' && <MapView onSelectNode={setSelectedNode} selectedNode={selectedNode} />}
-        {activeView === 'timeline' && <TimelineView onSelectNode={setSelectedNode} selectedNode={selectedNode} />}
+        {activeView === 'map' && <MapView onSelectNode={selectNode} selectedNode={selectedNode} />}
+        {activeView === 'timeline' && <TimelineView onSelectNode={selectNode} selectedNode={selectedNode} />}
         {activeView === 'graph' && (
           <div style={{ position: 'absolute', top: NAV_H, left: 0, right: 0, bottom: 0 }}>
-            <GraphView onSelectNode={setSelectedNode} selectedNode={selectedNode} />
+            <GraphView onSelectNode={selectNode} selectedNode={selectedNode} />
           </div>
         )}
       </div>
@@ -184,16 +203,16 @@ function App() {
               }),
         }}>
           <button
-            onClick={() => setSelectedNode(null)}
+            onClick={closePanel}
             style={{
-              position: 'absolute', top: 8, right: 8,
+              position: 'absolute', top: 8, right: 8, zIndex: 2,
               width: 28, height: 28, borderRadius: '50%',
               border: '1px solid #ddd', background: 'white',
               cursor: 'pointer', fontSize: 16, lineHeight: 1,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}
           >×</button>
-          <SidePanel nodeId={selectedNode} onSelectNode={setSelectedNode} />
+          <SidePanel nodeId={selectedNode} onSelectNode={selectNode} onBack={goBack} canGoBack={history.length > 0} />
         </div>
       )}
 
