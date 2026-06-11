@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { Map, Clock, Network, Search } from 'lucide-react'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
@@ -27,6 +27,8 @@ function App() {
   const [showDropdown, setShowDropdown] = useState(false)
   const [isMobile, setIsMobile] = useState(() => window.matchMedia(MOBILE_QUERY).matches)
   const [history, setHistory] = useState([])
+  const selectedNodeRef = useRef(null)
+  useEffect(() => { selectedNodeRef.current = selectedNode }, [selectedNode])
 
   useEffect(() => {
     const mq = window.matchMedia(MOBILE_QUERY)
@@ -55,11 +57,13 @@ function App() {
   }
 
   // 노드 선택 — 직전 노드를 히스토리에 쌓아 패널 뒤로가기를 지원
-  function selectNode(id) {
-    if (id === selectedNode) return
-    if (selectedNode) setHistory(h => [...h, selectedNode])
+  // useCallback([])으로 참조를 안정화: selectedNode 변경 시 MapView 등의 useEffect가 재실행되어
+  // expandPlace fetch가 abort되는 버그 방지 (selectedNodeRef로 최신값 읽음)
+  const selectNode = useCallback((id) => {
+    if (id === selectedNodeRef.current) return
+    if (selectedNodeRef.current) setHistory(h => [...h, selectedNodeRef.current])
     setSelectedNode(id)
-  }
+  }, [])
 
   function goBack() {
     setSelectedNode(history[history.length - 1] ?? null)
