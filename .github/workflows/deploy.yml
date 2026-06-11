@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Pull & Deploy
         run: |
-          cd /Users/calmonion/Project/BibleMap/.claude/worktrees/wise-sprouting-hellman
+          cd /Users/calmonion/Project/BibleMap
           git fetch origin
           git reset --hard origin/main
           bash deploy.sh
