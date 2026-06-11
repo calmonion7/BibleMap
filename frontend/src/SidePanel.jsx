@@ -14,25 +14,26 @@ const REL_KO = {
 }
 
 function SidePanel({ nodeId, onSelectNode = () => {} }) {
-  const [node, setNode] = useState(null)
-  const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(false)
+  // 어느 nodeId의 결과인지 id로 추적 — loading은 파생, stale 응답은 무시.
+  // setState는 비동기 콜백에서만 호출(react-hooks set-state-in-effect 준수).
+  const [state, setState] = useState({ id: null, node: null, error: null })
 
   useEffect(() => {
-    if (!nodeId) {
-      setNode(null)
-      return
-    }
-    setLoading(true)
-    setError(null)
+    if (!nodeId) return
+    let cancelled = false
     fetch(API_URL + '/node/' + nodeId)
       .then(r => r.ok ? r.json() : Promise.reject(r.status))
-      .then(data => { setNode(data); setLoading(false) })
-      .catch(e => { setError(String(e)); setLoading(false) })
+      .then(data => { if (!cancelled) setState({ id: nodeId, node: data, error: null }) })
+      .catch(e => { if (!cancelled) setState({ id: nodeId, node: null, error: String(e) }) })
+    return () => { cancelled = true }
   }, [nodeId])
 
+  const ready = state.id === nodeId
+  const node = ready ? state.node : null
+  const error = ready ? state.error : null
+
   if (!nodeId) return <p style={{ padding: '1rem' }}>지도에서 마커를 클릭하세요</p>
-  if (loading || !node) return <p>로딩 중...</p>
+  if (!ready) return <p>로딩 중...</p>
   if (error) return <p>오류: {error}</p>
 
   return (
