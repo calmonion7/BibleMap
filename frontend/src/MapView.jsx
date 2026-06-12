@@ -21,6 +21,9 @@ export default function MapView({ onSelectNode, selectedNode }) {
   const mapContainer = useRef(null)
   const mapRef = useRef(null)
   const popupRef = useRef(null)
+  // 사건 링 펼침 제어 — selection effect가 자동 펼침을 위해 공유한다.
+  const expandPlaceRef = useRef(null)        // (placeId, lng, lat) => 링 fly-out
+  const expandedPlaceRef = useRef(null)      // 현재 펼쳐진 장소 { id, lng, lat, events, targets }
   const [mapLoaded, setMapLoaded] = useState(false)
   const [error, setError] = useState(false)
 
@@ -48,7 +51,8 @@ export default function MapView({ onSelectNode, selectedNode }) {
     // 애니메이션 상태 (React state 아님 — 프레임마다 리렌더 없음)
     let animFrame = null
     let expandAbortCtrl = null
-    const expandedPlace = { current: null } // { id, lng, lat, events, targets }
+    const expandedPlace = expandedPlaceRef // 컴포넌트 ref와 공유 — selection effect가 펼침 상태를 읽는다
+    expandedPlace.current = null            // 맵 재초기화 시 초기화
     let destroyed = false
 
     function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3) }
@@ -148,6 +152,8 @@ export default function MapView({ onSelectNode, selectedNode }) {
       }
       animFrame = requestAnimationFrame(animate)
     }
+
+    expandPlaceRef.current = expandPlace
 
     map.on('load', () => {
       map.addSource('places-source', { type: 'geojson', data: EMPTY_GEOJSON })
@@ -336,6 +342,8 @@ export default function MapView({ onSelectNode, selectedNode }) {
       if (animFrame) cancelAnimationFrame(animFrame)
       if (expandAbortCtrl) expandAbortCtrl.abort()
       if (popupRef.current) { popupRef.current.remove(); popupRef.current = null }
+      expandPlaceRef.current = null
+      expandedPlace.current = null
       mapRef.current = null
       setMapLoaded(false)
       map.remove()
@@ -354,33 +362,71 @@ export default function MapView({ onSelectNode, selectedNode }) {
     }
 
     const ctrl = new AbortController()
+    let moveEndHandler = null
+    let autoExpandTimer = null
 
     fetch(`${API_URL}/node/${selectedNode}/places`, { signal: ctrl.signal })
       .then((res) => res.ok ? res.json() : Promise.reject(res.status))
       .then((places) => {
-        if (mapRef.current === map) {
-          setError(false)
-          map.getSource('places-source').setData(placesToGeoJSON(places))
-          if (places.length > 0) {
-            const bounds = places.reduce(
-              (b, p) => b.extend([p.lng, p.lat]),
-              new maplibregl.LngLatBounds([places[0].lng, places[0].lat], [places[0].lng, places[0].lat])
-            )
-            // 모바일은 하단 시트(App.jsx SHEET_VH=55vh)와 상단 네비가 지도를 가리므로,
-            // 가려진 만큼 패딩을 더해 마커가 보이는 상단 띠 영역에 들어오게 한다. (0.55는 SHEET_VH와 일치)
-            const isMobile = window.innerWidth <= 768
-            const padding = isMobile
-              ? { top: 70, bottom: Math.round(window.innerHeight * 0.55) + 20, left: 40, right: 40 }
-              : 80
-            map.fitBounds(bounds, { padding, maxZoom: 10, duration: 600 })
+        if (mapRef.current !== map) return
+        setError(false)
+        map.getSource('places-source').setData(placesToGeoJSON(places))
+        if (places.length === 0) return
+
+        const bounds = places.reduce(
+          (b, p) => b.extend([p.lng, p.lat]),
+          new maplibregl.LngLatBounds([places[0].lng, places[0].lat], [places[0].lng, places[0].lat])
+        )
+
+        // 선택한 장소(isPrimary 마커)의 사건 링을 자동으로 펼친다 — 마커 재클릭 불필요.
+        // 마커 클릭 경로가 이미 같은 장소를 펼쳤으면(id 일치) 건너뛴다 → 중복 펼침 가드.
+        // 인물/집단 선택은 isPrimary가 없으므로 자동 펼침 없음.
+        const primary = places.find((p) => p.isPrimary)
+        const willAutoExpand = !!primary && expandedPlaceRef.current?.id !== primary.id
+
+        // 모바일은 하단 시트(App.jsx SHEET_VH=55vh)와 상단 네비가 지도를 가리므로,
+        // 가려진 만큼 패딩을 더해 마커가 보이는 상단 띠 영역에 들어오게 한다. (0.55는 SHEET_VH와 일치)
+        // 자동 펼침 시에는 링(반경 ~80px)과 라벨이 잘리지 않게 여유 패딩을 더하고 과도 확대를 막는다.
+        // (라벨은 오른쪽으로 뻗으므로 right를 더 크게 / 수치는 브라우저로 보며 튜닝)
+        const isMobile = window.innerWidth <= 768
+        const sheet = Math.round(window.innerHeight * 0.55)
+        const padding = isMobile
+          ? willAutoExpand
+            ? { top: 100, bottom: sheet + 120, left: 90, right: 120 }
+            : { top: 70, bottom: sheet + 20, left: 40, right: 40 }
+          : willAutoExpand ? 140 : 80
+        const maxZoom = willAutoExpand ? 8 : 10
+
+        if (willAutoExpand) {
+          // 카메라(fitBounds)와 링 fly-out(rAF)을 순차 실행 — 카메라 정착 후 펼쳐
+          // R(반경)을 정착된 zoom에서 계산하고 공유 source 동시 setData 충돌을 피한다.
+          // moveend는 fitBounds가 카메라를 안 움직이면 발화하지 않으므로 폴백 타이머(700ms ≈
+          // fitBounds duration)로 자동 펼침을 보장한다. fired 플래그로 단발 실행.
+          let fired = false
+          const runExpand = () => {
+            if (fired) return
+            fired = true
+            if (autoExpandTimer) { clearTimeout(autoExpandTimer); autoExpandTimer = null }
+            if (moveEndHandler) { map.off('moveend', moveEndHandler); moveEndHandler = null }
+            if (mapRef.current === map && expandedPlaceRef.current?.id !== primary.id) {
+              expandPlaceRef.current?.(primary.id, primary.lng, primary.lat)
+            }
           }
+          moveEndHandler = runExpand
+          map.once('moveend', moveEndHandler)
+          autoExpandTimer = setTimeout(runExpand, 700)
         }
+        map.fitBounds(bounds, { padding, maxZoom, duration: 600 })
       })
       .catch((e) => {
         if (e?.name !== 'AbortError' && mapRef.current === map) setError(true)
       })
 
-    return () => ctrl.abort()
+    return () => {
+      ctrl.abort()
+      if (moveEndHandler) map.off('moveend', moveEndHandler)
+      if (autoExpandTimer) clearTimeout(autoExpandTimer)
+    }
   }, [selectedNode, mapLoaded])
 
   return (
