@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 288b14e23c889de294d34d0f794867d4e313a421
-mapped: 2026-06-11
+last_mapped_commit: 651f526aacfad0cfa86b4df41aaa9f08dcc7da22
+mapped: 2026-06-12
 ---
 
 # INTEGRATIONS
