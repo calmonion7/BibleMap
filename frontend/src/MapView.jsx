@@ -378,30 +378,21 @@ export default function MapView({ onSelectNode, selectedNode }) {
           new maplibregl.LngLatBounds([places[0].lng, places[0].lat], [places[0].lng, places[0].lat])
         )
 
-        // 선택한 장소(isPrimary 마커)의 사건 링을 자동으로 펼친다 — 마커 재클릭 불필요.
-        // 마커 클릭 경로가 이미 같은 장소를 펼쳤으면(id 일치) 건너뛴다 → 중복 펼침 가드.
-        // 인물/집단 선택은 isPrimary가 없으므로 자동 펼침 없음.
-        const primary = places.find((p) => p.isPrimary)
-        const willAutoExpand = !!primary && expandedPlaceRef.current?.id !== primary.id
-
-        // 모바일은 하단 시트(App.jsx SHEET_VH=55vh)와 상단 네비가 지도를 가리므로,
-        // 가려진 만큼 패딩을 더해 마커가 보이는 상단 띠 영역에 들어오게 한다. (0.55는 SHEET_VH와 일치)
-        // 자동 펼침 시에는 링(반경 ~80px)과 라벨이 잘리지 않게 여유 패딩을 더하고 과도 확대를 막는다.
-        // (라벨은 오른쪽으로 뻗으므로 right를 더 크게 / 수치는 브라우저로 보며 튜닝)
+        // 선택한 장소(isPrimary)의 사건 링을 펼친다.
+        // 마커 클릭 경로는 클릭 핸들러에서 이미 "현재 줌"으로 링을 펼쳐 둔다(expandedPlace 선점).
+        // 그 경우 여기서 카메라를 건드리지 않는다 → 클릭 시 줌이 튀지 않고 링이 그 자리에서 보인다.
+        // 링 반경 R은 표시 줌에서 80px(고정 화면 반경)이라, 장소 점만 보이면 링도 자동으로 보인다.
+        // 아직 안 펼친 primary(=검색·사이드패널 선택)만 적당한 줌으로 가져온 뒤 "정착된 줌"에서
+        // 펼친다(R을 정착 줌에서 계산해야 화면 밖으로 안 날아간다 — task 15에서 어긋났던 지점).
+        // 인물/집단 선택은 isPrimary가 없으므로 전체 장소만 한눈에 보여준다(기존 거동).
         const isMobile = window.innerWidth <= 768
-        const sheet = Math.round(window.innerHeight * 0.55)
-        const padding = isMobile
-          ? willAutoExpand
-            ? { top: 100, bottom: sheet + 120, left: 90, right: 120 }
-            : { top: 70, bottom: sheet + 20, left: 40, right: 40 }
-          : willAutoExpand ? 140 : 80
-        const maxZoom = willAutoExpand ? 8 : 10
+        const sheet = Math.round(window.innerHeight * 0.55) // App.jsx SHEET_VH=55vh와 일치
+        const primary = places.find((p) => p.isPrimary)
 
-        if (willAutoExpand) {
-          // 카메라(fitBounds)와 링 fly-out(rAF)을 순차 실행 — 카메라 정착 후 펼쳐
-          // R(반경)을 정착된 zoom에서 계산하고 공유 source 동시 setData 충돌을 피한다.
-          // moveend는 fitBounds가 카메라를 안 움직이면 발화하지 않으므로 폴백 타이머(700ms ≈
-          // fitBounds duration)로 자동 펼침을 보장한다. fired 플래그로 단발 실행.
+        if (primary && expandedPlaceRef.current?.id !== primary.id) {
+          // 검색·사이드패널 선택 — 화면 밖일 수 있으니 적당한 줌으로 가져온 뒤 정착 후 펼침.
+          // moveend는 카메라가 안 움직이면 미발화하므로 폴백 타이머(700ms)로 보장, fired로 단발.
+          // (공유 source 동시 setData 충돌 회피 — radial-ring 회고)
           let fired = false
           const runExpand = () => {
             if (fired) return
@@ -415,8 +406,19 @@ export default function MapView({ onSelectNode, selectedNode }) {
           moveEndHandler = runExpand
           map.once('moveend', moveEndHandler)
           autoExpandTimer = setTimeout(runExpand, 700)
+          // 링(반경 ~80px)+라벨(오른쪽으로 뻗음) 여유 패딩 + 단일 장소 과도 확대 방지(maxZoom 7).
+          const padding = isMobile
+            ? { top: 100, bottom: sheet + 120, left: 90, right: 120 }
+            : 140
+          map.fitBounds(bounds, { padding, maxZoom: 7, duration: 600 })
+        } else if (!primary) {
+          // 인물/집단 — 전체 장소를 한눈에. 모바일은 하단 시트/상단 네비만큼 패딩.
+          const padding = isMobile
+            ? { top: 70, bottom: sheet + 20, left: 40, right: 40 }
+            : 80
+          map.fitBounds(bounds, { padding, maxZoom: 10, duration: 600 })
         }
-        map.fitBounds(bounds, { padding, maxZoom, duration: 600 })
+        // primary가 이미 펼쳐져 있으면(마커 클릭으로 현재 줌에서 펼친 경우) 카메라를 건드리지 않는다.
       })
       .catch((e) => {
         if (e?.name !== 'AbortError' && mapRef.current === map) setError(true)
