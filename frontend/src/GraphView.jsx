@@ -3,10 +3,10 @@ import cytoscape from 'cytoscape'
 import coseBilkent from 'cytoscape-cose-bilkent'
 import expandCollapse from 'cytoscape-expand-collapse'
 import { TYPE_COLOR, TYPE_KO, TYPE_ORDER } from './theme'
+import { apiGet } from './api'
 cytoscape.use(coseBilkent)
 cytoscape.use(expandCollapse)
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 const DEFAULT_NODE = 'recjNRR60PAuFtjha' // 모세
 
 const TYPE_LABEL_KO = {
@@ -24,8 +24,9 @@ export default function GraphView({ onSelectNode, selectedNode }) {
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    if (!cyRef.current) return
-    cyRef.current.fit(cyRef.current.elements(), overlay ? 100 : 40)
+    if (!overlay && cyRef.current) {
+      cyRef.current.fit(cyRef.current.elements(), 40)
+    }
   }, [overlay])
 
   useEffect(() => {
@@ -33,21 +34,25 @@ export default function GraphView({ onSelectNode, selectedNode }) {
     let cy = null
     let cancelled = false
 
-    Promise.all([
-      fetch(`${API_URL}/node/${id}`).then(r => r.ok ? r.json() : Promise.reject(r.status)),
-      fetch(`${API_URL}/node/${id}/neighbors/grouped`).then(r => r.ok ? r.json() : Promise.reject(r.status)),
-    ])
-      .then(([data, grouped]) => {
+    apiGet(`/node/${id}`)
+      .then((data) => {
         if (!cancelled) setError(false)
         const center = { id: data.id, label: data.nameKo || data.name, nodeType: data.label }
-        const totalNeighborCount = Object.values(grouped).reduce((sum, arr) => sum + arr.length, 0)
+
+        // 클라이언트 그룹핑: neighbors.label(타입)별로 묶기
+        const grouped = {}
+        for (const n of data.neighbors) {
+          if (!grouped[n.label]) grouped[n.label] = []
+          grouped[n.label].push(n)
+        }
 
         if (selectedNode) {
           setOverlay({
             name: data.name,
             nameKo: data.nameKo || data.name,
             label: data.label,
-            neighborCount: totalNeighborCount,
+            neighborCount: data.neighborTotal,
+            neighborShown: data.neighbors.length,
           })
         }
 
@@ -223,7 +228,12 @@ export default function GraphView({ onSelectNode, selectedNode }) {
               <span style={{ fontSize: 12, color: '#888' }}>{overlay.name}</span>
             )}
           </div>
-          <div style={{ fontSize: 12, color: '#666' }}>직접 연결: {overlay.neighborCount}개 노드</div>
+          <div style={{ fontSize: 12, color: '#666' }}>
+            직접 연결:{' '}
+            {overlay.neighborShown < overlay.neighborCount
+              ? `${overlay.neighborCount}개 중 ${overlay.neighborShown}개 표시`
+              : `${overlay.neighborCount}개`}
+          </div>
         </div>
       )}
     </div>
