@@ -14,9 +14,16 @@ def search(q: str = Query("")):
         result = session.run(
             f"""
             MATCH (n)
-            WHERE (n.nameKo CONTAINS $q OR n.name CONTAINS $q)
+            WHERE (n.nameKo CONTAINS $q OR toLower(n.name) CONTAINS toLower($q))
             AND n.theographic_id IS NOT NULL
-            RETURN n, labels(n) AS labels
+            WITH n, labels(n) AS labels,
+              CASE
+                WHEN n.nameKo = $q OR toLower(n.name) = toLower($q) THEN 0
+                WHEN n.nameKo STARTS WITH $q OR toLower(n.name) STARTS WITH toLower($q) THEN 1
+                ELSE 2
+              END AS rank
+            RETURN n, labels
+            ORDER BY rank, n.nameKo
             LIMIT {SEARCH_LIMIT}
             """,
             q=q
