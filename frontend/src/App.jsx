@@ -4,6 +4,7 @@ import MapView from './MapView'
 import SidePanel from './SidePanel'
 import TimelineView from './TimelineView'
 import GraphView from './GraphView'
+import { TYPE_ORDER, typeColor, typeKo, SELECT_HL } from './theme'
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
@@ -19,11 +20,6 @@ const MOBILE_QUERY = '(max-width: 768px)'
 const SHEET_VH = 55
 
 // 노드 타입 → 색 팔레트(SidePanel과 동일) / 한글 라벨 / 칩 표시 순서
-const TYPE_COLOR = { Place: '#4a90d9', Event: '#f5a623', Person: '#7c9cfc', PeopleGroup: '#2bb6a8' }
-const TYPE_KO = { Person: '인물', Place: '장소', Event: '사건', PeopleGroup: '집단' }
-const TYPE_ORDER = ['Person', 'Place', 'Event', 'PeopleGroup']
-const typeColor = (label) => TYPE_COLOR[label] || '#9aa5b8'
-const typeKo = (label) => TYPE_KO[label] || label
 
 function App() {
   const [selectedNode, setSelectedNode] = useState(null)
@@ -280,7 +276,7 @@ function App() {
                         borderBottom: '1px solid rgba(255,255,255,0.06)',
                         borderLeft: `3px solid ${typeColor(r.label)}`,
                         display: 'flex', alignItems: 'center', gap: 10, color: 'white',
-                        background: i === highlightIndex ? 'rgba(124,156,252,0.18)' : 'transparent',
+                        background: i === highlightIndex ? SELECT_HL : 'transparent',
                       }}
                     >
                       <span style={{ fontSize: 14, fontWeight: 500, flex: 1 }}>{r.nameKo}</span>

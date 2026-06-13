@@ -2,18 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 import cytoscape from 'cytoscape'
 import coseBilkent from 'cytoscape-cose-bilkent'
 import expandCollapse from 'cytoscape-expand-collapse'
+import { TYPE_COLOR, TYPE_KO, TYPE_ORDER } from './theme'
 cytoscape.use(coseBilkent)
 cytoscape.use(expandCollapse)
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 const DEFAULT_NODE = 'recjNRR60PAuFtjha' // 모세
-
-const TYPE_COLOR = {
-  Person: '#4a90d9',
-  Place: '#27ae60',
-  Event: '#e67e22',
-  PeopleGroup: '#8e44ad',
-}
 
 const TYPE_LABEL_KO = {
   Person: '관련 인물',
@@ -191,10 +185,10 @@ export default function GraphView({ onSelectNode, selectedNode }) {
           boxShadow: '0 1px 4px rgba(0,0,0,0.15)',
           pointerEvents: 'none',
         }}>
-          {Object.entries(TYPE_COLOR).map(([type, color]) => (
+          {TYPE_ORDER.map((type) => (
             <div key={type} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-              <span style={{ width: 10, height: 10, borderRadius: '50%', background: color, display: 'inline-block' }} />
-              {type}
+              <span style={{ width: 10, height: 10, borderRadius: '50%', background: TYPE_COLOR[type], display: 'inline-block' }} />
+              {TYPE_KO[type]}
             </div>
           ))}
         </div>

@@ -26,6 +26,7 @@ export default function MapView({ onSelectNode, selectedNode }) {
   const expandedPlaceRef = useRef(null)      // 현재 펼쳐진 장소 { id, lng, lat, events, targets }
   const [mapLoaded, setMapLoaded] = useState(false)
   const [error, setError] = useState(false)
+  const [noLocation, setNoLocation] = useState(false) // 선택 노드의 /places가 빈 배열일 때 안내
 
   useEffect(() => {
     const map = new maplibregl.Map({
@@ -370,6 +371,7 @@ export default function MapView({ onSelectNode, selectedNode }) {
       .then((places) => {
         if (mapRef.current !== map) return
         setError(false)
+        setNoLocation(places.length === 0) // 위치 없는 노드면 안내, 있으면 해제 (async 콜백 — v7 OK)
         map.getSource('places-source').setData(placesToGeoJSON(places))
         if (places.length === 0) return
 
@@ -421,7 +423,7 @@ export default function MapView({ onSelectNode, selectedNode }) {
         // primary가 이미 펼쳐져 있으면(마커 클릭으로 현재 줌에서 펼친 경우) 카메라를 건드리지 않는다.
       })
       .catch((e) => {
-        if (e?.name !== 'AbortError' && mapRef.current === map) setError(true)
+        if (e?.name !== 'AbortError' && mapRef.current === map) { setError(true); setNoLocation(false) }
       })
 
     return () => {
@@ -442,6 +444,16 @@ export default function MapView({ onSelectNode, selectedNode }) {
           boxShadow: '0 2px 8px rgba(0,0,0,0.25)',
         }}>
           장소를 불러오지 못했습니다
+        </div>
+      )}
+      {noLocation && selectedNode && (
+        <div style={{
+          position: 'absolute', top: 60, left: '50%', transform: 'translateX(-50%)', // 플로팅 nav(48px) 아래
+          background: 'rgba(30,32,64,0.92)', color: 'white',
+          padding: '8px 16px', borderRadius: 8, fontSize: 13, zIndex: 10,
+          maxWidth: '82%', textAlign: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.25)',
+        }}>
+          이 항목은 지도에 표시할 위치 정보가 없습니다 — 그래프·타임라인에서 살펴보세요
         </div>
       )}
     </div>

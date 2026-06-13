@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { SELECT_HL } from './theme'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
@@ -82,7 +83,7 @@ function TimelineView({ onSelectNode, selectedNode }) {
               alignItems: 'flex-start',
               padding: '4px 8px',
               minHeight: '28px',
-              backgroundColor: isSelected ? '#fff3cd' : 'transparent',
+              backgroundColor: isSelected ? SELECT_HL : 'transparent',
               cursor: isSingle ? 'pointer' : 'default',
               position: 'relative',
             }}

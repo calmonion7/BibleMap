@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { TYPE_COLOR, TYPE_KO } from './theme'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
@@ -13,11 +14,8 @@ const REL_KO = {
   PART_OF: '상위 사건',
 }
 
-// 노드 타입 팔레트 — MapView 지도와 통일: 장소=지도 related-place 파랑, 사건=지도 주황.
-// 인물=앱 보라 액센트, 집단=청록, 기타=회색.
+// 이웃 그룹핑 표시 순서(Unknown 포함 — 미매핑 타입도 묶는다). 색·한글 라벨은 theme.js 공유 팔레트.
 const TYPE_ORDER = ['Person', 'Place', 'Event', 'PeopleGroup', 'Unknown']
-const TYPE_KO = { Person: '인물', Place: '장소', Event: '사건', PeopleGroup: '집단', Unknown: '기타' }
-const TYPE_COLOR = { Person: '#7c9cfc', Place: '#4a90d9', Event: '#f5a623', PeopleGroup: '#2bb6a8', Unknown: '#9aa5b8' }
 
 function typeOf(label) {
   return TYPE_COLOR[label] ? label : 'Unknown'
@@ -130,6 +128,14 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
             </div>
           </div>
         ))}
+        {node.neighborTotal > node.neighbors.length && (
+          <p style={{
+            color: '#aab2c5', fontSize: 12, padding: '12px 6px 0',
+            borderTop: '1px solid #eef0f5', marginTop: 14,
+          }}>
+            이웃 {node.neighborTotal}개 중 {node.neighbors.length}개 표시 — 그래프 뷰에서 전체 탐색
+          </p>
+        )}
       </div>
     </div>
   )

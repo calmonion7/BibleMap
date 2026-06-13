@@ -163,6 +163,13 @@ def get_node(node_id: str):
                 "relation": nr["rel"],
             })
 
+        # 전체 이웃 수(LIMIT 전) — 잘림 신호용. neighbors는 NODE_NEIGHBOR_LIMIT으로 잘릴 수 있다.
+        total_result = session.run(
+            "MATCH (n {theographic_id: $id})-[r]-(m) RETURN count(m) AS total",
+            id=node_id
+        )
+        neighbor_total = total_result.single()["total"]
+
         # properties: name/nameKo/theographic_id/aliasesKo 제외
         exclude = {"name", "nameKo", "theographic_id", "aliasesKo"}
         clean_props = {k: v for k, v in props.items() if k not in exclude}
@@ -175,4 +182,5 @@ def get_node(node_id: str):
             "nameKoMissing": name_ko is None,
             "properties": clean_props,
             "neighbors": neighbors,
+            "neighborTotal": neighbor_total,
         }
