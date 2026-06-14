@@ -21,6 +21,7 @@ const SHEET_VH = 55
 
 function App() {
   const [selectedNode, setSelectedNode] = useState(null)
+  const [selectedNodeMeta, setSelectedNodeMeta] = useState(null) // {label, nameKo, startYear, endYear}
   const [activeView, setActiveView] = useState('map')
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState([])
@@ -35,6 +36,17 @@ function App() {
   const searchBoxRef = useRef(null)
   const resultRefs = useRef([])
   useEffect(() => { selectedNodeRef.current = selectedNode }, [selectedNode])
+
+  // 선택된 노드의 메타 정보(label, Book 연대) 조회 — SidePanel과 별도 fetch 없이 콜백으로 수신
+  const handleNodeLoaded = useCallback((node) => {
+    if (!node) return
+    setSelectedNodeMeta({
+      label: node.label,
+      nameKo: node.nameKo,
+      startYear: node.properties?.startYear ?? null,
+      endYear: node.properties?.endYear ?? null,
+    })
+  }, [])
 
   useEffect(() => {
     const mq = window.matchMedia(MOBILE_QUERY)
@@ -101,6 +113,7 @@ function App() {
     if (id === selectedNodeRef.current) return
     if (selectedNodeRef.current) setHistory(h => [...h, selectedNodeRef.current])
     setSelectedNode(id)
+    setSelectedNodeMeta(null) // 새 노드 선택 시 초기화
   }, [])
 
   function goBack() {
@@ -293,8 +306,20 @@ function App() {
 
       {/* 전체화면 뷰 */}
       <div style={{ position: 'absolute', inset: 0 }}>
-        {activeView === 'map' && <MapView onSelectNode={selectNode} selectedNode={selectedNode} />}
-        {activeView === 'timeline' && <TimelineView onSelectNode={selectNode} selectedNode={selectedNode} />}
+        {activeView === 'map' && (
+          <MapView
+            onSelectNode={selectNode}
+            selectedNode={selectedNode}
+            selectedNodeLabel={selectedNodeMeta?.label ?? null}
+          />
+        )}
+        {activeView === 'timeline' && (
+          <TimelineView
+            onSelectNode={selectNode}
+            selectedNode={selectedNode}
+            bookFilter={selectedNodeMeta?.label === 'Book' ? selectedNodeMeta : null}
+          />
+        )}
       </div>
 
       {/* 오버레이 패널 — 데스크톱: 우측 슬라이드인 / 모바일: 하단 시트(지도·마커가 위에 보이도록) */}
@@ -323,7 +348,7 @@ function App() {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}
           >×</button>
-          <SidePanel nodeId={selectedNode} onSelectNode={selectNode} onBack={goBack} canGoBack={history.length > 0} />
+          <SidePanel nodeId={selectedNode} onSelectNode={selectNode} onBack={goBack} canGoBack={history.length > 0} onNodeLoaded={handleNodeLoaded} />
         </div>
 
     </div>

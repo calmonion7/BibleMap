@@ -50,6 +50,16 @@ def get_node_places(node_id: str):
                 """,
                 id=node_id
             )
+        elif label == "Book":
+            places_result = session.run(
+                """
+                MATCH (n:Book {theographic_id: $id})-[:CONTAINS_BOOK]->(e:Event)
+                MATCH (e)-[:OCCURS_AT]->(p:Place)
+                WHERE p.latitude IS NOT NULL AND p.longitude IS NOT NULL
+                RETURN p, false AS isPrimary
+                """,
+                id=node_id
+            )
         else:
             places_result = session.run(
                 """
@@ -84,7 +94,7 @@ def get_node_places(node_id: str):
                 "lng": lng,
                 "isPrimary": record["isPrimary"],
             })
-        return places
+        return {"label": label, "places": places}
 
 
 @router.get("/node/{node_id}/neighbors/grouped")

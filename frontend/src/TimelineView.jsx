@@ -1,6 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
 import { SELECT_HL } from './theme'
 
+function fmtYear(y) {
+  return y == null ? '?' : (y < 0 ? `BC ${-y}` : `AD ${y}`)
+}
+
+function sortKeyToYear(sortKey) {
+  // sortKey는 연도 정수(BC = 음수)로 저장된다고 가정
+  return typeof sortKey === 'number' ? sortKey : null
+}
+
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 function parseYear(startDate) {
@@ -13,11 +22,14 @@ function parseYear(startDate) {
   return 'AD ' + year
 }
 
-function TimelineView({ onSelectNode, selectedNode }) {
+function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
   const [events, setEvents] = useState([])
   const [error, setError] = useState(false)
   const [openGroup, setOpenGroup] = useState(null)
+  const [filterDismissed, setFilterDismissed] = useState(false)
   const containerRef = useRef(null)
+
+  useEffect(() => { setFilterDismissed(false) }, [bookFilter])
 
   useEffect(() => {
     fetch(`${API_URL}/events`)
@@ -56,6 +68,17 @@ function TimelineView({ onSelectNode, selectedNode }) {
       return 0
     })
 
+  const activeFilter = bookFilter && !filterDismissed ? bookFilter : null
+  const visibleGroups = activeFilter
+    ? groups.filter(g => {
+        const y = sortKeyToYear(g.sortKey)
+        if (y === null) return false
+        if (activeFilter.startYear != null && y < activeFilter.startYear) return false
+        if (activeFilter.endYear != null && y > activeFilter.endYear) return false
+        return true
+      })
+    : groups
+
   if (error) {
     return (
       <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fafafa', color: '#999', fontSize: 14 }}>
@@ -69,7 +92,21 @@ function TimelineView({ onSelectNode, selectedNode }) {
       ref={containerRef}
       style={{ width: '100%', height: '100%', overflowY: 'auto', background: '#fafafa', position: 'relative', paddingTop: 16 }}
     >
-      {groups.map(({ startDate, members, rep }) => {
+      {activeFilter && (
+        <div style={{
+          position: 'sticky', top: 0, zIndex: 10,
+          display: 'flex', alignItems: 'center', gap: 8,
+          background: '#e8f0fe', borderBottom: '1px solid #c5d5fb',
+          padding: '6px 12px', fontSize: 12, color: '#1a3a8f',
+        }}>
+          <span>{activeFilter.nameKo} 범위: {fmtYear(activeFilter.startYear)} ~ {fmtYear(activeFilter.endYear)}</span>
+          <button
+            onClick={() => setFilterDismissed(true)}
+            style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#1a3a8f', fontSize: 13, padding: '0 4px' }}
+          >× 닫기</button>
+        </div>
+      )}
+      {visibleGroups.map(({ startDate, members, rep }) => {
         const isSelected = selectedNode && members.some(e => e.id === selectedNode)
         const yearLabel = parseYear(startDate)
         const isSingle = members.length === 1

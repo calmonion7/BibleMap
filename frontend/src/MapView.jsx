@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
+import { convexHull } from './convexHull'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
@@ -157,6 +158,11 @@ export default function MapView({ onSelectNode, selectedNode }) {
     expandPlaceRef.current = expandPlace
 
     map.on('load', () => {
+      // Hull polygon layers — added first so they render under all markers
+      map.addSource('hull-source', { type: 'geojson', data: EMPTY_GEOJSON })
+      map.addLayer({ id: 'hull-fill', type: 'fill', source: 'hull-source', paint: { 'fill-color': '#4a90d9', 'fill-opacity': 0.15 } })
+      map.addLayer({ id: 'hull-outline', type: 'line', source: 'hull-source', paint: { 'line-color': '#4a90d9', 'line-opacity': 0.4, 'line-width': 1.5 } })
+
       map.addSource('places-source', { type: 'geojson', data: EMPTY_GEOJSON })
 
       map.addLayer({
@@ -359,6 +365,7 @@ export default function MapView({ onSelectNode, selectedNode }) {
     if (!selectedNode) {
       if (popupRef.current) { popupRef.current.remove(); popupRef.current = null }
       map.getSource('places-source').setData(EMPTY_GEOJSON)
+      map.getSource('hull-source').setData(EMPTY_GEOJSON)
       return
     }
 
@@ -368,11 +375,28 @@ export default function MapView({ onSelectNode, selectedNode }) {
 
     fetch(`${API_URL}/node/${selectedNode}/places`, { signal: ctrl.signal })
       .then((res) => res.ok ? res.json() : Promise.reject(res.status))
-      .then((places) => {
+      .then(({ label, places }) => {
         if (mapRef.current !== map) return
         setError(false)
         setNoLocation(places.length === 0) // 위치 없는 노드면 안내, 있으면 해제 (async 콜백 — v7 OK)
         map.getSource('places-source').setData(placesToGeoJSON(places))
+
+        // Hull polygon — Person이고 3개 이상 장소일 때만 표시
+        if (label === 'Person' && places.length >= 3) {
+          const pts = convexHull(places.map(p => ({ lng: p.lng, lat: p.lat })))
+          if (pts.length >= 3) {
+            const ring = [...pts.map(p => [p.lng, p.lat]), [pts[0].lng, pts[0].lat]]
+            map.getSource('hull-source').setData({
+              type: 'FeatureCollection',
+              features: [{ type: 'Feature', geometry: { type: 'Polygon', coordinates: [ring] }, properties: {} }],
+            })
+          } else {
+            map.getSource('hull-source').setData(EMPTY_GEOJSON)
+          }
+        } else {
+          map.getSource('hull-source').setData(EMPTY_GEOJSON)
+        }
+
         if (places.length === 0) return
 
         const bounds = places.reduce(

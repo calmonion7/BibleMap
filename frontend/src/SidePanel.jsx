@@ -42,7 +42,7 @@ function parseVerseRef(ref) {
   return { chapter: parseInt(m[1]), verse: parseInt(m[2]) }
 }
 
-function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false }) {
+function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, onNodeLoaded }) {
   // 어느 nodeId의 결과인지 id로 추적 — loading은 파생, stale 응답은 무시.
   // setState는 비동기 콜백에서만 호출(react-hooks set-state-in-effect 준수).
   const [state, setState] = useState({ id: null, node: null, error: null })
@@ -53,7 +53,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     let cancelled = false
     fetch(API_URL + '/node/' + nodeId)
       .then(r => r.ok ? r.json() : Promise.reject(r.status))
-      .then(data => { if (!cancelled) setState({ id: nodeId, node: data, error: null }) })
+      .then(data => { if (!cancelled) { setState({ id: nodeId, node: data, error: null }); onNodeLoaded?.(data) } })
       .catch(e => { if (!cancelled) setState({ id: nodeId, node: null, error: String(e) }) })
     return () => { cancelled = true }
   }, [nodeId])

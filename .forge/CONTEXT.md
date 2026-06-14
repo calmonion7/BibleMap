@@ -14,9 +14,21 @@ Theographic 데이터에서 `fields.status == "publish"`인 레코드. 데이터
 
 별도의 엔티티 타입 없음. 성경의 시대(족장 시대, 왕국 시대 등)는 `Event` 노드의 `PART_OF` 관계로 표현한다. 상위 Event가 하위 Event들을 포함하는 계층 구조.
 
+## Book
+
+성경 각권을 나타내는 Neo4j 노드 (label: `Book`). Theographic `books.json`에서 적재. 주요 속성: `theographic_id, name, nameKo, testament(구약/신약), genre, authorKo, startYear, endYear, chapterCount`. 추가 속성(LLM 생성 후 주입): `background`(시대적 배경 텍스트), `themes`(성경 주제 배열), `keyVerse`(대표 구절 참조). Book → Event 관계는 `CONTAINS_BOOK`.
+
+## Character Trait (인물 성품)
+
+Person 노드에 주입되는 속성 `traits` (JSON 문자열 배열). 각 항목: `{trait: "겸손", verse_ref: "민 12:3", description: "..."}`. LLM(Claude API)으로 생성 후 수동 검수, `data/character_traits/people.json` → `inject_person_traits.py`로 Neo4j 주입.
+
+## Book Context (권별 컨텍스트)
+
+각 Book의 시대적 배경·주제·대표구절을 담는 정적 JSON (`data/book_context/books.json`). LLM(Claude API)으로 생성 후 수동 검수. `inject_book_context.py`로 Book 노드 속성에 주입. Verse 텍스트 자체는 외부 API(getbible.net 등)에서 실시간 fetch.
+
 ## selectedNode
 
-프론트엔드 전역 상태. 현재 사용자가 선택한 엔티티의 `theographic_id`와 레이블(Person/Place/Event)을 담는다. MapView / TimelineView / GraphView 세 뷰가 이 값을 구독해 동시에 갱신된다.
+프론트엔드 전역 상태. 현재 사용자가 선택한 엔티티의 `theographic_id`와 레이블(Person/Place/Event/Book)을 담는다. MapView / TimelineView 두 뷰가 이 값을 구독해 동시에 갱신된다. (GraphView는 제거됨.)
 
 ## 탐색 관점 (Navigation Perspective)
 
