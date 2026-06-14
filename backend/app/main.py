@@ -11,7 +11,7 @@ async def lifespan(app):
         from .db import get_driver
         driver = get_driver()
         with driver.session() as session:
-            for label in ['Person', 'Place', 'Event', 'PeopleGroup']:
+            for label in ['Person', 'Place', 'Event', 'PeopleGroup', 'Book']:
                 session.run(
                     f"CREATE INDEX {label.lower()}_tid IF NOT EXISTS "
                     f"FOR (n:{label}) ON (n.theographic_id)"

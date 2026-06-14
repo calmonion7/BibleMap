@@ -1,0 +1,175 @@
+"""Book 노드를 Neo4j에 적재하고 Book-Event CONTAINS_BOOK 관계를 생성한다."""
+import json
+import os
+import urllib.request
+
+from neo4j import GraphDatabase
+
+NEO4J_URI = os.environ.get("NEO4J_URI", "bolt://localhost:7687")
+NEO4J_USER = os.environ.get("NEO4J_USER", "neo4j")
+NEO4J_PASSWORD = os.environ.get("NEO4J_PASSWORD")
+if not NEO4J_PASSWORD:
+    raise RuntimeError("NEO4J_PASSWORD 환경변수가 설정되지 않았습니다")
+
+BOOKS_URL = "https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/books.json"
+EVENTS_URL = "https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/events.json"
+
+SCRIPT_DIR = os.path.dirname(__file__)
+NAMES_KO_PATH = os.path.join(SCRIPT_DIR, "..", "..", "data", "names_ko", "books.json")
+
+
+def fetch_json(url):
+    with urllib.request.urlopen(url) as resp:
+        return json.loads(resp.read().decode("utf-8"))
+
+
+def load_names_ko():
+    path = os.path.normpath(NAMES_KO_PATH)
+    if not os.path.exists(path):
+        print(f"[WARN] {path} not found, nameKo will be empty")
+        return {}
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def build_book_rows(books, names_ko):
+    rows = []
+    for b in books:
+        tid = b["id"]
+        f = b["fields"]
+        testament = f.get("testament", "")
+        testament_ko = "구약" if "Old" in testament else "신약"
+        rows.append({
+            "theographic_id": tid,
+            "name": f.get("bookName"),
+            "nameKo": names_ko.get(tid, {}).get("ko", f.get("bookName", "")),
+            "testament": testament_ko,
+            "genre": f.get("bookDiv", ""),
+            "osisName": f.get("osisName", ""),
+            "chapterCount": f.get("chapterCount", 0),
+            "slug": f.get("slug", ""),
+            "bookOrder": f.get("bookOrder", 0),
+        })
+    return rows
+
+
+def build_book_year_range(books, events):
+    """Book별 startYear/endYear를 event.startDate 집계로 추정한다."""
+    # verse IDs → book theographic_id 역매핑
+    verse_to_book = {}
+    for b in books:
+        for vid in b["fields"].get("verses", []):
+            verse_to_book[vid] = b["id"]
+
+    book_years = {}
+    for e in events:
+        start_raw = e["fields"].get("startDate", "")
+        try:
+            year = int(str(start_raw).replace("BC", "").strip())
+            if "BC" in str(start_raw):
+                year = -year
+        except (ValueError, TypeError):
+            continue
+        for vid in e["fields"].get("verses", []):
+            bid = verse_to_book.get(vid)
+            if not bid:
+                continue
+            if bid not in book_years:
+                book_years[bid] = []
+            book_years[bid].append(year)
+
+    result = {}
+    for bid, years in book_years.items():
+        result[bid] = {"startYear": min(years), "endYear": max(years)}
+    return result
+
+
+def main():
+    print("Fetching books.json ...")
+    books = fetch_json(BOOKS_URL)
+    print(f"  {len(books)} books fetched")
+
+    print("Fetching events.json ...")
+    events = fetch_json(EVENTS_URL)
+    print(f"  {len(events)} events fetched")
+
+    names_ko = load_names_ko()
+    rows = build_book_rows(books, names_ko)
+    year_range = build_book_year_range(books, events)
+
+    for row in rows:
+        yr = year_range.get(row["theographic_id"], {})
+        row["startYear"] = yr.get("startYear")
+        row["endYear"] = yr.get("endYear")
+
+    # verse_id → book theographic_id (for CONTAINS_BOOK)
+    verse_to_book = {}
+    for b in books:
+        for vid in b["fields"].get("verses", []):
+            verse_to_book[vid] = b["id"]
+
+    # event → book 관계 (1 event : N books)
+    event_book_rels = []
+    for e in events:
+        bid_set = set()
+        for vid in e["fields"].get("verses", []):
+            bid = verse_to_book.get(vid)
+            if bid:
+                bid_set.add(bid)
+        for bid in bid_set:
+            event_book_rels.append({"event_id": e["id"], "book_id": bid})
+
+    print(f"  {len(event_book_rels)} Book-Event relationships to create")
+
+    driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
+    with driver.session() as session:
+        print("Creating Book index ...")
+        session.run(
+            "CREATE INDEX book_tid IF NOT EXISTS FOR (n:Book) ON (n.theographic_id)"
+        )
+
+        print(f"Loading {len(rows)} Book nodes ...")
+        session.run(
+            """
+            UNWIND $rows AS row
+            MERGE (b:Book {theographic_id: row.theographic_id})
+            SET b.name         = row.name,
+                b.nameKo       = row.nameKo,
+                b.testament    = row.testament,
+                b.genre        = row.genre,
+                b.osisName     = row.osisName,
+                b.chapterCount = row.chapterCount,
+                b.slug         = row.slug,
+                b.bookOrder    = row.bookOrder,
+                b.startYear    = row.startYear,
+                b.endYear      = row.endYear
+            """,
+            rows=rows,
+        )
+
+        count = session.run("MATCH (b:Book) RETURN count(b) AS c").single()["c"]
+        print(f"  Book nodes in Neo4j: {count}")
+
+        print("Creating CONTAINS_BOOK relationships ...")
+        batch_size = 500
+        for i in range(0, len(event_book_rels), batch_size):
+            session.run(
+                """
+                UNWIND $rels AS rel
+                MATCH (b:Book {theographic_id: rel.book_id})
+                MATCH (e:Event {theographic_id: rel.event_id})
+                MERGE (b)-[:CONTAINS_BOOK]->(e)
+                """,
+                rels=event_book_rels[i:i + batch_size],
+            )
+        rel_count = session.run(
+            "MATCH ()-[r:CONTAINS_BOOK]->() RETURN count(r) AS c"
+        ).single()["c"]
+        print(f"  CONTAINS_BOOK relationships: {rel_count}")
+
+    driver.close()
+    print("Done.")
+
+
+if __name__ == "__main__":
+    main()
