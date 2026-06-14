@@ -6,15 +6,16 @@ export const TYPE_COLOR = {
   Place: '#4a90d9',
   Event: '#f5a623',
   PeopleGroup: '#2bb6a8',
+  Book: '#a78bfa',
   Unknown: '#9aa5b8',
 }
 
 export const TYPE_KO = {
-  Person: '인물', Place: '장소', Event: '사건', PeopleGroup: '집단', Unknown: '기타',
+  Person: '인물', Place: '장소', Event: '사건', PeopleGroup: '집단', Book: '성경책', Unknown: '기타',
 }
 
-// 칩·범례 등에서 타입을 보여줄 표시 순서(실 타입 4종).
-export const TYPE_ORDER = ['Person', 'Place', 'Event', 'PeopleGroup']
+// 칩·범례 등에서 타입을 보여줄 표시 순서(실 타입 5종).
+export const TYPE_ORDER = ['Person', 'Place', 'Event', 'PeopleGroup', 'Book']
 
 export const typeColor = (label) => TYPE_COLOR[label] || TYPE_COLOR.Unknown
 export const typeKo = (label) => TYPE_KO[label] || label

@@ -174,9 +174,59 @@ def get_node(node_id: str):
         exclude = {"name", "nameKo", "theographic_id", "aliasesKo"}
         clean_props = {k: v for k, v in props.items() if k not in exclude}
 
-        return {
+        label_val = labels[0] if labels else "Unknown"
+
+        # Book 전용 추가 필드
+        top_persons = []
+        top_events = []
+        if label_val == "Book":
+            persons_result = session.run(
+                """
+                MATCH (b:Book {theographic_id: $id})-[:CONTAINS_BOOK]->(e:Event)
+                MATCH (e)-[:HAS_PARTICIPANT]->(p:Person)
+                WHERE p.theographic_id IS NOT NULL
+                WITH p, count(e) AS cnt
+                ORDER BY cnt DESC LIMIT 10
+                RETURN p.theographic_id AS id, p.name AS name, p.nameKo AS nameKo
+                """,
+                id=node_id,
+            )
+            for r in persons_result:
+                top_persons.append({
+                    "id": r["id"],
+                    "name": r["name"],
+                    "nameKo": r["nameKo"] or r["name"],
+                })
+
+            events_result = session.run(
+                """
+                MATCH (b:Book {theographic_id: $id})-[:CONTAINS_BOOK]->(e:Event)
+                WHERE e.theographic_id IS NOT NULL
+                RETURN e.theographic_id AS id, e.title AS name, e.nameKo AS nameKo,
+                       e.startDate AS startDate
+                ORDER BY e.startDate LIMIT 10
+                """,
+                id=node_id,
+            )
+            for r in events_result:
+                top_events.append({
+                    "id": r["id"],
+                    "name": r["name"],
+                    "nameKo": r["nameKo"] or r["name"],
+                    "startDate": r["startDate"],
+                })
+
+        # Person traits JSON 파싱
+        if label_val == "Person" and "traits" in clean_props:
+            import json as _json
+            try:
+                clean_props["traits"] = _json.loads(clean_props["traits"])
+            except Exception:
+                clean_props["traits"] = []
+
+        response = {
             "id": node_id_val,
-            "label": labels[0] if labels else "Unknown",
+            "label": label_val,
             "name": name,
             "nameKo": name_ko if name_ko else name,
             "nameKoMissing": name_ko is None,
@@ -184,3 +234,7 @@ def get_node(node_id: str):
             "neighbors": neighbors,
             "neighborTotal": neighbor_total,
         }
+        if label_val == "Book":
+            response["topPersons"] = top_persons
+            response["topEvents"] = top_events
+        return response
