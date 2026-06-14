@@ -1,9 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { Map, Clock, Network, Search, X } from 'lucide-react'
+import { Map, Clock, Search, X } from 'lucide-react'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
 import TimelineView from './TimelineView'
-import GraphView from './GraphView'
 import { TYPE_ORDER, typeColor, typeKo, SELECT_HL } from './theme'
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
@@ -11,7 +10,6 @@ const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 const TABS = [
   { key: 'map', icon: Map },
   { key: 'timeline', icon: Clock },
-  { key: 'graph', icon: Network },
 ]
 
 // 모바일(좁은 뷰포트) 분기 — 이 폭 이하에서 상세 패널을 우측 사이드패널 대신 하단 시트로 띄운다.
@@ -297,16 +295,10 @@ function App() {
       <div style={{ position: 'absolute', inset: 0 }}>
         {activeView === 'map' && <MapView onSelectNode={selectNode} selectedNode={selectedNode} />}
         {activeView === 'timeline' && <TimelineView onSelectNode={selectNode} selectedNode={selectedNode} />}
-        {activeView === 'graph' && (
-          <div style={{ position: 'absolute', top: NAV_H, left: 0, right: 0, bottom: 0 }}>
-            <GraphView onSelectNode={selectNode} selectedNode={selectedNode} />
-          </div>
-        )}
       </div>
 
-      {/* 오버레이 패널 — 그래프 뷰 제외. 데스크톱: 우측 슬라이드인 / 모바일: 하단 시트(지도·마커가 위에 보이도록) */}
-      {activeView !== 'graph' && (
-        <div style={{
+      {/* 오버레이 패널 — 데스크톱: 우측 슬라이드인 / 모바일: 하단 시트(지도·마커가 위에 보이도록) */}
+      <div style={{
           position: 'absolute', background: 'white', overflowY: 'auto', zIndex: 10,
           transition: 'transform 0.25s ease',
           ...(isMobile
@@ -333,7 +325,6 @@ function App() {
           >×</button>
           <SidePanel nodeId={selectedNode} onSelectNode={selectNode} onBack={goBack} canGoBack={history.length > 0} />
         </div>
-      )}
 
     </div>
   )
