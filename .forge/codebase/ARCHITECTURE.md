@@ -1,116 +1,229 @@
 ---
-last_mapped_commit: 651f526aacfad0cfa86b4df41aaa9f08dcc7da22
-mapped: 2026-06-12
+last_mapped_commit: fb78d740df63d386e84ceb1bb4249921a5e198b7
+mapped: 2026-06-14
 ---
 
-# 아키텍처
+# Architecture
 
-## 전체 구조
+**Analysis Date:** 2026-06-14
 
-세 개의 런타임 컨테이너로 구성된 단방향 읽기 전용 시스템이다. `docker-compose.yml`이 묶는다.
+## System Overview
 
+```text
+┌──────────────────────────────────────────────────────────────┐
+│                    Browser (React SPA)                        │
+│  App.jsx — 전역 상태(selectedNode, searchQuery, activeView)   │
+├────────────┬─────────────┬──────────────┬────────────────────┤
+│ MapView    │ TimelineView│  GraphView   │  SidePanel         │
+│ .jsx       │ .jsx        │  .jsx        │  .jsx              │
+└─────┬──────┴──────┬──────┴──────┬───────┴────────┬───────────┘
+      │             │             │                │
+      └─────────────┴─────────────┴────────────────┘
+                          │ apiGet() via api.js
+                          ▼
+┌──────────────────────────────────────────────────────────────┐
+│              nginx (port 8080)                                │
+│  /api/* → proxy_pass http://api:8000/                        │
+│  /*      → frontend/dist (static SPA)                        │
+└──────────────────────────────────────────────────────────────┘
+                          │
+                          ▼
+┌──────────────────────────────────────────────────────────────┐
+│         FastAPI (uvicorn, port 8000)                          │
+│   backend/app/main.py                                         │
+├──────────────┬───────────────┬──────────────────────────────┤
+│  routes/     │  routes/      │  routes/                      │
+│  nodes.py    │  events.py    │  search.py                    │
+└──────┬───────┴───────────────┴──────────────────────────────┘
+       │ neo4j Python driver (bolt)
+       ▼
+┌──────────────────────────────────────────────────────────────┐
+│              Neo4j 5 (bolt://neo4j:7687)                      │
+│  Node labels: Person, Place, Event, PeopleGroup               │
+│  Key property: theographic_id (indexed per label)             │
+└──────────────────────────────────────────────────────────────┘
 ```
-브라우저
-  │  (정적 자산 + /api/* 요청)
-  ▼
-nginx  ──── /api/  ──▶  api(FastAPI/uvicorn)  ──── bolt  ──▶  neo4j
-  │  정적 SPA
-  └─ /usr/share/nginx/html  ◀── ./frontend/dist 마운트
-```
 
-- `nginx`(`nginx:alpine`): 호스트 `8080:80` 노출. `frontend/dist`를 정적 호스팅하고 `/api/`를 `http://api:8000/`로 프록시한다. `nginx/nginx.conf` 참고.
-- `api`(`./backend`에서 빌드): uvicorn으로 `app.main:app` 구동(`backend/Dockerfile`). 컨테이너 내부 8000 포트(호스트 노출 없음 — nginx만 접근).
-- `neo4j`(`neo4j:5`): 7474/7687을 `127.0.0.1`에만 바인딩(외부 비노출). 데이터는 `neo4j_data` 볼륨에 영속.
+## Component Responsibilities
 
-배포는 main 푸시 시 self-hosted 러너에서 `git reset --hard origin/main` 후 `deploy.sh` 실행(`.github/workflows/deploy.yml`).
+| Component | Responsibility | File |
+|-----------|----------------|------|
+| `App` | 전역 상태 관리(selectedNode, activeView, searchQuery, history), 검색 디바운스, 탭 라우팅, 패널 오버레이 | `frontend/src/App.jsx` |
+| `MapView` | maplibre-gl 지도, 장소 마커 레이어, 사건 링 애니메이션(requestAnimationFrame) | `frontend/src/MapView.jsx` |
+| `TimelineView` | `/events` 전체 목록 fetch, startDate별 그룹핑, 정렬 후 타임라인 렌더링 | `frontend/src/TimelineView.jsx` |
+| `GraphView` | cytoscape + cose-bilkent + expand-collapse 플러그인, 이웃 그래프 시각화 | `frontend/src/GraphView.jsx` |
+| `SidePanel` | 선택된 nodeId의 `/node/{id}` fetch, 이웃을 타입별로 그룹 렌더링, 뒤로가기 | `frontend/src/SidePanel.jsx` |
+| `api.js` | 단일 `apiGet(path, {signal})` 헬퍼, `VITE_API_URL` 기반 베이스 URL 관리 | `frontend/src/api.js` |
+| `theme.js` | `TYPE_COLOR`, `TYPE_KO`, `TYPE_ORDER`, `SELECT_HL` — 뷰 공유 팔레트 | `frontend/src/theme.js` |
+| `routes/nodes.py` | `/node/{id}`, `/node/{id}/places`, `/node/{id}/neighbors/grouped` | `backend/app/routes/nodes.py` |
+| `routes/events.py` | `/events` — 전체 Event 목록(sortKey 정렬) | `backend/app/routes/events.py` |
+| `routes/search.py` | `/search?q=` — nameKo/name 포함 검색, 관련도 rank 정렬 | `backend/app/routes/search.py` |
+| `db.py` | Neo4j 드라이버 모듈 싱글톤(`_driver`), 환경변수로 bolt URI/auth 설정 | `backend/app/db.py` |
+| `main.py` | FastAPI 앱 초기화, CORS 미들웨어(GET only), lifespan에서 인덱스 생성 | `backend/app/main.py` |
 
-## 백엔드 — 패턴과 레이어
+## Pattern Overview
 
-FastAPI 기반 **읽기 전용 그래프 조회 API**. 쓰기 엔드포인트는 없다(CORS도 `allow_methods=["GET"]`).
+**Overall:** 3-tier — React SPA / FastAPI REST / Neo4j
 
-레이어:
+**Key Characteristics:**
+- 프론트엔드: 탭 기반 단일 페이지, 전역 상태를 `App.jsx`가 소유하고 뷰에 props로 내림
+- 백엔드: stateless REST(GET only), 각 라우터가 Neo4j 세션을 직접 열고 닫음
+- 데이터베이스: 그래프 DB — 노드(Person/Place/Event/PeopleGroup)와 관계(HAS_PARTICIPANT, OCCURS_AT, MEMBER_OF 등)
 
-1. **앱 부트스트랩** — `backend/app/main.py`
-   - `lifespan` 컨텍스트 매니저가 시작 시 4개 라벨(`Person`/`Place`/`Event`/`PeopleGroup`)에 대해 `theographic_id` 인덱스를 `IF NOT EXISTS`로 생성한다. 실패해도 `logging.exception` 후 인덱스 없이 계속 진행한다(부팅 비차단).
-   - `CORSMiddleware`: `allow_origins=["*"]`, `allow_credentials=False`, `allow_methods=["GET"]`.
-   - 라우터 3종을 `include_router`로 등록: `nodes`, `events`, `search`.
-2. **라우팅 레이어** — `backend/app/routes/*.py` (라우터별 `APIRouter()`)
-3. **DB 접근 레이어** — `backend/app/db.py`
-   - 모듈 전역 단일 드라이버(`_driver`)를 지연 생성하는 `get_driver()`. `NEO4J_URI`/`NEO4J_USER` 환경변수(기본 `bolt://localhost:7687`/`neo4j`), `NEO4J_PASSWORD`는 필수이며 없으면 `RuntimeError`.
-   - 각 핸들러가 `with driver.session() as session:`으로 세션을 열어 Cypher를 직접 실행한다. ORM/리포지토리 추상화 없음 — 핸들러 안에 Cypher 쿼리가 인라인된다.
+## Layers
 
-### 엔드포인트 목록
+**Frontend — Presentation:**
+- Purpose: 사용자 인터랙션, 시각화 렌더링
+- Location: `frontend/src/`
+- Contains: React 컴포넌트, 공유 유틸(`api.js`, `theme.js`)
+- Depends on: FastAPI REST API (`/api/*` via nginx 프록시)
+- Used by: 브라우저
 
-| 메서드/경로 | 정의 위치 | 비고 |
-|---|---|---|
-| `GET /node/{node_id}` | `routes/nodes.py:124` | 노드 1개 + 이웃(최대 `NODE_NEIGHBOR_LIMIT=50`). `name`/`nameKo`/`theographic_id`/`aliasesKo`를 제외한 나머지 속성을 `properties`로 반환. |
-| `GET /node/{node_id}/places` | `routes/nodes.py:9` | 노드 라벨(Person/Event/PeopleGroup/그 외=Place)별로 다른 Cypher를 골라 지도 표시용 좌표 목록을 반환. `latitude`/`longitude` 없는 곳은 제외, `isPrimary` 플래그 포함. |
-| `GET /node/{node_id}/neighbors/grouped` | `routes/nodes.py:90` | 이웃을 타입별로 그룹화(타입당 최대 `MAX_NEIGHBORS_PER_TYPE=30`). **`GraphView.jsx`가 사용** — 프롬프트의 "UNUSED" 표기와 달리 그래프 뷰에서 실제로 호출된다. |
-| `GET /events` | `routes/events.py:7` | `startDate`가 있는 모든 `Event`를 `sortKey` 오름차순으로. 응답에 `Cache-Control: no-store`. |
-| `GET /search?q=` | `routes/search.py:8` | `nameKo` 또는 `name`에 `q`가 `CONTAINS`되는 노드 최대 `SEARCH_LIMIT=20`개. 빈 쿼리는 `[]`. |
+**Frontend — Shared Utilities:**
+- Purpose: API fetch 추상화, 색·라벨 팔레트
+- Location: `frontend/src/api.js`, `frontend/src/theme.js`
+- Contains: `apiGet()` 함수, `TYPE_COLOR`, `TYPE_KO`, `TYPE_ORDER`, `SELECT_HL`, `typeColor()`, `typeKo()`
+- Depends on: 없음 (순수 JS 모듈)
+- Used by: `App.jsx`, `MapView.jsx`, `SidePanel.jsx`, `GraphView.jsx`, `TimelineView.jsx`
 
-응답 정규화 규칙(여러 핸들러 공통): 표시명은 `name` 우선, 없으면 `title`. `nameKo`가 없으면 영문명으로 폴백하고 `nameKoMissing: true`를 함께 내려보내 프론트가 "(미번역)" 배지를 붙인다.
+**Backend — API:**
+- Purpose: HTTP 라우팅, Cypher 실행, JSON 직렬화
+- Location: `backend/app/`
+- Contains: FastAPI 라우터 3개, db 모듈
+- Depends on: Neo4j 드라이버
+- Used by: nginx 프록시를 통해 프론트엔드
 
-### 그래프 모델(Neo4j)
+**Backend — Data Scripts (one-time):**
+- Purpose: Theographic 데이터 Neo4j 적재, 한국어 이름 주입
+- Location: `backend/scripts/`
+- Contains: `load_theographic.py`, `inject_ko_names.py`
+- Depends on: Neo4j 드라이버, `data/names_ko/` JSON 파일
+- Used by: 운영자가 직접 실행 (서버 런타임과 무관)
 
-- 노드 라벨: `Person`, `Place`, `Event`, `PeopleGroup`.
-- 관계 타입: `HAS_PARTICIPANT`, `OCCURS_AT`, `MEMBER_OF`, `PART_OF`, `PARENT_OF`, `CHILD_OF`, `SIBLING_OF`, `PARTNER_OF`.
-- 모든 노드의 안정 식별자는 `theographic_id`(API 경로의 `node_id`가 이 값).
-- 데이터 적재는 런타임이 아닌 별도 스크립트: `backend/scripts/load_theographic.py`(theographic-bible-metadata 원본 JSON을 받아 노드/관계 생성), `backend/scripts/inject_ko_names.py`(`data/names_ko/*.json`의 한글명 주입).
+**Data:**
+- Purpose: 한국어 이름 오버라이드 소스
+- Location: `data/names_ko/` (`events.json`, `groups.json`, `people.json`, `places.json`)
+- Contains: theographic_id → 한국어 이름 매핑 JSON
+- Depends on: 없음
+- Used by: `backend/scripts/inject_ko_names.py`
 
-## 프론트엔드 — 패턴과 데이터 흐름
+## Data Flow
 
-React 19 SPA, Vite 빌드. 진입점 `frontend/index.html` → `frontend/src/main.jsx`(StrictMode로 `<App/>` 마운트) → `frontend/src/App.jsx`.
+### 노드 선택 흐름 (MapView 마커 클릭)
 
-### 상태 소유와 하향 전달
+1. 사용자가 MapView 마커 클릭 → `places-circle` 레이어 click 이벤트 (`frontend/src/MapView.jsx`)
+2. `expandPlace(placeId, lng, lat)` 호출 → `GET /node/{placeId}/neighbors/grouped` (`frontend/src/api.js`)
+3. 이웃 이벤트로 사건 링 애니메이션 실행 (`requestAnimationFrame` 루프, `frontend/src/MapView.jsx`)
+4. `onSelectNode(placeId)` 호출 → `App.jsx`의 `selectNode(id)` → `setSelectedNode(id)`
+5. `SidePanel`이 `nodeId` prop 수신 → `GET /node/{nodeId}` (`frontend/src/SidePanel.jsx`)
+6. FastAPI `get_node()` → Neo4j 세션 열기, 노드 + 이웃 50건 + 전체 count 조회 (`backend/app/routes/nodes.py`)
+7. SidePanel이 이웃을 타입별로 그룹핑 후 렌더링
 
-`App.jsx`가 **단일 선택 상태(`selectedNode`)와 탐색 히스토리 스택을 전적으로 소유**한다. 하위 뷰는 상태를 갖지 않고 prop으로 받는다(top-down).
+### 검색 흐름
 
-- 공통 인터페이스: 네 뷰/패널 모두 `selectedNode`(현재 선택 id)와 `onSelectNode`(선택 콜백)를 받는다.
-- 모든 뷰의 `onSelectNode`는 `App.jsx`의 `selectNode(id)` 하나로 라우팅된다.
+1. 사용자 입력 → `onSearchInput` → `setSearchQuery(v)` (`frontend/src/App.jsx`)
+2. useEffect 250ms 디바운스 + AbortController로 이전 요청 취소
+3. `GET /search?q=...` → FastAPI `search()` → Cypher CONTAINS + rank 정렬 (`backend/app/routes/search.py`)
+4. 드롭다운 결과 표시, 타입 필터 칩 렌더링
+5. 결과 클릭 → `handleSelectResult()` → `setSelectedNode(result.id)` (히스토리 리셋)
 
-선택/히스토리 로직(`App.jsx`):
+### 지도 초기화 흐름 (selectedNode 변경)
 
-- `selectNode(id)`: 같은 노드면 무시. 직전 `selectedNode`가 있으면 `history`에 push한 뒤 새 id로 교체 — 패널 "뒤로가기"의 근거.
-- `goBack()`: `history` 마지막 항목을 꺼내 `selectedNode`로 복원하고 스택을 pop.
-- `closePanel()`: `history`와 `selectedNode`를 모두 리셋.
-- `handleSelectResult(result)`(검색 결과 클릭): 새 검색은 새 탐색 컨텍스트로 보아 `history`를 비우고 선택을 교체.
+1. `selectedNode` prop 변경 → MapView useEffect 실행
+2. `GET /node/{selectedNode}/places` → 좌표 있는 장소 목록 반환
+3. `places-source` GeoJSON 업데이트 → maplibre-gl 마커 레이어 갱신
+4. 장소가 없으면 `setNoLocation(true)` → 안내 메시지 표시
+5. 장소가 있고 Place 타입이면 `expandPlace()` 자동 호출 → 링 펼침
 
-`SidePanel`은 `onSelectNode`(이웃 클릭), `onBack`(`goBack`), `canGoBack`(`history.length > 0`)을 받는다.
+**State Management:**
+- `selectedNode` (string | null): App.jsx 소유, props로 MapView/TimelineView/GraphView/SidePanel에 전달
+- `history` (string[]): 뒤로가기 스택, App.jsx 소유
+- `activeView` ('map' | 'timeline' | 'graph'): App.jsx 소유
+- `searchQuery`, `searchResults`, `typeFilter`: App.jsx 소유
+- Map 내부 상태(expandedPlace, animFrame 등): MapView 내 mutable refs (React state 아님 — 리렌더 방지)
+- GraphView overlay: GraphView 지역 state
 
-### 반응형(데스크톱 vs 모바일)
+## Key Abstractions
 
-`App.jsx`가 `matchMedia(MOBILE_QUERY='(max-width: 768px)')`로 `isMobile` 상태를 두고, `change` 이벤트로 갱신한다.
+**`apiGet(path, {signal})`:**
+- Purpose: 모든 프론트 fetch의 단일 진입점. non-OK 시 `throw status`
+- Examples: `frontend/src/api.js`
+- Pattern: `export async function apiGet(path, { signal } = {}) { ... }`
 
-- 상세 패널은 **데스크톱: 우측 사이드패널(width 360px, `translateX`)**, **모바일: 하단 시트(`height: SHEET_VH=55` vh, `translateY`)**. 선택이 없으면 화면 밖으로 슬라이드아웃.
-- 그래프 뷰(`activeView === 'graph'`)에서는 이 오버레이 패널을 띄우지 않는다(`GraphView`가 자체 하단 오버레이를 갖는다).
-- `SHEET_VH=55`는 `MapView.jsx`의 `fitBounds` 하단 패딩 비율(`innerHeight * 0.55`)과 **수동으로 동기화**되어야 하는 결합 상수다(양쪽 주석에 명시).
+**`TYPE_COLOR` / `typeColor(label)`:**
+- Purpose: 노드 타입 → 색 매핑 단일 정규 팔레트 (이전에 각 뷰가 별도로 정의해 충돌)
+- Examples: `frontend/src/theme.js`
+- Pattern: `import { TYPE_COLOR, typeColor } from './theme'` — 모든 뷰가 이 모듈을 공유
 
-### 탭(뷰 전환)
+**Neo4j `theographic_id`:**
+- Purpose: 모든 엔티티의 안정 식별자 (영문명은 동명이인 존재)
+- Examples: `backend/app/routes/nodes.py` (모든 `MATCH (n {theographic_id: $id})`)
+- Pattern: 각 라벨에 인덱스 생성 (`main.py` lifespan), 모든 조회는 이 속성 기준
 
-`App.jsx`의 `TABS`(map/timeline/graph)가 lucide-react 아이콘 버튼으로 렌더되고 `activeView`로 어떤 뷰를 마운트할지 결정한다. 상단 검색 입력은 모든 탭 공통.
+**`selectedNodeRef`:**
+- Purpose: `selectNode` useCallback이 `[]` deps로 참조 안정화하면서도 최신 `selectedNode` 값을 읽기 위한 패턴
+- Examples: `frontend/src/App.jsx` (`selectedNodeRef.current`)
+- Pattern: `useEffect(() => { selectedNodeRef.current = selectedNode }, [selectedNode])`
 
-### 각 뷰의 책임과 fetch
+## Entry Points
 
-- **`MapView.jsx`** — MapLibre GL. ESRI NatGeo 래스터 타일 베이스맵. `places-source`(GeoJSON) 하나에 circle-shadow/circle/label 세 레이어. `selectedNode`가 바뀌면 `GET /node/{id}/places`를 `AbortController`로 가져와 소스 데이터를 교체하고 `fitBounds`로 화면을 맞춘다. **반응형 패딩**: 모바일이면 하단에 `innerHeight*0.55 + 20`(시트 가림 보정), 데스크톱이면 균일 80. 마커 클릭 시 팝업 표시 후 `onSelectNode(id)`.
-- **`TimelineView.jsx`** — 마운트 시 `GET /events` 1회. 같은 `startDate`끼리 그룹핑 후 `sortKey`로 정렬. 단일 사건은 행 클릭, 다건은 대표 사건 클릭/드롭다운("외 N건")으로 개별 선택. 외부 클릭 시 드롭다운 닫기.
-- **`GraphView.jsx`** — cytoscape + cose-bilkent 레이아웃 + expand-collapse 플러그인. `selectedNode || DEFAULT_NODE`('모세' id)에 대해 `GET /node/{id}`와 `GET /node/{id}/neighbors/grouped`를 `Promise.all`로 동시 호출. 타입별 부모 노드(compound) 아래에 이웃을 묶고 시작 시 전부 collapse. 노드 tap 시 `onSelectNode`, 선택이 있으면 하단 오버레이(상세 요약) 표시.
-- **`SidePanel.jsx`** — `nodeId`가 바뀌면 `GET /node/{id}` fetch. 단일 `state={id,node,error}`로 응답을 추적해 stale 응답을 무시(`ready = state.id === nodeId`), `setState`는 비동기 콜백에서만 호출(eslint react-hooks set-state-in-effect 준수). 이웃을 노드 타입별로 그룹핑해 타입→색 팔레트(`TYPE_COLOR`)와 한글 라벨(`TYPE_KO`)·관계 한글명(`REL_KO`)으로 렌더. `canGoBack`이면 "← 뒤로" 버튼.
+**Frontend (개발):**
+- Location: `frontend/src/main.jsx`
+- Triggers: `vite dev`
+- Responsibilities: React root 생성, `App` 마운트
 
-### API 베이스 URL — 공유 모듈 없음
+**Frontend (프로덕션):**
+- Location: `frontend/dist/index.html` (빌드 결과물)
+- Triggers: nginx `try_files $uri /index.html`
+- Responsibilities: SPA 진입, 정적 자산 서빙
 
-각 프론트 파일이 **독립적으로** API 베이스를 정의한다. 공유 api 클라이언트/모듈이 없다.
+**Backend:**
+- Location: `backend/app/main.py` (`app` 객체)
+- Triggers: `uvicorn app.main:app` (Docker CMD)
+- Responsibilities: FastAPI 앱 초기화, CORS, 라우터 등록, lifespan 인덱스 생성
 
-- `App.jsx`: `const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'`
-- `MapView.jsx`/`TimelineView.jsx`/`GraphView.jsx`/`SidePanel.jsx`: 각자 `const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'`
+## Architectural Constraints
 
-프로덕션에서는 `frontend/.env.production`의 `VITE_API_URL=/api`로 빌드되어 nginx 프록시(`/api/` → api:8000)를 탄다. 개발 시 폴백은 `http://localhost:8000`.
+- **CORS:** `allow_origins=["*"]`, `allow_methods=["GET"]` — 읽기 전용 API. 쓰기 엔드포인트 없음 (`backend/app/main.py`)
+- **Neo4j 드라이버:** 모듈 수준 싱글톤 `_driver` (`backend/app/db.py`). 각 요청마다 `driver.session()` 컨텍스트 매니저 사용.
+- **핫리로드 없음:** 백엔드는 코드 변경 시 `docker compose up -d --build api` 재빌드 필요.
+- **GraphView는 SidePanel 없음:** `activeView === 'graph'`일 때 SidePanel 오버레이가 렌더링되지 않음 (`frontend/src/App.jsx` 306행).
+- **이웃 수 상한:** `NODE_NEIGHBOR_LIMIT = 50` (GET /node/{id}), `MAX_NEIGHBORS_PER_TYPE = 30` (GET /node/{id}/neighbors/grouped) (`backend/app/routes/nodes.py`).
+- **검색 결과 상한:** `SEARCH_LIMIT = 20` (`backend/app/routes/search.py`).
 
-## 핵심 진입점 요약
+## Anti-Patterns
 
-| 영역 | 진입점 | 부트스트랩 책임 |
-|---|---|---|
-| 백엔드 | `backend/app/main.py` | lifespan 인덱스 생성, CORS, 라우터 등록 |
-| 프론트 | `frontend/index.html` → `frontend/src/main.jsx` → `frontend/src/App.jsx` | StrictMode 마운트, 전역 선택/히스토리/반응형 상태 |
-| 인프라 | `docker-compose.yml` | 3 서비스 오케스트레이션 |
-| 배포 | `.github/workflows/deploy.yml` → `deploy.sh` | main 푸시 자동 배포 |
+### 타입별 색을 각 뷰에서 독립 선언 (해결됨)
+
+**What happens:** 이전에 `App.jsx`, `SidePanel.jsx`, `GraphView.jsx`가 각자 색 상수를 선언했음
+**Why it's wrong:** GraphView의 색 값이 달라 같은 타입이 뷰마다 다른 색으로 표시됨
+**Do this instead:** `frontend/src/theme.js`에서 `import { TYPE_COLOR, typeColor } from './theme'`
+
+### MapView 내부 상태를 React state로 관리
+
+**What happens:** 지도 렌더링 루프 변수(animFrame, expandedPlace 등)를 React state로 두면 매 프레임 리렌더 발생
+**Why it's wrong:** 60fps 애니메이션에서 React reconciler 오버헤드로 성능 저하
+**Do this instead:** mutable refs(`useRef`) 사용 — `frontend/src/MapView.jsx` 25-27행 패턴 참조
+
+## Error Handling
+
+**Strategy:** 각 컴포넌트가 개별적으로 fetch 실패를 로컬 error state로 처리
+
+**Patterns:**
+- `SidePanel`: `state.error` 있으면 오류 메시지 렌더링 (`frontend/src/SidePanel.jsx`)
+- `MapView`: `error` state → 오류 배너(네비게이션 바 뒤 가려짐 이슈 미해결), `noLocation` state → 빈 위치 안내
+- `GraphView`: `error` state → 전체화면 오버레이 오류 메시지
+- `TimelineView`: `error` state → 전체화면 오류 메시지
+- `App` 검색: `searchError` state → 드롭다운 내 오류 메시지, AbortError는 무시
+- `apiGet`: non-OK → `throw res.status` (숫자), AbortError → 그대로 전파
+
+## Cross-Cutting Concerns
+
+**Logging:** 백엔드 Python 기본 logging (`logging.exception`). 프론트엔드 로깅 없음.
+**Validation:** 없음. 백엔드는 입력을 Neo4j 파라미터 바인딩으로 전달 (SQL-injection 유사 문제 없음).
+**Authentication:** 없음. 공개 읽기 전용 서비스.
+**Mobile:** `App.jsx`의 `MOBILE_QUERY = '(max-width: 768px)'`로 분기 — 768px 이하에서 SidePanel을 하단 시트로 전환.
+
+---
+
+*Architecture analysis: 2026-06-14*
