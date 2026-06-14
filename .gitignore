@@ -13,3 +13,21 @@ frontend/dist/
 
 # macOS
 .DS_Store
+
+# Forge — volatile loop state (gitignored; permanent docs whitelisted below)
+.forge/backlog/
+.forge/done/
+.forge/executed/
+.forge/quick/
+.forge/plan.md
+.forge/run.md
+.forge/STATUS.md
+.forge/loop.md
+# Whitelist permanent docs
+!.forge/CONTEXT.md
+!.forge/adr/
+!.forge/adr/**
+!.forge/retro/
+!.forge/retro/**
+!.forge/codebase/
+!.forge/codebase/**
