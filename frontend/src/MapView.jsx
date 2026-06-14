@@ -160,8 +160,8 @@ export default function MapView({ onSelectNode, selectedNode }) {
     map.on('load', () => {
       // Hull polygon layers — added first so they render under all markers
       map.addSource('hull-source', { type: 'geojson', data: EMPTY_GEOJSON })
-      map.addLayer({ id: 'hull-fill', type: 'fill', source: 'hull-source', paint: { 'fill-color': '#7c9cfc', 'fill-opacity': 0.15 } })
-      map.addLayer({ id: 'hull-outline', type: 'line', source: 'hull-source', paint: { 'line-color': '#7c9cfc', 'line-opacity': 0.8, 'line-width': 3, 'line-dasharray': [6, 3] } })
+      map.addLayer({ id: 'hull-fill', type: 'fill', source: 'hull-source', paint: { 'fill-color': '#f97316', 'fill-opacity': 0.12 } })
+      map.addLayer({ id: 'hull-outline', type: 'line', source: 'hull-source', paint: { 'line-color': '#f97316', 'line-opacity': 0.8, 'line-width': 5, 'line-dasharray': [1, 0] } })
 
       map.addSource('places-source', { type: 'geojson', data: EMPTY_GEOJSON })
 
