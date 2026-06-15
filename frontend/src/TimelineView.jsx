@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
+import { BookOpen } from 'lucide-react'
 import { SELECT_HL } from './theme'
+
+const BOOK_COLOR = '#a78bfa'
 
 function fmtYear(y) {
   return y == null ? '?' : (y < 0 ? `BC ${-y}` : `AD ${y}`)
@@ -24,6 +27,7 @@ function parseYear(startDate) {
 
 function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
   const [events, setEvents] = useState([])
+  const [books, setBooks] = useState([])
   const [error, setError] = useState(false)
   const [openGroup, setOpenGroup] = useState(null)
   const [filterDismissed, setFilterDismissed] = useState(false)
@@ -36,6 +40,14 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
       .then(r => r.ok ? r.json() : Promise.reject(r.status))
       .then(data => setEvents(data))
       .catch(() => setError(true))
+  }, [])
+
+  // 성경 66권(연도 가진 것만) — 타임라인 시대순 마커. 실패해도 사건 타임라인은 유지.
+  useEffect(() => {
+    fetch(`${API_URL}/books`)
+      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+      .then(data => setBooks(data))
+      .catch(() => {})
   }, [])
 
   useEffect(() => {
@@ -69,15 +81,20 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
     })
 
   const activeFilter = bookFilter && !filterDismissed ? bookFilter : null
-  const visibleGroups = activeFilter
-    ? groups.filter(g => {
-        const y = sortKeyToYear(g.sortKey)
-        if (y === null) return false
-        if (activeFilter.startYear != null && y < activeFilter.startYear) return false
-        if (activeFilter.endYear != null && y > activeFilter.endYear) return false
-        return true
-      })
-    : groups
+  const inFilter = (y) => {
+    if (!activeFilter) return true
+    if (y === null) return false
+    if (activeFilter.startYear != null && y < activeFilter.startYear) return false
+    if (activeFilter.endYear != null && y > activeFilter.endYear) return false
+    return true
+  }
+  const visibleGroups = groups.filter(g => inFilter(sortKeyToYear(g.sortKey)))
+
+  // 사건 그룹 + 성경 책 마커를 연도순으로 합친 통합 타임라인
+  const timeline = [
+    ...visibleGroups.map(g => ({ kind: 'group', sortKey: g.sortKey, group: g })),
+    ...books.filter(b => inFilter(b.startYear)).map(b => ({ kind: 'book', sortKey: b.startYear, book: b })),
+  ].sort((a, b) => a.sortKey - b.sortKey)
 
   if (error) {
     return (
@@ -106,7 +123,44 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
           >× 닫기</button>
         </div>
       )}
-      {visibleGroups.map(({ startDate, members, rep }) => {
+      {timeline.map((item) => {
+        if (item.kind === 'book') {
+          const b = item.book
+          const isSel = selectedNode === b.id
+          return (
+            <div
+              key={'book-' + b.id}
+              style={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                padding: '4px 8px',
+                minHeight: '28px',
+                backgroundColor: isSel ? SELECT_HL : 'rgba(167,139,250,0.07)',
+                cursor: 'pointer',
+                position: 'relative',
+              }}
+              onClick={() => onSelectNode && onSelectNode(b.id)}
+            >
+              <div style={{ minWidth: 80, textAlign: 'right', color: '#666', fontSize: '12px', paddingTop: 2 }}>
+                {fmtYear(b.startYear)}
+              </div>
+              <div style={{ borderLeft: `2px ${b.yearApprox ? 'dashed' : 'solid'} ${BOOK_COLOR}`, margin: '0 12px', alignSelf: 'stretch', minHeight: 20 }} />
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', paddingTop: 1 }}>
+                <BookOpen size={14} style={{ color: BOOK_COLOR, flexShrink: 0 }} />
+                <span style={{ fontSize: '13px', fontWeight: 600, color: '#5b21b6' }}>{b.nameKo || b.name}</span>
+                <span style={{ fontSize: '13px', color: BOOK_COLOR, fontWeight: 700 }}>+</span>
+                {b.yearApprox && (
+                  <span
+                    title={b.yearBasis || '추정 연도'}
+                    style={{ fontSize: 10, color: '#8b80a8', border: `1px dashed ${BOOK_COLOR}`, borderRadius: 4, padding: '0 4px' }}
+                  >추정</span>
+                )}
+              </div>
+            </div>
+          )
+        }
+
+        const { startDate, members, rep } = item.group
         const isSelected = selectedNode && members.some(e => e.id === selectedNode)
         const yearLabel = parseYear(startDate)
         const isSingle = members.length === 1
