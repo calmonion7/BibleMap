@@ -1,11 +1,9 @@
 ---
-last_mapped_commit: fb78d740df63d386e84ceb1bb4249921a5e198b7
-mapped: 2026-06-14
+last_mapped_commit: ecdb7cb2ea1bf665b0690e62b4cf51261761072c
+mapped: 2026-06-15
 ---
 
 # Testing Patterns
-
-**Analysis Date:** 2026-06-14
 
 ## 자동화 테스트 현황
 
@@ -30,11 +28,11 @@ docker compose up -d --build api
 ```
 
 **프로덕션 배포 검증:**
-- GitHub push → `.github/workflows/` 자동 배포 파이프라인 실행
+- GitHub push → 자동 배포 파이프라인 실행
 - 배포 후 프로덕션 URL에서 브라우저 직접 확인
 
 **Playwright 임시 검증 (ad-hoc):**
-메모리에 기록된 패턴 (`feedback_playwright_testing.md`): `localhost:8080` 대상, 네트워크 캡처 + 스크린샷. 재사용 가능한 스크립트 없음 — 필요 시 1회성으로 작성.
+메모리에 기록된 패턴(`feedback_playwright_testing.md`): `localhost:8080` 대상, 네트워크 캡처 + 스크린샷. 재사용 가능한 스크립트 없음 — 필요 시 1회성으로 작성.
 
 ```python
 # 임시 검증 예시 패턴 (고정 파일 없음)
@@ -64,7 +62,7 @@ cd frontend && npm run lint     # ESLint 전체 검사
 
 ## 새 기능 추가 시 검증 순서
 
-1. `npm run lint` — ESLint 통과 확인 (특히 react-hooks 위반)
+1. `cd frontend && npm run lint` — ESLint 통과 확인 (특히 react-hooks 위반)
 2. `docker compose up -d --build api` — 백엔드 코드 변경 시 재빌드
 3. 브라우저에서 `localhost:5173`(개발) 또는 배포 URL에서 직접 동작 확인
 4. 필요 시 Playwright 임시 스크립트로 네트워크 요청/화면 캡처 검증
@@ -75,14 +73,18 @@ cd frontend && npm run lint     # ESLint 전체 검사
 
 ## 향후 테스트 도입 시 참고
 
-**프론트엔드 추천 진입점:**
-- `apiGet` (`frontend/src/api.js`) — fetch 모킹으로 단위 테스트 가능한 가장 단순한 모듈
-- `theme.js` 유틸 함수 (`typeColor`, `typeKo`) — 순수 함수, 의존성 없음
+**프론트엔드 추천 진입점 (의존성 없는 순수 함수):**
+- `frontend/src/convexHull.js` — `convexHull(points)` 순수 함수, 입력·출력이 단순한 배열. 단위 테스트에 가장 적합.
+- `frontend/src/theme.js` — `typeColor`, `typeKo` 순수 함수. 의존성 없음.
+- `frontend/src/api.js` — `apiGet` fetch 래퍼. fetch 모킹으로 단위 테스트 가능.
 
 **백엔드 추천 진입점:**
-- `/search` 라우트 (`backend/app/routes/search.py`) — Neo4j 세션 모킹 후 Cypher 쿼리 결과 검증
-- `/node/{id}` 라우트 (`backend/app/routes/nodes.py`) — 응답 shape 검증
+- `backend/app/routes/search.py` — `/search` 라우트. Neo4j 세션 모킹 후 Cypher 쿼리 결과 shape 검증.
+- `backend/app/routes/nodes.py` — `/node/{id}` 라우트. 응답에 `neighbors`, `neighborTotal`, `properties` 포함 여부, Book 타입의 `topPersons`/`topEvents` 필드 검증.
 
----
-
-*Testing analysis: 2026-06-14*
+**주요 테스트 시나리오:**
+- Person 선택 시 hull polygon이 3개 이상 장소에서만 표시되는지
+- Book 노드 응답에 `topPersons`, `topEvents` 포함 여부
+- `traits` JSON 파싱 실패 시 빈 배열 폴백 동작
+- 검색 debounce: 250ms 이내 입력 변경 시 이전 요청 abort
+- `collapsed` 토글: `undefined` → `false` → `undefined` 순환

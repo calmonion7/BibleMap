@@ -1,91 +1,100 @@
 ---
-last_mapped_commit: fb78d740df63d386e84ceb1bb4249921a5e198b7
-mapped: 2026-06-14
+last_mapped_commit: ecdb7cb2ea1bf665b0690e62b4cf51261761072c
+mapped: 2026-06-15
 ---
 
 # Technology Stack
 
-**Analysis Date:** 2026-06-14
+## 언어
 
-## Languages
+**주 언어:**
+- JavaScript (ES Modules) — 프론트엔드 (`frontend/src/`)
+- Python 3.12 — 백엔드 (`backend/app/`, `backend/scripts/`)
 
-**Primary:**
-- JavaScript (ES Modules) — frontend (`frontend/src/`)
-- Python 3.12 — backend (`backend/app/`)
+**보조:**
+- JSX — React 컴포넌트 파일 (`frontend/src/*.jsx`)
 
-**Secondary:**
-- JSX — React component files (`frontend/src/*.jsx`)
+## 런타임
 
-## Runtime
+**프론트엔드:**
+- 브라우저 (ES Module 번들; nginx가 서빙)
+- 빌드 타임: Node.js + npm (`frontend/package-lock.json`)
 
-**Frontend:**
-- Browser (ES Module bundle served via nginx)
-- Build-time: Node.js (managed by npm)
+**백엔드:**
+- Python 3.12-slim Docker 컨테이너 (`backend/Dockerfile`)
+- ASGI 서버: Uvicorn 0.49.0 (Dockerfile `CMD`)
 
-**Backend:**
-- Python 3.12-slim (Docker container, `backend/Dockerfile`)
+**패키지 관리:**
+- 프론트엔드: npm — 잠금 파일 `frontend/package-lock.json`
+- 백엔드: pip — 버전 고정 `backend/requirements.txt` (잠금 파일 없음)
 
-**Package Manager:**
-- Frontend: npm — lockfile: `frontend/package-lock.json`
-- Backend: pip — lockfile: none (pinned in `backend/requirements.txt`)
+## 프레임워크
 
-## Frameworks
+**프론트엔드:**
+- React 19.2.6 — UI 컴포넌트 트리 (`frontend/src/`)
+- React DOM 19.2.6 — DOM 렌더링 (`frontend/src/main.jsx`)
 
-**Frontend Core:**
-- React 19.2.6 — UI component tree (`frontend/src/`)
-- React DOM 19.2.6 — DOM rendering (`frontend/src/main.jsx`)
-
-**Backend Core:**
+**백엔드:**
 - FastAPI 0.136.3 — HTTP API (`backend/app/main.py`)
-- Uvicorn 0.49.0 — ASGI server (CMD in `backend/Dockerfile`)
+- Uvicorn 0.49.0 — ASGI 서버
 
-**Build/Dev:**
-- Vite 8.0.12 — frontend dev server and bundler (`frontend/vite.config.js`)
-- `@vitejs/plugin-react` 6.0.1 — JSX transform plugin
+**빌드/개발 도구:**
+- Vite 8.0.12 — 개발 서버 및 번들러 (`frontend/vite.config.js`)
+- `@vitejs/plugin-react` 6.0.1 — JSX transform 플러그인
 
-**Linting:**
-- ESLint 10.3.0 — configured in `frontend/eslint.config.js`
+**린팅:**
+- ESLint 10.3.0 (`frontend/eslint.config.js`)
 - `eslint-plugin-react-hooks` 7.1.1
 - `eslint-plugin-react-refresh` 0.5.2
 
-## Key Dependencies
+## 주요 의존성
 
-**Frontend:**
-- `maplibre-gl` 5.24.0 — map rendering (`frontend/src/MapView.jsx`)
-- `cytoscape` 3.34.0 — graph rendering (`frontend/src/GraphView.jsx`)
-- `cytoscape-cose-bilkent` 4.1.0 — graph layout algorithm
-- `cytoscape-expand-collapse` 4.1.1 — compound node expand/collapse
-- `lucide-react` 1.17.0 — icon set (`frontend/src/SidePanel.jsx`, `frontend/src/App.jsx`)
+**프론트엔드 런타임 (`frontend/package.json`):**
+- `maplibre-gl` 5.24.0 — 지도 렌더링 (`frontend/src/MapView.jsx`)
+- `lucide-react` 1.17.0 — 아이콘 세트 (`frontend/src/App.jsx`, `frontend/src/SidePanel.jsx`)
 
-**Backend:**
-- `neo4j` 6.2.0 — Neo4j Python driver (`backend/app/db.py`)
+> 참고: GraphView 제거(overhaul part 1) 이후 `cytoscape` 및 관련 플러그인은 `package.json`에서 삭제됨.
 
-## Configuration
+**백엔드 (`backend/requirements.txt`):**
+- `neo4j` 6.2.0 — Neo4j Python 드라이버 (`backend/app/db.py`)
+- `fastapi` 0.136.3
+- `uvicorn` 0.49.0
 
-**Environment variables:**
-- `NEO4J_PASSWORD` — required at runtime; loaded from `.env` (see `.env.example`)
-- `NEO4J_URI` — defaults to `bolt://localhost:7687`; set to `bolt://neo4j:7687` in Docker
-- `NEO4J_USER` — defaults to `neo4j`
-- `VITE_API_URL` — build-time inject; set to `/api` for production (nginx proxy path)
+**스크립트 전용 의존성 (별도 설치 필요):**
+- `anthropic` — Claude API 클라이언트 (`backend/scripts/generate_book_context.py`, `backend/scripts/generate_person_traits.py`)
 
-**Build config files:**
-- `frontend/vite.config.js` — Vite config (minimal: React plugin only)
+## 공유 모듈
+
+- `frontend/src/theme.js` — 노드 타입 색상(`TYPE_COLOR`), 한글 라벨(`TYPE_KO`), 표시 순서(`TYPE_ORDER`), 헬퍼 함수. App·MapView·SidePanel·TimelineView가 모두 import.
+- `frontend/src/api.js` — API 기본 URL(`API_BASE`) 및 공통 GET 헬퍼(`apiGet`). 모든 fetch는 여기를 경유.
+- `frontend/src/convexHull.js` — MapView용 Convex Hull 계산 유틸리티.
+
+## 설정
+
+**환경 변수:**
+- `NEO4J_PASSWORD` — 런타임 필수; `.env`에서 로드 (`.env.example` 참고)
+- `NEO4J_URI` — 기본값 `bolt://localhost:7687`; Docker 내부는 `bolt://neo4j:7687`
+- `NEO4J_USER` — 기본값 `neo4j`
+- `VITE_API_URL` — 빌드 타임 주입; 프로덕션에서는 `/api` (nginx 프록시 경로)
+- `ANTHROPIC_API_KEY` — 스크립트 전용; `generate_book_context.py`, `generate_person_traits.py` 실행 시만 필요
+
+**설정 파일:**
+- `frontend/vite.config.js` — Vite 설정 (React 플러그인만)
 - `frontend/eslint.config.js` — ESLint flat config
-- `docker-compose.yml` — service topology (neo4j, api, nginx)
-- `backend/Dockerfile` — Python 3.12-slim image, pip install, uvicorn CMD
+- `docker-compose.yml` — 서비스 토폴로지 (neo4j, api, nginx)
+- `backend/Dockerfile` — Python 3.12-slim 이미지, pip install, uvicorn CMD
+- `nginx/nginx.conf` — `/api/*` → `api:8000` 리버스 프록시, SPA fallback
 
-## Platform Requirements
+## 플랫폼 요구사항
 
-**Development:**
-- Node.js (version unspecified; no `.nvmrc`)
+**개발:**
+- Node.js (버전 미지정; `.nvmrc` 없음)
 - Python 3.12
-- Docker + Docker Compose (for neo4j + api services)
+- Docker + Docker Compose (neo4j + api 로컬 실행용)
+- 백엔드 hot-reload 없음 → 변경 후 `docker compose up -d --build api` 필요
 
-**Production:**
-- Self-hosted macOS runner (GitHub Actions workflow `self-hosted`)
-- Docker Compose services: `neo4j` (image `neo4j:5`), `api` (built from `backend/Dockerfile`), `nginx` (image `nginx:alpine`)
-- Port 8080 exposed publicly via nginx
-
----
-
-*Stack analysis: 2026-06-14*
+**프로덕션:**
+- Self-hosted macOS GitHub Actions 러너
+- Docker Compose 프로젝트명: `biblemap`
+- 서비스: `neo4j` (이미지 `neo4j:5`), `api` (빌드: `backend/Dockerfile`), `nginx` (이미지 `nginx:alpine`)
+- 외부 포트: 8080 (nginx)
