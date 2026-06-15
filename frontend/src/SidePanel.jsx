@@ -42,15 +42,37 @@ function parseVerseRef(ref) {
   return { chapter: parseInt(m[1]), verse: parseInt(m[2]) }
 }
 
+// collapsed[key] !== false → 접힘(기본), false → 펼침
+function SectionHeader({ label, color, count, sectionKey, collapsed, onToggle }) {
+  const isOpen = collapsed[sectionKey] === false
+  return (
+    <button
+      onClick={() => onToggle(sectionKey)}
+      style={{
+        display: 'flex', alignItems: 'center', gap: 6, width: '100%',
+        border: 'none', background: 'none', cursor: 'pointer', padding: '0 4px 6px',
+        fontSize: 12, fontWeight: 700, color: color ?? '#5a6481',
+      }}
+    >
+      <span style={{ width: 8, height: 8, borderRadius: '50%', background: color, flexShrink: 0 }} />
+      <span style={{ flex: 1, textAlign: 'left' }}>{label}</span>
+      {count != null && <span style={{ color: '#aab2c5', fontWeight: 500 }}>{count}</span>}
+      <span style={{ fontSize: 10, color: '#aab2c5', marginLeft: 2 }}>{isOpen ? '▾' : '▸'}</span>
+    </button>
+  )
+}
+
 function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, onNodeLoaded }) {
   // 어느 nodeId의 결과인지 id로 추적 — loading은 파생, stale 응답은 무시.
   // setState는 비동기 콜백에서만 호출(react-hooks set-state-in-effect 준수).
   const [state, setState] = useState({ id: null, node: null, error: null })
   const [keyVerseText, setKeyVerseText] = useState(null)
+  const [collapsed, setCollapsed] = useState({})
 
   useEffect(() => {
     if (!nodeId) return
     let cancelled = false
+    setCollapsed({})
     fetch(API_URL + '/node/' + nodeId)
       .then(r => r.ok ? r.json() : Promise.reject(r.status))
       .then(data => { if (!cancelled) { setState({ id: nodeId, node: data, error: null }); onNodeLoaded?.(data) } })
@@ -99,6 +121,10 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
   ].filter(Boolean).join(' · ')
   const headColor = TYPE_COLOR[typeOf(node.label)]
 
+  function toggle(key) {
+    setCollapsed(prev => ({ ...prev, [key]: prev[key] === false }))
+  }
+
   return (
     <div style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       {/* 헤더 */}
@@ -124,181 +150,10 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
         <div style={{ fontSize: 12, color: '#7c8db0', marginTop: 3, marginLeft: 18 }}>{subtitle}</div>
       </div>
 
-      {/* Book 전용 뷰 */}
-      {node.label === 'Book' && (
-        <div style={{ padding: '12px 16px 20px', fontSize: 14 }}>
-          {/* 메타 칩 */}
-          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 14 }}>
-            {[node.properties.testament, node.properties.genre,
-              node.properties.startYear && `${Math.abs(node.properties.startYear)}BC~${Math.abs(node.properties.endYear)}BC`,
-              node.properties.chapterCount && `${node.properties.chapterCount}장`]
-              .filter(Boolean).map((chip, i) => (
-              <span key={i} style={{
-                fontSize: 11, padding: '3px 8px', borderRadius: 999,
-                background: '#eef0f5', color: '#5a6481',
-              }}>{chip}</span>
-            ))}
-          </div>
-
-          {/* 시대적 배경 */}
-          {node.properties.background && (
-            <div style={{ marginBottom: 16 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: '#a78bfa', marginBottom: 6 }}>시대적 배경</div>
-              <p style={{ margin: 0, color: '#374151', lineHeight: 1.6 }}>{node.properties.background}</p>
-            </div>
-          )}
-
-          {/* 성경 주제 */}
-          {node.properties.themes?.length > 0 && (
-            <div style={{ marginBottom: 16 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: '#a78bfa', marginBottom: 6 }}>핵심 주제</div>
-              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                {node.properties.themes.map((t, i) => (
-                  <span key={i} style={{
-                    fontSize: 12, padding: '4px 10px', borderRadius: 999,
-                    border: '1px solid #a78bfa', color: '#a78bfa',
-                  }}>{t}</span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* 대표 구절 */}
-          {node.properties.keyVerse && (
-            <div style={{ marginBottom: 16 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: '#a78bfa', marginBottom: 6 }}>대표 구절</div>
-              <div style={{
-                padding: '10px 12px', background: '#f5f3ff', borderRadius: 8,
-                borderLeft: '3px solid #a78bfa',
-              }}>
-                <div style={{ fontSize: 12, fontWeight: 600, color: '#6d28d9', marginBottom: keyVerseText ? 4 : 0 }}>
-                  {node.properties.keyVerse}
-                </div>
-                {keyVerseText && (
-                  <div style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{keyVerseText}</div>
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* 주요 인물 */}
-          {node.topPersons?.length > 0 && (
-            <div style={{ marginBottom: 16 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: TYPE_COLOR.Person, marginBottom: 6 }}>
-                주요 인물
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                {node.topPersons.map(p => (
-                  <button key={p.id} onClick={() => onSelectNode(p.id)} style={{
-                    display: 'flex', alignItems: 'center',
-                    width: '100%', textAlign: 'left', font: 'inherit',
-                    border: 'none', background: 'none', cursor: 'pointer',
-                    borderLeft: `3px solid ${TYPE_COLOR.Person}`,
-                    borderRadius: 6, padding: '7px 10px',
-                    transition: 'background 0.12s',
-                  }}
-                    onMouseEnter={e => { e.currentTarget.style.background = '#f4f6fb' }}
-                    onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
-                  >
-                    <span style={{ fontSize: 13, color: '#1a1a2e' }}>{p.nameKo || p.name}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* 주요 사건 */}
-          {node.topEvents?.length > 0 && (
-            <div style={{ marginBottom: 8 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: TYPE_COLOR.Event, marginBottom: 6 }}>
-                주요 사건
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                {node.topEvents.map(e => (
-                  <button key={e.id} onClick={() => onSelectNode(e.id)} style={{
-                    display: 'flex', alignItems: 'center', gap: 8,
-                    width: '100%', textAlign: 'left', font: 'inherit',
-                    border: 'none', background: 'none', cursor: 'pointer',
-                    borderLeft: `3px solid ${TYPE_COLOR.Event}`,
-                    borderRadius: 6, padding: '7px 10px',
-                    transition: 'background 0.12s',
-                  }}
-                    onMouseEnter={ev => { ev.currentTarget.style.background = '#f4f6fb' }}
-                    onMouseLeave={ev => { ev.currentTarget.style.background = 'none' }}
-                  >
-                    <span style={{ flex: 1, fontSize: 13, color: '#1a1a2e' }}>{e.nameKo || e.name}</span>
-                    {e.startDate && (
-                      <span style={{ fontSize: 10, color: '#9aa5b8', flexShrink: 0 }}>
-                        {e.startDate < 0 ? `BC ${Math.abs(e.startDate)}` : `AD ${e.startDate}`}
-                      </span>
-                    )}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* 이웃 그룹 (Book 제외) */}
-      {node.label !== 'Book' && (
-      <div style={{ padding: '4px 12px 20px' }}>
-        {node.neighbors.length === 0 && (
-          <p style={{ color: '#7c8db0', fontSize: 13, padding: '12px 4px' }}>연결된 이웃이 없습니다</p>
-        )}
-        {TYPE_ORDER.filter(t => groups[t]?.length).map(t => (
-          <div key={t} style={{ marginTop: 14 }}>
-            <div style={{
-              display: 'flex', alignItems: 'center', gap: 6,
-              fontSize: 12, fontWeight: 700, color: TYPE_COLOR[t], padding: '0 4px 6px',
-            }}>
-              <span style={{ width: 8, height: 8, borderRadius: '50%', background: TYPE_COLOR[t] }} />
-              {TYPE_KO[t]}
-              <span style={{ color: '#aab2c5', fontWeight: 500 }}>{groups[t].length}</span>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              {groups[t].map(n => (
-                <button
-                  key={n.id + ':' + n.relation}
-                  onClick={() => onSelectNode(n.id)}
-                  style={{
-                    display: 'flex', alignItems: 'center', gap: 8,
-                    width: '100%', textAlign: 'left', font: 'inherit',
-                    border: 'none', background: 'none', cursor: 'pointer',
-                    borderLeft: `3px solid ${TYPE_COLOR[t]}`,
-                    borderRadius: 6, padding: '8px 10px',
-                    transition: 'background 0.12s',
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.background = '#f4f6fb' }}
-                  onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
-                >
-                  <span style={{ flex: 1, fontSize: 14, color: '#1a1a2e' }}>
-                    {n.nameKoMissing ? `${n.name} (미번역)` : n.nameKo}
-                  </span>
-                  <span style={{
-                    fontSize: 10, color: '#7c8db0', background: '#eef0f5',
-                    borderRadius: 4, padding: '2px 6px', flexShrink: 0,
-                  }}>{REL_KO[n.relation] || n.relation}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        ))}
-        {node.neighborTotal > node.neighbors.length && (
-          <p style={{
-            color: '#aab2c5', fontSize: 12, padding: '12px 6px 0',
-            borderTop: '1px solid #eef0f5', marginTop: 14,
-          }}>
-            이웃 {node.neighborTotal}개 중 {node.neighbors.length}개 표시
-          </p>
-        )}
-      </div>
-      )}
-
-      {/* Person 인물 성품 섹션 */}
+      {/* Person 인물 성품 섹션 — 이웃 그룹보다 위 */}
       {node.label === 'Person' && node.properties?.traits?.length > 0 && (
         <div style={{
-          margin: '0 12px 20px', padding: '12px', borderRadius: 8,
+          margin: '12px 12px 0', padding: '12px', borderRadius: 8,
           background: '#f8faff', border: '1px solid #e8ecf8',
         }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: TYPE_COLOR.Person, marginBottom: 10 }}>
@@ -319,6 +174,178 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
             ))}
           </div>
         </div>
+      )}
+
+      {/* Book 전용 뷰 */}
+      {node.label === 'Book' && (
+        <div style={{ padding: '12px 16px 20px', fontSize: 14 }}>
+          {/* 메타 칩 */}
+          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 14 }}>
+            {[node.properties.testament, node.properties.genre,
+              node.properties.startYear && `${Math.abs(node.properties.startYear)}BC~${Math.abs(node.properties.endYear)}BC`,
+              node.properties.chapterCount && `${node.properties.chapterCount}장`]
+              .filter(Boolean).map((chip, i) => (
+              <span key={i} style={{
+                fontSize: 11, padding: '3px 8px', borderRadius: 999,
+                background: '#eef0f5', color: '#5a6481',
+              }}>{chip}</span>
+            ))}
+          </div>
+
+          {/* 시대적 배경 */}
+          {node.properties.background && (
+            <div style={{ marginBottom: 12 }}>
+              <SectionHeader label="시대적 배경" color="#a78bfa" sectionKey="book-background" collapsed={collapsed} onToggle={toggle} />
+              {collapsed['book-background'] === false && (
+                <p style={{ margin: '0 0 4px', color: '#374151', lineHeight: 1.6 }}>{node.properties.background}</p>
+              )}
+            </div>
+          )}
+
+          {/* 성경 주제 */}
+          {node.properties.themes?.length > 0 && (
+            <div style={{ marginBottom: 12 }}>
+              <SectionHeader label="핵심 주제" color="#a78bfa" sectionKey="book-themes" collapsed={collapsed} onToggle={toggle} />
+              {collapsed['book-themes'] === false && (
+                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', paddingBottom: 4 }}>
+                  {node.properties.themes.map((t, i) => (
+                    <span key={i} style={{
+                      fontSize: 12, padding: '4px 10px', borderRadius: 999,
+                      border: '1px solid #a78bfa', color: '#a78bfa',
+                    }}>{t}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* 대표 구절 */}
+          {node.properties.keyVerse && (
+            <div style={{ marginBottom: 12 }}>
+              <SectionHeader label="대표 구절" color="#a78bfa" sectionKey="book-keyverse" collapsed={collapsed} onToggle={toggle} />
+              {collapsed['book-keyverse'] === false && (
+                <div style={{
+                  padding: '10px 12px', background: '#f5f3ff', borderRadius: 8,
+                  borderLeft: '3px solid #a78bfa', marginBottom: 4,
+                }}>
+                  <div style={{ fontSize: 12, fontWeight: 600, color: '#6d28d9', marginBottom: keyVerseText ? 4 : 0 }}>
+                    {node.properties.keyVerse}
+                  </div>
+                  {keyVerseText && (
+                    <div style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{keyVerseText}</div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* 주요 인물 */}
+          {node.topPersons?.length > 0 && (
+            <div style={{ marginBottom: 12 }}>
+              <SectionHeader label="주요 인물" color={TYPE_COLOR.Person} count={node.topPersons.length} sectionKey="book-persons" collapsed={collapsed} onToggle={toggle} />
+              {collapsed['book-persons'] === false && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 2, paddingBottom: 4 }}>
+                  {node.topPersons.map(p => (
+                    <button key={p.id} onClick={() => onSelectNode(p.id)} style={{
+                      display: 'flex', alignItems: 'center',
+                      width: '100%', textAlign: 'left', font: 'inherit',
+                      border: 'none', background: 'none', cursor: 'pointer',
+                      borderLeft: `3px solid ${TYPE_COLOR.Person}`,
+                      borderRadius: 6, padding: '7px 10px',
+                      transition: 'background 0.12s',
+                    }}
+                      onMouseEnter={e => { e.currentTarget.style.background = '#f4f6fb' }}
+                      onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
+                    >
+                      <span style={{ fontSize: 13, color: '#1a1a2e' }}>{p.nameKo || p.name}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* 주요 사건 */}
+          {node.topEvents?.length > 0 && (
+            <div style={{ marginBottom: 8 }}>
+              <SectionHeader label="주요 사건" color={TYPE_COLOR.Event} count={node.topEvents.length} sectionKey="book-events" collapsed={collapsed} onToggle={toggle} />
+              {collapsed['book-events'] === false && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 2, paddingBottom: 4 }}>
+                  {node.topEvents.map(e => (
+                    <button key={e.id} onClick={() => onSelectNode(e.id)} style={{
+                      display: 'flex', alignItems: 'center', gap: 8,
+                      width: '100%', textAlign: 'left', font: 'inherit',
+                      border: 'none', background: 'none', cursor: 'pointer',
+                      borderLeft: `3px solid ${TYPE_COLOR.Event}`,
+                      borderRadius: 6, padding: '7px 10px',
+                      transition: 'background 0.12s',
+                    }}
+                      onMouseEnter={ev => { ev.currentTarget.style.background = '#f4f6fb' }}
+                      onMouseLeave={ev => { ev.currentTarget.style.background = 'none' }}
+                    >
+                      <span style={{ flex: 1, fontSize: 13, color: '#1a1a2e' }}>{e.nameKo || e.name}</span>
+                      {e.startDate && (
+                        <span style={{ fontSize: 10, color: '#9aa5b8', flexShrink: 0 }}>
+                          {e.startDate < 0 ? `BC ${Math.abs(e.startDate)}` : `AD ${e.startDate}`}
+                        </span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* 이웃 그룹 (Book 제외) */}
+      {node.label !== 'Book' && (
+      <div style={{ padding: '4px 12px 20px' }}>
+        {node.neighbors.length === 0 && (
+          <p style={{ color: '#7c8db0', fontSize: 13, padding: '12px 4px' }}>연결된 이웃이 없습니다</p>
+        )}
+        {TYPE_ORDER.filter(t => groups[t]?.length).map(t => (
+          <div key={t} style={{ marginTop: 14 }}>
+            <SectionHeader label={TYPE_KO[t] || t} color={TYPE_COLOR[t] || TYPE_COLOR.Unknown} count={groups[t].length} sectionKey={t} collapsed={collapsed} onToggle={toggle} />
+            {collapsed[t] === false && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                {groups[t].map(n => (
+                  <button
+                    key={n.id + ':' + n.relation}
+                    onClick={() => onSelectNode(n.id)}
+                    style={{
+                      display: 'flex', alignItems: 'center', gap: 8,
+                      width: '100%', textAlign: 'left', font: 'inherit',
+                      border: 'none', background: 'none', cursor: 'pointer',
+                      borderLeft: `3px solid ${TYPE_COLOR[t]}`,
+                      borderRadius: 6, padding: '8px 10px',
+                      transition: 'background 0.12s',
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.background = '#f4f6fb' }}
+                    onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
+                  >
+                    <span style={{ flex: 1, fontSize: 14, color: '#1a1a2e' }}>
+                      {n.nameKoMissing ? `${n.name} (미번역)` : n.nameKo}
+                    </span>
+                    <span style={{
+                      fontSize: 10, color: '#7c8db0', background: '#eef0f5',
+                      borderRadius: 4, padding: '2px 6px', flexShrink: 0,
+                    }}>{REL_KO[n.relation] || n.relation}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+        {node.neighborTotal > node.neighbors.length && (
+          <p style={{
+            color: '#aab2c5', fontSize: 12, padding: '12px 6px 0',
+            borderTop: '1px solid #eef0f5', marginTop: 14,
+          }}>
+            이웃 {node.neighborTotal}개 중 {node.neighbors.length}개 표시
+          </p>
+        )}
+      </div>
       )}
     </div>
   )
