@@ -89,7 +89,8 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
   // 어느 nodeId의 결과인지 id로 추적 — loading은 파생, stale 응답은 무시.
   // setState는 비동기 콜백에서만 호출(react-hooks set-state-in-effect 준수).
   const [state, setState] = useState({ id: null, node: null, error: null })
-  const [keyVerseText, setKeyVerseText] = useState(null)
+  // keyVerse는 어느 nodeId의 결과인지 id로 묶어 stale 표시를 방지(동기 reset 불필요).
+  const [keyVerseState, setKeyVerseState] = useState({ id: null, text: null })
   const [collapsed, setCollapsed] = useState({})
   // trait 원문 캐시 — verse_ref로 키잉(노드 무관, 동일 구절 재fetch 방지·stale 안전). { ref: { status, text } }
   const [traitVerses, setTraitVerses] = useState({})
@@ -97,16 +98,14 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
   useEffect(() => {
     if (!nodeId) return
     let cancelled = false
-    setCollapsed({})
     apiGet('/node/' + nodeId)
-      .then(data => { if (!cancelled) { setState({ id: nodeId, node: data, error: null }); onNodeLoaded?.(data) } })
+      .then(data => { if (!cancelled) { setCollapsed({}); setState({ id: nodeId, node: data, error: null }); onNodeLoaded?.(data) } })
       .catch(e => { if (!cancelled) setState({ id: nodeId, node: null, error: String(e) }) })
     return () => { cancelled = true }
-  }, [nodeId])
+  }, [nodeId, onNodeLoaded])
 
-  // Book keyVerse 텍스트 외부 API fetch
+  // Book keyVerse 텍스트 외부 API fetch (결과를 nodeId로 묶어 저장 — 렌더에서 현재 노드일 때만 사용)
   useEffect(() => {
-    setKeyVerseText(null)
     const node = state.id === nodeId ? state.node : null
     if (!node || node.label !== 'Book') return
     const bookOrder = node.properties?.bookOrder
@@ -116,7 +115,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     if (!parsed) return
     let cancelled = false
     fetchVerseText(bookOrder, parsed.chapter, parsed.verse).then(text => {
-      if (!cancelled) setKeyVerseText(text)
+      if (!cancelled) setKeyVerseState({ id: nodeId, text })
     })
     return () => { cancelled = true }
   }, [state, nodeId])
@@ -124,6 +123,8 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
   const ready = state.id === nodeId
   const node = ready ? state.node : null
   const error = ready ? state.error : null
+  // 현재 노드의 keyVerse만 사용(이전 Book의 stale 텍스트 무시)
+  const keyVerseText = keyVerseState.id === nodeId ? keyVerseState.text : null
 
   const msgStyle = { padding: '1.25rem', fontSize: 14, color: '#7c8db0' }
   if (!nodeId) return <p style={msgStyle}>지도에서 마커를 클릭하세요</p>

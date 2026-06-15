@@ -29,10 +29,9 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
   const [books, setBooks] = useState([])
   const [error, setError] = useState(false)
   const [openGroup, setOpenGroup] = useState(null)
-  const [filterDismissed, setFilterDismissed] = useState(false)
+  // 어떤 bookFilter에 대해 "닫기"를 눌렀는지 식별자로 추적 — 새 필터(다른 참조)면 자동으로 다시 표시(effect 불필요).
+  const [dismissedFilter, setDismissedFilter] = useState(null)
   const containerRef = useRef(null)
-
-  useEffect(() => { setFilterDismissed(false) }, [bookFilter])
 
   useEffect(() => {
     apiGet('/events')
@@ -77,7 +76,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
       return 0
     })
 
-  const activeFilter = bookFilter && !filterDismissed ? bookFilter : null
+  const activeFilter = bookFilter && dismissedFilter !== bookFilter ? bookFilter : null
   const inFilter = (y) => {
     if (!activeFilter) return true
     if (y === null) return false
@@ -115,7 +114,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
         }}>
           <span>{activeFilter.nameKo} 범위: {fmtYear(activeFilter.startYear)} ~ {fmtYear(activeFilter.endYear)}</span>
           <button
-            onClick={() => setFilterDismissed(true)}
+            onClick={() => setDismissedFilter(bookFilter)}
             style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#1a3a8f', fontSize: 13, padding: '0 4px' }}
           >× 닫기</button>
         </div>
