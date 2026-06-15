@@ -1,3 +1,4 @@
+import functools
 import json
 import os
 
@@ -8,17 +9,30 @@ from ..db import get_driver
 
 router = APIRouter()
 
-# 시대 연도(startYear)가 없는 책의 추정연도 오버레이. data 볼륨 마운트(/app/data)에서 런타임 로드.
-_DATA_DIR = os.environ.get("DATA_DIR", "/app/data")
-_APPROX_PATH = os.path.join(_DATA_DIR, "book_years_approx", "books.json")
+# 시대 연도(startYear)가 없는 책의 추정연도 오버레이.
+# DATA_DIR(기본 /app/data, docker 볼륨 마운트) 우선, 없으면 레포 상대경로(data/) 폴백 →
+# docker/비-docker 모두에서 파일을 찾는다.
+_REPO_DATA_DIR = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))),
+    "data",
+)
+_APPROX_CANDIDATES = [
+    os.path.join(os.environ.get("DATA_DIR", "/app/data"), "book_years_approx", "books.json"),
+    os.path.join(_REPO_DATA_DIR, "book_years_approx", "books.json"),
+]
 
 
+@functools.lru_cache(maxsize=1)
 def _load_approx():
-    try:
-        with open(_APPROX_PATH, encoding="utf-8") as f:
-            return json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        return {}
+    """추정연도 오버레이 JSON을 1회만 로드(캐시). DATA_DIR → 레포 상대경로 순으로
+    탐색하고, 어느 후보에서도 못 읽으면 기존처럼 빈 dict 폴백."""
+    for path in _APPROX_CANDIDATES:
+        try:
+            with open(path, encoding="utf-8") as f:
+                return json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            continue
+    return {}
 
 
 @router.get("/books")
