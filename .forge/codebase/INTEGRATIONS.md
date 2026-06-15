@@ -1,131 +1,77 @@
 ---
-last_mapped_commit: ecdb7cb2ea1bf665b0690e62b4cf51261761072c
-mapped: 2026-06-15
+last_mapped_commit: 22a678c36e40548a3d00ccf9205862505a59d9cb
+mapped: 2026-06-16
 ---
 
-# External Integrations
+# INTEGRATIONS
 
-## 데이터 저장소
+외부 API, 데이터베이스, 데이터 소스, 인증, 그리고 프론트↔백엔드 HTTP 연결을 정리한다. 도메인 의미는 다루지 않는다(CONTEXT.md 영역).
 
-**그래프 데이터베이스 — Neo4j 5:**
-- Docker 이미지: `neo4j:5`
-- 연결 프로토콜: Bolt (`bolt://neo4j:7687` Docker 내부 / `bolt://localhost:7687` 로컬)
-- Python 드라이버: `neo4j` 6.2.0 (`backend/app/db.py`)
-- 드라이버 싱글톤: `get_driver()` in `backend/app/db.py`
-- 인덱스: FastAPI lifespan 기동 시 자동 생성 (`backend/app/main.py`) — Person·Place·Event·PeopleGroup·Book 노드의 `theographic_id`
-- 인증 환경변수: `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD`
-- 데이터 볼륨: Docker named volume `neo4j_data` (호스트에 영속)
+## Neo4j (그래프 DB)
 
-**파일 스토리지 — 로컬 JSON:**
-- `data/names_ko/` — 한글 이름 매핑 (people, places, events, groups)
-- `data/book_context/books.json` — 성경 권별 배경·주제·대표 구절 (Claude API 생성)
-- `data/character_traits/people.json` — 인물 성품 키워드 (Claude API 생성)
-- `frontend/dist/` — 프론트엔드 빌드 결과물 (nginx가 정적 서빙)
+- 단일 데이터 저장소. `neo4j:5` 컨테이너(`docker-compose.yml`), Bolt 프로토콜.
+- 연결: `backend/app/db.py`의 `get_driver()` — `neo4j.GraphDatabase.driver(uri, auth=(user, password))`를 모듈 전역 싱글턴(`_driver`)으로 lazy 생성. URI/USER/PASSWORD는 환경변수(`NEO4J_URI` 기본 `bolt://localhost:7687`, `NEO4J_USER` 기본 `neo4j`, `NEO4J_PASSWORD` 필수 — 없으면 `RuntimeError`).
+- compose가 api 서비스에 `NEO4J_URI=bolt://neo4j:7687`, `NEO4J_USER=neo4j`, `NEO4J_PASSWORD` 주입. 인증은 `NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}`(compose가 파생).
+- 인덱스: `backend/app/main.py`의 `lifespan`이 앱 시작 시 Person/Place/Event/PeopleGroup/Book 라벨의 `theographic_id` 인덱스를 `CREATE INDEX ... IF NOT EXISTS`로 보장(실패해도 예외 로깅 후 계속).
+- 노드 식별자 키는 모든 라벨에서 `theographic_id`. 모든 라우트가 이 키로 MATCH/MERGE.
 
-**캐시:**
-- 없음
+## 데이터 소스 — theographic-bible-metadata (GitHub)
 
-## 외부 API · 서비스
+원천 데이터는 GitHub raw JSON에서 빌드/적재 시점에 fetch한다(`urllib.request`). 저장소: `robertrouse/theographic-bible-metadata` (master 브랜치 `json/`).
 
-**지도 타일 — ESRI ArcGIS (공개 엔드포인트):**
-- URL: `https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}`
-- 소비처: `frontend/src/MapView.jsx` (MapLibre GL 스타일 설정 인라인)
-- 인증: 없음 (무료 공개 래스터 타일)
+- `backend/scripts/load_theographic.py` — people/places/events/peopleGroups JSON을 fetch해 노드·관계 적재.
+  - URL: `https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/{people,places,events,peopleGroups}.json`.
+  - `status == "publish"`만 필터(status 없는 엔티티는 포함). 배치 UNWIND로 노드 적재 후 관계 적재(PARENT_OF/CHILD_OF, SIBLING_OF, PARTNER_OF, MEMBER_OF, HAS_PARTICIPANT, OCCURS_AT, PART_OF).
+- `backend/scripts/load_books.py` — books.json + events.json을 fetch해 Book 노드 적재, Book↔Event `CONTAINS_BOOK` 관계 생성(event.verses → book 역매핑). Book의 `startYear`/`endYear`는 event.startDate 집계로 추정. `nameKo`는 `data/names_ko/books.json`에서 병합.
 
-**지도 글리프 — Protomaps (공개 엔드포인트):**
-- URL: `https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf`
-- 소비처: `frontend/src/MapView.jsx` (MapLibre GL `glyphs` 설정)
-- 인증: 없음
+## 한글 이름·콘텐츠 주입 스크립트
 
-**원본 데이터 — Theographic Bible Metadata (GitHub Raw):**
-- `https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/people.json`
-- `https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/places.json`
-- `https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/events.json`
-- `https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/peopleGroups.json`
-- 소비처: `backend/scripts/load_theographic.py` (일회성 데이터 적재 스크립트)
-- `backend/scripts/generate_book_context.py` 에서 `books.json`도 동일 저장소에서 추가 fetch
-- `backend/scripts/generate_person_traits.py` 에서 `people.json`, `events.json` fetch
-- 인증: 없음 (공개 GitHub raw)
+런타임 앱과 분리된 일회성 주입 스크립트(`backend/scripts/`). 모두 Neo4j에 직접 연결(`GraphDatabase.driver`, 동일 NEO4J_* 환경변수).
 
-**LLM API — Anthropic Claude:**
-- 클라이언트: `anthropic` Python SDK
-- 모델: `claude-haiku-4-5-20251001`
-- 소비처:
-  - `backend/scripts/generate_book_context.py` — 성경 권별 배경/주제/대표구절 JSON 생성
-  - `backend/scripts/generate_person_traits.py` — 인물 성품 키워드 JSON 생성
-- 인증 환경변수: `ANTHROPIC_API_KEY`
-- 사용 시점: 데이터 파이프라인 일회성 실행 시만 (런타임 API 호출 없음)
-- 출력은 `data/book_context/books.json`, `data/character_traits/people.json`에 파일로 저장
+- `inject_ko_names.py` — `data/names_ko/{people,places,events,groups}.json`을 읽어 각 노드에 `nameKo`/`aliasesKo` SET. 배포 시 `deploy.sh` 4단계에서 실행.
+- `inject_book_context.py` — `data/book_context/books.json` → Book 노드의 `background`/`themes`/`keyVerse` SET.
+- `inject_person_traits.py` — `data/character_traits/people.json` → Person 노드의 `traits`(JSON 문자열 직렬화) SET. (`nodes.py`의 `/node/{id}`가 응답 시 다시 `json.loads`로 역직렬화.)
 
-## 내부 API (백엔드 → 프론트엔드)
+## 외부 API — Anthropic Claude (콘텐츠 생성 전용)
 
-**FastAPI 백엔드** (`backend/app/`) — GET 전용, 읽기 전용:
+- `backend/scripts/generate_book_context.py`, `generate_person_traits.py` — `anthropic` SDK(`anthropic.Anthropic`)로 Claude(`claude-haiku-4-5-20251001`) 호출해 책 배경/주제/대표구절, 인물 성품을 생성하여 `data/book_context/`·`data/character_traits/`에 JSON 저장.
+- 인증: `ANTHROPIC_API_KEY` 환경변수(없으면 `RuntimeError`). **빌드 타임 콘텐츠 생성 전용** — 런타임 앱(api 컨테이너)은 Claude를 호출하지 않으며 이 키도 필요 없다.
 
-| 엔드포인트 | 소스 파일 | 설명 |
-|---|---|---|
-| `GET /node/{node_id}` | `backend/app/routes/nodes.py` | 노드 상세 + 이웃 목록 (Book은 topPersons·topEvents 추가) |
-| `GET /node/{node_id}/places` | `backend/app/routes/nodes.py` | 노드에 연결된 지리좌표 목록 |
-| `GET /node/{node_id}/neighbors/grouped` | `backend/app/routes/nodes.py` | 이웃 노드를 타입별로 그룹화 |
-| `GET /events` | `backend/app/routes/events.py` | 전체 Event 목록 (sortKey ASC) |
-| `GET /search?q=` | `backend/app/routes/search.py` | nameKo·name 전문 검색 (최대 20건) |
+## 외부 API — getbible.net (성경 본문)
 
-**프론트엔드 API 클라이언트:** `frontend/src/api.js`
-- 기본 URL: `import.meta.env.VITE_API_URL` (빌드 타임) 또는 `http://localhost:8000` (폴백)
-- 공통 헬퍼: `apiGet(path, { signal })` — GET, 비-OK 시 status 코드로 reject
+프론트엔드가 **브라우저에서 직접** 호출(백엔드 경유 없음). `frontend/src/SidePanel.jsx`.
 
-**Nginx 리버스 프록시** (`nginx/nginx.conf`):
-- `/api/*` → `http://api:8000/` (prefix 제거)
-- 정적 파일: `frontend/dist/` (js/css/font은 1년 캐시, index.html은 no-cache)
-- SPA fallback: 알 수 없는 경로 → `index.html`
-- 외부 포트: 8080
+- 번역 키: `korean`. getbible v2에는 절 단위 엔드포인트가 없어 **장(chapter) 단위 JSON**을 받아 클라이언트에서 해당 절을 찾는다.
+- 엔드포인트: `https://api.getbible.net/v2/korean/{bookOrder}/{chapter}.json` — `fetchVerseText(bookOrder, chapter, verse)`가 호출, 응답 `verses[]`에서 `v.verse === verse`인 항목의 `text`를 사용(실패 시 `null`).
+- `bookOrder`는 canonical 1~66. trait의 `verse_ref`(예: "창 15:6")는 `SidePanel.jsx`의 `BOOK_ABBR_ORDER`(개역 약어→번호) 맵과 `resolveVerseRef()`로 해석. Book의 `keyVerse`는 `parseVerseRef()`로 chapter/verse 추출(책 번호는 노드의 `bookOrder` 속성 사용).
+- 용도: 인물 성품(trait)의 근거 구절 원문 lazy fetch, Book의 대표 구절(keyVerse) 원문 표시. 결과는 `verse_ref` 키로 컴포넌트 상태에 캐시.
 
-**CORS:**
-- `allow_origins=["*"]`, `allow_methods=["GET"]`, `allow_credentials=False` (`backend/app/main.py`)
+## Frontend ↔ Backend HTTP
 
-## 인증 · 사용자 관리
+- 베이스 URL: `import.meta.env.VITE_API_URL || 'http://localhost:8000'`. 프로덕션은 `frontend/.env.production`의 `VITE_API_URL=/api`로 nginx 프록시(`/api/` → `http://api:8000/`)를 경유. 외부 노출 포트는 nginx `:8080`(`docker-compose.yml`, `nginx/nginx.conf`).
+- 공유 클라이언트 `frontend/src/api.js` — `apiGet(path, {signal})`: GET → JSON, 비-OK면 status로 throw, AbortError는 전파. (단, App/MapView/TimelineView/SidePanel은 대부분 직접 `fetch`를 호출하고 `VITE_API_URL`로 베이스만 공유.)
 
-- 없음. 모든 엔드포인트 공개 읽기 전용. 사용자 계정 없음.
+호출되는 FastAPI 엔드포인트(모두 GET):
 
-## CI/CD · 배포
+| 엔드포인트 | 정의 | 호출처(프론트) |
+|-----------|------|---------------|
+| `GET /node/{id}` | `backend/app/routes/nodes.py` `get_node` — 노드 + 이웃(최대 50) + `neighborTotal`; Person이면 `traits` 파싱, Book이면 `topPersons`/`topEvents` 추가 | `frontend/src/SidePanel.jsx` |
+| `GET /node/{id}/places` | `nodes.py` `get_node_places` — 라벨별(Person/Event/PeopleGroup/Book/Place) 좌표 있는 Place 목록 | `frontend/src/MapView.jsx` |
+| `GET /node/{id}/neighbors/grouped` | `nodes.py` `get_node_neighbors_grouped` — 타입별 이웃(각 타입 최대 30) | `frontend/src/MapView.jsx` |
+| `GET /events` | `backend/app/routes/events.py` — startDate 있는 Event를 sortKey 순. `Cache-Control: no-store` | `frontend/src/TimelineView.jsx` |
+| `GET /books` | `backend/app/routes/books.py` — Book 목록(bookOrder 순); startYear 없으면 `data/book_years_approx/books.json` 오버레이(`yearApprox=true`), 연도 없으면 제외. `Cache-Control: no-store` | `frontend/src/TimelineView.jsx` |
+| `GET /search?q=` | `backend/app/routes/search.py` — nameKo/name CONTAINS 매칭, exact→prefix→contains 랭킹, LIMIT 20 | `frontend/src/App.jsx` |
 
-**호스팅:**
-- Self-hosted macOS GitHub Actions 러너
-- Docker Compose 프로젝트명: `biblemap`
+- 요청 취소: 검색(`App.jsx`)·지도 fetch(`MapView.jsx`)는 `AbortController`로 직전 요청 abort(경쟁 조건 방지).
 
-**CI 파이프라인:**
-- GitHub Actions: `.github/workflows/deploy.yml`
-- 트리거: `main` 브랜치 push
-- 실행 단계:
-  1. `git fetch && git reset --hard origin/main`
-  2. `bash deploy.sh`
+## 지도 타일 (외부)
 
-**배포 스크립트** (`deploy.sh`):
-1. `npm install && npm run build` — 프론트엔드 빌드 → `frontend/dist/`
-2. `docker compose build api` — API 이미지 재빌드
-3. `docker compose up -d api nginx` — api + nginx 컨테이너 재시작
-4. `python3 backend/scripts/inject_ko_names.py` — `data/names_ko/*.json` → Neo4j 한글 이름 주입 (15회 재시도)
+`frontend/src/MapView.jsx`의 MapLibre GL 스타일은 외부 리소스를 직접 참조(API 키 없음):
 
-**로그 / 잠금:**
-- 배포 로그: `/Users/calmonion/Library/Logs/com.biblemap.deploy.log`
-- 잠금 파일: `/tmp/biblemap-deploy.lock` (동시 배포 방지)
+- 래스터 타일: ArcGIS `https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}` (`source: esri`, tileSize 256).
+- 글리프(폰트): `https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf`.
 
-## 모니터링 · 관측
+## 인증 / 웹훅
 
-- 에러 추적: 없음 (외부 서비스 미사용)
-- 로그: `logging` stdlib — `backend/app/main.py` (인덱스 생성 실패 시만); 배포 로그 (`deploy.sh`)
-
-## 웹훅 · 콜백
-
-- 인바운드: 없음
-- 아웃바운드: 없음
-
-## 환경 변수 전체 목록
-
-| 변수 | 설정 위치 | 용도 |
-|---|---|---|
-| `NEO4J_PASSWORD` | `.env` (호스트) | Neo4j 비밀번호 — 유일한 필수 설정값 |
-| `NEO4J_URI` | `docker-compose.yml` (api 서비스) | `bolt://neo4j:7687` (Docker 내부) |
-| `NEO4J_USER` | `docker-compose.yml` (api 서비스) | `neo4j` |
-| `NEO4J_AUTH` | `docker-compose.yml` (neo4j 서비스) | `neo4j/${NEO4J_PASSWORD}` 로 자동 파생 |
-| `VITE_API_URL` | 빌드 타임 (`npm run build`) | `/api` (프로덕션 nginx 프록시 경로) |
-| `ANTHROPIC_API_KEY` | 스크립트 실행 환경 | Claude API — 스크립트 단독 실행 시만 |
+- 사용자 인증·세션·웹훅 없음. 공개 읽기 전용 API(CORS `allow_origins=["*"]`, `allow_methods=["GET"]` — `backend/app/main.py`).
+- 유일한 시크릿은 Neo4j 비밀번호(`NEO4J_PASSWORD`)와 콘텐츠 생성 스크립트의 `ANTHROPIC_API_KEY`.
