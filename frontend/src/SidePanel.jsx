@@ -22,13 +22,14 @@ function typeOf(label) {
 }
 
 // 외부 한국어 성경 API로 구절 텍스트 fetch. 실패 시 null 반환.
+// getbible v2는 절 단위 엔드포인트가 없어, 장(chapter) JSON을 받아 verses[]에서 해당 절을 찾는다.
 async function fetchVerseText(bookOrder, chapter, verse) {
   try {
-    const url = `https://api.getbible.net/v2/kor/${bookOrder}/${chapter}/${verse}.json`
+    const url = `https://api.getbible.net/v2/korean/${bookOrder}/${chapter}.json`
     const r = await fetch(url)
     if (!r.ok) return null
     const d = await r.json()
-    return d.verse || null
+    return d.verses?.find(v => v.verse === verse)?.text || null
   } catch {
     return null
   }
@@ -40,6 +41,29 @@ function parseVerseRef(ref) {
   const m = ref.match(/(\d+):(\d+)/)
   if (!m) return null
   return { chapter: parseInt(m[1]), verse: parseInt(m[2]) }
+}
+
+// 개역 약어 → getbible 책 번호(canonical 1~66). trait verse_ref 원문 fetch용.
+const BOOK_ABBR_ORDER = {
+  '창': 1, '출': 2, '레': 3, '민': 4, '신': 5, '수': 6, '삿': 7, '룻': 8,
+  '삼상': 9, '삼하': 10, '왕상': 11, '왕하': 12, '대상': 13, '대하': 14, '스': 15, '느': 16,
+  '에': 17, '욥': 18, '시': 19, '잠': 20, '전': 21, '아': 22, '사': 23, '렘': 24,
+  '애': 25, '겔': 26, '단': 27, '호': 28, '욜': 29, '암': 30, '옵': 31, '욘': 32,
+  '미': 33, '나': 34, '합': 35, '습': 36, '학': 37, '슥': 38, '말': 39, '마': 40,
+  '막': 41, '눅': 42, '요': 43, '행': 44, '롬': 45, '고전': 46, '고후': 47, '갈': 48,
+  '엡': 49, '빌': 50, '골': 51, '살전': 52, '살후': 53, '딤전': 54, '딤후': 55, '딛': 56,
+  '몬': 57, '히': 58, '약': 59, '벧전': 60, '벧후': 61, '요일': 62, '요이': 63, '요삼': 64,
+  '유': 65, '계': 66,
+}
+
+// "창 15:6" / "창 6:4-5"에서 책 약어 + chapter + 첫 verse를 bookOrder로 해석. 매핑 불가 시 null.
+function resolveVerseRef(ref) {
+  if (!ref) return null
+  const m = ref.match(/^\s*([^\d\s]+)\s*(\d+):(\d+)/)
+  if (!m) return null
+  const bookOrder = BOOK_ABBR_ORDER[m[1]]
+  if (!bookOrder) return null
+  return { bookOrder, chapter: parseInt(m[2]), verse: parseInt(m[3]) }
 }
 
 // collapsed[key] !== false → 접힘(기본), false → 펼침
@@ -68,6 +92,8 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
   const [state, setState] = useState({ id: null, node: null, error: null })
   const [keyVerseText, setKeyVerseText] = useState(null)
   const [collapsed, setCollapsed] = useState({})
+  // trait 원문 캐시 — verse_ref로 키잉(노드 무관, 동일 구절 재fetch 방지·stale 안전). { ref: { status, text } }
+  const [traitVerses, setTraitVerses] = useState({})
 
   useEffect(() => {
     if (!nodeId) return
@@ -125,6 +151,23 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     setCollapsed(prev => ({ ...prev, [key]: prev[key] === false }))
   }
 
+  // trait 원문 펼침/접힘 + 펼칠 때 lazy fetch(미캐시 시 1회).
+  function toggleTraitVerse(i, ref) {
+    const key = 'trait-' + i
+    const opening = collapsed[key] !== false
+    toggle(key)
+    if (!opening || !ref || traitVerses[ref] !== undefined) return
+    const parsed = resolveVerseRef(ref)
+    if (!parsed) {
+      setTraitVerses(prev => ({ ...prev, [ref]: { status: 'error' } }))
+      return
+    }
+    setTraitVerses(prev => ({ ...prev, [ref]: { status: 'loading' } }))
+    fetchVerseText(parsed.bookOrder, parsed.chapter, parsed.verse).then(text => {
+      setTraitVerses(prev => ({ ...prev, [ref]: text ? { status: 'done', text } : { status: 'error' } }))
+    })
+  }
+
   return (
     <div style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       {/* 헤더 */}
@@ -160,18 +203,45 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
             인물 성품
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {node.properties.traits.map((t, i) => (
+            {node.properties.traits.map((t, i) => {
+              const open = collapsed['trait-' + i] === false
+              const v = traitVerses[t.verse_ref]
+              return (
               <div key={i}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 3 }}>
                   <span style={{
                     fontSize: 12, fontWeight: 600, color: '#1a1a2e',
                     background: 'rgba(124,156,252,0.12)', borderRadius: 4, padding: '2px 8px',
                   }}>{t.trait}</span>
-                  <span style={{ fontSize: 10, color: '#9aa5b8' }}>{t.verse_ref}</span>
+                  <button
+                    onClick={() => toggleTraitVerse(i, t.verse_ref)}
+                    style={{
+                      display: 'inline-flex', alignItems: 'center', gap: 3,
+                      border: 'none', background: 'none', cursor: 'pointer', padding: 0,
+                      font: 'inherit', fontSize: 10, color: '#9aa5b8',
+                    }}
+                  >
+                    {t.verse_ref}
+                    <span style={{ fontSize: 9 }}>{open ? '▾' : '▸'}</span>
+                  </button>
                 </div>
                 <p style={{ margin: 0, fontSize: 12, color: '#5a6481', lineHeight: 1.5 }}>{t.description}</p>
+                {open && (
+                  <div style={{
+                    marginTop: 5, padding: '7px 10px', background: '#eef2ff',
+                    borderLeft: `3px solid ${TYPE_COLOR.Person}`, borderRadius: 6,
+                    fontSize: 12, color: '#374151', lineHeight: 1.5,
+                  }}>
+                    {v?.status === 'done'
+                      ? v.text
+                      : <span style={{ color: '#9aa5b8' }}>
+                          {v?.status === 'loading' ? '불러오는 중…' : '원문을 불러오지 못했습니다'}
+                        </span>}
+                  </div>
+                )}
               </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       )}
