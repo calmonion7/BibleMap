@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { TYPE_COLOR, TYPE_KO } from './theme'
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+import { apiGet } from './api'
 
 const REL_KO = {
   PARENT_OF: '부모',
@@ -99,8 +98,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     if (!nodeId) return
     let cancelled = false
     setCollapsed({})
-    fetch(API_URL + '/node/' + nodeId)
-      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    apiGet('/node/' + nodeId)
       .then(data => { if (!cancelled) { setState({ id: nodeId, node: data, error: null }); onNodeLoaded?.(data) } })
       .catch(e => { if (!cancelled) setState({ id: nodeId, node: null, error: String(e) }) })
     return () => { cancelled = true }

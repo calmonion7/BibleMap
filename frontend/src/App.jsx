@@ -4,8 +4,7 @@ import MapView from './MapView'
 import SidePanel from './SidePanel'
 import TimelineView from './TimelineView'
 import { TYPE_ORDER, typeColor, typeKo, SELECT_HL } from './theme'
-
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+import { apiGet } from './api'
 
 const TABS = [
   { key: 'map', icon: Map },
@@ -64,9 +63,7 @@ function App() {
     const timer = setTimeout(async () => {
       setSearchLoading(true)
       try {
-        const res = await fetch(`${API_BASE}/search?q=${encodeURIComponent(q)}`, { signal: ctrl.signal })
-        if (!res.ok) throw new Error(res.status)
-        const data = await res.json()
+        const data = await apiGet(`/search?q=${encodeURIComponent(q)}`, { signal: ctrl.signal })
         setSearchResults(data)
         setSearchError(false)
       } catch (e) {
@@ -310,7 +307,6 @@ function App() {
           <MapView
             onSelectNode={selectNode}
             selectedNode={selectedNode}
-            selectedNodeLabel={selectedNodeMeta?.label ?? null}
           />
         )}
         {activeView === 'timeline' && (

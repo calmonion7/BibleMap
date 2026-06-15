@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { BookOpen } from 'lucide-react'
 import { SELECT_HL } from './theme'
+import { apiGet } from './api'
 
 const BOOK_COLOR = '#a78bfa'
 
@@ -12,8 +13,6 @@ function sortKeyToYear(sortKey) {
   // sortKey는 연도 정수(BC = 음수)로 저장된다고 가정
   return typeof sortKey === 'number' ? sortKey : null
 }
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 function parseYear(startDate) {
   if (!startDate) return ''
@@ -36,16 +35,14 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
   useEffect(() => { setFilterDismissed(false) }, [bookFilter])
 
   useEffect(() => {
-    fetch(`${API_URL}/events`)
-      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    apiGet('/events')
       .then(data => setEvents(data))
       .catch(() => setError(true))
   }, [])
 
   // 성경 66권(연도 가진 것만) — 타임라인 시대순 마커. 실패해도 사건 타임라인은 유지.
   useEffect(() => {
-    fetch(`${API_URL}/books`)
-      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    apiGet('/books')
       .then(data => setBooks(data))
       .catch(() => {})
   }, [])

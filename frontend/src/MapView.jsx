@@ -2,8 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { convexHull } from './convexHull'
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+import { apiGet } from './api'
 
 const EMPTY_GEOJSON = { type: 'FeatureCollection', features: [] }
 
@@ -113,9 +112,7 @@ export default function MapView({ onSelectNode, selectedNode }) {
 
       let grouped
       try {
-        const res = await fetch(`${API_URL}/node/${placeId}/neighbors/grouped`, { signal })
-        if (!res.ok) return
-        grouped = await res.json()
+        grouped = await apiGet(`/node/${placeId}/neighbors/grouped`, { signal })
       } catch {
         return
       }
@@ -373,8 +370,7 @@ export default function MapView({ onSelectNode, selectedNode }) {
     let moveEndHandler = null
     let autoExpandTimer = null
 
-    fetch(`${API_URL}/node/${selectedNode}/places`, { signal: ctrl.signal })
-      .then((res) => res.ok ? res.json() : Promise.reject(res.status))
+    apiGet(`/node/${selectedNode}/places`, { signal: ctrl.signal })
       .then(({ label, places }) => {
         if (mapRef.current !== map) return
         setError(false)
