@@ -1,74 +1,123 @@
 ---
-last_mapped_commit: 22a678c36e40548a3d00ccf9205862505a59d9cb
+last_mapped_commit: bfc1dd258b0308435ca24c48a82c9c86a9e622f1
 mapped: 2026-06-16
 ---
 
 # STACK
 
-BibleMap의 기술 스택, 런타임, 빌드 도구, 설정, 실행 방법을 정리한다. 도메인 용어는 다루지 않는다(그건 CONTEXT.md 영역).
+BibleMap의 기술 스택, 런타임 버전, 프레임워크, 의존성, 빌드 도구, 설정 파일을 정리한다. 구현 사실만 다루며 도메인 용어는 다루지 않는다(그건 CONTEXT.md 영역).
 
-## 구성 개요
+## 전체 구성
 
-3개 컴포넌트로 나뉘며 모두 `docker-compose.yml`로 묶인다.
+- 프론트엔드: React SPA (Vite 번들), `frontend/`
+- 백엔드: FastAPI(Python) REST API, `backend/`
+- 데이터베이스: Neo4j 그래프 DB
+- 정적/프록시: nginx
+- 배포: Docker Compose 3-서비스 (neo4j / api / nginx)
+- 정적 데이터: `data/` (JSON 오버레이/주입용)
 
-- **frontend** — React SPA. 빌드 산출물(`frontend/dist/`)을 nginx가 정적 서빙.
-- **backend** — FastAPI(`api` 서비스). uvicorn으로 구동.
-- **neo4j** — 그래프 DB(`neo4j` 서비스). 데이터는 named volume에 영속.
-- **nginx** — 정적 파일 서빙 + `/api/` 리버스 프록시(`nginx` 서비스).
+## 프론트엔드
 
-## Frontend
+### 런타임/언어
+- JavaScript(ESM), `"type": "module"` — `frontend/package.json`
+- JSX (React) — `frontend/src/*.jsx`
+- TypeScript 미사용(`@types/react`만 devDependency로 존재, 타입 검사 단계 없음)
 
-- 언어/프레임워크: **React 19** (`react` ^19.2.6, `react-dom` ^19.2.6) — `frontend/package.json`.
-- 빌드 도구: **Vite 8** (`vite` ^8.0.12), 플러그인 `@vitejs/plugin-react` ^6.0.1 — `frontend/vite.config.js` (플러그인 한 줄 외 추가 설정 없음).
-- 모듈 타입: ESM (`"type": "module"`).
-- 주요 의존성:
-  - `maplibre-gl` ^5.24.0 — 지도 렌더링. `frontend/src/MapView.jsx`에서 사용.
-  - `lucide-react` ^1.17.0 — 아이콘(`frontend/src/App.jsx`에서 Map/Clock/Search/X).
-- 린트: **ESLint 10** (`eslint` ^10.3.0) + `@eslint/js`, `eslint-plugin-react-hooks` ^7.1.1, `eslint-plugin-react-refresh` — 설정은 `frontend/eslint.config.js`.
-- npm 스크립트(`frontend/package.json`): `dev`(vite 개발 서버), `build`(vite build), `lint`(eslint .), `preview`.
-- 진입점: `frontend/index.html` → `frontend/src/main.jsx` → `frontend/src/App.jsx`.
-- 소스 구조: `frontend/src/` 에 `App.jsx`, `MapView.jsx`, `TimelineView.jsx`, `SidePanel.jsx`, `api.js`, `theme.js`, `convexHull.js`, CSS 파일.
-- 색·라벨 팔레트는 `frontend/src/theme.js`로 단일화(`TYPE_COLOR`, `TYPE_KO`, `TYPE_ORDER`)되어 App/SidePanel/MapView가 import.
+### 의존성 (`frontend/package.json`)
+dependencies:
+- `react` ^19.2.6
+- `react-dom` ^19.2.6
+- `maplibre-gl` ^5.24.0 — 지도 렌더링 (`frontend/src/MapView.jsx`에서 `import maplibregl`)
+- `lucide-react` ^1.17.0 — 아이콘
 
-## Backend
+devDependencies:
+- `vite` ^8.0.12 (rolldown 기반 — `frontend/dist/assets/rolldown-runtime-*.js` 산출물 확인됨)
+- `@vitejs/plugin-react` ^6.0.1
+- `eslint` ^10.3.0, `@eslint/js` ^10.0.1
+- `eslint-plugin-react-hooks` ^7.1.1
+- `eslint-plugin-react-refresh` ^0.5.2
+- `globals` ^17.6.0
+- `@types/react` ^19.2.14, `@types/react-dom` ^19.2.3
 
-- 언어/런타임: **Python 3.12** (`backend/Dockerfile` — `python:3.12-slim`).
-- 프레임워크: **FastAPI** 0.136.3 — `backend/requirements.txt`.
-- ASGI 서버: **uvicorn** 0.49.0. 컨테이너 실행 커맨드 `uvicorn app.main:app --host 0.0.0.0 --port 8000`.
-- DB 드라이버: **neo4j** 6.2.0 (Python Bolt 드라이버).
-- 앱 진입점: `backend/app/main.py` — `FastAPI` 인스턴스 생성, CORS 미들웨어(`allow_origins=["*"]`, `allow_methods=["GET"]`), 라우터 4개 포함, `lifespan`에서 5개 라벨(Person/Place/Event/PeopleGroup/Book)의 `theographic_id` 인덱스를 멱등 생성.
-- 라우트: `backend/app/routes/nodes.py`, `events.py`, `search.py`, `books.py`. DB 드라이버는 `backend/app/db.py`의 싱글턴(`get_driver()`).
-- 데이터 적재/주입 스크립트: `backend/scripts/` — `load_theographic.py`, `load_books.py`, `inject_ko_names.py`, `inject_book_context.py`, `inject_person_traits.py`, `generate_book_context.py`, `generate_person_traits.py`. (적재·주입 출처와 동작은 INTEGRATIONS.md 참조.)
+lockfile: `frontend/package-lock.json` (lockfileVersion 3, npm)
 
-## 컨테이너 / 실행
+### 스크립트 (`frontend/package.json`)
+- `dev`: `vite`
+- `build`: `vite build` → `frontend/dist/`
+- `lint`: `eslint .`
+- `preview`: `vite preview`
 
-`docker-compose.yml` 서비스:
+### 빌드 도구 — Vite 코드 스플리팅 (`frontend/vite.config.js`)
+`build.rollupOptions.output.manualChunks(id)`로 `node_modules` 의존성을 청크 분리한다:
+- `maplibre-gl`을 포함하는 모듈 → 별도 `maplibre` 청크
+- 그 외 `node_modules` → `vendor` 청크
+- 앱 코드 → `index` 청크
 
-| 서비스 | 이미지/빌드 | 포트(호스트→컨테이너) | 비고 |
-|--------|-------------|----------------------|------|
-| `neo4j` | `neo4j:5` | `127.0.0.1:7474→7474`(HTTP 브라우저), `127.0.0.1:7687→7687`(Bolt) | `NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}`, named volume `neo4j_data:/data`, `restart: unless-stopped`. 포트는 루프백 바인딩(외부 비노출). |
-| `api` | `./backend` 빌드 | (compose 내부 8000, 외부 미노출) | env `NEO4J_URI=bolt://neo4j:7687`, `NEO4J_USER=neo4j`, `NEO4J_PASSWORD`. `./data:/app/data` 마운트. `depends_on: neo4j`. |
-| `nginx` | `nginx:alpine` | `8080→80` | `./frontend/dist:/usr/share/nginx/html:ro`, `./nginx/nginx.conf:/etc/nginx/nginx.conf:ro`. `depends_on: api`. |
+산출 확인 (`frontend/dist/assets/`): `maplibre-*.js`(~1MB), `vendor-*.js`(~190KB), `index-*.js`(~33KB), `maplibre-*.css`, `index-*.css`, `rolldown-runtime-*.js`. 대형 maplibre-gl 번들을 vendor에서 떼어내 캐싱/초기 로드를 분리하는 의도.
 
-- 외부에 노출되는 단일 진입점은 **`:8080`** (nginx). API와 정적 자산 모두 여기로 들어온다.
-- nginx 설정(`nginx/nginx.conf`): `/api/` → `http://api:8000/` 프록시, `index.html`은 no-cache, 정적 자산(js/css/이미지/폰트)은 1년 immutable 캐시, SPA fallback(`try_files $uri /index.html`).
-- API 컨테이너는 hot-reload가 아니다(빌드 이미지로 동작) — 백엔드 코드 변경 시 `docker compose ... build api` 후 재기동 필요.
+### Lint 설정 (`frontend/eslint.config.js`)
+플랫 config. `js.configs.recommended` + `reactHooks.configs.flat.recommended` + `reactRefresh.configs.vite`. `dist` 무시, 대상 `**/*.{js,jsx}`, `globals.browser`, JSX 파서 옵션.
 
-## 환경 변수 / 설정
+### HTML 엔트리 (`frontend/index.html`)
+`<div id="root">` + `<script type="module" src="/src/main.jsx">`. 진입점 `frontend/src/main.jsx`.
 
-- `NEO4J_PASSWORD` — **필수**. `docker-compose.yml`에서 `${NEO4J_PASSWORD:?...}`로 강제(미설정 시 compose 실패). `.env`(gitignore됨)에서 로드. 예시는 `.env.example`. `NEO4J_AUTH`는 compose가 `neo4j/<password>`로 자동 파생.
-- `NEO4J_URI`, `NEO4J_USER` — compose가 api 서비스에 주입(`bolt://neo4j:7687`, `neo4j`). `backend/app/db.py`의 기본값은 `bolt://localhost:7687` / `neo4j`(로컬 직접 실행용).
-- `VITE_API_URL` — 프론트 API 베이스. 프로덕션 빌드는 `frontend/.env.production`에서 `=/api`(nginx 프록시 경유). 미설정 시 코드 기본값 `http://localhost:8000`. `frontend/src/api.js`, `App.jsx`, `MapView.jsx`, `TimelineView.jsx`, `SidePanel.jsx`가 `import.meta.env.VITE_API_URL`로 읽음.
-- `ANTHROPIC_API_KEY` — `backend/scripts/generate_*.py`(콘텐츠 생성 스크립트) 실행 시에만 필요(런타임 앱에는 불필요). (상세는 INTEGRATIONS.md.)
-- `DATA_DIR` — `backend/app/routes/books.py`가 연도 추정 오버레이를 읽는 디렉터리. 기본 `/app/data`.
-- `.env`는 gitignore(`.gitignore`). 영속 forge 문서를 제외한 `.forge/` 휘발 상태도 gitignore.
+### 프론트 소스 파일 (`frontend/src/`)
+- `main.jsx` — 엔트리
+- `App.jsx` — 루트 컴포넌트(검색 포함)
+- `MapView.jsx` — maplibre 지도
+- `SidePanel.jsx` — 상세 패널
+- `TimelineView.jsx` — 타임라인
+- `api.js` — 공유 API 클라이언트(베이스 URL + GET 헬퍼)
+- `theme.js` — 타입별 색/한글 라벨 팔레트(공유)
+- `convexHull.js` — 지도 영역 헐 계산
+- `index.css` — 전역 스타일
+- `assets/` — 이미지(hero.png 등)
 
-## 빌드 / 배포
+## 백엔드
 
-- 배포 스크립트: `deploy.sh` — (1) `frontend`에서 `npm install` + `npm run build`, (2) `docker compose -p biblemap build api`, (3) `docker compose -p biblemap up -d api nginx`, (4) `inject_ko_names.py`를 Neo4j 준비될 때까지 최대 15회 재시도하며 한글 이름 주입. lock 파일(`/tmp/biblemap-deploy.lock`)로 중복 실행 방지, 로그는 `~/Library/Logs/com.biblemap.deploy.log`.
-- CI/CD: `.github/workflows/deploy.yml` — `main` push 시 `self-hosted` 러너에서 `git reset --hard origin/main` 후 `bash deploy.sh`.
-- 로컬 개발 실행 설정: `.claude/launch.json` — frontend 개발 서버(`npm --prefix frontend run dev`, port 5173).
+### 런타임/언어
+- Python 3.12 (`backend/Dockerfile`: `FROM python:3.12-slim`)
+- ASGI 서버: uvicorn (`uvicorn app.main:app --host 0.0.0.0 --port 8000`)
 
-## 데이터 파일
+### 의존성 (`backend/requirements.txt`)
+- `fastapi==0.136.3`
+- `neo4j==6.2.0` — Neo4j 파이썬 드라이버
+- `uvicorn==0.49.0`
 
-- `data/` 디렉터리(컨테이너에 `/app/data`로 마운트): `names_ko/`(books/people/places/events/groups.json), `book_years_approx/books.json`(연도 추정 오버레이, `books.py`가 런타임 로드), `book_context/books.json`, `character_traits/people.json`.
+참고: `anthropic` SDK는 `requirements.txt`에 없다. 데이터 생성 스크립트(`backend/scripts/generate_*.py`)에서 `import anthropic`로 쓰이며, 런타임 API가 아닌 별도 실행 도구이므로 환경에 별도 설치 가정.
+
+### 앱 구조 (`backend/app/`)
+- `main.py` — FastAPI 앱 생성, CORS 미들웨어, lifespan에서 Neo4j 인덱스 생성, 라우터 포함
+- `db.py` — Neo4j 드라이버 싱글톤(`get_driver()`)
+- `routes/nodes.py` — `/node/{id}`, `/node/{id}/places`, `/node/{id}/neighbors/grouped`
+- `routes/events.py` — `/events`
+- `routes/search.py` — `/search`
+- `routes/books.py` — `/books` (추정연도 JSON 1회 캐시 `functools.lru_cache`, DATA_DIR→레포 상대경로 폴백)
+
+### 데이터/스크립트 (`backend/scripts/`, 런타임 아님 — 적재/생성 도구)
+- `load_theographic.py` — theographic 원본 JSON을 GitHub raw에서 받아 Neo4j 적재
+- `load_books.py` — books.json 적재
+- `inject_ko_names.py` — `data/names_ko/*.json` → Neo4j nameKo 주입
+- `inject_book_context.py` — `data/book_context/books.json` 주입
+- `inject_person_traits.py` — `data/character_traits/people.json` 주입
+- `generate_book_context.py`, `generate_person_traits.py` — Anthropic API로 생성(모델 `claude-haiku-4-5-20251001`, max_tokens 512)
+
+## 정적 데이터 (`data/`)
+- `data/book_years_approx/books.json` — `/books` 추정연도 오버레이(백엔드가 직접 읽음)
+- `data/book_context/`, `data/character_traits/`, `data/names_ko/` — 주입 스크립트 입력
+
+## 설정 파일
+- `docker-compose.yml` — 3 서비스 정의(neo4j/api/nginx), 볼륨, 환경변수
+- `backend/Dockerfile` — API 이미지(python:3.12-slim)
+- `nginx/nginx.conf` — 정적 서빙 + `/api/` 프록시 + 캐시 헤더
+- `deploy.sh` — 빌드/재시작/한글주입 배포 스크립트
+- `.github/workflows/deploy.yml` — self-hosted runner CI(main push → deploy.sh)
+- `.env` / `.env.example` — `NEO4J_PASSWORD`(값 미기재)
+- `frontend/.env.production` — `VITE_API_URL=/api`
+- `frontend/eslint.config.js`, `frontend/vite.config.js`
+
+## 실행 방법(요약)
+- 로컬 프론트: `cd frontend && npm install && npm run dev`
+- 전체 스택: `docker compose -p biblemap up -d --build`(`NEO4J_PASSWORD` 필요)
+- 백엔드는 hot-reload 아님 — 변경 후 `docker compose up -d --build api` 재빌드 필요
+- 외부 포트: nginx `8080:80`(공개), neo4j는 `127.0.0.1`로만 바인딩(7474/7687)

@@ -1,105 +1,56 @@
 ---
-last_mapped_commit: 22a678c36e40548a3d00ccf9205862505a59d9cb
+last_mapped_commit: bfc1dd258b0308435ca24c48a82c9c86a9e622f1
 mapped: 2026-06-16
 ---
 
-# Testing Patterns
+# TESTING
 
-## 자동화 테스트 현황 — 없음
+## 요약: 자동화 테스트 없음
 
-이 프로젝트에는 **자동화된 테스트 스위트가 존재하지 않는다.** 사실 그대로:
+이 레포에는 **자동화 테스트가 전혀 없다.** 다음을 모두 확인했다.
 
-- **프론트엔드(`frontend/`):** vitest / jest / @testing-library 등 테스트 프레임워크 미설치. `frontend/package.json`의 `scripts`는 `dev`, `build`, `lint`, `preview` 4개뿐 — `test` 스크립트 없음.
-- **백엔드(`backend/`):** `backend/requirements.txt`는 `fastapi`, `neo4j`, `uvicorn` 3개뿐 — pytest/httpx 등 테스트 의존성 없음.
-- **테스트 파일 없음:** `*.test.*`, `*.spec.*`, `test_*.py`, `conftest.py`, `__tests__/`, `tests/` 어느 것도 존재하지 않는다(`node_modules` 제외).
-- **CI에 테스트 단계 없음:** `.github/workflows/deploy.yml`은 push→배포만 수행하고 테스트를 돌리지 않는다.
+- 테스트 파일 없음 — `*test*`, `*spec*`, `*.test.js(x)`, `conftest.py`, `pytest.ini` 검색 결과 0건.
+- 프론트엔드 테스트 의존성 없음 — `frontend/package.json`에 vitest/jest/testing-library/playwright/cypress 없음. `scripts`는 `dev`/`build`/`lint`/`preview`뿐, `test` 스크립트 없음.
+- 백엔드 테스트 의존성 없음 — `backend/requirements.txt`는 `fastapi`, `neo4j`, `uvicorn` 3개뿐(pytest/unittest 도구 없음).
+- 테스트 디렉터리(`tests/`, `__tests__/`) 없음.
 
-**E2E:** Python Playwright가 호스트(`/opt/homebrew`)에 설치돼 있으나 프로젝트 의존성이 아니다. 리포 내 Playwright 설정 파일·고정 스크립트 없음.
+따라서 모킹 프레임워크·픽스처·커버리지 측정 도구도 없다. 품질 보증은 아래의 정적 검사·수동 검증·배포 게이트로 이뤄진다.
 
-## 실제 검증 방식
+## 1. 정적 검사 (자동화된 유일한 게이트)
 
-모든 검증은 수동(lint + build + 브라우저/Playwright UAT)으로 이뤄진다.
+- **프론트엔드 ESLint.** `cd frontend && npm run lint`(= `eslint .`, 설정 `frontend/eslint.config.js`). `eslint-plugin-react-hooks` v7의 set-state-in-effect 규칙이 비동기 외 effect setState를 잡는다. 현재 **lint-clean(exit 0)** 이며, 커밋 본문에 "npm run lint exit 0"을 검증 근거로 적는다.
+- 백엔드에는 린터/타입체커 설정 파일이 없다.
 
-### 1. 린트 (유일한 자동 게이트)
+## 2. 빌드 검증
 
-프론트엔드 ESLint만 구성돼 있다.
+- 프론트엔드: `cd frontend && npm run build`(Vite). 번들은 `frontend/dist/`. `frontend/vite.config.js`의 `manualChunks`로 `maplibre-gl`을 `maplibre` 청크, 그 외 `node_modules`를 `vendor` 청크로 분리.
+- 백엔드: `backend/Dockerfile`(`python:3.12-slim`)로 이미지 빌드. **hot-reload가 아니므로** 로컬에서 백엔드 변경을 검증하려면 재빌드해야 한다: `docker compose up -d --build api`(자동배포는 매번 재빌드함).
 
-```bash
-cd frontend && npm run lint     # eslint . — 전체 검사
-```
+## 3. 수동/화면 검증 (실제 검증 수단)
 
-- Config: `frontend/eslint.config.js` (flat config)
-- 대상 `**/*.{js,jsx}`, 무시 `dist/`
-- 주요 규칙: `eslint-plugin-react-hooks` v7 (`react-hooks/set-state-in-effect`, exhaustive-deps), `eslint-plugin-react-refresh`
-- 포맷터(prettier/biome) 없음. 백엔드 linter/type-checker 없음.
+- 기능 검증은 **수동 UAT**로 한다. 커밋 본문에 "UAT 통과", 코드 주석에 "task N에서 어긋났던 지점" 같은 회고 기반 검증 메모가 남아 있다(자동 회귀 테스트 대신 주석으로 함정을 고정).
+- **Playwright 화면 테스트(프로젝트 운영 관행).** UI 동작 검증 시 Python Playwright(`/opt/homebrew` 설치)로 `localhost:8080`(nginx)을 띄워 네트워크 캡처 + 스크린샷 패턴으로 확인한다. 단, 이 스크립트들은 레포에 커밋돼 있지 않다(애드혹 검증 도구).
+- 로컬 개발 실행 절차는 `README.md` 참조: Neo4j(`docker compose up -d`) → 데이터 적재(`backend/scripts/load_theographic.py`, `inject_ko_names.py`) → API(`python3 -m uvicorn backend.app.main:app --reload`) → 프론트(`cd frontend && npm run dev`).
 
-### 2. 빌드
+## 4. 배포 게이트 (사실상의 통합 체크)
 
-```bash
-cd frontend && npm run build    # vite build → frontend/dist/
-```
+자동 테스트가 없는 대신, 배포 파이프라인 자체가 통합 검증 역할을 한다.
 
-배포 파이프라인(`deploy.sh`)도 `npm install && npm run build`를 거치므로, 빌드 실패는 곧 배포 실패다.
+- `main` push → GitHub Actions(`.github/workflows/deploy.yml`, self-hosted) → `git reset --hard origin/main` 후 `bash deploy.sh`.
+- `deploy.sh` 단계: (1) 프론트 `npm install` + `npm run build` → `frontend/dist/`, (2) `docker compose -p biblemap build api`, (3) `docker compose -p biblemap up -d api nginx`, (4) **한글 이름 주입 게이트** — `inject_ko_names.py`를 Neo4j 준비될 때까지 최대 15회(2초 간격) 재시도, 15회 후에도 실패하면 `exit 1`로 배포 중단. 이 주입 성공이 배포 성공의 사실상 헬스체크다.
+- compose 서비스(`docker-compose.yml`): `neo4j`(:7474/:7687, localhost 바인딩), `api`(FastAPI, `./data:/app/data` 볼륨), `nginx`(:8080→80, `frontend/dist`와 `nginx/nginx.conf` 마운트).
 
-### 3. 로컬 실행
+## 5. 자동 테스트를 추가한다면
 
-```bash
-# 프론트엔드 (Vite dev, hot-reload O)
-cd frontend && npm run dev               # localhost:5173
+- 백엔드 라우트(`backend/app/routes/*.py`)는 Neo4j 드라이버를 `backend/app/db.py`의 `get_driver()` 싱글톤으로만 잡으므로, 이 함수를 모킹하거나 테스트용 Neo4j에 연결해 `fastapi.testclient.TestClient`로 테스트하기 쉬운 구조다.
+- 순수 함수 `frontend/src/convexHull.js`(Graham scan)는 외부 의존이 없어 단위 테스트 후보로 가장 명확하다.
 
-# 백엔드 (Docker, hot-reload 없음 — 코드 변경 시 반드시 재빌드)
-docker compose up -d --build api
-```
+## 관련 파일
 
-> 백엔드는 hot-reload가 아니다. `backend/app/**` 변경 후에는 `docker compose up -d --build api`로 이미지를 다시 빌드해야 반영된다(자동배포는 재빌드함).
-
-### 4. 프로덕션 배포 검증
-
-- `main`에 push → `.github/workflows/deploy.yml`(self-hosted)이 `git reset --hard origin/main` 후 `deploy.sh` 실행
-- `deploy.sh`: frontend 빌드 → `docker compose build api` → `up -d api nginx` → 한글 이름 주입(`inject_ko_names.py`, Neo4j 준비까지 최대 15회 재시도)
-- 배포 후 `localhost:8080`(nginx) 브라우저 직접 확인
-
-### 5. Playwright 임시 UAT (ad-hoc)
-
-재사용 가능한 고정 스크립트는 없다. 메모리 기록 패턴(`feedback_playwright_testing.md`): `localhost:8080` 대상, 네트워크 캡처 + 스크린샷으로 1회성 검증.
-
-```python
-# 임시 검증 예시 패턴 (리포에 고정 파일 없음)
-from playwright.sync_api import sync_playwright
-with sync_playwright() as p:
-    page = p.chromium.launch().new_page()
-    page.goto('http://localhost:8080')
-    page.screenshot(path='screenshot.png')
-```
-
-## 변경 시 권장 검증 순서
-
-1. `cd frontend && npm run lint` — ESLint 통과(특히 `react-hooks/set-state-in-effect` 위반 여부)
-2. 백엔드 변경 시 `docker compose up -d --build api` — 재빌드(hot-reload 아님)
-3. `localhost:5173`(dev) 또는 `localhost:8080`(배포본)에서 직접 동작 확인
-4. 필요 시 Playwright 임시 스크립트로 네트워크 요청/화면 캡처
-
-## 커버리지
-
-**요구 수준 없음** — 측정 도구·기준 미정의.
-
-## 향후 테스트 도입 시 진입점
-
-**프론트엔드(의존성 없는 순수 함수가 1순위):**
-- `frontend/src/convexHull.js` — `convexHull(points)` 순수 함수. 입출력이 `{lng,lat}` 배열로 단순, 외부 의존성 0. 단위 테스트 최적.
-- `frontend/src/theme.js` — `typeColor`, `typeKo` 순수 함수.
-- `frontend/src/api.js` — `apiGet` fetch 래퍼. fetch 모킹으로 테스트 가능(현재 미사용이므로 도입 시 호출부 통일도 함께 검토).
-
-**백엔드(Neo4j 세션 모킹 필요):**
-- `backend/app/routes/search.py` — `/search`. rank(정확>STARTS WITH>CONTAINS) 정렬과 응답 shape 검증.
-- `backend/app/routes/nodes.py` — `/node/{id}`(`neighbors`/`neighborTotal`/`properties` 포함, Book 타입의 `topPersons`/`topEvents` 추가), `/node/{id}/places`(타입별 Cypher 분기), `/node/{id}/neighbors/grouped`.
-- `backend/app/routes/books.py` — 추정연도 오버레이(`yearApprox`, 연도 없는 책 제외) 로직.
-
-**핵심 시나리오:**
-- Person 선택 시 hull polygon이 장소 3개 이상에서만 표시(`MapView.jsx`)
-- Book 노드 응답에 `topPersons`/`topEvents` 포함, 비-Book엔 미포함
-- `Person.traits` JSON 파싱 실패 시 빈 배열 폴백(`nodes.py`)
-- 검색 debounce(250ms)·연속 입력 시 직전 요청 abort(`App.jsx`)
-- stale 응답 가드: `state.id === nodeId`로 이전 노드 응답 무시(`SidePanel.jsx`)
-- `collapsed` 토글: `undefined`→`false`→`undefined` 순환, trait 원문 lazy-fetch는 `verse_ref` 키로 1회만
-- `books.py`/`events.py` 응답의 `Cache-Control: no-store` 헤더
+- `frontend/package.json` / `frontend/eslint.config.js` — 린트만 있음(테스트 스크립트 없음).
+- `backend/requirements.txt` — 런타임 의존만(테스트 도구 없음).
+- `frontend/vite.config.js` — 빌드 청크 분리.
+- `backend/Dockerfile` — 백엔드 이미지(hot-reload 아님 → 재빌드 필요).
+- `deploy.sh` / `.github/workflows/deploy.yml` — 배포 게이트(한글 주입 재시도가 헬스체크).
+- `docker-compose.yml` — 로컬·프로덕션 서비스 구성.
+- `README.md` — 로컬 실행 절차.
