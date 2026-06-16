@@ -30,6 +30,8 @@ def main():
             "background": ctx.get("background", ""),
             "themes": ctx.get("themes", []),
             "keyVerse": ctx.get("keyVerse", ""),
+            "keyVerseTextKo": ctx.get("keyVerseTextKo"),
+            "keyVerseTextEn": ctx.get("keyVerseTextEn"),
         })
 
     driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
@@ -38,9 +40,11 @@ def main():
             """
             UNWIND $rows AS row
             MATCH (b:Book {theographic_id: row.theographic_id})
-            SET b.background = row.background,
-                b.themes     = row.themes,
-                b.keyVerse   = row.keyVerse
+            SET b.background     = row.background,
+                b.themes         = row.themes,
+                b.keyVerse       = row.keyVerse,
+                b.keyVerseTextKo = row.keyVerseTextKo,
+                b.keyVerseTextEn = row.keyVerseTextEn
             """,
             rows=rows,
         )

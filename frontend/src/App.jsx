@@ -31,6 +31,8 @@ function App() {
   const [typeFilter, setTypeFilter] = useState(null)
   const [isMobile, setIsMobile] = useState(() => window.matchMedia(MOBILE_QUERY).matches)
   const [history, setHistory] = useState([])
+  // 절 본문 표시 언어('ko'|'en', 기본 ko) — 타임라인·SidePanel 공유. 한 곳에서 바꾸면 다른 곳도 전환.
+  const [verseLang, setVerseLang] = useState('ko')
   const selectedNodeRef = useRef(null)
   const searchBoxRef = useRef(null)
   const resultRefs = useRef([])
@@ -314,6 +316,8 @@ function App() {
             onSelectNode={selectNode}
             selectedNode={selectedNode}
             bookFilter={selectedNodeMeta?.label === 'Book' ? selectedNodeMeta : null}
+            verseLang={verseLang}
+            setVerseLang={setVerseLang}
           />
         )}
       </div>
@@ -344,7 +348,7 @@ function App() {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}
           >×</button>
-          <SidePanel nodeId={selectedNode} onSelectNode={selectNode} onBack={goBack} canGoBack={history.length > 0} onNodeLoaded={handleNodeLoaded} />
+          <SidePanel nodeId={selectedNode} onSelectNode={selectNode} onBack={goBack} canGoBack={history.length > 0} onNodeLoaded={handleNodeLoaded} verseLang={verseLang} setVerseLang={setVerseLang} />
         </div>
 
     </div>

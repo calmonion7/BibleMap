@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { TYPE_COLOR, TYPE_KO } from './theme'
 import { apiGet } from './api'
-import { fetchChapter } from './getbible'
+import VerseLangTabs from './VerseLangTabs'
 
 const REL_KO = {
   PARENT_OF: '부모',
@@ -19,44 +19,6 @@ const TYPE_ORDER = ['Person', 'Place', 'Event', 'PeopleGroup', 'Unknown']
 
 function typeOf(label) {
   return TYPE_COLOR[label] ? label : 'Unknown'
-}
-
-// 외부 한국어 성경 API로 구절 텍스트 fetch. 실패 시 null 반환.
-// 장(chapter) JSON을 받아 verses[]에서 해당 절을 찾는다(getbible.js fetchChapter로 장 캐시 공유).
-async function fetchVerseText(bookOrder, chapter, verse) {
-  const d = await fetchChapter(bookOrder, chapter)
-  return d?.verses?.find(v => v.verse === verse)?.text || null
-}
-
-// "창 1:1" 형태에서 chapter, verse 추출. 범위(6:4-5)는 첫 절만 사용.
-function parseVerseRef(ref) {
-  if (!ref) return null
-  const m = ref.match(/(\d+):(\d+)/)
-  if (!m) return null
-  return { chapter: parseInt(m[1]), verse: parseInt(m[2]) }
-}
-
-// 개역 약어 → getbible 책 번호(canonical 1~66). trait verse_ref 원문 fetch용.
-const BOOK_ABBR_ORDER = {
-  '창': 1, '출': 2, '레': 3, '민': 4, '신': 5, '수': 6, '삿': 7, '룻': 8,
-  '삼상': 9, '삼하': 10, '왕상': 11, '왕하': 12, '대상': 13, '대하': 14, '스': 15, '느': 16,
-  '에': 17, '욥': 18, '시': 19, '잠': 20, '전': 21, '아': 22, '사': 23, '렘': 24,
-  '애': 25, '겔': 26, '단': 27, '호': 28, '욜': 29, '암': 30, '옵': 31, '욘': 32,
-  '미': 33, '나': 34, '합': 35, '습': 36, '학': 37, '슥': 38, '말': 39, '마': 40,
-  '막': 41, '눅': 42, '요': 43, '행': 44, '롬': 45, '고전': 46, '고후': 47, '갈': 48,
-  '엡': 49, '빌': 50, '골': 51, '살전': 52, '살후': 53, '딤전': 54, '딤후': 55, '딛': 56,
-  '몬': 57, '히': 58, '약': 59, '벧전': 60, '벧후': 61, '요일': 62, '요이': 63, '요삼': 64,
-  '유': 65, '계': 66,
-}
-
-// "창 15:6" / "창 6:4-5"에서 책 약어 + chapter + 첫 verse를 bookOrder로 해석. 매핑 불가 시 null.
-function resolveVerseRef(ref) {
-  if (!ref) return null
-  const m = ref.match(/^\s*([^\d\s]+)\s*(\d+):(\d+)/)
-  if (!m) return null
-  const bookOrder = BOOK_ABBR_ORDER[m[1]]
-  if (!bookOrder) return null
-  return { bookOrder, chapter: parseInt(m[2]), verse: parseInt(m[3]) }
 }
 
 // collapsed[key] !== false → 접힘(기본), false → 펼침
@@ -79,15 +41,11 @@ function SectionHeader({ label, color, count, sectionKey, collapsed, onToggle })
   )
 }
 
-function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, onNodeLoaded }) {
+function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, onNodeLoaded, verseLang, setVerseLang }) {
   // 어느 nodeId의 결과인지 id로 추적 — loading은 파생, stale 응답은 무시.
   // setState는 비동기 콜백에서만 호출(react-hooks set-state-in-effect 준수).
   const [state, setState] = useState({ id: null, node: null, error: null })
-  // keyVerse는 어느 nodeId의 결과인지 id로 묶어 stale 표시를 방지(동기 reset 불필요).
-  const [keyVerseState, setKeyVerseState] = useState({ id: null, text: null })
   const [collapsed, setCollapsed] = useState({})
-  // trait 원문 캐시 — verse_ref로 키잉(노드 무관, 동일 구절 재fetch 방지·stale 안전). { ref: { status, text } }
-  const [traitVerses, setTraitVerses] = useState({})
 
   useEffect(() => {
     if (!nodeId) return
@@ -98,27 +56,9 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     return () => { cancelled = true }
   }, [nodeId, onNodeLoaded])
 
-  // Book keyVerse 텍스트 외부 API fetch (결과를 nodeId로 묶어 저장 — 렌더에서 현재 노드일 때만 사용)
-  useEffect(() => {
-    const node = state.id === nodeId ? state.node : null
-    if (!node || node.label !== 'Book') return
-    const bookOrder = node.properties?.bookOrder
-    const keyVerse = node.properties?.keyVerse
-    if (!bookOrder || !keyVerse) return
-    const parsed = parseVerseRef(keyVerse)
-    if (!parsed) return
-    let cancelled = false
-    fetchVerseText(bookOrder, parsed.chapter, parsed.verse).then(text => {
-      if (!cancelled) setKeyVerseState({ id: nodeId, text })
-    })
-    return () => { cancelled = true }
-  }, [state, nodeId])
-
   const ready = state.id === nodeId
   const node = ready ? state.node : null
   const error = ready ? state.error : null
-  // 현재 노드의 keyVerse만 사용(이전 Book의 stale 텍스트 무시)
-  const keyVerseText = keyVerseState.id === nodeId ? keyVerseState.text : null
 
   const msgStyle = { padding: '1.25rem', fontSize: 14, color: '#7c8db0' }
   if (!nodeId) return <p style={msgStyle}>지도에서 마커를 클릭하세요</p>
@@ -139,26 +79,13 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     TYPE_KO[node.label] || node.label,
   ].filter(Boolean).join(' · ')
   const headColor = TYPE_COLOR[typeOf(node.label)]
+  // 대표 구절 본문 — 빌드타임 미리저장 필드(keyVerseTextKo/En)를 verseLang으로 선택(ADR-0003).
+  const keyVerseText = node.label === 'Book'
+    ? (verseLang === 'ko' ? node.properties.keyVerseTextKo : node.properties.keyVerseTextEn)
+    : null
 
   function toggle(key) {
     setCollapsed(prev => ({ ...prev, [key]: prev[key] === false }))
-  }
-
-  // trait 원문 펼침/접힘 + 펼칠 때 lazy fetch(미캐시 시 1회).
-  function toggleTraitVerse(i, ref) {
-    const key = 'trait-' + i
-    const opening = collapsed[key] !== false
-    toggle(key)
-    if (!opening || !ref || traitVerses[ref] !== undefined) return
-    const parsed = resolveVerseRef(ref)
-    if (!parsed) {
-      setTraitVerses(prev => ({ ...prev, [ref]: { status: 'error' } }))
-      return
-    }
-    setTraitVerses(prev => ({ ...prev, [ref]: { status: 'loading' } }))
-    fetchVerseText(parsed.bookOrder, parsed.chapter, parsed.verse).then(text => {
-      setTraitVerses(prev => ({ ...prev, [ref]: text ? { status: 'done', text } : { status: 'error' } }))
-    })
   }
 
   return (
@@ -192,13 +119,16 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
           margin: '12px 12px 0', padding: '12px', borderRadius: 8,
           background: '#f8faff', border: '1px solid #e8ecf8',
         }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: TYPE_COLOR.Person, marginBottom: 10 }}>
-            인물 성품
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: 10 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: TYPE_COLOR.Person }}>인물 성품</div>
+            <span style={{ marginLeft: 'auto' }}>
+              <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} color={TYPE_COLOR.Person} />
+            </span>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {node.properties.traits.map((t, i) => {
               const open = collapsed['trait-' + i] === false
-              const v = traitVerses[t.verse_ref]
+              const verseText = verseLang === 'ko' ? t.verse_textKo : t.verse_textEn
               return (
               <div key={i}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 3 }}>
@@ -207,7 +137,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                     background: 'rgba(124,156,252,0.12)', borderRadius: 4, padding: '2px 8px',
                   }}>{t.trait}</span>
                   <button
-                    onClick={() => toggleTraitVerse(i, t.verse_ref)}
+                    onClick={() => toggle('trait-' + i)}
                     style={{
                       display: 'inline-flex', alignItems: 'center', gap: 3,
                       border: 'none', background: 'none', cursor: 'pointer', padding: 0,
@@ -225,11 +155,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                     borderLeft: `3px solid ${TYPE_COLOR.Person}`, borderRadius: 6,
                     fontSize: 12, color: '#374151', lineHeight: 1.5,
                   }}>
-                    {v?.status === 'done'
-                      ? v.text
-                      : <span style={{ color: '#9aa5b8' }}>
-                          {v?.status === 'loading' ? '불러오는 중…' : '원문을 불러오지 못했습니다'}
-                        </span>}
+                    {verseText || <span style={{ color: '#9aa5b8' }}>원문이 없습니다</span>}
                   </div>
                 )}
               </div>
@@ -291,8 +217,13 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                   padding: '10px 12px', background: '#f5f3ff', borderRadius: 8,
                   borderLeft: '3px solid #a78bfa', marginBottom: 4,
                 }}>
-                  <div style={{ fontSize: 12, fontWeight: 600, color: '#6d28d9', marginBottom: keyVerseText ? 4 : 0 }}>
-                    {node.properties.keyVerse}
+                  <div style={{ display: 'flex', alignItems: 'center', marginBottom: keyVerseText ? 4 : 0 }}>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: '#6d28d9' }}>
+                      {node.properties.keyVerse}
+                    </div>
+                    <span style={{ marginLeft: 'auto' }}>
+                      <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} color="#a78bfa" />
+                    </span>
                   </div>
                   {keyVerseText && (
                     <div style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{keyVerseText}</div>

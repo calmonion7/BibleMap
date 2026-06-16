@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { BookOpen } from 'lucide-react'
 import { SELECT_HL } from './theme'
 import { apiGet } from './api'
-import { fetchChapter } from './getbible'
+import VerseLangTabs from './VerseLangTabs'
 
 const BOOK_COLOR = '#a78bfa'
 
@@ -25,7 +25,7 @@ function parseYear(startDate) {
   return 'AD ' + year
 }
 
-function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
+function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVerseLang }) {
   const [events, setEvents] = useState([])
   const [books, setBooks] = useState([])
   const [error, setError] = useState(false)
@@ -34,9 +34,8 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
   // bookId: 선택된 권(다권이면 탭 전환). expanded: 선택 권의 절 본문을 펼쳤는지(▾).
   const [verseView, setVerseView] = useState(null)
   // 열린 사건의 /event/{id}/verses 응답 — { id, data }(id로 묶어 stale 무시, 로딩 중 data=null).
+  // 응답의 각 절에 textKo/textEn이 미리저장돼 있어 본문은 추가 fetch 없이 표시한다(ADR-0003).
   const [eventVerses, setEventVerses] = useState({ id: null, data: null })
-  // 절 본문 캐시 — `${bookOrder}/${chapter}` 키로 장 verses[]를 저장(stale 무관, 같은 장 재fetch 방지).
-  const [chapterText, setChapterText] = useState({})
   // 현재 열린 사건 id. /event/{id}/verses 응답이 늦게 와도(out-of-order) 더 최근에 연 사건의
   // 상태를 덮어쓰지 않도록, 응답 커밋 전에 이 ref와 대조한다.
   const openEventRef = useRef(null)
@@ -138,20 +137,10 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
     setVerseView(prev => prev ? { ...prev, bookId, expanded: false } : prev)
   }
 
-  // 절 본문 펼침/접힘 토글. 펼칠 때 인용된 장들을 캐시에 없는 것만 1회씩 fetch.
-  const toggleVerseText = (ovBook) => {
+  // 절 본문 펼침/접힘 토글. 본문(textKo/textEn)은 /event/{id}/verses에 미리저장돼 추가 fetch 없음.
+  const toggleVerseText = () => {
     if (!verseView) return
-    const opening = !verseView.expanded
-    setVerseView({ ...verseView, expanded: opening })
-    if (!opening || !ovBook) return
-    const chapters = [...new Set(ovBook.verses.map(v => v.chapter))]
-    for (const ch of chapters) {
-      const key = `${ovBook.bookOrder}/${ch}`
-      if (chapterText[key] !== undefined) continue
-      fetchChapter(ovBook.bookOrder, ch).then(d => {
-        setChapterText(c => ({ ...c, [key]: d?.verses || null }))
-      })
-    }
+    setVerseView({ ...verseView, expanded: !verseView.expanded })
   }
 
   const renderBookChip = (ev) => {
@@ -202,7 +191,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
           </div>
         )}
         <button
-          onClick={() => toggleVerseText(selBook)}
+          onClick={() => toggleVerseText()}
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 4,
             border: 'none', background: 'none', cursor: 'pointer', padding: 0, font: 'inherit',
@@ -214,11 +203,11 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
         </button>
         {verseView.expanded && (
           <div style={{ marginTop: 6, display: 'flex', flexDirection: 'column', gap: 5 }}>
+            <div>
+              <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} color={BOOK_COLOR} />
+            </div>
             {selBook.verses.map(v => {
-              const text = chapterText[`${selBook.bookOrder}/${v.chapter}`]
-              const body = text === undefined
-                ? '불러오는 중…'
-                : (text?.find(x => x.verse === v.verse)?.text || '원문을 불러오지 못했습니다')
+              const body = (verseLang === 'ko' ? v.textKo : v.textEn) || '원문이 없습니다'
               return (
                 <div key={v.verseID} style={{ fontSize: 12, color: '#374151', lineHeight: 1.5 }}>
                   <span style={{ fontWeight: 600, color: '#6d28d9', marginRight: 6 }}>{v.chapter}:{v.verse}</span>
