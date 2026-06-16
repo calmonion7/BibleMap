@@ -20,6 +20,8 @@ Theographic 데이터에서 `fields.status == "publish"`인 레코드. 데이터
 
 **CONTAINS_BOOK 관계 생성 방법**: `Book.verses ∩ Event.verses` 교집합. Theographic events에 scripture 직접 참조 필드가 없으므로, Book이 포함하는 구절 배열과 Event의 구절 배열의 교집합이 비어있지 않으면 `CONTAINS_BOOK` 관계를 생성한다 (`load_books.py`). 파이프라인 재실행·관계 수정 시 이 방식을 유지해야 한다.
 
+**의미**: `(Book)-[:CONTAINS_BOOK]->(Event)`는 "그 책이 그 사건을 기록한다" = **사건의 성경적 근거**를 뜻한다. 한 사건을 여러 권이 기록할 수 있다(예: 공관복음 평행 기사 → 마/막/눅). 사건의 날짜가 없는 책(서신서·시편·잠언 등)은 이 관계가 없어 사건 근거 칩으로는 등장하지 않고, 대신 추정연도 단독 마커로 배치된다(아래 "사건의 근거" 참조).
+
 ## Character Trait (인물 성품)
 
 Person 노드에 주입되는 속성 `traits` (JSON 문자열 배열). 각 항목: `{trait: "겸손", verse_ref: "민 12:3", description: "..."}`. LLM(Claude API)으로 생성 후 수동 검수, `data/character_traits/people.json` → `inject_person_traits.py`로 Neo4j 주입.
@@ -32,6 +34,10 @@ Person 노드에 주입되는 속성 `traits` (JSON 문자열 배열). 각 항�
 
 프론트엔드 전역 상태. 현재 사용자가 선택한 엔티티의 `theographic_id`와 레이블(Person/Place/Event/Book)을 담는다. MapView / TimelineView 두 뷰가 이 값을 구독해 동시에 갱신된다. (GraphView는 제거됨.)
 
+## 사건의 근거 (Scriptural Evidence)
+
+특정 Event를 기록한 성경 본문. TimelineView의 데이터 흐름은 **연도 → 사건 → 성경권 → 성경구절**이며, 마지막 두 단계가 그 사건의 근거다. 권 단계는 `CONTAINS_BOOK`(사건 ↔ 권, 한 사건에 여러 권 가능), 구절 단계는 원천 theographic `verses`에서 사건·권별로 해석한 절들(인용 범위 + 본문)이다. 타임라인은 사건을 척추로 두고 그 사건의 근거 권을 칩으로 붙여 보여준다. 단, 사건이 없는 책(`startYear` 없음 = `CONTAINS_BOOK` 미연결, 서신서·시편·잠언 등 31권)은 근거 칩이 아니라 추정연도(`book_years_approx`) 단독 마커로 표시되며, 사건이 없으므로 구절 근거 단계는 갖지 않고 클릭 시 권 개요만 보여준다.
+
 ## 탐색 관점 (Navigation Perspective)
 
 BibleMap 데이터를 바라보는 세 가지 중심 관점. 관점에 따라 같은 데이터가 다르게 시각화된다.
@@ -40,4 +46,4 @@ BibleMap 데이터를 바라보는 세 가지 중심 관점. 관점에 따라 �
 
 **장소 중심 (Place-centric)**: 특정 Place에서 발생한 Event와 그 Event에 참여한 Person들을 조회한다. 지도 마커 클릭이 이 관점의 진입점이다.
 
-**시대 중심 (Era/Timeline-centric)**: 특정 시기의 Event 흐름과 그에 연결된 Person·Place를 탐색한다. `Period`(= Event의 `PART_OF` 계층)가 이 관점의 정렬 축이 된다.
+**시대 중심 (Era/Timeline-centric)**: 특정 시기의 Event 흐름과 그에 연결된 Person·Place를 탐색한다. `Period`(= Event의 `PART_OF` 계층)가 이 관점의 정렬 축이 된다. TimelineView는 사건을 시대순으로 늘어놓고, 각 사건의 "사건의 근거"(성경권 → 구절)를 함께 보여준다.

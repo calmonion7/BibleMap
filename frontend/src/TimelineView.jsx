@@ -29,6 +29,8 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
   const [books, setBooks] = useState([])
   const [error, setError] = useState(false)
   const [openGroup, setOpenGroup] = useState(null)
+  // 다권 사건에서 근거 권 목록을 펼친 사건의 id(인라인 확장). 한 번에 하나만 펼침.
+  const [openBookList, setOpenBookList] = useState(null)
   // 어떤 bookFilter에 대해 "닫기"를 눌렀는지 식별자로 추적 — 새 필터(다른 참조)면 자동으로 다시 표시(effect 불필요).
   const [dismissedFilter, setDismissedFilter] = useState(null)
   const containerRef = useRef(null)
@@ -47,15 +49,16 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
   }, [])
 
   useEffect(() => {
-    if (openGroup === null) return
+    if (openGroup === null && openBookList === null) return
     const handler = (e) => {
       if (containerRef.current && !containerRef.current.contains(e.target)) {
         setOpenGroup(null)
+        setOpenBookList(null)
       }
     }
     document.addEventListener('click', handler)
     return () => document.removeEventListener('click', handler)
-  }, [openGroup])
+  }, [openGroup, openBookList])
 
   const groupMap = new Map()
   for (const ev of events) {
@@ -86,11 +89,62 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
   }
   const visibleGroups = groups.filter(g => inFilter(sortKeyToYear(g.sortKey)))
 
-  // 사건 그룹 + 성경 책 마커를 연도순으로 합친 통합 타임라인
+  // 사건 그룹 + 성경 책 마커를 연도순으로 합친 통합 타임라인.
+  // 단독 책 마커는 사건 없는 31권(yearApprox=true)만 — 사건 있는 35권은 단독 행 대신
+  // 각 사건의 근거 권 칩으로 표시(ADR-0002). 두 집합은 startYear 유무로 겹치지 않는다.
   const timeline = [
     ...visibleGroups.map(g => ({ kind: 'group', sortKey: g.sortKey, group: g })),
-    ...books.filter(b => inFilter(b.startYear)).map(b => ({ kind: 'book', sortKey: b.startYear, book: b })),
+    ...books.filter(b => b.yearApprox && inFilter(b.startYear)).map(b => ({ kind: 'book', sortKey: b.startYear, book: b })),
   ].sort((a, b) => a.sortKey - b.sortKey)
+
+  // 사건의 근거 권 칩. 1권: 클릭→그 권 패널. 2~4권: 클릭→첫 권 디폴트 오픈 + 권 목록 인라인 펼침,
+  // 목록의 다른 권 클릭 시 전환. (인라인 확장 — 부모 overflow/팝오버 안에서도 잘림 없음)
+  const chipBase = {
+    display: 'inline-flex', alignItems: 'center', gap: 3,
+    fontSize: 11, padding: '1px 7px', borderRadius: 999, lineHeight: 1.7,
+    border: `1px solid ${BOOK_COLOR}`, cursor: 'pointer', fontWeight: 600,
+    background: 'rgba(167,139,250,0.10)', color: '#5b21b6',
+  }
+  const renderBookChip = (ev) => {
+    const bks = ev.books || []
+    if (bks.length === 0) return null
+    const first = bks[0]
+    if (bks.length === 1) {
+      const sel = selectedNode === first.id
+      return (
+        <button
+          title={`근거: ${first.nameKo || first.name}`}
+          onClick={(e) => { e.stopPropagation(); onSelectNode && onSelectNode(first.id) }}
+          style={{ ...chipBase, marginLeft: 6, ...(sel ? { background: BOOK_COLOR, color: '#fff' } : null) }}
+        >📖 {first.nameKo || first.name}</button>
+      )
+    }
+    const expanded = openBookList === ev.id
+    const anySel = bks.some(b => b.id === selectedNode)
+    return (
+      <span style={{ display: 'inline-flex', alignItems: 'center', flexWrap: 'wrap', gap: 4, marginLeft: 6 }}>
+        <button
+          title={`근거 ${bks.length}권`}
+          onClick={(e) => {
+            e.stopPropagation()
+            if (expanded) { setOpenBookList(null) }
+            else { setOpenBookList(ev.id); onSelectNode && onSelectNode(first.id) }
+          }}
+          style={{ ...chipBase, ...(anySel ? { background: BOOK_COLOR, color: '#fff' } : null) }}
+        >📖 {first.nameKo || first.name} 외 {bks.length - 1}권 {expanded ? '▾' : '▸'}</button>
+        {expanded && bks.map(b => {
+          const sel = selectedNode === b.id
+          return (
+            <button
+              key={b.id}
+              onClick={(e) => { e.stopPropagation(); onSelectNode && onSelectNode(b.id) }}
+              style={{ ...chipBase, background: sel ? BOOK_COLOR : '#fff', color: sel ? '#fff' : '#5b21b6' }}
+            >{b.nameKo || b.name}</button>
+          )
+        })}
+      </span>
+    )
+  }
 
   if (error) {
     return (
@@ -187,6 +241,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
               >
                 {rep.nameKo || rep.title}
               </span>
+              {renderBookChip(rep)}
               {!isSingle && (
                 <button
                   style={{ fontSize: '11px', color: '#4a90d9', marginLeft: '8px', cursor: 'pointer', background: 'none', border: 'none', padding: '0' }}
@@ -219,10 +274,13 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
                   {members.map(ev => (
                     <div
                       key={ev.id}
-                      style={{ padding: '4px 12px', fontSize: '13px', cursor: 'pointer', color: '#222' }}
-                      onClick={() => { onSelectNode && onSelectNode(ev.id); setOpenGroup(null) }}
+                      style={{ padding: '4px 12px', fontSize: '13px', color: '#222', display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}
                     >
-                      {ev.nameKo || ev.title}
+                      <span
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => { onSelectNode && onSelectNode(ev.id); setOpenGroup(null) }}
+                      >{ev.nameKo || ev.title}</span>
+                      {renderBookChip(ev)}
                     </div>
                   ))}
                 </div>
