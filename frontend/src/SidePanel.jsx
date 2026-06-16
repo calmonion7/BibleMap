@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { TYPE_COLOR, TYPE_KO } from './theme'
 import { apiGet } from './api'
+import { fetchChapter } from './getbible'
 
 const REL_KO = {
   PARENT_OF: '부모',
@@ -21,17 +22,10 @@ function typeOf(label) {
 }
 
 // 외부 한국어 성경 API로 구절 텍스트 fetch. 실패 시 null 반환.
-// getbible v2는 절 단위 엔드포인트가 없어, 장(chapter) JSON을 받아 verses[]에서 해당 절을 찾는다.
+// 장(chapter) JSON을 받아 verses[]에서 해당 절을 찾는다(getbible.js fetchChapter로 장 캐시 공유).
 async function fetchVerseText(bookOrder, chapter, verse) {
-  try {
-    const url = `https://api.getbible.net/v2/korean/${bookOrder}/${chapter}.json`
-    const r = await fetch(url)
-    if (!r.ok) return null
-    const d = await r.json()
-    return d.verses?.find(v => v.verse === verse)?.text || null
-  } catch {
-    return null
-  }
+  const d = await fetchChapter(bookOrder, chapter)
+  return d?.verses?.find(v => v.verse === verse)?.text || null
 }
 
 // "창 1:1" 형태에서 chapter, verse 추출. 범위(6:4-5)는 첫 절만 사용.

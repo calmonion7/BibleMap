@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { BookOpen } from 'lucide-react'
 import { SELECT_HL } from './theme'
 import { apiGet } from './api'
+import { fetchChapter } from './getbible'
 
 const BOOK_COLOR = '#a78bfa'
 
@@ -29,8 +30,16 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
   const [books, setBooks] = useState([])
   const [error, setError] = useState(false)
   const [openGroup, setOpenGroup] = useState(null)
-  // 다권 사건에서 근거 권 목록을 펼친 사건의 id(인라인 확장). 한 번에 하나만 펼침.
-  const [openBookList, setOpenBookList] = useState(null)
+  // 근거 구절 인라인 뷰를 펼친 사건 — { eventId, bookId, expanded } (한 번에 하나만).
+  // bookId: 선택된 권(다권이면 탭 전환). expanded: 선택 권의 절 본문을 펼쳤는지(▾).
+  const [verseView, setVerseView] = useState(null)
+  // 열린 사건의 /event/{id}/verses 응답 — { id, data }(id로 묶어 stale 무시, 로딩 중 data=null).
+  const [eventVerses, setEventVerses] = useState({ id: null, data: null })
+  // 절 본문 캐시 — `${bookOrder}/${chapter}` 키로 장 verses[]를 저장(stale 무관, 같은 장 재fetch 방지).
+  const [chapterText, setChapterText] = useState({})
+  // 현재 열린 사건 id. /event/{id}/verses 응답이 늦게 와도(out-of-order) 더 최근에 연 사건의
+  // 상태를 덮어쓰지 않도록, 응답 커밋 전에 이 ref와 대조한다.
+  const openEventRef = useRef(null)
   // 어떤 bookFilter에 대해 "닫기"를 눌렀는지 식별자로 추적 — 새 필터(다른 참조)면 자동으로 다시 표시(effect 불필요).
   const [dismissedFilter, setDismissedFilter] = useState(null)
   const containerRef = useRef(null)
@@ -49,16 +58,16 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
   }, [])
 
   useEffect(() => {
-    if (openGroup === null && openBookList === null) return
+    if (openGroup === null && verseView === null) return
     const handler = (e) => {
       if (containerRef.current && !containerRef.current.contains(e.target)) {
         setOpenGroup(null)
-        setOpenBookList(null)
+        setVerseView(null)
       }
     }
     document.addEventListener('click', handler)
     return () => document.removeEventListener('click', handler)
-  }, [openGroup, openBookList])
+  }, [openGroup, verseView])
 
   const groupMap = new Map()
   for (const ev of events) {
@@ -97,52 +106,129 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
     ...books.filter(b => b.yearApprox && inFilter(b.startYear)).map(b => ({ kind: 'book', sortKey: b.startYear, book: b })),
   ].sort((a, b) => a.sortKey - b.sortKey)
 
-  // 사건의 근거 권 칩. 1권: 클릭→그 권 패널. 2~4권: 클릭→첫 권 디폴트 오픈 + 권 목록 인라인 펼침,
-  // 목록의 다른 권 클릭 시 전환. (인라인 확장 — 부모 overflow/팝오버 안에서도 잘림 없음)
+  // 사건의 근거 권 칩. 클릭 → 그 사건 아래 인라인 구절 뷰 토글(권 선택 → 인용범위 → 절 본문).
+  // 한 번에 한 사건만 펼침. (인라인 확장 — 플로팅 nav 바에 가리지 않게 absolute 팝오버 금지)
   const chipBase = {
     display: 'inline-flex', alignItems: 'center', gap: 3,
     fontSize: 11, padding: '1px 7px', borderRadius: 999, lineHeight: 1.7,
     border: `1px solid ${BOOK_COLOR}`, cursor: 'pointer', fontWeight: 600,
     background: 'rgba(167,139,250,0.10)', color: '#5b21b6',
   }
+  const verseBoxStyle = {
+    margin: '4px 0 6px 104px', padding: '8px 12px',
+    background: '#f5f3ff', borderLeft: `3px solid ${BOOK_COLOR}`, borderRadius: 6,
+    fontSize: 12,
+  }
+
+  // 사건의 인라인 구절 뷰 토글. 열 때 첫 권 선택 + /event/{id}/verses 1회 fetch(id로 묶어 stale 무시).
+  const toggleVerseView = (ev) => {
+    const bks = ev.books || []
+    if (bks.length === 0) return
+    if (verseView && verseView.eventId === ev.id) { setVerseView(null); openEventRef.current = null; return }
+    openEventRef.current = ev.id
+    setVerseView({ eventId: ev.id, bookId: bks[0].id, expanded: false })
+    setEventVerses({ id: ev.id, data: null })
+    apiGet('/event/' + ev.id + '/verses')
+      .then(data => { if (openEventRef.current === ev.id) setEventVerses({ id: ev.id, data }) })
+      .catch(() => { if (openEventRef.current === ev.id) setEventVerses({ id: ev.id, data: { books: [] } }) })
+  }
+
+  // 다권 사건에서 권 탭 전환(절 본문 펼침은 초기화).
+  const selectVerseBook = (bookId) => {
+    setVerseView(prev => prev ? { ...prev, bookId, expanded: false } : prev)
+  }
+
+  // 절 본문 펼침/접힘 토글. 펼칠 때 인용된 장들을 캐시에 없는 것만 1회씩 fetch.
+  const toggleVerseText = (ovBook) => {
+    if (!verseView) return
+    const opening = !verseView.expanded
+    setVerseView({ ...verseView, expanded: opening })
+    if (!opening || !ovBook) return
+    const chapters = [...new Set(ovBook.verses.map(v => v.chapter))]
+    for (const ch of chapters) {
+      const key = `${ovBook.bookOrder}/${ch}`
+      if (chapterText[key] !== undefined) continue
+      fetchChapter(ovBook.bookOrder, ch).then(d => {
+        setChapterText(c => ({ ...c, [key]: d?.verses || null }))
+      })
+    }
+  }
+
   const renderBookChip = (ev) => {
     const bks = ev.books || []
     if (bks.length === 0) return null
     const first = bks[0]
-    if (bks.length === 1) {
-      const sel = selectedNode === first.id
-      return (
-        <button
-          title={`근거: ${first.nameKo || first.name}`}
-          onClick={(e) => { e.stopPropagation(); onSelectNode && onSelectNode(first.id) }}
-          style={{ ...chipBase, marginLeft: 6, ...(sel ? { background: BOOK_COLOR, color: '#fff' } : null) }}
-        >📖 {first.nameKo || first.name}</button>
-      )
-    }
-    const expanded = openBookList === ev.id
-    const anySel = bks.some(b => b.id === selectedNode)
+    const open = verseView != null && verseView.eventId === ev.id
+    const label = bks.length === 1
+      ? first.nameKo || first.name
+      : `${first.nameKo || first.name} 외 ${bks.length - 1}권`
     return (
-      <span style={{ display: 'inline-flex', alignItems: 'center', flexWrap: 'wrap', gap: 4, marginLeft: 6 }}>
+      <button
+        title={bks.length === 1 ? `근거: ${first.nameKo || first.name}` : `근거 ${bks.length}권`}
+        onClick={(e) => { e.stopPropagation(); toggleVerseView(ev) }}
+        style={{ ...chipBase, marginLeft: 6, ...(open ? { background: BOOK_COLOR, color: '#fff' } : null) }}
+      >📖 {label} {open ? '▾' : '▸'}</button>
+    )
+  }
+
+  // 사건 행 아래 인라인 구절 뷰. ev.books로 권 이름을, /event/{id}/verses로 인용범위·절을 표시.
+  const renderVerseView = (ev) => {
+    if (!verseView || verseView.eventId !== ev.id) return null
+    const overlay = eventVerses.id === ev.id ? eventVerses.data : null
+    if (overlay === null) {
+      return <div style={{ ...verseBoxStyle, color: '#8b80a8' }}>구절을 불러오는 중…</div>
+    }
+    const ovBooks = overlay.books || []
+    if (ovBooks.length === 0) {
+      return <div style={{ ...verseBoxStyle, color: '#8b80a8' }}>표시할 구절이 없습니다</div>
+    }
+    const nameById = new Map((ev.books || []).map(b => [b.id, b.nameKo || b.name]))
+    const selBook = ovBooks.find(b => b.bookId === verseView.bookId) || ovBooks[0]
+    const selName = nameById.get(selBook.bookId) || ''
+    return (
+      <div style={verseBoxStyle} onClick={e => e.stopPropagation()}>
+        {ovBooks.length > 1 && (
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 6 }}>
+            {ovBooks.map(b => {
+              const sel = b.bookId === selBook.bookId
+              return (
+                <button
+                  key={b.bookId}
+                  onClick={() => selectVerseBook(b.bookId)}
+                  style={{ ...chipBase, background: sel ? BOOK_COLOR : '#fff', color: sel ? '#fff' : '#5b21b6' }}
+                >{nameById.get(b.bookId) || b.bookId}</button>
+              )
+            })}
+          </div>
+        )}
         <button
-          title={`근거 ${bks.length}권`}
-          onClick={(e) => {
-            e.stopPropagation()
-            if (expanded) { setOpenBookList(null) }
-            else { setOpenBookList(ev.id); onSelectNode && onSelectNode(first.id) }
+          onClick={() => toggleVerseText(selBook)}
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: 4,
+            border: 'none', background: 'none', cursor: 'pointer', padding: 0, font: 'inherit',
+            fontSize: 12, fontWeight: 600, color: '#5b21b6',
           }}
-          style={{ ...chipBase, ...(anySel ? { background: BOOK_COLOR, color: '#fff' } : null) }}
-        >📖 {first.nameKo || first.name} 외 {bks.length - 1}권 {expanded ? '▾' : '▸'}</button>
-        {expanded && bks.map(b => {
-          const sel = selectedNode === b.id
-          return (
-            <button
-              key={b.id}
-              onClick={(e) => { e.stopPropagation(); onSelectNode && onSelectNode(b.id) }}
-              style={{ ...chipBase, background: sel ? BOOK_COLOR : '#fff', color: sel ? '#fff' : '#5b21b6' }}
-            >{b.nameKo || b.name}</button>
-          )
-        })}
-      </span>
+        >
+          {selName} {selBook.rangeLabel}
+          <span style={{ fontSize: 10 }}>{verseView.expanded ? '▾' : '▸'}</span>
+        </button>
+        {verseView.expanded && (
+          <div style={{ marginTop: 6, display: 'flex', flexDirection: 'column', gap: 5 }}>
+            {selBook.verses.map(v => {
+              const text = chapterText[`${selBook.bookOrder}/${v.chapter}`]
+              const body = text === undefined
+                ? '불러오는 중…'
+                : (text?.find(x => x.verse === v.verse)?.text || '원문을 불러오지 못했습니다')
+              return (
+                <div key={v.verseID} style={{ fontSize: 12, color: '#374151', lineHeight: 1.5 }}>
+                  <span style={{ fontWeight: 600, color: '#6d28d9', marginRight: 6 }}>{v.chapter}:{v.verse}</span>
+                  {body}
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </div>
     )
   }
 
@@ -217,8 +303,8 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
         const groupKey = startDate
 
         return (
+          <div key={groupKey}>
           <div
-            key={groupKey}
             style={{
               display: 'flex',
               alignItems: 'flex-start',
@@ -286,6 +372,9 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter }) {
                 </div>
               )}
             </div>
+          </div>
+          {renderVerseView(rep)}
+          {members.filter(ev => ev.id !== rep.id).map(ev => <div key={'vv-' + ev.id}>{renderVerseView(ev)}</div>)}
           </div>
         )
       })}
