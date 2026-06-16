@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { BookOpen } from 'lucide-react'
-import { SELECT_HL } from './theme'
+import { SELECT_HL, TYPE_COLOR } from './theme'
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
 
 const BOOK_COLOR = '#a78bfa'
+const EVENT_COLOR = TYPE_COLOR.Event
 
 function fmtYear(y) {
   return y == null ? '?' : (y < 0 ? `BC ${-y}` : `AD ${y}`)
@@ -55,6 +56,9 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVe
       .then(data => setBooks(data))
       .catch(() => {})
   }, [])
+
+  // eventId → 사건. 책 마커 행의 연결 사건 칩(book.events는 id 배열)을 이름·클릭으로 풀기 위함.
+  const eventById = useMemo(() => new Map(events.map(e => [e.id, e])), [events])
 
   useEffect(() => {
     if (openGroup === null && verseView === null) return
@@ -117,6 +121,13 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVe
     margin: '4px 0 6px 104px', padding: '8px 12px',
     background: '#f5f3ff', borderLeft: `3px solid ${BOOK_COLOR}`, borderRadius: 6,
     fontSize: 12,
+  }
+  // 책 마커 행의 연결 사건 칩. chipBase와 같은 형태에 Event 색(theme.js). 클릭 → 그 사건 선택.
+  const eventChipStyle = {
+    display: 'inline-flex', alignItems: 'center', gap: 3,
+    fontSize: 11, padding: '1px 7px', borderRadius: 999, lineHeight: 1.7,
+    border: `1px solid ${EVENT_COLOR}`, cursor: 'pointer', fontWeight: 600,
+    background: 'rgba(245,166,35,0.12)', color: '#a85d00',
   }
 
   // 사건의 인라인 구절 뷰 토글. 열 때 첫 권 선택 + /event/{id}/verses 1회 fetch(id로 묶어 stale 무시).
@@ -280,6 +291,27 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVe
                     style={{ fontSize: 10, color: '#8b80a8', border: `1px dashed ${BOOK_COLOR}`, borderRadius: 4, padding: '0 4px' }}
                   >추정</span>
                 )}
+                {(() => {
+                  const evs = (b.events || []).map(eid => eventById.get(eid)).filter(Boolean)
+                  if (evs.length === 0) return null
+                  const shown = evs.slice(0, 3)
+                  const extra = evs.length - shown.length
+                  return (
+                    <>
+                      {shown.map(ev => (
+                        <button
+                          key={ev.id}
+                          title={`연결 사건: ${ev.nameKo || ev.title}`}
+                          onClick={(e) => { e.stopPropagation(); onSelectNode && onSelectNode(ev.id) }}
+                          style={eventChipStyle}
+                        >⚡ {ev.nameKo || ev.title}</button>
+                      ))}
+                      {extra > 0 && (
+                        <span style={{ fontSize: 10, color: '#8b80a8' }}>외 {extra}건</span>
+                      )}
+                    </>
+                  )
+                })()}
               </div>
             </div>
           )
