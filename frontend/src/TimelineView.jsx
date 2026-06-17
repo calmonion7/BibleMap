@@ -243,7 +243,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVe
   return (
     <div
       ref={containerRef}
-      style={{ width: '100%', height: '100%', overflowY: 'auto', background: '#fafafa', position: 'relative', paddingTop: 16 }}
+      style={{ width: '100%', height: '100%', boxSizing: 'border-box', overflowY: 'auto', background: '#fafafa', position: 'relative', paddingTop: 16, paddingBottom: 48 }}
     >
       {activeFilter && (
         <div style={{
@@ -271,7 +271,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVe
                 alignItems: 'flex-start',
                 padding: '4px 8px',
                 minHeight: '28px',
-                backgroundColor: isSel ? SELECT_HL : 'rgba(167,139,250,0.07)',
+                backgroundColor: isSel ? SELECT_HL : 'transparent',
                 cursor: 'pointer',
                 position: 'relative',
               }}
@@ -284,7 +284,6 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVe
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', paddingTop: 1 }}>
                 <BookOpen size={14} style={{ color: BOOK_COLOR, flexShrink: 0 }} />
                 <span style={{ fontSize: '13px', fontWeight: 600, color: '#5b21b6' }}>{b.nameKo || b.name}</span>
-                <span style={{ fontSize: '13px', color: BOOK_COLOR, fontWeight: 700 }}>+</span>
                 {b.yearApprox && (
                   <span
                     title={b.yearBasis || '추정 연도'}
@@ -298,10 +297,14 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVe
                   const extra = evs.length - shown.length
                   return (
                     <>
+                      <span
+                        title="집필 배경·관련 사건 — 사건의 근거(📖)가 아닙니다"
+                        style={{ fontSize: 10, color: '#8b80a8' }}
+                      >배경</span>
                       {shown.map(ev => (
                         <button
                           key={ev.id}
-                          title={`연결 사건: ${ev.nameKo || ev.title}`}
+                          title={`집필 배경·관련 사건 (근거 아님): ${ev.nameKo || ev.title}`}
                           onClick={(e) => { e.stopPropagation(); onSelectNode && onSelectNode(ev.id) }}
                           style={eventChipStyle}
                         >⚡ {ev.nameKo || ev.title}</button>
