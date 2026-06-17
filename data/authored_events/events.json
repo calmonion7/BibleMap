@@ -1,0 +1,86 @@
+[
+  {
+    "id": "authored-esther-persia-deliverance",
+    "title": "Esther and the deliverance of Persian Jews",
+    "nameKo": "에스더와 페르시아 유대인 구원",
+    "sortKey": -480,
+    "startDate": "-480",
+    "yearLabel": "BC 480경",
+    "context": "페르시아 크세르크세스 1세(BC486–465) 통치기, 하만의 유대인 학살 음모에 맞서 에스더가 왕 앞에 나아가 민족을 구원하고 부림절의 기원이 된 사건(에 3–9장). Susa Place·Esther/Mordecai Person 노드 미존재로 OCCURS_AT·HAS_PARTICIPANT 생략.",
+    "occursAt": [],
+    "participants": [],
+    "mappedBookIds": ["rec6yHFZ6w7UUw5Cu"]
+  },
+  {
+    "id": "authored-paul-release-pastorals",
+    "title": "Paul's release and pastoral letters",
+    "nameKo": "바울 석방기 목회서신 집필",
+    "sortKey": 63.5,
+    "startDate": "0063",
+    "yearLabel": "AD 62–64",
+    "context": "1차 로마 투옥에서 풀려난 바울이 다시 동방을 순회하며 에베소의 디모데(딤전 1:3)와 그레데의 디도(딛 1:5)에게 교회 질서를 위한 목회서신을 보낸 배경.",
+    "occursAt": ["recBYO9ocr5Gssb47"],
+    "participants": ["recgkzNX07a7kGFYL"],
+    "mappedBookIds": ["rec2yyoaHMOHZcynX", "recZJmtLFS2QnJG2b"]
+  },
+  {
+    "id": "authored-paul-rome-martyrdom",
+    "title": "Paul's second Roman imprisonment and martyrdom",
+    "nameKo": "바울 2차 로마 투옥과 순교",
+    "sortKey": 66.0,
+    "startDate": "0066",
+    "yearLabel": "AD 64–67",
+    "context": "네로 박해기에 다시 로마에 갇힌 바울이 죽음을 앞두고(딤후 4:6–7) 디모데에게 마지막 당부를 남긴 옥중서신 배경.",
+    "occursAt": ["recDDkVF36ecPUge4"],
+    "participants": ["recgkzNX07a7kGFYL"],
+    "mappedBookIds": ["rec28yVZWWOL1gftz"]
+  },
+  {
+    "id": "authored-peter-rome-martyrdom",
+    "title": "Peter's Roman ministry and martyrdom",
+    "nameKo": "베드로 로마 사역과 순교",
+    "sortKey": 65.0,
+    "startDate": "0065",
+    "yearLabel": "AD 64–67",
+    "context": "로마(\"바벨론\", 벧전 5:13)에서 사역하던 베드로가 흩어진 성도들에게 고난 중의 믿음을 권면하고(벧전), 임박한 죽음을 알며 거짓 교사를 경계한(벧후 1:14) 두 서신의 배경.",
+    "occursAt": ["recDDkVF36ecPUge4"],
+    "participants": ["recX9MMADoVI2CSP1"],
+    "mappedBookIds": ["receVE4rg7HzwRays", "recFNtUGO3RQUDGPv"]
+  },
+  {
+    "id": "authored-jude-false-teachers",
+    "title": "Jude's warning against false teachers",
+    "nameKo": "유다서 거짓 교사 경계",
+    "sortKey": 70.0,
+    "startDate": "0070",
+    "yearLabel": "AD 65–80",
+    "context": "교회에 몰래 들어온 거짓 교사들에 맞서 \"단번에 주신 믿음의 도를 위하여 힘써 싸우라\"(유 3)고 촉구한 짧은 서신의 배경.",
+    "occursAt": [],
+    "participants": [],
+    "mappedBookIds": ["rec2ddtGk1mJxYoy4"]
+  },
+  {
+    "id": "authored-john-ephesus-epistles",
+    "title": "John's later ministry at Ephesus",
+    "nameKo": "요한 에베소 만년 사역",
+    "sortKey": 90.0,
+    "startDate": "0090",
+    "yearLabel": "AD 85–95",
+    "context": "만년에 에베소를 중심으로 사역한 사도 요한이 영지주의적 거짓 가르침에 맞서 사랑과 진리 안의 교제를 권면한 세 서신(요일·요이·요삼)의 배경.",
+    "occursAt": ["recBYO9ocr5Gssb47"],
+    "participants": ["recvAB7vkczUEFH8Z"],
+    "mappedBookIds": ["recnCKWpaf0b7Q1dy", "recvfX2A1wSqR2QiC", "recMApftYXBHE8lV5"]
+  },
+  {
+    "id": "authored-john-patmos-revelation",
+    "title": "John's exile on Patmos",
+    "nameKo": "요한 밧모섬 유배와 계시록",
+    "sortKey": 95.0,
+    "startDate": "0095",
+    "yearLabel": "AD 95",
+    "context": "\"하나님의 말씀과 예수를 증언하였음으로 말미암아\" 밧모섬에 유배된 요한이(계 1:9) 일곱 교회와 종말의 환상을 기록한 배경. 밧모섬 노드는 그래프에 없어 occursAt 생략.",
+    "occursAt": [],
+    "participants": ["recvAB7vkczUEFH8Z"],
+    "mappedBookIds": ["recUbhyLLUrl849r7"]
+  }
+]

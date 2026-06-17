@@ -3,7 +3,7 @@
     "reca8LvAmFPl1tmnN",
     "recvA947nCyo8kadV"
   ],
-  "recZuCb9Bn0RErpsL": [],
+  "recZuCb9Bn0RErpsL": ["reczOHadpTVOuiidp", "recSRPo1LlWZ7tNaO"],
   "rec410yOewjNfbeE3": [
     "recKTbnO8VY7lXLeX",
     "recYlpu8OdsUJoG8g",
@@ -11,9 +11,9 @@
     "recRusMYR5At9TlEV",
     "recVf3eQjAq3nk94o"
   ],
-  "recit4Q50QB9nM3q2": [],
-  "rec3WEGPl0a1PS0cC": [],
-  "rec6yHFZ6w7UUw5Cu": [],
+  "recit4Q50QB9nM3q2": ["recQPoA7fH3wJi7v2", "recebNaZjPvbOqk4r"],
+  "rec3WEGPl0a1PS0cC": ["recpSNqfLiST1KQqq"],
+  "rec6yHFZ6w7UUw5Cu": ["authored-esther-persia-deliverance"],
   "recdT4VI6VdkEzixN": [
     "recW2cNLqUyMIV6O7"
   ],
@@ -57,17 +57,37 @@
   "recnZBkoT7W0SV19v": [
     "recZLqdKx9mrT0bCv"
   ],
-  "rec2yyoaHMOHZcynX": [],
-  "rec28yVZWWOL1gftz": [],
-  "recZJmtLFS2QnJG2b": [],
+  "rec2yyoaHMOHZcynX": [
+    "authored-paul-release-pastorals"
+  ],
+  "rec28yVZWWOL1gftz": [
+    "authored-paul-rome-martyrdom"
+  ],
+  "recZJmtLFS2QnJG2b": [
+    "authored-paul-release-pastorals"
+  ],
   "recDk5A8p9VHMaXAC": [
     "recwmsQ1HEDGztu9O"
   ],
-  "receVE4rg7HzwRays": [],
-  "recFNtUGO3RQUDGPv": [],
-  "recnCKWpaf0b7Q1dy": [],
-  "recvfX2A1wSqR2QiC": [],
-  "recMApftYXBHE8lV5": [],
-  "rec2ddtGk1mJxYoy4": [],
-  "recUbhyLLUrl849r7": []
+  "receVE4rg7HzwRays": [
+    "authored-peter-rome-martyrdom"
+  ],
+  "recFNtUGO3RQUDGPv": [
+    "authored-peter-rome-martyrdom"
+  ],
+  "recnCKWpaf0b7Q1dy": [
+    "authored-john-ephesus-epistles"
+  ],
+  "recvfX2A1wSqR2QiC": [
+    "authored-john-ephesus-epistles"
+  ],
+  "recMApftYXBHE8lV5": [
+    "authored-john-ephesus-epistles"
+  ],
+  "rec2ddtGk1mJxYoy4": [
+    "authored-jude-false-teachers"
+  ],
+  "recUbhyLLUrl849r7": [
+    "authored-john-patmos-revelation"
+  ]
 }
