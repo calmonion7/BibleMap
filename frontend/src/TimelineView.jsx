@@ -322,7 +322,8 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVe
 
         const { startDate, members, rep } = item.group
         const isSelected = selectedNode && members.some(e => e.id === selectedNode)
-        const yearLabel = parseYear(startDate)
+        const isAuthored = rep.authored === true
+        const yearLabel = isAuthored && rep.yearLabel ? rep.yearLabel : parseYear(startDate)
         const isSingle = members.length === 1
         const groupKey = startDate
 
@@ -351,6 +352,12 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVe
               >
                 {rep.nameKo || rep.title}
               </span>
+              {isAuthored && (
+                <span
+                  title="추정 연도 (저작 배경)"
+                  style={{ fontSize: 10, color: '#8b80a8', border: `1px dashed ${EVENT_COLOR}`, borderRadius: 4, padding: '0 4px', marginLeft: 6 }}
+                >추정</span>
+              )}
               {renderBookChip(rep)}
               {!isSingle && (
                 <button

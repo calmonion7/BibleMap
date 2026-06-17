@@ -57,6 +57,8 @@ def get_events():
                 "nameKo": props.get("nameKo"),
                 "startDate": props.get("startDate", ""),
                 "sortKey": float(props.get("sortKey", 0)),
+                "authored": props.get("authored", False),
+                "yearLabel": props.get("yearLabel"),
                 "books": record["books"],
             })
         return JSONResponse(content=events, headers={"Cache-Control": "no-store"})
