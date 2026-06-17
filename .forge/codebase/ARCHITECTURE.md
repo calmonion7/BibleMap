@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: e160d65cf9c7d0b54c8d9fc2d031639a712bfb86
-mapped: 2026-06-16
+last_mapped_commit: 1003d7beae209835a39266883039d287158e9e92
+mapped: 2026-06-18
 ---
 
 # ARCHITECTURE
@@ -45,13 +45,14 @@ BibleMap의 전체 구조와 데이터 흐름을 코드 사실 기준으로 기�
   - `GET /node/{node_id}/neighbors/grouped` — 타입별(`Person/Event/PeopleGroup/Place`)로 묶은 이웃. 타입당 `MAX_NEIGHBORS_PER_TYPE=30` 제한. 지도의 사건 링(event ring) 펼침에 사용.
 - `backend/app/routes/events.py` — 타임라인 + 사건→구절 드릴다운(아래 5절 참조).
 - `backend/app/routes/search.py` — `GET /search?q=` — `nameKo` 또는 소문자 `name`에 부분일치, 정확/접두/부분 순 랭크, `SEARCH_LIMIT=20`.
-- `backend/app/routes/books.py` — `GET /books` — 타임라인 배치용 권 목록. `startYear`가 있으면 그대로, 없으면 `data/book_years_approx/books.json` 오버레이의 `placementYear`(이때 `yearApprox=true`). 연도를 못 얻는 권은 제외.
+- `backend/app/routes/books.py` — `GET /books` — 타임라인 배치용 권 목록. `startYear`가 있으면 그대로, 없으면 `data/book_years_approx/books.json` 오버레이의 `placementYear`(이때 `yearApprox=true`). `data/book_events/books.json` 오버레이의 사건 id 배열도 `events` 필드로 merge. 연도를 못 얻는 권은 제외.
 
 `books.py`와 `events.py`는 JSON 오버레이를 `functools.lru_cache(maxsize=1)`로 1회만 로드한다. 파일 경로는 `DATA_DIR`(기본 `/app/data`, docker 볼륨) 우선, 못 찾으면 레포 상대경로(`_REPO_DATA_DIR = .../data`)로 폴백 — docker/비-docker 양쪽에서 동작.
 
 ### 그래프 모델(데이터 적재 스크립트 기준)
 `backend/scripts/load_theographic.py`가 정의하는 노드/관계:
 - 노드: `Person`, `Place`, `Event`, `PeopleGroup` — 모두 `theographic_id` 키. `Book`은 `backend/scripts/load_books.py`가 적재.
+- 저작(authored) 사건은 `backend/scripts/load_authored_events.py`가 `MERGE (e:Event {theographic_id})` + `authored=true` 마킹으로 적재. 식별자는 `authored-<slug>` 형식. `CONTAINS_BOOK` 관계는 만들지 않음(ADR-0005).
 - 관계: `PARENT_OF`/`CHILD_OF`, `SIBLING_OF`, `PARTNER_OF`, `MEMBER_OF`(Person→PeopleGroup), `HAS_PARTICIPANT`(Event→Person), `OCCURS_AT`(Event→Place), `PART_OF`(Event→Event), `CONTAINS_BOOK`(Book→Event, `load_books.py`).
 
 ## 3. 프론트엔드 계층
@@ -63,15 +64,18 @@ BibleMap의 전체 구조와 데이터 흐름을 코드 사실 기준으로 기�
 ### 공유 모듈
 - `frontend/src/api.js` — `API_BASE`(빌드타임 `VITE_API_URL`, 프로덕션은 `/api`) + `apiGet(path, {signal})` 단일 GET 헬퍼. 비-OK는 status로 throw, abort는 그대로 전파.
 - `frontend/src/theme.js` — 노드 타입 → 색/한글 라벨/표시순서의 **단일 정규 팔레트**(`TYPE_COLOR`, `TYPE_KO`, `TYPE_ORDER`, `typeColor()`, `typeKo()`, `SELECT_HL`). 모든 뷰가 여기서 import.
-- `frontend/src/getbible.js` — 외부 한국어 성경 API(`api.getbible.net/v2/korean/{bookOrder}/{chapter}.json`) 장(chapter) JSON fetch + 모듈 전역 `Map` 캐시. `fetchChapter(bookOrder, chapter)`.
 - `frontend/src/convexHull.js` — `convexHull(points)` Graham scan. 인물의 장소 ≥3개일 때 지도에 영역 폴리곤.
+- `frontend/src/VerseLangTabs.jsx` — 절 본문 언어 전환 세그먼트 탭(한국어|영어). `App.jsx`의 `verseLang` 상태에 바인딩 — 한 곳에서 바꾸면 타임라인·SidePanel의 모든 본문이 함께 전환됨.
+
+### 제거된 모듈
+- `frontend/src/getbible.js` — 외부 한국어 성경 API fetch 모듈. ADR-0003 이후 절 본문이 `event_verses/events.json`에 빌드타임 베이크되어 런타임 외부 fetch가 불필요해졌음. 코드베이스에서 제거됨.
 
 ### 빌드
 - `frontend/vite.config.js` — React 플러그인 + `manualChunks`로 `maplibre-gl`을 별도 `maplibre` 청크, 그 외 `node_modules`는 `vendor` 청크로 코드 스플리팅.
 
 ## 4. 세 뷰의 연결과 데이터 흐름
 
-`frontend/src/App.jsx`가 허브다. 핵심 상태: `selectedNode`(선택 노드 id), `selectedNodeMeta`({label, nameKo, startYear, endYear}), `activeView`(`'map'`|`'timeline'`), 검색 상태, `history`(패널 뒤로가기 스택), `isMobile`.
+`frontend/src/App.jsx`가 허브다. 핵심 상태: `selectedNode`(선택 노드 id), `selectedNodeMeta`({label, nameKo, startYear, endYear}), `activeView`(`'map'`|`'timeline'`), 검색 상태, `history`(패널 뒤로가기 스택), `isMobile`, `verseLang`(절 본문 언어 `'ko'`|`'en'`).
 
 - **선택 전파**: `selectNode(id)` 콜백(`useCallback([])`으로 참조 안정화 — 변경 시 하위 effect 재실행/abort 방지, 최신값은 `selectedNodeRef`로 읽음)을 모든 뷰·검색·패널에 내려준다. 직전 노드를 `history`에 쌓아 패널 뒤로가기 지원.
 - **검색**: nav 바 입력 → 250ms 디바운스 → `apiGet('/search?q=')`(`AbortController`로 경쟁 차단) → 드롭다운(타입 필터 칩 + 키보드 네비). 결과 클릭 → `setSelectedNode`.
@@ -85,42 +89,50 @@ BibleMap의 전체 구조와 데이터 흐름을 코드 사실 기준으로 기�
 ### SidePanel (`frontend/src/SidePanel.jsx`)
 - `nodeId` prop 변경 시 `GET /node/{nodeId}`를 fetch. 응답을 `state.id`로 묶어 stale 무시. 로드 완료 시 `onNodeLoaded(node)` 콜백으로 App에 메타(`label`, 연도)를 전달 — App은 이를 타임라인의 `bookFilter`로 재사용(별도 fetch 없음).
 - 이웃을 타입별 그룹으로 표시(`theme.js` 색). 이웃 클릭 → `onSelectNode`로 재탐색.
-- `Book` 전용 뷰: 메타 칩, 시대적 배경/주제/대표 구절(`book_context` 유래 속성), `topPersons`/`topEvents`. `keyVerse`는 `getbible.js`로 원문 fetch.
-- `Person` 전용: `traits`(`character_traits` 유래) 표시. 각 trait의 `verse_ref`(예 "창 15:6")를 `BOOK_ABBR_ORDER` 약어 매핑으로 bookOrder 해석 후 `getbible.js`로 원문 lazy fetch.
+- `Book` 전용 뷰: 메타 칩, 시대적 배경/주제/대표 구절(`book_context` 유래 속성), `topPersons`/`topEvents`. `keyVerse`는 절 본문 직접 표시(ADR-0003, 빌드타임 베이크).
+- `Person` 전용: `traits`(`character_traits` 유래) 표시. 각 trait의 `verse_ref` 절 본문도 빌드타임 베이크 데이터 활용.
 - 데스크톱은 우측 슬라이드인, 모바일(`max-width:768px`)은 하단 시트(`SHEET_VH=55vh`, MapView의 `fitBounds` 하단 패딩과 일치). 레이아웃은 `App.jsx`가 결정.
 
 ### TimelineView (`frontend/src/TimelineView.jsx`)
-- 마운트 시 `GET /events`(연도 가진 사건 + 각 사건의 근거 권 `books`)와 `GET /books`(연도 가진 권)를 fetch.
+- 마운트 시 `GET /events`(연도 가진 사건 + 각 사건의 근거 권 `books` + `authored`/`yearLabel` 플래그)와 `GET /books`(연도 가진 권 + `events` id 배열)를 fetch.
 - 같은 `startDate` 사건을 그룹핑, `sortKey`로 정렬. 사건 그룹 + (사건 없는) 추정연도 권 마커를 연도순 통합 타임라인으로 렌더.
+- **저작(authored) 사건 표기**: `ev.authored === true`이면 `추정` 배지(점선 테두리)를 사건 행에 표시. 연도 표시는 `ev.yearLabel`(예: "AD 62–64") 우선, 없으면 `parseYear(startDate)`.
+- **책 마커의 배경 사건 칩**: `b.events`(id 배열)를 `eventById` Map으로 풀어 최대 3개 ⚡ 칩 표시. 칩 클릭 → `onSelectNode`. 라벨 "배경"으로 근거(📖)와 구분.
 - `bookFilter`(App이 SidePanel 메타로 전달, 선택 노드가 Book일 때) 범위로 타임라인을 좁힌다. "닫기"는 `dismissedFilter`로 추적.
 - 사건/권 행 클릭 → `onSelectNode`.
 
-## 5. 사건→구절 드릴다운 데이터 흐름 (최근 추가)
+## 5. 사건→구절 드릴다운 데이터 흐름
 
 타임라인에서 사건의 근거 성경 구절을 권→인용범위→절 본문 순으로 드릴다운한다.
 
 1. **백엔드 — 사건별 근거 권**: `GET /events` (`backend/app/routes/events.py::get_events`)
-   - `MATCH (e:Event) ... OPTIONAL MATCH (b:Book)-[:CONTAINS_BOOK]->(e)`로 각 사건에 그 사건을 기록한 성경권을 정경순(`bookOrder`)의 `books` 배열로 함께 반환. `books[].id`는 `theographic_id`.
+   - `MATCH (e:Event) ... OPTIONAL MATCH (b:Book)-[:CONTAINS_BOOK]->(e)`로 각 사건에 그 사건을 기록한 성경권을 정경순(`bookOrder`)의 `books` 배열로 함께 반환. `books[].id`는 `theographic_id`. `authored`·`yearLabel` 필드도 반환.
 2. **프론트 — 근거 권 칩**: `frontend/src/TimelineView.jsx`의 `renderBookChip`이 `ev.books`로 "📖 권이름 외 N권" 칩을 그린다. 칩 클릭 → `toggleVerseView(ev)`.
 3. **백엔드 — 사건별 구절 오버레이**: `GET /event/{event_id}/verses` (`events.py::get_event_verses`)
-   - DB가 아니라 `data/event_verses/events.json` 오버레이(`functools.lru_cache`)에서 사건 id로 조회. 구조: `{ "<eventId>": { "books": [{ bookId, bookOrder, rangeLabel, verses:[{verseID, chapter, verse}] }] } }`. 권은 정경순. `bookId`는 `/events`의 `books[].id`와 일치 → 프론트가 id로 join.
-   - 오버레이는 `backend/scripts/generate_event_verses.py`가 theographic `events.json`+`verses.json`에서 생성(연속 구간을 접어 `rangeLabel` 산출).
+   - DB가 아니라 `data/event_verses/events.json` 오버레이(`functools.lru_cache`)에서 사건 id로 조회. 구조: `{ "<eventId>": { "books": [{ bookId, bookOrder, rangeLabel, verses:[{verseID, chapter, verse, textKo, textEn}] }] } }`. `textKo`/`textEn`은 빌드타임 베이크(ADR-0003) — 런타임 외부 fetch 불필요.
 4. **프론트 — 인라인 구절 뷰**: `frontend/src/TimelineView.jsx`
    - `toggleVerseView`가 `apiGet('/event/'+id+'/verses')`를 1회 fetch(`openEventRef`로 out-of-order 응답 stale 무시). 한 번에 한 사건만 펼침.
    - `verseView` 상태({eventId, bookId, expanded})로 권 탭 전환(`selectVerseBook`)과 절 본문 펼침(`toggleVerseText`)을 제어.
-   - `renderVerseView`가 `ev.books`(권 이름) + 오버레이(`rangeLabel`·절)를 결합해 표시. 절 본문 펼침 시 인용된 장들을 `frontend/src/getbible.js`의 `fetchChapter`로 캐시에 없는 것만 fetch → `chapterText`(`bookOrder/chapter` 키)에서 절 텍스트 매칭.
+   - `renderVerseView`가 `ev.books`(권 이름) + 오버레이(`rangeLabel`·절)를 결합해 표시. `VerseLangTabs`로 한/영 전환 — `textKo`/`textEn`을 즉시 표시(추가 fetch 없음).
+   - 저작 사건은 `CONTAINS_BOOK` 없어 `/event/{id}/verses`가 빈 books 반환 → 📖 칩 미표시.
 
-흐름 요약: `Event 노드(Neo4j) ─CONTAINS_BOOK─ Book` → `/events` books 칩 → `/event/{id}/verses`(JSON 오버레이) rangeLabel·절 → `getbible.net` 장 JSON 절 본문.
+흐름 요약: `Event 노드(Neo4j) ─CONTAINS_BOOK─ Book` → `/events` books 칩 → `/event/{id}/verses`(JSON 오버레이, 절 본문 베이크) → 인라인 렌더.
 
 ## 6. 정적 데이터 보강 파이프라인
 
 `data/` JSON은 두 경로로 시스템에 들어온다:
 - **DB에 주입**(Neo4j 속성으로 SET): `backend/scripts/inject_ko_names.py`(`data/names_ko/`), `backend/scripts/inject_book_context.py`(`data/book_context/`), `backend/scripts/inject_person_traits.py`(`data/character_traits/`). 한글 이름 주입은 `deploy.sh`가 배포 후 자동 실행(최대 15회 재시도).
-- **런타임 오버레이**(API가 직접 읽음): `data/book_years_approx/`(→ `/books`), `data/event_verses/`(→ `/event/{id}/verses`).
-- 생성 스크립트: `backend/scripts/generate_book_context.py`/`generate_person_traits.py`(Claude API), `backend/scripts/generate_event_verses.py`(theographic 원본 가공).
+- **DB에 Event 노드로 적재**: `backend/scripts/load_authored_events.py`(`data/authored_events/events.json`) — `MERGE` + `authored=true` 마킹. 호스트에서 직접 실행(Dockerfile에 포함 안 됨).
+- **런타임 오버레이**(API가 직접 읽음): `data/book_years_approx/`(→ `/books` `startYear`+`yearApprox`), `data/book_events/`(→ `/books` `events` 배열), `data/event_verses/`(→ `/event/{id}/verses`).
+- 생성 스크립트: `backend/scripts/generate_book_context.py`/`generate_person_traits.py`(Claude API), `backend/scripts/generate_event_verses.py`(theographic 원본 가공, 절 본문 getbible 베이크).
+
+### 오버레이 vs. 그래프 분리 원칙 (ADR-0004/0005)
+- **런타임 오버레이로 유지**: 추정·낮은권위 데이터 — `book_years_approx`(권 추정연도), `book_events`(권↔사건 집필배경 링크). `/books` 단일 엔드포인트만 소비. `CONTAINS_BOOK`에 주입하면 `/events`의 근거 칩이 오염됨 → 금지(ADR-0004).
+- **마킹된 Neo4j 노드로 적재**: 저작(authored) 사건 — 사건은 `/events`·`/node/{id}`·지도·사건 링 등 4개 라우트가 일급 엔티티로 소비하므로 오버레이로 두면 모든 라우트에 머지 필요. `authored:true` 마킹으로 검증 사건과 구분(ADR-0005).
 
 ## 7. 배포 흐름
 
 - `.github/workflows/deploy.yml` — `main` 푸시 시 self-hosted 러너가 `git reset --hard origin/main` 후 `deploy.sh` 실행.
 - `deploy.sh` — (1) 프론트 `npm build` → `frontend/dist/`, (2) `docker compose build api`, (3) `docker compose up -d api nginx`, (4) `inject_ko_names.py` 한글 이름 주입.
 - 백엔드는 hot-reload가 아님 — 코드 변경 반영에 이미지 재빌드 필요.
+- 저작 사건 적재(`load_authored_events.py`)는 `deploy.sh`에 포함되지 않으며 수동으로 호스트에서 실행한다.

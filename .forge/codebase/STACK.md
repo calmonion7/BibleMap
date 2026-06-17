@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: e160d65cf9c7d0b54c8d9fc2d031639a712bfb86
-mapped: 2026-06-16
+last_mapped_commit: 1003d7beae209835a39266883039d287158e9e92
+mapped: 2026-06-18
 ---
 
 # STACK
@@ -36,7 +36,8 @@ BibleMap의 언어·런타임·프레임워크·빌드·도구·설정·컨테�
 ## 3. 프론트엔드 — React + Vite
 
 - 진입 HTML `frontend/index.html` → `frontend/src/main.jsx`.
-- 주요 소스: `frontend/src/App.jsx`, `frontend/src/MapView.jsx`, `frontend/src/SidePanel.jsx`, `frontend/src/TimelineView.jsx`, `frontend/src/api.js`(공유 fetch 클라이언트), `frontend/src/getbible.js`(외부 성경 API 헬퍼), `frontend/src/theme.js`(타입 색·라벨 팔레트), `frontend/src/convexHull.js`, `frontend/src/index.css`.
+- 주요 소스: `frontend/src/App.jsx`, `frontend/src/MapView.jsx`, `frontend/src/SidePanel.jsx`, `frontend/src/TimelineView.jsx`, `frontend/src/VerseLangTabs.jsx`(한/영 탭 컴포넌트), `frontend/src/api.js`(공유 fetch 클라이언트), `frontend/src/theme.js`(타입 색·라벨 팔레트), `frontend/src/convexHull.js`, `frontend/src/index.css`.
+- `frontend/src/getbible.js`는 ADR-0003에 의해 런타임 호출이 제거되고 빌드타임 미리굽기로 대체됨(파일 삭제 또는 미사용).
 
 ### 프론트엔드 의존성 (`frontend/package.json`)
 
@@ -89,12 +90,14 @@ devDependencies:
 
 - `load_theographic.py` — Theographic GitHub raw JSON에서 Person/Place/Event/PeopleGroup 노드 + 관계(PARENT_OF/CHILD_OF/SIBLING_OF/PARTNER_OF/MEMBER_OF/HAS_PARTICIPANT/OCCURS_AT/PART_OF) 적재. 배치 단위(노드 500, 관계 1000) UNWIND+MERGE.
 - `load_books.py` — Book 노드 적재 + `CONTAINS_BOOK` 관계(verses→book 역매핑) 생성, event.startDate 집계로 책별 startYear/endYear 추정.
+- `load_authored_events.py` — `data/authored_events/events.json`의 저작 사건 7건을 `MERGE (e:Event {theographic_id})`로 멱등 적재. `authored=true` 마킹. `occursAt` → `OCCURS_AT`, `participants` → `HAS_PARTICIPANT` 관계를 노드가 실제로 존재할 때만 연결. `CONTAINS_BOOK`은 생성하지 않음(ADR-0005). 호스트에서 직접 실행.
 - `inject_ko_names.py` — `data/names_ko/*.json`을 읽어 노드에 `nameKo`/`aliasesKo` SET. 배포 마지막 단계에서 실행(`deploy.sh`).
 - `inject_book_context.py` — `data/book_context/books.json`을 Book 노드 background/themes/keyVerse로 SET.
 - `inject_person_traits.py` — `data/character_traits/people.json`을 Person 노드 `traits`(JSON 문자열) SET.
 - `generate_book_context.py` — Claude API로 책별 배경·주제·대표구절 생성 → `data/book_context/books.json`.
 - `generate_person_traits.py` — Claude API로 인물별 성품 생성 → `data/character_traits/people.json`.
 - `generate_event_verses.py` — Theographic events.json + verses.json을 받아 사건별 근거 구절을 권별로 묶어 `data/event_verses/events.json` 생성(INTEGRATIONS.md 상세).
+- `generate_verse_text.py` — `event_verses/events.json`, `book_context/books.json`, `character_traits/people.json`의 인용 절 본문을 GetBible API v2(`korean`/`kjv`)에서 빌드타임 미리굽기. 런타임 외부 호출 제거(ADR-0003). 멱등(이미 본문 있는 항목 스킵).
 
 표준 라이브러리 `urllib.request`로 GitHub raw를 직접 fetch한다(별도 HTTP 클라이언트 의존성 없음).
 
@@ -104,9 +107,11 @@ API 컨테이너에 `./data:/app/data` 볼륨으로 마운트(`docker-compose.ym
 
 - `data/names_ko/{people,places,events,groups,books}.json` — 한국어 이름/별칭 매핑(`{theographic_id: {ko, alias[]}}`).
 - `data/book_years_approx/books.json` — startYear 없는 책의 추정 배치연도(`{tid: {nameKo, placementYear, basis, approx}}`).
-- `data/book_context/books.json` — Claude 생성 책 배경/주제/대표구절.
-- `data/character_traits/people.json` — Claude 생성 인물 성품.
-- `data/event_verses/events.json` — 생성된 사건별 근거 구절(~93,767줄, ~2MB). 사건 id → `{books:[{bookId, bookOrder, rangeLabel, verses[]}]}`.
+- `data/book_events/books.json` — 책 → 연결 사건 오버레이(`{bookId: [eventId, ...]}`). CONTAINS_BOOK과 별개의 "집필 배경·저자·직접 다루는" 연결. 31권+ 수록, authored 사건 id도 포함(`authored-*` 형태). Neo4j에 넣지 않고 `/books` 응답에 런타임 오버레이(`backend/app/routes/books.py`의 `_load_book_events`).
+- `data/authored_events/events.json` — 저작 사건 7건(에스더·바울 석방기·바울 2차 투옥·베드로 순교·유다서·요한 에베소·요한 밧모섬). `load_authored_events.py`로 Neo4j 적재. `mappedBookIds` 필드는 스크립트가 읽지 않는 참조용.
+- `data/book_context/books.json` — Claude 생성 책 배경/주제/대표구절(keyVerseTextKo/En 미리굽기 포함).
+- `data/character_traits/people.json` — Claude 생성 인물 성품(verse_textKo/En 미리굽기 포함).
+- `data/event_verses/events.json` — 생성된 사건별 근거 구절(~93,767줄, ~2MB). 사건 id → `{books:[{bookId, bookOrder, rangeLabel, verses[{verseID,chapter,verse,textKo,textEn}]}]}`.
 
 ## 7. 설정 / 환경변수
 
