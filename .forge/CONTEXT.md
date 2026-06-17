@@ -30,9 +30,19 @@ Person 노드에 주입되는 속성 `traits` (JSON 문자열 배열). 각 항�
 
 각 Book의 시대적 배경·주제·대표구절을 담는 정적 JSON (`data/book_context/books.json`). LLM(Claude API)으로 생성 후 수동 검수. `inject_book_context.py`로 Book 노드 속성에 주입. Verse 텍스트(대표구절·사건 근거·인물 성품 인용절)는 **빌드타임에 getbible에서 한국어(`korean`)+영어(`kjv`)로 미리 받아 데이터에 함께 저장**한다(`generate_verse_text.py`, ADR-0003) — 런타임 외부 fetch 없음. Book의 대표구절 본문은 `keyVerseTextKo`/`keyVerseTextEn` 속성으로 주입된다.
 
+## 추정연도 (placementYear)
+
+사건-구절 교집합(`CONTAINS_BOOK`)이 없어 `startYear`를 못 얻는 31권에 부여하는 타임라인 배치 연도 (`data/book_years_approx/books.json`의 `placementYear`, `yearApprox=true`로 표시). **기준은 "작성(저작) 시점"이 아니라 "그 책이 속하는 사건/내용 시대"** — 정확연도 책의 `startYear`(그 책이 기록한 사건들의 `startDate` 최소~최대를 `load_books.py`가 집계)와 **같은 의미축**이다. 즉 추정/정확은 *의미*가 다른 게 아니라 *도출 방법*만 다르다 (정확 = 사건 집계 자동, 추정 = 사건이 없어 수동 추정). 구약 내러티브·시가서는 배경 시대로 배치하고(작성 시점은 `basis`에 곁들이되 배치엔 안 씀), 신약 서신서·계시록은 "쓰여 보내진 순간이 곧 그 책의 시대"라 결과적으로 작성 시점과 일치한다. 사건 연결(아래 Book Events ⚡)과는 **독립축** — 연결이 있어도 연도는 여전히 추정이다.
+
 ## Book Events (책-사건 연결 오버레이)
 
 추정연도 책(31권 — `startYear` 없어 `CONTAINS_BOOK`이 없는 서신서·시편·잠언 등)을 타임라인 사건에 약하게 연결하는 정적 JSON (`data/book_events/books.json`, 형식 `{ "<bookId>": ["<eventId>", ...] }`). 연결 기준은 **집필 배경**(서신서→사도행전 사건)·**저자**(시편→다윗 통치)·**직접 다루는 사건**(역대하→솔로몬·유다 왕). LLM(Claude API)으로 생성하는 추정 데이터(`generate_book_events.py`)라 **Neo4j에 주입하지 않고** `/books` 엔드포인트가 런타임에 오버레이해 각 책에 `events` 배열로 실어 보낸다(`book_years_approx`와 동일한 분리 원칙 — 추정·권위 낮은 데이터는 권위 그래프 밖 오버레이로 유지, inject·재빌드 불필요). TimelineView의 책 마커 행은 이 `events`를 ⚡ Event색 칩으로 표시하고(클릭 시 그 사건 선택), 데이터가 없는 사건(예: AD57 이후 후기 서신·계시록, 포로귀환)은 빈 배열이라 칩이 없다. **CONTAINS_BOOK의 "사건의 근거"(구절 교집합) 의미와 무관 — 사건 행의 📖 근거 칩은 영향받지 않는다.**
+
+## 저작 사건 (Authored Event)
+
+`startDate`를 가진 theographic 사건이 AD57(바울 1차 로마 투옥)에서 끊겨, 그 이후 쓰인 후기 서신·계시록(추정연도 31권 중 10권: 디모데전후·디도·벧전후·유다·요한1~3·계시록)이 매달릴 타임라인 사건이 그래프에 없다. 이를 메우려고 **그 책들이 쓰인 정황을 거꾸로 도출해 만든 추정 사건**이 저작 사건이다 — 성경 본문 밖 자유 역사 사건(예 예루살렘 함락 AD70)이 아니라 **고아 책 기반**(예: 계시록→요한의 밧모섬 유배(계 1:9), 디모데후서→바울 로마 2차 투옥·순교, 베드로전후→베드로 로마 사역·순교, 요한1~3→요한 에베소 만년 사역). theographic 검증 사건과 달리 LLM/수동 저작이라 권위가 낮다.
+
+**오버레이가 아니라 Neo4j `Event` 노드로 적재하되 `authored:true`로 마킹한다 (ADR-0005)** — 사건은 `/events`·`/node/{id}`·`/node/{id}/places`·사건 링이 소비하는 **일급 엔티티**라, 오버레이로만 두면 ⚡ 칩 클릭 시 `/node/{id}`가 404가 되어 SidePanel·지도·링이 깨지기 때문(이 점이 *연도·링크* 오버레이를 다룬 ADR-0004와 갈리는 지점). `/events`가 `authored` 플래그를 노출하고 TimelineView가 `추정` 배지 + 범위 라벨로 표시한다. theographic ID(`rec` 접두)가 없어 `authored-<slug>` 식별자를 `theographic_id`에 부여한다. **`CONTAINS_BOOK`(📖 근거)을 갖지 않으므로** 사건 근거 칩을 오염시키지 않고, 후기 10권과는 **book_events 오버레이(⚡)** 로 연결된다(`CONTAINS_BOOK`이 아니라). 기존 Place(로마·밧모·에베소)·Person(바울·베드로·요한)에 `OCCURS_AT`/`HAS_PARTICIPANT`로 연결해 지도·링을 살린다. 연도는 정렬용 단일 `sortKey` + 표시용 범위 라벨(`yearLabel`)로 둔다.
 
 ## selectedNode
 
