@@ -458,7 +458,7 @@ export default function MapView({ onSelectNode, selectedNode }) {
       <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />
       {error && selectedNode && (
         <div style={{
-          position: 'absolute', top: 12, left: '50%', transform: 'translateX(-50%)',
+          position: 'absolute', top: 60, left: '50%', transform: 'translateX(-50%)', // 플로팅 nav(48px) 아래
           background: 'rgba(220,53,69,0.95)', color: 'white',
           padding: '8px 16px', borderRadius: 8, fontSize: 13, zIndex: 10,
           boxShadow: '0 2px 8px rgba(0,0,0,0.25)',
