@@ -1,5 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { BookOpen } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
 import { SELECT_HL, TYPE_COLOR } from './theme'
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
@@ -28,7 +27,6 @@ function parseYear(startDate) {
 
 function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVerseLang }) {
   const [events, setEvents] = useState([])
-  const [books, setBooks] = useState([])
   const [error, setError] = useState(false)
   const [openGroup, setOpenGroup] = useState(null)
   // 근거 구절 인라인 뷰를 펼친 사건 — { eventId, bookId, expanded } (한 번에 하나만).
@@ -49,16 +47,6 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVe
       .then(data => setEvents(data))
       .catch(() => setError(true))
   }, [])
-
-  // 성경 66권(연도 가진 것만) — 타임라인 시대순 마커. 실패해도 사건 타임라인은 유지.
-  useEffect(() => {
-    apiGet('/books')
-      .then(data => setBooks(data))
-      .catch(() => {})
-  }, [])
-
-  // eventId → 사건. 책 마커 행의 연결 사건 칩(book.events는 id 배열)을 이름·클릭으로 풀기 위함.
-  const eventById = useMemo(() => new Map(events.map(e => [e.id, e])), [events])
 
   useEffect(() => {
     if (openGroup === null && verseView === null) return
@@ -101,12 +89,8 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVe
   }
   const visibleGroups = groups.filter(g => inFilter(sortKeyToYear(g.sortKey)))
 
-  // 사건 그룹 + 성경 책 마커를 연도순으로 합친 통합 타임라인.
-  // 단독 책 마커는 사건 없는 31권(yearApprox=true)만 — 사건 있는 35권은 단독 행 대신
-  // 각 사건의 근거 권 칩으로 표시(ADR-0002). 두 집합은 startYear 유무로 겹치지 않는다.
   const timeline = [
     ...visibleGroups.map(g => ({ kind: 'group', sortKey: g.sortKey, group: g })),
-    ...books.filter(b => b.yearApprox && inFilter(b.startYear)).map(b => ({ kind: 'book', sortKey: b.startYear, book: b })),
   ].sort((a, b) => a.sortKey - b.sortKey)
 
   // 사건의 근거 권 칩. 클릭 → 그 사건 아래 인라인 구절 뷰 토글(권 선택 → 인용범위 → 절 본문).
@@ -122,14 +106,6 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVe
     background: '#f5f3ff', borderLeft: `3px solid ${BOOK_COLOR}`, borderRadius: 6,
     fontSize: 12,
   }
-  // 책 마커 행의 연결 사건 칩. chipBase와 같은 형태에 Event 색(theme.js). 클릭 → 그 사건 선택.
-  const eventChipStyle = {
-    display: 'inline-flex', alignItems: 'center', gap: 3,
-    fontSize: 11, padding: '1px 7px', borderRadius: 999, lineHeight: 1.7,
-    border: `1px solid ${EVENT_COLOR}`, cursor: 'pointer', fontWeight: 600,
-    background: 'rgba(245,166,35,0.12)', color: '#a85d00',
-  }
-
   // 사건의 인라인 구절 뷰 토글. 열 때 첫 권 선택 + /event/{id}/verses 1회 fetch(id로 묶어 stale 무시).
   const toggleVerseView = (ev) => {
     const bks = ev.books || []
@@ -260,66 +236,6 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVe
         </div>
       )}
       {timeline.map((item) => {
-        if (item.kind === 'book') {
-          const b = item.book
-          const isSel = selectedNode === b.id
-          return (
-            <div
-              key={'book-' + b.id}
-              style={{
-                display: 'flex',
-                alignItems: 'flex-start',
-                padding: '4px 8px',
-                minHeight: '28px',
-                backgroundColor: isSel ? SELECT_HL : 'transparent',
-                cursor: 'pointer',
-                position: 'relative',
-              }}
-              onClick={() => onSelectNode && onSelectNode(b.id)}
-            >
-              <div style={{ minWidth: 80, textAlign: 'right', color: '#666', fontSize: '12px', paddingTop: 2 }}>
-                {fmtYear(b.startYear)}
-              </div>
-              <div style={{ borderLeft: `2px ${b.yearApprox ? 'dashed' : 'solid'} ${BOOK_COLOR}`, margin: '0 12px', alignSelf: 'stretch', minHeight: 20 }} />
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', paddingTop: 1 }}>
-                <BookOpen size={14} style={{ color: BOOK_COLOR, flexShrink: 0 }} />
-                <span style={{ fontSize: '13px', fontWeight: 600, color: '#5b21b6' }}>{b.nameKo || b.name}</span>
-                {b.yearApprox && (
-                  <span
-                    title={b.yearBasis || '추정 연도'}
-                    style={{ fontSize: 10, color: '#8b80a8', border: `1px dashed ${BOOK_COLOR}`, borderRadius: 4, padding: '0 4px' }}
-                  >추정</span>
-                )}
-                {(() => {
-                  const evs = (b.events || []).map(eid => eventById.get(eid)).filter(Boolean)
-                  if (evs.length === 0) return null
-                  const shown = evs.slice(0, 3)
-                  const extra = evs.length - shown.length
-                  return (
-                    <>
-                      <span
-                        title="집필 배경·관련 사건 — 사건의 근거(📖)가 아닙니다"
-                        style={{ fontSize: 10, color: '#8b80a8' }}
-                      >배경</span>
-                      {shown.map(ev => (
-                        <button
-                          key={ev.id}
-                          title={`집필 배경·관련 사건 (근거 아님): ${ev.nameKo || ev.title}`}
-                          onClick={(e) => { e.stopPropagation(); onSelectNode && onSelectNode(ev.id) }}
-                          style={eventChipStyle}
-                        >⚡ {ev.nameKo || ev.title}</button>
-                      ))}
-                      {extra > 0 && (
-                        <span style={{ fontSize: 10, color: '#8b80a8' }}>외 {extra}건</span>
-                      )}
-                    </>
-                  )
-                })()}
-              </div>
-            </div>
-          )
-        }
-
         const { startDate, members, rep } = item.group
         const isSelected = selectedNode && members.some(e => e.id === selectedNode)
         const isAuthored = rep.authored === true
