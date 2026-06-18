@@ -1,0 +1,184 @@
+{
+  "events": [
+    {
+      "id": "verse-event-ruth-follows-naomi-to-bethlehem",
+      "title": "Ruth follows Naomi to Bethlehem",
+      "nameKo": "룻이 나오미를 따라 베들레헴으로 돌아옴",
+      "startDate": "-1100",
+      "sortKey": -1100,
+      "yearLabel": "BC 1100경",
+      "book_id": "recZuCb9Bn0RErpsL"
+    },
+    {
+      "id": "verse-event-ruth-gleans-in-boaz-field",
+      "title": "Ruth gleans in Boaz's field",
+      "nameKo": "룻이 보아스의 밭에서 이삭을 줍다",
+      "startDate": "-1100",
+      "sortKey": -1100,
+      "yearLabel": "BC 1100경",
+      "book_id": "recZuCb9Bn0RErpsL"
+    },
+    {
+      "id": "verse-event-boaz-redeems-ruth-at-the-gate",
+      "title": "Boaz redeems Ruth at the city gate",
+      "nameKo": "보아스가 성문에서 룻을 기업 무를 자로 맞이하다",
+      "startDate": "-1100",
+      "sortKey": -1100,
+      "yearLabel": "BC 1100경",
+      "book_id": "recZuCb9Bn0RErpsL"
+    },
+    {
+      "id": "verse-event-birth-of-obed-ancestor-of-david",
+      "title": "Birth of Obed, ancestor of David",
+      "nameKo": "다윗의 조상 오벳의 탄생",
+      "startDate": "-1099",
+      "sortKey": -1099,
+      "yearLabel": "BC 1099경",
+      "book_id": "recZuCb9Bn0RErpsL"
+    },
+    {
+      "id": "verse-event-vashti-refuses-the-king",
+      "title": "Queen Vashti refuses the king and is deposed",
+      "nameKo": "왕후 와스디가 아하수에로 왕의 명을 거절하고 폐위되다",
+      "startDate": "-483",
+      "sortKey": -483,
+      "yearLabel": "BC 483경",
+      "book_id": "rec6yHFZ6w7UUw5Cu"
+    },
+    {
+      "id": "verse-event-esther-chosen-as-queen",
+      "title": "Esther chosen as queen of Persia",
+      "nameKo": "에스더가 페르시아 왕후로 선택되다",
+      "startDate": "-479",
+      "sortKey": -479,
+      "yearLabel": "BC 479경",
+      "book_id": "rec6yHFZ6w7UUw5Cu"
+    },
+    {
+      "id": "verse-event-cyrus-decrees-return-from-exile",
+      "title": "Cyrus the Great decrees return from Babylonian exile",
+      "nameKo": "고레스 대왕이 바벨론 포로 귀환을 선언하다",
+      "startDate": "-538",
+      "sortKey": -538,
+      "yearLabel": "BC 538경",
+      "book_id": "recit4Q50QB9nM3q2"
+    },
+    {
+      "id": "verse-event-zerubbabel-leads-first-return-from-exile",
+      "title": "Zerubbabel leads first return of exiles to Jerusalem",
+      "nameKo": "스룹바벨이 첫 귀환자들을 이끌고 예루살렘으로 돌아오다",
+      "startDate": "-537",
+      "sortKey": -537,
+      "yearLabel": "BC 537경",
+      "book_id": "recit4Q50QB9nM3q2"
+    },
+    {
+      "id": "verse-event-temple-foundation-laid-in-jerusalem",
+      "title": "Foundation of the Second Temple laid in Jerusalem",
+      "nameKo": "예루살렘에 제2성전의 기초가 놓이다",
+      "startDate": "-536",
+      "sortKey": -536,
+      "yearLabel": "BC 536경",
+      "book_id": "recit4Q50QB9nM3q2"
+    },
+    {
+      "id": "verse-event-second-temple-completed-under-darius",
+      "title": "Second Temple completed under Darius I",
+      "nameKo": "다리우스 1세 때 제2성전이 완공되다",
+      "startDate": "-516",
+      "sortKey": -516,
+      "yearLabel": "BC 516경",
+      "book_id": "recit4Q50QB9nM3q2"
+    },
+    {
+      "id": "verse-event-ezra-returns-to-jerusalem-with-exiles",
+      "title": "Ezra leads second wave of exiles back to Jerusalem",
+      "nameKo": "에스라가 두 번째 귀환자들을 이끌고 예루살렘으로 돌아오다",
+      "startDate": "-458",
+      "sortKey": -458,
+      "yearLabel": "BC 458경",
+      "book_id": "recit4Q50QB9nM3q2"
+    },
+    {
+      "id": "verse-event-ezra-dissolves-mixed-marriages",
+      "title": "Ezra's crisis over intermarriage with foreign peoples",
+      "nameKo": "에스라가 이방인과의 혼인 문제를 처리하다",
+      "startDate": "-457",
+      "sortKey": -457,
+      "yearLabel": "BC 457경",
+      "book_id": "recit4Q50QB9nM3q2"
+    },
+    {
+      "id": "verse-event-nehemiah-hears-of-jerusalems-ruins",
+      "title": "Nehemiah hears of Jerusalem's broken walls and fasts",
+      "nameKo": "느헤미야가 예루살렘 성벽 붕괴 소식을 듣고 금식하다",
+      "startDate": "-445",
+      "sortKey": -445,
+      "yearLabel": "BC 445경",
+      "book_id": "rec3WEGPl0a1PS0cC"
+    },
+    {
+      "id": "verse-event-nehemiah-rebuilds-jerusalem-walls",
+      "title": "Nehemiah rebuilds Jerusalem's walls in 52 days",
+      "nameKo": "느헤미야가 52일 만에 예루살렘 성벽을 재건하다",
+      "startDate": "-445",
+      "sortKey": -445,
+      "yearLabel": "BC 445경",
+      "book_id": "rec3WEGPl0a1PS0cC"
+    },
+    {
+      "id": "verse-event-ezra-reads-law-at-water-gate",
+      "title": "Ezra reads the Law publicly at the Water Gate",
+      "nameKo": "에스라가 수문 앞 광장에서 율법을 공개 낭독하다",
+      "startDate": "-444",
+      "sortKey": -444,
+      "yearLabel": "BC 444경",
+      "book_id": "rec3WEGPl0a1PS0cC"
+    },
+    {
+      "id": "verse-event-israel-renews-the-covenant-under-nehemiah",
+      "title": "Israel renews the covenant and signs a binding agreement",
+      "nameKo": "이스라엘이 하나님과의 언약을 갱신하고 서약문에 서명하다",
+      "startDate": "-444",
+      "sortKey": -444,
+      "yearLabel": "BC 444경",
+      "book_id": "rec3WEGPl0a1PS0cC"
+    },
+    {
+      "id": "verse-event-david-brings-ark-to-jerusalem-chronicles",
+      "title": "David brings the Ark of the Covenant to Jerusalem",
+      "nameKo": "다윗이 하나님의 궤를 예루살렘으로 옮기다 (역대기)",
+      "startDate": "-1000",
+      "sortKey": -1000,
+      "yearLabel": "BC 1000경",
+      "book_id": "rec2ZFQHqI4eUjhqX"
+    },
+    {
+      "id": "verse-event-david-prepares-materials-for-the-temple",
+      "title": "David prepares materials and appoints personnel for the Temple",
+      "nameKo": "다윗이 성전 건축 재료와 인원을 준비하다",
+      "startDate": "-971",
+      "sortKey": -971,
+      "yearLabel": "BC 971경",
+      "book_id": "rec2ZFQHqI4eUjhqX"
+    },
+    {
+      "id": "verse-event-john-vision-on-patmos",
+      "title": "John receives visions on the island of Patmos",
+      "nameKo": "요한이 밧모 섬에서 계시를 받다",
+      "startDate": "95",
+      "sortKey": 95,
+      "yearLabel": "AD 95경",
+      "book_id": "recUbhyLLUrl849r7"
+    },
+    {
+      "id": "verse-event-new-jerusalem-descends-from-heaven",
+      "title": "Vision of the New Jerusalem descending from heaven",
+      "nameKo": "새 예루살렘이 하늘에서 내려오는 환상",
+      "startDate": "95",
+      "sortKey": 95,
+      "yearLabel": "AD 95경",
+      "book_id": "recUbhyLLUrl849r7"
+    }
+  ]
+}
