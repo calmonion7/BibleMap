@@ -17605,6 +17605,27 @@
             "textEn": "Thou shalt not covet thy neighbour’s house, thou shalt not covet thy neighbour’s wife, nor his manservant, nor his maidservant, nor his ox, nor his ass, nor any thing that is thy neighbour’s."
           }
         ]
+      },
+      {
+        "bookId": "rec6qL6gTvX4tUw4A",
+        "bookOrder": 3,
+        "rangeLabel": "1:1–2",
+        "verses": [
+          {
+            "verseID": "03001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "여호와께서 회막에서 모세를 부르시고 그에게 일러 가라사대 ",
+            "textEn": "And the Lord called unto Moses, and spake unto him out of the tabernacle of the congregation, saying,"
+          },
+          {
+            "verseID": "03001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "이스라엘 자손에게 고하여 이르라 너희 중에 누구든지 여호와께 예물을 드리려거든 생축 중에서 소나 양으로 예물을 드릴지니라 ",
+            "textEn": "Speak unto the children of Israel, and say unto them, If any man of you bring an offering unto the Lord, ye shall bring your offering of the cattle, even of the herd, and of the flock."
+          }
+        ]
       }
     ]
   },
@@ -19721,6 +19742,27 @@
             "verse": 23,
             "textKo": "손을 거두리니 네가 내 등을 볼 것이요 얼굴은 보지 못하리라  ",
             "textEn": "And I will take away mine hand, and thou shalt see my back parts: but my face shall not be seen. "
+          }
+        ]
+      },
+      {
+        "bookId": "rec6qL6gTvX4tUw4A",
+        "bookOrder": 3,
+        "rangeLabel": "1:1–2",
+        "verses": [
+          {
+            "verseID": "03001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "여호와께서 회막에서 모세를 부르시고 그에게 일러 가라사대 ",
+            "textEn": "And the Lord called unto Moses, and spake unto him out of the tabernacle of the congregation, saying,"
+          },
+          {
+            "verseID": "03001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "이스라엘 자손에게 고하여 이르라 너희 중에 누구든지 여호와께 예물을 드리려거든 생축 중에서 소나 양으로 예물을 드릴지니라 ",
+            "textEn": "Speak unto the children of Israel, and say unto them, If any man of you bring an offering unto the Lord, ye shall bring your offering of the cattle, even of the herd, and of the flock."
           }
         ]
       }
@@ -24671,6 +24713,20 @@
             "textEn": "Then died Ibzan, and was buried at Beth–lehem."
           }
         ]
+      },
+      {
+        "bookId": "recZuCb9Bn0RErpsL",
+        "bookOrder": 8,
+        "rangeLabel": "1:1",
+        "verses": [
+          {
+            "verseID": "08001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "사사들의 치리하던 때에 그 땅에 흉년이 드니라 유다 베들레헴에 한 사람이 그 아내와 두 아들을 데리고 모압 지방에 가서 우거하였는데 ",
+            "textEn": "Now it came to pass in the days when the judges ruled, that there was a famine in the land. And a certain man of Beth–lehem–judah went to sojourn in the country of Moab, he, and his wife, and his two sons."
+          }
+        ]
       }
     ]
   },
@@ -24708,6 +24764,20 @@
             "verse": 20,
             "textKo": "블레셋 사람의 때에 삼손이 이스라엘 사사로 이십 년을 지내었더라  ",
             "textEn": "And he judged Israel in the days of the Philistines twenty years. "
+          }
+        ]
+      },
+      {
+        "bookId": "recZuCb9Bn0RErpsL",
+        "bookOrder": 8,
+        "rangeLabel": "1:1",
+        "verses": [
+          {
+            "verseID": "08001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "사사들의 치리하던 때에 그 땅에 흉년이 드니라 유다 베들레헴에 한 사람이 그 아내와 두 아들을 데리고 모압 지방에 가서 우거하였는데 ",
+            "textEn": "Now it came to pass in the days when the judges ruled, that there was a famine in the land. And a certain man of Beth–lehem–judah went to sojourn in the country of Moab, he, and his wife, and his two sons."
           }
         ]
       }
@@ -34295,6 +34365,34 @@
             "textEn": "And David built there an altar unto the Lord, and offered burnt offerings and peace offerings. So the Lord was intreated for the land, and the plague was stayed from Israel.  "
           }
         ]
+      },
+      {
+        "bookId": "recKXZXO6cJwk2SxO",
+        "bookOrder": 19,
+        "rangeLabel": "1:1–3",
+        "verses": [
+          {
+            "verseID": "19001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "복 있는 사람은 악인의 꾀를 좇지 아니하며 죄인의 길에 서지 아니하며 오만한 자의 자리에 앉지 아니하고 ",
+            "textEn": "Blessed is the man that walketh not in the counsel of the ungodly, nor standeth in the way of sinners, nor sitteth in the seat of the scornful."
+          },
+          {
+            "verseID": "19001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "오직 여호와의 율법을 즐거워하여 그 율법을 주야로 묵상하는 자로다 ",
+            "textEn": "But his delight is in the law of the Lord; and in his law doth he meditate day and night."
+          },
+          {
+            "verseID": "19001003",
+            "chapter": 1,
+            "verse": 3,
+            "textKo": "저는 시냇가에 심은 나무가 시절을 좇아 과실을 맺으며 그 잎사귀가 마르지 아니함 같으니 그 행사가 다 형통하리로다 ",
+            "textEn": "And he shall be like a tree planted by the rivers of water, that bringeth forth his fruit in his season; his leaf also shall not wither; and whatsoever he doeth shall prosper."
+          }
+        ]
       }
     ]
   },
@@ -36914,6 +37012,83 @@
             "textEn": "And the time that Solomon reigned in Jerusalem over all Israel was forty years."
           }
         ]
+      },
+      {
+        "bookId": "rec410yOewjNfbeE3",
+        "bookOrder": 14,
+        "rangeLabel": "1:1",
+        "verses": [
+          {
+            "verseID": "14001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "다윗의 아들 솔로몬의 왕위가 견고하여 가며 그 하나님 여호와께서 저와 함께 하사 심히 창대케 하시니라 ",
+            "textEn": "And Solomon the son of David was strengthened in his kingdom, and the Lord his God was with him, and magnified him exceedingly."
+          }
+        ]
+      },
+      {
+        "bookId": "recRLdYtz1vjdW7yd",
+        "bookOrder": 20,
+        "rangeLabel": "1:1–3",
+        "verses": [
+          {
+            "verseID": "20001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "다윗의 아들 이스라엘 왕 솔로몬의 잠언이라 ",
+            "textEn": "The proverbs of Solomon the son of David, king of Israel;"
+          },
+          {
+            "verseID": "20001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "이는 지혜와 훈계를 알게 하며 명철의 말씀을 깨닫게 하며 ",
+            "textEn": "To know wisdom and instruction; to perceive the words of understanding;"
+          },
+          {
+            "verseID": "20001003",
+            "chapter": 1,
+            "verse": 3,
+            "textKo": "지혜롭게, 의롭게, 공평하게, 정직하게 행할 일에 대하여 훈계를 받게 하며 ",
+            "textEn": "To receive the instruction of wisdom, justice, and judgment, and equity;"
+          }
+        ]
+      },
+      {
+        "bookId": "recd3p656hOWx95Jk",
+        "bookOrder": 21,
+        "rangeLabel": "1:1–2",
+        "verses": [
+          {
+            "verseID": "21001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "다윗의 아들 예루살렘 왕 전도자의 말씀이라 ",
+            "textEn": "The words of the Preacher, the son of David, king in Jerusalem."
+          },
+          {
+            "verseID": "21001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "전도자가 가로되 헛되고 헛되며 헛되고 헛되니 모든 것이 헛되도다 ",
+            "textEn": "Vanity of vanities, saith the Preacher, vanity of vanities; all is vanity."
+          }
+        ]
+      },
+      {
+        "bookId": "recnUwcJABJVgZDCI",
+        "bookOrder": 22,
+        "rangeLabel": "1:1",
+        "verses": [
+          {
+            "verseID": "22001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "솔로몬의 아가라 ",
+            "textEn": "The song of songs, which is Solomon’s."
+          }
+        ]
       }
     ]
   },
@@ -37674,6 +37849,20 @@
             "textEn": "So was ended all the work that king Solomon made for the house of the Lord. And Solomon brought in the things which David his father had dedicated; even the silver, and the gold, and the vessels, did he put among the treasures of the house of the Lord. "
           }
         ]
+      },
+      {
+        "bookId": "rec410yOewjNfbeE3",
+        "bookOrder": 14,
+        "rangeLabel": "3:1",
+        "verses": [
+          {
+            "verseID": "14003001",
+            "chapter": 3,
+            "verse": 1,
+            "textKo": "솔로몬이 예루살렘 모리아 산에 여호와의 전 건축하기를 시작하니 그곳은 전에 여호와께서 그 아비 다윗에게 나타나신 곳이요 여부스 사람 오르난의 타작마당에 다윗이 정한 곳이라 ",
+            "textEn": "Then Solomon began to build the house of the Lord at Jerusalem in mount Moriah, where the Lord appeared unto David his father, in the place that David had prepared in the threshingfloor of Ornan the Jebusite."
+          }
+        ]
       }
     ]
   },
@@ -37775,6 +37964,20 @@
             "verse": 24,
             "textKo": "여호와의 말씀이 너희는 올라가지 말라 너희 형제 이스라엘 자손과 싸우지 말고 각기 집으로 돌아가라 이 일이 내게로 말미암아 난 것이라 하셨다 하라 하신지라 저희가 여호와의 말씀을 듣고 그 말씀을 좇아 돌아갔더라 ",
             "textEn": "Thus saith the Lord, Ye shall not go up, nor fight against your brethren the children of Israel: return every man to his house; for this thing is from me. They hearkened therefore to the word of the Lord, and returned to depart, according to the word of the Lord."
+          }
+        ]
+      },
+      {
+        "bookId": "rec410yOewjNfbeE3",
+        "bookOrder": 14,
+        "rangeLabel": "10:1",
+        "verses": [
+          {
+            "verseID": "14010001",
+            "chapter": 10,
+            "verse": 1,
+            "textKo": "르호보암이 세겜으로 갔으니 이는 온 이스라엘이 저로 왕을 삼고자 하여 세겜에 이르렀음이더라 ",
+            "textEn": "And Rehoboam went to Shechem: for to Shechem were all Israel come to make him king."
           }
         ]
       }
@@ -56956,6 +57159,20 @@
             "textEn": "And Hezekiah slept with his fathers: and Manasseh his son reigned in his stead. "
           }
         ]
+      },
+      {
+        "bookId": "rec410yOewjNfbeE3",
+        "bookOrder": 14,
+        "rangeLabel": "29:1",
+        "verses": [
+          {
+            "verseID": "14029001",
+            "chapter": 29,
+            "verse": 1,
+            "textKo": "히스기야가 위에 나아갈 때에 나이 이십오 세라 예루살렘에서 이십구 년을 치리하니라 그 모친의 이름은 아비야라 스가랴의 딸이더라 ",
+            "textEn": "Hezekiah began to reign when he was five and twenty years old, and he reigned nine and twenty years in Jerusalem. And his mother’s name was Abijah, the daughter of Zechariah."
+          }
+        ]
       }
     ]
   },
@@ -57913,6 +58130,20 @@
             "verse": 30,
             "textKo": "신복들이 그 시체를 병거에 싣고 므깃도에서 예루살렘으로 돌아와서 그 묘실에 장사하니 국민이 요시야의 아들 여호아하스를 데려다가 저에게 기름을 붓고 그 부친을 대신하여 왕을 삼았더라 ",
             "textEn": "And his servants carried him in a chariot dead from Megiddo, and brought him to Jerusalem, and buried him in his own sepulchre. And the people of the land took Jehoahaz the son of Josiah, and anointed him, and made him king in his father’s stead."
+          }
+        ]
+      },
+      {
+        "bookId": "rec410yOewjNfbeE3",
+        "bookOrder": 14,
+        "rangeLabel": "34:1",
+        "verses": [
+          {
+            "verseID": "14034001",
+            "chapter": 34,
+            "verse": 1,
+            "textKo": "요시야가 위에 나아갈 때에 나이 팔 세라 예루살렘에서 삼십일 년을 치리하며 ",
+            "textEn": "Josiah was eight years old when he began to reign, and he reigned in Jerusalem one and thirty years."
           }
         ]
       }
@@ -71069,6 +71300,34 @@
             "textEn": "And they slew the sons of Zedekiah before his eyes, and put out the eyes of Zedekiah, and bound him with fetters of brass, and carried him to Babylon."
           }
         ]
+      },
+      {
+        "bookId": "recdT4VI6VdkEzixN",
+        "bookOrder": 25,
+        "rangeLabel": "1:1–3",
+        "verses": [
+          {
+            "verseID": "25001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "슬프다 이 성이여 본래는 거민이 많더니 이제는 어찌 그리 적막히 앉았는고 본래는 열국 중에 크던 자가 이제는 과부 같고 본래는 열방 중에 공주 되었던 자가 이제는 조공 드리는 자가 되었도다 ",
+            "textEn": "How doth the city sit solitary, that was full of people! how is she become as a widow! she that was great among the nations, and princess among the provinces, how is she become tributary!"
+          },
+          {
+            "verseID": "25001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "밤새도록 애곡하니 눈물이 뺨에 흐름이여 사랑하던 자 중에 위로하는 자가 없고 친구도 다 배반하여 원수가 되었도다 ",
+            "textEn": "She weepeth sore in the night, and her tears are on her cheeks: among all her lovers she hath none to comfort her: all her friends have dealt treacherously with her, they are become her enemies."
+          },
+          {
+            "verseID": "25001003",
+            "chapter": 1,
+            "verse": 3,
+            "textKo": "유다는 환난과 많은 수고로 인하여 사로잡혀 갔도다 저가 열방에 거하여 평강을 얻지 못함이여 그 모든 핍박하는 자가 저를 쫓아 협착한 곳에 미쳤도다 ",
+            "textEn": "Judah is gone into captivity because of affliction, and because of great servitude: she dwelleth among the heathen, she findeth no rest: all her persecutors overtook her between the straits."
+          }
+        ]
       }
     ]
   },
@@ -80155,6 +80414,27 @@
   "recQPoA7fH3wJi7v2": {
     "books": [
       {
+        "bookId": "recit4Q50QB9nM3q2",
+        "bookOrder": 15,
+        "rangeLabel": "5:1–2",
+        "verses": [
+          {
+            "verseID": "15005001",
+            "chapter": 5,
+            "verse": 1,
+            "textKo": "선지자들 곧 선지자 학개와 잇도의 손자 스가랴가 이스라엘 하나님의 이름을 받들어 유다와 예루살렘에 거하는 유다 사람들에게 예언하였더니 ",
+            "textEn": "Then the prophets, Haggai the prophet, and Zechariah the son of Iddo, prophesied unto the Jews that were in Judah and Jerusalem in the name of the God of Israel, even unto them."
+          },
+          {
+            "verseID": "15005002",
+            "chapter": 5,
+            "verse": 2,
+            "textKo": "이에 스알디엘의 아들 스룹바벨과 요사닥의 아들 예수아가 일어나 예루살렘 하나님의 전 건축하기를 시작하매 하나님의 선지자들이 함께 하여 돕더니 ",
+            "textEn": "Then rose up Zerubbabel the son of Shealtiel, and Jeshua the son of Jozadak, and began to build the house of God which is at Jerusalem: and with them were the prophets of God helping them."
+          }
+        ]
+      },
+      {
         "bookId": "recieu3CSdcWH6rMj",
         "bookOrder": 37,
         "rangeLabel": "1:1–15, 2:1–23",
@@ -80431,6 +80711,27 @@
   },
   "recebNaZjPvbOqk4r": {
     "books": [
+      {
+        "bookId": "recit4Q50QB9nM3q2",
+        "bookOrder": 15,
+        "rangeLabel": "5:1–2",
+        "verses": [
+          {
+            "verseID": "15005001",
+            "chapter": 5,
+            "verse": 1,
+            "textKo": "선지자들 곧 선지자 학개와 잇도의 손자 스가랴가 이스라엘 하나님의 이름을 받들어 유다와 예루살렘에 거하는 유다 사람들에게 예언하였더니 ",
+            "textEn": "Then the prophets, Haggai the prophet, and Zechariah the son of Iddo, prophesied unto the Jews that were in Judah and Jerusalem in the name of the God of Israel, even unto them."
+          },
+          {
+            "verseID": "15005002",
+            "chapter": 5,
+            "verse": 2,
+            "textKo": "이에 스알디엘의 아들 스룹바벨과 요사닥의 아들 예수아가 일어나 예루살렘 하나님의 전 건축하기를 시작하매 하나님의 선지자들이 함께 하여 돕더니 ",
+            "textEn": "Then rose up Zerubbabel the son of Shealtiel, and Jeshua the son of Jozadak, and began to build the house of God which is at Jerusalem: and with them were the prophets of God helping them."
+          }
+        ]
+      },
       {
         "bookId": "rec2EEptPS7M8gQC3",
         "bookOrder": 38,
@@ -81919,6 +82220,20 @@
   },
   "recpSNqfLiST1KQqq": {
     "books": [
+      {
+        "bookId": "rec3WEGPl0a1PS0cC",
+        "bookOrder": 16,
+        "rangeLabel": "1:1",
+        "verses": [
+          {
+            "verseID": "16001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "하가랴의 아들 느헤미야의 말이라 아닥사스다 왕 제이십년 기슬르월에 내가 수산 궁에 있더니 ",
+            "textEn": "The words of Nehemiah the son of Hachaliah. And it came to pass in the month Chisleu, in the twentieth year, as I was in Shushan the palace,"
+          }
+        ]
+      },
       {
         "bookId": "recFNHNgEiPlhRRpQ",
         "bookOrder": 39,
@@ -98320,6 +98635,27 @@
             "textEn": "Notwithstanding it pleased Silas to abide there still."
           }
         ]
+      },
+      {
+        "bookId": "recDk5A8p9VHMaXAC",
+        "bookOrder": 59,
+        "rangeLabel": "1:1–2",
+        "verses": [
+          {
+            "verseID": "59001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "하나님과 주 예수 그리스도의 종 야고보는 흩어져 있는 열두 지파에게 문안하노라 ",
+            "textEn": "James, a servant of God and of the Lord Jesus Christ, to the twelve tribes which are scattered abroad, greeting."
+          },
+          {
+            "verseID": "59001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "내 형제들아 너희가 여러 가지 시험을 만나거든 온전히 기쁘게 여기라 ",
+            "textEn": "My brethren, count it all joy when ye fall into divers temptations;"
+          }
+        ]
       }
     ]
   },
@@ -100225,6 +100561,55 @@
             "textEn": "Then all the Greeks took Sosthenes, the chief ruler of the synagogue, and beat him before the judgment seat. And Gallio cared for none of those things."
           }
         ]
+      },
+      {
+        "bookId": "recDZc63lmQiSe0gn",
+        "bookOrder": 52,
+        "rangeLabel": "1:1–3",
+        "verses": [
+          {
+            "verseID": "52001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "바울과 실루아노와 디모데는 하나님 아버지와 주 예수 그리스도 안에 있는 데살로니가인의 교회에 편지하노니 은혜와 평강이 너희에게 있을지어다 ",
+            "textEn": "Paul, and Silvanus, and Timotheus, unto the church of the Thessalonians which is in God the Father and in the Lord Jesus Christ: Grace be unto you, and peace, from God our Father, and the Lord Jesus Christ."
+          },
+          {
+            "verseID": "52001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "우리가 너희 무리를 인하여 항상 하나님께 감사하고 기도할 때에 너희를 말함은 ",
+            "textEn": "We give thanks to God always for you all, making mention of you in our prayers;"
+          },
+          {
+            "verseID": "52001003",
+            "chapter": 1,
+            "verse": 3,
+            "textKo": "너희의 믿음의 역사와 사랑의 수고와 우리 주 예수 그리스도에 대한 소망의 인내를 우리 하나님 아버지 앞에서 쉬지 않고 기억함이니 ",
+            "textEn": "Remembering without ceasing your work of faith, and labour of love, and patience of hope in our Lord Jesus Christ, in the sight of God and our Father;"
+          }
+        ]
+      },
+      {
+        "bookId": "recnZBkoT7W0SV19v",
+        "bookOrder": 53,
+        "rangeLabel": "1:1–2",
+        "verses": [
+          {
+            "verseID": "53001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "바울과 실루아노와 디모데는 하나님 우리 아버지와 주 예수 그리스도 안에 있는 데살로니가인의 교회에 편지하노니 ",
+            "textEn": "Paul, and Silvanus, and Timotheus, unto the church of the Thessalonians in God our Father and the Lord Jesus Christ:"
+          },
+          {
+            "verseID": "53001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "하나님 아버지와 주 예수 그리스도로부터 은혜와 평강이 너희에게 있을지어다 ",
+            "textEn": "Grace unto you, and peace, from God our Father and the Lord Jesus Christ."
+          }
+        ]
       }
     ]
   },
@@ -100769,6 +101154,34 @@
             "textEn": "For Paul had determined to sail by Ephesus, because he would not spend the time in Asia: for he hasted, if it were possible for him, to be at Jerusalem the day of Pentecost."
           }
         ]
+      },
+      {
+        "bookId": "recyvIyxRMFob6SoM",
+        "bookOrder": 45,
+        "rangeLabel": "1:1–3",
+        "verses": [
+          {
+            "verseID": "45001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "예수 그리스도의 종 바울은 사도로 부르심을 받아 하나님의 복음을 위하여 택정함을 입었으니 ",
+            "textEn": "Paul, a servant of Jesus Christ, called to be an apostle, separated unto the gospel of God,"
+          },
+          {
+            "verseID": "45001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "이 복음은 하나님이 선지자들로 말미암아 그의 아들에 관하여 성경에 미리 약속하신 것이라 ",
+            "textEn": "(Which he had promised afore by his prophets in the holy scriptures,)"
+          },
+          {
+            "verseID": "45001003",
+            "chapter": 1,
+            "verse": 3,
+            "textKo": "이 아들로 말하면 육신으로는 다윗의 혈통에서 나셨고 ",
+            "textEn": "Concerning his Son Jesus Christ our Lord, which was made of the seed of David according to the flesh;"
+          }
+        ]
       }
     ]
   },
@@ -100932,6 +101345,34 @@
             "verse": 22,
             "textKo": "자기를 돕는 사람 중에서 디모데와 에라스도 두 사람을 마게도냐로 보내고 자기는 아시아에 얼마간 더 있으니라 ",
             "textEn": "So he sent into Macedonia two of them that ministered unto him, Timotheus and Erastus; but he himself stayed in Asia for a season."
+          }
+        ]
+      },
+      {
+        "bookId": "recVtbTyqtbbtqRC5",
+        "bookOrder": 46,
+        "rangeLabel": "1:1–3",
+        "verses": [
+          {
+            "verseID": "46001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "하나님의 뜻을 따라 그리스도 예수의 사도로 부르심을 입은 바울과 및 형제 소스데네는 ",
+            "textEn": "Paul, called to be an apostle of Jesus Christ through the will of God, and Sosthenes our brother,"
+          },
+          {
+            "verseID": "46001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "고린도에 있는 하나님의 교회 곧 그리스도 예수 안에서 거룩하여지고 성도라 부르심을 입은 자들과 또 각처에서 우리의 주 곧 저희와 우리의 주 되신 예수 그리스도의 이름을 부르는 모든 자들에게 ",
+            "textEn": "Unto the church of God which is at Corinth, to them that are sanctified in Christ Jesus, called to be saints, with all that in every place call upon the name of Jesus Christ our Lord, both theirs and ours:"
+          },
+          {
+            "verseID": "46001003",
+            "chapter": 1,
+            "verse": 3,
+            "textKo": "하나님 우리 아버지와 주 예수 그리스도로 좇아 은혜와 평강이 있기를 원하노라 ",
+            "textEn": "Grace be unto you, and peace, from God our Father, and from the Lord Jesus Christ."
           }
         ]
       }
@@ -101129,6 +101570,55 @@
             "verse": 6,
             "textKo": "우리는 무교절 후에 빌립보에서 배로 떠나 닷새 만에 드로아에 있는 그들에게 가서 이레를 머무니라 ",
             "textEn": "And we sailed away from Philippi after the days of unleavened bread, and came unto them to Troas in five days; where we abode seven days."
+          }
+        ]
+      },
+      {
+        "bookId": "recyvIyxRMFob6SoM",
+        "bookOrder": 45,
+        "rangeLabel": "1:1–3",
+        "verses": [
+          {
+            "verseID": "45001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "예수 그리스도의 종 바울은 사도로 부르심을 받아 하나님의 복음을 위하여 택정함을 입었으니 ",
+            "textEn": "Paul, a servant of Jesus Christ, called to be an apostle, separated unto the gospel of God,"
+          },
+          {
+            "verseID": "45001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "이 복음은 하나님이 선지자들로 말미암아 그의 아들에 관하여 성경에 미리 약속하신 것이라 ",
+            "textEn": "(Which he had promised afore by his prophets in the holy scriptures,)"
+          },
+          {
+            "verseID": "45001003",
+            "chapter": 1,
+            "verse": 3,
+            "textKo": "이 아들로 말하면 육신으로는 다윗의 혈통에서 나셨고 ",
+            "textEn": "Concerning his Son Jesus Christ our Lord, which was made of the seed of David according to the flesh;"
+          }
+        ]
+      },
+      {
+        "bookId": "rec0CTDRtMnNCmQr9",
+        "bookOrder": 47,
+        "rangeLabel": "1:1–2",
+        "verses": [
+          {
+            "verseID": "47001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "하나님의 뜻으로 말미암아 그리스도 예수의 사도 된 바울과 및 형제 디모데는 고린도에 있는 하나님의 교회와 또 온 아가야에 있는 모든 성도에게 ",
+            "textEn": "Paul, an apostle of Jesus Christ by the will of God, and Timothy our brother, unto the church of God which is at Corinth, with all the saints which are in all Achaia:"
+          },
+          {
+            "verseID": "47001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "하나님 우리 아버지와 주 예수 그리스도로 좇아 은혜와 평강이 있기를 원하노라 ",
+            "textEn": "Grace be to you and peace from God our Father, and from the Lord Jesus Christ."
           }
         ]
       }
@@ -103949,6 +104439,104 @@
             "verse": 31,
             "textKo": "담대히 하나님 나라를 전파하며 주 예수 그리스도께 관한 것을 가르치되 금하는 사람이 없었더라   ",
             "textEn": "Preaching the kingdom of God, and teaching those things which concern the Lord Jesus Christ, with all confidence, no man forbidding him.  "
+          }
+        ]
+      },
+      {
+        "bookId": "rec3IwUp30NnnEqSL",
+        "bookOrder": 49,
+        "rangeLabel": "1:1–2",
+        "verses": [
+          {
+            "verseID": "49001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "하나님의 뜻으로 말미암아 그리스도 예수의 사도 된 바울은 에베소에 있는 성도들과 그리스도 예수 안에 신실한 자들에게 편지하노니 ",
+            "textEn": "Paul, an apostle of Jesus Christ by the will of God, to the saints which are at Ephesus, and to the faithful in Christ Jesus:"
+          },
+          {
+            "verseID": "49001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "하나님 우리 아버지와 주 예수 그리스도로 좇아 은혜와 평강이 너희에게 있을지어다 ",
+            "textEn": "Grace be to you, and peace, from God our Father, and from the Lord Jesus Christ."
+          }
+        ]
+      },
+      {
+        "bookId": "recY95JJhNEzOwMNv",
+        "bookOrder": 50,
+        "rangeLabel": "1:1–3",
+        "verses": [
+          {
+            "verseID": "50001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "그리스도 예수의 종 바울과 디모데는 그리스도 예수 안에서 빌립보에 사는 모든 성도와 또는 감독들과 집사들에게 편지하노니 ",
+            "textEn": "Paul and Timotheus, the servants of Jesus Christ, to all the saints in Christ Jesus which are at Philippi, with the bishops and deacons:"
+          },
+          {
+            "verseID": "50001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "하나님 우리 아버지와 주 예수 그리스도에게로서 은혜와 평강이 너희에게 있을지어다 ",
+            "textEn": "Grace be unto you, and peace, from God our Father, and from the Lord Jesus Christ."
+          },
+          {
+            "verseID": "50001003",
+            "chapter": 1,
+            "verse": 3,
+            "textKo": "내가 너희를 생각할 때마다 나의 하나님께 감사하며 ",
+            "textEn": "I thank my God upon every remembrance of you,"
+          }
+        ]
+      },
+      {
+        "bookId": "recY37UhYyyAlabnd",
+        "bookOrder": 51,
+        "rangeLabel": "1:1–2",
+        "verses": [
+          {
+            "verseID": "51001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "하나님의 뜻으로 말미암아 그리스도 예수의 사도 된 바울과 형제 디모데는 ",
+            "textEn": "Paul, an apostle of Jesus Christ by the will of God, and Timotheus our brother,"
+          },
+          {
+            "verseID": "51001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "골로새에 있는 성도들 곧 그리스도 안에서 신실한 형제들에게 편지하노니 우리 아버지 하나님으로부터 은혜와 평강이 너희에게 있을지어다 ",
+            "textEn": "To the saints and faithful brethren in Christ which are at Colosse: Grace be unto you, and peace, from God our Father and the Lord Jesus Christ."
+          }
+        ]
+      },
+      {
+        "bookId": "recZm66X4kEQ7X3j2",
+        "bookOrder": 57,
+        "rangeLabel": "1:1–3",
+        "verses": [
+          {
+            "verseID": "57001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "그리스도 예수를 위하여 갇힌 자 된 바울과 및 형제 디모데는 우리의 사랑을 받는 자요 동역자인 빌레몬과 ",
+            "textEn": "Paul, a prisoner of Jesus Christ, and Timothy our brother, unto Philemon our dearly beloved, and fellowlabourer,"
+          },
+          {
+            "verseID": "57001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "및 자매 압비아와 및 우리와 함께 군사된 아킵보와 네 집에 있는 교회에게 편지하노니 ",
+            "textEn": "And to our beloved Apphia, and Archippus our fellowsoldier, and to the church in thy house:"
+          },
+          {
+            "verseID": "57001003",
+            "chapter": 1,
+            "verse": 3,
+            "textKo": "하나님 우리 아버지와 주 예수 그리스도로 좇아 은혜와 평강이 너희에게 있을지어다 ",
+            "textEn": "Grace to you, and peace, from God our Father and the Lord Jesus Christ."
           }
         ]
       }
@@ -128900,6 +129488,272 @@
             "verse": 31,
             "textKo": "오직 이것을 기록함은 너희로 예수께서 하나님의 아들 그리스도이심을 믿게 하려 함이요 또 너희로 믿고 그 이름을 힘입어 생명을 얻게 하려 함이니라  ",
             "textEn": "But these are written, that ye might believe that Jesus is the Christ, the Son of God; and that believing ye might have life through his name. "
+          }
+        ]
+      }
+    ]
+  },
+  "authored-esther-persia-deliverance": {
+    "books": [
+      {
+        "bookId": "rec6yHFZ6w7UUw5Cu",
+        "bookOrder": 17,
+        "rangeLabel": "1:1",
+        "verses": [
+          {
+            "verseID": "17001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "이 일은 아하수에로 왕 때에 된 것이니 아하수에로는 인도로 구스까지 일백이십칠 도를 치리하는 왕이라 ",
+            "textEn": "Now it came to pass in the days of Ahasuerus, (this is Ahasuerus which reigned, from India even unto Ethiopia, over an hundred and seven and twenty provinces:)"
+          }
+        ]
+      }
+    ]
+  },
+  "authored-paul-release-pastorals": {
+    "books": [
+      {
+        "bookId": "rec2yyoaHMOHZcynX",
+        "bookOrder": 54,
+        "rangeLabel": "1:1–2",
+        "verses": [
+          {
+            "verseID": "54001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "우리 구주 하나님과 우리 소망이신 그리스도 예수의 명령을 따라 그리스도 예수의 사도 된 바울은 ",
+            "textEn": "Paul, an apostle of Jesus Christ by the commandment of God our Saviour, and Lord Jesus Christ, which is our hope;"
+          },
+          {
+            "verseID": "54001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "믿음 안에서 참 아들 된 디모데에게 편지하노니 하나님 아버지와 그리스도 예수 우리 주께로부터 은혜와 긍휼과 평강이 네게 있을지어다 ",
+            "textEn": "Unto Timothy, my own son in the faith: Grace, mercy, and peace, from God our Father and Jesus Christ our Lord."
+          }
+        ]
+      },
+      {
+        "bookId": "recZJmtLFS2QnJG2b",
+        "bookOrder": 56,
+        "rangeLabel": "1:1–3",
+        "verses": [
+          {
+            "verseID": "56001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "하나님의 종이요 예수 그리스도의 사도인 바울 곧 나의 사도 된 것은 하나님의 택하신 자들의 믿음과 경건함에 속한 진리의 지식과 ",
+            "textEn": "Paul, a servant of God, and an apostle of Jesus Christ, according to the faith of God’s elect, and the acknowledging of the truth which is after godliness;"
+          },
+          {
+            "verseID": "56001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "영생의 소망을 인함이라 이 영생은 거짓이 없으신 하나님이 영원한 때 전부터 약속하신 것인데 ",
+            "textEn": "In hope of eternal life, which God, that cannot lie, promised before the world began;"
+          },
+          {
+            "verseID": "56001003",
+            "chapter": 1,
+            "verse": 3,
+            "textKo": "자기 때에 자기의 말씀을 전도로 나타내셨으니 이 전도는 우리 구주 하나님의 명대로 내게 맡기신 것이라 ",
+            "textEn": "But hath in due times manifested his word through preaching, which is committed unto me according to the commandment of God our Saviour;"
+          }
+        ]
+      }
+    ]
+  },
+  "authored-paul-rome-martyrdom": {
+    "books": [
+      {
+        "bookId": "rec28yVZWWOL1gftz",
+        "bookOrder": 55,
+        "rangeLabel": "1:1–2",
+        "verses": [
+          {
+            "verseID": "55001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "하나님의 뜻으로 말미암아 그리스도 예수 안에 있는 생명의 약속대로 그리스도 예수의 사도 된 바울은 ",
+            "textEn": "Paul, an apostle of Jesus Christ by the will of God, according to the promise of life which is in Christ Jesus,"
+          },
+          {
+            "verseID": "55001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "사랑하는 아들 디모데에게 편지하노니 하나님 아버지와 그리스도 예수 우리 주께로부터 은혜와 긍휼과 평강이 네게 있을지어다 ",
+            "textEn": "To Timothy, my dearly beloved son: Grace, mercy, and peace, from God the Father and Christ Jesus our Lord."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-peter-rome-martyrdom": {
+    "books": [
+      {
+        "bookId": "receVE4rg7HzwRays",
+        "bookOrder": 60,
+        "rangeLabel": "1:1–2",
+        "verses": [
+          {
+            "verseID": "60001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "예수 그리스도의 사도 베드로는 본도, 갈라디아, 갑바도기아, 아시아와 비두니아 에 흩어진 나그네 ",
+            "textEn": "Peter, an apostle of Jesus Christ, to the strangers scattered throughout Pontus, Galatia, Cappadocia, Asia, and Bithynia,"
+          },
+          {
+            "verseID": "60001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "곧 하나님 아버지의 미리 아심을 따라 성령의 거룩하게 하심으로 순종함과 예수 그리스도의 피 뿌림을 얻기 위하여 택하심을 입은 자들에게 편지하노니 은혜와 평강이 너희에게 더욱 많을지어다 ",
+            "textEn": "Elect according to the foreknowledge of God the Father, through sanctification of the Spirit, unto obedience and sprinkling of the blood of Jesus Christ: Grace unto you, and peace, be multiplied."
+          }
+        ]
+      },
+      {
+        "bookId": "recFNtUGO3RQUDGPv",
+        "bookOrder": 61,
+        "rangeLabel": "1:1–2",
+        "verses": [
+          {
+            "verseID": "61001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "예수 그리스도의 종과 사도인 시몬 베드로는 우리 하나님과 구주 예수 그리스도의 의를 힘입어 동일하게 보배로운 믿음을 우리와 같이 받은 자들에게 편지하노니 ",
+            "textEn": "Simon Peter, a servant and an apostle of Jesus Christ, to them that have obtained like precious faith with us through the righteousness of God and our Saviour Jesus Christ:"
+          },
+          {
+            "verseID": "61001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "하나님과 우리 주 예수를 앎으로 은혜와 평강이 너희에게 더욱 많을지어다 ",
+            "textEn": "Grace and peace be multiplied unto you through the knowledge of God, and of Jesus our Lord,"
+          }
+        ]
+      }
+    ]
+  },
+  "authored-john-ephesus-epistles": {
+    "books": [
+      {
+        "bookId": "recnCKWpaf0b7Q1dy",
+        "bookOrder": 62,
+        "rangeLabel": "1:1–3",
+        "verses": [
+          {
+            "verseID": "62001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "태초부터 있는 생명의 말씀에 관하여는 우리가 들은 바요 눈으로 본 바요 주목하고 우리 손으로 만진 바라 ",
+            "textEn": "That which was from the beginning, which we have heard, which we have seen with our eyes, which we have looked upon, and our hands have handled, of the Word of life;"
+          },
+          {
+            "verseID": "62001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "이 생명이 나타내신 바 된지라 이 영원한 생명을 우리가 보았고 증거하여 너희에게 전하노니 이는 아버지와 함께 계시다가 우리에게 나타내신 바 된 자니라 ",
+            "textEn": "(For the life was manifested, and we have seen it, and bear witness, and shew unto you that eternal life, which was with the Father, and was manifested unto us;)"
+          },
+          {
+            "verseID": "62001003",
+            "chapter": 1,
+            "verse": 3,
+            "textKo": "우리가 보고 들은 바를 너희에게도 전함은 너희로 우리와 사귐이 있게 하려 함이니 우리의 사귐은 아버지와 그 아들 예수 그리스도와 함께 함이라 ",
+            "textEn": "That which we have seen and heard declare we unto you, that ye also may have fellowship with us: and truly our fellowship is with the Father, and with his Son Jesus Christ."
+          }
+        ]
+      },
+      {
+        "bookId": "recvfX2A1wSqR2QiC",
+        "bookOrder": 63,
+        "rangeLabel": "1:1",
+        "verses": [
+          {
+            "verseID": "63001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "장로는 택하심을 입은 부녀와 그의 자녀에게 편지하노니 내가 참으로 사랑하는 자요 나뿐 아니라 진리를 아는 모든 자도 그리하는 것은 ",
+            "textEn": "The elder unto the elect lady and her children, whom I love in the truth; and not I only, but also all they that have known the truth;"
+          }
+        ]
+      },
+      {
+        "bookId": "recMApftYXBHE8lV5",
+        "bookOrder": 64,
+        "rangeLabel": "1:1",
+        "verses": [
+          {
+            "verseID": "64001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "장로는 사랑하는 가이오 곧 나의 참으로 사랑하는 자에게 편지하노라 ",
+            "textEn": "The elder unto the wellbeloved Gaius, whom I love in the truth."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-jude-false-teachers": {
+    "books": [
+      {
+        "bookId": "rec2ddtGk1mJxYoy4",
+        "bookOrder": 65,
+        "rangeLabel": "1:1–3",
+        "verses": [
+          {
+            "verseID": "65001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "예수 그리스도의 종이요 야고보의 형제인 유다는 부르심을 입은 자 곧 하나님 아버지 안에서 사랑을 얻고 예수 그리스도를 위하여 지키심을 입은 자들에게 편지하노라 ",
+            "textEn": "Jude, the servant of Jesus Christ, and brother of James, to them that are sanctified by God the Father, and preserved in Jesus Christ, and called:"
+          },
+          {
+            "verseID": "65001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "긍휼과 평강과 사랑이 너희에게 더욱 많을지어다 ",
+            "textEn": "Mercy unto you, and peace, and love, be multiplied."
+          },
+          {
+            "verseID": "65001003",
+            "chapter": 1,
+            "verse": 3,
+            "textKo": "사랑하는 자들아 내가 우리의 일반으로 얻은 구원을 들어 너희에게 편지하려는 뜻이 간절하던 차에 성도에게 단번에 주신 믿음의 도를 위하여 힘써 싸우라는 편지로 너희를 권하여야 할 필요를 느꼈노니 ",
+            "textEn": "Beloved, when I gave all diligence to write unto you of the common salvation, it was needful for me to write unto you, and exhort you that ye should earnestly contend for the faith which was once delivered unto the saints."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-john-patmos-revelation": {
+    "books": [
+      {
+        "bookId": "recUbhyLLUrl849r7",
+        "bookOrder": 66,
+        "rangeLabel": "1:1–3",
+        "verses": [
+          {
+            "verseID": "66001001",
+            "chapter": 1,
+            "verse": 1,
+            "textKo": "예수 그리스도의 계시라 이는 하나님이 그에게 주사 반드시 속히 될 일을 그 종들에게 보이시려고 그 천사를 그 종 요한에게 보내어 지시하신 것이라 ",
+            "textEn": "The Revelation of Jesus Christ, which God gave unto him, to shew unto his servants things which must shortly come to pass; and he sent and signified it by his angel unto his servant John:"
+          },
+          {
+            "verseID": "66001002",
+            "chapter": 1,
+            "verse": 2,
+            "textKo": "요한은 하나님의 말씀과 예수 그리스도의 증거 곧 자기의 본 것을 다 증거하였느니라 ",
+            "textEn": "Who bare record of the word of God, and of the testimony of Jesus Christ, and of all things that he saw."
+          },
+          {
+            "verseID": "66001003",
+            "chapter": 1,
+            "verse": 3,
+            "textKo": "이 예언의 말씀을 읽는 자와 듣는 자들과 그 가운데 기록한 것을 지키는 자들이 복이 있나니 때가 가까움이라 ",
+            "textEn": "Blessed is he that readeth, and they that hear the words of this prophecy, and keep those things which are written therein: for the time is at hand."
           }
         ]
       }
