@@ -6,6 +6,17 @@ router = APIRouter()
 MAX_NEIGHBORS_PER_TYPE = 30
 NODE_NEIGHBOR_LIMIT = 50
 
+@router.get("/person/{node_id}/event-ids")
+def get_person_event_ids(node_id: str):
+    driver = get_driver()
+    with driver.session() as session:
+        result = session.run(
+            "MATCH (e:Event)-[:HAS_PARTICIPANT]->(n:Person {theographic_id: $id}) RETURN e.theographic_id AS id",
+            id=node_id
+        )
+        return {"eventIds": [r["id"] for r in result]}
+
+
 @router.get("/node/{node_id}/places")
 def get_node_places(node_id: str):
     driver = get_driver()

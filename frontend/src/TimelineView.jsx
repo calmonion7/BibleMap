@@ -25,7 +25,7 @@ function parseYear(startDate) {
   return 'AD ' + year
 }
 
-function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVerseLang }) {
+function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, personName, verseLang, setVerseLang }) {
   const [events, setEvents] = useState([])
   const [error, setError] = useState(false)
   const [openGroup, setOpenGroup] = useState(null)
@@ -40,6 +40,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVe
   const openEventRef = useRef(null)
   // 어떤 bookFilter에 대해 "닫기"를 눌렀는지 식별자로 추적 — 새 필터(다른 참조)면 자동으로 다시 표시(effect 불필요).
   const [dismissedFilter, setDismissedFilter] = useState(null)
+  const [dismissedPersonFilter, setDismissedPersonFilter] = useState(null)
   const containerRef = useRef(null)
 
   useEffect(() => {
@@ -87,7 +88,10 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVe
     if (activeFilter.endYear != null && y > activeFilter.endYear) return false
     return true
   }
-  const visibleGroups = groups.filter(g => inFilter(sortKeyToYear(g.sortKey)))
+  const activePersonFilter = personFilter && dismissedPersonFilter !== personFilter ? personFilter : null
+  const visibleGroups = groups
+    .filter(g => inFilter(sortKeyToYear(g.sortKey)))
+    .filter(g => !activePersonFilter || g.members.some(ev => activePersonFilter.has(ev.id)))
 
   const timeline = [
     ...visibleGroups.map(g => ({ kind: 'group', sortKey: g.sortKey, group: g })),
@@ -223,7 +227,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVe
     >
       {activeFilter && (
         <div style={{
-          position: 'sticky', top: 0, zIndex: 10,
+          position: 'sticky', top: 48, zIndex: 10,
           display: 'flex', alignItems: 'center', gap: 8,
           background: '#e8f0fe', borderBottom: '1px solid #c5d5fb',
           padding: '6px 12px', fontSize: 12, color: '#1a3a8f',
@@ -231,6 +235,20 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, verseLang, setVe
           <span>{activeFilter.nameKo} 범위: {fmtYear(activeFilter.startYear)} ~ {fmtYear(activeFilter.endYear)}</span>
           <button
             onClick={() => setDismissedFilter(bookFilter)}
+            style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#1a3a8f', fontSize: 13, padding: '0 4px' }}
+          >× 닫기</button>
+        </div>
+      )}
+      {activePersonFilter && (
+        <div style={{
+          position: 'sticky', top: 48, zIndex: 10,
+          display: 'flex', alignItems: 'center', gap: 8,
+          background: '#e8f0fe', borderBottom: '1px solid #c5d5fb',
+          padding: '6px 12px', fontSize: 12, color: '#1a3a8f',
+        }}>
+          <span>{personName}이 언급된 사건</span>
+          <button
+            onClick={() => setDismissedPersonFilter(personFilter)}
             style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#1a3a8f', fontSize: 13, padding: '0 4px' }}
           >× 닫기</button>
         </div>

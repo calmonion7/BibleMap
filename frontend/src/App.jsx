@@ -33,6 +33,7 @@ function App() {
   const [history, setHistory] = useState([])
   // 절 본문 표시 언어('ko'|'en', 기본 ko) — 타임라인·SidePanel 공유. 한 곳에서 바꾸면 다른 곳도 전환.
   const [verseLang, setVerseLang] = useState('ko')
+  const [personEventIds, setPersonEventIds] = useState(null)
   const selectedNodeRef = useRef(null)
   const searchBoxRef = useRef(null)
   const resultRefs = useRef([])
@@ -47,6 +48,13 @@ function App() {
       startYear: node.properties?.startYear ?? null,
       endYear: node.properties?.endYear ?? null,
     })
+    if (node.label === 'Person') {
+      apiGet(`/person/${node.id}/event-ids`)
+        .then(data => setPersonEventIds(new Set(data.eventIds)))
+        .catch(() => setPersonEventIds(null))
+    } else {
+      setPersonEventIds(null)
+    }
   }, [])
 
   useEffect(() => {
@@ -112,7 +120,8 @@ function App() {
     if (id === selectedNodeRef.current) return
     if (selectedNodeRef.current) setHistory(h => [...h, selectedNodeRef.current])
     setSelectedNode(id)
-    setSelectedNodeMeta(null) // 새 노드 선택 시 초기화
+    setSelectedNodeMeta(null)
+    setPersonEventIds(null)
   }, [])
 
   function goBack() {
@@ -316,6 +325,8 @@ function App() {
             onSelectNode={selectNode}
             selectedNode={selectedNode}
             bookFilter={selectedNodeMeta?.label === 'Book' ? selectedNodeMeta : null}
+            personFilter={selectedNodeMeta?.label === 'Person' ? personEventIds : null}
+            personName={selectedNodeMeta?.label === 'Person' ? selectedNodeMeta.nameKo : null}
             verseLang={verseLang}
             setVerseLang={setVerseLang}
           />
