@@ -1,120 +1,89 @@
 ---
-last_mapped_commit: 6f2cfc1bf163d7327bd86773676223624fa53ff2
-mapped: 2026-06-18
+last_mapped_commit: 9f47b78ed927ef302cefffb5b62ef71885b6aa94
+mapped: 2026-06-19
 ---
 
 # BibleMap 코드 컨벤션
 
-## 코드 스타일 및 포맷
+## 언어 및 파일 구조
 
-### 프론트엔드 (JavaScript/JSX)
-- ESLint 설정 파일: `frontend/eslint.config.js`
-- 적용 규칙: `@eslint/js` 권장 + `eslint-plugin-react-hooks` flat recommended + `eslint-plugin-react-refresh` vite 프리셋
-- 대상 파일: `**/*.{js,jsx}` (`dist/` 제외)
-- `ecmaFeatures.jsx: true` 활성화
-- 포매터(Prettier 등) 설정 파일 없음 — 팀 내 자동 포맷 강제 없이 수동 일관성 유지
-- 인라인 스타일(`style={{ ... }}`) 방식 전면 사용; CSS 모듈·styled-component 없음
-- `index.css` 파일은 존재하나 전역 리셋/폰트 수준만 담당 (`frontend/src/index.css`)
+- **프론트엔드**: React 19 + Vite 8. 파일 확장자 `.jsx`(컴포넌트), `.js`(유틸·설정).
+- **백엔드**: Python + FastAPI. 파일 확장자 `.py`.
+- **스크립트**: `backend/scripts/` — 데이터 생성·주입 전용 독립 실행 파일. FastAPI 앱과 분리.
 
-### 백엔드 (Python)
-- 포매터·린터 설정 파일(`.pylintrc`, `pyproject.toml`, `setup.cfg`) 없음
-- Python 3.12(`Dockerfile` 기준) 타겟; `cpython-314`로 로컬 실행 흔적 존재
-- 모듈 임포트는 표준 라이브러리 → 서드파티 → 내부(`from ..db import`) 순서
+## 프론트엔드 네이밍
 
----
+- 컴포넌트 파일: PascalCase (`MapView.jsx`, `SidePanel.jsx`, `TimelineView.jsx`, `VerseLangTabs.jsx`).
+- 유틸·설정 파일: camelCase (`api.js`, `theme.js`, `convexHull.js`).
+- 컴포넌트 함수: PascalCase (`function MapView(...)`, `function SidePanel(...)`).
+- 로컬 상수·변수: SCREAMING_SNAKE_CASE가 모듈 수준 상수에 사용됨 (`MOBILE_QUERY`, `SHEET_VH`, `EMPTY_GEOJSON`, `NAV_H`).
+- 이벤트 핸들러 함수: `handle`/`on` 접두사 (`handleTabClick`, `onSearchInput`, `onSelectNode`).
 
-## 네이밍 컨벤션
+## 백엔드 네이밍
 
-### 파일 이름
-- **프론트엔드**: PascalCase 컴포넌트 파일 (`App.jsx`, `MapView.jsx`, `SidePanel.jsx`, `TimelineView.jsx`, `VerseLangTabs.jsx`), camelCase 유틸 파일 (`api.js`, `theme.js`, `convexHull.js`)
-- **백엔드 라우트**: snake_case (`nodes.py`, `events.py`, `search.py`, `books.py`)
-- **백엔드 스크립트**: snake_case 동사+명사 (`load_theographic.py`, `inject_ko_names.py`, `generate_event_verses.py`)
-- **데이터 파일**: 항상 `data/<category>/<entity>.json` 구조 (예: `data/names_ko/people.json`, `data/event_verses/events.json`)
+- 라우터 파일: 소문자 복수형 (`nodes.py`, `events.py`, `books.py`, `search.py`).
+- 라우터 변수: 각 파일에서 `router = APIRouter()`.
+- 모듈 수준 상수: SCREAMING_SNAKE_CASE (`MAX_NEIGHBORS_PER_TYPE`, `NODE_NEIGHBOR_LIMIT`, `SEARCH_LIMIT`, `BATCH_NODE`, `BATCH_REL`).
+- `_` 접두사 변수: 모듈 내부 전용 캐시·경로 변수 (`_driver`, `_EVENT_VERSES_CANDIDATES`, `_chapter_cache`).
+- 헬퍼 함수: `_` 접두사 소문자 + 스네이크 케이스 (`_load_event_verses`, `_load_approx_book_index`).
 
-### 변수·함수
-- **프론트엔드**: camelCase 변수/함수 (`selectedNode`, `searchQuery`, `handleTabClick`, `onSelectNode`)
-- **백엔드 Python**: snake_case (`get_driver`, `run_batched`, `load_people`, `filter_published`)
-- **Neo4j 속성**: camelCase (`theographic_id`, `nameKo`, `aliasesKo`, `startDate`, `bookOrder`)
-- **상수**: UPPER_SNAKE_CASE (`SEARCH_LIMIT = 20`, `MAX_NEIGHBORS_PER_TYPE = 30`, `BATCH_NODE = 500`, `MOBILE_QUERY`, `SHEET_VH`)
+## 공유 색·라벨 팔레트
 
-### 컴포넌트·클래스
-- React 컴포넌트: PascalCase, default export (`export default function MapView(...)`)
-- 백엔드 클래스 미사용 — FastAPI 라우터를 모듈 수준 함수로 정의
+- `frontend/src/theme.js` 한 파일에서 `TYPE_COLOR`, `TYPE_KO`, `TYPE_ORDER`, `typeColor()`, `typeKo()`, `SELECT_HL`을 export.
+- 모든 뷰(MapView, SidePanel, TimelineView, App)가 theme.js를 import해서 사용. 뷰별 로컬 재정의 금지 규칙이 주석으로 명시(`theme.js` 1~3행).
 
----
+## API 클라이언트
 
-## 일관되게 사용되는 패턴
+- `frontend/src/api.js` — `API_BASE`(환경변수 `VITE_API_URL` 또는 `http://localhost:8000`)와 `apiGet(path, {signal})` 함수 하나만 export.
+- 모든 프론트 fetch는 `apiGet`으로 통일. `fetch` 직접 호출 없음.
+- 비-OK 응답은 `throw res.status`(숫자)로 reject. `AbortError`는 호출부에서 `e.name === 'AbortError'`로 판별.
 
-### 프론트엔드
+## 상태 관리 패턴
 
-**단일 API 클라이언트** (`frontend/src/api.js`)
-- `API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'`
-- `apiGet(path, { signal })` 하나로 모든 fetch 통일; 비-OK 응답은 `throw res.status`
-- AbortController를 직접 호출부에서 생성해 넘김 (스테일 응답 방지 패턴)
+- 전역 상태 없음(Redux/Zustand 미사용). App.jsx가 `selectedNode`, `verseLang`, `personEventIds` 등 공유 상태를 보유하고 prop으로 전달.
+- `useRef`로 최신 상태를 읽는 패턴: `selectedNodeRef.current = selectedNode`(effect 내 stale closure 방지).
+- `cancelled` 플래그 패턴: useEffect 클린업에서 `cancelled = true`로 경쟁 응답 무시(`SidePanel.jsx` 50~57행).
+- 실시간 검색: 250ms 디바운스 + `AbortController`로 직전 요청 취소(`App.jsx` 68~88행).
 
-**공유 테마 팔레트** (`frontend/src/theme.js`)
-- `TYPE_COLOR`, `TYPE_KO`, `TYPE_ORDER`, `typeColor()`, `typeKo()`, `SELECT_HL` 단일 출처
-- 모든 뷰(App, SidePanel, TimelineView, MapView)가 이 파일에서만 색·라벨 가져옴
+## React Hooks 규칙
 
-**React 비동기 state 패턴**
-- `useEffect` 내부에서 `cancelled` 플래그로 stale 응답 무시 (`SidePanel.jsx`)
-- `useRef`로 최신값을 동기적으로 읽어 `useCallback([])` 참조 안정화 (`App.jsx` `selectNode`, `selectedNodeRef`)
-- react-hooks v7 준수: setState는 비동기 콜백 내부에서만 호출 (`App.jsx` 검색 effect 주석 참조)
+- `setState`는 `setTimeout`/`async` 콜백 안에서만 호출. effect 동기 본문 내 `setState` 금지(`App.jsx` 68행 주석).
+- `useCallback([], [...])` 로 참조 안정화: `selectNode`가 `[]` 의존성으로 정의되고 최신 값은 `selectedNodeRef`로 읽음.
 
-**인라인 스타일 레이아웃**
-- 모든 UI 스타일을 인라인 `style={{ }}` 객체로 정의 (CSS 파일 미사용, 예외: `maplibre-gl.css` import)
-- 다크 배경 기본 컬러: `#1a1a2e` (네비게이션 바, 검색 드롭다운)
+## 에러 핸들링
 
-**이중언어 텍스트 처리**
-- Neo4j 속성: `name`(영문 원본), `nameKo`(한국어), `nameKoMissing` 플래그
-- 없는 경우 `nameKo ?? name` 폴백 패턴 전 코드에서 일관 사용
-- 구절 본문: `verseLang` 상태(`'ko'|'en'`)로 `textKo`/`textEn` 필드 선택 (ADR-0003)
+- **프론트**: `try/catch` 안에서 `setError(true)` 등 에러 state 세팅. `AbortError`는 무시하고 return. 에러 UI는 조건부 렌더링으로 인라인 표시.
+- **백엔드**: FastAPI 라우터에서 `HTTPException(status_code=404, detail="...")`로 리소스 없음 처리. Neo4j 드라이버 초기화 실패는 `RuntimeError` 발생. 스크립트 외부 API 실패는 `except Exception`으로 잡고 `None` 반환(재시도 가능하도록 캐시 미적재).
+- **JSON 파일 로드**: 복수 후보 경로(Docker 볼륨 경로 → 레포 상대 경로) 순서로 시도. `FileNotFoundError`·`json.JSONDecodeError` 모두 잡아 빈 dict 폴백.
+- **`@functools.lru_cache(maxsize=1)`**: JSON 오버레이 파일을 프로세스당 1회만 로드. `events.py`, `books.py`에서 사용.
 
-### 백엔드
+## 인라인 스타일
 
-**싱글턴 Neo4j 드라이버** (`backend/app/db.py`)
-- 모듈 수준 `_driver = None` + `get_driver()` 패턴으로 프로세스당 하나의 연결 유지
+- 프론트엔드 CSS는 모두 인라인 `style={{...}}` 객체. 별도 CSS 클래스·CSS Module 없음(`index.css`는 전역 리셋만).
+- 스타일 객체 공유: `chipBase`, `verseBoxStyle` 등을 로컬 상수로 선언 후 spread(`{...chipBase, ...override}`).
+- 컬러 토큰은 theme.js `TYPE_COLOR`에서 가져오고, 뷰별 로컬 상수(`BOOK_COLOR = '#a78bfa'`)는 theme.js 값을 그대로 참조하거나 별도 상수로 선언.
 
-**`functools.lru_cache(maxsize=1)` 파일 캐시 패턴**
-- `_load_approx()`, `_load_event_verses()`, `_load_approx_book_index()`, `_load_book_events()` 등 JSON 오버레이 파일을 프로세스 시작 후 1회만 로드
+## Cypher(Neo4j) 패턴
 
-**멀티 경로 폴백 탐색** (`backend/app/routes/events.py`, `books.py`)
-- `_XXX_CANDIDATES = ["/app/data/...", os.path.join(_REPO_DATA_DIR, "...")]` 목록을 순서대로 시도
-- Docker 볼륨 마운트 경로 우선, 실패 시 레포 상대경로로 폴백
+- 노드 식별자: `theographic_id` 속성 사용(`n.theographic_id`). id 파라미터명 `$id`.
+- 배치 로드: `UNWIND $rows AS row MERGE ...`로 트랜잭션당 500(노드)·1000(관계) 건 일괄 처리.
+- 인덱스: 각 레이블에 `theographic_id`에 대한 인덱스. FastAPI lifespan에서 `CREATE INDEX ... IF NOT EXISTS` 실행.
+- 인용 절 텍스트 필드명: `nameKo`(노드), `textKo`/`textEn`(절 본문), `keyVerseTextKo`/`keyVerseTextEn`(대표 절).
 
-**배치 Cypher 실행** (`backend/scripts/`)
-- `run_batched(session, cypher, rows, batch_size)` 헬퍼로 Neo4j 적재 시 일정 크기 배치 처리
-- 노드 적재: `BATCH_NODE = 500`, 관계 적재: `BATCH_REL = 1000`
+## 데이터 파이프라인 규칙
 
-**스크립트 `__name__ == "__main__"` 진입점**
-- 모든 `backend/scripts/*.py`는 직접 실행용 스탠드얼론 스크립트; FastAPI 앱과 분리
+- 빌드타임 미리굽기(ADR-0003): 절 본문(`textKo`/`textEn`)은 `generate_verse_text.py`로 `data/` JSON에 삽입. 런타임 외부 API 호출 없음.
+- 추정책 연대·사건 연결은 Neo4j에 넣지 않고 `data/book_years_approx/books.json`, `data/book_events/books.json` 런타임 오버레이로 처리(ADR-0004, ADR-0005).
+- 스크립트는 `__name__ == "__main__"` 가드로만 실행. FastAPI app import 불가(의존성 없이 독립).
 
----
+## Vite 빌드
 
-## 에러 처리
+- 프로덕션 `VITE_API_URL=/api` — `frontend/.env.production`에 선언. 개발은 `http://localhost:8000` 폴백.
+- 청크 분리: `vite.config.js`의 `manualChunks`로 `maplibre-gl` → `maplibre`, 나머지 `node_modules` → `vendor`.
 
-### 프론트엔드
-- API 실패: `apiGet` 자체가 `throw res.status`(숫자)를 발생; 호출부가 `.catch(e => ...)` 처리
-- AbortError: `e.name === 'AbortError'` 로 구분 후 무시 (최신 요청이 진행 중)
-- UI 수준: 로딩/에러/노데이터 세 상태를 조건부 렌더로 표시 (예: `SidePanel.jsx` `if (!ready) return ...`)
+## Docker/서비스 구성
 
-### 백엔드
-- Neo4j 인덱스 생성 실패: `except Exception: logging.exception(...)` 후 계속 진행 (`main.py`)
-- 노드 없음: `raise HTTPException(status_code=404, detail="Node not found")`
-- 환경변수 미설정: 모듈 최상단 `if not NEO4J_PASSWORD: raise RuntimeError(...)` 즉시 중단
-- JSON 파일 로드 실패: `except (FileNotFoundError, json.JSONDecodeError): continue` 후 다음 후보 시도, 최종 실패 시 빈 dict/빈 배열 폴백
-
----
-
-## Import/Export 컨벤션
-
-### 프론트엔드
-- ES Module (`"type": "module"` in `package.json`)
-- 컴포넌트: `export default function ComponentName`
-- 유틸/상수: named export (`export const TYPE_COLOR = ...`, `export function apiGet(...)`)
-- 사용처: named import(`import { apiGet } from './api'`, `import { TYPE_COLOR, TYPE_KO } from './theme'`), default import for 컴포넌트
-
-### 백엔드
-- FastAPI 라우터: 각 모듈 상단에서 `router = APIRouter()` 생성 후 `@router.get(...)` 데코레이터
-- `main.py`에서 `app.include_router(nodes.router)` 방식으로 등록
-- 상대 import 사용: `from ..db import get_driver`, `from .routes import nodes, events, search, books`
+- 3개 서비스: `neo4j`, `api`, `nginx`.
+- `api` 컨테이너는 `./data:/app/data` 볼륨 마운트. 오버레이 JSON을 `/app/data`에서 읽음.
+- `nginx`는 `frontend/dist`를 정적으로 서빙. HMR 아님 → 검증 전 `npm run build` 필수.
+- 외부 노출: nginx만 `8080:80`. neo4j는 `127.0.0.1`만. api는 미노출.

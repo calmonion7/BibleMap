@@ -1,70 +1,60 @@
 ---
-last_mapped_commit: 6f2cfc1bf163d7327bd86773676223624fa53ff2
-mapped: 2026-06-18
+last_mapped_commit: 9f47b78ed927ef302cefffb5b62ef71885b6aa94
+mapped: 2026-06-19
 ---
 
 # BibleMap 테스트 현황
 
-## 자동화 테스트 없음
+## 테스트 프레임워크
 
-현재 코드베이스에 자동화 테스트가 **존재하지 않는다**.
+**자동화 테스트 없음.** `package.json`에 test 스크립트 미선언. `pytest`, `unittest`, `vitest`, `jest` 등 테스트 러너 미설치.
 
-- `frontend/` 디렉터리에 `vitest.config.*`, `jest.config.*`, `*.test.*`, `*.spec.*` 파일 없음
-- `backend/` 디렉터리에 `pytest.ini`, `pyproject.toml`, `setup.cfg`, `conftest.py`, `test_*.py`, `*_test.py` 파일 없음
-- `frontend/package.json`의 `scripts`에 `test` 항목 없음 (`dev`, `build`, `lint`, `preview`만 존재)
-- `backend/requirements.txt`에 `pytest`, `httpx`, `unittest` 등 테스트 라이브러리 미포함 (`fastapi`, `neo4j`, `uvicorn` 3개만)
+- `frontend/package.json` 스크립트: `dev`, `build`, `lint`, `preview` 4개만.
+- `backend/requirements.txt`: `fastapi`, `neo4j`, `uvicorn` 3개만(테스트 라이브러리 없음).
 
----
+## 수동 검증 패턴
 
-## 수동 검증 패턴 (스크립트 내 인라인)
+### 스크립트 내장 육안 검증
 
-자동화 테스트 대신, 데이터 생성 스크립트 내부에 **육안 검증 출력** 코드가 삽입되어 있다.
+데이터 생성 스크립트(`backend/scripts/`)가 실행 끝에 알려진 값을 출력해 육안으로 확인하는 패턴이 공통으로 사용된다.
 
-### `backend/scripts/generate_event_verses.py`
-스크립트 실행 후 `main()` 끝에서 다권 사건(공관복음 평행 기사) 1건을 찾아 콘솔에 출력:
-```
-for e in events:
-    entry = result[e["id"]]
-    if len(entry["books"]) >= 2:
-        print(f"[검증] 다권 사건: {e['fields'].get('title')} ...")
-        for b in entry["books"]: ...
-        break
-```
+- `generate_event_verses.py` 끝: 다권 사건 1건을 출력해 bookId·bookOrder·rangeLabel·절 수 확인.
+- `generate_verse_text.py` 끝: `창 1:1` ko/en, `마 9:36` ko/en, 첫 사건 첫 절 ko/en을 출력.
+- 이 패턴은 CI에서 자동으로 실행되지 않으며 개발자가 직접 출력을 확인한다.
 
-### `backend/scripts/generate_verse_text.py`
-스크립트 실행 후 알려진 세 절(창 1:1, 마 9:36, event_verses 첫 사건 첫 절)의 ko/en 본문을 콘솔에 출력해 getbible API 연동 정상 여부를 확인.
+### Playwright 화면 테스트
 
----
+메모리(`MEMORY.md`)에 따르면 Python Playwright가 `/opt/homebrew`에 설치돼 있고, UI 동작 검증 시 사용한다.
 
-## 런타임 검증: Playwright (비정기)
+- 검증 대상: `localhost:8080` (nginx 서빙 `frontend/dist`).
+- 패턴: 네트워크 캡처 + 스크린샷 조합.
+- 사전 조건: `cd frontend && npm run build`로 `dist` 갱신 후 `docker compose up -d --build api` 실행.
 
-`memory/feedback_playwright_testing.md`에 UI 동작 검증 방법이 기록되어 있다:
-- 도구: Python Playwright (`/opt/homebrew` 설치)
-- 패턴: `localhost:8080` 대상 네트워크 캡처 + 스크린샷
-- 선행 조건: 프론트 `cd frontend && npm run build` 후 `docker compose up -d --build api`
+## 린트
 
-이 검증은 스크립트화된 자동화 슈트가 아니라 특정 변경사항 확인 시 1회성으로 수행한다.
+- `frontend/eslint.config.js`: `@eslint/js` 권장 규칙 + `eslint-plugin-react-hooks` + `eslint-plugin-react-refresh`.
+- `eslint-plugin-react-hooks`의 `flat.recommended`로 exhaustive-deps 등 React hooks 규칙 적용.
+- 실행: `cd frontend && npm run lint`.
+- 백엔드 린트 도구 미설치(flake8·ruff·mypy 없음).
 
----
+## 커버리지
 
-## 테스트 미적용 현황 요약
+자동화 테스트가 없으므로 커버리지 측정 없음.
 
-| 영역 | 상태 |
-|------|------|
-| 프론트엔드 단위 테스트 (Vitest/Jest) | 없음 |
-| 프론트엔드 E2E (Playwright CI) | 없음 (수동 1회성만) |
-| 백엔드 단위 테스트 (pytest) | 없음 |
-| 백엔드 통합 테스트 (FastAPI TestClient) | 없음 |
-| CI 파이프라인 | 없음 (`.github/` 없음) |
+## 검증이 필요한 코드 경로
 
----
+스크립트에 육안 검증이 내장된 경로:
 
-## 빌드 검증 방법 (현재 운용 중)
+| 파일 | 검증 대상 |
+|------|-----------|
+| `backend/scripts/generate_event_verses.py` | 다권 사건 rangeLabel, bookOrder 정렬 |
+| `backend/scripts/generate_verse_text.py` | getbible API 절 본문 ko/en 정합성 |
+| `backend/scripts/inject_ko_names.py` | Neo4j nodes updated 카운트 출력 |
+| `backend/scripts/load_theographic.py` | 각 로드 함수 완료 로그 |
 
-테스트 대신 아래 절차로 변경사항을 검증한다 (`memory/project_local_verify_build.md` 참조):
+## 주요 부재 사항
 
-1. 프론트엔드 빌드: `cd frontend && npm run build` (`.env.production`의 `VITE_API_URL=/api` 자동 적용)
-2. API 재빌드: `docker compose up -d --build api`
-3. Playwright로 `localhost:8080` 수동 스크린샷 확인
-
-린트 검사: `cd frontend && npm run lint` (ESLint, `eslint.config.js` 기준)
+- 단위 테스트: `build_range_label()`(구절 범위 접기), `convexHull()`(Graham scan) 등 순수 함수에 단위 테스트 없음.
+- API 통합 테스트: FastAPI `TestClient` 미사용. `/events`, `/node/{id}`, `/search` 엔드포인트 자동 검증 없음.
+- E2E 테스트: Playwright가 설치돼 있으나 테스트 파일·스크립트 없음(임시 수동 실행만).
+- CI 파이프라인: `.github/workflows/deploy.yml`은 배포만 수행. 테스트 스텝 없음.

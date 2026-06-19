@@ -1,102 +1,95 @@
 ---
-last_mapped_commit: 6f2cfc1bf163d7327bd86773676223624fa53ff2
-mapped: 2026-06-18
+last_mapped_commit: 9f47b78ed927ef302cefffb5b62ef71885b6aa94
+mapped: 2026-06-19
 ---
 
-# STACK.md — BibleMap 기술 스택
+# 기술 스택
 
 ## 언어 및 런타임
 
-| 레이어 | 언어 | 런타임 |
-|---|---|---|
-| 백엔드 | Python 3.12 | CPython (`python:3.12-slim` 도커 이미지) |
-| 프론트엔드 | JavaScript (ESM + JSX) | 브라우저 (빌드타임 Node.js) |
-| 데이터 스크립트 | Python 3 | 호스트 python3 직접 실행 |
+| 레이어 | 언어 | 버전 |
+|--------|------|------|
+| 백엔드 | Python | 3.12 (Dockerfile 기준) |
+| 프론트엔드 | JavaScript (ESM) | Node 런타임, Vite 번들링 |
 
-## 프레임워크 및 주요 라이브러리
+## 백엔드
 
-### 백엔드 (`backend/requirements.txt`)
-- **FastAPI 0.136.3** — HTTP API 서버. CORS 미들웨어(`allow_origins=["*"]`, GET 전용), `lifespan` 훅으로 Neo4j 인덱스 자동 생성
-- **Uvicorn 0.49.0** — ASGI 서버. `uvicorn app.main:app --host 0.0.0.0 --port 8000`으로 기동
-- **neo4j 6.2.0** — 공식 Python 드라이버. Bolt 프로토콜로 연결(`bolt://neo4j:7687`). 싱글턴 패턴(`backend/app/db.py`)
+**프레임워크:** FastAPI 0.136.3  
+**ASGI 서버:** Uvicorn 0.49.0 (`app.main:app`, 0.0.0.0:8000)  
+**DB 클라이언트:** neo4j Python 드라이버 6.2.0 (Bolt 프로토콜)
 
-### 프론트엔드 (`frontend/package.json`)
-- **React 19.2.6 + react-dom 19.2.6** — UI 프레임워크. JSX로 작성 (`frontend/src/`)
-- **maplibre-gl 5.24.0** — 오픈소스 WebGL 지도 렌더러. Esri NatGeo 래스터 타일 소스를 마운트 (`frontend/src/MapView.jsx`)
-- **lucide-react 1.17.0** — 아이콘 라이브러리 (Map, Clock, Search, X 등)
+진입점: `backend/app/main.py`  
+DB 연결: `backend/app/db.py` — 싱글턴 드라이버, 환경변수(`NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD`)로 구성  
+라우터 모듈 4개: `backend/app/routes/nodes.py`, `backend/app/routes/events.py`, `backend/app/routes/search.py`, `backend/app/routes/books.py`
 
-### 빌드 도구 및 패키지 매니저
+미들웨어: `CORSMiddleware` — `allow_origins=["*"]`, GET 메서드만 허용
 
-| 도구 | 버전 | 용도 |
-|---|---|---|
-| **Vite** | 8.0.12 | 프론트 번들러. `vite build` → `frontend/dist/` |
-| **@vitejs/plugin-react** | 6.0.1 | Vite용 React(JSX) 트랜스파일 플러그인 |
-| **npm** | (package-lock.json 관리) | 프론트 패키지 매니저 |
-| **ESLint** | 10.3.0 | 린터. `eslint-plugin-react-hooks`, `eslint-plugin-react-refresh` 포함 |
+시작 시 자동 인덱스 생성 (lifespan): `Person`, `Place`, `Event`, `PeopleGroup`, `Book` 노드의 `theographic_id` 필드
 
-## 번들 분리 설정 (`frontend/vite.config.js`)
+## 프론트엔드
 
-`manualChunks`로 두 청크를 분리:
-- `maplibre` — `maplibre-gl` 단독 청크
-- `vendor` — 나머지 node_modules
+**빌드 도구:** Vite 8.0.12 (`frontend/vite.config.js`)  
+**UI 프레임워크:** React 19.2.6 + React DOM 19.2.6  
+**지도 라이브러리:** MapLibre GL 5.24.0  
+**아이콘:** Lucide React 1.17.0  
+**번들 분리:** `manualChunks` — maplibre-gl → `maplibre` 청크, 나머지 node_modules → `vendor` 청크
 
-## 환경 설정 파일
+소스 구성:
+- `frontend/src/App.jsx` — 루트 컴포넌트, 탭(지도/타임라인) 전환
+- `frontend/src/MapView.jsx` — MapLibre GL 지도, 장소 마커·사건 링 애니메이션
+- `frontend/src/TimelineView.jsx` — 사건 타임라인, 구절 드릴다운
+- `frontend/src/SidePanel.jsx` — 노드 상세 사이드 패널
+- `frontend/src/api.js` — 공유 API 클라이언트 (`apiGet` 헬퍼)
+- `frontend/src/VerseLangTabs.jsx` — 구절 언어 탭
+- `frontend/src/theme.js` — 색상·타입 상수
+- `frontend/src/convexHull.js` — 볼록 껍질 계산 유틸
 
-| 파일 | 역할 |
-|---|---|
-| `.env` | 호스트 환경. `NEO4J_PASSWORD=...` 단 하나의 키 |
-| `.env.example` | `.env` 템플릿 |
-| `frontend/.env.production` | 빌드타임 주입. `VITE_API_URL=/api` |
-| `docker-compose.yml` | 로컬·프로덕션 서비스 오케스트레이션 |
+## 데이터베이스
 
-## 인프라 / 컨테이너
+**Neo4j 5** (Docker 공식 이미지 `neo4j:5`)  
+포트: 7474(HTTP), 7687(Bolt) — 호스트에서 127.0.0.1로만 노출  
+볼륨: `neo4j_data` (named volume)  
+인증: `NEO4J_AUTH=neo4j/<NEO4J_PASSWORD>`
 
-### Docker Compose 서비스 (`docker-compose.yml`)
+노드 레이블: `Person`, `Place`, `Event`, `PeopleGroup`, `Book`  
+주요 관계: `HAS_PARTICIPANT`, `OCCURS_AT`, `MEMBER_OF`, `CONTAINS_BOOK`, `PARENT_OF`, `SIBLING_OF`, `SPOUSE_OF`
 
-| 서비스 | 이미지 | 포트(호스트) | 역할 |
-|---|---|---|---|
-| `neo4j` | `neo4j:5` | 7474(HTTP), 7687(Bolt) — localhost 바인드 | 그래프 DB |
-| `api` | `./backend` (자체 빌드) | 외부 미노출 (nginx 프록시 경유) | FastAPI 백엔드 |
-| `nginx` | `nginx:alpine` | 8080 | 리버스 프록시 + 정적 서빙 |
+## 리버스 프록시
 
-### Nginx 역할 (`nginx/nginx.conf`)
+**Nginx Alpine** — 80포트 수신, 외부 8080 매핑  
+설정: `nginx/nginx.conf`  
+- `/api/` → `http://api:8000/` 프록시 (헤더: Host, X-Real-IP, X-Forwarded-For/Proto)  
+- `index.html` → `Cache-Control: no-cache, no-store, must-revalidate`  
+- JS/CSS/이미지 정적 애셋 → `Cache-Control: public, max-age=31536000, immutable`  
+- 그 외 → `try_files $uri /index.html` (SPA 라우팅)  
+서빙 루트: `./frontend/dist` (빌드 산출물 마운트, HMR 아님)
 
-- `/api/` → `http://api:8000/` 프록시
-- `/index.html` — `no-cache` 헤더
-- `*.js|*.css|…` — `immutable, max-age=31536000` 장기 캐시
-- 그 외 → SPA fallback (`try_files $uri /index.html`)
+## 오케스트레이션
 
-### 백엔드 Dockerfile (`backend/Dockerfile`)
+**Docker Compose** (`docker-compose.yml`)  
+서비스 3개: `neo4j`, `api`, `nginx`  
+의존성 체인: `nginx` → `api` → `neo4j`
 
-```
-FROM python:3.12-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-COPY app/ ./app/
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
-```
+## 설정 파일 목록
 
-## 배포 파이프라인
+| 파일 | 용도 |
+|------|------|
+| `docker-compose.yml` | 서비스 정의 |
+| `backend/Dockerfile` | API 이미지 빌드 |
+| `backend/requirements.txt` | Python 의존성 |
+| `frontend/package.json` | NPM 의존성 및 스크립트 |
+| `frontend/vite.config.js` | Vite 빌드 설정 |
+| `frontend/eslint.config.js` | ESLint (flat config) |
+| `frontend/.env.production` | `VITE_API_URL=/api` — 프로덕션 빌드 시 주입 |
+| `.env` | `NEO4J_PASSWORD` (로컬 시크릿, git-ignore) |
+| `.env.example` | 환경변수 템플릿 |
+| `nginx/nginx.conf` | Nginx 라우팅 규칙 |
 
-1. **CI** — `.github/workflows/deploy.yml`: `main` 브랜치 push → `self-hosted` 러너에서 `git reset --hard origin/main && bash deploy.sh`
-2. **`deploy.sh`** — 순서: npm install → `vite build` → `docker compose build api` → `docker compose up -d api nginx` → `python3 backend/scripts/inject_ko_names.py` (최대 15회 재시도)
+## 데이터 파이프라인 스크립트 (오프라인 실행)
 
-## 데이터 파이프라인 스크립트 (`backend/scripts/`)
+`backend/scripts/` — 런타임 앱과 별개로 Neo4j에 데이터를 적재하거나 오버레이 JSON을 생성하는 스크립트들. Python 3.12 환경에서 직접 실행.
 
-빌드타임 단독 실행용 Python 스크립트. 런타임 의존 없음.
-
-| 스크립트 | 역할 |
-|---|---|
-| `load_theographic.py` | Theographic 메타데이터 JSON → Neo4j 일괄 로드 |
-| `load_books.py` | 성경 권 데이터 → Neo4j |
-| `inject_ko_names.py` | 한국어 이름 데이터 → Neo4j 노드 속성 주입 |
-| `inject_book_context.py` | 권별 컨텍스트 → Neo4j |
-| `inject_person_traits.py` | 인물 특성 → Neo4j |
-| `generate_verse_text.py` | getbible API 호출 → `data/` JSON에 절 본문 인라인 저장 (ADR-0003 미리굽기) |
-| `generate_approx_book_verses.py` | 추정책 구절 데이터 생성 |
-| `generate_book_context.py` | 권별 컨텍스트 JSON 생성 |
-| `generate_book_events.py` | 권별 사건 매핑 생성 |
-| `generate_event_verses.py` | 사건별 근거 구절 생성 |
-| `generate_person_traits.py` | 인물 특성 생성 |
-| `load_authored_events.py` | 저작 사건 데이터 Neo4j 로드 |
+의존성 (스크립트 전용):
+- `anthropic` SDK — Claude API 호출 (4개 스크립트)
+- `urllib.request` — 외부 JSON 다운로드 (표준 라이브러리)
+- `neo4j` — DB 직접 쓰기
