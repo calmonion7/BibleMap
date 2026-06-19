@@ -87,6 +87,10 @@ def get_books():
                 "endYear": props.get("endYear"),
                 "yearApprox": year_approx,
                 "yearBasis": basis,
+                "genre": props.get("genre"),
+                "themes": props.get("themes"),
+                "keyVerse": props.get("keyVerse"),
+                "keyVerseTextKo": props.get("keyVerseTextKo"),
                 "events": book_events.get(tid, []),
             })
         return JSONResponse(content=books, headers={"Cache-Control": "no-store"})

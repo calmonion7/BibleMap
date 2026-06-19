@@ -1,14 +1,16 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { Map, Clock, Search, X } from 'lucide-react'
+import { Map, Clock, Search, X, BookOpen } from 'lucide-react'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
 import TimelineView from './TimelineView'
+import BibleOverviewView from './BibleOverviewView'
 import { TYPE_ORDER, typeColor, typeKo, SELECT_HL } from './theme'
 import { apiGet } from './api'
 
 const TABS = [
   { key: 'map', icon: Map },
   { key: 'timeline', icon: Clock },
+  { key: 'overview', icon: BookOpen },
 ]
 
 // 모바일(좁은 뷰포트) 분기 — 이 폭 이하에서 상세 패널을 우측 사이드패널 대신 하단 시트로 띄운다.
@@ -329,6 +331,11 @@ function App() {
             personName={selectedNodeMeta?.label === 'Person' ? selectedNodeMeta.nameKo : null}
             verseLang={verseLang}
             setVerseLang={setVerseLang}
+          />
+        )}
+        {activeView === 'overview' && (
+          <BibleOverviewView
+            onSelectNode={selectNode}
           />
         )}
       </div>
