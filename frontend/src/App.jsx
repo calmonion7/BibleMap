@@ -1,11 +1,12 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { Map, Clock, Search, X, BookOpen } from 'lucide-react'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
 import TimelineView from './TimelineView'
 import BibleOverviewView from './BibleOverviewView'
 import { TYPE_ORDER, typeColor, typeKo, SELECT_HL } from './theme'
-import { apiGet } from './api'
+import { useNodeSelection } from './useNodeSelection'
+import { useSearch } from './useSearch'
 
 const TABS = [
   { key: 'map', icon: Map },
@@ -21,43 +22,25 @@ const SHEET_VH = 55
 // 노드 타입 → 색 팔레트(SidePanel과 동일) / 한글 라벨 / 칩 표시 순서
 
 function App() {
-  const [selectedNode, setSelectedNode] = useState(null)
-  const [selectedNodeMeta, setSelectedNodeMeta] = useState(null) // {label, nameKo, startYear, endYear}
   const [activeView, setActiveView] = useState('map')
-  const [searchQuery, setSearchQuery] = useState('')
-  const [searchResults, setSearchResults] = useState([])
-  const [searchError, setSearchError] = useState(false)
-  const [searchLoading, setSearchLoading] = useState(false)
-  const [showDropdown, setShowDropdown] = useState(false)
-  const [highlightIndex, setHighlightIndex] = useState(-1)
-  const [typeFilter, setTypeFilter] = useState(null)
-  const [isMobile, setIsMobile] = useState(() => window.matchMedia(MOBILE_QUERY).matches)
-  const [history, setHistory] = useState([])
   // 절 본문 표시 언어('ko'|'en', 기본 ko) — 타임라인·SidePanel 공유. 한 곳에서 바꾸면 다른 곳도 전환.
   const [verseLang, setVerseLang] = useState('ko')
-  const [personEventIds, setPersonEventIds] = useState(null)
-  const selectedNodeRef = useRef(null)
-  const searchBoxRef = useRef(null)
-  const resultRefs = useRef([])
-  useEffect(() => { selectedNodeRef.current = selectedNode }, [selectedNode])
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia(MOBILE_QUERY).matches)
 
-  // 선택된 노드의 메타 정보(label, Book 연대) 조회 — SidePanel과 별도 fetch 없이 콜백으로 수신
-  const handleNodeLoaded = useCallback((node) => {
-    if (!node) return
-    setSelectedNodeMeta({
-      label: node.label,
-      nameKo: node.nameKo,
-      startYear: node.properties?.startYear ?? null,
-      endYear: node.properties?.endYear ?? null,
-    })
-    if (node.label === 'Person') {
-      apiGet(`/person/${node.id}/event-ids`)
-        .then(data => setPersonEventIds(new Set(data.eventIds)))
-        .catch(() => setPersonEventIds(null))
-    } else {
-      setPersonEventIds(null)
-    }
-  }, [])
+  const {
+    selectedNode, selectedNodeMeta, history, personEventIds,
+    handleNodeLoaded, selectNode, selectNodeFresh, goBack, closePanel,
+  } = useNodeSelection()
+
+  const {
+    searchQuery, searchResults, searchError, searchLoading,
+    showDropdown, setShowDropdown,
+    highlightIndex, setHighlightIndex,
+    typeFilter, setTypeFilter,
+    typeCounts, filteredResults,
+    searchBoxRef, resultRefs,
+    onSearchInput, clearSearch,
+  } = useSearch()
 
   useEffect(() => {
     const mq = window.matchMedia(MOBILE_QUERY)
@@ -66,96 +49,15 @@ function App() {
     return () => mq.removeEventListener('change', onChange)
   }, [])
 
-  // 실시간 검색 — 입력이 바뀌면 250ms 디바운스 후 자동 조회. 직전 요청은 abort로 경쟁 차단.
-  // setState는 전부 setTimeout/async 콜백 안에서만(effect 동기 본문 setState 금지 — react-hooks v7).
-  useEffect(() => {
-    const q = searchQuery.trim()
-    if (!q) return
-    const ctrl = new AbortController()
-    const timer = setTimeout(async () => {
-      setSearchLoading(true)
-      try {
-        const data = await apiGet(`/search?q=${encodeURIComponent(q)}`, { signal: ctrl.signal })
-        setSearchResults(data)
-        setSearchError(false)
-      } catch (e) {
-        if (e.name === 'AbortError') return // 더 최신 입력이 진행 중 — 무시
-        setSearchResults([]); setSearchError(true)
-      }
-      setSearchLoading(false)
-      setShowDropdown(true)
-      setHighlightIndex(-1)
-      setTypeFilter(null)
-    }, 250)
-    return () => { clearTimeout(timer); ctrl.abort() }
-  }, [searchQuery])
-
-  // 드롭다운 바깥 클릭 시 닫기
-  useEffect(() => {
-    if (!showDropdown) return
-    const onDown = (e) => {
-      if (searchBoxRef.current && !searchBoxRef.current.contains(e.target)) setShowDropdown(false)
-    }
-    document.addEventListener('mousedown', onDown)
-    return () => document.removeEventListener('mousedown', onDown)
-  }, [showDropdown])
-
-  // 키보드 하이라이트가 보이도록 스크롤
-  useEffect(() => {
-    if (highlightIndex >= 0) resultRefs.current[highlightIndex]?.scrollIntoView({ block: 'nearest' })
-  }, [highlightIndex])
-
   function handleTabClick(key) {
     setActiveView(key)
   }
 
-  function onSearchInput(e) {
-    const v = e.target.value
-    setSearchQuery(v)
-    if (!v.trim()) { setSearchResults([]); setSearchError(false); setSearchLoading(false); setShowDropdown(false) }
-  }
-
-  // 노드 선택 — 직전 노드를 히스토리에 쌓아 패널 뒤로가기를 지원
-  // useCallback([])으로 참조를 안정화: selectedNode 변경 시 MapView 등의 useEffect가 재실행되어
-  // expandPlace fetch가 abort되는 버그 방지 (selectedNodeRef로 최신값 읽음)
-  const selectNode = useCallback((id) => {
-    if (id === selectedNodeRef.current) return
-    if (selectedNodeRef.current) setHistory(h => [...h, selectedNodeRef.current])
-    setSelectedNode(id)
-    setSelectedNodeMeta(null)
-    setPersonEventIds(null)
-  }, [])
-
-  function goBack() {
-    setSelectedNode(history[history.length - 1] ?? null)
-    setHistory(h => h.slice(0, -1))
-  }
-
-  function closePanel() {
-    setHistory([])
-    setSelectedNode(null)
-  }
-
+  // 브리지 — 검색 선택 시 검색 상태 초기화 + 새 탐색 컨텍스트로 노드 선택
   function handleSelectResult(result) {
-    setHistory([]) // 새 검색은 새 탐색 컨텍스트 — 히스토리 리셋
-    setSelectedNode(result.id)
-    setShowDropdown(false)
-    setSearchQuery('')
-    setSearchResults([])
-    setHighlightIndex(-1)
-    setTypeFilter(null)
+    clearSearch()
+    selectNodeFresh(result.id)
   }
-
-  function clearSearch() {
-    setSearchQuery('')
-    setSearchResults([])
-    setShowDropdown(false)
-    setHighlightIndex(-1)
-    setTypeFilter(null)
-  }
-
-  const typeCounts = searchResults.reduce((m, r) => { m[r.label] = (m[r.label] || 0) + 1; return m }, {})
-  const filteredResults = typeFilter ? searchResults.filter(r => r.label === typeFilter) : searchResults
 
   function handleSearchKeyDown(e) {
     if (e.key === 'Escape') { setShowDropdown(false); return }
