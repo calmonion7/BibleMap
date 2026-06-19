@@ -88,12 +88,9 @@ def _load_approx_book_index():
     return event_to_books
 
 
-@router.get("/events")
-def get_events():
-    """타임라인 사건 목록. 각 사건에 그 사건을 기록한 성경권(CONTAINS_BOOK)을
-    정경순(bookOrder ASC) books 배열로 함께 반환 — 사건의 근거 칩 표시용.
-    추정책(집필 배경 연결)은 CONTAINS_BOOK 항목 뒤에 추가된다.
-    사건 없는 권은 여기 등장하지 않는다(권→사건 방향이라 OPTIONAL은 사건 기준)."""
+@functools.lru_cache(maxsize=1)
+def _compute_events():
+    """Neo4j 쿼리 + approx_index 머지. 앱 재시작 전까지 결과를 메모리에 보관."""
     approx_index = _load_approx_book_index()
     driver = get_driver()
     with driver.session() as session:
@@ -110,7 +107,6 @@ def get_events():
         for record in result:
             props = dict(record["e"])
             event_id = props.get("theographic_id", "")
-            # CONTAINS_BOOK(근거) 먼저, 추정책(집필 배경) 후에 append
             contains_books = [b for b in record["books"] if b is not None]
             approx_books = approx_index.get(event_id, [])
             contains_ids = {b["id"] for b in contains_books}
@@ -125,7 +121,16 @@ def get_events():
                 "yearLabel": props.get("yearLabel"),
                 "books": contains_books + extra,
             })
-        return JSONResponse(content=events, headers={"Cache-Control": "no-store"})
+        return events
+
+
+@router.get("/events")
+def get_events():
+    """타임라인 사건 목록. 각 사건에 그 사건을 기록한 성경권(CONTAINS_BOOK)을
+    정경순(bookOrder ASC) books 배열로 함께 반환 — 사건의 근거 칩 표시용.
+    추정책(집필 배경 연결)은 CONTAINS_BOOK 항목 뒤에 추가된다.
+    사건 없는 권은 여기 등장하지 않는다(권→사건 방향이라 OPTIONAL은 사건 기준)."""
+    return JSONResponse(content=_compute_events(), headers={"Cache-Control": "max-age=300"})
 
 
 @router.get("/event/{event_id}/verses")
@@ -134,4 +139,4 @@ def get_event_verses(event_id: str):
     /events books의 id(theographic_id)와 일치 — 프론트가 id로 join. 없으면 빈 books."""
     overlay = _load_event_verses()
     entry = overlay.get(event_id, {"books": []})
-    return JSONResponse(content=entry, headers={"Cache-Control": "no-store"})
+    return JSONResponse(content=entry, headers={"Cache-Control": "max-age=300"})
