@@ -1,56 +1,18 @@
 import functools
-import json
-import os
 
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from ..db import get_driver
+from .. import overlays
 
 router = APIRouter()
-
-# 사건별 근거 구절 오버레이(권별 그룹·rangeLabel).
-# DATA_DIR(기본 /app/data, docker 볼륨 마운트) 우선, 없으면 레포 상대경로(data/) 폴백.
-_REPO_DATA_DIR = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))),
-    "data",
-)
-_EVENT_VERSES_CANDIDATES = [
-    os.path.join(os.environ.get("DATA_DIR", "/app/data"), "event_verses", "events.json"),
-    os.path.join(_REPO_DATA_DIR, "event_verses", "events.json"),
-]
-_BOOK_EVENTS_CANDIDATES = [
-    os.path.join(os.environ.get("DATA_DIR", "/app/data"), "book_events", "books.json"),
-    os.path.join(_REPO_DATA_DIR, "book_events", "books.json"),
-]
-
-
-@functools.lru_cache(maxsize=1)
-def _load_event_verses():
-    """사건별 구절 오버레이 JSON을 1회만 로드(캐시). DATA_DIR → 레포 상대경로 순으로
-    탐색하고, 어느 후보에서도 못 읽으면 빈 dict 폴백."""
-    for path in _EVENT_VERSES_CANDIDATES:
-        try:
-            with open(path, encoding="utf-8") as f:
-                return json.load(f)
-        except (FileNotFoundError, json.JSONDecodeError):
-            continue
-    return {}
 
 
 @functools.lru_cache(maxsize=1)
 def _load_approx_book_index():
-    """book_events.json({bookId:[eventId]}) → 역방향 {eventId:[bookId]} + Neo4j Book 메타.
-    반환: (event_to_books: dict, book_meta: dict).
-    event_to_books: {eventId: [{id, nameKo, name, bookOrder}]}
-    book_meta는 중간 조회용으로만 사용."""
-    book_events = {}
-    for path in _BOOK_EVENTS_CANDIDATES:
-        try:
-            with open(path, encoding="utf-8") as f:
-                book_events = json.load(f)
-            break
-        except (FileNotFoundError, json.JSONDecodeError):
-            continue
+    """book_events_raw({bookId:[eventId]}) → 역방향 {eventId:[bookId]} + Neo4j Book 메타.
+    반환: event_to_books: {eventId: [{id, nameKo, name, bookOrder}]}"""
+    book_events = overlays.book_events_raw()
     if not book_events:
         return {}
 
@@ -137,6 +99,6 @@ def get_events():
 def get_event_verses(event_id: str):
     """사건의 근거 구절을 권별로 그룹·정경순으로 반환(드릴다운용). 책 키 bookId는
     /events books의 id(theographic_id)와 일치 — 프론트가 id로 join. 없으면 빈 books."""
-    overlay = _load_event_verses()
+    overlay = overlays.event_verses()
     entry = overlay.get(event_id, {"books": []})
     return JSONResponse(content=entry, headers={"Cache-Control": "max-age=300"})
