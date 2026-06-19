@@ -1,89 +1,146 @@
 ---
-last_mapped_commit: 4ed4d876d7fa3b06a8eb1647b5b50ed73f906b25
-mapped: 2026-06-19
+last_mapped_commit: 06b4012804c00a45ea7dfda9761d014ac11fb
+mapped: 2026-06-20
 ---
 
-# BibleMap — 기술 부채 및 위험 영역
+# BibleMap 기술부채 및 리스크
 
-## 1. 보안 우려
+## 1. 레트로에서 확인된 열린 이슈
 
-### 1-1. `.env` 파일에 실제 비밀번호 커밋 직전 위험
-- `/Users/calmonion/Project/BibleMap/.env`에 `NEO4J_PASSWORD=biblemap123`이 평문으로 저장되어 있다.
-- `.gitignore`에 `.env`가 명시되어 있어 현재는 Git 추적 대상이 아니다. 그러나 이 파일이 실수로 스테이지되면 비밀번호가 히스토리에 영구 기록된다.
-- `.env.example`의 값은 `your-password-here`로 올바르게 처리되어 있으나, 실제 `.env`가 예제와 분리 관리된다는 점을 팀원이 인지해야 한다.
+### task-56 fix-forward (미실행, 백로그)
+출처: `.forge/retro/2026-06-20-bible-overview-view.md`
 
-### 1-2. CORS 와일드카드 설정
-- `backend/app/main.py` 26~27행: `allow_origins=["*"]`로 모든 오리진 허용.
-- 현재는 읽기 전용(GET) API이고 인증 없는 공개 지식 데이터이므로 즉각적 위협은 낮다. 그러나 추후 쓰기 API 추가 시 반드시 오리진을 제한해야 한다.
+- `genre=null`인 책이 `BibleOverviewView`에서 무음으로 사라짐 — null 방어 없음
+- `backend/app/routes/books.py`의 `/books` 엔드포인트가 `startYear` 없는 책을 제외하는 타임라인 배치용 필터 로직을 포함하고 있어, `BibleOverviewView`가 일부 책을 표시하지 못함 (다중 소비자에게 오염된 필터)
+- 빈 장르 섹션에 대한 빈 상태 UI 없음
 
-### 1-3. 인증·레이트리밋 부재
-- 모든 API 엔드포인트에 인증 미들웨어, API 키, 레이트리밋이 전혀 없다.
-- `/search?q=...` 는 매 요청마다 Neo4j 풀스캔(`MATCH (n)` — 라벨 없는 전체 노드 스캔)을 실행한다. 반복 요청 시 DB 부하가 선형으로 증가한다.
+### SidePanel.jsx lint 정책 미결
+출처: `.forge/retro/2026-06-11-frontend-fetch-error-ui.md` 후속 섹션
 
----
-
-## 2. 성능 병목 및 위험
-
-### 2-1. 검색 쿼리 전체 노드 스캔
-- `backend/app/routes/search.py` 16행: `MATCH (n)` — 라벨 없이 전체 노드를 스캔한 뒤 `nameKo CONTAINS $q` 또는 `toLower(name) CONTAINS toLower($q)` 필터링.
-- `theographic_id` 인덱스는 `main.py`의 `lifespan`에서 생성하지만, `nameKo`·`name` 필드에는 별도 인덱스가 없다. `CONTAINS` 연산자는 인덱스를 활용하지 못하고 전체 노드를 순회한다.
-- 데이터셋이 커질수록 검색 응답 시간이 O(n) 증가. 현재 DB 규모에서는 허용 가능하지만, fulltext 인덱스 미적용 상태가 기술 부채다.
-
-### 2-2. `lru_cache` — 단일 프로세스 의존 + 캐시 무효화 불가
-- `backend/app/routes/events.py`의 `_compute_events()`, `_load_approx_book_index()`, `_load_event_verses()` 및 `backend/app/routes/books.py`의 `_load_approx()`, `_load_book_events()` 모두 `functools.lru_cache(maxsize=1)`로 메모리에 고정.
-- Dockerfile CMD가 `uvicorn` 단일 워커(`--workers` 미지정)이므로 지금은 동작한다. 만약 `--workers 2+` 또는 Gunicorn으로 전환하면 워커마다 독립 캐시를 가져 캐시 일관성이 깨진다.
-- 데이터 파일(`data/event_verses/events.json` — 약 130,000줄) 또는 Neo4j 데이터를 갱신해도 서버 재시작 없이는 캐시가 갱신되지 않는다. 캐시 무효화 엔드포인트나 TTL이 없다.
-
-### 2-3. `_compute_events()` 초기 기동 지연
-- `_load_approx_book_index()`가 Neo4j 일괄 쿼리(모든 Book ID 조회)를 최초 호출 시 동기 실행한다. 앱 기동 직후 첫 `/events` 요청이 상대적으로 느릴 수 있다.
-- lifespan hook에서 인덱스 생성만 하고 데이터 예열(warm-up)은 없다.
-
-### 2-4. `MapView.jsx` — 링 애니메이션과 외부 타일 의존
-- `backend/app/routes/nodes.py` 116행의 `/node/{id}/neighbors/grouped` 엔드포인트는 라벨 없는 `MATCH (n {theographic_id: $id})-[r]-(m)` 전체 이웃을 가져온다. `MAX_NEIGHBORS_PER_TYPE=30` 제한은 Python 레이어에서 하고 Cypher 레벨에서는 LIMIT가 없어, 이웃이 많은 노드(대형 인물 등)는 불필요한 데이터를 DB에서 가져온 뒤 버린다.
-- `MapView.jsx` 38·43행: MapLibre 글리프(`protomaps.github.io`) 및 ESRI NatGeo 래스터 타일(`server.arcgisonline.com`)을 외부 CDN에서 직접 로드한다. 해당 서비스 중단·정책 변경 시 지도 전체가 렌더링 불가.
+- `frontend/src/SidePanel.jsx`의 기존 fetch-in-effect 패턴이 `react-hooks/exhaustive-deps` 룰 위반
+- 정책 결정(룰 핀 vs. 리팩터) 보류 상태
 
 ---
 
-## 3. 기술 부채
+## 2. 백엔드 API
 
-### 3-1. 하드코딩된 Airtable 레코드 ID
-- `backend/scripts/generate_approx_book_verses.py` 29~97행: `BOOK_VERSE_MAP` 딕셔너리에 Airtable theographic_id(`rec...` 14자리) 39개가 하드코딩.
-- 원본 Airtable 데이터가 바뀌거나 레코드 ID가 재발급되면 스크립트 전체를 수동 갱신해야 한다. 이 매핑은 런타임이 아닌 스크립트 전용이므로 즉각 장애로 이어지지는 않지만, 재실행 시 잘못된 결과를 낼 위험이 있다.
+### 2-1. 무제한 쿼리 (페이지네이션 없음)
 
-### 3-2. 모바일 하단 시트 높이 마법 숫자 이중 관리
-- `frontend/src/App.jsx` 17행의 `SHEET_VH = 55`와 `frontend/src/MapView.jsx` 411행의 `window.innerHeight * 0.55`가 별도 파일에서 동기화 없이 유지된다.
-- 주석(`App.jsx SHEET_VH=55vh와 일치`)으로 경고하고 있지만, 공유 상수 모듈이 없어 한쪽을 바꾸면 다른 쪽을 놓치기 쉽다.
+**`GET /events`** — `backend/app/routes/events.py` lines 92–128
 
-### 3-3. `import json as _json` 함수 내부 임포트
-- `backend/app/routes/nodes.py` 240행: `Person` 트레잇 파싱을 위해 함수 내부에서 `import json as _json`을 매 호출마다 실행. 기능에 영향은 없지만 관례에 어긋난다.
+전체 Event 노드를 DB 레벨 LIMIT 없이 단일 Cypher 쿼리로 가져옴. 현재는 `lru_cache(maxsize=1)`로 1회만 실행되지만, `lru_cache`는 익셉션을 캐시하지 않아 첫 요청 실패 시 매 요청마다 재시도한다.
 
-### 3-4. `get_node_neighbors_grouped` 와 `get_node` 의 쿼리 중복
-- `backend/app/routes/nodes.py`: `/node/{id}/neighbors/grouped`(116행)와 `/node/{id}`(151행 이후)가 각각 별도 DB 왕복으로 이웃을 가져온다. SidePanel은 `/node/{id}`만 호출하고, MapView 링 펼침은 `/neighbors/grouped`만 호출하므로 현재는 중복 호출이 없다. 그러나 두 엔드포인트의 이웃 데이터 구조(필드 명칭·순서)가 다르게 유지되어 향후 혼동 가능성이 있다.
+**`GET /books`** — `backend/app/routes/books.py` line 64
 
-### 3-5. 검색 응답에 `nameKoMissing` 필드 없음
-- `backend/app/routes/search.py` 40행의 검색 결과 항목에는 `nameKoMissing` 필드가 없다.
-- `frontend/src/SidePanel.jsx`는 `nameKoMissing`을 사용해 "(미번역)" 표시를 결정하지만, 검색 드롭다운(`App.jsx`)은 `nameKo`만 표시하므로 현재 UI에서는 문제가 없다. 추후 검색 결과에 동일 표시를 추가하려면 백엔드 응답도 함께 수정해야 한다.
+전체 Book 노드를 LIMIT 없이 조회. `Cache-Control: no-store` 설정이라 캐시도 없음.
+
+**`GET /node/{node_id}/places` (PeopleGroup 경로)** — `backend/app/routes/nodes.py` lines 55–64
+
+3-hop 조인(`PeopleGroup → Person → Event → Place`)에 LIMIT 없음. Python에서 `seen` set으로 중복 제거하지만 DB 전송 비용은 그대로.
+
+**`GET /node/{node_id}/neighbors/grouped`** — `backend/app/routes/nodes.py` lines 110–112
+
+쿼리에 LIMIT 없이 전체 이웃을 DB에서 가져온 뒤, Python에서 `MAX_NEIGHBORS_PER_TYPE = 30`으로 필터링. DB 레벨 LIMIT이 없어 관계가 많은 노드에서 불필요한 데이터가 전송됨.
+
+### 2-2. 입력 검증 미흡
+
+**`GET /search?q=`** — `backend/app/routes/search.py` line 9
+
+`q` 길이 제한 없음. 매우 긴 문자열이 `CONTAINS $q`로 Cypher에 전달되면 Neo4j 전체 스캔 비용 증가. `max_length` 파라미터 없음.
+
+**`GET /node/{node_id}` 계열** — `backend/app/routes/nodes.py`
+
+`node_id`를 `str`로 받되 길이·패턴(Theographic ID 형식 `rec` + 14자) 검증 없음. 임의 문자열이 DB로 전달됨.
+
+### 2-3. lru_cache + cold-start 위험
+
+`backend/app/routes/events.py` lines 40–88
+
+`_load_approx_book_index()`와 `_compute_events()`는 `lru_cache` 적용 중. Neo4j 미준비 상태에서 첫 요청이 오면 익셉션이 발생하고, `lru_cache`는 실패를 캐시하지 않으므로 이후 모든 요청이 DB 재연결을 시도함. `GET /events`가 연속 500을 반환하게 됨.
+
+`docker-compose.yml` lines 22–23: `depends_on: neo4j`는 컨테이너 시작만 보장하고 Neo4j 준비는 보장하지 않음 (healthcheck 없음).
+
+### 2-4. 에러 핸들링 누락
+
+**`backend/app/routes/books.py` line 86**
+
+`int(start_year)` 변환에 `try/except` 없음. `startYear`가 비정수 문자열이면 500 익셉션.
+
+**`backend/app/routes/events.py`의 `_compute_events()`**
+
+Neo4j 세션 오류 시 uncaught 익셉션 → FastAPI가 500 반환. 반복 실패 시 `lru_cache` 미캐시로 DB 부하 지속 증가.
 
 ---
 
-## 4. 테스트 커버리지 부재
+## 3. 프론트엔드
 
-- 프로젝트 전체에 단위 테스트·통합 테스트 파일이 존재하지 않는다(`*.test.*`, `*.spec.*`, `test_*.py` 0건).
-- 고위험 미검증 영역:
-  - `backend/app/routes/search.py`: 특수문자(따옴표, 슬래시 등) 검색어가 Cypher에서 어떻게 처리되는지 테스트 없음. `$q` 파라미터 바인딩을 사용하므로 주입은 차단되지만, 빈 문자열·None 엣지케이스의 실제 쿼리 결과를 검증한 테스트가 없다.
-  - `backend/app/routes/events.py`의 `_compute_events()`: 데이터 파일 누락·손상 시 폴백 거동이 테스트되지 않음.
-  - `frontend/src/convexHull.js`: 동일 극각 중복점, 1점, 2점 케이스를 함수 내부 가드로만 처리하며 테스트 없음.
-  - `MapView.jsx`의 링 애니메이션 타이머 경쟁(moveend + 700ms fallback): `fired` 플래그가 경쟁을 막지만, 실제 타이밍 시나리오에 대한 자동화 테스트 없음.
+### 3-1. BibleOverviewView — /books API 구조적 불일치
+
+`frontend/src/BibleOverviewView.jsx` lines 88–103
+
+- `/books` 엔드포인트는 `startYear` 없는 책을 제외하므로 66권 중 일부가 개요 뷰에 표시되지 않을 수 있음 (task-56 미처리)
+- `book.genre`가 null이면 `grouped[key][null]`로 저장돼 `GENRE_META` 매핑 실패 → 무음 소멸
+- `book.testament`가 null이면 `grouped[null]` 접근으로 TypeError 가능
+
+### 3-2. TimelineView — 전체 이벤트 프론트 메모리 적재
+
+`frontend/src/TimelineView.jsx` lines 44–47
+
+전체 Event 목록을 메모리에 적재 후 `useMemo`로 필터링. 이벤트 수 증가 시 초기 로드 시간과 메모리 사용량이 선형 증가. 가상화(windowing)나 서버사이드 필터 없음.
+
+### 3-3. MapView — 외부 타일 서비스 단일 의존
+
+`frontend/src/MapView.jsx` lines 38–44
+
+- ArcGIS ESRI NatGeo 타일: 상업 서비스로 사용량 제한·서비스 중단 위험
+- Protomaps 글리프: 오픈소스 CDN으로 가용성 보장 없음
+- 두 외부 서비스 중 하나라도 다운되면 지도 전체가 빈 화면
+
+### 3-4. 에러 처리 일관성 미흡
+
+`frontend/src/App.jsx` lines 55–60
+
+`/person/{id}/event-ids` 실패 시 인물 필터가 조용히 null로 초기화. 사용자에게 에러 피드백 없음.
 
 ---
 
-## 5. 기타 단편 위험
+## 4. 보안 및 배포 설정
 
-### 5-1. Neo4j 연결 오류 시 앱 전체 응답 불가
-- `backend/app/db.py`에서 `NEO4J_PASSWORD` 미설정 시 `RuntimeError`를 발생시키고, `main.py` lifespan에서 인덱스 생성 실패는 `logging.exception`으로 무시하고 계속 진행한다. 하지만 실제 쿼리 엔드포인트에서는 DB 연결 실패 시 예외가 HTTP 500으로 전파된다. FastAPI의 기본 예외 핸들러가 처리하지만, 사용자에게 의미 있는 오류 메시지를 반환하는 커스텀 핸들러는 없다.
+### 4-1. Docker 루트 실행
 
-### 5-2. nginx TLS 미적용
-- `nginx/nginx.conf`는 80 포트 HTTP만 설정. HTTPS 종단 처리가 nginx 외부(상위 리버스 프록시 또는 Cloudflare 등)에 위임되어 있다고 가정되는데, 이를 보장하는 코드·문서가 없다.
+`backend/Dockerfile` 전체에 `USER` 지시어 없음. API 컨테이너가 root로 실행됨.
 
-### 5-3. Book 노드 조회 시 다중 DB 왕복
-- `backend/app/routes/nodes.py`에서 `Book` 라벨이면 `topPersons`(`209행`)와 `topEvents`(`223행`)를 각각 별도 쿼리로 추가 조회한다. 메인 노드 쿼리(`151행`) + 이웃 쿼리(`168행`) + 인물 쿼리 + 사건 쿼리 = 4회 왕복. 단일 트랜잭션이 아니므로 중간에 연결 오류 시 부분 응답 가능성이 있다.
+### 4-2. Docker healthcheck 없음
+
+`docker-compose.yml`: `neo4j` 서비스에 `healthcheck` 없고, `api`의 `depends_on`에 `condition: service_healthy` 없음. 재시작 시 api가 Neo4j 준비 전에 요청을 받아 2-3절의 cold-start 문제 발생.
+
+### 4-3. CORS 와일드카드
+
+`backend/app/main.py` lines 27–28: `allow_origins=["*"]`. `allow_credentials=False`라 쿠키는 차단되지만 어떤 origin에서도 API 접근 가능.
+
+### 4-4. nginx 프록시 타임아웃 없음
+
+`nginx/nginx.conf`의 `/api/` location 블록에 `proxy_read_timeout`, `proxy_connect_timeout`, `proxy_send_timeout` 없음. 느린 Cypher 쿼리 시 nginx 기본값(60초) 적용.
+
+---
+
+## 5. 테스트 커버리지
+
+**자동화 테스트 없음.** `pytest.ini`, `vitest.config.*`, `*.test.*`, `*.spec.*`, `test_*.py` 중 아무것도 존재하지 않음. 검증은 전적으로 Playwright 수동 스크린샷에 의존.
+
+---
+
+## 6. 우선순위 요약
+
+| 우선순위 | 항목 | 위치 |
+|---|---|---|
+| 높음 | task-56 fix-forward (genre=null 소멸, /books 필터 오염) | `frontend/src/BibleOverviewView.jsx`, `backend/app/routes/books.py` |
+| 높음 | docker-compose healthcheck 없음 → cold-start 500 | `docker-compose.yml` |
+| 중간 | `/node/{id}/neighbors/grouped` DB 레벨 LIMIT 없음 | `backend/app/routes/nodes.py:110` |
+| 중간 | `/node/{id}/places` PeopleGroup 3-hop 무제한 | `backend/app/routes/nodes.py:55` |
+| 중간 | `search?q` 길이 제한 없음 | `backend/app/routes/search.py:9` |
+| 중간 | `books.py` `int(start_year)` try/except 없음 | `backend/app/routes/books.py:86` |
+| 중간 | Docker 루트 실행 | `backend/Dockerfile` |
+| 낮음 | SidePanel.jsx lint 정책 미결 | 레트로 기록 |
+| 낮음 | 외부 타일 단일 의존 (ArcGIS/Protomaps) | `frontend/src/MapView.jsx:38–44` |
+| 낮음 | 자동화 테스트 커버리지 0% | 전체 |
