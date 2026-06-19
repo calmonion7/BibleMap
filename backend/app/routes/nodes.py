@@ -163,33 +163,31 @@ def get_node(node_id: str):
         name = props.get("name") or props.get("title", "")
         name_ko = props.get("nameKo")
 
-        # 이웃 조회
+        # 이웃 조회 + 총수 — 단일 쿼리로 2 → 1 왕복
         neighbors_result = session.run(
-            f"MATCH (n {{theographic_id: $id}})-[r]-(m) RETURN m, type(r) AS rel, labels(m) AS mlabels LIMIT {NODE_NEIGHBOR_LIMIT}",
+            f"MATCH (n {{theographic_id: $id}})-[r]-(m) "
+            f"WITH count(m) AS total, collect({{m: m, rel: type(r), mlabels: labels(m)}})[0..{NODE_NEIGHBOR_LIMIT}] AS rows "
+            f"RETURN rows, total",
             id=node_id
         )
+        nr_record = neighbors_result.single()
+        rows = nr_record["rows"]
+        neighbor_total = nr_record["total"]
 
         neighbors = []
-        for nr in neighbors_result:
-            m = nr["m"]
+        for row in rows:
+            m = row["m"]
             m_props = dict(m)
             m_name_ko = m_props.get("nameKo")
             m_name = m_props.get("name") or m_props.get("title", "")
             neighbors.append({
                 "id": m_props.get("theographic_id", ""),
-                "label": nr["mlabels"][0] if nr["mlabels"] else "Unknown",
+                "label": row["mlabels"][0] if row["mlabels"] else "Unknown",
                 "name": m_name,
                 "nameKo": m_name_ko if m_name_ko else m_name,
                 "nameKoMissing": m_name_ko is None,
-                "relation": nr["rel"],
+                "relation": row["rel"],
             })
-
-        # 전체 이웃 수(LIMIT 전) — 잘림 신호용. neighbors는 NODE_NEIGHBOR_LIMIT으로 잘릴 수 있다.
-        total_result = session.run(
-            "MATCH (n {theographic_id: $id})-[r]-(m) RETURN count(m) AS total",
-            id=node_id
-        )
-        neighbor_total = total_result.single()["total"]
 
         # properties: name/nameKo/theographic_id/aliasesKo 제외
         exclude = {"name", "nameKo", "theographic_id", "aliasesKo"}

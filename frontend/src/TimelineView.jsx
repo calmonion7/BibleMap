@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { SELECT_HL, TYPE_COLOR } from './theme'
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
@@ -61,41 +61,42 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
     return () => document.removeEventListener('click', handler)
   }, [openGroup, verseView])
 
-  const groupMap = new Map()
-  for (const ev of events) {
-    const key = ev.startDate ?? ''
-    if (!groupMap.has(key)) groupMap.set(key, [])
-    groupMap.get(key).push(ev)
-  }
-
-  const groups = Array.from(groupMap.entries())
-    .map(([startDate, members]) => {
-      const sortKey = members[0].sortKey ?? 0
-      const rep = members.find(e => e.nameKo) || members[0]
-      return { startDate, members, sortKey, rep }
-    })
-    .sort((a, b) => {
-      if (a.sortKey < b.sortKey) return -1
-      if (a.sortKey > b.sortKey) return 1
-      return 0
-    })
+  const groups = useMemo(() => {
+    const groupMap = new Map()
+    for (const ev of events) {
+      const key = ev.startDate ?? ''
+      if (!groupMap.has(key)) groupMap.set(key, [])
+      groupMap.get(key).push(ev)
+    }
+    return Array.from(groupMap.entries())
+      .map(([startDate, members]) => {
+        const sortKey = members[0].sortKey ?? 0
+        const rep = members.find(e => e.nameKo) || members[0]
+        return { startDate, members, sortKey, rep }
+      })
+      .sort((a, b) => {
+        if (a.sortKey < b.sortKey) return -1
+        if (a.sortKey > b.sortKey) return 1
+        return 0
+      })
+  }, [events])
 
   const activeFilter = bookFilter && dismissedFilter !== bookFilter ? bookFilter : null
-  const inFilter = (y) => {
-    if (!activeFilter) return true
-    if (y === null) return false
-    if (activeFilter.startYear != null && y < activeFilter.startYear) return false
-    if (activeFilter.endYear != null && y > activeFilter.endYear) return false
-    return true
-  }
   const activePersonFilter = personFilter && dismissedPersonFilter !== personFilter ? personFilter : null
-  const visibleGroups = groups
-    .filter(g => inFilter(sortKeyToYear(g.sortKey)))
-    .filter(g => !activePersonFilter || g.members.some(ev => activePersonFilter.has(ev.id)))
-
-  const timeline = [
-    ...visibleGroups.map(g => ({ kind: 'group', sortKey: g.sortKey, group: g })),
-  ].sort((a, b) => a.sortKey - b.sortKey)
+  const { visibleGroups, timeline } = useMemo(() => {
+    const inFilter = (y) => {
+      if (!activeFilter) return true
+      if (y === null) return false
+      if (activeFilter.startYear != null && y < activeFilter.startYear) return false
+      if (activeFilter.endYear != null && y > activeFilter.endYear) return false
+      return true
+    }
+    const vg = groups
+      .filter(g => inFilter(sortKeyToYear(g.sortKey)))
+      .filter(g => !activePersonFilter || g.members.some(ev => activePersonFilter.has(ev.id)))
+    const tl = [...vg.map(g => ({ kind: 'group', sortKey: g.sortKey, group: g }))].sort((a, b) => a.sortKey - b.sortKey)
+    return { visibleGroups: vg, timeline: tl }
+  }, [groups, bookFilter, dismissedFilter, personFilter, dismissedPersonFilter])
 
   // 사건의 근거 권 칩. 클릭 → 그 사건 아래 인라인 구절 뷰 토글(권 선택 → 인용범위 → 절 본문).
   // 한 번에 한 사건만 펼침. (인라인 확장 — 플로팅 nav 바에 가리지 않게 absolute 팝오버 금지)
@@ -227,7 +228,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
     >
       {activeFilter && (
         <div style={{
-          position: 'sticky', top: 48, zIndex: 10,
+          position: 'sticky', top: 0, zIndex: 10,
           display: 'flex', alignItems: 'center', gap: 8,
           background: '#e8f0fe', borderBottom: '1px solid #c5d5fb',
           padding: '6px 12px', fontSize: 12, color: '#1a3a8f',
@@ -241,7 +242,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
       )}
       {activePersonFilter && (
         <div style={{
-          position: 'sticky', top: 48, zIndex: 10,
+          position: 'sticky', top: 0, zIndex: 10,
           display: 'flex', alignItems: 'center', gap: 8,
           background: '#e8f0fe', borderBottom: '1px solid #c5d5fb',
           padding: '6px 12px', fontSize: 12, color: '#1a3a8f',

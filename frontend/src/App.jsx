@@ -174,11 +174,11 @@ function App() {
   const NAV_H = 48
 
   return (
-    <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}>
+    <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
 
-      {/* 내비게이션 바 — 지도 위에 플로팅 */}
+      {/* 내비게이션 바 */}
       <div style={{
-        position: 'absolute', top: 0, left: 0, right: 0, height: NAV_H,
+        height: NAV_H, flexShrink: 0,
         display: 'flex', alignItems: 'center',
         background: '#1a1a2e', borderBottom: 'none',
         zIndex: 20, boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
@@ -313,7 +313,7 @@ function App() {
       </div>
 
       {/* 전체화면 뷰 */}
-      <div style={{ position: 'absolute', inset: 0 }}>
+      <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
         {activeView === 'map' && (
           <MapView
             onSelectNode={selectNode}

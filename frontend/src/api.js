@@ -6,6 +6,6 @@ export const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 // 요청 취소(AbortError)는 fetch에서 그대로 전파 — 호출부가 e.name === 'AbortError'로 구분한다.
 export async function apiGet(path, { signal } = {}) {
   const res = await fetch(API_BASE + path, { signal })
-  if (!res.ok) throw res.status
+  if (!res.ok) { const err = new Error(String(res.status)); err.status = res.status; throw err }
   return res.json()
 }
