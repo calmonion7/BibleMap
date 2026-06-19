@@ -1,140 +1,70 @@
 ---
-last_mapped_commit: 7d2210c48a67b08b79cc3f03008c3ee30e885614
+last_mapped_commit: 4ed4d876d7fa3b06a8eb1647b5b50ed73f906b25
 mapped: 2026-06-19
 ---
 
-# Stack
+# 기술 스택
 
-## Languages
+## 언어 & 런타임
 
-- **Python 3.12** — backend API server (`backend/Dockerfile`: `FROM python:3.12-slim`)
-- **JavaScript (ESM)** — frontend, all source files under `frontend/src/` use `.js` / `.jsx`
+| 영역 | 언어 | 버전 |
+|------|------|------|
+| 백엔드 | Python | 3.12 (Docker 이미지 `python:3.12-slim`) |
+| 프론트엔드 | JavaScript (ESM) | Node 런타임(빌드 전용), 브라우저 배포 |
+| 리버스 프록시 | — | nginx:alpine |
 
-## Runtimes
+## 프레임워크 & 라이브러리
 
-- Python 3.12 (Docker container via `backend/Dockerfile`)
-- Node.js v24.15.0 (local dev; not pinned in any lock file beyond `package-lock.json`)
+### 백엔드 (`backend/requirements.txt`)
 
-## Backend Framework
+| 패키지 | 버전 | 용도 |
+|--------|------|------|
+| `fastapi` | 0.136.3 | REST API 서버 |
+| `uvicorn` | 0.49.0 | ASGI 서버 (CMD 진입점) |
+| `neo4j` | 6.2.0 | Neo4j 공식 Python 드라이버 |
+| `anthropic` | (scripts 전용, pip 별도) | LLM 데이터 생성 스크립트에서만 사용 |
 
-- **FastAPI 0.136.3** (`backend/requirements.txt`)
-- **Uvicorn 0.49.0** — ASGI server; started via `CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]` in `backend/Dockerfile`
-- Application entry point: `backend/app/main.py`
-- Route modules: `backend/app/routes/nodes.py`, `backend/app/routes/events.py`, `backend/app/routes/search.py`, `backend/app/routes/books.py`
-- DB connection: `backend/app/db.py` (singleton driver, lazy-initialized via `get_driver()`)
+### 프론트엔드 (`frontend/package.json`)
 
-### Backend middleware
+| 패키지 | 버전 | 용도 |
+|--------|------|------|
+| `react` | ^19.2.6 | UI 라이브러리 |
+| `react-dom` | ^19.2.6 | DOM 렌더러 |
+| `maplibre-gl` | ^5.24.0 | 지도 렌더링 |
+| `lucide-react` | ^1.17.0 | 아이콘 |
+| `vite` | ^8.0.12 | 번들러/빌드 도구 |
+| `@vitejs/plugin-react` | ^6.0.1 | Vite React 플러그인 |
+| `eslint` | ^10.3.0 | 린터 |
+| `eslint-plugin-react-hooks` | ^7.1.1 | Hooks 린트 |
+| `eslint-plugin-react-refresh` | ^0.5.2 | HMR 린트 |
 
-- `CORSMiddleware` with `allow_origins=["*"]`, `allow_methods=["GET"]` — read-only API
+## 패키지 매니저
 
-### In-process caching
+- 프론트엔드: `npm` (`frontend/package-lock.json` 존재)
+- 백엔드: `pip` (컨테이너 빌드 시 `requirements.txt`로 설치)
 
-`functools.lru_cache(maxsize=1)` on:
-- `_compute_events()` in `backend/app/routes/events.py`
-- `_load_event_verses()` in `backend/app/routes/events.py`
-- `_load_approx_book_index()` in `backend/app/routes/events.py`
-- `_load_approx()` in `backend/app/routes/books.py`
-- `_load_book_events()` in `backend/app/routes/books.py`
+## 빌드 도구
 
-## Database
+- 프론트엔드 번들: `vite build` → `frontend/dist/` 정적 파일 생성
+  - `vite.config.js`에서 `manualChunks`로 `maplibre` / `vendor` 청크 분리 (코드 스플리팅)
+- 백엔드 컨테이너: `docker compose build api` (Docker 멀티스테이지 없음, 단일 `FROM python:3.12-slim`)
+- 배포 자동화: `deploy.sh` (빌드 → Docker Compose 재기동 → 데이터 주입 순서)
 
-- **Neo4j 5** (`docker-compose.yml`: `image: neo4j:5`)
-- Driver: `neo4j==6.2.0` Python client (`backend/requirements.txt`)
-- Protocol: Bolt (`bolt://neo4j:7687` inside Docker network; `bolt://localhost:7687` for local scripts)
+## 인프라 / 컨테이너
 
-## Frontend Framework and Libraries
+- 오케스트레이션: `docker-compose.yml` (Docker Compose v2)
+- 서비스 구성:
+  - `neo4j` — Neo4j 5 공식 이미지, 포트 7474/7687 (localhost 바인딩)
+  - `api` — FastAPI/Uvicorn, 포트 8000 (내부 전용)
+  - `nginx` — 포트 8080→80 노출, `frontend/dist` 정적 서빙 + `/api/` → `api:8000` 프록시
 
-All declared in `frontend/package.json`:
+## 환경 설정 파일 목록
 
-| Package | Version | Role |
-|---|---|---|
-| `react` | ^19.2.6 | UI framework |
-| `react-dom` | ^19.2.6 | DOM renderer |
-| `maplibre-gl` | ^5.24.0 | Map rendering |
-| `lucide-react` | ^1.17.0 | Icon set |
-
-Dev dependencies:
-
-| Package | Version | Role |
-|---|---|---|
-| `vite` | ^8.0.12 | Build tool / dev server |
-| `@vitejs/plugin-react` | ^6.0.1 | React JSX transform plugin |
-| `eslint` | ^10.3.0 | Linter |
-| `eslint-plugin-react-hooks` | ^7.1.1 | Hooks lint rules |
-| `eslint-plugin-react-refresh` | ^0.5.2 | HMR lint rules |
-| `globals` | ^17.6.0 | ESLint browser globals |
-| `@types/react` | ^19.2.14 | TS type hints (JSDoc only) |
-| `@types/react-dom` | ^19.2.3 | TS type hints |
-
-Frontend source files: `frontend/src/App.jsx`, `frontend/src/MapView.jsx`, `frontend/src/SidePanel.jsx`, `frontend/src/TimelineView.jsx`, `frontend/src/VerseLangTabs.jsx`, `frontend/src/api.js`, `frontend/src/convexHull.js`, `frontend/src/theme.js`
-
-## Build
-
-- **Vite** builds frontend to `frontend/dist/` (`npm run build` from `frontend/`)
-- Vite config: `frontend/vite.config.js`
-- Manual chunk splitting: `maplibre-gl` → `maplibre` chunk; all other `node_modules` → `vendor` chunk
-- Production env var injection at build time via `frontend/.env.production` (`VITE_API_URL=/api`)
-- No HMR in production — nginx serves `frontend/dist/` as static files
-
-## Web Server / Reverse Proxy
-
-- **nginx:alpine** (`docker-compose.yml`)
-- Config: `nginx/nginx.conf`
-- Port 8080 → container port 80
-- `/api/*` proxied to `http://api:8000/`
-- Static assets served with `Cache-Control: public, max-age=31536000, immutable`
-- `index.html` served with `Cache-Control: no-cache, no-store, must-revalidate`
-
-## Containerization
-
-- `docker-compose.yml` defines three services: `neo4j`, `api`, `nginx`
-- Backend Dockerfile: `backend/Dockerfile`
-- Data volume: `./data` bind-mounted to `/app/data` in the `api` container
-
-## Configuration Files
-
-| File | Purpose |
-|---|---|
-| `docker-compose.yml` | Service orchestration |
-| `backend/Dockerfile` | Backend image definition |
-| `backend/requirements.txt` | Python dependencies |
-| `frontend/package.json` | JS dependencies and scripts |
-| `frontend/package-lock.json` | Lockfile |
-| `frontend/vite.config.js` | Vite build config |
-| `frontend/eslint.config.js` | ESLint flat config |
-| `frontend/.env.production` | Frontend prod env vars (`VITE_API_URL=/api`) |
-| `.env` | Root secrets (`NEO4J_PASSWORD`) — not committed |
-| `.env.example` | Env var documentation |
-| `nginx/nginx.conf` | Nginx reverse proxy config |
-
-## Environment Variables
-
-| Variable | Set in | Consumed by |
-|---|---|---|
-| `NEO4J_PASSWORD` | `.env` (root) | `docker-compose.yml` → `api` container, `neo4j` container |
-| `NEO4J_URI` | `docker-compose.yml` | `backend/app/db.py` (default: `bolt://localhost:7687`) |
-| `NEO4J_USER` | `docker-compose.yml` | `backend/app/db.py` (default: `neo4j`) |
-| `VITE_API_URL` | `frontend/.env.production` | `frontend/src/api.js` (default: `http://localhost:8000`) |
-| `DATA_DIR` | (optional, not set in compose) | `backend/app/routes/events.py`, `backend/app/routes/books.py` (default: `/app/data`) |
-| `ANTHROPIC_API_KEY` | (not in compose; offline scripts only) | `backend/scripts/generate_*.py` |
-
-## Data Pipeline Scripts
-
-All under `backend/scripts/`; run ad-hoc offline, not part of the web server:
-
-| Script | Language | Purpose |
-|---|---|---|
-| `load_theographic.py` | Python | Load Theographic Bible Metadata into Neo4j |
-| `load_books.py` | Python | Load book records into Neo4j |
-| `load_authored_events.py` | Python | Load hand-authored events into Neo4j |
-| `inject_ko_names.py` | Python | Inject Korean name translations into Neo4j |
-| `inject_person_traits.py` | Python | Inject generated person traits into Neo4j |
-| `inject_book_context.py` | Python | Inject generated book context into Neo4j |
-| `generate_person_traits.py` | Python | Generate person traits via Claude API |
-| `generate_book_context.py` | Python | Generate book background via Claude API |
-| `generate_book_events.py` | Python | Generate book-event links via Claude API |
-| `generate_event_verses.py` | Python | Derive event-verse mapping from Theographic data |
-| `generate_approx_book_verses.py` | Python | Assign representative verses for approx-year books |
-| `generate_verse_text.py` | Python | Pre-bake verse text from getBible API |
-| `generate_verse_events.py` | Python | Generate verse-to-event mapping via Claude API |
-| `load_verse_events.py` | Python | Load verse-event mapping into Neo4j |
+| 파일 | 용도 |
+|------|------|
+| `.env` | `NEO4J_PASSWORD` 실제 값 (gitignore 대상) |
+| `.env.example` | `.env` 템플릿 |
+| `frontend/.env.production` | `VITE_API_URL=/api` 빌드타임 주입 |
+| `docker-compose.yml` | 서비스·볼륨·포트 정의 |
+| `backend/Dockerfile` | API 컨테이너 빌드 정의 |
+| `nginx/nginx.conf` | nginx 라우팅·캐시 헤더 설정 |

@@ -1,140 +1,127 @@
 ---
-last_mapped_commit: 7d2210c48a67b08b79cc3f03008c3ee30e885614
+last_mapped_commit: 4ed4d876d7fa3b06a8eb1647b5b50ed73f906b25
 mapped: 2026-06-19
 ---
 
-# BibleMap Architecture
+# BibleMap 아키텍처
 
-## Overall Pattern
+## 전체 패턴
 
-Three-tier layered web application running as Docker Compose services:
+**계층형 모놀리식 멀티 컨테이너** 구성이다. 단일 Git 저장소 안에 프론트엔드(SPA), 백엔드(REST API), 데이터베이스(Neo4j), 역방향 프록시(Nginx)가 공존하며, Docker Compose로 네 컨테이너를 묶어 실행한다.
 
 ```
-Browser (SPA)
-    ↓ HTTP /api/*
-nginx (reverse proxy, port 8080)
-    ↓ HTTP proxied to api:8000
-FastAPI (REST API, port 8000)
-    ↓ Bolt protocol
-Neo4j 5 (graph database, port 7687)
+[브라우저] → Nginx:8080 → {/api/*} → FastAPI:8000 → Neo4j:7687
+                        → {정적 파일} → frontend/dist/
 ```
 
-No server-side rendering. All UI logic lives in the browser. The backend is a thin read-only query layer — no write endpoints exist.
+---
 
-## Layers and Responsibilities
+## 레이어 및 책임
 
-### Infrastructure (`docker-compose.yml`)
+### 1. 프레젠테이션 레이어 — `frontend/`
 
-- `neo4j` service: graph data store, persisted via named volume `neo4j_data`.
-- `api` service: FastAPI application, mounts `./data` at `/app/data` for JSON overlays.
-- `nginx` service: serves `frontend/dist` as static files and reverse-proxies `/api/` to `api:8000`.
+- **기술 스택**: React 19, Vite 8, MapLibre GL
+- **진입점**: `frontend/src/main.jsx` (React 마운트) / `frontend/index.html`
+- **최상위 상태 관리**: `frontend/src/App.jsx`
+  - 선택된 노드(`selectedNode`), 뷰 전환(`activeView`), 검색 상태, 히스토리 스택을 단일 컴포넌트에서 보유
+  - `selectedNode`가 `null`이면 패널 숨김, 값이 있으면 SidePanel 슬라이드인(데스크톱) 또는 바텀시트(모바일)
+- **뷰 컴포넌트**:
+  - `frontend/src/MapView.jsx` — MapLibre GL 지도, 장소 마커, fitBounds
+  - `frontend/src/TimelineView.jsx` — 수평 타임라인, 사건·책 배치
+  - `frontend/src/SidePanel.jsx` — 선택 노드 상세, 이웃, 성경 구절
+- **공유 유틸**:
+  - `frontend/src/api.js` — 단일 `apiGet()` 헬퍼; 빌드타임 `VITE_API_URL` 환경변수로 base URL 결정
+  - `frontend/src/theme.js` — 노드 타입별 색상, 정렬 순서
+  - `frontend/src/convexHull.js` — 장소 군집 볼록껍질 계산
 
-### Backend (`backend/`)
+### 2. API 레이어 — `backend/`
 
-**Entry point**: `backend/app/main.py`
-- Instantiates `FastAPI` with `CORSMiddleware` (GET-only, all origins).
-- On startup (`lifespan`), creates Neo4j indexes for `theographic_id` on each node label.
-- Registers four routers: `nodes`, `events`, `search`, `books`.
+- **기술 스택**: FastAPI 0.136, Uvicorn, Python 3.12
+- **진입점**: `backend/app/main.py`
+  - `lifespan` 핸들러에서 Neo4j 인덱스 생성(Person/Place/Event/PeopleGroup/Book의 `theographic_id`)
+  - CORS: GET 전용, `allow_origins=["*"]`
+- **라우터 모듈** (`backend/app/routes/`):
+  - `nodes.py` — `/node/{id}`, `/node/{id}/places`, `/node/{id}/neighbors/grouped`, `/person/{id}/event-ids`
+  - `events.py` — `/events`, `/event/{id}/verses`
+  - `books.py` — `/books`
+  - `search.py` — `/search?q=`
+- **DB 연결**: `backend/app/db.py` — 싱글턴 `GraphDatabase.driver`, 환경변수로 연결정보 주입
 
-**Database abstraction**: `backend/app/db.py`
-- Module-level singleton `_driver` pattern (`get_driver()`).
-- Reads `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD` from environment.
+### 3. 데이터 레이어 — Neo4j + JSON 오버레이
 
-**Routers** (`backend/app/routes/`):
+- **Neo4j 5**: 모든 엔티티(Person/Place/Event/PeopleGroup/Book)를 그래프 노드로 저장. 관계: `HAS_PARTICIPANT`, `OCCURS_AT`, `MEMBER_OF`, `CONTAINS_BOOK`
+- **JSON 오버레이** (`data/` 디렉터리, Docker 볼륨 마운트):
+  - `event_verses/events.json` — 사건→구절 매핑(드릴다운용)
+  - `book_events/books.json` — 책→사건 매핑(추정책 연결)
+  - `book_years_approx/books.json` — Neo4j에 없는 책의 추정 연도
+  - 위 파일들은 `functools.lru_cache(maxsize=1)`로 프로세스 수명 동안 메모리 캐싱됨
 
-| File | Prefix | Responsibility |
+### 4. 역방향 프록시 — `nginx/`
+
+- **역할**: 정적 SPA 서빙 + `/api/` 경로를 FastAPI로 프록시
+- **설정**: `nginx/nginx.conf`
+  - `/api/` → `http://api:8000/` (trailing slash strip)
+  - `*.js|*.css|…` → `max-age=31536000, immutable`
+  - `index.html` → `no-cache`
+  - 나머지 → `try_files $uri /index.html` (SPA 라우팅)
+
+---
+
+## 데이터 흐름 (요청 → 응답)
+
+### 지도 노드 선택 흐름
+
+```
+1. 사용자가 지도 마커 클릭
+   → MapView.jsx: onSelectNode(id) 콜백 호출
+2. App.jsx: setSelectedNode(id), SidePanel 슬라이드인
+3. SidePanel.jsx: apiGet('/node/{id}') fetch
+   → Nginx /api/node/{id} → FastAPI GET /node/{id}
+   → Neo4j: MATCH (n {theographic_id: $id}) ... RETURN
+4. SidePanel: 노드 상세 렌더링, onNodeLoaded 콜백 → App 메타 업데이트
+```
+
+### 타임라인 초기 로드 흐름
+
+```
+1. TimelineView 마운트
+   → apiGet('/events') + apiGet('/books') 병렬 fetch
+   → FastAPI: _compute_events() (lru_cache, max-age=300)
+              + get_books() (lru_cache approx, no-store)
+2. events: Neo4j 쿼리 + book_events.json approx_index 머지
+3. books: Neo4j + book_years_approx.json 오버레이 머지
+4. 프론트: sortKey/startYear 기준으로 레인 배치 렌더링
+```
+
+### 검색 흐름
+
+```
+사용자 입력 → 250ms 디바운스 → apiGet('/search?q=')
+→ Neo4j: nameKo/name 부분일치, rank(정확→접두→포함) 정렬, LIMIT 20
+→ 드롭다운 타입 필터 칩 + 결과 목록
+```
+
+---
+
+## 핵심 추상
+
+| 추상 | 위치 | 설명 |
 |---|---|---|
-| `nodes.py` | — | `/node/{id}`, `/node/{id}/places`, `/node/{id}/neighbors/grouped`, `/person/{id}/event-ids` |
-| `events.py` | — | `/events` (timeline data), `/event/{id}/verses` (verse drill-down) |
-| `search.py` | — | `/search?q=` (full-text across all node labels) |
-| `books.py` | — | `/books` (all Book nodes with timeline placement year) |
+| `apiGet()` | `frontend/src/api.js` | 전 fetch의 단일 게이트웨이; AbortController 지원 |
+| `get_driver()` | `backend/app/db.py` | 싱글턴 Neo4j 드라이버 |
+| `_compute_events()` | `backend/app/routes/events.py` | Neo4j+JSON 머지 결과 lru_cache |
+| `theographic_id` | Neo4j 노드 속성 | 모든 엔티티의 공통 식별자; 인덱스 대상 |
+| `lru_cache(maxsize=1)` | `events.py`, `books.py` | JSON 오버레이+쿼리 결과 프로세스 수명 캐시 |
 
-**Caching strategy** (`events.py`, `books.py`):
-- `functools.lru_cache(maxsize=1)` on data-loading functions (`_compute_events`, `_load_approx`, `_load_book_events`, `_load_event_verses`, `_load_approx_book_index`) — results are held in memory for the process lifetime.
-- `/events` and `/event/{id}/verses` set `Cache-Control: max-age=300` on responses.
-- `/books` sets `Cache-Control: no-store`.
+---
 
-**JSON overlay pattern** (`events.py`, `books.py`):
-- Runtime-overlay JSON files in `data/` are loaded via a two-candidate path list: `DATA_DIR env var` (Docker volume) → repository-relative `data/` (local dev).
-- These overlays carry estimated/low-authority data that is intentionally kept out of Neo4j (ADR-0004, ADR-0006).
+## 진입점 정리
 
-**Data pipeline scripts** (`backend/scripts/`):
-- One-shot loader scripts run manually to seed/update Neo4j. Not invoked by the API server.
-- `load_theographic.py`: fetches from `robertrouse/theographic-bible-metadata` GitHub, loads Person/Place/Event/PeopleGroup nodes and relationships.
-- `load_books.py`: fetches books.json, creates Book nodes and `CONTAINS_BOOK` edges via verse-set intersection.
-- `load_authored_events.py`: loads `data/authored_events/events.json` into Neo4j as `Event` nodes with `authored:true`.
-- `load_verse_events.py`: writes `data/verse_events/events.json` into Neo4j.
-- `inject_*` scripts: enrich existing nodes with LLM-generated data from `data/`.
-- `generate_*` scripts: call Claude API to generate JSON written to `data/`.
-
-### Frontend (`frontend/`)
-
-**Entry point**: `frontend/src/main.jsx` → mounts `<App />` into `#root`.
-
-**Root component**: `frontend/src/App.jsx`
-- Holds all global UI state: `selectedNode` (theographic_id string), `activeView` ('map'|'timeline'), search state, `verseLang`, `personEventIds`, navigation `history` stack.
-- Renders nav bar (tab switcher + search box) and conditionally mounts `MapView` or `TimelineView`.
-- `SidePanel` is always mounted as an overlay div; it slides in/out via CSS transform driven by `selectedNode`.
-- Mobile layout (≤768px): SidePanel becomes a bottom sheet (55vh). Desktop: right sidebar (360px wide).
-
-**Shared API client**: `frontend/src/api.js`
-- Single export `apiGet(path, opts)`: prepends `VITE_API_URL` (built as `/api` in production, `http://localhost:8000` in dev).
-
-**Views**:
-
-- `frontend/src/MapView.jsx`: MapLibre GL map centered on the Levant. Fetches `/node/{id}/places` on node selection; renders place markers with a radial event-ring animation on click. Draws convex hull polygon for multi-place selections.
-- `frontend/src/TimelineView.jsx`: Chronological event list. Fetches `/events` once on mount. Groups events by `startDate` into collapsible rows. Supports book-filter (narrow to a single Book's events) and person-filter (highlight a Person's events). Inline verse drill-down via `/event/{id}/verses`.
-- `frontend/src/SidePanel.jsx`: Fetches `/node/{id}` on `nodeId` prop change. Renders node properties, neighbors grouped by type, and (for Person nodes) verse-referenced trait cards.
-
-**Utilities**:
-
-- `frontend/src/theme.js`: canonical color palette and Korean labels for all node types (`TYPE_COLOR`, `TYPE_KO`, `TYPE_ORDER`). Imported by App, SidePanel, TimelineView, MapView.
-- `frontend/src/convexHull.js`: pure Graham-scan implementation, no external dependency. Used by MapView.
-- `frontend/src/VerseLangTabs.jsx`: language-toggle segment control (한국어/영어), shared between TimelineView and SidePanel.
-
-## Data Flow — Request Lifecycle
-
-### Map interaction (place marker click)
-
-1. User clicks marker → MapView calls `onSelectNode(id)` → App sets `selectedNode`.
-2. SidePanel receives new `nodeId`, fires `GET /api/node/{id}` → renders node detail.
-3. MapView effect fires `GET /api/node/{id}/places` → updates marker layer.
-4. If node is Person: App fetches `GET /api/person/{id}/event-ids` → stores set for timeline highlighting.
-
-### Search
-
-1. User types in nav bar search input → 250ms debounce → `GET /api/search?q=`.
-2. Dropdown renders; user selects result → `selectNode(id)` called → same flow as above.
-
-### Timeline verse drill-down
-
-1. TimelineView mounts, fetches `GET /api/events` once, caches in state.
-2. User clicks event group → expands to show events + book chips.
-3. User clicks 📖 book chip → `GET /api/event/{id}/verses` → inline verse text rendered (pre-baked textKo/textEn, no further fetch).
-
-## Key Abstractions
-
-**`theographic_id`**: stable string key (Airtable record ID, `rec…` prefix) used across Neo4j nodes, API responses, frontend state, and JSON overlays to join entities.
-
-**Overlay JSON pattern**: low-authority or estimated data (`book_years_approx`, `book_events`, `event_verses`) lives in `data/*.json` files, not Neo4j. API reads them at startup and merges with Neo4j query results at response time.
-
-**Neo4j relationship schema**:
-- `(Event)-[:HAS_PARTICIPANT]->(Person)`
-- `(Event)-[:OCCURS_AT]->(Place)`
-- `(Person)-[:MEMBER_OF]->(PeopleGroup)`
-- `(Book)-[:CONTAINS_BOOK]->(Event)` — verse-set intersection, represents scriptural evidence
-- `(Event)-[:PART_OF]->(Event)` — period hierarchy
-- `(Person)-[:PARENT_OF|CHILD_OF|SIBLING_OF|PARTNER_OF]->(Person)`
-
-## Entry Points
-
-| Layer | Entry point |
+| 진입점 | 경로 |
 |---|---|
-| Frontend app | `frontend/src/main.jsx` |
-| Frontend root component | `frontend/src/App.jsx` |
-| Backend ASGI app | `backend/app/main.py` (`app` object) |
-| Backend Docker image | `CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]` in `backend/Dockerfile` |
-| nginx config | `nginx/nginx.conf` |
-| Compose orchestration | `docker-compose.yml` |
-| CI/CD | `.github/workflows/deploy.yml` |
-| Manual deploy | `deploy.sh` |
+| 프론트 React 마운트 | `frontend/src/main.jsx` |
+| HTML 쉘 | `frontend/index.html` |
+| FastAPI 앱 객체 | `backend/app/main.py` → `app` |
+| Uvicorn 실행 | `CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]` (Dockerfile) |
+| Docker 오케스트레이션 | `docker-compose.yml` |
+| 배포 스크립트 | `deploy.sh` |

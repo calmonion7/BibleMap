@@ -1,87 +1,67 @@
 ---
-last_mapped_commit: 7d2210c48a67b08b79cc3f03008c3ee30e885614
+last_mapped_commit: 4ed4d876d7fa3b06a8eb1647b5b50ed73f906b25
 mapped: 2026-06-19
 ---
 
-# Integrations
+# 외부 연동
 
-## Neo4j (Graph Database)
+## 데이터베이스
 
-- **Image**: `neo4j:5` (docker-compose.yml)
-- **Protocol**: Bolt
-- **Internal URI** (Docker network): `bolt://neo4j:7687`
-- **Local URI** (scripts): `bolt://localhost:7687`
-- **Ports exposed to host**: `127.0.0.1:7474` (HTTP browser), `127.0.0.1:7687` (Bolt) — both loopback-only
-- **Auth**: `NEO4J_AUTH=neo4j/<NEO4J_PASSWORD>` set via `docker-compose.yml`
-- **Driver init**: `backend/app/db.py` — singleton `GraphDatabase.driver(uri, auth=(user, password))`
-- **Data volume**: Docker named volume `neo4j_data:/data`
-- **Indexes created at startup** (`backend/app/main.py` lifespan): `theographic_id` on `Person`, `Place`, `Event`, `PeopleGroup`, `Book`
-- **Node labels used**: `Person`, `Place`, `Event`, `PeopleGroup`, `Book`
-- **Relationships used**: `HAS_PARTICIPANT`, `OCCURS_AT`, `MEMBER_OF`, `CONTAINS_BOOK`, `PARENT_OF`, `SPOUSE_OF`
+### Neo4j (그래프 DB)
 
-## Anthropic Claude API (Offline data generation only)
+| 항목 | 값 |
+|------|-----|
+| 종류 | Neo4j 5 (그래프 DB) |
+| 드라이버 | `neo4j==6.2.0` (Python 공식 드라이버) |
+| 프로토콜 | Bolt (`bolt://neo4j:7687`) |
+| 인증 방식 | 사용자명/비밀번호 (`neo4j` / `NEO4J_PASSWORD`) |
+| 연결 설정 위치 | `backend/app/db.py` — `os.getenv("NEO4J_URI")`, `os.getenv("NEO4J_USER")`, `os.environ["NEO4J_PASSWORD"]` |
+| 환경변수 출처 | `docker-compose.yml` (`NEO4J_URI=bolt://neo4j:7687`) + `.env` (`NEO4J_PASSWORD`) |
+| 인덱스 자동 생성 | 앱 시작 시 `lifespan`에서 Person·Place·Event·PeopleGroup·Book 노드의 `theographic_id` 필드에 인덱스 생성 (`backend/app/main.py`) |
+| 데이터 볼륨 | `neo4j_data` Docker named volume |
 
-- **SDK**: `anthropic` Python package (imported in scripts, not in `backend/requirements.txt` — must be installed separately for script runs)
-- **Model**: `claude-haiku-4-5-20251001` (used in `generate_book_context.py`, `generate_book_events.py`, `generate_person_traits.py`, `generate_verse_events.py`)
-- **Auth**: `ANTHROPIC_API_KEY` environment variable (not set in `docker-compose.yml`; required only when running generation scripts)
-- **Usage pattern**: batch offline generation; results written to `data/` JSON files and committed to repo (ADR-0006)
-- **Calling scripts**:
-  - `backend/scripts/generate_book_context.py` — per-book background/themes/keyVerse
-  - `backend/scripts/generate_book_events.py` — book-to-event association
-  - `backend/scripts/generate_person_traits.py` — person character traits
-  - `backend/scripts/generate_verse_events.py` — verse-to-event mapping
+## 외부 API
 
-## Theographic Bible Metadata (GitHub raw JSON, offline)
+### Anthropic Claude API (빌드타임 스크립트 전용)
 
-- **Source**: `https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/`
-- **Files fetched**: `people.json`, `places.json`, `events.json`, `peopleGroups.json`, `verses.json`, `books.json`
-- **Consumed by**: `backend/scripts/load_theographic.py`, `backend/scripts/generate_event_verses.py`, `backend/scripts/generate_person_traits.py`, `backend/scripts/generate_book_context.py`, `backend/scripts/generate_book_events.py`
-- **Usage**: one-time data load into Neo4j; not called at runtime
+| 항목 | 값 |
+|------|-----|
+| 사용 목적 | 성경 데이터 LLM 생성 (권별 배경·주제, 사건별 구절, 인물 특성, 사건-구절 역방향 매핑) |
+| 모델 | `claude-haiku-4-5-20251001` |
+| 인증 방식 | API Key (`ANTHROPIC_API_KEY` 환경변수, 실행 시 CLI에서 전달) |
+| SDK | `anthropic` Python 패키지 (`backend/requirements.txt`에 미포함 — 스크립트 실행 환경에서 별도 설치) |
+| 호출 파일 | `backend/scripts/generate_book_context.py`, `backend/scripts/generate_book_events.py`, `backend/scripts/generate_person_traits.py`, `backend/scripts/generate_verse_events.py` |
+| 런타임 호출 여부 | **없음** — 데이터 생성 스크립트에서만 호출, 결과는 `data/` 디렉터리 JSON으로 사전 저장됨 |
 
-## getBible API (Offline verse text pre-baking)
+### getbible API (빌드타임 스크립트 전용)
 
-- **Endpoint pattern**: `https://api.getbible.net/v2/{translation}/{bookOrder}/{chapter}.json`
-- **Translations used**: `korean` (Korean NKRV), `kjv` (English KJV)
-- **Consumed by**: `backend/scripts/generate_verse_text.py`
-- **Usage**: build-time pre-baking of verse text into `data/event_verses/events.json`, `data/book_context/books.json`, `data/character_traits/people.json` (ADR-0003); not called at runtime
-- **Note**: requires browser-like User-Agent header to avoid 403 (documented in retro 2026-06-15)
+| 항목 | 값 |
+|------|-----|
+| 사용 목적 | 성경 구절 원문 텍스트 조회 (한국어 `korean` 번역 + 영어 `kjv` 번역) |
+| 엔드포인트 패턴 | `https://api.getbible.net/v2/{slug}/{bookOrder}/{chapter}.json` |
+| 인증 방식 | 없음 (공개 API) — User-Agent 헤더 필요 (`Mozilla/5.0 ...`, Python-urllib UA는 403 반환) |
+| 호출 파일 | `backend/scripts/generate_verse_text.py` |
+| 런타임 호출 여부 | **없음** — 빌드타임에 구절 텍스트를 `data/` JSON에 미리 저장(ADR-0003) |
 
-## ESRI ArcGIS Online (Map tiles, runtime)
+### Theographic Bible Metadata (빌드타임 스크립트 전용)
 
-- **URL**: `https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}`
-- **Tile type**: raster, 256px
-- **Consumed by**: `frontend/src/MapView.jsx` via `maplibre-gl` map style definition
-- **Auth**: none (public endpoint)
-- **Usage**: base map tiles fetched by the user's browser at runtime
+| 항목 | 값 |
+|------|-----|
+| 사용 목적 | 성경 메타데이터 소스 (사람·장소·사건·권별·구절·인물그룹 JSON) |
+| 출처 | GitHub raw 파일: `https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/` |
+| 제공 파일 | `books.json`, `events.json`, `verses.json`, `people.json`, `places.json`, `peopleGroups.json` |
+| 인증 방식 | 없음 (공개 GitHub raw) |
+| 호출 파일 | `backend/scripts/load_theographic.py`, `backend/scripts/load_books.py`, `backend/scripts/generate_book_context.py`, `backend/scripts/generate_event_verses.py`, `backend/scripts/generate_verse_events.py` |
+| 런타임 호출 여부 | **없음** — Neo4j 초기 데이터 로드 시에만 사용 |
 
-## Protomaps Basemaps Assets (Map glyphs, runtime)
+## 인증 / 인가
 
-- **URL**: `https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf`
-- **Consumed by**: `frontend/src/MapView.jsx` (`glyphs` field of maplibre-gl style)
-- **Auth**: none (public CDN)
-- **Usage**: map label fonts fetched by the user's browser at runtime
+런타임 사용자 인증 없음. API는 CORS `allow_origins=["*"]`, `allow_methods=["GET"]`로 읽기 전용 공개 서빙 (`backend/app/main.py`).
 
-## Internal API (frontend → backend)
+## 웹훅 / 이벤트 스트림
 
-- **Base URL (dev)**: `http://localhost:8000` (default in `frontend/src/api.js`)
-- **Base URL (prod)**: `/api` (set via `frontend/.env.production` → `VITE_API_URL=/api`; nginx proxies `/api/` → `http://api:8000/`)
-- **Client**: `frontend/src/api.js` — shared `apiGet(path, {signal})` helper used by all frontend components
-- **Endpoints**:
-  - `GET /events` — timeline events list with book refs; `Cache-Control: max-age=300`
-  - `GET /event/{event_id}/verses` — per-event verse groups; `Cache-Control: max-age=300`
-  - `GET /books` — books with placement years; `Cache-Control: no-store`
-  - `GET /node/{node_id}` — node detail (Person/Place/Event/PeopleGroup/Book)
-  - `GET /node/{node_id}/places` — geographic locations for a node
-  - `GET /node/{node_id}/neighbors/grouped` — grouped neighbors by label
-  - `GET /person/{node_id}/event-ids` — event IDs a person participates in
-  - `GET /search?q=` — full-text search across all node types (limit 20)
+없음.
 
-## Static Data Files (runtime overlay, mounted volume)
+## 3rd-party 서비스 (기타)
 
-JSON files under `data/` are bind-mounted into the `api` container at `/app/data` and read at process startup (cached in-process thereafter):
-
-| File | Consumed by |
-|---|---|
-| `data/event_verses/events.json` | `backend/app/routes/events.py` (`_load_event_verses`) |
-| `data/book_events/books.json` | `backend/app/routes/events.py` (`_load_approx_book_index`), `backend/app/routes/books.py` (`_load_book_events`) |
-| `data/book_years_approx/books.json` | `backend/app/routes/books.py` (`_load_approx`) |
+없음. 모든 외부 API 호출은 데이터 생성 단계(빌드타임)에서만 발생하며 런타임에는 Neo4j + 정적 JSON 파일만 사용한다.
