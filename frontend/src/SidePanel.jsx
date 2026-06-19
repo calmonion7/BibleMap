@@ -52,7 +52,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     let cancelled = false
     apiGet('/node/' + nodeId)
       .then(data => { if (!cancelled) { setCollapsed({}); setState({ id: nodeId, node: data, error: null }); onNodeLoaded?.(data) } })
-      .catch(e => { if (!cancelled) setState({ id: nodeId, node: null, error: String(e) }) })
+      .catch(e => { if (!cancelled) setState({ id: nodeId, node: null, error: e?.status ?? String(e) }) })
     return () => { cancelled = true }
   }, [nodeId, onNodeLoaded])
 

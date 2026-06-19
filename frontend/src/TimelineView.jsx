@@ -226,32 +226,34 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
       ref={containerRef}
       style={{ width: '100%', height: '100%', boxSizing: 'border-box', overflowY: 'auto', background: '#fafafa', position: 'relative', paddingTop: 16, paddingBottom: 48 }}
     >
-      {activeFilter && (
-        <div style={{
-          position: 'sticky', top: 0, zIndex: 10,
-          display: 'flex', alignItems: 'center', gap: 8,
-          background: '#e8f0fe', borderBottom: '1px solid #c5d5fb',
-          padding: '6px 12px', fontSize: 12, color: '#1a3a8f',
-        }}>
-          <span>{activeFilter.nameKo} 범위: {fmtYear(activeFilter.startYear)} ~ {fmtYear(activeFilter.endYear)}</span>
-          <button
-            onClick={() => setDismissedFilter(bookFilter)}
-            style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#1a3a8f', fontSize: 13, padding: '0 4px' }}
-          >× 닫기</button>
-        </div>
-      )}
-      {activePersonFilter && (
-        <div style={{
-          position: 'sticky', top: 0, zIndex: 10,
-          display: 'flex', alignItems: 'center', gap: 8,
-          background: '#e8f0fe', borderBottom: '1px solid #c5d5fb',
-          padding: '6px 12px', fontSize: 12, color: '#1a3a8f',
-        }}>
-          <span>{personName}이 언급된 사건</span>
-          <button
-            onClick={() => setDismissedPersonFilter(personFilter)}
-            style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#1a3a8f', fontSize: 13, padding: '0 4px' }}
-          >× 닫기</button>
+      {(activeFilter || activePersonFilter) && (
+        <div style={{ position: 'sticky', top: 0, zIndex: 10 }}>
+          {activeFilter && (
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: 8,
+              background: '#e8f0fe', borderBottom: '1px solid #c5d5fb',
+              padding: '6px 12px', fontSize: 12, color: '#1a3a8f',
+            }}>
+              <span>{activeFilter.nameKo} 범위: {fmtYear(activeFilter.startYear)} ~ {fmtYear(activeFilter.endYear)}</span>
+              <button
+                onClick={() => setDismissedFilter(bookFilter)}
+                style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#1a3a8f', fontSize: 13, padding: '0 4px' }}
+              >× 닫기</button>
+            </div>
+          )}
+          {activePersonFilter && (
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: 8,
+              background: '#e8f0fe', borderBottom: '1px solid #c5d5fb',
+              padding: '6px 12px', fontSize: 12, color: '#1a3a8f',
+            }}>
+              <span>{personName}이 언급된 사건</span>
+              <button
+                onClick={() => setDismissedPersonFilter(personFilter)}
+                style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#1a3a8f', fontSize: 13, padding: '0 4px' }}
+              >× 닫기</button>
+            </div>
+          )}
         </div>
       )}
       {timeline.map((item) => {
