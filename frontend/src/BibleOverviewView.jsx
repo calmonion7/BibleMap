@@ -119,7 +119,7 @@ export default function BibleOverviewView({ onSelectNode }) {
 
   useEffect(() => {
     let cancelled = false
-    apiGet('/books')
+    apiGet('/books-overview')
       .then(data => {
         if (cancelled) return
         const grouped = { OT: {}, NT: {} }
@@ -129,6 +129,7 @@ export default function BibleOverviewView({ onSelectNode }) {
           const key = (t === 'OT' || t === '구약') ? 'OT' : (t === 'NT' || t === '신약') ? 'NT' : null
           if (!key) continue
           const g = book.genre
+          if (!g) continue
           if (!grouped[key][g]) grouped[key][g] = []
           grouped[key][g].push(book)
         }
@@ -154,6 +155,18 @@ export default function BibleOverviewView({ onSelectNode }) {
     return (
       <div style={{ color: '#f87171', padding: 24, background: '#12122a', height: '100%' }}>
         오류: {error}
+      </div>
+    )
+  }
+
+  const totalBooks =
+    Object.values(booksByTestamentGenre.OT).flat().length +
+    Object.values(booksByTestamentGenre.NT).flat().length
+
+  if (totalBooks === 0) {
+    return (
+      <div style={{ color: 'rgba(255,255,255,0.5)', padding: 24, background: '#12122a', height: '100%' }}>
+        표시할 성경 권이 없습니다
       </div>
     )
   }
