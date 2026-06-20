@@ -34,7 +34,8 @@ def main():
                 session.run(
                     """
                     MERGE (pl:Place {theographic_id: $id})
-                    SET pl.title    = $name,
+                    SET pl.name     = $name,
+                        pl.title    = $name,
                         pl.nameKo   = $nameKo,
                         pl.latitude  = $lat,
                         pl.longitude = $lng,
