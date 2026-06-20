@@ -1,0 +1,218 @@
+[
+  {
+    "id": "authored-place-bethlehem",
+    "name": "Bethlehem",
+    "nameKo": "베들레헴",
+    "lat": 31.7054,
+    "lng": 35.2024,
+    "note": "다윗의 출생지 (1Sam 17:12); 아브라함 여정 경유지"
+  },
+  {
+    "id": "authored-place-ziklag",
+    "name": "Ziklag",
+    "nameKo": "시글락",
+    "lat": 31.2186,
+    "lng": 34.5979,
+    "note": "블레셋 왕 아기스에게 받은 다윗의 도시 (1Sam 27:6)"
+  },
+  {
+    "id": "authored-place-mahanaim",
+    "name": "Mahanaim",
+    "nameKo": "마하나임",
+    "lat": 32.0881,
+    "lng": 35.6973,
+    "note": "압살롬 반란 때 다윗이 피신한 요단 동편 도시 (2Sam 17:24)"
+  },
+  {
+    "id": "authored-place-adullam",
+    "name": "Adullam",
+    "nameKo": "아둘람",
+    "lat": 31.5469,
+    "lng": 34.9742,
+    "note": "다윗이 사울을 피해 숨은 동굴 (1Sam 22:1)"
+  },
+  {
+    "id": "authored-place-gibeah",
+    "name": "Gibeah",
+    "nameKo": "기브아",
+    "lat": 31.836,
+    "lng": 35.222,
+    "note": "사울의 수도; 다윗이 사울 앞에서 수금을 탄 곳 (1Sam 10:26)"
+  },
+  {
+    "id": "authored-place-ramah",
+    "name": "Ramah",
+    "nameKo": "라마",
+    "lat": 31.932,
+    "lng": 35.178,
+    "note": "사무엘의 고향 (1Sam 15:34); 다윗이 사울을 피해 방문"
+  },
+  {
+    "id": "authored-place-gibeon",
+    "name": "Gibeon",
+    "nameKo": "기브온",
+    "lat": 31.857,
+    "lng": 35.184,
+    "note": "기브온 못가 전투 (2Sam 2:12); 다윗과 압넬 대치"
+  },
+  {
+    "id": "authored-place-en-gedi",
+    "name": "En-gedi",
+    "nameKo": "엔게디",
+    "lat": 31.458,
+    "lng": 35.388,
+    "note": "사해 서편 오아시스; 다윗의 광야 은신처 (1Sam 23:29)"
+  },
+  {
+    "id": "authored-place-nob",
+    "name": "Nob",
+    "nameKo": "놉",
+    "lat": 31.798,
+    "lng": 35.237,
+    "note": "제사장 성읍; 다윗이 떡과 골리앗 칼을 받은 곳 (1Sam 21:1)"
+  },
+  {
+    "id": "authored-place-beersheba",
+    "name": "Beersheba",
+    "nameKo": "브엘세바",
+    "lat": 31.252,
+    "lng": 34.791,
+    "note": "아브라함의 우물과 언약 (Gen 21:14); 이삭·야곱도 거함"
+  },
+  {
+    "id": "authored-place-mamre",
+    "name": "Mamre",
+    "nameKo": "마므레",
+    "lat": 31.515,
+    "lng": 35.097,
+    "note": "아브라함이 장막을 친 곳 (Gen 13:18); 헤브론 인근 상수리나무"
+  },
+  {
+    "id": "authored-place-peniel",
+    "name": "Peniel",
+    "nameKo": "브니엘",
+    "lat": 32.017,
+    "lng": 35.567,
+    "note": "야곱이 하나님과 씨름한 얍복강 나루 (Gen 32:30)"
+  },
+  {
+    "id": "authored-place-dothan",
+    "name": "Dothan",
+    "nameKo": "도단",
+    "lat": 32.418,
+    "lng": 35.198,
+    "note": "요셉이 형들에게 팔린 곳 (Gen 37:17)"
+  },
+  {
+    "id": "authored-place-jericho",
+    "name": "Jericho",
+    "nameKo": "여리고",
+    "lat": 31.857,
+    "lng": 35.444,
+    "note": "모세가 바라본 요단 맞은편 성읍 (Num 22:1); 여호수아의 첫 정복지"
+  },
+  {
+    "id": "authored-place-paran",
+    "name": "Wilderness of Paran",
+    "nameKo": "바란 광야",
+    "lat": 29.5,
+    "lng": 34.5,
+    "note": "이스라엘의 시내 이후 40년 방랑 주요 구역 (Num 10:12)"
+  },
+  {
+    "id": "authored-place-succoth",
+    "name": "Succoth",
+    "nameKo": "숙곳",
+    "lat": 30.563,
+    "lng": 32.017,
+    "note": "출애굽 첫 번째 진영 (Exod 12:37)"
+  },
+  {
+    "id": "recJSfVnIcPibY6aX",
+    "name": "Hebron",
+    "nameKo": "헤브론",
+    "lat": 31.524,
+    "lng": 35.111,
+    "note": "다윗의 첫 수도 7.5년 (2Sam 2:11); 아브라함 장지"
+  },
+  {
+    "id": "recL1WV82pXaRBQ59",
+    "name": "Jerusalem",
+    "nameKo": "예루살렘",
+    "lat": 31.776,
+    "lng": 35.234,
+    "note": "다윗의 수도; 법궤를 가져온 곳 (2Sam 5:6)"
+  },
+  {
+    "id": "recDWNfN3f6E04V4m",
+    "name": "Gath",
+    "nameKo": "가드",
+    "lat": 31.693,
+    "lng": 34.862,
+    "note": "블레셋 도시; 다윗이 아기스에게 피신 (1Sam 21:10)"
+  },
+  {
+    "id": "recgQtoCtBjbsPwAw",
+    "name": "Ur",
+    "nameKo": "우르",
+    "lat": 30.962,
+    "lng": 46.103,
+    "note": "아브라함의 본고장 갈대아 우르 (Gen 11:31)"
+  },
+  {
+    "id": "recyuzIRhPm1IFEu0",
+    "name": "Haran",
+    "nameKo": "하란",
+    "lat": 36.86,
+    "lng": 39.02,
+    "note": "아브라함이 가나안 가기 전 머문 곳 (Gen 11:31)"
+  },
+  {
+    "id": "recUySlrBva4ffoVs",
+    "name": "Shechem",
+    "nameKo": "세겜",
+    "lat": 32.221,
+    "lng": 35.284,
+    "note": "아브라함이 가나안 첫 도착한 곳 (Gen 12:6)"
+  },
+  {
+    "id": "recfrXyxhuYOczKTm",
+    "name": "Egypt",
+    "nameKo": "애굽",
+    "lat": 26.49,
+    "lng": 30.0,
+    "note": "아브라함 기근 피신; 모세 출생·소명지"
+  },
+  {
+    "id": "recBZhqAvy5xhTNRn",
+    "name": "Midian",
+    "nameKo": "미디안",
+    "lat": 28.75,
+    "lng": 34.8,
+    "note": "모세가 40년 머문 곳; 이드로 장인 (Exod 2:15)"
+  },
+  {
+    "id": "rec6V51IWkgvAcnOU",
+    "name": "Sinai",
+    "nameKo": "시내산",
+    "lat": 28.539,
+    "lng": 33.975,
+    "note": "모세가 율법을 받은 산 (Exod 19:1)"
+  },
+  {
+    "id": "recbFkcAeBmrPDZvG",
+    "name": "Kadesh",
+    "nameKo": "가데스",
+    "lat": 30.648,
+    "lng": 34.4,
+    "note": "이스라엘 정탐꾼 귀환·38년 방랑 기점 (Num 13:26)"
+  },
+  {
+    "id": "recUn6eVJDoG4xI0j",
+    "name": "Moab",
+    "nameKo": "모압",
+    "lat": 31.499,
+    "lng": 35.8,
+    "note": "모세가 생애 말년을 보낸 평지 (Num 22:1); 느보산 조망"
+  }
+]
