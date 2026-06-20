@@ -1,257 +1,138 @@
 ---
-last_mapped_commit: cecf0d7de87192b638f428eb7e708e94a58214a6
+last_mapped_commit: ff728ccaffbb9b4e38f1f8f32859a50d3555b515
 mapped: 2026-06-20
 ---
 
-# CONVENTIONS.md
+# 코드 컨벤션
 
-## 네이밍 규칙
+## 1. 들여쓰기 및 포맷
 
-### 프론트엔드 (JavaScript/JSX)
-- React 컴포넌트 파일: PascalCase (`SidePanel.jsx`, `MapView.jsx`, `BibleOverviewView.jsx`)
-- 커스텀 훅 파일: camelCase, `use` 접두사 (`useNodeSelection.js`, `useSearch.js`)
-- 비컴포넌트 JS 파일: camelCase (`api.js`, `theme.js`, `convexHull.js`)
-- 상수: SCREAMING_SNAKE_CASE (`MOBILE_QUERY`, `SHEET_VH`, `SELECT_HL`)
-- Props 이름: camelCase (`onSelectNode`, `nodeId`, `verseLang`, `setVerseLang`)
-- API 응답 필드: camelCase (`nameKo`, `bookOrder`, `sortKey`, `yearApprox`)
+- **스페이스 2칸** 들여쓰기. 탭 없음. 프론트엔드·백엔드 공통.
+- **세미콜론 없음** (프론트엔드 JS/JSX). ASI(자동 세미콜론 삽입) 의존.
+- 파일 끝 개행(newline) 유지.
+
+## 2. 따옴표 스타일
+
+| 영역 | 스타일 |
+|------|--------|
+| JavaScript / JSX 문자열 | 단일 따옴표 `'` 우선 |
+| JSX 속성값 | 이중 따옴표 `"` (JSX 관례) |
+| Python 문자열 | 이중 따옴표 `"` 우선, f-string 포함 |
+| Python docstring | 삼중 이중 따옴표 `"""` |
+
+단일 따옴표 안에 작은따옴표가 포함될 때만 이중 따옴표로 전환.
+
+## 3. JSX 패턴
+
+- **인라인 스타일 100%**. Tailwind, CSS Modules, 전역 CSS 클래스 없음.
+  ```jsx
+  // `frontend/src/components/SidePanel.jsx` 패턴
+  <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+  ```
+- 스타일 오브젝트가 길면 JSX 밖 변수에 추출하지 않고 멀티라인으로 펼침.
+- 조건 렌더링: 삼항 연산자 우선, 짧으면 `&&` 단락 평가.
+  ```jsx
+  {loading ? <Spinner /> : <Content />}
+  {error && <ErrorMessage />}
+  ```
+- JSX 반환 직전에 계산 변수를 선언해 JSX를 간결하게 유지.
+
+## 4. 네이밍 규칙
+
+### 프론트엔드 (JS/JSX)
+
+| 대상 | 규칙 | 예시 |
+|------|------|------|
+| 컴포넌트 파일 | PascalCase | `SidePanel.jsx`, `TimelineView.jsx` |
+| 컴포넌트 함수 | PascalCase | `SidePanel`, `BookCard` |
+| 커스텀 훅 파일 | camelCase, `use` 접두사 | `useNodeSelection.js`, `useSearch.js` |
+| 유틸·API 파일 | camelCase | `api.js`, `theme.js`, `convexHull.js` |
+| 이벤트 핸들러 | `handle` 접두사 + camelCase | `handleTabClick`, `handleKeyDown` |
+| 전역 상수 | ALL_CAPS | `MOBILE_QUERY`, `SHEET_VH`, `NAV_H`, `SEARCH_LIMIT` |
+| 일반 변수·함수 | camelCase, 동사 시작 | `selectNode`, `clearSearch`, `fmtYear` |
+| 한국어 번역 필드 | `Ko` 접미사 | `nameKo`, `verse_textKo`, `keyVerseTextKo` |
+| 번역 누락 플래그 | `Missing` 접미사 boolean | `nameKoMissing` |
 
 ### 백엔드 (Python)
-- 라우트 파일: 리소스명 snake_case (`nodes.py`, `events.py`, `books.py`, `search.py`)
-- 모듈 내 비공개 헬퍼: 선행 언더스코어 + snake_case (`_load_approx`, `_compute_events`, `_driver`)
-- 상수: SCREAMING_SNAKE_CASE (`MAX_NEIGHBORS_PER_TYPE`, `NODE_NEIGHBOR_LIMIT`)
 
-## 파일 조직
+| 대상 | 규칙 | 예시 |
+|------|------|------|
+| 함수·변수 | snake_case | `get_driver`, `load_events`, `name_ko` |
+| 전역 상수 | ALL_CAPS | `NEO4J_URI`, `NEO4J_USER`, `SCRIPT_DIR` |
+| 파일명 | snake_case | `bible_data.py`, `enrich_place_coords.py` |
 
-### 프론트엔드
-- 모든 React 소스: `/frontend/src/` 하위 flat 구조 — `components/`, `hooks/`, `utils/` 등 서브디렉터리 없음
-- 진입점: `/frontend/src/main.jsx`
-- 전역 상수·컬러: `/frontend/src/theme.js`
-- fetch 헬퍼: `/frontend/src/api.js`
-- 커스텀 훅: `/frontend/src/useNodeSelection.js`, `/frontend/src/useSearch.js`
-- 순수 알고리즘 유틸: `/frontend/src/convexHull.js`
+클래스 없이 **모듈 + 함수** 중심 설계. 라우터는 `APIRouter`로 분리.
 
-### 백엔드
-- FastAPI 앱·lifespan: `/backend/app/main.py`
-- Neo4j 드라이버 싱글턴: `/backend/app/db.py`
-- 오버레이 데이터 로더: `/backend/app/overlays.py`
-- 라우트: `/backend/app/routes/` (리소스별 1파일)
-- 데이터 로딩·생성 일회성 스크립트: `/backend/scripts/` (라우트가 아님)
-
-## Import 패턴
+## 5. 에러 처리
 
 ### 프론트엔드
-```js
-// React 훅: 이름 있는 임포트, namespace 아님
-import { useState, useEffect, useCallback, useRef } from 'react'
-// 아이콘: 이름 있는 임포트
-import { Map, Clock, Search, X, BookOpen } from 'lucide-react'
-// 컴포넌트: 기본 임포트
-import MapView from './MapView'
-// 내부 모듈: 이름 있는 임포트
-import { TYPE_ORDER, typeColor, typeKo, SELECT_HL } from './theme'
-import { apiGet } from './api'
-// 커스텀 훅: 이름 있는 임포트
-import { useNodeSelection } from './useNodeSelection'
-import { useSearch } from './useSearch'
-```
 
-### 백엔드
-```python
-# 표준 라이브러리 여러 개: 한 줄에 나열
-import functools, json, os
-# FastAPI: 이름 있는 임포트
-from fastapi import APIRouter, HTTPException, Query
-from fastapi.responses import JSONResponse
-# 내부 모듈: 상대 임포트
-from ..db import get_driver
-from .. import overlays
-```
-
-## 커스텀 훅 패턴
-
-커스텀 훅은 `/frontend/src/` 최상위에 `use` 접두사 `.js` 파일로 위치. 현재 2개 존재.
-
-### 훅 구조 규칙
-
-- **named export** 사용 — 기본 export 아님: `export function useSearch() {}`
-- **관련 state를 하나의 훅에 집약**: 훅은 state, ref, effect, 파생 computed값, 핸들러 함수를 함께 반환
-- **모든 state/ref/effect를 훅 파일 안에 선언** — 호출 컴포넌트로 state를 유출하지 않음
-- **반환값은 객체 리터럴**: 소비 컴포넌트에서 구조 분해로 사용
+- `AbortError` 명시적 구분 후 조기 반환:
   ```js
-  return {
-    searchQuery, searchResults, searchError, searchLoading,
-    showDropdown, setShowDropdown,
-    ...
-    onSearchInput, clearSearch,
+  // `frontend/src/hooks/useSearch.js` 패턴
+  } catch (e) {
+    if (e.name === 'AbortError') return
+    setSearchResults([]); setSearchError(true)
   }
   ```
-- **파생 computed 값도 훅 안에서 계산** 후 반환:
-  ```js
-  const typeCounts = searchResults.reduce(...)
-  const filteredResults = typeFilter ? searchResults.filter(...) : searchResults
-  return { ..., typeCounts, filteredResults }
-  ```
-
-### useCallback 안정화 패턴
-
-참조 안정성이 필요한 핸들러는 `useCallback([], [])` (빈 deps) + `useRef`로 최신값을 읽는 패턴:
-```js
-const selectedNodeRef = useRef(null)
-useEffect(() => { selectedNodeRef.current = selectedNode }, [selectedNode])
-
-const selectNode = useCallback((id) => {
-  if (id === selectedNodeRef.current) return   // ref로 최신값 읽기
-  if (selectedNodeRef.current) setHistory(h => [...h, selectedNodeRef.current])
-  setSelectedNode(id)
-}, [])   // deps 없음 — ref로 안정화
-```
-이유: `[]` deps useCallback이 `selectedNode` state를 직접 참조하면 자식의 `useEffect`가 재실행되어 fetch abort 버그 발생. ref가 이를 회피.
-
-### 안정성이 불필요한 핸들러
-
-히스토리 리셋처럼 자식 재렌더를 유발해도 무방한 함수는 일반 `function` 선언:
-```js
-function selectNodeFresh(id) {
-  setHistory([])
-  setSelectedNode(id)
-  ...
-}
-```
-
-### setState 위치 규칙 (react-hooks v7)
-
-effect 동기 본문에서 `setState` 직접 호출 금지. `setTimeout` / `async` 콜백 안에서만:
-```js
-useEffect(() => {
-  const timer = setTimeout(async () => {
-    setSearchLoading(true)          // OK — async 콜백 안
-    ...
-    setSearchLoading(false)
-  }, 250)
-  return () => clearTimeout(timer)
-}, [searchQuery])
-```
-
-## React 컴포넌트 패턴
-
-- **함수형 컴포넌트만** 사용 — 클래스 컴포넌트 없음
-- **기본 export**는 파일 맨 아래: `export default App`
-- **밀접하게 결합된 서브컴포넌트**는 같은 파일 안에 named function으로 정의 (`SectionHeader` in `SidePanel.jsx`, `BookCard` in `BibleOverviewView.jsx`)
-- **Props 구조 분해**는 시그니처에서 직접, 기본값도 인라인:
-  ```js
-  function SidePanel({ nodeId, onSelectNode = () => {}, canGoBack = false, verseLang, setVerseLang })
-  ```
-- `defaultProps` 사용 안 함
-- **모든 스타일은 인라인 `style` 객체** — CSS 클래스, CSS 모듈, Tailwind 없음
-- **`useRef`**: DOM ref 및 재렌더 없이 값을 유지해야 할 때 (`expandedPlaceRef`, `openEventRef`, `selectedNodeRef`)
-- **`useCallback`**: 클로저가 ref를 읽어 안정적인 `[]` deps로 자식 재렌더 방지 (`selectNode`)
-- **`useMemo`**: 대형 배열 의존 파생 데이터 (`groups`, `visibleGroups`)
-- **취소 가능한 fetch**: AbortController + setTimeout 패턴:
-  ```js
-  const ctrl = new AbortController()
-  const timer = setTimeout(async () => { ... }, 250)
-  return () => { clearTimeout(timer); ctrl.abort() }
-  ```
-- **오래된 응답 가드**: boolean flag 패턴:
-  ```js
-  let cancelled = false
-  apiGet('/node/' + nodeId).then(data => { if (!cancelled) setState(...) })
-  return () => { cancelled = true }
-  ```
-- **로딩/에러 상태 shape**: `{ id, node, error }` 단일 객체 — 별도 `loading` boolean 없음, `loading`은 `state.id !== nodeId`로 도출
-- **접힘/펼침 상태**: 문자열 키 객체 `collapsed[sectionKey] === false`이 열림(truthy/falsy 반전 패턴)
-- **상태 끌어올리기**: `verseLang`/`setVerseLang`는 `App.jsx`가 소유, props로 전달
-- Redux, Context API, 외부 상태관리 라이브러리 없음
-
-## 인라인 스타일 관행
-
-**모든 스타일 = 인라인 `style` 객체.** 별도 CSS 파일, CSS 모듈, Tailwind 없음.
-
-- **색상값은 16진수 문자열 리터럴** (`'#1a1a2e'`, `'#7c9cfc'`) — CSS 변수, 테마 토큰 없음
-- **공유 색 팔레트**: `/frontend/src/theme.js`의 `TYPE_COLOR`, `SELECT_HL` export를 직접 참조
-  ```js
-  import { TYPE_COLOR, SELECT_HL } from './theme'
-  ...
-  style={{ background: i === highlightIndex ? SELECT_HL : 'transparent' }}
-  ```
-- **반응형 스타일**: `isMobile` boolean state + 삼항 스프레드 패턴
-  ```js
-  style={{
-    position: 'absolute',
-    ...(isMobile
-      ? { left: 0, right: 0, bottom: 0, height: `${SHEET_VH}vh` }
-      : { top: NAV_H, right: 0, bottom: 0, width: 360 }),
-  }}
-  ```
-- **hover 효과**: `useState(false)` + `onMouseEnter`/`onMouseLeave` — CSS pseudo-class 없음
-- **transition 표기**: `'color 0.15s'`, `'transform 0.25s ease'` (shorthand)
-- **레이아웃 단위**: `px` 숫자 리터럴; vh는 템플릿 리터럴 `` `${SHEET_VH}vh` ``
-
-## Python/FastAPI 규칙
-
-- **파일당 `APIRouter` 1개**, `main.py`에서 `app.include_router()`로 등록
-- **`functools.lru_cache(maxsize=1)`**: 정적 JSON 데이터 및 Neo4j 계산 결과 인메모리 캐싱:
-  ```python
-  @functools.lru_cache(maxsize=1)
-  def _compute_events(): ...
-  ```
-- **오버레이 로딩**: `overlays.py`의 `_resolve` + `_load` + `lru_cache` 패턴. 직접 `open()`/`json.load()` 금지:
-  ```python
-  from .. import overlays
-  data = overlays.book_events_raw()   # 캐시된 dict 반환
-  ```
-- **Neo4j 드라이버 싱글턴**: 모듈 레벨 `_driver = None`, `get_driver()`에서 lazy init
-- **`driver.session()` context manager**: 요청마다 새 세션, 요청 간 세션 재사용 없음
-- **라우트 함수 반환값**: 기본 dict (FastAPI 자동 직렬화), 커스텀 헤더가 필요할 때만 `JSONResponse(content=..., headers={...})`
-- **에러 처리**: 노드 미존재 시 `HTTPException(status_code=404)`만 사용; 다른 에러는 흡수 후 fallback 반환
-- **`@asynccontextmanager` lifespan**: 시작 로직(Neo4j 인덱스 생성)에 사용, 광범위한 `except Exception` + `logging.exception`
-- **타입 애너테이션**: 라우트 파라미터에만 제한적 사용 (`node_id: str`, `q: str = Query("")`); 요청/응답 body에 Pydantic 모델 없음
-- **데이터 파일 경로**: `overlays._resolve()` 후보 목록 패턴 — `DATA_DIR` 환경변수 → 레포 상대경로 순서
-- Python 3.12 (`/backend/Dockerfile`: `FROM python:3.12-slim`)
-- 최소 핀된 의존성: `fastapi==0.136.3`, `neo4j==6.2.0`, `uvicorn==0.49.0`
-
-## 인라인 코멘트 스타일
-
-**모든 코멘트는 한국어로 작성.**
-
-### 프론트엔드 (JS)
-- 관련 블록 위에 단일 행 `//` 코멘트, 이유(why) 설명:
-  ```js
-  // 모바일(좁은 뷰포트) 분기 — ...
-  // setState는 전부 setTimeout/async 콜백 안에서만(effect 동기 본문 setState 금지 — react-hooks v7)
-  ```
-- 훅 내 effect: 동작과 이유를 한 줄 코멘트로 병기:
-  ```js
-  // 실시간 검색 — 입력이 바뀌면 250ms 디바운스 후 자동 조회. 직전 요청은 abort로 경쟁 차단.
-  // 드롭다운 바깥 클릭 시 닫기
-  // 키보드 하이라이트가 보이도록 스크롤
-  ```
-- JSX 주요 섹션 앞: `{/* 헤더 */}`
-
-### 백엔드 (Python)
-- 블록 위 단일 행 `#` 코멘트:
-  ```python
-  # 역방향 맵 구성
-  # 사건별 근거 구절 오버레이...
-  ```
-- 캐시된 헬퍼 함수에 docstring (라우트 핸들러가 아님):
-  ```python
-  def _load_event_verses():
-      """사건별 구절 오버레이 JSON을 1회만 로드(캐시). DATA_DIR → 레포 상대경로 순으로..."""
-  ```
-- 라우트 핸들러에는 API 계약과 데이터 의미론 설명 docstring
-
-## 에러 처리 패턴
-
-### 프론트엔드
-- **이진 에러 상태**: `const [error, setError] = useState(false)` — 에러 메시지 미저장
-- 에러 시: JSX에 한국어 에러 문자열 직접 렌더링
-- `AbortError`는 명시적으로 감지 후 무시: `if (e.name === 'AbortError') return`
-- `apiGet`은 `.status` 속성이 붙은 `Error` 객체를 throw; catch 지점에서 `e?.status ?? String(e)` 사용
+- stale 응답 방지: `let cancelled = false` 플래그 + `useEffect` cleanup에서 `cancelled = true`.
+- `AbortController`로 fetch 경쟁 조건 방지.
+- 에러 상태는 내용 없이 `boolean` 플래그로만 저장(`setError(true)`).
+- 단순 실패는 `.catch(() => setError(true))` 인라인 처리.
 
 ### 백엔드
-- `HTTPException(status_code=404, detail="Node not found")`: 미존재 노드에만 사용
-- 데이터 파일 로딩: `except (FileNotFoundError, json.JSONDecodeError): continue` + fallback 빈 dict
-- 시작 에러: `except Exception: logging.exception(...)` 후 실행 계속
-- json 파싱 에러: bare `except Exception: clean_props["traits"] = []`
-- 커스텀 예외 클래스 없음, 미들웨어 레벨 에러 처리 없음
+
+- 환경변수 누락 → 모듈 최상위에서 즉시 `RuntimeError` raise:
+  ```python
+  # ETL 스크립트 공통 패턴
+  if not NEO4J_PASSWORD:
+      raise RuntimeError("NEO4J_PASSWORD 환경변수가 설정되지 않았습니다")
+  ```
+- 리소스 미발견 → `HTTPException(status_code=404, detail=...)`.
+- 데이터 파싱 실패(float 변환 등) → `except (TypeError, ValueError): continue`.
+- JSON 파싱 실패 → `except json.JSONDecodeError: return {}`.
+- 치명적이지 않은 초기화 에러 → `logging.exception(...)` 후 계속 진행.
+
+## 6. 주석 정책
+
+- **JSDoc 없음**. 인라인 한국어 단행 주석만 사용.
+- 파일 최상단: 역할 1줄 설명.
+  ```js
+  // 공유 API 클라이언트 — 모든 프론트 fetch의 단일 베이스 URL + GET 헬퍼.
+  ```
+- JSX 섹션 구분: 한국어 블록 주석.
+  ```jsx
+  {/* 내비게이션 바 */}
+  {/* 오버레이 패널 */}
+  ```
+- 비직관적 동작·버그 방지 이유 설명:
+  ```js
+  // useCallback([])으로 참조를 안정화: selectedNode 변경 시 MapView 등의
+  // useEffect가 재실행되어 expandPlace fetch가 abort되는 버그 방지
+  ```
+- ADR 참조: `ADR-0003`, `ADR-0005` 형식으로 주석에 명시.
+- Python 함수 docstring: 1–2줄 간결하게. 모듈 레벨 docstring은 목적·제약 설명.
+
+## 7. ESLint 설정
+
+설정 파일: `frontend/eslint.config.js` (flat config 신형)
+
+- 기반: `eslint/js` → `js.configs.recommended`
+- 플러그인: `eslint-plugin-react-hooks` (`reactHooks.configs.flat.recommended`)
+- 플러그인: `eslint-plugin-react-refresh` (`reactRefresh.configs.vite`)
+- 대상: `**/*.{js,jsx}` — **TypeScript 파일 없음**
+- 무시: `dist/`
+
+Prettier 설정 파일 없음. 포맷 규칙은 관례 기반으로 유지.
+
+## 8. 모듈 시스템
+
+- 프론트엔드: ESM(`type: "module"`), named export 우선. default export는 컴포넌트 파일에 한정.
+- 백엔드: 표준 Python import. 상대 import 없이 절대 경로 import.
+
+## 9. ETL 스크립트 패턴
+
+- `main()` 함수 + `if __name__ == "__main__": main()` 구조.
+- Neo4j 적재: `MERGE` + `SET`으로 멱등(idempotent) 실행.
+- 드라이버: `@functools.lru_cache(maxsize=1)` 또는 `get_driver()` 싱글턴 패턴.
+- 파일 경로: `SCRIPT_DIR = Path(__file__).parent` 기준 상대 경로로 데이터 파일 참조.

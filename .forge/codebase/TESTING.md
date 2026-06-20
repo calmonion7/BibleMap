@@ -1,79 +1,75 @@
 ---
-last_mapped_commit: cecf0d7de87192b638f428eb7e708e94a58214a6
+last_mapped_commit: ff728ccaffbb9b4e38f1f8f32859a50d3555b515
 mapped: 2026-06-20
 ---
 
-# TESTING.md
+# 테스트 패턴
 
-## 테스트 프레임워크
+## 현황: 자동화 테스트 없음
 
-**프로젝트 소유 테스트 파일이 존재하지 않는다.**
+BibleMap 프로젝트에는 **자동화 테스트가 전혀 존재하지 않는다.**
 
-- `frontend/node_modules/` 내부에만 `*.test.*`, `*.spec.*` 파일이 존재 (maplibre-gl 등 라이브러리 자체 테스트)
-- `package.json` scripts에 테스트 러너 없음 (`dev`, `build`, `lint`, `preview`만 존재)
-- `requirements.txt`에 pytest, coverage, 테스트 관련 라이브러리 없음
-- Jest, Vitest 설정 파일 없음
-- `conftest.py` 없음
+확인 경로:
+- `frontend/` — `*.test.js`, `*.test.jsx`, `*.spec.js`, `*.spec.jsx` 파일 0개
+- `backend/` — `test_*.py`, `*_test.py` 파일 0개
+- `frontend/package.json` — `scripts`에 `test` 항목 없음 (`dev`, `build`, `lint`, `preview`만 존재)
+- `frontend/` — `vitest.config.*`, `jest.config.*` 파일 없음
+- `frontend/package.json` `devDependencies` — `vitest`, `jest`, `@testing-library/*` 없음
+- `backend/` — `pytest`, `unittest` 관련 설정 파일 없음
 
-## 테스트 파일 위치
+## 부재 이유 (추정)
 
-프로젝트 소스 내 테스트 파일 없음. `frontend/node_modules/` 하위에만 존재.
+`frontend/package.json`과 커밋 히스토리를 보면 프로젝트는 초기 개발 단계부터 지금까지 테스트 인프라를 설치하지 않았다. 프론트엔드는 Playwright를 수동 검증 도구로 사용(`MEMORY.md` 참조)하며, 백엔드는 Neo4j에 직접 적재 후 사람이 눈으로 확인하는 방식으로 검증한다.
 
-## Playwright 사용 패턴 (수동 검증용)
+## 수동 검증 방식
 
-프로젝트 메모리에 기록된 패턴 — `/opt/homebrew`에 설치된 Python Playwright 사용:
+자동화 테스트 대신 다음 방식으로 동작을 확인한다:
 
-- **대상**: `localhost:8080` (nginx가 서빙하는 빌드 산출물)
-- **검증 전 필수 빌드**: `cd frontend && npm run build` → `frontend/dist` 갱신 후 검증
-  - 백엔드도 필요 시: `docker compose up -d --build api`
-- **패턴**: 네트워크 캡처 + 스크린샷 조합
-  - 네트워크 캡처: API 호출 인터셉트로 응답 확인
-  - 스크린샷: UI 상태 시각적 검증
-- `VITE_API_URL=/api`로 빌드 — 프론트는 `:8000` 직접 접근 불가, nginx `/api` 프록시 경유만 가능
+### 프론트엔드
 
-## CI 설정
+- `cd frontend && npm run build` 후 `docker compose up -d --build api`로 전체 스택 기동.
+- **Python Playwright**로 `localhost:8080` 네트워크 캡처 + 스크린샷. (`/opt/homebrew`에 설치)
+- 확인 대상: UI 렌더링, API 응답 구조, 지도 상호작용.
 
-`/Users/calmonion/Project/BibleMap/.github/workflows/deploy.yml` 단일 워크플로우:
+### 백엔드 / ETL
 
-```yaml
-name: Deploy to Production
-on:
-  push:
-    branches: [main]
-jobs:
-  deploy:
-    runs-on: self-hosted
-    steps:
-      - name: Pull & Deploy
-        run: |
-          cd /Users/calmonion/Project/BibleMap
-          git fetch origin
-          git reset --hard origin/main
-          bash deploy.sh
+- ETL 스크립트는 `MERGE`+`SET` 멱등 패턴으로 작성 → 반복 실행해도 부작용 없음.
+- Neo4j Browser 또는 API 엔드포인트로 직접 조회해 데이터 확인.
+
+## 테스트 도입 시 권장 구조
+
+향후 테스트를 추가한다면 기존 스택(Vite + React)에 자연스럽게 맞는 구성:
+
+### 프론트엔드
+
+```
+frontend/
+  src/
+    hooks/
+      useSearch.test.js    # 커스텀 훅 단위 테스트
+      useNodeSelection.test.js
+    utils/
+      convexHull.test.js   # 순수 함수 단위 테스트
+  vitest.config.js
 ```
 
-- **self-hosted 러너만** 사용 — GitHub 관리 러너 없음
-- **테스트 스텝 없음, lint 스텝 없음, 빌드 검증 없음**
-- main 브랜치 push 시 `git reset --hard` + `bash deploy.sh` 직접 실행
-- 자동화된 품질 게이트 없음
+- 프레임워크: **Vitest** (Vite 네이티브, 설정 최소)
+- 컴포넌트 테스트: `@testing-library/react`
+- 목킹: `vi.mock()` (Vitest 내장)
 
-## 목(Mock) 패턴
+### 백엔드
 
-테스트 인프라 없으므로 mocking 패턴 없음.
+```
+backend/
+  tests/
+    test_routes_bible.py
+    test_routes_search.py
+  pytest.ini (또는 pyproject.toml [tool.pytest.ini_options])
+```
 
-## 런타임 검증 방식
+- 프레임워크: **pytest** + **httpx** (`AsyncClient`로 FastAPI 라우터 테스트)
+- Neo4j 목킹: `pytest-mock` + `unittest.mock.patch('app.db.get_driver', ...)`
 
-자동화 테스트 대신 다음 수동 검증 패턴이 사용됨:
+## 커버리지
 
-1. `cd frontend && npm run build` — 프론트 빌드
-2. `docker compose up -d --build api` — 백엔드 재빌드 (필요 시)
-3. Python Playwright로 `localhost:8080` 접근, 네트워크 캡처 + 스크린샷으로 동작 확인
-
-## ESLint
-
-`/Users/calmonion/Project/BibleMap/frontend/eslint.config.js` — flat config 형식:
-- `eslint-plugin-react-hooks` v7 포함 — 훅 규칙 검사 (effect 동기 본문 setState 금지 등)
-- `eslint-plugin-react-refresh` 포함
-- Prettier 설정 없음 — 포매팅은 툴링으로 강제하지 않음
-- `package.json` scripts에 `lint` 항목 존재: `eslint .`
-- 검사 대상: `**/*.{js,jsx}` (`.js` 커스텀 훅 파일 포함)
+현재 커버리지 설정 없음. 도구도 미설치.

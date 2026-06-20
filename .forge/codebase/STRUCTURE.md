@@ -1,190 +1,175 @@
 ---
-last_mapped_commit: cecf0d7de87192b638f428eb7e708e94a58214a6
+last_mapped_commit: 71c28dc
 mapped: 2026-06-20
 ---
-# Codebase Structure
 
-**Analysis Date:** 2026-06-20
+# BibleMap — 디렉터리 구조
 
-## Directory Layout
+## 트리
 
 ```
 BibleMap/
-├── backend/                  # FastAPI 백엔드
-│   ├── app/
-│   │   ├── main.py           # FastAPI 앱 진입점, 라우터 등록
-│   │   ├── db.py             # Neo4j 드라이버 싱글톤
-│   │   ├── overlays.py       # JSON 오버레이 로더 (lru_cache)
-│   │   ├── __init__.py
-│   │   └── routes/
-│   │       ├── nodes.py      # /node/* /person/* 엔드포인트
-│   │       ├── events.py     # /events /event/* 엔드포인트
-│   │       ├── search.py     # /search 엔드포인트
-│   │       ├── books.py      # /books /books-overview 엔드포인트
-│   │       └── __init__.py
-│   └── scripts/              # 데이터 생성·주입 일회성 스크립트
-│       ├── generate_*.py     # JSON 오버레이 생성 스크립트
-│       ├── inject_*.py       # Neo4j 직접 쓰기 스크립트
-│       └── load_*.py         # Neo4j 최초 데이터 로드 스크립트
-├── frontend/
-│   ├── src/
-│   │   ├── main.jsx          # React 진입점 (createRoot)
-│   │   ├── App.jsx           # 루트 컴포넌트 (탭, 검색, 패널)
-│   │   ├── MapView.jsx       # 지도 탭 뷰
-│   │   ├── TimelineView.jsx  # 타임라인 탭 뷰
-│   │   ├── BibleOverviewView.jsx  # 성경 개요 탭 뷰
-│   │   ├── SidePanel.jsx     # 노드 상세 패널
-│   │   ├── VerseLangTabs.jsx # ko/en 언어 탭 (공유 UI)
-│   │   ├── useNodeSelection.js  # 노드 선택 상태 커스텀 훅
-│   │   ├── useSearch.js      # 검색 상태 커스텀 훅
-│   │   ├── api.js            # apiGet() 공유 fetch 헬퍼
-│   │   ├── theme.js          # TYPE_COLOR, TYPE_KO 공유 팔레트
-│   │   ├── convexHull.js     # Graham scan (MapView 전용)
-│   │   ├── index.css         # 전역 스타일
-│   │   └── assets/           # 정적 자산 (favicon 등)
-│   ├── dist/                 # 빌드 결과 (nginx 서빙, git tracked)
-│   ├── public/               # index.html 등 정적 파일
-│   ├── package.json
-│   └── vite.config.js
-├── data/                     # JSON 오버레이 파일 (Docker 마운트)
-│   ├── book_events/
-│   │   └── books.json        # {bookId: [eventId, ...]}
-│   ├── event_verses/
-│   │   └── events.json       # 사건별 근거 구절
-│   ├── book_years_approx/
-│   │   └── books.json        # {bookId: {placementYear, basis, ...}}
-│   ├── authored_events/
-│   │   └── events.json       # 직접 저작 이벤트 데이터
-│   ├── character_traits/
-│   │   └── people.json       # 인물 특성
-│   ├── book_context/         # 성경책 컨텍스트 메타데이터
-│   ├── names_ko/             # 한국어 이름 매핑 (books, events, groups, people, places)
-│   └── verse_events/
-│       └── events.json       # 구절→사건 매핑
-├── nginx/
-│   └── nginx.conf            # /api/ 프록시, 정적 파일 서빙, SPA fallback
-├── .forge/                   # GSD 워크플로우 문서
-│   ├── codebase/             # 코드베이스 분석 문서 (이 파일 포함)
-│   ├── done/                 # 완료된 태스크 핸드오프
-│   ├── backlog/              # 대기 중 태스크
-│   └── adr/                  # Architecture Decision Records
+├── .env                          # NEO4J_PASSWORD 등 시크릿 (git 제외)
+├── .env.example
+├── docker-compose.yml            # neo4j / api / nginx 3서비스
+├── deploy.sh                     # 빌드·컨테이너 재시작·ko 이름 주입
+├── CLAUDE.md                     # AI 코딩 가이드라인
+├── BIBLEMAP_PLAN.md              # 프로젝트 계획 문서
+│
 ├── .github/
-│   └── workflows/            # GitHub Actions CI/CD
-├── docker-compose.yml        # neo4j + api + nginx 3-service 스택
-├── deploy.sh                 # 배포 스크립트
-└── CLAUDE.md                 # AI 에이전트 행동 가이드라인
+│   └── workflows/
+│       └── deploy.yml            # main 푸시 → self-hosted runner deploy.sh
+│
+├── backend/
+│   ├── Dockerfile                # uvicorn 실행, /app/data 볼륨 마운트
+│   ├── requirements.txt          # fastapi, neo4j, uvicorn
+│   ├── __init__.py
+│   └── app/
+│       ├── main.py               # FastAPI 앱 + lifespan(인덱스) + 라우터 등록
+│       ├── db.py                 # Neo4j 드라이버 싱글턴 get_driver()
+│       ├── overlays.py           # data/ JSON 오버레이 lru_cache 로더
+│       └── routes/
+│           ├── nodes.py          # /node/{id}, /places, /neighbors/grouped, /person/.../event-ids
+│           ├── events.py         # /events, /event/{id}/verses
+│           ├── books.py          # /books, /books-overview
+│           └── search.py         # /search?q=
+│
+├── backend/scripts/              # 오프라인 데이터 파이프라인 스크립트
+│   ├── load_theographic.py       # Theographic GitHub JSON → Neo4j 전체 적재
+│   ├── load_books.py             # Book 노드 + CONTAINS_BOOK 관계
+│   ├── load_authored_events.py   # authored=true 저작 이벤트 → Neo4j
+│   ├── load_person_events.py     # data/person_events/ → Neo4j
+│   ├── load_verse_events.py      # data/verse_events/ → Neo4j
+│   ├── inject_ko_names.py        # data/names_ko/ → nameKo 속성 주입
+│   ├── inject_person_traits.py   # data/character_traits/ → traits 속성 주입
+│   ├── inject_book_context.py    # data/book_context/ → themes·keyVerse 속성 주입
+│   ├── enrich_place_coords.py    # Place 좌표 보강
+│   ├── generate_book_events.py   # LLM → data/book_events/books.json
+│   ├── generate_book_context.py  # LLM → data/book_context/books.json
+│   ├── generate_person_traits.py # LLM → data/character_traits/people.json
+│   ├── generate_event_verses.py  # LLM → data/event_verses/events.json
+│   ├── generate_verse_events.py  # LLM → data/verse_events/events.json
+│   ├── generate_verse_text.py    # getbible API → 구절 본문 ko/en 프리베이크
+│   └── generate_approx_book_verses.py
+│
+├── data/                         # 오버레이 JSON (docker-compose 볼륨 /app/data 마운트)
+│   ├── authored_events/
+│   │   └── events.json           # authored 이벤트 정의
+│   ├── book_context/
+│   │   └── books.json            # themes·keyVerse·background (LLM 생성)
+│   ├── book_events/
+│   │   └── books.json            # {bookId: [eventId,...]} 추정 연결 오버레이
+│   ├── book_years_approx/
+│   │   └── books.json            # {bookId: {placementYear, basis}} 추정연도 오버레이
+│   ├── character_traits/
+│   │   └── people.json           # {personId: [{trait, verse_ref, description},...]}
+│   ├── event_verses/
+│   │   └── events.json           # {eventId: {books: [{bookId, verses:[...]}]}}
+│   ├── names_ko/
+│   │   ├── people.json           # {theographic_id: nameKo, ...}
+│   │   ├── places.json
+│   │   ├── events.json
+│   │   ├── groups.json
+│   │   └── books.json
+│   ├── person_events/
+│   │   ├── abraham.json          # 인물별 저작 이벤트 (인물 활동반경용)
+│   │   ├── david.json
+│   │   ├── moses.json
+│   │   ├── jesus.json
+│   │   └── ...                   # 총 13인 (구약 10 + 신약 3)
+│   ├── place_coords/
+│   │   └── places.json           # 좌표 보강 데이터
+│   └── verse_events/
+│       └── events.json           # 구절 기반 이벤트 데이터
+│
+├── frontend/
+│   ├── index.html                # Vite 진입 HTML
+│   ├── vite.config.js            # manualChunks: maplibre / vendor 분리
+│   ├── package.json              # react 19, maplibre-gl, lucide-react
+│   ├── eslint.config.js
+│   ├── .env.production           # VITE_API_URL=/api (nginx 프록시)
+│   ├── public/
+│   │   ├── favicon.svg
+│   │   └── icons.svg
+│   └── src/
+│       ├── main.jsx              # ReactDOM.createRoot 마운트 엔트리
+│       ├── App.jsx               # 탭 라우팅(map/timeline/overview), 검색 UI, SidePanel 오버레이
+│       ├── api.js                # apiGet(path) — 단일 fetch 클라이언트
+│       ├── theme.js              # TYPE_COLOR, TYPE_KO, TYPE_ORDER, SELECT_HL 공유 팔레트
+│       ├── useNodeSelection.js   # selectedNode / history / personEventIds 훅
+│       ├── useSearch.js          # 실시간 검색 (250ms 디바운스, AbortController)
+│       ├── MapView.jsx           # MapLibre GL JS 지도, 마커·링·convexHull
+│       ├── TimelineView.jsx      # 연도별 사건 목록, 구절 드릴다운, Book/Person 필터
+│       ├── BibleOverviewView.jsx # 장르별 Book 카드 그리드
+│       ├── SidePanel.jsx         # 노드 상세 패널 (traits·neighbors·verses)
+│       ├── VerseLangTabs.jsx     # ko/en 구절 언어 탭 전환 (TimelineView·SidePanel 공유)
+│       ├── Spinner.jsx           # 로딩 표시
+│       ├── convexHull.js         # Convex Hull 좌표 계산 유틸
+│       └── index.css             # 전역 스타일 리셋
+│
+├── nginx/
+│   └── nginx.conf                # /api/ → api:8000 프록시, 정적 파일 캐시 설정
+│
+└── .forge/
+    ├── CONTEXT.md                # 도메인 용어집·ADR 결정 기록
+    ├── adr/                      # Architecture Decision Records
+    │   ├── 0001-no-apoc-own-loader.md
+    │   ├── 0002-timeline-event-evidence-model.md
+    │   ├── 0003-prebake-bilingual-verse-text.md
+    │   ├── 0004-estimated-data-runtime-overlay-not-neo4j.md
+    │   └── 0005-authored-events-marked-neo4j-nodes.md
+    ├── backlog/                  # 미실행 계획
+    ├── done/                     # 완료된 태스크 (날짜-슬러그 디렉터리)
+    ├── retro/                    # 태스크별 회고 마크다운
+    ├── codebase/                 # 코드베이스 매핑 문서 (이 파일)
+    └── quick/LOG.md              # 빠른 작업 로그
 ```
-
-## Directory Purposes
-
-**`backend/app/`:**
-- Purpose: FastAPI 앱 코어
-- Contains: `main.py`, `db.py`, `overlays.py`, `routes/`
-- Key files: `backend/app/main.py`, `backend/app/overlays.py`
-
-**`backend/app/routes/`:**
-- Purpose: 엔드포인트별 라우터 모듈
-- Contains: `nodes.py`, `events.py`, `search.py`, `books.py`
-- 각 파일이 단일 `APIRouter` 인스턴스(`router`)를 export
-
-**`backend/scripts/`:**
-- Purpose: 데이터 파이프라인 일회성 스크립트 (앱 서빙 무관)
-- Contains: `generate_*.py`(JSON 생성), `inject_*.py`(Neo4j 직접 쓰기), `load_*.py`(초기 로드)
-- 서버 실행 중에도 Neo4j에 직접 쓰기 가능
-
-**`frontend/src/`:**
-- Purpose: React 앱 전체 소스 — 빌드 시 `frontend/dist/`로 번들됨
-- Contains: 뷰 컴포넌트 (`*View.jsx`), 커스텀 훅 (`use*.js`), 공유 유틸 (`api.js`, `theme.js`, `convexHull.js`)
-
-**`data/`:**
-- Purpose: Neo4j 미포함 오버레이 JSON (Docker volume으로 `/app/data` 마운트)
-- Generated: `backend/scripts/generate_*.py` 로 생성
-- Committed: Yes (git tracked)
-
-**`.forge/`:**
-- Purpose: GSD 에이전트 워크플로우 전용 디렉터리
-- Generated: No (사람/에이전트가 직접 작성)
-- Committed: Yes
-
-## Key File Locations
-
-**Entry Points:**
-- `frontend/src/main.jsx`: React DOM 진입점
-- `backend/app/main.py`: FastAPI `app` 객체 (uvicorn이 임포트)
-
-**Configuration:**
-- `docker-compose.yml`: 3-service 스택 정의 (neo4j, api, nginx)
-- `nginx/nginx.conf`: `/api/` 프록시 및 SPA fallback 라우팅
-- `frontend/vite.config.js`: Vite 빌드 설정
-- `frontend/.env.production`: `VITE_API_URL=/api` (빌드타임 주입)
-
-**Core Logic:**
-- `backend/app/overlays.py`: JSON 오버레이 로더 (세 함수 모두 여기)
-- `backend/app/db.py`: Neo4j 드라이버 싱글톤
-- `frontend/src/api.js`: 모든 HTTP fetch의 단일 게이트
-- `frontend/src/useNodeSelection.js`: 선택 상태 + 히스토리 관리
-- `frontend/src/useSearch.js`: 검색 디바운스 + 타입 필터
-
-**Testing:**
-- Not detected (테스트 파일 없음)
-
-## Naming Conventions
-
-**Files:**
-- React 컴포넌트: PascalCase `.jsx` (예: `MapView.jsx`, `SidePanel.jsx`)
-- 커스텀 훅: camelCase `use` 접두사 `.js` (예: `useNodeSelection.js`, `useSearch.js`)
-- 공유 유틸: camelCase `.js` (예: `api.js`, `theme.js`, `convexHull.js`)
-- Python 모듈: snake_case `.py` (예: `overlays.py`, `nodes.py`)
-- 데이터 스크립트: `generate_`, `inject_`, `load_` 접두사 + snake_case
-
-**Directories:**
-- 기능 단위: snake_case (예: `book_events/`, `event_verses/`)
-- 프레임워크 관례: `routes/`, `app/`, `src/`, `dist/`
-
-## Where to Add New Code
-
-**새 API 엔드포인트:**
-- 라우터 파일: `backend/app/routes/` 아래 기존 파일에 추가하거나 새 `.py` 파일 생성
-- 새 파일이면 `backend/app/main.py`에 `app.include_router(new_module.router)` 추가
-
-**새 JSON 오버레이 소스:**
-- 생성 스크립트: `backend/scripts/generate_*.py`
-- 출력 디렉터리: `data/<category>/` (예: `data/new_overlay/`)
-- 로더 함수: `backend/app/overlays.py`에 `@functools.lru_cache(maxsize=1)` 함수 추가
-
-**새 탭/뷰:**
-- 뷰 컴포넌트: `frontend/src/<Name>View.jsx`
-- `App.jsx`의 `TABS` 배열에 항목 추가, 렌더 분기 추가
-
-**새 커스텀 훅:**
-- 위치: `frontend/src/use<Name>.js`
-- `App.jsx`에서 호출, 결과를 props로 하위 컴포넌트에 전달하는 패턴 유지
-
-**공유 UI 컴포넌트:**
-- 위치: `frontend/src/<Name>.jsx`
-- `theme.js`의 색상 팔레트 사용 (`TYPE_COLOR`, `SELECT_HL`)
-
-**데이터 주입 스크립트:**
-- 위치: `backend/scripts/inject_*.py` 또는 `load_*.py`
-- Neo4j에 직접 쓰기. `backend/app/db.py`의 `get_driver()` 재사용 가능.
-
-## Special Directories
-
-**`frontend/dist/`:**
-- Purpose: Vite 빌드 결과물. nginx가 정적 파일로 서빙.
-- Generated: Yes (`npm run build`)
-- Committed: Yes (배포 파이프라인이 dist를 git에서 읽음)
-
-**`.claude/worktrees/`:**
-- Purpose: GSD 에이전트 병렬 작업용 git worktree 체크아웃
-- Generated: Yes
-- Committed: No
-
-**`data/`:**
-- Purpose: JSON 오버레이 (Docker volume으로 api 컨테이너에 마운트)
-- Generated: `backend/scripts/generate_*.py`로 생성, 수동 편집도 가능
-- Committed: Yes
 
 ---
 
-*Structure analysis: 2026-06-20*
+## 핵심 파일 위치
+
+| 역할 | 경로 |
+|---|---|
+| FastAPI 앱 정의 | `backend/app/main.py` |
+| Neo4j 연결 | `backend/app/db.py` |
+| JSON 오버레이 로더 | `backend/app/overlays.py` |
+| 노드 조회 라우터 | `backend/app/routes/nodes.py` |
+| 이벤트 라우터 | `backend/app/routes/events.py` |
+| 책 라우터 | `backend/app/routes/books.py` |
+| 검색 라우터 | `backend/app/routes/search.py` |
+| fetch 클라이언트 | `frontend/src/api.js` |
+| 색상·라벨 팔레트 | `frontend/src/theme.js` |
+| 노드 선택 훅 | `frontend/src/useNodeSelection.js` |
+| 검색 훅 | `frontend/src/useSearch.js` |
+| nginx 프록시 설정 | `nginx/nginx.conf` |
+| 컨테이너 오케스트레이션 | `docker-compose.yml` |
+| 배포 스크립트 | `deploy.sh` |
+| CI 워크플로 | `.github/workflows/deploy.yml` |
+| Theographic 원본 적재 | `backend/scripts/load_theographic.py` |
+| 도메인 용어·ADR | `.forge/CONTEXT.md` |
+
+---
+
+## 명명 규칙
+
+**파이썬 스크립트**
+- `load_*.py` — Theographic·생성 데이터를 Neo4j에 직접 주입
+- `inject_*.py` — 기존 노드에 속성만 추가(MERGE + SET)
+- `generate_*.py` — LLM 호출로 `data/` JSON 파일 생성 (Neo4j 미접촉)
+
+**data/ 서브디렉터리**
+- 각 디렉터리는 단일 JSON 파일(`books.json`, `events.json`, `people.json`, `places.json`)을 담음.
+- `person_events/` 만 예외 — 인물별로 분리된 `<slug>.json` 파일.
+
+**프론트엔드 파일**
+- 뷰 컴포넌트: `*View.jsx` (MapView, TimelineView, BibleOverviewView)
+- 커스텀 훅: `use*.js` (useNodeSelection, useSearch)
+- 단일 책임 유틸: `convexHull.js`, `theme.js`, `api.js`
+
+**Neo4j 속성**
+- 영문 원문: `name` (Person·Place·PeopleGroup), `title` (Event)
+- 한국어: `nameKo`
+- 식별자: `theographic_id` (모든 노드, `rec` 접두 또는 `authored-<slug>`)
+- 저작 이벤트 구분자: `authored: true`
+- 추정 배치용: `sortKey` (정렬 숫자), `yearLabel` (표시 문자열)
