@@ -1,59 +1,94 @@
 ---
-last_mapped_commit: 42bd230af7e22bc1839023a1189d6ae696944188
+last_mapped_commit: 6bc79bba2bb1a869260e73efee7d9366d96a1cc0
 mapped: 2026-06-20
 ---
 
-# TESTING.md
+# Testing Patterns
 
-## Current State
+**Analysis Date:** 2026-06-20
 
-There are **no automated tests** in this repository. No test files, no test directories, and no test runner configuration exist anywhere in the codebase.
+## Test Framework
 
-Evidence:
-- `frontend/package.json`: no `test` script, no `vitest`/`jest`/`@testing-library` dependencies.
-- `frontend/`: no `*.test.*`, `*.spec.*`, or `__tests__/` found.
-- `backend/`: no `pytest.ini`, `pyproject.toml`, `setup.cfg`, `conftest.py`, or `test_*.py` files found.
-- `backend/requirements.txt` lists only `fastapi`, `neo4j`, `uvicorn` — no `pytest`, `httpx`, or test dependencies.
+**Status: No automated tests exist in this project.**
 
-## Manual / Playwright Verification
+- No `*.test.*` or `*.spec.*` files found anywhere in the repository
+- No `jest.config.*`, `vitest.config.*`, `pytest.ini`, `conftest.py`, or `setup.cfg` present
+- `frontend/package.json` contains no test script and no test-related devDependencies
+- `backend/requirements.txt` contains only `fastapi`, `neo4j`, `uvicorn`
 
-Per project memory (`MEMORY.md`), UI behavior verification uses **Python Playwright** installed at `/opt/homebrew`. The pattern is network capture + screenshot against `localhost:8080`. This is an ad-hoc verification step, not an automated test suite.
+---
 
-## How to Run Linting (only automated check available)
+## Manual Verification Method
 
-```sh
-cd frontend
-npm run lint
-# invokes: eslint .
+The project is verified manually using **Python Playwright** against `localhost:8080` after a production build:
+
+1. Build frontend: `cd frontend && npm run build` (writes `frontend/dist/`)
+2. Rebuild API container: `docker compose up -d --build api`
+3. Run Playwright: Python scripts at `/opt/homebrew` — network capture + screenshot pattern
+
+This is the only verification workflow in use. There is no watch mode, no coverage target, and no CI gate.
+
+---
+
+## Implicit Test Boundaries
+
+Since there are no automated tests, the following areas have zero coverage and would be the highest-priority targets if tests were added:
+
+**Backend route logic (`backend/app/routes/`):**
+- `nodes.py` — label-dispatch branching (5 branches: Person/Event/PeopleGroup/Book/Place), neighbor grouping logic, coordinate float-parse guards
+- `events.py` — `_compute_events` merge of CONTAINS_BOOK + approx index, `_load_approx_book_index` reverse-map build
+- `search.py` — rank ordering (exact=0, prefix=1, contains=2)
+- `books.py` — approx-year fallback logic, book exclusion when both sources lack a year
+
+**Frontend pure utilities (`frontend/src/`):**
+- `convexHull.js` — Graham scan algorithm (this is the only file with a JSDoc signature, suggesting it was written with testability in mind)
+- `theme.js` — `typeColor`, `typeKo` lookup functions
+
+**Frontend hooks (`frontend/src/`):**
+- `useSearch.js` — 250ms debounce, AbortController race cancellation, typeFilter/typeCounts derivation
+- `useNodeSelection.js` — history stack push/pop, `selectNodeFresh` history reset
+
+**Backend data loading (`backend/app/overlays.py`):**
+- `_load` — missing file path returns `{}`, JSON decode error returns `{}`
+- Path resolution priority: `DATA_DIR` env var → repo `data/` directory
+
+---
+
+## Recommended Test Stack (not yet implemented)
+
+If tests were added, the following would match the existing project style:
+
+**Backend:**
+```bash
+pip install pytest pytest-asyncio httpx
+pytest backend/
 ```
 
-ESLint config: `frontend/eslint.config.js`
-Ignores: `dist/`
+**Frontend:**
+```bash
+npm install --save-dev vitest @testing-library/react
+# vitest is the natural choice for a Vite project
+```
 
-## Build Verification
+**Pure algorithm unit test target:**
+- `frontend/src/convexHull.js` — `convexHull()` takes `[{lng, lat}]` and returns a subset; testable without DOM or React
 
-The project's primary correctness check is a successful production build:
+---
 
-```sh
+## Run Commands
+
+```bash
+# No test commands configured — manual verification only
+
+# Frontend lint (only automated quality check present)
+cd frontend && npm run lint
+
+# Manual verification sequence
 cd frontend && npm run build
-# outputs to frontend/dist/
-```
-
-After building, the full stack runs via:
-
-```sh
 docker compose up -d --build api
-# nginx serves frontend/dist on :8080
-# api runs on :8000 (not externally exposed)
+# Then run Playwright scripts against localhost:8080
 ```
 
-`VITE_API_URL=/api` is set at build time via `.env.production` (nginx proxies `/api` → `api:8000`).
+---
 
-## Test Framework Configuration (if tests are added)
-
-No framework is currently configured. The tech stack would accommodate:
-
-**Frontend**: Vitest (Vite-native), `@testing-library/react`
-**Backend**: pytest + `httpx` (ASGI transport) for FastAPI endpoint testing
-
-No coverage tool, no coverage thresholds, no CI pipeline configuration exists in the repository.
+*Testing analysis: 2026-06-20*

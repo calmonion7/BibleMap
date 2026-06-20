@@ -1,90 +1,102 @@
 ---
-last_mapped_commit: 42bd230af7e22bc1839023a1189d6ae696944188
+last_mapped_commit: 6bc79bba2bb1a869260e73efee7d9366d96a1cc0
 mapped: 2026-06-20
 ---
 
-# Integrations
+# External Integrations
 
-## Database: Neo4j
+**Analysis Date:** 2026-06-20
 
-- **Driver**: `neo4j==6.2.0` (Python) via `backend/app/db.py`
-- **Protocol**: Bolt (`bolt://`)
-- **Docker image**: `neo4j:5` (Community Edition)
-- **Ports** (host-restricted): `127.0.0.1:7474` (HTTP browser), `127.0.0.1:7687` (Bolt)
-- **Volume**: `neo4j_data` Docker named volume → `/data`
-- **Auth**: `NEO4J_AUTH=neo4j/<NEO4J_PASSWORD>` set by Compose
+## Data Storage
 
-### Connection (runtime)
+**Graph Database:**
+- Neo4j 5 (Docker image `neo4j:5`)
+  - Protocol: Bolt (`bolt://neo4j:7687` in production compose; `bolt://localhost:7687` in dev)
+  - Connection: `backend/app/db.py` — module-level singleton driver via `get_driver()`
+  - Auth env vars: `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD`
+  - Client library: `neo4j` 6.2.0 (Python driver)
+  - Index creation at startup: `backend/app/main.py` lifespan handler creates `theographic_id` indexes on `Person`, `Place`, `Event`, `PeopleGroup`, `Book` labels
 
-Resolved in `backend/app/db.py` via environment variables:
+**File Storage:**
+- Local filesystem only — data files under `data/` directory (mounted into API container as `/app/data`)
+- Subdirectories: `authored_events/`, `book_context/`, `book_events/`, `book_years_approx/`, `character_traits/`, `event_verses/`, `names_ko/`, `person_events/`, `place_coords/`, `verse_events/`
 
-| Env Var | Default | Source |
-|---------|---------|--------|
-| `NEO4J_URI` | `bolt://localhost:7687` | Compose sets `bolt://neo4j:7687` |
-| `NEO4J_USER` | `neo4j` | Compose hardcodes `neo4j` |
-| `NEO4J_PASSWORD` | *(required, no default)* | `docker-compose.yml` `${NEO4J_PASSWORD}` |
+**Caching:**
+- None
 
-### Node Labels Used
+## Maps & Tile Services
 
-`Person`, `Place`, `Event`, `PeopleGroup`, `Book`
+**Raster Tiles:**
+- ESRI NatGeo World Map (no-key public endpoint)
+  - URL pattern: `https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}`
+  - Used in: `frontend/src/MapView.jsx`
 
-### Indexes Created on Startup (`backend/app/main.py`)
+**Map Glyphs (fonts):**
+- Protomaps public CDN
+  - URL pattern: `https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf`
+  - Used in: `frontend/src/MapView.jsx`
 
-`theographic_id` property index on each of the five labels above.
+**Map Client:**
+- MapLibre GL JS 5.24.0 (`maplibre-gl`) — renders tiles in WebGL; no API key required for the above sources
 
-### Relationship Types Referenced in Queries
+## AI / LLM (data pipeline scripts only)
 
-| Relationship | Used in |
-|-------------|---------|
-| `HAS_PARTICIPANT` | `nodes.py` — person places, neighbors |
-| `OCCURS_AT` | `nodes.py` — event/person/group places |
-| `MEMBER_OF` | `nodes.py` — group places |
-| `CONTAINS_BOOK` | `nodes.py` (book places), `events.py`, `books.py` |
+**Anthropic Claude API:**
+- Used exclusively in offline data-generation scripts; NOT called at runtime by the API server
+- Scripts: `backend/scripts/generate_book_events.py`, `backend/scripts/generate_book_context.py`, `backend/scripts/generate_verse_events.py`, `backend/scripts/generate_person_traits.py`
+- Client: `anthropic` Python SDK
+- Model: `claude-haiku-4-5-20251001` (used in all four scripts)
+- Auth env var: `ANTHROPIC_API_KEY` (read via `os.environ.get("ANTHROPIC_API_KEY")`)
 
-## External Map Services (Frontend, no API key required)
+## External Data Sources (data pipeline scripts only)
 
-### ESRI NatGeo World Map (raster tiles)
+**Theographic Bible Metadata (GitHub raw):**
+- Used in data-loading and generation scripts; fetched at pipeline runtime, not at API runtime
+- Base URL: `https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/`
+- Files fetched: `books.json`, `events.json`, `verses.json`, `people.json`, `places.json`, `peopleGroups.json`
+- Scripts: `backend/scripts/load_theographic.py`, `backend/scripts/load_books.py`, `backend/scripts/generate_verse_events.py`, `backend/scripts/generate_event_verses.py`, `backend/scripts/generate_person_traits.py`, `backend/scripts/generate_book_context.py`
 
-- **URL pattern**: `https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}`
-- **Usage**: Base map layer in `frontend/src/MapView.jsx`
-- **Auth**: None (public tile endpoint)
+**GetBible API:**
+- Fetches Bible verse text by book/chapter
+- URL pattern: `https://api.getbible.net/v2/{slug}/{book_order}/{chapter}.json`
+- Scripts: `backend/scripts/generate_verse_text.py`, `backend/scripts/generate_person_event_verses.py`
+- No API key required
 
-### Protomaps Basemaps Assets (vector glyphs)
+## Internal API
 
-- **URL pattern**: `https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf`
-- **Usage**: MapLibre GL font glyphs in `frontend/src/MapView.jsx`
-- **Auth**: None (public CDN)
+**Frontend → Backend:**
+- All requests via `frontend/src/api.js` using the native `fetch` API
+- Base URL: `VITE_API_URL` env var (`/api` in production, `http://localhost:8000` in dev)
+- HTTP method: GET only (CORS configured for GET in `backend/app/main.py`)
+- Routing: Nginx proxies `/api/` → `http://api:8000/` (strips `/api/` prefix)
 
-## Reverse Proxy (nginx)
+## Authentication & Identity
 
-- **Config**: `nginx/nginx.conf`
-- **Port**: `8080` on host → `80` inside container
-- **API routing**: `location /api/` → `http://api:8000/` (strips `/api` prefix via `proxy_pass`)
-- **SPA routing**: `try_files $uri /index.html` for all non-asset paths
-- **Static files**: `frontend/dist/` mounted read-only at `/usr/share/nginx/html`
+**End-user auth:** None — the application has no login, session, JWT, or cookie mechanism.
 
-## Environment Variables Summary
+**Service auth:**
+- Neo4j: username/password via `NEO4J_USER` / `NEO4J_PASSWORD` env vars
+- Anthropic: API key via `ANTHROPIC_API_KEY` env var (scripts only)
 
-| Variable | Where Set | Consumed By |
-|----------|-----------|-------------|
-| `NEO4J_PASSWORD` | `.env` (host), `docker-compose.yml` interpolation | `neo4j` container auth, `api` container connection |
-| `NEO4J_URI` | `docker-compose.yml` (`bolt://neo4j:7687`) | `backend/app/db.py` |
-| `NEO4J_USER` | `docker-compose.yml` (`neo4j`) | `backend/app/db.py` |
-| `VITE_API_URL` | `frontend/.env.production` (`/api`) | `frontend/src/api.js` at build time |
-| `DATA_DIR` | Not set in Compose (falls back to `/app/data`) | `backend/app/overlays.py` file resolution |
+## Monitoring & Observability
 
-## Static Data Files (Local JSON Overlays)
+**Error Tracking:** None detected
 
-Not a network integration — JSON files on disk mounted via Docker volume `./data:/app/data`. Loaded by `backend/app/overlays.py` using `functools.lru_cache`.
+**Logs:**
+- Backend uses Python `logging` module (`backend/app/main.py`); logs to stdout
+- No structured log aggregation configured
 
-| Overlay | File Path | API consumer |
-|---------|-----------|-------------|
-| Book→Event map | `data/book_events/books.json` | `events.py` `_load_approx_book_index()`, `books.py` `get_books()` |
-| Approx composition years | `data/book_years_approx/books.json` | `books.py` `get_books()` |
-| Event→Verse map | `data/event_verses/events.json` | `events.py` `get_event_verses()` |
+## CI/CD & Deployment
 
-## Auth / Security
+**Hosting:** Docker Compose (local or self-hosted); no cloud provider configuration detected
 
-- No authentication layer on the API. CORS middleware in `backend/app/main.py` allows all origins (`allow_origins=["*"]`), methods restricted to `GET` only.
-- No external auth provider (no OAuth, JWT, sessions, or API keys in the codebase).
-- Neo4j port binding is restricted to `127.0.0.1` (loopback only) in `docker-compose.yml` — not exposed externally.
+**CI Pipeline:** None detected
+
+## Webhooks & Callbacks
+
+**Incoming:** None
+**Outgoing:** None
+
+---
+
+*Integration audit: 2026-06-20*

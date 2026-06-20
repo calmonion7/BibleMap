@@ -1,126 +1,179 @@
 ---
-last_mapped_commit: 42bd230af7e22bc1839023a1189d6ae696944188
+last_mapped_commit: 6bc79bba2bb1a869260e73efee7d9366d96a1cc0
 mapped: 2026-06-20
 ---
 
-# CONVENTIONS.md
+# Coding Conventions
+
+**Analysis Date:** 2026-06-20
+
+## Language Split
+
+- **Frontend:** JavaScript (ES modules, JSX) — no TypeScript
+- **Backend:** Python 3.x — FastAPI, sync handlers
+
+---
+
+## Naming Patterns
+
+**Frontend files:**
+- React components: `PascalCase.jsx` (`MapView.jsx`, `SidePanel.jsx`, `BibleOverviewView.jsx`)
+- Custom hooks: `camelCase.js` prefixed with `use` (`useSearch.js`, `useNodeSelection.js`)
+- Pure utilities: `camelCase.js` (`convexHull.js`, `theme.js`, `api.js`)
+
+**Backend files:**
+- Route modules: `snake_case.py` (`nodes.py`, `events.py`, `search.py`, `books.py`)
+- Script files: `snake_case.py` with verb prefix (`load_theographic.py`, `generate_event_verses.py`, `inject_ko_names.py`)
+
+**Frontend variables/functions:**
+- State variables: `camelCase` (`selectedNode`, `searchQuery`, `highlightIndex`)
+- Handler functions: `camelCase` with verb prefix (`handleSelectResult`, `handleTabClick`, `handleNodeLoaded`)
+- Event callbacks: `on` prefix for props (`onSelectNode`, `onBack`, `onNodeLoaded`)
+- Constants: `SCREAMING_SNAKE_CASE` (`TABS`, `MOBILE_QUERY`, `SHEET_VH`, `NAV_H`, `SEARCH_LIMIT`)
+- Shared color/label maps: `SCREAMING_SNAKE_CASE` objects (`TYPE_COLOR`, `TYPE_KO`, `TYPE_ORDER`)
+- Computed ref values: `camelCase` + `Ref` suffix (`mapRef`, `popupRef`, `expandPlaceRef`, `searchBoxRef`)
+
+**Backend variables/functions:**
+- Route handlers: `snake_case` (`get_node`, `get_events`, `search`, `get_books_overview`)
+- Internal helpers: `_snake_case` with leading underscore (`_load_approx_book_index`, `_compute_events`, `_load`, `_resolve`)
+- Module-level singletons: `_snake_case` (`_driver`)
+
+**Property naming — API shape:**
+- Bilingual name fields: `name` (English) + `nameKo` (Korean) pair, always both present
+- Missing translation sentinel: `nameKoMissing: bool` alongside the pair
+- Graph node identity: `theographic_id` (Neo4j property) → serialized as `id` in API responses
+
+---
 
 ## Code Style
 
-### Frontend (JavaScript/JSX)
+**Frontend formatting:**
+- No Prettier config present — style inferred from files
+- Single quotes for strings
+- No semicolons at statement ends (except single-line multi-statement: `setA(x); setB(y)`)
+- 2-space indentation
+- Arrow functions for inline handlers, `function` declarations for named component/hook functions
+- `export default` at file end for components; named exports for utilities (`export function`, `export const`)
 
-- **Format**: No Prettier config present. No `.prettierrc` or `prettier` devDependency.
-- **Linter**: ESLint v10 via `frontend/eslint.config.js` using flat config format.
-  - Extends `@eslint/js` recommended, `eslint-plugin-react-hooks` flat recommended, `eslint-plugin-react-refresh` vite preset.
-  - Files: `**/*.{js,jsx}` only — no TypeScript.
-  - `dist/` is globally ignored.
-- **Module system**: ESM throughout (`"type": "module"` in `frontend/package.json`).
-- **JSX**: `.jsx` for components, `.js` for non-JSX modules. No `.ts`/`.tsx`.
-- **Indentation**: 2-space indentation, single-quoted strings (observed in all source files).
-- **Trailing semicolons**: absent — semicolons are omitted (observed across `api.js`, `theme.js`, `useSearch.js`).
-- **Inline styles**: All component styling uses inline `style={{}}` objects — no CSS modules, no Tailwind, no styled-components.
+**Backend formatting:**
+- 4-space indentation (PEP 8)
+- Module-level docstrings on cached functions (triple-quoted)
+- Inline comments in Korean for domain logic; English for technical mechanics
 
-### Backend (Python)
-
-- **Version**: Python 3.12 (Dockerfile: `FROM python:3.12-slim`).
-- **Formatter/linter**: No config files found (`pyproject.toml`, `setup.cfg`, `.flake8` absent). Style is consistent PEP 8 by convention.
-- **Imports**: stdlib first, then third-party (`fastapi`, `neo4j`), then local (`..db`, `..overlays`).
-- **Type annotations**: absent from route function signatures; used only in comments (e.g., `event_to_books: dict`).
+**ESLint config:** `frontend/eslint.config.js` — `@eslint/js` recommended + `eslint-plugin-react-hooks` recommended + `eslint-plugin-react-refresh`
 
 ---
 
-## Naming Conventions
+## Import Organization
 
-### Variables and Functions
+**Frontend order (observed):**
+1. React named imports (`import { useState, useEffect, ... } from 'react'`)
+2. Third-party libraries (`import maplibregl from 'maplibre-gl'`)
+3. Third-party CSS (`import 'maplibre-gl/dist/maplibre-gl.css'`)
+4. Local components (`import MapView from './MapView'`)
+5. Local utilities/hooks/theme (`import { typeColor } from './theme'`, `import { apiGet } from './api'`)
 
-**Frontend**:
-- camelCase for all variables and functions: `selectedNode`, `handleNodeLoaded`, `onSearchInput`, `clearSearch`.
-- Boolean state variables use `is`/`can`/`show` prefixes: `isMobile`, `canGoBack`, `showDropdown`.
-- Event handler functions are prefixed `handle` or `on`: `handleTabClick`, `handleSelectResult`, `onSheetTouchStart`.
-- Constants are ALL_CAPS: `MOBILE_QUERY`, `SHEET_VH`, `NAV_H`, `SEARCH_LIMIT`, `MAX_NEIGHBORS_PER_TYPE`.
-- Refs are suffixed `Ref`: `mapContainer`, `mapRef`, `popupRef`, `expandPlaceRef`, `searchBoxRef`.
-
-**Backend**:
-- snake_case for all functions and variables: `get_driver`, `get_node`, `book_events_raw`, `event_to_books`.
-- Private/internal functions are prefixed `_`: `_load_approx_book_index`, `_compute_events`, `_load`, `_resolve`.
-- Module-level cached singletons prefixed `_`: `_driver` in `backend/app/db.py`.
-
-### Files and Directories
-
-**Frontend** (`frontend/src/`):
-- React component files: PascalCase `.jsx` — `App.jsx`, `MapView.jsx`, `SidePanel.jsx`, `TimelineView.jsx`, `BibleOverviewView.jsx`, `VerseLangTabs.jsx`, `Spinner.jsx`.
-- Custom hook files: camelCase `.js` prefixed `use` — `useNodeSelection.js`, `useSearch.js`.
-- Utility/service files: camelCase `.js` — `api.js`, `theme.js`, `convexHull.js`.
-
-**Backend** (`backend/app/`):
-- Route modules: lowercase singular noun — `nodes.py`, `events.py`, `search.py`, `books.py`.
-- Route modules live in `backend/app/routes/`.
-- Shared utilities at app level: `db.py`, `overlays.py`, `main.py`.
-- Data-loading scripts: `backend/scripts/`, named `load_<entity>.py` or `generate_<thing>.py` or `inject_<thing>.py`.
-
-### Component Props
-
-- Callbacks passed as props are named `on<Action>`: `onSelectNode`, `onBack`, `onNodeLoaded`.
-- State lifters passed down are named `set<State>`: `setVerseLang`.
-- Boolean props: plain adjective or `can<X>`: `canGoBack`, `isSelected`, `isVisible`.
+**Backend order (observed):**
+1. Standard library (`import functools`, `import json`, `import os`)
+2. Third-party (`from fastapi import ...`)
+3. Local app modules (`from ..db import get_driver`, `from .. import overlays`)
 
 ---
 
-## Patterns
+## API Client Pattern
 
-### Custom Hooks (`frontend/src/`)
+All frontend fetches go through `frontend/src/api.js`:
 
-Two custom hooks encapsulate stateful logic extracted from `App.jsx`:
+```js
+// Single entry point — never call fetch() directly in components
+export async function apiGet(path, { signal } = {}) {
+  const res = await fetch(API_BASE + path, { signal })
+  if (!res.ok) { const err = new Error(String(res.status)); err.status = res.status; throw err }
+  return res.json()
+}
+```
 
-- **`useNodeSelection`** (`frontend/src/useNodeSelection.js`): manages `selectedNode`, navigation `history`, `selectedNodeMeta`, and `personEventIds`. Uses `useCallback([])` with a `useRef` mirror (`selectedNodeRef`) to stabilize callback references and prevent spurious effect re-runs in child components.
-- **`useSearch`** (`frontend/src/useSearch.js`): manages search query, debounced API fetch (250ms), AbortController race cancellation, dropdown visibility, keyboard highlight index, and type filter. All `setState` calls occur inside `setTimeout`/async callbacks (not in effect body) to comply with `eslint-plugin-react-hooks` v7 rules.
+- `AbortController` is used in every long-lived effect to cancel in-flight requests on cleanup
+- `AbortError` is distinguished by `e.name === 'AbortError'` and silently ignored
+- Non-OK HTTP status becomes `err.status` on the thrown Error object
 
-### API Client Pattern
+---
 
-All HTTP calls go through `frontend/src/api.js` (`apiGet`):
-- Single base URL from `import.meta.env.VITE_API_URL` or `http://localhost:8000`.
-- Returns parsed JSON; throws `Error` with `.status` property on non-OK responses.
-- Passes `AbortSignal` through for cancellation; `AbortError` propagates to callers which check `e.name === 'AbortError'`.
+## Error Handling
 
-### Shared Palette / Theme Module
+**Frontend:**
+- Async effects: `try/catch` inside `setTimeout` or `.then().catch()` chains
+- AbortError is always silently ignored: `if (e.name === 'AbortError') return`
+- Error state stored as boolean (`setError(true)`) or as `e?.status ?? String(e)`
+- UI shows inline error message strings, never throws to boundary
 
-`frontend/src/theme.js` is the single source of truth for node-type colors (`TYPE_COLOR`), Korean labels (`TYPE_KO`), display order (`TYPE_ORDER`), and selection highlight (`SELECT_HL`). All views import from here — no inline color duplication.
+**Backend:**
+- `HTTPException(status_code=404, detail="Node not found")` for missing nodes in `nodes.py`
+- Coordinate parsing wrapped in `try/except (TypeError, ValueError): continue` (skip bad records)
+- JSON parse fallback: `except Exception: clean_props["traits"] = []`
+- Startup index creation: `except Exception: logging.exception(...)` then continue (non-fatal)
+- Overlay loading: returns `{}` on `json.JSONDecodeError` (silent degraded mode)
+- `db.get_driver()` raises `RuntimeError` if `NEO4J_PASSWORD` is not set (fail-fast at startup)
 
-### View Mounting Strategy
+---
 
-All three top-level views (`MapView`, `TimelineView`, `BibleOverviewView`) are always mounted; visibility is toggled via `display: activeView === '...' ? 'block' : 'none'` in `App.jsx`. This preserves map/timeline scroll state across tab switches.
+## State Management Pattern
 
-### Backend: Router-per-Resource
+**Custom hooks extract stateful logic from components:**
+- `useNodeSelection.js` — selected node, navigation history, personEventIds
+- `useSearch.js` — search query, results, debounce timer, dropdown state
 
-Each logical resource has its own `APIRouter` in `backend/app/routes/`:
-- `nodes.py` — `/node/{id}`, `/node/{id}/places`, `/node/{id}/neighbors/grouped`, `/person/{id}/event-ids`
-- `events.py` — `/events`, `/event/{id}/verses`
-- `search.py` — `/search`
-- `books.py` — `/books`, `/books-overview`
+**`useCallback([], [])` for stable references:**
+```js
+// selectNode is stable — avoids spurious MapView useEffect re-runs
+const selectNode = useCallback((id) => { ... }, [])
+// Latest value read via ref, not closure
+useEffect(() => { selectedNodeRef.current = selectedNode }, [selectedNode])
+```
 
-All routers are included in `backend/app/main.py` via `app.include_router(...)`.
+**CSS-toggle view preservation:**
+All three top-level views (`MapView`, `TimelineView`, `BibleOverviewView`) stay mounted and are toggled with `display: none / block` to preserve state across tab switches.
 
-### Backend: Overlay / Static Data
+---
 
-`backend/app/overlays.py` loads JSON files from `data/` as read-only overlays. Each loader is decorated with `@functools.lru_cache(maxsize=1)` — data is loaded once on first call and kept in memory for the process lifetime. The `DATA_DIR` env var overrides the repo-relative path (for Docker: `/app/data`).
+## Comments
 
-### Backend: DB Singleton
+**When to comment:**
+- Explain non-obvious behavior or constraints at the top of a module or function
+- Korean for domain/product rationale; English for technical mechanics (both appear)
+- Inline comments for cross-cutting constraints that would be confusing without context (e.g., "react-hooks v7 OK", "R은 표시 줌에서 계산")
 
-`backend/app/db.py` keeps a single `GraphDatabase.driver` instance in a module-level `_driver`. `get_driver()` initializes on first call using `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD` env vars. Missing password raises `RuntimeError` immediately.
+**JSDoc:**
+- Used only in `convexHull.js` for the pure algorithm function
+- Not used for React components or hooks
 
-### Backend: Heavy Query Caching
+---
 
-Expensive Neo4j aggregations in `events.py` are wrapped in `@functools.lru_cache(maxsize=1)` private functions (`_compute_events`, `_load_approx_book_index`). Results live for the process lifetime; no cache invalidation.
+## Module Design
 
-### Error Handling
+**Exports:**
+- One default export per file (component or hook)
+- Theme constants use named exports: `export const TYPE_COLOR`, `export function typeColor`
+- No barrel (`index.js`) files — all imports use direct file paths
 
-**Frontend**:
-- API errors are caught with `.catch()` and set a boolean `error` state (`setError(true)`). Components render a plain error message string, never re-throw.
-- Stale response guard: components track which `id` they rendered last; responses for a different id are discarded (`if (!cancelled)` or `if (id !== nodeId)`).
-- AbortError from cancelled fetches is silently ignored (`if (e.name === 'AbortError') return`).
+**Shared constants location:**
+- Color palette, Korean labels, display order: `frontend/src/theme.js`
+- API base URL and `apiGet` helper: `frontend/src/api.js`
 
-**Backend**:
-- Routes raise `HTTPException(status_code=404)` for missing nodes.
-- `db.py` raises `RuntimeError` for missing password — deliberate startup failure.
-- `overlays.py` returns `{}` on missing file or `json.JSONDecodeError` — silent fallback, no exception propagation.
-- `main.py` lifespan catches Neo4j index creation failure with `logging.exception` and continues.
+**Backend caching:**
+- `@functools.lru_cache(maxsize=1)` for data loaded once from disk or Neo4j at startup
+- Applied to `_compute_events`, `_load_approx_book_index`, `book_events_raw`, `approx_years`, `event_verses`
+- Cache invalidated only on process restart
+
+---
+
+## Styling
+
+- All styling is inline `style={{...}}` objects on JSX elements — no CSS files, no CSS modules, no Tailwind
+- Dark UI base color: `#1a1a2e` (navbar), `#1e2040` (dropdowns/cards)
+- Shared color constants centralized in `frontend/src/theme.js`
+- Responsive layout: `window.matchMedia('(max-width: 768px)')` checked in `App.jsx`, result passed as props
+
+---
+
+*Convention analysis: 2026-06-20*

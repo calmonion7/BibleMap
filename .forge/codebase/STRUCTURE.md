@@ -1,162 +1,213 @@
 ---
-last_mapped_commit: 42bd230af7e22bc1839023a1189d6ae696944188
+last_mapped_commit: 6bc79bba2bb1a869260e73efee7d9366d96a1cc0
 mapped: 2026-06-20
 ---
 
-# BibleMap Directory Structure
+# Codebase Structure
 
-## Top-Level Layout
+**Analysis Date:** 2026-06-20
 
-```
-BibleMap/
-├── backend/          # FastAPI application + ETL scripts
-├── frontend/         # React + Vite SPA
-├── data/             # JSON overlay files (runtime data, not in Neo4j)
-├── nginx/            # nginx config
-├── docker-compose.yml
-├── deploy.sh
-├── CLAUDE.md
-├── BIBLEMAP_PLAN.md
-└── README.md
-```
-
-## `backend/`
+## Directory Layout
 
 ```
-backend/
-├── app/
-│   ├── __init__.py
-│   ├── main.py       # FastAPI app factory; router registration; lifespan index creation
-│   ├── db.py         # Neo4j driver singleton (get_driver())
-│   ├── overlays.py   # JSON overlay loader with lru_cache
-│   └── routes/
-│       ├── __init__.py
-│       ├── nodes.py  # /node/* and /person/* endpoints
-│       ├── events.py # /events and /event/{id}/verses endpoints
-│       ├── search.py # /search endpoint
-│       └── books.py  # /books and /books-overview endpoints
-├── scripts/          # One-off ETL and enrichment scripts (not part of runtime)
-│   ├── load_theographic.py
-│   ├── load_books.py
-│   ├── load_person_events.py
-│   ├── load_authored_events.py
-│   ├── load_verse_events.py
-│   ├── inject_ko_names.py
-│   ├── inject_person_traits.py
-│   ├── inject_book_context.py
-│   ├── enrich_place_coords.py
-│   ├── generate_approx_book_verses.py
-│   ├── generate_book_context.py
-│   ├── generate_book_events.py
-│   ├── generate_event_verses.py
-│   ├── generate_person_event_verses.py
-│   ├── generate_person_traits.py
-│   ├── generate_verse_events.py
-│   ├── generate_verse_text.py
-│   └── __init__.py
-└── __init__.py
+BibleMap/                         # repo root
+├── backend/                      # Python FastAPI service
+│   ├── app/                      # Runtime application package
+│   │   ├── main.py               # FastAPI app + lifespan
+│   │   ├── db.py                 # Neo4j driver singleton
+│   │   ├── overlays.py           # JSON overlay file loader (lru_cache)
+│   │   └── routes/               # One file per router group
+│   │       ├── nodes.py          # /node/* endpoints
+│   │       ├── events.py         # /events, /event/{id}/verses
+│   │       ├── search.py         # /search
+│   │       └── books.py          # /books, /books-overview
+│   ├── scripts/                  # Offline data-prep scripts (not runtime)
+│   │   ├── load_theographic.py   # Initial graph load from Theographic dataset
+│   │   ├── load_books.py
+│   │   ├── load_person_events.py
+│   │   ├── load_authored_events.py
+│   │   ├── load_verse_events.py
+│   │   ├── generate_book_events.py
+│   │   ├── generate_book_context.py
+│   │   ├── generate_approx_book_verses.py
+│   │   ├── generate_book_context.py
+│   │   ├── generate_event_verses.py
+│   │   ├── generate_person_event_verses.py
+│   │   ├── generate_person_traits.py
+│   │   ├── generate_verse_events.py
+│   │   ├── generate_verse_text.py
+│   │   ├── inject_book_context.py
+│   │   ├── inject_ko_names.py
+│   │   ├── inject_person_traits.py
+│   │   └── enrich_place_coords.py
+│   ├── Dockerfile
+│   └── requirements.txt
+│
+├── frontend/                     # Vite + React SPA
+│   ├── src/
+│   │   ├── main.jsx              # React entry point (createRoot)
+│   │   ├── App.jsx               # Root component: tabs, search bar, SidePanel overlay
+│   │   ├── MapView.jsx           # maplibre-gl map view
+│   │   ├── TimelineView.jsx      # Chronological event list view
+│   │   ├── BibleOverviewView.jsx # Book grid by testament/genre
+│   │   ├── SidePanel.jsx         # Node detail slide-in panel
+│   │   ├── VerseLangTabs.jsx     # KO/EN verse language toggle
+│   │   ├── Spinner.jsx           # Loading spinner
+│   │   ├── api.js                # Shared apiGet helper + API_BASE
+│   │   ├── theme.js              # Node-type color/label palette constants
+│   │   ├── convexHull.js         # Graham scan utility (Person hull polygon)
+│   │   ├── useNodeSelection.js   # Custom hook: selected node + history stack
+│   │   ├── useSearch.js          # Custom hook: debounced search + dropdown state
+│   │   └── assets/               # Static images (hero.png, svgs)
+│   ├── public/                   # Copied verbatim to dist root (favicon etc.)
+│   ├── index.html                # Vite HTML template
+│   ├── vite.config.js            # Vite build config (manualChunks: maplibre, vendor)
+│   ├── eslint.config.js
+│   ├── package.json
+│   └── .env.production           # VITE_API_URL=/api (baked at build time)
+│
+├── data/                         # JSON overlay files (read-only at runtime)
+│   ├── book_events/
+│   │   └── books.json            # {bookId: [eventId, ...]}
+│   ├── book_years_approx/
+│   │   └── books.json            # {bookId: {placementYear, basis, ...}}
+│   ├── event_verses/
+│   │   └── events.json           # {eventId: {books: [{bookId, verses:[{ref,textKo,textEn}]}]}}
+│   ├── authored_events/          # Per-person authored event data
+│   ├── book_context/             # Book narrative context
+│   ├── character_traits/         # Person trait data
+│   ├── names_ko/                 # Korean name mappings
+│   ├── person_events/            # Per-person event lists
+│   ├── place_coords/             # Enriched place coordinates
+│   └── verse_events/             # Verse → event mappings
+│
+├── nginx/
+│   └── nginx.conf                # Reverse proxy: /api/* → api:8000, /* → dist/
+│
+├── .forge/                       # GSD project management
+│   ├── CONTEXT.md                # Project domain context (authoritative)
+│   ├── codebase/                 # Codebase map documents (this directory)
+│   ├── done/                     # Completed task records
+│   ├── backlog/                  # Pending tasks
+│   └── adr/                      # Architecture decision records
+│
+├── .github/                      # GitHub Actions CI/CD
+├── docker-compose.yml            # Services: neo4j, api, nginx
+├── deploy.sh                     # Production deployment helper
+├── .env                          # NEO4J_PASSWORD (gitignored)
+└── CLAUDE.md                     # LLM behavioral guidelines
 ```
 
-## `frontend/`
+## Directory Purposes
 
-```
-frontend/
-├── src/
-│   ├── main.jsx              # React tree mount point (renders <App /> into #root)
-│   ├── App.jsx               # Root component: tabs, search bar, panel overlay, mobile layout
-│   ├── api.js                # Shared apiGet() helper; API_BASE from VITE_API_URL
-│   ├── theme.js              # Canonical type→color and type→Korean label maps
-│   ├── useNodeSelection.js   # Hook: selected node state + navigation history
-│   ├── useSearch.js          # Hook: debounced search + dropdown + type filter
-│   ├── MapView.jsx           # MapLibre GL map; clustering, spiderify, convex hull
-│   ├── TimelineView.jsx      # Chronological event list; book/person filter; verse drilldown
-│   ├── SidePanel.jsx         # Node detail panel (properties + grouped neighbors)
-│   ├── BibleOverviewView.jsx # Bible book grid by testament and genre
-│   ├── VerseLangTabs.jsx     # KO/EN verse language toggle
-│   ├── Spinner.jsx           # Loading indicator
-│   ├── convexHull.js         # Graham scan convex hull utility
-│   └── assets/               # Static image assets
-├── dist/                     # Vite build output (served by nginx)
-├── public/                   # Vite public assets (copied verbatim to dist)
-├── index.html                # SPA shell; loads src/main.jsx
-├── package.json
-├── vite.config.js
-└── eslint.config.js
-```
+**`backend/app/`:**
+- Purpose: Runtime Python package; imported by uvicorn
+- Contains: FastAPI app, route handlers, DB connection, overlay loader
+- Key files: `main.py` (app factory), `db.py` (connection), `overlays.py` (JSON cache)
 
-## `data/`
+**`backend/app/routes/`:**
+- Purpose: One module per logical API resource group
+- Contains: APIRouter instances registered in `main.py`
+- Key files: `nodes.py` (node graph queries), `events.py` (timeline + verse data), `search.py`, `books.py`
 
-JSON overlay files generated by `backend/scripts/generate_*` scripts and consumed by `backend/app/overlays.py` at runtime.
+**`backend/scripts/`:**
+- Purpose: Offline one-shot data pipeline scripts; not imported by the app
+- Contains: Scripts for loading, enriching, and generating overlay JSON data
+- Never called at API request time; run manually or via CI to update `data/`
 
-```
-data/
-├── book_events/
-│   └── books.json            # {bookId: [eventId, …]} — events per book
-├── book_years_approx/
-│   └── books.json            # {bookId: {placementYear, basis}} — approximate chronology
-├── event_verses/
-│   events.json               # {eventId: {books: [{bookId, verses}]}} — verse text cache
-├── authored_events/          # Events attributed to authoring (not narrative participation)
-├── book_context/             # Per-book contextual notes
-├── character_traits/         # Person trait data
-├── names_ko/                 # Korean name mappings
-├── person_events/            # Person–event associations
-├── place_coords/             # Geocoordinate enrichment
-└── verse_events/             # Verse–event associations
-```
+**`frontend/src/`:**
+- Purpose: All application source — components, hooks, utilities
+- No subdirectories; all files are at the top level of `src/`
+- Contains: View components (`*View.jsx`), shared components (`SidePanel.jsx`, `Spinner.jsx`, `VerseLangTabs.jsx`), custom hooks (`use*.js`), utilities (`api.js`, `theme.js`, `convexHull.js`)
 
-## `nginx/`
-
-```
-nginx/
-└── nginx.conf    # Proxies /api/* to api:8000; serves frontend/dist for all other paths
-```
+**`data/`:**
+- Purpose: Pre-computed JSON overlays that the backend reads at startup
+- Generated by: `backend/scripts/generate_*` and `backend/scripts/inject_*`
+- Committed to the repo (not gitignored); bind-mounted into Docker at `/app/data`
 
 ## Key File Locations
 
-| Purpose | Path |
-|---|---|
-| Docker service definitions | `docker-compose.yml` |
-| FastAPI app entry | `backend/app/main.py` |
-| Neo4j driver | `backend/app/db.py` |
-| Overlay data loader | `backend/app/overlays.py` |
-| Node API routes | `backend/app/routes/nodes.py` |
-| Events API routes | `backend/app/routes/events.py` |
-| Search API route | `backend/app/routes/search.py` |
-| Books API routes | `backend/app/routes/books.py` |
-| React entry point | `frontend/src/main.jsx` |
-| Root component | `frontend/src/App.jsx` |
-| API client | `frontend/src/api.js` |
-| Color/label palette | `frontend/src/theme.js` |
-| Node selection hook | `frontend/src/useNodeSelection.js` |
-| Search hook | `frontend/src/useSearch.js` |
-| Map component | `frontend/src/MapView.jsx` |
-| Timeline component | `frontend/src/TimelineView.jsx` |
-| Detail panel | `frontend/src/SidePanel.jsx` |
-| Book overview | `frontend/src/BibleOverviewView.jsx` |
-| nginx config | `nginx/nginx.conf` |
-| Vite config | `frontend/vite.config.js` |
+**Entry Points:**
+- `frontend/src/main.jsx`: React SPA entry, mounts `<App />`
+- `backend/app/main.py`: FastAPI app object (`app`), imported as `backend.app.main:app`
+- `nginx/nginx.conf`: nginx entry; routes `/api/*` to backend, serves SPA otherwise
+
+**Configuration:**
+- `docker-compose.yml`: Service topology (neo4j, api, nginx), volumes, env vars
+- `frontend/.env.production`: `VITE_API_URL=/api` baked into production bundle
+- `frontend/vite.config.js`: Build chunking (maplibre-gl into its own chunk)
+- `backend/requirements.txt`: Python dependencies (fastapi, neo4j, uvicorn)
+- `.env`: `NEO4J_PASSWORD` secret (gitignored; required at runtime)
+
+**Core Logic:**
+- `frontend/src/App.jsx`: Tab state, search orchestration, SidePanel overlay, responsive layout
+- `frontend/src/useNodeSelection.js`: Navigation history, Person event-id fetch
+- `frontend/src/useSearch.js`: Debounced search, AbortController, type-filter state
+- `frontend/src/api.js`: `apiGet` — the only function that calls `fetch`
+- `frontend/src/theme.js`: `TYPE_COLOR`, `TYPE_KO`, `TYPE_ORDER`, `SELECT_HL` — shared palette
+- `backend/app/db.py`: `get_driver()` — the only place that creates a Neo4j connection
+- `backend/app/overlays.py`: `book_events_raw()`, `approx_years()`, `event_verses()` — cached overlay loaders
 
 ## Naming Conventions
 
-### Backend
+**Files:**
+- React components: PascalCase with `.jsx` extension (`MapView.jsx`, `SidePanel.jsx`, `BibleOverviewView.jsx`)
+- Custom hooks: camelCase prefixed with `use`, `.js` extension (`useNodeSelection.js`, `useSearch.js`)
+- Utility modules: camelCase `.js` (`api.js`, `theme.js`, `convexHull.js`)
+- Python modules: snake_case (e.g., `nodes.py`, `overlays.py`, `load_theographic.py`)
+- Data overlay dirs: snake_case matching the data type (`book_events/`, `event_verses/`, `book_years_approx/`)
 
-- Module names: lowercase, underscore-separated (`nodes.py`, `search.py`, `overlays.py`)
-- Router variable: always `router = APIRouter()` inside each route module
-- Endpoint functions: snake_case (`get_node`, `get_events`, `search`)
-- Neo4j `theographic_id`: used as the universal node identifier across all queries and API responses
-- Korean name property: `nameKo` (camelCase, stored as Neo4j node property)
-- Script files: prefixed by action — `load_*.py` (import data into Neo4j), `generate_*.py` (write JSON files to `data/`), `inject_*.py` (enrich existing Neo4j nodes), `enrich_*.py` (geocode/augment)
+**Directories:**
+- Frontend views share the `View` suffix in their filename (not a directory — all files are flat in `src/`)
+- Backend scripts prefixed by action verb: `load_*`, `generate_*`, `inject_*`, `enrich_*`
 
-### Frontend
+**Identifiers:**
+- Node IDs: `theographic_id` property in Neo4j, exposed as `id` in all API responses and frontend state
+- Korean name field: `nameKo` (camelCase) in both Neo4j properties and API JSON
+- Node type labels: PascalCase matching Neo4j labels (`Person`, `Place`, `Event`, `PeopleGroup`, `Book`)
 
-- Component files: PascalCase with `.jsx` extension (`MapView.jsx`, `SidePanel.jsx`, `BibleOverviewView.jsx`)
-- Custom hooks: camelCase with `use` prefix, `.js` extension (`useNodeSelection.js`, `useSearch.js`)
-- Utility modules: camelCase, `.js` extension (`api.js`, `theme.js`, `convexHull.js`)
-- All views are named `*View.jsx` (`MapView.jsx`, `TimelineView.jsx`, `BibleOverviewView.jsx`)
-- Shared UI atoms (no state): `Spinner.jsx`, `VerseLangTabs.jsx`
+## Where to Add New Code
 
-### Data
+**New view tab:**
+- Add entry to `TABS` array in `frontend/src/App.jsx:11`
+- Create `frontend/src/MyNewView.jsx`
+- Add always-mounted `<div style={{ display: ... }}>` block in `App.jsx` render, matching the pattern at lines 246–269
+- Register the tab key in `handleSelectResult` `tabMap` if search results should navigate here
 
-- Overlay directories named after content type (`book_events/`, `event_verses/`, `book_years_approx/`)
-- Primary overlay file within each directory: `books.json` (book-keyed data) or `events.json` (event-keyed data)
+**New API endpoint:**
+- Add to the appropriate existing router file in `backend/app/routes/` (group by resource: nodes, events, books, search)
+- If a genuinely new resource group: create `backend/app/routes/mynew.py`, add `app.include_router(mynew.router)` in `backend/app/main.py`
+
+**New data overlay:**
+- Add generation script to `backend/scripts/generate_mynew.py`
+- Add a loader function to `backend/app/overlays.py` using the same `@functools.lru_cache(maxsize=1)` + `_load(subpath)` pattern
+- Place output JSON under `data/mynew/`
+
+**New node-type color or label:**
+- Edit `frontend/src/theme.js` only — `TYPE_COLOR`, `TYPE_KO`, `TYPE_ORDER`
+- Do not define per-component color maps
+
+**Shared UI utilities:**
+- Stateless display components: `frontend/src/` (e.g., `Spinner.jsx`, `VerseLangTabs.jsx`)
+- Stateful logic reused across components: custom hook in `frontend/src/use*.js`
+
+## Special Directories
+
+**`.forge/`:**
+- Purpose: GSD project management (tasks, retros, context, codebase maps)
+- Generated: No (hand-maintained and agent-written)
+- Committed: Yes (partially — volatile subdirs like `retro/` may be excluded per `.gitignore`)
+
+**`frontend/dist/`:**
+- Purpose: Vite production build output; served by nginx
+- Generated: Yes (`npm run build`)
+- Committed: No (gitignored in `frontend/.gitignore`)
+
+**`backend/__pycache__/`:**
+- Purpose: Python bytecode cache
+- Generated: Yes
+- Committed: No
+
+---
+
+*Structure analysis: 2026-06-20*

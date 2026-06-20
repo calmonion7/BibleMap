@@ -1,129 +1,102 @@
 ---
-last_mapped_commit: 42bd230af7e22bc1839023a1189d6ae696944188
+last_mapped_commit: 6bc79bba2bb1a869260e73efee7d9366d96a1cc0
 mapped: 2026-06-20
 ---
 
-# Stack
+# Technology Stack
+
+**Analysis Date:** 2026-06-20
 
 ## Languages
 
-- **Python 3.12** — backend (pinned in `backend/Dockerfile`: `FROM python:3.12-slim`)
-- **JavaScript (ESM)** — frontend (`"type": "module"` in `frontend/package.json`)
-- **JSX** — React components in `frontend/src/`
+**Primary:**
+- JavaScript (ES Modules, JSX) — Frontend (`frontend/src/`)
+- Python 3.12 — Backend (`backend/app/`, `backend/scripts/`)
 
-## Runtime Versions
+**Secondary:**
+- CSS — Frontend styles (`frontend/src/index.css`)
 
-| Component | Runtime | Version |
-|-----------|---------|---------|
-| Backend | Python | 3.12 (slim) |
-| Frontend build | Node.js | not pinned (Vite 8.x implies ≥18) |
-| Database | Neo4j | 5.x (`neo4j:5` image in `docker-compose.yml`) |
-| Reverse proxy | nginx | alpine (`nginx:alpine` in `docker-compose.yml`) |
+## Runtime
 
-## Frameworks & Core Libraries
+**Frontend:**
+- Browser (ES2020+ target via Vite)
 
-### Backend — `backend/requirements.txt`
+**Backend:**
+- Python 3.12 (Docker: `python:3.12-slim`)
+- ASGI via Uvicorn 0.49.0
 
-| Package | Version |
-|---------|---------|
-| fastapi | 0.136.3 |
-| uvicorn | 0.49.0 |
-| neo4j (Python driver) | 6.2.0 |
+**Package Manager:**
+- Frontend: npm — lockfile: `frontend/package-lock.json` (present)
+- Backend: pip — lockfile: none (pinned via `backend/requirements.txt`)
 
-### Frontend — `frontend/package.json`
+## Frameworks
 
-| Package | Version |
-|---------|---------|
-| react | ^19.2.6 |
-| react-dom | ^19.2.6 |
-| maplibre-gl | ^5.24.0 |
-| lucide-react | ^1.17.0 |
+**Backend Core:**
+- FastAPI 0.136.3 — REST API server (`backend/app/main.py`)
 
-### Frontend devDependencies
+**Frontend Core:**
+- React 19.2.6 — UI component framework (`frontend/src/`)
+- React DOM 19.2.6
 
-| Package | Version |
-|---------|---------|
-| vite | ^8.0.12 |
-| @vitejs/plugin-react | ^6.0.1 |
-| eslint | ^10.3.0 |
-| eslint-plugin-react-hooks | ^7.1.1 |
-| eslint-plugin-react-refresh | ^0.5.2 |
-| @types/react | ^19.2.14 |
-| @types/react-dom | ^19.2.3 |
-| globals | ^17.6.0 |
-| @eslint/js | ^10.0.1 |
+**Build/Dev:**
+- Vite 8.0.12 — frontend build tool and dev server (`frontend/vite.config.js`)
+- `@vitejs/plugin-react` 6.0.1 — React JSX transform plugin
 
-## Build Tools
+## Key Dependencies
 
-- **Vite 8** — frontend bundler; config at `frontend/vite.config.js`
-  - `@vitejs/plugin-react` plugin
-  - Manual chunk split: `maplibre-gl` → `maplibre` chunk, other `node_modules` → `vendor` chunk
-  - Output written to `frontend/dist/`
-- **npm** — frontend package manager (`frontend/package-lock.json`)
-- **Docker Compose** — orchestration (`docker-compose.yml`)
-  - Services: `neo4j`, `api`, `nginx`
-  - `api` built from `backend/Dockerfile`
-- **uvicorn** — ASGI server; command `uvicorn app.main:app --host 0.0.0.0 --port 8000`
+**Frontend:**
+- `maplibre-gl` 5.24.0 — WebGL map rendering (`frontend/src/MapView.jsx`)
+- `lucide-react` 1.17.0 — icon components (`frontend/src/`)
 
-## Key Source Files
+**Backend:**
+- `neo4j` 6.2.0 — official Neo4j Python driver (`backend/app/db.py`)
+- `uvicorn` 0.49.0 — ASGI server
 
-### Backend (`backend/`)
+**Scripts (data pipeline, not part of runtime API):**
+- `anthropic` — Anthropic Claude API client (`backend/scripts/generate_*.py`)
 
-| File | Role |
-|------|------|
-| `backend/app/main.py` | FastAPI app factory, CORS middleware, Neo4j index creation on startup |
-| `backend/app/db.py` | Singleton `GraphDatabase.driver` factory; reads env vars |
-| `backend/app/overlays.py` | JSON file loader with `lru_cache`; serves static data overlays |
-| `backend/app/routes/nodes.py` | Node detail, neighbors, place, and person-event-ids endpoints |
-| `backend/app/routes/events.py` | Timeline events endpoint with approx-book index merge |
-| `backend/app/routes/search.py` | Full-text search endpoint (Neo4j Cypher `CONTAINS`) |
-| `backend/app/routes/books.py` | Books overview and timeline-placement endpoints |
-| `backend/Dockerfile` | `python:3.12-slim`, installs requirements, copies `app/` |
+## Linting
 
-### Frontend (`frontend/src/`)
+- ESLint 10.3.0 — config at `frontend/eslint.config.js`
+- Plugins: `eslint-plugin-react-hooks` 7.1.1, `eslint-plugin-react-refresh` 0.5.2
 
-| File | Role |
-|------|------|
-| `frontend/src/main.jsx` | React entry point |
-| `frontend/src/App.jsx` | Root component, view routing |
-| `frontend/src/api.js` | Shared `apiGet()` helper; `API_BASE` from `VITE_API_URL` env |
-| `frontend/src/MapView.jsx` | MapLibre GL map, clustering, spiderify, place ring animation |
-| `frontend/src/SidePanel.jsx` | Node detail sidebar |
-| `frontend/src/TimelineView.jsx` | Event timeline |
-| `frontend/src/BibleOverviewView.jsx` | Bible overview grid |
-| `frontend/src/theme.js` | Shared color palette and type labels |
-| `frontend/src/convexHull.js` | Convex hull geometry utility |
-| `frontend/src/useNodeSelection.js` | Node selection state hook |
-| `frontend/src/useSearch.js` | Search state and keyboard shortcut (`/`) hook |
-| `frontend/src/VerseLangTabs.jsx` | Verse language tab component |
-| `frontend/src/Spinner.jsx` | Loading spinner |
+## Configuration
 
-## Configuration Files
+**Frontend environment:**
+- Build-time: `frontend/.env.production` sets `VITE_API_URL=/api`
+- Dev fallback: `VITE_API_URL` defaults to `http://localhost:8000` in `frontend/src/api.js`
 
-| File | Purpose |
-|------|---------|
-| `docker-compose.yml` | Service orchestration, port bindings, volume mounts |
-| `backend/Dockerfile` | Backend container build |
-| `nginx/nginx.conf` | Reverse proxy: `/api/` → `http://api:8000/`; static SPA from `/usr/share/nginx/html` |
-| `frontend/vite.config.js` | Vite build configuration with manual chunk splitting |
-| `frontend/eslint.config.js` | ESLint configuration |
-| `.env` | Local secrets (gitignored) |
-| `.env.example` | Documents `NEO4J_PASSWORD` variable |
-| `frontend/.env.production` | `VITE_API_URL=/api` — injected at build time |
+**Backend environment (runtime):**
+- `NEO4J_URI` — Bolt connection string (default: `bolt://localhost:7687`)
+- `NEO4J_USER` — Neo4j username (default: `neo4j`)
+- `NEO4J_PASSWORD` — required; no default; raises `RuntimeError` if absent
+- Template: `.env.example` at project root
 
-## Static Data Overlays (`data/`)
+**Build:**
+- `frontend/vite.config.js` — configures Rollup chunk splitting: `maplibre-gl` → `maplibre` chunk, remaining `node_modules` → `vendor` chunk
+- `backend/Dockerfile` — builds from `python:3.12-slim`, exposes port 8000
 
-JSON files mounted into the API container at `/app/data`. Loaded once per process via `lru_cache` in `backend/app/overlays.py`.
+## Serving Architecture
 
-| Subdirectory | Content |
-|--------------|---------|
-| `data/book_events/books.json` | `{bookId: [eventId, ...]}` — book→event mapping |
-| `data/book_years_approx/books.json` | `{bookId: {placementYear, basis, ...}}` — estimated composition years |
-| `data/event_verses/events.json` | `{eventId: {books: [...]}}` — event→verse mapping |
-| `data/authored_events/` | Authored event data files |
-| `data/book_context/` | Book contextual data files |
-| `data/character_traits/` | Per-person trait data |
-| `data/names_ko/` | Korean name mappings |
-| `data/person_events/` | Person-to-event associations |
-| `data/place_coords/` | Place coordinate data |
-| `data/verse_events/` | Verse-to-event associations |
+**Production:**
+- Nginx (Alpine) — serves `frontend/dist/` as static files on port 8080; proxies `/api/` → `api:8000`; config at `nginx/nginx.conf`
+- FastAPI + Uvicorn — backend container on internal port 8000
+- Neo4j 5 — graph database container on internal port 7687; data persisted to Docker volume `neo4j_data`
+
+**Orchestration:**
+- Docker Compose — `docker-compose.yml` defines three services: `neo4j`, `api`, `nginx`
+
+## Platform Requirements
+
+**Development:**
+- Node.js (version not pinned; no `.nvmrc`)
+- Python 3.12
+- Docker + Docker Compose
+
+**Production:**
+- Docker Compose deployment
+- Environment variable: `NEO4J_PASSWORD` must be set in `.env`
+
+---
+
+*Stack analysis: 2026-06-20*
