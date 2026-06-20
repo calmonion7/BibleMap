@@ -1,0 +1,98 @@
+[
+  {
+    "id": "authored-jesus-capernaum-base",
+    "title": "Jesus moves to Capernaum as ministry base",
+    "nameKo": "가버나움 이주 — 갈릴리 사역 본거지",
+    "startDate": "27",
+    "sortKey": 27,
+    "yearLabel": "AD 27경",
+    "context": "나사렛 회당 추방 후 갈릴리 호숫가 가버나움으로 이주하여 이사야 예언을 성취 (Matt 4:13–16).",
+    "authored": true,
+    "occursAt": ["authored-place-capernaum"],
+    "participants": ["recgkFqZovgbr3pAi"]
+  },
+  {
+    "id": "authored-jesus-cana-wedding",
+    "title": "Jesus turns water into wine at Cana",
+    "nameKo": "가나 혼인 잔치 — 첫 이적",
+    "startDate": "27",
+    "sortKey": 27,
+    "yearLabel": "AD 27경",
+    "context": "어머니 마리아의 요청으로 돌항아리 여섯 개의 물을 포도주로 바꾼 첫 표적. 제자들이 믿음 (John 2:1–11).",
+    "authored": true,
+    "occursAt": ["authored-place-cana"],
+    "participants": ["recgkFqZovgbr3pAi"]
+  },
+  {
+    "id": "authored-jesus-capernaum-healing",
+    "title": "Jesus heals many in Capernaum",
+    "nameKo": "가버나움 회당 사역 — 귀신 추방과 치유",
+    "startDate": "27",
+    "sortKey": 28,
+    "yearLabel": "AD 27–28경",
+    "context": "안식일 회당에서 귀신 들린 자를 고치고 베드로의 장모를 치유. 온 마을이 문 앞에 모임 (Mark 1:21–34).",
+    "authored": true,
+    "occursAt": ["authored-place-capernaum"],
+    "participants": ["recgkFqZovgbr3pAi"]
+  },
+  {
+    "id": "authored-jesus-bethsaida-feeding",
+    "title": "Jesus feeds five thousand near Bethsaida",
+    "nameKo": "벳새다 오천 명 먹임",
+    "startDate": "28",
+    "sortKey": 29,
+    "yearLabel": "AD 28경",
+    "context": "벳새다 들판에서 보리떡 5개·물고기 2마리로 5천 명을 먹이고 12 광주리 남김 (Luke 9:10–17).",
+    "authored": true,
+    "occursAt": ["authored-place-bethsaida"],
+    "participants": ["recgkFqZovgbr3pAi"]
+  },
+  {
+    "id": "authored-jesus-caesarea-philippi",
+    "title": "Peter's confession at Caesarea Philippi",
+    "nameKo": "가이사랴 빌립보 — 베드로의 신앙 고백",
+    "startDate": "29",
+    "sortKey": 30,
+    "yearLabel": "AD 29경",
+    "context": "예수가 '너희는 나를 누구라 하느냐' 묻고 베드로가 '그리스도시요 살아 계신 하나님의 아들' 고백 (Matt 16:13–16).",
+    "authored": true,
+    "occursAt": ["authored-place-caesarea-philippi"],
+    "participants": ["recgkFqZovgbr3pAi"]
+  },
+  {
+    "id": "authored-jesus-bethany-lazarus",
+    "title": "Jesus raises Lazarus in Bethany",
+    "nameKo": "베다니 나사로 부활",
+    "startDate": "29",
+    "sortKey": 31,
+    "yearLabel": "AD 29경",
+    "context": "나흘 죽은 나사로를 무덤에서 불러내 살림. '나는 부활이요 생명이라' (John 11:43–44).",
+    "authored": true,
+    "occursAt": ["authored-place-bethany-jeru"],
+    "participants": ["recgkFqZovgbr3pAi"]
+  },
+  {
+    "id": "authored-jesus-jericho-zacchaeus",
+    "title": "Jesus meets Zacchaeus in Jericho",
+    "nameKo": "여리고 삭개오 만남",
+    "startDate": "29",
+    "sortKey": 32,
+    "yearLabel": "AD 29경",
+    "context": "세리장 삭개오가 돌무화과나무에 올랐고 예수가 그 집에 유하심. '잃은 자를 찾으러 왔다' (Luke 19:1–10).",
+    "authored": true,
+    "occursAt": ["authored-place-jericho"],
+    "participants": ["recgkFqZovgbr3pAi"]
+  },
+  {
+    "id": "authored-jesus-gethsemane-prayer",
+    "title": "Jesus prays in Gethsemane",
+    "nameKo": "겟세마네 기도 — 십자가 전날 밤",
+    "startDate": "30",
+    "sortKey": 33,
+    "yearLabel": "AD 30경",
+    "context": "잡히시기 전날 밤 땀이 핏방울 같이 되도록 '이 잔을 내게서 지나가게' 기도하심 (Matt 26:36–46).",
+    "authored": true,
+    "occursAt": ["authored-place-gethsemane"],
+    "participants": ["recgkFqZovgbr3pAi"]
+  }
+]

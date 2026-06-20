@@ -1,0 +1,62 @@
+[
+  {
+    "id": "authored-mary-nazareth-annunciation",
+    "title": "Annunciation to Mary in Nazareth",
+    "nameKo": "나사렛 수태고지 — 천사 가브리엘",
+    "startDate": "-5",
+    "sortKey": -5,
+    "yearLabel": "BC 5경",
+    "context": "천사 가브리엘이 나사렛의 마리아에게 나타나 성령으로 잉태할 것을 알림 '은혜를 받은 자여' (Luke 1:26–38).",
+    "authored": true,
+    "occursAt": ["recmRfnw4XzPBH9jc"],
+    "participants": ["recnheSkryxih4g9J"]
+  },
+  {
+    "id": "authored-mary-bethlehem-birth",
+    "title": "Mary gives birth to Jesus in Bethlehem",
+    "nameKo": "베들레헴 예수 탄생",
+    "startDate": "-4",
+    "sortKey": -4,
+    "yearLabel": "BC 4경",
+    "context": "호적령으로 베들레헴에 온 마리아가 여관에 방이 없어 구유에 예수를 낳음 (Luke 2:4–7).",
+    "authored": true,
+    "occursAt": ["authored-place-bethlehem"],
+    "participants": ["recnheSkryxih4g9J"]
+  },
+  {
+    "id": "authored-mary-egypt-flight",
+    "title": "Flight to Egypt with Jesus",
+    "nameKo": "애굽 피신 (헤롯의 박해)",
+    "startDate": "-3",
+    "sortKey": -3,
+    "yearLabel": "BC 3경",
+    "context": "요셉이 꿈에서 천사의 지시를 받고 가족과 함께 헤롯의 유아 학살을 피해 애굽으로 피신 (Matt 2:13–14).",
+    "authored": true,
+    "occursAt": ["recfrXyxhuYOczKTm"],
+    "participants": ["recnheSkryxih4g9J"]
+  },
+  {
+    "id": "authored-mary-cana-wedding",
+    "title": "Mary at the wedding at Cana",
+    "nameKo": "가나 혼인 잔치 — 예수께 간청",
+    "startDate": "27",
+    "sortKey": 27,
+    "yearLabel": "AD 27경",
+    "context": "마리아가 포도주가 떨어진 것을 알고 예수에게 알림. '너희에게 무슨 말씀을 하시든지 그대로 하라' (John 2:3–5).",
+    "authored": true,
+    "occursAt": ["authored-place-cana"],
+    "participants": ["recnheSkryxih4g9J"]
+  },
+  {
+    "id": "authored-mary-jerusalem-cross",
+    "title": "Mary stands at the cross in Jerusalem",
+    "nameKo": "예루살렘 십자가 아래 서 있음",
+    "startDate": "30",
+    "sortKey": 34,
+    "yearLabel": "AD 30경",
+    "context": "아들 예수의 십자가 처형 현장에 있던 마리아. 예수가 사랑하는 제자 요한에게 어머니를 부탁함 (John 19:25–27).",
+    "authored": true,
+    "occursAt": ["recL1WV82pXaRBQ59"],
+    "participants": ["recnheSkryxih4g9J"]
+  }
+]

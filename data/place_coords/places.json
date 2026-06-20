@@ -278,5 +278,69 @@
     "lat": 29.553,
     "lng": 34.949,
     "note": "솔로몬의 무역 선박 기지 (1Kgs 9:26); 홍해 아카바만 항구"
+  },
+  {
+    "id": "authored-place-capernaum",
+    "name": "Capernaum",
+    "nameKo": "가버나움",
+    "lat": 32.881,
+    "lng": 35.577,
+    "note": "예수의 갈릴리 사역 본거지 (Matt 4:13); 회당이 있던 어부 마을"
+  },
+  {
+    "id": "authored-place-cana",
+    "name": "Cana of Galilee",
+    "nameKo": "가나 (갈릴리)",
+    "lat": 32.747,
+    "lng": 35.318,
+    "note": "예수의 첫 이적 — 물을 포도주로 (John 2:11); 나다나엘의 고향"
+  },
+  {
+    "id": "authored-place-bethsaida",
+    "name": "Bethsaida",
+    "nameKo": "벳새다",
+    "lat": 32.904,
+    "lng": 35.628,
+    "note": "오천 명을 먹인 기적의 장소 (Luke 9:10); 빌립·안드레·베드로의 고향"
+  },
+  {
+    "id": "authored-place-gethsemane",
+    "name": "Gethsemane",
+    "nameKo": "겟세마네",
+    "lat": 31.779,
+    "lng": 35.239,
+    "note": "예수가 십자가 전날 밤 기도한 감람산 동쪽 동산 (Matt 26:36)"
+  },
+  {
+    "id": "authored-place-bethany-jeru",
+    "name": "Bethany",
+    "nameKo": "베다니",
+    "lat": 31.770,
+    "lng": 35.267,
+    "note": "예루살렘 동쪽 감람산 너머 마을; 나사로·마르다·마리아의 집 (John 11:1)"
+  },
+  {
+    "id": "authored-place-caesarea-philippi",
+    "name": "Caesarea Philippi",
+    "nameKo": "가이사랴 빌립보",
+    "lat": 33.249,
+    "lng": 35.693,
+    "note": "헤르몬산 기슭 도시; 베드로의 신앙 고백 장소 (Matt 16:13–16)"
+  },
+  {
+    "id": "authored-place-machaerus",
+    "name": "Machaerus",
+    "nameKo": "마케루스",
+    "lat": 31.569,
+    "lng": 35.834,
+    "note": "헤롯 안티파스의 요새; 세례 요한이 투옥되고 순교한 곳 (Mark 6:17–28)"
+  },
+  {
+    "id": "authored-place-judean-wilderness",
+    "name": "Judean Wilderness",
+    "nameKo": "유대 광야",
+    "lat": 31.5,
+    "lng": 35.4,
+    "note": "세례 요한의 선포 사역지 (Matt 3:1); 예수의 40일 시험 장소"
   }
 ]
