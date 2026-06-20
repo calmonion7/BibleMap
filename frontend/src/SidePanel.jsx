@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { TYPE_COLOR, TYPE_KO } from './theme'
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
+import Spinner from './Spinner'
 
 const REL_KO = {
   PARENT_OF: '부모',
@@ -62,7 +63,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
 
   const msgStyle = { padding: '1.25rem', fontSize: 14, color: '#7c8db0' }
   if (!nodeId) return <p style={msgStyle}>지도에서 마커를 클릭하세요</p>
-  if (!ready) return <p style={msgStyle}>로딩 중...</p>
+  if (!ready) return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}><Spinner color="rgba(100,120,180,0.6)" /></div>
   if (error) return <p style={{ ...msgStyle, color: '#dc3545' }}>불러오지 못했습니다 ({error})</p>
 
   // 이웃을 타입별로 그룹

@@ -17,7 +17,7 @@ function placesToGeoJSON(places) {
   }
 }
 
-export default function MapView({ onSelectNode, selectedNode }) {
+export default function MapView({ onSelectNode, selectedNode, isVisible }) {
   const mapContainer = useRef(null)
   const mapRef = useRef(null)
   const popupRef = useRef(null)
@@ -452,6 +452,10 @@ export default function MapView({ onSelectNode, selectedNode }) {
       if (autoExpandTimer) clearTimeout(autoExpandTimer)
     }
   }, [selectedNode, mapLoaded])
+
+  useEffect(() => {
+    if (isVisible && mapRef.current) mapRef.current.resize()
+  }, [isVisible])
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>

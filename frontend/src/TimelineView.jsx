@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { SELECT_HL, TYPE_COLOR } from './theme'
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
+import Spinner from './Spinner'
 
 const BOOK_COLOR = '#a78bfa'
 const EVENT_COLOR = TYPE_COLOR.Event
@@ -157,7 +158,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
     if (!verseView || verseView.eventId !== ev.id) return null
     const overlay = eventVerses.id === ev.id ? eventVerses.data : null
     if (overlay === null) {
-      return <div style={{ ...verseBoxStyle, color: '#8b80a8' }}>구절을 불러오는 중…</div>
+      return <div style={verseBoxStyle}><Spinner size={20} color="rgba(107,40,217,0.5)" /></div>
     }
     const ovBooks = overlay.books || []
     if (ovBooks.length === 0) {

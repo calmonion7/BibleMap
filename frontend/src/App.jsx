@@ -9,9 +9,9 @@ import { useNodeSelection } from './useNodeSelection'
 import { useSearch } from './useSearch'
 
 const TABS = [
-  { key: 'map', icon: Map },
-  { key: 'timeline', icon: Clock },
-  { key: 'overview', icon: BookOpen },
+  { key: 'map', icon: Map, label: '지도' },
+  { key: 'timeline', icon: Clock, label: '타임라인' },
+  { key: 'overview', icon: BookOpen, label: '성경 개요' },
 ]
 
 // 모바일(좁은 뷰포트) 분기 — 이 폭 이하에서 상세 패널을 우측 사이드패널 대신 하단 시트로 띄운다.
@@ -53,9 +53,12 @@ function App() {
     setActiveView(key)
   }
 
-  // 브리지 — 검색 선택 시 검색 상태 초기화 + 새 탐색 컨텍스트로 노드 선택
+  // 브리지 — 검색 선택 시 검색 상태 초기화 + 새 탐색 컨텍스트로 노드 선택, 타입별 탭 이동
   function handleSelectResult(result) {
     clearSearch()
+    const tabMap = { Person: 'map', Place: 'map', Event: 'timeline', Book: 'overview' }
+    const target = tabMap[result.label] ?? 'map'
+    setActiveView(target)
     selectNodeFresh(result.id)
   }
 
@@ -95,15 +98,16 @@ function App() {
               key={tab.key}
               onClick={() => handleTabClick(tab.key)}
               style={{
-                padding: '0 18px', height: '100%',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                padding: '0 14px', height: '100%',
+                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
                 color: active ? 'white' : 'rgba(255,255,255,0.5)',
                 borderBottom: active ? '2px solid #7c9cfc' : '2px solid transparent',
                 border: 'none', background: 'none', cursor: 'pointer',
                 transition: 'color 0.15s',
               }}
             >
-              <Icon size={20} />
+              <Icon size={18} />
+              <span style={{ fontSize: 10, lineHeight: 1 }}>{tab.label}</span>
             </button>
           )
         })}
@@ -216,15 +220,16 @@ function App() {
         </div>
       </div>
 
-      {/* 전체화면 뷰 */}
+      {/* 전체화면 뷰 — 항상 마운트, CSS 토글로 상태 보존 */}
       <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
-        {activeView === 'map' && (
+        <div style={{ display: activeView === 'map' ? 'block' : 'none', flex: 1, overflow: 'hidden', height: '100%' }}>
           <MapView
             onSelectNode={selectNode}
             selectedNode={selectedNode}
+            isVisible={activeView === 'map'}
           />
-        )}
-        {activeView === 'timeline' && (
+        </div>
+        <div style={{ display: activeView === 'timeline' ? 'block' : 'none', flex: 1, overflow: 'hidden', height: '100%' }}>
           <TimelineView
             onSelectNode={selectNode}
             selectedNode={selectedNode}
@@ -234,12 +239,13 @@ function App() {
             verseLang={verseLang}
             setVerseLang={setVerseLang}
           />
-        )}
-        {activeView === 'overview' && (
+        </div>
+        <div style={{ display: activeView === 'overview' ? 'block' : 'none', flex: 1, overflow: 'hidden', height: '100%' }}>
           <BibleOverviewView
             onSelectNode={selectNode}
+            selectedNode={selectedNode}
           />
-        )}
+        </div>
       </div>
 
       {/* 오버레이 패널 — 데스크톱: 우측 슬라이드인 / 모바일: 하단 시트(지도·마커가 위에 보이도록) */}
@@ -262,7 +268,7 @@ function App() {
             onClick={closePanel}
             style={{
               position: 'absolute', top: 8, right: 8, zIndex: 2,
-              width: 28, height: 28, borderRadius: '50%',
+              width: 44, height: 44, borderRadius: '50%',
               border: '1px solid #ddd', background: 'white',
               cursor: 'pointer', fontSize: 16, lineHeight: 1,
               display: 'flex', alignItems: 'center', justifyContent: 'center',

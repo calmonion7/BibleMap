@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { apiGet } from './api'
+import Spinner from './Spinner'
+import { SELECT_HL } from './theme'
 
 const OT_GENRE_ORDER = ['Pentateuch', 'Historical', 'Poetry-Wisdom', 'Major Prophets', 'Minor Prophets']
 const NT_GENRE_ORDER = ['Gospels', 'Acts', 'Pauline Epistles', 'General Epistles', 'Revelation']
@@ -17,7 +19,7 @@ const GENRE_META = {
   'Revelation':       { displayName: '계시록',    description: '종말의 심판과 새 창조의 비전' },
 }
 
-function BookCard({ book, onSelectNode }) {
+function BookCard({ book, onSelectNode, isSelected }) {
   const [hovered, setHovered] = useState(false)
   const themes = (book.themes || []).slice(0, 3)
   const keyVerse = book.keyVerseTextKo
@@ -30,14 +32,14 @@ function BookCard({ book, onSelectNode }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        background: '#1e2040',
-        border: `1px solid ${hovered ? '#7c9cfc' : 'rgba(124,156,252,0.2)'}`,
+        background: isSelected ? SELECT_HL : '#1e2040',
+        border: `1px solid ${isSelected ? '#7c9cfc' : hovered ? '#7c9cfc' : 'rgba(124,156,252,0.2)'}`,
         borderRadius: 10,
         padding: 12,
         width: 140,
         cursor: 'pointer',
         flexShrink: 0,
-        transition: 'border-color 0.15s',
+        transition: 'border-color 0.15s, background 0.15s',
       }}
     >
       <div style={{ color: '#fff', fontWeight: 600, fontSize: 14, marginBottom: 6 }}>
@@ -70,7 +72,7 @@ function BookCard({ book, onSelectNode }) {
   )
 }
 
-function GenreSection({ genre, books, isFirst, onSelectNode }) {
+function GenreSection({ genre, books, isFirst, onSelectNode, selectedNode }) {
   const meta = GENRE_META[genre] || { displayName: genre, description: '' }
   const sorted = [...books].sort((a, b) => (a.bookOrder ?? 0) - (b.bookOrder ?? 0))
 
@@ -86,14 +88,14 @@ function GenreSection({ genre, books, isFirst, onSelectNode }) {
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
         {sorted.map(book => (
-          <BookCard key={book.id} book={book} onSelectNode={onSelectNode} />
+          <BookCard key={book.id} book={book} onSelectNode={onSelectNode} isSelected={book.id === selectedNode} />
         ))}
       </div>
     </div>
   )
 }
 
-function Testament({ label, genreOrder, booksByGenre, onSelectNode }) {
+function Testament({ label, genreOrder, booksByGenre, onSelectNode, selectedNode }) {
   const genres = genreOrder.filter(g => booksByGenre[g] && booksByGenre[g].length > 0)
 
   return (
@@ -106,13 +108,14 @@ function Testament({ label, genreOrder, booksByGenre, onSelectNode }) {
           books={booksByGenre[genre]}
           isFirst={i === 0}
           onSelectNode={onSelectNode}
+          selectedNode={selectedNode}
         />
       ))}
     </div>
   )
 }
 
-export default function BibleOverviewView({ onSelectNode }) {
+export default function BibleOverviewView({ onSelectNode, selectedNode }) {
   const [booksByTestamentGenre, setBooksByTestamentGenre] = useState({ OT: {}, NT: {} })
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -146,8 +149,8 @@ export default function BibleOverviewView({ onSelectNode }) {
 
   if (loading) {
     return (
-      <div style={{ color: 'rgba(255,255,255,0.5)', padding: 24, background: '#12122a', height: '100%' }}>
-        불러오는 중…
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', background: '#12122a' }}>
+        <Spinner />
       </div>
     )
   }
@@ -184,6 +187,7 @@ export default function BibleOverviewView({ onSelectNode }) {
         genreOrder={OT_GENRE_ORDER}
         booksByGenre={booksByTestamentGenre.OT}
         onSelectNode={onSelectNode}
+        selectedNode={selectedNode}
       />
       <div style={{ marginTop: 32 }}>
         <Testament
@@ -191,6 +195,7 @@ export default function BibleOverviewView({ onSelectNode }) {
           genreOrder={NT_GENRE_ORDER}
           booksByGenre={booksByTestamentGenre.NT}
           onSelectNode={onSelectNode}
+          selectedNode={selectedNode}
         />
       </div>
     </div>
