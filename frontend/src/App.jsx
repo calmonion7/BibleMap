@@ -49,13 +49,25 @@ function App() {
     return () => mq.removeEventListener('change', onChange)
   }, [])
 
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key !== '/') return
+      const tag = document.activeElement?.tagName
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return
+      e.preventDefault()
+      searchBoxRef.current?.querySelector('input')?.focus()
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [searchBoxRef])
+
   function handleTabClick(key) {
     setActiveView(key)
   }
 
-  // 브리지 — 검색 선택 시 검색 상태 초기화 + 새 탐색 컨텍스트로 노드 선택, 타입별 탭 이동
+  // 브리지 — 검색 선택 시 드롭다운 닫기 + 새 탐색 컨텍스트로 노드 선택, 타입별 탭 이동
   function handleSelectResult(result) {
-    clearSearch()
+    setShowDropdown(false)
     const tabMap = { Person: 'map', Place: 'map', Event: 'timeline', Book: 'overview' }
     const target = tabMap[result.label] ?? 'map'
     setActiveView(target)
