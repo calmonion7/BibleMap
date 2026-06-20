@@ -25,6 +25,8 @@ def get_books_overview():
                 "themes": props.get("themes"),
                 "keyVerse": props.get("keyVerse"),
                 "keyVerseTextKo": props.get("keyVerseTextKo"),
+                "authorKo": props.get("authorKo"),
+                "writtenDate": props.get("writtenDate"),
             })
         return JSONResponse(content=books, headers={"Cache-Control": "no-store"})
 

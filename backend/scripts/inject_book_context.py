@@ -32,6 +32,12 @@ def main():
             "keyVerse": ctx.get("keyVerse", ""),
             "keyVerseTextKo": ctx.get("keyVerseTextKo"),
             "keyVerseTextEn": ctx.get("keyVerseTextEn"),
+            "author": ctx.get("author", ""),
+            "writtenDate": ctx.get("writtenDate", ""),
+            "verseCount": ctx.get("verseCount"),
+            "keyPeople": ctx.get("keyPeople", []),
+            "centralMessage": ctx.get("centralMessage", ""),
+            "structure": ctx.get("structure", ""),
         })
 
     driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
@@ -44,7 +50,13 @@ def main():
                 b.themes         = row.themes,
                 b.keyVerse       = row.keyVerse,
                 b.keyVerseTextKo = row.keyVerseTextKo,
-                b.keyVerseTextEn = row.keyVerseTextEn
+                b.keyVerseTextEn = row.keyVerseTextEn,
+                b.authorKo         = row.author,
+                b.writtenDate      = row.writtenDate,
+                b.verseCount       = row.verseCount,
+                b.keyPeople        = row.keyPeople,
+                b.centralMessage   = row.centralMessage,
+                b.structure        = row.structure
             """,
             rows=rows,
         )

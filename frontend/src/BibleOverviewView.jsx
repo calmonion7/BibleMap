@@ -42,9 +42,14 @@ function BookCard({ book, onSelectNode, isSelected }) {
         transition: 'border-color 0.15s, background 0.15s',
       }}
     >
-      <div style={{ color: '#fff', fontWeight: 600, fontSize: 14, marginBottom: 6 }}>
+      <div style={{ color: '#fff', fontWeight: 600, fontSize: 14, marginBottom: book.authorKo ? 2 : 6 }}>
         {book.nameKo}
       </div>
+      {book.authorKo && (
+        <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: 11, marginBottom: 6 }}>
+          {book.authorKo}{book.writtenDate ? ` · ${book.writtenDate}` : ''}
+        </div>
+      )}
       {themes.length > 0 && (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: keyVerse ? 6 : 0 }}>
           {themes.map((t, i) => (

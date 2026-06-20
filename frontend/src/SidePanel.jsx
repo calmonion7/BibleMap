@@ -173,7 +173,9 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 14 }}>
             {[node.properties.testament, node.properties.genre,
               node.properties.startYear && `${Math.abs(node.properties.startYear)}BC~${Math.abs(node.properties.endYear)}BC`,
-              node.properties.chapterCount && `${node.properties.chapterCount}장`]
+              node.properties.chapterCount && `${node.properties.chapterCount}장`,
+              node.properties.verseCount && `${node.properties.verseCount}절`,
+              node.properties.authorKo && node.properties.writtenDate && `${node.properties.authorKo} · ${node.properties.writtenDate}`]
               .filter(Boolean).map((chip, i) => (
               <span key={i} style={{
                 fontSize: 11, padding: '3px 8px', borderRadius: 999,
@@ -230,6 +232,47 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                     <div style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{keyVerseText}</div>
                   )}
                 </div>
+              )}
+            </div>
+          )}
+
+          {/* 중심 메시지 */}
+          {node.properties.centralMessage && (
+            <div style={{ marginBottom: 12 }}>
+              <SectionHeader label="중심 메시지" color="#a78bfa" sectionKey="book-central" collapsed={collapsed} onToggle={toggle} />
+              {collapsed['book-central'] === false && (
+                <div style={{
+                  padding: '10px 12px', background: '#f5f3ff', borderRadius: 8,
+                  borderLeft: '3px solid #a78bfa', marginBottom: 4,
+                  fontSize: 13, color: '#374151', lineHeight: 1.6,
+                }}>{node.properties.centralMessage}</div>
+              )}
+            </div>
+          )}
+
+          {/* 핵심 인물 */}
+          {node.properties.keyPeople?.length > 0 && (
+            <div style={{ marginBottom: 12 }}>
+              <SectionHeader label="핵심 인물" color="#a78bfa" sectionKey="book-keyppl" collapsed={collapsed} onToggle={toggle} />
+              {collapsed['book-keyppl'] === false && (
+                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', paddingBottom: 4 }}>
+                  {node.properties.keyPeople.map((p, i) => (
+                    <span key={i} style={{
+                      fontSize: 12, padding: '4px 10px', borderRadius: 999,
+                      background: '#eef0f5', color: '#5a6481',
+                    }}>{p}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* 구조 개요 */}
+          {node.properties.structure && (
+            <div style={{ marginBottom: 12 }}>
+              <SectionHeader label="구조 개요" color="#a78bfa" sectionKey="book-structure" collapsed={collapsed} onToggle={toggle} />
+              {collapsed['book-structure'] === false && (
+                <p style={{ margin: '0 0 4px', color: '#374151', lineHeight: 1.6, fontSize: 13 }}>{node.properties.structure}</p>
               )}
             </div>
           )}
