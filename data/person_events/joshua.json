@@ -8,8 +8,18 @@
     "yearLabel": "BC 1406경",
     "context": "요단강을 기적으로 건넌 후 길갈에 12개 기념석을 세우고 첫 진영을 침. 할례와 유월절 갱신 (Josh 4:19–5:12).",
     "authored": true,
-    "occursAt": ["authored-place-gilgal"],
-    "participants": ["recLuZtSmAO6erIsc"]
+    "occursAt": [
+      "authored-place-gilgal"
+    ],
+    "participants": [
+      "recLuZtSmAO6erIsc"
+    ],
+    "books": [
+      {
+        "bookId": "rec5dSv8N1iv8z9uC",
+        "rangeLabel": "4:19–5:12"
+      }
+    ]
   },
   {
     "id": "authored-joshua-jericho-conquest",
@@ -20,8 +30,18 @@
     "yearLabel": "BC 1406경",
     "context": "7일간 제사장들이 나팔을 불며 성을 돌고 7회 후 성이 무너짐. 가나안 정복의 시작 (Josh 6:20).",
     "authored": true,
-    "occursAt": ["authored-place-jericho"],
-    "participants": ["recLuZtSmAO6erIsc"]
+    "occursAt": [
+      "authored-place-jericho"
+    ],
+    "participants": [
+      "recLuZtSmAO6erIsc"
+    ],
+    "books": [
+      {
+        "bookId": "rec5dSv8N1iv8z9uC",
+        "rangeLabel": "6:20"
+      }
+    ]
   },
   {
     "id": "authored-joshua-ai-conquest",
@@ -32,8 +52,18 @@
     "yearLabel": "BC 1405경",
     "context": "아간의 범죄로 처음 패배했으나 정결 후 매복 전략으로 아이를 완전 정복 (Josh 8:18–29).",
     "authored": true,
-    "occursAt": ["authored-place-ai"],
-    "participants": ["recLuZtSmAO6erIsc"]
+    "occursAt": [
+      "authored-place-ai"
+    ],
+    "participants": [
+      "recLuZtSmAO6erIsc"
+    ],
+    "books": [
+      {
+        "bookId": "rec5dSv8N1iv8z9uC",
+        "rangeLabel": "8:18–29"
+      }
+    ]
   },
   {
     "id": "authored-joshua-gibeon-alliance",
@@ -44,8 +74,18 @@
     "yearLabel": "BC 1405경",
     "context": "기브온 사람들의 속임수로 맺은 화평 조약. 후에 아모리 5왕과의 전투에서 태양을 멈춤 (Josh 10:12–14).",
     "authored": true,
-    "occursAt": ["authored-place-gibeon"],
-    "participants": ["recLuZtSmAO6erIsc"]
+    "occursAt": [
+      "authored-place-gibeon"
+    ],
+    "participants": [
+      "recLuZtSmAO6erIsc"
+    ],
+    "books": [
+      {
+        "bookId": "rec5dSv8N1iv8z9uC",
+        "rangeLabel": "10:12–14"
+      }
+    ]
   },
   {
     "id": "authored-joshua-shiloh-tabernacle",
@@ -56,8 +96,18 @@
     "yearLabel": "BC 1399경",
     "context": "가나안 땅이 복종한 후 실로에 회막을 세우고 나머지 땅을 제비뽑아 지파에게 분배 (Josh 18:1–10).",
     "authored": true,
-    "occursAt": ["authored-place-shiloh"],
-    "participants": ["recLuZtSmAO6erIsc"]
+    "occursAt": [
+      "authored-place-shiloh"
+    ],
+    "participants": [
+      "recLuZtSmAO6erIsc"
+    ],
+    "books": [
+      {
+        "bookId": "rec5dSv8N1iv8z9uC",
+        "rangeLabel": "18:1–10"
+      }
+    ]
   },
   {
     "id": "authored-joshua-shechem-covenant",
@@ -68,7 +118,17 @@
     "yearLabel": "BC 1380경",
     "context": "생애 말년에 백성을 세겜에 모아 여호와를 섬길 것을 선택하게 함. 언약을 갱신하고 돌기념비 세움 (Josh 24:1–27).",
     "authored": true,
-    "occursAt": ["recUySlrBva4ffoVs"],
-    "participants": ["recLuZtSmAO6erIsc"]
+    "occursAt": [
+      "recUySlrBva4ffoVs"
+    ],
+    "participants": [
+      "recLuZtSmAO6erIsc"
+    ],
+    "books": [
+      {
+        "bookId": "rec5dSv8N1iv8z9uC",
+        "rangeLabel": "24:1–27"
+      }
+    ]
   }
 ]

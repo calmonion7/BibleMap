@@ -8,8 +8,18 @@
     "yearLabel": "BC 1040경",
     "context": "이새의 막내아들로 베들레헴에서 태어난 다윗. 훗날 사무엘에게 기름 부음을 받는 장소이기도 함 (1Sam 16:13).",
     "authored": true,
-    "occursAt": ["authored-place-bethlehem"],
-    "participants": ["rec1ZMFtfbEvoGC73"]
+    "occursAt": [
+      "authored-place-bethlehem"
+    ],
+    "participants": [
+      "rec1ZMFtfbEvoGC73"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "16:13"
+      }
+    ]
   },
   {
     "id": "authored-david-anointed-bethlehem",
@@ -20,8 +30,18 @@
     "yearLabel": "BC 1025경",
     "context": "하나님의 명령으로 사무엘이 이새의 집을 찾아 막내 다윗에게 은밀히 기름을 부음 (1Sam 16:1–13).",
     "authored": true,
-    "occursAt": ["authored-place-bethlehem"],
-    "participants": ["rec1ZMFtfbEvoGC73"]
+    "occursAt": [
+      "authored-place-bethlehem"
+    ],
+    "participants": [
+      "rec1ZMFtfbEvoGC73"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "16:1–13"
+      }
+    ]
   },
   {
     "id": "authored-david-gibeah-harp",
@@ -32,8 +52,18 @@
     "yearLabel": "BC 1023경",
     "context": "악신에 시달리는 사울을 위해 다윗이 기브아 궁에서 수금을 연주하며 왕실에 입문함 (1Sam 16:21–23).",
     "authored": true,
-    "occursAt": ["authored-place-gibeah"],
-    "participants": ["rec1ZMFtfbEvoGC73"]
+    "occursAt": [
+      "authored-place-gibeah"
+    ],
+    "participants": [
+      "rec1ZMFtfbEvoGC73"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "16:21–23"
+      }
+    ]
   },
   {
     "id": "authored-david-goliath-gath",
@@ -44,8 +74,18 @@
     "yearLabel": "BC 1020경",
     "context": "블레셋 장수 골리앗(가드 출신)과의 대결에서 물매 돌 하나로 승리해 명성을 얻음 (1Sam 17:49–50).",
     "authored": true,
-    "occursAt": ["recDWNfN3f6E04V4m"],
-    "participants": ["rec1ZMFtfbEvoGC73"]
+    "occursAt": [
+      "recDWNfN3f6E04V4m"
+    ],
+    "participants": [
+      "rec1ZMFtfbEvoGC73"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "17:49–50"
+      }
+    ]
   },
   {
     "id": "authored-david-ramah-samuel",
@@ -56,8 +96,18 @@
     "yearLabel": "BC 1015경",
     "context": "사울의 위협을 피해 다윗이 라마 나욧의 사무엘에게 도망가 피신함 (1Sam 19:18).",
     "authored": true,
-    "occursAt": ["authored-place-ramah"],
-    "participants": ["rec1ZMFtfbEvoGC73"]
+    "occursAt": [
+      "authored-place-ramah"
+    ],
+    "participants": [
+      "rec1ZMFtfbEvoGC73"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "19:18"
+      }
+    ]
   },
   {
     "id": "authored-david-nob-priests",
@@ -68,8 +118,18 @@
     "yearLabel": "BC 1013경",
     "context": "사울을 피해 달아난 다윗이 제사장 아히멜렉에게 진설병과 골리앗의 칼을 받음 (1Sam 21:1–9).",
     "authored": true,
-    "occursAt": ["authored-place-nob"],
-    "participants": ["rec1ZMFtfbEvoGC73"]
+    "occursAt": [
+      "authored-place-nob"
+    ],
+    "participants": [
+      "rec1ZMFtfbEvoGC73"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "21:1–9"
+      }
+    ]
   },
   {
     "id": "authored-david-gath-achish",
@@ -80,8 +140,18 @@
     "yearLabel": "BC 1013경",
     "context": "놉에서 달아난 다윗이 블레셋 왕 아기스에게 망명을 청하지만, 미친 척해 위기를 모면함 (1Sam 21:10–15).",
     "authored": true,
-    "occursAt": ["recDWNfN3f6E04V4m"],
-    "participants": ["rec1ZMFtfbEvoGC73"]
+    "occursAt": [
+      "recDWNfN3f6E04V4m"
+    ],
+    "participants": [
+      "rec1ZMFtfbEvoGC73"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "21:10–15"
+      }
+    ]
   },
   {
     "id": "authored-david-adullam-cave",
@@ -92,8 +162,18 @@
     "yearLabel": "BC 1012경",
     "context": "사울을 피해 아둘람 굴에 숨은 다윗에게 억울한 자·빚진 자 등 400명이 모여듦 (1Sam 22:1–2).",
     "authored": true,
-    "occursAt": ["authored-place-adullam"],
-    "participants": ["rec1ZMFtfbEvoGC73"]
+    "occursAt": [
+      "authored-place-adullam"
+    ],
+    "participants": [
+      "rec1ZMFtfbEvoGC73"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "22:1–2"
+      }
+    ]
   },
   {
     "id": "authored-david-en-gedi-saul",
@@ -104,8 +184,18 @@
     "yearLabel": "BC 1011경",
     "context": "사울을 추격할 기회가 있었지만 하나님의 기름 부음 받은 자를 해하지 않겠다며 살려줌 (1Sam 24:1–22).",
     "authored": true,
-    "occursAt": ["authored-place-en-gedi"],
-    "participants": ["rec1ZMFtfbEvoGC73"]
+    "occursAt": [
+      "authored-place-en-gedi"
+    ],
+    "participants": [
+      "rec1ZMFtfbEvoGC73"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "24:1–22"
+      }
+    ]
   },
   {
     "id": "authored-david-ziklag-base",
@@ -116,8 +206,18 @@
     "yearLabel": "BC 1008–1003",
     "context": "블레셋 왕 아기스에게 시글락 성을 받아 거점으로 삼고 1년 4개월간 머물며 주변 약탈을 행함 (1Sam 27:6–7).",
     "authored": true,
-    "occursAt": ["authored-place-ziklag"],
-    "participants": ["rec1ZMFtfbEvoGC73"]
+    "occursAt": [
+      "authored-place-ziklag"
+    ],
+    "participants": [
+      "rec1ZMFtfbEvoGC73"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "27:6–7"
+      }
+    ]
   },
   {
     "id": "authored-david-hebron-king-judah",
@@ -128,8 +228,18 @@
     "yearLabel": "BC 1003경",
     "context": "사울 사후 유다 지파가 헤브론에서 다윗을 왕으로 세우며, 다윗은 헤브론에서 7년 6개월을 통치함 (2Sam 2:4).",
     "authored": true,
-    "occursAt": ["recJSfVnIcPibY6aX"],
-    "participants": ["rec1ZMFtfbEvoGC73"]
+    "occursAt": [
+      "recJSfVnIcPibY6aX"
+    ],
+    "participants": [
+      "rec1ZMFtfbEvoGC73"
+    ],
+    "books": [
+      {
+        "bookId": "recMYdxLC2GjLRomD",
+        "rangeLabel": "2:4"
+      }
+    ]
   },
   {
     "id": "authored-david-gibeon-battle",
@@ -140,8 +250,18 @@
     "yearLabel": "BC 1002경",
     "context": "다윗 진영의 요압과 사울 진영의 아브넬이 기브온 못가에서 대결, 아사헬이 죽는 사건 (2Sam 2:12–17).",
     "authored": true,
-    "occursAt": ["authored-place-gibeon"],
-    "participants": ["rec1ZMFtfbEvoGC73"]
+    "occursAt": [
+      "authored-place-gibeon"
+    ],
+    "participants": [
+      "rec1ZMFtfbEvoGC73"
+    ],
+    "books": [
+      {
+        "bookId": "recMYdxLC2GjLRomD",
+        "rangeLabel": "2:12–17"
+      }
+    ]
   },
   {
     "id": "authored-david-jerusalem-conquest",
@@ -152,8 +272,18 @@
     "yearLabel": "BC 1000경",
     "context": "여부스 족의 요새 예루살렘을 정복해 '다윗 성'으로 명명하고 통일 이스라엘의 수도로 삼음 (2Sam 5:6–9).",
     "authored": true,
-    "occursAt": ["recL1WV82pXaRBQ59"],
-    "participants": ["rec1ZMFtfbEvoGC73"]
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "rec1ZMFtfbEvoGC73"
+    ],
+    "books": [
+      {
+        "bookId": "recMYdxLC2GjLRomD",
+        "rangeLabel": "5:6–9"
+      }
+    ]
   },
   {
     "id": "authored-david-ark-jerusalem",
@@ -164,8 +294,18 @@
     "yearLabel": "BC 995경",
     "context": "다윗이 기쁨으로 춤추며 하나님의 궤를 예루살렘 다윗 성으로 모셔옴 (2Sam 6:12–15).",
     "authored": true,
-    "occursAt": ["recL1WV82pXaRBQ59"],
-    "participants": ["rec1ZMFtfbEvoGC73"]
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "rec1ZMFtfbEvoGC73"
+    ],
+    "books": [
+      {
+        "bookId": "recMYdxLC2GjLRomD",
+        "rangeLabel": "6:12–15"
+      }
+    ]
   },
   {
     "id": "authored-david-nathan-covenant",
@@ -176,8 +316,18 @@
     "yearLabel": "BC 993경",
     "context": "나단 선지자를 통해 다윗의 혈통에서 영원한 왕국이 세워질 것이라는 언약을 받음 (2Sam 7:12–16).",
     "authored": true,
-    "occursAt": ["recL1WV82pXaRBQ59"],
-    "participants": ["rec1ZMFtfbEvoGC73"]
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "rec1ZMFtfbEvoGC73"
+    ],
+    "books": [
+      {
+        "bookId": "recMYdxLC2GjLRomD",
+        "rangeLabel": "7:12–16"
+      }
+    ]
   },
   {
     "id": "authored-david-mahanaim-exile",
@@ -188,8 +338,18 @@
     "yearLabel": "BC 980경",
     "context": "아들 압살롬이 예루살렘을 탈취하자 다윗이 요단 동편 마하나임으로 피신해 지지 세력을 재편함 (2Sam 17:24).",
     "authored": true,
-    "occursAt": ["authored-place-mahanaim"],
-    "participants": ["rec1ZMFtfbEvoGC73"]
+    "occursAt": [
+      "authored-place-mahanaim"
+    ],
+    "participants": [
+      "rec1ZMFtfbEvoGC73"
+    ],
+    "books": [
+      {
+        "bookId": "recMYdxLC2GjLRomD",
+        "rangeLabel": "17:24"
+      }
+    ]
   },
   {
     "id": "authored-david-returns-jerusalem",
@@ -200,7 +360,17 @@
     "yearLabel": "BC 978경",
     "context": "압살롬이 죽고 전쟁이 끝나자 다윗이 요단을 건너 예루살렘으로 귀환해 왕권을 회복함 (2Sam 19:15).",
     "authored": true,
-    "occursAt": ["recL1WV82pXaRBQ59"],
-    "participants": ["rec1ZMFtfbEvoGC73"]
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "rec1ZMFtfbEvoGC73"
+    ],
+    "books": [
+      {
+        "bookId": "recMYdxLC2GjLRomD",
+        "rangeLabel": "19:15"
+      }
+    ]
   }
 ]

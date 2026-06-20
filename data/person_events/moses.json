@@ -8,8 +8,18 @@
     "yearLabel": "BC 1526경",
     "context": "파라오의 히브리 남아 학살령 아래 레위 지파 부모에게서 태어난 모세가 갈 상자에 담겨 나일 강에 놓이고, 파라오의 딸에게 발견됨 (Exod 2:1–10).",
     "authored": true,
-    "occursAt": ["recfrXyxhuYOczKTm"],
-    "participants": ["recjNRR60PAuFtjha"]
+    "occursAt": [
+      "recfrXyxhuYOczKTm"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "rangeLabel": "2:1–10"
+      }
+    ]
   },
   {
     "id": "authored-moses-flees-midian",
@@ -20,8 +30,18 @@
     "yearLabel": "BC 1486경",
     "context": "이집트인을 죽이고 탄로 난 모세가 미디안으로 도망가 이드로(르우엘) 제사장의 딸 십보라와 결혼하고 40년을 보냄 (Exod 2:15–22).",
     "authored": true,
-    "occursAt": ["recBZhqAvy5xhTNRn"],
-    "participants": ["recjNRR60PAuFtjha"]
+    "occursAt": [
+      "recBZhqAvy5xhTNRn"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "rangeLabel": "2:15–22"
+      }
+    ]
   },
   {
     "id": "authored-moses-burning-bush",
@@ -32,8 +52,18 @@
     "yearLabel": "BC 1447경",
     "context": "양 떼를 치던 중 호렙산(시내산) 기슭의 불붙는 떨기나무에서 하나님의 음성을 듣고 이스라엘 해방 사명을 위임받음 (Exod 3:1–12).",
     "authored": true,
-    "occursAt": ["rec6V51IWkgvAcnOU"],
-    "participants": ["recjNRR60PAuFtjha"]
+    "occursAt": [
+      "rec6V51IWkgvAcnOU"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "rangeLabel": "3:1–12"
+      }
+    ]
   },
   {
     "id": "authored-moses-returns-egypt",
@@ -44,8 +74,18 @@
     "yearLabel": "BC 1447경",
     "context": "하나님의 명령을 받은 모세가 장인 이드로에게 작별하고 아론과 합류해 애굽으로 귀환, 이스라엘 장로들에게 사명을 알림 (Exod 4:27–31).",
     "authored": true,
-    "occursAt": ["recfrXyxhuYOczKTm"],
-    "participants": ["recjNRR60PAuFtjha"]
+    "occursAt": [
+      "recfrXyxhuYOczKTm"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "rangeLabel": "4:27–31"
+      }
+    ]
   },
   {
     "id": "authored-moses-passover-night",
@@ -56,8 +96,18 @@
     "yearLabel": "BC 1446경",
     "context": "열 번째 재앙(초태생의 죽음) 이후 파라오가 이스라엘을 내보내자, 유월절 밤에 이스라엘 60만 명이 애굽을 떠남 (Exod 12:31–42).",
     "authored": true,
-    "occursAt": ["recfrXyxhuYOczKTm"],
-    "participants": ["recjNRR60PAuFtjha"]
+    "occursAt": [
+      "recfrXyxhuYOczKTm"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "rangeLabel": "12:31–42"
+      }
+    ]
   },
   {
     "id": "authored-moses-succoth-camp",
@@ -69,8 +119,18 @@
     "yearLabel": "BC 1446경",
     "context": "애굽을 떠난 이스라엘이 숙곳에 첫 번째 진영을 치고, 누룩 없는 떡을 먹으며 행진을 시작함 (Exod 12:37).",
     "authored": true,
-    "occursAt": ["authored-place-succoth"],
-    "participants": ["recjNRR60PAuFtjha"]
+    "occursAt": [
+      "authored-place-succoth"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "rangeLabel": "12:37"
+      }
+    ]
   },
   {
     "id": "authored-moses-sinai-law",
@@ -81,8 +141,18 @@
     "yearLabel": "BC 1446경",
     "context": "출애굽 3개월 후 시내 광야에 도착해 하나님이 십계명과 율법을 모세에게 주시고 언약 백성 이스라엘을 세우심 (Exod 19–20장).",
     "authored": true,
-    "occursAt": ["rec6V51IWkgvAcnOU"],
-    "participants": ["recjNRR60PAuFtjha"]
+    "occursAt": [
+      "rec6V51IWkgvAcnOU"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "rangeLabel": "19–20"
+      }
+    ]
   },
   {
     "id": "authored-moses-paran-wandering",
@@ -93,8 +163,18 @@
     "yearLabel": "BC 1445–1406",
     "context": "시내산을 떠난 이스라엘이 바란 광야에서 40년 방랑을 시작함. 다브에라·기브롯 핫다아와 등 광야 진영 사건들이 여기서 발생함 (Num 10:12).",
     "authored": true,
-    "occursAt": ["authored-place-paran"],
-    "participants": ["recjNRR60PAuFtjha"]
+    "occursAt": [
+      "authored-place-paran"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "rangeLabel": "10:12"
+      }
+    ]
   },
   {
     "id": "authored-moses-kadesh-spies",
@@ -105,8 +185,18 @@
     "yearLabel": "BC 1445경",
     "context": "모세가 가데스에서 각 지파 대표 12명을 정탐꾼으로 보냄. 40일 후 귀환한 정탐꾼들이 부정적 보고를 하자 이스라엘이 두려워하며 광야 40년 형벌이 내려짐 (Num 13:1–14:35).",
     "authored": true,
-    "occursAt": ["recbFkcAeBmrPDZvG"],
-    "participants": ["recjNRR60PAuFtjha"]
+    "occursAt": [
+      "recbFkcAeBmrPDZvG"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "rangeLabel": "13:1–14:35"
+      }
+    ]
   },
   {
     "id": "authored-moses-spies-hebron",
@@ -117,8 +207,19 @@
     "yearLabel": "BC 1445경",
     "context": "모세가 보낸 정탐꾼들이 헤브론에 이르러 아낙의 후손들을 보고, 에스골 골짜기에서 큰 포도 한 송이를 잘라 가져옴 (Num 13:22–24).",
     "authored": true,
-    "occursAt": ["recJSfVnIcPibY6aX", "recRxBBePxyyV6TFO"],
-    "participants": ["recjNRR60PAuFtjha"]
+    "occursAt": [
+      "recJSfVnIcPibY6aX",
+      "recRxBBePxyyV6TFO"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "rangeLabel": "13:22–24"
+      }
+    ]
   },
   {
     "id": "authored-moses-plains-moab",
@@ -129,8 +230,22 @@
     "yearLabel": "BC 1406경",
     "context": "40년 광야 생활을 마친 이스라엘이 요단강 동편 모압 평지에 진영을 치며 가나안 입성을 준비함. 모세가 신명기 설교를 전함 (Num 36:13; Deut 1:1).",
     "authored": true,
-    "occursAt": ["recUn6eVJDoG4xI0j"],
-    "participants": ["recjNRR60PAuFtjha"]
+    "occursAt": [
+      "recUn6eVJDoG4xI0j"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "rangeLabel": "36:13"
+      },
+      {
+        "bookId": "rec2LnZw7EoTWReC0",
+        "rangeLabel": "1:1"
+      }
+    ]
   },
   {
     "id": "authored-moses-views-jericho",
@@ -141,8 +256,19 @@
     "yearLabel": "BC 1406경",
     "context": "하나님이 모세에게 느보산 비스가 꼭대기에서 이스라엘이 들어갈 가나안 전역을 조망하게 하심. 여리고 맞은편 요단 너머 땅을 눈으로만 봄 (Deut 34:1–4).",
     "authored": true,
-    "occursAt": ["authored-place-jericho", "recUn6eVJDoG4xI0j"],
-    "participants": ["recjNRR60PAuFtjha"]
+    "occursAt": [
+      "authored-place-jericho",
+      "recUn6eVJDoG4xI0j"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "rec2LnZw7EoTWReC0",
+        "rangeLabel": "34:1–4"
+      }
+    ]
   },
   {
     "id": "authored-moses-death-moab",
@@ -153,7 +279,17 @@
     "yearLabel": "BC 1406경",
     "context": "120세에 눈이 흐리지 않고 기력이 쇠하지 않은 모세가 모압 땅에서 죽어 벳브올 맞은편 골짜기에 장사됨. 매장지를 아는 자 없음 (Deut 34:5–8).",
     "authored": true,
-    "occursAt": ["recUn6eVJDoG4xI0j"],
-    "participants": ["recjNRR60PAuFtjha"]
+    "occursAt": [
+      "recUn6eVJDoG4xI0j"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "rec2LnZw7EoTWReC0",
+        "rangeLabel": "34:5–8"
+      }
+    ]
   }
 ]

@@ -8,8 +8,18 @@
     "yearLabel": "AD 26경",
     "context": "낙타 털 옷을 입고 메뚜기와 석청을 먹으며 유대 광야에서 '회개하라 천국이 가까왔느니라' 외침 (Matt 3:1–4).",
     "authored": true,
-    "occursAt": ["authored-place-judean-wilderness"],
-    "participants": ["recNRRITyGzXsl4yp"]
+    "occursAt": [
+      "authored-place-judean-wilderness"
+    ],
+    "participants": [
+      "recNRRITyGzXsl4yp"
+    ],
+    "books": [
+      {
+        "bookId": "recEJId5B98HV0x6D",
+        "rangeLabel": "3:1–4"
+      }
+    ]
   },
   {
     "id": "authored-john-baptist-jordan-baptism",
@@ -20,8 +30,18 @@
     "yearLabel": "AD 26–27경",
     "context": "요단강에서 수많은 군중에게 세례를 주고 예수도 세례를 받음. 하늘이 열리고 성령이 비둘기 같이 내림 (Matt 3:13–17).",
     "authored": true,
-    "occursAt": ["rec5dSSsOutWlH2fW"],
-    "participants": ["recNRRITyGzXsl4yp"]
+    "occursAt": [
+      "rec5dSSsOutWlH2fW"
+    ],
+    "participants": [
+      "recNRRITyGzXsl4yp"
+    ],
+    "books": [
+      {
+        "bookId": "recEJId5B98HV0x6D",
+        "rangeLabel": "3:13–17"
+      }
+    ]
   },
   {
     "id": "authored-john-baptist-machaerus-prison",
@@ -32,8 +52,18 @@
     "yearLabel": "AD 28경",
     "context": "헤롯 안티파스의 불법 결혼을 책망하다 마케루스 요새 감옥에 투옥됨 (Mark 6:17–18).",
     "authored": true,
-    "occursAt": ["authored-place-machaerus"],
-    "participants": ["recNRRITyGzXsl4yp"]
+    "occursAt": [
+      "authored-place-machaerus"
+    ],
+    "participants": [
+      "recNRRITyGzXsl4yp"
+    ],
+    "books": [
+      {
+        "bookId": "recNvq1wZtB13BbbW",
+        "rangeLabel": "6:17–18"
+      }
+    ]
   },
   {
     "id": "authored-john-baptist-machaerus-death",
@@ -44,7 +74,17 @@
     "yearLabel": "AD 28경",
     "context": "살로메의 춤 후 헤로디아의 청에 의해 마케루스에서 목이 잘림. 제자들이 시신을 거두어 예수께 알림 (Mark 6:27–29).",
     "authored": true,
-    "occursAt": ["authored-place-machaerus"],
-    "participants": ["recNRRITyGzXsl4yp"]
+    "occursAt": [
+      "authored-place-machaerus"
+    ],
+    "participants": [
+      "recNRRITyGzXsl4yp"
+    ],
+    "books": [
+      {
+        "bookId": "recNvq1wZtB13BbbW",
+        "rangeLabel": "6:27–29"
+      }
+    ]
   }
 ]

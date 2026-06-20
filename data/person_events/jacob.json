@@ -8,8 +8,18 @@
     "yearLabel": "BC 1930경",
     "context": "에서의 분노를 피해 외삼촌 라반에게로 도망가는 야곱. 이삭의 축복 후 출발 (Gen 28:10).",
     "authored": true,
-    "occursAt": ["authored-place-beersheba"],
-    "participants": ["recsU2ZSdzBvDqzgI"]
+    "occursAt": [
+      "authored-place-beersheba"
+    ],
+    "participants": [
+      "recsU2ZSdzBvDqzgI"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "28:10"
+      }
+    ]
   },
   {
     "id": "authored-jacob-bethel-dream",
@@ -20,8 +30,18 @@
     "yearLabel": "BC 1929경",
     "context": "돌베개를 베고 자던 야곱에게 하늘 사닥다리 환상과 언약의 말씀. 루스→벧엘로 이름 변경 (Gen 28:12–19).",
     "authored": true,
-    "occursAt": ["authored-place-bethel"],
-    "participants": ["recsU2ZSdzBvDqzgI"]
+    "occursAt": [
+      "authored-place-bethel"
+    ],
+    "participants": [
+      "recsU2ZSdzBvDqzgI"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "28:12–19"
+      }
+    ]
   },
   {
     "id": "authored-jacob-haran-sojourn",
@@ -32,8 +52,18 @@
     "yearLabel": "BC 1926경",
     "context": "외삼촌 라반 밑에서 레아·라헬과 결혼하고 12아들을 낳은 20년. 가축으로 재물 쌓음 (Gen 29–31).",
     "authored": true,
-    "occursAt": ["recyuzIRhPm1IFEu0"],
-    "participants": ["recsU2ZSdzBvDqzgI"]
+    "occursAt": [
+      "recyuzIRhPm1IFEu0"
+    ],
+    "participants": [
+      "recsU2ZSdzBvDqzgI"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "29–31"
+      }
+    ]
   },
   {
     "id": "authored-jacob-peniel-wrestling",
@@ -44,8 +74,18 @@
     "yearLabel": "BC 1906경",
     "context": "얍복강 나루에서 하나님의 사자와 밤새 씨름하여 이스라엘이라는 새 이름을 받음 (Gen 32:28–30).",
     "authored": true,
-    "occursAt": ["authored-place-peniel"],
-    "participants": ["recsU2ZSdzBvDqzgI"]
+    "occursAt": [
+      "authored-place-peniel"
+    ],
+    "participants": [
+      "recsU2ZSdzBvDqzgI"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "32:28–30"
+      }
+    ]
   },
   {
     "id": "authored-jacob-shechem-settlement",
@@ -56,8 +96,18 @@
     "yearLabel": "BC 1905경",
     "context": "에서와 재회 후 세겜 성읍 앞에 장막을 치고 하나님 제단을 쌓음 (Gen 33:18–20).",
     "authored": true,
-    "occursAt": ["recUySlrBva4ffoVs"],
-    "participants": ["recsU2ZSdzBvDqzgI"]
+    "occursAt": [
+      "recUySlrBva4ffoVs"
+    ],
+    "participants": [
+      "recsU2ZSdzBvDqzgI"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "33:18–20"
+      }
+    ]
   },
   {
     "id": "authored-jacob-bethel-return",
@@ -68,8 +118,18 @@
     "yearLabel": "BC 1900경",
     "context": "하나님 명령에 따라 벧엘로 올라가 제단을 쌓고 도망갈 때 한 서원을 이행 (Gen 35:1–7).",
     "authored": true,
-    "occursAt": ["authored-place-bethel"],
-    "participants": ["recsU2ZSdzBvDqzgI"]
+    "occursAt": [
+      "authored-place-bethel"
+    ],
+    "participants": [
+      "recsU2ZSdzBvDqzgI"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "35:1–7"
+      }
+    ]
   },
   {
     "id": "authored-jacob-hebron-return",
@@ -80,8 +140,18 @@
     "yearLabel": "BC 1843경",
     "context": "에서와 함께 아버지 이삭을 장사하기 위해 헤브론으로 귀환 (Gen 35:27–29).",
     "authored": true,
-    "occursAt": ["recJSfVnIcPibY6aX"],
-    "participants": ["recsU2ZSdzBvDqzgI"]
+    "occursAt": [
+      "recJSfVnIcPibY6aX"
+    ],
+    "participants": [
+      "recsU2ZSdzBvDqzgI"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "35:27–29"
+      }
+    ]
   },
   {
     "id": "authored-jacob-egypt-migration",
@@ -92,7 +162,17 @@
     "yearLabel": "BC 1876경",
     "context": "기근 중 요셉이 애굽 총리라는 소식을 듣고 온 가족 70인을 이끌고 애굽으로 이주 (Gen 46:1–7).",
     "authored": true,
-    "occursAt": ["recfrXyxhuYOczKTm"],
-    "participants": ["recsU2ZSdzBvDqzgI"]
+    "occursAt": [
+      "recfrXyxhuYOczKTm"
+    ],
+    "participants": [
+      "recsU2ZSdzBvDqzgI"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "46:1–7"
+      }
+    ]
   }
 ]

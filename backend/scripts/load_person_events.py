@@ -1,7 +1,7 @@
 """data/person_events/*.json을 읽어 인물 여정 저작 이벤트를 Neo4j에 멱등 적재한다.
 
 각 이벤트는 authored=true로 마킹한 Event 노드이며, OCCURS_AT→Place, HAS_PARTICIPANT→Person으로 연결된다.
-CONTAINS_BOOK 관계는 생성하지 않는다(ADR-0005)."""
+books 필드가 있으면 Book-[:CONTAINS_BOOK]->Event 관계도 생성한다(ADR-0005 보완)."""
 import glob as glob_module
 import json
 import os
@@ -69,6 +69,17 @@ def load_events(session, events):
                 person_id=person_id,
             )
 
+        for book_ref in ev.get("books", []):
+            session.run(
+                """
+                MATCH (b:Book {theographic_id: $book_id})
+                MATCH (e:Event {theographic_id: $ev_id})
+                MERGE (b)-[:CONTAINS_BOOK]->(e)
+                """,
+                book_id=book_ref["bookId"],
+                ev_id=ev["id"],
+            )
+
 
 def main():
     all_events = []
@@ -102,6 +113,11 @@ def main():
             "RETURN count(e) AS c",
             ids=new_ids,
         ).single()["c"]
+        contains_books = session.run(
+            "MATCH (:Book)-[:CONTAINS_BOOK]->(e:Event) WHERE e.theographic_id IN $ids "
+            "RETURN count(e) AS c",
+            ids=new_ids,
+        ).single()["c"]
 
     driver.close()
 
@@ -110,6 +126,7 @@ def main():
     print(f"  인물 여정 이벤트: {new_count}개")
     print(f"  OCCURS_AT 관계: {occurs}개")
     print(f"  HAS_PARTICIPANT 관계: {participants}개")
+    print(f"  CONTAINS_BOOK 관계: {contains_books}개")
 
 
 if __name__ == "__main__":

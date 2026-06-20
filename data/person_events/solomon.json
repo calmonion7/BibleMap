@@ -8,8 +8,18 @@
     "yearLabel": "BC 970경",
     "context": "즉위 초 기브온 산당에서 일천번제 드린 후 꿈에 하나님이 나타나 소원을 물으심. 지혜를 구함 (1Kgs 3:4–14).",
     "authored": true,
-    "occursAt": ["authored-place-gibeon"],
-    "participants": ["rec0BAacWSGBXZ0zI"]
+    "occursAt": [
+      "authored-place-gibeon"
+    ],
+    "participants": [
+      "rec0BAacWSGBXZ0zI"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "3:4–14"
+      }
+    ]
   },
   {
     "id": "authored-solomon-jerusalem-temple-build",
@@ -20,8 +30,18 @@
     "yearLabel": "BC 966경",
     "context": "다윗의 유지를 이어 모리아산에 7년 공사로 야훼 성전을 완공. 두로 왕 히람과 협력 (1Kgs 6:1–38).",
     "authored": true,
-    "occursAt": ["recL1WV82pXaRBQ59"],
-    "participants": ["rec0BAacWSGBXZ0zI"]
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "rec0BAacWSGBXZ0zI"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "6:1–38"
+      }
+    ]
   },
   {
     "id": "authored-solomon-jerusalem-palace",
@@ -32,8 +52,18 @@
     "yearLabel": "BC 960경",
     "context": "13년에 걸쳐 레바논 숲 궁, 심판 장소, 바로의 딸 거처 등 왕궁 단지를 완성 (1Kgs 7:1–12).",
     "authored": true,
-    "occursAt": ["recL1WV82pXaRBQ59"],
-    "participants": ["rec0BAacWSGBXZ0zI"]
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "rec0BAacWSGBXZ0zI"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "7:1–12"
+      }
+    ]
   },
   {
     "id": "authored-solomon-jerusalem-temple-dedication",
@@ -44,8 +74,18 @@
     "yearLabel": "BC 959경",
     "context": "성전 완공 후 법궤를 봉안하고 긴 기도를 드림. 불이 내려 번제물을 사름 (1Kgs 8:22–66).",
     "authored": true,
-    "occursAt": ["recL1WV82pXaRBQ59"],
-    "participants": ["rec0BAacWSGBXZ0zI"]
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "rec0BAacWSGBXZ0zI"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "8:22–66"
+      }
+    ]
   },
   {
     "id": "authored-solomon-ezion-geber-fleet",
@@ -56,7 +96,17 @@
     "yearLabel": "BC 955경",
     "context": "히람의 선원들과 함께 홍해 아카바만 에시온게벨에서 배를 만들어 오빌에서 금을 가져옴 (1Kgs 9:26–28).",
     "authored": true,
-    "occursAt": ["authored-place-ezion-geber"],
-    "participants": ["rec0BAacWSGBXZ0zI"]
+    "occursAt": [
+      "authored-place-ezion-geber"
+    ],
+    "participants": [
+      "rec0BAacWSGBXZ0zI"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "9:26–28"
+      }
+    ]
   }
 ]

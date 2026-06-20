@@ -8,8 +8,22 @@
     "yearLabel": "BC 2091경",
     "context": "하나님이 아브람에게 고향과 친척을 떠나라 명령하시며 복의 근원이 될 것을 약속하심 (Gen 12:1–3; 행 7:2–4).",
     "authored": true,
-    "occursAt": ["recgQtoCtBjbsPwAw"],
-    "participants": ["reccdFYIq50NyxNej"]
+    "occursAt": [
+      "recgQtoCtBjbsPwAw"
+    ],
+    "participants": [
+      "reccdFYIq50NyxNej"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "12:1–3"
+      },
+      {
+        "bookId": "recF09FMjRr0gzjQk",
+        "rangeLabel": "7:2–4"
+      }
+    ]
   },
   {
     "id": "authored-abraham-departs-haran",
@@ -20,8 +34,18 @@
     "yearLabel": "BC 2091경",
     "context": "데라가 죽은 뒤 75세의 아브람이 사래·롯과 함께 하란을 떠나 하나님이 지시하신 가나안 땅으로 향함 (Gen 12:4–5).",
     "authored": true,
-    "occursAt": ["recyuzIRhPm1IFEu0"],
-    "participants": ["reccdFYIq50NyxNej"]
+    "occursAt": [
+      "recyuzIRhPm1IFEu0"
+    ],
+    "participants": [
+      "reccdFYIq50NyxNej"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "12:4–5"
+      }
+    ]
   },
   {
     "id": "authored-abraham-shechem-promise",
@@ -32,8 +56,18 @@
     "yearLabel": "BC 2090경",
     "context": "가나안에 처음 들어온 아브람이 세겜 모레 상수리나무에서 '이 땅을 네 자손에게 주리라'는 약속을 받고 단을 쌓음 (Gen 12:6–7).",
     "authored": true,
-    "occursAt": ["recUySlrBva4ffoVs"],
-    "participants": ["reccdFYIq50NyxNej"]
+    "occursAt": [
+      "recUySlrBva4ffoVs"
+    ],
+    "participants": [
+      "reccdFYIq50NyxNej"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "12:6–7"
+      }
+    ]
   },
   {
     "id": "authored-abraham-bethel-altar",
@@ -44,8 +78,18 @@
     "yearLabel": "BC 2090경",
     "context": "세겜 이후 남쪽으로 이동해 벧엘 동편에 장막을 치고 단을 쌓아 여호와의 이름을 부름 (Gen 12:8).",
     "authored": true,
-    "occursAt": ["recJK76HLZSOzxTWW"],
-    "participants": ["reccdFYIq50NyxNej"]
+    "occursAt": [
+      "recJK76HLZSOzxTWW"
+    ],
+    "participants": [
+      "reccdFYIq50NyxNej"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "12:8"
+      }
+    ]
   },
   {
     "id": "authored-abraham-egypt-famine",
@@ -56,8 +100,18 @@
     "yearLabel": "BC 2088경",
     "context": "가나안에 기근이 들자 아브람이 사래를 누이라 속이며 애굽으로 내려감. 바로가 사래를 데려가지만 하나님의 재앙으로 돌려보냄 (Gen 12:10–20).",
     "authored": true,
-    "occursAt": ["recfrXyxhuYOczKTm"],
-    "participants": ["reccdFYIq50NyxNej"]
+    "occursAt": [
+      "recfrXyxhuYOczKTm"
+    ],
+    "participants": [
+      "reccdFYIq50NyxNej"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "12:10–20"
+      }
+    ]
   },
   {
     "id": "authored-abraham-lot-separation",
@@ -68,8 +122,18 @@
     "yearLabel": "BC 2086경",
     "context": "목자들 간 다툼으로 롯은 요단 평지를 택하고, 아브람은 헤브론 마므레 상수리 수풀에 장막을 치며 단을 쌓음 (Gen 13:11–18).",
     "authored": true,
-    "occursAt": ["authored-place-mamre"],
-    "participants": ["reccdFYIq50NyxNej"]
+    "occursAt": [
+      "authored-place-mamre"
+    ],
+    "participants": [
+      "reccdFYIq50NyxNej"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "13:11–18"
+      }
+    ]
   },
   {
     "id": "authored-abraham-lot-rescue",
@@ -80,8 +144,18 @@
     "yearLabel": "BC 2085경",
     "context": "소돔을 약탈한 네 왕에게 사로잡힌 롯을 아브람이 318명의 가신을 이끌고 단까지 추격해 구출하고 마므레로 귀환 (Gen 14:14–16).",
     "authored": true,
-    "occursAt": ["authored-place-mamre"],
-    "participants": ["reccdFYIq50NyxNej"]
+    "occursAt": [
+      "authored-place-mamre"
+    ],
+    "participants": [
+      "reccdFYIq50NyxNej"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "14:14–16"
+      }
+    ]
   },
   {
     "id": "authored-abraham-covenant-ceremony",
@@ -92,8 +166,18 @@
     "yearLabel": "BC 2082경",
     "context": "아브람이 제물을 쪼개 늘어놓자 불 횃불이 지나가며 가나안 땅을 주겠다는 하나님의 언약이 체결됨 (Gen 15:9–21).",
     "authored": true,
-    "occursAt": ["authored-place-mamre"],
-    "participants": ["reccdFYIq50NyxNej"]
+    "occursAt": [
+      "authored-place-mamre"
+    ],
+    "participants": [
+      "reccdFYIq50NyxNej"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "15:9–21"
+      }
+    ]
   },
   {
     "id": "authored-abraham-hagar-wilderness",
@@ -104,8 +188,18 @@
     "yearLabel": "BC 2080경",
     "context": "사래에게 학대받은 하갈이 광야로 도망가 천사를 만나고 돌아오며, 이스마엘을 낳음. 훗날 브엘세바 인근 광야에서 천사의 도움을 받음 (Gen 16:6–14; 21:14–19).",
     "authored": true,
-    "occursAt": ["authored-place-beersheba"],
-    "participants": ["reccdFYIq50NyxNej"]
+    "occursAt": [
+      "authored-place-beersheba"
+    ],
+    "participants": [
+      "reccdFYIq50NyxNej"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "16:6–14"
+      }
+    ]
   },
   {
     "id": "authored-abraham-sodom-intercession",
@@ -116,8 +210,18 @@
     "yearLabel": "BC 2067경",
     "context": "마므레 상수리 나무 곁에서 세 사람(하나님·두 천사)을 대접한 아브라함이 소돔 멸망 소식을 듣고 중보기도를 드림 (Gen 18:1–33).",
     "authored": true,
-    "occursAt": ["authored-place-mamre"],
-    "participants": ["reccdFYIq50NyxNej"]
+    "occursAt": [
+      "authored-place-mamre"
+    ],
+    "participants": [
+      "reccdFYIq50NyxNej"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "18:1–33"
+      }
+    ]
   },
   {
     "id": "authored-abraham-beersheba-well",
@@ -128,8 +232,18 @@
     "yearLabel": "BC 2060경",
     "context": "아비멜렉과 우물에 관한 분쟁을 해결하고 브엘세바에서 언약을 맺음. '브엘세바'(일곱 우물/맹세의 우물)라는 이름의 기원 (Gen 21:22–34).",
     "authored": true,
-    "occursAt": ["authored-place-beersheba"],
-    "participants": ["reccdFYIq50NyxNej"]
+    "occursAt": [
+      "authored-place-beersheba"
+    ],
+    "participants": [
+      "reccdFYIq50NyxNej"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "21:22–34"
+      }
+    ]
   },
   {
     "id": "authored-abraham-isaac-binding",
@@ -140,8 +254,18 @@
     "yearLabel": "BC 2055경",
     "context": "하나님이 이삭을 제물로 바치라 명하시자 아브라함이 모리아(훗날 예루살렘 성전산) 산에 올라 순종을 보임. 하나님이 숫양을 대신 예비하심 (Gen 22:1–14).",
     "authored": true,
-    "occursAt": ["recL1WV82pXaRBQ59"],
-    "participants": ["reccdFYIq50NyxNej"]
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "reccdFYIq50NyxNej"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "22:1–14"
+      }
+    ]
   },
   {
     "id": "authored-abraham-sarah-burial",
@@ -152,7 +276,17 @@
     "yearLabel": "BC 2030경",
     "context": "127세에 세상을 떠난 사라를 위해 아브라함이 헷 사람 에브론에게서 막벨라 밭을 사고 동굴에 장사지냄 — 가나안에서 얻은 최초의 소유지 (Gen 23:1–20).",
     "authored": true,
-    "occursAt": ["recJSfVnIcPibY6aX"],
-    "participants": ["reccdFYIq50NyxNej"]
+    "occursAt": [
+      "recJSfVnIcPibY6aX"
+    ],
+    "participants": [
+      "reccdFYIq50NyxNej"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "23:1–20"
+      }
+    ]
   }
 ]
