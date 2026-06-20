@@ -43,12 +43,25 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
   const [dismissedFilter, setDismissedFilter] = useState(null)
   const [dismissedPersonFilter, setDismissedPersonFilter] = useState(null)
   const containerRef = useRef(null)
+  const groupRefs = useRef({})
 
   useEffect(() => {
     apiGet('/events')
       .then(data => setEvents(data))
       .catch(() => setError(true))
   }, [])
+
+  useEffect(() => {
+    if (!selectedNode || events.length === 0) return
+    const ev = events.find(e => e.id === selectedNode)
+    if (!ev) return
+    const key = ev.startDate ?? ''
+    const raf = requestAnimationFrame(() => {
+      setOpenGroup(key)
+      groupRefs.current[key]?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    })
+    return () => cancelAnimationFrame(raf)
+  }, [selectedNode, events])
 
   useEffect(() => {
     if (openGroup === null && verseView === null) return
@@ -266,7 +279,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
         const groupKey = startDate
 
         return (
-          <div key={groupKey}>
+          <div key={groupKey} ref={el => { groupRefs.current[groupKey] = el }}>
           <div
             style={{
               display: 'flex',

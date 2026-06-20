@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Map, Clock, Search, X, BookOpen } from 'lucide-react'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
@@ -76,6 +76,15 @@ function App() {
       const pick = highlightIndex >= 0 ? filteredResults[highlightIndex] : filteredResults[0]
       if (pick) handleSelectResult(pick)
     }
+  }
+
+  const swipeStartY = useRef(null)
+  function onSheetTouchStart(e) { swipeStartY.current = e.touches[0].clientY }
+  function onSheetTouchEnd(e) {
+    if (swipeStartY.current == null) return
+    const dy = e.changedTouches[0].clientY - swipeStartY.current
+    if (dy > 80) closePanel()
+    swipeStartY.current = null
   }
 
   const NAV_H = 48
@@ -249,7 +258,8 @@ function App() {
       </div>
 
       {/* 오버레이 패널 — 데스크톱: 우측 슬라이드인 / 모바일: 하단 시트(지도·마커가 위에 보이도록) */}
-      <div style={{
+      <div
+        style={{
           position: 'absolute', background: 'white', overflowY: 'auto', zIndex: 10,
           transition: 'transform 0.25s ease',
           ...(isMobile
@@ -263,7 +273,19 @@ function App() {
                 boxShadow: '-3px 0 12px rgba(0,0,0,0.15)',
                 transform: selectedNode ? 'translateX(0)' : 'translateX(100%)',
               }),
-        }}>
+        }}
+        onTouchStart={isMobile ? onSheetTouchStart : undefined}
+        onTouchEnd={isMobile ? onSheetTouchEnd : undefined}
+      >
+          {isMobile && (
+            <div style={{
+              position: 'sticky', top: 0, zIndex: 3,
+              display: 'flex', justifyContent: 'center', padding: '8px 0 4px',
+              background: 'white',
+            }}>
+              <div style={{ width: 36, height: 4, borderRadius: 2, background: '#ddd' }} />
+            </div>
+          )}
           <button
             onClick={closePanel}
             style={{
