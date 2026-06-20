@@ -1,5 +1,5 @@
 ---
-last_mapped_commit: 06b4012804c00a45ea7dfda9761d014ac91b11fb
+last_mapped_commit: cecf0d7de87192b638f428eb7e708e94a58214a6
 mapped: 2026-06-20
 ---
 
@@ -72,6 +72,8 @@ jobs:
 ## ESLint
 
 `/Users/calmonion/Project/BibleMap/frontend/eslint.config.js` — flat config 형식:
-- `eslint-plugin-react-hooks` 포함 (훅 규칙 검사)
+- `eslint-plugin-react-hooks` v7 포함 — 훅 규칙 검사 (effect 동기 본문 setState 금지 등)
+- `eslint-plugin-react-refresh` 포함
 - Prettier 설정 없음 — 포매팅은 툴링으로 강제하지 않음
-- `package.json` scripts에 `lint` 항목 존재
+- `package.json` scripts에 `lint` 항목 존재: `eslint .`
+- 검사 대상: `**/*.{js,jsx}` (`.js` 커스텀 훅 파일 포함)

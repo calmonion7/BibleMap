@@ -1,146 +1,137 @@
 ---
-last_mapped_commit: 06b4012804c00a45ea7dfda9761d014ac91b11fb
+last_mapped_commit: cecf0d7de87192b638f428eb7e708e94a58214a6
 mapped: 2026-06-20
 ---
 
-# BibleMap 외부 연동
+# External Integrations
 
-## 1. Neo4j (그래프 데이터베이스)
+**Analysis Date:** 2026-06-20
 
-### 연결 정보
-- **드라이버**: `neo4j==6.2.0` (Python 공식 드라이버)
-- **프로토콜**: Bolt (`bolt://`)
-- **기본 URI**: `bolt://localhost:7687` (로컬), `bolt://neo4j:7687` (Docker 내부)
-- **인증**: 사용자명/비밀번호 (`NEO4J_USER` / `NEO4J_PASSWORD`)
-- **연결 관리**: 싱글턴 드라이버 패턴 (`backend/app/db.py` → `get_driver()`)
+## APIs & External Services
 
-### 사용 위치
-- **앱 런타임** (`backend/app/routes/`): 모든 API 라우터가 `get_driver()`를 통해 세션 생성
-  - `nodes.py` — `GET /node/{id}`, `/node/{id}/places`, `/node/{id}/neighbors/grouped`, `/person/{id}/event-ids`
-  - `events.py` — `GET /events`, `/event/{id}/verses` (lru_cache로 1회 쿼리 후 메모리 유지)
-  - `search.py` — `GET /search`
-  - `books.py` — `GET /books`
-- **데이터 파이프라인 스크립트** (`backend/scripts/`): 직접 `GraphDatabase.driver()` 생성
-  - `load_theographic.py`, `load_books.py`, `load_authored_events.py`, `load_verse_events.py`, `inject_ko_names.py`, `inject_person_traits.py`, `inject_book_context.py`
-  - `generate_book_events.py` — 스크립트 중 Neo4j 조회 + Claude API 조합
+**Graph Database:**
+- Neo4j 5 — 전체 성경 그래프 데이터 저장 및 쿼리
+  - SDK/Client: `neo4j==6.2.0` (Python 공식 드라이버)
+  - Auth: `NEO4J_USER` / `NEO4J_PASSWORD` 환경변수
+  - 연결 파일: `backend/app/db.py`
 
-### 노드 레이블 및 주요 관계
-앱이 실제로 쿼리하는 레이블: `Person`, `Place`, `Event`, `PeopleGroup`, `Book`
+**성경 메타데이터 소스 (빌드타임 전용):**
+- Theographic Bible Metadata — GitHub Raw JSON 엔드포인트
+  - 베이스: `https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/`
+  - 수집 파일: `people.json`, `places.json`, `events.json`, `peopleGroups.json`, `books.json`, `verses.json`
+  - 호출 스크립트: `backend/scripts/load_theographic.py`, `backend/scripts/load_books.py`, `backend/scripts/generate_book_context.py`, `backend/scripts/generate_person_traits.py`, `backend/scripts/generate_event_verses.py`, `backend/scripts/generate_verse_events.py`
+  - 호출 방식: `urllib.request.urlopen()` (표준 라이브러리)
+  - 런타임 호출: 없음
 
-관계 유형:
-- `HAS_PARTICIPANT` (Event → Person)
-- `OCCURS_AT` (Event → Place)
-- `CONTAINS_BOOK` (Book → Event)
-- `MEMBER_OF` (Person → PeopleGroup)
-- `PARENT_OF` / `CHILD_OF` (Person ↔ Person)
-- `SIBLING_OF`, `PARTNER_OF` (Person ↔ Person)
-- `PART_OF` (Event → Event)
+**성경 구절 본문 API (빌드타임 prebake 전용):**
+- GetBible API v2 — 구절 원문 제공
+  - 베이스 URL: `https://api.getbible.net/v2/`
+  - 엔드포인트 패턴: `/{translation_slug}/{book_order}/{chapter}.json`
+  - 번역 슬러그: `korean` (한국어), `kjv` (영어)
+  - User-Agent: `Mozilla/5.0 (compatible; BibleMap-build/1.0)` (기본 Python UA는 403 반환)
+  - 호출 스크립트: `backend/scripts/generate_verse_text.py`
+  - 출력: `data/event_verses/events.json`, `data/book_context/books.json`, `data/character_traits/people.json`에 `textKo`/`textEn` 필드 인라인 저장 (ADR-0003)
+  - 런타임 호출: 없음
 
-### 인덱스
-앱 시작 시 `lifespan`에서 자동 생성 (`backend/app/main.py`):
-- `person_tid`, `place_tid`, `event_tid`, `pg_tid`, `book_tid` — 각 레이블의 `theographic_id` 속성
+**LLM (빌드타임 데이터 생성 전용):**
+- Anthropic Claude API — 성경 데이터 구조화 생성
+  - SDK: `anthropic` Python 패키지 (`requirements.txt` 미포함, 스크립트 전용)
+  - 모델: `claude-haiku-4-5-20251001`
+  - Auth: `ANTHROPIC_API_KEY` 환경변수
+  - 사용 스크립트:
+
+  | 스크립트 | 출력 파일 | 생성 내용 |
+  |---------|---------|---------|
+  | `backend/scripts/generate_book_context.py` | `data/book_context/books.json` | 권별 배경·주제·대표 구절 |
+  | `backend/scripts/generate_person_traits.py` | `data/character_traits/people.json` | 인물 성품·근거 구절 |
+  | `backend/scripts/generate_book_events.py` | `data/book_events/books.json` | 추정연도 책 → 연결 사건 매핑 |
+  | `backend/scripts/generate_verse_events.py` | `data/verse_events/events.json` | 고아 구절 → 사건 도출 |
+
+  - 런타임 호출: 없음
+
+**지도 타일 (런타임, 브라우저):**
+- ESRI NatGeo World Map — 래스터 타일
+  - URL 패턴: `https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}`
+  - 호출 위치: `frontend/src/MapView.jsx` (MapLibre GL 스타일 소스)
+  - 인증: 없음 (공개 엔드포인트)
+- Protomaps Basemaps Assets — 글꼴(glyph) CDN
+  - URL 패턴: `https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf`
+  - 호출 위치: `frontend/src/MapView.jsx` (MapLibre GL style.glyphs)
+
+## Data Storage
+
+**Databases:**
+- Neo4j 5 (그래프 DB)
+  - 연결: `bolt://neo4j:7687` (Docker 내부), `bolt://localhost:7687` (로컬)
+  - 환경변수: `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD`
+  - 클라이언트: `neo4j` Python 드라이버, 싱글턴 패턴 (`backend/app/db.py`)
+  - 데이터 영속화: Docker named volume `neo4j_data`
+
+**File Storage:**
+- JSON 오버레이 파일 — `data/` 디렉터리 (Docker 볼륨 마운트 `./data:/app/data`)
+  - `data/book_events/books.json` — 책별 연결 사건 ID 목록
+  - `data/book_years_approx/books.json` — 추정 집필 연도
+  - `data/event_verses/events.json` — 사건별 근거 구절 + 구절 본문
+  - `data/book_context/books.json` — 권별 배경·주제·대표 구절 본문
+  - `data/character_traits/people.json` — 인물 성품 + 근거 구절 본문
+  - `data/authored_events/` — 집필 배경 사건 데이터
+  - `data/verse_events/events.json` — 구절 → 사건 매핑
+
+**Caching:**
+- 메모리 캐시 (`functools.lru_cache(maxsize=1)`) — `backend/app/overlays.py` 오버레이 파일 1회 로드
+- 메모리 캐시 — `backend/app/routes/events.py` `_compute_events()` 앱 재시작 전까지 유지
+- HTTP 캐시 헤더: `/events`, `/event/{id}/verses` → `Cache-Control: max-age=300`
+
+## Authentication & Identity
+
+**Auth Provider:**
+- 없음 — 앱 자체 인증 없음. 읽기 전용 공개 서비스.
+- FastAPI CORS: `allow_origins=["*"]`, `allow_methods=["GET"]` (`backend/app/main.py`)
+
+## Monitoring & Observability
+
+**Error Tracking:**
+- 없음 (외부 서비스 미사용)
+
+**Logs:**
+- `logging` 표준 라이브러리 — 앱 시작 시 Neo4j 인덱스 생성 실패 로그 (`backend/app/main.py`)
+
+## CI/CD & Deployment
+
+**Hosting:**
+- 셀프-호스트 macOS 서버
+
+**CI Pipeline:**
+- GitHub Actions (`self-hosted` runner)
+  - 트리거: `push` to `main`
+  - 파일: `.github/workflows/deploy.yml`
+  - 동작: `git fetch origin && git reset --hard origin/main && bash deploy.sh`
+
+**Deployment:**
+- `deploy.sh` 스크립트 (루트)
+- 프론트엔드: `frontend/dist` 정적 빌드 → nginx 볼륨 마운트
+- 백엔드: Docker Compose `api` 서비스 재빌드
+
+## Webhooks & Callbacks
+
+**Incoming:**
+- 없음
+
+**Outgoing:**
+- 없음
+
+## Environment Configuration
+
+**Required env vars:**
+- `NEO4J_PASSWORD` — `.env` 파일 (루트), `docker-compose.yml` 참조
+- `ANTHROPIC_API_KEY` — 데이터 생성 스크립트 실행 시만 필요 (앱 런타임 불필요)
+
+**Build-time env vars:**
+- `VITE_API_URL` — `frontend/.env.production` (`/api`)
+
+**Secrets location:**
+- `.env` (루트, `.gitignore` 처리) — `NEO4J_PASSWORD`
 
 ---
 
-## 2. Theographic Bible Metadata (GitHub Raw)
-
-데이터 파이프라인 스크립트가 빌드타임에 호출하는 공개 GitHub 원시 JSON 엔드포인트.
-
-| 스크립트 | URL |
-|---------|-----|
-| `load_theographic.py` | `https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/people.json` |
-| `load_theographic.py` | `https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/places.json` |
-| `load_theographic.py` | `https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/events.json` |
-| `load_theographic.py` | `https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/peopleGroups.json` |
-| `load_books.py` | `.../books.json`, `.../events.json` |
-| `generate_book_context.py` | `.../books.json` |
-| `generate_person_traits.py` | `.../people.json`, `.../events.json` |
-| `generate_verse_events.py` | `.../books.json`, `.../events.json`, `.../verses.json` |
-
-호출 방식: `urllib.request.urlopen()` (표준 라이브러리). 런타임에는 호출 없음.
-
----
-
-## 3. Anthropic Claude API (데이터 생성 전용)
-
-### 연결 정보
-- **SDK**: `anthropic` Python 패키지 (requirements.txt 미포함 — 스크립트 전용 설치)
-- **모델**: `claude-haiku-4-5-20251001` (4개 스크립트 공통)
-- **인증**: `ANTHROPIC_API_KEY` 환경변수
-
-### 사용 스크립트
-| 스크립트 | 출력 | 용도 |
-|---------|------|------|
-| `backend/scripts/generate_book_context.py` | `data/book_context/books.json` | 권별 시대 배경·주제·대표 구절 |
-| `backend/scripts/generate_person_traits.py` | `data/character_traits/people.json` | 인물별 성품·근거 구절 |
-| `backend/scripts/generate_book_events.py` | `data/book_events/books.json` | 추정연도 책 → 연결 사건 매핑 |
-| `backend/scripts/generate_verse_events.py` | `data/verse_events/events.json` | 고아 구절에서 사건 도출 |
-
-모두 빌드타임 1회성 실행 스크립트. 앱 런타임에는 Claude API 호출 없음.
-
----
-
-## 4. GetBible API (구절 본문 prebake 전용)
-
-### 연결 정보
-- **베이스 URL**: `https://api.getbible.net/v2/`
-- **엔드포인트 패턴**: `/{translation_slug}/{book_order}/{chapter}.json`
-- **번역 슬러그**: `korean` (한국어), `kjv` (영어)
-- **User-Agent**: `Mozilla/5.0 (compatible; BibleMap-build/1.0)` (기본 Python UA는 403 반환)
-- **호출 방식**: `urllib.request.urlopen()`, 타임아웃 30초, 장(chapter) 단위 캐시
-
-### 사용 스크립트
-- `backend/scripts/generate_verse_text.py` — `data/event_verses/events.json`, `data/book_context/books.json`, `data/character_traits/people.json`에 구절 본문(`textKo`/`textEn`)을 인라인 저장 (ADR-0003)
-
-앱 런타임에는 GetBible API 호출 없음. 본문은 JSON 파일에 prebake되어 제공된다.
-
----
-
-## 5. 데이터 파이프라인 스크립트 실행 순서
-
-```
-# 1. Theographic 원본 데이터 로드
-python3 backend/scripts/load_theographic.py
-python3 backend/scripts/load_books.py
-
-# 2. 한국어 이름 주입
-python3 backend/scripts/inject_ko_names.py
-
-# 3. LLM 생성 데이터 (ANTHROPIC_API_KEY 필요)
-python3 backend/scripts/generate_book_context.py
-python3 backend/scripts/generate_person_traits.py
-python3 backend/scripts/generate_book_events.py
-python3 backend/scripts/generate_verse_events.py
-
-# 4. 구절 본문 prebake (getbible API)
-python3 backend/scripts/generate_verse_text.py
-
-# 5. 추정 연도 책 구절 구조 생성
-python3 backend/scripts/generate_approx_book_verses.py
-
-# 6. LLM 생성 데이터 Neo4j 주입
-python3 backend/scripts/inject_book_context.py
-python3 backend/scripts/inject_person_traits.py
-python3 backend/scripts/load_authored_events.py
-python3 backend/scripts/load_verse_events.py
-```
-
----
-
-## 6. 런타임 API 엔드포인트 요약
-
-앱 런타임에 외부 호출은 없음. 백엔드가 노출하는 내부 API:
-
-| 메서드 | 경로 | 캐시 |
-|--------|------|------|
-| GET | `/events` | `Cache-Control: max-age=300` |
-| GET | `/event/{event_id}/verses` | `Cache-Control: max-age=300` |
-| GET | `/books` | `Cache-Control: no-store` |
-| GET | `/node/{node_id}` | — |
-| GET | `/node/{node_id}/places` | — |
-| GET | `/node/{node_id}/neighbors/grouped` | — |
-| GET | `/person/{node_id}/event-ids` | — |
-| GET | `/search?q=` | — |
-
-프론트엔드는 `frontend/src/api.js`의 `apiGet()` 헬퍼를 통해 단일 베이스 URL(`VITE_API_URL`)로 접근.
-프로덕션에서는 nginx가 `/api/` → `http://api:8000/`으로 프록시.
+*Integration audit: 2026-06-20*

@@ -1,5 +1,5 @@
 ---
-last_mapped_commit: 06b4012804c00a45ea7dfda9761d014ac91b11fb
+last_mapped_commit: cecf0d7de87192b638f428eb7e708e94a58214a6
 mapped: 2026-06-20
 ---
 
@@ -9,6 +9,7 @@ mapped: 2026-06-20
 
 ### 프론트엔드 (JavaScript/JSX)
 - React 컴포넌트 파일: PascalCase (`SidePanel.jsx`, `MapView.jsx`, `BibleOverviewView.jsx`)
+- 커스텀 훅 파일: camelCase, `use` 접두사 (`useNodeSelection.js`, `useSearch.js`)
 - 비컴포넌트 JS 파일: camelCase (`api.js`, `theme.js`, `convexHull.js`)
 - 상수: SCREAMING_SNAKE_CASE (`MOBILE_QUERY`, `SHEET_VH`, `SELECT_HL`)
 - Props 이름: camelCase (`onSelectNode`, `nodeId`, `verseLang`, `setVerseLang`)
@@ -26,11 +27,13 @@ mapped: 2026-06-20
 - 진입점: `/frontend/src/main.jsx`
 - 전역 상수·컬러: `/frontend/src/theme.js`
 - fetch 헬퍼: `/frontend/src/api.js`
+- 커스텀 훅: `/frontend/src/useNodeSelection.js`, `/frontend/src/useSearch.js`
 - 순수 알고리즘 유틸: `/frontend/src/convexHull.js`
 
 ### 백엔드
 - FastAPI 앱·lifespan: `/backend/app/main.py`
 - Neo4j 드라이버 싱글턴: `/backend/app/db.py`
+- 오버레이 데이터 로더: `/backend/app/overlays.py`
 - 라우트: `/backend/app/routes/` (리소스별 1파일)
 - 데이터 로딩·생성 일회성 스크립트: `/backend/scripts/` (라우트가 아님)
 
@@ -47,6 +50,9 @@ import MapView from './MapView'
 // 내부 모듈: 이름 있는 임포트
 import { TYPE_ORDER, typeColor, typeKo, SELECT_HL } from './theme'
 import { apiGet } from './api'
+// 커스텀 훅: 이름 있는 임포트
+import { useNodeSelection } from './useNodeSelection'
+import { useSearch } from './useSearch'
 ```
 
 ### 백엔드
@@ -58,6 +64,72 @@ from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import JSONResponse
 # 내부 모듈: 상대 임포트
 from ..db import get_driver
+from .. import overlays
+```
+
+## 커스텀 훅 패턴
+
+커스텀 훅은 `/frontend/src/` 최상위에 `use` 접두사 `.js` 파일로 위치. 현재 2개 존재.
+
+### 훅 구조 규칙
+
+- **named export** 사용 — 기본 export 아님: `export function useSearch() {}`
+- **관련 state를 하나의 훅에 집약**: 훅은 state, ref, effect, 파생 computed값, 핸들러 함수를 함께 반환
+- **모든 state/ref/effect를 훅 파일 안에 선언** — 호출 컴포넌트로 state를 유출하지 않음
+- **반환값은 객체 리터럴**: 소비 컴포넌트에서 구조 분해로 사용
+  ```js
+  return {
+    searchQuery, searchResults, searchError, searchLoading,
+    showDropdown, setShowDropdown,
+    ...
+    onSearchInput, clearSearch,
+  }
+  ```
+- **파생 computed 값도 훅 안에서 계산** 후 반환:
+  ```js
+  const typeCounts = searchResults.reduce(...)
+  const filteredResults = typeFilter ? searchResults.filter(...) : searchResults
+  return { ..., typeCounts, filteredResults }
+  ```
+
+### useCallback 안정화 패턴
+
+참조 안정성이 필요한 핸들러는 `useCallback([], [])` (빈 deps) + `useRef`로 최신값을 읽는 패턴:
+```js
+const selectedNodeRef = useRef(null)
+useEffect(() => { selectedNodeRef.current = selectedNode }, [selectedNode])
+
+const selectNode = useCallback((id) => {
+  if (id === selectedNodeRef.current) return   // ref로 최신값 읽기
+  if (selectedNodeRef.current) setHistory(h => [...h, selectedNodeRef.current])
+  setSelectedNode(id)
+}, [])   // deps 없음 — ref로 안정화
+```
+이유: `[]` deps useCallback이 `selectedNode` state를 직접 참조하면 자식의 `useEffect`가 재실행되어 fetch abort 버그 발생. ref가 이를 회피.
+
+### 안정성이 불필요한 핸들러
+
+히스토리 리셋처럼 자식 재렌더를 유발해도 무방한 함수는 일반 `function` 선언:
+```js
+function selectNodeFresh(id) {
+  setHistory([])
+  setSelectedNode(id)
+  ...
+}
+```
+
+### setState 위치 규칙 (react-hooks v7)
+
+effect 동기 본문에서 `setState` 직접 호출 금지. `setTimeout` / `async` 콜백 안에서만:
+```js
+useEffect(() => {
+  const timer = setTimeout(async () => {
+    setSearchLoading(true)          // OK — async 콜백 안
+    ...
+    setSearchLoading(false)
+  }, 250)
+  return () => clearTimeout(timer)
+}, [searchQuery])
 ```
 
 ## React 컴포넌트 패턴
@@ -91,6 +163,30 @@ from ..db import get_driver
 - **상태 끌어올리기**: `verseLang`/`setVerseLang`는 `App.jsx`가 소유, props로 전달
 - Redux, Context API, 외부 상태관리 라이브러리 없음
 
+## 인라인 스타일 관행
+
+**모든 스타일 = 인라인 `style` 객체.** 별도 CSS 파일, CSS 모듈, Tailwind 없음.
+
+- **색상값은 16진수 문자열 리터럴** (`'#1a1a2e'`, `'#7c9cfc'`) — CSS 변수, 테마 토큰 없음
+- **공유 색 팔레트**: `/frontend/src/theme.js`의 `TYPE_COLOR`, `SELECT_HL` export를 직접 참조
+  ```js
+  import { TYPE_COLOR, SELECT_HL } from './theme'
+  ...
+  style={{ background: i === highlightIndex ? SELECT_HL : 'transparent' }}
+  ```
+- **반응형 스타일**: `isMobile` boolean state + 삼항 스프레드 패턴
+  ```js
+  style={{
+    position: 'absolute',
+    ...(isMobile
+      ? { left: 0, right: 0, bottom: 0, height: `${SHEET_VH}vh` }
+      : { top: NAV_H, right: 0, bottom: 0, width: 360 }),
+  }}
+  ```
+- **hover 효과**: `useState(false)` + `onMouseEnter`/`onMouseLeave` — CSS pseudo-class 없음
+- **transition 표기**: `'color 0.15s'`, `'transform 0.25s ease'` (shorthand)
+- **레이아웃 단위**: `px` 숫자 리터럴; vh는 템플릿 리터럴 `` `${SHEET_VH}vh` ``
+
 ## Python/FastAPI 규칙
 
 - **파일당 `APIRouter` 1개**, `main.py`에서 `app.include_router()`로 등록
@@ -99,19 +195,18 @@ from ..db import get_driver
   @functools.lru_cache(maxsize=1)
   def _compute_events(): ...
   ```
+- **오버레이 로딩**: `overlays.py`의 `_resolve` + `_load` + `lru_cache` 패턴. 직접 `open()`/`json.load()` 금지:
+  ```python
+  from .. import overlays
+  data = overlays.book_events_raw()   # 캐시된 dict 반환
+  ```
 - **Neo4j 드라이버 싱글턴**: 모듈 레벨 `_driver = None`, `get_driver()`에서 lazy init
 - **`driver.session()` context manager**: 요청마다 새 세션, 요청 간 세션 재사용 없음
 - **라우트 함수 반환값**: 기본 dict (FastAPI 자동 직렬화), 커스텀 헤더가 필요할 때만 `JSONResponse(content=..., headers={...})`
 - **에러 처리**: 노드 미존재 시 `HTTPException(status_code=404)`만 사용; 다른 에러는 흡수 후 fallback 반환
 - **`@asynccontextmanager` lifespan**: 시작 로직(Neo4j 인덱스 생성)에 사용, 광범위한 `except Exception` + `logging.exception`
 - **타입 애너테이션**: 라우트 파라미터에만 제한적 사용 (`node_id: str`, `q: str = Query("")`); 요청/응답 body에 Pydantic 모델 없음
-- **데이터 파일 경로**: 후보 목록 패턴:
-  ```python
-  _CANDIDATES = [
-      os.path.join(os.environ.get("DATA_DIR", "/app/data"), "..."),
-      os.path.join(_REPO_DATA_DIR, "..."),
-  ]
-  ```
+- **데이터 파일 경로**: `overlays._resolve()` 후보 목록 패턴 — `DATA_DIR` 환경변수 → 레포 상대경로 순서
 - Python 3.12 (`/backend/Dockerfile`: `FROM python:3.12-slim`)
 - 최소 핀된 의존성: `fastapi==0.136.3`, `neo4j==6.2.0`, `uvicorn==0.49.0`
 
@@ -124,6 +219,12 @@ from ..db import get_driver
   ```js
   // 모바일(좁은 뷰포트) 분기 — ...
   // setState는 전부 setTimeout/async 콜백 안에서만(effect 동기 본문 setState 금지 — react-hooks v7)
+  ```
+- 훅 내 effect: 동작과 이유를 한 줄 코멘트로 병기:
+  ```js
+  // 실시간 검색 — 입력이 바뀌면 250ms 디바운스 후 자동 조회. 직전 요청은 abort로 경쟁 차단.
+  // 드롭다운 바깥 클릭 시 닫기
+  // 키보드 하이라이트가 보이도록 스크롤
   ```
 - JSX 주요 섹션 앞: `{/* 헤더 */}`
 

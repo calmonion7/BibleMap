@@ -1,102 +1,204 @@
 ---
-last_mapped_commit: 06b4012804c00a45ea7dfda9761d014ac91b11fb
+last_mapped_commit: cecf0d7de87192b638f428eb7e708e94a58214a6
 mapped: 2026-06-20
 ---
+# Architecture
 
-# BibleMap — 아키텍처
+**Analysis Date:** 2026-06-20
 
-## 전체 구조
+## System Overview
 
-SPA + REST API 이중 스택. 세 개의 Docker 서비스(`neo4j`, `api`, `nginx`)로 구성된 단일 `docker-compose.yml` 아래서 동작한다. 프론트엔드는 Vite 빌드 결과물을 nginx가 정적 서빙하며, 백엔드 API 요청은 nginx가 `/api/` → `api:8000/`으로 프록시한다.
-
+```text
+┌──────────────────────────────────────────────────────────────┐
+│                    Browser (React SPA)                        │
+│  App.jsx — 탭 라우팅, 검색 오버레이, 노드 선택 상태 루트     │
+├──────────────┬───────────────┬──────────────┬────────────────┤
+│  MapView     │ TimelineView  │BibleOverview │  SidePanel     │
+│ .jsx (481)   │  .jsx (353)   │View.jsx(198) │  .jsx (348)    │
+└──────┬───────┴───────┬───────┴──────┬───────┴────────┬───────┘
+       │               │              │                │
+       └───────────────┴──────────────┴────────────────┘
+                              │ apiGet()
+                   frontend/src/api.js
+                              │ HTTP GET /api/*
+                              ▼
+┌──────────────────────────────────────────────────────────────┐
+│              nginx:8080  (reverse proxy /api/ → api:8000)    │
+└──────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────────┐
+│           FastAPI (backend/app/main.py)                       │
+├────────────┬──────────────┬───────────────┬──────────────────┤
+│ routes/    │ routes/      │ routes/       │ routes/          │
+│ nodes.py   │ events.py    │ search.py     │ books.py         │
+└────────────┴──────┬───────┴───────────────┴──────────────────┘
+                    │             │
+            backend/app/db.py    overlays.py
+                    │             │
+                    ▼             ▼
+             Neo4j (bolt)     data/ JSON 파일
+             docker service    (book_events, event_verses,
+                                book_years_approx)
 ```
-브라우저
-  → :8080 nginx
-      ├── /api/*  → api:8000 (FastAPI, uvicorn)
-      │                └─ bolt://neo4j:7687 (Neo4j 5)
-      └── /*      → frontend/dist (Vite SPA)
-```
 
-## 레이어
+## Component Responsibilities
 
-### 데이터 레이어 — Neo4j 그래프
+| Component | Responsibility | File |
+|-----------|----------------|------|
+| `App` | 탭 전환, 검색 오버레이, 노드 선택 전달 | `frontend/src/App.jsx` |
+| `useNodeSelection` | 선택 노드 상태, 히스토리, Person event-id fetch | `frontend/src/useNodeSelection.js` |
+| `useSearch` | 검색 입력 디바운스, AbortController 경쟁 차단, 타입 필터 | `frontend/src/useSearch.js` |
+| `MapView` | MapLibre 지도, 장소 마커, 사건 방사형 링, convex hull | `frontend/src/MapView.jsx` |
+| `TimelineView` | 사건 시간축, 그룹 펼침, 구절 인라인 뷰, 필터 배너 | `frontend/src/TimelineView.jsx` |
+| `BibleOverviewView` | 성경 66권 장르별 카드 그리드 | `frontend/src/BibleOverviewView.jsx` |
+| `SidePanel` | 노드 상세 패널 (데스크톱: 우측 슬라이드인, 모바일: 하단 시트) | `frontend/src/SidePanel.jsx` |
+| `VerseLangTabs` | ko/en 언어 탭 UI (TimelineView·SidePanel 공유) | `frontend/src/VerseLangTabs.jsx` |
+| `api.js` | `apiGet(path)` 단일 fetch 헬퍼, VITE_API_URL 기반 | `frontend/src/api.js` |
+| `theme.js` | TYPE_COLOR, TYPE_KO, TYPE_ORDER, SELECT_HL 공유 팔레트 | `frontend/src/theme.js` |
+| `convexHull.js` | Graham scan 알고리즘, MapView 전용 | `frontend/src/convexHull.js` |
+| `main.py` | FastAPI 앱 생성, lifespan Neo4j 인덱스, 라우터 등록 | `backend/app/main.py` |
+| `db.py` | Neo4j 드라이버 싱글톤 (`_driver` 전역) | `backend/app/db.py` |
+| `overlays.py` | JSON 오버레이 로더 (`lru_cache(maxsize=1)` 캐시) | `backend/app/overlays.py` |
+| `routes/nodes.py` | `/node/{id}`, `/node/{id}/places`, `/node/{id}/neighbors/grouped`, `/person/{id}/event-ids` | `backend/app/routes/nodes.py` |
+| `routes/events.py` | `/events`(lru_cache), `/event/{id}/verses` | `backend/app/routes/events.py` |
+| `routes/search.py` | `/search?q=` Neo4j 전문 검색 | `backend/app/routes/search.py` |
+| `routes/books.py` | `/books`(타임라인용), `/books-overview`(개요 뷰용) | `backend/app/routes/books.py` |
 
-- `bolt://neo4j:7687`에서 실행, Docker named volume `neo4j_data`로 영속화.
-- 노드 레이블: `Person`, `Place`, `Event`, `PeopleGroup`, `Book`.
-- 주요 관계: `HAS_PARTICIPANT`(Event→Person), `OCCURS_AT`(Event→Place), `MEMBER_OF`(Person→PeopleGroup), `PART_OF`(Event→Event 계층), `CONTAINS_BOOK`(Book→Event, 구절 교집합으로 생성).
-- 모든 노드에 `theographic_id` 인덱스(`CREATE INDEX ... ON (n.theographic_id)`) — 앱 기동 시 `lifespan` 훅에서 자동 생성(`backend/app/main.py`).
-- 연결: `backend/app/db.py`의 `get_driver()` — 싱글톤 `neo4j.GraphDatabase.driver`, 환경변수 `NEO4J_URI`/`NEO4J_USER`/`NEO4J_PASSWORD`.
+## Pattern Overview
 
-### 백엔드 레이어 — FastAPI
+**Overall:** 3-tier — React SPA / FastAPI REST / Neo4j + JSON 오버레이
 
-- 진입점: `backend/app/main.py`. `FastAPI` 앱에 4개 라우터 등록, CORS `GET` only.
-- 라우터별 역할:
-  - `nodes.py` — 단일 노드 조회 `/node/{id}`, 이웃 그룹 `/node/{id}/neighbors/grouped`, 장소 `/node/{id}/places`, 인물 참여 사건 ID `/person/{id}/event-ids`.
-  - `events.py` — 타임라인 사건 목록 `/events`, 사건별 근거 구절 `/event/{id}/verses`.
-  - `books.py` — 책 목록 `/books`.
-  - `search.py` — 전문 검색 `/search?q=`.
-- Neo4j 접근 방식: 라우터 함수에서 직접 `driver.session()` → Cypher 실행. ORM 없음.
-- 캐싱: `events.py`의 `_compute_events()`, `_load_event_verses()`, `_load_approx_book_index()`는 `functools.lru_cache(maxsize=1)`. 앱 재시작 전까지 결과를 메모리에 보관. `/events` 응답에 `Cache-Control: max-age=300` 헤더.
-- 런타임 오버레이: Neo4j에 저장하지 않는 추정 데이터(추정연도, 책-사건 연결, 사건 구절)는 JSON 파일로 `/app/data` 볼륨 마운트에서 로드해 응답에 병합. 탐색 경로: `DATA_DIR` 환경변수 → 레포 상대 경로 `data/` 순 폴백.
+**Key Characteristics:**
+- 프론트엔드 상태는 `App.jsx`에서 두 커스텀 훅(`useNodeSelection`, `useSearch`)으로 분리 관리. 하위 뷰는 props로만 수신.
+- 백엔드에 global mutable singleton(`_driver`, `lru_cache` 결과). 앱 재시작 전까지 캐시 유효.
+- Neo4j 원장 데이터 + 로컬 JSON 오버레이 2중 소스. 오버레이는 Neo4j에 없는 연결 정보(추정 연도, 사건-구절 매핑)를 보완.
 
-### 프론트엔드 레이어 — React SPA
+## Layers
 
-- 빌드: Vite + `@vitejs/plugin-react`. 번들 분할: `maplibre-gl` → `maplibre` 청크, 나머지 `node_modules` → `vendor` 청크.
-- API 클라이언트: `frontend/src/api.js` — `API_BASE`(빌드타임 `VITE_API_URL=/api`)로 단일화, `apiGet(path)` GET 헬퍼.
-- 최상위 상태 관리: `App.jsx`가 `selectedNode`, `activeView`, `searchQuery`, `verseLang`, `personEventIds`, `history` 등을 `useState`로 보유. 프레임워크 없음, props/callback으로 자식에 전달.
-- 뷰 라우팅: 탭 버튼 클릭으로 `activeView` 전환, 조건부 렌더링으로 세 뷰를 전환(`MapView`, `TimelineView`, `BibleOverviewView`). 라우터 라이브러리 미사용.
+**Frontend 상태 훅:**
+- Purpose: App 레벨 공유 상태 캡슐화
+- Location: `frontend/src/useNodeSelection.js`, `frontend/src/useSearch.js`
+- Contains: useState, useEffect, useCallback, useRef
+- Depends on: `api.js`
+- Used by: `App.jsx`만 직접 호출, 결과를 props로 하위 뷰에 전달
 
-## 데이터 흐름
+**Frontend 뷰 컴포넌트:**
+- Purpose: 탭별 독립 렌더링
+- Location: `frontend/src/MapView.jsx`, `frontend/src/TimelineView.jsx`, `frontend/src/BibleOverviewView.jsx`
+- Contains: 각 뷰 전용 fetch 및 렌더 로직
+- Depends on: `api.js`, `theme.js`, 전달된 props
+- Used by: `App.jsx`
 
-### 노드 선택 흐름
+**Frontend 공유 유틸리티:**
+- Purpose: 여러 컴포넌트가 공유하는 상수·함수
+- Location: `frontend/src/theme.js`, `frontend/src/api.js`, `frontend/src/convexHull.js`, `frontend/src/VerseLangTabs.jsx`
+- Depends on: 없음
 
-1. 사용자가 검색/맵 마커/타임라인 항목 클릭 → `App.selectNode(id)`.
-2. `selectedNode` 상태 갱신 → `SidePanel`에 `nodeId` prop으로 전달.
-3. `SidePanel`이 `GET /node/{id}` 호출 → Neo4j `MATCH (n {theographic_id: $id})` 조회.
-4. 응답의 `label`이 `Person`이면 `App`에서 추가로 `GET /person/{id}/event-ids` 호출 → `personEventIds` Set 생성 → `TimelineView`에 전달해 필터링.
-5. `MapView`도 `selectedNode` 변화 감지 → `GET /node/{id}/places` → 장소 마커 갱신 → Convex hull 렌더.
+**Backend 라우터 레이어:**
+- Purpose: HTTP 엔드포인트 정의 및 응답 직렬화
+- Location: `backend/app/routes/`
+- Depends on: `db.py`, `overlays.py`
+- Used by: `main.py`에서 `include_router`로 등록
 
-### 검색 흐름
+**Backend 데이터 접근 레이어:**
+- Purpose: Neo4j 드라이버 싱글톤 + JSON 오버레이 캐시
+- Location: `backend/app/db.py`, `backend/app/overlays.py`
+- Depends on: 환경변수(`NEO4J_URI`, `NEO4J_PASSWORD`), `data/` 마운트 경로
 
-1. 입력 이벤트 → 250ms 디바운스 AbortController 패턴.
-2. `GET /search?q=` → Neo4j 전문 검색(nameKo CONTAINS / name toLower CONTAINS), 20건 제한.
-3. 결과 드롭다운 표시 → 항목 선택 → `selectNode`.
+## Data Flow
 
-### 타임라인 사건 흐름
+### 노드 선택 → 사이드 패널 표시
 
-1. `TimelineView` 마운트 시 `GET /events` 호출.
-2. 응답: `sortKey ASC`로 정렬된 사건 배열 + 각 사건에 `books`(CONTAINS_BOOK 실제 권 + approx_index 추정권 병합).
-3. 사건 클릭 → `GET /event/{id}/verses` → `data/event_verses/events.json` 오버레이에서 권별 절 목록 반환(textKo/textEn 사전 저장, 런타임 외부 fetch 없음).
-4. `bookFilter`(Book 선택 시) 또는 `personFilter`(Person 선택 시 — personEventIds Set)로 클라이언트 측 필터링.
+1. 사용자가 MapView 마커 클릭 → `onSelectNode(id)` 호출 (`frontend/src/App.jsx`)
+2. `useNodeSelection.selectNode(id)` — 이전 노드를 `history`에 push, `selectedNode` 업데이트 (`frontend/src/useNodeSelection.js:33`)
+3. `SidePanel` props `nodeId` 변경 → `useEffect` 실행 → `apiGet('/node/' + nodeId)` (`frontend/src/SidePanel.jsx:53`)
+4. `GET /node/{id}` — Neo4j에서 노드 + 이웃 쿼리, Book이면 topPersons/topEvents 추가 (`backend/app/routes/nodes.py:145`)
+5. `onNodeLoaded(data)` 콜백 → `useNodeSelection.handleNodeLoaded` — `selectedNodeMeta` 업데이트, Person이면 `/person/{id}/event-ids` 추가 fetch (`frontend/src/useNodeSelection.js:13`)
 
-### 책 오버뷰 흐름
+### 검색 → 결과 선택
 
-1. `BibleOverviewView` 마운트 시 `GET /books` 호출.
-2. Neo4j Book 노드 + `data/book_years_approx/books.json`(추정연도) + `data/book_events/books.json`(책-사건 연결) 병합.
-3. 장르별 그리드로 렌더. 카드 클릭 → `selectNode`.
+1. 사용자 입력 → `useSearch.onSearchInput` → `searchQuery` 업데이트 (`frontend/src/useSearch.js:54`)
+2. `useEffect([searchQuery])` — 250ms 디바운스 + AbortController — `apiGet('/search?q=...')` (`frontend/src/useSearch.js:17`)
+3. `App.handleSelectResult` — `clearSearch()` + `selectNodeFresh(id)` (히스토리 리셋) (`frontend/src/App.jsx:57`)
 
-## 핵심 추상
+### 타임라인 이벤트 로드
 
-- **theographic_id**: 모든 엔티티의 안정 키. `rec` 접두 14자 문자열(Airtable origin). 저작 사건은 `authored-<slug>`.
-- **오버레이 패턴**: 권위 낮은 추정 데이터(추정연도·book_events·event_verses·authored_events)는 Neo4j에 주입하지 않고 JSON 파일로 분리, 런타임에 Neo4j 응답과 병합. `lru_cache`로 1회 로드.
-- **authored flag**: 저작 사건(`authored_events/`)은 Neo4j `Event` 노드로 적재하되 `authored=true` 마킹 → TimelineView에서 `추정` 배지 표시.
-- **CONTAINS_BOOK**: Book↔Event 연결의 유일한 권위 축. 구절 교집합(`load_books.py`)으로 생성. 추정 book_events 오버레이와 의미 분리.
+1. `TimelineView` 마운트 → `apiGet('/events')` (`frontend/src/TimelineView.jsx:47`)
+2. `GET /events` — `_compute_events()` lru_cache 히트 또는 Neo4j 쿼리 + `overlays.approx_years()` 머지 (`backend/app/routes/events.py:54`)
+3. 사건 클릭 → `apiGet('/event/{id}/verses')` — `overlays.event_verses()` JSON 반환 (`backend/app/routes/events.py:99`)
 
-## 프론트엔드-백엔드 통신
+**State Management:**
+- 전역 React 상태 없음. `App.jsx`가 두 훅의 결과를 소유하며 props drilling으로 하위에 전달.
+- 백엔드 캐시: `db.py`의 `_driver` (프로세스 전역), `overlays.py`의 세 함수(lru_cache), `events.py`의 `_compute_events()`(lru_cache).
 
-- 프로토콜: HTTP GET + JSON only. CORS `allow_methods=["GET"]`.
-- 프로덕션: nginx `/api/*` 프록시 → `api:8000`. `VITE_API_URL=/api` 빌드타임 환경변수로 주입(`frontend/.env.production`).
-- 개발: `VITE_API_URL` 미설정 시 `api.js`가 `http://localhost:8000`으로 직접 연결.
-- 오류 처리: `apiGet`이 non-OK 응답을 `Error`로 reject(`err.status` 부착). 호출부가 `.catch()`에서 처리. `AbortError`는 컴포넌트 언마운트/재요청 취소로 무시.
+## Key Abstractions
 
-## 데이터 적재 파이프라인 (일회성 스크립트)
+**apiGet:**
+- Purpose: 모든 프론트 fetch를 단일 경로로 라우팅. VITE_API_URL로 프로덕션/개발 분기.
+- Examples: `frontend/src/api.js`
+- Pattern: `async function apiGet(path, { signal } = {})` — 비-OK 응답은 `err.status` 포함 throw
 
-`backend/scripts/`에 위치. Docker 서비스 밖에서 직접 실행.
+**overlays.py:**
+- Purpose: Neo4j에 없는 오버레이 데이터를 JSON 파일에서 lru_cache로 1회 로드
+- Examples: `backend/app/overlays.py`
+- Pattern: `@functools.lru_cache(maxsize=1)` 데코레이터 + `_resolve(subpath)` 경로 탐색(DATA_DIR 환경변수 → repo 기본값 fallback)
 
-1. `load_theographic.py` — Theographic GitHub JSON(people/places/events/peopleGroups) → Neo4j 노드·관계 일괄 적재.
-2. `load_books.py` — 책 노드 적재 + CONTAINS_BOOK 관계 생성(구절 교집합).
-3. `inject_ko_names.py` — `data/names_ko/` JSON → nameKo 속성 주입.
-4. `inject_person_traits.py` / `inject_book_context.py` — LLM 생성 데이터 → Neo4j 속성 주입.
-5. `load_authored_events.py` — `data/authored_events/events.json` → Neo4j `Event` 노드 (authored=true).
-6. `load_verse_events.py` — `data/verse_events/` → Neo4j 관계.
-7. LLM 생성 스크립트(`generate_*.py`) — Claude API 직접 호출해 JSON 생성, `data/` 하위에 저장.
+**useNodeSelection:**
+- Purpose: 선택 노드 상태, 탐색 히스토리, Person 이벤트 ID 세트를 단일 훅으로 캡슐화
+- Examples: `frontend/src/useNodeSelection.js`
+- Pattern: `selectNode`를 `useCallback([])` 안정화(ref로 최신값 읽음) → MapView의 expandPlace fetch abort 버그 방지
+
+## Entry Points
+
+**Frontend:**
+- Location: `frontend/src/main.jsx`
+- Triggers: `createRoot(document.getElementById('root')).render(<App />)`
+- Responsibilities: React StrictMode 래핑만
+
+**Backend:**
+- Location: `backend/app/main.py`
+- Triggers: uvicorn이 `app` 객체를 임포트
+- Responsibilities: lifespan 훅에서 Neo4j 인덱스 생성, 라우터 4개 등록, CORS 미들웨어(GET만 허용)
+
+## Architectural Constraints
+
+- **Global state:** `backend/app/db.py` — `_driver` 프로세스 전역 싱글톤. `overlays.py`의 lru_cache 3개. `events.py`의 `_compute_events` lru_cache.
+- **Cache invalidation:** 앱 프로세스 재시작 전까지 오버레이·이벤트 캐시는 갱신되지 않음. `docker compose up -d --build api`로 재시작 필요.
+- **CORS:** `allow_methods=["GET"]` 전용. 쓰기 엔드포인트 없음.
+- **빌드 모델:** 프론트엔드는 HMR 아님 — `frontend/dist`를 nginx가 정적 서빙. 검증 전 `npm run build` 필수.
+- **데이터 마운트:** `data/` 디렉터리가 Docker volume으로 `/app/data`에 바인드 마운트됨 (`docker-compose.yml:19`).
+
+## Anti-Patterns
+
+### App.jsx에 검색 드롭다운 렌더 로직 인라인 존재
+
+**What happens:** `useSearch` 훅으로 상태는 분리됐지만 드롭다운 JSX(타입 필터 칩, 결과 목록)가 `App.jsx` 안에 직접 작성됨.
+**Why it's wrong:** `App.jsx`가 이미 278줄이고 검색 UI 변경이 앱 루트 파일을 건드림.
+**Do this instead:** 검색 드롭다운을 별도 컴포넌트(`SearchDropdown.jsx`)로 분리, `frontend/src/` 위치.
+
+### lru_cache(maxsize=1) 런타임 캐시에 의존
+
+**What happens:** `_compute_events()`가 앱 재시작 전까지 Neo4j 결과를 메모리에 보관.
+**Why it's wrong:** Neo4j 직접 수정 후 캐시 무효화 수단이 없음.
+**Do this instead:** `_compute_events.cache_clear()` 수동 호출 엔드포인트 추가, 또는 TTL 기반 캐시 사용 — `backend/app/routes/events.py:54`.
+
+## Error Handling
+
+**Strategy:** 낙관적 렌더링 + 에러 상태 플래그
+
+**Patterns:**
+- `apiGet` throw → 각 컴포넌트의 `setError(true)` or `setError(e?.status)` — 사용자에게 배너/인라인 메시지 표시
+- `SidePanel`: `state.error`에 HTTP status 저장 (`frontend/src/SidePanel.jsx:55`)
+- 백엔드: Neo4j 인덱스 생성 실패는 `logging.exception`으로 기록 후 계속 진행 (`backend/app/main.py:19`)
+- AbortError는 `useSearch`에서 명시적 무시 (`frontend/src/useSearch.js:28`)
+
+## Cross-Cutting Concerns
+
+**Logging:** 백엔드 `logging.exception` (표준 라이브러리). 프론트엔드 로깅 없음.
+**Validation:** 백엔드 FastAPI Query 타입 검증만. 추가 입력 검증 없음.
+**Authentication:** 없음. CORS GET-only.
+
+---
+
+*Architecture analysis: 2026-06-20*
