@@ -1,7 +1,8 @@
-"""data/person_events/{david,abraham,moses}.json을 읽어 인물 여정 저작 이벤트를 Neo4j에 멱등 적재한다.
+"""data/person_events/*.json을 읽어 인물 여정 저작 이벤트를 Neo4j에 멱등 적재한다.
 
 각 이벤트는 authored=true로 마킹한 Event 노드이며, OCCURS_AT→Place, HAS_PARTICIPANT→Person으로 연결된다.
 CONTAINS_BOOK 관계는 생성하지 않는다(ADR-0005)."""
+import glob as glob_module
 import json
 import os
 
@@ -18,7 +19,10 @@ PERSON_EVENTS_DIR = os.path.normpath(
     os.path.join(SCRIPT_DIR, "..", "..", "data", "person_events")
 )
 
-FILES = ["david.json", "abraham.json", "moses.json"]
+FILES = [
+    os.path.basename(p)
+    for p in sorted(glob_module.glob(os.path.join(PERSON_EVENTS_DIR, "*.json")))
+]
 
 
 def load_events(session, events):

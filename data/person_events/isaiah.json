@@ -1,0 +1,50 @@
+[
+  {
+    "id": "authored-isaiah-jerusalem-calling",
+    "title": "Isaiah's vision and calling in Jerusalem",
+    "nameKo": "예루살렘 소명 환상 (이사야 6장)",
+    "startDate": "-740",
+    "sortKey": -740,
+    "yearLabel": "BC 740경",
+    "context": "웃시야 왕 사망 연도에 성전에서 보좌에 앉으신 주님 환상. '내가 여기 있나이다 나를 보내소서' (Isa 6:1–8).",
+    "authored": true,
+    "occursAt": ["recL1WV82pXaRBQ59"],
+    "participants": ["recit3DiamFt2zO0S"]
+  },
+  {
+    "id": "authored-isaiah-jerusalem-hezekiah-illness",
+    "title": "Isaiah heals Hezekiah's illness",
+    "nameKo": "히스기야 병 치료 예언 (15년 연장)",
+    "startDate": "-702",
+    "sortKey": -702,
+    "yearLabel": "BC 702경",
+    "context": "히스기야의 죽음을 선언했다가 기도 후 다시 15년 더 살 것을 선포. 해시계가 10도 뒤로 돌아감 (Isa 38:1–8).",
+    "authored": true,
+    "occursAt": ["recL1WV82pXaRBQ59"],
+    "participants": ["recit3DiamFt2zO0S"]
+  },
+  {
+    "id": "authored-isaiah-jerusalem-hezekiah",
+    "title": "Isaiah consoles Hezekiah during Assyrian siege",
+    "nameKo": "히스기야 위로 — 앗수르 위기",
+    "startDate": "-701",
+    "sortKey": -701,
+    "yearLabel": "BC 701경",
+    "context": "앗수르 산헤립의 포위 아래 히스기야를 위로하고 예루살렘을 구할 것을 예언. 천사가 18만 5천 명을 침 (Isa 37:33–37).",
+    "authored": true,
+    "occursAt": ["recL1WV82pXaRBQ59"],
+    "participants": ["recit3DiamFt2zO0S"]
+  },
+  {
+    "id": "authored-isaiah-jerusalem-cyrus-prophecy",
+    "title": "Isaiah's prophecy of Cyrus and restoration",
+    "nameKo": "고레스 칙령 및 귀환 예언",
+    "startDate": "-700",
+    "sortKey": -700,
+    "yearLabel": "BC 700경",
+    "context": "바벨론 포로와 고레스를 통한 귀환을 150년 전에 예언. '고레스는 나의 목자' (Isa 44:28; 45:1).",
+    "authored": true,
+    "occursAt": ["recL1WV82pXaRBQ59"],
+    "participants": ["recit3DiamFt2zO0S"]
+  }
+]

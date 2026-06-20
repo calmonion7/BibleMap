@@ -1,0 +1,74 @@
+[
+  {
+    "id": "authored-joshua-gilgal-camp",
+    "title": "Joshua establishes camp at Gilgal",
+    "nameKo": "길갈 진영 설치 (요단 건넘 후)",
+    "startDate": "-1406",
+    "sortKey": -1406,
+    "yearLabel": "BC 1406경",
+    "context": "요단강을 기적으로 건넌 후 길갈에 12개 기념석을 세우고 첫 진영을 침. 할례와 유월절 갱신 (Josh 4:19–5:12).",
+    "authored": true,
+    "occursAt": ["authored-place-gilgal"],
+    "participants": ["recLuZtSmAO6erIsc"]
+  },
+  {
+    "id": "authored-joshua-jericho-conquest",
+    "title": "Conquest of Jericho",
+    "nameKo": "여리고 성 함락",
+    "startDate": "-1406",
+    "sortKey": -1405,
+    "yearLabel": "BC 1406경",
+    "context": "7일간 제사장들이 나팔을 불며 성을 돌고 7회 후 성이 무너짐. 가나안 정복의 시작 (Josh 6:20).",
+    "authored": true,
+    "occursAt": ["authored-place-jericho"],
+    "participants": ["recLuZtSmAO6erIsc"]
+  },
+  {
+    "id": "authored-joshua-ai-conquest",
+    "title": "Conquest of Ai",
+    "nameKo": "아이 성 전투 (아간 사건 이후)",
+    "startDate": "-1405",
+    "sortKey": -1404,
+    "yearLabel": "BC 1405경",
+    "context": "아간의 범죄로 처음 패배했으나 정결 후 매복 전략으로 아이를 완전 정복 (Josh 8:18–29).",
+    "authored": true,
+    "occursAt": ["authored-place-ai"],
+    "participants": ["recLuZtSmAO6erIsc"]
+  },
+  {
+    "id": "authored-joshua-gibeon-alliance",
+    "title": "Treaty with the Gibeonites",
+    "nameKo": "기브온 동맹 (태양을 멈춤)",
+    "startDate": "-1405",
+    "sortKey": -1403,
+    "yearLabel": "BC 1405경",
+    "context": "기브온 사람들의 속임수로 맺은 화평 조약. 후에 아모리 5왕과의 전투에서 태양을 멈춤 (Josh 10:12–14).",
+    "authored": true,
+    "occursAt": ["authored-place-gibeon"],
+    "participants": ["recLuZtSmAO6erIsc"]
+  },
+  {
+    "id": "authored-joshua-shiloh-tabernacle",
+    "title": "Tabernacle set up at Shiloh",
+    "nameKo": "실로 회막 설치",
+    "startDate": "-1399",
+    "sortKey": -1399,
+    "yearLabel": "BC 1399경",
+    "context": "가나안 땅이 복종한 후 실로에 회막을 세우고 나머지 땅을 제비뽑아 지파에게 분배 (Josh 18:1–10).",
+    "authored": true,
+    "occursAt": ["authored-place-shiloh"],
+    "participants": ["recLuZtSmAO6erIsc"]
+  },
+  {
+    "id": "authored-joshua-shechem-covenant",
+    "title": "Covenant renewal at Shechem",
+    "nameKo": "세겜 언약 갱신",
+    "startDate": "-1380",
+    "sortKey": -1380,
+    "yearLabel": "BC 1380경",
+    "context": "생애 말년에 백성을 세겜에 모아 여호와를 섬길 것을 선택하게 함. 언약을 갱신하고 돌기념비 세움 (Josh 24:1–27).",
+    "authored": true,
+    "occursAt": ["recUySlrBva4ffoVs"],
+    "participants": ["recLuZtSmAO6erIsc"]
+  }
+]

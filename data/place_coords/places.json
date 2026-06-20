@@ -214,5 +214,69 @@
     "lat": 31.499,
     "lng": 35.8,
     "note": "모세가 생애 말년을 보낸 평지 (Num 22:1); 느보산 조망"
+  },
+  {
+    "id": "authored-place-moriah",
+    "name": "Mount Moriah",
+    "nameKo": "모리아산",
+    "lat": 31.778,
+    "lng": 35.236,
+    "note": "아브라함이 이삭을 번제로 드리려 한 산 (Gen 22:2); 후에 예루살렘 성전 자리"
+  },
+  {
+    "id": "authored-place-gerar",
+    "name": "Gerar",
+    "nameKo": "그랄",
+    "lat": 31.423,
+    "lng": 34.508,
+    "note": "이삭이 기근을 피해 거주한 블레셋 땅 (Gen 26:1); 우물 언약지"
+  },
+  {
+    "id": "authored-place-bethel",
+    "name": "Bethel",
+    "nameKo": "벧엘",
+    "lat": 31.926,
+    "lng": 35.22,
+    "note": "야곱이 하늘 사닥다리 꿈을 꾼 곳 (Gen 28:19); 원래 이름 루스"
+  },
+  {
+    "id": "authored-place-gilgal",
+    "name": "Gilgal",
+    "nameKo": "길갈",
+    "lat": 31.875,
+    "lng": 35.447,
+    "note": "여호수아가 요단 건넌 후 첫 진영을 친 곳 (Josh 4:19); 할례 갱신지"
+  },
+  {
+    "id": "authored-place-ai",
+    "name": "Ai",
+    "nameKo": "아이",
+    "lat": 31.937,
+    "lng": 35.301,
+    "note": "여호수아의 두 번째 정복 성읍 (Josh 8:1); 아간 사건 이후 승리"
+  },
+  {
+    "id": "authored-place-shiloh",
+    "name": "Shiloh",
+    "nameKo": "실로",
+    "lat": 32.057,
+    "lng": 35.289,
+    "note": "회막이 있던 중심 성소 (Josh 18:1); 사무엘이 성장한 곳"
+  },
+  {
+    "id": "authored-place-mizpah",
+    "name": "Mizpah",
+    "nameKo": "미스바",
+    "lat": 31.878,
+    "lng": 35.18,
+    "note": "사무엘의 국민 집회소 (1Sam 7:5); 이스라엘 대승리지"
+  },
+  {
+    "id": "authored-place-ezion-geber",
+    "name": "Ezion-geber",
+    "nameKo": "에시온게벨",
+    "lat": 29.553,
+    "lng": 34.949,
+    "note": "솔로몬의 무역 선박 기지 (1Kgs 9:26); 홍해 아카바만 항구"
   }
 ]

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "authored-isaac-birth-beersheba",
+    "title": "Isaac's birth in Beersheba region",
+    "nameKo": "이삭의 출생 (브엘세바)",
+    "startDate": "-2000",
+    "sortKey": -2000,
+    "yearLabel": "BC 2000경",
+    "context": "사라가 100세 아브라함에게 낳아준 아들. 하나님의 약속 성취 (Gen 21:1–3).",
+    "authored": true,
+    "occursAt": ["authored-place-beersheba"],
+    "participants": ["recqIoG1fkaNWJ1y0"]
+  },
+  {
+    "id": "authored-isaac-moriah-akedah",
+    "title": "Binding of Isaac on Mount Moriah",
+    "nameKo": "모리아산 번제 (아케다)",
+    "startDate": "-1990",
+    "sortKey": -1990,
+    "yearLabel": "BC 1990경",
+    "context": "하나님이 아브라함에게 이삭을 바치라 명하신 시험. 천사가 멈추고 숫양이 대신 바쳐짐 (Gen 22:2–13).",
+    "authored": true,
+    "occursAt": ["authored-place-moriah"],
+    "participants": ["recqIoG1fkaNWJ1y0"]
+  },
+  {
+    "id": "authored-isaac-gerar-sojourn",
+    "title": "Isaac dwells in Gerar",
+    "nameKo": "그랄 거주 (이삭의 우물 분쟁)",
+    "startDate": "-1960",
+    "sortKey": -1960,
+    "yearLabel": "BC 1960경",
+    "context": "기근으로 그랄로 이주한 이삭. 아비멜렉과 갈등 후 우물을 파고 르호봇을 얻음 (Gen 26:1–22).",
+    "authored": true,
+    "occursAt": ["authored-place-gerar"],
+    "participants": ["recqIoG1fkaNWJ1y0"]
+  },
+  {
+    "id": "authored-isaac-beersheba-covenant",
+    "title": "Isaac's covenant with Abimelech at Beersheba",
+    "nameKo": "브엘세바 언약 (이삭과 아비멜렉)",
+    "startDate": "-1950",
+    "sortKey": -1950,
+    "yearLabel": "BC 1950경",
+    "context": "그랄 왕 아비멜렉이 이삭을 찾아와 화평 언약을 맺음. 브엘세바 이름 재확인 (Gen 26:26–33).",
+    "authored": true,
+    "occursAt": ["authored-place-beersheba"],
+    "participants": ["recqIoG1fkaNWJ1y0"]
+  },
+  {
+    "id": "authored-isaac-hebron-death",
+    "title": "Isaac's death in Hebron",
+    "nameKo": "이삭의 헤브론 임종",
+    "startDate": "-1843",
+    "sortKey": -1843,
+    "yearLabel": "BC 1843경",
+    "context": "180세로 헤브론에서 사망하여 에서와 야곱이 막벨라 굴에 장사함 (Gen 35:27–29).",
+    "authored": true,
+    "occursAt": ["recJSfVnIcPibY6aX"],
+    "participants": ["recqIoG1fkaNWJ1y0"]
+  }
+]

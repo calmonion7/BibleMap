@@ -1,0 +1,74 @@
+[
+  {
+    "id": "authored-samuel-shiloh-dedication",
+    "title": "Samuel dedicated at Shiloh",
+    "nameKo": "실로 성전 봉헌 (한나의 서원)",
+    "startDate": "-1100",
+    "sortKey": -1100,
+    "yearLabel": "BC 1100경",
+    "context": "한나가 서원대로 젖을 뗀 사무엘을 실로 성전의 엘리 제사장에게 봉헌 (1Sam 1:24–28).",
+    "authored": true,
+    "occursAt": ["authored-place-shiloh"],
+    "participants": ["recZsS2Zu0zIDwqdv"]
+  },
+  {
+    "id": "authored-samuel-shiloh-calling",
+    "title": "Samuel called by God at Shiloh",
+    "nameKo": "실로에서 하나님의 부름",
+    "startDate": "-1090",
+    "sortKey": -1090,
+    "yearLabel": "BC 1090경",
+    "context": "밤에 세 번 부르심을 받고 엘리의 지도로 응답하여 이스라엘 선지자가 됨 (1Sam 3:4–20).",
+    "authored": true,
+    "occursAt": ["authored-place-shiloh"],
+    "participants": ["recZsS2Zu0zIDwqdv"]
+  },
+  {
+    "id": "authored-samuel-mizpah-victory",
+    "title": "Israel's victory at Mizpah",
+    "nameKo": "미스바 대승리 (에벤에셀)",
+    "startDate": "-1070",
+    "sortKey": -1070,
+    "yearLabel": "BC 1070경",
+    "context": "사무엘이 미스바에 이스라엘을 모아 금식하고 기도할 때 블레셋이 큰 우레로 쳐져 대패. 에벤에셀 기념비 세움 (1Sam 7:5–12).",
+    "authored": true,
+    "occursAt": ["authored-place-mizpah"],
+    "participants": ["recZsS2Zu0zIDwqdv"]
+  },
+  {
+    "id": "authored-samuel-ramah-school",
+    "title": "Samuel's prophetic school at Ramah",
+    "nameKo": "라마 선지 학교",
+    "startDate": "-1060",
+    "sortKey": -1060,
+    "yearLabel": "BC 1060경",
+    "context": "사무엘의 고향 라마에서 선지자 공동체를 이끌며 이스라엘을 사사로 순회 지도 (1Sam 15:34; 19:18–24).",
+    "authored": true,
+    "occursAt": ["authored-place-ramah"],
+    "participants": ["recZsS2Zu0zIDwqdv"]
+  },
+  {
+    "id": "authored-samuel-gilgal-saul-anointing",
+    "title": "Samuel anoints Saul as king at Gilgal",
+    "nameKo": "길갈에서 사울 왕으로 세움",
+    "startDate": "-1050",
+    "sortKey": -1050,
+    "yearLabel": "BC 1050경",
+    "context": "미스바 추첨에 이어 길갈에서 온 백성 앞에 사울 왕정 선언. 화목제를 드리며 기쁨을 나눔 (1Sam 11:14–15).",
+    "authored": true,
+    "occursAt": ["authored-place-gilgal"],
+    "participants": ["recZsS2Zu0zIDwqdv"]
+  },
+  {
+    "id": "authored-samuel-ramah-death",
+    "title": "Samuel dies at Ramah",
+    "nameKo": "라마에서 사망",
+    "startDate": "-1020",
+    "sortKey": -1020,
+    "yearLabel": "BC 1020경",
+    "context": "온 이스라엘이 모여 슬퍼하며 라마에 장사한 선지자 사무엘 (1Sam 25:1).",
+    "authored": true,
+    "occursAt": ["authored-place-ramah"],
+    "participants": ["recZsS2Zu0zIDwqdv"]
+  }
+]
