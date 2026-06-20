@@ -57,7 +57,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
     if (!ev) return
     const key = ev.startDate ?? ''
     const raf = requestAnimationFrame(() => {
-      setOpenGroup(key)
+      if (events.filter(e => (e.startDate ?? '') === key).length > 1) setOpenGroup(key)
       groupRefs.current[key]?.scrollIntoView({ behavior: 'smooth', block: 'center' })
     })
     return () => cancelAnimationFrame(raf)
@@ -238,6 +238,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
   return (
     <div
       ref={containerRef}
+      onClick={() => { if (openGroup !== null) setOpenGroup(null) }}
       style={{ width: '100%', height: '100%', boxSizing: 'border-box', overflowY: 'auto', background: '#fafafa', position: 'relative', paddingTop: 16, paddingBottom: 48 }}
     >
       {(activeFilter || activePersonFilter) && (
@@ -305,9 +306,9 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
               </span>
               {isAuthored && (
                 <span
-                  title="추정 연도 (저작 배경)"
+                  title="연대추정 (저작 배경 기준)"
                   style={{ fontSize: 10, color: '#8b80a8', border: `1px dashed ${EVENT_COLOR}`, borderRadius: 4, padding: '0 4px', marginLeft: 6 }}
-                >추정</span>
+                >연대추정</span>
               )}
               {renderBookChip(rep)}
               {!isSingle && (
