@@ -1,75 +1,108 @@
 ---
-last_mapped_commit: ff728ccaffbb9b4e38f1f8f32859a50d3555b515
+last_mapped_commit: 7522aafe2088e83e8c4bed86a4f0269082db07e0
 mapped: 2026-06-20
 ---
 
 # 테스트 패턴
 
-## 현황: 자동화 테스트 없음
+## 공식 테스트 프레임워크
 
-BibleMap 프로젝트에는 **자동화 테스트가 전혀 존재하지 않는다.**
+**자동화 테스트 프레임워크 없음.** `package.json`에 테스트 스크립트(`test`) 미정의. Jest/Vitest/pytest 설정 파일 없음. 테스트 파일(`*.test.*`, `*.spec.*`, `test_*.py`) 없음.
 
-확인 경로:
-- `frontend/` — `*.test.js`, `*.test.jsx`, `*.spec.js`, `*.spec.jsx` 파일 0개
-- `backend/` — `test_*.py`, `*_test.py` 파일 0개
-- `frontend/package.json` — `scripts`에 `test` 항목 없음 (`dev`, `build`, `lint`, `preview`만 존재)
-- `frontend/` — `vitest.config.*`, `jest.config.*` 파일 없음
-- `frontend/package.json` `devDependencies` — `vitest`, `jest`, `@testing-library/*` 없음
-- `backend/` — `pytest`, `unittest` 관련 설정 파일 없음
+---
 
-## 부재 이유 (추정)
+## 검증 접근법
 
-`frontend/package.json`과 커밋 히스토리를 보면 프로젝트는 초기 개발 단계부터 지금까지 테스트 인프라를 설치하지 않았다. 프론트엔드는 Playwright를 수동 검증 도구로 사용(`MEMORY.md` 참조)하며, 백엔드는 Neo4j에 직접 적재 후 사람이 눈으로 확인하는 방식으로 검증한다.
+공식 단위 테스트 대신 두 가지 수동·반자동 검증을 사용한다.
 
-## 수동 검증 방식
+### 1. Playwright 브라우저 검증 (UI 동작 검증)
 
-자동화 테스트 대신 다음 방식으로 동작을 확인한다:
+UI 동작을 검증할 때 **Python Playwright**를 사용한다. `/opt/homebrew`에 설치되어 있다.
 
-### 프론트엔드
+**패턴**: 네트워크 캡처 + 스크린샷 방식으로 `localhost:8080`을 검증한다.
 
-- `cd frontend && npm run build` 후 `docker compose up -d --build api`로 전체 스택 기동.
-- **Python Playwright**로 `localhost:8080` 네트워크 캡처 + 스크린샷. (`/opt/homebrew`에 설치)
-- 확인 대상: UI 렌더링, API 응답 구조, 지도 상호작용.
+```python
+from playwright.sync_api import sync_playwright
 
-### 백엔드 / ETL
+with sync_playwright() as p:
+    browser = p.chromium.launch()
+    page = browser.new_page()
 
-- ETL 스크립트는 `MERGE`+`SET` 멱등 패턴으로 작성 → 반복 실행해도 부작용 없음.
-- Neo4j Browser 또는 API 엔드포인트로 직접 조회해 데이터 확인.
+    # 네트워크 요청 캡처
+    captured = []
+    page.on('request', lambda req: captured.append(req.url))
 
-## 테스트 도입 시 권장 구조
+    page.goto('http://localhost:8080')
+    page.wait_for_timeout(2000)
 
-향후 테스트를 추가한다면 기존 스택(Vite + React)에 자연스럽게 맞는 구성:
-
-### 프론트엔드
-
-```
-frontend/
-  src/
-    hooks/
-      useSearch.test.js    # 커스텀 훅 단위 테스트
-      useNodeSelection.test.js
-    utils/
-      convexHull.test.js   # 순수 함수 단위 테스트
-  vitest.config.js
+    # 스크린샷으로 시각 확인
+    page.screenshot(path='screenshot.png')
+    browser.close()
 ```
 
-- 프레임워크: **Vitest** (Vite 네이티브, 설정 최소)
-- 컴포넌트 테스트: `@testing-library/react`
-- 목킹: `vi.mock()` (Vitest 내장)
-
-### 백엔드
-
-```
-backend/
-  tests/
-    test_routes_bible.py
-    test_routes_search.py
-  pytest.ini (또는 pyproject.toml [tool.pytest.ini_options])
+**사전 조건**: 검증 전 반드시 빌드 후 컨테이너 기동.
+```bash
+cd frontend && npm run build
+docker compose up -d --build api
 ```
 
-- 프레임워크: **pytest** + **httpx** (`AsyncClient`로 FastAPI 라우터 테스트)
-- Neo4j 목킹: `pytest-mock` + `unittest.mock.patch('app.db.get_driver', ...)`
+프론트엔드는 `frontend/dist`를 nginx로 서빙(HMR 없음). 백엔드 API는 포트 8000 미노출, nginx 프록시(`/api → api:8000`)를 통해서만 접근.
+
+### 2. 수동 Neo4j 쿼리 검증
+
+데이터 적재·변환 스크립트 실행 후 Neo4j Bolt(`localhost:7687`)에 직접 Cypher 쿼리를 실행해 결과를 확인한다.
+
+---
+
+## 빌드 검증 (lint)
+
+테스트 대신 **ESLint**로 코드 품질을 게이트한다.
+
+```bash
+# 프론트엔드 lint 실행
+cd frontend && npm run lint
+```
+
+ESLint 설정 파일: `frontend/eslint.config.js`
+- `@eslint/js` recommended
+- `eslint-plugin-react-hooks` (hooks 규칙 강제)
+- `eslint-plugin-react-refresh` (Vite 호환)
+- 대상: `**/*.{js,jsx}`
+
+lint clean 상태가 커밋 기준. "lint clean" 유지가 암묵적 품질 목표.
+
+---
+
+## 테스트 없는 영역과 검증 전략
+
+| 영역 | 검증 방법 |
+|------|-----------|
+| 프론트엔드 UI 동작 | Playwright 스크린샷 + 네트워크 캡처 |
+| 프론트엔드 코드 스타일 | ESLint (`npm run lint`) |
+| 백엔드 API 응답 | curl / 브라우저 직접 호출 또는 Playwright 네트워크 캡처 |
+| 데이터 적재 스크립트 | Neo4j Cypher 쿼리로 노드·관계 수 직접 확인 |
+| 유틸리티 함수 (`convexHull.js` 등) | 별도 테스트 없음 |
+
+---
 
 ## 커버리지
 
-현재 커버리지 설정 없음. 도구도 미설치.
+측정하지 않는다. 커버리지 수집 도구 미설치.
+
+---
+
+## Playwright 설치 위치
+
+```
+/opt/homebrew/  (macOS)
+```
+
+실행 시 Python 경로를 명시적으로 지정하거나 Homebrew Python 환경에서 실행.
+
+---
+
+## 향후 테스트 추가 시 고려사항
+
+- 프론트엔드: Vitest(Vite 환경과 통합 용이, 설정 최소화) 적합. Jest는 ESM 설정 부담 있음.
+- 백엔드: pytest + httpx(`AsyncClient`)로 FastAPI 라우터 통합 테스트 가능. `pyproject.toml` 없으므로 `pytest.ini` 또는 `setup.cfg`로 시작.
+- 테스트 파일 위치: 프론트엔드는 `frontend/src/` 하위 co-located(`*.test.js`), 백엔드는 `backend/tests/` 별도 디렉터리 권장.

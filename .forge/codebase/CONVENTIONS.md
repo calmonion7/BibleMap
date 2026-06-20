@@ -1,138 +1,216 @@
 ---
-last_mapped_commit: ff728ccaffbb9b4e38f1f8f32859a50d3555b515
+last_mapped_commit: 7522aafe2088e83e8c4bed86a4f0269082db07e0
 mapped: 2026-06-20
 ---
 
-# 코드 컨벤션
+# 코딩 컨벤션
 
-## 1. 들여쓰기 및 포맷
+## 언어 및 프레임워크 기준
 
-- **스페이스 2칸** 들여쓰기. 탭 없음. 프론트엔드·백엔드 공통.
-- **세미콜론 없음** (프론트엔드 JS/JSX). ASI(자동 세미콜론 삽입) 의존.
-- 파일 끝 개행(newline) 유지.
+**프론트엔드**: JavaScript(TypeScript 미사용) + React 19. 파일 확장자는 컴포넌트에 `.jsx`, 순수 유틸·훅에 `.js`.
+**백엔드**: Python 3 + FastAPI. 타입 힌트는 라우터 파라미터·반환값 수준에서만 산발적으로 사용하고, 전면 적용하지 않는다.
 
-## 2. 따옴표 스타일
+---
 
-| 영역 | 스타일 |
-|------|--------|
-| JavaScript / JSX 문자열 | 단일 따옴표 `'` 우선 |
-| JSX 속성값 | 이중 따옴표 `"` (JSX 관례) |
-| Python 문자열 | 이중 따옴표 `"` 우선, f-string 포함 |
-| Python docstring | 삼중 이중 따옴표 `"""` |
+## 파일 네이밍
 
-단일 따옴표 안에 작은따옴표가 포함될 때만 이중 따옴표로 전환.
+**프론트엔드 컴포넌트**: PascalCase + `.jsx`
+- `App.jsx`, `MapView.jsx`, `SidePanel.jsx`, `TimelineView.jsx`, `BibleOverviewView.jsx`, `Spinner.jsx`, `VerseLangTabs.jsx`
 
-## 3. JSX 패턴
+**프론트엔드 훅/유틸**: camelCase + `.js`. 훅은 `use` 접두사 필수.
+- `useNodeSelection.js`, `useSearch.js`, `api.js`, `theme.js`, `convexHull.js`
 
-- **인라인 스타일 100%**. Tailwind, CSS Modules, 전역 CSS 클래스 없음.
-  ```jsx
-  // `frontend/src/components/SidePanel.jsx` 패턴
-  <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-  ```
-- 스타일 오브젝트가 길면 JSX 밖 변수에 추출하지 않고 멀티라인으로 펼침.
-- 조건 렌더링: 삼항 연산자 우선, 짧으면 `&&` 단락 평가.
-  ```jsx
-  {loading ? <Spinner /> : <Content />}
-  {error && <ErrorMessage />}
-  ```
-- JSX 반환 직전에 계산 변수를 선언해 JSX를 간결하게 유지.
+**백엔드 라우터**: 단수형 snake_case + `.py`
+- `nodes.py`, `events.py`, `search.py`, `books.py`
 
-## 4. 네이밍 규칙
+**백엔드 스크립트**: 동사_목적어 snake_case
+- `load_theographic.py`, `generate_verse_text.py`, `inject_ko_names.py`, `enrich_place_coords.py`
 
-### 프론트엔드 (JS/JSX)
+---
 
-| 대상 | 규칙 | 예시 |
-|------|------|------|
-| 컴포넌트 파일 | PascalCase | `SidePanel.jsx`, `TimelineView.jsx` |
-| 컴포넌트 함수 | PascalCase | `SidePanel`, `BookCard` |
-| 커스텀 훅 파일 | camelCase, `use` 접두사 | `useNodeSelection.js`, `useSearch.js` |
-| 유틸·API 파일 | camelCase | `api.js`, `theme.js`, `convexHull.js` |
-| 이벤트 핸들러 | `handle` 접두사 + camelCase | `handleTabClick`, `handleKeyDown` |
-| 전역 상수 | ALL_CAPS | `MOBILE_QUERY`, `SHEET_VH`, `NAV_H`, `SEARCH_LIMIT` |
-| 일반 변수·함수 | camelCase, 동사 시작 | `selectNode`, `clearSearch`, `fmtYear` |
-| 한국어 번역 필드 | `Ko` 접미사 | `nameKo`, `verse_textKo`, `keyVerseTextKo` |
-| 번역 누락 플래그 | `Missing` 접미사 boolean | `nameKoMissing` |
+## 네이밍 규칙
 
-### 백엔드 (Python)
+**React 컴포넌트 함수**: PascalCase (`function MapView`, `function SidePanel`)
+**React 훅**: camelCase (`useNodeSelection`, `useSearch`). 훅 내부 상태 이름은 `state` 단일 객체보다 개별 `useState` 선호(`selectedNode`, `error`, `loading` 등을 각각).
+**이벤트 핸들러**: `handle` + PascalCase 명사/동사 (`handleTabClick`, `handleSelectResult`, `handleNodeLoaded`) 또는 `on` + PascalCase (`onSearchInput`, `onSheetTouchStart`).
+**상수(모듈 수준)**: UPPER_SNAKE_CASE (`TABS`, `MOBILE_QUERY`, `SHEET_VH`, `API_BASE`, `SEARCH_LIMIT`, `MAX_NEIGHBORS_PER_TYPE`)
+**Python 함수/변수**: snake_case. 모듈 내부 비공개 함수는 `_` 접두사 (`_load_approx_book_index`, `_compute_events`, `_resolve`, `_load`)
 
-| 대상 | 규칙 | 예시 |
-|------|------|------|
-| 함수·변수 | snake_case | `get_driver`, `load_events`, `name_ko` |
-| 전역 상수 | ALL_CAPS | `NEO4J_URI`, `NEO4J_USER`, `SCRIPT_DIR` |
-| 파일명 | snake_case | `bible_data.py`, `enrich_place_coords.py` |
+---
 
-클래스 없이 **모듈 + 함수** 중심 설계. 라우터는 `APIRouter`로 분리.
+## 임포트 스타일
 
-## 5. 에러 처리
+### 프론트엔드(JSX/JS)
+
+```js
+// 1. React 훅 (named import)
+import { useState, useEffect, useCallback, useRef } from 'react'
+// 2. 외부 라이브러리
+import maplibregl from 'maplibre-gl'
+import 'maplibre-gl/dist/maplibre-gl.css'
+// 3. 내부 모듈 — 상대경로, 확장자 생략
+import { TYPE_COLOR, TYPE_KO } from './theme'
+import { apiGet } from './api'
+import Spinner from './Spinner'
+```
+
+경로 alias 미사용. 모두 `./` 상대경로.
+
+### 백엔드(Python)
+
+```python
+# 표준 라이브러리 → 서드파티 → 내부 상대 임포트 순
+import os
+import json
+import functools
+from fastapi import APIRouter, HTTPException
+from ..db import get_driver
+from .. import overlays
+```
+
+---
+
+## 컴포넌트 설계
+
+**Props 기본값**: 함수 파라미터 기본값으로 선언.
+```js
+function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, ... }) {
+```
+
+**컴포넌트 크기**: 뷰 컴포넌트(`MapView`, `TimelineView`, `SidePanel`)는 300~500줄 이내. 로직이 커지면 커스텀 훅(`useNodeSelection`, `useSearch`)으로 추출.
+
+**스타일**: CSS 파일/모듈 없음. 모든 스타일은 인라인 `style` 객체로 직접 작성. Tailwind 미사용.
+
+---
+
+## 커스텀 훅 패턴
+
+훅은 `src/` 최상위에 `use*.js`로 위치.
+
+```js
+// 이름 있는 익스포트(named export). default 미사용.
+export function useNodeSelection() {
+  const [selectedNode, setSelectedNode] = useState(null)
+  // ...
+  return { selectedNode, selectNode, goBack, closePanel, ... }
+}
+```
+
+반환값은 단일 객체로 묶어 구조분해로 사용.
+
+---
+
+## 비동기·fetch 패턴
+
+**API 클라이언트**: `api.js`의 `apiGet` 단일 진입점. 비-OK 응답은 `err.status`를 담은 `Error`로 reject.
+
+```js
+// api.js
+export async function apiGet(path, { signal } = {}) {
+  const res = await fetch(API_BASE + path, { signal })
+  if (!res.ok) { const err = new Error(String(res.status)); err.status = res.status; throw err }
+  return res.json()
+}
+```
+
+**useEffect 내 fetch**: AbortController로 경쟁 차단. 취소된 요청은 `e.name === 'AbortError'`로 식별해 무시.
+
+```js
+useEffect(() => {
+  let cancelled = false
+  apiGet('/node/' + nodeId)
+    .then(data => { if (!cancelled) setState({ ... }) })
+    .catch(e => { if (!cancelled) setState({ error: e?.status ?? String(e) }) })
+  return () => { cancelled = true }
+}, [nodeId])
+```
+
+**디바운스 fetch**: `setTimeout` + `AbortController` 조합으로 구현(`useSearch.js`).
+
+**react-hooks 규칙**: `useEffect` 동기 본문에서 `setState` 직접 호출 금지 — 항상 비동기 콜백(`then`/`catch`/`setTimeout` 내부)에서만 호출. (`useSearch.js` 주석 참조)
+
+---
+
+## 에러 처리
 
 ### 프론트엔드
 
-- `AbortError` 명시적 구분 후 조기 반환:
-  ```js
-  // `frontend/src/hooks/useSearch.js` 패턴
-  } catch (e) {
-    if (e.name === 'AbortError') return
-    setSearchResults([]); setSearchError(true)
-  }
-  ```
-- stale 응답 방지: `let cancelled = false` 플래그 + `useEffect` cleanup에서 `cancelled = true`.
-- `AbortController`로 fetch 경쟁 조건 방지.
-- 에러 상태는 내용 없이 `boolean` 플래그로만 저장(`setError(true)`).
-- 단순 실패는 `.catch(() => setError(true))` 인라인 처리.
+- fetch 에러는 컴포넌트 지역 `error` state로 관리. 콘솔 로깅 없음.
+- `AbortError`는 에러로 취급하지 않고 조용히 무시.
+- UI는 에러 상태를 인라인 메시지로 표시.
+
+```jsx
+if (error) return <p style={{ color: '#dc3545' }}>불러오지 못했습니다 ({error})</p>
+```
 
 ### 백엔드
 
-- 환경변수 누락 → 모듈 최상위에서 즉시 `RuntimeError` raise:
-  ```python
-  # ETL 스크립트 공통 패턴
-  if not NEO4J_PASSWORD:
-      raise RuntimeError("NEO4J_PASSWORD 환경변수가 설정되지 않았습니다")
-  ```
-- 리소스 미발견 → `HTTPException(status_code=404, detail=...)`.
-- 데이터 파싱 실패(float 변환 등) → `except (TypeError, ValueError): continue`.
-- JSON 파싱 실패 → `except json.JSONDecodeError: return {}`.
-- 치명적이지 않은 초기화 에러 → `logging.exception(...)` 후 계속 진행.
+- 노드 없으면 `HTTPException(status_code=404)` raise.
+- Neo4j 연결 실패는 `RuntimeError` (환경변수 미설정 시).
+- 앱 기동 중 인덱스 생성 실패는 `logging.exception`으로 기록 후 계속 진행(`lifespan` 참조).
+- `try/except Exception: pass` 패턴은 사용하지 않고 구체적 예외(`TypeError`, `ValueError`)를 명시.
 
-## 6. 주석 정책
+---
 
-- **JSDoc 없음**. 인라인 한국어 단행 주석만 사용.
-- 파일 최상단: 역할 1줄 설명.
-  ```js
-  // 공유 API 클라이언트 — 모든 프론트 fetch의 단일 베이스 URL + GET 헬퍼.
-  ```
-- JSX 섹션 구분: 한국어 블록 주석.
-  ```jsx
-  {/* 내비게이션 바 */}
-  {/* 오버레이 패널 */}
-  ```
-- 비직관적 동작·버그 방지 이유 설명:
-  ```js
-  // useCallback([])으로 참조를 안정화: selectedNode 변경 시 MapView 등의
-  // useEffect가 재실행되어 expandPlace fetch가 abort되는 버그 방지
-  ```
-- ADR 참조: `ADR-0003`, `ADR-0005` 형식으로 주석에 명시.
-- Python 함수 docstring: 1–2줄 간결하게. 모듈 레벨 docstring은 목적·제약 설명.
+## 상태 공유 패턴
 
-## 7. ESLint 설정
+**테마/팔레트**: `theme.js` 단일 출처. 색상·한글 라벨·정렬 순서를 exports로 노출.
+```js
+// theme.js
+export const TYPE_COLOR = { Person: '#7c9cfc', ... }
+export const typeColor = (label) => TYPE_COLOR[label] || TYPE_COLOR.Unknown
+```
 
-설정 파일: `frontend/eslint.config.js` (flat config 신형)
+**뷰 간 공유 상태**: `App.jsx`에 끌어올려 props로 전달 (`verseLang`, `selectedNode` 등).
 
-- 기반: `eslint/js` → `js.configs.recommended`
-- 플러그인: `eslint-plugin-react-hooks` (`reactHooks.configs.flat.recommended`)
-- 플러그인: `eslint-plugin-react-refresh` (`reactRefresh.configs.vite`)
-- 대상: `**/*.{js,jsx}` — **TypeScript 파일 없음**
-- 무시: `dist/`
+**뷰 상태 보존**: 탭 전환 시 뷰를 언마운트하지 않고 `display: 'none'/'block'` CSS 토글로 상태 유지.
 
-Prettier 설정 파일 없음. 포맷 규칙은 관례 기반으로 유지.
+---
 
-## 8. 모듈 시스템
+## 백엔드 캐싱 패턴
 
-- 프론트엔드: ESM(`type: "module"`), named export 우선. default export는 컴포넌트 파일에 한정.
-- 백엔드: 표준 Python import. 상대 import 없이 절대 경로 import.
+**메모리 캐시**: `functools.lru_cache(maxsize=1)`. 앱 재시작 전까지 결과 보관.
+```python
+@functools.lru_cache(maxsize=1)
+def _compute_events():
+    ...
+```
 
-## 9. ETL 스크립트 패턴
+**HTTP 캐시 헤더**: `JSONResponse(..., headers={"Cache-Control": "max-age=300"})` (이벤트 목록). `Cache-Control: no-store` (책 목록).
 
-- `main()` 함수 + `if __name__ == "__main__": main()` 구조.
-- Neo4j 적재: `MERGE` + `SET`으로 멱등(idempotent) 실행.
-- 드라이버: `@functools.lru_cache(maxsize=1)` 또는 `get_driver()` 싱글턴 패턴.
-- 파일 경로: `SCRIPT_DIR = Path(__file__).parent` 기준 상대 경로로 데이터 파일 참조.
+---
+
+## 데이터 접근 패턴
+
+**Neo4j 드라이버**: `db.py`의 `get_driver()` 싱글턴. 모든 라우터가 `from ..db import get_driver`로 가져와 `with driver.session() as session:` 블록에서 사용.
+
+**오버레이 JSON**: 런타임 파일 읽기 + `lru_cache`(`overlays.py`). 추정 데이터(book_years_approx, book_events, event_verses)는 Neo4j 주입 없이 오버레이로만 제공.
+
+---
+
+## 주석 스타일
+
+- 한국어 인라인 주석으로 의도·배경 설명. 영어 주석 거의 없음.
+- 복잡한 로직 결정 근거는 파일 상단 모듈 docstring 또는 인라인으로 기록.
+- 백엔드 스크립트는 파일 맨 위에 목적·출력·사용법을 한국어 docstring으로 명시.
+- JSDoc/TSDoc 미사용. 단, 공개 유틸 함수(`convexHull`)에는 JSDoc으로 파라미터·반환값 기술.
+
+---
+
+## 모듈 익스포트
+
+**프론트엔드 컴포넌트**: `export default`(기본 익스포트).
+**훅/유틸 함수**: named export.
+**상수/헬퍼**: named export (`export const`, `export function`).
+
+```js
+// 컴포넌트
+export default function MapView({ ... }) { ... }
+
+// 훅
+export function useSearch() { ... }
+
+// 상수
+export const TYPE_COLOR = { ... }
+export const typeColor = (label) => ...
+```
