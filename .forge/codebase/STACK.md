@@ -1,146 +1,129 @@
 ---
-last_mapped_commit: 7522aafe2088e83e8c4bed86a4f0269082db07e0
+last_mapped_commit: 42bd230af7e22bc1839023a1189d6ae696944188
 mapped: 2026-06-20
 ---
 
-# Technology Stack
+# Stack
 
-## 언어
+## Languages
 
-**프론트엔드:**
-- JavaScript (ES Module) — `frontend/src/` 전체. JSX 문법 사용 (`.jsx` 확장자).
-- TypeScript는 사용하지 않음. `@types/react`, `@types/react-dom` 은 devDependency로 선언되어 있으나 실제 소스는 순수 JS.
+- **Python 3.12** — backend (pinned in `backend/Dockerfile`: `FROM python:3.12-slim`)
+- **JavaScript (ESM)** — frontend (`"type": "module"` in `frontend/package.json`)
+- **JSX** — React components in `frontend/src/`
 
-**백엔드:**
-- Python 3.12 — `backend/app/` 및 `backend/scripts/`. `backend/Dockerfile`에서 `python:3.12-slim` 베이스 이미지 지정.
+## Runtime Versions
 
-## 런타임
+| Component | Runtime | Version |
+|-----------|---------|---------|
+| Backend | Python | 3.12 (slim) |
+| Frontend build | Node.js | not pinned (Vite 8.x implies ≥18) |
+| Database | Neo4j | 5.x (`neo4j:5` image in `docker-compose.yml`) |
+| Reverse proxy | nginx | alpine (`nginx:alpine` in `docker-compose.yml`) |
 
-**프론트엔드 빌드 도구:**
-- Vite 8.x (`frontend/vite.config.js`) — 개발 서버 및 프로덕션 번들링.
-- `@vitejs/plugin-react` 6.x — React JSX 트랜스폼.
-- 번들 분리: `vite.config.js`의 `manualChunks`로 `maplibre-gl` → `maplibre` 청크, 나머지 `node_modules` → `vendor` 청크로 분리.
+## Frameworks & Core Libraries
 
-**백엔드 ASGI 서버:**
-- uvicorn 0.49.0 — `CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]` (`backend/Dockerfile`).
+### Backend — `backend/requirements.txt`
 
-**패키지 관리자:**
-- npm — `frontend/package.json`. `package-lock.json` 존재 여부는 `.gitignore` 확인 필요.
-- pip — `backend/requirements.txt`. lockfile 없음(핀 버전만 지정).
+| Package | Version |
+|---------|---------|
+| fastapi | 0.136.3 |
+| uvicorn | 0.49.0 |
+| neo4j (Python driver) | 6.2.0 |
 
-## 프레임워크
+### Frontend — `frontend/package.json`
 
-**프론트엔드:**
-- React 19.x (`frontend/package.json`) — 함수형 컴포넌트 + Hooks 방식. 라우터 없음(단일 페이지 상태 분기).
-- 상태관리 라이브러리 없음 — `useState` / `useEffect` / 커스텀 훅(`useNodeSelection.js`, `useSearch.js`) 직접 사용.
+| Package | Version |
+|---------|---------|
+| react | ^19.2.6 |
+| react-dom | ^19.2.6 |
+| maplibre-gl | ^5.24.0 |
+| lucide-react | ^1.17.0 |
 
-**백엔드:**
-- FastAPI 0.136.3 (`backend/requirements.txt`) — `backend/app/main.py`에서 `FastAPI` 인스턴스 생성.
-- `lifespan` 핸들러에서 앱 시작 시 Neo4j 인덱스 자동 생성.
-- CORS: `allow_origins=["*"]`, `allow_methods=["GET"]` — 읽기 전용 공개 API.
+### Frontend devDependencies
 
-## 핵심 의존성
+| Package | Version |
+|---------|---------|
+| vite | ^8.0.12 |
+| @vitejs/plugin-react | ^6.0.1 |
+| eslint | ^10.3.0 |
+| eslint-plugin-react-hooks | ^7.1.1 |
+| eslint-plugin-react-refresh | ^0.5.2 |
+| @types/react | ^19.2.14 |
+| @types/react-dom | ^19.2.3 |
+| globals | ^17.6.0 |
+| @eslint/js | ^10.0.1 |
 
-**프론트엔드:**
+## Build Tools
 
-| 패키지 | 버전 | 역할 |
-|--------|------|------|
-| `maplibre-gl` | ^5.24.0 | 지도 렌더링 (`frontend/src/MapView.jsx`) |
-| `lucide-react` | ^1.17.0 | 아이콘 (`frontend/src/SidePanel.jsx` 등) |
-| `react` | ^19.2.6 | UI 프레임워크 |
-| `react-dom` | ^19.2.6 | DOM 렌더링 |
+- **Vite 8** — frontend bundler; config at `frontend/vite.config.js`
+  - `@vitejs/plugin-react` plugin
+  - Manual chunk split: `maplibre-gl` → `maplibre` chunk, other `node_modules` → `vendor` chunk
+  - Output written to `frontend/dist/`
+- **npm** — frontend package manager (`frontend/package-lock.json`)
+- **Docker Compose** — orchestration (`docker-compose.yml`)
+  - Services: `neo4j`, `api`, `nginx`
+  - `api` built from `backend/Dockerfile`
+- **uvicorn** — ASGI server; command `uvicorn app.main:app --host 0.0.0.0 --port 8000`
 
-**백엔드:**
+## Key Source Files
 
-| 패키지 | 버전 | 역할 |
-|--------|------|------|
-| `fastapi` | 0.136.3 | REST API 프레임워크 |
-| `neo4j` | 6.2.0 | Neo4j 공식 Python 드라이버 (`backend/app/db.py`) |
-| `uvicorn` | 0.49.0 | ASGI 서버 |
-| `anthropic` | (스크립트만) | 데이터 생성 스크립트에서만 사용. `backend/requirements.txt` 미포함 — 스크립트 실행 시 별도 설치 필요. |
+### Backend (`backend/`)
 
-> `anthropic` 패키지는 `backend/scripts/generate_book_events.py`, `generate_book_context.py`, `generate_person_traits.py`, `generate_verse_events.py`에서 import하지만 `requirements.txt`에 없음. 스크립트는 앱 컨테이너 외부에서 수동 실행 용도.
+| File | Role |
+|------|------|
+| `backend/app/main.py` | FastAPI app factory, CORS middleware, Neo4j index creation on startup |
+| `backend/app/db.py` | Singleton `GraphDatabase.driver` factory; reads env vars |
+| `backend/app/overlays.py` | JSON file loader with `lru_cache`; serves static data overlays |
+| `backend/app/routes/nodes.py` | Node detail, neighbors, place, and person-event-ids endpoints |
+| `backend/app/routes/events.py` | Timeline events endpoint with approx-book index merge |
+| `backend/app/routes/search.py` | Full-text search endpoint (Neo4j Cypher `CONTAINS`) |
+| `backend/app/routes/books.py` | Books overview and timeline-placement endpoints |
+| `backend/Dockerfile` | `python:3.12-slim`, installs requirements, copies `app/` |
 
-## 인프라
+### Frontend (`frontend/src/`)
 
-**컨테이너 오케스트레이션:**
-- Docker Compose (`docker-compose.yml`) — `neo4j`, `api`, `nginx` 세 서비스.
+| File | Role |
+|------|------|
+| `frontend/src/main.jsx` | React entry point |
+| `frontend/src/App.jsx` | Root component, view routing |
+| `frontend/src/api.js` | Shared `apiGet()` helper; `API_BASE` from `VITE_API_URL` env |
+| `frontend/src/MapView.jsx` | MapLibre GL map, clustering, spiderify, place ring animation |
+| `frontend/src/SidePanel.jsx` | Node detail sidebar |
+| `frontend/src/TimelineView.jsx` | Event timeline |
+| `frontend/src/BibleOverviewView.jsx` | Bible overview grid |
+| `frontend/src/theme.js` | Shared color palette and type labels |
+| `frontend/src/convexHull.js` | Convex hull geometry utility |
+| `frontend/src/useNodeSelection.js` | Node selection state hook |
+| `frontend/src/useSearch.js` | Search state and keyboard shortcut (`/`) hook |
+| `frontend/src/VerseLangTabs.jsx` | Verse language tab component |
+| `frontend/src/Spinner.jsx` | Loading spinner |
 
-**서비스 구성:**
+## Configuration Files
 
-| 서비스 | 이미지/빌드 | 노출 포트 |
-|--------|------------|-----------|
-| `neo4j` | `neo4j:5` (공식) | `127.0.0.1:7474`, `127.0.0.1:7687` (로컬호스트 한정) |
-| `api` | `./backend` (Dockerfile 빌드) | 컨테이너 내부 `:8000` (외부 미노출) |
-| `nginx` | `nginx:alpine` | `:8080 → 80` |
+| File | Purpose |
+|------|---------|
+| `docker-compose.yml` | Service orchestration, port bindings, volume mounts |
+| `backend/Dockerfile` | Backend container build |
+| `nginx/nginx.conf` | Reverse proxy: `/api/` → `http://api:8000/`; static SPA from `/usr/share/nginx/html` |
+| `frontend/vite.config.js` | Vite build configuration with manual chunk splitting |
+| `frontend/eslint.config.js` | ESLint configuration |
+| `.env` | Local secrets (gitignored) |
+| `.env.example` | Documents `NEO4J_PASSWORD` variable |
+| `frontend/.env.production` | `VITE_API_URL=/api` — injected at build time |
 
-**볼륨:**
-- `neo4j_data` — 네임드 볼륨으로 그래프 데이터 영속.
-- `./data:/app/data` — 오버레이 JSON 파일(`data/` 디렉터리) api 컨테이너에 바인드 마운트.
-- `./frontend/dist:/usr/share/nginx/html:ro` — Vite 빌드 산출물을 nginx에 읽기전용 마운트.
+## Static Data Overlays (`data/`)
 
-## 설정 및 환경변수
+JSON files mounted into the API container at `/app/data`. Loaded once per process via `lru_cache` in `backend/app/overlays.py`.
 
-**루트 수준 (`.env`, `.env.example`):**
-- `NEO4J_PASSWORD` — Neo4j 비밀번호. `docker-compose.yml`이 `NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}`로 파생.
-
-**프론트엔드 (`frontend/.env.production`):**
-- `VITE_API_URL=/api` — 프로덕션 빌드 시 nginx 프록시 경로 사용. 개발 시 미설정이면 `http://localhost:8000` fallback (`frontend/src/api.js`).
-
-**백엔드 (컨테이너 환경변수, `docker-compose.yml`):**
-- `NEO4J_URI=bolt://neo4j:7687`
-- `NEO4J_USER=neo4j`
-- `NEO4J_PASSWORD=${NEO4J_PASSWORD}`
-- `DATA_DIR` — 선택적. 미설정 시 `/app/data` fallback (`backend/app/overlays.py`).
-
-**스크립트 전용:**
-- `ANTHROPIC_API_KEY` — Claude API 호출 스크립트에서 필요. 앱 컨테이너에는 불필요.
-
-## 빌드 절차
-
-**프론트엔드 (수동/CI):**
-```bash
-cd frontend && npm install && npm run build
-# 출력: frontend/dist/
-```
-`.env.production`의 `VITE_API_URL=/api`가 빌드타임에 자동 주입됨.
-
-**API 이미지:**
-```bash
-docker compose -p biblemap build api
-```
-
-**전체 배포 (`deploy.sh`):**
-```bash
-bash deploy.sh  # 프론트 빌드 → API 이미지 빌드 → 컨테이너 재시작 → 한글 이름 주입
-```
-
-## 코드 품질
-
-**Linting:**
-- ESLint 10.x (`frontend/eslint.config.js`) — `eslint-plugin-react-hooks`, `eslint-plugin-react-refresh` 포함.
-- 대상 파일: `**/*.{js,jsx}`. `dist/` 디렉터리 제외.
-
-**테스트:**
-- 자동화 테스트 없음. Playwright(`/opt/homebrew` 설치)로 UI 동작을 수동 검증.
-
-## 데이터 파일 레이어
-
-`data/` 디렉터리의 JSON 파일은 데이터 생성 스크립트(`backend/scripts/`)가 오프라인으로 생성하고 git 커밋. 런타임에 `backend/app/overlays.py`가 읽어 Neo4j 쿼리 결과와 병합:
-
-| 디렉터리 | 내용 |
-|---------|------|
-| `data/book_events/` | 성경책 → 타임라인 이벤트 매핑 |
-| `data/book_years_approx/` | 추정 연도 배치 데이터 |
-| `data/book_context/` | 책별 요약·핵심 절 |
-| `data/character_traits/` | 인물 특성 및 절 인용 |
-| `data/event_verses/` | 이벤트 → 절 매핑 (8MB JSON) |
-| `data/authored_events/` | 저자 이벤트 오버레이 |
-| `data/person_events/` | 주요 인물별 이벤트 |
-| `data/place_coords/` | 장소 좌표 보강 |
-| `data/names_ko/` | 한국어 이름 매핑 |
-| `data/verse_events/` | 절 → 이벤트 역방향 매핑 |
-
----
-
-*Stack analysis: 2026-06-20*
+| Subdirectory | Content |
+|--------------|---------|
+| `data/book_events/books.json` | `{bookId: [eventId, ...]}` — book→event mapping |
+| `data/book_years_approx/books.json` | `{bookId: {placementYear, basis, ...}}` — estimated composition years |
+| `data/event_verses/events.json` | `{eventId: {books: [...]}}` — event→verse mapping |
+| `data/authored_events/` | Authored event data files |
+| `data/book_context/` | Book contextual data files |
+| `data/character_traits/` | Per-person trait data |
+| `data/names_ko/` | Korean name mappings |
+| `data/person_events/` | Person-to-event associations |
+| `data/place_coords/` | Place coordinate data |
+| `data/verse_events/` | Verse-to-event associations |
