@@ -3,8 +3,133 @@ import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { convexHull } from './convexHull'
 import { apiGet } from './api'
+import { MOBILE_BREAKPOINT, SHEET_VH } from './constants'
 
 const EMPTY_GEOJSON = { type: 'FeatureCollection', features: [] }
+
+function placePopupHTML(label, isPrimary) {
+  const typeLabel = isPrimary ? '📍 선택된 장소' : '📍 관련 장소'
+  return `
+    <div style="
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 4px 2px;
+    ">
+      <div style="
+        font-size: 15px;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin-bottom: 4px;
+      ">${label}</div>
+      <div style="
+        font-size: 11px;
+        color: #7c8db0;
+        letter-spacing: 0.3px;
+      ">${typeLabel}</div>
+    </div>
+  `
+}
+
+function registerEventHandlers(map, { collapseRing, collapseSpider, expandPlace, spiderifyPlaces, onSelectNode, popupRef, expandedPlaceRef }) {
+  map.on('click', 'places-circle', (e) => {
+    const overlapping = map.queryRenderedFeatures(e.point, { layers: ['places-circle'] })
+    if (overlapping.length > 1) {
+      spiderifyPlaces(overlapping, e.lngLat)
+      return
+    }
+
+    collapseSpider()
+    const { id, label, isPrimary } = e.features[0].properties
+    const coords = e.features[0].geometry.coordinates.slice()
+
+    if (expandedPlaceRef.current?.id === id) {
+      collapseRing()
+      return
+    }
+
+    expandPlace(id, coords[0], coords[1])
+
+    if (popupRef.current) popupRef.current.remove()
+    const popup = new maplibregl.Popup({
+      closeButton: true,
+      closeOnClick: false,
+      maxWidth: '220px',
+      offset: 14,
+    })
+      .setLngLat(coords)
+      .setHTML(placePopupHTML(label, isPrimary))
+      .addTo(map)
+    popupRef.current = popup
+    if (id) onSelectNode(id)
+  })
+
+  map.on('mouseenter', 'places-circle', () => {
+    map.getCanvas().style.cursor = 'pointer'
+  })
+  map.on('mouseleave', 'places-circle', () => {
+    map.getCanvas().style.cursor = ''
+  })
+
+  map.on('click', 'place-spider-circle', (e) => {
+    const { id, label, isPrimary, originalLng, originalLat } = e.features[0].properties
+    collapseSpider()
+    expandPlace(id, originalLng, originalLat)
+    if (popupRef.current) popupRef.current.remove()
+    const popup = new maplibregl.Popup({
+      closeButton: true,
+      closeOnClick: false,
+      maxWidth: '220px',
+      offset: 14,
+    })
+      .setLngLat([originalLng, originalLat])
+      .setHTML(placePopupHTML(label, isPrimary))
+      .addTo(map)
+    popupRef.current = popup
+    if (id) onSelectNode(id)
+  })
+
+  map.on('mouseenter', 'place-spider-circle', () => {
+    map.getCanvas().style.cursor = 'pointer'
+  })
+  map.on('mouseleave', 'place-spider-circle', () => {
+    map.getCanvas().style.cursor = ''
+  })
+
+  map.on('click', 'places-cluster', (e) => {
+    const [feature] = e.features
+    const zoom = map.getSource('places-source').getClusterExpansionZoom(feature.properties.cluster_id)
+    if (zoom) map.easeTo({ center: feature.geometry.coordinates, zoom, duration: 400 })
+  })
+
+  map.on('mouseenter', 'places-cluster', () => {
+    map.getCanvas().style.cursor = 'pointer'
+  })
+  map.on('mouseleave', 'places-cluster', () => {
+    map.getCanvas().style.cursor = ''
+  })
+
+  map.on('click', 'event-ring-circle', (e) => {
+    const { id } = e.features[0].properties
+    if (id) onSelectNode(id)
+  })
+
+  map.on('mouseenter', 'event-ring-circle', () => {
+    map.getCanvas().style.cursor = 'pointer'
+  })
+  map.on('mouseleave', 'event-ring-circle', () => {
+    map.getCanvas().style.cursor = ''
+  })
+
+  map.on('click', (e) => {
+    const placeFeatures = map.queryRenderedFeatures(e.point, { layers: ['places-circle'] })
+    const eventFeatures = map.queryRenderedFeatures(e.point, { layers: ['event-ring-circle'] })
+    const spiderFeatures = map.queryRenderedFeatures(e.point, { layers: ['place-spider-circle'] })
+    if (!placeFeatures.length && !eventFeatures.length && !spiderFeatures.length) {
+      collapseRing()
+      collapseSpider()
+      if (popupRef.current) { popupRef.current.remove(); popupRef.current = null }
+    }
+  })
+}
 
 function placesToGeoJSON(places) {
   return {
@@ -359,7 +484,12 @@ export default function MapView({ onSelectNode, selectedNode, isVisible }) {
     }
 
     async function expandPlace(placeId, placeLng, placeLat) {
-      if (expandAbortCtrl) expandAbortCtrl.abort()
+      if (animFrame) { cancelAnimationFrame(animFrame); animFrame = null }
+      if (expandedPlace.current) {
+        expandedPlace.current = null
+        map.getSource('event-ring-source').setData(EMPTY_GEOJSON)
+      }
+      if (expandAbortCtrl) { expandAbortCtrl.abort(); expandAbortCtrl = null }
       expandAbortCtrl = new AbortController()
       const signal = expandAbortCtrl.signal
 
@@ -409,156 +539,7 @@ export default function MapView({ onSelectNode, selectedNode, isVisible }) {
 
     map.on('load', () => {
       setupMapSources(map)
-
-      map.on('click', 'places-circle', (e) => {
-        const overlapping = map.queryRenderedFeatures(e.point, { layers: ['places-circle'] })
-        if (overlapping.length > 1) {
-          spiderifyPlaces(overlapping, e.lngLat)
-          return
-        }
-
-        collapseSpider()
-        const { id, label, isPrimary } = e.features[0].properties
-        const coords = e.features[0].geometry.coordinates.slice()
-
-        if (expandedPlace.current?.id === id) {
-          // 같은 장소 재클릭 → 링 접힘
-          collapseRing()
-          return
-        }
-
-        // 다른 장소 클릭 → 기존 링 즉시 제거 후 새 링 펼침
-        if (expandAbortCtrl) { expandAbortCtrl.abort(); expandAbortCtrl = null }
-        if (animFrame) { cancelAnimationFrame(animFrame); animFrame = null }
-        if (expandedPlace.current) {
-          expandedPlace.current = null
-          map.getSource('event-ring-source').setData(EMPTY_GEOJSON)
-        }
-
-        expandPlace(id, coords[0], coords[1])
-
-        if (popupRef.current) popupRef.current.remove()
-
-        const typeLabel = isPrimary ? '📍 선택된 장소' : '📍 관련 장소'
-
-        const popup = new maplibregl.Popup({
-          closeButton: true,
-          closeOnClick: false,
-          maxWidth: '220px',
-          offset: 14,
-        })
-          .setLngLat(coords)
-          .setHTML(`
-            <div style="
-              font-family: system-ui, -apple-system, sans-serif;
-              padding: 4px 2px;
-            ">
-              <div style="
-                font-size: 15px;
-                font-weight: 700;
-                color: #1a1a2e;
-                margin-bottom: 4px;
-              ">${label}</div>
-              <div style="
-                font-size: 11px;
-                color: #7c8db0;
-                letter-spacing: 0.3px;
-              ">${typeLabel}</div>
-            </div>
-          `)
-          .addTo(map)
-
-        popupRef.current = popup
-        if (id) onSelectNode(id)
-      })
-
-      map.on('mouseenter', 'places-circle', () => {
-        map.getCanvas().style.cursor = 'pointer'
-      })
-      map.on('mouseleave', 'places-circle', () => {
-        map.getCanvas().style.cursor = ''
-      })
-
-      map.on('click', 'place-spider-circle', (e) => {
-        const { id, label, isPrimary, originalLng, originalLat } = e.features[0].properties
-        collapseSpider()
-        expandPlace(id, originalLng, originalLat)
-        if (popupRef.current) popupRef.current.remove()
-        const typeLabel = isPrimary ? '📍 선택된 장소' : '📍 관련 장소'
-        const popup = new maplibregl.Popup({
-          closeButton: true,
-          closeOnClick: false,
-          maxWidth: '220px',
-          offset: 14,
-        })
-          .setLngLat([originalLng, originalLat])
-          .setHTML(`
-            <div style="
-              font-family: system-ui, -apple-system, sans-serif;
-              padding: 4px 2px;
-            ">
-              <div style="
-                font-size: 15px;
-                font-weight: 700;
-                color: #1a1a2e;
-                margin-bottom: 4px;
-              ">${label}</div>
-              <div style="
-                font-size: 11px;
-                color: #7c8db0;
-                letter-spacing: 0.3px;
-              ">${typeLabel}</div>
-            </div>
-          `)
-          .addTo(map)
-        popupRef.current = popup
-        if (id) onSelectNode(id)
-      })
-
-      map.on('mouseenter', 'place-spider-circle', () => {
-        map.getCanvas().style.cursor = 'pointer'
-      })
-      map.on('mouseleave', 'place-spider-circle', () => {
-        map.getCanvas().style.cursor = ''
-      })
-
-      map.on('click', 'places-cluster', (e) => {
-        const [feature] = e.features
-        const zoom = map.getSource('places-source').getClusterExpansionZoom(feature.properties.cluster_id)
-        if (zoom) map.easeTo({ center: feature.geometry.coordinates, zoom, duration: 400 })
-      })
-
-      map.on('mouseenter', 'places-cluster', () => {
-        map.getCanvas().style.cursor = 'pointer'
-      })
-      map.on('mouseleave', 'places-cluster', () => {
-        map.getCanvas().style.cursor = ''
-      })
-
-      // 사건 버블 클릭 → 사건 상세로 이동, 링 유지
-      map.on('click', 'event-ring-circle', (e) => {
-        const { id } = e.features[0].properties
-        if (id) onSelectNode(id)
-      })
-
-      map.on('mouseenter', 'event-ring-circle', () => {
-        map.getCanvas().style.cursor = 'pointer'
-      })
-      map.on('mouseleave', 'event-ring-circle', () => {
-        map.getCanvas().style.cursor = ''
-      })
-
-      map.on('click', (e) => {
-        const placeFeatures = map.queryRenderedFeatures(e.point, { layers: ['places-circle'] })
-        const eventFeatures = map.queryRenderedFeatures(e.point, { layers: ['event-ring-circle'] })
-        const spiderFeatures = map.queryRenderedFeatures(e.point, { layers: ['place-spider-circle'] })
-        if (!placeFeatures.length && !eventFeatures.length && !spiderFeatures.length) {
-          collapseRing()
-          collapseSpider()
-          if (popupRef.current) { popupRef.current.remove(); popupRef.current = null }
-        }
-      })
-
+      registerEventHandlers(map, { collapseRing, collapseSpider, expandPlace, spiderifyPlaces, onSelectNode, popupRef, expandedPlaceRef })
       mapRef.current = map
       setMapLoaded(true)
     })
@@ -630,8 +611,8 @@ export default function MapView({ onSelectNode, selectedNode, isVisible }) {
         // 아직 안 펼친 primary(=검색·사이드패널 선택)만 적당한 줌으로 가져온 뒤 "정착된 줌"에서
         // 펼친다(R을 정착 줌에서 계산해야 화면 밖으로 안 날아간다 — task 15에서 어긋났던 지점).
         // 인물/집단 선택은 isPrimary가 없으므로 전체 장소만 한눈에 보여준다(기존 거동).
-        const isMobile = window.innerWidth <= 768
-        const sheet = Math.round(window.innerHeight * 0.55) // App.jsx SHEET_VH=55vh와 일치
+        const isMobile = window.innerWidth <= MOBILE_BREAKPOINT
+        const sheet = Math.round(window.innerHeight * (SHEET_VH / 100))
         const primary = places.find((p) => p.isPrimary)
 
         if (primary && expandedPlaceRef.current?.id !== primary.id) {

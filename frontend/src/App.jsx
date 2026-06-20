@@ -5,6 +5,7 @@ import SidePanel from './SidePanel'
 import TimelineView from './TimelineView'
 import BibleOverviewView from './BibleOverviewView'
 import { TYPE_ORDER, typeColor, typeKo, SELECT_HL } from './theme'
+import { MOBILE_BREAKPOINT, SHEET_VH } from './constants'
 import { useNodeSelection } from './useNodeSelection'
 import { useSearch } from './useSearch'
 
@@ -15,9 +16,7 @@ const TABS = [
 ]
 
 // 모바일(좁은 뷰포트) 분기 — 이 폭 이하에서 상세 패널을 우측 사이드패널 대신 하단 시트로 띄운다.
-const MOBILE_QUERY = '(max-width: 768px)'
-// 하단 시트 높이(뷰포트 대비 vh). MapView.jsx의 fitBounds 하단 패딩 비율(0.55)과 반드시 일치시킨다.
-const SHEET_VH = 55
+const MOBILE_QUERY = `(max-width: ${MOBILE_BREAKPOINT}px)`
 
 // 노드 타입 → 색 팔레트(SidePanel과 동일) / 한글 라벨 / 칩 표시 순서
 
