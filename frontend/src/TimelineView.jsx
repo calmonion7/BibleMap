@@ -83,7 +83,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
 
   const activeFilter = bookFilter && dismissedFilter !== bookFilter ? bookFilter : null
   const activePersonFilter = personFilter && dismissedPersonFilter !== personFilter ? personFilter : null
-  const { visibleGroups, timeline } = useMemo(() => {
+  const { timeline } = useMemo(() => {
     const inFilter = (y) => {
       if (!activeFilter) return true
       if (y === null) return false
@@ -95,8 +95,8 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
       .filter(g => inFilter(sortKeyToYear(g.sortKey)))
       .filter(g => !activePersonFilter || g.members.some(ev => activePersonFilter.has(ev.id)))
     const tl = [...vg.map(g => ({ kind: 'group', sortKey: g.sortKey, group: g }))].sort((a, b) => a.sortKey - b.sortKey)
-    return { visibleGroups: vg, timeline: tl }
-  }, [groups, bookFilter, dismissedFilter, personFilter, dismissedPersonFilter])
+    return { timeline: tl }
+  }, [groups, activeFilter, activePersonFilter])
 
   // 사건의 근거 권 칩. 클릭 → 그 사건 아래 인라인 구절 뷰 토글(권 선택 → 인용범위 → 절 본문).
   // 한 번에 한 사건만 펼침. (인라인 확장 — 플로팅 nav 바에 가리지 않게 absolute 팝오버 금지)
