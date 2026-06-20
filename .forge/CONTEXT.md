@@ -56,7 +56,7 @@ Person 노드에 주입되는 속성 `traits` (JSON 문자열 배열). 각 항�
 
 BibleMap 데이터를 바라보는 세 가지 중심 관점. 관점에 따라 같은 데이터가 다르게 시각화된다.
 
-**인물 중심 (Person-centric)**: 특정 Person이 참여한 Event와 그 Event가 발생한 Place들로 해당 인물의 활동 반경을 구성한다. Person에 좌표가 없는 이유도 여기서 비롯된다 — Person은 `HAS_PARTICIPANT → Event → OCCURS_AT → Place` 경로를 통해 간접적으로 공간을 갖는다.
+**인물 중심 (Person-centric)**: 특정 Person이 참여한 Event와 그 Event가 발생한 Place들로 해당 인물의 활동 반경을 구성한다. Person에 좌표가 없는 이유도 여기서 비롯된다 — Person은 `HAS_PARTICIPANT → Event → OCCURS_AT → Place` 경로를 통해 간접적으로 공간을 갖는다. **지도에 표시되는 장소 수는 Theographic 이벤트와 authored 이벤트를 합산해 집계된다** — 따라서 인물 대상 authored 이벤트를 추가 계획할 때는 먼저 기존 Theographic 이벤트가 연결하는 장소 수를 파악해야 실제 필요한 authored 이벤트 수를 산정할 수 있다.
 
 **장소 중심 (Place-centric)**: 특정 Place에서 발생한 Event와 그 Event에 참여한 Person들을 조회한다. 지도 마커 클릭이 이 관점의 진입점이다.
 
