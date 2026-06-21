@@ -1,5 +1,5 @@
 ---
-last_mapped_commit: 14bad165b1d8f1d366e201161b2e7de843fe0b5e
+last_mapped_commit: 70a9781e6523a396ad856f980b5499b1cc814d7a
 mapped: 2026-06-21
 ---
 
@@ -27,11 +27,11 @@ BibleMap/
 frontend/
 ├── src/
 │   ├── main.jsx                진입점 — React DOM 마운트
-│   ├── App.jsx                 최상위 컴포넌트 — 뷰 전환, 검색, 노드 선택, 오버레이 패널, 모바일 분기
+│   ├── App.jsx                 최상위 컴포넌트 — 뷰 전환, 검색, 노드 선택, 오버레이 패널, 모바일 분기, / 단축키
 │   ├── api.js                  단일 HTTP 클라이언트 (apiGet 헬퍼, VITE_API_URL 베이스)
-│   ├── theme.js                노드 타입 색·한글 라벨·표시 순서 팔레트 + typeColor/typeKo 헬퍼 (공유)
+│   ├── theme.js                노드 타입 색·한글 라벨·표시 순서 팔레트 + typeColor/typeKo 헬퍼, SELECT_HL (공유)
 │   ├── constants.js            공유 상수 — MOBILE_BREAKPOINT(768px), SHEET_VH(55vh)
-│   ├── MapView.jsx             maplibre-gl 지도 뷰 — 마커/클러스터/스파이더파이/사건 링/볼록 껍질
+│   ├── MapView.jsx             maplibre-gl 지도 뷰 — 마커/클러스터/스파이더파이/사건 링/볼록 껍질/바깥쪽 라벨 배치
 │   ├── TimelineView.jsx        사건 타임라인 뷰 — startDate 그룹, 책 칩, 인라인 구절 드릴다운
 │   ├── BibleOverviewView.jsx   성경 개요 뷰 — 구약·신약 장르별 북 카드 그리드
 │   ├── SidePanel.jsx           노드 상세 오버레이 패널 — 이웃 그룹 + Person/Book/Place 전용 블록
@@ -41,11 +41,12 @@ frontend/
 │   ├── VerseLangTabs.jsx       구절 언어 전환 탭 (한국어/영어) 공유 UI
 │   ├── Spinner.jsx             로딩 스피너 공유 UI
 │   ├── index.css               글로벌 스타일 (최소)
-│   └── assets/                 정적 에셋 (hero.png 등)
-├── public/                     Vite 정적 루트 (favicon.svg 등)
+│   └── assets/                 정적 에셋
+├── public/                     Vite 정적 루트
 ├── dist/                       빌드 결과물 — nginx 마운트 대상
 ├── index.html                  SPA HTML 쉘
 ├── vite.config.js              Vite 설정 (maplibre 코드 분할)
+├── .env.production             VITE_API_URL=/api (프로덕션 빌드 고정)
 └── package.json                의존성 (react 19, maplibre-gl 5, lucide-react, vite 8)
 ```
 
@@ -69,8 +70,8 @@ backend/
 │   ├── overlays.py             오버레이 JSON 로더 (lru_cache — book_events_raw, approx_years, event_verses)
 │   └── routes/
 │       ├── nodes.py            /node/{id}, /node/{id}/places, /node/{id}/neighbors/grouped, /person/{id}/event-ids
-│       ├── events.py           /events, /event/{id}/verses
-│       ├── search.py           /search?q=
+│       ├── events.py           /events, /event/{id}/verses (lru_cache + 추정책 머지)
+│       ├── search.py           /search?q= (3단 랭크 정렬)
 │       └── books.py            /books, /books-overview
 ├── scripts/
 │   ├── load_theographic.py    GitHub Theographic Bible Metadata → Neo4j 벌크 로드
@@ -90,7 +91,7 @@ backend/
 │   ├── inject_book_context.py     책 컨텍스트(background·themes·keyVerse) Neo4j 주입
 │   ├── inject_ko_names.py         한국어 이름(nameKo·aliasesKo) Neo4j 주입
 │   ├── inject_person_traits.py    인물 성품(traits) Neo4j 주입
-│   ├── inject_place_context.py    장소 컨텍스트(background·keyVerse·keyVerseTextKo/En) Neo4j 주입 (신규)
+│   ├── inject_place_context.py    장소 컨텍스트(background·keyVerse·keyVerseTextKo/En) Neo4j 주입
 │   └── enrich_place_coords.py     장소 좌표 Neo4j 멱등 적재
 ├── Dockerfile                  python:3.12-slim, uvicorn app.main:app :8000
 └── requirements.txt            fastapi, neo4j, uvicorn
@@ -119,7 +120,7 @@ data/
 ├── book_context/
 │   └── books.json          책 컨텍스트 (background·themes·keyVerse·keyVerseTextKo/En 등) (inject)
 ├── place_context/
-│   └── places.json         장소 컨텍스트 (background·keyVerse·keyVerseTextKo/En, place id 키) (inject, 신규)
+│   └── places.json         장소 컨텍스트 (background·keyVerse·keyVerseTextKo/En, place id 키, 43개) (inject)
 ├── character_traits/
 │   └── people.json         인물별 성품 트레이트 (trait·verse_ref·description·verse_textKo/En) (inject)
 ├── place_coords/
@@ -182,7 +183,7 @@ nginx/
 | `frontend/src/api.js` | 모든 HTTP 요청 단일 베이스 |
 | `frontend/src/theme.js` | 노드 타입 색·라벨 팔레트 + typeColor/typeKo 헬퍼 (공유) |
 | `frontend/src/constants.js` | 공유 상수 (MOBILE_BREAKPOINT, SHEET_VH) |
-| `frontend/src/MapView.jsx` | maplibre-gl 지도, 클러스터, 스파이더파이, 사건 링 |
+| `frontend/src/MapView.jsx` | maplibre-gl 지도, 클러스터, 스파이더파이, 사건 링, 바깥쪽 라벨 배치 |
 | `frontend/src/SidePanel.jsx` | 노드 상세 패널 (Person/Book/Place 전용 블록) |
 | `frontend/src/useNodeSelection.js` | 노드 선택·히스토리 훅 |
 | `backend/app/main.py` | FastAPI 앱 등록 |
@@ -192,8 +193,8 @@ nginx/
 | `backend/app/routes/events.py` | 사건 목록·구절 API (캐시) |
 | `backend/scripts/load_theographic.py` | 데이터 초기 로드 |
 | `backend/scripts/generate_verse_text.py` | 절 본문 prebake (4소스) |
-| `backend/scripts/inject_place_context.py` | 장소 컨텍스트 Neo4j 주입 (신규) |
+| `backend/scripts/inject_place_context.py` | 장소 컨텍스트 Neo4j 주입 |
 | `data/event_verses/events.json` | 사건별 구절 텍스트 (prebaked, 오버레이) |
-| `data/place_context/places.json` | 장소 배경·대표 구절 (inject 소스, 신규) |
+| `data/place_context/places.json` | 장소 배경·대표 구절 (inject 소스) |
 | `docker-compose.yml` | 3-서비스 컨테이너 구성 |
 | `nginx/nginx.conf` | API 프록시 + SPA 라우팅 |
