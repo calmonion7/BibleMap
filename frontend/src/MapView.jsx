@@ -131,14 +131,52 @@ function registerEventHandlers(map, { collapseRing, collapseSpider, expandPlace,
   })
 }
 
+// 라벨을 바깥 방향(이웃/링 중심 반대)으로 — 화면 기준 8방위 text-anchor + text-offset.
+// ex: 동(+)/서(-) 화면 우측 성분, ny: 북(+)/남(-) 화면 상단 성분(호출 측에서 cos(lat) 보정).
+function outwardLabel(ex, ny) {
+  const ax = Math.abs(ex), ay = Math.abs(ny)
+  const O = 1.2
+  const h = ex >= 0 ? 'left' : 'right'   // 'left' 앵커 = 텍스트가 점 오른쪽
+  const v = ny >= 0 ? 'bottom' : 'top'   // 'bottom' 앵커 = 텍스트가 점 위쪽
+  const ox = ex >= 0 ? O : -O
+  const oy = ny >= 0 ? -O : O            // 북(위) → text-offset 음수 y(위로)
+  const RATIO = 2.5
+  if (ax >= ay * RATIO) return { anchor: h, offset: [ox, 0] }      // 거의 수평
+  if (ay >= ax * RATIO) return { anchor: v, offset: [0, oy] }      // 거의 수직
+  return { anchor: `${v}-${h}`, offset: [ox * 0.85, oy * 0.85] }   // 대각
+}
+
+// 링 배치 라벨 — 링 중심에서 바깥(방사) 방향. lng 기준 R로 그린 링은 화면상 세로로 늘어나므로 sin을 cos(lat)로 보정.
+function ringLabels(lat, n) {
+  const cosLat = Math.cos(lat * Math.PI / 180) || 1
+  return Array.from({ length: n }, (_, i) => {
+    const angle = (2 * Math.PI / n) * i - Math.PI / 2
+    return outwardLabel(Math.cos(angle), Math.sin(angle) / cosLat)
+  })
+}
+
 function placesToGeoJSON(places) {
+  const cosLat = Math.cos((places[0]?.lat ?? 0) * Math.PI / 180) || 1
   return {
     type: 'FeatureCollection',
-    features: places.map((p) => ({
-      type: 'Feature',
-      geometry: { type: 'Point', coordinates: [p.lng, p.lat] },
-      properties: { id: p.id, label: p.nameKo, isPrimary: p.isPrimary },
-    })),
+    features: places.map((p) => {
+      // 최근접 이웃 반대쪽으로 라벨을 민다(화면 세로 cos(lat) 보정). 이웃 없으면 기본 우측.
+      let best = null, bestD = Infinity
+      for (const q of places) {
+        if (q === p) continue
+        const dx = q.lng - p.lng, dy = (q.lat - p.lat) / cosLat
+        const d = dx * dx + dy * dy
+        if (d < bestD) { bestD = d; best = q }
+      }
+      const { anchor, offset } = best
+        ? outwardLabel(p.lng - best.lng, (p.lat - best.lat) / cosLat)
+        : { anchor: 'left', offset: [1.2, 0] }
+      return {
+        type: 'Feature',
+        geometry: { type: 'Point', coordinates: [p.lng, p.lat] },
+        properties: { id: p.id, label: p.nameKo, isPrimary: p.isPrimary, anchor, offset },
+      }
+    }),
   }
 }
 
@@ -151,18 +189,18 @@ function ringPositions(lng, lat, n, R) {
   })
 }
 
-function buildEventGeoJSON(events, positions) {
+function buildEventGeoJSON(events, positions, anchors) {
   return {
     type: 'FeatureCollection',
     features: events.map((ev, i) => ({
       type: 'Feature',
       geometry: { type: 'Point', coordinates: positions[i] },
-      properties: { id: ev.id, label: ev.nameKo || ev.name },
+      properties: { id: ev.id, label: ev.nameKo || ev.name, anchor: anchors[i].anchor, offset: anchors[i].offset },
     })),
   }
 }
 
-function buildSpiderGeoJSON(features, positions) {
+function buildSpiderGeoJSON(features, positions, anchors) {
   return {
     type: 'FeatureCollection',
     features: features.map((f, i) => ({
@@ -172,6 +210,8 @@ function buildSpiderGeoJSON(features, positions) {
         ...f.properties,
         originalLng: f.geometry.coordinates[0],
         originalLat: f.geometry.coordinates[1],
+        anchor: anchors[i].anchor,
+        offset: anchors[i].offset,
       },
     })),
   }
@@ -225,8 +265,8 @@ function setupMapSources(map) {
       'text-field': ['get', 'label'],
       'text-font': ['Noto Sans Regular'],
       'text-size': 13,
-      'text-variable-anchor': ['left', 'right', 'top', 'bottom', 'top-left', 'top-right', 'bottom-left', 'bottom-right'],
-      'text-radial-offset': 1.2,
+      'text-anchor': ['get', 'anchor'],
+      'text-offset': ['get', 'offset'],
       'text-justify': 'auto',
       'text-allow-overlap': false,
       'text-ignore-placement': false,
@@ -299,8 +339,8 @@ function setupMapSources(map) {
       'text-field': ['get', 'label'],
       'text-font': ['Noto Sans Regular'],
       'text-size': 13,
-      'text-variable-anchor': ['left', 'right', 'top', 'bottom', 'top-left', 'top-right', 'bottom-left', 'bottom-right'],
-      'text-radial-offset': 1.2,
+      'text-anchor': ['get', 'anchor'],
+      'text-offset': ['get', 'offset'],
       'text-justify': 'auto',
       'text-allow-overlap': false,
       'text-ignore-placement': false,
@@ -348,8 +388,8 @@ function setupMapSources(map) {
       'text-field': ['get', 'label'],
       'text-font': ['Noto Sans Regular'],
       'text-size': 12,
-      'text-variable-anchor': ['left', 'right', 'top', 'bottom', 'top-left', 'top-right', 'bottom-left', 'bottom-right'],
-      'text-radial-offset': 1.0,
+      'text-anchor': ['get', 'anchor'],
+      'text-offset': ['get', 'offset'],
       'text-justify': 'auto',
       'text-allow-overlap': false,
       'text-padding': 3,
@@ -406,7 +446,7 @@ export default function MapView({ onSelectNode, selectedNode, isVisible }) {
     function collapseSpider() {
       if (!spiderState) return
       if (spiderAnimFrame) { cancelAnimationFrame(spiderAnimFrame); spiderAnimFrame = null }
-      const { lng, lat, features, targets } = spiderState
+      const { lng, lat, features, targets, anchors } = spiderState
       spiderState = null
       const start = performance.now()
       const DURATION = 400
@@ -418,7 +458,7 @@ export default function MapView({ onSelectNode, selectedNode, isVisible }) {
           lng + (tlng - lng) * factor,
           lat + (tlat - lat) * factor,
         ])
-        map.getSource('place-spider-source').setData(buildSpiderGeoJSON(features, positions))
+        map.getSource('place-spider-source').setData(buildSpiderGeoJSON(features, positions, anchors))
         if (t < 1) {
           spiderAnimFrame = requestAnimationFrame(animate)
         } else {
@@ -437,7 +477,8 @@ export default function MapView({ onSelectNode, selectedNode, isVisible }) {
       const edgePoint = map.unproject([center.x + 80, center.y])
       const R = Math.abs(edgePoint.lng - lng)
       const targets = ringPositions(lng, lat, features.length, R)
-      spiderState = { lng, lat, features, targets }
+      const anchors = ringLabels(lat, features.length)
+      spiderState = { lng, lat, features, targets, anchors }
       if (spiderAnimFrame) { cancelAnimationFrame(spiderAnimFrame); spiderAnimFrame = null }
       const start = performance.now()
       const DURATION = 400
@@ -449,7 +490,7 @@ export default function MapView({ onSelectNode, selectedNode, isVisible }) {
           lng + (tlng - lng) * factor,
           lat + (tlat - lat) * factor,
         ])
-        map.getSource('place-spider-source').setData(buildSpiderGeoJSON(features, positions))
+        map.getSource('place-spider-source').setData(buildSpiderGeoJSON(features, positions, anchors))
         if (t < 1) {
           spiderAnimFrame = requestAnimationFrame(animate)
         }
@@ -461,7 +502,7 @@ export default function MapView({ onSelectNode, selectedNode, isVisible }) {
       if (!expandedPlace.current) return
       if (animFrame) { cancelAnimationFrame(animFrame); animFrame = null }
 
-      const { lng, lat, events, targets } = expandedPlace.current
+      const { lng, lat, events, targets, anchors } = expandedPlace.current
       expandedPlace.current = null
 
       const start = performance.now()
@@ -475,7 +516,7 @@ export default function MapView({ onSelectNode, selectedNode, isVisible }) {
           lng + (tlng - lng) * factor,
           lat + (tlat - lat) * factor,
         ])
-        map.getSource('event-ring-source').setData(buildEventGeoJSON(events, positions))
+        map.getSource('event-ring-source').setData(buildEventGeoJSON(events, positions, anchors))
         if (t < 1) {
           animFrame = requestAnimationFrame(animate)
         } else {
@@ -514,7 +555,8 @@ export default function MapView({ onSelectNode, selectedNode, isVisible }) {
       const R = Math.abs(edgePoint.lng - placeLng)
 
       const targets = ringPositions(placeLng, placeLat, events.length, R)
-      expandedPlace.current = { id: placeId, lng: placeLng, lat: placeLat, events, targets }
+      const anchors = ringLabels(placeLat, events.length)
+      expandedPlace.current = { id: placeId, lng: placeLng, lat: placeLat, events, targets, anchors }
 
       if (animFrame) { cancelAnimationFrame(animFrame); animFrame = null }
       const start = performance.now()
@@ -528,7 +570,7 @@ export default function MapView({ onSelectNode, selectedNode, isVisible }) {
           placeLng + (tlng - placeLng) * factor,
           placeLat + (tlat - placeLat) * factor,
         ])
-        map.getSource('event-ring-source').setData(buildEventGeoJSON(events, positions))
+        map.getSource('event-ring-source').setData(buildEventGeoJSON(events, positions, anchors))
         if (t < 1) {
           animFrame = requestAnimationFrame(animate)
         } else {
