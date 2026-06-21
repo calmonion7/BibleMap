@@ -84,6 +84,9 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
   const keyVerseText = node.label === 'Book'
     ? (verseLang === 'ko' ? node.properties.keyVerseTextKo : node.properties.keyVerseTextEn)
     : null
+  const placeKeyVerseText = node.label === 'Place'
+    ? (verseLang === 'ko' ? node.properties.keyVerseTextKo : node.properties.keyVerseTextEn)
+    : null
 
   function toggle(key) {
     setCollapsed(prev => ({ ...prev, [key]: prev[key] === false }))
@@ -329,6 +332,46 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                       )}
                     </button>
                   ))}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Place 전용 블록 — 이웃 그룹보다 위. Book의 시대적 배경·대표 구절 미러. */}
+      {node.label === 'Place' && (node.properties.background || node.properties.keyVerse) && (
+        <div style={{ padding: '12px 16px 4px', fontSize: 14 }}>
+          {/* 장소 배경 */}
+          {node.properties.background && (
+            <div style={{ marginBottom: 12 }}>
+              <SectionHeader label="장소 배경" color={TYPE_COLOR.Place} sectionKey="place-background" collapsed={collapsed} onToggle={toggle} />
+              {collapsed['place-background'] === false && (
+                <p style={{ margin: '0 0 4px', color: '#374151', lineHeight: 1.6 }}>{node.properties.background}</p>
+              )}
+            </div>
+          )}
+
+          {/* 대표 구절 */}
+          {node.properties.keyVerse && (
+            <div style={{ marginBottom: 12 }}>
+              <SectionHeader label="대표 구절" color={TYPE_COLOR.Place} sectionKey="place-keyverse" collapsed={collapsed} onToggle={toggle} />
+              {collapsed['place-keyverse'] === false && (
+                <div style={{
+                  padding: '10px 12px', background: '#f5f3ff', borderRadius: 8,
+                  borderLeft: `3px solid ${TYPE_COLOR.Place}`, marginBottom: 4,
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', marginBottom: placeKeyVerseText ? 4 : 0 }}>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: '#6d28d9' }}>
+                      {node.properties.keyVerse}
+                    </div>
+                    <span style={{ marginLeft: 'auto' }}>
+                      <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} color={TYPE_COLOR.Place} />
+                    </span>
+                  </div>
+                  {placeKeyVerseText && (
+                    <div style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{placeKeyVerseText}</div>
+                  )}
                 </div>
               )}
             </div>

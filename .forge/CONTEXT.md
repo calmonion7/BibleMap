@@ -30,6 +30,10 @@ Person 노드에 주입되는 속성 `traits` (JSON 문자열 배열). 각 항�
 
 각 Book의 시대적 배경·주제·대표구절을 담는 정적 JSON (`data/book_context/books.json`). LLM(Claude API)으로 생성 후 수동 검수. `inject_book_context.py`로 Book 노드 속성에 주입. Verse 텍스트(대표구절·사건 근거·인물 성품 인용절)는 **빌드타임에 getbible에서 한국어(`korean`)+영어(`kjv`)로 미리 받아 데이터에 함께 저장**한다(`generate_verse_text.py`, ADR-0003) — 런타임 외부 fetch 없음. Book의 대표구절 본문은 `keyVerseTextKo`/`keyVerseTextEn` 속성으로 주입된다.
 
+## Place Context (장소 컨텍스트)
+
+좌표가 있어 지도에 뜨는 장소(43개)의 **성경적 배경 산문(`background`)·대표구절(`keyVerse`)**을 담는 정적 JSON (`data/place_context/places.json`, dict 키=장소 id). **Book Context의 장소판** — 구조·파이프라인이 동일하다: LLM 직접 생성(ADR-0006, `place_coords`의 `note`를 시드로) → 대표구절 본문 빌드타임 프리베이크(`generate_verse_text.py`의 `bake_place_context`, `keyVerseTextKo`/`keyVerseTextEn`) → `inject_place_context.py`로 Place 노드에 4개 필드(`background`/`keyVerse`/`keyVerseTextKo`/`keyVerseTextEn`)만 SET. **실제 노드의 서술 보강이라 오버레이가 아니라 주입**한다(추정 독립 데이터만 오버레이하는 ADR-0004 원칙 — book_context와 동일 선례). SidePanel은 `node.label === 'Place'` 블록에서 "장소 배경"·"대표 구절"(한/영 탭) 섹션으로 렌더한다. 기존 `note` 필드는 시드로만 쓰고 보존(미렌더).
+
 ## 추정연도 (placementYear)
 
 사건-구절 교집합(`CONTAINS_BOOK`)이 없어 `startYear`를 못 얻는 31권에 부여하는 타임라인 배치 연도 (`data/book_years_approx/books.json`의 `placementYear`, `yearApprox=true`로 표시). **기준은 "작성(저작) 시점"이 아니라 "그 책이 속하는 사건/내용 시대"** — 정확연도 책의 `startYear`(그 책이 기록한 사건들의 `startDate` 최소~최대를 `load_books.py`가 집계)와 **같은 의미축**이다. 즉 추정/정확은 *의미*가 다른 게 아니라 *도출 방법*만 다르다 (정확 = 사건 집계 자동, 추정 = 사건이 없어 수동 추정). 구약 내러티브·시가서는 배경 시대로 배치하고(작성 시점은 `basis`에 곁들이되 배치엔 안 씀), 신약 서신서·계시록은 "쓰여 보내진 순간이 곧 그 책의 시대"라 결과적으로 작성 시점과 일치한다. 사건 연결(아래 Book Events ⚡)과는 **독립축** — 연결이 있어도 연도는 여전히 추정이다.

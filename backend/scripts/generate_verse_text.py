@@ -1,7 +1,7 @@
-"""세 생성 데이터(event_verses·book_context·character_traits)의 인용 절 본문을
+"""네 생성 데이터(event_verses·book_context·character_traits·place_context)의 인용 절 본문을
 빌드타임에 getbible에서 한국어(korean)+영어(kjv)로 받아 각 파일에 인라인 저장한다.
 
-런타임 getbible 호출을 없애기 위한 미리굽기(ADR-0003). 앱이 표시하는 절 집합은 이 세
+런타임 getbible 호출을 없애기 위한 미리굽기(ADR-0003). 앱이 표시하는 절 집합은 이 네
 데이터에서 빌드타임에 완전히 결정되므로, 본문을 한 번 받아 함께 저장하면 런타임 외부
 호출이 사라진다. 유니크 (번역, 책, 장)당 1회만 fetch·캐시하고, 이미 본문이 있는 항목은
 스킵(멱등). 못 받은 본문은 null로 기록(재실행 시 재시도).
@@ -10,6 +10,7 @@
   event_verses/events.json      books[].verses[]   → textKo / textEn
   book_context/books.json       keyVerse("창 1:1") → keyVerseTextKo / keyVerseTextEn
   character_traits/people.json  traits[].verse_ref → verse_textKo / verse_textEn
+  place_context/places.json     keyVerse("창 1:1") → keyVerseTextKo / keyVerseTextEn
 
 book_context·character_traits는 개역 약어("창","마")를 canonical bookOrder로 해석한다
 (SidePanel.jsx의 BOOK_ABBR_ORDER / resolveVerseRef를 포팅). 범위 참조는 첫 절만 쓴다.
@@ -31,6 +32,7 @@ DATA_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, "..", "..", "data"))
 EVENT_VERSES_PATH = os.path.join(DATA_DIR, "event_verses", "events.json")
 BOOK_CONTEXT_PATH = os.path.join(DATA_DIR, "book_context", "books.json")
 TRAITS_PATH = os.path.join(DATA_DIR, "character_traits", "people.json")
+PLACE_CONTEXT_PATH = os.path.join(DATA_DIR, "place_context", "places.json")
 
 # 개역 약어 → canonical bookOrder(1~66). SidePanel.jsx BOOK_ABBR_ORDER 포팅(단일 출처 이동).
 BOOK_ABBR_ORDER = {
@@ -142,6 +144,21 @@ def bake_book_context():
     return data
 
 
+def bake_place_context():
+    with open(PLACE_CONTEXT_PATH, encoding="utf-8") as f:
+        data = json.load(f)
+    stats = {"kept": 0, "filled": 0, "null": 0}
+    for ctx in data.values():
+        resolved = resolve_ref(ctx.get("keyVerse"))
+        for src_field, slug in TRANSLATIONS:
+            field = "keyVerseTextKo" if src_field == "textKo" else "keyVerseTextEn"
+            stats[fill(ctx, field, slug, resolved)] += 1
+    with open(PLACE_CONTEXT_PATH, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    print(f"place_context: {stats}")
+    return data
+
+
 def bake_traits():
     with open(TRAITS_PATH, encoding="utf-8") as f:
         data = json.load(f)
@@ -161,6 +178,8 @@ def bake_traits():
 def main():
     print("Baking book_context ...")
     books = bake_book_context()
+    print("Baking place_context ...")
+    bake_place_context()
     print("Baking character_traits ...")
     people = bake_traits()
     print("Baking event_verses (장 수 많음, 수 분 소요) ...")
