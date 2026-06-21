@@ -7,6 +7,10 @@ import { MOBILE_BREAKPOINT, SHEET_VH } from './constants'
 
 const EMPTY_GEOJSON = { type: 'FeatureCollection', features: [] }
 
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
+}
+
 function placePopupHTML(label, isPrimary) {
   const typeLabel = isPrimary ? '📍 선택된 장소' : '📍 관련 장소'
   return `
@@ -19,7 +23,7 @@ function placePopupHTML(label, isPrimary) {
         font-weight: 700;
         color: #1a1a2e;
         margin-bottom: 4px;
-      ">${label}</div>
+      ">${escapeHtml(label)}</div>
       <div style="
         font-size: 11px;
         color: #7c8db0;
@@ -94,10 +98,10 @@ function registerEventHandlers(map, { collapseRing, collapseSpider, expandPlace,
     map.getCanvas().style.cursor = ''
   })
 
-  map.on('click', 'places-cluster', (e) => {
+  map.on('click', 'places-cluster', async (e) => {
     const [feature] = e.features
-    const zoom = map.getSource('places-source').getClusterExpansionZoom(feature.properties.cluster_id)
-    if (zoom) map.easeTo({ center: feature.geometry.coordinates, zoom, duration: 400 })
+    const zoom = await map.getSource('places-source').getClusterExpansionZoom(feature.properties.cluster_id)
+    if (zoom != null) map.easeTo({ center: feature.geometry.coordinates, zoom, duration: 400 })
   })
 
   map.on('mouseenter', 'places-cluster', () => {
@@ -131,6 +135,20 @@ function registerEventHandlers(map, { collapseRing, collapseSpider, expandPlace,
   })
 }
 
+// 인물/집단 프레이밍용 — 원거리 outlier 장소(예: 모세-홍해)를 fitBounds 범위에서 제외한 core bounds.
+// median 중심에서의 거리 중앙값×K(튜닝값)를 임계로 — 밀집 클러스터(medD≈0)는 제외 0 → null 반환(호출 측이 전체 bounds 폴백).
+function coreBounds(places) {
+  if (places.length < 4) return null
+  const med = (arr) => { const s = [...arr].sort((a, b) => a - b); const m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2 }
+  const mlng = med(places.map((p) => p.lng)), mlat = med(places.map((p) => p.lat))
+  const dist = (p) => Math.hypot(p.lng - mlng, p.lat - mlat)
+  const medD = med(places.map(dist))
+  if (medD < 0.01) return null // 거의 한 점에 모임 — 프레이밍 문제 없음
+  const core = places.filter((p) => dist(p) <= medD * 3)
+  if (core.length < 2 || core.length === places.length) return null // 제외 없음 → 전체 bounds
+  return core.reduce((b, p) => b.extend([p.lng, p.lat]), new maplibregl.LngLatBounds([core[0].lng, core[0].lat], [core[0].lng, core[0].lat]))
+}
+
 // 라벨을 바깥 방향(이웃/링 중심 반대)으로 — 화면 기준 8방위 text-anchor + text-offset.
 // ex: 동(+)/서(-) 화면 우측 성분, ny: 북(+)/남(-) 화면 상단 성분(호출 측에서 cos(lat) 보정).
 function outwardLabel(ex, ny) {
@@ -148,7 +166,7 @@ function outwardLabel(ex, ny) {
 
 // 링 배치 라벨 — 링 중심에서 바깥(방사) 방향. lng 기준 R로 그린 링은 화면상 세로로 늘어나므로 sin을 cos(lat)로 보정.
 function ringLabels(lat, n) {
-  const cosLat = Math.cos(lat * Math.PI / 180) || 1
+  const cosLat = Math.cos(lat * Math.PI / 180)
   return Array.from({ length: n }, (_, i) => {
     const angle = (2 * Math.PI / n) * i - Math.PI / 2
     return outwardLabel(Math.cos(angle), Math.sin(angle) / cosLat)
@@ -156,7 +174,7 @@ function ringLabels(lat, n) {
 }
 
 function placesToGeoJSON(places) {
-  const cosLat = Math.cos((places[0]?.lat ?? 0) * Math.PI / 180) || 1
+  const cosLat = Math.cos((places[0]?.lat ?? 0) * Math.PI / 180)
   return {
     type: 'FeatureCollection',
     features: places.map((p) => {
@@ -267,7 +285,6 @@ function setupMapSources(map) {
       'text-size': 13,
       'text-anchor': ['get', 'anchor'],
       'text-offset': ['get', 'offset'],
-      'text-justify': 'auto',
       'text-allow-overlap': false,
       'text-ignore-placement': false,
       'text-padding': 4,
@@ -341,7 +358,6 @@ function setupMapSources(map) {
       'text-size': 13,
       'text-anchor': ['get', 'anchor'],
       'text-offset': ['get', 'offset'],
-      'text-justify': 'auto',
       'text-allow-overlap': false,
       'text-ignore-placement': false,
       'text-padding': 4,
@@ -390,7 +406,6 @@ function setupMapSources(map) {
       'text-size': 12,
       'text-anchor': ['get', 'anchor'],
       'text-offset': ['get', 'offset'],
-      'text-justify': 'auto',
       'text-allow-overlap': false,
       'text-padding': 3,
     },
@@ -540,7 +555,8 @@ export default function MapView({ onSelectNode, selectedNode, isVisible }) {
       let grouped
       try {
         grouped = await apiGet(`/node/${placeId}/neighbors/grouped`, { signal })
-      } catch {
+      } catch (e) {
+        if (e?.name !== 'AbortError' && !destroyed) setError(true) // 링 정보 로드 실패 — 무반응 대신 피드백
         return
       }
 
@@ -687,7 +703,8 @@ export default function MapView({ onSelectNode, selectedNode, isVisible }) {
           const padding = isMobile
             ? { top: 70, bottom: sheet + 20, left: 40, right: 40 }
             : 80
-          map.fitBounds(bounds, { padding, maxZoom: 10, duration: 600 })
+          // outlier(원거리 장소)는 프레이밍에서 제외 — 근접 무리가 뭉치지 않게(마커는 그대로 렌더).
+          map.fitBounds(coreBounds(places) || bounds, { padding, maxZoom: 10, duration: 600 })
         }
         // primary가 이미 펼쳐져 있으면(마커 클릭으로 현재 줌에서 펼친 경우) 카메라를 건드리지 않는다.
       })
