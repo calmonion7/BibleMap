@@ -40,20 +40,36 @@ export function ringLabels(lat, n) {
 
 export function placesToGeoJSON(places) {
   const cosLat = Math.cos((places[0]?.lat ?? 0) * Math.PI / 180)
+  // 동일/근접 좌표 그룹(~1e-4° ≈ 11m) — 거리 0에서 outwardLabel이 퇴화(같은 앵커→충돌로 숨김)하므로
+  // 그룹 내 라벨을 방사 배치(예: 호렙 위/시내산 아래). 단독 좌표는 기존 최근접-이웃 outward 유지.
+  const coKey = (p) => `${p.lng.toFixed(4)},${p.lat.toFixed(4)}`
+  const groups = new Map()
+  for (const p of places) {
+    const k = coKey(p)
+    if (!groups.has(k)) groups.set(k, [])
+    groups.get(k).push(p)
+  }
   return {
     type: 'FeatureCollection',
     features: places.map((p) => {
-      // 최근접 이웃 반대쪽으로 라벨을 민다(화면 세로 cos(lat) 보정). 이웃 없으면 기본 우측.
-      let best = null, bestD = Infinity
-      for (const q of places) {
-        if (q === p) continue
-        const dx = q.lng - p.lng, dy = (q.lat - p.lat) / cosLat
-        const d = dx * dx + dy * dy
-        if (d < bestD) { bestD = d; best = q }
+      const group = groups.get(coKey(p))
+      let anchor, offset
+      if (group.length > 1) {
+        // 동일좌표 그룹 — 방사 앵커로 분산(마커는 그대로 한 점, 라벨만 펼침)
+        ;({ anchor, offset } = ringLabels(p.lat, group.length)[group.indexOf(p)])
+      } else {
+        // 단독 좌표 — 최근접 이웃 반대쪽으로 민다(화면 세로 cos(lat) 보정). 이웃 없으면 기본 우측.
+        let best = null, bestD = Infinity
+        for (const q of places) {
+          if (q === p) continue
+          const dx = q.lng - p.lng, dy = (q.lat - p.lat) / cosLat
+          const d = dx * dx + dy * dy
+          if (d < bestD) { bestD = d; best = q }
+        }
+        ;({ anchor, offset } = best
+          ? outwardLabel(p.lng - best.lng, (p.lat - best.lat) / cosLat)
+          : { anchor: 'left', offset: [1.2, 0] })
       }
-      const { anchor, offset } = best
-        ? outwardLabel(p.lng - best.lng, (p.lat - best.lat) / cosLat)
-        : { anchor: 'left', offset: [1.2, 0] }
       return {
         type: 'Feature',
         geometry: { type: 'Point', coordinates: [p.lng, p.lat] },

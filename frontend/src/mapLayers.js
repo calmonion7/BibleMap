@@ -142,6 +142,7 @@ export function setupMapSources(map) {
     cluster: true,
     clusterMaxZoom: 13,
     clusterRadius: 18, // 마커 원이 실제 겹칠 때만 클러스터 (마커 지름 ~21~27px) — task-76, 12~14 밑은 금지
+    clusterMinPoints: 4, // 동일/근접 좌표 2~3개는 버블 대신 라벨 표시(task-84), 4개+만 클러스터
   })
 
   map.addLayer({
