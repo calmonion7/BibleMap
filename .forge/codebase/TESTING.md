@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 70a9781e6523a396ad856f980b5499b1cc814d7a
-mapped: 2026-06-21
+last_mapped_commit: a25a3a3a9f5473c35aabd6036398d6bb672fee47
+mapped: 2026-06-22
 ---
 
 # TESTING.md — 테스트 및 검증 방식
@@ -11,10 +11,11 @@ mapped: 2026-06-21
 
 ## 테스트 프레임워크 현황
 
-- **테스트 파일 없음**: 레포 전체에 `*.test.*`, `*.spec.*`, `test_*.py`, `conftest.py` 하나도 없음(node_modules 제외).
+- **자동화 테스트 프레임워크·테스트 파일 없음**: 레포 전체에 `*.test.*`, `*.spec.*`, `test_*.py`, `conftest.py` 하나도 없음(node_modules 제외, 재확인됨).
 - `frontend/package.json` scripts: `dev`, `build`, `lint`, `preview` — `test` 스크립트 없음.
 - `backend/requirements.txt`: `fastapi==0.136.3`, `neo4j==6.2.0`, `uvicorn==0.49.0` — pytest 없음.
 - Jest, Vitest, pytest 등 테스팅 프레임워크 미설치.
+- 검증은 전부 수동: 빌드 → nginx 서빙(`localhost:8080`) → Python Playwright 일회성 스크립트.
 
 ---
 
@@ -33,8 +34,8 @@ mapped: 2026-06-21
 
 - 설치 위치: `/opt/homebrew`(Python Playwright).
 - 공식 테스트 파일 없음 — forge 워크플로우의 **검증 단계**에서 일회성 스크립트로 작성·실행.
-- 작성된 검증 스크립트는 `.forge/reports/`에 임시로 남음(예: `task70_verify.py`, `task_place_context_verify.py`, `task_place_dom_probe.py`) — 정식 테스트 스위트 아님, 태스크별 일회성.
-- 검증 대상 URL: `http://localhost:8080`(nginx → `frontend/dist` 서빙).
+- 작성된 검증 스크립트·스크린샷은 `.forge/reports/`에 임시로 남음(예: `task70_verify.py`, `task_place_context_verify.py`, `task_place_dom_probe.py`, `task83-A-ring-expanded.png`) — 정식 테스트 스위트 아님, 태스크별 일회성.
+- 검증 대상 URL: `http://localhost:8080`(nginx → `frontend/dist` 정적 서빙).
 
 ### 검증 패턴
 - 네트워크 캡처 + 스크린샷으로 UI 동작 확인.
@@ -44,7 +45,7 @@ mapped: 2026-06-21
 
 ### UAT 항목 예시 (retro 기록 기준)
 - 검색: 실시간 검색 응답, 키보드 탐색, 타입 필터, 모바일 레이아웃.
-- 지도: 마커 클릭, 스파이더파이 전개, 클러스터 확장, 링 애니메이션, 라벨 바깥쪽 배치.
+- 지도: 마커 클릭, 스파이더파이 전개, 클러스터 확장, 링 애니메이션, 라벨 바깥쪽 배치, outlier 제외 프레이밍, 팝업 XSS 이스케이프, 링 fetch 실패 배너.
 - 구절 본문: 언어별(한/영) 렌더링, 공유 토글.
 - 콘솔 에러 0건 확인.
 

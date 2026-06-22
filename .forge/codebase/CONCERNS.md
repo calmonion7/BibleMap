@@ -1,305 +1,108 @@
 ---
-last_mapped_commit: 70a9781e6523a396ad856f980b5499b1cc814d7a
-mapped: 2026-06-21
+last_mapped_commit: a25a3a3a9f5473c35aabd6036398d6bb672fee47
+mapped: 2026-06-22
 ---
 
-# BibleMap 코드베이스 우려사항
+# CONCERNS — 기술 부채 · 버그 · 보안 · 성능 · 취약 영역
 
-## 1. 기술 부채 / 취약한 영역
-
-### 1-1. MapView.jsx — 단일 파일 과부하 (734줄)
-
-**파일:** `/Users/calmonion/Project/BibleMap/frontend/src/MapView.jsx`
-
-전체 734줄. 맵 초기화 `useEffect`(`416~604`) 하나가 라이프사이클·이벤트 핸들러·애니메이션·스파이더파이·클러스터·링 확장 클로저를 모두 포함한다. 두 번째 `useEffect`(selectedNode 변경, `606~703`)는 fetch·hull·fitBounds·자동 링 펼침 로직이 한 콜백에 밀집. 단일 콜백 내부 변경이 전체 맵 동작에 예기치 않은 부작용을 일으킬 위험이 높음.
-
-- 모듈 상위 헬퍼(`registerEventHandlers`, `setupMapSources`, `placesToGeoJSON`, `outwardLabel`, `ringLabels` 등 `32~403`)로 일부 추출됐으나, `collapseRing`/`expandPlace`/`spiderifyPlaces`/`collapseSpider` 4개 애니메이션 함수는 여전히 init effect 내부 클로저(`446~581`)에 머무름 — `destroyed`, `animFrame`, `spiderAnimFrame`, `spiderState`, `expandedPlace` 등 effect-스코프 가변 상태를 공유하기 때문.
-- 공유 source(`event-ring-source`, `place-spider-source`)에 여러 `requestAnimationFrame` 루프가 동시 `setData`할 수 있는 구조. `collapseRing`/`expandPlace`/`spiderify`/`collapseSpider`가 각자 `animFrame`/`spiderAnimFrame`을 취소·교체하나, 링과 스파이더가 별도 프레임 변수를 쓰므로 동시 진행 가능. 회고(`2026-06-12-place-event-radial-ring.md`)에 source 동시 setData 충돌 전례 기록됨.
-
-> 참고: 이전 맵에 있던 `SHEET_VH`/`MOBILE_QUERY` 이중 하드코딩은 해소됨 — 현재 `frontend/src/constants.js`(`MOBILE_BREAKPOINT=768`, `SHEET_VH=55`)에서 단일 정의하고 `App.jsx`·`MapView.jsx`가 import해서 쓴다.
-
-### 1-2. 기타 대형 파일
-
-| 파일 | 줄 수 |
-|------|-------|
-| `/Users/calmonion/Project/BibleMap/frontend/src/MapView.jsx` | 734 |
-| `/Users/calmonion/Project/BibleMap/frontend/src/SidePanel.jsx` | 435 |
-| `/Users/calmonion/Project/BibleMap/frontend/src/TimelineView.jsx` | 368 |
-| `/Users/calmonion/Project/BibleMap/backend/scripts/generate_person_event_verses.py` | 336 |
-| `/Users/calmonion/Project/BibleMap/frontend/src/App.jsx` | 317 |
-| `/Users/calmonion/Project/BibleMap/backend/scripts/load_theographic.py` | 320 |
-
-### 1-3. testament 값 불일치
-
-`BibleOverviewView.jsx:135-137`에 방어 코드 존재:
-
-```js
-const key = (t === 'OT' || t === '구약') ? 'OT' : (t === 'NT' || t === '신약') ? 'NT' : null
-```
-
-Neo4j 저장값과 코드가 가정하는 값('OT'/'NT')이 혼재. 새 코드 작성 시 어느 형식이 표준인지 불분명. `SidePanel.jsx:177`은 `node.properties.testament`를 그대로 출력하므로 표시 텍스트가 데이터 형식에 종속.
-
-### 1-4. 데이터 기반 단일 고정 앵커 — 라벨 숨김 회귀 벡터
-
-**파일:** `/Users/calmonion/Project/BibleMap/frontend/src/MapView.jsx:259-281`, `334-355`, `383-402`
-
-3개 symbol 레이어(`places-label`/`place-spider-label`/`event-ring-label`)가 native `text-variable-anchor`(줌 인식 + 8슬롯 충돌-폴백)를 버리고 데이터 기반 단일 고정 `text-anchor`/`text-offset`로 전환됨(task-74→75). 단일 슬롯 충돌 시 라벨이 대체 위치를 못 찾고 그냥 숨음 — 가시 라벨 감소 가능. 회고(`2026-06-21-map-label-outward-anchor.md`)에 "의도된 트레이드오프 + 회귀 벡터"로 명시. 향후 맵 라벨 작업 시 먼저 점검 대상.
+현재 워킹트리(HEAD `a25a3a3`) 기준. 직전 리팩터(task 77~81)로 여러 항목이 해소되었으므로, 해소된 것과 여전히 열린 것을 함께 기록한다.
 
 ---
 
-## 2. TODO/FIXME/HACK 주석
+## 1. 최근 해소된 항목 (현재 상태 검증 완료)
 
-소스 코드 전반에 TODO/FIXME/HACK 주석은 발견되지 않음. 아래 세 곳에 의도적 rate limit 슬립이 있음:
+### 1.1 MapView 단일 파일 과부하 — 해소
+과거 "MapView.jsx 734줄 단일 파일" 우려는 분리로 해소됐다. 현재 구성:
+- `frontend/src/MapView.jsx` (193줄) — React 컴포넌트(맵 생성/선택 effect/에러·noLocation UI)만 남음.
+- `frontend/src/mapGeo.js` (101줄) — 순수 지오/라벨 계산(`coreBounds`, `placesToGeoJSON`, `ringPositions`, `ringLabels`, hull GeoJSON 빌더 등).
+- `frontend/src/mapLayers.js` (313줄) — `setupMapSources`/`registerEventHandlers`/팝업 HTML.
+- `frontend/src/mapRingController.js` (163줄) — 링/스파이더 애니메이션 컨트롤러(클로저 상태 캡슐화).
 
-- `/Users/calmonion/Project/BibleMap/backend/scripts/generate_verse_events.py:162` — `time.sleep(0.3)  # rate limit 방지`
-- `/Users/calmonion/Project/BibleMap/backend/scripts/generate_book_context.py:107` — `time.sleep(0.3)  # rate limit 여유`
-- `/Users/calmonion/Project/BibleMap/backend/scripts/generate_person_traits.py:124` — `time.sleep(0.3)`
+남은 미세 부채: `mapLayers.js`의 `setupMapSources`가 5종 소스 + 11개 레이어를 한 함수에 직렬 등록(`frontend/src/mapLayers.js:133`~`313`). 동작은 정상이나 레이어 정의가 길고, places/place-spider/event-ring 레이어 페인트 스타일이 거의 중복(`frontend/src/mapLayers.js:147`~`193` vs `223`~`266`)이다.
 
----
+### 1.2 클러스터 클릭 멈춤 (getClusterExpansionZoom) — 해소
+`places-cluster` 클릭 핸들러가 `await`로 변경됨(`frontend/src/mapLayers.js:96`~`100`). MapLibre 5.24(`frontend/package.json` `maplibre-gl: ^5.24.0`)의 `getClusterExpansionZoom`은 `Promise<number>`를 반환하므로 콜백 동기 호출 버그가 사라졌다. `zoom != null` 가드도 있다.
 
-## 3. 성능 우려사항
-
-### 3-1. 검색 엔드포인트 — nameKo/name 인덱스 없음
-
-**파일:** `/Users/calmonion/Project/BibleMap/backend/app/routes/search.py:14-30`
-
-```cypher
-MATCH (n)
-WHERE (n.nameKo CONTAINS $q OR toLower(n.name) CONTAINS toLower($q))
-AND n.theographic_id IS NOT NULL
-... ORDER BY rank, n.nameKo LIMIT 20
-```
-
-`main.py` lifespan(`backend/app/main.py:11-18`)이 5개 라벨에 `theographic_id` 인덱스만 생성. `nameKo`/`name`에는 인덱스·풀텍스트 인덱스 없음 → `CONTAINS`/`toLower` 매칭은 전체 노드 풀스캔. `ORDER BY n.nameKo`도 인덱스 미활용. 풀텍스트 인덱스 도입은 레트로(`2026-06-11-source-cleanup-structural.md`)에서 "별도 fg-ask로 분리"로 언급됐으나 미구현.
-
-### 3-2. Book 노드 조회 시 3~4중 쿼리
-
-**파일:** `/Users/calmonion/Project/BibleMap/backend/app/routes/nodes.py:145-259`
-
-`/node/{id}` 단일 조회 시 세션 내 순차 쿼리:
-1. 노드 기본 조회 (`150`)
-2. 이웃 + 총수 (`167-172`, 이전 2쿼리를 1쿼리로 머지함)
-3. Book 타입일 때만 topPersons (`202`)
-4. Book 타입일 때만 topEvents (`220`)
-
-Book 노드는 4 왕복, 비-Book은 2 왕복.
-
-### 3-3. lru_cache — 대형 파일 메모리 상주
-
-**파일:** `/Users/calmonion/Project/BibleMap/backend/app/overlays.py:42`
-
-`event_verses()`가 `data/event_verses/events.json`(**8.3MB**, 8,344,587 bytes)을 `lru_cache(maxsize=1)`로 메모리에 영구 보유. uvicorn `--workers N` 다중 실행 시 워커마다 독립 복사본 → 메모리 N배.
-
-캐시된 함수 목록:
-- `overlays.py:31` — `book_events_raw()`
-- `overlays.py:37` — `approx_years()`
-- `overlays.py:43` — `event_verses()` (8.3MB)
-- `events.py:11` — `_load_approx_book_index()` (Neo4j 전체 Book 쿼리 + 역방향 맵)
-- `events.py:53` — `_compute_events()` (Neo4j 전체 Event 쿼리)
-
-모든 `lru_cache`가 프로세스 재시작 전까지 무효화되지 않음 — DB 데이터 변경 후 API 재시작 없이는 반영 안 됨(7-1 참조).
-
-### 3-4. Vite 번들 — 코드 스플리팅 없음
-
-**파일:** `/Users/calmonion/Project/BibleMap/frontend/vite.config.js`
-
-- `manualChunks`로 `maplibre`/`vendor`만 분리. `maplibre` 청크 단독으로 Vite 500kB 경고 초과(회고에 "의도된 상태"). 레트로(`2026-06-16-refactor-3of4-bundle-code-splitting.md`).
-- 3개 뷰(`MapView`, `TimelineView`, `BibleOverviewView`) 모두 `App.jsx`에서 정적 import → 초기 로드에 포함. dynamic import / `React.lazy` 없음.
-- `vendor` 청크에 `lucide-react`, `react`, `react-dom` 미분리 병합.
-- 소스맵 설정 없음.
-
-### 3-5. TimelineView 전체 이벤트 일괄 fetch
-
-**파일:** `/Users/calmonion/Project/BibleMap/frontend/src/TimelineView.jsx`
-
-마운트 시 `/events` 전체를 한 번에 fetch. 페이지네이션/무한스크롤 없음. `/events` 응답에 `Cache-Control: max-age=300`(`events.py:95`) 적용으로 브라우저 캐시는 되나 초기 응답 비용 있음.
-
-### 3-6. nginx gzip 압축 없음
-
-**파일:** `/Users/calmonion/Project/BibleMap/nginx/nginx.conf`
-
-`gzip` 설정 없음. JS 번들(maplibre 포함 ~1.2MB 이상)이 비압축 전송. 정적 자산 캐시(`max-age=31536000, immutable`)·index.html no-cache는 설정됨.
-
-### 3-7. uvicorn 단일 워커
-
-**파일:** `/Users/calmonion/Project/BibleMap/backend/Dockerfile:6`
-
-`CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]` — `--workers` 미지정. CPU 집약 요청 처리 중 다른 요청 대기.
+### 1.3 팝업 XSS — 해소
+`placePopupHTML`이 `escapeHtml`로 라벨을 이스케이프한다(`frontend/src/mapLayers.js:5`~`7`, 사용처 `:21`). place-circle/place-spider 두 경로 모두 같은 함수를 쓴다.
 
 ---
 
-## 4. 보안 우려사항
+## 2. 열린 항목 — 결정 필요
 
-### 4-1. MapLibre 팝업 — XSS 취약 가능성
+### 2.1 [NEW] clusterRadius 불일치 — 의도된 값(18)이 커밋 누락됨
+`setupMapSources`의 클러스터 소스는 `clusterRadius: 40`이다(`frontend/src/mapLayers.js:144`). 그러나 task-76(loosen-clustering)과 문서는 `18`을 의도했다. `git log -S "clusterRadius: 18"`은 18이 **단 한 번도 커밋된 적이 없음**을 보여준다 — 즉 클러스터 완화 코드 변경이 유실됐다. `40`은 task-68(`42bd230`)에서 들어온 원래 값 그대로다.
+- 영향: 마커가 의도보다 더 공격적으로 클러스터됨(반경 40px). `clusterMaxZoom: 13`(`:143`)도 함께 검토 대상.
+- 필요 조치: 18로 되돌릴지 / 40을 유지하고 문서를 갱신할지 **결정**이 필요한 데이터·설정 불일치. retro `.forge/retro/2026-06-21-map-loosen-clustering.md`와 실제 코드가 어긋나 있다.
 
-**파일:** `/Users/calmonion/Project/BibleMap/frontend/src/MapView.jsx:10-30`, `59`, `84`
-
-`placePopupHTML(label, isPrimary)`가 템플릿 리터럴로 HTML을 조립해 `.setHTML(...)`에 전달:
-
-```js
-<div ...>${label}</div>
-```
-
-`label`은 `e.features[0].properties.label`(Neo4j `nameKo`/`name`/`title` 유래). HTML 이스케이프 없음 → Neo4j 데이터에 `<script>` 등 포함 시 XSS 가능. `typeLabel`은 하드코딩 문자열이라 안전. 그 외 SidePanel·Timeline·Overview는 JSX 텍스트 보간(`{node.properties.background}`, `{keyVerse}` 등)이라 자동 이스케이프됨 — `setHTML` 경로가 유일한 미이스케이프 표면.
-
-### 4-2. CORS — 전체 오리진 허용
-
-**파일:** `/Users/calmonion/Project/BibleMap/backend/app/main.py:25-31`
-
-```python
-allow_origins=["*"], allow_credentials=False, allow_methods=["GET"]
-```
-
-read-only GET API이고 credentials 비허용이라 직접 피해는 제한적이나, 퍼블릭 배포 시 무제한 오리진 접근 허용.
-
-### 4-3. 인증/Rate Limiting 없음
-
-전체 API에 인증·API 키·rate limiting 없음. 검색 엔드포인트(`/search`) rate limit은 프론트 디바운스(`useSearch.js`)에만 의존. 서버 측 보호 없음.
-
-### 4-4. Cypher — f-string으로 LIMIT 조립
-
-**파일:** `/Users/calmonion/Project/BibleMap/backend/app/routes/nodes.py:169`, `/Users/calmonion/Project/BibleMap/backend/app/routes/search.py:27`
-
-`LIMIT {NODE_NEIGHBOR_LIMIT}`(`nodes.py:169`), `LIMIT {SEARCH_LIMIT}`(`search.py:27`), `[0..{NODE_NEIGHBOR_LIMIT}]`(`nodes.py:169`)을 f-string으로 Cypher에 삽입. 현재는 모듈 상단 하드코딩 상수(`MAX_NEIGHBORS_PER_TYPE=30`, `NODE_NEIGHBOR_LIMIT=50`, `SEARCH_LIMIT=20`)라 실제 인젝션 위험 없음. 사용자 입력값(`q`, `id`)은 모두 파라미터 바인딩(`$q`, `$id`) 사용 — 정상. 향후 가변 값이 f-string 경로로 들어오면 Cypher 인젝션 위험.
-
-### 4-5. 에러 메시지 내부 정보 노출
-
-**파일:** `/Users/calmonion/Project/BibleMap/frontend/src/BibleOverviewView.jsx`
-
-`err.message`를 사용자에게 그대로 노출하는 패턴. 내부 오류 세부사항이 UI로 새어나올 수 있음(MapView는 `setError(true)` 불리언만 사용해 안전).
-
-### 4-6. Docker 이미지 태그 비고정
-
-**파일:** `/Users/calmonion/Project/BibleMap/docker-compose.yml:3`
-
-`image: neo4j:5` — 마이너·패치 버전 미고정. 무의도적 업데이트 가능. (API 이미지는 `python:3.12-slim`으로 마이너까지 고정.)
+### 2.2 testament 값 표기 불일치 (OT/NT vs 구약/신약)
+`BibleOverviewView.jsx`가 영문(`OT`/`NT`)과 한글(`구약`/`신약`) 두 표기를 모두 방어적으로 매핑한다(`frontend/src/BibleOverviewView.jsx:135`~`137`). 둘 중 어느 쪽이든 받아주지만, 데이터 소스에 따라 값이 갈릴 수 있다는 뜻이고 둘 다 아니면 `key = null`로 조용히 누락된다. 백엔드(`backend/app/routes/books.py:22`, `:62`)는 `props.get("testament")`를 그대로 전달 — 표준화 지점이 없다. 데이터 적재 시 한 표기로 정규화하는 것이 정공법.
 
 ---
 
-## 5. 변경 위험 영역
+## 3. 보안
 
-### 5-1. MapView.jsx 클러스터/스파이더파이 로직
+### 3.1 인증·레이트리밋 없음
+모든 라우트(`backend/app/routes/`)가 무인증 공개. 레이트리밋·요청 제한 없음. 단일 사용자/내부 도구 전제라면 수용 가능하나, 외부 노출 시 위험.
 
-**파일:** `/Users/calmonion/Project/BibleMap/frontend/src/MapView.jsx:97-101`, `472-499`
+### 3.2 CORS 와일드카드
+`backend/app/main.py:25`~`31` — `allow_origins=["*"]`. `allow_credentials=False`, `allow_methods=["GET"]`로 범위는 좁다(GET 전용·쿠키 미허용). 읽기 전용 API라 현재 실질 위험은 낮으나, 운영 시 오리진을 명시하는 편이 낫다.
 
-- **클러스터 확장 줌 가드 버그 후보:** `places-cluster` 클릭(`97-101`)에서
-  ```js
-  const zoom = map.getSource('places-source').getClusterExpansionZoom(feature.properties.cluster_id)
-  if (zoom) map.easeTo({ center: ..., zoom, ... })
-  ```
-  `if (zoom)`는 `getClusterExpansionZoom`이 `0`을 반환할 때 false → 줌 0으로의 확장이 무시됨. 데이터 위도대(중동, zoom 5 기준)에서 실제 도달 가능성은 낮으나, falsy(0) 가드는 코드 스멜. MapLibre v5에서 이 API가 콜백→동기 반환으로 바뀐 전례(`2026-06-20-map-place-overlap-cluster-spiderify.md`)가 있어 버전 검증 없이 코드 붙이는 패턴 주의.
-- **클러스터 파라미터 튜닝값:** `setupMapSources`(`226-232`)의 `clusterMaxZoom: 13`, `clusterRadius: 18`. 회고(`2026-06-21-map-loosen-clustering.md`)에 "12~14 밑으로 낮추면 마커 원이 포개져 클러스터 존재 이유와 충돌"로 하한 명시. "뭉침 더 줄여줘" 요청 시 라벨 배치(task-74/75)와 클러스터 파라미터를 혼동하지 말 것.
-- **스파이더파이/링 R 계산:** `spiderifyPlaces`(`476-477`)·`expandPlace`(`553-555`)가 화면 80px를 `map.project`/`unproject`로 degrees 변환해 R 산출. 줌이 정착되기 전 계산하면 화면 밖으로 날아감(task-15 전례, `656-657` 주석). 자동 펼침은 `moveend`+700ms 폴백 타이머(`668-684`)로 정착 후 실행.
-
-### 5-2. fitBounds outlier 프레이밍 — 저줌 뭉침
-
-**파일:** `/Users/calmonion/Project/BibleMap/frontend/src/MapView.jsx:647-691`
-
-모세처럼 원거리 장소(예: 홍해)가 섞이면 전체를 담느라 줌이 낮아져 마커가 뭉친다. 회고(`2026-06-21-map-loosen-clustering.md`)에 clusterRadius가 아닌 줌 프레이밍 문제로 분류, "별도 작업 후보(outlier 제외/maxZoom·padding 조정)"로 미해결 기록.
-
-### 5-3. 데이터 파이프라인 — 실행 순서 미문서화
-
-**파일:** `/Users/calmonion/Project/BibleMap/backend/scripts/` (디렉토리 전체, 22개 스크립트)
-
-`load_*`/`generate_*`/`inject_*`/`enrich_*` 간 의존 순서가 README·CONTEXT.md 어디에도 명시되지 않음. 신규 `inject_place_context.py:21`이 에러 메시지로 `run generate_verse_text.py first` 힌트를 주는 정도 외엔 순서를 소스에서 역추적해야 함. `generate_verse_text.py`(프리베이크)는 4개 생성 데이터(event_verses·book_context·character_traits·place_context)의 구절 본문을 모두 채우므로 다수 inject 스크립트의 선행 의존.
-
-### 5-4. 외부 서비스 의존 파이프라인
-
-- **getbible.net:** `generate_verse_text.py:53-54,82-83`, `generate_person_event_verses.py:22,172-175` — 기본 urllib UA(`Python-urllib`)에 403 → 브라우저류 UA 스푸핑(`_UA = "Mozilla/5.0 (compatible; BibleMap-build/1.0)"`). 정책 변경 시 파이프라인 실패. (이 두 스크립트는 `timeout=15`/`30` 지정함.)
-- **GitHub raw URL:** `load_theographic.py:14-25`, `generate_book_context.py:34`, `generate_event_verses.py:38`, `generate_person_traits.py:36`, `generate_verse_events.py:58` — `raw.githubusercontent.com/robertrouse/theographic-bible-metadata/...` 직접 fetch. 이들 `urlopen` 호출에 timeout 파라미터 없음 → 네트워크 행 시 무한 대기 가능. 외부 repo 변경·GitHub 장애 시 실패.
-- **Anthropic API:** `generate_book_context.py`, `generate_person_traits.py`, `generate_event_verses.py`, `generate_verse_events.py`가 `ANTHROPIC_API_KEY` 의존. ADR-0006으로 우회(LLM이 직접 데이터 생성)하여 실질 실행 불가 상태.
+### 3.3 Cypher f-string 주입 — 현재는 안전(주의 유지)
+LIMIT/슬라이스 값을 f-string으로 쿼리에 삽입하는 곳이 있다: `backend/app/routes/search.py:27`(`LIMIT {SEARCH_LIMIT}`), `backend/app/routes/nodes.py:169`(`[0..{NODE_NEIGHBOR_LIMIT}]`). 두 값 모두 모듈 상수(`search.py:6` `SEARCH_LIMIT=20`, `nodes.py:7` `NODE_NEIGHBOR_LIMIT=50`)라 현재 주입 위험은 없다. 사용자 입력(`q`, `id`)은 전부 파라미터 바인딩($q/$id)이다. 향후 이 상수들이 요청 인자로 바뀌면 즉시 취약해지므로 패턴 자체는 위험 신호로 표시.
 
 ---
 
-## 6. 누락된 에러 처리
+## 4. 성능
 
-### 6-1. generate_person_event_verses.py — 실패한 챕터 재시도 불가
+### 4.1 lru_cache 메모리 — event_verses 8MB 상주
+`backend/app/overlays.py:42`~`45` `event_verses()`는 `@functools.lru_cache(maxsize=1)`로 `data/event_verses/events.json`을 통째로 메모리에 올린다. 실측 파일 크기 약 8.3MB(`data/event_verses/events.json`, 8,344,587 bytes). 파싱된 dict는 더 커진다. 단일 워커에선 한 번 로드되어 상주. 워커가 늘면 워커당 사본만큼 곱해진다.
 
-**파일:** `/Users/calmonion/Project/BibleMap/backend/scripts/generate_person_event_verses.py`
+### 4.2 코드 스플리팅 — 부분 적용(과거 "없음"은 갱신됨)
+`frontend/vite.config.js`에 `manualChunks`가 있어 `maplibre-gl`을 `maplibre` 청크로, 나머지 node_modules를 `vendor`로 분리한다. 앱 코드 자체의 라우트/뷰 단위 lazy-load는 없다(`MapView`/`TimelineView`/`BibleOverviewView`가 정적 import). MapLibre 청크는 별도지만 초기 번들에 함께 로드될 여지.
 
-`fetch_chapter()` 네트워크 실패 시 해당 chapter를 None 처리하고 계속 진행. 멱등 로직(`books` 필드 있으면 스킵)으로 실패 항목은 재실행해도 스킵됨 → 실패한 챕터가 영구 누락 가능.
+### 4.3 gzip/압축 없음
+`nginx/nginx.conf`에 `gzip` 지시어가 전혀 없다(grep 결과 0건). 정적 자산 캐시 헤더(`max-age=31536000, immutable`)는 설정돼 있으나(`nginx/nginx.conf` 정적 location), 전송 압축이 빠져 maplibre·vendor 청크가 비압축 전송된다.
 
-### 6-2. inject_place_context.py — 매칭 실패 무경고
+### 4.4 단일 uvicorn 워커
+`backend/Dockerfile` CMD가 `uvicorn app.main:app --host 0.0.0.0 --port 8000` — 워커 수 미지정(기본 1). 동시성/장애 격리가 단일 프로세스에 묶임. 4.1의 8MB 캐시 때문에 워커 증설은 메모리 곱셈 트레이드오프가 있음.
 
-**파일:** `/Users/calmonion/Project/BibleMap/backend/scripts/inject_place_context.py:38-52`
-
-`UNWIND ... MATCH (p:Place {theographic_id: row.theographic_id}) SET ...` — JSON의 `theographic_id`가 어떤 Place 노드와도 매칭 안 되면 그 row는 조용히 SET 누락. 검증은 `count(p) WHERE p.background IS NOT NULL`(`49-51`)과 Bethlehem 단건 확인(`54-60`)뿐 → places.json 43건 중 일부가 매칭 실패해도 드러나지 않음(누락 건수 미보고).
-
-### 6-3. expandPlace fetch 실패 — 무음 무시
-
-**파일:** `/Users/calmonion/Project/BibleMap/frontend/src/MapView.jsx:541-545`
-
-```js
-try { grouped = await apiGet(`/node/${placeId}/neighbors/grouped`, { signal }) }
-catch { return }
-```
-
-링 펼침용 fetch 실패(네트워크 오류 포함)를 AbortError와 구분 없이 전부 무음 return. 사용자에게 "사건 정보를 불러오지 못함" 피드백 없음 — 클릭해도 링이 안 펼쳐지는 무반응으로만 보임.
-
-### 6-4. /node/{node_id} — node_id 포맷 검증 없음
-
-**파일:** `/Users/calmonion/Project/BibleMap/backend/app/routes/nodes.py:145-156`
-
-`node_id` 포맷 검증 없음. 존재하지 않는 ID는 404, 임의 문자열은 파라미터 바인딩으로 안전하나 검증 자체는 부재.
-
-### 6-5. /event/{event_id}/verses — 빈 응답 처리
-
-**파일:** `/Users/calmonion/Project/BibleMap/backend/app/routes/events.py:98-104`
-
-존재하지 않는 `event_id`에 대해 `{"books": []}`를 200 OK로 반환. 클라이언트가 유효하지 않은 ID와 구절 없는 이벤트를 구분 불가.
-
-> 참고: 이전 우려 "authored Place 노드 `name` 미설정"은 해소됨 — `enrich_place_coords.py:37-38`이 MERGE 시 `pl.name`·`pl.title`을 함께 SET한다.
+### 4.5 검색 인덱스 부재 (nameKo/name)
+`backend/app/routes/search.py:14`~`28` — `n.nameKo CONTAINS $q OR toLower(n.name) CONTAINS toLower($q)`로 전체 노드 스캔. `lifespan`에서 생성하는 인덱스(`backend/app/main.py:13`~`18`)는 `theographic_id` 전용이고, `nameKo`/`name`에는 인덱스가 없다. `WHERE ... AND n.theographic_id IS NOT NULL`도 인덱스로 가속되지 않는 substring 조건이라 데이터가 커지면 검색이 느려진다. Neo4j 풀텍스트 인덱스(nameKo/name) 도입이 정공법.
 
 ---
 
-## 7. 데이터 품질 이슈
+## 5. 취약/주의 영역 (런타임 거동)
 
-### 7-1. lru_cache — DB 변경 시 즉시 반영 안 됨
+### 5.1 fitBounds + 스파이더화 / clusterMaxZoom 경계
+`MapView.jsx`의 selection effect는 primary 선택 시 `maxZoom: 7`(`frontend/src/MapView.jsx:142`), 인물/집단은 `maxZoom: 10`(`:149`)으로 fitBounds한다. 클러스터 소스의 `clusterMaxZoom`은 13(`mapLayers.js:143`)이라, fitBounds 후에도 줌이 13 이하면 마커가 여전히 클러스터로 묶일 수 있다. 클러스터 클릭은 `getClusterExpansionZoom` 줌으로 easeTo(`mapLayers.js:96`~`100`)하지만, `places-circle` 클릭 시 같은 지점에 겹친 점이 2개 이상이면 스파이더화(`mapLayers.js:32`~`37`)로 분기한다. 즉 "클러스터 vs 겹친 개별 점" 두 해소 경로가 줌·반경 조합에 따라 미묘하게 갈리며, 4.1의 반경 40 + clusterMaxZoom 13 조합이 이 경계 거동을 좌우한다(2.1 결정과 직결).
 
-**파일:** `/Users/calmonion/Project/BibleMap/backend/app/overlays.py`, `/Users/calmonion/Project/BibleMap/backend/app/routes/events.py`
+### 5.2 자동 펼침 moveend 폴백 타이머
+검색·사이드패널로 primary를 선택하면 fitBounds 후 `moveend`에서 링을 펼친다. 카메라가 안 움직이면 `moveend`가 미발화하므로 700ms 폴백 타이머로 보장한다(`frontend/src/MapView.jsx:121`~`142`). `fired` 단발 가드·언마운트 정리(`:157`~`161`)는 있으나, 타이밍 의존 로직이라 회귀에 취약한 구간(회고에서 task 15·radial-ring 이슈로 언급).
 
-Neo4j 데이터 변경(스크립트 재실행, 직접 패치) 후 API 프로세스 재시작 없이는 캐시된 데이터(`_compute_events`, `_load_approx_book_index`, overlay JSON들)가 그대로 서빙됨. 파이프라인 재실행 후 API 재시작이 필수 절차이나 문서화 없음.
+### 5.3 공유 GeoJSON 소스 동시 setData
+링/스파이더가 `event-ring-source`·`place-spider-source`를 requestAnimationFrame 루프에서 setData한다(`frontend/src/mapRingController.js`). selection effect와 클릭 핸들러가 같은 소스를 건드릴 수 있어, 컨트롤러가 `destroyed`/`expandAbortCtrl`/단발 가드로 충돌을 막는다. 가드가 촘촘하지만 상태가 클로저+ref 공유(`expandedPlaceRef`를 컴포넌트와 컨트롤러가 공유, `mapRingController.js:10`, `MapView.jsx:17`·`:48`)라 추론 난이도가 높은 영역.
 
-### 7-2. testament 값 혼재
-
-**파일:** `/Users/calmonion/Project/BibleMap/frontend/src/BibleOverviewView.jsx:135-137`
-
-Neo4j 저장값과 코드 기대값('OT'/'NT')이 공존. 방어 코드로 양방향 처리 중이나 근본 원인(데이터 형식 통일) 미해결.
-
-### 7-3. 장소 컨텍스트 keyVerse 중복
-
-**파일:** `/Users/calmonion/Project/BibleMap/data/place_context/places.json`
-
-회고(`2026-06-21-place-scripture-context.md`)에 하란·우르 keyVerse가 동일("창 11:31", 의도된 데이터)·일부 절 trailing space(getbible 원본 보존) 기록. 데이터 결함은 아니나 표시 일관성 점검 시 인지 필요.
+### 5.4 places 좌표 float 변환 무가드
+`backend/app/routes/nodes.py:96`~`97`이 `float(props.get("latitude", 0))`/`longitude`를 한다. 쿼리 WHERE에서 `IS NOT NULL`은 거르지만(`:39` 등), 좌표가 숫자로 파싱 불가한 문자열이면 예외 가능. 현재 데이터가 정상이라는 전제에 의존.
 
 ---
 
-## 8. 테스트 부재
+## 6. 데이터 파이프라인 · 외부 의존
 
-애플리케이션 소스에 `.test.`/`.spec.` 파일 없음(`node_modules` 내부 라이브러리 테스트 제외). `frontend/package.json` scripts는 `dev`/`build`/`lint`/`preview`만 — test 스크립트 없음. 백엔드도 테스트 프레임워크·테스트 파일 없음. Playwright UAT는 회고에 패턴으로 반복 언급되나 리포지토리에 자동화 테스트 파일은 없음. 변경 회귀를 자동 감지할 수단 부재 — 검증은 매번 수동 Playwright + `.forge/reports/` 스크린샷에 의존.
+### 6.1 적재/생성 스크립트 실행 순서 미문서화
+`backend/scripts/`에 적재(`load_*.py` 5개)와 생성(`generate_*.py`, `inject_*.py` 다수)이 있으나, README는 `load_theographic.py` → `inject_ko_names.py` 두 단계만 기술한다(`README.md:18`~`22`). `load_books`/`load_person_events`/`load_verse_events`/`load_authored_events`, 그리고 `generate_*`(book_context/book_events/event_verses/verse_text 등) → `inject_*`의 의존 순서가 코드/문서 어디에도 명시돼 있지 않다. 새 환경에서 데이터를 재구축할 때 순서를 알 수 없는 운영 부채.
+
+### 6.2 외부 서비스 의존 (빌드타임)
+데이터 생성이 외부 서비스에 의존:
+- theographic raw GitHub: `load_theographic.py:14`~`17`, `generate_event_verses.py:28`~`29`, `generate_verse_events.py:18`~`20`, `generate_book_context.py:22` 등 — `raw.githubusercontent.com/robertrouse/theographic-bible-metadata`.
+- Anthropic API: `generate_book_context.py:20`·`:88`, `generate_book_events.py:17`·`:99`, `generate_verse_events.py:16`·`:144` 등 — `ANTHROPIC_API_KEY` 필요.
+- getbible: `generate_verse_text.py`가 절 본문을 빌드타임에 getbible v2에서 받아 인라인 저장(`:1`~`16`, `:53` — 기본 urllib UA에 403을 줘서 브라우저류 UA로 우회). 런타임 호출은 없음(미리굽기, ADR-0003).
+이 소스들이 사라지거나 스키마가 바뀌면 데이터 재생성이 깨진다. getbible UA 우회는 서비스 측 변경에 특히 취약.
 
 ---
 
-## 9. 기타 구조적 이슈
+## 7. 테스트
 
-### 9-1. 함수 내부 import
-
-**파일:** `/Users/calmonion/Project/BibleMap/backend/app/routes/nodes.py:240`
-
-```python
-import json as _json
-```
-
-`traits` 처리 분기 내부 조건부 import. 기능 문제 없으나 모듈 레벨 import 규범 위반.
-
-### 9-2. 검색 입력 길이 제한 없음
-
-**파일:** `/Users/calmonion/Project/BibleMap/backend/app/routes/search.py:8-11`
-
-`/search?q=`에 `q.strip()` 빈 값 체크만 수행. 길이 제한 없음. 극단적으로 긴 입력 시 인덱스 없는 `CONTAINS` 풀스캔(3-1) 부하 증가.
-
-### 9-3. dead config — text-justify
-
-**파일:** `/Users/calmonion/Project/BibleMap/frontend/src/MapView.jsx:270`, `344`, `393`
-
-`text-variable-anchor`(task-74) 제거 후 `'text-justify': 'auto'`가 3개 symbol 레이어에 dead config로 잔존. `placesToGeoJSON`/`ringLabels`의 `cosLat` 가드 `|| 1`은 `Math.cos(90°)=6.12e-17`(truthy)라 무효이나 데이터 위도대(26~37°N) 미도달로 실해 없음. 둘 다 코드 스멜 수준(회고 `2026-06-21-map-label-outward-anchor.md`에 정리 부채로 기록).
+### 7.1 자동화 테스트 전무
+`test`/`spec` 파일 검색 결과 0건(node_modules 제외). 백엔드 pytest·프론트 단위/E2E 모두 없다. 회귀 검증은 수동(메모리상 Python Playwright로 localhost:8080 화면 확인). 위 5장의 타이밍·상태 공유 로직과 2.1 설정 불일치 같은 항목이 테스트 없이 회귀에 노출돼 있다.

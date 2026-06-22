@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 70a9781e6523a396ad856f980b5499b1cc814d7a
-mapped: 2026-06-21
+last_mapped_commit: a25a3a3a9f5473c35aabd6036398d6bb672fee47
+mapped: 2026-06-22
 ---
 
 # 디렉터리 구조
@@ -31,7 +31,10 @@ frontend/
 │   ├── api.js                  단일 HTTP 클라이언트 (apiGet 헬퍼, VITE_API_URL 베이스)
 │   ├── theme.js                노드 타입 색·한글 라벨·표시 순서 팔레트 + typeColor/typeKo 헬퍼, SELECT_HL (공유)
 │   ├── constants.js            공유 상수 — MOBILE_BREAKPOINT(768px), SHEET_VH(55vh)
-│   ├── MapView.jsx             maplibre-gl 지도 뷰 — 마커/클러스터/스파이더파이/사건 링/볼록 껍질/바깥쪽 라벨 배치
+│   ├── MapView.jsx             maplibre-gl 지도 뷰 — 컴포넌트 셸(약 193줄): 지도 생성·effect 3개·에러/위치없음 UI
+│   ├── mapGeo.js               지도 순수 기하/GeoJSON/라벨 앵커 계산 (coreBounds·ringLabels·placesToGeoJSON·easeOutCubic·ringPositions·buildEventGeoJSON·buildSpiderGeoJSON·outwardLabel)
+│   ├── mapLayers.js            지도 정적 설정 (EMPTY_GEOJSON·setupMapSources·registerEventHandlers·placePopupHTML·escapeHtml)
+│   ├── mapRingController.js    사건 링/스파이더 애니메이션 컨트롤러 팩토리 (createRingController → collapseRing·expandPlace·spiderifyPlaces·collapseSpider·destroy + 공유 가변 상태)
 │   ├── TimelineView.jsx        사건 타임라인 뷰 — startDate 그룹, 책 칩, 인라인 구절 드릴다운
 │   ├── BibleOverviewView.jsx   성경 개요 뷰 — 구약·신약 장르별 북 카드 그리드
 │   ├── SidePanel.jsx           노드 상세 오버레이 패널 — 이웃 그룹 + Person/Book/Place 전용 블록
@@ -56,6 +59,7 @@ frontend/
 - 공유 패널: `SidePanel.jsx`
 - 커스텀 훅: camelCase + `use` 접두어, `.js` 확장자 (`useNodeSelection.js`, `useSearch.js`)
 - 순수 유틸·상수·팔레트: camelCase, `.js` 확장자 (`convexHull.js`, `api.js`, `theme.js`, `constants.js`)
+- MapView 보조 모듈: `map` 접두어 camelCase, `.js` 확장자 (`mapGeo.js` 순수 계산, `mapLayers.js` 정적 설정, `mapRingController.js` 컨트롤러 팩토리) — `MapView.jsx`가 이 3개를 import
 - 공유 UI 컴포넌트: PascalCase, `.jsx` 확장자 (`Spinner.jsx`, `VerseLangTabs.jsx`)
 
 ---
@@ -183,7 +187,10 @@ nginx/
 | `frontend/src/api.js` | 모든 HTTP 요청 단일 베이스 |
 | `frontend/src/theme.js` | 노드 타입 색·라벨 팔레트 + typeColor/typeKo 헬퍼 (공유) |
 | `frontend/src/constants.js` | 공유 상수 (MOBILE_BREAKPOINT, SHEET_VH) |
-| `frontend/src/MapView.jsx` | maplibre-gl 지도, 클러스터, 스파이더파이, 사건 링, 바깥쪽 라벨 배치 |
+| `frontend/src/MapView.jsx` | maplibre-gl 지도 뷰 컴포넌트 셸 (mapGeo/mapLayers/mapRingController 조합) |
+| `frontend/src/mapGeo.js` | 지도 순수 기하·GeoJSON·라벨 앵커 계산 |
+| `frontend/src/mapLayers.js` | 지도 소스/레이어 등록·이벤트 핸들러·팝업 |
+| `frontend/src/mapRingController.js` | 사건 링/스파이더 애니메이션 컨트롤러 팩토리 |
 | `frontend/src/SidePanel.jsx` | 노드 상세 패널 (Person/Book/Place 전용 블록) |
 | `frontend/src/useNodeSelection.js` | 노드 선택·히스토리 훅 |
 | `backend/app/main.py` | FastAPI 앱 등록 |
