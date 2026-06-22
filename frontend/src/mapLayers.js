@@ -141,7 +141,7 @@ export function setupMapSources(map) {
     data: EMPTY_GEOJSON,
     cluster: true,
     clusterMaxZoom: 13,
-    clusterRadius: 40,
+    clusterRadius: 18, // 마커 원이 실제 겹칠 때만 클러스터 (마커 지름 ~21~27px) — task-76, 12~14 밑은 금지
   })
 
   map.addLayer({
