@@ -1,138 +1,148 @@
 ---
-last_mapped_commit: 3837b4f9339ed2efb82a6b72cc1124a3340e2b9c
-mapped: 2026-06-27
+last_mapped_commit: 79f9d9df07c0d79f8fa07940e3f76c8d5424524b
+mapped: 2026-06-28
 ---
 
-# CONCERNS — 기술 부채 · 버그 · 보안 · 성능 · 취약 영역
+# Codebase Concerns
 
-HEAD `3837b4f`(task 87·88·89 — 지도뷰 인물 우선 2단계 모델 재설계) 기준으로 전수 재검증했다. 재설계로 검색 UI가 제거되고 인물 허브(`PersonHub.jsx`)·여정선(`/person/{id}/journey`)·장소→인물 점프(`/place/{id}/curated-persons`)가 추가됐다. 직전 맵(`08842f8`)에서 해소·유지된 항목은 갱신하고, 재설계가 새로 만든 부채를 추가했다.
+**Analysis Date:** 2026-06-28
+
+분석 범위: 프론트(`frontend/src/`)·백엔드(`backend/app/`)·인프라(`docker-compose.yml`·`deploy.sh`·`nginx/nginx.conf`·`.github/workflows/deploy.yml`). 최근 변경이 집중된 지도·여정 렌더 코드(`MapView.jsx`·`mapGeo.js`·`mapLayers.js`·`mapRingController.js`·`JourneyList.jsx`·`backend/app/routes/journey.py`)를 우선 점검했다.
+
+## Known Bugs
+
+**모바일 여정 미니시트의 `activeStopIdx` 의미 불일치:**
+- 증상: 데스크톱 `JourneyList`와 지도 배지/활성 강조는 `journeyStopGroups`(좌표 단위 그룹) 기준 인덱스를 쓰는데, 모바일 미니시트만 `seq - 1`(사건 순번 - 1)을 인덱스로 쓴다. 같은 장소에서 여러 사건이 일어나는 인물(예: 아브라함 마므레 사건 6·7·8·10)에서 미니시트 항목을 누르면 다른 정차지가 활성화되거나 활성 강조가 어긋난다.
+- 파일: `frontend/src/App.jsx:271-300` (특히 `:272` `stop.seq != null && stop.seq - 1 === activeStopIdx`, `:276` `setActiveStopIdx(stop.seq - 1)`)
+- 트리거: 모바일 폭(`MOBILE_BREAKPOINT` 이하)에서 큐레이션 인물 선택 후 하단 미니시트 항목 클릭. 중복 좌표가 있는 인물에서 재현.
+- 대조: `frontend/src/MapView.jsx:166-187`(`journeyStopGroups(...)[activeStopIdx]`)·`frontend/src/JourneyList.jsx:31`(`keyToIdx` = deduped 그룹 인덱스)는 그룹 기준. 미니시트만 옛 사건순번 기준이 남아 있음.
+- 수정 접근: 미니시트도 `mapGeo.journeyStopGroups(journeyStops)`를 매핑해 그룹 인덱스로 `onStopSelect`를 호출하고, 활성 판정도 그룹 인덱스(`groupIdx === activeStopIdx`)로 바꾼다. `JourneyList`/`MapView`와 동일 헬퍼를 쓰도록 통일.
+
+**`JourneyList`의 dedup 로직 중복 구현:**
+- 증상(잠재): `frontend/src/JourneyList.jsx:21-31`이 `mapGeo.journeyStopGroups`와 동일한 좌표 dedup·인덱스 매핑을 손으로 재구현한다. 두 곳의 `coKey`(`${lng},${lat}`) 표기나 그룹핑 규칙이 미래에 한쪽만 바뀌면 리스트와 지도 배지가 다시 어긋난다.
+- 파일: `frontend/src/JourneyList.jsx:21-31`, `frontend/src/mapGeo.js:157-180`
+- 트리거: 한쪽 헬퍼만 수정 시 침묵 발산.
+- 수정 접근: `JourneyList`도 `journeyStopGroups`를 import해 단일 출처로 인덱스를 도출.
+
+## Tech Debt
+
+**큐레이션 13인 매핑 상수 3중 복제:**
+- 이슈: `_ERA`/`_NAME_KO`/`_ERA_ORDER`가 `backend/app/routes/persons.py:16-50`과 `backend/app/routes/places.py:16-48`에 통째로 복제돼 있고, 프론트 `frontend/src/PersonHub.jsx:7`(`ERA_ORDER`)에도 한 번 더 있다. `journey.py`는 `from .persons import _ERA, _NAME_KO`로 import하는데 `places.py`만 "단방향 참조 회피"를 이유로 재선언한다(`places.py:15` 주석).
+- 파일: `backend/app/routes/persons.py:16-50`, `backend/app/routes/places.py:16-48`, `frontend/src/PersonHub.jsx:7`
+- 영향: 인물 추가/시대 라벨 변경 시 3곳을 동기화해야 함. 누락 시 장소→인물 칩이나 허브 정렬이 조용히 어긋남.
+- 수정 접근: 백엔드는 한 모듈(예: `persons.py` 또는 별도 `curated.py`)로 단일화하고 `places.py`·`journey.py`가 import. 프론트 `ERA_ORDER`는 백엔드 응답에 era 순서를 실어 보내거나 별도 commit-comment로 동기화 표시.
+
+**여정 정차지 식별이 `${lng},${lat}` 문자열 키에 의존:**
+- 이슈: `mapGeo.journeyStopGroups`(`mapGeo.js:159`)와 `JourneyList`(`:22`)·`buildJourneyLineGeoJSON`(`mapGeo.js:108-113`)이 좌표를 raw 부동소수점 그대로 문자열화해 그룹 키로 쓴다. `placesToGeoJSON`(`mapGeo.js:45`)은 `toFixed(4)`로 반올림 키를 쓴다. 좌표 비교 정밀도가 코드 경로마다 다르다.
+- 파일: `frontend/src/mapGeo.js:45`(`toFixed(4)`) vs `:108-113`·`:159`(raw `===`)
+- 영향: 백엔드가 같은 장소에 미세하게 다른 좌표(예: 동일 Place의 부동소수 표현 차)를 주면 한 경로에선 합쳐지고 다른 경로에선 분리돼 배지/라인이 어긋날 수 있음. 현재는 같은 `journey.py` `_fetch_place_coords`가 동일 Place에 동일 float을 주므로 실질 문제는 낮음.
+- 수정 접근: 좌표 dedup 키 정밀도를 한 헬퍼로 통일.
+
+**테스트 부재 — 전 영역:**
+- 이슈: 프론트·백엔드 모두 자동화 테스트 0건. `*.test.*`/`*.spec.*`/`test_*.py` 없음, `vitest`/`pytest`/`jest` 설정·의존성 없음(`frontend/package.json` scripts에 `lint`만, `backend/requirements.txt`에 테스트 의존성 없음).
+- 파일: `frontend/package.json`, `backend/requirements.txt`
+- 영향: 위 여정 인덱스 버그처럼 순수 함수(`mapGeo.js`의 `journeyStopGroups`·`compactSeqs`·`buildJourneyLineGeoJSON`·`coreBounds`)의 회귀를 잡을 안전망이 없음. 검증은 수동 Playwright(메모리 참조)에 의존.
+- 수정 접근: 최소한 `mapGeo.js`의 순수 함수에 단위 테스트(vitest) 도입. 백엔드는 `overlays._resolve`·`journey._build_id_to_slug` 등 파일 기반 로직에 pytest.
+
+## Performance Bottlenecks
+
+**`journey.py`가 매 요청마다 13개 JSON을 재파싱:**
+- 문제: `_build_id_to_slug()`가 `/person/{id}/journey` 요청마다 13개 `person_events/*.json`을 전부 `open`+`json.load`해 역매핑을 새로 만든다(`journey.py:18-30`). `persons.py`/`places.py`의 동일 파일 로드는 `@functools.lru_cache`로 캐시되는데 `journey.py`만 캐시가 없다.
+- 파일: `backend/app/routes/journey.py:18-39, 81`
+- 원인: `_build_id_to_slug`·`_load_events`에 캐시 데코레이터 미적용.
+- 개선 경로: `_build_id_to_slug`에 `@functools.lru_cache(maxsize=1)` 부착(이미 `persons._build_list`가 같은 패턴). `_load_events`도 slug별 캐시 가능. 응답에 `Cache-Control: max-age=300`은 있으나 서버 측 파싱 비용은 그대로.
+
+**검색 쿼리가 전 노드 풀스캔 + 인덱스 미사용:**
+- 문제: `/search`가 `MATCH (n) WHERE n.nameKo CONTAINS $q OR toLower(n.name) CONTAINS toLower($q)`로 라벨·인덱스 없이 전체 노드를 스캔한다(`search.py:14-30`). `main.py` lifespan이 만드는 인덱스는 `theographic_id` range 인덱스뿐(`main.py:13-18`)이라 텍스트 CONTAINS에는 무용.
+- 파일: `backend/app/routes/search.py:14-30`, `backend/app/main.py:13-18`
+- 원인: 부분일치(CONTAINS)는 range/lookup 인덱스가 못 탄다. 노드 수가 커지면 선형 비용.
+- 개선 경로: Neo4j full-text 인덱스(`db.index.fulltext.queryNodes`) 도입 또는 노드 규모가 작음을 전제로 현 상태 유지(성경 데이터 규모상 실질 부담은 제한적일 수 있음 — 측정 후 결정).
+
+## Fragile Areas
+
+**`MapView.jsx`의 자동 펼침 effect — 카메라/AbortController/타이머 다중 상태:**
+- 파일: `frontend/src/MapView.jsx:63-152`
+- 왜 취약: `moveend` 이벤트 + 폴백 타이머(700ms) + `fired` 플래그 + `AbortController` + `mapRef.current === map` 가드 + `expandedPlaceRef` 선점 판단이 한 effect에 얽혀 있다. 주석(`:98-141`)이 "task 15에서 어긋났던 지점", "radial-ring 회고" 등 과거 회귀를 명시할 만큼 미세 타이밍에 민감.
+- 안전한 수정: 카메라 이동/펼침 조건(`primary && expandedPlaceRef.current?.id !== primary.id`)을 건드릴 때 mobile/desktop 패딩 분기·`maxZoom`·`moveEndHandler` 해제 경로를 함께 확인. effect cleanup(`:147-151`)에서 `ctrl.abort()`·`map.off`·`clearTimeout`이 모두 호출되는지 유지.
+
+**`mapRingController.js`의 공유 가변 클로저 상태 + RAF 애니메이션:**
+- 파일: `frontend/src/mapRingController.js` 전체(`animFrame`·`spiderAnimFrame`·`expandAbortCtrl`·`spiderState`·`destroyed`)
+- 왜 취약: ring/spider 두 애니메이션이 각자 RAF 루프를 돌리며 `event-ring-source`·`place-spider-source`에 `setData`한다. `expandedPlaceRef`는 컴포넌트 ref와 공유(`:10`)되어 `MapView` selection effect와 `registerEventHandlers` 클릭 핸들러가 동시에 읽고 쓴다. `destroyed` 플래그로 unmount 후 setData를 막지만, 동일 source에 두 경로가 동시 `setData`하면 마지막 것이 이긴다(주석에서 "공유 source 동시 setData 충돌 회피"로 명시).
+- 안전한 수정: 새 애니메이션 시작 전 반드시 기존 `cancelAnimationFrame` + 이전 `setData(EMPTY_GEOJSON)` 정리 패턴 유지. expand/collapse 추가 시 `expandedPlace.current` 갱신 시점을 RAF 시작과 일치시킬 것.
+- 테스트 커버리지: 없음(수동 검증만).
+
+**`mapLayers.js`의 레이어 순서 강제 `moveLayer`:**
+- 파일: `frontend/src/mapLayers.js:446-450`
+- 왜 취약: 여정 배지 레이어 4개를 `event-ring-shadow` 위로 `moveLayer`로 재배치한다. 레이어 id 문자열이나 추가 순서가 바뀌면 `getLayer(id)` 가드가 빠진 항목은 조용히 z-순서가 틀어진다. 같은 좌표에서 장소 점이 배지를 덮는 회귀(주석에 명시)가 재발할 수 있음.
+- 안전한 수정: 레이어 추가/이름 변경 시 `:448` 배열과 `event-ring-shadow` 기준점을 함께 갱신.
+
+**`compactSeqs` 텍스트가 원 배지를 넘침(의도된 트레이드오프):**
+- 파일: `frontend/src/mapGeo.js:137-150`, `frontend/src/mapLayers.js:219-240`
+- 왜 취약: 다중 순번(예 "6-8, 10")은 원(반경 8~10px)을 넘쳐 지도 위로 흐른다. 가독성은 text-halo로 보완(`mapLayers.js:232-238`)하나, 긴 라벨이 인접 배지·라벨과 겹칠 수 있음(`text-allow-overlap: true`·`text-ignore-placement: true`로 충돌 회피 비활성).
+- 안전한 수정: 순번 표기 규칙 변경 시 halo·overlap 설정과 함께 검토.
+
+## Security Considerations
+
+**CORS가 모든 오리진 허용:**
+- 위험: `app.add_middleware(CORSMiddleware, allow_origins=["*"], ...)` (`backend/app/main.py:25-31`). GET 전용·credentials 비활성이라 노출면은 좁지만, API가 직접 인터넷에 노출되면 임의 사이트가 데이터를 읽을 수 있음.
+- 파일: `backend/app/main.py:25-31`
+- 현재 완화: `docker-compose.yml`에서 Neo4j 포트만 `127.0.0.1` 바인딩(`docker-compose.yml:6-8`), API 컨테이너는 호스트 포트 미노출(nginx만 `:8080` 공개), nginx `/api/` 프록시를 통해서만 접근. 즉 실배포에서 API는 내부망 한정.
+- 권장: 공개 데이터 읽기 전용이므로 현 상태 수용 가능. 장차 쓰기/인증 추가 시 `allow_origins`를 실제 도메인으로 제한.
+
+**인증·인가 부재(설계상):**
+- 위험: 모든 엔드포인트가 무인증 공개. 쓰기 엔드포인트가 없고 공개 성경 데이터만 다루므로 현재 위험은 낮음.
+- 파일: `backend/app/routes/*` 전체(`@router.get`만 존재)
+- 현재 완화: GET-only(`main.py:29` `allow_methods=["GET"]`), 데이터 변경은 호스트 `inject_*` 스크립트로만(`deploy.sh:55-67`).
+- 권장: 읽기 전용 공개 앱이라는 전제를 유지. 변경 시 재평가.
+
+**Cypher 쿼리 — 파라미터 바인딩은 안전, f-string은 상수만:**
+- 검토 결과: 사용자 입력(`node_id`·`q`)은 모두 `$id`/`$q` 파라미터 바인딩(`nodes.py`·`search.py`)으로 안전. `search.py:15`·`nodes.py:168-170`의 f-string은 `SEARCH_LIMIT`·`NODE_NEIGHBOR_LIMIT` 등 코드 내 상수만 끼우므로 인젝션 경로 아님. `main.py:16` 인덱스 생성 f-string도 하드코딩 라벨 목록(`['Person',...]`)만 사용.
+- 파일: `backend/app/routes/search.py:14-30`, `backend/app/routes/nodes.py:166-172`, `backend/app/main.py:13-18`
+- 권장: 향후 동적 라벨/속성을 f-string으로 끼우지 않도록 주의(현재는 문제 없음).
+
+**비밀값 관리:**
+- `.env`(`NEO4J_PASSWORD`)는 `.gitignore`에 포함돼 추적 제외(`.gitignore:13`). `deploy.sh:33-35`가 `.env`를 source해 inject 스크립트에 비번 전달. `docker-compose.yml`은 `${NEO4J_PASSWORD:?...}`로 미설정 시 기동 실패하도록 강제(`docker-compose.yml:11,18`). 누출 흔적 없음.
+
+## Operational / Deployment Concerns
+
+**`deploy.sh`의 한글 이름 주입이 배포 게이트(단일 실패점):**
+- 문제: `deploy.sh:55-67`이 `inject_ko_names.py`를 15회까지 재시도하고 끝까지 실패하면 `exit 1`로 배포를 중단한다. inject 단계는 컨테이너 재시작(`up -d`) 뒤에 실행되므로, 주입 실패 시 컨테이너는 이미 새 코드로 떠 있는데 배포 스크립트만 실패로 끝난다(부분 적용 상태).
+- 파일: `deploy.sh:55-72`
+- 영향: 주입 실패 시 한글 이름이 누락된 데이터로 서비스가 떠 있을 수 있음. CI는 실패로 표시되지만 사용자에겐 영문 이름 폴백(`nameKo || name`)으로 노출.
+- 개선 접근: inject를 컨테이너 기동 전/헬스 확인 후로 옮기거나, 실패 시 롤백. 단 현재 폴백(`nameKo` 없으면 `name`)이 있어 치명도는 낮음.
+
+**CI 워크플로가 절대경로 하드코딩:**
+- 문제: `.github/workflows/deploy.yml`이 `cd /Users/calmonion/Project/BibleMap`로 특정 머신의 self-hosted 러너 경로에 묶여 있다. `git reset --hard origin/main`으로 워크트리 로컬 변경을 무조건 폐기.
+- 파일: `.github/workflows/deploy.yml`
+- 영향: 러너 머신/경로 변경 시 무음 실패 가능(글로벌 메모리의 "배포 무음 실패 시 러너부터" 주의와 직결). 러너 디스크의 미커밋 변경은 매 배포마다 소실.
+- 개선 접근: 현 단일 self-hosted 스택 전제에선 의도된 설계. 경로 의존을 인지하고 러너 격리 규칙(글로벌 CLAUDE.md) 준수.
+
+**`lru_cache`가 데이터 갱신을 가림(런타임 stale):**
+- 문제: `events.py`·`persons.py`·`places.py`·`overlays.py`의 `@functools.lru_cache`(`maxsize=1` 또는 `None`)는 프로세스 생애 동안 결과를 보관한다(`events.py:53` `_compute_events`는 Neo4j 쿼리 결과까지 캐시). `data/*.json`이나 Neo4j 데이터가 바뀌어도 API 재시작 전엔 옛 응답을 반환.
+- 파일: `backend/app/routes/events.py:11,53,98`, `backend/app/routes/persons.py:53`, `backend/app/routes/places.py:51`, `backend/app/overlays.py:30,36`
+- 영향: `deploy.sh`가 매 배포 컨테이너를 `up -d`(재기동)하므로 배포 단위로는 캐시가 비워져 실제 운영 문제는 낮음. 다만 inject 스크립트(`deploy.sh:55`)가 컨테이너 기동 후 Neo4j를 갱신하면, 그 사이 캐시된 `_compute_events`/`_book_name_map`이 갱신 전 데이터를 들고 있을 수 있음.
+- 개선 접근: 데이터 갱신이 컨테이너 재시작과 항상 묶이도록 유지하거나(현 상태), 명시적 캐시 무효화 엔드포인트 추가.
+
+## Test Coverage Gaps
+
+**여정/지도 순수 함수 — 무테스트:**
+- 미검증: `mapGeo.js`의 `journeyStopGroups`·`compactSeqs`·`buildJourneyLineGeoJSON`·`buildJourneyStopsGeoJSON`·`coreBounds`·`placesToGeoJSON`. 좌표 dedup, 순번 압축("6-8, 10"), 진행도 그라데이션 등 회귀가 잦았던 로직.
+- 파일: `frontend/src/mapGeo.js`
+- 위험: 위 "모바일 미니시트 인덱스" 버그류가 자동으로 안 잡힘.
+- 우선순위: 높음(순수 함수라 테스트 비용 낮고 회귀 빈도 높음).
+
+**백엔드 라우트 — 무테스트:**
+- 미검증: `journey._build_id_to_slug`(participants[0] 가정)·`places._place_to_persons`·`nodes.get_node_places`의 라벨 분기·`events._compute_events`의 approx 머지.
+- 파일: `backend/app/routes/journey.py`, `backend/app/routes/places.py`, `backend/app/routes/nodes.py`, `backend/app/routes/events.py`
+- 위험: 데이터 스키마 가정(`events[0]["participants"][0]`이 항상 그 인물, `occursAt[0]`이 대표 장소)이 깨지면 침묵 오류.
+- 우선순위: 중간.
+
+**데이터 무결성 가정 — 미검증:**
+- 미검증: `journey.py:28`은 "각 slug json의 첫 participants[0]이 그 인물"임을, `persons.py:63` 주석은 "파일 내 모든 이벤트의 첫 participant가 동일인임을 검증 완료"라고 가정한다. 이 불변식을 강제하는 코드/테스트는 없다.
+- 파일: `backend/app/routes/journey.py:18-30`, `backend/app/routes/persons.py:53-76`, `data/person_events/*.json`
+- 위험: 새 인물 JSON 추가 시 participants[0]이 다른 인물이면 매핑이 조용히 틀림.
+- 우선순위: 중간(데이터 추가 시점에 검증 스크립트 권장).
 
 ---
 
-## 0. 데이터 결함 (최우선)
-
-### 0.1 `abraham.json` sortKey 역순 — 여정선이 하란→우르로 뒤집힘
-`data/person_events/abraham.json`에서 "우르 부르심"(`sortKey: -2091`)과 "하란 출발"(`sortKey: -2091.5`)이 역순이다. 역사적 순서는 우르→하란이나, `-2091.5 < -2091`이므로 오름차순 정렬 시 하란 출발이 우르 부르심보다 **먼저** 온다. 이 재설계에서 이 결함은 단순 사건 목록을 넘어 **여정선에 직접 반영**된다:
-- `backend/app/routes/journey.py:39`가 `sorted(events, key=lambda e: e["sortKey"])`로 정렬해 stops를 만들고,
-- `frontend/src/mapGeo.js:105`~`133`의 `buildJourneyLineGeoJSON`이 그 순서대로 좌표를 이어 LineString을 그린다.
-결과적으로 아브라함 여정선과 정차지 배지 순번이 하란→우르로 뒤집혀 표시된다. 코드는 sortKey대로 정확히 렌더 — **데이터 교정(sortKey 부호/값 수정)이 정공법**. 코드 회피책(예: 동일 startDate 내 보조 정렬)은 권위 데이터 오염을 가린다.
-
----
-
-## 1. 재설계가 새로 만든 부채 (task 87·88·89)
-
-### 1.1 죽은 `/search` 백엔드 엔드포인트 — 프론트 소비자 소멸
-재설계로 검색 UI가 제거되며 `frontend/src/useSearch.js`가 삭제됐고, 프론트 어디에서도 `/search`를 호출하지 않는다(`grep /search frontend/src` 0건). 그러나 백엔드 `backend/app/routes/search.py`는 그대로 남고 `backend/app/main.py:34`가 여전히 라우터를 등록한다. 즉 무인증 공개 상태로 살아 있는 죽은 엔드포인트다. 제거(또는 의도적 보존이면 명시) 대상. (직전 맵의 3.3·4.5에서 다루던 Cypher f-string 주입/인덱스 부재 우려도 이제 이 죽은 경로에 한정된다.)
-
-### 1.2 `_ERA`/`_NAME_KO` 상수 중복 선언
-큐레이션 13인의 `slug→era`·`slug→한글이름` 매핑이 두 곳에 통째로 복제돼 있다: `backend/app/routes/persons.py:16`~`47`와 `backend/app/routes/places.py:16`~`46`(places.py 주석은 "단방향 참조를 피하기 위해 여기서 재선언"이라 의도적이라 밝힘). `backend/app/routes/journey.py:13`은 반대로 `from .persons import _ERA, _NAME_KO`로 가져온다. 즉 같은 권위 데이터가 한 곳은 import, 한 곳은 복제로 갈려 있어, 13인 추가/이름 변경 시 두 파일을 동기화해야 하는 조용한 드리프트 위험. `_ERA_ORDER`도 `persons.py:50`·`places.py:48`·`PersonHub.jsx:7`(주석으로 "persons.py와 동일") 3곳에 중복.
-
-### 1.3 좌표 dedup 로직 3중 복제
-"좌표 있는 stop을 좌표키로 중복 제거" 로직이 세 곳에 거의 동일하게 재구현돼 있다: `frontend/src/mapGeo.js:138`~`149`(`buildJourneyStopsGeoJSON`, 권위), `frontend/src/MapView.jsx:176`~`185`(activeStopIdx→stop 역인덱싱), `frontend/src/JourneyList.jsx:21`~`31`(배지 seq→deduped 인덱스). 셋이 같은 `coKey`/`seen`/`dedupedMap` 패턴을 손으로 맞춰야 일치하며(주석도 "동일 로직"이라 명시), 한 곳만 바뀌면 리스트·맵·활성 강조의 인덱스가 어긋난다. 단일 헬퍼 추출이 정공법.
-
-### 1.4 journey 엔드포인트 무캐시 — 매 요청 13파일 파싱
-`backend/app/routes/journey.py`의 `_build_id_to_slug()`(`:18`)와 `_load_events()`(`:33`)에 `lru_cache`가 없다. `/person/{id}/journey` 호출마다 `_build_id_to_slug`가 13개 person_events JSON을 열어 파싱해 역매핑을 재구성한다. `persons.py:53`의 `_build_list`·`places.py:51`의 `_place_to_persons`는 캐시하는데 journey만 빠져 일관성·성능 양쪽에서 부채. (빌드타임 고정 데이터 전제 ADR-0003 하에선 캐시가 안전.)
-
-### 1.5 `_place_to_persons` 무한 lru_cache
-`backend/app/routes/places.py:51` `@functools.lru_cache(maxsize=None)` — `/place/{place_id}/curated-persons` 호출의 distinct place_id마다 캐시 항목이 무한 증가한다. place_id는 사용자 클릭으로 결정되는 외부 입력(theographic_id)이라, 이론상 존재하는 모든 Place 수만큼 캐시가 자랄 수 있다(현재 데이터 규모에선 작지만 패턴이 무경계). `exclude` 쿼리는 캐시 밖에서 필터링하므로(`:90`~`92`) 캐시 키 폭발은 없으나 maxsize=None은 명시 상한이 낫다.
-
----
-
-## 2. 직전 항목의 현 상태 (재검증)
-
-### 2.1 testament 값 표기 불일치 (OT/NT vs 구약/신약) — 여전히 열림
-`frontend/src/BibleOverviewView.jsx`가 영문(`OT`/`NT`)·한글(`구약`/`신약`) 둘 다 방어적으로 매핑하고, 둘 다 아니면 그 책이 조용히 누락된다. 백엔드(`backend/app/routes/books.py`)는 `testament`를 그대로 전달 — 표준화 지점 없음. 적재 시 한 표기로 정규화가 정공법. (개요 화면은 이제 허브에서 "성경 책 둘러보기"로 진입 — `App.jsx:94`·`PersonHub.jsx:245`.)
-
-### 2.2 MapView 분리 구조 — 유지, 미세 중복 잔존
-`frontend/src/MapView.jsx`(227줄)는 React만 남고 지오/라벨(`mapGeo.js`), 소스·레이어·핸들러(`mapLayers.js`), 링/스파이더(`mapRingController.js`)로 분리된 구조가 유지된다. `setupMapSources`가 여정 3소스(`journey-line`/`journey-stops`/`journey-active`, `mapLayers.js:148`~`216`)를 포함해 더 많은 소스·레이어를 한 함수에 직렬 등록하는 점, places-circle/place-spider 페인트 근접 중복은 그대로.
-
-### 2.3 places 좌표 float 변환 — 백엔드측 가드 유지
-`backend/app/routes/nodes.py:95`~`99`가 `float(...)`를 `try/except (TypeError, ValueError)`로 감싸 파싱 불가 좌표면 `continue`. 신규 `journey.py:65`~`69`도 `float(lng) if lng is not None`로 None 가드 후 변환. 프론트는 백엔드가 거른 좌표만 쓰므로 안전.
-
----
-
-## 3. 검증 함정 (방법론 부채)
-
-### 3.1 백엔드 hot-reload 아님 — 정적검증이 못 잡는 클래스
-`backend/Dockerfile:6` CMD에 `--reload`가 없다. 신규/변경 엔드포인트(`/person/.../journey`, `/place/.../curated-persons`, `/persons/curated`)는 `docker compose up -d --build api` 후 **실엔드포인트 호출로만** 검증된다. 워크플로의 정적검증(AST/build)은 런타임·렌더루프·데이터 버그를 못 잡는다. 실증: 직전 사이클에서 SidePanel `onNodeLoaded`가 인라인 화살표라 매 렌더 새 ref→`/node` fetch effect 재실행→`setCollapsed({})` 섹션 펼침 리셋 버그가 **런타임에서만** 드러났고 `useCallback`으로 수정됨(`App.jsx:77`~`83`, `useNodeSelection.js:13`). 0.1의 여정선 역순도 build/AST로는 안 보이고 화면에서만 드러나는 부류.
-
-### 3.2 프론트 :8080은 dist 마운트(HMR 아님)
-프론트 검증 전 `cd frontend && npm run build` 필요(`.env.production`의 `VITE_API_URL=/api`). 빌드 없이 소스만 고치면 :8080에 반영 안 됨(프로젝트 메모리 기록).
-
----
-
-## 4. 보안
-
-### 4.1 인증·레이트리밋 없음
-모든 라우트(`backend/app/routes/` 7파일: nodes/events/search/books/persons/journey/places)가 무인증 공개이고 레이트리밋·요청 제한이 없다. nginx(`nginx/nginx.conf`)도 인증/limit_req 없음. 단일 사용자/내부 도구 전제면 수용 가능하나 외부 노출 시 위험. 1.1의 죽은 `/search`도 이 표면에 포함.
-
-### 4.2 CORS 와일드카드
-`backend/app/main.py:25`~`31` — `allow_origins=["*"]`. `allow_credentials=False`·`allow_methods=["GET"]`로 범위는 좁다(GET 전용·쿠키 미허용). 읽기 전용 API라 실질 위험은 낮으나 운영 시 오리진 명시가 낫다.
-
-### 4.3 Cypher f-string 주입 — 현재는 안전(주의 유지)
-LIMIT/슬라이스 값을 f-string으로 삽입하는 곳: `backend/app/routes/search.py:27`(`LIMIT {SEARCH_LIMIT}`, 단 1.1로 죽은 경로), `backend/app/routes/nodes.py`의 이웃 슬라이스 상수. 모두 모듈 상수라 현재 주입 위험 없음. 사용자 입력(`q`, `node_id`, `place_id`, `person_id`)은 전부 파라미터 바인딩($q/$id/$ids). 인덱스 생성도 `label`이 코드 리스트 상수(`main.py:14`). 이 상수들이 요청 인자로 바뀌면 즉시 취약 — 패턴 자체를 위험 신호로 표시.
-
----
-
-## 5. 성능
-
-### 5.1 lru_cache 메모리 — event_verses 8.3MB 상주
-`backend/app/overlays.py`의 `event_verses()`가 `@functools.lru_cache(maxsize=1)`로 `data/event_verses/events.json`을 통째로 메모리에 올린다(실측 8,344,587 bytes, 파싱 dict는 더 큼). 단일 워커에선 한 번 로드되나 워커가 늘면 워커당 사본만큼 곱해진다. `events.py`의 `_load_approx_book_index()`·`_compute_events()`·`_book_name_map()`도 각각 `lru_cache(maxsize=1)`로 Neo4j 결과를 앱 재시작까지 보관(`events.py:11`·`:53`·`:98`) — 갱신 무효화 경로 없어 재시작 필요(5.4 연계).
-
-### 5.2 코드 스플리팅 — 부분 적용
-`frontend/vite.config.js`의 `manualChunks`가 `maplibre-gl`을 `maplibre` 청크로, 나머지 node_modules를 `vendor`로 분리한다. 그러나 라우트/뷰 단위 lazy-load는 없다 — `MapView`/`TimelineView`/`BibleOverviewView`/`PersonHub`/`JourneyList`가 `App.jsx:3`~`8`에서 정적 import이라 초기 번들에 함께 들어간다(`React.lazy`/`Suspense` 미사용). maplibre 청크는 ~1MB로 >500kB 빌드 경고 대상(code-splitting됨).
-
-### 5.3 gzip/압축 없음
-`nginx/nginx.conf`에 `gzip` 지시어가 전혀 없다(grep 0건). 정적 자산 캐시 헤더는 있으나 전송 압축이 빠져 maplibre·vendor 청크가 비압축 전송된다.
-
-### 5.4 단일 uvicorn 워커 + 캐시 무효화 부재
-`backend/Dockerfile:6` CMD가 워커 수 미지정(기본 1). 동시성/장애 격리가 단일 프로세스에 묶임. 5.1의 8.3MB 캐시 때문에 워커 증설은 메모리 곱셈 트레이드오프. 또한 `events.py`/`overlays.py`/`persons.py`/`places.py`의 lru_cache된 파생 결과가 Neo4j·오버레이 JSON 갱신을 프로세스 재시작 전엔 반영하지 않는다(빌드타임 고정 전제 ADR-0003에 의존 — 런타임 갱신 시나리오 생기면 함정).
-
-### 5.5 nameKo/name 풀텍스트 인덱스 부재 — 죽은 경로 한정
-`backend/app/routes/search.py:16`~`27`의 substring 매칭은 `lifespan`이 만드는 `theographic_id` 인덱스(`main.py:13`~`18`)로 가속되지 않아 데이터가 커지면 느려진다. 단 1.1로 프론트 소비자가 없어 실사용 영향은 죽은 엔드포인트 안에 갇혀 있다.
-
----
-
-## 6. 취약/주의 영역 (런타임 거동)
-
-### 6.1 자동 펼침 moveend 폴백 타이머
-검색·사이드패널로 primary를 선택하면 fitBounds 후 `moveend`에서 사건 링을 펼친다. 카메라가 안 움직이면 `moveend`가 미발화하므로 700ms 폴백 타이머로 보장한다(`MapView.jsx:111`~`132`). `fired` 단발 가드(`:116`~`124`)·언마운트 정리(`:147`~`151`)는 있으나 타이밍 의존 로직이라 회귀에 취약(retro에서 task 15·radial-ring로 언급).
-
-### 6.2 공유 GeoJSON 소스 동시 setData — 여정 소스 3종 추가로 표면 확대
-링/스파이더가 `event-ring-source`·`place-spider-source`를 rAF 루프에서 setData하고(`mapRingController.js`), selection effect와 클릭 핸들러가 같은 소스를 건드린다. 재설계로 `journey-line-source`/`journey-stops-source`/`journey-active-source`가 추가돼(`MapView.jsx:160`~`196`) setData 대상이 늘었다. 이들은 별도 effect(journeyStops·activeStopIdx 의존)에서 갱신돼 링/스파이더와 직접 경합하진 않으나, `expandedPlaceRef`를 컴포넌트와 컨트롤러가 클로저+ref로 공유(`mapRingController.js`·`MapView.jsx:16`·`42`~`47`)하는 추론 난도 높은 구조는 그대로.
-
-### 6.3 activeStopIdx 인덱스 정합성 — deduped 기준 3곳 동시 의존
-활성 정차지 인덱스는 "좌표 dedup 후 0-based"라는 한 가지 의미를 `mapGeo.js`(배지 seq), `MapView.jsx`(카메라 이동 대상 역인덱싱), `JourneyList.jsx`(클릭→dedupIdx)·`App.jsx:271`~`300`(모바일 미니시트는 `seq-1`로 매핑)이 각자 계산한다(1.3). dedup 규칙이 어긋나면 리스트 클릭과 맵 강조·카메라가 다른 정차지를 가리키는 조용한 불일치가 난다.
-
-### 6.4 좌표 없는 정차지 처리 — null seq 폴백
-`journey.py:100`~`128`은 좌표 있는 stop에만 1부터 seq를 부여하고 없으면 `seq=null, lng/lat=null`로 stops에 포함한다. 프론트는 이를 비활성(클릭 불가, opacity 0.45)으로 렌더하고(`JourneyList.jsx:46`~`71`) 여정선/배지에선 제외한다(`mapGeo.js:106`·`:139`). 의도된 거동이나, "표시되지만 클릭 안 되는 항목"은 발견성 함정이 될 수 있다.
-
----
-
-## 7. UX 주의
-
-### 7.1 SidePanel 섹션 기본 접힘 — 점프 칩 발견성
-SidePanel 섹션은 기본 접힘이다(`SidePanel.jsx:25`~27 주석: `collapsed[key] !== false → 접힘`). 장소의 "이 곳을 지난 인물" 점프 칩(`SidePanel.jsx:533`~`554`, `/place/{id}/curated-persons` 소비)을 보려면 "이 곳을 지난 인물" 섹션을 한 번 펼쳐야 한다. 인물 전환의 핵심 동선이 기본 숨김이라 발견성 부채.
-
-### 7.2 큐레이션 13인 외 인물 — 빈 여정
-`/person/{id}/journey`는 큐레이션 13인(`persons.py:16`~30)이 아니면 404가 아니라 `stops=[]` 빈 응답을 준다(`journey.py:84`~88). 허브는 13인만 노출하므로 정상 동선에선 안 닿으나, 사이드패널 이웃 탐색으로 13인 밖 Person에 도달하면 여정선·리스트가 조용히 비는 거동.
-
----
-
-## 8. 데이터 파이프라인 · 외부 의존
-
-### 8.1 적재/생성 스크립트 실행 순서 미문서화
-`backend/scripts/`에 적재(`load_*.py`)·생성·주입(`generate_*.py`/`inject_*.py`)이 있으나 `README.md`는 `load_theographic.py`→`inject_ko_names.py` 두 단계만 기술. `load_books`/`load_person_events`/`load_verse_events`/`load_authored_events`, `generate_*`(book_context/book_events/event_verses/verse_text 등)→`inject_*`의 의존 순서가 코드/문서 어디에도 없다. 새 환경 재구축 시 순서 미상의 운영 부채.
-
-### 8.2 외부 서비스 의존 (빌드타임)
-데이터 생성이 외부에 의존: theographic raw GitHub(`load_theographic.py`·`load_books.py`·`generate_event_verses.py` 등 — `raw.githubusercontent.com/robertrouse/theographic-bible-metadata`), Anthropic API(`generate_book_context.py`·`generate_book_events.py`·`generate_person_traits.py` — `ANTHROPIC_API_KEY` 필요), getbible(`generate_verse_text.py`가 절 본문을 빌드타임에 받아 인라인 저장, 기본 UA에 403→브라우저류 UA로 우회). 런타임 호출은 없음(미리굽기, ADR-0003). 소스 소멸/스키마 변경 시 재생성 깨짐 — getbible UA 우회는 특히 취약.
-
-### 8.3 `data/book_years_approx/` — 빌드타임 전용 입력(의도적 유지, 부채 아님)
-`data/book_years_approx/books.json`은 런타임 소비자가 없고 `backend/scripts/generate_book_events.py:26`만 읽는다(task 85 확인·유지). 죽은 데이터가 아니라 의도적 보존 파이프라인 소스이므로 삭제 대상으로 보지 않는다. (추정 데이터 권위 분리 — book_years_approx/book_events 등은 Neo4j 밖 런타임 오버레이로, `/events`가 `_compute_events()`에서 머지: `events.py:53`~88.)
-
----
-
-## 9. 테스트
-
-### 9.1 자동화 테스트 전무
-코드 테스트 0건(`backend/requirements.txt`에 pytest 없음, `frontend/package.json`에 jest/vitest/cypress/playwright 없음). 회귀 검증은 수동(메모리상 Python Playwright로 localhost:8080 화면 확인). 6장의 타이밍·상태 공유 로직, 1.3의 dedup 3중 복제, 1.2의 상수 중복, 2.1의 testament 정규화 누락, 그리고 0.1의 데이터 정렬 버그 같은 조용한 실패가 테스트 없이 회귀에 노출돼 있다(과거 `clusterRadius: 18` 유실 사례가 이를 방증).
+*Concerns audit: 2026-06-28*

@@ -1,195 +1,144 @@
 ---
-last_mapped_commit: 3837b4f9339ed2efb82a6b72cc1124a3340e2b9c
-mapped: 2026-06-27
+last_mapped_commit: 79f9d9df07c0d79f8fa07940e3f76c8d5424524b
+mapped: 2026-06-28
 ---
+# 코딩 컨벤션
 
-# CONVENTIONS.md — 코드 규약
+**분석일:** 2026-06-28
 
-구현 사실 기록. 도메인 용어 정의는 CONTEXT.md 참조.
-
----
-
-## React 컴포넌트 패턴
-
-### 파일 구조
-- 파일당 1 default export 컴포넌트.
-- 해당 파일에서만 쓰는 서브컴포넌트는 별도 파일 없이 같은 파일 안에 로컬 정의.
-  - `frontend/src/BibleOverviewView.jsx`: `BookCard`, `GenreSection`, `Testament` 로컬 정의
-  - `frontend/src/SidePanel.jsx`: `SectionHeader` 로컬 정의
-  - `frontend/src/PersonHub.jsx`: `PersonCard`, `EraSection`, 로컬 훅 `useIsMobile` 정의
-- 모든 컴포넌트 함수는 `function` 선언식 사용. Arrow function 컴포넌트 미사용(`*.jsx` 전체 검증).
-- 들여쓰기: 2-space(`.jsx`/`.js` 전체).
-
-### Props 패턴
-- 기본값은 구조분해 파라미터에서 직접 지정:
-  ```js
-  function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, explorePersonId = null, onExplorePerson = () => {} })
-  ```
-- 콜백 props는 항상 `onXxx` 명명(`onSelectPerson`, `onOpenOverview`, `onStopSelect`, `onExplorePerson`).
-- 컴포넌트 상단 JSDoc으로 props 계약을 명시하기도 함(`PersonHub.jsx`: `onSelectPerson(id)`/`onOpenOverview()` + 데이터 fetch 명세, `JourneyList.jsx`: 파일 상단 라인 주석).
-
-### Hooks 패턴
-- `useEffect` 비동기 패턴: `AbortController` + catch에서 `e.name === 'AbortError'` 구분으로 stale/경쟁 응답 방지(`App.jsx` journey fetch, `MapView.jsx`).
-- 취소 불가한 단발 fetch는 `let cancelled = false` 플래그 + cleanup에서 `cancelled = true`(`PersonHub.jsx`).
-- **effect 동기 본문에서의 `setState` 금지** — react-hooks v7 규칙. 다음 회피 패턴들로 우회:
-  - `setTimeout`/async 콜백 안에서만 호출(`frontend/src/useSearch.js` 디바운스 effect 주석에 명시).
-  - async fetch의 `.then` 콜백 안 setState는 허용(`App.jsx` journey effect: `.then(({ stops }) => { setJourneyStops(stops); ... })`에 `// async 콜백 — v7 OK` 주석).
-  - 조기 분기에서 즉시 초기화해야 할 때는 마이크로태스크로 미룸: `Promise.resolve().then(() => { setJourneyStops(null); setActiveStopIdx(null) })`(`App.jsx` `explorePersonId` 미선택 분기).
-- `useCallback(fn, [])` + `useRef` 조합으로 최신 값 읽기 — 참조 안정화로 다른 effect 재실행 방지:
-  - `useNodeSelection.js`의 `selectNode`는 `useCallback([])`, `selectedNodeRef.current`로 최신 `selectedNode` 읽음 (MapView effect 재실행 → expandPlace fetch abort 버그 방지).
-  - `useNodeSelection.js`의 `handleNodeLoaded`도 `useCallback([])`.
-  - `App.jsx`의 `handleSidePanelNodeLoaded`는 `useCallback([handleNodeLoaded, explorePersonId])` — 인라인 화살표면 매 렌더 새 ref가 되어 SidePanel의 `/node` fetch effect(deps에 `onNodeLoaded`)가 매번 재실행→`setCollapsed({})` 리셋으로 섹션이 안 펼쳐지는 버그를 막는다(주석에 명시).
-- 커스텀 훅은 `useXxx.js` 별도 파일에 `export function useXxx()`: `frontend/src/useNodeSelection.js`, `frontend/src/useSearch.js`. 관련 state·ref·핸들러를 한 객체로 묶어 반환. 단, 단일 컴포넌트 전용 훅은 그 파일 안에 로컬 정의(`PersonHub.jsx`의 `useIsMobile`, `matchMedia` 구독 패턴).
-
-### MapView 모듈 분할 패턴 (`frontend/src/MapView.jsx` + 형제 모듈)
-`MapView.jsx`는 React 라이프사이클·effect·DOM만 들고, 맵 로직은 형제 순수/팩토리 모듈로 분리한다.
-
-- `frontend/src/mapGeo.js` — **모듈 레벨 순수함수**만 모음. 좌표/지오메트리/라벨 배치 계산:
-  - `coreBounds(places)` — 원거리 outlier 제외한 core `LngLatBounds`(중앙값 거리 × 3 임계). 밀집/제외 없음이면 `null`(호출 측 전체 bounds 폴백).
-  - `placesToGeoJSON(places)` — 최근접 이웃 반대 방향으로 라벨 anchor/offset 계산(화면 세로 `cos(lat)` 보정).
-  - 여정 지오메트리: `buildJourneyLineGeoJSON`, `buildJourneyStopsGeoJSON`(좌표 중복 제거 후 seq 부여 — `JourneyList.jsx`가 동일 dedup 로직 재현).
-  - `ringLabels(lat, n)`, `ringPositions(lng, lat, n, R)`, `buildEventGeoJSON`, `buildSpiderGeoJSON`, `easeOutCubic(t)`.
-  - 내부 헬퍼 `outwardLabel(ex, ny)` — 화면 8방위 text-anchor + text-offset.
-- `frontend/src/mapLayers.js` — 맵 정적 구성. `setupMapSources(map)`(GeoJSON source + circle/symbol/fill/line 레이어 일괄 추가), `registerEventHandlers(map, {...})`(클릭·마우스 핸들러 단일 함수로 모음), 모듈 상수 `EMPTY_GEOJSON`, 팝업 HTML 빌더 `placePopupHTML`, XSS 방어 `escapeHtml`.
-- `frontend/src/mapRingController.js` — **팩토리-클로저 패턴**으로 가변 애니메이션 상태 캡슐화. `createRingController(map, { expandedPlaceRef, setError })`가 클로저 변수(`animFrame`, `spiderState`, `spiderAnimFrame`, `expandAbortCtrl`, `destroyed`)를 숨기고 `{ collapseRing, collapseSpider, expandPlace, spiderifyPlaces, destroy }`를 반환. React state 아님 — `requestAnimationFrame` 프레임마다 `setData`로 직접 갱신, 리렌더 없음.
-  - `expandedPlace = expandedPlaceRef` — 컴포넌트 ref를 컨트롤러와 공유(selection effect가 펼침 상태 판단·`registerEventHandlers` 재클릭 판단).
-  - 정리: 컴포넌트 unmount effect cleanup에서 `ring.destroy()` 호출(진행 중 `requestAnimationFrame`/`AbortController` 취소).
-- `MapView.jsx`는 맵 라이프사이클 effect와 데이터/선택 반영 effect를 분리. `expandPlaceRef`/`expandedPlaceRef` React ref를 두 effect 간 공유 브리지로 활용. 여정 props(`journeyStops`, `activeStopIdx`, `onStopSelect`)는 `App.jsx`에서 주입.
-
-### 상태 관리 / 화면 단계
-- 전역 상태 라이브러리 없음. `App.jsx`에서 props drilling 또는 커스텀 훅(`useNodeSelection`, `useSearch`)으로 전달.
-- 최상위 화면은 `activeStage` 단일 state로 분기: `'hub' | 'explore' | 'overview'`(`App.jsx`). 단계별로 조건부 렌더 + 단계별 nav 바(`renderExploreNav`/`renderOverviewNav`).
-  - 허브(`'hub'`) = 인물 선택 전(`PersonHub`), 탐험(`'explore'`) = 인물 선택 후 지도·타임라인, 개요(`'overview'`) = 성경 책 둘러보기.
-  - 탐험 내부 뷰는 별도 `exploreView` state(`'map' | 'timeline'`).
-- 탐험 중인 인물은 `explorePersonId`/`explorePersonName`을 `selectedNode`와 **분리**해 유지 — 장소 클릭(선택 노드가 Place로 바뀜)에도 여정·맵 장소 기준 인물이 유지되도록(`App.jsx` 주석).
-- 뷰는 항상 마운트 상태 유지 — CSS `display: 'flex'|'block' | 'none'` 토글로 전환(지도 상태 보존 목적, `App.jsx` 탐험 단계 map/timeline).
+두 언어 영역으로 나뉜다. 프론트엔드 `frontend/src/`(React 19 + Vite, JS/JSX, ESM)와 백엔드 `backend/app/`(FastAPI + Neo4j, Python 3.12). 데이터 적재·생성 스크립트는 `backend/scripts/`에 별도 규칙으로 모여 있다.
 
 ---
 
-## 스타일링 패턴
+## 네이밍 패턴
 
-- CSS-in-JS 라이브러리 없음. 모든 스타일은 인라인 `style={{ ... }}` 객체. `className` 미사용(`*.jsx` 전체 검증).
-- 예외: 키프레임 애니메이션은 컴포넌트 내 `<style>{...}</style>` 태그 인라인(`frontend/src/Spinner.jsx`의 `@keyframes spin`). CSS 클래스 셀렉터는 여전히 미사용.
-- 글로벌 CSS는 `frontend/src/index.css`(CSS 변수·`body`·`#root`·기본 타이포 정의). 실제 컴포넌트는 이 변수에 의존하지 않고 전부 인라인.
-- 색상 팔레트 단일 출처: `frontend/src/theme.js` — `TYPE_COLOR`, `TYPE_KO`, `TYPE_ORDER`, `typeColor()`, `typeKo()`, `SELECT_HL`.
-  - 단, `PersonHub.jsx`는 허브 전용 색을 로컬 모듈 상수로 재선언(`PERSON_BLUE = '#7c9cfc'`(theme `TYPE_COLOR.Person`과 동일값), `GOLD`, `GROUND`, `TEXT`, `CARD_BG`) — 골드 액센트 디자인 토큰은 theme.js에 없음.
-- hover 스타일: `onMouseEnter`/`onMouseLeave`로 `e.currentTarget.style.background` 직접 조작, 또는 `hovered` boolean state로 조건부 스타일(`PersonHub.jsx`의 `PersonCard`).
-- 글꼴: `fontFamily: 'system-ui, -apple-system, sans-serif'`.
-- 모바일 분기: `window.matchMedia(MOBILE_QUERY)` → `isMobile` state → 조건부 인라인 스타일 스프레드(`...(isMobile ? {...} : {...})`).
-- 매직넘버 상수는 `frontend/src/constants.js`: `MOBILE_BREAKPOINT = 768`, `SHEET_VH = 55`.
-- 로컬 스타일 상수: camelCase (`chipBase`, `verseBoxStyle`, `msgStyle`).
+### 파일
+
+- **React 컴포넌트:** PascalCase `.jsx` — `MapView.jsx`, `SidePanel.jsx`, `PersonHub.jsx`, `JourneyList.jsx`, `TimelineView.jsx`, `BibleOverviewView.jsx`, `Spinner.jsx`, `VerseLangTabs.jsx`. 파일 1개 = 기본 export 컴포넌트 1개.
+- **비컴포넌트 모듈(헬퍼·훅·상수):** camelCase 또는 소문자 `.js` — `api.js`, `theme.js`, `constants.js`, `mapGeo.js`, `mapLayers.js`, `mapRingController.js`, `useNodeSelection.js`.
+- **커스텀 훅:** `use` 접두사 + camelCase 파일·함수 — `useNodeSelection.js`의 `export function useNodeSelection()`. 단, `PersonHub.jsx` 내부의 `useIsMobile`은 컴포넌트 파일에 동거하는 로컬 훅.
+- **백엔드 라우트 모듈:** 소문자 단수/복수 `.py` — `backend/app/routes/nodes.py`, `events.py`, `persons.py`, `places.py`, `journey.py`, `books.py`, `search.py`. 라우터 1개 = 모듈 1개.
+- **백엔드 스크립트:** `동사_명사.py` 스네이크 케이스 — `load_*`(Neo4j 적재), `generate_*`(LLM·데이터 산출), `inject_*`(노드 속성 주입), `enrich_*`(좌표 보강). 동사 접두사로 역할을 구분한다(`backend/scripts/`).
+
+### 함수
+
+- **JS:** camelCase. 컴포넌트는 PascalCase. 이벤트 핸들러는 `handle` 접두사(`handleSelectPerson`, `handleBackToHub`, `handleNodeLoaded` — `App.jsx`). 콜백 prop은 `on` 접두사(`onSelectNode`, `onStopSelect`, `onSelectPerson`).
+- **Python:** snake_case. FastAPI 엔드포인트 함수는 `get_` 접두사가 관례(`get_node`, `get_person_journey`, `get_curated_persons` — `nodes.py`/`journey.py`/`persons.py`).
+- **모듈 내부 전용 함수:** Python은 `_` 접두사 언더스코어 — `_resolve`, `_load`(`overlays.py`), `_build_list`(`persons.py`), `_build_id_to_slug`/`_load_events`/`_fetch_place_coords`(`journey.py`), `_compute_events`/`_load_approx_book_index`(`events.py`). JS는 헬퍼를 export하지 않는 함수로 둔다(`outwardLabel`/`compactSeqs`는 `mapGeo.js`에서 비-export).
+
+### 변수·상수
+
+- **모듈 상수:** JS·Python 공통 UPPER_SNAKE — `MOBILE_BREAKPOINT`/`SHEET_VH`(`constants.js`), `TYPE_COLOR`/`TYPE_KO`/`TYPE_ORDER`/`SELECT_HL`(`theme.js`), `MAX_NEIGHBORS_PER_TYPE`/`NODE_NEIGHBOR_LIMIT`(`nodes.py`), `SEARCH_LIMIT`(`search.py`), `EMPTY_GEOJSON`(`mapLayers.js`).
+- **컴포넌트 로컬 색·테마 상수:** UPPER_SNAKE를 컴포넌트 파일 상단에 둔다 — `PERSON_BLUE`/`GOLD`/`GROUND`/`TEXT`/`CARD_BG`(`PersonHub.jsx`), `BOOK_COLOR`/`EVENT_COLOR`(`TimelineView.jsx`).
+- **Python 모듈 캐시 매핑:** `_` 접두사 + 타입힌트 부착 dict — `_ERA: dict[str, str]`, `_NAME_KO: dict[str, str]`, `_ERA_ORDER`(`persons.py`/`places.py`). 동일 상수가 `persons.py`·`places.py`에 의도적으로 중복 선언돼 있다(주석: "단방향 참조를 피하기 위해 여기서 재선언").
+
+### 타입
+
+TypeScript 미사용(JS/JSX만). 응답 객체 형태는 JSDoc 또는 주석으로 계약을 문서화한다(`PersonHub.jsx` 상단 "Props 계약", `journey.py` docstring의 "stops 각 항목").
 
 ---
 
-## API 통신 패턴
+## 코드 스타일
 
-- 단일 fetch 클라이언트: `frontend/src/api.js` — `apiGet(path, { signal })`.
-  - non-OK 응답은 `err.status` 속성을 가진 Error로 throw(기존 각 파일의 `Promise.reject(r.status)`와 동일 시맨틱).
-  - 요청 취소는 `AbortError`로 그대로 전파 — 호출부가 `e.name === 'AbortError'`로 구분.
-  - 환경변수: `import.meta.env.VITE_API_URL`(없으면 `http://localhost:8000`), 모듈에서 `API_BASE`로 사용.
-- 모든 컴포넌트·훅·`mapRingController.js`는 직접 fetch 없이 `apiGet` 만 사용.
-- 신규 엔드포인트도 동일: `PersonHub`(`/persons/curated`), `App.jsx`(`/person/{id}/journey`), `useNodeSelection`(`/person/{id}/event-ids`), `SidePanel`(`/place/{id}/curated-persons?exclude=...`).
+### 포매팅
+
+- **세미콜론 없음(JS):** 프론트엔드는 세미콜론을 생략하는 스타일. 단, 한 줄에 여러 문장을 압축할 때만 명시적 `;`를 쓴다(`api.js:9` `const err = new Error(...); err.status = ...; throw err`).
+- **들여쓰기:** JS 2칸, Python 4칸(PEP8).
+- **따옴표:** JS 작은따옴표 `'...'`. Python 큰따옴표 `"..."` 우세(Cypher 쿼리 등).
+- **Prettier/Black 미설정:** 포매터 설정 파일 없음. 스타일은 수동 일관성으로 유지.
+- **압축 한 줄 함수:** 짧은 헬퍼는 한 줄로 — `mapGeo.js:82` `export function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3) }`, `useNodeSelection.js`의 중첩 setter들.
+
+### 린트
+
+- **ESLint flat config:** `frontend/eslint.config.js`. `@eslint/js` recommended + `eslint-plugin-react-hooks`(flat recommended) + `eslint-plugin-react-refresh`(vite). `dist`는 `globalIgnores`로 제외. 실행: `cd frontend && npm run lint`(= `eslint .`).
+- **react-hooks 규칙을 코드가 적극적으로 준수:** 주석에서 반복적으로 "set-state-in-effect 준수", "v7 OK"를 언급한다. effect 본문에서 동기 setState를 피하고, 필요하면 `Promise.resolve().then(() => setState(...))`로 비동기 콜백 안으로 밀어 넣는다(`App.jsx:48`). 비동기 fetch `.then` 콜백 내 setState는 허용으로 본다(`App.jsx:52` "async 콜백 — v7 OK").
+- **Python 린터 미설정:** flake8/ruff/mypy 설정 파일 없음.
 
 ---
 
-## 에러 처리 패턴
+## 임포트 구성
+
+### 프론트엔드 순서(관찰된 관례)
+
+1. React 훅 — `import { useState, useEffect, useRef, useCallback } from 'react'`
+2. 외부 라이브러리 — `maplibre-gl`, `lucide-react`(+ `maplibre-gl/dist/maplibre-gl.css`)
+3. 로컬 컴포넌트 — `./MapView`, `./SidePanel` 등(확장자 생략 또는 `.jsx` 명시 혼용)
+4. 로컬 헬퍼·상수·훅 — `./api`, `./theme`, `./constants`, `./mapGeo`, `./useNodeSelection`
+
+경로 별칭(`@/`) 미사용 — 모두 상대경로 `./`. Vite 기본.
+
+### 백엔드 순서
+
+1. 표준 라이브러리 — `import json`, `import functools`, `import os`, `import logging`
+2. 서드파티 — `from fastapi import APIRouter, HTTPException, Query`, `from fastapi.responses import JSONResponse`, `from neo4j import GraphDatabase`
+3. 로컬 상대 임포트 — `from ..db import get_driver`, `from ..overlays import _resolve`, `from .persons import _ERA, _NAME_KO`
+
+라우트 간 상수 공유는 상대 임포트(`journey.py`가 `from .persons import _ERA`)로 하되, `places.py`는 의도적으로 재선언으로 결합을 피했다.
+
+---
+
+## 에러 처리
 
 ### 프론트엔드
-- `error`/`loading` boolean·string state + 조건부 렌더링(`PersonHub.jsx`는 loading/error/빈 목록 3분기 + 정상).
-- fetch catch: `e.name === 'AbortError'`는 early return(무시), 그 외만 `setError`. 취소 불가 fetch는 `cancelled` 플래그로 unmount 후 setState 회피.
-- `mapRingController.expandPlace`도 동일 — 링 정보 로드 실패 시 `setError(true)`, AbortError·destroyed는 무시.
-- 에러 UI: 한국어 메시지(`PersonHub`: `color: '#f87171'`, "인물 목록을 불러오지 못했습니다 — ...").
+
+- **공유 fetch 헬퍼:** 모든 GET은 `api.js`의 `apiGet(path, { signal })`을 거친다. 비-OK 응답이면 `status` 필드를 단 `Error`를 throw, AbortError는 fetch에서 그대로 전파.
+- **AbortError 구분이 표준:** fetch effect의 `.catch`에서 거의 항상 `if (e?.name !== 'AbortError')`로 취소를 정상 흐름과 분리한다(`App.jsx:53`, `MapView.jsx:144`, `mapRingController.js:114`). cleanup에서 `AbortController.abort()` 호출.
+- **stale 응답 가드 2종:**
+  - `cancelled` 로컬 플래그 + cleanup(`SidePanel.jsx:62-69`, `PersonHub.jsx:165-178`).
+  - id-스탬프 상태 객체 — `{ id, node, error }`를 통째로 저장하고 `state.id === nodeId`일 때만 표시(`SidePanel.jsx:48,86`). 응답 순서 뒤바뀜은 `openEventRef`/`placeOpenEventRef` 같은 ref와 대조해 막는다(`SidePanel.jsx:144`, `TimelineView.jsx:41`).
+- **사용자 노출 에러는 항상 한글:** "불러오지 못했습니다", "장소를 불러오지 못했습니다", "이 항목은 지도에 표시할 위치 정보가 없습니다" 등. 빨강 토스트 `rgba(220,53,69,...)`(`MapView.jsx`).
 
 ### 백엔드
-- 라우트: `raise HTTPException(status_code=404, detail="Node not found")`.
-- 좌표 변환 실패: `try/except (TypeError, ValueError): continue` 패턴.
-- JSON 파싱(`traits`) 실패: `except Exception: clean_props["traits"] = []` graceful fallback.
-- 앱 시작 인덱스 생성 실패: `lifespan`에서 `except Exception: logging.exception(...)` 후 계속 진행(`backend/app/main.py`).
-- 큐레이션 미해당은 404 대신 **빈 결과** 반환: `journey`(미큐레이션 인물 → `stops: []`), `_resolve` 파일 없음 → 항목 스킵(`persons.py`/`journey.py`).
+
+- **404는 `HTTPException(status_code=404, detail=...)`:** 노드 미존재 시(`nodes.py:30,156`). detail은 영어("Node not found").
+- **빈 응답 vs 예외:** 큐레이션 대상이 아니면 404 대신 빈 배열을 반환하는 게 관례 — `journey.py`(큐레이션 13인 아니면 `stops=[]`), `search.py`(빈 쿼리면 `[]`).
+- **설정 누락은 즉시 `RuntimeError`(한글):** `db.py:13`, `inject_ko_names.py:14` — `NEO4J_PASSWORD` 없으면 시작 시 중단.
+- **앱 시작 인덱스 생성은 best-effort:** `main.py`의 `lifespan`에서 인덱스 생성 실패를 `logging.exception(...)`으로 삼키고 계속 진행한다(한글 로그 메시지).
+- **방어적 파싱:** 좌표 변환 실패는 `try/except (TypeError, ValueError)`로 해당 레코드를 `continue` 스킵(`nodes.py:95-99`). JSON 파싱 실패는 `except Exception` 후 빈 리스트(`nodes.py:243`), `except json.JSONDecodeError`로 빈 dict(`overlays.py:26`).
 
 ---
 
-## 데이터 변환 패턴
+## 로깅
 
-- `nameKo || name` 폴백 패턴 — 프론트엔드 전역, 백엔드 응답 빌드(coalesce / `name_ko if name_ko else name`)에서 일관 사용.
-- 노드 표시명 추출: `props.get("name") or props.get("title", "")` — `Event`는 `title`을 이름으로 사용.
-- 연도 표시: `y < 0 ? 'BC ' + (-y) : 'AD ' + y` 패턴(`TimelineView`의 `fmtYear`, `SidePanel` 인라인).
-- 시대(era) 순서는 프론트·백엔드 양쪽에 같은 리터럴 배열로 둠: `PersonHub.jsx`의 `ERA_ORDER`와 `persons.py`의 `_ERA_ORDER`가 동일(`['족장', '출애굽·정복', '왕국', '선지자', '신약']`) — 한쪽 수정 시 다른 쪽도 맞춰야 함(주석에 명시).
-- 좌표 dedup 로직 중복: `JourneyList.jsx`가 `mapGeo.js`의 `buildJourneyStopsGeoJSON`과 동일한 좌표 dedup→인덱스 매핑을 재현(주석에 동일 로직임을 명시).
-- 노출 불필요 속성 제거:
-  ```python
-  exclude = {"name", "nameKo", "theographic_id", "aliasesKo"}
-  clean_props = {k: v for k, v in props.items() if k not in exclude}
-  ```
+- **백엔드:** 표준 `logging` 모듈. 앱 코드에서는 `main.py`의 `logging.exception(...)` 1곳만 사용. 스크립트는 `print(...)`로 진행상황·집계 출력(`inject_ko_names.py:53-57`).
+- **프론트엔드:** `console.*` 직접 호출 없음(소스 grep 0건). 오류는 UI 상태(`error`/`noLocation`)로 표면화한다.
+- **배포 스크립트:** `deploy.sh`의 `log()` 함수가 타임스탬프 prefix로 `tee -a $LOG`. 메시지 한글, 단계는 `[1/4]` 형식.
 
 ---
 
-## Python/FastAPI 패턴
+## 주석
 
-### 앱 부트스트랩 (`backend/app/main.py`)
-- `app = FastAPI(lifespan=lifespan)` — `@asynccontextmanager` lifespan에서 타입별(`Person/Place/Event/PeopleGroup/Book`) `CREATE INDEX ... IF NOT EXISTS` 실행.
-- `CORSMiddleware` 등록: `allow_origins=["*"]`, `allow_credentials=False`, `allow_methods=["GET"]`.
-- 라우터는 `app.include_router(...)`로 모듈별 등록: `nodes`, `events`, `search`, `books`, `persons`, `journey`, `places`.
-
-### 라우터 구조
-- 파일당 `router = APIRouter()` 1개. 라우트 파일은 도메인 단위 명명(`persons.py`, `places.py`, `journey.py`, `nodes.py`, `events.py`).
-- 라우트 함수: 동기 `def`(async 없음) — Neo4j는 blocking 드라이버 사용.
-- Neo4j를 쓰는 라우트의 호출 패턴: `get_driver()` → `with driver.session() as session: ...`.
-- **Neo4j 없이 JSON 파일만으로 충분히 결정적인 라우트는 그래프 조회를 생략**(단순성 우선): `persons.py`(`/persons/curated`)·`places.py`(`/place/{id}/curated-persons`)는 `person_events/*.json`만 읽어 응답한다. `journey.py`는 파일(이벤트 시퀀스) + Neo4j(장소 좌표 배치 조회) 혼합.
-- 라우트 상한값은 모듈 레벨 상수: `MAX_NEIGHBORS_PER_TYPE`, `NODE_NEIGHBOR_LIMIT`, `SEARCH_LIMIT`.
-- 큐레이션 매핑 상수(`_ERA`, `_NAME_KO`, `_ERA_ORDER`)는 `persons.py`에 정의. `journey.py`는 `from .persons import _ERA, _NAME_KO`로 재사용하지만, `places.py`는 **단방향 참조를 피하려고 같은 상수를 재선언**(파일 주석에 의도 명시) — 13인 명단 수정 시 두 곳을 맞춰야 함.
-
-### 정적 데이터 캐싱 패턴
-- `functools.lru_cache`로 JSON 파일·역매핑을 1회만 빌드: `overlays.py`(`maxsize=1`), `persons.py`의 `_build_list`(`maxsize=1`), `places.py`의 `_place_to_persons`(`maxsize=None` — place_id별 메모이즈).
-- person id ↔ slug 매핑은 각 slug json의 `events[0]["participants"][0]`로 도출(`persons.py`/`journey.py` 동일 규칙).
-
-### DB 패턴 (`backend/app/db.py`)
-- 모듈 레벨 `_driver = None` 싱글턴, `get_driver()` lazy init.
-- 환경변수: `os.getenv("NEO4J_URI", "bolt://localhost:7687")`, `os.getenv("NEO4J_USER", "neo4j")`, `os.environ.get("NEO4J_PASSWORD")`.
-- password 없으면 한국어 메시지로 `RuntimeError` raise.
-
-### Neo4j Cypher 패턴
-- `session.run(query, id=node_id)`/`q=q`/`ids=place_ids` — 키워드 인수로 파라미터 바인딩($id/$q/$ids). 상한값만 f-string으로 쿼리에 삽입(`[0..{NODE_NEIGHBOR_LIMIT}]`, `LIMIT {SEARCH_LIMIT}`).
-- 배치 좌표 조회는 `UNWIND $ids AS tid / MATCH (p:Place {theographic_id: tid})` 패턴(`journey.py`).
-- `result.single()` — 단일 레코드. 없으면 404.
-- `dict(record["n"])` — Neo4j 노드를 Python dict로 변환.
-- `labels(n)` 반환받아 `labels[0] if labels else "Unknown"` 로 첫 라벨 추출.
-- 라벨 분기(`Person/Event/PeopleGroup/Book/...`)로 서로 다른 Cypher 실행(`get_node_places`).
-
-### 오버레이 패턴 (`backend/app/overlays.py`)
-- `functools.lru_cache(maxsize=1)` — 앱 재시작 전까지 JSON 파일 1회만 읽음(`book_events_raw`, `event_verses`). `events.py`의 `_load_approx_book_index`도 동일 캐시.
-- `_resolve(subpath)` 경로 우선순위: 환경변수 `DATA_DIR`(기본 `/app/data`) → 레포 `data/` 경로(`_REPO_DATA_DIR`). `persons.py`/`journey.py`/`places.py`도 데이터 경로 해석은 전부 `overlays._resolve` 재사용.
-- 파일 없음/파싱 실패는 `{}` 반환 graceful fallback.
-- 추정/낮은권위 데이터는 Neo4j 주입 없이 JSON 오버레이로 유지(ADR-0004).
-
-### 응답 캐싱 패턴
-- 이벤트 목록·구절·장소 인물·여정: `JSONResponse(content=..., headers={"Cache-Control": "max-age=300"})`.
-- 큐레이션 인물 목록(`/persons/curated`): `"Cache-Control": "max-age=3600"`.
-- 개요용 책 목록(`/books-overview`): `"Cache-Control": "no-store"`.
-- 그 외 라우트: dict/list 직접 반환(FastAPI 자동 JSON 직렬화).
-
-### 스크립트 구조 (`backend/scripts/`)
-- 공통 구조: docstring(사용법 포함) → import → 경로 상수(`SCRIPT_DIR`, `OUTPUT_PATH` 등) → 함수 정의 → `def main():` → `if __name__ == "__main__": main()`.
-- 외부 데이터: theographic GitHub raw JSON을 `urllib.request`로 fetch(`fetch_json`).
-- Neo4j 배치 주입: `UNWIND $rows AS row / MATCH ... / SET` 패턴.
-- 멱등 원칙: 이미 값이 있는 항목 스킵, null인 항목 재시도(`backend/scripts/generate_verse_text.py`).
-- LLM 생성 스크립트(`generate_person_traits.py`, `generate_book_context.py`, `generate_book_events.py`, `generate_verse_events.py`): `anthropic` 패키지, `claude-haiku-4-5-20251001` 모델, `anthropic.Anthropic(api_key=...)` → `client.messages.create(...)`. API 키는 `ANTHROPIC_API_KEY` 환경변수(없으면 한국어 `RuntimeError`).
+- **언어: 한글.** 거의 모든 인라인 주석·docstring이 한글이다. 사용자 메모리 규칙("실행내역 한글로")과 일치.
+- **"왜"를 적는다(설계 결정·버그 회피):** 주석이 단순 설명이 아니라 결정의 근거·과거 버그·튜닝값 출처를 담는다. 예:
+  - `useNodeSelection.js:31-32` — `useCallback([])`로 참조 안정화한 이유(MapView effect 재실행 → fetch abort 버그 방지).
+  - `mapLayers.js:275-276` — `clusterRadius: 18`/`clusterMinPoints: 4`의 근거를 task 번호(`task-76`, `task-84`)와 함께.
+  - `App.jsx:77-79` — 인라인 화살표 대신 `useCallback`을 쓰는 이유.
+  - ADR 참조 — `SidePanel.jsx:109`, `TimelineView.jsx:37`이 "ADR-0003"을 인용(빌드타임 미리저장 절 본문).
+- **모듈 헤더 docstring:** 백엔드 라우트는 모듈·함수 상단에 한글 docstring으로 응답 형태와 계약을 명시(`journey.py`, `persons.py`, `places.py`, `events.py`).
+- **JSDoc:** 드물게 사용. `PersonHub.jsx:148-157`이 `/** ... */`로 Props 계약·데이터 출처를 문서화한 유일에 가까운 예.
 
 ---
 
-## 네이밍 규약
+## 함수·컴포넌트 설계
 
-| 대상 | 규약 | 예시 |
-|------|------|------|
-| React 컴포넌트 파일 | PascalCase.jsx | `SidePanel.jsx`, `PersonHub.jsx`, `JourneyList.jsx` |
-| React 훅·유틸 파일 | camelCase.js | `useSearch.js`, `api.js`, `constants.js`, `mapGeo.js`, `mapLayers.js`, `mapRingController.js` |
-| Python 라우트 파일 | 도메인 복수/단수 명사.py | `persons.py`, `places.py`, `journey.py`, `nodes.py`, `events.py` |
-| Python 스크립트 파일 | `동사_목적어.py` | `load_person_events.py`, `generate_book_events.py`, `inject_ko_names.py` |
-| Python 변수·함수 | snake_case | `get_driver`, `node_id` |
-| Python 내부 헬퍼 | `_` prefix | `_build_list`, `_place_to_persons`, `_resolve`, `_fetch_place_coords` |
-| Python 경로/상한/매핑 상수 | SCREAMING_SNAKE_CASE | `DATA_DIR`, `SEARCH_LIMIT`, `_ERA`, `_NAME_KO`, `_ERA_ORDER` |
-| JS 모듈 상수 | SCREAMING_SNAKE_CASE | `MOBILE_BREAKPOINT`, `TYPE_COLOR`, `EMPTY_GEOJSON`, `ERA_ORDER`, `EXPLORE_TABS` |
-| 콜백 props | `onXxx` | `onSelectNode`, `onSelectPerson`, `onOpenOverview`, `onStopSelect`, `onExplorePerson` |
-| 노드 타입 리터럴 | PascalCase 문자열 | `'Person'`, `'Place'`, `'Event'` |
-| 화면 단계 리터럴 | 소문자 문자열 | `'hub'`, `'explore'`, `'overview'`, `'map'`, `'timeline'` |
-| 로컬 스타일 상수 | camelCase | `chipBase`, `verseBoxStyle` |
+- **단일 export 기본:** 컴포넌트 파일은 `export default`로 하나. `App.jsx`는 함수 선언 후 마지막에 `export default App`, 다른 컴포넌트는 선언부에서 바로 `export default function ...`.
+- **Props 구조분해 + 기본값:** `function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, ... })` — 콜백 prop에 no-op 기본값을 주는 패턴(`SidePanel.jsx:45`).
+- **헬퍼는 순수 함수로 분리:** 지오메트리·GeoJSON 변환은 `mapGeo.js`에 순수 함수로(`placesToGeoJSON`, `buildJourneyLineGeoJSON`, `journeyStopGroups` 등) 모아 컴포넌트에서 호출. 부수효과(애니메이션·소스 setData)는 `mapRingController.js`의 클로저 컨트롤러로 캡슐화한다(가변 상태를 클로저에 가두고 `{ collapseRing, collapseSpider, expandPlace, spiderifyPlaces, destroy }` 반환).
+- **인라인 스타일이 표준:** CSS 모듈·styled-components·Tailwind 미사용. 모든 스타일은 JSX `style={{ ... }}` 객체. 전역 스타일은 `index.css`만(+ `Spinner.jsx`가 `<style>{keyframes}</style>`로 keyframe 주입).
+- **상태 끌어올리기:** 교차 뷰 상태(`selectedNode`, `verseLang`, `journeyStops`, `activeStopIdx`)는 `App.jsx`에서 보유하고 props로 내린다. 선택 로직은 `useNodeSelection` 훅으로 추출.
+- **Python 캐싱 규약:** 파일·Neo4j 결과는 `@functools.lru_cache(maxsize=1)`(전역 1회) 또는 `maxsize=None`(키별, `places.py:_place_to_persons`)로 메모리 보관. 주석에 "앱 재시작 전까지 결과를 메모리에 보관" 명시(`events.py:54`).
+- **모듈 싱글톤:** Neo4j 드라이버는 `db.py`의 모듈 전역 `_driver` + lazy `get_driver()`로 1개만 유지.
+
+---
+
+## 모듈·데이터 설계
+
+- **데이터 파일 해석 단일 진입점:** 오버레이·정적 JSON은 `overlays.py`의 `_resolve(subpath)`를 통해 찾는다 — `$DATA_DIR`(컨테이너 `/app/data`) → repo `data/` 순으로 폴백. 이 함수를 다른 라우트(`persons.py`, `journey.py`, `places.py`)가 임포트해 재사용한다.
+- **theographic_id가 노드 식별 표준 키:** 모든 Cypher가 `{theographic_id: $id}`로 매칭. 응답 객체의 `id` 필드 = `theographic_id`.
+- **nameKo 폴백 사다리:** 한글 이름 부재 시 영어 `name`(또는 `title`)으로 폴백하고 `nameKoMissing: bool` 플래그를 함께 내린다(`nodes.py:137`, `search.py:40`). 프론트는 `nameKoMissing`이면 "(미번역)" 라벨을 붙인다(`SidePanel.jsx:103,585`).
+- **응답에 캐시 헤더:** 정적·결정적 엔드포인트는 `JSONResponse(content=..., headers={"Cache-Control": "max-age=300"})` 패턴. 값은 엔드포인트별로 다름(`persons/curated`는 3600, `books-overview`는 `no-store`).
+- **배럴 파일 없음:** `index.js` re-export 패턴 미사용. 직접 경로 임포트.
+
+---
+
+*컨벤션 분석: 2026-06-28*

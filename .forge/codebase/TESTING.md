@@ -1,76 +1,83 @@
 ---
-last_mapped_commit: 3837b4f9339ed2efb82a6b72cc1124a3340e2b9c
-mapped: 2026-06-27
+last_mapped_commit: 79f9d9df07c0d79f8fa07940e3f76c8d5424524b
+mapped: 2026-06-28
 ---
+# 테스트 패턴
 
-# TESTING.md — 테스트 및 검증 방식
+**분석일:** 2026-06-28
 
-구현 사실 기록. 도메인 용어 정의는 CONTEXT.md 참조.
+## 자동화 테스트 프레임워크: 없음
 
----
+리포지터리에 단위·통합 테스트 인프라가 **존재하지 않는다**(2026-06-28 HEAD 기준).
 
-## 테스트 프레임워크 현황
+- **테스트 파일 0건:** `*.test.*`, `*.spec.*`, `test_*.py`, `*_test.py`, `conftest.py` 전수 검색 결과 없음(`node_modules` 제외).
+- **테스트 러너 설정 없음:** `jest.config.*`, `vitest.config.*`, `pytest.ini`, `setup.cfg`, `tox.ini`, `pyproject.toml` 없음.
+- **`frontend/package.json` scripts:** `dev`/`build`/`lint`/`preview`만 존재 — `test` 스크립트 없음.
+- **`backend/requirements.txt`:** `fastapi`, `neo4j`, `uvicorn` 3개뿐 — `pytest`·`httpx`·테스트 라이브러리 미포함.
+- **CI에 테스트 단계 없음:** `.github/workflows/deploy.yml`은 `git fetch → reset --hard → bash deploy.sh`만 수행. 테스트 게이트 없음.
 
-- **자동화 유닛/통합 테스트 프레임워크·테스트 파일 없음**: 레포 전체에 `*.test.*`, `*.spec.*`, `test_*.py`, `conftest.py` 하나도 없음(node_modules 제외, 재확인됨).
-- `frontend/package.json` scripts: `dev`, `build`, `lint`, `preview` — `test` 스크립트 없음. Jest/Vitest 미설치.
-- `backend/requirements.txt`: `fastapi`, `neo4j`, `uvicorn`, `anthropic` 등 런타임 의존성만 — pytest 없음.
-- 검증은 전부 수동 3종 조합: **ESLint(`npm run lint`) → 빌드(`npm run build`) → Python Playwright 일회성 검증(`localhost:8080`)**.
-
----
-
-## 정적 분석 (ESLint)
-
-- 설정 파일: `frontend/eslint.config.js`(flat config, `defineConfig` + `globalIgnores`).
-- extends: `@eslint/js` recommended, `eslint-plugin-react-hooks`(`reactHooks.configs.flat.recommended`), `eslint-plugin-react-refresh`(`reactRefresh.configs.vite`).
-- `globalIgnores(['dist'])` — 빌드 산출물 제외. 대상: `**/*.{js,jsx}`. `languageOptions.globals = globals.browser`.
-- 실행 명령: `cd frontend && npm run lint`(`eslint .`).
-- **react-hooks v7 규칙이 켜져 있어 effect 동기 본문 `setState`를 막음** — 코드 패턴 제약으로 작용한다. 회피 패턴은 CONVENTIONS.md "Hooks 패턴" 참조(async `.then` 콜백, `Promise.resolve().then(...)` 마이크로태스크, `setTimeout`). 실제로 직전 커밋 `85b1163`이 이 규칙 위반 2건(effect 동기 setState → 마이크로태스크, unused label 제거)을 lint 픽스로 처리.
-- 빌드 전 "lint clean" 확인이 PR 체크리스트 항목. 모든 태스크 완료 전 필수.
-- 백엔드(Python)용 린터·포매터 설정 파일은 없음.
+신규 코드를 검증할 때는 아래 "현재 검증 방식"을 따른다.
 
 ---
 
-## Python Playwright 수동 검증
+## 현재 검증 방식
 
-- 설치 위치: `/opt/homebrew`(Python Playwright). 공식 테스트 파일 없음 — forge 워크플로우의 **검증 단계**에서 일회성 스크립트로 작성·실행.
-- 작성된 검증 스크립트·스크린샷은 `.forge/reports/`에 임시로 남음(태스크별 일회성, 정식 테스트 스위트 아님).
-- 검증 대상 URL: `http://localhost:8080`(nginx → `frontend/dist` 정적 서빙).
+### 1. 린트(프론트엔드 정적 검사)
 
-### 검증 패턴
-- 네트워크 캡처 + 스크린샷으로 UI 동작 확인.
-- 순수 DOM 영역(인물 허브 카드 그리드, 검색 드롭다운, 여정 사이드 리스트): Playwright 스크린샷·클릭 검증 안정적.
-- 지도 타일(WebGL): 헤드리스 렌더 불안정 — 스크린샷 검증 대신 네트워크 요청 확인으로 우회.
-- 모바일 시뮬레이션: `page.set_viewport_size({"width": 375, "height": 812})` 로 `MOBILE_BREAKPOINT`(768px) 분기 검증(허브 헤더 패딩, 하단 시트 패널, 모바일 여정 미니 수평 스크롤).
+자동 검사로 사실상 유일하게 강제되는 게이트.
 
-### UAT 항목 예시 (화면 단계별)
-- 인물 허브(`'hub'`): `/persons/curated` 응답, 시대별 카드 그룹핑, 카드 클릭→탐험 전환, "성경 책 둘러보기" 버튼→개요 진입.
-- 탐험(`'explore'`): 인물 선택 후 여정(`/person/{id}/journey`) 로드, JourneyList 항목 클릭→해당 stop 활성, 지도·타임라인 토글, "다른 인물" 복귀.
-- 지도: 마커 클릭, 스파이더파이 전개, 클러스터 확장, 링 애니메이션, 라벨 바깥쪽 배치, outlier 제외 프레이밍, 팝업 XSS 이스케이프, 링 fetch 실패 배너.
-- 장소 패널: "이 곳을 지난 다른 인물"(`/place/{id}/curated-persons?exclude=`) 칩 클릭→인물 전환.
-- 구절 본문: 언어별(한/영) 렌더링, 공유 토글.
-- 콘솔 에러 0건 확인.
+```bash
+cd frontend && npm run lint     # eslint . — react-hooks 규칙 포함
+```
 
----
+코드 주석이 react-hooks lint 규칙(특히 set-state-in-effect)을 의식해 작성돼 있어(`App.jsx`, `SidePanel.jsx`), 린트 통과가 사실상의 합의 기준이다. 백엔드 Python 린터는 미설정.
 
-## 빌드 검증 절차
+### 2. 빌드(타입·구문 깨짐 탐지)
 
-forge 워크플로우 검증 단계에서 확립된 순서:
+```bash
+cd frontend && npm run build    # vite build — dist/ 산출
+docker compose -p biblemap build api   # API 이미지 빌드
+```
 
-1. **lint 확인**: `cd frontend && npm run lint` — 통과 필수.
-2. **프론트 빌드**: `cd frontend && npm run build` → `frontend/dist/` 갱신. **HMR 아님** — nginx가 `dist`를 정적 서빙(`docker-compose.yml`이 `./frontend/dist:/usr/share/nginx/html:ro` 마운트)하므로 빌드 없이는 화면이 안 바뀜.
-3. **백엔드 빌드**: `docker compose up -d --build api`. **소스 마운트 아님 → hot-reload 없음**(`docker-compose.yml` api 서비스는 `build: ./backend`만, 코드 볼륨 마운트는 `./data:/app/data` 데이터뿐). 백엔드 코드를 고치면 반드시 `--build`로 이미지 재빌드해야 반영된다.
-4. **Playwright 검증**: `localhost:8080`에서 실제 동작 확인.
+**중요(사용자 메모리 규칙):** 로컬 `:8080`은 `frontend/dist`를 마운트하는 정적 서빙이며 HMR이 아니다. 따라서 UI 검증 전 **반드시 `cd frontend && npm run build`로 dist를 갱신**해야 변경이 반영된다. `.env.production`의 `VITE_API_URL=/api`가 빌드타임 주입돼 nginx 프록시(`/api` → `api:8000`)를 탄다. API도 변경 시 `docker compose up -d --build api`.
 
-### 환경변수 참고
-- 빌드 시 `frontend/.env.production`의 `VITE_API_URL=/api` 자동 적용.
-- 백엔드 API는 외부에서 `:8000` 미노출 — nginx `/api` 프록시 경유(`nginx/nginx.conf`).
-- Neo4j는 `127.0.0.1:7687`(bolt)/`:7474`(http)로 호스트 로컬바인드 — 호스트에서 직접 쿼리 가능. `NEO4J_PASSWORD` 환경변수 필수(미설정 시 compose·드라이버 모두 에러).
+### 3. Playwright 화면 테스트(UI 동작 검증)
+
+사용자 메모리에 정착된 수동 검증 절차. **Python Playwright**를 사용한다(JS Playwright 아님).
+
+- **런타임:** `/opt/homebrew`에 설치된 Python Playwright.
+- **대상:** `http://localhost:8080`(nginx가 서빙하는 빌드된 프론트).
+- **패턴:** 네트워크 요청 캡처 + 스크린샷. 사용자가 본 화면과 `/api/*` 응답을 함께 검증하는 방식.
+- **선행 조건:** 위 2번대로 `npm run build` + 컨테이너 기동이 끝난 상태여야 한다(`docker-compose.yml`의 `nginx`가 `frontend/dist`를 read-only 마운트, `:8080` 노출).
+
+별도 `playwright.config.*`나 스펙 파일은 리포에 커밋돼 있지 않다 — 검증 시점에 일회성 스크립트로 실행하는 운용.
 
 ---
 
-## 배포 자동화 (`deploy.sh`)
+## 테스트 작성 시 권장(인프라 부재 상태에서)
 
-- 테스트 단계 없음. 배포 자동화만 담당.
-- 실행 순서: 프론트 빌드(`npm install` → `npm run build`) → api 이미지 빌드 → 컨테이너(api·nginx) 재시작 → 한글 이름 주입(`inject_ko_names.py`, Neo4j 준비까지 최대 15회 재시도).
-- lock 파일(`/tmp/biblemap-deploy.lock`)로 중복 실행 차단. 한글 주입 15회 실패 시 배포 중단(exit 1).
-- CI: `.github/workflows/deploy.yml`(self-hosted 러너 전제) — 멀티프로젝트 러너 격리 주의사항은 사용자 글로벌 메모리 참조.
+자동 테스트가 없으므로, 코드는 **검증 가능성을 높이는 구조**로 작성돼 있다. 신규 코드도 이를 따른다.
+
+- **순수 함수 분리:** 지오메트리·GeoJSON 변환은 `frontend/src/mapGeo.js`에 부수효과 없는 순수 함수로 모여 있다(`coreBounds`, `placesToGeoJSON`, `buildJourneyLineGeoJSON`, `journeyStopGroups`, `compactSeqs` 등). 만약 단위 테스트를 도입한다면 이 모듈이 가장 테스트하기 쉬운 진입점이다(입력 배열 → 출력 GeoJSON/bounds, Neo4j·DOM 의존 없음).
+- **백엔드 라우트의 정적 헬퍼:** `persons.py`의 `_build_list`, `places.py`의 `_place_to_persons`, `journey.py`의 `_build_id_to_slug`/`_load_events`는 `data/person_events/*.json`만 읽고 Neo4j를 타지 않아(파일만으로 결정적) DB 없이 검증 가능. 단 `@functools.lru_cache`가 걸려 있어 테스트 간 `cache_clear()`가 필요.
+- **DB 의존 경계:** Neo4j를 실제로 타는 코드(`nodes.py`, `search.py`, `books.py`, `events.py`의 Cypher 부분, `journey.py:_fetch_place_coords`)는 통합 검증 영역. `get_driver()`(`db.py`)가 모듈 전역 lazy 싱글톤이라 모킹 시 `app.db._driver`를 직접 주입하거나 `get_driver`를 패치하는 방식이 된다.
+
+---
+
+## 데이터 적재·생성 스크립트 검증
+
+`backend/scripts/`의 18개 스크립트(`load_*`, `generate_*`, `inject_*`, `enrich_*`)는 모두 `if __name__ == "__main__": main()` 형태의 일회성 CLI다.
+
+- **검증 방식:** 실행 후 `print(...)`로 출력하는 집계 카운트를 사람이 확인(예 `inject_ko_names.py`의 `Person nodes updated: N` ... `Total: N`).
+- **자동 assert·테스트 없음.** 멱등성·정확성은 출력 수치 육안 확인에 의존.
+- **배포 파이프라인 내 검증:** `deploy.sh` `[4/4]` 단계가 `inject_ko_names.py`를 Neo4j 준비까지 최대 15회 재시도하며 실행하고, 실패 시 배포를 중단(`exit 1`)한다 — 적재 스크립트가 사실상의 배포 후 스모크 역할.
+
+---
+
+## 커버리지
+
+측정·강제 안 함. 커버리지 도구·임계값 미설정.
+
+---
+
+*테스트 분석: 2026-06-28*
