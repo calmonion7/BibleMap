@@ -6,6 +6,7 @@ import TimelineView from './TimelineView'
 import BibleOverviewView from './BibleOverviewView'
 import PersonHub from './PersonHub'
 import JourneyList from './JourneyList'
+import EventVerses from './EventVerses'
 import { MOBILE_BREAKPOINT, SHEET_VH } from './constants'
 import { useNodeSelection } from './useNodeSelection'
 import { apiGet } from './api'
@@ -244,6 +245,8 @@ function App() {
                     stops={journeyStops}
                     activeStopIdx={activeStopIdx}
                     onStopSelect={setActiveStopIdx}
+                    verseLang={verseLang}
+                    setVerseLang={setVerseLang}
                   />
                 </div>
               )}
@@ -257,16 +260,31 @@ function App() {
                   activeStopIdx={activeStopIdx}
                   onStopSelect={setActiveStopIdx}
                 />
-                {/* 모바일 여정 리스트 — 하단 미니 수평 스크롤 */}
-                {isMobile && journeyStops && journeyStops.length > 0 && (
+                {/* 모바일 여정 리스트 — 하단 미니 수평 스크롤 + 활성 정차지 구절(스트립 위) */}
+                {isMobile && journeyStops && journeyStops.length > 0 && (() => {
+                  const mobileActiveStop = journeyStops.find((s) => s.seq != null && s.seq - 1 === activeStopIdx)
+                  return (
                   <div style={{
                     position: 'absolute', bottom: 0, left: 0, right: 0,
+                    zIndex: 5,
+                    display: 'flex', flexDirection: 'column',
+                  }}>
+                  {mobileActiveStop && (
+                    <div style={{
+                      maxHeight: '32vh', overflowY: 'auto',
+                      background: 'rgba(20,22,50,0.94)',
+                      borderTop: '1px solid rgba(255,255,255,0.1)',
+                      padding: '4px 10px 8px',
+                    }}>
+                      <EventVerses eventId={mobileActiveStop.eventId} verseLang={verseLang} setVerseLang={setVerseLang} />
+                    </div>
+                  )}
+                  <div style={{
                     maxHeight: 110,
                     background: 'rgba(20,22,50,0.94)',
                     overflowX: 'auto', overflowY: 'hidden',
                     display: 'flex', alignItems: 'stretch',
                     borderTop: '1px solid rgba(255,255,255,0.1)',
-                    zIndex: 5,
                   }}>
                     {journeyStops.filter((s) => s.lng != null).map((stop, i) => {
                       const isActive = stop.seq != null && stop.seq - 1 === activeStopIdx
@@ -299,7 +317,9 @@ function App() {
                       )
                     })}
                   </div>
-                )}
+                  </div>
+                  )
+                })()}
               </div>
             </div>
             <div style={{ display: exploreView === 'timeline' ? 'block' : 'none', height: '100%' }}>

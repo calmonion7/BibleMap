@@ -1,9 +1,11 @@
 // 사이드 사건 리스트 — 여정 stops를 시간순으로 표시.
-// props: stops(배열), activeStopIdx(number|null), onStopSelect(idx => void)
+// props: stops(배열), activeStopIdx(number|null), onStopSelect(idx => void),
+//        verseLang/setVerseLang(활성 정차지 근거구절 표시용)
 // activeStopIdx는 buildJourneyStopsGeoJSON 기준 deduped 0-based 인덱스.
 import { useEffect, useRef } from 'react'
+import EventVerses from './EventVerses'
 
-export default function JourneyList({ stops, activeStopIdx, onStopSelect }) {
+export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseLang, setVerseLang }) {
   const listRef = useRef(null)
   const activeRef = useRef(null)
 
@@ -55,65 +57,77 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect }) {
           <div
             key={stop.eventId ?? rawIdx}
             ref={isActive ? activeRef : null}
-            onClick={() => {
-              if (!hasCoord || dedupIdx == null) return
-              onStopSelect(dedupIdx)
-            }}
             style={{
-              display: 'flex',
-              alignItems: 'flex-start',
-              gap: 10,
-              padding: '9px 14px',
               borderBottom: '1px solid rgba(255,255,255,0.05)',
               background: isActive ? 'rgba(124,156,252,0.15)' : 'transparent',
-              cursor: hasCoord ? 'pointer' : 'default',
               transition: 'background 0.15s',
-              opacity: hasCoord ? 1 : 0.45,
             }}
           >
-            {/* 순번 배지 */}
-            <div style={{
-              flexShrink: 0,
-              width: 22, height: 22,
-              borderRadius: '50%',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 10, fontWeight: 700,
-              marginTop: 1,
-              background: seq == null ? 'rgba(255,255,255,0.1)'
-                : isActive ? '#f5a623'
-                : 'rgba(74,144,217,0.7)',
-              color: seq == null ? 'rgba(255,255,255,0.3)' : 'white',
-              border: isActive ? '2px solid #f5a623' : '2px solid transparent',
-            }}>
-              {seq != null ? seq : '·'}
-            </div>
-
-            {/* 사건명 + 장소명 */}
-            <div style={{ flex: 1, minWidth: 0 }}>
+            <div
+              onClick={() => {
+                if (!hasCoord || dedupIdx == null) return
+                onStopSelect(dedupIdx)
+              }}
+              style={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: 10,
+                padding: '9px 14px',
+                cursor: hasCoord ? 'pointer' : 'default',
+                opacity: hasCoord ? 1 : 0.45,
+              }}
+            >
+              {/* 순번 배지 */}
               <div style={{
-                fontSize: 13,
-                color: isActive ? '#f5a623' : hasCoord ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.45)',
-                fontWeight: isActive ? 600 : 400,
-                lineHeight: 1.4,
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
+                flexShrink: 0,
+                width: 22, height: 22,
+                borderRadius: '50%',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 10, fontWeight: 700,
+                marginTop: 1,
+                background: seq == null ? 'rgba(255,255,255,0.1)'
+                  : isActive ? '#f5a623'
+                  : 'rgba(74,144,217,0.7)',
+                color: seq == null ? 'rgba(255,255,255,0.3)' : 'white',
+                border: isActive ? '2px solid #f5a623' : '2px solid transparent',
               }}>
-                {stop.nameKo || stop.title}
+                {seq != null ? seq : '·'}
               </div>
-              {stop.placeNameKo && (
+
+              {/* 사건명 + 장소명 */}
+              <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{
-                  fontSize: 11,
-                  color: 'rgba(255,255,255,0.35)',
-                  marginTop: 2,
+                  fontSize: 13,
+                  color: isActive ? '#f5a623' : hasCoord ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.45)',
+                  fontWeight: isActive ? 600 : 400,
+                  lineHeight: 1.4,
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
                   whiteSpace: 'nowrap',
                 }}>
-                  {stop.placeNameKo}
+                  {stop.nameKo || stop.title}
                 </div>
-              )}
+                {stop.placeNameKo && (
+                  <div style={{
+                    fontSize: 11,
+                    color: 'rgba(255,255,255,0.35)',
+                    marginTop: 2,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {stop.placeNameKo}
+                  </div>
+                )}
+              </div>
             </div>
+
+            {/* 활성 정차지 근거구절 — 행 아래 인라인. 같은 좌표의 사건은 각 행에 자기 구절을 보인다. */}
+            {isActive && (
+              <div onClick={(e) => e.stopPropagation()} style={{ padding: '0 14px 8px 46px' }}>
+                <EventVerses eventId={stop.eventId} verseLang={verseLang} setVerseLang={setVerseLang} />
+              </div>
+            )}
           </div>
         )
       })}
