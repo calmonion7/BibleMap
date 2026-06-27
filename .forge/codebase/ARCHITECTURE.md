@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: a25a3a3a9f5473c35aabd6036398d6bb672fee47
-mapped: 2026-06-22
+last_mapped_commit: 14e0a78c3e0ab7fc7d960c4cabdf3eab3fc297e6
+mapped: 2026-06-27
 ---
 
 # ARCHITECTURE
@@ -65,13 +65,13 @@ mapped: 2026-06-22
 
 - **`mapGeo.js` — 순수 기하/GeoJSON/라벨 앵커 계산** (지도 인스턴스 비의존, `maplibregl`은 `LngLatBounds`에만 사용).
   - `coreBounds(places)` — outlier 제외 프레이밍 bounds(median 중심 거리 중앙값×3 임계, 제외 없거나 거의 한 점이면 `null` → 호출측이 전체 bounds로 폴백).
-  - `outwardLabel(ex, ny)`(모듈 내부) / `ringLabels(lat, n)` / `placesToGeoJSON(places)` — 라벨을 이웃·링 중심 **반대(바깥)** 방향으로 미는 8방위 `text-anchor`+`text-offset` 계산(화면 세로는 `cos(lat)` 보정). `placesToGeoJSON`은 각 장소의 최근접 이웃 반대쪽으로 라벨을 배치하고 `id/label/isPrimary/anchor/offset`을 Feature 속성에 싣는다.
+  - `outwardLabel(ex, ny)`(모듈 내부) / `ringLabels(lat, n)` / `placesToGeoJSON(places)` — 라벨을 이웃·링 중심 **반대(바깥)** 방향으로 미는 8방위 `text-anchor`+`text-offset` 계산(화면 세로는 `cos(lat)` 보정). `placesToGeoJSON`은 좌표를 소수점 4자리(`~1e-4°≈11m`)로 묶어 동일/근접 좌표 그룹을 만든 뒤(`frontend/src/mapGeo.js:45`), **단독 좌표**는 최근접 이웃 반대쪽으로 라벨을 밀고, **같은 좌표에 2개+가 겹친 그룹**은 마커를 한 점에 둔 채 `ringLabels`로 라벨만 방사형 분산한다(task-84 — 거리 0이면 `outwardLabel`이 같은 앵커로 퇴화해 라벨이 충돌·숨김되는 문제 회피). Feature 속성에 `id/label/isPrimary/anchor/offset`을 싣는다.
   - `easeOutCubic(t)` — 애니메이션 이징.
   - `ringPositions(lng, lat, n, R)` — 중심 주위 n개 균등 링 좌표.
   - `buildEventGeoJSON(events, positions, anchors)` / `buildSpiderGeoJSON(features, positions, anchors)` — 링/스파이더 프레임 GeoJSON 생성(스파이더는 원위치를 `originalLng/originalLat` 속성에 보존).
 - **`mapLayers.js` — 정적 지도 설정 + 이벤트 등록 + 팝업**.
   - `EMPTY_GEOJSON` — 빈 FeatureCollection 상수(소스 초기화·클리어용).
-  - `setupMapSources(map)` — 소스/레이어 일괄 등록: `hull-source`(Person 볼록껍질, 마커 아래 먼저), `places-source`(클러스터 on, `clusterMaxZoom:13`/`clusterRadius:40` — circle/label/cluster/cluster-count 레이어), `place-spider-source`(겹침 분산), `event-ring-source`(사건 링). 각 마커는 shadow+circle+label 3중 레이어.
+  - `setupMapSources(map)` — 소스/레이어 일괄 등록: `hull-source`(Person 볼록껍질, 마커 아래 먼저), `places-source`(클러스터 on, `clusterMaxZoom:13`/`clusterRadius:18`/`clusterMinPoints:4` — `frontend/src/mapLayers.js:143`; `clusterRadius`는 마커 원이 실제 겹칠 때만 묶이도록 18(task-76 복원, 12~14 미만 금지), `clusterMinPoints:4`는 동일/근접 좌표 2~3개는 버블 대신 라벨 표시·4개+만 클러스터(task-84) — circle/label/cluster/cluster-count 레이어), `place-spider-source`(겹침 분산), `event-ring-source`(사건 링). 각 마커는 shadow+circle+label 3중 레이어.
   - `registerEventHandlers(map, {collapseRing, collapseSpider, expandPlace, spiderifyPlaces, onSelectNode, popupRef, expandedPlaceRef})` — 클릭/호버 핸들러 일괄 바인딩: 마커 클릭 시 겹침이면 spiderify·아니면 ring expand(같은 장소 재클릭은 collapse), 클러스터 클릭은 확대, 스파이더 마커 클릭은 원위치로 펼침, 빈 곳 클릭은 전체 collapse + 팝업 제거. `onSelectNode`로 App에 선택 전파.
   - `placePopupHTML` / `escapeHtml`(모듈 내부) — 마커 팝업 HTML 생성·이스케이프.
 - **`mapRingController.js` — 링/스파이더 애니메이션 컨트롤러 팩토리**.

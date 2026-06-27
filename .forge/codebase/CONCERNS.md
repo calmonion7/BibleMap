@@ -1,11 +1,11 @@
 ---
-last_mapped_commit: a25a3a3a9f5473c35aabd6036398d6bb672fee47
-mapped: 2026-06-22
+last_mapped_commit: 14e0a78c3e0ab7fc7d960c4cabdf3eab3fc297e6
+mapped: 2026-06-27
 ---
 
 # CONCERNS — 기술 부채 · 버그 · 보안 · 성능 · 취약 영역
 
-현재 워킹트리(HEAD `a25a3a3`) 기준. 직전 리팩터(task 77~81)로 여러 항목이 해소되었으므로, 해소된 것과 여전히 열린 것을 함께 기록한다.
+현재 워킹트리(HEAD `14e0a78`) 기준. 직전 리팩터(task 77~81)로 여러 항목이 해소되었으므로, 해소된 것과 여전히 열린 것을 함께 기록한다.
 
 ---
 
@@ -26,16 +26,14 @@ mapped: 2026-06-22
 ### 1.3 팝업 XSS — 해소
 `placePopupHTML`이 `escapeHtml`로 라벨을 이스케이프한다(`frontend/src/mapLayers.js:5`~`7`, 사용처 `:21`). place-circle/place-spider 두 경로 모두 같은 함수를 쓴다.
 
+### 1.4 clusterRadius 설정 불일치 — 해소
+과거 "의도된 `clusterRadius: 18`이 커밋 누락돼 실제 코드는 `40`" 우려는 해소됐다. 현재 클러스터 소스는 `clusterRadius: 18`(`frontend/src/mapLayers.js:144`, task-76에서 18 복원)이고 `clusterMinPoints: 4`(`:145`, task-84 추가)가 함께 설정돼 있다(`clusterMaxZoom: 13`, `:143`). 즉 동일/근접 좌표 2~3개는 클러스터 대신 라벨로 표시하고 4개 이상만 클러스터된다. retro와 실제 코드의 어긋남도 사라졌다.
+
 ---
 
 ## 2. 열린 항목 — 결정 필요
 
-### 2.1 [NEW] clusterRadius 불일치 — 의도된 값(18)이 커밋 누락됨
-`setupMapSources`의 클러스터 소스는 `clusterRadius: 40`이다(`frontend/src/mapLayers.js:144`). 그러나 task-76(loosen-clustering)과 문서는 `18`을 의도했다. `git log -S "clusterRadius: 18"`은 18이 **단 한 번도 커밋된 적이 없음**을 보여준다 — 즉 클러스터 완화 코드 변경이 유실됐다. `40`은 task-68(`42bd230`)에서 들어온 원래 값 그대로다.
-- 영향: 마커가 의도보다 더 공격적으로 클러스터됨(반경 40px). `clusterMaxZoom: 13`(`:143`)도 함께 검토 대상.
-- 필요 조치: 18로 되돌릴지 / 40을 유지하고 문서를 갱신할지 **결정**이 필요한 데이터·설정 불일치. retro `.forge/retro/2026-06-21-map-loosen-clustering.md`와 실제 코드가 어긋나 있다.
-
-### 2.2 testament 값 표기 불일치 (OT/NT vs 구약/신약)
+### 2.1 testament 값 표기 불일치 (OT/NT vs 구약/신약)
 `BibleOverviewView.jsx`가 영문(`OT`/`NT`)과 한글(`구약`/`신약`) 두 표기를 모두 방어적으로 매핑한다(`frontend/src/BibleOverviewView.jsx:135`~`137`). 둘 중 어느 쪽이든 받아주지만, 데이터 소스에 따라 값이 갈릴 수 있다는 뜻이고 둘 다 아니면 `key = null`로 조용히 누락된다. 백엔드(`backend/app/routes/books.py:22`, `:62`)는 `props.get("testament")`를 그대로 전달 — 표준화 지점이 없다. 데이터 적재 시 한 표기로 정규화하는 것이 정공법.
 
 ---
@@ -75,7 +73,7 @@ LIMIT/슬라이스 값을 f-string으로 쿼리에 삽입하는 곳이 있다: `
 ## 5. 취약/주의 영역 (런타임 거동)
 
 ### 5.1 fitBounds + 스파이더화 / clusterMaxZoom 경계
-`MapView.jsx`의 selection effect는 primary 선택 시 `maxZoom: 7`(`frontend/src/MapView.jsx:142`), 인물/집단은 `maxZoom: 10`(`:149`)으로 fitBounds한다. 클러스터 소스의 `clusterMaxZoom`은 13(`mapLayers.js:143`)이라, fitBounds 후에도 줌이 13 이하면 마커가 여전히 클러스터로 묶일 수 있다. 클러스터 클릭은 `getClusterExpansionZoom` 줌으로 easeTo(`mapLayers.js:96`~`100`)하지만, `places-circle` 클릭 시 같은 지점에 겹친 점이 2개 이상이면 스파이더화(`mapLayers.js:32`~`37`)로 분기한다. 즉 "클러스터 vs 겹친 개별 점" 두 해소 경로가 줌·반경 조합에 따라 미묘하게 갈리며, 4.1의 반경 40 + clusterMaxZoom 13 조합이 이 경계 거동을 좌우한다(2.1 결정과 직결).
+`MapView.jsx`의 selection effect는 primary 선택 시 `maxZoom: 7`(`frontend/src/MapView.jsx:142`), 인물/집단은 `maxZoom: 10`(`:149`)으로 fitBounds한다. 클러스터 소스의 `clusterMaxZoom`은 13(`mapLayers.js:143`)이라, fitBounds 후에도 줌이 13 이하면 마커가 여전히 클러스터로 묶일 수 있다. 클러스터 클릭은 `getClusterExpansionZoom` 줌으로 easeTo(`mapLayers.js:96`~`100`)하지만, `places-circle` 클릭 시 같은 지점에 겹친 점이 2개 이상이면 스파이더화(`mapLayers.js:32`~`37`)로 분기한다. 즉 "클러스터 vs 겹친 개별 점" 두 해소 경로가 줌·반경 조합에 따라 미묘하게 갈리며, 현재 설정(`clusterRadius: 18` + `clusterMinPoints: 4` + `clusterMaxZoom: 13`, `mapLayers.js:143`~`145`)이 이 경계 거동을 좌우한다 — 4개 미만이 근접하면 클러스터되지 않고 개별 점/라벨로 남아 스파이더화 경로로 빠진다.
 
 ### 5.2 자동 펼침 moveend 폴백 타이머
 검색·사이드패널로 primary를 선택하면 fitBounds 후 `moveend`에서 링을 펼친다. 카메라가 안 움직이면 `moveend`가 미발화하므로 700ms 폴백 타이머로 보장한다(`frontend/src/MapView.jsx:121`~`142`). `fired` 단발 가드·언마운트 정리(`:157`~`161`)는 있으나, 타이밍 의존 로직이라 회귀에 취약한 구간(회고에서 task 15·radial-ring 이슈로 언급).
@@ -105,4 +103,4 @@ LIMIT/슬라이스 값을 f-string으로 쿼리에 삽입하는 곳이 있다: `
 ## 7. 테스트
 
 ### 7.1 자동화 테스트 전무
-`test`/`spec` 파일 검색 결과 0건(node_modules 제외). 백엔드 pytest·프론트 단위/E2E 모두 없다. 회귀 검증은 수동(메모리상 Python Playwright로 localhost:8080 화면 확인). 위 5장의 타이밍·상태 공유 로직과 2.1 설정 불일치 같은 항목이 테스트 없이 회귀에 노출돼 있다.
+`test`/`spec` 파일 검색 결과 0건(node_modules 제외). 백엔드 pytest·프론트 단위/E2E 모두 없다. 회귀 검증은 수동(메모리상 Python Playwright로 localhost:8080 화면 확인). 위 5장의 타이밍·상태 공유 로직과 클러스터 임계값(`clusterRadius`/`clusterMinPoints`) 같은 거동이 테스트 없이 회귀에 노출돼 있다(과거 `clusterRadius: 18` 유실 사례가 이를 방증).

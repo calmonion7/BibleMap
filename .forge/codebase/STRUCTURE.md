@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: a25a3a3a9f5473c35aabd6036398d6bb672fee47
-mapped: 2026-06-22
+last_mapped_commit: 14e0a78c3e0ab7fc7d960c4cabdf3eab3fc297e6
+mapped: 2026-06-27
 ---
 
 # 디렉터리 구조
@@ -32,7 +32,7 @@ frontend/
 │   ├── theme.js                노드 타입 색·한글 라벨·표시 순서 팔레트 + typeColor/typeKo 헬퍼, SELECT_HL (공유)
 │   ├── constants.js            공유 상수 — MOBILE_BREAKPOINT(768px), SHEET_VH(55vh)
 │   ├── MapView.jsx             maplibre-gl 지도 뷰 — 컴포넌트 셸(약 193줄): 지도 생성·effect 3개·에러/위치없음 UI
-│   ├── mapGeo.js               지도 순수 기하/GeoJSON/라벨 앵커 계산 (coreBounds·ringLabels·placesToGeoJSON·easeOutCubic·ringPositions·buildEventGeoJSON·buildSpiderGeoJSON·outwardLabel)
+│   ├── mapGeo.js               지도 순수 기하/GeoJSON/라벨 앵커 계산 (coreBounds·ringLabels·placesToGeoJSON·easeOutCubic·ringPositions·buildEventGeoJSON·buildSpiderGeoJSON·outwardLabel) — placesToGeoJSON은 동일/근접 좌표 2개+면 라벨을 ringLabels로 방사 분산(task-84)
 │   ├── mapLayers.js            지도 정적 설정 (EMPTY_GEOJSON·setupMapSources·registerEventHandlers·placePopupHTML·escapeHtml)
 │   ├── mapRingController.js    사건 링/스파이더 애니메이션 컨트롤러 팩토리 (createRingController → collapseRing·expandPlace·spiderifyPlaces·collapseSpider·destroy + 공유 가변 상태)
 │   ├── TimelineView.jsx        사건 타임라인 뷰 — startDate 그룹, 책 칩, 인라인 구절 드릴다운

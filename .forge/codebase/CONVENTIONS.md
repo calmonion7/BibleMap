@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: a25a3a3a9f5473c35aabd6036398d6bb672fee47
-mapped: 2026-06-22
+last_mapped_commit: 14e0a78c3e0ab7fc7d960c4cabdf3eab3fc297e6
+mapped: 2026-06-27
 ---
 
 # CONVENTIONS.md — 코드 규약
