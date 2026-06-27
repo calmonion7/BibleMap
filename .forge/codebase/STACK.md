@@ -39,9 +39,9 @@ BibleMap은 단일 저장소(monorepo)로, React 프론트엔드 + FastAPI 백�
   - `backend/app/routes/nodes.py`: `/person/{node_id}/event-ids`, `/node/{node_id}/places`, `/node/{node_id}/neighbors/grouped`, `/node/{node_id}`.
   - `backend/app/routes/events.py`: `/events`, `/event/{event_id}/verses`.
   - `backend/app/routes/search.py`: `/search?q=`.
-  - `backend/app/routes/books.py`: `/books-overview`, `/books`.
+  - `backend/app/routes/books.py`: `/books-overview`.
 - DB 드라이버: `backend/app/db.py`의 `get_driver()`가 `neo4j.GraphDatabase.driver`를 지연 싱글톤으로 생성. URI/USER/PASSWORD는 환경변수(`NEO4J_URI` 기본 `bolt://localhost:7687`, `NEO4J_USER` 기본 `neo4j`, `NEO4J_PASSWORD` 필수).
-- 오버레이 로더: `backend/app/overlays.py`가 `DATA_DIR`(기본 `/app/data`) 또는 저장소 `data/` 아래의 JSON을 `functools.lru_cache`로 1회 로드. `book_events/books.json`, `book_years_approx/books.json`, `event_verses/events.json` 등.
+- 오버레이 로더: `backend/app/overlays.py`가 `DATA_DIR`(기본 `/app/data`) 또는 저장소 `data/` 아래의 JSON을 `functools.lru_cache`로 1회 로드. `book_events/books.json`, `event_verses/events.json`.
 - 컨테이너 실행 커맨드(`backend/Dockerfile`): `uvicorn app.main:app --host 0.0.0.0 --port 8000`.
 
 ## Containerization (Docker Compose)

@@ -29,12 +29,12 @@ mapped: 2026-06-27
 
 - **진입점 `main.py`** — `FastAPI(lifespan=...)`. lifespan에서 5개 라벨(`Person/Place/Event/PeopleGroup/Book`)에 `theographic_id` 인덱스를 멱등 생성(실패해도 계속). CORS는 GET만 허용. 라우터 4개(`nodes/events/search/books`)를 include.
 - **`db.py`** — Neo4j 드라이버 싱글턴(`get_driver`, 전역 lazy). URI/USER/PASSWORD는 환경변수, 비밀번호 없으면 RuntimeError.
-- **`overlays.py`** — `data/` JSON 로더. `_resolve`가 `DATA_DIR`(기본 `/app/data`) → 레포 `data/` 순으로 파일을 찾는다. `@lru_cache(maxsize=1)`로 노출하는 3개: `book_events_raw()`(`{bookId:[eventId]}`), `approx_years()`(추정연도), `event_verses()`(사건별 근거 구절).
+- **`overlays.py`** — `data/` JSON 로더. `_resolve`가 `DATA_DIR`(기본 `/app/data`) → 레포 `data/` 순으로 파일을 찾는다. `@lru_cache(maxsize=1)`로 노출하는 2개: `book_events_raw()`(`{bookId:[eventId]}`), `event_verses()`(사건별 근거 구절).
 - **라우트 (`routes/`)**
   - `nodes.py` — `/node/{id}`(노드 본문 + 이웃을 단일 쿼리로 collect, 총수 동시 반환, `NODE_NEIGHBOR_LIMIT`=50; Book이면 `topPersons`/`topEvents` 추가, Person `traits`는 JSON 파싱), `/node/{id}/places`(라벨별로 다른 Cypher — Person/PeopleGroup/Book은 사건 경유 장소, Event/Place는 직접, `isPrimary` 플래그 부여, lat/lng 있는 Place만), `/node/{id}/neighbors/grouped`(타입별 그룹, 타입당 30개 상한 `MAX_NEIGHBORS_PER_TYPE` — MapView 사건 링이 소비), `/person/{id}/event-ids`.
   - `events.py` — `/events`(타임라인 전체 사건; Neo4j 사건 + `_load_approx_book_index`로 만든 역방향 `{eventId:[book]}` 추정책 머지, 둘 다 `lru_cache`), `/event/{id}/verses`(오버레이 그대로). 응답에 `Cache-Control: max-age=300`.
   - `search.py` — `/search?q=`(nameKo/name CONTAINS, 정확>접두>부분 rank 정렬, `SEARCH_LIMIT`=20 상한).
-  - `books.py` — `/books-overview`(개요용 전체, no-store), `/books`(타임라인용 — startYear 없으면 추정연도 오버레이로 보강, 둘 다 없으면 제외).
+  - `books.py` — `/books-overview`(개요용 전체, no-store).
 - **Cypher 패턴** — 모든 노드는 `theographic_id`로 식별. 라우트 핸들러가 `with driver.session()`을 열고 Cypher를 직접 실행(ORM 없음). 결과를 dict로 변환해 프론트 친화 형태로 정형화.
 
 ## 데이터 적재 스크립트 (`backend/scripts`)
@@ -54,7 +54,7 @@ mapped: 2026-06-27
 - **상태 훅** — `useNodeSelection.js`(선택 노드 + 히스토리 스택 + Person 이벤트 ID 집합 + `selectedNodeMeta`; `selectNode`는 `useCallback([])`로 참조 안정화 — selectedNode 변경이 MapView effect를 재실행해 fetch가 abort되는 버그 방지, 최신값은 `selectedNodeRef`로 읽음. `handleNodeLoaded` 콜백으로 SidePanel이 받은 노드 메타를 역수신해 중복 fetch 회피), `useSearch.js`(250ms 디바운스 검색 + AbortController 경쟁 차단 + 타입 필터/키보드 하이라이트).
 - **3 뷰**
   - `MapView.jsx` — MapLibre GL 지도(아래 별도 절).
-  - `TimelineView.jsx` — `/events`·`/books` 기반 연대 타임라인. 사건 근거 구절 인라인 드릴다운(`/event/{id}/verses`, out-of-order 응답을 ref로 방어), bookFilter/personFilter 지원.
+  - `TimelineView.jsx` — `/events` 기반 연대 타임라인. 사건 근거 구절 인라인 드릴다운(`/event/{id}/verses`, out-of-order 응답을 ref로 방어), bookFilter/personFilter 지원.
   - `BibleOverviewView.jsx` — `/books-overview` 기반 장르별 책 카드 그리드(구약 5 / 신약 5 장르 순서·한글 메타 하드코딩).
 - **`SidePanel.jsx`** — 선택 노드 상세. `/node/{id}` 호출 → 노드 속성 + 타입별 그룹 이웃(`REL_KO` 관계 한글화) + 절 본문. `onNodeLoaded` 콜백으로 메타를 App에 역전달.
 - **공유 모듈** — `theme.js`(타입→색/한글/순서 단일 팔레트, `SELECT_HL` 강조색), `constants.js`(`MOBILE_BREAKPOINT`/`SHEET_VH`), `convexHull.js`(Graham scan — Person hull 폴리곤용), `VerseLangTabs.jsx`(한/영 세그먼트 탭), `Spinner.jsx`.

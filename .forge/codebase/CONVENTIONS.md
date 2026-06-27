@@ -133,14 +133,14 @@ mapped: 2026-06-27
 - 라벨 분기(`Person/Event/PeopleGroup/Book/...`)로 서로 다른 Cypher 실행(`get_node_places`).
 
 ### 오버레이 패턴 (`backend/app/overlays.py`)
-- `functools.lru_cache(maxsize=1)` — 앱 재시작 전까지 JSON 파일 1회만 읽음(`book_events_raw`, `approx_years`, `event_verses`). `events.py`의 `_load_approx_book_index`, `_compute_events`도 동일 캐시(Neo4j 쿼리 결과 메모리 보관).
+- `functools.lru_cache(maxsize=1)` — 앱 재시작 전까지 JSON 파일 1회만 읽음(`book_events_raw`, `event_verses`). `events.py`의 `_load_approx_book_index`, `_compute_events`도 동일 캐시(Neo4j 쿼리 결과 메모리 보관).
 - `_resolve(subpath)` 경로 우선순위: 환경변수 `DATA_DIR`(기본 `/app/data`) → 레포 `data/` 경로(`_REPO_DATA_DIR`).
 - 파일 없음/파싱 실패는 `{}` 반환 graceful fallback.
 - 추정/낮은권위 데이터는 Neo4j 주입 없이 JSON 오버레이로 유지(ADR-0004).
 
 ### 응답 캐싱 패턴
 - 이벤트 목록·구절: `JSONResponse(content=..., headers={"Cache-Control": "max-age=300"})`.
-- 추정 데이터 포함 응답(`/books`, `/books-overview`): `"Cache-Control": "no-store"`.
+- 개요용 책 목록(`/books-overview`): `"Cache-Control": "no-store"`.
 - 그 외 라우트: dict/list 직접 반환(FastAPI 자동 JSON 직렬화).
 
 ### 스크립트 구조 (`backend/scripts/`)

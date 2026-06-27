@@ -71,7 +71,7 @@ backend/
 ├── app/
 │   ├── main.py                 FastAPI 앱 정의, 라우터 등록, lifespan(인덱스 생성)
 │   ├── db.py                   Neo4j 드라이버 싱글턴 (get_driver)
-│   ├── overlays.py             오버레이 JSON 로더 (lru_cache — book_events_raw, approx_years, event_verses)
+│   ├── overlays.py             오버레이 JSON 로더 (lru_cache — book_events_raw, event_verses)
 │   └── routes/
 │       ├── nodes.py            /node/{id}, /node/{id}/places, /node/{id}/neighbors/grouped, /person/{id}/event-ids
 │       ├── events.py           /events, /event/{id}/verses (lru_cache + 추정책 머지)
@@ -118,7 +118,7 @@ data/
 ├── book_events/
 │   └── books.json          {bookId: [eventId, ...]} — 책이 기록한 사건 목록 (오버레이)
 ├── book_years_approx/
-│   └── books.json          {bookId: {placementYear, basis, approx}} — 추정 연도 (오버레이)
+│   └── books.json          {bookId: {placementYear, basis, approx}} — 추정 연도 (빌드타임 입력, generate_book_events.py)
 ├── event_verses/
 │   └── events.json         사건별 근거 구절 (books[].verses[].textKo·textEn prebaked) (오버레이)
 ├── book_context/
@@ -148,7 +148,7 @@ data/
 - 서브디렉터리명: 단수 또는 복수 명사 (`book_events/`, `place_context/`, `names_ko/`)
 - 파일명: 엔티티 복수형 (`books.json`, `events.json`, `people.json`, `places.json`, `groups.json`)
 - `person_events/`만 예외 — 인물 슬러그별 개별 파일
-- **소비 경로 구분**: `book_events`·`book_years_approx`·`event_verses`는 런타임 오버레이(`overlays.py`, Neo4j 미주입). 나머지는 `inject_*`/`load_*`/`enrich_*`로 Neo4j에 들어간다.
+- **소비 경로 구분**: `book_events`·`event_verses`는 런타임 오버레이(`overlays.py`, Neo4j 미주입). `book_years_approx`는 빌드타임 입력(`generate_book_events.py`)으로만 소비(task-85에서 런타임 로더 제거). 나머지는 `inject_*`/`load_*`/`enrich_*`로 Neo4j에 들어간다.
 
 ---
 

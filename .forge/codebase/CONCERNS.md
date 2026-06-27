@@ -34,7 +34,7 @@ mapped: 2026-06-27
 ## 2. 열린 항목 — 결정 필요
 
 ### 2.1 testament 값 표기 불일치 (OT/NT vs 구약/신약)
-`BibleOverviewView.jsx`가 영문(`OT`/`NT`)과 한글(`구약`/`신약`) 두 표기를 모두 방어적으로 매핑한다(`frontend/src/BibleOverviewView.jsx:135`~`137`). 둘 중 어느 쪽이든 받아주지만, 데이터 소스에 따라 값이 갈릴 수 있다는 뜻이고 둘 다 아니면 `key = null`로 조용히 누락된다. 백엔드(`backend/app/routes/books.py:22`, `:62`)는 `props.get("testament")`를 그대로 전달 — 표준화 지점이 없다. 데이터 적재 시 한 표기로 정규화하는 것이 정공법.
+`BibleOverviewView.jsx`가 영문(`OT`/`NT`)과 한글(`구약`/`신약`) 두 표기를 모두 방어적으로 매핑한다(`frontend/src/BibleOverviewView.jsx:135`~`137`). 둘 중 어느 쪽이든 받아주지만, 데이터 소스에 따라 값이 갈릴 수 있다는 뜻이고 둘 다 아니면 `key = null`로 조용히 누락된다. 백엔드(`backend/app/routes/books.py:21`)는 `props.get("testament")`를 그대로 전달 — 표준화 지점이 없다. 데이터 적재 시 한 표기로 정규화하는 것이 정공법.
 
 ---
 
