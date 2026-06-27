@@ -1,28 +1,30 @@
 import { useState, useEffect, useRef } from 'react'
-import { Map, Clock, Search, X, BookOpen } from 'lucide-react'
+import { Map, Clock, BookOpen } from 'lucide-react'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
 import TimelineView from './TimelineView'
 import BibleOverviewView from './BibleOverviewView'
-import { TYPE_ORDER, typeColor, typeKo, SELECT_HL } from './theme'
+import PersonHub from './PersonHub'
+import JourneyList from './JourneyList'
 import { MOBILE_BREAKPOINT, SHEET_VH } from './constants'
 import { useNodeSelection } from './useNodeSelection'
-import { useSearch } from './useSearch'
-
-const TABS = [
-  { key: 'map', icon: Map, label: '지도' },
-  { key: 'timeline', icon: Clock, label: '타임라인' },
-  { key: 'overview', icon: BookOpen, label: '성경 개요' },
-]
+import { apiGet } from './api'
 
 // 모바일(좁은 뷰포트) 분기 — 이 폭 이하에서 상세 패널을 우측 사이드패널 대신 하단 시트로 띄운다.
 const MOBILE_QUERY = `(max-width: ${MOBILE_BREAKPOINT}px)`
 
-// 노드 타입 → 색 팔레트(SidePanel과 동일) / 한글 라벨 / 칩 표시 순서
+// 탐험 토글 정의
+const EXPLORE_TABS = [
+  { key: 'map', icon: Map, label: '지도' },
+  { key: 'timeline', icon: Clock, label: '타임라인' },
+]
 
 function App() {
-  const [activeView, setActiveView] = useState('map')
-  // 절 본문 표시 언어('ko'|'en', 기본 ko) — 타임라인·SidePanel 공유. 한 곳에서 바꾸면 다른 곳도 전환.
+  // 'hub' | 'explore' | 'overview'
+  const [activeStage, setActiveStage] = useState('hub')
+  // 탐험 내 토글: 'map' | 'timeline'
+  const [exploreView, setExploreView] = useState('map')
+  // 절 본문 표시 언어('ko'|'en', 기본 ko) — 타임라인·SidePanel 공유.
   const [verseLang, setVerseLang] = useState('ko')
   const [isMobile, setIsMobile] = useState(() => window.matchMedia(MOBILE_QUERY).matches)
 
@@ -31,15 +33,22 @@ function App() {
     handleNodeLoaded, selectNode, selectNodeFresh, goBack, closePanel,
   } = useNodeSelection()
 
-  const {
-    searchQuery, searchResults, searchError, searchLoading,
-    showDropdown, setShowDropdown,
-    highlightIndex, setHighlightIndex,
-    typeFilter, setTypeFilter,
-    typeCounts, filteredResults,
-    searchBoxRef, resultRefs,
-    onSearchInput, clearSearch,
-  } = useSearch()
+  // 여정 데이터 — 인물 선택 시 한 번 fetch, MapView·JourneyList 공유
+  const [journeyStops, setJourneyStops] = useState(null)
+  const [activeStopIdx, setActiveStopIdx] = useState(null)
+
+  useEffect(() => {
+    const ctrl = new AbortController()
+    if (!selectedNode || selectedNodeMeta?.label !== 'Person') {
+      // 인물 미선택 → 비동기로 초기화(effect 동기 setState 금지 규칙 회피)
+      Promise.resolve().then(() => { setJourneyStops(null); setActiveStopIdx(null) })
+      return () => ctrl.abort()
+    }
+    apiGet(`/person/${selectedNode}/journey`, { signal: ctrl.signal })
+      .then(({ stops }) => { setJourneyStops(stops); setActiveStopIdx(null) }) // async 콜백 — v7 OK
+      .catch((e) => { if (e?.name !== 'AbortError') setJourneyStops([]) })
+    return () => ctrl.abort()
+  }, [selectedNode, selectedNodeMeta?.label])
 
   useEffect(() => {
     const mq = window.matchMedia(MOBILE_QUERY)
@@ -48,45 +57,26 @@ function App() {
     return () => mq.removeEventListener('change', onChange)
   }, [])
 
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      if (e.key !== '/') return
-      const tag = document.activeElement?.tagName
-      if (tag === 'INPUT' || tag === 'TEXTAREA') return
-      e.preventDefault()
-      searchBoxRef.current?.querySelector('input')?.focus()
-    }
-    document.addEventListener('keydown', onKeyDown)
-    return () => document.removeEventListener('keydown', onKeyDown)
-  }, [searchBoxRef])
-
-  function handleTabClick(key) {
-    setActiveView(key)
+  // 허브에서 인물 카드 클릭 — 탐험으로 전환
+  function handleSelectPerson(id) {
+    selectNodeFresh(id)
+    setActiveStage('explore')
   }
 
-  // 브리지 — 검색 선택 시 드롭다운 닫기 + 새 탐색 컨텍스트로 노드 선택, 타입별 탭 이동
-  function handleSelectResult(result) {
-    setShowDropdown(false)
-    const tabMap = { Person: 'map', Place: 'map', Event: 'timeline', Book: 'overview' }
-    const target = tabMap[result.label] ?? 'map'
-    setActiveView(target)
-    selectNodeFresh(result.id)
+  // 탐험에서 "다른 인물" 클릭 — 허브로 복귀, 선택 해제
+  function handleBackToHub() {
+    closePanel()
+    setActiveStage('hub')
   }
 
-  function handleSearchKeyDown(e) {
-    if (e.key === 'Escape') { setShowDropdown(false); return }
-    if (!showDropdown || filteredResults.length === 0) return
-    if (e.key === 'ArrowDown') {
-      e.preventDefault()
-      setHighlightIndex(i => (i + 1) % filteredResults.length)
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault()
-      setHighlightIndex(i => (i - 1 + filteredResults.length) % filteredResults.length)
-    } else if (e.key === 'Enter') {
-      e.preventDefault()
-      const pick = highlightIndex >= 0 ? filteredResults[highlightIndex] : filteredResults[0]
-      if (pick) handleSelectResult(pick)
-    }
+  // 허브에서 "성경 책 둘러보기" 클릭
+  function handleOpenOverview() {
+    setActiveStage('overview')
+  }
+
+  // 개요에서 허브로 복귀
+  function handleOverviewBack() {
+    setActiveStage('hub')
   }
 
   const swipeStartY = useRef(null)
@@ -100,194 +90,232 @@ function App() {
 
   const NAV_H = 48
 
-  return (
-    <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-
-      {/* 내비게이션 바 */}
+  // 탐험 단계 내비게이션 바
+  function renderExploreNav() {
+    const personName = selectedNodeMeta?.label === 'Person' ? selectedNodeMeta.nameKo : null
+    return (
       <div style={{
         height: NAV_H, flexShrink: 0,
         display: 'flex', alignItems: 'center',
         background: '#1a1a2e', borderBottom: 'none',
         zIndex: 20, boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+        gap: 0,
       }}>
-        {TABS.map(tab => {
-          const Icon = tab.icon
-          const active = activeView === tab.key
-          return (
-            <button
-              key={tab.key}
-              onClick={() => handleTabClick(tab.key)}
-              style={{
-                padding: '0 14px', height: '100%',
-                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
-                color: active ? 'white' : 'rgba(255,255,255,0.5)',
-                borderBottom: active ? '2px solid #7c9cfc' : '2px solid transparent',
-                border: 'none', background: 'none', cursor: 'pointer',
-                transition: 'color 0.15s',
-              }}
-            >
-              <Icon size={18} />
-              <span style={{ fontSize: 10, lineHeight: 1 }}>{tab.label}</span>
-            </button>
-          )
-        })}
-        <div ref={searchBoxRef} style={{ flex: 1, display: 'flex', alignItems: 'center', padding: '0 8px', position: 'relative' }}>
-          <div style={{ flex: 1, position: 'relative' }}>
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={onSearchInput}
-              onKeyDown={handleSearchKeyDown}
-              onFocus={() => { if (searchResults.length > 0) setShowDropdown(true) }}
-              placeholder="검색..."
-              style={{
-                width: '100%', padding: '6px 36px 6px 12px', boxSizing: 'border-box',
-                background: 'rgba(255,255,255,0.1)', color: 'white',
-                border: '1px solid rgba(255,255,255,0.2)', borderRadius: 8,
-                outline: 'none', fontSize: 14,
-              }}
-            />
-            {searchQuery ? (
+        {/* 허브 복귀 — "현재 인물명 + 다른 인물" */}
+        <button
+          onClick={handleBackToHub}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 6,
+            padding: '0 14px', height: '100%',
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: 'rgba(255,255,255,0.7)',
+            borderRight: '1px solid rgba(255,255,255,0.1)',
+            flexShrink: 0,
+          }}
+        >
+          <span style={{ fontSize: 13 }}>←</span>
+          {personName ? (
+            <span style={{ fontSize: 13, color: '#c9a84c', fontWeight: 600, maxWidth: isMobile ? 80 : 160, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              {personName}
+            </span>
+          ) : null}
+          <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)' }}>다른 인물</span>
+        </button>
+
+        {/* 지도 / 타임라인 토글 */}
+        <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+          {EXPLORE_TABS.map(tab => {
+            const Icon = tab.icon
+            const active = exploreView === tab.key
+            return (
               <button
-                onClick={clearSearch}
-                aria-label="지우기"
+                key={tab.key}
+                onClick={() => setExploreView(tab.key)}
                 style={{
-                  position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)',
-                  background: 'none', border: 'none', cursor: 'pointer',
-                  color: 'rgba(255,255,255,0.6)', display: 'flex', alignItems: 'center', padding: 0,
+                  padding: '0 14px', height: '100%',
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
+                  color: active ? 'white' : 'rgba(255,255,255,0.5)',
+                  borderBottom: active ? '2px solid #7c9cfc' : '2px solid transparent',
+                  border: 'none', background: 'none', cursor: 'pointer',
+                  transition: 'color 0.15s',
                 }}
               >
-                <X size={16} />
+                <Icon size={18} />
+                <span style={{ fontSize: 10, lineHeight: 1 }}>{tab.label}</span>
               </button>
-            ) : (
-              <span style={{
-                position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)',
-                color: 'rgba(255,255,255,0.4)', display: 'flex', alignItems: 'center', pointerEvents: 'none',
-              }}>
-                <Search size={16} />
-              </span>
-            )}
+            )
+          })}
+        </div>
+      </div>
+    )
+  }
+
+  // 개요 단계 내비게이션 바
+  function renderOverviewNav() {
+    return (
+      <div style={{
+        height: NAV_H, flexShrink: 0,
+        display: 'flex', alignItems: 'center',
+        background: '#1a1a2e',
+        zIndex: 20, boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+        gap: 0,
+      }}>
+        <button
+          onClick={handleOverviewBack}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 6,
+            padding: '0 14px', height: '100%',
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: 'rgba(255,255,255,0.7)',
+            borderRight: '1px solid rgba(255,255,255,0.1)',
+            flexShrink: 0,
+          }}
+        >
+          <span style={{ fontSize: 13 }}>←</span>
+          <span style={{ fontSize: 13 }}>인물 허브</span>
+        </button>
+        <div style={{ display: 'flex', alignItems: 'center', height: '100%', padding: '0 14px', gap: 6 }}>
+          <BookOpen size={18} color="rgba(255,255,255,0.5)" />
+          <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: 13 }}>성경 개요</span>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+
+      {/* 허브 단계 — 인물 선택 전 */}
+      {activeStage === 'hub' && (
+        <div style={{ flex: 1, overflow: 'hidden' }}>
+          <PersonHub
+            onSelectPerson={handleSelectPerson}
+            onOpenOverview={handleOpenOverview}
+          />
+        </div>
+      )}
+
+      {/* 개요 단계 — 허브에서 진입 */}
+      {activeStage === 'overview' && (
+        <>
+          {renderOverviewNav()}
+          <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+            <BibleOverviewView
+              onSelectNode={selectNode}
+              selectedNode={selectedNode}
+            />
           </div>
-          {showDropdown && (
-            <div style={{
-              position: 'absolute', top: 'calc(100% + 6px)', right: 0,
-              background: '#1e2040', border: '1px solid rgba(124,156,252,0.25)',
-              borderRadius: 10, minWidth: '260px', maxHeight: '360px', overflowY: 'auto',
-              zIndex: 100, boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
-            }}>
-              {searchError ? (
-                <div style={{ padding: '12px 16px', color: '#ff9b9b', fontSize: 13 }}>검색에 실패했습니다</div>
-              ) : searchLoading && searchResults.length === 0 ? (
-                <div style={{ padding: '12px 16px', color: 'rgba(255,255,255,0.5)', fontSize: 13 }}>검색 중…</div>
-              ) : searchResults.length === 0 ? (
-                <div style={{ padding: '12px 16px', color: 'rgba(255,255,255,0.4)', fontSize: 13 }}>결과 없음</div>
-              ) : (
-                <>
-                  {/* 타입 필터 칩 — 현재 결과에 존재하는 타입만, 각 개수 표시 */}
+        </>
+      )}
+
+      {/* 탐험 단계 — 인물 선택 후 지도·타임라인 */}
+      {activeStage === 'explore' && (
+        <>
+          {renderExploreNav()}
+
+          {/* 전체화면 뷰 — 항상 마운트, CSS 토글로 상태 보존 */}
+          <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+            <div style={{ display: exploreView === 'map' ? 'flex' : 'none', height: '100%' }}>
+              {/* 여정 사이드 리스트 — 데스크톱: 좌측 200px 고정 / 모바일: 숨김(지도 위에 하단 미니시트) */}
+              {!isMobile && journeyStops && journeyStops.length > 0 && (
+                <div style={{ width: 200, flexShrink: 0, overflow: 'hidden' }}>
+                  <JourneyList
+                    stops={journeyStops}
+                    activeStopIdx={activeStopIdx}
+                    onStopSelect={setActiveStopIdx}
+                  />
+                </div>
+              )}
+              <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+                <MapView
+                  onSelectNode={selectNode}
+                  selectedNode={selectedNode}
+                  isVisible={exploreView === 'map'}
+                  journeyStops={journeyStops}
+                  activeStopIdx={activeStopIdx}
+                  onStopSelect={setActiveStopIdx}
+                />
+                {/* 모바일 여정 리스트 — 하단 미니 수평 스크롤 */}
+                {isMobile && journeyStops && journeyStops.length > 0 && (
                   <div style={{
-                    display: 'flex', gap: 6, flexWrap: 'wrap', padding: '8px 10px',
-                    borderBottom: '1px solid rgba(255,255,255,0.08)',
-                    position: 'sticky', top: 0, background: '#1e2040', zIndex: 1,
+                    position: 'absolute', bottom: 0, left: 0, right: 0,
+                    maxHeight: 110,
+                    background: 'rgba(20,22,50,0.94)',
+                    overflowX: 'auto', overflowY: 'hidden',
+                    display: 'flex', alignItems: 'stretch',
+                    borderTop: '1px solid rgba(255,255,255,0.1)',
+                    zIndex: 5,
                   }}>
-                    {[{ key: null, ko: '전체', color: '#9aa5b8', count: searchResults.length },
-                      ...TYPE_ORDER.filter(t => typeCounts[t]).map(t => ({ key: t, ko: typeKo(t), color: typeColor(t), count: typeCounts[t] })),
-                    ].map(chip => {
-                      const active = typeFilter === chip.key
+                    {journeyStops.filter((s) => s.lng != null).map((stop, i) => {
+                      const isActive = stop.seq != null && stop.seq - 1 === activeStopIdx
                       return (
-                        <button
-                          key={chip.key ?? 'all'}
-                          onClick={() => { setTypeFilter(chip.key); setHighlightIndex(-1) }}
+                        <div
+                          key={stop.eventId ?? i}
+                          onClick={() => { if (stop.seq != null) setActiveStopIdx(stop.seq - 1) }}
                           style={{
-                            display: 'flex', alignItems: 'center', gap: 5,
-                            fontSize: 11, padding: '3px 9px', borderRadius: 999, cursor: 'pointer',
-                            border: `1px solid ${active ? chip.color : 'rgba(255,255,255,0.15)'}`,
-                            background: active ? chip.color : 'transparent',
-                            color: active ? '#11131f' : 'rgba(255,255,255,0.7)',
-                            fontWeight: active ? 700 : 500,
+                            flexShrink: 0,
+                            padding: '8px 12px',
+                            borderRight: '1px solid rgba(255,255,255,0.07)',
+                            cursor: 'pointer',
+                            background: isActive ? 'rgba(124,156,252,0.2)' : 'transparent',
+                            display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 2,
+                            minWidth: 110,
                           }}
                         >
-                          {chip.ko}<span style={{ opacity: 0.75 }}>{chip.count}</span>
-                        </button>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                            <span style={{ fontSize: 10, color: isActive ? '#f5a623' : 'rgba(74,144,217,0.8)', fontWeight: 700 }}>{stop.seq}</span>
+                            <span style={{ fontSize: 11, color: isActive ? '#f5a623' : 'rgba(255,255,255,0.8)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 85 }}>
+                              {stop.nameKo || stop.title}
+                            </span>
+                          </div>
+                          {stop.placeNameKo && (
+                            <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.35)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 96 }}>
+                              {stop.placeNameKo}
+                            </span>
+                          )}
+                        </div>
                       )
                     })}
                   </div>
-                  {/* 결과 목록 — 좌측 타입색 액센트, 하이라이트(키보드/마우스 공유) */}
-                  {filteredResults.map((r, i) => (
-                    <div
-                      key={r.id}
-                      ref={el => { resultRefs.current[i] = el }}
-                      onClick={() => handleSelectResult(r)}
-                      onMouseEnter={() => setHighlightIndex(i)}
-                      style={{
-                        padding: '10px 14px', cursor: 'pointer',
-                        borderBottom: '1px solid rgba(255,255,255,0.06)',
-                        borderLeft: `3px solid ${typeColor(r.label)}`,
-                        display: 'flex', alignItems: 'center', gap: 10, color: 'white',
-                        background: i === highlightIndex ? SELECT_HL : 'transparent',
-                      }}
-                    >
-                      <span style={{ fontSize: 14, fontWeight: 500, flex: 1 }}>{r.nameKo}</span>
-                      <span style={{
-                        fontSize: 10, color: typeColor(r.label), background: 'rgba(255,255,255,0.08)',
-                        borderRadius: 4, padding: '2px 6px', flexShrink: 0,
-                      }}>{typeKo(r.label)}</span>
-                    </div>
-                  ))}
-                </>
-              )}
+                )}
+              </div>
             </div>
-          )}
-        </div>
-      </div>
+            <div style={{ display: exploreView === 'timeline' ? 'block' : 'none', height: '100%' }}>
+              <TimelineView
+                onSelectNode={selectNode}
+                selectedNode={selectedNode}
+                bookFilter={selectedNodeMeta?.label === 'Book' ? selectedNodeMeta : null}
+                personFilter={selectedNodeMeta?.label === 'Person' ? personEventIds : null}
+                personName={selectedNodeMeta?.label === 'Person' ? selectedNodeMeta.nameKo : null}
+                verseLang={verseLang}
+                setVerseLang={setVerseLang}
+              />
+            </div>
+          </div>
+        </>
+      )}
 
-      {/* 전체화면 뷰 — 항상 마운트, CSS 토글로 상태 보존 */}
-      <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
-        <div style={{ display: activeView === 'map' ? 'block' : 'none', flex: 1, overflow: 'hidden', height: '100%' }}>
-          <MapView
-            onSelectNode={selectNode}
-            selectedNode={selectedNode}
-            isVisible={activeView === 'map'}
-          />
-        </div>
-        <div style={{ display: activeView === 'timeline' ? 'block' : 'none', flex: 1, overflow: 'hidden', height: '100%' }}>
-          <TimelineView
-            onSelectNode={selectNode}
-            selectedNode={selectedNode}
-            bookFilter={selectedNodeMeta?.label === 'Book' ? selectedNodeMeta : null}
-            personFilter={selectedNodeMeta?.label === 'Person' ? personEventIds : null}
-            personName={selectedNodeMeta?.label === 'Person' ? selectedNodeMeta.nameKo : null}
-            verseLang={verseLang}
-            setVerseLang={setVerseLang}
-          />
-        </div>
-        <div style={{ display: activeView === 'overview' ? 'block' : 'none', flex: 1, overflow: 'hidden', height: '100%' }}>
-          <BibleOverviewView
-            onSelectNode={selectNode}
-            selectedNode={selectedNode}
-          />
-        </div>
-      </div>
-
-      {/* 오버레이 패널 — 데스크톱: 우측 슬라이드인 / 모바일: 하단 시트(지도·마커가 위에 보이도록) */}
-      <div
-        style={{
-          position: 'absolute', background: 'white', overflowY: 'auto', zIndex: 10,
-          transition: 'transform 0.25s ease',
-          ...(isMobile
-            ? {
-                left: 0, right: 0, bottom: 0, height: `${SHEET_VH}vh`,
-                boxShadow: '0 -3px 12px rgba(0,0,0,0.15)',
-                transform: selectedNode ? 'translateY(0)' : 'translateY(100%)',
-              }
-            : {
-                top: NAV_H, right: 0, bottom: 0, width: 360,
-                boxShadow: '-3px 0 12px rgba(0,0,0,0.15)',
-                transform: selectedNode ? 'translateX(0)' : 'translateX(100%)',
-              }),
-        }}
-        onTouchStart={isMobile ? onSheetTouchStart : undefined}
-        onTouchEnd={isMobile ? onSheetTouchEnd : undefined}
-      >
+      {/* 상세 패널 — 탐험·개요 단계 공유 (허브엔 선택 없음 → 숨김). 데스크톱: 우측 슬라이드인 / 모바일: 하단 시트 */}
+      {activeStage !== 'hub' && (
+        <div
+          style={{
+            position: 'absolute', background: 'white', overflowY: 'auto', zIndex: 10,
+            transition: 'transform 0.25s ease',
+            ...(isMobile
+              ? {
+                  left: 0, right: 0, bottom: 0, height: `${SHEET_VH}vh`,
+                  boxShadow: '0 -3px 12px rgba(0,0,0,0.15)',
+                  transform: selectedNode ? 'translateY(0)' : 'translateY(100%)',
+                }
+              : {
+                  top: NAV_H, right: 0, bottom: 0, width: 360,
+                  boxShadow: '-3px 0 12px rgba(0,0,0,0.15)',
+                  transform: selectedNode ? 'translateX(0)' : 'translateX(100%)',
+                }),
+          }}
+          onTouchStart={isMobile ? onSheetTouchStart : undefined}
+          onTouchEnd={isMobile ? onSheetTouchEnd : undefined}
+        >
           {isMobile && (
             <div style={{
               position: 'sticky', top: 0, zIndex: 3,
@@ -309,6 +337,7 @@ function App() {
           >×</button>
           <SidePanel nodeId={selectedNode} onSelectNode={selectNode} onBack={goBack} canGoBack={history.length > 0} onNodeLoaded={handleNodeLoaded} verseLang={verseLang} setVerseLang={setVerseLang} />
         </div>
+      )}
 
     </div>
   )

@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
-import { convexHull } from './convexHull'
 import { apiGet } from './api'
 import { MOBILE_BREAKPOINT, SHEET_VH } from './constants'
-import { coreBounds, placesToGeoJSON } from './mapGeo'
+import { coreBounds, placesToGeoJSON, buildJourneyLineGeoJSON, buildJourneyStopsGeoJSON } from './mapGeo'
 import { EMPTY_GEOJSON, registerEventHandlers, setupMapSources } from './mapLayers'
 import { createRingController } from './mapRingController'
 
-export default function MapView({ onSelectNode, selectedNode, isVisible }) {
+export default function MapView({ onSelectNode, selectedNode, isVisible, journeyStops, activeStopIdx, onStopSelect }) {
   const mapContainer = useRef(null)
   const mapRef = useRef(null)
   const popupRef = useRef(null)
@@ -45,7 +44,7 @@ export default function MapView({ onSelectNode, selectedNode, isVisible }) {
 
     map.on('load', () => {
       setupMapSources(map)
-      registerEventHandlers(map, { ...ring, onSelectNode, popupRef, expandedPlaceRef })
+      registerEventHandlers(map, { ...ring, onSelectNode, popupRef, expandedPlaceRef, onJourneyStopClick: onStopSelect })
       mapRef.current = map
       setMapLoaded(true)
     })
@@ -69,7 +68,6 @@ export default function MapView({ onSelectNode, selectedNode, isVisible }) {
     if (!selectedNode) {
       if (popupRef.current) { popupRef.current.remove(); popupRef.current = null }
       map.getSource('places-source').setData(EMPTY_GEOJSON)
-      map.getSource('hull-source').setData(EMPTY_GEOJSON)
       return
     }
 
@@ -78,27 +76,11 @@ export default function MapView({ onSelectNode, selectedNode, isVisible }) {
     let autoExpandTimer = null
 
     apiGet(`/node/${selectedNode}/places`, { signal: ctrl.signal })
-      .then(({ label, places }) => {
+      .then(({ places }) => {
         if (mapRef.current !== map) return
         setError(false)
         setNoLocation(places.length === 0) // 위치 없는 노드면 안내, 있으면 해제 (async 콜백 — v7 OK)
         map.getSource('places-source').setData(placesToGeoJSON(places))
-
-        // Hull polygon — Person이고 3개 이상 장소일 때만 표시
-        if (label === 'Person' && places.length >= 3) {
-          const pts = convexHull(places.map(p => ({ lng: p.lng, lat: p.lat })))
-          if (pts.length >= 3) {
-            const ring = [...pts.map(p => [p.lng, p.lat]), [pts[0].lng, pts[0].lat]]
-            map.getSource('hull-source').setData({
-              type: 'FeatureCollection',
-              features: [{ type: 'Feature', geometry: { type: 'Polygon', coordinates: [ring] }, properties: {} }],
-            })
-          } else {
-            map.getSource('hull-source').setData(EMPTY_GEOJSON)
-          }
-        } else {
-          map.getSource('hull-source').setData(EMPTY_GEOJSON)
-        }
 
         if (places.length === 0) return
 
@@ -160,6 +142,50 @@ export default function MapView({ onSelectNode, selectedNode, isVisible }) {
       if (autoExpandTimer) clearTimeout(autoExpandTimer)
     }
   }, [selectedNode, mapLoaded])
+
+  // 여정선 + 정차지 배지 업데이트 (stops prop 변경 시)
+  useEffect(() => {
+    if (!mapLoaded) return
+    const map = mapRef.current
+    if (!map) return
+    const stops = journeyStops ?? []
+    map.getSource('journey-line-source').setData(buildJourneyLineGeoJSON(stops))
+    map.getSource('journey-stops-source').setData(buildJourneyStopsGeoJSON(stops))
+    map.getSource('journey-active-source').setData(EMPTY_GEOJSON) // 새 인물 선택 시 강조 초기화
+  }, [journeyStops, mapLoaded])
+
+  // 활성 정차지 강조 + 카메라 이동 (activeStopIdx prop 변경 시)
+  useEffect(() => {
+    if (!mapLoaded) return
+    const map = mapRef.current
+    if (!map) return
+    if (activeStopIdx == null || !journeyStops) {
+      map.getSource('journey-active-source').setData(EMPTY_GEOJSON)
+      return
+    }
+    // stops 중 좌표 있는 것만 배지에 표시 → 동일 좌표 전체중복 제거한 deduped 기준 인덱스
+    // buildJourneyStopsGeoJSON와 동일 로직으로 deduped 배열 재구성
+    const withCoord = journeyStops.filter((s) => s.lng != null && s.lat != null)
+    const coKey = (s) => `${s.lng},${s.lat}`
+    const seen = []
+    const dedupedMap = new Map()
+    for (const s of withCoord) {
+      const k = coKey(s)
+      if (!dedupedMap.has(k)) seen.push(k)
+      dedupedMap.set(k, s)
+    }
+    const deduped = seen.map((k) => dedupedMap.get(k))
+    const stop = deduped[activeStopIdx]
+    if (!stop) {
+      map.getSource('journey-active-source').setData(EMPTY_GEOJSON)
+      return
+    }
+    map.getSource('journey-active-source').setData({
+      type: 'FeatureCollection',
+      features: [{ type: 'Feature', geometry: { type: 'Point', coordinates: [stop.lng, stop.lat] }, properties: {} }],
+    })
+    map.easeTo({ center: [stop.lng, stop.lat], duration: 400 })
+  }, [activeStopIdx, mapLoaded, journeyStops])
 
   useEffect(() => {
     if (isVisible && mapRef.current) mapRef.current.resize()
