@@ -57,7 +57,7 @@ export function useNodeSelection() {
   }
 
   return {
-    selectedNode, selectedNodeMeta, history, personEventIds, selectedNodeRef,
+    selectedNode, selectedNodeMeta, history, personEventIds,
     handleNodeLoaded, selectNode, selectNodeFresh, goBack, closePanel,
   }
 }
