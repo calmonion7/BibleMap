@@ -163,6 +163,30 @@ export function setupMapSources(map) {
     },
   })
 
+  // 여정선 방향 화살표 — 라인을 따라 진행 방향 표시. text-keep-upright:false로 선 방향을 그대로 따른다.
+  map.addLayer({
+    id: 'journey-line-arrows',
+    type: 'symbol',
+    source: 'journey-line-source',
+    layout: {
+      'symbol-placement': 'line',
+      'symbol-spacing': 90,
+      'text-field': '▶',
+      'text-font': ['Noto Sans Regular'],
+      'text-size': 13,
+      'text-keep-upright': false,
+      'text-allow-overlap': true,
+      'text-ignore-placement': true,
+      'text-rotation-alignment': 'map',
+      'text-pitch-alignment': 'viewport',
+    },
+    paint: {
+      'text-color': '#c47a0a',
+      'text-halo-color': 'rgba(255,255,255,0.9)',
+      'text-halo-width': 1.5,
+    },
+  })
+
   // 여정 정차지 배지 — 순번 숫자 심볼
   map.addSource('journey-stops-source', { type: 'geojson', data: EMPTY_GEOJSON })
   map.addLayer({
@@ -208,20 +232,32 @@ export function setupMapSources(map) {
     },
   })
 
-  // 활성 정차지 강조 링
+  // 활성 정차지 강조 — 반전 배지(네이비 채움 + 흰 번호 + 주황 링, 확대)로 선택 정차지를 부각.
   map.addSource('journey-active-source', { type: 'geojson', data: EMPTY_GEOJSON })
   map.addLayer({
-    id: 'journey-active-ring',
+    id: 'journey-active-circle',
     type: 'circle',
     source: 'journey-active-source',
     paint: {
-      'circle-radius': 14,
-      'circle-color': 'transparent',
+      'circle-radius': 13,
+      'circle-color': '#1a1a2e',
       'circle-stroke-width': 3,
       'circle-stroke-color': '#f5a623',
-      'circle-opacity': 0,
-      'circle-stroke-opacity': 0.9,
     },
+  })
+  map.addLayer({
+    id: 'journey-active-label',
+    type: 'symbol',
+    source: 'journey-active-source',
+    layout: {
+      'text-field': ['to-string', ['get', 'seq']],
+      'text-font': ['Noto Sans Regular'],
+      'text-size': 12,
+      'text-anchor': 'center',
+      'text-allow-overlap': true,
+      'text-ignore-placement': true,
+    },
+    paint: { 'text-color': '#ffffff' },
   })
 
   map.addSource('places-source', {
@@ -399,4 +435,10 @@ export function setupMapSources(map) {
       'text-halo-width': 2,
     },
   })
+
+  // 여정 번호 배지·활성 강조를 장소 마커 위로 올린다(같은 좌표에서 장소 점이 배지를 덮는 것 방지).
+  // event-ring 아래에 두어 장소 클릭 시 사건 링은 그대로 위에 보이게 한다.
+  for (const id of ['journey-stop-circle', 'journey-stop-label', 'journey-active-circle', 'journey-active-label']) {
+    if (map.getLayer(id)) map.moveLayer(id, 'event-ring-shadow')
+  }
 }

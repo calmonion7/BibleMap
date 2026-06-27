@@ -190,7 +190,7 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
     }
     map.getSource('journey-active-source').setData({
       type: 'FeatureCollection',
-      features: [{ type: 'Feature', geometry: { type: 'Point', coordinates: [stop.lng, stop.lat] }, properties: {} }],
+      features: [{ type: 'Feature', geometry: { type: 'Point', coordinates: [stop.lng, stop.lat] }, properties: { seq: activeStopIdx + 1 } }],
     })
     map.easeTo({ center: [stop.lng, stop.lat], duration: 400 })
   }, [activeStopIdx, mapLoaded, journeyStops])
