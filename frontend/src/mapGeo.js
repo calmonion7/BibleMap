@@ -132,9 +132,27 @@ export function buildJourneyLineGeoJSON(stops) {
   }
 }
 
+// 정렬된 사건 순번 배열을 압축 표기로 — 연속 구간은 "a-b", 구간 사이는 ", "로.
+// 예: [6,7,8,10] → "6-8, 10" / [9,11] → "9, 11" / [12] → "12".
+function compactSeqs(seqs) {
+  const s = [...new Set(seqs)].sort((a, b) => a - b)
+  if (s.length === 0) return ''
+  const parts = []
+  let start = s[0]
+  let prev = s[0]
+  for (let i = 1; i < s.length; i++) {
+    if (s[i] === prev + 1) { prev = s[i]; continue }
+    parts.push(start === prev ? `${start}` : `${start}-${prev}`)
+    start = prev = s[i]
+  }
+  parts.push(start === prev ? `${start}` : `${start}-${prev}`)
+  return parts.join(', ')
+}
+
 // 여정 정차지를 장소(좌표) 단위로 그룹핑 — 같은 좌표의 여러 사건을 한 정차지로 묶는다.
-// 첫 등장 순서를 유지하며, seqLabel은 **장소(정차지) 번호**(1-based). 리스트 배지와 동일 체계라
-// 지도·리스트 번호가 일치한다(같은 장소 재방문도 같은 번호 — 범위 방식은 재방문 시 부정확해 폐기).
+// 첫 등장 순서를 유지하며, seqLabel은 그 장소의 **여정(사건) 순번들**을 압축 표기(예 "6-8, 10").
+// 리스트는 사건 순번을 그대로 보여주므로 지도·리스트가 같은 여정 순서로 일치하고,
+// 같은 장소 재방문(중복)도 순번이 그대로 드러난다.
 // 반환: [{ lng, lat, seqLabel, title, isStart, isEnd, stops }]
 export function journeyStopGroups(stops) {
   const withCoord = (stops ?? []).filter((s) => s.lng != null && s.lat != null)
@@ -148,10 +166,11 @@ export function journeyStopGroups(stops) {
   }
   return order.map((k, i) => {
     const g = groups.get(k)
+    const seqs = g.stops.map((s) => s.seq).filter((v) => v != null)
     return {
       lng: g.lng,
       lat: g.lat,
-      seqLabel: String(i + 1), // 장소(정차지) 번호 — 리스트와 동일
+      seqLabel: compactSeqs(seqs) || String(i + 1), // 그 장소의 여정 순번들(예 "6-8, 10")
       title: g.stops[g.stops.length - 1].title ?? null,
       isStart: i === 0,
       isEnd: i === order.length - 1,

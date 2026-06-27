@@ -229,6 +229,13 @@ export function setupMapSources(map) {
         ['any', ['get', 'isStart'], ['get', 'isEnd']], '#ffffff',
         '#1a1a2e',
       ],
+      // 다중 순번(예 "6-8, 10")은 원을 넘쳐 지도 위로 나오므로 헤일로로 가독성 확보
+      'text-halo-color': [
+        'case',
+        ['any', ['get', 'isStart'], ['get', 'isEnd']], 'rgba(26,26,46,0.85)',
+        'rgba(255,255,255,0.92)',
+      ],
+      'text-halo-width': 1.2,
     },
   })
 
@@ -257,7 +264,7 @@ export function setupMapSources(map) {
       'text-allow-overlap': true,
       'text-ignore-placement': true,
     },
-    paint: { 'text-color': '#ffffff' },
+    paint: { 'text-color': '#ffffff', 'text-halo-color': 'rgba(26,26,46,0.9)', 'text-halo-width': 1.2 },
   })
 
   map.addSource('places-source', {
