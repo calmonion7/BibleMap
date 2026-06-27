@@ -34,12 +34,6 @@ def book_events_raw() -> dict:
 
 
 @functools.lru_cache(maxsize=1)
-def approx_years() -> dict:
-    """{bookId: {placementYear, basis, ...}} 추정연도 오버레이. 1회 로드 캐시."""
-    return _load("book_years_approx/books.json")
-
-
-@functools.lru_cache(maxsize=1)
 def event_verses() -> dict:
     """사건별 근거 구절 오버레이. 1회 로드 캐시."""
     return _load("event_verses/events.json")
