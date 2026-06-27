@@ -95,10 +95,29 @@ def get_events():
     return JSONResponse(content=_compute_events(), headers={"Cache-Control": "max-age=300"})
 
 
+@functools.lru_cache(maxsize=1)
+def _book_name_map() -> dict:
+    """theographic_id → nameKo 전수 매핑. Neo4j 1회 조회 후 캐시."""
+    driver = get_driver()
+    with driver.session() as session:
+        rows = session.run(
+            "MATCH (b:Book) WHERE b.theographic_id IS NOT NULL "
+            "RETURN b.theographic_id AS id, b.nameKo AS nameKo, b.name AS name"
+        ).data()
+    return {r["id"]: r["nameKo"] or r["name"] or r["id"] for r in rows}
+
+
 @router.get("/event/{event_id}/verses")
 def get_event_verses(event_id: str):
     """사건의 근거 구절을 권별로 그룹·정경순으로 반환(드릴다운용). 책 키 bookId는
-    /events books의 id(theographic_id)와 일치 — 프론트가 id로 join. 없으면 빈 books."""
+    /events books의 id(theographic_id)와 일치. bookNameKo 추가(SidePanel 직접 표시용)."""
     overlay = overlays.event_verses()
     entry = overlay.get(event_id, {"books": []})
-    return JSONResponse(content=entry, headers={"Cache-Control": "max-age=300"})
+    name_map = _book_name_map()
+    enriched_books = []
+    for b in entry.get("books", []):
+        enriched_books.append({**b, "bookNameKo": name_map.get(b["bookId"], b["bookId"])})
+    return JSONResponse(
+        content={"books": enriched_books},
+        headers={"Cache-Control": "max-age=300"},
+    )

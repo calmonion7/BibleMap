@@ -7,7 +7,7 @@ import { coreBounds, placesToGeoJSON, buildJourneyLineGeoJSON, buildJourneyStops
 import { EMPTY_GEOJSON, registerEventHandlers, setupMapSources } from './mapLayers'
 import { createRingController } from './mapRingController'
 
-export default function MapView({ onSelectNode, selectedNode, isVisible, journeyStops, activeStopIdx, onStopSelect }) {
+export default function MapView({ onSelectNode, selectedNode, personId, isVisible, journeyStops, activeStopIdx, onStopSelect }) {
   const mapContainer = useRef(null)
   const mapRef = useRef(null)
   const popupRef = useRef(null)
@@ -65,7 +65,11 @@ export default function MapView({ onSelectNode, selectedNode, isVisible, journey
     const map = mapRef.current
     if (!map) return
 
-    if (!selectedNode) {
+    // personId가 있으면 인물 기준 장소 fetch(장소 클릭으로 selectedNode가 바뀌어도 맵 장소 유지).
+    // personId 없으면 selectedNode 기준 기존 거동.
+    const fetchId = personId ?? selectedNode
+
+    if (!fetchId) {
       if (popupRef.current) { popupRef.current.remove(); popupRef.current = null }
       map.getSource('places-source').setData(EMPTY_GEOJSON)
       return
@@ -75,11 +79,12 @@ export default function MapView({ onSelectNode, selectedNode, isVisible, journey
     let moveEndHandler = null
     let autoExpandTimer = null
 
-    apiGet(`/node/${selectedNode}/places`, { signal: ctrl.signal })
+    apiGet(`/node/${fetchId}/places`, { signal: ctrl.signal })
       .then(({ places }) => {
         if (mapRef.current !== map) return
         setError(false)
-        setNoLocation(places.length === 0) // 위치 없는 노드면 안내, 있으면 해제 (async 콜백 — v7 OK)
+        // personId로 탐험 중이면 noLocation 안내 생략(맵 장소는 인물 기준으로 항상 있음)
+        setNoLocation(!personId && places.length === 0) // async 콜백 — v7 OK
         map.getSource('places-source').setData(placesToGeoJSON(places))
 
         if (places.length === 0) return
@@ -98,7 +103,10 @@ export default function MapView({ onSelectNode, selectedNode, isVisible, journey
         // 인물/집단 선택은 isPrimary가 없으므로 전체 장소만 한눈에 보여준다(기존 거동).
         const isMobile = window.innerWidth <= MOBILE_BREAKPOINT
         const sheet = Math.round(window.innerHeight * (SHEET_VH / 100))
-        const primary = places.find((p) => p.isPrimary)
+        // personId 탐험 중: selectedNode가 Place면 그 장소를 primary로 강조, 아니면 isPrimary 폴백
+        const primary = personId
+          ? (places.find((p) => p.id === selectedNode) || places.find((p) => p.isPrimary))
+          : places.find((p) => p.isPrimary)
 
         if (primary && expandedPlaceRef.current?.id !== primary.id) {
           // 검색·사이드패널 선택 — 화면 밖일 수 있으니 적당한 줌으로 가져온 뒤 정착 후 펼침.
@@ -141,7 +149,7 @@ export default function MapView({ onSelectNode, selectedNode, isVisible, journey
       if (moveEndHandler) map.off('moveend', moveEndHandler)
       if (autoExpandTimer) clearTimeout(autoExpandTimer)
     }
-  }, [selectedNode, mapLoaded])
+  }, [personId, selectedNode, mapLoaded])
 
   // 여정선 + 정차지 배지 업데이트 (stops prop 변경 시)
   useEffect(() => {

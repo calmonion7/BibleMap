@@ -28,7 +28,7 @@ function placePopupHTML(label, isPrimary) {
   `
 }
 
-export function registerEventHandlers(map, { collapseRing, collapseSpider, expandPlace, spiderifyPlaces, onSelectNode, popupRef, expandedPlaceRef }) {
+export function registerEventHandlers(map, { collapseRing, collapseSpider, expandPlace, spiderifyPlaces, onSelectNode, popupRef, expandedPlaceRef, onJourneyStopClick }) {
   map.on('click', 'places-circle', (e) => {
     const overlapping = map.queryRenderedFeatures(e.point, { layers: ['places-circle'] })
     if (overlapping.length > 1) {
@@ -118,6 +118,18 @@ export function registerEventHandlers(map, { collapseRing, collapseSpider, expan
     map.getCanvas().style.cursor = ''
   })
 
+  map.on('click', 'journey-stop-circle', (e) => {
+    const { seq } = e.features[0].properties
+    if (onJourneyStopClick && seq != null) onJourneyStopClick(seq - 1) // seq는 1-based → 0-based 인덱스로
+  })
+
+  map.on('mouseenter', 'journey-stop-circle', () => {
+    map.getCanvas().style.cursor = 'pointer'
+  })
+  map.on('mouseleave', 'journey-stop-circle', () => {
+    map.getCanvas().style.cursor = ''
+  })
+
   map.on('click', (e) => {
     const placeFeatures = map.queryRenderedFeatures(e.point, { layers: ['places-circle'] })
     const eventFeatures = map.queryRenderedFeatures(e.point, { layers: ['event-ring-circle'] })
@@ -131,10 +143,86 @@ export function registerEventHandlers(map, { collapseRing, collapseSpider, expan
 }
 
 export function setupMapSources(map) {
-  // Hull polygon layers — added first so they render under all markers
-  map.addSource('hull-source', { type: 'geojson', data: EMPTY_GEOJSON })
-  map.addLayer({ id: 'hull-fill', type: 'fill', source: 'hull-source', paint: { 'fill-color': '#f97316', 'fill-opacity': 0.12 } })
-  map.addLayer({ id: 'hull-outline', type: 'line', source: 'hull-source', paint: { 'line-color': '#f97316', 'line-opacity': 0.8, 'line-width': 5, 'line-dasharray': [1, 0] } })
+  // 여정선 레이어 — 마커 아래에 깔리도록 먼저 추가
+  // lineMetrics:true 는 line-gradient(방향 그라데이션)에 필수
+  map.addSource('journey-line-source', { type: 'geojson', data: EMPTY_GEOJSON, lineMetrics: true })
+  map.addLayer({
+    id: 'journey-line',
+    type: 'line',
+    source: 'journey-line-source',
+    layout: { 'line-cap': 'round', 'line-join': 'round' },
+    paint: {
+      'line-width': 3,
+      'line-opacity': 0.85,
+      // 파란색(시작) → 주황색(끝) 그라데이션으로 방향감 표현
+      'line-gradient': [
+        'interpolate', ['linear'], ['line-progress'],
+        0, '#4a90d9',
+        1, '#f5a623',
+      ],
+    },
+  })
+
+  // 여정 정차지 배지 — 순번 숫자 심볼
+  map.addSource('journey-stops-source', { type: 'geojson', data: EMPTY_GEOJSON })
+  map.addLayer({
+    id: 'journey-stop-circle',
+    type: 'circle',
+    source: 'journey-stops-source',
+    paint: {
+      'circle-radius': ['case', ['any', ['get', 'isStart'], ['get', 'isEnd']], 10, 8],
+      'circle-color': [
+        'case',
+        ['get', 'isStart'], '#4a90d9',   // 시작: 파랑
+        ['get', 'isEnd'],   '#f5a623',   // 끝: 주황
+        '#ffffff',                        // 중간: 흰색
+      ],
+      'circle-stroke-width': 2,
+      'circle-stroke-color': [
+        'case',
+        ['get', 'isStart'], '#2563a8',
+        ['get', 'isEnd'],   '#c47a0a',
+        '#7c9cfc',
+      ],
+      'circle-opacity': 0.95,
+    },
+  })
+  map.addLayer({
+    id: 'journey-stop-label',
+    type: 'symbol',
+    source: 'journey-stops-source',
+    layout: {
+      'text-field': ['to-string', ['get', 'seq']],
+      'text-font': ['Noto Sans Regular'],
+      'text-size': 10,
+      'text-anchor': 'center',
+      'text-allow-overlap': true,
+      'text-ignore-placement': true,
+    },
+    paint: {
+      'text-color': [
+        'case',
+        ['any', ['get', 'isStart'], ['get', 'isEnd']], '#ffffff',
+        '#1a1a2e',
+      ],
+    },
+  })
+
+  // 활성 정차지 강조 링
+  map.addSource('journey-active-source', { type: 'geojson', data: EMPTY_GEOJSON })
+  map.addLayer({
+    id: 'journey-active-ring',
+    type: 'circle',
+    source: 'journey-active-source',
+    paint: {
+      'circle-radius': 14,
+      'circle-color': 'transparent',
+      'circle-stroke-width': 3,
+      'circle-stroke-color': '#f5a623',
+      'circle-opacity': 0,
+      'circle-stroke-opacity': 0.9,
+    },
+  })
 
   map.addSource('places-source', {
     type: 'geojson',

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { TYPE_COLOR, TYPE_KO } from './theme'
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
@@ -42,11 +42,22 @@ function SectionHeader({ label, color, count, sectionKey, collapsed, onToggle })
   )
 }
 
-function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, onNodeLoaded, verseLang, setVerseLang }) {
+function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, onNodeLoaded, verseLang, setVerseLang, explorePersonId = null, onExplorePerson = () => {} }) {
   // 어느 nodeId의 결과인지 id로 추적 — loading은 파생, stale 응답은 무시.
   // setState는 비동기 콜백에서만 호출(react-hooks set-state-in-effect 준수).
   const [state, setState] = useState({ id: null, node: null, error: null })
   const [collapsed, setCollapsed] = useState({})
+
+  // Place 블록 — 사건 근거구절 인라인 드릴다운 (TimelineView 패턴 이식)
+  // forNodeId 키로 nodeId 변경 시 자동 무효화 — effect 내 setState 없이 리셋(set-state-in-effect 준수).
+  const [placeVerseViewRaw, setPlaceVerseView] = useState(null)   // { forNodeId, eventId, bookId, expanded } | null
+  const placeVerseView = placeVerseViewRaw?.forNodeId === nodeId ? placeVerseViewRaw : null
+  const [placeEventVerses, setPlaceEventVerses] = useState({ id: null, data: null })
+  const placeOpenEventRef = useRef(null)
+
+  // Place 블록 — 이 곳을 지난 다른 인물 칩: { forNodeId, persons } | null
+  const [placePersonsState, setPlacePersonsState] = useState(null)
+  const placePersons = placePersonsState?.forNodeId === nodeId ? placePersonsState.persons : null
 
   useEffect(() => {
     if (!nodeId) return
@@ -56,6 +67,21 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
       .catch(e => { if (!cancelled) setState({ id: nodeId, node: null, error: e?.status ?? String(e) }) })
     return () => { cancelled = true }
   }, [nodeId, onNodeLoaded])
+
+  // Place 블록 — 이 곳을 지난 큐레이션 인물 fetch
+  useEffect(() => {
+    if (!nodeId) return
+    const node = state.id === nodeId ? state.node : null
+    if (!node || node.label !== 'Place') return
+    let cancelled = false
+    const url = explorePersonId
+      ? `/place/${nodeId}/curated-persons?exclude=${explorePersonId}`
+      : `/place/${nodeId}/curated-persons`
+    apiGet(url)
+      .then(data => { if (!cancelled) setPlacePersonsState({ forNodeId: nodeId, persons: data.persons ?? [] }) })
+      .catch(() => { if (!cancelled) setPlacePersonsState({ forNodeId: nodeId, persons: [] }) })
+    return () => { cancelled = true }
+  }, [nodeId, state.id, state.node, explorePersonId])
 
   const ready = state.id === nodeId
   const node = ready ? state.node : null
@@ -90,6 +116,106 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
 
   function toggle(key) {
     setCollapsed(prev => ({ ...prev, [key]: prev[key] === false }))
+  }
+
+  // Place 블록 — 사건 근거구절 드릴다운 헬퍼 (TimelineView 패턴 이식)
+  const BOOK_COLOR = '#a78bfa'
+  const placeChipBase = {
+    display: 'inline-flex', alignItems: 'center', gap: 3,
+    fontSize: 11, padding: '1px 7px', borderRadius: 999, lineHeight: 1.7,
+    border: `1px solid ${BOOK_COLOR}`, cursor: 'pointer', fontWeight: 600,
+    background: 'rgba(167,139,250,0.10)', color: '#5b21b6',
+  }
+  const placeVerseBoxStyle = {
+    margin: '4px 0 6px 0', padding: '8px 12px',
+    background: '#f5f3ff', borderLeft: `3px solid ${BOOK_COLOR}`, borderRadius: 6,
+    fontSize: 12,
+  }
+
+  function togglePlaceVerseView(evId) {
+    if (placeVerseView && placeVerseView.eventId === evId) {
+      setPlaceVerseView(null); placeOpenEventRef.current = null; return
+    }
+    placeOpenEventRef.current = evId
+    setPlaceVerseView({ forNodeId: nodeId, eventId: evId, bookId: null, expanded: false })
+    setPlaceEventVerses({ id: evId, data: null })
+    apiGet('/event/' + evId + '/verses')
+      .then(data => {
+        if (placeOpenEventRef.current !== evId) return
+        // 첫 번째 권을 기본 선택
+        const firstBookId = (data.books || [])[0]?.bookId ?? null
+        setPlaceVerseView(prev => prev && prev.eventId === evId ? { ...prev, bookId: firstBookId } : prev)
+        setPlaceEventVerses({ id: evId, data })
+      })
+      .catch(() => { if (placeOpenEventRef.current === evId) setPlaceEventVerses({ id: evId, data: { books: [] } }) })
+  }
+
+  function renderPlaceBookChip(evId) {
+    const open = placeVerseView != null && placeVerseView.eventId === evId
+    return (
+      <button
+        onClick={(e) => { e.stopPropagation(); togglePlaceVerseView(evId) }}
+        style={{ ...placeChipBase, marginLeft: 6, ...(open ? { background: BOOK_COLOR, color: '#fff' } : null) }}
+      >📖 구절 {open ? '▾' : '▸'}</button>
+    )
+  }
+
+  function renderPlaceVerseView(evId) {
+    if (!placeVerseView || placeVerseView.eventId !== evId) return null
+    const overlay = placeEventVerses.id === evId ? placeEventVerses.data : null
+    if (overlay === null) {
+      return <div style={placeVerseBoxStyle}><Spinner size={20} color="rgba(107,40,217,0.5)" /></div>
+    }
+    const ovBooks = overlay.books || []
+    if (ovBooks.length === 0) {
+      return <div style={{ ...placeVerseBoxStyle, color: '#8b80a8' }}>표시할 구절이 없습니다</div>
+    }
+    const selBook = ovBooks.find(b => b.bookId === placeVerseView.bookId) || ovBooks[0]
+    return (
+      <div style={placeVerseBoxStyle} onClick={e => e.stopPropagation()}>
+        {ovBooks.length > 1 && (
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 6 }}>
+            {ovBooks.map(b => {
+              const sel = b.bookId === selBook.bookId
+              return (
+                <button
+                  key={b.bookId}
+                  onClick={() => setPlaceVerseView(prev => prev ? { ...prev, bookId: b.bookId, expanded: false } : prev)}
+                  style={{ ...placeChipBase, background: sel ? BOOK_COLOR : '#fff', color: sel ? '#fff' : '#5b21b6' }}
+                >{b.bookNameKo || b.bookId}</button>
+              )
+            })}
+          </div>
+        )}
+        <button
+          onClick={() => setPlaceVerseView(prev => prev ? { ...prev, expanded: !prev.expanded } : prev)}
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: 4,
+            border: 'none', background: 'none', cursor: 'pointer', padding: 0, font: 'inherit',
+            fontSize: 12, fontWeight: 600, color: '#5b21b6',
+          }}
+        >
+          {selBook.bookNameKo || selBook.bookId} {selBook.rangeLabel}
+          <span style={{ fontSize: 10 }}>{placeVerseView.expanded ? '▾' : '▸'}</span>
+        </button>
+        {placeVerseView.expanded && (
+          <div style={{ marginTop: 6, display: 'flex', flexDirection: 'column', gap: 5 }}>
+            <div>
+              <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} color={BOOK_COLOR} />
+            </div>
+            {selBook.verses.map(v => {
+              const body = (verseLang === 'ko' ? v.textKo : v.textEn) || '원문이 없습니다'
+              return (
+                <div key={v.verseID} style={{ fontSize: 12, color: '#374151', lineHeight: 1.5 }}>
+                  <span style={{ fontWeight: 600, color: '#6d28d9', marginRight: 6 }}>{v.chapter}:{v.verse}</span>
+                  {body}
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </div>
+    )
   }
 
   return (
@@ -340,7 +466,10 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
       )}
 
       {/* Place 전용 블록 — 이웃 그룹보다 위. Book의 시대적 배경·대표 구절 미러. */}
-      {node.label === 'Place' && (node.properties.background || node.properties.keyVerse) && (
+      {node.label === 'Place' && (
+        node.properties.background || node.properties.keyVerse ||
+        groups['Event']?.length > 0 || (placePersons && placePersons.length > 0)
+      ) && (
         <div style={{ padding: '12px 16px 4px', fontSize: 14 }}>
           {/* 장소 배경 */}
           {node.properties.background && (
@@ -372,6 +501,53 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                   {placeKeyVerseText && (
                     <div style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{placeKeyVerseText}</div>
                   )}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* 이 장소의 사건 */}
+          {groups['Event']?.length > 0 && (
+            <div style={{ marginBottom: 12 }}>
+              <SectionHeader label="이 장소의 사건" color={TYPE_COLOR.Event} count={groups['Event'].length} sectionKey="place-events" collapsed={collapsed} onToggle={toggle} />
+              {collapsed['place-events'] === false && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  {groups['Event'].map(ev => (
+                    <div key={ev.id}>
+                      <div style={{
+                        display: 'flex', alignItems: 'center', gap: 6,
+                        padding: '6px 8px', borderRadius: 6,
+                        borderLeft: `3px solid ${TYPE_COLOR.Event}`,
+                      }}>
+                        <span style={{ flex: 1, fontSize: 13, color: '#1a1a2e' }}>{ev.nameKoMissing ? `${ev.name} (미번역)` : ev.nameKo}</span>
+                        {renderPlaceBookChip(ev.id)}
+                      </div>
+                      {renderPlaceVerseView(ev.id)}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* 이 곳을 지난 다른 인물 */}
+          {placePersons && placePersons.length > 0 && (
+            <div style={{ marginBottom: 12 }}>
+              <SectionHeader label="이 곳을 지난 인물" color={TYPE_COLOR.Person} count={placePersons.length} sectionKey="place-persons" collapsed={collapsed} onToggle={toggle} />
+              {collapsed['place-persons'] === false && (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, paddingBottom: 4 }}>
+                  {placePersons.map(p => (
+                    <button
+                      key={p.id}
+                      onClick={() => onExplorePerson(p.id)}
+                      style={{
+                        fontSize: 12, padding: '5px 12px', borderRadius: 999,
+                        border: `1px solid ${TYPE_COLOR.Person}`,
+                        background: 'rgba(74,144,217,0.08)', color: TYPE_COLOR.Person,
+                        cursor: 'pointer', fontWeight: 600,
+                      }}
+                    >{p.nameKo}</button>
+                  ))}
                 </div>
               )}
             </div>

@@ -99,6 +99,69 @@ export function buildEventGeoJSON(events, positions, anchors) {
   }
 }
 
+// 여정선 GeoJSON — sortKey 정렬된 stops(좌표 있는 것만)를 시간순으로 연결한 LineString 1개.
+// 연속 중복 좌표는 1점으로 합침(0길이 세그먼트 방지). 2점 미만이면 빈 FeatureCollection 반환.
+// properties.coordProgress: 각 좌표의 진행도(0~1) 배열 — MapLibre line-gradient용.
+export function buildJourneyLineGeoJSON(stops) {
+  const withCoord = stops.filter((s) => s.lng != null && s.lat != null)
+  // 연속 중복 좌표 합침
+  const deduped = withCoord.reduce((acc, s) => {
+    const prev = acc[acc.length - 1]
+    if (prev && prev.lng === s.lng && prev.lat === s.lat) return acc
+    acc.push(s)
+    return acc
+  }, [])
+  if (deduped.length < 2) return { type: 'FeatureCollection', features: [] }
+  const coords = deduped.map((s) => [s.lng, s.lat])
+  // 누적 거리 기반 진행도 계산(선형 거리)
+  const dists = [0]
+  for (let i = 1; i < coords.length; i++) {
+    const dx = coords[i][0] - coords[i - 1][0]
+    const dy = coords[i][1] - coords[i - 1][1]
+    dists.push(dists[i - 1] + Math.hypot(dx, dy))
+  }
+  const total = dists[dists.length - 1]
+  const coordProgress = total > 0 ? dists.map((d) => d / total) : dists.map((_, i) => i / (dists.length - 1))
+  return {
+    type: 'FeatureCollection',
+    features: [{
+      type: 'Feature',
+      geometry: { type: 'LineString', coordinates: coords },
+      properties: { coordProgress },
+    }],
+  }
+}
+
+// 여정 정차지 GeoJSON — 좌표 있는 stops를 Point Feature로.
+// 연속 동일 좌표는 마지막 stop 하나로 합침(배지 중복 방지).
+// properties: seq(1-based), title, isStart(첫 Feature), isEnd(마지막 Feature).
+export function buildJourneyStopsGeoJSON(stops) {
+  const withCoord = stops.filter((s) => s.lng != null && s.lat != null)
+  // 연속 동일 좌표 → 마지막 것 우선(단, 이미 나온 적 없는 좌표키라면 seq는 첫 등장 기준)
+  const coKey = (s) => `${s.lng},${s.lat}`
+  const seen = []
+  const dedupedMap = new Map() // coKey → stop (마지막 것 덮어씀)
+  for (const s of withCoord) {
+    const k = coKey(s)
+    if (!dedupedMap.has(k)) seen.push(k)
+    dedupedMap.set(k, s)
+  }
+  const deduped = seen.map((k) => dedupedMap.get(k))
+  return {
+    type: 'FeatureCollection',
+    features: deduped.map((s, i) => ({
+      type: 'Feature',
+      geometry: { type: 'Point', coordinates: [s.lng, s.lat] },
+      properties: {
+        seq: i + 1,
+        title: s.title ?? null,
+        isStart: i === 0,
+        isEnd: i === deduped.length - 1,
+      },
+    })),
+  }
+}
+
 export function buildSpiderGeoJSON(features, positions, anchors) {
   return {
     type: 'FeatureCollection',

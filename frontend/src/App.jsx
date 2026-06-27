@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { Map, Clock, BookOpen } from 'lucide-react'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
@@ -33,22 +33,26 @@ function App() {
     handleNodeLoaded, selectNode, selectNodeFresh, goBack, closePanel,
   } = useNodeSelection()
 
+  // 탐험 중인 인물 — selectedNode와 분리해 장소 클릭 시에도 여정·맵 장소 기준 유지
+  const [explorePersonId, setExplorePersonId] = useState(null)
+  const [explorePersonName, setExplorePersonName] = useState(null)
+
   // 여정 데이터 — 인물 선택 시 한 번 fetch, MapView·JourneyList 공유
   const [journeyStops, setJourneyStops] = useState(null)
   const [activeStopIdx, setActiveStopIdx] = useState(null)
 
   useEffect(() => {
     const ctrl = new AbortController()
-    if (!selectedNode || selectedNodeMeta?.label !== 'Person') {
+    if (!explorePersonId) {
       // 인물 미선택 → 비동기로 초기화(effect 동기 setState 금지 규칙 회피)
       Promise.resolve().then(() => { setJourneyStops(null); setActiveStopIdx(null) })
       return () => ctrl.abort()
     }
-    apiGet(`/person/${selectedNode}/journey`, { signal: ctrl.signal })
+    apiGet(`/person/${explorePersonId}/journey`, { signal: ctrl.signal })
       .then(({ stops }) => { setJourneyStops(stops); setActiveStopIdx(null) }) // async 콜백 — v7 OK
       .catch((e) => { if (e?.name !== 'AbortError') setJourneyStops([]) })
     return () => ctrl.abort()
-  }, [selectedNode, selectedNodeMeta?.label])
+  }, [explorePersonId])
 
   useEffect(() => {
     const mq = window.matchMedia(MOBILE_QUERY)
@@ -60,12 +64,29 @@ function App() {
   // 허브에서 인물 카드 클릭 — 탐험으로 전환
   function handleSelectPerson(id) {
     selectNodeFresh(id)
+    setExplorePersonId(id)
     setActiveStage('explore')
   }
+
+  // SidePanel에서 "이 곳을 지난 다른 인물" 칩 클릭 — 같은 탐험 단계에서 인물 전환
+  function handleExplorePerson(id) {
+    setExplorePersonId(id)
+    selectNodeFresh(id)
+  }
+
+  // SidePanel onNodeLoaded — 참조 안정화(useCallback). 인라인 화살표면 매 렌더 새 ref가 되어
+  // SidePanel의 /node fetch effect(deps에 onNodeLoaded)가 매번 재실행→setCollapsed({}) 리셋으로
+  // 섹션이 안 펼쳐지는 버그가 난다. explorePersonId 변경 시에만 갱신.
+  const handleSidePanelNodeLoaded = useCallback((data) => {
+    handleNodeLoaded(data)
+    if (data.label === 'Person' && data.id === explorePersonId) setExplorePersonName(data.nameKo)
+  }, [handleNodeLoaded, explorePersonId])
 
   // 탐험에서 "다른 인물" 클릭 — 허브로 복귀, 선택 해제
   function handleBackToHub() {
     closePanel()
+    setExplorePersonId(null)
+    setExplorePersonName(null)
     setActiveStage('hub')
   }
 
@@ -92,7 +113,7 @@ function App() {
 
   // 탐험 단계 내비게이션 바
   function renderExploreNav() {
-    const personName = selectedNodeMeta?.label === 'Person' ? selectedNodeMeta.nameKo : null
+    const personName = explorePersonName
     return (
       <div style={{
         height: NAV_H, flexShrink: 0,
@@ -230,6 +251,7 @@ function App() {
                 <MapView
                   onSelectNode={selectNode}
                   selectedNode={selectedNode}
+                  personId={explorePersonId}
                   isVisible={exploreView === 'map'}
                   journeyStops={journeyStops}
                   activeStopIdx={activeStopIdx}
@@ -285,8 +307,8 @@ function App() {
                 onSelectNode={selectNode}
                 selectedNode={selectedNode}
                 bookFilter={selectedNodeMeta?.label === 'Book' ? selectedNodeMeta : null}
-                personFilter={selectedNodeMeta?.label === 'Person' ? personEventIds : null}
-                personName={selectedNodeMeta?.label === 'Person' ? selectedNodeMeta.nameKo : null}
+                personFilter={explorePersonId != null ? personEventIds : null}
+                personName={explorePersonName}
                 verseLang={verseLang}
                 setVerseLang={setVerseLang}
               />
@@ -335,7 +357,17 @@ function App() {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}
           >×</button>
-          <SidePanel nodeId={selectedNode} onSelectNode={selectNode} onBack={goBack} canGoBack={history.length > 0} onNodeLoaded={handleNodeLoaded} verseLang={verseLang} setVerseLang={setVerseLang} />
+          <SidePanel
+            nodeId={selectedNode}
+            onSelectNode={selectNode}
+            onBack={goBack}
+            canGoBack={history.length > 0}
+            onNodeLoaded={handleSidePanelNodeLoaded}
+            verseLang={verseLang}
+            setVerseLang={setVerseLang}
+            explorePersonId={explorePersonId}
+            onExplorePerson={handleExplorePerson}
+          />
         </div>
       )}
 

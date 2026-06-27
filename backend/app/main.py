@@ -2,7 +2,7 @@ import logging
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routes import nodes, events, search, books
+from .routes import nodes, events, search, books, persons, journey, places
 
 
 @asynccontextmanager
@@ -33,3 +33,6 @@ app.include_router(nodes.router)
 app.include_router(events.router)
 app.include_router(search.router)
 app.include_router(books.router)
+app.include_router(persons.router)
+app.include_router(journey.router)
+app.include_router(places.router)
