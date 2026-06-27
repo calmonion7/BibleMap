@@ -1,5 +1,5 @@
 ---
-last_mapped_commit: 14e0a78c3e0ab7fc7d960c4cabdf3eab3fc297e6
+last_mapped_commit: 3837b4f9339ed2efb82a6b72cc1124a3340e2b9c
 mapped: 2026-06-27
 ---
 
@@ -14,6 +14,7 @@ BibleMap의 외부 연동은 두 시점으로 나뉜다. **런타임**(앱 서�
 - 컨테이너: `neo4j:5` 이미지(`docker-compose.yml`). bolt(7687)·HTTP(7474)는 `127.0.0.1`에만 바인딩. 인증은 `NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}`.
 - 부팅 시 `backend/app/main.py` lifespan이 라벨별 `theographic_id` 인덱스를 생성. 노드 식별자는 전반에 걸쳐 `theographic_id` 속성으로 매칭(`MATCH/MERGE (n {theographic_id: ...})`).
 - 데이터 적재 스크립트들도 동일 드라이버로 호스트의 Neo4j에 직접 쓴다(`backend/scripts/load_*.py`, `inject_*.py`, `enrich_place_coords.py`).
+- 인물 우선 2단계 라우트 중 `backend/app/routes/journey.py`(`/person/{id}/journey`)만 런타임에 Neo4j를 조회한다(`Place` 노드의 `longitude`/`latitude` 배치 조회). `persons.py`·`places.py`는 Neo4j 미접속 — `data/person_events/<slug>.json` 파일만으로 응답을 구성한다.
 
 ## Map Tiles & Glyphs (런타임, 프론트)
 

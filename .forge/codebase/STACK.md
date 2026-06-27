@@ -1,5 +1,5 @@
 ---
-last_mapped_commit: 14e0a78c3e0ab7fc7d960c4cabdf3eab3fc297e6
+last_mapped_commit: 3837b4f9339ed2efb82a6b72cc1124a3340e2b9c
 mapped: 2026-06-27
 ---
 
@@ -27,6 +27,7 @@ BibleMap은 단일 저장소(monorepo)로, React 프론트엔드 + FastAPI 백�
 - ESLint 설정(`frontend/eslint.config.js`): flat config. `js.configs.recommended` + react-hooks + react-refresh(vite). `dist`는 글로벌 무시, 대상은 `**/*.{js,jsx}`, 브라우저 globals.
 - 엔트리: `frontend/index.html`이 `/src/main.jsx`를 모듈 스크립트로 로드. `<title>BibleMap</title>`, 파비콘 `/favicon.svg`.
 - 빌드 산출물은 nginx 컨테이너에 `frontend/dist`를 읽기 전용 마운트해서 서빙(`docker-compose.yml`) — HMR 아님. 로컬 검증 전 `npm run build` 필요.
+- 소스 구성(`frontend/src/`): 셸 `main.jsx`·`App.jsx`. 지도 `MapView.jsx`(컨테이너)·`mapGeo.js`·`mapLayers.js`·`mapRingController.js`. 인물 우선 2단계 뷰 `PersonHub.jsx`·`JourneyList.jsx`. 보조 뷰/패널 `BibleOverviewView.jsx`·`TimelineView.jsx`·`SidePanel.jsx`·`VerseLangTabs.jsx`·`Spinner.jsx`. 공유 유틸 `api.js`(fetch 클라이언트)·`constants.js`(`MOBILE_BREAKPOINT=768`, `SHEET_VH=55`)·`theme.js`·`useNodeSelection.js`(훅). 스타일 `index.css`.
 
 ## Backend (FastAPI + uvicorn)
 
@@ -34,12 +35,15 @@ BibleMap은 단일 저장소(monorepo)로, React 프론트엔드 + FastAPI 백�
 - 앱 진입점: `backend/app/main.py`의 `app = FastAPI(lifespan=...)`.
   - `lifespan`에서 부팅 시 Neo4j에 `Person/Place/Event/PeopleGroup/Book` 라벨별 `theographic_id` 인덱스를 `CREATE INDEX ... IF NOT EXISTS`로 보장하며, 실패해도 로깅 후 계속 진행.
   - CORS: `CORSMiddleware`로 `allow_origins=["*"]`, `allow_methods=["GET"]`, `allow_credentials=False`.
-  - 라우터 포함: `nodes`, `events`, `search`, `books` (`backend/app/routes/`).
+  - 라우터 포함: `nodes`, `events`, `search`, `books`, `persons`, `journey`, `places` (`backend/app/routes/`).
 - 라우트 표면(모두 GET):
   - `backend/app/routes/nodes.py`: `/person/{node_id}/event-ids`, `/node/{node_id}/places`, `/node/{node_id}/neighbors/grouped`, `/node/{node_id}`.
   - `backend/app/routes/events.py`: `/events`, `/event/{event_id}/verses`.
   - `backend/app/routes/search.py`: `/search?q=`.
   - `backend/app/routes/books.py`: `/books-overview`.
+  - `backend/app/routes/persons.py`: `/persons/curated`. Neo4j 미조회 — `data/person_events/<slug>.json` 파일만으로 결정적 구성(slug 매핑 상수 `_ERA`·`_NAME_KO` 내장, `functools.lru_cache`).
+  - `backend/app/routes/journey.py`: `/person/{person_id}/journey`. 파일(`person_events`)로 사건 시퀀스 + Neo4j에서 `Place` 좌표 배치 조회.
+  - `backend/app/routes/places.py`: `/place/{place_id}/curated-persons`(쿼리 `exclude`). 파일만으로 결정적 필터(`persons.py`와 동일 상수 재선언).
 - DB 드라이버: `backend/app/db.py`의 `get_driver()`가 `neo4j.GraphDatabase.driver`를 지연 싱글톤으로 생성. URI/USER/PASSWORD는 환경변수(`NEO4J_URI` 기본 `bolt://localhost:7687`, `NEO4J_USER` 기본 `neo4j`, `NEO4J_PASSWORD` 필수).
 - 오버레이 로더: `backend/app/overlays.py`가 `DATA_DIR`(기본 `/app/data`) 또는 저장소 `data/` 아래의 JSON을 `functools.lru_cache`로 1회 로드. `book_events/books.json`, `event_verses/events.json`.
 - 컨테이너 실행 커맨드(`backend/Dockerfile`): `uvicorn app.main:app --host 0.0.0.0 --port 8000`.
