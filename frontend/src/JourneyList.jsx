@@ -48,7 +48,8 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect }) {
         const k = hasCoord ? coKey(stop) : null
         const dedupIdx = k != null ? keyToIdx.get(k) : null
         const isActive = dedupIdx != null && dedupIdx === activeStopIdx
-        const seq = stop.seq
+        // 장소(정차지) 번호 — 지도 배지와 동일 체계(같은 장소는 같은 번호, 재방문도 동일)
+        const stopNo = dedupIdx != null ? dedupIdx + 1 : null
 
         return (
           <div
@@ -78,13 +79,13 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect }) {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: 10, fontWeight: 700,
               marginTop: 1,
-              background: seq == null ? 'rgba(255,255,255,0.1)'
+              background: stopNo == null ? 'rgba(255,255,255,0.1)'
                 : isActive ? '#f5a623'
                 : 'rgba(74,144,217,0.7)',
-              color: seq == null ? 'rgba(255,255,255,0.3)' : 'white',
+              color: stopNo == null ? 'rgba(255,255,255,0.3)' : 'white',
               border: isActive ? '2px solid #f5a623' : '2px solid transparent',
             }}>
-              {seq != null ? seq : '·'}
+              {stopNo != null ? stopNo : '·'}
             </div>
 
             {/* 사건명 + 장소명 */}

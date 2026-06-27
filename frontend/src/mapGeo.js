@@ -132,31 +132,47 @@ export function buildJourneyLineGeoJSON(stops) {
   }
 }
 
-// 여정 정차지 GeoJSON — 좌표 있는 stops를 Point Feature로.
-// 연속 동일 좌표는 마지막 stop 하나로 합침(배지 중복 방지).
-// properties: seq(1-based), title, isStart(첫 Feature), isEnd(마지막 Feature).
-export function buildJourneyStopsGeoJSON(stops) {
-  const withCoord = stops.filter((s) => s.lng != null && s.lat != null)
-  // 연속 동일 좌표 → 마지막 것 우선(단, 이미 나온 적 없는 좌표키라면 seq는 첫 등장 기준)
+// 여정 정차지를 장소(좌표) 단위로 그룹핑 — 같은 좌표의 여러 사건을 한 정차지로 묶는다.
+// 첫 등장 순서를 유지하며, seqLabel은 **장소(정차지) 번호**(1-based). 리스트 배지와 동일 체계라
+// 지도·리스트 번호가 일치한다(같은 장소 재방문도 같은 번호 — 범위 방식은 재방문 시 부정확해 폐기).
+// 반환: [{ lng, lat, seqLabel, title, isStart, isEnd, stops }]
+export function journeyStopGroups(stops) {
+  const withCoord = (stops ?? []).filter((s) => s.lng != null && s.lat != null)
   const coKey = (s) => `${s.lng},${s.lat}`
-  const seen = []
-  const dedupedMap = new Map() // coKey → stop (마지막 것 덮어씀)
+  const order = []
+  const groups = new Map() // coKey → { lng, lat, stops: [] }
   for (const s of withCoord) {
     const k = coKey(s)
-    if (!dedupedMap.has(k)) seen.push(k)
-    dedupedMap.set(k, s)
+    if (!groups.has(k)) { order.push(k); groups.set(k, { lng: s.lng, lat: s.lat, stops: [] }) }
+    groups.get(k).stops.push(s)
   }
-  const deduped = seen.map((k) => dedupedMap.get(k))
+  return order.map((k, i) => {
+    const g = groups.get(k)
+    return {
+      lng: g.lng,
+      lat: g.lat,
+      seqLabel: String(i + 1), // 장소(정차지) 번호 — 리스트와 동일
+      title: g.stops[g.stops.length - 1].title ?? null,
+      isStart: i === 0,
+      isEnd: i === order.length - 1,
+      stops: g.stops,
+    }
+  })
+}
+
+// 여정 정차지 GeoJSON — 좌표 있는 stops를 장소 단위 Point Feature로.
+// properties: seqLabel(장소 번호, 리스트와 동일), title, isStart, isEnd.
+export function buildJourneyStopsGeoJSON(stops) {
   return {
     type: 'FeatureCollection',
-    features: deduped.map((s, i) => ({
+    features: journeyStopGroups(stops).map((g) => ({
       type: 'Feature',
-      geometry: { type: 'Point', coordinates: [s.lng, s.lat] },
+      geometry: { type: 'Point', coordinates: [g.lng, g.lat] },
       properties: {
-        seq: i + 1,
-        title: s.title ?? null,
-        isStart: i === 0,
-        isEnd: i === deduped.length - 1,
+        seqLabel: g.seqLabel,
+        title: g.title,
+        isStart: g.isStart,
+        isEnd: g.isEnd,
       },
     })),
   }

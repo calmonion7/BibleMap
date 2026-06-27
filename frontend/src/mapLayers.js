@@ -216,7 +216,7 @@ export function setupMapSources(map) {
     type: 'symbol',
     source: 'journey-stops-source',
     layout: {
-      'text-field': ['to-string', ['get', 'seq']],
+      'text-field': ['get', 'seqLabel'],
       'text-font': ['Noto Sans Regular'],
       'text-size': 10,
       'text-anchor': 'center',
@@ -250,9 +250,9 @@ export function setupMapSources(map) {
     type: 'symbol',
     source: 'journey-active-source',
     layout: {
-      'text-field': ['to-string', ['get', 'seq']],
+      'text-field': ['get', 'seqLabel'],
       'text-font': ['Noto Sans Regular'],
-      'text-size': 12,
+      'text-size': 11,
       'text-anchor': 'center',
       'text-allow-overlap': true,
       'text-ignore-placement': true,

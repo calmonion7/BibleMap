@@ -3,7 +3,7 @@ import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { apiGet } from './api'
 import { MOBILE_BREAKPOINT, SHEET_VH } from './constants'
-import { coreBounds, placesToGeoJSON, buildJourneyLineGeoJSON, buildJourneyStopsGeoJSON } from './mapGeo'
+import { coreBounds, placesToGeoJSON, buildJourneyLineGeoJSON, buildJourneyStopsGeoJSON, journeyStopGroups } from './mapGeo'
 import { EMPTY_GEOJSON, registerEventHandlers, setupMapSources } from './mapLayers'
 import { createRingController } from './mapRingController'
 
@@ -171,28 +171,19 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
       map.getSource('journey-active-source').setData(EMPTY_GEOJSON)
       return
     }
-    // stops 중 좌표 있는 것만 배지에 표시 → 동일 좌표 전체중복 제거한 deduped 기준 인덱스
-    // buildJourneyStopsGeoJSON와 동일 로직으로 deduped 배열 재구성
-    const withCoord = journeyStops.filter((s) => s.lng != null && s.lat != null)
-    const coKey = (s) => `${s.lng},${s.lat}`
-    const seen = []
-    const dedupedMap = new Map()
-    for (const s of withCoord) {
-      const k = coKey(s)
-      if (!dedupedMap.has(k)) seen.push(k)
-      dedupedMap.set(k, s)
-    }
-    const deduped = seen.map((k) => dedupedMap.get(k))
-    const stop = deduped[activeStopIdx]
-    if (!stop) {
+    // 장소 단위 그룹(좌표 중복 합침) — activeStopIdx는 이 그룹 기준 인덱스(JourneyList와 동일).
+    // seqLabel은 그 장소 사건번호 범위(예 "6-8")로 지도 배지와 일치.
+    const groups = journeyStopGroups(journeyStops)
+    const g = groups[activeStopIdx]
+    if (!g) {
       map.getSource('journey-active-source').setData(EMPTY_GEOJSON)
       return
     }
     map.getSource('journey-active-source').setData({
       type: 'FeatureCollection',
-      features: [{ type: 'Feature', geometry: { type: 'Point', coordinates: [stop.lng, stop.lat] }, properties: { seq: activeStopIdx + 1 } }],
+      features: [{ type: 'Feature', geometry: { type: 'Point', coordinates: [g.lng, g.lat] }, properties: { seqLabel: g.seqLabel } }],
     })
-    map.easeTo({ center: [stop.lng, stop.lat], duration: 400 })
+    map.easeTo({ center: [g.lng, g.lat], duration: 400 })
   }, [activeStopIdx, mapLoaded, journeyStops])
 
   useEffect(() => {
