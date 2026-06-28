@@ -6,7 +6,6 @@ import TimelineView from './TimelineView'
 import BibleOverviewView from './BibleOverviewView'
 import PersonHub from './PersonHub'
 import JourneyList from './JourneyList'
-import EventVerses from './EventVerses'
 import { MOBILE_BREAKPOINT, SHEET_VH } from './constants'
 import { useNodeSelection } from './useNodeSelection'
 import { apiGet } from './api'
@@ -41,9 +40,6 @@ function App() {
   // 여정 데이터 — 인물 선택 시 한 번 fetch, MapView·JourneyList 공유
   const [journeyStops, setJourneyStops] = useState(null)
   const [activeStopIdx, setActiveStopIdx] = useState(null)
-  // 모바일 여정 칩 스트립 — 활성 칩을 가운데로 스크롤하기 위한 ref
-  const mobileStripRef = useRef(null)
-  const mobileActiveChipRef = useRef(null)
 
   useEffect(() => {
     const ctrl = new AbortController()
@@ -64,18 +60,6 @@ function App() {
     mq.addEventListener('change', onChange)
     return () => mq.removeEventListener('change', onChange)
   }, [])
-
-  // 모바일: 활성 정차지 칩을 스트립 가운데로 스크롤 — 선택 후 다음 정차지를 바로 누를 수 있게.
-  useEffect(() => {
-    if (!isMobile) return
-    const strip = mobileStripRef.current
-    const chip = mobileActiveChipRef.current
-    if (!strip || !chip) return
-    const sr = strip.getBoundingClientRect()
-    const cr = chip.getBoundingClientRect()
-    const delta = (cr.left + cr.width / 2) - (sr.left + sr.width / 2)
-    strip.scrollTo({ left: strip.scrollLeft + delta, behavior: 'smooth' })
-  }, [activeStopIdx, isMobile, journeyStops])
 
   // 허브에서 인물 카드 클릭 — 탐험으로 전환
   function handleSelectPerson(id) {
@@ -262,6 +246,7 @@ function App() {
                     onStopSelect={setActiveStopIdx}
                     verseLang={verseLang}
                     setVerseLang={setVerseLang}
+                    personName={explorePersonName}
                   />
                 </div>
               )}
@@ -275,67 +260,24 @@ function App() {
                   activeStopIdx={activeStopIdx}
                   onStopSelect={setActiveStopIdx}
                 />
-                {/* 모바일 여정 리스트 — 하단 미니 수평 스크롤 + 활성 정차지 구절(스트립 위) */}
-                {isMobile && journeyStops && journeyStops.length > 0 && (() => {
-                  const mobileActiveStop = journeyStops.find((s) => s.seq != null && s.seq - 1 === activeStopIdx)
-                  return (
+                {/* 모바일 여정 — 하단 세로 아코디언 트리(데스크톱과 동일 JourneyList 재사용): 여정 > 사건 > 구절 */}
+                {isMobile && journeyStops && journeyStops.length > 0 && (
                   <div style={{
                     position: 'absolute', bottom: 0, left: 0, right: 0,
-                    zIndex: 5,
-                    display: 'flex', flexDirection: 'column',
+                    height: '42dvh', zIndex: 5,
+                    borderTop: '1px solid rgba(255,255,255,0.12)',
+                    boxShadow: '0 -3px 12px rgba(0,0,0,0.3)',
                   }}>
-                  {mobileActiveStop && (
-                    <div style={{
-                      maxHeight: '32vh', overflowY: 'auto',
-                      background: 'rgba(20,22,50,0.94)',
-                      borderTop: '1px solid rgba(255,255,255,0.1)',
-                      padding: '4px 10px 8px',
-                    }}>
-                      <EventVerses eventId={mobileActiveStop.eventId} verseLang={verseLang} setVerseLang={setVerseLang} />
-                    </div>
-                  )}
-                  <div ref={mobileStripRef} style={{
-                    maxHeight: 110,
-                    background: 'rgba(20,22,50,0.94)',
-                    overflowX: 'auto', overflowY: 'hidden',
-                    display: 'flex', alignItems: 'stretch',
-                    borderTop: '1px solid rgba(255,255,255,0.1)',
-                  }}>
-                    {journeyStops.filter((s) => s.lng != null).map((stop, i) => {
-                      const isActive = stop.seq != null && stop.seq - 1 === activeStopIdx
-                      return (
-                        <div
-                          key={stop.eventId ?? i}
-                          ref={isActive ? mobileActiveChipRef : null}
-                          onClick={() => { if (stop.seq != null) setActiveStopIdx(stop.seq - 1) }}
-                          style={{
-                            flexShrink: 0,
-                            padding: '8px 12px',
-                            borderRight: '1px solid rgba(255,255,255,0.07)',
-                            cursor: 'pointer',
-                            background: isActive ? 'rgba(124,156,252,0.2)' : 'transparent',
-                            display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 2,
-                            minWidth: 110,
-                          }}
-                        >
-                          <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                            <span style={{ fontSize: 10, color: isActive ? '#f5a623' : 'rgba(74,144,217,0.8)', fontWeight: 700 }}>{stop.seq}</span>
-                            <span style={{ fontSize: 11, color: isActive ? '#f5a623' : 'rgba(255,255,255,0.8)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 85 }}>
-                              {stop.nameKo || stop.title}
-                            </span>
-                          </div>
-                          {stop.placeNameKo && (
-                            <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.35)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 96 }}>
-                              {stop.placeNameKo}
-                            </span>
-                          )}
-                        </div>
-                      )
-                    })}
+                    <JourneyList
+                      stops={journeyStops}
+                      activeStopIdx={activeStopIdx}
+                      onStopSelect={setActiveStopIdx}
+                      verseLang={verseLang}
+                      setVerseLang={setVerseLang}
+                      personName={explorePersonName}
+                    />
                   </div>
-                  </div>
-                  )
-                })()}
+                )}
               </div>
             </div>
             <div style={{ display: exploreView === 'timeline' ? 'block' : 'none', height: '100%' }}>

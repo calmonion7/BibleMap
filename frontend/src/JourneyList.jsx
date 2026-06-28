@@ -6,7 +6,7 @@
 import { useEffect, useRef, useState } from 'react'
 import EventVerses from './EventVerses'
 
-export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseLang, setVerseLang }) {
+export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseLang, setVerseLang, personName }) {
   const listRef = useRef(null)
   const activeRef = useRef(null)
   // 펼친 사건 집합(eventId) — 행마다 독립 토글, 지도 선택과 무관.
@@ -51,8 +51,14 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
         borderRight: '1px solid rgba(255,255,255,0.07)',
       }}
     >
-      <div style={{ padding: '12px 14px 6px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
-        <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 11, letterSpacing: 0.5 }}>여정 순서</span>
+      {/* 헤더 — 여정 = 사건 묶음임을 명시(여정 > 사건 N개 > 각 사건의 구절) */}
+      <div style={{ padding: '12px 14px 8px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div style={{ color: '#fff', fontSize: 13, fontWeight: 700 }}>
+          {personName ? `${personName}의 여정` : '여정'}
+        </div>
+        <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: 10, marginTop: 2 }}>
+          사건 {stops.length}개 · 사건을 누르면 📖 구절
+        </div>
       </div>
       {stops.map((stop, rawIdx) => {
         const hasCoord = stop.lng != null && stop.lat != null
