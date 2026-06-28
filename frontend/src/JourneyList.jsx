@@ -135,20 +135,24 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
                 )}
               </div>
 
-              {/* 펼침 토글 표시 — 구절 있는 사건 행 */}
+              {/* 펼침 토글 — 구절 있는 사건 행. 또렷한 보라 칩(SidePanel '📖 구절' 패턴). */}
               {expandable && (
                 <span style={{
                   flexShrink: 0,
-                  fontSize: 11,
-                  marginTop: 2,
-                  color: expanded ? '#a78bfa' : 'rgba(255,255,255,0.4)',
-                }}>{expanded ? '▾' : '▸'}</span>
+                  display: 'inline-flex', alignItems: 'center', gap: 3,
+                  fontSize: 10, fontWeight: 700,
+                  padding: '2px 7px', borderRadius: 999, lineHeight: 1.4,
+                  marginTop: 1,
+                  border: '1px solid #a78bfa',
+                  background: expanded ? '#a78bfa' : 'rgba(167,139,250,0.14)',
+                  color: expanded ? '#fff' : '#c4b5fd',
+                }}>📖 {expanded ? '▾' : '▸'}</span>
               )}
             </div>
 
-            {/* 펼친 사건의 근거구절 — 각 사건 독립 인라인 */}
+            {/* 펼친 사건의 근거구절 — 사건 아래에 들여써 "여정 > 사건 > 구절" 계층을 드러냄 */}
             {expanded && (
-              <div onClick={(e) => e.stopPropagation()} style={{ padding: '2px 12px 10px' }}>
+              <div onClick={(e) => e.stopPropagation()} style={{ padding: '0 12px 10px 30px' }}>
                 <EventVerses eventId={stop.eventId} verseLang={verseLang} setVerseLang={setVerseLang} />
               </div>
             )}
