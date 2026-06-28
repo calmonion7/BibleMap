@@ -1,17 +1,18 @@
-// 사이드 사건 리스트 — 여정 stops를 시간순으로 표시.
+// 사이드 사건 리스트 — 여정 stops를 시간순으로 "여정 > 사건 > 구절" 아코디언 트리로 표시.
 // props: stops(배열), activeStopIdx(number|null), onStopSelect(idx => void),
-//        verseLang/setVerseLang(활성 정차지 근거구절 표시용)
-// activeStopIdx는 buildJourneyStopsGeoJSON 기준 deduped 0-based 인덱스.
+//        verseLang/setVerseLang(사건 근거구절 표시용)
+// 각 사건을 독립적으로 펼침(여러 개 동시 가능). activeStopIdx(지도 활성·deduped 인덱스)는
+// 주황 하이라이트·자동 스크롤에만 쓰고, 구절 펼침은 expandedIds(사건별)로 분리한다.
 import { useEffect, useRef, useState } from 'react'
 import EventVerses from './EventVerses'
 
 export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseLang, setVerseLang }) {
   const listRef = useRef(null)
   const activeRef = useRef(null)
-  // 사용자가 직접 클릭한 정차지(eventId) — 같은 좌표 그룹에서 구절을 단 하나만 펼치기 위함.
-  const [openEventId, setOpenEventId] = useState(null)
+  // 펼친 사건 집합(eventId) — 행마다 독립 토글, 지도 선택과 무관.
+  const [expandedIds, setExpandedIds] = useState(() => new Set())
 
-  // 활성 항목 자동 스크롤
+  // 지도 활성 항목으로 자동 스크롤
   useEffect(() => {
     if (activeRef.current && listRef.current) {
       activeRef.current.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
@@ -25,21 +26,20 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
   const withCoord = stops.filter((s) => s.lng != null && s.lat != null)
   const coKey = (s) => `${s.lng},${s.lat}`
   const seen = []
-  const dedupedMap = new Map()
   for (const s of withCoord) {
     const k = coKey(s)
-    if (!dedupedMap.has(k)) seen.push(k)
-    dedupedMap.set(k, s)
+    if (!seen.includes(k)) seen.push(k)
   }
-  // stopKey → deduped index
   const keyToIdx = new Map(seen.map((k, i) => [k, i]))
 
-  // 활성 그룹(같은 좌표 정차지들) 중 구절을 펼칠 단 하나의 eventId —
-  // 사용자가 직접 클릭한 것, 없으면(지도 배지·모바일 등 외부 활성화) 그룹의 첫 정차지.
-  const activeGroupStops = withCoord.filter((s) => keyToIdx.get(coKey(s)) === activeStopIdx)
-  const shownEventId = activeGroupStops.some((s) => s.eventId === openEventId)
-    ? openEventId
-    : (activeGroupStops[0]?.eventId ?? null)
+  const toggle = (eventId) => {
+    setExpandedIds((prev) => {
+      const next = new Set(prev)
+      if (next.has(eventId)) next.delete(eventId)
+      else next.add(eventId)
+      return next
+    })
+  }
 
   return (
     <div
@@ -59,6 +59,8 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
         const k = hasCoord ? coKey(stop) : null
         const dedupIdx = k != null ? keyToIdx.get(k) : null
         const isActive = dedupIdx != null && dedupIdx === activeStopIdx
+        const expandable = stop.eventId != null
+        const expanded = expandable && expandedIds.has(stop.eventId)
         // 사건(여정) 순번 — 지도 배지는 같은 장소의 순번들을 압축(예 "6-8, 10")으로 보여줘 일치
         const seq = stop.seq
 
@@ -74,17 +76,19 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
           >
             <div
               onClick={() => {
-                if (!hasCoord || dedupIdx == null) return
-                onStopSelect(dedupIdx)
-                setOpenEventId(stop.eventId)
+                if (!expandable) return
+                const willExpand = !expandedIds.has(stop.eventId)
+                toggle(stop.eventId)
+                // 펼칠 때만 지도 동기화(접을 때 카메라 이동 방지)
+                if (willExpand && hasCoord && dedupIdx != null) onStopSelect(dedupIdx)
               }}
               style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: 10,
                 padding: '9px 14px',
-                cursor: hasCoord ? 'pointer' : 'default',
-                opacity: hasCoord ? 1 : 0.45,
+                cursor: expandable ? 'pointer' : 'default',
+                opacity: hasCoord ? 1 : 0.55,
               }}
             >
               {/* 순번 배지 */}
@@ -108,7 +112,7 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{
                   fontSize: 13,
-                  color: isActive ? '#f5a623' : hasCoord ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.45)',
+                  color: isActive ? '#f5a623' : hasCoord ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.6)',
                   fontWeight: isActive ? 600 : 400,
                   lineHeight: 1.4,
                   overflow: 'hidden',
@@ -130,10 +134,20 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
                   </div>
                 )}
               </div>
+
+              {/* 펼침 토글 표시 — 구절 있는 사건 행 */}
+              {expandable && (
+                <span style={{
+                  flexShrink: 0,
+                  fontSize: 11,
+                  marginTop: 2,
+                  color: expanded ? '#a78bfa' : 'rgba(255,255,255,0.4)',
+                }}>{expanded ? '▾' : '▸'}</span>
+              )}
             </div>
 
-            {/* 활성 정차지 근거구절 — 클릭한 단 하나의 정차지만 펼친다(같은 좌표 그룹이라도). */}
-            {isActive && stop.eventId === shownEventId && (
+            {/* 펼친 사건의 근거구절 — 각 사건 독립 인라인 */}
+            {expanded && (
               <div onClick={(e) => e.stopPropagation()} style={{ padding: '2px 12px 10px' }}>
                 <EventVerses eventId={stop.eventId} verseLang={verseLang} setVerseLang={setVerseLang} />
               </div>
