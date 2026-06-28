@@ -1,16 +1,17 @@
 // 사이드 사건 리스트 — 여정 stops를 시간순으로 "여정 > 사건 > 구절" 아코디언 트리로 표시.
 // props: stops(배열), activeStopIdx(number|null), onStopSelect(idx => void),
 //        verseLang/setVerseLang(사건 근거구절 표시용)
-// 각 사건을 독립적으로 펼침(여러 개 동시 가능). activeStopIdx(지도 활성·deduped 인덱스)는
-// 주황 하이라이트·자동 스크롤에만 쓰고, 구절 펼침은 expandedIds(사건별)로 분리한다.
+// 구절은 📖 칩 클릭으로만 토글하며 한 번에 하나만 열린다(expandedId). 사건 행 클릭은
+// 지도 선택(onStopSelect)만 하고 열린 구절은 닫는다. activeStopIdx(지도 활성·deduped 인덱스)는
+// 주황 하이라이트·자동 스크롤에 쓴다.
 import { useEffect, useRef, useState } from 'react'
 import EventVerses from './EventVerses'
 
 export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseLang, setVerseLang, personName }) {
   const listRef = useRef(null)
   const activeRef = useRef(null)
-  // 펼친 사건 집합(eventId) — 행마다 독립 토글, 지도 선택과 무관.
-  const [expandedIds, setExpandedIds] = useState(() => new Set())
+  // 펼친 사건(eventId) — 📖 칩으로만 토글, 한 번에 하나만 열림.
+  const [expandedId, setExpandedId] = useState(null)
 
   // 지도 활성 항목으로 자동 스크롤
   useEffect(() => {
@@ -32,15 +33,6 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
   }
   const keyToIdx = new Map(seen.map((k, i) => [k, i]))
 
-  const toggle = (eventId) => {
-    setExpandedIds((prev) => {
-      const next = new Set(prev)
-      if (next.has(eventId)) next.delete(eventId)
-      else next.add(eventId)
-      return next
-    })
-  }
-
   return (
     <div
       ref={listRef}
@@ -57,7 +49,7 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
           {personName ? `${personName}의 여정` : '여정'}
         </div>
         <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: 10, marginTop: 2 }}>
-          사건 {stops.length}개 · 사건을 누르면 📖 구절
+          사건 {stops.length}개 · 📖 눌러 구절 보기
         </div>
       </div>
       {stops.map((stop, rawIdx) => {
@@ -66,7 +58,7 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
         const dedupIdx = k != null ? keyToIdx.get(k) : null
         const isActive = dedupIdx != null && dedupIdx === activeStopIdx
         const expandable = stop.eventId != null
-        const expanded = expandable && expandedIds.has(stop.eventId)
+        const expanded = expandable && expandedId === stop.eventId
         // 사건(여정) 순번 — 지도 배지는 같은 장소의 순번들을 압축(예 "6-8, 10")으로 보여줘 일치
         const seq = stop.seq
 
@@ -82,18 +74,16 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
           >
             <div
               onClick={() => {
-                if (!expandable) return
-                const willExpand = !expandedIds.has(stop.eventId)
-                toggle(stop.eventId)
-                // 펼칠 때만 지도 동기화(접을 때 카메라 이동 방지)
-                if (willExpand && hasCoord && dedupIdx != null) onStopSelect(dedupIdx)
+                // 행 클릭 = 지도 선택만. 열린 구절은 닫는다(구절은 📖로만 토글).
+                if (hasCoord && dedupIdx != null) onStopSelect(dedupIdx)
+                setExpandedId(null)
               }}
               style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: 10,
                 padding: '9px 14px',
-                cursor: expandable ? 'pointer' : 'default',
+                cursor: hasCoord ? 'pointer' : 'default',
                 opacity: hasCoord ? 1 : 0.55,
               }}
             >
@@ -143,12 +133,20 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
 
               {/* 펼침 토글 — 구절 있는 사건 행. 또렷한 보라 칩(SidePanel '📖 구절' 패턴). */}
               {expandable && (
-                <span style={{
+                <span
+                  onClick={(e) => {
+                    e.stopPropagation()  // 행 onClick(지도 선택·닫기) 억제
+                    setExpandedId(expanded ? null : stop.eventId)  // 단일 오픈 토글
+                    // 펼칠 때만 지도 동기화(접을 때 카메라 이동 방지)
+                    if (!expanded && hasCoord && dedupIdx != null) onStopSelect(dedupIdx)
+                  }}
+                  style={{
                   flexShrink: 0,
                   display: 'inline-flex', alignItems: 'center', gap: 3,
                   fontSize: 10, fontWeight: 700,
                   padding: '2px 7px', borderRadius: 999, lineHeight: 1.4,
                   marginTop: 1,
+                  cursor: 'pointer',
                   border: '1px solid #a78bfa',
                   background: expanded ? '#a78bfa' : 'rgba(167,139,250,0.14)',
                   color: expanded ? '#fff' : '#c4b5fd',
