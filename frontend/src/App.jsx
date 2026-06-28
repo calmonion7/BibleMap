@@ -41,6 +41,9 @@ function App() {
   // 여정 데이터 — 인물 선택 시 한 번 fetch, MapView·JourneyList 공유
   const [journeyStops, setJourneyStops] = useState(null)
   const [activeStopIdx, setActiveStopIdx] = useState(null)
+  // 모바일 여정 칩 스트립 — 활성 칩을 가운데로 스크롤하기 위한 ref
+  const mobileStripRef = useRef(null)
+  const mobileActiveChipRef = useRef(null)
 
   useEffect(() => {
     const ctrl = new AbortController()
@@ -61,6 +64,18 @@ function App() {
     mq.addEventListener('change', onChange)
     return () => mq.removeEventListener('change', onChange)
   }, [])
+
+  // 모바일: 활성 정차지 칩을 스트립 가운데로 스크롤 — 선택 후 다음 정차지를 바로 누를 수 있게.
+  useEffect(() => {
+    if (!isMobile) return
+    const strip = mobileStripRef.current
+    const chip = mobileActiveChipRef.current
+    if (!strip || !chip) return
+    const sr = strip.getBoundingClientRect()
+    const cr = chip.getBoundingClientRect()
+    const delta = (cr.left + cr.width / 2) - (sr.left + sr.width / 2)
+    strip.scrollTo({ left: strip.scrollLeft + delta, behavior: 'smooth' })
+  }, [activeStopIdx, isMobile, journeyStops])
 
   // 허브에서 인물 카드 클릭 — 탐험으로 전환
   function handleSelectPerson(id) {
@@ -279,7 +294,7 @@ function App() {
                       <EventVerses eventId={mobileActiveStop.eventId} verseLang={verseLang} setVerseLang={setVerseLang} />
                     </div>
                   )}
-                  <div style={{
+                  <div ref={mobileStripRef} style={{
                     maxHeight: 110,
                     background: 'rgba(20,22,50,0.94)',
                     overflowX: 'auto', overflowY: 'hidden',
@@ -291,6 +306,7 @@ function App() {
                       return (
                         <div
                           key={stop.eventId ?? i}
+                          ref={isActive ? mobileActiveChipRef : null}
                           onClick={() => { if (stop.seq != null) setActiveStopIdx(stop.seq - 1) }}
                           style={{
                             flexShrink: 0,
