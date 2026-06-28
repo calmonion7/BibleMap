@@ -1,0 +1,388 @@
+[
+  {
+    "id": "authored-peter-call-galilee",
+    "title": "Jesus calls Peter to be a fisher of men",
+    "nameKo": "사람 낚는 어부로 부름받은 베드로",
+    "startDate": "0028",
+    "sortKey": 28,
+    "yearLabel": "AD 28경",
+    "context": "갈릴리 호숫가에서 밤새 헛수고한 어부 시몬이 예수의 말씀대로 그물을 내려 큰 고기 떼를 잡고, \"이제 후로는 사람을 낚으리라\" 하시는 부름을 따라 배를 버려두고 좇음 (눅 5:1–11; 마 4:18–22).",
+    "authored": true,
+    "occursAt": [
+      "recmL1lWBqWP3mAq3"
+    ],
+    "participants": [
+      "recX9MMADoVI2CSP1"
+    ],
+    "books": [
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "rangeLabel": "5:1–11"
+      },
+      {
+        "bookId": "recEJId5B98HV0x6D",
+        "rangeLabel": "4:18–22"
+      }
+    ]
+  },
+  {
+    "id": "authored-peter-apostle-named",
+    "title": "Simon is named Peter among the Twelve",
+    "nameKo": "열두 사도로 세워지며 '베드로'라 불림",
+    "startDate": "0028",
+    "sortKey": 28.5,
+    "yearLabel": "AD 28경",
+    "context": "예수께서 밤이 새도록 기도하신 뒤 열두 제자를 사도로 세우실 때, 시몬에게 게바 곧 '베드로'(반석)라는 새 이름을 주심 (눅 6:12–16; 막 3:13–19).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "recX9MMADoVI2CSP1"
+    ],
+    "books": [
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "rangeLabel": "6:12–16"
+      },
+      {
+        "bookId": "recNvq1wZtB13BbbW",
+        "rangeLabel": "3:13–19"
+      }
+    ]
+  },
+  {
+    "id": "authored-peter-walks-on-water",
+    "title": "Peter walks on the water toward Jesus",
+    "nameKo": "물 위로 예수께 걸어간 베드로",
+    "startDate": "0029",
+    "sortKey": 29,
+    "yearLabel": "AD 29경",
+    "context": "갈릴리 바다 위로 걸어오시는 예수를 향해 베드로가 물 위를 걷다가, 바람을 보고 무서워 빠져들 때 예수께서 손을 내밀어 붙드시며 \"믿음이 작은 자여\" 하심 (마 14:28–33).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "recX9MMADoVI2CSP1"
+    ],
+    "books": [
+      {
+        "bookId": "recEJId5B98HV0x6D",
+        "rangeLabel": "14:28–33"
+      }
+    ]
+  },
+  {
+    "id": "authored-peter-confession",
+    "title": "Peter confesses Jesus as the Christ",
+    "nameKo": "\"주는 그리스도시니이다\" 반석의 고백",
+    "startDate": "0029",
+    "sortKey": 29.4,
+    "yearLabel": "AD 29경",
+    "context": "가이사랴 빌립보 지방에서 베드로가 \"주는 그리스도시요 살아 계신 하나님의 아들\"이라 고백하매, 예수께서 \"이 반석 위에 내 교회를 세우리라\" 하시며 천국 열쇠를 약속하심 (마 16:13–19).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "recX9MMADoVI2CSP1"
+    ],
+    "books": [
+      {
+        "bookId": "recEJId5B98HV0x6D",
+        "rangeLabel": "16:13–19"
+      }
+    ]
+  },
+  {
+    "id": "authored-peter-transfiguration",
+    "title": "Peter witnesses the Transfiguration",
+    "nameKo": "변화산에서 영광을 목격함",
+    "startDate": "0029",
+    "sortKey": 29.6,
+    "yearLabel": "AD 29경",
+    "context": "높은 산에서 예수의 모습이 해같이 변하고 모세와 엘리야가 함께 나타나매, 베드로가 초막 셋을 짓겠다 하던 중 구름 속에서 \"이는 내 사랑하는 아들이니 그의 말을 들으라\" 하는 음성이 들림 (마 17:1–8; 막 9:2–8).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "recX9MMADoVI2CSP1"
+    ],
+    "books": [
+      {
+        "bookId": "recEJId5B98HV0x6D",
+        "rangeLabel": "17:1–8"
+      },
+      {
+        "bookId": "recNvq1wZtB13BbbW",
+        "rangeLabel": "9:2–8"
+      }
+    ]
+  },
+  {
+    "id": "authored-peter-denial",
+    "title": "Peter denies Jesus three times",
+    "nameKo": "닭 울기 전 세 번 부인함",
+    "startDate": "0030",
+    "sortKey": 30.1,
+    "yearLabel": "AD 30경",
+    "context": "예수께서 잡히신 밤, 베드로가 대제사장의 뜰에서 예수를 모른다고 세 번 부인하자 곧 닭이 울고, 돌이켜 보시는 주를 보며 밖에 나가 심히 통곡함 (눅 22:54–62; 마 26:69–75).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "recX9MMADoVI2CSP1"
+    ],
+    "books": [
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "rangeLabel": "22:54–62"
+      },
+      {
+        "bookId": "recEJId5B98HV0x6D",
+        "rangeLabel": "26:69–75"
+      }
+    ]
+  },
+  {
+    "id": "authored-peter-restoration",
+    "title": "The risen Jesus restores Peter by the sea",
+    "nameKo": "디베랴 호숫가에서 회복됨 — \"내 양을 먹이라\"",
+    "startDate": "0030",
+    "sortKey": 30.3,
+    "yearLabel": "AD 30경",
+    "context": "부활하신 예수께서 디베랴 호숫가에서 베드로에게 세 번 \"네가 나를 사랑하느냐\" 물으시고, 세 번 다 \"내 양을 먹이라\" 하시며 부인했던 그를 다시 세우심 (요 21:15–19).",
+    "authored": true,
+    "occursAt": [
+      "recmL1lWBqWP3mAq3"
+    ],
+    "participants": [
+      "recX9MMADoVI2CSP1"
+    ],
+    "books": [
+      {
+        "bookId": "recq8W1kWwtVoUlwB",
+        "rangeLabel": "21:15–19"
+      }
+    ]
+  },
+  {
+    "id": "authored-peter-pentecost",
+    "title": "Peter preaches at Pentecost",
+    "nameKo": "오순절에 첫 설교를 전함",
+    "startDate": "0030",
+    "sortKey": 30.5,
+    "yearLabel": "AD 30경",
+    "context": "성령이 강림한 오순절, 베드로가 열한 사도와 함께 서서 예루살렘 무리에게 예수의 죽음과 부활을 증언하매 그 말에 찔린 삼천 명이 회개하고 세례를 받음 (행 2:14–41).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "recX9MMADoVI2CSP1"
+    ],
+    "books": [
+      {
+        "bookId": "recF09FMjRr0gzjQk",
+        "rangeLabel": "2:14–41"
+      }
+    ]
+  },
+  {
+    "id": "authored-peter-lame-man",
+    "title": "Peter heals the lame man at the Beautiful Gate",
+    "nameKo": "성전 미문에서 앉은뱅이를 일으킴",
+    "startDate": "0030",
+    "sortKey": 31,
+    "yearLabel": "AD 30경",
+    "context": "베드로와 요한이 기도하러 성전에 오르다가 미문에 앉은 나면서부터 못 걷던 이에게 \"나사렛 예수의 이름으로 걸으라\" 하니, 그가 발과 발목에 힘을 얻어 뛰며 하나님을 찬송함 (행 3:1–10).",
+    "authored": true,
+    "occursAt": [
+      "rec232gzESK5PLtd0"
+    ],
+    "participants": [
+      "recX9MMADoVI2CSP1"
+    ],
+    "books": [
+      {
+        "bookId": "recF09FMjRr0gzjQk",
+        "rangeLabel": "3:1–10"
+      }
+    ]
+  },
+  {
+    "id": "authored-peter-solomons-portico-trial",
+    "title": "Peter preaches in Solomon's Portico and is tried",
+    "nameKo": "솔로몬 행각 설교와 공회 앞 담대한 증언",
+    "startDate": "0030",
+    "sortKey": 31.2,
+    "yearLabel": "AD 30경",
+    "context": "미문 치유 후 솔로몬 행각에 몰려든 무리에게 회개를 외치다 체포되어, 공회 앞에서 \"천하 사람 중에 구원받을 만한 다른 이름을 주신 일이 없다\"고 담대히 증언함 (행 3:11–4:22).",
+    "authored": true,
+    "occursAt": [
+      "reclfB8zbauosDusS"
+    ],
+    "participants": [
+      "recX9MMADoVI2CSP1"
+    ],
+    "books": [
+      {
+        "bookId": "recF09FMjRr0gzjQk",
+        "rangeLabel": "3:11–4:22"
+      }
+    ]
+  },
+  {
+    "id": "authored-peter-samaria",
+    "title": "Peter and John lay hands on the Samaritans",
+    "nameKo": "사마리아에 내려가 성령을 안수함",
+    "startDate": "0031",
+    "sortKey": 31.5,
+    "yearLabel": "AD 31경",
+    "context": "빌립이 복음을 전한 사마리아에 베드로와 요한이 내려가 안수하매 그들이 성령을 받고, 돈으로 그 권능을 사려 한 시몬을 베드로가 엄히 꾸짖음 (행 8:14–24).",
+    "authored": true,
+    "occursAt": [
+      "recEP3QZ3HUmIkv4Q"
+    ],
+    "participants": [
+      "recX9MMADoVI2CSP1"
+    ],
+    "books": [
+      {
+        "bookId": "recF09FMjRr0gzjQk",
+        "rangeLabel": "8:14–24"
+      }
+    ]
+  },
+  {
+    "id": "authored-peter-aeneas-dorcas",
+    "title": "Peter heals Aeneas and raises Dorcas",
+    "nameKo": "애니아를 고치고 도르가를 살림",
+    "startDate": "0037",
+    "sortKey": 37,
+    "yearLabel": "AD 37경",
+    "context": "베드로가 룻다에서 여덟 해 누운 중풍병자 애니아를 \"예수께서 너를 낫게 하신다\" 하여 일으키고, 욥바에서는 죽은 다비다(도르가)를 \"다비다야 일어나라\" 하여 살림 (행 9:32–43).",
+    "authored": true,
+    "occursAt": [
+      "recIeuZZMsolnZA6n"
+    ],
+    "participants": [
+      "recX9MMADoVI2CSP1"
+    ],
+    "books": [
+      {
+        "bookId": "recF09FMjRr0gzjQk",
+        "rangeLabel": "9:32–43"
+      }
+    ]
+  },
+  {
+    "id": "authored-peter-cornelius",
+    "title": "Peter brings the gospel to Cornelius",
+    "nameKo": "고넬료에게 — 이방인에게 열린 복음",
+    "startDate": "0038",
+    "sortKey": 38,
+    "yearLabel": "AD 38경",
+    "context": "욥바에서 \"속되다 하지 말라\"는 보자기 환상을 본 베드로가 가이사랴의 백부장 고넬료 집에 가 이방인에게 복음을 전하매, 성령이 그 말을 듣는 모든 이에게 임하여 그들도 세례를 받음 (행 10:1–48).",
+    "authored": true,
+    "occursAt": [
+      "recKrSp5YmwkgRKv0"
+    ],
+    "participants": [
+      "recX9MMADoVI2CSP1"
+    ],
+    "books": [
+      {
+        "bookId": "recF09FMjRr0gzjQk",
+        "rangeLabel": "10:1–48"
+      }
+    ]
+  },
+  {
+    "id": "authored-peter-defends-gentiles",
+    "title": "Peter defends the Gentile mission in Jerusalem",
+    "nameKo": "예루살렘 교회 앞에서 이방 구원을 변호함",
+    "startDate": "0038",
+    "sortKey": 38.5,
+    "yearLabel": "AD 38경",
+    "context": "할례자들이 이방인과 함께 먹은 일을 비난하자, 베드로가 예루살렘 교회에 올라가 고넬료 사건의 환상과 성령 강림을 차례로 전하며 \"하나님이 이방인에게도 생명 얻는 회개를 주셨다\"고 변호함 (행 11:1–18).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "recX9MMADoVI2CSP1"
+    ],
+    "books": [
+      {
+        "bookId": "recF09FMjRr0gzjQk",
+        "rangeLabel": "11:1–18"
+      }
+    ]
+  },
+  {
+    "id": "authored-peter-herod-prison",
+    "title": "An angel rescues Peter from Herod's prison",
+    "nameKo": "헤롯의 옥에서 천사에게 구출됨",
+    "startDate": "0044",
+    "sortKey": 44,
+    "yearLabel": "AD 44경",
+    "context": "헤롯이 베드로를 잡아 옥에 가두고 군사로 지키게 하자, 교회가 그를 위해 간절히 기도하던 밤에 주의 천사가 나타나 쇠사슬을 벗기고 옥문을 지나 그를 풀어냄 (행 12:1–17).",
+    "authored": true,
+    "occursAt": [
+      "recAalC2QoLT7cJKN"
+    ],
+    "participants": [
+      "recX9MMADoVI2CSP1"
+    ],
+    "books": [
+      {
+        "bookId": "recF09FMjRr0gzjQk",
+        "rangeLabel": "12:1–17"
+      }
+    ]
+  },
+  {
+    "id": "authored-peter-jerusalem-council",
+    "title": "Peter testifies at the Jerusalem Council",
+    "nameKo": "예루살렘 공의회에서 증언함",
+    "startDate": "0049",
+    "sortKey": 49,
+    "yearLabel": "AD 49경",
+    "context": "이방인에게 율법과 할례를 지울지를 두고 모인 공의회에서 베드로가 일어나 \"우리가 그들이나 다름없이 주 예수의 은혜로 구원받는 줄을 믿는다\"고 증언하여 이방 신자의 멍에를 덜어줌 (행 15:6–11).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "recX9MMADoVI2CSP1"
+    ],
+    "books": [
+      {
+        "bookId": "recF09FMjRr0gzjQk",
+        "rangeLabel": "15:6–11"
+      }
+    ]
+  },
+  {
+    "id": "authored-peter-rome-martyrdom",
+    "title": "Peter's final ministry and martyrdom in Rome",
+    "nameKo": "로마에서의 말년 사역과 순교",
+    "startDate": "0065",
+    "sortKey": 65,
+    "yearLabel": "AD 65경",
+    "context": "말년의 베드로는 흩어진 신자들에게 편지를 보내 고난 중의 믿음을 격려하고, 주께서 미리 보이신 대로 자기 죽음이 가까움을 알았으며, 로마에서 순교한 것으로 전해짐 (벧후 1:13–15; 벧전 5:13).",
+    "authored": true,
+    "occursAt": [
+      "recDDkVF36ecPUge4"
+    ],
+    "participants": [
+      "recX9MMADoVI2CSP1"
+    ],
+    "books": [
+      {
+        "bookId": "recFNtUGO3RQUDGPv",
+        "rangeLabel": "1:13–15"
+      },
+      {
+        "bookId": "receVE4rg7HzwRays",
+        "rangeLabel": "5:13"
+      }
+    ]
+  }
+]

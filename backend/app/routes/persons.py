@@ -28,6 +28,8 @@ _ERA: dict[str, str] = {
     "jesus": "신약",
     "mary": "신약",
     "paul": "신약",
+    "peter": "신약",
+    "john_the_apostle": "신약",
 }
 
 # slug → 한글 이름
@@ -46,6 +48,8 @@ _NAME_KO: dict[str, str] = {
     "jesus": "예수",
     "mary": "마리아",
     "paul": "바울",
+    "peter": "베드로",
+    "john_the_apostle": "사도 요한",
 }
 
 # era 표시 순서
