@@ -205,7 +205,7 @@ function App() {
   }
 
   return (
-    <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ position: 'relative', width: '100vw', height: '100dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
 
       {/* 허브 단계 — 인물 선택 전 */}
       {activeStage === 'hub' && (
