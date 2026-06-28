@@ -124,7 +124,7 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
 
             {/* 활성 정차지 근거구절 — 행 아래 인라인. 같은 좌표의 사건은 각 행에 자기 구절을 보인다. */}
             {isActive && (
-              <div onClick={(e) => e.stopPropagation()} style={{ padding: '0 14px 8px 46px' }}>
+              <div onClick={(e) => e.stopPropagation()} style={{ padding: '2px 12px 10px' }}>
                 <EventVerses eventId={stop.eventId} verseLang={verseLang} setVerseLang={setVerseLang} />
               </div>
             )}

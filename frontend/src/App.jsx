@@ -240,7 +240,7 @@ function App() {
             <div style={{ display: exploreView === 'map' ? 'flex' : 'none', height: '100%' }}>
               {/* 여정 사이드 리스트 — 데스크톱: 좌측 200px 고정 / 모바일: 숨김(지도 위에 하단 미니시트) */}
               {!isMobile && journeyStops && journeyStops.length > 0 && (
-                <div style={{ width: 200, flexShrink: 0, overflow: 'hidden' }}>
+                <div style={{ width: 290, flexShrink: 0, overflow: 'hidden' }}>
                   <JourneyList
                     stops={journeyStops}
                     activeStopIdx={activeStopIdx}
@@ -347,7 +347,10 @@ function App() {
               ? {
                   left: 0, right: 0, bottom: 0, height: `${SHEET_VH}vh`,
                   boxShadow: '0 -3px 12px rgba(0,0,0,0.15)',
-                  transform: selectedNode ? 'translateY(0)' : 'translateY(100%)',
+                  // 인물 선택 시 자동 선택된 인물 자신의 상세는 모바일에서 시트로 띄우지 않는다 —
+                  // 여정 칩 스트립을 가려 "첫 로딩 시 여정이 안 보이는" 문제가 되기 때문.
+                  // (SidePanel은 DOM에 남아 personEventIds·이름은 그대로 로드됨.) 장소 등 다른 노드 선택 시에는 정상 표시.
+                  transform: (selectedNode && selectedNode !== explorePersonId) ? 'translateY(0)' : 'translateY(100%)',
                 }
               : {
                   top: NAV_H, right: 0, bottom: 0, width: 360,
