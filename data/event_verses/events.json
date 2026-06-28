@@ -140848,5 +140848,791 @@
         ]
       }
     ]
+  },
+  "authored-jesus-bethlehem-birth": {
+    "books": [
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "bookOrder": 42,
+        "rangeLabel": "2:1–7",
+        "verses": [
+          {
+            "verseID": "42002001",
+            "chapter": 2,
+            "verse": 1,
+            "textKo": "이 때에 가이사 아구스도가 영을 내려 천하로 다 호적하라 하였으니 ",
+            "textEn": "And it came to pass in those days, that there went out a decree from Cesar Augustus, that all the world should be taxed."
+          },
+          {
+            "verseID": "42002002",
+            "chapter": 2,
+            "verse": 2,
+            "textKo": "이 호적은 구레뇨가 수리아 총독 되었을 때에 첫번 한 것이라 ",
+            "textEn": "(And this taxing was first made when Cyrenius was governor of Syria.)"
+          },
+          {
+            "verseID": "42002003",
+            "chapter": 2,
+            "verse": 3,
+            "textKo": "모든 사람이 호적하러 각각 고향으로 돌아가매 ",
+            "textEn": "And all went to be taxed, every one into his own city."
+          },
+          {
+            "verseID": "42002004",
+            "chapter": 2,
+            "verse": 4,
+            "textKo": "요셉도 다윗의 집 족속인고로 갈릴리 나사렛 동네에서 유대를 향하여 베들레헴이라 하는 다윗의 동네로 ",
+            "textEn": "And Joseph also went up from Galilee, out of the city of Nazareth, into Judea, unto the city of David, which is called Bethlehem; (because he was of the house and lineage of David:)"
+          },
+          {
+            "verseID": "42002005",
+            "chapter": 2,
+            "verse": 5,
+            "textKo": "그 정혼한 마리아아 함께 호적하러 올라가니 마리아가 이미 잉태되었더라 ",
+            "textEn": "To be taxed with Mary his espoused wife, being great with child."
+          },
+          {
+            "verseID": "42002006",
+            "chapter": 2,
+            "verse": 6,
+            "textKo": "거기 있을 그 때에 해산할 날이 차서 ",
+            "textEn": "And so it was, that, while they were there, the days were accomplished that she should be delivered."
+          },
+          {
+            "verseID": "42002007",
+            "chapter": 2,
+            "verse": 7,
+            "textKo": "맏아들을 낳아 강보로 싸서 구유에 뉘었으니 이는 사관에 있을 곳이 없음이러라 ",
+            "textEn": "And she brought forth her firstborn son, and wrapped him in swaddling clothes, and laid him in a manger; because there was no room for them in the inn."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-jesus-jordan-baptism": {
+    "books": [
+      {
+        "bookId": "recEJId5B98HV0x6D",
+        "bookOrder": 40,
+        "rangeLabel": "3:13–17",
+        "verses": [
+          {
+            "verseID": "40003013",
+            "chapter": 3,
+            "verse": 13,
+            "textKo": "이 때에 예수께서 갈릴리로서 요단강에 이르러 요한에게 침례를 받으려 하신대 ",
+            "textEn": "Then cometh Jesus from Galilee to Jordan unto John, to be baptized of him."
+          },
+          {
+            "verseID": "40003014",
+            "chapter": 3,
+            "verse": 14,
+            "textKo": "요한이 말려 가로되 내가 당신에게 침례를 받아야 할 터인데 당신이 내게로 오시나이까 ",
+            "textEn": "But John forbad him, saying, I have need to be baptized of thee, and comest thou to me?"
+          },
+          {
+            "verseID": "40003015",
+            "chapter": 3,
+            "verse": 15,
+            "textKo": "예수께서 대답하여 가라사대 이제 허락하라 우리가 이와 같이 하여 모든 의를 이루는 것이 합당하니라 하신대 이에 요한이 허락하는지라 ",
+            "textEn": "And Jesus answering said unto him, Suffer it to be so now: for thus it becometh us to fulfil all righteousness. Then he suffered him."
+          },
+          {
+            "verseID": "40003016",
+            "chapter": 3,
+            "verse": 16,
+            "textKo": "예수께서 침례를 받으시고 곧 물에서 올라오실새 하늘이 열리고 하나님의 성령이 비둘기 같이 내려 자기 위에 임하심을 보시더니 ",
+            "textEn": "And Jesus, when he was baptized, went up straightway out of the water: and, lo, the heavens were opened unto him, and he saw the Spirit of God descending like a dove, and lighting upon him:"
+          },
+          {
+            "verseID": "40003017",
+            "chapter": 3,
+            "verse": 17,
+            "textKo": "하늘로서 소리가 있어 말씀하시되 이는 내 사랑하는 아들이요 내 기뻐하는 자라 하시니라  ",
+            "textEn": "And lo a voice from heaven, saying, This is my beloved Son, in whom I am well pleased. "
+          }
+        ]
+      }
+    ]
+  },
+  "authored-jesus-wilderness-temptation": {
+    "books": [
+      {
+        "bookId": "recEJId5B98HV0x6D",
+        "bookOrder": 40,
+        "rangeLabel": "4:1–11",
+        "verses": [
+          {
+            "verseID": "40004001",
+            "chapter": 4,
+            "verse": 1,
+            "textKo": "그 때에 예수께서 성령에게 이끌리어 마귀에게 시험을 받으러 광야로 가사 ",
+            "textEn": "Then was Jesus led up of the Spirit into the wilderness to be tempted of the devil."
+          },
+          {
+            "verseID": "40004002",
+            "chapter": 4,
+            "verse": 2,
+            "textKo": "사십 일을 밤낮으로 금식하신 후에 주리신지라 ",
+            "textEn": "And when he had fasted forty days and forty nights, he was afterward an hungred."
+          },
+          {
+            "verseID": "40004003",
+            "chapter": 4,
+            "verse": 3,
+            "textKo": "시험하는 자가 예수께 나아가서 가로되 네가 만일 하나님의 아들이어든 명하여 이 돌들이 떡덩이가 되게 하라 ",
+            "textEn": "And when the tempter came to him, he said, If thou be the Son of God, command that these stones be made bread."
+          },
+          {
+            "verseID": "40004004",
+            "chapter": 4,
+            "verse": 4,
+            "textKo": "예수께서 대답하여 가라사대 기록되었으되 사람이 떡으로만 살 것이 아니요 하나님의 입으로 나오는 모든 말씀으로 살 것이라 하였느니라 하시니 ",
+            "textEn": "But he answered and said, It is written, Man shall not live by bread alone, but by every word that proceedeth out of the mouth of God."
+          },
+          {
+            "verseID": "40004005",
+            "chapter": 4,
+            "verse": 5,
+            "textKo": "이에 마귀가 예수를 거룩한 성으로 데려다가 성전 꼭대기에 세우고 ",
+            "textEn": "Then the devil taketh him up into the holy city, and setteth him on a pinnacle of the temple,"
+          },
+          {
+            "verseID": "40004006",
+            "chapter": 4,
+            "verse": 6,
+            "textKo": "가로되 네가 만일 하나님의 아들이어든 뛰어내리라 기록하였으되 저가 너를 위하여 그 사자들을 명하시리니 저희가 손으로 너를 받들어 발이 돌에 부딪히지 않게 하리로다 하였느니라 ",
+            "textEn": "And saith unto him, If thou be the Son of God, cast thyself down: for it is written, He shall give his angels charge concerning thee: and in their hands they shall bear thee up, lest at any time thou dash thy foot against a stone."
+          },
+          {
+            "verseID": "40004007",
+            "chapter": 4,
+            "verse": 7,
+            "textKo": "예수께서 이르시되 또 기록되었으되 주 너의 하나님을 시험치 말라 하였느니라 하신대 ",
+            "textEn": "Jesus said unto him, It is written again, Thou shalt not tempt the Lord thy God."
+          },
+          {
+            "verseID": "40004008",
+            "chapter": 4,
+            "verse": 8,
+            "textKo": "마귀가 또 그를 데리고 지극히 높은 산으로 가서 천하 만국과 그 영광을 보여 ",
+            "textEn": "Again, the devil taketh him up into an exceeding high mountain, and sheweth him all the kingdoms of the world, and the glory of them;"
+          },
+          {
+            "verseID": "40004009",
+            "chapter": 4,
+            "verse": 9,
+            "textKo": "가로되 만일 내게 엎드려 경배하면 이 모든 것을 네게 주리라 ",
+            "textEn": "And saith unto him, All these things will I give thee, if thou wilt fall down and worship me."
+          },
+          {
+            "verseID": "40004010",
+            "chapter": 4,
+            "verse": 10,
+            "textKo": "이에 예수께서 말씀하시되 사단아 물러가라 기록되었으되 주 너의 하나님께 경배하고 다만 그를 섬기라 하였느니라 ",
+            "textEn": "Then saith Jesus unto him, Get thee hence, Satan: for it is written, Thou shalt worship the Lord thy God, and him only shalt thou serve."
+          },
+          {
+            "verseID": "40004011",
+            "chapter": 4,
+            "verse": 11,
+            "textKo": "이에 마귀는 예수를 떠나고 천사들이 나아와서 수종드니라 ",
+            "textEn": "Then the devil leaveth him, and, behold, angels came and ministered unto him."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-jesus-call-disciples": {
+    "books": [
+      {
+        "bookId": "recNvq1wZtB13BbbW",
+        "bookOrder": 41,
+        "rangeLabel": "1:16–20",
+        "verses": [
+          {
+            "verseID": "41001016",
+            "chapter": 1,
+            "verse": 16,
+            "textKo": "갈릴리 해변으로 지나가시다가 시몬과 그 형제 안드레가 바다에 그물 던지는 것을 보시니 저희는 어부라 ",
+            "textEn": "Now as he walked by the sea of Galilee, he saw Simon and Andrew his brother casting a net into the sea: for they were fishers."
+          },
+          {
+            "verseID": "41001017",
+            "chapter": 1,
+            "verse": 17,
+            "textKo": "예수께서 가라사대 나를 따라 오너라 내가 너희로 사람을 낚는 어부가 되게 하리라 하시니 ",
+            "textEn": "And Jesus said unto them, Come ye after me, and I will make you to become fishers of men."
+          },
+          {
+            "verseID": "41001018",
+            "chapter": 1,
+            "verse": 18,
+            "textKo": "곧 그물을 버려두고 좇으니라 ",
+            "textEn": "And straightway they forsook their nets, and followed him."
+          },
+          {
+            "verseID": "41001019",
+            "chapter": 1,
+            "verse": 19,
+            "textKo": "조금 더 가시다가 세베대의 아들 야고보와 그 형제 요한을 보시니 저희도 배에 있어 그물을 깁는데 ",
+            "textEn": "And when he had gone a little further thence, he saw James the son of Zebedee, and John his brother, who also were in the ship mending their nets."
+          },
+          {
+            "verseID": "41001020",
+            "chapter": 1,
+            "verse": 20,
+            "textKo": "곧 부르시니 그 아비 세베대를 삯꾼들과 함께 배에 버려두고 예수를 따라가니라 ",
+            "textEn": "And straightway he called them: and they left their father Zebedee in the ship with the hired servants, and went after him."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-jesus-sermon-mount": {
+    "books": [
+      {
+        "bookId": "recEJId5B98HV0x6D",
+        "bookOrder": 40,
+        "rangeLabel": "5:1–12",
+        "verses": [
+          {
+            "verseID": "40005001",
+            "chapter": 5,
+            "verse": 1,
+            "textKo": "예수께서 무리를 보시고 산에 올라가 앉으시니 제자들이 나아온지라 ",
+            "textEn": "And seeing the multitudes, he went up into a mountain: and when he was set, his disciples came unto him:"
+          },
+          {
+            "verseID": "40005002",
+            "chapter": 5,
+            "verse": 2,
+            "textKo": "입을 열어 가르쳐 가라사대 ",
+            "textEn": "And he opened his mouth, and taught them, saying,"
+          },
+          {
+            "verseID": "40005003",
+            "chapter": 5,
+            "verse": 3,
+            "textKo": "심령이 가난한 자는 복이 있나니 천국이 저희 것임이요 ",
+            "textEn": "Blessed are the poor in spirit: for theirs is the kingdom of heaven."
+          },
+          {
+            "verseID": "40005004",
+            "chapter": 5,
+            "verse": 4,
+            "textKo": "애통하는 자는 복이 있나니 저희가 위로를 받을 것임이요 ",
+            "textEn": "Blessed are they that mourn: for they shall be comforted."
+          },
+          {
+            "verseID": "40005005",
+            "chapter": 5,
+            "verse": 5,
+            "textKo": "온유한 자는 복이 있나니 저희가 땅을 기업으로 받을 것임이요 ",
+            "textEn": "Blessed are the meek: for they shall inherit the earth."
+          },
+          {
+            "verseID": "40005006",
+            "chapter": 5,
+            "verse": 6,
+            "textKo": "의에 주리고 목마른 자는 복이 있나니 저희가 배부를 것임이요 ",
+            "textEn": "Blessed are they which do hunger and thirst after righteousness: for they shall be filled."
+          },
+          {
+            "verseID": "40005007",
+            "chapter": 5,
+            "verse": 7,
+            "textKo": "긍휼히 여기는 자는 복이 있나니 저희가 긍휼히 여김을 받을 것임이요 ",
+            "textEn": "Blessed are the merciful: for they shall obtain mercy."
+          },
+          {
+            "verseID": "40005008",
+            "chapter": 5,
+            "verse": 8,
+            "textKo": "마음이 청결한 자는 복이 있나니 저희가 하나님을 볼 것임이요 ",
+            "textEn": "Blessed are the pure in heart: for they shall see God."
+          },
+          {
+            "verseID": "40005009",
+            "chapter": 5,
+            "verse": 9,
+            "textKo": "화평케 하는 자는 복이 있나니 저희가 하나님의 아들이라 일컬음을 받을 것임이요 ",
+            "textEn": "Blessed are the peacemakers: for they shall be called the children of God."
+          },
+          {
+            "verseID": "40005010",
+            "chapter": 5,
+            "verse": 10,
+            "textKo": "의를 위하여 핍박을 받은 자는 복이 있나니 천국이 저희 것임이라 ",
+            "textEn": "Blessed are they which are persecuted for righteousness’ sake: for theirs is the kingdom of heaven."
+          },
+          {
+            "verseID": "40005011",
+            "chapter": 5,
+            "verse": 11,
+            "textKo": "나를 인하여 너희를 욕하고 핍박하고 거짓으로 너희를 거스려 모든 악한 말을 할 때에는 너희에게 복이 있나니 ",
+            "textEn": "Blessed are ye, when men shall revile you, and persecute you, and shall say all manner of evil against you falsely, for my sake."
+          },
+          {
+            "verseID": "40005012",
+            "chapter": 5,
+            "verse": 12,
+            "textKo": "기뻐하고 즐거워하라 하늘에서 너희의 상이 큼이라 너희 전에 있던 선지자들을 이같이 핍박하였느니라 ",
+            "textEn": "Rejoice, and be exceeding glad: for great is your reward in heaven: for so persecuted they the prophets which were before you."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-jesus-transfiguration": {
+    "books": [
+      {
+        "bookId": "recEJId5B98HV0x6D",
+        "bookOrder": 40,
+        "rangeLabel": "17:1–8",
+        "verses": [
+          {
+            "verseID": "40017001",
+            "chapter": 17,
+            "verse": 1,
+            "textKo": "엿새 후에 예수께서 베드로와 야고보와 그 형제 요한을 데리시고 따로 높은 산에 올라 가셨더니 ",
+            "textEn": "And after six days Jesus taketh Peter, James, and John his brother, and bringeth them up into an high mountain apart,"
+          },
+          {
+            "verseID": "40017002",
+            "chapter": 17,
+            "verse": 2,
+            "textKo": "저희 앞에서 변형되사 그 얼굴이 해 같이 빛나며 옷이 빛과 같이 희어졌더라 ",
+            "textEn": "And was transfigured before them: and his face did shine as the sun, and his raiment was white as the light."
+          },
+          {
+            "verseID": "40017003",
+            "chapter": 17,
+            "verse": 3,
+            "textKo": "때에 모세와 엘리야가 예수로 더불어 말씀하는 것이 저희에게 보이거늘 ",
+            "textEn": "And, behold, there appeared unto them Moses and Elias talking with him."
+          },
+          {
+            "verseID": "40017004",
+            "chapter": 17,
+            "verse": 4,
+            "textKo": "베드로가 예수께 여짜와 가로되 주여 우리가 여기 있는 것이 좋사오니 주께서 만일 원하시면 내가 여기서 초막 셋을 짓되 하나는 주를 위하여, 하나는 모세를 위하여, 하나는 엘리야를 위하여 하리이다 ",
+            "textEn": "Then answered Peter, and said unto Jesus, Lord, it is good for us to be here: if thou wilt, let us make here three tabernacles; one for thee, and one for Moses, and one for Elias."
+          },
+          {
+            "verseID": "40017005",
+            "chapter": 17,
+            "verse": 5,
+            "textKo": "말할 때에 홀연히 빛난 구름이 저희를 덮으며 구름 속에서 소리가 나서 가로되 이는 내 사랑하는 아들이요 내 기뻐하는 자니 너희는 저의 말을 들으라 하는지라 ",
+            "textEn": "While he yet spake, behold, a bright cloud overshadowed them: and behold a voice out of the cloud, which said, This is my beloved Son, in whom I am well pleased; hear ye him."
+          },
+          {
+            "verseID": "40017006",
+            "chapter": 17,
+            "verse": 6,
+            "textKo": "제자들이 듣고 엎드리어 심히 두려워하니 ",
+            "textEn": "And when the disciples heard it, they fell on their face, and were sore afraid."
+          },
+          {
+            "verseID": "40017007",
+            "chapter": 17,
+            "verse": 7,
+            "textKo": "예수께서 나아가 저희에게 손을 대시며 가라사대 일어나라 두려워 말라 하신대 ",
+            "textEn": "And Jesus came and touched them, and said, Arise, and be not afraid."
+          },
+          {
+            "verseID": "40017008",
+            "chapter": 17,
+            "verse": 8,
+            "textKo": "제자들이 눈을 들고 보매 오직 예수 외에는 아무도 보이지 아니하더라 ",
+            "textEn": "And when they had lifted up their eyes, they saw no man, save Jesus only."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-jesus-triumphal-entry": {
+    "books": [
+      {
+        "bookId": "recEJId5B98HV0x6D",
+        "bookOrder": 40,
+        "rangeLabel": "21:1–11",
+        "verses": [
+          {
+            "verseID": "40021001",
+            "chapter": 21,
+            "verse": 1,
+            "textKo": "저희가 예루살렘에 가까이 와서 감람산 벳바게에 이르렀을 때에 예수께서 두 제자를 보내시며 ",
+            "textEn": "And when they drew nigh unto Jerusalem, and were come to Bethphage, unto the mount of Olives, then sent Jesus two disciples,"
+          },
+          {
+            "verseID": "40021002",
+            "chapter": 21,
+            "verse": 2,
+            "textKo": "이르시되 너희 맞은편 마을로 가라 곧 매인 나귀와 나귀 새끼가 함께 있는 것을 보리니 풀어 내게로 끌고 오너라 ",
+            "textEn": "Saying unto them, Go into the village over against you, and straightway ye shall find an ass tied, and a colt with her: loose them, and bring them unto me."
+          },
+          {
+            "verseID": "40021003",
+            "chapter": 21,
+            "verse": 3,
+            "textKo": "만일 누가 무슨 말을 하거든 주가 쓰시겠다 하라 그리하면 즉시 보내리라 하시니 ",
+            "textEn": "And if any man say ought unto you, ye shall say, The Lord hath need of them; and straightway he will send them."
+          },
+          {
+            "verseID": "40021004",
+            "chapter": 21,
+            "verse": 4,
+            "textKo": "이는 선지자로 하신 말씀을 이루려 하심이라 일렀으되 ",
+            "textEn": "All this was done, that it might be fulfilled which was spoken by the prophet, saying,"
+          },
+          {
+            "verseID": "40021005",
+            "chapter": 21,
+            "verse": 5,
+            "textKo": "시온 딸에게 이르기를 네 왕이 네게 임하나니 그는 겸손하여 나귀 곧 멍에 메는 짐승의 새끼를 탔도다 하라 하였느니라 ",
+            "textEn": "Tell ye the daughter of Sion, Behold, thy King cometh unto thee, meek, and sitting upon an ass, and a colt the foal of an ass."
+          },
+          {
+            "verseID": "40021006",
+            "chapter": 21,
+            "verse": 6,
+            "textKo": "제자들이 가서 예수의 명하신대로 하여 ",
+            "textEn": "And the disciples went, and did as Jesus commanded them,"
+          },
+          {
+            "verseID": "40021007",
+            "chapter": 21,
+            "verse": 7,
+            "textKo": "나귀와 나귀 새끼를 끌고 와서 자기들의 겉옷을 그 위에 얹으매 예수께서 그 위에 타시니 ",
+            "textEn": "And brought the ass, and the colt, and put on them their clothes, and they set him thereon."
+          },
+          {
+            "verseID": "40021008",
+            "chapter": 21,
+            "verse": 8,
+            "textKo": "무리의 대부분은 그 겉옷을 길에 펴며 다른 이는 나무가지를 베어 길에 펴고 ",
+            "textEn": "And a very great multitude spread their garments in the way; others cut down branches from the trees, and strawed them in the way."
+          },
+          {
+            "verseID": "40021009",
+            "chapter": 21,
+            "verse": 9,
+            "textKo": "앞에서 가고 뒤에서 따르는 무리가 소리질러 가로되 호산나 다윗의 자손이여 찬송하리로다 주의 이름으로 오시는 이여 가장 높은 곳에서 호산나 하더라 ",
+            "textEn": "And the multitudes that went before, and that followed, cried, saying, Hosanna to the Son of David: Blessed is he that cometh in the name of the Lord; Hosanna in the highest."
+          },
+          {
+            "verseID": "40021010",
+            "chapter": 21,
+            "verse": 10,
+            "textKo": "예수께서 예루살렘에 들어가시니 온 성이 소동하여 가로되 이는 누구뇨 하거늘 ",
+            "textEn": "And when he was come into Jerusalem, all the city was moved, saying, Who is this?"
+          },
+          {
+            "verseID": "40021011",
+            "chapter": 21,
+            "verse": 11,
+            "textKo": "무리가 가로되 갈릴리 나사렛에서 나온 선지자 예수라 하니라 ",
+            "textEn": "And the multitude said, This is Jesus the prophet of Nazareth of Galilee."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-jesus-last-supper": {
+    "books": [
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "bookOrder": 42,
+        "rangeLabel": "22:14–20",
+        "verses": [
+          {
+            "verseID": "42022014",
+            "chapter": 22,
+            "verse": 14,
+            "textKo": "때가 이르매 예수께서 사도들과 함께 앉으사 ",
+            "textEn": "And when the hour was come, he sat down, and the twelve apostles with him."
+          },
+          {
+            "verseID": "42022015",
+            "chapter": 22,
+            "verse": 15,
+            "textKo": "이르시되 내가 고난을 받기 전에 너희와 함께 이 유월절 먹기를 원하고 원하였노라 ",
+            "textEn": "And he said unto them, With desire I have desired to eat this passover with you before I suffer:"
+          },
+          {
+            "verseID": "42022016",
+            "chapter": 22,
+            "verse": 16,
+            "textKo": "내가 너희에게 이르노니 이 유월절이 하나님의 나라에서 이루기까지 다시 먹지 아니하리라 하시고 ",
+            "textEn": "For I say unto you, I will not any more eat thereof, until it be fulfilled in the kingdom of God."
+          },
+          {
+            "verseID": "42022017",
+            "chapter": 22,
+            "verse": 17,
+            "textKo": "이에 잔을 받으사 사례하시고 가라사대 이것을 갖다가 너희끼리 나누라 ",
+            "textEn": "And he took the cup, and gave thanks, and said, Take this, and divide it among yourselves:"
+          },
+          {
+            "verseID": "42022018",
+            "chapter": 22,
+            "verse": 18,
+            "textKo": "내가 너희에게 이르노니 내가 이제부터 하나님의 나라가 임할 때까지 포도나무에서 난 것을 다시 마시지 아니하리라 하시고 ",
+            "textEn": "For I say unto you, I will not drink of the fruit of the vine, until the kingdom of God shall come."
+          },
+          {
+            "verseID": "42022019",
+            "chapter": 22,
+            "verse": 19,
+            "textKo": "또 떡을 가져 사례하시고 떼어 저희에게 주시며 가라사대 이것은 너희를 위하여 주는 내 몸이라 너희가 이를 행하여 나를 기념하라 하시고 ",
+            "textEn": "And he took bread, and gave thanks, and brake it, and gave unto them, saying, This is my body which is given for you: this do in remembrance of me."
+          },
+          {
+            "verseID": "42022020",
+            "chapter": 22,
+            "verse": 20,
+            "textKo": "저녁 먹은 후에 잔도 이와 같이 하여 가라사대 이 잔은 내 피로 세우는 새 언약이니 곧 너희를 위하여 붓는 것이라 ",
+            "textEn": "Likewise also the cup after supper, saying, This cup is the new testament in my blood, which is shed for you."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-jesus-crucifixion": {
+    "books": [
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "bookOrder": 42,
+        "rangeLabel": "23:33–46",
+        "verses": [
+          {
+            "verseID": "42023033",
+            "chapter": 23,
+            "verse": 33,
+            "textKo": "해골이라 하는 곳에 이르러 거기서 예수를 십자가에 못 박고 두 행악자도 그렇게 하니 하나는 우편에, 하나는 좌편에 있더라 ",
+            "textEn": "And when they were come to the place, which is called Calvary, there they crucified him, and the malefactors, one on the right hand, and the other on the left."
+          },
+          {
+            "verseID": "42023034",
+            "chapter": 23,
+            "verse": 34,
+            "textKo": "이에 예수께서 가라사대 아버지여 저희를 사하여 주옵소서 자기의 하는 것을 알지 못함이니이다 하시더라 저희가 그의 옷을 나눠 제비 뽑을새 ",
+            "textEn": "Then said Jesus, Father, forgive them; for they know not what they do. And they parted his raiment, and cast lots."
+          },
+          {
+            "verseID": "42023035",
+            "chapter": 23,
+            "verse": 35,
+            "textKo": "백성은 서서 구경하며 관원들도 비웃어 가로되 저가 남을 구원하였으니 만일 하나님의 택하신 자 그리스도여든 자기도 구원할지어다 하고 ",
+            "textEn": "And the people stood beholding. And the rulers also with them derided him, saying, He saved others; let him save himself, if he be Christ, the chosen of God."
+          },
+          {
+            "verseID": "42023036",
+            "chapter": 23,
+            "verse": 36,
+            "textKo": "군병들도 희롱하면서 나아와 신포도주를 주며 ",
+            "textEn": "And the soldiers also mocked him, coming to him, and offering him vinegar,"
+          },
+          {
+            "verseID": "42023037",
+            "chapter": 23,
+            "verse": 37,
+            "textKo": "가로되 네가 만일 유대인의 왕이어든 네가 너를 구원하라 하더라 ",
+            "textEn": "And saying, If thou be the king of the Jews, save thyself."
+          },
+          {
+            "verseID": "42023038",
+            "chapter": 23,
+            "verse": 38,
+            "textKo": "그의 위에 이는 유대인의 왕이라 쓴 패가 있더라 ",
+            "textEn": "And a superscription also was written over him in letters of Greek, and Latin, and Hebrew, THIS IS THE KING OF THE JEWS."
+          },
+          {
+            "verseID": "42023039",
+            "chapter": 23,
+            "verse": 39,
+            "textKo": "달린 행악자 중 하나는 비방하여 가로되 네가 그리스도가 아니냐 너와 우리를 구원하라 하되 ",
+            "textEn": "And one of the malefactors which were hanged railed on him, saying, If thou be Christ, save thyself and us."
+          },
+          {
+            "verseID": "42023040",
+            "chapter": 23,
+            "verse": 40,
+            "textKo": "하나는 그 사람을 꾸짖어 가로되 네가 동일한 정죄를 받고서도 하나님을 두려워 아니하느냐 ",
+            "textEn": "But the other answering rebuked him, saying, Dost not thou fear God, seeing thou art in the same condemnation?"
+          },
+          {
+            "verseID": "42023041",
+            "chapter": 23,
+            "verse": 41,
+            "textKo": "우리는 우리의 행한 일에 상당한 보응을 받는 것이니 이에 당연하거니와 이 사람의 행한 것은 옳지 않은 것이 없느니라 하고 ",
+            "textEn": "And we indeed justly; for we receive the due reward of our deeds: but this man hath done nothing amiss."
+          },
+          {
+            "verseID": "42023042",
+            "chapter": 23,
+            "verse": 42,
+            "textKo": "가로되 예수여 당신의 나라에 임하실 때에 나를 생각하소서 하니 ",
+            "textEn": "And he said unto Jesus, Lord, remember me when thou comest into thy kingdom."
+          },
+          {
+            "verseID": "42023043",
+            "chapter": 23,
+            "verse": 43,
+            "textKo": "예수께서 이르시되 내가 진실로 네게 이르노니 오늘 네가 나와 함께 낙원에 있으리라 하시니라 ",
+            "textEn": "And Jesus said unto him, Verily I say unto thee, To day shalt thou be with me in paradise."
+          },
+          {
+            "verseID": "42023044",
+            "chapter": 23,
+            "verse": 44,
+            "textKo": "때가 제육시쯤 되어 해가 빛을 잃고 온 땅에 어두움이 임하여 제구시까지 계속하며 ",
+            "textEn": "And it was about the sixth hour, and there was a darkness over all the earth until the ninth hour."
+          },
+          {
+            "verseID": "42023045",
+            "chapter": 23,
+            "verse": 45,
+            "textKo": "성소의 휘장이 한가운데가 찢어지더라 ",
+            "textEn": "And the sun was darkened, and the veil of the temple was rent in the midst."
+          },
+          {
+            "verseID": "42023046",
+            "chapter": 23,
+            "verse": 46,
+            "textKo": "예수께서 큰 소리로 불러 가라사대 아버지여 내 영혼을 아버지 손에 부탁하나이다 하고 이 말씀을 하신 후 운명하시다 ",
+            "textEn": "And when Jesus had cried with a loud voice, he said, Father, into thy hands I commend my spirit: and having said thus, he gave up the ghost."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-jesus-resurrection": {
+    "books": [
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "bookOrder": 42,
+        "rangeLabel": "24:1–12",
+        "verses": [
+          {
+            "verseID": "42024001",
+            "chapter": 24,
+            "verse": 1,
+            "textKo": "안식 후 첫날 새벽에 이 여자들이 그 예비한 향품을 가지고 무덤에 가서 ",
+            "textEn": "Now upon the first day of the week, very early in the morning, they came unto the sepulchre, bringing the spices which they had prepared, and certain others with them."
+          },
+          {
+            "verseID": "42024002",
+            "chapter": 24,
+            "verse": 2,
+            "textKo": "돌이 무덤에서 굴려 옮기운 것을 보고 ",
+            "textEn": "And they found the stone rolled away from the sepulchre."
+          },
+          {
+            "verseID": "42024003",
+            "chapter": 24,
+            "verse": 3,
+            "textKo": "들어가니 주 예수의 시체가 뵈지 아니하더라 ",
+            "textEn": "And they entered in, and found not the body of the Lord Jesus."
+          },
+          {
+            "verseID": "42024004",
+            "chapter": 24,
+            "verse": 4,
+            "textKo": "이를 인하여 근심할 때에 문득 찬란한 옷을 입은 두 사람이 곁에 섰는지라 ",
+            "textEn": "And it came to pass, as they were much perplexed thereabout, behold, two men stood by them in shining garments:"
+          },
+          {
+            "verseID": "42024005",
+            "chapter": 24,
+            "verse": 5,
+            "textKo": "여자들이 두려워 얼굴을 땅에 대니 두 사람이 이르되 어찌하여 산 자를 죽은 자 가운데서 찾느냐 ",
+            "textEn": "And as they were afraid, and bowed down their faces to the earth, they said unto them, Why seek ye the living among the dead?"
+          },
+          {
+            "verseID": "42024006",
+            "chapter": 24,
+            "verse": 6,
+            "textKo": "여기 계시지 않고 살아나셨느니라 갈릴리에 계실 때에 너희에게 어떻게 말씀하신 것을 기억하라 ",
+            "textEn": "He is not here, but is risen: remember how he spake unto you when he was yet in Galilee,"
+          },
+          {
+            "verseID": "42024007",
+            "chapter": 24,
+            "verse": 7,
+            "textKo": "이르시기를 인자가 죄인의 손에 넘기워 십자가에 못 박히고 제삼일에 다시 살아나야 하리라 하셨느니라 한대 ",
+            "textEn": "Saying, The Son of man must be delivered into the hands of sinful men, and be crucified, and the third day rise again."
+          },
+          {
+            "verseID": "42024008",
+            "chapter": 24,
+            "verse": 8,
+            "textKo": "저희가 예수의 말씀을 기억하고 ",
+            "textEn": "And they remembered his words,"
+          },
+          {
+            "verseID": "42024009",
+            "chapter": 24,
+            "verse": 9,
+            "textKo": "무덤에서 돌아가 이 모든 것을 열한 사도와 모든 다른 이에게 고하니 ",
+            "textEn": "And returned from the sepulchre, and told all these things unto the eleven, and to all the rest."
+          },
+          {
+            "verseID": "42024010",
+            "chapter": 24,
+            "verse": 10,
+            "textKo": "(이 여자들은 막달라 마리아와 요안나와 야고보의 모친 마리아라 또 저희와 함께한 다른 여자들도 이것을 사도들에게 고하니라) ",
+            "textEn": "It was Mary Magdalene, and Joanna, and Mary the mother of James, and other women that were with them, which told these things unto the apostles."
+          },
+          {
+            "verseID": "42024011",
+            "chapter": 24,
+            "verse": 11,
+            "textKo": "사도들은 저희 말이 허탄한듯이 뵈어 믿지 아니하나 ",
+            "textEn": "And their words seemed to them as idle tales, and they believed them not."
+          },
+          {
+            "verseID": "42024012",
+            "chapter": 24,
+            "verse": 12,
+            "textKo": "베드로는 일어나 무덤에 달려가서 구푸려 들여다 보니 세마포만 보이는지라 그 된 일을 기이히 여기며 집으로 돌아가니라 ",
+            "textEn": "Then arose Peter, and ran unto the sepulchre; and stooping down, he beheld the linen clothes laid by themselves, and departed, wondering in himself at that which was come to pass."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-jesus-ascension": {
+    "books": [
+      {
+        "bookId": "recF09FMjRr0gzjQk",
+        "bookOrder": 44,
+        "rangeLabel": "1:9–11",
+        "verses": [
+          {
+            "verseID": "44001009",
+            "chapter": 1,
+            "verse": 9,
+            "textKo": "이 말씀을 마치시고 저희 보는 데서 올리워 가시니 구름이 저를 가리워 보이지 않게 하더라 ",
+            "textEn": "And when he had spoken these things, while they beheld, he was taken up; and a cloud received him out of their sight."
+          },
+          {
+            "verseID": "44001010",
+            "chapter": 1,
+            "verse": 10,
+            "textKo": "올라가실 때에 제자들이 자세히 하늘을 쳐다보고 있는 데 흰 옷 입은 두 사람이 저희 곁에 서서 ",
+            "textEn": "And while they looked stedfastly toward heaven as he went up, behold, two men stood by them in white apparel;"
+          },
+          {
+            "verseID": "44001011",
+            "chapter": 1,
+            "verse": 11,
+            "textKo": "가로되 갈릴리 사람들아 어찌하여 서서 하늘을 쳐다보느냐 너희 가운데서 하늘로 올리우신 이 예수는 하늘로 가심을 본 그대로 오시리라 하였느니라 ",
+            "textEn": "Which also said, Ye men of Galilee, why stand ye gazing up into heaven? this same Jesus, which is taken up from you into heaven, shall so come in like manner as ye have seen him go into heaven."
+          }
+        ]
+      }
+    ]
   }
 }
