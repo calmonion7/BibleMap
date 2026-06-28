@@ -2,12 +2,14 @@
 // props: stops(배열), activeStopIdx(number|null), onStopSelect(idx => void),
 //        verseLang/setVerseLang(활성 정차지 근거구절 표시용)
 // activeStopIdx는 buildJourneyStopsGeoJSON 기준 deduped 0-based 인덱스.
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import EventVerses from './EventVerses'
 
 export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseLang, setVerseLang }) {
   const listRef = useRef(null)
   const activeRef = useRef(null)
+  // 사용자가 직접 클릭한 정차지(eventId) — 같은 좌표 그룹에서 구절을 단 하나만 펼치기 위함.
+  const [openEventId, setOpenEventId] = useState(null)
 
   // 활성 항목 자동 스크롤
   useEffect(() => {
@@ -31,6 +33,13 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
   }
   // stopKey → deduped index
   const keyToIdx = new Map(seen.map((k, i) => [k, i]))
+
+  // 활성 그룹(같은 좌표 정차지들) 중 구절을 펼칠 단 하나의 eventId —
+  // 사용자가 직접 클릭한 것, 없으면(지도 배지·모바일 등 외부 활성화) 그룹의 첫 정차지.
+  const activeGroupStops = withCoord.filter((s) => keyToIdx.get(coKey(s)) === activeStopIdx)
+  const shownEventId = activeGroupStops.some((s) => s.eventId === openEventId)
+    ? openEventId
+    : (activeGroupStops[0]?.eventId ?? null)
 
   return (
     <div
@@ -67,6 +76,7 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
               onClick={() => {
                 if (!hasCoord || dedupIdx == null) return
                 onStopSelect(dedupIdx)
+                setOpenEventId(stop.eventId)
               }}
               style={{
                 display: 'flex',
@@ -122,8 +132,8 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
               </div>
             </div>
 
-            {/* 활성 정차지 근거구절 — 행 아래 인라인. 같은 좌표의 사건은 각 행에 자기 구절을 보인다. */}
-            {isActive && (
+            {/* 활성 정차지 근거구절 — 클릭한 단 하나의 정차지만 펼친다(같은 좌표 그룹이라도). */}
+            {isActive && stop.eventId === shownEventId && (
               <div onClick={(e) => e.stopPropagation()} style={{ padding: '2px 12px 10px' }}>
                 <EventVerses eventId={stop.eventId} verseLang={verseLang} setVerseLang={setVerseLang} />
               </div>
