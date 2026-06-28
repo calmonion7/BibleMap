@@ -10,11 +10,17 @@ import EventVerses from './EventVerses'
 export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseLang, setVerseLang, personName }) {
   const listRef = useRef(null)
   const activeRef = useRef(null)
+  // 리스트에서 직접 클릭해 선택한 경우 자동 스크롤 억제(이미 보고 있는 행이 동일장소의 다른 행으로 점프하지 않게)
+  const suppressScrollRef = useRef(false)
   // 펼친 사건(eventId) — 📖 칩으로만 토글, 한 번에 하나만 열림.
   const [expandedId, setExpandedId] = useState(null)
 
-  // 지도 활성 항목으로 자동 스크롤
+  // 지도 마커로 선택이 바뀐 경우에만 활성 정차지로 자동 스크롤(리스트 클릭은 억제)
   useEffect(() => {
+    if (suppressScrollRef.current) {
+      suppressScrollRef.current = false
+      return
+    }
     if (activeRef.current && listRef.current) {
       activeRef.current.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
     }
@@ -32,6 +38,12 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
     if (!seen.includes(k)) seen.push(k)
   }
   const keyToIdx = new Map(seen.map((k, i) => [k, i]))
+
+  // 동일 좌표가 여러 사건에 걸칠 때, 활성 장소의 '첫' 정차지만 스크롤 타깃으로(마지막 행으로 점프 방지)
+  const firstActiveRawIdx = activeStopIdx == null ? -1 : stops.findIndex((s) => {
+    const kk = s.lng != null && s.lat != null ? coKey(s) : null
+    return kk != null && keyToIdx.get(kk) === activeStopIdx
+  })
 
   return (
     <div
@@ -65,7 +77,7 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
         return (
           <div
             key={stop.eventId ?? rawIdx}
-            ref={isActive ? activeRef : null}
+            ref={rawIdx === firstActiveRawIdx ? activeRef : null}
             style={{
               borderBottom: '1px solid rgba(255,255,255,0.05)',
               background: isActive ? 'rgba(124,156,252,0.15)' : 'transparent',
@@ -75,7 +87,10 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
             <div
               onClick={() => {
                 // 행 클릭 = 지도 선택만. 열린 구절은 닫는다(구절은 📖로만 토글).
-                if (hasCoord && dedupIdx != null) onStopSelect(dedupIdx)
+                if (hasCoord && dedupIdx != null) {
+                  if (dedupIdx !== activeStopIdx) suppressScrollRef.current = true  // 리스트 클릭 → 자동 스크롤 억제
+                  onStopSelect(dedupIdx)
+                }
                 setExpandedId(null)
               }}
               style={{
@@ -137,8 +152,11 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
                   onClick={(e) => {
                     e.stopPropagation()  // 행 onClick(지도 선택·닫기) 억제
                     setExpandedId(expanded ? null : stop.eventId)  // 단일 오픈 토글
-                    // 펼칠 때만 지도 동기화(접을 때 카메라 이동 방지)
-                    if (!expanded && hasCoord && dedupIdx != null) onStopSelect(dedupIdx)
+                    // 펼칠 때만 지도 동기화(접을 때 카메라 이동 방지). 리스트 클릭이므로 자동 스크롤 억제.
+                    if (!expanded && hasCoord && dedupIdx != null) {
+                      if (dedupIdx !== activeStopIdx) suppressScrollRef.current = true
+                      onStopSelect(dedupIdx)
+                    }
                   }}
                   style={{
                   flexShrink: 0,
