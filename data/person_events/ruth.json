@@ -1,0 +1,112 @@
+[
+  {
+    "id": "authored-ruth-moab-sojourn",
+    "title": "Famine drives Naomi's family to Moab",
+    "nameKo": "기근으로 모압에 우거하다 과부가 됨",
+    "startDate": "-1100",
+    "sortKey": -1100.5,
+    "yearLabel": "BC 1100경",
+    "context": "사사들이 치리하던 때 베들레헴에 기근이 들어 엘리멜렉의 가족이 모압으로 옮겨감. 그곳에서 남편과 두 아들이 죽고, 모압 여인 룻과 오르바만 남음 (Ruth 1:1–5).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-moab"
+    ],
+    "participants": [
+      "authored-person-ruth"
+    ],
+    "books": [
+      {
+        "bookId": "recZuCb9Bn0RErpsL",
+        "rangeLabel": "1:1–5"
+      }
+    ]
+  },
+  {
+    "id": "authored-ruth-bethlehem-return",
+    "title": "Ruth returns to Bethlehem with Naomi",
+    "nameKo": "나오미와 함께 베들레헴으로 돌아옴",
+    "startDate": "-1100",
+    "sortKey": -1100.4,
+    "yearLabel": "BC 1100경",
+    "context": "오르바는 돌아갔으나 룻은 '어머니의 하나님이 나의 하나님' 이라 하며 나오미를 따라, 보리 추수가 시작될 때 베들레헴에 이름 (Ruth 1:6–22).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-bethlehem"
+    ],
+    "participants": [
+      "authored-person-ruth"
+    ],
+    "books": [
+      {
+        "bookId": "recZuCb9Bn0RErpsL",
+        "rangeLabel": "1:6–22"
+      }
+    ]
+  },
+  {
+    "id": "authored-ruth-bethlehem-gleaning",
+    "title": "Ruth gleans in the field of Boaz",
+    "nameKo": "보아스의 밭에서 이삭을 주움",
+    "startDate": "-1100",
+    "sortKey": -1100.3,
+    "yearLabel": "BC 1100경",
+    "context": "룻이 우연히 엘리멜렉의 친족 보아스의 밭에서 이삭을 주으니, 보아스가 그 효성을 듣고 보호하며 일부러 곡식을 흘려 두게 함 (Ruth 2:1–23).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-bethlehem"
+    ],
+    "participants": [
+      "authored-person-ruth"
+    ],
+    "books": [
+      {
+        "bookId": "recZuCb9Bn0RErpsL",
+        "rangeLabel": "2:1–23"
+      }
+    ]
+  },
+  {
+    "id": "authored-ruth-bethlehem-threshing",
+    "title": "The proposal at the threshing floor",
+    "nameKo": "타작마당의 청혼",
+    "startDate": "-1100",
+    "sortKey": -1100.2,
+    "yearLabel": "BC 1100경",
+    "context": "나오미의 지혜를 따라 룻이 밤에 타작마당의 보아스 발치에 누워 기업 무를 자의 책임을 구하니, 보아스가 더 가까운 친족의 권리를 먼저 확인하겠다 약속함 (Ruth 3:1–18).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-bethlehem"
+    ],
+    "participants": [
+      "authored-person-ruth"
+    ],
+    "books": [
+      {
+        "bookId": "recZuCb9Bn0RErpsL",
+        "rangeLabel": "3:1–18"
+      }
+    ]
+  },
+  {
+    "id": "authored-ruth-bethlehem-redemption",
+    "title": "Boaz redeems Ruth — Obed is born",
+    "nameKo": "보아스의 기업 무름과 오벳의 출생",
+    "startDate": "-1100",
+    "sortKey": -1100.1,
+    "yearLabel": "BC 1100경",
+    "context": "성문에서 더 가까운 친족이 권리를 포기하매 보아스가 룻을 아내로 맞음. 둘 사이에 오벳이 나니 그가 이새의 아버지요 다윗의 할아버지가 됨 (Ruth 4:1–22).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-bethlehem"
+    ],
+    "participants": [
+      "authored-person-ruth"
+    ],
+    "books": [
+      {
+        "bookId": "recZuCb9Bn0RErpsL",
+        "rangeLabel": "4:1–22"
+      }
+    ]
+  }
+]

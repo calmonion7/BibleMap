@@ -48,6 +48,10 @@ Person 노드에 주입되는 속성 `traits` (JSON 문자열 배열). 각 항�
 
 **오버레이가 아니라 Neo4j `Event` 노드로 적재하되 `authored:true`로 마킹한다 (ADR-0005)** — 사건은 `/events`·`/node/{id}`·`/node/{id}/places`·사건 링이 소비하는 **일급 엔티티**라, 오버레이로만 두면 ⚡ 칩 클릭 시 `/node/{id}`가 404가 되어 SidePanel·지도·링이 깨지기 때문(이 점이 *연도·링크* 오버레이를 다룬 ADR-0004와 갈리는 지점). `/events`가 `authored` 플래그를 노출하고 TimelineView가 `추정` 배지 + 범위 라벨로 표시한다. theographic ID(`rec` 접두)가 없어 `authored-<slug>` 식별자를 `theographic_id`에 부여한다. **`CONTAINS_BOOK`(📖 근거)을 갖지 않으므로** 사건 근거 칩을 오염시키지 않고, 후기 10권과는 **book_events 오버레이(⚡)** 로 연결된다(`CONTAINS_BOOK`이 아니라). 기존 Place(로마·밧모·에베소)·Person(바울·베드로·요한)에 `OCCURS_AT`/`HAS_PARTICIPANT`로 연결해 지도·링을 살린다. 연도는 정렬용 단일 `sortKey` + 표시용 범위 라벨(`yearLabel`)로 둔다.
 
+## 저작 인물 (Authored Person)
+
+성경인물탐험에 큐레이션하려는 주인공이지만 Theographic 그래프에 Person 노드가 없는 인물(사사시대 드보라·기드온·입다·삼손·룻 등). 기존 큐레이션 16인은 실제 Theographic `rec` id를 재사용하지만, 사사들은 재사용할 노드가 없어 **마킹된 authored Person 노드를 새로 만든다 (ADR-0008)**. `data/authored_persons/people.json` → `load_authored_persons.py`가 `MERGE (p:Person {theographic_id})` + `authored:true` + `name`/`nameKo`로 멱등 적재. 식별자는 `authored-person-<slug>`(저작 사건 `authored-<slug>`·저작 장소 `authored-place-<name>`와 같은 계열). **적재 순서 제약**: authored Person이 `load_person_events.py`보다 먼저 적재돼야 인물 여정 사건의 `HAS_PARTICIPANT` MATCH가 성립한다. authored **사건의 주변 참여자**(네로·에스더 등 — 카드·여정 없음)는 이 대상이 아니라 여전히 노드 없이 둔다(ADR-0005의 경계). 카드·여정·SidePanel·지도가 일급 Person으로 소비하지만 traits 부여는 별도 enrich 경로다.
+
 ## selectedNode
 
 프론트엔드 전역 상태. 현재 사용자가 선택한 엔티티의 `theographic_id`와 레이블(Person/Place/Event/Book)을 담는다. MapView / TimelineView 두 뷰가 이 값을 구독해 동시에 갱신된다. (GraphView는 제거됨.)

@@ -1,0 +1,156 @@
+[
+  {
+    "id": "authored-gideon-ophrah-call",
+    "title": "The angel calls Gideon at Ophrah",
+    "nameKo": "오브라에서의 부르심과 바알 제단 헒",
+    "startDate": "-1191",
+    "sortKey": -1191.6,
+    "yearLabel": "BC 1191경",
+    "context": "미디안의 압제 아래 포도주 틀에서 밀을 타작하던 기드온에게 여호와의 사자가 나타나 '큰 용사'로 부르심. 그 밤 아버지의 바알 제단과 아세라 목상을 헐고 여호와께 번제를 드려 '여룹바알'이라 불림 (Judg 6:11–32).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-ophrah"
+    ],
+    "participants": [
+      "authored-person-gideon"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "6:11–32"
+      }
+    ]
+  },
+  {
+    "id": "authored-gideon-ophrah-fleece",
+    "title": "The sign of the fleece",
+    "nameKo": "양털 두 표징",
+    "startDate": "-1191",
+    "sortKey": -1191.5,
+    "yearLabel": "BC 1191경",
+    "context": "구원의 확신을 구하여 양털을 마당에 두고, 이슬이 양털에만 또 땅에만 내리는 두 표징으로 하나님의 함께하심을 확인함 (Judg 6:36–40).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-ophrah"
+    ],
+    "participants": [
+      "authored-person-gideon"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "6:36–40"
+      }
+    ]
+  },
+  {
+    "id": "authored-gideon-harod-selection",
+    "title": "Three hundred chosen at the spring of Harod",
+    "nameKo": "하롯 샘 300인 선발",
+    "startDate": "-1191",
+    "sortKey": -1191.4,
+    "yearLabel": "BC 1191경",
+    "context": "삼만 이천 명이 모였으나 여호와께서 '너무 많다' 하시어, 두려운 자를 돌려보내고 물을 손으로 움켜 핥은 300명만 하롯 샘 곁에서 택하심 (Judg 7:1–8).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-harod"
+    ],
+    "participants": [
+      "authored-person-gideon"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "7:1–8"
+      }
+    ]
+  },
+  {
+    "id": "authored-gideon-moreh-victory",
+    "title": "Rout of Midian at the hill of Moreh",
+    "nameKo": "모레 산 미디안 진영 격파",
+    "startDate": "-1191",
+    "sortKey": -1191.3,
+    "yearLabel": "BC 1191경",
+    "context": "300명이 항아리 속 횃불과 나팔을 들고 이스르엘 골짜기 모레 산 기슭의 미디안 진영을 야습. 나팔과 외침에 적이 서로 치며 패주함 (Judg 7:16–25).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-moreh"
+    ],
+    "participants": [
+      "authored-person-gideon"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "7:16–25"
+      }
+    ]
+  },
+  {
+    "id": "authored-gideon-succoth-pursuit",
+    "title": "Pursuit across the Jordan at Succoth",
+    "nameKo": "요단 건너 숙곳 추격",
+    "startDate": "-1191",
+    "sortKey": -1191.2,
+    "yearLabel": "BC 1191경",
+    "context": "지친 300명을 이끌고 요단을 건너 미디안 두 왕 세바와 살문나를 추격. 떡을 거절한 숙곳 방백들을 응징하겠다 경고함 (Judg 8:4–9).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-succoth-jordan"
+    ],
+    "participants": [
+      "authored-person-gideon"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "8:4–9"
+      }
+    ]
+  },
+  {
+    "id": "authored-gideon-penuel-pursuit",
+    "title": "Penuel punished, Midianite kings captured",
+    "nameKo": "브누엘 응징과 미디안 왕 사로잡음",
+    "startDate": "-1191",
+    "sortKey": -1191.1,
+    "yearLabel": "BC 1191경",
+    "context": "브누엘에서도 박대를 받은 뒤, 갈골에서 미디안 왕 세바와 살문나를 사로잡아 처단하고 형제들의 원수를 갚음 (Judg 8:10–21).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-peniel"
+    ],
+    "participants": [
+      "authored-person-gideon"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "8:10–21"
+      }
+    ]
+  },
+  {
+    "id": "authored-gideon-ophrah-ephod",
+    "title": "The ephod and forty years of peace",
+    "nameKo": "에봇과 40년의 평온",
+    "startDate": "-1190",
+    "sortKey": -1190.0,
+    "yearLabel": "BC 1190경",
+    "context": "왕이 되어 달라는 청을 물리쳤으나, 전리품 금으로 에봇을 만들어 오브라에 두니 온 이스라엘이 그것을 음란히 위함. 기드온 생전 사십 년간 그 땅이 평온하였음 (Judg 8:22–28).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-ophrah"
+    ],
+    "participants": [
+      "authored-person-gideon"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "8:22–28"
+      }
+    ]
+  }
+]

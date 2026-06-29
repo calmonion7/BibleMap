@@ -1,0 +1,134 @@
+[
+  {
+    "id": "authored-samson-zorah-birth",
+    "title": "Samson's birth announced at Zorah",
+    "nameKo": "소라에서의 출생 예고",
+    "startDate": "-1075",
+    "sortKey": -1075.6,
+    "yearLabel": "BC 1075경",
+    "context": "블레셋의 사십 년 압제 중, 소라의 단 지파 마노아의 아내에게 여호와의 사자가 나타나 나실인 삼손의 출생을 예고함 (Judg 13:2–24).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-zorah"
+    ],
+    "participants": [
+      "authored-person-samson"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "13:2–24"
+      }
+    ]
+  },
+  {
+    "id": "authored-samson-timnah-riddle",
+    "title": "Marriage and riddle at Timnah",
+    "nameKo": "딤나의 혼인과 수수께끼",
+    "startDate": "-1075",
+    "sortKey": -1075.5,
+    "yearLabel": "BC 1075경",
+    "context": "딤나의 블레셋 여인과 혼인하려던 삼손이 사자를 맨손으로 찢고, 그 주검의 꿀로 수수께끼를 내었으나 신부의 졸람에 답이 새어나가 아스글론 삼십 인을 침 (Judg 14:1–20).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-timnah"
+    ],
+    "participants": [
+      "authored-person-samson"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "14:1–20"
+      }
+    ]
+  },
+  {
+    "id": "authored-samson-lehi-jawbone",
+    "title": "The foxes and the jawbone at Lehi",
+    "nameKo": "여우 떼와 라맛레히의 턱뼈",
+    "startDate": "-1075",
+    "sortKey": -1075.4,
+    "yearLabel": "BC 1075경",
+    "context": "여우 삼백으로 블레셋 곡식을 태우고 보복하던 삼손이 레히에서 나귀 턱뼈 하나로 천 명을 쳐죽이고, 목말라 부르짖자 하나님이 샘을 내심 (Judg 15:1–20).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-lehi"
+    ],
+    "participants": [
+      "authored-person-samson"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "15:1–20"
+      }
+    ]
+  },
+  {
+    "id": "authored-samson-gaza-gate",
+    "title": "Samson carries off the gates of Gaza",
+    "nameKo": "가사 성문을 떠멤",
+    "startDate": "-1075",
+    "sortKey": -1075.3,
+    "yearLabel": "BC 1075경",
+    "context": "가사에 갔다가 매복에 갇힌 삼손이 한밤중에 성문과 문설주를 빗장째 뽑아 어깨에 메고 헤브론 앞산 꼭대기로 올라감 (Judg 16:1–3).",
+    "authored": true,
+    "occursAt": [
+      "recNzNKGhPz5qS3Kc"
+    ],
+    "participants": [
+      "authored-person-samson"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "16:1–3"
+      }
+    ]
+  },
+  {
+    "id": "authored-samson-sorek-delilah",
+    "title": "Delilah in the valley of Sorek",
+    "nameKo": "소렉 골짜기의 들릴라",
+    "startDate": "-1075",
+    "sortKey": -1075.2,
+    "yearLabel": "BC 1075경",
+    "context": "소렉 골짜기의 들릴라를 사랑한 삼손이 거듭된 졸람 끝에 나실인의 비밀(머리털)을 누설하니, 블레셋이 그를 잡아 눈을 빼고 가사 옥에서 맷돌을 돌리게 함 (Judg 16:4–22).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-sorek"
+    ],
+    "participants": [
+      "authored-person-samson"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "16:4–22"
+      }
+    ]
+  },
+  {
+    "id": "authored-samson-gaza-death",
+    "title": "Samson's death in the temple at Gaza",
+    "nameKo": "가사 신전에서의 죽음",
+    "startDate": "-1075",
+    "sortKey": -1075.1,
+    "yearLabel": "BC 1075경",
+    "context": "다곤 신전에서 조롱당하던 삼손이 다시 자란 머리털로 힘을 회복해, 두 기둥을 무너뜨려 자기와 함께 블레셋 사람 삼천을 죽이니 죽을 때 죽인 자가 살았을 때보다 많았더라 (Judg 16:23–31).",
+    "authored": true,
+    "occursAt": [
+      "recNzNKGhPz5qS3Kc"
+    ],
+    "participants": [
+      "authored-person-samson"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "16:23–31"
+      }
+    ]
+  }
+]

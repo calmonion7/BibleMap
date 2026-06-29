@@ -20,6 +20,11 @@ _ERA: dict[str, str] = {
     "joseph": "족장",
     "moses": "출애굽·정복",
     "joshua": "출애굽·정복",
+    "gideon": "사사",
+    "deborah": "사사",
+    "jephthah": "사사",
+    "samson": "사사",
+    "ruth": "사사",
     "samuel": "왕국",
     "david": "왕국",
     "solomon": "왕국",
@@ -40,6 +45,11 @@ _NAME_KO: dict[str, str] = {
     "joseph": "요셉",
     "moses": "모세",
     "joshua": "여호수아",
+    "gideon": "기드온",
+    "deborah": "드보라",
+    "jephthah": "입다",
+    "samson": "삼손",
+    "ruth": "룻",
     "samuel": "사무엘",
     "david": "다윗",
     "solomon": "솔로몬",
@@ -53,7 +63,7 @@ _NAME_KO: dict[str, str] = {
 }
 
 # era 표시 순서
-_ERA_ORDER = ["족장", "출애굽·정복", "왕국", "선지자", "신약"]
+_ERA_ORDER = ["족장", "출애굽·정복", "사사", "왕국", "선지자", "신약"]
 
 
 @functools.lru_cache(maxsize=1)

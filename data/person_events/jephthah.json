@@ -1,0 +1,134 @@
+[
+  {
+    "id": "authored-jephthah-gilead-exile",
+    "title": "Jephthah driven out of Gilead",
+    "nameKo": "길르앗에서 추방되어 돕으로 도피",
+    "startDate": "-1086",
+    "sortKey": -1086.6,
+    "yearLabel": "BC 1086경",
+    "context": "기생의 아들이라 형제들에게 기업에서 쫓겨난 길르앗 사람 입다가 돕 땅으로 도망하니, 잡류가 그에게 모여듦 (Judg 11:1–3).",
+    "authored": true,
+    "occursAt": [
+      "recPoImnA7S93jcHx"
+    ],
+    "participants": [
+      "authored-person-jephthah"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "11:1–3"
+      }
+    ]
+  },
+  {
+    "id": "authored-jephthah-mizpah-summons",
+    "title": "Elders make Jephthah their head at Mizpah",
+    "nameKo": "장로들이 미스바에서 머리로 세움",
+    "startDate": "-1086",
+    "sortKey": -1086.5,
+    "yearLabel": "BC 1086경",
+    "context": "암몬이 쳐들어오자 길르앗 장로들이 돕에서 입다를 데려와 머리와 장관으로 삼음. 입다가 미스바에서 그 모든 말을 여호와 앞에 아룀 (Judg 11:4–11).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-mizpah-gilead"
+    ],
+    "participants": [
+      "authored-person-jephthah"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "11:4–11"
+      }
+    ]
+  },
+  {
+    "id": "authored-jephthah-mizpah-vow",
+    "title": "Jephthah's vow at Mizpah",
+    "nameKo": "미스바에서의 서원",
+    "startDate": "-1086",
+    "sortKey": -1086.4,
+    "yearLabel": "BC 1086경",
+    "context": "여호와의 영이 임한 입다가 암몬을 치러 나가며, 승리하고 돌아올 때 자기를 영접하러 처음 나오는 자를 번제로 드리겠다 서원함 (Judg 11:29–31).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-mizpah-gilead"
+    ],
+    "participants": [
+      "authored-person-jephthah"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "11:29–31"
+      }
+    ]
+  },
+  {
+    "id": "authored-jephthah-aroer-victory",
+    "title": "Ammonites defeated from Aroer to Minnith",
+    "nameKo": "아로엘에서 암몬 격파",
+    "startDate": "-1086",
+    "sortKey": -1086.3,
+    "yearLabel": "BC 1086경",
+    "context": "입다가 아로엘에서 민닛에 이르기까지 이십 성읍과 아벨 그라밈까지 암몬을 크게 무찌르니, 암몬이 이스라엘 앞에 항복함 (Judg 11:32–33).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-aroer"
+    ],
+    "participants": [
+      "authored-person-jephthah"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "11:32–33"
+      }
+    ]
+  },
+  {
+    "id": "authored-jephthah-mizpah-daughter",
+    "title": "The sacrifice of Jephthah's daughter",
+    "nameKo": "딸의 희생",
+    "startDate": "-1086",
+    "sortKey": -1086.2,
+    "yearLabel": "BC 1086경",
+    "context": "미스바 집으로 돌아오는 입다를 그의 무남독녀가 소고 치며 춤추며 맞이함. 서원대로 행하니, 딸은 두 달간 처녀로 죽음을 애곡한 뒤였더라 (Judg 11:34–40).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-mizpah-gilead"
+    ],
+    "participants": [
+      "authored-person-jephthah"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "11:34–40"
+      }
+    ]
+  },
+  {
+    "id": "authored-jephthah-jordan-shibboleth",
+    "title": "Civil war with Ephraim — Shibboleth at the fords",
+    "nameKo": "에브라임 내전과 십볼렛",
+    "startDate": "-1086",
+    "sortKey": -1086.1,
+    "yearLabel": "BC 1086경",
+    "context": "시기한 에브라임과 싸운 길르앗이 요단 나루를 점령하고, '십볼렛'을 '십볼렛'으로 발음하는 자를 가려내 사만 이천을 쳐죽임 (Judg 12:1–6).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-jordan-fords-gilead"
+    ],
+    "participants": [
+      "authored-person-jephthah"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "12:1–6"
+      }
+    ]
+  }
+]

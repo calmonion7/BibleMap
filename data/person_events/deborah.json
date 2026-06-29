@@ -1,0 +1,132 @@
+[
+  {
+    "id": "authored-deborah-bethel-judging",
+    "title": "Deborah judges Israel under the palm",
+    "nameKo": "벧엘 종려나무 아래의 재판",
+    "startDate": "-1209",
+    "sortKey": -1209.5,
+    "yearLabel": "BC 1209경",
+    "context": "라마와 벧엘 사이 '드보라의 종려나무' 아래에서 이스라엘을 재판하던 여선지자 드보라. 가나안 왕 야빈의 이십 년 압제 아래 하나님의 말씀을 전함 (Judg 4:4–5).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-bethel"
+    ],
+    "participants": [
+      "authored-person-deborah"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "4:4–5"
+      }
+    ]
+  },
+  {
+    "id": "authored-deborah-kedesh-summons",
+    "title": "Barak summoned at Kedesh",
+    "nameKo": "게데스에서 바락 소집",
+    "startDate": "-1209",
+    "sortKey": -1209.4,
+    "yearLabel": "BC 1209경",
+    "context": "드보라가 바락을 불러 납달리·스불론 만 명을 다볼산으로 이끌라 명함. 바락은 드보라가 함께 가야 간다 하여, 영광이 한 여인에게 돌아가리라는 말을 들음 (Judg 4:6–10).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-kedesh"
+    ],
+    "participants": [
+      "authored-person-deborah"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "4:6–10"
+      }
+    ]
+  },
+  {
+    "id": "authored-deborah-tabor-muster",
+    "title": "Mustering on Mount Tabor",
+    "nameKo": "다볼산 집결",
+    "startDate": "-1209",
+    "sortKey": -1209.3,
+    "yearLabel": "BC 1209경",
+    "context": "바락의 만 명이 다볼산에 진을 치고, 시스라가 철 병거 구백 대를 기손 강가로 모음. 드보라가 '일어나라, 여호와께서 시스라를 네 손에 넘기셨다' 외침 (Judg 4:12–14).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-tabor"
+    ],
+    "participants": [
+      "authored-person-deborah"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "4:12–14"
+      }
+    ]
+  },
+  {
+    "id": "authored-deborah-kishon-victory",
+    "title": "Sisera routed at the Kishon",
+    "nameKo": "기손 강에서 시스라 군대 격파",
+    "startDate": "-1209",
+    "sortKey": -1209.2,
+    "yearLabel": "BC 1209경",
+    "context": "여호와께서 시스라와 그 병거와 군대를 칼날로 혼란케 하시니, 기손 강이 그들을 휩쓸고 시스라는 병거를 버리고 도망함 (Judg 4:15–16).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-kishon"
+    ],
+    "participants": [
+      "authored-person-deborah"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "4:15–16"
+      }
+    ]
+  },
+  {
+    "id": "authored-deborah-kedesh-jael",
+    "title": "Jael kills Sisera",
+    "nameKo": "야엘이 시스라를 죽임",
+    "startDate": "-1209",
+    "sortKey": -1209.1,
+    "yearLabel": "BC 1209경",
+    "context": "도망친 시스라가 겐 사람 헤벨의 아내 야엘의 장막으로 피했으나, 야엘이 장막 말뚝을 그의 관자놀이에 박아 죽임으로 바락에게 들은 예언이 이루어짐 (Judg 4:17–22).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-kedesh"
+    ],
+    "participants": [
+      "authored-person-deborah"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "4:17–22"
+      }
+    ]
+  },
+  {
+    "id": "authored-deborah-song",
+    "title": "The Song of Deborah",
+    "nameKo": "드보라의 노래",
+    "startDate": "-1209",
+    "sortKey": -1209.0,
+    "yearLabel": "BC 1209경",
+    "context": "드보라와 바락이 그 날 승전을 노래함 — 자원한 지파와 외면한 지파를 가르고, 여호와의 구원을 찬양함. 그 땅이 사십 년 동안 평온하였음 (Judg 5:1–31).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "authored-person-deborah"
+    ],
+    "books": [
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "rangeLabel": "5:1–31"
+      }
+    ]
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "id": "authored-person-gideon",
+    "name": "Gideon",
+    "nameKo": "기드온"
+  },
+  {
+    "id": "authored-person-deborah",
+    "name": "Deborah",
+    "nameKo": "드보라"
+  },
+  {
+    "id": "authored-person-jephthah",
+    "name": "Jephthah",
+    "nameKo": "입다"
+  },
+  {
+    "id": "authored-person-samson",
+    "name": "Samson",
+    "nameKo": "삼손"
+  },
+  {
+    "id": "authored-person-ruth",
+    "name": "Ruth",
+    "nameKo": "룻"
+  }
+]

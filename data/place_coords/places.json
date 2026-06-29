@@ -315,7 +315,7 @@
     "id": "authored-place-bethany-jeru",
     "name": "Bethany",
     "nameKo": "베다니",
-    "lat": 31.770,
+    "lat": 31.77,
     "lng": 35.267,
     "note": "예루살렘 동쪽 감람산 너머 마을; 나사로·마르다·마리아의 집 (John 11:1)"
   },
@@ -342,5 +342,125 @@
     "lat": 31.5,
     "lng": 35.4,
     "note": "세례 요한의 선포 사역지 (Matt 3:1); 예수의 40일 시험 장소"
+  },
+  {
+    "id": "authored-place-ophrah",
+    "name": "Ophrah",
+    "nameKo": "오브라",
+    "lat": 32.6,
+    "lng": 35.28,
+    "note": "기드온의 고향 아비에셀 사람의 오브라 (Judg 6:11)"
+  },
+  {
+    "id": "authored-place-harod",
+    "name": "Spring of Harod",
+    "nameKo": "하롯 샘",
+    "lat": 32.5497,
+    "lng": 35.3539,
+    "note": "기드온이 300명을 택한 하롯 샘 (Judg 7:1)"
+  },
+  {
+    "id": "authored-place-moreh",
+    "name": "Hill of Moreh",
+    "nameKo": "모레 산",
+    "lat": 32.627,
+    "lng": 35.336,
+    "note": "미디안 연합군이 진 친 이스르엘 골짜기 모레 산 (Judg 7:1, 12)"
+  },
+  {
+    "id": "authored-place-succoth-jordan",
+    "name": "Succoth",
+    "nameKo": "숙곳",
+    "lat": 32.2,
+    "lng": 35.62,
+    "note": "기드온이 미디안 추격 중 떡을 청한 요단 동편 숙곳 (Judg 8:5)"
+  },
+  {
+    "id": "authored-place-kedesh",
+    "name": "Kedesh",
+    "nameKo": "게데스",
+    "lat": 33.111,
+    "lng": 35.528,
+    "note": "바락을 소집하고 야엘이 시스라를 죽인 납달리 게데스 (Judg 4:6, 4:17)"
+  },
+  {
+    "id": "authored-place-tabor",
+    "name": "Mount Tabor",
+    "nameKo": "다볼산",
+    "lat": 32.687,
+    "lng": 35.39,
+    "note": "바락의 만 명이 집결한 다볼산 (Judg 4:12)"
+  },
+  {
+    "id": "authored-place-kishon",
+    "name": "Kishon River",
+    "nameKo": "기손 강",
+    "lat": 32.6,
+    "lng": 35.18,
+    "note": "시스라 병거 군대가 휩쓸린 기손 강가 이스르엘 골짜기 (Judg 4:13, 4:15)"
+  },
+  {
+    "id": "authored-place-mizpah-gilead",
+    "name": "Mizpah of Gilead",
+    "nameKo": "미스바 (길르앗)",
+    "lat": 32.05,
+    "lng": 35.72,
+    "note": "입다를 머리로 세우고 서원한 길르앗의 미스바 — 사무엘의 베냐민 미스바와 다른 요단 동편 지점 (Judg 11:11, 11:34)"
+  },
+  {
+    "id": "authored-place-aroer",
+    "name": "Aroer near Rabbah",
+    "nameKo": "아로엘",
+    "lat": 31.95,
+    "lng": 35.85,
+    "note": "입다가 암몬을 친 아로엘~민닛 지대, 암몬 랍바 앞 (Judg 11:33)"
+  },
+  {
+    "id": "authored-place-jordan-fords-gilead",
+    "name": "Fords of the Jordan",
+    "nameKo": "요단 나루 (길르앗)",
+    "lat": 32.2,
+    "lng": 35.55,
+    "note": "길르앗이 에브라임을 막고 십볼렛으로 가려낸 요단 나루 (Judg 12:5)"
+  },
+  {
+    "id": "authored-place-zorah",
+    "name": "Zorah",
+    "nameKo": "소라",
+    "lat": 31.766,
+    "lng": 34.985,
+    "note": "삼손이 태어난 단 지파 소라 (Judg 13:2, 13:25)"
+  },
+  {
+    "id": "authored-place-timnah",
+    "name": "Timnah",
+    "nameKo": "딤나",
+    "lat": 31.776,
+    "lng": 34.925,
+    "note": "삼손이 혼인하려던 블레셋 접경 딤나 — 유다 산지 딤나와 다름 (Judg 14:1)"
+  },
+  {
+    "id": "authored-place-lehi",
+    "name": "Lehi",
+    "nameKo": "레히",
+    "lat": 31.72,
+    "lng": 34.96,
+    "note": "나귀 턱뼈로 천 명을 친 라맛레히 (Judg 15:9, 15:17)"
+  },
+  {
+    "id": "authored-place-sorek",
+    "name": "Valley of Sorek",
+    "nameKo": "소렉 골짜기",
+    "lat": 31.75,
+    "lng": 34.94,
+    "note": "들릴라가 살던 소렉 골짜기 (Judg 16:4)"
+  },
+  {
+    "id": "authored-place-moab",
+    "name": "Land of Moab",
+    "nameKo": "모압",
+    "lat": 31.3,
+    "lng": 35.75,
+    "note": "엘리멜렉 가족이 기근을 피해 우거한 모압 땅 (Ruth 1:1)"
   }
 ]
