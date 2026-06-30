@@ -144630,5 +144630,913 @@
         ]
       }
     ]
+  },
+  "authored-saul-mizpah-chosen": {
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "bookOrder": 9,
+        "rangeLabel": "10:17–24",
+        "verses": [
+          {
+            "verseID": "09010017",
+            "chapter": 10,
+            "verse": 17,
+            "textKo": "사무엘이 백성을 미스바로 불러 여호와 앞에 모으고 ",
+            "textEn": "And Samuel called the people together unto the Lord to Mizpeh;"
+          },
+          {
+            "verseID": "09010018",
+            "chapter": 10,
+            "verse": 18,
+            "textKo": "이스라엘 자손에게 이르되 이스라엘 하나님 여호와께서 이같이 말씀하시기를 내가 이스라엘을 애굽에서 인도하여 내고 너희를 애굽인의 손과 너희를 압제하는 모든 나라의 손에서 건져내었느니라 하셨거늘 ",
+            "textEn": "And said unto the children of Israel, Thus saith the Lord God of Israel, I brought up Israel out of Egypt, and delivered you out of the hand of the Egyptians, and out of the hand of all kingdoms, and of them that oppressed you:"
+          },
+          {
+            "verseID": "09010019",
+            "chapter": 10,
+            "verse": 19,
+            "textKo": "너희가 너희를 모든 재난과 고통 중에서 친히 구원하여 내신 너희 하나님을 오늘날 버리고 이르기를 우리 위에 왕을 세우라 하도다 그런즉 이제 너희 지파대로 천 명씩 여호와 앞에 나아오라 하고 ",
+            "textEn": "And ye have this day rejected your God, who himself saved you out of all your adversities and your tribulations; and ye have said unto him, Nay, but set a king over us. Now therefore present yourselves before the Lord by your tribes, and by your thousands."
+          },
+          {
+            "verseID": "09010020",
+            "chapter": 10,
+            "verse": 20,
+            "textKo": "사무엘이 이에 이스라엘 모든 지파를 가까이 오게 하였더니 베냐민 지파가 뽑혔고 ",
+            "textEn": "And when Samuel had caused all the tribes of Israel to come near, the tribe of Benjamin was taken."
+          },
+          {
+            "verseID": "09010021",
+            "chapter": 10,
+            "verse": 21,
+            "textKo": "베냐민 지파를 그 가족대로 가까이 오게 하였더니 마드리의 가족이 뽑혔고 그 중에서 기스의 아들 사울이 뽑혔으나 그를 찾아도 만나지 못한지라 ",
+            "textEn": "When he had caused the tribe of Benjamin to come near by their families, the family of Matri was taken, and Saul the son of Kish was taken: and when they sought him, he could not be found."
+          },
+          {
+            "verseID": "09010022",
+            "chapter": 10,
+            "verse": 22,
+            "textKo": "그러므로 그들이 또 여호와께 묻되 그 사람이 여기 왔나이까 여호와께서 대답하시되 그가 행구 사이에 숨었느니라 ",
+            "textEn": "Therefore they enquired of the Lord further, if the man should yet come thither. And the Lord answered, Behold, he hath hid himself among the stuff."
+          },
+          {
+            "verseID": "09010023",
+            "chapter": 10,
+            "verse": 23,
+            "textKo": "그들이 달려가서 거기서 데려오매 그가 백성 중에 서니 다른 사람보다 어깨 위나 더 크더라 ",
+            "textEn": "And they ran and fetched him thence: and when he stood among the people, he was higher than any of the people from his shoulders and upward."
+          },
+          {
+            "verseID": "09010024",
+            "chapter": 10,
+            "verse": 24,
+            "textKo": "사무엘이 모든 백성에게 이르되 너희는 여호와의 택하신 자를 보느냐 모든 백성 중에 짝할 이가 없느니라 하니 모든 백성이 왕의 만세를 외쳐 부르니라 ",
+            "textEn": "And Samuel said to all the people, See ye him whom the Lord hath chosen, that there is none like him among all the people? And all the people shouted, and said, God save the king."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-saul-jabesh-rescue": {
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "bookOrder": 9,
+        "rangeLabel": "11:1–11",
+        "verses": [
+          {
+            "verseID": "09011001",
+            "chapter": 11,
+            "verse": 1,
+            "textKo": "암몬 사람 나하스가 올라와서 길르앗 야베스를 대하여 진 치매 야베스 모든 사람이 나하스에게 이르되 우리와 언약하자 그리하면 우리가 너를 섬기리라 ",
+            "textEn": "Then Nahash the Ammonite came up, and encamped against Jabesh–gilead: and all the men of Jabesh said unto Nahash, Make a covenant with us, and we will serve thee."
+          },
+          {
+            "verseID": "09011002",
+            "chapter": 11,
+            "verse": 2,
+            "textKo": "암몬 사람 나하스가 그들에게 이르되 내가 너희 오른눈을 다 빼어야 너희와 언약하리라 내가 온 이스라엘을 이같이 모욕하리라 ",
+            "textEn": "And Nahash the Ammonite answered them, On this condition will I make a covenant with you, that I may thrust out all your right eyes, and lay it for a reproach upon all Israel."
+          },
+          {
+            "verseID": "09011003",
+            "chapter": 11,
+            "verse": 3,
+            "textKo": "야베스 장로들이 이르되 우리에게 이레 유예를 주어 우리로 이스라엘 온 지경에 사자를 보내게 하라 우리를 구원할 자가 없으면 네게 나아가리라 하니라 ",
+            "textEn": "And the elders of Jabesh said unto him, Give us seven days’ respite, that we may send messengers unto all the coasts of Israel: and then, if there be no man to save us, we will come out to thee."
+          },
+          {
+            "verseID": "09011004",
+            "chapter": 11,
+            "verse": 4,
+            "textKo": "이에 사자가 사울의 기브아에 이르러 이 말을 백성에게 고하매 모든 백성이 소리를 높여 울더니 ",
+            "textEn": "Then came the messengers to Gibeah of Saul, and told the tidings in the ears of the people: and all the people lifted up their voices, and wept."
+          },
+          {
+            "verseID": "09011005",
+            "chapter": 11,
+            "verse": 5,
+            "textKo": "마침 사울이 밭에서 소를 몰고 오다가 가로되 백성이 무슨 일로 우느냐 그들이 야베스 사람의 말로 고하니라 ",
+            "textEn": "And, behold, Saul came after the herd out of the field; and Saul said, What aileth the people that they weep? And they told him the tidings of the men of Jabesh."
+          },
+          {
+            "verseID": "09011006",
+            "chapter": 11,
+            "verse": 6,
+            "textKo": "사울이 이 말을 들을 때에 하나님의 신에게 크게 감동되매 그 노가 크게 일어나서 ",
+            "textEn": "And the Spirit of God came upon Saul when he heard those tidings, and his anger was kindled greatly."
+          },
+          {
+            "verseID": "09011007",
+            "chapter": 11,
+            "verse": 7,
+            "textKo": "한 겨리 소를 취하여 각을 뜨고 사자의 손으로 그것을 이스라엘 모든 지경에 두루 보내어 가로되 누구든지 나와서 사울과 사무엘을 좇지 아니하면 그 소들도 이와 같이 하리라 하였더니 여호와의 두려움이 백성에게 임하매 그들이 한 사람 같이 나온지라 ",
+            "textEn": "And he took a yoke of oxen, and hewed them in pieces, and sent them throughout all the coasts of Israel by the hands of messengers, saying, Whosoever cometh not forth after Saul and after Samuel, so shall it be done unto his oxen. And the fear of the Lord fell on the people, and they came out with one consent."
+          },
+          {
+            "verseID": "09011008",
+            "chapter": 11,
+            "verse": 8,
+            "textKo": "사울이 베섹에서 그들을 계수하니 이스라엘 자손이 삼십만이요 유다 사람이 삼만이더라 ",
+            "textEn": "And when he numbered them in Bezek, the children of Israel were three hundred thousand, and the men of Judah thirty thousand."
+          },
+          {
+            "verseID": "09011009",
+            "chapter": 11,
+            "verse": 9,
+            "textKo": "무리가 온 사자들에게 이르되 너희는 길르앗 야베스 사람에게 이같이 이르기를 내일 해가 더울 때에 너희가 구원을 얻으리라 하라 사자들이 돌아가서 야베스 사람들에게 고하매 그들이 기뻐하니라 ",
+            "textEn": "And they said unto the messengers that came, Thus shall ye say unto the men of Jabesh–gilead, To morrow, by that time the sun be hot, ye shall have help. And the messengers came and shewed it to the men of Jabesh; and they were glad."
+          },
+          {
+            "verseID": "09011010",
+            "chapter": 11,
+            "verse": 10,
+            "textKo": "야베스 사람들이 이에 가로되 우리가 내일 너희에게 나아가리니 너희 소견에 좋을 대로 우리에게 다 행하라 하니라 ",
+            "textEn": "Therefore the men of Jabesh said, To morrow we will come out unto you, and ye shall do with us all that seemeth good unto you."
+          },
+          {
+            "verseID": "09011011",
+            "chapter": 11,
+            "verse": 11,
+            "textKo": "이튿날에 사울이 백성을 삼 대에 나누고 새벽에 적진 중에 들어가서 날이 더울 때까지 암몬 사람을 치매 남은 자가 다 흩어져서 둘도 함께 한 자가 없었더라 ",
+            "textEn": "And it was so on the morrow, that Saul put the people in three companies; and they came into the midst of the host in the morning watch, and slew the Ammonites until the heat of the day: and it came to pass, that they which remained were scattered, so that two of them were not left together."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-saul-gilgal-coronation": {
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "bookOrder": 9,
+        "rangeLabel": "11:14–15",
+        "verses": [
+          {
+            "verseID": "09011014",
+            "chapter": 11,
+            "verse": 14,
+            "textKo": "사무엘이 백성에게 이르되 오라 우리가 길갈로 가서 나라를 새롭게 하자 ",
+            "textEn": "Then said Samuel to the people, Come, and let us go to Gilgal, and renew the kingdom there."
+          },
+          {
+            "verseID": "09011015",
+            "chapter": 11,
+            "verse": 15,
+            "textKo": "모든 백성이 길갈로 가서 거기서 여호와 앞에 사울로 왕을 삼고 거기서 여호와 앞에 화목제를 드리고 사울과 이스라엘 모든 사람이 거기서 크게 기뻐하니라  ",
+            "textEn": "And all the people went to Gilgal; and there they made Saul king before the Lord in Gilgal; and there they sacrificed sacrifices of peace offerings before the Lord; and there Saul and all the men of Israel rejoiced greatly. "
+          }
+        ]
+      }
+    ]
+  },
+  "authored-saul-michmash-battle": {
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "bookOrder": 9,
+        "rangeLabel": "13:8–14",
+        "verses": [
+          {
+            "verseID": "09013008",
+            "chapter": 13,
+            "verse": 8,
+            "textKo": "사울이 사무엘의 정한 기한대로 이레를 기다리되 사무엘이 길갈로 오지 아니하매 백성이 사울에게서 흩어지는지라 ",
+            "textEn": "And he tarried seven days, according to the set time that Samuel had appointed: but Samuel came not to Gilgal; and the people were scattered from him."
+          },
+          {
+            "verseID": "09013009",
+            "chapter": 13,
+            "verse": 9,
+            "textKo": "사울이 가로되 번제와 화목제물을 이리로 가져오라 하여 번제를 드렸더니 ",
+            "textEn": "And Saul said, Bring hither a burnt offering to me, and peace offerings. And he offered the burnt offering."
+          },
+          {
+            "verseID": "09013010",
+            "chapter": 13,
+            "verse": 10,
+            "textKo": "번제 드리기를 필하자 사무엘이 온지라 사울이 나가 맞으며 문안하매 ",
+            "textEn": "And it came to pass, that as soon as he had made an end of offering the burnt offering, behold, Samuel came; and Saul went out to meet him, that he might salute him."
+          },
+          {
+            "verseID": "09013011",
+            "chapter": 13,
+            "verse": 11,
+            "textKo": "사무엘이 가로되 왕의 행한 것이 무엇이뇨 사울이 가로되 백성은 나에게서 흩어지고 당신은 정한 날 안에 오지 아니하고 블레셋 사람은 믹마스에 모였음을 내가 보았으므로 ",
+            "textEn": "And Samuel said, What hast thou done? And Saul said, Because I saw that the people were scattered from me, and that thou camest not within the days appointed, and that the Philistines gathered themselves together at Michmash;"
+          },
+          {
+            "verseID": "09013012",
+            "chapter": 13,
+            "verse": 12,
+            "textKo": "이에 내가 이르기를 블레셋 사람은 나를 치러 길갈로 내려오겠거늘 내가 여호와께 은혜를 간구치 못하였다 하고 부득이하여 번제를 드렸나이다 ",
+            "textEn": "Therefore said I, The Philistines will come down now upon me to Gilgal, and I have not made supplication unto the Lord: I forced myself therefore, and offered a burnt offering."
+          },
+          {
+            "verseID": "09013013",
+            "chapter": 13,
+            "verse": 13,
+            "textKo": "사무엘이 사울에게 이르되 왕이 망령되이 행하였도다 왕이 왕의 하나님 여호와께서 왕에게 명하신 명령을 지키지 아니하였도다 그리하였더면 여호와께서 이스라엘 위에 왕의 나라를 영영히 세우셨을 것이어늘 ",
+            "textEn": "And Samuel said to Saul, Thou hast done foolishly: thou hast not kept the commandment of the Lord thy God, which he commanded thee: for now would the Lord have established thy kingdom upon Israel for ever."
+          },
+          {
+            "verseID": "09013014",
+            "chapter": 13,
+            "verse": 14,
+            "textKo": "지금은 왕의 나라가 길지 못할 것이라 여호와께서 왕에게 명하신 바를 왕이 지키지 아니하였으므로 여호와께서 그 마음에 맞는 사람을 구하여 그 백성의 지도자를 삼으셨느니라 하고 ",
+            "textEn": "But now thy kingdom shall not continue: the Lord hath sought him a man after his own heart, and the Lord hath commanded him to be captain over his people, because thou hast not kept that which the Lord commanded thee."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-saul-gilgal-amalek": {
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "bookOrder": 9,
+        "rangeLabel": "15:7–28",
+        "verses": [
+          {
+            "verseID": "09015007",
+            "chapter": 15,
+            "verse": 7,
+            "textKo": "사울이 하윌라에서부터 애굽 앞 술에 이르기까지 아말렉 사람을 치고 ",
+            "textEn": "And Saul smote the Amalekites from Havilah until thou comest to Shur, that is over against Egypt."
+          },
+          {
+            "verseID": "09015008",
+            "chapter": 15,
+            "verse": 8,
+            "textKo": "아말렉 사람의 왕 아각을 사로잡고 칼날로 그 모든 백성을 진멸하였으되 ",
+            "textEn": "And he took Agag the king of the Amalekites alive, and utterly destroyed all the people with the edge of the sword."
+          },
+          {
+            "verseID": "09015009",
+            "chapter": 15,
+            "verse": 9,
+            "textKo": "사울과 백성이 아각과 그 양과 소의 가장 좋은 것 또는 기름진 것과 어린 양과 모든 좋은 것을 남기고 진멸키를 즐겨 아니하고 가치 없고 낮은 것은 진멸하니라 ",
+            "textEn": "But Saul and the people spared Agag, and the best of the sheep, and of the oxen, and of the fatlings, and the lambs, and all that was good, and would not utterly destroy them: but every thing that was vile and refuse, that they destroyed utterly."
+          },
+          {
+            "verseID": "09015010",
+            "chapter": 15,
+            "verse": 10,
+            "textKo": "여호와의 말씀이 사무엘에게 임하니라 가라사대 ",
+            "textEn": "Then came the word of the Lord unto Samuel, saying,"
+          },
+          {
+            "verseID": "09015011",
+            "chapter": 15,
+            "verse": 11,
+            "textKo": "내가 사울을 세워 왕 삼은 것을 후회하노니 그가 돌이켜서 나를 좇지 아니하며 내 명령을 이루지 아니하였음이니라 하신지라 사무엘이 근심하여 온 밤을 여호와께 부르짖으니라 ",
+            "textEn": "It repenteth me that I have set up Saul to be king: for he is turned back from following me, and hath not performed my commandments. And it grieved Samuel; and he cried unto the Lord all night."
+          },
+          {
+            "verseID": "09015012",
+            "chapter": 15,
+            "verse": 12,
+            "textKo": "사무엘이 사울을 만나려고 아침에 일찍이 일어났더니 혹이 사무엘에게 고하여 가로되 사울이 갈멜에 이르러 자기를 위하여 기념비를 세우고 돌이켜 행하여 길갈로 내려 갔다 하는지라 ",
+            "textEn": "And when Samuel rose early to meet Saul in the morning, it was told Samuel, saying, Saul came to Carmel, and, behold, he set him up a place, and is gone about, and passed on, and gone down to Gilgal."
+          },
+          {
+            "verseID": "09015013",
+            "chapter": 15,
+            "verse": 13,
+            "textKo": "사무엘이 사울에게 이른즉 사울이 그에게 이르되 원컨대 당신은 여호와께 복을 받으소서 내가 여호와의 명령을 행하였나이다 ",
+            "textEn": "And Samuel came to Saul: and Saul said unto him, Blessed be thou of the Lord: I have performed the commandment of the Lord."
+          },
+          {
+            "verseID": "09015014",
+            "chapter": 15,
+            "verse": 14,
+            "textKo": "사무엘이 가로되 그러면 내 귀에 들어오는 이 양의 소리와 내게 들리는 소의 소리는 어찜이니이까 ",
+            "textEn": "And Samuel said, What meaneth then this bleating of the sheep in mine ears, and the lowing of the oxen which I hear?"
+          },
+          {
+            "verseID": "09015015",
+            "chapter": 15,
+            "verse": 15,
+            "textKo": "사울이 가로되 그것은 무리가 아말렉 사람에게서 끌어 온 것인데 백성이 당신의 하나님 여호와께 제사하려 하여 양과 소의 가장 좋은 것을 남김이요 그 외의 것은 우리가 진멸하였나이다 ",
+            "textEn": "And Saul said, They have brought them from the Amalekites: for the people spared the best of the sheep and of the oxen, to sacrifice unto the Lord thy God; and the rest we have utterly destroyed."
+          },
+          {
+            "verseID": "09015016",
+            "chapter": 15,
+            "verse": 16,
+            "textKo": "사무엘이 사울에게 이르되 가만히 계시옵소서 간 밤에 여호와께서 내게 이르신 것을 왕에게 말하리이다 가로되 말씀하소서 ",
+            "textEn": "Then Samuel said unto Saul, Stay, and I will tell thee what the Lord hath said to me this night. And he said unto him, Say on."
+          },
+          {
+            "verseID": "09015017",
+            "chapter": 15,
+            "verse": 17,
+            "textKo": "사무엘이 가로되 왕이 스스로 작게 여길 그 때에 이스라엘 지파의 머리가 되지 아니하셨나이까 여호와께서 왕에게 기름을 부어 이스라엘 왕을 삼으시고 ",
+            "textEn": "And Samuel said, When thou wast little in thine own sight, wast thou not made the head of the tribes of Israel, and the Lord anointed thee king over Israel?"
+          },
+          {
+            "verseID": "09015018",
+            "chapter": 15,
+            "verse": 18,
+            "textKo": "또 왕을 길로 보내시며 이르시기를 가서 죄인 아말렉 사람을 진멸하되 다 없어지기까지 치라 하셨거늘 ",
+            "textEn": "And the Lord sent thee on a journey, and said, Go and utterly destroy the sinners the Amalekites, and fight against them until they be consumed."
+          },
+          {
+            "verseID": "09015019",
+            "chapter": 15,
+            "verse": 19,
+            "textKo": "어찌하여 왕이 여호와의 목소리를 청종치 아니하고 탈취하기에만 급하여 여호와의 악하게 여기시는 것을 행하였나이까 ",
+            "textEn": "Wherefore then didst thou not obey the voice of the Lord, but didst fly upon the spoil, and didst evil in the sight of the Lord?"
+          },
+          {
+            "verseID": "09015020",
+            "chapter": 15,
+            "verse": 20,
+            "textKo": "사울이 사무엘에게 이르되 나는 실로 여호와의 목소리를 청종하여 여호와께서 보내신 길로 가서 아말렉 왕 아각을 끌어왔고 아말렉 사람을 진멸하였으나 ",
+            "textEn": "And Saul said unto Samuel, Yea, I have obeyed the voice of the Lord, and have gone the way which the Lord sent me, and have brought Agag the king of Amalek, and have utterly destroyed the Amalekites."
+          },
+          {
+            "verseID": "09015021",
+            "chapter": 15,
+            "verse": 21,
+            "textKo": "다만 백성이 그 마땅히 멸할 것 중에서 가장 좋은 것으로 길갈에서 당신의 하나님 여호와께 제사하려고 양과 소를 취하였나이다 ",
+            "textEn": "But the people took of the spoil, sheep and oxen, the chief of the things which should have been utterly destroyed, to sacrifice unto the Lord thy God in Gilgal."
+          },
+          {
+            "verseID": "09015022",
+            "chapter": 15,
+            "verse": 22,
+            "textKo": "사무엘이 가로되 여호와께서 번제와 다른 제사를 그 목소리 순종하는 것을 좋아하심 같이 좋아하시겠나이까 순종이 제사보다 낫고 듣는 것이 수양의 기름보다 나으니 ",
+            "textEn": "And Samuel said, Hath the Lord as great delight in burnt offerings and sacrifices, as in obeying the voice of the Lord? Behold, to obey is better than sacrifice, and to hearken than the fat of rams."
+          },
+          {
+            "verseID": "09015023",
+            "chapter": 15,
+            "verse": 23,
+            "textKo": "이는 거역하는 것은 사술의 죄와 같고 완고한 것은 사신 우상에게 절하는 죄와 같음이라 왕이 여호와의 말씀을 버렸으므로 여호와께서도 왕을 버려 왕이 되지 못하게 하셨나이다 ",
+            "textEn": "For rebellion is as the sin of witchcraft, and stubbornness is as iniquity and idolatry. Because thou hast rejected the word of the Lord, he hath also rejected thee from being king."
+          },
+          {
+            "verseID": "09015024",
+            "chapter": 15,
+            "verse": 24,
+            "textKo": "사울이 사무엘에게 이르되 내가 범죄하였나이다 내가 여호와의 명령과 당신의 말씀을 어긴 것은 내가 백성을 두려워하여 그 말을 청종하였음이니이다 ",
+            "textEn": "And Saul said unto Samuel, I have sinned: for I have transgressed the commandment of the Lord, and thy words: because I feared the people, and obeyed their voice."
+          },
+          {
+            "verseID": "09015025",
+            "chapter": 15,
+            "verse": 25,
+            "textKo": "청하오니 지금 내 죄를 사하고 나와 함께 돌아가서 나로 여호와께 경배하게 하소서 ",
+            "textEn": "Now therefore, I pray thee, pardon my sin, and turn again with me, that I may worship the Lord."
+          },
+          {
+            "verseID": "09015026",
+            "chapter": 15,
+            "verse": 26,
+            "textKo": "사무엘이 사울에게 이르되 나는 왕과 함께 돌아가지 아니하리니 이는 왕이 여호와의 말씀을 버렸으므로 여호와께서 왕을 버려 이스라엘 왕이 되지 못하게 하셨음이니이다 하고 ",
+            "textEn": "And Samuel said unto Saul, I will not return with thee: for thou hast rejected the word of the Lord, and the Lord hath rejected thee from being king over Israel."
+          },
+          {
+            "verseID": "09015027",
+            "chapter": 15,
+            "verse": 27,
+            "textKo": "사무엘이 가려고 돌이킬 때에 사울이 그의 겉옷자락을 붙잡으매 찢어진지라 ",
+            "textEn": "And as Samuel turned about to go away, he laid hold upon the skirt of his mantle, and it rent."
+          },
+          {
+            "verseID": "09015028",
+            "chapter": 15,
+            "verse": 28,
+            "textKo": "사무엘이 그에게 이르되 여호와께서 오늘 이스라엘 나라를 왕에게서 떼어서 왕보다 나은 왕의 이웃에게 주셨나이다 ",
+            "textEn": "And Samuel said unto him, The Lord hath rent the kingdom of Israel from thee this day, and hath given it to a neighbour of thine, that is better than thou."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-saul-gibeah-spear": {
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "bookOrder": 9,
+        "rangeLabel": "18:6–11",
+        "verses": [
+          {
+            "verseID": "09018006",
+            "chapter": 18,
+            "verse": 6,
+            "textKo": "무리가 돌아올 때 곧 다윗이 블레셋 사람을 죽이고 돌아올 때에 여인들이 이스라엘 모든 성에서 나와서 노래하며 춤추며 소고와 경쇠를 가지고 왕 사울을 환영하는데 ",
+            "textEn": "And it came to pass as they came, when David was returned from the slaughter of the Philistine, that the women came out of all cities of Israel, singing and dancing, to meet king Saul, with tabrets, with joy, and with instruments of musick."
+          },
+          {
+            "verseID": "09018007",
+            "chapter": 18,
+            "verse": 7,
+            "textKo": "여인들이 뛰놀며 창화하여 가로되 사울의 죽인 자는 천천이요 다윗은 만만이로다 한지라 ",
+            "textEn": "And the women answered one another as they played, and said, Saul hath slain his thousands, and David his ten thousands."
+          },
+          {
+            "verseID": "09018008",
+            "chapter": 18,
+            "verse": 8,
+            "textKo": "사울이 이 말에 불쾌하여 심히 노하여 가로되 다윗에게는 만만을 돌리고 내게는 천천만 돌리니 그의 더 얻을 것이 나라 밖에 무엇이냐 하고 ",
+            "textEn": "And Saul was very wroth, and the saying displeased him; and he said, They have ascribed unto David ten thousands, and to me they have ascribed but thousands: and what can he have more but the kingdom?"
+          },
+          {
+            "verseID": "09018009",
+            "chapter": 18,
+            "verse": 9,
+            "textKo": "그 날 후로 사울이 다윗을 주목하였더라 ",
+            "textEn": "And Saul eyed David from that day and forward."
+          },
+          {
+            "verseID": "09018010",
+            "chapter": 18,
+            "verse": 10,
+            "textKo": "그 이튿날 하나님의 부리신 악신이 사울에게 힘있게 내리매 그가 집 가운데서 야료하는고로 다윗이 평일과 같이 손으로 수금을 타는데 때에 사울의 손에 창이 있는지라 ",
+            "textEn": "And it came to pass on the morrow, that the evil spirit from God came upon Saul, and he prophesied in the midst of the house: and David played with his hand, as at other times: and there was a javelin in Saul’s hand."
+          },
+          {
+            "verseID": "09018011",
+            "chapter": 18,
+            "verse": 11,
+            "textKo": "그가 스스로 이르기를 내가 다윗을 벽에 박으리라 하고 그 창을 던졌으나 다윗이 그 앞에서 두 번 피하였더라 ",
+            "textEn": "And Saul cast the javelin; for he said, I will smite David even to the wall with it. And David avoided out of his presence twice."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-saul-nob-massacre": {
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "bookOrder": 9,
+        "rangeLabel": "22:11–19",
+        "verses": [
+          {
+            "verseID": "09022011",
+            "chapter": 22,
+            "verse": 11,
+            "textKo": "왕이 보내어 아히둡의 아들 제사장 아히멜렉과 그 아비의 온 집 곧 놉에 있는 제사장들을 부르매 그들이 다 왕께 이른지라 ",
+            "textEn": "Then the king sent to call Ahimelech the priest, the son of Ahitub, and all his father’s house, the priests that were in Nob: and they came all of them to the king."
+          },
+          {
+            "verseID": "09022012",
+            "chapter": 22,
+            "verse": 12,
+            "textKo": "사울이 가로되 너 아히둡의 아들아 들으라 대답하되 내 주여 내가 여기 있나이다 ",
+            "textEn": "And Saul said, Hear now, thou son of Ahitub. And he answered, Here I am, my lord."
+          },
+          {
+            "verseID": "09022013",
+            "chapter": 22,
+            "verse": 13,
+            "textKo": "사울이 그에게 이르되 네가 어찌하여 이새의 아들과 공모하여 나를 대적하여 그에게 떡과 칼을 주고 그를 위하여 하나님께 물어서 그로 오늘이라도 매복하였다가 나를 치게 하려 하였느뇨 ",
+            "textEn": "And Saul said unto him, Why have ye conspired against me, thou and the son of Jesse, in that thou hast given him bread, and a sword, and hast enquired of God for him, that he should rise against me, to lie in wait, as at this day?"
+          },
+          {
+            "verseID": "09022014",
+            "chapter": 22,
+            "verse": 14,
+            "textKo": "아히멜렉이 왕에게 대답하여 가로되 왕의 모든 신하 중에 다윗 같이 충실한 자가 누구인지요 그는 왕의 사위도 되고 왕의 모신도 되고 왕실에서 존귀한 자가 아니니이까 ",
+            "textEn": "Then Ahimelech answered the king, and said, And who is so faithful among all thy servants as David, which is the king’s son in law, and goeth at thy bidding, and is honourable in thine house?"
+          },
+          {
+            "verseID": "09022015",
+            "chapter": 22,
+            "verse": 15,
+            "textKo": "내가 그를 위하여 하나님께 물은 것이 오늘이 처음이니이까 결단코 아니니이다 원컨대 왕은 종과 종의 아비의 온 집에 아무 것도 돌리지 마옵소서 왕의 종은 이 모든 일의 대소간에 아는 것이 없나이다 ",
+            "textEn": "Did I then begin to enquire of God for him? be it far from me: let not the king impute any thing unto his servant, nor to all the house of my father: for thy servant knew nothing of all this, less or more."
+          },
+          {
+            "verseID": "09022016",
+            "chapter": 22,
+            "verse": 16,
+            "textKo": "왕이 가로되 아히멜렉아 네가 반드시 죽을 것이요 네 아비의 온 집도 그러하리라 하고 ",
+            "textEn": "And the king said, Thou shalt surely die, Ahimelech, thou, and all thy father’s house."
+          },
+          {
+            "verseID": "09022017",
+            "chapter": 22,
+            "verse": 17,
+            "textKo": "왕이 좌우의 시위자에게 이르되 돌이켜 가서 여호와의 제사장들을 죽이라 그들도 다윗과 합력하였고 또 그들이 다윗의 도망한 것을 알고도 내게 고발치 아니하였음이니라 하나 왕의 신하들이 손을 들어 여호와의 제사장들 죽이기를 싫어한지라 ",
+            "textEn": "And the king said unto the footmen that stood about him, Turn, and slay the priests of the Lord; because their hand also is with David, and because they knew when he fled, and did not shew it to me. But the servants of the king would not put forth their hand to fall upon the priests of the Lord."
+          },
+          {
+            "verseID": "09022018",
+            "chapter": 22,
+            "verse": 18,
+            "textKo": "왕이 도엑에게 이르되 너는 돌이켜 제사장들을 죽이라 하매 에돔 사람 도엑이 돌이켜 제사장들을 쳐서 그 날에 세마포 에봇 입은 자 팔십오 인을 죽였고 ",
+            "textEn": "And the king said to Doeg, Turn thou, and fall upon the priests. And Doeg the Edomite turned, and he fell upon the priests, and slew on that day fourscore and five persons that did wear a linen ephod."
+          },
+          {
+            "verseID": "09022019",
+            "chapter": 22,
+            "verse": 19,
+            "textKo": "제사장들의 성읍 놉의 남녀와 아이들과 젖먹는 자들과 소와 나귀와 양을 칼로 쳤더라 ",
+            "textEn": "And Nob, the city of the priests, smote he with the edge of the sword, both men and women, children and sucklings, and oxen, and asses, and sheep, with the edge of the sword."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-saul-engedi-spared": {
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "bookOrder": 9,
+        "rangeLabel": "24:1–22",
+        "verses": [
+          {
+            "verseID": "09024001",
+            "chapter": 24,
+            "verse": 1,
+            "textKo": "사울이 블레셋 사람을 따르다가 돌아오매 혹이 그에게 고하여 가로되 보소서 다윗이 엔게디 황무지에 있더이다 ",
+            "textEn": "And it came to pass, when Saul was returned from following the Philistines, that it was told him, saying, Behold, David is in the wilderness of En–gedi."
+          },
+          {
+            "verseID": "09024002",
+            "chapter": 24,
+            "verse": 2,
+            "textKo": "사울이 온 이스라엘에서 택한 사람 삼천을 거느리고 다윗과 그의 사람들을 찾으러 들염소 바위로 갈새 ",
+            "textEn": "Then Saul took three thousand chosen men out of all Israel, and went to seek David and his men upon the rocks of the wild goats."
+          },
+          {
+            "verseID": "09024003",
+            "chapter": 24,
+            "verse": 3,
+            "textKo": "길 가 양의 우리에 이른즉 굴이 있는지라 사울이 그 발을 가리우러 들어가니라 다윗과 그의 사람들이 그 굴 깊은 곳에 있더니 ",
+            "textEn": "And he came to the sheepcotes by the way, where was a cave; and Saul went in to cover his feet: and David and his men remained in the sides of the cave."
+          },
+          {
+            "verseID": "09024004",
+            "chapter": 24,
+            "verse": 4,
+            "textKo": "다윗의 사람들이 가로되 보소서 여호와께서 당신에게 이르시기를 내가 원수를 네 손에 붙이리니 네 소견에 선한 대로 그에게 행하라 하시더니 이것이 그 날이니이다 다윗이 일어나서 사울의 겉옷자락을 가만히 베니라 ",
+            "textEn": "And the men of David said unto him, Behold the day of which the Lord said unto thee, Behold, I will deliver thine enemy into thine hand, that thou mayest do to him as it shall seem good unto thee. Then David arose, and cut off the skirt of Saul’s robe privily."
+          },
+          {
+            "verseID": "09024005",
+            "chapter": 24,
+            "verse": 5,
+            "textKo": "그리한 후에 사울의 옷자락 벰을 인하여 다윗의 마음이 찔려 ",
+            "textEn": "And it came to pass afterward, that David’s heart smote him, because he had cut off Saul’s skirt."
+          },
+          {
+            "verseID": "09024006",
+            "chapter": 24,
+            "verse": 6,
+            "textKo": "자기 사람들에게 이르되 내가 손을 들어 여호와의 기름 부음을 받은 내 주를 치는 것은 여호와의 금하시는 것이니 그는 여호와의 기름 부음을 받은 자가 됨이니라 하고 ",
+            "textEn": "And he said unto his men, The Lord forbid that I should do this thing unto my master, the Lord’s anointed, to stretch forth mine hand against him, seeing he is the anointed of the Lord."
+          },
+          {
+            "verseID": "09024007",
+            "chapter": 24,
+            "verse": 7,
+            "textKo": "다윗이 이 말로 자기 사람들을 금하여 사울을 해하지 못하게 하니라 사울이 일어나 굴에서 나가 자기 길을 가니라 ",
+            "textEn": "So David stayed his servants with these words, and suffered them not to rise against Saul. But Saul rose up out of the cave, and went on his way."
+          },
+          {
+            "verseID": "09024008",
+            "chapter": 24,
+            "verse": 8,
+            "textKo": "그 후에 다윗도 일어나 굴에서 나가 사울의 뒤에서 외쳐 가로되 내 주 왕이여 하매 사울이 돌아보는지라 다윗이 땅에 엎드려 절하고 ",
+            "textEn": "David also arose afterward, and went out of the cave, and cried after Saul, saying, My lord the king. And when Saul looked behind him, David stooped with his face to the earth, and bowed himself."
+          },
+          {
+            "verseID": "09024009",
+            "chapter": 24,
+            "verse": 9,
+            "textKo": "사울에게 이르되 다윗이 왕을 해하려 한다고 하는 사람들의 말을 왕은 어찌하여 들으시나이까 ",
+            "textEn": "And David said to Saul, Wherefore hearest thou men’s words, saying, Behold, David seeketh thy hurt?"
+          },
+          {
+            "verseID": "09024010",
+            "chapter": 24,
+            "verse": 10,
+            "textKo": "오늘 여호와께서 굴에서 왕을 내 손에 붙이신 것을 왕이 아셨을 것이니이다 혹이 나를 권하여 왕을 죽이라 하였으나 내가 왕을 아껴 말하기를 나는 내 손을 들어 내 주를 해치 아니하리니 그는 여호와의 기름 부음을 받은 자가 됨이니라 하였나이다 ",
+            "textEn": "Behold, this day thine eyes have seen how that the Lord had delivered thee to day into mine hand in the cave: and some bade me kill thee: but mine eye spared thee; and I said, I will not put forth mine hand against my lord; for he is the Lord’s anointed."
+          },
+          {
+            "verseID": "09024011",
+            "chapter": 24,
+            "verse": 11,
+            "textKo": "나의 아버지여 보소서 내 손에 있는 왕의 옷자락을 보소서 내가 왕을 죽이지 아니하고 겉옷자락만 베었은즉 나의 손에 악이나 죄과가 없는 줄을 아실지니이다 왕은 내 생명을 찾아 해하려 하시나 나는 왕에게 범죄한 일이 없나이다 ",
+            "textEn": "Moreover, my father, see, yea, see the skirt of thy robe in my hand: for in that I cut off the skirt of thy robe, and killed thee not, know thou and see that there is neither evil nor transgression in mine hand, and I have not sinned against thee; yet thou huntest my soul to take it."
+          },
+          {
+            "verseID": "09024012",
+            "chapter": 24,
+            "verse": 12,
+            "textKo": "여호와께서는 나와 왕 사이를 판단하사 나를 위하여 왕에게 보복하시려니와 내 손으로는 왕을 해하지 않겠나이다 ",
+            "textEn": "The Lord judge between me and thee, and the Lord avenge me of thee: but mine hand shall not be upon thee."
+          },
+          {
+            "verseID": "09024013",
+            "chapter": 24,
+            "verse": 13,
+            "textKo": "옛 속담에 말하기를 악은 악인에게서 난다 하였으니 내 손이 왕을 해하지 아니하리이다 ",
+            "textEn": "As saith the proverb of the ancients, Wickedness proceedeth from the wicked: but mine hand shall not be upon thee."
+          },
+          {
+            "verseID": "09024014",
+            "chapter": 24,
+            "verse": 14,
+            "textKo": "이스라엘 왕이 누구를 따라 나왔으며 누구를 쫓나이까 죽은 개나 벼룩을 쫓음이니이다 ",
+            "textEn": "After whom is the king of Israel come out? after whom dost thou pursue? after a dead dog, after a flea."
+          },
+          {
+            "verseID": "09024015",
+            "chapter": 24,
+            "verse": 15,
+            "textKo": "그런즉 여호와께서 재판장이 되어 나와 왕 사이에 판결하사 나의 사정을 살펴 신원하시고 나를 왕의 손에서 건지시기를 원하나이다 ",
+            "textEn": "The Lord therefore be judge, and judge between me and thee, and see, and plead my cause, and deliver me out of thine hand."
+          },
+          {
+            "verseID": "09024016",
+            "chapter": 24,
+            "verse": 16,
+            "textKo": "다윗이 사울에게 이같이 말하기를 마치매 사울이 가로되 내 아들 다윗아 이것이 네 목소리냐 하고 소리를 높여 울며 ",
+            "textEn": "And it came to pass, when David had made an end of speaking these words unto Saul, that Saul said, Is this thy voice, my son David? And Saul lifted up his voice, and wept."
+          },
+          {
+            "verseID": "09024017",
+            "chapter": 24,
+            "verse": 17,
+            "textKo": "다윗에게 이르되 나는 너를 학대하되 너는 나를 선대하니 너는 나보다 의롭도다 ",
+            "textEn": "And he said to David, Thou art more righteous than I: for thou hast rewarded me good, whereas I have rewarded thee evil."
+          },
+          {
+            "verseID": "09024018",
+            "chapter": 24,
+            "verse": 18,
+            "textKo": "네가 나 선대한 것을 오늘 나타내었나니 여호와께서 나를 네 손에 붙이셨으나 네가 나를 죽이지 아니하였도다 ",
+            "textEn": "And thou hast shewed this day how that thou hast dealt well with me: forasmuch as when the Lord had delivered me into thine hand, thou killedst me not."
+          },
+          {
+            "verseID": "09024019",
+            "chapter": 24,
+            "verse": 19,
+            "textKo": "사람이 그 원수를 만나면 그를 평안히 가게 하겠느냐 네가 오늘날 내게 행한 일을 인하여 여호와께서 네게 선으로 갚으시기를 원하노라 ",
+            "textEn": "For if a man find his enemy, will he let him go well away? wherefore the Lord reward thee good for that thou hast done unto me this day."
+          },
+          {
+            "verseID": "09024020",
+            "chapter": 24,
+            "verse": 20,
+            "textKo": "보라 나는 네가 반드시 왕이 될 것을 알고 이스라엘 나라가 네 손에 견고히 설 것을 아노니 ",
+            "textEn": "And now, behold, I know well that thou shalt surely be king, and that the kingdom of Israel shall be established in thine hand."
+          },
+          {
+            "verseID": "09024021",
+            "chapter": 24,
+            "verse": 21,
+            "textKo": "그런즉 너는 내 후손을 끊지 아니하며 내 아비의 집에서 내 이름을 멸하지 아니할 것을 이제 여호와로 내게 맹세하라 ",
+            "textEn": "Swear now therefore unto me by the Lord, that thou wilt not cut off my seed after me, and that thou wilt not destroy my name out of my father’s house."
+          },
+          {
+            "verseID": "09024022",
+            "chapter": 24,
+            "verse": 22,
+            "textKo": "다윗이 사울에게 맹세하매 사울은 집으로 돌아가고 다윗과 그의 사람들은 요새로 올라가니라  ",
+            "textEn": "And David sware unto Saul. And Saul went home; but David and his men gat them up unto the hold. "
+          }
+        ]
+      }
+    ]
+  },
+  "authored-saul-endor-medium": {
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "bookOrder": 9,
+        "rangeLabel": "28:7–20",
+        "verses": [
+          {
+            "verseID": "09028007",
+            "chapter": 28,
+            "verse": 7,
+            "textKo": "사울이 그 신하들에게 이르되 나를 위하여 신접한 여인을 찾으라 내가 그리로 가서 그에게 물으리라 그 신하들이 그에게 이르되 보소서 엔돌에 신접한 여인이 있나이다 ",
+            "textEn": "Then said Saul unto his servants, Seek me a woman that hath a familiar spirit, that I may go to her, and enquire of her. And his servants said to him, Behold, there is a woman that hath a familiar spirit at En–dor."
+          },
+          {
+            "verseID": "09028008",
+            "chapter": 28,
+            "verse": 8,
+            "textKo": "사울이 다른 옷을 입어 변장하고 두 사람과 함께 갈새 그들이 밤에 그 여인에게 이르러는 사울이 가로되 청하노니 나를 위하여 신접한 술법으로 내가 네게 말하는 사람을 불러올리라 ",
+            "textEn": "And Saul disguised himself, and put on other raiment, and he went, and two men with him, and they came to the woman by night: and he said, I pray thee, divine unto me by the familiar spirit, and bring me him up, whom I shall name unto thee."
+          },
+          {
+            "verseID": "09028009",
+            "chapter": 28,
+            "verse": 9,
+            "textKo": "여인이 그에게 이르되 네가 사울의 행한 일 곧 그가 신접한 자와 박수를 이 땅에서 멸절시켰음을 아나니 네가 어찌하여 내 생명에 올무를 놓아 나를 죽게 하려느냐 ",
+            "textEn": "And the woman said unto him, Behold, thou knowest what Saul hath done, how he hath cut off those that have familiar spirits, and the wizards, out of the land: wherefore then layest thou a snare for my life, to cause me to die?"
+          },
+          {
+            "verseID": "09028010",
+            "chapter": 28,
+            "verse": 10,
+            "textKo": "사울이 여호와로 그에게 맹세하여 가로되 여호와께서 사시거니와 네가 이 일로는 벌을 당치 아니하리라 ",
+            "textEn": "And Saul sware to her by the Lord, saying, As the Lord liveth, there shall no punishment happen to thee for this thing."
+          },
+          {
+            "verseID": "09028011",
+            "chapter": 28,
+            "verse": 11,
+            "textKo": "여인이 가로되 내가 누구를 네게로 불러 올리랴 사울이 가로되 사무엘을 불러 올리라 ",
+            "textEn": "Then said the woman, Whom shall I bring up unto thee? And he said, Bring me up Samuel."
+          },
+          {
+            "verseID": "09028012",
+            "chapter": 28,
+            "verse": 12,
+            "textKo": "여인이 사무엘을 보고 큰 소리로 외치며 사울에게 말하여 가로되 당신이 어찌하여 나를 속이셨나이까 당신이 사울이시니이다 ",
+            "textEn": "And when the woman saw Samuel, she cried with a loud voice: and the woman spake to Saul, saying, Why hast thou deceived me? for thou art Saul."
+          },
+          {
+            "verseID": "09028013",
+            "chapter": 28,
+            "verse": 13,
+            "textKo": "왕이 그에게 이르되 두려워 말라 네가 무엇을 보았느냐 여인이 사울에게 이르되 내가 신이 땅에서 올라오는 것을 보았나이다 ",
+            "textEn": "And the king said unto her, Be not afraid: for what sawest thou? And the woman said unto Saul, I saw gods ascending out of the earth."
+          },
+          {
+            "verseID": "09028014",
+            "chapter": 28,
+            "verse": 14,
+            "textKo": "사울이 그에게 이르되 그 모양이 어떠하냐 그가 가로되 한 노인이 올라 오는데 그가 겉옷을 입었나이다 사울이 그가 사무엘인줄 알고 그 얼굴을 땅에 대고 절하니라 ",
+            "textEn": "And he said unto her, What form is he of? And she said, An old man cometh up; and he is covered with a mantle. And Saul perceived that it was Samuel, and he stooped with his face to the ground, and bowed himself."
+          },
+          {
+            "verseID": "09028015",
+            "chapter": 28,
+            "verse": 15,
+            "textKo": "사무엘이 사울에게 이르되 네가 어찌하여 나를 불러 올려서 나로 분요케 하느냐 사울이 대답하되 나는 심히 군급하니이다 블레셋 사람은 나를 향하여 군대를 일으켰고 하나님은 나를 떠나서 다시는 선지자로도, 꿈으로도 내게 대답지 아니하시기로 나의 행할 일을 배우려고 당신을 불러 올렸나이다 ",
+            "textEn": "And Samuel said to Saul, Why hast thou disquieted me, to bring me up? And Saul answered, I am sore distressed; for the Philistines make war against me, and God is departed from me, and answereth me no more, neither by prophets, nor by dreams: therefore I have called thee, that thou mayest make known unto me what I shall do."
+          },
+          {
+            "verseID": "09028016",
+            "chapter": 28,
+            "verse": 16,
+            "textKo": "사무엘이 가로되 여호와께서 너를 떠나 네 대적이 되셨거늘 네가 어찌하여 내게 묻느냐 ",
+            "textEn": "Then said Samuel, Wherefore then dost thou ask of me, seeing the Lord is departed from thee, and is become thine enemy?"
+          },
+          {
+            "verseID": "09028017",
+            "chapter": 28,
+            "verse": 17,
+            "textKo": "여호와께서 나로 말씀하신 대로 네게 행하사 나라를 네 손에서 떼어 네 이웃 다윗에게 주셨느니라 ",
+            "textEn": "And the Lord hath done to him, as he spake by me: for the Lord hath rent the kingdom out of thine hand, and given it to thy neighbour, even to David:"
+          },
+          {
+            "verseID": "09028018",
+            "chapter": 28,
+            "verse": 18,
+            "textKo": "네가 여호와의 목소리를 순종치 아니하고 그의 진노를 아말렉에게 쏟지 아니하였으므로 여호와께서 오늘날 이 일을 네게 행하셨고 ",
+            "textEn": "Because thou obeyedst not the voice of the Lord, nor executedst his fierce wrath upon Amalek, therefore hath the Lord done this thing unto thee this day."
+          },
+          {
+            "verseID": "09028019",
+            "chapter": 28,
+            "verse": 19,
+            "textKo": "여호와께서 이스라엘을 너와 함께 블레셋 사람의 손에 붙이시리니 내일 너와 네 아들들이 나와 함께 있으리라 여호와께서 또 이스라엘 군대를 블레셋 사람의 손에 붙이시리라 ",
+            "textEn": "Moreover the Lord will also deliver Israel with thee into the hand of the Philistines: and to morrow shalt thou and thy sons be with me: the Lord also shall deliver the host of Israel into the hand of the Philistines."
+          },
+          {
+            "verseID": "09028020",
+            "chapter": 28,
+            "verse": 20,
+            "textKo": "사울이 갑자기 땅에 온전히 엎드러지니 이는 사무엘의 말을 인하여 심히 두려워함이요 또 그 기력이 진하였으니 이는 그가 종일 종야에 식물을 먹지 못하였음이라 ",
+            "textEn": "Then Saul fell straightway all along on the earth, and was sore afraid, because of the words of Samuel: and there was no strength in him; for he had eaten no bread all the day, nor all the night."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-saul-gilboa-death": {
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "bookOrder": 9,
+        "rangeLabel": "31:1–13",
+        "verses": [
+          {
+            "verseID": "09031001",
+            "chapter": 31,
+            "verse": 1,
+            "textKo": "블레셋 사람이 이스라엘을 치매 이스라엘 사람들이 블레셋 사람 앞에서 도망하여 길보아 산에서 엎드러져 죽으니라 ",
+            "textEn": "Now the Philistines fought against Israel: and the men of Israel fled from before the Philistines, and fell down slain in mount Gilboa."
+          },
+          {
+            "verseID": "09031002",
+            "chapter": 31,
+            "verse": 2,
+            "textKo": "블레셋 사람들이 사울과 그 아들들을 쫓아 미쳐서 사울의 아들 요나단과 아비나답과 말기수아를 죽이니라 ",
+            "textEn": "And the Philistines followed hard upon Saul and upon his sons; and the Philistines slew Jonathan, and Abinadab, and Malchi–shua, Saul’s sons."
+          },
+          {
+            "verseID": "09031003",
+            "chapter": 31,
+            "verse": 3,
+            "textKo": "사울이 패전하매 활 쏘는 자가 따라 미치니 사울이 그 활 쏘는 자를 인하여 중상한지라 ",
+            "textEn": "And the battle went sore against Saul, and the archers hit him; and he was sore wounded of the archers."
+          },
+          {
+            "verseID": "09031004",
+            "chapter": 31,
+            "verse": 4,
+            "textKo": "그가 병기 든 자에게 이르되 네 칼을 빼어 나를 찌르라 할례없는 자들이 와서 나를 찌르고 모욕할까 두려워하노라 하나 병기 든 자가 심히 두려워하여 즐겨 행치 아니하는지라 이에 사울이 자기 칼을 취하고 그 위에 엎드러지매 ",
+            "textEn": "Then said Saul unto his armourbearer, Draw thy sword, and thrust me through therewith; lest these uncircumcised come and thrust me through, and abuse me. But his armourbearer would not; for he was sore afraid. Therefore Saul took a sword, and fell upon it."
+          },
+          {
+            "verseID": "09031005",
+            "chapter": 31,
+            "verse": 5,
+            "textKo": "병기 든 자가 사울의 죽음을 보고 자기도 자기 칼 위에 엎드러져 그와 함께 죽으니라 ",
+            "textEn": "And when his armourbearer saw that Saul was dead, he fell likewise upon his sword, and died with him."
+          },
+          {
+            "verseID": "09031006",
+            "chapter": 31,
+            "verse": 6,
+            "textKo": "사울과 그 세 아들과 병기 든 자와 그의 모든 사람이 다 그 날에 함께 죽었더라 ",
+            "textEn": "So Saul died, and his three sons, and his armourbearer, and all his men, that same day together."
+          },
+          {
+            "verseID": "09031007",
+            "chapter": 31,
+            "verse": 7,
+            "textKo": "골짜기 저편에 있는 이스라엘 사람과 요단 건너편에 있는 자들이 이스라엘 사람들의 도망한 것과 사울과 그 아들들의 죽었음을 보고 성읍들을 버리고 도망하매 블레셋 사람들이 이르러 거기 거하니라 ",
+            "textEn": "And when the men of Israel that were on the other side of the valley, and they that were on the other side Jordan, saw that the men of Israel fled, and that Saul and his sons were dead, they forsook the cities, and fled; and the Philistines came and dwelt in them."
+          },
+          {
+            "verseID": "09031008",
+            "chapter": 31,
+            "verse": 8,
+            "textKo": "그 이튿날 블레셋 사람들이 죽은 자를 벗기러 왔다가 사울과 그 세 아들이 길보아 산에서 죽은 것을 보고 ",
+            "textEn": "And it came to pass on the morrow, when the Philistines came to strip the slain, that they found Saul and his three sons fallen in mount Gilboa."
+          },
+          {
+            "verseID": "09031009",
+            "chapter": 31,
+            "verse": 9,
+            "textKo": "사울의 머리를 베고 그 갑옷을 벗기고 자기들의 신당과 백성에게 전파하기 위하여 그것을 블레셋 사람의 땅 사방에 보내고 ",
+            "textEn": "And they cut off his head, and stripped off his armour, and sent into the land of the Philistines round about, to publish it in the house of their idols, and among the people."
+          },
+          {
+            "verseID": "09031010",
+            "chapter": 31,
+            "verse": 10,
+            "textKo": "그 갑옷은 아스다롯의 집에 두고 그 시체는 벧산 성벽에 못 박으매 ",
+            "textEn": "And they put his armour in the house of Ashtaroth: and they fastened his body to the wall of Beth–shan."
+          },
+          {
+            "verseID": "09031011",
+            "chapter": 31,
+            "verse": 11,
+            "textKo": "길르앗 야베스 거민들이 블레셋 사람들의 사울에게 행한 일을 듣고 ",
+            "textEn": "And when the inhabitants of Jabesh–gilead heard of that which the Philistines had done to Saul;"
+          },
+          {
+            "verseID": "09031012",
+            "chapter": 31,
+            "verse": 12,
+            "textKo": "모든 장사가 일어나 밤새도록 가서 사울과 그 아들들의 시체를 벧산 성벽에서 취하여 가지고 야베스에 돌아와서 거기서 불사르고 ",
+            "textEn": "All the valiant men arose, and went all night, and took the body of Saul and the bodies of his sons from the wall of Beth–shan, and came to Jabesh, and burnt them there."
+          },
+          {
+            "verseID": "09031013",
+            "chapter": 31,
+            "verse": 13,
+            "textKo": "그 뼈를 가져다가 야베스 에셀나무 아래 장사하고 칠 일을 금식하였더라   ",
+            "textEn": "And they took their bones, and buried them under a tree at Jabesh, and fasted seven days.  "
+          }
+        ]
+      }
+    ]
   }
 }

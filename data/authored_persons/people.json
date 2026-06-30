@@ -23,5 +23,10 @@
     "id": "authored-person-ruth",
     "name": "Ruth",
     "nameKo": "룻"
+  },
+  {
+    "id": "authored-person-saul",
+    "name": "Saul",
+    "nameKo": "사울"
   }
 ]

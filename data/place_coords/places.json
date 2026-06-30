@@ -462,5 +462,37 @@
     "lat": 31.3,
     "lng": 35.75,
     "note": "엘리멜렉 가족이 기근을 피해 우거한 모압 땅 (Ruth 1:1)"
+  },
+  {
+    "id": "authored-place-jabesh-gilead",
+    "name": "Jabesh-gilead",
+    "nameKo": "야베스 길르앗",
+    "lat": 32.43,
+    "lng": 35.68,
+    "note": "사울이 암몬에게서 구원하고(1Sam 11) 그 주민이 사울의 시신을 장사한 요단 동편 성읍 (1Sam 31:11–13)"
+  },
+  {
+    "id": "authored-place-michmash",
+    "name": "Michmash",
+    "nameKo": "믹마스",
+    "lat": 31.868,
+    "lng": 35.272,
+    "note": "사울·요나단이 블레셋과 싸운 믹마스 (1Sam 13:5, 14:23)"
+  },
+  {
+    "id": "authored-place-endor",
+    "name": "Endor",
+    "nameKo": "엔돌",
+    "lat": 32.621,
+    "lng": 35.405,
+    "note": "사울이 신접한 여인을 찾은 엔돌 (1Sam 28:7)"
+  },
+  {
+    "id": "authored-place-gilboa",
+    "name": "Mount Gilboa",
+    "nameKo": "길보아 산",
+    "lat": 32.491,
+    "lng": 35.41,
+    "note": "사울과 요나단이 블레셋에게 전사한 길보아 산 (1Sam 31:1)"
   }
 ]

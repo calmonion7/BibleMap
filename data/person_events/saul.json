@@ -1,0 +1,222 @@
+[
+  {
+    "id": "authored-saul-mizpah-chosen",
+    "title": "Saul chosen as king by lot at Mizpah",
+    "nameKo": "미스바 제비뽑기로 왕 선출",
+    "startDate": "-1050",
+    "sortKey": -1050,
+    "yearLabel": "BC 1050경",
+    "context": "사무엘이 미스바에 백성을 모아 제비를 뽑으니 베냐민 지파 기스의 아들 사울이 뽑힘. 짐 보따리 사이에 숨은 그를 끌어내자 키가 어깨 위로 솟았고, 백성이 '왕의 만세'를 외침 (1Sam 10:17–24).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-mizpah"
+    ],
+    "participants": [
+      "authored-person-saul"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "10:17–24"
+      }
+    ]
+  },
+  {
+    "id": "authored-saul-jabesh-rescue",
+    "title": "Saul rescues Jabesh-gilead",
+    "nameKo": "야베스 길르앗 구원",
+    "startDate": "-1049",
+    "sortKey": -1049.5,
+    "yearLabel": "BC 1049경",
+    "context": "암몬 왕 나하스가 야베스 길르앗을 위협하자, 하나님의 영이 크게 임한 사울이 이스라엘을 소집해 새벽에 암몬을 쳐부수고 성읍을 구원함 (1Sam 11:1–11).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-jabesh-gilead"
+    ],
+    "participants": [
+      "authored-person-saul"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "11:1–11"
+      }
+    ]
+  },
+  {
+    "id": "authored-saul-gilgal-coronation",
+    "title": "Saul's kingship confirmed at Gilgal",
+    "nameKo": "길갈에서 왕위 확정",
+    "startDate": "-1049",
+    "sortKey": -1049.0,
+    "yearLabel": "BC 1049경",
+    "context": "승리 후 사무엘이 온 백성을 길갈로 이끌어 사울을 여호와 앞에서 왕으로 다시 세우고 화목제를 드리며 크게 기뻐함 (1Sam 11:14–15).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-gilgal"
+    ],
+    "participants": [
+      "authored-person-saul"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "11:14–15"
+      }
+    ]
+  },
+  {
+    "id": "authored-saul-michmash-battle",
+    "title": "The battle of Michmash",
+    "nameKo": "믹마스 전투와 성급한 제사",
+    "startDate": "-1048",
+    "sortKey": -1048,
+    "yearLabel": "BC 1048경",
+    "context": "블레셋이 믹마스에 몰려오자 사울이 사무엘을 기다리지 못하고 직접 번제를 드려 책망받음. 요나단이 무기 든 자와 단둘이 적 진영을 쳐 큰 떨림을 일으켜 이스라엘이 이김 (1Sam 13:8–14; 14:6–23).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-michmash"
+    ],
+    "participants": [
+      "authored-person-saul"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "13:8–14"
+      }
+    ]
+  },
+  {
+    "id": "authored-saul-gilgal-amalek",
+    "title": "Saul rejected for sparing Amalek",
+    "nameKo": "아말렉 불순종으로 버림받음",
+    "startDate": "-1045",
+    "sortKey": -1045,
+    "yearLabel": "BC 1045경",
+    "context": "아각과 좋은 짐승을 살려 둔 사울에게 사무엘이 '순종이 제사보다 낫다' 선언하고, 여호와께서 그를 왕으로 버리셨음을 알림. 돌아서는 사무엘의 옷자락이 찢어짐 (1Sam 15:7–28).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-gilgal"
+    ],
+    "participants": [
+      "authored-person-saul"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "15:7–28"
+      }
+    ]
+  },
+  {
+    "id": "authored-saul-gibeah-spear",
+    "title": "Saul's jealousy of David",
+    "nameKo": "다윗을 시기하여 창을 던짐",
+    "startDate": "-1025",
+    "sortKey": -1025,
+    "yearLabel": "BC 1025경",
+    "context": "여인들이 '사울은 천천, 다윗은 만만'이라 노래하자 시기에 사로잡힌 사울이, 수금을 타는 다윗에게 창을 두 번 던졌으나 다윗이 피함 (1Sam 18:6–11; 19:9–10).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-gibeah"
+    ],
+    "participants": [
+      "authored-person-saul"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "18:6–11"
+      }
+    ]
+  },
+  {
+    "id": "authored-saul-nob-massacre",
+    "title": "The massacre of the priests at Nob",
+    "nameKo": "놉 제사장 학살",
+    "startDate": "-1020",
+    "sortKey": -1020,
+    "yearLabel": "BC 1020경",
+    "context": "다윗을 도운 놉의 제사장들을 도엑을 시켜 학살케 하니 제사장 팔십오 인과 성읍이 진멸됨. 아비아달만 다윗에게 피함 (1Sam 22:11–19).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-nob"
+    ],
+    "participants": [
+      "authored-person-saul"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "22:11–19"
+      }
+    ]
+  },
+  {
+    "id": "authored-saul-engedi-spared",
+    "title": "David spares Saul at En-gedi",
+    "nameKo": "엔게디서 다윗이 살려줌",
+    "startDate": "-1018",
+    "sortKey": -1018,
+    "yearLabel": "BC 1018경",
+    "context": "삼천 명으로 다윗을 쫓던 사울이 엔게디 굴에 들어갔을 때, 다윗이 죽이는 대신 겉옷 자락만 베어 보이니 사울이 '너는 나보다 의롭다' 울며 물러감 (1Sam 24:1–22).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-en-gedi"
+    ],
+    "participants": [
+      "authored-person-saul"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "24:1–22"
+      }
+    ]
+  },
+  {
+    "id": "authored-saul-endor-medium",
+    "title": "Saul and the medium of Endor",
+    "nameKo": "엔돌의 신접한 여인",
+    "startDate": "-1011",
+    "sortKey": -1011,
+    "yearLabel": "BC 1011경",
+    "context": "블레셋 앞에 두려워 떨던 사울이, 스스로 끊었던 신접한 자를 엔돌에서 찾아 사무엘의 혼을 불러내니 자신과 아들들의 죽음을 예고받음 (1Sam 28:7–20).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-endor"
+    ],
+    "participants": [
+      "authored-person-saul"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "28:7–20"
+      }
+    ]
+  },
+  {
+    "id": "authored-saul-gilboa-death",
+    "title": "Saul's death on Mount Gilboa",
+    "nameKo": "길보아 산 전사와 야베스 사람들의 장사",
+    "startDate": "-1010",
+    "sortKey": -1010,
+    "yearLabel": "BC 1010경",
+    "context": "길보아 산에서 아들들과 함께 패해 중상을 입은 사울이 자기 칼에 엎드러져 죽음. 야베스 길르앗 사람들이 밤새 달려가 그 시신을 거두어 장사함 (1Sam 31:1–13).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-gilboa"
+    ],
+    "participants": [
+      "authored-person-saul"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "31:1–13"
+      }
+    ]
+  }
+]
