@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 65056c34bc13a5543c3d620dd818fa61507ac600
-mapped: 2026-06-28
+last_mapped_commit: 09ce447e255b45427219a08968872af4a27d45ca
+mapped: 2026-06-30
 ---
 
 # ARCHITECTURE
@@ -27,12 +27,12 @@ mapped: 2026-06-28
 
 ### 라우트 모듈 (`backend/app/routes/`)
 
-- **`persons.py`** — `GET /persons/curated`. Neo4j를 **쓰지 않고** `person_events/<slug>.json` 파일만으로 큐레이션 16인 목록을 정적 구성한다. 모듈 상수 `_ERA`(slug→시대), `_NAME_KO`(slug→한글명), `_ERA_ORDER`(시대 표시 순서)를 들고, 각 slug 파일 첫 이벤트의 `participants[0]`을 `theographic_id`로 삼아 `{id, slug, nameKo, era, eventCount}`를 반환한다. `@lru_cache`로 목록 1회 구성.
+- **`persons.py`** — `GET /persons/curated`. Neo4j를 **쓰지 않고** `person_events/<slug>.json` 파일만으로 큐레이션 21인 목록을 정적 구성한다. 모듈 상수 `_ERA`(slug→시대), `_NAME_KO`(slug→한글명), `_ERA_ORDER`(시대 표시 순서 — `["족장", "출애굽·정복", "사사", "왕국", "선지자", "신약"]`)를 들고, 각 slug 파일 첫 이벤트의 `participants[0]`을 `theographic_id`로 삼아 `{id, slug, nameKo, era, eventCount}`를 반환한다. `@lru_cache`로 목록 1회 구성.
 - **`journey.py`** — `GET /person/{person_id}/journey`. 큐레이션 인물의 시간순 여정 정차지. `persons.py`의 `_ERA`/`_NAME_KO`를 import해 `theographic_id→slug` 역매핑을 만들고(`_build_id_to_slug`), 해당 slug의 `person_events/<slug>.json`을 `sortKey`로 정렬한다(`_load_events`). 각 이벤트의 `occursAt[0]` place_id에 대해 Neo4j에서 `Place` 노드의 `longitude`/`latitude`/`nameKo`를 배치 조회(`_fetch_place_coords`)하고, 좌표가 있는 정차지에만 1부터 `seq`를 부여한다. 큐레이션 인물이 아니면 `stops=[]` 빈 응답(404 아님). 즉 **여정 = 파일 기반 사건 시퀀스 + Neo4j 좌표 조인**.
 - **`events.py`** — `GET /events`(타임라인 사건 목록)와 `GET /event/{event_id}/verses`(사건 근거 구절 드릴다운). `_compute_events()`(`@lru_cache`)는 Neo4j에서 `startDate IS NOT NULL`인 `Event`를 `sortKey` 순으로 조회하면서 `(Book)-[:CONTAINS_BOOK]->(Event)`로 연결된 책을 `bookOrder` 순 `books` 배열로 모으고, `authored`·`yearLabel`을 함께 반환한다. 여기에 오버레이 `book_events_raw()`를 역방향 인덱스(`_load_approx_book_index`, eventId→책 메타)로 머지해 **그래프 관계가 없는 추정책(집필 배경 연결)을 CONTAINS_BOOK 항목 뒤에 덧붙인다** — 그래프와 오버레이의 대표적 합류 지점. `/event/{id}/verses`는 오버레이 `event_verses()`에서 해당 사건의 권별 구절을 꺼내 Neo4j Book 이름맵(`_book_name_map`)으로 `bookNameKo`를 보강해 반환한다.
 - **`books.py`** — `GET /books-overview`. Neo4j `Book` 노드 전체를 `bookOrder` 순으로 반환(개요 뷰 전용, startYear 조건 없음). `testament`/`genre`/`themes`/`keyVerse`/`authorKo` 등 메타 포함, `Cache-Control: no-store`.
 - **`nodes.py`** — 범용 노드 API. `GET /node/{id}`(노드 + 이웃 + 총 이웃수, Book이면 `topPersons`/`topEvents` 추가, Person이면 `traits` JSON 파싱), `GET /node/{id}/neighbors/grouped`(타입별 그룹 이웃), `GET /node/{id}/places`(노드 라벨별 분기 Cypher로 관련 Place 좌표 — Person/Event/PeopleGroup/Book/Place 각각 다른 쿼리), `GET /person/{id}/event-ids`(인물 참여 사건 id 집합). 상수 `MAX_NEIGHBORS_PER_TYPE=30`, `NODE_NEIGHBOR_LIMIT=50`.
-- **`places.py`** — `GET /place/{place_id}/curated-persons`. 특정 장소를 여정에 포함하는 큐레이션 인물 목록. Neo4j 없이 `person_events/<slug>.json`의 `occursAt` 배열을 검사해 필터링(`_place_to_persons`, `@lru_cache`). `exclude` 쿼리로 현재 탐험 인물 제외. `persons.py`와 동일한 `_ERA`/`_NAME_KO`/`_ERA_ORDER`를 **단방향 참조 회피를 위해 여기서 재선언**한다(현재 13인만, paul/peter/john_the_apostle 미포함).
+- **`places.py`** — `GET /place/{place_id}/curated-persons`. 특정 장소를 여정에 포함하는 큐레이션 13인 목록(abraham·isaac·jacob·joseph·moses·joshua·samuel·david·solomon·isaiah·john_the_baptist·jesus·mary). Neo4j 없이 `person_events/<slug>.json`의 `occursAt` 배열을 검사해 필터링(`_place_to_persons`, `@lru_cache`). `exclude` 쿼리로 현재 탐험 인물 제외. `persons.py`와 동일한 상수를 **단방향 참조 회피를 위해 재선언**하되, 현재 `_ERA_ORDER`에 "사사" 미포함(`["족장", "출애굽·정복", "왕국", "선지자", "신약"]`).
 - **`search.py`** — `GET /search?q=`. `nameKo`/`name` CONTAINS 매칭을 exact→prefix→contains 랭크로 정렬, `LIMIT 20`.
 
 ## 그래프 + 오버레이 모델
@@ -41,13 +41,21 @@ mapped: 2026-06-28
 
 노드 라벨: `Person`, `Place`, `Event`, `PeopleGroup`, `Book`. 모든 노드는 `theographic_id`로 식별된다(Theographic 데이터셋 출처). 주요 관계: `HAS_PARTICIPANT`(Event→Person), `OCCURS_AT`(Event→Place), `MEMBER_OF`(Person→PeopleGroup), `CONTAINS_BOOK`(Book→Event), `PART_OF`(상위 사건). `Place`는 `latitude`/`longitude`를 가진다.
 
-### Authored-event 모델
+### Authored-person 모델 (ADR-0008)
+
+Theographic 데이터셋에 `Person` 노드가 없는 큐레이션 주인공(사사시대 인물 등)을 위해 `authored Person` 노드를 Neo4j에 직접 생성한다. 원천 데이터는 `data/authored_persons/people.json`이며, `backend/scripts/load_authored_persons.py`가 멱등 적재한다.
+
+적재 Cypher: `MERGE (p:Person {theographic_id: $id}) SET p.authored = true, p.name = $name, p.nameKo = $nameKo`.
+
+**적재 순서 제약**: `load_authored_persons.py`가 `load_person_events.py`보다 **먼저** 실행돼야 여정 사건의 `HAS_PARTICIPANT MATCH`가 성립한다. 현재 authored Person 대상: gideon(`authored-person-gideon`)·deborah(`authored-person-deborah`)·jephthah(`authored-person-jephthah`)·samson(`authored-person-samson`)·ruth(`authored-person-ruth`) — 5인.
+
+### Authored-event 모델 (ADR-0005)
 
 타임라인을 메우기 위해 손으로 저작한(authored) 사건이 Neo4j `Event` 노드로 적재되며 `authored:true` 속성을 단다. 원천 데이터는 두 종류 JSON이다:
 - `data/authored_events/events.json` — 독립 저작 사건(`id`, `title`, `nameKo`, `sortKey`, `startDate`, `yearLabel`, `context`, `occursAt`, `participants`, `mappedBookIds`). Place/Person 노드가 없으면 `occursAt`/`participants`를 빈 배열로 두고 책에만 매핑한다.
 - `data/person_events/<slug>.json` — 큐레이션 인물의 여정 사건. `id`(예 `authored-jesus-bethlehem-birth`), `sortKey`, `occursAt`(place_id 배열), `participants`(인물 theographic_id), `context`, `books`(`{bookId, rangeLabel}`). `authored:true`.
 
-이 사건들은 `backend/scripts/load_authored_events.py`·`load_person_events.py`로 멱등 적재된다. 즉 **여정 사건은 Neo4j에도 Event 노드로 존재하지만(타임라인·그래프 조회용), 정차지 시퀀스 자체는 JSON 파일이 권위**다 — 백엔드 `journey.py`/`persons.py`/`places.py`는 파일을 직접 읽어 결정적으로 응답한다.
+이 사건들은 `backend/scripts/load_authored_events.py`·`load_person_events.py`로 멱등 적재된다. **여정 사건은 Neo4j에도 Event 노드로 존재하지만(타임라인·그래프 조회용), 정차지 시퀀스 자체는 JSON 파일이 권위**다 — 백엔드 `journey.py`/`persons.py`/`places.py`는 파일을 직접 읽어 결정적으로 응답한다.
 
 ### 런타임 오버레이 vs 그래프
 
@@ -68,7 +76,7 @@ mapped: 2026-06-28
 ### 화면 단계(stage) 흐름 — `App.jsx`
 
 `activeStage` 상태가 `'hub' | 'explore' | 'overview'` 3단계를 토글한다:
-- **hub** — `PersonHub`. `/persons/curated`로 큐레이션 인물을 시대별 카드 그리드로. 카드 클릭 → `handleSelectPerson(id)` → explore 단계.
+- **hub** — `PersonHub`. `/persons/curated`로 큐레이션 21인을 시대별 카드 그리드로. `ERA_ORDER`는 `['족장', '출애굽·정복', '사사', '왕국', '선지자', '신약']`. 카드 클릭 → `handleSelectPerson(id)` → explore 단계.
 - **explore** — 인물 선택 후. 상단 nav로 `exploreView`(`'map' | 'timeline'`) 토글. 인물 선택 시 `/person/{id}/journey`를 한 번 fetch해 `journeyStops`에 담고 `MapView`·`JourneyList`가 공유한다.
 - **overview** — `BibleOverviewView`. `/books-overview`를 장르별로 그룹핑.
 
@@ -78,7 +86,7 @@ mapped: 2026-06-28
 
 ### 주요 컴포넌트
 
-- **`PersonHub.jsx`** — 큐레이션 인물 허브. 시대(era)별 카드 섹션. 계약: `onSelectPerson(id)`, `onOpenOverview()`.
+- **`PersonHub.jsx`** — 큐레이션 인물 허브. `ERA_ORDER`/`ERA_META` 로 시대별 카드 섹션(사사 시대 포함). 계약: `onSelectPerson(id)`, `onOpenOverview()`.
 - **`MapView.jsx`** — MapLibre GL 지도. ESRI NatGeo 래스터 타일 기반. effect 3종: (1) `personId ?? selectedNode`로 `/node/{id}/places` fetch → `places-source`에 GeoJSON 세팅 + 카메라 프레이밍 + primary 장소의 사건 링 자동 펼침, (2) `journeyStops` 변경 시 여정선(`journey-line-source`)·정차지 배지(`journey-stops-source`) 갱신, (3) `activeStopIdx` 변경 시 활성 정차지 강조 + 카메라 이동. 지도 로직은 3개 헬퍼 모듈로 분리:
   - `mapGeo.js` — 순수 GeoJSON/기하 함수(`placesToGeoJSON`, `buildJourneyLineGeoJSON`, `buildJourneyStopsGeoJSON`, `journeyStopGroups`, `coreBounds`, `ringPositions`, `ringLabels`, 라벨 방사 배치).
   - `mapLayers.js` — `setupMapSources`(소스·레이어 정의: places 클러스터링 `clusterRadius:18`/`clusterMinPoints:4`, 여정선 그라데이션, 정차지 배지, 사건 링, 스파이더), `registerEventHandlers`(클릭/호버), `EMPTY_GEOJSON`. 팝업 HTML은 `escapeHtml`로 XSS 이스케이프.

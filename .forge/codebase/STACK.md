@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 65056c34bc13a5543c3d620dd818fa61507ac600
-mapped: 2026-06-28
+last_mapped_commit: 09ce447e255b45427219a08968872af4a27d45ca
+mapped: 2026-06-30
 ---
 
 # STACK
@@ -18,7 +18,7 @@ BibleMap은 단일 머신에서 Docker Compose로 구동하는 3-tier 스택이�
 - **CORS**: `CORSMiddleware`로 `allow_origins=["*"]`, `allow_methods=["GET"]`, `allow_credentials=False`. API는 읽기 전용 GET만 노출.
 - **라우터 구성**: `main.py`가 7개 라우터를 include — `backend/app/routes/`의 `nodes.py`, `events.py`, `search.py`, `books.py`, `persons.py`, `journey.py`, `places.py`. 모든 엔드포인트가 `@router.get(...)` 단일 메서드.
 - **DB 접근 계층**: `backend/app/db.py`. 모듈 전역 싱글턴 드라이버(`get_driver()`)를 lazy 초기화. URI/USER/PASSWORD를 환경변수(`NEO4J_URI` 기본 `bolt://localhost:7687`, `NEO4J_USER` 기본 `neo4j`, `NEO4J_PASSWORD` 필수)에서 읽는다.
-- **오버레이 헬퍼**: `backend/app/overlays.py`.
+- **오버레이 헬퍼**: `backend/app/overlays.py`. `DATA_DIR` 환경변수(기본 `/app/data`) → 저장소 `data/` 순으로 JSON을 탐색하고 `lru_cache`로 캐시한다.
 - **데이터 적재/생성 스크립트**: `backend/app/`과 무관한 빌드/시드 스크립트가 `backend/scripts/`에 다수 존재(`load_theographic.py`, `inject_ko_names.py`, `generate_*.py` 등). 표준 라이브러리 `urllib.request`로 외부에서 받아 Neo4j에 적재하거나 `data/` JSON에 굽는다(상세는 INTEGRATIONS.md).
 
 ## Frontend (React + Vite)

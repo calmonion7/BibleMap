@@ -1,24 +1,27 @@
 ---
-last_mapped_commit: 65056c34bc13a5543c3d620dd818fa61507ac600
-mapped: 2026-06-28
+last_mapped_commit: 09ce447e255b45427219a08968872af4a27d45ca
+mapped: 2026-06-30
 ---
 
 # Codebase Concerns
 
-분석 범위: 데이터 적재 파이프라인(`backend/scripts/*`), 백엔드 라우트(`backend/app/`), 프론트 여정·지도 렌더(`frontend/src/`), 인프라(`deploy.sh`, `docker-compose.yml`, `.github/workflows/deploy.yml`, `frontend/vite.config.js`). 본 문서는 구현 사실만 기록하며, 각 항목은 실제 코드/실행 결과로 검증했다(아래 빌드·lint 출력 포함).
+분석 범위: 데이터 적재 파이프라인(`backend/scripts/*`), 백엔드 라우트(`backend/app/`), 프론트 여정·지도 렌더(`frontend/src/`), 인프라(`deploy.sh`, `docker-compose.yml`, `.github/workflows/deploy.yml`, `frontend/vite.config.js`). 본 문서는 구현 사실만 기록하며, 각 항목은 실제 코드/실행 결과로 검증했다.
 
 ## Operational / Deployment Concerns
 
 ### 큐레이션 인물 데이터의 수동 Neo4j 적재 (최상위 운영 리스크)
 
-`deploy.sh`는 데이터 갱신 단계에서 `backend/scripts/inject_ko_names.py` **하나만** 실행한다(`deploy.sh:49-60`의 `[4/4] 한글 이름 주입`). 큐레이션 인물의 여정 사건을 Neo4j에 적재하는 `backend/scripts/load_person_events.py`(authored Event 노드 + `OCCURS_AT`/`HAS_PARTICIPANT`/`CONTAINS_BOOK` 관계 생성)와 구절을 생성하는 `backend/scripts/generate_person_event_verses.py`는 **배포 스크립트에 포함되지 않으며, 호스트에서 사람이 직접 실행**해야 한다.
+`deploy.sh`는 데이터 갱신 단계에서 `backend/scripts/inject_ko_names.py` **하나만** 실행한다(`deploy.sh:49-60`의 `[4/4] 한글 이름 주입`). 큐레이션 인물의 여정 사건을 Neo4j에 적재하는 `backend/scripts/load_person_events.py`(authored Event 노드 + `OCCURS_AT`/`HAS_PARTICIPANT`/`CONTAINS_BOOK` 관계 생성)·`backend/scripts/load_authored_persons.py`(authored Person 노드 MERGE)·`backend/scripts/enrich_place_coords.py`(authored-place 좌표 주입)·`backend/scripts/generate_person_event_verses.py`(구절 생성)는 **배포 스크립트에 포함되지 않으며, 호스트에서 사람이 직접 순서대로 실행**해야 한다.
 
-- 검증: `grep "scripts/" deploy.sh` 결과는 `inject_ko_names.py` 단 한 줄. `load_person_events.py`/`generate_person_event_verses.py`는 어떤 자동 경로에도 없다.
-- `README.md:17-21`의 "데이터 적재 (최초 1회)"도 `load_theographic.py` + `inject_ko_names.py`만 안내하고 인물 관련 스크립트는 누락돼 있어, 인물 적재 절차가 문서화된 곳은 `.forge/retro/2026-06-28-curate-paul-journey.md:15-17`의 회고뿐이다.
-- `docker-compose.yml:22`이 `neo4j_data` named volume을 영속화하므로 평시에는 재적재가 불필요하다. 그러나 **볼륨을 리셋하면(`docker compose down -v` 등) 큐레이션 16인 전원을 수동으로 재적재**해야 한다. 회고가 이를 "기존 제약"으로 명시한다(`curate-paul-journey.md:17`).
-- API 컨테이너는 `data/`를 마운트(`docker-compose.yml:19`)하지만 `backend/scripts`는 이미지 빌드에 들어가므로(소스 import 경로), `docker compose exec api`로 `scripts` 모듈을 import해 적재하는 경로가 막혀 있다. 그래서 적재는 **호스트에서 `bolt://127.0.0.1:7687`로 직접** 수행한다(`.forge/retro/2026-06-18-post-acts-apostolic-era-events.md:6`).
-- 이 호스트 Neo4j는 Cloudflare Tunnel을 통해 외부로 노출되는 동일 인스턴스, 즉 **프로덕션 데이터와 같은 그래프**다. 호스트에서 도는 적재/inject 스크립트는 곧바로 운영 데이터를 변경한다. (단 Neo4j 자체는 외부 미노출 — 아래 보안 항목 참조.)
-- 영향: 인물 추가 시 ① `data/person_events/<slug>.json` 작성 → ② `persons.py` 등록 → ③ `generate_person_event_verses.py` + `load_person_events.py`(호스트) → ④ `enrich_place_coords.py`(authored-place 좌표) → ⑤ 빌드·재배포의 다단계 수동 절차가 필요하며, 어느 단계든 누락 시 침묵 발산한다.
+- 검증: `grep "scripts/" deploy.sh` 결과는 `inject_ko_names.py` 단 한 줄. 위 로더 스크립트들은 어떤 자동 경로에도 없다.
+- `README.md:17-21`의 "데이터 적재 (최초 1회)"는 `load_theographic.py` + `inject_ko_names.py`만 안내하고 authored Person 관련 스크립트는 전혀 나오지 않는다. 인물 적재 절차가 문서화된 곳은 `.forge/done/` 하위 plan/run.md 및 회고뿐이다.
+- **적재 순서 제약**: `load_authored_persons.py` → `enrich_place_coords.py` → `load_person_events.py` 순서를 지켜야 `HAS_PARTICIPANT` MATCH가 성립한다(ADR-0008). 순서를 바꾸면 조용히 관계가 누락된다.
+- `docker-compose.yml:22`이 `neo4j_data` named volume을 영속화하므로 평시에는 재적재가 불필요하다. 그러나 **볼륨을 리셋하면(`docker compose down -v` 등) 21인 전원을 수동으로 재적재**해야 하며, 이를 명시한 공개 문서가 없다.
+- 현재 큐레이션 21인 중 5인(기드온·드보라·입다·삼손·룻)이 authored Person 노드로 추가됐다. 이들은 `load_authored_persons.py`로만 Neo4j에 존재하며, Theographic `rec` id가 없어 `load_theographic.py`로 복구되지 않는다.
+- API 컨테이너는 `data/`를 마운트(`docker-compose.yml:19`)하지만 적재는 **호스트에서 `bolt://127.0.0.1:7687`로 직접** 수행한다. 컨테이너 내부에서 스크립트를 실행하는 경로는 없다.
+- 이 호스트 Neo4j는 Cloudflare Tunnel을 통해 외부에서 접근하는 앱과 동일 인스턴스, 즉 **프로덕션 데이터와 같은 그래프**다. 호스트 inject/load 스크립트는 곧바로 운영 데이터를 변경한다.
+- 영향: 인물 추가 시 ① `data/authored_persons/people.json` 등록 → ② `persons.py` `_ERA`/`_NAME_KO` 등록 → ③ `data/person_events/<slug>.json` 작성 → ④ `generate_person_event_verses.py` 실행(구절) → ⑤ `load_authored_persons.py`(먼저) → ⑥ `enrich_place_coords.py`(좌표) → ⑦ `load_person_events.py`(여정) → ⑧ 빌드·재배포의 다단계 수동 절차가 필요하며, 어느 단계든 누락 시 침묵 발산한다.
+- 파일: `deploy.sh`, `README.md:17-21`, `backend/scripts/load_authored_persons.py`, `backend/scripts/load_person_events.py`
 
 ### `deploy.sh`의 한글 이름 주입이 배포 게이트 (부분 적용 위험)
 
@@ -32,7 +35,7 @@ mapped: 2026-06-28
 `.github/workflows/deploy.yml`이 `runs-on: self-hosted` + `cd /Users/calmonion/Project/BibleMap`로 한 머신의 self-hosted 러너 경로에 하드코딩돼 있고, `git reset --hard origin/main`으로 워크트리의 로컬 변경을 무조건 폐기한다.
 
 - 파일: `.github/workflows/deploy.yml`
-- 영향: 러너 머신/경로 변경 또는 러너 오프라인 시 무음 미배포 가능(글로벌 메모리 "배포 무음 실패 시 러너부터" 주의와 직결). 현 단일 self-hosted 스택 전제에선 의도된 설계다.
+- 영향: 러너 머신/경로 변경 또는 러너 오프라인 시 무음 미배포 가능. 현 단일 self-hosted 스택 전제에선 의도된 설계다.
 
 ### `lru_cache`가 런타임 데이터 갱신을 가림
 
@@ -40,21 +43,56 @@ mapped: 2026-06-28
 
 ## Tech Debt
 
-### 큐레이션 인물 표시 이름의 이중 출처 (동기화 결합)
+### 스테일 docstring — `persons.py`·`journey.py`의 "13인" 표기
 
-여정 화면 헤더에 뜨는 인물 이름과 백엔드가 내려주는 인물 이름의 출처가 서로 다르다.
+실제 큐레이션 인물은 21인(`_ERA` 딕트 21개 항목, `data/person_events/` 21개 파일)이지만 두 파일의 docstring에 여전히 "13인"이 기재돼 있다.
 
-- 프론트 헤더: `App.jsx:116`의 `personName = explorePersonName`은 `App.jsx:82`에서 `setExplorePersonName(data.nameKo)`로 세팅되는데, 이 `data.nameKo`는 **Neo4j Person 노드의 `nameKo`** 속성이다(렌더는 `App.jsx:138-141`). Person 노드의 `nameKo`는 `inject_ko_names.py`가 `data/names_ko/people.json`을 읽어 주입한다(`inject_ko_names.py:24-35,39`).
-- 백엔드: `persons.py:36-53`의 하드코딩 `_NAME_KO` 딕트(slug→한글)가 `/persons/curated`와 `/person/{id}/journey` 응답 nameKo의 출처다(`persons.py:75`, `journey.py:13,133`).
-- 따라서 한 인물의 표시 이름이 **`persons.py`의 `_NAME_KO`와 `people.json`의 `ko` 두 곳에 따로** 존재하며, 둘이 어긋나면 헤더(노드 기반)와 큐레이션 목록/여정 응답(`_NAME_KO` 기반)이 서로 다른 이름을 보일 수 있다.
-- 검증: 사도 요한(Person id `recvAB7vkczUEFH8Z`)은 `people.json`에서 `"ko": "사도 요한"`, `persons.py:52`에서 `"john_the_apostle": "사도 요한"`으로 현재 일치(과거 동기화 수정 사례). 그러나 일치를 강제하는 코드/테스트는 없다.
-- 파일: `frontend/src/App.jsx:82,116,138-141`, `backend/app/routes/persons.py:36-53`, `backend/app/routes/journey.py:13,133`, `data/names_ko/people.json`
+- `backend/app/routes/persons.py:1`: `"""큐레이션된 13인 인물 목록 엔드포인트.`
+- `backend/app/routes/persons.py:97`: `"""활동범위가 그려지는 큐레이션된 13인 목록.`
+- `backend/app/routes/journey.py:6`: `큐레이션 13인이 아니면 빈 stops 반환(404 아님).`
+- `backend/app/routes/journey.py:77`: `큐레이션 13인이 아니면 stops=[] 빈 응답 반환.`
+- 검증: `grep -n "13인" persons.py` 2건, `grep -n "13인" journey.py` 2건, `_ERA` 항목 수 21개.
 
-### 큐레이션 인물 매핑 상수의 다중 복제
+### 동명이지(同名異地) 재사용 충돌 위험
 
-slug→era/한글 매핑(`_ERA`/`_NAME_KO`)이 여러 곳에 복제돼 있다. `persons.py:16-53`이 정본이고 `journey.py:13`은 `from .persons import _ERA, _NAME_KO`로 import하지만, era 표시 순서·시대 라벨을 바꾸면 동기화 누락 위험이 있다(인물 추가 시 `persons.py`에 2줄 등록이 표준 절차임 — `curate-paul-journey.md:15`).
+authored-place를 새 인물 여정에 재사용할 때 영문 지명이 같아도 다른 지점인 경우가 있다. 기드온 추가 시 `authored-place-succoth`(이집트 숙곳, lat 30.56)와 요단 동편 숙곳(lat 32.20)이 충돌해 `authored-place-succoth-jordan`을 별도 신설한 실사례가 있다.
 
-- 파일: `backend/app/routes/persons.py:16-53`, `backend/app/routes/journey.py:13`
+- 현재 authored-place에 동일 영문 이름이 두 개 이상인 것: `Succoth`→`authored-place-succoth`(이집트)/`authored-place-succoth-jordan`(요단).
+- 잠재 충돌 후보로 명시된 곳: `authored-place-mizpah`(베냐민 미스바, lat 31.878) vs `authored-place-mizpah-gilead`(길르앗 미스바, lat 32.05) — 둘 다 존재하나 입다 여정 추가 등 후속 큐레이션에서 "미스바" 검색으로 잘못된 id를 재사용할 수 있다.
+- 규칙: 재사용 전 `data/place_coords/places.json`에서 id·좌표를 대조해 의도한 지점인지 확인 필수. 동명이지는 새 id 신설.
+- 파일: `data/place_coords/places.json`, `.forge/retro/2026-06-30-curate-judges-era-1of2.md`
+
+### 학자 추정 좌표 — 고고학적 논쟁지
+
+`data/place_coords/places.json`의 다음 항목은 정확한 위치가 학술적으로 확정되지 않은 지점의 근사 좌표다.
+
+| id | 좌표(lat/lng) | 비고 |
+|---|---|---|
+| `authored-place-mizpah-gilead` | 32.05 / 35.72 | 길르앗 미스바, 추정 지점 |
+| `authored-place-aroer` | 31.95 / 35.85 | 암몬 랍바 앞 아로엘, 추정 |
+| `authored-place-lehi` | 31.72 / 34.96 | 라맛레히, 추정 |
+| `authored-place-kishon` | 32.60 / 35.18 | 기손 강 전투지, 범위 내 근사점 |
+| `authored-place-timnah` | 31.776 / 34.925 | 삼손 혼인 딤나, 추정 |
+
+- 지도에 핀이 찍히므로 이 좌표가 "정확한 성경 유적지"처럼 보일 수 있다.
+- 파일: `data/place_coords/places.json`
+
+### 큐레이션 인물 매핑 상수의 이중 출처 (인물 이름 동기화 결합)
+
+인물 표시 이름의 출처가 두 곳이다. 프론트 헤더(`App.jsx:82,116,138-141`)는 Neo4j Person 노드의 `nameKo`(inject_ko_names.py 주입값)를, 큐레이션 목록·여정 응답은 `persons.py:36-53`의 하드코딩 `_NAME_KO` 딕트를 출처로 한다. 두 값이 어긋나면 헤더와 목록이 서로 다른 이름을 표시한다. 일치를 강제하는 코드/테스트는 없다.
+
+- 파일: `frontend/src/App.jsx:82,116,138-141`, `backend/app/routes/persons.py:36-53`, `backend/app/routes/journey.py:13`, `data/names_ko/people.json`
+
+### slug→era/이름 매핑의 다중 복제 — `places.py`가 이미 드리프트됨 (실제 버그)
+
+`persons.py:16-56`의 `_ERA`/`_NAME_KO`/`_ERA_ORDER`가 정본이다. `journey.py:13`은 이를 `import`해 항상 동기화되지만, **`places.py:15-48`은 "단방향 참조를 피하려" 같은 상수를 별도 재선언**해 두어 인물이 추가될 때마다 수동 동기화가 필요한데 **이미 어긋나 있다**:
+
+- `persons.py` `_ERA`는 현재 21인이나 `places.py` `_ERA`는 **13인뿐** — 누락 8인: 바울·베드로·사도 요한(task 92~94) + 기드온·드보라·입다·삼손·룻(사사, task 95~96).
+- `places.py` `_ERA_ORDER`(`:48`)에는 `"사사"`가 없다. 따라서 가령 `places.py` `_ERA`에 사사 인물을 더해도 `_place_to_persons`의 `result.sort(... _ERA_ORDER.index(p["era"]) ...)`(`:77`)가 `"사사"`에서 `ValueError`를 던질 잠재 크래시가 있다.
+- **결과(기능 갭)**: `/place/{place_id}/curated-persons`(장소 중심 뷰 — 지도 마커 클릭 시 그 장소를 지난 큐레이션 인물 목록)가 위 8인을 **표시하지 않는다**. 예: 가사 클릭 시 삼손, 로마 관련 장소에서 바울/베드로가 누락.
+- **권장 수정**: `places.py`가 `persons.py`의 `_ERA`/`_NAME_KO`/`_ERA_ORDER`를 `import`(`journey.py`와 동일 패턴)해 재선언을 제거하면 드리프트가 근본적으로 사라진다. docstring "13인"도 함께 갱신 필요.
+
+- 파일: `backend/app/routes/places.py:15-48,77`, `backend/app/routes/persons.py:16-56`, `backend/app/routes/journey.py:13`
 
 ### 자동화 테스트 전무
 
@@ -80,14 +118,14 @@ slug→era/한글 매핑(`_ERA`/`_NAME_KO`)이 여러 곳에 복제돼 있다. `
 
 `journey.py`는 `occursAt[0]`의 Place 노드 좌표를 Neo4j에서 조회하는데, 좌표가 없으면 `seq=null`, `lng/lat=null`인 정차지로 처리한다(`journey.py:101-128`). 이는 의도된 동작이지만, 실제로 일부 큐레이션 사건에 좌표(또는 Place 노드 자체)가 없다.
 
-- 검증: `data/person_events/*.json`에서 `occursAt: []`(빈 배열)인 사건 — `jesus.json` 1건(변형), `john_the_apostle.json` 4건(첫 제자·보아너게·변형·**밧모 섬 유배** `authored-john-patmos`), `peter.json` 4건. 예: 밧모 사건은 `occursAt: []`(`john_the_apostle.json:272`).
+- 검증: `data/person_events/*.json`에서 `occursAt: []`(빈 배열)인 사건 — `jesus.json` 1건(변형), `john_the_apostle.json` 4건(첫 제자·보아너게·변형·밧모 섬 유배 `authored-john-patmos`), `peter.json` 4건.
 - 이 사건들은 여정 지도에 점이 찍히지 않고(좌표 없음), 리스트/타임라인에서만 보인다.
-- authored-place는 `enrich_place_coords.py`가 `authored-place-*` id에 한해 Place 노드를 MERGE하고 좌표를 세팅한다(`enrich_place_coords.py:32-41`). 좌표를 부여하지 않은 사건/장소는 place-less로 남는다. (예: 골고다는 별도 authored-place 없이 십자가 사건이 `recL1WV82pXaRBQ59`=예루살렘 Place를 가리켜 좌표가 있는 정차지로 들어간다 — `jesus.json` crucifixion `occursAt`.)
+- authored-place는 `enrich_place_coords.py`가 `authored-place-*` id에 한해 Place 노드를 MERGE하고 좌표를 세팅한다(`enrich_place_coords.py:32-41`). 좌표를 부여하지 않은 사건/장소는 place-less로 남는다.
 - 파일: `backend/app/routes/journey.py:101-128`, `data/person_events/john_the_apostle.json`, `backend/scripts/enrich_place_coords.py:32-41`
 
-### `journey.py`가 매 요청마다 16개 JSON 재파싱
+### `journey.py`가 매 요청마다 JSON 전량 재파싱 (캐시 누락)
 
-`_build_id_to_slug()`(`journey.py:18-30`)는 `/person/{id}/journey` 요청마다 모든 `person_events/*.json`을 `open`+`json.load`해 theographic_id→slug 역매핑을 새로 만든다. `persons.py`/`places.py`의 동일 파일 로드는 `@functools.lru_cache`로 캐시되는데 `journey.py`만 캐시가 없다.
+`_build_id_to_slug()`(`journey.py:18-30`)는 `/person/{id}/journey` 요청마다 모든 `person_events/*.json`(현재 21개)을 `open`+`json.load`해 theographic_id→slug 역매핑을 새로 만든다. `persons.py`/`places.py`의 동일 파일 로드는 `@functools.lru_cache`로 캐시되는데 `journey.py`만 캐시가 없다.
 
 - 파일: `backend/app/routes/journey.py:18-39`
 - 개선: `_build_id_to_slug`에 `@functools.lru_cache(maxsize=1)` 부착(이미 `persons._build_list`가 같은 패턴).
@@ -102,25 +140,24 @@ slug→era/한글 매핑(`_ERA`/`_NAME_KO`)이 여러 곳에 복제돼 있다. `
 
 ### maplibre 번들이 1MB 초과 (빌드 경고)
 
-`npm run build`(검증 실행, 2026-06-28)에서 maplibre 청크가 **1,027.60 kB**(gzip 272.93 kB)로 빌드되며, "Some chunks are larger than 500 kB after minification" 경고가 뜬다.
+`npm run build` 결과에서 maplibre 청크가 **1,027.60 kB**(gzip 272.93 kB)로 빌드되며, "Some chunks are larger than 500 kB after minification" 경고가 뜬다. `dist/assets/`의 파일 크기로 확인: `maplibre-DntM08T7.js` 1,027,608 bytes.
 
 - `vite.config.js:10-15`의 `manualChunks`가 `maplibre-gl`을 별도 `maplibre` 청크로, 나머지 node_modules를 `vendor`로 분리하고 있으나, maplibre 자체가 단일 청크 1MB를 넘는다.
 - 영향: 첫 로드 전송량 증가. 동적 import 코드 스플리팅이나 `chunkSizeWarningLimit` 조정이 개선 경로지만 현재는 미적용.
-- 파일: `frontend/vite.config.js`
+- 파일: `frontend/vite.config.js`, `frontend/dist/assets/maplibre-DntM08T7.js`
 
 ## Code Quality
 
 ### 표준 lint 경고 1건 — `MapView.jsx` useEffect 누락 의존성
 
-`npm run lint`(검증 실행, 2026-06-28) 결과: 에러 0, **경고 1건**.
+`npm run lint` 결과: 에러 0, **경고 1건**.
 
 ```
 frontend/src/MapView.jsx
   61:6  warning  React Hook useEffect has a missing dependency: 'onStopSelect'. ...  react-hooks/exhaustive-deps
-✖ 1 problem (0 errors, 1 warning)
 ```
 
-- `eslint .`는 종료코드 0(경고는 빌드를 막지 않음). eslint 설정은 flat config(`frontend/eslint.config.js`; 구식 `.eslintrc*` 없음).
+- `eslint .`는 종료코드 0(경고는 빌드를 막지 않음).
 - 파일: `frontend/src/MapView.jsx:61`
 
 ## Security Considerations
@@ -128,19 +165,19 @@ frontend/src/MapView.jsx
 ### Neo4j는 외부 미노출, API는 nginx 프록시 뒤 (구조적 차단)
 
 - `docker-compose.yml:5-7`이 Neo4j 포트를 `127.0.0.1:7474`/`127.0.0.1:7687`로만 바인딩한다. API 컨테이너는 호스트 포트를 노출하지 않고(`docker-compose.yml:13-21`에 ports 없음), nginx만 `8080:80`을 공개한다(`docker-compose.yml:30`).
-- Cloudflare Tunnel(cloudflared)은 outbound 전용 연결로 ingress에 적은 것만 외부에 노출하며, Neo4j(7474/7687)는 구조적으로 외부 접근 불가다(`BIBLEMAP_PLAN.md:116,119,129`). 즉 "공유 Neo4j = 프로덕션"이라는 결합은 데이터 측면의 결합이지, Neo4j 포트가 인터넷에 열려 있다는 뜻은 아니다.
+- Cloudflare Tunnel(cloudflared)은 outbound 전용 연결로 ingress에 적은 것만 외부에 노출하며, Neo4j(7474/7687)는 구조적으로 외부 접근 불가다.
 
 ### CORS 전체 허용 + 무인증 (읽기 전용 전제)
 
-- `main.py`의 CORS가 모든 오리진을 허용하고 모든 엔드포인트가 무인증 공개다. 단 `allow_methods=["GET"]`로 GET 전용이고 쓰기 엔드포인트가 없으며 공개 성경 데이터만 다룬다. API가 nginx `/api/` 프록시 뒤 내부망 한정이라 노출면이 좁다.
+- `main.py`의 CORS가 모든 오리진을 허용하고 모든 엔드포인트가 무인증 공개다. 단 `allow_methods=["GET"]`로 GET 전용이고 쓰기 엔드포인트가 없으며 공개 성경 데이터만 다룬다.
 - 파일: `backend/app/main.py`(CORS 미들웨어), `backend/app/routes/*`(모두 `@router.get`)
 
 ### 비밀값 관리
 
 - `NEO4J_PASSWORD`는 `.env`로만 공급되며 `.gitignore`로 추적 제외된다. `docker-compose.yml:11,18`이 `${NEO4J_PASSWORD:?...}`로 미설정 시 기동 실패를 강제한다.
-- 모든 데이터 적재/inject 스크립트는 `NEO4J_PASSWORD` 환경변수를 요구하며 없으면 `RuntimeError`로 즉시 중단한다(`inject_ko_names.py:12-14`, `load_person_events.py:13-15`, `backend/app/db.py`). 평문/하드코딩 비밀값 흔적 없음.
-- Cypher 쿼리는 사용자 입력을 `$id`/`$q` 파라미터 바인딩으로 처리(`load_person_events.py`의 MERGE 포함)해 인젝션 경로가 아니다.
+- 모든 데이터 적재/inject 스크립트는 `NEO4J_PASSWORD` 환경변수를 요구하며 없으면 즉시 중단한다. 평문/하드코딩 비밀값 흔적 없음.
+- Cypher 쿼리는 사용자 입력을 `$id`/`$q` 파라미터 바인딩으로 처리해 인젝션 경로가 아니다.
 
 ---
 
-*Concerns audit: 2026-06-28 (commit 65056c3)*
+*Concerns audit: 2026-06-30 (commit 09ce447)*
