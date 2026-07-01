@@ -87,10 +87,15 @@ def _build_list() -> list[dict]:
                 "nameKo": _NAME_KO[slug],
                 "era": _ERA[slug],
                 "eventCount": len(events),
+                # 정렬 전용: 여정 최초 등장 시점(최소 sortKey). 응답 전 제거.
+                "_anchor": min(e["sortKey"] for e in events),
             }
         )
 
-    result.sort(key=lambda p: (_ERA_ORDER.index(p["era"]), p["slug"]))
+    # 시대 그룹 내에서 최초 등장 시점(anchor) 시간순, 동시각은 slug tie-break
+    result.sort(key=lambda p: (_ERA_ORDER.index(p["era"]), p["_anchor"], p["slug"]))
+    for p in result:
+        del p["_anchor"]
     return result
 
 

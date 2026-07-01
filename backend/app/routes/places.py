@@ -38,10 +38,15 @@ def _place_to_persons(place_id: str) -> list[dict]:
                 "slug": slug,
                 "nameKo": _NAME_KO[slug],
                 "era": _ERA[slug],
+                # 정렬 전용: 여정 최초 등장 시점(최소 sortKey). 응답 전 제거.
+                "_anchor": min(e["sortKey"] for e in events),
             }
         )
 
-    result.sort(key=lambda p: (_ERA_ORDER.index(p["era"]), p["slug"]))
+    # persons.py _build_list와 동일 규칙: 시대 내 최초 등장 시간순, 동시각 slug tie-break
+    result.sort(key=lambda p: (_ERA_ORDER.index(p["era"]), p["_anchor"], p["slug"]))
+    for p in result:
+        del p["_anchor"]
     return result
 
 
