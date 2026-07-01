@@ -100,5 +100,5 @@ def get_curated_persons():
     각 항목: { id, slug, nameKo, era, eventCount }"""
     return JSONResponse(
         content=_build_list(),
-        headers={"Cache-Control": "max-age=3600"},
+        headers={"Cache-Control": "max-age=300"},
     )
