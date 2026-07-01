@@ -1,12 +1,12 @@
 ---
-last_mapped_commit: 09ce447e255b45427219a08968872af4a27d45ca
-mapped: 2026-06-30
+last_mapped_commit: 0189ad9fb964e5eb4fcc91776b3202f7014058dd
+mapped: 2026-07-02
 ---
 # 테스트 패턴
 
 ## 자동화 테스트 프레임워크: 없음
 
-리포지터리에 단위·통합 테스트 인프라가 **존재하지 않는다**(2026-06-30 HEAD 기준). 검증은 엔드포인트 점검(curl)과 Python Playwright UI 테스트로 수행하는 수동·일회성 운용이다.
+리포지터리에 단위·통합 테스트 인프라가 **존재하지 않는다**(2026-07-02 HEAD 기준). 검증은 엔드포인트 점검(curl)과 Python Playwright UI 테스트로 수행하는 수동·일회성 운용이다.
 
 - **테스트 파일 0건:** `*.test.*`, `*.spec.*`, `test_*.py`, `*_test.py`, `conftest.py` 전수 검색 결과 없음(`node_modules` 제외).
 - **테스트 러너 설정 없음:** `jest.config.*`, `vitest.config.*`, `playwright.config.*`, `pytest.ini`, `setup.cfg`, `tox.ini`, `pyproject.toml` 모두 없음.
@@ -36,17 +36,18 @@ docker compose -p biblemap build api      # API 이미지 빌드
 docker compose -p biblemap up -d api nginx
 ```
 
-**중요(사용자 메모리 규칙):** 로컬 `:8080`은 `frontend/dist`를 read-only로 마운트하는 정적 서빙이며 HMR이 아니다(`docker-compose.yml`의 `nginx`). 따라서 UI 검증 전 **반드시 `cd frontend && npm run build`로 dist를 갱신**해야 변경이 반영된다. `frontend/.env.production`의 `VITE_API_URL=/api`가 빌드타임 주입돼 nginx 프록시(`/api` → `api:8000`)를 탄다(API는 `:8000` 미노출). API 변경 시 `docker compose up -d --build api`.
+**중요(사용자 메모리 규칙):** 로컬 `:8080`은 `frontend/dist`를 read-only로 마운트하는 정적 서빙이며 HMR이 아니다(`docker-compose.yml`의 `nginx`). 따라서 UI 검증 전 **반드시 `cd frontend && npm run build`로 dist를 갱신**해야 변경이 반영된다. `frontend/.env.production`의 `VITE_API_URL=/api`가 빌드타임 주입돼 nginx 프록시(`/api` → `api:8000`)를 탄다(API는 `:8000` 미노출). API 변경 시 `docker compose -p biblemap up -d --build api`, 데이터만 변경 시(JSON 오버레이·`lru_cache`를 탄 정적 데이터) `docker compose -p biblemap restart api`로 충분하다.
 
 ### 3. 엔드포인트 점검 (curl)
 
 백엔드 라우트는 curl로 응답 형상을 직접 확인한다. nginx 프록시 경유(`http://localhost:8080/api/...`) 또는 API 직접 호출(`http://localhost:8000/...`). 자동 assert가 아니라 응답 JSON을 사람이 검토하는 방식이다.
 
 예시 점검 대상:
-- `GET /persons/curated` — 21인 slug 목록, `id`/`slug`/`nameKo`/`era`/`eventCount` 형상 확인
+- `GET /persons/curated` — 22인 slug 목록, `id`/`slug`/`nameKo`/`era`/`eventCount` 형상 확인
 - `GET /person/{id}/journey` — `stops` 배열, `seq`/`lng`/`lat` 부여 여부
 - `GET /node/{id}` — 라벨 분기, `neighbors`/`properties` 형상
 - `GET /events` — `books` 배열 포함 여부, `sortKey` 정렬 확인
+- `GET /place/{id}/curated-persons` — `persons` 배열, 시대 내 시간순 정렬 확인
 
 ### 4. Python Playwright 화면 테스트 (UI 동작 검증)
 
@@ -65,14 +66,18 @@ docker compose -p biblemap up -d api nginx
 
 데이터 적재 스크립트 실행 후 또는 그래프 데이터 이상 의심 시 `cypher-shell`로 직접 쿼리해 확인한다.
 
-```bash
-# authored Event 수 확인
+```cypher
+-- authored Event 수 확인
 MATCH (e:Event) WHERE e.authored = true RETURN count(e);
 
-# 특정 인물의 여정 OCCURS_AT 관계 확인
+-- 특정 인물의 여정 OCCURS_AT 관계 확인
 MATCH (e:Event)-[:HAS_PARTICIPANT]->(p:Person {theographic_id: "..."})
 MATCH (e)-[:OCCURS_AT]->(pl:Place)
 RETURN e.nameKo, pl.nameKo, pl.latitude, pl.longitude LIMIT 20;
+
+-- 큐레이션 장소별 인물 연결 확인
+MATCH (pl:Place {theographic_id: "..."})
+RETURN pl.nameKo, pl.latitude, pl.longitude;
 ```
 
 ---

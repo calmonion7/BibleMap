@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 09ce447e255b45427219a08968872af4a27d45ca
-mapped: 2026-06-30
+last_mapped_commit: 0189ad9fb964e5eb4fcc91776b3202f7014058dd
+mapped: 2026-07-02
 ---
 
 # STRUCTURE
@@ -42,12 +42,12 @@ BibleMap/
 - `backend/app/db.py` — `get_driver()` Neo4j 싱글톤.
 - `backend/app/overlays.py` — `_resolve`/`_load` + `book_events_raw()`·`event_verses()` 캐시 로더.
 - `backend/app/routes/` 엔드포인트 모듈:
-  - `persons.py` — `GET /persons/curated`(파일 기반 큐레이션 21인 목록, `_ERA_ORDER` 6시대).
-  - `journey.py` — `GET /person/{id}/journey`(여정 정차지, 파일 시퀀스 + Neo4j 좌표).
+  - `persons.py` — `GET /persons/curated`(파일 기반 큐레이션 22인 목록, `_ERA_ORDER` 6시대). `_ERA`·`_NAME_KO`·`_ERA_ORDER` 세 상수의 **단일 출처** — `places.py`·`journey.py`가 이 모듈에서 import한다. `_build_list`는 각 인물의 최소 sortKey를 `_anchor`로 계산해 시대 내 연대순 정렬 후 응답 전 `_anchor` 제거.
+  - `journey.py` — `GET /person/{id}/journey`(여정 정차지, 파일 시퀀스 + Neo4j 좌표). `_ERA`·`_NAME_KO`를 `persons.py`에서 import.
   - `events.py` — `GET /events`, `GET /event/{id}/verses`.
   - `books.py` — `GET /books-overview`.
   - `nodes.py` — `GET /node/{id}`, `/node/{id}/places`, `/node/{id}/neighbors/grouped`, `/person/{id}/event-ids`.
-  - `places.py` — `GET /place/{id}/curated-persons`(현재 13인, 사사 시대 미포함).
+  - `places.py` — `GET /place/{id}/curated-persons`. `_ERA`·`_NAME_KO`·`_ERA_ORDER`를 `persons.py`에서 import(드리프트 방지). `_place_to_persons`의 정렬 로직은 `_build_list`와 동일(`_anchor` = 최소 sortKey).
   - `search.py` — `GET /search?q=`.
 - `backend/__init__.py`, `backend/app/__init__.py`, `backend/app/routes/__init__.py`, `backend/scripts/__init__.py` — 패키지 마커.
 
@@ -58,7 +58,7 @@ BibleMap/
 - **`load_*` (Neo4j 멱등 적재)**
   - `load_theographic.py` — Theographic 원본 그래프 적재.
   - `load_books.py` — `Book` 노드 + `CONTAINS_BOOK` 관계.
-  - `load_authored_persons.py` — `authored_persons/people.json` → authored Person 노드(ADR-0008). `load_person_events.py`보다 먼저 실행 필수.
+  - `load_authored_persons.py` — `authored_persons/people.json` → authored Person 노드(ADR-0008). **`load_person_events.py`보다 먼저 실행 필수**(HAS_PARTICIPANT MATCH 성립 조건).
   - `load_authored_events.py` — `authored_events/events.json` → authored Event 노드.
   - `load_person_events.py` — `person_events/*.json` → 인물 여정 Event 노드.
   - `load_verse_events.py` — `verse_events/events.json` → 신규 Event + CONTAINS_BOOK.
@@ -84,8 +84,8 @@ BibleMap/
 
 | 디렉터리 | 파일 | 형태/내용 |
 |----------|------|-----------|
-| `data/person_events/` | `<slug>.json` ×21 (abraham, isaac, jacob, joseph, moses, joshua, **gideon, deborah, jephthah, samson, ruth**, samuel, david, solomon, isaiah, john_the_baptist, jesus, mary, paul, peter, john_the_apostle) | 인물 여정 사건 배열. `id`·`sortKey`·`occursAt`·`participants`·`context`·`books`. **여정 정차지의 권위 원천** |
-| `data/authored_persons/` | `people.json` (5인) | authored Person 노드 원천. `{id, name, nameKo}`. 사사 시대 5인(gideon·deborah·jephthah·samson·ruth). `load_authored_persons.py`가 Neo4j에 멱등 적재(ADR-0008) |
+| `data/person_events/` | `<slug>.json` **×22** (abraham, isaac, jacob, joseph, moses, joshua, **gideon, deborah, jephthah, samson, ruth**, samuel, **saul**, david, solomon, isaiah, john_the_baptist, jesus, mary, paul, peter, john_the_apostle) | 인물 여정 사건 배열. `id`·`sortKey`·`occursAt`·`participants`·`context`·`books`. **여정 정차지의 권위 원천** |
+| `data/authored_persons/` | `people.json` (**6인**) | authored Person 노드 원천. `{id, name, nameKo}`. 사사 시대 5인(gideon·deborah·jephthah·samson·ruth) + 왕국 사울(saul). `load_authored_persons.py`가 Neo4j에 멱등 적재(ADR-0008) |
 | `data/authored_events/` | `events.json` (배열) | 독립 authored 사건. `mappedBookIds` 포함 |
 | `data/event_verses/` | `events.json` (617 키) | `{eventId: {books: [{bookId, bookOrder, rangeLabel, verses: [{verseID, chapter, verse, textKo, textEn}]}]}}` — 구절 본문 프리베이크 |
 | `data/book_events/` | `books.json` (31 키) | `{bookId: [eventId, ...]}` 추정책↔사건 매핑(events.py가 역방향 머지) |
@@ -124,7 +124,7 @@ BibleMap/
 - **slug** — 큐레이션 인물 파일/매핑 키(`abraham`, `john_the_apostle` 등 snake_case). 백엔드 `_ERA`/`_NAME_KO` dict 키.
 - **authored 사건 id** — `authored-<인물>-<장소>-<사건>` 패턴(예 `authored-jesus-bethlehem-birth`).
 - **authored 장소 id** — `authored-place-<name>` 패턴.
-- **authored 인물 id** — `authored-person-<slug>` 패턴(예 `authored-person-gideon`). Theographic에 없는 큐레이션 주인공에만 사용.
+- **authored 인물 id** — `authored-person-<slug>` 패턴(예 `authored-person-gideon`, `authored-person-saul`). Theographic에 없는 큐레이션 주인공에만 사용. 현재 6인: gideon·deborah·jephthah·samson·ruth·saul.
 - **백엔드 모듈 내부 함수**: 캐시·헬퍼는 `_` 접두 비공개(`_build_list`, `_compute_events`, `_resolve`), 다수 `@functools.lru_cache`.
 - **API 경로**: 리소스 단수 + 동작(`/person/{id}/journey`, `/event/{id}/verses`, `/node/{id}/places`); 목록은 복수(`/events`, `/persons/curated`, `/books-overview`).
 - **사람이 읽는 라벨·docstring은 한글**, 식별자/키/경로는 영문.

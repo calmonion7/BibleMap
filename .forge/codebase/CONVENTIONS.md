@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 09ce447e255b45427219a08968872af4a27d45ca
-mapped: 2026-06-30
+last_mapped_commit: 0189ad9fb964e5eb4fcc91776b3202f7014058dd
+mapped: 2026-07-02
 ---
 # 코딩 컨벤션
 
@@ -26,7 +26,7 @@ mapped: 2026-06-30
 
 ### 변수·상수
 
-- **모듈 레벨 상수:** 양쪽 모두 UPPER_SNAKE. Python — `SEARCH_LIMIT`(`search.py`), `MAX_NEIGHBORS_PER_TYPE`/`NODE_NEIGHBOR_LIMIT`(`nodes.py`), `_ERA`/`_NAME_KO`/`_ERA_ORDER`(앞에 `_`가 붙은 모듈-사적 매핑, `persons.py`·`places.py`). JS — `API_BASE`(`api.js`), `MOBILE_BREAKPOINT`/`SHEET_VH`(`constants.js`), `TYPE_COLOR`/`TYPE_KO`/`TYPE_ORDER`/`SELECT_HL`(`theme.js`).
+- **모듈 레벨 상수:** 양쪽 모두 UPPER_SNAKE. Python — `SEARCH_LIMIT`(`search.py`), `MAX_NEIGHBORS_PER_TYPE`/`NODE_NEIGHBOR_LIMIT`(`nodes.py`), `_ERA`/`_NAME_KO`/`_ERA_ORDER`(앞에 `_`가 붙은 모듈-사적 매핑, `persons.py`에 단일 선언). JS — `API_BASE`(`api.js`), `MOBILE_BREAKPOINT`/`SHEET_VH`(`constants.js`), `TYPE_COLOR`/`TYPE_KO`/`TYPE_ORDER`/`SELECT_HL`(`theme.js`).
 - **노드 식별자:** 그래프 노드는 `theographic_id`(Neo4j 속성)를 API 응답에서 `id`로 노출. 프론트는 이 `id`를 그대로 키로 쓴다.
 
 ---
@@ -50,7 +50,7 @@ mapped: 2026-06-30
 3. `_` 접두사 내부 헬퍼(데이터 적재·머지·캐시) 정의.
 4. `@router.get(...)` 데코레이터 엔드포인트가 헬퍼를 호출해 응답을 조립.
 
-엔드포인트는 대부분 `JSONResponse(content=..., headers={"Cache-Control": ...})`로 반환해 캐시 정책을 명시한다(`max-age=3600` 정적 인물 목록, `max-age=300` Neo4j 조회 결과, `no-store` 개요 책 목록). 순수 리스트/딕트를 그대로 반환하는 엔드포인트(`search.py`, `nodes.py` 일부)는 FastAPI 자동 직렬화에 맡긴다.
+엔드포인트는 대부분 `JSONResponse(content=..., headers={"Cache-Control": ...})`로 반환해 캐시 정책을 명시한다(`max-age=300` — 인물 목록·여정·장소별 인물·이벤트 목록·구절 등 Neo4j 또는 파일 기반 동적 결과, `no-store` — `/books-overview`). 순수 리스트/딕트를 그대로 반환하는 엔드포인트(`search.py`, `nodes.py` 일부)는 FastAPI 자동 직렬화에 맡긴다.
 
 ### `lru_cache` 오버레이 적재 패턴
 
@@ -61,6 +61,26 @@ JSON 오버레이·파일 기반 정적 데이터는 `@functools.lru_cache(maxsi
 - `places.py`의 `_place_to_persons(place_id)`는 인자별 캐시가 필요해 `@functools.lru_cache(maxsize=None)`.
 - `/persons/curated`, `/place/{id}/curated-persons`는 파일만으로 결정적인 응답이므로 Neo4j를 타지 않는다. 독스트링에 "단순성 우선"으로 명시.
 
+### 단일 출처 상수 — `persons.py`
+
+큐레이션 인물의 시대·이름·정렬 기준 상수는 `backend/app/routes/persons.py`에만 선언된다. 다른 모듈은 **재선언 없이 임포트**해 드리프트를 방지한다:
+
+- `persons.py`: `_ERA`, `_NAME_KO`, `_ERA_ORDER` 하드코딩.
+- `journey.py`: `from .persons import _ERA, _NAME_KO` 임포트.
+- `places.py`: `from .persons import _ERA, _NAME_KO, _ERA_ORDER` 임포트.
+
+`places.py` 모듈 독스트링이 이 단일 출처 원칙을 "드리프트 방지"로 명시하고 있다.
+
+### 큐레이션 인물 정렬 패턴
+
+`persons.py`의 `_build_list`와 `places.py`의 `_place_to_persons`는 동일한 정렬 규칙을 쓴다:
+
+1. 각 인물의 여정 사건 최소 `sortKey`를 임시 `_anchor` 필드에 담는다.
+2. `(_ERA_ORDER.index(era), _anchor, slug)` 3-튜플로 정렬 — 시대 내 시간순, 동시각 slug tie-break.
+3. 응답 전 `del p["_anchor"]`로 temp 필드를 제거한다.
+
+`places.py` 주석이 "persons.py `_build_list`와 동일 규칙"임을 명시한다.
+
 ### Neo4j 접근
 
 - `backend/app/db.py`의 `get_driver()`가 모듈 전역 lazy 싱글톤. `NEO4J_PASSWORD` 미설정 시 `RuntimeError`로 즉시 중단.
@@ -68,6 +88,14 @@ JSON 오버레이·파일 기반 정적 데이터는 `@functools.lru_cache(maxsi
 - 노드 라벨 분기는 `labels(n)[0]`를 꺼내 `if label == "Person"/"Event"/...` 식으로 처리(`nodes.py`의 `get_node_places`).
 - 좌표·수치는 `float(...)` 캐스팅 시 `try/except (TypeError, ValueError): continue`로 깨진 데이터를 건너뛴다(`nodes.py`).
 - `main.py` `lifespan`이 기동 시 5개 라벨(`Person`/`Place`/`Event`/`PeopleGroup`/`Book`)에 `theographic_id` 인덱스를 `IF NOT EXISTS`로 생성하고, 실패하면 `logging.exception(...)` 후 인덱스 없이 계속 진행.
+
+### HTTP Cache-Control 규약
+
+| 엔드포인트 유형 | 헤더 | 예시 |
+|---|---|---|
+| 목록·조회 전반(Neo4j 또는 파일 기반) | `max-age=300` | `/events`, `/persons/curated`, `/person/{id}/journey`, `/place/{id}/curated-persons`, `/event/{id}/verses` |
+| `/books-overview`(책 개요 전체) | `no-store` | `books.py` |
+| FastAPI 자동 직렬화(응답 헤더 없음) | — | `search.py`, `nodes.py` 대부분 |
 
 ### authored 사건 / person_events JSON 형상
 
@@ -95,7 +123,6 @@ JSON 오버레이·파일 기반 정적 데이터는 `@functools.lru_cache(maxsi
 - **`books`:** `{bookId, rangeLabel}` 배열 — 근거 성경권과 절 범위(`"9:1–19"`).
 - **`sortKey`:** 숫자 시간 정렬 키. 여정·타임라인이 `sorted(events, key=lambda e: e["sortKey"])`로 시간순 배열.
 - **`context`:** 한글 서술 + 괄호 안 절 참조(`(행 9:1–19; 행 11:25–26)`) 패턴. 세미콜론으로 다중 참조를 연결.
-- **slug 고정 매핑:** `persons.py`에 `_ERA`(slug→시대), `_NAME_KO`(slug→한글 이름), `_ERA_ORDER`(시대 표시 순서)가 하드코딩. `places.py`는 단방향 임포트를 피하려고 이 상수를 일부 **재선언**한다(주석으로 명시). `journey.py`는 `from .persons import _ERA, _NAME_KO`로 가져온다.
 
 ### 독스트링·주석
 
@@ -157,6 +184,12 @@ JSON 오버레이·파일 기반 정적 데이터는 `@functools.lru_cache(maxsi
 - `journeyStopGroups(stops)` — stops를 장소 단위로 그룹핑. `seqLabel`은 그 장소의 여정 순번 압축 표기(`compactSeqs`).
 - `buildJourneyStopsGeoJSON(stops)` — `journeyStopGroups` 결과를 Point FeatureCollection으로.
 - `coreBounds(places)` — 원거리 outlier 장소를 fitBounds 범위에서 제외한 core bounds. median 중심 거리 기반 임계(중앙값×3).
+
+### 맵 클러스터 설정
+
+`frontend/src/mapLayers.js`의 `setupMapSources`에서 `places-source` GeoJSON 소스에 클러스터를 설정한다:
+- `clusterRadius: 18` — 마커 원이 실제 겹칠 때만 클러스터(마커 지름 ~21~27px 기준).
+- `clusterMinPoints: 4` — 동일/근접 좌표 2~3개는 버블 대신 방사 라벨 표시, 4개 이상만 클러스터.
 
 ---
 
