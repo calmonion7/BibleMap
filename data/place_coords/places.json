@@ -494,5 +494,69 @@
     "lat": 32.491,
     "lng": 35.41,
     "note": "사울과 요나단이 블레셋에게 전사한 길보아 산 (1Sam 31:1)"
+  },
+  {
+    "id": "authored-place-samaria",
+    "name": "Samaria",
+    "nameKo": "사마리아",
+    "lat": 32.276,
+    "lng": 35.19,
+    "note": "아합 왕의 수도, 엘리야가 가뭄을 선언한 곳 (1Kgs 17:1)"
+  },
+  {
+    "id": "authored-place-cherith",
+    "name": "Brook Cherith",
+    "nameKo": "그릿 시내",
+    "lat": 32.0,
+    "lng": 35.62,
+    "note": "엘리야가 까마귀에게 먹임 받은 요단 동편 시내 (1Kgs 17:3)"
+  },
+  {
+    "id": "authored-place-zarephath",
+    "name": "Zarephath",
+    "nameKo": "사르밧",
+    "lat": 33.456,
+    "lng": 35.293,
+    "note": "시돈 지방 과부의 기름·밀가루가 끊이지 않은 곳 (1Kgs 17:9)"
+  },
+  {
+    "id": "authored-place-carmel",
+    "name": "Mount Carmel",
+    "nameKo": "갈멜산",
+    "lat": 32.735,
+    "lng": 35.045,
+    "note": "바알 선지자 450인과의 대결지 (1Kgs 18:20)"
+  },
+  {
+    "id": "authored-place-horeb",
+    "name": "Mount Horeb",
+    "nameKo": "호렙산",
+    "lat": 28.539,
+    "lng": 33.975,
+    "note": "엘리야가 세미한 소리로 하나님을 만난 호렙(시내)산 (1Kgs 19:8)"
+  },
+  {
+    "id": "authored-place-abel-meholah",
+    "name": "Abel-meholah",
+    "nameKo": "아벨므홀라",
+    "lat": 32.35,
+    "lng": 35.53,
+    "note": "엘리야가 엘리사를 부른 요단 골짜기 (1Kgs 19:16)"
+  },
+  {
+    "id": "authored-place-babylon",
+    "name": "Babylon",
+    "nameKo": "바벨론",
+    "lat": 32.536,
+    "lng": 44.421,
+    "note": "다니엘이 포로로 끌려가 평생 섬긴 바벨론 (Dan 1:1)"
+  },
+  {
+    "id": "authored-place-susa",
+    "name": "Susa",
+    "nameKo": "수사",
+    "lat": 32.189,
+    "lng": 48.257,
+    "note": "다니엘이 숫양·숫염소 환상을 본 수산 궁 (Dan 8:2)"
   }
 ]

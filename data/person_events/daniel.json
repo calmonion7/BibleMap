@@ -1,0 +1,134 @@
+[
+  {
+    "id": "authored-daniel-babylon-diet",
+    "title": "Daniel refuses the king's food",
+    "nameKo": "바벨론 포로와 왕의 음식 거절",
+    "startDate": "-605",
+    "sortKey": -605,
+    "yearLabel": "BC 605경",
+    "context": "유다에서 바벨론으로 끌려간 다니엘과 세 친구가 왕의 진미와 포도주로 몸을 더럽히지 않겠다 하여 채식을 청하니, 열흘 후 더 윤택하고 지혜가 뛰어남 (Dan 1:1–21).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-babylon"
+    ],
+    "participants": [
+      "authored-person-daniel"
+    ],
+    "books": [
+      {
+        "bookId": "recJZDGEIEZOMQVFU",
+        "rangeLabel": "1:1–21"
+      }
+    ]
+  },
+  {
+    "id": "authored-daniel-babylon-image-dream",
+    "title": "Nebuchadnezzar's dream of the statue",
+    "nameKo": "느부갓네살의 신상 꿈 해석",
+    "startDate": "-603",
+    "sortKey": -603,
+    "yearLabel": "BC 603경",
+    "context": "아무도 알지 못한 왕의 꿈과 해석을 하나님이 다니엘에게 계시하시니, 금·은·놋·철의 신상과 뜨인 돌로 임할 영원한 나라를 풀어 총리가 됨 (Dan 2:1–49).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-babylon"
+    ],
+    "participants": [
+      "authored-person-daniel"
+    ],
+    "books": [
+      {
+        "bookId": "recJZDGEIEZOMQVFU",
+        "rangeLabel": "2:1–49"
+      }
+    ]
+  },
+  {
+    "id": "authored-daniel-babylon-tree-dream",
+    "title": "Nebuchadnezzar's madness foretold",
+    "nameKo": "느부갓네살의 나무 꿈과 광기",
+    "startDate": "-570",
+    "sortKey": -570,
+    "yearLabel": "BC 570경",
+    "context": "다니엘이 큰 나무가 베이는 왕의 꿈을 풀어 교만에 대한 심판을 경고하니, 왕이 칠 년간 소처럼 들에서 지내다 겸손히 하나님을 높임 (Dan 4:1–37).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-babylon"
+    ],
+    "participants": [
+      "authored-person-daniel"
+    ],
+    "books": [
+      {
+        "bookId": "recJZDGEIEZOMQVFU",
+        "rangeLabel": "4:1–37"
+      }
+    ]
+  },
+  {
+    "id": "authored-daniel-susa-vision",
+    "title": "Vision of the ram and goat at Susa",
+    "nameKo": "수산 궁 숫양과 숫염소 환상",
+    "startDate": "-551",
+    "sortKey": -551,
+    "yearLabel": "BC 551경",
+    "context": "벨사살 치세에 수산 궁에서 숫양과 숫염소의 환상을 보니, 가브리엘이 메대·바사와 헬라 왕국의 흥망을 풀어 줌 (Dan 8:1–27).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-susa"
+    ],
+    "participants": [
+      "authored-person-daniel"
+    ],
+    "books": [
+      {
+        "bookId": "recJZDGEIEZOMQVFU",
+        "rangeLabel": "8:1–27"
+      }
+    ]
+  },
+  {
+    "id": "authored-daniel-babylon-writing-wall",
+    "title": "The writing on the wall",
+    "nameKo": "벨사살 잔치와 벽의 글씨",
+    "startDate": "-539",
+    "sortKey": -539,
+    "yearLabel": "BC 539경",
+    "context": "성전 기물로 잔치하던 벨사살 왕 앞에 손가락이 '메네 메네 데겔 우바르신'을 쓰매, 다니엘이 나라가 끝나 메대·바사에 넘겨질 것을 선언하고 그 밤 왕이 죽음 (Dan 5:1–30).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-babylon"
+    ],
+    "participants": [
+      "authored-person-daniel"
+    ],
+    "books": [
+      {
+        "bookId": "recJZDGEIEZOMQVFU",
+        "rangeLabel": "5:1–30"
+      }
+    ]
+  },
+  {
+    "id": "authored-daniel-babylon-lions-den",
+    "title": "Daniel in the lions' den",
+    "nameKo": "사자 굴",
+    "startDate": "-538",
+    "sortKey": -538,
+    "yearLabel": "BC 538경",
+    "context": "다리오의 금령에도 하루 세 번 예루살렘을 향해 기도한 다니엘이 사자 굴에 던져지나, 하나님이 사자의 입을 봉하시어 상하지 않고 나옴 (Dan 6:1–28).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-babylon"
+    ],
+    "participants": [
+      "authored-person-daniel"
+    ],
+    "books": [
+      {
+        "bookId": "recJZDGEIEZOMQVFU",
+        "rangeLabel": "6:1–28"
+      }
+    ]
+  }
+]

@@ -108,5 +108,71 @@
         "rangeLabel": "45:4–9"
       }
     ]
+  },
+  {
+    "id": "authored-joseph-egypt-prison-dreams",
+    "title": "감옥의 두 관원 꿈 해석",
+    "nameKo": "감옥의 두 관원 꿈 해석",
+    "startDate": "-1886",
+    "sortKey": -1886,
+    "yearLabel": "BC 1886경",
+    "context": "감옥에서 바로의 술 맡은 관원과 떡 굽는 관원의 꿈을 해석해 각자의 운명을 예언하니 그대로 이루어짐 (Gen 40:1–23).",
+    "authored": true,
+    "occursAt": [
+      "recfrXyxhuYOczKTm"
+    ],
+    "participants": [
+      "rechuDYJoK32gmrME"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "40:1–23"
+      }
+    ]
+  },
+  {
+    "id": "authored-joseph-egypt-brothers-first",
+    "title": "형들의 첫 방문과 시므온 볼모",
+    "nameKo": "형들의 첫 방문과 시므온 볼모",
+    "startDate": "-1877",
+    "sortKey": -1877,
+    "yearLabel": "BC 1877경",
+    "context": "기근에 양식을 구하러 온 형들을 알아보고도 정탐꾼으로 몰아, 시므온을 볼모로 잡고 베냐민을 데려오라 요구함 (Gen 42:1–24).",
+    "authored": true,
+    "occursAt": [
+      "recfrXyxhuYOczKTm"
+    ],
+    "participants": [
+      "rechuDYJoK32gmrME"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "42:1–24"
+      }
+    ]
+  },
+  {
+    "id": "authored-joseph-egypt-death-bones",
+    "title": "요셉의 죽음과 유골 언약",
+    "nameKo": "요셉의 죽음과 유골 언약",
+    "startDate": "-1805",
+    "sortKey": -1805,
+    "yearLabel": "BC 1805경",
+    "context": "백십 세에 죽으며 '하나님이 반드시 너희를 돌보시리니 내 해골을 여기서 메고 올라가라' 형제들에게 맹세시킴 (Gen 50:22–26).",
+    "authored": true,
+    "occursAt": [
+      "recfrXyxhuYOczKTm"
+    ],
+    "participants": [
+      "rechuDYJoK32gmrME"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "50:22–26"
+      }
+    ]
   }
 ]

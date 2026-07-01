@@ -4,7 +4,7 @@ import Spinner from './Spinner'
 import { MOBILE_BREAKPOINT } from './constants'
 
 // 시대 표시 순서 — persons.py _ERA_ORDER와 동일.
-const ERA_ORDER = ['족장', '출애굽·정복', '사사', '왕국', '선지자', '신약']
+const ERA_ORDER = ['족장', '출애굽·정복', '사사', '왕국', '선지자', '포로', '신약']
 
 // 시대별 부제 — 카드 그룹 헤더 아래 작은 설명.
 const ERA_META = {
@@ -13,6 +13,7 @@ const ERA_META = {
   '사사':        '혼돈과 구원이 반복된 시대',
   '왕국':        '이스라엘 왕국의 흥망',
   '선지자':      '하나님의 경고와 위로',
+  '포로':        '바벨론 포로기의 신앙',
   '신약':        '그리스도와 그 증인들',
 }
 

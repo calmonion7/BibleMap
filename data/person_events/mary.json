@@ -108,5 +108,71 @@
         "rangeLabel": "19:25–27"
       }
     ]
+  },
+  {
+    "id": "authored-mary-judah-visitation",
+    "title": "엘리사벳 방문과 마리아 찬가",
+    "nameKo": "엘리사벳 방문과 마리아 찬가",
+    "startDate": "-5",
+    "sortKey": -4.9,
+    "yearLabel": "BC 5경",
+    "context": "잉태한 마리아가 유대 산골 엘리사벳을 찾아가니 태의 아기가 뛰놀고, 마리아가 '내 영혼이 주를 찬양하며'라는 찬가를 부름 (Luke 1:39–56).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "recnheSkryxih4g9J"
+    ],
+    "books": [
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "rangeLabel": "1:39–56"
+      }
+    ]
+  },
+  {
+    "id": "authored-mary-jerusalem-presentation",
+    "title": "성전 봉헌과 시므온의 예언",
+    "nameKo": "성전 봉헌과 시므온의 예언",
+    "startDate": "-4",
+    "sortKey": -3.9,
+    "yearLabel": "BC 4경",
+    "context": "정결 예식을 위해 아기 예수를 예루살렘 성전에 데려가니, 시므온이 '이 아이는 많은 사람을 흥망케 하며 칼이 네 마음을 찌르리라' 예언함 (Luke 2:22–35).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "recnheSkryxih4g9J"
+    ],
+    "books": [
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "rangeLabel": "2:22–35"
+      }
+    ]
+  },
+  {
+    "id": "authored-mary-jerusalem-boy-jesus",
+    "title": "소년 예수를 성전에서 찾음",
+    "nameKo": "소년 예수를 성전에서 찾음",
+    "startDate": "8",
+    "sortKey": 8,
+    "yearLabel": "AD 8경",
+    "context": "유월절 후 열두 살 예수가 성전에서 교사들과 문답하는 것을 사흘 만에 찾은 마리아. '어찌하여 나를 찾으셨나이까' (Luke 2:41–52).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "recnheSkryxih4g9J"
+    ],
+    "books": [
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "rangeLabel": "2:41–52"
+      }
+    ]
   }
 ]

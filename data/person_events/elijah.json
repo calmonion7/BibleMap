@@ -1,0 +1,156 @@
+[
+  {
+    "id": "authored-elijah-samaria-drought",
+    "title": "Elijah declares the drought",
+    "nameKo": "아합 앞에서 가뭄 선언",
+    "startDate": "-870",
+    "sortKey": -870,
+    "yearLabel": "BC 870경",
+    "context": "바알을 섬기는 아합 왕 앞에 디셉 사람 엘리야가 나아가, 자기 말이 없으면 수년간 비도 이슬도 없으리라 선언함 (1Kgs 17:1).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-samaria"
+    ],
+    "participants": [
+      "authored-person-elijah"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "17:1"
+      }
+    ]
+  },
+  {
+    "id": "authored-elijah-cherith-ravens",
+    "title": "Fed by ravens at Cherith",
+    "nameKo": "그릿 시냇가 까마귀의 공급",
+    "startDate": "-869",
+    "sortKey": -869.5,
+    "yearLabel": "BC 869경",
+    "context": "여호와의 명대로 요단 앞 그릿 시내에 숨어, 까마귀가 아침저녁으로 떡과 고기를 물어다 주고 시냇물을 마심 (1Kgs 17:2–6).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-cherith"
+    ],
+    "participants": [
+      "authored-person-elijah"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "17:2–6"
+      }
+    ]
+  },
+  {
+    "id": "authored-elijah-zarephath-widow",
+    "title": "The widow of Zarephath",
+    "nameKo": "사르밧 과부의 기름과 밀가루",
+    "startDate": "-869",
+    "sortKey": -869,
+    "yearLabel": "BC 869경",
+    "context": "시내가 마르자 시돈 사르밧으로 가, 마지막 양식을 나눈 과부의 통의 가루와 병의 기름이 끊이지 않게 하고 죽은 아들을 살려냄 (1Kgs 17:8–24).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-zarephath"
+    ],
+    "participants": [
+      "authored-person-elijah"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "17:8–24"
+      }
+    ]
+  },
+  {
+    "id": "authored-elijah-carmel-contest",
+    "title": "Contest with the prophets of Baal on Carmel",
+    "nameKo": "갈멜산 바알 선지자 대결",
+    "startDate": "-868",
+    "sortKey": -868,
+    "yearLabel": "BC 868경",
+    "context": "갈멜산에서 바알 선지자 사백오십 인과 대결해, 여호와께서 불로 응답하시니 온 백성이 엎드려 '여호와 그는 하나님이시로다' 외침. 이어 큰 비가 내림 (1Kgs 18:20–40).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-carmel"
+    ],
+    "participants": [
+      "authored-person-elijah"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "18:20–40"
+      }
+    ]
+  },
+  {
+    "id": "authored-elijah-horeb-whisper",
+    "title": "The still small voice at Horeb",
+    "nameKo": "호렙산 세미한 소리",
+    "startDate": "-867",
+    "sortKey": -867.5,
+    "yearLabel": "BC 867경",
+    "context": "이세벨을 피해 사십 주야를 걸어 호렙산에 이르니, 바람·지진·불이 아닌 세미한 소리 가운데 여호와를 만나고 새 사명을 받음 (1Kgs 19:8–18).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-horeb"
+    ],
+    "participants": [
+      "authored-person-elijah"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "19:8–18"
+      }
+    ]
+  },
+  {
+    "id": "authored-elijah-abelmeholah-elisha",
+    "title": "Elisha called at Abel-meholah",
+    "nameKo": "아벨므홀라에서 엘리사를 부름",
+    "startDate": "-867",
+    "sortKey": -867,
+    "yearLabel": "BC 867경",
+    "context": "밭을 갈던 엘리사에게 겉옷을 던져 후계자로 부르니, 엘리사가 소를 잡아 작별하고 엘리야를 따라 수종듦 (1Kgs 19:19–21).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-abel-meholah"
+    ],
+    "participants": [
+      "authored-person-elijah"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "19:19–21"
+      }
+    ]
+  },
+  {
+    "id": "authored-elijah-jordan-ascension",
+    "title": "Elijah taken up in a whirlwind",
+    "nameKo": "회오리바람 불수레 승천",
+    "startDate": "-852",
+    "sortKey": -852,
+    "yearLabel": "BC 852경",
+    "context": "길갈·벧엘·여리고를 지나 요단을 겉옷으로 갈라 건넌 뒤, 불수레와 불말이 두 사람을 갈라놓고 엘리야가 회오리바람으로 하늘에 올라가매 엘리사가 그 겉옷을 받음 (2Kgs 2:1–12).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-jericho"
+    ],
+    "participants": [
+      "authored-person-elijah"
+    ],
+    "books": [
+      {
+        "bookId": "recutYqTqunXPJKQO",
+        "rangeLabel": "2:1–12"
+      }
+    ]
+  }
+]

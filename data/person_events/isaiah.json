@@ -86,5 +86,71 @@
         "rangeLabel": "44:28"
       }
     ]
+  },
+  {
+    "id": "authored-isaiah-jerusalem-ahaz",
+    "title": "아하스와 임마누엘 표징",
+    "nameKo": "아하스와 임마누엘 표징",
+    "startDate": "-734",
+    "sortKey": -734,
+    "yearLabel": "BC 734경",
+    "context": "아람·북이스라엘 연합의 위협에 떠는 아하스 왕에게 이사야가 나아가, 표징 구하기를 거절하는 왕에게 '처녀가 잉태하여 아들을 낳고 임마누엘이라 하리라'는 표징을 주심 (Isa 7:1–16).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "recit3DiamFt2zO0S"
+    ],
+    "books": [
+      {
+        "bookId": "recr2ic6Ws3R14a5I",
+        "rangeLabel": "7:1–16"
+      }
+    ]
+  },
+  {
+    "id": "authored-isaiah-jerusalem-naked-sign",
+    "title": "벗은 몸 삼 년의 애굽 심판 예언",
+    "nameKo": "벗은 몸 삼 년의 애굽 심판 예언",
+    "startDate": "-711",
+    "sortKey": -711,
+    "yearLabel": "BC 711경",
+    "context": "이사야가 삼 년간 벗은 몸과 벗은 발로 다니며, 애굽과 구스가 앗수르에 벗겨져 포로로 끌려갈 것을 몸으로 예언함 (Isa 20:1–6).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "recit3DiamFt2zO0S"
+    ],
+    "books": [
+      {
+        "bookId": "recr2ic6Ws3R14a5I",
+        "rangeLabel": "20:1–6"
+      }
+    ]
+  },
+  {
+    "id": "authored-isaiah-jerusalem-babylon-envoys",
+    "title": "바벨론 사신과 포로 예언",
+    "nameKo": "바벨론 사신과 포로 예언",
+    "startDate": "-701",
+    "sortKey": -700.5,
+    "yearLabel": "BC 701경",
+    "context": "병에서 나은 히스기야가 바벨론 사신에게 보물고를 자랑하자, 이사야가 그 모든 것이 바벨론으로 옮겨지고 왕자들이 포로가 되리라 예언함 (Isa 39:1–7).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "recit3DiamFt2zO0S"
+    ],
+    "books": [
+      {
+        "bookId": "recr2ic6Ws3R14a5I",
+        "rangeLabel": "39:1–7"
+      }
+    ]
   }
 ]

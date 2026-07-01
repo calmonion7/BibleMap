@@ -28,5 +28,15 @@
     "id": "authored-person-saul",
     "name": "Saul",
     "nameKo": "사울"
+  },
+  {
+    "id": "authored-person-elijah",
+    "name": "Elijah",
+    "nameKo": "엘리야"
+  },
+  {
+    "id": "authored-person-daniel",
+    "name": "Daniel",
+    "nameKo": "다니엘"
   }
 ]
