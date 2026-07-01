@@ -1,5 +1,71 @@
 [
   {
+    "id": "authored-solomon-jerusalem-birth",
+    "title": "Solomon born, named Jedidiah",
+    "nameKo": "솔로몬 출생과 여디디야 명명",
+    "startDate": "-990",
+    "sortKey": -990,
+    "yearLabel": "BC 990경",
+    "context": "다윗과 밧세바 사이에서 태어난 아들. 여호와께서 그를 사랑하시어 선지자 나단을 통해 '여디디야(여호와께 사랑받는 자)'라 부르심 (2Sam 12:24–25).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "rec0BAacWSGBXZ0zI"
+    ],
+    "books": [
+      {
+        "bookId": "recMYdxLC2GjLRomD",
+        "rangeLabel": "12:24–25"
+      }
+    ]
+  },
+  {
+    "id": "authored-solomon-gihon-anointing",
+    "title": "Solomon anointed king at Gihon",
+    "nameKo": "기혼에서 왕으로 기름부음",
+    "startDate": "-971",
+    "sortKey": -971,
+    "yearLabel": "BC 971경",
+    "context": "아도니야가 스스로 왕이 되려 하자, 다윗이 사독과 나단을 시켜 솔로몬을 자기 노새에 태워 기혼 샘으로 내려보내 기름 부어 왕 삼으니 온 백성이 '솔로몬 왕 만세'를 외침 (1Kgs 1:38–40).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "rec0BAacWSGBXZ0zI"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "1:38–40"
+      }
+    ]
+  },
+  {
+    "id": "authored-solomon-jerusalem-david-charge",
+    "title": "David's charge; Solomon's throne established",
+    "nameKo": "다윗의 유언과 왕권 확립",
+    "startDate": "-970",
+    "sortKey": -970.5,
+    "yearLabel": "BC 970경",
+    "context": "죽음을 앞둔 다윗이 솔로몬에게 여호와의 율법과 계명을 지키라 당부하고 세상을 떠남. 솔로몬이 대적들을 정리하매 나라가 그의 손에 굳게 섬 (1Kgs 2:1–12).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "rec0BAacWSGBXZ0zI"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "2:1–12"
+      }
+    ]
+  },
+  {
     "id": "authored-solomon-gibeon-dream",
     "title": "Solomon's dream at Gibeon — wisdom requested",
     "nameKo": "기브온 일천번제 및 지혜 구함",
@@ -18,6 +84,28 @@
       {
         "bookId": "reconzJEzr8kOsb3j",
         "rangeLabel": "3:4–14"
+      }
+    ]
+  },
+  {
+    "id": "authored-solomon-jerusalem-two-mothers",
+    "title": "Solomon judges the two mothers",
+    "nameKo": "두 창기 지혜의 재판",
+    "startDate": "-969",
+    "sortKey": -969,
+    "yearLabel": "BC 969경",
+    "context": "한 아기를 두고 다툰 두 창기에게 '살아 있는 아이를 둘로 나누라' 명하여 참 어미의 마음을 드러내 판결하니, 온 이스라엘이 왕의 재판하는 지혜를 두려워함 (1Kgs 3:16–28).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "rec0BAacWSGBXZ0zI"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "3:16–28"
       }
     ]
   },
@@ -106,6 +194,50 @@
       {
         "bookId": "reconzJEzr8kOsb3j",
         "rangeLabel": "9:26–28"
+      }
+    ]
+  },
+  {
+    "id": "authored-solomon-jerusalem-sheba",
+    "title": "The Queen of Sheba visits Solomon",
+    "nameKo": "스바 여왕의 방문",
+    "startDate": "-950",
+    "sortKey": -950,
+    "yearLabel": "BC 950경",
+    "context": "솔로몬의 지혜와 명성을 들은 스바 여왕이 어려운 질문으로 시험하러 왔다가, 그 지혜와 왕궁의 영화를 보고 넋을 잃고 여호와를 찬양하며 예물을 드림 (1Kgs 10:1–13).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "rec0BAacWSGBXZ0zI"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "10:1–13"
+      }
+    ]
+  },
+  {
+    "id": "authored-solomon-jerusalem-apostasy",
+    "title": "Solomon's foreign wives and idolatry",
+    "nameKo": "이방 아내와 우상숭배·심판 예고",
+    "startDate": "-933",
+    "sortKey": -933,
+    "yearLabel": "BC 933경",
+    "context": "많은 이방 후궁이 노년의 솔로몬의 마음을 돌이켜 아스다롯·그모스·몰록을 좇게 하니, 여호와께서 진노하시어 나라를 찢어 신복에게 주되 다윗을 위하여 아들 대에 그리하리라 하심 (1Kgs 11:1–13).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "rec0BAacWSGBXZ0zI"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "11:1–13"
       }
     ]
   }

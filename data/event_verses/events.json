@@ -145538,5 +145538,463 @@
         ]
       }
     ]
+  },
+  "authored-solomon-jerusalem-birth": {
+    "books": [
+      {
+        "bookId": "recMYdxLC2GjLRomD",
+        "bookOrder": 10,
+        "rangeLabel": "12:24–25",
+        "verses": [
+          {
+            "verseID": "10012024",
+            "chapter": 12,
+            "verse": 24,
+            "textKo": "다윗이 그 처 밧세바를 위로하고 저에게 들어가 동침하였더니 저가 아들을 낳으매 그 이름을 솔로몬이라 하니라 여호와께서 그를 사랑하사 ",
+            "textEn": "And David comforted Bath–sheba his wife, and went in unto her, and lay with her: and she bare a son, and he called his name Solomon: and the Lord loved him."
+          },
+          {
+            "verseID": "10012025",
+            "chapter": 12,
+            "verse": 25,
+            "textKo": "선지자 나단을 보내사 그 이름을 여디디야라 하시니 이는 여호와께서 사랑하심을 인함이더라 ",
+            "textEn": "And he sent by the hand of Nathan the prophet; and he called his name Jedidiah, because of the Lord."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-solomon-gihon-anointing": {
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "bookOrder": 11,
+        "rangeLabel": "1:38–40",
+        "verses": [
+          {
+            "verseID": "11001038",
+            "chapter": 1,
+            "verse": 38,
+            "textKo": "제사장 사독과 선지자 나단과 여호야다의 아들 브나야와 그렛 사람과 블렛 사람이 내려가서 솔로몬을 다윗 왕의 노새에 태우고 인도하여 기혼으로 가서 ",
+            "textEn": "So Zadok the priest, and Nathan the prophet, and Benaiah the son of Jehoiada, and the Cherethites, and the Pelethites, went down, and caused Solomon to ride upon king David’s mule, and brought him to Gihon."
+          },
+          {
+            "verseID": "11001039",
+            "chapter": 1,
+            "verse": 39,
+            "textKo": "제사장 사독이 성막 가운데서 기름 뿔을 가져다가 솔로몬에게 기름을 부으니 이에 양각을 불고 모든 백성이 솔로몬 왕 만세를 부르니라 ",
+            "textEn": "And Zadok the priest took an horn of oil out of the tabernacle, and anointed Solomon. And they blew the trumpet; and all the people said, God save king Solomon."
+          },
+          {
+            "verseID": "11001040",
+            "chapter": 1,
+            "verse": 40,
+            "textKo": "모든 백성이 왕을 따라 올라와서 피리를 불며 크게 즐거워하므로 땅이 저희 소리로 인하여 갈라질 듯하니 ",
+            "textEn": "And all the people came up after him, and the people piped with pipes, and rejoiced with great joy, so that the earth rent with the sound of them."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-solomon-jerusalem-david-charge": {
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "bookOrder": 11,
+        "rangeLabel": "2:1–12",
+        "verses": [
+          {
+            "verseID": "11002001",
+            "chapter": 2,
+            "verse": 1,
+            "textKo": "다윗이 죽을 날이 임박하매 그 아들 솔로몬에게 명하여 가로되 ",
+            "textEn": "Now the days of David drew nigh that he should die; and he charged Solomon his son, saying,"
+          },
+          {
+            "verseID": "11002002",
+            "chapter": 2,
+            "verse": 2,
+            "textKo": "내가 이제 세상 모든 사람의 가는 길로 가게 되었노니 너는 힘써 대장부가 되고 ",
+            "textEn": "I go the way of all the earth: be thou strong therefore, and shew thyself a man;"
+          },
+          {
+            "verseID": "11002003",
+            "chapter": 2,
+            "verse": 3,
+            "textKo": "네 하나님 여호와의 명을 지켜 그 길로 행하여 그 법률과 계명과 율례와 증거를 모세의 율법에 기록된대로 지키라 그리하면 네가 무릇 무엇을 하든지 어디로 가든지 형통할지라 ",
+            "textEn": "And keep the charge of the Lord thy God, to walk in his ways, to keep his statutes, and his commandments, and his judgments, and his testimonies, as it is written in the law of Moses, that thou mayest prosper in all that thou doest, and whithersoever thou turnest thyself:"
+          },
+          {
+            "verseID": "11002004",
+            "chapter": 2,
+            "verse": 4,
+            "textKo": "여호와께서 내 일에 대하여 말씀하시기를 만일 네 자손이 그 길을 삼가 마음을 다하고 성품을 다하여 진실히 내 앞에서 행하면 이스라엘 왕위에 오를 사람이 네게서 끊어지지 아니하리라 하신 말씀을 확실히 이루게 하시리라 ",
+            "textEn": "That the Lord may continue his word which he spake concerning me, saying, If thy children take heed to their way, to walk before me in truth with all their heart and with all their soul, there shall not fail thee (said he) a man on the throne of Israel."
+          },
+          {
+            "verseID": "11002005",
+            "chapter": 2,
+            "verse": 5,
+            "textKo": "스루야의 아들 요압이 내게 행한 일 곧 이스라엘 군대의 두 장관 넬의 아들 아브넬과 예델의 아들 아마사에게 행한 일을 네가 알거니와 저가 저희를 죽여 태평시대에 전쟁의 피를 흘리고 전쟁의 피로 자기의 허리에 띤 띠와 발에 신은 신에 묻혔으니 ",
+            "textEn": "Moreover thou knowest also what Joab the son of Zeruiah did to me, and what he did to the two captains of the hosts of Israel, unto Abner the son of Ner, and unto Amasa the son of Jether, whom he slew, and shed the blood of war in peace, and put the blood of war upon his girdle that was about his loins, and in his shoes that were on his feet."
+          },
+          {
+            "verseID": "11002006",
+            "chapter": 2,
+            "verse": 6,
+            "textKo": "네 지혜대로 행하여 그 백발로 평안히 음부에 내려가지 못하게 하라 ",
+            "textEn": "Do therefore according to thy wisdom, and let not his hoar head go down to the grave in peace."
+          },
+          {
+            "verseID": "11002007",
+            "chapter": 2,
+            "verse": 7,
+            "textKo": "마땅히 길르앗 바실래의 아들들에게 은총을 베풀어 저희로 네 상에서 먹는 자 중에 참예하게 하라 내가 네 형 압살롬의 낯을 피하여 도망할 때에 저희가 내게 나아왔었느니라 ",
+            "textEn": "But shew kindness unto the sons of Barzillai the Gileadite, and let them be of those that eat at thy table: for so they came to me when I fled because of Absalom thy brother."
+          },
+          {
+            "verseID": "11002008",
+            "chapter": 2,
+            "verse": 8,
+            "textKo": "바후림 베냐민 사람 게라의 아들 시므이가 너와 함께 있나니 저는 내가 마하나임으로 갈 때에 독한 말로 나를 저주하였느니라 그러나 저가 요단에 내려와서 나를 영접하기로 내가 여호와를 가리켜 맹세하여 이르기를 내가 칼로 너를 죽이지 아니하리라 하였노라 ",
+            "textEn": "And, behold, thou hast with thee Shimei the son of Gera, a Benjamite of Bahurim, which cursed me with a grievous curse in the day when I went to Mahanaim: but he came down to meet me at Jordan, and I sware to him by the Lord, saying, I will not put thee to death with the sword."
+          },
+          {
+            "verseID": "11002009",
+            "chapter": 2,
+            "verse": 9,
+            "textKo": "그러나 저를 무죄한 자로 여기지 말지어다 너는 지혜있는 사람인즉 저에게 행할 일을 알지니 그 백발의 피를 흘려 저로 음부에 내려가게 하라 ",
+            "textEn": "Now therefore hold him not guiltless: for thou art a wise man, and knowest what thou oughtest to do unto him; but his hoar head bring thou down to the grave with blood."
+          },
+          {
+            "verseID": "11002010",
+            "chapter": 2,
+            "verse": 10,
+            "textKo": "다윗이 그 열조와 함께 누워 자서 다윗 성에 장사되니 ",
+            "textEn": "So David slept with his fathers, and was buried in the city of David."
+          },
+          {
+            "verseID": "11002011",
+            "chapter": 2,
+            "verse": 11,
+            "textKo": "다윗이 이스라엘 왕이 된지 사십 년이라 헤브론에서 칠 년을 치리하였고 예루살렘에서 삼십삼 년을 치리하였더라 ",
+            "textEn": "And the days that David reigned over Israel were forty years: seven years reigned he in Hebron, and thirty and three years reigned he in Jerusalem."
+          },
+          {
+            "verseID": "11002012",
+            "chapter": 2,
+            "verse": 12,
+            "textKo": "솔로몬이 그 아비 다윗의 위에 앉으니 그 나라가 심히 견고하니라 ",
+            "textEn": "Then sat Solomon upon the throne of David his father; and his kingdom was established greatly."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-solomon-jerusalem-two-mothers": {
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "bookOrder": 11,
+        "rangeLabel": "3:16–28",
+        "verses": [
+          {
+            "verseID": "11003016",
+            "chapter": 3,
+            "verse": 16,
+            "textKo": "때에 창기 두 계집이 왕에게 와서 그 앞에 서며 ",
+            "textEn": "Then came there two women, that were harlots, unto the king, and stood before him."
+          },
+          {
+            "verseID": "11003017",
+            "chapter": 3,
+            "verse": 17,
+            "textKo": "한 계집은 말하되 내 주여 나와 이 계집이 한 집에서 사는데 내가 저와 함께 집에 있으며 아이를 낳았더니 ",
+            "textEn": "And the one woman said, O my lord, I and this woman dwell in one house; and I was delivered of a child with her in the house."
+          },
+          {
+            "verseID": "11003018",
+            "chapter": 3,
+            "verse": 18,
+            "textKo": "나의 해산한 지 삼일에 이 계집도 해산하고 우리가 함께 있었고 우리 둘 외에는 집에 다른 사람이 없었나이다 ",
+            "textEn": "And it came to pass the third day after that I was delivered, that this woman was delivered also: and we were together; there was no stranger with us in the house, save we two in the house."
+          },
+          {
+            "verseID": "11003019",
+            "chapter": 3,
+            "verse": 19,
+            "textKo": "그런데 밤에 저 계집이 그 아들 위에 누우므로 그 아들이 죽으니 ",
+            "textEn": "And this woman’s child died in the night; because she overlaid it."
+          },
+          {
+            "verseID": "11003020",
+            "chapter": 3,
+            "verse": 20,
+            "textKo": "저가 밤중에 일어나서 계집종 나의 잠든 사이에 내 아들을 내 곁에서 가져다가 자기의 품에 누이고 자기의 죽은 아들을 내 품에 뉘었나이다 ",
+            "textEn": "And she arose at midnight, and took my son from beside me, while thine handmaid slept, and laid it in her bosom, and laid her dead child in my bosom."
+          },
+          {
+            "verseID": "11003021",
+            "chapter": 3,
+            "verse": 21,
+            "textKo": "미명에 내가 내 아들을 젖 먹이려고 일어나 본즉 죽었기로 내가 아침에 자세히 보니 내가 낳은 아들이 아니더이다 하매 ",
+            "textEn": "And when I rose in the morning to give my child suck, behold, it was dead: but when I had considered it in the morning, behold, it was not my son, which I did bear."
+          },
+          {
+            "verseID": "11003022",
+            "chapter": 3,
+            "verse": 22,
+            "textKo": "다른 계집은 이르되 아니라 산 것은 내 아들이요 죽은 것은 네 아들이라 하고 이 계집은 이르되 아니라 죽은 것이 네 아들이요 산 것이 내 아들이라 하매 왕 앞에서 그와 같이 쟁론하는지라 ",
+            "textEn": "And the other woman said, Nay; but the living is my son, and the dead is thy son. And this said, No; but the dead is thy son, and the living is my son. Thus they spake before the king."
+          },
+          {
+            "verseID": "11003023",
+            "chapter": 3,
+            "verse": 23,
+            "textKo": "왕이 가로되 이는 말하기를 산 것은 내 아들이요 죽은 것은 네 아들이라 하고 저는 말하기를 아니라 죽은 것이 네 아들이요 산 것이 내 아들이라 하는도다 하고 ",
+            "textEn": "Then said the king, The one saith, This is my son that liveth, and thy son is the dead: and the other saith, Nay; but thy son is the dead, and my son is the living."
+          },
+          {
+            "verseID": "11003024",
+            "chapter": 3,
+            "verse": 24,
+            "textKo": "또 가로되 칼을 내게로 가져오라 하니 칼을 왕의 앞으로 가져온지라 ",
+            "textEn": "And the king said, Bring me a sword. And they brought a sword before the king."
+          },
+          {
+            "verseID": "11003025",
+            "chapter": 3,
+            "verse": 25,
+            "textKo": "왕이 이르되 산 아들을 둘에 나눠 반은 이에게 주고 반은 저에게 주라 ",
+            "textEn": "And the king said, Divide the living child in two, and give half to the one, and half to the other."
+          },
+          {
+            "verseID": "11003026",
+            "chapter": 3,
+            "verse": 26,
+            "textKo": "그 산 아들의 어미되는 계집이 그 아들을 위하여 마음이 불붙는 것 같아서 왕께 아뢰어 가로되 청컨대 내 주여 산 아들을 저에게 주시고 아무쪼록 죽이지 마옵소서 하되 한 계집은 말하기를 내 것도 되게 말고 네 것도 되게 말고 나누게 하라 하는지라 ",
+            "textEn": "Then spake the woman whose the living child was unto the king, for her bowels yearned upon her son, and she said, O my lord, give her the living child, and in no wise slay it. But the other said, Let it be neither mine nor thine, but divide it."
+          },
+          {
+            "verseID": "11003027",
+            "chapter": 3,
+            "verse": 27,
+            "textKo": "왕이 대답하여 가로되 산 아들을 저 계집에게 주고 결코 죽이지 말라 저가 그 어미니라 하매 ",
+            "textEn": "Then the king answered and said, Give her the living child, and in no wise slay it: she is the mother thereof."
+          },
+          {
+            "verseID": "11003028",
+            "chapter": 3,
+            "verse": 28,
+            "textKo": "온 이스라엘이 왕의 심리하여 판결함을 듣고 왕을 두려워하였으니 이는 하나님의 지혜가 저의 속에 있어 판결함을 봄이더라  ",
+            "textEn": "And all Israel heard of the judgment which the king had judged; and they feared the king: for they saw that the wisdom of God was in him, to do judgment. "
+          }
+        ]
+      }
+    ]
+  },
+  "authored-solomon-jerusalem-sheba": {
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "bookOrder": 11,
+        "rangeLabel": "10:1–13",
+        "verses": [
+          {
+            "verseID": "11010001",
+            "chapter": 10,
+            "verse": 1,
+            "textKo": "스바 여왕이 여호와의 이름으로 말미암은 솔로몬의 명예를 듣고 와서 어려운 문제로 저를 시험코자 하여 ",
+            "textEn": "And when the queen of Sheba heard of the fame of Solomon concerning the name of the Lord, she came to prove him with hard questions."
+          },
+          {
+            "verseID": "11010002",
+            "chapter": 10,
+            "verse": 2,
+            "textKo": "예루살렘에 이르니 수원이 심히 많고 향품과 심히 많은 금과 보석을 약대에 실었더라 저가 솔로몬에게 나아와 자기 마음에 있는 것을 다 말하매 ",
+            "textEn": "And she came to Jerusalem with a very great train, with camels that bare spices, and very much gold, and precious stones: and when she was come to Solomon, she communed with him of all that was in her heart."
+          },
+          {
+            "verseID": "11010003",
+            "chapter": 10,
+            "verse": 3,
+            "textKo": "솔로몬이 그 묻는 말을 다 대답하였으니 왕이 은미하여 대답지 못한 것이 없었더라 ",
+            "textEn": "And Solomon told her all her questions: there was not any thing hid from the king, which he told her not."
+          },
+          {
+            "verseID": "11010004",
+            "chapter": 10,
+            "verse": 4,
+            "textKo": "스바 여왕이 솔로몬의 모든 지혜와 그 건축한 궁과 ",
+            "textEn": "And when the queen of Sheba had seen all Solomon’s wisdom, and the house that he had built,"
+          },
+          {
+            "verseID": "11010005",
+            "chapter": 10,
+            "verse": 5,
+            "textKo": "그 상의 식물과 그 신복들의 좌석과 그 신하들의 시립한 것과 그들의 공복과 술 관원들과 여호와의 전에 올라가는 층계를 보고 정신이 현황하여 ",
+            "textEn": "And the meat of his table, and the sitting of his servants, and the attendance of his ministers, and their apparel, and his cupbearers, and his ascent by which he went up unto the house of the Lord; there was no more spirit in her."
+          },
+          {
+            "verseID": "11010006",
+            "chapter": 10,
+            "verse": 6,
+            "textKo": "왕께 고하되 내가 내 나라에서 당신의 행위와 당신의 지혜에 대하여 들은 소문이 진실하도다 ",
+            "textEn": "And she said to the king, It was a true report that I heard in mine own land of thy acts and of thy wisdom."
+          },
+          {
+            "verseID": "11010007",
+            "chapter": 10,
+            "verse": 7,
+            "textKo": "내가 그 말들을 믿지 아니하였더니 이제 와서 목도한즉 내게 말한 것은 절반도 못되니 당신의 지혜와 복이 나의 들은 소문에 지나도다 ",
+            "textEn": "Howbeit I believed not the words, until I came, and mine eyes had seen it: and, behold, the half was not told me: thy wisdom and prosperity exceedeth the fame which I heard."
+          },
+          {
+            "verseID": "11010008",
+            "chapter": 10,
+            "verse": 8,
+            "textKo": "복되도다 당신의 사람들이여 복되도다 당신의 이 신복들이여 항상 당신의 앞에 서서 당신의 지혜를 들음이로다 ",
+            "textEn": "Happy are thy men, happy are these thy servants, which stand continually before thee, and that hear thy wisdom."
+          },
+          {
+            "verseID": "11010009",
+            "chapter": 10,
+            "verse": 9,
+            "textKo": "당신의 하나님 여호와를 송축할지로다 여호와께서 당신을 기뻐하사 이스라엘 위에 올리셨고 여호와께서 영영히 이스라엘을 사랑하시므로 당신을 세워 왕을 삼아 공과 의를 행하게 하셨도다 하고 ",
+            "textEn": "Blessed be the Lord thy God, which delighted in thee, to set thee on the throne of Israel: because the Lord loved Israel for ever, therefore made he thee king, to do judgment and justice."
+          },
+          {
+            "verseID": "11010010",
+            "chapter": 10,
+            "verse": 10,
+            "textKo": "이에 저가 금 일백이십 달란트와 심히 많은 향품과 보석을 왕께 드렸으니 스바 여왕이 솔로몬 왕께 드린 것처럼 많은 향품이 다시 오지 아니하였더라 ",
+            "textEn": "And she gave the king an hundred and twenty talents of gold, and of spices very great store, and precious stones: there came no more such abundance of spices as these which the queen of Sheba gave to king Solomon."
+          },
+          {
+            "verseID": "11010011",
+            "chapter": 10,
+            "verse": 11,
+            "textKo": "(오빌에서부터 금을 실어 온 히람의 배들이 오빌에서 많은 백단목과 보석을 운반하여 오매 ",
+            "textEn": "And the navy also of Hiram, that brought gold from Ophir, brought in from Ophir great plenty of almug trees, and precious stones."
+          },
+          {
+            "verseID": "11010012",
+            "chapter": 10,
+            "verse": 12,
+            "textKo": "왕이 백단목으로 여호와의 전과 왕궁의 난간을 만들고 또 노래하는 자를 위하여 수금과 비파를 만들었으니 이 같은 백단목은 전에도 온 일이 없었고 오늘까지도 보지 못하였더라) ",
+            "textEn": "And the king made of the almug trees pillars for the house of the Lord, and for the king’s house, harps also and psalteries for singers: there came no such almug trees, nor were seen unto this day."
+          },
+          {
+            "verseID": "11010013",
+            "chapter": 10,
+            "verse": 13,
+            "textKo": "솔로몬 왕이 왕의 규례대로 스바 여왕에게 물건을 준 외에 또 저의 소원대로 무릇 구하는 것을 주니 이에 저가 그 신복들로 더불어 본국으로 돌아갔더라 ",
+            "textEn": "And king Solomon gave unto the queen of Sheba all her desire, whatsoever she asked, beside that which Solomon gave her of his royal bounty. So she turned and went to her own country, she and her servants."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-solomon-jerusalem-apostasy": {
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "bookOrder": 11,
+        "rangeLabel": "11:1–13",
+        "verses": [
+          {
+            "verseID": "11011001",
+            "chapter": 11,
+            "verse": 1,
+            "textKo": "솔로몬 왕이 바로의 딸 외에 이방의 많은 여인을 사랑하였으니 곧 모압과 암몬과 에돔과 시돈과 헷 여인이라 ",
+            "textEn": "But king Solomon loved many strange women, together with the daughter of Pharaoh, women of the Moabites, Ammonites, Edomites, Zidonians, and Hittites;"
+          },
+          {
+            "verseID": "11011002",
+            "chapter": 11,
+            "verse": 2,
+            "textKo": "여호와께서 일찍이 이 여러 국민에게 대하여 이스라엘 자손에게 말씀하시기를 너희는 저희와 서로 통하지 말며 저희도 너희와 서로 통하게 말라 저희가 정녕코 너희의 마음을 돌이켜 저희의 신들을 좇게 하리라 하셨으나 솔로몬이 저희를 연애하였더라 ",
+            "textEn": "Of the nations concerning which the Lord said unto the children of Israel, Ye shall not go in to them, neither shall they come in unto you: for surely they will turn away your heart after their gods: Solomon clave unto these in love."
+          },
+          {
+            "verseID": "11011003",
+            "chapter": 11,
+            "verse": 3,
+            "textKo": "왕은 후비가 칠백 인이요 빈장이 삼백 인이라 왕비들이 왕의 마음을 돌이켰더라 ",
+            "textEn": "And he had seven hundred wives, princesses, and three hundred concubines: and his wives turned away his heart."
+          },
+          {
+            "verseID": "11011004",
+            "chapter": 11,
+            "verse": 4,
+            "textKo": "솔로몬의 나이 늙을 때에 왕비들이 그 마음을 돌이켜 다른 신들을 좇게 하였으므로 왕의 마음이 그 부친 다윗의 마음과 같지 아니하여 그 하나님 여호와 앞에 온전치 못하였으니 ",
+            "textEn": "For it came to pass, when Solomon was old, that his wives turned away his heart after other gods: and his heart was not perfect with the Lord his God, as was the heart of David his father."
+          },
+          {
+            "verseID": "11011005",
+            "chapter": 11,
+            "verse": 5,
+            "textKo": "이는 시돈 사람의 여신 아스다롯을 좇고 암몬 사람의 가증한 밀곰을 좇음이라 ",
+            "textEn": "For Solomon went after Ashtoreth the goddess of the Zidonians, and after Milcom the abomination of the Ammonites."
+          },
+          {
+            "verseID": "11011006",
+            "chapter": 11,
+            "verse": 6,
+            "textKo": "솔로몬이 여호와의 눈앞에서 악을 행하여 그 부친 다윗이 여호와를 온전히 좇음 같이 좇지 아니하고 ",
+            "textEn": "And Solomon did evil in the sight of the Lord, and went not fully after the Lord, as did David his father."
+          },
+          {
+            "verseID": "11011007",
+            "chapter": 11,
+            "verse": 7,
+            "textKo": "모압의 가증한 그모스를 위하여 예루살렘 앞 산에 산당을 지었고 또 암몬 자손의 가증한 몰록을 위하여 그와 같이 하였으며 ",
+            "textEn": "Then did Solomon build an high place for Chemosh, the abomination of Moab, in the hill that is before Jerusalem, and for Molech, the abomination of the children of Ammon."
+          },
+          {
+            "verseID": "11011008",
+            "chapter": 11,
+            "verse": 8,
+            "textKo": "저가 또 이족 후비들을 위하여 다 그와 같이 한지라 저희가 자기의 신들에게 분향하며 제사하였더라 ",
+            "textEn": "And likewise did he for all his strange wives, which burnt incense and sacrificed unto their gods."
+          },
+          {
+            "verseID": "11011009",
+            "chapter": 11,
+            "verse": 9,
+            "textKo": "솔로몬이 마음을 돌이켜 이스라엘 하나님 여호와를 떠나므로 여호와께서 저에게 진노하시니라 여호와께서 일찍이 두 번이나 저에게 나타나시고 ",
+            "textEn": "And the Lord was angry with Solomon, because his heart was turned from the Lord God of Israel, which had appeared unto him twice,"
+          },
+          {
+            "verseID": "11011010",
+            "chapter": 11,
+            "verse": 10,
+            "textKo": "이 일에 대하여 명하사 다른 신을 좇지 말라 하셨으나 저가 여호와의 명령을 지키지 않았으므로 ",
+            "textEn": "And had commanded him concerning this thing, that he should not go after other gods: but he kept not that which the Lord commanded."
+          },
+          {
+            "verseID": "11011011",
+            "chapter": 11,
+            "verse": 11,
+            "textKo": "여호와께서 솔로몬에게 말씀하시되 네게 이러한 일이 있었고 또 네가 나의 언약과 내가 네게 명한 법도를 지키지 아니하였으니 내가 결단코 이 나라를 네게서 빼앗아 네 신복에게 주리라 ",
+            "textEn": "Wherefore the Lord said unto Solomon, Forasmuch as this is done of thee, and thou hast not kept my covenant and my statutes, which I have commanded thee, I will surely rend the kingdom from thee, and will give it to thy servant."
+          },
+          {
+            "verseID": "11011012",
+            "chapter": 11,
+            "verse": 12,
+            "textKo": "그러나 네 아비 다윗을 위하여 네 세대에는 이 일을 행치 아니하고 네 아들의 손에서 빼앗으려니와 ",
+            "textEn": "Notwithstanding in thy days I will not do it for David thy father’s sake: but I will rend it out of the hand of thy son."
+          },
+          {
+            "verseID": "11011013",
+            "chapter": 11,
+            "verse": 13,
+            "textKo": "오직 내가 이 나라를 다 빼앗지 아니하고 나의 종 다윗과 나의 뺀 예루살렘을 위하여 한 지파를 네 아들에게 주리라 하셨더라 ",
+            "textEn": "Howbeit I will not rend away all the kingdom; but will give one tribe to thy son for David my servant’s sake, and for Jerusalem’s sake which I have chosen."
+          }
+        ]
+      }
+    ]
   }
 }
