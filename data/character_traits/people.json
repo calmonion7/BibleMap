@@ -1018,5 +1018,389 @@
         "verse_textEn": "But he was wounded for our transgressions, he was bruised for our iniquities: the chastisement of our peace was upon him; and with his stripes we are healed."
       }
     ]
+  },
+  "authored-person-gideon": {
+    "traits": [
+      {
+        "trait": "신중함",
+        "verse_ref": "삿 6:39",
+        "description": "기드온은 양털 시험을 두 번 구하며 하나님의 뜻을 거듭 확인한 후에야 나아갔다.",
+        "verse_textKo": "기드온이 또 하나님께 여짜오되 주여 내게 진노하지 마옵소서 내가 이번만 말하리이다 구하옵나니 나로 다시 한번 양털로 시험하게 하소서 양털만 마르고 사면 땅에는 다 이슬이 있게 하옵소서 하였더니 ",
+        "verse_textEn": "And Gideon said unto God, Let not thine anger be hot against me, and I will speak but this once: let me prove, I pray thee, but this once with the fleece; let it now be dry only upon the fleece, and upon all the ground let there be dew."
+      },
+      {
+        "trait": "순종",
+        "verse_ref": "삿 7:7",
+        "description": "삼백 명만 남기라는 명령에 순종하여 큰 군대 없이 하나님만 의지해 미디안과 싸웠다.",
+        "verse_textKo": "여호와께서 기드온에게 이르시되 내가 이 물을 핥아 먹은 삼백 명으로 너희를 구원하며 미디안 사람을 네 손에 붙이리니 남은 백성은 각각 그 처소로 돌아갈 것이니라 하시니 ",
+        "verse_textEn": "And the Lord said unto Gideon, By the three hundred men that lapped will I save you, and deliver the Midianites into thine hand: and let all the other people go every man unto his place."
+      },
+      {
+        "trait": "겸손",
+        "verse_ref": "삿 8:23",
+        "description": "왕이 되어 달라는 백성의 요청에 '여호와께서 너희를 다스리시리라'며 사양하였다.",
+        "verse_textKo": "기드온이 그들에게 이르되 내가 너희를 다스리지 아니하겠고 나의 아들도 너희를 다스리지 아니할 것이요 여호와께서 너희를 다스리시리라 ",
+        "verse_textEn": "And Gideon said unto them, I will not rule over you, neither shall my son rule over you: the Lord shall rule over you."
+      },
+      {
+        "trait": "담대함",
+        "verse_ref": "삿 6:27",
+        "description": "두려움 중에도 밤에 아버지의 바알 단을 헐고 아세라 상을 찍어 여호와의 단을 쌓았다.",
+        "verse_textKo": "이에 기드온이 종 열을 데리고 여호와의 말씀하신 대로 행하되 아비의 가족과 그 성읍 사람들을 두려워하므로 이 일을 감히 백주에 행하지 못하고 밤에 행하니라 ",
+        "verse_textEn": "Then Gideon took ten men of his servants, and did as the Lord had said unto him: and so it was, because he feared his father’s household, and the men of the city, that he could not do it by day, that he did it by night."
+      }
+    ]
+  },
+  "authored-person-deborah": {
+    "traits": [
+      {
+        "trait": "지혜",
+        "verse_ref": "삿 4:5",
+        "description": "드보라는 종려나무 아래에서 이스라엘의 재판을 맡아 백성의 분쟁을 지혜롭게 판결하였다.",
+        "verse_textKo": "그는 에브라임 산지 라마와 벧엘 사이 드보라의 종려나무 아래 거하였고 이스라엘 자손은 그에게 나아가 재판을 받더라 ",
+        "verse_textEn": "And she dwelt under the palm tree of Deborah between Ramah and Beth–el in mount Ephraim: and the children of Israel came up to her for judgment."
+      },
+      {
+        "trait": "믿음",
+        "verse_ref": "삿 4:14",
+        "description": "'여호와께서 시스라를 네 손에 붙이셨느니라'며 바락을 확신 가운데 전장으로 보냈다.",
+        "verse_textKo": "드보라가 바락에게 이르되 일어나라 이는 여호와께서 시스라를 네 손에 붙이신 날이라 여호와께서 너의 앞서 행하지 아니하시느냐 이에 바락이 일만 명을 거느리고 다볼 산에서 내려가니 ",
+        "verse_textEn": "And Deborah said unto Barak, Up; for this is the day in which the Lord hath delivered Sisera into thine hand: is not the Lord gone out before thee? So Barak went down from mount Tabor, and ten thousand men after him."
+      },
+      {
+        "trait": "용기",
+        "verse_ref": "삿 4:9",
+        "description": "바락이 동행을 청하자 주저 없이 함께 전장에 나아간 여선지자였다.",
+        "verse_textKo": "가로되 내가 반드시 너와 함께 가리라 그러나 네가 이제 가는 일로는 영광을 얻지 못하리니 이는 여호와께서 시스라를 여인의 손에 파실것임이니라 하고 드보라가 일어나 바락과 함께 게데스로 가니라 ",
+        "verse_textEn": "And she said, I will surely go with thee: notwithstanding the journey that thou takest shall not be for thine honour; for the Lord shall sell Sisera into the hand of a woman. And Deborah arose, and went with Barak to Kedesh."
+      },
+      {
+        "trait": "찬양",
+        "verse_ref": "삿 5:3",
+        "description": "승리 후 '나 곧 내가 여호와를 노래할 것이요'라며 하나님께 영광을 돌리는 노래를 지었다.",
+        "verse_textKo": "너희 왕들아 들으라 방백들아 귀를 기울이라 나 곧 내가 여호와를 노래할 것이요 이스라엘의 하나님 여호와를 찬송하리로다 ",
+        "verse_textEn": "Hear, O ye kings; give ear, O ye princes; I, even I, will sing unto the Lord; I will sing praise to the Lord God of Israel."
+      }
+    ]
+  },
+  "authored-person-jephthah": {
+    "traits": [
+      {
+        "trait": "믿음",
+        "verse_ref": "삿 11:29",
+        "description": "여호와의 신에 감동되어 암몬 자손과의 전쟁에 나아가 큰 승리를 거두었다.",
+        "verse_textKo": "이에 여호와의 신이 입다에게 임하시니 입다가 길르앗과 므낫세를 지나서 길르앗 미스베에 이르고 길르앗 미스베에서부터 암몬 자손들에게로 나아갈 때에 ",
+        "verse_textEn": "Then the Spirit of the Lord came upon Jephthah, and he passed over Gilead, and Manasseh, and passed over Mizpeh of Gilead, and from Mizpeh of Gilead he passed over unto the children of Ammon."
+      },
+      {
+        "trait": "언약 중시",
+        "verse_ref": "삿 11:35",
+        "description": "여호와께 입을 열어 서원한 것을 돌이킬 수 없다며 고통 중에도 약속을 지키려 했다.",
+        "verse_textKo": "입다가 이를 보고 자기 옷을 찢으며 가로되 슬프다 내 딸이여 너는 나로 하여금 참담케 하는 자요 너는 나를 괴롭게 하는 자 중의 하나이로다 내가 여호와를 향하여 입을 열었으니 능히 돌이키지 못하리로다 ",
+        "verse_textEn": "And it came to pass, when he saw her, that he rent his clothes, and said, Alas, my daughter! thou hast brought me very low, and thou art one of them that trouble me: for I have opened my mouth unto the Lord, and I cannot go back."
+      },
+      {
+        "trait": "논리적 설득",
+        "verse_ref": "삿 11:15",
+        "description": "전쟁 전 암몬 왕에게 사자를 보내 역사적 사실로 이스라엘의 정당함을 조목조목 변론하였다.",
+        "verse_textKo": "그에게 이르되 입다가 말하노라 이스라엘이 모압 땅과 암몬 자손의 땅을 취하지 아니하였느니라 ",
+        "verse_textEn": "And said unto him, Thus saith Jephthah, Israel took not away the land of Moab, nor the land of the children of Ammon:"
+      },
+      {
+        "trait": "역경 극복",
+        "verse_ref": "삿 11:1",
+        "description": "기생의 아들로 쫓겨났으나 길르앗의 장로들이 다시 찾는 큰 용사로 성장하였다.",
+        "verse_textKo": "길르앗 사람 큰 용사 입다는 기생이 길르앗에게 낳은 아들이었고 ",
+        "verse_textEn": "Now Jephthah the Gileadite was a mighty man of valour, and he was the son of an harlot: and Gilead begat Jephthah."
+      }
+    ]
+  },
+  "authored-person-samson": {
+    "traits": [
+      {
+        "trait": "괴력",
+        "verse_ref": "삿 14:6",
+        "description": "여호와의 신에 크게 감동되어 손에 아무것도 없이 사자를 염소 새끼 찢듯 찢었다.",
+        "verse_textKo": "삼손이 여호와의 신에게 크게 감동되어 손에 아무 것도 없어도 그 사자를 염소 새끼를 찢음 같이 찢었으나 그는 그 행한 일을 부모에게도 고하지 아니하였고 ",
+        "verse_textEn": "And the Spirit of the Lord came mightily upon him, and he rent him as he would have rent a kid, and he had nothing in his hand: but he told not his father or his mother what he had done."
+      },
+      {
+        "trait": "회개",
+        "verse_ref": "삿 16:28",
+        "description": "실패 후 '여호와여 구하옵나니 나를 생각하옵소서'라며 마지막으로 하나님께 부르짖었다.",
+        "verse_textKo": "삼손이 여호와께 부르짖어 가로되 주 여호와여 구하옵나니 나를 생각하옵소서 하나님이여 구하옵나니 이번만 나로 강하게 하사 블레셋 사람이 나의 두 눈을 뺀 원수를 단번에 갚게 하옵소서 하고 ",
+        "verse_textEn": "And Samson called unto the Lord, and said, O Lord God, remember me, I pray thee, and strengthen me, I pray thee, only this once, O God, that I may be at once avenged of the Philistines for my two eyes."
+      },
+      {
+        "trait": "연약함",
+        "verse_ref": "삿 16:17",
+        "description": "들릴라의 거듭된 유혹에 나실인의 비밀을 누설하여 힘의 근원을 잃고 말았다.",
+        "verse_textKo": "삼손이 진정을 토하여 그에게 이르되 내 머리에는 삭도를 대지 아니하였나니 이는 내가 모태에서 허나님의 나실인이 되었음이라 만일 내 머리가 밀리우면 내 힘이 내게서 떠나고 나는 약하여져서 다른 사람과 같으리라 ",
+        "verse_textEn": "That he told her all his heart, and said unto her, There hath not come a razor upon mine head; for I have been a Nazarite unto God from my mother’s womb: if I be shaven, then my strength will go from me, and I shall become weak, and be like any other man."
+      },
+      {
+        "trait": "헌신된 출생",
+        "verse_ref": "삿 13:5",
+        "description": "태에서부터 하나님께 바쳐진 나실인으로, 이스라엘을 블레셋에서 구원하도록 세워졌다.",
+        "verse_textKo": "보라 네가 잉태하여 아들을 낳으리니 그 머리에 삭도를 대지 말라 이 아이는 태에서 나옴으로부터 하나님께 바치운 나실인이 됨이라 그가 블레셋 사람의 손에서 이스라엘을 구원하기 시작하리라 ",
+        "verse_textEn": "For, lo, thou shalt conceive, and bear a son; and no razor shall come on his head: for the child shall be a Nazarite unto God from the womb: and he shall begin to deliver Israel out of the hand of the Philistines."
+      }
+    ]
+  },
+  "authored-person-ruth": {
+    "traits": [
+      {
+        "trait": "헌신",
+        "verse_ref": "룻 1:16",
+        "description": "'어머니의 하나님이 나의 하나님이 되시리니'라며 시어머니 나오미를 끝까지 따랐다.",
+        "verse_textKo": "룻이 가로되 나로 어머니를 떠나며 어머니를 따르지 말고 돌아가라 강권하지 마옵소서 어머니께서 가시는 곳에 나도 가고 어머니께서 유숙하시는 곳에서 나도 유숙하겠나이다 어머니의 백성이 나의 백성이 되고 어머니의 하나님이 나의 하나님이 되시리니 ",
+        "verse_textEn": "And Ruth said, Intreat me not to leave thee, or to return from following after thee: for whither thou goest, I will go; and where thou lodgest, I will lodge: thy people shall be my people, and thy God my God:"
+      },
+      {
+        "trait": "성실",
+        "verse_ref": "룻 2:7",
+        "description": "아침부터 저녁까지 잠시 쉰 것 외에는 밭에서 계속 이삭을 주우며 나오미를 봉양하였다.",
+        "verse_textKo": "그의 말이 나로 베는 자를 따라 단 사이에서 이삭을 줍게 하소서 하였고 아침부터 와서는 잠시 집에서 쉰 외에 지금까지 계속하는 중이니이다 ",
+        "verse_textEn": "And she said, I pray you, let me glean and gather after the reapers among the sheaves: so she came, and hath continued even from the morning until now, that she tarried a little in the house."
+      },
+      {
+        "trait": "현숙함",
+        "verse_ref": "룻 3:11",
+        "description": "성읍 백성이 다 그를 현숙한 여자인 줄 알 만큼 신실한 삶을 살았다.",
+        "verse_textKo": "내 딸아 두려워말라 내가 네 말대로 네게 다 행하리라 네가 현숙한 여자인줄 나의 성읍 백성이 다 아느니라 ",
+        "verse_textEn": "And now, my daughter, fear not; I will do to thee all that thou requirest: for all the city of my people doth know that thou art a virtuous woman."
+      },
+      {
+        "trait": "믿음의 결단",
+        "verse_ref": "룻 2:12",
+        "description": "여호와의 날개 아래 보호받으러 온 이방 여인으로서 이스라엘의 하나님께 피하였다.",
+        "verse_textKo": "여호와께서 네 행한 일을 보응하시기를 원하며 이스라엘의 하나님 여호와께서 그 날개 아래 보호를 받으러 온 네게 온전한 상 주시기를 원하노라 ",
+        "verse_textEn": "The Lord recompense thy work, and a full reward be given thee of the Lord God of Israel, under whose wings thou art come to trust."
+      }
+    ]
+  },
+  "authored-person-saul": {
+    "traits": [
+      {
+        "trait": "겸손한 시작",
+        "verse_ref": "삼상 9:21",
+        "description": "왕으로 지명될 때 '나는 이스라엘 지파의 가장 작은 지파 베냐민 사람이 아니오니이까'라며 자신을 낮추었다.",
+        "verse_textKo": "사울이 대답하여 가로되 나는 이스라엘 지파의 가장 작은 지파 베냐민 사람이 아니오며 나의 가족은 베냐민 지파 모든 가족 중에 가장 미약하지 아니하니이까 당신이 어찌하여 내게 이같이 말씀하시나이까 ",
+        "verse_textEn": "And Saul answered and said, Am not I a Benjamite, of the smallest of the tribes of Israel? and my family the least of all the families of the tribe of Benjamin? wherefore then speakest thou so to me?"
+      },
+      {
+        "trait": "용맹",
+        "verse_ref": "삼상 11:6",
+        "description": "하나님의 신에 감동되어 암몬의 위협에서 야베스 길르앗을 구원하였다.",
+        "verse_textKo": "사울이 이 말을 들을 때에 하나님의 신에게 크게 감동되매 그 노가 크게 일어나서 ",
+        "verse_textEn": "And the Spirit of God came upon Saul when he heard those tidings, and his anger was kindled greatly."
+      },
+      {
+        "trait": "불순종",
+        "verse_ref": "삼상 15:22",
+        "description": "아말렉 진멸 명령을 어기고 좋은 것을 남겨 '순종이 제사보다 낫다'는 책망을 받았다.",
+        "verse_textKo": "사무엘이 가로되 여호와께서 번제와 다른 제사를 그 목소리 순종하는 것을 좋아하심 같이 좋아하시겠나이까 순종이 제사보다 낫고 듣는 것이 수양의 기름보다 나으니 ",
+        "verse_textEn": "And Samuel said, Hath the Lord as great delight in burnt offerings and sacrifices, as in obeying the voice of the Lord? Behold, to obey is better than sacrifice, and to hearken than the fat of rams."
+      },
+      {
+        "trait": "시기심",
+        "verse_ref": "삼상 18:8",
+        "description": "'다윗은 만만이요 나는 천천이라' 하는 노래에 분노하여 다윗을 평생 시기하고 쫓았다.",
+        "verse_textKo": "사울이 이 말에 불쾌하여 심히 노하여 가로되 다윗에게는 만만을 돌리고 내게는 천천만 돌리니 그의 더 얻을 것이 나라 밖에 무엇이냐 하고 ",
+        "verse_textEn": "And Saul was very wroth, and the saying displeased him; and he said, They have ascribed unto David ten thousands, and to me they have ascribed but thousands: and what can he have more but the kingdom?"
+      }
+    ]
+  },
+  "authored-person-elijah": {
+    "traits": [
+      {
+        "trait": "담대함",
+        "verse_ref": "왕상 18:21",
+        "description": "갈멜산에서 홀로 바알 선지자 450명과 맞서 '여호와가 하나님이시면 그를 좇으라' 외쳤다.",
+        "verse_textKo": "엘리야가 모든 백성에게 가까이 나아가 이르되 너희가 어느 때까지 두 사이에서 머뭇머뭇 하려느냐 여호와가 만일 하나님이면 그를 좇고 바알이 만일 하나님이면 그를 좇을지니라 하니 백성이 한 말도 대답지 아니하는지라 ",
+        "verse_textEn": "And Elijah came unto all the people, and said, How long halt ye between two opinions? if the Lord be God, follow him: but if Baal, then follow him. And the people answered him not a word."
+      },
+      {
+        "trait": "기도",
+        "verse_ref": "왕상 18:42",
+        "description": "갈멜산 꼭대기에서 얼굴을 무릎 사이에 넣고 일곱 번 간구하여 삼 년 가뭄 끝에 비를 내리게 했다.",
+        "verse_textKo": "아합이 먹고 마시러 올라가니라 엘리야가 갈멜 산 꼭대기로 올라가서 땅에 꿇어 엎드려 그 얼굴을 무릎 사이에 넣고 ",
+        "verse_textEn": "So Ahab went up to eat and to drink. And Elijah went up to the top of Carmel; and he cast himself down upon the earth, and put his face between his knees,"
+      },
+      {
+        "trait": "연약한 인간성",
+        "verse_ref": "왕상 19:4",
+        "description": "이세벨의 위협에 로뎀나무 아래에서 죽기를 구할 만큼 낙심하기도 한 우리와 성정이 같은 사람이었다.",
+        "verse_textKo": "스스로 광야로 들어가 하룻 길쯤 행하고 한 로뎀나무 아래 앉아서 죽기를 구하여 가로되 여호와여 넉넉하오니 지금 내 생명을 취하옵소서 나는 내 열조보다 낫지 못하니이다 하고 ",
+        "verse_textEn": "But he himself went a day’s journey into the wilderness, and came and sat down under a juniper tree: and he requested for himself that he might die; and said, It is enough; now, O Lord, take away my life; for I am not better than my fathers."
+      },
+      {
+        "trait": "청렴",
+        "verse_ref": "왕상 21:20",
+        "description": "나봇의 포도원을 빼앗은 아합 왕 앞에 나아가 권력을 두려워하지 않고 죄를 직언하였다.",
+        "verse_textKo": "아합이 엘리야에게 이르되 나의 대적이여 네가 나를 찾았느냐 대답하되 내가 찾았노라 네가 스스로 팔려 여호와 보시기에 악을 행하였으므로 ",
+        "verse_textEn": "And Ahab said to Elijah, Hast thou found me, O mine enemy? And he answered, I have found thee: because thou hast sold thyself to work evil in the sight of the Lord."
+      }
+    ]
+  },
+  "authored-person-daniel": {
+    "traits": [
+      {
+        "trait": "뜻을 정함",
+        "verse_ref": "단 1:8",
+        "description": "왕의 진미로 자기를 더럽히지 아니하기로 뜻을 정하고 채식과 물을 구하였다.",
+        "verse_textKo": "다니엘은 뜻을 정하여 왕의 진미와 그의 마시는 포도주로 자기를 더럽히지 아니하리라 하고 자기를 더럽히지 않게 하기를 환관장에게 구하니 ",
+        "verse_textEn": "But Daniel purposed in his heart that he would not defile himself with the portion of the king’s meat, nor with the wine which he drank: therefore he requested of the prince of the eunuchs that he might not defile himself."
+      },
+      {
+        "trait": "기도의 규칙",
+        "verse_ref": "단 6:10",
+        "description": "사자 굴의 위협에도 전에 행하던 대로 하루 세 번 예루살렘을 향해 무릎 꿇고 기도하였다.",
+        "verse_textKo": "다니엘이 이 조서에 어인이 찍힌 것을 알고도 자기 집에 돌아가서는 그 방의 예루살렘으로 향하여 열린 창에서 전에 행하던 대로 하루 세 번씩 무릎을 꿇고 기도하며 그 하나님께 감사하였더라 ",
+        "verse_textEn": "Now when Daniel knew that the writing was signed, he went into his house; and his windows being open in his chamber toward Jerusalem, he kneeled upon his knees three times a day, and prayed, and gave thanks before his God, as he did aforetime."
+      },
+      {
+        "trait": "지혜",
+        "verse_ref": "단 2:27-28",
+        "description": "느부갓네살의 잊은 꿈까지 알려주며 '오직 은밀한 것을 나타내실 자는 하늘에 계신 하나님'이라 고백하였다.",
+        "verse_textKo": "다니엘이 왕 앞에 대답하여 가로되 왕의 물으신바 은밀한 것은 박사나 술객이나 박수나 점장이가 능히 왕께 보일 수 없으되 ",
+        "verse_textEn": "Daniel answered in the presence of the king, and said, The secret which the king hath demanded cannot the wise men, the astrologers, the magicians, the soothsayers, shew unto the king;"
+      },
+      {
+        "trait": "신실함",
+        "verse_ref": "단 6:4",
+        "description": "총리로서 아무 그릇됨도 허물도 없어 대적들이 고소할 틈을 찾지 못하였다.",
+        "verse_textKo": "이에 총리들과 방백들이 국사에 대하여 다니엘을 고소할 틈을 얻고자 하였으나 능히 아무 틈, 아무 허물을 얻지 못하였으니 이는 그가 충성되어 아무 그릇함도 없고 아무 허물도 없음이었더라 ",
+        "verse_textEn": "Then the presidents and princes sought to find occasion against Daniel concerning the kingdom; but they could find none occasion nor fault; forasmuch as he was faithful, neither was there any error or fault found in him."
+      }
+    ]
+  },
+  "authored-person-elisha": {
+    "traits": [
+      {
+        "trait": "전적 헌신",
+        "verse_ref": "왕상 19:21",
+        "description": "부름 받자 소를 잡아 백성을 먹이고 밭갈이 도구를 불살라 돌아갈 길을 끊고 엘리야를 따랐다.",
+        "verse_textKo": "엘리사가 저를 떠나 돌아가서 소 한 겨리를 취하여 잡고 소의 기구를 불살라 그 고기를 삶아 백성에게 주어 먹게 하고 일어나 가서 엘리야를 좇으며 수종들었더라  ",
+        "verse_textEn": "And he returned back from him, and took a yoke of oxen, and slew them, and boiled their flesh with the instruments of the oxen, and gave unto the people, and they did eat. Then he arose, and went after Elijah, and ministered unto him. "
+      },
+      {
+        "trait": "갑절의 영감",
+        "verse_ref": "왕하 2:9",
+        "description": "엘리야가 승천하기 전 '당신의 영감이 갑절이나 내게 있기를 구하나이다'라며 영적 유산을 사모하였다.",
+        "verse_textKo": "건너매 엘리야가 엘리사에게 이르되 나를 네게서 취하시기 전에 내가 네게 어떻게 할 것을 구하라 엘리사가 가로되 당신의 영감이 갑절이나 내게 있기를 구하나이다 ",
+        "verse_textEn": "And it came to pass, when they were gone over, that Elijah said unto Elisha, Ask what I shall do for thee, before I be taken away from thee. And Elisha said, I pray thee, let a double portion of thy spirit be upon me."
+      },
+      {
+        "trait": "긍휼",
+        "verse_ref": "왕하 4:33",
+        "description": "수넴 여인의 죽은 아들을 위해 문을 닫고 여호와께 기도하여 생명을 돌려주었다.",
+        "verse_textKo": "들어가서는 문을 닫으니 두 사람뿐이라 엘리사가 여호와께 기도하고 ",
+        "verse_textEn": "He went in therefore, and shut the door upon them twain, and prayed unto the Lord."
+      },
+      {
+        "trait": "영적 통찰",
+        "verse_ref": "왕하 6:16",
+        "description": "아람 군대에 포위되었을 때 '우리와 함께 한 자가 저와 함께 한 자보다 많으니라'며 보이지 않는 하나님의 군대를 보았다.",
+        "verse_textKo": "대답하되 두려워하지 말라 우리와 함께한 자가 저와 함께한 자보다 많으니라 하고 ",
+        "verse_textEn": "And he answered, Fear not: for they that be with us are more than they that be with them."
+      }
+    ]
+  },
+  "authored-person-jonah": {
+    "traits": [
+      {
+        "trait": "불순종과 도피",
+        "verse_ref": "욘 1:3",
+        "description": "니느웨로 가라는 명령을 피해 여호와의 낯을 피하려고 다시스로 도망하였다.",
+        "verse_textKo": "그러나 요나가 여호와의 낯을 피하려고 일어나 다시스로 도망하려 하여 욥바로 내려갔더니 마침 다시스로 가는 배를 만난지라 여호와의 낯을 피하여 함께 다시스로 가려고 선가를 주고 배에 올랐더라 ",
+        "verse_textEn": "But Jonah rose up to flee unto Tarshish from the presence of the Lord, and went down to Joppa; and he found a ship going to Tarshish: so he paid the fare thereof, and went down into it, to go with them unto Tarshish from the presence of the Lord."
+      },
+      {
+        "trait": "정직한 고백",
+        "verse_ref": "욘 1:12",
+        "description": "폭풍의 원인이 자기임을 숨기지 않고 '나를 들어 바다에 던지라'며 책임을 인정하였다.",
+        "verse_textKo": "그가 대답하되 나를 들어 바다에 던지라 그리하면 바다가 너희를 위하여 잔잔하리라 너희가 이 큰 폭풍을 만난 것이 나의 연고인 줄을 내가 아노라 하니라 ",
+        "verse_textEn": "And he said unto them, Take me up, and cast me forth into the sea; so shall the sea be calm unto you: for I know that for my sake this great tempest is upon you."
+      },
+      {
+        "trait": "감사 기도",
+        "verse_ref": "욘 2:9",
+        "description": "물고기 뱃속에서 '구원은 여호와께로서 말미암나이다'라며 감사의 목소리로 서원을 갚겠다 하였다.",
+        "verse_textKo": "나는 감사하는 목소리로 주께 제사를 드리며 나의 서원을 주께 갚겠나이다 구원은 여호와께로서 말미암나이다 하니라 ",
+        "verse_textEn": "But I will sacrifice unto thee with the voice of thanksgiving; I will pay that that I have vowed. Salvation is of the Lord."
+      },
+      {
+        "trait": "하나님과의 씨름",
+        "verse_ref": "욘 4:2",
+        "description": "니느웨를 향한 하나님의 긍휼에 성내면서도 끝까지 하나님과 대화하며 그 마음을 배워 갔다.",
+        "verse_textKo": "여호와께 기도하여 가로되 여호와여 내가 고국에 있을 때에 이러하겠다고 말씀하지 아니하였나이까 그러므로 내가 빨리 다시스로 도망하였사오니 주께서는 은혜로우시며 자비로우시며 노하기를 더디하시며 인애가 크시사 뜻을 돌이켜 재앙을 내리지 아니하시는 하나님이신 줄을 내가 알았음이니이다 ",
+        "verse_textEn": "And he prayed unto the Lord, and said, I pray thee, O Lord, was not this my saying, when I was yet in my country? Therefore I fled before unto Tarshish: for I knew that thou art a gracious God, and merciful, slow to anger, and of great kindness, and repentest thee of the evil."
+      }
+    ]
+  },
+  "authored-person-esther": {
+    "traits": [
+      {
+        "trait": "용기",
+        "verse_ref": "에 4:16",
+        "description": "'죽으면 죽으리이다' 결단하고 규례를 어기면서 왕 앞에 나아가 민족을 구하였다.",
+        "verse_textKo": "당신은 가서 수산에 있는 유다인을 다 모으고 나를 위하여 금식하되 밤낮 삼 일을 먹지도 말고 마시지도 마소서 나도 나의 시녀로 더불어 이렇게 금식한 후에 규례를 어기고 왕에게 나아가리니 죽으면 죽으리이다 ",
+        "verse_textEn": "Go, gather together all the Jews that are present in Shushan, and fast ye for me, and neither eat nor drink three days, night or day: I also and my maidens will fast likewise; and so will I go in unto the king, which is not according to the law: and if I perish, I perish."
+      },
+      {
+        "trait": "금식과 의지",
+        "verse_ref": "에 4:16",
+        "description": "왕 앞에 나아가기 전 삼 일 동안 수산의 모든 유다인과 함께 금식하며 하나님을 의지하였다.",
+        "verse_textKo": "당신은 가서 수산에 있는 유다인을 다 모으고 나를 위하여 금식하되 밤낮 삼 일을 먹지도 말고 마시지도 마소서 나도 나의 시녀로 더불어 이렇게 금식한 후에 규례를 어기고 왕에게 나아가리니 죽으면 죽으리이다 ",
+        "verse_textEn": "Go, gather together all the Jews that are present in Shushan, and fast ye for me, and neither eat nor drink three days, night or day: I also and my maidens will fast likewise; and so will I go in unto the king, which is not according to the law: and if I perish, I perish."
+      },
+      {
+        "trait": "지혜",
+        "verse_ref": "에 5:8",
+        "description": "하만을 즉시 고발하지 않고 두 번의 잔치로 때를 기다려 가장 결정적인 순간에 진실을 밝혔다.",
+        "verse_textKo": "내가 만일 왕의 목전에서 은혜를 입었고 왕이 내 소청을 허락하시며 내 요구를 시행하시기를 선히 여기시거든 내가 왕과 하만을 위하여 베푸는 잔치에 또 나아오소서 내일은 왕의 말씀대로 하리이다 ",
+        "verse_textEn": "If I have found favour in the sight of the king, and if it please the king to grant my petition, and to perform my request, let the king and Haman come to the banquet that I shall prepare for them, and I will do to morrow as the king hath said."
+      },
+      {
+        "trait": "순종",
+        "verse_ref": "에 2:20",
+        "description": "왕후가 된 후에도 모르드개의 명을 양육받을 때와 같이 좇아 행하였다.",
+        "verse_textKo": "에스더가 모르드개의 명한 대로 그 종족과 민족을 고하지 아니하니 저가 모르드개의 명을 양육 받을 때와 같이 좇음이더라 ",
+        "verse_textEn": "Esther had not yet shewed her kindred nor her people; as Mordecai had charged her: for Esther did the commandment of Mordecai, like as when she was brought up with him."
+      }
+    ]
+  },
+  "authored-person-nehemiah": {
+    "traits": [
+      {
+        "trait": "중보 기도",
+        "verse_ref": "느 1:6",
+        "description": "예루살렘의 소식을 듣고 주야로 이스라엘 자손을 위해 기도하며 민족의 죄를 자기 죄처럼 자복하였다.",
+        "verse_textKo": "이제 종이 주의 종 이스라엘 자손을 위하여 주야로 기도하오며 이스라엘 자손의 주 앞에 범죄함을 자복하오니 주는 귀를 기울이시며 눈을 여시사 종의 기도를 들으시옵소서 나와 나의 아비 집이 범죄하여 ",
+        "verse_textEn": "Let thine ear now be attentive, and thine eyes open, that thou mayest hear the prayer of thy servant, which I pray before thee now, day and night, for the children of Israel thy servants, and confess the sins of the children of Israel, which we have sinned against thee: both I and my father’s house have sinned."
+      },
+      {
+        "trait": "실행력",
+        "verse_ref": "느 2:17-18",
+        "description": "'예루살렘 성을 건축하여 다시 수치를 받지 말자'며 백성을 일으켜 52일 만에 성벽을 완공하였다.",
+        "verse_textKo": "후에 저희에게 이르기를 우리의 당한 곤경은 너희도 목도하는 바라 예루살렘이 황무하고 성문이 소화되었으니 자, 예루살렘 성을 중건하여 다시 수치를 받지 말자 하고 ",
+        "verse_textEn": "Then said I unto them, Ye see the distress that we are in, how Jerusalem lieth waste, and the gates thereof are burned with fire: come, and let us build up the wall of Jerusalem, that we be no more a reproach."
+      },
+      {
+        "trait": "경계와 분별",
+        "verse_ref": "느 6:8",
+        "description": "산발랏의 거듭된 회유와 모함에 '네가 마음에서 지어낸 것이라'며 넘어가지 않고 공사를 계속하였다.",
+        "verse_textKo": "내가 보내어 저에게 이르기를 너의 말한바 이런 일은 없는 일이요 네 마음에서 지어낸 것이라 하였나니 ",
+        "verse_textEn": "Then I sent unto him, saying, There are no such things done as thou sayest, but thou feignest them out of thine own heart."
+      },
+      {
+        "trait": "청렴",
+        "verse_ref": "느 5:15",
+        "description": "총독의 녹을 받지 않고 백성에게 토색하지 않으며 하나님을 경외함으로 다스렸다.",
+        "verse_textKo": "이전 총독들은 백성에게 토색하여 양식과 포도주와 또 은 사십 세겔을 취하였고 그 종자들도 백성을 압제하였으나 나는 하나님을 경외하므로 이같이 행치 아니하고 ",
+        "verse_textEn": "But the former governors that had been before me were chargeable unto the people, and had taken of them bread and wine, beside forty shekels of silver; yea, even their servants bare rule over the people: but so did not I, because of the fear of God."
+      }
+    ]
   }
 }
