@@ -4,10 +4,14 @@
 // 구절은 📖 칩 클릭으로만 토글하며 한 번에 하나만 열린다(expandedId). 사건 행 클릭은
 // 지도 선택(onStopSelect)만 하고 열린 구절은 닫는다. activeStopIdx(지도 활성·deduped 인덱스)는
 // 주황 하이라이트·자동 스크롤에 쓴다.
+//
+// onReadingChange가 주어지면(모바일) "읽기 모드": 펼침 상태를 상위(App)가 소유(readingEventId)하고,
+// 📖 탭 시 리스트 대신 그 사건 구절만 EventVerses 읽기 레이아웃으로 단독 표시한다. 없으면(데스크톱)
+// 기존 인라인 아코디언(expandedId 내부 상태)을 쓴다.
 import { useEffect, useRef, useState } from 'react'
 import EventVerses from './EventVerses'
 
-export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseLang, setVerseLang, personName }) {
+export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseLang, setVerseLang, personName, readingEventId, onReadingChange }) {
   const listRef = useRef(null)
   const activeRef = useRef(null)
   // 리스트에서 직접 클릭해 선택한 경우 자동 스크롤 억제(이미 보고 있는 행이 동일장소의 다른 행으로 점프하지 않게)
@@ -27,6 +31,23 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
   }, [activeStopIdx])
 
   if (!stops || stops.length === 0) return null
+
+  // 읽기 모드(모바일): 상위가 소유한 readingEventId가 있으면 리스트 대신 그 사건 구절만 단독 표시.
+  const controlled = onReadingChange != null
+  if (controlled && readingEventId) {
+    const ev = stops.find((s) => s.eventId === readingEventId)
+    return (
+      <div style={{ height: '100%', background: '#faf9ff' }}>
+        <EventVerses
+          eventId={readingEventId}
+          heading={ev?.nameKo || ev?.title || '구절'}
+          onClose={() => onReadingChange(null)}
+          verseLang={verseLang}
+          setVerseLang={setVerseLang}
+        />
+      </div>
+    )
+  }
 
   // stops 중 좌표 있는 것을 deduplicate해 배지 seq → deduped 인덱스 매핑 구성
   // (MapView의 buildJourneyStopsGeoJSON과 동일 로직)
@@ -70,7 +91,8 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
         const dedupIdx = k != null ? keyToIdx.get(k) : null
         const isActive = dedupIdx != null && dedupIdx === activeStopIdx
         const expandable = stop.eventId != null
-        const expanded = expandable && expandedId === stop.eventId
+        const openId = controlled ? readingEventId : expandedId
+        const expanded = expandable && openId === stop.eventId
         // 사건(여정) 순번 — 지도 배지는 같은 장소의 순번들을 압축(예 "6-8, 10")으로 보여줘 일치
         const seq = stop.seq
 
@@ -91,7 +113,7 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
                   if (dedupIdx !== activeStopIdx) suppressScrollRef.current = true  // 리스트 클릭 → 자동 스크롤 억제
                   onStopSelect(dedupIdx)
                 }
-                setExpandedId(null)
+                if (!controlled) setExpandedId(null)
               }}
               style={{
                 display: 'flex',
@@ -151,9 +173,11 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
                 <span
                   onClick={(e) => {
                     e.stopPropagation()  // 행 onClick(지도 선택·닫기) 억제
-                    setExpandedId(expanded ? null : stop.eventId)  // 단일 오픈 토글
+                    const willOpen = !expanded  // 단일 오픈 토글
+                    if (controlled) onReadingChange(willOpen ? stop.eventId : null)  // 모바일: 읽기 모드(상위 소유)
+                    else setExpandedId(willOpen ? stop.eventId : null)               // 데스크톱: 인라인 아코디언
                     // 펼칠 때만 지도 동기화(접을 때 카메라 이동 방지). 리스트 클릭이므로 자동 스크롤 억제.
-                    if (!expanded && hasCoord && dedupIdx != null) {
+                    if (willOpen && hasCoord && dedupIdx != null) {
                       if (dedupIdx !== activeStopIdx) suppressScrollRef.current = true
                       onStopSelect(dedupIdx)
                     }
@@ -162,8 +186,8 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
                   flexShrink: 0,
                   display: 'inline-flex', alignItems: 'center', gap: 3,
                   fontSize: 10, fontWeight: 700,
-                  padding: '2px 7px', borderRadius: 999, lineHeight: 1.4,
-                  marginTop: 1,
+                  padding: '8px 11px', borderRadius: 999, lineHeight: 1.4,
+                  margin: '-6px -4px -6px 0',  // 탭 히트영역 확대(모바일 오조작 방지) — 행 높이 영향 최소화
                   cursor: 'pointer',
                   border: '1px solid #a78bfa',
                   background: expanded ? '#a78bfa' : 'rgba(167,139,250,0.14)',
@@ -172,8 +196,8 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
               )}
             </div>
 
-            {/* 펼친 사건의 근거구절 — 사건 아래에 들여써 "여정 > 사건 > 구절" 계층을 드러냄 */}
-            {expanded && (
+            {/* 펼친 사건의 근거구절 — 데스크톱만 인라인 표시. 모바일(controlled)은 읽기 모드(상단 분기)로 처리. */}
+            {expanded && !controlled && (
               <div onClick={(e) => e.stopPropagation()} style={{ padding: '0 12px 10px 30px' }}>
                 <EventVerses eventId={stop.eventId} verseLang={verseLang} setVerseLang={setVerseLang} />
               </div>

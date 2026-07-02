@@ -40,16 +40,19 @@ function App() {
   // 여정 데이터 — 인물 선택 시 한 번 fetch, MapView·JourneyList 공유
   const [journeyStops, setJourneyStops] = useState(null)
   const [activeStopIdx, setActiveStopIdx] = useState(null)
+  // 모바일 여정 "읽기 모드" — 펼친 사건 id. App이 소유해 오버레이 높이 전환·바깥 탭 닫기를 제어한다.
+  const [readingEventId, setReadingEventId] = useState(null)
+  const [reduceMotion] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
 
   useEffect(() => {
     const ctrl = new AbortController()
     if (!explorePersonId) {
       // 인물 미선택 → 비동기로 초기화(effect 동기 setState 금지 규칙 회피)
-      Promise.resolve().then(() => { setJourneyStops(null); setActiveStopIdx(null) })
+      Promise.resolve().then(() => { setJourneyStops(null); setActiveStopIdx(null); setReadingEventId(null) })
       return () => ctrl.abort()
     }
     apiGet(`/person/${explorePersonId}/journey`, { signal: ctrl.signal })
-      .then(({ stops }) => { setJourneyStops(stops); setActiveStopIdx(null) }) // async 콜백 — v7 OK
+      .then(({ stops }) => { setJourneyStops(stops); setActiveStopIdx(null); setReadingEventId(null) }) // async 콜백 — v7 OK
       .catch((e) => { if (e?.name !== 'AbortError') setJourneyStops([]) })
     return () => ctrl.abort()
   }, [explorePersonId])
@@ -260,23 +263,35 @@ function App() {
                   activeStopIdx={activeStopIdx}
                   onStopSelect={setActiveStopIdx}
                 />
-                {/* 모바일 여정 — 하단 세로 아코디언 트리(데스크톱과 동일 JourneyList 재사용): 여정 > 사건 > 구절 */}
+                {/* 모바일 여정 — 하단 세로 아코디언(데스크톱과 동일 JourneyList 재사용). 📖 탭 시 ~90dvh 읽기 모드로 확장. */}
                 {isMobile && journeyStops && journeyStops.length > 0 && (
-                  <div style={{
-                    position: 'absolute', bottom: 0, left: 0, right: 0,
-                    height: '42dvh', zIndex: 5,
-                    borderTop: '1px solid rgba(255,255,255,0.12)',
-                    boxShadow: '0 -3px 12px rgba(0,0,0,0.3)',
-                  }}>
-                    <JourneyList
-                      stops={journeyStops}
-                      activeStopIdx={activeStopIdx}
-                      onStopSelect={setActiveStopIdx}
-                      verseLang={verseLang}
-                      setVerseLang={setVerseLang}
-                      personName={explorePersonName}
-                    />
-                  </div>
+                  <>
+                    {/* 읽는 중 노출된 상단 지도 영역 탭 → 읽기 모드 닫기(장소 SidePanel 시트와 겹침 회피) */}
+                    {readingEventId && (
+                      <div
+                        onClick={() => setReadingEventId(null)}
+                        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: '90dvh', zIndex: 4 }}
+                      />
+                    )}
+                    <div style={{
+                      position: 'absolute', bottom: 0, left: 0, right: 0,
+                      height: readingEventId ? '90dvh' : '42dvh', zIndex: 5,
+                      transition: reduceMotion ? undefined : 'height 0.25s ease',
+                      borderTop: '1px solid rgba(255,255,255,0.12)',
+                      boxShadow: '0 -3px 12px rgba(0,0,0,0.3)',
+                    }}>
+                      <JourneyList
+                        stops={journeyStops}
+                        activeStopIdx={activeStopIdx}
+                        onStopSelect={setActiveStopIdx}
+                        verseLang={verseLang}
+                        setVerseLang={setVerseLang}
+                        personName={explorePersonName}
+                        readingEventId={readingEventId}
+                        onReadingChange={setReadingEventId}
+                      />
+                    </div>
+                  </>
                 )}
               </div>
             </div>
