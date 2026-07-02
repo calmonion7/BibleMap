@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 99d42c8518af00f3e0bf4a4ba90f821d84cf42e5
-mapped: 2026-07-02
+last_mapped_commit: d0eab1289792c4e191cce498fb574aa2a4f7e300
+mapped: 2026-07-03
 ---
 
 # CONCERNS — 기술 부채·알려진 버그·보안·성능 위험
@@ -49,7 +49,7 @@ mapped: 2026-07-02
 
 ### ESLint 경고 1건: `MapView.jsx` `useEffect` 누락 의존성 `onStopSelect`
 
-`npm run lint` 결과 에러 0, 경고 1건:
+`npm run lint` 결과 에러 0, 경고 1건 (2026-07-03 재확인 — 신규 훅 추가에도 경고 증가 없음):
 
 ```
 frontend/src/MapView.jsx
@@ -87,9 +87,26 @@ frontend/src/MapView.jsx
 
 ### 큐레이션 인물 표시 이름 이중 출처
 
-인물 표시 이름의 출처가 두 곳이다. 프론트 탐험 헤더(`App.jsx:85,141-144`)는 Neo4j Person 노드의 `nameKo`(inject_ko_names.py 주입값)를, 큐레이션 목록·여정 응답은 `persons.py:48-77`의 하드코딩 `_NAME_KO` 딕트를 사용한다. 두 값이 어긋나면 헤더와 목록이 서로 다른 이름을 표시한다. 일치를 강제하는 코드·테스트가 없다.
+인물 표시 이름의 출처가 두 곳이다. 프론트 탐험 헤더(`App.jsx:93,132`)는 Neo4j Person 노드의 `nameKo`(inject_ko_names.py 주입값)를, 큐레이션 목록·여정 응답은 `persons.py:48-77`의 하드코딩 `_NAME_KO` 딕트를 사용한다. 두 값이 어긋나면 헤더와 목록이 서로 다른 이름을 표시한다. 일치를 강제하는 코드·테스트가 없다.
 
 - 파일: `frontend/src/App.jsx`, `backend/app/routes/persons.py:48-77`, `data/names_ko/people.json`
+
+### startDate 연도 파싱 로직 이중 구현 — 백엔드·프론트 독립 복제
+
+`startDate`("-4003", "-1451-01", "30" 형식 혼재 문자열)에서 연도를 뽑는 파싱이 두 곳에 독립 구현되어 있다.
+
+- `backend/app/routes/nodes.py:238-247`: Book 상세 `topEvents` 연대 정렬용 로컬 함수 `_year()` — 접두 `-` 판정 후 첫 `-` 분절을 int 파싱, 실패 시 `None`.
+- `frontend/src/TimelineView.jsx:19-26`: 타임라인 연도 라벨용 `parseYear()` — 동일한 접두 `-` 판정 + 분절 파싱.
+
+같은 형식 규약을 두 언어로 복제한 상태라, startDate 형식이 추가·변경되면 두 곳을 함께 고쳐야 하고 한쪽만 고치면 정렬과 라벨이 어긋난다. 공유 계약(문서·테스트) 없음.
+
+- 파일: `backend/app/routes/nodes.py:238-247`, `frontend/src/TimelineView.jsx:19-26`
+
+### `SidePanel.jsx` Book 기본 펼침 — 섹션 키 8개 하드코딩 동기화 부담
+
+Book 노드 로드 시 전 섹션 기본 펼침을 위해 `SidePanel.jsx:66-71`에서 섹션 키 8개(`book-central`, `book-themes`, `book-keyverse`, `book-background`, `book-structure`, `book-keyppl`, `book-persons`, `book-events`)를 `false`(펼침)로 수동 나열한다. 섹션 렌더 측(`collapsed[key] === false`일 때만 표시)과 이 딕트가 별도 위치라, 새 Book 섹션을 추가하면서 딕트 갱신을 빠뜨리면 그 섹션만 조용히 기본 접힘이 된다. 현재는 8개 키가 렌더 측과 정확히 일치함을 확인했다.
+
+- 파일: `frontend/src/SidePanel.jsx:66-71,345-464`
 
 ### 자동화 테스트 전무
 
@@ -103,6 +120,7 @@ frontend/src/MapView.jsx
 | `backend/scripts/generate_event_verses.py` | `build_range_label()`, `parse_verse()` |
 | `backend/scripts/generate_person_event_verses.py` | `parse_context_refs()` |
 | `backend/app/routes/persons.py` | `_build_list()` 정렬 로직 |
+| `backend/app/routes/nodes.py` | `_year()` startDate 연도 파싱·정렬 |
 
 - 파일: `frontend/package.json`, `backend/requirements.txt`
 
@@ -123,13 +141,37 @@ frontend/src/MapView.jsx
 - 현재 큐레이션 데이터에서 이 케이스가 실제 발생하는지 검증되지 않았다. 잠재적 버그 경로다.
 - 파일: `frontend/src/mapLayers.js:123`, `frontend/src/mapGeo.js:157-179`, `frontend/src/JourneyList.jsx:54-67`
 
+### Book 상세 `topEvents`·`topPersons` — 데이터 값 의존 필터·정렬
+
+`backend/app/routes/nodes.py`의 Book 상세 응답 구성에 데이터 값에 결합된 하드코딩이 두 건 있다.
+
+- `nodes.py:206`: `WHERE ... AND p.name <> 'God'` — 주요 인물 랭킹에서 God을 문자열 리터럴 일치로 제외한다. upstream 데이터의 `name` 값이 바뀌면(표기 변경 등) 필터가 조용히 무력화된다.
+- `nodes.py:218-249`: `topEvents`는 Cypher에서 LIMIT 없이 해당 책의 사건을 전부 가져와 Python `_year()`로 연대 파싱 후 정렬·상위 10개 절단한다(문자열 사전순 정렬의 BC 역전 방지 — 의도된 설계). 파싱 실패(`None`) 사건은 튜플 키로 맨 뒤에 밀리며 경고가 없다. 데이터 규모(책당 사건 수십 건)에선 전량 fetch 부담은 무시 가능.
+- 파일: `backend/app/routes/nodes.py:206,218-249`
+
+### `SidePanel.jsx` 주요 사건 BC/AD 라벨 — 문자열 숫자 강제변환 의존
+
+`SidePanel.jsx:481`: `e.startDate < 0 ? BC ${Math.abs(e.startDate)} : AD ${e.startDate}` — `startDate`는 문자열이다. `"-4003" < 0`은 숫자 강제변환으로 동작하지만, 월 접미 형식 `"-1451-01"`은 `Number()` 변환이 `NaN`이 되어 `NaN < 0 === false` → **"AD -1451-01"로 오표시**된다. `nodes.py:236` 주석이 명시하듯 월 접미 형식이 실데이터에 존재하므로, 해당 사건이 topEvents 상위 10에 들면 실제 노출되는 표시 버그 경로다. `TimelineView.jsx`의 `parseYear()`는 이 케이스를 올바르게 처리한다 — 재사용하지 않고 별도 인라인 비교를 쓴 것이 원인.
+
+- 파일: `frontend/src/SidePanel.jsx:479-481`, `backend/app/routes/nodes.py:236`
+
+### `BibleOverviewView.jsx` 점프 내비 — sticky 칩 바 높이와 하드코딩 오프셋 결합
+
+장르 점프 내비의 두 오프셋이 sticky 칩 바의 실제 렌더 높이(padding 10px×2 + 칩 높이 + border ≈ 55px)와 별도로 하드코딩되어 있다.
+
+- `BibleOverviewView.jsx:156`: 스크롤 추적 임계 `top - rootTop <= 64` — 칩 바 아래 64px 기준으로 활성 장르 판정.
+- `BibleOverviewView.jsx:176`: 점프 목표 위치 `... - 56` — 칩 바 높이만큼 내려 앉히는 보정.
+- 칩 바 높이가 변하면(폰트·패딩 조정, 칩 줄바꿈 발생 등) 점프 착지 위치와 활성 칩 추적이 어긋난다. 두 상수와 칩 바 스타일(`BibleOverviewView.jsx:247-254`)을 함께 고쳐야 한다는 연결이 코드에 없다.
+- 스크롤마다 `querySelectorAll('[data-genre]')` 전수 순회(섹션 10개)로 현재 데이터 규모에선 성능 영향 없음.
+- 파일: `frontend/src/BibleOverviewView.jsx:150-177,246-254`
+
 ### 모바일 읽기 모드: 지도 노출 영역 탭 캐처 크기 협소
 
-`App.jsx:270-274`: `readingEventId`가 열릴 때 투명 탭 캐처를 `{ top:0, left:0, right:0, bottom:'90dvh', zIndex:4 }`로 배치한다. 레이아웃은 전체 100dvh 중 상단 nav(48px) 아래 나머지를 지도+오버레이 영역으로 사용하므로, 탭 캐처 실제 높이는 `(100dvh - 48px) - 90dvh ≈ 10dvh - 48px`(기기 높이 약 10% 미만)이다.
+`App.jsx:286`: `readingEventId`가 열릴 때 투명 탭 캐처를 `{ top:0, left:0, right:0, bottom:'90dvh', zIndex:4 }`로 배치한다. 레이아웃은 전체 100dvh 중 상단 nav(48px) 아래 나머지를 지도+오버레이 영역으로 사용하므로, 탭 캐처 실제 높이는 `(100dvh - 48px) - 90dvh ≈ 10dvh - 48px`(기기 높이 약 10% 미만)이다.
 
 - 탭 캐처가 동작은 하나 탭 가능 영역이 매우 좁다. 주 닫기 경로는 오버레이 내 ▾ 버튼이다.
 - SidePanel 하단 시트(`zIndex:10`)와 JourneyList 오버레이(`zIndex:5`)가 동시에 표시될 때 탭 캐처(`zIndex:4`)가 SidePanel 아래에 가려 지도 탭 닫기 동작이 작동하지 않을 수 있다.
-- 파일: `frontend/src/App.jsx:270-274`
+- 파일: `frontend/src/App.jsx:286`
 
 ### `generate_person_event_verses.py` — 자유 텍스트 정규식 파싱
 
@@ -164,6 +206,12 @@ frontend/src/MapView.jsx
 ---
 
 ## 무음 실패 지점
+
+### `/persons/curated` fetch 실패 시 여정 탐험 CTA 전체 미노출 — 무경고
+
+`App.jsx:41-46`: 앱 마운트 시 `/persons/curated`를 1회 fetch해 `curatedIds` Set을 만들고, SidePanel의 "여정 탐험" CTA는 `curatedIds?.has(node.id)`(`SidePanel.jsx:254`)일 때만 렌더된다. fetch 실패는 `.catch(() => {})`로 삼켜져 `curatedIds`가 `null`로 남고, **모든 인물에서 CTA가 조용히 사라진다**. 에러 표시·재시도·로그 없음. 나머지 화면은 정상 동작하므로 회귀를 눈치채기 어렵다.
+
+- 파일: `frontend/src/App.jsx:41-46`, `frontend/src/SidePanel.jsx:254`
 
 ### `_build_id_to_slug()` — 요청마다 JSON 전량 재파싱 (캐시 누락)
 
@@ -262,9 +310,9 @@ authored-place를 새 인물 여정에 재사용할 때 영문 지명이 같아�
 
 ### Cypher 쿼리 f-string 인터폴레이션 — 상수 한정, 현재 안전
 
-`backend/app/routes/nodes.py:168-170`: f-string으로 `{NODE_NEIGHBOR_LIMIT}` 상수를 쿼리에 삽입. `backend/app/routes/search.py:15,27`: `LIMIT {SEARCH_LIMIT}` 상수 삽입. 두 경우 모두 Python int 상수를 삽입하므로 실질적 인젝션 위험은 없다. 그러나 패턴 자체가 향후 사용자 입력 변수를 실수로 f-string에 넣을 위험 경로를 열어 둔다. Cypher 파라미터(`$param`)로 교체하는 것이 더 안전한 패턴이다.
+`backend/app/routes/nodes.py:169`: f-string으로 `{NODE_NEIGHBOR_LIMIT}` 상수를 쿼리에 삽입. `backend/app/routes/search.py:15,27`: `LIMIT {SEARCH_LIMIT}` 상수 삽입. 두 경우 모두 Python int 상수를 삽입하므로 실질적 인젝션 위험은 없다. 그러나 패턴 자체가 향후 사용자 입력 변수를 실수로 f-string에 넣을 위험 경로를 열어 둔다. Cypher 파라미터(`$param`)로 교체하는 것이 더 안전한 패턴이다.
 
-- 파일: `backend/app/routes/nodes.py:168-170`, `backend/app/routes/search.py:15,27`
+- 파일: `backend/app/routes/nodes.py:169`, `backend/app/routes/search.py:15,27`
 
 ### Neo4j 비밀번호 — 환경변수 단일 의존, 현재 구조는 적절
 
@@ -274,4 +322,4 @@ authored-place를 새 인물 여정에 재사용할 때 영문 지명이 같아�
 
 ---
 
-*CONCERNS audit: 2026-07-02 (HEAD 99d42c8518af00f3e0bf4a4ba90f821d84cf42e5)*
+*CONCERNS audit: 2026-07-03 (HEAD d0eab1289792c4e191cce498fb574aa2a4f7e300)*

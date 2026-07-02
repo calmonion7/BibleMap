@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 99d42c8518af00f3e0bf4a4ba90f821d84cf42e5
-mapped: 2026-07-02
+last_mapped_commit: d0eab1289792c4e191cce498fb574aa2a4f7e300
+mapped: 2026-07-03
 ---
 
 # ARCHITECTURE
@@ -34,7 +34,7 @@ mapped: 2026-07-02
 - **`journey.py`** — `GET /person/{person_id}/journey`. 큐레이션 인물의 시간순 여정 정차지. `persons.py`의 `_ERA`/`_NAME_KO`를 import해 `theographic_id→slug` 역매핑을 만들고(`_build_id_to_slug`), 해당 slug의 `person_events/<slug>.json`을 `sortKey`로 정렬한다(`_load_events`). 각 이벤트의 `occursAt[0]` place_id에 대해 Neo4j에서 `Place` 노드의 `longitude`/`latitude`/`nameKo`를 배치 조회(`_fetch_place_coords`)하고, 좌표가 있는 정차지에만 1부터 `seq`를 부여한다. 큐레이션 인물이 아니면 `stops=[]` 빈 응답(404 아님). 즉 **여정 = 파일 기반 사건 시퀀스 + Neo4j 좌표 조인**.
 - **`events.py`** — `GET /events`(타임라인 사건 목록)와 `GET /event/{event_id}/verses`(사건 근거 구절 드릴다운). `_compute_events()`(`@lru_cache`)는 Neo4j에서 `startDate IS NOT NULL`인 `Event`를 `sortKey` 순으로 조회하면서 `(Book)-[:CONTAINS_BOOK]->(Event)`로 연결된 책을 `bookOrder` 순 `books` 배열로 모으고, `authored`·`yearLabel`을 함께 반환한다. 여기에 오버레이 `book_events_raw()`를 역방향 인덱스(`_load_approx_book_index`, eventId→책 메타)로 머지해 **그래프 관계가 없는 추정책(집필 배경 연결)을 CONTAINS_BOOK 항목 뒤에 덧붙인다** — 그래프와 오버레이의 대표적 합류 지점. `/event/{id}/verses`는 오버레이 `event_verses()`에서 해당 사건의 권별 구절을 꺼내 Neo4j Book 이름맵(`_book_name_map`)으로 `bookNameKo`를 보강해 반환한다.
 - **`books.py`** — `GET /books-overview`. Neo4j `Book` 노드 전체를 `bookOrder` 순으로 반환(개요 뷰 전용, startYear 조건 없음). `testament`/`genre`/`themes`/`keyVerse`/`authorKo` 등 메타 포함, `Cache-Control: no-store`.
-- **`nodes.py`** — 범용 노드 API. `GET /node/{id}`(노드 + 이웃 + 총 이웃수, Book이면 `topPersons`/`topEvents` 추가, Person이면 `traits` JSON 파싱), `GET /node/{id}/neighbors/grouped`(타입별 그룹 이웃), `GET /node/{id}/places`(노드 라벨별 분기 Cypher로 관련 Place 좌표 — Person/Event/PeopleGroup/Book/Place 각각 다른 쿼리), `GET /person/{id}/event-ids`(인물 참여 사건 id 집합). 상수 `MAX_NEIGHBORS_PER_TYPE=30`, `NODE_NEIGHBOR_LIMIT=50`.
+- **`nodes.py`** — 범용 노드 API. `GET /node/{id}`(노드 + 이웃 + 총 이웃수, Book이면 `topPersons`/`topEvents` 추가, Person이면 `traits` JSON 파싱), `GET /node/{id}/neighbors/grouped`(타입별 그룹 이웃), `GET /node/{id}/places`(노드 라벨별 분기 Cypher로 관련 Place 좌표 — Person/Event/PeopleGroup/Book/Place 각각 다른 쿼리), `GET /person/{id}/event-ids`(인물 참여 사건 id 집합). 상수 `MAX_NEIGHBORS_PER_TYPE=30`, `NODE_NEIGHBOR_LIMIT=50`. Book `topPersons` Cypher는 `p.name <> 'God'` 필터로 God 노드를 제외한다. `topEvents`는 Cypher `ORDER BY e.startDate`(문자열 사전순 — BC 연도가 역전됨, 예 `-1451 < -4003`)를 쓰지 않고, Python 헬퍼 `_year()`가 `"-4003"`/`"-1451-01"`/`"30"` 혼재 형식을 부호 있는 정수 연도로 파싱해 오름차순 정렬 후 상위 10개만 반환한다(`nodes.py:238-249`, `None`은 뒤로).
 - **`search.py`** — `GET /search?q=`. `nameKo`/`name` CONTAINS 매칭을 exact→prefix→contains 랭크로 정렬, `LIMIT 20`.
 
 ## 그래프 + 오버레이 모델
@@ -82,18 +82,20 @@ Theographic 데이터셋에 `Person` 노드가 없는 큐레이션 주인공을 
 `activeStage` 상태(`App.jsx:24`)가 `'hub' | 'explore' | 'overview'` 3단계를 토글한다:
 - **hub** — `PersonHub`. `/persons/curated`로 큐레이션 28인을 시대별 카드 그리드로. `ERA_ORDER`는 `['족장', '출애굽·정복', '사사', '왕국', '선지자', '포로', '신약']`. 카드 클릭 → `handleSelectPerson(id)` → explore 단계.
 - **explore** — 인물 선택 후. 상단 nav로 `exploreView`(`'map' | 'timeline'`) 토글. 인물 선택 시 `/person/{id}/journey`를 한 번 fetch해 `journeyStops`에 담고 `MapView`·`JourneyList`가 공유한다.
-- **overview** — `BibleOverviewView`. `/books-overview`를 장르별로 그룹핑.
+- **overview** — `BibleOverviewView`. `/books-overview`를 장르별로 그룹핑. 상단 nav 라벨은 "성경 책 둘러보기"(`App.jsx:216`).
 
 `explorePersonId`를 `selectedNode`와 분리해, 장소 클릭으로 상세 패널이 다른 노드로 바뀌어도 여정·지도 장소 기준은 탐험 인물로 유지한다. 노드 선택 로직은 커스텀 훅 `useNodeSelection.js`(`selectNode`/`selectNodeFresh`/`goBack`/`closePanel`/`history`/`personEventIds`)가 캡슐화한다 — 참조 안정화(`useCallback`)로 MapView effect 재실행/abort 버그를 방지한다.
 
-데스크톱은 우측 슬라이드인 `SidePanel`, 모바일(`MOBILE_BREAKPOINT=768`)은 하단 시트(`SHEET_VH=55`). 절 본문 언어 `verseLang`(`'ko'|'en'`)는 `TimelineView`·`SidePanel`·`EventVerses`가 공유하며 `VerseLangTabs`로 전환한다.
+앱 마운트 시 `/persons/curated`를 한 번 fetch해 큐레이션 인물 id 집합 `curatedIds`(`Set`)를 만들고(`App.jsx:41-47`), `SidePanel`에 `curatedIds`/`onExploreJourney` props로 내려 Person 상세의 "여정 탐험" CTA 노출 판단에 쓴다.
+
+데스크톱은 우측 슬라이드인 `SidePanel`, 모바일(`MOBILE_BREAKPOINT=768`)은 하단 시트(`SHEET_VH=55`). 모바일 시트의 스와이프 닫기는 `sheetAtTop` ref(`App.jsx:115-125`)로 가드된다 — 터치 시작 시점에 시트 `scrollTop <= 0`이었을 때의 pull-down(80px 초과)만 닫고, 스크롤된 상태의 하향 드래그는 콘텐츠 스크롤 제스처로 취급해 닫지 않는다. 절 본문 언어 `verseLang`(`'ko'|'en'`)는 `TimelineView`·`SidePanel`·`EventVerses`가 공유하며 `VerseLangTabs`로 전환한다.
 
 ### 모바일 여정 읽기 모드
 
-`App.jsx:43`에 `readingEventId` 상태가 있다. 모바일에서 `JourneyList`의 📖 칩을 탭하면 이 상태가 갱신돼 하단 스트립 높이가 `42dvh` → `90dvh`로 전환된다(`App.jsx:279`).
+`App.jsx:52`에 `readingEventId` 상태가 있다. 모바일에서 `JourneyList`의 📖 칩을 탭하면 이 상태가 갱신돼 하단 스트립 높이가 `42dvh` → `90dvh`로 전환된다(`App.jsx:291`).
 
-- **`App.jsx:267-295`**: 모바일 여정 렌더 블록. `readingEventId` 유무로 컨테이너 `height`를 `readingEventId ? '90dvh' : '42dvh'`로 토글한다. `reduceMotion`이 false이면 CSS `transition: height 0.25s ease` 애니메이션이 동작한다.
-- **`App.jsx:270-274`**: `readingEventId`가 설정된 동안 지도 상단 노출 영역(top: 0, bottom: '90dvh')에 투명 div가 올라와 탭 시 `setReadingEventId(null)`을 호출한다. 이로써 지도 밴드를 탭하면 읽기 모드가 닫힌다.
+- **`App.jsx:279-308`**: 모바일 여정 렌더 블록. `readingEventId` 유무로 컨테이너 `height`를 `readingEventId ? '90dvh' : '42dvh'`로 토글한다. `reduceMotion`이 false이면 CSS `transition: height 0.25s ease` 애니메이션이 동작한다.
+- **`App.jsx:283-288`**: `readingEventId`가 설정된 동안 지도 상단 노출 영역(top: 0, bottom: '90dvh')에 투명 div가 올라와 탭 시 `setReadingEventId(null)`을 호출한다. 이로써 지도 밴드를 탭하면 읽기 모드가 닫힌다.
 - **`JourneyList.jsx:14`** props: `readingEventId`(상위 소유), `onReadingChange` (setter). `onReadingChange`가 주어지면(모바일) "controlled 모드"로 동작한다.
   - controlled 모드에서 📖 칩 클릭 → `onReadingChange(stop.eventId)` 호출(`JourneyList.jsx:177`). 리스트 대신 `EventVerses` 단독 표시로 전환(`JourneyList.jsx:37-49`).
   - 데스크톱(controlled 아님)은 컴포넌트 내부 `expandedId` 상태로 인라인 아코디언 처리(`JourneyList.jsx:200-203`).
@@ -111,8 +113,8 @@ Theographic 데이터셋에 `Person` 노드가 없는 큐레이션 주인공을 
 - **`JourneyList.jsx`** — 여정 정차지를 "여정 > 사건 > 구절" 아코디언 트리로. 데스크톱은 좌측 290px 고정 패널, 모바일은 지도 위 하단 스트립(동일 컴포넌트, controlled props). 좌표 중복 정차지를 deduplicate해 지도 `activeStopIdx`(장소 단위 인덱스)와 동기화. 모바일에서 읽기 모드 진입 시 `EventVerses` 단독 표시.
 - **`EventVerses.jsx`** — `/event/{id}/verses`로 권별 구절을 fetch해 권 칩 선택 + 언어 탭으로 본문 표시. `heading`/`onClose` props 여부로 읽기 레이아웃(모바일 전용) vs 인라인 레이아웃(데스크톱 전용) 분기. 구절 본문은 오버레이에 프리베이크된 `textKo`/`textEn`.
 - **`TimelineView.jsx`** — `/events`로 사건을 연도순 타임라인에. `bookFilter`(선택 책)·`personFilter`(`personEventIds`)로 필터, `authored` 사건 라벨링.
-- **`SidePanel.jsx`** — 노드 상세. `/node/{id}` + 이웃 그룹 + Place 구절 드릴다운 + "이 곳을 지난 다른 인물" 칩(`/place/{id}/curated-persons` → `onExplorePerson`). 관계 한글 라벨 `REL_KO`.
-- **`BibleOverviewView.jsx`** — 66권 개요, 장르(`OT_GENRE_ORDER`/`NT_GENRE_ORDER`)별 카드.
+- **`SidePanel.jsx`** — 노드 상세. `/node/{id}` + 이웃 그룹 + Place 구절 드릴다운 + "이 곳을 지난 다른 인물" 칩(`/place/{id}/curated-persons` → `onExplorePerson`). 관계 한글 라벨 `REL_KO`. Book 노드는 로드 시 8개 섹션 키를 전부 `false`(펼침)로 초기화해 **전 섹션 기본 펼침**(`SidePanel.jsx:68-72`, 접기 토글은 유지, 노드 왕복에도 다시 펼침), 섹션 순서는 정수 우선 — 중심 메시지가 최상단, 시대적 배경·구조 개요가 그 뒤. "핵심 인물"(`keyPeople`) 섹션은 클릭 가능한 "주요 인물"(`topPersons`)이 있으면 중복이라 숨긴다. Person 노드가 큐레이션 인물(`curatedIds`)이고 현재 탐험 중이 아니면 "여정 탐험" CTA 버튼을 표시해 `onExploreJourney(id)`로 explore 단계 진입.
+- **`BibleOverviewView.jsx`** — 66권 개요, 장르(`OT_GENRE_ORDER`/`NT_GENRE_ORDER`)별 카드. 상단에 **sticky 점프 내비 칩 바**(구약/신약 그룹 라벨 + 장르 칩, 좁은 화면 가로 스크롤): 각 장르 섹션에 `data-genre` 마커를 달고, 컨테이너 scroll 리스너가 칩 바 아래(64px)를 마지막으로 지난 섹션을 `activeGenre`로 추적하며, 칩 클릭 시 `scrollIntoView` 대신 컨테이너 `scrollTo`로 해당 섹션 이동(앱 루트 `overflow:hidden`을 밀어내는 부작용 회피). 모바일(`useIsMobile` — `matchMedia(MOBILE_BREAKPOINT)`)에선 카드의 keyVerse 미리보기를 숨겨 카드 경량화(`hideKeyVerse`).
 - 공유: `theme.js`(타입 색·한글 라벨 단일 팔레트), `constants.js`(`MOBILE_BREAKPOINT`/`SHEET_VH`), `Spinner.jsx`, `VerseLangTabs.jsx`.
 
 ## 배포 / 인프라

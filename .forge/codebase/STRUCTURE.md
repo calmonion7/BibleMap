@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 99d42c8518af00f3e0bf4a4ba90f821d84cf42e5
-mapped: 2026-07-02
+last_mapped_commit: d0eab1289792c4e191cce498fb574aa2a4f7e300
+mapped: 2026-07-03
 ---
 
 # STRUCTURE
@@ -46,7 +46,7 @@ BibleMap/
   - `journey.py` — `GET /person/{id}/journey`(여정 정차지, 파일 시퀀스 + Neo4j 좌표). `_ERA`·`_NAME_KO`를 `persons.py`에서 import.
   - `events.py` — `GET /events`, `GET /event/{id}/verses`.
   - `books.py` — `GET /books-overview`.
-  - `nodes.py` — `GET /node/{id}`, `/node/{id}/places`, `/node/{id}/neighbors/grouped`, `/person/{id}/event-ids`.
+  - `nodes.py` — `GET /node/{id}`, `/node/{id}/places`, `/node/{id}/neighbors/grouped`, `/person/{id}/event-ids`. Book `topPersons`는 God 제외, `topEvents`는 `startDate` 문자열을 연도 파싱해 정렬(사전순은 BC 역전 — `_year`, `nodes.py:238-249`).
   - `places.py` — `GET /place/{id}/curated-persons`. `_ERA`·`_NAME_KO`·`_ERA_ORDER`를 `persons.py`에서 import(드리프트 방지). `_place_to_persons`의 정렬 로직은 `_build_list`와 동일(`_anchor` = 최소 sortKey).
   - `search.py` — `GET /search?q=`.
 - `backend/__init__.py`, `backend/app/__init__.py`, `backend/app/routes/__init__.py`, `backend/scripts/__init__.py` — 패키지 마커.
@@ -101,8 +101,8 @@ BibleMap/
 
 진입: `main.jsx`(`createRoot` + `<StrictMode>`) → `App.jsx`. 모든 소스가 단일 `src/` 평면 디렉터리에 있다(서브폴더 없음). 명명 관례: **컴포넌트는 PascalCase `.jsx`, 헬퍼/훅/상수는 camelCase `.js`**.
 
-- 단계/오케스트레이션: `App.jsx`(stage 토글·레이아웃·모바일 읽기 모드 소유), `useNodeSelection.js`(노드 선택 훅).
-- 화면 컴포넌트: `PersonHub.jsx`, `MapView.jsx`, `TimelineView.jsx`, `BibleOverviewView.jsx`, `SidePanel.jsx`, `JourneyList.jsx`, `EventVerses.jsx`.
+- 단계/오케스트레이션: `App.jsx`(stage 토글·레이아웃·모바일 읽기 모드·`curatedIds` fetch 소유), `useNodeSelection.js`(노드 선택 훅).
+- 화면 컴포넌트: `PersonHub.jsx`, `MapView.jsx`, `TimelineView.jsx`, `BibleOverviewView.jsx`(sticky 점프 내비 칩 바 + `useIsMobile` 훅 내장), `SidePanel.jsx`(Book 전 섹션 기본 펼침·Person 여정 탐험 CTA), `JourneyList.jsx`, `EventVerses.jsx`.
 - 지도 헬퍼(MapView 분리): `mapGeo.js`(기하·GeoJSON), `mapLayers.js`(소스·레이어·이벤트 핸들러), `mapRingController.js`(링/스파이더 애니메이션).
 - 공유 모듈: `api.js`(`apiGet`), `theme.js`(`TYPE_COLOR`/`TYPE_KO`/`typeColor`/`SELECT_HL`), `constants.js`(`MOBILE_BREAKPOINT`/`SHEET_VH`).
 - 작은 공통 UI: `Spinner.jsx`, `VerseLangTabs.jsx`.
@@ -110,8 +110,9 @@ BibleMap/
 
 ### 모바일 읽기 모드 관련 파일 위치
 
-- `App.jsx:43` — `readingEventId` 상태 선언.
-- `App.jsx:267-295` — 모바일 여정 블록: 컨테이너 높이 토글(`42dvh`↔`90dvh`) + 지도 밴드 탭 캐처 + `JourneyList` controlled 렌더.
+- `App.jsx:52` — `readingEventId` 상태 선언.
+- `App.jsx:279-308` — 모바일 여정 블록: 컨테이너 높이 토글(`42dvh`↔`90dvh`) + 지도 밴드 탭 캐처 + `JourneyList` controlled 렌더.
+- `App.jsx:115-125` — 모바일 시트 스와이프 닫기 가드(`sheetAtTop` ref): 터치 시작 시 `scrollTop <= 0`이었을 때의 pull-down만 `closePanel()`.
 - `JourneyList.jsx:14` — `readingEventId`/`onReadingChange` props 수신. `onReadingChange != null`이면 controlled 모드.
 - `JourneyList.jsx:37-49` — controlled 모드에서 `readingEventId`가 있으면 리스트 대신 `EventVerses` 단독 표시.
 - `EventVerses.jsx:45` — `heading`/`onClose` props 존재 여부로 읽기 레이아웃 vs 인라인 레이아웃 분기.
