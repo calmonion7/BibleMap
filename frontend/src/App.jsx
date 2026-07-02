@@ -104,11 +104,16 @@ function App() {
   }
 
   const swipeStartY = useRef(null)
-  function onSheetTouchStart(e) { swipeStartY.current = e.touches[0].clientY }
+  const sheetAtTop = useRef(false)
+  function onSheetTouchStart(e) {
+    swipeStartY.current = e.touches[0].clientY
+    sheetAtTop.current = e.currentTarget.scrollTop <= 0
+  }
   function onSheetTouchEnd(e) {
     if (swipeStartY.current == null) return
     const dy = e.changedTouches[0].clientY - swipeStartY.current
-    if (dy > 80) closePanel()
+    // 시트가 스크롤된 상태의 하향 드래그는 콘텐츠 스크롤 제스처 — 최상단에서 시작한 pull-down만 닫는다
+    if (dy > 80 && sheetAtTop.current) closePanel()
     swipeStartY.current = null
   }
 
