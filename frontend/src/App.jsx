@@ -213,7 +213,7 @@ function App() {
         </button>
         <div style={{ display: 'flex', alignItems: 'center', height: '100%', padding: '0 14px', gap: 6 }}>
           <BookOpen size={18} color="rgba(255,255,255,0.5)" />
-          <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: 13 }}>성경 개요</span>
+          <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: 13 }}>성경 책 둘러보기</span>
         </div>
       </div>
     )

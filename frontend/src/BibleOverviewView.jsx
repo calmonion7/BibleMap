@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { apiGet } from './api'
 import Spinner from './Spinner'
 import { SELECT_HL } from './theme'
+import { MOBILE_BREAKPOINT } from './constants'
 
 const OT_GENRE_ORDER = ['Pentateuch', 'Historical', 'Poetry-Wisdom', 'Major Prophets', 'Minor Prophets']
 const NT_GENRE_ORDER = ['Gospels', 'Acts', 'Pauline Epistles', 'General Epistles', 'Revelation']
@@ -19,10 +20,21 @@ const GENRE_META = {
   'Revelation':       { displayName: '계시록',    description: '종말의 심판과 새 창조의 비전' },
 }
 
-function BookCard({ book, onSelectNode, isSelected }) {
+function useIsMobile() {
+  const [mobile, setMobile] = useState(() => window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches)
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`)
+    const onChange = (e) => setMobile(e.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+  return mobile
+}
+
+function BookCard({ book, onSelectNode, isSelected, hideKeyVerse }) {
   const [hovered, setHovered] = useState(false)
   const themes = (book.themes || []).slice(0, 3)
-  const keyVerse = book.keyVerseTextKo
+  const keyVerse = !hideKeyVerse && book.keyVerseTextKo
     ? (book.keyVerseTextKo.length > 40 ? book.keyVerseTextKo.slice(0, 40) + '…' : book.keyVerseTextKo)
     : null
 
@@ -77,12 +89,13 @@ function BookCard({ book, onSelectNode, isSelected }) {
   )
 }
 
-function GenreSection({ genre, books, isFirst, onSelectNode, selectedNode }) {
+function GenreSection({ genre, books, isFirst, onSelectNode, selectedNode, hideKeyVerse }) {
   const meta = GENRE_META[genre] || { displayName: genre, description: '' }
   const sorted = [...books].sort((a, b) => (a.bookOrder ?? 0) - (b.bookOrder ?? 0))
 
   return (
-    <div style={{ marginTop: isFirst ? 0 : 20 }}>
+    // data-genre: 점프 내비의 스크롤 대상 + 현재 섹션 추적 마커
+    <div data-genre={genre} style={{ marginTop: isFirst ? 0 : 20 }}>
       <div style={{ marginBottom: 8 }}>
         <span style={{ color: '#fff', fontWeight: 700, fontSize: 16 }}>{meta.displayName}</span>
         {meta.description && (
@@ -93,14 +106,14 @@ function GenreSection({ genre, books, isFirst, onSelectNode, selectedNode }) {
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
         {sorted.map(book => (
-          <BookCard key={book.id} book={book} onSelectNode={onSelectNode} isSelected={book.id === selectedNode} />
+          <BookCard key={book.id} book={book} onSelectNode={onSelectNode} isSelected={book.id === selectedNode} hideKeyVerse={hideKeyVerse} />
         ))}
       </div>
     </div>
   )
 }
 
-function Testament({ label, genreOrder, booksByGenre, onSelectNode, selectedNode }) {
+function Testament({ label, genreOrder, booksByGenre, onSelectNode, selectedNode, hideKeyVerse }) {
   const genres = genreOrder.filter(g => booksByGenre[g] && booksByGenre[g].length > 0)
 
   return (
@@ -114,6 +127,7 @@ function Testament({ label, genreOrder, booksByGenre, onSelectNode, selectedNode
           isFirst={i === 0}
           onSelectNode={onSelectNode}
           selectedNode={selectedNode}
+          hideKeyVerse={hideKeyVerse}
         />
       ))}
     </div>
@@ -124,6 +138,44 @@ export default function BibleOverviewView({ onSelectNode, selectedNode }) {
   const [booksByTestamentGenre, setBooksByTestamentGenre] = useState({ OT: {}, NT: {} })
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const isMobile = useIsMobile()
+  // 점프 내비 — 스크롤 컨테이너·현재 보이는 장르·칩 엘리먼트 참조
+  const scrollRef = useRef(null)
+  const chipRefs = useRef({})
+  const [activeGenre, setActiveGenre] = useState(null)
+
+  // 현재 섹션 추적 — 상단(칩 바 아래)을 마지막으로 지난 장르 섹션을 활성으로 표시
+  useEffect(() => {
+    if (loading) return
+    const root = scrollRef.current
+    if (!root) return
+    const onScroll = () => {
+      const rootTop = root.getBoundingClientRect().top
+      let current = null
+      for (const s of root.querySelectorAll('[data-genre]')) {
+        if (s.getBoundingClientRect().top - rootTop <= 64) current = s.dataset.genre
+      }
+      setActiveGenre(prev => current ?? prev)
+    }
+    onScroll()
+    root.addEventListener('scroll', onScroll, { passive: true })
+    return () => root.removeEventListener('scroll', onScroll)
+  }, [loading])
+
+  // 활성 칩을 칩 바 가시 영역으로 (세로 스크롤엔 영향 없음 — block: nearest)
+  useEffect(() => {
+    if (!activeGenre) return
+    chipRefs.current[activeGenre]?.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+  }, [activeGenre])
+
+  function jumpTo(genre) {
+    // scrollIntoView는 overflow:hidden인 앱 루트까지 스크롤시켜 상단 내비를 밀어낸다 — 이 컨테이너만 스크롤.
+    const root = scrollRef.current
+    const el = root?.querySelector(`[data-genre="${CSS.escape(genre)}"]`)
+    if (!root || !el) return
+    const top = el.getBoundingClientRect().top - root.getBoundingClientRect().top + root.scrollTop - 56
+    root.scrollTo({ top })
+  }
 
   useEffect(() => {
     let cancelled = false
@@ -179,29 +231,78 @@ export default function BibleOverviewView({ onSelectNode, selectedNode }) {
     )
   }
 
+  const chipGroups = [
+    { label: '구약', genres: OT_GENRE_ORDER.filter(g => booksByTestamentGenre.OT[g]?.length > 0) },
+    { label: '신약', genres: NT_GENRE_ORDER.filter(g => booksByTestamentGenre.NT[g]?.length > 0) },
+  ]
+
   return (
-    <div style={{
+    <div ref={scrollRef} style={{
       background: '#12122a',
-      padding: 16,
       height: '100%',
       overflowY: 'auto',
       boxSizing: 'border-box',
     }}>
-      <Testament
-        label="구약"
-        genreOrder={OT_GENRE_ORDER}
-        booksByGenre={booksByTestamentGenre.OT}
-        onSelectNode={onSelectNode}
-        selectedNode={selectedNode}
-      />
-      <div style={{ marginTop: 32 }}>
+      {/* 점프 내비 칩 바 — sticky, 좁은 화면에선 가로 스크롤 */}
+      <div style={{
+        position: 'sticky', top: 0, zIndex: 5,
+        background: '#12122a',
+        borderBottom: '1px solid rgba(124,156,252,0.15)',
+        display: 'flex', alignItems: 'center', gap: 6,
+        overflowX: 'auto',
+        padding: '10px 16px',
+      }}>
+        {chipGroups.map((group, gi) => [
+          <span key={group.label} style={{
+            color: '#c9a84c', fontSize: 11, fontWeight: 700,
+            letterSpacing: '0.08em', flexShrink: 0,
+            marginLeft: gi > 0 ? 10 : 0,
+          }}>
+            {group.label}
+          </span>,
+          ...group.genres.map(g => {
+            const active = g === activeGenre
+            return (
+              <button
+                key={g}
+                ref={el => { chipRefs.current[g] = el }}
+                onClick={() => jumpTo(g)}
+                style={{
+                  flexShrink: 0, cursor: 'pointer', whiteSpace: 'nowrap',
+                  fontSize: 12, padding: '4px 10px', borderRadius: 999,
+                  border: `1px solid ${active ? '#7c9cfc' : 'rgba(124,156,252,0.35)'}`,
+                  background: active ? '#7c9cfc' : 'none',
+                  color: active ? '#12122a' : '#9fb0e8',
+                  fontWeight: active ? 700 : 400,
+                  transition: 'background 0.15s, color 0.15s',
+                }}
+              >
+                {(GENRE_META[g] || { displayName: g }).displayName}
+              </button>
+            )
+          }),
+        ])}
+      </div>
+
+      <div style={{ padding: 16 }}>
         <Testament
-          label="신약"
-          genreOrder={NT_GENRE_ORDER}
-          booksByGenre={booksByTestamentGenre.NT}
+          label="구약"
+          genreOrder={OT_GENRE_ORDER}
+          booksByGenre={booksByTestamentGenre.OT}
           onSelectNode={onSelectNode}
           selectedNode={selectedNode}
+          hideKeyVerse={isMobile}
         />
+        <div style={{ marginTop: 32 }}>
+          <Testament
+            label="신약"
+            genreOrder={NT_GENRE_ORDER}
+            booksByGenre={booksByTestamentGenre.NT}
+            onSelectNode={onSelectNode}
+            selectedNode={selectedNode}
+            hideKeyVerse={isMobile}
+          />
+        </div>
       </div>
     </div>
   )
