@@ -1,5 +1,5 @@
 ---
-last_mapped_commit: 0189ad9fb964e5eb4fcc91776b3202f7014058dd
+last_mapped_commit: 689126abab88e741263d1d9a4a73d81b2be617d9
 mapped: 2026-07-02
 ---
 # 테스트 패턴
@@ -26,7 +26,7 @@ mapped: 2026-07-02
 cd frontend && npm run lint     # eslint . — react-hooks 규칙 포함
 ```
 
-`frontend/eslint.config.js`(flat config)가 `@eslint/js` recommended + `eslint-plugin-react-hooks` + `eslint-plugin-react-refresh`를 적용. 코드 주석이 react-hooks 규칙(특히 set-state-in-effect)을 의식해 작성돼 있어(`App.jsx`, `EventVerses.jsx`, `useNodeSelection.js`), 린트 통과가 사실상의 합의 기준이다. 백엔드 Python 린터는 미설정.
+`frontend/eslint.config.js`(flat config)가 `@eslint/js` recommended + `eslint-plugin-react-hooks` + `eslint-plugin-react-refresh`를 적용. 코드 주석이 react-hooks 규칙(특히 set-state-in-effect)을 의식해 작성돼 있어(`frontend/src/App.jsx`, `frontend/src/EventVerses.jsx`, `frontend/src/useNodeSelection.js`), 린트 통과가 사실상의 합의 기준이다. 백엔드 Python 린터는 미설정.
 
 ### 2. 빌드 (타입·구문 깨짐 탐지 + 로컬 검증 선행조건)
 
@@ -36,18 +36,19 @@ docker compose -p biblemap build api      # API 이미지 빌드
 docker compose -p biblemap up -d api nginx
 ```
 
-**중요(사용자 메모리 규칙):** 로컬 `:8080`은 `frontend/dist`를 read-only로 마운트하는 정적 서빙이며 HMR이 아니다(`docker-compose.yml`의 `nginx`). 따라서 UI 검증 전 **반드시 `cd frontend && npm run build`로 dist를 갱신**해야 변경이 반영된다. `frontend/.env.production`의 `VITE_API_URL=/api`가 빌드타임 주입돼 nginx 프록시(`/api` → `api:8000`)를 탄다(API는 `:8000` 미노출). API 변경 시 `docker compose -p biblemap up -d --build api`, 데이터만 변경 시(JSON 오버레이·`lru_cache`를 탄 정적 데이터) `docker compose -p biblemap restart api`로 충분하다.
+**중요(사용자 메모리 규칙):** 로컬 `:8080`은 `frontend/dist`를 read-only로 마운트하는 정적 서빙이며 HMR이 아니다(`docker-compose.yml`의 `nginx` 서비스 — `./frontend/dist:/usr/share/nginx/html:ro`). 따라서 UI 검증 전 **반드시 `cd frontend && npm run build`로 dist를 갱신**해야 변경이 반영된다. `frontend/.env.production`의 `VITE_API_URL=/api`가 빌드타임 주입돼 nginx 프록시(`/api` → `api:8000`)를 탄다(API는 `:8000` 미노출). API 변경 시 `docker compose -p biblemap up -d --build api`, 데이터만 변경 시(JSON 오버레이·`lru_cache`를 탄 정적 데이터) `docker compose -p biblemap restart api`로 충분하다.
 
 ### 3. 엔드포인트 점검 (curl)
 
 백엔드 라우트는 curl로 응답 형상을 직접 확인한다. nginx 프록시 경유(`http://localhost:8080/api/...`) 또는 API 직접 호출(`http://localhost:8000/...`). 자동 assert가 아니라 응답 JSON을 사람이 검토하는 방식이다.
 
 예시 점검 대상:
-- `GET /persons/curated` — 22인 slug 목록, `id`/`slug`/`nameKo`/`era`/`eventCount` 형상 확인
+- `GET /persons/curated` — 24인 slug 목록, `id`/`slug`/`nameKo`/`era`/`eventCount` 형상 확인, 시대 내 시간순 정렬 확인
 - `GET /person/{id}/journey` — `stops` 배열, `seq`/`lng`/`lat` 부여 여부
 - `GET /node/{id}` — 라벨 분기, `neighbors`/`properties` 형상
 - `GET /events` — `books` 배열 포함 여부, `sortKey` 정렬 확인
 - `GET /place/{id}/curated-persons` — `persons` 배열, 시대 내 시간순 정렬 확인
+- `GET /event/{id}/verses` — `books`별 `verses` 배열, `textKo`/`textEn` 필드 존재 확인
 
 ### 4. Python Playwright 화면 테스트 (UI 동작 검증)
 
@@ -78,6 +79,9 @@ RETURN e.nameKo, pl.nameKo, pl.latitude, pl.longitude LIMIT 20;
 -- 큐레이션 장소별 인물 연결 확인
 MATCH (pl:Place {theographic_id: "..."})
 RETURN pl.nameKo, pl.latitude, pl.longitude;
+
+-- 인물 시대 내 시간순 정렬 확인 (persons/curated 정렬과 동일 기준)
+MATCH (e:Event) WHERE e.authored = true RETURN e.nameKo, e.sortKey ORDER BY e.sortKey;
 ```
 
 ---
@@ -86,9 +90,9 @@ RETURN pl.nameKo, pl.latitude, pl.longitude;
 
 자동 테스트가 없으므로, 코드는 **검증 가능성을 높이는 구조**로 작성돼 있다. 신규 코드도 이를 따른다.
 
-- **순수 함수 분리:** 지오메트리·GeoJSON 변환은 `frontend/src/mapGeo.js`에 부수효과 없는 순수 함수로 모여 있다. 단위 테스트를 도입한다면 이 모듈이 가장 테스트하기 쉬운 진입점이다(입력 배열 → 출력 GeoJSON/bounds, Neo4j·DOM 의존 없음). `JourneyList`의 dedup 로직이 `MapView`의 `buildJourneyStopsGeoJSON`과 동일 로직을 공유한다(주석 명시) — 한쪽을 검증하면 다른 쪽도 보장.
-- **백엔드 라우트의 정적 헬퍼:** `persons.py`의 `_build_list`, `places.py`의 `_place_to_persons`, `journey.py`의 `_build_id_to_slug`/`_load_events`는 `data/person_events/*.json`만 읽고 Neo4j를 타지 않아(파일만으로 결정적) DB 없이 검증 가능. 단 `@functools.lru_cache`가 걸려 있어 테스트 간 `cache_clear()`가 필요.
-- **DB 의존 경계:** Neo4j를 실제로 타는 코드(`nodes.py`, `search.py`, `books.py`, `events.py`의 Cypher 부분, `journey.py:_fetch_place_coords`)는 통합 검증 영역. `get_driver()`(`backend/app/db.py`)가 모듈 전역 lazy 싱글톤이라 모킹 시 `app.db._driver`를 직접 주입하거나 `get_driver`를 패치하는 방식이 된다.
+- **순수 함수 분리:** 지오메트리·GeoJSON 변환은 `frontend/src/mapGeo.js`에 부수효과 없는 순수 함수로 모여 있다. 단위 테스트를 도입한다면 이 모듈이 가장 테스트하기 쉬운 진입점이다(입력 배열 → 출력 GeoJSON/bounds, Neo4j·DOM 의존 없음). `frontend/src/JourneyList.jsx`의 dedup 로직이 `frontend/src/mapGeo.js`의 `buildJourneyStopsGeoJSON`과 동일 로직을 공유한다(주석 명시) — 한쪽을 검증하면 다른 쪽도 보장.
+- **백엔드 라우트의 정적 헬퍼:** `backend/app/routes/persons.py`의 `_build_list`, `backend/app/routes/places.py`의 `_place_to_persons`, `backend/app/routes/journey.py`의 `_build_id_to_slug`/`_load_events`는 `data/person_events/*.json`만 읽고 Neo4j를 타지 않아(파일만으로 결정적) DB 없이 검증 가능. 단 `@functools.lru_cache`가 걸려 있어 테스트 간 `cache_clear()`가 필요.
+- **DB 의존 경계:** Neo4j를 실제로 타는 코드(`backend/app/routes/nodes.py`, `backend/app/routes/search.py`, `backend/app/routes/books.py`, `backend/app/routes/events.py`의 Cypher 부분, `backend/app/routes/journey.py`의 `_fetch_place_coords`)는 통합 검증 영역. `backend/app/db.py`의 `get_driver()`가 모듈 전역 lazy 싱글톤이라 모킹 시 `app.db._driver`를 직접 주입하거나 `get_driver`를 패치하는 방식이 된다.
 
 ---
 
@@ -96,9 +100,9 @@ RETURN pl.nameKo, pl.latitude, pl.longitude;
 
 `backend/scripts/`의 다수 스크립트(`load_*`, `generate_*`, `inject_*`, `enrich_*`)는 모두 일회성 CLI다.
 
-- **검증 방식:** 실행 후 `print(...)`로 출력하는 집계 카운트를 사람이 확인(예 `inject_ko_names.py`의 노드 갱신 수, `load_person_events.py`의 OCCURS_AT·HAS_PARTICIPANT 관계 수).
+- **검증 방식:** 실행 후 `print(...)`로 출력하는 집계 카운트를 사람이 확인(예 `backend/scripts/inject_ko_names.py`의 노드 갱신 수, `backend/scripts/load_person_events.py`의 OCCURS_AT·HAS_PARTICIPANT 관계 수).
 - **자동 assert·테스트 없음.** 멱등성·정확성은 출력 수치 육안 확인에 의존.
-- **배포 파이프라인 내 검증:** `deploy.sh` `[4/4]` 단계가 `inject_ko_names.py`를 Neo4j 준비까지 최대 15회 재시도(2초 간격)하며 실행하고, 실패 시 배포를 중단(`exit 1`)한다 — 적재 스크립트가 사실상의 배포 후 스모크 역할.
+- **배포 파이프라인 내 검증:** `deploy.sh` 최종 단계가 `backend/scripts/inject_ko_names.py`를 Neo4j 준비까지 최대 15회 재시도(2초 간격)하며 실행하고, 실패 시 배포를 중단(`exit 1`)한다 — 적재 스크립트가 사실상의 배포 후 스모크 역할.
 
 ---
 

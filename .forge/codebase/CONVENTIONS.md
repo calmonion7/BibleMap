@@ -1,5 +1,5 @@
 ---
-last_mapped_commit: 0189ad9fb964e5eb4fcc91776b3202f7014058dd
+last_mapped_commit: 689126abab88e741263d1d9a4a73d81b2be617d9
 mapped: 2026-07-02
 ---
 # 코딩 컨벤션
@@ -26,7 +26,7 @@ mapped: 2026-07-02
 
 ### 변수·상수
 
-- **모듈 레벨 상수:** 양쪽 모두 UPPER_SNAKE. Python — `SEARCH_LIMIT`(`search.py`), `MAX_NEIGHBORS_PER_TYPE`/`NODE_NEIGHBOR_LIMIT`(`nodes.py`), `_ERA`/`_NAME_KO`/`_ERA_ORDER`(앞에 `_`가 붙은 모듈-사적 매핑, `persons.py`에 단일 선언). JS — `API_BASE`(`api.js`), `MOBILE_BREAKPOINT`/`SHEET_VH`(`constants.js`), `TYPE_COLOR`/`TYPE_KO`/`TYPE_ORDER`/`SELECT_HL`(`theme.js`).
+- **모듈 레벨 상수:** 양쪽 모두 UPPER_SNAKE. Python — `MAX_NEIGHBORS_PER_TYPE`/`NODE_NEIGHBOR_LIMIT`(`nodes.py`), `_ERA`/`_NAME_KO`/`_ERA_ORDER`(앞에 `_`가 붙은 모듈-사적 매핑, `persons.py`에 단일 선언). JS — `API_BASE`(`api.js`), `MOBILE_BREAKPOINT`/`SHEET_VH`(`constants.js`), `TYPE_COLOR`/`TYPE_KO`/`TYPE_ORDER`/`SELECT_HL`(`theme.js`).
 - **노드 식별자:** 그래프 노드는 `theographic_id`(Neo4j 속성)를 API 응답에서 `id`로 노출. 프론트는 이 `id`를 그대로 키로 쓴다.
 
 ---
@@ -71,6 +71,8 @@ JSON 오버레이·파일 기반 정적 데이터는 `@functools.lru_cache(maxsi
 
 `places.py` 모듈 독스트링이 이 단일 출처 원칙을 "드리프트 방지"로 명시하고 있다.
 
+현재 큐레이션 인물 슬러그 목록(총 24개, `_ERA` 딕셔너리 기준): `abraham`, `isaac`, `jacob`, `joseph`, `moses`, `joshua`, `gideon`, `deborah`, `jephthah`, `samson`, `ruth`, `saul`, `samuel`, `david`, `solomon`, `elijah`, `isaiah`, `daniel`, `john_the_baptist`, `jesus`, `mary`, `paul`, `peter`, `john_the_apostle`. 대응 JSON 파일은 `data/person_events/<slug>.json`에 존재.
+
 ### 큐레이션 인물 정렬 패턴
 
 `persons.py`의 `_build_list`와 `places.py`의 `_place_to_persons`는 동일한 정렬 규칙을 쓴다:
@@ -84,7 +86,7 @@ JSON 오버레이·파일 기반 정적 데이터는 `@functools.lru_cache(maxsi
 ### Neo4j 접근
 
 - `backend/app/db.py`의 `get_driver()`가 모듈 전역 lazy 싱글톤. `NEO4J_PASSWORD` 미설정 시 `RuntimeError`로 즉시 중단.
-- 쿼리는 항상 `with driver.session() as session:` 컨텍스트 안에서 실행. 파라미터는 `session.run(cypher, id=...)` 키워드로 바인딩(문자열 보간 금지 — 단, `SEARCH_LIMIT` 같은 상수만 f-string으로 박는 경우 있음, `search.py`/`nodes.py`).
+- 쿼리는 항상 `with driver.session() as session:` 컨텍스트 안에서 실행. 파라미터는 `session.run(cypher, id=...)` 키워드로 바인딩(문자열 보간 금지 — 단, `NODE_NEIGHBOR_LIMIT` 같은 상수만 f-string으로 박는 경우 있음, `nodes.py`).
 - 노드 라벨 분기는 `labels(n)[0]`를 꺼내 `if label == "Person"/"Event"/...` 식으로 처리(`nodes.py`의 `get_node_places`).
 - 좌표·수치는 `float(...)` 캐스팅 시 `try/except (TypeError, ValueError): continue`로 깨진 데이터를 건너뛴다(`nodes.py`).
 - `main.py` `lifespan`이 기동 시 5개 라벨(`Person`/`Place`/`Event`/`PeopleGroup`/`Book`)에 `theographic_id` 인덱스를 `IF NOT EXISTS`로 생성하고, 실패하면 `logging.exception(...)` 후 인덱스 없이 계속 진행.
@@ -99,7 +101,7 @@ JSON 오버레이·파일 기반 정적 데이터는 `@functools.lru_cache(maxsi
 
 ### authored 사건 / person_events JSON 형상
 
-큐레이션 인물의 여정 데이터는 `data/person_events/<slug>.json` 파일에 배열로 산다(현재 21개 slug: `abraham`, `david`, `jesus`, `paul`, `peter`, `john_the_apostle` 등). 각 항목 형상:
+큐레이션 인물의 여정 데이터는 `data/person_events/<slug>.json` 파일에 배열로 산다. 각 항목 형상:
 
 ```json
 {
@@ -122,7 +124,7 @@ JSON 오버레이·파일 기반 정적 데이터는 `@functools.lru_cache(maxsi
 - **`occursAt`:** Place theographic_id 배열. 여정 정차지는 `occursAt[0]`를 좌표 조회 키로 쓴다(`journey.py`).
 - **`books`:** `{bookId, rangeLabel}` 배열 — 근거 성경권과 절 범위(`"9:1–19"`).
 - **`sortKey`:** 숫자 시간 정렬 키. 여정·타임라인이 `sorted(events, key=lambda e: e["sortKey"])`로 시간순 배열.
-- **`context`:** 한글 서술 + 괄호 안 절 참조(`(행 9:1–19; 행 11:25–26)`) 패턴. 세미콜론으로 다중 참조를 연결.
+- **`context`:** 한글 서술 + 괄호 안 절 참조(`(행 9:1–19; 행 11:25–26)`) 패턴.
 
 ### 독스트링·주석
 
@@ -131,7 +133,7 @@ JSON 오버레이·파일 기반 정적 데이터는 `@functools.lru_cache(maxsi
 
 ### 스크립트 멱등성 패턴
 
-`backend/scripts/`의 Neo4j 적재 스크립트는 모두 `MERGE`(노드·관계)를 사용해 재실행 시 중복을 만들지 않는다. `enrich_place_coords.py`는 `authored-place-*` id에만 MERGE 생성, 기존 `rec*` id는 좌표가 없는 경우에만 SET(기존 값 보존). `inject_ko_names.py`는 단순 SET(덮어쓰기). 스크립트는 실행 후 `print(...)` 집계 카운트로 결과를 사람이 확인하는 구조.
+`backend/scripts/`의 Neo4j 적재 스크립트는 모두 `MERGE`(노드·관계)를 사용해 재실행 시 중복을 만들지 않는다. `backend/scripts/enrich_place_coords.py`는 `authored-place-*` id에만 MERGE 생성, 기존 `rec*` id는 좌표가 없는 경우에만 SET(기존 값 보존). `backend/scripts/inject_ko_names.py`는 단순 SET(덮어쓰기). 스크립트는 실행 후 `print(...)` 집계 카운트로 결과를 사람이 확인하는 구조.
 
 ---
 
@@ -141,18 +143,21 @@ JSON 오버레이·파일 기반 정적 데이터는 `@functools.lru_cache(maxsi
 
 ### 함수 컴포넌트 + 인라인 스타일 객체
 
-- 전부 함수 컴포넌트. `export default function Name(props)` 또는 `function Name(){}` + 하단 `export default`(`VerseLangTabs.jsx`). 클래스 컴포넌트·외부 CSS 프레임워크 없음.
+- 전부 함수 컴포넌트. `export default function Name(props)` 또는 `function Name(){}` + 하단 `export default`(`frontend/src/VerseLangTabs.jsx`). 클래스 컴포넌트·외부 CSS 프레임워크 없음.
 - **스타일은 인라인 `style={{ ... }}` 객체가 표준.** CSS 모듈·styled-components 미사용. 전역 CSS는 `frontend/src/index.css`만 최소로 둠. 재사용 스타일은 모듈 상단에 `const boxStyle = {...}` 객체 상수로 추출해 스프레드(`{ ...boxStyle, color: ... }`)로 변형.
-- 색·치수는 `frontend/src/theme.js`(`TYPE_COLOR`/`SELECT_HL`)·`frontend/src/constants.js`(`MOBILE_BREAKPOINT`/`SHEET_VH`) 같은 단일 정본 상수에서 가져온다. 컴포넌트 로컬 색은 파일 상단 상수로(`GOLD`/`PERSON_BLUE` — `PersonHub.jsx`).
-- 애니메이션이 필요하면 컴포넌트가 인라인 `<style>{keyframes}</style>`를 직접 렌더(`Spinner.jsx`).
+- 색·치수는 `frontend/src/theme.js`(`TYPE_COLOR`/`SELECT_HL`)·`frontend/src/constants.js`(`MOBILE_BREAKPOINT`/`SHEET_VH`) 같은 단일 정본 상수에서 가져온다. 컴포넌트 로컬 색은 파일 상단 상수로(`GOLD`/`PERSON_BLUE` — `frontend/src/PersonHub.jsx`, `BOOK_COLOR` — `frontend/src/TimelineView.jsx`, `frontend/src/EventVerses.jsx`, `frontend/src/SidePanel.jsx`).
+- 애니메이션이 필요하면 컴포넌트가 인라인 `<style>{keyframes}</style>`를 직접 렌더(`frontend/src/Spinner.jsx`).
 
 ### 훅 사용 패턴
 
-- `useState`/`useEffect`/`useRef`/`useCallback`만 사용. 상태 로직이 재사용되면 커스텀 훅으로 분리(`frontend/src/useNodeSelection.js`가 선택 노드·히스토리·뒤로가기·person event-ids를 캡슐화).
-- **AbortController로 fetch 취소:** 데이터 fetch effect는 `const ctrl = new AbortController()` → `apiGet(path, { signal: ctrl.signal })` → cleanup `return () => ctrl.abort()` 패턴. `AbortError`는 `if (e?.name !== 'AbortError')`로 무시(`App.jsx`, `EventVerses.jsx`, `PersonHub.jsx`).
-- **set-state-in-effect 회피(react-hooks v7 lint):** effect 내 동기 setState를 피하고, async `.then(...)` 콜백 안에서만 setState하거나 `Promise.resolve().then(() => setX(...))`로 다음 틱에 미룬다(`App.jsx` 주석이 이 규칙을 명시).
-- **참조 안정화(useCallback):** 콜백 prop을 인라인 화살표로 넘기면 매 렌더 새 참조가 되어 자식 effect가 재실행되는 버그를 막으려고 `useCallback`으로 감싼다. `useNodeSelection.js`의 `selectNode`(`useCallback([])` + `selectedNodeRef`로 최신값 읽기), `App.jsx`의 `handleSidePanelNodeLoaded`. 이유가 주석으로 남아 있다.
-- **반응형:** `window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`)` effect에서 `change` 리스너 등록·해제(`App.jsx`, `PersonHub.jsx`의 `useIsMobile`).
+- `useState`/`useEffect`/`useRef`/`useCallback`/`useMemo`만 사용. 상태 로직이 재사용되면 커스텀 훅으로 분리(`frontend/src/useNodeSelection.js`가 선택 노드·히스토리·뒤로가기·person event-ids를 캡슐화).
+- **AbortController로 fetch 취소:** 데이터 fetch effect는 `const ctrl = new AbortController()` → `apiGet(path, { signal: ctrl.signal })` → cleanup `return () => ctrl.abort()` 패턴. `AbortError`는 `if (e?.name !== 'AbortError')`로 무시(`frontend/src/App.jsx`, `frontend/src/EventVerses.jsx`, `frontend/src/PersonHub.jsx`). 간소화 패턴으로 `let cancelled = false` 플래그를 쓰는 경우도 있다(`frontend/src/PersonHub.jsx`, `frontend/src/SidePanel.jsx`).
+- **set-state-in-effect 회피(react-hooks v7 lint):** effect 내 동기 setState를 피하고, async `.then(...)` 콜백 안에서만 setState하거나 `Promise.resolve().then(() => setX(...))`로 다음 틱에 미룬다(`frontend/src/App.jsx` 주석이 이 규칙을 명시). "setState는 비동기 콜백에서만 호출" 주석이 `frontend/src/SidePanel.jsx`에도 반복된다.
+- **stale 응답 무시 패턴 — `state.id === nodeId`:** `SidePanel.jsx`와 `EventVerses.jsx`는 `const [state, setState] = useState({ id: null, ... })` 형태로 "어느 id의 응답인지"를 상태 안에 포함한다. `const ready = state.id === nodeId`로 현재 nodeId와 일치할 때만 렌더하며, `.then()` 콜백에서 `setState({ id: nodeId, ... })`를 커밋해 늦게 도착한 구버전 응답이 현재 상태를 덮어쓰지 않게 막는다. `SidePanel.jsx` 주석이 "stale 응답은 무시"를 명시.
+- **파생 상태 키를 통한 자동 리셋:** `SidePanel.jsx`의 `placeVerseViewRaw`는 `{ forNodeId, eventId, ... }` 형태로 저장하고, 렌더 시 `placeVerseViewRaw?.forNodeId === nodeId` 비교로 유효한 상태만 꺼낸다. nodeId가 바뀌면 자동으로 `null`이 되어 effect 내 setState 없이 리셋된다. `placePersonsState`도 동일 패턴.
+- **참조 안정화(useCallback):** 콜백 prop을 인라인 화살표로 넘기면 매 렌더 새 참조가 되어 자식 effect가 재실행되는 버그를 막으려고 `useCallback`으로 감싼다. `frontend/src/useNodeSelection.js`의 `selectNode`(`useCallback([])` + `selectedNodeRef`로 최신값 읽기), `frontend/src/App.jsx`의 `handleSidePanelNodeLoaded`. 이유가 주석으로 남아 있다.
+- **반응형:** `window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`)` effect에서 `change` 리스너 등록·해제(`frontend/src/App.jsx`, `frontend/src/PersonHub.jsx`의 `useIsMobile`).
+- **`useMemo` 사용:** `frontend/src/TimelineView.jsx`는 이벤트 그룹핑(`groups`)과 필터 적용(`timeline`)에 `useMemo`를 사용해 렌더마다 재계산을 방지한다.
 
 ### 공유 API 클라이언트 (`apiGet`)
 
@@ -162,7 +167,7 @@ JSON 오버레이·파일 기반 정적 데이터는 `@functools.lru_cache(maxsi
 
 ### ko/en 절 본문 언어 패턴 (verseLang)
 
-- 절 본문 한국어/영어 토글 상태는 `App.jsx`의 `const [verseLang, setVerseLang] = useState('ko')`(기본 `ko`)가 정본. `verseLang`/`setVerseLang`을 prop으로 타임라인·SidePanel·`EventVerses`에 내려준다.
+- 절 본문 한국어/영어 토글 상태는 `frontend/src/App.jsx`의 `const [verseLang, setVerseLang] = useState('ko')`(기본 `ko`)가 정본. `verseLang`/`setVerseLang`을 prop으로 타임라인·SidePanel·`EventVerses`에 내려준다.
 - 토글 UI는 `frontend/src/VerseLangTabs.jsx`(한국어|영어 세그먼트, `color` prop로 테마 색 주입). 클릭 시 `e.stopPropagation()`으로 상위 행 선택과 분리.
 - 본문 선택은 `(verseLang === 'ko' ? v.textKo : v.textEn) || '원문이 없습니다'` — 응답 절 객체가 `textKo`/`textEn`을 모두 들고 있다(ADR-0003 프리베이크).
 
@@ -170,38 +175,48 @@ JSON 오버레이·파일 기반 정적 데이터는 `@functools.lru_cache(maxsi
 
 `frontend/src/JourneyList.jsx`는 여정 정차지를 "여정 > 사건 > 구절" 아코디언 트리로 표시한다.
 
-- **행(row) 클릭 = 지도 선택만.** 좌표가 있는 정차지면 `onStopSelect(dedupIdx)`로 지도 활성 정차지를 바꾸고, 열려 있던 구절은 닫는다(`setExpandedId(null)`).
+- **행(row) 클릭 = 지도 선택만.** 좌표가 있는 정차지면 `onStopSelect(dedupIdx)`로 지도 활성 정차지를 바꾸고, 열려 있던 구절은 닫는다.
 - **📖 칩 = 구절 토글, 단일 오픈.** `expandedId`(eventId 하나) 상태로 한 번에 하나만 펼친다. 칩은 `e.stopPropagation()`으로 행 onClick을 억제.
+- **데스크톱 vs 모바일 분기:** `onReadingChange` prop 유무로 제어 모드를 결정. `controlled=true`(모바일)이면 구절 펼침을 상위 `App`의 `readingEventId` 상태에 위임해 시트 높이 전환과 연동, `controlled=false`(데스크톱)이면 내부 `expandedId`로 인라인 아코디언.
 - **활성 하이라이트·자동 스크롤:** 지도 마커로 선택이 바뀌면 활성 정차지로 `scrollIntoView`. 리스트에서 직접 클릭한 경우는 `suppressScrollRef`로 자동 스크롤을 억제.
-- **동일좌표 dedup:** `(lng,lat)` 키로 정차지를 dedup해 배지 seq↔deduped 인덱스를 매핑(`MapView`의 `buildJourneyStopsGeoJSON`과 동일 로직, 주석으로 명시). 동일 좌표가 여러 사건에 걸치면 '첫' 정차지만 스크롤 타깃.
+- **동일좌표 dedup:** `(lng,lat)` 키로 정차지를 dedup해 배지 seq↔deduped 인덱스를 매핑(`frontend/src/MapView.jsx`의 `buildJourneyStopsGeoJSON`과 동일 로직, 주석으로 명시).
 
 ### mapGeo.js 순수 함수 모듈
 
 `frontend/src/mapGeo.js`는 MapLibre·DOM 의존이 없는 순수 변환 함수만 모은다.
 
-- `placesToGeoJSON(places)` — Place 배열 → GeoJSON FeatureCollection. 동일좌표 그룹은 방사 라벨 배치(`ringLabels`), 단독 좌표는 최근접 이웃 반대 방향 라벨.
+- `placesToGeoJSON(places)` — Place 배열 → GeoJSON FeatureCollection. 동일좌표 그룹(`~1e-4°` 기준)은 방사 라벨 배치(`ringLabels`), 단독 좌표는 최근접 이웃 반대 방향 라벨(`outwardLabel`). 라벨 방향 계산 시 `cos(lat)` 보정으로 화면 비율을 맞춘다.
 - `buildJourneyLineGeoJSON(stops)` — 좌표 있는 stops를 시간순 LineString으로. 연속 중복 좌표를 합쳐 0길이 세그먼트를 방지. `coordProgress` 배열을 properties에 포함(MapLibre line-gradient용).
-- `journeyStopGroups(stops)` — stops를 장소 단위로 그룹핑. `seqLabel`은 그 장소의 여정 순번 압축 표기(`compactSeqs`).
+- `journeyStopGroups(stops)` — stops를 장소 단위로 그룹핑. `seqLabel`은 그 장소의 여정 순번 압축 표기(`compactSeqs` 내부 함수 — `[6,7,8,10]` → `"6-8, 10"`).
 - `buildJourneyStopsGeoJSON(stops)` — `journeyStopGroups` 결과를 Point FeatureCollection으로.
 - `coreBounds(places)` — 원거리 outlier 장소를 fitBounds 범위에서 제외한 core bounds. median 중심 거리 기반 임계(중앙값×3).
 
-### 맵 클러스터 설정
+### 맵 소스·레이어 설정 (`mapLayers.js`, `mapRingController.js`)
 
-`frontend/src/mapLayers.js`의 `setupMapSources`에서 `places-source` GeoJSON 소스에 클러스터를 설정한다:
-- `clusterRadius: 18` — 마커 원이 실제 겹칠 때만 클러스터(마커 지름 ~21~27px 기준).
-- `clusterMinPoints: 4` — 동일/근접 좌표 2~3개는 버블 대신 방사 라벨 표시, 4개 이상만 클러스터.
+`frontend/src/mapLayers.js`의 `setupMapSources`는 `places-source`를 비롯한 7개 GeoJSON 소스와 레이어를 정의한다.
+
+- `places-source` 클러스터 설정: `clusterRadius: 18`(마커 원 실제 겹침 시만 클러스터), `clusterMinPoints: 4`(2~3개는 버블 대신 방사 라벨, 4개 이상만 버블).
+- 여정선 레이어(`journey-line`)는 `lineMetrics: true`가 필요하며, `line-gradient` 표현식으로 파란(시작)→주황(끝) 방향 그라데이션.
+- `frontend/src/mapRingController.js`의 `createRingController`는 사건 링/스파이더 애니메이션 공유 가변 상태를 클로저에 캡슐화해 `{ collapseRing, collapseSpider, expandPlace, spiderifyPlaces, destroy }` 4함수 반환.
+- `MapView.jsx` useEffect init: `onSelectNode`만 deps(`[onSelectNode]`)로, 맵 인스턴스는 effect 내 ref로 관리해 리렌더 시 재초기화되지 않는다.
+- `EMPTY_GEOJSON = { type: 'FeatureCollection', features: [] }`를 `mapLayers.js`에서 상수로 내보내 소스를 비울 때 재사용한다.
+
+### stale-while-revalidate 취소 패턴 (MapView 선택 effect)
+
+`frontend/src/MapView.jsx`의 선택 effect(`[personId, selectedNode, mapLoaded]`)는 AbortController + `if (mapRef.current !== map) return` 이중 가드로 컴포넌트 언마운트·맵 재초기화 시 응답 처리를 차단한다. `expandPlace` 자동 실행은 `moveend`+700ms 폴백 타이머의 `fired` 플래그로 단발(one-shot) 보장.
 
 ---
 
 ## 에러 처리
 
 - **백엔드:** 진짜 운영 실패만 처리한다. `get_node`/`get_node_places`는 노드 부재 시 `raise HTTPException(status_code=404, ...)`. 큐레이션 여정 엔드포인트는 의도적으로 404 대신 빈 응답(`stops=[]`)(`journey.py` 독스트링 명시). `get_driver()`는 비번 미설정 시 `RuntimeError`. JSON 파싱 실패는 빈 dict 폴백(`overlays._load`), `traits` 파싱 실패는 빈 배열 폴백(`nodes.py`). 좌표 캐스팅 실패는 `continue`로 스킵.
-- **프론트엔드:** fetch 실패는 컴포넌트별 사용자향 한글 메시지로 표면화 — 로딩 중 `Spinner`, 에러 시 빨강 텍스트(`인물 목록을 불러오지 못했습니다 — {error}`, `PersonHub.jsx`), 빈 결과 시 안내 문구(`표시할 구절이 없습니다`, `EventVerses.jsx`). `AbortError`는 항상 무시.
+- **프론트엔드:** fetch 실패는 컴포넌트별 사용자향 한글 메시지로 표면화 — 로딩 중 `Spinner`, 에러 시 빨강 텍스트(`frontend/src/PersonHub.jsx`), 빈 결과 시 안내 문구(`frontend/src/EventVerses.jsx`). `AbortError`는 항상 무시.
 
 ---
 
 ## 정적 검사 / 빌드 게이트
 
 - **ESLint(flat config, `frontend/eslint.config.js`):** `@eslint/js` recommended + `eslint-plugin-react-hooks`(flat recommended) + `eslint-plugin-react-refresh`(vite). `dist` 무시. `npm run lint`(= `eslint .`). 코드 주석이 react-hooks 규칙(set-state-in-effect 등)을 의식해 쓰여 있어 린트 통과가 사실상의 합의 기준.
-- **백엔드 린터·포매터 미설정.** `backend/requirements.txt`는 `fastapi`/`neo4j`/`uvicorn` 3개뿐.
+- **백엔드 린터·포매터 미설정.** `backend/requirements.txt`는 `fastapi==0.136.3`, `neo4j==6.2.0`, `uvicorn==0.49.0` 3개뿐.
 - 코드 스타일: JS는 세미콜론 생략·작은따옴표 우세. Python은 4-space, 타입 힌트는 부분적(`dict[str, str]`, `list[dict]` 신문법 사용).
+- **Vite 빌드(`frontend/vite.config.js`):** `manualChunks`로 `maplibre-gl`은 `maplibre` 청크, 나머지 `node_modules`는 `vendor` 청크로 분리.

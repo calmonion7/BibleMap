@@ -1,5 +1,5 @@
 ---
-last_mapped_commit: 0189ad9fb964e5eb4fcc91776b3202f7014058dd
+last_mapped_commit: 689126abab88e741263d1d9a4a73d81b2be617d9
 mapped: 2026-07-02
 ---
 
@@ -27,7 +27,9 @@ mapped: 2026-07-02
 
 ### 라우트 모듈 (`backend/app/routes/`)
 
-- **`persons.py`** — `GET /persons/curated`. Neo4j를 **쓰지 않고** `person_events/<slug>.json` 파일만으로 큐레이션 22인 목록을 정적 구성한다. 모듈 상수 `_ERA`(slug→시대, 22개), `_NAME_KO`(slug→한글명, 22개), `_ERA_ORDER`(시대 표시 순서 — `["족장", "출애굽·정복", "사사", "왕국", "선지자", "신약"]`)를 선언한다. `places.py`가 이 세 상수를 **단일 출처**로 import해 드리프트를 방지한다. `_build_list()`(`@lru_cache`)는 각 slug 파일 첫 이벤트의 `participants[0]`을 `theographic_id`로 삼아 `{id, slug, nameKo, era, eventCount, _anchor}`를 조립하며, `_anchor`는 해당 인물의 최소 sortKey(여정 최초 등장 시점)다. 정렬은 `(ERA_ORDER 인덱스, _anchor, slug)` 3-키로 시대 내에서 인물을 연대순으로 세운다. `_anchor`는 응답 전 제거된다.
+- **`persons.py`** — `GET /persons/curated`. Neo4j를 **쓰지 않고** `person_events/<slug>.json` 파일만으로 큐레이션 24인 목록을 정적 구성한다. 모듈 상수 `_ERA`(slug→시대, 24개), `_NAME_KO`(slug→한글명, 24개), `_ERA_ORDER`(시대 표시 순서 — `["족장", "출애굽·정복", "사사", "왕국", "선지자", "포로", "신약"]`)를 선언한다. `places.py`와 `journey.py`가 이 세 상수를 **단일 출처**로 import해 드리프트를 방지한다. `_build_list()`(`@lru_cache`)는 각 slug 파일 첫 이벤트의 `participants[0]`을 `theographic_id`로 삼아 `{id, slug, nameKo, era, eventCount, _anchor}`를 조립하며, `_anchor`는 해당 인물의 최소 sortKey(여정 최초 등장 시점)다. 정렬은 `(ERA_ORDER 인덱스, _anchor, slug)` 3-키로 시대 내에서 인물을 연대순으로 세운다. `_anchor`는 응답 전 제거된다.
+  - 현재 `_ERA` 키: abraham, isaac, jacob, joseph, moses, joshua, gideon, deborah, jephthah, samson, ruth, saul, samuel, david, solomon, elijah, isaiah, **daniel**, john_the_baptist, jesus, mary, paul, peter, john_the_apostle (24인).
+  - **"포로" 시대** 신설(ADR 미문서, `73bbe4d` commit): `_ERA_ORDER` 6번째 항목으로 추가. 현재 해당 인물: daniel.
 - **`places.py`** — `GET /place/{place_id}/curated-persons`. `persons.py`에서 `_ERA`/`_NAME_KO`/`_ERA_ORDER`를 import해 단일 출처를 사용한다. 특정 장소를 여정에 포함하는 큐레이션 인물 목록을 `person_events/<slug>.json`의 `occursAt` 배열을 검사해 필터링(`_place_to_persons`, `@lru_cache(maxsize=None)`). `_anchor` 기반 정렬 로직은 `persons.py _build_list`와 동일하다. `exclude` 쿼리로 현재 탐험 인물 제외.
 - **`journey.py`** — `GET /person/{person_id}/journey`. 큐레이션 인물의 시간순 여정 정차지. `persons.py`의 `_ERA`/`_NAME_KO`를 import해 `theographic_id→slug` 역매핑을 만들고(`_build_id_to_slug`), 해당 slug의 `person_events/<slug>.json`을 `sortKey`로 정렬한다(`_load_events`). 각 이벤트의 `occursAt[0]` place_id에 대해 Neo4j에서 `Place` 노드의 `longitude`/`latitude`/`nameKo`를 배치 조회(`_fetch_place_coords`)하고, 좌표가 있는 정차지에만 1부터 `seq`를 부여한다. 큐레이션 인물이 아니면 `stops=[]` 빈 응답(404 아님). 즉 **여정 = 파일 기반 사건 시퀀스 + Neo4j 좌표 조인**.
 - **`events.py`** — `GET /events`(타임라인 사건 목록)와 `GET /event/{event_id}/verses`(사건 근거 구절 드릴다운). `_compute_events()`(`@lru_cache`)는 Neo4j에서 `startDate IS NOT NULL`인 `Event`를 `sortKey` 순으로 조회하면서 `(Book)-[:CONTAINS_BOOK]->(Event)`로 연결된 책을 `bookOrder` 순 `books` 배열로 모으고, `authored`·`yearLabel`을 함께 반환한다. 여기에 오버레이 `book_events_raw()`를 역방향 인덱스(`_load_approx_book_index`, eventId→책 메타)로 머지해 **그래프 관계가 없는 추정책(집필 배경 연결)을 CONTAINS_BOOK 항목 뒤에 덧붙인다** — 그래프와 오버레이의 대표적 합류 지점. `/event/{id}/verses`는 오버레이 `event_verses()`에서 해당 사건의 권별 구절을 꺼내 Neo4j Book 이름맵(`_book_name_map`)으로 `bookNameKo`를 보강해 반환한다.
@@ -49,7 +51,7 @@ Theographic 데이터셋에 `Person` 노드가 없는 큐레이션 주인공을 
 
 **적재 순서 제약**: `load_authored_persons.py`가 `load_person_events.py`보다 **먼저** 실행돼야 여정 사건의 `HAS_PARTICIPANT MATCH`가 성립한다.
 
-현재 authored Person 6인: 사사 시대 5인(gideon·deborah·jephthah·samson·ruth) + 왕국 사울(saul). id 패턴 `authored-person-<slug>`.
+현재 authored Person 8인: 사사 시대 5인(gideon·deborah·jephthah·samson·ruth) + 왕국 사울(saul) + **선지자 엘리야(elijah) + 포로 다니엘(daniel)**. id 패턴 `authored-person-<slug>`.
 
 ### Authored-event 모델 (ADR-0005)
 
@@ -77,8 +79,8 @@ Theographic 데이터셋에 `Person` 노드가 없는 큐레이션 주인공을 
 
 ### 화면 단계(stage) 흐름 — `App.jsx`
 
-`activeStage` 상태가 `'hub' | 'explore' | 'overview'` 3단계를 토글한다:
-- **hub** — `PersonHub`. `/persons/curated`로 큐레이션 22인을 시대별 카드 그리드로. `ERA_ORDER`는 `['족장', '출애굽·정복', '사사', '왕국', '선지자', '신약']`. 카드 클릭 → `handleSelectPerson(id)` → explore 단계.
+`activeStage` 상태(`App.jsx:24`)가 `'hub' | 'explore' | 'overview'` 3단계를 토글한다:
+- **hub** — `PersonHub`. `/persons/curated`로 큐레이션 24인을 시대별 카드 그리드로. `ERA_ORDER`는 `['족장', '출애굽·정복', '사사', '왕국', '선지자', '포로', '신약']`. 카드 클릭 → `handleSelectPerson(id)` → explore 단계.
 - **explore** — 인물 선택 후. 상단 nav로 `exploreView`(`'map' | 'timeline'`) 토글. 인물 선택 시 `/person/{id}/journey`를 한 번 fetch해 `journeyStops`에 담고 `MapView`·`JourneyList`가 공유한다.
 - **overview** — `BibleOverviewView`. `/books-overview`를 장르별로 그룹핑.
 
@@ -86,15 +88,28 @@ Theographic 데이터셋에 `Person` 노드가 없는 큐레이션 주인공을 
 
 데스크톱은 우측 슬라이드인 `SidePanel`, 모바일(`MOBILE_BREAKPOINT=768`)은 하단 시트(`SHEET_VH=55`). 절 본문 언어 `verseLang`(`'ko'|'en'`)는 `TimelineView`·`SidePanel`·`EventVerses`가 공유하며 `VerseLangTabs`로 전환한다.
 
+### 모바일 여정 읽기 모드
+
+`App.jsx:43`에 `readingEventId` 상태가 있다. 모바일에서 `JourneyList`의 📖 칩을 탭하면 이 상태가 갱신돼 하단 스트립 높이가 `42dvh` → `90dvh`로 전환된다(`App.jsx:279`).
+
+- **`App.jsx:267-295`**: 모바일 여정 렌더 블록. `readingEventId` 유무로 컨테이너 `height`를 `readingEventId ? '90dvh' : '42dvh'`로 토글한다. `reduceMotion`이 false이면 CSS `transition: height 0.25s ease` 애니메이션이 동작한다.
+- **`App.jsx:270-274`**: `readingEventId`가 설정된 동안 지도 상단 노출 영역(top: 0, bottom: '90dvh')에 투명 div가 올라와 탭 시 `setReadingEventId(null)`을 호출한다. 이로써 지도 밴드를 탭하면 읽기 모드가 닫힌다.
+- **`JourneyList.jsx:14`** props: `readingEventId`(상위 소유), `onReadingChange` (setter). `onReadingChange`가 주어지면(모바일) "controlled 모드"로 동작한다.
+  - controlled 모드에서 📖 칩 클릭 → `onReadingChange(stop.eventId)` 호출(`JourneyList.jsx:177`). 리스트 대신 `EventVerses` 단독 표시로 전환(`JourneyList.jsx:37-49`).
+  - 데스크톱(controlled 아님)은 컴포넌트 내부 `expandedId` 상태로 인라인 아코디언 처리(`JourneyList.jsx:200-203`).
+- **`EventVerses.jsx:45`** 시그니처: `{ eventId, verseLang, setVerseLang, heading, onClose }`. `heading`/`onClose` 두 props가 있으면 읽기 레이아웃 활성화.
+  - 읽기 레이아웃: `flex-direction:column` 래퍼(`readWrapStyle`) 안에 **sticky 헤더**(사건명 + "▾ 여정으로" 닫기 버튼, `readHeadStyle`) + 권 칩·언어 탭·범위 라벨 고정 영역(`readTopStyle`) + 독립 스크롤 절 본문(`readBodyStyle`, `flex:1 minHeight:0 overflowY:auto`).
+  - 없으면(데스크톱 인라인) 기존 `boxStyle` div에 그대로 렌더링.
+
 ### 주요 컴포넌트
 
-- **`PersonHub.jsx`** — 큐레이션 인물 허브. `ERA_ORDER`/`ERA_META` 로 시대별 카드 섹션(사사·왕국 포함). 계약: `onSelectPerson(id)`, `onOpenOverview()`.
+- **`PersonHub.jsx`** — 큐레이션 인물 허브. `ERA_ORDER`/`ERA_META` 로 시대별 카드 섹션. "포로" 시대 포함(바벨론 포로기의 신앙). 계약: `onSelectPerson(id)`, `onOpenOverview()`.
 - **`MapView.jsx`** — MapLibre GL 지도. ESRI NatGeo 래스터 타일 기반. effect 3종: (1) `personId ?? selectedNode`로 `/node/{id}/places` fetch → `places-source`에 GeoJSON 세팅 + 카메라 프레이밍 + primary 장소의 사건 링 자동 펼침, (2) `journeyStops` 변경 시 여정선(`journey-line-source`)·정차지 배지(`journey-stops-source`) 갱신, (3) `activeStopIdx` 변경 시 활성 정차지 강조 + 카메라 이동. 지도 로직은 3개 헬퍼 모듈로 분리:
   - `mapGeo.js` — 순수 GeoJSON/기하 함수(`placesToGeoJSON`, `buildJourneyLineGeoJSON`, `buildJourneyStopsGeoJSON`, `journeyStopGroups`, `coreBounds`, `ringPositions`, `ringLabels`, 라벨 방사 배치).
   - `mapLayers.js` — `setupMapSources`(소스·레이어 정의: places 클러스터링 `clusterRadius:18`/`clusterMinPoints:4`, 여정선 그라데이션, 정차지 배지, 사건 링, 스파이더), `registerEventHandlers`(클릭/호버), `EMPTY_GEOJSON`. 팝업 HTML은 `escapeHtml`로 XSS 이스케이프.
   - `mapRingController.js` — `createRingController`로 사건 링 fly-out·스파이더 애니메이션 상태를 클로저에 캡슐화(`expandPlace`/`collapseRing`/`spiderifyPlaces`/`collapseSpider`/`destroy`). 링 펼침 시 사건을 가져와 방사 배치한다.
-- **`JourneyList.jsx`** — 여정 정차지를 "여정 > 사건 > 구절" 아코디언 트리로. 데스크톱은 좌측 290px, 모바일은 지도 위 하단 트리(동일 컴포넌트 재사용). 📖 칩으로 사건별 `EventVerses`를 한 번에 하나만 펼친다. 좌표 중복 정차지를 deduplicate해 지도 `activeStopIdx`(장소 단위 인덱스)와 동기화.
-- **`EventVerses.jsx`** — `/event/{id}/verses`로 권별 구절을 fetch해 권 칩 선택 + 언어 탭으로 본문 표시. 구절 본문은 오버레이에 프리베이크된 `textKo`/`textEn`.
+- **`JourneyList.jsx`** — 여정 정차지를 "여정 > 사건 > 구절" 아코디언 트리로. 데스크톱은 좌측 290px 고정 패널, 모바일은 지도 위 하단 스트립(동일 컴포넌트, controlled props). 좌표 중복 정차지를 deduplicate해 지도 `activeStopIdx`(장소 단위 인덱스)와 동기화. 모바일에서 읽기 모드 진입 시 `EventVerses` 단독 표시.
+- **`EventVerses.jsx`** — `/event/{id}/verses`로 권별 구절을 fetch해 권 칩 선택 + 언어 탭으로 본문 표시. `heading`/`onClose` props 여부로 읽기 레이아웃(모바일 전용) vs 인라인 레이아웃(데스크톱 전용) 분기. 구절 본문은 오버레이에 프리베이크된 `textKo`/`textEn`.
 - **`TimelineView.jsx`** — `/events`로 사건을 연도순 타임라인에. `bookFilter`(선택 책)·`personFilter`(`personEventIds`)로 필터, `authored` 사건 라벨링.
 - **`SidePanel.jsx`** — 노드 상세. `/node/{id}` + 이웃 그룹 + Place 구절 드릴다운 + "이 곳을 지난 다른 인물" 칩(`/place/{id}/curated-persons` → `onExplorePerson`). 관계 한글 라벨 `REL_KO`.
 - **`BibleOverviewView.jsx`** — 66권 개요, 장르(`OT_GENRE_ORDER`/`NT_GENRE_ORDER`)별 카드.

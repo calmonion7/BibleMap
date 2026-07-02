@@ -1,5 +1,5 @@
 ---
-last_mapped_commit: 0189ad9fb964e5eb4fcc91776b3202f7014058dd
+last_mapped_commit: 689126abab88e741263d1d9a4a73d81b2be617d9
 mapped: 2026-07-02
 ---
 
@@ -42,7 +42,7 @@ BibleMap/
 - `backend/app/db.py` — `get_driver()` Neo4j 싱글톤.
 - `backend/app/overlays.py` — `_resolve`/`_load` + `book_events_raw()`·`event_verses()` 캐시 로더.
 - `backend/app/routes/` 엔드포인트 모듈:
-  - `persons.py` — `GET /persons/curated`(파일 기반 큐레이션 22인 목록, `_ERA_ORDER` 6시대). `_ERA`·`_NAME_KO`·`_ERA_ORDER` 세 상수의 **단일 출처** — `places.py`·`journey.py`가 이 모듈에서 import한다. `_build_list`는 각 인물의 최소 sortKey를 `_anchor`로 계산해 시대 내 연대순 정렬 후 응답 전 `_anchor` 제거.
+  - `persons.py` — `GET /persons/curated`(파일 기반 큐레이션 24인 목록, `_ERA_ORDER` 7시대). `_ERA`·`_NAME_KO`·`_ERA_ORDER` 세 상수의 **단일 출처** — `places.py`·`journey.py`가 이 모듈에서 import한다. `_build_list`는 각 인물의 최소 sortKey를 `_anchor`로 계산해 시대 내 연대순 정렬 후 응답 전 `_anchor` 제거. **"포로" 시대 신설**: `_ERA_ORDER[5]`에 위치, 현재 대표 인물 daniel.
   - `journey.py` — `GET /person/{id}/journey`(여정 정차지, 파일 시퀀스 + Neo4j 좌표). `_ERA`·`_NAME_KO`를 `persons.py`에서 import.
   - `events.py` — `GET /events`, `GET /event/{id}/verses`.
   - `books.py` — `GET /books-overview`.
@@ -84,10 +84,10 @@ BibleMap/
 
 | 디렉터리 | 파일 | 형태/내용 |
 |----------|------|-----------|
-| `data/person_events/` | `<slug>.json` **×22** (abraham, isaac, jacob, joseph, moses, joshua, **gideon, deborah, jephthah, samson, ruth**, samuel, **saul**, david, solomon, isaiah, john_the_baptist, jesus, mary, paul, peter, john_the_apostle) | 인물 여정 사건 배열. `id`·`sortKey`·`occursAt`·`participants`·`context`·`books`. **여정 정차지의 권위 원천** |
-| `data/authored_persons/` | `people.json` (**6인**) | authored Person 노드 원천. `{id, name, nameKo}`. 사사 시대 5인(gideon·deborah·jephthah·samson·ruth) + 왕국 사울(saul). `load_authored_persons.py`가 Neo4j에 멱등 적재(ADR-0008) |
+| `data/person_events/` | `<slug>.json` **×24** (abraham, isaac, jacob, joseph, moses, joshua, gideon, deborah, jephthah, samson, ruth, samuel, saul, david, solomon, **elijah**, isaiah, **daniel**, john_the_baptist, jesus, mary, paul, peter, john_the_apostle) | 인물 여정 사건 배열. `id`·`sortKey`·`occursAt`·`participants`·`context`·`books`. **여정 정차지의 권위 원천** |
+| `data/authored_persons/` | `people.json` (**8인**) | authored Person 노드 원천. `{id, name, nameKo}`. 사사 시대 5인(gideon·deborah·jephthah·samson·ruth) + 왕국 사울(saul) + 선지자 엘리야(elijah) + 포로 다니엘(daniel). `load_authored_persons.py`가 Neo4j에 멱등 적재(ADR-0008) |
 | `data/authored_events/` | `events.json` (배열) | 독립 authored 사건. `mappedBookIds` 포함 |
-| `data/event_verses/` | `events.json` (617 키) | `{eventId: {books: [{bookId, bookOrder, rangeLabel, verses: [{verseID, chapter, verse, textKo, textEn}]}]}}` — 구절 본문 프리베이크 |
+| `data/event_verses/` | `events.json` (617+ 키) | `{eventId: {books: [{bookId, bookOrder, rangeLabel, verses: [{verseID, chapter, verse, textKo, textEn}]}]}}` — 구절 본문 프리베이크 |
 | `data/book_events/` | `books.json` (31 키) | `{bookId: [eventId, ...]}` 추정책↔사건 매핑(events.py가 역방향 머지) |
 | `data/names_ko/` | `books.json`·`events.json`·`groups.json`·`people.json`·`places.json` | `{theographic_id: {ko, alias: []}}` 한글 이름 |
 | `data/character_traits/` | `people.json` (31 키) | `{personId: {traits: [{trait, verse_ref, description, verse_textKo, verse_textEn}]}}` |
@@ -101,12 +101,21 @@ BibleMap/
 
 진입: `main.jsx`(`createRoot` + `<StrictMode>`) → `App.jsx`. 모든 소스가 단일 `src/` 평면 디렉터리에 있다(서브폴더 없음). 명명 관례: **컴포넌트는 PascalCase `.jsx`, 헬퍼/훅/상수는 camelCase `.js`**.
 
-- 단계/오케스트레이션: `App.jsx`(stage 토글·레이아웃), `useNodeSelection.js`(노드 선택 훅).
+- 단계/오케스트레이션: `App.jsx`(stage 토글·레이아웃·모바일 읽기 모드 소유), `useNodeSelection.js`(노드 선택 훅).
 - 화면 컴포넌트: `PersonHub.jsx`, `MapView.jsx`, `TimelineView.jsx`, `BibleOverviewView.jsx`, `SidePanel.jsx`, `JourneyList.jsx`, `EventVerses.jsx`.
 - 지도 헬퍼(MapView 분리): `mapGeo.js`(기하·GeoJSON), `mapLayers.js`(소스·레이어·이벤트 핸들러), `mapRingController.js`(링/스파이더 애니메이션).
 - 공유 모듈: `api.js`(`apiGet`), `theme.js`(`TYPE_COLOR`/`TYPE_KO`/`typeColor`/`SELECT_HL`), `constants.js`(`MOBILE_BREAKPOINT`/`SHEET_VH`).
 - 작은 공통 UI: `Spinner.jsx`, `VerseLangTabs.jsx`.
 - 전역 스타일: `index.css`. HTML 셸: `frontend/index.html`. 빌드 설정: `vite.config.js`(maplibre/vendor manualChunks), `eslint.config.js`.
+
+### 모바일 읽기 모드 관련 파일 위치
+
+- `App.jsx:43` — `readingEventId` 상태 선언.
+- `App.jsx:267-295` — 모바일 여정 블록: 컨테이너 높이 토글(`42dvh`↔`90dvh`) + 지도 밴드 탭 캐처 + `JourneyList` controlled 렌더.
+- `JourneyList.jsx:14` — `readingEventId`/`onReadingChange` props 수신. `onReadingChange != null`이면 controlled 모드.
+- `JourneyList.jsx:37-49` — controlled 모드에서 `readingEventId`가 있으면 리스트 대신 `EventVerses` 단독 표시.
+- `EventVerses.jsx:45` — `heading`/`onClose` props 존재 여부로 읽기 레이아웃 vs 인라인 레이아웃 분기.
+- `EventVerses.jsx:27-33` — 읽기 모드 전용 스타일 상수(`readWrapStyle`/`readHeadStyle`/`readTopStyle`/`readBodyStyle`/`closeBtnStyle`).
 
 ## 최상위 (top-level)
 
@@ -124,7 +133,7 @@ BibleMap/
 - **slug** — 큐레이션 인물 파일/매핑 키(`abraham`, `john_the_apostle` 등 snake_case). 백엔드 `_ERA`/`_NAME_KO` dict 키.
 - **authored 사건 id** — `authored-<인물>-<장소>-<사건>` 패턴(예 `authored-jesus-bethlehem-birth`).
 - **authored 장소 id** — `authored-place-<name>` 패턴.
-- **authored 인물 id** — `authored-person-<slug>` 패턴(예 `authored-person-gideon`, `authored-person-saul`). Theographic에 없는 큐레이션 주인공에만 사용. 현재 6인: gideon·deborah·jephthah·samson·ruth·saul.
+- **authored 인물 id** — `authored-person-<slug>` 패턴(예 `authored-person-gideon`, `authored-person-daniel`). Theographic에 없는 큐레이션 주인공에만 사용. 현재 8인: gideon·deborah·jephthah·samson·ruth·saul·elijah·daniel.
 - **백엔드 모듈 내부 함수**: 캐시·헬퍼는 `_` 접두 비공개(`_build_list`, `_compute_events`, `_resolve`), 다수 `@functools.lru_cache`.
 - **API 경로**: 리소스 단수 + 동작(`/person/{id}/journey`, `/event/{id}/verses`, `/node/{id}/places`); 목록은 복수(`/events`, `/persons/curated`, `/books-overview`).
 - **사람이 읽는 라벨·docstring은 한글**, 식별자/키/경로는 영문.
