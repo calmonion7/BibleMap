@@ -1,0 +1,112 @@
+[
+  {
+    "id": "authored-jonah-flight-joppa",
+    "title": "Jonah flees to Joppa, boarding a ship for Tarshish",
+    "nameKo": "니느웨 명령과 다시스 도피 — 욥바 승선",
+    "startDate": "-760",
+    "sortKey": -760,
+    "yearLabel": "BC 760경",
+    "context": "니느웨로 가서 외치라는 여호와의 말씀을 피해 욥바로 내려가 다시스행 배를 탐 (욘 1:1–3).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-joppa"
+    ],
+    "participants": [
+      "authored-person-jonah"
+    ],
+    "books": [
+      {
+        "bookId": "recHPjIgqDYfAbySY",
+        "rangeLabel": "1:1–3"
+      }
+    ]
+  },
+  {
+    "id": "authored-jonah-storm-sea",
+    "title": "The storm — Jonah cast into the sea",
+    "nameKo": "폭풍 — 바다에 던져지다",
+    "startDate": "-760",
+    "sortKey": -759.9,
+    "yearLabel": "BC 760경",
+    "context": "여호와께서 큰 바람을 바다에 내리시매 배가 깨어질 지경이 됨. 제비가 요나에게 뽑히고, 바다에 던져지자 잔잔해짐 (욘 1:11–15).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-mediterranean"
+    ],
+    "participants": [
+      "authored-person-jonah"
+    ],
+    "books": [
+      {
+        "bookId": "recHPjIgqDYfAbySY",
+        "rangeLabel": "1:11–15"
+      }
+    ]
+  },
+  {
+    "id": "authored-jonah-fish-prayer",
+    "title": "Jonah's prayer inside the great fish",
+    "nameKo": "큰 물고기 뱃속의 기도",
+    "startDate": "-760",
+    "sortKey": -759.8,
+    "yearLabel": "BC 760경",
+    "context": "여호와께서 예비하신 큰 물고기 뱃속에서 밤낮 사흘을 지내며 기도함. 물고기가 요나를 육지에 토해냄 (욘 2:1–10).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-mediterranean"
+    ],
+    "participants": [
+      "authored-person-jonah"
+    ],
+    "books": [
+      {
+        "bookId": "recHPjIgqDYfAbySY",
+        "rangeLabel": "2:1–10"
+      }
+    ]
+  },
+  {
+    "id": "authored-jonah-nineveh-preaching",
+    "title": "Jonah preaches; Nineveh repents",
+    "nameKo": "니느웨 선포와 온 성의 회개",
+    "startDate": "-759",
+    "sortKey": -759,
+    "yearLabel": "BC 759경",
+    "context": "사흘 길 큰 성 니느웨에 '사십 일이 지나면 무너지리라' 외치매 왕부터 백성까지 금식하며 회개함 (욘 3:4–10).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-nineveh"
+    ],
+    "participants": [
+      "authored-person-jonah"
+    ],
+    "books": [
+      {
+        "bookId": "recHPjIgqDYfAbySY",
+        "rangeLabel": "3:4–10"
+      }
+    ]
+  },
+  {
+    "id": "authored-jonah-gourd-lesson",
+    "title": "The gourd and God's compassion",
+    "nameKo": "박넝쿨과 하나님의 긍휼",
+    "startDate": "-759",
+    "sortKey": -758.9,
+    "yearLabel": "BC 759경",
+    "context": "성읍의 동편에서 박넝쿨의 그늘을 기뻐하다 그것이 시들자 성냄. '하물며 십이만여 명이 있는 큰 성 니느웨를 내가 아끼지 아니하겠느냐' (욘 4:9–11).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-nineveh"
+    ],
+    "participants": [
+      "authored-person-jonah"
+    ],
+    "books": [
+      {
+        "bookId": "recHPjIgqDYfAbySY",
+        "rangeLabel": "4:9–11"
+      }
+    ]
+  }
+]

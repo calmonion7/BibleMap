@@ -1,0 +1,134 @@
+[
+  {
+    "id": "authored-esther-queen-chosen",
+    "title": "Esther chosen as queen of Persia",
+    "nameKo": "와스디 폐위와 왕후 간택",
+    "startDate": "-479",
+    "sortKey": -479,
+    "yearLabel": "BC 479경",
+    "context": "아하수에로 왕이 와스디를 폐위한 후 수산 궁에 모인 처녀들 중 에스더가 왕의 은총을 입어 왕후가 됨 (에 2:15–17).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-susa"
+    ],
+    "participants": [
+      "authored-person-esther"
+    ],
+    "books": [
+      {
+        "bookId": "rec6yHFZ6w7UUw5Cu",
+        "rangeLabel": "2:15–17"
+      }
+    ]
+  },
+  {
+    "id": "authored-esther-mordecai-plot",
+    "title": "Mordecai uncovers the assassination plot",
+    "nameKo": "모르드개의 역모 고발",
+    "startDate": "-478",
+    "sortKey": -478,
+    "yearLabel": "BC 478경",
+    "context": "대궐 문을 지키던 모르드개가 왕을 암살하려는 내시들의 음모를 알아내 에스더를 통해 고발함. 궁중 일기에 기록됨 (에 2:21–23).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-susa"
+    ],
+    "participants": [
+      "authored-person-esther"
+    ],
+    "books": [
+      {
+        "bookId": "rec6yHFZ6w7UUw5Cu",
+        "rangeLabel": "2:21–23"
+      }
+    ]
+  },
+  {
+    "id": "authored-esther-haman-decree",
+    "title": "Haman's decree to destroy the Jews",
+    "nameKo": "하만의 유다인 말살 조서",
+    "startDate": "-474",
+    "sortKey": -474,
+    "yearLabel": "BC 474경",
+    "context": "자기에게 절하지 않는 모르드개에게 분노한 하만이 아달월 십삼일에 모든 유다인을 멸하라는 조서를 내림 (에 3:8–13).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-susa"
+    ],
+    "participants": [
+      "authored-person-esther"
+    ],
+    "books": [
+      {
+        "bookId": "rec6yHFZ6w7UUw5Cu",
+        "rangeLabel": "3:8–13"
+      }
+    ]
+  },
+  {
+    "id": "authored-esther-if-i-perish",
+    "title": "\"If I perish, I perish\" — Esther's resolve",
+    "nameKo": "\"죽으면 죽으리이다\" — 금식과 결단",
+    "startDate": "-474",
+    "sortKey": -473.9,
+    "yearLabel": "BC 474경",
+    "context": "'네가 왕후의 위를 얻은 것이 이 때를 위함이 아닌지' 모르드개의 말에 사흘 금식 후 규례를 어기고 왕 앞에 나아가기로 결단함 (에 4:13–16).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-susa"
+    ],
+    "participants": [
+      "authored-person-esther"
+    ],
+    "books": [
+      {
+        "bookId": "rec6yHFZ6w7UUw5Cu",
+        "rangeLabel": "4:13–16"
+      }
+    ]
+  },
+  {
+    "id": "authored-esther-haman-downfall",
+    "title": "Haman's downfall at Esther's banquet",
+    "nameKo": "잔치에서 드러난 하만의 몰락",
+    "startDate": "-473",
+    "sortKey": -473.5,
+    "yearLabel": "BC 473경",
+    "context": "두 번째 잔치에서 에스더가 하만의 음모를 왕에게 고하매, 하만이 모르드개를 달려고 세운 나무에 자신이 달림 (에 7:3–10).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-susa"
+    ],
+    "participants": [
+      "authored-person-esther"
+    ],
+    "books": [
+      {
+        "bookId": "rec6yHFZ6w7UUw5Cu",
+        "rangeLabel": "7:3–10"
+      }
+    ]
+  },
+  {
+    "id": "authored-esther-purim",
+    "title": "Deliverance of the Jews and Purim",
+    "nameKo": "유다인의 구원과 부림절 제정",
+    "startDate": "-473",
+    "sortKey": -473,
+    "yearLabel": "BC 473경",
+    "context": "왕의 새 조서로 유다인들이 대적에게서 구원받고, 이 날을 기념해 부림절을 지키게 함 (에 9:20–22).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-susa"
+    ],
+    "participants": [
+      "authored-person-esther"
+    ],
+    "books": [
+      {
+        "bookId": "rec6yHFZ6w7UUw5Cu",
+        "rangeLabel": "9:20–22"
+      }
+    ]
+  }
+]

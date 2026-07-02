@@ -38,5 +38,25 @@
     "id": "authored-person-daniel",
     "name": "Daniel",
     "nameKo": "다니엘"
+  },
+  {
+    "id": "authored-person-elisha",
+    "name": "Elisha",
+    "nameKo": "엘리사"
+  },
+  {
+    "id": "authored-person-jonah",
+    "name": "Jonah",
+    "nameKo": "요나"
+  },
+  {
+    "id": "authored-person-esther",
+    "name": "Esther",
+    "nameKo": "에스더"
+  },
+  {
+    "id": "authored-person-nehemiah",
+    "name": "Nehemiah",
+    "nameKo": "느헤미야"
   }
 ]

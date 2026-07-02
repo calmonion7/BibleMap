@@ -1,0 +1,134 @@
+[
+  {
+    "id": "authored-nehemiah-news-prayer",
+    "title": "News of Jerusalem; Nehemiah prays in Susa",
+    "nameKo": "예루살렘 소식과 금식 기도",
+    "startDate": "-446",
+    "sortKey": -446,
+    "yearLabel": "BC 446경",
+    "context": "수산 궁에서 술 관원으로 있던 느헤미야가 예루살렘 성벽이 무너지고 성문이 불탔다는 소식에 수일 동안 슬퍼하며 금식 기도함 (느 1:3–4).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-susa"
+    ],
+    "participants": [
+      "authored-person-nehemiah"
+    ],
+    "books": [
+      {
+        "bookId": "rec3WEGPl0a1PS0cC",
+        "rangeLabel": "1:3–4"
+      }
+    ]
+  },
+  {
+    "id": "authored-nehemiah-kings-permission",
+    "title": "Artaxerxes grants permission to rebuild",
+    "nameKo": "아닥사스다 왕의 파견 허락",
+    "startDate": "-445",
+    "sortKey": -445,
+    "yearLabel": "BC 445경",
+    "context": "왕이 수심에 찬 느헤미야에게 소원을 물으매 예루살렘 재건을 청함. 왕이 조서와 재목을 허락함 (느 2:4–8).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-susa"
+    ],
+    "participants": [
+      "authored-person-nehemiah"
+    ],
+    "books": [
+      {
+        "bookId": "rec3WEGPl0a1PS0cC",
+        "rangeLabel": "2:4–8"
+      }
+    ]
+  },
+  {
+    "id": "authored-nehemiah-night-inspection",
+    "title": "Night inspection of the walls",
+    "nameKo": "예루살렘 도착과 야간 성벽 시찰",
+    "startDate": "-445",
+    "sortKey": -444.9,
+    "yearLabel": "BC 445경",
+    "context": "예루살렘에 이른 지 사흘 만에 밤에 일어나 무너진 성벽과 불탄 성문을 둘러보고 재건을 선포함 (느 2:11–17).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "authored-person-nehemiah"
+    ],
+    "books": [
+      {
+        "bookId": "rec3WEGPl0a1PS0cC",
+        "rangeLabel": "2:11–17"
+      }
+    ]
+  },
+  {
+    "id": "authored-nehemiah-wall-opposition",
+    "title": "Rebuilding under opposition — sword and trowel",
+    "nameKo": "성벽 재건과 산발랏의 방해",
+    "startDate": "-445",
+    "sortKey": -444.8,
+    "yearLabel": "BC 445경",
+    "context": "산발랏과 도비야의 조롱·습격 위협 속에 한 손으로 일하고 한 손에 병기를 잡고 성벽을 쌓음 (느 4:16–18).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "authored-person-nehemiah"
+    ],
+    "books": [
+      {
+        "bookId": "rec3WEGPl0a1PS0cC",
+        "rangeLabel": "4:16–18"
+      }
+    ]
+  },
+  {
+    "id": "authored-nehemiah-wall-completed",
+    "title": "The wall completed in fifty-two days",
+    "nameKo": "52일 만의 성벽 완공",
+    "startDate": "-445",
+    "sortKey": -444.7,
+    "yearLabel": "BC 445",
+    "context": "엘룰월 이십오일, 시작한 지 오십이 일 만에 성벽이 완공되매 대적들이 하나님께서 이루신 일임을 알고 낙담함 (느 6:15–16).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "authored-person-nehemiah"
+    ],
+    "books": [
+      {
+        "bookId": "rec3WEGPl0a1PS0cC",
+        "rangeLabel": "6:15–16"
+      }
+    ]
+  },
+  {
+    "id": "authored-nehemiah-law-reading",
+    "title": "Ezra reads the Law at the Water Gate",
+    "nameKo": "수문 앞 율법 낭독과 언약 갱신",
+    "startDate": "-444",
+    "sortKey": -444,
+    "yearLabel": "BC 444경",
+    "context": "수문 앞 광장에서 학사 에스라가 새벽부터 정오까지 율법책을 낭독하고 백성이 울며 듣다가 '여호와로 인하여 기뻐하는 것이 너희의 힘이니라' 위로받음 (느 8:8–10).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "authored-person-nehemiah"
+    ],
+    "books": [
+      {
+        "bookId": "rec3WEGPl0a1PS0cC",
+        "rangeLabel": "8:8–10"
+      }
+    ]
+  }
+]

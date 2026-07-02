@@ -1,0 +1,156 @@
+[
+  {
+    "id": "authored-elisha-call",
+    "title": "Elijah calls Elisha at Abel-meholah",
+    "nameKo": "부름 받음 — 겉옷이 던져지다",
+    "startDate": "-852",
+    "sortKey": -852,
+    "yearLabel": "BC 852경",
+    "context": "밭을 갈던 엘리사에게 엘리야가 겉옷을 던짐. 소를 잡아 잔치한 후 엘리야를 따라 수종듦. 아벨므홀라(요단 계곡) (왕상 19:19–21).",
+    "authored": true,
+    "occursAt": [
+      "rec5dSSsOutWlH2fW"
+    ],
+    "participants": [
+      "authored-person-elisha"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "19:19–21"
+      }
+    ]
+  },
+  {
+    "id": "authored-elisha-mantle-jordan",
+    "title": "Elisha takes Elijah's mantle and parts the Jordan",
+    "nameKo": "엘리야 승천 — 겉옷으로 요단을 가르다",
+    "startDate": "-850",
+    "sortKey": -850,
+    "yearLabel": "BC 850경",
+    "context": "엘리야가 회리바람으로 승천한 후 떨어진 겉옷을 주워 요단강을 치니 물이 갈라짐. 갑절의 영감을 구함 (왕하 2:9–14).",
+    "authored": true,
+    "occursAt": [
+      "rec5dSSsOutWlH2fW"
+    ],
+    "participants": [
+      "authored-person-elisha"
+    ],
+    "books": [
+      {
+        "bookId": "recutYqTqunXPJKQO",
+        "rangeLabel": "2:9–14"
+      }
+    ]
+  },
+  {
+    "id": "authored-elisha-jericho-water",
+    "title": "Elisha heals the waters of Jericho",
+    "nameKo": "여리고 물 고침",
+    "startDate": "-850",
+    "sortKey": -849.5,
+    "yearLabel": "BC 850경",
+    "context": "여리고의 나쁜 물에 소금을 던져 고침. '이 물이 고쳐졌으니 다시는 죽음이나 토산이 익지 못하고 떨어짐이 없으리라' (왕하 2:19–22).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-jericho"
+    ],
+    "participants": [
+      "authored-person-elisha"
+    ],
+    "books": [
+      {
+        "bookId": "recutYqTqunXPJKQO",
+        "rangeLabel": "2:19–22"
+      }
+    ]
+  },
+  {
+    "id": "authored-elisha-shunem-son",
+    "title": "Elisha raises the Shunammite's son",
+    "nameKo": "수넴 여인의 아들을 살리다",
+    "startDate": "-845",
+    "sortKey": -845,
+    "yearLabel": "BC 845경",
+    "context": "자기를 대접한 수넴 여인에게 아들을 약속하고, 그 아이가 죽자 몸을 포개어 기도해 살려냄 (왕하 4:32–37).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-shunem"
+    ],
+    "participants": [
+      "authored-person-elisha"
+    ],
+    "books": [
+      {
+        "bookId": "recutYqTqunXPJKQO",
+        "rangeLabel": "4:32–37"
+      }
+    ]
+  },
+  {
+    "id": "authored-elisha-naaman",
+    "title": "Naaman healed in the Jordan",
+    "nameKo": "나아만의 나병 치유 — 요단강 일곱 번",
+    "startDate": "-840",
+    "sortKey": -840,
+    "yearLabel": "BC 840경",
+    "context": "아람 군대장관 나아만에게 요단강에 일곱 번 몸을 씻으라 함. 순종하매 어린아이 살 같이 회복됨 (왕하 5:10–14).",
+    "authored": true,
+    "occursAt": [
+      "rec5dSSsOutWlH2fW"
+    ],
+    "participants": [
+      "authored-person-elisha"
+    ],
+    "books": [
+      {
+        "bookId": "recutYqTqunXPJKQO",
+        "rangeLabel": "5:10–14"
+      }
+    ]
+  },
+  {
+    "id": "authored-elisha-dothan-chariots",
+    "title": "Chariots of fire at Dothan",
+    "nameKo": "도단의 불말과 불병거",
+    "startDate": "-838",
+    "sortKey": -838,
+    "yearLabel": "BC 838경",
+    "context": "아람 군대가 도단을 에워싸자 사환의 눈을 열어 불말과 불병거가 산에 가득함을 보게 함. '우리와 함께 한 자가 저와 함께 한 자보다 많으니라' (왕하 6:15–17).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-dothan"
+    ],
+    "participants": [
+      "authored-person-elisha"
+    ],
+    "books": [
+      {
+        "bookId": "recutYqTqunXPJKQO",
+        "rangeLabel": "6:15–17"
+      }
+    ]
+  },
+  {
+    "id": "authored-elisha-samaria-siege",
+    "title": "Elisha prophesies the end of Samaria's siege",
+    "nameKo": "사마리아 포위 — 구원 예언",
+    "startDate": "-835",
+    "sortKey": -835,
+    "yearLabel": "BC 835경",
+    "context": "아람의 포위로 극심한 기근에 빠진 사마리아에 '내일 이맘때 성문에서 고운 가루가 헐값이 되리라' 예언하고 그대로 이루어짐 (왕하 7:1–2).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-samaria"
+    ],
+    "participants": [
+      "authored-person-elisha"
+    ],
+    "books": [
+      {
+        "bookId": "recutYqTqunXPJKQO",
+        "rangeLabel": "7:1–2"
+      }
+    ]
+  }
+]
