@@ -1,5 +1,5 @@
 ---
-last_mapped_commit: 689126abab88e741263d1d9a4a73d81b2be617d9
+last_mapped_commit: 99d42c8518af00f3e0bf4a4ba90f821d84cf42e5
 mapped: 2026-07-02
 ---
 # 테스트 패턴
@@ -43,7 +43,7 @@ docker compose -p biblemap up -d api nginx
 백엔드 라우트는 curl로 응답 형상을 직접 확인한다. nginx 프록시 경유(`http://localhost:8080/api/...`) 또는 API 직접 호출(`http://localhost:8000/...`). 자동 assert가 아니라 응답 JSON을 사람이 검토하는 방식이다.
 
 예시 점검 대상:
-- `GET /persons/curated` — 24인 slug 목록, `id`/`slug`/`nameKo`/`era`/`eventCount` 형상 확인, 시대 내 시간순 정렬 확인
+- `GET /persons/curated` — 인물 목록, `id`/`slug`/`nameKo`/`era`/`eventCount` 형상 확인, 시대 내 시간순 정렬 확인
 - `GET /person/{id}/journey` — `stops` 배열, `seq`/`lng`/`lat` 부여 여부
 - `GET /node/{id}` — 라벨 분기, `neighbors`/`properties` 형상
 - `GET /events` — `books` 배열 포함 여부, `sortKey` 정렬 확인
@@ -54,16 +54,96 @@ docker compose -p biblemap up -d api nginx
 
 사용자 메모리에 정착된 수동 검증 절차. **Python Playwright**를 사용한다(JS Playwright 아님).
 
+#### 실행 환경
+
 - **런타임:** `/opt/homebrew`에 설치된 Python Playwright. `from playwright.sync_api import sync_playwright` 동기 API.
-- **대상:** `http://localhost:8080`(nginx가 서빙하는 빌드된 프론트).
-- **데스크톱 + 모바일 둘 다:** 뷰포트를 명시해 두 폭을 모두 점검한다 — 데스크톱은 `new_page(viewport={"width": 1400, "height": 900})`(우측 SidePanel 경로), 모바일은 좁은 뷰포트(`MOBILE_BREAKPOINT` 768px 이하, 하단 시트 경로).
-- **패턴:** `page.goto(..., wait_until='networkidle')` → 셀렉터·`inner_text()`로 DOM/문구 단언 → `page.screenshot(path=...)` 저장. 네트워크 요청 캡처 + 스크린샷으로 "사용자가 본 화면 + `/api/*` 응답"을 함께 검증.
-- **결과 보고:** PASS/FAIL/SKIP 문자열을 dict에 모아 `print`로 출력하고 최종 `ALL PASS`/`SOME FAILED`를 찍는 형태.
-- **선행 조건:** 위 2번대로 `npm run build` + 컨테이너 기동이 끝난 상태여야 한다.
+- **대상:** `http://localhost:8080`(nginx가 서빙하는 빌드된 프론트). Vite dev 서버(5173)는 검증 대상이 아니다 — API 기본값이 `localhost:8000`(CORS 미매핑)이라 curl 000 실패.
+- **선행 조건:** `npm run build` + 컨테이너 기동이 끝난 상태.
 
-별도 `playwright.config.*`나 스펙 파일은 리포의 소스 트리에 커밋돼 있지 않다. Playwright 스크립트는 검증 시점에 일회성으로 작성·실행되며, 작업 산출물로 `.forge/reports/`에 남는다(`task70_verify.py`, `task70_explore.py`, `task_place_dom_probe.py`, `task_place_context_verify.py` 등 — `.gitignore` 대상으로 소스가 아님). 검증 절차 자체는 `.forge/retro/` 회고에 기록됨.
+#### 기본 패턴
 
-### 5. Neo4j Cypher 직접 점검
+```python
+from playwright.sync_api import sync_playwright
+
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True)
+    page = browser.new_page(viewport={"width": 1400, "height": 900})
+    page.goto('http://localhost:8080', wait_until='networkidle', timeout=15000)
+    # ... 셀렉터·inner_text()로 DOM/문구 단언 ...
+    page.screenshot(path='/Users/calmonion/Project/BibleMap/.forge/reports/<task>-<step>.png')
+    browser.close()
+```
+
+- `wait_until='networkidle'`: 페이지 로드 + 최초 API fetch 완료까지 대기.
+- `page.wait_for_timeout(N)`: 비동기 state 변화(API 응답 후 렌더) 대기. 클릭 후 1000~1500ms 부여.
+- 셀렉터: `page.locator('text=...')`, `page.get_by_text(...)`, `page.locator('button:has-text(...)')` 혼용. DOM 순회가 필요하면 `page.evaluate('() => { ... }')` JS 인라인.
+- `inner_text()` / `count()` / `is_visible()` / `click()` / `fill()` 조합으로 UI 동작 단언.
+
+#### 결과 보고 패턴
+
+```python
+results = {}
+results['some_check'] = 'PASS - 설명' # or 'FAIL - 이유' or 'SKIP'
+all_pass = all(v.startswith('PASS') or v.startswith('SKIP') for v in results.values())
+for key, val in results.items():
+    print(f"  {key}: {val}")
+print(f"\n최종: {'ALL PASS' if all_pass else 'SOME FAILED'}")
+```
+
+PASS/FAIL/SKIP 문자열을 dict에 모아 `print`로 출력하고 최종 `ALL PASS`/`SOME FAILED`를 찍는 형태가 표준.
+
+#### 데스크톱·모바일 이중 검증
+
+뷰포트를 명시해 두 폭을 모두 점검한다:
+- **데스크톱:** `new_page(viewport={"width": 1400, "height": 900})` — 우측 SidePanel 슬라이드인 경로.
+- **모바일:** 좁은 뷰포트(`MOBILE_BREAKPOINT` 768px 이하) — 하단 시트·여정 스트립 경로.
+
+#### 스크린샷 저장 위치
+
+검증 시점에 일회성으로 작성·실행하며, 작업 산출물로 `.forge/reports/`에 남긴다. 예:
+- `.forge/reports/task70_verify.py` / `.forge/reports/task70_verify.png`
+- `.forge/reports/task_place_context_verify.py` / `.forge/reports/place_hebron_ko.png`
+
+소스 트리에 별도 `playwright.config.*`나 스펙 파일은 커밋하지 않는다. 검증 절차 자체는 `.forge/retro/` 회고에 기록됨.
+
+#### 네트워크 캡처 + DOM 단언 복합 패턴
+
+일부 검증 스크립트는 DOM 확인과 함께 API 응답 내용을 간접 검증한다(`task_place_context_verify.py` 참조 패턴):
+
+```python
+# API 응답이 UI에 반영됐는지 DOM 텍스트로 확인
+body_text = page.locator('body').inner_text()
+has_author = '모세' in body_text
+# 특정 섹션 헤더 클릭 → 펼침 확인
+hdr = page.locator("button:has-text('장소 배경')").first
+hdr.click()
+page.wait_for_timeout(400)
+# 보라 박스 border-left 스타일로 구절 컨테이너 선택
+box = page.locator("div[style*='border-left'][style*='#f5f3ff']").first
+ko_text = box.inner_text(timeout=1500).strip()
+# 언어 탭 전환
+page.locator("button:has-text('영어')").first.click()
+```
+
+### 5. 데이터 파이프라인 null 검증 (구절 본문 품질 점검)
+
+`backend/scripts/generate_verse_text.py` 실행 후 `null` 카운트를 콘솔에서 확인하는 관행. 이것이 구절 본문 파이프라인의 유일한 품질 지표다.
+
+```
+event_verses: {'kept': N, 'filled': N, 'null': N}
+book_context: {'kept': N, 'filled': N, 'null': N}
+character_traits: {'kept': N, 'filled': N, 'null': N}
+place_context: {'kept': N, 'filled': N, 'null': N}
+```
+
+**신규 사건 구절 null 0 확인이 완료 기준.** 예시:
+
+- 사울 사건 신규 추가 후: "사울 114구절 null 0" — 사울과 무관한 기존 24건 null은 versification 차이(KJV엔 있으나 개역 절번호 미존재)로 무시 가능한 상수.
+- 솔로몬 신규 6사건 56구절 null 0, 엘리야·다니엘 등 신규 사건 null 0 기준으로 task 완료 판정.
+
+`backend/scripts/generate_verse_text.py`의 `main()`은 마지막에 알려진 절(창 1:1, 마 9:36, 첫 event_verses 사건 첫 절)의 ko·en 본문을 `print`로 육안 확인용으로 출력한다.
+
+### 6. Neo4j Cypher 직접 점검
 
 데이터 적재 스크립트 실행 후 또는 그래프 데이터 이상 의심 시 `cypher-shell`로 직접 쿼리해 확인한다.
 

@@ -1,5 +1,5 @@
 ---
-last_mapped_commit: 689126abab88e741263d1d9a4a73d81b2be617d9
+last_mapped_commit: 99d42c8518af00f3e0bf4a4ba90f821d84cf42e5
 mapped: 2026-07-02
 ---
 # 코딩 컨벤션
@@ -71,7 +71,7 @@ JSON 오버레이·파일 기반 정적 데이터는 `@functools.lru_cache(maxsi
 
 `places.py` 모듈 독스트링이 이 단일 출처 원칙을 "드리프트 방지"로 명시하고 있다.
 
-현재 큐레이션 인물 슬러그 목록(총 24개, `_ERA` 딕셔너리 기준): `abraham`, `isaac`, `jacob`, `joseph`, `moses`, `joshua`, `gideon`, `deborah`, `jephthah`, `samson`, `ruth`, `saul`, `samuel`, `david`, `solomon`, `elijah`, `isaiah`, `daniel`, `john_the_baptist`, `jesus`, `mary`, `paul`, `peter`, `john_the_apostle`. 대응 JSON 파일은 `data/person_events/<slug>.json`에 존재.
+현재 큐레이션 인물 슬러그 목록(총 24개, `_ERA` 딕셔너리 기준): `abraham`, `isaac`, `jacob`, `joseph`, `moses`, `joshua`, `gideon`, `deborah`, `jephthah`, `samson`, `ruth`, `saul`, `samuel`, `david`, `solomon`, `elijah`, `elisha`, `jonah`, `isaiah`, `daniel`, `esther`, `nehemiah`, `john_the_baptist`, `jesus`, `mary`, `paul`, `peter`, `john_the_apostle`. 대응 JSON 파일은 `data/person_events/<slug>.json`에 존재.
 
 ### 큐레이션 인물 정렬 패턴
 
@@ -99,41 +99,111 @@ JSON 오버레이·파일 기반 정적 데이터는 `@functools.lru_cache(maxsi
 | `/books-overview`(책 개요 전체) | `no-store` | `books.py` |
 | FastAPI 자동 직렬화(응답 헤더 없음) | — | `search.py`, `nodes.py` 대부분 |
 
-### authored 사건 / person_events JSON 형상
+### JSON 데이터 파일 형상 및 필드 규약
 
-큐레이션 인물의 여정 데이터는 `data/person_events/<slug>.json` 파일에 배열로 산다. 각 항목 형상:
+#### `data/person_events/<slug>.json` — 여정 사건 배열
+
+각 항목 형상:
 
 ```json
 {
-  "id": "authored-paul-damascus-conversion",
-  "title": "Paul's conversion on the road to Damascus",
-  "nameKo": "다메섹 도상에서 회심한 바울",
-  "startDate": "0034",
-  "sortKey": 34,
-  "yearLabel": "AD 34경",
-  "context": "교회를 박해하던 사울이 ... 시력을 회복함 (행 9:1–19).",
+  "id": "authored-david-anointed-bethlehem",
+  "title": "Samuel anoints David king in Bethlehem",
+  "nameKo": "사무엘이 베들레헴에서 다윗에게 기름 부음",
+  "startDate": "-1025",
+  "sortKey": -1025,
+  "yearLabel": "BC 1025경",
+  "context": "하나님의 명령으로 사무엘이 이새의 집을 찾아 막내 다윗에게 은밀히 기름을 부음 (1Sam 16:1–13).",
   "authored": true,
-  "occursAt": ["recR67sC02MfTx4al"],
-  "participants": ["recgkzNX07a7kGFYL"],
-  "books": [{ "bookId": "recF09FMjRr0gzjQk", "rangeLabel": "9:1–19" }]
+  "occursAt": ["authored-place-bethlehem"],
+  "participants": ["rec1ZMFtfbEvoGC73"],
+  "books": [{ "bookId": "rec4GS8yWh2R4mpdB", "rangeLabel": "16:1–13" }]
 }
 ```
 
-- **authored 사건 id 규칙:** `authored-<person>-<slug>` 형태(`authored-paul-cypress-mission`). `authored: true` 플래그가 함께 붙는다.
-- **`participants`:** theographic_id 배열. **첫 원소 `participants[0]`가 그 인물의 id**라는 불변식에 코드가 의존한다 — `persons.py`/`places.py`/`journey.py`가 `events[0]["participants"][0]`로 person_id를 결정하고, slug↔id 역매핑을 만든다.
-- **`occursAt`:** Place theographic_id 배열. 여정 정차지는 `occursAt[0]`를 좌표 조회 키로 쓴다(`journey.py`).
-- **`books`:** `{bookId, rangeLabel}` 배열 — 근거 성경권과 절 범위(`"9:1–19"`).
-- **`sortKey`:** 숫자 시간 정렬 키. 여정·타임라인이 `sorted(events, key=lambda e: e["sortKey"])`로 시간순 배열.
-- **`context`:** 한글 서술 + 괄호 안 절 참조(`(행 9:1–19; 행 11:25–26)`) 패턴.
+필드별 규약:
+
+- **`id`:** `authored-<person>-<action>-<place>` 스네이크케이스 패턴. Theographic 원본 데이터가 있으면 `rec*` 형식 theographic_id를 그대로 씀.
+- **`nameKo`:** 사건 한글 이름. UI가 `nameKo || title` 순으로 표시.
+- **`sortKey`:** 숫자 정수. BC는 음수(예 -1025 = BC 1025년), AD는 양수. 여정·타임라인이 `sorted(events, key=lambda e: e["sortKey"])`로 시간순 배열.
+- **`yearLabel`:** 표시용 문자열. BC는 `"BC 1025경"`, AD는 `"AD 34경"` 형식.
+- **`context`:** 한글 서술 산문. **괄호 안 절 참조**는 아래 규율을 따른다.
+- **`authored`:** `true` 고정 플래그(큐레이션 저작 데이터임을 표시).
+- **`occursAt`:** Place theographic_id 배열. 여정 정차지는 `occursAt[0]`를 좌표 조회 키로 씀(`backend/app/routes/journey.py`).
+- **`participants`:** Person theographic_id 배열. **첫 원소 `participants[0]`가 그 인물의 id**라는 불변식에 코드가 의존한다 — `persons.py`/`places.py`/`journey.py`가 `events[0]["participants"][0]`로 person_id를 결정한다.
+- **`books`:** `{bookId, rangeLabel}` 배열. `rangeLabel`은 장:절 범위 문자열(`"16:1–13"`). `generate_person_event_verses.py`가 `context`에서 파싱해 자동 채움.
+
+#### `context` 필드 괄호 구절 참조 규율
+
+`context`의 괄호 `(...)` 안 절 참조에는 **반드시 약어만 쓴다**. 풀네임(예 "창세기", "마태복음") 사용 금지.
+
+- **Theographic 원본 데이터(신약 등 `rec*` id 사건):** 영어 SBL 약어 사용. 예: `1Sam`, `Gen`, `Exod`, `Matt`, `Acts`, `1Kgs`, `Ps`. `backend/scripts/generate_person_event_verses.py`의 `EN_ABBR_ORDER` 딕셔너리에 전체 66권 매핑이 있다.
+- **큐레이션 authored 데이터(신약, 복음서 인물):** 한글 개역 약어 사용. 예: `눅`, `마`, `행`, `요`, `창`, `삼상`. `backend/scripts/generate_verse_text.py`의 `BOOK_ABBR_ORDER`에 전체 66권 매핑.
+- **혼용 가능:** 동일 파일 내 EN/KO 혼용은 허용. `generate_person_event_verses.py`가 양쪽 약어를 모두 파싱하는 통합 매핑(`build_lookups()`)을 사용하기 때문.
+- **세미콜론 구분:** 같은 괄호 안 복수 참조는 `; `로 구분. 예: `(1Sam 16:1–13; 행 9:1–19)`.
+- **범위 표시:** 절 범위는 `–`(en dash) 사용. `16:1–13`, `2:1–7`.
+
+#### `authored-*` id 계열
+
+저작(큐레이션) 노드 id는 모두 `authored-` 접두사를 갖는다. Theographic 원본 데이터가 없어서 직접 생성한 노드임을 표시.
+
+| 계열 | 형식 | 예시 |
+|---|---|---|
+| 사건 | `authored-<person>-<action>-<place>` | `authored-david-anointed-bethlehem` |
+| 장소 | `authored-place-<slug>` | `authored-place-bethlehem`, `authored-place-babylon` |
+| 인물(`authored_persons`) | `authored-person-<slug>` | `authored-person-gideon`, `authored-person-elijah` |
+
+`authored-person-*` id는 `data/authored_persons/people.json`의 `id` 필드로 관리되며, `backend/scripts/load_authored_persons.py`가 Neo4j `Person` 노드로 MERGE 적재한다. `authored-place-*` id는 `backend/scripts/enrich_place_coords.py`가 MERGE 생성한다.
+
+#### `data/authored_persons/people.json` — 큐레이션 인물 목록
+
+```json
+[
+  { "id": "authored-person-gideon", "name": "Gideon", "nameKo": "기드온" }
+]
+```
+
+필드: `id`(authored-person-* 계열), `name`(영문), `nameKo`(한글). Theographic 그래프에 없는 큐레이션 주인공만 포함(ADR-0005 경계).
+
+#### `data/event_verses/events.json` — 사건별 근거 구절
+
+```json
+{
+  "<eventId>": {
+    "books": [
+      {
+        "bookId": "<theographic_id>",
+        "bookOrder": 9,
+        "rangeLabel": "16:1–13",
+        "verses": [
+          {
+            "verseID": "09016001",
+            "chapter": 16,
+            "verse": 1,
+            "textKo": "...",
+            "textEn": "..."
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+`verseID`는 `bookOrder(2자리)chapter(3자리)verse(3자리)` 문자열. `textKo`/`textEn`은 `generate_verse_text.py`가 getbible API에서 미리 구워 넣는다(ADR-0003 프리베이크). 못 받은 본문은 `null`로 기록, 재실행 시 재시도.
 
 ### 독스트링·주석
 
 - 모듈/엔드포인트 독스트링은 한글로, "무엇을 반환하는가 + 응답 필드 + 결정 근거"를 적는다(예 `journey.py` 모듈 독스트링이 `stops`의 `seq` 부여 규칙을 명세). 설계 선택 이유("단순성 우선", "404 아님 빈 응답")를 주석에 남긴다.
 - ADR 참조를 주석에 직접 박기도 한다(`frontend/src/EventVerses.jsx`의 `ADR-0003 프리베이크 본문`).
+- 스크립트 파일의 모듈 독스트링은 "목적 + 출력 + 멱등 규칙"을 기술한다(`backend/scripts/generate_person_event_verses.py`, `backend/scripts/generate_verse_text.py` 참조).
 
 ### 스크립트 멱등성 패턴
 
 `backend/scripts/`의 Neo4j 적재 스크립트는 모두 `MERGE`(노드·관계)를 사용해 재실행 시 중복을 만들지 않는다. `backend/scripts/enrich_place_coords.py`는 `authored-place-*` id에만 MERGE 생성, 기존 `rec*` id는 좌표가 없는 경우에만 SET(기존 값 보존). `backend/scripts/inject_ko_names.py`는 단순 SET(덮어쓰기). 스크립트는 실행 후 `print(...)` 집계 카운트로 결과를 사람이 확인하는 구조.
+
+- **`generate_*` 스크립트:** `books` 필드가 이미 있는 이벤트는 스킵, `textKo`/`textEn`이 non-null인 항목은 스킵(kept), null이면 재시도(filled or null) — `backend/scripts/generate_verse_text.py`의 `fill()` 함수 반환값 `'kept'|'filled'|'null'`이 통계 구분 기준.
+- **실행 후 카운트 출력:** 스크립트는 반드시 집계(`authored Event nodes: N`, `Updated N Person nodes with traits`, `event_verses: {kept: N, filled: N, null: N}` 등)를 `print`로 출력하고, 육안 확인이 검증의 기준이다.
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-last_mapped_commit: 689126abab88e741263d1d9a4a73d81b2be617d9
+last_mapped_commit: 99d42c8518af00f3e0bf4a4ba90f821d84cf42e5
 mapped: 2026-07-02
 ---
 
@@ -27,9 +27,9 @@ mapped: 2026-07-02
 
 ### 라우트 모듈 (`backend/app/routes/`)
 
-- **`persons.py`** — `GET /persons/curated`. Neo4j를 **쓰지 않고** `person_events/<slug>.json` 파일만으로 큐레이션 24인 목록을 정적 구성한다. 모듈 상수 `_ERA`(slug→시대, 24개), `_NAME_KO`(slug→한글명, 24개), `_ERA_ORDER`(시대 표시 순서 — `["족장", "출애굽·정복", "사사", "왕국", "선지자", "포로", "신약"]`)를 선언한다. `places.py`와 `journey.py`가 이 세 상수를 **단일 출처**로 import해 드리프트를 방지한다. `_build_list()`(`@lru_cache`)는 각 slug 파일 첫 이벤트의 `participants[0]`을 `theographic_id`로 삼아 `{id, slug, nameKo, era, eventCount, _anchor}`를 조립하며, `_anchor`는 해당 인물의 최소 sortKey(여정 최초 등장 시점)다. 정렬은 `(ERA_ORDER 인덱스, _anchor, slug)` 3-키로 시대 내에서 인물을 연대순으로 세운다. `_anchor`는 응답 전 제거된다.
-  - 현재 `_ERA` 키: abraham, isaac, jacob, joseph, moses, joshua, gideon, deborah, jephthah, samson, ruth, saul, samuel, david, solomon, elijah, isaiah, **daniel**, john_the_baptist, jesus, mary, paul, peter, john_the_apostle (24인).
-  - **"포로" 시대** 신설(ADR 미문서, `73bbe4d` commit): `_ERA_ORDER` 6번째 항목으로 추가. 현재 해당 인물: daniel.
+- **`persons.py`** — `GET /persons/curated`. Neo4j를 **쓰지 않고** `person_events/<slug>.json` 파일만으로 큐레이션 28인 목록을 정적 구성한다. 모듈 상수 `_ERA`(slug→시대, 28개), `_NAME_KO`(slug→한글명, 28개), `_ERA_ORDER`(시대 표시 순서 — `["족장", "출애굽·정복", "사사", "왕국", "선지자", "포로", "신약"]`)를 선언한다. `places.py`와 `journey.py`가 이 세 상수를 **단일 출처**로 import해 드리프트를 방지한다. `_build_list()`(`@lru_cache`)는 각 slug 파일 첫 이벤트의 `participants[0]`을 `theographic_id`로 삼아 `{id, slug, nameKo, era, eventCount, _anchor}`를 조립하며, `_anchor`는 해당 인물의 최소 sortKey(여정 최초 등장 시점)다. 정렬은 `(ERA_ORDER 인덱스, _anchor, slug)` 3-키로 시대 내에서 인물을 연대순으로 세운다. `_anchor`는 응답 전 제거된다.
+  - 현재 `_ERA` 키(28인): abraham·isaac·jacob·joseph(족장) / moses·joshua(출애굽·정복) / gideon·deborah·jephthah·samson·ruth(사사) / saul·samuel·david·solomon(왕국) / elijah·elisha·jonah·isaiah(선지자) / daniel·esther·nehemiah(포로) / john_the_baptist·jesus·mary·paul·peter·john_the_apostle(신약).
+  - **"포로" 시대** 신설(`73bbe4d` commit): `_ERA_ORDER` 6번째 항목. 해당 인물: daniel·esther·nehemiah(3인).
 - **`places.py`** — `GET /place/{place_id}/curated-persons`. `persons.py`에서 `_ERA`/`_NAME_KO`/`_ERA_ORDER`를 import해 단일 출처를 사용한다. 특정 장소를 여정에 포함하는 큐레이션 인물 목록을 `person_events/<slug>.json`의 `occursAt` 배열을 검사해 필터링(`_place_to_persons`, `@lru_cache(maxsize=None)`). `_anchor` 기반 정렬 로직은 `persons.py _build_list`와 동일하다. `exclude` 쿼리로 현재 탐험 인물 제외.
 - **`journey.py`** — `GET /person/{person_id}/journey`. 큐레이션 인물의 시간순 여정 정차지. `persons.py`의 `_ERA`/`_NAME_KO`를 import해 `theographic_id→slug` 역매핑을 만들고(`_build_id_to_slug`), 해당 slug의 `person_events/<slug>.json`을 `sortKey`로 정렬한다(`_load_events`). 각 이벤트의 `occursAt[0]` place_id에 대해 Neo4j에서 `Place` 노드의 `longitude`/`latitude`/`nameKo`를 배치 조회(`_fetch_place_coords`)하고, 좌표가 있는 정차지에만 1부터 `seq`를 부여한다. 큐레이션 인물이 아니면 `stops=[]` 빈 응답(404 아님). 즉 **여정 = 파일 기반 사건 시퀀스 + Neo4j 좌표 조인**.
 - **`events.py`** — `GET /events`(타임라인 사건 목록)와 `GET /event/{event_id}/verses`(사건 근거 구절 드릴다운). `_compute_events()`(`@lru_cache`)는 Neo4j에서 `startDate IS NOT NULL`인 `Event`를 `sortKey` 순으로 조회하면서 `(Book)-[:CONTAINS_BOOK]->(Event)`로 연결된 책을 `bookOrder` 순 `books` 배열로 모으고, `authored`·`yearLabel`을 함께 반환한다. 여기에 오버레이 `book_events_raw()`를 역방향 인덱스(`_load_approx_book_index`, eventId→책 메타)로 머지해 **그래프 관계가 없는 추정책(집필 배경 연결)을 CONTAINS_BOOK 항목 뒤에 덧붙인다** — 그래프와 오버레이의 대표적 합류 지점. `/event/{id}/verses`는 오버레이 `event_verses()`에서 해당 사건의 권별 구절을 꺼내 Neo4j Book 이름맵(`_book_name_map`)으로 `bookNameKo`를 보강해 반환한다.
@@ -51,7 +51,7 @@ Theographic 데이터셋에 `Person` 노드가 없는 큐레이션 주인공을 
 
 **적재 순서 제약**: `load_authored_persons.py`가 `load_person_events.py`보다 **먼저** 실행돼야 여정 사건의 `HAS_PARTICIPANT MATCH`가 성립한다.
 
-현재 authored Person 8인: 사사 시대 5인(gideon·deborah·jephthah·samson·ruth) + 왕국 사울(saul) + **선지자 엘리야(elijah) + 포로 다니엘(daniel)**. id 패턴 `authored-person-<slug>`.
+현재 authored Person 12인(`data/authored_persons/people.json` 기준): 사사 시대 5인(gideon·deborah·jephthah·samson·ruth) + 왕국(saul·samuel) + 선지자(elijah·elisha·isaiah) + 포로(daniel·nehemiah). id 패턴 `authored-person-<slug>`.
 
 ### Authored-event 모델 (ADR-0005)
 
@@ -80,7 +80,7 @@ Theographic 데이터셋에 `Person` 노드가 없는 큐레이션 주인공을 
 ### 화면 단계(stage) 흐름 — `App.jsx`
 
 `activeStage` 상태(`App.jsx:24`)가 `'hub' | 'explore' | 'overview'` 3단계를 토글한다:
-- **hub** — `PersonHub`. `/persons/curated`로 큐레이션 24인을 시대별 카드 그리드로. `ERA_ORDER`는 `['족장', '출애굽·정복', '사사', '왕국', '선지자', '포로', '신약']`. 카드 클릭 → `handleSelectPerson(id)` → explore 단계.
+- **hub** — `PersonHub`. `/persons/curated`로 큐레이션 28인을 시대별 카드 그리드로. `ERA_ORDER`는 `['족장', '출애굽·정복', '사사', '왕국', '선지자', '포로', '신약']`. 카드 클릭 → `handleSelectPerson(id)` → explore 단계.
 - **explore** — 인물 선택 후. 상단 nav로 `exploreView`(`'map' | 'timeline'`) 토글. 인물 선택 시 `/person/{id}/journey`를 한 번 fetch해 `journeyStops`에 담고 `MapView`·`JourneyList`가 공유한다.
 - **overview** — `BibleOverviewView`. `/books-overview`를 장르별로 그룹핑.
 
@@ -103,7 +103,7 @@ Theographic 데이터셋에 `Person` 노드가 없는 큐레이션 주인공을 
 
 ### 주요 컴포넌트
 
-- **`PersonHub.jsx`** — 큐레이션 인물 허브. `ERA_ORDER`/`ERA_META` 로 시대별 카드 섹션. "포로" 시대 포함(바벨론 포로기의 신앙). 계약: `onSelectPerson(id)`, `onOpenOverview()`.
+- **`PersonHub.jsx`** — 큐레이션 인물 허브. `ERA_ORDER`/`ERA_META`로 시대별(7개) 카드 섹션. "포로" 시대 포함(바벨론 포로기의 신앙). 계약: `onSelectPerson(id)`, `onOpenOverview()`.
 - **`MapView.jsx`** — MapLibre GL 지도. ESRI NatGeo 래스터 타일 기반. effect 3종: (1) `personId ?? selectedNode`로 `/node/{id}/places` fetch → `places-source`에 GeoJSON 세팅 + 카메라 프레이밍 + primary 장소의 사건 링 자동 펼침, (2) `journeyStops` 변경 시 여정선(`journey-line-source`)·정차지 배지(`journey-stops-source`) 갱신, (3) `activeStopIdx` 변경 시 활성 정차지 강조 + 카메라 이동. 지도 로직은 3개 헬퍼 모듈로 분리:
   - `mapGeo.js` — 순수 GeoJSON/기하 함수(`placesToGeoJSON`, `buildJourneyLineGeoJSON`, `buildJourneyStopsGeoJSON`, `journeyStopGroups`, `coreBounds`, `ringPositions`, `ringLabels`, 라벨 방사 배치).
   - `mapLayers.js` — `setupMapSources`(소스·레이어 정의: places 클러스터링 `clusterRadius:18`/`clusterMinPoints:4`, 여정선 그라데이션, 정차지 배지, 사건 링, 스파이더), `registerEventHandlers`(클릭/호버), `EMPTY_GEOJSON`. 팝업 HTML은 `escapeHtml`로 XSS 이스케이프.

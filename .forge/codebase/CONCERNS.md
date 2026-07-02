@@ -1,5 +1,5 @@
 ---
-last_mapped_commit: 689126abab88e741263d1d9a4a73d81b2be617d9
+last_mapped_commit: 99d42c8518af00f3e0bf4a4ba90f821d84cf42e5
 mapped: 2026-07-02
 ---
 
@@ -15,23 +15,33 @@ mapped: 2026-07-02
 
 `deploy.sh`의 데이터 갱신 단계는 `inject_ko_names.py` 하나만 실행한다. 큐레이션 인물 여정을 Neo4j에 적재하는 `load_person_events.py`, `load_authored_persons.py`, `load_authored_events.py`, `enrich_place_coords.py`, `generate_person_event_verses.py`는 배포 자동화에 포함되지 않으며 호스트에서 사람이 순서대로 직접 실행해야 한다.
 
-- 적재 순서 제약: `load_authored_persons.py` → `enrich_place_coords.py` → `load_person_events.py`. 순서 위반 시 `HAS_PARTICIPANT` 관계가 조용히 누락된다(ADR-0008).
-- `docker-compose.yml:22` `neo4j_data` 볼륨 리셋(`docker compose down -v`) 시 22인 전원을 수동 재적재해야 하며 이를 명시한 공개 런북이 없다.
-- 현재 큐레이션 22인 중 기드온·드보라·입다·삼손·룻·사울 등 authored Person 노드는 `load_authored_persons.py`로만 존재하며, `load_theographic.py`로 복구되지 않는다.
+- 적재 순서 제약: `load_authored_persons.py` → `enrich_place_coords.py` → `load_person_events.py`. 순서 위반 시 `HAS_PARTICIPANT` 관계가 조용히 누락된다. `load_authored_persons.py` docstring 줄 7–8에 명시된 제약이나, 강제하는 코드가 없다.
+- `docker-compose.yml:22` `neo4j_data` 볼륨 리셋(`docker compose down -v`) 시 28인 전원을 수동 재적재해야 하며 이를 명시한 공개 런북이 없다.
+- 현재 큐레이션 28인 중 기드온·드보라·입다·삼손·룻·사울 등 authored Person 노드는 `load_authored_persons.py`로만 존재하며, `load_theographic.py`로 복구되지 않는다.
 - 파일: `backend/scripts/load_authored_persons.py`, `backend/scripts/load_person_events.py`, `deploy.sh`
+
+### 빌드·데이터 파이프라인 시점의 외부 API 의존
+
+`backend/scripts/load_theographic.py` 줄 13–18: DB 초기 구축 시 GitHub Raw URL 4개(people, places, events, peopleGroups)에서 실시간 fetch한다. GitHub 다운·레포 삭제·브랜치 이동 시 DB를 재구축할 수 없다. 버전 고정(태그·커밋 해시 고정)이 없어 upstream 데이터 변경을 탐지할 수단이 없다.
+
+`backend/scripts/generate_event_verses.py` 줄 28–29: 약 15 MB짜리 `events.json`·`verses.json`을 빌드마다 GitHub Raw에서 fetch한다. 로컬 캐시 없음.
+
+`backend/scripts/generate_verse_text.py` 줄 80: `https://api.getbible.net/v2/{slug}/{book_order}/{chapter}.json` — 성경 절 본문 fetch. 줄 91–93에서 `except Exception: return None`으로 실패를 묵인한다. 장애 지속 시 절 본문이 영구 누락된다(§ 무음 실패 참조).
 
 ### `deploy.sh` — 한글 이름 주입 실패 시 부분 적용 상태
 
-`deploy.sh`는 컨테이너 재기동(`up -d api nginx`) 뒤에 `inject_ko_names.py`를 2초 간격 15회까지 재시도하고 끝까지 실패하면 `exit 1`로 종료한다. 컨테이너는 이미 새 코드로 떠 있는데 배포 스크립트만 실패로 끝나는 부분 적용 상태가 가능하다.
+`deploy.sh`는 컨테이너 재기동(`up -d api nginx`) 뒤에 `inject_ko_names.py`를 2초 간격 15회까지 재시도하고(`deploy.sh` 줄 50–57) 끝까지 실패하면 `exit 1`로 종료한다. 컨테이너는 이미 새 코드로 떠 있는데 배포 스크립트만 실패로 끝나는 부분 적용 상태가 가능하다.
+
+`deploy.sh` 줄 51: `2>/dev/null`로 stderr를 버려 실패 원인 진단이 어렵다.
 
 - 완화: 프론트가 `nameKo || name` 폴백을 사용하므로 주입 실패 시 영문 이름으로 노출되어 치명도는 낮다.
 - 파일: `deploy.sh`
 
 ### `lru_cache` — 런타임 데이터 갱신 감지 불가
 
-`persons.py`, `places.py`, `events.py`, `overlays.py`의 `@functools.lru_cache`는 프로세스 생애 동안 결과를 보관한다. 호스트 inject/load 스크립트가 컨테이너 기동 후 Neo4j를 갱신하면, 캐시가 갱신 전 데이터를 들고 있는 시간 창이 생긴다. 배포마다 컨테이너를 재기동하므로 정상 배포 흐름에서는 문제없음. 그러나 핫패치성 데이터 수정 후 컨테이너 재시작을 빠뜨리면 갱신이 반영되지 않는다.
+`persons.py`, `places.py`, `events.py`, `overlays.py`의 `@functools.lru_cache`는 프로세스 생애 동안 결과를 보관한다. 호스트 inject/load 스크립트가 컨테이너 기동 후 Neo4j를 갱신하면, 캐시가 갱신 전 데이터를 들고 있는 시간 창이 생긴다. 배포마다 컨테이너를 재기동하므로 정상 배포 흐름에서는 문제없음. 그러나 핫패치성 데이터 수정 후 컨테이너 재시작을 빠뜨리면 갱신이 반영되지 않는다. 캐시 무효화 엔드포인트 없음.
 
-- 파일: `backend/app/routes/events.py:11,53,98`, `backend/app/routes/persons.py:75`, `backend/app/routes/places.py:18`, `backend/app/overlays.py:30,36`
+- 파일: `backend/app/routes/events.py:11,53`, `backend/app/routes/persons.py:83`, `backend/app/routes/places.py:18`, `backend/app/overlays.py:30,36`
 
 ---
 
@@ -52,21 +62,47 @@ frontend/src/MapView.jsx
 
 ### 스테일 docstring — `persons.py`·`journey.py`의 "13인" 표기
 
-실제 큐레이션 인물은 24인(`_ERA` 딕트 24개 항목, `data/person_events/` 24개 파일)이지만 두 파일 docstring에 여전히 "13인"이 기재되어 있다.
+실제 큐레이션 인물은 28인(`_ERA` 딕트 28개 항목, `data/person_events/` 28개 파일)이지만 두 파일 docstring에 여전히 "13인"이 기재되어 있다.
 
-- `backend/app/routes/persons.py:1,104`: "큐레이션된 13인 인물 목록 엔드포인트", "큐레이션된 13인 목록"
+- `backend/app/routes/persons.py:1`: "큐레이션된 13인 인물 목록 엔드포인트"
 - `backend/app/routes/journey.py:6,77`: "큐레이션 13인이 아니면 빈 stops 반환"
-- 파일: `backend/app/routes/persons.py:1,104`, `backend/app/routes/journey.py:6,77`
+- 파일: `backend/app/routes/persons.py:1`, `backend/app/routes/journey.py:6,77`
+
+### 이중 등록 패턴 — 새 인물 추가 시 최소 4곳 수정 필요
+
+큐레이션 인물을 추가하면 최소 4곳을 동기화해야 한다.
+
+| 위치 | 내용 |
+|---|---|
+| `persons.py` 줄 16–45 `_ERA` 딕트 | slug → era 매핑 |
+| `persons.py` 줄 48–77 `_NAME_KO` 딕트 | slug → 한글 이름 |
+| `data/names_ko/people.json` | `inject_ko_names.py`가 Neo4j에 주입하는 원본 |
+| `data/person_events/<slug>.json` | 여정 사건 파일 신규 생성 |
+
+`_ERA`·`_NAME_KO`의 일치 여부를 강제하는 코드가 없다. `persons.py` 줄 98에서 `_NAME_KO[slug]`를 직접 인덱싱하므로, `_ERA`에는 있고 `_NAME_KO`에 없는 slug가 들어오면 `KeyError`가 발생해 `/persons` 엔드포인트 전체가 500을 반환한다. `journey.py` 줄 133도 동일한 직접 인덱싱.
+
+`places.py` 줄 13은 `persons.py`에서 `_ERA`, `_NAME_KO`, `_ERA_ORDER`를 import해 단일 출처를 유지하므로 이 세 파일 간의 드리프트는 방지된다.
+
+- 파일: `backend/app/routes/persons.py:16-77`, `backend/app/routes/journey.py:133`, `data/names_ko/people.json`
 
 ### 큐레이션 인물 표시 이름 이중 출처
 
-인물 표시 이름의 출처가 두 곳이다. 프론트 탐험 헤더(`App.jsx:85,141-144`)는 Neo4j Person 노드의 `nameKo`(inject_ko_names.py 주입값)를, 큐레이션 목록·여정 응답은 `persons.py:36-53`의 하드코딩 `_NAME_KO` 딕트를 사용한다. 두 값이 어긋나면 헤더와 목록이 서로 다른 이름을 표시한다. 일치를 강제하는 코드·테스트가 없다.
+인물 표시 이름의 출처가 두 곳이다. 프론트 탐험 헤더(`App.jsx:85,141-144`)는 Neo4j Person 노드의 `nameKo`(inject_ko_names.py 주입값)를, 큐레이션 목록·여정 응답은 `persons.py:48-77`의 하드코딩 `_NAME_KO` 딕트를 사용한다. 두 값이 어긋나면 헤더와 목록이 서로 다른 이름을 표시한다. 일치를 강제하는 코드·테스트가 없다.
 
-- 파일: `frontend/src/App.jsx`, `backend/app/routes/persons.py:36-53`, `data/names_ko/people.json`
+- 파일: `frontend/src/App.jsx`, `backend/app/routes/persons.py:48-77`, `data/names_ko/people.json`
 
 ### 자동화 테스트 전무
 
-프론트·백엔드 모두 테스트 0건. `frontend/package.json`의 scripts에는 `lint`만 있고 vitest/jest 의존성이 없다. 백엔드에도 pytest 설정·`test_*.py`가 없다. 좌표 dedup, 순번 압축(`compactSeqs`), 여정 정차지 인덱싱 등 회귀가 잦은 순수 로직에 안전망이 없으며 검증은 수동 Playwright에 의존한다.
+프론트·백엔드 모두 테스트 0건. `frontend/package.json`의 scripts에는 `lint`만 있고 vitest/jest 의존성이 없다. 백엔드에도 pytest 설정·`test_*.py`가 없다. 회귀가 잦은 순수 로직에 안전망이 없으며 검증은 수동 Playwright에 의존한다.
+
+테스트 없는 주요 로직:
+
+| 파일 | 미검증 함수 |
+|---|---|
+| `frontend/src/mapGeo.js` | `coreBounds()`, `compactSeqs()`, `journeyStopGroups()`, `buildJourneyLineGeoJSON()` |
+| `backend/scripts/generate_event_verses.py` | `build_range_label()`, `parse_verse()` |
+| `backend/scripts/generate_person_event_verses.py` | `parse_context_refs()` |
+| `backend/app/routes/persons.py` | `_build_list()` 정렬 로직 |
 
 - 파일: `frontend/package.json`, `backend/requirements.txt`
 
@@ -100,10 +136,22 @@ frontend/src/MapView.jsx
 인물 사건의 `context` 한글 문장에서 괄호 안 구절 참조를 정규식으로 파싱해 `books` 필드와 본문을 생성한다.
 
 - `parse_context_refs`(`generate_person_event_verses.py:78`)가 `re.findall(r"\(([^)]+)\)", context)`로 괄호 덩어리를 뽑고 책 약어와 장:절 패턴을 매칭한다.
-- 정규식이 인식하지 못하는 표기는 조용히 `continue`로 스킵된다. 사건에 참조가 하나도 안 잡히면 `books: []`로 저장돼 📖 근거 칩이 비게 된다.
+- 정규식이 인식하지 못하는 표기(약어 불일치·비표준 범위 표기)는 줄 99–100에서 조용히 `continue`로 스킵된다. 사건에 참조가 하나도 안 잡히면 `books: []`로 저장돼 📖 근거 칩이 비게 된다. 경고·로그 없음.
 - 같은 권 중복은 첫 번째만 채택(`seen_book_ids`)이라 한 사건이 한 권의 여러 비인접 구간을 참조해도 첫 구간만 본문 fetch된다.
-- 빌드타임 외부 의존: 본문은 `https://api.getbible.net`에서 HTTP fetch한다(`generate_person_event_verses.py`, `generate_verse_text.py`). 실패 시 `None` 캐싱 후 진행하므로 빌드는 죽지 않지만 일부 절 본문이 조용히 비어 적재될 수 있다.
-- 파일: `backend/scripts/generate_person_event_verses.py:78-216`, `backend/scripts/generate_verse_text.py`
+- 빌드타임 외부 의존: 본문은 `https://api.getbible.net`에서 HTTP fetch한다. 실패 시 `None` 캐싱 후 진행하므로 빌드는 죽지 않지만 일부 절 본문이 조용히 비어 적재될 수 있다.
+- 파일: `backend/scripts/generate_person_event_verses.py:78-216`, `backend/scripts/generate_verse_text.py:80-93`
+
+### 지도 fitBounds outlier 처리 — 엣지 케이스
+
+`frontend/src/mapGeo.js` 줄 5–15의 `coreBounds()`:
+
+- `places.length < 4`이면 outlier 제외 없이 전체 bounds 사용. 마커 3개 이하인 인물은 항상 전체 bounds.
+- `medD * 3` 임계값이 하드코딩. 장소가 크게 분산된 경우 중앙 클러스터 내 장소가 잘려나갈 수 있다.
+- `null` 반환 케이스가 3가지(places<4, medD<0.01, 제외 없음)여서 호출 측의 폴백 동작을 예측하기 어렵다.
+
+`MapView.jsx` 줄 139: `map.fitBounds(coreBounds(places) || bounds, ...)`.
+
+- 파일: `frontend/src/mapGeo.js:5-15`, `frontend/src/MapView.jsx:139`
 
 ### 좌표 없는 사건 = 지도에 안 찍히는 정차지
 
@@ -113,32 +161,72 @@ frontend/src/MapView.jsx
 - 이 사건들은 지도에 점이 찍히지 않고 리스트·타임라인에서만 보인다.
 - 파일: `backend/app/routes/journey.py:101-128`
 
+---
+
+## 무음 실패 지점
+
 ### `_build_id_to_slug()` — 요청마다 JSON 전량 재파싱 (캐시 누락)
 
-`backend/app/routes/journey.py:18-30`의 `_build_id_to_slug()`는 `/person/{id}/journey` 요청마다 모든 `person_events/*.json`(현재 24개)을 `open`+`json.load`해 역매핑을 새로 만든다. `persons.py`·`places.py`의 동일 파일 로드는 `@functools.lru_cache`로 캐시되는데 이 함수만 누락되어 있다.
+`backend/app/routes/journey.py:18-30`의 `_build_id_to_slug()`는 `/person/{id}/journey` 요청마다 모든 `person_events/*.json`(현재 28개)을 `open`+`json.load`해 역매핑을 새로 만든다. `persons.py`·`places.py`의 동일 파일 로드는 `@functools.lru_cache`로 캐시되는데 이 함수만 누락되어 있다.
 
 - 개선: `@functools.lru_cache(maxsize=1)` 부착으로 즉시 해결 가능.
 - 파일: `backend/app/routes/journey.py:18-30`
 
 ### `places.py` `_place_to_persons` — `maxsize=None` 무한 캐시
 
-`backend/app/routes/places.py:18`: `@functools.lru_cache(maxsize=None)`. `place_id` 문자열을 키로 사용하며 고유 장소 ID가 수천 개이므로 캐시가 무한 증가 가능하다. 각 값은 작은 dict 리스트이므로 현재 데이터 규모에서는 문제없지만 명시적 상한(`maxsize=512` 등)이 더 방어적이다.
+`backend/app/routes/places.py:18`: `@functools.lru_cache(maxsize=None)`. `place_id` 문자열을 키로 사용하며 고유 장소 ID 수만큼 캐시가 무한 증가 가능하다. 각 값은 작은 dict 리스트이므로 현재 데이터 규모에서는 문제없지만 명시적 상한(`maxsize=512` 등)이 더 방어적이다.
 
 - 파일: `backend/app/routes/places.py:18`
 
-### 데이터 무결성 가정 — 미강제
+### `overlays.py` JSON 파싱 실패 — 로그 없이 빈 dict 반환
 
-`journey.py:19`와 `persons.py:72-81`은 "각 slug json의 첫 사건 `participants[0]`이 그 인물"임을 가정한다. 이 불변식을 강제하는 코드·테스트가 없다. 새 인물 JSON에서 `participants[0]`이 다른 인물이면 역매핑이 조용히 틀린다.
+`backend/app/overlays.py` 줄 26–27: `except json.JSONDecodeError: return {}`. JSON 파일 손상 시 로그 없이 빈 dict 반환. 런타임에서 오버레이 전체(이벤트 구절 뷰, book 칩)가 빈 채 서빙된다.
 
-- 파일: `backend/app/routes/journey.py:18-30`, `backend/app/routes/persons.py:72-81`
+- 파일: `backend/app/overlays.py:26-27`
+
+### 앱 시작 시 인덱스 생성 실패 무시
+
+`backend/app/main.py` 줄 19–20: 인덱스 생성 실패를 로그만 남기고 앱이 정상 기동된다. 인덱스 없이 전체 노드 스캔으로 동작한다.
+
+- 파일: `backend/app/main.py:19-20`
+
+### journey.py occursAt MATCH 실패 — 경고 없음
+
+`backend/app/routes/journey.py` 줄 53–69의 `_fetch_place_coords()`: MATCH 결과에 없는 place_id는 `coords` dict에 항목이 없다. 줄 104–116에서 `place_info is None`이면 `seq = None`으로 정차지가 좌표 없이 기록되며 경고가 없다. 잘못된 occursAt ID를 입력했을 때 실패를 탐지할 수단이 없다.
+
+- 파일: `backend/app/routes/journey.py:53-69,104-116`
+
+---
+
+## 수동 ID·좌표 입력 위험
+
+### Theographic ID 수동 입력
+
+`data/person_events/<slug>.json`의 `occursAt` 배열(예: `"recgQtoCtBjbsPwAw"`)과 `participants` 배열은 Theographic 레코드 ID를 수동으로 입력한다. 잘못된 ID를 입력하면 `load_person_events.py` 줄 53–58의 `MATCH (p:Place {theographic_id: $place_id})`가 매칭되지 않아 `OCCURS_AT` 관계가 조용히 누락된다. 검증 수단 없음.
+
+`data/authored_events/events.json`도 동일 패턴. `load_authored_events.py`의 MATCH 실패 시 관계 미생성.
+
+- 파일: `data/person_events/`, `data/authored_events/`, `backend/scripts/load_person_events.py:50-58`
+
+### 좌표 수동 입력
+
+`data/place_coords/places.json`에 위도·경도가 수동 하드코딩돼 있다. 좌표 정확도 검증 수단이 없다. `enrich_place_coords.py` 재실행 시 기존 좌표가 덮어써진다.
+
+- 파일: `data/place_coords/places.json`, `backend/scripts/enrich_place_coords.py`
 
 ### 동명이지(同名異地) 재사용 충돌 위험
 
-authored-place를 새 인물 여정에 재사용할 때 영문 지명이 같아도 다른 지점인 경우가 있다. `authored-place-succoth`(이집트 숙곳, lat 30.56)와 요단 동편 숙곳이 충돌해 `authored-place-succoth-jordan`을 별도 신설한 실사례가 있다.
+authored-place를 새 인물 여정에 재사용할 때 영문 지명이 같아도 다른 지점인 경우가 있다. `authored-place-succoth`(이집트 숙곳)와 요단 동편 숙곳이 충돌해 `authored-place-succoth-jordan`을 별도 신설한 실사례가 있다.
 
-- 잠재 충돌 후보: `authored-place-mizpah`(베냐민 미스바, lat 31.878) vs `authored-place-mizpah-gilead`(길르앗 미스바, lat 32.05) — 후속 큐레이션에서 "미스바" 검색으로 잘못된 id를 재사용할 수 있다.
+- 잠재 충돌 후보: `authored-place-mizpah`(베냐민 미스바) vs `authored-place-mizpah-gilead`(길르앗 미스바) — 후속 큐레이션에서 "미스바" 검색으로 잘못된 id를 재사용할 수 있다.
 - 규칙: 재사용 전 `data/place_coords/places.json`에서 id·좌표를 대조해 의도한 지점인지 확인 필수.
 - 파일: `data/place_coords/places.json`
+
+### 데이터 무결성 가정 — 미강제
+
+`journey.py:18-30`과 `persons.py:83-94`는 "각 slug json의 첫 사건 `participants[0]`이 그 인물"임을 가정한다. 이 불변식을 강제하는 코드·테스트가 없다. 새 인물 JSON에서 `participants[0]`이 다른 인물이면 역매핑이 조용히 틀린다.
+
+- 파일: `backend/app/routes/journey.py:18-30`, `backend/app/routes/persons.py:83-94`
 
 ---
 
@@ -152,7 +240,7 @@ authored-place를 새 인물 여정에 재사용할 때 영문 지명이 같아�
 
 ### ESRI 타일 서버 + Protomaps 글리프 — 외부 의존
 
-`frontend/src/MapView.jsx:32-35`: `https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}` (ESRI 타일), `MapView.jsx:29`: `https://protomaps.github.io/basemaps-assets/fonts/...` (글리프 서버). 두 외부 서버 모두 SLA 없이 의존한다. ESRI 무료 타일은 사용 정책 위반 시 접근 차단 가능. 오프라인·폐쇄망 배포 시 지도가 전혀 표시되지 않는다.
+`frontend/src/MapView.jsx:32-35`: `https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}` (ESRI 타일), `MapView.jsx:28`: `https://protomaps.github.io/basemaps-assets/fonts/...` (글리프 서버). 두 외부 서버 모두 SLA 없이 의존한다. ESRI 무료 타일은 사용 정책 위반 시 접근 차단 가능. 오프라인·폐쇄망 배포 시 지도가 전혀 표시되지 않는다.
 
 - 파일: `frontend/src/MapView.jsx:22-40`
 
@@ -174,16 +262,16 @@ authored-place를 새 인물 여정에 재사용할 때 영문 지명이 같아�
 
 ### Cypher 쿼리 f-string 인터폴레이션 — 상수 한정, 현재 안전
 
-`backend/app/routes/nodes.py:168-170`: f-string으로 `{NODE_NEIGHBOR_LIMIT}` 상수를 쿼리에 삽입. `backend/app/routes/search.py:15,27`: `LIMIT {SEARCH_LIMIT}` 상수 삽입. 두 경우 모두 Python int 상수를 삽입하므로 실질적 인젝션 위험은 없다. 그러나 패턴 자체가 향후 사용자 입력 변수를 실수로 f-string에 넣을 위험을 열어 둔다. Cypher 파라미터(`$param`)로 교체하는 것이 더 안전한 패턴이다.
+`backend/app/routes/nodes.py:168-170`: f-string으로 `{NODE_NEIGHBOR_LIMIT}` 상수를 쿼리에 삽입. `backend/app/routes/search.py:15,27`: `LIMIT {SEARCH_LIMIT}` 상수 삽입. 두 경우 모두 Python int 상수를 삽입하므로 실질적 인젝션 위험은 없다. 그러나 패턴 자체가 향후 사용자 입력 변수를 실수로 f-string에 넣을 위험 경로를 열어 둔다. Cypher 파라미터(`$param`)로 교체하는 것이 더 안전한 패턴이다.
 
 - 파일: `backend/app/routes/nodes.py:168-170`, `backend/app/routes/search.py:15,27`
 
 ### Neo4j 비밀번호 — 환경변수 단일 의존, 현재 구조는 적절
 
-`backend/app/db.py:11`: `os.environ.get("NEO4J_PASSWORD")`; 없으면 `RuntimeError`. `docker-compose.yml:11,18`: `${NEO4J_PASSWORD:?must be set}`로 미설정 시 compose 실행 자체가 실패한다. `.env`는 `.gitignore`에 포함되어 있다. nginx 루트는 `frontend/dist`이고 `.env`는 그 위 디렉터리이므로 현재는 노출 위험 없음.
+`backend/app/db.py:11`: `os.environ.get("NEO4J_PASSWORD")`; 없으면 `RuntimeError`. `docker-compose.yml:11,18`: `${NEO4J_PASSWORD:?must be set}`로 미설정 시 compose 실행 자체가 실패한다. `.env`는 `.gitignore`에 포함되어 있다. nginx 루트는 `frontend/dist`이고 `.env`는 그 위 디렉터리이므로 현재는 노출 위험 없음. 단, `.env`의 `NEO4J_PASSWORD` 값이 단순한 사전식 값이므로 프로덕션 배포 전 변경이 필요하다.
 
-- 파일: `backend/app/db.py`, `docker-compose.yml`, `.gitignore`
+- 파일: `backend/app/db.py`, `docker-compose.yml`, `.gitignore`, `.env`
 
 ---
 
-*CONCERNS audit: 2026-07-02 (HEAD 689126abab88e741263d1d9a4a73d81b2be617d9)*
+*CONCERNS audit: 2026-07-02 (HEAD 99d42c8518af00f3e0bf4a4ba90f821d84cf42e5)*
