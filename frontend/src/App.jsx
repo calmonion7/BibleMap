@@ -37,6 +37,14 @@ function App() {
   const [explorePersonId, setExplorePersonId] = useState(null)
   const [explorePersonName, setExplorePersonName] = useState(null)
 
+  // 큐레이션 인물 id 집합 — SidePanel '여정 탐험' CTA 노출 판단용(1회 fetch)
+  const [curatedIds, setCuratedIds] = useState(null)
+  useEffect(() => {
+    apiGet('/persons/curated')
+      .then(list => setCuratedIds(new Set(list.map(p => p.id))))
+      .catch(() => {})
+  }, [])
+
   // 여정 데이터 — 인물 선택 시 한 번 fetch, MapView·JourneyList 공유
   const [journeyStops, setJourneyStops] = useState(null)
   const [activeStopIdx, setActiveStopIdx] = useState(null)
@@ -368,6 +376,8 @@ function App() {
             setVerseLang={setVerseLang}
             explorePersonId={explorePersonId}
             onExplorePerson={handleExplorePerson}
+            curatedIds={curatedIds}
+            onExploreJourney={handleSelectPerson}
           />
         </div>
       )}

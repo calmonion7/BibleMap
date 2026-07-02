@@ -203,7 +203,7 @@ def get_node(node_id: str):
                 """
                 MATCH (b:Book {theographic_id: $id})-[:CONTAINS_BOOK]->(e:Event)
                 MATCH (e)-[:HAS_PARTICIPANT]->(p:Person)
-                WHERE p.theographic_id IS NOT NULL
+                WHERE p.theographic_id IS NOT NULL AND p.name <> 'God'
                 WITH p, count(e) AS cnt
                 ORDER BY cnt DESC LIMIT 10
                 RETURN p.theographic_id AS id, p.name AS name, p.nameKo AS nameKo
@@ -223,7 +223,6 @@ def get_node(node_id: str):
                 WHERE e.theographic_id IS NOT NULL
                 RETURN e.theographic_id AS id, e.title AS name, e.nameKo AS nameKo,
                        e.startDate AS startDate
-                ORDER BY e.startDate LIMIT 10
                 """,
                 id=node_id,
             )
@@ -234,6 +233,20 @@ def get_node(node_id: str):
                     "nameKo": r["nameKo"] or r["name"],
                     "startDate": r["startDate"],
                 })
+            # startDate는 "-4003"/"-1451-01"/"30" 형식 혼재 문자열 — 사전순 정렬 시
+            # BC 연도가 역전되므로(예: -1451 < -4003) 연도를 파싱해 오름차순 상위 10개만.
+            def _year(s):
+                if not s:
+                    return None
+                neg = s.startswith("-")
+                body = s[1:] if neg else s
+                try:
+                    y = int(body.split("-")[0])
+                except ValueError:
+                    return None
+                return -y if neg else y
+            top_events.sort(key=lambda ev: (_year(ev["startDate"]) is None, _year(ev["startDate"]) or 0))
+            top_events = top_events[:10]
 
         # Person traits JSON 파싱
         if label_val == "Person" and "traits" in clean_props:

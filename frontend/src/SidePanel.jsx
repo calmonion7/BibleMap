@@ -42,7 +42,7 @@ function SectionHeader({ label, color, count, sectionKey, collapsed, onToggle })
   )
 }
 
-function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, onNodeLoaded, verseLang, setVerseLang, explorePersonId = null, onExplorePerson = () => {} }) {
+function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, onNodeLoaded, verseLang, setVerseLang, explorePersonId = null, onExplorePerson = () => {}, curatedIds = null, onExploreJourney = () => {} }) {
   // 어느 nodeId의 결과인지 id로 추적 — loading은 파생, stale 응답은 무시.
   // setState는 비동기 콜백에서만 호출(react-hooks set-state-in-effect 준수).
   const [state, setState] = useState({ id: null, node: null, error: null })
@@ -63,7 +63,11 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     if (!nodeId) return
     let cancelled = false
     apiGet('/node/' + nodeId)
-      .then(data => { if (!cancelled) { setCollapsed({}); setState({ id: nodeId, node: data, error: null }); onNodeLoaded?.(data) } })
+      .then(data => { if (!cancelled) {
+        // Book은 '시대적 배경'·'핵심 주제'를 기본 펼침 — 접힌 헤더만 보이는 빈 패널 방지
+        setCollapsed(data.label === 'Book' ? { 'book-background': false, 'book-themes': false } : {})
+        setState({ id: nodeId, node: data, error: null }); onNodeLoaded?.(data)
+      } })
       .catch(e => { if (!cancelled) setState({ id: nodeId, node: null, error: e?.status ?? String(e) }) })
     return () => { cancelled = true }
   }, [nodeId, onNodeLoaded])
@@ -242,6 +246,24 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
         </div>
         <div style={{ fontSize: 12, color: '#7c8db0', marginTop: 3, marginLeft: 18 }}>{subtitle}</div>
       </div>
+
+      {/* Person 여정 탐험 CTA — 큐레이션 인물만, 현재 탐험 중인 인물 제외 */}
+      {node.label === 'Person' && curatedIds?.has(node.id) && node.id !== explorePersonId && (
+        <div style={{ margin: '12px 12px 0' }}>
+          <button
+            onClick={() => onExploreJourney(node.id)}
+            style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+              width: '100%', padding: '10px 12px', borderRadius: 8,
+              border: 'none', cursor: 'pointer', font: 'inherit',
+              fontSize: 13, fontWeight: 700, color: '#fff',
+              background: TYPE_COLOR.Person,
+            }}
+          >
+            🗺 {node.nameKo}의 여정 탐험 — 지도에서 보기
+          </button>
+        </div>
+      )}
 
       {/* Person 인물 성품 섹션 — 이웃 그룹보다 위 */}
       {node.label === 'Person' && node.properties?.traits?.length > 0 && (
