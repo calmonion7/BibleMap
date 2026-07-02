@@ -108,5 +108,71 @@
         "rangeLabel": "35:27–29"
       }
     ]
+  },
+  {
+    "id": "authored-isaac-rebekah-marriage",
+    "title": "Isaac marries Rebekah",
+    "nameKo": "리브가와의 결혼",
+    "startDate": "-1960",
+    "sortKey": -1963,
+    "yearLabel": "BC 1960경",
+    "context": "아브라함의 종이 메소포타미아에서 데려온 리브가를 브엘라해로이 근처 들에서 맞아 아내로 삼고, 어머니 사라를 여읜 위로를 얻음 (Gen 24:62–67).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-beersheba"
+    ],
+    "participants": [
+      "recqIoG1fkaNWJ1y0"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "24:62–67"
+      }
+    ]
+  },
+  {
+    "id": "authored-isaac-esau-jacob-birth",
+    "title": "Birth of Esau and Jacob",
+    "nameKo": "에서와 야곱의 출생",
+    "startDate": "-1940",
+    "sortKey": -1940,
+    "yearLabel": "BC 1940경",
+    "context": "이삭이 잉태하지 못하는 리브가를 위해 간구하매 20년 만에 쌍둥이를 얻음. 형은 붉고 털 많은 에서, 형의 발꿈치를 잡고 나온 아우는 야곱 (Gen 25:21–26).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-beersheba"
+    ],
+    "participants": [
+      "recqIoG1fkaNWJ1y0"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "25:21–26"
+      }
+    ]
+  },
+  {
+    "id": "authored-isaac-blessing-jacob",
+    "title": "Isaac blesses Jacob and sends him to Paddan-aram",
+    "nameKo": "야곱 축복과 밧단아람 파송",
+    "startDate": "-1870",
+    "sortKey": -1870,
+    "yearLabel": "BC 1870경",
+    "context": "눈이 어두운 이삭이 별미를 가져온 야곱을 에서인 줄 알고 축복함. 이후 야곱을 외삼촌 라반이 있는 밧단아람으로 보내며 다시 축복함 (Gen 27:1–29).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-beersheba"
+    ],
+    "participants": [
+      "recqIoG1fkaNWJ1y0"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "27:1–29"
+      }
+    ]
   }
 ]

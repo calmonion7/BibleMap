@@ -86,5 +86,71 @@
         "rangeLabel": "6:27–29"
       }
     ]
+  },
+  {
+    "id": "authored-john-baptist-birth-naming",
+    "title": "Birth and naming of John in the hill country of Judea",
+    "nameKo": "출생과 이름 짓기 (유대 산골)",
+    "startDate": "-5",
+    "sortKey": -5,
+    "yearLabel": "BC 5경",
+    "context": "엘리사벳이 노년에 낳은 아들. 사가랴가 서판에 '그 이름은 요한'이라 쓰자 벙어리에서 풀려나 하나님을 찬송함. 유대 산골, 예루살렘 인근 (Luke 1:57–66).",
+    "authored": true,
+    "occursAt": [
+      "recL1WV82pXaRBQ59"
+    ],
+    "participants": [
+      "recNRRITyGzXsl4yp"
+    ],
+    "books": [
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "rangeLabel": "1:57–66"
+      }
+    ]
+  },
+  {
+    "id": "authored-john-baptist-lamb-of-god",
+    "title": "John testifies: Behold the Lamb of God",
+    "nameKo": "\"하나님의 어린 양\" 증거",
+    "startDate": "27",
+    "sortKey": 27.5,
+    "yearLabel": "AD 27경",
+    "context": "요단강에서 자기에게 나아오는 예수를 보고 '보라 세상 죄를 지고 가는 하나님의 어린 양'이라 증거함. 이 말을 들은 두 제자가 예수를 따름 (John 1:29–37).",
+    "authored": true,
+    "occursAt": [
+      "rec5dSSsOutWlH2fW"
+    ],
+    "participants": [
+      "recNRRITyGzXsl4yp"
+    ],
+    "books": [
+      {
+        "bookId": "recq8W1kWwtVoUlwB",
+        "rangeLabel": "1:29–37"
+      }
+    ]
+  },
+  {
+    "id": "authored-john-baptist-prison-question",
+    "title": "John's question from prison",
+    "nameKo": "옥중 질문 — \"오실 그이가 당신이오니이까\"",
+    "startDate": "28",
+    "sortKey": 28.5,
+    "yearLabel": "AD 28경",
+    "context": "옥에서 그리스도께서 하신 일을 듣고 제자들을 보내 '오실 그이가 당신이오니이까' 물음. 예수께서 '맹인이 보며 못 걷는 사람이 걸으며'라 답하심 (Matt 11:2–6).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-machaerus"
+    ],
+    "participants": [
+      "recNRRITyGzXsl4yp"
+    ],
+    "books": [
+      {
+        "bookId": "recEJId5B98HV0x6D",
+        "rangeLabel": "11:2–6"
+      }
+    ]
   }
 ]
