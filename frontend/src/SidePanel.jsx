@@ -3,6 +3,7 @@ import { TYPE_COLOR, TYPE_KO } from './theme'
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
 import Spinner from './Spinner'
+import { parseYear } from './dates'
 
 const REL_KO = {
   PARENT_OF: '부모',
@@ -478,7 +479,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                       <span style={{ flex: 1, fontSize: 13, color: '#1a1a2e' }}>{e.nameKo || e.name}</span>
                       {e.startDate && (
                         <span style={{ fontSize: 10, color: '#9aa5b8', flexShrink: 0 }}>
-                          {e.startDate < 0 ? `BC ${Math.abs(e.startDate)}` : `AD ${e.startDate}`}
+                          {parseYear(e.startDate)}
                         </span>
                       )}
                     </button>

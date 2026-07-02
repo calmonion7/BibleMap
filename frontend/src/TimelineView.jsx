@@ -3,6 +3,7 @@ import { SELECT_HL, TYPE_COLOR } from './theme'
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
 import Spinner from './Spinner'
+import { parseYear } from './dates'
 
 const BOOK_COLOR = '#a78bfa'
 const EVENT_COLOR = TYPE_COLOR.Event
@@ -14,16 +15,6 @@ function fmtYear(y) {
 function sortKeyToYear(sortKey) {
   // sortKey는 연도 정수(BC = 음수)로 저장된다고 가정
   return typeof sortKey === 'number' ? sortKey : null
-}
-
-function parseYear(startDate) {
-  if (!startDate) return ''
-  if (startDate.startsWith('-')) {
-    const year = startDate.slice(1).split('-')[0].replace(/^0+/, '') || '0'
-    return 'BC ' + year
-  }
-  const year = startDate.split('-')[0].replace(/^0+/, '') || '1'
-  return 'AD ' + year
 }
 
 function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, personName, verseLang, setVerseLang }) {
