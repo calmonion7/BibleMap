@@ -64,8 +64,11 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     let cancelled = false
     apiGet('/node/' + nodeId)
       .then(data => { if (!cancelled) {
-        // Book은 '시대적 배경'·'핵심 주제'를 기본 펼침 — 접힌 헤더만 보이는 빈 패널 방지
-        setCollapsed(data.label === 'Book' ? { 'book-background': false, 'book-themes': false } : {})
+        // Book은 전 섹션 기본 펼침 — 탭 0회로 모든 정보 도달(접기 토글은 유지, 노드 왕복에도 항상 펼침)
+        setCollapsed(data.label === 'Book' ? {
+          'book-central': false, 'book-themes': false, 'book-keyverse': false, 'book-background': false,
+          'book-structure': false, 'book-keyppl': false, 'book-persons': false, 'book-events': false,
+        } : {})
         setState({ id: nodeId, node: data, error: null }); onNodeLoaded?.(data)
       } })
       .catch(e => { if (!cancelled) setState({ id: nodeId, node: null, error: e?.status ?? String(e) }) })
@@ -335,12 +338,16 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
             ))}
           </div>
 
-          {/* 시대적 배경 */}
-          {node.properties.background && (
+          {/* 중심 메시지 — 책의 정수(1~2줄)를 최상단에 */}
+          {node.properties.centralMessage && (
             <div style={{ marginBottom: 12 }}>
-              <SectionHeader label="시대적 배경" color="#a78bfa" sectionKey="book-background" collapsed={collapsed} onToggle={toggle} />
-              {collapsed['book-background'] === false && (
-                <p style={{ margin: '0 0 4px', color: '#374151', lineHeight: 1.6 }}>{node.properties.background}</p>
+              <SectionHeader label="중심 메시지" color="#a78bfa" sectionKey="book-central" collapsed={collapsed} onToggle={toggle} />
+              {collapsed['book-central'] === false && (
+                <div style={{
+                  padding: '10px 12px', background: '#f5f3ff', borderRadius: 8,
+                  borderLeft: '3px solid #a78bfa', marginBottom: 4,
+                  fontSize: 13, color: '#374151', lineHeight: 1.6,
+                }}>{node.properties.centralMessage}</div>
               )}
             </div>
           )}
@@ -387,22 +394,28 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
             </div>
           )}
 
-          {/* 중심 메시지 */}
-          {node.properties.centralMessage && (
+          {/* 시대적 배경 — 긴 산문은 정수 아래로 */}
+          {node.properties.background && (
             <div style={{ marginBottom: 12 }}>
-              <SectionHeader label="중심 메시지" color="#a78bfa" sectionKey="book-central" collapsed={collapsed} onToggle={toggle} />
-              {collapsed['book-central'] === false && (
-                <div style={{
-                  padding: '10px 12px', background: '#f5f3ff', borderRadius: 8,
-                  borderLeft: '3px solid #a78bfa', marginBottom: 4,
-                  fontSize: 13, color: '#374151', lineHeight: 1.6,
-                }}>{node.properties.centralMessage}</div>
+              <SectionHeader label="시대적 배경" color="#a78bfa" sectionKey="book-background" collapsed={collapsed} onToggle={toggle} />
+              {collapsed['book-background'] === false && (
+                <p style={{ margin: '0 0 4px', color: '#374151', lineHeight: 1.6 }}>{node.properties.background}</p>
               )}
             </div>
           )}
 
-          {/* 핵심 인물 */}
-          {node.properties.keyPeople?.length > 0 && (
+          {/* 구조 개요 */}
+          {node.properties.structure && (
+            <div style={{ marginBottom: 12 }}>
+              <SectionHeader label="구조 개요" color="#a78bfa" sectionKey="book-structure" collapsed={collapsed} onToggle={toggle} />
+              {collapsed['book-structure'] === false && (
+                <p style={{ margin: '0 0 4px', color: '#374151', lineHeight: 1.6, fontSize: 13 }}>{node.properties.structure}</p>
+              )}
+            </div>
+          )}
+
+          {/* 핵심 인물 — 클릭 가능한 '주요 인물'(topPersons)이 있으면 중복이라 숨김(없는 34권에선 유일한 인물 정보) */}
+          {node.properties.keyPeople?.length > 0 && !(node.topPersons?.length > 0) && (
             <div style={{ marginBottom: 12 }}>
               <SectionHeader label="핵심 인물" color="#a78bfa" sectionKey="book-keyppl" collapsed={collapsed} onToggle={toggle} />
               {collapsed['book-keyppl'] === false && (
@@ -414,16 +427,6 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                     }}>{p}</span>
                   ))}
                 </div>
-              )}
-            </div>
-          )}
-
-          {/* 구조 개요 */}
-          {node.properties.structure && (
-            <div style={{ marginBottom: 12 }}>
-              <SectionHeader label="구조 개요" color="#a78bfa" sectionKey="book-structure" collapsed={collapsed} onToggle={toggle} />
-              {collapsed['book-structure'] === false && (
-                <p style={{ margin: '0 0 4px', color: '#374151', lineHeight: 1.6, fontSize: 13 }}>{node.properties.structure}</p>
               )}
             </div>
           )}
