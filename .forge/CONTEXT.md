@@ -56,6 +56,10 @@ Event 노드의 발생 시점 속성. **혼재 형식의 문자열**이다 — �
 
 성경인물탐험에 큐레이션하려는 주인공이지만 Theographic 그래프에 Person 노드가 없는 인물(사사시대 드보라·기드온·입다·삼손·룻 등). 기존 큐레이션 16인은 실제 Theographic `rec` id를 재사용하지만, 사사들은 재사용할 노드가 없어 **마킹된 authored Person 노드를 새로 만든다 (ADR-0008)**. `data/authored_persons/people.json` → `load_authored_persons.py`가 `MERGE (p:Person {theographic_id})` + `authored:true` + `name`/`nameKo`로 멱등 적재. 식별자는 `authored-person-<slug>`(저작 사건 `authored-<slug>`·저작 장소 `authored-place-<name>`와 같은 계열). **적재 순서 제약**: authored Person이 `load_person_events.py`보다 먼저 적재돼야 인물 여정 사건의 `HAS_PARTICIPANT` MATCH가 성립한다. authored **사건의 주변 참여자**(네로·에스더 등 — 카드·여정 없음)는 이 대상이 아니라 여전히 노드 없이 둔다(ADR-0005의 경계). 카드·여정·SidePanel·지도가 일급 Person으로 소비하지만 traits 부여는 별도 enrich 경로다.
 
+## 화면 단계 (Stage)
+
+앱 최상위 화면 전환 단위. 세 단계 — **인물 허브(hub)**: 큐레이션 인물 카드 목록, 시작 화면. **탐험(explore)**: 선택한 인물의 지도·타임라인. **성경 책 둘러보기(overview)**: 66권을 구약/신약·장르(율법서·역사서 등 10범주)로 훑는 화면. 사용자에게 노출되는 라벨은 **"성경 책 둘러보기"로 통일**한다 — "성경 개요"는 같은 단계를 가리키던 옛 표기로, 진입 버튼("성경 책 둘러보기")과 어긋나 혼동을 주므로 쓰지 않는다.
+
 ## selectedNode
 
 프론트엔드 전역 상태. 현재 사용자가 선택한 엔티티의 `theographic_id`와 레이블(Person/Place/Event/Book)을 담는다. MapView / TimelineView 두 뷰가 이 값을 구독해 동시에 갱신된다. (GraphView는 제거됨.)
