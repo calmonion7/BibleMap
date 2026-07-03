@@ -164,19 +164,28 @@ export default function PersonHub({ onSelectPerson, onOpenOverview }) {
   const isMobile = useIsMobile()
 
   useEffect(() => {
-    let cancelled = false
-    apiGet('/persons/curated')
-      .then(data => {
-        if (cancelled) return
-        setPersons(data)
-        setLoading(false)
-      })
-      .catch(err => {
-        if (cancelled) return
-        setError(err.message || '불러오기 실패')
-        setLoading(false)
-      })
-    return () => { cancelled = true }
+    // 일시 장애로 허브 전체가 에러 화면에 고착되지 않도록 유한 재시도(1s→2s→4s).
+    // 재시도 중엔 스피너 유지, 최종 실패에만 에러 표시.
+    let timer, cancelled = false
+    const load = attempt => {
+      apiGet('/persons/curated')
+        .then(data => {
+          if (cancelled) return
+          setPersons(data)
+          setLoading(false)
+        })
+        .catch(err => {
+          if (cancelled) return
+          if (attempt < 3) {
+            timer = setTimeout(() => load(attempt + 1), 1000 * 2 ** attempt)
+          } else {
+            setError(err.message || '불러오기 실패')
+            setLoading(false)
+          }
+        })
+    }
+    load(0)
+    return () => { cancelled = true; clearTimeout(timer) }
   }, [])
 
   if (loading) {
