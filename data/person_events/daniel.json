@@ -66,6 +66,28 @@
     ]
   },
   {
+    "id": "authored-daniel-babylon-four-beasts",
+    "title": "Vision of the four beasts",
+    "nameKo": "네 짐승 환상",
+    "startDate": "-553",
+    "sortKey": -553,
+    "yearLabel": "BC 553경",
+    "context": "벨사살 원년에 다니엘이 밤 환상 중 바다에서 올라오는 네 큰 짐승과 옛적부터 항상 계신 이의 심판 보좌, 그리고 인자 같은 이가 영원한 나라를 받는 것을 봄 (Dan 7:1–28).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-babylon"
+    ],
+    "participants": [
+      "authored-person-daniel"
+    ],
+    "books": [
+      {
+        "bookId": "recJZDGEIEZOMQVFU",
+        "rangeLabel": "7:1–28"
+      }
+    ]
+  },
+  {
     "id": "authored-daniel-susa-vision",
     "title": "Vision of the ram and goat at Susa",
     "nameKo": "수산 궁 숫양과 숫염소 환상",
@@ -110,6 +132,28 @@
     ]
   },
   {
+    "id": "authored-daniel-babylon-darius-administrator",
+    "title": "Daniel appointed chief administrator under Darius",
+    "nameKo": "다리오 치하 총리 임명",
+    "startDate": "-538",
+    "sortKey": -538.7,
+    "yearLabel": "BC 538경",
+    "context": "메대 사람 다리오가 나라를 받은 후 다니엘을 세 총리 중 하나로 세우니, 다니엘이 뛰어난 영으로 왕이 온 나라를 맡기려 하매 총리들과 방백들이 시기하여 올무를 꾀함 (Dan 6:1–4).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-babylon"
+    ],
+    "participants": [
+      "authored-person-daniel"
+    ],
+    "books": [
+      {
+        "bookId": "recJZDGEIEZOMQVFU",
+        "rangeLabel": "6:1–4"
+      }
+    ]
+  },
+  {
     "id": "authored-daniel-babylon-lions-den",
     "title": "Daniel in the lions' den",
     "nameKo": "사자 굴",
@@ -128,6 +172,50 @@
       {
         "bookId": "recJZDGEIEZOMQVFU",
         "rangeLabel": "6:1–28"
+      }
+    ]
+  },
+  {
+    "id": "authored-daniel-babylon-seventy-weeks",
+    "title": "Daniel's prayer and the seventy weeks",
+    "nameKo": "다니엘의 기도와 칠십이레",
+    "startDate": "-538",
+    "sortKey": -537.5,
+    "yearLabel": "BC 538경",
+    "context": "다리오 원년에 다니엘이 예루살렘의 황폐함을 위해 금식·재·굵은 베로 회개 기도를 드리니, 가브리엘이 나타나 메시아 오시기까지의 칠십 이레를 선포함 (Dan 9:1–27).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-babylon"
+    ],
+    "participants": [
+      "authored-person-daniel"
+    ],
+    "books": [
+      {
+        "bookId": "recJZDGEIEZOMQVFU",
+        "rangeLabel": "9:1–27"
+      }
+    ]
+  },
+  {
+    "id": "authored-daniel-tigris-vision",
+    "title": "Vision by the Tigris river",
+    "nameKo": "히데겔(티그리스) 강가 환상",
+    "startDate": "-536",
+    "sortKey": -536,
+    "yearLabel": "BC 536경",
+    "context": "고레스 3년에 다니엘이 히데겔 강가에서 세마포 입은 한 사람의 환상을 보고 죽은 자 같이 엎드러지매, 천사가 일으켜 마지막 때의 열국 흥망과 부활·영생을 계시함 (Dan 10:1–12:13).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-tigris-river"
+    ],
+    "participants": [
+      "authored-person-daniel"
+    ],
+    "books": [
+      {
+        "bookId": "recJZDGEIEZOMQVFU",
+        "rangeLabel": "10:1–12:13"
       }
     ]
   }

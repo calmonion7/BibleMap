@@ -1,5 +1,27 @@
 [
   {
+    "id": "authored-joseph-two-dreams",
+    "title": "Joseph's two dreams of sheaves and stars",
+    "nameKo": "요셉의 두 꿈 (곡식단·별)",
+    "startDate": "-1898",
+    "sortKey": -1898,
+    "yearLabel": "BC 1898경",
+    "context": "요셉이 형들의 곡식단이 자기 것에 절하고 해·달·열한 별이 절하는 꿈을 꾸어 형들의 시기를 삼 (Gen 37:5–11).",
+    "authored": true,
+    "occursAt": [
+      "recJSfVnIcPibY6aX"
+    ],
+    "participants": [
+      "rechuDYJoK32gmrME"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "37:5–11"
+      }
+    ]
+  },
+  {
     "id": "authored-joseph-hebron-departure",
     "title": "Joseph sent from Hebron to find his brothers",
     "nameKo": "헤브론 출발 (형들을 찾아서)",
@@ -66,13 +88,13 @@
     ]
   },
   {
-    "id": "authored-joseph-egypt-prime-minister",
-    "title": "Joseph appointed prime minister of Egypt",
-    "nameKo": "애굽 총리 임명",
-    "startDate": "-1884",
-    "sortKey": -1884,
-    "yearLabel": "BC 1884경",
-    "context": "바로의 꿈을 해석하여 7년 풍년·7년 흉년을 예언. 애굽 총리로 임명되어 식량 비축 (Gen 41:39–43).",
+    "id": "authored-joseph-potiphar-wife-prison",
+    "title": "Falsely accused by Potiphar's wife and imprisoned",
+    "nameKo": "보디발 아내 무고와 투옥",
+    "startDate": "-1889",
+    "sortKey": -1889,
+    "yearLabel": "BC 1889경",
+    "context": "보디발의 아내가 요셉의 옷을 잡으며 동침을 요구했으나 거절하자 오히려 겁탈을 시도했다고 무고하여 감옥에 갇힘 (Gen 39:11–20).",
     "authored": true,
     "occursAt": [
       "recfrXyxhuYOczKTm"
@@ -83,29 +105,7 @@
     "books": [
       {
         "bookId": "recIFusdNl6d8dj3L",
-        "rangeLabel": "41:39–43"
-      }
-    ]
-  },
-  {
-    "id": "authored-joseph-egypt-family-reunion",
-    "title": "Joseph reveals himself to his brothers",
-    "nameKo": "형들과 상봉 및 가족 이주",
-    "startDate": "-1876",
-    "sortKey": -1876,
-    "yearLabel": "BC 1876경",
-    "context": "기근 중 형들이 양식을 구하러 오자 정체를 밝히고 온 가족을 애굽 고센 땅으로 초청 (Gen 45:4–9).",
-    "authored": true,
-    "occursAt": [
-      "recfrXyxhuYOczKTm"
-    ],
-    "participants": [
-      "rechuDYJoK32gmrME"
-    ],
-    "books": [
-      {
-        "bookId": "recIFusdNl6d8dj3L",
-        "rangeLabel": "45:4–9"
+        "rangeLabel": "39:11–20"
       }
     ]
   },
@@ -132,6 +132,28 @@
     ]
   },
   {
+    "id": "authored-joseph-egypt-prime-minister",
+    "title": "Joseph appointed prime minister of Egypt",
+    "nameKo": "애굽 총리 임명",
+    "startDate": "-1884",
+    "sortKey": -1884,
+    "yearLabel": "BC 1884경",
+    "context": "바로의 꿈을 해석하여 7년 풍년·7년 흉년을 예언. 애굽 총리로 임명되어 식량 비축 (Gen 41:39–43).",
+    "authored": true,
+    "occursAt": [
+      "recfrXyxhuYOczKTm"
+    ],
+    "participants": [
+      "rechuDYJoK32gmrME"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "41:39–43"
+      }
+    ]
+  },
+  {
     "id": "authored-joseph-egypt-brothers-first",
     "title": "형들의 첫 방문과 시므온 볼모",
     "nameKo": "형들의 첫 방문과 시므온 볼모",
@@ -150,6 +172,72 @@
       {
         "bookId": "recIFusdNl6d8dj3L",
         "rangeLabel": "42:1–24"
+      }
+    ]
+  },
+  {
+    "id": "authored-joseph-silver-cup-benjamin",
+    "title": "Silver cup hidden in Benjamin's sack — brothers tested",
+    "nameKo": "은잔 숨김과 베냐민 시험",
+    "startDate": "-1876",
+    "sortKey": -1876.5,
+    "yearLabel": "BC 1876경",
+    "context": "요셉이 청지기에게 명하여 베냐민의 자루에 은잔을 숨기게 한 후 형들을 추격해 잡아 오게 하여 형들의 마음을 시험함 (Gen 44:1–17).",
+    "authored": true,
+    "occursAt": [
+      "recfrXyxhuYOczKTm"
+    ],
+    "participants": [
+      "rechuDYJoK32gmrME"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "44:1–17"
+      }
+    ]
+  },
+  {
+    "id": "authored-joseph-egypt-family-reunion",
+    "title": "Joseph reveals himself to his brothers",
+    "nameKo": "형들과 상봉 및 가족 이주",
+    "startDate": "-1876",
+    "sortKey": -1876,
+    "yearLabel": "BC 1876경",
+    "context": "기근 중 형들이 양식을 구하러 오자 정체를 밝히고 온 가족을 애굽 고센 땅으로 초청 (Gen 45:4–9).",
+    "authored": true,
+    "occursAt": [
+      "recfrXyxhuYOczKTm"
+    ],
+    "participants": [
+      "rechuDYJoK32gmrME"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "45:4–9"
+      }
+    ]
+  },
+  {
+    "id": "authored-joseph-jacob-blesses-ephraim-manasseh",
+    "title": "Jacob blesses Ephraim and Manasseh",
+    "nameKo": "야곱의 에브라임·므낫세 축복",
+    "startDate": "-1859",
+    "sortKey": -1859,
+    "yearLabel": "BC 1859경",
+    "context": "임종을 앞둔 야곱이 요셉의 두 아들 에브라임과 므낫세를 양자로 삼아 손을 엇바꾸어 에브라임을 먼저 축복하니 이스라엘 두 지파의 조상이 됨 (Gen 48:8–20).",
+    "authored": true,
+    "occursAt": [
+      "recfrXyxhuYOczKTm"
+    ],
+    "participants": [
+      "rechuDYJoK32gmrME"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "48:8–20"
       }
     ]
   },

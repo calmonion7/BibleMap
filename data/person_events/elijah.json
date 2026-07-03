@@ -88,6 +88,50 @@
     ]
   },
   {
+    "id": "authored-elijah-kishon-slaughter",
+    "title": "Slaughter of the prophets of Baal at Kishon",
+    "nameKo": "기손 강가 바알 선지자 처단",
+    "startDate": "-868",
+    "sortKey": -867.8,
+    "yearLabel": "BC 868경",
+    "context": "불로 응답하신 이적 직후, 엘리야가 백성에게 명하여 바알 선지자 사백오십 인을 한 사람도 남기지 않고 기손 시내로 끌어 내려가 죽임 (1Kgs 18:40).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-kishon"
+    ],
+    "participants": [
+      "authored-person-elijah"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "18:40"
+      }
+    ]
+  },
+  {
+    "id": "authored-elijah-jezreel-rain-run",
+    "title": "Rain comes and Elijah runs to Jezreel",
+    "nameKo": "비 내림과 이스르엘로의 달음박질",
+    "startDate": "-868",
+    "sortKey": -867.7,
+    "yearLabel": "BC 868경",
+    "context": "갈멜산 꼭대기에서 엎드려 기도하기를 일곱 번에 작은 구름이 올라오더니 큰 비가 내렸고, 여호와의 능력이 엘리야에게 임하여 허리를 동이고 이스르엘 성문까지 아합의 수레보다 앞서 달려감 (1Kgs 18:41–46).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-jezreel"
+    ],
+    "participants": [
+      "authored-person-elijah"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "18:41–46"
+      }
+    ]
+  },
+  {
     "id": "authored-elijah-horeb-whisper",
     "title": "The still small voice at Horeb",
     "nameKo": "호렙산 세미한 소리",
@@ -128,6 +172,50 @@
       {
         "bookId": "reconzJEzr8kOsb3j",
         "rangeLabel": "19:19–21"
+      }
+    ]
+  },
+  {
+    "id": "authored-elijah-naboth-vineyard",
+    "title": "Elijah confronts Ahab over Naboth's vineyard",
+    "nameKo": "나봇의 포도원 사건 규탄",
+    "startDate": "-860",
+    "sortKey": -860,
+    "yearLabel": "BC 860경",
+    "context": "이스르엘 사람 나봇을 이세벨의 계략으로 죽이고 포도원을 빼앗으러 내려간 아합을 엘리야가 만나, 개들이 나봇의 피를 핥은 곳에서 아합의 피도 핥으리라 심판을 선언함 (1Kgs 21:17–24).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-jezreel"
+    ],
+    "participants": [
+      "authored-person-elijah"
+    ],
+    "books": [
+      {
+        "bookId": "reconzJEzr8kOsb3j",
+        "rangeLabel": "21:17–24"
+      }
+    ]
+  },
+  {
+    "id": "authored-elijah-ahaziah-fire",
+    "title": "Fire from heaven on Ahaziah's soldiers",
+    "nameKo": "아하시야 사자에게 하늘 불 내림",
+    "startDate": "-853",
+    "sortKey": -853,
+    "yearLabel": "BC 853경",
+    "context": "아하시야 왕이 에그론 신 바알세붑에게 문의하려고 사자를 보내자, 엘리야가 이를 꾸짖고 오십부장 두 무리가 이끈 군사들에게 하늘 불이 내려 삼켰으며 세 번째 오십부장의 간구 끝에 엘리야가 왕에게 나아가 죽음을 선언함 (2Kgs 1:3–17).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-samaria"
+    ],
+    "participants": [
+      "authored-person-elijah"
+    ],
+    "books": [
+      {
+        "bookId": "recutYqTqunXPJKQO",
+        "rangeLabel": "1:3–17"
       }
     ]
   },

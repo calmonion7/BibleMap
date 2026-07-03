@@ -66,6 +66,28 @@
     ]
   },
   {
+    "id": "authored-samuel-circuit-judge",
+    "title": "Samuel's annual circuit as judge",
+    "nameKo": "사사 순회 재판 (벧엘·길갈·미스바)",
+    "startDate": "-1065",
+    "sortKey": -1065,
+    "yearLabel": "BC 1065경",
+    "context": "사무엘이 해마다 벧엘·길갈·미스바를 순회하며 이스라엘을 재판하고, 본향 라마로 돌아와 거기서도 사사 역할을 함 (1Sam 7:15–17).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-bethel"
+    ],
+    "participants": [
+      "recZsS2Zu0zIDwqdv"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "7:15–17"
+      }
+    ]
+  },
+  {
     "id": "authored-samuel-ramah-school",
     "title": "Samuel's prophetic school at Ramah",
     "nameKo": "라마 선지 학교",
@@ -84,6 +106,28 @@
       {
         "bookId": "rec4GS8yWh2R4mpdB",
         "rangeLabel": "15:34"
+      }
+    ]
+  },
+  {
+    "id": "authored-samuel-gilgal-saul-rejection",
+    "title": "Samuel rebukes Saul and tears his robe at Gilgal",
+    "nameKo": "사울 책망과 겉옷 찢김 (길갈)",
+    "startDate": "-1055",
+    "sortKey": -1055,
+    "yearLabel": "BC 1055경",
+    "context": "사무엘이 아말렉 전쟁 후 명령을 어긴 사울을 길갈에서 강하게 책망하고 '순종이 제사보다 낫다'고 선언. 돌아서는 사무엘의 겉옷을 사울이 붙들어 찢어지자 하나님이 그 나라를 이웃에게 주리라 선포 (1Sam 15:22–28).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-gilgal"
+    ],
+    "participants": [
+      "recZsS2Zu0zIDwqdv"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "15:22–28"
       }
     ]
   },
@@ -110,6 +154,28 @@
     ]
   },
   {
+    "id": "authored-samuel-bethlehem-david-anointing",
+    "title": "Samuel anoints David at Bethlehem",
+    "nameKo": "베들레헴에서 다윗 기름부음",
+    "startDate": "-1040",
+    "sortKey": -1040,
+    "yearLabel": "BC 1040경",
+    "context": "하나님의 명령으로 베들레헴에 내려간 사무엘이 이새의 아들들을 차례로 살피다 막내 다윗을 불러 그 머리에 기름을 부으니 여호와의 영이 다윗에게 임함 (1Sam 16:4–13).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-bethlehem"
+    ],
+    "participants": [
+      "recZsS2Zu0zIDwqdv"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "16:4–13"
+      }
+    ]
+  },
+  {
     "id": "authored-samuel-ramah-death",
     "title": "Samuel dies at Ramah",
     "nameKo": "라마에서 사망",
@@ -128,6 +194,28 @@
       {
         "bookId": "rec4GS8yWh2R4mpdB",
         "rangeLabel": "25:1"
+      }
+    ]
+  },
+  {
+    "id": "authored-samuel-endor-apparition",
+    "title": "Samuel's spirit summoned at En-dor",
+    "nameKo": "엔돌 신접여인에 나타남",
+    "startDate": "-1010",
+    "sortKey": -1010,
+    "yearLabel": "BC 1010경",
+    "context": "블레셋과의 결전 전날 밤 변장한 사울이 엔돌 신접여인에게 사무엘의 혼을 불러달라 청하니 사무엘이 나타나 사울과 그 아들들의 죽음을 예언 (1Sam 28:7–19).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-endor"
+    ],
+    "participants": [
+      "recZsS2Zu0zIDwqdv"
+    ],
+    "books": [
+      {
+        "bookId": "rec4GS8yWh2R4mpdB",
+        "rangeLabel": "28:7–19"
       }
     ]
   }

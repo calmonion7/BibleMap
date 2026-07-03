@@ -590,5 +590,53 @@
     "lat": 32.2,
     "lng": 34.2,
     "note": "요나가 폭풍 중 바다에 던져져 큰 물고기에 삼켜진 곳 (Jonah 1:15–17)"
+  },
+  {
+    "id": "authored-place-jordan-crossing",
+    "name": "Jordan River Crossing",
+    "nameKo": "요단강 도하 지점",
+    "lat": 31.87,
+    "lng": 35.554,
+    "note": "여호수아가 법궤와 함께 이스라엘을 이끌고 건넌 요단강 여리고 맞은편 나루 (Josh 3:14–17)"
+  },
+  {
+    "id": "authored-place-ebal",
+    "name": "Mount Ebal",
+    "nameKo": "에발산",
+    "lat": 32.217,
+    "lng": 35.268,
+    "note": "여호수아가 율법을 돌에 새기고 제단을 쌓아 언약을 낭독한 세겜 북편 산 (Josh 8:30–35)"
+  },
+  {
+    "id": "authored-place-timnath-serah",
+    "name": "Timnath-serah",
+    "nameKo": "딤낫 세라",
+    "lat": 31.99,
+    "lng": 35.11,
+    "note": "여호수아에게 기업으로 주어진 에브라임 산지 성읍; 여호수아의 장지 (Josh 19:50; 24:30)"
+  },
+  {
+    "id": "authored-place-tigris-river",
+    "name": "Tigris River",
+    "nameKo": "히데겔(티그리스) 강",
+    "lat": 33.34,
+    "lng": 44.4,
+    "note": "고레스 3년 다니엘이 환상을 받은 티그리스 강가 (Dan 10:4)"
+  },
+  {
+    "id": "authored-place-jezreel",
+    "name": "Jezreel",
+    "nameKo": "이스르엘",
+    "lat": 32.34,
+    "lng": 35.33,
+    "note": "아합 왕의 별궁 소재지; 나봇의 포도원과 엘리야의 달음박질 종착지 (1Kgs 18:46, 21:1)"
+  },
+  {
+    "id": "authored-place-damascus",
+    "name": "Damascus",
+    "nameKo": "다메섹",
+    "lat": 33.5138,
+    "lng": 36.2765,
+    "note": "아람 왕국의 수도; 엘리사가 하사엘에게 예언한 곳 (2Kgs 8:7)"
   }
 ]

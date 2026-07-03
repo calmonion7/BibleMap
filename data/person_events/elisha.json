@@ -44,6 +44,28 @@
     ]
   },
   {
+    "id": "authored-elisha-widow-oil",
+    "title": "Elisha multiplies the widow's oil",
+    "nameKo": "과부의 기름이 넘치다",
+    "startDate": "-848",
+    "sortKey": -848,
+    "yearLabel": "BC 848경",
+    "context": "선지자의 제자 과부가 빚 독촉에 시달리자 엘리사가 빈 그릇마다 기름을 채우게 하여 팔아 빚을 갚고 남은 것으로 살게 함 (2Kgs 4:1–7).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-samaria"
+    ],
+    "participants": [
+      "authored-person-elisha"
+    ],
+    "books": [
+      {
+        "bookId": "recutYqTqunXPJKQO",
+        "rangeLabel": "4:1–7"
+      }
+    ]
+  },
+  {
     "id": "authored-elisha-jericho-water",
     "title": "Elisha heals the waters of Jericho",
     "nameKo": "여리고 물 고침",
@@ -62,6 +84,28 @@
       {
         "bookId": "recutYqTqunXPJKQO",
         "rangeLabel": "2:19–22"
+      }
+    ]
+  },
+  {
+    "id": "authored-elisha-gilgal-stew-bread",
+    "title": "Elisha purifies the stew and feeds a hundred men at Gilgal",
+    "nameKo": "길갈의 독된 국 정화와 백 명 먹임",
+    "startDate": "-846",
+    "sortKey": -846,
+    "yearLabel": "BC 846경",
+    "context": "길갈에서 선지자 생도들이 끓인 국에 독이 있자 가루를 넣어 해독하고, 보리떡 이십 개와 자루에 담은 채소로 백 명을 배불리 먹임 (2Kgs 4:38–44).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-gilgal"
+    ],
+    "participants": [
+      "authored-person-elisha"
+    ],
+    "books": [
+      {
+        "bookId": "recutYqTqunXPJKQO",
+        "rangeLabel": "4:38–44"
       }
     ]
   },
@@ -132,6 +176,28 @@
     ]
   },
   {
+    "id": "authored-elisha-hazael-damascus",
+    "title": "Elisha anoints Hazael as king of Aram in Damascus",
+    "nameKo": "하사엘에게 기름부음 — 다메섹",
+    "startDate": "-837",
+    "sortKey": -837,
+    "yearLabel": "BC 837경",
+    "context": "병든 아람 왕 벤하닷의 신하 하사엘이 다메섹으로 엘리사를 찾아오자, 엘리사가 하사엘이 이스라엘에 재앙을 끼칠 왕이 될 것을 예언하고 눈물을 흘림 (2Kgs 8:7–15).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-damascus"
+    ],
+    "participants": [
+      "authored-person-elisha"
+    ],
+    "books": [
+      {
+        "bookId": "recutYqTqunXPJKQO",
+        "rangeLabel": "8:7–15"
+      }
+    ]
+  },
+  {
     "id": "authored-elisha-samaria-siege",
     "title": "Elisha prophesies the end of Samaria's siege",
     "nameKo": "사마리아 포위 — 구원 예언",
@@ -150,6 +216,28 @@
       {
         "bookId": "recutYqTqunXPJKQO",
         "rangeLabel": "7:1–2"
+      }
+    ]
+  },
+  {
+    "id": "authored-elisha-death-bone-resurrection",
+    "title": "Elisha dies and a dead man revives by touching his bones",
+    "nameKo": "엘리사 죽음과 뼈 접촉으로 살아난 죽은 자",
+    "startDate": "-797",
+    "sortKey": -797,
+    "yearLabel": "BC 797경",
+    "context": "엘리사가 사마리아에서 병들어 죽자, 장사 지내는 중 모압 군대가 닥쳐 시체를 엘리사 묘에 던졌더니 그 뼈에 닿자마자 죽은 자가 살아나 일어섬 (2Kgs 13:14–21).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-samaria"
+    ],
+    "participants": [
+      "authored-person-elisha"
+    ],
+    "books": [
+      {
+        "bookId": "recutYqTqunXPJKQO",
+        "rangeLabel": "13:14–21"
       }
     ]
   }
