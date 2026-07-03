@@ -37,12 +37,22 @@ function App() {
   const [explorePersonId, setExplorePersonId] = useState(null)
   const [explorePersonName, setExplorePersonName] = useState(null)
 
-  // 큐레이션 인물 id 집합 — SidePanel '여정 탐험' CTA 노출 판단용(1회 fetch)
+  // 큐레이션 인물 id 집합 — SidePanel '여정 탐험' CTA 노출 판단용.
+  // 실패 시 CTA가 새로고침 전까지 조용히 사라지므로 유한 재시도(1s→2s→4s)로 자가 회복.
   const [curatedIds, setCuratedIds] = useState(null)
   useEffect(() => {
-    apiGet('/persons/curated')
-      .then(list => setCuratedIds(new Set(list.map(p => p.id))))
-      .catch(() => {})
+    let timer, cancelled = false
+    const load = attempt => {
+      apiGet('/persons/curated')
+        .then(list => { if (!cancelled) setCuratedIds(new Set(list.map(p => p.id))) })
+        .catch(() => {
+          if (cancelled) return
+          if (attempt < 3) timer = setTimeout(() => load(attempt + 1), 1000 * 2 ** attempt)
+          else console.warn('/persons/curated 로드 실패 — 여정 탐험 CTA 미노출')
+        })
+    }
+    load(0)
+    return () => { cancelled = true; clearTimeout(timer) }
   }, [])
 
   // 여정 데이터 — 인물 선택 시 한 번 fetch, MapView·JourneyList 공유
