@@ -43,7 +43,7 @@ function SectionHeader({ label, color, count, sectionKey, collapsed, onToggle })
   )
 }
 
-function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, onNodeLoaded, verseLang, setVerseLang, explorePersonId = null, onExplorePerson = () => {}, curatedIds = null, onExploreJourney = () => {} }) {
+function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, onNodeLoaded, verseLang, setVerseLang, explorePersonId = null, onExplorePerson = () => {}, curatedIds = null, onExploreJourney = () => {}, onClose, stickyTop = 0 }) {
   // 어느 nodeId의 결과인지 id로 추적 — loading은 파생, stale 응답은 무시.
   // setState는 비동기 콜백에서만 호출(react-hooks set-state-in-effect 준수).
   const [state, setState] = useState({ id: null, node: null, error: null })
@@ -232,8 +232,21 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
       <div style={{
         padding: '14px 44px 14px 16px',
         borderBottom: '1px solid #eef0f5',
-        position: 'sticky', top: 0, background: 'white', zIndex: 1,
+        position: 'sticky', top: stickyTop, background: 'white', zIndex: 1,
       }}>
+        {onClose && (
+          <button
+            onClick={onClose}
+            aria-label="닫기"
+            style={{
+              position: 'absolute', top: 10, right: 10, zIndex: 2,
+              width: 40, height: 40, borderRadius: '50%',
+              border: '1px solid #d5dbe8', background: '#f1f3f9', color: '#5b6b8c',
+              cursor: 'pointer', fontSize: 20, lineHeight: 1,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}
+          >×</button>
+        )}
         {canGoBack && (
           <button
             onClick={onBack}

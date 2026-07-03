@@ -366,16 +366,6 @@ function App() {
               <div style={{ width: 36, height: 4, borderRadius: 2, background: '#ddd' }} />
             </div>
           )}
-          <button
-            onClick={closePanel}
-            style={{
-              position: 'absolute', top: 8, right: 8, zIndex: 2,
-              width: 44, height: 44, borderRadius: '50%',
-              border: '1px solid #ddd', background: 'white',
-              cursor: 'pointer', fontSize: 16, lineHeight: 1,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-            }}
-          >×</button>
           <SidePanel
             nodeId={selectedNode}
             onSelectNode={selectNode}
@@ -388,6 +378,8 @@ function App() {
             onExplorePerson={handleExplorePerson}
             curatedIds={curatedIds}
             onExploreJourney={handleSelectPerson}
+            onClose={closePanel}
+            stickyTop={isMobile ? 16 : 0}
           />
         </div>
       )}
