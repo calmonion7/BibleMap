@@ -1,0 +1,106 @@
+[
+  {
+    "id": "authored-cain-offering-rejected",
+    "title": "Cain's offering rejected",
+    "nameKo": "가인의 제물이 열납되지 않음",
+    "startDate": "-3900",
+    "sortKey": -3900,
+    "yearLabel": "홍수 이전 (전통 BC 3900경)",
+    "context": "가인은 땅의 소산으로 제물을 드렸으나 하나님이 가인과 그 제물은 받지 않으시자 가인이 몹시 분하여 안색이 변함 (Gen 4:3–5).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "recYqSnSPlrNvnE1m"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "4:3–5"
+      }
+    ]
+  },
+  {
+    "id": "authored-cain-kills-abel",
+    "title": "Cain kills Abel in the field",
+    "nameKo": "가인이 들에서 아벨을 죽임",
+    "startDate": "-3899",
+    "sortKey": -3899,
+    "yearLabel": "홍수 이전 (전통 BC 3900경)",
+    "context": "하나님의 경고에도 불구하고 가인이 아우 아벨에게 말하고 들에서 일어나 아벨을 쳐죽임 (Gen 4:8).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "recYqSnSPlrNvnE1m"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "4:8"
+      }
+    ]
+  },
+  {
+    "id": "authored-cain-cursed-and-marked",
+    "title": "Cain cursed from the ground and given a mark",
+    "nameKo": "땅의 저주와 가인의 표",
+    "startDate": "-3898",
+    "sortKey": -3898,
+    "yearLabel": "홍수 이전 (전통 BC 3900경)",
+    "context": "하나님이 가인에게 땅에서 저주를 받아 유리하는 자가 될 것을 선언하심. 가인이 죽임을 당할까 두려워하자 하나님이 표를 주어 만나는 자마다 죽이지 못하게 하심 (Gen 4:11–15).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "recYqSnSPlrNvnE1m"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "4:11–15"
+      }
+    ]
+  },
+  {
+    "id": "authored-cain-dwells-in-nod",
+    "title": "Cain settles in the land of Nod",
+    "nameKo": "에덴 동편 놋 땅에 거주함",
+    "startDate": "-3897",
+    "sortKey": -3897,
+    "yearLabel": "홍수 이전 (전통 BC 3900경)",
+    "context": "가인이 하나님 앞을 떠나 에덴 동편 놋 땅에 거주함 (Gen 4:16).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-land-of-nod"
+    ],
+    "participants": [
+      "recYqSnSPlrNvnE1m"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "4:16"
+      }
+    ]
+  },
+  {
+    "id": "authored-cain-builds-city-of-enoch",
+    "title": "Cain builds the city of Enoch",
+    "nameKo": "성을 쌓아 아들 이름 따라 에녹이라 함",
+    "startDate": "-3896",
+    "sortKey": -3896,
+    "yearLabel": "홍수 이전 (전통 BC 3900경)",
+    "context": "가인이 아들을 낳고 성을 쌓은 후 그 성의 이름을 아들 에녹의 이름을 따라 에녹이라 불렀음 (Gen 4:17).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-land-of-nod"
+    ],
+    "participants": [
+      "recYqSnSPlrNvnE1m"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "4:17"
+      }
+    ]
+  }
+]

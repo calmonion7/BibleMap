@@ -16,6 +16,10 @@ router = APIRouter()
 _ERA: dict[str, str] = {
     "adam": "원시사",
     "noah": "원시사",
+    "cain": "원시사",
+    "abel": "원시사",
+    "seth": "원시사",
+    "enoch": "원시사",
     "abraham": "족장",
     "isaac": "족장",
     "jacob": "족장",
@@ -50,6 +54,10 @@ _ERA: dict[str, str] = {
 _NAME_KO: dict[str, str] = {
     "adam": "아담",
     "noah": "노아",
+    "cain": "가인",
+    "abel": "아벨",
+    "seth": "셋",
+    "enoch": "에녹",
     "abraham": "아브라함",
     "isaac": "이삭",
     "jacob": "야곱",

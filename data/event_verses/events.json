@@ -152990,5 +152990,404 @@
         ]
       }
     ]
+  },
+  "authored-abel-offering": {
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "bookOrder": 1,
+        "rangeLabel": "4:2–4",
+        "verses": [
+          {
+            "verseID": "01004002",
+            "chapter": 4,
+            "verse": 2,
+            "textKo": "그가 또 가인의 아우 아벨을 낳았는데 아벨은 양 치는 자이었고 가인은 농사하는 자이었더라 ",
+            "textEn": "And she again bare his brother Abel. And Abel was a keeper of sheep, but Cain was a tiller of the ground."
+          },
+          {
+            "verseID": "01004003",
+            "chapter": 4,
+            "verse": 3,
+            "textKo": "세월이 지난 후에 가인은 땅의 소산으로 제물을 삼아 여호와께 드렸고 ",
+            "textEn": "And in process of time it came to pass, that Cain brought of the fruit of the ground an offering unto the Lord."
+          },
+          {
+            "verseID": "01004004",
+            "chapter": 4,
+            "verse": 4,
+            "textKo": "아벨은 자기도 양의 첫 새끼와 그 기름으로 드렸더니 여호와께서 아벨과 그 제물은 열납하셨으나 ",
+            "textEn": "And Abel, he also brought of the firstlings of his flock and of the fat thereof. And the Lord had respect unto Abel and to his offering:"
+          }
+        ]
+      }
+    ]
+  },
+  "authored-abel-killed-by-cain": {
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "bookOrder": 1,
+        "rangeLabel": "4:8–10",
+        "verses": [
+          {
+            "verseID": "01004008",
+            "chapter": 4,
+            "verse": 8,
+            "textKo": "가인이 그 아우 아벨에게 고하니라 그후 그들이 들에 있을 때에 가인이 그 아우 아벨을 쳐죽이니라 ",
+            "textEn": "And Cain talked with Abel his brother: and it came to pass, when they were in the field, that Cain rose up against Abel his brother, and slew him."
+          },
+          {
+            "verseID": "01004009",
+            "chapter": 4,
+            "verse": 9,
+            "textKo": "여호와께서 가인에게 이르시되 네 아우 아벨이 어디 있느냐 그가 가로되 내가 알지 못하나이다 내가 내 아우를 지키는 자이니까 ",
+            "textEn": "And the Lord said unto Cain, Where is Abel thy brother? And he said, I know not: Am I my brother’s keeper?"
+          },
+          {
+            "verseID": "01004010",
+            "chapter": 4,
+            "verse": 10,
+            "textKo": "가라사대 네가 무엇을 하였느냐 네 아우의 핏소리가 땅에서부터 내게 호소하느니라 ",
+            "textEn": "And he said, What hast thou done? the voice of thy brother’s blood crieth unto me from the ground."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-abel-faith-witness": {
+    "books": [
+      {
+        "bookId": "recKvTNUismk1ckEr",
+        "bookOrder": 58,
+        "rangeLabel": "11:4",
+        "verses": [
+          {
+            "verseID": "58011004",
+            "chapter": 11,
+            "verse": 4,
+            "textKo": "믿음으로 아벨은 가인보다 더 나은 제사를 하나님께 드림으로 의로운 자라 하시는 증거를 얻었으니 하나님이 그 예물에 대하여 증거하심이라 저가 죽었으나 그 믿음으로써 오히려 말하느니라 ",
+            "textEn": "By faith Abel offered unto God a more excellent sacrifice than Cain, by which he obtained witness that he was righteous, God testifying of his gifts: and by it he being dead yet speaketh."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-cain-offering-rejected": {
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "bookOrder": 1,
+        "rangeLabel": "4:3–5",
+        "verses": [
+          {
+            "verseID": "01004003",
+            "chapter": 4,
+            "verse": 3,
+            "textKo": "세월이 지난 후에 가인은 땅의 소산으로 제물을 삼아 여호와께 드렸고 ",
+            "textEn": "And in process of time it came to pass, that Cain brought of the fruit of the ground an offering unto the Lord."
+          },
+          {
+            "verseID": "01004004",
+            "chapter": 4,
+            "verse": 4,
+            "textKo": "아벨은 자기도 양의 첫 새끼와 그 기름으로 드렸더니 여호와께서 아벨과 그 제물은 열납하셨으나 ",
+            "textEn": "And Abel, he also brought of the firstlings of his flock and of the fat thereof. And the Lord had respect unto Abel and to his offering:"
+          },
+          {
+            "verseID": "01004005",
+            "chapter": 4,
+            "verse": 5,
+            "textKo": "가인과 그 제물은 열납하지 아니하신지라 가인이 심히 분하여 안색이 변하니 ",
+            "textEn": "But unto Cain and to his offering he had not respect. And Cain was very wroth, and his countenance fell."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-cain-kills-abel": {
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "bookOrder": 1,
+        "rangeLabel": "4:8",
+        "verses": [
+          {
+            "verseID": "01004008",
+            "chapter": 4,
+            "verse": 8,
+            "textKo": "가인이 그 아우 아벨에게 고하니라 그후 그들이 들에 있을 때에 가인이 그 아우 아벨을 쳐죽이니라 ",
+            "textEn": "And Cain talked with Abel his brother: and it came to pass, when they were in the field, that Cain rose up against Abel his brother, and slew him."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-cain-cursed-and-marked": {
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "bookOrder": 1,
+        "rangeLabel": "4:11–15",
+        "verses": [
+          {
+            "verseID": "01004011",
+            "chapter": 4,
+            "verse": 11,
+            "textKo": "땅이 그 입을 벌려 네 손에서부터 네 아우의 피를 받았은즉 네가 땅에서 저주를 받으리니 ",
+            "textEn": "And now art thou cursed from the earth, which hath opened her mouth to receive thy brother’s blood from thy hand;"
+          },
+          {
+            "verseID": "01004012",
+            "chapter": 4,
+            "verse": 12,
+            "textKo": "네가 밭 갈아도 땅이 다시는 그 효력을 네게 주지 아니할 것이요 너는 땅에서 피하며 유리하는 자가 되리라 ",
+            "textEn": "When thou tillest the ground, it shall not henceforth yield unto thee her strength; a fugitive and a vagabond shalt thou be in the earth."
+          },
+          {
+            "verseID": "01004013",
+            "chapter": 4,
+            "verse": 13,
+            "textKo": "가인이 여호와께 고하되 내 죄벌이 너무 중하여 견딜 수 없나이다 ",
+            "textEn": "And Cain said unto the Lord, My punishment is greater than I can bear."
+          },
+          {
+            "verseID": "01004014",
+            "chapter": 4,
+            "verse": 14,
+            "textKo": "주께서 오늘 이 지면에서 나를 쫓아내시온즉 내가 주의 낯을 뵈옵지 못하리니 내가 땅에서 피하며 유리하는 자가 될지라 무릇 나를 만나는 자가 나를 죽이겠나이다 ",
+            "textEn": "Behold, thou hast driven me out this day from the face of the earth; and from thy face shall I be hid; and I shall be a fugitive and a vagabond in the earth; and it shall come to pass, that every one that findeth me shall slay me."
+          },
+          {
+            "verseID": "01004015",
+            "chapter": 4,
+            "verse": 15,
+            "textKo": "여호와께서 그에게 이르시되 그렇지 않다 가인을 죽이는 자는 벌을 칠 배나 받으리라 하시고 가인에게 표를 주사 만나는 누구에게든지 죽임을 면케 하시니라 ",
+            "textEn": "And the Lord said unto him, Therefore whosoever slayeth Cain, vengeance shall be taken on him sevenfold. And the Lord set a mark upon Cain, lest any finding him should kill him."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-cain-dwells-in-nod": {
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "bookOrder": 1,
+        "rangeLabel": "4:16",
+        "verses": [
+          {
+            "verseID": "01004016",
+            "chapter": 4,
+            "verse": 16,
+            "textKo": "가인이 여호와의 앞을 떠나 나가 에덴 동편 놋 땅에 거하였더니 ",
+            "textEn": "And Cain went out from the presence of the Lord, and dwelt in the land of Nod, on the east of Eden."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-cain-builds-city-of-enoch": {
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "bookOrder": 1,
+        "rangeLabel": "4:17",
+        "verses": [
+          {
+            "verseID": "01004017",
+            "chapter": 4,
+            "verse": 17,
+            "textKo": "아내와 동침하니 그가 잉태하여 에녹을 낳은지라 가인이 성을 쌓고 그 아들의 이름으로 성을 이름하여 에녹이라 하였더라 ",
+            "textEn": "And Cain knew his wife; and she conceived, and bare Enoch: and he builded a city, and called the name of the city, after the name of his son, Enoch."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-enoch-methuselah-born": {
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "bookOrder": 1,
+        "rangeLabel": "5:21–22",
+        "verses": [
+          {
+            "verseID": "01005021",
+            "chapter": 5,
+            "verse": 21,
+            "textKo": "에녹은 육십오 세에 므두셀라를 낳았고 ",
+            "textEn": "And Enoch lived sixty and five years, and begat Methuselah:"
+          },
+          {
+            "verseID": "01005022",
+            "chapter": 5,
+            "verse": 22,
+            "textKo": "므두셀라를 낳은 후 삼백 년을 하나님과 동행하며 자녀를 낳았으며 ",
+            "textEn": "And Enoch walked with God after he begat Methuselah three hundred years, and begat sons and daughters:"
+          }
+        ]
+      }
+    ]
+  },
+  "authored-enoch-walked-with-god": {
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "bookOrder": 1,
+        "rangeLabel": "5:22–24",
+        "verses": [
+          {
+            "verseID": "01005022",
+            "chapter": 5,
+            "verse": 22,
+            "textKo": "므두셀라를 낳은 후 삼백 년을 하나님과 동행하며 자녀를 낳았으며 ",
+            "textEn": "And Enoch walked with God after he begat Methuselah three hundred years, and begat sons and daughters:"
+          },
+          {
+            "verseID": "01005023",
+            "chapter": 5,
+            "verse": 23,
+            "textKo": "그가 삼백육십오 세를 향수하였더라 ",
+            "textEn": "And all the days of Enoch were three hundred sixty and five years:"
+          },
+          {
+            "verseID": "01005024",
+            "chapter": 5,
+            "verse": 24,
+            "textKo": "에녹이 하나님과 동행하더니 하나님이 그를 데려가시므로 세상에 있지 아니하였더라 ",
+            "textEn": "And Enoch walked with God: and he was not; for God took him."
+          }
+        ]
+      },
+      {
+        "bookId": "recKvTNUismk1ckEr",
+        "bookOrder": 58,
+        "rangeLabel": "11:5",
+        "verses": [
+          {
+            "verseID": "58011005",
+            "chapter": 11,
+            "verse": 5,
+            "textKo": "믿음으로 에녹은 죽음을 보지 않고 옮기웠으니 하나님이 저를 옮기심으로 다시 보이지 아니하니라 저는 옮기우기 전에 하나님을 기쁘시게 하는 자라 하는 증거를 받았느니라 ",
+            "textEn": "By faith Enoch was translated that he should not see death; and was not found, because God had translated him: for before his translation he had this testimony, that he pleased God."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-enoch-taken-by-god": {
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "bookOrder": 1,
+        "rangeLabel": "5:23–24",
+        "verses": [
+          {
+            "verseID": "01005023",
+            "chapter": 5,
+            "verse": 23,
+            "textKo": "그가 삼백육십오 세를 향수하였더라 ",
+            "textEn": "And all the days of Enoch were three hundred sixty and five years:"
+          },
+          {
+            "verseID": "01005024",
+            "chapter": 5,
+            "verse": 24,
+            "textKo": "에녹이 하나님과 동행하더니 하나님이 그를 데려가시므로 세상에 있지 아니하였더라 ",
+            "textEn": "And Enoch walked with God: and he was not; for God took him."
+          }
+        ]
+      },
+      {
+        "bookId": "recKvTNUismk1ckEr",
+        "bookOrder": 58,
+        "rangeLabel": "11:5",
+        "verses": [
+          {
+            "verseID": "58011005",
+            "chapter": 11,
+            "verse": 5,
+            "textKo": "믿음으로 에녹은 죽음을 보지 않고 옮기웠으니 하나님이 저를 옮기심으로 다시 보이지 아니하니라 저는 옮기우기 전에 하나님을 기쁘시게 하는 자라 하는 증거를 받았느니라 ",
+            "textEn": "By faith Enoch was translated that he should not see death; and was not found, because God had translated him: for before his translation he had this testimony, that he pleased God."
+          }
+        ]
+      },
+      {
+        "bookId": "rec2ddtGk1mJxYoy4",
+        "bookOrder": 65,
+        "rangeLabel": "1:14",
+        "verses": [
+          {
+            "verseID": "65001014",
+            "chapter": 1,
+            "verse": 14,
+            "textKo": "아담의 칠세 손 에녹이 사람들에게 대하여도 예언하여 이르되 보라 주께서 그 수만의 거룩한 자와 함께 임하셨나니 ",
+            "textEn": "And Enoch also, the seventh from Adam, prophesied of these, saying, Behold, the Lord cometh with ten thousands of his saints,"
+          }
+        ]
+      }
+    ]
+  },
+  "authored-seth-birth": {
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "bookOrder": 1,
+        "rangeLabel": "4:25",
+        "verses": [
+          {
+            "verseID": "01004025",
+            "chapter": 4,
+            "verse": 25,
+            "textKo": "아담이 다시 아내와 동침하매 그가 아들을 낳아 그 이름을 셋이라 하였으니 이는 하나님이 내게 가인의 죽인 아벨 대신에 다른 씨를 주셨다 함이며 ",
+            "textEn": "And Adam knew his wife again; and she bare a son, and called his name Seth: For God, said she, hath appointed me another seed instead of Abel, whom Cain slew."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-seth-enosh-and-calling": {
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "bookOrder": 1,
+        "rangeLabel": "4:26",
+        "verses": [
+          {
+            "verseID": "01004026",
+            "chapter": 4,
+            "verse": 26,
+            "textKo": "셋도 아들을 낳고 그 이름을 에노스라 하였으며 그 때에 사람들이 비로소 여호와의 이름을 불렀더라  ",
+            "textEn": "And to Seth, to him also there was born a son; and he called his name Enos: then began men to call upon the name of the Lord. "
+          }
+        ]
+      }
+    ]
+  },
+  "authored-seth-death": {
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "bookOrder": 1,
+        "rangeLabel": "5:7–8",
+        "verses": [
+          {
+            "verseID": "01005007",
+            "chapter": 5,
+            "verse": 7,
+            "textKo": "에노스를 낳은 후 팔백칠 년을 지내며 자녀를 낳았으며 ",
+            "textEn": "And Seth lived after he begat Enos eight hundred and seven years, and begat sons and daughters:"
+          },
+          {
+            "verseID": "01005008",
+            "chapter": 5,
+            "verse": 8,
+            "textKo": "그가 구백십이 세를 향수하고 죽었더라 ",
+            "textEn": "And all the days of Seth were nine hundred and twelve years: and he died."
+          }
+        ]
+      }
+    ]
   }
 }

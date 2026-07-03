@@ -1,0 +1,62 @@
+[
+  {
+    "id": "authored-abel-offering",
+    "title": "Abel offers the firstborn of his flock",
+    "nameKo": "아벨이 양의 첫 새끼로 제사를 드림",
+    "startDate": "-3901",
+    "sortKey": -3901,
+    "yearLabel": "태초 무렵 (전통 BC 3900경)",
+    "context": "아벨은 양 치는 자로, 양의 첫 새끼와 그 기름을 드리매 하나님이 아벨과 그의 제물을 열납하심 (Gen 4:2–4).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "reccpdazfRa8RGKt6"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "4:2–4"
+      }
+    ]
+  },
+  {
+    "id": "authored-abel-killed-by-cain",
+    "title": "Abel is killed by Cain in the field",
+    "nameKo": "가인에게 들에서 살해됨",
+    "startDate": "-3900",
+    "sortKey": -3900,
+    "yearLabel": "태초 무렵 (전통 BC 3900경)",
+    "context": "가인이 아우 아벨에게 '들에 나가자' 하고 일어나 들에서 쳐죽임. 하나님이 가인에게 '네 아우의 핏소리가 땅에서 내게 호소한다'고 하심 (Gen 4:8–10).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "reccpdazfRa8RGKt6"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "4:8–10"
+      }
+    ]
+  },
+  {
+    "id": "authored-abel-faith-witness",
+    "title": "Abel's faith — still speaking through his offering",
+    "nameKo": "믿음으로 드린 제사 — 죽은 후에도 말함",
+    "startDate": "-3899",
+    "sortKey": -3899,
+    "yearLabel": "태초 무렵 (전통 BC 3900경)",
+    "context": "믿음으로 아벨은 가인보다 더 나은 제사를 하나님께 드려 의인이라는 증거를 얻었으며, 죽었어도 그 믿음으로 지금도 말하고 있음 (Heb 11:4).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "reccpdazfRa8RGKt6"
+    ],
+    "books": [
+      {
+        "bookId": "recKvTNUismk1ckEr",
+        "rangeLabel": "11:4"
+      }
+    ]
+  }
+]

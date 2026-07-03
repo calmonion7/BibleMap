@@ -1,0 +1,74 @@
+[
+  {
+    "id": "authored-enoch-methuselah-born",
+    "title": "Enoch fathers Methuselah at age 65",
+    "nameKo": "에녹, 65세에 므두셀라를 낳음",
+    "startDate": "-3313",
+    "sortKey": -3313,
+    "yearLabel": "홍수 이전 (전통 BC 3313경)",
+    "context": "에녹이 65세에 므두셀라를 낳음. 이때부터 에녹은 하나님과 동행하기 시작함 (Gen 5:21–22).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "recj26MAojx8FuOsa"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "5:21–22"
+      }
+    ]
+  },
+  {
+    "id": "authored-enoch-walked-with-god",
+    "title": "Enoch walks with God for 300 years",
+    "nameKo": "에녹이 300년간 하나님과 동행함",
+    "startDate": "-3312",
+    "sortKey": -3312,
+    "yearLabel": "홍수 이전 (전통 BC 3312경)",
+    "context": "므두셀라를 낳은 후 에녹은 300년간 하나님과 동행하며 자녀들을 낳음. 에녹은 의인으로서 하나님을 경외하는 삶을 살았다고 증언됨 (Gen 5:22–24; Heb 11:5).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "recj26MAojx8FuOsa"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "5:22–24"
+      },
+      {
+        "bookId": "recKvTNUismk1ckEr",
+        "rangeLabel": "11:5"
+      }
+    ]
+  },
+  {
+    "id": "authored-enoch-taken-by-god",
+    "title": "Enoch taken by God at age 365 — does not die",
+    "nameKo": "에녹, 365세에 죽음을 보지 않고 하나님께 데려가심",
+    "startDate": "-3013",
+    "sortKey": -3013,
+    "yearLabel": "홍수 이전 (전통 BC 3013경)",
+    "context": "에녹이 365세가 되었을 때 하나님이 그를 데려가시므로 세상에 없어짐. 성경은 그가 죽음을 보지 않고 믿음으로 옮겨졌다고 증언함 (Gen 5:23–24; Heb 11:5; Jude 1:14).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "recj26MAojx8FuOsa"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "5:23–24"
+      },
+      {
+        "bookId": "recKvTNUismk1ckEr",
+        "rangeLabel": "11:5"
+      },
+      {
+        "bookId": "rec2ddtGk1mJxYoy4",
+        "rangeLabel": "1:14"
+      }
+    ]
+  }
+]

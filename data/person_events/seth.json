@@ -1,0 +1,62 @@
+[
+  {
+    "id": "authored-seth-birth",
+    "title": "Seth is born — given in place of Abel",
+    "nameKo": "셋의 출생 — 아벨 대신 주어진 씨",
+    "startDate": "-3870",
+    "sortKey": -3870,
+    "yearLabel": "홍수 이전 (전통 BC 3870경)",
+    "context": "아벨이 죽은 후 하와가 아들을 낳고 '하나님이 내게 가인에게 죽임을 당한 아벨 대신에 다른 씨를 주셨다'며 그 이름을 셋이라 함. 아담 나이 130세 때 (Gen 4:25; Gen 5:3).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "recdvASnxGfjfmvDM"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "4:25"
+      }
+    ]
+  },
+  {
+    "id": "authored-seth-enosh-and-calling",
+    "title": "Enosh is born — people begin calling on the Lord",
+    "nameKo": "에노스를 낳고 여호와의 이름을 부르기 시작함",
+    "startDate": "-3765",
+    "sortKey": -3765,
+    "yearLabel": "홍수 이전 (전통 BC 3765경)",
+    "context": "셋이 105세에 에노스를 낳음. 그때부터 사람들이 비로소 여호와의 이름을 불러 예배하기 시작함 (Gen 4:26; Gen 5:6).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "recdvASnxGfjfmvDM"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "4:26"
+      }
+    ]
+  },
+  {
+    "id": "authored-seth-death",
+    "title": "Seth dies at 912 years old",
+    "nameKo": "셋의 죽음, 향년 912세",
+    "startDate": "-2958",
+    "sortKey": -2958,
+    "yearLabel": "홍수 이전 (전통 BC 2958경)",
+    "context": "셋이 912세를 살다 죽음. 에노스를 낳은 후 807년을 더 살며 자녀들을 낳음 (Gen 5:7–8).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "recdvASnxGfjfmvDM"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "5:7–8"
+      }
+    ]
+  }
+]
