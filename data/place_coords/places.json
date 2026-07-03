@@ -638,5 +638,21 @@
     "lat": 33.5138,
     "lng": 36.2765,
     "note": "아람 왕국의 수도; 엘리사가 하사엘에게 예언한 곳 (2Kgs 8:7)"
+  },
+  {
+    "id": "authored-place-garden-of-eden",
+    "name": "Garden of Eden",
+    "nameKo": "에덴동산",
+    "lat": 31,
+    "lng": 47.5,
+    "note": "전통적 위치 불확실 — 티그리스·유프라테스 발원지 근처(메소포타미아 남부) 근사 좌표 사용 (Gen 2:10–14)"
+  },
+  {
+    "id": "authored-place-mount-ararat",
+    "name": "Mount Ararat",
+    "nameKo": "아라랏 산",
+    "lat": 39.7019,
+    "lng": 44.2985,
+    "note": "전통적 방주 안착지로 현 터키 동부 아라랏 산(5165m) 좌표 사용; 성경의 '아라랏 산들'(복수)은 정확한 봉우리 미상"
   }
 ]

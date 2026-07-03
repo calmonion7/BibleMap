@@ -14,6 +14,8 @@ router = APIRouter()
 
 # slug → era 고정 매핑
 _ERA: dict[str, str] = {
+    "adam": "원시사",
+    "noah": "원시사",
     "abraham": "족장",
     "isaac": "족장",
     "jacob": "족장",
@@ -46,6 +48,8 @@ _ERA: dict[str, str] = {
 
 # slug → 한글 이름
 _NAME_KO: dict[str, str] = {
+    "adam": "아담",
+    "noah": "노아",
     "abraham": "아브라함",
     "isaac": "이삭",
     "jacob": "야곱",
@@ -77,7 +81,7 @@ _NAME_KO: dict[str, str] = {
 }
 
 # era 표시 순서
-_ERA_ORDER = ["족장", "출애굽·정복", "사사", "왕국", "선지자", "포로", "신약"]
+_ERA_ORDER = ["원시사", "족장", "출애굽·정복", "사사", "왕국", "선지자", "포로", "신약"]
 
 
 @functools.lru_cache(maxsize=1)

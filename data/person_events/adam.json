@@ -1,0 +1,170 @@
+[
+  {
+    "id": "authored-adam-creation",
+    "title": "Creation of Adam",
+    "nameKo": "아담의 창조",
+    "startDate": "-4000",
+    "sortKey": -4000,
+    "yearLabel": "태초 무렵 (전통 BC 4000경)",
+    "context": "하나님이 흙으로 사람을 빚으시고 생기를 불어넣어 아담이 생령이 됨. 남자와 여자로 지어 하나님의 형상을 따라 창조됨 (Gen 1:27; Gen 2:7).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "recyYgUiSETdWFgEP"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "1:27"
+      }
+    ]
+  },
+  {
+    "id": "authored-adam-placed-in-eden",
+    "title": "Adam placed in the Garden of Eden",
+    "nameKo": "에덴동산에 아담을 두심",
+    "startDate": "-3999",
+    "sortKey": -3999,
+    "yearLabel": "태초 무렵 (전통 BC 4000경)",
+    "context": "하나님이 동방의 에덴에 동산을 창설하시고 아담을 그곳에 두어 경작하고 지키게 하심. 각종 생물의 이름을 짓는 권한도 부여하심 (Gen 2:8; Gen 2:15; Gen 2:19).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-garden-of-eden"
+    ],
+    "participants": [
+      "recyYgUiSETdWFgEP"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "2:8"
+      }
+    ]
+  },
+  {
+    "id": "authored-adam-meets-eve",
+    "title": "Adam meets Eve",
+    "nameKo": "아담이 하와를 만남",
+    "startDate": "-3998",
+    "sortKey": -3998,
+    "yearLabel": "태초 무렵 (전통 BC 4000경)",
+    "context": "하나님이 아담을 깊이 잠들게 하신 후 갈빗대 하나로 여자를 만드시자 아담이 '이는 내 뼈 중의 뼈요 살 중의 살이라'고 고백함 (Gen 2:22–23).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-garden-of-eden"
+    ],
+    "participants": [
+      "recyYgUiSETdWFgEP"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "2:22–23"
+      }
+    ]
+  },
+  {
+    "id": "authored-adam-fall",
+    "title": "The Fall — Adam eats the forbidden fruit",
+    "nameKo": "타락 — 선악과를 먹음",
+    "startDate": "-3997",
+    "sortKey": -3997,
+    "yearLabel": "태초 무렵 (전통 BC 4000경)",
+    "context": "뱀의 꾐에 빠진 하와가 선악을 알게 하는 나무의 열매를 따먹고 아담에게도 주매 그도 먹음. 두 사람의 눈이 밝아져 자신의 벗음을 알게 됨 (Gen 3:6; Gen 3:7).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-garden-of-eden"
+    ],
+    "participants": [
+      "recyYgUiSETdWFgEP"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "3:6"
+      }
+    ]
+  },
+  {
+    "id": "authored-adam-expelled-from-eden",
+    "title": "Adam expelled from the Garden of Eden",
+    "nameKo": "에덴동산에서 추방됨",
+    "startDate": "-3996",
+    "sortKey": -3996,
+    "yearLabel": "태초 무렵 (전통 BC 4000경)",
+    "context": "하나님이 아담과 하와를 에덴동산에서 내보내시고 생명나무에 이르는 길을 그룹과 화염검으로 막으심. 아담은 이후 땅을 갈며 살게 됨 (Gen 3:23–24).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-garden-of-eden"
+    ],
+    "participants": [
+      "recyYgUiSETdWFgEP"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "3:23–24"
+      }
+    ]
+  },
+  {
+    "id": "authored-adam-cain-and-abel",
+    "title": "Cain kills Abel",
+    "nameKo": "가인이 아벨을 죽임",
+    "startDate": "-3900",
+    "sortKey": -3900,
+    "yearLabel": "홍수 이전 (전통 BC 3900경)",
+    "context": "아담의 두 아들 가인과 아벨이 각각 제물을 드렸으나 하나님이 아벨의 제물만 받으시자, 가인이 아벨을 들에서 쳐죽임. 아담과 하와에게 큰 슬픔이 됨 (Gen 4:1–8).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "recyYgUiSETdWFgEP"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "4:1–8"
+      }
+    ]
+  },
+  {
+    "id": "authored-adam-seth-born",
+    "title": "Seth is born",
+    "nameKo": "셋의 출생",
+    "startDate": "-3870",
+    "sortKey": -3870,
+    "yearLabel": "홍수 이전 (전통 BC 3870경)",
+    "context": "가인이 아벨을 죽인 후 하나님이 하와에게 다른 씨를 주셔서 셋을 낳음. 아담이 130세에 얻은 아들 (Gen 4:25; Gen 5:3).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "recyYgUiSETdWFgEP"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "4:25"
+      }
+    ]
+  },
+  {
+    "id": "authored-adam-death",
+    "title": "Adam dies at 930 years old",
+    "nameKo": "아담의 죽음, 향년 930세",
+    "startDate": "-3070",
+    "sortKey": -3070,
+    "yearLabel": "홍수 이전 (전통 BC 3070경)",
+    "context": "아담이 930세를 살다 죽음. 셋을 낳은 후에도 800년을 살며 자녀들을 낳음 (Gen 5:4–5).",
+    "authored": true,
+    "occursAt": [],
+    "participants": [
+      "recyYgUiSETdWFgEP"
+    ],
+    "books": [
+      {
+        "bookId": "recIFusdNl6d8dj3L",
+        "rangeLabel": "5:4–5"
+      }
+    ]
+  }
+]
