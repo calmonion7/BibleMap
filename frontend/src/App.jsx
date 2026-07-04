@@ -9,6 +9,7 @@ import JourneyList from './JourneyList'
 import { MOBILE_BREAKPOINT, SHEET_VH } from './constants'
 import { useNodeSelection } from './useNodeSelection'
 import { apiGet } from './api'
+import { encodeHash, parseHash } from './urlState'
 
 // 모바일(좁은 뷰포트) 분기 — 이 폭 이하에서 상세 패널을 우측 사이드패널 대신 하단 시트로 띄운다.
 const MOBILE_QUERY = `(max-width: ${MOBILE_BREAKPOINT}px)`
@@ -37,6 +38,13 @@ function App() {
   const [explorePersonId, setExplorePersonId] = useState(null)
   const [explorePersonName, setExplorePersonName] = useState(null)
 
+  // 딥링크(ADR-0009) — 해시 URL ↔ 내비 상태. 마운트 해시 캡처, 복원 1회, 이후 replaceState 반영.
+  const initialHashRef = useRef(window.location.hash)
+  const restoredRef = useRef(false)
+  // 주의: 상단에서 lucide-react 'Map' 아이콘을 import하므로 전역 Map이 가려짐 → plain object 사용.
+  const curatedIdToSlug = useRef({})
+  const curatedSlugToId = useRef({})
+
   // 큐레이션 인물 id 집합 — SidePanel '여정 탐험' CTA 노출 판단용.
   // 실패 시 CTA가 새로고침 전까지 조용히 사라지므로 유한 재시도(1s→2s→4s)로 자가 회복.
   const [curatedIds, setCuratedIds] = useState(null)
@@ -44,7 +52,12 @@ function App() {
     let timer, cancelled = false
     const load = attempt => {
       apiGet('/persons/curated')
-        .then(list => { if (!cancelled) setCuratedIds(new Set(list.map(p => p.id))) })
+        .then(list => {
+          if (cancelled) return
+          curatedIdToSlug.current = Object.fromEntries(list.map(p => [p.id, p.slug]))
+          curatedSlugToId.current = Object.fromEntries(list.map(p => [p.slug, p.id]))
+          setCuratedIds(new Set(list.map(p => p.id)))
+        })
         .catch(() => {
           if (cancelled) return
           if (attempt < 3) timer = setTimeout(() => load(attempt + 1), 1000 * 2 ** attempt)
@@ -54,6 +67,33 @@ function App() {
     load(0)
     return () => { cancelled = true; clearTimeout(timer) }
   }, [])
+
+  // 딥링크 복원 — curated(slug↔id) 준비되면 마운트 해시를 1회 파싱해 상태 복원.
+  // setState는 마이크로태스크로 미룸(effect 동기 setState 금지 규칙).
+  useEffect(() => {
+    if (!curatedIds || restoredRef.current) return
+    restoredRef.current = true
+    const parsed = parseHash(initialHashRef.current)
+    if (!parsed) return // 깨진 해시 → 허브 유지
+    Promise.resolve().then(() => {
+      if (parsed.stage === 'overview') setActiveStage('overview')
+      else if (parsed.stage === 'explore' && parsed.personSlug) {
+        const id = curatedSlugToId.current[parsed.personSlug]
+        if (id) { selectNodeFresh(id); setExplorePersonId(id); setActiveStage('explore'); setExploreView(parsed.exploreView) }
+        // 미지 slug → 허브 유지
+      }
+    })
+  }, [curatedIds])
+
+  // 딥링크 반영 — 복원 완료 후에만 write(첫 렌더 hub write가 들어온 딥링크 해시를 덮어쓰는 것 방지).
+  useEffect(() => {
+    if (!restoredRef.current) return
+    const slug = explorePersonId ? curatedIdToSlug.current[explorePersonId] : null
+    if (activeStage === 'explore' && !slug) return // slug 미해결 시 깨진 URL 안 씀
+    const hash = encodeHash({ stage: activeStage, personSlug: slug, exploreView })
+    // 주의: 위에서 useNodeSelection의 history(배열)를 구조분해하므로 전역 history가 가려짐 → window.history.
+    if (window.location.hash !== hash) window.history.replaceState(null, '', hash)
+  }, [activeStage, explorePersonId, exploreView])
 
   // 여정 데이터 — 인물 선택 시 한 번 fetch, MapView·JourneyList 공유
   const [journeyStops, setJourneyStops] = useState(null)
