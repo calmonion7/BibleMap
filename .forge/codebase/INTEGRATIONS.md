@@ -1,114 +1,110 @@
 ---
-last_mapped_commit: 99d42c8518af00f3e0bf4a4ba90f821d84cf42e5
-mapped: 2026-07-02
+last_mapped_commit: 815433397ff74c133b2de5d1cafe1c8764b5303c
+mapped: 2026-07-04
 ---
 
-# 외부 연동 (Integrations)
+# External Integrations
 
-## 1. 데이터베이스 — Neo4j
+**Analysis Date:** 2026-07-04
 
-### 연결 방식
+## APIs & External Services
 
-`backend/app/db.py`의 싱글턴 드라이버:
+**지도 타일/폰트 (프론트엔드 런타임, 클라이언트에서 직접 호출):**
+- ESRI ArcGIS World Map 래스터 타일 — `https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}` (`frontend/src/MapView.jsx:33`). 인증 없음, maplibre `raster` source `esri`로 등록
+- Protomaps basemaps 글리프(폰트) — `https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf` (`frontend/src/MapView.jsx:28`). 인증 없음
 
-- URI: 환경변수 `NEO4J_URI` (기본값 `bolt://localhost:7687`)
-- 사용자: 환경변수 `NEO4J_USER` (기본값 `neo4j`)
-- 비밀번호: 환경변수 `NEO4J_PASSWORD` (필수; 미설정 시 `RuntimeError`)
-- 드라이버: `neo4j` Python 패키지 v6.2.0, Bolt 프로토콜
+**빌드타임 데이터 소스 (스크립트, 런타임 불필요):**
+- Theographic Bible Metadata (GitHub raw JSON) — `https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/{people,places,events,peopleGroups,books,verses}.json`. `backend/scripts/load_theographic.py`, `generate_*.py`에서 `urllib`로 fetch. 인증 없음. Neo4j 그래프의 원본 데이터
+- getbible.net v2 — `https://api.getbible.net/v2/{slug}/{book_order}/{chapter}.json` (`backend/scripts/generate_person_event_verses.py:172`, `generate_verse_text.py`). 절 본문을 한국어(`korean`)+영어(`kjv`) 슬러그로 fetch. ADR-0003에 따라 빌드타임에 미리 구워(prebake) 데이터에 인라인 저장 → 런타임 호출 제거
 
-### 포트 노출
+**LLM (빌드타임 데이터 생성, 런타임 불필요):**
+- Anthropic Claude API — `anthropic` Python SDK, 모델 `claude-haiku-4-5-20251001` (`backend/scripts/generate_book_context.py:57`, `generate_person_traits.py:59`, `generate_book_events.py`, `generate_verse_events.py`)
+  - 인증: `ANTHROPIC_API_KEY` 환경변수 (미설정 시 스크립트가 `RuntimeError`)
+  - 산출물은 `data/*` JSON으로 커밋되며 앱은 이 생성 데이터만 소비 (ADR-0006: 데이터 생성은 LLM 직접, 스크립트 아님)
 
-`docker-compose.yml` 기준:
+## Data Storage
 
-| 포트 | 바인딩 | 용도 |
-|------|--------|------|
-| 7687 | `127.0.0.1:7687` | Bolt (앱·스크립트 연결) |
-| 7474 | `127.0.0.1:7474` | HTTP Browser UI |
+**Databases:**
+- Neo4j 5 (그래프 DB) — `docker-compose.yml` 서비스 `neo4j`, 이미지 `neo4j:5`
+  - 접속 포트: `127.0.0.1:7474`(HTTP 브라우저), `127.0.0.1:7687`(Bolt) — 로컬호스트로만 바인딩
+  - Driver: Python `neo4j` 6.2.0 (`GraphDatabase.driver`), 런타임 접근은 `backend/app/db.py`의 모듈 전역 싱글턴 `_driver`
+  - 연결 설정: `NEO4J_URI`(compose 내 `bolt://neo4j:7687`), `NEO4J_USER`(`neo4j`), `NEO4J_PASSWORD`(env, 필수)
+  - 인증 파생: compose가 `NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}`로 자동 조립 (`docker-compose.yml:10`)
+  - 세션 사용 패턴: 라우트마다 `with driver.session() as session: session.run(<cypher>, ...)` (`backend/app/routes/nodes.py` 등)
+  - 인덱스: 앱 시작 `lifespan`에서 Person/Place/Event/PeopleGroup/Book의 `theographic_id`에 `CREATE INDEX ... IF NOT EXISTS` (`backend/app/main.py:14`)
+  - APOC 미사용 — 자체 로더 사용 (ADR-0001)
+  - 볼륨: named volume `neo4j_data:/data` (영속)
 
-컨테이너 내부에서 `api` 서비스는 `bolt://neo4j:7687`로 접속 (Docker 내부 DNS 사용).
+**오버레이 JSON (런타임, Neo4j 미저장):**
+- 추정/큐레이션 데이터는 Neo4j가 아닌 파일 오버레이로 서빙 (ADR-0004). `backend/app/overlays.py`가 `DATA_DIR`(기본 `/app/data`) 또는 레포 `data/`에서 로드, `functools.lru_cache`로 1회 캐시
+- `data/` 하위: `book_events/`, `event_verses/`, `book_context/`, `character_traits/`, `place_context/`, `place_coords/`, `person_events/`, `verse_events/`, `book_years_approx/`, `authored_events/`, `authored_persons/`, `names_ko/`
+- compose에서 `./data:/app/data` 마운트 (`docker-compose.yml:20`)
 
-### 스타트업 인덱스
+**한글 이름 주입:**
+- `backend/scripts/inject_ko_names.py`가 `data/names_ko/{people,places,...}.json`을 읽어 Neo4j 노드에 `nameKo`·`aliasesKo` 속성 SET. 배포 마지막 단계에서 실행 (`deploy.sh` [4/4])
 
-`backend/app/main.py`의 `lifespan` 훅에서 기동 시 자동 생성:
-- `Person`, `Place`, `Event`, `PeopleGroup`, `Book` 5개 레이블 각각 `theographic_id` 속성에 `CREATE INDEX IF NOT EXISTS`
+**File Storage:**
+- 로컬 파일시스템만 사용 (외부 오브젝트 스토리지 없음)
 
-### 한글 이름 주입
+**Caching:**
+- 애플리케이션 레벨: `functools.lru_cache`(오버레이 JSON, `overlays.py`)
+- HTTP: nginx가 정적 자산(js/css/이미지/폰트)에 `Cache-Control: public, max-age=31536000, immutable`, `index.html`에는 `no-cache` (`nginx/nginx.conf:25`, `:20`)
 
-배포마다 `backend/scripts/inject_ko_names.py`가 실행되어 `data/names_ko/`의 JSON 파일을 읽고 Neo4j `Person`·`Place` 노드에 `nameKo`, `aliasesKo` 속성을 `SET`한다.
+## Authentication & Identity
+
+**사용자 인증:**
+- 없음. 공개 읽기 전용 앱. CORS는 모든 origin에 GET만 허용, credentials 비허용 (`backend/app/main.py:25`)
+
+**서비스 자격증명:**
+- Neo4j: `NEO4J_PASSWORD` (env)
+- Anthropic: `ANTHROPIC_API_KEY` (env, 빌드타임 스크립트만)
+
+## Monitoring & Observability
+
+**Error Tracking:**
+- 외부 서비스 없음. 표준 `logging` 사용 (`backend/app/main.py`의 인덱스 생성 실패 시 `logging.exception`)
+
+**Logs:**
+- 백엔드: uvicorn/Python stdout
+- 배포: `deploy.sh`가 `/Users/calmonion/Library/Logs/com.biblemap.deploy.log`에 tee (`deploy.sh:5`)
+
+## CI/CD & Deployment
+
+**Hosting:**
+- self-hosted (사용자 머신 `/Users/calmonion/Project/BibleMap`). Docker Compose 스택 (neo4j + api + nginx)
+
+**CI Pipeline:**
+- GitHub Actions — `.github/workflows/deploy.yml`. `main` push 시 `runs-on: self-hosted` 러너가 `git fetch` → `git reset --hard origin/main` → `bash deploy.sh`
+- `deploy.sh`는 `/tmp/biblemap-deploy.lock`로 동시 실행 방지, macOS 키체인 우회용 임시 `DOCKER_CONFIG` 생성
+
+**Reverse Proxy:**
+- nginx (`nginx:alpine`) — 호스트 `8080:80` 노출 (`docker-compose.yml:28`)
+  - `/api/` → `http://api:8000/` 프록시 (`nginx/nginx.conf:12`), `X-Real-IP`/`X-Forwarded-*` 헤더 전달
+  - `/` → SPA fallback (`try_files $uri /index.html`)
+  - 정적 자산은 `frontend/dist`(read-only 마운트) 서빙
+
+## Environment Configuration
+
+**Required env vars:**
+- `NEO4J_PASSWORD` — 런타임 필수 (neo4j·api 서비스, 로더/주입 스크립트)
+- `ANTHROPIC_API_KEY` — 데이터 생성 스크립트 실행 시에만 필요
+
+**Optional env vars:**
+- `NEO4J_URI`, `NEO4J_USER` — 기본값 존재
+- `DATA_DIR` — 오버레이 경로, 기본 `/app/data`
+- `VITE_API_URL` — 프론트 빌드타임, 기본 `frontend/.env.production`의 `/api`
+
+**Secrets location:**
+- 루트 `.env` 파일 (git 미추적). `.env.example`에 `NEO4J_PASSWORD` 키 이름만 명시(값 없음). `deploy.sh`가 `set -a; . .env; set +a`로 로드
+
+## Webhooks & Callbacks
+
+**Incoming:**
+- GitHub push 이벤트가 Actions 워크플로 트리거 (webhook은 GitHub 관리형). 앱 자체 수신 webhook 엔드포인트 없음
+
+**Outgoing:**
+- 없음 (런타임). 빌드타임 스크립트만 외부 API로 아웃바운드 호출
 
 ---
 
-## 2. Theographic Bible Metadata — 데이터 소스
-
-빌드타임 스크립트 여러 개가 동일 GitHub raw CDN에서 JSON을 직접 `urllib`/`requests`로 fetch한다.
-
-베이스 URL: `https://raw.githubusercontent.com/robertrouse/theographic-bible-metadata/master/json/`
-
-| 파일 | 사용 스크립트 |
-|------|--------------|
-| `people.json` | `load_theographic.py`, `generate_person_traits.py` |
-| `places.json` | `load_theographic.py` |
-| `events.json` | `load_theographic.py`, `load_books.py`, `generate_event_verses.py`, `generate_verse_events.py`, `generate_person_traits.py` |
-| `peopleGroups.json` | `load_theographic.py` |
-| `books.json` | `load_books.py`, `generate_book_context.py`, `generate_verse_events.py` |
-| `verses.json` | `generate_event_verses.py`, `generate_verse_events.py` |
-
-이 호출은 모두 **개발·데이터 파이프라인 전용**이며 런타임 API 요청 경로에는 포함되지 않는다.
-
----
-
-## 3. getbible.net — 성경 본문 API (빌드타임 전용)
-
-`backend/scripts/generate_verse_text.py`가 빌드타임에 구절 본문을 미리 굽기(pre-bake)한다.
-
-- 엔드포인트 패턴: `https://api.getbible.net/v2/{slug}/{book_order}/{chapter}.json`
-- 사용 번역:
-  - `korean` — 한국어 개역
-  - `kjv` — 영어 KJV
-- 캐시 단위: `(slug, bookOrder, chapter)` 튜플 — 같은 장은 한 번만 fetch
-- User-Agent: `Mozilla/5.0 (compatible; BibleMap-build/1.0)` (기본 `Python-urllib` UA에 403 응답, 브라우저류 UA 필요 — `retro 2026-06-15` 교훈)
-- 결과 저장: `data/event_verses/events.json`, `data/book_context/books.json`, `data/character_traits/people.json`, `data/place_context/places.json`에 `textKo`/`textEn` 필드로 인라인 저장
-- ADR-0003에 의해 런타임 호출 없음: 앱이 구절 본문을 표시할 때 위 JSON 파일에서 직접 읽는다.
-
----
-
-## 4. 지도 타일 — Esri NatGeo (런타임 브라우저 요청)
-
-`frontend/src/MapView.jsx`의 MapLibre GL 초기화:
-
-- 타일 소스 유형: `raster`
-- 타일 URL 패턴: `https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}`
-- `tileSize`: 256
-- 제공사: Esri ArcGIS Online (NatGeo World Map 서비스) — 무료 공개 타일, 별도 API 키 없음
-
----
-
-## 5. 지도 폰트 글리프 — Protomaps (런타임 브라우저 요청)
-
-`frontend/src/MapView.jsx` MapLibre 스타일 설정:
-
-- `glyphs`: `https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf`
-- 제공사: Protomaps GitHub Pages CDN — 무료 공개, 별도 인증 없음
-- 용도: 지도 레이블 렌더링용 PBF 폰트 글리프
-
----
-
-## 6. GitHub Actions — CI/CD 파이프라인
-
-`.github/workflows/deploy.yml`:
-
-- 트리거: `main` 브랜치 push
-- 실행 환경: `runs-on: self-hosted` (macOS 로컬 머신의 GitHub Actions 러너)
-- 단계:
-  1. 프로젝트 디렉터리(`/Users/calmonion/Project/BibleMap`)에서 `git fetch origin && git reset --hard origin/main`
-  2. `bash deploy.sh` 실행 (빌드 → 컨테이너 재시작 → 한글 이름 주입)
-- 웹훅, Secrets, 외부 Action 없음 — 순수 self-hosted 단순 배포 구조
-
----
-
-## 7. 인증 / 인가
-
-런타임 인증 레이어 없음. `backend/app/main.py`의 CORS 설정:
-- `allow_origins=["*"]`
-- `allow_credentials=False`
-- `allow_methods=["GET"]` (읽기 전용 API)
+*Integration audit: 2026-07-04*
