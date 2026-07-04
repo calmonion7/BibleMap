@@ -60,6 +60,10 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
   const [placePersonsState, setPlacePersonsState] = useState(null)
   const placePersons = placePersonsState?.forNodeId === nodeId ? placePersonsState.persons : null
 
+  // Person 블록 — 인물 연결(함께 등장한 인물·동시대 인물): { forNodeId, coParticipants, contemporaries } | null
+  const [connectionsState, setConnectionsState] = useState(null)
+  const connections = connectionsState?.forNodeId === nodeId ? connectionsState : null
+
   useEffect(() => {
     if (!nodeId) return
     let cancelled = false
@@ -90,6 +94,18 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
       .catch(() => { if (!cancelled) setPlacePersonsState({ forNodeId: nodeId, persons: [] }) })
     return () => { cancelled = true }
   }, [nodeId, state.id, state.node, explorePersonId])
+
+  // Person 블록 — 인물 연결 fetch (큐레이션 인물만)
+  useEffect(() => {
+    if (!nodeId) return
+    const node = state.id === nodeId ? state.node : null
+    if (!node || node.label !== 'Person' || !curatedIds?.has(node.id)) return
+    let cancelled = false
+    apiGet(`/person/${nodeId}/connections`)
+      .then(data => { if (!cancelled) setConnectionsState({ forNodeId: nodeId, coParticipants: data.coParticipants ?? [], contemporaries: data.contemporaries ?? [] }) })
+      .catch(() => { if (!cancelled) setConnectionsState({ forNodeId: nodeId, coParticipants: [], contemporaries: [] }) })
+    return () => { cancelled = true }
+  }, [nodeId, state.id, state.node, curatedIds])
 
   const ready = state.id === nodeId
   const node = ready ? state.node : null
@@ -138,6 +154,14 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     margin: '4px 0 6px 0', padding: '8px 12px',
     background: '#f5f3ff', borderLeft: `3px solid ${BOOK_COLOR}`, borderRadius: 6,
     fontSize: 12,
+  }
+
+  // 인물 연결 칩 — '이 곳을 지난 인물' 칩과 동일 스타일
+  const CONN_CHIP = {
+    fontSize: 12, padding: '5px 12px', borderRadius: 999,
+    border: `1px solid ${TYPE_COLOR.Person}`,
+    background: 'rgba(74,144,217,0.08)', color: TYPE_COLOR.Person,
+    cursor: 'pointer', fontWeight: 600,
   }
 
   function togglePlaceVerseView(evId) {
@@ -331,6 +355,37 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
               )
             })}
           </div>
+        </div>
+      )}
+
+      {/* Person 인물 연결 — 함께 등장한 인물 · 동시대 인물 (큐레이션 한정, 인물 성품 아래·이웃 그룹 위) */}
+      {node.label === 'Person' && curatedIds?.has(node.id) && connections &&
+        (connections.coParticipants.length > 0 || connections.contemporaries.length > 0) && (
+        <div style={{ padding: '4px 16px 0', fontSize: 14 }}>
+          {connections.coParticipants.length > 0 && (
+            <div style={{ marginTop: 14 }}>
+              <SectionHeader label="함께 등장한 인물" color={TYPE_COLOR.Person} count={connections.coParticipants.length} sectionKey="conn-co" collapsed={collapsed} onToggle={toggle} />
+              {collapsed['conn-co'] === false && (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, paddingBottom: 4 }}>
+                  {connections.coParticipants.map(p => (
+                    <button key={p.id} onClick={() => onExploreJourney(p.id)} style={CONN_CHIP}>{p.nameKo}</button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+          {connections.contemporaries.length > 0 && (
+            <div style={{ marginTop: 14 }}>
+              <SectionHeader label="동시대 인물" color={TYPE_COLOR.Person} count={connections.contemporaries.length} sectionKey="conn-contemp" collapsed={collapsed} onToggle={toggle} />
+              {collapsed['conn-contemp'] === false && (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, paddingBottom: 4 }}>
+                  {connections.contemporaries.map(p => (
+                    <button key={p.id} onClick={() => onExploreJourney(p.id)} style={CONN_CHIP}>{p.nameKo}</button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
 

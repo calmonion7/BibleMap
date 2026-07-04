@@ -8,6 +8,7 @@ import json
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
+from ..db import get_driver
 from ..overlays import _resolve
 
 router = APIRouter()
@@ -129,5 +130,57 @@ def get_curated_persons():
     각 항목: { id, slug, nameKo, era, eventCount }"""
     return JSONResponse(
         content=_build_list(),
+        headers={"Cache-Control": "max-age=300"},
+    )
+
+
+@functools.lru_cache(maxsize=None)
+def _build_connections(node_id: str) -> dict:
+    """큐레이션 인물의 연결 두 축(CONTEXT '인물 연결'). 큐레이션 인물로 한정.
+    - coParticipants: 같은 Event에 HAS_PARTICIPANT로 함께 등장(2-hop), 큐레이션 교집합·self·God 제외, 공유 사건 수 desc.
+    - contemporaries: 같은 era 큐레이션 인물, self·coParticipants 제외(_build_list 정렬 순 유지)."""
+    curated = _build_list()
+    by_id = {p["id"]: p for p in curated}
+    me = by_id.get(node_id)
+    if me is None:
+        return {"coParticipants": [], "contemporaries": []}
+
+    driver = get_driver()
+    with driver.session() as session:
+        result = session.run(
+            """
+            MATCH (e:Event)-[:HAS_PARTICIPANT]->(:Person {theographic_id: $id})
+            MATCH (e)-[:HAS_PARTICIPANT]->(p2:Person)
+            WHERE p2.theographic_id <> $id AND p2.name <> 'God'
+            RETURN p2.theographic_id AS id, count(DISTINCT e) AS shared
+            ORDER BY shared DESC
+            """,
+            id=node_id,
+        )
+        co_raw = [(r["id"], r["shared"]) for r in result]
+
+    co_participants = []
+    co_ids = set()
+    for pid, shared in co_raw:
+        p = by_id.get(pid)
+        if p is None:
+            continue
+        co_participants.append({"id": pid, "nameKo": p["nameKo"], "shared": shared})
+        co_ids.add(pid)
+
+    contemporaries = [
+        {"id": p["id"], "nameKo": p["nameKo"]}
+        for p in curated
+        if p["era"] == me["era"] and p["id"] != node_id and p["id"] not in co_ids
+    ]
+    return {"coParticipants": co_participants, "contemporaries": contemporaries}
+
+
+@router.get("/person/{node_id}/connections")
+def get_person_connections(node_id: str):
+    """큐레이션 인물 상세 시트의 '함께 등장한 인물'·'동시대 인물' 섹션 데이터.
+    큐레이션이 아닌 id는 두 배열 모두 빈 채로 반환."""
+    return JSONResponse(
+        content=_build_connections(node_id),
         headers={"Cache-Control": "max-age=300"},
     )
