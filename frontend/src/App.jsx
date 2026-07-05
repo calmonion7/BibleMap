@@ -44,6 +44,11 @@ function App() {
   // 주의: 상단에서 lucide-react 'Map' 아이콘을 import하므로 전역 Map이 가려짐 → plain object 사용.
   const curatedIdToSlug = useRef({})
   const curatedSlugToId = useRef({})
+  // 히스토리 통합(ADR-0010) — 직전 nav-key 추적 + popstate 복원 중 재-push 방지.
+  const navSyncRef = useRef({ initialized: false, stage: null, person: null, sheetOpen: false })
+  const popstateGuard = useRef(false)
+  // 복원 완료 신호(state) — sync effect의 dep. ref가 아니라 state여야 복원 직후 베이스 엔트리 write가 트리거됨.
+  const [restored, setRestored] = useState(false)
 
   // 큐레이션 인물 id 집합 — SidePanel '여정 탐험' CTA 노출 판단용.
   // 실패 시 CTA가 새로고침 전까지 조용히 사라지므로 유한 재시도(1s→2s→4s)로 자가 회복.
@@ -74,26 +79,65 @@ function App() {
     if (!curatedIds || restoredRef.current) return
     restoredRef.current = true
     const parsed = parseHash(initialHashRef.current)
-    if (!parsed) return // 깨진 해시 → 허브 유지
+    // 복원 상태 적용 후 같은 마이크로태스크에서 setRestored(true) — 그래야 sync effect의 베이스 write가
+    // '복원된 stage'로 찍힌다(딥링크면 explore가 베이스). 깨진 해시(parsed null)도 허브 베이스로 복원 신호.
     Promise.resolve().then(() => {
-      if (parsed.stage === 'overview') setActiveStage('overview')
-      else if (parsed.stage === 'explore' && parsed.personSlug) {
-        const id = curatedSlugToId.current[parsed.personSlug]
-        if (id) { selectNodeFresh(id); setExplorePersonId(id); setActiveStage('explore'); setExploreView(parsed.exploreView) }
-        // 미지 slug → 허브 유지
+      if (parsed) {
+        if (parsed.stage === 'overview') setActiveStage('overview')
+        else if (parsed.stage === 'explore' && parsed.personSlug) {
+          const id = curatedSlugToId.current[parsed.personSlug]
+          if (id) { selectNodeFresh(id); setExplorePersonId(id); setActiveStage('explore'); setExploreView(parsed.exploreView) }
+          // 미지 slug → 허브 유지
+        }
       }
+      setRestored(true)
     })
   }, [curatedIds])
 
-  // 딥링크 반영 — 복원 완료 후에만 write(첫 렌더 hub write가 들어온 딥링크 해시를 덮어쓰는 것 방지).
+  // 히스토리 동기화(ADR-0010) — 딥링크 해시 미러 + 뒤로가기 통합.
+  // push 조건: stage 변경 ∨ 인물 변경 ∨ 시트 열림(false→true). 그 외(뷰 토글·드릴 set→set·베이스)는 replace.
+  // 시트 열림 = selectedNode가 있고 탐험 인물 자신이 아님(모바일 시트 표시 조건과 일치). node는 history.state에만.
+  // 복원 완료 후에만 write(첫 렌더 hub write가 들어온 딥링크 해시를 덮어쓰는 것 방지).
+  // 주의: 위에서 useNodeSelection의 history(배열)를 구조분해하므로 전역 history가 가려짐 → window.history.
   useEffect(() => {
-    if (!restoredRef.current) return
+    if (!restored) return
     const slug = explorePersonId ? curatedIdToSlug.current[explorePersonId] : null
     if (activeStage === 'explore' && !slug) return // slug 미해결 시 깨진 URL 안 씀
+    const sheetOpen = selectedNode != null && selectedNode !== explorePersonId
     const hash = encodeHash({ stage: activeStage, personSlug: slug, exploreView })
-    // 주의: 위에서 useNodeSelection의 history(배열)를 구조분해하므로 전역 history가 가려짐 → window.history.
-    if (window.location.hash !== hash) window.history.replaceState(null, '', hash)
-  }, [activeStage, explorePersonId, exploreView])
+    const state = { stage: activeStage, person: explorePersonId, view: exploreView, node: selectedNode }
+    if (popstateGuard.current) {
+      // popstate 복원 중 — 브라우저가 이미 히스토리를 옮겼으니 재-push 없이 ref만 동기화.
+      popstateGuard.current = false
+      navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, sheetOpen }
+      return
+    }
+    const prev = navSyncRef.current
+    const isForward = prev.initialized &&
+      (prev.stage !== activeStage || prev.person !== explorePersonId || (!prev.sheetOpen && sheetOpen))
+    navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, sheetOpen }
+    if (isForward) window.history.pushState(state, '', hash)
+    else window.history.replaceState(state, '', hash)
+  }, [restored, activeStage, explorePersonId, exploreView, selectedNode])
+
+  // popstate — 브라우저/OS 뒤로·앞으로 시 event.state에서 내비 복원(가드로 재-push 방지).
+  useEffect(() => {
+    const onPop = (e) => {
+      const s = e.state
+      popstateGuard.current = true
+      Promise.resolve().then(() => {
+        if (!s) { setActiveStage('hub'); setExplorePersonId(null); setExplorePersonName(null); closePanel(); return }
+        setActiveStage(s.stage)
+        setExplorePersonId(s.person ?? null)
+        setExploreView(s.view || 'map')
+        if (s.node) selectNodeFresh(s.node); else closePanel()
+      })
+    }
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+    // 안정 setter + 최초 캡처 함수만 사용(내부는 안정 setState) — 마운트 1회 등록.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // 여정 데이터 — 인물 선택 시 한 번 fetch, MapView·JourneyList 공유
   const [journeyStops, setJourneyStops] = useState(null)
@@ -171,7 +215,8 @@ function App() {
     if (swipeStartY.current == null) return
     const dy = e.changedTouches[0].clientY - swipeStartY.current
     // 시트가 스크롤된 상태의 하향 드래그는 콘텐츠 스크롤 제스처 — 최상단에서 시작한 pull-down만 닫는다
-    if (dy > 80 && sheetAtTop.current) closePanel()
+    // 닫기는 history.back()에 위임(ADR-0010) — 뒤로가기와 동일 경로로 시트 열림 엔트리를 pop.
+    if (dy > 80 && sheetAtTop.current) window.history.back()
     swipeStartY.current = null
   }
 
@@ -418,7 +463,7 @@ function App() {
             onExplorePerson={handleExplorePerson}
             curatedIds={curatedIds}
             onExploreJourney={handleSelectPerson}
-            onClose={closePanel}
+            onClose={() => window.history.back()}
             stickyTop={isMobile ? 16 : 0}
           />
         </div>
