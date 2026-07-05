@@ -6,7 +6,7 @@ import TimelineView from './TimelineView'
 import BibleOverviewView from './BibleOverviewView'
 import PersonHub from './PersonHub'
 import JourneyList from './JourneyList'
-import { MOBILE_BREAKPOINT, SHEET_VH } from './constants'
+import { MOBILE_BREAKPOINT, SHEET_VH, JOURNEY_SHEET_VH } from './constants'
 import { useNodeSelection } from './useNodeSelection'
 import { useStageNavigation } from './useStageNavigation'
 import { apiGet } from './api'
@@ -241,7 +241,7 @@ function App() {
                     )}
                     <div style={{
                       position: 'absolute', bottom: 0, left: 0, right: 0,
-                      height: readingEventId ? '90dvh' : '42dvh', zIndex: 5,
+                      height: readingEventId ? '90dvh' : `${JOURNEY_SHEET_VH}dvh`, zIndex: 5,
                       transition: reduceMotion ? undefined : 'height 0.25s ease',
                       borderTop: '1px solid rgba(255,255,255,0.12)',
                       boxShadow: '0 -3px 12px rgba(0,0,0,0.3)',

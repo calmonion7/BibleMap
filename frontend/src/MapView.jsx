@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { apiGet } from './api'
-import { MOBILE_BREAKPOINT, SHEET_VH } from './constants'
+import { MOBILE_BREAKPOINT, SHEET_VH, JOURNEY_SHEET_VH } from './constants'
 import { coreBounds, placesToGeoJSON, buildJourneyLineGeoJSON, buildJourneyStopsGeoJSON, journeyStopGroups } from './mapGeo'
 import { EMPTY_GEOJSON, registerEventHandlers, setupMapSources } from './mapLayers'
 import { createRingController } from './mapRingController'
@@ -183,7 +183,11 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
       type: 'FeatureCollection',
       features: [{ type: 'Feature', geometry: { type: 'Point', coordinates: [g.lng, g.lat] }, properties: { seqLabel: g.seqLabel } }],
     })
-    map.easeTo({ center: [g.lng, g.lat], duration: 400 })
+    // 모바일: 하단 여정 시트(JOURNEY_SHEET_VH dvh)가 지도 하단을 덮으므로 정차지를 시트 위 가시영역 중앙으로 올린다.
+    // offset[1] 음수 = 대상 좌표가 컨테이너 중앙보다 시트 높이의 절반만큼 위에 오도록 카메라를 내림.
+    const isMobile = window.innerWidth <= MOBILE_BREAKPOINT
+    const offset = isMobile ? [0, -Math.round(window.innerHeight * JOURNEY_SHEET_VH / 100) / 2] : undefined
+    map.easeTo({ center: [g.lng, g.lat], offset, duration: 400 })
   }, [activeStopIdx, mapLoaded, journeyStops])
 
   useEffect(() => {
