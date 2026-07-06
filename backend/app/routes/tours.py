@@ -13,8 +13,8 @@ from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
 from ..overlays import _resolve
-from .journey import _fetch_place_coords
-from .persons import _ERA
+from .journey import _fetch_place_coords, _build_id_to_slug
+from .persons import _ERA, _NAME_KO
 
 router = APIRouter()
 
@@ -109,12 +109,17 @@ def get_tour(tour_id: str):
     })
     coords = _fetch_place_coords(place_ids)
 
+    # 사건별 주인공(participants[0]) 라벨 — 투어는 여러 인물을 엮으므로 각 정차지에 인물 표기.
+    id_to_slug = _build_id_to_slug()
+
     # journey.py 와 동일한 stops 구조
     stops = []
     seq_counter = 0
     for event in events:
         place_id = event["occursAt"][0] if event.get("occursAt") else None
         place_info = coords.get(place_id) if place_id else None
+        pid = event["participants"][0] if event.get("participants") else None
+        person_name = _NAME_KO.get(id_to_slug.get(pid))
         has_coords = (
             place_info is not None
             and place_info["lng"] is not None
@@ -130,6 +135,7 @@ def get_tour(tour_id: str):
             "eventId": event["id"],
             "title": event["title"],
             "nameKo": event["nameKo"],
+            "personNameKo": person_name,
             "sortKey": event["sortKey"],
             "placeId": place_id,
             "placeNameKo": place_info["nameKo"] if place_info else None,

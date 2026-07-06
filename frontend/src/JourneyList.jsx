@@ -152,6 +152,10 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
                   textOverflow: 'ellipsis',
                   whiteSpace: 'nowrap',
                 }}>
+                  {/* 테마 투어 — 여러 인물을 엮으므로 사건명 앞에 그 사건 주인공 라벨(백엔드 personNameKo). 인물 여정엔 없음. */}
+                  {stop.personNameKo && (
+                    <span style={{ color: '#7c9cfc', fontWeight: 600 }}>{stop.personNameKo} </span>
+                  )}
                   {stop.nameKo || stop.title}
                 </div>
                 {stop.placeNameKo && (
