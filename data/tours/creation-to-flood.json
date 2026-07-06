@@ -1,0 +1,21 @@
+{
+  "id": "creation-to-flood",
+  "title": "창조에서 홍수까지",
+  "subtitle": "에덴의 창조에서 형제의 피, 경건한 계보를 거쳐 노아의 방주와 무지개 언약까지",
+  "era": "원시사",
+  "description": "하나님이 흙으로 사람을 빚고 에덴에 두신 날부터 홍수 후 무지개 언약을 세우시는 날까지, 인류 원시사의 대서사다. 아담의 타락과 에덴 추방, 가인의 형제 살인과 유리하는 삶, 셋과 에녹으로 이어지는 경건한 계보, 그리고 의인 노아를 통한 새 창조가 하나의 흐름으로 이어지며 하나님의 심판과 은혜가 번갈아 드러난다.",
+  "stops": [
+    "authored-adam-placed-in-eden",
+    "authored-adam-fall",
+    "authored-adam-expelled-from-eden",
+    "authored-abel-offering",
+    "authored-cain-kills-abel",
+    "authored-cain-dwells-in-nod",
+    "authored-seth-enosh-and-calling",
+    "authored-enoch-taken-by-god",
+    "authored-noah-righteous-man",
+    "authored-noah-flood-begins",
+    "authored-noah-ark-rests-ararat",
+    "authored-noah-rainbow-covenant"
+  ]
+}

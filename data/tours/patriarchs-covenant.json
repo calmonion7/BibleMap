@@ -1,0 +1,28 @@
+{
+  "id": "patriarchs-covenant",
+  "title": "언약의 4세대",
+  "subtitle": "갈대아 우르의 부르심에서 요셉의 유골 언약까지, 족장 4세대를 관통하는 하나님의 한 약속",
+  "era": "족장",
+  "description": "아브라함이 고향을 떠나라는 음성을 들은 날부터 요셉이 '내 해골을 메고 올라가라' 맹세시키는 날까지, 네 세대에 걸쳐 하나의 언약이 어떻게 이어지는지를 따라간다. 땅과 자손과 복이라는 약속은 기근·배신·노예·감옥을 통과하면서도 끊기지 않으며, 각 세대마다 새로운 이름과 장소에서 같은 하나님의 신실함이 확인된다.",
+  "stops": [
+    "authored-abraham-call-ur",
+    "authored-abraham-shechem-promise",
+    "authored-abraham-covenant-ceremony",
+    "authored-abraham-sodom-intercession",
+    "authored-abraham-isaac-binding",
+    "authored-abraham-sarah-burial",
+    "authored-isaac-birth-beersheba",
+    "authored-isaac-rebekah-marriage",
+    "authored-isaac-esau-jacob-birth",
+    "authored-isaac-blessing-jacob",
+    "authored-jacob-bethel-dream",
+    "authored-jacob-haran-sojourn",
+    "authored-jacob-peniel-wrestling",
+    "authored-jacob-bethel-return",
+    "authored-joseph-dothan-pit",
+    "authored-joseph-egypt-prime-minister",
+    "authored-joseph-egypt-family-reunion",
+    "authored-joseph-jacob-blesses-ephraim-manasseh",
+    "authored-joseph-egypt-death-bones"
+  ]
+}

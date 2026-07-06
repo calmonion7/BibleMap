@@ -14,7 +14,7 @@ from fastapi.responses import JSONResponse
 
 from ..overlays import _resolve
 from .journey import _fetch_place_coords, _build_id_to_slug
-from .persons import _ERA, _NAME_KO
+from .persons import _ERA, _NAME_KO, _ERA_ORDER
 
 router = APIRouter()
 
@@ -50,6 +50,7 @@ def _list_tours() -> list[dict]:
             "era": t.get("era"),
             "stopCount": len(t.get("stops", [])),
         })
+    results.sort(key=lambda t: (_ERA_ORDER.index(t["era"]) if t["era"] in _ERA_ORDER else len(_ERA_ORDER), t["id"]))
     return results
 
 

@@ -1,0 +1,27 @@
+{
+  "id": "exodus-to-conquest",
+  "title": "출애굽에서 가나안까지",
+  "subtitle": "불 붙은 떨기나무의 소명에서 에발산 언약 낭독까지, 모세와 여호수아가 이어달린 구원의 대행진",
+  "era": "출애굽·정복",
+  "description": "하나님이 호렙산 떨기나무 불꽃 속에서 모세를 부르시는 순간부터, 여호수아가 아이를 무너뜨리고 에발산에서 율법을 낭독하는 날까지—두 지도자가 바통을 이어 달린 약 40년의 대장정이다. 모세는 유월절 밤에 이스라엘을 애굽에서 이끌어 내고, 시내산에서 언약을 맺고, 가데스 바네아의 불신앙 앞에서 40년 방랑을 감내하며 느보산에서 눈을 감는다. 여호수아는 요단강이 갈라지는 기적으로 가나안에 첫발을 내딛고, 여리고와 아이를 차례로 무너뜨리며 정복의 교두보를 세운다. 출애굽기에서 여호수아서까지 이어지는 이 여정은 하나님의 약속이 어떻게 한 세대의 죽음을 넘어 성취되는지를 지도 위에서 생생하게 보여 준다.",
+  "stops": [
+    "authored-moses-burning-bush",
+    "authored-moses-returns-egypt",
+    "authored-moses-passover-night",
+    "authored-moses-succoth-camp",
+    "authored-moses-sinai-law",
+    "authored-moses-paran-wandering",
+    "authored-moses-kadesh-spies",
+    "authored-moses-spies-hebron",
+    "authored-moses-plains-moab",
+    "authored-moses-views-jericho",
+    "authored-moses-death-moab",
+    "authored-joshua-divine-commission",
+    "authored-joshua-rahab-spies",
+    "authored-joshua-jordan-crossing",
+    "authored-joshua-gilgal-camp",
+    "authored-joshua-jericho-conquest",
+    "authored-joshua-ai-conquest",
+    "authored-joshua-ebal-covenant"
+  ]
+}

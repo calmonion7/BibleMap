@@ -1,0 +1,26 @@
+{
+  "id": "age-of-judges",
+  "title": "사사들의 시대",
+  "subtitle": "배교와 구원이 반복되는 어두운 순환 속에서 드보라·기드온·입다·삼손이 일어서고, 룻의 신실함이 새 빛을 예비한다",
+  "era": "사사",
+  "description": "가나안 정착 이후 이스라엘은 하나님을 버리고 우상을 섬길 때마다 이방의 압제에 신음하다 부르짖었고, 여호와는 사사를 일으켜 구원하셨다. 이 투어는 드보라의 기손 강 승리, 기드온의 300인 야습, 입다의 비극적 서원, 삼손의 장렬한 죽음까지 — 반복되는 배교-억압-부르짖음-구원의 순환을 따라간다. 그 어지러운 시대의 한가운데, 이방 여인 룻이 나오미를 향한 헤세드로 베들레헴에 들어와 다윗 왕조의 씨앗을 심는다.",
+  "stops": [
+    "authored-deborah-tabor-muster",
+    "authored-deborah-kishon-victory",
+    "authored-gideon-ophrah-call",
+    "authored-gideon-harod-selection",
+    "authored-gideon-moreh-victory",
+    "authored-gideon-ophrah-ephod",
+    "authored-ruth-moab-sojourn",
+    "authored-ruth-bethlehem-return",
+    "authored-ruth-bethlehem-gleaning",
+    "authored-ruth-bethlehem-redemption",
+    "authored-jephthah-mizpah-summons",
+    "authored-jephthah-mizpah-vow",
+    "authored-jephthah-aroer-victory",
+    "authored-jephthah-mizpah-daughter",
+    "authored-samson-zorah-birth",
+    "authored-samson-sorek-delilah",
+    "authored-samson-gaza-death"
+  ]
+}

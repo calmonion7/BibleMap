@@ -1,0 +1,27 @@
+{
+  "id": "elijah-and-elisha",
+  "title": "엘리야와 엘리사",
+  "subtitle": "불수레 승천에서 뼈의 이적까지, 선지자의 겉옷이 잇고 이은 하나님의 말씀",
+  "era": "선지자",
+  "description": "바알 숭배가 이스라엘을 덮던 시대, 엘리야가 갈멜산 대결로 하나님만이 참 신임을 선포하고 불수레로 하늘에 오른다. 겉옷을 이어받은 엘리사는 과부와 이방 장군을 치유하며 은혜의 경계를 넓히고, 요나는 니느웨에서 이방 민족이 돌이킬 수 있음을 보여준다. 마침내 이사야의 소명 환상이 선지자 시대를 새 차원으로 열며, 왕국의 위기 한가운데서도 하나님의 말씀은 끊기지 않았음을 증언한다.",
+  "stops": [
+    "authored-elijah-samaria-drought",
+    "authored-elijah-zarephath-widow",
+    "authored-elijah-carmel-contest",
+    "authored-elijah-horeb-whisper",
+    "authored-elijah-abelmeholah-elisha",
+    "authored-elijah-naboth-vineyard",
+    "authored-elijah-jordan-ascension",
+    "authored-elisha-jericho-water",
+    "authored-elisha-widow-oil",
+    "authored-elisha-shunem-son",
+    "authored-elisha-naaman",
+    "authored-elisha-dothan-chariots",
+    "authored-elisha-hazael-damascus",
+    "authored-elisha-samaria-siege",
+    "authored-elisha-death-bone-resurrection",
+    "authored-jonah-flight-joppa",
+    "authored-jonah-nineveh-preaching",
+    "authored-isaiah-jerusalem-calling"
+  ]
+}
