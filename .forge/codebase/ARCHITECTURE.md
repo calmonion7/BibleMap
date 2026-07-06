@@ -1,190 +1,148 @@
 ---
-last_mapped_commit: 815433397ff74c133b2de5d1cafe1c8764b5303c
-mapped: 2026-07-04
+last_mapped_commit: 95ba754e0a5b8a8db6f537f88d6d4e60d302d066
+mapped: 2026-07-06
 ---
-# 아키텍처
 
-**분석일:** 2026-07-04
+# ARCHITECTURE
 
-## 시스템 개요
+## 전체 구조
 
-```text
-┌─────────────────────────────────────────────────────────────┐
-│                    브라우저 (React SPA)                       │
-├──────────────────┬──────────────────┬───────────────────────┤
-│   PersonHub      │   MapView /      │   BibleOverviewView   │
-│  `frontend/src/  │   TimelineView   │   / SidePanel         │
-│   PersonHub.jsx` │  `MapView.jsx`   │  `SidePanel.jsx`      │
-└────────┬─────────┴────────┬─────────┴──────────┬────────────┘
-         │  apiGet() (fetch) │                    │
-         ▼                   ▼                    ▼
-┌─────────────────────────────────────────────────────────────┐
-│                nginx (리버스 프록시 + 정적파일)                │
-│  `nginx/nginx.conf`  — /api/ → api:8000, / → dist/index.html │
-└──────────────────────────────┬──────────────────────────────┘
-         │                      │
-         ▼ (정적 dist)          ▼ (/api/*)
-┌───────────────────┐  ┌───────────────────────────────────────┐
-│  frontend/dist/   │  │        FastAPI (api:8000)              │
-│  (Vite 빌드 산출)  │  │  `backend/app/main.py` + routes/*.py  │
-└───────────────────┘  └──────────────────┬────────────────────┘
-                                          │ Neo4j Bolt 드라이버
-                            ┌─────────────┴──────────────┐
-                            ▼                             ▼
-                 ┌────────────────────┐      ┌──────────────────────┐
-                 │  Neo4j (그래프 DB)  │      │  data/ JSON 오버레이  │
-                 │  bolt://neo4j:7687 │      │  `backend/app/        │
-                 │  Person/Place/     │      │   overlays.py`가 로드 │
-                 │  Event/Book/...     │      │  (파일 직접 읽기)     │
-                 └────────────────────┘      └──────────────────────┘
+BibleMap은 세 개의 서비스로 구성된다.
+
+- **Neo4j 5** — 성경 그래프 데이터 원본 (Person, Place, Event, Book, PeopleGroup 노드; OCCURS_AT, HAS_PARTICIPANT, CONTAINS_BOOK 등 관계)
+- **FastAPI 백엔드** (`backend/`) — Neo4j 조회 + JSON 오버레이 머지, REST API 제공
+- **Vite/React 프론트엔드** (`frontend/`) — 스테이지 상태 머신 + MapLibre GL 지도 + 타임라인
+
+`docker-compose.yml`이 세 서비스를 묶는다: neo4j → api → nginx. nginx는 `:8080`을 외부에 노출하고, `/api` 경로를 내부 api 컨테이너(`:8000`)로 프록시한다. 프론트엔드 빌드 결과(`frontend/dist`)는 nginx가 정적 파일로 서빙한다.
+
+## 백엔드 레이어
+
+### 진입점 및 라우터 등록
+
+`backend/app/main.py`가 FastAPI 앱을 생성하고, lifespan에서 Neo4j 인덱스(label별 `theographic_id`)를 생성한다. 아래 라우터를 모두 `include_router`로 등록한다.
+
+| 파일 | 주요 엔드포인트 |
+|---|---|
+| `backend/app/routes/nodes.py` | `GET /node/{id}`, `GET /node/{id}/places`, `GET /node/{id}/neighbors/grouped`, `GET /person/{id}/event-ids` |
+| `backend/app/routes/events.py` | `GET /events`, `GET /event/{id}/verses` |
+| `backend/app/routes/search.py` | `GET /search?q=` |
+| `backend/app/routes/books.py` | `GET /books-overview` |
+| `backend/app/routes/persons.py` | `GET /persons/curated`, `GET /person/{id}/connections` |
+| `backend/app/routes/journey.py` | `GET /person/{id}/journey` |
+| `backend/app/routes/places.py` | `GET /place/{id}/curated-persons` |
+| `backend/app/routes/tours.py` | `GET /tours`, `GET /tour/{id}` |
+
+### Neo4j 접근
+
+`backend/app/db.py`의 `get_driver()`가 싱글턴 드라이버를 반환한다. 연결 정보는 환경변수 `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD`로 주입된다.
+
+### JSON 오버레이 시스템
+
+`backend/app/overlays.py`의 `_resolve(subpath)` 함수가 오버레이 파일 경로를 결정한다. 우선순위는 환경변수 `DATA_DIR`(기본값 `/app/data`) → 레포 내 `data/` 순이다. `functools.lru_cache`로 1회 로드 후 메모리에 보관한다.
+
+현재 오버레이 종류:
+- `book_events_raw()` — `data/book_events/books.json` → `{bookId: [eventId, ...]}`
+- `event_verses()` — `data/event_verses/events.json` → 사건별 근거 구절(성경 본문 프리베이크, ADR-0003)
+
+### 여정(journey) 데이터 흐름
+
+`journey.py`와 `tours.py`는 서로 다른 소스에서 동일한 `stops` 형태를 만들어 낸다.
+
+- **인물 여정** (`GET /person/{id}/journey`): `data/person_events/<slug>.json`을 `sortKey` 기준으로 정렬 → 출현 장소 id 수집 → `_fetch_place_coords(place_ids)`로 Neo4j Place 노드에서 좌표 배치 조회 → stops 조립
+- **테마 투어** (`GET /tour/{id}`): `data/tours/<slug>.json`의 `stops` 배열(eventId 참조) → `_build_event_index()`(전 큐레이션 인물의 `person_events/*.json`을 eventId 키로 인덱스) → 이벤트 해결 → 동일하게 `_fetch_place_coords` 사용 → stops 조립
+
+두 엔드포인트 모두 `journey.py`의 `_fetch_place_coords`를 재사용하며 Neo4j 노드 추가 없이 순수 이벤트-참조 방식으로 동작한다(ADR-0011). stops 형태: `{seq, eventId, title, nameKo, sortKey, placeId, placeNameKo, lng, lat}`.
+
+### 큐레이션 인물 관련 라우터
+
+`persons.py`는 `_ERA` 딕셔너리(slug → era)와 `_NAME_KO` 딕셔너리(slug → 한글 이름)를 단일 출처로 보관한다. `places.py`와 `tours.py`가 이 두 딕셔너리를 직접 import해 사용한다. `persons.py`의 `GET /persons/curated`는 `person_events/<slug>.json`만으로 id·eventCount를 파생하고(Neo4j 조회 없음), `GET /person/{id}/connections`는 Neo4j에서 2-hop 공동등장 인물을 조회한다.
+
+### 백엔드 스크립트
+
+`backend/scripts/` 아래에는 Neo4j 적재(`load_*.py`)와 오버레이 생성(`generate_*.py`, `inject_*.py`, `enrich_*.py`) 스크립트가 있다. 앱 실행 경로가 아닌 데이터 파이프라인 전용이다.
+
+## 프론트엔드 레이어
+
+### 스테이지 상태 머신
+
+`frontend/src/useStageNavigation.js`가 네 스테이지(`hub | explore | overview | tours`)를 소유한다. `App.jsx`가 이 훅을 소비하고 스테이지에 따라 조건 렌더링을 수행한다.
+
+```
+hub      → PersonHub 렌더
+overview → BibleOverviewView 렌더
+tours    → TourList 렌더
+explore  → MapView + JourneyList + TimelineView 렌더
 ```
 
-## 컴포넌트 책임
+`explore` 스테이지에는 두 개의 상호배타 상태가 있다: `explorePersonId`(큐레이션 인물 theographic_id)와 `exploreTourId`(투어 slug). 둘 중 하나만 null이 아닐 수 있다. `MapView`, `JourneyList`, `TimelineView`는 둘 다 동일하게 소비한다 — 인물이면 `GET /person/{id}/journey`, 투어이면 `GET /tour/{id}`에서 stops를 가져와 `journeyStops` state에 저장하고 공유한다.
 
-| 컴포넌트 | 책임 | 파일 |
-|-----------|----------------|------|
-| React SPA | 단일 페이지 앱, 3단계(hub/explore/overview) 상태 머신 | `frontend/src/App.jsx` |
-| API 클라이언트 | 단일 base URL + GET 헬퍼(`apiGet`), AbortError 전파 | `frontend/src/api.js` |
-| 노드 선택 훅 | 선택 노드 id·메타·히스토리·인물 사건 id 집합 상태 소유 | `frontend/src/useNodeSelection.js` |
-| FastAPI 앱 | 라우터 등록, 기동 시 Neo4j 인덱스 생성(lifespan) | `backend/app/main.py` |
-| Neo4j 드라이버 | 프로세스 전역 싱글턴 드라이버(`get_driver`) | `backend/app/db.py` |
-| JSON 오버레이 로더 | data/*.json을 lru_cache로 로드(book_events, event_verses) | `backend/app/overlays.py` |
-| 시드 스크립트 | Theographic 원본 → Neo4j 적재, 한글·좌표·문맥 주입 | `backend/scripts/*.py` |
+전환 핸들러 목록(모두 `useStageNavigation` 반환값):
+- `selectPerson(id)` — 허브 카드 클릭 → explore(인물)
+- `explorePerson(id)` — "이 곳을 지난 다른 인물" 칩 클릭 → explore(인물 전환, 투어 이탈)
+- `backToHub()` — explore → hub
+- `openOverview()` — hub → overview
+- `overviewBack()` — overview → hub
+- `openTours()` — hub → tours
+- `selectTour(id)` — 투어 카드 선택 → explore(투어, 인물 null)
+- `toursBack()` — explore(투어) → tours
 
-## 패턴 개요
+### 노드 선택 분리
 
-**전체:** 3계층 웹앱 — React SPA(프론트) ↔ FastAPI(백엔드) ↔ Neo4j 그래프 DB. nginx가 정적 서빙 + `/api` 리버스 프록시를 담당하는 docker-compose 단일 스택.
+노드 선택 원시값(`selectedNode`, `history`, `selectNode`, `selectNodeFresh`, `goBack`, `closePanel`, `handleNodeLoaded`, `personEventIds`)은 `frontend/src/useNodeSelection.js`가 소유한다. `useStageNavigation`은 이 값들을 인자로 받아 상태 머신 로직과 섞지 않는다.
 
-**핵심 특징:**
-- 백엔드는 라우터별 파일로 분리된 얇은 REST 계층. 모든 엔드포인트가 `GET`만 노출(CORS `allow_methods=["GET"]`).
-- 데이터는 **두 출처의 병합**: Neo4j 그래프(정본 엔티티·관계) + `data/*.json` 오버레이(한글 이름, 좌표, 큐레이션 여정, 근거 구절). 오버레이는 Neo4j를 거치지 않고 파일에서 직접 읽는 경우가 많다(`persons.py`, `journey.py`, `places.py`).
-- 계산 비용이 큰 조회는 `functools.lru_cache`로 프로세스 메모리에 1회 캐시(`events.py`, `persons.py`, `overlays.py`). 앱 재시작 전까지 유지.
-- 프론트는 라우팅 라이브러리 없이 `App.jsx`의 `activeStage`/`exploreView` 상태로 화면 전환(전체화면 뷰는 CSS `display` 토글로 언마운트 없이 상태 보존).
+`selectNode`는 이전 노드를 history 스택에 쌓아 SidePanel 뒤로가기를 지원하며, `selectNodeFresh`는 history를 리셋한다(딥링크 복원·허브 진입에 사용).
 
-## 계층
+### 해시 URL 딥링크 및 브라우저 뒤로가기
 
-**프론트엔드 (React SPA):**
-- 목적: 사용자 인터랙션·지도·타임라인·상세 패널 렌더링
-- 위치: `frontend/src/`
-- 포함: 화면 컴포넌트(`*.jsx`), 순수 헬퍼 모듈(`*.js`)
-- 의존: `apiGet`(`api.js`)로 백엔드 REST, `maplibre-gl`로 지도 렌더
-- 사용처: 브라우저 (nginx가 `frontend/dist/` 정적 서빙)
+`frontend/src/urlState.js`가 URL 해시 ↔ 내비 상태 문자열 변환을 담당한다(라우팅 라이브러리 없음, ADR-0009).
 
-**API (FastAPI):**
-- 목적: REST 엔드포인트, Neo4j 조회 + JSON 오버레이 병합
-- 위치: `backend/app/`
-- 포함: `main.py`(앱), `db.py`(드라이버), `overlays.py`(파일 로더), `routes/*.py`(엔드포인트)
-- 의존: Neo4j Bolt 드라이버, `data/` 볼륨(compose에서 `./data:/app/data` 마운트)
-- 사용처: 프론트엔드 fetch, nginx 프록시(`/api/` → `api:8000/`)
+```
+#/                          hub
+#/books                     overview
+#/tours                     tours
+#/person/<slug>             explore(인물, 지도)
+#/person/<slug>/timeline    explore(인물, 타임라인)
+#/tour/<slug>               explore(투어, 지도)
+#/tour/<slug>/timeline      explore(투어, 타임라인)
+```
 
-**그래프 스토어 (Neo4j):**
-- 목적: 성경 엔티티·관계 정본 저장
-- 위치: `bolt://neo4j:7687` (compose 서비스 `neo4j`, 볼륨 `neo4j_data`)
-- 노드 라벨: `Person`, `Place`, `Event`, `Book`, `PeopleGroup`
-- 관계: `HAS_PARTICIPANT`, `OCCURS_AT`, `MEMBER_OF`, `CONTAINS_BOOK` 등(라우트 Cypher 참조)
-- 시드: `backend/scripts/load_theographic.py`가 Theographic 원본을 적재, 이후 inject 스크립트가 한글·좌표·문맥을 병합
+`useStageNavigation`의 히스토리 동기화 effect(ADR-0010)가 스테이지·인물·투어 변경 및 시트 열림(false→true) 시 `pushState`, 그 외(뷰 토글·replace)에는 `replaceState`를 호출한다. `popstate` 이벤트는 `event.state`에서 직접 내비 상태를 복원한다. 재-push 방지를 위해 `popstateGuard` ref를 사용한다.
 
-**데이터 오버레이 (JSON 파일):**
-- 목적: Neo4j에 없는 큐레이션 데이터(한글 이름, 여정, 근거 구절, 좌표)
-- 위치: `data/*/`
-- 로더: `backend/app/overlays.py`의 `_resolve`/`_load`. `DATA_DIR`(기본 `/app/data`) → 리포 `data/` 순으로 탐색
+딥링크 복원 흐름: 마운트 시 `window.location.hash`를 `initialHashRef`에 캡처 → `/persons/curated`(slug↔id 매핑) 로드 완료 후 1회 파싱·상태 복원 → `setRestored(true)` → 이후 sync effect가 URL을 덮어쓰지 않도록 `restored` state를 gate로 사용.
 
-## 데이터 흐름
+### 지도 레이어
 
-### 주요 요청 경로 — 인물 여정 탐험
+`frontend/src/MapView.jsx`가 MapLibre GL 지도를 마운트한다. 타일 소스는 ArcGIS NatGeo(라스터). 지도 관련 로직은 세 모듈로 분리된다.
 
-1. 초기 로드: `App.jsx`가 `GET /persons/curated`로 큐레이션 인물 id 집합을 받아 CTA 노출 판단 (`frontend/src/App.jsx:44`)
-2. 허브에서 인물 카드 클릭 → `handleSelectPerson` → `activeStage='explore'`, `explorePersonId` 설정 (`frontend/src/App.jsx:86`)
-3. `explorePersonId` 변경 effect가 `GET /person/{id}/journey` 호출 → `journeyStops` 상태에 저장 (`frontend/src/App.jsx:72`)
-4. 백엔드 `journey.py`: `person_events/{slug}.json`을 sortKey순 정렬 후, `occursAt` place_id들의 좌표를 Neo4j 배치 조회(`_fetch_place_coords`)해 병합 (`backend/app/routes/journey.py:73`)
-5. `journeyStops`가 `MapView`·`JourneyList`에 공유되어 지도 여정선·정차지·좌측 리스트로 렌더 (`frontend/src/App.jsx:280`, `:269`)
+- `mapGeo.js` — GeoJSON 생성(장소 피처, 여정 라인, 여정 stops, 아웃라이어 제외 bounds)
+- `mapLayers.js` — 소스·레이어 초기화(`setupMapSources`), 클릭/호버 이벤트 핸들러 등록(`registerEventHandlers`)
+- `mapRingController.js` — 장소 클릭 시 관련 사건 링 fly-out 애니메이션 제어
 
-### 보조 흐름 — 노드 상세 패널
+여정 stops는 MapView에도 전달되어 경로 라인과 번호 마커로 렌더된다. `activeStopIdx`(JourneyList ↔ MapView 공유 state, App이 소유)로 지도-리스트 양방향 동기화를 한다.
 
-1. 지도/타임라인/개요에서 노드 클릭 → `selectNode(id)` (`frontend/src/useNodeSelection.js:33`)
-2. `SidePanel`이 `GET /node/{id}` fetch → 노드 속성·이웃·이웃 총수 렌더 (`backend/app/routes/nodes.py:145`)
-3. 로드 완료 시 `onNodeLoaded` 콜백 → `useNodeSelection`이 label이 Person이면 `GET /person/{id}/event-ids`로 타임라인 필터용 사건 id 집합 조회 (`frontend/src/useNodeSelection.js:21`)
-4. Book 노드는 `/node/{id}`가 `topPersons`·`topEvents`를 추가 반환 (`backend/app/routes/nodes.py:200`)
+### 모바일·데스크톱 분기
 
-**상태 관리:**
-- 라우팅 라이브러리·전역 스토어 없음. `App.jsx`가 상위 상태(activeStage, exploreView, journeyStops, verseLang 등)를 소유하고 props drilling으로 전달.
-- 노드 선택 관련 상태는 `useNodeSelection` 커스텀 훅에 캡슐화. `selectNode`는 `useCallback([])`로 참조 안정화해 하위 effect 재실행(fetch abort) 방지.
+`MOBILE_BREAKPOINT = 768px` 기준(MediaQueryList). 탐험 스테이지에서:
+- **데스크톱**: JourneyList가 좌측 290px 고정 패널로, SidePanel이 우측 360px 슬라이드인으로 표시
+- **모바일**: JourneyList가 지도 위 하단 42dvh 시트(`JOURNEY_SHEET_VH`)로, SidePanel이 75vh 하단 시트(`SHEET_VH`)로 표시. SidePanel은 탐험 인물 자신은 시트 열림 판정(`sheetOpen`)에서 제외해 여정 시트가 가려지지 않게 한다.
+- 모바일 JourneyList의 📖 탭 클릭 시 `readingEventId`(App 소유)가 세팅되고 90dvh 읽기 모드로 확장된다.
 
-## 핵심 추상화
+### API 클라이언트
 
-**apiGet (프론트 fetch 단일 진입점):**
-- 목적: base URL 통일 + 비-OK 응답을 status를 담은 Error로 reject
-- 예시: `frontend/src/api.js`
-- 패턴: 모든 컴포넌트가 이 헬퍼만 사용. `VITE_API_URL`(빌드타임)로 프로덕션은 `/api` 프록시를 탐
+`frontend/src/api.js`의 `apiGet(path, {signal})` 함수가 모든 HTTP GET의 단일 진입점이다. `VITE_API_URL` 빌드타임 환경변수로 베이스 URL을 결정한다(프로덕션: `/api`, 개발: `http://localhost:8000`).
 
-**JSON 오버레이 (`_resolve`/`_load`):**
-- 목적: Neo4j 외부의 큐레이션 데이터를 파일에서 읽기
-- 예시: `backend/app/overlays.py`, `backend/app/routes/persons.py`(`_resolve` 재사용)
-- 패턴: `DATA_DIR` → 리포 `data/` 순 경로 탐색. `lru_cache`로 1회 로드
+## 데이터 흐름 요약
 
-**큐레이션 인물 매핑 (단일 출처):**
-- 목적: slug ↔ 시대(era) ↔ 한글 이름 매핑을 한 곳에 고정
-- 예시: `backend/app/routes/persons.py`의 `_ERA`, `_NAME_KO`, `_ERA_ORDER`
-- 패턴: `journey.py`·`places.py`가 이 딕셔너리를 import 재사용해 드리프트 방지
-
-## 진입점
-
-**프론트엔드:**
-- 위치: `frontend/src/main.jsx` → `createRoot(...).render(<App/>)`
-- HTML 셸: `frontend/index.html`
-- 트리거: 브라우저가 nginx `/` → `frontend/dist/index.html` 로드
-- 책임: `App.jsx` 마운트(StrictMode)
-
-**백엔드:**
-- 위치: `backend/app/main.py`의 `app = FastAPI(lifespan=...)`
-- 실행: `uvicorn app.main:app --host 0.0.0.0 --port 8000` (`backend/Dockerfile` CMD)
-- 트리거: docker-compose `api` 서비스, nginx `/api/` 프록시
-- 책임: 라우터 등록, 기동 시 Neo4j `theographic_id` 인덱스 생성(lifespan)
-
-**배포:**
-- 위치: `deploy.sh` (self-hosted 러너가 `.github/workflows/deploy.yml`에서 호출)
-- 트리거: `main` 브랜치 push
-- 책임: frontend 빌드 → api 이미지 빌드 → 컨테이너 재시작 → `inject_ko_names.py`로 한글 이름 주입(최대 15회 재시도)
-
-## 아키텍처 제약
-
-- **스레딩:** FastAPI 라우트는 동기 함수(`def`). Neo4j 세션을 `with driver.session()` 블록에서 열고 닫음. 드라이버는 전역 싱글턴이라 스레드 안전 재사용.
-- **전역 상태:** `backend/app/db.py`의 `_driver`가 모듈 전역 싱글턴. `lru_cache`로 캐시된 조회 결과(`events.py`, `persons.py`, `overlays.py`)는 프로세스 재시작 전까지 무효화 안 됨 — 데이터 변경 시 API 컨테이너 재시작 필요.
-- **HTTP 메서드:** CORS가 `GET`만 허용(`main.py:29`). 쓰기 API 없음 — 모든 데이터 변경은 시드/inject 스크립트로 호스트에서 직접 수행.
-- **좌표 출처 이원화:** Place 좌표는 Neo4j에 있으나 `data/place_coords/places.json` 오버레이로 보강. 여정은 오버레이 사건 파일 + Neo4j 좌표 배치 조회로 병합.
-
-## 안티패턴
-
-### effect 내 인라인 화살표 콜백을 하위 fetch effect의 deps로 전달
-
-**무슨 일이 일어나는가:** `SidePanel`의 `onNodeLoaded`를 인라인 화살표로 넘기면 매 렌더마다 새 참조가 되어, deps에 이를 포함한 `/node` fetch effect가 매번 재실행되고 펼침 상태가 리셋된다.
-**왜 문제인가:** 섹션이 안 펼쳐지는 버그. `MapView`도 `selectNode`가 재생성되면 `expandPlace` fetch가 abort된다.
-**대신 이렇게:** 콜백을 `useCallback`으로 참조 안정화한다. `App.jsx:101`의 `handleSidePanelNodeLoaded`, `useNodeSelection.js:33`의 `selectNode`가 이 패턴을 따른다.
-
-### effect 본문에서 동기 setState
-
-**무슨 일이 일어나는가:** effect 진입 즉시 여러 상태를 동기로 초기화하면 React 19 StrictMode에서 경고·재실행 문제가 발생한다.
-**왜 문제인가:** effect 동기 setState 금지 규칙 위반.
-**대신 이렇게:** `Promise.resolve().then(() => setState(...))`로 마이크로태스크로 미룬다(`App.jsx:69`).
-
-## 에러 처리
-
-**전략:** 백엔드는 조회 실패 시 빈 결과·404를 반환하고, 파일/DB 예외는 삼켜 부분 동작을 유지(graceful degradation).
-
-**패턴:**
-- 노드 미존재 → `HTTPException(404)` (`nodes.py:29`, `:155`)
-- Neo4j 인덱스 생성 실패 → `logging.exception` 후 계속 진행(`main.py:19`)
-- 오버레이 파일 부재/파싱 실패 → 빈 dict 반환(`overlays.py:26`)
-- 프론트 `apiGet`은 비-OK를 status 담은 Error로 throw; 호출부가 `e.name === 'AbortError'`로 취소를 구분(`api.js:9`, `App.jsx:74`)
-- CTA 로드 실패는 유한 재시도(1s→2s→4s)로 자가 회복(`App.jsx:44`)
-
-## 횡단 관심사
-
-**로깅:** 백엔드 `logging` 모듈(lifespan 인덱스 실패), 프론트 `console.warn`. 배포는 `deploy.sh`가 `com.biblemap.deploy.log`에 기록.
-**검증:** FastAPI 경로 파라미터·`Query` 기본 검증. 도메인 검증 로직은 별도 없음(읽기 전용 API).
-**인증:** 없음. 공개 읽기 API. Neo4j 비밀번호만 `NEO4J_PASSWORD` 환경변수로 보호.
-**캐싱:** 백엔드 응답에 `Cache-Control` 헤더(`max-age=300` / `no-store`), 프로세스 메모리 `lru_cache`, nginx 정적 자산 immutable 캐시.
-
----
-
-*아키텍처 분석: 2026-07-04*
+```
+data/person_events/<slug>.json  →  journey.py, tours.py(_build_event_index)
+data/tours/<slug>.json          →  tours.py  (eventId 참조 resolve)
+data/book_events/books.json     →  overlays.py → events.py (approx 책 연결)
+data/event_verses/events.json   →  overlays.py → events.py /event/{id}/verses
+Neo4j 그래프 노드/관계           →  nodes.py, events.py, search.py,
+                                    books.py, persons.py(connections만),
+                                    journey.py(_fetch_place_coords)
+                                 →  REST JSON (Cache-Control: max-age=300)
+                                 →  api.js (apiGet)
+                                 →  App.jsx (journeyStops, selectedNode 등)
+                                 →  MapView, JourneyList, TimelineView, SidePanel
+```
