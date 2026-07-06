@@ -160,7 +160,23 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
     map.getSource('journey-line-source').setData(buildJourneyLineGeoJSON(stops))
     map.getSource('journey-stops-source').setData(buildJourneyStopsGeoJSON(stops))
     map.getSource('journey-active-source').setData(EMPTY_GEOJSON) // 새 인물 선택 시 강조 초기화
-  }, [journeyStops, mapLoaded])
+
+    // 투어 모드(personId 없음)는 places fetch가 프레이밍을 안 하므로 여기서 정차지에 맞춘다.
+    // (인물 모드는 personId 기반 places effect가 fitBounds → 중복 방지 위해 제외.)
+    if (!personId) {
+      const coord = stops.filter((s) => s.lng != null && s.lat != null)
+      if (coord.length > 0) {
+        const bounds = coord.reduce(
+          (b, s) => b.extend([s.lng, s.lat]),
+          new maplibregl.LngLatBounds([coord[0].lng, coord[0].lat], [coord[0].lng, coord[0].lat]),
+        )
+        const isMobile = window.innerWidth <= MOBILE_BREAKPOINT
+        const sheet = Math.round(window.innerHeight * (JOURNEY_SHEET_VH / 100))
+        const padding = isMobile ? { top: 70, bottom: sheet + 20, left: 40, right: 40 } : 80
+        map.fitBounds(bounds, { padding, maxZoom: 10, duration: 600 })
+      }
+    }
+  }, [journeyStops, mapLoaded, personId])
 
   // 활성 정차지 강조 + 카메라 이동 (activeStopIdx prop 변경 시)
   useEffect(() => {

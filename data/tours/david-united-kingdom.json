@@ -1,0 +1,27 @@
+{
+  "id": "david-united-kingdom",
+  "title": "다윗과 통일왕국",
+  "subtitle": "사무엘의 기름부음에서 솔로몬의 성전 봉헌까지, 이스라엘 통일왕국의 탄생과 절정",
+  "era": "왕국",
+  "description": "사무엘이 사울을 왕으로 세운 날부터 솔로몬이 예루살렘 성전을 봉헌하는 날까지, 약 100년에 걸친 이스라엘 통일왕국의 대서사시다. 사울의 선출과 몰락, 다윗의 부상과 예루살렘 정복, 솔로몬의 지혜와 성전 건축이 하나의 흐름으로 이어지며 다윗 언약의 의미를 드러낸다.",
+  "stops": [
+    "authored-saul-mizpah-chosen",
+    "authored-saul-jabesh-rescue",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-michmash-battle",
+    "authored-saul-gilgal-amalek",
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-saul-gibeah-spear",
+    "authored-david-goliath-gath",
+    "authored-saul-engedi-spared",
+    "authored-saul-endor-medium",
+    "authored-saul-gilboa-death",
+    "authored-david-hebron-king-judah",
+    "authored-david-jerusalem-conquest",
+    "authored-david-ark-jerusalem",
+    "authored-david-nathan-covenant",
+    "authored-solomon-gibeon-dream",
+    "authored-solomon-jerusalem-temple-build",
+    "authored-solomon-jerusalem-temple-dedication"
+  ]
+}

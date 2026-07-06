@@ -14,6 +14,8 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   // 탐험 중인 인물 — selectedNode와 분리해 장소 클릭 시에도 여정·맵 장소 기준 유지
   const [explorePersonId, setExplorePersonId] = useState(null)
   const [explorePersonName, setExplorePersonName] = useState(null)
+  // 탐험 중인 테마 투어 id(=slug). 인물과 상호배타 — 하나가 세팅되면 다른 하나는 null.
+  const [exploreTourId, setExploreTourId] = useState(null)
 
   // 딥링크(ADR-0009) — 해시 URL ↔ 내비 상태. 마운트 해시 캡처, 복원 1회, 이후 replaceState 반영.
   const initialHashRef = useRef(window.location.hash)
@@ -21,7 +23,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   const curatedIdToSlug = useRef({})
   const curatedSlugToId = useRef({})
   // 히스토리 통합(ADR-0010) — 직전 nav-key 추적 + popstate 복원 중 재-push 방지.
-  const navSyncRef = useRef({ initialized: false, stage: null, person: null, sheetOpen: false })
+  const navSyncRef = useRef({ initialized: false, stage: null, person: null, tour: null, sheetOpen: false })
   const popstateGuard = useRef(false)
   // 복원 완료 신호(state) — sync effect의 dep. ref가 아니라 state여야 복원 직후 베이스 엔트리 write가 트리거됨.
   const [restored, setRestored] = useState(false)
@@ -60,6 +62,10 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     Promise.resolve().then(() => {
       if (parsed) {
         if (parsed.stage === 'overview') setActiveStage('overview')
+        else if (parsed.stage === 'tours') setActiveStage('tours')
+        else if (parsed.stage === 'explore' && parsed.tourSlug) {
+          setExploreTourId(parsed.tourSlug); setActiveStage('explore'); setExploreView(parsed.exploreView)
+        }
         else if (parsed.stage === 'explore' && parsed.personSlug) {
           const id = curatedSlugToId.current[parsed.personSlug]
           if (id) { selectNodeFresh(id); setExplorePersonId(id); setActiveStage('explore'); setExploreView(parsed.exploreView) }
@@ -79,23 +85,23 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   useEffect(() => {
     if (!restored) return
     const slug = explorePersonId ? curatedIdToSlug.current[explorePersonId] : null
-    if (activeStage === 'explore' && !slug) return // slug 미해결 시 깨진 URL 안 씀
+    if (activeStage === 'explore' && !slug && !exploreTourId) return // slug/tour 미해결 시 깨진 URL 안 씀
     const sheetOpen = selectedNode != null && selectedNode !== explorePersonId
-    const hash = encodeHash({ stage: activeStage, personSlug: slug, exploreView })
-    const state = { stage: activeStage, person: explorePersonId, view: exploreView, node: selectedNode }
+    const hash = encodeHash({ stage: activeStage, personSlug: slug, exploreView, tourSlug: exploreTourId })
+    const state = { stage: activeStage, person: explorePersonId, tour: exploreTourId, view: exploreView, node: selectedNode }
     if (popstateGuard.current) {
       // popstate 복원 중 — 브라우저가 이미 히스토리를 옮겼으니 재-push 없이 ref만 동기화.
       popstateGuard.current = false
-      navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, sheetOpen }
+      navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, tour: exploreTourId, sheetOpen }
       return
     }
     const prev = navSyncRef.current
     const isForward = prev.initialized &&
-      (prev.stage !== activeStage || prev.person !== explorePersonId || (!prev.sheetOpen && sheetOpen))
-    navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, sheetOpen }
+      (prev.stage !== activeStage || prev.person !== explorePersonId || prev.tour !== exploreTourId || (!prev.sheetOpen && sheetOpen))
+    navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, tour: exploreTourId, sheetOpen }
     if (isForward) window.history.pushState(state, '', hash)
     else window.history.replaceState(state, '', hash)
-  }, [restored, activeStage, explorePersonId, exploreView, selectedNode])
+  }, [restored, activeStage, explorePersonId, exploreTourId, exploreView, selectedNode])
 
   // popstate — 브라우저/OS 뒤로·앞으로 시 event.state에서 내비 복원(가드로 재-push 방지).
   useEffect(() => {
@@ -103,9 +109,10 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
       const s = e.state
       popstateGuard.current = true
       Promise.resolve().then(() => {
-        if (!s) { setActiveStage('hub'); setExplorePersonId(null); setExplorePersonName(null); closePanel(); return }
+        if (!s) { setActiveStage('hub'); setExplorePersonId(null); setExplorePersonName(null); setExploreTourId(null); closePanel(); return }
         setActiveStage(s.stage)
         setExplorePersonId(s.person ?? null)
+        setExploreTourId(s.tour ?? null)
         setExploreView(s.view || 'map')
         if (s.node) selectNodeFresh(s.node); else closePanel()
       })
@@ -116,15 +123,17 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // 허브에서 인물 카드 클릭 — 탐험으로 전환
+  // 허브에서 인물 카드 클릭 — 탐험으로 전환 (투어와 상호배타)
   function handleSelectPerson(id) {
+    setExploreTourId(null)
     selectNodeFresh(id)
     setExplorePersonId(id)
     setActiveStage('explore')
   }
 
-  // SidePanel에서 "이 곳을 지난 다른 인물" 칩 클릭 — 같은 탐험 단계에서 인물 전환
+  // SidePanel에서 "이 곳을 지난 다른 인물" 칩 클릭 — 같은 탐험 단계에서 인물 전환 (투어 이탈)
   function handleExplorePerson(id) {
+    setExploreTourId(null)
     setExplorePersonId(id)
     selectNodeFresh(id)
   }
@@ -134,6 +143,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     closePanel()
     setExplorePersonId(null)
     setExplorePersonName(null)
+    setExploreTourId(null)
     setActiveStage('hub')
   }
 
@@ -145,6 +155,27 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   // 개요에서 허브로 복귀
   function handleOverviewBack() {
     setActiveStage('hub')
+  }
+
+  // 허브에서 "테마 투어" 클릭 — 투어 목록 스테이지
+  function handleOpenTours() {
+    setActiveStage('tours')
+  }
+
+  // 투어 목록에서 투어 선택 — 탐험 진입 (인물 대신 투어가 stops 공급, 인물과 상호배타)
+  function handleSelectTour(id) {
+    closePanel()
+    setExplorePersonId(null)
+    setExplorePersonName(null)
+    setExploreTourId(id)
+    setActiveStage('explore')
+  }
+
+  // 탐험(투어)에서 "테마 목록" 클릭 — 투어 목록으로 복귀
+  function handleToursBack() {
+    closePanel()
+    setExploreTourId(null)
+    setActiveStage('tours')
   }
 
   // SidePanel onNodeLoaded — 참조 안정화(useCallback). 인라인 화살표면 매 렌더 새 ref가 되어
@@ -159,13 +190,16 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   const sheetOpen = selectedNode != null && selectedNode !== explorePersonId
 
   return {
-    activeStage, exploreView, explorePersonId, explorePersonName, curatedIds, sheetOpen,
+    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, curatedIds, sheetOpen,
     setExploreView,
     selectPerson: handleSelectPerson,
     explorePerson: handleExplorePerson,
     backToHub: handleBackToHub,
     openOverview: handleOpenOverview,
     overviewBack: handleOverviewBack,
+    openTours: handleOpenTours,
+    selectTour: handleSelectTour,
+    toursBack: handleToursBack,
     onNodeLoaded,
   }
 }

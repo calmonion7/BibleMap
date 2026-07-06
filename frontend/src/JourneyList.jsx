@@ -11,7 +11,7 @@
 import { useEffect, useRef, useState } from 'react'
 import EventVerses from './EventVerses'
 
-export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseLang, setVerseLang, personName, readingEventId, onReadingChange }) {
+export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseLang, setVerseLang, personName, tourName, readingEventId, onReadingChange }) {
   const listRef = useRef(null)
   const activeRef = useRef(null)
   // 리스트에서 직접 클릭해 선택한 경우 자동 스크롤 억제(이미 보고 있는 행이 동일장소의 다른 행으로 점프하지 않게)
@@ -79,7 +79,7 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
       {/* 헤더 — 여정 = 사건 묶음임을 명시(여정 > 사건 N개 > 각 사건의 구절) */}
       <div style={{ padding: '12px 14px 8px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
         <div style={{ color: '#fff', fontSize: 13, fontWeight: 700 }}>
-          {personName ? `${personName}의 여정` : '여정'}
+          {tourName || (personName ? `${personName}의 여정` : '여정')}
         </div>
         <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: 10, marginTop: 2 }}>
           사건 {stops.length}개 · 📖 눌러 구절 보기

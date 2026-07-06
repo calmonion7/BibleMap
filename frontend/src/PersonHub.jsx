@@ -21,6 +21,7 @@ const ERA_META = {
 // Person 색(theme.js TYPE_COLOR.Person) + 골드 액센트
 const PERSON_BLUE = '#7c9cfc'
 const GOLD = '#c9a84c'
+const PURPLE = '#a78bfa'
 const GROUND = '#11122b'
 const TEXT = '#e8e4d8'
 const CARD_BG = '#1a1b3a'
@@ -154,11 +155,12 @@ function EraSection({ era, persons, onSelectPerson, isFirst }) {
  * Props 계약:
  *   onSelectPerson(id: string) — 카드 클릭 시 해당 인물 id 전달
  *   onOpenOverview()            — "성경 책 둘러보기" 버튼 클릭 시 호출
+ *   onOpenTours()               — "테마 투어" 버튼 클릭 시 호출
  *
  * 데이터: 내부에서 GET /persons/curated 호출
  *   응답 항목: { id, slug, nameKo, era, eventCount }
  */
-export default function PersonHub({ onSelectPerson, onOpenOverview }) {
+export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours }) {
   const [persons, setPersons] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -253,36 +255,67 @@ export default function PersonHub({ onSelectPerson, onOpenOverview }) {
           인물을 고르면 활동 지역과 사건이 지도에 펼쳐집니다
         </p>
 
-        {/* 성경 개요 보조 진입 버튼 */}
-        <button
-          onClick={onOpenOverview}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 7,
-            padding: '7px 16px',
-            border: `1px solid ${GOLD}50`,
-            borderRadius: 8,
-            background: `${GOLD}12`,
-            color: GOLD,
-            fontSize: 13,
-            fontWeight: 600,
-            cursor: 'pointer',
-            letterSpacing: '0.03em',
-            transition: 'background 0.15s, border-color 0.15s',
-          }}
-          onMouseEnter={e => {
-            e.currentTarget.style.background = `${GOLD}22`
-            e.currentTarget.style.borderColor = `${GOLD}90`
-          }}
-          onMouseLeave={e => {
-            e.currentTarget.style.background = `${GOLD}12`
-            e.currentTarget.style.borderColor = `${GOLD}50`
-          }}
-        >
-          <span style={{ fontSize: 15 }}>📖</span>
-          성경 책 둘러보기
-        </button>
+        {/* 보조 진입 — 성경 책 둘러보기 · 테마 투어 */}
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+          <button
+            onClick={onOpenOverview}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 7,
+              padding: '7px 16px',
+              border: `1px solid ${GOLD}50`,
+              borderRadius: 8,
+              background: `${GOLD}12`,
+              color: GOLD,
+              fontSize: 13,
+              fontWeight: 600,
+              cursor: 'pointer',
+              letterSpacing: '0.03em',
+              transition: 'background 0.15s, border-color 0.15s',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = `${GOLD}22`
+              e.currentTarget.style.borderColor = `${GOLD}90`
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = `${GOLD}12`
+              e.currentTarget.style.borderColor = `${GOLD}50`
+            }}
+          >
+            <span style={{ fontSize: 15 }}>📖</span>
+            성경 책 둘러보기
+          </button>
+          <button
+            onClick={onOpenTours}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 7,
+              padding: '7px 16px',
+              border: `1px solid ${PURPLE}50`,
+              borderRadius: 8,
+              background: `${PURPLE}12`,
+              color: PURPLE,
+              fontSize: 13,
+              fontWeight: 600,
+              cursor: 'pointer',
+              letterSpacing: '0.03em',
+              transition: 'background 0.15s, border-color 0.15s',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = `${PURPLE}22`
+              e.currentTarget.style.borderColor = `${PURPLE}90`
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = `${PURPLE}12`
+              e.currentTarget.style.borderColor = `${PURPLE}50`
+            }}
+          >
+            <span style={{ fontSize: 15 }}>🧭</span>
+            테마 투어
+          </button>
+        </div>
       </div>
 
       {/* 시대별 카드 그룹 */}

@@ -1,10 +1,11 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { Map, Clock, BookOpen } from 'lucide-react'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
 import TimelineView from './TimelineView'
 import BibleOverviewView from './BibleOverviewView'
 import PersonHub from './PersonHub'
+import TourList from './TourList'
 import JourneyList from './JourneyList'
 import { MOBILE_BREAKPOINT, SHEET_VH, JOURNEY_SHEET_VH } from './constants'
 import { useNodeSelection } from './useNodeSelection'
@@ -32,12 +33,20 @@ function App() {
 
   // 화면 단계(Stage)·URL·브라우저 히스토리 상태 머신 — 노드 선택 원시값을 주입(useStageNavigation).
   const {
-    activeStage, exploreView, explorePersonId, explorePersonName, curatedIds, sheetOpen,
-    setExploreView, selectPerson, explorePerson, backToHub, openOverview, overviewBack, onNodeLoaded,
+    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, curatedIds, sheetOpen,
+    setExploreView, selectPerson, explorePerson, backToHub, openOverview, overviewBack,
+    openTours, selectTour, toursBack, onNodeLoaded,
   } = useStageNavigation({ selectedNode, selectNodeFresh, closePanel, handleNodeLoaded })
 
-  // 여정 데이터 — 인물 선택 시 한 번 fetch, MapView·JourneyList 공유
+  // 여정 데이터 — 인물/투어 선택 시 한 번 fetch, MapView·JourneyList 공유
   const [journeyStops, setJourneyStops] = useState(null)
+  // 탐험 중 투어의 제목 — /tour 응답에서 채움(내비 헤더·JourneyList·타임라인 라벨용)
+  const [exploreTourName, setExploreTourName] = useState(null)
+  // 투어 타임라인 필터 — TimelineView가 Set.has()로 쓰므로 Set으로, 참조 안정화(인물의 personEventIds와 동일 형태)
+  const tourEventIds = useMemo(
+    () => (exploreTourId && journeyStops ? new Set(journeyStops.map(s => s.eventId)) : null),
+    [exploreTourId, journeyStops],
+  )
   const [activeStopIdx, setActiveStopIdx] = useState(null)
   // 모바일 여정 "읽기 모드" — 펼친 사건 id. App이 소유해 오버레이 높이 전환·바깥 탭 닫기를 제어한다.
   const [readingEventId, setReadingEventId] = useState(null)
@@ -45,16 +54,20 @@ function App() {
 
   useEffect(() => {
     const ctrl = new AbortController()
-    if (!explorePersonId) {
-      // 인물 미선택 → 비동기로 초기화(effect 동기 setState 금지 규칙 회피)
-      Promise.resolve().then(() => { setJourneyStops(null); setActiveStopIdx(null); setReadingEventId(null) })
-      return () => ctrl.abort()
+    if (explorePersonId) {
+      apiGet(`/person/${explorePersonId}/journey`, { signal: ctrl.signal })
+        .then(({ stops }) => { setJourneyStops(stops); setActiveStopIdx(null); setReadingEventId(null); setExploreTourName(null) }) // async 콜백 — v7 OK
+        .catch((e) => { if (e?.name !== 'AbortError') setJourneyStops([]) })
+    } else if (exploreTourId) {
+      apiGet(`/tour/${exploreTourId}`, { signal: ctrl.signal })
+        .then(({ title, stops }) => { setJourneyStops(stops); setActiveStopIdx(null); setReadingEventId(null); setExploreTourName(title) })
+        .catch((e) => { if (e?.name !== 'AbortError') setJourneyStops([]) })
+    } else {
+      // 인물·투어 모두 미선택 → 비동기로 초기화(effect 동기 setState 금지 규칙 회피)
+      Promise.resolve().then(() => { setJourneyStops(null); setActiveStopIdx(null); setReadingEventId(null); setExploreTourName(null) })
     }
-    apiGet(`/person/${explorePersonId}/journey`, { signal: ctrl.signal })
-      .then(({ stops }) => { setJourneyStops(stops); setActiveStopIdx(null); setReadingEventId(null) }) // async 콜백 — v7 OK
-      .catch((e) => { if (e?.name !== 'AbortError') setJourneyStops([]) })
     return () => ctrl.abort()
-  }, [explorePersonId])
+  }, [explorePersonId, exploreTourId])
 
   useEffect(() => {
     const mq = window.matchMedia(MOBILE_QUERY)
@@ -82,7 +95,10 @@ function App() {
 
   // 탐험 단계 내비게이션 바
   function renderExploreNav() {
-    const personName = explorePersonName
+    const isTour = exploreTourId != null
+    const headingName = isTour ? exploreTourName : explorePersonName
+    const backLabel = isTour ? '테마 목록' : '다른 인물'
+    const onBack = isTour ? toursBack : backToHub
     return (
       <div style={{
         height: NAV_H, flexShrink: 0,
@@ -91,9 +107,9 @@ function App() {
         zIndex: 20, boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
         gap: 0,
       }}>
-        {/* 허브 복귀 — "현재 인물명 + 다른 인물" */}
+        {/* 복귀 — 투어면 "투어명 + 테마 목록", 인물이면 "인물명 + 다른 인물" */}
         <button
-          onClick={backToHub}
+          onClick={onBack}
           style={{
             display: 'flex', alignItems: 'center', gap: 6,
             padding: '0 14px', height: '100%',
@@ -104,12 +120,12 @@ function App() {
           }}
         >
           <span style={{ fontSize: 13 }}>←</span>
-          {personName ? (
-            <span style={{ fontSize: 13, color: '#c9a84c', fontWeight: 600, maxWidth: isMobile ? 80 : 160, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-              {personName}
+          {headingName ? (
+            <span style={{ fontSize: 13, color: isTour ? '#a78bfa' : '#c9a84c', fontWeight: 600, maxWidth: isMobile ? 80 : 160, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              {headingName}
             </span>
           ) : null}
-          <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)' }}>다른 인물</span>
+          <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)' }}>{backLabel}</span>
         </button>
 
         {/* 지도 / 타임라인 토글 */}
@@ -172,6 +188,38 @@ function App() {
     )
   }
 
+  // 투어 목록 단계 내비게이션 바
+  function renderToursNav() {
+    return (
+      <div style={{
+        height: NAV_H, flexShrink: 0,
+        display: 'flex', alignItems: 'center',
+        background: '#1a1a2e',
+        zIndex: 20, boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+        gap: 0,
+      }}>
+        <button
+          onClick={backToHub}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 6,
+            padding: '0 14px', height: '100%',
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: 'rgba(255,255,255,0.7)',
+            borderRight: '1px solid rgba(255,255,255,0.1)',
+            flexShrink: 0,
+          }}
+        >
+          <span style={{ fontSize: 13 }}>←</span>
+          <span style={{ fontSize: 13 }}>인물 허브</span>
+        </button>
+        <div style={{ display: 'flex', alignItems: 'center', height: '100%', padding: '0 14px', gap: 6 }}>
+          <span style={{ fontSize: 15 }}>🧭</span>
+          <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: 13 }}>테마 투어</span>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
 
@@ -181,6 +229,7 @@ function App() {
           <PersonHub
             onSelectPerson={selectPerson}
             onOpenOverview={openOverview}
+            onOpenTours={openTours}
           />
         </div>
       )}
@@ -198,7 +247,17 @@ function App() {
         </>
       )}
 
-      {/* 탐험 단계 — 인물 선택 후 지도·타임라인 */}
+      {/* 테마 투어 목록 단계 — 허브에서 진입 */}
+      {activeStage === 'tours' && (
+        <>
+          {renderToursNav()}
+          <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+            <TourList onSelectTour={selectTour} />
+          </div>
+        </>
+      )}
+
+      {/* 탐험 단계 — 인물/투어 선택 후 지도·타임라인 */}
       {activeStage === 'explore' && (
         <>
           {renderExploreNav()}
@@ -215,7 +274,8 @@ function App() {
                     onStopSelect={setActiveStopIdx}
                     verseLang={verseLang}
                     setVerseLang={setVerseLang}
-                    personName={explorePersonName}
+                    personName={exploreTourId ? null : explorePersonName}
+                    tourName={exploreTourId ? exploreTourName : null}
                   />
                 </div>
               )}
@@ -252,7 +312,8 @@ function App() {
                         onStopSelect={setActiveStopIdx}
                         verseLang={verseLang}
                         setVerseLang={setVerseLang}
-                        personName={explorePersonName}
+                        personName={exploreTourId ? null : explorePersonName}
+                        tourName={exploreTourId ? exploreTourName : null}
                         readingEventId={readingEventId}
                         onReadingChange={setReadingEventId}
                       />
@@ -266,8 +327,8 @@ function App() {
                 onSelectNode={selectNode}
                 selectedNode={selectedNode}
                 bookFilter={selectedNodeMeta?.label === 'Book' ? selectedNodeMeta : null}
-                personFilter={explorePersonId != null ? personEventIds : null}
-                personName={explorePersonName}
+                personFilter={explorePersonId != null ? personEventIds : tourEventIds}
+                personName={exploreTourId != null ? exploreTourName : explorePersonName}
                 verseLang={verseLang}
                 setVerseLang={setVerseLang}
               />
