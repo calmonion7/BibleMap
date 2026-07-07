@@ -53,11 +53,7 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
   const maxY = Math.max(...years)
   const span = Math.max(1, maxY - minY)
   const pctNum = y => ((y - minY) / span) * 100
-  const xPct = y => `${pctNum(y)}%`
   const bc = y => `BC ${Math.abs(y)}`
-  // 가장자리 국면 라벨이 이름 칸/우측을 넘지 않도록 앵커 클램프(중앙정렬 대신 좌/우 정렬).
-  const labelTransform = y => (pctNum(y) < 12 ? 'translateX(0)' : pctNum(y) > 88 ? 'translateX(-100%)' : 'translateX(-50%)')
-
   const isCurated = withId => withId && curatedIds?.has(withId)
 
   // 유형순 정렬(유형끼리 군집, 동일 유형 내 최초 연도). focusIdx·versePhase는 이 sorted 기준.
@@ -66,6 +62,14 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
     if (d !== 0) return d
     return Math.min(...a.phases.map(p => p.approxYear)) - Math.min(...b.phases.map(p => p.approxYear))
   })
+
+  // 전치 개요 — 세로 시간축 + 관계 세로 열(가로 스크롤). 세로 공간(스크롤)이 무한이라 촘촘한 국면도 라벨 겹침이 없다.
+  const COL_W = 122        // 관계 열 폭
+  const AXIS_W = 50        // 좌측 BC/시대 눈금 gutter 폭
+  const HEADER_H = 46      // 열 헤더(유형 아이콘+이름) 높이
+  const DOT_X = 12         // 열 내 점의 x(라벨은 우측)
+  const TRACK_H = Math.max(640, Math.round(span * 16))  // 세로 시간 높이(연당 ~16px)
+  const yPos = y => (pctNum(y) / 100) * TRACK_H
 
   // 근거 구절 레이어
   function VerseLayer() {
@@ -134,79 +138,61 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
     )
   }
 
-  // 레인 개요 — 관계마다 가로 한 줄, 시간축 위 valence 색 점(교차선 없음) + 시대 밴드 배경 + 국면 라벨
+  // 개요 — 세로 시간축(위=이른 시대, 스크롤) + 관계 세로 열(가로 스와이프). 라벨은 점 옆(가로) → 겹침 없음.
   return (
-    <div style={{ position: 'relative', height: '100%', overflowY: 'auto', background: '#f7f8fb' }}>
-      <div style={{ maxWidth: 820, margin: '0 auto', padding: '16px 20px 40px' }}>
+    <div style={{ position: 'relative', height: '100%', display: 'flex', flexDirection: 'column', background: '#f7f8fb' }}>
+      {/* 헤더 — 제목 + 색 범례 (고정) */}
+      <div style={{ flexShrink: 0, padding: '14px 16px 8px' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 6 }}>
           <h3 style={{ fontSize: 15, fontWeight: 700, color: '#2a3350', margin: 0 }}>{personName || '이 인물'}의 관계</h3>
-          <span style={{ fontSize: 12, color: '#aab2c5' }}>{relations.length} · 레인 클릭 시 상세</span>
+          <span style={{ fontSize: 12, color: '#aab2c5' }}>{relations.length} · 열 클릭 시 상세 · ↔ 좌우로 더</span>
         </div>
-        {/* 색 범례 (S1) */}
-        <div style={{ display: 'flex', gap: 14, marginBottom: 10 }}>
+        <div style={{ display: 'flex', gap: 14 }}>
           {Object.entries(VALENCE_COLOR).map(([k, c]) => (
             <span key={k} style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 12, color: '#5a6481' }}>
               <span style={{ width: 10, height: 10, borderRadius: '50%', background: c }} />{k}
             </span>
           ))}
         </div>
-        {/* 시간축 눈금 */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#aab2c5', padding: '0 0 0 100px', marginBottom: 4 }}>
-          <span>{bc(minY)}</span><span>{bc(maxY)}</span>
-        </div>
-        {/* 레인 영역 — 시대 밴드(배경) + 레인(전경) */}
-        <div style={{ position: 'relative' }}>
-          {/* 시대 구간 배경 밴드 (S3) — 트랙 영역(left:100px)에 정렬, 레인 뒤 */}
-          <div style={{ position: 'absolute', left: 100, right: 0, top: 0, bottom: 0, zIndex: 0 }}>
-            {ERA_BANDS.map((era, i) => (
-              <div key={i} style={{
-                position: 'absolute', top: 0, bottom: 0,
-                left: xPct(era.from), width: `calc(${xPct(era.to)} - ${xPct(era.from)})`,
-                background: i % 2 === 0 ? 'rgba(124,156,252,0.07)' : 'rgba(124,156,252,0.13)',
-                borderLeft: i === 0 ? 'none' : '1px dashed #cfd6e6',
-              }}>
-                <span style={{ position: 'absolute', top: 2, left: 5, fontSize: 10, fontWeight: 600, color: '#9aa3ba', whiteSpace: 'nowrap' }}>{era.label}</span>
-              </div>
-            ))}
+      </div>
+
+      {/* 스크롤 영역 — 세로=시간, 가로=관계 열 */}
+      <div style={{ flex: 1, overflow: 'auto' }}>
+        <div style={{ display: 'flex', width: 'max-content' }}>
+          {/* 좌측 BC/시대 눈금 gutter (가로 스크롤에도 고정) */}
+          <div style={{ position: 'sticky', left: 0, zIndex: 3, flexShrink: 0, width: AXIS_W, background: '#f7f8fb' }}>
+            <div style={{ height: HEADER_H, display: 'flex', alignItems: 'flex-end', justifyContent: 'center', paddingBottom: 3, fontSize: 10, color: '#aab2c5' }}>{bc(minY)}</div>
+            <div style={{ position: 'relative', height: TRACK_H }}>
+              {ERA_BANDS.map((era, i) => (
+                <span key={i} style={{ position: 'absolute', top: yPos(era.from) + 4, left: 6, fontSize: 9, fontWeight: 600, color: '#9aa3ba', writingMode: 'vertical-rl', letterSpacing: 1 }}>{era.label}</span>
+              ))}
+              <span style={{ position: 'absolute', bottom: 2, left: 0, right: 0, textAlign: 'center', fontSize: 10, color: '#aab2c5' }}>{bc(maxY)}</span>
+            </div>
           </div>
-          {/* 레인(전경) — 시대 라벨용 상단 여백 확보 */}
-          <div style={{ position: 'relative', zIndex: 1, paddingTop: 20 }}>
+
+          {/* 관계 열 컨테이너 */}
+          <div style={{ position: 'relative', display: 'flex' }}>
+            {/* 시대 배경 띠 — 전 열 가로, 헤더 아래, 레인 뒤 */}
+            <div style={{ position: 'absolute', left: 0, right: 0, top: HEADER_H, height: TRACK_H, zIndex: 0, pointerEvents: 'none' }}>
+              {ERA_BANDS.map((era, i) => (
+                <div key={i} style={{ position: 'absolute', left: 0, right: 0, top: yPos(era.from), height: yPos(era.to) - yPos(era.from), background: i % 2 === 0 ? 'rgba(124,156,252,0.07)' : 'rgba(124,156,252,0.13)', borderTop: i === 0 ? 'none' : '1px dashed #cfd6e6' }} />
+              ))}
+            </div>
             {sorted.map((r, i) => (
-              <div
-                key={i}
-                onClick={() => setFocusIdx(i)}
-                style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 0', cursor: 'pointer', borderTop: '1px solid rgba(226,230,239,0.6)' }}
-              >
-                {/* 이름 칸 — 관계 유형 아이콘 + 상대 이름(트랙 정렬 위해 width 92 유지) */}
-                <div style={{ width: 92, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 4, overflow: 'hidden' }}>
-                  <TypeIcon type={r.type} size={13} />
-                  <span title={r.type} style={{ fontSize: 13, fontWeight: 600, color: isCurated(r.withId) ? '#4a90d9' : '#404a63', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{r.withNameKo}</span>
+              <div key={i} onClick={() => setFocusIdx(i)} style={{ position: 'relative', zIndex: 1, width: COL_W, flexShrink: 0, cursor: 'pointer', borderLeft: '1px solid rgba(226,230,239,0.5)' }}>
+                {/* 열 헤더 — 유형 아이콘 + 이름 (세로 스크롤에도 상단 고정) */}
+                <div style={{ position: 'sticky', top: 0, zIndex: 2, height: HEADER_H, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 1, padding: '0 4px', background: '#f7f8fb', borderBottom: '1px solid #edeff4' }}>
+                  <TypeIcon type={r.type} size={16} color={isCurated(r.withId) ? '#4a90d9' : '#8a94ad'} />
+                  <span title={r.type} style={{ fontSize: 12, fontWeight: 600, color: isCurated(r.withId) ? '#4a90d9' : '#404a63', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100%' }}>{r.withNameKo}</span>
                 </div>
-                <div style={{ position: 'relative', flex: 1, height: 34 }}>
-                  <div style={{ position: 'absolute', left: 0, right: 0, top: 8, height: 2, background: '#e2e6ef' }} />
+                {/* 세로 트랙 — 점 y=시간, 라벨 우측 */}
+                <div style={{ position: 'relative', height: TRACK_H }}>
+                  <div style={{ position: 'absolute', left: DOT_X, top: 0, bottom: 0, width: 2, background: '#e2e6ef', transform: 'translateX(-50%)' }} />
                   {r.phases.map((ph, j) => (
-                    <span
-                      key={`d${j}`}
-                      title={`${ph.label} (${ph.verse})`}
-                      style={{
-                        position: 'absolute', left: xPct(ph.approxYear), top: 8,
-                        transform: 'translate(-50%,-50%)',
-                        width: 12, height: 12, borderRadius: '50%',
-                        background: VALENCE_COLOR[ph.valence] ?? '#8a94ad',
-                        border: '2px solid #fff', boxShadow: '0 0 0 1px rgba(0,0,0,0.08)',
-                      }}
-                    />
-                  ))}
-                  {/* 국면 라벨 (S2) — 점 아래, 짝/홀 y 스태거 + 가장자리 앵커 클램프(S4) */}
-                  {r.phases.map((ph, j) => (
-                    <span
-                      key={`l${j}`}
-                      style={{
-                        position: 'absolute', left: xPct(ph.approxYear), top: j % 2 === 0 ? 15 : 24,
-                        transform: labelTransform(ph.approxYear), fontSize: 9, lineHeight: 1,
-                        color: '#6a7492', whiteSpace: 'nowrap', pointerEvents: 'none',
-                      }}
-                    >{ph.label}</span>
+                    <div key={j} title={`${ph.label} (${ph.verse})`} style={{ position: 'absolute', top: yPos(ph.approxYear), left: 0, right: 4, transform: 'translateY(-50%)', display: 'flex', alignItems: 'center', gap: 5 }}>
+                      <span style={{ width: 12, height: 12, borderRadius: '50%', flexShrink: 0, marginLeft: DOT_X - 6, background: VALENCE_COLOR[ph.valence] ?? '#8a94ad', border: '2px solid #fff', boxShadow: '0 0 0 1px rgba(0,0,0,0.08)' }} />
+                      <span style={{ fontSize: 10, lineHeight: 1.15, color: '#5a6481', wordBreak: 'keep-all' }}>{ph.label}</span>
+                    </div>
                   ))}
                 </div>
               </div>
