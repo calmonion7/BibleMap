@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 95ba754e0a5b8a8db6f537f88d6d4e60d302d066
-mapped: 2026-07-06
+last_mapped_commit: 5039a9c5a8a43e7e3d7966b48854d19b7bee69e6
+mapped: 2026-07-07
 ---
 
 # ARCHITECTURE
@@ -49,13 +49,15 @@ BibleMap은 세 개의 서비스로 구성된다.
 `journey.py`와 `tours.py`는 서로 다른 소스에서 동일한 `stops` 형태를 만들어 낸다.
 
 - **인물 여정** (`GET /person/{id}/journey`): `data/person_events/<slug>.json`을 `sortKey` 기준으로 정렬 → 출현 장소 id 수집 → `_fetch_place_coords(place_ids)`로 Neo4j Place 노드에서 좌표 배치 조회 → stops 조립
-- **테마 투어** (`GET /tour/{id}`): `data/tours/<slug>.json`의 `stops` 배열(eventId 참조) → `_build_event_index()`(전 큐레이션 인물의 `person_events/*.json`을 eventId 키로 인덱스) → 이벤트 해결 → 동일하게 `_fetch_place_coords` 사용 → stops 조립
+- **테마 투어** (`GET /tour/{id}`): `data/tours/<slug>.json`의 `stops` 배열(eventId 참조) → `_build_event_index()`(전 큐레이션 인물의 `person_events/*.json`을 eventId 키로 인덱스) → 이벤트 해결(알 수 없는 id 제거 후 `sortKey` 순 재정렬) → 동일하게 `_fetch_place_coords` 사용 → stops 조립. 각 stop에는 `personNameKo` 필드가 추가된다(`_build_id_to_slug` → `_NAME_KO` 역참조, 투어는 여러 인물을 엮으므로 정차지별 인물 표기가 필요).
 
-두 엔드포인트 모두 `journey.py`의 `_fetch_place_coords`를 재사용하며 Neo4j 노드 추가 없이 순수 이벤트-참조 방식으로 동작한다(ADR-0011). stops 형태: `{seq, eventId, title, nameKo, sortKey, placeId, placeNameKo, lng, lat}`.
+두 엔드포인트 모두 `journey.py`의 `_fetch_place_coords`를 재사용하며 Neo4j 노드 추가 없이 순수 이벤트-참조 방식으로 동작한다(ADR-0011). 인물 여정 stops 형태: `{seq, eventId, title, nameKo, sortKey, placeId, placeNameKo, lng, lat}`. 투어 stops 형태: 동일 + `personNameKo`.
+
+`_list_tours()`는 `data/tours/*.json`을 파일명 알파벳 순으로 스캔한 뒤, `_ERA_ORDER`(persons.py) 기준 시대 순·동시대 내 id 알파벳 순으로 정렬해 반환한다.
 
 ### 큐레이션 인물 관련 라우터
 
-`persons.py`는 `_ERA` 딕셔너리(slug → era)와 `_NAME_KO` 딕셔너리(slug → 한글 이름)를 단일 출처로 보관한다. `places.py`와 `tours.py`가 이 두 딕셔너리를 직접 import해 사용한다. `persons.py`의 `GET /persons/curated`는 `person_events/<slug>.json`만으로 id·eventCount를 파생하고(Neo4j 조회 없음), `GET /person/{id}/connections`는 Neo4j에서 2-hop 공동등장 인물을 조회한다.
+`persons.py`는 `_ERA` 딕셔너리(slug → era), `_NAME_KO` 딕셔너리(slug → 한글 이름), `_ERA_ORDER` 리스트(시대 순서)를 단일 출처로 보관한다. `places.py`와 `tours.py`가 이 세 가지를 직접 import해 사용한다. `persons.py`의 `GET /persons/curated`는 `person_events/<slug>.json`만으로 id·eventCount를 파생하고(Neo4j 조회 없음), `GET /person/{id}/connections`는 Neo4j에서 2-hop 공동등장 인물을 조회한다.
 
 ### 백엔드 스크립트
 

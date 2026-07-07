@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 95ba754e0a5b8a8db6f537f88d6d4e60d302d066
-mapped: 2026-07-06
+last_mapped_commit: 5039a9c5a8a43e7e3d7966b48854d19b7bee69e6
+mapped: 2026-07-07
 ---
 
 # STRUCTURE
@@ -35,7 +35,7 @@ backend/
 │       ├── events.py         # GET /events, /event/{id}/verses
 │       ├── search.py         # GET /search
 │       ├── books.py          # GET /books-overview
-│       ├── persons.py        # GET /persons/curated, /person/{id}/connections — _ERA·_NAME_KO 단일 출처
+│       ├── persons.py        # GET /persons/curated, /person/{id}/connections — _ERA·_NAME_KO·_ERA_ORDER 단일 출처
 │       ├── journey.py        # GET /person/{id}/journey — _fetch_place_coords 정의
 │       ├── places.py         # GET /place/{id}/curated-persons
 │       └── tours.py          # GET /tours, /tour/{id} — _build_event_index, _fetch_place_coords 재사용
@@ -120,8 +120,16 @@ data/
 │   ├── paul.json
 │   ├── moses.json
 │   └── … (abraham, david, solomon 등 총 34개)
-├── tours/                    # 테마 투어 정의 — eventId 참조 목록
-│   └── david-united-kingdom.json
+├── tours/                    # 테마 투어 정의 — eventId 참조 목록 (9개)
+│   ├── creation-to-flood.json          # 원시사 (12 stops)
+│   ├── patriarchs-covenant.json        # 족장 (19 stops)
+│   ├── exodus-to-conquest.json         # 출애굽·정복 (18 stops)
+│   ├── age-of-judges.json              # 사사 (17 stops)
+│   ├── david-united-kingdom.json       # 왕국 (18 stops)
+│   ├── elijah-and-elisha.json          # 선지자 (18 stops)
+│   ├── exile-and-return.json           # 포로 (21 stops)
+│   ├── gospel-of-jesus.json            # 신약 (23 stops)
+│   └── the-early-church.json           # 신약 (19 stops)
 ├── book_events/
 │   └── books.json            # {bookId: [eventId, ...]} — 책-사건 근사 연결
 ├── event_verses/
@@ -163,7 +171,7 @@ data/
 }
 ```
 
-`stops` 배열의 각 항목은 `data/person_events/<slug>.json` 내 이벤트의 `id`값(eventId)이다. `tours.py`의 `_build_event_index()`가 전 큐레이션 인물의 파일을 스캔해 이 id로 이벤트 본체를 해결한다.
+`stops` 배열의 각 항목은 `data/person_events/<slug>.json` 내 이벤트의 `id`값(eventId)이다. `tours.py`의 `_build_event_index()`가 전 큐레이션 인물의 파일을 스캔해 이 id로 이벤트 본체를 해결한다. `era` 필드는 `persons.py`의 `_ERA_ORDER`와 동일한 값을 사용하며, `_list_tours()` 정렬 기준으로 쓰인다.
 
 ## 네이밍 컨벤션
 
