@@ -5,6 +5,7 @@ person_events/<slug>.json 의 occursAt 배열을 검사해 place_id 를 포함�
 era/이름 매핑은 persons.py를 단일 출처로 import한다(드리프트 방지)."""
 import functools
 import json
+import logging
 
 from fastapi import APIRouter, Query
 from fastapi.responses import JSONResponse
@@ -31,6 +32,9 @@ def _place_to_persons(place_id: str) -> list[dict]:
         if not visited:
             continue
 
+        if not events or not events[0].get("participants"):
+            logging.warning("place/curated-persons: %s — events[0].participants 비어 있음, 건너뜀", slug)
+            continue
         person_id = events[0]["participants"][0]
         result.append(
             {

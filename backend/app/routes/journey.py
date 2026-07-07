@@ -24,7 +24,7 @@ def _build_id_to_slug() -> dict[str, str]:
             continue
         with open(path, encoding="utf-8") as f:
             events = json.load(f)
-        if events:
+        if events and events[0].get("participants"):
             person_id = events[0]["participants"][0]
             mapping[person_id] = slug
     return mapping

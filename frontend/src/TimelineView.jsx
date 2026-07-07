@@ -18,6 +18,9 @@ function sortKeyToYear(sortKey) {
 }
 
 function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, personName, verseLang, setVerseLang }) {
+  // personFilter는 Set이어야 한다(.has() 호출). Array를 넘기면 런타임 크래시 — dev에서 조기 경고.
+  if (import.meta.env.DEV && personFilter != null && !(personFilter instanceof Set))
+    console.error('TimelineView: personFilter must be a Set, got', personFilter)
   const [events, setEvents] = useState([])
   const [error, setError] = useState(false)
   const [openGroup, setOpenGroup] = useState(null)

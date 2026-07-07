@@ -16,6 +16,14 @@ def _resolve(subpath: str) -> "str | None":
     return None
 
 
+def _resolve_dir(subpath: str) -> "str | None":
+    for base in (os.environ.get("DATA_DIR", "/app/data"), _REPO_DATA_DIR):
+        path = os.path.join(base, subpath)
+        if os.path.isdir(path):
+            return path
+    return None
+
+
 def _load(subpath: str) -> dict:
     path = _resolve(subpath)
     if path is None:

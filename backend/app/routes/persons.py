@@ -4,6 +4,7 @@ person_events/*.json 파일에서 eventCount 와 theographic_id(첫 번째 parti
 정적으로 읽어 반환한다. Neo4j 조회 없이 파일만으로 충분히 결정적이므로 단순성 우선."""
 import functools
 import json
+import logging
 
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
@@ -103,6 +104,9 @@ def _build_list() -> list[dict]:
         with open(path, encoding="utf-8") as f:
             events = json.load(f)
 
+        if not events or not events[0].get("participants"):
+            logging.warning("persons/curated: %s — events[0].participants 비어 있음, 건너뜀", slug)
+            continue
         # theographic_id: 파일 내 모든 이벤트의 첫 번째 participant가 동일인임을 검증 완료
         person_id = events[0]["participants"][0]
         result.append(

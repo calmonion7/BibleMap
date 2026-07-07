@@ -12,7 +12,7 @@ import os
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
-from ..overlays import _resolve
+from ..overlays import _resolve, _resolve_dir
 from .journey import _fetch_place_coords, _build_id_to_slug
 from .persons import _ERA, _NAME_KO, _ERA_ORDER
 
@@ -20,14 +20,8 @@ router = APIRouter()
 
 
 def _tours_dir() -> str | None:
-    """data/tours 디렉터리 경로 반환 (overlays._resolve 방식과 동일한 우선순위)."""
-    for base in (os.environ.get("DATA_DIR", "/app/data"),
-                 os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(
-                     os.path.dirname(__file__)))), "data")):
-        d = os.path.join(base, "tours")
-        if os.path.isdir(d):
-            return d
-    return None
+    """data/tours 디렉터리 경로 반환 (overlays._resolve_dir 로 위임)."""
+    return _resolve_dir("tours")
 
 
 @functools.lru_cache(maxsize=1)
