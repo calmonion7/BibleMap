@@ -33,6 +33,7 @@ EVENT_VERSES_PATH = os.path.join(DATA_DIR, "event_verses", "events.json")
 BOOK_CONTEXT_PATH = os.path.join(DATA_DIR, "book_context", "books.json")
 TRAITS_PATH = os.path.join(DATA_DIR, "character_traits", "people.json")
 PLACE_CONTEXT_PATH = os.path.join(DATA_DIR, "place_context", "places.json")
+RELATIONS_PATH = os.path.join(DATA_DIR, "person_relations", "relations.json")
 
 # 개역 약어 → canonical bookOrder(1~66). SidePanel.jsx BOOK_ABBR_ORDER 포팅(단일 출처 이동).
 BOOK_ABBR_ORDER = {
@@ -175,6 +176,22 @@ def bake_traits():
     return data
 
 
+def bake_relations():
+    with open(RELATIONS_PATH, encoding="utf-8") as f:
+        data = json.load(f)
+    stats = {"kept": 0, "filled": 0, "null": 0}
+    for rel in data.get("relations", []):
+        for phase in rel.get("phases", []):
+            resolved = resolve_ref(phase.get("verse"))
+            for src_field, slug in TRANSLATIONS:
+                field = "verseTextKo" if src_field == "textKo" else "verseTextEn"
+                stats[fill(phase, field, slug, resolved)] += 1
+    with open(RELATIONS_PATH, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    print(f"person_relations: {stats}")
+    return data
+
+
 def main():
     print("Baking book_context ...")
     books = bake_book_context()
@@ -182,6 +199,8 @@ def main():
     bake_place_context()
     print("Baking character_traits ...")
     people = bake_traits()
+    print("Baking person_relations ...")
+    bake_relations()
     print("Baking event_verses (장 수 많음, 수 분 소요) ...")
     events = bake_events()
     print(f"\nDone. {_fetch_count} unique chapters fetched (캐시 적용).")

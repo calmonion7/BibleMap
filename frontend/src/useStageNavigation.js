@@ -128,6 +128,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     setExploreTourId(null)
     selectNodeFresh(id)
     setExplorePersonId(id)
+    setExploreView('map')  // 새 인물 진입은 지도(여정)에서 시작 — 관계 뷰에서 상대 클릭 시 빈 관계 뷰로 빠지지 않게
     setActiveStage('explore')
   }
 
@@ -168,6 +169,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     setExplorePersonId(null)
     setExplorePersonName(null)
     setExploreTourId(id)
+    setExploreView('map')  // 관계 뷰는 인물 전용 — 투어 진입 시 지도로 리셋
     setActiveStage('explore')
   }
 

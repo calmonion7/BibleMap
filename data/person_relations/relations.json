@@ -1,0 +1,305 @@
+{
+  "relations": [
+    {
+      "type": "군주",
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "사울",
+          "slug": "saul"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "수금·총애",
+          "verse": "삼상 16:21",
+          "approxYear": -1023,
+          "verseTextKo": "다윗이 사울에게 이르러 그 앞에 모셔 서매 사울이 그를 크게 사랑하여 자기의 병기 든 자를 삼고 ",
+          "verseTextEn": "And David came to Saul, and stood before him: and he loved him greatly; and he became his armourbearer."
+        },
+        {
+          "valence": "부정",
+          "label": "시기·창 던짐",
+          "verse": "삼상 18:11",
+          "approxYear": -1018,
+          "verseTextKo": "그가 스스로 이르기를 내가 다윗을 벽에 박으리라 하고 그 창을 던졌으나 다윗이 그 앞에서 두 번 피하였더라 ",
+          "verseTextEn": "And Saul cast the javelin; for he said, I will smite David even to the wall with it. And David avoided out of his presence twice."
+        },
+        {
+          "valence": "긍정",
+          "label": "엔게디서 살려줌",
+          "verse": "삼상 24:11",
+          "approxYear": -1011,
+          "verseTextKo": "나의 아버지여 보소서 내 손에 있는 왕의 옷자락을 보소서 내가 왕을 죽이지 아니하고 겉옷자락만 베었은즉 나의 손에 악이나 죄과가 없는 줄을 아실지니이다 왕은 내 생명을 찾아 해하려 하시나 나는 왕에게 범죄한 일이 없나이다 ",
+          "verseTextEn": "Moreover, my father, see, yea, see the skirt of thy robe in my hand: for in that I cut off the skirt of thy robe, and killed thee not, know thou and see that there is neither evil nor transgression in mine hand, and I have not sinned against thee; yet thou huntest my soul to take it."
+        }
+      ]
+    },
+    {
+      "type": "친구",
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "요나단"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "언약의 우정",
+          "verse": "삼상 18:3",
+          "approxYear": -1019,
+          "verseTextKo": "요나단은 다윗을 자기 생명 같이 사랑하여 더불어 언약을 맺었으며 ",
+          "verseTextEn": "Then Jonathan and David made a covenant, because he loved him as his own soul."
+        }
+      ]
+    },
+    {
+      "type": "선지자",
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "사무엘",
+          "slug": "samuel"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "기름 부음",
+          "verse": "삼상 16:13",
+          "approxYear": -1025,
+          "verseTextKo": "사무엘이 기름 뿔을 취하여 그 형제 중에서 그에게 부었더니 이 날 이후로 다윗이 여호와의 신에게 크게 감동되니라 사무엘이 떠나서 라마로 가니라 ",
+          "verseTextEn": "Then Samuel took the horn of oil, and anointed him in the midst of his brethren: and the Spirit of the Lord came upon David from that day forward. So Samuel rose up, and went to Ramah."
+        }
+      ]
+    },
+    {
+      "type": "대적",
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "골리앗"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "적대·대결",
+          "verse": "삼상 17:49",
+          "approxYear": -1020,
+          "verseTextKo": "손을 주머니에 넣어 돌을 취하여 물매로 던져 블레셋 사람의 이마를 치매 돌이 그 이마에 박히니 땅에 엎드러지니라 ",
+          "verseTextEn": "And David put his hand in his bag, and took thence a stone, and slang it, and smote the Philistine in his forehead, that the stone sunk into his forehead; and he fell upon his face to the earth."
+        }
+      ]
+    },
+    {
+      "type": "연인",
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "밧세바"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "간음",
+          "verse": "삼하 11:4",
+          "approxYear": -991,
+          "verseTextKo": "다윗이 사자를 보내어 저를 자기에게로 데려 오게 하고 저가 그 부정함을 깨끗케 하였으므로 더불어 동침하매 저가 자기 집으로 돌아가니라 ",
+          "verseTextEn": "And David sent messengers, and took her; and she came in unto him, and he lay with her; for she was purified from her uncleanness: and she returned unto her house."
+        },
+        {
+          "valence": "중립",
+          "label": "왕비·솔로몬의 어머니",
+          "verse": "왕상 1:17",
+          "approxYear": -971,
+          "verseTextKo": "저가 왕께 대답하되 내 주여 왕이 전에 왕의 하나님 여호와를 가리켜 계집종에게 맹세하시기를 네 아들 솔로몬이 정녕 나를 이어 왕이 되어 내 위에 앉으리라 하셨거늘 ",
+          "verseTextEn": "And she said unto him, My lord, thou swarest by the Lord thy God unto thine handmaid, saying, Assuredly Solomon thy son shall reign after me, and he shall sit upon my throne."
+        }
+      ]
+    },
+    {
+      "type": "신하",
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "우리아"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "죽음으로 내몲",
+          "verse": "삼하 11:15",
+          "approxYear": -991,
+          "verseTextKo": "그 편지에 써서 이르기를 너희가 우리아를 맹렬한 싸움에 앞세워 두고 너희는 뒤로 물러가서 저로 맞아 죽게 하라 하였더라 ",
+          "verseTextEn": "And he wrote in the letter, saying, Set ye Uriah in the forefront of the hottest battle, and retire ye from him, that he may be smitten, and die."
+        }
+      ]
+    },
+    {
+      "type": "선지자",
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "나단"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "언약 전달",
+          "verse": "삼하 7:12",
+          "approxYear": -993,
+          "verseTextKo": "네 수한이 차서 네 조상들과 함께 잘 때에 내가 네 몸에서 날 자식을 네 뒤에 세워 그 나라를 견고케 하리라 ",
+          "verseTextEn": "And when thy days be fulfilled, and thou shalt sleep with thy fathers, I will set up thy seed after thee, which shall proceed out of thy bowels, and I will establish his kingdom."
+        },
+        {
+          "valence": "부정",
+          "label": "책망",
+          "verse": "삼하 12:7",
+          "approxYear": -990,
+          "verseTextKo": "나단이 다윗에게 이르되 당신이 그 사람이라 이스라엘의 하나님 여호와께서 이처럼 이르시기를 내가 너로 이스라엘 왕을 삼기 위하여 네게 기름을 붓고 너를 사울의 손에서 구원하고 ",
+          "verseTextEn": "And Nathan said to David, Thou art the man. Thus saith the Lord God of Israel, I anointed thee king over Israel, and I delivered thee out of the hand of Saul;"
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "압살롬"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "아들",
+          "verse": "삼하 3:3",
+          "approxYear": -1000,
+          "verseTextKo": "둘째는 길르압이라 갈멜 사람 나발의 아내 되었던 아비가일의 소생이요 셋째는 압살롬이라 그술 왕 달매의 딸 마아가의 아들이요 ",
+          "verseTextEn": "And his second, Chileab, of Abigail the wife of Nabal the Carmelite; and the third, Absalom the son of Maacah the daughter of Talmai king of Geshur;"
+        },
+        {
+          "valence": "부정",
+          "label": "반역",
+          "verse": "삼하 15:10",
+          "approxYear": -980,
+          "verseTextKo": "이에 압살롬이 정탐을 이스라엘 모든 지파 가운데 두루 보내어 이르기를 너희는 나팔소리를 듣거든 곧 부르기를 압살롬이 헤브론에서 왕이 되었다 하라 하니라 ",
+          "verseTextEn": "But Absalom sent spies throughout all the tribes of Israel, saying, As soon as ye hear the sound of the trumpet, then ye shall say, Absalom reigneth in Hebron."
+        },
+        {
+          "valence": "부정",
+          "label": "죽음과 애통",
+          "verse": "삼하 18:33",
+          "approxYear": -979,
+          "verseTextKo": "왕의 마음이 심히 아파 문루로 올라가서 우니라 저가 올라갈 때에 말하기를 내 아들 압살롬아 내 아들 내 아들 압살롬아 내가 너를 대신하여 죽었더면, 압살롬 내 아들아 내 아들아 하였더라  ",
+          "verseTextEn": "And the king was much moved, and went up to the chamber over the gate, and wept: and as he went, thus he said, O my son Absalom, my son, my son Absalom! would God I had died for thee, O Absalom, my son, my son! "
+        }
+      ]
+    },
+    {
+      "type": "연인",
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "미갈"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "사랑·혼인",
+          "verse": "삼상 18:27",
+          "approxYear": -1018,
+          "verseTextKo": "다윗이 일어나서 그 종자와 함께 가서 블레셋 사람 이백 명을 죽이고 그 양피를 가져다가 수대로 왕께 드려 왕의 사위가 되고자 하니 사울이 그 딸 미갈을 다윗에게 아내로 주었더라 ",
+          "verseTextEn": "Wherefore David arose and went, he and his men, and slew of the Philistines two hundred men; and David brought their foreskins, and they gave them in full tale to the king, that he might be the king’s son in law. And Saul gave him Michal his daughter to wife."
+        },
+        {
+          "valence": "부정",
+          "label": "경멸",
+          "verse": "삼하 6:16",
+          "approxYear": -995,
+          "verseTextKo": "여호와의 궤가 다윗 성으로 들어올 때에 사울의 딸 미갈이 창으로 내다보다가 다윗 왕이 여호와 앞에서 뛰놀며 춤추는 것을 보고 심중에 저를 업신여기니라 ",
+          "verseTextEn": "And as the ark of the Lord came into the city of David, Michal Saul’s daughter looked through a window, and saw king David leaping and dancing before the Lord; and she despised him in her heart."
+        }
+      ]
+    },
+    {
+      "type": "연인",
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "아비가일"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "지혜·혼인",
+          "verse": "삼상 25:32",
+          "approxYear": -1012,
+          "verseTextKo": "다윗이 아비가일에게 이르되 오늘날 너를 보내어 나를 영접케 하신 이스라엘의 하나님 여호와를 찬송할지로다 ",
+          "verseTextEn": "And David said to Abigail, Blessed be the Lord God of Israel, which sent thee this day to meet me:"
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "솔로몬",
+          "slug": "solomon"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "후계 계승",
+          "verse": "왕상 1:30",
+          "approxYear": -971,
+          "verseTextKo": "내가 이전에 이스라엘 하나님 여호와를 가리켜 네게 맹세하여 이르기를 네 아들 솔로몬이 정녕 나를 이어 왕이 되고 나를 대신하여 내 위에 앉으리라 하였으니 내가 오늘날 그대로 행하리라 ",
+          "verseTextEn": "Even as I sware unto thee by the Lord God of Israel, saying, Assuredly Solomon thy son shall reign after me, and he shall sit upon my throne in my stead; even so will I certainly do this day."
+        }
+      ]
+    }
+  ]
+}

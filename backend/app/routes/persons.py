@@ -188,3 +188,54 @@ def get_person_connections(node_id: str):
         content=_build_connections(node_id),
         headers={"Cache-Control": "max-age=300"},
     )
+
+
+@functools.lru_cache(maxsize=1)
+def _load_relations() -> list[dict]:
+    """인물 관계 pair 카탈로그(CONTEXT '인물 관계'). 런타임 오버레이 파일.
+    각 phase에는 valence·label·verse·approxYear + 빌드타임 프리베이크된 verseTextKo/En이 담긴다."""
+    path = _resolve("person_relations/relations.json")
+    if path is None:
+        return []
+    with open(path, encoding="utf-8") as f:
+        return json.load(f).get("relations", [])
+
+
+@functools.lru_cache(maxsize=None)
+def _build_relations(node_id: str) -> dict:
+    """subject(node_id)가 낀 관계 pair만 필터해 상대 endpoint와 시간순 phases를 반환.
+    상대에 slug가 있고 34인이면 withId를 해결(여정 점프 가능), 아니면 null. phases는 그대로 통과."""
+    curated = _build_list()
+    id_to_slug = {p["id"]: p["slug"] for p in curated}
+    slug_to_id = {p["slug"]: p["id"] for p in curated}
+    me_slug = id_to_slug.get(node_id)
+    if me_slug is None:
+        return {"relations": []}
+
+    relations = []
+    for pair in _load_relations():
+        endpoints = pair.get("endpoints", [])
+        if me_slug not in [ep.get("slug") for ep in endpoints]:
+            continue
+        other = next((ep for ep in endpoints if ep.get("slug") != me_slug), None)
+        if other is None:
+            continue
+        relations.append(
+            {
+                "type": pair.get("type"),
+                "withNameKo": other.get("nameKo"),
+                "withId": slug_to_id.get(other["slug"]) if other.get("slug") else None,
+                "phases": pair.get("phases", []),
+            }
+        )
+    return {"relations": relations}
+
+
+@router.get("/person/{node_id}/relations")
+def get_person_relations(node_id: str):
+    """인물 관계 뷰 데이터(valence·시간순 국면·근거 구절 본문).
+    관계 카탈로그에 없는 인물은 빈 배열 반환."""
+    return JSONResponse(
+        content=_build_relations(node_id),
+        headers={"Cache-Control": "max-age=300"},
+    )

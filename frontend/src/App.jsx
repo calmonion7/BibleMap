@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
-import { Map, Clock, BookOpen } from 'lucide-react'
+import { Map, Clock, BookOpen, Users } from 'lucide-react'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
 import TimelineView from './TimelineView'
+import RelationsView from './RelationsView'
 import BibleOverviewView from './BibleOverviewView'
 import PersonHub from './PersonHub'
 import TourList from './TourList'
@@ -128,9 +129,9 @@ function App() {
           <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)' }}>{backLabel}</span>
         </button>
 
-        {/* 지도 / 타임라인 토글 */}
+        {/* 지도 / 타임라인 / 관계(인물 모드 한정) 토글 */}
         <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-          {EXPLORE_TABS.map(tab => {
+          {[...EXPLORE_TABS, ...(explorePersonId && !exploreTourId ? [{ key: 'relations', icon: Users, label: '관계' }] : [])].map(tab => {
             const Icon = tab.icon
             const active = exploreView === tab.key
             return (
@@ -333,6 +334,20 @@ function App() {
                 setVerseLang={setVerseLang}
               />
             </div>
+            {/* 관계 뷰 — 인물 모드 전용(레인 개요 + 초점 쌍 + 근거 구절 레이어) */}
+            {exploreView === 'relations' && explorePersonId && (
+              <div style={{ height: '100%' }}>
+                <RelationsView
+                  key={explorePersonId}
+                  personId={explorePersonId}
+                  personName={explorePersonName}
+                  verseLang={verseLang}
+                  setVerseLang={setVerseLang}
+                  curatedIds={curatedIds}
+                  onExploreJourney={selectPerson}
+                />
+              </div>
+            )}
           </div>
         </>
       )}
@@ -355,7 +370,8 @@ function App() {
               : {
                   top: NAV_H, right: 0, bottom: 0, width: 360,
                   boxShadow: '-3px 0 12px rgba(0,0,0,0.15)',
-                  transform: selectedNode ? 'translateX(0)' : 'translateX(100%)',
+                  // 관계 뷰는 전용 전체화면 — 탐험 인물 자신의 상세 시트로 우측을 덮지 않는다(다른 뷰로 토글 시 복귀).
+                  transform: selectedNode && exploreView !== 'relations' ? 'translateX(0)' : 'translateX(100%)',
                 }),
           }}
           onTouchStart={isMobile ? onSheetTouchStart : undefined}
