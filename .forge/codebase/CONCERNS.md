@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 95ba754e0a5b8a8db6f537f88d6d4e60d302d066
-mapped: 2026-07-06
+last_mapped_commit: bb75a55a25c08e0ac06f8838ed029deb822762e3
+mapped: 2026-07-07
 ---
 
 # CONCERNS
@@ -13,9 +13,8 @@ mapped: 2026-07-06
 ## Tech Debt
 
 **시드 파이프라인이 deploy.sh와 단절됨 (재현성 최대 리스크):**
-- `deploy.sh:52`의 [4/4] 단계는 `inject_ko_names.py` 하나만 재실행한다. `backend/scripts/`에는 Neo4j에 쓰는 스크립트가 22개 있는데(`load_theographic.py`, `load_authored_persons.py`, `load_authored_events.py`, `load_books.py`, `load_person_events.py`, `load_verse_events.py`, `enrich_place_coords.py`, `inject_ko_names.py`, `inject_book_context.py`, `inject_place_context.py`, `inject_person_traits.py` 등) 나머지 21개는 배포에 포함되지 않는다.
+- `deploy.sh:49–63`의 [4/4] 단계는 `inject_ko_names.py` 하나만 재실행한다. `backend/scripts/`에는 Neo4j에 쓰는 스크립트가 22개 있는데(`load_theographic.py`, `load_authored_persons.py`, `load_authored_events.py`, `load_books.py`, `load_person_events.py`, `load_verse_events.py`, `enrich_place_coords.py`, `inject_ko_names.py`, `inject_book_context.py`, `inject_place_context.py`, `inject_person_traits.py` 등) 나머지 21개는 배포에 포함되지 않는다.
 - Neo4j 볼륨(`docker-compose.yml:37` `neo4j_data`)이 살아있는 한 재실행 불필요하지만, **볼륨 삭제·신규 서버 프로비저닝·컨테이너 재생성 시 전체 재적재가 필요**하다. 그 완전한 실행 순서는 어디에도 정본화되어 있지 않다.
-- `README.md:17–22`는 2개 스크립트만 나열. `CONTEXT.md`에 "authored Person → `load_person_events.py` 순서" 제약 일부 기술, 나머지는 `.forge/done/` 커밋 노트에 분산.
 - Impact: 볼륨 손실 시 누락·순서 오류로 `HAS_PARTICIPANT` MATCH 실패, trait/context 누락 상태로 서비스 가동.
 
 **시드 스크립트 실행 순서 암묵적:**
@@ -25,7 +24,7 @@ mapped: 2026-07-06
 **대형 프론트엔드 컴포넌트:**
 - `frontend/src/SidePanel.jsx` — 705줄. Person/Place/Event/Book/PeopleGroup 5개 노드 타입의 분기 렌더, nodeId별 stale 무효화, 인라인 드릴다운 상태를 여러 `useState`로 한 파일에서 관리. 국소 변경 시 다른 노드 타입 렌더를 깨뜨리기 쉽다.
 - `frontend/src/App.jsx` — 395줄. `useStageNavigation.js`·`useNodeSelection.js`로 일부 분리됐지만 상태 머신, fetch orchestration, 레이아웃 분기가 공존.
-- `frontend/src/TimelineView.jsx` — 359줄.
+- `frontend/src/TimelineView.jsx` — 362줄.
 
 **"큐레이션 13인" 주석이 현실과 어긋남 (stale):**
 - `backend/app/routes/persons.py:1`(docstring), `backend/app/routes/journey.py:6`(주석)에 "13인"이 고정돼 있으나 `_ERA`는 34개 slug, `data/person_events/`도 34개 json.
@@ -55,41 +54,32 @@ mapped: 2026-07-06
 ## Performance Bottlenecks
 
 **8.9MB event_verses JSON 전체 인메모리 상주:**
-- `data/event_verses/events.json` 8.9MB가 `backend/app/overlays.py:36–39`의 `lru_cache`로 프로세스당 상주.
+- `data/event_verses/events.json` 8.9MB가 `backend/app/overlays.py:44–47`의 `lru_cache`로 프로세스당 상주.
 - `backend/app/routes/events.py:54` `_compute_events()`는 이 JSON + Neo4j 결과 병합본을 추가로 보관.
-- 현재 `backend/Dockerfile:6`에서 uvicorn 단일 워커라 문제 잠재적. gunicorn 또는 `--workers N` 전환 시 워커당 중복 배증.
+- 현재 `backend/Dockerfile`에서 uvicorn 단일 워커라 문제 잠재적. gunicorn 또는 `--workers N` 전환 시 워커당 중복 배증.
 
 **`places.py`의 `maxsize=None` 무한 캐시:**
-- `backend/app/routes/places.py:18` `@functools.lru_cache(maxsize=None)`. 고유 `place_id` 수만큼 항목 무한 누적. 현재 43개 장소라 허용 범위지만 상한이 없다.
+- `backend/app/routes/places.py:19` `@functools.lru_cache(maxsize=None)`. 고유 `place_id` 수만큼 항목 무한 누적. 현재 43개 장소라 허용 범위지만 상한이 없다.
 
 **`_build_id_to_slug()`에 캐시 없음:**
-- `backend/app/routes/journey.py:18–30`: `lru_cache` 없이 요청마다 `_ERA` 34개 slug JSON을 순회해 open/parse. `/person/{id}/journey` 호출마다 34개 파일 I/O 반복.
+- `backend/app/routes/journey.py:18–30`: `lru_cache` 없이 요청마다 `_ERA` 34개 slug JSON을 순회해 open/parse. `/person/{id}/journey` 호출마다 34개 파일 I/O 반복. `tours.py:108`에서도 같은 함수를 호출하므로 투어 상세 요청마다 동일 오버헤드 발생.
 
 **전역 노드 스캔 검색:**
-- `backend/app/routes/search.py:16`: `MATCH (n) WHERE n.nameKo CONTAINS ...` — 인덱스 미사용 전수 스캔. 데이터 규모 확대 시 지연.
+- `backend/app/routes/search.py:15`: `MATCH (n) WHERE n.nameKo CONTAINS ...` — 인덱스 미사용 전수 스캔. 데이터 규모 확대 시 지연.
 
 ---
 
 ## Fragile Areas
 
 **`TimelineView.personFilter`는 반드시 `Set`이어야 함 — 타입 계약 미강제:**
-- `frontend/src/TimelineView.jsx:101`에서 `personFilter.has(ev.id)`를 직접 호출한다. `Array`를 넘기면 `O.has is not a function` 런타임 크래시.
-- 호출부(`App.jsx:330`)는 `App.jsx:45` 주석으로 `Set`임을 명시하나, PropTypes/TypeScript 타입 선언 없음. 테마 투어 와이어링 중 실제로 이 버그가 발생한 전례 있음.
-- `personEventIds`는 `useNodeSelection.js:23`에서 `new Set(...)` 생성. `tourEventIds`는 `App.jsx:47`에서 `new Set(...)` 생성. 신규 호출자가 Array를 넘기면 즉시 크래시.
-
-**`_tours_dir()`가 `overlays._resolve` 경로 해석 로직을 복제:**
-- `backend/app/routes/tours.py:22–30` `_tours_dir()`은 `DATA_DIR` env 우선 → repo-relative fallback 패턴을 직접 구현.
-- `backend/app/overlays.py:11–16` `_resolve()`와 동일한 패턴이나 별도 구현. `DATA_DIR` 처리 방식이 두 곳에 분리되어 향후 경로 해석 규칙 변경 시 한 쪽만 수정되는 드리프트 위험.
+- `frontend/src/TimelineView.jsx:104`에서 `activePersonFilter.has(ev.id)`를 직접 호출한다. `Array`를 넘기면 `O.has is not a function` 런타임 크래시.
+- `TimelineView.jsx:22–23`에 `import.meta.env.DEV` 가드가 추가됐으나 개발 빌드에서만 `console.error` 경고를 출력한다. 프로덕션 빌드에서는 가드가 제거되어 Array 전달 시 여전히 크래시. PropTypes/TypeScript 타입 선언 없음.
 
 **`startDate` 파싱 로직 중복:**
 - `"-4003"`, `"-1451-01"`, `"0049-10-01"` 형식의 혼재 연도 문자열 파싱이 두 곳에 독립 구현됨.
 - `frontend/src/dates.js:4–12` `parseYear()`: BC 접두 감지 후 `slice(1).split('-')[0]` + 제로패딩 제거, 레이블 반환.
 - `backend/app/routes/nodes.py:238–248` `_year()`: 동일 패턴에 `int()` 변환·부호 반전 추가(정렬용 숫자 반환).
 - 한쪽만 수정하면 BC/AD 경계·제로패딩 처리가 엇갈릴 수 있다. 테스트 없음.
-
-**`events[0]["participants"][0]`를 인물 대표 ID로 신뢰:**
-- `backend/app/routes/persons.py:106`, `backend/app/routes/places.py:34`, `backend/app/routes/journey.py:28`이 슬러그 json 첫 이벤트의 첫 participant를 인물 ID로 사용.
-- 방어 코드 없음. 새 `person_events/*.json`에서 `participants[0]`가 사건마다 다르거나 빈 배열이면 `IndexError` 또는 잘못된 인물 매핑.
 
 **침묵하는 예외 처리:**
 - `backend/app/main.py:19–20`: 인덱스 생성 실패를 `except Exception`으로 로깅만 하고 계속. 인덱스 없이 기동해 전수 스캔 성능 저하.
@@ -142,5 +132,6 @@ mapped: 2026-07-06
   - `backend/app/routes/journey.py` — 여정 stop 생성·seq 부여 로직.
   - `backend/app/routes/persons.py`/`places.py` — slug↔person_id 매핑 계약.
   - `backend/app/routes/events.py` — approx book 인덱스 머지.
+  - `backend/app/routes/tours.py` — 투어 stop 조립, era 정렬, event_index 빌드.
 - UI 검증은 Playwright 수동 실행(로컬)에만 의존. CI 미연동.
 - startDate 파싱 회귀, slug 매핑 드리프트, 시드 순서 오류로 인한 관계 누락 모두 자동으로 감지되지 않는다.

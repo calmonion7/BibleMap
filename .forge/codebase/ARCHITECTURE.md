@@ -1,5 +1,5 @@
 ---
-last_mapped_commit: 5039a9c5a8a43e7e3d7966b48854d19b7bee69e6
+last_mapped_commit: bb75a55a25c08e0ac06f8838ed029deb822762e3
 mapped: 2026-07-07
 ---
 
@@ -38,26 +38,34 @@ BibleMap은 세 개의 서비스로 구성된다.
 
 ### JSON 오버레이 시스템
 
-`backend/app/overlays.py`의 `_resolve(subpath)` 함수가 오버레이 파일 경로를 결정한다. 우선순위는 환경변수 `DATA_DIR`(기본값 `/app/data`) → 레포 내 `data/` 순이다. `functools.lru_cache`로 1회 로드 후 메모리에 보관한다.
+`backend/app/overlays.py`는 파일 경로 결정 로직을 두 함수로 제공한다. 두 함수 모두 동일한 우선순위 탐색 순서를 사용한다: 환경변수 `DATA_DIR`(기본값 `/app/data`) → 레포 내 `data/`.
 
-현재 오버레이 종류:
-- `book_events_raw()` — `data/book_events/books.json` → `{bookId: [eventId, ...]}`
-- `event_verses()` — `data/event_verses/events.json` → 사건별 근거 구절(성경 본문 프리베이크, ADR-0003)
+- `_resolve(subpath)` — `os.path.isfile`로 존재 확인. 파일 경로 반환, 없으면 `None`.
+- `_resolve_dir(subpath)` — `os.path.isdir`로 존재 확인. 디렉터리 경로 반환, 없으면 `None`.
+
+`_load(subpath)`는 `_resolve`를 호출해 파일을 열고 JSON 파싱한다. `functools.lru_cache`를 적용한 두 public 로더가 있다.
+
+- `book_events_raw()` — `data/book_events/books.json` → `{bookId: [eventId, ...]}`. `maxsize=1` 캐시.
+- `event_verses()` — `data/event_verses/events.json` → 사건별 근거 구절(ADR-0003). `maxsize=1` 캐시.
 
 ### 여정(journey) 데이터 흐름
 
 `journey.py`와 `tours.py`는 서로 다른 소스에서 동일한 `stops` 형태를 만들어 낸다.
 
 - **인물 여정** (`GET /person/{id}/journey`): `data/person_events/<slug>.json`을 `sortKey` 기준으로 정렬 → 출현 장소 id 수집 → `_fetch_place_coords(place_ids)`로 Neo4j Place 노드에서 좌표 배치 조회 → stops 조립
-- **테마 투어** (`GET /tour/{id}`): `data/tours/<slug>.json`의 `stops` 배열(eventId 참조) → `_build_event_index()`(전 큐레이션 인물의 `person_events/*.json`을 eventId 키로 인덱스) → 이벤트 해결(알 수 없는 id 제거 후 `sortKey` 순 재정렬) → 동일하게 `_fetch_place_coords` 사용 → stops 조립. 각 stop에는 `personNameKo` 필드가 추가된다(`_build_id_to_slug` → `_NAME_KO` 역참조, 투어는 여러 인물을 엮으므로 정차지별 인물 표기가 필요).
+- **테마 투어** (`GET /tour/{id}`): `data/tours/<slug>.json`의 `stops` 배열(eventId 참조) → `_build_event_index()`(전 큐레이션 인물의 `person_events/*.json`을 eventId 키로 인덱스) → 이벤트 해결(알 수 없는 id 제거 후 `sortKey` 순 재정렬) → 동일하게 `_fetch_place_coords` 사용 → stops 조립. 각 stop에는 `personNameKo` 필드가 추가된다(`_build_id_to_slug` → `_NAME_KO` 역참조).
+
+투어 디렉터리 탐색은 `_tours_dir()`이 담당하며, 내부에서 `_resolve_dir("tours")`를 호출해 경로를 위임한다. 이전에는 경로 탐색 로직이 `_tours_dir()` 안에 직접 구현되어 있었으나 task 127 리팩터에서 `overlays._resolve_dir`로 일원화되었다.
 
 두 엔드포인트 모두 `journey.py`의 `_fetch_place_coords`를 재사용하며 Neo4j 노드 추가 없이 순수 이벤트-참조 방식으로 동작한다(ADR-0011). 인물 여정 stops 형태: `{seq, eventId, title, nameKo, sortKey, placeId, placeNameKo, lng, lat}`. 투어 stops 형태: 동일 + `personNameKo`.
 
-`_list_tours()`는 `data/tours/*.json`을 파일명 알파벳 순으로 스캔한 뒤, `_ERA_ORDER`(persons.py) 기준 시대 순·동시대 내 id 알파벳 순으로 정렬해 반환한다.
+`_list_tours()`는 `_tours_dir()`이 반환한 디렉터리에서 `*.json`을 파일명 알파벳 순으로 스캔한 뒤, `_ERA_ORDER`(persons.py) 기준 시대 순·동시대 내 id 알파벳 순으로 정렬해 반환한다.
 
 ### 큐레이션 인물 관련 라우터
 
-`persons.py`는 `_ERA` 딕셔너리(slug → era), `_NAME_KO` 딕셔너리(slug → 한글 이름), `_ERA_ORDER` 리스트(시대 순서)를 단일 출처로 보관한다. `places.py`와 `tours.py`가 이 세 가지를 직접 import해 사용한다. `persons.py`의 `GET /persons/curated`는 `person_events/<slug>.json`만으로 id·eventCount를 파생하고(Neo4j 조회 없음), `GET /person/{id}/connections`는 Neo4j에서 2-hop 공동등장 인물을 조회한다.
+`persons.py`는 `_ERA` 딕셔너리(slug → era), `_NAME_KO` 딕셔너리(slug → 한글 이름), `_ERA_ORDER` 리스트(시대 순서)를 단일 출처로 보관한다. 현재 등록된 슬러그는 34개(원시사 6, 족장 4, 출애굽·정복 2, 사사 5, 왕국 4, 선지자 4, 포로 3, 신약 6)이다. `places.py`와 `tours.py`가 이 세 가지를 직접 import해 사용한다.
+
+`GET /persons/curated`는 `person_events/<slug>.json`만으로 id·eventCount를 파생하고(Neo4j 조회 없음), `GET /person/{id}/connections`는 Neo4j에서 2-hop 공동등장 인물을 조회한다.
 
 ### 백엔드 스크립트
 
@@ -138,6 +146,7 @@ explore  → MapView + JourneyList + TimelineView 렌더
 ```
 data/person_events/<slug>.json  →  journey.py, tours.py(_build_event_index)
 data/tours/<slug>.json          →  tours.py  (eventId 참조 resolve)
+                                   tours.py._tours_dir() → overlays._resolve_dir("tours")
 data/book_events/books.json     →  overlays.py → events.py (approx 책 연결)
 data/event_verses/events.json   →  overlays.py → events.py /event/{id}/verses
 Neo4j 그래프 노드/관계           →  nodes.py, events.py, search.py,
