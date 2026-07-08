@@ -79,7 +79,7 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
   if (focusIdx != null && sorted[focusIdx]) {
     const r = sorted[focusIdx]
     return (
-      <div style={{ position: 'relative', height: '100%', overflow: 'hidden', background: '#f7f8fb' }}>
+      <div style={{ position: 'relative', height: '100%', overflow: 'hidden', background: '#f7f8fb', WebkitTapHighlightColor: 'transparent' }}>
         <div style={{ height: '100%', overflowY: 'auto' }}>
         <div style={{ maxWidth: 640, margin: '0 auto', padding: '16px 20px 40px' }}>
           <button onClick={() => setFocusIdx(null)} style={{ border: 'none', background: 'none', cursor: 'pointer', color: '#5a6481', fontSize: 13, padding: '4px 0', marginBottom: 4 }}>← 관계 전체</button>
@@ -121,7 +121,7 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
 
   // 개요 — 관계별 한 줄: 인물 헤더(왼쪽) + 사건 시퀀스(오른쪽, 좌→우 · 줄바꿈). 각 관계가 자기 줄을 채움.
   return (
-    <div style={{ position: 'relative', height: '100%', overflow: 'hidden', background: '#f7f8fb' }}>
+    <div style={{ position: 'relative', height: '100%', overflow: 'hidden', background: '#f7f8fb', WebkitTapHighlightColor: 'transparent' }}>
       <div style={{ height: '100%', overflowY: 'auto' }}>
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '14px 16px 40px' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 6 }}>
