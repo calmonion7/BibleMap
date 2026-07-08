@@ -260,7 +260,38 @@
           "verse": "삼하 1:17",
           "approxYear": -1004,
           "verseTextKo": "다윗이 이 슬픈 노래로 사울과 그 아들 요나단을 조상하고 ",
-          "verseTextEn": "And David lamented with this lamentation over Saul and over Jonathan his son:"
+          "verseTextEn": "And David lamented with this lamentation over Saul and over Jonathan his son:",
+          "context": "삼하 1:17-19",
+          "contextKo": [
+            {
+              "v": 17,
+              "t": "다윗이 이 슬픈 노래로 사울과 그 아들 요나단을 조상하고 ",
+              "a": true
+            },
+            {
+              "v": 18,
+              "t": "명하여 그것을 유다 족속에게 가르치라 하였으니 곧 활 노래라 야살의 책에 기록되었으되 "
+            },
+            {
+              "v": 19,
+              "t": "이스라엘아 너의 영광이 산 위에서 죽임을 당하였도다 오호라 두 용사가 엎드러졌도다 "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 17,
+              "t": "And David lamented with this lamentation over Saul and over Jonathan his son:",
+              "a": true
+            },
+            {
+              "v": 18,
+              "t": "(Also he bade them teach the children of Judah the use of the bow: behold, it is written in the book of Jasher.)"
+            },
+            {
+              "v": 19,
+              "t": "The beauty of Israel is slain upon thy high places: how are the mighty fallen!"
+            }
+          ]
         }
       ]
     },
@@ -700,7 +731,38 @@
           "verse": "왕상 1:17",
           "approxYear": -971,
           "verseTextKo": "저가 왕께 대답하되 내 주여 왕이 전에 왕의 하나님 여호와를 가리켜 계집종에게 맹세하시기를 네 아들 솔로몬이 정녕 나를 이어 왕이 되어 내 위에 앉으리라 하셨거늘 ",
-          "verseTextEn": "And she said unto him, My lord, thou swarest by the Lord thy God unto thine handmaid, saying, Assuredly Solomon thy son shall reign after me, and he shall sit upon my throne."
+          "verseTextEn": "And she said unto him, My lord, thou swarest by the Lord thy God unto thine handmaid, saying, Assuredly Solomon thy son shall reign after me, and he shall sit upon my throne.",
+          "context": "왕상 1:16-18",
+          "contextKo": [
+            {
+              "v": 16,
+              "t": "밧세바가 몸을 굽혀 왕께 절하니 왕이 이르되 어찜이냐 "
+            },
+            {
+              "v": 17,
+              "t": "저가 왕께 대답하되 내 주여 왕이 전에 왕의 하나님 여호와를 가리켜 계집종에게 맹세하시기를 네 아들 솔로몬이 정녕 나를 이어 왕이 되어 내 위에 앉으리라 하셨거늘 ",
+              "a": true
+            },
+            {
+              "v": 18,
+              "t": "이제 아도니야가 왕이 되었어도 내 주 왕은 알지 못하시나이다 "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 16,
+              "t": "And Bath–sheba bowed, and did obeisance unto the king. And the king said, What wouldest thou?"
+            },
+            {
+              "v": 17,
+              "t": "And she said unto him, My lord, thou swarest by the Lord thy God unto thine handmaid, saying, Assuredly Solomon thy son shall reign after me, and he shall sit upon my throne.",
+              "a": true
+            },
+            {
+              "v": 18,
+              "t": "And now, behold, Adonijah reigneth; and now, my lord the king, thou knowest it not:"
+            }
+          ]
         }
       ]
     },
@@ -1086,7 +1148,30 @@
           "verse": "삼하 14:33",
           "approxYear": -981,
           "verseTextKo": "요압이 왕께 나아가서 그 말을 고하매 왕이 압살롬을 부르니 저가 왕께 나아가 그 앞에서 얼굴을 땅에 대어 절하매 왕이 압살롬과 입을 맞추니라  ",
-          "verseTextEn": "So Joab came to the king, and told him: and when he had called for Absalom, he came to the king, and bowed himself on his face to the ground before the king: and the king kissed Absalom. "
+          "verseTextEn": "So Joab came to the king, and told him: and when he had called for Absalom, he came to the king, and bowed himself on his face to the ground before the king: and the king kissed Absalom. ",
+          "context": "삼하 14:32-33",
+          "contextKo": [
+            {
+              "v": 32,
+              "t": "압살롬이 요압에게 대답하되 내가 일찍 사람을 보내어 너를 이리로 청한 것은 내가 너를 왕께 보내어 고하게 하기를 어찌하여 내가 그술에서 돌아오게 되었나이까 이때까지 거기 있는 것이 내게 나았으리이다 하려함이로다 이제는 네가 나로 왕의 얼굴을 보게 하라 내가 만일 죄가 있으면 왕이 나를 죽이시는 것이 가하니라 "
+            },
+            {
+              "v": 33,
+              "t": "요압이 왕께 나아가서 그 말을 고하매 왕이 압살롬을 부르니 저가 왕께 나아가 그 앞에서 얼굴을 땅에 대어 절하매 왕이 압살롬과 입을 맞추니라  ",
+              "a": true
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 32,
+              "t": "And Absalom answered Joab, Behold, I sent unto thee, saying, Come hither, that I may send thee to the king, to say, Wherefore am I come from Geshur? it had been good for me to have been there still: now therefore let me see the king’s face; and if there be any iniquity in me, let him kill me."
+            },
+            {
+              "v": 33,
+              "t": "So Joab came to the king, and told him: and when he had called for Absalom, he came to the king, and bowed himself on his face to the ground before the king: and the king kissed Absalom. ",
+              "a": true
+            }
+          ]
         },
         {
           "valence": "부정",
@@ -1426,7 +1511,30 @@
           "verse": "삼상 25:42",
           "approxYear": -1011,
           "verseTextKo": "급히 일어나서 나귀를 타고 따르는 처녀 다섯과 함께 다윗의 사자들을 따라가서 다윗의 아내가 되니라 ",
-          "verseTextEn": "And Abigail hasted, and arose, and rode upon an ass, with five damsels of hers that went after her; and she went after the messengers of David, and became his wife."
+          "verseTextEn": "And Abigail hasted, and arose, and rode upon an ass, with five damsels of hers that went after her; and she went after the messengers of David, and became his wife.",
+          "context": "삼상 25:41-42",
+          "contextKo": [
+            {
+              "v": 41,
+              "t": "그가 일어나 몸을 굽혀 얼굴을 땅에 대고 가로되 내 주의 여종은 내 주의 사환들의 발 씻길 종이니이다 하고 "
+            },
+            {
+              "v": 42,
+              "t": "급히 일어나서 나귀를 타고 따르는 처녀 다섯과 함께 다윗의 사자들을 따라가서 다윗의 아내가 되니라 ",
+              "a": true
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 41,
+              "t": "And she arose, and bowed herself on her face to the earth, and said, Behold, let thine handmaid be a servant to wash the feet of the servants of my lord."
+            },
+            {
+              "v": 42,
+              "t": "And Abigail hasted, and arose, and rode upon an ass, with five damsels of hers that went after her; and she went after the messengers of David, and became his wife.",
+              "a": true
+            }
+          ]
         },
         {
           "valence": "긍정",
@@ -1722,7 +1830,30 @@
           "verse": "삼하 24:3",
           "approxYear": -975,
           "verseTextKo": "요압이 왕께 고하되 이 백성은 얼마든지 왕의 하나님 여호와께서 백 배나 더하게 하사 내 주 왕의 눈으로 보게 하시기를 원하나이다 그런데 내 주 왕은 어찌하여 이런 일을 기뻐하시나이까 하되 ",
-          "verseTextEn": "And Joab said unto the king, Now the Lord thy God add unto the people, how many soever they be, an hundredfold, and that the eyes of my lord the king may see it: but why doth my lord the king delight in this thing?"
+          "verseTextEn": "And Joab said unto the king, Now the Lord thy God add unto the people, how many soever they be, an hundredfold, and that the eyes of my lord the king may see it: but why doth my lord the king delight in this thing?",
+          "context": "삼하 24:2-3",
+          "contextKo": [
+            {
+              "v": 2,
+              "t": "왕이 이에 그 곁에 있는 군대 장관 요압에게 이르되 너는 이스라엘 모든 지파 가운데로 다니며 단에서부터 브엘세바까지 인구를 조사하여 그 도수를 내게 알게 하라 "
+            },
+            {
+              "v": 3,
+              "t": "요압이 왕께 고하되 이 백성은 얼마든지 왕의 하나님 여호와께서 백 배나 더하게 하사 내 주 왕의 눈으로 보게 하시기를 원하나이다 그런데 내 주 왕은 어찌하여 이런 일을 기뻐하시나이까 하되 ",
+              "a": true
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 2,
+              "t": "For the king said to Joab the captain of the host, which was with him, Go now through all the tribes of Israel, from Dan even to Beer–sheba, and number ye the people, that I may know the number of the people."
+            },
+            {
+              "v": 3,
+              "t": "And Joab said unto the king, Now the Lord thy God add unto the people, how many soever they be, an hundredfold, and that the eyes of my lord the king may see it: but why doth my lord the king delight in this thing?",
+              "a": true
+            }
+          ]
         },
         {
           "valence": "부정",
@@ -2072,7 +2203,38 @@
           "verse": "삼하 19:23",
           "approxYear": -978,
           "verseTextKo": "시므이에게 이르되 네가 죽지 아니하리라 하고 저에게 맹세하니라 ",
-          "verseTextEn": "Therefore the king said unto Shimei, Thou shalt not die. And the king sware unto him."
+          "verseTextEn": "Therefore the king said unto Shimei, Thou shalt not die. And the king sware unto him.",
+          "context": "삼하 19:21-23",
+          "contextKo": [
+            {
+              "v": 21,
+              "t": "스루야의 아들 아비새가 대답하여 가로되 시므이가 여호와의 기름 부으신 자를 저주하였으니 그로 인하여 죽어야 마땅치 아니하니이까 "
+            },
+            {
+              "v": 22,
+              "t": "다윗이 가로되 스루야의 아들들아 내가 너희와 무슨 상관이 있기로 너희가 오늘 나의 대적이 되느냐 오늘 어찌하여 이스라엘 가운데서 사람을 죽이겠느냐 내가 오늘날 이스라엘의 왕이 된 것을 내가 알지 못하리요 하고 "
+            },
+            {
+              "v": 23,
+              "t": "시므이에게 이르되 네가 죽지 아니하리라 하고 저에게 맹세하니라 ",
+              "a": true
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 21,
+              "t": "But Abishai the son of Zeruiah answered and said, Shall not Shimei be put to death for this, because he cursed the Lord’s anointed?"
+            },
+            {
+              "v": 22,
+              "t": "And David said, What have I to do with you, ye sons of Zeruiah, that ye should this day be adversaries unto me? shall there any man be put to death this day in Israel? for do not I know that I am this day king over Israel?"
+            },
+            {
+              "v": 23,
+              "t": "Therefore the king said unto Shimei, Thou shalt not die. And the king sware unto him.",
+              "a": true
+            }
+          ]
         },
         {
           "valence": "부정",
