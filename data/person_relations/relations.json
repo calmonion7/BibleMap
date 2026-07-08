@@ -3173,6 +3173,534 @@
           "verseTextEn": "And when the queen of Sheba heard of the fame of Solomon concerning the name of the Lord, she came to prove him with hard questions."
         }
       ]
+    },
+    {
+      "type": "스승제자",
+      "note": "후계자",
+      "endpoints": [
+        {
+          "nameKo": "엘리야",
+          "slug": "elijah"
+        },
+        {
+          "nameKo": "엘리사",
+          "slug": "elisha"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "부름 — 겉옷을 던짐",
+          "verse": "왕상 19:19",
+          "approxYear": -850,
+          "context": "왕상 19:19-21",
+          "verseTextKo": "엘리야가 거기서 떠나 사밧의 아들 엘리사를 만나니 저가 열두 겨리 소를 앞세우고 밭을 가는데 자기는 열둘째 겨리와 함께 있더라 엘리야가 그리로 건너가서 겉옷을 그의 위에 던졌더니 ",
+          "verseTextEn": "So he departed thence, and found Elisha the son of Shaphat, who was plowing with twelve yoke of oxen before him, and he with the twelfth: and Elijah passed by him, and cast his mantle upon him.",
+          "contextKo": [
+            {
+              "v": 19,
+              "t": "엘리야가 거기서 떠나 사밧의 아들 엘리사를 만나니 저가 열두 겨리 소를 앞세우고 밭을 가는데 자기는 열둘째 겨리와 함께 있더라 엘리야가 그리로 건너가서 겉옷을 그의 위에 던졌더니 ",
+              "a": true
+            },
+            {
+              "v": 20,
+              "t": "저가 소를 버리고 엘리야에게로 달려가서 이르되 청컨대 나로 내 부모와 입맞추게 하소서 그리한 후에 내가 당신을 따르리이다 엘리야가 저에게 이르되 돌아가라 내가 네게 어떻게 행하였느냐 하니라 "
+            },
+            {
+              "v": 21,
+              "t": "엘리사가 저를 떠나 돌아가서 소 한 겨리를 취하여 잡고 소의 기구를 불살라 그 고기를 삶아 백성에게 주어 먹게 하고 일어나 가서 엘리야를 좇으며 수종들었더라  "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 19,
+              "t": "So he departed thence, and found Elisha the son of Shaphat, who was plowing with twelve yoke of oxen before him, and he with the twelfth: and Elijah passed by him, and cast his mantle upon him.",
+              "a": true
+            },
+            {
+              "v": 20,
+              "t": "And he left the oxen, and ran after Elijah, and said, Let me, I pray thee, kiss my father and my mother, and then I will follow thee. And he said unto him, Go back again: for what have I done to thee?"
+            },
+            {
+              "v": 21,
+              "t": "And he returned back from him, and took a yoke of oxen, and slew them, and boiled their flesh with the instruments of the oxen, and gave unto the people, and they did eat. Then he arose, and went after Elijah, and ministered unto him. "
+            }
+          ]
+        },
+        {
+          "valence": "긍정",
+          "label": "승천 — 겉옷 승계·갑절의 영감",
+          "verse": "왕하 2:13",
+          "approxYear": -848,
+          "context": "왕하 2:13-15",
+          "verseTextKo": "엘리야의 몸에서 떨어진 겉옷을 주워가지고 돌아와서 요단 언덕에 서서 ",
+          "verseTextEn": "He took up also the mantle of Elijah that fell from him, and went back, and stood by the bank of Jordan;",
+          "contextKo": [
+            {
+              "v": 13,
+              "t": "엘리야의 몸에서 떨어진 겉옷을 주워가지고 돌아와서 요단 언덕에 서서 ",
+              "a": true
+            },
+            {
+              "v": 14,
+              "t": "엘리야의 몸에서 떨어진 그 겉옷을 가지고 물을 치며 가로되 엘리야의 하나님 여호와는 어디 계시니이까 하고 저도 물을 치매 물이 이리 저리 갈라지고 엘리사가 건너니라 "
+            },
+            {
+              "v": 15,
+              "t": "맞은편 여리고에 있는 선지자의 생도들이 저를 보며 말하기를 엘리야의 영감이 엘리사의 위에 머물렀다 하고 가서 저를 영접하여 그 앞에서 땅에 엎드리고 "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 13,
+              "t": "He took up also the mantle of Elijah that fell from him, and went back, and stood by the bank of Jordan;",
+              "a": true
+            },
+            {
+              "v": 14,
+              "t": "And he took the mantle of Elijah that fell from him, and smote the waters, and said, Where is the Lord God of Elijah? and when he also had smitten the waters, they parted hither and thither: and Elisha went over."
+            },
+            {
+              "v": 15,
+              "t": "And when the sons of the prophets which were to view at Jericho saw him, they said, The spirit of Elijah doth rest on Elisha. And they came to meet him, and bowed themselves to the ground before him."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "선지자",
+      "endpoints": [
+        {
+          "nameKo": "엘리야",
+          "slug": "elijah"
+        },
+        {
+          "nameKo": "아합"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "가뭄 선포",
+          "verse": "왕상 17:1",
+          "approxYear": -862,
+          "verseTextKo": "길르앗에 우거하는 자 중에 디셉 사람 엘리야가 아합에게 고하되 나의 섬기는 이스라엘 하나님 여호와의 사심을 가리켜 맹세하노니 내 말이 없으면 수 년 동안 우로가 있지 아니하리라 하니라 ",
+          "verseTextEn": "And Elijah the Tishbite, who was of the inhabitants of Gilead, said unto Ahab, As the Lord God of Israel liveth, before whom I stand, there shall not be dew nor rain these years, but according to my word."
+        },
+        {
+          "valence": "부정",
+          "label": "갈멜산 대결 — 바알 선지자 심판",
+          "verse": "왕상 18:18",
+          "approxYear": -860,
+          "verseTextKo": "저가 대답하되 내가 이스라엘을 괴롭게 한 것이 아니라 당신과 당신의 아비의 집이 괴롭게 하였으니 이는 여호와의 명령을 버렸고 당신이 바알들을 좇았음이라 ",
+          "verseTextEn": "And he answered, I have not troubled Israel; but thou, and thy father’s house, in that ye have forsaken the commandments of the Lord, and thou hast followed Baalim."
+        },
+        {
+          "valence": "부정",
+          "label": "나봇 포도원 — 피의 심판 예언",
+          "verse": "왕상 21:19",
+          "approxYear": -853,
+          "context": "왕상 21:19-20",
+          "verseTextKo": "너는 저에게 말하여 이르기를 여호와의 말씀이 네가 죽이고 또 빼앗았느냐 하셨다 하고 또 저에게 이르기를 여호와의 말씀이 개들이 나봇의 피를 핥은 곳에서 개들이 네 피 곧 네 몸의 피도 핥으리라 하셨다 하라 ",
+          "verseTextEn": "And thou shalt speak unto him, saying, Thus saith the Lord, Hast thou killed, and also taken possession? And thou shalt speak unto him, saying, Thus saith the Lord, In the place where dogs licked the blood of Naboth shall dogs lick thy blood, even thine.",
+          "contextKo": [
+            {
+              "v": 19,
+              "t": "너는 저에게 말하여 이르기를 여호와의 말씀이 네가 죽이고 또 빼앗았느냐 하셨다 하고 또 저에게 이르기를 여호와의 말씀이 개들이 나봇의 피를 핥은 곳에서 개들이 네 피 곧 네 몸의 피도 핥으리라 하셨다 하라 ",
+              "a": true
+            },
+            {
+              "v": 20,
+              "t": "아합이 엘리야에게 이르되 나의 대적이여 네가 나를 찾았느냐 대답하되 내가 찾았노라 네가 스스로 팔려 여호와 보시기에 악을 행하였으므로 "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 19,
+              "t": "And thou shalt speak unto him, saying, Thus saith the Lord, Hast thou killed, and also taken possession? And thou shalt speak unto him, saying, Thus saith the Lord, In the place where dogs licked the blood of Naboth shall dogs lick thy blood, even thine.",
+              "a": true
+            },
+            {
+              "v": 20,
+              "t": "And Ahab said to Elijah, Hast thou found me, O mine enemy? And he answered, I have found thee: because thou hast sold thyself to work evil in the sight of the Lord."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "대적",
+      "endpoints": [
+        {
+          "nameKo": "엘리야",
+          "slug": "elijah"
+        },
+        {
+          "nameKo": "이세벨"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "죽이겠다는 위협",
+          "verse": "왕상 19:2",
+          "approxYear": -860,
+          "context": "왕상 19:1-2",
+          "verseTextKo": "이세벨이 사자를 엘리야에게 보내어 이르되 내가 내일 이맘때에는 정녕 네 생명으로 저 사람들 중 한 사람의 생명 같게 하리라 아니하면 신들이 내게 벌 위에 벌을 내림이 마땅하니라 한지라 ",
+          "verseTextEn": "Then Jezebel sent a messenger unto Elijah, saying, So let the gods do to me, and more also, if I make not thy life as the life of one of them by to morrow about this time.",
+          "contextKo": [
+            {
+              "v": 1,
+              "t": "아합이 엘리야의 무릇 행한 일과 그가 어떻게 모든 선지자를 칼로 죽인 것을 이세벨에게 고하니 "
+            },
+            {
+              "v": 2,
+              "t": "이세벨이 사자를 엘리야에게 보내어 이르되 내가 내일 이맘때에는 정녕 네 생명으로 저 사람들 중 한 사람의 생명 같게 하리라 아니하면 신들이 내게 벌 위에 벌을 내림이 마땅하니라 한지라 ",
+              "a": true
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 1,
+              "t": "And Ahab told Jezebel all that Elijah had done, and withal how he had slain all the prophets with the sword."
+            },
+            {
+              "v": 2,
+              "t": "Then Jezebel sent a messenger unto Elijah, saying, So let the gods do to me, and more also, if I make not thy life as the life of one of them by to morrow about this time.",
+              "a": true
+            }
+          ]
+        },
+        {
+          "valence": "부정",
+          "label": "이세벨의 최후 예언",
+          "verse": "왕상 21:23",
+          "approxYear": -853,
+          "verseTextKo": "이세벨에게 대하여도 여호와께서 말씀하여 가라사대 개들이 이스르엘 성 곁에서 이세벨을 먹을지라 ",
+          "verseTextEn": "And of Jezebel also spake the Lord, saying, The dogs shall eat Jezebel by the wall of Jezreel."
+        }
+      ]
+    },
+    {
+      "type": "친구",
+      "endpoints": [
+        {
+          "nameKo": "엘리야",
+          "slug": "elijah"
+        },
+        {
+          "nameKo": "오바댜"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "선지자 100인을 숨겨 도움",
+          "verse": "왕상 18:13",
+          "approxYear": -860,
+          "verseTextKo": "이세벨이 여호와의 선지자들을 죽일 때에 내가 여호와의 선지자 중에 일백 인을 오십 인씩 굴에 숨기고 떡과 물로 먹인 일이 내 주께 들리지 아니하였나이까 ",
+          "verseTextEn": "Was it not told my lord what I did when Jezebel slew the prophets of the Lord, how I hid an hundred men of the Lord’s prophets by fifty in a cave, and fed them with bread and water?"
+        }
+      ]
+    },
+    {
+      "type": "신하",
+      "endpoints": [
+        {
+          "nameKo": "엘리사",
+          "slug": "elisha"
+        },
+        {
+          "nameKo": "게하시"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "엘리사의 사환",
+          "verse": "왕하 4:12",
+          "approxYear": -845,
+          "verseTextKo": "자기 사환 게하시에게 이르되 이 수넴 여인을 불러오라 곧 부르매 여인이 그 앞에 선지라 ",
+          "verseTextEn": "And he said to Gehazi his servant, Call this Shunammite. And when he had called her, she stood before him."
+        },
+        {
+          "valence": "부정",
+          "label": "나아만의 재물 탐냄 — 나병",
+          "verse": "왕하 5:27",
+          "approxYear": -840,
+          "context": "왕하 5:25-27",
+          "verseTextKo": "그러므로 나아만의 문둥병이 네게 들어 네 자손에게 미쳐 영원토록 이르리라 게하시가 그 앞에서 물러 나오매 문둥병이 발하여 눈 같이 되었더라  ",
+          "verseTextEn": "The leprosy therefore of Naaman shall cleave unto thee, and unto thy seed for ever. And he went out from his presence a leper as white as snow. ",
+          "contextKo": [
+            {
+              "v": 25,
+              "t": "들어가서 그 주인 앞에 서니 엘리사가 이르되 게하시야 네가 어디서 오느냐 대답하되 종이 아무데도 가지 아니하였나이다 "
+            },
+            {
+              "v": 26,
+              "t": "엘리사가 이르되 그 사람이 수레에서 내려 너를 맞을 때에 내 심령이 감각되지 아니하였느냐 지금이 어찌 은을 받으며 옷을 받으며 감람원이나 포도원이나 양이나 소나 남종이나 여종을 받을 때냐 "
+            },
+            {
+              "v": 27,
+              "t": "그러므로 나아만의 문둥병이 네게 들어 네 자손에게 미쳐 영원토록 이르리라 게하시가 그 앞에서 물러 나오매 문둥병이 발하여 눈 같이 되었더라  ",
+              "a": true
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 25,
+              "t": "But he went in, and stood before his master. And Elisha said unto him, Whence comest thou, Gehazi? And he said, Thy servant went no whither."
+            },
+            {
+              "v": 26,
+              "t": "And he said unto him, Went not mine heart with thee, when the man turned again from his chariot to meet thee? Is it a time to receive money, and to receive garments, and oliveyards, and vineyards, and sheep, and oxen, and menservants, and maidservants?"
+            },
+            {
+              "v": 27,
+              "t": "The leprosy therefore of Naaman shall cleave unto thee, and unto thy seed for ever. And he went out from his presence a leper as white as snow. ",
+              "a": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "선지자",
+      "endpoints": [
+        {
+          "nameKo": "엘리사",
+          "slug": "elisha"
+        },
+        {
+          "nameKo": "나아만"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "요단강 씻으라는 명령에 분노",
+          "verse": "왕하 5:11",
+          "approxYear": -841,
+          "verseTextKo": "나아만이 노하여 물러가며 가로되 내 생각에는 저가 내게로 나아와 서서 그 하나님 여호와의 이름을 부르고 당처 위에 손을 흔들어 문둥병을 고칠까 하였도다 ",
+          "verseTextEn": "But Naaman was wroth, and went away, and said, Behold, I thought, He will surely come out to me, and stand, and call on the name of the Lord his God, and strike his hand over the place, and recover the leper."
+        },
+        {
+          "valence": "긍정",
+          "label": "치유 후 여호와 신앙 고백",
+          "verse": "왕하 5:15",
+          "approxYear": -841,
+          "context": "왕하 5:14-15",
+          "verseTextKo": "나아만이 모든 종자와 함께 하나님의 사람에게로 도로 와서 그 앞에 서서 가로되 내가 이제 이스라엘 외에는 온 천하에 신이 없는 줄을 아나이다 청컨대 당신의 종에게서 예물을 받으소서 ",
+          "verseTextEn": "And he returned to the man of God, he and all his company, and came, and stood before him: and he said, Behold, now I know that there is no God in all the earth, but in Israel: now therefore, I pray thee, take a blessing of thy servant.",
+          "contextKo": [
+            {
+              "v": 14,
+              "t": "나아만이 이에 내려가서 하나님의 사람의 말씀대로 요단 강에 일곱 번 몸을 잠그니 그 살이 여전하여 어린아이의 살 같아서 깨끗하게 되었더라 "
+            },
+            {
+              "v": 15,
+              "t": "나아만이 모든 종자와 함께 하나님의 사람에게로 도로 와서 그 앞에 서서 가로되 내가 이제 이스라엘 외에는 온 천하에 신이 없는 줄을 아나이다 청컨대 당신의 종에게서 예물을 받으소서 ",
+              "a": true
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 14,
+              "t": "Then went he down, and dipped himself seven times in Jordan, according to the saying of the man of God: and his flesh came again like unto the flesh of a little child, and he was clean."
+            },
+            {
+              "v": 15,
+              "t": "And he returned to the man of God, he and all his company, and came, and stood before him: and he said, Behold, now I know that there is no God in all the earth, but in Israel: now therefore, I pray thee, take a blessing of thy servant.",
+              "a": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "선지자",
+      "endpoints": [
+        {
+          "nameKo": "엘리사",
+          "slug": "elisha"
+        },
+        {
+          "nameKo": "여호람 왕"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "중립",
+          "label": "모압 원정 — 물의 이적",
+          "verse": "왕하 3:14",
+          "approxYear": -848,
+          "verseTextKo": "엘리사가 가로되 내가 섬기는 만군의 여호와의 사심을 가리켜 맹세하노니 내가 만일 유다 왕 여호사밧의 낯을 봄이 아니면 당신을 향하지도 아니하고 보지도 아니하였으리이다 ",
+          "verseTextEn": "And Elisha said, As the Lord of hosts liveth, before whom I stand, surely, were it not that I regard the presence of Jehoshaphat the king of Judah, I would not look toward thee, nor see thee."
+        },
+        {
+          "valence": "긍정",
+          "label": "사마리아 기근 — 풍요 예언 성취",
+          "verse": "왕하 7:1",
+          "approxYear": -843,
+          "verseTextKo": "엘리사가 가로되 여호와의 말씀을 들을지어다 여호와께서 가라사대 내일 이맘때에 사마리아 성문에서 고운 가루 한 스아에 한 세겔을 하고 보리 두 스아에 한 세겔을 하리라 하셨느니라 ",
+          "verseTextEn": "Then Elisha said, Hear ye the word of the Lord; Thus saith the Lord, To morrow about this time shall a measure of fine flour be sold for a shekel, and two measures of barley for a shekel, in the gate of Samaria."
+        }
+      ]
+    },
+    {
+      "type": "선지자",
+      "endpoints": [
+        {
+          "nameKo": "이사야",
+          "slug": "isaiah"
+        },
+        {
+          "nameKo": "히스기야"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "앗수르 위기 — 구원 예언",
+          "verse": "사 37:6",
+          "approxYear": -701,
+          "verseTextKo": "이사야가 그들에게 이르되 너희는 너희 주에게 이렇게 고하라 여호와께서 말씀하시되 너희의 들은바 앗수르 왕의 종들이 나를 능욕한 말을 인하여 두려워 말라 ",
+          "verseTextEn": "And Isaiah said unto them, Thus shall ye say unto your master, Thus saith the Lord, Be not afraid of the words that thou hast heard, wherewith the servants of the king of Assyria have blasphemed me."
+        },
+        {
+          "valence": "긍정",
+          "label": "발병 — 십오 년 연장·해시계 표징",
+          "verse": "사 38:5",
+          "approxYear": -700,
+          "context": "사 38:4-8",
+          "verseTextKo": "너는 가서 히스기야에게 이르기를 네 조상 다윗의 하나님 여호와께서 이같이 말씀하시기를 내가 네 기도를 들었고 네 눈물을 보았노라 내가 네 수한에 십오 년을 더하고 ",
+          "verseTextEn": "Go, and say to Hezekiah, Thus saith the Lord, the God of David thy father, I have heard thy prayer, I have seen thy tears: behold, I will add unto thy days fifteen years.",
+          "contextKo": [
+            {
+              "v": 4,
+              "t": "이에 여호와의 말씀이 이사야에게 임하니라 가라사대 "
+            },
+            {
+              "v": 5,
+              "t": "너는 가서 히스기야에게 이르기를 네 조상 다윗의 하나님 여호와께서 이같이 말씀하시기를 내가 네 기도를 들었고 네 눈물을 보았노라 내가 네 수한에 십오 년을 더하고 ",
+              "a": true
+            },
+            {
+              "v": 6,
+              "t": "너와 이 성을 앗수르 왕의 손에서 건져내겠고 내가 또 이 성을 보호하리라 "
+            },
+            {
+              "v": 7,
+              "t": "나 여호와가 말한 것을 네게 이룰 증거로 이 징조를 네게 주리라 "
+            },
+            {
+              "v": 8,
+              "t": "보라 아하스의 일영표에 나아갔던 해 그림자를 뒤로 십 도를 물러가게 하리라 하셨다 하라 하시더니 이에 일영표에 나아갔던 해의 그림자가 십 도를 물러가니라 "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 4,
+              "t": "Then came the word of the Lord to Isaiah, saying,"
+            },
+            {
+              "v": 5,
+              "t": "Go, and say to Hezekiah, Thus saith the Lord, the God of David thy father, I have heard thy prayer, I have seen thy tears: behold, I will add unto thy days fifteen years.",
+              "a": true
+            },
+            {
+              "v": 6,
+              "t": "And I will deliver thee and this city out of the hand of the king of Assyria: and I will defend this city."
+            },
+            {
+              "v": 7,
+              "t": "And this shall be a sign unto thee from the Lord, that the Lord will do this thing that he hath spoken;"
+            },
+            {
+              "v": 8,
+              "t": "Behold, I will bring again the shadow of the degrees, which is gone down in the sun dial of Ahaz, ten degrees backward. So the sun returned ten degrees, by which degrees it was gone down."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "선지자",
+      "endpoints": [
+        {
+          "nameKo": "이사야",
+          "slug": "isaiah"
+        },
+        {
+          "nameKo": "아하스"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "중립",
+          "label": "아람-이스라엘 위협 — 두려워 말라",
+          "verse": "사 7:4",
+          "approxYear": -734,
+          "verseTextKo": "그에게 이르기를 너는 삼가며 종용하라 아람 왕 르신과 르말리야의 아들이 심히 노할지라도 연기나는 두 부지깽이 그루터기에 불과하니 두려워 말며 낙심치 말라 ",
+          "verseTextEn": "And say unto him, Take heed, and be quiet; fear not, neither be fainthearted for the two tails of these smoking firebrands, for the fierce anger of Rezin with Syria, and of the son of Remaliah."
+        },
+        {
+          "valence": "부정",
+          "label": "표징 요구 거절 — 임마누엘 표징",
+          "verse": "사 7:12",
+          "approxYear": -734,
+          "context": "사 7:10-14",
+          "verseTextKo": "아하스가 가로되 나는 구하지 아니하겠나이다 나는 여호와를 시험치 아니하겠나이다 한지라 ",
+          "verseTextEn": "But Ahaz said, I will not ask, neither will I tempt the Lord.",
+          "contextKo": [
+            {
+              "v": 10,
+              "t": "여호와께서 또 아하스에게 일러 가라사대 "
+            },
+            {
+              "v": 11,
+              "t": "너는 네 하나님 여호와께 한 징조를 구하되 깊은 데서든지 높은 데서든지 구하라 "
+            },
+            {
+              "v": 12,
+              "t": "아하스가 가로되 나는 구하지 아니하겠나이다 나는 여호와를 시험치 아니하겠나이다 한지라 ",
+              "a": true
+            },
+            {
+              "v": 13,
+              "t": "이사야가 가로되 다윗의 집이여 청컨대 들을지어다 너희가 사람을 괴롭게 하고 그것을 작은 일로 여겨서 또 나의 하나님을 괴로우시게 하려느냐 "
+            },
+            {
+              "v": 14,
+              "t": "그러므로 주께서 친히 징조로 너희에게 주실 것이라 보라 처녀가 잉태하여 아들을 낳을 것이요 그 이름을 임마누엘이라 하리라 "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 10,
+              "t": "Moreover the Lord spake again unto Ahaz, saying,"
+            },
+            {
+              "v": 11,
+              "t": "Ask thee a sign of the Lord thy God; ask it either in the depth, or in the height above."
+            },
+            {
+              "v": 12,
+              "t": "But Ahaz said, I will not ask, neither will I tempt the Lord.",
+              "a": true
+            },
+            {
+              "v": 13,
+              "t": "And he said, Hear ye now, O house of David; Is it a small thing for you to weary men, but will ye weary my God also?"
+            },
+            {
+              "v": 14,
+              "t": "Therefore the Lord himself shall give you a sign; Behold, a virgin shall conceive, and bear a son, and shall call his name Immanuel."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
