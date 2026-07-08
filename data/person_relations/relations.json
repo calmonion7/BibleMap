@@ -2713,6 +2713,466 @@
           ]
         }
       ]
+    },
+    {
+      "type": "가족",
+      "note": "서원으로 바친 아들",
+      "endpoints": [
+        {
+          "nameKo": "한나"
+        },
+        {
+          "nameKo": "사무엘",
+          "slug": "samuel"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "한나의 서원과 출생",
+          "verse": "삼상 1:20",
+          "approxYear": -1105,
+          "verseTextKo": "한나가 잉태하고 때가 이르매 아들을 낳아 사무엘이라 이름하였으니 이는 내가 여호와께 그를 구하였다 함이더라 ",
+          "verseTextEn": "Wherefore it came to pass, when the time was come about after Hannah had conceived, that she bare a son, and called his name Samuel, saying, Because I have asked him of the Lord."
+        },
+        {
+          "valence": "긍정",
+          "label": "성전에 바쳐짐",
+          "verse": "삼상 1:28",
+          "approxYear": -1102,
+          "verseTextKo": "그러므로 나도 그를 여호와께 드리되 그의 평생을 여호와께 드리나이다 하고 그 아이는 거기서 여호와께 경배하니라  ",
+          "verseTextEn": "Therefore also I have lent him to the Lord; as long as he liveth he shall be lent to the Lord. And he worshipped the Lord there. "
+        }
+      ]
+    },
+    {
+      "type": "스승제자",
+      "endpoints": [
+        {
+          "nameKo": "엘리"
+        },
+        {
+          "nameKo": "사무엘",
+          "slug": "samuel"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "엘리 문하에서 섬김",
+          "verse": "삼상 2:11",
+          "approxYear": -1100,
+          "verseTextKo": "엘가나는 라마의 자기 집으로 돌아가고 그 아이는 제사장 엘리 앞에서 여호와를 섬기니라 ",
+          "verseTextEn": "And Elkanah went to Ramah to his house. And the child did minister unto the Lord before Eli the priest."
+        },
+        {
+          "valence": "긍정",
+          "label": "여호와의 부르심",
+          "verse": "삼상 3:10",
+          "approxYear": -1095,
+          "context": "삼상 3:8-10",
+          "verseTextKo": "여호와께서 임하여 서서 전과 같이 사무엘아 사무엘아 부르시는지라 사무엘이 가로되 말씀하옵소서 주의 종이 듣겠나이다 ",
+          "verseTextEn": "And the Lord came, and stood, and called as at other times, Samuel, Samuel. Then Samuel answered, Speak; for thy servant heareth.",
+          "contextKo": [
+            {
+              "v": 8,
+              "t": "여호와께서 세번째 사무엘을 부르시는지라 그가 일어나서 엘리에게로 가서 가로되 당신이 나를 부르셨기로 내가 여기 있나이다 엘리가 여호와께서 이 아이를 부르신 줄을 깨닫고 "
+            },
+            {
+              "v": 9,
+              "t": "이에 사무엘에게 이르되 가서 누웠다가 그가 너를 부르시거든 네가 말하기를 여호와여 말씀하옵소서 주의 종이 듣겠나이다 하라 이에 사무엘이 가서 자기 처소에 누우니라 "
+            },
+            {
+              "v": 10,
+              "t": "여호와께서 임하여 서서 전과 같이 사무엘아 사무엘아 부르시는지라 사무엘이 가로되 말씀하옵소서 주의 종이 듣겠나이다 ",
+              "a": true
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 8,
+              "t": "And the Lord called Samuel again the third time. And he arose and went to Eli, and said, Here am I; for thou didst call me. And Eli perceived that the Lord had called the child."
+            },
+            {
+              "v": 9,
+              "t": "Therefore Eli said unto Samuel, Go, lie down: and it shall be, if he call thee, that thou shalt say, Speak, Lord; for thy servant heareth. So Samuel went and lay down in his place."
+            },
+            {
+              "v": 10,
+              "t": "And the Lord came, and stood, and called as at other times, Samuel, Samuel. Then Samuel answered, Speak; for thy servant heareth.",
+              "a": true
+            }
+          ]
+        },
+        {
+          "valence": "중립",
+          "label": "엘리 집의 심판을 고함",
+          "verse": "삼상 3:18",
+          "approxYear": -1094,
+          "verseTextKo": "사무엘이 세세히 말하고 조금도 숨기지 아니하니 그가 가로되 이는 여호와시니 선하신 소견대로 하실 것이니라 하니라 ",
+          "verseTextEn": "And Samuel told him every whit, and hid nothing from him. And he said, It is the Lord: let him do what seemeth him good."
+        }
+      ]
+    },
+    {
+      "type": "선지자",
+      "endpoints": [
+        {
+          "nameKo": "사무엘",
+          "slug": "samuel"
+        },
+        {
+          "nameKo": "사울",
+          "slug": "saul"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "사울에게 기름 부음",
+          "verse": "삼상 10:1",
+          "approxYear": -1050,
+          "verseTextKo": "이에 사무엘이 기름병을 취하여 사울의 머리에 붓고 입맞추어 가로되 여호와께서 네게 기름을 부으사 그 기업의 지도자를 삼지 아니하셨느냐 ",
+          "verseTextEn": "Then Samuel took a vial of oil, and poured it upon his head, and kissed him, and said, Is it not because the Lord hath anointed thee to be captain over his inheritance?"
+        },
+        {
+          "valence": "부정",
+          "label": "길갈의 망령된 제사 책망",
+          "verse": "삼상 13:13",
+          "approxYear": -1043,
+          "verseTextKo": "사무엘이 사울에게 이르되 왕이 망령되이 행하였도다 왕이 왕의 하나님 여호와께서 왕에게 명하신 명령을 지키지 아니하였도다 그리하였더면 여호와께서 이스라엘 위에 왕의 나라를 영영히 세우셨을 것이어늘 ",
+          "verseTextEn": "And Samuel said to Saul, Thou hast done foolishly: thou hast not kept the commandment of the Lord thy God, which he commanded thee: for now would the Lord have established thy kingdom upon Israel for ever."
+        },
+        {
+          "valence": "부정",
+          "label": "아말렉 불순종·왕위 폐기 선고",
+          "verse": "삼상 15:23",
+          "approxYear": -1042,
+          "context": "삼상 15:22-23",
+          "verseTextKo": "이는 거역하는 것은 사술의 죄와 같고 완고한 것은 사신 우상에게 절하는 죄와 같음이라 왕이 여호와의 말씀을 버렸으므로 여호와께서도 왕을 버려 왕이 되지 못하게 하셨나이다 ",
+          "verseTextEn": "For rebellion is as the sin of witchcraft, and stubbornness is as iniquity and idolatry. Because thou hast rejected the word of the Lord, he hath also rejected thee from being king.",
+          "contextKo": [
+            {
+              "v": 22,
+              "t": "사무엘이 가로되 여호와께서 번제와 다른 제사를 그 목소리 순종하는 것을 좋아하심 같이 좋아하시겠나이까 순종이 제사보다 낫고 듣는 것이 수양의 기름보다 나으니 "
+            },
+            {
+              "v": 23,
+              "t": "이는 거역하는 것은 사술의 죄와 같고 완고한 것은 사신 우상에게 절하는 죄와 같음이라 왕이 여호와의 말씀을 버렸으므로 여호와께서도 왕을 버려 왕이 되지 못하게 하셨나이다 ",
+              "a": true
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 22,
+              "t": "And Samuel said, Hath the Lord as great delight in burnt offerings and sacrifices, as in obeying the voice of the Lord? Behold, to obey is better than sacrifice, and to hearken than the fat of rams."
+            },
+            {
+              "v": 23,
+              "t": "For rebellion is as the sin of witchcraft, and stubbornness is as iniquity and idolatry. Because thou hast rejected the word of the Lord, he hath also rejected thee from being king.",
+              "a": true
+            }
+          ]
+        },
+        {
+          "valence": "중립",
+          "label": "사울을 위하여 죽기까지 슬퍼함",
+          "verse": "삼상 15:35",
+          "approxYear": -1042,
+          "verseTextKo": "사무엘이 죽는 날까지 사울을 다시 가서 보지 아니하였으니 이는 그가 사울을 위하여 슬퍼함이었고 여호와께서는 사울로 이스라엘 왕 삼으신 것을 후회하셨더라  ",
+          "verseTextEn": "And Samuel came no more to see Saul until the day of his death: nevertheless Samuel mourned for Saul: and the Lord repented that he had made Saul king over Israel. "
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "맏아들·왕위 계승자",
+      "endpoints": [
+        {
+          "nameKo": "사울",
+          "slug": "saul"
+        },
+        {
+          "nameKo": "요나단"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "믹마스에서 담대히 승리",
+          "verse": "삼상 14:6",
+          "approxYear": -1030,
+          "verseTextKo": "요나단이 자기 병기 든 소년에게 이르되 우리가 이 할례 없는 자들의 부대에게로 건너가자 여호와께서 우리를 위하여 일하실까 하노라 여호와의 구원은 사람의 많고 적음에 달리지 아니하였느니라 ",
+          "verseTextEn": "And Jonathan said to the young man that bare his armour, Come, and let us go over unto the garrison of these uncircumcised: it may be that the Lord will work for us: for there is no restraint to the Lord to save by many or by few."
+        },
+        {
+          "valence": "부정",
+          "label": "경솔한 맹세로 죽이려 함",
+          "verse": "삼상 14:44",
+          "approxYear": -1030,
+          "context": "삼상 14:43-45",
+          "verseTextKo": "사울이 가로되 요나단아 네가 반드시 죽으리라 그렇지 않으면 하나님이 내게 벌을 내리시고 또 내리시기를 원하노라 ",
+          "verseTextEn": "And Saul answered, God do so and more also: for thou shalt surely die, Jonathan.",
+          "contextKo": [
+            {
+              "v": 43,
+              "t": "사울이 요나단에게 가로되 너의 행한 것을 내게 고하라 요나단이 고하여 가로되 내가 다만 내 손에 가진 지팡이 끝으로 꿀을 조금 맛보았을 뿐이오나 내가 죽을 수 밖에 없나이다 "
+            },
+            {
+              "v": 44,
+              "t": "사울이 가로되 요나단아 네가 반드시 죽으리라 그렇지 않으면 하나님이 내게 벌을 내리시고 또 내리시기를 원하노라 ",
+              "a": true
+            },
+            {
+              "v": 45,
+              "t": "백성이 사울에게 말하되 이스라엘에 이 큰 구원을 이룬 요나단이 죽겠나이까 결단코 그렇지 아니하니이다 여호와의 사심으로 맹세하옵나니 그의 머리털 하나도 땅에 떨어지지 아니할 것은 그가 오늘 하나님과 동사하였음이니이다 하여 요나단을 구원하여 죽지 않게 하니라 "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 43,
+              "t": "Then Saul said to Jonathan, Tell me what thou hast done. And Jonathan told him, and said, I did but taste a little honey with the end of the rod that was in mine hand, and, lo, I must die."
+            },
+            {
+              "v": 44,
+              "t": "And Saul answered, God do so and more also: for thou shalt surely die, Jonathan.",
+              "a": true
+            },
+            {
+              "v": 45,
+              "t": "And the people said unto Saul, Shall Jonathan die, who hath wrought this great salvation in Israel? God forbid: as the Lord liveth, there shall not one hair of his head fall to the ground; for he hath wrought with God this day. So the people rescued Jonathan, that he died not."
+            }
+          ]
+        },
+        {
+          "valence": "부정",
+          "label": "길보아에서 함께 전사",
+          "verse": "삼상 31:2",
+          "approxYear": -1010,
+          "verseTextKo": "블레셋 사람들이 사울과 그 아들들을 쫓아 미쳐서 사울의 아들 요나단과 아비나답과 말기수아를 죽이니라 ",
+          "verseTextEn": "And the Philistines followed hard upon Saul and upon his sons; and the Philistines slew Jonathan, and Abinadab, and Malchi–shua, Saul’s sons."
+        }
+      ]
+    },
+    {
+      "type": "신하",
+      "note": "군대 장관",
+      "endpoints": [
+        {
+          "nameKo": "사울",
+          "slug": "saul"
+        },
+        {
+          "nameKo": "아브넬"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "중립",
+          "label": "사울의 군대 장관",
+          "verse": "삼상 14:50",
+          "approxYear": -1030,
+          "verseTextKo": "사울의 아내의 이름은 아히노암이니 아히마아스의 딸이요 그 군장의 이름은 아브넬이니 사울의 숙부 넬의 아들이며 ",
+          "verseTextEn": "And the name of Saul’s wife was Ahinoam, the daughter of Ahimaaz: and the name of the captain of his host was Abner, the son of Ner, Saul’s uncle."
+        },
+        {
+          "valence": "긍정",
+          "label": "다윗을 쫓는 사울을 호위",
+          "verse": "삼상 26:5",
+          "approxYear": -1013,
+          "verseTextKo": "일어나 사울의 진 친 곳에 이르러 사울과 넬의 아들 군대장관 아브넬의 유하는 곳을 본즉 사울이 진 가운데 누웠고 백성은 그를 둘러 진 쳤더라 ",
+          "verseTextEn": "And David arose, and came to the place where Saul had pitched: and David beheld the place where Saul lay, and Abner the son of Ner, the captain of his host: and Saul lay in the trench, and the people pitched round about him."
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "둘째 딸",
+      "endpoints": [
+        {
+          "nameKo": "사울",
+          "slug": "saul"
+        },
+        {
+          "nameKo": "미갈"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "다윗의 올무로 미갈을 줌",
+          "verse": "삼상 18:21",
+          "approxYear": -1018,
+          "verseTextKo": "스스로 이르되 내가 딸을 그에게 주어서 그에게 올무가 되게 하고 블레셋 사람의 손으로 그를 치게 하리라 하고 이에 다윗에게 이르되 네가 오늘 다시 내 사위가 되리라 하니라 ",
+          "verseTextEn": "And Saul said, I will give him her, that she may be a snare to him, and that the hand of the Philistines may be against him. Wherefore Saul said to David, Thou shalt this day be my son in law in the one of the twain."
+        },
+        {
+          "valence": "부정",
+          "label": "미갈을 발디에게 줌",
+          "verse": "삼상 25:44",
+          "approxYear": -1012,
+          "verseTextKo": "사울이 그 딸 다윗의 아내 미갈을 갈림에 사는 라이스의 아들 발디에게 주었더라  ",
+          "verseTextEn": "But Saul had given Michal his daughter, David’s wife, to Phalti the son of Laish, which was of Gallim. "
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "어머니",
+      "endpoints": [
+        {
+          "nameKo": "밧세바"
+        },
+        {
+          "nameKo": "솔로몬",
+          "slug": "solomon"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "왕위 계승을 주선함",
+          "verse": "왕상 1:17",
+          "approxYear": -971,
+          "context": "왕상 1:16-17",
+          "verseTextKo": "저가 왕께 대답하되 내 주여 왕이 전에 왕의 하나님 여호와를 가리켜 계집종에게 맹세하시기를 네 아들 솔로몬이 정녕 나를 이어 왕이 되어 내 위에 앉으리라 하셨거늘 ",
+          "verseTextEn": "And she said unto him, My lord, thou swarest by the Lord thy God unto thine handmaid, saying, Assuredly Solomon thy son shall reign after me, and he shall sit upon my throne.",
+          "contextKo": [
+            {
+              "v": 16,
+              "t": "밧세바가 몸을 굽혀 왕께 절하니 왕이 이르되 어찜이냐 "
+            },
+            {
+              "v": 17,
+              "t": "저가 왕께 대답하되 내 주여 왕이 전에 왕의 하나님 여호와를 가리켜 계집종에게 맹세하시기를 네 아들 솔로몬이 정녕 나를 이어 왕이 되어 내 위에 앉으리라 하셨거늘 ",
+              "a": true
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 16,
+              "t": "And Bath–sheba bowed, and did obeisance unto the king. And the king said, What wouldest thou?"
+            },
+            {
+              "v": 17,
+              "t": "And she said unto him, My lord, thou swarest by the Lord thy God unto thine handmaid, saying, Assuredly Solomon thy son shall reign after me, and he shall sit upon my throne.",
+              "a": true
+            }
+          ]
+        },
+        {
+          "valence": "중립",
+          "label": "아도니야의 청을 전함",
+          "verse": "왕상 2:19",
+          "approxYear": -970,
+          "verseTextKo": "밧세바가 이에 아도니야를 위하여 말하려고 솔로몬 왕에게 이르니 왕이 일어나 영접하여 절한 후에 다시 위에 앉고 그 모친을 위하여 자리를 베풀게 하고 그 우편에 앉게 하는지라 ",
+          "verseTextEn": "Bath–sheba therefore went unto king Solomon, to speak unto him for Adonijah. And the king rose up to meet her, and bowed himself unto her, and sat down on his throne, and caused a seat to be set for the king’s mother; and she sat on his right hand."
+        }
+      ]
+    },
+    {
+      "type": "선지자",
+      "endpoints": [
+        {
+          "nameKo": "나단"
+        },
+        {
+          "nameKo": "솔로몬",
+          "slug": "solomon"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "여디디야로 이름함",
+          "verse": "삼하 12:25",
+          "approxYear": -988,
+          "verseTextKo": "선지자 나단을 보내사 그 이름을 여디디야라 하시니 이는 여호와께서 사랑하심을 인함이더라 ",
+          "verseTextEn": "And he sent by the hand of Nathan the prophet; and he called his name Jedidiah, because of the Lord."
+        },
+        {
+          "valence": "긍정",
+          "label": "왕위 계승에 기름 부음",
+          "verse": "왕상 1:34",
+          "approxYear": -971,
+          "verseTextKo": "거기서 제사장 사독과 선지자 나단은 저에게 기름을 부어 이스라엘 왕을 삼고 너희는 양각을 불며 솔로몬 왕 만세를 부르고 ",
+          "verseTextEn": "And let Zadok the priest and Nathan the prophet anoint him there king over Israel: and blow ye with the trumpet, and say, God save king Solomon."
+        }
+      ]
+    },
+    {
+      "type": "대적",
+      "endpoints": [
+        {
+          "nameKo": "아도니야"
+        },
+        {
+          "nameKo": "솔로몬",
+          "slug": "solomon"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "왕위 찬탈을 시도함",
+          "verse": "왕상 1:5",
+          "approxYear": -971,
+          "verseTextKo": "때에 학깃의 아들 아도니야가 스스로 높여서 이르기를 내가 왕이 되리라 하고 자기를 위하여 병거와 기병과 전배 오십 인을 예비하니 ",
+          "verseTextEn": "Then Adonijah the son of Haggith exalted himself, saying, I will be king: and he prepared him chariots and horsemen, and fifty men to run before him."
+        },
+        {
+          "valence": "부정",
+          "label": "아비삭을 청하다 처형됨",
+          "verse": "왕상 2:25",
+          "approxYear": -970,
+          "verseTextKo": "여호야다의 아들 브나야를 보내매 저가 아도니야를 쳐서 죽였더라 ",
+          "verseTextEn": "And king Solomon sent by the hand of Benaiah the son of Jehoiada; and he fell upon him that he died."
+        }
+      ]
+    },
+    {
+      "type": "군주",
+      "endpoints": [
+        {
+          "nameKo": "솔로몬",
+          "slug": "solomon"
+        },
+        {
+          "nameKo": "히람"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "성전 건축 자재 동맹",
+          "verse": "왕상 5:12",
+          "approxYear": -966,
+          "verseTextKo": "여호와께서 그 말씀대로 솔로몬에게 지혜를 주시므로 히람과 솔로몬이 친목하여 두 사람이 함께 약조를 맺었더라 ",
+          "verseTextEn": "And the Lord gave Solomon wisdom, as he promised him: and there was peace between Hiram and Solomon; and they two made a league together."
+        }
+      ]
+    },
+    {
+      "type": "군주",
+      "endpoints": [
+        {
+          "nameKo": "솔로몬",
+          "slug": "solomon"
+        },
+        {
+          "nameKo": "스바 여왕"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "지혜를 시험하러 방문",
+          "verse": "왕상 10:1",
+          "approxYear": -950,
+          "verseTextKo": "스바 여왕이 여호와의 이름으로 말미암은 솔로몬의 명예를 듣고 와서 어려운 문제로 저를 시험코자 하여 ",
+          "verseTextEn": "And when the queen of Sheba heard of the fame of Solomon concerning the name of the Lord, she came to prove him with hard questions."
+        }
+      ]
     }
   ]
 }
