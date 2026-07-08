@@ -38,6 +38,18 @@ body {
   height: 100%;
 }
 
+/* 관계 뷰 사건 칩 — 기본 탭 하이라이트(사각형) 대신 의도된 누름 피드백(:active) */
+.rel-chip {
+  background: #fff;
+  border: 1px solid #e7eaf1;
+  transition: background 0.1s ease, transform 0.06s ease, border-color 0.1s ease;
+}
+.rel-chip:active {
+  background: #dbe6f8;
+  border-color: #aec6ec;
+  transform: scale(0.94);
+}
+
 h2 {
   font-family: var(--heading);
   font-weight: 500;

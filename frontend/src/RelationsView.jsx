@@ -153,8 +153,9 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
                 <span key={j} style={{ display: 'inline-flex', alignItems: 'center' }}>
                   {j > 0 && <span style={{ color: '#c2c8d6', margin: '0 3px', fontSize: 12 }}>→</span>}
                   <button
+                    className="rel-chip"
                     onClick={e => { e.stopPropagation(); setVersePhase({ relIdx: i, phaseIdx: j }) }}
-                    style={{ display: 'inline-flex', alignItems: 'center', gap: 5, border: '1px solid #e7eaf1', background: '#fff', borderRadius: 999, padding: '4px 10px', cursor: 'pointer' }}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: 5, borderRadius: 999, padding: '4px 10px', cursor: 'pointer' }}
                   >
                     <span style={{ width: 9, height: 9, borderRadius: '50%', flexShrink: 0, background: VALENCE_COLOR[ph.valence] ?? '#8a94ad' }} />
                     <span style={{ fontSize: 12, color: '#2a3350', fontWeight: 500 }}>{ph.label}</span>
