@@ -38,6 +38,30 @@
           "verseTextEn": "And Saul cast the javelin; for he said, I will smite David even to the wall with it. And David avoided out of his presence twice."
         },
         {
+          "valence": "부정",
+          "label": "창 재차 던짐",
+          "verse": "삼상 19:10",
+          "approxYear": -1017,
+          "verseTextKo": "사울이 단창으로 다윗을 벽에 박으려 하였으나 그는 사울의 앞을 피하고 사울의 창은 벽에 박힌지라 다윗이 그 밤에 도피하매 ",
+          "verseTextEn": "And Saul sought to smite David even to the wall with the javelin; but he slipped away out of Saul’s presence, and he smote the javelin into the wall: and David fled, and escaped that night."
+        },
+        {
+          "valence": "부정",
+          "label": "놉 제사장 학살(다윗 도운 대가)",
+          "verse": "삼상 22:18",
+          "approxYear": -1013,
+          "verseTextKo": "왕이 도엑에게 이르되 너는 돌이켜 제사장들을 죽이라 하매 에돔 사람 도엑이 돌이켜 제사장들을 쳐서 그 날에 세마포 에봇 입은 자 팔십오 인을 죽였고 ",
+          "verseTextEn": "And the king said to Doeg, Turn thou, and fall upon the priests. And Doeg the Edomite turned, and he fell upon the priests, and slew on that day fourscore and five persons that did wear a linen ephod."
+        },
+        {
+          "valence": "부정",
+          "label": "미갈을 발디엘에게 줌",
+          "verse": "삼상 25:44",
+          "approxYear": -1012,
+          "verseTextKo": "사울이 그 딸 다윗의 아내 미갈을 갈림에 사는 라이스의 아들 발디에게 주었더라  ",
+          "verseTextEn": "But Saul had given Michal his daughter, David’s wife, to Phalti the son of Laish, which was of Gallim. "
+        },
+        {
           "valence": "긍정",
           "label": "엔게디서 살려줌",
           "verse": "삼상 24:11",
@@ -101,6 +125,14 @@
         },
         {
           "valence": "긍정",
+          "label": "호레스에서 격려",
+          "verse": "삼상 23:16",
+          "approxYear": -1012,
+          "verseTextKo": "사울의 아들 요나단이 일어나 수풀에 들어가서 다윗에게 이르러 그로 하나님을 힘있게 의지하게 하였는데 ",
+          "verseTextEn": "And Jonathan Saul’s son arose, and went to David into the wood, and strengthened his hand in God."
+        },
+        {
+          "valence": "긍정",
           "label": "죽음에 애가",
           "verse": "삼하 1:26",
           "approxYear": -1004,
@@ -137,6 +169,14 @@
           "approxYear": -1015,
           "verseTextKo": "다윗이 도피하여 라마로 가서 사무엘에게로 나아가서 사울이 자기에게 행한 일을 다 고하였고 다윗과 사무엘이 나욧으로 가서 거하였더라 ",
           "verseTextEn": "So David fled, and escaped, and came to Samuel to Ramah, and told him all that Saul had done to him. And he and Samuel went and dwelt in Naioth."
+        },
+        {
+          "valence": "긍정",
+          "label": "죽음, 온 이스라엘 애도",
+          "verse": "삼상 25:1",
+          "approxYear": -1012,
+          "verseTextKo": "사무엘이 죽으매 온 이스라엘 무리가 모여 그를 애곡하며 라마 그의 집에서 그를 장사한지라 다윗이 일어나 바란 광야로 내려가니라 ",
+          "verseTextEn": "And Samuel died; and all the Israelites were gathered together, and lamented him, and buried him in his house at Ramah. And David arose, and went down to the wilderness of Paran."
         }
       ]
     },
@@ -191,6 +231,14 @@
           "verseTextEn": "And when the mourning was past, David sent and fetched her to his house, and she became his wife, and bare him a son. But the thing that David had done displeased the Lord. "
         },
         {
+          "valence": "긍정",
+          "label": "다윗의 죄 자복·회개",
+          "verse": "삼하 12:13",
+          "approxYear": -990,
+          "verseTextKo": "다윗이 나단에게 이르되 내가 여호와께 죄를 범하였노라 하매 나단이 다윗에게 대답하되 여호와께서도 당신의 죄를 사하셨나니 당신이 죽지 아니하려니와 ",
+          "verseTextEn": "And David said unto Nathan, I have sinned against the Lord. And Nathan said unto David, The Lord also hath put away thy sin; thou shalt not die."
+        },
+        {
           "valence": "부정",
           "label": "첫 아이 죽음",
           "verse": "삼하 12:18",
@@ -205,6 +253,14 @@
           "approxYear": -971,
           "verseTextKo": "저가 왕께 대답하되 내 주여 왕이 전에 왕의 하나님 여호와를 가리켜 계집종에게 맹세하시기를 네 아들 솔로몬이 정녕 나를 이어 왕이 되어 내 위에 앉으리라 하셨거늘 ",
           "verseTextEn": "And she said unto him, My lord, thou swarest by the Lord thy God unto thine handmaid, saying, Assuredly Solomon thy son shall reign after me, and he shall sit upon my throne."
+        },
+        {
+          "valence": "긍정",
+          "label": "솔로몬 왕위 위해 나단과 협력",
+          "verse": "왕상 1:16",
+          "approxYear": -971,
+          "verseTextKo": "밧세바가 몸을 굽혀 왕께 절하니 왕이 이르되 어찜이냐 ",
+          "verseTextEn": "And Bath–sheba bowed, and did obeisance unto the king. And the king said, What wouldest thou?"
         }
       ]
     },
@@ -227,6 +283,14 @@
           "approxYear": -991,
           "verseTextKo": "우리아가 다윗에게 고하되 언약궤와 이스라엘과 유다가 영채 가운데 유하고 내 주 요압과 내 왕의 신복들이 바깥 들에 유진하였거늘 내가 어찌 내 집으로 가서 먹고 마시고 내 처와 같이 자리이까 내가 이 일을 행치 아니하기로 왕의 사심과 왕의 혼의 사심을 가리켜 맹세하나이다 ",
           "verseTextEn": "And Uriah said unto David, The ark, and Israel, and Judah, abide in tents; and my lord Joab, and the servants of my lord, are encamped in the open fields; shall I then go into mine house, to eat and to drink, and to lie with my wife? as thou livest, and as thy soul liveth, I will not do this thing."
+        },
+        {
+          "valence": "부정",
+          "label": "전선에서 불러 눈속임 시도",
+          "verse": "삼하 11:8",
+          "approxYear": -991,
+          "verseTextKo": "저가 또 우리아에게 이르되 네 집으로 내려가서 발을 씻으라 하니 우리아가 왕궁에서 나가매 왕의 식물이 뒤따라 가니라 ",
+          "verseTextEn": "And David said to Uriah, Go down to thy house, and wash thy feet. And Uriah departed out of the king’s house, and there followed him a mess of meat from the king."
         },
         {
           "valence": "부정",
@@ -268,6 +332,14 @@
         },
         {
           "valence": "긍정",
+          "label": "솔로몬 '여디디야' 명명 전달",
+          "verse": "삼하 12:25",
+          "approxYear": -988,
+          "verseTextKo": "선지자 나단을 보내사 그 이름을 여디디야라 하시니 이는 여호와께서 사랑하심을 인함이더라 ",
+          "verseTextEn": "And he sent by the hand of Nathan the prophet; and he called his name Jedidiah, because of the Lord."
+        },
+        {
+          "valence": "긍정",
           "label": "솔로몬 왕위 지지",
           "verse": "왕상 1:45",
           "approxYear": -971,
@@ -278,6 +350,7 @@
     },
     {
       "type": "가족",
+      "note": "삼남",
       "endpoints": [
         {
           "nameKo": "다윗",
@@ -305,6 +378,14 @@
           "verseTextEn": "So Absalom fled, and went to Geshur, and was there three years."
         },
         {
+          "valence": "부정",
+          "label": "다말 사건에 분노만·조치 없음",
+          "verse": "삼하 13:21",
+          "approxYear": -983,
+          "verseTextKo": "다윗 왕이 이 모든 일을 듣고 심히 노하니라 ",
+          "verseTextEn": "But when king David heard of all these things, he was very wroth."
+        },
+        {
           "valence": "긍정",
           "label": "귀환·화해",
           "verse": "삼하 14:33",
@@ -313,12 +394,36 @@
           "verseTextEn": "So Joab came to the king, and told him: and when he had called for Absalom, he came to the king, and bowed himself on his face to the ground before the king: and the king kissed Absalom. "
         },
         {
+          "valence": "긍정",
+          "label": "요압이 드고아 여인으로 화해 주선",
+          "verse": "삼하 14:21",
+          "approxYear": -981,
+          "verseTextKo": "왕이 요압에게 이르되 내가 이 일을 허락하였으니 가서 소년 압살롬을 데려오라 ",
+          "verseTextEn": "And the king said unto Joab, Behold now, I have done this thing: go therefore, bring the young man Absalom again."
+        },
+        {
           "valence": "부정",
           "label": "반역",
           "verse": "삼하 15:10",
           "approxYear": -980,
           "verseTextKo": "이에 압살롬이 정탐을 이스라엘 모든 지파 가운데 두루 보내어 이르기를 너희는 나팔소리를 듣거든 곧 부르기를 압살롬이 헤브론에서 왕이 되었다 하라 하니라 ",
           "verseTextEn": "But Absalom sent spies throughout all the tribes of Israel, saying, As soon as ye hear the sound of the trumpet, then ye shall say, Absalom reigneth in Hebron."
+        },
+        {
+          "valence": "부정",
+          "label": "성문에서 백성 마음 훔침",
+          "verse": "삼하 15:6",
+          "approxYear": -980,
+          "verseTextKo": "무릇 이스라엘 무리 중에 왕께 재판을 청하러 오는 자들에게 압살롬의 행함이 이 같아서 이스라엘 사람의 마음을 도적하니라 ",
+          "verseTextEn": "And on this manner did Absalom to all Israel that came to the king for judgment: so Absalom stole the hearts of the men of Israel."
+        },
+        {
+          "valence": "부정",
+          "label": "도피 후 후궁 욕보임",
+          "verse": "삼하 16:22",
+          "approxYear": -980,
+          "verseTextKo": "이에 사람들이 압살롬을 위하여 지붕에 장막을 치니 압살롬이 온 이스라엘 무리의 눈 앞에서 그 부친의 후궁들로 더불어 동침하니라 ",
+          "verseTextEn": "So they spread Absalom a tent upon the top of the house; and Absalom went in unto his father’s concubines in the sight of all Israel."
         },
         {
           "valence": "부정",
@@ -360,6 +465,22 @@
         },
         {
           "valence": "부정",
+          "label": "사울이 발디엘에게 줌",
+          "verse": "삼상 25:44",
+          "approxYear": -1012,
+          "verseTextKo": "사울이 그 딸 다윗의 아내 미갈을 갈림에 사는 라이스의 아들 발디에게 주었더라  ",
+          "verseTextEn": "But Saul had given Michal his daughter, David’s wife, to Phalti the son of Laish, which was of Gallim. "
+        },
+        {
+          "valence": "중립",
+          "label": "다윗이 아내로 돌려받음",
+          "verse": "삼하 3:14",
+          "approxYear": -1003,
+          "verseTextKo": "사울의 아들 이스보셋에게 사자들을 보내어 이르되 내 처 미갈을 내게로 돌리라 저는 내가 전에 블레셋 사람의 양피 일백으로 정혼한 자니라 ",
+          "verseTextEn": "And David sent messengers to Ish–bosheth Saul’s son, saying, Deliver me my wife Michal, which I espoused to me for an hundred foreskins of the Philistines."
+        },
+        {
+          "valence": "부정",
           "label": "경멸",
           "verse": "삼하 6:16",
           "approxYear": -995,
@@ -395,11 +516,20 @@
           "approxYear": -1011,
           "verseTextKo": "급히 일어나서 나귀를 타고 따르는 처녀 다섯과 함께 다윗의 사자들을 따라가서 다윗의 아내가 되니라 ",
           "verseTextEn": "And Abigail hasted, and arose, and rode upon an ass, with five damsels of hers that went after her; and she went after the messengers of David, and became his wife."
+        },
+        {
+          "valence": "긍정",
+          "label": "아들 길르압 낳음",
+          "verse": "삼하 3:3",
+          "approxYear": -1000,
+          "verseTextKo": "둘째는 길르압이라 갈멜 사람 나발의 아내 되었던 아비가일의 소생이요 셋째는 압살롬이라 그술 왕 달매의 딸 마아가의 아들이요 ",
+          "verseTextEn": "And his second, Chileab, of Abigail the wife of Nabal the Carmelite; and the third, Absalom the son of Maacah the daughter of Talmai king of Geshur;"
         }
       ]
     },
     {
       "type": "가족",
+      "note": "택한 후계",
       "endpoints": [
         {
           "nameKo": "다윗",
@@ -421,11 +551,508 @@
         },
         {
           "valence": "긍정",
+          "label": "성전 건축 위임·준비 당부",
+          "verse": "대상 22:6",
+          "approxYear": -972,
+          "verseTextKo": "다윗이 그 아들 솔로몬을 불러 이스라엘 하나님 여호와를 위하여 전을 건축하기를 부탁하여 ",
+          "verseTextEn": "Then he called for Solomon his son, and charged him to build an house for the Lord God of Israel."
+        },
+        {
+          "valence": "긍정",
           "label": "후계 계승",
           "verse": "왕상 1:30",
           "approxYear": -971,
           "verseTextKo": "내가 이전에 이스라엘 하나님 여호와를 가리켜 네게 맹세하여 이르기를 네 아들 솔로몬이 정녕 나를 이어 왕이 되고 나를 대신하여 내 위에 앉으리라 하였으니 내가 오늘날 그대로 행하리라 ",
           "verseTextEn": "Even as I sware unto thee by the Lord God of Israel, saying, Assuredly Solomon thy son shall reign after me, and he shall sit upon my throne in my stead; even so will I certainly do this day."
+        },
+        {
+          "valence": "긍정",
+          "label": "다윗의 유언·당부",
+          "verse": "왕상 2:2",
+          "approxYear": -971,
+          "verseTextKo": "내가 이제 세상 모든 사람의 가는 길로 가게 되었노니 너는 힘써 대장부가 되고 ",
+          "verseTextEn": "I go the way of all the earth: be thou strong therefore, and shew thyself a man;"
+        }
+      ]
+    },
+    {
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "요압"
+        }
+      ],
+      "type": "신하",
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "아브넬 살해",
+          "verse": "삼하 3:27",
+          "approxYear": -1002,
+          "verseTextKo": "아브넬이 헤브론으로 돌아오매 요압이 더불어 종용히 말하려는 듯이 저를 데리고 성문으로 들어가서 거기서 배를 찔러 죽이니 이는 자기의 동생 아사헬의 피를 인함이더라 ",
+          "verseTextEn": "And when Abner was returned to Hebron, Joab took him aside in the gate to speak with him quietly, and smote him there under the fifth rib, that he died, for the blood of Asahel his brother."
+        },
+        {
+          "valence": "긍정",
+          "label": "예루살렘 정복 선봉·군장",
+          "verse": "대상 11:6",
+          "approxYear": -1000,
+          "verseTextKo": "다윗이 가로되 먼저 여부스 사람을 치는 자는 두목과 장관을 삼으리라 하였더니 스루야의 아들 요압이 먼저 올라갔으므로 두목이 되었고 ",
+          "verseTextEn": "And David said, Whosoever smiteth the Jebusites first shall be chief and captain. So Joab the son of Zeruiah went first up, and was chief."
+        },
+        {
+          "valence": "부정",
+          "label": "우리아 죽음 실행",
+          "verse": "삼하 11:16",
+          "approxYear": -991,
+          "verseTextKo": "요압이 그 성을 살펴 용사들의 있는 줄을 아는 그곳에 우리아를 두니 ",
+          "verseTextEn": "And it came to pass, when Joab observed the city, that he assigned Uriah unto a place where he knew that valiant men were."
+        },
+        {
+          "valence": "긍정",
+          "label": "압살롬 화해 주선",
+          "verse": "삼하 14:1",
+          "approxYear": -981,
+          "verseTextKo": "스루야의 아들 요압이 왕의 마음이 압살롬에게로 향하는줄 알고 ",
+          "verseTextEn": "Now Joab the son of Zeruiah perceived that the king’s heart was toward Absalom."
+        },
+        {
+          "valence": "부정",
+          "label": "압살롬 살해",
+          "verse": "삼하 18:14",
+          "approxYear": -979,
+          "verseTextKo": "요압이 가로되 나는 너와 같이 지체할 수 없다 하고 손에 작은 창 셋을 가지고 가서 상수리나무 가운데서 아직 살아 있는 압살롬의 심장을 찌르니 ",
+          "verseTextEn": "Then said Joab, I may not tarry thus with thee. And he took three darts in his hand, and thrust them through the heart of Absalom, while he was yet alive in the midst of the oak."
+        },
+        {
+          "valence": "긍정",
+          "label": "인구조사 반대",
+          "verse": "삼하 24:3",
+          "approxYear": -975,
+          "verseTextKo": "요압이 왕께 고하되 이 백성은 얼마든지 왕의 하나님 여호와께서 백 배나 더하게 하사 내 주 왕의 눈으로 보게 하시기를 원하나이다 그런데 내 주 왕은 어찌하여 이런 일을 기뻐하시나이까 하되 ",
+          "verseTextEn": "And Joab said unto the king, Now the Lord thy God add unto the people, how many soever they be, an hundredfold, and that the eyes of my lord the king may see it: but why doth my lord the king delight in this thing?"
+        },
+        {
+          "valence": "부정",
+          "label": "다윗 임종의 처형 명령",
+          "verse": "왕상 2:5",
+          "approxYear": -971,
+          "verseTextKo": "스루야의 아들 요압이 내게 행한 일 곧 이스라엘 군대의 두 장관 넬의 아들 아브넬과 예델의 아들 아마사에게 행한 일을 네가 알거니와 저가 저희를 죽여 태평시대에 전쟁의 피를 흘리고 전쟁의 피로 자기의 허리에 띤 띠와 발에 신은 신에 묻혔으니 ",
+          "verseTextEn": "Moreover thou knowest also what Joab the son of Zeruiah did to me, and what he did to the two captains of the hosts of Israel, unto Abner the son of Ner, and unto Amasa the son of Jether, whom he slew, and shed the blood of war in peace, and put the blood of war upon his girdle that was about his loins, and in his shoes that were on his feet."
+        }
+      ]
+    },
+    {
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "아히도벨"
+        }
+      ],
+      "type": "신하",
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "신뢰받는 모사",
+          "verse": "삼하 15:12",
+          "approxYear": -985,
+          "verseTextKo": "제사 드릴 때에 압살롬이 사람을 보내어 다윗의 모사 길로 사람 아히도벨을 그 성읍 길로에서 청하여 온지라 반역하는 일이 커가매 압살롬에게로 돌아오는 백성이 많아지니라 ",
+          "verseTextEn": "And Absalom sent for Ahithophel the Gilonite, David’s counsellor, from his city, even from Giloh, while he offered sacrifices. And the conspiracy was strong; for the people increased continually with Absalom."
+        },
+        {
+          "valence": "부정",
+          "label": "압살롬 모반 가담",
+          "verse": "삼하 15:31",
+          "approxYear": -980,
+          "verseTextKo": "혹이 다윗에게 고하되 압살롬과 함께 모반한 자들 가운데 아히도벨이 있나이다 하니 다윗이 가로되 여호와여 원컨대 아히도벨의 모략을 어리석게 하옵소서 하니라 ",
+          "verseTextEn": "And one told David, saying, Ahithophel is among the conspirators with Absalom. And David said, O Lord, I pray thee, turn the counsel of Ahithophel into foolishness."
+        },
+        {
+          "valence": "부정",
+          "label": "자살",
+          "verse": "삼하 17:23",
+          "approxYear": -980,
+          "verseTextKo": "아히도벨이 자기 모략이 시행되지 못함을 보고 나귀에 안장을 지우고 떠나 고향으로 돌아가서 자기 집에 이르러 집을 정리하고 스스로 목매어 죽으매 그 아비 묘에 장사되니라 ",
+          "verseTextEn": "And when Ahithophel saw that his counsel was not followed, he saddled his ass, and arose, and gat him home to his house, to his city, and put his household in order, and hanged himself, and died, and was buried in the sepulchre of his father."
+        }
+      ]
+    },
+    {
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "아마사"
+        }
+      ],
+      "type": "신하",
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "압살롬 반란군 지휘",
+          "verse": "삼하 17:25",
+          "approxYear": -980,
+          "verseTextKo": "압살롬이 아마사로 요압을 대신하여 군장을 삼으니라 아마사는 이스라엘 사람 이드라라 하는 자의 아들이라 이드라가 나하스의 딸 아비갈과 동침하여 저를 낳았으며 아비갈은 요압의 어미 스루야의 동생이더라 ",
+          "verseTextEn": "And Absalom made Amasa captain of the host instead of Joab: which Amasa was a man’s son, whose name was Ithra an Israelite, that went in to Abigail the daughter of Nahash, sister to Zeruiah Joab’s mother."
+        },
+        {
+          "valence": "긍정",
+          "label": "군사령관 회유",
+          "verse": "삼하 19:13",
+          "approxYear": -978,
+          "verseTextKo": "너희는 또 아마사에게 이르기를 너는 내 골육이 아니냐 네가 요압을 대신하여 항상 내 앞에서 군장이 되지 아니하면 하나님이 내게 벌 위에 벌을 내리시기를 바라노라 하셨다 하라 하여 ",
+          "verseTextEn": "And say ye to Amasa, Art thou not of my bone, and of my flesh? God do so to me, and more also, if thou be not captain of the host before me continually in the room of Joab."
+        },
+        {
+          "valence": "부정",
+          "label": "요압에 피살",
+          "verse": "삼하 20:10",
+          "approxYear": -978,
+          "verseTextKo": "아마사가 요압의 손에 있는 칼은 주의치 아니한지라 요압이 칼로 그 배를 찌르매 그 창자가 땅에 흐르니 다시 치지 아니하여도 죽으니라 요압과 그 동생 아비새가 비그리의 아들 세바를 쫓을새 ",
+          "verseTextEn": "But Amasa took no heed to the sword that was in Joab’s hand: so he smote him therewith in the fifth rib, and shed out his bowels to the ground, and struck him not again; and he died. So Joab and Abishai his brother pursued after Sheba the son of Bichri."
+        }
+      ]
+    },
+    {
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "시바"
+        }
+      ],
+      "type": "신하",
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "므비보셋 모함",
+          "verse": "삼하 16:3",
+          "approxYear": -980,
+          "verseTextKo": "왕이 가로되 네 주인의 아들이 어디 있느뇨 시바가 왕께 고하되 예루살렘에 있는데 저가 말하기를 이스라엘 족속이 오늘 내 아비의 나라를 내게 돌리리라 하나이다 ",
+          "verseTextEn": "And the king said, And where is thy master’s son? And Ziba said unto the king, Behold, he abideth at Jerusalem: for he said, To day shall the house of Israel restore me the kingdom of my father."
+        },
+        {
+          "valence": "중립",
+          "label": "땅 분배 판결",
+          "verse": "삼하 19:29",
+          "approxYear": -978,
+          "verseTextKo": "왕이 저에게 이르되 네가 어찌하여 또 네 일을 말하느냐 내가 이르노니 너는 시바와 밭을 나누라 ",
+          "verseTextEn": "And the king said unto him, Why speakest thou any more of thy matters? I have said, Thou and Ziba divide the land."
+        }
+      ]
+    },
+    {
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "아브넬"
+        }
+      ],
+      "type": "대적",
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "이스보셋 옹립·대적",
+          "verse": "삼하 2:8",
+          "approxYear": -1005,
+          "verseTextKo": "사울의 군장 넬의 아들 아브넬이 이미 사울의 아들 이스보셋을 데리고 마하나임으로 건너가서 ",
+          "verseTextEn": "But Abner the son of Ner, captain of Saul’s host, took Ish–bosheth the son of Saul, and brought him over to Mahanaim;"
+        },
+        {
+          "valence": "긍정",
+          "label": "다윗과 화친 시도",
+          "verse": "삼하 3:12",
+          "approxYear": -1003,
+          "verseTextKo": "아브넬이 자기를 대신하여 사자들을 다윗에게 보내어 가로되 이 땅이 뉘 것이니이까 또 가로되 당신은 나로 더불어 언약하사이다 내 손이 당신을 도와 온 이스라엘로 당신에게 돌아가게 하리이다 ",
+          "verseTextEn": "And Abner sent messengers to David on his behalf, saying, Whose is the land? saying also, Make thy league with me, and, behold, my hand shall be with thee, to bring about all Israel unto thee."
+        },
+        {
+          "valence": "긍정",
+          "label": "피살, 다윗의 애도",
+          "verse": "삼하 3:33",
+          "approxYear": -1002,
+          "verseTextKo": "왕이 아브넬을 위하여 애가를 지어 가로되 아브넬의 죽음이 어찌하여 미련한 자의 죽음 같은고 ",
+          "verseTextEn": "And the king lamented over Abner, and said, Died Abner as a fool dieth?"
+        }
+      ]
+    },
+    {
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "이스보셋"
+        }
+      ],
+      "type": "대적",
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "사울 아들 경쟁 왕",
+          "verse": "삼하 2:10",
+          "approxYear": -1005,
+          "verseTextKo": "사울의 아들 이스보셋이 비로소 이스라엘 왕이 될 때에 나이 사십 세며 두 해 동안 위에 있으니라 유다 족속은 다윗을 따르니 ",
+          "verseTextEn": "Ish–bosheth Saul’s son was forty years old when he began to reign over Israel, and reigned two years. But the house of Judah followed David."
+        },
+        {
+          "valence": "중립",
+          "label": "부하에 피살",
+          "verse": "삼하 4:7",
+          "approxYear": -1003,
+          "verseTextKo": "저희가 집에 들어가니 이스보셋이 침실에서 상 위에 누웠는지라 저를 쳐 죽이고 목을 베어 그 머리를 가지고 밤새도록 아라바 길로 행하여 ",
+          "verseTextEn": "For when they came into the house, he lay on his bed in his bedchamber, and they smote him, and slew him, and beheaded him, and took his head, and gat them away through the plain all night."
+        }
+      ]
+    },
+    {
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "시므이"
+        }
+      ],
+      "type": "대적",
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "다윗 저주·돌팔매",
+          "verse": "삼하 16:5",
+          "approxYear": -980,
+          "verseTextKo": "다윗 왕이 바후림에 이르매 거기서 사울의 집 족속 하나가 나오니 게라의 아들이요 이름은 시므이라 저가 나오면서 연하여 저주하고 ",
+          "verseTextEn": "And when king David came to Bahurim, behold, thence came out a man of the family of the house of Saul, whose name was Shimei, the son of Gera: he came forth, and cursed still as he came."
+        },
+        {
+          "valence": "긍정",
+          "label": "귀환 시 용서",
+          "verse": "삼하 19:23",
+          "approxYear": -978,
+          "verseTextKo": "시므이에게 이르되 네가 죽지 아니하리라 하고 저에게 맹세하니라 ",
+          "verseTextEn": "Therefore the king said unto Shimei, Thou shalt not die. And the king sware unto him."
+        },
+        {
+          "valence": "부정",
+          "label": "다윗 임종의 처리 당부",
+          "verse": "왕상 2:8",
+          "approxYear": -971,
+          "verseTextKo": "바후림 베냐민 사람 게라의 아들 시므이가 너와 함께 있나니 저는 내가 마하나임으로 갈 때에 독한 말로 나를 저주하였느니라 그러나 저가 요단에 내려와서 나를 영접하기로 내가 여호와를 가리켜 맹세하여 이르기를 내가 칼로 너를 죽이지 아니하리라 하였노라 ",
+          "verseTextEn": "And, behold, thou hast with thee Shimei the son of Gera, a Benjamite of Bahurim, which cursed me with a grievous curse in the day when I went to Mahanaim: but he came down to meet me at Jordan, and I sware to him by the Lord, saying, I will not put thee to death with the sword."
+        }
+      ]
+    },
+    {
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "나발"
+        }
+      ],
+      "type": "대적",
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "다윗 요청 모욕·거절",
+          "verse": "삼상 25:10",
+          "approxYear": -1012,
+          "verseTextKo": "나발이 다윗의 사환들에게 대답하여 가로되 다윗은 누구며 이새의 아들은 누구뇨 근일에 각기 주인에게서 억지로 떠나는 종이 많도다 ",
+          "verseTextEn": "And Nabal answered David’s servants, and said, Who is David? and who is the son of Jesse? there be many servants now a days that break away every man from his master."
+        },
+        {
+          "valence": "중립",
+          "label": "급사",
+          "verse": "삼상 25:38",
+          "approxYear": -1012,
+          "verseTextKo": "한 열흘 후에 여호와께서 나발을 치시매 그가 죽으니라 ",
+          "verseTextEn": "And it came to pass about ten days after, that the Lord smote Nabal, that he died."
+        }
+      ]
+    },
+    {
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "므비보셋"
+        }
+      ],
+      "type": "가족",
+      "note": "요나단의 아들",
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "언약적 은혜·왕의 상",
+          "verse": "삼하 9:7",
+          "approxYear": -995,
+          "verseTextKo": "다윗이 가로되 무서워 말라 내가 반드시 네 아비 요나단을 인하여 네게 은총을 베풀리라 내가 네 조부 사울의 밭을 다 네게 도로 주겠고 또 너는 항상 내 상에서 먹을지니라 ",
+          "verseTextEn": "And David said unto him, Fear not: for I will surely shew thee kindness for Jonathan thy father’s sake, and will restore thee all the land of Saul thy father; and thou shalt eat bread at my table continually."
+        },
+        {
+          "valence": "중립",
+          "label": "도피 오해·해명",
+          "verse": "삼하 19:26",
+          "approxYear": -978,
+          "verseTextKo": "대답하되 내 주 왕이여 왕의 종 나는 절뚝발이이므로 내 나귀에 안장을 지워 타고 왕과 함께 가려하였더니 나의 종이 나를 속이고 ",
+          "verseTextEn": "And he answered, My lord, O king, my servant deceived me: for thy servant said, I will saddle me an ass, that I may ride thereon, and go to the king; because thy servant is lame."
+        }
+      ]
+    },
+    {
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "암논"
+        }
+      ],
+      "type": "가족",
+      "note": "장남",
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "장남",
+          "verse": "삼하 3:2",
+          "approxYear": -1000,
+          "verseTextKo": "다윗이 헤브론에서 아들들을 낳았으되 맏아들은 암논이라 이스르엘 여인 아히노암의 소생이요 ",
+          "verseTextEn": "And unto David were sons born in Hebron: and his firstborn was Amnon, of Ahinoam the Jezreelitess;"
+        },
+        {
+          "valence": "부정",
+          "label": "다말 범함",
+          "verse": "삼하 13:14",
+          "approxYear": -983,
+          "verseTextKo": "암논이 그 말을 듣지 아니하고 다말보다 힘이 세므로 억지로 동침하니라 ",
+          "verseTextEn": "Howbeit he would not hearken unto her voice: but, being stronger than she, forced her, and lay with her."
+        },
+        {
+          "valence": "부정",
+          "label": "압살롬에 피살",
+          "verse": "삼하 13:29",
+          "approxYear": -983,
+          "verseTextKo": "압살롬의 사환들이 그 분부대로 암논에게 행하매 왕의 모든 아들이 일어나 각기 노새를 타고 도망하니라 ",
+          "verseTextEn": "And the servants of Absalom did unto Amnon as Absalom had commanded. Then all the king’s sons arose, and every man gat him up upon his mule, and fled."
+        }
+      ]
+    },
+    {
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "아도니야"
+        }
+      ],
+      "type": "가족",
+      "note": "사남",
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "스스로 왕 자칭",
+          "verse": "왕상 1:5",
+          "approxYear": -971,
+          "verseTextKo": "때에 학깃의 아들 아도니야가 스스로 높여서 이르기를 내가 왕이 되리라 하고 자기를 위하여 병거와 기병과 전배 오십 인을 예비하니 ",
+          "verseTextEn": "Then Adonijah the son of Haggith exalted himself, saying, I will be king: and he prepared him chariots and horsemen, and fifty men to run before him."
+        },
+        {
+          "valence": "중립",
+          "label": "솔로몬에 굴복",
+          "verse": "왕상 1:50",
+          "approxYear": -971,
+          "verseTextKo": "아도니야도 솔로몬을 두려워하여 일어나 가서 제단 뿔을 잡으니 ",
+          "verseTextEn": "And Adonijah feared because of Solomon, and arose, and went, and caught hold on the horns of the altar."
+        },
+        {
+          "valence": "부정",
+          "label": "다윗이 솔로몬을 세워 밀어냄",
+          "verse": "왕상 1:30",
+          "approxYear": -971,
+          "verseTextKo": "내가 이전에 이스라엘 하나님 여호와를 가리켜 네게 맹세하여 이르기를 네 아들 솔로몬이 정녕 나를 이어 왕이 되고 나를 대신하여 내 위에 앉으리라 하였으니 내가 오늘날 그대로 행하리라 ",
+          "verseTextEn": "Even as I sware unto thee by the Lord God of Israel, saying, Assuredly Solomon thy son shall reign after me, and he shall sit upon my throne in my stead; even so will I certainly do this day."
+        }
+      ]
+    },
+    {
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "아비삭"
+        }
+      ],
+      "type": "연인",
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "만년 시중든 동녀",
+          "verse": "왕상 1:3",
+          "approxYear": -971,
+          "verseTextKo": "이스라엘 사방 경내에 아리따운 동녀를 구하다가 수넴 여자 아비삭을 얻어 왕께 데려왔으니 ",
+          "verseTextEn": "So they sought for a fair damsel throughout all the coasts of Israel, and found Abishag a Shunammite, and brought her to the king."
+        }
+      ]
+    },
+    {
+      "endpoints": [
+        {
+          "nameKo": "다윗",
+          "slug": "david"
+        },
+        {
+          "nameKo": "아기스"
+        }
+      ],
+      "type": "군주",
+      "phases": [
+        {
+          "valence": "중립",
+          "label": "가드 망명·미친 척",
+          "verse": "삼상 21:13",
+          "approxYear": -1013,
+          "verseTextKo": "그들의 앞에서 그 행동을 변하여 미친 체 하고 대문짝에 그적거리며 침을 수염에 흘리매 ",
+          "verseTextEn": "And he changed his behaviour before them, and feigned himself mad in their hands, and scrabbled on the doors of the gate, and let his spittle fall down upon his beard."
+        },
+        {
+          "valence": "긍정",
+          "label": "시글락 하사",
+          "verse": "삼상 27:6",
+          "approxYear": -1008,
+          "verseTextKo": "아기스가 그 날에 시글락을 그에게 주었으므로 시글락이 오늘까지 유다 왕에게 속하니라 ",
+          "verseTextEn": "Then Achish gave him Ziklag that day: wherefore Ziklag pertaineth unto the kings of Judah unto this day."
+        },
+        {
+          "valence": "중립",
+          "label": "이스라엘과 싸울 뻔하다 방백에 거부됨",
+          "verse": "삼상 29:9",
+          "approxYear": -1005,
+          "verseTextKo": "아기스가 다윗에게 대답하여 가로되 네가 내 목전에 하나님의 사자 같이 선한 것을 내가 아나 블레셋 사람의 방백들은 말하기를 그가 우리와 함께 전장에 올라가지 못하리라 하니 ",
+          "verseTextEn": "And Achish answered and said to David, I know that thou art good in my sight, as an angel of God: notwithstanding the princes of the Philistines have said, He shall not go up with us to the battle."
         }
       ]
     }

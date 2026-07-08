@@ -223,6 +223,7 @@ def _build_relations(node_id: str) -> dict:
         relations.append(
             {
                 "type": pair.get("type"),
+                "note": pair.get("note"),
                 "withNameKo": other.get("nameKo"),
                 "withId": slug_to_id.get(other["slug"]) if other.get("slug") else None,
                 "phases": pair.get("phases", []),

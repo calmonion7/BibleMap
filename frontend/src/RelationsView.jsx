@@ -86,8 +86,11 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
           {/* 두 인물 좌우 앵커 + 관계 유형 배지 */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '6px 0 20px' }}>
             <span style={{ fontWeight: 700, fontSize: 16 }}>{personName || '이 인물'}</span>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, flexShrink: 0, fontSize: 11, color: '#8a94ad', padding: '2px 8px', borderRadius: 999, background: '#eef0f5' }}>
-              <TypeIcon type={r.type} size={13} />{r.type}
+            <span style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 2, flexShrink: 0 }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11, color: '#8a94ad', padding: '2px 8px', borderRadius: 999, background: '#eef0f5' }}>
+                <TypeIcon type={r.type} size={13} />{r.type}
+              </span>
+              {r.note && <span style={{ fontSize: 10, color: '#7c8db0' }}>{r.note}</span>}
             </span>
             <span style={{ flex: 1, height: 1, background: '#d3d8e4' }} />
             {isCurated(r.withId)
@@ -146,6 +149,7 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
                 ? <button onClick={e => { e.stopPropagation(); onExploreJourney(r.withId) }} style={{ border: 'none', background: 'none', padding: 0, cursor: 'pointer', fontSize: 13, fontWeight: 700, color: '#4a90d9', textAlign: 'center' }}>{r.withNameKo}</button>
                 : <span style={{ fontSize: 13, fontWeight: 700, color: '#404a63', textAlign: 'center' }}>{r.withNameKo}</span>}
               <span style={{ fontSize: 10, color: '#aab2c5' }}>{r.type}</span>
+              {r.note && <span style={{ fontSize: 10, color: '#7c8db0', textAlign: 'center' }}>{r.note}</span>}
             </div>
             {/* 사건 시퀀스 (우, 줄바꿈) */}
             <div style={{ flex: 1, minWidth: 0, display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 4, paddingTop: 2 }}>
