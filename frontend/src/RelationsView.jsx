@@ -40,7 +40,7 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
     return <p style={{ padding: 24, color: '#7c8db0', fontSize: 14 }}>이 인물의 관계 데이터가 없습니다.</p>
   }
 
-  const bc = y => `BC ${Math.abs(y)}`
+  const era = y => y < 0 ? `BC ${-y}` : `AD ${y}`
   const isCurated = withId => withId && curatedIds?.has(withId)
 
   // 유형순 정렬(유형끼리 군집, 동일 유형 내 최초 연도). focusIdx·versePhase는 이 sorted 기준.
@@ -69,7 +69,7 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
             <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
             <button onClick={() => setVersePhase(null)} style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: 20, color: '#aab2c5', lineHeight: 1, padding: '0 2px' }}>×</button>
           </div>
-          <div style={{ fontSize: 12, color: '#8a94ad', marginBottom: 8 }}>{ph.verse} · {bc(ph.approxYear)}</div>
+          <div style={{ fontSize: 12, color: '#8a94ad', marginBottom: 8 }}>{ph.verse} · {era(ph.approxYear)}</div>
           {Array.isArray(ctx) && ctx.length ? (
             <p style={{ fontSize: 15, lineHeight: 1.8, color: '#6b7590', margin: 0 }}>
               {ctx.map((c, i) => (
@@ -119,7 +119,7 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
                   <span style={{ width: 14, height: 14, borderRadius: '50%', background: VALENCE_COLOR[ph.valence] ?? '#8a94ad', flexShrink: 0, marginTop: 3 }} />
                   <span style={{ flex: 1 }}>
                     <span style={{ fontWeight: 600, fontSize: 15, color: '#2a3350' }}>{ph.label}</span>
-                    <span style={{ display: 'block', fontSize: 12, color: '#8a94ad', marginTop: 2 }}>{bc(ph.approxYear)} · {ph.verse} · 📖 근거 보기</span>
+                    <span style={{ display: 'block', fontSize: 12, color: '#8a94ad', marginTop: 2 }}>{era(ph.approxYear)} · {ph.verse} · 📖 근거 보기</span>
                   </span>
                 </button>
                 {j < r.phases.length - 1 && <div style={{ width: 2, height: 16, background: '#d3d8e4', marginLeft: 12 }} />}
@@ -174,7 +174,7 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
                   >
                     <span style={{ width: 9, height: 9, borderRadius: '50%', flexShrink: 0, background: VALENCE_COLOR[ph.valence] ?? '#8a94ad' }} />
                     <span style={{ fontSize: 12, color: '#2a3350', fontWeight: 500 }}>{ph.label}</span>
-                    <span style={{ fontSize: 10, color: '#aab2c5' }}>{bc(ph.approxYear)}</span>
+                    <span style={{ fontSize: 10, color: '#aab2c5' }}>{era(ph.approxYear)}</span>
                   </button>
                 </span>
               ))}

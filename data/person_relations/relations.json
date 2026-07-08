@@ -4978,6 +4978,573 @@
           "verseTextEn": "Then his father and his mother said unto him, Is there never a woman among the daughters of thy brethren, or among all my people, that thou goest to take a wife of the uncircumcised Philistines? And Samson said unto his father, Get her for me; for she pleaseth me well."
         }
       ]
+    },
+    {
+      "type": "스승제자",
+      "endpoints": [
+        {
+          "nameKo": "예수",
+          "slug": "jesus"
+        },
+        {
+          "nameKo": "베드로",
+          "slug": "peter"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "사람을 낚는 어부로 부르심",
+          "verse": "마 4:19",
+          "approxYear": 28,
+          "verseTextKo": "말씀하시되 나를 따라 오너라 내가 너희로 사람을 낚는 어부가 되게 하리라 하시니 ",
+          "verseTextEn": "And he saith unto them, Follow me, and I will make you fishers of men."
+        },
+        {
+          "valence": "긍정",
+          "label": "주는 그리스도시요 — 반석",
+          "verse": "마 16:16",
+          "approxYear": 29,
+          "context": "마 16:16-18",
+          "verseTextKo": "시몬 베드로가 대답하여 가로되 주는 그리스도시요 살아계신 하나님의 아들이시니이다 ",
+          "verseTextEn": "And Simon Peter answered and said, Thou art the Christ, the Son of the living God.",
+          "contextKo": [
+            {
+              "v": 16,
+              "t": "시몬 베드로가 대답하여 가로되 주는 그리스도시요 살아계신 하나님의 아들이시니이다 ",
+              "a": true
+            },
+            {
+              "v": 17,
+              "t": "예수께서 대답하여 가라사대 바요나 시몬아 네가 복이 있도다 이를 네게 알게 한 이는 혈육이 아니요 하늘에 계신 내 아버지시니라 "
+            },
+            {
+              "v": 18,
+              "t": "또 내가 네게 이르노니 너는 베드로라 내가 이 반석 위에 내 교회를 세우리니 음부의 권세가 이기지 못하리라 "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 16,
+              "t": "And Simon Peter answered and said, Thou art the Christ, the Son of the living God.",
+              "a": true
+            },
+            {
+              "v": 17,
+              "t": "And Jesus answered and said unto him, Blessed art thou, Simon Bar–jona: for flesh and blood hath not revealed it unto thee, but my Father which is in heaven."
+            },
+            {
+              "v": 18,
+              "t": "And I say also unto thee, That thou art Peter, and upon this rock I will build my church; and the gates of hell shall not prevail against it."
+            }
+          ]
+        },
+        {
+          "valence": "부정",
+          "label": "닭 울기 전 세 번 부인",
+          "verse": "마 26:75",
+          "approxYear": 30,
+          "verseTextKo": "이에 베드로가 예수의 말씀에 닭 울기 전에 네가 세 번 나를 부인하리라 하심이 생각나서 밖에 나가서 심히 통곡하니라  ",
+          "verseTextEn": "And Peter remembered the word of Jesus, which said unto him, Before the cock crow, thou shalt deny me thrice. And he went out, and wept bitterly. "
+        },
+        {
+          "valence": "긍정",
+          "label": "내 양을 먹이라 — 회복",
+          "verse": "요 21:17",
+          "approxYear": 30,
+          "verseTextKo": "세번째 가라사대 요한의 아들 시몬아 네가 나를 사랑하느냐 하시니 주께서 세번째 네가 나를 사랑하느냐 하시므로 베드로가 근심하여 가로되 주여 모든 것을 아시오매 내가 주를 사랑하는 줄을 주께서 아시나이다 예수께서 가라사대 내 양을 먹이라 ",
+          "verseTextEn": "He saith unto him the third time, Simon, son of Jonas, lovest thou me? Peter was grieved because he said unto him the third time, Lovest thou me? And he said unto him, Lord, thou knowest all things; thou knowest that I love thee. Jesus saith unto him, Feed my sheep."
+        }
+      ]
+    },
+    {
+      "type": "스승제자",
+      "endpoints": [
+        {
+          "nameKo": "예수",
+          "slug": "jesus"
+        },
+        {
+          "nameKo": "사도 요한",
+          "slug": "john_the_apostle"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "세베대의 아들 — 부르심",
+          "verse": "마 4:21",
+          "approxYear": 28,
+          "verseTextKo": "거기서 더 가시다가 다른 두 형제 곧 세베대의 아들 야고보와 그 형제 요한이 그 부친 세베대와 한가지로 배에서 그물 깁는 것을 보시고 부르시니 ",
+          "verseTextEn": "And going on from thence, he saw other two brethren, James the son of Zebedee, and John his brother, in a ship with Zebedee their father, mending their nets; and he called them."
+        },
+        {
+          "valence": "긍정",
+          "label": "사랑하시는 제자 — 어머니를 부탁",
+          "verse": "요 19:26",
+          "approxYear": 30,
+          "verseTextKo": "예수께서 그 모친과 사랑하시는 제자가 곁에 섰는 것을 보시고 그 모친께 말씀하시되 여자여 보소서 아들이니이다 하시고 ",
+          "verseTextEn": "When Jesus therefore saw his mother, and the disciple standing by, whom he loved, he saith unto his mother, Woman, behold thy son!"
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "어머니",
+      "endpoints": [
+        {
+          "nameKo": "예수",
+          "slug": "jesus"
+        },
+        {
+          "nameKo": "마리아",
+          "slug": "mary"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "중립",
+          "label": "성전에서 찾은 열두 살",
+          "verse": "눅 2:48",
+          "approxYear": 12,
+          "verseTextKo": "그 부모가 보고 놀라며 그 모친은 가로되 아이야 어찌하여 우리에게 이렇게 하였느냐 보라 네 아버지와 내가 근심하여 너를 찾았노라 ",
+          "verseTextEn": "And when they saw him, they were amazed: and his mother said unto him, Son, why hast thou thus dealt with us? behold, thy father and I have sought thee sorrowing."
+        },
+        {
+          "valence": "긍정",
+          "label": "가나 혼인 — 무슨 말씀을 하시든지",
+          "verse": "요 2:5",
+          "approxYear": 27,
+          "verseTextKo": "그 어머니가 하인들에게 이르되 너희에게 무슨 말씀을 하시든지 그대로 하라 하니라 ",
+          "verseTextEn": "His mother saith unto the servants, Whatsoever he saith unto you, do it. "
+        },
+        {
+          "valence": "부정",
+          "label": "십자가 곁 어머니 — 요한에게 부탁",
+          "verse": "요 19:26",
+          "approxYear": 30,
+          "verseTextKo": "예수께서 그 모친과 사랑하시는 제자가 곁에 섰는 것을 보시고 그 모친께 말씀하시되 여자여 보소서 아들이니이다 하시고 ",
+          "verseTextEn": "When Jesus therefore saw his mother, and the disciple standing by, whom he loved, he saith unto his mother, Woman, behold thy son!"
+        }
+      ]
+    },
+    {
+      "type": "선지자",
+      "endpoints": [
+        {
+          "nameKo": "예수",
+          "slug": "jesus"
+        },
+        {
+          "nameKo": "세례 요한",
+          "slug": "john_the_baptist"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "요단강 세례 — 하늘이 열림",
+          "verse": "마 3:16",
+          "approxYear": 27,
+          "context": "마 3:16-17",
+          "verseTextKo": "예수께서 침례를 받으시고 곧 물에서 올라오실새 하늘이 열리고 하나님의 성령이 비둘기 같이 내려 자기 위에 임하심을 보시더니 ",
+          "verseTextEn": "And Jesus, when he was baptized, went up straightway out of the water: and, lo, the heavens were opened unto him, and he saw the Spirit of God descending like a dove, and lighting upon him:",
+          "contextKo": [
+            {
+              "v": 16,
+              "t": "예수께서 침례를 받으시고 곧 물에서 올라오실새 하늘이 열리고 하나님의 성령이 비둘기 같이 내려 자기 위에 임하심을 보시더니 ",
+              "a": true
+            },
+            {
+              "v": 17,
+              "t": "하늘로서 소리가 있어 말씀하시되 이는 내 사랑하는 아들이요 내 기뻐하는 자라 하시니라  "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 16,
+              "t": "And Jesus, when he was baptized, went up straightway out of the water: and, lo, the heavens were opened unto him, and he saw the Spirit of God descending like a dove, and lighting upon him:",
+              "a": true
+            },
+            {
+              "v": 17,
+              "t": "And lo a voice from heaven, saying, This is my beloved Son, in whom I am well pleased. "
+            }
+          ]
+        },
+        {
+          "valence": "긍정",
+          "label": "보라 세상 죄를 지고 가는 어린 양",
+          "verse": "요 1:29",
+          "approxYear": 27,
+          "verseTextKo": "이튿날 요한이 예수께서 자기에게 나아오심을 보고 가로되 보라 세상 죄를 지고 가는 하나님의 어린 양이로다 ",
+          "verseTextEn": "The next day John seeth Jesus coming unto him, and saith, Behold the Lamb of God, which taketh away the sin of the world."
+        }
+      ]
+    },
+    {
+      "type": "스승제자",
+      "endpoints": [
+        {
+          "nameKo": "예수",
+          "slug": "jesus"
+        },
+        {
+          "nameKo": "가룟 유다"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "은 삼십에 팔기로 함",
+          "verse": "마 26:15",
+          "approxYear": 30,
+          "verseTextKo": "내가 예수를 너희에게 넘겨 주리니 얼마나 주려느냐 하니 그들이 은 삼십을 달아 주거늘 ",
+          "verseTextEn": "And said unto them, What will ye give me, and I will deliver him unto you? And they covenanted with him for thirty pieces of silver."
+        },
+        {
+          "valence": "부정",
+          "label": "겟세마네 — 입맞춤으로 넘김",
+          "verse": "마 26:49",
+          "approxYear": 30,
+          "verseTextKo": "곧 예수께 나아와 랍비여 안녕하시옵니까 하고 입을 맞추니 ",
+          "verseTextEn": "And forthwith he came to Jesus, and said, Hail, master; and kissed him."
+        }
+      ]
+    },
+    {
+      "type": "군주",
+      "endpoints": [
+        {
+          "nameKo": "예수",
+          "slug": "jesus"
+        },
+        {
+          "nameKo": "빌라도"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "중립",
+          "label": "진리가 무엇이냐 — 죄 없음",
+          "verse": "요 18:38",
+          "approxYear": 30,
+          "verseTextKo": "빌라도가 가로되 진리가 무엇이냐 하더라 이 말을 하고 다시 유대인들에게 나가서 이르되 나는 그에게서 아무 죄도 찾지 못하노라 ",
+          "verseTextEn": "Pilate saith unto him, What is truth? And when he had said this, he went out again unto the Jews, and saith unto them, I find in him no fault at all. "
+        },
+        {
+          "valence": "부정",
+          "label": "손을 씻고 십자가로 넘김",
+          "verse": "마 27:24",
+          "approxYear": 30,
+          "verseTextKo": "빌라도가 아무 효험도 없이 도리어 민란이 나려는 것을 보고 물을 가져다가 무리 앞에서 손을 씻으며 가로되 이 사람의 피에 대하여 나는 무죄하니 너희가 당하라 ",
+          "verseTextEn": "When Pilate saw that he could prevail nothing, but that rather a tumult was made, he took water, and washed his hands before the multitude, saying, I am innocent of the blood of this just person: see ye to it. "
+        }
+      ]
+    },
+    {
+      "type": "친구",
+      "endpoints": [
+        {
+          "nameKo": "베드로",
+          "slug": "peter"
+        },
+        {
+          "nameKo": "바울",
+          "slug": "paul"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "예루살렘 공의회 — 이방 선교 지지",
+          "verse": "행 15:7",
+          "approxYear": 49,
+          "verseTextKo": "많은 변론이 있은 후에 베드로가 일어나 말하되 형제들아 너희도 알거니와 하나님이 이방인들로 내 입에서 복음의 말씀을 들어 믿게 하시려고 오래 전부터 너희 가운데서 나를 택하시고 ",
+          "verseTextEn": "And when there had been much disputing, Peter rose up, and said unto them, Men and brethren, ye know how that a good while ago God made choice among us, that the Gentiles by my mouth should hear the word of the gospel, and believe."
+        },
+        {
+          "valence": "부정",
+          "label": "안디옥에서 바울에게 책망받음",
+          "verse": "갈 2:11",
+          "approxYear": 50,
+          "verseTextKo": "게바가 안디옥에 이르렀을 때에 책망할 일이 있기로 내가 저를 면책하였노라 ",
+          "verseTextEn": "But when Peter was come to Antioch, I withstood him to the face, because he was to be blamed."
+        }
+      ]
+    },
+    {
+      "type": "친구",
+      "endpoints": [
+        {
+          "nameKo": "베드로",
+          "slug": "peter"
+        },
+        {
+          "nameKo": "사도 요한",
+          "slug": "john_the_apostle"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "빈 무덤으로 함께 달려감",
+          "verse": "요 20:4",
+          "approxYear": 30,
+          "verseTextKo": "둘이 같이 달음질하더니 그 다른 제자가 베드로보다 더 빨리 달아나서 먼저 무덤에 이르러 ",
+          "verseTextEn": "So they ran both together: and the other disciple did outrun Peter, and came first to the sepulchre."
+        },
+        {
+          "valence": "긍정",
+          "label": "성전 미문 — 앉은뱅이 고침",
+          "verse": "행 3:6",
+          "approxYear": 30,
+          "verseTextKo": "베드로가 가로되 은과 금은 내게 없거니와 내게 있는 것으로 네게 주노니 곧 나사렛 예수 그리스도의 이름으로 걸으라 하고 ",
+          "verseTextEn": "Then Peter said, Silver and gold have I none; but such as I have give I thee: In the name of Jesus Christ of Nazareth rise up and walk."
+        }
+      ]
+    },
+    {
+      "type": "친구",
+      "endpoints": [
+        {
+          "nameKo": "바울",
+          "slug": "paul"
+        },
+        {
+          "nameKo": "바나바"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "안디옥에서 함께 가르침 — 1차 전도여행",
+          "verse": "행 11:26",
+          "approxYear": 45,
+          "verseTextKo": "만나매 안디옥에 데리고 와서 둘이 교회에 일 년간 모여 있어 큰 무리를 가르쳤고 제자들이 안디옥에서 비로소 그리스도인이라 일컫음을 받게 되었더라 ",
+          "verseTextEn": "And when he had found him, he brought him unto Antioch. And it came to pass, that a whole year they assembled themselves with the church, and taught much people. And the disciples were called Christians first in Antioch."
+        },
+        {
+          "valence": "부정",
+          "label": "마가 문제로 갈라섬",
+          "verse": "행 15:39",
+          "approxYear": 49,
+          "verseTextKo": "서로 심히 다투어 피차 갈라서니 바나바는 마가를 데리고 배 타고 구브로로 가고 ",
+          "verseTextEn": "And the contention was so sharp between them, that they departed asunder one from the other: and so Barnabas took Mark, and sailed unto Cyprus;"
+        }
+      ]
+    },
+    {
+      "type": "스승제자",
+      "endpoints": [
+        {
+          "nameKo": "바울",
+          "slug": "paul"
+        },
+        {
+          "nameKo": "디모데"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "이차 전도여행에 데려감",
+          "verse": "행 16:3",
+          "approxYear": 50,
+          "verseTextKo": "바울이 그를 데리고 떠나고자 할 새 그 지경에 있는 유대인을 인하여 그를 데려다가 할례를 행하니 이는 그 사람들이 그의 부친은 헬라인인 줄 다 앎이러라 ",
+          "verseTextEn": "Him would Paul have to go forth with him; and took and circumcised him because of the Jews which were in those quarters: for they knew all that his father was a Greek."
+        },
+        {
+          "valence": "긍정",
+          "label": "믿음 안에서 참 아들",
+          "verse": "딤전 1:2",
+          "approxYear": 63,
+          "verseTextKo": "믿음 안에서 참 아들 된 디모데에게 편지하노니 하나님 아버지와 그리스도 예수 우리 주께로부터 은혜와 긍휼과 평강이 네게 있을지어다 ",
+          "verseTextEn": "Unto Timothy, my own son in the faith: Grace, mercy, and peace, from God our Father and Jesus Christ our Lord."
+        }
+      ]
+    },
+    {
+      "type": "친구",
+      "endpoints": [
+        {
+          "nameKo": "바울",
+          "slug": "paul"
+        },
+        {
+          "nameKo": "아나니아"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "안수로 눈을 뜨게 함 — 세례",
+          "verse": "행 9:17",
+          "approxYear": 34,
+          "verseTextKo": "아나니아가 떠나 그 집에 들어가서 그에게 안수하여 가로되 형제 사울아 주 곧 네가 오는 길에서 나타나시던 예수께서 나를 보내어 너로 다시 보게 하시고 성령으로 충만하게 하신다 하니 ",
+          "verseTextEn": "And Ananias went his way, and entered into the house; and putting his hands on him said, Brother Saul, the Lord, even Jesus, that appeared unto thee in the way as thou camest, hath sent me, that thou mightest receive thy sight, and be filled with the Holy Ghost."
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "형제",
+      "endpoints": [
+        {
+          "nameKo": "사도 요한",
+          "slug": "john_the_apostle"
+        },
+        {
+          "nameKo": "야고보(세베대의 아들)"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "우뢰의 아들 형제",
+          "verse": "막 3:17",
+          "approxYear": 28,
+          "verseTextKo": "또 세베대의 아들 야고보와 야고보의 형제 요한이니 이 둘에게는 보아너게 곧 우뢰의 아들이란 이름을 더하셨으며 ",
+          "verseTextEn": "And James the son of Zebedee, and John the brother of James; and he surnamed them Boanerges, which is, The sons of thunder:"
+        },
+        {
+          "valence": "부정",
+          "label": "헤롯에게 순교당한 형",
+          "verse": "행 12:2",
+          "approxYear": 44,
+          "verseTextKo": "요한의 형제 야고보를 칼로 죽이니 ",
+          "verseTextEn": "And he killed James the brother of John with the sword."
+        }
+      ]
+    },
+    {
+      "type": "대적",
+      "endpoints": [
+        {
+          "nameKo": "세례 요한",
+          "slug": "john_the_baptist"
+        },
+        {
+          "nameKo": "헤롯"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "헤로디아를 취한 것을 책망",
+          "verse": "마 14:4",
+          "approxYear": 29,
+          "verseTextKo": "이는 요한이 헤롯에게 말하되 당신이 그 여자를 취한 것이 옳지 않다 하였음이라 ",
+          "verseTextEn": "For John said unto him, It is not lawful for thee to have her."
+        },
+        {
+          "valence": "부정",
+          "label": "옥에서 목 베임",
+          "verse": "마 14:10",
+          "approxYear": 29,
+          "verseTextKo": "사람을 보내어 요한을 옥에서 목 베어 ",
+          "verseTextEn": "And he sent, and beheaded John in the prison."
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "어머니",
+      "endpoints": [
+        {
+          "nameKo": "세례 요한",
+          "slug": "john_the_baptist"
+        },
+        {
+          "nameKo": "엘리사벳"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "요한이라 이름함",
+          "verse": "눅 1:60",
+          "approxYear": -6,
+          "verseTextKo": "그 모친이 대답하여 가로되 아니라 요한이라 할 것이라 하매 ",
+          "verseTextEn": "And his mother answered and said, Not so; but he shall be called John."
+        }
+      ]
+    },
+    {
+      "type": "연인",
+      "endpoints": [
+        {
+          "nameKo": "마리아",
+          "slug": "mary"
+        },
+        {
+          "nameKo": "요셉(예수의 양부)"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "성령 잉태 — 아내로 맞으라",
+          "verse": "마 1:20",
+          "approxYear": -4,
+          "verseTextKo": "이 일을 생각할 때에 주의 사자가 현몽하여 가로되 다윗의 자손 요셉아 네 아내 마리아 데려오기를 무서워 말라 저에게 잉태된 자는 성령으로 된 것이라 ",
+          "verseTextEn": "But while he thought on these things, behold, the angel of the Lord appeared unto him in a dream, saying, Joseph, thou son of David, fear not to take unto thee Mary thy wife: for that which is conceived in her is of the Holy Ghost."
+        },
+        {
+          "valence": "긍정",
+          "label": "아기를 데리고 애굽으로 피난",
+          "verse": "마 2:14",
+          "approxYear": -4,
+          "verseTextKo": "요셉이 일어나서 밤에 아기와 그의 모친을 데리고 애굽으로 떠나가 ",
+          "verseTextEn": "When he arose, he took the young child and his mother by night, and departed into Egypt:"
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "친척",
+      "endpoints": [
+        {
+          "nameKo": "마리아",
+          "slug": "mary"
+        },
+        {
+          "nameKo": "엘리사벳"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "엘리사벳을 방문 — 태중의 뛰놂",
+          "verse": "눅 1:41",
+          "approxYear": -5,
+          "context": "눅 1:41-42",
+          "verseTextKo": "엘리사벳이 마리아의 문안함을 들으매 아이가 복중에서 뛰노는지라 엘리사벳이 성령의 충만함을 입어 ",
+          "verseTextEn": "And it came to pass, that, when Elisabeth heard the salutation of Mary, the babe leaped in her womb; and Elisabeth was filled with the Holy Ghost:",
+          "contextKo": [
+            {
+              "v": 41,
+              "t": "엘리사벳이 마리아의 문안함을 들으매 아이가 복중에서 뛰노는지라 엘리사벳이 성령의 충만함을 입어 ",
+              "a": true
+            },
+            {
+              "v": 42,
+              "t": "큰 소리로 불러 가로되 여자 중에 네가 복이 있으며 네 태중의 아이도 복이 있도다 "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 41,
+              "t": "And it came to pass, that, when Elisabeth heard the salutation of Mary, the babe leaped in her womb; and Elisabeth was filled with the Holy Ghost:",
+              "a": true
+            },
+            {
+              "v": 42,
+              "t": "And she spake out with a loud voice, and said, Blessed art thou among women, and blessed is the fruit of thy womb."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
