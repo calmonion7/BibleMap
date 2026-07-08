@@ -375,7 +375,46 @@
           "verse": "삼하 13:14",
           "approxYear": -985,
           "verseTextKo": "암논이 그 말을 듣지 아니하고 다말보다 힘이 세므로 억지로 동침하니라 ",
-          "verseTextEn": "Howbeit he would not hearken unto her voice: but, being stronger than she, forced her, and lay with her."
+          "verseTextEn": "Howbeit he would not hearken unto her voice: but, being stronger than she, forced her, and lay with her.",
+          "context": "삼하 13:11-14",
+          "contextKo": [
+            {
+              "v": 11,
+              "t": "저에게 먹이려고 가까이 가지고 갈 때에 암논이 그를 붙잡고 이르되 누이야 와서 나와 동침하자 "
+            },
+            {
+              "v": 12,
+              "t": "저가 대답하되 아니라 내 오라비여 나를 욕되게 말라 이런 일은 이스라엘에서 마땅히 행치 못할 것이니 이 괴악한 일을 행치 말라 "
+            },
+            {
+              "v": 13,
+              "t": "내가 이 수치를 무릅쓰고 어디로 가겠느냐 너도 이스라엘에서 괴악한 자 중 하나가 되리라 청컨대 왕께 말하라 저가 나를 네게 주기를 거절치 아니하시리라 하되 "
+            },
+            {
+              "v": 14,
+              "t": "암논이 그 말을 듣지 아니하고 다말보다 힘이 세므로 억지로 동침하니라 ",
+              "a": true
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 11,
+              "t": "And when she had brought them unto him to eat, he took hold of her, and said unto her, Come lie with me, my sister."
+            },
+            {
+              "v": 12,
+              "t": "And she answered him, Nay, my brother, do not force me; for no such thing ought to be done in Israel: do not thou this folly."
+            },
+            {
+              "v": 13,
+              "t": "And I, whither shall I cause my shame to go? and as for thee, thou shalt be as one of the fools in Israel. Now therefore, I pray thee, speak unto the king; for he will not withhold me from thee."
+            },
+            {
+              "v": 14,
+              "t": "Howbeit he would not hearken unto her voice: but, being stronger than she, forced her, and lay with her.",
+              "a": true
+            }
+          ]
         },
         {
           "valence": "부정",
@@ -383,7 +422,30 @@
           "verse": "삼하 13:21",
           "approxYear": -985,
           "verseTextKo": "다윗 왕이 이 모든 일을 듣고 심히 노하니라 ",
-          "verseTextEn": "But when king David heard of all these things, he was very wroth."
+          "verseTextEn": "But when king David heard of all these things, he was very wroth.",
+          "context": "삼하 13:21-22",
+          "contextKo": [
+            {
+              "v": 21,
+              "t": "다윗 왕이 이 모든 일을 듣고 심히 노하니라 ",
+              "a": true
+            },
+            {
+              "v": 22,
+              "t": "압살롬이 그 누이 다말을 암논이 욕되게 하였으므로 저를 미워하여 시비간에 말하지 아니하니라 "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 21,
+              "t": "But when king David heard of all these things, he was very wroth.",
+              "a": true
+            },
+            {
+              "v": 22,
+              "t": "And Absalom spake unto his brother Amnon neither good nor bad: for Absalom hated Amnon, because he had forced his sister Tamar."
+            }
+          ]
         },
         {
           "valence": "부정",
@@ -391,7 +453,30 @@
           "verse": "삼하 13:29",
           "approxYear": -983,
           "verseTextKo": "압살롬의 사환들이 그 분부대로 암논에게 행하매 왕의 모든 아들이 일어나 각기 노새를 타고 도망하니라 ",
-          "verseTextEn": "And the servants of Absalom did unto Amnon as Absalom had commanded. Then all the king’s sons arose, and every man gat him up upon his mule, and fled."
+          "verseTextEn": "And the servants of Absalom did unto Amnon as Absalom had commanded. Then all the king’s sons arose, and every man gat him up upon his mule, and fled.",
+          "context": "삼하 13:28-29",
+          "contextKo": [
+            {
+              "v": 28,
+              "t": "압살롬이 이미 그 사환들에게 분부하여 이르기를 너희는 암논의 마음이 술로 즐거워할 때를 자세히 보다가 내가 너희에게 암논을 치라 하거든 저를 죽이라 두려워 말라 내가 너희에게 명한 것이 아니냐 너희는 담대히 용맹을 내라 한지라 "
+            },
+            {
+              "v": 29,
+              "t": "압살롬의 사환들이 그 분부대로 암논에게 행하매 왕의 모든 아들이 일어나 각기 노새를 타고 도망하니라 ",
+              "a": true
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 28,
+              "t": "Now Absalom had commanded his servants, saying, Mark ye now when Amnon’s heart is merry with wine, and when I say unto you, Smite Amnon; then kill him, fear not: have not I commanded you? be courageous, and be valiant."
+            },
+            {
+              "v": 29,
+              "t": "And the servants of Absalom did unto Amnon as Absalom had commanded. Then all the king’s sons arose, and every man gat him up upon his mule, and fled.",
+              "a": true
+            }
+          ]
         },
         {
           "valence": "긍정",
@@ -399,7 +484,38 @@
           "verse": "삼하 14:2",
           "approxYear": -981,
           "verseTextKo": "드고아에 보내어 거기서 슬기있는 여인 하나를 데려다가 이르되 청컨대 너는 상제 된 것처럼 상복을 입고 기름을 바르지 말고 죽은 사람을 위하여 오래 슬퍼하는 여인 같이 하고 ",
-          "verseTextEn": "And Joab sent to Tekoah, and fetched thence a wise woman, and said unto her, I pray thee, feign thyself to be a mourner, and put on now mourning apparel, and anoint not thyself with oil, but be as a woman that had a long time mourned for the dead:"
+          "verseTextEn": "And Joab sent to Tekoah, and fetched thence a wise woman, and said unto her, I pray thee, feign thyself to be a mourner, and put on now mourning apparel, and anoint not thyself with oil, but be as a woman that had a long time mourned for the dead:",
+          "context": "삼하 14:1-3",
+          "contextKo": [
+            {
+              "v": 1,
+              "t": "스루야의 아들 요압이 왕의 마음이 압살롬에게로 향하는줄 알고 "
+            },
+            {
+              "v": 2,
+              "t": "드고아에 보내어 거기서 슬기있는 여인 하나를 데려다가 이르되 청컨대 너는 상제 된 것처럼 상복을 입고 기름을 바르지 말고 죽은 사람을 위하여 오래 슬퍼하는 여인 같이 하고 ",
+              "a": true
+            },
+            {
+              "v": 3,
+              "t": "왕께 들어가서 여차여차히 말하라고 할 말을 그 입에 넣어주니라 "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 1,
+              "t": "Now Joab the son of Zeruiah perceived that the king’s heart was toward Absalom."
+            },
+            {
+              "v": 2,
+              "t": "And Joab sent to Tekoah, and fetched thence a wise woman, and said unto her, I pray thee, feign thyself to be a mourner, and put on now mourning apparel, and anoint not thyself with oil, but be as a woman that had a long time mourned for the dead:",
+              "a": true
+            },
+            {
+              "v": 3,
+              "t": "And come to the king, and speak on this manner unto him. So Joab put the words in her mouth."
+            }
+          ]
         },
         {
           "valence": "긍정",
@@ -415,7 +531,54 @@
           "verse": "삼하 15:6",
           "approxYear": -980,
           "verseTextKo": "무릇 이스라엘 무리 중에 왕께 재판을 청하러 오는 자들에게 압살롬의 행함이 이 같아서 이스라엘 사람의 마음을 도적하니라 ",
-          "verseTextEn": "And on this manner did Absalom to all Israel that came to the king for judgment: so Absalom stole the hearts of the men of Israel."
+          "verseTextEn": "And on this manner did Absalom to all Israel that came to the king for judgment: so Absalom stole the hearts of the men of Israel.",
+          "context": "삼하 15:2-6",
+          "contextKo": [
+            {
+              "v": 2,
+              "t": "압살롬이 일찍이 일어나 성문길 곁에 서서 어떤 사람이든지 송사가 있어 왕에게 재판을 청하러 올 때에 그 사람을 불러서 이르되 너는 어느 성 사람이냐 그 사람의 대답이 종은 이스라엘 아무 지파에 속하였나이다 하면 "
+            },
+            {
+              "v": 3,
+              "t": "압살롬이 저에게 이르기를 네 일이 옳고 바르다마는 네 송사 들을 사람을 왕께서 세우지 아니하셨다 하고 "
+            },
+            {
+              "v": 4,
+              "t": "또 이르기를 내가 이 땅에서 재판관이 되고 누구든지 송사나 재판할 일이 있어 내게로 오는 자에게 내가 공의 베풀기를 원하노라 하고 "
+            },
+            {
+              "v": 5,
+              "t": "사람이 가까이 와서 절하려 하면 압살롬이 손을 펴서 그 사람을 붙들고 입을 맞추니 "
+            },
+            {
+              "v": 6,
+              "t": "무릇 이스라엘 무리 중에 왕께 재판을 청하러 오는 자들에게 압살롬의 행함이 이 같아서 이스라엘 사람의 마음을 도적하니라 ",
+              "a": true
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 2,
+              "t": "And Absalom rose up early, and stood beside the way of the gate: and it was so, that when any man that had a controversy came to the king for judgment, then Absalom called unto him, and said, Of what city art thou? And he said, Thy servant is of one of the tribes of Israel."
+            },
+            {
+              "v": 3,
+              "t": "And Absalom said unto him, See, thy matters are good and right; but there is no man deputed of the king to hear thee."
+            },
+            {
+              "v": 4,
+              "t": "Absalom said moreover, Oh that I were made judge in the land, that every man which hath any suit or cause might come unto me, and I would do him justice!"
+            },
+            {
+              "v": 5,
+              "t": "And it was so, that when any man came nigh to him to do him obeisance, he put forth his hand, and took him, and kissed him."
+            },
+            {
+              "v": 6,
+              "t": "And on this manner did Absalom to all Israel that came to the king for judgment: so Absalom stole the hearts of the men of Israel.",
+              "a": true
+            }
+          ]
         },
         {
           "valence": "부정",
@@ -423,7 +586,38 @@
           "verse": "삼하 15:10",
           "approxYear": -980,
           "verseTextKo": "이에 압살롬이 정탐을 이스라엘 모든 지파 가운데 두루 보내어 이르기를 너희는 나팔소리를 듣거든 곧 부르기를 압살롬이 헤브론에서 왕이 되었다 하라 하니라 ",
-          "verseTextEn": "But Absalom sent spies throughout all the tribes of Israel, saying, As soon as ye hear the sound of the trumpet, then ye shall say, Absalom reigneth in Hebron."
+          "verseTextEn": "But Absalom sent spies throughout all the tribes of Israel, saying, As soon as ye hear the sound of the trumpet, then ye shall say, Absalom reigneth in Hebron.",
+          "context": "삼하 15:10-12",
+          "contextKo": [
+            {
+              "v": 10,
+              "t": "이에 압살롬이 정탐을 이스라엘 모든 지파 가운데 두루 보내어 이르기를 너희는 나팔소리를 듣거든 곧 부르기를 압살롬이 헤브론에서 왕이 되었다 하라 하니라 ",
+              "a": true
+            },
+            {
+              "v": 11,
+              "t": "그 때에 압살롬에게 청함을 받은 이백 명이 그 사기를 알지 못하고 아무 뜻 없이 예루살렘에서 저와 함께 갔으며 "
+            },
+            {
+              "v": 12,
+              "t": "제사 드릴 때에 압살롬이 사람을 보내어 다윗의 모사 길로 사람 아히도벨을 그 성읍 길로에서 청하여 온지라 반역하는 일이 커가매 압살롬에게로 돌아오는 백성이 많아지니라 "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 10,
+              "t": "But Absalom sent spies throughout all the tribes of Israel, saying, As soon as ye hear the sound of the trumpet, then ye shall say, Absalom reigneth in Hebron.",
+              "a": true
+            },
+            {
+              "v": 11,
+              "t": "And with Absalom went two hundred men out of Jerusalem, that were called; and they went in their simplicity, and they knew not any thing."
+            },
+            {
+              "v": 12,
+              "t": "And Absalom sent for Ahithophel the Gilonite, David’s counsellor, from his city, even from Giloh, while he offered sacrifices. And the conspiracy was strong; for the people increased continually with Absalom."
+            }
+          ]
         },
         {
           "valence": "부정",
@@ -431,7 +625,30 @@
           "verse": "삼하 16:22",
           "approxYear": -980,
           "verseTextKo": "이에 사람들이 압살롬을 위하여 지붕에 장막을 치니 압살롬이 온 이스라엘 무리의 눈 앞에서 그 부친의 후궁들로 더불어 동침하니라 ",
-          "verseTextEn": "So they spread Absalom a tent upon the top of the house; and Absalom went in unto his father’s concubines in the sight of all Israel."
+          "verseTextEn": "So they spread Absalom a tent upon the top of the house; and Absalom went in unto his father’s concubines in the sight of all Israel.",
+          "context": "삼하 16:21-22",
+          "contextKo": [
+            {
+              "v": 21,
+              "t": "아히도벨이 압살롬에게 이르되 왕의 아버지가 머물러 두어 궁을 지키게 한 후궁들로 더불어 동침하소서 그리하면 왕께서 왕의 부친의 미워하는바 됨을 온 이스라엘이 들으리니 왕과 함께 있는 모든 사람의 힘이 더욱 강하여지리이다 "
+            },
+            {
+              "v": 22,
+              "t": "이에 사람들이 압살롬을 위하여 지붕에 장막을 치니 압살롬이 온 이스라엘 무리의 눈 앞에서 그 부친의 후궁들로 더불어 동침하니라 ",
+              "a": true
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 21,
+              "t": "And Ahithophel said unto Absalom, Go in unto thy father’s concubines, which he hath left to keep the house; and all Israel shall hear that thou art abhorred of thy father: then shall the hands of all that are with thee be strong."
+            },
+            {
+              "v": 22,
+              "t": "So they spread Absalom a tent upon the top of the house; and Absalom went in unto his father’s concubines in the sight of all Israel.",
+              "a": true
+            }
+          ]
         },
         {
           "valence": "부정",
@@ -439,7 +656,30 @@
           "verse": "삼하 18:33",
           "approxYear": -979,
           "verseTextKo": "왕의 마음이 심히 아파 문루로 올라가서 우니라 저가 올라갈 때에 말하기를 내 아들 압살롬아 내 아들 내 아들 압살롬아 내가 너를 대신하여 죽었더면, 압살롬 내 아들아 내 아들아 하였더라  ",
-          "verseTextEn": "And the king was much moved, and went up to the chamber over the gate, and wept: and as he went, thus he said, O my son Absalom, my son, my son Absalom! would God I had died for thee, O Absalom, my son, my son! "
+          "verseTextEn": "And the king was much moved, and went up to the chamber over the gate, and wept: and as he went, thus he said, O my son Absalom, my son, my son Absalom! would God I had died for thee, O Absalom, my son, my son! ",
+          "context": "삼하 18:32-33",
+          "contextKo": [
+            {
+              "v": 32,
+              "t": "왕이 구스 사람에게 묻되 소년 압살롬이 잘 있느냐 구스 사람이 대답하되 내 주 왕의 원수와 일어나서 왕을 대적하는 자들은 다 그 소년과 같이 되기를 원하나이다 "
+            },
+            {
+              "v": 33,
+              "t": "왕의 마음이 심히 아파 문루로 올라가서 우니라 저가 올라갈 때에 말하기를 내 아들 압살롬아 내 아들 내 아들 압살롬아 내가 너를 대신하여 죽었더면, 압살롬 내 아들아 내 아들아 하였더라  ",
+              "a": true
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 32,
+              "t": "And the king said unto Cushi, Is the young man Absalom safe? And Cushi answered, The enemies of my lord the king, and all that rise against thee to do thee hurt, be as that young man is."
+            },
+            {
+              "v": 33,
+              "t": "And the king was much moved, and went up to the chamber over the gate, and wept: and as he went, thus he said, O my son Absalom, my son, my son Absalom! would God I had died for thee, O Absalom, my son, my son! ",
+              "a": true
+            }
+          ]
         }
       ]
     },

@@ -101,6 +101,43 @@ def verse_text(slug, book_order, chapter, verse):
     return verses.get(verse)
 
 
+# "삼하 13:11-14" / "삼하 13:14"에서 책·장·시작·끝 절 추출(끝 없으면 시작=끝).
+_RANGE_RE = re.compile(r"^\s*([^\d\s]+)\s*(\d+):(\d+)(?:\s*-\s*(\d+))?")
+
+
+def resolve_range(ref):
+    """'삼하 13:11-14' → (bookOrder, chapter, start, end). 단절은 start==end. 미매핑 시 None."""
+    if not ref:
+        return None
+    m = _RANGE_RE.match(ref)
+    if not m:
+        return None
+    book_order = BOOK_ABBR_ORDER.get(m.group(1))
+    if not book_order:
+        return None
+    start = int(m.group(3))
+    end = int(m.group(4)) if m.group(4) else start
+    return book_order, int(m.group(2)), start, end
+
+
+def context_window(slug, book_order, chapter, start, end, anchor):
+    """큐레이션된 [start,end] 범위(같은 장)를 [{v,t,(a)}] 리스트로. anchor 절만 a=True.
+    기계적 확장이 아니라 phase의 'context' 필드로 지정한 의미 범위만 담는다."""
+    verses = fetch_chapter(slug, book_order, chapter)
+    if verses is None:
+        return None
+    out = []
+    for v in range(start, end + 1):
+        t = verses.get(v)
+        if t is None:
+            continue
+        item = {"v": v, "t": t}
+        if v == anchor:
+            item["a"] = True
+        out.append(item)
+    return out or None
+
+
 def fill(obj, field, slug, resolved):
     """obj[field]가 없거나 null이면 본문을 받아 채운다(멱등). resolved 없으면 null 기록.
     반환: 'kept'|'filled'|'null' (통계용)."""
@@ -186,6 +223,14 @@ def bake_relations():
             for src_field, slug in TRANSLATIONS:
                 field = "verseTextKo" if src_field == "textKo" else "verseTextEn"
                 stats[fill(phase, field, slug, resolved)] += 1
+            # 큐레이션된 'context' 범위만 문맥으로 담는다(기계적 확장 안 함).
+            rng = resolve_range(phase.get("context"))
+            for ctx_field, slug in (("contextKo", "korean"), ("contextEn", "kjv")):
+                if rng and resolved:
+                    if not isinstance(phase.get(ctx_field), list):  # 이미 있으면 스킵(멱등)
+                        phase[ctx_field] = context_window(slug, rng[0], rng[1], rng[2], rng[3], resolved[2])
+                else:
+                    phase.pop(ctx_field, None)  # 큐레이션 없으면 단절 폴백(문맥 키 제거)
     with open(RELATIONS_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     print(f"person_relations: {stats}")

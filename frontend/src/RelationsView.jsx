@@ -55,6 +55,7 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
     if (!versePhase) return null
     const ph = sorted[versePhase.relIdx]?.phases[versePhase.phaseIdx]
     if (!ph) return null
+    const ctx = verseLang === 'ko' ? ph.contextKo : ph.contextEn
     const text = verseLang === 'ko' ? ph.verseTextKo : ph.verseTextEn
     return (
       <div
@@ -69,7 +70,17 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
             <button onClick={() => setVersePhase(null)} style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: 20, color: '#aab2c5', lineHeight: 1, padding: '0 2px' }}>×</button>
           </div>
           <div style={{ fontSize: 12, color: '#8a94ad', marginBottom: 8 }}>{ph.verse} · {bc(ph.approxYear)}</div>
-          <p style={{ fontSize: 15, lineHeight: 1.7, color: '#2a3350', margin: 0 }}>{text || '본문을 불러오지 못했습니다.'}</p>
+          {Array.isArray(ctx) && ctx.length ? (
+            <p style={{ fontSize: 15, lineHeight: 1.8, color: '#6b7590', margin: 0 }}>
+              {ctx.map((c, i) => (
+                <span key={i} style={c.a ? { fontWeight: 700, color: '#2a3350' } : undefined}>
+                  <sup style={{ color: '#aab2c5', fontWeight: 400, marginRight: 1 }}>{c.v}</sup>{c.t}{i < ctx.length - 1 ? ' ' : ''}
+                </span>
+              ))}
+            </p>
+          ) : (
+            <p style={{ fontSize: 15, lineHeight: 1.7, color: '#2a3350', margin: 0 }}>{text || '본문을 불러오지 못했습니다.'}</p>
+          )}
         </div>
       </div>
     )
