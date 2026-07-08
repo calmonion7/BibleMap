@@ -5545,6 +5545,435 @@
           ]
         }
       ]
+    },
+    {
+      "type": "군주",
+      "endpoints": [
+        {
+          "nameKo": "다니엘",
+          "slug": "daniel"
+        },
+        {
+          "nameKo": "느부갓네살"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "왕의 꿈을 해석 — 신 중의 신",
+          "verse": "단 2:47",
+          "approxYear": -603,
+          "verseTextKo": "왕이 대답하여 다니엘에게 이르되 너희 하나님은 참으로 모든 신의 신이시요 모든 왕의 주재시로다 네가 능히 이 은밀한 것을 나타내었으니 네 하나님은 또 은밀한 것을 나타내시는 자시로다 ",
+          "verseTextEn": "The king answered unto Daniel, and said, Of a truth it is, that your God is a God of gods, and a Lord of kings, and a revealer of secrets, seeing thou couldest reveal this secret."
+        },
+        {
+          "valence": "중립",
+          "label": "교만을 경고 — 짐승 같은 심령",
+          "verse": "단 4:27",
+          "approxYear": -570,
+          "verseTextKo": "그런즉 왕이여 나의 간하는 것을 받으시고 공의를 행함으로 죄를 속하고 가난한 자를 긍휼히 여김으로 죄악을 속하소서 그리하시면 왕의 평안함이 혹시 장구하리이다 하였느니라 ",
+          "verseTextEn": "Wherefore, O king, let my counsel be acceptable unto thee, and break off thy sins by righteousness, and thine iniquities by shewing mercy to the poor; if it may be a lengthening of thy tranquillity."
+        }
+      ]
+    },
+    {
+      "type": "군주",
+      "endpoints": [
+        {
+          "nameKo": "다니엘",
+          "slug": "daniel"
+        },
+        {
+          "nameKo": "다리오"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "중립",
+          "label": "사자굴 — 네 하나님이 구원하시리라",
+          "verse": "단 6:16",
+          "approxYear": -539,
+          "verseTextKo": "이에 왕이 명하매 다니엘을 끌어다가 사자굴에 던져 넣는지라 왕이 다니엘에게 일러 가로되 너의 항상 섬기는 네 하나님이 너를 구원하시리라 하니라 ",
+          "verseTextEn": "Then the king commanded, and they brought Daniel, and cast him into the den of lions. Now the king spake and said unto Daniel, Thy God whom thou servest continually, he will deliver thee."
+        },
+        {
+          "valence": "긍정",
+          "label": "다니엘의 하나님을 높인 조서",
+          "verse": "단 6:26",
+          "approxYear": -539,
+          "verseTextKo": "내가 이제 조서를 내리노라 내 나라 관할 아래 있는 사람들은 다다니엘의 하나님 앞에서 떨며 두려워할지니 그는 사시는 하나님이시요 영원히 변치 않으실 자시며 그 나라는 망하지 아니할 것이요 그 권세는 무궁할 것이며 ",
+          "verseTextEn": "I make a decree, That in every dominion of my kingdom men tremble and fear before the God of Daniel: for he is the living God, and stedfast for ever, and his kingdom that which shall not be destroyed, and his dominion shall be even unto the end."
+        }
+      ]
+    },
+    {
+      "type": "친구",
+      "endpoints": [
+        {
+          "nameKo": "다니엘",
+          "slug": "daniel"
+        },
+        {
+          "nameKo": "사드락·메삭·아벳느고"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "함께 뜻을 정한 네 소년",
+          "verse": "단 1:17",
+          "approxYear": -604,
+          "verseTextKo": "하나님이 이 네 소년에게 지식을 얻게 하시며 모든 학문과 재주에 명철하게 하신 외에 다니엘은 또 모든 이상과 몽조를 깨달아 알더라 ",
+          "verseTextEn": "As for these four children, God gave them knowledge and skill in all learning and wisdom: and Daniel had understanding in all visions and dreams."
+        },
+        {
+          "valence": "긍정",
+          "label": "풀무불도 두려워 않은 세 친구",
+          "verse": "단 3:17",
+          "approxYear": -594,
+          "verseTextKo": "만일 그럴 것이면 왕이여 우리가 섬기는 우리 하나님이 우리를 극렬히 타는 풀무 가운데서 능히 건져 내시겠고 왕의 손에서도 건져내시리이다 ",
+          "verseTextEn": "If it be so, our God whom we serve is able to deliver us from the burning fiery furnace, and he will deliver us out of thine hand, O king."
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "사촌 양부",
+      "endpoints": [
+        {
+          "nameKo": "에스더",
+          "slug": "esther"
+        },
+        {
+          "nameKo": "모르드개"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "고아 에스더를 양육",
+          "verse": "에 2:7",
+          "approxYear": -479,
+          "verseTextKo": "저의 삼촌의 딸 하닷사 곧 에스더는 부모가 없고 용모가 곱고 아리따운 처녀라 그 부모가 죽은 후에 모르드개가 자기 딸 같이 양육하더라 ",
+          "verseTextEn": "And he brought up Hadassah, that is, Esther, his uncle’s daughter: for she had neither father nor mother, and the maid was fair and beautiful; whom Mordecai, when her father and mother were dead, took for his own daughter."
+        },
+        {
+          "valence": "긍정",
+          "label": "이 때를 위함이 아닌지 누가 아느냐",
+          "verse": "에 4:14",
+          "approxYear": -474,
+          "context": "에 4:13-14",
+          "verseTextKo": "이 때에 네가 만일 잠잠하여 말이 없으면 유다인은 다른 데로 말미암아 놓임과 구원을 얻으려니와 너와 네 아비 집은 멸망하리라 네가 왕후의 위를 얻은 것이 이 때를 위함이 아닌지 누가 아느냐 ",
+          "verseTextEn": "For if thou altogether holdest thy peace at this time, then shall there enlargement and deliverance arise to the Jews from another place; but thou and thy father’s house shall be destroyed: and who knoweth whether thou art come to the kingdom for such a time as this?",
+          "contextKo": [
+            {
+              "v": 13,
+              "t": "모르드개가 그를 시켜 에스더에게 회답하되 너는 왕궁에 있으니 모든 유다인 중에 홀로 면하리라 생각지 말라 "
+            },
+            {
+              "v": 14,
+              "t": "이 때에 네가 만일 잠잠하여 말이 없으면 유다인은 다른 데로 말미암아 놓임과 구원을 얻으려니와 너와 네 아비 집은 멸망하리라 네가 왕후의 위를 얻은 것이 이 때를 위함이 아닌지 누가 아느냐 ",
+              "a": true
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 13,
+              "t": "Then Mordecai commanded to answer Esther, Think not with thyself that thou shalt escape in the king’s house, more than all the Jews."
+            },
+            {
+              "v": 14,
+              "t": "For if thou altogether holdest thy peace at this time, then shall there enlargement and deliverance arise to the Jews from another place; but thou and thy father’s house shall be destroyed: and who knoweth whether thou art come to the kingdom for such a time as this?",
+              "a": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "연인",
+      "endpoints": [
+        {
+          "nameKo": "에스더",
+          "slug": "esther"
+        },
+        {
+          "nameKo": "아하수에로"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "왕후로 택함받음",
+          "verse": "에 2:17",
+          "approxYear": -479,
+          "verseTextKo": "왕이 모든 여자보다 에스더를 더욱 사랑하므로 저가 모든 처녀보다 왕의 앞에 더욱 은총을 얻은지라 왕이 그 머리에 면류관을 씌우고 와스디를 대신하여 왕후를 삼은 후에 ",
+          "verseTextEn": "And the king loved Esther above all the women, and she obtained grace and favour in his sight more than all the virgins; so that he set the royal crown upon her head, and made her queen instead of Vashti."
+        },
+        {
+          "valence": "긍정",
+          "label": "금홀을 내밀어 맞아줌",
+          "verse": "에 5:2",
+          "approxYear": -474,
+          "verseTextKo": "왕후 에스더가 뜰에 선 것을 본즉 심히 사랑스러우므로 손에 잡았던 금홀을 그에게 내어미니 에스더가 가까이 가서 금홀 끝을 만진지라 ",
+          "verseTextEn": "And it was so, when the king saw Esther the queen standing in the court, that she obtained favour in his sight: and the king held out to Esther the golden sceptre that was in his hand. So Esther drew near, and touched the top of the sceptre."
+        }
+      ]
+    },
+    {
+      "type": "대적",
+      "endpoints": [
+        {
+          "nameKo": "에스더",
+          "slug": "esther"
+        },
+        {
+          "nameKo": "하만"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "유다인 멸절 음모",
+          "verse": "에 3:6",
+          "approxYear": -474,
+          "verseTextKo": "저희가 모르드개의 민족을 하만에게 고한고로 하만이 모르드개만 죽이는 것이 경하다 하고 아하수에로의 온 나라에 있는 유다인 곧 모르드개의 민족을 다 멸하고자 하더라 ",
+          "verseTextEn": "And he thought scorn to lay hands on Mordecai alone; for they had shewed him the people of Mordecai: wherefore Haman sought to destroy all the Jews that were throughout the whole kingdom of Ahasuerus, even the people of Mordecai."
+        },
+        {
+          "valence": "부정",
+          "label": "자기가 세운 나무에 달림",
+          "verse": "에 7:10",
+          "approxYear": -474,
+          "verseTextKo": "모르드개를 달고자 한 나무에 하만을 다니 왕의 노가 그치니라  ",
+          "verseTextEn": "So they hanged Haman on the gallows that he had prepared for Mordecai. Then was the king’s wrath pacified. "
+        }
+      ]
+    },
+    {
+      "type": "군주",
+      "endpoints": [
+        {
+          "nameKo": "느헤미야",
+          "slug": "nehemiah"
+        },
+        {
+          "nameKo": "아닥사스다"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "왕의 술 관원",
+          "verse": "느 1:11",
+          "approxYear": -446,
+          "verseTextKo": "주여 구하오니 귀를 기울이사 종의 기도와 주의 이름을 경외하기를 기뻐하는 종들의 기도를 들으시고 오늘날 종으로 형통하여 이 사람 앞에서 은혜를 입게 하옵소서 하였나니 그 때에 내가 왕의 술관원이 되었었느니라  ",
+          "verseTextEn": "O Lord, I beseech thee, let now thine ear be attentive to the prayer of thy servant, and to the prayer of thy servants, who desire to fear thy name: and prosper, I pray thee, thy servant this day, and grant him mercy in the sight of this man. For I was the king’s cupbearer. "
+        },
+        {
+          "valence": "긍정",
+          "label": "성벽 재건을 허락받음",
+          "verse": "느 2:6",
+          "approxYear": -445,
+          "verseTextKo": "그 때에 왕후도 왕의 곁에 앉았더라 왕이 내게 이르시되 네가 몇날에 행할 길이며 어느 때에 돌아오겠느냐 하고 왕이 나를 보내기를 즐겨하시기로 내가 기한을 정하고 ",
+          "verseTextEn": "And the king said unto me, (the queen also sitting by him,) For how long shall thy journey be? and when wilt thou return? So it pleased the king to send me; and I set him a time."
+        }
+      ]
+    },
+    {
+      "type": "대적",
+      "endpoints": [
+        {
+          "nameKo": "느헤미야",
+          "slug": "nehemiah"
+        },
+        {
+          "nameKo": "산발랏"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "성벽 재건을 조롱·방해",
+          "verse": "느 4:1",
+          "approxYear": -444,
+          "verseTextKo": "산발랏이 우리가 성을 건축한다 함을 듣고 크게 분노하여 유다 사람을 비웃으며 ",
+          "verseTextEn": "But it came to pass, that when Sanballat heard that we builded the wall, he was wroth, and took great indignation, and mocked the Jews."
+        },
+        {
+          "valence": "부정",
+          "label": "오노 평지로 유인 — 음모",
+          "verse": "느 6:2",
+          "approxYear": -444,
+          "verseTextKo": "산발랏과 게셈이 내게 보내어 이르기를 오라 우리가 오노 평지 한 촌에서 서로 만나자 하니 실상은 나를 해코자 함이라 ",
+          "verseTextEn": "That Sanballat and Geshem sent unto me, saying, Come, let us meet together in some one of the villages in the plain of Ono. But they thought to do me mischief."
+        }
+      ]
+    },
+    {
+      "type": "연인",
+      "endpoints": [
+        {
+          "nameKo": "아담",
+          "slug": "adam"
+        },
+        {
+          "nameKo": "하와"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "내 뼈 중의 뼈 — 돕는 배필",
+          "verse": "창 2:23",
+          "approxYear": -4000,
+          "verseTextKo": "아담이 가로되 이는 내 뼈 중의 뼈요 살 중의 살이라 이것을 남자에게서 취하였은즉 여자라 칭하리라 하니라 ",
+          "verseTextEn": "And Adam said, This is now bone of my bones, and flesh of my flesh: she shall be called Woman, because she was taken out of Man."
+        },
+        {
+          "valence": "부정",
+          "label": "선악과를 함께 먹음 — 타락",
+          "verse": "창 3:6",
+          "approxYear": -4000,
+          "verseTextKo": "여자가 그 나무를 본즉 먹음직도 하고 보암직도 하고 지혜롭게 할 만큼 탐스럽기도 한 나무인지라 여자가 그 실과를 따먹고 자기와 함께한 남편에게도 주매 그도 먹은지라 ",
+          "verseTextEn": "And when the woman saw that the tree was good for food, and that it was pleasant to the eyes, and a tree to be desired to make one wise, she took of the fruit thereof, and did eat, and gave also unto her husband with her; and he did eat."
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "맏아들",
+      "endpoints": [
+        {
+          "nameKo": "아담",
+          "slug": "adam"
+        },
+        {
+          "nameKo": "가인",
+          "slug": "cain"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "맏아들 가인을 낳음",
+          "verse": "창 4:1",
+          "approxYear": -3900,
+          "verseTextKo": "아담이 그 아내 하와와 동침하매 하와가 잉태하여 가인을 낳고 이르되 내가 여호와로 말미암아 득남하였다 하니라 ",
+          "verseTextEn": "And Adam knew Eve his wife; and she conceived, and bare Cain, and said, I have gotten a man from the Lord."
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "둘째 아들",
+      "endpoints": [
+        {
+          "nameKo": "아담",
+          "slug": "adam"
+        },
+        {
+          "nameKo": "아벨",
+          "slug": "abel"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "둘째 아들 아벨 — 양치는 자",
+          "verse": "창 4:2",
+          "approxYear": -3900,
+          "verseTextKo": "그가 또 가인의 아우 아벨을 낳았는데 아벨은 양 치는 자이었고 가인은 농사하는 자이었더라 ",
+          "verseTextEn": "And she again bare his brother Abel. And Abel was a keeper of sheep, but Cain was a tiller of the ground."
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "셋째 아들",
+      "endpoints": [
+        {
+          "nameKo": "아담",
+          "slug": "adam"
+        },
+        {
+          "nameKo": "셋",
+          "slug": "seth"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "아벨 대신 주신 셋",
+          "verse": "창 4:25",
+          "approxYear": -3800,
+          "verseTextKo": "아담이 다시 아내와 동침하매 그가 아들을 낳아 그 이름을 셋이라 하였으니 이는 하나님이 내게 가인의 죽인 아벨 대신에 다른 씨를 주셨다 함이며 ",
+          "verseTextEn": "And Adam knew his wife again; and she bare a son, and called his name Seth: For God, said she, hath appointed me another seed instead of Abel, whom Cain slew."
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "형제",
+      "endpoints": [
+        {
+          "nameKo": "가인",
+          "slug": "cain"
+        },
+        {
+          "nameKo": "아벨",
+          "slug": "abel"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "중립",
+          "label": "열납된 아벨의 제물",
+          "verse": "창 4:4",
+          "approxYear": -3880,
+          "verseTextKo": "아벨은 자기도 양의 첫 새끼와 그 기름으로 드렸더니 여호와께서 아벨과 그 제물은 열납하셨으나 ",
+          "verseTextEn": "And Abel, he also brought of the firstlings of his flock and of the fat thereof. And the Lord had respect unto Abel and to his offering:"
+        },
+        {
+          "valence": "부정",
+          "label": "들에서 아벨을 쳐죽임 — 최초의 살인",
+          "verse": "창 4:8",
+          "approxYear": -3880,
+          "verseTextKo": "가인이 그 아우 아벨에게 고하니라 그후 그들이 들에 있을 때에 가인이 그 아우 아벨을 쳐죽이니라 ",
+          "verseTextEn": "And Cain talked with Abel his brother: and it came to pass, when they were in the field, that Cain rose up against Abel his brother, and slew him."
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "세 아들",
+      "endpoints": [
+        {
+          "nameKo": "노아",
+          "slug": "noah"
+        },
+        {
+          "nameKo": "셈·함·야벳"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "여덟 식구가 방주로 들어감",
+          "verse": "창 7:13",
+          "approxYear": -2400,
+          "verseTextKo": "곧 그 날에 노아와 그의 아들 셈, 함, 야벳과 노아의 처와 세 자부가 다 방주로 들어갔고 ",
+          "verseTextEn": "In the selfsame day entered Noah, and Shem, and Ham, and Japheth, the sons of Noah, and Noah’s wife, and the three wives of his sons with them, into the ark;"
+        },
+        {
+          "valence": "부정",
+          "label": "함의 허물 — 가나안의 저주",
+          "verse": "창 9:25",
+          "approxYear": -2350,
+          "verseTextKo": "이에 가로되 가나안은 저주를 받아 그 형제의 종들의 종이 되기를 원하노라 ",
+          "verseTextEn": "And he said, Cursed be Canaan; a servant of servants shall he be unto his brethren."
+        }
+      ]
     }
   ]
 }
