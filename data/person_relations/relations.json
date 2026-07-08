@@ -371,9 +371,17 @@
         },
         {
           "valence": "부정",
-          "label": "다말 사건에 분노만·조치 없음",
+          "label": "암논이 누이 다말 욕보임",
+          "verse": "삼하 13:14",
+          "approxYear": -985,
+          "verseTextKo": "암논이 그 말을 듣지 아니하고 다말보다 힘이 세므로 억지로 동침하니라 ",
+          "verseTextEn": "Howbeit he would not hearken unto her voice: but, being stronger than she, forced her, and lay with her."
+        },
+        {
+          "valence": "부정",
+          "label": "다윗, 분노만·조치 없음",
           "verse": "삼하 13:21",
-          "approxYear": -983,
+          "approxYear": -985,
           "verseTextKo": "다윗 왕이 이 모든 일을 듣고 심히 노하니라 ",
           "verseTextEn": "But when king David heard of all these things, he was very wroth."
         },
