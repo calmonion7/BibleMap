@@ -59,7 +59,7 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
     return (
       <div
         onClick={() => setVersePhase(null)}
-        style={{ position: 'fixed', inset: 0, zIndex: 100, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
+        style={{ position: 'absolute', inset: 0, zIndex: 100, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
       >
         <div onClick={e => e.stopPropagation()} style={{ background: '#fff', borderRadius: 12, maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: '0 8px 32px rgba(0,0,0,0.3)', padding: '18px 20px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
@@ -79,7 +79,8 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
   if (focusIdx != null && sorted[focusIdx]) {
     const r = sorted[focusIdx]
     return (
-      <div style={{ position: 'relative', height: '100%', overflowY: 'auto', background: '#f7f8fb' }}>
+      <div style={{ position: 'relative', height: '100%', overflow: 'hidden', background: '#f7f8fb' }}>
+        <div style={{ height: '100%', overflowY: 'auto' }}>
         <div style={{ maxWidth: 640, margin: '0 auto', padding: '16px 20px 40px' }}>
           <button onClick={() => setFocusIdx(null)} style={{ border: 'none', background: 'none', cursor: 'pointer', color: '#5a6481', fontSize: 13, padding: '4px 0', marginBottom: 4 }}>← 관계 전체</button>
           {/* 두 인물 좌우 앵커 + 관계 유형 배지 */}
@@ -112,6 +113,7 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
             ))}
           </div>
         </div>
+        </div>
         {VerseLayer()}
       </div>
     )
@@ -119,7 +121,8 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
 
   // 개요 — 관계별 한 줄: 인물 헤더(왼쪽) + 사건 시퀀스(오른쪽, 좌→우 · 줄바꿈). 각 관계가 자기 줄을 채움.
   return (
-    <div style={{ position: 'relative', height: '100%', overflowY: 'auto', background: '#f7f8fb' }}>
+    <div style={{ position: 'relative', height: '100%', overflow: 'hidden', background: '#f7f8fb' }}>
+      <div style={{ height: '100%', overflowY: 'auto' }}>
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '14px 16px 40px' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 6 }}>
           <h3 style={{ fontSize: 15, fontWeight: 700, color: '#2a3350', margin: 0 }}>{personName || '이 인물'}의 관계</h3>
@@ -162,6 +165,7 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
             </div>
           </div>
         ))}
+      </div>
       </div>
       {VerseLayer()}
     </div>
