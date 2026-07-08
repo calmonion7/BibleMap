@@ -4437,6 +4437,547 @@
           ]
         }
       ]
+    },
+    {
+      "type": "가족",
+      "note": "형",
+      "endpoints": [
+        {
+          "nameKo": "모세",
+          "slug": "moses"
+        },
+        {
+          "nameKo": "아론"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "모세의 대언자",
+          "verse": "출 4:30",
+          "approxYear": -1446,
+          "verseTextKo": "아론이 여호와께서 모세에게 명하신 모든 말씀을 전하고 백성 앞에서 이적을 행하니 ",
+          "verseTextEn": "And Aaron spake all the words which the Lord had spoken unto Moses, and did the signs in the sight of the people."
+        },
+        {
+          "valence": "부정",
+          "label": "금송아지를 만든 실수",
+          "verse": "출 32:24",
+          "approxYear": -1445,
+          "verseTextKo": "내가 그들에게 이르기를 금이 있는 자는 빼어내라 한즉 그들이 그것을 내게로 가져왔기로 내가 불에 던졌더니 이 송아지가 나왔나이다 ",
+          "verseTextEn": "And I said unto them, Whosoever hath any gold, let them break it off. So they gave it me: then I cast it into the fire, and there came out this calf."
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "누이",
+      "endpoints": [
+        {
+          "nameKo": "모세",
+          "slug": "moses"
+        },
+        {
+          "nameKo": "미리암"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "갈대 상자의 아기를 지킴",
+          "verse": "출 2:4",
+          "approxYear": -1526,
+          "verseTextKo": "그 누이가 어떻게 되는 것을 알려고 멀리 섰더니 ",
+          "verseTextEn": "And his sister stood afar off, to wit what would be done to him."
+        },
+        {
+          "valence": "부정",
+          "label": "모세를 비방 — 나병",
+          "verse": "민 12:10",
+          "approxYear": -1444,
+          "verseTextKo": "구름이 장막 위에서 떠나갔고 미리암은 문둥병이 들려 눈과 같더라 아론이 미리암을 본즉 문둥병이 들었는지라 ",
+          "verseTextEn": "And the cloud departed from off the tabernacle; and, behold, Miriam became leprous, white as snow: and Aaron looked upon Miriam, and, behold, she was leprous."
+        }
+      ]
+    },
+    {
+      "type": "스승제자",
+      "note": "후계자",
+      "endpoints": [
+        {
+          "nameKo": "모세",
+          "slug": "moses"
+        },
+        {
+          "nameKo": "여호수아",
+          "slug": "joshua"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "아말렉 전투 — 손을 든 모세",
+          "verse": "출 17:13",
+          "approxYear": -1446,
+          "verseTextKo": "여호수아가 칼날로 아말렉과 그 백성을 쳐서 파하니라 ",
+          "verseTextEn": "And Joshua discomfited Amalek and his people with the edge of the sword."
+        },
+        {
+          "valence": "긍정",
+          "label": "안수로 후계 위임",
+          "verse": "신 34:9",
+          "approxYear": -1406,
+          "verseTextKo": "모세가 눈의 아들 여호수아에게 안수하였으므로 그에게 지혜의 신이 충만하니 이스라엘 자손이 여호와께서 모세에게 명하신 대로 여호수아의 말을 순종하였더라 ",
+          "verseTextEn": "And Joshua the son of Nun was full of the spirit of wisdom; for Moses had laid his hands upon him: and the children of Israel hearkened unto him, and did as the Lord commanded Moses."
+        }
+      ]
+    },
+    {
+      "type": "대적",
+      "endpoints": [
+        {
+          "nameKo": "모세",
+          "slug": "moses"
+        },
+        {
+          "nameKo": "바로"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "부정",
+          "label": "완악한 마음 — 열 재앙",
+          "verse": "출 8:32",
+          "approxYear": -1446,
+          "verseTextKo": "그러나 바로가 이 때에도 마음을 완강케 하여 백성을 보내지 아니하였더라  ",
+          "verseTextEn": "And Pharaoh hardened his heart at this time also, neither would he let the people go. "
+        },
+        {
+          "valence": "부정",
+          "label": "홍해에서 바로의 군대 수장",
+          "verse": "출 14:28",
+          "approxYear": -1446,
+          "verseTextKo": "물이 다시 흘러 병거들과 기병들을 덮되 그들의 뒤를 쫓아 바다에 들어간 바로의 군대를 다 덮고 하나도 남기지 아니하였더라 ",
+          "verseTextEn": "And the waters returned, and covered the chariots, and the horsemen, and all the host of Pharaoh that came into the sea after them; there remained not so much as one of them."
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "장인",
+      "endpoints": [
+        {
+          "nameKo": "모세",
+          "slug": "moses"
+        },
+        {
+          "nameKo": "이드로"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "재판 위임의 조언",
+          "verse": "출 18:24",
+          "approxYear": -1446,
+          "verseTextKo": "이에 모세가 자기 장인의 말을 듣고 그 모든 말대로 하여 ",
+          "verseTextEn": "So Moses hearkened to the voice of his father in law, and did all that he had said."
+        }
+      ]
+    },
+    {
+      "type": "연인",
+      "endpoints": [
+        {
+          "nameKo": "모세",
+          "slug": "moses"
+        },
+        {
+          "nameKo": "십보라"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "미디안에서 아내로 맞음",
+          "verse": "출 2:21",
+          "approxYear": -1486,
+          "verseTextKo": "모세가 그와 동거하기를 기뻐하매 그가 그 딸 십보라를 모세에게 주었더니 ",
+          "verseTextEn": "And Moses was content to dwell with the man: and he gave Moses Zipporah his daughter."
+        }
+      ]
+    },
+    {
+      "type": "친구",
+      "endpoints": [
+        {
+          "nameKo": "여호수아",
+          "slug": "joshua"
+        },
+        {
+          "nameKo": "갈렙"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "열두 정탐꾼 중 믿음의 두 사람",
+          "verse": "민 14:6",
+          "approxYear": -1445,
+          "verseTextKo": "그 땅을 탐지한 자 중 눈의 아들 여호수아와 여분네의 아들 갈렙이 그 옷을 찢고 ",
+          "verseTextEn": "And Joshua the son of Nun, and Caleb the son of Jephunneh, which were of them that searched the land, rent their clothes:"
+        },
+        {
+          "valence": "긍정",
+          "label": "헤브론을 기업으로 줌",
+          "verse": "수 14:13",
+          "approxYear": -1400,
+          "verseTextKo": "여호수아가 여분네의 아들 갈렙을 위하여 축복하고 헤브론을 그에게 주어 기업을 삼게 하매 ",
+          "verseTextEn": "And Joshua blessed him, and gave unto Caleb the son of Jephunneh Hebron for an inheritance."
+        }
+      ]
+    },
+    {
+      "type": "친구",
+      "endpoints": [
+        {
+          "nameKo": "여호수아",
+          "slug": "joshua"
+        },
+        {
+          "nameKo": "라합"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "정탐꾼을 숨겨 도움",
+          "verse": "수 2:4",
+          "approxYear": -1406,
+          "verseTextKo": "그 여인이 그 두 사람을 이미 숨긴지라 가로되 과연 그 사람들이 내게 왔었으나 그들이 어디로서인지 나는 알지 못하였고 ",
+          "verseTextEn": "And the woman took the two men, and hid them, and said thus, There came men unto me, but I wist not whence they were:"
+        },
+        {
+          "valence": "긍정",
+          "label": "여리고에서 살아남음 — 은혜",
+          "verse": "수 6:25",
+          "approxYear": -1406,
+          "verseTextKo": "여호수아가 기생 라합과 그 아비의 가족과 그에게 속한 모든 것을 살렸으므로 그가 오늘날까지 이스라엘 중에 거하였으니 이는 여호수아가 여리고를 탐지하려고 보낸 사자를 숨겼음이었더라 ",
+          "verseTextEn": "And Joshua saved Rahab the harlot alive, and her father’s household, and all that she had; and she dwelleth in Israel even unto this day; because she hid the messengers, which Joshua sent to spy out Jericho."
+        }
+      ]
+    },
+    {
+      "type": "친구",
+      "endpoints": [
+        {
+          "nameKo": "드보라",
+          "slug": "deborah"
+        },
+        {
+          "nameKo": "바락"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "시스라 전투에 동행",
+          "verse": "삿 4:9",
+          "approxYear": -1200,
+          "verseTextKo": "가로되 내가 반드시 너와 함께 가리라 그러나 네가 이제 가는 일로는 영광을 얻지 못하리니 이는 여호와께서 시스라를 여인의 손에 파실것임이니라 하고 드보라가 일어나 바락과 함께 게데스로 가니라 ",
+          "verseTextEn": "And she said, I will surely go with thee: notwithstanding the journey that thou takest shall not be for thine honour; for the Lord shall sell Sisera into the hand of a woman. And Deborah arose, and went with Barak to Kedesh."
+        },
+        {
+          "valence": "긍정",
+          "label": "드보라의 노래 — 승전 찬양",
+          "verse": "삿 5:1",
+          "approxYear": -1200,
+          "verseTextKo": "이날에 드보라와 아비노암의 아들 바락이 노래하여 가로되 ",
+          "verseTextEn": "Then sang Deborah and Barak the son of Abinoam on that day, saying,"
+        }
+      ]
+    },
+    {
+      "type": "친구",
+      "endpoints": [
+        {
+          "nameKo": "드보라",
+          "slug": "deborah"
+        },
+        {
+          "nameKo": "야엘"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "승전가에서 야엘을 찬송",
+          "verse": "삿 5:24",
+          "approxYear": -1200,
+          "verseTextKo": "겐 사람 헤벨의 아내 야엘은 다른 여인보다 복을 받을 것이니 장막에 거한 여인보다 더욱 복을 받을 것이로다 ",
+          "verseTextEn": "Blessed above women shall Jael the wife of Heber the Kenite be, blessed shall she be above women in the tent."
+        }
+      ]
+    },
+    {
+      "type": "대적",
+      "endpoints": [
+        {
+          "nameKo": "기드온",
+          "slug": "gideon"
+        },
+        {
+          "nameKo": "세바·살문나"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "삼백 용사 — 미디안 격파",
+          "verse": "삿 7:22",
+          "approxYear": -1191,
+          "verseTextKo": "삼백 명이 나팔을 불 때에 여호와께서 그 온 적군으로 동무끼리 칼날로 치게 하시므로 적군이 도망하여 스레라의 벧 싯다에 이르고 또 답밧에 가까운 아벨므홀라의 경계에 이르렀으며 ",
+          "verseTextEn": "And the three hundred blew the trumpets, and the Lord set every man’s sword against his fellow, even throughout all the host: and the host fled to Beth–shittah in Zererath, and to the border of Abel–meholah, unto Tabbath."
+        },
+        {
+          "valence": "긍정",
+          "label": "세바와 살문나를 처단",
+          "verse": "삿 8:21",
+          "approxYear": -1191,
+          "verseTextKo": "세바와 살문나가 가로되 네가 일어나 우리를 치라 대저 사람이 어떠하면 그 힘도 그러하니라 기드온이 일어나서 세바와 살문나를 죽이고 그 약대 목에 꾸몄던 새 달 형상의 장식을 취하니라 ",
+          "verseTextEn": "Then Zebah and Zalmunna said, Rise thou, and fall upon us: for as the man is, so is his strength. And Gideon arose, and slew Zebah and Zalmunna, and took away the ornaments that were on their camels’ necks."
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "첩의 아들",
+      "endpoints": [
+        {
+          "nameKo": "기드온",
+          "slug": "gideon"
+        },
+        {
+          "nameKo": "아비멜렉(기드온의 아들)"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "중립",
+          "label": "세겜 첩의 아들",
+          "verse": "삿 8:31",
+          "approxYear": -1170,
+          "verseTextKo": "세겜에 있는 첩도 아들을 낳았으므로 그 이름을 아비멜렉이라 하였더라 ",
+          "verseTextEn": "And his concubine that was in Shechem, she also bare him a son, whose name he called Abimelech."
+        },
+        {
+          "valence": "부정",
+          "label": "형제 칠십 인 학살 — 왕 참칭",
+          "verse": "삿 9:5",
+          "approxYear": -1150,
+          "verseTextKo": "오브라에 있는 그 아비의 집으로 가서 여룹바알의 아들 곧 자기 형제 칠십 인을 한 반석 위에서 죽였으되 오직 여룹바알의 말째 아들 요담은 스스로 숨었으므로 남으니라 ",
+          "verseTextEn": "And he went unto his father’s house at Ophrah, and slew his brethren the sons of Jerubbaal, being threescore and ten persons, upon one stone: notwithstanding yet Jotham the youngest son of Jerubbaal was left; for he hid himself."
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "무남독녀",
+      "endpoints": [
+        {
+          "nameKo": "입다",
+          "slug": "jephthah"
+        },
+        {
+          "nameKo": "입다의 딸"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "중립",
+          "label": "경솔한 서원",
+          "verse": "삿 11:31",
+          "approxYear": -1080,
+          "verseTextKo": "내가 암몬 자손에게서 평안히 돌아올 때에 누구든지 내 집 문에서 나와서 나를 영접하는 그는 여호와께 돌릴 것이니 내가 그를 번제로 드리겠나이다 하니라 ",
+          "verseTextEn": "Then it shall be, that whatsoever cometh forth of the doors of my house to meet me, when I return in peace from the children of Ammon, shall surely be the Lord’s, and I will offer it up for a burnt offering."
+        },
+        {
+          "valence": "부정",
+          "label": "무남독녀가 맞으러 나옴 — 서원의 비극",
+          "verse": "삿 11:34",
+          "approxYear": -1080,
+          "context": "삿 11:34-35",
+          "verseTextKo": "입다가 미스바에 돌아와 자기 집에 이를 때에 그 딸이 소고를 잡고 춤추며 나와서 영접하니 그의 무남독녀라 ",
+          "verseTextEn": "And Jephthah came to Mizpeh unto his house, and, behold, his daughter came out to meet him with timbrels and with dances: and she was his only child; beside her he had neither son nor daughter.",
+          "contextKo": [
+            {
+              "v": 34,
+              "t": "입다가 미스바에 돌아와 자기 집에 이를 때에 그 딸이 소고를 잡고 춤추며 나와서 영접하니 그의 무남독녀라 ",
+              "a": true
+            },
+            {
+              "v": 35,
+              "t": "입다가 이를 보고 자기 옷을 찢으며 가로되 슬프다 내 딸이여 너는 나로 하여금 참담케 하는 자요 너는 나를 괴롭게 하는 자 중의 하나이로다 내가 여호와를 향하여 입을 열었으니 능히 돌이키지 못하리로다 "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 34,
+              "t": "And Jephthah came to Mizpeh unto his house, and, behold, his daughter came out to meet him with timbrels and with dances: and she was his only child; beside her he had neither son nor daughter.",
+              "a": true
+            },
+            {
+              "v": 35,
+              "t": "And it came to pass, when he saw her, that he rent his clothes, and said, Alas, my daughter! thou hast brought me very low, and thou art one of them that trouble me: for I have opened my mouth unto the Lord, and I cannot go back."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "시모",
+      "endpoints": [
+        {
+          "nameKo": "룻",
+          "slug": "ruth"
+        },
+        {
+          "nameKo": "나오미"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "어디로 가시든 따르리이다",
+          "verse": "룻 1:16",
+          "approxYear": -1100,
+          "context": "룻 1:16-17",
+          "verseTextKo": "룻이 가로되 나로 어머니를 떠나며 어머니를 따르지 말고 돌아가라 강권하지 마옵소서 어머니께서 가시는 곳에 나도 가고 어머니께서 유숙하시는 곳에서 나도 유숙하겠나이다 어머니의 백성이 나의 백성이 되고 어머니의 하나님이 나의 하나님이 되시리니 ",
+          "verseTextEn": "And Ruth said, Intreat me not to leave thee, or to return from following after thee: for whither thou goest, I will go; and where thou lodgest, I will lodge: thy people shall be my people, and thy God my God:",
+          "contextKo": [
+            {
+              "v": 16,
+              "t": "룻이 가로되 나로 어머니를 떠나며 어머니를 따르지 말고 돌아가라 강권하지 마옵소서 어머니께서 가시는 곳에 나도 가고 어머니께서 유숙하시는 곳에서 나도 유숙하겠나이다 어머니의 백성이 나의 백성이 되고 어머니의 하나님이 나의 하나님이 되시리니 ",
+              "a": true
+            },
+            {
+              "v": 17,
+              "t": "어머니께서 죽으시는 곳에서 나도 죽어 거기 장사될 것이라 만일 내가 죽는 일 외에 어머니와 떠나면 여호와께서 내게 벌을 내리시고 더 내리시기를 원하나이다 "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 16,
+              "t": "And Ruth said, Intreat me not to leave thee, or to return from following after thee: for whither thou goest, I will go; and where thou lodgest, I will lodge: thy people shall be my people, and thy God my God:",
+              "a": true
+            },
+            {
+              "v": 17,
+              "t": "Where thou diest, will I die, and there will I be buried: the Lord do so to me, and more also, if ought but death part thee and me."
+            }
+          ]
+        },
+        {
+          "valence": "긍정",
+          "label": "오벳을 품은 나오미",
+          "verse": "룻 4:16",
+          "approxYear": -1100,
+          "verseTextKo": "나오미가 아기를 취하여 품에 품고 그의 양육자가 되니 ",
+          "verseTextEn": "And Naomi took the child, and laid it in her bosom, and became nurse unto it."
+        }
+      ]
+    },
+    {
+      "type": "연인",
+      "endpoints": [
+        {
+          "nameKo": "룻",
+          "slug": "ruth"
+        },
+        {
+          "nameKo": "보아스"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "밭에서 베푼 은혜",
+          "verse": "룻 2:8",
+          "approxYear": -1100,
+          "verseTextKo": "보아스가 룻에게 이르되 내 딸아 들으라 이삭을 주우러 다른 밭으로 가지 말며 여기서 떠나지 말고 나의 소녀들과 함께 있으라 ",
+          "verseTextEn": "Then said Boaz unto Ruth, Hearest thou not, my daughter? Go not to glean in another field, neither go from hence, but abide here fast by my maidens:"
+        },
+        {
+          "valence": "긍정",
+          "label": "기업 무를 자 — 혼인",
+          "verse": "룻 4:13",
+          "approxYear": -1100,
+          "verseTextKo": "이에 보아스가 룻을 취하여 아내를 삼고 그와 동침하였더니 여호와께서 그로 잉태케 하시므로 그가 아들을 낳은지라 ",
+          "verseTextEn": "So Boaz took Ruth, and she was his wife: and when he went in unto her, the Lord gave her conception, and she bare a son."
+        }
+      ]
+    },
+    {
+      "type": "연인",
+      "endpoints": [
+        {
+          "nameKo": "삼손",
+          "slug": "samson"
+        },
+        {
+          "nameKo": "들릴라"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "소렉 골짜기의 들릴라를 사랑함",
+          "verse": "삿 16:4",
+          "approxYear": -1075,
+          "verseTextKo": "이 후에 삼손이 소렉 골짜기의 들릴라라 이름하는 여인을 사랑하매 ",
+          "verseTextEn": "And it came to pass afterward, that he loved a woman in the valley of Sorek, whose name was Delilah."
+        },
+        {
+          "valence": "부정",
+          "label": "머리털을 밀어 넘김 — 배신",
+          "verse": "삿 16:19",
+          "approxYear": -1075,
+          "verseTextKo": "들릴라가 삼손으로 자기 무릎을 베고 자게 하고 사람을 불러 그 머리털 일곱 가닥을 밀고 괴롭게 하여본즉 그 힘이 없어졌더라 ",
+          "verseTextEn": "And she made him sleep upon her knees; and she called for a man, and she caused him to shave off the seven locks of his head; and she began to afflict him, and his strength went from him."
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "부모",
+      "endpoints": [
+        {
+          "nameKo": "삼손",
+          "slug": "samson"
+        },
+        {
+          "nameKo": "삼손의 부모"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "나실인으로 태어남",
+          "verse": "삿 13:24",
+          "approxYear": -1095,
+          "verseTextKo": "여인이 아들을 낳으매 이름을 삼손이라 하니라 아이가 자라매 여호와께서 그에게 복을 주시더니 ",
+          "verseTextEn": "And the woman bare a son, and called his name Samson: and the child grew, and the Lord blessed him."
+        },
+        {
+          "valence": "부정",
+          "label": "딤나 여인 혼인을 반대",
+          "verse": "삿 14:3",
+          "approxYear": -1078,
+          "verseTextKo": "부모가 그에게 이르되 네 형제들의 딸 중에나 내 백성 중에 어찌 여자가 없어서 네가 할례받지 아니한 블레셋 사람에게 가서 아내를 취하려 하느냐 삼손이 아비에게 이르되 내가 그 여자를 좋아하오니 나를 위하여 그를 데려오소서 하니 ",
+          "verseTextEn": "Then his father and his mother said unto him, Is there never a woman among the daughters of thy brethren, or among all my people, that thou goest to take a wife of the uncircumcised Philistines? And Samson said unto his father, Get her for me; for she pleaseth me well."
+        }
+      ]
     }
   ]
 }
