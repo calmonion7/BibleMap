@@ -247,20 +247,20 @@
           "verseTextEn": "And it came to pass on the seventh day, that the child died. And the servants of David feared to tell him that the child was dead: for they said, Behold, while the child was yet alive, we spake unto him, and he would not hearken unto our voice: how will he then vex himself, if we tell him that the child is dead?"
         },
         {
-          "valence": "중립",
-          "label": "솔로몬의 어머니·왕위 확보",
-          "verse": "왕상 1:17",
-          "approxYear": -971,
-          "verseTextKo": "저가 왕께 대답하되 내 주여 왕이 전에 왕의 하나님 여호와를 가리켜 계집종에게 맹세하시기를 네 아들 솔로몬이 정녕 나를 이어 왕이 되어 내 위에 앉으리라 하셨거늘 ",
-          "verseTextEn": "And she said unto him, My lord, thou swarest by the Lord thy God unto thine handmaid, saying, Assuredly Solomon thy son shall reign after me, and he shall sit upon my throne."
-        },
-        {
           "valence": "긍정",
           "label": "솔로몬 왕위 위해 나단과 협력",
           "verse": "왕상 1:16",
           "approxYear": -971,
           "verseTextKo": "밧세바가 몸을 굽혀 왕께 절하니 왕이 이르되 어찜이냐 ",
           "verseTextEn": "And Bath–sheba bowed, and did obeisance unto the king. And the king said, What wouldest thou?"
+        },
+        {
+          "valence": "중립",
+          "label": "솔로몬의 어머니·왕위 확보",
+          "verse": "왕상 1:17",
+          "approxYear": -971,
+          "verseTextKo": "저가 왕께 대답하되 내 주여 왕이 전에 왕의 하나님 여호와를 가리켜 계집종에게 맹세하시기를 네 아들 솔로몬이 정녕 나를 이어 왕이 되어 내 위에 앉으리라 하셨거늘 ",
+          "verseTextEn": "And she said unto him, My lord, thou swarest by the Lord thy God unto thine handmaid, saying, Assuredly Solomon thy son shall reign after me, and he shall sit upon my throne."
         }
       ]
     },
@@ -277,20 +277,20 @@
       ],
       "phases": [
         {
-          "valence": "긍정",
-          "label": "충직한 용사",
-          "verse": "삼하 11:11",
-          "approxYear": -991,
-          "verseTextKo": "우리아가 다윗에게 고하되 언약궤와 이스라엘과 유다가 영채 가운데 유하고 내 주 요압과 내 왕의 신복들이 바깥 들에 유진하였거늘 내가 어찌 내 집으로 가서 먹고 마시고 내 처와 같이 자리이까 내가 이 일을 행치 아니하기로 왕의 사심과 왕의 혼의 사심을 가리켜 맹세하나이다 ",
-          "verseTextEn": "And Uriah said unto David, The ark, and Israel, and Judah, abide in tents; and my lord Joab, and the servants of my lord, are encamped in the open fields; shall I then go into mine house, to eat and to drink, and to lie with my wife? as thou livest, and as thy soul liveth, I will not do this thing."
-        },
-        {
           "valence": "부정",
           "label": "전선에서 불러 눈속임 시도",
           "verse": "삼하 11:8",
           "approxYear": -991,
           "verseTextKo": "저가 또 우리아에게 이르되 네 집으로 내려가서 발을 씻으라 하니 우리아가 왕궁에서 나가매 왕의 식물이 뒤따라 가니라 ",
           "verseTextEn": "And David said to Uriah, Go down to thy house, and wash thy feet. And Uriah departed out of the king’s house, and there followed him a mess of meat from the king."
+        },
+        {
+          "valence": "긍정",
+          "label": "충직한 용사",
+          "verse": "삼하 11:11",
+          "approxYear": -991,
+          "verseTextKo": "우리아가 다윗에게 고하되 언약궤와 이스라엘과 유다가 영채 가운데 유하고 내 주 요압과 내 왕의 신복들이 바깥 들에 유진하였거늘 내가 어찌 내 집으로 가서 먹고 마시고 내 처와 같이 자리이까 내가 이 일을 행치 아니하기로 왕의 사심과 왕의 혼의 사심을 가리켜 맹세하나이다 ",
+          "verseTextEn": "And Uriah said unto David, The ark, and Israel, and Judah, abide in tents; and my lord Joab, and the servants of my lord, are encamped in the open fields; shall I then go into mine house, to eat and to drink, and to lie with my wife? as thou livest, and as thy soul liveth, I will not do this thing."
         },
         {
           "valence": "부정",
@@ -371,19 +371,27 @@
         },
         {
           "valence": "부정",
-          "label": "암논 죽이고 도피",
-          "verse": "삼하 13:38",
-          "approxYear": -983,
-          "verseTextKo": "압살롬이 도망하여 그술로 가서 거한지 삼 년이라 ",
-          "verseTextEn": "So Absalom fled, and went to Geshur, and was there three years."
-        },
-        {
-          "valence": "부정",
           "label": "다말 사건에 분노만·조치 없음",
           "verse": "삼하 13:21",
           "approxYear": -983,
           "verseTextKo": "다윗 왕이 이 모든 일을 듣고 심히 노하니라 ",
           "verseTextEn": "But when king David heard of all these things, he was very wroth."
+        },
+        {
+          "valence": "부정",
+          "label": "암논 죽이고 도피",
+          "verse": "삼하 13:29",
+          "approxYear": -983,
+          "verseTextKo": "압살롬의 사환들이 그 분부대로 암논에게 행하매 왕의 모든 아들이 일어나 각기 노새를 타고 도망하니라 ",
+          "verseTextEn": "And the servants of Absalom did unto Amnon as Absalom had commanded. Then all the king’s sons arose, and every man gat him up upon his mule, and fled."
+        },
+        {
+          "valence": "긍정",
+          "label": "요압이 드고아 여인으로 화해 주선",
+          "verse": "삼하 14:2",
+          "approxYear": -981,
+          "verseTextKo": "드고아에 보내어 거기서 슬기있는 여인 하나를 데려다가 이르되 청컨대 너는 상제 된 것처럼 상복을 입고 기름을 바르지 말고 죽은 사람을 위하여 오래 슬퍼하는 여인 같이 하고 ",
+          "verseTextEn": "And Joab sent to Tekoah, and fetched thence a wise woman, and said unto her, I pray thee, feign thyself to be a mourner, and put on now mourning apparel, and anoint not thyself with oil, but be as a woman that had a long time mourned for the dead:"
         },
         {
           "valence": "긍정",
@@ -394,12 +402,12 @@
           "verseTextEn": "So Joab came to the king, and told him: and when he had called for Absalom, he came to the king, and bowed himself on his face to the ground before the king: and the king kissed Absalom. "
         },
         {
-          "valence": "긍정",
-          "label": "요압이 드고아 여인으로 화해 주선",
-          "verse": "삼하 14:21",
-          "approxYear": -981,
-          "verseTextKo": "왕이 요압에게 이르되 내가 이 일을 허락하였으니 가서 소년 압살롬을 데려오라 ",
-          "verseTextEn": "And the king said unto Joab, Behold now, I have done this thing: go therefore, bring the young man Absalom again."
+          "valence": "부정",
+          "label": "성문에서 백성 마음 훔침",
+          "verse": "삼하 15:6",
+          "approxYear": -980,
+          "verseTextKo": "무릇 이스라엘 무리 중에 왕께 재판을 청하러 오는 자들에게 압살롬의 행함이 이 같아서 이스라엘 사람의 마음을 도적하니라 ",
+          "verseTextEn": "And on this manner did Absalom to all Israel that came to the king for judgment: so Absalom stole the hearts of the men of Israel."
         },
         {
           "valence": "부정",
@@ -408,14 +416,6 @@
           "approxYear": -980,
           "verseTextKo": "이에 압살롬이 정탐을 이스라엘 모든 지파 가운데 두루 보내어 이르기를 너희는 나팔소리를 듣거든 곧 부르기를 압살롬이 헤브론에서 왕이 되었다 하라 하니라 ",
           "verseTextEn": "But Absalom sent spies throughout all the tribes of Israel, saying, As soon as ye hear the sound of the trumpet, then ye shall say, Absalom reigneth in Hebron."
-        },
-        {
-          "valence": "부정",
-          "label": "성문에서 백성 마음 훔침",
-          "verse": "삼하 15:6",
-          "approxYear": -980,
-          "verseTextKo": "무릇 이스라엘 무리 중에 왕께 재판을 청하러 오는 자들에게 압살롬의 행함이 이 같아서 이스라엘 사람의 마음을 도적하니라 ",
-          "verseTextEn": "And on this manner did Absalom to all Israel that came to the king for judgment: so Absalom stole the hearts of the men of Israel."
         },
         {
           "valence": "부정",
@@ -979,20 +979,20 @@
           "verseTextEn": "Then Adonijah the son of Haggith exalted himself, saying, I will be king: and he prepared him chariots and horsemen, and fifty men to run before him."
         },
         {
-          "valence": "중립",
-          "label": "솔로몬에 굴복",
-          "verse": "왕상 1:50",
-          "approxYear": -971,
-          "verseTextKo": "아도니야도 솔로몬을 두려워하여 일어나 가서 제단 뿔을 잡으니 ",
-          "verseTextEn": "And Adonijah feared because of Solomon, and arose, and went, and caught hold on the horns of the altar."
-        },
-        {
           "valence": "부정",
           "label": "다윗이 솔로몬을 세워 밀어냄",
           "verse": "왕상 1:30",
           "approxYear": -971,
           "verseTextKo": "내가 이전에 이스라엘 하나님 여호와를 가리켜 네게 맹세하여 이르기를 네 아들 솔로몬이 정녕 나를 이어 왕이 되고 나를 대신하여 내 위에 앉으리라 하였으니 내가 오늘날 그대로 행하리라 ",
           "verseTextEn": "Even as I sware unto thee by the Lord God of Israel, saying, Assuredly Solomon thy son shall reign after me, and he shall sit upon my throne in my stead; even so will I certainly do this day."
+        },
+        {
+          "valence": "중립",
+          "label": "솔로몬에 굴복",
+          "verse": "왕상 1:50",
+          "approxYear": -971,
+          "verseTextKo": "아도니야도 솔로몬을 두려워하여 일어나 가서 제단 뿔을 잡으니 ",
+          "verseTextEn": "And Adonijah feared because of Solomon, and arose, and went, and caught hold on the horns of the altar."
         }
       ]
     },
