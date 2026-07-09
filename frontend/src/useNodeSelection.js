@@ -21,7 +21,7 @@ export function useNodeSelection() {
     if (node.label === 'Person') {
       apiGet(`/person/${node.id}/event-ids`)
         .then(data => setPersonEventIds(new Set(data.eventIds)))
-        .catch(() => setPersonEventIds(null))
+        .catch(e => { console.warn('[NodeSelection] 인물 사건 목록 로드 실패', e); setPersonEventIds(null) })
     } else {
       setPersonEventIds(null)
     }

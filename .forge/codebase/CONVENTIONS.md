@@ -119,4 +119,20 @@ BibleMap은 백엔드(FastAPI + Neo4j, Python)·프론트엔드(React 19 + Vite,
 
 ---
 
+## 13. 로깅 방출 규약 (task#149로 정본화)
+
+**백엔드 (`backend/app/`):**
+- 진단/경고/에러는 모듈 logger로 통일: `logger = logging.getLogger(__name__)`. root 직호출(`logging.warning(...)`)·`print` 신규 금지. `backend/scripts/`는 운영자 CLI 도구라 print 허용.
+- **루트 배선은 `main.py` `_configure_logging()` 1곳**(import 시점, 라우터 import 전): `basicConfig(level=INFO, format="%(levelname)s %(name)s: %(message)s")`. config가 없으면 root lastResort가 WARNING+만 방출해 `logger.info`가 docker logs에 안 뜬다 — 이 함수가 그 footgun의 해소다.
+- **노이즈 제어**: chatty 서드파티(`neo4j`·`urllib3`·`asyncio`)는 WARNING 승격, `uvicorn`/`uvicorn.error`/`uvicorn.access`는 `propagate = False`로 root 중복 emit(double-log) 차단.
+- **레벨 3단계**: `warning` = 처리된 graceful 폴백(오버레이 파싱 실패→빈값, 투어 파일 스킵 등); `error` = 예상치 못함·데이터 손실 위험(아껴 사용); `info` = 라이프사이클 마일스톤. 요청 경로의 항목별 정상 파싱 폴백(예: `nodes.py` `_year` ValueError→None, 좌표 항목 skip)은 로그 불요 — 반복 노이즈.
+- **포맷(grep 핸들)**: `logger.<level>("[Component] <무엇이 실패> (<key ids>): %s", e)` — `[Component]`는 PascalCase, 개념당 캐노니컬 스펠링 1개(현행: `[Startup]`·`[Overlays]`·`[Tours]`·`[Nodes]`·`[Persons]`·`[Places]`).
+
+**프론트 (`frontend/src/`):**
+- 빈값-폴백 catch에는 폴백 직전 `console.warn('[Component] <무엇> 로드 실패', e)` 1줄. AbortError·cancelled·ref 가드는 기존 그대로 두고 **가드 통과 후에만** warn(취소는 정상 경로 — 로그 금지).
+- 사용자 가시 에러 상태(`setError`)를 세우는 catch는 로그 불요(이미 표면화됨).
+- `console.log` 금지. `import.meta.env.DEV` 가드는 계약 위반 경고(`TimelineView.jsx`의 Set 계약 `console.error` 패턴)에만.
+
+---
+
 *Convention analysis: 2026-07-09*

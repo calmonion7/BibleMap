@@ -91,7 +91,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
       : `/place/${nodeId}/curated-persons`
     apiGet(url)
       .then(data => { if (!cancelled) setPlacePersonsState({ forNodeId: nodeId, persons: data.persons ?? [] }) })
-      .catch(() => { if (!cancelled) setPlacePersonsState({ forNodeId: nodeId, persons: [] }) })
+      .catch(e => { if (!cancelled) { console.warn('[SidePanel] 장소 경유 인물 로드 실패', e); setPlacePersonsState({ forNodeId: nodeId, persons: [] }) } })
     return () => { cancelled = true }
   }, [nodeId, state.id, state.node, explorePersonId])
 
@@ -103,7 +103,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     let cancelled = false
     apiGet(`/person/${nodeId}/connections`)
       .then(data => { if (!cancelled) setConnectionsState({ forNodeId: nodeId, coParticipants: data.coParticipants ?? [], contemporaries: data.contemporaries ?? [] }) })
-      .catch(() => { if (!cancelled) setConnectionsState({ forNodeId: nodeId, coParticipants: [], contemporaries: [] }) })
+      .catch(e => { if (!cancelled) { console.warn('[SidePanel] 인물 연결 로드 실패', e); setConnectionsState({ forNodeId: nodeId, coParticipants: [], contemporaries: [] }) } })
     return () => { cancelled = true }
   }, [nodeId, state.id, state.node, curatedIds])
 
@@ -179,7 +179,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
         setPlaceVerseView(prev => prev && prev.eventId === evId ? { ...prev, bookId: firstBookId } : prev)
         setPlaceEventVerses({ id: evId, data })
       })
-      .catch(() => { if (placeOpenEventRef.current === evId) setPlaceEventVerses({ id: evId, data: { books: [] } }) })
+      .catch(e => { if (placeOpenEventRef.current === evId) { console.warn('[SidePanel] 사건 구절 로드 실패', e); setPlaceEventVerses({ id: evId, data: { books: [] } }) } })
   }
 
   function renderPlaceBookChip(evId) {

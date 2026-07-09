@@ -58,11 +58,11 @@ function App() {
     if (explorePersonId) {
       apiGet(`/person/${explorePersonId}/journey`, { signal: ctrl.signal })
         .then(({ stops }) => { setJourneyStops(stops); setActiveStopIdx(null); setReadingEventId(null); setExploreTourName(null) }) // async 콜백 — v7 OK
-        .catch((e) => { if (e?.name !== 'AbortError') setJourneyStops([]) })
+        .catch((e) => { if (e?.name !== 'AbortError') { console.warn('[App] 인물 여정 로드 실패', e); setJourneyStops([]) } })
     } else if (exploreTourId) {
       apiGet(`/tour/${exploreTourId}`, { signal: ctrl.signal })
         .then(({ title, stops }) => { setJourneyStops(stops); setActiveStopIdx(null); setReadingEventId(null); setExploreTourName(title) })
-        .catch((e) => { if (e?.name !== 'AbortError') setJourneyStops([]) })
+        .catch((e) => { if (e?.name !== 'AbortError') { console.warn('[App] 투어 로드 실패', e); setJourneyStops([]) } })
     } else {
       // 인물·투어 모두 미선택 → 비동기로 초기화(effect 동기 setState 금지 규칙 회피)
       Promise.resolve().then(() => { setJourneyStops(null); setActiveStopIdx(null); setReadingEventId(null); setExploreTourName(null) })

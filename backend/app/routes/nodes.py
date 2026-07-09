@@ -1,5 +1,9 @@
+import logging
+
 from fastapi import APIRouter, HTTPException
 from ..db import get_driver
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
@@ -253,7 +257,8 @@ def get_node(node_id: str):
             import json as _json
             try:
                 clean_props["traits"] = _json.loads(clean_props["traits"])
-            except Exception:
+            except Exception as e:
+                logger.warning("[Nodes] Person traits 파싱 실패 — 빈 목록 폴백 (%s): %s", node_id, e)
                 clean_props["traits"] = []
 
         response = {

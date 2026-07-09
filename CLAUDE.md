@@ -68,3 +68,9 @@ For multi-step tasks, state a brief plan:
 Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
 
 **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+
+---
+
+## Project note
+
+- 로깅은 `.forge/codebase/CONVENTIONS.md` §13 "로깅 방출 규약" 준수 — 백엔드 모듈 logger 통일(`backend/app/`에 print·root 직호출 금지), `[Component]` prefix, 프론트 빈값-폴백 catch엔 `console.warn`.

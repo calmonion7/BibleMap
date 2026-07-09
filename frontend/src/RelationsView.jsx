@@ -28,7 +28,7 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
     let cancelled = false
     apiGet(`/person/${personId}/relations`)
       .then(d => { if (!cancelled) setState({ id: personId, relations: d.relations ?? [] }) })
-      .catch(() => { if (!cancelled) setState({ id: personId, relations: [] }) })
+      .catch(e => { if (!cancelled) { console.warn('[Relations] 관계 로드 실패', e); setState({ id: personId, relations: [] }) } })
     return () => { cancelled = true }
   }, [personId])
 

@@ -129,7 +129,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
     setEventVerses({ id: ev.id, data: null })
     apiGet('/event/' + ev.id + '/verses')
       .then(data => { if (openEventRef.current === ev.id) setEventVerses({ id: ev.id, data }) })
-      .catch(() => { if (openEventRef.current === ev.id) setEventVerses({ id: ev.id, data: { books: [] } }) })
+      .catch(e => { if (openEventRef.current === ev.id) { console.warn('[Timeline] 사건 구절 로드 실패', e); setEventVerses({ id: ev.id, data: { books: [] } }) } })
   }
 
   // 다권 사건에서 권 탭 전환(절 본문 펼침은 초기화).

@@ -13,6 +13,8 @@ from fastapi.responses import JSONResponse
 from ..overlays import _resolve
 from .persons import _ERA, _NAME_KO, _ERA_ORDER
 
+logger = logging.getLogger(__name__)
+
 router = APIRouter()
 
 
@@ -33,7 +35,7 @@ def _place_to_persons(place_id: str) -> list[dict]:
             continue
 
         if not events or not events[0].get("participants"):
-            logging.warning("place/curated-persons: %s — events[0].participants 비어 있음, 건너뜀", slug)
+            logger.warning("[Places] curated-persons: %s — events[0].participants 비어 있음, 건너뜀", slug)
             continue
         person_id = events[0]["participants"][0]
         result.append(

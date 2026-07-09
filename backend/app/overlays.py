@@ -1,6 +1,9 @@
 import functools
 import json
+import logging
 import os
+
+logger = logging.getLogger(__name__)
 
 _REPO_DATA_DIR = os.path.join(
     os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
@@ -31,7 +34,8 @@ def _load(subpath: str) -> dict:
     try:
         with open(path, encoding="utf-8") as f:
             return json.load(f)
-    except json.JSONDecodeError:
+    except json.JSONDecodeError as e:
+        logger.warning("[Overlays] 오버레이 JSON 파싱 실패 — 빈 데이터로 폴백 (%s): %s", path, e)
         return {}
 
 

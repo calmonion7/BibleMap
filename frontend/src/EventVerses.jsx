@@ -59,7 +59,7 @@ export default function EventVerses({ eventId, verseLang, setVerseLang, heading,
         setState({ id: eventId, data })
         setBookId((data.books || [])[0]?.bookId ?? null)
       })
-      .catch(e => { if (!cancelled && e?.name !== 'AbortError') setState({ id: eventId, data: { books: [] } }) })
+      .catch(e => { if (!cancelled && e?.name !== 'AbortError') { console.warn('[EventVerses] 사건 구절 로드 실패', e); setState({ id: eventId, data: { books: [] } }) } })
     return () => { cancelled = true; ctrl.abort() }
   }, [eventId])
 

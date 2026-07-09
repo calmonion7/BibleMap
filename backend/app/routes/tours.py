@@ -7,6 +7,7 @@ ADR-0011: tours는 event-reference 오버레이 — Neo4j 노드 추가·주입 
 import functools
 import glob
 import json
+import logging
 import os
 
 from fastapi import APIRouter
@@ -15,6 +16,8 @@ from fastapi.responses import JSONResponse
 from ..overlays import _resolve, _resolve_dir
 from .journey import _fetch_place_coords, _build_id_to_slug
 from .persons import _ERA, _NAME_KO, _ERA_ORDER
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
@@ -35,7 +38,8 @@ def _list_tours() -> list[dict]:
         try:
             with open(path, encoding="utf-8") as f:
                 t = json.load(f)
-        except (json.JSONDecodeError, OSError):
+        except (json.JSONDecodeError, OSError) as e:
+            logger.warning("[Tours] 투어 파일 로드 실패 — 목록에서 건너뜀 (%s): %s", os.path.basename(path), e)
             continue
         results.append({
             "id": t.get("id", os.path.splitext(os.path.basename(path))[0]),
@@ -59,7 +63,8 @@ def _build_event_index() -> dict[str, dict]:
         try:
             with open(path, encoding="utf-8") as f:
                 events = json.load(f)
-        except (json.JSONDecodeError, OSError):
+        except (json.JSONDecodeError, OSError) as e:
+            logger.warning("[Tours] person_events 로드 실패 — 사건 인덱스에서 건너뜀 (%s): %s", slug, e)
             continue
         for e in events:
             index[e["id"]] = e
