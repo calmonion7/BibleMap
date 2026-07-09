@@ -26,6 +26,7 @@ _ERA: dict[str, str] = {
     "isaac": "족장",
     "jacob": "족장",
     "joseph": "족장",
+    "job": "족장",
     "moses": "출애굽·정복",
     "joshua": "출애굽·정복",
     "gideon": "사사",
@@ -64,6 +65,7 @@ _NAME_KO: dict[str, str] = {
     "isaac": "이삭",
     "jacob": "야곱",
     "joseph": "요셉",
+    "job": "욥",
     "moses": "모세",
     "joshua": "여호수아",
     "gideon": "기드온",
@@ -204,7 +206,8 @@ def _load_relations() -> list[dict]:
 @functools.lru_cache(maxsize=None)
 def _build_relations(node_id: str) -> dict:
     """subject(node_id)가 낀 관계 pair만 필터해 상대 endpoint와 시간순 phases를 반환.
-    상대에 slug가 있고 34인이면 withId를 해결(여정 점프 가능), 아니면 null. phases는 그대로 통과."""
+    상대에 slug가 있고 34인이면 withId를 해결(여정 점프 가능), 아니면 null. phases는 그대로 통과.
+    note는 상대 endpoint의 role(각 endpoint 관점 역할, 예: 아벨 상세에서 아담=아버지)을 우선하고, 없으면 pair note로 폴백."""
     curated = _build_list()
     id_to_slug = {p["id"]: p["slug"] for p in curated}
     slug_to_id = {p["slug"]: p["id"] for p in curated}
@@ -223,7 +226,7 @@ def _build_relations(node_id: str) -> dict:
         relations.append(
             {
                 "type": pair.get("type"),
-                "note": pair.get("note"),
+                "note": other.get("role") or pair.get("note"),
                 "withNameKo": other.get("nameKo"),
                 "withId": slug_to_id.get(other["slug"]) if other.get("slug") else None,
                 "phases": pair.get("phases", []),

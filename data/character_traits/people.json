@@ -1402,5 +1402,37 @@
         "verse_textEn": "But the former governors that had been before me were chargeable unto the people, and had taken of them bread and wine, beside forty shekels of silver; yea, even their servants bare rule over the people: but so did not I, because of the fear of God."
       }
     ]
+  },
+  "authored-person-job": {
+    "traits": [
+      {
+        "trait": "온전",
+        "verse_ref": "욥 2:3",
+        "description": "모든 소유와 자녀를 잃고 몸에 악창이 나는 시험 중에도 여전히 자기의 온전함을 굳게 지켜, 여호와께서 친히 그를 지목하셨다.",
+        "verse_textKo": "여호와께서 사단에게 이르시되 네가 내 종 욥을 유의하여 보았느냐 그와 같이 순전하고 정직하여 하나님을 경외하며 악에서 떠난 자가 세상에 없느니라 네가 나를 격동하여 까닭없이 그를 치게 하였어도 그가 오히려 자기의 순전을 굳게 지켰느니라 ",
+        "verse_textEn": "And the Lord said unto Satan, Hast thou considered my servant Job, that there is none like him in the earth, a perfect and an upright man, one that feareth God, and escheweth evil? and still he holdeth fast his integrity, although thou movedst me against him, to destroy him without cause."
+      },
+      {
+        "trait": "인내",
+        "verse_ref": "약 5:11",
+        "description": "극심한 고난 가운데서도 하나님을 저버리지 않고 견뎌, 신약이 '욥의 인내'를 믿음의 본으로 기린다.",
+        "verse_textKo": "보라 인내하는 자를 우리가 복되다 하나니 너희가 욥의 인내를 들었고 주께서 주신 결말을 보았거니와 주는 가장 자비하시고 긍휼히 여기는 자시니라 ",
+        "verse_textEn": "Behold, we count them happy which endure. Ye have heard of the patience of Job, and have seen the end of the Lord; that the Lord is very pitiful, and of tender mercy."
+      },
+      {
+        "trait": "신뢰",
+        "verse_ref": "욥 1:21",
+        "description": "재산과 열 자녀를 하루아침에 잃고도 엎드려 '주신 이도 여호와시요 취하신 이도 여호와시니' 경배하며 하나님을 신뢰했다.",
+        "verse_textKo": "가로되 내가 모태에서 적신이 나왔사온즉 또한 적신이 그리로 돌아가올지라 주신 자도 여호와시요 취하신 자도 여호와시오니 여호와의 이름이 찬송을 받으실지니이다 하고 ",
+        "verse_textEn": "And said, Naked came I out of my mother’s womb, and naked shall I return thither: the Lord gave, and the Lord hath taken away; blessed be the name of the Lord."
+      },
+      {
+        "trait": "회개",
+        "verse_ref": "욥 42:6",
+        "description": "폭풍 가운데 하나님을 뵌 뒤 스스로를 거두어들이고 티끌과 재 가운데에서 회개하여, 항변을 그치고 주권 앞에 엎드렸다.",
+        "verse_textKo": "그러므로 내가 스스로 한하고 티끌과 재 가운데서 회개하나이다 ",
+        "verse_textEn": "Wherefore I abhor myself, and repent in dust and ashes."
+      }
+    ]
   }
 }

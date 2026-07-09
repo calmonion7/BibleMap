@@ -1,0 +1,156 @@
+[
+  {
+    "id": "authored-job-prosperity",
+    "title": "Job's prosperity and piety in Uz",
+    "nameKo": "우스 땅 욥의 번영과 경건",
+    "startDate": "-1900",
+    "sortKey": -1900,
+    "yearLabel": "BC 1900경",
+    "context": "우스 땅에 온전하고 정직하여 하나님을 경외하며 악에서 떠난 사람 욥이 있었다. 아들 일곱과 딸 셋에 소유가 심히 많아 동방 사람 중 가장 큰 자였고, 자녀들을 위해 늘 일어나 번제를 드렸다 (욥 1:1–5).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-uz"
+    ],
+    "participants": [
+      "authored-person-job"
+    ],
+    "books": [
+      {
+        "bookId": "recOA8nVVhKs30PSI",
+        "rangeLabel": "1:1–5"
+      }
+    ]
+  },
+  {
+    "id": "authored-job-heavenly-council",
+    "title": "The heavenly council — Satan's challenge",
+    "nameKo": "천상 회의 — 사탄의 참소",
+    "startDate": "-1900",
+    "sortKey": -1899.9,
+    "yearLabel": "BC 1900경",
+    "context": "하나님의 아들들이 여호와 앞에 섰을 때 사탄도 그 가운데 왔다. 여호와께서 욥의 온전함을 자랑하시니 사탄이 '욥이 어찌 까닭 없이 하나님을 경외하리이까' 참소하며 그의 소유 치기를 청함. 여호와께서 그의 몸은 그대로 두고 소유를 사탄의 손에 붙이심 (욥 1:6–12).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-uz"
+    ],
+    "participants": [
+      "authored-person-job"
+    ],
+    "books": [
+      {
+        "bookId": "recOA8nVVhKs30PSI",
+        "rangeLabel": "1:6–12"
+      }
+    ]
+  },
+  {
+    "id": "authored-job-calamity",
+    "title": "Job loses possessions and children",
+    "nameKo": "하루아침에 잃은 재산과 자녀",
+    "startDate": "-1900",
+    "sortKey": -1899.8,
+    "yearLabel": "BC 1900경",
+    "context": "스바·갈대아 사람의 노략과 하늘의 불, 광풍이 잇따라 소·양·낙타와 종들을 삼키고 열 자녀가 맏형의 집에서 몰사함. 욥이 겉옷을 찢고 엎드려 '주신 이도 여호와시요 취하신 이도 여호와시오니 여호와의 이름이 찬송을 받으실지니이다' 하며 범죄치 아니함 (욥 1:13–22).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-uz"
+    ],
+    "participants": [
+      "authored-person-job"
+    ],
+    "books": [
+      {
+        "bookId": "recOA8nVVhKs30PSI",
+        "rangeLabel": "1:13–22"
+      }
+    ]
+  },
+  {
+    "id": "authored-job-boils",
+    "title": "Job struck with boils; his wife's taunt",
+    "nameKo": "몸을 치는 종기와 아내의 조롱",
+    "startDate": "-1900",
+    "sortKey": -1899.7,
+    "yearLabel": "BC 1900경",
+    "context": "사탄이 발바닥에서 정수리까지 악창으로 욥을 침. 재 가운데 앉아 기와 조각으로 몸을 긁을 때 아내가 '하나님을 욕하고 죽으라' 하나, 욥이 '우리가 하나님께 복을 받았은즉 화도 받지 아니하겠느냐' 하며 입술로 범죄치 아니함 (욥 2:7–10).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-uz"
+    ],
+    "participants": [
+      "authored-person-job"
+    ],
+    "books": [
+      {
+        "bookId": "recOA8nVVhKs30PSI",
+        "rangeLabel": "2:7–10"
+      }
+    ]
+  },
+  {
+    "id": "authored-job-friends-debate",
+    "title": "The three friends arrive; the long debate",
+    "nameKo": "세 친구의 방문과 긴 논쟁",
+    "startDate": "-1900",
+    "sortKey": -1899.6,
+    "yearLabel": "BC 1900경",
+    "context": "데만 사람 엘리바스, 수아 사람 빌닷, 나아마 사람 소발이 위로하러 와 이레 낮밤을 말없이 함께 앉음. 이후 인과응보의 논리로 욥의 죄를 추궁하는 긴 변론이 이어지고, 욥은 자신의 무죄를 항변하며 하나님께 호소함 (욥 2:11–13).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-uz"
+    ],
+    "participants": [
+      "authored-person-job"
+    ],
+    "books": [
+      {
+        "bookId": "recOA8nVVhKs30PSI",
+        "rangeLabel": "2:11–13"
+      }
+    ]
+  },
+  {
+    "id": "authored-job-god-answers",
+    "title": "God answers Job out of the whirlwind",
+    "nameKo": "폭풍 가운데 하나님의 응답",
+    "startDate": "-1900",
+    "sortKey": -1899.5,
+    "yearLabel": "BC 1900경",
+    "context": "여호와께서 폭풍 가운데 욥에게 대답하시되 창조의 신비를 물으심 — '내가 땅의 기초를 놓을 때에 네가 어디 있었느냐'. 욥이 '내가 주께 대하여 귀로 듣기만 하였사오나 이제는 눈으로 주를 뵈옵나이다 그러므로 내가 스스로 거두어들이고 티끌과 재 가운데에서 회개하나이다' 함 (욥 38:1–42:6).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-uz"
+    ],
+    "participants": [
+      "authored-person-job"
+    ],
+    "books": [
+      {
+        "bookId": "recOA8nVVhKs30PSI",
+        "rangeLabel": "38:1–42:6"
+      }
+    ]
+  },
+  {
+    "id": "authored-job-restoration",
+    "title": "Job restored — blessed with double",
+    "nameKo": "욥의 회복 — 갑절의 축복",
+    "startDate": "-1900",
+    "sortKey": -1899.4,
+    "yearLabel": "BC 1900경",
+    "context": "욥이 세 친구를 위해 기도하매 여호와께서 욥의 곤경을 돌이키시고 이전 소유보다 갑절이나 주심. 아들 일곱과 딸 셋을 다시 얻고 그 딸들처럼 아름다운 여인이 온 땅에 없었으며, 욥이 그 후 백사십 년을 살며 아들과 손자 사 대를 봄 (욥 42:10–17).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-uz"
+    ],
+    "participants": [
+      "authored-person-job"
+    ],
+    "books": [
+      {
+        "bookId": "recOA8nVVhKs30PSI",
+        "rangeLabel": "42:10–17"
+      }
+    ]
+  }
+]

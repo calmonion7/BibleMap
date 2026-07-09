@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Crown, Heart, Handshake, Shield, Scroll, Swords, Users, GraduationCap } from 'lucide-react'
+import { Crown, Heart, Handshake, Shield, Scroll, Swords, Users, GraduationCap, Sun } from 'lucide-react'
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
 import Spinner from './Spinner'
@@ -9,8 +9,8 @@ import Spinner from './Spinner'
 const VALENCE_COLOR = { 긍정: '#2e9e5b', 부정: '#d64550', 중립: '#8a94ad' }
 
 // 관계 유형(CONTEXT '인물 관계 > 관계 유형') → lucide 아이콘 · 표시 순서(유형끼리 군집 정렬)
-const TYPE_ICON = { 가족: Users, 연인: Heart, 친구: Handshake, 신하: Shield, 선지자: Scroll, 스승제자: GraduationCap, 군주: Crown, 대적: Swords }
-const TYPE_ORDER = ['가족', '연인', '친구', '신하', '선지자', '스승제자', '군주', '대적']
+const TYPE_ICON = { 가족: Users, 연인: Heart, 친구: Handshake, 신하: Shield, 선지자: Scroll, 스승제자: GraduationCap, 군주: Crown, 하나님: Sun, 대적: Swords }
+const TYPE_ORDER = ['하나님', '가족', '연인', '친구', '신하', '선지자', '스승제자', '군주', '대적']
 const typeRank = t => { const i = TYPE_ORDER.indexOf(t); return i === -1 ? 99 : i }
 
 function TypeIcon({ type, size = 14, color = '#8a94ad' }) {

@@ -58,5 +58,10 @@
     "id": "authored-person-nehemiah",
     "name": "Nehemiah",
     "nameKo": "느헤미야"
+  },
+  {
+    "id": "authored-person-job",
+    "name": "Job",
+    "nameKo": "욥"
   }
 ]
