@@ -1,10 +1,10 @@
 ---
-last_mapped_commit: 9c49a838dfe4c6e4695b9383ea961f15c9b117f2
-mapped: 2026-07-10
+last_mapped_commit: cf024f8e79a4864f4489aca0b0fd4c84caebeaf6
+mapped: 2026-07-11
 ---
 # Codebase Structure
 
-**Analysis Date:** 2026-07-10
+**Analysis Date:** 2026-07-11
 
 ## Directory Layout
 
@@ -30,7 +30,7 @@ BibleMap/
 │   │       ├── tours.py    # /tours·/tour/{id}
 │   │       ├── places.py   # /place/{id}/curated-persons
 │   │       ├── books.py    # /books-overview
-│   │       └── search.py   # /search
+│   │       └── search.py   # /search — 등록만 되어있고 프론트 미사용(ADR-0007 검색 UI 제거 후 잔존)
 │   └── scripts/            # 오프라인 데이터 파이프라인(load_*·generate_*·inject_*)
 ├── frontend/
 │   ├── index.html          # SPA 진입 HTML
@@ -38,9 +38,9 @@ BibleMap/
 │   ├── eslint.config.js
 │   ├── .env.production      # VITE_API_URL=/api (빌드타임 주입)
 │   ├── package.json        # react 19·maplibre-gl 5·lucide-react·vite 8
-│   ├── dist/               # 빌드 산출물(nginx가 마운트, git 무시)
-│   ├── public/             # favicon.svg
-│   └── src/                # 컴포넌트·훅·맵헬퍼·유틸
+│   ├── dist/                # 빌드 산출물(nginx가 마운트, git 무시)
+│   ├── public/              # favicon.svg
+│   └── src/                 # 컴포넌트·훅·맵헬퍼·유틸·디자인 토큰
 ├── nginx/
 │   └── nginx.conf          # SPA 서빙 + /api/ 프록시 + 캐시 정책
 ├── data/                   # JSON 오버레이(그래프 위 큐레이션 레이어)
@@ -61,9 +61,9 @@ BibleMap/
 - Key files: `load_theographic.py`(원본 그래프 적재), `load_books.py`·`load_person_events.py`(각각 theographic/authored 사건의 `CONTAINS_BOOK.primary` 태깅 — 첫 참조 책=발생, 나머지=인용), `inject_ko_names.py`(배포 시 자동 실행), `generate_person_event_verses.py`·`generate_verse_text.py`(근거 구절/문맥 프리베이크).
 
 **`frontend/src/`:**
-- Purpose: React SPA 소스. Stage별 화면·지도·타임라인·관계 뷰·상세 패널.
-- Contains: `*.jsx` 뷰 컴포넌트, `use*.js` 훅, `map*.js` MapLibre 헬퍼, `*.js` 유틸(api·urlState·dates·theme·constants).
-- Key files: `App.jsx`(렌더 트리·Stage 분기·인물/투어 타임라인 필터 fetch), `useStageNavigation.js`(내비 상태머신), `MapView.jsx`·`RelationsView.jsx`·`TimelineView.jsx`·`SidePanel.jsx`(뷰).
+- Purpose: React SPA 소스. Stage별 화면·지도·타임라인·관계 뷰·상세 패널·Night Atlas 디자인 토큰(ADR-0013).
+- Contains: `*.jsx` 뷰 컴포넌트, `use*.js` 훅, `map*.js` MapLibre 헬퍼, `*.js` 유틸(api·urlState·dates·theme·constants), `index.css`(디자인 토큰 정본).
+- Key files: `App.jsx`(렌더 트리·Stage 분기·인물/투어 타임라인 필터 fetch), `useStageNavigation.js`(내비 상태머신), `MapView.jsx`·`RelationsView.jsx`·`TimelineView.jsx`·`SidePanel.jsx`(뷰), `index.css`·`theme.js`(다크 단일 색·서체·형태 토큰).
 
 **`data/`:**
 - Purpose: 그래프 위에 얹는 큐레이션 오버레이 JSON. 백엔드가 `overlays.py`/직접 로드로 병합.
@@ -75,7 +75,7 @@ BibleMap/
 | 디렉터리 | 파일 | 내용 | 읽는 곳 |
 |----------|------|------|---------|
 | `person_events/` | `<slug>.json` (35개 — 34인 + 욥) | 인물별 시간순 사건(id·title·nameKo·startDate·sortKey·occursAt·participants·books) | `journey.py`·`persons.py`·`places.py`·`tours.py` |
-| `person_relations/` | `relations.json`(약 1.1MB) + `AUTHORING.md` | 인물 쌍 관계 카탈로그(type·endpoints·phases, phase당 valence·근거 구절·서사 문맥 프리베이크) — 관계 뷰 소스 | `persons.py:_load_relations` |
+| `person_relations/` | `relations.json`(약 1.2MB) + `AUTHORING.md` | 인물 쌍 관계 카탈로그(type·endpoints·phases, phase당 valence·근거 구절·서사 문맥 프리베이크) — 관계 뷰 소스 | `persons.py:_load_relations` |
 | `event_verses/` | `events.json` | 사건별 근거 구절(권별 그룹, bookOrder 응답 시 강제 정렬) | `events.py:get_event_verses` |
 | `book_events/` | `books.json` | {bookId:[eventId]} 추정책 오버레이 | `overlays.book_events_raw` |
 | `tours/` | `<id>.json` (9개) | 테마 투어(id·title·era·stops:[eventId]) — event-reference 오버레이 | `tours.py` |
@@ -89,7 +89,7 @@ BibleMap/
 
 **Entry Points:**
 - `backend/app/main.py`: FastAPI 앱 진입(uvicorn `app.main:app`)
-- `frontend/src/main.jsx`: React 마운트 → `App.jsx`
+- `frontend/src/main.jsx`: React 마운트 → `App.jsx`. `index.css`를 여기서 임포트(디자인 토큰 전역 적용).
 - `frontend/index.html`: SPA 셸
 
 **Configuration:**
@@ -107,10 +107,14 @@ BibleMap/
 - `frontend/src/useStageNavigation.js`: 내비 상태머신
 - `frontend/src/api.js`: 프론트 fetch 단일 출처
 
+**Design(디자인 토큰, ADR-0013):**
+- `frontend/src/index.css`: Night Atlas 다크 단일 토큰의 정본(`--bg-*`/`--ink-*`/`--gold*`/`--paper*`/`--serif`/`--r-*`/`--shadow-*`), 전역 `h2`·`.rel-chip` 스타일.
+- `frontend/src/theme.js`: 노드 타입 색(`TYPE_COLOR`)·관계 valence 색(`VALENCE_COLOR`)·JS 계산용 토큰 리터럴 미러(`NIGHT`) — CSS `var()`를 문자열 결합(예: 알파 접미)에 쓸 수 없는 지점에서 사용.
+
 **Map(지도):**
-- `frontend/src/MapView.jsx`: MapLibre 지도 컨테이너·수명주기
+- `frontend/src/MapView.jsx`: MapLibre 지도 컨테이너·수명주기·무라벨 지형 타일(Esri World_Terrain_Base, maxzoom 9)·래스터 세피아 paint
 - `frontend/src/mapGeo.js`: GeoJSON 빌더(여정 라인/정차지)
-- `frontend/src/mapLayers.js`: 소스/레이어 셋업·이벤트 핸들러
+- `frontend/src/mapLayers.js`: 소스/레이어 셋업·이벤트 핸들러(금색 여정선·정차지 배지)
 - `frontend/src/mapRingController.js`: 장소 사건 링 펼침 제어
 
 ## Naming Conventions
@@ -120,11 +124,16 @@ BibleMap/
 - 백엔드 스크립트: 동사 접두 — `load_*.py`(적재), `generate_*.py`(생성), `inject_*.py`(주입)
 - 프론트 컴포넌트: PascalCase `.jsx` — `MapView.jsx`, `RelationsView.jsx`, `SidePanel.jsx`
 - 프론트 훅: `use` 접두 camelCase — `useStageNavigation.js`, `useNodeSelection.js`
-- 프론트 유틸: camelCase `.js` — `urlState.js`, `mapGeo.js`, `api.js`
+- 프론트 유틸: camelCase `.js` — `urlState.js`, `mapGeo.js`, `api.js`, `theme.js`
 
 **Directories:**
 - 오버레이: `<도메인>_<타입>` snake_case — `person_events`, `person_relations`, `event_verses`, `place_coords`
 - 내부 헬퍼 함수: `_` 접두(모듈 프라이빗) — `_build_list`, `_resolve`, `_fetch_place_coords`
+
+**디자인 토큰(CSS 변수):**
+- `--<카테고리>-<단계>` — 표면 `--bg-0`~`--bg-3`(어두운→밝은 순 4단계), 경계 `--line`/`--line-strong`, 잉크 `--ink`/`--ink-dim`/`--ink-faint`(불투명도 내림차순).
+- 시맨틱 단일 토큰 — 액센트 `--gold`/`--gold-dim`, 양피지 `--paper`/`--paper-ink`/`--paper-accent`, 서체 `--serif`/`--sans`, 형태 `--r-s`/`--r-m`/`--r-l`, 그림자 `--shadow-1`/`--shadow-2`.
+- JS 미러(`theme.js`의 `NIGHT`)는 CSS 변수와 동일 이름을 camelCase로 — `--bg-0` → `NIGHT.bg0`, `--paper-accent` → `NIGHT.paperAccent`.
 
 ## Where to Add New Code
 
@@ -144,6 +153,8 @@ BibleMap/
 - Stage 하위 뷰면 `App.jsx` 렌더 트리·`useStageNavigation.js` 상태·`urlState.js` 해시 인코딩/파싱 세 곳을 함께 갱신(관계 뷰가 이 패턴의 최근 사례 — `exploreView === 'relations'`).
 - 데이터 fetch는 반드시 `frontend/src/api.js`의 `apiGet` 사용(직접 `fetch` 금지).
 - 탐험 컨텍스트(인물/투어)에서 파생되는 필터·상태는 `selectedNode`가 아니라 `explorePersonId`/`exploreTourId`에 직접 묶는다(`App.jsx`의 `personEventIds`/`tourEventIds`가 대칭 사례).
+- 색·표면·서체는 항상 `index.css`의 CSS 변수(`var(--token)`)를 인라인 스타일에서 참조한다. 새 하드코딩 색을 만들지 않는다 — 노드 타입/관계 valence 색만 `theme.js`(`TYPE_COLOR`/`VALENCE_COLOR`)에서 가져온다. JS 문자열 결합(알파 접미 등)이 필요하면 `theme.js`의 `NIGHT` 리터럴을 쓴다(`var()`는 결합 불가).
+- 지도를 밝은 예외 외 다른 화면에 라이트 표면으로 만들지 않는다(ADR-0013) — 성경 구절 본문만 `--paper*` 양피지 카드로 표현.
 
 **공유 헬퍼:**
 - 지도 관련: `frontend/src/mapGeo.js`(GeoJSON)·`mapLayers.js`(레이어)·`mapRingController.js`(링).
@@ -170,4 +181,4 @@ BibleMap/
 
 ---
 
-*Structure analysis: 2026-07-10*
+*Structure analysis: 2026-07-11*

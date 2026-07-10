@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 9c49a838dfe4c6e4695b9383ea961f15c9b117f2
-mapped: 2026-07-10
+last_mapped_commit: cf024f8e79a4864f4489aca0b0fd4c84caebeaf6
+mapped: 2026-07-11
 ---
 
 # TESTING
@@ -13,7 +13,7 @@ mapped: 2026-07-10
 
 - **백엔드**: `pytest`·`unittest` 없음. `backend/requirements.txt`에는 런타임 3개(`fastapi`·`neo4j`·`uvicorn`)만 있고 테스트 의존성이 없다. `test_*.py`·`conftest.py`·`tests/` 디렉터리 없음.
 - **프론트엔드**: `vitest`·`jest`·`@testing-library` 없음. `frontend/package.json` scripts는 `dev`·`build`·`lint`·`preview`뿐 — `test` 스크립트 없음. `*.test.js(x)`·`*.spec.js(x)` 파일 없음.
-- **E2E 스펙 파일**: 리포에 커밋된 Playwright 스펙(`*.spec.ts` 등)은 없다. Playwright는 아래 4절처럼 **애드혹 검증 도구**로만 쓴다.
+- **E2E 스펙 파일**: 리포에 커밋된 Playwright 스펙(`*.spec.ts` 등)은 없다. Playwright는 아래 4절처럼 **애드혹 검증 도구**로만 쓴다. 스크립트는 `.forge/reports/*.py`(예: `task70_verify_final.py`, `uat_118_primeval.py`)에 태스크별로 남아있지만 재실행용 스위트가 아니라 그 태스크 당시의 1회성 검증 기록이다.
 
 > 검증 구멍(CONCERNS 소관): 순수 함수 로직에 회귀 테스트가 없다. 예 — `urlState.js`의 `parseHash`/`encodeHash`(정규식 라우팅), `nodes.py`의 `_year()` BC/AD 연도 파싱 정렬, `persons.py`의 `_build_relations` slug 매칭·`_build_connections` 큐레이션 교집합 제외. 이들은 단위 테스트를 붙이기 좋은 순수 함수이나 현재 미커버.
 
@@ -61,10 +61,38 @@ curl -s http://localhost:8080/api/person/<node_id>/relations   # 국면 배열 �
 
 ## 4. 실행 후 스모크: Playwright + 네트워크 캡처
 
-UI 동작 검증은 Python Playwright로 한다(`/opt/homebrew` 설치). 패턴: `localhost:8080`(:8000 미노출) 렌더 확인 + 네트워크 캡처 + 스크린샷.
+UI 동작 검증은 Python Playwright로 한다(`/opt/homebrew/bin/playwright`, Python 패키지 — Node.js 패키지가 아니다). `sync_api`·`async_api` 둘 다 동작. 패턴: `http://localhost:8080`(:8000은 외부 미노출) 렌더 확인 + 네트워크 캡처 + 스크린샷.
 
 - **합격 기준**: 콘솔 에러 0, 네트워크(fetch) 에러 0, 대상 뷰가 기대대로 렌더.
-- **적용 대상**: 관계 뷰·여정 지도·타임라인 등 상호작용 화면. AUTHORING.md 규칙 8-5가 데이터 저작의 마지막 게이트로 이 스모크를 요구한다.
+- **적용 대상**: 관계 뷰·여정 지도·타임라인 등 상호작용 화면. AUTHORING.md 규칙 8-5가 데이터 저작의 마지막 게이트로 이 스모크를 요구한다. 대규모 회귀 확인(디자인 리뉴얼 등)은 데스크톱·모바일 두 뷰포트로 화면별 전/후 스크린샷을 남긴다(`.forge/reports/design-audit/{desktop,mobile}/`·`design-after/{desktop,mobile}/`, 각 16장).
+
+### 4-1. 화면 전환·셀렉터 함정과 패턴
+
+이 항목들은 실제 검증 세션에서 재현된 함정과 그 대응이다(`~/.claude/projects/.../memory/feedback_playwright_testing.md`에 승격된 교훈):
+
+- **캐시버스터로 화면별 독립 내비게이션 보장**: `page.goto()`는 해시만 바뀌면 SPA를 리로드하지 않아(`#/person/a/...` → `#/person/b/...` 전환 시 이전 화면에 머묾, task#148) 화면마다 상태가 누적될 위험이 있다. `page.reload()` 대신 `?v=<screen-name>` 형태의 캐시버스터 쿼리를 URL에 붙이면 화면당 독립적인 풀 문서 내비게이션이 보장된다(reload보다 상태 오염이 적음, task#155).
+- **CSS 토글로 숨긴 뷰가 DOM에 잔존**: display 토글로 숨긴 뷰(예: 타임라인 화면에 숨어있는 여정 리스트)의 텍스트가 `get_by_text(...)`/`text=...` 매칭에 걸려 TimeoutError를 낸다. 텍스트 로케이터는 기본적으로 **`page.locator("text=... >> visible=true")`**로 가시 필터를 붙인다(task#155).
+- **`get_by_text` 클릭은 유일성 보장이 없음**: 같은 텍스트가 내비 칩·섹션 라벨·카드에 중복 매치될 수 있다(예: '사도행전' 3곳, task#112). 클릭 후 목표 상태의 지표 텍스트(예: 책 상세의 '중심 메시지')를 확인할 때까지 후보를 순회하는 방식이 필요하다.
+- **lucide 아이콘은 이모지 텍스트로 매칭 불가**: 아이콘 자체가 텍스트가 아니므로 인접 텍스트로 클릭한다(task#155).
+- **관계(Relations) 화면에서 상대 인물 이름을 직접 클릭하지 않는다**: 큐레이션 인물이면 이름이 여정 점프 버튼(`stopPropagation`)이라 화면을 이탈한다. 근거 구절 레이어는 오버뷰의 `.rel-chip`(국면 라벨 칩)을 직접 클릭해서 연다(task#148).
+- **인라인 스타일 문자열을 assert 키로 쓰지 않는다**: CSSOM이 저작값을 정규화해 반환한다(저작 `translateY(0)` → 반환 `translateY(0px)`). 상태 판별은 rect 기하 측정(예: 시트 `top` ≥ viewport height = 숨김)으로 한다(task#111).
+- **`scrollIntoView()`는 `overflow:hidden` 조상까지 스크롤시킨다**(transform이 만든 오버플로 포함) — 앱 루트가 밀려 내비가 사라지거나 숨긴 시트가 노출되는 부작용. 컨테이너 한정 스크롤은 `root.scrollTo(top)`을 쓴다(task#110).
+- **동일 엔드포인트를 여러 컴포넌트가 각각 호출**: `/persons/curated`는 `App`(CTA용)과 `PersonHub`(허브 카드용)가 각각 fetch한다. `page.route(...)`로 전면 abort하면 관련 없는 호출부까지 막혀 동선이 끊긴다(task#113) — URL만으로 호출처를 구분할 수 없으면 자식 effect의 선실행 순서(자식 요청이 먼저 나감)를 이용해 N번째 요청만 선택적으로 abort한다.
+- **수치 assert만으로는 부족**: 스크린샷 육안 검토를 병행한다 — assert가 전부 통과해도 스크린샷에서만 드러나는 레이아웃 버그가 있다(task#110의 "하단 흰 스트립").
+- **sync Playwright의 `time.sleep()`은 이벤트 루프를 펌프하지 않는다**: `page.route(...)`로 가로챈 요청 핸들러가 `sleep` 동안 실행되지 못해 가로챈 fetch가 행(hang)한다(task#79). 대기에는 `time.sleep` 대신 `page.wait_for_timeout(ms)`(루프 펌프) 또는 `expect`/`wait_for_*`를 쓴다. `page.evaluate(fetch)`는 evaluate 자체가 루프를 펌프하므로 정상 동작.
+- **화면의 단계(Stage) 소속을 먼저 확인**: 지도/타임라인 토글 같은 요소는 허브가 아니라 인물 탐험 단계 내부에 있다. 검증 시나리오는 진입 경로(허브→인물→토글)를 먼저 그리고 시작한다(task#112).
+
+### 4-2. WebGL(지도) 화면 — GPU 플래그 필수
+
+- **기본 헤드리스(SwiftShader, 소프트웨어 GL)는 MapLibre 캔버스를 부분 페인트할 수 있다**: 캔버스 위에 불투명 오버레이(모바일 하단 시트 등)가 있으면 지도 상단이 검게 비는 렌더 아티팩트가 생긴다 — 앱 버그가 아니라 실브라우저에선 재현되지 않는 헤드리스 합성 결함이다(task#156).
+- **대응**: 지도가 포함된 화면을 캡처할 때는 `chromium.launch(args=["--enable-gpu", "--use-angle=metal"])`로 GPU를 켠다. WebGL 화면에서 시각 이상이 보이면 **CSS/앱 이분 탐색을 시작하기 전에 GPU 플래그 A/B를 먼저 1분 테스트**한다 — task#156에서 이 순서를 지키지 않아 앱 회귀로 오판, CSS 이분 탐색으로 여러 빌드를 태운 뒤에야 원인(헤드리스 아티팩트)에 도달했다.
+- **MapLibre 캔버스는 래스터 타일 + 마커 오버레이가 한 캔버스를 공유**: 지도 톤 조정을 CSS `filter`로 하면 오버레이(마커·팝업)까지 같이 틴트된다. 톤 조정은 래스터 레이어 paint 속성(`raster-saturation`·`raster-brightness-max`·`raster-contrast`, `frontend/src/MapView.jsx`)으로 한다.
+- **맵 인스턴스 접근**: `MapView.jsx`는 `mapRef.current`만 쓰고 `window`에 노출하지 않는다. 캔버스 위 클러스터/마커를 정확히 클릭하려면 UAT 동안만 `window.__map = map`을 임시로 추가해 `queryRenderedFeatures`/`project`로 픽셀을 산출하고, 검증이 끝나면 제거·재빌드한다(dist에 무흔적, task#77~80).
+
+### 4-3. 모바일 뷰포트 함정
+
+- **헤드리스는 모바일 브라우저 크롬(주소창·내비바)이 없어 `100vh` == 가시 높이**: 실기기에선 `100vh` 루트에서 `bottom:0` 요소가 가시 영역 아래로 잘리는데, 헤드리스는 이를 구조적으로 검출하지 못한다. 실제로 "모바일 첫 로딩 여정 안보임"(task#90)이 헤드리스 검증은 통과했으나 실기기(`biblemap.taebro.com`)에서 재발했다(원인: `100vh` → `100dvh`로 수정, task#91). 모바일 레이아웃·하단 고정 요소는 프로덕션 도메인(`biblemap.taebro.com`, self-hosted 배포 대상, localhost:8080과 동일 번들)이나 실기기로 확인하고, `100vh` 사용처는 기본적으로 의심한다.
+- **Vite dev 서버(5173)는 로컬에서 API에 닿지 않는다**: `api.js`의 `API_BASE` 기본값이 `localhost:8000`인데 호스트에 매핑되어 있지 않다(curl 000). 픽셀 정밀 레이아웃 검증은 5173이 아니라 build → 8080 → Playwright로 확정한다.
 
 ## 5. 배포 검증
 
@@ -85,13 +113,28 @@ UI 동작 검증은 Python Playwright로 한다(`/opt/homebrew` 설치). 패턴:
 
 ---
 
+## 7. 커버리지 현황 요약
+
+| 영역 | 커버리지 |
+|---|---|
+| 백엔드 순수 함수(`_year()` 파싱, slug 매칭 등) | 0 — 단위 테스트 없음, 애드혹 손검증만 |
+| 백엔드 라우트 | 0 — curl 스모크로만 응답 형태 확인 |
+| 프론트 순수 함수(`parseHash`/`encodeHash` 등) | 0 |
+| 프론트 컴포넌트 | 0 — Playwright 애드혹 스모크로 렌더/상호작용만 확인 |
+| E2E(회귀 스위트로 재실행 가능한 형태) | 없음 — `.forge/reports/*.py`는 태스크별 1회성 스크립트 |
+| 빌드/린트 게이트 | 있음(`npm run lint`·`npm run build`), CI 강제 여부는 ARCHITECTURE/INTEGRATIONS 소관 |
+| 데이터 저작 파이프라인 검증 | 있음(AUTHORING.md 규칙 8, §3) |
+| 배포 검증 | 있음(`deploy.sh` 인라인 재시도·락, §5) |
+
+---
+
 ## 새 코드 검증 방법 (권장 절차)
 
 1. 백엔드 라우트를 추가/변경 → `docker compose up -d --build api` 후 `curl -s http://localhost:8080/api/<path>`로 응답 형태 확인.
 2. 데이터를 저작 → 위 3절 파이프라인 전체 실행.
-3. 프론트를 변경 → `npm run lint` → `npm run build` → Playwright 스모크(콘솔/네트워크 에러 0).
+3. 프론트를 변경 → `npm run lint` → `npm run build` → Playwright 스모크(콘솔/네트워크 에러 0, §4의 셀렉터·GPU 플래그 패턴 적용).
 4. 순수 함수(라우팅·파싱·정렬)를 새로 쓸 때 회귀 위험이 크면, 테스트 프레임워크 부재를 감안해 최소한 애드혹 `python3 -c`/`node -e` 스니펫으로 경계값을 손검증한다.
 
 ---
 
-*Testing analysis: 2026-07-10*
+*Testing analysis: 2026-07-11*

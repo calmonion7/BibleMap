@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 9c49a838dfe4c6e4695b9383ea961f15c9b117f2
-mapped: 2026-07-10
+last_mapped_commit: cf024f8e79a4864f4489aca0b0fd4c84caebeaf6
+mapped: 2026-07-11
 ---
 
 # CONVENTIONS
@@ -33,7 +33,7 @@ BibleMap은 백엔드(FastAPI + Neo4j, Python)·프론트엔드(React 19 + Vite,
 - **Python 함수·변수**: snake_case. 모듈 사설(비공개)은 밑줄 접두어 — `_build_list()`, `_resolve()`, `_ERA`, `_NAME_KO`, `_ERA_ORDER` (`backend/app/routes/persons.py`).
 - **Python 상수**: UPPER_SNAKE — `SEARCH_LIMIT = 20` (`search.py`), `MAX_NEIGHBORS_PER_TYPE = 30`·`NODE_NEIGHBOR_LIMIT = 50` (`nodes.py`). 매직 넘버는 파일 상단 모듈 상수로 뽑는다.
 - **JS 함수·변수**: camelCase. 컴포넌트·컴포넌트-반환 함수는 PascalCase (`RelationsView.jsx`의 내부 `TypeIcon`, `VerseLayer`).
-- **JS 모듈 상수**: UPPER_SNAKE — `MOBILE_BREAKPOINT`·`SHEET_VH`·`JOURNEY_SHEET_VH` (`constants.js`), `VALENCE_COLOR`·`TYPE_ICON`·`TYPE_ORDER` (`RelationsView.jsx`), `API_BASE` (`api.js`).
+- **JS 모듈 상수**: UPPER_SNAKE — `MOBILE_BREAKPOINT`·`SHEET_VH`·`JOURNEY_SHEET_VH` (`constants.js`), `VALENCE_COLOR`·`TYPE_ICON`·`TYPE_ORDER` (`RelationsView.jsx`), `API_BASE` (`api.js`). 예외: 화면 로컬 별칭은 소문자 상수로도 쓴다 — `GROUND = 'var(--bg-0)'` (`PersonHub.jsx`·`TourList.jsx`), `GOLD = NIGHT.gold` (`PersonHub.jsx`).
 - **API JSON 키**: **camelCase**. 백엔드가 Neo4j snake_case 속성을 camelCase 응답 키로 변환한다 — 예: `theographic_id` → `id`, `nameKo`, `nameKoMissing`, `neighborTotal`, `eventCount`, `coParticipants` (`nodes.py`, `persons.py`).
 
 ---
@@ -51,7 +51,7 @@ BibleMap은 백엔드(FastAPI + Neo4j, Python)·프론트엔드(React 19 + Vite,
 - **Neo4j 세션**: 매 핸들러가 `driver = get_driver()` → `with driver.session() as session:` 컨텍스트 매니저로 연다. 드라이버는 `backend/app/db.py`의 모듈 전역 싱글턴 `_driver`(lazy init).
 - **Cypher 쿼리**: 파라미터는 항상 바인딩(`$id`, `$q`)해 문자열 인터폴레이션으로 값을 넣지 않는다. **상수(limit·label)만** f-string으로 쿼리에 삽입한다 — 예: `nodes.py`의 `[0..{NODE_NEIGHBOR_LIMIT}]`, `f"CREATE INDEX {label.lower()}_tid ..."` (`main.py`). 사용자 입력은 절대 f-string에 넣지 않는다.
 - **결과 매핑**: `dict(record["n"])`로 노드 속성을 뽑고, `props.get("name") or props.get("title", "")` 폴백 체인으로 이름을 얻는다. `nameKo`가 없으면 `name`으로 폴백하고 `nameKoMissing: name_ko is None` 플래그를 함께 실는다(프론트가 미번역을 표시). 이 폴백 패턴은 `nodes.py`·`search.py` 전반에 반복된다.
-- **응답 형태**: 기본은 dict/list를 그대로 return(FastAPI 자동 JSON). **캐시가 필요한 정적 엔드포인트**는 `JSONResponse(content=..., headers={"Cache-Control": "max-age=300"})`로 직접 감싼다 (`persons.py`의 `/persons/curated`·`/person/{id}/connections`·`/relations`).
+- **응답 형태**: 기본은 dict/list를 그대로 return(FastAPI 자동 JSON). **캐시가 필요한 정적 엔드포인트**는 `JSONResponse(content=..., headers={"Cache-Control": "max-age=300"})`로 직접 감싼다 (`persons.py`의 `/persons/curated`·`/person/{id}/connections`·`/relations`, `places.py`·`events.py`·`tours.py`·`journey.py`도 동일 패턴). `books.py`는 `Cache-Control: no-store`로 반대 극단(항시 최신).
 - **에러**: 노드 미발견은 `raise HTTPException(status_code=404, detail="Node not found")` (`nodes.py`). 성공 폴백형 엔드포인트(관계 없음 등)는 예외 대신 **빈 배열/빈 dict를 반환**한다 (`persons.py` `_build_relations`는 미큐레이션 id에 `{"relations": []}`).
 - **N+1 회피 주석**: 왕복을 줄인 쿼리에는 이유를 주석으로 남긴다 — `nodes.py`의 "이웃 조회 + 총수 — 단일 쿼리로 2 → 1 왕복".
 - **관계 속성 필터로 발생/인용 구분**: 관계에 boolean 플래그(`rel.primary`)를 실어 같은 관계 타입 안에서 의미를 나누는 패턴 — `nodes.py`의 `MATCH (b:Book)-[rel:CONTAINS_BOOK]->(e:Event) WHERE rel.primary`(Book의 topEvents·topPersons·places는 발생만 집계, 인용은 제외, ADR-0012).
@@ -85,8 +85,8 @@ BibleMap은 백엔드(FastAPI + Neo4j, Python)·프론트엔드(React 19 + Vite,
 
 ## 8. 스타일링 (CSS)
 
-- **인라인 스타일 우선**. 대부분의 UI는 JSX `style={{ ... }}` 객체로 스타일링한다(`RelationsView.jsx` 전반). 색상은 컴포넌트 상단 상수 팔레트로 뽑아 재사용(`VALENCE_COLOR`).
-- **전역 CSS는 `frontend/src/index.css` 하나뿐**(64줄). CSS 변수(`:root`의 `--text`·`--bg`·`--sans`), `prefers-color-scheme: dark` 대응, 그리고 인라인으로 표현 못 하는 것(`:active`·`@keyframes`·`.rel-chip` 누름 피드백)만 담는다. CSS Modules·styled-components·Tailwind 없음.
+- **인라인 스타일 우선**. 대부분의 UI는 JSX `style={{ ... }}` 객체로 스타일링한다(디자인 토큰 리뉴얼 후 인라인 스타일 ~295곳이 §14 토큰을 참조, ADR-0013). 색상은 컴포넌트 상단 상수 팔레트로 뽑아 재사용(`VALENCE_COLOR`, `theme.js`).
+- **전역 CSS는 `frontend/src/index.css` 하나뿐**. `:root`의 디자인 토큰 CSS 변수(§14), `.rel-chip`처럼 인라인으로 표현 못 하는 것(`:active` 상태, 특이성 우선순위)만 여기 담는다. `color-scheme: dark` 단일 선언(ADR-0013) — `prefers-color-scheme` 분기 없음. CSS Modules·styled-components·Tailwind 없음.
 - **애니메이션**: 인라인 불가한 `@keyframes`는 컴포넌트가 `<style>` 태그로 주입한다(`Spinner.jsx`).
 - **반응형**: JS 미디어쿼리(`window.matchMedia`)로 모바일 분기를 판단하고 `constants.js`의 `MOBILE_BREAKPOINT`를 단일 출처로 쓴다(`App.jsx` 16~17행).
 
@@ -99,7 +99,7 @@ BibleMap은 백엔드(FastAPI + Neo4j, Python)·프론트엔드(React 19 + Vite,
 ## 10. 주석 규약
 
 - **한국어 평서체**(–한다체)로 쓴다. 코드 전반이 한글 주석. "왜"를 설명하고, 특히 과거에 물렸던 함정(footgun)·회귀 원인을 명시한다 — 예: `useStageNavigation.js`의 "과거 두 차례 런타임 크래시 원인", `generate_verse_text.py`의 "getbible UA 우회(retro 2026-06-15 교훈)", AUTHORING.md 규칙 8의 재시작 footgun.
-- **모듈/함수 docstring**: Python은 파일·함수 최상단 `"""..."""` docstring으로 책임과 계약을 적는다(`persons.py` 파일 헤더, `_build_connections`·`_build_relations` docstring, `generate_verse_text.py` 20줄 헤더에 대상 파일·필드·사용법). 설계 결정은 `ADR-000N` 번호로 인용한다(`ADR-0003`·`ADR-0004`·`ADR-0006`·`ADR-0009`·`ADR-0010`).
+- **모듈/함수 docstring**: Python은 파일·함수 최상단 `"""..."""` docstring으로 책임과 계약을 적는다(`persons.py` 파일 헤더, `_build_connections`·`_build_relations` docstring, `generate_verse_text.py` 20줄 헤더에 대상 파일·필드·사용법). 설계 결정은 `ADR-000N` 번호로 인용한다(`ADR-0003`·`ADR-0004`·`ADR-0006`·`ADR-0009`·`ADR-0010`·`ADR-0012`·`ADR-0013`).
 - **프론트**: JSDoc 태그(`@param` 등)는 쓰지 않는다. 일반 `//` 한 줄/블록 주석으로 의도를 적는다. 섹션 구분은 JSX 안에서 `{/* ... */}`.
 
 ## 11. 데이터 저작 규약
@@ -133,8 +133,49 @@ BibleMap은 백엔드(FastAPI + Neo4j, Python)·프론트엔드(React 19 + Vite,
 **프론트 (`frontend/src/`):**
 - 빈값-폴백 catch에는 폴백 직전 `console.warn('[Component] <무엇> 로드 실패', e)` 1줄. AbortError·cancelled·ref 가드는 기존 그대로 두고 **가드 통과 후에만** warn(취소는 정상 경로 — 로그 금지).
 - 사용자 가시 에러 상태(`setError`)를 세우는 catch는 로그 불요(이미 표면화됨).
-- `console.log` 금지. `import.meta.env.DEV` 가드는 계약 위반 경고(`TimelineView.jsx`의 Set 계약 `console.error` 패턴)에만.
+- `console.log` 금지(코드베이스 전체 재검증: `frontend/src/*.jsx`·`*.js`에 0건). `import.meta.env.DEV` 가드는 계약 위반 경고(`TimelineView.jsx`의 Set 계약 `console.error` 패턴)에만.
 
 ---
 
-*Convention analysis: 2026-07-10*
+## 14. 디자인 토큰 사용 규약 (Night Atlas, ADR-0013 — task#155·156으로 정본화)
+
+프론트 전 화면이 다크 단일 테마로 통일됐다(2026-07-11, `cf024f8e`). 토큰 정의는 `frontend/src/index.css`의 `:root` CSS 변수가 **정본**이고, 디자인 결정의 근거·색상표는 `.forge/reports/design-direction.md`(방향서)와 `.forge/adr/0013-night-atlas-dark-single-theme.md`가 정본이다.
+
+### 토큰 카탈로그 (`frontend/src/index.css`)
+
+- **표면**: `--bg-0`(최하층)·`--bg-1`(카드/시트)·`--bg-2`(부상 표면)·`--bg-3`(활성/선택), `--line`·`--line-strong`(경계선).
+- **텍스트(웜 잉크)**: `--ink`(본문)·`--ink-dim`(보조)·`--ink-faint`(캡션 — AA 대비 하한, 더 낮추지 않는다).
+- **브랜드 액센트**: `--gold`·`--gold-dim`.
+- **양피지**(성경 구절 본문 전용, 아래 규칙 참조): `--paper`·`--paper-ink`·`--paper-accent`.
+- **형태·그림자**: `--r-s`/`--r-m`/`--r-l`(border-radius), `--shadow-1`/`--shadow-2`.
+- **서체**: `--serif`·`--sans`.
+- **하위호환 별칭**: `--text`(=`--ink-dim`)·`--text-h`(=`--ink`)·`--bg`(=`--bg-0`) — 기존 var 참조처를 위해 유지, 신규 코드는 원본 토큰(`--ink-dim` 등)을 직접 쓴다.
+
+### 참조 방법
+
+- **JSX 인라인 스타일**: `style={{ color: 'var(--ink)', background: 'var(--bg-1)' }}`처럼 CSS 변수를 **문자열로** 참조한다(리터럴 값 하드코딩 금지). 전 화면(`App.jsx`·`SidePanel.jsx`·`RelationsView.jsx`·`TimelineView.jsx`·`PersonHub.jsx`·`BibleOverviewView.jsx`·`EventVerses.jsx`·`JourneyList.jsx`·`TourList.jsx`·`VerseLangTabs.jsx`)가 이 패턴을 쓴다.
+- **JS 수치·연산이 필요한 지점**: CSS 변수 문자열을 그대로 쓸 수 없는 곳(예: 문자열 접합으로 alpha 접미어를 만드는 `Spinner`의 `` `${color}22` ``, `NIGHT.gold`처럼 JS 로직에서 비교/연산할 값)은 `frontend/src/theme.js`의 `NIGHT` 상수 객체(`NIGHT.bg0`·`NIGHT.gold`·`NIGHT.paperAccent` 등)를 쓴다 — index.css 값과 1:1 동기화된 사본. 사용례: `PersonHub.jsx`의 `GOLD = NIGHT.gold`, `SidePanel.jsx`·`RelationsView.jsx`의 `<Spinner color={NIGHT.gold} />`.
+- **CSS 변수를 새 값으로 추가/변경할 때**: `index.css`와 `theme.js`의 `NIGHT` 양쪽을 함께 갱신한다(정본 이원화 — 어느 한쪽만 고치면 드리프트).
+
+### 서체 위계 (원칙 4, 방향서 §디자인 원칙)
+
+- **명조(`var(--serif)`)는 서사 주체에만**: 화면 제목(`h2`, index.css 전역 규칙으로 상속), 인물/책 이름, 성경 구절 본문. 예: `RelationsView.jsx`의 인물 이름·관계 헤더, `BibleOverviewView.jsx`의 책 제목, `EventVerses.jsx`·`TimelineView.jsx`·`SidePanel.jsx`의 구절 본문.
+- **산스(`var(--sans)`, 기본값이라 명시 생략 가능)는 데이터·UI 라벨**: 섹션 라벨·메타 정보·버튼·칩. 명조와 산스의 대비 자체가 "이야기 vs 도구" 위계를 표현하는 의도적 장치다.
+
+### 양피지(`--paper*`) 전용 규칙 (원칙 2, ADR-0013)
+
+- 어두운 UI에서 밝은 표면은 **성경 구절 본문(`--paper`/`--paper-ink`/`--paper-accent`)과 지도(무라벨 지형 타일)뿐**이다. 새 컴포넌트·화면을 추가할 때 이 둘 외의 밝은 표면을 만들지 않는다.
+- `--paper`는 배경(구절 카드), `--paper-ink`는 본문 텍스트, `--paper-accent`는 절 번호·앵커 강조에만 쓴다 — `EventVerses.jsx`·`SidePanel.jsx`(`paperCardStyle`/`paperTextStyle`)·`RelationsView.jsx`(국면 팝업)·`TimelineView.jsx`가 이 3색을 구절 렌더링에 일관 적용.
+- 지도(MapLibre)는 CSS `filter`가 아니라 **래스터 페인트 속성**으로 톤을 준다 — `frontend/src/MapView.jsx`의 `paint: { 'raster-saturation': -0.3, 'raster-brightness-max': 0.94, 'raster-contrast': 0.05 }`. CSS filter는 캔버스가 래스터 타일+마커 오버레이를 공유해 전체(마커까지) 틴트되므로 채택하지 않았다(2/2 리뉴얼 이탈 기록, `.forge/retro/2026-07-11-design-renewal-2of2.md`).
+
+### 하드코딩 hex 예외
+
+원칙은 리터럴 hex 금지·토큰만 참조지만, 다음 예외가 실코드에 존재한다 — **새 예외를 추가할 때는 사유 주석을 남긴다**(아래 두 건은 이미 준수, 나머지는 사유 미문서화 상태로 확인됨):
+- `SidePanel.jsx:123`의 `#dc3545`(에러 텍스트) — 주석 "에러 색 '#dc3545' — Night Atlas 토큰 미정의, 유지".
+- `VerseLangTabs.jsx:19`의 `#fff`(활성 탭 대비용) — 주석 "활성 배경은 색상 프롭이 다양해 대비용 흰색 고정(전용 토큰 없음)".
+- `EventVerses.jsx:81`·`TimelineView.jsx:169`의 `Spinner` `color="#8a6d1f"` — `--paper-accent`와 동일 값의 리터럴 복제. 원인: `Spinner.jsx`가 `` `${color}22` `` 문자열 접합으로 alpha 테두리를 만들어 `var(--paper-accent)22`가 무효 CSS가 되므로 리터럴로 우회(사유 주석 없음 — 신규 유사 케이스는 `NIGHT.paperAccent`를 쓰고 이유를 주석으로 남길 것).
+- `BibleOverviewView.jsx:216`·`PersonHub.jsx:207`·`TourList.jsx:29`의 `#f87171`(에러 상태 텍스트) — 사유 주석 없음(위 `#dc3545`와 동일 성격의 미토큰화 에러색이 파일별로 다른 값으로 중복 존재).
+
+---
+
+*Convention analysis: 2026-07-11*

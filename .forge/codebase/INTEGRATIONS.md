@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 9c49a838dfe4c6e4695b9383ea961f15c9b117f2
-mapped: 2026-07-10
+last_mapped_commit: cf024f8e79a4864f4489aca0b0fd4c84caebeaf6
+mapped: 2026-07-11
 ---
 
 # External Integrations
@@ -29,7 +29,7 @@ mapped: 2026-07-10
 
 **사용처:**
 - `backend/scripts/load_theographic.py` — 그래프 최초 적재. `urllib.request`로 4개 JSON을 받아 노드(Person/Place/Event/PeopleGroup)와 관계(PARENT_OF, CHILD_OF, SIBLING_OF, PARTNER_OF, MEMBER_OF, HAS_PARTICIPANT, OCCURS_AT, PART_OF)를 `MERGE`. `status == "publish"`만 필터, 배치 UNWIND(노드 500 / 관계 1000).
-- `backend/scripts/generate_event_verses.py`, `generate_book_context.py`, `generate_verse_events.py` 등 데이터 생성 스크립트가 동일 raw URL을 `urllib.request`로 소비한다.
+- `backend/scripts/load_books.py`, `generate_event_verses.py`, `generate_book_context.py`, `generate_verse_events.py`, `generate_person_traits.py` 등 데이터 생성/적재 스크립트가 동일 raw URL을 `urllib.request`로 소비한다.
 
 **인증:** 없음(공개 raw). 클라이언트 라이브러리 없이 표준 `urllib` 사용.
 
@@ -37,7 +37,7 @@ mapped: 2026-07-10
 
 **출처:** `https://api.getbible.net/v2/{slug}/{book_order}/{chapter}.json` — 구절 원문 텍스트.
 
-**사용처:** `backend/scripts/generate_verse_text.py`, `backend/scripts/generate_person_event_verses.py` (빌드타임 생성 스크립트).
+**사용처:** `backend/scripts/generate_verse_text.py`, `backend/scripts/generate_person_event_verses.py` (빌드타임 생성 스크립트, ADR-0003 — 런타임 getBible 호출을 없애기 위한 미리굽기).
 
 **인증:** 없음. 단, 기본 `Python-urllib` User-Agent에는 403을 반환하므로 브라우저류 UA 헤더 필요 — `_UA = "Mozilla/5.0 (compatible; BibleMap-build/1.0)"` (`generate_verse_text.py:55`, retro 2026-06-15 교훈). 요청 timeout 15~30초.
 
@@ -47,9 +47,9 @@ mapped: 2026-07-10
 
 **클라이언트:** `anthropic` Python SDK (`anthropic.Anthropic(api_key=...)`). `backend/requirements.txt`에는 없고 스크립트 실행 시 별도 pip 설치하는 개발 전용 의존성.
 
-**모델:** `claude-haiku-4-5-20251001` (`generate_book_events.py:75`, `generate_person_traits.py:59`).
+**모델:** `claude-haiku-4-5-20251001` — `backend/scripts/generate_book_context.py:57`, `generate_book_events.py:75`, `generate_verse_events.py:107`, `generate_person_traits.py:59`.
 
-**사용 스크립트:** `backend/scripts/generate_book_events.py`, `generate_book_context.py`, `generate_verse_events.py`, `generate_person_traits.py` 등.
+**사용 스크립트:** `backend/scripts/generate_book_events.py`, `generate_book_context.py`, `generate_verse_events.py`, `generate_person_traits.py`.
 
 **인증:** `ANTHROPIC_API_KEY` 환경변수. 미설정 시 `RuntimeError`. 값은 실행자가 임시 주입하며 레포·`.env`에 저장하지 않는다.
 
@@ -57,7 +57,9 @@ mapped: 2026-07-10
 
 MapLibre GL 스타일에서 클라이언트가 직접 로드한다 (`frontend/src/MapView.jsx`).
 
-- **베이스맵 래스터 타일:** ESRI ArcGIS Online `NatGeo World Map` — `https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}` (`type: raster`, `tileSize: 256`, source id `esri`). API 키 없음.
+- **베이스맵 래스터 타일:** ESRI ArcGIS Online `World_Terrain_Base` — `https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}` (`type: raster`, `tileSize: 256`, `maxzoom: 9`, source id `esri`). z10 이상은 이 서비스가 "data not yet available" 플레이스홀더를 반환하므로 z9 타일을 오버줌한다. API 키 없음.
+  - 2026-07-11 디자인 리뉴얼(commit `cf024f8`, ADR-0013 "Night Atlas")에서 기존 ESRI `NatGeo World Map`(라벨 있는 스타일)에서 교체됐다 — 현대 도로·공항·국경이 없는 무라벨 지형 타일을 선택해 지명은 앱의 한글 마커가 전담하게 했다. 지도 레이어(`esri-layer`)에 세피아 톤 래스터 paint를 얹는다: `{'raster-saturation': -0.3, 'raster-brightness-max': 0.94, 'raster-contrast': 0.05}`(CSS filter 대신 래스터 전용 paint를 쓴 이유: CSS filter는 오버레이 여정선·배지까지 같은 캔버스에서 물들이기 때문).
+  - 지도 오버레이(여정선·정차지 배지·장소 마커)는 `frontend/src/mapLayers.js`에서 금색(`#c9a84c`)·양피지(`#f2ecdc`) 계열 색을 하드코딩해 그린다(Night Atlas 브랜드 액센트, `frontend/src/theme.js`의 `NIGHT` 상수와 동일 값).
 - **글리프(폰트) PBF:** Protomaps basemaps assets — `https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf` (스타일 `glyphs`).
 - 지도 초기 뷰: center `[35.22, 31.78]`, zoom 5.
 

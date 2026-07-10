@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 9c49a838dfe4c6e4695b9383ea961f15c9b117f2
-mapped: 2026-07-10
+last_mapped_commit: cf024f8e79a4864f4489aca0b0fd4c84caebeaf6
+mapped: 2026-07-11
 ---
 
 # Technology Stack
@@ -45,7 +45,7 @@ mapped: 2026-07-10
 ## 데이터 계층
 
 - **Neo4j 5** — 그래프 DB (`docker-compose.yml` 서비스 `neo4j`, 이미지 `neo4j:5`). 상세는 `INTEGRATIONS.md` 참고.
-- **JSON 오버레이 파일** — `data/` 하위 14개 디렉터리(`authored_events`, `authored_persons`, `book_context`, `book_events`, `book_years_approx`, `character_traits`, `event_verses`, `names_ko`, `person_events`, `person_relations`, `place_context`, `place_coords`, `tours`, `verse_events`). API 컨테이너에 `./data:/app/data`로 마운트되어 런타임 조회에 쓰인다.
+- **JSON 오버레이 파일** — `data/` 하위 14개 디렉터리(`authored_events`, `authored_persons`, `book_context`, `book_events`, `book_years_approx`, `character_traits`, `event_verses`, `names_ko`, `person_events`, `person_relations`, `place_context`, `place_coords`, `tours`, `verse_events`). API 컨테이너에 `./data:/app/data`로 마운트되어 런타임 조회에 쓰인다. 조회 헬퍼는 `backend/app/overlays.py`(`DATA_DIR` 우선, 없으면 레포 내 `data/`로 폴백, `lru_cache`로 1회 로드).
 
 ## 빌드 구성
 
@@ -55,6 +55,7 @@ mapped: 2026-07-10
 **프론트 번들 (`frontend/vite.config.js`):**
 - Rollup `manualChunks`로 청크 분리: `maplibre-gl` → `maplibre` 청크, 그 외 `node_modules` → `vendor` 청크.
 - 산출물 `frontend/dist/`는 nginx 컨테이너에 `:ro`로 마운트된다(HMR 아님 — 검증 전 `npm run build` 필요).
+- 디자인 토큰은 `frontend/src/index.css`가 정본이다(다크 단일 "Night Atlas", ADR-0013) — `:root`에 표면(`--bg-0`~`--bg-3`), 텍스트(`--ink*`), 브랜드 액센트(`--gold`, `--gold-dim`), 구절 본문 전용 양피지(`--paper*`), 서체(`--serif`/`--sans`) 변수를 선언하고 `color-scheme: dark` 단일. `frontend/src/theme.js`의 `NIGHT` 상수는 이 값들을 JS(MapLibre paint 등 CSS 변수 미적용 지점)에서 쓰기 위한 하드코딩 사본.
 
 **정적 서빙 (`nginx/nginx.conf`):**
 - `nginx:alpine`. `/api/` → `http://api:8000/` 프록시. `index.html`은 no-cache, 해시 에셋(js/css/이미지/폰트)은 `max-age=31536000, immutable`. SPA fallback: `try_files $uri /index.html`.
