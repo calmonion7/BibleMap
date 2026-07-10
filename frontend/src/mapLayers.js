@@ -154,11 +154,11 @@ export function setupMapSources(map) {
     paint: {
       'line-width': 3,
       'line-opacity': 0.85,
-      // 파란색(시작) → 주황색(끝) 그라데이션으로 방향감 표현
+      // 금색 순례길(ADR-0013) — 어두운 금(시작) → 밝은 금(끝) 그라데이션으로 방향감 표현
       'line-gradient': [
         'interpolate', ['linear'], ['line-progress'],
-        0, '#4a90d9',
-        1, '#f5a623',
+        0, '#8a6d1f',
+        1, '#c9a84c',
       ],
     },
   })
@@ -181,8 +181,8 @@ export function setupMapSources(map) {
       'text-pitch-alignment': 'viewport',
     },
     paint: {
-      'text-color': '#c47a0a',
-      'text-halo-color': 'rgba(255,255,255,0.9)',
+      'text-color': '#8a6d1f',
+      'text-halo-color': 'rgba(242,236,220,0.9)',
       'text-halo-width': 1.5,
     },
   })
@@ -197,16 +197,16 @@ export function setupMapSources(map) {
       'circle-radius': ['case', ['any', ['get', 'isStart'], ['get', 'isEnd']], 10, 8],
       'circle-color': [
         'case',
-        ['get', 'isStart'], '#4a90d9',   // 시작: 파랑
-        ['get', 'isEnd'],   '#f5a623',   // 끝: 주황
-        '#ffffff',                        // 중간: 흰색
+        ['get', 'isStart'], '#c9a84c',   // 시작: 금
+        ['get', 'isEnd'],   '#c9a84c',   // 끝: 금
+        '#16173a',                        // 중간: 심야 네이비
       ],
       'circle-stroke-width': 2,
       'circle-stroke-color': [
         'case',
-        ['get', 'isStart'], '#2563a8',
-        ['get', 'isEnd'],   '#c47a0a',
-        '#7c9cfc',
+        ['get', 'isStart'], '#8a6d1f',
+        ['get', 'isEnd'],   '#8a6d1f',
+        '#c9a84c',
       ],
       'circle-opacity': 0.95,
     },
@@ -226,20 +226,20 @@ export function setupMapSources(map) {
     paint: {
       'text-color': [
         'case',
-        ['any', ['get', 'isStart'], ['get', 'isEnd']], '#ffffff',
-        '#1a1a2e',
+        ['any', ['get', 'isStart'], ['get', 'isEnd']], '#1b1504',
+        '#e9e6da',
       ],
       // 다중 순번(예 "6-8, 10")은 원을 넘쳐 지도 위로 나오므로 헤일로로 가독성 확보
       'text-halo-color': [
         'case',
-        ['any', ['get', 'isStart'], ['get', 'isEnd']], 'rgba(26,26,46,0.85)',
-        'rgba(255,255,255,0.92)',
+        ['any', ['get', 'isStart'], ['get', 'isEnd']], 'rgba(201,168,76,0.75)',
+        'rgba(14,15,34,0.85)',
       ],
       'text-halo-width': 1.2,
     },
   })
 
-  // 활성 정차지 강조 — 반전 배지(네이비 채움 + 흰 번호 + 주황 링, 확대)로 선택 정차지를 부각.
+  // 활성 정차지 강조 — 반전 배지(금 채움 + 진갈색 번호, 확대)로 선택 정차지를 부각.
   map.addSource('journey-active-source', { type: 'geojson', data: EMPTY_GEOJSON })
   map.addLayer({
     id: 'journey-active-circle',
@@ -247,9 +247,9 @@ export function setupMapSources(map) {
     source: 'journey-active-source',
     paint: {
       'circle-radius': 13,
-      'circle-color': '#1a1a2e',
+      'circle-color': '#c9a84c',
       'circle-stroke-width': 3,
-      'circle-stroke-color': '#f5a623',
+      'circle-stroke-color': '#5c4a15',
     },
   })
   map.addLayer({
@@ -264,7 +264,7 @@ export function setupMapSources(map) {
       'text-allow-overlap': true,
       'text-ignore-placement': true,
     },
-    paint: { 'text-color': '#ffffff', 'text-halo-color': 'rgba(26,26,46,0.9)', 'text-halo-width': 1.2 },
+    paint: { 'text-color': '#1b1504', 'text-halo-color': 'rgba(242,236,220,0.7)', 'text-halo-width': 1.2 },
   })
 
   map.addSource('places-source', {
@@ -295,9 +295,9 @@ export function setupMapSources(map) {
     filter: ['!', ['has', 'point_count']],
     paint: {
       'circle-radius': ['case', ['==', ['get', 'isPrimary'], true], 11, 8],
-      'circle-color': ['case', ['==', ['get', 'isPrimary'], true], '#f5a623', '#4a90d9'],
+      'circle-color': ['case', ['==', ['get', 'isPrimary'], true], '#c9a84c', '#58a4e8'],
       'circle-stroke-width': 2.5,
-      'circle-stroke-color': '#ffffff',
+      'circle-stroke-color': '#f2ecdc',
     },
   })
 
@@ -369,9 +369,9 @@ export function setupMapSources(map) {
     source: 'place-spider-source',
     paint: {
       'circle-radius': ['case', ['==', ['get', 'isPrimary'], true], 11, 8],
-      'circle-color': ['case', ['==', ['get', 'isPrimary'], true], '#f5a623', '#4a90d9'],
+      'circle-color': ['case', ['==', ['get', 'isPrimary'], true], '#c9a84c', '#58a4e8'],
       'circle-stroke-width': 2.5,
-      'circle-stroke-color': '#ffffff',
+      'circle-stroke-color': '#f2ecdc',
     },
   })
 
@@ -417,9 +417,9 @@ export function setupMapSources(map) {
     source: 'event-ring-source',
     paint: {
       'circle-radius': 9,
-      'circle-color': '#9b59b6',
+      'circle-color': '#f0a844',
       'circle-stroke-width': 2,
-      'circle-stroke-color': '#ffffff',
+      'circle-stroke-color': '#f2ecdc',
     },
   })
 

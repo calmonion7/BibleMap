@@ -1,31 +1,56 @@
+/* Night Atlas 디자인 토큰 — 정본: .forge/reports/design-direction.md (ADR-0013 다크 단일).
+   어두운 UI에서 밝은 표면은 둘만: 성경 구절 본문(--paper*)과 지도(무라벨 지형 타일). */
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
+  /* 표면 */
+  --bg-0: #0e0f22;
+  --bg-1: #16173a;
+  --bg-2: #1e2144;
+  --bg-3: #272a55;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.18);
 
+  /* 텍스트(웜 잉크) */
+  --ink: #e9e6da;
+  --ink-dim: rgba(233, 230, 218, 0.64);
+  --ink-faint: rgba(233, 230, 218, 0.42);
+
+  /* 브랜드 액센트 */
+  --gold: #c9a84c;
+  --gold-dim: rgba(201, 168, 76, 0.35);
+
+  /* 양피지 — 성경 구절 본문 전용 */
+  --paper: #f2ecdc;
+  --paper-ink: #2e2a20;
+  --paper-accent: #8a6d1f;
+
+  /* 형태·그림자 */
+  --r-s: 8px;
+  --r-m: 12px;
+  --r-l: 16px;
+  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 8px 32px rgba(0, 0, 0, 0.55);
+
+  /* 서체 — 명조는 서사 주체(제목·인물·책·구절), 산스는 데이터·UI */
+  --serif: 'Noto Serif KR', 'Nanum Myeongjo', AppleMyungjo, Batang, serif;
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
 
-  font: 18px/145% var(--sans);
+  /* 하위호환 별칭(기존 var 사용처) */
+  --text: var(--ink-dim);
+  --text-h: var(--ink);
+  --bg: var(--bg-0);
+
+  font: 16px/1.5 var(--sans);
   letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
+  color-scheme: dark; /* 다크 단일 — ADR-0013 */
+  color: var(--ink);
+  background: var(--bg-0);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
   @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
+    font-size: 15px;
   }
 }
 
@@ -38,24 +63,26 @@ body {
   height: 100%;
 }
 
-/* 관계 뷰 사건 칩 — 기본 탭 하이라이트(사각형) 대신 의도된 누름 피드백(:active) */
+/* 관계 뷰 사건 칩 — 기본 탭 하이라이트(사각형) 대신 의도된 누름 피드백(:active).
+   배경은 클래스에 둔다(인라인 background는 :active를 이기는 특이성 gotcha). */
 .rel-chip {
-  background: #fff;
-  border: 1px solid #e7eaf1;
+  background: var(--bg-2);
+  border: 1px solid var(--line-strong);
+  color: var(--ink-dim);
   transition: background 0.1s ease, transform 0.06s ease, border-color 0.1s ease;
 }
 .rel-chip:active {
-  background: #dbe6f8;
-  border-color: #aec6ec;
+  background: var(--bg-3);
+  border-color: var(--gold-dim);
   transform: scale(0.94);
 }
 
 h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+  font-family: var(--serif);
+  font-weight: 600;
+  color: var(--ink);
   font-size: 24px;
-  line-height: 118%;
+  line-height: 125%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
   @media (max-width: 1024px) {

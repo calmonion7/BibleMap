@@ -10,6 +10,7 @@
 // 기존 인라인 아코디언(expandedId 내부 상태)을 쓴다.
 import { useEffect, useRef, useState } from 'react'
 import EventVerses from './EventVerses'
+import { TYPE_COLOR } from './theme'
 
 export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseLang, setVerseLang, personName, tourName, readingEventId, onReadingChange }) {
   const listRef = useRef(null)
@@ -37,7 +38,7 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
   if (controlled && readingEventId) {
     const ev = stops.find((s) => s.eventId === readingEventId)
     return (
-      <div style={{ height: '100%', background: '#faf9ff' }}>
+      <div style={{ height: '100%', background: 'var(--bg-1)' }}>
         <EventVerses
           eventId={readingEventId}
           heading={ev?.nameKo || ev?.title || '구절'}
@@ -72,16 +73,16 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
       style={{
         height: '100%',
         overflowY: 'auto',
-        background: 'rgba(20, 22, 50, 0.97)',
-        borderRight: '1px solid rgba(255,255,255,0.07)',
+        background: 'var(--bg-1)',
+        borderRight: '1px solid var(--line)',
       }}
     >
       {/* 헤더 — 여정 = 사건 묶음임을 명시(여정 > 사건 N개 > 각 사건의 구절) */}
-      <div style={{ padding: '12px 14px 8px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
-        <div style={{ color: '#fff', fontSize: 13, fontWeight: 700 }}>
+      <div style={{ padding: '12px 14px 8px', borderBottom: '1px solid var(--line)' }}>
+        <div style={{ color: 'var(--ink)', fontSize: 13, fontWeight: 700, fontFamily: 'var(--serif)' }}>
           {tourName || (personName ? `${personName}의 여정` : '여정')}
         </div>
-        <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: 10, marginTop: 2 }}>
+        <div style={{ color: 'var(--ink-faint)', fontSize: 10, marginTop: 2 }}>
           사건 {stops.length}개 · 📖 눌러 구절 보기
         </div>
       </div>
@@ -101,11 +102,16 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
             key={stop.eventId ?? rawIdx}
             ref={rawIdx === firstActiveRawIdx ? activeRef : null}
             style={{
-              borderBottom: '1px solid rgba(255,255,255,0.05)',
-              background: isActive ? 'rgba(124,156,252,0.15)' : 'transparent',
+              borderBottom: '1px solid var(--line)',
+              background: isActive ? 'var(--bg-3)' : 'transparent',
+              position: 'relative',
               transition: 'background 0.15s',
             }}
           >
+            {/* 활성 행 — 왼쪽 금색 바(목업 .stop.on::before) */}
+            {isActive && (
+              <span style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 3, background: 'var(--gold)' }} />
+            )}
             <div
               onClick={() => {
                 // 행 클릭 = 지도 선택만. 열린 구절은 닫는다(구절은 📖로만 토글).
@@ -124,7 +130,7 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
                 opacity: hasCoord ? 1 : 0.55,
               }}
             >
-              {/* 순번 배지 */}
+              {/* 순번 배지 — 목업 .stop .n(금 테두리 원, 활성 시 금 채움) */}
               <div style={{
                 flexShrink: 0,
                 width: 22, height: 22,
@@ -132,11 +138,11 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: 10, fontWeight: 700,
                 marginTop: 1,
-                background: seq == null ? 'rgba(255,255,255,0.1)'
-                  : isActive ? '#f5a623'
-                  : 'rgba(74,144,217,0.7)',
-                color: seq == null ? 'rgba(255,255,255,0.3)' : 'white',
-                border: isActive ? '2px solid #f5a623' : '2px solid transparent',
+                background: seq == null ? 'var(--bg-2)'
+                  : isActive ? 'var(--gold)'
+                  : 'var(--bg-0)',
+                color: seq == null ? 'var(--ink-faint)' : isActive ? 'var(--bg-0)' : 'var(--gold)',
+                border: seq == null ? '1px solid transparent' : `1px solid ${isActive ? 'var(--gold)' : 'var(--gold-dim)'}`,
               }}>
                 {seq != null ? seq : '·'}
               </div>
@@ -145,7 +151,7 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{
                   fontSize: 13,
-                  color: isActive ? '#f5a623' : hasCoord ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.6)',
+                  color: isActive ? 'var(--gold)' : hasCoord ? 'var(--ink)' : 'var(--ink-faint)',
                   fontWeight: isActive ? 600 : 400,
                   lineHeight: 1.4,
                   overflow: 'hidden',
@@ -154,14 +160,14 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
                 }}>
                   {/* 테마 투어 — 여러 인물을 엮으므로 사건명 앞에 그 사건 주인공 라벨(백엔드 personNameKo). 인물 여정엔 없음. */}
                   {stop.personNameKo && (
-                    <span style={{ color: '#7c9cfc', fontWeight: 600 }}>{stop.personNameKo} </span>
+                    <span style={{ color: TYPE_COLOR.Person, fontWeight: 600 }}>{stop.personNameKo} </span>
                   )}
                   {stop.nameKo || stop.title}
                 </div>
                 {stop.placeNameKo && (
                   <div style={{
                     fontSize: 11,
-                    color: 'rgba(255,255,255,0.35)',
+                    color: 'var(--ink-faint)',
                     marginTop: 2,
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
@@ -172,7 +178,7 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
                 )}
               </div>
 
-              {/* 펼침 토글 — 구절 있는 사건 행. 또렷한 보라 칩(SidePanel '📖 구절' 패턴). */}
+              {/* 펼침 토글 — 구절 있는 사건 행. 감사 M6: 필 배경 제거, 조용한 아이콘/텍스트(호버·활성 시 금색). */}
               {expandable && (
                 <span
                   onClick={(e) => {
@@ -186,6 +192,8 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
                       onStopSelect(dedupIdx)
                     }
                   }}
+                  onMouseEnter={(e) => { if (!expanded) e.currentTarget.style.color = 'var(--gold)' }}
+                  onMouseLeave={(e) => { if (!expanded) e.currentTarget.style.color = 'var(--ink-faint)' }}
                   style={{
                   flexShrink: 0,
                   display: 'inline-flex', alignItems: 'center', gap: 3,
@@ -193,9 +201,9 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
                   padding: '8px 11px', borderRadius: 999, lineHeight: 1.4,
                   margin: '-6px -4px -6px 0',  // 탭 히트영역 확대(모바일 오조작 방지) — 행 높이 영향 최소화
                   cursor: 'pointer',
-                  border: '1px solid #a78bfa',
-                  background: expanded ? '#a78bfa' : 'rgba(167,139,250,0.14)',
-                  color: expanded ? '#fff' : '#c4b5fd',
+                  border: '1px solid transparent',
+                  background: 'none',
+                  color: expanded ? 'var(--gold)' : 'var(--ink-faint)',
                 }}>📖 {expanded ? '▾' : '▸'}</span>
               )}
             </div>

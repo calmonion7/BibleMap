@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
 import { apiGet } from './api'
 import Spinner from './Spinner'
+import { TYPE_COLOR } from './theme'
 
 // 테마 투어 목록 스테이지 — GET /tours 카드. 카드 클릭 → onSelectTour(id).
 // 여러 인물의 여정을 하나의 주제로 엮은 투어를 고르는 화면(인물 허브의 투어판).
-const PURPLE = '#a78bfa'
-const GROUND = '#11122b'
-const TEXT = '#e8e4d8'
-const CARD_BG = '#1a1b3a'
+// Night Atlas 토큰(design-direction.md) — 보라는 theme.js 상수, 표면·잉크는 CSS 변수 참조
+const PURPLE = TYPE_COLOR.Book
+const GROUND = 'var(--bg-0)'
+const TEXT = 'var(--ink)'
+const CARD_BG = 'var(--bg-1)'
 
 export default function TourList({ onSelectTour }) {
   const [tours, setTours] = useState([])
@@ -23,12 +25,13 @@ export default function TourList({ onSelectTour }) {
   }, [])
 
   if (loading) return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', background: GROUND }}><Spinner color={PURPLE} /></div>
+  // 에러 색 — 방향서 토큰에 에러 시맨틱이 없어 하드코딩 유지
   if (error) return <div style={{ color: '#f87171', padding: 24, background: GROUND, height: '100%' }}>테마 투어를 불러오지 못했습니다 — {error}</div>
-  if (tours.length === 0) return <div style={{ color: 'rgba(232,228,216,0.45)', padding: 24, background: GROUND, height: '100%' }}>준비된 테마 투어가 없습니다</div>
+  if (tours.length === 0) return <div style={{ color: 'var(--ink-faint)', padding: 24, background: GROUND, height: '100%' }}>준비된 테마 투어가 없습니다</div>
 
   return (
     <div style={{ background: GROUND, height: '100%', overflowY: 'auto', boxSizing: 'border-box', padding: '28px 32px 48px' }}>
-      <p style={{ color: 'rgba(232,228,216,0.5)', fontSize: 14, margin: '0 0 20px', lineHeight: 1.5 }}>
+      <p style={{ color: 'var(--ink-dim)', fontSize: 14, margin: '0 0 20px', lineHeight: 1.5 }}>
         여러 인물의 여정을 하나의 주제로 엮어 따라갑니다
       </p>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 12 }}>
@@ -44,9 +47,9 @@ export default function TourList({ onSelectTour }) {
             }}
           >
             <span style={{ color: PURPLE, fontSize: 11, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase' }}>{t.era}</span>
-            <span style={{ color: TEXT, fontWeight: 700, fontSize: 18, lineHeight: 1.2 }}>{t.title}</span>
-            {t.subtitle && <span style={{ color: 'rgba(232,228,216,0.5)', fontSize: 13, lineHeight: 1.4 }}>{t.subtitle}</span>}
-            <span style={{ color: 'rgba(232,228,216,0.4)', fontSize: 12, marginTop: 2 }}>정차지 {t.stopCount}곳</span>
+            <span style={{ color: TEXT, fontFamily: 'var(--serif)', fontWeight: 700, fontSize: 18, lineHeight: 1.2 }}>{t.title}</span>
+            {t.subtitle && <span style={{ color: 'var(--ink-dim)', fontSize: 13, lineHeight: 1.4 }}>{t.subtitle}</span>}
+            <span style={{ color: 'var(--ink-dim)', fontSize: 12, marginTop: 2 }}>정차지 {t.stopCount}곳</span>
           </button>
         ))}
       </div>

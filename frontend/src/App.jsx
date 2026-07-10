@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
 import { Map, Clock, BookOpen, Users } from 'lucide-react'
+import { TYPE_COLOR } from './theme'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
 import TimelineView from './TimelineView'
@@ -118,8 +119,8 @@ function App() {
       <div style={{
         height: NAV_H, flexShrink: 0,
         display: 'flex', alignItems: 'center',
-        background: '#1a1a2e', borderBottom: 'none',
-        zIndex: 20, boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+        background: 'var(--bg-1)', borderBottom: 'none',
+        zIndex: 20, boxShadow: 'var(--shadow-1)',
         gap: 0,
       }}>
         {/* 복귀 — 투어면 "투어명 + 테마 목록", 인물이면 "인물명 + 다른 인물" */}
@@ -129,18 +130,18 @@ function App() {
             display: 'flex', alignItems: 'center', gap: 6,
             padding: '0 14px', height: '100%',
             background: 'none', border: 'none', cursor: 'pointer',
-            color: 'rgba(255,255,255,0.7)',
-            borderRight: '1px solid rgba(255,255,255,0.1)',
+            color: 'var(--ink-dim)',
+            borderRight: '1px solid var(--line)',
             flexShrink: 0,
           }}
         >
           <span style={{ fontSize: 13 }}>←</span>
           {headingName ? (
-            <span style={{ fontSize: 13, color: isTour ? '#a78bfa' : '#c9a84c', fontWeight: 600, maxWidth: isMobile ? 80 : 160, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            <span style={{ fontSize: 13, fontFamily: isTour ? undefined : 'var(--serif)', color: isTour ? TYPE_COLOR.Book : 'var(--gold)', fontWeight: 600, maxWidth: isMobile ? 80 : 160, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {headingName}
             </span>
           ) : null}
-          <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)' }}>{backLabel}</span>
+          <span style={{ fontSize: 11, color: 'var(--ink-faint)' }}>{backLabel}</span>
         </button>
 
         {/* 지도 / 타임라인 / 관계(인물 모드 한정) 토글 */}
@@ -155,8 +156,8 @@ function App() {
                 style={{
                   padding: '0 14px', height: '100%',
                   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
-                  color: active ? 'white' : 'rgba(255,255,255,0.5)',
-                  borderBottom: active ? '2px solid #7c9cfc' : '2px solid transparent',
+                  color: active ? 'var(--ink)' : 'var(--ink-faint)',
+                  borderBottom: active ? '2px solid var(--gold)' : '2px solid transparent',
                   border: 'none', background: 'none', cursor: 'pointer',
                   transition: 'color 0.15s',
                 }}
@@ -177,8 +178,8 @@ function App() {
       <div style={{
         height: NAV_H, flexShrink: 0,
         display: 'flex', alignItems: 'center',
-        background: '#1a1a2e',
-        zIndex: 20, boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+        background: 'var(--bg-1)',
+        zIndex: 20, boxShadow: 'var(--shadow-1)',
         gap: 0,
       }}>
         <button
@@ -187,8 +188,8 @@ function App() {
             display: 'flex', alignItems: 'center', gap: 6,
             padding: '0 14px', height: '100%',
             background: 'none', border: 'none', cursor: 'pointer',
-            color: 'rgba(255,255,255,0.7)',
-            borderRight: '1px solid rgba(255,255,255,0.1)',
+            color: 'var(--ink-dim)',
+            borderRight: '1px solid var(--line)',
             flexShrink: 0,
           }}
         >
@@ -196,8 +197,8 @@ function App() {
           <span style={{ fontSize: 13 }}>인물 허브</span>
         </button>
         <div style={{ display: 'flex', alignItems: 'center', height: '100%', padding: '0 14px', gap: 6 }}>
-          <BookOpen size={18} color="rgba(255,255,255,0.5)" />
-          <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: 13 }}>성경 책 둘러보기</span>
+          <BookOpen size={18} color="var(--ink-faint)" />
+          <span style={{ color: 'var(--ink-dim)', fontSize: 13 }}>성경 책 둘러보기</span>
         </div>
       </div>
     )
@@ -209,8 +210,8 @@ function App() {
       <div style={{
         height: NAV_H, flexShrink: 0,
         display: 'flex', alignItems: 'center',
-        background: '#1a1a2e',
-        zIndex: 20, boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+        background: 'var(--bg-1)',
+        zIndex: 20, boxShadow: 'var(--shadow-1)',
         gap: 0,
       }}>
         <button
@@ -219,8 +220,8 @@ function App() {
             display: 'flex', alignItems: 'center', gap: 6,
             padding: '0 14px', height: '100%',
             background: 'none', border: 'none', cursor: 'pointer',
-            color: 'rgba(255,255,255,0.7)',
-            borderRight: '1px solid rgba(255,255,255,0.1)',
+            color: 'var(--ink-dim)',
+            borderRight: '1px solid var(--line)',
             flexShrink: 0,
           }}
         >
@@ -229,7 +230,7 @@ function App() {
         </button>
         <div style={{ display: 'flex', alignItems: 'center', height: '100%', padding: '0 14px', gap: 6 }}>
           <span style={{ fontSize: 15 }}>🧭</span>
-          <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: 13 }}>테마 투어</span>
+          <span style={{ color: 'var(--ink-dim)', fontSize: 13 }}>테마 투어</span>
         </div>
       </div>
     )
@@ -318,8 +319,8 @@ function App() {
                       position: 'absolute', bottom: 0, left: 0, right: 0,
                       height: readingEventId ? '90dvh' : `${JOURNEY_SHEET_VH}dvh`, zIndex: 5,
                       transition: reduceMotion ? undefined : 'height 0.25s ease',
-                      borderTop: '1px solid rgba(255,255,255,0.12)',
-                      boxShadow: '0 -3px 12px rgba(0,0,0,0.3)',
+                      borderTop: '1px solid var(--line-strong)',
+                      boxShadow: 'var(--shadow-2)',
                     }}>
                       <JourneyList
                         stops={journeyStops}
@@ -370,12 +371,12 @@ function App() {
       {activeStage !== 'hub' && (
         <div
           style={{
-            position: 'absolute', background: 'white', overflowY: 'auto', zIndex: 10,
+            position: 'absolute', background: 'var(--bg-1)', overflowY: 'auto', zIndex: 10,
             transition: 'transform 0.25s ease',
             ...(isMobile
               ? {
                   left: 0, right: 0, bottom: 0, height: `${SHEET_VH}vh`,
-                  boxShadow: '0 -3px 12px rgba(0,0,0,0.15)',
+                  boxShadow: 'var(--shadow-2)',
                   // 인물 선택 시 자동 선택된 인물 자신의 상세는 모바일에서 시트로 띄우지 않는다 —
                   // 여정 칩 스트립을 가려 "첫 로딩 시 여정이 안 보이는" 문제가 되기 때문.
                   // (SidePanel은 DOM에 남아 인물 이름은 그대로 로드됨. personEventIds는 explorePersonId 구동.) 장소 등 다른 노드 선택 시에는 정상 표시.
@@ -383,7 +384,7 @@ function App() {
                 }
               : {
                   top: NAV_H, right: 0, bottom: 0, width: 360,
-                  boxShadow: '-3px 0 12px rgba(0,0,0,0.15)',
+                  boxShadow: 'var(--shadow-2)',
                   // 관계 뷰는 전용 전체화면 — 탐험 인물 자신의 상세 시트로 우측을 덮지 않는다(다른 뷰로 토글 시 복귀).
                   transform: selectedNode && exploreView !== 'relations' ? 'translateX(0)' : 'translateX(100%)',
                 }),
@@ -395,9 +396,9 @@ function App() {
             <div style={{
               position: 'sticky', top: 0, zIndex: 3,
               display: 'flex', justifyContent: 'center', padding: '8px 0 4px',
-              background: 'white',
+              background: 'var(--bg-1)',
             }}>
-              <div style={{ width: 36, height: 4, borderRadius: 2, background: '#ddd' }} />
+              <div style={{ width: 36, height: 4, borderRadius: 2, background: 'var(--ink-faint)' }} />
             </div>
           )}
           <SidePanel

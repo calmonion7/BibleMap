@@ -5,8 +5,7 @@ import VerseLangTabs from './VerseLangTabs'
 import Spinner from './Spinner'
 import { parseYear } from './dates'
 
-const BOOK_COLOR = '#a78bfa'
-const EVENT_COLOR = TYPE_COLOR.Event
+const BOOK_COLOR = TYPE_COLOR.Book
 
 function fmtYear(y) {
   return y == null ? '?' : (y < 0 ? `BC ${-y}` : `AD ${y}`)
@@ -112,11 +111,12 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
     display: 'inline-flex', alignItems: 'center', gap: 3,
     fontSize: 11, padding: '1px 7px', borderRadius: 999, lineHeight: 1.7,
     border: `1px solid ${BOOK_COLOR}`, cursor: 'pointer', fontWeight: 600,
-    background: 'rgba(167,139,250,0.10)', color: '#5b21b6',
+    background: 'var(--bg-2)', color: BOOK_COLOR,
   }
+  // 구절 드릴다운 밴드는 양피지(원칙 2) — 본문 색은 각 텍스트 요소에서 var(--paper-ink)로.
   const verseBoxStyle = {
     margin: '4px 0 6px 104px', padding: '8px 12px',
-    background: '#f5f3ff', borderLeft: `3px solid ${BOOK_COLOR}`, borderRadius: 6,
+    background: 'var(--paper)', color: 'var(--paper-ink)', borderLeft: '3px solid var(--paper-accent)', borderRadius: 6,
     fontSize: 12,
   }
   // 사건의 인라인 구절 뷰 토글. 열 때 첫 권 선택 + /event/{id}/verses 1회 fetch(id로 묶어 stale 무시).
@@ -155,7 +155,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
       <button
         title={bks.length === 1 ? `근거: ${first.nameKo || first.name}` : `근거 ${bks.length}권`}
         onClick={(e) => { e.stopPropagation(); toggleVerseView(ev) }}
-        style={{ ...chipBase, marginLeft: 6, ...(open ? { background: BOOK_COLOR, color: '#fff' } : null) }}
+        style={{ ...chipBase, marginLeft: 6, ...(open ? { background: BOOK_COLOR, color: 'var(--bg-0)' } : null) }}
       >📖 {label} {open ? '▾' : '▸'}</button>
     )
   }
@@ -165,11 +165,12 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
     if (!verseView || verseView.eventId !== ev.id) return null
     const overlay = eventVerses.id === ev.id ? eventVerses.data : null
     if (overlay === null) {
-      return <div style={verseBoxStyle}><Spinner size={20} color="rgba(107,40,217,0.5)" /></div>
+      // Spinner는 color+'22' 문자열 결합이라 var() 미지원 — --paper-accent 값 직접 명시.
+      return <div style={verseBoxStyle}><Spinner size={20} color="#8a6d1f" /></div>
     }
     const ovBooks = overlay.books || []
     if (ovBooks.length === 0) {
-      return <div style={{ ...verseBoxStyle, color: '#8b80a8' }}>표시할 구절이 없습니다</div>
+      return <div style={verseBoxStyle}>표시할 구절이 없습니다</div>
     }
     const nameById = new Map((ev.books || []).map(b => [b.id, b.nameKo || b.name]))
     const selBook = ovBooks.find(b => b.bookId === verseView.bookId) || ovBooks[0]
@@ -184,7 +185,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
                 <button
                   key={b.bookId}
                   onClick={() => selectVerseBook(b.bookId)}
-                  style={{ ...chipBase, background: sel ? BOOK_COLOR : '#fff', color: sel ? '#fff' : '#5b21b6' }}
+                  style={{ ...chipBase, background: sel ? BOOK_COLOR : 'transparent', color: sel ? 'var(--bg-0)' : 'var(--paper-accent)' }}
                 >{nameById.get(b.bookId) || b.bookId}</button>
               )
             })}
@@ -195,7 +196,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 4,
             border: 'none', background: 'none', cursor: 'pointer', padding: 0, font: 'inherit',
-            fontSize: 12, fontWeight: 600, color: '#5b21b6',
+            fontSize: 12, fontWeight: 600, color: 'var(--paper-accent)',
           }}
         >
           {selName} {selBook.rangeLabel}
@@ -204,13 +205,13 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
         {verseView.expanded && (
           <div style={{ marginTop: 6, display: 'flex', flexDirection: 'column', gap: 5 }}>
             <div>
-              <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} color={BOOK_COLOR} />
+              <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} color="var(--paper-accent)" />
             </div>
             {selBook.verses.map(v => {
               const body = (verseLang === 'ko' ? v.textKo : v.textEn) || '원문이 없습니다'
               return (
-                <div key={v.verseID} style={{ fontSize: 12, color: '#374151', lineHeight: 1.5 }}>
-                  <span style={{ fontWeight: 600, color: '#6d28d9', marginRight: 6 }}>{v.chapter}:{v.verse}</span>
+                <div key={v.verseID} style={{ fontSize: 12, color: 'var(--paper-ink)', fontFamily: 'var(--serif)', lineHeight: 1.8 }}>
+                  <span style={{ fontWeight: 600, color: 'var(--paper-accent)', marginRight: 6 }}>{v.chapter}:{v.verse}</span>
                   {body}
                 </div>
               )
@@ -223,7 +224,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
 
   if (error) {
     return (
-      <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fafafa', color: '#999', fontSize: 14 }}>
+      <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-0)', color: 'var(--ink-faint)', fontSize: 14 }}>
         사건을 불러오지 못했습니다
       </div>
     )
@@ -233,33 +234,33 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
     <div
       ref={containerRef}
       onClick={() => { if (openGroup !== null) setOpenGroup(null) }}
-      style={{ width: '100%', height: '100%', boxSizing: 'border-box', overflowY: 'auto', background: '#fafafa', position: 'relative', paddingTop: 16, paddingBottom: 48 }}
+      style={{ width: '100%', height: '100%', boxSizing: 'border-box', overflowY: 'auto', background: 'var(--bg-0)', position: 'relative', paddingTop: 16, paddingBottom: 48 }}
     >
       {(activeFilter || activePersonFilter) && (
         <div style={{ position: 'sticky', top: 0, zIndex: 10 }}>
           {activeFilter && (
             <div style={{
               display: 'flex', alignItems: 'center', gap: 8,
-              background: '#e8f0fe', borderBottom: '1px solid #c5d5fb',
-              padding: '6px 12px', fontSize: 12, color: '#1a3a8f',
+              background: 'var(--bg-2)', borderBottom: '1px solid var(--line)',
+              padding: '6px 12px', fontSize: 12, color: 'var(--ink-dim)',
             }}>
               <span>{activeFilter.nameKo} 범위: {fmtYear(activeFilter.startYear)} ~ {fmtYear(activeFilter.endYear)}</span>
               <button
                 onClick={() => setDismissedFilter(bookFilter)}
-                style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#1a3a8f', fontSize: 13, padding: '0 4px' }}
+                style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--ink-dim)', fontSize: 13, padding: '0 4px' }}
               >× 닫기</button>
             </div>
           )}
           {activePersonFilter && (
             <div style={{
               display: 'flex', alignItems: 'center', gap: 8,
-              background: '#e8f0fe', borderBottom: '1px solid #c5d5fb',
-              padding: '6px 12px', fontSize: 12, color: '#1a3a8f',
+              background: 'var(--bg-2)', borderBottom: '1px solid var(--line)',
+              padding: '6px 12px', fontSize: 12, color: 'var(--ink-dim)',
             }}>
               <span>{personName}이 언급된 사건</span>
               <button
                 onClick={() => setDismissedPersonFilter(personFilter)}
-                style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#1a3a8f', fontSize: 13, padding: '0 4px' }}
+                style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--ink-dim)', fontSize: 13, padding: '0 4px' }}
               >× 닫기</button>
             </div>
           )}
@@ -287,27 +288,22 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
             }}
             onClick={isSingle ? () => onSelectNode && onSelectNode(members[0].id) : undefined}
           >
-            <div style={{ minWidth: 80, textAlign: 'right', color: '#666', fontSize: '12px', paddingTop: 2 }}>
-              {yearLabel}
+            <div style={{ minWidth: 80, textAlign: 'right', color: 'var(--ink-faint)', fontSize: '12px', paddingTop: 2 }}>
+              {/* 연대추정 표기는 yearLabel의 '경' 접미가 담당 — '~' 중복 표기는 뺀다 */}
+              {isAuthored ? <span title="연대추정 (저작 배경 기준)">{yearLabel}</span> : yearLabel}
             </div>
-            <div style={{ borderLeft: '2px solid #ccc', margin: '0 12px', alignSelf: 'stretch', minHeight: 20 }} />
+            <div style={{ borderLeft: '2px solid var(--line)', margin: '0 12px', alignSelf: 'stretch', minHeight: 20 }} />
             <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', paddingTop: 2 }}>
               <span
-                style={{ fontSize: '13px', cursor: 'pointer', color: '#222' }}
+                style={{ fontSize: '13px', cursor: 'pointer', color: 'var(--ink)' }}
                 onClick={!isSingle ? (e) => { e.stopPropagation(); onSelectNode && onSelectNode(rep.id) } : undefined}
               >
                 {rep.nameKo || rep.title}
               </span>
-              {isAuthored && (
-                <span
-                  title="연대추정 (저작 배경 기준)"
-                  style={{ fontSize: 10, color: '#8b80a8', border: `1px dashed ${EVENT_COLOR}`, borderRadius: 4, padding: '0 4px', marginLeft: 6 }}
-                >연대추정</span>
-              )}
               {renderBookChip(rep)}
               {!isSingle && (
                 <button
-                  style={{ fontSize: '11px', color: '#4a90d9', marginLeft: '8px', cursor: 'pointer', background: 'none', border: 'none', padding: '0' }}
+                  style={{ fontSize: '11px', color: 'var(--gold)', marginLeft: '8px', cursor: 'pointer', background: 'none', border: 'none', padding: '0' }}
                   onClick={(e) => {
                     e.stopPropagation()
                     setOpenGroup(openGroup === groupKey ? null : groupKey)
@@ -322,22 +318,22 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
                     position: 'absolute',
                     left: 104,
                     top: '100%',
-                    backgroundColor: '#fff',
-                    border: '1px solid #ddd',
+                    backgroundColor: 'var(--bg-2)',
+                    border: '1px solid var(--line-strong)',
                     borderRadius: '4px',
                     padding: '4px 0',
                     zIndex: 100,
                     minWidth: '200px',
                     maxHeight: '200px',
                     overflowY: 'auto',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                    boxShadow: 'var(--shadow-2)',
                   }}
                   onClick={e => e.stopPropagation()}
                 >
                   {members.map(ev => (
                     <div
                       key={ev.id}
-                      style={{ padding: '4px 12px', fontSize: '13px', color: '#222', display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}
+                      style={{ padding: '4px 12px', fontSize: '13px', color: 'var(--ink)', display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}
                     >
                       <span
                         style={{ cursor: 'pointer' }}

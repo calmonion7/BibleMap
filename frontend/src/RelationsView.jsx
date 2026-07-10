@@ -3,17 +3,17 @@ import { Crown, Heart, Handshake, Shield, Scroll, Swords, Users, GraduationCap, 
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
 import Spinner from './Spinner'
+import { NIGHT, VALENCE_COLOR } from './theme'
 
 // 인물 관계 뷰(CONTEXT '인물 관계') — 관계별 줄 개요(인물 헤더 + 사건 시퀀스) + 초점 쌍 + 근거 구절 레이어.
 // 전역 시간축 없음(개요) — 각 관계가 자기 줄에 사건을 균등 배치, 시간은 사건 칩의 연도로. person-centric.
-const VALENCE_COLOR = { 긍정: '#2e9e5b', 부정: '#d64550', 중립: '#8a94ad' }
 
 // 관계 유형(CONTEXT '인물 관계 > 관계 유형') → lucide 아이콘 · 표시 순서(유형끼리 군집 정렬)
 const TYPE_ICON = { 가족: Users, 연인: Heart, 친구: Handshake, 신하: Shield, 선지자: Scroll, 스승제자: GraduationCap, 군주: Crown, 하나님: Sun, 대적: Swords }
 const TYPE_ORDER = ['하나님', '가족', '연인', '친구', '신하', '선지자', '스승제자', '군주', '대적']
 const typeRank = t => { const i = TYPE_ORDER.indexOf(t); return i === -1 ? 99 : i }
 
-function TypeIcon({ type, size = 14, color = '#8a94ad' }) {
+function TypeIcon({ type, size = 14, color = 'var(--ink-faint)' }) {
   const Icon = TYPE_ICON[type]
   return Icon ? <Icon size={size} color={color} strokeWidth={2} /> : null
 }
@@ -33,11 +33,12 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
   }, [personId])
 
   if (state.id !== personId) {
-    return <div style={{ display: 'flex', justifyContent: 'center', padding: 40 }}><Spinner color="rgba(100,120,180,0.6)" /></div>
+    // Spinner는 color+'22' 문자열 결합이라 var() 미지원 — 금색 hex 직접 명시.
+    return <div style={{ display: 'flex', justifyContent: 'center', padding: 40 }}><Spinner color={NIGHT.gold} /></div>
   }
   const relations = state.relations || []
   if (relations.length === 0) {
-    return <p style={{ padding: 24, color: '#7c8db0', fontSize: 14 }}>이 인물의 관계 데이터가 없습니다.</p>
+    return <p style={{ padding: 24, color: 'var(--ink-faint)', fontSize: 14 }}>이 인물의 관계 데이터가 없습니다.</p>
   }
 
   const era = y => y < 0 ? `BC ${-y}` : `AD ${y}`
@@ -60,26 +61,28 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
     return (
       <div
         onClick={() => setVersePhase(null)}
+        // 모달 스크림 — 전용 토큰 없어 값 유지(다크 배경 위 반투명 오버레이라 무해)
         style={{ position: 'absolute', inset: 0, zIndex: 100, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
       >
-        <div onClick={e => e.stopPropagation()} style={{ background: '#fff', borderRadius: 12, maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: '0 8px 32px rgba(0,0,0,0.3)', padding: '18px 20px' }}>
+        {/* 근거 구절 모달 = 양피지 카드(원칙 2) */}
+        <div onClick={e => e.stopPropagation()} style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-            <span style={{ width: 10, height: 10, borderRadius: '50%', background: VALENCE_COLOR[ph.valence] ?? '#8a94ad', flexShrink: 0 }} />
+            <span style={{ width: 10, height: 10, borderRadius: '50%', background: VALENCE_COLOR[ph.valence] ?? VALENCE_COLOR.중립, flexShrink: 0 }} />
             <span style={{ fontWeight: 700, fontSize: 15, flex: 1 }}>{ph.label}</span>
             <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
-            <button onClick={() => setVersePhase(null)} style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: 20, color: '#aab2c5', lineHeight: 1, padding: '0 2px' }}>×</button>
+            <button onClick={() => setVersePhase(null)} style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: 20, color: 'var(--paper-accent)', lineHeight: 1, padding: '0 2px' }}>×</button>
           </div>
-          <div style={{ fontSize: 12, color: '#8a94ad', marginBottom: 8 }}>{ph.verse} · {era(ph.approxYear)}</div>
+          <div style={{ fontSize: 12, color: 'var(--paper-accent)', marginBottom: 8 }}>{ph.verse} · {era(ph.approxYear)}</div>
           {Array.isArray(ctx) && ctx.length ? (
-            <p style={{ fontSize: 15, lineHeight: 1.8, color: '#6b7590', margin: 0 }}>
+            <p style={{ fontSize: 15, lineHeight: 1.8, fontFamily: 'var(--serif)', color: 'var(--paper-ink)', margin: 0 }}>
               {ctx.map((c, i) => (
-                <span key={i} style={c.a ? { fontWeight: 700, color: '#2a3350' } : undefined}>
-                  <sup style={{ color: '#aab2c5', fontWeight: 400, marginRight: 1 }}>{c.v}</sup>{c.t}{i < ctx.length - 1 ? ' ' : ''}
+                <span key={i} style={c.a ? { fontWeight: 700, color: 'var(--paper-accent)' } : undefined}>
+                  <sup style={{ color: 'var(--paper-accent)', fontWeight: 400, marginRight: 1 }}>{c.v}</sup>{c.t}{i < ctx.length - 1 ? ' ' : ''}
                 </span>
               ))}
             </p>
           ) : (
-            <p style={{ fontSize: 15, lineHeight: 1.7, color: '#2a3350', margin: 0 }}>{text || '본문을 불러오지 못했습니다.'}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.8, fontFamily: 'var(--serif)', color: 'var(--paper-ink)', margin: 0 }}>{text || '본문을 불러오지 못했습니다.'}</p>
           )}
         </div>
       </div>
@@ -90,23 +93,24 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
   if (focusIdx != null && sorted[focusIdx]) {
     const r = sorted[focusIdx]
     return (
-      <div style={{ position: 'relative', height: '100%', overflow: 'hidden', background: '#f7f8fb', WebkitTapHighlightColor: 'transparent' }}>
+      <div style={{ position: 'relative', height: '100%', overflow: 'hidden', background: 'var(--bg-0)', WebkitTapHighlightColor: 'transparent' }}>
         <div style={{ height: '100%', overflowY: 'auto' }}>
-        <div style={{ maxWidth: 640, margin: '0 auto', padding: '16px 20px 40px' }}>
-          <button onClick={() => setFocusIdx(null)} style={{ border: 'none', background: 'none', cursor: 'pointer', color: '#5a6481', fontSize: 13, padding: '4px 0', marginBottom: 4 }}>← 관계 전체</button>
+        {/* 초점 쌍 콘텐츠 폭 제한 — 감사 M5(여백 과다) 해소 */}
+        <div style={{ maxWidth: 880, margin: '0 auto', padding: '16px 20px 40px' }}>
+          <button onClick={() => setFocusIdx(null)} style={{ border: 'none', background: 'none', cursor: 'pointer', color: 'var(--ink-dim)', fontSize: 13, padding: '4px 0', marginBottom: 4 }}>← 관계 전체</button>
           {/* 두 인물 좌우 앵커 + 관계 유형 배지 */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '6px 0 20px' }}>
-            <span style={{ fontWeight: 700, fontSize: 16 }}>{personName || '이 인물'}</span>
+            <span style={{ fontFamily: 'var(--serif)', fontWeight: 700, fontSize: 16, color: 'var(--ink)' }}>{personName || '이 인물'}</span>
             <span style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 2, flexShrink: 0 }}>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11, color: '#8a94ad', padding: '2px 8px', borderRadius: 999, background: '#eef0f5' }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11, color: 'var(--ink-faint)', padding: '2px 8px', borderRadius: 999, background: 'var(--bg-2)' }}>
                 <TypeIcon type={r.type} size={13} />{r.type}
               </span>
-              {r.note && <span style={{ fontSize: 10, color: '#7c8db0' }}>{r.note}</span>}
+              {r.note && <span style={{ fontSize: 10, color: 'var(--ink-faint)' }}>{r.note}</span>}
             </span>
-            <span style={{ flex: 1, height: 1, background: '#d3d8e4' }} />
+            <span style={{ flex: 1, height: 1, background: 'var(--line-strong)' }} />
             {isCurated(r.withId)
-              ? <button onClick={() => onExploreJourney(r.withId)} style={{ border: 'none', background: 'none', padding: 0, cursor: 'pointer', fontWeight: 700, fontSize: 16, color: '#4a90d9' }}>{r.withNameKo} ↗</button>
-              : <span style={{ fontWeight: 700, fontSize: 16, color: '#404a63' }}>{r.withNameKo}</span>}
+              ? <button onClick={() => onExploreJourney(r.withId)} style={{ border: 'none', background: 'none', padding: 0, cursor: 'pointer', fontFamily: 'var(--serif)', fontWeight: 700, fontSize: 16, color: 'var(--gold)' }}>{r.withNameKo} ↗</button>
+              : <span style={{ fontFamily: 'var(--serif)', fontWeight: 700, fontSize: 16, color: 'var(--ink)' }}>{r.withNameKo}</span>}
           </div>
           {/* 국면 세로 스토리라인 */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
@@ -116,13 +120,13 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
                   onClick={() => setVersePhase({ relIdx: focusIdx, phaseIdx: j })}
                   style={{ display: 'flex', alignItems: 'flex-start', gap: 12, width: '100%', textAlign: 'left', border: 'none', background: 'none', cursor: 'pointer', padding: '8px 6px', borderRadius: 8 }}
                 >
-                  <span style={{ width: 14, height: 14, borderRadius: '50%', background: VALENCE_COLOR[ph.valence] ?? '#8a94ad', flexShrink: 0, marginTop: 3 }} />
+                  <span style={{ width: 14, height: 14, borderRadius: '50%', background: VALENCE_COLOR[ph.valence] ?? VALENCE_COLOR.중립, flexShrink: 0, marginTop: 3 }} />
                   <span style={{ flex: 1 }}>
-                    <span style={{ fontWeight: 600, fontSize: 15, color: '#2a3350' }}>{ph.label}</span>
-                    <span style={{ display: 'block', fontSize: 12, color: '#8a94ad', marginTop: 2 }}>{era(ph.approxYear)} · {ph.verse} · 📖 근거 보기</span>
+                    <span style={{ fontWeight: 600, fontSize: 15, color: 'var(--ink)' }}>{ph.label}</span>
+                    <span style={{ display: 'block', fontSize: 12, color: 'var(--ink-faint)', marginTop: 2 }}>{era(ph.approxYear)} · {ph.verse} · 📖 근거 보기</span>
                   </span>
                 </button>
-                {j < r.phases.length - 1 && <div style={{ width: 2, height: 16, background: '#d3d8e4', marginLeft: 12 }} />}
+                {j < r.phases.length - 1 && <div style={{ width: 2, height: 16, background: 'var(--line-strong)', marginLeft: 12 }} />}
               </div>
             ))}
           </div>
@@ -135,46 +139,46 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
 
   // 개요 — 관계별 한 줄: 인물 헤더(왼쪽) + 사건 시퀀스(오른쪽, 좌→우 · 줄바꿈). 각 관계가 자기 줄을 채움.
   return (
-    <div style={{ position: 'relative', height: '100%', overflow: 'hidden', background: '#f7f8fb', WebkitTapHighlightColor: 'transparent' }}>
+    <div style={{ position: 'relative', height: '100%', overflow: 'hidden', background: 'var(--bg-0)', WebkitTapHighlightColor: 'transparent' }}>
       <div style={{ height: '100%', overflowY: 'auto' }}>
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '14px 16px 40px' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 6 }}>
-          <h3 style={{ fontSize: 15, fontWeight: 700, color: '#2a3350', margin: 0 }}>{personName || '이 인물'}의 관계</h3>
-          <span style={{ fontSize: 12, color: '#aab2c5' }}>{relations.length} · 사건 클릭 시 근거 구절</span>
+          <h3 style={{ fontFamily: 'var(--serif)', fontSize: 15, fontWeight: 700, color: 'var(--ink)', margin: 0 }}>{personName || '이 인물'}의 관계</h3>
+          <span style={{ fontSize: 12, color: 'var(--ink-faint)' }}>{relations.length} · 사건 클릭 시 근거 구절</span>
         </div>
         {/* 색 범례 */}
         <div style={{ display: 'flex', gap: 14, marginBottom: 8 }}>
           {Object.entries(VALENCE_COLOR).map(([k, c]) => (
-            <span key={k} style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 12, color: '#5a6481' }}>
+            <span key={k} style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 12, color: 'var(--ink-dim)' }}>
               <span style={{ width: 10, height: 10, borderRadius: '50%', background: c }} />{k}
             </span>
           ))}
         </div>
         {/* 관계별 줄 */}
         {sorted.map((r, i) => (
-          <div key={i} onClick={() => setFocusIdx(i)} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', padding: '12px 2px', cursor: 'pointer', borderTop: '1px solid #e9ecf2' }}>
-            {/* 인물 헤더 (좌, 고정폭) */}
-            <div style={{ width: 92, flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, paddingTop: 2 }}>
-              <TypeIcon type={r.type} size={20} color={isCurated(r.withId) ? '#4a90d9' : '#8a94ad'} />
+          <div key={i} onClick={() => setFocusIdx(i)} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', padding: '12px 2px', cursor: 'pointer', borderTop: '1px solid var(--line)' }}>
+            {/* 인물 헤더 (좌, 반응형 폭 — 감사 L5) */}
+            <div style={{ width: 'clamp(64px, 22vw, 92px)', minWidth: 64, flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, paddingTop: 2 }}>
+              <TypeIcon type={r.type} size={20} color={isCurated(r.withId) ? 'var(--gold)' : 'var(--ink-faint)'} />
               {isCurated(r.withId)
-                ? <button onClick={e => { e.stopPropagation(); onExploreJourney(r.withId) }} style={{ border: 'none', background: 'none', padding: 0, cursor: 'pointer', fontSize: 13, fontWeight: 700, color: '#4a90d9', textAlign: 'center' }}>{r.withNameKo}</button>
-                : <span style={{ fontSize: 13, fontWeight: 700, color: '#404a63', textAlign: 'center' }}>{r.withNameKo}</span>}
-              <span style={{ fontSize: 10, color: '#aab2c5' }}>{r.type}</span>
-              {r.note && <span style={{ fontSize: 10, color: '#7c8db0', textAlign: 'center' }}>{r.note}</span>}
+                ? <button onClick={e => { e.stopPropagation(); onExploreJourney(r.withId) }} style={{ border: 'none', background: 'none', padding: 0, cursor: 'pointer', fontFamily: 'var(--serif)', fontSize: 13, fontWeight: 700, color: 'var(--gold)', textAlign: 'center' }}>{r.withNameKo}</button>
+                : <span style={{ fontFamily: 'var(--serif)', fontSize: 13, fontWeight: 700, color: 'var(--ink)', textAlign: 'center' }}>{r.withNameKo}</span>}
+              <span style={{ fontSize: 10, color: 'var(--ink-faint)' }}>{r.type}</span>
+              {r.note && <span style={{ fontSize: 10, color: 'var(--ink-faint)', textAlign: 'center' }}>{r.note}</span>}
             </div>
             {/* 사건 시퀀스 (우, 줄바꿈) */}
             <div style={{ flex: 1, minWidth: 0, display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 4, paddingTop: 2 }}>
               {r.phases.map((ph, j) => (
                 <span key={j} style={{ display: 'inline-flex', alignItems: 'center' }}>
-                  {j > 0 && <span style={{ color: '#c2c8d6', margin: '0 3px', fontSize: 12 }}>→</span>}
+                  {j > 0 && <span style={{ color: 'var(--ink-faint)', margin: '0 3px', fontSize: 12 }}>→</span>}
                   <button
                     className="rel-chip"
                     onClick={e => { e.stopPropagation(); setVersePhase({ relIdx: i, phaseIdx: j }) }}
                     style={{ display: 'inline-flex', alignItems: 'center', gap: 5, borderRadius: 999, padding: '4px 10px', cursor: 'pointer' }}
                   >
-                    <span style={{ width: 9, height: 9, borderRadius: '50%', flexShrink: 0, background: VALENCE_COLOR[ph.valence] ?? '#8a94ad' }} />
-                    <span style={{ fontSize: 12, color: '#2a3350', fontWeight: 500 }}>{ph.label}</span>
-                    <span style={{ fontSize: 10, color: '#aab2c5' }}>{era(ph.approxYear)}</span>
+                    <span style={{ width: 9, height: 9, borderRadius: '50%', flexShrink: 0, background: VALENCE_COLOR[ph.valence] ?? VALENCE_COLOR.중립 }} />
+                    <span style={{ fontSize: 12, color: 'var(--ink)', fontWeight: 500 }}>{ph.label}</span>
+                    <span style={{ fontSize: 10, color: 'var(--ink-faint)' }}>{era(ph.approxYear)}</span>
                   </button>
                 </span>
               ))}

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
 import Spinner from './Spinner'
+import { TYPE_COLOR } from './theme'
 
 // 사건(Event)의 근거구절을 권별로 표시 — 여정 정차지 선택 시 JourneyList(데스크톱)·
 // 모바일 여정 칩이 공유. 데이터·렌더는 SidePanel의 Place 구절 드릴다운과 동일
@@ -12,28 +13,30 @@ import Spinner from './Spinner'
 // 고정하고 절 본문만 독립 스크롤한다(긴 구절 1000+절도 흡수). 없으면(데스크톱 인라인)
 // 기존 렌더 그대로.
 
-const BOOK_COLOR = '#a78bfa'
+const BOOK_COLOR = TYPE_COLOR.Book
 
+// 구절 본문 = 양피지(원칙 2). 컨테이너·닫기 버튼 등 UI 크롬만 다크 토큰.
 const boxStyle = {
   margin: '4px 0 6px',
   padding: '8px 10px',
-  background: '#f5f3ff',
-  borderLeft: `3px solid ${BOOK_COLOR}`,
+  background: 'var(--paper)',
+  color: 'var(--paper-ink)',
+  borderLeft: `3px solid var(--paper-accent)`,
   borderRadius: 6,
   fontSize: 12,
 }
 
-// 읽기 모드 전용 스타일 — 세로 flex: 상단 고정 헤더 + 하단 스크롤 본문
-const readWrapStyle = { height: '100%', display: 'flex', flexDirection: 'column', background: '#faf9ff' }
+// 읽기 모드 전용 스타일 — 세로 flex: 상단 고정 헤더(다크 크롬) + 하단 스크롤 본문(양피지)
+const readWrapStyle = { height: '100%', display: 'flex', flexDirection: 'column', background: 'var(--bg-1)' }
 const readHeadStyle = {
   flex: 'none', display: 'flex', alignItems: 'center', gap: 8,
-  padding: '10px 14px', borderBottom: '1px solid #e7e3f5', background: '#fff',
+  padding: '10px 14px', borderBottom: '1px solid var(--line)', background: 'var(--bg-1)',
 }
-const readTopStyle = { flex: 'none', padding: '8px 14px 6px', borderBottom: '1px solid #efecf8', background: '#fff' }
-const readBodyStyle = { flex: 1, minHeight: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch', padding: '10px 14px 16px', fontSize: 13 }
+const readTopStyle = { flex: 'none', padding: '8px 14px 6px', background: 'var(--paper)' }
+const readBodyStyle = { flex: 1, minHeight: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch', padding: '10px 14px 16px', fontSize: 13, background: 'var(--paper)' }
 const closeBtnStyle = {
-  flex: 'none', border: `1px solid ${BOOK_COLOR}`, background: 'rgba(167,139,250,0.14)',
-  color: '#6d28d9', borderRadius: 999, padding: '8px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
+  flex: 'none', border: '1px solid var(--line-strong)', background: 'var(--bg-2)',
+  color: 'var(--ink-dim)', borderRadius: 999, padding: '8px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
 }
 
 const chipBase = {
@@ -67,21 +70,22 @@ export default function EventVerses({ eventId, verseLang, setVerseLang, heading,
   // 읽기 모드: 상단 고정 헤더(사건명 + 여정으로 닫기). 로딩·빈 상태에서도 헤더를 유지해 되돌아갈 수 있게 한다.
   const readHeader = reading && (
     <div style={readHeadStyle}>
-      <div style={{ flex: 1, minWidth: 0, fontSize: 14, fontWeight: 800, color: '#1b1e3a' }}>{heading}</div>
+      <div style={{ flex: 1, minWidth: 0, fontSize: 14, fontWeight: 800, color: 'var(--ink)' }}>{heading}</div>
       <button onClick={onClose} aria-label="여정으로 돌아가기" style={closeBtnStyle}>▾ 여정으로</button>
     </div>
   )
 
   const ready = state.id === eventId
   if (!ready) {
-    const spin = <div style={boxStyle}><Spinner size={18} color="rgba(107,40,217,0.5)" /></div>
+    // Spinner는 color+'22' 문자열 결합이라 var() 미지원 — --paper-accent 값 직접 명시.
+    const spin = <div style={boxStyle}><Spinner size={18} color="#8a6d1f" /></div>
     return reading
       ? <div style={readWrapStyle}>{readHeader}<div style={readBodyStyle}>{spin}</div></div>
       : spin
   }
   const books = state.data.books || []
   if (books.length === 0) {
-    const empty = <div style={{ ...boxStyle, color: '#8b80a8' }}>표시할 구절이 없습니다</div>
+    const empty = <div style={boxStyle}>표시할 구절이 없습니다</div>
     return reading
       ? <div style={readWrapStyle}>{readHeader}<div style={readBodyStyle}>{empty}</div></div>
       : empty
@@ -96,7 +100,7 @@ export default function EventVerses({ eventId, verseLang, setVerseLang, heading,
           <button
             key={b.bookId}
             onClick={() => setBookId(b.bookId)}
-            style={{ ...chipBase, background: sel ? BOOK_COLOR : '#fff', color: sel ? '#fff' : '#5b21b6' }}
+            style={{ ...chipBase, background: sel ? BOOK_COLOR : 'transparent', color: sel ? 'var(--bg-0)' : 'var(--paper-accent)' }}
           >{b.bookNameKo || b.bookId}</button>
         )
       })}
@@ -104,11 +108,11 @@ export default function EventVerses({ eventId, verseLang, setVerseLang, heading,
   )
   const langTabs = (
     <div style={{ marginBottom: 6 }}>
-      <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} color={BOOK_COLOR} />
+      <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
     </div>
   )
   const refLabel = (
-    <div style={{ fontWeight: 600, color: '#6d28d9', marginBottom: 4 }}>
+    <div style={{ fontWeight: 600, color: 'var(--paper-accent)', marginBottom: 4 }}>
       {selBook.bookNameKo || selBook.bookId} {selBook.rangeLabel}
     </div>
   )
@@ -117,8 +121,8 @@ export default function EventVerses({ eventId, verseLang, setVerseLang, heading,
       {selBook.verses.map(v => {
         const body = (verseLang === 'ko' ? v.textKo : v.textEn) || '원문이 없습니다'
         return (
-          <div key={v.verseID} style={{ color: '#374151', lineHeight: 1.5 }}>
-            <span style={{ fontWeight: 600, color: '#6d28d9', marginRight: 6 }}>{v.chapter}:{v.verse}</span>
+          <div key={v.verseID} style={{ color: 'var(--paper-ink)', fontFamily: 'var(--serif)', lineHeight: 1.8 }}>
+            <span style={{ fontWeight: 600, color: 'var(--paper-accent)', marginRight: 6 }}>{v.chapter}:{v.verse}</span>
             {body}
           </div>
         )

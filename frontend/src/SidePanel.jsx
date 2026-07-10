@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { TYPE_COLOR, TYPE_KO } from './theme'
+import { TYPE_COLOR, TYPE_KO, NIGHT } from './theme'
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
 import Spinner from './Spinner'
@@ -32,13 +32,14 @@ function SectionHeader({ label, color, count, sectionKey, collapsed, onToggle })
       style={{
         display: 'flex', alignItems: 'center', gap: 6, width: '100%',
         border: 'none', background: 'none', cursor: 'pointer', padding: '0 4px 6px',
-        fontSize: 12, fontWeight: 700, color: color ?? '#5a6481',
+        fontSize: 12, fontWeight: 700, color: 'var(--ink-dim)',
       }}
     >
+      {/* 타입 점 색은 theme.js typeColor 그대로(호출부에서 넘긴 color) — 라벨 텍스트는 ink-dim으로 분리 */}
       <span style={{ width: 8, height: 8, borderRadius: '50%', background: color, flexShrink: 0 }} />
       <span style={{ flex: 1, textAlign: 'left' }}>{label}</span>
-      {count != null && <span style={{ color: '#aab2c5', fontWeight: 500 }}>{count}</span>}
-      <span style={{ fontSize: 10, color: '#aab2c5', marginLeft: 2 }}>{isOpen ? '▾' : '▸'}</span>
+      {count != null && <span style={{ color: 'var(--ink-faint)', fontWeight: 500 }}>{count}</span>}
+      <span style={{ fontSize: 10, color: 'var(--ink-faint)', marginLeft: 2 }}>{isOpen ? '▾' : '▸'}</span>
     </button>
   )
 }
@@ -70,9 +71,12 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     apiGet('/node/' + nodeId)
       .then(data => { if (!cancelled) {
         // Book은 전 섹션 기본 펼침 — 탭 0회로 모든 정보 도달(접기 토글은 유지, 노드 왕복에도 항상 펼침)
+        // Place는 서술 섹션(배경·대표 구절)만 기본 펼침 — 이웃 목록(사건·인물)은 접힘 유지(M3)
         setCollapsed(data.label === 'Book' ? {
           'book-central': false, 'book-themes': false, 'book-keyverse': false, 'book-background': false,
           'book-structure': false, 'book-keyppl': false, 'book-persons': false, 'book-events': false,
+        } : data.label === 'Place' ? {
+          'place-background': false, 'place-keyverse': false,
         } : {})
         setState({ id: nodeId, node: data, error: null }); onNodeLoaded?.(data)
       } })
@@ -111,9 +115,12 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
   const node = ready ? state.node : null
   const error = ready ? state.error : null
 
-  const msgStyle = { padding: '1.25rem', fontSize: 14, color: '#7c8db0' }
+  const msgStyle = { padding: '1.25rem', fontSize: 14, color: 'var(--ink-faint)' }
   if (!nodeId) return <p style={msgStyle}>지도에서 마커를 클릭하세요</p>
-  if (!ready) return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}><Spinner color="rgba(100,120,180,0.6)" /></div>
+  // Spinner는 color+'22'로 알파를 이어붙여 border를 만들어 var()나 rgba(원래 rgba(100,120,180,0.6)도 동일 결함)를 못 받는다
+  // (JS 계산 지점) — theme.js NIGHT의 순수 hex 리터럴만 사용
+  if (!ready) return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}><Spinner color={NIGHT.gold} /></div>
+  // 에러 색 '#dc3545' — Night Atlas 토큰 미정의, 유지
   if (error) return <p style={{ ...msgStyle, color: '#dc3545' }}>불러오지 못했습니다 ({error})</p>
 
   // 이웃을 타입별로 그룹
@@ -142,25 +149,25 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     setCollapsed(prev => ({ ...prev, [key]: prev[key] === false }))
   }
 
-  // Place 블록 — 사건 근거구절 드릴다운 헬퍼 (TimelineView 패턴 이식)
-  const BOOK_COLOR = '#a78bfa'
+  // Place 블록 — 사건 근거구절 드릴다운 헬퍼 (TimelineView 패턴 이식). 다크 시트 위 참조 칩(근거에만 남긴 칩, 원칙 5)
   const placeChipBase = {
     display: 'inline-flex', alignItems: 'center', gap: 3,
     fontSize: 11, padding: '1px 7px', borderRadius: 999, lineHeight: 1.7,
-    border: `1px solid ${BOOK_COLOR}`, cursor: 'pointer', fontWeight: 600,
-    background: 'rgba(167,139,250,0.10)', color: '#5b21b6',
+    border: `1px solid ${TYPE_COLOR.Book}`, cursor: 'pointer', fontWeight: 600,
+    background: 'var(--bg-2)', color: TYPE_COLOR.Book,
   }
-  const placeVerseBoxStyle = {
-    margin: '4px 0 6px 0', padding: '8px 12px',
-    background: '#f5f3ff', borderLeft: `3px solid ${BOOK_COLOR}`, borderRadius: 6,
-    fontSize: 12,
+  // 양피지 구절 카드 — 절 본문 전용(원칙 2). 인용문(설명 산문)이 아닌 실제 성경 본문에만 사용.
+  const paperCardStyle = {
+    margin: '4px 0 6px', padding: '10px 12px',
+    background: 'var(--paper)', borderRadius: 'var(--r-m)', boxShadow: 'var(--shadow-1)',
   }
+  const paperTextStyle = { fontFamily: 'var(--serif)', fontSize: 15.5, lineHeight: 1.8, color: 'var(--paper-ink)' }
 
-  // 인물 연결 칩 — '이 곳을 지난 인물' 칩과 동일 스타일
+  // 인물 연결 칩 — '이 곳을 지난 인물' 칩과 동일 스타일. 근거 칩이 아니므로 중립 톤(원칙 5).
   const CONN_CHIP = {
     fontSize: 12, padding: '5px 12px', borderRadius: 999,
-    border: `1px solid ${TYPE_COLOR.Person}`,
-    background: 'rgba(74,144,217,0.08)', color: TYPE_COLOR.Person,
+    border: '1px solid var(--line-strong)',
+    background: 'var(--bg-2)', color: 'var(--ink-dim)',
     cursor: 'pointer', fontWeight: 600,
   }
 
@@ -187,7 +194,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     return (
       <button
         onClick={(e) => { e.stopPropagation(); togglePlaceVerseView(evId) }}
-        style={{ ...placeChipBase, marginLeft: 6, ...(open ? { background: BOOK_COLOR, color: '#fff' } : null) }}
+        style={{ ...placeChipBase, marginLeft: 6, ...(open ? { background: TYPE_COLOR.Book, color: 'var(--bg-0)' } : null) }}
       >📖 구절 {open ? '▾' : '▸'}</button>
     )
   }
@@ -196,15 +203,15 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     if (!placeVerseView || placeVerseView.eventId !== evId) return null
     const overlay = placeEventVerses.id === evId ? placeEventVerses.data : null
     if (overlay === null) {
-      return <div style={placeVerseBoxStyle}><Spinner size={20} color="rgba(107,40,217,0.5)" /></div>
+      return <div style={paperCardStyle}><Spinner size={20} color={NIGHT.paperAccent} /></div>
     }
     const ovBooks = overlay.books || []
     if (ovBooks.length === 0) {
-      return <div style={{ ...placeVerseBoxStyle, color: '#8b80a8' }}>표시할 구절이 없습니다</div>
+      return <div style={{ ...paperCardStyle, color: 'var(--paper-accent)' }}>표시할 구절이 없습니다</div>
     }
     const selBook = ovBooks.find(b => b.bookId === placeVerseView.bookId) || ovBooks[0]
     return (
-      <div style={placeVerseBoxStyle} onClick={e => e.stopPropagation()}>
+      <div style={paperCardStyle} onClick={e => e.stopPropagation()}>
         {ovBooks.length > 1 && (
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 6 }}>
             {ovBooks.map(b => {
@@ -213,7 +220,13 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                 <button
                   key={b.bookId}
                   onClick={() => setPlaceVerseView(prev => prev ? { ...prev, bookId: b.bookId, expanded: false } : prev)}
-                  style={{ ...placeChipBase, background: sel ? BOOK_COLOR : '#fff', color: sel ? '#fff' : '#5b21b6' }}
+                  style={{
+                    display: 'inline-flex', alignItems: 'center', gap: 3,
+                    fontSize: 11, padding: '1px 8px', borderRadius: 999, lineHeight: 1.7, fontWeight: 600, cursor: 'pointer',
+                    border: '1px solid var(--paper-accent)',
+                    background: sel ? 'var(--paper-accent)' : 'transparent',
+                    color: sel ? 'var(--paper)' : 'var(--paper-accent)',
+                  }}
                 >{b.bookNameKo || b.bookId}</button>
               )
             })}
@@ -224,7 +237,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 4,
             border: 'none', background: 'none', cursor: 'pointer', padding: 0, font: 'inherit',
-            fontSize: 12, fontWeight: 600, color: '#5b21b6',
+            fontSize: 12, fontWeight: 600, color: 'var(--paper-accent)',
           }}
         >
           {selBook.bookNameKo || selBook.bookId} {selBook.rangeLabel}
@@ -233,13 +246,13 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
         {placeVerseView.expanded && (
           <div style={{ marginTop: 6, display: 'flex', flexDirection: 'column', gap: 5 }}>
             <div>
-              <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} color={BOOK_COLOR} />
+              <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} color="var(--paper-accent)" />
             </div>
             {selBook.verses.map(v => {
               const body = (verseLang === 'ko' ? v.textKo : v.textEn) || '원문이 없습니다'
               return (
-                <div key={v.verseID} style={{ fontSize: 12, color: '#374151', lineHeight: 1.5 }}>
-                  <span style={{ fontWeight: 600, color: '#6d28d9', marginRight: 6 }}>{v.chapter}:{v.verse}</span>
+                <div key={v.verseID} style={paperTextStyle}>
+                  <span style={{ fontWeight: 700, color: 'var(--paper-accent)', marginRight: 6 }}>{v.chapter}:{v.verse}</span>
                   {body}
                 </div>
               )
@@ -251,12 +264,12 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
   }
 
   return (
-    <div style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-      {/* 헤더 */}
+    <div style={{ fontFamily: 'var(--sans)' }}>
+      {/* 헤더 — 표면 var(--bg-1), 경계 var(--line), 제목 var(--serif)(h2 전역 규칙 상속) */}
       <div style={{
         padding: '14px 44px 14px 16px',
-        borderBottom: '1px solid #eef0f5',
-        position: 'sticky', top: stickyTop, background: 'white', zIndex: 1,
+        borderBottom: '1px solid var(--line)',
+        position: 'sticky', top: stickyTop, background: 'var(--bg-1)', zIndex: 1,
       }}>
         {onClose && (
           <button
@@ -265,7 +278,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
             style={{
               position: 'absolute', top: 10, right: 10, zIndex: 2,
               width: 40, height: 40, borderRadius: '50%',
-              border: '1px solid #d5dbe8', background: '#f1f3f9', color: '#5b6b8c',
+              border: '1px solid var(--line-strong)', background: 'var(--bg-2)', color: 'var(--ink-dim)',
               cursor: 'pointer', fontSize: 20, lineHeight: 1,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}
@@ -277,15 +290,15 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 4,
               border: 'none', background: 'none', cursor: 'pointer',
-              color: '#7c8db0', fontSize: 13, padding: 0, marginBottom: 8, font: 'inherit',
+              color: 'var(--ink-faint)', fontSize: 13, padding: 0, marginBottom: 8, font: 'inherit',
             }}
           >← 뒤로</button>
         )}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <span style={{ width: 10, height: 10, borderRadius: '50%', background: headColor, flexShrink: 0 }} />
-          <h2 style={{ margin: 0, fontSize: 18, fontWeight: 700, color: '#1a1a2e', lineHeight: 1.3 }}>{title}</h2>
+          <h2 style={{ margin: 0, fontSize: 18, fontWeight: 700, color: 'var(--ink)', lineHeight: 1.3 }}>{title}</h2>
         </div>
-        <div style={{ fontSize: 12, color: '#7c8db0', marginTop: 3, marginLeft: 18 }}>{subtitle}</div>
+        <div style={{ fontSize: 12, color: 'var(--ink-faint)', marginTop: 3, marginLeft: 18 }}>{subtitle}</div>
       </div>
 
       {/* Person 여정 탐험 CTA — 큐레이션 인물만, 현재 탐험 중인 인물 제외 */}
@@ -297,7 +310,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
               width: '100%', padding: '10px 12px', borderRadius: 8,
               border: 'none', cursor: 'pointer', font: 'inherit',
-              fontSize: 13, fontWeight: 700, color: '#fff',
+              fontSize: 13, fontWeight: 700, color: 'var(--ink)',
               background: TYPE_COLOR.Person,
             }}
           >
@@ -310,7 +323,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
       {node.label === 'Person' && node.properties?.traits?.length > 0 && (
         <div style={{
           margin: '12px 12px 0', padding: '12px', borderRadius: 8,
-          background: '#f8faff', border: '1px solid #e8ecf8',
+          background: 'var(--bg-2)', border: '1px solid var(--line)',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', marginBottom: 10 }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: TYPE_COLOR.Person }}>인물 성품</div>
@@ -326,29 +339,28 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
               <div key={i}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 3 }}>
                   <span style={{
-                    fontSize: 12, fontWeight: 600, color: '#1a1a2e',
-                    background: 'rgba(124,156,252,0.12)', borderRadius: 4, padding: '2px 8px',
+                    fontSize: 12, fontWeight: 600, color: 'var(--ink)',
+                    background: 'var(--bg-3)', borderRadius: 4, padding: '2px 8px',
                   }}>{t.trait}</span>
                   <button
                     onClick={() => toggle('trait-' + i)}
                     style={{
                       display: 'inline-flex', alignItems: 'center', gap: 3,
                       border: 'none', background: 'none', cursor: 'pointer', padding: 0,
-                      font: 'inherit', fontSize: 10, color: '#9aa5b8',
+                      font: 'inherit', fontSize: 10, color: 'var(--ink-faint)',
                     }}
                   >
                     {t.verse_ref}
                     <span style={{ fontSize: 9 }}>{open ? '▾' : '▸'}</span>
                   </button>
                 </div>
-                <p style={{ margin: 0, fontSize: 12, color: '#5a6481', lineHeight: 1.5 }}>{t.description}</p>
+                <p style={{ margin: 0, fontSize: 12, color: 'var(--ink-dim)', lineHeight: 1.5 }}>{t.description}</p>
+                {/* 양피지 카드 — 인용문(description)이 아닌 실제 절 본문(verseText)만(원칙 2) */}
                 {open && (
-                  <div style={{
-                    marginTop: 5, padding: '7px 10px', background: '#eef2ff',
-                    borderLeft: `3px solid ${TYPE_COLOR.Person}`, borderRadius: 6,
-                    fontSize: 12, color: '#374151', lineHeight: 1.5,
-                  }}>
-                    {verseText || <span style={{ color: '#9aa5b8' }}>원문이 없습니다</span>}
+                  <div style={{ ...paperCardStyle, marginTop: 5, marginBottom: 0, padding: '8px 12px' }}>
+                    {verseText
+                      ? <div style={paperTextStyle}>{verseText}</div>
+                      : <span style={{ color: 'var(--paper-accent)' }}>원문이 없습니다</span>}
                   </div>
                 )}
               </div>
@@ -402,20 +414,20 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
               .filter(Boolean).map((chip, i) => (
               <span key={i} style={{
                 fontSize: 11, padding: '3px 8px', borderRadius: 999,
-                background: '#eef0f5', color: '#5a6481',
+                border: '1px solid var(--line-strong)', background: 'var(--bg-2)', color: 'var(--ink-dim)',
               }}>{chip}</span>
             ))}
           </div>
 
-          {/* 중심 메시지 — 책의 정수(1~2줄)를 최상단에 */}
+          {/* 중심 메시지 — 책의 정수(1~2줄)를 최상단에. 인용문 아닌 서술이라 다크 카드(양피지 아님) */}
           {node.properties.centralMessage && (
             <div style={{ marginBottom: 12 }}>
-              <SectionHeader label="중심 메시지" color="#a78bfa" sectionKey="book-central" collapsed={collapsed} onToggle={toggle} />
+              <SectionHeader label="중심 메시지" color={TYPE_COLOR.Book} sectionKey="book-central" collapsed={collapsed} onToggle={toggle} />
               {collapsed['book-central'] === false && (
                 <div style={{
-                  padding: '10px 12px', background: '#f5f3ff', borderRadius: 8,
-                  borderLeft: '3px solid #a78bfa', marginBottom: 4,
-                  fontSize: 13, color: '#374151', lineHeight: 1.6,
+                  padding: '10px 12px', background: 'var(--bg-2)', borderRadius: 8,
+                  borderLeft: `3px solid ${TYPE_COLOR.Book}`, marginBottom: 4,
+                  fontSize: 13, color: 'var(--ink-dim)', lineHeight: 1.6,
                 }}>{node.properties.centralMessage}</div>
               )}
             </div>
@@ -424,13 +436,13 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
           {/* 성경 주제 */}
           {node.properties.themes?.length > 0 && (
             <div style={{ marginBottom: 12 }}>
-              <SectionHeader label="핵심 주제" color="#a78bfa" sectionKey="book-themes" collapsed={collapsed} onToggle={toggle} />
+              <SectionHeader label="핵심 주제" color={TYPE_COLOR.Book} sectionKey="book-themes" collapsed={collapsed} onToggle={toggle} />
               {collapsed['book-themes'] === false && (
                 <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', paddingBottom: 4 }}>
                   {node.properties.themes.map((t, i) => (
                     <span key={i} style={{
                       fontSize: 12, padding: '4px 10px', borderRadius: 999,
-                      border: '1px solid #a78bfa', color: '#a78bfa',
+                      border: '1px solid var(--line-strong)', background: 'var(--bg-2)', color: 'var(--ink-dim)',
                     }}>{t}</span>
                   ))}
                 </div>
@@ -438,37 +450,34 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
             </div>
           )}
 
-          {/* 대표 구절 */}
+          {/* 대표 구절 — 양피지 카드(원칙 2, 실제 성경 본문) */}
           {node.properties.keyVerse && (
             <div style={{ marginBottom: 12 }}>
-              <SectionHeader label="대표 구절" color="#a78bfa" sectionKey="book-keyverse" collapsed={collapsed} onToggle={toggle} />
+              <SectionHeader label="대표 구절" color={TYPE_COLOR.Book} sectionKey="book-keyverse" collapsed={collapsed} onToggle={toggle} />
               {collapsed['book-keyverse'] === false && (
-                <div style={{
-                  padding: '10px 12px', background: '#f5f3ff', borderRadius: 8,
-                  borderLeft: '3px solid #a78bfa', marginBottom: 4,
-                }}>
-                  <div style={{ display: 'flex', alignItems: 'center', marginBottom: keyVerseText ? 4 : 0 }}>
-                    <div style={{ fontSize: 12, fontWeight: 600, color: '#6d28d9' }}>
+                <div style={paperCardStyle}>
+                  <div style={{ display: 'flex', alignItems: 'center', marginBottom: keyVerseText ? 6 : 0 }}>
+                    <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--paper-accent)' }}>
                       {node.properties.keyVerse}
                     </div>
                     <span style={{ marginLeft: 'auto' }}>
-                      <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} color="#a78bfa" />
+                      <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} color="var(--paper-accent)" />
                     </span>
                   </div>
                   {keyVerseText && (
-                    <div style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{keyVerseText}</div>
+                    <div style={paperTextStyle}>{keyVerseText}</div>
                   )}
                 </div>
               )}
             </div>
           )}
 
-          {/* 시대적 배경 — 긴 산문은 정수 아래로 */}
+          {/* 시대적 배경 — 긴 산문은 정수 아래로. 인용문 아닌 서술이라 다크 톤(양피지 아님) */}
           {node.properties.background && (
             <div style={{ marginBottom: 12 }}>
-              <SectionHeader label="시대적 배경" color="#a78bfa" sectionKey="book-background" collapsed={collapsed} onToggle={toggle} />
+              <SectionHeader label="시대적 배경" color={TYPE_COLOR.Book} sectionKey="book-background" collapsed={collapsed} onToggle={toggle} />
               {collapsed['book-background'] === false && (
-                <p style={{ margin: '0 0 4px', color: '#374151', lineHeight: 1.6 }}>{node.properties.background}</p>
+                <p style={{ margin: '0 0 4px', color: 'var(--ink-dim)', lineHeight: 1.6 }}>{node.properties.background}</p>
               )}
             </div>
           )}
@@ -476,9 +485,9 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
           {/* 구조 개요 */}
           {node.properties.structure && (
             <div style={{ marginBottom: 12 }}>
-              <SectionHeader label="구조 개요" color="#a78bfa" sectionKey="book-structure" collapsed={collapsed} onToggle={toggle} />
+              <SectionHeader label="구조 개요" color={TYPE_COLOR.Book} sectionKey="book-structure" collapsed={collapsed} onToggle={toggle} />
               {collapsed['book-structure'] === false && (
-                <p style={{ margin: '0 0 4px', color: '#374151', lineHeight: 1.6, fontSize: 13 }}>{node.properties.structure}</p>
+                <p style={{ margin: '0 0 4px', color: 'var(--ink-dim)', lineHeight: 1.6, fontSize: 13 }}>{node.properties.structure}</p>
               )}
             </div>
           )}
@@ -486,13 +495,13 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
           {/* 핵심 인물 — 클릭 가능한 '주요 인물'(topPersons)이 있으면 중복이라 숨김(없는 34권에선 유일한 인물 정보) */}
           {node.properties.keyPeople?.length > 0 && !(node.topPersons?.length > 0) && (
             <div style={{ marginBottom: 12 }}>
-              <SectionHeader label="핵심 인물" color="#a78bfa" sectionKey="book-keyppl" collapsed={collapsed} onToggle={toggle} />
+              <SectionHeader label="핵심 인물" color={TYPE_COLOR.Book} sectionKey="book-keyppl" collapsed={collapsed} onToggle={toggle} />
               {collapsed['book-keyppl'] === false && (
                 <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', paddingBottom: 4 }}>
                   {node.properties.keyPeople.map((p, i) => (
                     <span key={i} style={{
                       fontSize: 12, padding: '4px 10px', borderRadius: 999,
-                      background: '#eef0f5', color: '#5a6481',
+                      border: '1px solid var(--line-strong)', background: 'var(--bg-2)', color: 'var(--ink-dim)',
                     }}>{p}</span>
                   ))}
                 </div>
@@ -515,10 +524,10 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                       borderRadius: 6, padding: '7px 10px',
                       transition: 'background 0.12s',
                     }}
-                      onMouseEnter={e => { e.currentTarget.style.background = '#f4f6fb' }}
+                      onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-2)' }}
                       onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
                     >
-                      <span style={{ fontSize: 13, color: '#1a1a2e' }}>{p.nameKo || p.name}</span>
+                      <span style={{ fontSize: 13, color: 'var(--ink)' }}>{p.nameKo || p.name}</span>
                     </button>
                   ))}
                 </div>
@@ -541,12 +550,12 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                       borderRadius: 6, padding: '7px 10px',
                       transition: 'background 0.12s',
                     }}
-                      onMouseEnter={ev => { ev.currentTarget.style.background = '#f4f6fb' }}
+                      onMouseEnter={ev => { ev.currentTarget.style.background = 'var(--bg-2)' }}
                       onMouseLeave={ev => { ev.currentTarget.style.background = 'none' }}
                     >
-                      <span style={{ flex: 1, fontSize: 13, color: '#1a1a2e' }}>{e.nameKo || e.name}</span>
+                      <span style={{ flex: 1, fontSize: 13, color: 'var(--ink)' }}>{e.nameKo || e.name}</span>
                       {e.startDate && (
-                        <span style={{ fontSize: 10, color: '#9aa5b8', flexShrink: 0 }}>
+                        <span style={{ fontSize: 10, color: 'var(--ink-faint)', flexShrink: 0 }}>
                           {parseYear(e.startDate)}
                         </span>
                       )}
@@ -565,35 +574,32 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
         groups['Event']?.length > 0 || (placePersons && placePersons.length > 0)
       ) && (
         <div style={{ padding: '12px 16px 4px', fontSize: 14 }}>
-          {/* 장소 배경 */}
+          {/* 장소 배경 — 인용문 아닌 서술이라 다크 톤(양피지 아님) */}
           {node.properties.background && (
             <div style={{ marginBottom: 12 }}>
               <SectionHeader label="장소 배경" color={TYPE_COLOR.Place} sectionKey="place-background" collapsed={collapsed} onToggle={toggle} />
               {collapsed['place-background'] === false && (
-                <p style={{ margin: '0 0 4px', color: '#374151', lineHeight: 1.6 }}>{node.properties.background}</p>
+                <p style={{ margin: '0 0 4px', color: 'var(--ink-dim)', lineHeight: 1.6 }}>{node.properties.background}</p>
               )}
             </div>
           )}
 
-          {/* 대표 구절 */}
+          {/* 대표 구절 — 양피지 카드(원칙 2, 실제 성경 본문) */}
           {node.properties.keyVerse && (
             <div style={{ marginBottom: 12 }}>
               <SectionHeader label="대표 구절" color={TYPE_COLOR.Place} sectionKey="place-keyverse" collapsed={collapsed} onToggle={toggle} />
               {collapsed['place-keyverse'] === false && (
-                <div style={{
-                  padding: '10px 12px', background: '#f5f3ff', borderRadius: 8,
-                  borderLeft: `3px solid ${TYPE_COLOR.Place}`, marginBottom: 4,
-                }}>
-                  <div style={{ display: 'flex', alignItems: 'center', marginBottom: placeKeyVerseText ? 4 : 0 }}>
-                    <div style={{ fontSize: 12, fontWeight: 600, color: '#6d28d9' }}>
+                <div style={paperCardStyle}>
+                  <div style={{ display: 'flex', alignItems: 'center', marginBottom: placeKeyVerseText ? 6 : 0 }}>
+                    <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--paper-accent)' }}>
                       {node.properties.keyVerse}
                     </div>
                     <span style={{ marginLeft: 'auto' }}>
-                      <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} color={TYPE_COLOR.Place} />
+                      <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} color="var(--paper-accent)" />
                     </span>
                   </div>
                   {placeKeyVerseText && (
-                    <div style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{placeKeyVerseText}</div>
+                    <div style={paperTextStyle}>{placeKeyVerseText}</div>
                   )}
                 </div>
               )}
@@ -613,7 +619,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                         padding: '6px 8px', borderRadius: 6,
                         borderLeft: `3px solid ${TYPE_COLOR.Event}`,
                       }}>
-                        <span style={{ flex: 1, fontSize: 13, color: '#1a1a2e' }}>{ev.nameKoMissing ? `${ev.name} (미번역)` : ev.nameKo}</span>
+                        <span style={{ flex: 1, fontSize: 13, color: 'var(--ink)' }}>{ev.nameKoMissing ? `${ev.name} (미번역)` : ev.nameKo}</span>
                         {renderPlaceBookChip(ev.id)}
                       </div>
                       {renderPlaceVerseView(ev.id)}
@@ -624,23 +630,14 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
             </div>
           )}
 
-          {/* 이 곳을 지난 다른 인물 */}
+          {/* 이 곳을 지난 다른 인물 — 근거 칩이 아니므로 중립 톤(원칙 5, CONN_CHIP과 동일) */}
           {placePersons && placePersons.length > 0 && (
             <div style={{ marginBottom: 12 }}>
               <SectionHeader label="이 곳을 지난 인물" color={TYPE_COLOR.Person} count={placePersons.length} sectionKey="place-persons" collapsed={collapsed} onToggle={toggle} />
               {collapsed['place-persons'] === false && (
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, paddingBottom: 4 }}>
                   {placePersons.map(p => (
-                    <button
-                      key={p.id}
-                      onClick={() => onExplorePerson(p.id)}
-                      style={{
-                        fontSize: 12, padding: '5px 12px', borderRadius: 999,
-                        border: `1px solid ${TYPE_COLOR.Person}`,
-                        background: 'rgba(74,144,217,0.08)', color: TYPE_COLOR.Person,
-                        cursor: 'pointer', fontWeight: 600,
-                      }}
-                    >{p.nameKo}</button>
+                    <button key={p.id} onClick={() => onExplorePerson(p.id)} style={CONN_CHIP}>{p.nameKo}</button>
                   ))}
                 </div>
               )}
@@ -653,7 +650,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
       {node.label !== 'Book' && (
       <div style={{ padding: '4px 12px 20px' }}>
         {node.neighbors.length === 0 && (
-          <p style={{ color: '#7c8db0', fontSize: 13, padding: '12px 4px' }}>연결된 이웃이 없습니다</p>
+          <p style={{ color: 'var(--ink-faint)', fontSize: 13, padding: '12px 4px' }}>연결된 이웃이 없습니다</p>
         )}
         {TYPE_ORDER.filter(t => groups[t]?.length).map(t => (
           <div key={t} style={{ marginTop: 14 }}>
@@ -672,14 +669,14 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                       borderRadius: 6, padding: '8px 10px',
                       transition: 'background 0.12s',
                     }}
-                    onMouseEnter={e => { e.currentTarget.style.background = '#f4f6fb' }}
+                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-2)' }}
                     onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
                   >
-                    <span style={{ flex: 1, fontSize: 14, color: '#1a1a2e' }}>
+                    <span style={{ flex: 1, fontSize: 14, color: 'var(--ink)' }}>
                       {n.nameKoMissing ? `${n.name} (미번역)` : n.nameKo}
                     </span>
                     <span style={{
-                      fontSize: 10, color: '#7c8db0', background: '#eef0f5',
+                      fontSize: 10, color: 'var(--ink-faint)', background: 'var(--bg-2)',
                       borderRadius: 4, padding: '2px 6px', flexShrink: 0,
                     }}>{REL_KO[n.relation] || n.relation}</span>
                   </button>
@@ -690,8 +687,8 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
         ))}
         {node.neighborTotal > node.neighbors.length && (
           <p style={{
-            color: '#aab2c5', fontSize: 12, padding: '12px 6px 0',
-            borderTop: '1px solid #eef0f5', marginTop: 14,
+            color: 'var(--ink-faint)', fontSize: 12, padding: '12px 6px 0',
+            borderTop: '1px solid var(--line)', marginTop: 14,
           }}>
             이웃 {node.neighborTotal}개 중 {node.neighbors.length}개 표시
           </p>

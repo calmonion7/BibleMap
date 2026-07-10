@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { apiGet } from './api'
 import Spinner from './Spinner'
 import { MOBILE_BREAKPOINT } from './constants'
+import { TYPE_COLOR, NIGHT } from './theme'
 
 // 시대 표시 순서 — persons.py _ERA_ORDER와 동일.
 const ERA_ORDER = ['원시사', '족장', '출애굽·정복', '사사', '왕국', '선지자', '포로', '신약']
@@ -18,13 +19,12 @@ const ERA_META = {
   '신약':        '그리스도와 그 증인들',
 }
 
-// Person 색(theme.js TYPE_COLOR.Person) + 골드 액센트
-const PERSON_BLUE = '#7c9cfc'
-const GOLD = '#c9a84c'
-const PURPLE = '#a78bfa'
-const GROUND = '#11122b'
-const TEXT = '#e8e4d8'
-const CARD_BG = '#1a1b3a'
+// Night Atlas 토큰(design-direction.md) — 골드·보라는 theme.js 상수, 표면·잉크는 CSS 변수 참조
+const GOLD = NIGHT.gold
+const PURPLE = TYPE_COLOR.Book
+const GROUND = 'var(--bg-0)'
+const TEXT = 'var(--ink)'
+const CARD_BG = 'var(--bg-1)'
 
 function useIsMobile() {
   const [mobile, setMobile] = useState(() => window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches)
@@ -47,14 +47,14 @@ function PersonCard({ person, onSelectPerson }) {
       onMouseLeave={() => setHovered(false)}
       aria-label={`${person.nameKo} — ${person.era} 시대, 사건 ${person.eventCount}건`}
       style={{
-        background: hovered ? '#222455' : CARD_BG,
-        border: `1px solid ${hovered ? PERSON_BLUE : 'rgba(124,156,252,0.18)'}`,
+        background: hovered ? 'var(--bg-2)' : CARD_BG,
+        border: `1px solid ${hovered ? 'var(--gold-dim)' : 'var(--line)'}`,
         borderRadius: 12,
         padding: '18px 16px',
         cursor: 'pointer',
         textAlign: 'left',
         transition: 'background 0.15s, border-color 0.15s, box-shadow 0.15s',
-        boxShadow: hovered ? `0 0 0 1px ${PERSON_BLUE}40, 0 6px 24px rgba(0,0,0,0.35)` : '0 2px 8px rgba(0,0,0,0.25)',
+        boxShadow: 'var(--shadow-1)',
         display: 'flex',
         flexDirection: 'column',
         gap: 6,
@@ -64,6 +64,7 @@ function PersonCard({ person, onSelectPerson }) {
       {/* 이름 */}
       <span style={{
         color: TEXT,
+        fontFamily: 'var(--serif)',
         fontWeight: 700,
         fontSize: 18,
         lineHeight: 1.2,
@@ -86,7 +87,7 @@ function PersonCard({ person, onSelectPerson }) {
 
       {/* 사건 수 */}
       <span style={{
-        color: 'rgba(232,228,216,0.45)',
+        color: 'var(--ink-dim)',
         fontSize: 12,
         marginTop: 2,
       }}>
@@ -110,6 +111,7 @@ function EraSection({ era, persons, onSelectPerson, isFirst }) {
       }}>
         <span style={{
           color: GOLD,
+          fontFamily: 'var(--serif)',
           fontWeight: 700,
           fontSize: 12,
           letterSpacing: '0.22em',
@@ -121,11 +123,11 @@ function EraSection({ era, persons, onSelectPerson, isFirst }) {
         <div style={{
           flex: 1,
           height: 1,
-          background: `linear-gradient(to right, ${GOLD}60, transparent)`,
+          background: 'linear-gradient(to right, var(--gold-dim), var(--line) 60%)',
         }} />
         {desc && (
           <span style={{
-            color: 'rgba(232,228,216,0.35)',
+            color: 'var(--ink-dim)',
             fontSize: 11,
             letterSpacing: '0.03em',
             flexShrink: 0,
@@ -201,6 +203,7 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
 
   if (error) {
     return (
+      // 에러 색 — 방향서 토큰에 에러 시맨틱이 없어 하드코딩 유지
       <div style={{ color: '#f87171', padding: 24, background: GROUND, height: '100%' }}>
         인물 목록을 불러오지 못했습니다 — {error}
       </div>
@@ -209,7 +212,7 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
 
   if (persons.length === 0) {
     return (
-      <div style={{ color: 'rgba(232,228,216,0.45)', padding: 24, background: GROUND, height: '100%' }}>
+      <div style={{ color: 'var(--ink-faint)', padding: 24, background: GROUND, height: '100%' }}>
         표시할 인물이 없습니다
       </div>
     )
@@ -233,11 +236,12 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
       {/* 헤더 영역 */}
       <div style={{
         padding: isMobile ? '28px 16px 20px' : '36px 32px 24px',
-        borderBottom: `1px solid ${GOLD}22`,
-        background: `linear-gradient(180deg, #16173a 0%, ${GROUND} 100%)`,
+        borderBottom: '1px solid var(--gold-dim)',
+        background: `linear-gradient(180deg, var(--bg-1) 0%, ${GROUND} 100%)`,
       }}>
         <h1 style={{
           color: TEXT,
+          fontFamily: 'var(--serif)',
           fontSize: isMobile ? 22 : 28,
           fontWeight: 700,
           letterSpacing: '-0.02em',
@@ -247,7 +251,7 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
           성경 인물 탐험
         </h1>
         <p style={{
-          color: 'rgba(232,228,216,0.45)',
+          color: 'var(--ink-faint)',
           fontSize: 14,
           margin: '0 0 20px',
           lineHeight: 1.5,

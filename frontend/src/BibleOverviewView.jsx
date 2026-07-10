@@ -44,8 +44,8 @@ function BookCard({ book, onSelectNode, isSelected, hideKeyVerse }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        background: isSelected ? SELECT_HL : '#1e2040',
-        border: `1px solid ${isSelected ? '#7c9cfc' : hovered ? '#7c9cfc' : 'rgba(124,156,252,0.2)'}`,
+        background: isSelected ? SELECT_HL : hovered ? 'var(--bg-2)' : 'var(--bg-1)',
+        border: `1px solid ${isSelected || hovered ? 'var(--gold-dim)' : 'var(--line)'}`,
         borderRadius: 10,
         padding: 12,
         width: 140,
@@ -54,11 +54,11 @@ function BookCard({ book, onSelectNode, isSelected, hideKeyVerse }) {
         transition: 'border-color 0.15s, background 0.15s',
       }}
     >
-      <div style={{ color: '#fff', fontWeight: 600, fontSize: 14, marginBottom: book.authorKo ? 2 : 6 }}>
+      <div style={{ color: 'var(--ink)', fontFamily: 'var(--serif)', fontWeight: 600, fontSize: 14, marginBottom: book.authorKo ? 2 : 6 }}>
         {book.nameKo}
       </div>
       {book.authorKo && (
-        <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: 11, marginBottom: 6 }}>
+        <div style={{ color: 'var(--ink-faint)', fontSize: 11, marginBottom: 6 }}>
           {book.authorKo}{book.writtenDate ? ` · ${book.writtenDate}` : ''}
         </div>
       )}
@@ -68,8 +68,8 @@ function BookCard({ book, onSelectNode, isSelected, hideKeyVerse }) {
             <span
               key={i}
               style={{
-                background: 'rgba(124,156,252,0.15)',
-                color: '#7c9cfc',
+                background: 'var(--bg-2)',
+                color: 'var(--ink-dim)',
                 fontSize: 10,
                 padding: '2px 7px',
                 borderRadius: 999,
@@ -81,7 +81,7 @@ function BookCard({ book, onSelectNode, isSelected, hideKeyVerse }) {
         </div>
       )}
       {keyVerse && (
-        <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: 11, marginTop: 6, lineHeight: 1.4 }}>
+        <div style={{ color: 'var(--ink-faint)', fontSize: 11, marginTop: 6, lineHeight: 1.4 }}>
           {keyVerse}
         </div>
       )}
@@ -97,9 +97,9 @@ function GenreSection({ genre, books, isFirst, onSelectNode, selectedNode, hideK
     // data-genre: 점프 내비의 스크롤 대상 + 현재 섹션 추적 마커
     <div data-genre={genre} style={{ marginTop: isFirst ? 0 : 20 }}>
       <div style={{ marginBottom: 8 }}>
-        <span style={{ color: '#fff', fontWeight: 700, fontSize: 16 }}>{meta.displayName}</span>
+        <span style={{ color: 'var(--ink)', fontWeight: 700, fontSize: 16 }}>{meta.displayName}</span>
         {meta.description && (
-          <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 13, marginLeft: 8 }}>
+          <span style={{ color: 'var(--ink-faint)', fontSize: 13, marginLeft: 8 }}>
             {meta.description}
           </span>
         )}
@@ -118,7 +118,7 @@ function Testament({ label, genreOrder, booksByGenre, onSelectNode, selectedNode
 
   return (
     <div>
-      <div style={{ color: '#fff', fontWeight: 700, fontSize: 20, marginBottom: 12 }}>{label}</div>
+      <div style={{ color: 'var(--ink)', fontFamily: 'var(--serif)', fontWeight: 700, fontSize: 20, marginBottom: 12 }}>{label}</div>
       {genres.map((genre, i) => (
         <GenreSection
           key={genre}
@@ -206,14 +206,15 @@ export default function BibleOverviewView({ onSelectNode, selectedNode }) {
 
   if (loading) {
     return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', background: '#12122a' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', background: 'var(--bg-0)' }}>
         <Spinner />
       </div>
     )
   }
   if (error) {
     return (
-      <div style={{ color: '#f87171', padding: 24, background: '#12122a', height: '100%' }}>
+      <div style={{ color: '#f87171', padding: 24, background: 'var(--bg-0)', height: '100%' }}>
+        {/* 에러 텍스트는 대응 토큰이 없어 하드코딩 유지 */}
         오류: {error}
       </div>
     )
@@ -225,7 +226,7 @@ export default function BibleOverviewView({ onSelectNode, selectedNode }) {
 
   if (totalBooks === 0) {
     return (
-      <div style={{ color: 'rgba(255,255,255,0.5)', padding: 24, background: '#12122a', height: '100%' }}>
+      <div style={{ color: 'var(--ink-faint)', padding: 24, background: 'var(--bg-0)', height: '100%' }}>
         표시할 성경 권이 없습니다
       </div>
     )
@@ -238,7 +239,7 @@ export default function BibleOverviewView({ onSelectNode, selectedNode }) {
 
   return (
     <div ref={scrollRef} style={{
-      background: '#12122a',
+      background: 'var(--bg-0)',
       height: '100%',
       overflowY: 'auto',
       boxSizing: 'border-box',
@@ -246,15 +247,15 @@ export default function BibleOverviewView({ onSelectNode, selectedNode }) {
       {/* 점프 내비 칩 바 — sticky, 좁은 화면에선 가로 스크롤 */}
       <div style={{
         position: 'sticky', top: 0, zIndex: 5,
-        background: '#12122a',
-        borderBottom: '1px solid rgba(124,156,252,0.15)',
+        background: 'var(--bg-0)',
+        borderBottom: '1px solid var(--line-strong)',
         display: 'flex', alignItems: 'center', gap: 6,
         overflowX: 'auto',
         padding: '10px 16px',
       }}>
         {chipGroups.map((group, gi) => [
           <span key={group.label} style={{
-            color: '#c9a84c', fontSize: 11, fontWeight: 700,
+            color: 'var(--gold)', fontSize: 11, fontWeight: 700,
             letterSpacing: '0.08em', flexShrink: 0,
             marginLeft: gi > 0 ? 10 : 0,
           }}>
@@ -270,9 +271,9 @@ export default function BibleOverviewView({ onSelectNode, selectedNode }) {
                 style={{
                   flexShrink: 0, cursor: 'pointer', whiteSpace: 'nowrap',
                   fontSize: 12, padding: '4px 10px', borderRadius: 999,
-                  border: `1px solid ${active ? '#7c9cfc' : 'rgba(124,156,252,0.35)'}`,
-                  background: active ? '#7c9cfc' : 'none',
-                  color: active ? '#12122a' : '#9fb0e8',
+                  border: `1px solid ${active ? 'var(--gold-dim)' : 'var(--line-strong)'}`,
+                  background: active ? 'var(--bg-3)' : 'var(--bg-2)',
+                  color: active ? 'var(--gold)' : 'var(--ink-dim)',
                   fontWeight: active ? 700 : 400,
                   transition: 'background 0.15s, color 0.15s',
                 }}

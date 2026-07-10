@@ -28,14 +28,23 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
         glyphs: 'https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf',
         sources: {
           esri: {
+            // 무라벨 지형 타일 — 현대 도로·공항·국경 제거(ADR-0013 "고대의 땅"), 지명은 앱 한글 마커가 담당
             type: 'raster',
             tiles: [
-              'https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}',
+              'https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}',
             ],
             tileSize: 256,
+            maxzoom: 9, // 이 서비스는 z10+가 "data not yet available" 플레이스홀더 — z9 타일을 오버줌
+            attribution: 'Esri World Terrain Base',
           },
         },
-        layers: [{ id: 'esri-layer', type: 'raster', source: 'esri' }],
+        layers: [{
+          id: 'esri-layer',
+          type: 'raster',
+          source: 'esri',
+          // 양피지 톤 — CSS filter는 오버레이(여정선·배지)까지 같은 캔버스라 물들이므로 래스터 전용 paint로
+          paint: { 'raster-saturation': -0.3, 'raster-brightness-max': 0.94, 'raster-contrast': 0.05 },
+        }],
       },
     })
 
