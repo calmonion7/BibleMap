@@ -219,6 +219,10 @@ def bake_relations():
     stats = {"kept": 0, "filled": 0, "null": 0}
     for rel in data.get("relations", []):
         for phase in rel.get("phases", []):
+            ay = phase.get("approxYear")
+            assert ay is None or isinstance(ay, int), (
+                f"approxYear는 정수여야 함(정렬 키) — {rel.get('type')} '{phase.get('label')}': {ay!r}"
+            )
             resolved = resolve_ref(phase.get("verse"))
             for src_field, slug in TRANSLATIONS:
                 field = "verseTextKo" if src_field == "textKo" else "verseTextEn"

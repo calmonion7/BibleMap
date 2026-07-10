@@ -67,6 +67,8 @@ def _build_event_index() -> dict[str, dict]:
             logger.warning("[Tours] person_events 로드 실패 — 사건 인덱스에서 건너뜀 (%s): %s", slug, e)
             continue
         for e in events:
+            if e["id"] in index:
+                logger.warning("[Tours] 중복 eventId — %s 사본으로 덮어씀 (id=%s)", slug, e["id"])
             index[e["id"]] = e
     return index
 

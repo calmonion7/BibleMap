@@ -117,6 +117,8 @@ def get_event_verses(event_id: str):
     enriched_books = []
     for b in entry.get("books", []):
         enriched_books.append({**b, "bookNameKo": name_map.get(b["bookId"], b["bookId"])})
+    # 오버레이 JSON 저장 순서에 의존하지 않고 라우트에서 정경순 강제(docstring 약속)
+    enriched_books.sort(key=lambda b: b.get("bookOrder", 0))
     return JSONResponse(
         content={"books": enriched_books},
         headers={"Cache-Control": "max-age=300"},

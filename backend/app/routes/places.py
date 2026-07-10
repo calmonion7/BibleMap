@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 router = APIRouter()
 
 
-@functools.lru_cache(maxsize=None)
+@functools.lru_cache(maxsize=256)
 def _place_to_persons(place_id: str) -> list[dict]:
     """place_id 를 포함하는 큐레이션 인물 목록(era순 정렬). 결과 캐시."""
     result = []
@@ -29,8 +29,9 @@ def _place_to_persons(place_id: str) -> list[dict]:
         with open(path, encoding="utf-8") as f:
             events = json.load(f)
 
-        # 이 인물의 어느 사건이든 occursAt 에 place_id 가 있으면 포함
-        visited = any(place_id in evt.get("occursAt", []) for evt in events)
+        # 이 인물의 어느 사건이든 occursAt[0](정차 장소)이 place_id 면 포함.
+        # journey.py/tours.py가 occursAt[0]만 정차지로 쓰므로 판정 기준 일치(2차 장소 제외).
+        visited = any((evt.get("occursAt") or [None])[0] == place_id for evt in events)
         if not visited:
             continue
 

@@ -53,6 +53,29 @@ def build_book_rows(books, names_ko):
     return rows
 
 
+def _parse_year(s):
+    """startDate("-4003"/"-1451-01"/"0049-10-01"/"30") → 부호 있는 연도 정수 또는 None.
+    nodes.py `_year`·dates.js `parseYear`와 동일 규칙(부호 분리 후 첫 '-' 이전만)."""
+    if not s:
+        return None
+    s = str(s)
+    neg = s.startswith("-")
+    body = s[1:] if neg else s
+    try:
+        y = int(body.split("-")[0])
+    except ValueError:
+        return None
+    return -y if neg else y
+
+
+# 파서 셀프체크: 월/일 정밀도가 int()로 조용히 누락되던 버그(task#151 #2) 회귀 방지
+assert _parse_year("-1451-01") == -1451
+assert _parse_year("0049-10-01") == 49
+assert _parse_year("-4003") == -4003
+assert _parse_year("30") == 30
+assert _parse_year("") is None
+
+
 def build_book_year_range(books, events):
     """Book별 startYear/endYear를 event.startDate 집계로 추정한다."""
     # verse IDs → book theographic_id 역매핑
@@ -63,12 +86,8 @@ def build_book_year_range(books, events):
 
     book_years = {}
     for e in events:
-        start_raw = e["fields"].get("startDate", "")
-        try:
-            year = int(str(start_raw).replace("BC", "").strip())
-            if "BC" in str(start_raw):
-                year = -year
-        except (ValueError, TypeError):
+        year = _parse_year(e["fields"].get("startDate", ""))
+        if year is None:
             continue
         for vid in e["fields"].get("verses", []):
             bid = verse_to_book.get(vid)

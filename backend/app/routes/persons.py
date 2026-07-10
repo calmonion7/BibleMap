@@ -142,7 +142,7 @@ def get_curated_persons():
     )
 
 
-@functools.lru_cache(maxsize=None)
+@functools.lru_cache(maxsize=256)
 def _build_connections(node_id: str) -> dict:
     """큐레이션 인물의 연결 두 축(CONTEXT '인물 연결'). 큐레이션 인물로 한정.
     - coParticipants: 같은 Event에 HAS_PARTICIPANT로 함께 등장(2-hop), 큐레이션 교집합·self·God 제외, 공유 사건 수 desc.
@@ -205,7 +205,7 @@ def _load_relations() -> list[dict]:
         return json.load(f).get("relations", [])
 
 
-@functools.lru_cache(maxsize=None)
+@functools.lru_cache(maxsize=256)
 def _build_relations(node_id: str) -> dict:
     """subject(node_id)가 낀 관계 pair만 필터해 상대 endpoint와 시간순 phases를 반환.
     상대에 slug가 있고 34인이면 withId를 해결(여정 점프 가능), 아니면 null. phases는 그대로 통과.

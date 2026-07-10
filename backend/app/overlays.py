@@ -12,18 +12,22 @@ _REPO_DATA_DIR = os.path.join(
 
 
 def _resolve(subpath: str) -> "str | None":
-    for base in (os.environ.get("DATA_DIR", "/app/data"), _REPO_DATA_DIR):
+    bases = (os.environ.get("DATA_DIR", "/app/data"), _REPO_DATA_DIR)
+    for base in bases:
         path = os.path.join(base, subpath)
         if os.path.isfile(path):
             return path
+    logger.warning("[Overlays] 오버레이 파일 없음 — 빈 데이터로 폴백 (%s, 시도: %s)", subpath, bases)
     return None
 
 
 def _resolve_dir(subpath: str) -> "str | None":
-    for base in (os.environ.get("DATA_DIR", "/app/data"), _REPO_DATA_DIR):
+    bases = (os.environ.get("DATA_DIR", "/app/data"), _REPO_DATA_DIR)
+    for base in bases:
         path = os.path.join(base, subpath)
         if os.path.isdir(path):
             return path
+    logger.warning("[Overlays] 오버레이 디렉터리 없음 — 빈 데이터로 폴백 (%s, 시도: %s)", subpath, bases)
     return None
 
 
