@@ -28,7 +28,7 @@ function App() {
   const [isMobile, setIsMobile] = useState(() => window.matchMedia(MOBILE_QUERY).matches)
 
   const {
-    selectedNode, selectedNodeMeta, history, personEventIds,
+    selectedNode, selectedNodeMeta, history,
     handleNodeLoaded, selectNode, selectNodeFresh, goBack, closePanel,
   } = useNodeSelection()
 
@@ -48,6 +48,20 @@ function App() {
     () => (exploreTourId && journeyStops ? new Set(journeyStops.map(s => s.eventId)) : null),
     [exploreTourId, journeyStops],
   )
+  // 인물 타임라인 필터 — explorePersonId 구동(선택 노드와 무관, tourEventIds와 대칭). 헌트 #10:
+  // 노드 클릭에 소실되지 않도록 selectedNode가 아닌 탐험 인물에 묶는다.
+  const [personEventIds, setPersonEventIds] = useState(null)
+  useEffect(() => {
+    let cancelled = false
+    if (explorePersonId) {
+      apiGet(`/person/${explorePersonId}/event-ids`)
+        .then(data => { if (!cancelled) setPersonEventIds(new Set(data.eventIds)) })
+        .catch(e => { if (!cancelled) { console.warn('[App] 인물 사건 목록 로드 실패', e); setPersonEventIds(null) } })
+    } else {
+      Promise.resolve().then(() => { if (!cancelled) setPersonEventIds(null) })
+    }
+    return () => { cancelled = true }
+  }, [explorePersonId])
   const [activeStopIdx, setActiveStopIdx] = useState(null)
   // 모바일 여정 "읽기 모드" — 펼친 사건 id. App이 소유해 오버레이 높이 전환·바깥 탭 닫기를 제어한다.
   const [readingEventId, setReadingEventId] = useState(null)
@@ -364,7 +378,7 @@ function App() {
                   boxShadow: '0 -3px 12px rgba(0,0,0,0.15)',
                   // 인물 선택 시 자동 선택된 인물 자신의 상세는 모바일에서 시트로 띄우지 않는다 —
                   // 여정 칩 스트립을 가려 "첫 로딩 시 여정이 안 보이는" 문제가 되기 때문.
-                  // (SidePanel은 DOM에 남아 personEventIds·이름은 그대로 로드됨.) 장소 등 다른 노드 선택 시에는 정상 표시.
+                  // (SidePanel은 DOM에 남아 인물 이름은 그대로 로드됨. personEventIds는 explorePersonId 구동.) 장소 등 다른 노드 선택 시에는 정상 표시.
                   transform: sheetOpen ? 'translateY(0)' : 'translateY(100%)',
                 }
               : {

@@ -1,11 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { apiGet } from './api'
 
 export function useNodeSelection() {
   const [selectedNode, setSelectedNode] = useState(null)
   const [selectedNodeMeta, setSelectedNodeMeta] = useState(null)
   const [history, setHistory] = useState([])
-  const [personEventIds, setPersonEventIds] = useState(null)
   const selectedNodeRef = useRef(null)
   useEffect(() => { selectedNodeRef.current = selectedNode }, [selectedNode])
 
@@ -18,13 +16,6 @@ export function useNodeSelection() {
       startYear: node.properties?.startYear ?? null,
       endYear: node.properties?.endYear ?? null,
     })
-    if (node.label === 'Person') {
-      apiGet(`/person/${node.id}/event-ids`)
-        .then(data => setPersonEventIds(new Set(data.eventIds)))
-        .catch(e => { console.warn('[NodeSelection] 인물 사건 목록 로드 실패', e); setPersonEventIds(null) })
-    } else {
-      setPersonEventIds(null)
-    }
   }, [])
 
   // 노드 선택 — 직전 노드를 히스토리에 쌓아 패널 뒤로가기를 지원
@@ -35,7 +26,6 @@ export function useNodeSelection() {
     if (selectedNodeRef.current) setHistory(h => [...h, selectedNodeRef.current])
     setSelectedNode(id)
     setSelectedNodeMeta(null)
-    setPersonEventIds(null)
   }, [])
 
   // 새 탐색 컨텍스트(검색 선택 등) — 히스토리 리셋 후 노드 선택
@@ -43,7 +33,6 @@ export function useNodeSelection() {
     setHistory([])
     setSelectedNode(id)
     setSelectedNodeMeta(null)
-    setPersonEventIds(null)
   }
 
   function goBack() {
@@ -57,7 +46,7 @@ export function useNodeSelection() {
   }
 
   return {
-    selectedNode, selectedNodeMeta, history, personEventIds,
+    selectedNode, selectedNodeMeta, history,
     handleNodeLoaded, selectNode, selectNodeFresh, goBack, closePanel,
   }
 }
