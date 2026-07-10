@@ -54,9 +54,12 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   // 딥링크 복원 — curated(slug↔id) 준비되면 마운트 해시를 1회 파싱해 상태 복원.
   // setState는 마이크로태스크로 미룸(effect 동기 setState 금지 규칙).
   useEffect(() => {
-    if (!curatedIds || restoredRef.current) return
-    restoredRef.current = true
+    if (restoredRef.current) return
     const parsed = parseHash(initialHashRef.current)
+    // person slug 해석만 curatedIds(slug↔id 맵)가 필요. overview/tours/tourSlug/hub는
+    // curated 로드·실패와 무관하게 즉시 복원(#12: curated 실패 시 #/books·#/tours 고착 방지).
+    if (parsed?.stage === 'explore' && parsed?.personSlug && !curatedIds) return
+    restoredRef.current = true
     // 복원 상태 적용 후 같은 마이크로태스크에서 setRestored(true) — 그래야 sync effect의 베이스 write가
     // '복원된 stage'로 찍힌다(딥링크면 explore가 베이스). 깨진 해시(parsed null)도 허브 베이스로 복원 신호.
     Promise.resolve().then(() => {
@@ -101,7 +104,9 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, tour: exploreTourId, sheetOpen }
     if (isForward) window.history.pushState(state, '', hash)
     else window.history.replaceState(state, '', hash)
-  }, [restored, activeStage, explorePersonId, exploreTourId, exploreView, selectedNode])
+    // curatedIds 추가(#11): 카드 클릭이 slug맵 로드보다 빨라 :88에서 조기반환했더라도,
+    // curatedIds null→Set 시 재실행돼 slug 해석 후 올바른 pushState가 찍히게 한다.
+  }, [restored, activeStage, explorePersonId, exploreTourId, exploreView, selectedNode, curatedIds])
 
   // popstate — 브라우저/OS 뒤로·앞으로 시 event.state에서 내비 복원(가드로 재-push 방지).
   useEffect(() => {
