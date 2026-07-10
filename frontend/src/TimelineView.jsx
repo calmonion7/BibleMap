@@ -113,35 +113,26 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
     border: `1px solid ${BOOK_COLOR}`, cursor: 'pointer', fontWeight: 600,
     background: 'var(--bg-2)', color: BOOK_COLOR,
   }
-  // 구절 드릴다운 밴드는 양피지(원칙 2) — 본문 색은 각 텍스트 요소에서 var(--paper-ink)로.
-  const verseBoxStyle = {
-    margin: '4px 0 6px 104px', padding: '8px 12px',
-    background: 'var(--paper)', color: 'var(--paper-ink)', borderLeft: '3px solid var(--paper-accent)', borderRadius: 6,
-    fontSize: 12,
-  }
-  // 사건의 인라인 구절 뷰 토글. 열 때 첫 권 선택 + /event/{id}/verses 1회 fetch(id로 묶어 stale 무시).
+  // 구절 레이어 토글. 열 때 첫 권 선택 + /event/{id}/verses 1회 fetch(id로 묶어 stale 무시).
+  // (기존 행 아래 인라인 아코디언은 모바일에서 리스트를 길게 밀어내 불편 — 관계 뷰 VerseLayer와 동일한 양피지 모달로 통일)
   const toggleVerseView = (ev) => {
     const bks = ev.books || []
     if (bks.length === 0) return
     if (verseView && verseView.eventId === ev.id) { setVerseView(null); openEventRef.current = null; return }
     openEventRef.current = ev.id
-    setVerseView({ eventId: ev.id, bookId: bks[0].id, expanded: false })
+    setVerseView({ eventId: ev.id, event: ev, bookId: bks[0].id })
     setEventVerses({ id: ev.id, data: null })
     apiGet('/event/' + ev.id + '/verses')
       .then(data => { if (openEventRef.current === ev.id) setEventVerses({ id: ev.id, data }) })
       .catch(e => { if (openEventRef.current === ev.id) { console.warn('[Timeline] 사건 구절 로드 실패', e); setEventVerses({ id: ev.id, data: { books: [] } }) } })
   }
 
-  // 다권 사건에서 권 탭 전환(절 본문 펼침은 초기화).
+  // 다권 사건에서 권 탭 전환.
   const selectVerseBook = (bookId) => {
-    setVerseView(prev => prev ? { ...prev, bookId, expanded: false } : prev)
+    setVerseView(prev => prev ? { ...prev, bookId } : prev)
   }
 
-  // 절 본문 펼침/접힘 토글. 본문(textKo/textEn)은 /event/{id}/verses에 미리저장돼 추가 fetch 없음.
-  const toggleVerseText = () => {
-    if (!verseView) return
-    setVerseView({ ...verseView, expanded: !verseView.expanded })
-  }
+  const closeVerseView = () => { setVerseView(null); openEventRef.current = null }
 
   const renderBookChip = (ev) => {
     const bks = ev.books || []
@@ -160,64 +151,64 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
     )
   }
 
-  // 사건 행 아래 인라인 구절 뷰. ev.books로 권 이름을, /event/{id}/verses로 인용범위·절을 표시.
-  const renderVerseView = (ev) => {
-    if (!verseView || verseView.eventId !== ev.id) return null
+  // 구절 레이어 — 스크롤 컨테이너의 형제(absolute inset 0)로 띄우는 양피지 모달 (RelationsView VerseLayer 패턴).
+  const renderVerseLayer = () => {
+    if (!verseView) return null
+    const ev = verseView.event
     const overlay = eventVerses.id === ev.id ? eventVerses.data : null
-    if (overlay === null) {
-      // Spinner는 color+'22' 문자열 결합이라 var() 미지원 — --paper-accent 값 직접 명시.
-      return <div style={verseBoxStyle}><Spinner size={20} color="#8a6d1f" /></div>
-    }
-    const ovBooks = overlay.books || []
-    if (ovBooks.length === 0) {
-      return <div style={verseBoxStyle}>표시할 구절이 없습니다</div>
-    }
     const nameById = new Map((ev.books || []).map(b => [b.id, b.nameKo || b.name]))
+    const ovBooks = overlay ? (overlay.books || []) : []
     const selBook = ovBooks.find(b => b.bookId === verseView.bookId) || ovBooks[0]
-    const selName = nameById.get(selBook.bookId) || ''
+    const selName = selBook ? (nameById.get(selBook.bookId) || '') : ''
     return (
-      <div style={verseBoxStyle} onClick={e => e.stopPropagation()}>
-        {ovBooks.length > 1 && (
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 6 }}>
-            {ovBooks.map(b => {
-              const sel = b.bookId === selBook.bookId
-              return (
-                <button
-                  key={b.bookId}
-                  onClick={() => selectVerseBook(b.bookId)}
-                  style={{ ...chipBase, background: sel ? BOOK_COLOR : 'transparent', color: sel ? 'var(--bg-0)' : 'var(--paper-accent)' }}
-                >{nameById.get(b.bookId) || b.bookId}</button>
-              )
-            })}
+      <div
+        onClick={closeVerseView}
+        // 모달 스크림 — 전용 토큰 없어 값 유지(다크 배경 위 반투명 오버레이라 무해)
+        style={{ position: 'absolute', inset: 0, zIndex: 100, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
+      >
+        {/* 근거 구절 모달 = 양피지 카드(원칙 2) */}
+        <div onClick={e => e.stopPropagation()} style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+            <span style={{ fontWeight: 700, fontSize: 15, flex: 1, fontFamily: 'var(--serif)' }}>{ev.nameKo || ev.title}</span>
+            <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
+            <button onClick={closeVerseView} style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: 20, color: 'var(--paper-accent)', lineHeight: 1, padding: '0 2px' }}>×</button>
           </div>
-        )}
-        <button
-          onClick={() => toggleVerseText()}
-          style={{
-            display: 'inline-flex', alignItems: 'center', gap: 4,
-            border: 'none', background: 'none', cursor: 'pointer', padding: 0, font: 'inherit',
-            fontSize: 12, fontWeight: 600, color: 'var(--paper-accent)',
-          }}
-        >
-          {selName} {selBook.rangeLabel}
-          <span style={{ fontSize: 10 }}>{verseView.expanded ? '▾' : '▸'}</span>
-        </button>
-        {verseView.expanded && (
-          <div style={{ marginTop: 6, display: 'flex', flexDirection: 'column', gap: 5 }}>
-            <div>
-              <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} color="var(--paper-accent)" />
+          {ovBooks.length > 1 && (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 8 }}>
+              {ovBooks.map(b => {
+                const sel = b.bookId === selBook.bookId
+                return (
+                  <button
+                    key={b.bookId}
+                    onClick={() => selectVerseBook(b.bookId)}
+                    style={{ ...chipBase, background: sel ? BOOK_COLOR : 'transparent', color: sel ? 'var(--bg-0)' : 'var(--paper-accent)', borderColor: 'var(--paper-accent)' }}
+                  >{nameById.get(b.bookId) || b.bookId}</button>
+                )
+              })}
             </div>
-            {selBook.verses.map(v => {
-              const body = (verseLang === 'ko' ? v.textKo : v.textEn) || '원문이 없습니다'
-              return (
-                <div key={v.verseID} style={{ fontSize: 12, color: 'var(--paper-ink)', fontFamily: 'var(--serif)', lineHeight: 1.8 }}>
-                  <span style={{ fontWeight: 600, color: 'var(--paper-accent)', marginRight: 6 }}>{v.chapter}:{v.verse}</span>
-                  {body}
-                </div>
-              )
-            })}
-          </div>
-        )}
+          )}
+          {overlay === null ? (
+            // Spinner는 color+'22' 문자열 결합이라 var() 미지원 — --paper-accent 값 직접 명시.
+            <div style={{ padding: '12px 0' }}><Spinner size={20} color="#8a6d1f" /></div>
+          ) : ovBooks.length === 0 ? (
+            <div style={{ fontSize: 13, padding: '8px 0' }}>표시할 구절이 없습니다</div>
+          ) : (
+            <>
+              <div style={{ fontSize: 12, color: 'var(--paper-accent)', marginBottom: 8 }}>{selName} {selBook.rangeLabel}</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {selBook.verses.map(v => {
+                  const body = (verseLang === 'ko' ? v.textKo : v.textEn) || '원문이 없습니다'
+                  return (
+                    <div key={v.verseID} style={{ fontSize: 15, color: 'var(--paper-ink)', fontFamily: 'var(--serif)', lineHeight: 1.8 }}>
+                      <span style={{ fontWeight: 600, color: 'var(--paper-accent)', marginRight: 6, fontSize: 12 }}>{v.chapter}:{v.verse}</span>
+                      {body}
+                    </div>
+                  )
+                })}
+              </div>
+            </>
+          )}
+        </div>
       </div>
     )
   }
@@ -231,10 +222,12 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
   }
 
   return (
+    // 비스크롤 루트 + 스크롤 리스트 + 구절 레이어 형제 구조 — 모달을 overflow:auto 자식에 두면 오배치(회고 선례)
+    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', background: 'var(--bg-0)' }}>
     <div
       ref={containerRef}
       onClick={() => { if (openGroup !== null) setOpenGroup(null) }}
-      style={{ width: '100%', height: '100%', boxSizing: 'border-box', overflowY: 'auto', background: 'var(--bg-0)', position: 'relative', paddingTop: 16, paddingBottom: 48 }}
+      style={{ width: '100%', height: '100%', boxSizing: 'border-box', overflowY: 'auto', position: 'relative', paddingTop: 16, paddingBottom: 48 }}
     >
       {(activeFilter || activePersonFilter) && (
         <div style={{ position: 'sticky', top: 0, zIndex: 10 }}>
@@ -288,7 +281,8 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
             }}
             onClick={isSingle ? () => onSelectNode && onSelectNode(members[0].id) : undefined}
           >
-            <div style={{ minWidth: 80, textAlign: 'right', color: 'var(--ink-faint)', fontSize: '12px', paddingTop: 2 }}>
+            {/* 연도 칸은 고정 폭 — minWidth만 주면 긴 라벨(태초 무렵 (전통 BC 4000경) 등)이 행마다 폭을 늘려 제목 시작점이 어긋난다. 긴 라벨은 줄바꿈. */}
+            <div style={{ width: 108, flexShrink: 0, textAlign: 'right', color: 'var(--ink-faint)', fontSize: '12px', lineHeight: 1.35, paddingTop: 2 }}>
               {/* 연대추정 표기는 yearLabel의 '경' 접미가 담당 — '~' 중복 표기는 뺀다 */}
               {isAuthored ? <span title="연대추정 (저작 배경 기준)">{yearLabel}</span> : yearLabel}
             </div>
@@ -346,11 +340,11 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
               )}
             </div>
           </div>
-          {renderVerseView(rep)}
-          {members.filter(ev => ev.id !== rep.id).map(ev => <div key={'vv-' + ev.id}>{renderVerseView(ev)}</div>)}
           </div>
         )
       })}
+    </div>
+    {renderVerseLayer()}
     </div>
   )
 }

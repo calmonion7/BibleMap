@@ -69,6 +69,7 @@ body {
   background: var(--bg-2);
   border: 1px solid var(--line-strong);
   color: var(--ink-dim);
+  text-align: left; /* 모바일에서 두 줄로 감길 때 button 기본 가운데 정렬이 들쭉날쭉 — 좌정렬 고정 */
   transition: background 0.1s ease, transform 0.06s ease, border-color 0.1s ease;
 }
 .rel-chip:active {
