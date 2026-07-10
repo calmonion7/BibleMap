@@ -68,7 +68,8 @@ def get_node_places(node_id: str):
         elif label == "Book":
             places_result = session.run(
                 """
-                MATCH (n:Book {theographic_id: $id})-[:CONTAINS_BOOK]->(e:Event)
+                MATCH (n:Book {theographic_id: $id})-[rel:CONTAINS_BOOK]->(e:Event)
+                WHERE rel.primary
                 MATCH (e)-[:OCCURS_AT]->(p:Place)
                 WHERE p.latitude IS NOT NULL AND p.longitude IS NOT NULL
                 RETURN p, false AS isPrimary
@@ -205,7 +206,8 @@ def get_node(node_id: str):
         if label_val == "Book":
             persons_result = session.run(
                 """
-                MATCH (b:Book {theographic_id: $id})-[:CONTAINS_BOOK]->(e:Event)
+                MATCH (b:Book {theographic_id: $id})-[rel:CONTAINS_BOOK]->(e:Event)
+                WHERE rel.primary
                 MATCH (e)-[:HAS_PARTICIPANT]->(p:Person)
                 WHERE p.theographic_id IS NOT NULL AND p.name <> 'God'
                 WITH p, count(e) AS cnt
@@ -223,8 +225,8 @@ def get_node(node_id: str):
 
             events_result = session.run(
                 """
-                MATCH (b:Book {theographic_id: $id})-[:CONTAINS_BOOK]->(e:Event)
-                WHERE e.theographic_id IS NOT NULL
+                MATCH (b:Book {theographic_id: $id})-[rel:CONTAINS_BOOK]->(e:Event)
+                WHERE e.theographic_id IS NOT NULL AND rel.primary
                 RETURN e.theographic_id AS id, e.title AS name, e.nameKo AS nameKo,
                        e.startDate AS startDate
                 """,

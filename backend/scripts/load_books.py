@@ -127,16 +127,20 @@ def main():
         for vid in b["fields"].get("verses", []):
             verse_to_book[vid] = b["id"]
 
-    # event → book 관계 (1 event : N books)
+    # event → book 관계 (1 event : N books). verses[0]의 책=발생(primary), 나머지=회고 인용 (ADR-0012)
     event_book_rels = []
     for e in events:
+        verses = e["fields"].get("verses", [])
+        primary_bid = next((verse_to_book[v] for v in verses if verse_to_book.get(v)), None)
         bid_set = set()
-        for vid in e["fields"].get("verses", []):
+        for vid in verses:
             bid = verse_to_book.get(vid)
             if bid:
                 bid_set.add(bid)
         for bid in bid_set:
-            event_book_rels.append({"event_id": e["id"], "book_id": bid})
+            event_book_rels.append({
+                "event_id": e["id"], "book_id": bid, "primary": bid == primary_bid,
+            })
 
     print(f"  {len(event_book_rels)} Book-Event relationships to create")
 
@@ -177,7 +181,8 @@ def main():
                 UNWIND $rels AS rel
                 MATCH (b:Book {theographic_id: rel.book_id})
                 MATCH (e:Event {theographic_id: rel.event_id})
-                MERGE (b)-[:CONTAINS_BOOK]->(e)
+                MERGE (b)-[r:CONTAINS_BOOK]->(e)
+                SET r.primary = rel.primary
                 """,
                 rels=event_book_rels[i:i + batch_size],
             )

@@ -69,15 +69,18 @@ def load_events(session, events):
                 person_id=person_id,
             )
 
-        for book_ref in ev.get("books", []):
+        # books[0]=발생(primary), 이후=회고 인용 (ADR-0012)
+        for idx, book_ref in enumerate(ev.get("books", [])):
             session.run(
                 """
                 MATCH (b:Book {theographic_id: $book_id})
                 MATCH (e:Event {theographic_id: $ev_id})
-                MERGE (b)-[:CONTAINS_BOOK]->(e)
+                MERGE (b)-[r:CONTAINS_BOOK]->(e)
+                SET r.primary = $primary
                 """,
                 book_id=book_ref["bookId"],
                 ev_id=ev["id"],
+                primary=(idx == 0),
             )
 
 
