@@ -1,10 +1,10 @@
 ---
-last_mapped_commit: 232fba9c2c3724daf4ee250eba876f1e46f4b6d9
-mapped: 2026-07-09
+last_mapped_commit: 9c49a838dfe4c6e4695b9383ea961f15c9b117f2
+mapped: 2026-07-10
 ---
 # Codebase Structure
 
-**Analysis Date:** 2026-07-09
+**Analysis Date:** 2026-07-10
 
 ## Directory Layout
 
@@ -14,16 +14,16 @@ BibleMap/
 ├── deploy.sh               # 배포 스크립트(프론트 빌드→api 빌드→재시작→ko 이름 주입)
 ├── BIBLEMAP_PLAN.md        # 프로젝트 계획 문서
 ├── README.md
-├── CLAUDE.md               # 프로젝트 작업 가이드라인
+├── CLAUDE.md               # 프로젝트 작업 가이드라인(로깅 규약 포인터 포함)
 ├── backend/
 │   ├── Dockerfile          # python:3.12-slim + uvicorn
-│   ├── requirements.txt    # fastapi·neo4j·uvicorn
+│   ├── requirements.txt    # fastapi 0.136.3·neo4j 6.2.0·uvicorn 0.49.0
 │   ├── app/
-│   │   ├── main.py         # FastAPI 앱·lifespan(인덱스)·라우터 등록
+│   │   ├── main.py         # FastAPI 앱·로깅 설정·lifespan(인덱스)·라우터 등록
 │   │   ├── db.py           # Neo4j 싱글턴 드라이버(get_driver)
 │   │   ├── overlays.py     # data/*.json 경로 해석·로드·lru_cache
 │   │   └── routes/         # 엔드포인트별 APIRouter
-│   │       ├── nodes.py    # /node·/person/{id}/event-ids·/node/{id}/places·neighbors
+│   │       ├── nodes.py    # /node·/person/{id}/event-ids·/node/{id}/places·neighbors(Book은 CONTAINS_BOOK.primary 필터)
 │   │       ├── persons.py  # /persons/curated·/person/{id}/connections·/relations
 │   │       ├── journey.py  # /person/{id}/journey
 │   │       ├── events.py   # /events·/event/{id}/verses
@@ -37,7 +37,7 @@ BibleMap/
 │   ├── vite.config.js      # Vite + manualChunks(maplibre/vendor 분리)
 │   ├── eslint.config.js
 │   ├── .env.production      # VITE_API_URL=/api (빌드타임 주입)
-│   ├── package.json        # react 19·maplibre-gl·lucide-react
+│   ├── package.json        # react 19·maplibre-gl 5·lucide-react·vite 8
 │   ├── dist/               # 빌드 산출물(nginx가 마운트, git 무시)
 │   ├── public/             # favicon.svg
 │   └── src/                # 컴포넌트·훅·맵헬퍼·유틸
@@ -52,18 +52,18 @@ BibleMap/
 
 **`backend/app/routes/`:**
 - Purpose: 엔드포인트별 `APIRouter` 모듈. 각 파일이 하나의 관심사(노드/인물/여정/사건/투어/장소/책/검색)를 담당.
-- Contains: 라우터 인스턴스, 엔드포인트 함수, `functools.lru_cache`로 감싼 빌드/조회 함수.
-- Key files: `nodes.py`(가장 큼, 노드 상세 허브), `persons.py`(era/이름 매핑 단일 출처 + 관계 뷰 데이터).
+- Contains: 라우터 인스턴스, 엔드포인트 함수, `functools.lru_cache`로 감싼 빌드/조회 함수(인물별 조회 캐시는 `maxsize=256` 상한).
+- Key files: `nodes.py`(가장 큼, 노드 상세 허브 — Book 분기가 `CONTAINS_BOOK.primary`로 topPersons/topEvents/장소 필터), `persons.py`(era/이름 매핑 단일 출처 + 관계 뷰 데이터).
 
 **`backend/scripts/`:**
 - Purpose: API 런타임과 분리된 오프라인 데이터 파이프라인. 그래프 적재·오버레이 생성·그래프 속성 주입.
 - Contains: `load_*.py`(theographic 원본 → Neo4j), `generate_*.py`(오버레이 JSON 생성), `inject_*.py`(ko 이름·traits·컨텍스트를 그래프 노드에 주입).
-- Key files: `load_theographic.py`(원본 그래프 적재), `inject_ko_names.py`(배포 시 자동 실행), `generate_person_event_verses.py`·`generate_verse_text.py`(근거 구절 프리베이크).
+- Key files: `load_theographic.py`(원본 그래프 적재), `load_books.py`·`load_person_events.py`(각각 theographic/authored 사건의 `CONTAINS_BOOK.primary` 태깅 — 첫 참조 책=발생, 나머지=인용), `inject_ko_names.py`(배포 시 자동 실행), `generate_person_event_verses.py`·`generate_verse_text.py`(근거 구절/문맥 프리베이크).
 
 **`frontend/src/`:**
 - Purpose: React SPA 소스. Stage별 화면·지도·타임라인·관계 뷰·상세 패널.
 - Contains: `*.jsx` 뷰 컴포넌트, `use*.js` 훅, `map*.js` MapLibre 헬퍼, `*.js` 유틸(api·urlState·dates·theme·constants).
-- Key files: `App.jsx`(렌더 트리·Stage 분기), `useStageNavigation.js`(내비 상태머신), `MapView.jsx`·`RelationsView.jsx`·`TimelineView.jsx`·`SidePanel.jsx`(뷰).
+- Key files: `App.jsx`(렌더 트리·Stage 분기·인물/투어 타임라인 필터 fetch), `useStageNavigation.js`(내비 상태머신), `MapView.jsx`·`RelationsView.jsx`·`TimelineView.jsx`·`SidePanel.jsx`(뷰).
 
 **`data/`:**
 - Purpose: 그래프 위에 얹는 큐레이션 오버레이 JSON. 백엔드가 `overlays.py`/직접 로드로 병합.
@@ -74,15 +74,16 @@ BibleMap/
 
 | 디렉터리 | 파일 | 내용 | 읽는 곳 |
 |----------|------|------|---------|
-| `person_events/` | `<slug>.json` (35개) | 인물별 시간순 사건(id·title·nameKo·startDate·sortKey·occursAt·participants·books) | `journey.py`·`persons.py`·`places.py`·`tours.py` |
-| `person_relations/` | `relations.json` + `AUTHORING.md` | 인물 쌍 관계 카탈로그(type·endpoints·phases) — 관계 뷰 소스 | `persons.py:_load_relations` |
-| `event_verses/` | `events.json` | 사건별 근거 구절(권별 그룹) | `events.py:get_event_verses` |
+| `person_events/` | `<slug>.json` (35개 — 34인 + 욥) | 인물별 시간순 사건(id·title·nameKo·startDate·sortKey·occursAt·participants·books) | `journey.py`·`persons.py`·`places.py`·`tours.py` |
+| `person_relations/` | `relations.json`(약 1.1MB) + `AUTHORING.md` | 인물 쌍 관계 카탈로그(type·endpoints·phases, phase당 valence·근거 구절·서사 문맥 프리베이크) — 관계 뷰 소스 | `persons.py:_load_relations` |
+| `event_verses/` | `events.json` | 사건별 근거 구절(권별 그룹, bookOrder 응답 시 강제 정렬) | `events.py:get_event_verses` |
 | `book_events/` | `books.json` | {bookId:[eventId]} 추정책 오버레이 | `overlays.book_events_raw` |
 | `tours/` | `<id>.json` (9개) | 테마 투어(id·title·era·stops:[eventId]) — event-reference 오버레이 | `tours.py` |
 | `place_coords/` | `places.json` (84 entries) | 장소 좌표 보강 데이터 | `enrich_place_coords.py`(주입 스크립트) |
 | `character_traits/` | `people.json` | {theographic_id: traits} — 그래프 주입용 | `inject_person_traits.py` |
 | `authored_persons/` | `people.json` | 저작 인물(저작 노드 연결) | `load_authored_persons.py` |
-| `authored_events/`·`verse_events/`·`book_context/`·`place_context/`·`names_ko/`·`book_years_approx/` | 각 1개 이상 | 각각 저작 사건·구절-사건·책/장소 컨텍스트·한글 이름·추정 연대 오버레이(대부분 스크립트가 소비) | `backend/scripts/*` |
+| `names_ko/` | `books.json`·`events.json`·`groups.json`·`people.json`·`places.json` (5개) | 라벨별 theographic_id → 한글 이름 매핑 | `inject_ko_names.py` |
+| `authored_events/`·`verse_events/`·`book_context/`·`place_context/`·`book_years_approx/` | 각 1개 | 각각 저작 사건·구절-사건·책/장소 컨텍스트·추정 집필연대(approx 표시) 오버레이(대부분 스크립트가 소비) | `backend/scripts/*` |
 
 ## Key File Locations
 
@@ -129,8 +130,9 @@ BibleMap/
 
 **새 API 엔드포인트:**
 - 기존 도메인이면 해당 `backend/app/routes/<domain>.py`에 함수 추가.
-- 새 도메인이면 `backend/app/routes/<domain>.py` 생성 → `router = APIRouter()` → `main.py`의 `include_router` 목록에 등록(`backend/app/main.py:5`·`32`).
+- 새 도메인이면 `backend/app/routes/<domain>.py` 생성 → `router = APIRouter()` → `main.py`의 `include_router` 목록에 등록(`backend/app/main.py:21`·`52-59`).
 - era/이름/slug가 필요하면 `persons.py`에서 import(재정의 금지, 드리프트 방지).
+- Book-Event 관계처럼 발생/인용 구분이 필요한 새 관계는 첫 참조=발생 규약으로 `primary` 속성을 태깅하고(ADR-0012 참고), 파생 집계는 그 속성으로 필터.
 
 **새 오버레이 데이터 타입:**
 - 데이터: `data/<domain>_<type>/*.json` 신규 디렉터리.
@@ -141,6 +143,7 @@ BibleMap/
 - 컴포넌트: `frontend/src/<Name>.jsx`(PascalCase).
 - Stage 하위 뷰면 `App.jsx` 렌더 트리·`useStageNavigation.js` 상태·`urlState.js` 해시 인코딩/파싱 세 곳을 함께 갱신(관계 뷰가 이 패턴의 최근 사례 — `exploreView === 'relations'`).
 - 데이터 fetch는 반드시 `frontend/src/api.js`의 `apiGet` 사용(직접 `fetch` 금지).
+- 탐험 컨텍스트(인물/투어)에서 파생되는 필터·상태는 `selectedNode`가 아니라 `explorePersonId`/`exploreTourId`에 직접 묶는다(`App.jsx`의 `personEventIds`/`tourEventIds`가 대칭 사례).
 
 **공유 헬퍼:**
 - 지도 관련: `frontend/src/mapGeo.js`(GeoJSON)·`mapLayers.js`(레이어)·`mapRingController.js`(링).
@@ -153,13 +156,13 @@ BibleMap/
 - Generated: 예(`npm run build`)
 - Committed: 아니오(git 무시). 로컬 검증 전 `cd frontend && npm run build` 필요(HMR 아님 — dist 마운트).
 
-**`backend/app/__pycache__/`·`routes/__pycache__/`:**
+**`backend/app/__pycache__/`·`routes/__pycache__/`·`scripts/__pycache__/`:**
 - Purpose: 파이썬 바이트코드 캐시.
 - Generated: 예 / Committed: 아니오
 
 **`.forge/`:**
-- Purpose: forge 유틸 산출물(이 코드베이스 맵 포함).
-- Committed: 예(코드베이스 맵). `.forge/reports/`·`.forge/scratch/`는 작업 산출물.
+- Purpose: forge 유틸 산출물(이 코드베이스 맵, ADR, retro 포함).
+- Committed: 예(코드베이스 맵·ADR·retro). `.forge/reports/`·`.forge/scratch/`는 작업 산출물.
 
 **`.claude/worktrees/`:**
 - Purpose: Dynamic Workflow 에이전트 워크트리(`bgIsolation: "none"` 설정 관련).
@@ -167,4 +170,4 @@ BibleMap/
 
 ---
 
-*Structure analysis: 2026-07-09*
+*Structure analysis: 2026-07-10*

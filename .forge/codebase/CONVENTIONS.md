@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 232fba9c2c3724daf4ee250eba876f1e46f4b6d9
-mapped: 2026-07-09
+last_mapped_commit: 9c49a838dfe4c6e4695b9383ea961f15c9b117f2
+mapped: 2026-07-10
 ---
 
 # CONVENTIONS
@@ -54,12 +54,14 @@ BibleMap은 백엔드(FastAPI + Neo4j, Python)·프론트엔드(React 19 + Vite,
 - **응답 형태**: 기본은 dict/list를 그대로 return(FastAPI 자동 JSON). **캐시가 필요한 정적 엔드포인트**는 `JSONResponse(content=..., headers={"Cache-Control": "max-age=300"})`로 직접 감싼다 (`persons.py`의 `/persons/curated`·`/person/{id}/connections`·`/relations`).
 - **에러**: 노드 미발견은 `raise HTTPException(status_code=404, detail="Node not found")` (`nodes.py`). 성공 폴백형 엔드포인트(관계 없음 등)는 예외 대신 **빈 배열/빈 dict를 반환**한다 (`persons.py` `_build_relations`는 미큐레이션 id에 `{"relations": []}`).
 - **N+1 회피 주석**: 왕복을 줄인 쿼리에는 이유를 주석으로 남긴다 — `nodes.py`의 "이웃 조회 + 총수 — 단일 쿼리로 2 → 1 왕복".
+- **관계 속성 필터로 발생/인용 구분**: 관계에 boolean 플래그(`rel.primary`)를 실어 같은 관계 타입 안에서 의미를 나누는 패턴 — `nodes.py`의 `MATCH (b:Book)-[rel:CONTAINS_BOOK]->(e:Event) WHERE rel.primary`(Book의 topEvents·topPersons·places는 발생만 집계, 인용은 제외, ADR-0012).
 
 ---
 
 ## 5. 캐싱 규약 (백엔드)
 
-- 파일 오버레이·파생 카탈로그는 `@functools.lru_cache`로 프로세스 기동 시 1회 로드한다 — `overlays.py`의 `book_events_raw()`·`event_verses()`(`maxsize=1`), `persons.py`의 `_build_list()`(`maxsize=1`)·`_load_relations()`(`maxsize=1`)·`_build_connections(node_id)`·`_build_relations(node_id)`(`maxsize=None`, id별 메모).
+- 파일 오버레이·파생 카탈로그는 `@functools.lru_cache`로 프로세스 기동 시 1회 로드한다 — `overlays.py`의 `book_events_raw()`·`event_verses()`(`maxsize=1`), `persons.py`의 `_build_list()`(`maxsize=1`)·`_load_relations()`(`maxsize=1`).
+- **id별 메모 캐시는 `maxsize=256`로 상한**(task#151, 헌트 finding #5/#7 — 이전 `maxsize=None`은 무한 누적 footgun) — `persons.py`의 `_build_connections(node_id)`·`_build_relations(node_id)`, `places.py`의 `_place_to_persons(place_id)`. 큐레이션 인물·장소 실제 수가 256보다 훨씬 적어 사실상 전량 캐시되면서도 상한을 걸어둔다.
 - **footgun**: 데이터 JSON은 컨테이너에 마운트 오버레이라 재빌드가 불필요하지만, `lru_cache`가 메모리에 캐시하므로 데이터를 바꾼 뒤에는 **`docker compose restart api`로 캐시를 비워야** 새 데이터가 서빙된다(`data/person_relations/AUTHORING.md` 규칙 8-3). `docker compose up -d api`는 config 무변경 시 컨테이너를 재생성하지 않는다.
 
 ## 6. 데이터 접근 오버레이 규약
@@ -135,4 +137,4 @@ BibleMap은 백엔드(FastAPI + Neo4j, Python)·프론트엔드(React 19 + Vite,
 
 ---
 
-*Convention analysis: 2026-07-09*
+*Convention analysis: 2026-07-10*

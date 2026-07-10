@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 232fba9c2c3724daf4ee250eba876f1e46f4b6d9
-mapped: 2026-07-09
+last_mapped_commit: 9c49a838dfe4c6e4695b9383ea961f15c9b117f2
+mapped: 2026-07-10
 ---
 
 # TESTING
@@ -94,4 +94,4 @@ UI 동작 검증은 Python Playwright로 한다(`/opt/homebrew` 설치). 패턴:
 
 ---
 
-*Testing analysis: 2026-07-09*
+*Testing analysis: 2026-07-10*

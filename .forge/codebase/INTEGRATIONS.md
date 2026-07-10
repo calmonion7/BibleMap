@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 232fba9c2c3724daf4ee250eba876f1e46f4b6d9
-mapped: 2026-07-09
+last_mapped_commit: 9c49a838dfe4c6e4695b9383ea961f15c9b117f2
+mapped: 2026-07-10
 ---
 
 # External Integrations
@@ -18,6 +18,8 @@ mapped: 2026-07-09
 **인덱스:** 앱 기동 시 `lifespan`(`backend/app/main.py`)에서 `Person`·`Place`·`Event`·`PeopleGroup`·`Book` 라벨의 `theographic_id` 인덱스를 `IF NOT EXISTS`로 생성. 실패해도 로깅 후 계속 진행.
 
 **볼륨:** `neo4j_data:/data` (compose named volume, 영속).
+
+**관계 속성 — `CONTAINS_BOOK.primary`:** `Book-[:CONTAINS_BOOK]->Event` 관계에 boolean 속성 `primary` (ADR-0012). 발생 언급(첫 인용, `primary=true`) vs 회고적 인용(`primary=false`)을 구분한다. 적재 스크립트 `backend/scripts/load_books.py`(`verses[0]`의 책을 primary로 판정)와 `backend/scripts/load_person_events.py`(`books[0]`을 primary로 판정)에서 `SET r.primary = ...`로 설정.
 
 ## 데이터 소스 — Theographic Bible Metadata (GitHub Raw)
 
@@ -67,6 +69,7 @@ MapLibre GL 스타일에서 클라이언트가 직접 로드한다 (`frontend/sr
 ## 모니터링 / 관측성
 
 - 에러 트래킹 서비스 없음. 백엔드는 표준 `logging`(`logging.exception`)으로 예외 기록.
+- 로깅 설정: `backend/app/main.py`의 `_configure_logging()`이 import 시점(라우터 import 전) 1회 `logging.basicConfig(level=INFO)`를 건다. `neo4j`/`urllib3`/`asyncio`는 WARNING 승격, `uvicorn`/`uvicorn.access`는 `propagate=False`(중복 emit 차단), `uvicorn.error`는 제외(부모로 전파해야 기동/에러 로그가 출력됨).
 - 배포 로그: `deploy.sh`가 `/Users/calmonion/Library/Logs/com.biblemap.deploy.log`에 append.
 
 ## CI/CD & 배포

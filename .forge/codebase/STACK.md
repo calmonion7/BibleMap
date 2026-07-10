@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 232fba9c2c3724daf4ee250eba876f1e46f4b6d9
-mapped: 2026-07-09
+last_mapped_commit: 9c49a838dfe4c6e4695b9383ea961f15c9b117f2
+mapped: 2026-07-10
 ---
 
 # Technology Stack
@@ -31,6 +31,7 @@ mapped: 2026-07-09
 - FastAPI 0.136.3 — REST API 프레임워크. 앱 인스턴스는 `backend/app/main.py`의 `app = FastAPI(lifespan=lifespan)`.
 - Uvicorn 0.49.0 — ASGI 서버. 컨테이너 CMD: `uvicorn app.main:app --host 0.0.0.0 --port 8000` (`backend/Dockerfile`). 로컬은 `python3 -m uvicorn backend.app.main:app --reload` (README).
 - neo4j 6.2.0 — Neo4j 공식 Python 드라이버 (`GraphDatabase.driver`, `backend/app/db.py`).
+- 로깅 — `backend/app/main.py`의 `_configure_logging()`이 import 시점(라우터 import 전)에 1회 호출되어 `logging.basicConfig(level=INFO)`를 건다. `neo4j`/`urllib3`/`asyncio` 로거는 WARNING으로 승격, `uvicorn`/`uvicorn.access`는 자체 핸들러 보유로 `propagate=False`(단 `uvicorn.error`는 제외 — 걸면 기동/에러 로그가 사라짐).
 
 **프론트엔드 (`frontend/package.json`):**
 - React 19.2.6 + react-dom 19.2.6 — SPA UI. 엔트리 `frontend/src/main.jsx`, 마운트 대상 `#root` (`frontend/index.html`).
