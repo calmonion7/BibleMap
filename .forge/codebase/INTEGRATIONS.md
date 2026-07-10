@@ -57,8 +57,8 @@ mapped: 2026-07-11
 
 MapLibre GL 스타일에서 클라이언트가 직접 로드한다 (`frontend/src/MapView.jsx`).
 
-- **베이스맵 래스터 타일:** ESRI ArcGIS Online `World_Terrain_Base` — `https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}` (`type: raster`, `tileSize: 256`, `maxzoom: 9`, source id `esri`). z10 이상은 이 서비스가 "data not yet available" 플레이스홀더를 반환하므로 z9 타일을 오버줌한다. API 키 없음.
-  - 2026-07-11 디자인 리뉴얼(commit `cf024f8`, ADR-0013 "Night Atlas")에서 기존 ESRI `NatGeo World Map`(라벨 있는 스타일)에서 교체됐다 — 현대 도로·공항·국경이 없는 무라벨 지형 타일을 선택해 지명은 앱의 한글 마커가 전담하게 했다. 지도 레이어(`esri-layer`)에 세피아 톤 래스터 paint를 얹는다: `{'raster-saturation': -0.3, 'raster-brightness-max': 0.94, 'raster-contrast': 0.05}`(CSS filter 대신 래스터 전용 paint를 쓴 이유: CSS filter는 오버레이 여정선·배지까지 같은 캔버스에서 물들이기 때문).
+- **베이스맵 래스터 타일:** ESRI ArcGIS Online `NatGeo_World_Map` — `https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}` (`type: raster`, `tileSize: 256`, `maxzoom: 9`, source id `esri`). z10 이상은 이 서비스가 "data not yet available" 플레이스홀더를 반환하므로 z9 타일을 오버줌한다. API 키 없음.
+  - 2026-07-11 리뉴얼(cf024f8)에서 무라벨 `World_Terrain_Base`로 교체했다가 같은 날 실사용 피드백("현대 지도 대비가 이해에 낫다")으로 NatGeo 원복 — ADR-0013 지도 조항 개정. 무라벨 재채택 시 z10+ 플레이스홀더(maxzoom 9 필요) 한계에 주의.
   - 지도 오버레이(여정선·정차지 배지·장소 마커)는 `frontend/src/mapLayers.js`에서 금색(`#c9a84c`)·양피지(`#f2ecdc`) 계열 색을 하드코딩해 그린다(Night Atlas 브랜드 액센트, `frontend/src/theme.js`의 `NIGHT` 상수와 동일 값).
 - **글리프(폰트) PBF:** Protomaps basemaps assets — `https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf` (스타일 `glyphs`).
 - 지도 초기 뷰: center `[35.22, 31.78]`, zoom 5.

@@ -58,7 +58,7 @@ BibleMap은 세 개의 컨테이너 서비스로 구성된다(`docker-compose.ym
 | SPA 진입 | Stage 렌더 트리·상세 패널·여정/타임라인 필터 fetch | `frontend/src/App.jsx` |
 | Stage 상태머신 | 단계·URL 해시·브라우저 히스토리 동기화 | `frontend/src/useStageNavigation.js` |
 | 노드 선택 | 선택 노드·히스토리 | `frontend/src/useNodeSelection.js` |
-| 지도 | MapLibre GL 지도·무라벨 지형 타일·여정 라인·사건 링 | `frontend/src/MapView.jsx` + `map*.js` |
+| 지도 | MapLibre GL 지도·NatGeo 래스터 타일·여정 라인·사건 링 | `frontend/src/MapView.jsx` + `map*.js` |
 | 관계 뷰 | 관계 레인 개요·초점 쌍·근거 구절 레이어(양피지 모달) | `frontend/src/RelationsView.jsx` |
 | 디자인 토큰 | Night Atlas 다크 단일 CSS 변수(정본) + JS 상수 미러 | `frontend/src/index.css`, `frontend/src/theme.js`(`NIGHT`) |
 
@@ -203,7 +203,7 @@ Neo4j의 `Book-[:CONTAINS_BOOK]->Event` 관계는 사건의 모든 성경 참조
 - **캐시 무효화 없음:** 런타임에 오버레이/그래프를 갱신해도 `lru_cache`가 옛 결과를 반환한다. 데이터 갱신은 컨테이너 재시작을 전제한다.
 - **API 미노출:** api 컨테이너는 호스트 포트를 열지 않는다(`docker-compose.yml`엔 api ports 없음). 외부 접근은 nginx `/api/` 프록시만.
 - **MapLibre 캔버스는 래스터+오버레이 공유:** 지도 톤 조정은 CSS `filter`가 아니라 래스터 레이어 자체의 `paint`(`raster-saturation`/`raster-brightness-max`/`raster-contrast`, `MapView.jsx:41-47`)로 해야 한다 — CSS filter는 단일 `<canvas>` 위에 그려지는 여정선·배지 오버레이까지 함께 물들인다(design-renewal 2/2 회고).
-- **외부 타일 서비스의 줌 상한:** `esri` 소스(`World_Terrain_Base`)는 z10+에서 "data not yet available" 플레이스홀더를 반환하므로 `maxzoom: 9`로 오버줌 처리한다(`MapView.jsx:37`). 타일 서비스를 교체할 때는 줌 피라미드를 먼저 프로브해야 한다.
+- **외부 타일 서비스의 줌 상한(이력):** 한때 채택했던 `World_Terrain_Base`는 z10+에서 "data not yet available" 플레이스홀더를 반환해 `maxzoom: 9`로 오버줌 처리한다(`MapView.jsx:37`). 타일 서비스를 교체할 때는 줌 피라미드를 먼저 프로브해야 한다.
 
 ## Anti-Patterns
 

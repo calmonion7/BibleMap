@@ -8,7 +8,7 @@ mapped: 2026-07-11
 현재 코드베이스에서 확인된 기술 부채·버그 위험·보안·성능·확장성·테스트 공백 목록.
 각 항목은 HEAD(`cf024f8`)에서 실제 파일·라인, 그리고 가능한 경우 실행 중인 스택(`docker compose`, `localhost:8080`, 라이브 Neo4j)에 대한 실측으로 확인했다.
 
-이번 갱신 배경: `cf024f8`(task#155·156)가 Night Atlas 다크 단일 디자인 리뉴얼을 전 화면에 적용했다(디자인 토큰 정본화, 무라벨 지형 지도, 양피지 구절 카드). 감사 보고서(`.forge/reports/design-audit.md`)의 HIGH·MEDIUM·LOW 항목 대부분이 해소됐으나 2건은 명시적으로 비범위 보류됐다(M4·L3, 아래 반영). 그 외 백엔드/데이터 계열 항목은 코드로 재확인해 유지했다.
+이번 갱신 배경: `cf024f8`(task#155·156)가 Night Atlas 다크 단일 디자인 리뉴얼을 전 화면에 적용했다(디자인 토큰 정본화, 양피지 구절 카드(지도는 이후 실사용 피드백으로 NatGeo 원복 — 8eddc67 이후)). 감사 보고서(`.forge/reports/design-audit.md`)의 HIGH·MEDIUM·LOW 항목 대부분이 해소됐으나 2건은 명시적으로 비범위 보류됐다(M4·L3, 아래 반영). 그 외 백엔드/데이터 계열 항목은 코드로 재확인해 유지했다.
 
 ---
 
@@ -94,8 +94,8 @@ mapped: 2026-07-11
 **전역 노드 스캔 검색 (여전히 미해결):**
 - `backend/app/routes/search.py:16–17`: `MATCH (n) WHERE n.nameKo CONTAINS $q OR toLower(n.name) CONTAINS toLower($q)` — 라벨·인덱스 미사용 전수 스캔.
 
-**Esri World_Terrain_Base 고줌 열화 (신규 확인, 수용된 한계):**
-- `frontend/src/MapView.jsx:34–38`: 무라벨 지형 타일 서비스는 z10 이상에서 "data not yet available" 플레이스홀더를 반환하므로 `maxzoom: 9`로 z9 타일을 오버줌 처리한다(`:37` 주석). `.forge/retro/2026-07-11-design-renewal-2of2.md`가 "타일 크기 curl 프로브(z5~10)로 플레이스홀더 경계 확정" 과정을 기록. 결과적으로 사용자가 확대할수록(z10+) 화면은 z9 타일이 흐리게 늘어난 상태로 고정되며, 이는 근본적으로 무료 Esri 서비스의 데이터 범위 한계라 프론트 코드로 해결 가능한 성능 문제가 아니라 수용된 한계다.
+**지도 타일 원복 이력 (해소됨):**
+- `frontend/src/MapView.jsx`: 리뉴얼에서 무라벨 `World_Terrain_Base`(z10+ 플레이스홀더 → `maxzoom: 9` 오버줌)로 교체했다가, 실사용 피드백("현대 지도 대비가 이해에 낫다")으로 NatGeo_World_Map에 원복(ADR-0013 지도 조항 개정, 커밋 8eddc67 이후). 고줌 열화 한계는 원복으로 함께 소멸. World_Terrain_Base를 재채택할 경우 z10+ 플레이스홀더 한계가 되살아난다(`.forge/retro/2026-07-11-design-renewal-2of2.md`의 curl 프로브 기록 참조).
 
 ---
 

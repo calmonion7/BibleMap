@@ -112,7 +112,7 @@ BibleMap/
 - `frontend/src/theme.js`: 노드 타입 색(`TYPE_COLOR`)·관계 valence 색(`VALENCE_COLOR`)·JS 계산용 토큰 리터럴 미러(`NIGHT`) — CSS `var()`를 문자열 결합(예: 알파 접미)에 쓸 수 없는 지점에서 사용.
 
 **Map(지도):**
-- `frontend/src/MapView.jsx`: MapLibre 지도 컨테이너·수명주기·무라벨 지형 타일(Esri World_Terrain_Base, maxzoom 9)·래스터 세피아 paint
+- `frontend/src/MapView.jsx`: MapLibre 지도 컨테이너·수명주기·NatGeo 래스터 타일(무라벨 지형으로 교체했다가 실사용 피드백으로 원복 — ADR-0013 개정)·카메라 프레이밍
 - `frontend/src/mapGeo.js`: GeoJSON 빌더(여정 라인/정차지)
 - `frontend/src/mapLayers.js`: 소스/레이어 셋업·이벤트 핸들러(금색 여정선·정차지 배지)
 - `frontend/src/mapRingController.js`: 장소 사건 링 펼침 제어

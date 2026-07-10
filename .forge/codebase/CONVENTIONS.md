@@ -164,7 +164,7 @@ BibleMap은 백엔드(FastAPI + Neo4j, Python)·프론트엔드(React 19 + Vite,
 
 ### 양피지(`--paper*`) 전용 규칙 (원칙 2, ADR-0013)
 
-- 어두운 UI에서 밝은 표면은 **성경 구절 본문(`--paper`/`--paper-ink`/`--paper-accent`)과 지도(무라벨 지형 타일)뿐**이다. 새 컴포넌트·화면을 추가할 때 이 둘 외의 밝은 표면을 만들지 않는다.
+- 어두운 UI에서 밝은 표면은 **성경 구절 본문(`--paper`/`--paper-ink`/`--paper-accent`)과 지도(NatGeo 현대 지도(실사용 피드백으로 무라벨 지형에서 원복 — ADR-0013 지도 조항 개정))뿐**이다. 새 컴포넌트·화면을 추가할 때 이 둘 외의 밝은 표면을 만들지 않는다.
 - `--paper`는 배경(구절 카드), `--paper-ink`는 본문 텍스트, `--paper-accent`는 절 번호·앵커 강조에만 쓴다 — `EventVerses.jsx`·`SidePanel.jsx`(`paperCardStyle`/`paperTextStyle`)·`RelationsView.jsx`(국면 팝업)·`TimelineView.jsx`가 이 3색을 구절 렌더링에 일관 적용.
 - 지도(MapLibre)는 CSS `filter`가 아니라 **래스터 페인트 속성**으로 톤을 준다 — `frontend/src/MapView.jsx`의 `paint: { 'raster-saturation': -0.3, 'raster-brightness-max': 0.94, 'raster-contrast': 0.05 }`. CSS filter는 캔버스가 래스터 타일+마커 오버레이를 공유해 전체(마커까지) 틴트되므로 채택하지 않았다(2/2 리뉴얼 이탈 기록, `.forge/retro/2026-07-11-design-renewal-2of2.md`).
 
