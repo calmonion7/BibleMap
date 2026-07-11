@@ -233,15 +233,18 @@ export default function BibleOverviewView({ onSelectNode, selectedNode }) {
       overflowY: 'auto',
       boxSizing: 'border-box',
     }}>
-      {/* 점프 내비 칩 바 — sticky, 좁은 화면에선 가로 스크롤 */}
+      {/* 점프 내비 칩 바 — sticky. 배경·구분선은 전폭, 칩 내용은 본문과 같은 중앙 컬럼 정렬. 좁은 화면에선 가로 스크롤 */}
       <div style={{
         position: 'sticky', top: 0, zIndex: 5,
         background: 'var(--bg-0)',
         borderBottom: '1px solid var(--line-strong)',
-        display: 'flex', alignItems: 'center', gap: 6,
-        overflowX: 'auto',
-        padding: '10px 16px',
       }}>
+        <div style={{
+          maxWidth: 900, margin: '0 auto',
+          display: 'flex', alignItems: 'center', gap: 6,
+          overflowX: 'auto',
+          padding: '10px 16px',
+        }}>
         {chipGroups.map((group, gi) => [
           <span key={group.label} style={{
             color: 'var(--gold)', fontSize: 11, fontWeight: 700,
@@ -272,9 +275,10 @@ export default function BibleOverviewView({ onSelectNode, selectedNode }) {
             )
           }),
         ])}
+        </div>
       </div>
 
-      <div style={{ padding: 16 }}>
+      <div style={{ maxWidth: 900, margin: '0 auto', padding: 16 }}>
         <Testament
           label="구약"
           genreOrder={OT_GENRE_ORDER}
