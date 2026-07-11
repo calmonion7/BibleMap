@@ -28,6 +28,8 @@ Theographic 데이터에서 `fields.status == "publish"`인 레코드. 데이터
 
 Person 노드에 주입되는 속성 `traits` (JSON 문자열 배열). 각 항목: `{trait: "겸손", verse_ref: "민 12:3", description: "..."}`. LLM(Claude API)으로 생성 후 수동 검수, `data/character_traits/people.json` → `inject_person_traits.py`로 Neo4j 주입.
 
+**성품의 정의 (task#157)**: 시간·상황을 관통해 반복 확인되는 **지속적 인격 특질** — 미덕과 결함을 모두 포함한다(성경은 인물을 미화하지 않으므로 다윗의 통회·야곱의 기만처럼 결함도 정직하게 싣는다). 행위·사건(예배·찬양), 칭호·신분(하나님의 마음·메시아 계보), 은사·능력(괴력·예언), 시기·이력(말년의 타락)은 성품이 아니다 — 행위는 성품의 *증거*로 verse_ref·description에만 담는다. 라벨은 **통제 어휘**(미덕 24+결함 8) 안에서만 쓰며, 정본 규칙·어휘 표는 `data/character_traits/AUTHORING.md`, 기계검증은 `validate_traits.py`.
+
 ## Book Context (권별 컨텍스트)
 
 각 Book의 시대적 배경·주제·대표구절을 담는 정적 JSON (`data/book_context/books.json`). LLM(Claude API)으로 생성 후 수동 검수. `inject_book_context.py`로 Book 노드 속성에 주입. Verse 텍스트(대표구절·사건 근거·인물 성품 인용절)는 **빌드타임에 getbible에서 한국어(`korean`)+영어(`kjv`)로 미리 받아 데이터에 함께 저장**한다(`generate_verse_text.py`, ADR-0003) — 런타임 외부 fetch 없음. Book의 대표구절 본문은 `keyVerseTextKo`/`keyVerseTextEn` 속성으로 주입된다.
