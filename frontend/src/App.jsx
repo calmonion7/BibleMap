@@ -17,11 +17,13 @@ import { apiGet } from './api'
 // 모바일(좁은 뷰포트) 분기 — 이 폭 이하에서 상세 패널을 우측 사이드패널 대신 하단 시트로 띄운다.
 const MOBILE_QUERY = `(max-width: ${MOBILE_BREAKPOINT}px)`
 
-// 탐험 토글 정의
+// 탐험 토글 정의 — 지도 라벨은 "여정길"(인물의 발자취를 따라가는 지도)
 const EXPLORE_TABS = [
-  { key: 'map', icon: Map, label: '지도' },
+  { key: 'map', icon: Map, label: '여정길' },
   { key: 'timeline', icon: Clock, label: '타임라인' },
 ]
+const INTRO_TAB = { key: 'intro', icon: UserRound, label: '소개' }
+const RELATIONS_TAB = { key: 'relations', icon: Users, label: '관계' }
 
 function App() {
   // 절 본문 표시 언어('ko'|'en', 기본 ko) — 타임라인·SidePanel 공유.
@@ -146,7 +148,8 @@ function App() {
 
         {/* 지도 / 타임라인 / 관계(인물 모드 한정) 토글 */}
         <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-          {[...EXPLORE_TABS, ...(explorePersonId && !exploreTourId ? [{ key: 'relations', icon: Users, label: '관계' }, { key: 'intro', icon: UserRound, label: '소개' }] : [])].map(tab => {
+          {/* 인물 모드: 소개(맨앞) · 여정길 · 타임라인 · 관계 / 투어 모드: 여정길 · 타임라인 */}
+          {(explorePersonId && !exploreTourId ? [INTRO_TAB, ...EXPLORE_TABS, RELATIONS_TAB] : EXPLORE_TABS).map(tab => {
             const Icon = tab.icon
             const active = exploreView === tab.key
             return (
