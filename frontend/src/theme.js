@@ -27,6 +27,20 @@ export const VALENCE_COLOR = { 긍정: '#4eba7d', 부정: '#e06c5f', 중립: '#8
 // 선택(selectedNode) 시각 강조 — 뷰 공통. 선택 = 금색(Night Atlas 브랜드 액센트).
 export const SELECT_HL = 'rgba(201,168,76,0.16)'
 
+// 성경 장르 → 한글 표시·설명 — BibleOverviewView(그룹 헤더·필터)와 SidePanel(책 시트 메타 칩)이 공유하는 단일 출처
+export const GENRE_META = {
+  'Pentateuch':       { displayName: '율법서',    description: '하나님의 창조와 언약, 율법의 기초' },
+  'Historical':       { displayName: '역사서',    description: '가나안 정복부터 포로 귀환까지의 이스라엘 역사' },
+  'Poetry-Wisdom':    { displayName: '시가·지혜서', description: '예배, 지혜, 인간의 고난에 대한 성찰' },
+  'Major Prophets':   { displayName: '대선지서',  description: '하나님의 심판과 구원의 예언' },
+  'Minor Prophets':   { displayName: '소선지서',  description: '회개와 회복을 촉구하는 하나님의 경고' },
+  'Gospels':          { displayName: '복음서',    description: '예수 그리스도의 생애, 죽음, 부활' },
+  'Acts':             { displayName: '사도행전',  description: '성령 강림과 초대교회의 복음 전파' },
+  'Pauline Epistles': { displayName: '바울서신',  description: '교회와 신자를 향한 바울의 신학적 가르침' },
+  'General Epistles': { displayName: '일반서신',  description: '신앙과 삶에 대한 다양한 사도들의 권면' },
+  'Revelation':       { displayName: '계시록',    description: '종말의 심판과 새 창조의 비전' },
+}
+
 // 표면·잉크·금색 등 CSS 변수(index.css) 값이 필요한 JS 지점용 상수
 export const NIGHT = {
   bg0: '#0e0f22', bg1: '#16173a', bg2: '#1e2144', bg3: '#272a55',

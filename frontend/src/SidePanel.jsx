@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { TYPE_COLOR, TYPE_KO, NIGHT } from './theme'
+import { TYPE_COLOR, TYPE_KO, NIGHT, GENRE_META } from './theme'
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
 import Spinner from './Spinner'
@@ -406,8 +406,9 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
         <div style={{ padding: '12px 16px 20px', fontSize: 14 }}>
           {/* 메타 칩 */}
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 14 }}>
-            {[node.properties.testament, node.properties.genre,
-              node.properties.startYear && `${Math.abs(node.properties.startYear)}BC~${Math.abs(node.properties.endYear)}BC`,
+            {/* 장르는 한글(GENRE_META), 사건 파생 연도범위(startYear~endYear)는 오해 유발(인용 오염 가능·저작 칩과 중복)이라 제외 */}
+            {[node.properties.testament,
+              node.properties.genre && (GENRE_META[node.properties.genre]?.displayName || node.properties.genre),
               node.properties.chapterCount && `${node.properties.chapterCount}장`,
               node.properties.verseCount && `${node.properties.verseCount}절`,
               node.properties.authorKo && node.properties.writtenDate && `${node.properties.authorKo} · ${node.properties.writtenDate}`]
@@ -541,25 +542,30 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
               <SectionHeader label="주요 사건" color={TYPE_COLOR.Event} count={node.topEvents.length} sectionKey="book-events" collapsed={collapsed} onToggle={toggle} />
               {collapsed['book-events'] === false && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 2, paddingBottom: 4 }}>
+                  {/* 행은 div+onClick(중첩 button 회피) — 📖 구절 드릴은 Place 블록 헬퍼 재사용(사건 id 기준이라 공용) */}
                   {node.topEvents.map(e => (
-                    <button key={e.id} onClick={() => onSelectNode(e.id)} style={{
-                      display: 'flex', alignItems: 'center', gap: 8,
-                      width: '100%', textAlign: 'left', font: 'inherit',
-                      border: 'none', background: 'none', cursor: 'pointer',
-                      borderLeft: `3px solid ${TYPE_COLOR.Event}`,
-                      borderRadius: 6, padding: '7px 10px',
-                      transition: 'background 0.12s',
-                    }}
-                      onMouseEnter={ev => { ev.currentTarget.style.background = 'var(--bg-2)' }}
-                      onMouseLeave={ev => { ev.currentTarget.style.background = 'none' }}
-                    >
-                      <span style={{ flex: 1, fontSize: 13, color: 'var(--ink)' }}>{e.nameKo || e.name}</span>
-                      {e.startDate && (
-                        <span style={{ fontSize: 10, color: 'var(--ink-faint)', flexShrink: 0 }}>
-                          {parseYear(e.startDate)}
-                        </span>
-                      )}
-                    </button>
+                    <div key={e.id}>
+                      <div onClick={() => onSelectNode(e.id)} style={{
+                        display: 'flex', alignItems: 'center', gap: 8,
+                        width: '100%', textAlign: 'left', font: 'inherit', boxSizing: 'border-box',
+                        cursor: 'pointer',
+                        borderLeft: `3px solid ${TYPE_COLOR.Event}`,
+                        borderRadius: 6, padding: '7px 10px',
+                        transition: 'background 0.12s',
+                      }}
+                        onMouseEnter={ev => { ev.currentTarget.style.background = 'var(--bg-2)' }}
+                        onMouseLeave={ev => { ev.currentTarget.style.background = 'none' }}
+                      >
+                        <span style={{ flex: 1, fontSize: 13, color: 'var(--ink)' }}>{e.nameKo || e.name}</span>
+                        {e.startDate && (
+                          <span style={{ fontSize: 10, color: 'var(--ink-faint)', flexShrink: 0 }}>
+                            {parseYear(e.startDate)}
+                          </span>
+                        )}
+                        {renderPlaceBookChip(e.id)}
+                      </div>
+                      <div style={{ padding: '0 10px' }}>{renderPlaceVerseView(e.id)}</div>
+                    </div>
                   ))}
                 </div>
               )}
