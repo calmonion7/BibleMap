@@ -1,5 +1,5 @@
 ---
-last_mapped_commit: cf024f8e79a4864f4489aca0b0fd4c84caebeaf6
+last_mapped_commit: 04e9be173b6a321e4daaa417f6f47004dc3cd687
 mapped: 2026-07-11
 ---
 
@@ -22,11 +22,12 @@ BibleMap은 백엔드(FastAPI + Neo4j, Python)·프론트엔드(React 19 + Vite,
 ### 파일명
 
 - **백엔드 라우트**: 리소스 복수형 소문자, `backend/app/routes/persons.py`·`places.py`·`events.py`·`books.py`·`tours.py`·`journey.py`·`search.py`·`nodes.py`. 각 파일은 `router = APIRouter()`를 노출하고 `backend/app/main.py`가 `app.include_router(...)`로 등록.
-- **백엔드 스크립트**: `동사_명사.py` snake_case, 동사 접두어로 역할을 표시한다 — `load_*`(Neo4j 적재), `generate_*`(파생 데이터 생성), `inject_*`(Neo4j 속성 주입), `enrich_*`(보강). 예: `backend/scripts/load_theographic.py`, `backend/scripts/generate_verse_text.py`, `backend/scripts/inject_ko_names.py`.
+- **백엔드 스크립트**: `동사_명사.py` snake_case, 동사 접두어로 역할을 표시한다 — `load_*`(Neo4j 적재), `generate_*`(파생 데이터 생성), `inject_*`(Neo4j 속성 주입), `enrich_*`(보강), `validate_*`(저작 데이터 기계검증 게이트, §11-4). 예: `backend/scripts/load_theographic.py`, `backend/scripts/generate_verse_text.py`, `backend/scripts/inject_date_corrections.py`, `backend/scripts/validate_traits.py`.
 - **프론트 컴포넌트**: PascalCase `.jsx` — `frontend/src/RelationsView.jsx`, `SidePanel.jsx`, `PersonHub.jsx`. 뷰 컴포넌트는 `*View.jsx` 접미어.
 - **프론트 훅**: `use*.js` camelCase — `frontend/src/useStageNavigation.js`, `useNodeSelection.js`.
 - **프론트 비-컴포넌트 모듈**: camelCase `.js` — `frontend/src/api.js`, `urlState.js`, `mapLayers.js`, `mapGeo.js`, `mapRingController.js`, `constants.js`, `dates.js`, `theme.js`.
 - **데이터 인물 파일**: `data/person_events/<slug>.json`, slug는 snake_case (`john_the_baptist.json`, `john_the_apostle.json`).
+- **데이터 저작 도메인별 디렉터리**: `data/<도메인>/`에 도메인 정본 파일 + `AUTHORING.md`(저작 규칙)를 함께 둔다 — `data/person_relations/`(관계, 단일 `relations.json` + `AUTHORING.md`), `data/character_traits/`(인물 성품, 단일 `people.json` + `AUTHORING.md`), `data/date_corrections/`(연대 교정, `events.json`·`persons.json`). 성품·연대 교정 파일의 키/식별자는 slug가 아니라 `theographic_id`(`recXXXX`) — 예: `people.json`은 `{ "<theographic_id>": { "traits": [...] } }` dict, `date_corrections`는 `{"id": "recXXXX", ...}` 배열.
 
 ### 식별자
 
@@ -99,19 +100,56 @@ BibleMap은 백엔드(FastAPI + Neo4j, Python)·프론트엔드(React 19 + Vite,
 ## 10. 주석 규약
 
 - **한국어 평서체**(–한다체)로 쓴다. 코드 전반이 한글 주석. "왜"를 설명하고, 특히 과거에 물렸던 함정(footgun)·회귀 원인을 명시한다 — 예: `useStageNavigation.js`의 "과거 두 차례 런타임 크래시 원인", `generate_verse_text.py`의 "getbible UA 우회(retro 2026-06-15 교훈)", AUTHORING.md 규칙 8의 재시작 footgun.
-- **모듈/함수 docstring**: Python은 파일·함수 최상단 `"""..."""` docstring으로 책임과 계약을 적는다(`persons.py` 파일 헤더, `_build_connections`·`_build_relations` docstring, `generate_verse_text.py` 20줄 헤더에 대상 파일·필드·사용법). 설계 결정은 `ADR-000N` 번호로 인용한다(`ADR-0003`·`ADR-0004`·`ADR-0006`·`ADR-0009`·`ADR-0010`·`ADR-0012`·`ADR-0013`).
+- **모듈/함수 docstring**: Python은 파일·함수 최상단 `"""..."""` docstring으로 책임과 계약을 적는다(`persons.py` 파일 헤더, `_build_connections`·`_build_relations` docstring, `generate_verse_text.py` 20줄 헤더에 대상 파일·필드·사용법). 설계 결정은 `ADR-000N` 번호로 인용한다(`ADR-0003`·`ADR-0004`·`ADR-0006`·`ADR-0009`·`ADR-0010`·`ADR-0012`·`ADR-0013`·`ADR-0014`). 저작 데이터의 교정 항목은 `rationale` 필드에 근거 ADR을 인라인으로 적는다(`date_corrections`의 각 항목).
 - **프론트**: JSDoc 태그(`@param` 등)는 쓰지 않는다. 일반 `//` 한 줄/블록 주석으로 의도를 적는다. 섹션 구분은 JSX 안에서 `{/* ... */}`.
 
 ## 11. 데이터 저작 규약
 
-- **정본 규칙 문서**: `data/person_relations/AUTHORING.md` — 인물 관계 데이터 저작의 정본. 새 인물 관계를 만들 때 반드시 따른다.
-- **핵심 저작 원칙**:
-  - **저작 vs 프리베이크 분리**: 저작자는 `verse`(개역 약어 + "장:절", 예 `삼상 16:13`)·`context`(같은 장 내 "장:절-절" 범위)만 손으로 쓴다. 본문 필드(`verseTextKo`/`verseTextEn`·`contextKo`/`contextEn`)는 **절대 손으로 쓰지 않고** `backend/scripts/generate_verse_text.py`가 빌드타임에 getbible(한국어 개역 + KJV)에서 받아 채운다(멱등, ADR-0003).
-  - **정본 pair·중복 금지**: 관계는 pair당 1개만 저장한다. 두 endpoint가 모두 큐레이션이면 백엔드 slug 매칭으로 양쪽 상세에 자동으로 뜬다 — 기존 pair를 재생성하지 말고 재사용한다.
-  - **valence는 국면(phase)마다, type은 관계마다**(직교). 시간에 따른 변화는 `phases` 배열로 표현하고 `approxYear` 오름차순 정렬(BC는 음수).
-  - **밀도 비례·공백 강요 금지**: 서사가 뒷받침하고 valence를 가진 관계만 저작한다. 억지 관계 금지.
-  - **slug 일치**: endpoint의 `slug`는 `backend/app/routes/persons.py`의 `_NAME_KO` 큐레이션 로스터와 정확히 일치해야 한다. 관계 유형(`type`)은 `frontend/src/RelationsView.jsx`의 `TYPE_ICON`/`TYPE_ORDER`와 일치해야 한다(미등록 유형은 아이콘 없이 렌더).
-- **JSON 스타일**: 2-space 들여쓰기, `data/person_relations/relations.json`은 `{ "relations": [ ... ] }` 단일 파일에 append. person_events는 파일당 이벤트 배열.
+저작 도메인마다 `data/<도메인>/AUTHORING.md`를 정본 규칙으로 둔다. 세 도메인(관계·성품·연대 교정) 모두 **저작 vs 프리베이크 분리**(손저작 필드만 쓰고 본문은 `generate_verse_text.py`가 채움, ADR-0003)와 **기계검증 게이트**(§11-4)를 공유하고, 대량 교정 도메인은 **에코 필드**(§11-5)를 쓴다.
+
+### 11-1. 인물 관계 (`data/person_relations/`)
+
+- **정본 규칙 문서**: `data/person_relations/AUTHORING.md`. 새 인물 관계를 만들 때 반드시 따른다.
+- **저작 vs 프리베이크 분리**: 저작자는 `verse`(개역 약어 + "장:절", 예 `삼상 16:13`)·`context`(같은 장 내 "장:절-절" 범위)만 손으로 쓴다. 본문 필드(`verseTextKo`/`verseTextEn`·`contextKo`/`contextEn`)는 **절대 손으로 쓰지 않고** `backend/scripts/generate_verse_text.py`가 빌드타임에 getbible(한국어 개역 + KJV)에서 받아 채운다(멱등, ADR-0003).
+- **정본 pair·중복 금지**: 관계는 pair당 1개만 저장한다. 두 endpoint가 모두 큐레이션이면 백엔드 slug 매칭으로 양쪽 상세에 자동으로 뜬다 — 기존 pair를 재생성하지 말고 재사용한다.
+- **valence는 국면(phase)마다, type은 관계마다**(직교). 시간에 따른 변화는 `phases` 배열로 표현하고 `approxYear` 오름차순 정렬(BC는 음수).
+- **밀도 비례·공백 강요 금지**: 서사가 뒷받침하고 valence를 가진 관계만 저작한다. 억지 관계 금지.
+- **식별자 일치**: endpoint의 `slug`는 `backend/app/routes/persons.py`의 `_NAME_KO` 큐레이션 로스터와 정확히 일치해야 한다. 관계 유형(`type`)은 `frontend/src/RelationsView.jsx`의 `TYPE_ICON`/`TYPE_ORDER`와 일치해야 한다(미등록 유형은 아이콘 없이 렌더).
+
+### 11-2. 인물 성품 (`data/character_traits/`, task#157)
+
+- **정본 규칙 문서**: `data/character_traits/AUTHORING.md`. `people.json`은 `theographic_id` 키 dict이고 각 인물의 `traits` 배열을 담는다.
+- **저작 vs 프리베이크 분리**: 저작자는 `trait`(라벨)·`verse_ref`(앵커 절)·`description`(서사 1문장)만 쓴다. `verse_textKo`/`verse_textEn`은 손으로 쓰지 않고 `generate_verse_text.py`가 프리베이크(ADR-0003, 관계와 동일 패턴).
+- **통제 어휘(controlled vocabulary)**: 라벨은 미덕(24) ∪ 결함(8) 고정 집합 안에서만 고른다 — 어휘 밖 라벨은 `validate_traits.py`가 거부. 어휘를 확장할 때는 `AUTHORING.md` §3(정의)와 `validate_traits.py`의 `VIRTUES`/`FLAWS` 집합을 **함께** 갱신한다(정본 이원화 — 스크립트에 "문서와 함께 갱신할 것" 주석). 유사어는 대표어로 수렴한다.
+- **개수·중복**: 인물당 2~5개(`validate_traits.py`가 강제하는 하한/상한, `AUTHORING.md`는 3~5 권장 + 희소 인물 2 예외), 같은 인물 안 라벨 중복 금지.
+- **배제 원칙**: 성품 = 지속 인격 특질. 행위·사건, 칭호·신분·신학 개념, 은사·능력, 시기·이력 서술은 라벨로 쓰지 않는다(증거로만 `description`·`verse_ref`에 담는다).
+
+### 11-3. 연대 교정 (`data/date_corrections/`, task#158 · ADR-0014)
+
+- theographic 원본 연대를 **소스에서 고치지 않고** 교정 오버레이 + inject 스크립트로 재정렬한다(ADR-0004 계열 원본/교정 분리 — 원본 재적재 시 생존). `events.json`(startDate·sortKey 이동)·`persons.json`(속성 SET) 두 파일, 항목 배열.
+- 각 항목 = 대상 `id` + 목표 `new*` 값 + `rationale`(근거 ADR·판단 서술) + **에코 필드**(§11-5).
+- **재실행 계약**: `load_theographic.py`로 원본을 재적재하면 교정이 원복되므로 `inject_date_corrections.py`를 **반드시 재실행**한다(README 파이프라인·ADR-0014 명시). 책 `startYear`가 이벤트 집계 파생이라 교정 후 `load_books.py`도 재실행.
+
+### 11-4. 기계검증 게이트 (`backend/scripts/validate_*.py`)
+
+대량 손저작은 주입 전에 `validate_*.py`로 기계검증한다. 스크립트는 저작 JSON을 읽거나(traits) Neo4j를 질의해(chronology) 불변식을 검사하고, **위반 목록을 print + `sys.exit(1)`로 게이트**한다(위반 0이어야 주입 진행). 검증에 필요한 통제 상수(어휘·앵커·순서)는 스크립트 상단 모듈 상수로 두고 정본 문서와 함께 갱신한다.
+
+- `validate_traits.py`: ① 라벨이 통제 어휘(`VOCAB = VIRTUES | FLAWS`) 안 ② 인물당 2~5개·라벨 중복 없음 ③ `verse_ref` 정규식(`REF_RE`) ④ 필드 결손(`trait`+`description`). 순수 파일 검사(DB 불요).
+- `validate_event_chronology.py`: Neo4j를 질의해 6종 이상을 검출 — (a) 인물 출생<참여<사망 서사 역전 (b) 사사 승계 순서 역전 (c) 대표 앵커 역전 (d) 교정 창 내 `rec` 이벤트 전수 목록화 (e) 형제군(PART_OF) 고립 이탈 = 전치 오타 후보 + Person 스캔(사망<출생, 수명>1000년). 신학적 참여(예수↔Creation, 모세·엘리야↔변화산)는 `THEOLOGICAL_WHITELIST`로 위반 제외, 앵커·사사 순서는 상수 테이블(`ANCHORS`·`JUDGES_ORDER`)로 명세. `--json PATH`로 구조화 리포트 저장(응답 키 camelCase). 연도 파싱 `_year()`는 `nodes.py`의 `_year`와 동일 규칙(부호 분리 후 첫 파트 정수화)을 복제한다.
+
+### 11-5. 에코 필드 패턴 (대량 교정의 멱등·드리프트 안전)
+
+교정 항목이 DB 값을 `SET`할 때, 항목마다 **DB의 현재 기대값 에코를 함께 실어** 낙관적 compare-and-set 가드로 쓴다 — events: `title` + `oldStartDate`, persons: `name` + `oldValue`(+ 대상 속성 `field`). `inject_date_corrections.py`의 적용 규칙:
+
+- DB 현재값이 에코와 **일치** → `new*` 값 SET(applied).
+- 에코 불일치이지만 DB가 **이미 `new*` 값** → 재실행으로 보고 조용히 통과(already, 멱등).
+- 그 외(원본 재적재 등으로 드리프트) → 적용하지 않고 **스킵 + `[WARN]`**(skipped).
+
+이로써 주입이 멱등이면서 업스트림 재적재 후에도 안전하다(엉뚱한 데이터에 맹목 덮어쓰기 방지). 에코 필드 + §11-4 기계검증 조합으로 대량 교정 제안의 거부 0을 달성했다(retro `2026-07-11-theographic-chronology-correction.md`).
+
+### JSON 스타일
+
+- 2-space 들여쓰기. `data/person_relations/relations.json`은 `{ "relations": [ ... ] }` 단일 파일에 append, `data/character_traits/people.json`은 `theographic_id` 키 dict, `data/date_corrections/*.json`은 항목 배열. person_events는 파일당 이벤트 배열.
 
 ---
 

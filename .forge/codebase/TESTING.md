@@ -1,5 +1,5 @@
 ---
-last_mapped_commit: cf024f8e79a4864f4489aca0b0fd4c84caebeaf6
+last_mapped_commit: 04e9be173b6a321e4daaa417f6f47004dc3cd687
 mapped: 2026-07-11
 ---
 
@@ -14,6 +14,7 @@ mapped: 2026-07-11
 - **백엔드**: `pytest`·`unittest` 없음. `backend/requirements.txt`에는 런타임 3개(`fastapi`·`neo4j`·`uvicorn`)만 있고 테스트 의존성이 없다. `test_*.py`·`conftest.py`·`tests/` 디렉터리 없음.
 - **프론트엔드**: `vitest`·`jest`·`@testing-library` 없음. `frontend/package.json` scripts는 `dev`·`build`·`lint`·`preview`뿐 — `test` 스크립트 없음. `*.test.js(x)`·`*.spec.js(x)` 파일 없음.
 - **E2E 스펙 파일**: 리포에 커밋된 Playwright 스펙(`*.spec.ts` 등)은 없다. Playwright는 아래 4절처럼 **애드혹 검증 도구**로만 쓴다. 스크립트는 `.forge/reports/*.py`(예: `task70_verify_final.py`, `uat_118_primeval.py`)에 태스크별로 남아있지만 재실행용 스위트가 아니라 그 태스크 당시의 1회성 검증 기록이다.
+- **커밋된·재실행 가능한 검증 = 데이터 기계검증 스크립트뿐**: `backend/scripts/validate_traits.py`·`validate_event_chronology.py`가 저작 데이터의 불변식을 기계검증하고 위반 시 `sys.exit(1)`로 게이트한다(§3-2). 코드가 아니라 **저작 데이터의 정합성**을 검사하는 것이라 유닛 테스트 스위트는 아니지만, 리포에 남아 반복 실행되는 유일한 자동 검증이다.
 
 > 검증 구멍(CONCERNS 소관): 순수 함수 로직에 회귀 테스트가 없다. 예 — `urlState.js`의 `parseHash`/`encodeHash`(정규식 라우팅), `nodes.py`의 `_year()` BC/AD 연도 파싱 정렬, `persons.py`의 `_build_relations` slug 매칭·`_build_connections` 큐레이션 교집합 제외. 이들은 단위 테스트를 붙이기 좋은 순수 함수이나 현재 미커버.
 
@@ -39,7 +40,11 @@ docker compose up -d --build api
 
 ## 3. 데이터 저작 검증 파이프라인
 
-`data/person_relations/AUTHORING.md` 규칙 8이 정본. 인물 관계·이벤트 데이터를 저작한 뒤 반드시 순서대로 실행한다:
+저작 도메인마다 검증 절차가 다르지만 공통 골격은 **저작 → (기계검증 게이트) → 본문 프리베이크 → 주입/재시작 → API·Playwright 확인**이다. 기계검증 게이트(§3-2)가 이 프로젝트에서 코드가 아닌 데이터의 정합성을 강제하는 사실상의 테스트 역할을 한다.
+
+### 3-1. 인물 관계 (`data/person_relations/AUTHORING.md` 규칙 8)
+
+`AUTHORING.md` 규칙 8이 정본. 인물 관계·이벤트 데이터를 저작한 뒤 반드시 순서대로 실행한다:
 
 ```bash
 # 1) 절/문맥 본문 프리베이크 (멱등, getbible UA 우회 내장)
@@ -58,6 +63,25 @@ curl -s http://localhost:8080/api/person/<node_id>/relations   # 국면 배열 �
 
 - **footgun (규칙 8-3)**: 데이터는 마운트 오버레이라 재빌드 불필요하나, 백엔드가 관계 카탈로그를 `@functools.lru_cache`로 기동 시 메모리 캐시하므로 **`docker compose restart api`**로 캐시를 비워야 신규 데이터가 보인다. `docker compose up -d api`는 config 무변경 시 컨테이너를 재생성하지 않아("Running") 옛 데이터를 계속 서빙한다.
 - **저작 스크립트 자체 검증**: `generate_verse_text.py`는 멱등이다 — 이미 본문이 있는 항목은 스킵하고, 못 받은 본문은 `null`로 기록해 재실행 시 재시도한다(스크립트 헤더 docstring).
+
+### 3-2. 성품·연대 교정 — 기계검증 게이트(`validate_*.py`) + 에코 필드 주입
+
+인물 성품(task#157)·연대 교정(task#158)은 대량 손저작이라 **주입 전에 `validate_*.py`로 기계검증**하고, 주입 스크립트는 **에코 필드**로 멱등·드리프트 안전을 확보한다. 이 두 장치가 이 프로젝트에서 유닛 테스트를 대신하는 데이터 검증의 핵심이다.
+
+```bash
+# 성품(character_traits): 파일 검사 게이트 → 통과해야 주입
+python3 backend/scripts/validate_traits.py        # 위반 시 목록 출력 + exit 1
+python3 backend/scripts/generate_verse_text.py     # verse_textKo/En 프리베이크(ADR-0003)
+python3 backend/scripts/inject_person_traits.py    # Neo4j 주입
+
+# 연대 교정(date_corrections): DB 질의 검출 → 교정 오버레이 주입
+python3 backend/scripts/validate_event_chronology.py --json .forge/scratch/chrono.json  # 역전 검출
+python3 backend/scripts/inject_date_corrections.py # 에코 대조 후 SET (재적재 때마다 필수)
+```
+
+- **기계검증 게이트**: `validate_traits.py`는 `people.json`을 순수 파일 검사(통제 어휘·인물당 2~5개·라벨 중복·`verse_ref` 정규식·필드 결손), `validate_event_chronology.py`는 Neo4j를 질의해 연대 역전 6종(인물 출생/참여/사망 역전·사사 승계·앵커·형제군 고립 이탈·rec 이벤트 목록화·Person 수명 스캔)을 검출한다. **위반이 있으면 목록 출력 후 `sys.exit(1)`** — 저작 규칙(`AUTHORING.md`·ADR-0014)을 코드로 강제하는 회귀 게이트다. 신학적 참여는 `THEOLOGICAL_WHITELIST`로 위반에서 뺀다. `--json PATH`로 구조화 리포트를 남긴다(CONVENTIONS §11-4).
+- **에코 필드 멱등(`inject_date_corrections.py`)**: 각 교정 항목이 DB의 현재 기대값 에코(events `title`+`oldStartDate`, persons `name`+`oldValue`)를 실어, 주입 시 DB 현재값과 대조한다 — 에코 일치 → SET, 이미 `new*` 값 → 조용히 통과(재실행), 드리프트 → **스킵 + `[WARN]`**(맹목 덮어쓰기 방지). 그래서 `load_theographic.py` 재적재 후 재실행해도 안전하다(README·ADR-0014 재실행 계약, CONVENTIONS §11-5).
+- **효과**: 에코 필드 + 기계검증 조합으로 대량 교정 제안의 거부 0을 달성했다(retro `2026-07-11-theographic-chronology-correction.md`).
 
 ## 4. 실행 후 스모크: Playwright + 네트워크 캡처
 
@@ -123,7 +147,8 @@ UI 동작 검증은 Python Playwright로 한다(`/opt/homebrew/bin/playwright`, 
 | 프론트 컴포넌트 | 0 — Playwright 애드혹 스모크로 렌더/상호작용만 확인 |
 | E2E(회귀 스위트로 재실행 가능한 형태) | 없음 — `.forge/reports/*.py`는 태스크별 1회성 스크립트 |
 | 빌드/린트 게이트 | 있음(`npm run lint`·`npm run build`), CI 강제 여부는 ARCHITECTURE/INTEGRATIONS 소관 |
-| 데이터 저작 파이프라인 검증 | 있음(AUTHORING.md 규칙 8, §3) |
+| 저작 데이터 기계검증(`validate_traits.py`·`validate_event_chronology.py`) | 있음 — 리포에 커밋된 유일한 재실행 자동 검증. 코드가 아닌 데이터 정합성을 검사, 위반 시 `exit 1` (§3-2) |
+| 데이터 저작 파이프라인 검증 | 있음(AUTHORING.md 규칙 8, §3-1) |
 | 배포 검증 | 있음(`deploy.sh` 인라인 재시도·락, §5) |
 
 ---
@@ -131,7 +156,7 @@ UI 동작 검증은 Python Playwright로 한다(`/opt/homebrew/bin/playwright`, 
 ## 새 코드 검증 방법 (권장 절차)
 
 1. 백엔드 라우트를 추가/변경 → `docker compose up -d --build api` 후 `curl -s http://localhost:8080/api/<path>`로 응답 형태 확인.
-2. 데이터를 저작 → 위 3절 파이프라인 전체 실행.
+2. 데이터를 저작 → 위 3절 파이프라인 실행(관계는 §3-1, 성품·연대 교정은 §3-2 — 대량 저작이면 먼저 `validate_*.py` 게이트를 통과시킨 뒤 주입한다).
 3. 프론트를 변경 → `npm run lint` → `npm run build` → Playwright 스모크(콘솔/네트워크 에러 0, §4의 셀렉터·GPU 플래그 패턴 적용).
 4. 순수 함수(라우팅·파싱·정렬)를 새로 쓸 때 회귀 위험이 크면, 테스트 프레임워크 부재를 감안해 최소한 애드혹 `python3 -c`/`node -e` 스니펫으로 경계값을 손검증한다.
 

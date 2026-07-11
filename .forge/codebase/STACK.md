@@ -1,5 +1,5 @@
 ---
-last_mapped_commit: cf024f8e79a4864f4489aca0b0fd4c84caebeaf6
+last_mapped_commit: 04e9be173b6a321e4daaa417f6f47004dc3cd687
 mapped: 2026-07-11
 ---
 
@@ -13,7 +13,7 @@ mapped: 2026-07-11
 
 **보조 언어:**
 - Bash — 배포 스크립트 (`deploy.sh`), CI 스텝 인라인 (`.github/workflows/deploy.yml`).
-- Cypher — Neo4j 쿼리. 라우트(`backend/app/routes/*.py`)와 로더 스크립트(`backend/scripts/*.py`) 내부에 인라인 문자열로 존재한다.
+- Cypher — Neo4j 쿼리. 라우트(`backend/app/routes/*.py`)와 로더/검증 스크립트(`backend/scripts/*.py`) 내부에 인라인 문자열로 존재한다.
 
 **패키지 매니저:**
 - Python: pip (`backend/requirements.txt`, 버전 고정 명시). lockfile 없음.
@@ -45,12 +45,13 @@ mapped: 2026-07-11
 ## 데이터 계층
 
 - **Neo4j 5** — 그래프 DB (`docker-compose.yml` 서비스 `neo4j`, 이미지 `neo4j:5`). 상세는 `INTEGRATIONS.md` 참고.
-- **JSON 오버레이 파일** — `data/` 하위 14개 디렉터리(`authored_events`, `authored_persons`, `book_context`, `book_events`, `book_years_approx`, `character_traits`, `event_verses`, `names_ko`, `person_events`, `person_relations`, `place_context`, `place_coords`, `tours`, `verse_events`). API 컨테이너에 `./data:/app/data`로 마운트되어 런타임 조회에 쓰인다. 조회 헬퍼는 `backend/app/overlays.py`(`DATA_DIR` 우선, 없으면 레포 내 `data/`로 폴백, `lru_cache`로 1회 로드).
+- **JSON 오버레이/적재 파일** — `data/` 하위 15개 디렉터리(`authored_events`, `authored_persons`, `book_context`, `book_events`, `book_years_approx`, `character_traits`, `date_corrections`, `event_verses`, `names_ko`, `person_events`, `person_relations`, `place_context`, `place_coords`, `tours`, `verse_events`). API 컨테이너에 `./data:/app/data`로 마운트된다. 이 중 일부(`book_events`, `event_verses`, `tours`, `journey`/`persons`/`places` 관련 파일 등)는 런타임에 라우트가 직접 조회하고, 나머지(`names_ko`, `place_coords`, `book_context`, `character_traits`, `place_context`, `authored_*`, `date_corrections` 등)는 `backend/scripts/`의 적재·주입 스크립트가 Neo4j에 반영하는 입력 소스다. 런타임 조회 헬퍼는 `backend/app/overlays.py`(`DATA_DIR` 우선, 없으면 레포 내 `data/`로 폴백, `book_events`/`event_verses`는 `lru_cache`로 1회 로드).
+- **`data/date_corrections/`** — `events.json`·`persons.json` 연대 교정 오버레이(2026-07-11 신설). 런타임 조회 대상이 아니라 `backend/scripts/inject_date_corrections.py`가 Neo4j에 `SET`으로 반영하는 입력 소스다. 상세는 `INTEGRATIONS.md` 데이터 파이프라인 참고.
 
 ## 빌드 구성
 
 **백엔드 이미지 (`backend/Dockerfile`):**
-- `python:3.12-slim` 기반, `WORKDIR /app`, `requirements.txt` 설치 후 `app/`만 복사. `pip install --no-cache-dir`.
+- `python:3.12-slim` 기반, `WORKDIR /app`, `requirements.txt` 설치 후 `app/`만 복사. `pip install --no-cache-dir`. `backend/scripts/`는 이미지에 포함되지 않으며 호스트에서 실행한다.
 
 **프론트 번들 (`frontend/vite.config.js`):**
 - Rollup `manualChunks`로 청크 분리: `maplibre-gl` → `maplibre` 청크, 그 외 `node_modules` → `vendor` 청크.
@@ -63,7 +64,7 @@ mapped: 2026-07-11
 ## 설정 (환경변수)
 
 - `NEO4J_PASSWORD` (필수) — 루트 `.env`에서 로드. `docker-compose.yml`가 `${NEO4J_PASSWORD:?...}`로 강제하며, `neo4j` 서비스는 `NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}`로 파생한다. 템플릿은 `.env.example`. 실제 값은 문서에 기록하지 않는다.
-- `NEO4J_URI` / `NEO4J_USER` — compose가 API에 `bolt://neo4j:7687` / `neo4j`로 주입. `backend/app/db.py`는 미설정 시 `bolt://localhost:7687` / `neo4j` 기본값 사용.
+- `NEO4J_URI` / `NEO4J_USER` — compose가 API에 `bolt://neo4j:7687` / `neo4j`로 주입. `backend/app/db.py`와 각 스크립트는 미설정 시 `bolt://localhost:7687` / `neo4j` 기본값 사용(호스트에서 스크립트 직접 실행 시 로컬 바인딩으로 접속).
 - `DATA_DIR` — 오버레이 조회 기준 경로 (`backend/app/overlays.py`, 기본 `/app/data`, 미탐 시 레포 내 `data/`로 폴백).
 - `VITE_API_URL` — 프론트 API 베이스 URL (빌드타임 주입). 프로덕션은 `frontend/.env.production`의 `/api`(→ nginx 프록시), 미설정 시 `http://localhost:8000` (`frontend/src/api.js`).
 - `ANTHROPIC_API_KEY` — 데이터 생성 스크립트 전용(런타임 API 미사용). `INTEGRATIONS.md` 참고.
