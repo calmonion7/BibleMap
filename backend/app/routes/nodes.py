@@ -263,6 +263,15 @@ def get_node(node_id: str):
                 logger.warning("[Nodes] Person traits 파싱 실패 — 빈 목록 폴백 (%s): %s", node_id, e)
                 clean_props["traits"] = []
 
+        # Person verses JSON 파싱
+        if label_val == "Person" and "verses" in clean_props:
+            import json as _json
+            try:
+                clean_props["verses"] = _json.loads(clean_props["verses"])
+            except Exception as e:
+                logger.warning("[Nodes] Person verses 파싱 실패 — 빈 목록 폴백 (%s): %s", node_id, e)
+                clean_props["verses"] = []
+
         response = {
             "id": node_id_val,
             "label": label_val,
