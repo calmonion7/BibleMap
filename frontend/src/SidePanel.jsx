@@ -525,21 +525,26 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
               <SectionHeader label="주요 인물" color={TYPE_COLOR.Person} count={node.topPersons.length} sectionKey="book-persons" collapsed={collapsed} onToggle={toggle} />
               {collapsed['book-persons'] === false && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 2, paddingBottom: 4 }}>
-                  {node.topPersons.map(p => (
-                    <button key={p.id} onClick={() => onSelectNode(p.id)} style={{
-                      display: 'flex', alignItems: 'center',
-                      width: '100%', textAlign: 'left', font: 'inherit',
-                      border: 'none', background: 'none', cursor: 'pointer',
-                      borderLeft: `3px solid ${TYPE_COLOR.Person}`,
-                      borderRadius: 6, padding: '7px 10px',
-                      transition: 'background 0.12s',
-                    }}
-                      onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-2)' }}
-                      onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
-                    >
-                      <span style={{ fontSize: 13, color: 'var(--ink)' }}>{p.nameKo || p.name}</span>
-                    </button>
-                  ))}
+                  {/* 큐레이션 인물은 클릭 시 인물맵(여정 탐험)으로 직행 — 상세는 그 화면의 여정 마지막 "인물 소개"가 담당. 비큐레이션은 기존 상세 시트. */}
+                  {node.topPersons.map(p => {
+                    const curated = curatedIds?.has(p.id)
+                    return (
+                      <button key={p.id} onClick={() => (curated ? onExploreJourney(p.id) : onSelectNode(p.id))} style={{
+                        display: 'flex', alignItems: 'center', gap: 8,
+                        width: '100%', textAlign: 'left', font: 'inherit',
+                        border: 'none', background: 'none', cursor: 'pointer',
+                        borderLeft: `3px solid ${TYPE_COLOR.Person}`,
+                        borderRadius: 6, padding: '7px 10px',
+                        transition: 'background 0.12s',
+                      }}
+                        onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-2)' }}
+                        onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
+                      >
+                        <span style={{ flex: 1, fontSize: 13, color: 'var(--ink)' }}>{p.nameKo || p.name}</span>
+                        {curated && <span style={{ fontSize: 10, fontWeight: 700, color: 'var(--gold)', flexShrink: 0 }}>여정 ▸</span>}
+                      </button>
+                    )
+                  })}
                 </div>
               )}
             </div>

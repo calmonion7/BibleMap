@@ -66,6 +66,10 @@ function App() {
   const [activeStopIdx, setActiveStopIdx] = useState(null)
   // 모바일 여정 "읽기 모드" — 펼친 사건 id. App이 소유해 오버레이 높이 전환·바깥 탭 닫기를 제어한다.
   const [readingEventId, setReadingEventId] = useState(null)
+  // 인물 소개 레이어 — 여정 마지막 행에서 탐험 인물 자신의 상세(SidePanel)를 모달로.
+  // forId 키로 인물 변경 시 자동 닫힘(placeVerseView forNodeId 패턴 — effect 내 setState 없이 리셋).
+  const [introFor, setIntroFor] = useState(null)
+  const personIntroOpen = introFor != null && introFor === explorePersonId
   const [reduceMotion] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
 
   useEffect(() => {
@@ -292,6 +296,7 @@ function App() {
                     setVerseLang={setVerseLang}
                     personName={exploreTourId ? null : explorePersonName}
                     tourName={exploreTourId ? exploreTourName : null}
+                    onPersonIntro={() => setIntroFor(explorePersonId)}
                   />
                 </div>
               )}
@@ -332,6 +337,7 @@ function App() {
                         tourName={exploreTourId ? exploreTourName : null}
                         readingEventId={readingEventId}
                         onReadingChange={setReadingEventId}
+                        onPersonIntro={() => setIntroFor(explorePersonId)}
                       />
                     </div>
                   </>
@@ -364,6 +370,33 @@ function App() {
               </div>
             )}
           </div>
+
+          {/* 인물 소개 레이어 — 탐험 인물 자신의 상세(SidePanel 재사용)를 모달로.
+              탐험 자기 시트 억제 규칙(sheetOpen ≠ explorePersonId)을 건드리지 않고 명시 진입만 허용.
+              구절 레이어(zIndex 1000, body 포털)가 이 위에 뜨도록 zIndex 900. */}
+          {personIntroOpen && (
+            <div
+              onClick={() => setIntroFor(null)}
+              style={{ position: 'fixed', inset: 0, zIndex: 900, background: 'rgba(20,26,40,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}
+            >
+              <div onClick={(e) => e.stopPropagation()} style={{
+                background: 'var(--bg-1)', border: '1px solid var(--line-strong)', borderRadius: 'var(--r-l)',
+                maxWidth: 420, width: '100%', maxHeight: '85%', overflowY: 'auto', boxShadow: 'var(--shadow-2)',
+              }}>
+                <SidePanel
+                  nodeId={explorePersonId}
+                  onSelectNode={(id) => { setIntroFor(null); selectNode(id) }}
+                  verseLang={verseLang}
+                  setVerseLang={setVerseLang}
+                  explorePersonId={explorePersonId}
+                  onExplorePerson={explorePerson}
+                  curatedIds={curatedIds}
+                  onExploreJourney={(id) => { setIntroFor(null); selectPerson(id) }}
+                  onClose={() => setIntroFor(null)}
+                />
+              </div>
+            </div>
+          )}
         </>
       )}
 
