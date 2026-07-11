@@ -38,9 +38,9 @@ function App() {
 
   // 화면 단계(Stage)·URL·브라우저 히스토리 상태 머신 — 노드 선택 원시값을 주입(useStageNavigation).
   const {
-    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, curatedIds, sheetOpen,
+    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, curatedIds, sheetOpen,
     setExploreView, selectPerson, explorePerson, backToHub, openOverview, overviewBack,
-    openTours, selectTour, toursBack, onNodeLoaded,
+    openTours, selectTour, toursBack, openBook, bookBack, onNodeLoaded,
   } = useStageNavigation({ selectedNode, selectNodeFresh, closePanel, handleNodeLoaded })
 
   // 여정 데이터 — 인물/투어 선택 시 한 번 fetch, MapView·JourneyList 공유
@@ -205,6 +205,35 @@ function App() {
     )
   }
 
+  // 책 상세 단계 내비게이션 바 — 개요(성경 책 둘러보기)로 복귀
+  function renderBookNav() {
+    return (
+      <div style={{
+        height: NAV_H, flexShrink: 0,
+        display: 'flex', alignItems: 'center',
+        background: 'var(--bg-1)',
+        zIndex: 20, boxShadow: 'var(--shadow-1)',
+        gap: 0,
+      }}>
+        <button
+          onClick={bookBack}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 6,
+            padding: '0 14px', height: '100%',
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: 'var(--ink-dim)',
+            borderRight: '1px solid var(--line)',
+            flexShrink: 0,
+          }}
+        >
+          <span style={{ fontSize: 13 }}>←</span>
+          <BookOpen size={16} color="var(--ink-faint)" />
+          <span style={{ fontSize: 13 }}>성경 책 둘러보기</span>
+        </button>
+      </div>
+    )
+  }
+
   // 투어 목록 단계 내비게이션 바
   function renderToursNav() {
     return (
@@ -257,9 +286,34 @@ function App() {
           {renderOverviewNav()}
           <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
             <BibleOverviewView
-              onSelectNode={selectNode}
-              selectedNode={selectedNode}
+              onSelectNode={openBook}
+              selectedNode={bookId}
             />
+          </div>
+        </>
+      )}
+
+      {/* 책 상세 단계 — 개요에서 책 카드 클릭 시 진입. 시트/우측 패널이 아닌 전용 전체화면 페이지(인물 소개 뷰와 같은 패턴). */}
+      {activeStage === 'book' && (
+        <>
+          {renderBookNav()}
+          <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+            <div style={{ height: '100%', overflowY: 'auto', background: 'var(--bg-0)' }}>
+              <div style={{ maxWidth: 600, margin: '0 auto' }}>
+                {/* SidePanel 재사용 — bookId 대상. onClose·canGoBack 미주입이라 X/뒤로 칩 없이 페이지 본문만.
+                    onNodeLoaded 생략(책은 selectedNode가 아니므로 meta 오염 방지, SidePanel은 옵셔널 호출). */}
+                <SidePanel
+                  nodeId={bookId}
+                  onSelectNode={selectNode}
+                  verseLang={verseLang}
+                  setVerseLang={setVerseLang}
+                  explorePersonId={explorePersonId}
+                  onExplorePerson={explorePerson}
+                  curatedIds={curatedIds}
+                  onExploreJourney={selectPerson}
+                />
+              </div>
+            </div>
           </div>
         </>
       )}

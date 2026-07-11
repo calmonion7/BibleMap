@@ -150,6 +150,10 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
   const placeKeyVerseText = node.label === 'Place'
     ? (verseLang === 'ko' ? node.properties.keyVerseTextKo : node.properties.keyVerseTextEn)
     : null
+  // 주요 인물 = 여정 있는(큐레이션) 인물만 노출(여정 없는 인물 링크 삭제). keyPeople 폴백도 이 목록 기준.
+  const journeyPersons = node.label === 'Book' && node.topPersons
+    ? node.topPersons.filter(p => curatedIds?.has(p.id))
+    : []
 
   function toggle(key) {
     setCollapsed(prev => ({ ...prev, [key]: prev[key] === false }))
@@ -513,8 +517,8 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
             </div>
           )}
 
-          {/* 핵심 인물 — 클릭 가능한 '주요 인물'(topPersons)이 있으면 중복이라 숨김(없는 34권에선 유일한 인물 정보) */}
-          {node.properties.keyPeople?.length > 0 && !(node.topPersons?.length > 0) && (
+          {/* 핵심 인물 — 클릭 가능한 '주요 인물'(여정 있는 인물)이 있으면 중복이라 숨김. topPersons가 전부 비큐레이션이면 여기로 폴백(인물 정보 통째 소실 방지) */}
+          {node.properties.keyPeople?.length > 0 && journeyPersons.length === 0 && (
             <div style={{ marginBottom: 12 }}>
               <SectionHeader label="핵심 인물" color={TYPE_COLOR.Book} sectionKey="book-keyppl" collapsed={collapsed} onToggle={toggle} />
               {collapsed['book-keyppl'] === false && (
@@ -530,32 +534,28 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
             </div>
           )}
 
-          {/* 주요 인물 */}
-          {node.topPersons?.length > 0 && (
+          {/* 주요 인물 — 여정 있는(큐레이션) 인물만. 여정 링크는 구절 링크(📖 구절 ▸)와 같은 칩 패턴(placeChipBase). 클릭 시 인물맵(여정 탐험)으로 직행. */}
+          {journeyPersons.length > 0 && (
             <div style={{ marginBottom: 12 }}>
-              <SectionHeader label="주요 인물" color={TYPE_COLOR.Person} count={node.topPersons.length} sectionKey="book-persons" collapsed={collapsed} onToggle={toggle} />
+              <SectionHeader label="주요 인물" color={TYPE_COLOR.Person} count={journeyPersons.length} sectionKey="book-persons" collapsed={collapsed} onToggle={toggle} />
               {collapsed['book-persons'] === false && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 2, paddingBottom: 4 }}>
-                  {/* 큐레이션 인물은 클릭 시 인물맵(여정 탐험)으로 직행 — 상세는 그 화면의 여정 마지막 "인물 소개"가 담당. 비큐레이션은 기존 상세 시트. */}
-                  {node.topPersons.map(p => {
-                    const curated = curatedIds?.has(p.id)
-                    return (
-                      <button key={p.id} onClick={() => (curated ? onExploreJourney(p.id) : onSelectNode(p.id))} style={{
-                        display: 'flex', alignItems: 'center', gap: 8,
-                        width: '100%', textAlign: 'left', font: 'inherit',
-                        border: 'none', background: 'none', cursor: 'pointer',
-                        borderLeft: `3px solid ${TYPE_COLOR.Person}`,
-                        borderRadius: 6, padding: '7px 10px',
-                        transition: 'background 0.12s',
-                      }}
-                        onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-2)' }}
-                        onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
-                      >
-                        <span style={{ flex: 1, fontSize: 13, color: 'var(--ink)' }}>{p.nameKo || p.name}</span>
-                        {curated && <span style={{ fontSize: 10, fontWeight: 700, color: 'var(--gold)', flexShrink: 0 }}>여정 ▸</span>}
-                      </button>
-                    )
-                  })}
+                  {journeyPersons.map(p => (
+                    <button key={p.id} onClick={() => onExploreJourney(p.id)} style={{
+                      display: 'flex', alignItems: 'center', gap: 8,
+                      width: '100%', textAlign: 'left', font: 'inherit',
+                      border: 'none', background: 'none', cursor: 'pointer',
+                      borderLeft: `3px solid ${TYPE_COLOR.Person}`,
+                      borderRadius: 6, padding: '7px 10px',
+                      transition: 'background 0.12s',
+                    }}
+                      onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-2)' }}
+                      onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
+                    >
+                      <span style={{ flex: 1, fontSize: 13, color: 'var(--ink)' }}>{p.nameKo || p.name}</span>
+                      <span style={{ ...placeChipBase, flexShrink: 0 }}>여정 ▸</span>
+                    </button>
+                  ))}
                 </div>
               )}
             </div>

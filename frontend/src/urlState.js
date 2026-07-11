@@ -1,11 +1,13 @@
 // 해시 URL ↔ 내비게이션 상태 (ADR-0009). 라우팅 라이브러리 없이 순수 문자열 매핑.
 // state = { stage: 'hub'|'explore'|'overview'|'tours', personSlug|tourSlug: string|null, exploreView: 'map'|'timeline' }
 //   허브    #/            개요  #/books        테마 목록  #/tours
+//   책 상세  #/book/<id>  (id = theographic_id, 책은 slug 없음)
 //   탐험(인물)  #/person/<slug>     탐험(인물,타임라인) #/person/<slug>/timeline
 //   탐험(투어)  #/tour/<slug>       탐험(투어,타임라인) #/tour/<slug>/timeline
 
-export function encodeHash({ stage, personSlug, exploreView, tourSlug }) {
+export function encodeHash({ stage, personSlug, exploreView, tourSlug, bookId }) {
   if (stage === 'overview') return '#/books'
+  if (stage === 'book' && bookId) return `#/book/${encodeURIComponent(bookId)}`
   if (stage === 'tours') return '#/tours'
   if (stage === 'explore' && tourSlug) {
     const base = `#/tour/${encodeURIComponent(tourSlug)}`
@@ -27,6 +29,8 @@ export function parseHash(hash) {
   if (h === '' || h === '/') return { stage: 'hub', personSlug: null, tourSlug: null, exploreView: 'map' }
   if (h === '/books') return { stage: 'overview', personSlug: null, tourSlug: null, exploreView: 'map' }
   if (h === '/tours') return { stage: 'tours', personSlug: null, tourSlug: null, exploreView: 'map' }
+  const bk = h.match(/^\/book\/([^/]+)$/)
+  if (bk) return { stage: 'book', bookId: decodeURIComponent(bk[1]), personSlug: null, tourSlug: null, exploreView: 'map' }
   const t = h.match(/^\/tour\/([^/]+)(\/timeline)?$/)
   if (t) return { stage: 'explore', personSlug: null, tourSlug: decodeURIComponent(t[1]), exploreView: t[2] ? 'timeline' : 'map' }
   const m = h.match(/^\/person\/([^/]+)(\/timeline|\/relations|\/intro)?$/)
