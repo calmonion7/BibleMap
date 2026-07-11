@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { TYPE_COLOR, TYPE_KO, NIGHT, GENRE_META } from './theme'
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
@@ -171,12 +172,12 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     cursor: 'pointer', fontWeight: 600,
   }
 
-  function togglePlaceVerseView(evId) {
+  function togglePlaceVerseView(evId, label) {
     if (placeVerseView && placeVerseView.eventId === evId) {
       setPlaceVerseView(null); placeOpenEventRef.current = null; return
     }
     placeOpenEventRef.current = evId
-    setPlaceVerseView({ forNodeId: nodeId, eventId: evId, bookId: null, expanded: false })
+    setPlaceVerseView({ forNodeId: nodeId, eventId: evId, label, bookId: null })
     setPlaceEventVerses({ id: evId, data: null })
     apiGet('/event/' + evId + '/verses')
       .then(data => {
@@ -189,82 +190,90 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
       .catch(e => { if (placeOpenEventRef.current === evId) { console.warn('[SidePanel] 사건 구절 로드 실패', e); setPlaceEventVerses({ id: evId, data: { books: [] } }) } })
   }
 
-  function renderPlaceBookChip(evId) {
+  function renderPlaceBookChip(evId, label) {
     const open = placeVerseView != null && placeVerseView.eventId === evId
     return (
       <button
-        onClick={(e) => { e.stopPropagation(); togglePlaceVerseView(evId) }}
+        onClick={(e) => { e.stopPropagation(); togglePlaceVerseView(evId, label) }}
         style={{ ...placeChipBase, marginLeft: 6, ...(open ? { background: TYPE_COLOR.Book, color: 'var(--bg-0)' } : null) }}
-      >📖 구절 {open ? '▾' : '▸'}</button>
+      >📖 구절 ▸</button>
     )
   }
 
-  function renderPlaceVerseView(evId) {
-    if (!placeVerseView || placeVerseView.eventId !== evId) return null
+  // 구절 레이어 — 시트는 스크롤+transform 래퍼 안이라(absolute/fixed 오배치 함정) 포털로 body에 띄운다.
+  // 타임라인·관계 뷰의 양피지 모달과 동일 UX(원스텝: 열자마자 절 본문).
+  const closePlaceVerseView = () => { setPlaceVerseView(null); placeOpenEventRef.current = null }
+
+  function renderVerseLayer() {
+    if (!placeVerseView) return null
+    const evId = placeVerseView.eventId
     const overlay = placeEventVerses.id === evId ? placeEventVerses.data : null
-    if (overlay === null) {
-      return <div style={paperCardStyle}><Spinner size={20} color={NIGHT.paperAccent} /></div>
-    }
-    const ovBooks = overlay.books || []
-    if (ovBooks.length === 0) {
-      return <div style={{ ...paperCardStyle, color: 'var(--paper-accent)' }}>표시할 구절이 없습니다</div>
-    }
+    const ovBooks = overlay ? (overlay.books || []) : []
     const selBook = ovBooks.find(b => b.bookId === placeVerseView.bookId) || ovBooks[0]
-    return (
-      <div style={paperCardStyle} onClick={e => e.stopPropagation()}>
-        {ovBooks.length > 1 && (
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 6 }}>
-            {ovBooks.map(b => {
-              const sel = b.bookId === selBook.bookId
-              return (
-                <button
-                  key={b.bookId}
-                  onClick={() => setPlaceVerseView(prev => prev ? { ...prev, bookId: b.bookId, expanded: false } : prev)}
-                  style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 3,
-                    fontSize: 11, padding: '1px 8px', borderRadius: 999, lineHeight: 1.7, fontWeight: 600, cursor: 'pointer',
-                    border: '1px solid var(--paper-accent)',
-                    background: sel ? 'var(--paper-accent)' : 'transparent',
-                    color: sel ? 'var(--paper)' : 'var(--paper-accent)',
-                  }}
-                >{b.bookNameKo || b.bookId}</button>
-              )
-            })}
+    return createPortal(
+      <div
+        onClick={closePlaceVerseView}
+        // 모달 스크림 — 전용 토큰 없어 값 유지(다크 배경 위 반투명 오버레이라 무해)
+        style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
+      >
+        {/* 근거 구절 모달 = 양피지 카드(원칙 2) */}
+        <div onClick={e => e.stopPropagation()} style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+            <span style={{ fontWeight: 700, fontSize: 15, flex: 1, fontFamily: 'var(--serif)' }}>{placeVerseView.label}</span>
+            <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
+            <button onClick={closePlaceVerseView} style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: 20, color: 'var(--paper-accent)', lineHeight: 1, padding: '0 2px' }}>×</button>
           </div>
-        )}
-        <button
-          onClick={() => setPlaceVerseView(prev => prev ? { ...prev, expanded: !prev.expanded } : prev)}
-          style={{
-            display: 'inline-flex', alignItems: 'center', gap: 4,
-            border: 'none', background: 'none', cursor: 'pointer', padding: 0, font: 'inherit',
-            fontSize: 12, fontWeight: 600, color: 'var(--paper-accent)',
-          }}
-        >
-          {selBook.bookNameKo || selBook.bookId} {selBook.rangeLabel}
-          <span style={{ fontSize: 10 }}>{placeVerseView.expanded ? '▾' : '▸'}</span>
-        </button>
-        {placeVerseView.expanded && (
-          <div style={{ marginTop: 6, display: 'flex', flexDirection: 'column', gap: 5 }}>
-            <div>
-              <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} color="var(--paper-accent)" />
+          {ovBooks.length > 1 && (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 8 }}>
+              {ovBooks.map(b => {
+                const sel = b.bookId === selBook.bookId
+                return (
+                  <button
+                    key={b.bookId}
+                    onClick={() => setPlaceVerseView(prev => prev ? { ...prev, bookId: b.bookId } : prev)}
+                    style={{
+                      display: 'inline-flex', alignItems: 'center', gap: 3,
+                      fontSize: 11, padding: '1px 8px', borderRadius: 999, lineHeight: 1.7, fontWeight: 600, cursor: 'pointer',
+                      border: '1px solid var(--paper-accent)',
+                      background: sel ? 'var(--paper-accent)' : 'transparent',
+                      color: sel ? 'var(--paper)' : 'var(--paper-accent)',
+                    }}
+                  >{b.bookNameKo || b.bookId}</button>
+                )
+              })}
             </div>
-            {selBook.verses.map(v => {
-              const body = (verseLang === 'ko' ? v.textKo : v.textEn) || '원문이 없습니다'
-              return (
-                <div key={v.verseID} style={paperTextStyle}>
-                  <span style={{ fontWeight: 700, color: 'var(--paper-accent)', marginRight: 6 }}>{v.chapter}:{v.verse}</span>
-                  {body}
-                </div>
-              )
-            })}
-          </div>
-        )}
-      </div>
+          )}
+          {overlay === null ? (
+            <div style={{ padding: '12px 0' }}><Spinner size={20} color={NIGHT.paperAccent} /></div>
+          ) : ovBooks.length === 0 ? (
+            <div style={{ fontSize: 13, color: 'var(--paper-accent)', padding: '4px 0' }}>표시할 구절이 없습니다</div>
+          ) : (
+            <>
+              <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--paper-accent)', marginBottom: 8 }}>
+                {selBook.bookNameKo || selBook.bookId} {selBook.rangeLabel}
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {selBook.verses.map(v => {
+                  const body = (verseLang === 'ko' ? v.textKo : v.textEn) || '원문이 없습니다'
+                  return (
+                    <div key={v.verseID} style={paperTextStyle}>
+                      <span style={{ fontWeight: 700, color: 'var(--paper-accent)', marginRight: 6 }}>{v.chapter}:{v.verse}</span>
+                      {body}
+                    </div>
+                  )
+                })}
+              </div>
+            </>
+          )}
+        </div>
+      </div>,
+      document.body
     )
   }
 
   return (
     <div style={{ fontFamily: 'var(--sans)' }}>
+      {renderVerseLayer()}
       {/* 헤더 — 표면 var(--bg-1), 경계 var(--line), 제목 var(--serif)(h2 전역 규칙 상속) */}
       <div style={{
         padding: '14px 44px 14px 16px',
@@ -562,9 +571,8 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                             {parseYear(e.startDate)}
                           </span>
                         )}
-                        {renderPlaceBookChip(e.id)}
+                        {renderPlaceBookChip(e.id, e.nameKo || e.name)}
                       </div>
-                      <div style={{ padding: '0 10px' }}>{renderPlaceVerseView(e.id)}</div>
                     </div>
                   ))}
                 </div>
@@ -626,9 +634,8 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                         borderLeft: `3px solid ${TYPE_COLOR.Event}`,
                       }}>
                         <span style={{ flex: 1, fontSize: 13, color: 'var(--ink)' }}>{ev.nameKoMissing ? `${ev.name} (미번역)` : ev.nameKo}</span>
-                        {renderPlaceBookChip(ev.id)}
+                        {renderPlaceBookChip(ev.id, ev.nameKoMissing ? ev.name : ev.nameKo)}
                       </div>
-                      {renderPlaceVerseView(ev.id)}
                     </div>
                   ))}
                 </div>
