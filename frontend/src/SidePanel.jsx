@@ -367,12 +367,8 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
           margin: '12px 12px 0', padding: '12px', borderRadius: 8,
           background: 'var(--bg-2)', border: '1px solid var(--line)',
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', marginBottom: 10 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: TYPE_COLOR.Person }}>인물 성품</div>
-            <span style={{ marginLeft: 'auto' }}>
-              <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} color={TYPE_COLOR.Person} />
-            </span>
-          </div>
+          {/* 한/영 탭은 구절 레이어 안에 있으므로 섹션 헤더에선 제거(중복) */}
+          <div style={{ fontSize: 11, fontWeight: 700, color: TYPE_COLOR.Person, marginBottom: 10 }}>인물 성품</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {node.properties.traits.map((t, i) => (
               <div key={i}>
