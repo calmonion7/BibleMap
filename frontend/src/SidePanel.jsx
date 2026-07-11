@@ -66,6 +66,11 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
   const [connectionsState, setConnectionsState] = useState(null)
   const connections = connectionsState?.forNodeId === nodeId ? connectionsState : null
 
+  // 인물 성품 구절 레이어 — 인라인 아코디언 대신 양피지 포털 모달(사건 구절 레이어와 동일 패턴).
+  // forNodeId 키로 인물 변경 시 자동 닫힘.
+  const [traitLayerRaw, setTraitLayer] = useState(null)   // { forNodeId, idx } | null
+  const traitLayerIdx = traitLayerRaw?.forNodeId === nodeId ? traitLayerRaw.idx : null
+
   useEffect(() => {
     if (!nodeId) return
     let cancelled = false
@@ -271,9 +276,37 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     )
   }
 
+  // 인물 성품 구절 레이어 — 사건 구절 레이어와 동일한 양피지 포털 모달.
+  function renderTraitLayer() {
+    if (traitLayerIdx == null) return null
+    const t = node?.properties?.traits?.[traitLayerIdx]
+    if (!t) return null
+    const verseText = verseLang === 'ko' ? t.verse_textKo : t.verse_textEn
+    return createPortal(
+      <div
+        onClick={() => setTraitLayer(null)}
+        style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
+      >
+        <div onClick={e => e.stopPropagation()} style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+            <span style={{ fontWeight: 700, fontSize: 15, flex: 1, fontFamily: 'var(--serif)' }}>{t.trait}</span>
+            <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
+            <button onClick={() => setTraitLayer(null)} style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: 20, color: 'var(--paper-accent)', lineHeight: 1, padding: '0 2px' }}>×</button>
+          </div>
+          <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--paper-accent)', marginBottom: 8 }}>{t.verse_ref}</div>
+          {verseText
+            ? <div style={paperTextStyle}>{verseText}</div>
+            : <div style={{ fontSize: 13, color: 'var(--paper-accent)' }}>원문이 없습니다</div>}
+        </div>
+      </div>,
+      document.body
+    )
+  }
+
   return (
     <div style={{ fontFamily: 'var(--sans)' }}>
       {renderVerseLayer()}
+      {renderTraitLayer()}
       {/* 헤더 — 표면 var(--bg-1), 경계 var(--line), 제목 var(--serif)(h2 전역 규칙 상속) */}
       <div style={{
         padding: '14px 44px 14px 16px',
@@ -341,40 +374,22 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
             </span>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {node.properties.traits.map((t, i) => {
-              const open = collapsed['trait-' + i] === false
-              const verseText = verseLang === 'ko' ? t.verse_textKo : t.verse_textEn
-              return (
+            {node.properties.traits.map((t, i) => (
               <div key={i}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 3 }}>
                   <span style={{
                     fontSize: 12, fontWeight: 600, color: 'var(--ink)',
                     background: 'var(--bg-3)', borderRadius: 4, padding: '2px 8px',
                   }}>{t.trait}</span>
+                  {/* 구절 참조 칩 → 양피지 레이어(다른 곳과 동일 패턴). 인라인 펼침 아님. */}
                   <button
-                    onClick={() => toggle('trait-' + i)}
-                    style={{
-                      display: 'inline-flex', alignItems: 'center', gap: 3,
-                      border: 'none', background: 'none', cursor: 'pointer', padding: 0,
-                      font: 'inherit', fontSize: 10, color: 'var(--ink-faint)',
-                    }}
-                  >
-                    {t.verse_ref}
-                    <span style={{ fontSize: 9 }}>{open ? '▾' : '▸'}</span>
-                  </button>
+                    onClick={() => setTraitLayer({ forNodeId: nodeId, idx: i })}
+                    style={{ ...placeChipBase, borderColor: 'var(--line-strong)' }}
+                  >📖 {t.verse_ref}</button>
                 </div>
                 <p style={{ margin: 0, fontSize: 12, color: 'var(--ink-dim)', lineHeight: 1.5 }}>{t.description}</p>
-                {/* 양피지 카드 — 인용문(description)이 아닌 실제 절 본문(verseText)만(원칙 2) */}
-                {open && (
-                  <div style={{ ...paperCardStyle, marginTop: 5, marginBottom: 0, padding: '8px 12px' }}>
-                    {verseText
-                      ? <div style={paperTextStyle}>{verseText}</div>
-                      : <span style={{ color: 'var(--paper-accent)' }}>원문이 없습니다</span>}
-                  </div>
-                )}
               </div>
-              )
-            })}
+            ))}
           </div>
         </div>
       )}
