@@ -7,6 +7,7 @@ import TimelineView from './TimelineView'
 import RelationsView from './RelationsView'
 import BibleOverviewView from './BibleOverviewView'
 import PersonHub from './PersonHub'
+import PersonIntro from './PersonIntro'
 import TourList from './TourList'
 import JourneyList from './JourneyList'
 import { MOBILE_BREAKPOINT, SHEET_VH, JOURNEY_SHEET_VH } from './constants'
@@ -66,23 +67,20 @@ function App() {
     return () => { cancelled = true }
   }, [explorePersonId])
   const [activeStopIdx, setActiveStopIdx] = useState(null)
-  // 모바일 여정 "읽기 모드" — 펼친 사건 id. App이 소유해 오버레이 높이 전환·바깥 탭 닫기를 제어한다.
-  const [readingEventId, setReadingEventId] = useState(null)
-  const [reduceMotion] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
 
   useEffect(() => {
     const ctrl = new AbortController()
     if (explorePersonId) {
       apiGet(`/person/${explorePersonId}/journey`, { signal: ctrl.signal })
-        .then(({ stops }) => { setJourneyStops(stops); setActiveStopIdx(null); setReadingEventId(null); setExploreTourName(null) }) // async 콜백 — v7 OK
+        .then(({ stops }) => { setJourneyStops(stops); setActiveStopIdx(null); setExploreTourName(null) }) // async 콜백 — v7 OK
         .catch((e) => { if (e?.name !== 'AbortError') { console.warn('[App] 인물 여정 로드 실패', e); setJourneyStops([]) } })
     } else if (exploreTourId) {
       apiGet(`/tour/${exploreTourId}`, { signal: ctrl.signal })
-        .then(({ title, stops }) => { setJourneyStops(stops); setActiveStopIdx(null); setReadingEventId(null); setExploreTourName(title) })
+        .then(({ title, stops }) => { setJourneyStops(stops); setActiveStopIdx(null); setExploreTourName(title) })
         .catch((e) => { if (e?.name !== 'AbortError') { console.warn('[App] 투어 로드 실패', e); setJourneyStops([]) } })
     } else {
       // 인물·투어 모두 미선택 → 비동기로 초기화(effect 동기 setState 금지 규칙 회피)
-      Promise.resolve().then(() => { setJourneyStops(null); setActiveStopIdx(null); setReadingEventId(null); setExploreTourName(null) })
+      Promise.resolve().then(() => { setJourneyStops(null); setActiveStopIdx(null); setExploreTourName(null) })
     }
     return () => ctrl.abort()
   }, [explorePersonId, exploreTourId])
@@ -308,36 +306,24 @@ function App() {
                   activeStopIdx={activeStopIdx}
                   onStopSelect={setActiveStopIdx}
                 />
-                {/* 모바일 여정 — 하단 세로 아코디언(데스크톱과 동일 JourneyList 재사용). 📖 탭 시 ~90dvh 읽기 모드로 확장. */}
+                {/* 모바일 여정 — 하단 세로 리스트(데스크톱과 동일 JourneyList 재사용). 📖는 양피지 모달로 연다. */}
                 {isMobile && journeyStops && journeyStops.length > 0 && (
-                  <>
-                    {/* 읽는 중 노출된 상단 지도 영역 탭 → 읽기 모드 닫기(장소 SidePanel 시트와 겹침 회피) */}
-                    {readingEventId && (
-                      <div
-                        onClick={() => setReadingEventId(null)}
-                        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: '90dvh', zIndex: 4 }}
-                      />
-                    )}
-                    <div style={{
-                      position: 'absolute', bottom: 0, left: 0, right: 0,
-                      height: readingEventId ? '90dvh' : `${JOURNEY_SHEET_VH}dvh`, zIndex: 5,
-                      transition: reduceMotion ? undefined : 'height 0.25s ease',
-                      borderTop: '1px solid var(--line-strong)',
-                      boxShadow: 'var(--shadow-2)',
-                    }}>
-                      <JourneyList
-                        stops={journeyStops}
-                        activeStopIdx={activeStopIdx}
-                        onStopSelect={setActiveStopIdx}
-                        verseLang={verseLang}
-                        setVerseLang={setVerseLang}
-                        personName={exploreTourId ? null : explorePersonName}
-                        tourName={exploreTourId ? exploreTourName : null}
-                        readingEventId={readingEventId}
-                        onReadingChange={setReadingEventId}
-                      />
-                    </div>
-                  </>
+                  <div style={{
+                    position: 'absolute', bottom: 0, left: 0, right: 0,
+                    height: `${JOURNEY_SHEET_VH}dvh`, zIndex: 5,
+                    borderTop: '1px solid var(--line-strong)',
+                    boxShadow: 'var(--shadow-2)',
+                  }}>
+                    <JourneyList
+                      stops={journeyStops}
+                      activeStopIdx={activeStopIdx}
+                      onStopSelect={setActiveStopIdx}
+                      verseLang={verseLang}
+                      setVerseLang={setVerseLang}
+                      personName={exploreTourId ? null : explorePersonName}
+                      tourName={exploreTourId ? exploreTourName : null}
+                    />
+                  </div>
                 )}
               </div>
             </div>
@@ -366,21 +352,19 @@ function App() {
                 />
               </div>
             )}
-            {/* 인물 소개 뷰 — 지도·타임라인·관계와 같은 레벨의 페이지(SidePanel 재사용, 인물 모드 전용).
+            {/* 인물 소개 뷰 — 지도·타임라인·관계와 같은 레벨의 페이지(PersonIntro 전용 컴포넌트, 인물 모드 전용).
                 탐험 자기 시트 억제 규칙(sheetOpen ≠ explorePersonId)은 무접촉 — 전용 뷰라 시트가 아니다. */}
             {exploreView === 'intro' && explorePersonId && (
               <div style={{ height: '100%', overflowY: 'auto', background: 'var(--bg-0)' }}>
                 <div style={{ maxWidth: 560, margin: '0 auto', padding: '4px 0 48px' }}>
-                  <SidePanel
+                  <PersonIntro
                     key={explorePersonId}
-                    nodeId={explorePersonId}
-                    onSelectNode={selectNode}
+                    personId={explorePersonId}
                     verseLang={verseLang}
                     setVerseLang={setVerseLang}
-                    explorePersonId={explorePersonId}
-                    onExplorePerson={explorePerson}
-                    curatedIds={curatedIds}
-                    onExploreJourney={selectPerson}
+                    onSwitchView={setExploreView}
+                    journeyStops={journeyStops}
+                    personEventIds={personEventIds}
                   />
                 </div>
               </div>

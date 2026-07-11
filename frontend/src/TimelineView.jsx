@@ -22,7 +22,6 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
     console.error('TimelineView: personFilter must be a Set, got', personFilter)
   const [events, setEvents] = useState([])
   const [error, setError] = useState(false)
-  const [openGroup, setOpenGroup] = useState(null)
   // 근거 구절 인라인 뷰를 펼친 사건 — { eventId, bookId, expanded } (한 번에 하나만).
   // bookId: 선택된 권(다권이면 탭 전환). expanded: 선택 권의 절 본문을 펼쳤는지(▾).
   const [verseView, setVerseView] = useState(null)
@@ -50,23 +49,21 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
     if (!ev) return
     const key = ev.startDate ?? ''
     const raf = requestAnimationFrame(() => {
-      if (events.filter(e => (e.startDate ?? '') === key).length > 1) setOpenGroup(key)
       groupRefs.current[key]?.scrollIntoView({ behavior: 'smooth', block: 'center' })
     })
     return () => cancelAnimationFrame(raf)
   }, [selectedNode, events])
 
   useEffect(() => {
-    if (openGroup === null && verseView === null) return
+    if (verseView === null) return
     const handler = (e) => {
       if (containerRef.current && !containerRef.current.contains(e.target)) {
-        setOpenGroup(null)
         setVerseView(null)
       }
     }
     document.addEventListener('click', handler)
     return () => document.removeEventListener('click', handler)
-  }, [openGroup, verseView])
+  }, [verseView])
 
   const groups = useMemo(() => {
     const groupMap = new Map()
@@ -223,10 +220,9 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
 
   return (
     // 비스크롤 루트 + 스크롤 리스트 + 구절 레이어 형제 구조 — 모달을 overflow:auto 자식에 두면 오배치(회고 선례)
-    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', background: 'var(--bg-0)' }}>
+    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', background: 'var(--bg-0)', WebkitTapHighlightColor: 'transparent' }}>
     <div
       ref={containerRef}
-      onClick={() => { if (openGroup !== null) setOpenGroup(null) }}
       style={{ width: '100%', height: '100%', boxSizing: 'border-box', overflowY: 'auto', position: 'relative', paddingTop: 16, paddingBottom: 48 }}
     >
       {(activeFilter || activePersonFilter) && (
@@ -264,7 +260,6 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
         const isSelected = selectedNode && members.some(e => e.id === selectedNode)
         const isAuthored = rep.authored === true
         const yearLabel = isAuthored && rep.yearLabel ? rep.yearLabel : parseYear(startDate)
-        const isSingle = members.length === 1
         const groupKey = startDate
 
         return (
@@ -276,10 +271,8 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
               padding: '4px 8px',
               minHeight: '28px',
               backgroundColor: isSelected ? SELECT_HL : 'transparent',
-              cursor: isSingle ? 'pointer' : 'default',
               position: 'relative',
             }}
-            onClick={isSingle ? () => onSelectNode && onSelectNode(members[0].id) : undefined}
           >
             {/* 연도 칸은 고정 폭 — minWidth만 주면 긴 라벨(태초 무렵 (전통 BC 4000경) 등)이 행마다 폭을 늘려 제목 시작점이 어긋난다. 긴 라벨은 줄바꿈. */}
             <div style={{ width: 108, flexShrink: 0, textAlign: 'right', color: 'var(--ink-faint)', fontSize: '12px', lineHeight: 1.35, paddingTop: 2 }}>
@@ -287,57 +280,19 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
               {isAuthored ? <span title="연대추정 (저작 배경 기준)">{yearLabel}</span> : yearLabel}
             </div>
             <div style={{ borderLeft: '2px solid var(--line)', margin: '0 12px', alignSelf: 'stretch', minHeight: 20 }} />
-            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', paddingTop: 2 }}>
-              <span
-                style={{ fontSize: '13px', cursor: 'pointer', color: 'var(--ink)' }}
-                onClick={!isSingle ? (e) => { e.stopPropagation(); onSelectNode && onSelectNode(rep.id) } : undefined}
-              >
-                {rep.nameKo || rep.title}
-              </span>
-              {renderBookChip(rep)}
-              {!isSingle && (
-                <button
-                  style={{ fontSize: '11px', color: 'var(--gold)', marginLeft: '8px', cursor: 'pointer', background: 'none', border: 'none', padding: '0' }}
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    setOpenGroup(openGroup === groupKey ? null : groupKey)
-                  }}
-                >
-                  외 {members.length - 1}건
-                </button>
-              )}
-              {openGroup === groupKey && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    left: 104,
-                    top: '100%',
-                    backgroundColor: 'var(--bg-2)',
-                    border: '1px solid var(--line-strong)',
-                    borderRadius: '4px',
-                    padding: '4px 0',
-                    zIndex: 100,
-                    minWidth: '200px',
-                    maxHeight: '200px',
-                    overflowY: 'auto',
-                    boxShadow: 'var(--shadow-2)',
-                  }}
-                  onClick={e => e.stopPropagation()}
-                >
-                  {members.map(ev => (
-                    <div
-                      key={ev.id}
-                      style={{ padding: '4px 12px', fontSize: '13px', color: 'var(--ink)', display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}
-                    >
-                      <span
-                        style={{ cursor: 'pointer' }}
-                        onClick={() => { onSelectNode && onSelectNode(ev.id); setOpenGroup(null) }}
-                      >{ev.nameKo || ev.title}</span>
-                      {renderBookChip(ev)}
-                    </div>
-                  ))}
+            {/* 같은 날짜의 사건들을 모두 인라인 표시 — 플로팅 그룹 팝업(외 N건) 제거, 각 사건이 직접 클릭 가능 */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 3, paddingTop: 2, minWidth: 0 }}>
+              {members.map(ev => (
+                <div key={ev.id} style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+                  <span
+                    style={{ fontSize: '13px', cursor: 'pointer', color: 'var(--ink)' }}
+                    onClick={(e) => { e.stopPropagation(); onSelectNode && onSelectNode(ev.id) }}
+                  >
+                    {ev.nameKo || ev.title}
+                  </span>
+                  {renderBookChip(ev)}
                 </div>
-              )}
+              ))}
             </div>
           </div>
           </div>
