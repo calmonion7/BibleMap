@@ -246,7 +246,7 @@ function App() {
       {activeStage === 'hub' && (
         <div style={{ flex: 1, overflow: 'hidden' }}>
           <PersonHub
-            onSelectPerson={selectPerson}
+            onSelectPerson={(id) => selectPerson(id, 'intro')}
             onOpenOverview={openOverview}
             onOpenTours={openTours}
           />

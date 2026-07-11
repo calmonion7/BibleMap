@@ -128,12 +128,13 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // 허브에서 인물 카드 클릭 — 탐험으로 전환 (투어와 상호배타)
-  function handleSelectPerson(id) {
+  // 인물 탐험 진입 — 탐험으로 전환 (투어와 상호배타). 착지 뷰는 호출부가 지정:
+  // 허브 카드는 'intro'(소개), 여정 탐험 CTA·관계 뷰 상대 클릭은 기본 'map'(관계 뷰에서 상대 클릭 시 빈 관계 뷰로 빠지지 않게).
+  function handleSelectPerson(id, view = 'map') {
     setExploreTourId(null)
     selectNodeFresh(id)
     setExplorePersonId(id)
-    setExploreView('map')  // 새 인물 진입은 지도(여정)에서 시작 — 관계 뷰에서 상대 클릭 시 빈 관계 뷰로 빠지지 않게
+    setExploreView(view)
     setActiveStage('explore')
   }
 
