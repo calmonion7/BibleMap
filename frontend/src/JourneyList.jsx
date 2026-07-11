@@ -86,6 +86,27 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
           사건 {stops.length}개 · 📖 눌러 구절 보기
         </div>
       </div>
+
+      {/* 여정 첫 페이지 — 인물 소개(성품·연결 상세 레이어). 인물 모드 전용(투어는 단일 주인공 없음). */}
+      {personName && onPersonIntro && (
+        <div
+          onClick={onPersonIntro}
+          onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--bg-2)' }}
+          onMouseLeave={(e) => { e.currentTarget.style.background = 'none' }}
+          style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', cursor: 'pointer', borderBottom: '1px solid var(--line)', transition: 'background 0.12s' }}
+        >
+          <div style={{
+            flexShrink: 0, width: 22, height: 22, borderRadius: '50%',
+            display: 'grid', placeItems: 'center', fontSize: 11,
+            color: 'var(--gold)', border: '1px solid var(--gold-dim)', background: 'var(--bg-0)',
+          }}>✦</div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--gold)', fontFamily: 'var(--serif)' }}>{personName} 인물 소개</div>
+            <div style={{ fontSize: 11, color: 'var(--ink-faint)', marginTop: 2 }}>성품 · 함께 등장한 인물 · 연결</div>
+          </div>
+          <span style={{ color: 'var(--ink-faint)', fontSize: 12, flexShrink: 0 }}>▸</span>
+        </div>
+      )}
       {stops.map((stop, rawIdx) => {
         const hasCoord = stop.lng != null && stop.lat != null
         const k = hasCoord ? coKey(stop) : null
@@ -218,26 +239,6 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
         )
       })}
 
-      {/* 여정 마지막 페이지 — 인물 소개(성품·연결 상세 레이어). 인물 모드 전용(투어는 단일 주인공 없음). */}
-      {personName && onPersonIntro && (
-        <div
-          onClick={onPersonIntro}
-          onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--bg-2)' }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = 'none' }}
-          style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', cursor: 'pointer', borderTop: '1px solid var(--line)', transition: 'background 0.12s' }}
-        >
-          <div style={{
-            flexShrink: 0, width: 22, height: 22, borderRadius: '50%',
-            display: 'grid', placeItems: 'center', fontSize: 11,
-            color: 'var(--gold)', border: '1px solid var(--gold-dim)', background: 'var(--bg-0)',
-          }}>✦</div>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--gold)', fontFamily: 'var(--serif)' }}>{personName} 인물 소개</div>
-            <div style={{ fontSize: 11, color: 'var(--ink-faint)', marginTop: 2 }}>성품 · 함께 등장한 인물 · 연결</div>
-          </div>
-          <span style={{ color: 'var(--ink-faint)', fontSize: 12, flexShrink: 0 }}>▸</span>
-        </div>
-      )}
     </div>
   )
 }
