@@ -17,9 +17,9 @@ import { apiGet } from './api'
 // 모바일(좁은 뷰포트) 분기 — 이 폭 이하에서 상세 패널을 우측 사이드패널 대신 하단 시트로 띄운다.
 const MOBILE_QUERY = `(max-width: ${MOBILE_BREAKPOINT}px)`
 
-// 탐험 토글 정의 — 지도 라벨은 "여정길"(인물의 발자취를 따라가는 지도)
+// 탐험 토글 정의 — 지도 라벨은 "발자취"(인물이 지도 위에 남긴 발자국·경로)
 const EXPLORE_TABS = [
-  { key: 'map', icon: Map, label: '여정길' },
+  { key: 'map', icon: Map, label: '발자취' },
   { key: 'timeline', icon: Clock, label: '타임라인' },
 ]
 const INTRO_TAB = { key: 'intro', icon: UserRound, label: '소개' }
