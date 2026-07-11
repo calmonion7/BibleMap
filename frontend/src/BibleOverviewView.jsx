@@ -37,9 +37,8 @@ function BookCard({ book, onSelectNode, isSelected, hideKeyVerse }) {
         border: `1px solid ${isSelected || hovered ? 'var(--gold-dim)' : 'var(--line)'}`,
         borderRadius: 10,
         padding: 12,
-        width: 140,
+        boxSizing: 'border-box',
         cursor: 'pointer',
-        flexShrink: 0,
         transition: 'border-color 0.15s, background 0.15s',
       }}
     >
@@ -93,7 +92,7 @@ function GenreSection({ genre, books, isFirst, onSelectNode, selectedNode, hideK
           </span>
         )}
       </div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 8, marginBottom: 16 }}>
         {sorted.map(book => (
           <BookCard key={book.id} book={book} onSelectNode={onSelectNode} isSelected={book.id === selectedNode} hideKeyVerse={hideKeyVerse} />
         ))}
