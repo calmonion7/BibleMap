@@ -41,7 +41,7 @@
   "recgkzNX07a7kGFYL": {
     "traits": [
       {
-        "trait": "열정",
+        "trait": "헌신",
         "verse_ref": "행 20:24",
         "description": "바울은 생명을 조금도 귀하게 여기지 않고 주 예수의 복음을 증언하는 사명을 완수하려 했다.",
         "verse_textKo": "나의 달려갈 길과 주 예수께 받은 사명 곧 하나님의 은혜의 복음 증거하는 일을 마치려 함에는 나의 생명을 조금도 귀한 것으로 여기지 아니하노라 ",
@@ -94,7 +94,7 @@
         "verse_textEn": "But Peter, standing up with the eleven, lifted up his voice, and said unto them, Ye men of Judea, and all ye that dwell at Jerusalem, be this known unto you, and hearken to my words:"
       },
       {
-        "trait": "회복력",
+        "trait": "통회",
         "verse_ref": "눅 22:62",
         "description": "예수를 세 번 부인한 뒤 통렬히 울었으나, 부활하신 주께 회복되어 교회의 기둥이 되었다.",
         "verse_textKo": "밖에 나가서 심히 통곡하니라 ",
@@ -112,13 +112,6 @@
   "recsU2ZSdzBvDqzgI": {
     "traits": [
       {
-        "trait": "간절함",
-        "verse_ref": "창 32:26",
-        "description": "얍복 강에서 천사와 씨름하며 축복해 주지 않으면 보내지 않겠다고 끝까지 붙들었다.",
-        "verse_textKo": "그 사람이 가로되 날이 새려 하니 나로 가게 하라 야곱이 가로되 당신이 내게 축복하지 아니하면 가게 하지 아니하겠나이다 ",
-        "verse_textEn": "And he said, Let me go, for the day breaketh. And he said, I will not let thee go, except thou bless me."
-      },
-      {
         "trait": "믿음",
         "verse_ref": "창 28:15",
         "description": "벧엘에서 하나님의 약속을 받은 후 돌을 기둥으로 세우고 서원하며 하나님을 자신의 하나님으로 고백했다.",
@@ -126,7 +119,7 @@
         "verse_textEn": "And, behold, I am with thee, and will keep thee in all places whither thou goest, and will bring thee again into this land; for I will not leave thee, until I have done that which I have spoken to thee of."
       },
       {
-        "trait": "부성애",
+        "trait": "사랑",
         "verse_ref": "창 37:3",
         "description": "요셉을 특별히 사랑하여 채색 옷을 입히고 가장 아끼는 아들로 삼았다.",
         "verse_textKo": "요셉은 노년에 얻은 아들이므로 이스라엘이 여러 아들보다 그를 깊이 사랑하여 위하여 채색옷을 지었더니 ",
@@ -138,13 +131,20 @@
         "description": "라헬을 얻기 위해 7년을 수고했으나 그 기간이 사랑으로 인해 며칠같이 여겨졌다고 성경은 기록한다.",
         "verse_textKo": "야곱이 라헬을 위하여 칠년 동안 라반을 봉사하였으나 그를 연애하는 까닭에 칠년을 수일 같이 여겼더라 ",
         "verse_textEn": "And Jacob served seven years for Rachel; and they seemed unto him but a few days, for the love he had to her."
+      },
+      {
+        "trait": "기만",
+        "verse_ref": "창 27:19",
+        "description": "눈이 어두운 아버지 이삭에게 자신이 맏아들 에서라고 속여 형의 축복을 가로챘다.",
+        "verse_textKo": "야곱이 아비에게 대답하되 나는 아버지의 맏아들 에서로소이다 아버지께서 내게 명하신 대로 내가 하였사오니 청컨대 일어나 앉아서 내 사냥한 고기를 잡수시고 아버지의 마음껏 내게 축복하소서 ",
+        "verse_textEn": "And Jacob said unto his father, I am Esau thy firstborn; I have done according as thou badest me: arise, I pray thee, sit and eat of my venison, that thy soul may bless me."
       }
     ]
   },
   "recFqCoLVEfASibXd": {
     "traits": [
       {
-        "trait": "성실함",
+        "trait": "근면",
         "verse_ref": "눅 1:3",
         "description": "예수의 생애를 근원부터 자세히 미루어 살펴 데오빌로에게 차례대로 기록하는 꼼꼼한 역사가의 자세를 보였다.",
         "verse_textKo": "그 모든 일을 근원부터 자세히 미루어 살핀 나도 데오빌로 각하에게 차례대로 써 보내는 것이 좋은 줄 알았노니 ",
@@ -195,34 +195,27 @@
         "description": "바울과 함께 베뢰아로 파송받아 위험을 무릅쓰고 복음 전파 사역에 동행했다.",
         "verse_textKo": "밤에 형제들이 곧 바울과 실라를 베뢰아로 보내니 저희가 이르러 유대인의 회당에 들어가니라 ",
         "verse_textEn": "And the brethren immediately sent away Paul and Silas by night unto Berea: who coming thither went into the synagogue of the Jews."
-      },
-      {
-        "trait": "예언",
-        "verse_ref": "행 15:32",
-        "description": "선지자로서 교회를 권면하고 말씀으로 성도들을 세우는 예언적 사역을 감당했다.",
-        "verse_textKo": "유다와 실라도 선지자라 여러 말로 형제를 권면하여 굳게 하고 ",
-        "verse_textEn": "And Judas and Silas, being prophets also themselves, exhorted the brethren with many words, and confirmed them. "
       }
     ]
   },
   "recUA9Fc2yoNk8c5d": {
     "traits": [
       {
-        "trait": "격려",
+        "trait": "온유",
         "verse_ref": "행 4:36",
         "description": "사도들이 그에게 위로의 아들이라는 뜻의 바나바라는 이름을 붙여줄 만큼 격려의 사람이었다.",
         "verse_textKo": "구브로에서 난 레위족인이 있으니 이름은 요셉이라 사도들이 일컬어 바나바(번역하면 권위자)라 하니 ",
         "verse_textEn": "And Joses, who by the apostles was surnamed Barnabas, (which is, being interpreted, The son of consolation,) a Levite, and of the country of Cyprus,"
       },
       {
-        "trait": "관대함",
+        "trait": "헌신",
         "verse_ref": "행 4:37",
         "description": "밭을 팔아 그 값을 사도들의 발 앞에 가져다 놓으며 공동체를 위해 아낌없이 나눴다.",
         "verse_textKo": "그가 밭이 있으매 팔아 값을 가지고 사도들의 발 앞에 두니라  ",
         "verse_textEn": "Having land, sold it, and brought the money, and laid it at the apostles’ feet. "
       },
       {
-        "trait": "신뢰",
+        "trait": "용기",
         "verse_ref": "행 9:27",
         "description": "다메섹 회심 이후 제자들이 바울을 두려워할 때 바나바가 그를 사도들에게 데려가 보증해 주었다.",
         "verse_textKo": "바나바가 데리고 사도들에게 가서 그가 길에서 어떻게 주를 본 것과 주께서 그에게 말씀하신 일과 다메섹에서 그가 어떻게 예수의 이름으로 담대히 말하던 것을 말하니라 ",
@@ -240,7 +233,7 @@
   "recVMHzYdllgvTo09": {
     "traits": [
       {
-        "trait": "의로움",
+        "trait": "신실",
         "verse_ref": "창 6:9",
         "description": "당대에 완전한 자로 하나님과 동행하는 삶을 살아 의인이라는 평가를 받았다.",
         "verse_textKo": "노아의 사적은 이러하니라 노아는 의인이요 당세에 완전한 자라 그가 하나님과 동행하였으며 ",
@@ -293,7 +286,7 @@
         "verse_textEn": "And when Abram heard that his brother was taken captive, he armed his trained servants, born in his own house, three hundred and eighteen, and pursued them unto Dan."
       },
       {
-        "trait": "나그네 환대",
+        "trait": "환대",
         "verse_ref": "창 18:2-5",
         "description": "마므레 상수리나무 곁에서 세 나그네를 보자마자 달려가 정성껏 음식을 대접했다.",
         "verse_textKo": "눈을 들어 본즉 사람 셋이 맞은편에 섰는지라 그가 그들을 보자 곧 장막 문에서 달려나가 영접하며 몸을 땅에 굽혀 ",
@@ -304,7 +297,7 @@
   "recIRlDcRDv2MBfxW": {
     "traits": [
       {
-        "trait": "신실함",
+        "trait": "신실",
         "verse_ref": "딤후 1:5",
         "description": "외조모 로이스와 어머니 유니게로부터 이어진 거짓 없는 믿음을 이어받아 신앙의 유산을 지켰다.",
         "verse_textKo": "이는 네 속에 거짓이 없는 믿음을 생각함이라 이 믿음은 먼저 네 외조모 로이스와 네 어머니 유니게 속에 있더니 네 속에도 있는 줄을 확신하노라 ",
@@ -325,7 +318,7 @@
         "verse_textEn": "For God hath not given us the spirit of fear; but of power, and of love, and of a sound mind."
       },
       {
-        "trait": "말씀 충성",
+        "trait": "충성",
         "verse_ref": "딤후 4:2",
         "description": "바울로부터 때를 얻든지 못 얻든지 말씀을 전파하고 가르치라는 위임을 충성스럽게 이행했다.",
         "verse_textKo": "너는 말씀을 전파하라 때를 얻든지 못 얻든지 항상 힘쓰라 범사에 오래 참음과 가르침으로 경책하며 경계하며 권하라 ",
@@ -375,7 +368,7 @@
         "verse_textEn": "(Now the man Moses was very meek, above all the men which were upon the face of the earth.)"
       },
       {
-        "trait": "중보",
+        "trait": "사랑",
         "verse_ref": "출 32:32",
         "description": "금송아지를 만든 이스라엘 백성의 죄를 용서해 주시되 그렇지 않으면 자신을 생명책에서 지워달라며 백성을 위해 탄원했다.",
         "verse_textKo": "그러나 합의하시면 이제 그들의 죄를 사하시옵소서 그렇지 않사오면 원컨대 주의 기록하신 책에서 내 이름을 지워버려주옵소서 ",
@@ -396,7 +389,7 @@
         "verse_textEn": "And Moses said unto the people, Fear ye not, stand still, and see the salvation of the Lord, which he will shew to you to day: for the Egyptians whom ye have seen to day, ye shall see them again no more for ever."
       },
       {
-        "trait": "하나님과의 친밀함",
+        "trait": "경건",
         "verse_ref": "출 33:11",
         "description": "하나님께서 모세와 사람이 친구와 대화하듯 대면하여 말씀하셨다고 기록될 만큼 깊은 교제를 누렸다.",
         "verse_textKo": "사람이 그 친구와 이야기함 같이 여호와께서는 모세와 대면하여 말씀하시며 모세는 진으로 돌아오나 그 수종자 눈의 아들 청년 여호수아는 회막을 떠나지 아니하니라 ",
@@ -421,7 +414,7 @@
         "verse_textEn": "And blessed is she that believed: for there shall be a performance of those things which were told her from the Lord."
       },
       {
-        "trait": "찬양",
+        "trait": "감사",
         "verse_ref": "눅 1:46-47",
         "description": "마그니피캇으로 알려진 송가를 통해 자신을 돌보신 하나님의 은혜를 온 마음으로 높였다.",
         "verse_textKo": "마리아가 가로되 내 영혼이 주를 찬양하며 ",
@@ -453,14 +446,14 @@
         "verse_textEn": "When Jesus therefore saw his mother, and the disciple standing by, whom he loved, he saith unto his mother, Woman, behold thy son!"
       },
       {
-        "trait": "영적 통찰",
+        "trait": "믿음",
         "verse_ref": "요 20:8",
         "description": "빈 무덤에 들어가 세마포를 보자마자 다른 제자들보다 먼저 부활을 믿었다.",
         "verse_textKo": "그 때에야 무덤에 먼저 왔던 그 다른 제자도 들어가 보고 믿더라 ",
         "verse_textEn": "Then went in also that other disciple, which came first to the sepulchre, and he saw, and believed."
       },
       {
-        "trait": "증언",
+        "trait": "담대함",
         "verse_ref": "요일 1:1",
         "description": "생명의 말씀이신 예수를 직접 눈으로 보고 손으로 만진 증인으로서 담대하게 선포했다.",
         "verse_textKo": "태초부터 있는 생명의 말씀에 관하여는 우리가 들은 바요 눈으로 본 바요 주목하고 우리 손으로 만진 바라 ",
@@ -485,14 +478,14 @@
         "verse_textEn": "He must increase, but I must decrease."
       },
       {
-        "trait": "사명 충성",
+        "trait": "충성",
         "verse_ref": "눅 1:76",
         "description": "주의 앞에 앞서 가서 길을 예비하리라는 예언대로 광야에서 회개의 세례를 선포하며 메시아를 준비했다.",
         "verse_textKo": "이 아이여 네가 지극히 높으신 이의 선지자라 일컬음을 받고 주 앞에 앞서 가서 그 길을 예비하여 ",
         "verse_textEn": "And thou, child, shalt be called the prophet of the Highest: for thou shalt go before the face of the Lord to prepare his ways;"
       },
       {
-        "trait": "정의",
+        "trait": "공의",
         "verse_ref": "막 6:18",
         "description": "헤롯이 형제의 아내를 취한 것이 옳지 않다고 권력 앞에서도 굽히지 않고 직언하다가 투옥되었다.",
         "verse_textKo": "이는 요한이 헤롯에게 말하되 동생의 아내를 취한 것이 옳지 않다 하였음이라 ",
@@ -503,14 +496,14 @@
   "recpvMKljbEMuiK9e": {
     "traits": [
       {
-        "trait": "즉각적 응답",
+        "trait": "순종",
         "verse_ref": "마 4:20",
         "description": "예수께서 나를 따르라 부르시자 즉시 그물을 버려두고 형 베드로와 함께 따랐다.",
         "verse_textKo": "저희가 곧 그물을 버려 두고 예수를 좇으니라 ",
         "verse_textEn": "And they straightway left their nets, and followed him."
       },
       {
-        "trait": "전도 열심",
+        "trait": "헌신",
         "verse_ref": "요 1:41-42",
         "description": "예수를 만난 후 가장 먼저 형 베드로에게 달려가 메시아를 찾았다고 전하여 그를 예수께 인도했다.",
         "verse_textKo": "그가 먼저 자기의 형제 시몬을 찾아 말하되 우리가 메시야를 만났다 하고 (메시야는 번역하면 그리스도라) ",
@@ -522,45 +515,38 @@
         "description": "복음서 전통에서 항상 베드로의 형제로 소개될 만큼 주목받지 않으면서도 묵묵히 섬겼다.",
         "verse_textKo": "요한의 말을 듣고 예수를 좇는 두 사람 중에 하나는 시몬 베드로의 형제 안드레라 ",
         "verse_textEn": "One of the two which heard John speak, and followed him, was Andrew, Simon Peter’s brother."
-      },
-      {
-        "trait": "연결자 정신",
-        "verse_ref": "요 6:8-9",
-        "description": "오병이어 기적 직전, 오병이어를 가진 아이를 예수께 소개하며 사람과 예수를 이어주는 역할을 했다.",
-        "verse_textKo": "제자 중 하나 곧 시몬 베드로의 형제 안드레가 예수께 여짜오되 ",
-        "verse_textEn": "One of his disciples, Andrew, Simon Peter’s brother, saith unto him,"
       }
     ]
   },
   "recyYgUiSETdWFgEP": {
     "traits": [
       {
-        "trait": "책임회피",
+        "trait": "비겁",
         "verse_ref": "창 3:12",
         "description": "선악과를 먹은 후 '하나님이 주신 여자가 나에게 주어서 먹었다'고 하와에게 책임을 전가했다.",
         "verse_textKo": "아담이 가로되 하나님이 주셔서 나와 함께 하게 하신 여자 그가 그 나무 실과를 내게 주므로 내가 먹었나이다 ",
         "verse_textEn": "And the man said, The woman whom thou gavest to be with me, she gave me of the tree, and I did eat."
       },
       {
-        "trait": "순종",
-        "verse_ref": "창 2:16-17",
-        "description": "하나님께서 동산 각종 나무의 열매를 먹되 선악과만은 먹지 말라 명하셨을 때 처음에는 그 명령 안에서 살았다.",
-        "verse_textKo": "여호와 하나님이 그 사람에게 명하여 가라사대 동산 각종 나무의 실과는 네가 임의로 먹되 ",
-        "verse_textEn": "And the Lord God commanded the man, saying, Of every tree of the garden thou mayest freely eat:"
-      },
-      {
-        "trait": "교제",
+        "trait": "사랑",
         "verse_ref": "창 2:23",
         "description": "하나님께서 하와를 데려오셨을 때 기쁨으로 받아들이며 '이는 내 뼈 중의 뼈요 살 중의 살'이라 고백했다.",
         "verse_textKo": "아담이 가로되 이는 내 뼈 중의 뼈요 살 중의 살이라 이것을 남자에게서 취하였은즉 여자라 칭하리라 하니라 ",
         "verse_textEn": "And Adam said, This is now bone of my bones, and flesh of my flesh: she shall be called Woman, because she was taken out of Man."
       },
       {
-        "trait": "노동",
+        "trait": "근면",
         "verse_ref": "창 3:23",
         "description": "에덴에서 쫓겨난 후에도 땅을 갈아 생존하는 수고의 삶을 통해 책임적 존재로서 살아갔다.",
         "verse_textKo": "여호와 하나님이 에덴 동산에서 그 사람을 내어 보내어 그의 근본된 토지를 갈게 하시니라 ",
         "verse_textEn": "Therefore the Lord God sent him forth from the garden of Eden, to till the ground from whence he was taken."
+      },
+      {
+        "trait": "불순종",
+        "verse_ref": "창 3:6",
+        "description": "아내가 건넨 선악과를 함께 먹어 하나님이 주신 유일한 금령을 어겼다.",
+        "verse_textKo": "여자가 그 나무를 본즉 먹음직도 하고 보암직도 하고 지혜롭게 할 만큼 탐스럽기도 한 나무인지라 여자가 그 실과를 따먹고 자기와 함께한 남편에게도 주매 그도 먹은지라 ",
+        "verse_textEn": "And when the woman saw that the tree was good for food, and that it was pleasant to the eyes, and a tree to be desired to make one wise, she took of the fruit thereof, and did eat, and gave also unto her husband with her; and he did eat."
       }
     ]
   },
@@ -581,7 +567,7 @@
         "verse_textEn": "And they came to the place which God had told him of; and Abraham built an altar there, and laid the wood in order, and bound Isaac his son, and laid him on the altar upon the wood."
       },
       {
-        "trait": "기도",
+        "trait": "경건",
         "verse_ref": "창 25:21",
         "description": "아내 리브가가 임신하지 못하자 하나님께 간구하였고 하나님께서 응답하셨다.",
         "verse_textKo": "이삭이 그 아내가 잉태하지 못하므로 그를 위하여 여호와께 간구하매 여호와께서 그 간구를 들으셨으므로 그 아내 리브가가 잉태하였더니 ",
@@ -620,7 +606,7 @@
         "verse_textEn": "If the Lord delight in us, then he will bring us into this land, and give it us; a land which floweth with milk and honey."
       },
       {
-        "trait": "결단",
+        "trait": "헌신",
         "verse_ref": "수 24:15",
         "description": "'나와 내 집은 여호와를 섬기겠노라'는 공개적 헌신의 선언으로 이스라엘을 이끌었다.",
         "verse_textKo": "만일 여호와를 섬기는 것이 너희에게 좋지 않게 보이거든 너희 열조가 강 저편에서 섬기던 신이든지 혹 너희의 거하는 땅 아모리 사람의 신이든지 너희 섬길 자를 오늘날 택하라 오직 나와 내 집은 여호와를 섬기겠노라 ",
@@ -631,7 +617,7 @@
   "rechkAyIwugqcLaaY": {
     "traits": [
       {
-        "trait": "열심",
+        "trait": "담대함",
         "verse_ref": "막 3:17",
         "description": "예수님께서 야고보와 요한에게 '보아너게(우레의 아들들)'라는 별명을 붙여 줄 만큼 불같은 열정을 지녔다.",
         "verse_textKo": "또 세베대의 아들 야고보와 야고보의 형제 요한이니 이 둘에게는 보아너게 곧 우뢰의 아들이란 이름을 더하셨으며 ",
@@ -645,14 +631,7 @@
         "verse_textEn": "And they immediately left the ship and their father, and followed him."
       },
       {
-        "trait": "순교",
-        "verse_ref": "행 12:2",
-        "description": "헤롯 아그립바에게 칼로 죽임을 당하여 열두 사도 중 첫 번째 순교자가 되었다.",
-        "verse_textKo": "요한의 형제 야고보를 칼로 죽이니 ",
-        "verse_textEn": "And he killed James the brother of John with the sword."
-      },
-      {
-        "trait": "야망",
+        "trait": "교만",
         "verse_ref": "막 10:37",
         "description": "어머니를 통해 예수님의 나라에서 좌우편에 앉게 해 달라고 구할 만큼 높아지려는 마음이 있었다.",
         "verse_textKo": "여짜오되 주의 영광 중에서 우리를 하나는 주의 우편에, 하나는 좌편에 앉게 하여 주옵소서 ",
@@ -663,7 +642,7 @@
   "recNsU6uPfTysNEKM": {
     "traits": [
       {
-        "trait": "전도",
+        "trait": "담대함",
         "verse_ref": "행 8:5",
         "description": "사마리아 성에 내려가 그리스도를 선포하여 많은 이들이 복음을 듣고 기쁨으로 받아들였다.",
         "verse_textKo": "빌립이 사마리아 성에 내려가 그리스도를 백성에게 전파하니 ",
@@ -727,18 +706,11 @@
   "rec5L6bAZR3j8fYAE": {
     "traits": [
       {
-        "trait": "협력",
+        "trait": "근면",
         "verse_ref": "행 18:3",
         "description": "바울과 같은 천막 제조 직업을 가졌기에 함께 일하며 복음 사역의 든든한 동역자가 되었다.",
         "verse_textKo": "업이 같으므로 함께 거하여 일을 하니 그 업은 장막을 만드는 것이더라 ",
         "verse_textEn": "And because he was of the same craft, he abode with them, and wrought: for by their occupation they were tentmakers."
-      },
-      {
-        "trait": "가르침",
-        "verse_ref": "행 18:26",
-        "description": "브리스길라와 함께 아볼로를 데려다가 하나님의 도를 더 정확하게 가르쳐 주었다.",
-        "verse_textKo": "그가 회당에서 담대히 말하기를 시작하거늘 브리스길라와 아굴라가 듣고 데려다가 하나님의 도를 더 자세히 풀어 이르더라 ",
-        "verse_textEn": "And he began to speak boldly in the synagogue: whom when Aquila and Priscilla had heard, they took him unto them, and expounded unto him the way of God more perfectly."
       },
       {
         "trait": "헌신",
@@ -759,7 +731,7 @@
   "recOpU2GjcCC2kTg9": {
     "traits": [
       {
-        "trait": "가르침",
+        "trait": "지혜",
         "verse_ref": "행 18:26",
         "description": "아굴라와 함께 아볼로를 따로 데려다가 성경을 더 정확하게 풀어 가르쳤다.",
         "verse_textKo": "그가 회당에서 담대히 말하기를 시작하거늘 브리스길라와 아굴라가 듣고 데려다가 하나님의 도를 더 자세히 풀어 이르더라 ",
@@ -773,7 +745,7 @@
         "verse_textEn": "Who have for my life laid down their own necks: unto whom not only I give thanks, but also all the churches of the Gentiles."
       },
       {
-        "trait": "지도력",
+        "trait": "충성",
         "verse_ref": "행 18:18",
         "description": "고린도에서 에베소로, 로마로, 다시 에베소로 이동하는 선교 여정에서 바울과 함께 공동체를 세워 나갔다.",
         "verse_textKo": "바울은 더 여러 날 유하다가 형제들을 작별하고 배 타고 수리아로 떠나갈새 브리스길라와 아굴라도 함께 하더라 바울이 일찍 서원이 있으므로 겐그레아에서 머리를 깎았더라 ",
@@ -798,14 +770,7 @@
         "verse_textEn": "And to Seth, to him also there was born a son; and he called his name Enos: then began men to call upon the name of the Lord. "
       },
       {
-        "trait": "대체적 사명",
-        "verse_ref": "창 4:25",
-        "description": "하나님이 아벨 대신 셋을 허락하셨으니, 셋은 살해된 의인의 계보를 잇는 섭리적 사명을 받았다.",
-        "verse_textKo": "아담이 다시 아내와 동침하매 그가 아들을 낳아 그 이름을 셋이라 하였으니 이는 하나님이 내게 가인의 죽인 아벨 대신에 다른 씨를 주셨다 함이며 ",
-        "verse_textEn": "And Adam knew his wife again; and she bare a son, and called his name Seth: For God, said she, hath appointed me another seed instead of Abel, whom Cain slew."
-      },
-      {
-        "trait": "신실한 계보",
+        "trait": "신실",
         "verse_ref": "창 5:3-4",
         "description": "셋은 아담의 형상대로 태어나 하나님 형상의 계보를 신실하게 전수하였다.",
         "verse_textKo": "아담이 일백삼십 세에 자기 모양 곧 자기 형상과 같은 아들을 낳아 이름을 셋이라 하였고 ",
@@ -816,21 +781,21 @@
   "recH5aFqTzpwfDSRi": {
     "traits": [
       {
-        "trait": "세속적 선택",
+        "trait": "탐욕",
         "verse_ref": "창 13:12",
         "description": "롯은 소돔 쪽 평원을 택하여 점점 소돔 성읍에 가까이 장막을 옮기며 세속적 풍요를 따랐다.",
         "verse_textKo": "아브람은 가나안 땅에 거하였고 롯은 평지 성읍들에 머무르며 그 장막을 옮겨 소돔까지 이르렀더라 ",
         "verse_textEn": "Abram dwelled in the land of Canaan, and Lot dwelled in the cities of the plain, and pitched his tent toward Sodom."
       },
       {
-        "trait": "나그네 환대",
+        "trait": "환대",
         "verse_ref": "창 19:2-3",
         "description": "롯은 소돔 성문에 온 천사들을 집으로 강권하여 맞아들이고 잔치를 베풀었다.",
         "verse_textKo": "가로되 내 주여 돌이켜 종의 집으로 들어와 발을 씻고 주무시고 일찍이 일어나 갈 길을 가소서 그들이 가로되 아니라 우리가 거리에서 경야하리라 ",
         "verse_textEn": "And he said, Behold now, my lords, turn in, I pray you, into your servant’s house, and tarry all night, and wash your feet, and ye shall rise up early, and go on your ways. And they said, Nay; but we will abide in the street all night."
       },
       {
-        "trait": "의로운 영혼",
+        "trait": "공의",
         "verse_ref": "벧후 2:7-8",
         "description": "베드로는 롯을 '의로운 자'로 불러, 그가 소돔의 음란함 속에서 날마다 마음이 상하였음을 증언한다.",
         "verse_textKo": "무법한 자의 음란한 행실을 인하여 고통하는 의로운 롯을 건지셨으니 ",
@@ -848,44 +813,30 @@
   "rec0rm6yYA4YUQrkh": {
     "traits": [
       {
-        "trait": "책임 인정",
+        "trait": "정직",
         "verse_ref": "창 38:26",
         "description": "유다는 다말의 사건에서 '그는 나보다 옳도다'라고 고백하며 자신의 잘못을 공개적으로 인정하였다.",
         "verse_textKo": "유다가 그것들을 알아보고 가로되 그는 나보다 옳도다 내가 그를 내 아들 셀라에게 주지 아니하였음이로다 하고 다시는 그를 가까이 하지 아니하였더라 ",
         "verse_textEn": "And Judah acknowledged them, and said, She hath been more righteous than I; because that I gave her not to Shelah my son. And he knew her again no more."
       },
       {
-        "trait": "희생적 대속",
+        "trait": "사랑",
         "verse_ref": "창 44:33",
         "description": "유다는 베냐민 대신 자신이 노예로 남겠다고 요셉 앞에 자청하며 형제를 위한 대속적 희생을 보였다.",
         "verse_textKo": "청컨대 주의 종으로 아이를 대신하여 있어서 주의 종이 되게 하시고 아이는 형제와 함께 도로 올려 보내소서 ",
         "verse_textEn": "Now therefore, I pray thee, let thy servant abide instead of the lad a bondman to my lord; and let the lad go up with his brethren."
       },
       {
-        "trait": "리더십",
+        "trait": "용기",
         "verse_ref": "창 43:8-9",
         "description": "유다는 야곱 앞에서 베냐민의 안전을 보증하며 형제들 중 주도적인 대변인 역할을 맡았다.",
         "verse_textKo": "유다가 아비 이스라엘에게 이르되 저 아이를 나와 함께 보내시면 우리가 곧 가리니 그러면 우리와 아버지와 우리 어린 것들이 다 살고 죽지 아니하리이다 ",
         "verse_textEn": "And Judah said unto Israel his father, Send the lad with me, and we will arise and go; that we may live, and not die, both we, and thou, and also our little ones."
-      },
-      {
-        "trait": "메시아 계보",
-        "verse_ref": "창 49:10",
-        "description": "야곱은 유다 지파에서 왕의 홀이 떠나지 않으리라 예언하여, 유다가 왕적 메시아 계보의 조상이 됨을 선포하였다.",
-        "verse_textKo": "홀이 유다를 떠나지 아니하며 치리자의 지팡이가 그 발 사이에서 떠나지 아니하시기를 실로가 오시기까지 미치리니 그에게 모든 백성이 복종하리로다 ",
-        "verse_textEn": "The sceptre shall not depart from Judah, nor a lawgiver from between his feet, until Shiloh come; and unto him shall the gathering of the people be."
       }
     ]
   },
   "rec1ZMFtfbEvoGC73": {
     "traits": [
-      {
-        "trait": "하나님의 마음",
-        "verse_ref": "삼상 13:14",
-        "description": "하나님은 다윗을 '내 마음에 맞는 사람'이라 일컬으며 그를 이스라엘의 왕으로 세우셨다.",
-        "verse_textKo": "지금은 왕의 나라가 길지 못할 것이라 여호와께서 왕에게 명하신 바를 왕이 지키지 아니하였으므로 여호와께서 그 마음에 맞는 사람을 구하여 그 백성의 지도자를 삼으셨느니라 하고 ",
-        "verse_textEn": "But now thy kingdom shall not continue: the Lord hath sought him a man after his own heart, and the Lord hath commanded him to be captain over his people, because thou hast not kept that which the Lord commanded thee."
-      },
       {
         "trait": "용기",
         "verse_ref": "삼상 17:45",
@@ -894,21 +845,21 @@
         "verse_textEn": "Then said David to the Philistine, Thou comest to me with a sword, and with a spear, and with a shield: but I come to thee in the name of the Lord of hosts, the God of the armies of Israel, whom thou hast defied."
       },
       {
-        "trait": "회개",
+        "trait": "통회",
         "verse_ref": "시 51:3-4",
         "description": "밧세바 사건 후 다윗은 나단의 책망을 받아 '내가 주께만 범죄하였나이다'라며 진심으로 통회하였다.",
         "verse_textKo": "대저 나는 내 죄과를 아오니 내 죄가 항상 내 앞에 있나이다 ",
         "verse_textEn": "For I acknowledge my transgressions: and my sin is ever before me."
       },
       {
-        "trait": "예배",
+        "trait": "경건",
         "verse_ref": "삼하 6:14",
         "description": "법궤를 예루살렘으로 옮길 때 다윗은 여호와 앞에서 힘을 다하여 춤을 추며 예배하였다.",
         "verse_textKo": "여호와 앞에서 힘을 다하여 춤을 추는데 때에 베 에봇을 입었더라 ",
         "verse_textEn": "And David danced before the Lord with all his might; and David was girded with a linen ephod."
       },
       {
-        "trait": "관용",
+        "trait": "절제",
         "verse_ref": "삼상 24:10",
         "description": "다윗은 굴속에서 사울을 죽일 기회를 얻었으나 '여호와의 기름 부음 받은 자'를 해치지 않았다.",
         "verse_textKo": "오늘 여호와께서 굴에서 왕을 내 손에 붙이신 것을 왕이 아셨을 것이니이다 혹이 나를 권하여 왕을 죽이라 하였으나 내가 왕을 아껴 말하기를 나는 내 손을 들어 내 주를 해치 아니하리니 그는 여호와의 기름 부음을 받은 자가 됨이니라 하였나이다 ",
@@ -926,21 +877,14 @@
         "verse_textEn": "Behold, I have done according to thy words: lo, I have given thee a wise and an understanding heart; so that there was none like thee before thee, neither after thee shall any arise like unto thee."
       },
       {
-        "trait": "성전 헌신",
+        "trait": "겸손",
         "verse_ref": "왕상 8:27",
         "description": "솔로몬은 성전 봉헌 기도에서 '하늘도 주를 담지 못하거늘 이 성전이 어찌하리이까'라며 겸손히 하나님께 드렸다.",
         "verse_textKo": "하나님이 참으로 땅에 거하시리이까 하늘과 하늘들의 하늘이라도 주를 용납지 못하겠거든 하물며 내가 건축한 이 전이오리이까 ",
         "verse_textEn": "But will God indeed dwell on the earth? behold, the heaven and heaven of heavens cannot contain thee; how much less this house that I have builded?"
       },
       {
-        "trait": "영광과 번영",
-        "verse_ref": "왕상 10:23",
-        "description": "온 세상의 왕들 중 솔로몬이 재물과 지혜 면에서 가장 큰 왕이었음이 기록되어 있다.",
-        "verse_textKo": "솔로몬 왕의 재산과 지혜가 천하 열왕보다 큰지라 ",
-        "verse_textEn": "So king Solomon exceeded all the kings of the earth for riches and for wisdom."
-      },
-      {
-        "trait": "말년의 타락",
+        "trait": "불순종",
         "verse_ref": "왕상 11:4",
         "description": "솔로몬은 말년에 이방 아내들로 인해 마음이 기울어 다른 신들을 따르며 하나님께 온전하지 못하였다.",
         "verse_textKo": "솔로몬의 나이 늙을 때에 왕비들이 그 마음을 돌이켜 다른 신들을 좇게 하였으므로 왕의 마음이 그 부친 다윗의 마음과 같지 아니하여 그 하나님 여호와 앞에 온전치 못하였으니 ",
@@ -965,14 +909,14 @@
         "verse_textEn": "Behold, here I am: witness against me before the Lord, and before his anointed: whose ox have I taken? or whose ass have I taken? or whom have I defrauded? whom have I oppressed? or of whose hand have I received any bribe to blind mine eyes therewith? and I will restore it you."
       },
       {
-        "trait": "중보기도",
+        "trait": "긍휼",
         "verse_ref": "삼상 7:9",
         "description": "블레셋의 공격 앞에서 온 이스라엘을 위해 번제를 드리고 부르짖어 기도함으로 하나님의 구원을 이끌어냈다.",
         "verse_textKo": "사무엘이 젖 먹는 어린 양을 취하여 온전한 번제를 여호와께 드리고 이스라엘을 위하여 여호와께 부르짖으매 여호와께서 응답하셨더라 ",
         "verse_textEn": "And Samuel took a sucking lamb, and offered it for a burnt offering wholly unto the Lord: and Samuel cried unto the Lord for Israel; and the Lord heard him."
       },
       {
-        "trait": "분별력",
+        "trait": "분별",
         "verse_ref": "삼상 16:7",
         "description": "외모를 보는 인간적 기준을 버리고 하나님이 다윗의 중심을 보신다는 계시에 따라 그를 왕으로 기름부었다.",
         "verse_textKo": "여호와께서 사무엘에게 이르시되 그 용모와 신장을 보지 말라 내가 이미 그를 버렸노라 나의 보는 것은 사람과 같지 아니하니 사람은 외모를 보거니와 나 여호와는 중심을 보느니라 ",
@@ -983,46 +927,39 @@
   "recit3DiamFt2zO0S": {
     "traits": [
       {
-        "trait": "소명과 헌신",
+        "trait": "헌신",
         "verse_ref": "사 6:8",
         "description": "이사야는 하나님의 '누가 우리를 위하여 갈꼬' 하는 음성에 '내가 여기 있나이다 나를 보내소서'라고 즉각 응답하였다.",
         "verse_textKo": "내가 또 주의 목소리를 들은즉 이르시되 내가 누구를 보내며 누가 우리를 위하여 갈꼬 그 때에 내가 가로되 내가 여기 있나이다 나를 보내소서 ",
         "verse_textEn": "Also I heard the voice of the Lord, saying, Whom shall I send, and who will go for us? Then said I, Here am I; send me."
       },
       {
-        "trait": "거룩한 두려움",
+        "trait": "경건",
         "verse_ref": "사 6:5",
         "description": "이사야는 성전에서 하나님의 영광을 보고 '화로다 나여 나는 망하게 되었도다'라며 자신의 부정함을 고백하였다.",
         "verse_textKo": "그 때에 내가 말하되 화로다 나여 망하게 되었도다 나는 입술이 부정한 사람이요 입술이 부정한 백성 중에 거하면서 만군의 여호와이신 왕을 뵈었음이로다 ",
         "verse_textEn": "Then said I, Woe is me! for I am undone; because I am a man of unclean lips, and I dwell in the midst of a people of unclean lips: for mine eyes have seen the King, the Lord of hosts."
       },
       {
-        "trait": "예언적 용기",
+        "trait": "담대함",
         "verse_ref": "사 1:4",
         "description": "이사야는 죄악에 물든 이스라엘을 향해 '슬프다 범죄한 나라여'라며 거침없이 심판을 선포하였다.",
         "verse_textKo": "슬프다 범죄한 나라요 허물진 백성이요 행악의 종자요 행위가 부패한 자식이로다 그들이 여호와를 버리며 이스라엘의 거룩한 자를 만홀히 여겨 멀리하고 물러갔도다 ",
         "verse_textEn": "Ah sinful nation, a people laden with iniquity, a seed of evildoers, children that are corrupters: they have forsaken the Lord, they have provoked the Holy One of Israel unto anger, they are gone away backward."
       },
       {
-        "trait": "위로의 사역",
+        "trait": "긍휼",
         "verse_ref": "사 40:1",
         "description": "이사야는 '너희 하나님이 이르시되 위로하라 내 백성을 위로하라'는 하나님의 명령을 받아 소망의 메시지를 전하였다.",
         "verse_textKo": "너희 하나님이 가라사대 너희는 위로하라 내 백성을 위로하라 ",
         "verse_textEn": "Comfort ye, comfort ye my people, saith your God."
-      },
-      {
-        "trait": "메시아 예언",
-        "verse_ref": "사 53:5",
-        "description": "이사야는 '그가 찔림은 우리의 허물 때문이요'라며 고난받는 종을 통한 대속을 수백 년 전에 예언하였다.",
-        "verse_textKo": "그가 찔림은 우리의 허물을 인함이요 그가 상함은 우리의 죄악을 인함이라 그가 징계를 받음으로 우리가 평화를 누리고 그가 채찍에 맞음으로 우리가 나음을 입었도다 ",
-        "verse_textEn": "But he was wounded for our transgressions, he was bruised for our iniquities: the chastisement of our peace was upon him; and with his stripes we are healed."
       }
     ]
   },
   "authored-person-gideon": {
     "traits": [
       {
-        "trait": "신중함",
+        "trait": "분별",
         "verse_ref": "삿 6:39",
         "description": "기드온은 양털 시험을 두 번 구하며 하나님의 뜻을 거듭 확인한 후에야 나아갔다.",
         "verse_textKo": "기드온이 또 하나님께 여짜오되 주여 내게 진노하지 마옵소서 내가 이번만 말하리이다 구하옵나니 나로 다시 한번 양털로 시험하게 하소서 양털만 마르고 사면 땅에는 다 이슬이 있게 하옵소서 하였더니 ",
@@ -1075,7 +1012,7 @@
         "verse_textEn": "And she said, I will surely go with thee: notwithstanding the journey that thou takest shall not be for thine honour; for the Lord shall sell Sisera into the hand of a woman. And Deborah arose, and went with Barak to Kedesh."
       },
       {
-        "trait": "찬양",
+        "trait": "감사",
         "verse_ref": "삿 5:3",
         "description": "승리 후 '나 곧 내가 여호와를 노래할 것이요'라며 하나님께 영광을 돌리는 노래를 지었다.",
         "verse_textKo": "너희 왕들아 들으라 방백들아 귀를 기울이라 나 곧 내가 여호와를 노래할 것이요 이스라엘의 하나님 여호와를 찬송하리로다 ",
@@ -1093,21 +1030,21 @@
         "verse_textEn": "Then the Spirit of the Lord came upon Jephthah, and he passed over Gilead, and Manasseh, and passed over Mizpeh of Gilead, and from Mizpeh of Gilead he passed over unto the children of Ammon."
       },
       {
-        "trait": "언약 중시",
+        "trait": "신실",
         "verse_ref": "삿 11:35",
         "description": "여호와께 입을 열어 서원한 것을 돌이킬 수 없다며 고통 중에도 약속을 지키려 했다.",
         "verse_textKo": "입다가 이를 보고 자기 옷을 찢으며 가로되 슬프다 내 딸이여 너는 나로 하여금 참담케 하는 자요 너는 나를 괴롭게 하는 자 중의 하나이로다 내가 여호와를 향하여 입을 열었으니 능히 돌이키지 못하리로다 ",
         "verse_textEn": "And it came to pass, when he saw her, that he rent his clothes, and said, Alas, my daughter! thou hast brought me very low, and thou art one of them that trouble me: for I have opened my mouth unto the Lord, and I cannot go back."
       },
       {
-        "trait": "논리적 설득",
+        "trait": "지혜",
         "verse_ref": "삿 11:15",
         "description": "전쟁 전 암몬 왕에게 사자를 보내 역사적 사실로 이스라엘의 정당함을 조목조목 변론하였다.",
         "verse_textKo": "그에게 이르되 입다가 말하노라 이스라엘이 모압 땅과 암몬 자손의 땅을 취하지 아니하였느니라 ",
         "verse_textEn": "And said unto him, Thus saith Jephthah, Israel took not away the land of Moab, nor the land of the children of Ammon:"
       },
       {
-        "trait": "역경 극복",
+        "trait": "인내",
         "verse_ref": "삿 11:1",
         "description": "기생의 아들로 쫓겨났으나 길르앗의 장로들이 다시 찾는 큰 용사로 성장하였다.",
         "verse_textKo": "길르앗 사람 큰 용사 입다는 기생이 길르앗에게 낳은 아들이었고 ",
@@ -1118,32 +1055,25 @@
   "authored-person-samson": {
     "traits": [
       {
-        "trait": "괴력",
-        "verse_ref": "삿 14:6",
-        "description": "여호와의 신에 크게 감동되어 손에 아무것도 없이 사자를 염소 새끼 찢듯 찢었다.",
-        "verse_textKo": "삼손이 여호와의 신에게 크게 감동되어 손에 아무 것도 없어도 그 사자를 염소 새끼를 찢음 같이 찢었으나 그는 그 행한 일을 부모에게도 고하지 아니하였고 ",
-        "verse_textEn": "And the Spirit of the Lord came mightily upon him, and he rent him as he would have rent a kid, and he had nothing in his hand: but he told not his father or his mother what he had done."
-      },
-      {
-        "trait": "회개",
+        "trait": "통회",
         "verse_ref": "삿 16:28",
         "description": "실패 후 '여호와여 구하옵나니 나를 생각하옵소서'라며 마지막으로 하나님께 부르짖었다.",
         "verse_textKo": "삼손이 여호와께 부르짖어 가로되 주 여호와여 구하옵나니 나를 생각하옵소서 하나님이여 구하옵나니 이번만 나로 강하게 하사 블레셋 사람이 나의 두 눈을 뺀 원수를 단번에 갚게 하옵소서 하고 ",
         "verse_textEn": "And Samson called unto the Lord, and said, O Lord God, remember me, I pray thee, and strengthen me, I pray thee, only this once, O God, that I may be at once avenged of the Philistines for my two eyes."
       },
       {
-        "trait": "연약함",
+        "trait": "불순종",
         "verse_ref": "삿 16:17",
         "description": "들릴라의 거듭된 유혹에 나실인의 비밀을 누설하여 힘의 근원을 잃고 말았다.",
         "verse_textKo": "삼손이 진정을 토하여 그에게 이르되 내 머리에는 삭도를 대지 아니하였나니 이는 내가 모태에서 허나님의 나실인이 되었음이라 만일 내 머리가 밀리우면 내 힘이 내게서 떠나고 나는 약하여져서 다른 사람과 같으리라 ",
         "verse_textEn": "That he told her all his heart, and said unto her, There hath not come a razor upon mine head; for I have been a Nazarite unto God from my mother’s womb: if I be shaven, then my strength will go from me, and I shall become weak, and be like any other man."
       },
       {
-        "trait": "헌신된 출생",
-        "verse_ref": "삿 13:5",
-        "description": "태에서부터 하나님께 바쳐진 나실인으로, 이스라엘을 블레셋에서 구원하도록 세워졌다.",
-        "verse_textKo": "보라 네가 잉태하여 아들을 낳으리니 그 머리에 삭도를 대지 말라 이 아이는 태에서 나옴으로부터 하나님께 바치운 나실인이 됨이라 그가 블레셋 사람의 손에서 이스라엘을 구원하기 시작하리라 ",
-        "verse_textEn": "For, lo, thou shalt conceive, and bear a son; and no razor shall come on his head: for the child shall be a Nazarite unto God from the womb: and he shall begin to deliver Israel out of the hand of the Philistines."
+        "trait": "용기",
+        "verse_ref": "삿 15:14-15",
+        "description": "결박된 채 블레셋 무리 가운데로 끌려가서도 나귀 턱뼈 하나로 홀로 맞서 싸워 이스라엘을 건졌다.",
+        "verse_textKo": "삼손이 레히에 이르매 블레셋 사람이 그에게로 마주 나가며 소리지르는 동시에 여호와의 신의 권능이 삼손에게 임하매 그 팔 위의 줄이 불탄 삼과 같아서 그 결박되었던 손에서 떨어진지라 ",
+        "verse_textEn": "And when he came unto Lehi, the Philistines shouted against him: and the Spirit of the Lord came mightily upon him, and the cords that were upon his arms became as flax that was burnt with fire, and his bands loosed from off his hands."
       }
     ]
   },
@@ -1157,21 +1087,21 @@
         "verse_textEn": "And Ruth said, Intreat me not to leave thee, or to return from following after thee: for whither thou goest, I will go; and where thou lodgest, I will lodge: thy people shall be my people, and thy God my God:"
       },
       {
-        "trait": "성실",
+        "trait": "근면",
         "verse_ref": "룻 2:7",
         "description": "아침부터 저녁까지 잠시 쉰 것 외에는 밭에서 계속 이삭을 주우며 나오미를 봉양하였다.",
         "verse_textKo": "그의 말이 나로 베는 자를 따라 단 사이에서 이삭을 줍게 하소서 하였고 아침부터 와서는 잠시 집에서 쉰 외에 지금까지 계속하는 중이니이다 ",
         "verse_textEn": "And she said, I pray you, let me glean and gather after the reapers among the sheaves: so she came, and hath continued even from the morning until now, that she tarried a little in the house."
       },
       {
-        "trait": "현숙함",
+        "trait": "신실",
         "verse_ref": "룻 3:11",
         "description": "성읍 백성이 다 그를 현숙한 여자인 줄 알 만큼 신실한 삶을 살았다.",
         "verse_textKo": "내 딸아 두려워말라 내가 네 말대로 네게 다 행하리라 네가 현숙한 여자인줄 나의 성읍 백성이 다 아느니라 ",
         "verse_textEn": "And now, my daughter, fear not; I will do to thee all that thou requirest: for all the city of my people doth know that thou art a virtuous woman."
       },
       {
-        "trait": "믿음의 결단",
+        "trait": "믿음",
         "verse_ref": "룻 2:12",
         "description": "여호와의 날개 아래 보호받으러 온 이방 여인으로서 이스라엘의 하나님께 피하였다.",
         "verse_textKo": "여호와께서 네 행한 일을 보응하시기를 원하며 이스라엘의 하나님 여호와께서 그 날개 아래 보호를 받으러 온 네게 온전한 상 주시기를 원하노라 ",
@@ -1182,14 +1112,14 @@
   "authored-person-saul": {
     "traits": [
       {
-        "trait": "겸손한 시작",
+        "trait": "겸손",
         "verse_ref": "삼상 9:21",
         "description": "왕으로 지명될 때 '나는 이스라엘 지파의 가장 작은 지파 베냐민 사람이 아니오니이까'라며 자신을 낮추었다.",
         "verse_textKo": "사울이 대답하여 가로되 나는 이스라엘 지파의 가장 작은 지파 베냐민 사람이 아니오며 나의 가족은 베냐민 지파 모든 가족 중에 가장 미약하지 아니하니이까 당신이 어찌하여 내게 이같이 말씀하시나이까 ",
         "verse_textEn": "And Saul answered and said, Am not I a Benjamite, of the smallest of the tribes of Israel? and my family the least of all the families of the tribe of Benjamin? wherefore then speakest thou so to me?"
       },
       {
-        "trait": "용맹",
+        "trait": "용기",
         "verse_ref": "삼상 11:6",
         "description": "하나님의 신에 감동되어 암몬의 위협에서 야베스 길르앗을 구원하였다.",
         "verse_textKo": "사울이 이 말을 들을 때에 하나님의 신에게 크게 감동되매 그 노가 크게 일어나서 ",
@@ -1203,7 +1133,7 @@
         "verse_textEn": "And Samuel said, Hath the Lord as great delight in burnt offerings and sacrifices, as in obeying the voice of the Lord? Behold, to obey is better than sacrifice, and to hearken than the fat of rams."
       },
       {
-        "trait": "시기심",
+        "trait": "시기",
         "verse_ref": "삼상 18:8",
         "description": "'다윗은 만만이요 나는 천천이라' 하는 노래에 분노하여 다윗을 평생 시기하고 쫓았다.",
         "verse_textKo": "사울이 이 말에 불쾌하여 심히 노하여 가로되 다윗에게는 만만을 돌리고 내게는 천천만 돌리니 그의 더 얻을 것이 나라 밖에 무엇이냐 하고 ",
@@ -1221,21 +1151,21 @@
         "verse_textEn": "And Elijah came unto all the people, and said, How long halt ye between two opinions? if the Lord be God, follow him: but if Baal, then follow him. And the people answered him not a word."
       },
       {
-        "trait": "기도",
+        "trait": "경건",
         "verse_ref": "왕상 18:42",
         "description": "갈멜산 꼭대기에서 얼굴을 무릎 사이에 넣고 일곱 번 간구하여 삼 년 가뭄 끝에 비를 내리게 했다.",
         "verse_textKo": "아합이 먹고 마시러 올라가니라 엘리야가 갈멜 산 꼭대기로 올라가서 땅에 꿇어 엎드려 그 얼굴을 무릎 사이에 넣고 ",
         "verse_textEn": "So Ahab went up to eat and to drink. And Elijah went up to the top of Carmel; and he cast himself down upon the earth, and put his face between his knees,"
       },
       {
-        "trait": "연약한 인간성",
+        "trait": "비겁",
         "verse_ref": "왕상 19:4",
         "description": "이세벨의 위협에 로뎀나무 아래에서 죽기를 구할 만큼 낙심하기도 한 우리와 성정이 같은 사람이었다.",
         "verse_textKo": "스스로 광야로 들어가 하룻 길쯤 행하고 한 로뎀나무 아래 앉아서 죽기를 구하여 가로되 여호와여 넉넉하오니 지금 내 생명을 취하옵소서 나는 내 열조보다 낫지 못하니이다 하고 ",
         "verse_textEn": "But he himself went a day’s journey into the wilderness, and came and sat down under a juniper tree: and he requested for himself that he might die; and said, It is enough; now, O Lord, take away my life; for I am not better than my fathers."
       },
       {
-        "trait": "청렴",
+        "trait": "공의",
         "verse_ref": "왕상 21:20",
         "description": "나봇의 포도원을 빼앗은 아합 왕 앞에 나아가 권력을 두려워하지 않고 죄를 직언하였다.",
         "verse_textKo": "아합이 엘리야에게 이르되 나의 대적이여 네가 나를 찾았느냐 대답하되 내가 찾았노라 네가 스스로 팔려 여호와 보시기에 악을 행하였으므로 ",
@@ -1246,14 +1176,14 @@
   "authored-person-daniel": {
     "traits": [
       {
-        "trait": "뜻을 정함",
+        "trait": "절제",
         "verse_ref": "단 1:8",
         "description": "왕의 진미로 자기를 더럽히지 아니하기로 뜻을 정하고 채식과 물을 구하였다.",
         "verse_textKo": "다니엘은 뜻을 정하여 왕의 진미와 그의 마시는 포도주로 자기를 더럽히지 아니하리라 하고 자기를 더럽히지 않게 하기를 환관장에게 구하니 ",
         "verse_textEn": "But Daniel purposed in his heart that he would not defile himself with the portion of the king’s meat, nor with the wine which he drank: therefore he requested of the prince of the eunuchs that he might not defile himself."
       },
       {
-        "trait": "기도의 규칙",
+        "trait": "경건",
         "verse_ref": "단 6:10",
         "description": "사자 굴의 위협에도 전에 행하던 대로 하루 세 번 예루살렘을 향해 무릎 꿇고 기도하였다.",
         "verse_textKo": "다니엘이 이 조서에 어인이 찍힌 것을 알고도 자기 집에 돌아가서는 그 방의 예루살렘으로 향하여 열린 창에서 전에 행하던 대로 하루 세 번씩 무릎을 꿇고 기도하며 그 하나님께 감사하였더라 ",
@@ -1267,7 +1197,7 @@
         "verse_textEn": "Daniel answered in the presence of the king, and said, The secret which the king hath demanded cannot the wise men, the astrologers, the magicians, the soothsayers, shew unto the king;"
       },
       {
-        "trait": "신실함",
+        "trait": "신실",
         "verse_ref": "단 6:4",
         "description": "총리로서 아무 그릇됨도 허물도 없어 대적들이 고소할 틈을 찾지 못하였다.",
         "verse_textKo": "이에 총리들과 방백들이 국사에 대하여 다니엘을 고소할 틈을 얻고자 하였으나 능히 아무 틈, 아무 허물을 얻지 못하였으니 이는 그가 충성되어 아무 그릇함도 없고 아무 허물도 없음이었더라 ",
@@ -1278,18 +1208,11 @@
   "authored-person-elisha": {
     "traits": [
       {
-        "trait": "전적 헌신",
+        "trait": "헌신",
         "verse_ref": "왕상 19:21",
         "description": "부름 받자 소를 잡아 백성을 먹이고 밭갈이 도구를 불살라 돌아갈 길을 끊고 엘리야를 따랐다.",
         "verse_textKo": "엘리사가 저를 떠나 돌아가서 소 한 겨리를 취하여 잡고 소의 기구를 불살라 그 고기를 삶아 백성에게 주어 먹게 하고 일어나 가서 엘리야를 좇으며 수종들었더라  ",
         "verse_textEn": "And he returned back from him, and took a yoke of oxen, and slew them, and boiled their flesh with the instruments of the oxen, and gave unto the people, and they did eat. Then he arose, and went after Elijah, and ministered unto him. "
-      },
-      {
-        "trait": "갑절의 영감",
-        "verse_ref": "왕하 2:9",
-        "description": "엘리야가 승천하기 전 '당신의 영감이 갑절이나 내게 있기를 구하나이다'라며 영적 유산을 사모하였다.",
-        "verse_textKo": "건너매 엘리야가 엘리사에게 이르되 나를 네게서 취하시기 전에 내가 네게 어떻게 할 것을 구하라 엘리사가 가로되 당신의 영감이 갑절이나 내게 있기를 구하나이다 ",
-        "verse_textEn": "And it came to pass, when they were gone over, that Elijah said unto Elisha, Ask what I shall do for thee, before I be taken away from thee. And Elisha said, I pray thee, let a double portion of thy spirit be upon me."
       },
       {
         "trait": "긍휼",
@@ -1299,39 +1222,46 @@
         "verse_textEn": "He went in therefore, and shut the door upon them twain, and prayed unto the Lord."
       },
       {
-        "trait": "영적 통찰",
+        "trait": "믿음",
         "verse_ref": "왕하 6:16",
         "description": "아람 군대에 포위되었을 때 '우리와 함께 한 자가 저와 함께 한 자보다 많으니라'며 보이지 않는 하나님의 군대를 보았다.",
         "verse_textKo": "대답하되 두려워하지 말라 우리와 함께한 자가 저와 함께한 자보다 많으니라 하고 ",
         "verse_textEn": "And he answered, Fear not: for they that be with us are more than they that be with them."
+      },
+      {
+        "trait": "충성",
+        "verse_ref": "왕하 2:2",
+        "description": "엘리야가 세 번이나 머물라 하였으나 당신을 떠나지 아니하겠다며 승천의 순간까지 스승을 따랐다.",
+        "verse_textKo": "엘리야가 엘리사에게 이르되 청컨대 너는 여기 머물라 여호와께서 나를 벧엘로 보내시느니라 엘리사가 가로되 여호와의 사심과 당신의 혼의 삶을 가리켜 맹세하노니 내가 당신을 떠나지 아니하겠나이다 이에 두 사람이 벧엘로 내려가니 ",
+        "verse_textEn": "And Elijah said unto Elisha, Tarry here, I pray thee; for the Lord hath sent me to Beth–el. And Elisha said unto him, As the Lord liveth, and as thy soul liveth, I will not leave thee. So they went down to Beth–el."
       }
     ]
   },
   "authored-person-jonah": {
     "traits": [
       {
-        "trait": "불순종과 도피",
+        "trait": "불순종",
         "verse_ref": "욘 1:3",
         "description": "니느웨로 가라는 명령을 피해 여호와의 낯을 피하려고 다시스로 도망하였다.",
         "verse_textKo": "그러나 요나가 여호와의 낯을 피하려고 일어나 다시스로 도망하려 하여 욥바로 내려갔더니 마침 다시스로 가는 배를 만난지라 여호와의 낯을 피하여 함께 다시스로 가려고 선가를 주고 배에 올랐더라 ",
         "verse_textEn": "But Jonah rose up to flee unto Tarshish from the presence of the Lord, and went down to Joppa; and he found a ship going to Tarshish: so he paid the fare thereof, and went down into it, to go with them unto Tarshish from the presence of the Lord."
       },
       {
-        "trait": "정직한 고백",
+        "trait": "정직",
         "verse_ref": "욘 1:12",
         "description": "폭풍의 원인이 자기임을 숨기지 않고 '나를 들어 바다에 던지라'며 책임을 인정하였다.",
         "verse_textKo": "그가 대답하되 나를 들어 바다에 던지라 그리하면 바다가 너희를 위하여 잔잔하리라 너희가 이 큰 폭풍을 만난 것이 나의 연고인 줄을 내가 아노라 하니라 ",
         "verse_textEn": "And he said unto them, Take me up, and cast me forth into the sea; so shall the sea be calm unto you: for I know that for my sake this great tempest is upon you."
       },
       {
-        "trait": "감사 기도",
+        "trait": "감사",
         "verse_ref": "욘 2:9",
         "description": "물고기 뱃속에서 '구원은 여호와께로서 말미암나이다'라며 감사의 목소리로 서원을 갚겠다 하였다.",
         "verse_textKo": "나는 감사하는 목소리로 주께 제사를 드리며 나의 서원을 주께 갚겠나이다 구원은 여호와께로서 말미암나이다 하니라 ",
         "verse_textEn": "But I will sacrifice unto thee with the voice of thanksgiving; I will pay that that I have vowed. Salvation is of the Lord."
       },
       {
-        "trait": "하나님과의 씨름",
+        "trait": "분노",
         "verse_ref": "욘 4:2",
         "description": "니느웨를 향한 하나님의 긍휼에 성내면서도 끝까지 하나님과 대화하며 그 마음을 배워 갔다.",
         "verse_textKo": "여호와께 기도하여 가로되 여호와여 내가 고국에 있을 때에 이러하겠다고 말씀하지 아니하였나이까 그러므로 내가 빨리 다시스로 도망하였사오니 주께서는 은혜로우시며 자비로우시며 노하기를 더디하시며 인애가 크시사 뜻을 돌이켜 재앙을 내리지 아니하시는 하나님이신 줄을 내가 알았음이니이다 ",
@@ -1349,7 +1279,7 @@
         "verse_textEn": "Go, gather together all the Jews that are present in Shushan, and fast ye for me, and neither eat nor drink three days, night or day: I also and my maidens will fast likewise; and so will I go in unto the king, which is not according to the law: and if I perish, I perish."
       },
       {
-        "trait": "금식과 의지",
+        "trait": "경건",
         "verse_ref": "에 4:16",
         "description": "왕 앞에 나아가기 전 삼 일 동안 수산의 모든 유다인과 함께 금식하며 하나님을 의지하였다.",
         "verse_textKo": "당신은 가서 수산에 있는 유다인을 다 모으고 나를 위하여 금식하되 밤낮 삼 일을 먹지도 말고 마시지도 마소서 나도 나의 시녀로 더불어 이렇게 금식한 후에 규례를 어기고 왕에게 나아가리니 죽으면 죽으리이다 ",
@@ -1374,28 +1304,28 @@
   "authored-person-nehemiah": {
     "traits": [
       {
-        "trait": "중보 기도",
+        "trait": "경건",
         "verse_ref": "느 1:6",
         "description": "예루살렘의 소식을 듣고 주야로 이스라엘 자손을 위해 기도하며 민족의 죄를 자기 죄처럼 자복하였다.",
         "verse_textKo": "이제 종이 주의 종 이스라엘 자손을 위하여 주야로 기도하오며 이스라엘 자손의 주 앞에 범죄함을 자복하오니 주는 귀를 기울이시며 눈을 여시사 종의 기도를 들으시옵소서 나와 나의 아비 집이 범죄하여 ",
         "verse_textEn": "Let thine ear now be attentive, and thine eyes open, that thou mayest hear the prayer of thy servant, which I pray before thee now, day and night, for the children of Israel thy servants, and confess the sins of the children of Israel, which we have sinned against thee: both I and my father’s house have sinned."
       },
       {
-        "trait": "실행력",
+        "trait": "근면",
         "verse_ref": "느 2:17-18",
         "description": "'예루살렘 성을 건축하여 다시 수치를 받지 말자'며 백성을 일으켜 52일 만에 성벽을 완공하였다.",
         "verse_textKo": "후에 저희에게 이르기를 우리의 당한 곤경은 너희도 목도하는 바라 예루살렘이 황무하고 성문이 소화되었으니 자, 예루살렘 성을 중건하여 다시 수치를 받지 말자 하고 ",
         "verse_textEn": "Then said I unto them, Ye see the distress that we are in, how Jerusalem lieth waste, and the gates thereof are burned with fire: come, and let us build up the wall of Jerusalem, that we be no more a reproach."
       },
       {
-        "trait": "경계와 분별",
+        "trait": "분별",
         "verse_ref": "느 6:8",
         "description": "산발랏의 거듭된 회유와 모함에 '네가 마음에서 지어낸 것이라'며 넘어가지 않고 공사를 계속하였다.",
         "verse_textKo": "내가 보내어 저에게 이르기를 너의 말한바 이런 일은 없는 일이요 네 마음에서 지어낸 것이라 하였나니 ",
         "verse_textEn": "Then I sent unto him, saying, There are no such things done as thou sayest, but thou feignest them out of thine own heart."
       },
       {
-        "trait": "청렴",
+        "trait": "정직",
         "verse_ref": "느 5:15",
         "description": "총독의 녹을 받지 않고 백성에게 토색하지 않으며 하나님을 경외함으로 다스렸다.",
         "verse_textKo": "이전 총독들은 백성에게 토색하여 양식과 포도주와 또 은 사십 세겔을 취하였고 그 종자들도 백성을 압제하였으나 나는 하나님을 경외하므로 이같이 행치 아니하고 ",
@@ -1406,7 +1336,7 @@
   "authored-person-job": {
     "traits": [
       {
-        "trait": "온전",
+        "trait": "신실",
         "verse_ref": "욥 2:3",
         "description": "모든 소유와 자녀를 잃고 몸에 악창이 나는 시험 중에도 여전히 자기의 온전함을 굳게 지켜, 여호와께서 친히 그를 지목하셨다.",
         "verse_textKo": "여호와께서 사단에게 이르시되 네가 내 종 욥을 유의하여 보았느냐 그와 같이 순전하고 정직하여 하나님을 경외하며 악에서 떠난 자가 세상에 없느니라 네가 나를 격동하여 까닭없이 그를 치게 하였어도 그가 오히려 자기의 순전을 굳게 지켰느니라 ",
@@ -1420,18 +1350,79 @@
         "verse_textEn": "Behold, we count them happy which endure. Ye have heard of the patience of Job, and have seen the end of the Lord; that the Lord is very pitiful, and of tender mercy."
       },
       {
-        "trait": "신뢰",
+        "trait": "믿음",
         "verse_ref": "욥 1:21",
         "description": "재산과 열 자녀를 하루아침에 잃고도 엎드려 '주신 이도 여호와시요 취하신 이도 여호와시니' 경배하며 하나님을 신뢰했다.",
         "verse_textKo": "가로되 내가 모태에서 적신이 나왔사온즉 또한 적신이 그리로 돌아가올지라 주신 자도 여호와시요 취하신 자도 여호와시오니 여호와의 이름이 찬송을 받으실지니이다 하고 ",
         "verse_textEn": "And said, Naked came I out of my mother’s womb, and naked shall I return thither: the Lord gave, and the Lord hath taken away; blessed be the name of the Lord."
       },
       {
-        "trait": "회개",
+        "trait": "통회",
         "verse_ref": "욥 42:6",
         "description": "폭풍 가운데 하나님을 뵌 뒤 스스로를 거두어들이고 티끌과 재 가운데에서 회개하여, 항변을 그치고 주권 앞에 엎드렸다.",
         "verse_textKo": "그러므로 내가 스스로 한하고 티끌과 재 가운데서 회개하나이다 ",
         "verse_textEn": "Wherefore I abhor myself, and repent in dust and ashes."
+      }
+    ]
+  },
+  "reccpdazfRa8RGKt6": {
+    "traits": [
+      {
+        "trait": "믿음",
+        "verse_ref": "히 11:4",
+        "description": "믿음으로 가인보다 더 나은 제사를 드려 의로운 자라 하시는 증거를 얻었다.",
+        "verse_textKo": "믿음으로 아벨은 가인보다 더 나은 제사를 하나님께 드림으로 의로운 자라 하시는 증거를 얻었으니 하나님이 그 예물에 대하여 증거하심이라 저가 죽었으나 그 믿음으로써 오히려 말하느니라 ",
+        "verse_textEn": "By faith Abel offered unto God a more excellent sacrifice than Cain, by which he obtained witness that he was righteous, God testifying of his gifts: and by it he being dead yet speaketh."
+      },
+      {
+        "trait": "경건",
+        "verse_ref": "창 4:4",
+        "description": "양의 첫 새끼와 그 기름을 골라 드리며 가장 좋은 것으로 하나님을 예배했다.",
+        "verse_textKo": "아벨은 자기도 양의 첫 새끼와 그 기름으로 드렸더니 여호와께서 아벨과 그 제물은 열납하셨으나 ",
+        "verse_textEn": "And Abel, he also brought of the firstlings of his flock and of the fat thereof. And the Lord had respect unto Abel and to his offering:"
+      }
+    ]
+  },
+  "recYqSnSPlrNvnE1m": {
+    "traits": [
+      {
+        "trait": "시기",
+        "verse_ref": "창 4:5",
+        "description": "하나님이 아벨의 제물만 받으시자 아우를 향한 시기로 심히 분하여 안색이 변했다.",
+        "verse_textKo": "가인과 그 제물은 열납하지 아니하신지라 가인이 심히 분하여 안색이 변하니 ",
+        "verse_textEn": "But unto Cain and to his offering he had not respect. And Cain was very wroth, and his countenance fell."
+      },
+      {
+        "trait": "분노",
+        "verse_ref": "창 4:8",
+        "description": "분을 다스리라는 하나님의 경고에도 들에서 아우 아벨을 쳐 죽였다.",
+        "verse_textKo": "가인이 그 아우 아벨에게 고하니라 그후 그들이 들에 있을 때에 가인이 그 아우 아벨을 쳐죽이니라 ",
+        "verse_textEn": "And Cain talked with Abel his brother: and it came to pass, when they were in the field, that Cain rose up against Abel his brother, and slew him."
+      },
+      {
+        "trait": "기만",
+        "verse_ref": "창 4:9",
+        "description": "아벨이 어디 있느냐는 물음에 알지 못한다, 내가 아우를 지키는 자냐며 하나님 앞에서 잡아뗐다.",
+        "verse_textKo": "여호와께서 가인에게 이르시되 네 아우 아벨이 어디 있느냐 그가 가로되 내가 알지 못하나이다 내가 내 아우를 지키는 자이니까 ",
+        "verse_textEn": "And the Lord said unto Cain, Where is Abel thy brother? And he said, I know not: Am I my brother’s keeper?"
+      }
+    ]
+  },
+  "recj26MAojx8FuOsa": {
+    "traits": [
+      {
+        "trait": "경건",
+        "verse_ref": "창 5:24",
+        "description": "하나님과 동행하더니 하나님이 그를 데려가시므로 세상에 있지 아니하였다.",
+        "verse_textKo": "에녹이 하나님과 동행하더니 하나님이 그를 데려가시므로 세상에 있지 아니하였더라 ",
+        "verse_textEn": "And Enoch walked with God: and he was not; for God took him."
+      },
+      {
+        "trait": "믿음",
+        "verse_ref": "히 11:5",
+        "description": "믿음으로 죽음을 보지 않고 옮겨졌으며 하나님을 기쁘시게 하는 자라는 증거를 받았다.",
+        "verse_textKo": "믿음으로 에녹은 죽음을 보지 않고 옮기웠으니 하나님이 저를 옮기심으로 다시 보이지 아니하니라 저는 옮기우기 전에 하나님을 기쁘시게 하는 자라 하는 증거를 받았느니라 ",
+        "verse_textEn": "By faith Enoch was translated that he should not see death; and was not found, because God had translated him: for before his translation he had this testimony, that he pleased God."
       }
     ]
   }
