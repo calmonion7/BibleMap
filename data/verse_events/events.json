@@ -7,7 +7,120 @@
       "startDate": "-1100",
       "sortKey": -1100,
       "yearLabel": "BC 1100경",
-      "book_id": "recZuCb9Bn0RErpsL"
+      "book_id": "recZuCb9Bn0RErpsL",
+      "verses": [
+        {
+          "verseID": "08001001",
+          "chapter": 1,
+          "verse": 1
+        },
+        {
+          "verseID": "08001002",
+          "chapter": 1,
+          "verse": 2
+        },
+        {
+          "verseID": "08001003",
+          "chapter": 1,
+          "verse": 3
+        },
+        {
+          "verseID": "08001004",
+          "chapter": 1,
+          "verse": 4
+        },
+        {
+          "verseID": "08001005",
+          "chapter": 1,
+          "verse": 5
+        },
+        {
+          "verseID": "08001006",
+          "chapter": 1,
+          "verse": 6
+        },
+        {
+          "verseID": "08001007",
+          "chapter": 1,
+          "verse": 7
+        },
+        {
+          "verseID": "08001008",
+          "chapter": 1,
+          "verse": 8
+        },
+        {
+          "verseID": "08001009",
+          "chapter": 1,
+          "verse": 9
+        },
+        {
+          "verseID": "08001010",
+          "chapter": 1,
+          "verse": 10
+        },
+        {
+          "verseID": "08001011",
+          "chapter": 1,
+          "verse": 11
+        },
+        {
+          "verseID": "08001012",
+          "chapter": 1,
+          "verse": 12
+        },
+        {
+          "verseID": "08001013",
+          "chapter": 1,
+          "verse": 13
+        },
+        {
+          "verseID": "08001014",
+          "chapter": 1,
+          "verse": 14
+        },
+        {
+          "verseID": "08001015",
+          "chapter": 1,
+          "verse": 15
+        },
+        {
+          "verseID": "08001016",
+          "chapter": 1,
+          "verse": 16
+        },
+        {
+          "verseID": "08001017",
+          "chapter": 1,
+          "verse": 17
+        },
+        {
+          "verseID": "08001018",
+          "chapter": 1,
+          "verse": 18
+        },
+        {
+          "verseID": "08001019",
+          "chapter": 1,
+          "verse": 19
+        },
+        {
+          "verseID": "08001020",
+          "chapter": 1,
+          "verse": 20
+        },
+        {
+          "verseID": "08001021",
+          "chapter": 1,
+          "verse": 21
+        },
+        {
+          "verseID": "08001022",
+          "chapter": 1,
+          "verse": 22
+        }
+      ],
+      "rangeLabel": "1:1–22"
     },
     {
       "id": "verse-event-ruth-gleans-in-boaz-field",
@@ -16,7 +129,125 @@
       "startDate": "-1100",
       "sortKey": -1100,
       "yearLabel": "BC 1100경",
-      "book_id": "recZuCb9Bn0RErpsL"
+      "book_id": "recZuCb9Bn0RErpsL",
+      "verses": [
+        {
+          "verseID": "08002001",
+          "chapter": 2,
+          "verse": 1
+        },
+        {
+          "verseID": "08002002",
+          "chapter": 2,
+          "verse": 2
+        },
+        {
+          "verseID": "08002003",
+          "chapter": 2,
+          "verse": 3
+        },
+        {
+          "verseID": "08002004",
+          "chapter": 2,
+          "verse": 4
+        },
+        {
+          "verseID": "08002005",
+          "chapter": 2,
+          "verse": 5
+        },
+        {
+          "verseID": "08002006",
+          "chapter": 2,
+          "verse": 6
+        },
+        {
+          "verseID": "08002007",
+          "chapter": 2,
+          "verse": 7
+        },
+        {
+          "verseID": "08002008",
+          "chapter": 2,
+          "verse": 8
+        },
+        {
+          "verseID": "08002009",
+          "chapter": 2,
+          "verse": 9
+        },
+        {
+          "verseID": "08002010",
+          "chapter": 2,
+          "verse": 10
+        },
+        {
+          "verseID": "08002011",
+          "chapter": 2,
+          "verse": 11
+        },
+        {
+          "verseID": "08002012",
+          "chapter": 2,
+          "verse": 12
+        },
+        {
+          "verseID": "08002013",
+          "chapter": 2,
+          "verse": 13
+        },
+        {
+          "verseID": "08002014",
+          "chapter": 2,
+          "verse": 14
+        },
+        {
+          "verseID": "08002015",
+          "chapter": 2,
+          "verse": 15
+        },
+        {
+          "verseID": "08002016",
+          "chapter": 2,
+          "verse": 16
+        },
+        {
+          "verseID": "08002017",
+          "chapter": 2,
+          "verse": 17
+        },
+        {
+          "verseID": "08002018",
+          "chapter": 2,
+          "verse": 18
+        },
+        {
+          "verseID": "08002019",
+          "chapter": 2,
+          "verse": 19
+        },
+        {
+          "verseID": "08002020",
+          "chapter": 2,
+          "verse": 20
+        },
+        {
+          "verseID": "08002021",
+          "chapter": 2,
+          "verse": 21
+        },
+        {
+          "verseID": "08002022",
+          "chapter": 2,
+          "verse": 22
+        },
+        {
+          "verseID": "08002023",
+          "chapter": 2,
+          "verse": 23
+        }
+      ],
+      "rangeLabel": "2:1–23"
     },
     {
       "id": "verse-event-boaz-redeems-ruth-at-the-gate",
@@ -25,7 +256,160 @@
       "startDate": "-1100",
       "sortKey": -1100,
       "yearLabel": "BC 1100경",
-      "book_id": "recZuCb9Bn0RErpsL"
+      "book_id": "recZuCb9Bn0RErpsL",
+      "verses": [
+        {
+          "verseID": "08003001",
+          "chapter": 3,
+          "verse": 1
+        },
+        {
+          "verseID": "08003002",
+          "chapter": 3,
+          "verse": 2
+        },
+        {
+          "verseID": "08003003",
+          "chapter": 3,
+          "verse": 3
+        },
+        {
+          "verseID": "08003004",
+          "chapter": 3,
+          "verse": 4
+        },
+        {
+          "verseID": "08003005",
+          "chapter": 3,
+          "verse": 5
+        },
+        {
+          "verseID": "08003006",
+          "chapter": 3,
+          "verse": 6
+        },
+        {
+          "verseID": "08003007",
+          "chapter": 3,
+          "verse": 7
+        },
+        {
+          "verseID": "08003008",
+          "chapter": 3,
+          "verse": 8
+        },
+        {
+          "verseID": "08003009",
+          "chapter": 3,
+          "verse": 9
+        },
+        {
+          "verseID": "08003010",
+          "chapter": 3,
+          "verse": 10
+        },
+        {
+          "verseID": "08003011",
+          "chapter": 3,
+          "verse": 11
+        },
+        {
+          "verseID": "08003012",
+          "chapter": 3,
+          "verse": 12
+        },
+        {
+          "verseID": "08003013",
+          "chapter": 3,
+          "verse": 13
+        },
+        {
+          "verseID": "08003014",
+          "chapter": 3,
+          "verse": 14
+        },
+        {
+          "verseID": "08003015",
+          "chapter": 3,
+          "verse": 15
+        },
+        {
+          "verseID": "08003016",
+          "chapter": 3,
+          "verse": 16
+        },
+        {
+          "verseID": "08003017",
+          "chapter": 3,
+          "verse": 17
+        },
+        {
+          "verseID": "08003018",
+          "chapter": 3,
+          "verse": 18
+        },
+        {
+          "verseID": "08004001",
+          "chapter": 4,
+          "verse": 1
+        },
+        {
+          "verseID": "08004002",
+          "chapter": 4,
+          "verse": 2
+        },
+        {
+          "verseID": "08004003",
+          "chapter": 4,
+          "verse": 3
+        },
+        {
+          "verseID": "08004004",
+          "chapter": 4,
+          "verse": 4
+        },
+        {
+          "verseID": "08004005",
+          "chapter": 4,
+          "verse": 5
+        },
+        {
+          "verseID": "08004006",
+          "chapter": 4,
+          "verse": 6
+        },
+        {
+          "verseID": "08004007",
+          "chapter": 4,
+          "verse": 7
+        },
+        {
+          "verseID": "08004008",
+          "chapter": 4,
+          "verse": 8
+        },
+        {
+          "verseID": "08004009",
+          "chapter": 4,
+          "verse": 9
+        },
+        {
+          "verseID": "08004010",
+          "chapter": 4,
+          "verse": 10
+        },
+        {
+          "verseID": "08004011",
+          "chapter": 4,
+          "verse": 11
+        },
+        {
+          "verseID": "08004012",
+          "chapter": 4,
+          "verse": 12
+        }
+      ],
+      "rangeLabel": "3:1–18, 4:1–12"
     },
     {
       "id": "verse-event-birth-of-obed-ancestor-of-david",
@@ -34,7 +418,60 @@
       "startDate": "-1099",
       "sortKey": -1099,
       "yearLabel": "BC 1099경",
-      "book_id": "recZuCb9Bn0RErpsL"
+      "book_id": "recZuCb9Bn0RErpsL",
+      "verses": [
+        {
+          "verseID": "08004013",
+          "chapter": 4,
+          "verse": 13
+        },
+        {
+          "verseID": "08004014",
+          "chapter": 4,
+          "verse": 14
+        },
+        {
+          "verseID": "08004015",
+          "chapter": 4,
+          "verse": 15
+        },
+        {
+          "verseID": "08004016",
+          "chapter": 4,
+          "verse": 16
+        },
+        {
+          "verseID": "08004017",
+          "chapter": 4,
+          "verse": 17
+        },
+        {
+          "verseID": "08004018",
+          "chapter": 4,
+          "verse": 18
+        },
+        {
+          "verseID": "08004019",
+          "chapter": 4,
+          "verse": 19
+        },
+        {
+          "verseID": "08004020",
+          "chapter": 4,
+          "verse": 20
+        },
+        {
+          "verseID": "08004021",
+          "chapter": 4,
+          "verse": 21
+        },
+        {
+          "verseID": "08004022",
+          "chapter": 4,
+          "verse": 22
+        }
+      ],
+      "rangeLabel": "4:13–22"
     },
     {
       "id": "verse-event-vashti-refuses-the-king",
@@ -43,7 +480,80 @@
       "startDate": "-483",
       "sortKey": -483,
       "yearLabel": "BC 483경",
-      "book_id": "rec6yHFZ6w7UUw5Cu"
+      "book_id": "rec6yHFZ6w7UUw5Cu",
+      "verses": [
+        {
+          "verseID": "17001009",
+          "chapter": 1,
+          "verse": 9
+        },
+        {
+          "verseID": "17001010",
+          "chapter": 1,
+          "verse": 10
+        },
+        {
+          "verseID": "17001011",
+          "chapter": 1,
+          "verse": 11
+        },
+        {
+          "verseID": "17001012",
+          "chapter": 1,
+          "verse": 12
+        },
+        {
+          "verseID": "17001013",
+          "chapter": 1,
+          "verse": 13
+        },
+        {
+          "verseID": "17001014",
+          "chapter": 1,
+          "verse": 14
+        },
+        {
+          "verseID": "17001015",
+          "chapter": 1,
+          "verse": 15
+        },
+        {
+          "verseID": "17001016",
+          "chapter": 1,
+          "verse": 16
+        },
+        {
+          "verseID": "17001017",
+          "chapter": 1,
+          "verse": 17
+        },
+        {
+          "verseID": "17001018",
+          "chapter": 1,
+          "verse": 18
+        },
+        {
+          "verseID": "17001019",
+          "chapter": 1,
+          "verse": 19
+        },
+        {
+          "verseID": "17001020",
+          "chapter": 1,
+          "verse": 20
+        },
+        {
+          "verseID": "17001021",
+          "chapter": 1,
+          "verse": 21
+        },
+        {
+          "verseID": "17001022",
+          "chapter": 1,
+          "verse": 22
+        }
+      ],
+      "rangeLabel": "1:9–22"
     },
     {
       "id": "verse-event-esther-chosen-as-queen",
@@ -52,7 +562,100 @@
       "startDate": "-479",
       "sortKey": -479,
       "yearLabel": "BC 479경",
-      "book_id": "rec6yHFZ6w7UUw5Cu"
+      "book_id": "rec6yHFZ6w7UUw5Cu",
+      "verses": [
+        {
+          "verseID": "17002001",
+          "chapter": 2,
+          "verse": 1
+        },
+        {
+          "verseID": "17002002",
+          "chapter": 2,
+          "verse": 2
+        },
+        {
+          "verseID": "17002003",
+          "chapter": 2,
+          "verse": 3
+        },
+        {
+          "verseID": "17002004",
+          "chapter": 2,
+          "verse": 4
+        },
+        {
+          "verseID": "17002005",
+          "chapter": 2,
+          "verse": 5
+        },
+        {
+          "verseID": "17002006",
+          "chapter": 2,
+          "verse": 6
+        },
+        {
+          "verseID": "17002007",
+          "chapter": 2,
+          "verse": 7
+        },
+        {
+          "verseID": "17002008",
+          "chapter": 2,
+          "verse": 8
+        },
+        {
+          "verseID": "17002009",
+          "chapter": 2,
+          "verse": 9
+        },
+        {
+          "verseID": "17002010",
+          "chapter": 2,
+          "verse": 10
+        },
+        {
+          "verseID": "17002011",
+          "chapter": 2,
+          "verse": 11
+        },
+        {
+          "verseID": "17002012",
+          "chapter": 2,
+          "verse": 12
+        },
+        {
+          "verseID": "17002013",
+          "chapter": 2,
+          "verse": 13
+        },
+        {
+          "verseID": "17002014",
+          "chapter": 2,
+          "verse": 14
+        },
+        {
+          "verseID": "17002015",
+          "chapter": 2,
+          "verse": 15
+        },
+        {
+          "verseID": "17002016",
+          "chapter": 2,
+          "verse": 16
+        },
+        {
+          "verseID": "17002017",
+          "chapter": 2,
+          "verse": 17
+        },
+        {
+          "verseID": "17002018",
+          "chapter": 2,
+          "verse": 18
+        }
+      ],
+      "rangeLabel": "2:1–18"
     },
     {
       "id": "verse-event-cyrus-decrees-return-from-exile",
@@ -61,7 +664,65 @@
       "startDate": "-538",
       "sortKey": -538,
       "yearLabel": "BC 538경",
-      "book_id": "recit4Q50QB9nM3q2"
+      "book_id": "recit4Q50QB9nM3q2",
+      "verses": [
+        {
+          "verseID": "15001001",
+          "chapter": 1,
+          "verse": 1
+        },
+        {
+          "verseID": "15001002",
+          "chapter": 1,
+          "verse": 2
+        },
+        {
+          "verseID": "15001003",
+          "chapter": 1,
+          "verse": 3
+        },
+        {
+          "verseID": "15001004",
+          "chapter": 1,
+          "verse": 4
+        },
+        {
+          "verseID": "15001005",
+          "chapter": 1,
+          "verse": 5
+        },
+        {
+          "verseID": "15001006",
+          "chapter": 1,
+          "verse": 6
+        },
+        {
+          "verseID": "15001007",
+          "chapter": 1,
+          "verse": 7
+        },
+        {
+          "verseID": "15001008",
+          "chapter": 1,
+          "verse": 8
+        },
+        {
+          "verseID": "15001009",
+          "chapter": 1,
+          "verse": 9
+        },
+        {
+          "verseID": "15001010",
+          "chapter": 1,
+          "verse": 10
+        },
+        {
+          "verseID": "15001011",
+          "chapter": 1,
+          "verse": 11
+        }
+      ],
+      "rangeLabel": "1:1–11"
     },
     {
       "id": "verse-event-zerubbabel-leads-first-return-from-exile",
@@ -70,7 +731,360 @@
       "startDate": "-537",
       "sortKey": -537,
       "yearLabel": "BC 537경",
-      "book_id": "recit4Q50QB9nM3q2"
+      "book_id": "recit4Q50QB9nM3q2",
+      "verses": [
+        {
+          "verseID": "15002001",
+          "chapter": 2,
+          "verse": 1
+        },
+        {
+          "verseID": "15002002",
+          "chapter": 2,
+          "verse": 2
+        },
+        {
+          "verseID": "15002003",
+          "chapter": 2,
+          "verse": 3
+        },
+        {
+          "verseID": "15002004",
+          "chapter": 2,
+          "verse": 4
+        },
+        {
+          "verseID": "15002005",
+          "chapter": 2,
+          "verse": 5
+        },
+        {
+          "verseID": "15002006",
+          "chapter": 2,
+          "verse": 6
+        },
+        {
+          "verseID": "15002007",
+          "chapter": 2,
+          "verse": 7
+        },
+        {
+          "verseID": "15002008",
+          "chapter": 2,
+          "verse": 8
+        },
+        {
+          "verseID": "15002009",
+          "chapter": 2,
+          "verse": 9
+        },
+        {
+          "verseID": "15002010",
+          "chapter": 2,
+          "verse": 10
+        },
+        {
+          "verseID": "15002011",
+          "chapter": 2,
+          "verse": 11
+        },
+        {
+          "verseID": "15002012",
+          "chapter": 2,
+          "verse": 12
+        },
+        {
+          "verseID": "15002013",
+          "chapter": 2,
+          "verse": 13
+        },
+        {
+          "verseID": "15002014",
+          "chapter": 2,
+          "verse": 14
+        },
+        {
+          "verseID": "15002015",
+          "chapter": 2,
+          "verse": 15
+        },
+        {
+          "verseID": "15002016",
+          "chapter": 2,
+          "verse": 16
+        },
+        {
+          "verseID": "15002017",
+          "chapter": 2,
+          "verse": 17
+        },
+        {
+          "verseID": "15002018",
+          "chapter": 2,
+          "verse": 18
+        },
+        {
+          "verseID": "15002019",
+          "chapter": 2,
+          "verse": 19
+        },
+        {
+          "verseID": "15002020",
+          "chapter": 2,
+          "verse": 20
+        },
+        {
+          "verseID": "15002021",
+          "chapter": 2,
+          "verse": 21
+        },
+        {
+          "verseID": "15002022",
+          "chapter": 2,
+          "verse": 22
+        },
+        {
+          "verseID": "15002023",
+          "chapter": 2,
+          "verse": 23
+        },
+        {
+          "verseID": "15002024",
+          "chapter": 2,
+          "verse": 24
+        },
+        {
+          "verseID": "15002025",
+          "chapter": 2,
+          "verse": 25
+        },
+        {
+          "verseID": "15002026",
+          "chapter": 2,
+          "verse": 26
+        },
+        {
+          "verseID": "15002027",
+          "chapter": 2,
+          "verse": 27
+        },
+        {
+          "verseID": "15002028",
+          "chapter": 2,
+          "verse": 28
+        },
+        {
+          "verseID": "15002029",
+          "chapter": 2,
+          "verse": 29
+        },
+        {
+          "verseID": "15002030",
+          "chapter": 2,
+          "verse": 30
+        },
+        {
+          "verseID": "15002031",
+          "chapter": 2,
+          "verse": 31
+        },
+        {
+          "verseID": "15002032",
+          "chapter": 2,
+          "verse": 32
+        },
+        {
+          "verseID": "15002033",
+          "chapter": 2,
+          "verse": 33
+        },
+        {
+          "verseID": "15002034",
+          "chapter": 2,
+          "verse": 34
+        },
+        {
+          "verseID": "15002035",
+          "chapter": 2,
+          "verse": 35
+        },
+        {
+          "verseID": "15002036",
+          "chapter": 2,
+          "verse": 36
+        },
+        {
+          "verseID": "15002037",
+          "chapter": 2,
+          "verse": 37
+        },
+        {
+          "verseID": "15002038",
+          "chapter": 2,
+          "verse": 38
+        },
+        {
+          "verseID": "15002039",
+          "chapter": 2,
+          "verse": 39
+        },
+        {
+          "verseID": "15002040",
+          "chapter": 2,
+          "verse": 40
+        },
+        {
+          "verseID": "15002041",
+          "chapter": 2,
+          "verse": 41
+        },
+        {
+          "verseID": "15002042",
+          "chapter": 2,
+          "verse": 42
+        },
+        {
+          "verseID": "15002043",
+          "chapter": 2,
+          "verse": 43
+        },
+        {
+          "verseID": "15002044",
+          "chapter": 2,
+          "verse": 44
+        },
+        {
+          "verseID": "15002045",
+          "chapter": 2,
+          "verse": 45
+        },
+        {
+          "verseID": "15002046",
+          "chapter": 2,
+          "verse": 46
+        },
+        {
+          "verseID": "15002047",
+          "chapter": 2,
+          "verse": 47
+        },
+        {
+          "verseID": "15002048",
+          "chapter": 2,
+          "verse": 48
+        },
+        {
+          "verseID": "15002049",
+          "chapter": 2,
+          "verse": 49
+        },
+        {
+          "verseID": "15002050",
+          "chapter": 2,
+          "verse": 50
+        },
+        {
+          "verseID": "15002051",
+          "chapter": 2,
+          "verse": 51
+        },
+        {
+          "verseID": "15002052",
+          "chapter": 2,
+          "verse": 52
+        },
+        {
+          "verseID": "15002053",
+          "chapter": 2,
+          "verse": 53
+        },
+        {
+          "verseID": "15002054",
+          "chapter": 2,
+          "verse": 54
+        },
+        {
+          "verseID": "15002055",
+          "chapter": 2,
+          "verse": 55
+        },
+        {
+          "verseID": "15002056",
+          "chapter": 2,
+          "verse": 56
+        },
+        {
+          "verseID": "15002057",
+          "chapter": 2,
+          "verse": 57
+        },
+        {
+          "verseID": "15002058",
+          "chapter": 2,
+          "verse": 58
+        },
+        {
+          "verseID": "15002059",
+          "chapter": 2,
+          "verse": 59
+        },
+        {
+          "verseID": "15002060",
+          "chapter": 2,
+          "verse": 60
+        },
+        {
+          "verseID": "15002061",
+          "chapter": 2,
+          "verse": 61
+        },
+        {
+          "verseID": "15002062",
+          "chapter": 2,
+          "verse": 62
+        },
+        {
+          "verseID": "15002063",
+          "chapter": 2,
+          "verse": 63
+        },
+        {
+          "verseID": "15002064",
+          "chapter": 2,
+          "verse": 64
+        },
+        {
+          "verseID": "15002065",
+          "chapter": 2,
+          "verse": 65
+        },
+        {
+          "verseID": "15002066",
+          "chapter": 2,
+          "verse": 66
+        },
+        {
+          "verseID": "15002067",
+          "chapter": 2,
+          "verse": 67
+        },
+        {
+          "verseID": "15002068",
+          "chapter": 2,
+          "verse": 68
+        },
+        {
+          "verseID": "15002069",
+          "chapter": 2,
+          "verse": 69
+        },
+        {
+          "verseID": "15002070",
+          "chapter": 2,
+          "verse": 70
+        }
+      ],
+      "rangeLabel": "2:1–70"
     },
     {
       "id": "verse-event-temple-foundation-laid-in-jerusalem",
@@ -79,7 +1093,75 @@
       "startDate": "-536",
       "sortKey": -536,
       "yearLabel": "BC 536경",
-      "book_id": "recit4Q50QB9nM3q2"
+      "book_id": "recit4Q50QB9nM3q2",
+      "verses": [
+        {
+          "verseID": "15003001",
+          "chapter": 3,
+          "verse": 1
+        },
+        {
+          "verseID": "15003002",
+          "chapter": 3,
+          "verse": 2
+        },
+        {
+          "verseID": "15003003",
+          "chapter": 3,
+          "verse": 3
+        },
+        {
+          "verseID": "15003004",
+          "chapter": 3,
+          "verse": 4
+        },
+        {
+          "verseID": "15003005",
+          "chapter": 3,
+          "verse": 5
+        },
+        {
+          "verseID": "15003006",
+          "chapter": 3,
+          "verse": 6
+        },
+        {
+          "verseID": "15003007",
+          "chapter": 3,
+          "verse": 7
+        },
+        {
+          "verseID": "15003008",
+          "chapter": 3,
+          "verse": 8
+        },
+        {
+          "verseID": "15003009",
+          "chapter": 3,
+          "verse": 9
+        },
+        {
+          "verseID": "15003010",
+          "chapter": 3,
+          "verse": 10
+        },
+        {
+          "verseID": "15003011",
+          "chapter": 3,
+          "verse": 11
+        },
+        {
+          "verseID": "15003012",
+          "chapter": 3,
+          "verse": 12
+        },
+        {
+          "verseID": "15003013",
+          "chapter": 3,
+          "verse": 13
+        }
+      ],
+      "rangeLabel": "3:1–13"
     },
     {
       "id": "verse-event-second-temple-completed-under-darius",
@@ -88,7 +1170,120 @@
       "startDate": "-516",
       "sortKey": -516,
       "yearLabel": "BC 516경",
-      "book_id": "recit4Q50QB9nM3q2"
+      "book_id": "recit4Q50QB9nM3q2",
+      "verses": [
+        {
+          "verseID": "15006001",
+          "chapter": 6,
+          "verse": 1
+        },
+        {
+          "verseID": "15006002",
+          "chapter": 6,
+          "verse": 2
+        },
+        {
+          "verseID": "15006003",
+          "chapter": 6,
+          "verse": 3
+        },
+        {
+          "verseID": "15006004",
+          "chapter": 6,
+          "verse": 4
+        },
+        {
+          "verseID": "15006005",
+          "chapter": 6,
+          "verse": 5
+        },
+        {
+          "verseID": "15006006",
+          "chapter": 6,
+          "verse": 6
+        },
+        {
+          "verseID": "15006007",
+          "chapter": 6,
+          "verse": 7
+        },
+        {
+          "verseID": "15006008",
+          "chapter": 6,
+          "verse": 8
+        },
+        {
+          "verseID": "15006009",
+          "chapter": 6,
+          "verse": 9
+        },
+        {
+          "verseID": "15006010",
+          "chapter": 6,
+          "verse": 10
+        },
+        {
+          "verseID": "15006011",
+          "chapter": 6,
+          "verse": 11
+        },
+        {
+          "verseID": "15006012",
+          "chapter": 6,
+          "verse": 12
+        },
+        {
+          "verseID": "15006013",
+          "chapter": 6,
+          "verse": 13
+        },
+        {
+          "verseID": "15006014",
+          "chapter": 6,
+          "verse": 14
+        },
+        {
+          "verseID": "15006015",
+          "chapter": 6,
+          "verse": 15
+        },
+        {
+          "verseID": "15006016",
+          "chapter": 6,
+          "verse": 16
+        },
+        {
+          "verseID": "15006017",
+          "chapter": 6,
+          "verse": 17
+        },
+        {
+          "verseID": "15006018",
+          "chapter": 6,
+          "verse": 18
+        },
+        {
+          "verseID": "15006019",
+          "chapter": 6,
+          "verse": 19
+        },
+        {
+          "verseID": "15006020",
+          "chapter": 6,
+          "verse": 20
+        },
+        {
+          "verseID": "15006021",
+          "chapter": 6,
+          "verse": 21
+        },
+        {
+          "verseID": "15006022",
+          "chapter": 6,
+          "verse": 22
+        }
+      ],
+      "rangeLabel": "6:1–22"
     },
     {
       "id": "verse-event-ezra-returns-to-jerusalem-with-exiles",
@@ -97,7 +1292,330 @@
       "startDate": "-458",
       "sortKey": -458,
       "yearLabel": "BC 458경",
-      "book_id": "recit4Q50QB9nM3q2"
+      "book_id": "recit4Q50QB9nM3q2",
+      "verses": [
+        {
+          "verseID": "15007001",
+          "chapter": 7,
+          "verse": 1
+        },
+        {
+          "verseID": "15007002",
+          "chapter": 7,
+          "verse": 2
+        },
+        {
+          "verseID": "15007003",
+          "chapter": 7,
+          "verse": 3
+        },
+        {
+          "verseID": "15007004",
+          "chapter": 7,
+          "verse": 4
+        },
+        {
+          "verseID": "15007005",
+          "chapter": 7,
+          "verse": 5
+        },
+        {
+          "verseID": "15007006",
+          "chapter": 7,
+          "verse": 6
+        },
+        {
+          "verseID": "15007007",
+          "chapter": 7,
+          "verse": 7
+        },
+        {
+          "verseID": "15007008",
+          "chapter": 7,
+          "verse": 8
+        },
+        {
+          "verseID": "15007009",
+          "chapter": 7,
+          "verse": 9
+        },
+        {
+          "verseID": "15007010",
+          "chapter": 7,
+          "verse": 10
+        },
+        {
+          "verseID": "15007011",
+          "chapter": 7,
+          "verse": 11
+        },
+        {
+          "verseID": "15007012",
+          "chapter": 7,
+          "verse": 12
+        },
+        {
+          "verseID": "15007013",
+          "chapter": 7,
+          "verse": 13
+        },
+        {
+          "verseID": "15007014",
+          "chapter": 7,
+          "verse": 14
+        },
+        {
+          "verseID": "15007015",
+          "chapter": 7,
+          "verse": 15
+        },
+        {
+          "verseID": "15007016",
+          "chapter": 7,
+          "verse": 16
+        },
+        {
+          "verseID": "15007017",
+          "chapter": 7,
+          "verse": 17
+        },
+        {
+          "verseID": "15007018",
+          "chapter": 7,
+          "verse": 18
+        },
+        {
+          "verseID": "15007019",
+          "chapter": 7,
+          "verse": 19
+        },
+        {
+          "verseID": "15007020",
+          "chapter": 7,
+          "verse": 20
+        },
+        {
+          "verseID": "15007021",
+          "chapter": 7,
+          "verse": 21
+        },
+        {
+          "verseID": "15007022",
+          "chapter": 7,
+          "verse": 22
+        },
+        {
+          "verseID": "15007023",
+          "chapter": 7,
+          "verse": 23
+        },
+        {
+          "verseID": "15007024",
+          "chapter": 7,
+          "verse": 24
+        },
+        {
+          "verseID": "15007025",
+          "chapter": 7,
+          "verse": 25
+        },
+        {
+          "verseID": "15007026",
+          "chapter": 7,
+          "verse": 26
+        },
+        {
+          "verseID": "15007027",
+          "chapter": 7,
+          "verse": 27
+        },
+        {
+          "verseID": "15007028",
+          "chapter": 7,
+          "verse": 28
+        },
+        {
+          "verseID": "15008001",
+          "chapter": 8,
+          "verse": 1
+        },
+        {
+          "verseID": "15008002",
+          "chapter": 8,
+          "verse": 2
+        },
+        {
+          "verseID": "15008003",
+          "chapter": 8,
+          "verse": 3
+        },
+        {
+          "verseID": "15008004",
+          "chapter": 8,
+          "verse": 4
+        },
+        {
+          "verseID": "15008005",
+          "chapter": 8,
+          "verse": 5
+        },
+        {
+          "verseID": "15008006",
+          "chapter": 8,
+          "verse": 6
+        },
+        {
+          "verseID": "15008007",
+          "chapter": 8,
+          "verse": 7
+        },
+        {
+          "verseID": "15008008",
+          "chapter": 8,
+          "verse": 8
+        },
+        {
+          "verseID": "15008009",
+          "chapter": 8,
+          "verse": 9
+        },
+        {
+          "verseID": "15008010",
+          "chapter": 8,
+          "verse": 10
+        },
+        {
+          "verseID": "15008011",
+          "chapter": 8,
+          "verse": 11
+        },
+        {
+          "verseID": "15008012",
+          "chapter": 8,
+          "verse": 12
+        },
+        {
+          "verseID": "15008013",
+          "chapter": 8,
+          "verse": 13
+        },
+        {
+          "verseID": "15008014",
+          "chapter": 8,
+          "verse": 14
+        },
+        {
+          "verseID": "15008015",
+          "chapter": 8,
+          "verse": 15
+        },
+        {
+          "verseID": "15008016",
+          "chapter": 8,
+          "verse": 16
+        },
+        {
+          "verseID": "15008017",
+          "chapter": 8,
+          "verse": 17
+        },
+        {
+          "verseID": "15008018",
+          "chapter": 8,
+          "verse": 18
+        },
+        {
+          "verseID": "15008019",
+          "chapter": 8,
+          "verse": 19
+        },
+        {
+          "verseID": "15008020",
+          "chapter": 8,
+          "verse": 20
+        },
+        {
+          "verseID": "15008021",
+          "chapter": 8,
+          "verse": 21
+        },
+        {
+          "verseID": "15008022",
+          "chapter": 8,
+          "verse": 22
+        },
+        {
+          "verseID": "15008023",
+          "chapter": 8,
+          "verse": 23
+        },
+        {
+          "verseID": "15008024",
+          "chapter": 8,
+          "verse": 24
+        },
+        {
+          "verseID": "15008025",
+          "chapter": 8,
+          "verse": 25
+        },
+        {
+          "verseID": "15008026",
+          "chapter": 8,
+          "verse": 26
+        },
+        {
+          "verseID": "15008027",
+          "chapter": 8,
+          "verse": 27
+        },
+        {
+          "verseID": "15008028",
+          "chapter": 8,
+          "verse": 28
+        },
+        {
+          "verseID": "15008029",
+          "chapter": 8,
+          "verse": 29
+        },
+        {
+          "verseID": "15008030",
+          "chapter": 8,
+          "verse": 30
+        },
+        {
+          "verseID": "15008031",
+          "chapter": 8,
+          "verse": 31
+        },
+        {
+          "verseID": "15008032",
+          "chapter": 8,
+          "verse": 32
+        },
+        {
+          "verseID": "15008033",
+          "chapter": 8,
+          "verse": 33
+        },
+        {
+          "verseID": "15008034",
+          "chapter": 8,
+          "verse": 34
+        },
+        {
+          "verseID": "15008035",
+          "chapter": 8,
+          "verse": 35
+        },
+        {
+          "verseID": "15008036",
+          "chapter": 8,
+          "verse": 36
+        }
+      ],
+      "rangeLabel": "7:1–28, 8:1–36"
     },
     {
       "id": "verse-event-ezra-dissolves-mixed-marriages",
@@ -106,7 +1624,305 @@
       "startDate": "-457",
       "sortKey": -457,
       "yearLabel": "BC 457경",
-      "book_id": "recit4Q50QB9nM3q2"
+      "book_id": "recit4Q50QB9nM3q2",
+      "verses": [
+        {
+          "verseID": "15009001",
+          "chapter": 9,
+          "verse": 1
+        },
+        {
+          "verseID": "15009002",
+          "chapter": 9,
+          "verse": 2
+        },
+        {
+          "verseID": "15009003",
+          "chapter": 9,
+          "verse": 3
+        },
+        {
+          "verseID": "15009004",
+          "chapter": 9,
+          "verse": 4
+        },
+        {
+          "verseID": "15009005",
+          "chapter": 9,
+          "verse": 5
+        },
+        {
+          "verseID": "15009006",
+          "chapter": 9,
+          "verse": 6
+        },
+        {
+          "verseID": "15009007",
+          "chapter": 9,
+          "verse": 7
+        },
+        {
+          "verseID": "15009008",
+          "chapter": 9,
+          "verse": 8
+        },
+        {
+          "verseID": "15009009",
+          "chapter": 9,
+          "verse": 9
+        },
+        {
+          "verseID": "15009010",
+          "chapter": 9,
+          "verse": 10
+        },
+        {
+          "verseID": "15009011",
+          "chapter": 9,
+          "verse": 11
+        },
+        {
+          "verseID": "15009012",
+          "chapter": 9,
+          "verse": 12
+        },
+        {
+          "verseID": "15009013",
+          "chapter": 9,
+          "verse": 13
+        },
+        {
+          "verseID": "15009014",
+          "chapter": 9,
+          "verse": 14
+        },
+        {
+          "verseID": "15009015",
+          "chapter": 9,
+          "verse": 15
+        },
+        {
+          "verseID": "15010001",
+          "chapter": 10,
+          "verse": 1
+        },
+        {
+          "verseID": "15010002",
+          "chapter": 10,
+          "verse": 2
+        },
+        {
+          "verseID": "15010003",
+          "chapter": 10,
+          "verse": 3
+        },
+        {
+          "verseID": "15010004",
+          "chapter": 10,
+          "verse": 4
+        },
+        {
+          "verseID": "15010005",
+          "chapter": 10,
+          "verse": 5
+        },
+        {
+          "verseID": "15010006",
+          "chapter": 10,
+          "verse": 6
+        },
+        {
+          "verseID": "15010007",
+          "chapter": 10,
+          "verse": 7
+        },
+        {
+          "verseID": "15010008",
+          "chapter": 10,
+          "verse": 8
+        },
+        {
+          "verseID": "15010009",
+          "chapter": 10,
+          "verse": 9
+        },
+        {
+          "verseID": "15010010",
+          "chapter": 10,
+          "verse": 10
+        },
+        {
+          "verseID": "15010011",
+          "chapter": 10,
+          "verse": 11
+        },
+        {
+          "verseID": "15010012",
+          "chapter": 10,
+          "verse": 12
+        },
+        {
+          "verseID": "15010013",
+          "chapter": 10,
+          "verse": 13
+        },
+        {
+          "verseID": "15010014",
+          "chapter": 10,
+          "verse": 14
+        },
+        {
+          "verseID": "15010015",
+          "chapter": 10,
+          "verse": 15
+        },
+        {
+          "verseID": "15010016",
+          "chapter": 10,
+          "verse": 16
+        },
+        {
+          "verseID": "15010017",
+          "chapter": 10,
+          "verse": 17
+        },
+        {
+          "verseID": "15010018",
+          "chapter": 10,
+          "verse": 18
+        },
+        {
+          "verseID": "15010019",
+          "chapter": 10,
+          "verse": 19
+        },
+        {
+          "verseID": "15010020",
+          "chapter": 10,
+          "verse": 20
+        },
+        {
+          "verseID": "15010021",
+          "chapter": 10,
+          "verse": 21
+        },
+        {
+          "verseID": "15010022",
+          "chapter": 10,
+          "verse": 22
+        },
+        {
+          "verseID": "15010023",
+          "chapter": 10,
+          "verse": 23
+        },
+        {
+          "verseID": "15010024",
+          "chapter": 10,
+          "verse": 24
+        },
+        {
+          "verseID": "15010025",
+          "chapter": 10,
+          "verse": 25
+        },
+        {
+          "verseID": "15010026",
+          "chapter": 10,
+          "verse": 26
+        },
+        {
+          "verseID": "15010027",
+          "chapter": 10,
+          "verse": 27
+        },
+        {
+          "verseID": "15010028",
+          "chapter": 10,
+          "verse": 28
+        },
+        {
+          "verseID": "15010029",
+          "chapter": 10,
+          "verse": 29
+        },
+        {
+          "verseID": "15010030",
+          "chapter": 10,
+          "verse": 30
+        },
+        {
+          "verseID": "15010031",
+          "chapter": 10,
+          "verse": 31
+        },
+        {
+          "verseID": "15010032",
+          "chapter": 10,
+          "verse": 32
+        },
+        {
+          "verseID": "15010033",
+          "chapter": 10,
+          "verse": 33
+        },
+        {
+          "verseID": "15010034",
+          "chapter": 10,
+          "verse": 34
+        },
+        {
+          "verseID": "15010035",
+          "chapter": 10,
+          "verse": 35
+        },
+        {
+          "verseID": "15010036",
+          "chapter": 10,
+          "verse": 36
+        },
+        {
+          "verseID": "15010037",
+          "chapter": 10,
+          "verse": 37
+        },
+        {
+          "verseID": "15010038",
+          "chapter": 10,
+          "verse": 38
+        },
+        {
+          "verseID": "15010039",
+          "chapter": 10,
+          "verse": 39
+        },
+        {
+          "verseID": "15010040",
+          "chapter": 10,
+          "verse": 40
+        },
+        {
+          "verseID": "15010041",
+          "chapter": 10,
+          "verse": 41
+        },
+        {
+          "verseID": "15010042",
+          "chapter": 10,
+          "verse": 42
+        },
+        {
+          "verseID": "15010043",
+          "chapter": 10,
+          "verse": 43
+        },
+        {
+          "verseID": "15010044",
+          "chapter": 10,
+          "verse": 44
+        }
+      ],
+      "rangeLabel": "9:1–15, 10:1–44"
     },
     {
       "id": "verse-event-nehemiah-hears-of-jerusalems-ruins",
@@ -115,7 +1931,65 @@
       "startDate": "-445",
       "sortKey": -445,
       "yearLabel": "BC 445경",
-      "book_id": "rec3WEGPl0a1PS0cC"
+      "book_id": "rec3WEGPl0a1PS0cC",
+      "verses": [
+        {
+          "verseID": "16001001",
+          "chapter": 1,
+          "verse": 1
+        },
+        {
+          "verseID": "16001002",
+          "chapter": 1,
+          "verse": 2
+        },
+        {
+          "verseID": "16001003",
+          "chapter": 1,
+          "verse": 3
+        },
+        {
+          "verseID": "16001004",
+          "chapter": 1,
+          "verse": 4
+        },
+        {
+          "verseID": "16001005",
+          "chapter": 1,
+          "verse": 5
+        },
+        {
+          "verseID": "16001006",
+          "chapter": 1,
+          "verse": 6
+        },
+        {
+          "verseID": "16001007",
+          "chapter": 1,
+          "verse": 7
+        },
+        {
+          "verseID": "16001008",
+          "chapter": 1,
+          "verse": 8
+        },
+        {
+          "verseID": "16001009",
+          "chapter": 1,
+          "verse": 9
+        },
+        {
+          "verseID": "16001010",
+          "chapter": 1,
+          "verse": 10
+        },
+        {
+          "verseID": "16001011",
+          "chapter": 1,
+          "verse": 11
+        }
+      ],
+      "rangeLabel": "1:1–11"
     },
     {
       "id": "verse-event-nehemiah-rebuilds-jerusalem-walls",
@@ -124,7 +1998,575 @@
       "startDate": "-445",
       "sortKey": -445,
       "yearLabel": "BC 445경",
-      "book_id": "rec3WEGPl0a1PS0cC"
+      "book_id": "rec3WEGPl0a1PS0cC",
+      "verses": [
+        {
+          "verseID": "16002001",
+          "chapter": 2,
+          "verse": 1
+        },
+        {
+          "verseID": "16002002",
+          "chapter": 2,
+          "verse": 2
+        },
+        {
+          "verseID": "16002003",
+          "chapter": 2,
+          "verse": 3
+        },
+        {
+          "verseID": "16002004",
+          "chapter": 2,
+          "verse": 4
+        },
+        {
+          "verseID": "16002005",
+          "chapter": 2,
+          "verse": 5
+        },
+        {
+          "verseID": "16002006",
+          "chapter": 2,
+          "verse": 6
+        },
+        {
+          "verseID": "16002007",
+          "chapter": 2,
+          "verse": 7
+        },
+        {
+          "verseID": "16002008",
+          "chapter": 2,
+          "verse": 8
+        },
+        {
+          "verseID": "16002009",
+          "chapter": 2,
+          "verse": 9
+        },
+        {
+          "verseID": "16002010",
+          "chapter": 2,
+          "verse": 10
+        },
+        {
+          "verseID": "16002011",
+          "chapter": 2,
+          "verse": 11
+        },
+        {
+          "verseID": "16002012",
+          "chapter": 2,
+          "verse": 12
+        },
+        {
+          "verseID": "16002013",
+          "chapter": 2,
+          "verse": 13
+        },
+        {
+          "verseID": "16002014",
+          "chapter": 2,
+          "verse": 14
+        },
+        {
+          "verseID": "16002015",
+          "chapter": 2,
+          "verse": 15
+        },
+        {
+          "verseID": "16002016",
+          "chapter": 2,
+          "verse": 16
+        },
+        {
+          "verseID": "16002017",
+          "chapter": 2,
+          "verse": 17
+        },
+        {
+          "verseID": "16002018",
+          "chapter": 2,
+          "verse": 18
+        },
+        {
+          "verseID": "16002019",
+          "chapter": 2,
+          "verse": 19
+        },
+        {
+          "verseID": "16002020",
+          "chapter": 2,
+          "verse": 20
+        },
+        {
+          "verseID": "16003001",
+          "chapter": 3,
+          "verse": 1
+        },
+        {
+          "verseID": "16003002",
+          "chapter": 3,
+          "verse": 2
+        },
+        {
+          "verseID": "16003003",
+          "chapter": 3,
+          "verse": 3
+        },
+        {
+          "verseID": "16003004",
+          "chapter": 3,
+          "verse": 4
+        },
+        {
+          "verseID": "16003005",
+          "chapter": 3,
+          "verse": 5
+        },
+        {
+          "verseID": "16003006",
+          "chapter": 3,
+          "verse": 6
+        },
+        {
+          "verseID": "16003007",
+          "chapter": 3,
+          "verse": 7
+        },
+        {
+          "verseID": "16003008",
+          "chapter": 3,
+          "verse": 8
+        },
+        {
+          "verseID": "16003009",
+          "chapter": 3,
+          "verse": 9
+        },
+        {
+          "verseID": "16003010",
+          "chapter": 3,
+          "verse": 10
+        },
+        {
+          "verseID": "16003011",
+          "chapter": 3,
+          "verse": 11
+        },
+        {
+          "verseID": "16003012",
+          "chapter": 3,
+          "verse": 12
+        },
+        {
+          "verseID": "16003013",
+          "chapter": 3,
+          "verse": 13
+        },
+        {
+          "verseID": "16003014",
+          "chapter": 3,
+          "verse": 14
+        },
+        {
+          "verseID": "16003015",
+          "chapter": 3,
+          "verse": 15
+        },
+        {
+          "verseID": "16003016",
+          "chapter": 3,
+          "verse": 16
+        },
+        {
+          "verseID": "16003017",
+          "chapter": 3,
+          "verse": 17
+        },
+        {
+          "verseID": "16003018",
+          "chapter": 3,
+          "verse": 18
+        },
+        {
+          "verseID": "16003019",
+          "chapter": 3,
+          "verse": 19
+        },
+        {
+          "verseID": "16003020",
+          "chapter": 3,
+          "verse": 20
+        },
+        {
+          "verseID": "16003021",
+          "chapter": 3,
+          "verse": 21
+        },
+        {
+          "verseID": "16003022",
+          "chapter": 3,
+          "verse": 22
+        },
+        {
+          "verseID": "16003023",
+          "chapter": 3,
+          "verse": 23
+        },
+        {
+          "verseID": "16003024",
+          "chapter": 3,
+          "verse": 24
+        },
+        {
+          "verseID": "16003025",
+          "chapter": 3,
+          "verse": 25
+        },
+        {
+          "verseID": "16003026",
+          "chapter": 3,
+          "verse": 26
+        },
+        {
+          "verseID": "16003027",
+          "chapter": 3,
+          "verse": 27
+        },
+        {
+          "verseID": "16003028",
+          "chapter": 3,
+          "verse": 28
+        },
+        {
+          "verseID": "16003029",
+          "chapter": 3,
+          "verse": 29
+        },
+        {
+          "verseID": "16003030",
+          "chapter": 3,
+          "verse": 30
+        },
+        {
+          "verseID": "16003031",
+          "chapter": 3,
+          "verse": 31
+        },
+        {
+          "verseID": "16003032",
+          "chapter": 3,
+          "verse": 32
+        },
+        {
+          "verseID": "16004001",
+          "chapter": 4,
+          "verse": 1
+        },
+        {
+          "verseID": "16004002",
+          "chapter": 4,
+          "verse": 2
+        },
+        {
+          "verseID": "16004003",
+          "chapter": 4,
+          "verse": 3
+        },
+        {
+          "verseID": "16004004",
+          "chapter": 4,
+          "verse": 4
+        },
+        {
+          "verseID": "16004005",
+          "chapter": 4,
+          "verse": 5
+        },
+        {
+          "verseID": "16004006",
+          "chapter": 4,
+          "verse": 6
+        },
+        {
+          "verseID": "16004007",
+          "chapter": 4,
+          "verse": 7
+        },
+        {
+          "verseID": "16004008",
+          "chapter": 4,
+          "verse": 8
+        },
+        {
+          "verseID": "16004009",
+          "chapter": 4,
+          "verse": 9
+        },
+        {
+          "verseID": "16004010",
+          "chapter": 4,
+          "verse": 10
+        },
+        {
+          "verseID": "16004011",
+          "chapter": 4,
+          "verse": 11
+        },
+        {
+          "verseID": "16004012",
+          "chapter": 4,
+          "verse": 12
+        },
+        {
+          "verseID": "16004013",
+          "chapter": 4,
+          "verse": 13
+        },
+        {
+          "verseID": "16004014",
+          "chapter": 4,
+          "verse": 14
+        },
+        {
+          "verseID": "16004015",
+          "chapter": 4,
+          "verse": 15
+        },
+        {
+          "verseID": "16004016",
+          "chapter": 4,
+          "verse": 16
+        },
+        {
+          "verseID": "16004017",
+          "chapter": 4,
+          "verse": 17
+        },
+        {
+          "verseID": "16004018",
+          "chapter": 4,
+          "verse": 18
+        },
+        {
+          "verseID": "16004019",
+          "chapter": 4,
+          "verse": 19
+        },
+        {
+          "verseID": "16004020",
+          "chapter": 4,
+          "verse": 20
+        },
+        {
+          "verseID": "16004021",
+          "chapter": 4,
+          "verse": 21
+        },
+        {
+          "verseID": "16004022",
+          "chapter": 4,
+          "verse": 22
+        },
+        {
+          "verseID": "16004023",
+          "chapter": 4,
+          "verse": 23
+        },
+        {
+          "verseID": "16005001",
+          "chapter": 5,
+          "verse": 1
+        },
+        {
+          "verseID": "16005002",
+          "chapter": 5,
+          "verse": 2
+        },
+        {
+          "verseID": "16005003",
+          "chapter": 5,
+          "verse": 3
+        },
+        {
+          "verseID": "16005004",
+          "chapter": 5,
+          "verse": 4
+        },
+        {
+          "verseID": "16005005",
+          "chapter": 5,
+          "verse": 5
+        },
+        {
+          "verseID": "16005006",
+          "chapter": 5,
+          "verse": 6
+        },
+        {
+          "verseID": "16005007",
+          "chapter": 5,
+          "verse": 7
+        },
+        {
+          "verseID": "16005008",
+          "chapter": 5,
+          "verse": 8
+        },
+        {
+          "verseID": "16005009",
+          "chapter": 5,
+          "verse": 9
+        },
+        {
+          "verseID": "16005010",
+          "chapter": 5,
+          "verse": 10
+        },
+        {
+          "verseID": "16005011",
+          "chapter": 5,
+          "verse": 11
+        },
+        {
+          "verseID": "16005012",
+          "chapter": 5,
+          "verse": 12
+        },
+        {
+          "verseID": "16005013",
+          "chapter": 5,
+          "verse": 13
+        },
+        {
+          "verseID": "16005014",
+          "chapter": 5,
+          "verse": 14
+        },
+        {
+          "verseID": "16005015",
+          "chapter": 5,
+          "verse": 15
+        },
+        {
+          "verseID": "16005016",
+          "chapter": 5,
+          "verse": 16
+        },
+        {
+          "verseID": "16005017",
+          "chapter": 5,
+          "verse": 17
+        },
+        {
+          "verseID": "16005018",
+          "chapter": 5,
+          "verse": 18
+        },
+        {
+          "verseID": "16005019",
+          "chapter": 5,
+          "verse": 19
+        },
+        {
+          "verseID": "16006001",
+          "chapter": 6,
+          "verse": 1
+        },
+        {
+          "verseID": "16006002",
+          "chapter": 6,
+          "verse": 2
+        },
+        {
+          "verseID": "16006003",
+          "chapter": 6,
+          "verse": 3
+        },
+        {
+          "verseID": "16006004",
+          "chapter": 6,
+          "verse": 4
+        },
+        {
+          "verseID": "16006005",
+          "chapter": 6,
+          "verse": 5
+        },
+        {
+          "verseID": "16006006",
+          "chapter": 6,
+          "verse": 6
+        },
+        {
+          "verseID": "16006007",
+          "chapter": 6,
+          "verse": 7
+        },
+        {
+          "verseID": "16006008",
+          "chapter": 6,
+          "verse": 8
+        },
+        {
+          "verseID": "16006009",
+          "chapter": 6,
+          "verse": 9
+        },
+        {
+          "verseID": "16006010",
+          "chapter": 6,
+          "verse": 10
+        },
+        {
+          "verseID": "16006011",
+          "chapter": 6,
+          "verse": 11
+        },
+        {
+          "verseID": "16006012",
+          "chapter": 6,
+          "verse": 12
+        },
+        {
+          "verseID": "16006013",
+          "chapter": 6,
+          "verse": 13
+        },
+        {
+          "verseID": "16006014",
+          "chapter": 6,
+          "verse": 14
+        },
+        {
+          "verseID": "16006015",
+          "chapter": 6,
+          "verse": 15
+        },
+        {
+          "verseID": "16006016",
+          "chapter": 6,
+          "verse": 16
+        },
+        {
+          "verseID": "16006017",
+          "chapter": 6,
+          "verse": 17
+        },
+        {
+          "verseID": "16006018",
+          "chapter": 6,
+          "verse": 18
+        },
+        {
+          "verseID": "16006019",
+          "chapter": 6,
+          "verse": 19
+        }
+      ],
+      "rangeLabel": "2:1–20, 3:1–32, 4:1–23, 5:1–19, 6:1–19"
     },
     {
       "id": "verse-event-ezra-reads-law-at-water-gate",
@@ -133,7 +2575,100 @@
       "startDate": "-444",
       "sortKey": -444,
       "yearLabel": "BC 444경",
-      "book_id": "rec3WEGPl0a1PS0cC"
+      "book_id": "rec3WEGPl0a1PS0cC",
+      "verses": [
+        {
+          "verseID": "16008001",
+          "chapter": 8,
+          "verse": 1
+        },
+        {
+          "verseID": "16008002",
+          "chapter": 8,
+          "verse": 2
+        },
+        {
+          "verseID": "16008003",
+          "chapter": 8,
+          "verse": 3
+        },
+        {
+          "verseID": "16008004",
+          "chapter": 8,
+          "verse": 4
+        },
+        {
+          "verseID": "16008005",
+          "chapter": 8,
+          "verse": 5
+        },
+        {
+          "verseID": "16008006",
+          "chapter": 8,
+          "verse": 6
+        },
+        {
+          "verseID": "16008007",
+          "chapter": 8,
+          "verse": 7
+        },
+        {
+          "verseID": "16008008",
+          "chapter": 8,
+          "verse": 8
+        },
+        {
+          "verseID": "16008009",
+          "chapter": 8,
+          "verse": 9
+        },
+        {
+          "verseID": "16008010",
+          "chapter": 8,
+          "verse": 10
+        },
+        {
+          "verseID": "16008011",
+          "chapter": 8,
+          "verse": 11
+        },
+        {
+          "verseID": "16008012",
+          "chapter": 8,
+          "verse": 12
+        },
+        {
+          "verseID": "16008013",
+          "chapter": 8,
+          "verse": 13
+        },
+        {
+          "verseID": "16008014",
+          "chapter": 8,
+          "verse": 14
+        },
+        {
+          "verseID": "16008015",
+          "chapter": 8,
+          "verse": 15
+        },
+        {
+          "verseID": "16008016",
+          "chapter": 8,
+          "verse": 16
+        },
+        {
+          "verseID": "16008017",
+          "chapter": 8,
+          "verse": 17
+        },
+        {
+          "verseID": "16008018",
+          "chapter": 8,
+          "verse": 18
+        }
+      ],
+      "rangeLabel": "8:1–18"
     },
     {
       "id": "verse-event-israel-renews-the-covenant-under-nehemiah",
@@ -142,7 +2677,395 @@
       "startDate": "-444",
       "sortKey": -444,
       "yearLabel": "BC 444경",
-      "book_id": "rec3WEGPl0a1PS0cC"
+      "book_id": "rec3WEGPl0a1PS0cC",
+      "verses": [
+        {
+          "verseID": "16009001",
+          "chapter": 9,
+          "verse": 1
+        },
+        {
+          "verseID": "16009002",
+          "chapter": 9,
+          "verse": 2
+        },
+        {
+          "verseID": "16009003",
+          "chapter": 9,
+          "verse": 3
+        },
+        {
+          "verseID": "16009004",
+          "chapter": 9,
+          "verse": 4
+        },
+        {
+          "verseID": "16009005",
+          "chapter": 9,
+          "verse": 5
+        },
+        {
+          "verseID": "16009006",
+          "chapter": 9,
+          "verse": 6
+        },
+        {
+          "verseID": "16009007",
+          "chapter": 9,
+          "verse": 7
+        },
+        {
+          "verseID": "16009008",
+          "chapter": 9,
+          "verse": 8
+        },
+        {
+          "verseID": "16009009",
+          "chapter": 9,
+          "verse": 9
+        },
+        {
+          "verseID": "16009010",
+          "chapter": 9,
+          "verse": 10
+        },
+        {
+          "verseID": "16009011",
+          "chapter": 9,
+          "verse": 11
+        },
+        {
+          "verseID": "16009012",
+          "chapter": 9,
+          "verse": 12
+        },
+        {
+          "verseID": "16009013",
+          "chapter": 9,
+          "verse": 13
+        },
+        {
+          "verseID": "16009014",
+          "chapter": 9,
+          "verse": 14
+        },
+        {
+          "verseID": "16009015",
+          "chapter": 9,
+          "verse": 15
+        },
+        {
+          "verseID": "16009016",
+          "chapter": 9,
+          "verse": 16
+        },
+        {
+          "verseID": "16009017",
+          "chapter": 9,
+          "verse": 17
+        },
+        {
+          "verseID": "16009018",
+          "chapter": 9,
+          "verse": 18
+        },
+        {
+          "verseID": "16009019",
+          "chapter": 9,
+          "verse": 19
+        },
+        {
+          "verseID": "16009020",
+          "chapter": 9,
+          "verse": 20
+        },
+        {
+          "verseID": "16009021",
+          "chapter": 9,
+          "verse": 21
+        },
+        {
+          "verseID": "16009022",
+          "chapter": 9,
+          "verse": 22
+        },
+        {
+          "verseID": "16009023",
+          "chapter": 9,
+          "verse": 23
+        },
+        {
+          "verseID": "16009024",
+          "chapter": 9,
+          "verse": 24
+        },
+        {
+          "verseID": "16009025",
+          "chapter": 9,
+          "verse": 25
+        },
+        {
+          "verseID": "16009026",
+          "chapter": 9,
+          "verse": 26
+        },
+        {
+          "verseID": "16009027",
+          "chapter": 9,
+          "verse": 27
+        },
+        {
+          "verseID": "16009028",
+          "chapter": 9,
+          "verse": 28
+        },
+        {
+          "verseID": "16009029",
+          "chapter": 9,
+          "verse": 29
+        },
+        {
+          "verseID": "16009030",
+          "chapter": 9,
+          "verse": 30
+        },
+        {
+          "verseID": "16009031",
+          "chapter": 9,
+          "verse": 31
+        },
+        {
+          "verseID": "16009032",
+          "chapter": 9,
+          "verse": 32
+        },
+        {
+          "verseID": "16009033",
+          "chapter": 9,
+          "verse": 33
+        },
+        {
+          "verseID": "16009034",
+          "chapter": 9,
+          "verse": 34
+        },
+        {
+          "verseID": "16009035",
+          "chapter": 9,
+          "verse": 35
+        },
+        {
+          "verseID": "16009036",
+          "chapter": 9,
+          "verse": 36
+        },
+        {
+          "verseID": "16009037",
+          "chapter": 9,
+          "verse": 37
+        },
+        {
+          "verseID": "16009038",
+          "chapter": 9,
+          "verse": 38
+        },
+        {
+          "verseID": "16010001",
+          "chapter": 10,
+          "verse": 1
+        },
+        {
+          "verseID": "16010002",
+          "chapter": 10,
+          "verse": 2
+        },
+        {
+          "verseID": "16010003",
+          "chapter": 10,
+          "verse": 3
+        },
+        {
+          "verseID": "16010004",
+          "chapter": 10,
+          "verse": 4
+        },
+        {
+          "verseID": "16010005",
+          "chapter": 10,
+          "verse": 5
+        },
+        {
+          "verseID": "16010006",
+          "chapter": 10,
+          "verse": 6
+        },
+        {
+          "verseID": "16010007",
+          "chapter": 10,
+          "verse": 7
+        },
+        {
+          "verseID": "16010008",
+          "chapter": 10,
+          "verse": 8
+        },
+        {
+          "verseID": "16010009",
+          "chapter": 10,
+          "verse": 9
+        },
+        {
+          "verseID": "16010010",
+          "chapter": 10,
+          "verse": 10
+        },
+        {
+          "verseID": "16010011",
+          "chapter": 10,
+          "verse": 11
+        },
+        {
+          "verseID": "16010012",
+          "chapter": 10,
+          "verse": 12
+        },
+        {
+          "verseID": "16010013",
+          "chapter": 10,
+          "verse": 13
+        },
+        {
+          "verseID": "16010014",
+          "chapter": 10,
+          "verse": 14
+        },
+        {
+          "verseID": "16010015",
+          "chapter": 10,
+          "verse": 15
+        },
+        {
+          "verseID": "16010016",
+          "chapter": 10,
+          "verse": 16
+        },
+        {
+          "verseID": "16010017",
+          "chapter": 10,
+          "verse": 17
+        },
+        {
+          "verseID": "16010018",
+          "chapter": 10,
+          "verse": 18
+        },
+        {
+          "verseID": "16010019",
+          "chapter": 10,
+          "verse": 19
+        },
+        {
+          "verseID": "16010020",
+          "chapter": 10,
+          "verse": 20
+        },
+        {
+          "verseID": "16010021",
+          "chapter": 10,
+          "verse": 21
+        },
+        {
+          "verseID": "16010022",
+          "chapter": 10,
+          "verse": 22
+        },
+        {
+          "verseID": "16010023",
+          "chapter": 10,
+          "verse": 23
+        },
+        {
+          "verseID": "16010024",
+          "chapter": 10,
+          "verse": 24
+        },
+        {
+          "verseID": "16010025",
+          "chapter": 10,
+          "verse": 25
+        },
+        {
+          "verseID": "16010026",
+          "chapter": 10,
+          "verse": 26
+        },
+        {
+          "verseID": "16010027",
+          "chapter": 10,
+          "verse": 27
+        },
+        {
+          "verseID": "16010028",
+          "chapter": 10,
+          "verse": 28
+        },
+        {
+          "verseID": "16010029",
+          "chapter": 10,
+          "verse": 29
+        },
+        {
+          "verseID": "16010030",
+          "chapter": 10,
+          "verse": 30
+        },
+        {
+          "verseID": "16010031",
+          "chapter": 10,
+          "verse": 31
+        },
+        {
+          "verseID": "16010032",
+          "chapter": 10,
+          "verse": 32
+        },
+        {
+          "verseID": "16010033",
+          "chapter": 10,
+          "verse": 33
+        },
+        {
+          "verseID": "16010034",
+          "chapter": 10,
+          "verse": 34
+        },
+        {
+          "verseID": "16010035",
+          "chapter": 10,
+          "verse": 35
+        },
+        {
+          "verseID": "16010036",
+          "chapter": 10,
+          "verse": 36
+        },
+        {
+          "verseID": "16010037",
+          "chapter": 10,
+          "verse": 37
+        },
+        {
+          "verseID": "16010038",
+          "chapter": 10,
+          "verse": 38
+        },
+        {
+          "verseID": "16010039",
+          "chapter": 10,
+          "verse": 39
+        }
+      ],
+      "rangeLabel": "9:1–38, 10:1–39"
     },
     {
       "id": "verse-event-david-brings-ark-to-jerusalem-chronicles",
@@ -151,7 +3074,440 @@
       "startDate": "-1000",
       "sortKey": -1000,
       "yearLabel": "BC 1000경",
-      "book_id": "rec2ZFQHqI4eUjhqX"
+      "book_id": "rec2ZFQHqI4eUjhqX",
+      "verses": [
+        {
+          "verseID": "13013001",
+          "chapter": 13,
+          "verse": 1
+        },
+        {
+          "verseID": "13013002",
+          "chapter": 13,
+          "verse": 2
+        },
+        {
+          "verseID": "13013003",
+          "chapter": 13,
+          "verse": 3
+        },
+        {
+          "verseID": "13013004",
+          "chapter": 13,
+          "verse": 4
+        },
+        {
+          "verseID": "13013005",
+          "chapter": 13,
+          "verse": 5
+        },
+        {
+          "verseID": "13013006",
+          "chapter": 13,
+          "verse": 6
+        },
+        {
+          "verseID": "13013007",
+          "chapter": 13,
+          "verse": 7
+        },
+        {
+          "verseID": "13013008",
+          "chapter": 13,
+          "verse": 8
+        },
+        {
+          "verseID": "13013009",
+          "chapter": 13,
+          "verse": 9
+        },
+        {
+          "verseID": "13013010",
+          "chapter": 13,
+          "verse": 10
+        },
+        {
+          "verseID": "13013011",
+          "chapter": 13,
+          "verse": 11
+        },
+        {
+          "verseID": "13013012",
+          "chapter": 13,
+          "verse": 12
+        },
+        {
+          "verseID": "13013013",
+          "chapter": 13,
+          "verse": 13
+        },
+        {
+          "verseID": "13013014",
+          "chapter": 13,
+          "verse": 14
+        },
+        {
+          "verseID": "13015001",
+          "chapter": 15,
+          "verse": 1
+        },
+        {
+          "verseID": "13015002",
+          "chapter": 15,
+          "verse": 2
+        },
+        {
+          "verseID": "13015003",
+          "chapter": 15,
+          "verse": 3
+        },
+        {
+          "verseID": "13015004",
+          "chapter": 15,
+          "verse": 4
+        },
+        {
+          "verseID": "13015005",
+          "chapter": 15,
+          "verse": 5
+        },
+        {
+          "verseID": "13015006",
+          "chapter": 15,
+          "verse": 6
+        },
+        {
+          "verseID": "13015007",
+          "chapter": 15,
+          "verse": 7
+        },
+        {
+          "verseID": "13015008",
+          "chapter": 15,
+          "verse": 8
+        },
+        {
+          "verseID": "13015009",
+          "chapter": 15,
+          "verse": 9
+        },
+        {
+          "verseID": "13015010",
+          "chapter": 15,
+          "verse": 10
+        },
+        {
+          "verseID": "13015011",
+          "chapter": 15,
+          "verse": 11
+        },
+        {
+          "verseID": "13015012",
+          "chapter": 15,
+          "verse": 12
+        },
+        {
+          "verseID": "13015013",
+          "chapter": 15,
+          "verse": 13
+        },
+        {
+          "verseID": "13015014",
+          "chapter": 15,
+          "verse": 14
+        },
+        {
+          "verseID": "13015015",
+          "chapter": 15,
+          "verse": 15
+        },
+        {
+          "verseID": "13015016",
+          "chapter": 15,
+          "verse": 16
+        },
+        {
+          "verseID": "13015017",
+          "chapter": 15,
+          "verse": 17
+        },
+        {
+          "verseID": "13015018",
+          "chapter": 15,
+          "verse": 18
+        },
+        {
+          "verseID": "13015019",
+          "chapter": 15,
+          "verse": 19
+        },
+        {
+          "verseID": "13015020",
+          "chapter": 15,
+          "verse": 20
+        },
+        {
+          "verseID": "13015021",
+          "chapter": 15,
+          "verse": 21
+        },
+        {
+          "verseID": "13015022",
+          "chapter": 15,
+          "verse": 22
+        },
+        {
+          "verseID": "13015023",
+          "chapter": 15,
+          "verse": 23
+        },
+        {
+          "verseID": "13015024",
+          "chapter": 15,
+          "verse": 24
+        },
+        {
+          "verseID": "13015025",
+          "chapter": 15,
+          "verse": 25
+        },
+        {
+          "verseID": "13015026",
+          "chapter": 15,
+          "verse": 26
+        },
+        {
+          "verseID": "13015027",
+          "chapter": 15,
+          "verse": 27
+        },
+        {
+          "verseID": "13015028",
+          "chapter": 15,
+          "verse": 28
+        },
+        {
+          "verseID": "13015029",
+          "chapter": 15,
+          "verse": 29
+        },
+        {
+          "verseID": "13016001",
+          "chapter": 16,
+          "verse": 1
+        },
+        {
+          "verseID": "13016002",
+          "chapter": 16,
+          "verse": 2
+        },
+        {
+          "verseID": "13016003",
+          "chapter": 16,
+          "verse": 3
+        },
+        {
+          "verseID": "13016004",
+          "chapter": 16,
+          "verse": 4
+        },
+        {
+          "verseID": "13016005",
+          "chapter": 16,
+          "verse": 5
+        },
+        {
+          "verseID": "13016006",
+          "chapter": 16,
+          "verse": 6
+        },
+        {
+          "verseID": "13016007",
+          "chapter": 16,
+          "verse": 7
+        },
+        {
+          "verseID": "13016008",
+          "chapter": 16,
+          "verse": 8
+        },
+        {
+          "verseID": "13016009",
+          "chapter": 16,
+          "verse": 9
+        },
+        {
+          "verseID": "13016010",
+          "chapter": 16,
+          "verse": 10
+        },
+        {
+          "verseID": "13016011",
+          "chapter": 16,
+          "verse": 11
+        },
+        {
+          "verseID": "13016012",
+          "chapter": 16,
+          "verse": 12
+        },
+        {
+          "verseID": "13016013",
+          "chapter": 16,
+          "verse": 13
+        },
+        {
+          "verseID": "13016014",
+          "chapter": 16,
+          "verse": 14
+        },
+        {
+          "verseID": "13016015",
+          "chapter": 16,
+          "verse": 15
+        },
+        {
+          "verseID": "13016016",
+          "chapter": 16,
+          "verse": 16
+        },
+        {
+          "verseID": "13016017",
+          "chapter": 16,
+          "verse": 17
+        },
+        {
+          "verseID": "13016018",
+          "chapter": 16,
+          "verse": 18
+        },
+        {
+          "verseID": "13016019",
+          "chapter": 16,
+          "verse": 19
+        },
+        {
+          "verseID": "13016020",
+          "chapter": 16,
+          "verse": 20
+        },
+        {
+          "verseID": "13016021",
+          "chapter": 16,
+          "verse": 21
+        },
+        {
+          "verseID": "13016022",
+          "chapter": 16,
+          "verse": 22
+        },
+        {
+          "verseID": "13016023",
+          "chapter": 16,
+          "verse": 23
+        },
+        {
+          "verseID": "13016024",
+          "chapter": 16,
+          "verse": 24
+        },
+        {
+          "verseID": "13016025",
+          "chapter": 16,
+          "verse": 25
+        },
+        {
+          "verseID": "13016026",
+          "chapter": 16,
+          "verse": 26
+        },
+        {
+          "verseID": "13016027",
+          "chapter": 16,
+          "verse": 27
+        },
+        {
+          "verseID": "13016028",
+          "chapter": 16,
+          "verse": 28
+        },
+        {
+          "verseID": "13016029",
+          "chapter": 16,
+          "verse": 29
+        },
+        {
+          "verseID": "13016030",
+          "chapter": 16,
+          "verse": 30
+        },
+        {
+          "verseID": "13016031",
+          "chapter": 16,
+          "verse": 31
+        },
+        {
+          "verseID": "13016032",
+          "chapter": 16,
+          "verse": 32
+        },
+        {
+          "verseID": "13016033",
+          "chapter": 16,
+          "verse": 33
+        },
+        {
+          "verseID": "13016034",
+          "chapter": 16,
+          "verse": 34
+        },
+        {
+          "verseID": "13016035",
+          "chapter": 16,
+          "verse": 35
+        },
+        {
+          "verseID": "13016036",
+          "chapter": 16,
+          "verse": 36
+        },
+        {
+          "verseID": "13016037",
+          "chapter": 16,
+          "verse": 37
+        },
+        {
+          "verseID": "13016038",
+          "chapter": 16,
+          "verse": 38
+        },
+        {
+          "verseID": "13016039",
+          "chapter": 16,
+          "verse": 39
+        },
+        {
+          "verseID": "13016040",
+          "chapter": 16,
+          "verse": 40
+        },
+        {
+          "verseID": "13016041",
+          "chapter": 16,
+          "verse": 41
+        },
+        {
+          "verseID": "13016042",
+          "chapter": 16,
+          "verse": 42
+        },
+        {
+          "verseID": "13016043",
+          "chapter": 16,
+          "verse": 43
+        }
+      ],
+      "rangeLabel": "13:1–14, 15:1–29, 16:1–43"
     },
     {
       "id": "verse-event-david-prepares-materials-for-the-temple",
@@ -160,7 +3516,360 @@
       "startDate": "-971",
       "sortKey": -971,
       "yearLabel": "BC 971경",
-      "book_id": "rec2ZFQHqI4eUjhqX"
+      "book_id": "rec2ZFQHqI4eUjhqX",
+      "verses": [
+        {
+          "verseID": "13022001",
+          "chapter": 22,
+          "verse": 1
+        },
+        {
+          "verseID": "13022002",
+          "chapter": 22,
+          "verse": 2
+        },
+        {
+          "verseID": "13022003",
+          "chapter": 22,
+          "verse": 3
+        },
+        {
+          "verseID": "13022004",
+          "chapter": 22,
+          "verse": 4
+        },
+        {
+          "verseID": "13022005",
+          "chapter": 22,
+          "verse": 5
+        },
+        {
+          "verseID": "13022006",
+          "chapter": 22,
+          "verse": 6
+        },
+        {
+          "verseID": "13022007",
+          "chapter": 22,
+          "verse": 7
+        },
+        {
+          "verseID": "13022008",
+          "chapter": 22,
+          "verse": 8
+        },
+        {
+          "verseID": "13022009",
+          "chapter": 22,
+          "verse": 9
+        },
+        {
+          "verseID": "13022010",
+          "chapter": 22,
+          "verse": 10
+        },
+        {
+          "verseID": "13022011",
+          "chapter": 22,
+          "verse": 11
+        },
+        {
+          "verseID": "13022012",
+          "chapter": 22,
+          "verse": 12
+        },
+        {
+          "verseID": "13022013",
+          "chapter": 22,
+          "verse": 13
+        },
+        {
+          "verseID": "13022014",
+          "chapter": 22,
+          "verse": 14
+        },
+        {
+          "verseID": "13022015",
+          "chapter": 22,
+          "verse": 15
+        },
+        {
+          "verseID": "13022016",
+          "chapter": 22,
+          "verse": 16
+        },
+        {
+          "verseID": "13022017",
+          "chapter": 22,
+          "verse": 17
+        },
+        {
+          "verseID": "13022018",
+          "chapter": 22,
+          "verse": 18
+        },
+        {
+          "verseID": "13022019",
+          "chapter": 22,
+          "verse": 19
+        },
+        {
+          "verseID": "13028001",
+          "chapter": 28,
+          "verse": 1
+        },
+        {
+          "verseID": "13028002",
+          "chapter": 28,
+          "verse": 2
+        },
+        {
+          "verseID": "13028003",
+          "chapter": 28,
+          "verse": 3
+        },
+        {
+          "verseID": "13028004",
+          "chapter": 28,
+          "verse": 4
+        },
+        {
+          "verseID": "13028005",
+          "chapter": 28,
+          "verse": 5
+        },
+        {
+          "verseID": "13028006",
+          "chapter": 28,
+          "verse": 6
+        },
+        {
+          "verseID": "13028007",
+          "chapter": 28,
+          "verse": 7
+        },
+        {
+          "verseID": "13028008",
+          "chapter": 28,
+          "verse": 8
+        },
+        {
+          "verseID": "13028009",
+          "chapter": 28,
+          "verse": 9
+        },
+        {
+          "verseID": "13028010",
+          "chapter": 28,
+          "verse": 10
+        },
+        {
+          "verseID": "13028011",
+          "chapter": 28,
+          "verse": 11
+        },
+        {
+          "verseID": "13028012",
+          "chapter": 28,
+          "verse": 12
+        },
+        {
+          "verseID": "13028013",
+          "chapter": 28,
+          "verse": 13
+        },
+        {
+          "verseID": "13028014",
+          "chapter": 28,
+          "verse": 14
+        },
+        {
+          "verseID": "13028015",
+          "chapter": 28,
+          "verse": 15
+        },
+        {
+          "verseID": "13028016",
+          "chapter": 28,
+          "verse": 16
+        },
+        {
+          "verseID": "13028017",
+          "chapter": 28,
+          "verse": 17
+        },
+        {
+          "verseID": "13028018",
+          "chapter": 28,
+          "verse": 18
+        },
+        {
+          "verseID": "13028019",
+          "chapter": 28,
+          "verse": 19
+        },
+        {
+          "verseID": "13028020",
+          "chapter": 28,
+          "verse": 20
+        },
+        {
+          "verseID": "13028021",
+          "chapter": 28,
+          "verse": 21
+        },
+        {
+          "verseID": "13029001",
+          "chapter": 29,
+          "verse": 1
+        },
+        {
+          "verseID": "13029002",
+          "chapter": 29,
+          "verse": 2
+        },
+        {
+          "verseID": "13029003",
+          "chapter": 29,
+          "verse": 3
+        },
+        {
+          "verseID": "13029004",
+          "chapter": 29,
+          "verse": 4
+        },
+        {
+          "verseID": "13029005",
+          "chapter": 29,
+          "verse": 5
+        },
+        {
+          "verseID": "13029006",
+          "chapter": 29,
+          "verse": 6
+        },
+        {
+          "verseID": "13029007",
+          "chapter": 29,
+          "verse": 7
+        },
+        {
+          "verseID": "13029008",
+          "chapter": 29,
+          "verse": 8
+        },
+        {
+          "verseID": "13029009",
+          "chapter": 29,
+          "verse": 9
+        },
+        {
+          "verseID": "13029010",
+          "chapter": 29,
+          "verse": 10
+        },
+        {
+          "verseID": "13029011",
+          "chapter": 29,
+          "verse": 11
+        },
+        {
+          "verseID": "13029012",
+          "chapter": 29,
+          "verse": 12
+        },
+        {
+          "verseID": "13029013",
+          "chapter": 29,
+          "verse": 13
+        },
+        {
+          "verseID": "13029014",
+          "chapter": 29,
+          "verse": 14
+        },
+        {
+          "verseID": "13029015",
+          "chapter": 29,
+          "verse": 15
+        },
+        {
+          "verseID": "13029016",
+          "chapter": 29,
+          "verse": 16
+        },
+        {
+          "verseID": "13029017",
+          "chapter": 29,
+          "verse": 17
+        },
+        {
+          "verseID": "13029018",
+          "chapter": 29,
+          "verse": 18
+        },
+        {
+          "verseID": "13029019",
+          "chapter": 29,
+          "verse": 19
+        },
+        {
+          "verseID": "13029020",
+          "chapter": 29,
+          "verse": 20
+        },
+        {
+          "verseID": "13029021",
+          "chapter": 29,
+          "verse": 21
+        },
+        {
+          "verseID": "13029022",
+          "chapter": 29,
+          "verse": 22
+        },
+        {
+          "verseID": "13029023",
+          "chapter": 29,
+          "verse": 23
+        },
+        {
+          "verseID": "13029024",
+          "chapter": 29,
+          "verse": 24
+        },
+        {
+          "verseID": "13029025",
+          "chapter": 29,
+          "verse": 25
+        },
+        {
+          "verseID": "13029026",
+          "chapter": 29,
+          "verse": 26
+        },
+        {
+          "verseID": "13029027",
+          "chapter": 29,
+          "verse": 27
+        },
+        {
+          "verseID": "13029028",
+          "chapter": 29,
+          "verse": 28
+        },
+        {
+          "verseID": "13029029",
+          "chapter": 29,
+          "verse": 29
+        },
+        {
+          "verseID": "13029030",
+          "chapter": 29,
+          "verse": 30
+        }
+      ],
+      "rangeLabel": "22:1–19, 28:1–21, 29:1–30"
     },
     {
       "id": "verse-event-john-vision-on-patmos",
@@ -169,7 +3878,70 @@
       "startDate": "95",
       "sortKey": 95,
       "yearLabel": "AD 95경",
-      "book_id": "recUbhyLLUrl849r7"
+      "book_id": "recUbhyLLUrl849r7",
+      "verses": [
+        {
+          "verseID": "66001009",
+          "chapter": 1,
+          "verse": 9
+        },
+        {
+          "verseID": "66001010",
+          "chapter": 1,
+          "verse": 10
+        },
+        {
+          "verseID": "66001011",
+          "chapter": 1,
+          "verse": 11
+        },
+        {
+          "verseID": "66001012",
+          "chapter": 1,
+          "verse": 12
+        },
+        {
+          "verseID": "66001013",
+          "chapter": 1,
+          "verse": 13
+        },
+        {
+          "verseID": "66001014",
+          "chapter": 1,
+          "verse": 14
+        },
+        {
+          "verseID": "66001015",
+          "chapter": 1,
+          "verse": 15
+        },
+        {
+          "verseID": "66001016",
+          "chapter": 1,
+          "verse": 16
+        },
+        {
+          "verseID": "66001017",
+          "chapter": 1,
+          "verse": 17
+        },
+        {
+          "verseID": "66001018",
+          "chapter": 1,
+          "verse": 18
+        },
+        {
+          "verseID": "66001019",
+          "chapter": 1,
+          "verse": 19
+        },
+        {
+          "verseID": "66001020",
+          "chapter": 1,
+          "verse": 20
+        }
+      ],
+      "rangeLabel": "1:9–20"
     },
     {
       "id": "verse-event-new-jerusalem-descends-from-heaven",
@@ -178,7 +3950,170 @@
       "startDate": "95",
       "sortKey": 95,
       "yearLabel": "AD 95경",
-      "book_id": "recUbhyLLUrl849r7"
+      "book_id": "recUbhyLLUrl849r7",
+      "verses": [
+        {
+          "verseID": "66021001",
+          "chapter": 21,
+          "verse": 1
+        },
+        {
+          "verseID": "66021002",
+          "chapter": 21,
+          "verse": 2
+        },
+        {
+          "verseID": "66021003",
+          "chapter": 21,
+          "verse": 3
+        },
+        {
+          "verseID": "66021004",
+          "chapter": 21,
+          "verse": 4
+        },
+        {
+          "verseID": "66021005",
+          "chapter": 21,
+          "verse": 5
+        },
+        {
+          "verseID": "66021006",
+          "chapter": 21,
+          "verse": 6
+        },
+        {
+          "verseID": "66021007",
+          "chapter": 21,
+          "verse": 7
+        },
+        {
+          "verseID": "66021008",
+          "chapter": 21,
+          "verse": 8
+        },
+        {
+          "verseID": "66021009",
+          "chapter": 21,
+          "verse": 9
+        },
+        {
+          "verseID": "66021010",
+          "chapter": 21,
+          "verse": 10
+        },
+        {
+          "verseID": "66021011",
+          "chapter": 21,
+          "verse": 11
+        },
+        {
+          "verseID": "66021012",
+          "chapter": 21,
+          "verse": 12
+        },
+        {
+          "verseID": "66021013",
+          "chapter": 21,
+          "verse": 13
+        },
+        {
+          "verseID": "66021014",
+          "chapter": 21,
+          "verse": 14
+        },
+        {
+          "verseID": "66021015",
+          "chapter": 21,
+          "verse": 15
+        },
+        {
+          "verseID": "66021016",
+          "chapter": 21,
+          "verse": 16
+        },
+        {
+          "verseID": "66021017",
+          "chapter": 21,
+          "verse": 17
+        },
+        {
+          "verseID": "66021018",
+          "chapter": 21,
+          "verse": 18
+        },
+        {
+          "verseID": "66021019",
+          "chapter": 21,
+          "verse": 19
+        },
+        {
+          "verseID": "66021020",
+          "chapter": 21,
+          "verse": 20
+        },
+        {
+          "verseID": "66021021",
+          "chapter": 21,
+          "verse": 21
+        },
+        {
+          "verseID": "66021022",
+          "chapter": 21,
+          "verse": 22
+        },
+        {
+          "verseID": "66021023",
+          "chapter": 21,
+          "verse": 23
+        },
+        {
+          "verseID": "66021024",
+          "chapter": 21,
+          "verse": 24
+        },
+        {
+          "verseID": "66021025",
+          "chapter": 21,
+          "verse": 25
+        },
+        {
+          "verseID": "66021026",
+          "chapter": 21,
+          "verse": 26
+        },
+        {
+          "verseID": "66021027",
+          "chapter": 21,
+          "verse": 27
+        },
+        {
+          "verseID": "66022001",
+          "chapter": 22,
+          "verse": 1
+        },
+        {
+          "verseID": "66022002",
+          "chapter": 22,
+          "verse": 2
+        },
+        {
+          "verseID": "66022003",
+          "chapter": 22,
+          "verse": 3
+        },
+        {
+          "verseID": "66022004",
+          "chapter": 22,
+          "verse": 4
+        },
+        {
+          "verseID": "66022005",
+          "chapter": 22,
+          "verse": 5
+        }
+      ],
+      "rangeLabel": "21:1–27, 22:1–5"
     }
   ]
 }

@@ -34,6 +34,7 @@ BOOK_CONTEXT_PATH = os.path.join(DATA_DIR, "book_context", "books.json")
 TRAITS_PATH = os.path.join(DATA_DIR, "character_traits", "people.json")
 PLACE_CONTEXT_PATH = os.path.join(DATA_DIR, "place_context", "places.json")
 RELATIONS_PATH = os.path.join(DATA_DIR, "person_relations", "relations.json")
+PERSON_CONTEXT_PATH = os.path.join(DATA_DIR, "person_context", "people.json")
 
 # 개역 약어 → canonical bookOrder(1~66). SidePanel.jsx BOOK_ABBR_ORDER 포팅(단일 출처 이동).
 BOOK_ABBR_ORDER = {
@@ -213,6 +214,25 @@ def bake_traits():
     return data
 
 
+def bake_person_context():
+    try:
+        with open(PERSON_CONTEXT_PATH, encoding="utf-8") as f:
+            data = json.load(f)
+    except FileNotFoundError:
+        print("person_context: 파일 없음, skip")
+        return None
+    stats = {"kept": 0, "filled": 0, "null": 0}
+    for person in data.values():
+        for v in person.get("verses", []):
+            resolved = resolve_ref(v.get("ref"))
+            for field, slug in TRANSLATIONS:
+                stats[fill(v, field, slug, resolved)] += 1
+    with open(PERSON_CONTEXT_PATH, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    print(f"person_context: {stats}")
+    return data
+
+
 def bake_relations():
     with open(RELATIONS_PATH, encoding="utf-8") as f:
         data = json.load(f)
@@ -278,6 +298,9 @@ def main():
             print(f"  {v0['chapter']}:{v0['verse']} ko: {v0.get('textKo')}")
             print(f"  {v0['chapter']}:{v0['verse']} en: {v0.get('textEn')}")
             break
+
+    print("Baking person_context ...")
+    bake_person_context()
 
 
 if __name__ == "__main__":

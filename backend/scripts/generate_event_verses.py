@@ -39,6 +39,23 @@ def fetch_json(url):
         return json.loads(resp.read().decode("utf-8"))
 
 
+def preserve_non_theographic(result, theo_ids):
+    """기존 오버레이의 비-theographic 엔트리(authored-*, verse-event-* 등 다른
+    파이프라인이 누적한 사건)를 재빌드 결과에 보존 병합한다. 이들은 theographic 사건이
+    아니라 여기서 재생성되지 않으므로, 병합하지 않으면 재실행이 이들을 조용히 소실시킨다.
+    (텍스트 프리베이크된 verses[]도 그대로 보존된다.)"""
+    if not os.path.exists(OUTPUT_PATH):
+        return 0
+    with open(OUTPUT_PATH, encoding="utf-8") as f:
+        existing = json.load(f)
+    kept = 0
+    for eid, entry in existing.items():
+        if eid not in theo_ids and eid not in result:
+            result[eid] = entry
+            kept += 1
+    return kept
+
+
 def parse_verse(verse_id):
     """verseID(BBCCCVVV) → {verseID, bookOrder, chapter, verse}.
     fields.chapter는 레코드 ID라 쓰지 않고 verseID에서 파생한다."""
@@ -118,12 +135,15 @@ def main():
         book_entries.sort(key=lambda b: b["bookOrder"])
         result[event_id] = {"books": book_entries}
 
+    n_kept = preserve_non_theographic(result, {e["id"] for e in events})
+
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 
     n_with_books = sum(1 for v in result.values() if v["books"])
-    print(f"\nDone. {len(result)} events ({n_with_books} with verses) written to {OUTPUT_PATH}")
+    print(f"\nDone. {len(result)} events ({n_with_books} with verses, "
+          f"{n_kept} non-theographic preserved) written to {OUTPUT_PATH}")
 
     # 공관복음 평행 사건 1건(books >= 2) 육안 검증 출력
     for e in events:
