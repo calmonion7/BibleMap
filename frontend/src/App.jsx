@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
-import { Map, Clock, BookOpen, Users } from 'lucide-react'
+import { Map, Clock, BookOpen, Users, UserRound } from 'lucide-react'
 import { TYPE_COLOR } from './theme'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
@@ -66,10 +66,6 @@ function App() {
   const [activeStopIdx, setActiveStopIdx] = useState(null)
   // 모바일 여정 "읽기 모드" — 펼친 사건 id. App이 소유해 오버레이 높이 전환·바깥 탭 닫기를 제어한다.
   const [readingEventId, setReadingEventId] = useState(null)
-  // 인물 소개 레이어 — 여정 마지막 행에서 탐험 인물 자신의 상세(SidePanel)를 모달로.
-  // forId 키로 인물 변경 시 자동 닫힘(placeVerseView forNodeId 패턴 — effect 내 setState 없이 리셋).
-  const [introFor, setIntroFor] = useState(null)
-  const personIntroOpen = introFor != null && introFor === explorePersonId
   const [reduceMotion] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
 
   useEffect(() => {
@@ -150,7 +146,7 @@ function App() {
 
         {/* 지도 / 타임라인 / 관계(인물 모드 한정) 토글 */}
         <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-          {[...EXPLORE_TABS, ...(explorePersonId && !exploreTourId ? [{ key: 'relations', icon: Users, label: '관계' }] : [])].map(tab => {
+          {[...EXPLORE_TABS, ...(explorePersonId && !exploreTourId ? [{ key: 'relations', icon: Users, label: '관계' }, { key: 'intro', icon: UserRound, label: '소개' }] : [])].map(tab => {
             const Icon = tab.icon
             const active = exploreView === tab.key
             return (
@@ -296,7 +292,6 @@ function App() {
                     setVerseLang={setVerseLang}
                     personName={exploreTourId ? null : explorePersonName}
                     tourName={exploreTourId ? exploreTourName : null}
-                    onPersonIntro={() => setIntroFor(explorePersonId)}
                   />
                 </div>
               )}
@@ -337,7 +332,6 @@ function App() {
                         tourName={exploreTourId ? exploreTourName : null}
                         readingEventId={readingEventId}
                         onReadingChange={setReadingEventId}
-                        onPersonIntro={() => setIntroFor(explorePersonId)}
                       />
                     </div>
                   </>
@@ -369,34 +363,26 @@ function App() {
                 />
               </div>
             )}
-          </div>
-
-          {/* 인물 소개 레이어 — 탐험 인물 자신의 상세(SidePanel 재사용)를 모달로.
-              탐험 자기 시트 억제 규칙(sheetOpen ≠ explorePersonId)을 건드리지 않고 명시 진입만 허용.
-              구절 레이어(zIndex 1000, body 포털)가 이 위에 뜨도록 zIndex 900. */}
-          {personIntroOpen && (
-            <div
-              onClick={() => setIntroFor(null)}
-              style={{ position: 'fixed', inset: 0, zIndex: 900, background: 'rgba(20,26,40,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}
-            >
-              <div onClick={(e) => e.stopPropagation()} style={{
-                background: 'var(--bg-1)', border: '1px solid var(--line-strong)', borderRadius: 'var(--r-l)',
-                maxWidth: 420, width: '100%', maxHeight: '85%', overflowY: 'auto', boxShadow: 'var(--shadow-2)',
-              }}>
-                <SidePanel
-                  nodeId={explorePersonId}
-                  onSelectNode={(id) => { setIntroFor(null); selectNode(id) }}
-                  verseLang={verseLang}
-                  setVerseLang={setVerseLang}
-                  explorePersonId={explorePersonId}
-                  onExplorePerson={explorePerson}
-                  curatedIds={curatedIds}
-                  onExploreJourney={(id) => { setIntroFor(null); selectPerson(id) }}
-                  onClose={() => setIntroFor(null)}
-                />
+            {/* 인물 소개 뷰 — 지도·타임라인·관계와 같은 레벨의 페이지(SidePanel 재사용, 인물 모드 전용).
+                탐험 자기 시트 억제 규칙(sheetOpen ≠ explorePersonId)은 무접촉 — 전용 뷰라 시트가 아니다. */}
+            {exploreView === 'intro' && explorePersonId && (
+              <div style={{ height: '100%', overflowY: 'auto', background: 'var(--bg-0)' }}>
+                <div style={{ maxWidth: 560, margin: '0 auto', padding: '4px 0 48px' }}>
+                  <SidePanel
+                    key={explorePersonId}
+                    nodeId={explorePersonId}
+                    onSelectNode={selectNode}
+                    verseLang={verseLang}
+                    setVerseLang={setVerseLang}
+                    explorePersonId={explorePersonId}
+                    onExplorePerson={explorePerson}
+                    curatedIds={curatedIds}
+                    onExploreJourney={selectPerson}
+                  />
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </>
       )}
 
@@ -419,7 +405,8 @@ function App() {
                   top: NAV_H, right: 0, bottom: 0, width: 360,
                   boxShadow: 'var(--shadow-2)',
                   // 관계 뷰는 전용 전체화면 — 탐험 인물 자신의 상세 시트로 우측을 덮지 않는다(다른 뷰로 토글 시 복귀).
-                  transform: selectedNode && exploreView !== 'relations' ? 'translateX(0)' : 'translateX(100%)',
+                  // 소개 뷰는 자기 자신이 본문이라 자기 시트만 억제(다른 노드 선택 시에는 정상 표시).
+                  transform: selectedNode && exploreView !== 'relations' && !(exploreView === 'intro' && selectedNode === explorePersonId) ? 'translateX(0)' : 'translateX(100%)',
                 }),
           }}
           onTouchStart={isMobile ? onSheetTouchStart : undefined}
