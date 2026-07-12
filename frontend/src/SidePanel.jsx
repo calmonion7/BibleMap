@@ -553,7 +553,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                       onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
                     >
                       <span style={{ flex: 1, fontSize: 13, color: 'var(--ink)' }}>{p.nameKo || p.name}</span>
-                      <span style={{ ...placeChipBase, flexShrink: 0 }}>여정 ▸</span>
+                      <span style={{ ...placeChipBase, flexShrink: 0 }}>👣 발자취 ▸</span>
                     </button>
                   ))}
                 </div>
