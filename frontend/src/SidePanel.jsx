@@ -57,7 +57,7 @@ function SectionHeader({ label, color, count, sectionKey, collapsed, onToggle })
   )
 }
 
-function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, onNodeLoaded, verseLang, setVerseLang, explorePersonId = null, onExplorePerson = () => {}, curatedIds = null, keyPeopleCards = null, onExploreJourney = () => {}, onClose, stickyTop = 0 }) {
+function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, onNodeLoaded, verseLang, setVerseLang, explorePersonId = null, onExplorePerson = () => {}, curatedIds = null, keyPeopleCards = null, onExploreJourney = () => {}, onOpenFamily = () => {}, onClose, stickyTop = 0 }) {
   // 어느 nodeId의 결과인지 id로 추적 — loading은 파생, stale 응답은 무시.
   // setState는 비동기 콜백에서만 호출(react-hooks set-state-in-effect 준수).
   const [state, setState] = useState({ id: null, node: null, error: null })
@@ -420,6 +420,24 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
             }}
           >
             🗺 {node.nameKo}의 여정 탐험 — 지도에서 보기
+          </button>
+        </div>
+      )}
+
+      {/* Person 가계도 진입 — 모든 인물(혈통 파생, ADR-0019). 현재 focus면 의미 없으나 페이지가 폴백 처리. */}
+      {node.label === 'Person' && (
+        <div style={{ margin: '8px 12px 0' }}>
+          <button
+            onClick={() => onOpenFamily(node.id)}
+            style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+              width: '100%', padding: '9px 12px', borderRadius: 8,
+              border: '1px solid var(--line-strong)', cursor: 'pointer', font: 'inherit',
+              fontSize: 13, fontWeight: 600, color: 'var(--ink-dim)',
+              background: 'var(--bg-2)',
+            }}
+          >
+            🌳 {node.nameKo}의 가계도
           </button>
         </div>
       )}

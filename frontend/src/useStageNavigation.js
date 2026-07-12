@@ -7,11 +7,14 @@ import { encodeHash, parseHash } from './urlState'
 // 구조분해하지 않으므로, 전역 Map/history 섀도잉 함정이 구조적으로 없다(과거 두 차례 런타임 크래시 원인).
 // 노드 선택 원시값(selectedNode/selectNodeFresh/closePanel/handleNodeLoaded)은 useNodeSelection에서 주입받는다.
 export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, handleNodeLoaded }) {
-  // 'hub' | 'explore' | 'overview' | 'tours' | 'book'
+  // 'hub' | 'explore' | 'overview' | 'tours' | 'book' | 'family'
   const [activeStage, setActiveStage] = useState('hub')
   // 책 상세 페이지의 대상 책 id — selectedNode와 분리(explorePersonId와 대칭). 책 페이지 안에서
   // 사건을 클릭해 시트를 띄워도(selectedNode 변경) 페이지 대상·URL이 흔들리지 않게 한다.
   const [bookId, setBookId] = useState(null)
+  // 가계도 페이지의 대상(focus) 인물 id — bookId와 동형으로 selectedNode와 분리. 트리 노드를
+  // 클릭해 재중심화하면 familyId만 바뀌어 페이지·URL이 안정적으로 그 인물로 옮겨간다.
+  const [familyId, setFamilyId] = useState(null)
   // 탐험 내 토글: 'map' | 'timeline'
   const [exploreView, setExploreView] = useState('map')
   // 탐험 중인 인물 — selectedNode와 분리해 장소 클릭 시에도 여정·맵 장소 기준 유지
@@ -26,7 +29,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   const curatedIdToSlug = useRef({})
   const curatedSlugToId = useRef({})
   // 히스토리 통합(ADR-0010) — 직전 nav-key 추적 + popstate 복원 중 재-push 방지.
-  const navSyncRef = useRef({ initialized: false, stage: null, person: null, tour: null, book: null, sheetOpen: false })
+  const navSyncRef = useRef({ initialized: false, stage: null, person: null, tour: null, book: null, family: null, sheetOpen: false })
   const popstateGuard = useRef(false)
   // 복원 완료 신호(state) — sync effect의 dep. ref가 아니라 state여야 복원 직후 베이스 엔트리 write가 트리거됨.
   const [restored, setRestored] = useState(false)
@@ -80,6 +83,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
       if (parsed) {
         if (parsed.stage === 'overview') setActiveStage('overview')
         else if (parsed.stage === 'book' && parsed.bookId) { setBookId(parsed.bookId); setActiveStage('book') }
+        else if (parsed.stage === 'family' && parsed.familyId) { setFamilyId(parsed.familyId); setActiveStage('family') }
         else if (parsed.stage === 'tours') setActiveStage('tours')
         else if (parsed.stage === 'explore' && parsed.tourSlug) {
           setExploreTourId(parsed.tourSlug); setActiveStage('explore'); setExploreView(parsed.exploreView)
@@ -105,23 +109,23 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     const slug = explorePersonId ? curatedIdToSlug.current[explorePersonId] : null
     if (activeStage === 'explore' && !slug && !exploreTourId) return // slug/tour 미해결 시 깨진 URL 안 씀
     const sheetOpen = selectedNode != null && selectedNode !== explorePersonId
-    const hash = encodeHash({ stage: activeStage, personSlug: slug, exploreView, tourSlug: exploreTourId, bookId })
-    const state = { stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, view: exploreView, node: selectedNode }
+    const hash = encodeHash({ stage: activeStage, personSlug: slug, exploreView, tourSlug: exploreTourId, bookId, familyId })
+    const state = { stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, view: exploreView, node: selectedNode }
     if (popstateGuard.current) {
       // popstate 복원 중 — 브라우저가 이미 히스토리를 옮겼으니 재-push 없이 ref만 동기화.
       popstateGuard.current = false
-      navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, sheetOpen }
+      navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, sheetOpen }
       return
     }
     const prev = navSyncRef.current
     const isForward = prev.initialized &&
-      (prev.stage !== activeStage || prev.person !== explorePersonId || prev.tour !== exploreTourId || prev.book !== bookId || (!prev.sheetOpen && sheetOpen))
-    navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, sheetOpen }
+      (prev.stage !== activeStage || prev.person !== explorePersonId || prev.tour !== exploreTourId || prev.book !== bookId || prev.family !== familyId || (!prev.sheetOpen && sheetOpen))
+    navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, sheetOpen }
     if (isForward) window.history.pushState(state, '', hash)
     else window.history.replaceState(state, '', hash)
     // curatedIds 추가(#11): 카드 클릭이 slug맵 로드보다 빨라 :88에서 조기반환했더라도,
     // curatedIds null→Set 시 재실행돼 slug 해석 후 올바른 pushState가 찍히게 한다.
-  }, [restored, activeStage, explorePersonId, exploreTourId, bookId, exploreView, selectedNode, curatedIds])
+  }, [restored, activeStage, explorePersonId, exploreTourId, bookId, familyId, exploreView, selectedNode, curatedIds])
 
   // popstate — 브라우저/OS 뒤로·앞으로 시 event.state에서 내비 복원(가드로 재-push 방지).
   useEffect(() => {
@@ -129,11 +133,12 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
       const s = e.state
       popstateGuard.current = true
       Promise.resolve().then(() => {
-        if (!s) { setActiveStage('hub'); setExplorePersonId(null); setExplorePersonName(null); setExploreTourId(null); setBookId(null); closePanel(); return }
+        if (!s) { setActiveStage('hub'); setExplorePersonId(null); setExplorePersonName(null); setExploreTourId(null); setBookId(null); setFamilyId(null); closePanel(); return }
         setActiveStage(s.stage)
         setExplorePersonId(s.person ?? null)
         setExploreTourId(s.tour ?? null)
         setBookId(s.book ?? null)
+        setFamilyId(s.family ?? null)
         setExploreView(s.view || 'map')
         if (s.node) selectNodeFresh(s.node); else closePanel()
       })
@@ -196,6 +201,25 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     setActiveStage('overview')
   }
 
+  // 가계도 페이지 진입 — 인물 상세에서 "가계도" 클릭. 대상 인물을 focus로.
+  // exploreView는 'map'으로 리셋(bookId 진입과 동형 — 이전 뷰 잔상 방지).
+  function handleOpenFamily(id) {
+    closePanel()
+    setFamilyId(id)
+    setExploreView('map')
+    setActiveStage('family')
+  }
+
+  // 가계도 트리 노드 클릭 — 같은 스테이지에서 focus 인물만 교체(재중심화).
+  function handleRecenterFamily(id) {
+    setFamilyId(id)
+  }
+
+  // 가계도에서 뒤로 — 진입 지점이 다양하므로 브라우저 히스토리에 위임(ADR-0010).
+  function handleFamilyBack() {
+    window.history.back()
+  }
+
   // 허브에서 "테마 투어" 클릭 — 투어 목록 스테이지
   function handleOpenTours() {
     setActiveStage('tours')
@@ -230,7 +254,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   const sheetOpen = selectedNode != null && selectedNode !== explorePersonId
 
   return {
-    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, curatedIds, keyPeopleCards, sheetOpen,
+    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, familyId, curatedIds, keyPeopleCards, sheetOpen,
     setExploreView,
     selectPerson: handleSelectPerson,
     explorePerson: handleExplorePerson,
@@ -239,6 +263,9 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     overviewBack: handleOverviewBack,
     openBook: handleOpenBook,
     bookBack: handleBookBack,
+    openFamily: handleOpenFamily,
+    recenterFamily: handleRecenterFamily,
+    familyBack: handleFamilyBack,
     openTours: handleOpenTours,
     selectTour: handleSelectTour,
     toursBack: handleToursBack,

@@ -155,8 +155,8 @@ def load_parent_child_rels(session, people_records):
         child_id = r.get("id")
         f = r.get("fields", {})
         for parent_field in ("father", "mother"):
-            parent_id = f.get(parent_field)
-            if parent_id:
+            # theographic father/mother는 레코드 id 배열 → 형제 로더처럼 순회
+            for parent_id in (f.get(parent_field) or []):
                 pairs.append({"parentId": parent_id, "childId": child_id})
     cypher = """
 UNWIND $pairs AS pair

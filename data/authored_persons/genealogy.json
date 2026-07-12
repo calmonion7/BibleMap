@@ -1,0 +1,243 @@
+{
+  "note": "마태복음 1장 — 예수의 족보(아브라함→예수 단일 사슬). ADR-0019 저작 보충. chain은 조상→후손 순서이며 연속 쌍이 PARENT_OF/CHILD_OF 간선이 된다. authored=true인 노드만 신규 생성(나머지는 기존 theographic 노드 id). 재적재 규칙: load_theographic.py 재실행 후 load_authored_genealogy.py를 반드시 재실행.",
+  "chain": [
+    {
+      "id": "reccdFYIq50NyxNej",
+      "nameKo": "아브라함",
+      "name": "Abraham"
+    },
+    {
+      "id": "recqIoG1fkaNWJ1y0",
+      "nameKo": "이삭",
+      "name": "Isaac"
+    },
+    {
+      "id": "recsU2ZSdzBvDqzgI",
+      "nameKo": "야곱",
+      "name": "Jacob (Israel)"
+    },
+    {
+      "id": "rec0rm6yYA4YUQrkh",
+      "nameKo": "유다",
+      "name": "Judah (patriarch)"
+    },
+    {
+      "id": "authored-mt1-perez",
+      "nameKo": "베레스",
+      "name": "Perez",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-hezron",
+      "nameKo": "헤스론",
+      "name": "Hezron",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-ram",
+      "nameKo": "람",
+      "name": "Ram",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-amminadab",
+      "nameKo": "아미나답",
+      "name": "Amminadab",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-nahshon",
+      "nameKo": "나손",
+      "name": "Nahshon",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-salmon",
+      "nameKo": "살몬",
+      "name": "Salmon",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-boaz",
+      "nameKo": "보아스",
+      "name": "Boaz",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-obed",
+      "nameKo": "오벳",
+      "name": "Obed",
+      "authored": true
+    },
+    {
+      "id": "rec9lplwEhGgkXdOn",
+      "nameKo": "이새",
+      "name": "Jesse"
+    },
+    {
+      "id": "rec1ZMFtfbEvoGC73",
+      "nameKo": "다윗",
+      "name": "David"
+    },
+    {
+      "id": "rec0BAacWSGBXZ0zI",
+      "nameKo": "솔로몬",
+      "name": "Solomon"
+    },
+    {
+      "id": "authored-mt1-rehoboam",
+      "nameKo": "르호보암",
+      "name": "Rehoboam",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-abijah",
+      "nameKo": "아비야",
+      "name": "Abijah",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-asa",
+      "nameKo": "아사",
+      "name": "Asa",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-jehoshaphat",
+      "nameKo": "여호사밧",
+      "name": "Jehoshaphat",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-joram",
+      "nameKo": "요람",
+      "name": "Joram",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-uzziah",
+      "nameKo": "웃시야",
+      "name": "Uzziah",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-jotham",
+      "nameKo": "요담",
+      "name": "Jotham",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-ahaz",
+      "nameKo": "아하스",
+      "name": "Ahaz",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-hezekiah",
+      "nameKo": "히스기야",
+      "name": "Hezekiah",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-manasseh-king",
+      "nameKo": "므낫세",
+      "name": "Manasseh (king)",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-amon",
+      "nameKo": "아몬",
+      "name": "Amon",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-josiah",
+      "nameKo": "요시야",
+      "name": "Josiah",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-jeconiah",
+      "nameKo": "여고냐",
+      "name": "Jeconiah",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-shealtiel",
+      "nameKo": "스알디엘",
+      "name": "Shealtiel",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-zerubbabel",
+      "nameKo": "스룹바벨",
+      "name": "Zerubbabel",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-abiud",
+      "nameKo": "아비훗",
+      "name": "Abiud",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-eliakim",
+      "nameKo": "엘리아김",
+      "name": "Eliakim",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-azor",
+      "nameKo": "아소르",
+      "name": "Azor",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-zadok",
+      "nameKo": "사독",
+      "name": "Zadok",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-achim",
+      "nameKo": "아킴",
+      "name": "Achim",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-eliud",
+      "nameKo": "엘리웃",
+      "name": "Eliud",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-eleazar",
+      "nameKo": "엘르아살",
+      "name": "Eleazar",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-matthan",
+      "nameKo": "맛단",
+      "name": "Matthan",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-jacob-father-of-joseph",
+      "nameKo": "야곱",
+      "name": "Jacob (father of Joseph)",
+      "authored": true
+    },
+    {
+      "id": "authored-mt1-joseph-husband-of-mary",
+      "nameKo": "요셉",
+      "name": "Joseph (husband of Mary)",
+      "authored": true
+    },
+    {
+      "id": "recgkFqZovgbr3pAi",
+      "nameKo": "예수",
+      "name": "Jesus Christ"
+    }
+  ]
+}

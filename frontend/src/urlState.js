@@ -5,9 +5,10 @@
 //   탐험(인물)  #/person/<slug>     탐험(인물,타임라인) #/person/<slug>/timeline
 //   탐험(투어)  #/tour/<slug>       탐험(투어,타임라인) #/tour/<slug>/timeline
 
-export function encodeHash({ stage, personSlug, exploreView, tourSlug, bookId }) {
+export function encodeHash({ stage, personSlug, exploreView, tourSlug, bookId, familyId }) {
   if (stage === 'overview') return '#/books'
   if (stage === 'book' && bookId) return `#/book/${encodeURIComponent(bookId)}`
+  if (stage === 'family' && familyId) return `#/family/${encodeURIComponent(familyId)}`
   if (stage === 'tours') return '#/tours'
   if (stage === 'explore' && tourSlug) {
     const base = `#/tour/${encodeURIComponent(tourSlug)}`
@@ -31,6 +32,8 @@ export function parseHash(hash) {
   if (h === '/tours') return { stage: 'tours', personSlug: null, tourSlug: null, exploreView: 'map' }
   const bk = h.match(/^\/book\/([^/]+)$/)
   if (bk) return { stage: 'book', bookId: decodeURIComponent(bk[1]), personSlug: null, tourSlug: null, exploreView: 'map' }
+  const fm = h.match(/^\/family\/([^/]+)$/)
+  if (fm) return { stage: 'family', familyId: decodeURIComponent(fm[1]), personSlug: null, tourSlug: null, exploreView: 'map' }
   const t = h.match(/^\/tour\/([^/]+)(\/timeline)?$/)
   if (t) return { stage: 'explore', personSlug: null, tourSlug: decodeURIComponent(t[1]), exploreView: t[2] ? 'timeline' : 'map' }
   const m = h.match(/^\/person\/([^/]+)(\/timeline|\/relations|\/intro)?$/)
