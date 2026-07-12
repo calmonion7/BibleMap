@@ -22,28 +22,6 @@
     ]
   },
   {
-    "id": "authored-john-baptist-jordan-baptism",
-    "title": "John baptizes crowds at the Jordan River",
-    "nameKo": "요단강 세례 사역 — 예수에게 세례",
-    "startDate": "26",
-    "sortKey": 27,
-    "yearLabel": "AD 26–27경",
-    "context": "요단강에서 수많은 군중에게 세례를 주고 예수도 세례를 받음. 하늘이 열리고 성령이 비둘기 같이 내림 (Matt 3:13–17).",
-    "authored": true,
-    "occursAt": [
-      "rec5dSSsOutWlH2fW"
-    ],
-    "participants": [
-      "recNRRITyGzXsl4yp"
-    ],
-    "books": [
-      {
-        "bookId": "recEJId5B98HV0x6D",
-        "rangeLabel": "3:13–17"
-      }
-    ]
-  },
-  {
     "id": "authored-john-baptist-machaerus-prison",
     "title": "John imprisoned at Machaerus",
     "nameKo": "마케루스 투옥 — 헤롯 안티파스",

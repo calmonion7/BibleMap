@@ -108,46 +108,6 @@
     ]
   },
   {
-    "id": "authored-adam-cain-and-abel",
-    "title": "Cain kills Abel",
-    "nameKo": "가인이 아벨을 죽임",
-    "startDate": "-3900",
-    "sortKey": -3900,
-    "yearLabel": "홍수 이전 (전통 BC 3900경)",
-    "context": "아담의 두 아들 가인과 아벨이 각각 제물을 드렸으나 하나님이 아벨의 제물만 받으시자, 가인이 아벨을 들에서 쳐죽임. 아담과 하와에게 큰 슬픔이 됨 (Gen 4:1–8).",
-    "authored": true,
-    "occursAt": [],
-    "participants": [
-      "recyYgUiSETdWFgEP"
-    ],
-    "books": [
-      {
-        "bookId": "recIFusdNl6d8dj3L",
-        "rangeLabel": "4:1–8"
-      }
-    ]
-  },
-  {
-    "id": "authored-adam-seth-born",
-    "title": "Seth is born",
-    "nameKo": "셋의 출생",
-    "startDate": "-3870",
-    "sortKey": -3870,
-    "yearLabel": "홍수 이전 (전통 BC 3870경)",
-    "context": "가인이 아벨을 죽인 후 하나님이 하와에게 다른 씨를 주셔서 셋을 낳음. 아담이 130세에 얻은 아들 (Gen 4:25; Gen 5:3).",
-    "authored": true,
-    "occursAt": [],
-    "participants": [
-      "recyYgUiSETdWFgEP"
-    ],
-    "books": [
-      {
-        "bookId": "recIFusdNl6d8dj3L",
-        "rangeLabel": "4:25"
-      }
-    ]
-  },
-  {
     "id": "authored-adam-death",
     "title": "Adam dies at 930 years old",
     "nameKo": "아담의 죽음, 향년 930세",

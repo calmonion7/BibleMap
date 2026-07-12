@@ -20,26 +20,6 @@
     ]
   },
   {
-    "id": "authored-abel-killed-by-cain",
-    "title": "Abel is killed by Cain in the field",
-    "nameKo": "가인에게 들에서 살해됨",
-    "startDate": "-3900",
-    "sortKey": -3900,
-    "yearLabel": "태초 무렵 (전통 BC 3900경)",
-    "context": "가인이 아우 아벨에게 '들에 나가자' 하고 일어나 들에서 쳐죽임. 하나님이 가인에게 '네 아우의 핏소리가 땅에서 내게 호소한다'고 하심 (Gen 4:8–10).",
-    "authored": true,
-    "occursAt": [],
-    "participants": [
-      "reccpdazfRa8RGKt6"
-    ],
-    "books": [
-      {
-        "bookId": "recIFusdNl6d8dj3L",
-        "rangeLabel": "4:8–10"
-      }
-    ]
-  },
-  {
     "id": "authored-abel-faith-witness",
     "title": "Abel's faith — still speaking through his offering",
     "nameKo": "믿음으로 드린 제사 — 죽은 후에도 말함",

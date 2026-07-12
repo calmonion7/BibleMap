@@ -156,29 +156,6 @@
     ]
   },
   {
-    "id": "authored-saul-engedi-spared",
-    "title": "David spares Saul at En-gedi",
-    "nameKo": "엔게디서 다윗이 살려줌",
-    "startDate": "-1018",
-    "sortKey": -1018,
-    "yearLabel": "BC 1018경",
-    "context": "삼천 명으로 다윗을 쫓던 사울이 엔게디 굴에 들어갔을 때, 다윗이 죽이는 대신 겉옷 자락만 베어 보이니 사울이 '너는 나보다 의롭다' 울며 물러감 (1Sam 24:1–22).",
-    "authored": true,
-    "occursAt": [
-      "authored-place-en-gedi"
-    ],
-    "participants": [
-      "authored-person-saul",
-      "rec1ZMFtfbEvoGC73"
-    ],
-    "books": [
-      {
-        "bookId": "rec4GS8yWh2R4mpdB",
-        "rangeLabel": "24:1–22"
-      }
-    ]
-  },
-  {
     "id": "authored-saul-endor-medium",
     "title": "Saul and the medium of Endor",
     "nameKo": "엔돌의 신접한 여인",

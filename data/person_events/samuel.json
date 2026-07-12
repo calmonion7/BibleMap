@@ -110,29 +110,6 @@
     ]
   },
   {
-    "id": "authored-samuel-gilgal-saul-rejection",
-    "title": "Samuel rebukes Saul and tears his robe at Gilgal",
-    "nameKo": "사울 책망과 겉옷 찢김 (길갈)",
-    "startDate": "-1055",
-    "sortKey": -1055,
-    "yearLabel": "BC 1055경",
-    "context": "사무엘이 아말렉 전쟁 후 명령을 어긴 사울을 길갈에서 강하게 책망하고 '순종이 제사보다 낫다'고 선언. 돌아서는 사무엘의 겉옷을 사울이 붙들어 찢어지자 하나님이 그 나라를 이웃에게 주리라 선포 (1Sam 15:22–28).",
-    "authored": true,
-    "occursAt": [
-      "authored-place-gilgal"
-    ],
-    "participants": [
-      "recZsS2Zu0zIDwqdv",
-      "authored-person-saul"
-    ],
-    "books": [
-      {
-        "bookId": "rec4GS8yWh2R4mpdB",
-        "rangeLabel": "15:22–28"
-      }
-    ]
-  },
-  {
     "id": "authored-samuel-gilgal-saul-anointing",
     "title": "Samuel anoints Saul as king at Gilgal",
     "nameKo": "길갈에서 사울 왕으로 세움",
@@ -197,28 +174,6 @@
       {
         "bookId": "rec4GS8yWh2R4mpdB",
         "rangeLabel": "25:1"
-      }
-    ]
-  },
-  {
-    "id": "authored-samuel-endor-apparition",
-    "title": "Samuel's spirit summoned at En-dor",
-    "nameKo": "엔돌 신접여인에 나타남",
-    "startDate": "-1010",
-    "sortKey": -1010,
-    "yearLabel": "BC 1010경",
-    "context": "블레셋과의 결전 전날 밤 변장한 사울이 엔돌 신접여인에게 사무엘의 혼을 불러달라 청하니 사무엘이 나타나 사울과 그 아들들의 죽음을 예언 (1Sam 28:7–19).",
-    "authored": true,
-    "occursAt": [
-      "authored-place-endor"
-    ],
-    "participants": [
-      "recZsS2Zu0zIDwqdv"
-    ],
-    "books": [
-      {
-        "bookId": "rec4GS8yWh2R4mpdB",
-        "rangeLabel": "28:7–19"
       }
     ]
   }

@@ -70,50 +70,6 @@
     ]
   },
   {
-    "id": "authored-peter-confession",
-    "title": "Peter confesses Jesus as the Christ",
-    "nameKo": "\"주는 그리스도시니이다\" 반석의 고백",
-    "startDate": "0029",
-    "sortKey": 29.4,
-    "yearLabel": "AD 29경",
-    "context": "가이사랴 빌립보 지방에서 베드로가 \"주는 그리스도시요 살아 계신 하나님의 아들\"이라 고백하매, 예수께서 \"이 반석 위에 내 교회를 세우리라\" 하시며 천국 열쇠를 약속하심 (마 16:13–19).",
-    "authored": true,
-    "occursAt": [],
-    "participants": [
-      "recX9MMADoVI2CSP1"
-    ],
-    "books": [
-      {
-        "bookId": "recEJId5B98HV0x6D",
-        "rangeLabel": "16:13–19"
-      }
-    ]
-  },
-  {
-    "id": "authored-peter-transfiguration",
-    "title": "Peter witnesses the Transfiguration",
-    "nameKo": "변화산에서 영광을 목격함",
-    "startDate": "0029",
-    "sortKey": 29.6,
-    "yearLabel": "AD 29경",
-    "context": "높은 산에서 예수의 모습이 해같이 변하고 모세와 엘리야가 함께 나타나매, 베드로가 초막 셋을 짓겠다 하던 중 구름 속에서 \"이는 내 사랑하는 아들이니 그의 말을 들으라\" 하는 음성이 들림 (마 17:1–8; 막 9:2–8).",
-    "authored": true,
-    "occursAt": [],
-    "participants": [
-      "recX9MMADoVI2CSP1"
-    ],
-    "books": [
-      {
-        "bookId": "recEJId5B98HV0x6D",
-        "rangeLabel": "17:1–8"
-      },
-      {
-        "bookId": "recNvq1wZtB13BbbW",
-        "rangeLabel": "9:2–8"
-      }
-    ]
-  },
-  {
     "id": "authored-peter-denial",
     "title": "Peter denies Jesus three times",
     "nameKo": "닭 울기 전 세 번 부인함",
@@ -334,28 +290,6 @@
       {
         "bookId": "recF09FMjRr0gzjQk",
         "rangeLabel": "12:1–17"
-      }
-    ]
-  },
-  {
-    "id": "authored-peter-jerusalem-council",
-    "title": "Peter testifies at the Jerusalem Council",
-    "nameKo": "예루살렘 공의회에서 증언함",
-    "startDate": "0049",
-    "sortKey": 49,
-    "yearLabel": "AD 49경",
-    "context": "이방인에게 율법과 할례를 지울지를 두고 모인 공의회에서 베드로가 일어나 \"우리가 그들이나 다름없이 주 예수의 은혜로 구원받는 줄을 믿는다\"고 증언하여 이방 신자의 멍에를 덜어줌 (행 15:6–11).",
-    "authored": true,
-    "occursAt": [
-      "recL1WV82pXaRBQ59"
-    ],
-    "participants": [
-      "recX9MMADoVI2CSP1"
-    ],
-    "books": [
-      {
-        "bookId": "recF09FMjRr0gzjQk",
-        "rangeLabel": "15:6–11"
       }
     ]
   },

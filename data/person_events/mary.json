@@ -22,50 +22,6 @@
     ]
   },
   {
-    "id": "authored-mary-bethlehem-birth",
-    "title": "Mary gives birth to Jesus in Bethlehem",
-    "nameKo": "베들레헴 예수 탄생",
-    "startDate": "-4",
-    "sortKey": -4,
-    "yearLabel": "BC 4경",
-    "context": "호적령으로 베들레헴에 온 마리아가 여관에 방이 없어 구유에 예수를 낳음 (Luke 2:4–7).",
-    "authored": true,
-    "occursAt": [
-      "authored-place-bethlehem"
-    ],
-    "participants": [
-      "recnheSkryxih4g9J"
-    ],
-    "books": [
-      {
-        "bookId": "recclIex2hH0wdTST",
-        "rangeLabel": "2:4–7"
-      }
-    ]
-  },
-  {
-    "id": "authored-mary-egypt-flight",
-    "title": "Flight to Egypt with Jesus",
-    "nameKo": "애굽 피신 (헤롯의 박해)",
-    "startDate": "-3",
-    "sortKey": -3,
-    "yearLabel": "BC 3경",
-    "context": "요셉이 꿈에서 천사의 지시를 받고 가족과 함께 헤롯의 유아 학살을 피해 애굽으로 피신 (Matt 2:13–14).",
-    "authored": true,
-    "occursAt": [
-      "recfrXyxhuYOczKTm"
-    ],
-    "participants": [
-      "recnheSkryxih4g9J"
-    ],
-    "books": [
-      {
-        "bookId": "recEJId5B98HV0x6D",
-        "rangeLabel": "2:13–14"
-      }
-    ]
-  },
-  {
     "id": "authored-mary-cana-wedding",
     "title": "Mary at the wedding at Cana",
     "nameKo": "가나 혼인 잔치 — 예수께 간청",
@@ -128,50 +84,6 @@
       {
         "bookId": "recclIex2hH0wdTST",
         "rangeLabel": "1:39–56"
-      }
-    ]
-  },
-  {
-    "id": "authored-mary-jerusalem-presentation",
-    "title": "성전 봉헌과 시므온의 예언",
-    "nameKo": "성전 봉헌과 시므온의 예언",
-    "startDate": "-4",
-    "sortKey": -3.9,
-    "yearLabel": "BC 4경",
-    "context": "정결 예식을 위해 아기 예수를 예루살렘 성전에 데려가니, 시므온이 '이 아이는 많은 사람을 흥망케 하며 칼이 네 마음을 찌르리라' 예언함 (Luke 2:22–35).",
-    "authored": true,
-    "occursAt": [
-      "recL1WV82pXaRBQ59"
-    ],
-    "participants": [
-      "recnheSkryxih4g9J"
-    ],
-    "books": [
-      {
-        "bookId": "recclIex2hH0wdTST",
-        "rangeLabel": "2:22–35"
-      }
-    ]
-  },
-  {
-    "id": "authored-mary-jerusalem-boy-jesus",
-    "title": "소년 예수를 성전에서 찾음",
-    "nameKo": "소년 예수를 성전에서 찾음",
-    "startDate": "8",
-    "sortKey": 8,
-    "yearLabel": "AD 8경",
-    "context": "유월절 후 열두 살 예수가 성전에서 교사들과 문답하는 것을 사흘 만에 찾은 마리아. '어찌하여 나를 찾으셨나이까' (Luke 2:41–52).",
-    "authored": true,
-    "occursAt": [
-      "recL1WV82pXaRBQ59"
-    ],
-    "participants": [
-      "recnheSkryxih4g9J"
-    ],
-    "books": [
-      {
-        "bookId": "recclIex2hH0wdTST",
-        "rangeLabel": "2:41–52"
       }
     ]
   }

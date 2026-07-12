@@ -1,0 +1,1756 @@
+{
+  "generated": "2026-07-12",
+  "source": ".forge/reports/duplicate-events.md (task#166, wf_ecc5bc04-d74)",
+  "policy": "high+medium 적용, low 제외(계층 문제) — ADR-0016",
+  "clusters": [
+    {
+      "book": "2kgs",
+      "keepId": "authored-elijah-jordan-ascension",
+      "keepName": "회오리바람 불수레 승천",
+      "remove": [
+        {
+          "id": "recD1Gv4SKNFG3zPa",
+          "name": "엘리야의 승천 (Elijah Translated)"
+        }
+      ],
+      "confidence": "high",
+      "reason": "동일 연도(-852)·동일 인물(엘리야)의 승천 사건. authored 'Elijah taken up in a whirlwind'와 theographic 'Elijah Translated'는 같은 실제 사건을 가리키며 이름만 한/영으로 다름.",
+      "agentTransferLinks": [
+        "PART_OF → 엘리야의 예언 활동"
+      ]
+    },
+    {
+      "book": "1kgs",
+      "keepId": "authored-solomon-jerusalem-temple-build",
+      "keepName": "예루살렘 성전 건축 (Solomon builds the Temple in Jerusalem)",
+      "remove": [
+        {
+          "id": "recYlpu8OdsUJoG8g",
+          "name": "솔로몬 성전 건축 (Construction of Solomon's Temple)"
+        }
+      ],
+      "confidence": "high",
+      "reason": "동일 실제 사건(솔로몬의 성전 건축, 왕상 6장). startDate 동일(-966), 제목·한글명 사실상 동일 문구. theographic 쪽은 7Y span(건축 기간)이고 authored는 단일 시점 서사지만, 둘 다 '성전 건축'이라는 하나의 단일 프로젝트를 1:1로 지칭 — Reign/Kingdom 같은 다수 사건을 포괄하는 광역 컨테이너와 달리 세부 범위가 좁아 중복으로 판단.",
+      "agentTransferLinks": [
+        "PART_OF → 통일 왕국"
+      ]
+    },
+    {
+      "book": "1kgs",
+      "keepId": "authored-elijah-abelmeholah-elisha",
+      "keepName": "아벨므홀라에서 엘리사를 부름 (Elisha called at Abel-meholah)",
+      "remove": [
+        {
+          "id": "authored-elisha-call",
+          "name": "부름 받음 — 겉옷이 던져지다 (Elijah calls Elisha at Abel-meholah)"
+        }
+      ],
+      "confidence": "high",
+      "reason": "둘 다 authored이지만 같은 실제 사건(왕상 19:19-21, 엘리야가 엘리사를 부름)을 두 큐레이션 트랙(엘리야 발자취 vs 엘리사 발자취로 추정)에서 중복 저작. 참여자 동일(엘리야·엘리사), 제목이 문구만 뒤바뀐 수준으로 동일. keep은 연대(-867)가 호렙산 세미한 소리(-867.5) 직후로 내러티브 순서·장소(아벨므홀라)가 본문과 일치해 남기고, remove(-852)는 아하시야 통치 시작 이후로 시간순이 어긋나 있어 중복 저작본으로 판단.",
+      "agentTransferLinks": [
+        "OCCURS_AT → 요단강"
+      ]
+    },
+    {
+      "book": "luke",
+      "keepId": "authored-mary-nazareth-annunciation",
+      "keepName": "나사렛 수태고지 — 천사 가브리엘",
+      "remove": [
+        {
+          "id": "rec2xII53pVseJCB6",
+          "name": "수태고지 (The Annuciation)"
+        }
+      ],
+      "confidence": "high",
+      "reason": "천사 가브리엘이 나사렛에서 마리아에게 수태를 고지한 동일 사건(참여자 마리아·장소 나사렛 일치), 연도 표기만 -5/-4로 다름.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "luke",
+      "keepId": "authored-mary-judah-visitation",
+      "keepName": "엘리사벳 방문과 마리아 찬가",
+      "remove": [
+        {
+          "id": "recsMmYHDdduT021e",
+          "name": "마리아가 엘리사벳을 방문함 (Mary Visits Elizabeth)"
+        }
+      ],
+      "confidence": "high",
+      "reason": "마리아가 엘리사벳을 방문한 동일 사건, 참여자(마리아) 일치.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "luke",
+      "keepId": "authored-john-baptist-birth-naming",
+      "keepName": "출생과 이름 짓기 (유대 산골)",
+      "remove": [
+        {
+          "id": "recp7RblvtGupJInu",
+          "name": "세례 요한의 탄생 (Birth of John the Baptist)"
+        }
+      ],
+      "confidence": "high",
+      "reason": "세례 요한의 출생(및 명명) 동일 사건, 참여자(세례 요한) 일치. 별도 사건인 '요한의 탄생 예고'(recOtonfrqZVuz2iF, 스가랴에게 준 예고)는 순차적으로 앞선 국면이라 클러스터에서 제외.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "luke",
+      "keepId": "authored-jesus-bethlehem-birth",
+      "keepName": "베들레헴 탄생",
+      "remove": [
+        {
+          "id": "authored-mary-bethlehem-birth",
+          "name": "베들레헴 예수 탄생 (Mary gives birth to Jesus in Bethlehem)"
+        },
+        {
+          "id": "recg5KKSE8un6XLe6",
+          "name": "예수의 탄생 (Birth of Jesus)"
+        }
+      ],
+      "confidence": "high",
+      "reason": "베들레헴에서의 예수 탄생이라는 동일 사건이 예수 여정·마리아 여정에서 각각 authored로 중복 저작되고, theographic 원본까지 더해 3중 중복(연도 -5/-4/-3은 소스별 날짜 오차).",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 마리아"
+      ]
+    },
+    {
+      "book": "luke",
+      "keepId": "authored-jesus-temple-presentation",
+      "keepName": "성전 봉헌 — 시므온과 안나",
+      "remove": [
+        {
+          "id": "authored-mary-jerusalem-presentation",
+          "name": "성전 봉헌과 시므온의 예언"
+        },
+        {
+          "id": "recISCjAW413V6T1j",
+          "name": "예수의 성전 봉헌 (Temple Presentation of Jesus)"
+        }
+      ],
+      "confidence": "high",
+      "reason": "시므온·안나의 예언과 함께 이뤄진 유아 예수 성전 봉헌이라는 동일 사건이 예수·마리아 여정에서 각각 authored 중복 + theographic 원본까지 3중 중복.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 마리아"
+      ]
+    },
+    {
+      "book": "luke",
+      "keepId": "authored-jesus-boy-at-temple",
+      "keepName": "열두 살 성전에서 — \"내 아버지 집\"",
+      "remove": [
+        {
+          "id": "authored-mary-jerusalem-boy-jesus",
+          "name": "소년 예수를 성전에서 찾음"
+        },
+        {
+          "id": "rec8FDMhG6menTpse",
+          "name": "소년 예수가 성전에서 가르침 (Jesus as a child in the Temple)"
+        }
+      ],
+      "confidence": "high",
+      "reason": "열두 살 예수가 성전에서 랍비들과 문답한 동일 사건(눅 2:41-52), 예수·마리아 여정 authored 중복 + theographic 원본까지 3중 중복. '예수의 성장'(rec8aq3QrGCer9RqY, 17년 기간)은 별개의 광의 성장기 사건이라 제외.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 마리아"
+      ]
+    },
+    {
+      "book": "luke",
+      "keepId": "authored-jesus-jericho-zacchaeus",
+      "keepName": "여리고 삭개오 만남",
+      "remove": [
+        {
+          "id": "reccSs8loWRLm8LAb",
+          "name": "삭개오의 회심과 달란트 비유 (Zaccheus Converted and Parable of the Pounds)"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "여리고에서 삭개오를 만난 동일 방문(눅 19:1-10)으로 판단되나, theographic 레코드는 곧이어 이어진 므나 비유 설교(눅 19:11-27)까지 한 사건명에 묶어 다소 광의로 명명되어 있어 확신도를 medium으로 낮춤.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "judg",
+      "keepId": "authored-samson-gaza-death",
+      "keepName": "가사 신전에서의 죽음",
+      "remove": [
+        {
+          "id": "reccUeZb53JJ02Lv9",
+          "name": "삼손이 다곤 신전을 무너뜨림"
+        }
+      ],
+      "confidence": "high",
+      "reason": "삿16:23-31의 동일 사건(삼손이 다곤 신전 기둥을 무너뜨려 자신과 블레셋인들과 함께 죽음). theographic은 duration 1D의 point event로 authored 서사의 클라이맥스 장면과 정확히 대응(날짜는 -1101 vs -1075로 어긋나나 이는 authored/theographic 계열 간 알려진 연대축 불일치 이슈).",
+      "agentTransferLinks": [
+        "PART_OF → 블레셋의 지배"
+      ]
+    },
+    {
+      "book": "1sam",
+      "keepId": "authored-david-goliath-gath",
+      "keepName": "다윗이 가드 출신 골리앗을 쓰러뜨림",
+      "remove": [
+        {
+          "id": "rec9JB5FY6jMOyEY3",
+          "name": "다윗이 골리앗을 죽임"
+        }
+      ],
+      "confidence": "high",
+      "reason": "동일 실제 사건(다윗의 골리앗 처치, 1삼상 17장). theographic 'David Kills Goliath'(-1022, PART_OF 통일 왕국)와 authored 'David defeats Goliath near Gath'(-1020)가 동일 인물(다윗)·동일 서사를 가리킴.",
+      "agentTransferLinks": [
+        "PART_OF → 통일 왕국"
+      ]
+    },
+    {
+      "book": "1sam",
+      "keepId": "authored-samuel-bethlehem-david-anointing",
+      "keepName": "베들레헴에서 다윗 기름부음",
+      "remove": [
+        {
+          "id": "authored-david-anointed-bethlehem",
+          "name": "사무엘이 베들레헴에서 다윗에게 기름 부음"
+        }
+      ],
+      "confidence": "high",
+      "reason": "authored-authored 중복. 둘 다 '사무엘이 베들레헴에서 다윗에게 기름 부음'(1삼상 16장) 동일 사건. -1040 쪽이 이후 골리앗(-1022)·수금 연주(-1023) 등보다 앞서 배치되어 서사 순서에 부합, -1025 쪽은 중복 생성으로 판단.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "1sam",
+      "keepId": "authored-david-en-gedi-saul",
+      "keepName": "엔게디에서 다윗이 사울을 살려줌",
+      "remove": [
+        {
+          "id": "authored-saul-engedi-spared",
+          "name": "엔게디서 다윗이 살려줌"
+        }
+      ],
+      "confidence": "high",
+      "reason": "authored-authored 중복. 둘 다 1삼상 24장 엔게디 동굴에서 다윗이 사울을 살려준 동일 사건. -1011 쪽이 아둘람(-1012) 이후로 이어져 서사 순서에 부합, -1018 쪽은 그보다 앞서 배치돼 순서 모순.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "1sam",
+      "keepId": "authored-saul-endor-medium",
+      "keepName": "엔돌의 신접한 여인",
+      "remove": [
+        {
+          "id": "authored-samuel-endor-apparition",
+          "name": "엔돌 신접여인에 나타남"
+        }
+      ],
+      "confidence": "high",
+      "reason": "authored-authored 중복. 둘 다 1삼상 28장 엔돌 신접 여인 사건. 'saul-endor-medium'이 사울·사무엘 참여자를 모두 포함해 더 완전함.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "1sam",
+      "keepId": "authored-saul-gilboa-death",
+      "keepName": "길보아 산 전사와 야베스 사람들의 장사",
+      "remove": [
+        {
+          "id": "recXDTsDBCG9DaiGN",
+          "name": "사울의 죽음"
+        }
+      ],
+      "confidence": "high",
+      "reason": "동일 실제 사건(사울의 길보아 산 전사, 1삼상 31장). theographic 'Death of Saul'(PART_OF 통일 왕국)과 authored가 같은 날짜(-1010)·같은 사건을 가리킴.",
+      "agentTransferLinks": [
+        "PART_OF → 통일 왕국"
+      ]
+    },
+    {
+      "book": "1sam",
+      "keepId": "authored-saul-gilgal-amalek",
+      "keepName": "아말렉 불순종으로 버림받음",
+      "remove": [
+        {
+          "id": "authored-samuel-gilgal-saul-rejection",
+          "name": "사울 책망과 겉옷 찢김 (길갈)"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "겉옷 찢김(1삼상 15:27-28)은 아말렉 불순종에 대한 사무엘의 최종 책망 장면 일부로 동일 사건일 가능성이 높으나, startDate가 10년 차(-1055 vs -1045)이고 -1055는 믹마스 전투(-1048)보다도 앞서 배치돼 있어(book 내 연대 자체 모순) 완전 확신은 어려움 — 사람 확인 권장. '겉옷 찢김' 디테일은 keep 쪽 별칭으로 옮기는 것을 고려.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "john",
+      "keepId": "authored-jesus-cana-wedding",
+      "keepName": "가나 혼인 잔치 — 첫 이적",
+      "remove": [
+        {
+          "id": "recamPG0iyTXyCMRx",
+          "name": "물이 포도주가 됨"
+        }
+      ],
+      "confidence": "high",
+      "reason": "둘 다 가나 혼인잔치에서 예수가 물을 포도주로 바꾼 동일 이적(요한복음 2:1-11), 참여자 예수·장소 가나·startDate 27 일치, 제목 의미도 동일(첫 이적=Water to Wine).",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "john",
+      "keepId": "authored-john-first-disciple",
+      "keepName": "처음으로 예수를 따른 제자",
+      "remove": [
+        {
+          "id": "rec2rWYKV739WLO4b",
+          "name": "첫 제자들을 부르심"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "요한이 예수를 따르는 저작 사건이 theographic '첫 제자들 부르심'(요1:35-51, 안드레·베드로·빌립 포함 동일 에피소드)의 요한 부분과 사실상 같은 장면을 그룹/개인 단위로 중복 기술 — PART_OF 상위 컨테이너 없이 단일 에피소드라 중복 가능성 높으나 그룹 이벤트 내 개인 초점 차이일 수 있어 medium.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 안드레",
+        "HAS_PARTICIPANT → 베드로",
+        "HAS_PARTICIPANT → 빌립"
+      ]
+    },
+    {
+      "book": "john",
+      "keepId": "authored-john-baptist-lamb-of-god",
+      "keepName": "\"하나님의 어린 양\" 증거",
+      "remove": [
+        {
+          "id": "rec51NMfUoy8EBm5D",
+          "name": "요한의 증언"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "둘 다 세례 요한이 예수를 증거하는 요한복음 1:19-34 장면(theographic 사건은 PART_OF 없는 단일 에피소드) — authored는 그 중 절정 발언('보라 하나님의 어린 양')만 특정해 동일사건일 가능성 높지만, 증언 전체 대 발언 한 줄이라는 세밀도 차이로 medium.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "john",
+      "keepId": "authored-jesus-bethany-lazarus",
+      "keepName": "베다니 나사로 부활",
+      "remove": [
+        {
+          "id": "reclZp6jMKWzYmop9",
+          "name": "나사로를 살리심"
+        }
+      ],
+      "confidence": "high",
+      "reason": "둘 다 베다니에서 나사로를 살리신 동일 이적(요한복음 11장), 참여자 예수 일치, 제목 의미 동일.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "exod",
+      "keepId": "authored-moses-birth-egypt",
+      "keepName": "애굽의 히브리인 박해 속에서 태어난 모세",
+      "remove": [
+        {
+          "id": "rec6atQ3as7Qj2n5d",
+          "name": "모세의 출생 (Birth of Moses)"
+        }
+      ],
+      "confidence": "high",
+      "reason": "동일 연대(-1526) 모세 출생 사건. authored는 박해 맥락 포함 구체 서술, theographic 원본은 동일 사실의 1일짜리 레코드로 참여자(모세)·장소(이집트) 완전 일치.",
+      "agentTransferLinks": [
+        "PART_OF → 모세의 생애"
+      ]
+    },
+    {
+      "book": "exod",
+      "keepId": "authored-moses-flees-midian",
+      "keepName": "모세가 애굽을 피해 미디안으로 도망",
+      "remove": [
+        {
+          "id": "recwofVaBASTvL8lL",
+          "name": "모세가 바로를 피하여 도망함 (Moses Flees Pharaoh)"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "연대 근접(-1486/-1485)하고 동일 도피 사건으로 보이나, theographic 쪽 duration이 40Y로 되어 있어 도피 순간이 아니라 미디안 체류 전체 기간을 가리키는 컨테이너일 가능성 있음 — 사람 확인 권장.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "exod",
+      "keepId": "authored-moses-passover-night",
+      "keepName": "유월절 밤과 애굽 탈출",
+      "remove": [
+        {
+          "id": "recjkmUO88wihv8Ci",
+          "name": "출애굽 (Exodus from Egypt)"
+        }
+      ],
+      "confidence": "high",
+      "reason": "동일 연대(-1446), 동일 장소(이집트)의 애굽 탈출 사건. 명칭만 다를 뿐 동일 실제 사건.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 아론"
+      ]
+    },
+    {
+      "book": "exod",
+      "keepId": "authored-moses-sinai-law",
+      "keepName": "시내산에서 율법을 받은 모세",
+      "remove": [
+        {
+          "id": "reca8LvAmFPl1tmnN",
+          "name": "십계명 수여 (Ten Commandments Given)"
+        }
+      ],
+      "confidence": "high",
+      "reason": "동일 연대(-1446), 동일 장소(시내/시내산)에서 모세가 율법(십계명)을 받는 동일 사건.",
+      "agentTransferLinks": [
+        "PART_OF → 광야 방랑",
+        "HAS_PARTICIPANT → 하나님"
+      ]
+    },
+    {
+      "book": "josh",
+      "keepId": "authored-joshua-jordan-crossing",
+      "keepName": "요단강 도하",
+      "remove": [
+        {
+          "id": "recSF4lyBebGjJEXI",
+          "name": "요단강을 건너 가나안에 들어감 (Crossing the Jordan into Canaan)"
+        }
+      ],
+      "confidence": "high",
+      "reason": "연대 근접(-1406/-1405), 동일 인물(여호수아)의 요단강 도하 및 가나안 진입 사건 — 명칭만 다른 동일 사건.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "josh",
+      "keepId": "authored-joshua-farewell-death",
+      "keepName": "여호수아 고별 설교와 죽음",
+      "remove": [
+        {
+          "id": "recnPiyyKviVUPHO6",
+          "name": "여호수아의 죽음 (Death of Joshua)"
+        }
+      ],
+      "confidence": "high",
+      "reason": "연대 근접(-1379/-1378), 동일 인물(여호수아)의 죽음 사건 — authored는 고별 설교까지 포함해 서술 확장. 단, theographic 쪽은 allBooks에 judg도 포함되어 사사기에서도 참조되므로, 삭제 시 사사기 쪽 연결이 끊기지 않도록 주의 필요.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "mark",
+      "keepId": "authored-jesus-capernaum-healing",
+      "keepName": "가버나움 회당 사역 — 귀신 추방과 치유",
+      "remove": [
+        {
+          "id": "recVzgELtu6c6u0JJ",
+          "name": "귀신 들린 사람 (The Demoniac)"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "갈릴리 사역 초기(제자 부르심 직후) 가버나움 회당에서의 귀신 축출 장면으로 추정되나, 연대가 1년 차이(27 vs 28)이고 theographic 쪽에 장소(가버나움) 기록이 없어 동일 사건 단정에 다소 불확실성 있음 — 사람 확인 권장.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "rev",
+      "keepId": "authored-john-patmos",
+      "keepName": "밧모 섬 유배 — 요한계시록",
+      "remove": [
+        {
+          "id": "verse-event-john-vision-on-patmos",
+          "name": "요한이 밧모 섬에서 계시를 받다"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "세 이벤트 모두 startDate 95(0095)로 동일 연대, 요한이 밧모 섬에서 계시록 계시를 받은 동일 실제 사건을 가리킴. authored-john-patmos-revelation은 primaryBook이 비어있는 것 외에 참여자('사도 요한')·날짜·의미가 완전히 동일한 authored 중복(신뢰도 high 수준). verse-event-john-vision-on-patmos는 theographic 원본으로 '유배'(authored, 상황 전체를 아우름)와 '환상 수령'(theographic, 특정 절 시점)이라는 서술 관점 차이가 있어 전체 클러스터 신뢰도는 medium으로 낮춤. 참여자·장소·PART_OF 모두 keep에 이미 있거나 비어 있어 이관할 링크 없음.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "job",
+      "keepId": "authored-job-calamity",
+      "keepName": "하루아침에 잃은 재산과 자녀",
+      "remove": [
+        {
+          "id": "recMNT9RB1RJiLlYW",
+          "name": "욥의 시련 (Job's Trial)"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "원본 duration이 1D(하루)로 authored-job-calamity(하루 사이 재산·자녀를 연쇄로 잃는 사건)와 스케일이 일치하고 제목 '시련'도 그 발단 사건을 가리킴. 다만 startDate가 authored -1900 vs 원본 -1834로 66년 차이가 있어 medium.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "neh",
+      "keepId": "authored-nehemiah-news-prayer",
+      "keepName": "예루살렘 소식과 금식 기도",
+      "remove": [
+        {
+          "id": "verse-event-nehemiah-hears-of-jerusalems-ruins",
+          "name": "느헤미야가 예루살렘 성벽 붕괴 소식을 듣고 금식하다"
+        }
+      ],
+      "confidence": "high",
+      "reason": "예루살렘 성벽 붕괴 소식을 듣고 금식·기도하는 동일 사건(느 1장). startDate -446 vs -445는 1년 차의 데이터 관행 차이로 추정.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "neh",
+      "keepId": "authored-nehemiah-law-reading",
+      "keepName": "수문 앞 율법 낭독과 언약 갱신",
+      "remove": [
+        {
+          "id": "verse-event-ezra-reads-law-at-water-gate",
+          "name": "에스라가 수문 앞 광장에서 율법을 공개 낭독하다"
+        }
+      ],
+      "confidence": "high",
+      "reason": "제목·장소·주체(에스라, 수문 앞)가 거의 동일한 율법 공개 낭독 사건(느 8장), startDate -444로 동일.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "matt",
+      "keepId": "authored-jesus-flight-egypt",
+      "keepName": "애굽으로 피신",
+      "remove": [
+        {
+          "id": "authored-mary-egypt-flight",
+          "name": "애굽 피신 (헤롯의 박해)"
+        },
+        {
+          "id": "recHWkX7SvgnBZiuD",
+          "name": "요셉과 마리아가 애굽으로 피신함"
+        }
+      ],
+      "confidence": "high",
+      "reason": "헤롯의 영아 학살 이후 애굽으로 피신하는 동일 사건을 예수·마리아 인물 여정 각각과 theographic 원본이 3중 저작(모두 place=이집트, 인접 startDate).",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 마리아"
+      ]
+    },
+    {
+      "book": "matt",
+      "keepId": "authored-jesus-nazareth-childhood",
+      "keepName": "나사렛 정착과 성장",
+      "remove": [
+        {
+          "id": "rec40p7ak4u60WdPB",
+          "name": "요셉과 마리아가 나사렛으로 돌아옴"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "애굽에서 돌아와 나사렛에 정착하는 동일 국면. authored는 이후 성장기까지 포괄해 범위가 조금 더 넓어 medium.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 마리아"
+      ]
+    },
+    {
+      "book": "matt",
+      "keepId": "authored-jesus-magi-visit",
+      "keepName": "동방박사의 경배",
+      "remove": [
+        {
+          "id": "recVRh2awW5WGpXK4",
+          "name": "동방 박사들이 예수를 방문함"
+        }
+      ],
+      "confidence": "high",
+      "reason": "동방박사가 아기 예수를 찾아와 경배하는 동일 사건(마 2:11). '헤롯 방문'(rec2fX249sj1mmGFr)은 그 이전 순차 국면으로 판단해 제외.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "matt",
+      "keepId": "authored-john-baptist-wilderness-ministry",
+      "keepName": "유대 광야 선포 사역",
+      "remove": [
+        {
+          "id": "recW9F8RuUqf5HZkd",
+          "name": "세례 요한의 사역 시작"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "둘 다 startDate 26, 세례 요한이 공적 사역을 시작/선포하는 동일 시점을 가리키나 장소 태그가 유대 광야 vs 요단강으로 달라 medium.",
+      "agentTransferLinks": [
+        "OCCURS_AT → 요단강"
+      ]
+    },
+    {
+      "book": "matt",
+      "keepId": "authored-jesus-jordan-baptism",
+      "keepName": "요단강 세례 — 하늘이 열림",
+      "remove": [
+        {
+          "id": "rec8LSQHQdcYfC9La",
+          "name": "요한이 예수에게 세례를 베풀음"
+        },
+        {
+          "id": "authored-john-baptist-jordan-baptism",
+          "name": "요단강 세례 사역 — 예수에게 세례"
+        }
+      ],
+      "confidence": "high",
+      "reason": "예수가 요단강에서 세례 요한에게 세례받는 동일 사건을 예수 여정·요한 여정·theographic이 3중 저작(요한 저작본 nameKo에 '예수에게 세례'로 명시됨).",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 세례 요한"
+      ]
+    },
+    {
+      "book": "matt",
+      "keepId": "authored-jesus-wilderness-temptation",
+      "keepName": "광야 사십 일 시험",
+      "remove": [
+        {
+          "id": "rec7GKv3V8PLB1Wk1",
+          "name": "예수의 시험"
+        }
+      ],
+      "confidence": "high",
+      "reason": "예수가 광야에서 사탄에게 시험받는 동일 사건.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 사탄"
+      ]
+    },
+    {
+      "book": "matt",
+      "keepId": "authored-jesus-capernaum-base",
+      "keepName": "가버나움 이주 — 갈릴리 사역 본거지",
+      "remove": [
+        {
+          "id": "recfKYBkGyK1iVyQ7",
+          "name": "예수가 가버나움에 계심"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "예수가 가버나움에 정착/체류하는 동일 국면. 유대를 떠나 갈릴리로 향하는 이동(recThval8jPdpjMQd 등)은 그 이전 여정 단계로 판단해 제외.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "matt",
+      "keepId": "authored-jesus-sermon-mount",
+      "keepName": "산상수훈 — 팔복 선포",
+      "remove": [
+        {
+          "id": "rec5EydSXHdbLbzk1",
+          "name": "산상수훈"
+        }
+      ],
+      "confidence": "high",
+      "reason": "동일한 산상수훈 사건. theographic 쪽 place가 '예루살렘'으로 태깅돼 있으나(갈릴리 사건 특성상 오기로 보임) 참고용으로 표기.",
+      "agentTransferLinks": [
+        "OCCURS_AT → 예루살렘"
+      ]
+    },
+    {
+      "book": "matt",
+      "keepId": "authored-peter-walks-on-water",
+      "keepName": "물 위로 예수께 걸어간 베드로",
+      "remove": [
+        {
+          "id": "recQ8WbFKwtwzK9Xm",
+          "name": "예수가 물 위를 걸으심"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "마태복음 14장의 동일 장면(예수가 물 위를 걸으심 + 베드로의 시도)을 하나로 묶은 theographic 기록(참여자에 베드로 포함)과 베드로 여정 저작본이 겹침. 베드로 삽화를 별개 사건으로 볼 여지도 있어 medium.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 예수"
+      ]
+    },
+    {
+      "book": "matt",
+      "keepId": "authored-jesus-transfiguration",
+      "keepName": "변화산 — 영광의 변형",
+      "remove": [
+        {
+          "id": "recbbehq3RkfnSmCE",
+          "name": "변화산 사건"
+        },
+        {
+          "id": "authored-john-transfiguration",
+          "name": "변화산 — 세 제자 중 하나로 영광을 봄"
+        },
+        {
+          "id": "authored-peter-transfiguration",
+          "name": "변화산에서 영광을 목격함"
+        }
+      ],
+      "confidence": "high",
+      "reason": "동일한 변화산 사건이 예수·베드로·요한 인물 여정 페이지별로 각각 저작되어 4중 중복 발생. theographic 원본(5인 참여)의 참여자를 대표 사건(예수)에 병합 필요.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 야고보",
+        "HAS_PARTICIPANT → 모세",
+        "HAS_PARTICIPANT → 베드로",
+        "HAS_PARTICIPANT → 사도 요한"
+      ]
+    },
+    {
+      "book": "matt",
+      "keepId": "authored-jesus-caesarea-philippi",
+      "keepName": "가이사랴 빌립보 — 베드로의 신앙 고백",
+      "remove": [
+        {
+          "id": "authored-peter-confession",
+          "name": "\"주는 그리스도시니이다\" 반석의 고백"
+        },
+        {
+          "id": "recBuPmgXN9v9X6WI",
+          "name": "베드로의 고백 '이 반석 위에'"
+        }
+      ],
+      "confidence": "high",
+      "reason": "베드로가 가이사랴 빌립보에서 예수를 그리스도로 고백하는 동일 사건(마 16:13-20)이 예수·베드로 여정과 theographic에 3중 저작됨. startDate가 theographic(29)·authored(30) 사이 1년 차이 있으나 내용 대응은 명백.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 베드로"
+      ]
+    },
+    {
+      "book": "matt",
+      "keepId": "authored-jesus-triumphal-entry",
+      "keepName": "예루살렘 입성 — 종려 주일",
+      "remove": [
+        {
+          "id": "recBsshyiGaHc6bgC",
+          "name": "예루살렘 입성"
+        }
+      ],
+      "confidence": "high",
+      "reason": "동일한 예루살렘 종려주일 입성 사건. authored 쪽 startDate(0032)가 theographic(0030)과 다른 연대기 체계를 쓰지만 내용은 동일.",
+      "agentTransferLinks": [
+        "PART_OF → 고난 주간"
+      ]
+    },
+    {
+      "book": "matt",
+      "keepId": "authored-jesus-gethsemane-prayer",
+      "keepName": "겟세마네 기도 — 십자가 전날 밤",
+      "remove": [
+        {
+          "id": "recNQ0XuoN4rfJR3o",
+          "name": "겟세마네에서의 기도와 체포"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "겟세마네에서의 예수 기도 장면은 동일하나 theographic 쪽은 '체포'까지 포괄해 authored보다 범위가 넓어 medium.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 가룟 유다",
+        "HAS_PARTICIPANT → 베드로",
+        "PART_OF → 고난 주간"
+      ]
+    },
+    {
+      "book": "ruth (룻기)",
+      "keepId": "authored-ruth-bethlehem-return",
+      "keepName": "나오미와 함께 베들레헴으로 돌아옴",
+      "remove": [
+        {
+          "id": "verse-event-ruth-follows-naomi-to-bethlehem",
+          "name": "룻이 나오미를 따라 베들레헴으로 돌아옴"
+        }
+      ],
+      "confidence": "high",
+      "reason": "동일 사건(나오미를 따라 베들레헴 귀환), 동일 연대(-1100), 의미상 완전히 대응. verse-event 쪽은 participants/places가 비어 있어 이전할 연결 없음.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "ruth (룻기)",
+      "keepId": "authored-ruth-bethlehem-gleaning",
+      "keepName": "보아스의 밭에서 이삭을 주움",
+      "remove": [
+        {
+          "id": "verse-event-ruth-gleans-in-boaz-field",
+          "name": "룻이 보아스의 밭에서 이삭을 줍다"
+        }
+      ],
+      "confidence": "high",
+      "reason": "동일 사건(보아스 밭 이삭줍기), 동일 연대(-1100), 제목 사실상 동일 표현.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "ruth (룻기)",
+      "keepId": "authored-ruth-bethlehem-redemption",
+      "keepName": "보아스의 기업 무름과 오벳의 출생",
+      "remove": [
+        {
+          "id": "verse-event-boaz-redeems-ruth-at-the-gate",
+          "name": "보아스가 성문에서 룻을 기업 무를 자로 맞이하다"
+        }
+      ],
+      "confidence": "high",
+      "reason": "동일 사건(성문에서의 기업 무름 절차), 동일 연대(-1100). authored 쪽 nameKo가 '오벳 출생'까지 언급하지만 그 부분은 별개 후속 국면으로 판단해 이 클러스터에서 제외함(notes 참조).",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "esth (에스더)",
+      "keepId": "authored-esther-queen-chosen",
+      "keepName": "와스디 폐위와 왕후 간택",
+      "remove": [
+        {
+          "id": "verse-event-esther-chosen-as-queen",
+          "name": "에스더가 페르시아 왕후로 선택되다"
+        }
+      ],
+      "confidence": "high",
+      "reason": "영문 title이 'Esther chosen as queen of Persia'로 완전히 일치하고 연대도 동일(-479)함.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-cain-kills-abel",
+      "keepName": "가인이 들에서 아벨을 죽임",
+      "remove": [
+        {
+          "id": "authored-adam-cain-and-abel",
+          "name": "가인이 아벨을 죽임"
+        },
+        {
+          "id": "authored-abel-killed-by-cain",
+          "name": "가인에게 들에서 살해됨"
+        },
+        {
+          "id": "recrEQsBlZOgXbLiB",
+          "name": "가인이 아벨을 죽임"
+        }
+      ],
+      "confidence": "high",
+      "reason": "동일한 '가인이 들에서 아벨을 죽임' 사건이 아담·아벨·가인 세 인물의 발자취로 3중 저작되고 theographic 원본과도 중복(인접 연대 -3900/-3899/-3874, 동일 참여자 가인·아벨). 행위자(가인) 중심의 상세 버전을 keep.",
+      "agentTransferLinks": [
+        "OCCURS_AT → 에덴",
+        "HAS_PARTICIPANT → 아벨",
+        "HAS_PARTICIPANT → 아담"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-cain-cursed-and-marked",
+      "keepName": "땅의 저주와 가인의 표",
+      "remove": [
+        {
+          "id": "recl4Bcpg9yzJsEqI",
+          "name": "하나님이 가인을 저주하심"
+        }
+      ],
+      "confidence": "high",
+      "reason": "가인 살인 직후 하나님이 가인에게 저주와 표를 주신 동일 사건(제목·행위·인물 대응).",
+      "agentTransferLinks": [
+        "OCCURS_AT → 놋",
+        "OCCURS_AT → 에덴",
+        "HAS_PARTICIPANT → 하나님"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-adam-fall",
+      "keepName": "타락 — 선악과를 먹음",
+      "remove": [
+        {
+          "id": "recj3SioaPwrDtpGT",
+          "name": "타락"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "theographic '타락'이 창3장 전체(먹음+추방)를 포괄할 가능성이 있어 authored의 별도 사건인 추방(authored-adam-expelled-from-eden)과 어느 쪽에 대응하는지 애매하나, 명칭·행위 상 '먹음' 사건에 가장 직접 대응.",
+      "agentTransferLinks": [
+        "OCCURS_AT → 에덴",
+        "HAS_PARTICIPANT → 하나님",
+        "HAS_PARTICIPANT → 하와"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-adam-death",
+      "keepName": "아담의 죽음, 향년 930세",
+      "remove": [
+        {
+          "id": "rec4kRWTXS86nus0I",
+          "name": "아담의 죽음"
+        }
+      ],
+      "confidence": "high",
+      "reason": "아담의 죽음이라는 동일 사건, 명칭 완전 대응.",
+      "agentTransferLinks": [
+        "PART_OF → 아담의 생애",
+        "OCCURS_AT → 에덴"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-seth-birth",
+      "keepName": "셋의 출생 — 아벨 대신 주어진 씨",
+      "remove": [
+        {
+          "id": "authored-adam-seth-born",
+          "name": "셋의 출생"
+        },
+        {
+          "id": "recp7P8QOAzrtw9Ly",
+          "name": "셋의 출생"
+        }
+      ],
+      "confidence": "high",
+      "reason": "셋의 출생이 아담 발자취판과 셋 발자취판으로 이중 저작되고 theographic 원본과도 중복.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 하와",
+        "HAS_PARTICIPANT → 아담",
+        "OCCURS_AT → 에덴",
+        "PART_OF → 셋의 생애"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-seth-enosh-and-calling",
+      "keepName": "에노스를 낳고 여호와의 이름을 부르기 시작함",
+      "remove": [
+        {
+          "id": "rec0irQ4RDrOjQKWD",
+          "name": "에노스의 출생"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "authored는 에노스 출생과 '여호와의 이름을 부르기 시작함'(창4:26b)을 한 사건으로 묶어 theographic 출생 사건과 대체로 대응하나 범위가 완전히 같지는 않음.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 에노스"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-enoch-methuselah-born",
+      "keepName": "에녹, 65세에 므두셀라를 낳음",
+      "remove": [
+        {
+          "id": "recECi7gnsZNbykIS",
+          "name": "므두셀라의 출생"
+        }
+      ],
+      "confidence": "high",
+      "reason": "므두셀라 출생이라는 동일 사건.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 므두셀라",
+        "PART_OF → 므두셀라의 생애"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-enoch-taken-by-god",
+      "keepName": "에녹, 365세에 죽음을 보지 않고 하나님께 데려가심",
+      "remove": [
+        {
+          "id": "recg9ZkB8FoyQTH8v",
+          "name": "에녹이 하나님께 이끌려 올라감"
+        }
+      ],
+      "confidence": "high",
+      "reason": "에녹 승천 사건, 명칭·의미 완전 대응.",
+      "agentTransferLinks": [
+        "PART_OF → 에녹의 생애"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-seth-death",
+      "keepName": "셋의 죽음, 향년 912세",
+      "remove": [
+        {
+          "id": "recN7DBKYBEZRDgO7",
+          "name": "셋의 죽음"
+        }
+      ],
+      "confidence": "high",
+      "reason": "셋의 죽음이라는 동일 사건.",
+      "agentTransferLinks": [
+        "PART_OF → 셋의 생애"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-noah-ark-command",
+      "keepName": "하나님이 노아에게 방주 건조 명령",
+      "remove": [
+        {
+          "id": "recZcXNIkXx2zXaW3",
+          "name": "하나님이 노아에게 방주 건조를 명하심"
+        }
+      ],
+      "confidence": "high",
+      "reason": "제목이 사실상 동일한 하나님의 방주 건조 명령 사건.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 하나님"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-noah-flood-begins",
+      "keepName": "대홍수 시작 — 방주에 들어감",
+      "remove": [
+        {
+          "id": "recmLyx1yqtuANkqd",
+          "name": "대홍수 시작"
+        }
+      ],
+      "confidence": "high",
+      "reason": "'대홍수 시작' 명칭·시점 완전 대응(대홍수의 하위 국면 중 '시작' 단계와 일치, 물이 덮음·물러감 등 후속 국면과는 구분).",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 야벳",
+        "HAS_PARTICIPANT → 함",
+        "HAS_PARTICIPANT → 셈",
+        "PART_OF → 대홍수"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-noah-rainbow-covenant",
+      "keepName": "하나님이 무지개로 노아와 언약을 세우심",
+      "remove": [
+        {
+          "id": "recUsWq7FcQB7vaMa",
+          "name": "하나님이 노아와 언약을 맺으심"
+        }
+      ],
+      "confidence": "high",
+      "reason": "노아 언약(무지개) 사건, 명칭·의미 완전 대응.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 하나님",
+        "PART_OF → 대홍수"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-noah-vineyard",
+      "keepName": "노아의 포도원과 취함",
+      "remove": [
+        {
+          "id": "recgz06wNQlsq6kOc",
+          "name": "노아가 포도주에 취하고 가나안이 저주받음"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "동일한 창9:20-27 사건이나 authored 제목엔 '가나안 저주' 부분이 명시되지 않아 범위 차이 존재.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 가나안",
+        "HAS_PARTICIPANT → 함",
+        "HAS_PARTICIPANT → 셈",
+        "HAS_PARTICIPANT → 야벳"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-noah-death-950",
+      "keepName": "노아, 950세에 죽다",
+      "remove": [
+        {
+          "id": "recjX86XiYE9up0Ux",
+          "name": "노아의 죽음"
+        }
+      ],
+      "confidence": "high",
+      "reason": "노아의 죽음이라는 동일 사건.",
+      "agentTransferLinks": [
+        "PART_OF → 노아의 생애"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-abraham-egypt-famine",
+      "keepName": "기근을 피해 애굽으로 내려간 아브람 부부",
+      "remove": [
+        {
+          "id": "recbqTND1uSdqNjOx",
+          "name": "아브라함이 애굽에 내려감"
+        }
+      ],
+      "confidence": "high",
+      "reason": "기근으로 인한 애굽 하행이라는 동일 사건(창12:10-20).",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 바로",
+        "HAS_PARTICIPANT → 사라",
+        "PART_OF → 가나안과 애굽에서의 체류"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-abraham-lot-separation",
+      "keepName": "아브람과 롯의 분리 — 마므레에 정착",
+      "remove": [
+        {
+          "id": "recG5DZ6bn0BDuYH9",
+          "name": "아브라함과 롯의 분리"
+        }
+      ],
+      "confidence": "high",
+      "reason": "아브라함과 롯의 결별이라는 동일 사건.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 롯",
+        "OCCURS_AT → 소돔",
+        "OCCURS_AT → 요단 평지",
+        "OCCURS_AT → 헤브론",
+        "OCCURS_AT → 가나안",
+        "PART_OF → 가나안과 애굽에서의 체류"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-abraham-isaac-binding",
+      "keepName": "모리아 산에서 이삭을 바친 아브라함",
+      "remove": [
+        {
+          "id": "authored-isaac-moriah-akedah",
+          "name": "모리아산 번제 (아케다)"
+        }
+      ],
+      "confidence": "high",
+      "reason": "모리아산 이삭 번제(아케다)가 아브라함 발자취판과 이삭 발자취판으로 이중 저작됨. 창세기에 단 하나뿐인 사건이라 확실.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 이삭",
+        "OCCURS_AT → 모리아산"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-isaac-birth-beersheba",
+      "keepName": "이삭의 출생 (브엘세바)",
+      "remove": [
+        {
+          "id": "recsPU7EMhmA9z27x",
+          "name": "이삭의 출생"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "이삭 출생은 유일 사건이라 명칭·의미상 확실하나, authored 내부 연대(-2000)와 theographic(-2065) 간 65년 차이가 있어 확인 낮춤.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 아브라함",
+        "HAS_PARTICIPANT → 사라",
+        "PART_OF → 이삭의 생애"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-isaac-hebron-death",
+      "keepName": "이삭의 헤브론 임종",
+      "remove": [
+        {
+          "id": "recnTimjDqmxMYqRZ",
+          "name": "이삭의 죽음"
+        }
+      ],
+      "confidence": "high",
+      "reason": "이삭의 죽음이라는 동일 사건, 동일 연대(-1843).",
+      "agentTransferLinks": [
+        "PART_OF → 이삭의 생애"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-isaac-esau-jacob-birth",
+      "keepName": "에서와 야곱의 출생",
+      "remove": [
+        {
+          "id": "recd4mOzI2nL66vR5",
+          "name": "야곱과 에서의 출생"
+        }
+      ],
+      "confidence": "high",
+      "reason": "에서·야곱 쌍둥이 출생이라는 동일 사건.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 야곱",
+        "HAS_PARTICIPANT → 에서",
+        "PART_OF → 야곱의 생애"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-joseph-dothan-pit",
+      "keepName": "도단 구덩이 — 노예로 팔림",
+      "remove": [
+        {
+          "id": "recNE3SvBrPoTRiMS",
+          "name": "요셉이 애굽에 팔림"
+        }
+      ],
+      "confidence": "high",
+      "reason": "요셉이 형들에 의해 팔린 동일 사건, 동일 연대(-1897).",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 레위",
+        "HAS_PARTICIPANT → 스불론",
+        "HAS_PARTICIPANT → 유다",
+        "HAS_PARTICIPANT → 야곱",
+        "HAS_PARTICIPANT → 납달리",
+        "PART_OF → 요셉의 생애"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-joseph-potiphar-wife-prison",
+      "keepName": "보디발 아내 무고와 투옥",
+      "remove": [
+        {
+          "id": "recqKt1B6fiiSKrK6",
+          "name": "요셉이 감옥에 갇힘"
+        }
+      ],
+      "confidence": "high",
+      "reason": "보디발 아내의 무고로 인한 요셉의 투옥이라는 동일 사건(인접 연대 -1889/-1887).",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 바로",
+        "HAS_PARTICIPANT → 야곱"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-joseph-egypt-prime-minister",
+      "keepName": "애굽 총리 임명",
+      "remove": [
+        {
+          "id": "recD7RqjeIpsJAoBc",
+          "name": "요셉이 애굽의 총리가 됨"
+        }
+      ],
+      "confidence": "high",
+      "reason": "요셉의 총리 임명이라는 동일 사건, 동일 연대(-1884).",
+      "agentTransferLinks": [
+        "PART_OF → 요셉의 생애"
+      ]
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-joseph-egypt-brothers-first",
+      "keepName": "형들의 첫 방문과 시므온 볼모",
+      "remove": [
+        {
+          "id": "rec1ryOcznIUObhW7",
+          "name": "요셉의 형제들이 애굽으로 내려옴"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "형제들의 첫 애굽 방문이라는 의미는 대응하나(인접 연대 -1877/-1876), theographic 쪽에 참여자·장소 정보가 없어 확증이 약함.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "gen",
+      "keepId": "authored-joseph-egypt-death-bones",
+      "keepName": "요셉의 죽음과 유골 언약",
+      "remove": [
+        {
+          "id": "recPAzttalK45wnXd",
+          "name": "요셉의 죽음"
+        }
+      ],
+      "confidence": "high",
+      "reason": "요셉의 죽음이라는 동일 사건, 인접 연대(-1805/-1804).",
+      "agentTransferLinks": [
+        "PART_OF → 요셉의 생애"
+      ]
+    },
+    {
+      "book": "acts",
+      "keepId": "authored-peter-pentecost",
+      "keepName": "오순절에 첫 설교를 전함",
+      "remove": [
+        {
+          "id": "recQoK9KFveLh556S",
+          "name": "베드로의 오순절 설교"
+        }
+      ],
+      "confidence": "high",
+      "reason": "오순절 첫 설교(행 2:14) 동일 사건 — 제목·참여자(베드로)·장소(예루살렘) 일치.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "acts",
+      "keepId": "authored-peter-lame-man",
+      "keepName": "성전 미문에서 앉은뱅이를 일으킴",
+      "remove": [
+        {
+          "id": "recLnDbrahKzEue0K",
+          "name": "앉은뱅이 치유"
+        },
+        {
+          "id": "authored-john-lame-man",
+          "name": "성전 미문 — 베드로와 함께 앉은뱅이를 일으킴"
+        }
+      ],
+      "confidence": "high",
+      "reason": "성전 미문 앉은뱅이 치유(행 3:1-10) 단일 사건 — theographic 원본은 베드로+요한을 함께 기록했는데 저작 과정에서 인물별 authored 버전이 중복 생성됨.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 사도 요한"
+      ]
+    },
+    {
+      "book": "acts",
+      "keepId": "authored-jesus-ascension",
+      "keepName": "감람산에서 승천하심",
+      "remove": [
+        {
+          "id": "rec06pcAZBChUBKxF",
+          "name": "예수의 승천"
+        }
+      ],
+      "confidence": "high",
+      "reason": "예수 승천(행 1:9-11) 동일 사건 — 명칭·시점 일치.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 하나님"
+      ]
+    },
+    {
+      "book": "acts",
+      "keepId": "authored-peter-solomons-portico-trial",
+      "keepName": "솔로몬 행각 설교와 공회 앞 담대한 증언",
+      "remove": [
+        {
+          "id": "reciu7dT92C4dTrfl",
+          "name": "베드로가 솔로몬 행각에서 설교함"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "authored-peter 버전이 솔로몬 행각 설교(행 3:11)와 공회 재판(행 4)이라는 두 국면을 하나로 큐레이션 — 재판 부분은 authored-john·theographic 재판 사건과 명백히 동일하나, 설교 국면까지 병합해 confidence를 낮춤.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 성령",
+        "HAS_PARTICIPANT → 사도 요한",
+        "HAS_PARTICIPANT → 요한",
+        "HAS_PARTICIPANT → 알렉산더",
+        "HAS_PARTICIPANT → 안나스",
+        "HAS_PARTICIPANT → 가야바",
+        "OCCURS_AT → 예루살렘"
+      ]
+    },
+    {
+      "book": "acts",
+      "keepId": "authored-peter-samaria",
+      "keepName": "사마리아에 내려가 성령을 안수함",
+      "remove": [
+        {
+          "id": "authored-john-samaria",
+          "name": "사마리아에 내려가 성령을 안수함"
+        }
+      ],
+      "confidence": "high",
+      "reason": "nameKo 완전 동일·동일 sortKey — 참여자만 베드로/요한으로 나뉜 동일 사건(행 8:14-17). theographic '빌립이 사마리아에서 전도함'은 빌립의 사전 전도까지 포괄하는 더 넓은 장면이라 제외.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 사도 요한"
+      ]
+    },
+    {
+      "book": "acts",
+      "keepId": "authored-paul-damascus-conversion",
+      "keepName": "다메섹 도상에서 회심한 바울",
+      "remove": [
+        {
+          "id": "recCz7opcoITkiZiq",
+          "name": "사울의 회심"
+        }
+      ],
+      "confidence": "high",
+      "reason": "다메섹 도상 회심(행 9:1-19) 동일 사건.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 성령",
+        "HAS_PARTICIPANT → 아나니아",
+        "OCCURS_AT → 직가"
+      ]
+    },
+    {
+      "book": "acts",
+      "keepId": "authored-peter-aeneas-dorcas",
+      "keepName": "애니아를 고치고 도르가를 살림",
+      "remove": [
+        {
+          "id": "recxH9n2Xk1PM6DvB",
+          "name": "베드로가 애니아와 도르가를 치유함"
+        }
+      ],
+      "confidence": "high",
+      "reason": "애니아 치유·도르가 소생(행 9:32-43) 동일 사건.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 도르가",
+        "HAS_PARTICIPANT → 에네아",
+        "HAS_PARTICIPANT → 시몬",
+        "OCCURS_AT → 사론",
+        "OCCURS_AT → 룻다"
+      ]
+    },
+    {
+      "book": "acts",
+      "keepId": "authored-peter-cornelius",
+      "keepName": "고넬료에게 — 이방인에게 열린 복음",
+      "remove": [
+        {
+          "id": "rec4fFrtrUuDVkTNK",
+          "name": "베드로가 고넬료를 만남"
+        },
+        {
+          "id": "recCef9mlyuV3XWd3",
+          "name": "베드로가 가이사랴에서 이방인에게 설교함"
+        }
+      ],
+      "confidence": "high",
+      "reason": "고넬료 방문과 설교(행 10)는 같은 자리에서 곧바로 이어지는 하나의 장면.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 시몬",
+        "HAS_PARTICIPANT → 고넬료",
+        "HAS_PARTICIPANT → 성령",
+        "OCCURS_AT → 욥바"
+      ]
+    },
+    {
+      "book": "acts",
+      "keepId": "authored-peter-defends-gentiles",
+      "keepName": "예루살렘 교회 앞에서 이방 구원을 변호함",
+      "remove": [
+        {
+          "id": "recNnOBWct1TV6CUZ",
+          "name": "베드로가 이방인 구원을 변호함"
+        }
+      ],
+      "confidence": "high",
+      "reason": "예루살렘 교회 앞 이방인 구원 변호(행 11:1-18) 동일 사건 — 참여자·장소 완전 일치.",
+      "agentTransferLinks": []
+    },
+    {
+      "book": "acts",
+      "keepId": "authored-peter-herod-prison",
+      "keepName": "헤롯의 옥에서 천사에게 구출됨",
+      "remove": [
+        {
+          "id": "recMhkv38hrlSmT3K",
+          "name": "천사가 베드로를 감옥에서 구출함"
+        }
+      ],
+      "confidence": "high",
+      "reason": "천사의 옥중 구출(행 12:6-19) 동일 사건. '헤롯이 베드로를 투옥함'은 그 이전 별개 국면이라 제외.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 마리아",
+        "HAS_PARTICIPANT → 야고보",
+        "HAS_PARTICIPANT → 로다",
+        "HAS_PARTICIPANT → 헤롯 아그립바"
+      ]
+    },
+    {
+      "book": "acts",
+      "keepId": "authored-paul-jerusalem-council",
+      "keepName": "예루살렘 공의회",
+      "remove": [
+        {
+          "id": "recwmsQ1HEDGztu9O",
+          "name": "예루살렘 공의회"
+        },
+        {
+          "id": "authored-peter-jerusalem-council",
+          "name": "예루살렘 공의회에서 증언함"
+        }
+      ],
+      "confidence": "high",
+      "reason": "예루살렘 공의회(행 15) 동일 사건 — theographic 원본을 인물별 authored로 중복 생성.",
+      "agentTransferLinks": [
+        "PART_OF → 1차 선교 여행",
+        "HAS_PARTICIPANT → 야고보",
+        "HAS_PARTICIPANT → 바나바",
+        "HAS_PARTICIPANT → 베드로",
+        "HAS_PARTICIPANT → 유다 바사바",
+        "HAS_PARTICIPANT → 실라"
+      ]
+    },
+    {
+      "book": "acts",
+      "keepId": "authored-paul-pisidian-antioch",
+      "keepName": "비시디아 안디옥 회당 설교",
+      "remove": [
+        {
+          "id": "recGlchVqaW39mkY0",
+          "name": "비시디아 안디옥 전도"
+        }
+      ],
+      "confidence": "high",
+      "reason": "비시디아 안디옥 회당 설교(행 13:14-52) 동일 사건.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 바나바",
+        "HAS_PARTICIPANT → 요한 마가",
+        "OCCURS_AT → 버가",
+        "OCCURS_AT → 밤빌리아",
+        "OCCURS_AT → 바보",
+        "OCCURS_AT → 이고니온",
+        "OCCURS_AT → 예루살렘",
+        "PART_OF → 1차 선교 여행"
+      ]
+    },
+    {
+      "book": "acts",
+      "keepId": "authored-paul-athens-areopagus",
+      "keepName": "아테네 아레오바고 설교",
+      "remove": [
+        {
+          "id": "reclKAhjHwMnSyOB2",
+          "name": "바울이 아덴에서 설교함"
+        }
+      ],
+      "confidence": "high",
+      "reason": "아덴 아레오바고 설교(행 17:16-34) 동일 사건.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 다마리",
+        "HAS_PARTICIPANT → 디오누시오",
+        "OCCURS_AT → 아레오바고",
+        "PART_OF → 2차 선교 여행"
+      ]
+    },
+    {
+      "book": "acts",
+      "keepId": "authored-paul-corinth",
+      "keepName": "고린도 1년 6개월 사역",
+      "remove": [
+        {
+          "id": "recZLqdKx9mrT0bCv",
+          "name": "고린도 전도, 데살로니가전후서 작성"
+        }
+      ],
+      "confidence": "high",
+      "reason": "고린도 1년 6개월 사역(행 18:1-18) 동일 사건.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 갈리오",
+        "HAS_PARTICIPANT → 소스데네",
+        "HAS_PARTICIPANT → 유스도",
+        "HAS_PARTICIPANT → 실라",
+        "HAS_PARTICIPANT → 그리스보",
+        "HAS_PARTICIPANT → 디모데",
+        "HAS_PARTICIPANT → 브리스길라",
+        "HAS_PARTICIPANT → 아굴라",
+        "OCCURS_AT → 아가야",
+        "PART_OF → 2차 선교 여행"
+      ]
+    },
+    {
+      "book": "acts",
+      "keepId": "authored-paul-ephesus",
+      "keepName": "3차 선교여행 — 에베소 2년 사역",
+      "remove": [
+        {
+          "id": "rec2buqN0Q38Yuqme",
+          "name": "에베소 전도, 고린도전서 작성"
+        }
+      ],
+      "confidence": "high",
+      "reason": "에베소 2년(2.5년) 사역(행 19) 동일 사건. '에베소에서의 소동'은 그 기간 중 별개 구체 사건이라 제외.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 디모데",
+        "HAS_PARTICIPANT → 에라스도",
+        "HAS_PARTICIPANT → 두란노",
+        "HAS_PARTICIPANT → 스게와",
+        "OCCURS_AT → 아시아",
+        "PART_OF → 3차 선교 여행"
+      ]
+    },
+    {
+      "book": "acts",
+      "keepId": "authored-paul-miletus-farewell",
+      "keepName": "밀레도에서 에베소 장로들과 고별",
+      "remove": [
+        {
+          "id": "recwlxgjUu5AwPX9D",
+          "name": "바울이 에베소 장로들에게 말함"
+        }
+      ],
+      "confidence": "high",
+      "reason": "밀레도에서 에베소 장로들과의 고별(행 20:17-38) 동일 사건.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 누가",
+        "PART_OF → 3차 선교 여행"
+      ]
+    },
+    {
+      "book": "acts",
+      "keepId": "authored-paul-jerusalem-arrest",
+      "keepName": "예루살렘 성전에서 체포된 바울",
+      "remove": [
+        {
+          "id": "recuV2kc7FiAUIuBQ",
+          "name": "바울이 성전에서 체포됨"
+        }
+      ],
+      "confidence": "high",
+      "reason": "예루살렘 성전 체포(행 21:27-36) 동일 사건.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 드로비모",
+        "PART_OF → 3차 선교 여행"
+      ]
+    },
+    {
+      "book": "acts",
+      "keepId": "authored-paul-voyage-malta",
+      "keepName": "로마 항해와 멜리데 난파",
+      "remove": [
+        {
+          "id": "recXiU82RVp1vo67a",
+          "name": "폭풍으로 배가 난파됨"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "로마 항해 시작→폭풍 난파→멜리데 체류(행 27-28:10)로 이어지는 연속 항해담을 authored가 하나로 통합 — 연속 사건으로 타당하나 국면이 여럿이라 confidence는 medium.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 누가",
+        "HAS_PARTICIPANT → 율리오",
+        "HAS_PARTICIPANT → 아리스다고",
+        "OCCURS_AT → 그레데",
+        "OCCURS_AT → 이탈리아",
+        "OCCURS_AT → 크니도",
+        "OCCURS_AT → 루기아",
+        "OCCURS_AT → 미항",
+        "OCCURS_AT → 구브로",
+        "OCCURS_AT → 살모네",
+        "OCCURS_AT → 시돈",
+        "OCCURS_AT → 아시아",
+        "OCCURS_AT → 길리기아",
+        "OCCURS_AT → 아드라뭇데노",
+        "OCCURS_AT → 알렉산드리아",
+        "OCCURS_AT → 뵈니게",
+        "OCCURS_AT → 밤빌리아",
+        "OCCURS_AT → 무라",
+        "PART_OF → 3차 선교 여행",
+        "OCCURS_AT → 아드리아",
+        "OCCURS_AT → 수르디스",
+        "HAS_PARTICIPANT → 보블리오"
+      ]
+    },
+    {
+      "book": "acts",
+      "keepId": "authored-paul-rome-house-arrest",
+      "keepName": "로마 도착과 가택연금",
+      "remove": [
+        {
+          "id": "recuZhS7z4CatBOO0",
+          "name": "바울이 로마에 도착함"
+        },
+        {
+          "id": "recGrIgOxWnxVl8h0",
+          "name": "바울의 첫 번째 로마 투옥"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "로마 도착(행 28:11-16)과 곧바로 이어지는 가택연금(행 28:16-31)을 authored가 하나로 통합 — 연속 사건이나 국면 병합이라 confidence는 medium.",
+      "agentTransferLinks": [
+        "HAS_PARTICIPANT → 아리스다고",
+        "HAS_PARTICIPANT → 누가",
+        "HAS_PARTICIPANT → 율리오",
+        "OCCURS_AT → 레기온",
+        "OCCURS_AT → 세 여관",
+        "OCCURS_AT → 압비오 광장",
+        "OCCURS_AT → 보디올",
+        "OCCURS_AT → 수라구사",
+        "PART_OF → 3차 선교 여행",
+        "HAS_PARTICIPANT → 에바브라",
+        "HAS_PARTICIPANT → 데마"
+      ]
+    }
+  ],
+  "excluded": {
+    "low_confidence": [
+      {
+        "book": "matt",
+        "keepId": "recThval8jPdpjMQd",
+        "remove": [
+          "recokV9koCd9sHkZo"
+        ],
+        "reason": "theographic ↔ theographic 사례. sortKey가 소수점까지 완전히 동일(27.40004012)해 같은 순간의 중복 기록일 가능성이 있으나 '유대를 떠남'과 '갈릴리 방문'이 출발/도착의 순차 국면으로 읽힐 여지도 있어 사람 확인 필요."
+      },
+      {
+        "book": "acts",
+        "keepId": "authored-paul-iconium-lystra-derbe",
+        "remove": [
+          "receeGDZ90DJxYxnX",
+          "recrre0r2IHdN3Y7Z"
+        ],
+        "reason": "authored 노드가 이고니온·루스드라·더베 두 도시 전도를 하나로 압축 — 실제로는 도시가 다른 별개 사건(루스드라에서 바울이 돌팔매당함)이라 병합이 과할 수 있어 사람 확인 필요."
+      },
+      {
+        "book": "acts",
+        "keepId": "authored-paul-philippi",
+        "remove": [
+          "reczE4p2AzSrs4ppP",
+          "rec1Olk9cxeWoT5Jl",
+          "recVY5whVRxmh37rH",
+          "recX4DzqXgIe0R2T4",
+          "rec611BDzVM1WOUa5"
+        ],
+        "reason": "authored 노드는 빌립보 사역을 통칭하는 개요형 노드로 보이나, 실제로는 루디아 회심·축귀·투옥·간수 회심·석방 등 5개의 뚜렷이 구분되는 순차 사건이 있어 병합이 과할 수 있음 — 사람 확인 필요."
+      },
+      {
+        "book": "acts",
+        "keepId": "authored-paul-thessalonica-berea",
+        "remove": [
+          "recrnXnFkh9CGTgkn",
+          "recF289Cj0XMYVOmr"
+        ],
+        "reason": "authored 노드가 데살로니가+베뢰아 두 도시 사역을 개요로 압축 — 실제로는 소동(행 17:1-9)과 베뢰아 전도(행 17:10-15)라는 별개 도시의 별개 사건이라 병합이 과할 수 있음, 사람 확인 필요."
+      },
+      {
+        "book": "acts",
+        "keepId": "authored-paul-caesarea-imprisonment",
+        "remove": [
+          "recODnfv69EyvRMvA",
+          "recjSyWPVWxolQ2r4",
+          "recZZnST3yj4b1akY",
+          "recltAvLmGRfERhYp"
+        ],
+        "reason": "authored 노드는 가이사랴 구금 전체 기간을 통칭 — 실제로는 벨릭스 심리·가이사 상소·아그립바 대면 등 여러 별개 법정 국면(행 24-26)이 순차적으로 존재해 병합이 과할 수 있음, 사람 확인 필요."
+      }
+    ],
+    "gate1_verse_contradiction": [
+      {
+        "book": "rev",
+        "keepId": "authored-john-patmos",
+        "removeId": "authored-john-patmos-revelation",
+        "removeName": "요한 밧모섬 유배와 계시록",
+        "reason": "구절 모순 — keep 3절 ∩ remove 3절 = 0"
+      },
+      {
+        "book": "gen",
+        "keepId": "authored-noah-leaves-ark-altar",
+        "removeId": "recnAzV0utz4k20eC",
+        "removeName": "방주에서 나옴",
+        "reason": "구절 모순 — keep 2절 ∩ remove 5절 = 0"
+      },
+      {
+        "book": "gen",
+        "keepId": "authored-abraham-shechem-promise",
+        "removeId": "rec2pnFsObyEoOfGQ",
+        "removeName": "아브라함 언약",
+        "reason": "구절 모순 — keep 2절 ∩ remove 3절 = 0"
+      },
+      {
+        "book": "gen",
+        "keepId": "authored-isaac-rebekah-marriage",
+        "removeId": "recSDGDMwUBAMUgur",
+        "removeName": "이삭과 리브가의 결혼",
+        "reason": "구절 모순 — keep 6절 ∩ remove 1절 = 0"
+      },
+      {
+        "book": "gen",
+        "keepId": "authored-joseph-egypt-family-reunion",
+        "removeId": "authored-jacob-egypt-migration",
+        "removeName": "애굽 이주 (요셉 상봉)",
+        "reason": "구절 모순 — keep 6절 ∩ remove 7절 = 0"
+      },
+      {
+        "book": "acts",
+        "keepId": "authored-peter-solomons-portico-trial",
+        "removeId": "rech8qvzNnkDTqCi3",
+        "removeName": "베드로와 요한의 재판",
+        "reason": "구절 모순 — keep 1절 ∩ remove 22절 = 0"
+      },
+      {
+        "book": "acts",
+        "keepId": "authored-peter-solomons-portico-trial",
+        "removeId": "authored-john-sanhedrin-trial",
+        "removeName": "공회 앞 재판 — 베드로와 함께 담대히 섬",
+        "reason": "구절 모순 — keep 1절 ∩ remove 22절 = 0"
+      },
+      {
+        "book": "acts",
+        "keepId": "authored-paul-antioch-ministry",
+        "removeId": "recn2U67FPmywxqcb",
+        "removeName": "제자들이 처음으로 그리스도인이라 불림",
+        "reason": "구절 모순 — keep 5절 ∩ remove 12절 = 0"
+      },
+      {
+        "book": "acts",
+        "keepId": "authored-paul-cyprus-mission",
+        "removeId": "recJeAtSLg0KP2loe",
+        "removeName": "바나바와 사울이 구브로로 감",
+        "reason": "구절 모순 — keep 3절 ∩ remove 9절 = 0"
+      },
+      {
+        "book": "acts",
+        "keepId": "authored-paul-voyage-malta",
+        "removeId": "recJWNH2OCuUoOz6e",
+        "removeName": "로마로의 항해 시작",
+        "reason": "구절 모순 — keep 1절 ∩ remove 12절 = 0"
+      },
+      {
+        "book": "acts",
+        "keepId": "authored-paul-voyage-malta",
+        "removeId": "recXUXZhzA47ZRt5F",
+        "removeName": "바울이 몰타에 머무름",
+        "reason": "구절 모순 — keep 1절 ∩ remove 10절 = 0"
+      }
+    ],
+    "gate2_unknown_reference": []
+  }
+}

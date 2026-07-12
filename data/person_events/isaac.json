@@ -22,28 +22,6 @@
     ]
   },
   {
-    "id": "authored-isaac-moriah-akedah",
-    "title": "Binding of Isaac on Mount Moriah",
-    "nameKo": "모리아산 번제 (아케다)",
-    "startDate": "-1990",
-    "sortKey": -1990,
-    "yearLabel": "BC 1990경",
-    "context": "하나님이 아브라함에게 이삭을 바치라 명하신 시험. 천사가 멈추고 숫양이 대신 바쳐짐 (Gen 22:2–13).",
-    "authored": true,
-    "occursAt": [
-      "authored-place-moriah"
-    ],
-    "participants": [
-      "recqIoG1fkaNWJ1y0"
-    ],
-    "books": [
-      {
-        "bookId": "recIFusdNl6d8dj3L",
-        "rangeLabel": "22:2–13"
-      }
-    ]
-  },
-  {
     "id": "authored-isaac-gerar-sojourn",
     "title": "Isaac dwells in Gerar",
     "nameKo": "그랄 거주 (이삭의 우물 분쟁)",

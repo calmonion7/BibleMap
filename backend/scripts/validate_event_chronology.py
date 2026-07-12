@@ -54,8 +54,10 @@ JUDGES_ORDER = [
 # 신학적 참여 화이트리스트 — (Person.name, Event.title) 쌍은 출생/사망 창 밖이어도 위반 아님
 THEOLOGICAL_WHITELIST = {
     ("Jesus Christ", "Creation of all things"),
-    ("Moses", "The Transfiguation"),
-    ("Elijah", "The Transfiguation"),
+    # 변화산: dedupe(task#168)로 theographic 원본(오타 'The Transfiguation')이
+    # authored-jesus-transfiguration('The Transfiguration')에 병합됨 — 병합 후 제목 기준
+    ("Moses", "The Transfiguration"),
+    ("Elijah", "The Transfiguration"),
 }
 
 BIO_EVENT_RE = re.compile(r"^(Birth|Death|Lifetime) of (.+)$")

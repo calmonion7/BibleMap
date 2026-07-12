@@ -66,26 +66,6 @@
     ]
   },
   {
-    "id": "authored-john-transfiguration",
-    "title": "John witnesses the Transfiguration",
-    "nameKo": "변화산 — 세 제자 중 하나로 영광을 봄",
-    "startDate": "0029",
-    "sortKey": 29,
-    "yearLabel": "AD 29경",
-    "context": "예수께서 베드로·야고보와 함께 요한만을 데리고 높은 산에 오르시매, 그 앞에서 모습이 변하고 모세·엘리야가 나타나는 영광을 목격함 (마 17:1–8).",
-    "authored": true,
-    "occursAt": [],
-    "participants": [
-      "recvAB7vkczUEFH8Z"
-    ],
-    "books": [
-      {
-        "bookId": "recEJId5B98HV0x6D",
-        "rangeLabel": "17:1–8"
-      }
-    ]
-  },
-  {
     "id": "authored-john-last-supper",
     "title": "John reclines next to Jesus at the Last Supper",
     "nameKo": "최후의 만찬 — 주의 품에 기댄 제자",
@@ -174,28 +154,6 @@
     ]
   },
   {
-    "id": "authored-john-lame-man",
-    "title": "John with Peter heals the lame man at the Beautiful Gate",
-    "nameKo": "성전 미문 — 베드로와 함께 앉은뱅이를 일으킴",
-    "startDate": "0031",
-    "sortKey": 31,
-    "yearLabel": "AD 31경",
-    "context": "베드로와 요한이 기도 시간에 성전에 오르다가 미문에 앉은 나면서부터 못 걷던 이를 나사렛 예수의 이름으로 일으켜 세움 (행 3:1–10).",
-    "authored": true,
-    "occursAt": [
-      "rec232gzESK5PLtd0"
-    ],
-    "participants": [
-      "recvAB7vkczUEFH8Z"
-    ],
-    "books": [
-      {
-        "bookId": "recF09FMjRr0gzjQk",
-        "rangeLabel": "3:1–10"
-      }
-    ]
-  },
-  {
     "id": "authored-john-sanhedrin-trial",
     "title": "John stands trial before the Sanhedrin with Peter",
     "nameKo": "공회 앞 재판 — 베드로와 함께 담대히 섬",
@@ -214,28 +172,6 @@
       {
         "bookId": "recF09FMjRr0gzjQk",
         "rangeLabel": "4:1–22"
-      }
-    ]
-  },
-  {
-    "id": "authored-john-samaria",
-    "title": "John lays hands on the Samaritan believers",
-    "nameKo": "사마리아에 내려가 성령을 안수함",
-    "startDate": "0031",
-    "sortKey": 31.5,
-    "yearLabel": "AD 31경",
-    "context": "사마리아가 복음을 받았다는 소식에 예루살렘 교회가 베드로와 요한을 보내매, 두 사도가 안수하니 그들이 성령을 받음 (행 8:14–17).",
-    "authored": true,
-    "occursAt": [
-      "recEP3QZ3HUmIkv4Q"
-    ],
-    "participants": [
-      "recvAB7vkczUEFH8Z"
-    ],
-    "books": [
-      {
-        "bookId": "recF09FMjRr0gzjQk",
-        "rangeLabel": "8:14–17"
       }
     ]
   },
