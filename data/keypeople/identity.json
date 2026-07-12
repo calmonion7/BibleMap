@@ -1,0 +1,1262 @@
+{
+  "recIFusdNl6d8dj3L": {
+    "아담": {
+      "kind": "person",
+      "id": "recyYgUiSETdWFgEP"
+    },
+    "노아": {
+      "kind": "person",
+      "id": "recVMHzYdllgvTo09"
+    },
+    "아브라함": {
+      "kind": "person",
+      "id": "reccdFYIq50NyxNej"
+    },
+    "야곱": {
+      "kind": "person",
+      "id": "recsU2ZSdzBvDqzgI"
+    },
+    "요셉": {
+      "kind": "person",
+      "id": "rechuDYJoK32gmrME"
+    }
+  },
+  "recsr5TGvFGOwA5SZ": {
+    "모세": {
+      "kind": "person",
+      "id": "recjNRR60PAuFtjha"
+    },
+    "아론": {
+      "kind": "person",
+      "id": "recv0dAY2ULzJ687g"
+    },
+    "바로": {
+      "kind": "noid"
+    },
+    "미리암": {
+      "kind": "noid"
+    },
+    "여호수아": {
+      "kind": "person",
+      "id": "recLuZtSmAO6erIsc"
+    }
+  },
+  "rec6qL6gTvX4tUw4A": {
+    "모세": {
+      "kind": "person",
+      "id": "recjNRR60PAuFtjha"
+    },
+    "아론": {
+      "kind": "person",
+      "id": "recv0dAY2ULzJ687g"
+    },
+    "나답": {
+      "kind": "noid"
+    },
+    "아비후": {
+      "kind": "noid"
+    },
+    "엘르아살": {
+      "kind": "noid"
+    }
+  },
+  "recs5u7KfYwwEE6JO": {
+    "모세": {
+      "kind": "person",
+      "id": "recjNRR60PAuFtjha"
+    },
+    "아론": {
+      "kind": "person",
+      "id": "recv0dAY2ULzJ687g"
+    },
+    "갈렙": {
+      "kind": "noid"
+    },
+    "여호수아": {
+      "kind": "person",
+      "id": "recLuZtSmAO6erIsc"
+    },
+    "발람": {
+      "kind": "noid"
+    }
+  },
+  "rec2LnZw7EoTWReC0": {
+    "모세": {
+      "kind": "person",
+      "id": "recjNRR60PAuFtjha"
+    },
+    "여호수아": {
+      "kind": "person",
+      "id": "recLuZtSmAO6erIsc"
+    },
+    "갈렙": {
+      "kind": "noid"
+    },
+    "레위인들": {
+      "kind": "noid"
+    },
+    "발락": {
+      "kind": "noid"
+    }
+  },
+  "rec5dSv8N1iv8z9uC": {
+    "여호수아": {
+      "kind": "person",
+      "id": "recLuZtSmAO6erIsc"
+    },
+    "갈렙": {
+      "kind": "noid"
+    },
+    "라합": {
+      "kind": "noid"
+    },
+    "아간": {
+      "kind": "noid"
+    },
+    "엘르아살": {
+      "kind": "noid"
+    }
+  },
+  "reczL2ckRW1qHvVfe": {
+    "드보라": {
+      "kind": "noid"
+    },
+    "기드온": {
+      "kind": "noid"
+    },
+    "삼손": {
+      "kind": "noid"
+    },
+    "입다": {
+      "kind": "noid"
+    },
+    "옷니엘": {
+      "kind": "noid"
+    }
+  },
+  "recZuCb9Bn0RErpsL": {
+    "룻": {
+      "kind": "person",
+      "id": "recFF4kBvfcodp6aG"
+    },
+    "나오미": {
+      "kind": "noid"
+    },
+    "보아스": {
+      "kind": "noid"
+    },
+    "오르바": {
+      "kind": "noid"
+    },
+    "엘리멜렉": {
+      "kind": "noid"
+    }
+  },
+  "rec4GS8yWh2R4mpdB": {
+    "사무엘": {
+      "kind": "person",
+      "id": "recZsS2Zu0zIDwqdv"
+    },
+    "사울": {
+      "kind": "noid"
+    },
+    "다윗": {
+      "kind": "person",
+      "id": "rec1ZMFtfbEvoGC73"
+    },
+    "요나단": {
+      "kind": "noid"
+    },
+    "한나": {
+      "kind": "noid"
+    }
+  },
+  "recMYdxLC2GjLRomD": {
+    "다윗": {
+      "kind": "person",
+      "id": "rec1ZMFtfbEvoGC73"
+    },
+    "요압": {
+      "kind": "noid"
+    },
+    "밧세바": {
+      "kind": "noid"
+    },
+    "압살롬": {
+      "kind": "noid"
+    },
+    "나단": {
+      "kind": "noid"
+    }
+  },
+  "reconzJEzr8kOsb3j": {
+    "솔로몬": {
+      "kind": "person",
+      "id": "rec0BAacWSGBXZ0zI"
+    },
+    "엘리야": {
+      "kind": "noid"
+    },
+    "아합": {
+      "kind": "noid"
+    },
+    "이세벨": {
+      "kind": "noid"
+    },
+    "여로보암": {
+      "kind": "noid"
+    }
+  },
+  "recutYqTqunXPJKQO": {
+    "엘리사": {
+      "kind": "person",
+      "id": "recfJvFV3m8KEUZvy"
+    },
+    "히스기야": {
+      "kind": "noid"
+    },
+    "요시야": {
+      "kind": "noid"
+    },
+    "느부갓네살": {
+      "kind": "noid"
+    },
+    "엘리야": {
+      "kind": "noid"
+    }
+  },
+  "rec2ZFQHqI4eUjhqX": {
+    "다윗": {
+      "kind": "person",
+      "id": "rec1ZMFtfbEvoGC73"
+    },
+    "솔로몬": {
+      "kind": "person",
+      "id": "rec0BAacWSGBXZ0zI"
+    },
+    "레위 제사장들": {
+      "kind": "noid"
+    },
+    "아삽": {
+      "kind": "person",
+      "id": "recwrDYUkCdyU3t85"
+    },
+    "스룹바벨": {
+      "kind": "noid"
+    }
+  },
+  "rec410yOewjNfbeE3": {
+    "솔로몬": {
+      "kind": "person",
+      "id": "rec0BAacWSGBXZ0zI"
+    },
+    "히스기야": {
+      "kind": "noid"
+    },
+    "요시야": {
+      "kind": "noid"
+    },
+    "스룹바벨": {
+      "kind": "noid"
+    },
+    "느부갓네살": {
+      "kind": "noid"
+    }
+  },
+  "recit4Q50QB9nM3q2": {
+    "에스라": {
+      "kind": "noid"
+    },
+    "스룹바벨": {
+      "kind": "noid"
+    },
+    "고레스": {
+      "kind": "noid"
+    },
+    "다리우스": {
+      "kind": "noid"
+    },
+    "아닥사스다": {
+      "kind": "noid"
+    }
+  },
+  "rec3WEGPl0a1PS0cC": {
+    "느헤미야": {
+      "kind": "noid"
+    },
+    "에스라": {
+      "kind": "noid"
+    },
+    "산발랏": {
+      "kind": "noid"
+    },
+    "도비야": {
+      "kind": "noid"
+    },
+    "아닥사스다": {
+      "kind": "noid"
+    }
+  },
+  "rec6yHFZ6w7UUw5Cu": {
+    "에스더": {
+      "kind": "noid"
+    },
+    "모르드개": {
+      "kind": "noid"
+    },
+    "하만": {
+      "kind": "noid"
+    },
+    "아하수에로": {
+      "kind": "noid"
+    },
+    "와스디": {
+      "kind": "noid"
+    }
+  },
+  "recOA8nVVhKs30PSI": {
+    "욥": {
+      "kind": "noid"
+    },
+    "엘리바스": {
+      "kind": "noid"
+    },
+    "빌닷": {
+      "kind": "noid"
+    },
+    "소발": {
+      "kind": "noid"
+    },
+    "엘리후": {
+      "kind": "noid"
+    }
+  },
+  "recKXZXO6cJwk2SxO": {
+    "다윗": {
+      "kind": "person",
+      "id": "rec1ZMFtfbEvoGC73"
+    },
+    "아삽": {
+      "kind": "person",
+      "id": "recwrDYUkCdyU3t85"
+    },
+    "고라 자손": {
+      "kind": "noid"
+    },
+    "솔로몬": {
+      "kind": "person",
+      "id": "rec0BAacWSGBXZ0zI"
+    },
+    "모세": {
+      "kind": "person",
+      "id": "recjNRR60PAuFtjha"
+    }
+  },
+  "recRLdYtz1vjdW7yd": {
+    "솔로몬": {
+      "kind": "person",
+      "id": "rec0BAacWSGBXZ0zI"
+    },
+    "아굴": {
+      "kind": "person",
+      "id": "reckOl2eiImdo5by5"
+    },
+    "르무엘": {
+      "kind": "noid"
+    },
+    "지혜": {
+      "kind": "noid"
+    },
+    "어리석은 자": {
+      "kind": "noid"
+    }
+  },
+  "recd3p656hOWx95Jk": {
+    "전도자": {
+      "kind": "noid"
+    },
+    "솔로몬": {
+      "kind": "person",
+      "id": "rec0BAacWSGBXZ0zI"
+    },
+    "지혜자": {
+      "kind": "noid"
+    },
+    "어리석은 자": {
+      "kind": "noid"
+    },
+    "왕": {
+      "kind": "noid"
+    }
+  },
+  "recnUwcJABJVgZDCI": {
+    "솔로몬": {
+      "kind": "person",
+      "id": "rec0BAacWSGBXZ0zI"
+    },
+    "술람미 여인": {
+      "kind": "noid"
+    },
+    "예루살렘 여인들": {
+      "kind": "noid"
+    },
+    "신랑": {
+      "kind": "noid"
+    },
+    "신부": {
+      "kind": "noid"
+    }
+  },
+  "recr2ic6Ws3R14a5I": {
+    "이사야": {
+      "kind": "person",
+      "id": "recit3DiamFt2zO0S"
+    },
+    "히스기야": {
+      "kind": "noid"
+    },
+    "아하스": {
+      "kind": "noid"
+    },
+    "고레스": {
+      "kind": "noid"
+    },
+    "고난받는 종": {
+      "kind": "noid"
+    }
+  },
+  "rec3jLxfw7hvvvw7J": {
+    "예레미야": {
+      "kind": "noid"
+    },
+    "바룩": {
+      "kind": "noid"
+    },
+    "요시야": {
+      "kind": "noid"
+    },
+    "시드기야": {
+      "kind": "noid"
+    },
+    "느부갓네살": {
+      "kind": "noid"
+    }
+  },
+  "recdT4VI6VdkEzixN": {
+    "예레미야": {
+      "kind": "noid"
+    },
+    "예루살렘 백성": {
+      "kind": "noid"
+    },
+    "바벨론 군대": {
+      "kind": "noid"
+    },
+    "하나님": {
+      "kind": "deity"
+    },
+    "시온": {
+      "kind": "noid"
+    }
+  },
+  "recqSg3DygQ97p2n7": {
+    "에스겔": {
+      "kind": "noid"
+    },
+    "느부갓네살": {
+      "kind": "noid"
+    },
+    "하나님의 영광": {
+      "kind": "noid"
+    },
+    "마른 뼈들": {
+      "kind": "noid"
+    },
+    "곡": {
+      "kind": "noid"
+    }
+  },
+  "recJZDGEIEZOMQVFU": {
+    "다니엘": {
+      "kind": "noid"
+    },
+    "사드락": {
+      "kind": "noid"
+    },
+    "메삭": {
+      "kind": "noid"
+    },
+    "아벳느고": {
+      "kind": "noid"
+    },
+    "느부갓네살": {
+      "kind": "noid"
+    }
+  },
+  "rect9laYKg0Xd0Uzg": {
+    "호세아": {
+      "kind": "noid"
+    },
+    "고멜": {
+      "kind": "person",
+      "id": "rec3qpjLAgX47JxyF"
+    },
+    "여로보암 2세": {
+      "kind": "noid"
+    },
+    "이스라엘 백성": {
+      "kind": "noid"
+    },
+    "하나님": {
+      "kind": "deity"
+    }
+  },
+  "recJhMBucEbOC6FyV": {
+    "요엘": {
+      "kind": "person",
+      "id": "reckEj8sJo3TSIHXr"
+    },
+    "이스라엘 백성": {
+      "kind": "noid"
+    },
+    "여호와": {
+      "kind": "deity"
+    },
+    "장로들": {
+      "kind": "noid"
+    },
+    "제사장들": {
+      "kind": "noid"
+    }
+  },
+  "rec5weNA8SDG9Gk1x": {
+    "아모스": {
+      "kind": "noid"
+    },
+    "여로보암 2세": {
+      "kind": "noid"
+    },
+    "아마샤": {
+      "kind": "noid"
+    },
+    "이스라엘 백성": {
+      "kind": "noid"
+    },
+    "하나님": {
+      "kind": "deity"
+    }
+  },
+  "recVlXpkRK0TkcxFm": {
+    "오바댜": {
+      "kind": "noid"
+    },
+    "에돔": {
+      "kind": "noid"
+    },
+    "야곱(이스라엘)": {
+      "kind": "noid"
+    },
+    "여호와": {
+      "kind": "deity"
+    },
+    "에서": {
+      "kind": "person",
+      "id": "recUQWSZuOecG4z1Q"
+    }
+  },
+  "recHPjIgqDYfAbySY": {
+    "요나": {
+      "kind": "noid"
+    },
+    "니느웨 왕": {
+      "kind": "noid"
+    },
+    "선원들": {
+      "kind": "noid"
+    },
+    "하나님": {
+      "kind": "deity"
+    },
+    "큰 물고기": {
+      "kind": "noid"
+    }
+  },
+  "recA2CMdJWbqaoTA0": {
+    "미가": {
+      "kind": "noid"
+    },
+    "유다 왕들": {
+      "kind": "noid"
+    },
+    "이스라엘 백성": {
+      "kind": "noid"
+    },
+    "메시아": {
+      "kind": "noid"
+    },
+    "거짓 선지자들": {
+      "kind": "noid"
+    }
+  },
+  "recQKyO5TMxwPm4Ky": {
+    "나훔": {
+      "kind": "noid"
+    },
+    "니느웨(앗수르)": {
+      "kind": "noid"
+    },
+    "유다 백성": {
+      "kind": "noid"
+    },
+    "앗수르 왕": {
+      "kind": "noid"
+    },
+    "여호와": {
+      "kind": "deity"
+    }
+  },
+  "rectOGfyQI1dkl9Jy": {
+    "하박국": {
+      "kind": "noid"
+    },
+    "갈대아(바벨론) 군대": {
+      "kind": "noid"
+    },
+    "여호와": {
+      "kind": "deity"
+    },
+    "유다 백성": {
+      "kind": "noid"
+    },
+    "악인들": {
+      "kind": "noid"
+    }
+  },
+  "recRmQJUpakFullFM": {
+    "스바냐": {
+      "kind": "noid"
+    },
+    "요시야": {
+      "kind": "noid"
+    },
+    "유다 백성": {
+      "kind": "noid"
+    },
+    "여호와": {
+      "kind": "deity"
+    },
+    "겸손한 자들": {
+      "kind": "noid"
+    }
+  },
+  "recieu3CSdcWH6rMj": {
+    "학개": {
+      "kind": "noid"
+    },
+    "스룹바벨": {
+      "kind": "noid"
+    },
+    "여호수아(대제사장)": {
+      "kind": "noid"
+    },
+    "다리우스": {
+      "kind": "noid"
+    },
+    "귀환 백성": {
+      "kind": "noid"
+    }
+  },
+  "rec2EEptPS7M8gQC3": {
+    "스가랴": {
+      "kind": "noid"
+    },
+    "스룹바벨": {
+      "kind": "noid"
+    },
+    "여호수아(대제사장)": {
+      "kind": "noid"
+    },
+    "메시아적 왕": {
+      "kind": "noid"
+    },
+    "천사": {
+      "kind": "noid"
+    }
+  },
+  "recFNHNgEiPlhRRpQ": {
+    "말라기": {
+      "kind": "noid"
+    },
+    "제사장들": {
+      "kind": "noid"
+    },
+    "이스라엘 백성": {
+      "kind": "noid"
+    },
+    "엘리야(예고)": {
+      "kind": "noid"
+    },
+    "여호와": {
+      "kind": "deity"
+    }
+  },
+  "recEJId5B98HV0x6D": {
+    "예수": {
+      "kind": "person",
+      "id": "recgkFqZovgbr3pAi"
+    },
+    "마태": {
+      "kind": "person",
+      "id": "recVRtBEdN8mgLhHN"
+    },
+    "베드로": {
+      "kind": "person",
+      "id": "recX9MMADoVI2CSP1"
+    },
+    "헤롯": {
+      "kind": "noid"
+    },
+    "빌라도": {
+      "kind": "person",
+      "id": "reczuS92gSUORr83E"
+    }
+  },
+  "recNvq1wZtB13BbbW": {
+    "예수": {
+      "kind": "person",
+      "id": "recgkFqZovgbr3pAi"
+    },
+    "베드로": {
+      "kind": "person",
+      "id": "recX9MMADoVI2CSP1"
+    },
+    "야고보": {
+      "kind": "person",
+      "id": "rechkAyIwugqcLaaY"
+    },
+    "요한": {
+      "kind": "person",
+      "id": "recvAB7vkczUEFH8Z"
+    },
+    "빌라도": {
+      "kind": "person",
+      "id": "reczuS92gSUORr83E"
+    }
+  },
+  "recclIex2hH0wdTST": {
+    "예수": {
+      "kind": "person",
+      "id": "recgkFqZovgbr3pAi"
+    },
+    "마리아": {
+      "kind": "person",
+      "id": "recnheSkryxih4g9J"
+    },
+    "세례 요한": {
+      "kind": "person",
+      "id": "recNRRITyGzXsl4yp"
+    },
+    "삭개오": {
+      "kind": "noid"
+    },
+    "엠마오 제자들": {
+      "kind": "noid"
+    }
+  },
+  "recq8W1kWwtVoUlwB": {
+    "예수": {
+      "kind": "person",
+      "id": "recgkFqZovgbr3pAi"
+    },
+    "요한": {
+      "kind": "person",
+      "id": "recvAB7vkczUEFH8Z"
+    },
+    "니고데모": {
+      "kind": "noid"
+    },
+    "막달라 마리아": {
+      "kind": "noid"
+    },
+    "도마": {
+      "kind": "person",
+      "id": "reckJ4vuXzqDbTrMP"
+    }
+  },
+  "recF09FMjRr0gzjQk": {
+    "베드로": {
+      "kind": "person",
+      "id": "recX9MMADoVI2CSP1"
+    },
+    "바울": {
+      "kind": "person",
+      "id": "recgkzNX07a7kGFYL"
+    },
+    "스데반": {
+      "kind": "person",
+      "id": "recUipM9EEsnFSZI0"
+    },
+    "바나바": {
+      "kind": "person",
+      "id": "recUA9Fc2yoNk8c5d"
+    },
+    "실라": {
+      "kind": "person",
+      "id": "recSo7V3yW4zpZBLM"
+    }
+  },
+  "recyvIyxRMFob6SoM": {
+    "바울": {
+      "kind": "person",
+      "id": "recgkzNX07a7kGFYL"
+    },
+    "예수": {
+      "kind": "person",
+      "id": "recgkFqZovgbr3pAi"
+    },
+    "아브라함": {
+      "kind": "person",
+      "id": "reccdFYIq50NyxNej"
+    },
+    "아담": {
+      "kind": "person",
+      "id": "recyYgUiSETdWFgEP"
+    },
+    "브리스길라": {
+      "kind": "person",
+      "id": "recOpU2GjcCC2kTg9"
+    }
+  },
+  "recVtbTyqtbbtqRC5": {
+    "바울": {
+      "kind": "person",
+      "id": "recgkzNX07a7kGFYL"
+    },
+    "아볼로": {
+      "kind": "person",
+      "id": "recoxUPwUPGU1IP9X"
+    },
+    "베드로": {
+      "kind": "person",
+      "id": "recX9MMADoVI2CSP1"
+    },
+    "디모데": {
+      "kind": "person",
+      "id": "recIRlDcRDv2MBfxW"
+    },
+    "고넬료": {
+      "kind": "person",
+      "id": "recq0lOFoVY6zUYkV"
+    }
+  },
+  "rec0CTDRtMnNCmQr9": {
+    "바울": {
+      "kind": "person",
+      "id": "recgkzNX07a7kGFYL"
+    },
+    "디도": {
+      "kind": "person",
+      "id": "rectkXUkoQk15fBk0"
+    },
+    "디모데": {
+      "kind": "person",
+      "id": "recIRlDcRDv2MBfxW"
+    },
+    "고린도 교인들": {
+      "kind": "noid"
+    },
+    "아볼로": {
+      "kind": "person",
+      "id": "recoxUPwUPGU1IP9X"
+    }
+  },
+  "recF3ilKWfSjLzpsj": {
+    "바울": {
+      "kind": "person",
+      "id": "recgkzNX07a7kGFYL"
+    },
+    "베드로": {
+      "kind": "person",
+      "id": "recX9MMADoVI2CSP1"
+    },
+    "아브라함": {
+      "kind": "person",
+      "id": "reccdFYIq50NyxNej"
+    },
+    "바나바": {
+      "kind": "person",
+      "id": "recUA9Fc2yoNk8c5d"
+    },
+    "야고보": {
+      "kind": "person",
+      "id": "recRuqBdtrgeag4gT"
+    }
+  },
+  "rec3IwUp30NnnEqSL": {
+    "바울": {
+      "kind": "person",
+      "id": "recgkzNX07a7kGFYL"
+    },
+    "예수": {
+      "kind": "person",
+      "id": "recgkFqZovgbr3pAi"
+    },
+    "두기고": {
+      "kind": "person",
+      "id": "reciJDq0wUbyVGePr"
+    },
+    "에바브라": {
+      "kind": "person",
+      "id": "recYnB4aUknpa5wW8"
+    },
+    "디모데": {
+      "kind": "person",
+      "id": "recIRlDcRDv2MBfxW"
+    }
+  },
+  "recY95JJhNEzOwMNv": {
+    "바울": {
+      "kind": "person",
+      "id": "recgkzNX07a7kGFYL"
+    },
+    "에바브로디도": {
+      "kind": "noid"
+    },
+    "디모데": {
+      "kind": "person",
+      "id": "recIRlDcRDv2MBfxW"
+    },
+    "유오디아": {
+      "kind": "noid"
+    },
+    "순두게": {
+      "kind": "noid"
+    }
+  },
+  "recY37UhYyyAlabnd": {
+    "바울": {
+      "kind": "person",
+      "id": "recgkzNX07a7kGFYL"
+    },
+    "에바브라": {
+      "kind": "person",
+      "id": "recYnB4aUknpa5wW8"
+    },
+    "두기고": {
+      "kind": "person",
+      "id": "reciJDq0wUbyVGePr"
+    },
+    "오네시모": {
+      "kind": "person",
+      "id": "recCzplVyZiEXoB0c"
+    },
+    "디모데": {
+      "kind": "person",
+      "id": "recIRlDcRDv2MBfxW"
+    }
+  },
+  "recDZc63lmQiSe0gn": {
+    "바울": {
+      "kind": "person",
+      "id": "recgkzNX07a7kGFYL"
+    },
+    "실루아노": {
+      "kind": "noid"
+    },
+    "디모데": {
+      "kind": "person",
+      "id": "recIRlDcRDv2MBfxW"
+    },
+    "데살로니가 성도들": {
+      "kind": "noid"
+    },
+    "예수": {
+      "kind": "person",
+      "id": "recgkFqZovgbr3pAi"
+    }
+  },
+  "recnZBkoT7W0SV19v": {
+    "바울": {
+      "kind": "person",
+      "id": "recgkzNX07a7kGFYL"
+    },
+    "실루아노": {
+      "kind": "noid"
+    },
+    "디모데": {
+      "kind": "person",
+      "id": "recIRlDcRDv2MBfxW"
+    },
+    "데살로니가 성도들": {
+      "kind": "noid"
+    },
+    "예수": {
+      "kind": "person",
+      "id": "recgkFqZovgbr3pAi"
+    }
+  },
+  "rec2yyoaHMOHZcynX": {
+    "바울": {
+      "kind": "person",
+      "id": "recgkzNX07a7kGFYL"
+    },
+    "디모데": {
+      "kind": "person",
+      "id": "recIRlDcRDv2MBfxW"
+    },
+    "이디모데의 어머니 유니게": {
+      "kind": "noid"
+    },
+    "알렉산더": {
+      "kind": "noid"
+    },
+    "후메내오": {
+      "kind": "noid"
+    }
+  },
+  "rec28yVZWWOL1gftz": {
+    "바울": {
+      "kind": "person",
+      "id": "recgkzNX07a7kGFYL"
+    },
+    "디모데": {
+      "kind": "person",
+      "id": "recIRlDcRDv2MBfxW"
+    },
+    "로이스": {
+      "kind": "noid"
+    },
+    "유니게": {
+      "kind": "noid"
+    },
+    "데마": {
+      "kind": "person",
+      "id": "recYie5WTs6Dokoci"
+    }
+  },
+  "recZJmtLFS2QnJG2b": {
+    "바울": {
+      "kind": "person",
+      "id": "recgkzNX07a7kGFYL"
+    },
+    "디도": {
+      "kind": "person",
+      "id": "rectkXUkoQk15fBk0"
+    },
+    "아데마": {
+      "kind": "person",
+      "id": "recJBKvwwku4FtuD1"
+    },
+    "두기고": {
+      "kind": "person",
+      "id": "reciJDq0wUbyVGePr"
+    },
+    "아볼로": {
+      "kind": "person",
+      "id": "recoxUPwUPGU1IP9X"
+    }
+  },
+  "recZm66X4kEQ7X3j2": {
+    "바울": {
+      "kind": "person",
+      "id": "recgkzNX07a7kGFYL"
+    },
+    "빌레몬": {
+      "kind": "person",
+      "id": "recM8NYTQiIiuZPjy"
+    },
+    "오네시모": {
+      "kind": "person",
+      "id": "recCzplVyZiEXoB0c"
+    },
+    "압비아": {
+      "kind": "person",
+      "id": "recWrHJyDw8JiJHZv"
+    },
+    "아킵보": {
+      "kind": "person",
+      "id": "recPLGfjpMoSjN9kP"
+    }
+  },
+  "recKvTNUismk1ckEr": {
+    "예수": {
+      "kind": "person",
+      "id": "recgkFqZovgbr3pAi"
+    },
+    "멜기세덱": {
+      "kind": "person",
+      "id": "recV4oVk0yumm0aol"
+    },
+    "아브라함": {
+      "kind": "person",
+      "id": "reccdFYIq50NyxNej"
+    },
+    "모세": {
+      "kind": "person",
+      "id": "recjNRR60PAuFtjha"
+    },
+    "아론": {
+      "kind": "person",
+      "id": "recv0dAY2ULzJ687g"
+    }
+  },
+  "recDk5A8p9VHMaXAC": {
+    "야고보": {
+      "kind": "person",
+      "id": "recRuqBdtrgeag4gT"
+    },
+    "아브라함": {
+      "kind": "person",
+      "id": "reccdFYIq50NyxNej"
+    },
+    "라합": {
+      "kind": "noid"
+    },
+    "엘리야": {
+      "kind": "noid"
+    },
+    "욥": {
+      "kind": "noid"
+    }
+  },
+  "receVE4rg7HzwRays": {
+    "베드로": {
+      "kind": "person",
+      "id": "recX9MMADoVI2CSP1"
+    },
+    "실루아노": {
+      "kind": "noid"
+    },
+    "마가": {
+      "kind": "person",
+      "id": "rec3LAlubKgbPw9H9"
+    },
+    "예수": {
+      "kind": "person",
+      "id": "recgkFqZovgbr3pAi"
+    },
+    "사라": {
+      "kind": "person",
+      "id": "rechda7WMDuW1jBTq"
+    }
+  },
+  "recFNtUGO3RQUDGPv": {
+    "베드로": {
+      "kind": "person",
+      "id": "recX9MMADoVI2CSP1"
+    },
+    "바울": {
+      "kind": "person",
+      "id": "recgkzNX07a7kGFYL"
+    },
+    "노아": {
+      "kind": "person",
+      "id": "recVMHzYdllgvTo09"
+    },
+    "발람": {
+      "kind": "noid"
+    },
+    "롯": {
+      "kind": "person",
+      "id": "recH5aFqTzpwfDSRi"
+    }
+  },
+  "recnCKWpaf0b7Q1dy": {
+    "요한": {
+      "kind": "person",
+      "id": "recvAB7vkczUEFH8Z"
+    },
+    "예수": {
+      "kind": "person",
+      "id": "recgkFqZovgbr3pAi"
+    },
+    "가인": {
+      "kind": "person",
+      "id": "recYqSnSPlrNvnE1m"
+    },
+    "하나님": {
+      "kind": "deity"
+    },
+    "성령": {
+      "kind": "person",
+      "id": "reco82mzy0XTzaOgv"
+    }
+  },
+  "recvfX2A1wSqR2QiC": {
+    "요한": {
+      "kind": "person",
+      "id": "recvAB7vkczUEFH8Z"
+    },
+    "택하심을 받은 부인": {
+      "kind": "noid"
+    },
+    "예수": {
+      "kind": "person",
+      "id": "recgkFqZovgbr3pAi"
+    },
+    "거짓 선지자들": {
+      "kind": "noid"
+    },
+    "가이아": {
+      "kind": "noid"
+    }
+  },
+  "recMApftYXBHE8lV5": {
+    "요한": {
+      "kind": "person",
+      "id": "recvAB7vkczUEFH8Z"
+    },
+    "가이오": {
+      "kind": "noid"
+    },
+    "디오드레베": {
+      "kind": "noid"
+    },
+    "데메드리오": {
+      "kind": "person",
+      "id": "recnjSr5ffVmmz3Rf"
+    },
+    "가이오의 공동체": {
+      "kind": "noid"
+    }
+  },
+  "rec2ddtGk1mJxYoy4": {
+    "유다": {
+      "kind": "noid"
+    },
+    "미가엘": {
+      "kind": "noid"
+    },
+    "발람": {
+      "kind": "noid"
+    },
+    "고라": {
+      "kind": "person",
+      "id": "rece4MdvDF2ule9OY"
+    },
+    "에녹": {
+      "kind": "person",
+      "id": "recj26MAojx8FuOsa"
+    }
+  },
+  "recUbhyLLUrl849r7": {
+    "요한": {
+      "kind": "person",
+      "id": "recvAB7vkczUEFH8Z"
+    },
+    "예수": {
+      "kind": "person",
+      "id": "recgkFqZovgbr3pAi"
+    },
+    "일곱 교회": {
+      "kind": "noid"
+    },
+    "미가엘": {
+      "kind": "noid"
+    },
+    "사탄": {
+      "kind": "person",
+      "id": "recLFwe2uKBqJwmWn"
+    }
+  }
+}

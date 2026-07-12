@@ -212,15 +212,30 @@ def get_node(node_id: str):
                 WHERE p.theographic_id IS NOT NULL AND p.name <> 'God'
                 WITH p, count(e) AS cnt
                 ORDER BY cnt DESC LIMIT 10
-                RETURN p.theographic_id AS id, p.name AS name, p.nameKo AS nameKo
+                RETURN p.theographic_id AS id, p.name AS name, p.nameKo AS nameKo,
+                       p.role AS role, p.intro AS intro, p.verses AS verses
                 """,
                 id=node_id,
             )
+            import json as _json
             for r in persons_result:
+                # 여정 없는 인물의 근거 구절 드릴다운용 — verses는 JSON 문자열이라 파싱(단일 노드 경로와 동일)
+                verses = r["verses"]
+                if verses:
+                    try:
+                        verses = _json.loads(verses)
+                    except Exception as e:
+                        logger.warning("[Nodes] topPersons verses 파싱 실패 — 빈 목록 폴백 (%s): %s", r["id"], e)
+                        verses = []
+                else:
+                    verses = []
                 top_persons.append({
                     "id": r["id"],
                     "name": r["name"],
                     "nameKo": r["nameKo"] or r["name"],
+                    "role": r["role"],
+                    "intro": r["intro"],
+                    "verses": verses,
                 })
 
             events_result = session.run(

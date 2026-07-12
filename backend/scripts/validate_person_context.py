@@ -1,6 +1,6 @@
 """data/person_context/people.json이 인물 소개 DoD를 지키는지 기계검증한다.
 
-검사: ① 인물 수 35 ② role/intro 비어있지 않음·intro 길이 300 이하 ③ verses 1개 이상
+검사: ① 인물 수 86 ② role/intro 비어있지 않음·intro 길이 300 이하 ③ verses 1개 이상
 ④ verse_ref 형식(validate_traits.py REF_RE 재사용) ⑤ textKo·textEn 프리베이크(null 아님).
 위반이 있으면 목록을 출력하고 종료 코드 1.
 """
@@ -12,7 +12,7 @@ import sys
 SCRIPT_DIR = os.path.dirname(__file__)
 PEOPLE_PATH = os.path.normpath(os.path.join(SCRIPT_DIR, "..", "..", "data", "person_context", "people.json"))
 
-EXPECTED_COUNT = 35
+EXPECTED_COUNT = 86
 
 # 개역 약어 + 장:절[-절[:절]] (예: "창 32:26", "창 18:2-5", "시 51:3-4")
 REF_RE = re.compile(r"^[가-힣]{1,4}(?:[전후상하]|[0-9])?\s\d+:\d+(?:-\d+(?::\d+)?)?$")

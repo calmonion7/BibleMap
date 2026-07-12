@@ -34,8 +34,6 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   // 큐레이션 인물 id 집합 — SidePanel '여정 탐험' CTA 노출 판단용.
   // 실패 시 CTA가 새로고침 전까지 조용히 사라지므로 유한 재시도(1s→2s→4s)로 자가 회복.
   const [curatedIds, setCuratedIds] = useState(null)
-  // 큐레이션 nameKo→id — keyPeople(문자열)로만 등장하는 인물의 발자취 링크 해석용(id 없는 이름을 큐레이션 인물에 매칭).
-  const [curatedNameToId, setCuratedNameToId] = useState(null)
   useEffect(() => {
     let timer, cancelled = false
     const load = attempt => {
@@ -45,7 +43,6 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
           curatedIdToSlug.current = Object.fromEntries(list.map(p => [p.id, p.slug]))
           curatedSlugToId.current = Object.fromEntries(list.map(p => [p.slug, p.id]))
           setCuratedIds(new Set(list.map(p => p.id)))
-          setCuratedNameToId(Object.fromEntries(list.map(p => [p.nameKo, p.id])))
         })
         .catch(() => {
           if (cancelled) return
@@ -55,6 +52,17 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     }
     load(0)
     return () => { cancelled = true; clearTimeout(timer) }
+  }, [])
+
+  // keyPeople 완성 카드 맵 (book_tid → {name → {kind, journeyId, role, intro, verses}}). ADR-0018.
+  // 실패 시 keyPeople가 칩 없이 평문으로 남으므로 조용히 폴백.
+  const [keyPeopleCards, setKeyPeopleCards] = useState(null)
+  useEffect(() => {
+    let cancelled = false
+    apiGet('/keypeople-cards')
+      .then(map => { if (!cancelled) setKeyPeopleCards(map) })
+      .catch(() => { if (!cancelled) console.warn('/keypeople-cards 로드 실패 — keyPeople 칩 미노출') })
+    return () => { cancelled = true }
   }, [])
 
   // 딥링크 복원 — curated(slug↔id) 준비되면 마운트 해시를 1회 파싱해 상태 복원.
@@ -222,7 +230,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   const sheetOpen = selectedNode != null && selectedNode !== explorePersonId
 
   return {
-    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, curatedIds, curatedNameToId, sheetOpen,
+    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, curatedIds, keyPeopleCards, sheetOpen,
     setExploreView,
     selectPerson: handleSelectPerson,
     explorePerson: handleExplorePerson,

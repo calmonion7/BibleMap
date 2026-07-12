@@ -142,6 +142,83 @@ def get_curated_persons():
     )
 
 
+@functools.lru_cache(maxsize=1)
+def _load_keypeople_verses() -> dict:
+    """data/keypeople_verses/people.json (무id 이름 키 카드) 로드. 없으면 빈 맵. ADR-0017."""
+    path = _resolve("keypeople_verses/people.json")
+    if path is None:
+        logger.warning("[Persons] keypeople_verses/people.json 없음 — 빈 맵 반환")
+        return {}
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+@functools.lru_cache(maxsize=1)
+def _load_person_context() -> dict:
+    """data/person_context/people.json (by-id 인물 카드, 본문 프리베이크) 로드. 없으면 빈 맵."""
+    path = _resolve("person_context/people.json")
+    if path is None:
+        logger.warning("[Persons] person_context/people.json 없음 — 빈 맵 반환")
+        return {}
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+@functools.lru_cache(maxsize=1)
+def _load_keypeople_identity() -> dict:
+    """data/keypeople/identity.json ((책,이름)→{kind, id?}) 로드. 없으면 빈 맵. ADR-0018."""
+    path = _resolve("keypeople/identity.json")
+    if path is None:
+        logger.warning("[Persons] keypeople/identity.json 없음 — 빈 맵 반환")
+        return {}
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+@router.get("/keypeople-cards")
+def get_keypeople_cards():
+    """책별 keyPeople 문자열 → 완성 카드(identity 조인). ADR-0018.
+    { book_tid: { name: {kind, journeyId, role, intro, verses} } }
+    person=person_context(by-id)+큐레이션 여정, noid=keypeople_verses(by-name), deity/미저작=평문(생략)."""
+    identity = _load_keypeople_identity()
+    pc = _load_person_context()
+    kv = _load_keypeople_verses()
+    curated_ids = {p["id"] for p in _build_list()}
+    out: dict = {}
+    for book, mp in identity.items():
+        cards = {}
+        for name, e in mp.items():
+            kind = e.get("kind")
+            if kind == "person":
+                pid = e.get("id")
+                card = pc.get(pid)
+                is_curated = pid in curated_ids
+                if not card and not is_curated:
+                    continue  # 카드도 여정도 없음 → 평문
+                cards[name] = {
+                    "kind": "person",
+                    "journeyId": pid if is_curated else None,
+                    "role": (card or {}).get("role"),
+                    "intro": (card or {}).get("intro"),
+                    "verses": (card or {}).get("verses", []),
+                }
+            elif kind == "noid":
+                card = kv.get(name)
+                if not card:
+                    continue  # 예: 가이아(지시대상 없음) → 평문
+                cards[name] = {
+                    "kind": "noid",
+                    "journeyId": None,
+                    "role": card.get("role"),
+                    "intro": card.get("intro"),
+                    "verses": card.get("verses", []),
+                }
+            # kind == 'deity' → 평문(생략)
+        if cards:
+            out[book] = cards
+    return JSONResponse(content=out, headers={"Cache-Control": "max-age=300"})
+
+
 @functools.lru_cache(maxsize=256)
 def _build_connections(node_id: str) -> dict:
     """큐레이션 인물의 연결 두 축(CONTEXT '인물 연결'). 큐레이션 인물로 한정.

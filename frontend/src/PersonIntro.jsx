@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import { Map, Clock, Users } from 'lucide-react'
+import { Route, Clock, Users } from 'lucide-react'
 import { TYPE_COLOR, NIGHT } from './theme'
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
 import Spinner from './Spinner'
 
 // 인물 소개(intro) 전용 뷰 — 상세 시트(SidePanel) 재사용에서 분리한 전용 페이지(explore intro 탭).
-// 구성: 정체성 헤더 → 소개문(근거 구절 칩) → 인물 성품 → 관문 요약(발자취/타임라인/관계 점프).
+// 구성: 정체성 헤더 → 소개문(근거 구절 칩) → 인물 성품 → 관문 요약(여정/타임라인/관계 점프).
 // role/intro/verses는 Part 1이 노드에 주입한 속성. era/eventCount는 /persons/curated에만 존재.
 // 함께등장·동시대·그래프이웃 인물 리스트는 여기서 부재 — 관계는 관계 탭 전담(원칙: 소개는 정체성).
 
@@ -102,13 +102,13 @@ function PersonIntro({ personId, verseLang, setVerseLang, onSwitchView = () => {
   const era = meta.id === personId ? meta.era : null
   const relCount = rel.id === personId ? rel.count : null
   // 관문 카운트는 각 도착 탭이 실제로 보여주는 수와 일치시킨다(문↔탭 일치):
-  // 발자취=여정 정차 수(발자취 탭 JourneyList "사건 N개"와 동일), 타임라인=이 인물이 언급된 사건 수
+  // 여정=정차 수(여정 탭 JourneyList "사건 N개"와 동일), 타임라인=이 인물이 언급된 사건 수
   // (event-ids, 타임라인 personFilter 집합과 동일), 관계=관계 수. journeyStops·personEventIds는 App이 이미 fetch.
   const stopCount = journeyStops ? journeyStops.length : null
   const eventCount = personEventIds ? personEventIds.size : null
 
   const gateways = [
-    { key: 'map', icon: Map, label: '발자취', value: stopCount, unit: '개', color: TYPE_COLOR.Place },
+    { key: 'map', icon: Route, label: '여정', value: stopCount, unit: '개', color: TYPE_COLOR.Place },
     { key: 'timeline', icon: Clock, label: '타임라인', value: eventCount, unit: '건', color: TYPE_COLOR.Event },
     { key: 'relations', icon: Users, label: '관계', value: relCount, unit: '명', color: TYPE_COLOR.Person },
   ]
@@ -199,7 +199,7 @@ function PersonIntro({ personId, verseLang, setVerseLang, onSwitchView = () => {
         </div>
       )}
 
-      {/* 관문 요약 — 발자취(지도)/사건(타임라인)/관계 탭 점프 */}
+      {/* 관문 요약 — 여정(지도)/사건(타임라인)/관계 탭 점프 */}
       <div style={{ margin: '20px 0 0' }}>
         <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--ink-dim)', marginBottom: 10 }}>더 살펴보기</div>
         <div style={{ display: 'flex', gap: 8 }}>

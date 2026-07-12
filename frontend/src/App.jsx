@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
-import { Map, Clock, BookOpen, Users, UserRound } from 'lucide-react'
+import { Route, Clock, BookOpen, Users, UserRound } from 'lucide-react'
 import { TYPE_COLOR } from './theme'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
@@ -18,9 +18,9 @@ import { apiGet } from './api'
 // 모바일(좁은 뷰포트) 분기 — 이 폭 이하에서 상세 패널을 우측 사이드패널 대신 하단 시트로 띄운다.
 const MOBILE_QUERY = `(max-width: ${MOBILE_BREAKPOINT}px)`
 
-// 탐험 토글 정의 — 지도 라벨은 "발자취"(인물이 지도 위에 남긴 발자국·경로)
+// 탐험 토글 정의 — 지도 라벨은 "여정"(인물이 지도 위에 남긴 이동 경로)
 const EXPLORE_TABS = [
-  { key: 'map', icon: Map, label: '발자취' },
+  { key: 'map', icon: Route, label: '여정' },
   { key: 'timeline', icon: Clock, label: '타임라인' },
 ]
 const INTRO_TAB = { key: 'intro', icon: UserRound, label: '소개' }
@@ -38,7 +38,7 @@ function App() {
 
   // 화면 단계(Stage)·URL·브라우저 히스토리 상태 머신 — 노드 선택 원시값을 주입(useStageNavigation).
   const {
-    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, curatedIds, curatedNameToId, sheetOpen,
+    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, curatedIds, keyPeopleCards, sheetOpen,
     setExploreView, selectPerson, explorePerson, backToHub, openOverview, overviewBack,
     openTours, selectTour, toursBack, openBook, bookBack, onNodeLoaded,
   } = useStageNavigation({ selectedNode, selectNodeFresh, closePanel, handleNodeLoaded })
@@ -310,7 +310,7 @@ function App() {
                   explorePersonId={explorePersonId}
                   onExplorePerson={explorePerson}
                   curatedIds={curatedIds}
-                  curatedNameToId={curatedNameToId}
+                  keyPeopleCards={keyPeopleCards}
                   onExploreJourney={selectPerson}
                 />
               </div>
@@ -474,7 +474,7 @@ function App() {
             explorePersonId={explorePersonId}
             onExplorePerson={explorePerson}
             curatedIds={curatedIds}
-            curatedNameToId={curatedNameToId}
+            keyPeopleCards={keyPeopleCards}
             onExploreJourney={selectPerson}
             onClose={() => window.history.back()}
             stickyTop={isMobile ? 16 : 0}
