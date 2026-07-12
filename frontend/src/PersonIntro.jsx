@@ -45,7 +45,7 @@ const chipStyle = {
 }
 const paperTextStyle = { fontFamily: 'var(--serif)', fontSize: 15.5, lineHeight: 1.8, color: 'var(--paper-ink)' }
 
-function PersonIntro({ personId, verseLang, setVerseLang, onSwitchView = () => {}, journeyStops = null, personEventIds = null }) {
+function PersonIntro({ personId, verseLang, setVerseLang, onSwitchView = () => {}, onOpenFamily = () => {}, journeyStops = null, personEventIds = null }) {
   // 노드/메타 fetch — 어느 personId의 결과인지 id로 추적(stale 응답 무시). setState는 콜백에서만.
   const [state, setState] = useState({ id: null, node: null, error: null })
   const [meta, setMeta] = useState({ id: null, era: null })
@@ -227,6 +227,22 @@ function PersonIntro({ personId, verseLang, setVerseLang, onSwitchView = () => {
             )
           })}
         </div>
+        {/* 가계도 — 탭 전환이 아니라 전용 전체화면 스테이지(#/family/<id>)라 관문 카드와 분리한 전체폭 버튼. */}
+        <button
+          onClick={() => onOpenFamily(personId)}
+          style={{
+            width: '100%', marginTop: 8,
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+            padding: '13px 12px', borderRadius: 10, cursor: 'pointer', font: 'inherit',
+            background: 'var(--bg-1)', border: '1px solid var(--line)',
+            fontSize: 13.5, fontWeight: 700, color: 'var(--ink)',
+            transition: 'background 0.12s, border-color 0.12s',
+          }}
+          onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-2)'; e.currentTarget.style.borderColor = 'var(--line-strong)' }}
+          onMouseLeave={e => { e.currentTarget.style.background = 'var(--bg-1)'; e.currentTarget.style.borderColor = 'var(--line)' }}
+        >
+          🌳 <span>가계도 — 조상·자손 보기</span>
+        </button>
       </div>
     </div>
   )

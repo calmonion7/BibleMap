@@ -466,6 +466,7 @@ function App() {
                     verseLang={verseLang}
                     setVerseLang={setVerseLang}
                     onSwitchView={setExploreView}
+                    onOpenFamily={openFamily}
                     journeyStops={journeyStops}
                     personEventIds={personEventIds}
                   />
