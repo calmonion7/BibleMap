@@ -11,18 +11,52 @@
   partners:    focus의 직계 배우자 id 목록
 존재하지 않는 인물 id는 빈 서브그래프로 폴백한다(404 아님).
 """
+import json
 import logging
+from functools import lru_cache
 
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
 from ..db import get_driver
+from ..overlays import _resolve
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
 MAX_GENERATIONS = 100  # 조상선 상한 (아담→예수 ~76대 여유)
+
+
+@lru_cache(maxsize=1)
+def _family_role_pairs() -> dict:
+    """person_relations '가족' 관계의 정본 role → {frozenset({nameKoA,nameKoB}): {nameKo: role}}.
+
+    role은 손큐레이션된 원근 라벨(맏아들·둘째 아들·편애한 아들·아버지 등, ADR 없음/ CONTEXT '인물 관계').
+    theographic엔 출생순이 없어(children 배열 비정렬) 첫째/둘째는 이 큐레이션이 유일한 정본 원천이다.
+    """
+    path = _resolve("person_relations/relations.json")
+    if path is None:
+        return {}
+    with open(path, encoding="utf-8") as f:
+        rels = json.load(f).get("relations", [])
+    out: dict = {}
+    for r in rels:
+        if r.get("type") != "가족":
+            continue
+        eps = r.get("endpoints", [])
+        if len(eps) != 2:
+            continue
+        a, b = eps[0], eps[1]
+        ka, kb = a.get("nameKo"), b.get("nameKo")
+        if not ka or not kb or ka == kb:
+            continue
+        m = out.setdefault(frozenset({ka, kb}), {})
+        if a.get("role"):
+            m[ka] = a["role"]
+        if b.get("role"):
+            m[kb] = b["role"]
+    return out
 
 
 def _node(p) -> dict:
@@ -33,6 +67,7 @@ def _node(p) -> dict:
         "id": props.get("theographic_id", ""),
         "name": name,
         "nameKo": name_ko if name_ko else name,
+        "gender": props.get("gender"),
         "authored": bool(props.get("authored")),
     }
 
@@ -112,6 +147,18 @@ def get_person_family(node_id: str):
         sibling_ids = [sid for sid in (add(r["s"]) for r in siblings) if sid]
         partner_ids = [pid for pid in (add(r["pt"]) for r in partners) if pid]
 
+        # focus 기준 큐레이션 정본 role(맏아들·둘째 아들 등) — 있으면 프론트가 gender 폴백 대신 표시.
+        focus_ko = nodes.get(node_id, {}).get("nameKo")
+        pairs = _family_role_pairs()
+        roles = {}
+        if focus_ko:
+            for nid, n in nodes.items():
+                if nid == node_id:
+                    continue
+                role = pairs.get(frozenset({n["nameKo"], focus_ko}), {}).get(n["nameKo"])
+                if role:
+                    roles[nid] = role
+
         return JSONResponse(
             content={
                 "focus": node_id,
@@ -119,6 +166,7 @@ def get_person_family(node_id: str):
                 "parentEdges": edges,
                 "siblings": sibling_ids,
                 "partners": partner_ids,
+                "roles": roles,
             },
             headers={"Cache-Control": "max-age=300"},
         )

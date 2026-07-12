@@ -69,7 +69,22 @@ function computeLayout(data) {
       pos[id] = { x: startX + i * COL_W + (COL_W - CHIP_W) / 2, y: (maxGen - g) * ROW_H }
     })
   }
-  return { byId, pos, parentEdges, totalW, totalH, focus, sibSet, partSet }
+  return { byId, pos, gen, parentEdges, totalW, totalH, focus, sibSet, partSet, roles: data.roles || {} }
+}
+
+// 칩 역할 라벨 — 큐레이션 정본 role(맏아들·둘째 아들 등)이 있으면 그대로, 없으면 그래프 구조 + gender 폴백.
+// 첫째/둘째 순서는 정본에만 있고(theographic children 비정렬), 폴백은 성별 kinship까지만.
+function roleLabel(id, layout) {
+  if (layout.roles[id]) return layout.roles[id]
+  if (id === layout.focus) return null
+  const g = layout.gen[id]
+  const gender = layout.byId[id]?.gender
+  const M = gender === 'Male', F = gender === 'Female'
+  if (layout.partSet.has(id)) return M ? '남편' : F ? '아내' : '배우자'
+  if (layout.sibSet.has(id)) return M ? '형제' : F ? '자매' : '형제자매'
+  if (g < 0) return g === -1 ? (M ? '아들' : F ? '딸' : '자녀') : g === -2 ? (M ? '손자' : F ? '손녀' : '손주') : '후손'
+  if (g > 0) return g === 1 ? (M ? '아버지' : F ? '어머니' : '부모') : g === 2 ? (M ? '조부' : F ? '조모' : '조부모') : '조상'
+  return null
 }
 
 function FamilyTree({ personId, onRecenter = () => {} }) {
@@ -108,7 +123,7 @@ function FamilyTree({ personId, onRecenter = () => {} }) {
     )
   }
 
-  const { byId, pos, parentEdges, totalW, totalH, focus, sibSet, partSet } = layout
+  const { byId, pos, parentEdges, totalW, totalH, focus } = layout
 
   return (
     <div ref={scrollRef} style={{ height: '100%', overflow: 'auto', background: 'var(--bg-0)' }}>
@@ -133,9 +148,7 @@ function FamilyTree({ personId, onRecenter = () => {} }) {
           const n = byId[id]
           if (!n) return null
           const isFocus = id === focus
-          const isSib = sibSet.has(id)
-          const isPartner = partSet.has(id)
-          const tag = isSib ? '형제' : isPartner ? '배우자' : null
+          const tag = roleLabel(id, layout)
           return (
             <button
               key={id}
