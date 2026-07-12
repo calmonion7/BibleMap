@@ -34,6 +34,8 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   // 큐레이션 인물 id 집합 — SidePanel '여정 탐험' CTA 노출 판단용.
   // 실패 시 CTA가 새로고침 전까지 조용히 사라지므로 유한 재시도(1s→2s→4s)로 자가 회복.
   const [curatedIds, setCuratedIds] = useState(null)
+  // 큐레이션 nameKo→id — keyPeople(문자열)로만 등장하는 인물의 발자취 링크 해석용(id 없는 이름을 큐레이션 인물에 매칭).
+  const [curatedNameToId, setCuratedNameToId] = useState(null)
   useEffect(() => {
     let timer, cancelled = false
     const load = attempt => {
@@ -43,6 +45,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
           curatedIdToSlug.current = Object.fromEntries(list.map(p => [p.id, p.slug]))
           curatedSlugToId.current = Object.fromEntries(list.map(p => [p.slug, p.id]))
           setCuratedIds(new Set(list.map(p => p.id)))
+          setCuratedNameToId(Object.fromEntries(list.map(p => [p.nameKo, p.id])))
         })
         .catch(() => {
           if (cancelled) return
@@ -219,7 +222,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   const sheetOpen = selectedNode != null && selectedNode !== explorePersonId
 
   return {
-    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, curatedIds, sheetOpen,
+    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, curatedIds, curatedNameToId, sheetOpen,
     setExploreView,
     selectPerson: handleSelectPerson,
     explorePerson: handleExplorePerson,

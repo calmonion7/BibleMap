@@ -38,7 +38,7 @@ function App() {
 
   // 화면 단계(Stage)·URL·브라우저 히스토리 상태 머신 — 노드 선택 원시값을 주입(useStageNavigation).
   const {
-    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, curatedIds, sheetOpen,
+    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, curatedIds, curatedNameToId, sheetOpen,
     setExploreView, selectPerson, explorePerson, backToHub, openOverview, overviewBack,
     openTours, selectTour, toursBack, openBook, bookBack, onNodeLoaded,
   } = useStageNavigation({ selectedNode, selectNodeFresh, closePanel, handleNodeLoaded })
@@ -310,6 +310,7 @@ function App() {
                   explorePersonId={explorePersonId}
                   onExplorePerson={explorePerson}
                   curatedIds={curatedIds}
+                  curatedNameToId={curatedNameToId}
                   onExploreJourney={selectPerson}
                 />
               </div>
@@ -473,6 +474,7 @@ function App() {
             explorePersonId={explorePersonId}
             onExplorePerson={explorePerson}
             curatedIds={curatedIds}
+            curatedNameToId={curatedNameToId}
             onExploreJourney={selectPerson}
             onClose={() => window.history.back()}
             stickyTop={isMobile ? 16 : 0}

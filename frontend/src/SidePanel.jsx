@@ -56,7 +56,7 @@ function SectionHeader({ label, color, count, sectionKey, collapsed, onToggle })
   )
 }
 
-function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, onNodeLoaded, verseLang, setVerseLang, explorePersonId = null, onExplorePerson = () => {}, curatedIds = null, onExploreJourney = () => {}, onClose, stickyTop = 0 }) {
+function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, onNodeLoaded, verseLang, setVerseLang, explorePersonId = null, onExplorePerson = () => {}, curatedIds = null, curatedNameToId = null, onExploreJourney = () => {}, onClose, stickyTop = 0 }) {
   // 어느 nodeId의 결과인지 id로 추적 — loading은 파생, stale 응답은 무시.
   // setState는 비동기 콜백에서만 호출(react-hooks set-state-in-effect 준수).
   const [state, setState] = useState({ id: null, node: null, error: null })
@@ -161,13 +161,17 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
   const placeKeyVerseText = node.label === 'Place'
     ? (verseLang === 'ko' ? node.properties.keyVerseTextKo : node.properties.keyVerseTextEn)
     : null
-  // 주요 인물 = 이벤트 참여 Person(topPersons; 큐레이션은 발자취 링크) + 책 keyPeople 문자열(링크 없는 평문) 병합.
-  // 나오미·보아스처럼 그래프 Person 노드가 아닌 인물은 keyPeople에만 있으므로 이렇게 합쳐야 노출된다. 이름 중복 제거.
+  // 주요 인물 = 이벤트 참여 Person(topPersons) + 책 keyPeople 문자열(나오미·보아스 등 그래프 노드 아님) 병합, 이름 중복 제거.
+  // journeyId 있으면 👣 발자취 링크: 이벤트 인물은 자기 id가 큐레이션이면, keyPeople 전용 이름은 큐레이션 nameKo→id로 해석되면.
+  // (여호수아처럼 이 책 이벤트 참여자는 아니지만 여정이 있는 큐레이션 인물도 keyPeople 경로로 링크가 붙는다.)
   const eventPersons = node.label === 'Book' ? (node.topPersons || []) : []
   const eventPersonNames = new Set(eventPersons.map(p => p.nameKo || p.name))
-  const keyOnlyPersons = node.label === 'Book'
-    ? (node.properties.keyPeople || []).filter(name => !eventPersonNames.has(name))
-    : []
+  const mainPersons = node.label === 'Book' ? [
+    ...eventPersons.map(p => ({ key: p.id, name: p.nameKo || p.name, journeyId: curatedIds?.has(p.id) ? p.id : null })),
+    ...(node.properties.keyPeople || [])
+      .filter(name => !eventPersonNames.has(name))
+      .map((name, i) => ({ key: `kp-${i}`, name, journeyId: curatedNameToId?.[name] || null })),
+  ] : []
 
   function toggle(key) {
     setCollapsed(prev => ({ ...prev, [key]: prev[key] === false }))
@@ -548,15 +552,14 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
             </div>
           )}
 
-          {/* 주요 인물 — 이벤트 참여 인물 + 책 keyPeople 병합 전원 표시. 발자취(여정) 있는 큐레이션 인물만 클릭 가능
-              (👣 발자취 칩 → 인물맵). 발자취 없는 인물(나오미·보아스 등 keyPeople 전용)은 이름만, 링크 없음. */}
-          {(eventPersons.length + keyOnlyPersons.length) > 0 && (
+          {/* 주요 인물 — 이벤트 참여 인물 + 책 keyPeople 병합. 발자취(여정) 있는 큐레이션 인물은 클릭 가능(👣 발자취 칩 → 인물맵),
+              없는 인물은 이름만(링크 없음). keyPeople 전용이라도 큐레이션이면 발자취 링크가 붙는다(여호수아 등). */}
+          {mainPersons.length > 0 && (
             <div style={{ marginBottom: 12 }}>
-              <SectionHeader label="주요 인물" color={TYPE_COLOR.Person} count={eventPersons.length + keyOnlyPersons.length} sectionKey="book-persons" collapsed={collapsed} onToggle={toggle} />
+              <SectionHeader label="주요 인물" color={TYPE_COLOR.Person} count={mainPersons.length} sectionKey="book-persons" collapsed={collapsed} onToggle={toggle} />
               {collapsed['book-persons'] === false && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 2, paddingBottom: 4 }}>
-                  {eventPersons.map(p => {
-                    const curated = curatedIds?.has(p.id)
+                  {mainPersons.map(p => {
                     const rowStyle = {
                       display: 'flex', alignItems: 'center', gap: 8,
                       width: '100%', textAlign: 'left', font: 'inherit',
@@ -564,30 +567,20 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                       borderLeft: `3px solid ${TYPE_COLOR.Person}`,
                       borderRadius: 6, padding: '7px 10px',
                     }
-                    return curated ? (
-                      <button key={p.id} onClick={() => onExploreJourney(p.id)} style={{ ...rowStyle, cursor: 'pointer', transition: 'background 0.12s' }}
+                    return p.journeyId ? (
+                      <button key={p.key} onClick={() => onExploreJourney(p.journeyId)} style={{ ...rowStyle, cursor: 'pointer', transition: 'background 0.12s' }}
                         onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-2)' }}
                         onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
                       >
-                        <span style={{ flex: 1, fontSize: 13, color: 'var(--ink)' }}>{p.nameKo || p.name}</span>
+                        <span style={{ flex: 1, fontSize: 13, color: 'var(--ink)' }}>{p.name}</span>
                         <span style={{ ...placeChipBase, flexShrink: 0 }}>👣 발자취 ▸</span>
                       </button>
                     ) : (
-                      <div key={p.id} style={rowStyle}>
-                        <span style={{ flex: 1, fontSize: 13, color: 'var(--ink-dim)' }}>{p.nameKo || p.name}</span>
+                      <div key={p.key} style={rowStyle}>
+                        <span style={{ flex: 1, fontSize: 13, color: 'var(--ink-dim)' }}>{p.name}</span>
                       </div>
                     )
                   })}
-                  {/* keyPeople 전용(그래프 Person 노드 아님) — 링크 없는 평문 행 */}
-                  {keyOnlyPersons.map((name, i) => (
-                    <div key={`kp-${i}`} style={{
-                      display: 'flex', alignItems: 'center', gap: 8,
-                      borderLeft: `3px solid ${TYPE_COLOR.Person}`,
-                      borderRadius: 6, padding: '7px 10px',
-                    }}>
-                      <span style={{ flex: 1, fontSize: 13, color: 'var(--ink-dim)' }}>{name}</span>
-                    </div>
-                  ))}
                 </div>
               )}
             </div>
