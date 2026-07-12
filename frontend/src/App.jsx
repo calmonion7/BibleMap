@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
-import { Route, Clock, BookOpen, Users, UserRound } from 'lucide-react'
+import { Route, Clock, BookOpen, Users, UserRound, Network } from 'lucide-react'
 import { TYPE_COLOR } from './theme'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
@@ -26,6 +26,8 @@ const EXPLORE_TABS = [
 ]
 const INTRO_TAB = { key: 'intro', icon: UserRound, label: '소개' }
 const RELATIONS_TAB = { key: 'relations', icon: Users, label: '관계' }
+// 가계도 — 탭 전환(setExploreView)이 아니라 전용 스테이지(openFamily) 진입. 관계 옆에 배치.
+const FAMILY_TAB = { key: 'family', icon: Network, label: '가계도' }
 
 function App() {
   // 절 본문 표시 언어('ko'|'en', 기본 ko) — 타임라인·SidePanel 공유.
@@ -148,13 +150,13 @@ function App() {
         {/* 지도 / 타임라인 / 관계(인물 모드 한정) 토글 */}
         <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
           {/* 인물 모드: 소개(맨앞) · 여정길 · 타임라인 · 관계 / 투어 모드: 여정길 · 타임라인 */}
-          {(explorePersonId && !exploreTourId ? [INTRO_TAB, ...EXPLORE_TABS, RELATIONS_TAB] : EXPLORE_TABS).map(tab => {
+          {(explorePersonId && !exploreTourId ? [INTRO_TAB, ...EXPLORE_TABS, RELATIONS_TAB, FAMILY_TAB] : EXPLORE_TABS).map(tab => {
             const Icon = tab.icon
             const active = exploreView === tab.key
             return (
               <button
                 key={tab.key}
-                onClick={() => setExploreView(tab.key)}
+                onClick={() => tab.key === 'family' ? openFamily(explorePersonId) : setExploreView(tab.key)}
                 style={{
                   padding: '0 14px', height: '100%',
                   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
