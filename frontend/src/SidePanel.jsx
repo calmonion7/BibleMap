@@ -24,6 +24,17 @@ function typeOf(label) {
   return TYPE_COLOR[label] ? label : 'Unknown'
 }
 
+// 구조 개요 프로즈 → 타임라인 세그먼트 배열. ' · '로 세그먼트 분할, 각 세그먼트 끝의
+// 마지막 괄호 (...)를 범위 배지로·앞 텍스트를 라벨로. 끝 괄호가 없으면 라벨만(range null).
+// 절 범위(1~25절)·범위 없는 세그먼트(다양한 장르)·시편 중첩 등 예외를 견고하게 흡수한다.
+function parseStructure(str) {
+  return str.split(' · ').map(seg => {
+    const s = seg.trim()
+    const m = s.match(/^(.*)\(([^()]+)\)$/)
+    return m ? { range: m[2].trim(), label: m[1].trim() } : { range: null, label: s }
+  }).filter(seg => seg.label || seg.range)
+}
+
 // collapsed[key] !== false → 접힘(기본), false → 펼침
 function SectionHeader({ label, color, count, sectionKey, collapsed, onToggle }) {
   const isOpen = collapsed[sectionKey] === false
@@ -150,9 +161,12 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
   const placeKeyVerseText = node.label === 'Place'
     ? (verseLang === 'ko' ? node.properties.keyVerseTextKo : node.properties.keyVerseTextEn)
     : null
-  // 주요 인물 = 여정 있는(큐레이션) 인물만 노출(여정 없는 인물 링크 삭제). keyPeople 폴백도 이 목록 기준.
-  const journeyPersons = node.label === 'Book' && node.topPersons
-    ? node.topPersons.filter(p => curatedIds?.has(p.id))
+  // 주요 인물 = 이벤트 참여 Person(topPersons; 큐레이션은 발자취 링크) + 책 keyPeople 문자열(링크 없는 평문) 병합.
+  // 나오미·보아스처럼 그래프 Person 노드가 아닌 인물은 keyPeople에만 있으므로 이렇게 합쳐야 노출된다. 이름 중복 제거.
+  const eventPersons = node.label === 'Book' ? (node.topPersons || []) : []
+  const eventPersonNames = new Set(eventPersons.map(p => p.nameKo || p.name))
+  const keyOnlyPersons = node.label === 'Book'
+    ? (node.properties.keyPeople || []).filter(name => !eventPersonNames.has(name))
     : []
 
   function toggle(key) {
@@ -512,49 +526,67 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
             <div style={{ marginBottom: 12 }}>
               <SectionHeader label="구조 개요" color={TYPE_COLOR.Book} sectionKey="book-structure" collapsed={collapsed} onToggle={toggle} />
               {collapsed['book-structure'] === false && (
-                <p style={{ margin: '0 0 4px', color: 'var(--ink-dim)', lineHeight: 1.6, fontSize: 13 }}>{node.properties.structure}</p>
-              )}
-            </div>
-          )}
-
-          {/* 핵심 인물 — 클릭 가능한 '주요 인물'(여정 있는 인물)이 있으면 중복이라 숨김. topPersons가 전부 비큐레이션이면 여기로 폴백(인물 정보 통째 소실 방지) */}
-          {node.properties.keyPeople?.length > 0 && journeyPersons.length === 0 && (
-            <div style={{ marginBottom: 12 }}>
-              <SectionHeader label="핵심 인물" color={TYPE_COLOR.Book} sectionKey="book-keyppl" collapsed={collapsed} onToggle={toggle} />
-              {collapsed['book-keyppl'] === false && (
-                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', paddingBottom: 4 }}>
-                  {node.properties.keyPeople.map((p, i) => (
-                    <span key={i} style={{
-                      fontSize: 12, padding: '4px 10px', borderRadius: 999,
-                      border: '1px solid var(--line-strong)', background: 'var(--bg-2)', color: 'var(--ink-dim)',
-                    }}>{p}</span>
-                  ))}
+                // 세로 타임라인 — 좌측 스파인(점+연결선) + 장범위 배지(placeChipBase) + 라벨. 책 전개를 위→아래로.
+                <div style={{ margin: '2px 0 4px' }}>
+                  {parseStructure(node.properties.structure).map((seg, i, arr) => {
+                    const last = i === arr.length - 1
+                    return (
+                      <div key={i} style={{ display: 'flex', gap: 10 }}>
+                        <div style={{ flexShrink: 0, width: 10, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                          <span style={{ width: 9, height: 9, borderRadius: '50%', background: TYPE_COLOR.Book, marginTop: 5, flexShrink: 0 }} />
+                          {!last && <span style={{ flex: 1, width: 2, background: 'var(--line-strong)', marginTop: 2 }} />}
+                        </div>
+                        <div style={{ flex: 1, minWidth: 0, paddingBottom: last ? 0 : 12, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                          {seg.range && <span style={{ ...placeChipBase, flexShrink: 0 }}>{seg.range}</span>}
+                          <span style={{ fontSize: 13, color: 'var(--ink-dim)', lineHeight: 1.5 }}>{seg.label}</span>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
               )}
             </div>
           )}
 
-          {/* 주요 인물 — 여정 있는(큐레이션) 인물만. 여정 링크는 구절 링크(📖 구절 ▸)와 같은 칩 패턴(placeChipBase). 클릭 시 인물맵(여정 탐험)으로 직행. */}
-          {journeyPersons.length > 0 && (
+          {/* 주요 인물 — 이벤트 참여 인물 + 책 keyPeople 병합 전원 표시. 발자취(여정) 있는 큐레이션 인물만 클릭 가능
+              (👣 발자취 칩 → 인물맵). 발자취 없는 인물(나오미·보아스 등 keyPeople 전용)은 이름만, 링크 없음. */}
+          {(eventPersons.length + keyOnlyPersons.length) > 0 && (
             <div style={{ marginBottom: 12 }}>
-              <SectionHeader label="주요 인물" color={TYPE_COLOR.Person} count={journeyPersons.length} sectionKey="book-persons" collapsed={collapsed} onToggle={toggle} />
+              <SectionHeader label="주요 인물" color={TYPE_COLOR.Person} count={eventPersons.length + keyOnlyPersons.length} sectionKey="book-persons" collapsed={collapsed} onToggle={toggle} />
               {collapsed['book-persons'] === false && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 2, paddingBottom: 4 }}>
-                  {journeyPersons.map(p => (
-                    <button key={p.id} onClick={() => onExploreJourney(p.id)} style={{
+                  {eventPersons.map(p => {
+                    const curated = curatedIds?.has(p.id)
+                    const rowStyle = {
                       display: 'flex', alignItems: 'center', gap: 8,
                       width: '100%', textAlign: 'left', font: 'inherit',
-                      border: 'none', background: 'none', cursor: 'pointer',
+                      border: 'none', background: 'none',
                       borderLeft: `3px solid ${TYPE_COLOR.Person}`,
                       borderRadius: 6, padding: '7px 10px',
-                      transition: 'background 0.12s',
-                    }}
-                      onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-2)' }}
-                      onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
-                    >
-                      <span style={{ flex: 1, fontSize: 13, color: 'var(--ink)' }}>{p.nameKo || p.name}</span>
-                      <span style={{ ...placeChipBase, flexShrink: 0 }}>👣 발자취 ▸</span>
-                    </button>
+                    }
+                    return curated ? (
+                      <button key={p.id} onClick={() => onExploreJourney(p.id)} style={{ ...rowStyle, cursor: 'pointer', transition: 'background 0.12s' }}
+                        onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-2)' }}
+                        onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
+                      >
+                        <span style={{ flex: 1, fontSize: 13, color: 'var(--ink)' }}>{p.nameKo || p.name}</span>
+                        <span style={{ ...placeChipBase, flexShrink: 0 }}>👣 발자취 ▸</span>
+                      </button>
+                    ) : (
+                      <div key={p.id} style={rowStyle}>
+                        <span style={{ flex: 1, fontSize: 13, color: 'var(--ink-dim)' }}>{p.nameKo || p.name}</span>
+                      </div>
+                    )
+                  })}
+                  {/* keyPeople 전용(그래프 Person 노드 아님) — 링크 없는 평문 행 */}
+                  {keyOnlyPersons.map((name, i) => (
+                    <div key={`kp-${i}`} style={{
+                      display: 'flex', alignItems: 'center', gap: 8,
+                      borderLeft: `3px solid ${TYPE_COLOR.Person}`,
+                      borderRadius: 6, padding: '7px 10px',
+                    }}>
+                      <span style={{ flex: 1, fontSize: 13, color: 'var(--ink-dim)' }}>{name}</span>
+                    </div>
                   ))}
                 </div>
               )}

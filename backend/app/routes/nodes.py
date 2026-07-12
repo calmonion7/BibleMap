@@ -228,7 +228,7 @@ def get_node(node_id: str):
                 MATCH (b:Book {theographic_id: $id})-[rel:CONTAINS_BOOK]->(e:Event)
                 WHERE e.theographic_id IS NOT NULL AND rel.primary
                 RETURN e.theographic_id AS id, e.title AS name, e.nameKo AS nameKo,
-                       e.startDate AS startDate
+                       e.startDate AS startDate, e.sortKey AS sortKey
                 """,
                 id=node_id,
             )
@@ -238,6 +238,7 @@ def get_node(node_id: str):
                     "name": r["name"],
                     "nameKo": r["nameKo"] or r["name"],
                     "startDate": r["startDate"],
+                    "sortKey": r["sortKey"],
                 })
             # startDate는 "-4003"/"-1451-01"/"30" 형식 혼재 문자열 — 사전순 정렬 시
             # BC 연도가 역전되므로(예: -1451 < -4003) 연도를 파싱해 오름차순 상위 10개만.
@@ -251,7 +252,12 @@ def get_node(node_id: str):
                 except ValueError:
                     return None
                 return -y if neg else y
-            top_events.sort(key=lambda ev: (_year(ev["startDate"]) is None, _year(ev["startDate"]) or 0))
+            # 연도 오름차순, 같은 연도면 sortKey(연내 구절/서사 순, 전 이벤트 부여) 오름차순.
+            top_events.sort(key=lambda ev: (
+                _year(ev["startDate"]) is None,
+                _year(ev["startDate"]) or 0,
+                ev["sortKey"] if ev["sortKey"] is not None else 0,
+            ))
             top_events = top_events[:10]
 
         # Person traits JSON 파싱
