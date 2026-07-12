@@ -32,7 +32,7 @@ Person 노드에 주입되는 속성 `traits` (JSON 문자열 배열). 각 항�
 
 ## Book Context (권별 컨텍스트)
 
-각 Book의 시대적 배경·주제·대표구절을 담는 정적 JSON (`data/book_context/books.json`). LLM(Claude API)으로 생성 후 수동 검수. `inject_book_context.py`로 Book 노드 속성에 주입. Verse 텍스트(대표구절·사건 근거·인물 성품 인용절)는 **빌드타임에 getbible에서 한국어(`korean`)+영어(`kjv`)로 미리 받아 데이터에 함께 저장**한다(`generate_verse_text.py`, ADR-0003) — 런타임 외부 fetch 없음. Book의 대표구절 본문은 `keyVerseTextKo`/`keyVerseTextEn` 속성으로 주입된다.
+각 Book의 시대적 배경·주제·대표구절을 담는 정적 JSON (`data/book_context/books.json`). LLM(Claude API)으로 생성 후 수동 검수. `inject_book_context.py`로 Book 노드 속성에 주입. Verse 텍스트(대표구절·인물 성품 인용절)는 **빌드타임에 getbible에서 한국어(`korean`)+영어(`kjv`)로 미리 받아 데이터에 함께 저장**한다(`generate_verse_text.py`, ADR-0003) — 런타임 외부 fetch 없음. 단 **사건 근거 절 본문은 인라인이 아니라 정본 절 사전**(`data/bible/verses.json`, 전권 31,103절 프리베이크)에서 `/event/{id}/verses` 응답 시 합성한다(ADR-0015 — event_verses는 verseID 참조만 보유). Book의 대표구절 본문은 `keyVerseTextKo`/`keyVerseTextEn` 속성으로 주입된다.
 
 ## Place Context (장소 컨텍스트)
 
