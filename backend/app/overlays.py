@@ -53,3 +53,9 @@ def book_events_raw() -> dict:
 def event_verses() -> dict:
     """사건별 근거 구절 오버레이. 1회 로드 캐시."""
     return _load("event_verses/events.json")
+
+
+@functools.lru_cache(maxsize=1)
+def bible_verses() -> dict:
+    """정본 절 사전(verseID → {textKo, textEn}) 오버레이. 1회 로드 캐시."""
+    return _load("bible/verses.json")

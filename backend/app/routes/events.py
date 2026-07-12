@@ -114,9 +114,19 @@ def get_event_verses(event_id: str):
     overlay = overlays.event_verses()
     entry = overlay.get(event_id, {"books": []})
     name_map = _book_name_map()
+    bible = overlays.bible_verses()
     enriched_books = []
     for b in entry.get("books", []):
-        enriched_books.append({**b, "bookNameKo": name_map.get(b["bookId"], b["bookId"])})
+        nb = {**b, "bookNameKo": name_map.get(b["bookId"], b["bookId"])}
+        if "verses" in nb:
+            # 본문은 오버레이가 아니라 정본 절 사전에서 합성(event_verses는 verseID 참조만 보유)
+            nb["verses"] = [
+                {**v,
+                 "textKo": bible.get(v["verseID"], {}).get("textKo"),
+                 "textEn": bible.get(v["verseID"], {}).get("textEn")}
+                for v in nb["verses"]
+            ]
+        enriched_books.append(nb)
     # 오버레이 JSON 저장 순서에 의존하지 않고 라우트에서 정경순 강제(docstring 약속)
     enriched_books.sort(key=lambda b: b.get("bookOrder", 0))
     return JSONResponse(
