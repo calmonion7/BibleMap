@@ -87,7 +87,7 @@ function roleLabel(id, layout) {
   return null
 }
 
-function FamilyTree({ personId, onRecenter = () => {} }) {
+function FamilyTree({ personId, onRecenter = () => {}, onOpenPerson = () => {} }) {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const scrollRef = useRef(null)
@@ -124,9 +124,33 @@ function FamilyTree({ personId, onRecenter = () => {} }) {
   }
 
   const { byId, pos, parentEdges, totalW, totalH, focus } = layout
+  const focusNode = byId[focus]
 
   return (
-    <div ref={scrollRef} style={{ height: '100%', overflow: 'auto', background: 'var(--bg-0)' }}>
+    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: 'var(--bg-0)' }}>
+      {/* focus 인물 액션 바 — 인물 페이지(탐험)로 바로가기. 다른 인물은 노드 클릭으로 재중심화 후 이동. */}
+      {focusNode && (
+        <div style={{
+          flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10,
+          padding: '8px 14px', borderBottom: '1px solid var(--line)', background: 'var(--bg-1)',
+        }}>
+          <span style={{ fontFamily: 'var(--serif)', fontSize: 14, fontWeight: 700, color: 'var(--gold)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            {focusNode.nameKo}
+          </span>
+          <button
+            onClick={() => onOpenPerson(focus)}
+            style={{
+              flexShrink: 0, display: 'flex', alignItems: 'center', gap: 5,
+              padding: '7px 12px', borderRadius: 8, cursor: 'pointer', font: 'inherit',
+              fontSize: 12.5, fontWeight: 700, color: 'var(--ink)',
+              background: TYPE_COLOR.Person, border: 'none',
+            }}
+          >
+            인물 페이지 →
+          </button>
+        </div>
+      )}
+      <div ref={scrollRef} style={{ flex: 1, overflow: 'auto' }}>
       <div style={{ position: 'relative', width: totalW, height: totalH, margin: '24px auto 48px', minWidth: '100%' }}>
         {/* 커넥터 — 부모(하단중앙) → 자식(상단중앙) */}
         <svg width={totalW} height={totalH} style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none' }}>
@@ -174,6 +198,7 @@ function FamilyTree({ personId, onRecenter = () => {} }) {
             </button>
           )
         })}
+      </div>
       </div>
     </div>
   )

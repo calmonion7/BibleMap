@@ -364,6 +364,7 @@ function App() {
               key={familyId}
               personId={familyId}
               onRecenter={recenterFamily}
+              onOpenPerson={(id) => selectPerson(id, 'intro')}
             />
           </div>
         </>
