@@ -185,8 +185,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
             </div>
           )}
           {overlay === null ? (
-            // Spinner는 color+'22' 문자열 결합이라 var() 미지원 — --paper-accent 값 직접 명시.
-            <div style={{ padding: '12px 0' }}><Spinner size={20} color="#8a6d1f" /></div>
+            <div style={{ padding: '12px 0' }}><Spinner size={20} color="var(--paper-accent)" /></div>
           ) : ovBooks.length === 0 ? (
             <div style={{ fontSize: 13, padding: '8px 0' }}>표시할 구절이 없습니다</div>
           ) : (

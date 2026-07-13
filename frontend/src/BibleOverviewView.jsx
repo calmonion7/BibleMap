@@ -201,8 +201,7 @@ export default function BibleOverviewView({ onSelectNode, selectedNode }) {
   }
   if (error) {
     return (
-      <div style={{ color: '#f87171', padding: 24, background: 'var(--bg-0)', height: '100%' }}>
-        {/* 에러 텍스트는 대응 토큰이 없어 하드코딩 유지 */}
+      <div style={{ color: 'var(--danger)', padding: 24, background: 'var(--bg-0)', height: '100%' }}>
         오류: {error}
       </div>
     )

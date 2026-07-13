@@ -3,7 +3,7 @@ import { Crown, Heart, Handshake, Shield, Scroll, Swords, Users, GraduationCap, 
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
 import Spinner from './Spinner'
-import { NIGHT, VALENCE_COLOR } from './theme'
+import { VALENCE_COLOR } from './theme'
 
 // 인물 관계 뷰(CONTEXT '인물 관계') — 관계별 줄 개요(인물 헤더 + 사건 시퀀스) + 초점 쌍 + 근거 구절 레이어.
 // 전역 시간축 없음(개요) — 각 관계가 자기 줄에 사건을 균등 배치, 시간은 사건 칩의 연도로. person-centric.
@@ -33,8 +33,7 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
   }, [personId])
 
   if (state.id !== personId) {
-    // Spinner는 color+'22' 문자열 결합이라 var() 미지원 — 금색 hex 직접 명시.
-    return <div style={{ display: 'flex', justifyContent: 'center', padding: 40 }}><Spinner color={NIGHT.gold} /></div>
+    return <div style={{ display: 'flex', justifyContent: 'center', padding: 40 }}><Spinner color="var(--gold)" /></div>
   }
   const relations = state.relations || []
   if (relations.length === 0) {

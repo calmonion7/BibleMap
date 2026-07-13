@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { Route, Clock, Users } from 'lucide-react'
-import { TYPE_COLOR, NIGHT } from './theme'
+import { TYPE_COLOR } from './theme'
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
 import Spinner from './Spinner'
@@ -90,8 +90,8 @@ function PersonIntro({ personId, verseLang, setVerseLang, onSwitchView = () => {
   const node = ready ? state.node : null
   const error = ready ? state.error : null
 
-  if (!ready) return <div style={{ display: 'flex', justifyContent: 'center', padding: 40 }}><Spinner color={NIGHT.gold} /></div>
-  if (error) return <p style={{ padding: '1.25rem', fontSize: 14, color: '#dc3545' }}>불러오지 못했습니다 ({error})</p>
+  if (!ready) return <div style={{ display: 'flex', justifyContent: 'center', padding: 40 }}><Spinner color="var(--gold)" /></div>
+  if (error) return <p style={{ padding: '1.25rem', fontSize: 14, color: 'var(--danger)' }}>불러오지 못했습니다 ({error})</p>
 
   const props = node.properties || {}
   const role = props.role

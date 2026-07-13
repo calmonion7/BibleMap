@@ -18,10 +18,23 @@
   --gold: #c9a84c;
   --gold-dim: rgba(201, 168, 76, 0.35);
 
-  /* 양피지 — 성경 구절 본문 전용 */
+  /* 양피지 — 성경 구절 본문 전용(테마 불변) */
   --paper: #f2ecdc;
   --paper-ink: #2e2a20;
   --paper-accent: #8a6d1f;
+
+  /* 노드 타입·관계 valence·선택 강조·에러 — 값의 정본은 여기, JS(theme.js)는 var 참조 */
+  --type-person: #8fa8ff;
+  --type-place: #58a4e8;
+  --type-event: #f0a844;
+  --type-peoplegroup: #3cc4b4;
+  --type-book: #b49dfa;
+  --type-unknown: #9aa5b8;
+  --valence-pos: #4eba7d;
+  --valence-neg: #e06c5f;
+  --valence-neutral: #8a94ad;
+  --select-hl: rgba(201, 168, 76, 0.16);
+  --danger: #f87171;
 
   /* 형태·그림자 */
   --r-s: 8px;
@@ -52,6 +65,42 @@
   @media (max-width: 1024px) {
     font-size: 15px;
   }
+}
+
+/* Day Atlas — 라이트 테마(ADR-0020, 옵트인). Night Atlas와 같은 토큰 계약에 값만 두 벌.
+   양피지(--paper*)와 지도·지도 오버레이는 테마 불변이라 여기 없다. */
+:root[data-theme='light'] {
+  --bg-0: #f7f2e5;
+  --bg-1: #efe8d4;
+  --bg-2: #e6dcc2;
+  --bg-3: #dbcfae;
+  --line: rgba(46, 42, 32, 0.12);
+  --line-strong: rgba(46, 42, 32, 0.26);
+
+  --ink: #2e2a20;
+  --ink-dim: rgba(46, 42, 32, 0.7);
+  --ink-faint: rgba(46, 42, 32, 0.48);
+
+  --gold: #8a6d1f;
+  --gold-dim: rgba(138, 109, 31, 0.4);
+
+  --shadow-1: 0 1px 3px rgba(60, 50, 25, 0.14);
+  --shadow-2: 0 8px 32px rgba(60, 50, 25, 0.22);
+
+  /* 다크 대비 보정값 → 라이트에선 명도를 낮춰 대비 확보(본문 4.5:1·칩 3:1 목표) */
+  --type-person: #4a5fc4;
+  --type-place: #1f6dab;
+  --type-event: #a5660a;
+  --type-peoplegroup: #0f7a6b;
+  --type-book: #6b48c8;
+  --type-unknown: #5b6373;
+  --valence-pos: #25784c;
+  --valence-neg: #b23e30;
+  --valence-neutral: #586074;
+  --select-hl: rgba(138, 109, 31, 0.16);
+  --danger: #b3372c;
+
+  color-scheme: light;
 }
 
 body {

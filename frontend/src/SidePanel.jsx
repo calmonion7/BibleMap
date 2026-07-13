@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { Route } from 'lucide-react'
-import { TYPE_COLOR, TYPE_KO, NIGHT, GENRE_META } from './theme'
+import { TYPE_COLOR, TYPE_KO, GENRE_META } from './theme'
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
 import Spinner from './Spinner'
@@ -137,11 +137,8 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
 
   const msgStyle = { padding: '1.25rem', fontSize: 14, color: 'var(--ink-faint)' }
   if (!nodeId) return <p style={msgStyle}>지도에서 마커를 클릭하세요</p>
-  // Spinner는 color+'22'로 알파를 이어붙여 border를 만들어 var()나 rgba(원래 rgba(100,120,180,0.6)도 동일 결함)를 못 받는다
-  // (JS 계산 지점) — theme.js NIGHT의 순수 hex 리터럴만 사용
-  if (!ready) return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}><Spinner color={NIGHT.gold} /></div>
-  // 에러 색 '#dc3545' — Night Atlas 토큰 미정의, 유지
-  if (error) return <p style={{ ...msgStyle, color: '#dc3545' }}>불러오지 못했습니다 ({error})</p>
+  if (!ready) return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}><Spinner color="var(--gold)" /></div>
+  if (error) return <p style={{ ...msgStyle, color: 'var(--danger)' }}>불러오지 못했습니다 ({error})</p>
 
   // 이웃을 타입별로 그룹
   const groups = {}
@@ -194,6 +191,8 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
   const paperCardStyle = {
     margin: '4px 0 6px', padding: '10px 12px',
     background: 'var(--paper)', borderRadius: 'var(--r-m)', boxShadow: 'var(--shadow-1)',
+    // 라이트 테마에선 배경과 양피지 명도가 가까워 경계 필요 — 다크의 흰 알파 line-strong은 양피지 위에서 사실상 안 보여 무해
+    border: '1px solid var(--line-strong)',
   }
   const paperTextStyle = { fontFamily: 'var(--serif)', fontSize: 15.5, lineHeight: 1.8, color: 'var(--paper-ink)' }
 
@@ -277,7 +276,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
             </div>
           )}
           {overlay === null ? (
-            <div style={{ padding: '12px 0' }}><Spinner size={20} color={NIGHT.paperAccent} /></div>
+            <div style={{ padding: '12px 0' }}><Spinner size={20} color="var(--paper-accent)" /></div>
           ) : ovBooks.length === 0 ? (
             <div style={{ fontSize: 13, color: 'var(--paper-accent)', padding: '4px 0' }}>표시할 구절이 없습니다</div>
           ) : (

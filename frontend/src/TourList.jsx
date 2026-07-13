@@ -25,8 +25,7 @@ export default function TourList({ onSelectTour }) {
   }, [])
 
   if (loading) return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', background: GROUND }}><Spinner color={PURPLE} /></div>
-  // 에러 색 — 방향서 토큰에 에러 시맨틱이 없어 하드코딩 유지
-  if (error) return <div style={{ color: '#f87171', padding: 24, background: GROUND, height: '100%' }}>테마 투어를 불러오지 못했습니다 — {error}</div>
+  if (error) return <div style={{ color: 'var(--danger)', padding: 24, background: GROUND, height: '100%' }}>테마 투어를 불러오지 못했습니다 — {error}</div>
   if (tours.length === 0) return <div style={{ color: 'var(--ink-faint)', padding: 24, background: GROUND, height: '100%' }}>준비된 테마 투어가 없습니다</div>
 
   return (
@@ -41,7 +40,7 @@ export default function TourList({ onSelectTour }) {
             onClick={() => onSelectTour(t.id)}
             aria-label={`${t.title} — ${t.era} 시대, 정차지 ${t.stopCount}곳`}
             style={{
-              background: CARD_BG, border: `1px solid ${PURPLE}33`, borderRadius: 12,
+              background: CARD_BG, border: `1px solid color-mix(in srgb, ${PURPLE} 20%, transparent)`, borderRadius: 12,
               padding: '18px 16px', cursor: 'pointer', textAlign: 'left',
               display: 'flex', flexDirection: 'column', gap: 8, minWidth: 0,
             }}

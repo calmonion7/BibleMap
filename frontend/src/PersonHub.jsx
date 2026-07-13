@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
+import { Sun, Moon } from 'lucide-react'
 import { apiGet } from './api'
 import Spinner from './Spinner'
 import { MOBILE_BREAKPOINT } from './constants'
-import { TYPE_COLOR, NIGHT } from './theme'
+import { TYPE_COLOR } from './theme'
 
 // 시대 표시 순서 — persons.py _ERA_ORDER와 동일.
 const ERA_ORDER = ['원시사', '족장', '출애굽·정복', '사사', '왕국', '선지자', '포로', '신약']
@@ -19,8 +20,8 @@ const ERA_META = {
   '신약':        '그리스도와 그 증인들',
 }
 
-// Night Atlas 토큰(design-direction.md) — 골드·보라는 theme.js 상수, 표면·잉크는 CSS 변수 참조
-const GOLD = NIGHT.gold
+// 토큰은 전부 CSS 변수 참조 — 테마(다크/라이트) 전환에 자동 추종(ADR-0020)
+const GOLD = 'var(--gold)'
 const PURPLE = TYPE_COLOR.Book
 const GROUND = 'var(--bg-0)'
 const TEXT = 'var(--ink)'
@@ -167,6 +168,15 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const isMobile = useIsMobile()
+  // 테마 전환은 CSS 변수만 갈아끼우므로 리렌더 불요 — state는 토글 아이콘(해/달) 표시용
+  const [theme, setTheme] = useState(() => document.documentElement.dataset.theme === 'light' ? 'light' : 'dark')
+  const toggleTheme = () => {
+    const next = theme === 'light' ? 'dark' : 'light'
+    if (next === 'light') document.documentElement.dataset.theme = 'light'
+    else delete document.documentElement.dataset.theme
+    localStorage.setItem('biblemap-theme', next)
+    setTheme(next)
+  }
 
   useEffect(() => {
     // 일시 장애로 허브 전체가 에러 화면에 고착되지 않도록 유한 재시도(1s→2s→4s).
@@ -203,8 +213,7 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
 
   if (error) {
     return (
-      // 에러 색 — 방향서 토큰에 에러 시맨틱이 없어 하드코딩 유지
-      <div style={{ color: '#f87171', padding: 24, background: GROUND, height: '100%' }}>
+      <div style={{ color: 'var(--danger)', padding: 24, background: GROUND, height: '100%' }}>
         인물 목록을 불러오지 못했습니다 — {error}
       </div>
     )
@@ -235,10 +244,34 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
     }}>
       {/* 헤더 영역 */}
       <div style={{
+        position: 'relative',
         padding: isMobile ? '28px 16px 20px' : '36px 32px 24px',
         borderBottom: '1px solid var(--gold-dim)',
         background: `linear-gradient(180deg, var(--bg-1) 0%, ${GROUND} 100%)`,
       }}>
+        {/* 테마 토글 — 라이트(Day Atlas)는 옵트인, 선택은 localStorage 유지(ADR-0020) */}
+        <button
+          onClick={toggleTheme}
+          aria-label={theme === 'light' ? '다크 테마로 전환' : '라이트 테마로 전환'}
+          title={theme === 'light' ? '다크 테마로 전환' : '라이트 테마로 전환'}
+          style={{
+            position: 'absolute',
+            top: isMobile ? 24 : 32,
+            right: isMobile ? 16 : 32,
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 36,
+            height: 36,
+            borderRadius: '50%',
+            border: '1px solid var(--line-strong)',
+            background: 'var(--bg-2)',
+            color: 'var(--gold)',
+            cursor: 'pointer',
+          }}
+        >
+          {theme === 'light' ? <Moon size={17} /> : <Sun size={17} />}
+        </button>
         <h1 style={{
           color: TEXT,
           fontFamily: 'var(--serif)',
@@ -268,9 +301,9 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
               alignItems: 'center',
               gap: 7,
               padding: '7px 16px',
-              border: `1px solid ${GOLD}50`,
+              border: `1px solid color-mix(in srgb, ${GOLD} 31%, transparent)`,
               borderRadius: 8,
-              background: `${GOLD}12`,
+              background: `color-mix(in srgb, ${GOLD} 7%, transparent)`,
               color: GOLD,
               fontSize: 13,
               fontWeight: 600,
@@ -279,12 +312,12 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
               transition: 'background 0.15s, border-color 0.15s',
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.background = `${GOLD}22`
-              e.currentTarget.style.borderColor = `${GOLD}90`
+              e.currentTarget.style.background = `color-mix(in srgb, ${GOLD} 13%, transparent)`
+              e.currentTarget.style.borderColor = `color-mix(in srgb, ${GOLD} 56%, transparent)`
             }}
             onMouseLeave={e => {
-              e.currentTarget.style.background = `${GOLD}12`
-              e.currentTarget.style.borderColor = `${GOLD}50`
+              e.currentTarget.style.background = `color-mix(in srgb, ${GOLD} 7%, transparent)`
+              e.currentTarget.style.borderColor = `color-mix(in srgb, ${GOLD} 31%, transparent)`
             }}
           >
             <span style={{ fontSize: 15 }}>📖</span>
@@ -297,9 +330,9 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
               alignItems: 'center',
               gap: 7,
               padding: '7px 16px',
-              border: `1px solid ${PURPLE}50`,
+              border: `1px solid color-mix(in srgb, ${PURPLE} 31%, transparent)`,
               borderRadius: 8,
-              background: `${PURPLE}12`,
+              background: `color-mix(in srgb, ${PURPLE} 7%, transparent)`,
               color: PURPLE,
               fontSize: 13,
               fontWeight: 600,
@@ -308,12 +341,12 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
               transition: 'background 0.15s, border-color 0.15s',
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.background = `${PURPLE}22`
-              e.currentTarget.style.borderColor = `${PURPLE}90`
+              e.currentTarget.style.background = `color-mix(in srgb, ${PURPLE} 13%, transparent)`
+              e.currentTarget.style.borderColor = `color-mix(in srgb, ${PURPLE} 56%, transparent)`
             }}
             onMouseLeave={e => {
-              e.currentTarget.style.background = `${PURPLE}12`
-              e.currentTarget.style.borderColor = `${PURPLE}50`
+              e.currentTarget.style.background = `color-mix(in srgb, ${PURPLE} 7%, transparent)`
+              e.currentTarget.style.borderColor = `color-mix(in srgb, ${PURPLE} 31%, transparent)`
             }}
           >
             <span style={{ fontSize: 15 }}>🧭</span>

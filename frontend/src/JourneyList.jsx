@@ -83,7 +83,7 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
             </div>
           )}
           {overlay === null ? (
-            <div style={{ padding: '12px 0' }}><Spinner size={20} color="#8a6d1f" /></div>
+            <div style={{ padding: '12px 0' }}><Spinner size={20} color="var(--paper-accent)" /></div>
           ) : ovBooks.length === 0 ? (
             <div style={{ fontSize: 13, color: 'var(--paper-accent)', padding: '4px 0' }}>표시할 구절이 없습니다</div>
           ) : (
