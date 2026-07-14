@@ -178,7 +178,7 @@ function App() {
     )
   }
 
-  // 개요 단계 내비게이션 바
+  // 개요 단계 내비게이션 바 — 하위 메뉴 탭(책 둘러보기 · 단어 분포), 탐험 뷰 토글과 동형
   function renderOverviewNav() {
     return (
       <div style={{
@@ -202,9 +202,32 @@ function App() {
           <span style={{ fontSize: 13 }}>←</span>
           <span style={{ fontSize: 13 }}>인물 허브</span>
         </button>
-        <div style={{ display: 'flex', alignItems: 'center', height: '100%', padding: '0 14px', gap: 6 }}>
-          <BookOpen size={18} color="var(--ink-faint)" />
-          <span style={{ color: 'var(--ink-dim)', fontSize: 13 }}>성경 책 둘러보기</span>
+        <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+          <button
+            style={{
+              padding: '0 14px', height: '100%',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
+              color: 'var(--ink)',
+              borderBottom: '2px solid var(--gold)',
+              border: 'none', background: 'none', cursor: 'default',
+            }}
+          >
+            <BookOpen size={18} />
+            <span style={{ fontSize: 10, lineHeight: 1 }}>책 둘러보기</span>
+          </button>
+          <button
+            onClick={() => openWords('all')}
+            style={{
+              padding: '0 14px', height: '100%',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
+              color: 'var(--ink-faint)',
+              border: 'none', background: 'none', cursor: 'pointer',
+              transition: 'color 0.15s',
+            }}
+          >
+            <BarChart3 size={18} />
+            <span style={{ fontSize: 10, lineHeight: 1 }}>단어 분포</span>
+          </button>
         </div>
       </div>
     )
@@ -345,7 +368,6 @@ function App() {
             onSelectPerson={(id) => selectPerson(id, 'intro')}
             onOpenOverview={openOverview}
             onOpenTours={openTours}
-            onOpenWords={() => openWords('all')}
           />
         </div>
       )}

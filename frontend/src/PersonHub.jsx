@@ -23,7 +23,6 @@ const ERA_META = {
 // 토큰은 전부 CSS 변수 참조 — 테마(다크/라이트) 전환에 자동 추종(ADR-0020)
 const GOLD = 'var(--gold)'
 const PURPLE = TYPE_COLOR.Book
-const GREEN = 'var(--valence-pos)' // 단어 분포(감정 극성) 진입 버튼
 const GROUND = 'var(--bg-0)'
 const TEXT = 'var(--ink)'
 const CARD_BG = 'var(--bg-1)'
@@ -160,12 +159,11 @@ function EraSection({ era, persons, onSelectPerson, isFirst }) {
  *   onSelectPerson(id: string) — 카드 클릭 시 해당 인물 id 전달
  *   onOpenOverview()            — "성경 책 둘러보기" 버튼 클릭 시 호출
  *   onOpenTours()               — "테마 투어" 버튼 클릭 시 호출
- *   onOpenWords()               — "단어 분포" 버튼 클릭 시 호출
  *
  * 데이터: 내부에서 GET /persons/curated 호출
  *   응답 항목: { id, slug, nameKo, era, eventCount }
  */
-export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours, onOpenWords }) {
+export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours }) {
   const [persons, setPersons] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -353,35 +351,6 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours,
           >
             <span style={{ fontSize: 15 }}>🧭</span>
             테마 투어
-          </button>
-          <button
-            onClick={onOpenWords}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 7,
-              padding: '7px 16px',
-              border: `1px solid color-mix(in srgb, ${GREEN} 31%, transparent)`,
-              borderRadius: 8,
-              background: `color-mix(in srgb, ${GREEN} 7%, transparent)`,
-              color: GREEN,
-              fontSize: 13,
-              fontWeight: 600,
-              cursor: 'pointer',
-              letterSpacing: '0.03em',
-              transition: 'background 0.15s, border-color 0.15s',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.background = `color-mix(in srgb, ${GREEN} 13%, transparent)`
-              e.currentTarget.style.borderColor = `color-mix(in srgb, ${GREEN} 56%, transparent)`
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.background = `color-mix(in srgb, ${GREEN} 7%, transparent)`
-              e.currentTarget.style.borderColor = `color-mix(in srgb, ${GREEN} 31%, transparent)`
-            }}
-          >
-            <span style={{ fontSize: 15 }}>📊</span>
-            단어 분포
           </button>
         </div>
       </div>
