@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { apiGet } from './api'
 import Spinner from './Spinner'
@@ -21,11 +21,52 @@ function fontSize(count, max) {
   return Math.round(13 + 21 * Math.sqrt(count / max))
 }
 
+// 워드 클라우드 배치 — 빈도순으로 중앙에서 아르키메데스 나선을 따라 바깥으로,
+// 이미 놓인 사각형과 겹치지 않는 첫 자리에 놓는다(라이브러리 없이 DOM 버튼 유지).
+// 가로는 컨테이너 폭으로 제한, 세로는 필요한 만큼 늘어난다(y 0.55 압축 = 가로로 퍼진 구름꼴).
+function layoutCloud(words, width, maxCount) {
+  const ctx = document.createElement('canvas').getContext('2d')
+  const serif = getComputedStyle(document.documentElement).getPropertyValue('--serif').trim() || 'serif'
+  const placed = []
+  const pad = 4
+  const cx = width / 2
+  for (const w of words) {
+    const fs = fontSize(w.count, maxCount)
+    ctx.font = `600 ${fs}px ${serif}`
+    const ww = Math.ceil(ctx.measureText(w.word).width)
+    const wh = Math.ceil(fs * 1.3)
+    let x = Math.max(0, cx - ww / 2)
+    let y = -wh / 2
+    for (let t = 0; t < 900; t += Math.max(0.06, 8 / (1.5 * t + 1))) {
+      const r = 1.5 * t
+      x = cx + r * Math.cos(t) - ww / 2
+      y = r * 0.55 * Math.sin(t) - wh / 2
+      if (x < 0 || x + ww > width) continue
+      if (!placed.some(p => x < p.x + p.w + pad && x + ww + pad > p.x && y < p.y + p.h + pad && y + wh + pad > p.y)) break
+    }
+    placed.push({ x, y, w: ww, h: wh, word: w })
+  }
+  const minY = Math.min(...placed.map(p => p.y))
+  const maxY = Math.max(...placed.map(p => p.y + p.h))
+  return { items: placed.map(p => ({ ...p, y: p.y - minY })), height: maxY - minY }
+}
+
 function WordDistributionView({ bookId, onSelectBook, verseLang, setVerseLang }) {
   const [data, setData] = useState(null)       // /words/{bookId} 응답
   const [failed, setFailed] = useState(false)
   const [books, setBooks] = useState(null)     // 책 선택 드롭다운(1회 로드)
   const [verseView, setVerseView] = useState(null) // { word, color, loading, total, verses } | null
+  const cloudRef = useRef(null)
+  const [cloudWidth, setCloudWidth] = useState(0) // 클라우드 내부 폭 — 배치 입력(리사이즈 추적)
+
+  useLayoutEffect(() => {
+    const el = cloudRef.current
+    if (!el) return
+    setCloudWidth(el.clientWidth)
+    const ro = new ResizeObserver(entries => setCloudWidth(Math.floor(entries[0].contentRect.width)))
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [data])
 
   useEffect(() => {
     let cancelled = false
@@ -53,6 +94,12 @@ function WordDistributionView({ bookId, onSelectBook, verseLang, setVerseLang })
 
   const maxCount = data?.words?.length ? data.words[0].count : 1
   const title = bookId === 'all' ? '성경 전체' : (data?.nameKo || '')
+
+  // 클라우드 배치 — 데이터·폭이 준비되면 계산(폭 0인 첫 프레임은 건너뜀)
+  const cloud = useMemo(
+    () => (data?.words?.length && cloudWidth ? layoutCloud(data.words, cloudWidth, maxCount) : null),
+    [data, cloudWidth, maxCount]
+  )
 
   return (
     <div style={{ height: '100%', overflowY: 'auto', background: 'var(--bg-0)', position: 'relative' }}>
@@ -95,28 +142,30 @@ function WordDistributionView({ bookId, onSelectBook, verseLang, setVerseLang })
                 </span>
               ))}
             </div>
-            {/* 단일 클라우드 — 빈도순 혼합 배치, 단어별 스태거 등장 */}
+            {/* 워드 클라우드 — 중앙-나선 배치(빈도 큰 단어가 중심), 단어별 스태거 등장 */}
             <div className="cloud-in" style={{
-              display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', gap: '4px 12px',
               padding: '14px 14px', borderRadius: 12,
               background: 'var(--bg-1)', border: '1px solid var(--line)',
             }}>
-              {data.words.map((w, i) => (
-                <button
-                  key={w.word}
-                  className="word-in"
-                  onClick={() => openWord(w.word, POLARITY_COLOR[w.polarity])}
-                  title={`${w.count}회`}
-                  style={{
-                    border: 'none', background: 'none', cursor: 'pointer', padding: 0,
-                    fontFamily: 'var(--serif)', fontWeight: 600, lineHeight: 1.35,
-                    fontSize: fontSize(w.count, maxCount), color: POLARITY_COLOR[w.polarity],
-                    // 등장 keyframe의 종료 opacity(--w-op)로 빈도 농도를 전달 — fill:both가 inline opacity를 덮으므로 var 경유
-                    '--w-op': 0.55 + 0.45 * Math.sqrt(w.count / maxCount),
-                    animationDelay: `${Math.min(i * 20, 600)}ms`,
-                  }}
-                >{w.word}</button>
-              ))}
+              <div ref={cloudRef} style={{ position: 'relative', height: cloud ? cloud.height : 240 }}>
+                {cloud && cloud.items.map(({ x, y, w: ww, h: wh, word: w }, i) => (
+                  <button
+                    key={w.word}
+                    className="word-in"
+                    onClick={() => openWord(w.word, POLARITY_COLOR[w.polarity])}
+                    title={`${w.count}회`}
+                    style={{
+                      position: 'absolute', left: x, top: y, width: ww, height: wh,
+                      border: 'none', background: 'none', cursor: 'pointer', padding: 0, whiteSpace: 'nowrap',
+                      fontFamily: 'var(--serif)', fontWeight: 600, lineHeight: 1.3,
+                      fontSize: fontSize(w.count, maxCount), color: POLARITY_COLOR[w.polarity],
+                      // 등장 keyframe의 종료 opacity(--w-op)로 빈도 농도를 전달 — fill:both가 inline opacity를 덮으므로 var 경유
+                      '--w-op': 0.55 + 0.45 * Math.sqrt(w.count / maxCount),
+                      animationDelay: `${Math.min(i * 20, 600)}ms`,
+                    }}
+                  >{w.word}</button>
+                ))}
+              </div>
             </div>
           </div>
         )}
