@@ -57,7 +57,7 @@ function SectionHeader({ label, color, count, sectionKey, collapsed, onToggle })
   )
 }
 
-function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, onNodeLoaded, verseLang, setVerseLang, explorePersonId = null, onExplorePerson = () => {}, curatedIds = null, keyPeopleCards = null, onExploreJourney = () => {}, onOpenFamily = () => {}, onClose, stickyTop = 0 }) {
+function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, onNodeLoaded, verseLang, setVerseLang, explorePersonId = null, onExplorePerson = () => {}, curatedIds = null, keyPeopleCards = null, onExploreJourney = () => {}, onOpenFamily = () => {}, onOpenWords = () => {}, onClose, stickyTop = 0 }) {
   // 어느 nodeId의 결과인지 id로 추적 — loading은 파생, stale 응답은 무시.
   // setState는 비동기 콜백에서만 호출(react-hooks set-state-in-effect 준수).
   const [state, setState] = useState({ id: null, node: null, error: null })
@@ -518,6 +518,22 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                 border: '1px solid var(--line-strong)', background: 'var(--bg-2)', color: 'var(--ink-dim)',
               }}>{chip}</span>
             ))}
+          </div>
+
+          {/* 단어 분포 페이지 진입 — 인물의 가계도 버튼과 동형 */}
+          <div style={{ margin: '0 0 14px' }}>
+            <button
+              onClick={() => onOpenWords(node.id)}
+              style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+                width: '100%', padding: '9px 12px', borderRadius: 8,
+                border: '1px solid var(--line-strong)', cursor: 'pointer', font: 'inherit',
+                fontSize: 13, fontWeight: 600, color: 'var(--ink-dim)',
+                background: 'var(--bg-2)',
+              }}
+            >
+              📊 {node.nameKo}의 단어 분포 — 긍정·부정·중립
+            </button>
           </div>
 
           {/* 중심 메시지 — 책의 정수(1~2줄)를 최상단에. 인용문 아닌 서술이라 다크 카드(양피지 아님) */}

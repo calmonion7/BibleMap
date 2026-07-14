@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
-import { Route, Clock, BookOpen, Users, UserRound, Network } from 'lucide-react'
+import { Route, Clock, BookOpen, Users, UserRound, Network, BarChart3 } from 'lucide-react'
 import { TYPE_COLOR } from './theme'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
@@ -9,6 +9,7 @@ import BibleOverviewView from './BibleOverviewView'
 import PersonHub from './PersonHub'
 import PersonIntro from './PersonIntro'
 import FamilyTree from './FamilyTree'
+import WordDistributionView from './WordDistributionView'
 import TourList from './TourList'
 import JourneyList from './JourneyList'
 import { MOBILE_BREAKPOINT, SHEET_VH, JOURNEY_SHEET_VH } from './constants'
@@ -41,9 +42,10 @@ function App() {
 
   // 화면 단계(Stage)·URL·브라우저 히스토리 상태 머신 — 노드 선택 원시값을 주입(useStageNavigation).
   const {
-    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, familyId, curatedIds, keyPeopleCards, sheetOpen,
+    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, familyId, wordsBookId, curatedIds, keyPeopleCards, sheetOpen,
     setExploreView, selectPerson, explorePerson, backToHub, openOverview, overviewBack,
-    openTours, selectTour, toursBack, openBook, bookBack, openFamily, recenterFamily, familyBack, onNodeLoaded,
+    openTours, selectTour, toursBack, openBook, bookBack, openFamily, recenterFamily, familyBack,
+    openWords, selectWordsBook, wordsBack, onNodeLoaded,
   } = useStageNavigation({ selectedNode, selectNodeFresh, closePanel, handleNodeLoaded })
 
   // 여정 데이터 — 인물/투어 선택 시 한 번 fetch, MapView·JourneyList 공유
@@ -269,6 +271,38 @@ function App() {
     )
   }
 
+  // 단어 분포 단계 내비게이션 바 — 뒤로(진입 지점으로 복귀, 가계도와 동형)
+  function renderWordsNav() {
+    return (
+      <div style={{
+        height: NAV_H, flexShrink: 0,
+        display: 'flex', alignItems: 'center',
+        background: 'var(--bg-1)',
+        zIndex: 20, boxShadow: 'var(--shadow-1)',
+        gap: 0,
+      }}>
+        <button
+          onClick={wordsBack}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 6,
+            padding: '0 14px', height: '100%',
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: 'var(--ink-dim)',
+            borderRight: '1px solid var(--line)',
+            flexShrink: 0,
+          }}
+        >
+          <span style={{ fontSize: 13 }}>←</span>
+          <span style={{ fontSize: 13 }}>뒤로</span>
+        </button>
+        <div style={{ display: 'flex', alignItems: 'center', height: '100%', padding: '0 14px', gap: 6 }}>
+          <BarChart3 size={16} color="var(--ink-faint)" />
+          <span style={{ color: 'var(--ink-dim)', fontSize: 13 }}>단어 분포</span>
+        </div>
+      </div>
+    )
+  }
+
   // 투어 목록 단계 내비게이션 바
   function renderToursNav() {
     return (
@@ -348,6 +382,7 @@ function App() {
                   keyPeopleCards={keyPeopleCards}
                   onExploreJourney={selectPerson}
                   onOpenFamily={openFamily}
+                  onOpenWords={openWords}
                 />
               </div>
             </div>
@@ -365,6 +400,21 @@ function App() {
               personId={familyId}
               onRecenter={recenterFamily}
               onOpenPerson={(id) => selectPerson(id, 'intro')}
+            />
+          </div>
+        </>
+      )}
+
+      {/* 단어 분포 단계 — 책 상세 "단어 분포"에서 진입. 전용 전체화면 페이지(family와 동형, wordsBookId 구동). */}
+      {activeStage === 'words' && (
+        <>
+          {renderWordsNav()}
+          <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+            <WordDistributionView
+              bookId={wordsBookId}
+              onSelectBook={selectWordsBook}
+              verseLang={verseLang}
+              setVerseLang={setVerseLang}
             />
           </div>
         </>
@@ -529,6 +579,7 @@ function App() {
             keyPeopleCards={keyPeopleCards}
             onExploreJourney={selectPerson}
             onOpenFamily={openFamily}
+            onOpenWords={openWords}
             onClose={() => window.history.back()}
             stickyTop={isMobile ? 16 : 0}
           />

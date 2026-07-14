@@ -15,6 +15,8 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   // 가계도 페이지의 대상(focus) 인물 id — bookId와 동형으로 selectedNode와 분리. 트리 노드를
   // 클릭해 재중심화하면 familyId만 바뀌어 페이지·URL이 안정적으로 그 인물로 옮겨간다.
   const [familyId, setFamilyId] = useState(null)
+  // 단어 분포 페이지의 대상 책 id('all' 포함) — bookId·familyId와 동형.
+  const [wordsBookId, setWordsBookId] = useState(null)
   // 탐험 내 토글: 'map' | 'timeline'
   const [exploreView, setExploreView] = useState('map')
   // 탐험 중인 인물 — selectedNode와 분리해 장소 클릭 시에도 여정·맵 장소 기준 유지
@@ -84,6 +86,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
         if (parsed.stage === 'overview') setActiveStage('overview')
         else if (parsed.stage === 'book' && parsed.bookId) { setBookId(parsed.bookId); setActiveStage('book') }
         else if (parsed.stage === 'family' && parsed.familyId) { setFamilyId(parsed.familyId); setActiveStage('family') }
+        else if (parsed.stage === 'words' && parsed.wordsBookId) { setWordsBookId(parsed.wordsBookId); setActiveStage('words') }
         else if (parsed.stage === 'tours') setActiveStage('tours')
         else if (parsed.stage === 'explore' && parsed.tourSlug) {
           setExploreTourId(parsed.tourSlug); setActiveStage('explore'); setExploreView(parsed.exploreView)
@@ -109,23 +112,23 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     const slug = explorePersonId ? curatedIdToSlug.current[explorePersonId] : null
     if (activeStage === 'explore' && !slug && !exploreTourId) return // slug/tour 미해결 시 깨진 URL 안 씀
     const sheetOpen = selectedNode != null && selectedNode !== explorePersonId
-    const hash = encodeHash({ stage: activeStage, personSlug: slug, exploreView, tourSlug: exploreTourId, bookId, familyId })
-    const state = { stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, view: exploreView, node: selectedNode }
+    const hash = encodeHash({ stage: activeStage, personSlug: slug, exploreView, tourSlug: exploreTourId, bookId, familyId, wordsBookId })
+    const state = { stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, words: wordsBookId, view: exploreView, node: selectedNode }
     if (popstateGuard.current) {
       // popstate 복원 중 — 브라우저가 이미 히스토리를 옮겼으니 재-push 없이 ref만 동기화.
       popstateGuard.current = false
-      navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, sheetOpen }
+      navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, words: wordsBookId, sheetOpen }
       return
     }
     const prev = navSyncRef.current
     const isForward = prev.initialized &&
-      (prev.stage !== activeStage || prev.person !== explorePersonId || prev.tour !== exploreTourId || prev.book !== bookId || prev.family !== familyId || (!prev.sheetOpen && sheetOpen))
-    navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, sheetOpen }
+      (prev.stage !== activeStage || prev.person !== explorePersonId || prev.tour !== exploreTourId || prev.book !== bookId || prev.family !== familyId || prev.words !== wordsBookId || (!prev.sheetOpen && sheetOpen))
+    navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, words: wordsBookId, sheetOpen }
     if (isForward) window.history.pushState(state, '', hash)
     else window.history.replaceState(state, '', hash)
     // curatedIds 추가(#11): 카드 클릭이 slug맵 로드보다 빨라 :88에서 조기반환했더라도,
     // curatedIds null→Set 시 재실행돼 slug 해석 후 올바른 pushState가 찍히게 한다.
-  }, [restored, activeStage, explorePersonId, exploreTourId, bookId, familyId, exploreView, selectedNode, curatedIds])
+  }, [restored, activeStage, explorePersonId, exploreTourId, bookId, familyId, wordsBookId, exploreView, selectedNode, curatedIds])
 
   // popstate — 브라우저/OS 뒤로·앞으로 시 event.state에서 내비 복원(가드로 재-push 방지).
   useEffect(() => {
@@ -133,12 +136,13 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
       const s = e.state
       popstateGuard.current = true
       Promise.resolve().then(() => {
-        if (!s) { setActiveStage('hub'); setExplorePersonId(null); setExplorePersonName(null); setExploreTourId(null); setBookId(null); setFamilyId(null); closePanel(); return }
+        if (!s) { setActiveStage('hub'); setExplorePersonId(null); setExplorePersonName(null); setExploreTourId(null); setBookId(null); setFamilyId(null); setWordsBookId(null); closePanel(); return }
         setActiveStage(s.stage)
         setExplorePersonId(s.person ?? null)
         setExploreTourId(s.tour ?? null)
         setBookId(s.book ?? null)
         setFamilyId(s.family ?? null)
+        setWordsBookId(s.words ?? null)
         setExploreView(s.view || 'map')
         if (s.node) selectNodeFresh(s.node); else closePanel()
       })
@@ -220,6 +224,24 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     window.history.back()
   }
 
+  // 단어 분포 페이지 진입 — 책 상세의 "단어 분포" 버튼(또는 딥링크). 대상 책('all' 가능)을 focus로.
+  function handleOpenWords(id) {
+    closePanel()
+    setWordsBookId(id)
+    setExploreView('map')
+    setActiveStage('words')
+  }
+
+  // 페이지 내 책 선택 드롭다운 — 같은 스테이지에서 대상 책만 교체(가계도 재중심화와 동형).
+  function handleSelectWordsBook(id) {
+    setWordsBookId(id)
+  }
+
+  // 단어 분포에서 뒤로 — 진입 지점(책 상세/딥링크)에 무관하게 브라우저 히스토리 위임(가계도와 동형).
+  function handleWordsBack() {
+    window.history.back()
+  }
+
   // 허브에서 "테마 투어" 클릭 — 투어 목록 스테이지
   function handleOpenTours() {
     setActiveStage('tours')
@@ -254,7 +276,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   const sheetOpen = selectedNode != null && selectedNode !== explorePersonId
 
   return {
-    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, familyId, curatedIds, keyPeopleCards, sheetOpen,
+    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, familyId, wordsBookId, curatedIds, keyPeopleCards, sheetOpen,
     setExploreView,
     selectPerson: handleSelectPerson,
     explorePerson: handleExplorePerson,
@@ -266,6 +288,9 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     openFamily: handleOpenFamily,
     recenterFamily: handleRecenterFamily,
     familyBack: handleFamilyBack,
+    openWords: handleOpenWords,
+    selectWordsBook: handleSelectWordsBook,
+    wordsBack: handleWordsBack,
     openTours: handleOpenTours,
     selectTour: handleSelectTour,
     toursBack: handleToursBack,
