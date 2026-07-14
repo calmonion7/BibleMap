@@ -16,6 +16,7 @@ def search(q: str = Query("")):
             MATCH (n)
             WHERE (n.nameKo CONTAINS $q OR toLower(n.name) CONTAINS toLower($q))
             AND n.theographic_id IS NOT NULL
+            AND (n.status IS NULL OR n.status <> 'wip')
             WITH n, labels(n) AS labels,
               CASE
                 WHEN n.nameKo = $q OR toLower(n.name) = toLower($q) THEN 0

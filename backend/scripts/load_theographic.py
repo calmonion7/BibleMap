@@ -31,6 +31,36 @@ def filter_published(records):
     return [r for r in records if r.get("fields", {}).get("status", "publish") == "publish"]
 
 
+FAMILY_FIELDS = ("father", "mother", "children", "partners", "siblings")
+
+
+def family_closure_wip(records):
+    """publish 인물에서 가족 필드로 도달 가능한 wip Person 레코드 (가족 폐포, ADR-0021).
+
+    가계도 혈통 완전성을 위해 노드 적재와 가족 간선(부모자식·형제·배우자)에만 포함한다.
+    memberOf·사건 참여 등 나머지 간선은 publish 전용을 유지한다 — 이 제약은 실행 경로가
+    아니라 __main__의 배선으로 보장된다. 폐포 밖 wip(고아 섬)은 적재하지 않는다.
+    """
+    by_id = {r.get("id"): r for r in records}
+    adj = {}
+    for r in records:
+        f = r.get("fields", {})
+        for other in (o for k in FAMILY_FIELDS for o in (f.get(k) or [])):
+            adj.setdefault(r.get("id"), set()).add(other)
+            adj.setdefault(other, set()).add(r.get("id"))
+    publish_ids = {r.get("id") for r in records
+                   if r.get("fields", {}).get("status", "publish") == "publish"}
+    seen = set(publish_ids)
+    stack = list(publish_ids)
+    while stack:
+        x = stack.pop()
+        for y in adj.get(x, ()):
+            if y not in seen and y in by_id:
+                seen.add(y)
+                stack.append(y)
+    return [by_id[i] for i in sorted(seen - publish_ids)]
+
+
 def create_indexes(session):
     print("Creating indexes...")
     for cypher in [
@@ -61,6 +91,8 @@ def load_people(session, records):
             "deathYear":    f.get("deathYear"),
             "displayTitle": f.get("displayTitle"),
             "slug":         f.get("slug"),
+            # wip 레코드(가족 폐포 보충)만 status 마킹 — publish는 null로 속성 미보유 (ADR-0021)
+            "status":       "wip" if f.get("status", "publish") != "publish" else None,
         })
     cypher = """
 UNWIND $rows AS row
@@ -70,7 +102,8 @@ SET p.name         = row.name,
     p.birthYear    = row.birthYear,
     p.deathYear    = row.deathYear,
     p.displayTitle = row.displayTitle,
-    p.slug         = row.slug
+    p.slug         = row.slug,
+    p.status       = row.status
 """
     run_batched(session, cypher, rows, BATCH_NODE)
     print("Person nodes loaded.")
@@ -299,18 +332,23 @@ if __name__ == "__main__":
     groups = filter_published(raw_groups)
     print(f"Published: {len(people)} people, {len(places)} places, {len(events)} events, {len(groups)} peopleGroups")
 
+    # 가족 폐포 wip 인물 (ADR-0021) — 노드·가족 간선에만 포함, 나머지 간선은 publish 전용
+    wip_family = family_closure_wip(raw_people)
+    family_people = people + wip_family
+    print(f"Family-closure wip people: {len(wip_family)}")
+
     driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
     with driver.session() as session:
         create_indexes(session)
 
-        load_people(session, people)
+        load_people(session, family_people)
         load_places(session, places)
         load_events(session, events)
         load_people_groups(session, groups)
 
-        load_parent_child_rels(session, people)
-        load_sibling_rels(session, people)
-        load_partner_rels(session, people)
+        load_parent_child_rels(session, family_people)
+        load_sibling_rels(session, family_people)
+        load_partner_rels(session, family_people)
         load_member_of_rels(session, people)
         load_has_participant_rels(session, events)
         load_occurs_at_rels(session, events)

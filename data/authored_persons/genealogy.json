@@ -1,5 +1,5 @@
 {
-  "note": "마태복음 1장 — 예수의 족보(아브라함→예수 단일 사슬). ADR-0019 저작 보충. chain은 조상→후손 순서이며 연속 쌍이 PARENT_OF/CHILD_OF 간선이 된다. authored=true인 노드만 신규 생성(나머지는 기존 theographic 노드 id). 재적재 규칙: load_theographic.py 재실행 후 load_authored_genealogy.py를 반드시 재실행.",
+  "note": "마태복음 1장 — 예수의 족보(아브라함→예수 단일 사슬). ADR-0019 저작 보충 → ADR-0021로 전면 실레코드 이관: 가족 폐포 wip 적재로 사슬 전 인물이 theographic 실레코드가 되어 authored 노드가 남지 않는다. 마태1이 생략한 실제 세대(아하시야·요아스·아마샤·여호야김, inserted:true)는 지름길 간선으로 인한 이중 아버지 표시를 피하려 실혈통으로 삽입했다. 스알디엘→스룹바벨만 theographic(대상 1:19 브다야 부자)과 마태1(스알디엘 부자)이 갈려 이 로더의 저작 간선이 잇는다(성경 이중 기록, 두 아버지 모두 표시됨). chain은 조상→후손 순서이며 연속 쌍이 PARENT_OF/CHILD_OF 간선이 된다. 재적재 규칙: load_theographic.py 재실행 후 load_authored_genealogy.py를 반드시 재실행.",
   "chain": [
     {
       "id": "reccdFYIq50NyxNej",
@@ -22,52 +22,44 @@
       "name": "Judah (patriarch)"
     },
     {
-      "id": "authored-mt1-perez",
+      "id": "recMUZkUfOwBiZ3jk",
       "nameKo": "베레스",
-      "name": "Perez",
-      "authored": true
+      "name": "Pharez"
     },
     {
-      "id": "authored-mt1-hezron",
+      "id": "recAgyv9RNNafnPAg",
       "nameKo": "헤스론",
-      "name": "Hezron",
-      "authored": true
+      "name": "Hezron"
     },
     {
-      "id": "authored-mt1-ram",
+      "id": "recH7JpZUIqyGxHkt",
       "nameKo": "람",
-      "name": "Ram",
-      "authored": true
+      "name": "Ram"
     },
     {
-      "id": "authored-mt1-amminadab",
+      "id": "recA9vgrqa7VKXAU6",
       "nameKo": "아미나답",
-      "name": "Amminadab",
-      "authored": true
+      "name": "Amminadab"
     },
     {
-      "id": "authored-mt1-nahshon",
+      "id": "recUDLYiodtPKHuXc",
       "nameKo": "나손",
-      "name": "Nahshon",
-      "authored": true
+      "name": "Nahshon"
     },
     {
-      "id": "authored-mt1-salmon",
+      "id": "recWqKsXPDazPbzss",
       "nameKo": "살몬",
-      "name": "Salmon",
-      "authored": true
+      "name": "Salmon"
     },
     {
-      "id": "authored-mt1-boaz",
+      "id": "recD5yp1lrQTH1DZp",
       "nameKo": "보아스",
-      "name": "Boaz",
-      "authored": true
+      "name": "Boaz"
     },
     {
-      "id": "authored-mt1-obed",
+      "id": "rectDn5oa2vLcaeVF",
       "nameKo": "오벳",
-      "name": "Obed",
-      "authored": true
+      "name": "Obed"
     },
     {
       "id": "rec9lplwEhGgkXdOn",
@@ -85,154 +77,153 @@
       "name": "Solomon"
     },
     {
-      "id": "authored-mt1-rehoboam",
+      "id": "recqQthL4TAHb0KeC",
       "nameKo": "르호보암",
-      "name": "Rehoboam",
-      "authored": true
+      "name": "Rehoboam"
     },
     {
-      "id": "authored-mt1-abijah",
+      "id": "recEg9i0J2MgmkZr8",
       "nameKo": "아비야",
-      "name": "Abijah",
-      "authored": true
+      "name": "Abijah"
     },
     {
-      "id": "authored-mt1-asa",
+      "id": "recaraSBvlHIwaaOB",
       "nameKo": "아사",
-      "name": "Asa",
-      "authored": true
+      "name": "Asa"
     },
     {
-      "id": "authored-mt1-jehoshaphat",
+      "id": "recyNusCmwtrDBSab",
       "nameKo": "여호사밧",
-      "name": "Jehoshaphat",
-      "authored": true
+      "name": "Jehoshaphat"
     },
     {
-      "id": "authored-mt1-joram",
+      "id": "recsyU2HqpyE9PeTo",
       "nameKo": "요람",
-      "name": "Joram",
-      "authored": true
+      "name": "Jehoram"
     },
     {
-      "id": "authored-mt1-uzziah",
+      "id": "rec83PZfB7PGjHMh0",
+      "nameKo": "아하시야",
+      "name": "Ahaziah",
+      "inserted": true
+    },
+    {
+      "id": "recA6SoUZemkcNXbN",
+      "nameKo": "요아스",
+      "name": "Joash",
+      "inserted": true
+    },
+    {
+      "id": "receruzYNFLuIW0Kn",
+      "nameKo": "아마샤",
+      "name": "Amaziah",
+      "inserted": true
+    },
+    {
+      "id": "recZOriotFt9GIf6b",
       "nameKo": "웃시야",
-      "name": "Uzziah",
-      "authored": true
+      "name": "Uzziah"
     },
     {
-      "id": "authored-mt1-jotham",
+      "id": "recRMsfahAI4RmTZe",
       "nameKo": "요담",
-      "name": "Jotham",
-      "authored": true
+      "name": "Jotham"
     },
     {
-      "id": "authored-mt1-ahaz",
+      "id": "recQoq4AXnZxZhOFh",
       "nameKo": "아하스",
-      "name": "Ahaz",
-      "authored": true
+      "name": "Ahaz"
     },
     {
-      "id": "authored-mt1-hezekiah",
+      "id": "recNlVijtEIdQhAIm",
       "nameKo": "히스기야",
-      "name": "Hezekiah",
-      "authored": true
+      "name": "Hezekiah"
     },
     {
-      "id": "authored-mt1-manasseh-king",
+      "id": "rec5LjGfCEP8klGHt",
       "nameKo": "므낫세",
-      "name": "Manasseh (king)",
-      "authored": true
+      "name": "Manasseh (son of Hezekiah)"
     },
     {
-      "id": "authored-mt1-amon",
+      "id": "rectyCDQXPV0r8tal",
       "nameKo": "아몬",
-      "name": "Amon",
-      "authored": true
+      "name": "Amon"
     },
     {
-      "id": "authored-mt1-josiah",
+      "id": "recNOn1RcB3sCzCnh",
       "nameKo": "요시야",
-      "name": "Josiah",
-      "authored": true
+      "name": "Josiah"
     },
     {
-      "id": "authored-mt1-jeconiah",
+      "id": "recRVq3v1aG0UAtsg",
+      "nameKo": "여호야김",
+      "name": "Jehoiakim",
+      "inserted": true
+    },
+    {
+      "id": "recO6jj8WG1gFfhIR",
       "nameKo": "여고냐",
-      "name": "Jeconiah",
-      "authored": true
+      "name": "Jehoiachin"
     },
     {
-      "id": "authored-mt1-shealtiel",
+      "id": "recLeCDZ3zDUeKqGW",
       "nameKo": "스알디엘",
-      "name": "Shealtiel",
-      "authored": true
+      "name": "Shealtiel"
     },
     {
-      "id": "authored-mt1-zerubbabel",
+      "id": "rec0lXwCB3xvWjTVN",
       "nameKo": "스룹바벨",
-      "name": "Zerubbabel",
-      "authored": true
+      "name": "Zerubbabel"
     },
     {
-      "id": "authored-mt1-abiud",
+      "id": "reclzT8HJe4ZJB9uN",
       "nameKo": "아비훗",
-      "name": "Abiud",
-      "authored": true
+      "name": "Abiud"
     },
     {
-      "id": "authored-mt1-eliakim",
+      "id": "recXuNF2yQWVO3DRE",
       "nameKo": "엘리아김",
-      "name": "Eliakim",
-      "authored": true
+      "name": "Eliakim"
     },
     {
-      "id": "authored-mt1-azor",
+      "id": "recPOsJsYchjChPbS",
       "nameKo": "아소르",
-      "name": "Azor",
-      "authored": true
+      "name": "Azor"
     },
     {
-      "id": "authored-mt1-zadok",
+      "id": "recyodFnJCZMINzE6",
       "nameKo": "사독",
-      "name": "Zadok",
-      "authored": true
+      "name": "Sadoc"
     },
     {
-      "id": "authored-mt1-achim",
+      "id": "rec70vtYGQf1asZoN",
       "nameKo": "아킴",
-      "name": "Achim",
-      "authored": true
+      "name": "Achim"
     },
     {
-      "id": "authored-mt1-eliud",
+      "id": "recDP070Jjn9UpFQz",
       "nameKo": "엘리웃",
-      "name": "Eliud",
-      "authored": true
+      "name": "Eliud"
     },
     {
-      "id": "authored-mt1-eleazar",
+      "id": "reci84bAiBZdK8AMY",
       "nameKo": "엘르아살",
-      "name": "Eleazar",
-      "authored": true
+      "name": "Eleazar"
     },
     {
-      "id": "authored-mt1-matthan",
+      "id": "recBa0KTBf77IdY8c",
       "nameKo": "맛단",
-      "name": "Matthan",
-      "authored": true
+      "name": "Matthan"
     },
     {
-      "id": "authored-mt1-jacob-father-of-joseph",
+      "id": "reco9bEDv9NKzhzvv",
       "nameKo": "야곱",
-      "name": "Jacob (father of Joseph)",
-      "authored": true
+      "name": "Jacob"
     },
     {
-      "id": "authored-mt1-joseph-husband-of-mary",
+      "id": "recz2xTRGz9XZD6dT",
       "nameKo": "요셉",
-      "name": "Joseph (husband of Mary)",
-      "authored": true
+      "name": "Joseph (Mary's Husband)"
     },
     {
       "id": "recgkFqZovgbr3pAi",

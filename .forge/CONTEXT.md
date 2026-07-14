@@ -13,6 +13,8 @@ Theographic Bible Metadata 레포에서 사용하는 Airtable 레코드 ID. `rec
 
 Theographic 데이터에서 `fields.status == "publish"`인 레코드. 데이터가 검수 완료된 상태. `status == "wip"` 레코드는 미완성이므로 BibleMap 적재에서 제외한다.
 
+**예외 — 가족 폐포 wip 인물 (ADR-0021)**: Person에 한해, publish 인물에서 가족 필드(father/mother/children/partners/siblings)로 도달 가능한 wip 레코드는 노드로 적재한다. [[가계도-family-tree]]의 혈통 완전성을 위해서다(다윗의 자녀 21명 중 publish는 솔로몬뿐). 단 3중 격리를 지킨다 — `status: "wip"` 속성 마킹, **가족 간선만** 적재(사건 참여·그룹 등 나머지 간선은 publish 전용), `/search` 결과에서 제외. 폐포 밖 wip(고아 섬)과 Person 외 엔티티는 여전히 전면 제외다.
+
 **엔티티별 status 필드 유무**: Person·Place는 `status` 필드가 있다. Event·PeopleGroup은 `status` 필드가 없으므로 "전체 포함"으로 처리한다(`fields.get("status", "publish") == "publish"` 패턴). Verse·Book·Chapter 등 추가 엔티티를 적재할 때는 `status` 필드 유무를 먼저 확인해야 한다.
 
 ## Period
@@ -126,7 +128,7 @@ BibleMap 데이터를 바라보는 세 가지 중심 관점. 관점에 따라 �
 
 ## 가계도 (Family Tree)
 
-한 인물을 중심으로 **혈통(kinship)** 을 세대별로 세워 보여주는 전용 화면. 데이터는 **그래프 혈통 간선** — 부모↔자식(`PARENT_OF`/`CHILD_OF`), 형제(`SIBLING_OF`), 배우자(`PARTNER_OF`) — 에서 파생하며, theographic 원본의 `father`/`mother`(배열)를 적재하는 것이 원천이다. **혈통이 단절되는 지점(부모가 미게시 인물이라 노드가 없거나 원본에 링크가 없는 곳)은 [[저작-인물-authored-person]] 패턴으로 보충**한다(재저작이 아니라 구멍 메우기). 대표 계보 1건(예수의 족보 — 마태복음 1장)은 이 보충으로 뿌리까지 무단절을 보증한다.
+한 인물을 중심으로 **혈통(kinship)** 을 세대별로 세워 보여주는 전용 화면. 데이터는 **그래프 혈통 간선** — 부모↔자식(`PARENT_OF`/`CHILD_OF`), 형제(`SIBLING_OF`), 배우자(`PARTNER_OF`) — 에서 파생하며, theographic 원본의 `father`/`mother`(배열)를 적재하는 것이 원천이다. **혈통 단절의 1차 보충은 가족 폐포 wip 인물의 실레코드 적재**([[publish-레코드]]의 예외, ADR-0021)이고, **원본에 아예 없는 인물만 [[저작-인물-authored-person]] 패턴으로 저작 보충**한다(재저작이 아니라 구멍 메우기). 대표 계보 1건(예수의 족보 — 마태복음 1장)은 이 보충으로 뿌리까지 무단절을 보증한다.
 
 세 이웃 개념과 명확히 구분된다:
 
