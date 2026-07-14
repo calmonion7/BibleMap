@@ -320,7 +320,8 @@ function App() {
     )
   }
 
-  // 단어 분포 단계 내비게이션 바 — 뒤로(진입 지점으로 복귀, 가계도와 동형)
+  // 단어 분포 단계 내비게이션 바 — 뒤로 + 하위 메뉴 탭(책 정보 · 단어 분포(활성), 책 상세 내비와 대칭).
+  // 책 정보 탭은 대상이 실제 책일 때만(성경 전체 'all'엔 책 상세가 없음).
   function renderWordsNav() {
     return (
       <div style={{
@@ -344,9 +345,34 @@ function App() {
           <span style={{ fontSize: 13 }}>←</span>
           <span style={{ fontSize: 13 }}>뒤로</span>
         </button>
-        <div style={{ display: 'flex', alignItems: 'center', height: '100%', padding: '0 14px', gap: 6 }}>
-          <BarChart3 size={16} color="var(--ink-faint)" />
-          <span style={{ color: 'var(--ink-dim)', fontSize: 13 }}>단어 분포</span>
+        <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+          {wordsBookId && wordsBookId !== 'all' && (
+            <button
+              onClick={() => openBook(wordsBookId)}
+              style={{
+                padding: '0 14px', height: '100%',
+                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
+                color: 'var(--ink-faint)',
+                border: 'none', background: 'none', cursor: 'pointer',
+                transition: 'color 0.15s',
+              }}
+            >
+              <BookOpen size={18} />
+              <span style={{ fontSize: 10, lineHeight: 1 }}>책 정보</span>
+            </button>
+          )}
+          <button
+            style={{
+              padding: '0 14px', height: '100%',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
+              color: 'var(--ink)',
+              borderBottom: '2px solid var(--gold)',
+              border: 'none', background: 'none', cursor: 'default',
+            }}
+          >
+            <BarChart3 size={18} />
+            <span style={{ fontSize: 10, lineHeight: 1 }}>단어 분포</span>
+          </button>
         </div>
       </div>
     )
