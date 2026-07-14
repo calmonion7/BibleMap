@@ -59,3 +59,15 @@ def event_verses() -> dict:
 def bible_verses() -> dict:
     """정본 절 사전(verseID → {textKo, textEn}) 오버레이. 1회 로드 캐시."""
     return _load("bible/verses.json")
+
+
+@functools.lru_cache(maxsize=1)
+def word_distribution() -> dict:
+    """책별 단어 분포 정본(bookId | "all" → {nameKo?, words}). 1회 로드 캐시."""
+    return _load("word_distribution.json")
+
+
+@functools.lru_cache(maxsize=1)
+def books_ko() -> dict:
+    """책 한글명·약칭 정본(theographic_id → {ko, alias}, 정경 순). 1회 로드 캐시."""
+    return _load("names_ko/books.json")

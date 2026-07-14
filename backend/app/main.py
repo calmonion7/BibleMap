@@ -18,7 +18,7 @@ def _configure_logging():
 
 _configure_logging()  # import 시점(라우터 import 전) 1회
 
-from .routes import nodes, events, search, books, persons, journey, places, tours, family
+from .routes import nodes, events, search, books, persons, journey, places, tours, family, words
 
 logger = logging.getLogger(__name__)
 
@@ -58,3 +58,4 @@ app.include_router(journey.router)
 app.include_router(places.router)
 app.include_router(tours.router)
 app.include_router(family.router)
+app.include_router(words.router)
