@@ -345,6 +345,7 @@ function App() {
             onSelectPerson={(id) => selectPerson(id, 'intro')}
             onOpenOverview={openOverview}
             onOpenTours={openTours}
+            onOpenWords={() => openWords('all')}
           />
         </div>
       )}
