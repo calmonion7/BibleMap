@@ -504,6 +504,22 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
       {/* Book 전용 뷰 */}
       {node.label === 'Book' && (
         <div style={{ padding: '12px 16px 20px', fontSize: 14 }}>
+          {/* 단어 분포 페이지 진입 — 인물의 가계도 버튼과 동형. 메타 칩보다 위(섹션 최상단) */}
+          <div style={{ margin: '0 0 14px' }}>
+            <button
+              onClick={() => onOpenWords(node.id)}
+              style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+                width: '100%', padding: '9px 12px', borderRadius: 8,
+                border: '1px solid var(--line-strong)', cursor: 'pointer', font: 'inherit',
+                fontSize: 13, fontWeight: 600, color: 'var(--ink-dim)',
+                background: 'var(--bg-2)',
+              }}
+            >
+              📊 {node.nameKo}의 단어 분포 — 긍정·부정·중립
+            </button>
+          </div>
+
           {/* 메타 칩 */}
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 14 }}>
             {/* 장르는 한글(GENRE_META), 사건 파생 연도범위(startYear~endYear)는 오해 유발(인용 오염 가능·저작 칩과 중복)이라 제외 */}
@@ -518,22 +534,6 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                 border: '1px solid var(--line-strong)', background: 'var(--bg-2)', color: 'var(--ink-dim)',
               }}>{chip}</span>
             ))}
-          </div>
-
-          {/* 단어 분포 페이지 진입 — 인물의 가계도 버튼과 동형 */}
-          <div style={{ margin: '0 0 14px' }}>
-            <button
-              onClick={() => onOpenWords(node.id)}
-              style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
-                width: '100%', padding: '9px 12px', borderRadius: 8,
-                border: '1px solid var(--line-strong)', cursor: 'pointer', font: 'inherit',
-                fontSize: 13, fontWeight: 600, color: 'var(--ink-dim)',
-                background: 'var(--bg-2)',
-              }}
-            >
-              📊 {node.nameKo}의 단어 분포 — 긍정·부정·중립
-            </button>
           </div>
 
           {/* 중심 메시지 — 책의 정수(1~2줄)를 최상단에. 인용문 아닌 서술이라 다크 카드(양피지 아님) */}

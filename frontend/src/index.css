@@ -139,3 +139,20 @@ h2 {
     font-size: 20px;
   }
 }
+
+/* 단어 분포 클라우드 등장 애니메이션 — 컨테이너 페이드인 + 단어별 스태거(fade+scale).
+   단어 종료 opacity는 빈도 농도(--w-op, 인라인 var)로 — fill:both가 inline opacity를 덮는 gotcha 우회. */
+@keyframes cloud-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.cloud-in {
+  animation: cloud-in 0.5s ease both;
+}
+@keyframes word-in {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: var(--w-op, 1); transform: none; }
+}
+.word-in {
+  animation: word-in 0.45s cubic-bezier(0.2, 0.7, 0.3, 1.1) both;
+}

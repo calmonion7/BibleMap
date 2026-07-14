@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { apiGet } from './api'
 import Spinner from './Spinner'
 import VerseLangTabs from './VerseLangTabs'
 
-// 단어 분포 페이지 — 책(또는 성경 전체)의 상위 빈도 명사를 감정 극성(긍정/중립/부정)
-// 3영역 타이포그래피 클라우드로 표시. 크기 ∝ √빈도, 단어 탭 → 해당 책의 포함 구절 시트.
+// 단어 분포 페이지 — 책(또는 성경 전체)의 상위 빈도 명사를 단일 타이포그래피 클라우드로 표시.
+// 감정 극성(긍정/중립/부정)은 색+범례로만 구분(영역 분리 없음). 크기 ∝ √빈도,
+// 단어 탭 → 해당 책의 포함 구절 양피지 레이어(사건·성품 구절 레이어와 동일 패턴).
 // 데이터는 빌드타임 정본(word_distribution.json)을 /words API가 서빙(런타임 형태소 분석 없음).
 
 const BANDS = [
@@ -12,6 +14,7 @@ const BANDS = [
   { key: 'neutral', label: '중립', color: 'var(--valence-neutral)' },
   { key: 'negative', label: '부정', color: 'var(--valence-neg)' },
 ]
+const POLARITY_COLOR = Object.fromEntries(BANDS.map(b => [b.key, b.color]))
 
 // 폰트 크기: √(빈도/최대빈도)로 13~34px — 선형이면 최고빈도어(하나님·여호와)가 화면을 삼킨다
 function fontSize(count, max) {
@@ -80,74 +83,83 @@ function WordDistributionView({ bookId, onSelectBook, verseLang, setVerseLang })
         {failed && <div style={{ color: 'var(--danger)', fontSize: 13 }}>단어 분포를 불러오지 못했습니다.</div>}
         {!data && !failed && <Spinner />}
 
-        {data && BANDS.map(band => {
-          const words = data.words.filter(w => w.polarity === band.key)
-          return (
-            <div key={band.key} style={{ marginBottom: 20 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 8 }}>
-                <span style={{ width: 9, height: 9, borderRadius: '50%', background: band.color }} />
-                <span style={{ fontSize: 12, fontWeight: 700, color: band.color }}>{band.label}</span>
-                <span style={{ fontSize: 11, color: 'var(--ink-faint)' }}>{words.length}</span>
-              </div>
-              <div style={{
-                display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', gap: '4px 12px',
-                padding: '14px 14px', borderRadius: 12,
-                background: 'var(--bg-1)', border: '1px solid var(--line)',
-              }}>
-                {words.length === 0 && <span style={{ fontSize: 12, color: 'var(--ink-faint)' }}>해당 단어 없음</span>}
-                {words.map(w => (
-                  <button
-                    key={w.word}
-                    onClick={() => openWord(w.word, band.color)}
-                    title={`${w.count}회`}
-                    style={{
-                      border: 'none', background: 'none', cursor: 'pointer', padding: 0,
-                      fontFamily: 'var(--serif)', fontWeight: 600, lineHeight: 1.35,
-                      fontSize: fontSize(w.count, maxCount), color: band.color,
-                      opacity: 0.55 + 0.45 * Math.sqrt(w.count / maxCount),
-                    }}
-                  >{w.word}</button>
-                ))}
-              </div>
+        {data && (
+          <div key={bookId}>
+            {/* 범례 — 극성은 색으로만 구분(영역 분리 없음) */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 8 }}>
+              {BANDS.map(band => (
+                <span key={band.key} style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+                  <span style={{ width: 9, height: 9, borderRadius: '50%', background: band.color }} />
+                  <span style={{ fontSize: 12, fontWeight: 700, color: band.color }}>{band.label}</span>
+                  <span style={{ fontSize: 11, color: 'var(--ink-faint)' }}>{data.words.filter(w => w.polarity === band.key).length}</span>
+                </span>
+              ))}
             </div>
-          )
-        })}
-      </div>
-
-      {/* 구절 시트 — 단어 탭 시 하단에서 열림(모바일·데스크톱 공통) */}
-      {verseView && (
-        <div style={{
-          position: 'fixed', left: 0, right: 0, bottom: 0, zIndex: 30,
-          maxHeight: '55dvh', display: 'flex', flexDirection: 'column',
-          background: 'var(--bg-1)', borderTop: '1px solid var(--line-strong)', boxShadow: 'var(--shadow-2)',
-        }}>
-          <div style={{ maxWidth: 720, margin: '0 auto', width: '100%', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px 8px', flexShrink: 0 }}>
-              <span style={{ fontSize: 17, fontWeight: 700, fontFamily: 'var(--serif)', color: verseView.color }}>{verseView.word}</span>
-              {!verseView.loading && <span style={{ fontSize: 12, color: 'var(--ink-faint)' }}>{verseView.total}구절{verseView.total > verseView.verses.length ? ` 중 ${verseView.verses.length}` : ''}</span>}
-              <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} color="var(--gold)" />
-              <button
-                onClick={() => setVerseView(null)}
-                aria-label="닫기"
-                style={{ marginLeft: 'auto', border: 'none', background: 'none', cursor: 'pointer', color: 'var(--ink-faint)', fontSize: 16, padding: 4 }}
-              >✕</button>
-            </div>
-            <div style={{ overflowY: 'auto', padding: '0 16px 20px' }}>
-              {verseView.loading && <Spinner />}
-              {!verseView.loading && verseView.verses.length === 0 && (
-                <div style={{ fontSize: 13, color: 'var(--ink-faint)', padding: '8px 0' }}>구절을 찾지 못했습니다.</div>
-              )}
-              {verseView.verses.map(v => (
-                <div key={v.ref + v.textKo.slice(0, 8)} style={{ padding: '8px 0', borderBottom: '1px solid var(--line)' }}>
-                  <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--gold)', marginBottom: 3 }}>{v.ref}</div>
-                  <div style={{ fontSize: 13, color: 'var(--ink-dim)', lineHeight: 1.65 }}>
-                    {verseLang === 'en' && v.textEn ? v.textEn : v.textKo}
-                  </div>
-                </div>
+            {/* 단일 클라우드 — 빈도순 혼합 배치, 단어별 스태거 등장 */}
+            <div className="cloud-in" style={{
+              display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', gap: '4px 12px',
+              padding: '14px 14px', borderRadius: 12,
+              background: 'var(--bg-1)', border: '1px solid var(--line)',
+            }}>
+              {data.words.map((w, i) => (
+                <button
+                  key={w.word}
+                  className="word-in"
+                  onClick={() => openWord(w.word, POLARITY_COLOR[w.polarity])}
+                  title={`${w.count}회`}
+                  style={{
+                    border: 'none', background: 'none', cursor: 'pointer', padding: 0,
+                    fontFamily: 'var(--serif)', fontWeight: 600, lineHeight: 1.35,
+                    fontSize: fontSize(w.count, maxCount), color: POLARITY_COLOR[w.polarity],
+                    // 등장 keyframe의 종료 opacity(--w-op)로 빈도 농도를 전달 — fill:both가 inline opacity를 덮으므로 var 경유
+                    '--w-op': 0.55 + 0.45 * Math.sqrt(w.count / maxCount),
+                    animationDelay: `${Math.min(i * 20, 600)}ms`,
+                  }}
+                >{w.word}</button>
               ))}
             </div>
           </div>
-        </div>
+        )}
+      </div>
+
+      {/* 구절 레이어 — 사건·성품 구절 레이어와 동일한 양피지 포털 모달(SidePanel 패턴 복제) */}
+      {verseView && createPortal(
+        <div
+          onClick={() => setVerseView(null)}
+          style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
+        >
+          <div onClick={e => e.stopPropagation()} style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+              <span style={{ fontWeight: 700, fontSize: 15, flex: 1, fontFamily: 'var(--serif)', color: verseView.color }}>{verseView.word}</span>
+              <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
+              <button
+                onClick={() => setVerseView(null)}
+                aria-label="닫기"
+                style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: 20, color: 'var(--paper-accent)', lineHeight: 1, padding: '0 2px' }}
+              >×</button>
+            </div>
+            {!verseView.loading && (
+              <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--paper-accent)', marginBottom: 8 }}>
+                {verseView.total}구절{verseView.total > verseView.verses.length ? ` 중 ${verseView.verses.length}` : ''}
+              </div>
+            )}
+            {verseView.loading ? (
+              <div style={{ padding: '12px 0' }}><Spinner size={20} color="var(--paper-accent)" /></div>
+            ) : verseView.verses.length === 0 ? (
+              <div style={{ fontSize: 13, color: 'var(--paper-accent)', padding: '4px 0' }}>구절을 찾지 못했습니다.</div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {verseView.verses.map(v => (
+                  <div key={v.ref + v.textKo.slice(0, 8)} style={{ fontFamily: 'var(--serif)', fontSize: 15.5, lineHeight: 1.8, color: 'var(--paper-ink)' }}>
+                    <span style={{ fontWeight: 700, color: 'var(--paper-accent)', marginRight: 6 }}>{v.ref}</span>
+                    {verseLang === 'en' && v.textEn ? v.textEn : v.textKo}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>,
+        document.body
       )}
     </div>
   )
