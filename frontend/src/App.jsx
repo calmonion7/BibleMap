@@ -233,7 +233,7 @@ function App() {
     )
   }
 
-  // 책 상세 단계 내비게이션 바 — 개요(성경 책 둘러보기)로 복귀
+  // 책 상세 단계 내비게이션 바 — 개요(성경 책 둘러보기)로 복귀 + 하위 메뉴 탭(책 정보 · 단어 분포, 둘러보기 내비와 동형)
   function renderBookNav() {
     return (
       <div style={{
@@ -255,9 +255,35 @@ function App() {
           }}
         >
           <span style={{ fontSize: 13 }}>←</span>
-          <BookOpen size={16} color="var(--ink-faint)" />
           <span style={{ fontSize: 13 }}>성경 책 둘러보기</span>
         </button>
+        <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+          <button
+            style={{
+              padding: '0 14px', height: '100%',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
+              color: 'var(--ink)',
+              borderBottom: '2px solid var(--gold)',
+              border: 'none', background: 'none', cursor: 'default',
+            }}
+          >
+            <BookOpen size={18} />
+            <span style={{ fontSize: 10, lineHeight: 1 }}>책 정보</span>
+          </button>
+          <button
+            onClick={() => openWords(bookId)}
+            style={{
+              padding: '0 14px', height: '100%',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
+              color: 'var(--ink-faint)',
+              border: 'none', background: 'none', cursor: 'pointer',
+              transition: 'color 0.15s',
+            }}
+          >
+            <BarChart3 size={18} />
+            <span style={{ fontSize: 10, lineHeight: 1 }}>단어 분포</span>
+          </button>
+        </div>
       </div>
     )
   }
@@ -405,7 +431,6 @@ function App() {
                   keyPeopleCards={keyPeopleCards}
                   onExploreJourney={selectPerson}
                   onOpenFamily={openFamily}
-                  onOpenWords={openWords}
                 />
               </div>
             </div>
@@ -602,7 +627,6 @@ function App() {
             keyPeopleCards={keyPeopleCards}
             onExploreJourney={selectPerson}
             onOpenFamily={openFamily}
-            onOpenWords={openWords}
             onClose={() => window.history.back()}
             stickyTop={isMobile ? 16 : 0}
           />
