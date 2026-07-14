@@ -67,7 +67,7 @@ Event 노드의 발생 시점 속성. **혼재 형식의 문자열**이다 — �
 
 ## 저작 인물 (Authored Person)
 
-성경인물탐험에 큐레이션하려는 주인공이지만 Theographic 그래프에 Person 노드가 없는 인물(사사시대 드보라·기드온·입다·삼손·룻 등). 기존 큐레이션 16인은 실제 Theographic `rec` id를 재사용하지만, 사사들은 재사용할 노드가 없어 **마킹된 authored Person 노드를 새로 만든다 (ADR-0008)**. `data/authored_persons/people.json` → `load_authored_persons.py`가 `MERGE (p:Person {theographic_id})` + `authored:true` + `name`/`nameKo`로 멱등 적재. 식별자는 `authored-person-<slug>`(저작 사건 `authored-<slug>`·저작 장소 `authored-place-<name>`와 같은 계열). **적재 순서 제약**: authored Person이 `load_person_events.py`보다 먼저 적재돼야 인물 여정 사건의 `HAS_PARTICIPANT` MATCH가 성립한다. authored **사건의 주변 참여자**(네로·에스더 등 — 카드·여정 없음)는 이 대상이 아니라 여전히 노드 없이 둔다(ADR-0005의 경계). 카드·여정·SidePanel·지도가 일급 Person으로 소비하지만 traits 부여는 별도 enrich 경로다.
+성경인물탐험에 큐레이션하려는 주인공이지만 Theographic 그래프에 Person 노드가 없는 인물. 기존 큐레이션 16인은 실제 Theographic `rec` id를 재사용하지만, 재사용할 노드가 없으면 **마킹된 authored Person 노드를 새로 만든다 (ADR-0008)**. **단, theographic에 검증 가능한 대응 실레코드가 있으면(가족 링크의 성경 사실 일치로 판정) 저작 노드가 아니라 그 실레코드가 정식 신원이다 — 저작 노드는 원본에 아예 없을 때만 만들고 유지한다(ADR-0022, 사울·룻·기드온 등 11명 이관; 다니엘·엘리야만 저작 잔존).** `data/authored_persons/people.json` → `load_authored_persons.py`가 `MERGE (p:Person {theographic_id})` + `authored:true` + `name`/`nameKo`로 멱등 적재. 식별자는 `authored-person-<slug>`(저작 사건 `authored-<slug>`·저작 장소 `authored-place-<name>`와 같은 계열). **적재 순서 제약**: authored Person이 `load_person_events.py`보다 먼저 적재돼야 인물 여정 사건의 `HAS_PARTICIPANT` MATCH가 성립한다. authored **사건의 주변 참여자**(네로·에스더 등 — 카드·여정 없음)는 이 대상이 아니라 여전히 노드 없이 둔다(ADR-0005의 경계). 카드·여정·SidePanel·지도가 일급 Person으로 소비하지만 traits 부여는 별도 enrich 경로다.
 
 ## 화면 단계 (Stage)
 

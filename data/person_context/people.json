@@ -224,27 +224,6 @@
       }
     ]
   },
-  "authored-person-job": {
-    "role": "고난받은 의인",
-    "intro": "욥은 우스 땅에 살며 온전하고 정직하여 하나님을 경외한 사람이었다. 자녀와 재산을 하루아침에 잃는 극심한 고난 속에서도 하나님을 원망하지 않았다. 훗날 하나님은 그의 말년에 이전보다 더 큰 복을 주셨다.",
-    "verses": [
-      {
-        "ref": "욥 1:21",
-        "textKo": "가로되 내가 모태에서 적신이 나왔사온즉 또한 적신이 그리로 돌아가올지라 주신 자도 여호와시요 취하신 자도 여호와시오니 여호와의 이름이 찬송을 받으실지니이다 하고 ",
-        "textEn": "And said, Naked came I out of my mother’s womb, and naked shall I return thither: the Lord gave, and the Lord hath taken away; blessed be the name of the Lord."
-      },
-      {
-        "ref": "욥 1:1",
-        "textKo": "우스 땅에 욥이라 이름하는 사람이 있었는데 그 사람은 순전하고 정직하여 하나님을 경외하며 악에서 떠난 자더라 ",
-        "textEn": "There was a man in the land of Uz, whose name was Job; and that man was perfect and upright, and one that feared God, and eschewed evil."
-      },
-      {
-        "ref": "욥 42:12",
-        "textKo": "여호와께서 욥의 모년에 복을 주사 처음 복보다 더하게 하시니 그가 양 일만 사천과 약대 육천과 소 일천 겨리와 암나귀 일천을 두었고 ",
-        "textEn": "So the Lord blessed the latter end of Job more than his beginning: for he had fourteen thousand sheep, and six thousand camels, and a thousand yoke of oxen, and a thousand she asses."
-      }
-    ]
-  },
   "recjNRR60PAuFtjha": {
     "role": "출애굽의 지도자",
     "intro": "모세는 애굽에서 태어나 바로의 딸에게 입양되어 왕궁에서 자랐다. 하나님의 부르심을 받아 이스라엘 백성을 애굽의 종살이에서 이끌어냈으며, 훗날 그와 같은 선지자가 다시 일어나지 못했다고 기록된다. 그는 가나안 땅에 들어가지 못하고 모압 땅에서 죽었다.",
@@ -294,162 +273,6 @@
         "ref": "수 11:23",
         "textKo": "이와 같이 여호수아가 여호와께서 모세에게 이르신 말씀대로 그 온 땅을 취하여 이스라엘 지파의 구별을 따라 기업으로 주었더라 그 땅에 전쟁이 그쳤더라  ",
         "textEn": "So Joshua took the whole land, according to all that the Lord said unto Moses; and Joshua gave it for an inheritance unto Israel according to their divisions by their tribes. And the land rested from war. "
-      }
-    ]
-  },
-  "authored-person-gideon": {
-    "role": "삼백 용사의 사사",
-    "intro": "기드온은 미디안의 압제 아래 있던 이스라엘을 구원하라는 하나님의 부르심을 받은 사사였다. 부르심을 확신하기 위해 양털로 하나님의 표징을 구하였다. 하나님은 그에게 단 삼백 명의 용사만으로 미디안을 물리치게 하셨다.",
-    "verses": [
-      {
-        "ref": "삿 7:7",
-        "textKo": "여호와께서 기드온에게 이르시되 내가 이 물을 핥아 먹은 삼백 명으로 너희를 구원하며 미디안 사람을 네 손에 붙이리니 남은 백성은 각각 그 처소로 돌아갈 것이니라 하시니 ",
-        "textEn": "And the Lord said unto Gideon, By the three hundred men that lapped will I save you, and deliver the Midianites into thine hand: and let all the other people go every man unto his place."
-      },
-      {
-        "ref": "삿 6:12",
-        "textKo": "여호와의 사자가 기드온에게 나타나 이르되 큰 용사여 여호와께서 너와 함께 계시도다 ",
-        "textEn": "And the angel of the Lord appeared unto him, and said unto him, The Lord is with thee, thou mighty man of valour."
-      },
-      {
-        "ref": "삿 6:37",
-        "textKo": "보소서 내가 양털 한 뭉치를 타작마당에 두리니 이슬이 양털에만 있고 사면 땅은 마르면 주께서 이미 말씀하심 같이 내 손으로 이스라엘을 구원하실 줄 내가 알겠나이다 하였더니 ",
-        "textEn": "Behold, I will put a fleece of wool in the floor; and if the dew be on the fleece only, and it be dry upon all the earth beside, then shall I know that thou wilt save Israel by mine hand, as thou hast said."
-      }
-    ]
-  },
-  "authored-person-deborah": {
-    "role": "여선지자 사사",
-    "intro": "드보라는 여선지자로서 이스라엘을 다스리던 사사였다. 그는 바락을 불러 시스라의 군대와 싸우도록 명하였고 전쟁에 함께 나갔다. 승리 후에는 바락과 함께 감사의 노래를 불렀다.",
-    "verses": [
-      {
-        "ref": "삿 4:4",
-        "textKo": "그 때에 랍비돗의 아내 여선지 드보라가 이스라엘의 사사가 되었는데 ",
-        "textEn": "And Deborah, a prophetess, the wife of Lapidoth, she judged Israel at that time."
-      },
-      {
-        "ref": "삿 4:6",
-        "textKo": "드보라가 보내어 아비노암의 아들 바락을 납달리 게데스에서 불러다가 그에게 이르되 이스라엘 하나님 여호와께서 이같이 명하지 아니하셨느냐 이르시기를 너는 납달리 자손과 스불론 자손 일만 명을 거느리고 다볼 산으로 가라 ",
-        "textEn": "And she sent and called Barak the son of Abinoam out of Kedesh–naphtali, and said unto him, Hath not the Lord God of Israel commanded, saying, Go and draw toward mount Tabor, and take with thee ten thousand men of the children of Naphtali and of the children of Zebulun?"
-      },
-      {
-        "ref": "삿 5:1",
-        "textKo": "이날에 드보라와 아비노암의 아들 바락이 노래하여 가로되 ",
-        "textEn": "Then sang Deborah and Barak the son of Abinoam on that day, saying,"
-      }
-    ]
-  },
-  "authored-person-jephthah": {
-    "role": "서원한 사사",
-    "intro": "입다는 기생의 아들로 태어난 큰 용사로, 길르앗 사람들의 요청을 받아 암몬과 싸우는 지도자가 되었다. 그는 전쟁에 나가며 승리하고 돌아올 때 집에서 처음 나오는 자를 번제로 드리겠다고 서원했는데, 정작 나온 것은 그의 무남독녀 딸이었다. 입다는 서원한 대로 딸에게 행하였다.",
-    "verses": [
-      {
-        "ref": "삿 11:30",
-        "textKo": "그가 여호와께 서원하여 가로되 주께서 과연 암몬 자손을 내게 붙이시면 ",
-        "textEn": "And Jephthah vowed a vow unto the Lord, and said, If thou shalt without fail deliver the children of Ammon into mine hands,"
-      },
-      {
-        "ref": "삿 11:1",
-        "textKo": "길르앗 사람 큰 용사 입다는 기생이 길르앗에게 낳은 아들이었고 ",
-        "textEn": "Now Jephthah the Gileadite was a mighty man of valour, and he was the son of an harlot: and Gilead begat Jephthah."
-      },
-      {
-        "ref": "삿 11:6",
-        "textKo": "입다에게 이르되 우리가 암몬 자손과 싸우려 하나니 당신은 와서 우리의 장관이 되라 ",
-        "textEn": "And they said unto Jephthah, Come, and be our captain, that we may fight with the children of Ammon."
-      },
-      {
-        "ref": "삿 11:34",
-        "textKo": "입다가 미스바에 돌아와 자기 집에 이를 때에 그 딸이 소고를 잡고 춤추며 나와서 영접하니 그의 무남독녀라 ",
-        "textEn": "And Jephthah came to Mizpeh unto his house, and, behold, his daughter came out to meet him with timbrels and with dances: and she was his only child; beside her he had neither son nor daughter."
-      },
-      {
-        "ref": "삿 11:39",
-        "textKo": "두 달만에 그 아비에게로 돌아온지라 아비가 그 서원한 대로 딸에게 행하니 딸이 남자를 알지 못하고 죽으니라 이로부터 이스라엘 가운데 규례가 되어 ",
-        "textEn": "And it came to pass at the end of two months, that she returned unto her father, who did with her according to his vow which he had vowed: and she knew no man. And it was a custom in Israel,"
-      }
-    ]
-  },
-  "authored-person-samson": {
-    "role": "나실인 사사",
-    "intro": "삼손은 태어나기 전부터 나실인으로 구별되어 블레셋의 손에서 이스라엘을 구원할 자로 예고되었다. 그의 힘의 비밀은 잘린 적 없는 머리카락에 있었으나, 들릴라에게 속아 머리카락이 잘리며 힘을 잃었다. 마지막에 그는 다곤 신전의 기둥을 무너뜨려 죽는 순간에 살아서 죽인 자보다 더 많은 원수를 죽였다.",
-    "verses": [
-      {
-        "ref": "삿 13:5",
-        "textKo": "보라 네가 잉태하여 아들을 낳으리니 그 머리에 삭도를 대지 말라 이 아이는 태에서 나옴으로부터 하나님께 바치운 나실인이 됨이라 그가 블레셋 사람의 손에서 이스라엘을 구원하기 시작하리라 ",
-        "textEn": "For, lo, thou shalt conceive, and bear a son; and no razor shall come on his head: for the child shall be a Nazarite unto God from the womb: and he shall begin to deliver Israel out of the hand of the Philistines."
-      },
-      {
-        "ref": "삿 16:17",
-        "textKo": "삼손이 진정을 토하여 그에게 이르되 내 머리에는 삭도를 대지 아니하였나니 이는 내가 모태에서 허나님의 나실인이 되었음이라 만일 내 머리가 밀리우면 내 힘이 내게서 떠나고 나는 약하여져서 다른 사람과 같으리라 ",
-        "textEn": "That he told her all his heart, and said unto her, There hath not come a razor upon mine head; for I have been a Nazarite unto God from my mother’s womb: if I be shaven, then my strength will go from me, and I shall become weak, and be like any other man."
-      },
-      {
-        "ref": "삿 16:19",
-        "textKo": "들릴라가 삼손으로 자기 무릎을 베고 자게 하고 사람을 불러 그 머리털 일곱 가닥을 밀고 괴롭게 하여본즉 그 힘이 없어졌더라 ",
-        "textEn": "And she made him sleep upon her knees; and she called for a man, and she caused him to shave off the seven locks of his head; and she began to afflict him, and his strength went from him."
-      },
-      {
-        "ref": "삿 16:30",
-        "textKo": "가로되 블레셋 사람과 함께 죽기를 원하노라 하고 힘을 다하여 몸을 굽히매 그 집이 곧 무너져 그 안에 있는 모든 방백과 온 백성에게 덮이니 삼손이 죽을 때에 죽인 자가 살았을 때에 죽인 자보다 더욱 많았더라 ",
-        "textEn": "And Samson said, Let me die with the Philistines. And he bowed himself with all his might; and the house fell upon the lords, and upon all the people that were therein. So the dead which he slew at his death were more than they which he slew in his life."
-      }
-    ]
-  },
-  "authored-person-ruth": {
-    "role": "충성의 모압 여인",
-    "intro": "룻은 모압 여인으로, 시어머니 나오미를 떠나지 않고 나오미의 하나님을 자신의 하나님으로 삼겠다고 고백했다. 그는 베들레헴에서 보아스의 밭에서 이삭을 주우며 생계를 이었고, 보아스가 기업 무를 자로서 그를 아내로 맞았다. 룻은 다윗의 증조모가 되었다.",
-    "verses": [
-      {
-        "ref": "룻 1:16",
-        "textKo": "룻이 가로되 나로 어머니를 떠나며 어머니를 따르지 말고 돌아가라 강권하지 마옵소서 어머니께서 가시는 곳에 나도 가고 어머니께서 유숙하시는 곳에서 나도 유숙하겠나이다 어머니의 백성이 나의 백성이 되고 어머니의 하나님이 나의 하나님이 되시리니 ",
-        "textEn": "And Ruth said, Intreat me not to leave thee, or to return from following after thee: for whither thou goest, I will go; and where thou lodgest, I will lodge: thy people shall be my people, and thy God my God:"
-      },
-      {
-        "ref": "룻 1:22",
-        "textKo": "나오미가 모압 지방에서 그 자부 모압 여인 룻과 함께 돌아왔는데 그들이 보리 추수 시작할 때에 베들레헴에 이르렀더라  ",
-        "textEn": "So Naomi returned, and Ruth the Moabitess, her daughter in law, with her, which returned out of the country of Moab: and they came to Beth–lehem in the beginning of barley harvest. "
-      },
-      {
-        "ref": "룻 2:3",
-        "textKo": "룻이 가서 베는 자를 따라 밭에서 이삭을 줍는데 우연히 엘리멜렉의 친족 보아스에게 속한 밭에 이르렀더라 ",
-        "textEn": "And she went, and came, and gleaned in the field after the reapers: and her hap was to light on a part of the field belonging unto Boaz, who was of the kindred of Elimelech."
-      },
-      {
-        "ref": "룻 4:13",
-        "textKo": "이에 보아스가 룻을 취하여 아내를 삼고 그와 동침하였더니 여호와께서 그로 잉태케 하시므로 그가 아들을 낳은지라 ",
-        "textEn": "So Boaz took Ruth, and she was his wife: and when he went in unto her, the Lord gave her conception, and she bare a son."
-      },
-      {
-        "ref": "룻 4:17",
-        "textKo": "그 이웃 여인들이 그에게 이름을 주되 나오미가 아들을 낳았다 하여 그 이름을 오벳이라 하였는데 그는 다윗의 아비인 이새의 아비였더라 ",
-        "textEn": "And the women her neighbours gave it a name, saying, There is a son born to Naomi; and they called his name Obed: he is the father of Jesse, the father of David."
-      }
-    ]
-  },
-  "authored-person-saul": {
-    "role": "이스라엘 초대 왕",
-    "intro": "사울은 사무엘에게 기름 부음을 받아 이스라엘의 초대 왕이 되었다. 그러나 하나님의 명령을 온전히 따르지 않아 왕위에서 버림받는 선고를 들었고, 이후 다윗을 시기하여 쫓아다녔다. 그는 블레셋과의 전쟁에서 패하여 스스로 목숨을 끊었다.",
-    "verses": [
-      {
-        "ref": "삼상 10:1",
-        "textKo": "이에 사무엘이 기름병을 취하여 사울의 머리에 붓고 입맞추어 가로되 여호와께서 네게 기름을 부으사 그 기업의 지도자를 삼지 아니하셨느냐 ",
-        "textEn": "Then Samuel took a vial of oil, and poured it upon his head, and kissed him, and said, Is it not because the Lord hath anointed thee to be captain over his inheritance?"
-      },
-      {
-        "ref": "삼상 15:23",
-        "textKo": "이는 거역하는 것은 사술의 죄와 같고 완고한 것은 사신 우상에게 절하는 죄와 같음이라 왕이 여호와의 말씀을 버렸으므로 여호와께서도 왕을 버려 왕이 되지 못하게 하셨나이다 ",
-        "textEn": "For rebellion is as the sin of witchcraft, and stubbornness is as iniquity and idolatry. Because thou hast rejected the word of the Lord, he hath also rejected thee from being king."
-      },
-      {
-        "ref": "삼상 18:9",
-        "textKo": "그 날 후로 사울이 다윗을 주목하였더라 ",
-        "textEn": "And Saul eyed David from that day and forward."
-      },
-      {
-        "ref": "삼상 31:4",
-        "textKo": "그가 병기 든 자에게 이르되 네 칼을 빼어 나를 찌르라 할례없는 자들이 와서 나를 찌르고 모욕할까 두려워하노라 하나 병기 든 자가 심히 두려워하여 즐겨 행치 아니하는지라 이에 사울이 자기 칼을 취하고 그 위에 엎드러지매 ",
-        "textEn": "Then said Saul unto his armourbearer, Draw thy sword, and thrust me through therewith; lest these uncircumcised come and thrust me through, and abuse me. But his armourbearer would not; for he was sore afraid. Therefore Saul took a sword, and fell upon it."
       }
     ]
   },
@@ -557,48 +380,6 @@
       }
     ]
   },
-  "authored-person-elisha": {
-    "role": "엘리야의 후계자",
-    "intro": "엘리사는 엘리야의 뒤를 이은 선지자로, 엘리야가 하늘로 올라갈 때 그의 갑절의 영을 구하여 받았다. 그는 엘리야의 겉옷으로 요단강을 갈라 이적을 시작했고, 나아만의 나병을 고치는 등 많은 기적을 행했다.",
-    "verses": [
-      {
-        "ref": "왕하 2:9",
-        "textKo": "건너매 엘리야가 엘리사에게 이르되 나를 네게서 취하시기 전에 내가 네게 어떻게 할 것을 구하라 엘리사가 가로되 당신의 영감이 갑절이나 내게 있기를 구하나이다 ",
-        "textEn": "And it came to pass, when they were gone over, that Elijah said unto Elisha, Ask what I shall do for thee, before I be taken away from thee. And Elisha said, I pray thee, let a double portion of thy spirit be upon me."
-      },
-      {
-        "ref": "왕하 2:14",
-        "textKo": "엘리야의 몸에서 떨어진 그 겉옷을 가지고 물을 치며 가로되 엘리야의 하나님 여호와는 어디 계시니이까 하고 저도 물을 치매 물이 이리 저리 갈라지고 엘리사가 건너니라 ",
-        "textEn": "And he took the mantle of Elijah that fell from him, and smote the waters, and said, Where is the Lord God of Elijah? and when he also had smitten the waters, they parted hither and thither: and Elisha went over."
-      },
-      {
-        "ref": "왕하 5:14",
-        "textKo": "나아만이 이에 내려가서 하나님의 사람의 말씀대로 요단 강에 일곱 번 몸을 잠그니 그 살이 여전하여 어린아이의 살 같아서 깨끗하게 되었더라 ",
-        "textEn": "Then went he down, and dipped himself seven times in Jordan, according to the saying of the man of God: and his flesh came again like unto the flesh of a little child, and he was clean."
-      }
-    ]
-  },
-  "authored-person-jonah": {
-    "role": "니느웨의 선지자",
-    "intro": "요나는 하나님께 니느웨로 가서 심판을 선포하라는 명령을 받았으나 이를 피해 다시스로 가는 배를 탔다. 폭풍 중에 바다에 던져진 그는 큰 물고기에게 삼켜져 사흘간 물고기 뱃속에 있었다. 이후 니느웨로 가서 말씀을 전하자 그 성 사람들이 회개하였다.",
-    "verses": [
-      {
-        "ref": "욘 1:17",
-        "textKo": "여호와께서 이미 큰 물고기를 예비하사 요나를 삼키게 하셨으므로 요나가 삼 일 삼 야를 물고기 배에 있으니라  ",
-        "textEn": "Now the Lord had prepared a great fish to swallow up Jonah. And Jonah was in the belly of the fish three days and three nights. "
-      },
-      {
-        "ref": "욘 1:3",
-        "textKo": "그러나 요나가 여호와의 낯을 피하려고 일어나 다시스로 도망하려 하여 욥바로 내려갔더니 마침 다시스로 가는 배를 만난지라 여호와의 낯을 피하여 함께 다시스로 가려고 선가를 주고 배에 올랐더라 ",
-        "textEn": "But Jonah rose up to flee unto Tarshish from the presence of the Lord, and went down to Joppa; and he found a ship going to Tarshish: so he paid the fare thereof, and went down into it, to go with them unto Tarshish from the presence of the Lord."
-      },
-      {
-        "ref": "욘 3:5",
-        "textKo": "니느웨 백성이 하나님을 믿고 금식을 선포하고 무론 대소하고 굵은 베를 입은지라 ",
-        "textEn": "So the people of Nineveh believed God, and proclaimed a fast, and put on sackcloth, from the greatest of them even to the least of them."
-      }
-    ]
-  },
   "recit3DiamFt2zO0S": {
     "role": "유다의 선지자",
     "intro": "이사야는 웃시야, 요담, 아하스, 히스기야 시대에 활동한 유다의 선지자다. 하나님의 부르심을 받는 환상 중에 \"내가 여기 있나이다 나를 보내소서\"라고 응답하며 사역을 시작했다. 고난받는 종에 대한 예언으로도 널리 알려져 있다.",
@@ -643,53 +424,6 @@
         "ref": "단 2:19",
         "textKo": "이에 이 은밀한 것이 밤에 이상으로 다니엘에게 나타나 보이매 다니엘이 하늘에 계신 하나님을 찬송하니라 ",
         "textEn": "Then was the secret revealed unto Daniel in a night vision. Then Daniel blessed the God of heaven."
-      }
-    ]
-  },
-  "authored-person-esther": {
-    "role": "민족을 구한 왕비",
-    "intro": "에스더는 고아로 사촌 모르드개의 손에서 자란 유다 여인이다. 페르시아 왕 아하수에로의 왕비가 되었다. \"죽으면 죽으리이다\"라는 결단으로 왕 앞에 나아가 동족을 죽음의 위기에서 구해냈다.",
-    "verses": [
-      {
-        "ref": "에 4:16",
-        "textKo": "당신은 가서 수산에 있는 유다인을 다 모으고 나를 위하여 금식하되 밤낮 삼 일을 먹지도 말고 마시지도 마소서 나도 나의 시녀로 더불어 이렇게 금식한 후에 규례를 어기고 왕에게 나아가리니 죽으면 죽으리이다 ",
-        "textEn": "Go, gather together all the Jews that are present in Shushan, and fast ye for me, and neither eat nor drink three days, night or day: I also and my maidens will fast likewise; and so will I go in unto the king, which is not according to the law: and if I perish, I perish."
-      },
-      {
-        "ref": "에 2:7",
-        "textKo": "저의 삼촌의 딸 하닷사 곧 에스더는 부모가 없고 용모가 곱고 아리따운 처녀라 그 부모가 죽은 후에 모르드개가 자기 딸 같이 양육하더라 ",
-        "textEn": "And he brought up Hadassah, that is, Esther, his uncle’s daughter: for she had neither father nor mother, and the maid was fair and beautiful; whom Mordecai, when her father and mother were dead, took for his own daughter."
-      },
-      {
-        "ref": "에 2:17",
-        "textKo": "왕이 모든 여자보다 에스더를 더욱 사랑하므로 저가 모든 처녀보다 왕의 앞에 더욱 은총을 얻은지라 왕이 그 머리에 면류관을 씌우고 와스디를 대신하여 왕후를 삼은 후에 ",
-        "textEn": "And the king loved Esther above all the women, and she obtained grace and favour in his sight more than all the virgins; so that he set the royal crown upon her head, and made her queen instead of Vashti."
-      }
-    ]
-  },
-  "authored-person-nehemiah": {
-    "role": "성벽 재건 지도자",
-    "intro": "느헤미야는 페르시아 왕 아닥사스다의 술 관원이었다. 예루살렘 성벽이 무너졌다는 소식에 슬퍼하며 금식하고 기도한 뒤, 왕의 허락을 받아 예루살렘으로 가서 성벽 재건을 이끌었다. 반대 속에서도 성벽을 오십이 일 만에 완성했다.",
-    "verses": [
-      {
-        "ref": "느 6:15",
-        "textKo": "성 역사가 오십이 일만에 엘룰월 이십 오일에 끝나매 ",
-        "textEn": "So the wall was finished in the twenty and fifth day of the month Elul, in fifty and two days."
-      },
-      {
-        "ref": "느 1:11",
-        "textKo": "주여 구하오니 귀를 기울이사 종의 기도와 주의 이름을 경외하기를 기뻐하는 종들의 기도를 들으시고 오늘날 종으로 형통하여 이 사람 앞에서 은혜를 입게 하옵소서 하였나니 그 때에 내가 왕의 술관원이 되었었느니라  ",
-        "textEn": "O Lord, I beseech thee, let now thine ear be attentive to the prayer of thy servant, and to the prayer of thy servants, who desire to fear thy name: and prosper, I pray thee, thy servant this day, and grant him mercy in the sight of this man. For I was the king’s cupbearer. "
-      },
-      {
-        "ref": "느 1:4",
-        "textKo": "내가 이 말을 듣고 앉아서 울고 수 일 동안 슬퍼하며 하늘의 하나님 앞에 금식하며 기도하여 ",
-        "textEn": "And it came to pass, when I heard these words, that I sat down and wept, and mourned certain days, and fasted, and prayed before the God of heaven,"
-      },
-      {
-        "ref": "느 2:5",
-        "textKo": "왕에게 고하되 왕이 만일 즐겨하시고 종이 왕의 목전에서 은혜를 얻었사오면 나를 유다 땅 나의 열조의 묘실 있는 성읍에 보내어 그 성을 중건하게 하옵소서 하였는데 ",
-        "textEn": "And I said unto the king, If it please the king, and if thy servant have found favour in thy sight, that thou wouldest send me unto Judah, unto the city of my fathers’ sepulchres, that I may build it."
       }
     ]
   },
@@ -1917,6 +1651,272 @@
         "ref": "행 18:26",
         "textKo": "그가 회당에서 담대히 말하기를 시작하거늘 브리스길라와 아굴라가 듣고 데려다가 하나님의 도를 더 자세히 풀어 이르더라 ",
         "textEn": "And he began to speak boldly in the synagogue: whom when Aquila and Priscilla had heard, they took him unto them, and expounded unto him the way of God more perfectly."
+      }
+    ]
+  },
+  "recjMT68aIzFLh6cQ": {
+    "role": "이스라엘 초대 왕",
+    "intro": "사울은 사무엘에게 기름 부음을 받아 이스라엘의 초대 왕이 되었다. 그러나 하나님의 명령을 온전히 따르지 않아 왕위에서 버림받는 선고를 들었고, 이후 다윗을 시기하여 쫓아다녔다. 그는 블레셋과의 전쟁에서 패하여 스스로 목숨을 끊었다.",
+    "verses": [
+      {
+        "ref": "삼상 10:1",
+        "textKo": "이에 사무엘이 기름병을 취하여 사울의 머리에 붓고 입맞추어 가로되 여호와께서 네게 기름을 부으사 그 기업의 지도자를 삼지 아니하셨느냐 ",
+        "textEn": "Then Samuel took a vial of oil, and poured it upon his head, and kissed him, and said, Is it not because the Lord hath anointed thee to be captain over his inheritance?"
+      },
+      {
+        "ref": "삼상 15:23",
+        "textKo": "이는 거역하는 것은 사술의 죄와 같고 완고한 것은 사신 우상에게 절하는 죄와 같음이라 왕이 여호와의 말씀을 버렸으므로 여호와께서도 왕을 버려 왕이 되지 못하게 하셨나이다 ",
+        "textEn": "For rebellion is as the sin of witchcraft, and stubbornness is as iniquity and idolatry. Because thou hast rejected the word of the Lord, he hath also rejected thee from being king."
+      },
+      {
+        "ref": "삼상 18:9",
+        "textKo": "그 날 후로 사울이 다윗을 주목하였더라 ",
+        "textEn": "And Saul eyed David from that day and forward."
+      },
+      {
+        "ref": "삼상 31:4",
+        "textKo": "그가 병기 든 자에게 이르되 네 칼을 빼어 나를 찌르라 할례없는 자들이 와서 나를 찌르고 모욕할까 두려워하노라 하나 병기 든 자가 심히 두려워하여 즐겨 행치 아니하는지라 이에 사울이 자기 칼을 취하고 그 위에 엎드러지매 ",
+        "textEn": "Then said Saul unto his armourbearer, Draw thy sword, and thrust me through therewith; lest these uncircumcised come and thrust me through, and abuse me. But his armourbearer would not; for he was sore afraid. Therefore Saul took a sword, and fell upon it."
+      }
+    ]
+  },
+  "recUgHX8TjNBQ3aXd": {
+    "role": "충성의 모압 여인",
+    "intro": "룻은 모압 여인으로, 시어머니 나오미를 떠나지 않고 나오미의 하나님을 자신의 하나님으로 삼겠다고 고백했다. 그는 베들레헴에서 보아스의 밭에서 이삭을 주우며 생계를 이었고, 보아스가 기업 무를 자로서 그를 아내로 맞았다. 룻은 다윗의 증조모가 되었다.",
+    "verses": [
+      {
+        "ref": "룻 1:16",
+        "textKo": "룻이 가로되 나로 어머니를 떠나며 어머니를 따르지 말고 돌아가라 강권하지 마옵소서 어머니께서 가시는 곳에 나도 가고 어머니께서 유숙하시는 곳에서 나도 유숙하겠나이다 어머니의 백성이 나의 백성이 되고 어머니의 하나님이 나의 하나님이 되시리니 ",
+        "textEn": "And Ruth said, Intreat me not to leave thee, or to return from following after thee: for whither thou goest, I will go; and where thou lodgest, I will lodge: thy people shall be my people, and thy God my God:"
+      },
+      {
+        "ref": "룻 1:22",
+        "textKo": "나오미가 모압 지방에서 그 자부 모압 여인 룻과 함께 돌아왔는데 그들이 보리 추수 시작할 때에 베들레헴에 이르렀더라  ",
+        "textEn": "So Naomi returned, and Ruth the Moabitess, her daughter in law, with her, which returned out of the country of Moab: and they came to Beth–lehem in the beginning of barley harvest. "
+      },
+      {
+        "ref": "룻 2:3",
+        "textKo": "룻이 가서 베는 자를 따라 밭에서 이삭을 줍는데 우연히 엘리멜렉의 친족 보아스에게 속한 밭에 이르렀더라 ",
+        "textEn": "And she went, and came, and gleaned in the field after the reapers: and her hap was to light on a part of the field belonging unto Boaz, who was of the kindred of Elimelech."
+      },
+      {
+        "ref": "룻 4:13",
+        "textKo": "이에 보아스가 룻을 취하여 아내를 삼고 그와 동침하였더니 여호와께서 그로 잉태케 하시므로 그가 아들을 낳은지라 ",
+        "textEn": "So Boaz took Ruth, and she was his wife: and when he went in unto her, the Lord gave her conception, and she bare a son."
+      },
+      {
+        "ref": "룻 4:17",
+        "textKo": "그 이웃 여인들이 그에게 이름을 주되 나오미가 아들을 낳았다 하여 그 이름을 오벳이라 하였는데 그는 다윗의 아비인 이새의 아비였더라 ",
+        "textEn": "And the women her neighbours gave it a name, saying, There is a son born to Naomi; and they called his name Obed: he is the father of Jesse, the father of David."
+      }
+    ]
+  },
+  "recjU9TzJTjllYnUJ": {
+    "role": "삼백 용사의 사사",
+    "intro": "기드온은 미디안의 압제 아래 있던 이스라엘을 구원하라는 하나님의 부르심을 받은 사사였다. 부르심을 확신하기 위해 양털로 하나님의 표징을 구하였다. 하나님은 그에게 단 삼백 명의 용사만으로 미디안을 물리치게 하셨다.",
+    "verses": [
+      {
+        "ref": "삿 7:7",
+        "textKo": "여호와께서 기드온에게 이르시되 내가 이 물을 핥아 먹은 삼백 명으로 너희를 구원하며 미디안 사람을 네 손에 붙이리니 남은 백성은 각각 그 처소로 돌아갈 것이니라 하시니 ",
+        "textEn": "And the Lord said unto Gideon, By the three hundred men that lapped will I save you, and deliver the Midianites into thine hand: and let all the other people go every man unto his place."
+      },
+      {
+        "ref": "삿 6:12",
+        "textKo": "여호와의 사자가 기드온에게 나타나 이르되 큰 용사여 여호와께서 너와 함께 계시도다 ",
+        "textEn": "And the angel of the Lord appeared unto him, and said unto him, The Lord is with thee, thou mighty man of valour."
+      },
+      {
+        "ref": "삿 6:37",
+        "textKo": "보소서 내가 양털 한 뭉치를 타작마당에 두리니 이슬이 양털에만 있고 사면 땅은 마르면 주께서 이미 말씀하심 같이 내 손으로 이스라엘을 구원하실 줄 내가 알겠나이다 하였더니 ",
+        "textEn": "Behold, I will put a fleece of wool in the floor; and if the dew be on the fleece only, and it be dry upon all the earth beside, then shall I know that thou wilt save Israel by mine hand, as thou hast said."
+      }
+    ]
+  },
+  "recwcML6FMulTblKH": {
+    "role": "나실인 사사",
+    "intro": "삼손은 태어나기 전부터 나실인으로 구별되어 블레셋의 손에서 이스라엘을 구원할 자로 예고되었다. 그의 힘의 비밀은 잘린 적 없는 머리카락에 있었으나, 들릴라에게 속아 머리카락이 잘리며 힘을 잃었다. 마지막에 그는 다곤 신전의 기둥을 무너뜨려 죽는 순간에 살아서 죽인 자보다 더 많은 원수를 죽였다.",
+    "verses": [
+      {
+        "ref": "삿 13:5",
+        "textKo": "보라 네가 잉태하여 아들을 낳으리니 그 머리에 삭도를 대지 말라 이 아이는 태에서 나옴으로부터 하나님께 바치운 나실인이 됨이라 그가 블레셋 사람의 손에서 이스라엘을 구원하기 시작하리라 ",
+        "textEn": "For, lo, thou shalt conceive, and bear a son; and no razor shall come on his head: for the child shall be a Nazarite unto God from the womb: and he shall begin to deliver Israel out of the hand of the Philistines."
+      },
+      {
+        "ref": "삿 16:17",
+        "textKo": "삼손이 진정을 토하여 그에게 이르되 내 머리에는 삭도를 대지 아니하였나니 이는 내가 모태에서 허나님의 나실인이 되었음이라 만일 내 머리가 밀리우면 내 힘이 내게서 떠나고 나는 약하여져서 다른 사람과 같으리라 ",
+        "textEn": "That he told her all his heart, and said unto her, There hath not come a razor upon mine head; for I have been a Nazarite unto God from my mother’s womb: if I be shaven, then my strength will go from me, and I shall become weak, and be like any other man."
+      },
+      {
+        "ref": "삿 16:19",
+        "textKo": "들릴라가 삼손으로 자기 무릎을 베고 자게 하고 사람을 불러 그 머리털 일곱 가닥을 밀고 괴롭게 하여본즉 그 힘이 없어졌더라 ",
+        "textEn": "And she made him sleep upon her knees; and she called for a man, and she caused him to shave off the seven locks of his head; and she began to afflict him, and his strength went from him."
+      },
+      {
+        "ref": "삿 16:30",
+        "textKo": "가로되 블레셋 사람과 함께 죽기를 원하노라 하고 힘을 다하여 몸을 굽히매 그 집이 곧 무너져 그 안에 있는 모든 방백과 온 백성에게 덮이니 삼손이 죽을 때에 죽인 자가 살았을 때에 죽인 자보다 더욱 많았더라 ",
+        "textEn": "And Samson said, Let me die with the Philistines. And he bowed himself with all his might; and the house fell upon the lords, and upon all the people that were therein. So the dead which he slew at his death were more than they which he slew in his life."
+      }
+    ]
+  },
+  "recIo7V1LEn9xfvcc": {
+    "role": "서원한 사사",
+    "intro": "입다는 기생의 아들로 태어난 큰 용사로, 길르앗 사람들의 요청을 받아 암몬과 싸우는 지도자가 되었다. 그는 전쟁에 나가며 승리하고 돌아올 때 집에서 처음 나오는 자를 번제로 드리겠다고 서원했는데, 정작 나온 것은 그의 무남독녀 딸이었다. 입다는 서원한 대로 딸에게 행하였다.",
+    "verses": [
+      {
+        "ref": "삿 11:30",
+        "textKo": "그가 여호와께 서원하여 가로되 주께서 과연 암몬 자손을 내게 붙이시면 ",
+        "textEn": "And Jephthah vowed a vow unto the Lord, and said, If thou shalt without fail deliver the children of Ammon into mine hands,"
+      },
+      {
+        "ref": "삿 11:1",
+        "textKo": "길르앗 사람 큰 용사 입다는 기생이 길르앗에게 낳은 아들이었고 ",
+        "textEn": "Now Jephthah the Gileadite was a mighty man of valour, and he was the son of an harlot: and Gilead begat Jephthah."
+      },
+      {
+        "ref": "삿 11:6",
+        "textKo": "입다에게 이르되 우리가 암몬 자손과 싸우려 하나니 당신은 와서 우리의 장관이 되라 ",
+        "textEn": "And they said unto Jephthah, Come, and be our captain, that we may fight with the children of Ammon."
+      },
+      {
+        "ref": "삿 11:34",
+        "textKo": "입다가 미스바에 돌아와 자기 집에 이를 때에 그 딸이 소고를 잡고 춤추며 나와서 영접하니 그의 무남독녀라 ",
+        "textEn": "And Jephthah came to Mizpeh unto his house, and, behold, his daughter came out to meet him with timbrels and with dances: and she was his only child; beside her he had neither son nor daughter."
+      },
+      {
+        "ref": "삿 11:39",
+        "textKo": "두 달만에 그 아비에게로 돌아온지라 아비가 그 서원한 대로 딸에게 행하니 딸이 남자를 알지 못하고 죽으니라 이로부터 이스라엘 가운데 규례가 되어 ",
+        "textEn": "And it came to pass at the end of two months, that she returned unto her father, who did with her according to his vow which he had vowed: and she knew no man. And it was a custom in Israel,"
+      }
+    ]
+  },
+  "rec6OMKxWHWy6KHjE": {
+    "role": "여선지자 사사",
+    "intro": "드보라는 여선지자로서 이스라엘을 다스리던 사사였다. 그는 바락을 불러 시스라의 군대와 싸우도록 명하였고 전쟁에 함께 나갔다. 승리 후에는 바락과 함께 감사의 노래를 불렀다.",
+    "verses": [
+      {
+        "ref": "삿 4:4",
+        "textKo": "그 때에 랍비돗의 아내 여선지 드보라가 이스라엘의 사사가 되었는데 ",
+        "textEn": "And Deborah, a prophetess, the wife of Lapidoth, she judged Israel at that time."
+      },
+      {
+        "ref": "삿 4:6",
+        "textKo": "드보라가 보내어 아비노암의 아들 바락을 납달리 게데스에서 불러다가 그에게 이르되 이스라엘 하나님 여호와께서 이같이 명하지 아니하셨느냐 이르시기를 너는 납달리 자손과 스불론 자손 일만 명을 거느리고 다볼 산으로 가라 ",
+        "textEn": "And she sent and called Barak the son of Abinoam out of Kedesh–naphtali, and said unto him, Hath not the Lord God of Israel commanded, saying, Go and draw toward mount Tabor, and take with thee ten thousand men of the children of Naphtali and of the children of Zebulun?"
+      },
+      {
+        "ref": "삿 5:1",
+        "textKo": "이날에 드보라와 아비노암의 아들 바락이 노래하여 가로되 ",
+        "textEn": "Then sang Deborah and Barak the son of Abinoam on that day, saying,"
+      }
+    ]
+  },
+  "recKGwJpH24g67ZTm": {
+    "role": "엘리야의 후계자",
+    "intro": "엘리사는 엘리야의 뒤를 이은 선지자로, 엘리야가 하늘로 올라갈 때 그의 갑절의 영을 구하여 받았다. 그는 엘리야의 겉옷으로 요단강을 갈라 이적을 시작했고, 나아만의 나병을 고치는 등 많은 기적을 행했다.",
+    "verses": [
+      {
+        "ref": "왕하 2:9",
+        "textKo": "건너매 엘리야가 엘리사에게 이르되 나를 네게서 취하시기 전에 내가 네게 어떻게 할 것을 구하라 엘리사가 가로되 당신의 영감이 갑절이나 내게 있기를 구하나이다 ",
+        "textEn": "And it came to pass, when they were gone over, that Elijah said unto Elisha, Ask what I shall do for thee, before I be taken away from thee. And Elisha said, I pray thee, let a double portion of thy spirit be upon me."
+      },
+      {
+        "ref": "왕하 2:14",
+        "textKo": "엘리야의 몸에서 떨어진 그 겉옷을 가지고 물을 치며 가로되 엘리야의 하나님 여호와는 어디 계시니이까 하고 저도 물을 치매 물이 이리 저리 갈라지고 엘리사가 건너니라 ",
+        "textEn": "And he took the mantle of Elijah that fell from him, and smote the waters, and said, Where is the Lord God of Elijah? and when he also had smitten the waters, they parted hither and thither: and Elisha went over."
+      },
+      {
+        "ref": "왕하 5:14",
+        "textKo": "나아만이 이에 내려가서 하나님의 사람의 말씀대로 요단 강에 일곱 번 몸을 잠그니 그 살이 여전하여 어린아이의 살 같아서 깨끗하게 되었더라 ",
+        "textEn": "Then went he down, and dipped himself seven times in Jordan, according to the saying of the man of God: and his flesh came again like unto the flesh of a little child, and he was clean."
+      }
+    ]
+  },
+  "recDDzG65U8UNAY4h": {
+    "role": "니느웨의 선지자",
+    "intro": "요나는 하나님께 니느웨로 가서 심판을 선포하라는 명령을 받았으나 이를 피해 다시스로 가는 배를 탔다. 폭풍 중에 바다에 던져진 그는 큰 물고기에게 삼켜져 사흘간 물고기 뱃속에 있었다. 이후 니느웨로 가서 말씀을 전하자 그 성 사람들이 회개하였다.",
+    "verses": [
+      {
+        "ref": "욘 1:17",
+        "textKo": "여호와께서 이미 큰 물고기를 예비하사 요나를 삼키게 하셨으므로 요나가 삼 일 삼 야를 물고기 배에 있으니라  ",
+        "textEn": "Now the Lord had prepared a great fish to swallow up Jonah. And Jonah was in the belly of the fish three days and three nights. "
+      },
+      {
+        "ref": "욘 1:3",
+        "textKo": "그러나 요나가 여호와의 낯을 피하려고 일어나 다시스로 도망하려 하여 욥바로 내려갔더니 마침 다시스로 가는 배를 만난지라 여호와의 낯을 피하여 함께 다시스로 가려고 선가를 주고 배에 올랐더라 ",
+        "textEn": "But Jonah rose up to flee unto Tarshish from the presence of the Lord, and went down to Joppa; and he found a ship going to Tarshish: so he paid the fare thereof, and went down into it, to go with them unto Tarshish from the presence of the Lord."
+      },
+      {
+        "ref": "욘 3:5",
+        "textKo": "니느웨 백성이 하나님을 믿고 금식을 선포하고 무론 대소하고 굵은 베를 입은지라 ",
+        "textEn": "So the people of Nineveh believed God, and proclaimed a fast, and put on sackcloth, from the greatest of them even to the least of them."
+      }
+    ]
+  },
+  "recRuSINUX52qGLlh": {
+    "role": "민족을 구한 왕비",
+    "intro": "에스더는 고아로 사촌 모르드개의 손에서 자란 유다 여인이다. 페르시아 왕 아하수에로의 왕비가 되었다. \"죽으면 죽으리이다\"라는 결단으로 왕 앞에 나아가 동족을 죽음의 위기에서 구해냈다.",
+    "verses": [
+      {
+        "ref": "에 4:16",
+        "textKo": "당신은 가서 수산에 있는 유다인을 다 모으고 나를 위하여 금식하되 밤낮 삼 일을 먹지도 말고 마시지도 마소서 나도 나의 시녀로 더불어 이렇게 금식한 후에 규례를 어기고 왕에게 나아가리니 죽으면 죽으리이다 ",
+        "textEn": "Go, gather together all the Jews that are present in Shushan, and fast ye for me, and neither eat nor drink three days, night or day: I also and my maidens will fast likewise; and so will I go in unto the king, which is not according to the law: and if I perish, I perish."
+      },
+      {
+        "ref": "에 2:7",
+        "textKo": "저의 삼촌의 딸 하닷사 곧 에스더는 부모가 없고 용모가 곱고 아리따운 처녀라 그 부모가 죽은 후에 모르드개가 자기 딸 같이 양육하더라 ",
+        "textEn": "And he brought up Hadassah, that is, Esther, his uncle’s daughter: for she had neither father nor mother, and the maid was fair and beautiful; whom Mordecai, when her father and mother were dead, took for his own daughter."
+      },
+      {
+        "ref": "에 2:17",
+        "textKo": "왕이 모든 여자보다 에스더를 더욱 사랑하므로 저가 모든 처녀보다 왕의 앞에 더욱 은총을 얻은지라 왕이 그 머리에 면류관을 씌우고 와스디를 대신하여 왕후를 삼은 후에 ",
+        "textEn": "And the king loved Esther above all the women, and she obtained grace and favour in his sight more than all the virgins; so that he set the royal crown upon her head, and made her queen instead of Vashti."
+      }
+    ]
+  },
+  "recHC0HgcWgcXChGp": {
+    "role": "성벽 재건 지도자",
+    "intro": "느헤미야는 페르시아 왕 아닥사스다의 술 관원이었다. 예루살렘 성벽이 무너졌다는 소식에 슬퍼하며 금식하고 기도한 뒤, 왕의 허락을 받아 예루살렘으로 가서 성벽 재건을 이끌었다. 반대 속에서도 성벽을 오십이 일 만에 완성했다.",
+    "verses": [
+      {
+        "ref": "느 6:15",
+        "textKo": "성 역사가 오십이 일만에 엘룰월 이십 오일에 끝나매 ",
+        "textEn": "So the wall was finished in the twenty and fifth day of the month Elul, in fifty and two days."
+      },
+      {
+        "ref": "느 1:11",
+        "textKo": "주여 구하오니 귀를 기울이사 종의 기도와 주의 이름을 경외하기를 기뻐하는 종들의 기도를 들으시고 오늘날 종으로 형통하여 이 사람 앞에서 은혜를 입게 하옵소서 하였나니 그 때에 내가 왕의 술관원이 되었었느니라  ",
+        "textEn": "O Lord, I beseech thee, let now thine ear be attentive to the prayer of thy servant, and to the prayer of thy servants, who desire to fear thy name: and prosper, I pray thee, thy servant this day, and grant him mercy in the sight of this man. For I was the king’s cupbearer. "
+      },
+      {
+        "ref": "느 1:4",
+        "textKo": "내가 이 말을 듣고 앉아서 울고 수 일 동안 슬퍼하며 하늘의 하나님 앞에 금식하며 기도하여 ",
+        "textEn": "And it came to pass, when I heard these words, that I sat down and wept, and mourned certain days, and fasted, and prayed before the God of heaven,"
+      },
+      {
+        "ref": "느 2:5",
+        "textKo": "왕에게 고하되 왕이 만일 즐겨하시고 종이 왕의 목전에서 은혜를 얻었사오면 나를 유다 땅 나의 열조의 묘실 있는 성읍에 보내어 그 성을 중건하게 하옵소서 하였는데 ",
+        "textEn": "And I said unto the king, If it please the king, and if thy servant have found favour in thy sight, that thou wouldest send me unto Judah, unto the city of my fathers’ sepulchres, that I may build it."
+      }
+    ]
+  },
+  "recKXL1QrW8qTw5Ux": {
+    "role": "고난받은 의인",
+    "intro": "욥은 우스 땅에 살며 온전하고 정직하여 하나님을 경외한 사람이었다. 자녀와 재산을 하루아침에 잃는 극심한 고난 속에서도 하나님을 원망하지 않았다. 훗날 하나님은 그의 말년에 이전보다 더 큰 복을 주셨다.",
+    "verses": [
+      {
+        "ref": "욥 1:21",
+        "textKo": "가로되 내가 모태에서 적신이 나왔사온즉 또한 적신이 그리로 돌아가올지라 주신 자도 여호와시요 취하신 자도 여호와시오니 여호와의 이름이 찬송을 받으실지니이다 하고 ",
+        "textEn": "And said, Naked came I out of my mother’s womb, and naked shall I return thither: the Lord gave, and the Lord hath taken away; blessed be the name of the Lord."
+      },
+      {
+        "ref": "욥 1:1",
+        "textKo": "우스 땅에 욥이라 이름하는 사람이 있었는데 그 사람은 순전하고 정직하여 하나님을 경외하며 악에서 떠난 자더라 ",
+        "textEn": "There was a man in the land of Uz, whose name was Job; and that man was perfect and upright, and one that feared God, and eschewed evil."
+      },
+      {
+        "ref": "욥 42:12",
+        "textKo": "여호와께서 욥의 모년에 복을 주사 처음 복보다 더하게 하시니 그가 양 일만 사천과 약대 육천과 소 일천 겨리와 암나귀 일천을 두었고 ",
+        "textEn": "So the Lord blessed the latter end of Job more than his beginning: for he had fourteen thousand sheep, and six thousand camels, and a thousand yoke of oxen, and a thousand she asses."
       }
     ]
   }

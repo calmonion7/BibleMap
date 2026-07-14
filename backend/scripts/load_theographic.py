@@ -34,8 +34,25 @@ def filter_published(records):
 FAMILY_FIELDS = ("father", "mother", "children", "partners", "siblings")
 
 
-def family_closure_wip(records):
-    """publish 인물에서 가족 필드로 도달 가능한 wip Person 레코드 (가족 폐포, ADR-0021).
+def curated_person_ids():
+    """큐레이션 인물의 정식 rec id — data/person_events/<slug>.json의 events[0].participants[0]
+    (persons.py와 동일 규약). 가족 폐포의 추가 시드가 된다 (ADR-0022)."""
+    import glob
+    data_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "..", "data", "person_events"))
+    ids = set()
+    for fp in glob.glob(os.path.join(data_dir, "*.json")):
+        with open(fp, encoding="utf-8") as f:
+            events = json.load(f)
+        if events and events[0].get("participants"):
+            pid = events[0]["participants"][0]
+            if pid.startswith("rec"):
+                ids.add(pid)
+    return ids
+
+
+def family_closure_wip(records, extra_seeds=frozenset()):
+    """시드(publish ∪ 큐레이션 rec)에서 가족 필드로 도달 가능한 wip Person 레코드
+    (가족 폐포, ADR-0021 / 시드 확장 ADR-0022).
 
     가계도 혈통 완전성을 위해 노드 적재와 가족 간선(부모자식·형제·배우자)에만 포함한다.
     memberOf·사건 참여 등 나머지 간선은 publish 전용을 유지한다 — 이 제약은 실행 경로가
@@ -50,8 +67,9 @@ def family_closure_wip(records):
             adj.setdefault(other, set()).add(r.get("id"))
     publish_ids = {r.get("id") for r in records
                    if r.get("fields", {}).get("status", "publish") == "publish"}
-    seen = set(publish_ids)
-    stack = list(publish_ids)
+    seeds = publish_ids | {i for i in extra_seeds if i in by_id}
+    seen = set(seeds)
+    stack = list(seeds)
     while stack:
         x = stack.pop()
         for y in adj.get(x, ()):
@@ -78,11 +96,12 @@ def run_batched(session, cypher, rows, batch_size, param_key="rows"):
         session.run(cypher, {param_key: rows[i:i + batch_size]})
 
 
-def load_people(session, records):
+def load_people(session, records, publish_grade_ids=frozenset()):
     print(f"Loading {len(records)} Person nodes...")
     rows = []
     for r in records:
         f = r.get("fields", {})
+        is_wip = f.get("status", "publish") != "publish"
         rows.append({
             "id":           r.get("id"),
             "name":         f.get("displayTitle"),
@@ -91,8 +110,10 @@ def load_people(session, records):
             "deathYear":    f.get("deathYear"),
             "displayTitle": f.get("displayTitle"),
             "slug":         f.get("slug"),
-            # wip 레코드(가족 폐포 보충)만 status 마킹 — publish는 null로 속성 미보유 (ADR-0021)
-            "status":       "wip" if f.get("status", "publish") != "publish" else None,
+            # wip 레코드(가족 폐포 보충)만 status 마킹 — publish는 null로 속성 미보유 (ADR-0021).
+            # 큐레이션 rec(publish_grade_ids)은 사람이 검수한 신원이라 wip이어도 무마킹 —
+            # 검색 노출 유지 (ADR-0022).
+            "status":       "wip" if is_wip and r.get("id") not in publish_grade_ids else None,
         })
     cypher = """
 UNWIND $rows AS row
@@ -332,16 +353,18 @@ if __name__ == "__main__":
     groups = filter_published(raw_groups)
     print(f"Published: {len(people)} people, {len(places)} places, {len(events)} events, {len(groups)} peopleGroups")
 
-    # 가족 폐포 wip 인물 (ADR-0021) — 노드·가족 간선에만 포함, 나머지 간선은 publish 전용
-    wip_family = family_closure_wip(raw_people)
+    # 가족 폐포 wip 인물 (ADR-0021) — 노드·가족 간선에만 포함, 나머지 간선은 publish 전용.
+    # 시드 = publish ∪ 큐레이션 rec (ADR-0022 — 큐레이션 인물의 가족 섬까지 포함)
+    curated = curated_person_ids()
+    wip_family = family_closure_wip(raw_people, extra_seeds=curated)
     family_people = people + wip_family
-    print(f"Family-closure wip people: {len(wip_family)}")
+    print(f"Family-closure wip people: {len(wip_family)} (curated seeds: {len(curated)})")
 
     driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
     with driver.session() as session:
         create_indexes(session)
 
-        load_people(session, family_people)
+        load_people(session, family_people, publish_grade_ids=curated)
         load_places(session, places)
         load_events(session, events)
         load_people_groups(session, groups)

@@ -1,35 +1,5 @@
 [
   {
-    "id": "authored-person-gideon",
-    "name": "Gideon",
-    "nameKo": "기드온"
-  },
-  {
-    "id": "authored-person-deborah",
-    "name": "Deborah",
-    "nameKo": "드보라"
-  },
-  {
-    "id": "authored-person-jephthah",
-    "name": "Jephthah",
-    "nameKo": "입다"
-  },
-  {
-    "id": "authored-person-samson",
-    "name": "Samson",
-    "nameKo": "삼손"
-  },
-  {
-    "id": "authored-person-ruth",
-    "name": "Ruth",
-    "nameKo": "룻"
-  },
-  {
-    "id": "authored-person-saul",
-    "name": "Saul",
-    "nameKo": "사울"
-  },
-  {
     "id": "authored-person-elijah",
     "name": "Elijah",
     "nameKo": "엘리야"
@@ -38,30 +8,5 @@
     "id": "authored-person-daniel",
     "name": "Daniel",
     "nameKo": "다니엘"
-  },
-  {
-    "id": "authored-person-elisha",
-    "name": "Elisha",
-    "nameKo": "엘리사"
-  },
-  {
-    "id": "authored-person-jonah",
-    "name": "Jonah",
-    "nameKo": "요나"
-  },
-  {
-    "id": "authored-person-esther",
-    "name": "Esther",
-    "nameKo": "에스더"
-  },
-  {
-    "id": "authored-person-nehemiah",
-    "name": "Nehemiah",
-    "nameKo": "느헤미야"
-  },
-  {
-    "id": "authored-person-job",
-    "name": "Job",
-    "nameKo": "욥"
   }
 ]
