@@ -414,7 +414,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
               width: '100%', padding: '10px 12px', borderRadius: 8,
               border: 'none', cursor: 'pointer', font: 'inherit',
-              fontSize: 13, fontWeight: 700, color: 'var(--ink)',
+              fontSize: 13, fontWeight: 700, color: 'var(--bg-0)',
               background: TYPE_COLOR.Person,
             }}
           >

@@ -142,7 +142,7 @@ function FamilyTree({ personId, onRecenter = () => {}, onOpenPerson = () => {} }
             style={{
               flexShrink: 0, display: 'flex', alignItems: 'center', gap: 5,
               padding: '7px 12px', borderRadius: 8, cursor: 'pointer', font: 'inherit',
-              fontSize: 12.5, fontWeight: 700, color: 'var(--ink)',
+              fontSize: 12.5, fontWeight: 700, color: 'var(--bg-0)',
               background: TYPE_COLOR.Person, border: 'none',
             }}
           >
