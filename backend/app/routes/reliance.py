@@ -1,0 +1,163 @@
+"""하나님 의존도 API — data/god_reliance/<slug>.json 정본을 서빙.
+
+의존도 = (물음-응답 + 물음-침묵 + 순종한 부르심) ÷ 전체 × 100 (ADR-0023 정의 ii).
+god_reliance는 slug 키, 인물 엔드포인트는 theographic_id 키 → person_events participants[0]로
+id↔slug 매핑(journey.py와 동형). 구절 본문은 정본 사전에서 합성(구절 레이어 연결).
+"""
+import functools
+import glob
+import json
+import os
+import re
+
+from fastapi import APIRouter
+from fastapi.responses import JSONResponse
+
+from ..overlays import _resolve, _resolve_dir, bible_verses, books_ko
+from .persons import _NAME_KO
+
+router = APIRouter()
+
+# "물음"(응답 여부 무관) — 정의 ii의 분자. 부르심은 obeyed=true만 분자.
+_ASK_MODES = ("물음-응답", "물음-침묵")
+LOW_SAMPLE = 6
+_REF_HEAD = re.compile(r"^(\S+)\s+(\d+):(\d+)")
+
+
+@functools.lru_cache(maxsize=1)
+def _alias_to_bb() -> dict:
+    m = {}
+    for i, (_, v) in enumerate(books_ko().items(), 1):
+        for a in v.get("alias", []):
+            m[a] = i
+        m[v["ko"]] = i
+    return m
+
+
+def _resolve_verse(ref: str):
+    mo = _REF_HEAD.match((ref or "").strip())
+    if not mo:
+        return None
+    book, ch, vs = mo.group(1), int(mo.group(2)), int(mo.group(3))
+    bb = _alias_to_bb().get(book)
+    if not bb:
+        return None
+    return f"{bb:02d}{ch:03d}{vs:03d}"
+
+
+@functools.lru_cache(maxsize=1)
+def _slug_to_id() -> dict:
+    """god_reliance 슬러그 → 인물 theographic_id (person_events participants[0])."""
+    mapping = {}
+    d = _resolve_dir("god_reliance")
+    if not d:
+        return mapping
+    for fp in glob.glob(os.path.join(d, "*.json")):
+        slug = os.path.splitext(os.path.basename(fp))[0]
+        pe = _resolve(f"person_events/{slug}.json")
+        if not pe:
+            continue
+        with open(pe, encoding="utf-8") as f:
+            events = json.load(f)
+        if events and events[0].get("participants"):
+            mapping[slug] = events[0]["participants"][0]
+    return mapping
+
+
+@functools.lru_cache(maxsize=1)
+def _id_to_slug() -> dict:
+    return {v: k for k, v in _slug_to_id().items()}
+
+
+@functools.lru_cache(maxsize=None)
+def _load_entries(slug: str) -> tuple:
+    fp = _resolve(f"god_reliance/{slug}.json")
+    if not fp:
+        return tuple()
+    with open(fp, encoding="utf-8") as f:
+        return tuple(json.load(f))
+
+
+def _percent(entries) -> int:
+    if not entries:
+        return 0
+    num = sum(
+        1 for e in entries
+        if e["mode"] in _ASK_MODES or (e["mode"] == "부르심" and e.get("obeyed"))
+    )
+    return round(num / len(entries) * 100)
+
+
+@functools.lru_cache(maxsize=1)
+def _all_percents() -> dict:
+    return {slug: _percent(_load_entries(slug)) for slug in _slug_to_id()}
+
+
+@router.get("/person/{person_id}/reliance")
+def get_person_reliance(person_id: str):
+    slug = _id_to_slug().get(person_id)
+    if not slug:
+        return JSONResponse({"personId": person_id, "available": False, "phases": []})
+
+    entries = sorted(_load_entries(slug), key=lambda e: e.get("approxYear", 0))
+    verses = bible_verses()
+    phases = []
+    mode_counts = {}
+    for e in entries:
+        mode_counts[e["mode"]] = mode_counts.get(e["mode"], 0) + 1
+        vid = _resolve_verse(e.get("verse"))
+        vt = verses.get(vid, {}) if vid else {}
+        ph = {
+            "mode": e["mode"],
+            "verse": e["verse"],
+            "approxYear": e["approxYear"],
+            "label": e["label"],
+            "verseTextKo": vt.get("textKo"),
+            "verseTextEn": vt.get("textEn"),
+        }
+        if "obeyed" in e:
+            ph["obeyed"] = e["obeyed"]
+        phases.append(ph)
+
+    pct = _percent(entries)
+    all_p = _all_percents()
+    n = len(all_p) or 1
+    percentile = round(100 * sum(1 for v in all_p.values() if v <= pct) / n)
+    rank = 1 + sum(1 for v in all_p.values() if v > pct)
+
+    return JSONResponse(
+        {
+            "personId": person_id,
+            "slug": slug,
+            "nameKo": _NAME_KO.get(slug, slug),
+            "available": True,
+            "percent": pct,
+            "sampleSize": len(entries),
+            "lowSample": len(entries) < LOW_SAMPLE,
+            "percentile": percentile,
+            "rank": rank,
+            "total": len(all_p),
+            "modeCounts": mode_counts,
+            "phases": phases,
+        },
+        headers={"Cache-Control": "public, max-age=3600"},
+    )
+
+
+@router.get("/reliance/ranking")
+def get_reliance_ranking():
+    rows = []
+    for slug, pid in _slug_to_id().items():
+        entries = _load_entries(slug)
+        rows.append(
+            {
+                "slug": slug,
+                "personId": pid,
+                "nameKo": _NAME_KO.get(slug, slug),
+                "percent": _percent(entries),
+                "sampleSize": len(entries),
+                "lowSample": len(entries) < LOW_SAMPLE,
+            }
+        )
+    rows.sort(key=lambda r: (-r["percent"], r["nameKo"]))
+    return JSONResponse({"ranking": rows}, headers={"Cache-Control": "public, max-age=3600"})

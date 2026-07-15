@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
-import { Route, Clock, BookOpen, Users, UserRound, Network, BarChart3 } from 'lucide-react'
+import { Route, Clock, BookOpen, Users, UserRound, Network, BarChart3, HeartHandshake } from 'lucide-react'
 import { TYPE_COLOR } from './theme'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
@@ -10,6 +10,7 @@ import PersonHub from './PersonHub'
 import PersonIntro from './PersonIntro'
 import FamilyTree from './FamilyTree'
 import WordDistributionView from './WordDistributionView'
+import RelianceView from './RelianceView'
 import TourList from './TourList'
 import JourneyList from './JourneyList'
 import { MOBILE_BREAKPOINT, SHEET_VH, JOURNEY_SHEET_VH } from './constants'
@@ -27,6 +28,8 @@ const EXPLORE_TABS = [
 ]
 const INTRO_TAB = { key: 'intro', icon: UserRound, label: '소개' }
 const RELATIONS_TAB = { key: 'relations', icon: Users, label: '관계' }
+// 하나님 의존 — 관계와 동형 탭(setExploreView). 그 인물의 하나님 의존도·궤적.
+const RELIANCE_TAB = { key: 'reliance', icon: HeartHandshake, label: '하나님 의존' }
 // 가계도 — 탭 전환(setExploreView)이 아니라 전용 스테이지(openFamily) 진입. 관계 옆에 배치.
 const FAMILY_TAB = { key: 'family', icon: Network, label: '가계도' }
 
@@ -152,7 +155,7 @@ function App() {
         {/* 지도 / 타임라인 / 관계(인물 모드 한정) 토글 */}
         <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
           {/* 인물 모드: 소개(맨앞) · 여정길 · 타임라인 · 관계 / 투어 모드: 여정길 · 타임라인 */}
-          {(explorePersonId && !exploreTourId ? [INTRO_TAB, ...EXPLORE_TABS, RELATIONS_TAB, FAMILY_TAB] : EXPLORE_TABS).map(tab => {
+          {(explorePersonId && !exploreTourId ? [INTRO_TAB, ...EXPLORE_TABS, RELATIONS_TAB, RELIANCE_TAB, FAMILY_TAB] : EXPLORE_TABS).map(tab => {
             const Icon = tab.icon
             const active = exploreView === tab.key
             return (
@@ -600,6 +603,19 @@ function App() {
                 </div>
               </div>
             )}
+            {/* 하나님 의존 뷰 — 인물 모드 전용(의존도 도넛 + mode 분해 + 생애 궤적 + 은혜 하이라이트 + 랭킹) */}
+            {exploreView === 'reliance' && explorePersonId && (
+              <div style={{ height: '100%' }}>
+                <RelianceView
+                  key={explorePersonId}
+                  personId={explorePersonId}
+                  personName={explorePersonName}
+                  verseLang={verseLang}
+                  setVerseLang={setVerseLang}
+                  onSelectPerson={selectPerson}
+                />
+              </div>
+            )}
           </div>
         </>
       )}
@@ -622,9 +638,9 @@ function App() {
               : {
                   top: NAV_H, right: 0, bottom: 0, width: 360,
                   boxShadow: 'var(--shadow-2)',
-                  // 관계 뷰는 전용 전체화면 — 탐험 인물 자신의 상세 시트로 우측을 덮지 않는다(다른 뷰로 토글 시 복귀).
+                  // 관계·하나님 의존 뷰는 전용 전체화면 — 탐험 인물 자신의 상세 시트로 우측을 덮지 않는다(다른 뷰로 토글 시 복귀).
                   // 소개 뷰는 자기 자신이 본문이라 자기 시트만 억제(다른 노드 선택 시에는 정상 표시).
-                  transform: selectedNode && exploreView !== 'relations' && !(exploreView === 'intro' && selectedNode === explorePersonId) ? 'translateX(0)' : 'translateX(100%)',
+                  transform: selectedNode && exploreView !== 'relations' && exploreView !== 'reliance' && !(exploreView === 'intro' && selectedNode === explorePersonId) ? 'translateX(0)' : 'translateX(100%)',
                 }),
           }}
           onTouchStart={isMobile ? onSheetTouchStart : undefined}

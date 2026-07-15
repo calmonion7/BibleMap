@@ -71,3 +71,17 @@ def word_distribution() -> dict:
 def books_ko() -> dict:
     """책 한글명·약칭 정본(theographic_id → {ko, alias}, 정경 순). 1회 로드 캐시."""
     return _load("names_ko/books.json")
+
+
+@functools.lru_cache(maxsize=1)
+def word_verse_index() -> dict:
+    """구절↔단어 역색인 정본(단어(lemma) → [verseID, ...]). 1회 로드 캐시.
+    build_word_verse_index.py 산출물. lemma 기반이라 substring 매칭과 커버리지가 다름."""
+    return _load("word_verse_index/index.json")
+
+
+@functools.lru_cache(maxsize=1)
+def verse_persons() -> dict:
+    """구절↔인물 색인 정본(verseID → [personRecId, ...]). 1회 로드 캐시.
+    build_verse_persons.py 산출물(theographic verses.people 투영)."""
+    return _load("verse_persons/index.json")

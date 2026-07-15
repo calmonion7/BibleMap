@@ -20,6 +20,7 @@ export function encodeHash({ stage, personSlug, exploreView, tourSlug, bookId, f
     if (exploreView === 'timeline') return `${base}/timeline`
     if (exploreView === 'relations') return `${base}/relations`
     if (exploreView === 'intro') return `${base}/intro`
+    if (exploreView === 'reliance') return `${base}/reliance`
     return base
   }
   return '#/' // 허브 (또는 slug/tour 없는 explore — 정상 흐름엔 없음)
@@ -39,7 +40,7 @@ export function parseHash(hash) {
   if (wd) return { stage: 'words', wordsBookId: decodeURIComponent(wd[1]), personSlug: null, tourSlug: null, exploreView: 'map' }
   const t = h.match(/^\/tour\/([^/]+)(\/timeline)?$/)
   if (t) return { stage: 'explore', personSlug: null, tourSlug: decodeURIComponent(t[1]), exploreView: t[2] ? 'timeline' : 'map' }
-  const m = h.match(/^\/person\/([^/]+)(\/timeline|\/relations|\/intro)?$/)
-  if (m) return { stage: 'explore', personSlug: decodeURIComponent(m[1]), tourSlug: null, exploreView: m[2] === '/timeline' ? 'timeline' : m[2] === '/relations' ? 'relations' : m[2] === '/intro' ? 'intro' : 'map' }
+  const m = h.match(/^\/person\/([^/]+)(\/timeline|\/relations|\/intro|\/reliance)?$/)
+  if (m) return { stage: 'explore', personSlug: decodeURIComponent(m[1]), tourSlug: null, exploreView: m[2] === '/timeline' ? 'timeline' : m[2] === '/relations' ? 'relations' : m[2] === '/intro' ? 'intro' : m[2] === '/reliance' ? 'reliance' : 'map' }
   return null
 }
