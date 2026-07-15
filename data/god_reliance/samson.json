@@ -1,9 +1,46 @@
 [
-  { "mode": "부르심", "verse": "삿 13:5", "approxYear": -1095, "obeyed": true, "label": "나실인·구원자로 예고하심 — 블레셋에서 구원 시작" },
-  { "mode": "부르심", "verse": "삿 13:25", "approxYear": -1079, "obeyed": true, "label": "여호와의 영이 비로소 삼손에게 감동하시기 시작함" },
-  { "mode": "독단-개입", "verse": "삿 14:6", "approxYear": -1078, "label": "딤나 혼인 강행 중 사자와 마주침 — 영이 임해 찢게 하심" },
-  { "mode": "독단-개입", "verse": "삿 15:14", "approxYear": -1077, "label": "복수 끝에 결박당함 — 영이 임해 결박줄을 끊으심" },
-  { "mode": "물음-응답", "verse": "삿 15:19", "approxYear": -1077, "label": "목말라 부르짖으니 하나님이 샘을 터뜨려 살리심" },
-  { "mode": "독단-어긋남", "verse": "삿 16:20", "approxYear": -1075, "label": "졸림에 못 이겨 비밀을 누설 — 여호와 떠나심도 깨닫지 못함" },
-  { "mode": "물음-응답", "verse": "삿 16:28", "approxYear": -1075, "label": "마지막으로 부르짖어 구함 — 힘 회복해 원수를 갚음" }
+  {
+    "mode": "부르심",
+    "approxYear": -1095,
+    "obeyed": true,
+    "trigger": { "label": "나실인·구원자로 세우겠다 예고하심", "verse": "삿 13:5" },
+    "outcome": { "label": "블레셋 손에서 이스라엘 구원을 시작하게 하심", "verse": "삿 13:5" }
+  },
+  {
+    "mode": "부르심",
+    "approxYear": -1079,
+    "obeyed": true,
+    "trigger": { "label": "여호와의 영이 삼손을 움직이기 시작하심", "verse": "삿 13:25" },
+    "outcome": { "label": "영의 감동을 따라 사역을 시작함", "verse": "삿 13:25" }
+  },
+  {
+    "mode": "독단-개입",
+    "approxYear": -1078,
+    "trigger": { "label": "딤나 혼인을 독단으로 강행하다 사자와 마주침", "verse": "삿 14:6" },
+    "outcome": { "label": "여호와의 영이 임해 사자를 찢게 하심", "verse": "삿 14:6" }
+  },
+  {
+    "mode": "독단-개입",
+    "approxYear": -1077,
+    "trigger": { "label": "독단적 복수 끝에 블레셋에 결박당함", "verse": "삿 15:14" },
+    "outcome": { "label": "여호와의 영이 임해 결박줄을 끊으심", "verse": "삿 15:14" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": -1077,
+    "trigger": { "label": "목말라 죽게 되어 여호와께 부르짖음", "verse": "삿 15:19" },
+    "outcome": { "label": "샘을 터뜨려 살리심", "verse": "삿 15:19", "kind": "이룸" }
+  },
+  {
+    "mode": "독단-어긋남",
+    "approxYear": -1075,
+    "trigger": { "label": "졸림에 못 이겨 나실인 비밀을 누설함", "verse": "삿 16:20" },
+    "outcome": { "label": "여호와께서 떠나신 줄도 깨닫지 못함", "verse": "삿 16:20" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": -1075,
+    "trigger": { "label": "마지막으로 힘을 구하며 여호와께 부르짖음", "verse": "삿 16:28" },
+    "outcome": { "label": "힘을 회복시켜 원수를 갚게 하심", "verse": "삿 16:28", "kind": "더하심" }
+  }
 ]

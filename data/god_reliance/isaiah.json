@@ -1,65 +1,65 @@
 [
   {
     "mode": "부르심",
-    "verse": "사 6:1",
     "approxYear": -740,
     "obeyed": true,
-    "label": "웃시야 죽던 해 성전에서 높이 들린 주의 영광을 봄 — 소명 시작"
+    "trigger": { "label": "웃시야 죽던 해 성전에서 높이 들린 주의 영광을 보이심", "verse": "사 6:1" },
+    "outcome": { "label": "소명이 시작됨", "verse": "사 6:1" }
   },
   {
     "mode": "부르심",
-    "verse": "사 6:8",
     "approxYear": -740,
     "obeyed": true,
-    "label": "누구를 보내랴 물으심에 '내가 여기 있나이다 나를 보내소서' 응답"
+    "trigger": { "label": "누구를 보내며 누가 우리를 위하여 갈꼬 물으심", "verse": "사 6:8" },
+    "outcome": { "label": "'내가 여기 있나이다 나를 보내소서' 응답해 순종", "verse": "사 6:8" }
   },
   {
     "mode": "부르심",
-    "verse": "사 6:9",
     "approxYear": -740,
     "obeyed": true,
-    "label": "완악한 백성에게 심판 선포하라 명하심 — 순종해 나아감"
+    "trigger": { "label": "완악한 백성에게 심판을 선포하라 명하심", "verse": "사 6:9" },
+    "outcome": { "label": "명하신 대로 나아가 순종함", "verse": "사 6:9" }
   },
   {
     "mode": "부르심",
-    "verse": "사 7:1",
     "approxYear": -734,
     "obeyed": true,
-    "label": "떠는 아하스에게 가라 명하심 — 임마누엘 표징을 줌"
+    "trigger": { "label": "떠는 아하스에게 가라 명하심", "verse": "사 7:1" },
+    "outcome": { "label": "순종해 나아가 임마누엘 표징을 줌", "verse": "사 7:1" }
   },
   {
     "mode": "부르심",
-    "verse": "사 20:3",
     "approxYear": -711,
     "obeyed": true,
-    "label": "삼 년 벗은 몸으로 다니라 명하심 — 애굽·구스 심판 표징으로 순종"
+    "trigger": { "label": "삼 년 벗은 몸으로 다니라 명하심", "verse": "사 20:3" },
+    "outcome": { "label": "애굽·구스 심판 표징으로 순종해 행함", "verse": "사 20:3" }
   },
   {
     "mode": "부르심",
-    "verse": "사 38:1",
     "approxYear": -702,
     "obeyed": true,
-    "label": "히스기야 죽음을 선언했다가 기도 후 15년 생명 연장을 선포"
+    "trigger": { "label": "히스기야에게 죽음을 선언하라 명하심", "verse": "사 38:1" },
+    "outcome": { "label": "순종해 선언했다가 기도 후 15년 생명 연장을 선포", "verse": "사 38:1" }
   },
   {
     "mode": "부르심",
-    "verse": "사 37:33",
     "approxYear": -701,
     "obeyed": true,
-    "label": "앗수르 포위 중 히스기야 위로 예언 — 천사가 앗수르군을 침"
+    "trigger": { "label": "앗수르 포위 중 히스기야를 위로하라 명하심", "verse": "사 37:33" },
+    "outcome": { "label": "순종해 예언하니 천사가 앗수르군을 침", "verse": "사 37:33" }
   },
   {
     "mode": "부르심",
-    "verse": "사 39:1",
     "approxYear": -701,
     "obeyed": true,
-    "label": "바벨론 사신에게 자랑한 보물이 다 옮겨지고 포로 됨을 예언"
+    "trigger": { "label": "바벨론 사신에게 자랑한 일을 두고 예언하게 하심", "verse": "사 39:1" },
+    "outcome": { "label": "순종해 보물이 다 옮겨지고 포로 됨을 예언", "verse": "사 39:1" }
   },
   {
     "mode": "부르심",
-    "verse": "사 44:28",
     "approxYear": -700,
     "obeyed": true,
-    "label": "고레스를 통한 바벨론 귀환을 150년 전에 예언함"
+    "trigger": { "label": "고레스를 통한 바벨론 귀환을 예언하게 하심", "verse": "사 44:28" },
+    "outcome": { "label": "순종해 150년 전에 미리 예언함", "verse": "사 44:28" }
   }
 ]

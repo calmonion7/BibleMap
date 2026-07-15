@@ -1,6 +1,27 @@
 [
-  { "mode": "물음-응답", "verse": "창 5:22", "approxYear": -3400, "label": "삼백 년간 하나님과 동행함 — 신실한 교제로 받아들여짐" },
-  { "mode": "부르심", "verse": "유 1:14", "approxYear": -3300, "obeyed": true, "label": "장차 임할 주의 심판을 예언 — 순종하여 전함" },
-  { "mode": "물음-응답", "verse": "히 11:5", "approxYear": -3100, "label": "믿음으로 하나님을 기쁘시게 함 — 옮겨질 것을 증거받음" },
-  { "mode": "물음-응답", "verse": "창 5:24", "approxYear": -3100, "label": "죽음을 보지 않고 하나님께 옮겨짐 — 믿음의 응답" }
+  {
+    "mode": "물음-응답",
+    "approxYear": -3400,
+    "trigger": { "label": "하나님과 동행하며 삼백 년을 살아감", "verse": "창 5:22" },
+    "outcome": { "label": "신실한 교제로 받아들여짐", "verse": "창 5:22", "kind": "이룸" }
+  },
+  {
+    "mode": "부르심",
+    "approxYear": -3300,
+    "obeyed": true,
+    "trigger": { "label": "장차 임할 주의 심판을 예언하라는 부르심", "verse": "유 1:14" },
+    "outcome": { "label": "순종하여 심판을 전함", "verse": "유 1:14" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": -3100,
+    "trigger": { "label": "믿음으로 하나님을 기쁘시게 함", "verse": "히 11:5" },
+    "outcome": { "label": "옮겨질 것을 증거로 받음", "verse": "히 11:5", "kind": "이룸" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": -3100,
+    "trigger": { "label": "하나님과 동행하는 믿음의 삶", "verse": "창 5:24" },
+    "outcome": { "label": "죽음을 보지 않고 하나님께로 옮겨짐", "verse": "창 5:24", "kind": "더하심" }
+  }
 ]

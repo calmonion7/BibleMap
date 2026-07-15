@@ -1,8 +1,40 @@
 [
-  { "mode": "물음-응답", "verse": "창 6:8", "approxYear": -2500, "label": "악한 세대 중 하나님과 동행한 의인 → 은혜를 입음" },
-  { "mode": "부르심", "verse": "창 6:22", "approxYear": -2450, "obeyed": true, "label": "방주 건조 명령대로 다 준행함(순종)" },
-  { "mode": "물음-응답", "verse": "창 8:1", "approxYear": -2400, "label": "방주 안에서 하나님이 기억하심 → 물이 물러가기 시작" },
-  { "mode": "물음-응답", "verse": "창 8:20", "approxYear": -2400, "label": "방주에서 나와 번제 드림(예배) → 향기 흠향하심" },
-  { "mode": "부르심", "verse": "창 9:13", "approxYear": -2400, "obeyed": true, "label": "무지개 언약을 받음 — 다시 심판하지 않으리라" },
-  { "mode": "독단-어긋남", "verse": "창 9:21", "approxYear": -2395, "label": "포도주에 취해 벌거벗음 → 함의 수치·가나안 저주" }
+  {
+    "mode": "물음-응답",
+    "approxYear": -2500,
+    "trigger": { "label": "악한 세대 중에도 하나님과 동행하며 의롭게 살아감", "verse": "창 6:8" },
+    "outcome": { "label": "여호와께 은혜를 입음", "verse": "창 6:8", "kind": "이룸" }
+  },
+  {
+    "mode": "부르심",
+    "approxYear": -2450,
+    "obeyed": true,
+    "trigger": { "label": "하나님이 노아에게 방주를 지으라 명하심", "verse": "창 6:22" },
+    "outcome": { "label": "명하신 대로 다 준행함(순종)", "verse": "창 6:22" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": -2400,
+    "trigger": { "label": "방주 안에서 하나님만 의지하며 홍수를 견딤", "verse": "창 8:1" },
+    "outcome": { "label": "하나님이 기억하사 물이 물러가기 시작함", "verse": "창 8:1", "kind": "이룸" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": -2400,
+    "trigger": { "label": "방주에서 나와 번제를 드림(예배)", "verse": "창 8:20" },
+    "outcome": { "label": "향기를 흠향하시고 다시 땅을 저주치 않으리라 하심", "verse": "창 8:20", "kind": "더하심" }
+  },
+  {
+    "mode": "부르심",
+    "approxYear": -2400,
+    "obeyed": true,
+    "trigger": { "label": "하나님이 무지개로 다시 심판하지 않으리라는 언약을 세우심", "verse": "창 9:13" },
+    "outcome": { "label": "언약의 증거를 받아들임(순종)", "verse": "창 9:13" }
+  },
+  {
+    "mode": "독단-어긋남",
+    "approxYear": -2395,
+    "trigger": { "label": "포도주에 취해 벌거벗음(독단적 행위)", "verse": "창 9:21" },
+    "outcome": { "label": "함이 수치를 당하고 가나안이 저주받음", "verse": "창 9:21" }
+  }
 ]

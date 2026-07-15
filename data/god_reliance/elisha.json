@@ -1,6 +1,14 @@
 [
-  { "mode": "물음-응답", "verse": "왕하 2:14", "approxYear": -848, "label": "엘리야의 하나님을 부르며 요단을 치니 물이 갈라짐" },
-  { "mode": "물음-응답", "verse": "왕하 4:33", "approxYear": -845, "label": "죽은 아이 위해 문 닫고 기도하니 몸이 덥혀져 살아남" },
-  { "mode": "물음-응답", "verse": "왕하 6:17", "approxYear": -844, "label": "사환의 눈 열어달라 기도하니 불말·불병거로 두르심 보임" },
-  { "mode": "물음-응답", "verse": "왕하 13:21", "approxYear": -797, "label": "죽어 장사된 뒤에도 뼈에 닿은 시체가 살아남" }
+  { "mode": "물음-응답", "approxYear": -848,
+    "trigger": { "label": "엘리야의 하나님을 부르며 겉옷으로 요단을 침", "verse": "왕하 2:14" },
+    "outcome": { "label": "물이 좌우로 갈라져 건너감", "verse": "왕하 2:14", "kind": "이룸" } },
+  { "mode": "물음-응답", "approxYear": -845,
+    "trigger": { "label": "죽은 아이 위해 문 닫고 여호와께 기도함", "verse": "왕하 4:33" },
+    "outcome": { "label": "몸이 덥혀지며 아이가 다시 살아남", "verse": "왕하 4:33", "kind": "이룸" } },
+  { "mode": "물음-응답", "approxYear": -844,
+    "trigger": { "label": "사환의 눈을 열어달라 여호와께 기도함", "verse": "왕하 6:17" },
+    "outcome": { "label": "불말과 불병거로 두르심을 보게 하심", "verse": "왕하 6:17", "kind": "이룸" } },
+  { "mode": "물음-응답", "approxYear": -797,
+    "trigger": { "label": "모압 침입 중 죽은 시체를 엘리사의 묘실에 던져 넣음", "verse": "왕하 13:21" },
+    "outcome": { "label": "시체가 엘리사의 뼈에 닿자 곧 살아나 일어섬", "verse": "왕하 13:21", "kind": "이룸" } }
 ]

@@ -1,6 +1,28 @@
 [
-  { "mode": "부르심", "verse": "삿 4:4", "approxYear": -1210, "obeyed": true, "label": "여선지자·사사로 세우심을 받아 이스라엘을 다스림" },
-  { "mode": "부르심", "verse": "삿 4:6", "approxYear": -1200, "obeyed": true, "label": "여호와의 명을 바락에게 전함 — 순종하여 따름" },
-  { "mode": "물음-응답", "verse": "삿 4:15", "approxYear": -1200, "label": "믿음으로 바락을 독려 → 여호와께서 시스라를 파하심" },
-  { "mode": "물음-응답", "verse": "삿 5:3", "approxYear": -1200, "label": "승전 후 여호와를 찬송 — 예배로 헌신" }
+  {
+    "mode": "부르심",
+    "approxYear": -1210,
+    "obeyed": true,
+    "trigger": { "label": "하나님이 여선지자·사사로 세우심", "verse": "삿 4:4" },
+    "outcome": { "label": "순종하여 이스라엘을 다스림", "verse": "삿 4:4" }
+  },
+  {
+    "mode": "부르심",
+    "approxYear": -1200,
+    "obeyed": true,
+    "trigger": { "label": "여호와께서 바락을 세우라 명하심", "verse": "삿 4:6" },
+    "outcome": { "label": "순종하여 여호와의 명을 바락에게 전함", "verse": "삿 4:6" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": -1200,
+    "trigger": { "label": "믿음으로 바락에게 출전을 독려함", "verse": "삿 4:15" },
+    "outcome": { "label": "여호와께서 시스라의 군대를 파하심", "verse": "삿 4:15", "kind": "이룸" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": -1200,
+    "trigger": { "label": "승전 후 여호와께 예배로 헌신을 결단함", "verse": "삿 5:3" },
+    "outcome": { "label": "노래로 여호와를 찬송하며 영광을 돌림", "verse": "삿 5:3", "kind": "이룸" }
+  }
 ]

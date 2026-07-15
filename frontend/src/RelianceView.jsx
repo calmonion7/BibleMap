@@ -28,6 +28,47 @@ function segColor(ph) {
   return MODE_META[segKey(ph)]?.color || 'var(--ink-faint)'
 }
 
+// 구절 레이어 계기→결과 라벨 — segKey별 [계기, 결과]. 부르심은 obeyed로 순종/불순종 파생.
+const STEP_LABELS = {
+  '물음-응답': ['요청', '응답'],
+  '물음-침묵': ['요청', '침묵'],
+  '부르심-순종': ['부르심', '순종'],
+  '부르심-불순종': ['부르심', '불순종'],
+  '독단-개입': ['독단', '은혜 개입'],
+  '독단-어긋남': ['독단', '어긋남'],
+}
+// 응답 성격 뱃지 — 물음 계열 outcome.kind → 문구. 부르심/독단은 결과 칩 자체가 성격이라 뱃지 없음.
+const KIND_BADGE = {
+  '이룸': '요청대로 이루심',
+  '더하심': '구한 것 이상으로',
+  '다르게': '다른 방식으로',
+  '거절': '구하신 대로는 아니',
+  '침묵': '응답하지 않으심',
+}
+
+// 계기/결과 라벨 칩 — 모드색 점 + 라벨(양피지 위 가독 위해 텍스트는 paper-ink, 색은 점에만).
+function StepChip({ color, text }) {
+  return (
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <span style={{ width: 9, height: 9, borderRadius: '50%', background: color, flexShrink: 0 }} />
+      <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--paper-ink)' }}>{text}</span>
+    </span>
+  )
+}
+// 양피지 절 카드 — 모드색 좌측 보더 + 구절 ref + 본문(언어 탭 반영).
+function VerseCard({ seg, lang, color }) {
+  const txt = lang === 'en' && seg.verseTextEn ? seg.verseTextEn : (seg.verseTextKo || seg.verseTextEn || '구절 본문 없음')
+  return (
+    <div style={{
+      fontFamily: 'var(--serif)', fontSize: 15, lineHeight: 1.8, color: 'var(--paper-ink)',
+      borderLeft: `3px solid ${color}`, paddingLeft: 11, marginTop: 6,
+    }}>
+      <span style={{ fontWeight: 700, color: 'var(--paper-accent)', marginRight: 6 }}>{seg.verse}</span>
+      {txt}
+    </div>
+  )
+}
+
 // 도넛 게이지 — 반경 R 원호를 percent만큼 채움. 중앙에 % + '의존도'.
 function Donut({ percent }) {
   const R = 58, SW = 12, C = 2 * Math.PI * R, SIZE = (R + SW) * 2
@@ -136,7 +177,7 @@ function Trajectory({ phases, colorOf, onOpen }) {
               background: 'var(--bg-0)', padding: '0 2px',
               display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden',
             }}>
-              {ph.label}
+              {ph.trigger?.label}
             </span>
           </button>
         )
@@ -268,8 +309,8 @@ function RelianceView({ personId, personName, verseLang, setVerseLang, onSelectP
                           background: 'var(--bg-1)', border: '1px solid var(--line)', display: 'flex', gap: 10, alignItems: 'baseline',
                           WebkitTapHighlightColor: 'transparent', outline: 'none',
                         }}>
-                        <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--type-event)', whiteSpace: 'nowrap' }}>{ph.verse}</span>
-                        <span style={{ fontSize: 13, color: 'var(--ink-dim)', lineHeight: 1.5 }}>{ph.label}</span>
+                        <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--type-event)', whiteSpace: 'nowrap' }}>{ph.trigger?.verse}</span>
+                        <span style={{ fontSize: 13, color: 'var(--ink-dim)', lineHeight: 1.5 }}>{ph.trigger?.label}</span>
                       </button>
                     ))}
                   </div>
@@ -299,11 +340,31 @@ function RelianceView({ personId, personName, verseLang, setVerseLang, onSelectP
               <button onClick={() => setVerseView(null)} aria-label="닫기"
                 style={{ marginLeft: 'auto', border: 'none', background: 'none', cursor: 'pointer', fontSize: 20, color: 'var(--paper-accent)', lineHeight: 1, padding: '0 2px' }}>×</button>
             </div>
-            <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--paper-ink)', marginBottom: 10, fontFamily: 'var(--serif)' }}>{verseView.ph.label}</div>
-            <div style={{ fontFamily: 'var(--serif)', fontSize: 15.5, lineHeight: 1.8, color: 'var(--paper-ink)' }}>
-              <span style={{ fontWeight: 700, color: 'var(--paper-accent)', marginRight: 6 }}>{verseView.ph.verse}</span>
-              {verseLang === 'en' && verseView.ph.verseTextEn ? verseView.ph.verseTextEn : (verseView.ph.verseTextKo || verseView.ph.verseTextEn || '구절 본문 없음')}
-            </div>
+            {(() => {
+              const ph = verseView.ph
+              const [tLabel, oLabel] = STEP_LABELS[segKey(ph)] || ['계기', '결과']
+              const color = segColor(ph)
+              const kind = ph.outcome?.kind
+              return (
+                <div>
+                  {/* 계기 */}
+                  <StepChip color={color} text={tLabel} />
+                  <div style={{ fontSize: 13.5, color: 'var(--paper-ink)', marginTop: 3, fontFamily: 'var(--serif)' }}>{ph.trigger.label}</div>
+                  {!ph.sameVerse && <VerseCard seg={ph.trigger} lang={verseLang} color={color} />}
+                  {/* 흐름 화살표 */}
+                  <div style={{ textAlign: 'center', color: 'var(--paper-accent)', fontSize: 18, margin: '10px 0', lineHeight: 1 }}>↓</div>
+                  {/* 결과 */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                    <StepChip color={color} text={oLabel} />
+                    {kind && KIND_BADGE[kind] && (
+                      <span style={{ fontSize: 10.5, fontWeight: 700, color: 'var(--paper)', background: 'var(--paper-accent)', borderRadius: 999, padding: '2px 8px' }}>{KIND_BADGE[kind]}</span>
+                    )}
+                  </div>
+                  <div style={{ fontSize: 13.5, color: 'var(--paper-ink)', marginTop: 3, fontFamily: 'var(--serif)' }}>{ph.outcome.label}</div>
+                  <VerseCard seg={ph.outcome} lang={verseLang} color={color} />
+                </div>
+              )
+            })()}
           </div>
         </div>,
         document.body

@@ -1,78 +1,78 @@
 [
   {
     "mode": "부르심",
-    "verse": "눅 5:1",
     "approxYear": 28,
     "obeyed": true,
-    "label": "그물 가득한 표징 후 부르심 — 배 버려두고 좇음"
+    "trigger": { "label": "그물 가득한 표징 보이신 후 나를 따르라 부르심", "verse": "눅 5:1" },
+    "outcome": { "label": "배와 모든 것 버려두고 예수를 따름", "verse": "눅 5:1" }
   },
   {
     "mode": "부르심",
-    "verse": "눅 6:12",
     "approxYear": 28,
     "obeyed": true,
-    "label": "밤새 기도 후 사도로 세우며 '베드로'라 이름 주심"
+    "trigger": { "label": "밤새 기도하신 예수께서 사도로 부르심", "verse": "눅 6:12" },
+    "outcome": { "label": "베드로라는 이름 받고 사도로 세워짐", "verse": "눅 6:12" }
   },
   {
     "mode": "물음-응답",
-    "verse": "마 14:28",
     "approxYear": 29,
-    "label": "물 위 걷다 두려워 빠지니 손 내밀어 붙드심"
+    "trigger": { "label": "물 위로 오라 하심에 나아가다 두려워 빠짐", "verse": "마 14:28" },
+    "outcome": { "label": "살려달라 외치니 손 내밀어 붙드심", "verse": "마 14:28", "kind": "이룸" }
   },
   {
     "mode": "독단-어긋남",
-    "verse": "눅 22:54",
     "approxYear": 30,
-    "label": "두려움에 세 번 부인함 — 주 돌아보시니 통곡함"
+    "trigger": { "label": "두려움에 예수를 모른다 세 번 부인함", "verse": "눅 22:54" },
+    "outcome": { "label": "주께서 돌아보시니 통곡하며 나감", "verse": "눅 22:54" }
   },
   {
     "mode": "부르심",
-    "verse": "요 21:15",
     "approxYear": 30,
     "obeyed": true,
-    "label": "세 번 물으심에 답하니 '내 양을 먹이라' 다시 세우심"
+    "trigger": { "label": "나를 사랑하느냐 세 번 물으며 부르심", "verse": "요 21:15" },
+    "outcome": { "label": "사랑한다 답하니 내 양을 먹이라 맡기심", "verse": "요 21:15" }
   },
   {
     "mode": "물음-응답",
-    "verse": "행 2:4",
     "approxYear": 30,
-    "label": "한 곳에 모였더니 성령 충만히 임하여 방언 말함"
+    "trigger": { "label": "한 곳에 모여 성령을 기다리며 기도함", "verse": "행 2:4" },
+    "outcome": { "label": "성령이 충만히 임하여 방언으로 말함", "verse": "행 2:4", "kind": "이룸" }
   },
   {
     "mode": "물음-응답",
-    "verse": "행 3:1",
     "approxYear": 30,
-    "label": "기도 시간에 성전 오르다 앉은뱅이 걸어 하나님 찬송"
+    "trigger": { "label": "기도 시간에 성전 오르다 앉은뱅이 만남", "verse": "행 3:1" },
+    "outcome": { "label": "예수 이름으로 명하니 걸으며 하나님 찬송", "verse": "행 3:1", "kind": "더하심" }
   },
   {
     "mode": "물음-응답",
-    "verse": "행 8:14",
     "approxYear": 31,
-    "label": "사마리아 내려가 안수하니 사람들 성령 받음"
+    "trigger": { "label": "사마리아 내려가 성령 받도록 안수하며 기도함", "verse": "행 8:14" },
+    "outcome": { "label": "안수하니 사람들이 성령을 받음", "verse": "행 8:14", "kind": "이룸" }
   },
   {
     "mode": "물음-응답",
-    "verse": "행 9:32",
     "approxYear": 37,
-    "label": "예수 이름으로 명하니 애니아 낫고 도르가 살아남"
+    "trigger": { "label": "예수 이름으로 병자를 일으키라 명함", "verse": "행 9:32" },
+    "outcome": { "label": "애니아 낫고 도르가 다시 살아남", "verse": "행 9:32", "kind": "더하심" }
   },
   {
     "mode": "부르심",
-    "verse": "행 10:15",
     "approxYear": 40,
     "obeyed": true,
-    "label": "하나님이 깨끗케 하신 것을 속되다 말라 하심 — 순종함"
+    "trigger": { "label": "보자기 환상으로 속되다 말라 명하심", "verse": "행 10:15" },
+    "outcome": { "label": "하나님이 깨끗케 하신 것을 순종하여 받음", "verse": "행 10:15" }
   },
   {
     "mode": "물음-응답",
-    "verse": "행 10:1",
     "approxYear": 40,
-    "label": "환상 따라 이방인에게 전하니 성령이 임하심"
+    "trigger": { "label": "환상 따라 이방인 고넬료 집에 가서 전함", "verse": "행 10:1" },
+    "outcome": { "label": "말씀 듣는 중 성령이 임하심", "verse": "행 10:1", "kind": "더하심" }
   },
   {
     "mode": "물음-응답",
-    "verse": "행 12:7",
     "approxYear": 44,
-    "label": "교회가 간절히 기도하니 천사가 옥에서 건져냄"
+    "trigger": { "label": "교회가 베드로를 위해 간절히 기도함", "verse": "행 12:7" },
+    "outcome": { "label": "천사가 나타나 옥에서 건져냄", "verse": "행 12:7", "kind": "이룸" }
   }
 ]

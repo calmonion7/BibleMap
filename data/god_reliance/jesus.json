@@ -1,47 +1,47 @@
 [
   {
     "mode": "부르심",
-    "verse": "마 3:17",
     "approxYear": 27,
     "obeyed": true,
-    "label": "요단강 세례 후 하늘의 소리 — 사랑하는 아들이라 하심"
+    "trigger": { "label": "요단강 세례 받으실 때 하늘에서 사랑하는 아들이라 선포하심", "verse": "마 3:17" },
+    "outcome": { "label": "아들로서 그 부르심을 받아들여 순종하심", "verse": "마 3:17" }
   },
   {
     "mode": "부르심",
-    "verse": "마 4:1",
     "approxYear": 26,
     "obeyed": true,
-    "label": "성령에 이끌려 광야로 — 말씀으로 시험 이기심"
+    "trigger": { "label": "성령에 이끌려 시험받으러 광야로 인도되심", "verse": "마 4:1" },
+    "outcome": { "label": "말씀으로 시험을 이기고 순종하심", "verse": "마 4:1" }
   },
   {
     "mode": "부르심",
-    "verse": "마 17:5",
     "approxYear": 29,
     "obeyed": true,
-    "label": "변화산 — 다시 사랑하는 아들이니 그 말을 들으라 하심"
+    "trigger": { "label": "변화산에서 다시 사랑하는 아들이니 그 말을 들으라 하심", "verse": "마 17:5" },
+    "outcome": { "label": "말씀에 순종하여 받아들이심", "verse": "마 17:5" }
   },
   {
     "mode": "물음-응답",
-    "verse": "마 26:39",
     "approxYear": 30,
-    "label": "겟세마네 기도 — 아버지 뜻대로 되기를 구하고 순종"
+    "trigger": { "label": "겟세마네에서 이 잔을 옮겨달라 하시며 아버지 뜻대로 되기를 구하심", "verse": "마 26:39" },
+    "outcome": { "label": "자기 뜻 대신 아버지 뜻대로 순종하여 받아들이심", "verse": "마 26:39", "kind": "다르게" }
   },
   {
     "mode": "물음-응답",
-    "verse": "눅 23:33",
     "approxYear": 33,
-    "label": "십자가에서 원수 용서를 구함 — 대속의 기도로 받으심"
+    "trigger": { "label": "십자가에서 자기를 못박은 자들의 용서를 구하심", "verse": "눅 23:33" },
+    "outcome": { "label": "대속의 기도로 받으심", "verse": "눅 23:33", "kind": "이룸" }
   },
   {
     "mode": "물음-침묵",
-    "verse": "마 27:46",
     "approxYear": 30,
-    "label": "십자가에서 '어찌 버리셨나이까' 외침 — 침묵 속 죽으심"
+    "trigger": { "label": "십자가에서 '어찌하여 나를 버리셨나이까' 부르짖으심", "verse": "마 27:46" },
+    "outcome": { "label": "응답 없이 침묵 속에서 죽으심", "verse": "마 27:46", "kind": "침묵" }
   },
   {
     "mode": "물음-응답",
-    "verse": "눅 23:46",
     "approxYear": 30,
-    "label": "숨 거두며 '내 영혼을 아버지 손에' 의탁 — 아버지께 받으심"
+    "trigger": { "label": "숨 거두며 '내 영혼을 아버지 손에' 의탁하심", "verse": "눅 23:46" },
+    "outcome": { "label": "아버지께서 받으심", "verse": "눅 23:46", "kind": "이룸" }
   }
 ]

@@ -1,9 +1,46 @@
 [
-  { "mode": "부르심", "verse": "삼상 3:10", "approxYear": -1095, "obeyed": true, "label": "밤에 세 번 부르시는 음성에 응답 — 선지자로 부르심" },
-  { "mode": "물음-응답", "verse": "삼상 3:19", "approxYear": -1090, "label": "자라며 신실히 섬기니 말씀 하나도 땅에 떨어지지 않게 하심" },
-  { "mode": "물음-응답", "verse": "삼상 7:9", "approxYear": -1060, "label": "미스바서 번제 드리고 부르짖으매 우레로 블레셋을 흩으심" },
-  { "mode": "물음-응답", "verse": "삼상 8:7", "approxYear": -1050, "label": "왕을 구하는 백성 놓고 기도하니 — 나를 버림이라 응답" },
-  { "mode": "물음-응답", "verse": "삼상 11:14-15", "approxYear": -1050, "label": "길갈서 화목제 드려 사울 왕위 새롭게 함(예배)" },
-  { "mode": "물음-침묵", "verse": "삼상 15:11", "approxYear": -1042, "label": "사울 버리심에 온 밤 부르짖으나 돌이키지 않으심" },
-  { "mode": "부르심", "verse": "삼상 16:1", "approxYear": -1025, "obeyed": true, "label": "사울 애도 그치고 새 왕에게 기름 부으라 명하심(순종)" }
+  {
+    "mode": "부르심",
+    "approxYear": -1095,
+    "obeyed": true,
+    "trigger": { "label": "여호와께서 밤에 세 번 사무엘을 부르심", "verse": "삼상 3:10" },
+    "outcome": { "label": "말씀하옵소서 듣겠나이다 응답하여 순종함", "verse": "삼상 3:10" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": -1090,
+    "trigger": { "label": "사무엘이 자라며 여호와를 신실히 섬김", "verse": "삼상 3:19" },
+    "outcome": { "label": "여호와께서 함께하사 말씀 하나도 땅에 떨어지지 않게 하심", "verse": "삼상 3:19", "kind": "이룸" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": -1060,
+    "trigger": { "label": "미스바서 번제 드리며 이스라엘 위해 부르짖음", "verse": "삼상 7:9" },
+    "outcome": { "label": "우레로 블레셋을 흩으시고 응답하심", "verse": "삼상 7:9", "kind": "이룸" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": -1050,
+    "trigger": { "label": "왕을 구하는 백성 문제로 여호와께 기도함", "verse": "삼상 8:7" },
+    "outcome": { "label": "백성이 나를 버림이라 하시며 응답하심", "verse": "삼상 8:7", "kind": "다르게" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": -1050,
+    "trigger": { "label": "길갈서 백성과 함께 화목제 드려 예배함", "verse": "삼상 11:14-15" },
+    "outcome": { "label": "여호와 앞에서 사울 왕위를 새롭게 하심", "verse": "삼상 11:14-15", "kind": "이룸" }
+  },
+  {
+    "mode": "물음-침묵",
+    "approxYear": -1042,
+    "trigger": { "label": "사울 버리심에 근심하여 온 밤 부르짖음", "verse": "삼상 15:11" },
+    "outcome": { "label": "돌이키지 않으시고 응답 없으심", "verse": "삼상 15:11", "kind": "침묵" }
+  },
+  {
+    "mode": "부르심",
+    "approxYear": -1025,
+    "obeyed": true,
+    "trigger": { "label": "사울 애도 그치고 이새 집으로 가라 명하심", "verse": "삼상 16:1" },
+    "outcome": { "label": "명하신 대로 순종하여 새 왕에게 기름 부으러 감", "verse": "삼상 16:1" }
+  }
 ]

@@ -1,8 +1,38 @@
 [
-  { "mode": "물음-응답", "verse": "욥 1:1", "approxYear": -1900, "label": "온전하고 정직하여 하나님을 경외하며 악에서 떠난 삶" },
-  { "mode": "물음-응답", "verse": "욥 1:20-21", "approxYear": -1900, "label": "모든 것 잃고도 엎드려 경배 — '여호와의 이름을 찬송'" },
-  { "mode": "물음-침묵", "verse": "욥 30:20", "approxYear": -1899, "label": "고난 중 부르짖으나 주께서 대답지 아니하심" },
-  { "mode": "물음-응답", "verse": "욥 38:4", "approxYear": -1898, "label": "폭풍 가운데 마침내 응답 — 창조의 신비로 물으심" },
-  { "mode": "물음-응답", "verse": "욥 42:5", "approxYear": -1897, "label": "귀로 듣던 주를 눈으로 뵈옵고 티끌 재 가운데 회개" },
-  { "mode": "물음-응답", "verse": "욥 42:10", "approxYear": -1896, "label": "벗들 위해 기도하니 여호와께서 갑절로 회복시키심" }
+  {
+    "mode": "물음-응답",
+    "approxYear": -1900,
+    "trigger": { "label": "온전하고 정직하여 하나님을 경외하며 악에서 떠남", "verse": "욥 1:1" },
+    "outcome": { "label": "하나님께 인정받는 의로운 삶을 이룸", "verse": "욥 1:1", "kind": "이룸" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": -1900,
+    "trigger": { "label": "모든 것을 잃은 중에도 엎드려 경배하며 나아감", "verse": "욥 1:20-21" },
+    "outcome": { "label": "'여호와의 이름을 찬송하리로다' 고백함", "verse": "욥 1:20-21", "kind": "이룸" }
+  },
+  {
+    "mode": "물음-침묵",
+    "approxYear": -1899,
+    "trigger": { "label": "고난 중에 주께 부르짖음", "verse": "욥 30:20" },
+    "outcome": { "label": "주께서 대답지 아니하시고 돌아보지 않으심", "verse": "욥 30:20", "kind": "침묵" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": -1898,
+    "trigger": { "label": "폭풍 가운데 하나님의 응답을 기다림", "verse": "욥 38:4" },
+    "outcome": { "label": "땅의 기초를 물으심 — 창조의 신비로 응답하심", "verse": "욥 38:4", "kind": "다르게" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": -1897,
+    "trigger": { "label": "귀로 듣던 주를 이제 눈으로 뵈옵음", "verse": "욥 42:5" },
+    "outcome": { "label": "티끌과 재 가운데 회개함", "verse": "욥 42:5", "kind": "이룸" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": -1896,
+    "trigger": { "label": "벗들을 위하여 기도함", "verse": "욥 42:10" },
+    "outcome": { "label": "여호와께서 욥의 곱절로 회복시키심", "verse": "욥 42:10", "kind": "더하심" }
+  }
 ]

@@ -1,42 +1,42 @@
 [
   {
     "mode": "부르심",
-    "verse": "출 3:4",
     "approxYear": -1447,
     "obeyed": true,
-    "label": "떨기나무에서 부르심 받음 — 두려워하며 순종해 애굽으로 감"
+    "trigger": { "label": "하나님이 떨기나무 불꽃 가운데서 모세를 부르심", "verse": "출 3:4" },
+    "outcome": { "label": "두려워하면서도 순종하여 애굽으로 감", "verse": "출 3:4" }
   },
   {
     "mode": "부르심",
-    "verse": "출 19:20",
     "approxYear": -1446,
     "obeyed": true,
-    "label": "시내산으로 부르심 받아 올라가 율법을 받음"
+    "trigger": { "label": "하나님이 시내산으로 모세를 부르심", "verse": "출 19:20" },
+    "outcome": { "label": "순종하여 산에 올라가 율법을 받음", "verse": "출 19:20" }
   },
   {
     "mode": "물음-응답",
-    "verse": "출 33:11",
     "approxYear": -1445,
-    "label": "회막에 나아가 하나님과 대면하여 말씀을 나눔"
+    "trigger": { "label": "모세가 회막에 나아가 하나님을 구함", "verse": "출 33:11" },
+    "outcome": { "label": "하나님이 친구처럼 대면하여 말씀하심", "verse": "출 33:11", "kind": "이룸" }
   },
   {
     "mode": "부르심",
-    "verse": "민 13:1",
     "approxYear": -1445,
     "obeyed": true,
-    "label": "가나안 정탐을 명하심 — 열두 지파 대표를 보내 순종"
+    "trigger": { "label": "하나님이 가나안 정탐을 명하심", "verse": "민 13:1" },
+    "outcome": { "label": "순종하여 열두 지파 대표를 보냄", "verse": "민 13:1" }
   },
   {
     "mode": "독단-어긋남",
-    "verse": "민 20:12",
     "approxYear": -1407,
-    "label": "명령 어기고 반석을 두 번 침 — 가나안 입성 금지 심판"
+    "trigger": { "label": "모세가 명령을 어기고 반석을 두 번 침", "verse": "민 20:12" },
+    "outcome": { "label": "가나안 입성이 금지되는 심판을 받음", "verse": "민 20:12" }
   },
   {
     "mode": "부르심",
-    "verse": "신 34:5",
     "approxYear": -1406,
     "obeyed": true,
-    "label": "가나안 못 들어간다는 말씀에 순종 — 모압에서 죽음"
+    "trigger": { "label": "하나님이 가나안에 못 들어간다 말씀하심", "verse": "신 34:5" },
+    "outcome": { "label": "순종하여 모압 땅에서 죽음", "verse": "신 34:5" }
   }
 ]

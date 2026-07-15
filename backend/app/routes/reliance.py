@@ -101,19 +101,26 @@ def get_person_reliance(person_id: str):
 
     entries = sorted(_load_entries(slug), key=lambda e: e.get("approxYear", 0))
     verses = bible_verses()
+
+    def _seg(ref, label):
+        vid = _resolve_verse(ref)
+        vt = verses.get(vid, {}) if vid else {}
+        return {"label": label, "verse": ref, "verseTextKo": vt.get("textKo"), "verseTextEn": vt.get("textEn")}
+
     phases = []
     mode_counts = {}
     for e in entries:
         mode_counts[e["mode"]] = mode_counts.get(e["mode"], 0) + 1
-        vid = _resolve_verse(e.get("verse"))
-        vt = verses.get(vid, {}) if vid else {}
+        trig, out = e["trigger"], e["outcome"]
+        outc = _seg(out["verse"], out["label"])
+        if "kind" in out:
+            outc["kind"] = out["kind"]
         ph = {
             "mode": e["mode"],
-            "verse": e["verse"],
             "approxYear": e["approxYear"],
-            "label": e["label"],
-            "verseTextKo": vt.get("textKo"),
-            "verseTextEn": vt.get("textEn"),
+            "sameVerse": trig["verse"] == out["verse"],
+            "trigger": _seg(trig["verse"], trig["label"]),
+            "outcome": outc,
         }
         if "obeyed" in e:
             ph["obeyed"] = e["obeyed"]

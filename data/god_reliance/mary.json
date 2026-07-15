@@ -1,7 +1,33 @@
 [
-  { "mode": "부르심", "verse": "눅 1:30", "approxYear": -5, "obeyed": true, "label": "천사 가브리엘이 은혜 입은 자로 택해 잉태를 예고함" },
-  { "mode": "물음-응답", "verse": "눅 1:38", "approxYear": -5, "label": "주의 여종이니 말씀대로 이루어지길 순종으로 응답" },
-  { "mode": "물음-응답", "verse": "눅 1:46", "approxYear": -5, "label": "마리아의 찬가 — 내 영혼이 주를 찬양함" },
-  { "mode": "물음-응답", "verse": "요 2:3-5", "approxYear": 27, "label": "가나 혼인잔치서 예수께 청함 → 물이 포도주로 됨" },
-  { "mode": "물음-응답", "verse": "행 1:14", "approxYear": 30, "label": "다락방에서 제자들과 합심 기도 → 성령 강림으로 응답" }
+  {
+    "mode": "부르심",
+    "approxYear": -5,
+    "obeyed": true,
+    "trigger": { "label": "천사 가브리엘이 은혜 입은 자로 택해 잉태를 예고함", "verse": "눅 1:30" },
+    "outcome": { "label": "이 부르심을 순종으로 받아들임", "verse": "눅 1:30" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": -5,
+    "trigger": { "label": "주의 여종이니 말씀대로 이루어지길 의탁함", "verse": "눅 1:38" },
+    "outcome": { "label": "천사가 떠나가고 말씀대로 이루어짐", "verse": "눅 1:38", "kind": "이룸" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": -5,
+    "trigger": { "label": "엘리사벳의 축복에 감격하여 주를 찬양하며 예배함", "verse": "눅 1:46" },
+    "outcome": { "label": "낮은 여종에게 능하신 이가 큰 일을 행하셨다 찬양함", "verse": "눅 1:46", "kind": "더하심" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": 27,
+    "trigger": { "label": "포도주 떨어짐을 보고 예수께 알리며 청함", "verse": "요 2:3-5" },
+    "outcome": { "label": "하인들의 순종으로 물이 포도주가 됨", "verse": "요 2:3-5", "kind": "더하심" }
+  },
+  {
+    "mode": "물음-응답",
+    "approxYear": 30,
+    "trigger": { "label": "다락방에서 제자들과 합심하여 기도함", "verse": "행 1:14" },
+    "outcome": { "label": "약속대로 성령이 강림하여 응답하심", "verse": "행 1:14", "kind": "이룸" }
+  }
 ]
