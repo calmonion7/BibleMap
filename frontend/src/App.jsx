@@ -24,7 +24,7 @@ const MOBILE_QUERY = `(max-width: ${MOBILE_BREAKPOINT}px)`
 // 탐험 토글 정의 — 지도 라벨은 "여정"(인물이 지도 위에 남긴 이동 경로)
 const EXPLORE_TABS = [
   { key: 'map', icon: Route, label: '여정' },
-  { key: 'timeline', icon: Clock, label: '타임라인' },
+  { key: 'timeline', icon: Clock, label: '연표' },  // '타임라인'은 모바일 6탭 폭에서 2줄 — 2글자로 축약
 ]
 const INTRO_TAB = { key: 'intro', icon: UserRound, label: '소개' }
 const RELATIONS_TAB = { key: 'relations', icon: Users, label: '관계' }
@@ -32,7 +32,8 @@ const RELATIONS_TAB = { key: 'relations', icon: Users, label: '관계' }
 // 라벨은 짧게 '의존'(모바일 6탭 폭에서 '하나님 의존'은 3줄로 감김) — 아이콘·본문 헤더가 맥락 전달.
 const RELIANCE_TAB = { key: 'reliance', icon: HeartHandshake, label: '의존' }
 // 가계도 — 탭 전환(setExploreView)이 아니라 전용 스테이지(openFamily) 진입. 관계 옆에 배치.
-const FAMILY_TAB = { key: 'family', icon: Network, label: '가계도' }
+// 라벨 '족보'(2글자) — '가계도'는 모바일 6탭 폭에서 2줄로 감김.
+const FAMILY_TAB = { key: 'family', icon: Network, label: '족보' }
 
 function App() {
   // 절 본문 표시 언어('ko'|'en', 기본 ko) — 타임라인·SidePanel 공유.
