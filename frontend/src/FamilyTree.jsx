@@ -142,8 +142,8 @@ function FamilyTree({ personId, onRecenter = () => {}, onOpenPerson = () => {} }
             style={{
               flexShrink: 0, display: 'flex', alignItems: 'center', gap: 5,
               padding: '7px 12px', borderRadius: 8, cursor: 'pointer', font: 'inherit',
-              fontSize: 12.5, fontWeight: 700, color: 'var(--bg-0)',
-              background: TYPE_COLOR.Person, border: 'none',
+              fontSize: 12.5, fontWeight: 600, color: 'var(--gold)',
+              background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
             }}
           >
             인물 페이지 →
