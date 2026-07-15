@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { apiGet } from './api'
 import Spinner from './Spinner'
@@ -48,6 +48,86 @@ function Donut({ percent }) {
       <text x="50%" y="65%" textAnchor="middle" dominantBaseline="middle"
         style={{ fontSize: 12, fill: 'var(--ink-faint)' }}>하나님 의존도</text>
     </svg>
+  )
+}
+
+// 생애 궤적 — 뱀 배치(boustrophedon): 짝수 행 왼→오, 홀수 행 오→왼. 오른쪽/왼쪽 끝에 닿으면
+// 커넥터가 곧게 아래로 내려가 다음 행으로. 가로 스크롤 대신 컨테이너 폭에 맞춰 wrap. 연도순.
+const TRAJ_COL_MIN = 92  // 최소 셀 폭(px) — 이보다 좁아지면 행당 개수를 줄인다
+const TRAJ_ROW_H = 100   // 행 높이(연도+점+2줄 라벨 + 여백)
+const TRAJ_DOT_Y = 24    // 셀 상단→점 중심 오프셋(연도 라벨 높이 + 점 반경)
+
+function Trajectory({ phases, colorOf, onOpen }) {
+  const ref = useRef(null)
+  const [w, setW] = useState(0)
+  useLayoutEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const measure = () => setW(el.clientWidth)
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  const n = phases.length
+  const perRow = w ? Math.max(2, Math.min(n, Math.floor(w / TRAJ_COL_MIN))) : n
+  const colW = w ? w / perRow : TRAJ_COL_MIN
+  const rowCount = Math.ceil(n / perRow)
+  const height = rowCount * TRAJ_ROW_H
+
+  // 뱀 배치 좌표 — 행이 바뀔 때 방향을 뒤집어(짝=정방향, 홀=역방향) 같은 열에서 곧게 내려가게 한다.
+  const pos = (gi) => {
+    const r = Math.floor(gi / perRow)
+    const p = gi % perRow
+    const col = r % 2 === 0 ? p : perRow - 1 - p
+    return { r, col, cx: col * colW + colW / 2, cy: r * TRAJ_ROW_H + TRAJ_DOT_Y }
+  }
+
+  return (
+    <div ref={ref} style={{ position: 'relative', height }}>
+      {/* 커넥터 — 연속 항목의 점 중심을 잇는다. 같은 행이면 수평선, 행 전환이면 같은 열이라 수직선(곧게 아래로). */}
+      {w > 0 && (
+        <svg width={w} height={height} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
+          {phases.slice(0, -1).map((_, gi) => {
+            const a = pos(gi)
+            const b = pos(gi + 1)
+            return (
+              <line key={gi} x1={a.cx} y1={a.cy} x2={b.cx} y2={b.cy}
+                stroke="var(--line-strong)" strokeWidth="2" strokeLinecap="round" />
+            )
+          })}
+        </svg>
+      )}
+      {/* 점 + 라벨 — 라벨/연도는 var(--bg-0) 배경으로 뒤의 수직 커넥터를 가린다(끝 열에서만 겹침). */}
+      {w > 0 && phases.map((ph, gi) => {
+        const { r, col } = pos(gi)
+        return (
+          <button key={gi} onClick={() => onOpen(ph)}
+            style={{
+              position: 'absolute', left: col * colW, top: r * TRAJ_ROW_H, width: colW, height: TRAJ_ROW_H,
+              padding: '0 4px', border: 'none', background: 'none', cursor: 'pointer',
+              display: 'flex', flexDirection: 'column', alignItems: 'center',
+              WebkitTapHighlightColor: 'transparent', outline: 'none', userSelect: 'none',
+            }}>
+            <span style={{ fontSize: 10, color: 'var(--ink-faint)', lineHeight: '13px', height: 13, background: 'var(--bg-0)', padding: '0 3px' }}>
+              {ph.approxYear < 0 ? `BC ${-ph.approxYear}` : `AD ${ph.approxYear}`}
+            </span>
+            <span style={{
+              width: 18, height: 18, marginTop: 2, borderRadius: '50%', background: colorOf(ph),
+              border: '2px solid var(--bg-0)', boxShadow: '0 0 0 1px var(--line-strong)',
+            }} />
+            <span style={{
+              fontSize: 10.5, color: 'var(--ink-dim)', marginTop: 6, textAlign: 'center', lineHeight: 1.3,
+              background: 'var(--bg-0)', padding: '0 2px',
+              display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden',
+            }}>
+              {ph.label}
+            </span>
+          </button>
+        )
+      })}
+    </div>
   )
 }
 
@@ -157,29 +237,7 @@ function RelianceView({ personId, personName, verseLang, setVerseLang, onSelectP
               <div style={{ marginTop: 22 }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--ink)', marginBottom: 4, fontFamily: 'var(--serif)' }}>생애 궤적</div>
                 <div style={{ fontSize: 11.5, color: 'var(--ink-faint)', marginBottom: 12 }}>연도순 · 점을 누르면 근거 구절을 봅니다</div>
-                <div style={{ overflowX: 'auto', paddingBottom: 6 }}>
-                  <div style={{ display: 'flex', alignItems: 'stretch', minWidth: phases.length * 84, position: 'relative' }}>
-                    <div style={{ position: 'absolute', top: 30, left: 30, right: 30, height: 2, background: 'var(--line-strong)' }} />
-                    {phases.map((ph, i) => (
-                      <button key={i} onClick={() => setVerseView({ ph })}
-                        style={{
-                          flex: 1, minWidth: 84, background: 'none', border: 'none', cursor: 'pointer',
-                          padding: '0 4px', display: 'flex', flexDirection: 'column', alignItems: 'center',
-                        }}>
-                        <span style={{ fontSize: 10, color: 'var(--ink-faint)', marginBottom: 6, height: 14 }}>
-                          {ph.approxYear < 0 ? `BC ${-ph.approxYear}` : `AD ${ph.approxYear}`}
-                        </span>
-                        <span style={{
-                          width: 18, height: 18, borderRadius: '50%', background: segColor(ph),
-                          border: '2px solid var(--bg-0)', boxShadow: '0 0 0 1px var(--line-strong)', zIndex: 1,
-                        }} />
-                        <span style={{ fontSize: 10.5, color: 'var(--ink-dim)', marginTop: 8, textAlign: 'center', lineHeight: 1.35, maxWidth: 92 }}>
-                          {ph.label.length > 22 ? ph.label.slice(0, 21) + '…' : ph.label}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
+                <Trajectory phases={phases} colorOf={segColor} onOpen={ph => setVerseView({ ph })} />
               </div>
 
               {/* 은혜 하이라이트 — 독단이었으나 하나님이 붙드신 순간 */}
@@ -194,6 +252,7 @@ function RelianceView({ personId, personName, verseLang, setVerseLang, onSelectP
                         style={{
                           textAlign: 'left', cursor: 'pointer', padding: '10px 12px', borderRadius: 10,
                           background: 'var(--bg-1)', border: '1px solid var(--line)', display: 'flex', gap: 10, alignItems: 'baseline',
+                          WebkitTapHighlightColor: 'transparent', outline: 'none',
                         }}>
                         <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--type-event)', whiteSpace: 'nowrap' }}>{ph.verse}</span>
                         <span style={{ fontSize: 13, color: 'var(--ink-dim)', lineHeight: 1.5 }}>{ph.label}</span>
