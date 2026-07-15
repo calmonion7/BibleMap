@@ -56,6 +56,26 @@ function Donut({ percent }) {
 const TRAJ_COL_MIN = 92  // 최소 셀 폭(px) — 이보다 좁아지면 행당 개수를 줄인다
 const TRAJ_ROW_H = 100   // 행 높이(연도+점+2줄 라벨 + 여백)
 const TRAJ_DOT_Y = 24    // 셀 상단→점 중심 오프셋(연도 라벨 높이 + 점 반경)
+const TRAJ_CURVE_R = 22  // 코너 곡률 반경 — 턴을 둥근 U자로(딱딱한 직각 대신)
+
+// 점 중심들을 잇는 부드러운 path — 직선 구간은 그대로, 방향이 꺾이는 턴에서만 둥근 코너(2차 베지어).
+// 코너 컷은 점(반경 ~11)에 가려져 점을 통과하는 것처럼 보인다.
+function roundedPath(pts, r) {
+  if (pts.length < 2) return ''
+  let d = `M${pts[0].x},${pts[0].y}`
+  for (let i = 1; i < pts.length - 1; i++) {
+    const p0 = pts[i - 1], p1 = pts[i], p2 = pts[i + 1]
+    const d1 = Math.hypot(p1.x - p0.x, p1.y - p0.y) || 1
+    const d2 = Math.hypot(p2.x - p1.x, p2.y - p1.y) || 1
+    const r1 = Math.min(r, d1 / 2), r2 = Math.min(r, d2 / 2)
+    const ax = p1.x + (p0.x - p1.x) / d1 * r1, ay = p1.y + (p0.y - p1.y) / d1 * r1
+    const bx = p1.x + (p2.x - p1.x) / d2 * r2, by = p1.y + (p2.y - p1.y) / d2 * r2
+    d += ` L${ax},${ay} Q${p1.x},${p1.y} ${bx},${by}`
+  }
+  const last = pts[pts.length - 1]
+  d += ` L${last.x},${last.y}`
+  return d
+}
 
 function Trajectory({ phases, colorOf, onOpen }) {
   const ref = useRef(null)
@@ -89,14 +109,8 @@ function Trajectory({ phases, colorOf, onOpen }) {
       {/* 커넥터 — 연속 항목의 점 중심을 잇는다. 같은 행이면 수평선, 행 전환이면 같은 열이라 수직선(곧게 아래로). */}
       {w > 0 && (
         <svg width={w} height={height} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
-          {phases.slice(0, -1).map((_, gi) => {
-            const a = pos(gi)
-            const b = pos(gi + 1)
-            return (
-              <line key={gi} x1={a.cx} y1={a.cy} x2={b.cx} y2={b.cy}
-                stroke="var(--line-strong)" strokeWidth="2" strokeLinecap="round" />
-            )
-          })}
+          <path d={roundedPath(phases.map((_, gi) => { const p = pos(gi); return { x: p.cx, y: p.cy } }), TRAJ_CURVE_R)}
+            fill="none" stroke="var(--line-strong)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       )}
       {/* 점 + 라벨 — 라벨/연도는 var(--bg-0) 배경으로 뒤의 수직 커넥터를 가린다(끝 열에서만 겹침). */}
