@@ -15,9 +15,9 @@
   {
     "mode": "부르심",
     "approxYear": -1978,
-    "obeyed": true,
+    "covenant": true,
     "trigger": { "label": "브엘세바에서 여호와께서 재차 나타나 '두려워 말라' 하시며 복을 약속하심", "verse": "창 26:24" },
-    "outcome": { "label": "단을 쌓아 여호와의 이름을 부르며 응답함", "verse": "창 26:24" }
+    "outcome": { "label": "복의 약속을 받아 단을 쌓고 경배함", "verse": "창 26:24" }
   },
   {
     "mode": "물음-응답",

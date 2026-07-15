@@ -88,11 +88,18 @@ def main():
             elif "kind" in out:
                 errors.append(f"{tag}: kind는 물음 계열 outcome에만 허용")
             has_obeyed = "obeyed" in e
+            has_cov = "covenant" in e
             if mode == "부르심":
-                if not isinstance(e.get("obeyed"), bool):
-                    errors.append(f"{tag}: 부르심인데 obeyed 불리언 없음")
-            elif has_obeyed:
-                errors.append(f"{tag}: obeyed는 부르심에만 허용")
+                if has_cov and e.get("covenant") is not True:
+                    errors.append(f"{tag}: covenant는 true만 허용")
+                # 명령형(obeyed 불리언) 또는 언약형(covenant true) 중 정확히 하나
+                if isinstance(e.get("obeyed"), bool) == (e.get("covenant") is True):
+                    errors.append(f"{tag}: 부르심은 obeyed(명령) 또는 covenant(언약) 중 정확히 하나")
+            else:
+                if has_obeyed:
+                    errors.append(f"{tag}: obeyed는 부르심에만 허용")
+                if has_cov:
+                    errors.append(f"{tag}: covenant는 부르심에만 허용")
 
     if errors:
         print(f"[validate_god_reliance] 위반 {len(errors)}건:")

@@ -13,15 +13,16 @@ const MODE_META = {
   '물음-응답': { label: '물음·응답', color: 'var(--valence-pos)', reliance: true },
   '물음-침묵': { label: '물음·침묵', color: 'var(--valence-neutral)', reliance: true },
   '부르심-순종': { label: '부르심·순종', color: 'var(--gold)', reliance: true },
+  '부르심-언약': { label: '부르심·언약', color: 'var(--gold)', reliance: true },
   '부르심-불순종': { label: '부르심·불순종', color: 'var(--type-place)', reliance: false },
   '독단-개입': { label: '독단·은혜개입', color: 'var(--type-event)', reliance: false },
   '독단-어긋남': { label: '독단·어긋남', color: 'var(--valence-neg)', reliance: false },
 }
-const SEGMENT_ORDER = ['물음-응답', '물음-침묵', '부르심-순종', '부르심-불순종', '독단-개입', '독단-어긋남']
+const SEGMENT_ORDER = ['물음-응답', '물음-침묵', '부르심-순종', '부르심-언약', '부르심-불순종', '독단-개입', '독단-어긋남']
 
 // phase의 mode를 표시 세그먼트 키로 — 부르심은 obeyed로 분리
 function segKey(ph) {
-  if (ph.mode === '부르심') return ph.obeyed ? '부르심-순종' : '부르심-불순종'
+  if (ph.mode === '부르심') return ph.covenant ? '부르심-언약' : (ph.obeyed ? '부르심-순종' : '부르심-불순종')
   return ph.mode
 }
 function segColor(ph) {
@@ -33,6 +34,7 @@ const STEP_LABELS = {
   '물음-응답': ['요청', '응답'],
   '물음-침묵': ['요청', '침묵'],
   '부르심-순종': ['부르심', '순종'],
+  '부르심-언약': ['부르심', '받음'],
   '부르심-불순종': ['부르심', '불순종'],
   '독단-개입': ['독단', '은혜 개입'],
   '독단-어긋남': ['독단', '어긋남'],

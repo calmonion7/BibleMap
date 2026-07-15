@@ -2,9 +2,9 @@
   {
     "mode": "부르심",
     "approxYear": -5,
-    "obeyed": true,
+    "covenant": true,
     "trigger": { "label": "천사 가브리엘이 은혜 입은 자로 택해 잉태를 예고함", "verse": "눅 1:30" },
-    "outcome": { "label": "이 부르심을 순종으로 받아들임", "verse": "눅 1:30" }
+    "outcome": { "label": "잉태의 언약을 받아들임", "verse": "눅 1:30" }
   },
   {
     "mode": "물음-응답",

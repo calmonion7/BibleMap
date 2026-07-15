@@ -2,9 +2,9 @@
   {
     "mode": "부르심",
     "approxYear": -1095,
-    "obeyed": true,
+    "covenant": true,
     "trigger": { "label": "나실인·구원자로 세우겠다 예고하심", "verse": "삿 13:5" },
-    "outcome": { "label": "블레셋 손에서 이스라엘 구원을 시작하게 하심", "verse": "삿 13:5" }
+    "outcome": { "label": "블레셋 손에서 구원할 나실인으로 택함받음", "verse": "삿 13:5" }
   },
   {
     "mode": "부르심",

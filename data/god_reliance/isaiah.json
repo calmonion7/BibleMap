@@ -2,9 +2,9 @@
   {
     "mode": "부르심",
     "approxYear": -740,
-    "obeyed": true,
+    "covenant": true,
     "trigger": { "label": "웃시야 죽던 해 성전에서 높이 들린 주의 영광을 보이심", "verse": "사 6:1" },
-    "outcome": { "label": "소명이 시작됨", "verse": "사 6:1" }
+    "outcome": { "label": "소명을 받음", "verse": "사 6:1" }
   },
   {
     "mode": "부르심",

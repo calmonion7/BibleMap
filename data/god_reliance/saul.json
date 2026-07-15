@@ -2,16 +2,16 @@
   {
     "mode": "부르심",
     "approxYear": -1050,
-    "obeyed": true,
+    "covenant": true,
     "trigger": { "label": "여호와께서 사무엘 통해 새 마음과 성령 주시겠다 약속하심", "verse": "삼상 10:9" },
-    "outcome": { "label": "새 마음 받고 성령 임하여 표징대로 다 응하심", "verse": "삼상 10:9" }
+    "outcome": { "label": "새 마음과 성령을 받아 표징대로 다 응하심", "verse": "삼상 10:9" }
   },
   {
     "mode": "부르심",
     "approxYear": -1050,
-    "obeyed": true,
+    "covenant": true,
     "trigger": { "label": "제비 뽑혀 여호와께서 사울을 왕으로 지명하심", "verse": "삼상 10:17" },
-    "outcome": { "label": "숨었으나 찾아내어져 왕으로 세워짐", "verse": "삼상 10:17" }
+    "outcome": { "label": "숨었으나 찾아내어져 왕으로 택함받음", "verse": "삼상 10:17" }
   },
   {
     "mode": "물음-응답",

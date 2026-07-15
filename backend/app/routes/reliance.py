@@ -83,7 +83,7 @@ def _percent(entries) -> int:
         return 0
     num = sum(
         1 for e in entries
-        if e["mode"] in _ASK_MODES or (e["mode"] == "부르심" and e.get("obeyed"))
+        if e["mode"] in _ASK_MODES or (e["mode"] == "부르심" and (e.get("obeyed") or e.get("covenant")))
     )
     return round(num / len(entries) * 100)
 
@@ -124,6 +124,8 @@ def get_person_reliance(person_id: str):
         }
         if "obeyed" in e:
             ph["obeyed"] = e["obeyed"]
+        if e.get("covenant"):
+            ph["covenant"] = True
         phases.append(ph)
 
     pct = _percent(entries)

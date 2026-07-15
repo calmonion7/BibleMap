@@ -35,8 +35,8 @@
   {
     "mode": "부르심",
     "approxYear": -1406,
-    "obeyed": true,
+    "covenant": true,
     "trigger": { "label": "하나님이 가나안에 못 들어간다 말씀하심", "verse": "신 34:5" },
-    "outcome": { "label": "순종하여 모압 땅에서 죽음", "verse": "신 34:5" }
+    "outcome": { "label": "말씀대로 모압 땅에서 죽음을 받음", "verse": "신 34:5" }
   }
 ]

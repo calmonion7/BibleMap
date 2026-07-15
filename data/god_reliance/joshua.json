@@ -1,7 +1,7 @@
 [
-  { "mode": "부르심", "approxYear": -1406, "obeyed": true,
+  { "mode": "부르심", "approxYear": -1406, "covenant": true,
     "trigger": { "label": "모세를 통해 안수하여 후계자로 세우라 명하심", "verse": "민 27:18" },
-    "outcome": { "label": "안수받아 영이 임한 지도자로 순종하여 세워짐", "verse": "민 27:18" } },
+    "outcome": { "label": "안수받아 영이 임한 지도자로 세워짐", "verse": "민 27:18" } },
   { "mode": "부르심", "approxYear": -1406, "obeyed": true,
     "trigger": { "label": "강하고 담대하라, 함께하리라 명하심", "verse": "수 1:9" },
     "outcome": { "label": "명하신 대로 순종하여 가나안 진군을 이끎", "verse": "수 1:9" } },

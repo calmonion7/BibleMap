@@ -2,9 +2,9 @@
   {
     "mode": "부르심",
     "approxYear": -6,
-    "obeyed": true,
+    "covenant": true,
     "trigger": { "label": "모태에서부터 성령 충만한 나실인으로 예비하심", "verse": "눅 1:15" },
-    "outcome": { "label": "예비하신 그대로 성별된 사람으로 자라며 순종함", "verse": "눅 1:15" }
+    "outcome": { "label": "예비하신 그대로 성별된 나실인으로 자라남", "verse": "눅 1:15" }
   },
   {
     "mode": "부르심",

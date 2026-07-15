@@ -9,9 +9,9 @@
   {
     "mode": "부르심",
     "approxYear": 28,
-    "obeyed": true,
+    "covenant": true,
     "trigger": { "label": "밤새 기도하신 예수께서 사도로 부르심", "verse": "눅 6:12" },
-    "outcome": { "label": "베드로라는 이름 받고 사도로 세워짐", "verse": "눅 6:12" }
+    "outcome": { "label": "베드로라는 이름과 사도직을 받음", "verse": "눅 6:12" }
   },
   {
     "mode": "물음-응답",

@@ -15,9 +15,9 @@
   {
     "mode": "부르심",
     "approxYear": 34,
-    "obeyed": true,
+    "covenant": true,
     "trigger": { "label": "모태로부터 택정하여 은혜로 부르심", "verse": "갈 1:15" },
-    "outcome": { "label": "순종하여 이방의 사도로 세워짐", "verse": "갈 1:15" }
+    "outcome": { "label": "이방의 사도로 택함받음", "verse": "갈 1:15" }
   },
   {
     "mode": "부르심",

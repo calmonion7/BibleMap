@@ -27,9 +27,9 @@
   {
     "mode": "부르심",
     "approxYear": -2400,
-    "obeyed": true,
+    "covenant": true,
     "trigger": { "label": "하나님이 무지개로 다시 심판하지 않으리라는 언약을 세우심", "verse": "창 9:13" },
-    "outcome": { "label": "언약의 증거를 받아들임(순종)", "verse": "창 9:13" }
+    "outcome": { "label": "언약의 증거를 받음", "verse": "창 9:13" }
   },
   {
     "mode": "독단-어긋남",

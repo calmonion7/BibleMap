@@ -2,9 +2,9 @@
   {
     "mode": "부르심",
     "approxYear": 27,
-    "obeyed": true,
+    "covenant": true,
     "trigger": { "label": "요단강 세례 받으실 때 하늘에서 사랑하는 아들이라 선포하심", "verse": "마 3:17" },
-    "outcome": { "label": "아들로서 그 부르심을 받아들여 순종하심", "verse": "마 3:17" }
+    "outcome": { "label": "하나님의 아들이라는 선포를 받으심", "verse": "마 3:17" }
   },
   {
     "mode": "부르심",
@@ -16,9 +16,9 @@
   {
     "mode": "부르심",
     "approxYear": 29,
-    "obeyed": true,
+    "covenant": true,
     "trigger": { "label": "변화산에서 다시 사랑하는 아들이니 그 말을 들으라 하심", "verse": "마 17:5" },
-    "outcome": { "label": "말씀에 순종하여 받아들이심", "verse": "마 17:5" }
+    "outcome": { "label": "다시 아들이라는 선포를 받으심", "verse": "마 17:5" }
   },
   {
     "mode": "물음-응답",
