@@ -29,7 +29,8 @@ const EXPLORE_TABS = [
 const INTRO_TAB = { key: 'intro', icon: UserRound, label: '소개' }
 const RELATIONS_TAB = { key: 'relations', icon: Users, label: '관계' }
 // 하나님 의존 — 관계와 동형 탭(setExploreView). 그 인물의 하나님 의존도·궤적.
-const RELIANCE_TAB = { key: 'reliance', icon: HeartHandshake, label: '하나님 의존' }
+// 라벨은 짧게 '의존'(모바일 6탭 폭에서 '하나님 의존'은 3줄로 감김) — 아이콘·본문 헤더가 맥락 전달.
+const RELIANCE_TAB = { key: 'reliance', icon: HeartHandshake, label: '의존' }
 // 가계도 — 탭 전환(setExploreView)이 아니라 전용 스테이지(openFamily) 진입. 관계 옆에 배치.
 const FAMILY_TAB = { key: 'family', icon: Network, label: '가계도' }
 
