@@ -10,8 +10,8 @@ import VerseLangTabs from './VerseLangTabs'
 
 // mode 표시 메타 — 순서=의존↔독단 스펙트럼. 색은 듀얼 테마 토큰(양쪽 테마 정의됨).
 const MODE_META = {
-  '물음-응답': { label: '물음·응답', color: 'var(--valence-pos)', reliance: true },
-  '물음-침묵': { label: '물음·침묵', color: 'var(--valence-neutral)', reliance: true },
+  '물음-응답': { label: '나아감·응답', color: 'var(--valence-pos)', reliance: true },
+  '물음-침묵': { label: '나아감·침묵', color: 'var(--valence-neutral)', reliance: true },
   '부르심-순종': { label: '부르심·순종', color: 'var(--gold)', reliance: true },
   '부르심-언약': { label: '부르심·언약', color: 'var(--gold)', reliance: true },
   '부르심-불순종': { label: '부르심·불순종', color: 'var(--type-place)', reliance: false },
@@ -36,8 +36,8 @@ const STEP_LABELS_3 = {
   '부르심-불순종': ['부르심', '불순종', '심판'],
 }
 const STEP_LABELS = {
-  '물음-응답': ['요청', '응답'],
-  '물음-침묵': ['요청', '침묵'],
+  '물음-응답': ['나아감', '응답'],
+  '물음-침묵': ['나아감', '침묵'],
   '부르심-순종': ['부르심', '순종'],
   '부르심-언약': ['부르심', '받음'],
   '부르심-불순종': ['부르심', '불순종'],
@@ -46,10 +46,10 @@ const STEP_LABELS = {
 }
 // 응답 성격 뱃지 — 물음 계열 outcome.kind → 문구. 부르심/독단은 결과 칩 자체가 성격이라 뱃지 없음.
 const KIND_BADGE = {
-  '이룸': '요청대로 이루심',
-  '더하심': '구한 것 이상으로',
+  '이룸': '그대로 이루심',
+  '더하심': '넘치게 이루심',
   '다르게': '다른 방식으로',
-  '거절': '구하신 대로는 아니',
+  '거절': '그대로는 아니',
   '침묵': '응답하지 않으심',
 }
 
@@ -271,7 +271,7 @@ function RelianceView({ personId, personName, verseLang, setVerseLang, onSelectP
                     }}>표본 적음 (기록 {data.sampleSize}건) — 참고치</div>
                   )}
                   <div style={{ fontSize: 12, color: 'var(--ink-faint)', marginTop: 8, lineHeight: 1.5 }}>
-                    "물음(기도·의탁·예배)"과 "순종한 부르심"이 전체 순간에서 차지하는 비율
+                    "나아감(기도·의탁·예배·헌신)"과 "순종한 부르심"이 전체 순간에서 차지하는 비율
                   </div>
                 </div>
               </div>
