@@ -86,7 +86,8 @@ function Donut({ percent }) {
   const [shown, setShown] = useState(instant ? percent : 0)      // 원호 목표값
   const [count, setCount] = useState(instant ? percent : 0)      // % 표기 카운트업
   useEffect(() => {
-    if (REDUCE_MOTION()) { setShown(percent); setCount(percent); return }
+    // reduce면 초기 state가 이미 percent(부모 key 리마운트로 percent는 마운트 내 불변) — 애니메이션만 생략.
+    if (REDUCE_MOTION()) return
     let raf = requestAnimationFrame(() => {
       setShown(percent)
       const t0 = performance.now(), D = 900

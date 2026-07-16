@@ -13,7 +13,7 @@ import re
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
-from ..overlays import _resolve, _resolve_dir, bible_verses, books_ko
+from ..overlays import _resolve, _resolve_dir, bible_verses, books_ko, curated_person_id
 from .persons import _NAME_KO
 
 router = APIRouter()
@@ -59,8 +59,9 @@ def _slug_to_id() -> dict:
             continue
         with open(pe, encoding="utf-8") as f:
             events = json.load(f)
-        if events and events[0].get("participants"):
-            mapping[slug] = events[0]["participants"][0]
+        pid = curated_person_id(events)
+        if pid is not None:
+            mapping[slug] = pid
     return mapping
 
 

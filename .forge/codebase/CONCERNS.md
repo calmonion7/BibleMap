@@ -7,7 +7,7 @@ mapped: 2026-07-16
 
 현재 코드베이스에서 확인된 기술 부채·버그 위험·보안·성능·취약 지점 목록. 각 항목은 HEAD(`23e41ee`)에서 실제 파일·라인으로 재확인했다.
 
-이번 갱신 배경: 직전 매핑(`e53ec23`, 2026-07-14) 이후 하나님 의존도 기능 전체(데이터+API+UI, task#178~188)와 모션 시스템 개편 3부작(task#189~191)이 들어왔다. `.forge/bug-report.md`(task#150, 2026-07-10)의 confirmed 12건 중 백엔드 9건(#1~#9)은 이번 재확인에서 **전부 해소** 확인(코드 재추적으로 검증) — 프론트 상태 3건(#10~#12)은 미착수로 잔존. maplibre `easeTo` `offset:undefined` 데스크톱 크래시(2026-07-16 발견 당일 수정, `frontend/src/MapView.jsx:207-209` 주석 참조)도 해소되어 이 문서에서 다루지 않는다. 신규로는 사용되지 않는 `word_verse_index` 오버레이(빌드는 되지만 어떤 라우트도 소비하지 않음), ESLint 상태 악화(1 warning → 4 errors + 1 warning), 큐레이션 slug 규약의 소비처 확산(3곳)을 기록했다.
+이번 갱신 배경: 직전 매핑(`e53ec23`, 2026-07-14) 이후 하나님 의존도 기능 전체(데이터+API+UI, task#178~188)와 모션 시스템 개편 3부작(task#189~191)이 들어왔다. `.forge/bug-report.md`(task#150, 2026-07-10)의 confirmed 12건 중 백엔드 9건(#1~#9)은 이번 재확인에서 **전부 해소** 확인(코드 재추적으로 검증) — 프론트 상태 3건(#10~#12)은 미착수로 잔존. maplibre `easeTo` `offset:undefined` 데스크톱 크래시(2026-07-16 발견 당일 수정, `frontend/src/MapView.jsx:207-209` 주석 참조)도 해소되어 이 문서에서 다루지 않는다. 신규 기록 3건(미사용 `word_verse_index` 런타임 로더 · ESLint 악화 · slug 규약 소비처 확산)은 **매핑 당일(2026-07-16) 후속 작업으로 해소**: 죽은 로더는 `overlays.py`에서 제거(데이터·빌드 스크립트는 오프라인 자산으로 유지), lint 0 problems 복원, slug 신원 접근은 `overlays.curated_person_id(events)` 헬퍼로 단일화(persons·places·reliance 소비, 스크립트는 자체 구현 유지).
 
 ---
 
@@ -40,7 +40,7 @@ mapped: 2026-07-16
 가장 조용히(에러 없이) 잘못된 상태를 만드는 부류. 캐시 무효화 수단이 사실상 **`api` 컨테이너 재시작뿐**이고, 재적재 순서를 빠뜨리면 파생 레이어가 소실된다.
 
 **인메모리 캐시 무효화 = `api` 재시작뿐 (`lru_cache` 산재, 하나님 의존도 기능으로 다수 추가):**
-- `backend/app/overlays.py` **7개** lru_cache(maxsize=1) — 기존 5개(`book_events_raw`·`event_verses`·`bible_verses`·`word_distribution`·`books_ko`)에 `word_verse_index`(`:76`)·`verse_persons`(`:83`)가 신규 추가.
+- `backend/app/overlays.py` **6개** lru_cache(maxsize=1) — 기존 5개(`book_events_raw`·`event_verses`·`bible_verses`·`word_distribution`·`books_ko`)에 `verse_persons`가 신규 추가(`word_verse_index` 로더는 미소비로 2026-07-16 제거 — 데이터·빌드 스크립트는 잔존).
 - `backend/app/routes/reliance.py`도 **5개** 신규 lru_cache — `_alias_to_bb`(`:27`, maxsize=1)·`_slug_to_id`(`:48`)·`_id_to_slug`(`:67`)·`_load_entries`(`:72`, maxsize=None이나 키가 god_reliance 파일 32개로 상한됨)·`_all_percents`(`:91`).
 - `data/`는 `docker-compose.yml:19-20`에서 api 컨테이너에 **볼륨 마운트**라 파일 수정에 이미지 재빌드는 불필요하지만, 실행 중 프로세스는 이전 값을 계속 서빙한다. 무효화 API·TTL·mtime 감시가 없어 반영은 `docker compose -p biblemap restart api`뿐 — 인물별 하나님 의존도 데이터(`data/god_reliance/*.json`)를 저작 중 반복 수정한 이번 기능(task#182~188에서 실제로 여러 차례 재조정)에서도 매번 재시작이 필요했을 것.
 - **API 응답 자체는 `Cache-Control: public, max-age=3600`이 붙어 브라우저에도 1시간 캐시된다**(`reliance.py:154`·`:174`, `verses.py:47`) — `frontend/src/api.js:12`의 `?v=` 빌드 ID 부착(신규, `e679df9`)으로 배포 직후 브라우저 캐시 문제는 해소됐지만, api 프로세스 자체의 lru_cache 무효화(재시작)와는 별개 계층이라 "재시작했는데 안 바뀐다"는 이제 발생하지 않아도 "재배포했는데 옛 데이터가 보인다"는 여전히 재시작 누락이 원인일 수 있다.
@@ -128,7 +128,7 @@ mapped: 2026-07-16
 
 ## Known Bugs
 
-**ESLint 상태 악화 — 1 warning → 4 errors + 1 warning (신규 확인):**
+**ESLint 상태 — 2026-07-16 후속 수정으로 0 problems 복원(아래는 당시 기록):**
 - `npm run lint`(=`eslint .`) 실측 결과 문제 5건으로 늘었다: `frontend/src/FamilyTree.jsx:97`·`frontend/src/RelianceView.jsx:89`·`frontend/src/WordDistributionView.jsx:81`이 `react-hooks/set-state-in-effect`(effect 본문에서 동기 setState 호출 금지, `eslint-plugin-react-hooks@7.1.1`)를 위반, `frontend/src/api.js:7`은 vite `define`으로 주입되는 `__BUILD_ID__`(cache-busting, `e679df9`)를 eslint 전역으로 등록하지 않아 `no-undef`. `frontend/src/MapView.jsx:63`의 기존 `exhaustive-deps` 경고는 그대로. `frontend/package.json`의 lint 스크립트를 CI/`deploy.sh` 어디도 게이팅하지 않아 배포 자체는 막히지 않지만, 실질적으로 lint가 깨진 채 방치되는 상태.
 
 **topEvents "대표성 절단" 편향 잔존:**

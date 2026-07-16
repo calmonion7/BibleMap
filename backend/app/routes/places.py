@@ -10,7 +10,7 @@ import logging
 from fastapi import APIRouter, Query
 from fastapi.responses import JSONResponse
 
-from ..overlays import _resolve
+from ..overlays import _resolve, curated_person_id
 from .persons import _ERA, _NAME_KO, _ERA_ORDER
 
 logger = logging.getLogger(__name__)
@@ -35,10 +35,10 @@ def _place_to_persons(place_id: str) -> list[dict]:
         if not visited:
             continue
 
-        if not events or not events[0].get("participants"):
+        person_id = curated_person_id(events)
+        if person_id is None:
             logger.warning("[Places] curated-persons: %s — events[0].participants 비어 있음, 건너뜀", slug)
             continue
-        person_id = events[0]["participants"][0]
         result.append(
             {
                 "id": person_id,

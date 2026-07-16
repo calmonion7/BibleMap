@@ -10,7 +10,7 @@ from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
 from ..db import get_driver
-from ..overlays import _resolve
+from ..overlays import _resolve, curated_person_id
 
 logger = logging.getLogger(__name__)
 
@@ -108,11 +108,10 @@ def _build_list() -> list[dict]:
         with open(path, encoding="utf-8") as f:
             events = json.load(f)
 
-        if not events or not events[0].get("participants"):
+        person_id = curated_person_id(events)
+        if person_id is None:
             logger.warning("[Persons] curated: %s — events[0].participants 비어 있음, 건너뜀", slug)
             continue
-        # theographic_id: 파일 내 모든 이벤트의 첫 번째 participant가 동일인임을 검증 완료
-        person_id = events[0]["participants"][0]
         result.append(
             {
                 "id": person_id,

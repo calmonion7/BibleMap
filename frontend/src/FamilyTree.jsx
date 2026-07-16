@@ -93,8 +93,8 @@ function FamilyTree({ personId, onRecenter = () => {}, onOpenPerson = () => {} }
   const scrollRef = useRef(null)
 
   useEffect(() => {
+    // 부모가 key={familyId}로 리마운트하므로 초기 loading=true가 이미 신선 — effect 동기 setState 불요.
     const ctrl = new AbortController()
-    setLoading(true)
     apiGet(`/person/${personId}/family`, { signal: ctrl.signal })
       .then(d => { setData(d); setLoading(false) })
       .catch(e => { if (e?.name !== 'AbortError') { console.warn('[FamilyTree] 가계도 로드 실패', e); setData(null); setLoading(false) } })

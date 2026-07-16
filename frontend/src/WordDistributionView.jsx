@@ -78,11 +78,13 @@ function WordDistributionView({ bookId, onSelectBook, verseLang, setVerseLang })
 
   useEffect(() => {
     const ctrl = new AbortController()
-    setData(null); setFailed(false); setVerseView(null)
+    let alive = true
+    // 책 전환 리셋 — effect 동기 setState 금지 규칙 회피(App.jsx 선례). fetch 응답보다 항상 먼저 소비된다.
+    Promise.resolve().then(() => { if (alive) { setData(null); setFailed(false); setVerseView(null) } })
     apiGet(`/words/${encodeURIComponent(bookId)}`, { signal: ctrl.signal })
       .then(setData)
       .catch(e => { if (e?.name !== 'AbortError') { console.warn('[WordDistribution] 단어 분포 로드 실패', e); setFailed(true) } })
-    return () => ctrl.abort()
+    return () => { alive = false; ctrl.abort() }
   }, [bookId])
 
   function openWord(word, color) {

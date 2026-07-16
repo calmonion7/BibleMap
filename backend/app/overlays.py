@@ -73,15 +73,18 @@ def books_ko() -> dict:
     return _load("names_ko/books.json")
 
 
-@functools.lru_cache(maxsize=1)
-def word_verse_index() -> dict:
-    """구절↔단어 역색인 정본(단어(lemma) → [verseID, ...]). 1회 로드 캐시.
-    build_word_verse_index.py 산출물. lemma 기반이라 substring 매칭과 커버리지가 다름."""
-    return _load("word_verse_index/index.json")
-
 
 @functools.lru_cache(maxsize=1)
 def verse_persons() -> dict:
     """구절↔인물 색인 정본(verseID → [personRecId, ...]). 1회 로드 캐시.
     build_verse_persons.py 산출물(theographic verses.people 투영)."""
     return _load("verse_persons/index.json")
+
+
+def curated_person_id(events: list) -> str | None:
+    """큐레이션 신원 규약의 단일 지점 — person_events/<slug>.json의 events[0].participants[0]이
+    그 인물의 theographic_id (파일 내 모든 이벤트의 첫 participant 동일 검증 완료).
+    소비처: persons.py·places.py·reliance.py (load_theographic.py 스크립트는 자체 구현 — 앱 미임포트 관행)."""
+    if not events or not events[0].get("participants"):
+        return None
+    return events[0]["participants"][0]

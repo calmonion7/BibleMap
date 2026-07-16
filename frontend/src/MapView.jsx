@@ -60,7 +60,7 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
       setMapLoaded(false)
       map.remove()
     }
-  }, [onSelectNode])
+  }, [onSelectNode, onStopSelect])
 
   useEffect(() => {
     if (!mapLoaded) return
