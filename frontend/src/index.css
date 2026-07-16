@@ -212,6 +212,27 @@ h2 {
   animation: modal-in var(--dur-base) var(--ease-out) both;
 }
 
+/* 인물 미니 카드 바텀시트 입장(task#197) — 드로어 이징, exit는 즉시 언마운트 */
+@keyframes sheet-in {
+  from { transform: translateY(100%); }
+  to { transform: none; }
+}
+.sheet-in {
+  animation: sheet-in var(--dur-base) var(--ease-drawer) both;
+}
+
+/* 메시아의 실(task#197) — 가계도 lineage 커넥터 금색 드로인(위→아래 스태거는 인라인 --thread-delay).
+   pathLength=1 정규화 실선 전용(점선 세그먼트 구간은 dasharray 충돌 — 페이드로 대체). */
+@keyframes thread-draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+.thread-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: thread-draw var(--dur-draw) var(--ease-out) var(--thread-delay, 0ms) forwards;
+}
+
 /* 카드 그룹 입장 — 허브·투어·책 카드 스태거(word-in 선례의 카드판). 지연은 인라인 animationDelay,
    상한 400ms. 허브는 세션 첫 진입만 재생(모듈 플래그) — 복귀 반복 재생 금지. */
 @keyframes card-in {

@@ -3,6 +3,7 @@ import { TYPE_COLOR } from './theme'
 import { apiGet } from './api'
 import Spinner from './Spinner'
 import PersonSymbol, { hasSymbol } from './personSymbols'
+import PersonMiniCard from './PersonMiniCard'
 
 // 인물 중심(ego-centric) 가계도 — 그래프 혈통 파생(ADR-0019), 구조 개편(task#196).
 // 위로 조상선: 앵커(인장 보유 + focus 직계 3세대) 행만 노출, 비앵커 구간은 "…N대" 접힌
@@ -60,7 +61,9 @@ function buildModel(data) {
   let run = []
   const flushRun = () => {
     if (run.length) {
-      rows.push({ type: 'segment', id: `seg-${run[0]}`, gens: [...run] })
+      // 메시아의 실이 지나가는 접힌 구간은 금 점선으로 표시(task#197)
+      const lineage = run.some(g => (byGen[g] || []).some(id => byId[id].lineage))
+      rows.push({ type: 'segment', id: `seg-${run[0]}`, gens: [...run], lineage })
       run = []
     }
   }
@@ -125,18 +128,21 @@ function roleLabel(id, model) {
 }
 
 // 3계층 노드 칩 — focus 큰 카드 / 앵커 칩(미니 인장) / 일반 소형 칩.
-function NodeChip({ node, model, onRecenter, refCb }) {
+// 탭은 전부 미니 카드 열기(재중심화는 카드 안 동작으로만 — task#197).
+function NodeChip({ node, model, onOpenCard, refCb, revealDelay }) {
   const isFocus = node.id === model.focus
   const anchor = hasSymbol(node.slug)
   const tag = roleLabel(node.id, model)
+  const reveal = revealDelay !== undefined
+    ? { className: 'card-in', animationDelay: `${Math.min(revealDelay, 400)}ms` } : null
 
   if (isFocus) {
     return (
-      <div ref={refCb} style={{
+      <button ref={refCb} onClick={() => onOpenCard(node.id)} style={{
         display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
         padding: '14px 22px 12px', borderRadius: 14, maxWidth: 'min(320px, 86vw)',
         border: '2px solid var(--gold)', background: 'var(--bg-1)', boxShadow: 'var(--shadow-1)',
-        color: 'var(--ink)',
+        color: 'var(--ink)', font: 'inherit', cursor: 'pointer',
       }}>
         <PersonSymbol slug={node.slug} size={52} style={{ color: 'var(--gold)' }} />
         <span style={{ fontFamily: 'var(--serif)', fontSize: 17, fontWeight: 700 }}>{node.nameKo}</span>
@@ -145,13 +151,16 @@ function NodeChip({ node, model, onRecenter, refCb }) {
             {node.role}
           </span>
         )}
-      </div>
+      </button>
     )
   }
 
   if (anchor) {
     return (
-      <button ref={refCb} onClick={() => onRecenter(node.id)} title={node.nameKo} style={{
+      <button ref={refCb} onClick={() => onOpenCard(node.id)} title={node.nameKo}
+        className={reveal?.className}
+        style={{
+        ...(reveal ? { animationDelay: reveal.animationDelay } : null),
         display: 'inline-flex', alignItems: 'center', gap: 7, padding: '7px 12px 7px 9px',
         borderRadius: 9, border: '1px solid var(--line-strong)', background: 'var(--bg-1)',
         color: 'var(--ink)', font: 'inherit', fontFamily: 'var(--serif)', fontSize: 13.5,
@@ -165,7 +174,10 @@ function NodeChip({ node, model, onRecenter, refCb }) {
   }
 
   return (
-    <button ref={refCb} onClick={() => onRecenter(node.id)} title={node.nameKo} style={{
+    <button ref={refCb} onClick={() => onOpenCard(node.id)} title={node.nameKo}
+      className={reveal?.className}
+      style={{
+      ...(reveal ? { animationDelay: reveal.animationDelay } : null),
       position: 'relative', display: 'inline-flex', alignItems: 'center', gap: 5,
       padding: '5px 9px', borderRadius: 7, border: '1px solid var(--line)',
       background: 'var(--bg-1)', color: 'var(--ink)', font: 'inherit',
@@ -183,6 +195,7 @@ function FamilyTree({ personId, onRecenter = () => {}, onOpenPerson = () => {} }
   const [loading, setLoading] = useState(true)
   const [expandedSegs, setExpandedSegs] = useState(() => new Set())
   const [expandedGrands, setExpandedGrands] = useState(() => new Set())
+  const [cardId, setCardId] = useState(null)
   const [connectors, setConnectors] = useState({ paths: [], w: 0, h: 0 })
   const scrollRef = useRef(null)
   const contentRef = useRef(null)
@@ -231,7 +244,7 @@ function FamilyTree({ personId, onRecenter = () => {}, onOpenPerson = () => {} }
 
       const paths = []
       const seen = new Set()
-      const add = (fromKey, toKey) => {
+      const add = (fromKey, toKey, lineage) => {
         if (!fromKey || !toKey || fromKey === toKey) return
         const dk = `${fromKey}>${toKey}`
         if (seen.has(dk)) return
@@ -242,17 +255,31 @@ function FamilyTree({ personId, onRecenter = () => {}, onOpenPerson = () => {} }
         const x2 = b.x + b.w / 2, y2 = b.y
         if (y2 <= y1) return
         const midY = (y1 + y2) / 2
-        paths.push(`M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`)
+        paths.push({
+          d: `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`,
+          lineage: Boolean(lineage),
+          // 접힌 세그먼트를 지나는 계보 구간은 금 점선(드로인 대신 — dasharray 충돌)
+          dashed: fromKey.startsWith('seg:') || toKey.startsWith('seg:'),
+          y1,
+        })
       }
 
+      const lin = id => model.byId[id]?.lineage === true
       // ① 조상 사슬(부모→자식, focus 포함)
       for (const [p, c] of model.parentEdges) {
         const gp = model.gen[p], gc = model.gen[c]
         if (gp === undefined || gc === undefined) continue
-        if (gp > 0 && (gc > 0 || c === model.focus)) add(mapKey(p), mapKey(c))
+        if (gp > 0 && (gc > 0 || c === model.focus)) add(mapKey(p), mapKey(c), lin(p) && lin(c))
       }
-      // ② focus → 어머니 그룹 (그룹당 1개)
-      model.groups.forEach((_, gi) => add('focus', `grp:${gi}`))
+      // ② focus → 어머니 그룹 (그룹당 1개) — 계보 자식(솔로몬·나단)이 든 그룹만 금실
+      model.groups.forEach((grp, gi) =>
+        add('focus', `grp:${gi}`, lin(model.focus) && grp.ids.some(lin)))
+
+      // 금실 드로인 순서: 위→아래(y1 오름차순 랭크)
+      let rank = 0
+      for (const p of [...paths].sort((a, b) => a.y1 - b.y1)) {
+        if (p.lineage && !p.dashed) p.delay = Math.min(rank++ * 120, 1200)
+      }
 
       const w = content.scrollWidth, h = content.scrollHeight
       setConnectors(prev => {
@@ -334,19 +361,29 @@ function FamilyTree({ personId, onRecenter = () => {}, onOpenPerson = () => {} }
           position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center',
           gap: 26, padding: '28px 12px 56px', maxWidth: 720, margin: '0 auto',
         }}>
-          {/* 커넥터 — 실측 기반 */}
+          {/* 커넥터 — 실측 기반. 메시아의 실(lineage)은 금색, 실선 구간은 입장 드로인(위→아래 스태거),
+              접힌 세그먼트를 지나는 구간은 금 점선(페이드). reduced-motion은 토큰 가드가 무력화. */}
           <svg width={connectors.w} height={connectors.h}
             style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none' }}>
-            {connectors.paths.map((d, i) => (
-              <path key={i} d={d} fill="none" stroke="var(--line-strong)" strokeWidth={1.5} />
+            {connectors.paths.map((p, i) => (
+              <path key={i} d={p.d} fill="none"
+                stroke={p.lineage ? 'var(--gold)' : 'var(--line-strong)'}
+                strokeWidth={p.lineage ? 2 : 1.5}
+                strokeDasharray={p.dashed ? '5 5' : undefined}
+                pathLength={p.lineage && !p.dashed ? 1 : undefined}
+                className={p.lineage && !p.dashed ? 'thread-draw' : undefined}
+                style={p.delay !== undefined ? { '--thread-delay': `${p.delay}ms` } : undefined}
+              />
             ))}
           </svg>
 
-          {/* 조상선 (위 = 오래된 세대) */}
-          {renderedRows.map(r => r.type === 'gen' ? (
+          {/* 조상선 (위 = 오래된 세대) — 펼쳐진 세그먼트의 행은 스태거 페이드(.card-in) */}
+          {renderedRows.map((r, ri) => r.type === 'gen' ? (
             <div key={`g${r.g}`} style={rowStyle}>
-              {r.ids.map(id => (
-                <NodeChip key={id} node={byId[id]} model={model} onRecenter={onRecenter} refCb={keyFor(`n:${id}`)} />
+              {r.ids.map((id, ci) => (
+                <NodeChip key={id} node={byId[id]} model={model} onOpenCard={setCardId}
+                  refCb={keyFor(`n:${id}`)}
+                  revealDelay={r.fromSeg ? ((ri % 8) * 40 + ci * 30) : undefined} />
               ))}
             </div>
           ) : (
@@ -355,8 +392,10 @@ function FamilyTree({ personId, onRecenter = () => {}, onOpenPerson = () => {} }
               title="접힌 세대 펼치기"
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 6, padding: '4px 14px',
-                borderRadius: 999, border: '1px dashed var(--line-strong)', background: 'var(--bg-0)',
-                color: 'var(--ink-faint)', font: 'inherit', fontSize: 12, cursor: 'pointer',
+                borderRadius: 999, background: 'var(--bg-0)',
+                border: `1px dashed ${r.lineage ? 'var(--gold)' : 'var(--line-strong)'}`,
+                color: r.lineage ? 'var(--gold)' : 'var(--ink-faint)',
+                font: 'inherit', fontSize: 12, cursor: 'pointer',
               }}>
               ⋯ {r.gens.length}대
             </button>
@@ -365,13 +404,12 @@ function FamilyTree({ personId, onRecenter = () => {}, onOpenPerson = () => {} }
           {/* focus 행: 형제 · focus 카드 · 배우자 (줄바꿈) */}
           <div style={{ ...rowStyle, gap: 10 }}>
             {focusRow.siblings.map(id => (
-              <NodeChip key={id} node={byId[id]} model={model} onRecenter={onRecenter} refCb={keyFor(`n:${id}`)} />
+              <NodeChip key={id} node={byId[id]} model={model} onOpenCard={setCardId} refCb={keyFor(`n:${id}`)} />
             ))}
-            <div ref={el => { focusCardRef.current = el; keyFor('focus')(el) }}>
-              <NodeChip node={focusNode} model={model} onRecenter={onRecenter} />
-            </div>
+            <NodeChip node={focusNode} model={model} onOpenCard={setCardId}
+              refCb={el => { focusCardRef.current = el; keyFor('focus')(el) }} />
             {focusRow.partners.map(id => (
-              <NodeChip key={id} node={byId[id]} model={model} onRecenter={onRecenter} refCb={keyFor(`n:${id}`)} />
+              <NodeChip key={id} node={byId[id]} model={model} onOpenCard={setCardId} refCb={keyFor(`n:${id}`)} />
             ))}
           </div>
 
@@ -395,7 +433,7 @@ function FamilyTree({ personId, onRecenter = () => {}, onOpenPerson = () => {} }
                     )}
                     <div style={{ ...rowStyle, gap: 6 }}>
                       {grp.ids.map(cid => (
-                        <NodeChip key={cid} node={byId[cid]} model={model} onRecenter={onRecenter} refCb={keyFor(`n:${cid}`)} />
+                        <NodeChip key={cid} node={byId[cid]} model={model} onOpenCard={setCardId} refCb={keyFor(`n:${cid}`)} />
                       ))}
                     </div>
                     {grandTotal > 0 && !expandedGrands.has(gKey) && (
@@ -408,13 +446,14 @@ function FamilyTree({ personId, onRecenter = () => {}, onOpenPerson = () => {} }
                       </button>
                     )}
                     {expandedGrands.has(gKey) && grp.ids.filter(cid => grandchildren[cid]?.length).map(cid => (
-                      <div key={cid} style={{ borderTop: '1px dashed var(--line)', paddingTop: 7, display: 'flex', flexDirection: 'column', gap: 5 }}>
+                      <div key={cid} className="card-in" style={{ borderTop: '1px dashed var(--line)', paddingTop: 7, display: 'flex', flexDirection: 'column', gap: 5 }}>
                         <span style={{ fontSize: 10.5, color: 'var(--ink-faint)', textAlign: 'center' }}>
                           {byId[cid].nameKo}의 자녀
                         </span>
                         <div style={{ ...rowStyle, gap: 5 }}>
-                          {grandchildren[cid].map(gid => (
-                            <NodeChip key={gid} node={byId[gid]} model={model} onRecenter={onRecenter} refCb={keyFor(`n:${gid}`)} />
+                          {grandchildren[cid].map((gid, gi2) => (
+                            <NodeChip key={gid} node={byId[gid]} model={model} onOpenCard={setCardId}
+                              refCb={keyFor(`n:${gid}`)} revealDelay={gi2 * 30} />
                           ))}
                         </div>
                       </div>
@@ -426,6 +465,19 @@ function FamilyTree({ personId, onRecenter = () => {}, onOpenPerson = () => {} }
           )}
         </div>
       </div>
+
+      {/* 인물 미니 카드 — 노드 탭으로 열림, 재중심화는 카드 안 동작으로만(task#197) */}
+      {cardId && byId[cardId] && (
+        <PersonMiniCard
+          key={cardId}
+          node={byId[cardId]}
+          parents={model.parentEdges.filter(([, c]) => c === cardId).map(([p]) => byId[p]).filter(Boolean)}
+          isFocus={cardId === model.focus}
+          onRecenter={onRecenter}
+          onOpenPerson={onOpenPerson}
+          onClose={() => setCardId(null)}
+        />
+      )}
     </div>
   )
 }
