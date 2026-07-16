@@ -204,8 +204,10 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
     // 모바일: 하단 여정 시트(JOURNEY_SHEET_VH dvh)가 지도 하단을 덮으므로 정차지를 시트 위 가시영역 중앙으로 올린다.
     // offset[1] 음수 = 대상 좌표가 컨테이너 중앙보다 시트 높이의 절반만큼 위에 오도록 카메라를 내림.
     const isMobile = window.innerWidth <= MOBILE_BREAKPOINT
-    const offset = isMobile ? [0, -Math.round(window.innerHeight * JOURNEY_SHEET_VH / 100) / 2] : undefined
-    map.easeTo({ center: [g.lng, g.lat], offset, duration: 400 })
+    // offset 키를 undefined로 명시하면 maplibre easeTo의 기본값(Point 0,0) 병합이 깨져
+    // Point.convert(undefined)가 던지고 React 루트가 언마운트된다 — 모바일일 때만 키를 싣는다.
+    const offset = isMobile ? [0, -Math.round(window.innerHeight * JOURNEY_SHEET_VH / 100) / 2] : null
+    map.easeTo({ center: [g.lng, g.lat], ...(offset ? { offset } : {}), duration: 400 })
   }, [activeStopIdx, mapLoaded, journeyStops])
 
   useEffect(() => {

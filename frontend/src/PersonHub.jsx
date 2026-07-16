@@ -27,6 +27,9 @@ const GROUND = 'var(--bg-0)'
 const TEXT = 'var(--ink)'
 const CARD_BG = 'var(--bg-1)'
 
+// 허브 입장 스태거 — 세션 첫 진입만 재생(복귀는 수십/일 빈도라 반복 재생 금지, 오디트 #4)
+let hubEntrancePlayed = false
+
 function useIsMobile() {
   const [mobile, setMobile] = useState(() => window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches)
   useEffect(() => {
@@ -38,17 +41,18 @@ function useIsMobile() {
   return mobile
 }
 
-function PersonCard({ person, onSelectPerson }) {
+function PersonCard({ person, onSelectPerson, entrance, delayMs }) {
   const [hovered, setHovered] = useState(false)
 
   return (
     <button
-      className="pressable"
+      className={entrance ? 'pressable card-in' : 'pressable'}
       onClick={() => onSelectPerson(person.id)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       aria-label={`${person.nameKo} — ${person.era} 시대, 사건 ${person.eventCount}건`}
       style={{
+        animationDelay: entrance ? `${delayMs}ms` : undefined,
         background: hovered ? 'var(--bg-2)' : CARD_BG,
         border: `1px solid ${hovered ? 'var(--gold-dim)' : 'var(--line)'}`,
         borderRadius: 12,
@@ -99,7 +103,7 @@ function PersonCard({ person, onSelectPerson }) {
   )
 }
 
-function EraSection({ era, persons, onSelectPerson, isFirst }) {
+function EraSection({ era, persons, onSelectPerson, isFirst, entrance, baseIdx }) {
   const desc = ERA_META[era] || ''
 
   return (
@@ -145,8 +149,9 @@ function EraSection({ era, persons, onSelectPerson, isFirst }) {
         gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))',
         gap: 10,
       }}>
-        {persons.map(p => (
-          <PersonCard key={p.id} person={p} onSelectPerson={onSelectPerson} />
+        {persons.map((p, i) => (
+          <PersonCard key={p.id} person={p} onSelectPerson={onSelectPerson}
+            entrance={entrance} delayMs={Math.min((baseIdx + i) * 30, 400)} />
         ))}
       </div>
     </section>
@@ -166,6 +171,9 @@ function EraSection({ era, persons, onSelectPerson, isFirst }) {
  */
 export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours }) {
   const [persons, setPersons] = useState([])
+  // 입장 스태거는 세션 첫 허브 진입에만 — 마운트 시점 값 고정 후 플래그 마킹
+  const [entrance] = useState(() => !hubEntrancePlayed)
+  useEffect(() => { hubEntrancePlayed = true }, [])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const isMobile = useIsMobile()
@@ -369,6 +377,8 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
             persons={byEra[era]}
             onSelectPerson={onSelectPerson}
             isFirst={i === 0}
+            entrance={entrance}
+            baseIdx={eras.slice(0, i).reduce((n, e) => n + byEra[e].length, 0)}
           />
         ))}
       </div>

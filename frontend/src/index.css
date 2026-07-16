@@ -210,6 +210,26 @@ h2 {
   animation: modal-in var(--dur-base) var(--ease-out) both;
 }
 
+/* 카드 그룹 입장 — 허브·투어·책 카드 스태거(word-in 선례의 카드판). 지연은 인라인 animationDelay,
+   상한 400ms. 허브는 세션 첫 진입만 재생(모듈 플래그) — 복귀 반복 재생 금지. */
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+.card-in {
+  animation: card-in var(--dur-slow) var(--ease-out) both;
+}
+
+/* 여정 활성 정차지 — 왼쪽 금색 바가 위에서 자라며 등장(근사-불가시 한도, transform만) */
+@keyframes bar-in {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+.stop-bar-in {
+  transform-origin: top;
+  animation: bar-in var(--dur-fast) var(--ease-out) both;
+}
+
 /* 누름 피드백 — 카드·버튼 공용(.rel-chip 선례의 큰 면적판, 인라인 스타일은 :active 불가라 클래스로) */
 .pressable {
   transition: transform var(--dur-fast) var(--ease-out);

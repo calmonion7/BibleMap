@@ -169,7 +169,7 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
           >
             {/* 활성 행 — 왼쪽 금색 바(목업 .stop.on::before) */}
             {isActive && (
-              <span style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 3, background: 'var(--gold)' }} />
+              <span className="stop-bar-in" style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 3, background: 'var(--gold)' }} />
             )}
             <div
               onClick={() => {
@@ -200,6 +200,7 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: 10, fontWeight: 700,
                 marginTop: 1,
+                transition: 'background var(--dur-fast), color var(--dur-fast), border-color var(--dur-fast)',
                 background: !hasCoord ? 'var(--bg-2)'
                   : isActive ? 'var(--gold)'
                   : 'var(--bg-0)',

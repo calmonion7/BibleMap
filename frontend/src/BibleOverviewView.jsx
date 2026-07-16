@@ -20,7 +20,10 @@ function useIsMobile() {
   return mobile
 }
 
-function BookCard({ book, onSelectNode, isSelected, hideKeyVerse }) {
+// 입장 스태거 — 세션 첫 진입만(허브와 동일 패턴)
+let overviewEntrancePlayed = false
+
+function BookCard({ book, onSelectNode, isSelected, hideKeyVerse, entrance, delayMs }) {
   const [hovered, setHovered] = useState(false)
   const themes = (book.themes || []).slice(0, 3)
   const keyVerse = !hideKeyVerse && book.keyVerseTextKo
@@ -29,11 +32,12 @@ function BookCard({ book, onSelectNode, isSelected, hideKeyVerse }) {
 
   return (
     <div
-      className="pressable"
+      className={entrance ? 'pressable card-in' : 'pressable'}
       onClick={() => onSelectNode(book.id)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
+        animationDelay: entrance ? `${delayMs}ms` : undefined,
         background: isSelected ? SELECT_HL : hovered ? 'var(--bg-2)' : 'var(--bg-1)',
         border: `1px solid ${isSelected || hovered ? 'var(--gold-dim)' : 'var(--line)'}`,
         borderRadius: 10,
@@ -78,7 +82,7 @@ function BookCard({ book, onSelectNode, isSelected, hideKeyVerse }) {
   )
 }
 
-function GenreSection({ genre, books, isFirst, onSelectNode, selectedNode, hideKeyVerse }) {
+function GenreSection({ genre, books, isFirst, onSelectNode, selectedNode, hideKeyVerse, entrance }) {
   const meta = GENRE_META[genre] || { displayName: genre, description: '' }
   const sorted = [...books].sort((a, b) => (a.bookOrder ?? 0) - (b.bookOrder ?? 0))
 
@@ -94,15 +98,16 @@ function GenreSection({ genre, books, isFirst, onSelectNode, selectedNode, hideK
         )}
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 8, marginBottom: 16 }}>
-        {sorted.map(book => (
-          <BookCard key={book.id} book={book} onSelectNode={onSelectNode} isSelected={book.id === selectedNode} hideKeyVerse={hideKeyVerse} />
+        {sorted.map((book, i) => (
+          <BookCard key={book.id} book={book} onSelectNode={onSelectNode} isSelected={book.id === selectedNode} hideKeyVerse={hideKeyVerse}
+            entrance={entrance} delayMs={Math.min(i * 30, 400)} />
         ))}
       </div>
     </div>
   )
 }
 
-function Testament({ label, genreOrder, booksByGenre, onSelectNode, selectedNode, hideKeyVerse }) {
+function Testament({ label, genreOrder, booksByGenre, onSelectNode, selectedNode, hideKeyVerse, entrance }) {
   const genres = genreOrder.filter(g => booksByGenre[g] && booksByGenre[g].length > 0)
 
   return (
@@ -117,6 +122,7 @@ function Testament({ label, genreOrder, booksByGenre, onSelectNode, selectedNode
           onSelectNode={onSelectNode}
           selectedNode={selectedNode}
           hideKeyVerse={hideKeyVerse}
+          entrance={entrance}
         />
       ))}
     </div>
@@ -125,6 +131,8 @@ function Testament({ label, genreOrder, booksByGenre, onSelectNode, selectedNode
 
 export default function BibleOverviewView({ onSelectNode, selectedNode }) {
   const [booksByTestamentGenre, setBooksByTestamentGenre] = useState({ OT: {}, NT: {} })
+  const [entrance] = useState(() => !overviewEntrancePlayed)
+  useEffect(() => { overviewEntrancePlayed = true }, [])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const isMobile = useIsMobile()
@@ -285,6 +293,7 @@ export default function BibleOverviewView({ onSelectNode, selectedNode }) {
           onSelectNode={onSelectNode}
           selectedNode={selectedNode}
           hideKeyVerse={isMobile}
+          entrance={entrance}
         />
         <div style={{ marginTop: 32 }}>
           <Testament
@@ -294,6 +303,7 @@ export default function BibleOverviewView({ onSelectNode, selectedNode }) {
             onSelectNode={onSelectNode}
             selectedNode={selectedNode}
             hideKeyVerse={isMobile}
+            entrance={entrance}
           />
         </div>
       </div>
