@@ -1,0 +1,18 @@
+{
+ "note": "비큐레이션 인장 보유 인물의 slug→theographic_id 정본 (ADR-0025, task#195 인장 15점). 큐레이션 35인의 slug는 person_events/<slug>.json 신원 규약이 정본이며 이 파일에 두지 않는다. family API가 인장 조회용 id→slug 매핑에 합성한다(task#196).",
+ "judah": "rec0rm6yYA4YUQrkh",
+ "perez": "recMUZkUfOwBiZ3jk",
+ "tamar": "recWebxxpYTeBY93z",
+ "rahab": "recAqIp5Uz2jF3BQD",
+ "boaz": "recD5yp1lrQTH1DZp",
+ "obed": "rectDn5oa2vLcaeVF",
+ "jesse": "rec9lplwEhGgkXdOn",
+ "bathsheba": "rec48avi3AS18d5V6",
+ "rehoboam": "recqQthL4TAHb0KeC",
+ "jehoshaphat": "recyNusCmwtrDBSab",
+ "uzziah": "recZOriotFt9GIf6b",
+ "hezekiah": "recNlVijtEIdQhAIm",
+ "josiah": "recNOn1RcB3sCzCnh",
+ "zerubbabel": "rec0lXwCB3xvWjTVN",
+ "joseph_of_nazareth": "recz2xTRGz9XZD6dT"
+}

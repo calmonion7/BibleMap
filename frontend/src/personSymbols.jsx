@@ -483,6 +483,11 @@ const FALLBACK = (
   </>
 )
 
+// 인장 보유 여부 — 가계도 앵커 판정용(등록 slug만 true, 폴백 렌더와 구별).
+// SYMBOLS 지식이 이 파일에만 있어 분리하지 않는다(HMR 전체 리로드 감수).
+// eslint-disable-next-line react-refresh/only-export-components
+export const hasSymbol = (slug) => Boolean(slug && SYMBOLS[slug])
+
 /**
  * PersonSymbol — 상징물 선화 렌더러.
  *
