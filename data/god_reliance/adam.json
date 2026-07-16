@@ -1,26 +1,89 @@
 [
-  { "mode": "부르심", "approxYear": -4000, "covenant": true,
-    "trigger": { "label": "하나님이 흙으로 사람을 지으심", "verse": "창 2:7" },
-    "outcome": { "label": "생기를 받아 생령이 됨", "verse": "창 2:7" } },
-  { "mode": "부르심", "approxYear": -4000, "obeyed": true,
-    "trigger": { "label": "에덴에 두어 경작하며 지키게 하신 부르심", "verse": "창 2:15" },
-    "outcome": { "label": "사명을 성실히 수행함", "verse": "창 2:15" } },
-  { "mode": "부르심", "approxYear": -4000, "obeyed": false,
-    "trigger": { "label": "선악과를 먹지 말라 명하심", "verse": "창 2:17" },
-    "outcome": { "label": "훗날 명을 어기고 먹음", "verse": "창 2:17" } },
-  { "mode": "독단-어긋남", "approxYear": -4000,
-    "trigger": { "label": "하나님의 명을 어기고 선악과를 스스로 따먹음", "verse": "창 3:6" },
-    "outcome": { "label": "죄가 세상에 들어와 어그러짐", "verse": "창 3:6" } },
-  { "mode": "부르심", "approxYear": -4000, "covenant": true,
-    "trigger": { "label": "여자의 후손이 구원자 되리라 언약하심", "verse": "창 3:15" },
-    "outcome": { "label": "구원의 언약을 받음", "verse": "창 3:15" } },
-  { "mode": "독단-어긋남", "approxYear": -4000,
-    "trigger": { "label": "선악과를 먹은 죄로 심판대에 섬", "verse": "창 3:19" },
-    "outcome": { "label": "흙으로 돌아가리라는 죽음의 선고를 받음", "verse": "창 3:19" } },
-  { "mode": "독단-어긋남", "approxYear": -4000,
-    "trigger": { "label": "선악과를 먹은 죄", "verse": "창 3:23" },
-    "outcome": { "label": "에덴에서 쫓겨나 생명나무 길이 막힘", "verse": "창 3:23" } },
-  { "mode": "독단-어긋남", "approxYear": -3070,
-    "trigger": { "label": "죽음을 선고받은 죄인의 생애", "verse": "창 5:5" },
-    "outcome": { "label": "930세에 죽어 선고대로 흙으로 돌아감", "verse": "창 5:5" } }
+  {
+    "mode": "부르심",
+    "approxYear": -4000,
+    "covenant": true,
+    "trigger": {
+      "label": "하나님이 흙으로 사람을 지으심",
+      "verse": "창 2:7"
+    },
+    "outcome": {
+      "label": "생기를 받아 생령이 됨",
+      "verse": "창 2:7"
+    }
+  },
+  {
+    "mode": "부르심",
+    "approxYear": -4000,
+    "obeyed": true,
+    "trigger": {
+      "label": "에덴에 두어 경작하며 지키게 하신 부르심",
+      "verse": "창 2:15"
+    },
+    "outcome": {
+      "label": "사명을 성실히 수행함",
+      "verse": "창 2:15"
+    }
+  },
+  {
+    "mode": "부르심",
+    "approxYear": -4000,
+    "obeyed": false,
+    "trigger": {
+      "label": "선악과를 먹지 말라 명하심",
+      "verse": "창 2:17"
+    },
+    "outcome": {
+      "label": "훗날 명을 어기고 먹음",
+      "verse": "창 2:17"
+    }
+  },
+  {
+    "mode": "독단-어긋남",
+    "approxYear": -4000,
+    "trigger": {
+      "label": "하나님의 명을 어기고 선악과를 스스로 따먹음",
+      "verse": "창 3:6"
+    },
+    "outcome": {
+      "label": "죄가 세상에 들어와 어그러짐",
+      "verse": "창 3:6"
+    }
+  },
+  {
+    "mode": "독단-어긋남",
+    "approxYear": -4000,
+    "trigger": {
+      "label": "선악과를 먹은 죄로 심판대에 섬",
+      "verse": "창 3:19"
+    },
+    "outcome": {
+      "label": "흙으로 돌아가리라는 죽음의 선고를 받음",
+      "verse": "창 3:19"
+    }
+  },
+  {
+    "mode": "독단-어긋남",
+    "approxYear": -4000,
+    "trigger": {
+      "label": "선악과를 먹은 죄",
+      "verse": "창 3:23"
+    },
+    "outcome": {
+      "label": "에덴에서 쫓겨나 생명나무 길이 막힘",
+      "verse": "창 3:23"
+    }
+  },
+  {
+    "mode": "독단-어긋남",
+    "approxYear": -3070,
+    "trigger": {
+      "label": "죽음을 선고받은 죄인의 생애",
+      "verse": "창 5:5"
+    },
+    "outcome": {
+      "label": "930세에 죽어 선고대로 흙으로 돌아감",
+      "verse": "창 5:5"
+    }
+  }
 ]

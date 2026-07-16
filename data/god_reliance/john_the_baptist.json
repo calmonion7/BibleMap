@@ -1,29 +1,41 @@
 [
   {
     "mode": "부르심",
-    "approxYear": -6,
-    "covenant": true,
-    "trigger": { "label": "모태에서부터 성령 충만한 나실인으로 예비하심", "verse": "눅 1:15" },
-    "outcome": { "label": "예비하신 그대로 성별된 나실인으로 자라남", "verse": "눅 1:15" }
+    "approxYear": 27,
+    "obeyed": true,
+    "trigger": {
+      "label": "하나님이 그를 보내어 증거하게 하심",
+      "verse": "요 1:6"
+    },
+    "outcome": {
+      "label": "보내심 받은 자로 순종하여 사명을 감당함",
+      "verse": "요 1:6"
+    }
   },
   {
     "mode": "부르심",
     "approxYear": 27,
     "obeyed": true,
-    "trigger": { "label": "하나님이 그를 보내어 증거하게 하심", "verse": "요 1:6" },
-    "outcome": { "label": "보내심 받은 자로 순종하여 사명을 감당함", "verse": "요 1:6" }
-  },
-  {
-    "mode": "부르심",
-    "approxYear": 27,
-    "obeyed": true,
-    "trigger": { "label": "하나님의 말씀이 빈 들의 요한에게 임함", "verse": "눅 3:2" },
-    "outcome": { "label": "말씀을 따라 순종하여 회개의 선포 사역을 시작함", "verse": "눅 3:2" }
+    "trigger": {
+      "label": "하나님의 말씀이 빈 들의 요한에게 임함",
+      "verse": "눅 3:2"
+    },
+    "outcome": {
+      "label": "말씀을 따라 순종하여 회개의 선포 사역을 시작함",
+      "verse": "눅 3:2"
+    }
   },
   {
     "mode": "물음-응답",
     "approxYear": 27,
-    "trigger": { "label": "미리 받은 표징대로 임하시기를 믿음으로 지켜봄", "verse": "요 1:29" },
-    "outcome": { "label": "표징대로 예수를 하나님의 어린 양으로 증거하게 하심", "verse": "요 1:29", "kind": "이룸" }
+    "trigger": {
+      "label": "미리 받은 표징대로 임하시기를 믿음으로 지켜봄",
+      "verse": "요 1:29"
+    },
+    "outcome": {
+      "label": "표징대로 예수를 하나님의 어린 양으로 증거하게 하심",
+      "verse": "요 1:29",
+      "kind": "이룸"
+    }
   }
 ]
