@@ -52,6 +52,7 @@
   --dur-fast: 150ms; /* 마이크로 피드백·칩·탭 */
   --dur-base: 250ms; /* 모달·시트·스테이지 전환 */
   --dur-slow: 400ms; /* 입장 스태거·게이지류 */
+  --dur-draw: 1000ms; /* 상징물 선화 draw-on(스케치가 그려지는 시간) */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1); /* 시트/드로어 */
@@ -121,6 +122,7 @@
     --dur-fast: 1ms;
     --dur-base: 1ms;
     --dur-slow: 1ms;
+    --dur-draw: 1ms;
   }
   *,
   *::before,
@@ -238,6 +240,30 @@ h2 {
 .stop-bar-in {
   transform-origin: top;
   animation: bar-in var(--dur-fast) var(--ease-out) both;
+}
+
+/* 상징물 선화 draw-on — 선이 손으로 그려지듯 나타남(ADR-0025). personSymbols.jsx의 모든
+   stroke 요소가 pathLength=1로 정규화돼 있어 dash 1 = 전체 선. 첫 렌더가 offset 1(불가시)이므로
+   transition이 아닌 animation으로 마운트 즉시 재생(3/3 회고의 "transition은 변화에만 발동" 함정 회피).
+   지연은 svg 인라인 --sym-delay(상속) — reduce 가드의 delay 0 !important가 그대로 덮는다. */
+@keyframes symbol-draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+.symbol-draw :is(path, circle, ellipse, line, polyline, rect) {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: symbol-draw var(--dur-draw) var(--ease-out) var(--sym-delay, 0ms) forwards;
+}
+
+/* 책 펼침 입장 — 대문(목차 면)이 왼쪽 제본에서 펼쳐지는 원근 회전(ADR-0026). 세션 첫 진입 1회. */
+@keyframes book-open {
+  from { opacity: 0; transform: perspective(1200px) rotateY(-9deg); }
+  to { opacity: 1; transform: none; }
+}
+.book-open {
+  transform-origin: left center;
+  animation: book-open var(--dur-slow) var(--ease-out) both;
 }
 
 /* 누름 피드백 — 카드·버튼 공용(.rel-chip 선례의 큰 면적판, 인라인 스타일은 :active 불가라 클래스로) */

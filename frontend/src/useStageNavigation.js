@@ -275,6 +275,9 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   // 시트 열림 파생 — 모바일 시트 표시 조건 및 history push 판단의 단일 출처.
   const sheetOpen = selectedNode != null && selectedNode !== explorePersonId
 
+  // 큐레이션 id → slug 해석(인장 심볼 조회용) — 기존 딥링크 맵 ref 재사용, 미등록이면 null(심볼 폴백).
+  const getPersonSlug = (id) => curatedIdToSlug.current[id] ?? null
+
   return {
     activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, familyId, wordsBookId, curatedIds, keyPeopleCards, sheetOpen,
     setExploreView,
@@ -295,5 +298,6 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     selectTour: handleSelectTour,
     toursBack: handleToursBack,
     onNodeLoaded,
+    getPersonSlug,
   }
 }

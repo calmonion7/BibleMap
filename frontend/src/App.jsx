@@ -8,6 +8,8 @@ import RelationsView from './RelationsView'
 import BibleOverviewView from './BibleOverviewView'
 import PersonHub from './PersonHub'
 import PersonIntro from './PersonIntro'
+import SpineHeader, { HEADER_H } from './SpineHeader'
+import PersonSymbol from './personSymbols'
 import FamilyTree from './FamilyTree'
 import WordDistributionView from './WordDistributionView'
 import RelianceView from './RelianceView'
@@ -50,7 +52,7 @@ function App() {
     activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, familyId, wordsBookId, curatedIds, keyPeopleCards, sheetOpen,
     setExploreView, selectPerson, explorePerson, backToHub, openOverview, overviewBack,
     openTours, selectTour, toursBack, openBook, bookBack, openFamily, recenterFamily, familyBack,
-    openWords, selectWordsBook, wordsBack, onNodeLoaded,
+    openWords, selectWordsBook, wordsBack, onNodeLoaded, getPersonSlug,
   } = useStageNavigation({ selectedNode, selectNodeFresh, closePanel, handleNodeLoaded })
 
   // 여정 데이터 — 인물/투어 선택 시 한 번 fetch, MapView·JourneyList 공유
@@ -119,6 +121,19 @@ function App() {
 
   const NAV_H = 48
 
+  // 책등 헤더의 활성 부(部) — 개요·책·단어는 '성경책', 투어 목록·투어 탐험은 '투어', 나머지는 '인물'(ADR-0026)
+  const activeSection =
+    activeStage === 'overview' || activeStage === 'book' || activeStage === 'words' ? 'books'
+      : activeStage === 'tours' || (activeStage === 'explore' && exploreTourId != null) ? 'tours'
+        : 'persons'
+
+  // 리본 클릭 — 기존 내비 콜백 조합만(상태 머신·URL 무변경). 탐험 중 열린 시트가 새 부로 넘어오지 않게 closePanel 동반.
+  function handleSelectSection(key) {
+    if (key === 'persons') backToHub()
+    else if (key === 'books') { closePanel(); openOverview() }
+    else { closePanel(); openTours() }
+  }
+
   // 탐험 단계 내비게이션 바
   function renderExploreNav() {
     const isTour = exploreTourId != null
@@ -129,7 +144,7 @@ function App() {
       <div style={{
         height: NAV_H, flexShrink: 0,
         display: 'flex', alignItems: 'center',
-        background: 'var(--bg-1)', borderBottom: 'none',
+        background: 'var(--bg-1)', borderBottom: '1px solid var(--gold-dim)',
         zIndex: 20, boxShadow: 'var(--shadow-1)',
         gap: 0,
       }}>
@@ -146,12 +161,19 @@ function App() {
           }}
         >
           <span style={{ fontSize: 13 }}>←</span>
+          {/* 인장 — 탐험 중 인물의 상징물(인물 전환 시에만 key 리마운트로 1회 draw, 탭 전환엔 정적) */}
+          {!isTour && explorePersonId && (
+            <span key={explorePersonId} style={{ color: 'var(--gold)', flexShrink: 0, display: 'inline-flex' }}>
+              <PersonSymbol slug={getPersonSlug(explorePersonId)} size={isMobile ? 20 : 26} draw />
+            </span>
+          )}
           {headingName ? (
-            <span style={{ fontSize: 13, fontFamily: isTour ? undefined : 'var(--serif)', color: isTour ? TYPE_COLOR.Book : 'var(--gold)', fontWeight: 600, maxWidth: isMobile ? 80 : 160, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            <span style={{ fontSize: 13, fontFamily: 'var(--serif)', color: isTour ? TYPE_COLOR.Book : 'var(--gold)', fontWeight: 600, maxWidth: isMobile ? 80 : 160, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {headingName}
             </span>
           ) : null}
-          <span style={{ fontSize: 11, color: 'var(--ink-faint)' }}>{backLabel}</span>
+          {/* 모바일 인물 모드는 보조 라벨 생략 — 인장이 차지한 폭을 회수해 6탭(족보까지)이 뷰포트 안에 들게 */}
+          {!(isMobile && !isTour) && <span style={{ fontSize: 11, color: 'var(--ink-faint)' }}>{backLabel}</span>}
         </button>
 
         {/* 지도 / 타임라인 / 관계(인물 모드 한정) 토글 */}
@@ -189,7 +211,7 @@ function App() {
       <div style={{
         height: NAV_H, flexShrink: 0,
         display: 'flex', alignItems: 'center',
-        background: 'var(--bg-1)',
+        background: 'var(--bg-1)', borderBottom: '1px solid var(--gold-dim)',
         zIndex: 20, boxShadow: 'var(--shadow-1)',
         gap: 0,
       }}>
@@ -244,7 +266,7 @@ function App() {
       <div style={{
         height: NAV_H, flexShrink: 0,
         display: 'flex', alignItems: 'center',
-        background: 'var(--bg-1)',
+        background: 'var(--bg-1)', borderBottom: '1px solid var(--gold-dim)',
         zIndex: 20, boxShadow: 'var(--shadow-1)',
         gap: 0,
       }}>
@@ -299,7 +321,7 @@ function App() {
       <div style={{
         height: NAV_H, flexShrink: 0,
         display: 'flex', alignItems: 'center',
-        background: 'var(--bg-1)',
+        background: 'var(--bg-1)', borderBottom: '1px solid var(--gold-dim)',
         zIndex: 20, boxShadow: 'var(--shadow-1)',
         gap: 0,
       }}>
@@ -317,9 +339,12 @@ function App() {
           <span style={{ fontSize: 13 }}>←</span>
           <span style={{ fontSize: 13 }}>뒤로</span>
         </button>
-        <div style={{ display: 'flex', alignItems: 'center', height: '100%', padding: '0 14px', gap: 6 }}>
-          <Users size={16} color="var(--ink-faint)" />
-          <span style={{ color: 'var(--ink-dim)', fontSize: 13 }}>가계도</span>
+        <div style={{ display: 'flex', alignItems: 'center', height: '100%', padding: '0 14px', gap: 8 }}>
+          {/* 인장 — 가계도 focus 인물(재중심화 시 key 리마운트로 1회 draw, 비큐레이션은 범용 폴백) */}
+          <span key={familyId} style={{ color: 'var(--gold)', display: 'inline-flex' }}>
+            <PersonSymbol slug={getPersonSlug(familyId)} size={22} draw />
+          </span>
+          <span style={{ color: 'var(--ink-dim)', fontSize: 13, fontFamily: 'var(--serif)', fontWeight: 600 }}>가계도</span>
         </div>
       </div>
     )
@@ -332,7 +357,7 @@ function App() {
       <div style={{
         height: NAV_H, flexShrink: 0,
         display: 'flex', alignItems: 'center',
-        background: 'var(--bg-1)',
+        background: 'var(--bg-1)', borderBottom: '1px solid var(--gold-dim)',
         zIndex: 20, boxShadow: 'var(--shadow-1)',
         gap: 0,
       }}>
@@ -389,7 +414,7 @@ function App() {
       <div style={{
         height: NAV_H, flexShrink: 0,
         display: 'flex', alignItems: 'center',
-        background: 'var(--bg-1)',
+        background: 'var(--bg-1)', borderBottom: '1px solid var(--gold-dim)',
         zIndex: 20, boxShadow: 'var(--shadow-1)',
         gap: 0,
       }}>
@@ -409,7 +434,7 @@ function App() {
         </button>
         <div style={{ display: 'flex', alignItems: 'center', height: '100%', padding: '0 14px', gap: 6 }}>
           <span style={{ fontSize: 15 }}>🧭</span>
-          <span style={{ color: 'var(--ink-dim)', fontSize: 13 }}>테마 투어</span>
+          <span style={{ color: TYPE_COLOR.Book, fontSize: 13, fontFamily: 'var(--serif)', fontWeight: 600 }}>테마 투어</span>
         </div>
       </div>
     )
@@ -418,14 +443,17 @@ function App() {
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100dvh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
 
+      {/* 책등 전역 헤더 — 전 스테이지 상시 표시, 리본 3부 + 테마 토글(ADR-0026) */}
+      <SpineHeader
+        activeSection={activeSection}
+        onSelectSection={handleSelectSection}
+        isMobile={isMobile}
+      />
+
       {/* 허브 단계 — 인물 선택 전 */}
       {activeStage === 'hub' && (
         <div className="stage-in" style={{ flex: 1, overflow: 'hidden' }}>
-          <PersonHub
-            onSelectPerson={(id) => selectPerson(id, 'intro')}
-            onOpenOverview={openOverview}
-            onOpenTours={openTours}
-          />
+          <PersonHub onSelectPerson={(id) => selectPerson(id, 'intro')} />
         </div>
       )}
 
@@ -638,7 +666,7 @@ function App() {
                   transform: sheetOpen ? 'translateY(0)' : 'translateY(100%)',
                 }
               : {
-                  top: NAV_H, right: 0, bottom: 0, width: 360,
+                  top: HEADER_H + NAV_H, right: 0, bottom: 0, width: 360,
                   boxShadow: 'var(--shadow-2)',
                   // 관계·하나님 의존 뷰는 전용 전체화면 — 탐험 인물 자신의 상세 시트로 우측을 덮지 않는다(다른 뷰로 토글 시 복귀).
                   // 소개 뷰는 자기 자신이 본문이라 자기 시트만 억제(다른 노드 선택 시에는 정상 표시).

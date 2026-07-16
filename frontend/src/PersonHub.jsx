@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
-import { Sun, Moon } from 'lucide-react'
 import { apiGet } from './api'
 import Spinner from './Spinner'
+import PersonSymbol from './personSymbols'
 import { MOBILE_BREAKPOINT } from './constants'
-import { TYPE_COLOR } from './theme'
 
 // 시대 표시 순서 — persons.py _ERA_ORDER와 동일.
 const ERA_ORDER = ['원시사', '족장', '출애굽·정복', '사사', '왕국', '선지자', '포로', '신약']
@@ -22,7 +21,6 @@ const ERA_META = {
 
 // 토큰은 전부 CSS 변수 참조 — 테마(다크/라이트) 전환에 자동 추종(ADR-0020)
 const GOLD = 'var(--gold)'
-const PURPLE = TYPE_COLOR.Book
 const GROUND = 'var(--bg-0)'
 const TEXT = 'var(--ink)'
 const CARD_BG = 'var(--bg-1)'
@@ -56,7 +54,7 @@ function PersonCard({ person, onSelectPerson, entrance, delayMs }) {
         background: hovered ? 'var(--bg-2)' : CARD_BG,
         border: `1px solid ${hovered ? 'var(--gold-dim)' : 'var(--line)'}`,
         borderRadius: 12,
-        padding: '18px 16px',
+        padding: '14px 16px 16px',
         cursor: 'pointer',
         textAlign: 'left',
         transition: 'background var(--dur-fast), border-color var(--dur-fast), box-shadow var(--dur-fast), transform var(--dur-fast) var(--ease-out)',
@@ -67,6 +65,17 @@ function PersonCard({ person, onSelectPerson, entrance, delayMs }) {
         minWidth: 0,
       }}
     >
+      {/* 상징물 선화 — 입장 시 카드 착지 후 draw-on(ADR-0025), hover 시 선이 또렷해짐 */}
+      <span style={{
+        alignSelf: 'center',
+        color: GOLD,
+        opacity: hovered ? 1 : 0.75,
+        transition: 'opacity var(--dur-fast)',
+        margin: '2px 0 2px',
+      }}>
+        <PersonSymbol slug={person.slug} size={46} draw={entrance} delayMs={delayMs + 150} />
+      </span>
+
       {/* 이름 */}
       <span style={{
         color: TEXT,
@@ -103,12 +112,12 @@ function PersonCard({ person, onSelectPerson, entrance, delayMs }) {
   )
 }
 
-function EraSection({ era, persons, onSelectPerson, isFirst, entrance, baseIdx }) {
+function EraSection({ era, persons, onSelectPerson, isFirst, entrance, baseIdx, chapterNo }) {
   const desc = ERA_META[era] || ''
 
   return (
-    <section style={{ marginTop: isFirst ? 0 : 36 }}>
-      {/* 섹션 헤더 — 골드 선 + 넓은 자간 에라 라벨 */}
+    <section style={{ marginTop: isFirst ? 0 : 40 }}>
+      {/* 섹션 헤더 — 장(章) 표제: 장 번호 + 장식 마름모 + 에라 라벨 + 골드 괘선(펼친 책의 목차 면) */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
@@ -123,7 +132,12 @@ function EraSection({ era, persons, onSelectPerson, isFirst, entrance, baseIdx }
           letterSpacing: '0.22em',
           textTransform: 'uppercase',
           flexShrink: 0,
+          display: 'inline-flex',
+          alignItems: 'baseline',
+          gap: 8,
         }}>
+          <span style={{ color: 'var(--ink-faint)', fontSize: 10, letterSpacing: '0.14em' }}>제{chapterNo}장</span>
+          <span aria-hidden="true" style={{ fontSize: 8, opacity: 0.7 }}>◆</span>
           {era}
         </span>
         <div style={{
@@ -159,17 +173,16 @@ function EraSection({ era, persons, onSelectPerson, isFirst, entrance, baseIdx }
 }
 
 /**
- * PersonHub — 큐레이션 13인 허브 화면.
+ * PersonHub — 큐레이션 인물 목차(대문) 화면.
  *
  * Props 계약:
  *   onSelectPerson(id: string) — 카드 클릭 시 해당 인물 id 전달
- *   onOpenOverview()            — "성경 책 둘러보기" 버튼 클릭 시 호출
- *   onOpenTours()               — "테마 투어" 버튼 클릭 시 호출
  *
+ * 성경책 둘러보기·테마 투어 진입과 테마 토글은 책등 전역 헤더(SpineHeader)로 승격(ADR-0026).
  * 데이터: 내부에서 GET /persons/curated 호출
  *   응답 항목: { id, slug, nameKo, era, eventCount }
  */
-export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours }) {
+export default function PersonHub({ onSelectPerson }) {
   const [persons, setPersons] = useState([])
   // 입장 스태거는 세션 첫 허브 진입에만 — 마운트 시점 값 고정 후 플래그 마킹
   const [entrance] = useState(() => !hubEntrancePlayed)
@@ -177,15 +190,6 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const isMobile = useIsMobile()
-  // 테마 전환은 CSS 변수만 갈아끼우므로 리렌더 불요 — state는 토글 아이콘(해/달) 표시용
-  const [theme, setTheme] = useState(() => document.documentElement.dataset.theme === 'light' ? 'light' : 'dark')
-  const toggleTheme = () => {
-    const next = theme === 'light' ? 'dark' : 'light'
-    if (next === 'light') document.documentElement.dataset.theme = 'light'
-    else delete document.documentElement.dataset.theme
-    localStorage.setItem('biblemap-theme', next)
-    setTheme(next)
-  }
 
   useEffect(() => {
     // 일시 장애로 허브 전체가 에러 화면에 고착되지 않도록 유한 재시도(1s→2s→4s).
@@ -245,8 +249,10 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
   const eras = ERA_ORDER.filter(e => byEra[e]?.length > 0)
 
   return (
-    <div style={{
+    <div className={entrance ? 'book-open' : undefined} style={{
       background: GROUND,
+      // 지면 질감 — 상단에서 번지는 금박 빛(다크=밤의 서재 촛불, 라이트=양피지 워시). 테마 변수 자동 추종.
+      backgroundImage: 'radial-gradient(120% 55% at 50% 0%, color-mix(in srgb, var(--gold) 6%, transparent), transparent 60%)',
       height: '100%',
       overflowY: 'auto',
       boxSizing: 'border-box',
@@ -256,31 +262,8 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
         position: 'relative',
         padding: isMobile ? '28px 16px 20px' : '36px 32px 24px',
         borderBottom: '1px solid var(--gold-dim)',
-        background: `linear-gradient(180deg, var(--bg-1) 0%, ${GROUND} 100%)`,
+        background: `linear-gradient(180deg, var(--bg-1) 0%, transparent 100%)`,
       }}>
-        {/* 테마 토글 — 라이트(Day Atlas)는 옵트인, 선택은 localStorage 유지(ADR-0020) */}
-        <button
-          onClick={toggleTheme}
-          aria-label={theme === 'light' ? '다크 테마로 전환' : '라이트 테마로 전환'}
-          title={theme === 'light' ? '다크 테마로 전환' : '라이트 테마로 전환'}
-          style={{
-            position: 'absolute',
-            top: isMobile ? 24 : 32,
-            right: isMobile ? 16 : 32,
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 36,
-            height: 36,
-            borderRadius: '50%',
-            border: '1px solid var(--line-strong)',
-            background: 'var(--bg-2)',
-            color: 'var(--gold)',
-            cursor: 'pointer',
-          }}
-        >
-          {theme === 'light' ? <Moon size={17} /> : <Sun size={17} />}
-        </button>
         <h1 style={{
           color: TEXT,
           fontFamily: 'var(--serif)',
@@ -295,75 +278,11 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
         <p style={{
           color: 'var(--ink-faint)',
           fontSize: 14,
-          margin: '0 0 20px',
+          margin: 0,
           lineHeight: 1.5,
         }}>
           인물을 고르면 활동 지역과 사건이 지도에 펼쳐집니다
         </p>
-
-        {/* 보조 진입 — 성경 책 둘러보기 · 테마 투어 */}
-        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-          <button
-            className="pressable"
-            onClick={onOpenOverview}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 7,
-              padding: '7px 16px',
-              border: `1px solid color-mix(in srgb, ${GOLD} 31%, transparent)`,
-              borderRadius: 8,
-              background: `color-mix(in srgb, ${GOLD} 7%, transparent)`,
-              color: GOLD,
-              fontSize: 13,
-              fontWeight: 600,
-              cursor: 'pointer',
-              letterSpacing: '0.03em',
-              transition: 'background var(--dur-fast), border-color var(--dur-fast), transform var(--dur-fast) var(--ease-out)',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.background = `color-mix(in srgb, ${GOLD} 13%, transparent)`
-              e.currentTarget.style.borderColor = `color-mix(in srgb, ${GOLD} 56%, transparent)`
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.background = `color-mix(in srgb, ${GOLD} 7%, transparent)`
-              e.currentTarget.style.borderColor = `color-mix(in srgb, ${GOLD} 31%, transparent)`
-            }}
-          >
-            <span style={{ fontSize: 15 }}>📖</span>
-            성경 책 둘러보기
-          </button>
-          <button
-            className="pressable"
-            onClick={onOpenTours}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 7,
-              padding: '7px 16px',
-              border: `1px solid color-mix(in srgb, ${PURPLE} 31%, transparent)`,
-              borderRadius: 8,
-              background: `color-mix(in srgb, ${PURPLE} 7%, transparent)`,
-              color: PURPLE,
-              fontSize: 13,
-              fontWeight: 600,
-              cursor: 'pointer',
-              letterSpacing: '0.03em',
-              transition: 'background var(--dur-fast), border-color var(--dur-fast), transform var(--dur-fast) var(--ease-out)',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.background = `color-mix(in srgb, ${PURPLE} 13%, transparent)`
-              e.currentTarget.style.borderColor = `color-mix(in srgb, ${PURPLE} 56%, transparent)`
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.background = `color-mix(in srgb, ${PURPLE} 7%, transparent)`
-              e.currentTarget.style.borderColor = `color-mix(in srgb, ${PURPLE} 31%, transparent)`
-            }}
-          >
-            <span style={{ fontSize: 15 }}>🧭</span>
-            테마 투어
-          </button>
-        </div>
       </div>
 
       {/* 시대별 카드 그룹 */}
@@ -379,6 +298,7 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
             isFirst={i === 0}
             entrance={entrance}
             baseIdx={eras.slice(0, i).reduce((n, e) => n + byEra[e].length, 0)}
+            chapterNo={i + 1}
           />
         ))}
       </div>

@@ -5,6 +5,7 @@ import { TYPE_COLOR } from './theme'
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
 import Spinner from './Spinner'
+import PersonSymbol from './personSymbols'
 
 // 인물 소개(intro) 전용 뷰 — 상세 시트(SidePanel) 재사용에서 분리한 전용 페이지(explore intro 탭).
 // 구성: 정체성 헤더 → 소개문(근거 구절 칩) → 인물 성품 → 관문 요약(여정/타임라인/관계 점프).
@@ -63,7 +64,7 @@ function PersonIntro({ personId, verseLang, setVerseLang, onSwitchView = () => {
     return () => { cancelled = true }
   }, [personId])
 
-  // era는 노드에 없고 /persons/curated에만 존재 — 목록에서 이 인물을 찾는다(헤더 시대 배지용).
+  // era·slug는 노드에 없고 /persons/curated에만 존재 — 목록에서 이 인물을 찾는다(헤더 시대 배지·상징물 히어로용).
   useEffect(() => {
     if (!personId) return
     let cancelled = false
@@ -71,9 +72,9 @@ function PersonIntro({ personId, verseLang, setVerseLang, onSwitchView = () => {
       .then(list => {
         if (cancelled) return
         const p = list.find(x => x.id === personId)
-        setMeta({ id: personId, era: p?.era ?? null })
+        setMeta({ id: personId, era: p?.era ?? null, slug: p?.slug ?? null })
       })
-      .catch(e => { if (!cancelled) { console.warn('[PersonIntro] 큐레이션 목록 로드 실패', e); setMeta({ id: personId, era: null }) } })
+      .catch(e => { if (!cancelled) { console.warn('[PersonIntro] 큐레이션 목록 로드 실패', e); setMeta({ id: personId, era: null, slug: null }) } })
     return () => { cancelled = true }
   }, [personId])
 
@@ -139,6 +140,14 @@ function PersonIntro({ personId, verseLang, setVerseLang, onSwitchView = () => {
           </div>
         </div>,
         document.body,
+      )}
+
+      {/* 상징물 히어로 — 진입마다 대형 선화가 그려지는 시그니처 순간(ADR-0025).
+          인물 전환은 App의 key 리마운트로 재재생, reduce는 토큰 붕괴로 즉시 완성. meta 정착 후 렌더(폴백 깜빡임 방지). */}
+      {meta.id === personId && (
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 2px', color: 'var(--gold)' }}>
+          <PersonSymbol slug={meta.slug} size={118} draw />
+        </div>
       )}
 
       {/* 정체성 헤더 — 이름(한/영) · 역할 배지 · era · 생몰 */}
