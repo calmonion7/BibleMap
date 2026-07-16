@@ -3,13 +3,8 @@
     "mode": "부르심",
     "approxYear": -760,
     "obeyed": false,
-    "trigger": { "label": "하나님이 니느웨로 가서 외치라 명하심", "verse": "욘 1:3" },
-    "outcome": { "label": "명을 피해 다시스로 도망 — 불순종", "verse": "욘 1:3" }
-  },
-  {
-    "mode": "독단-어긋남",
-    "approxYear": -760,
-    "trigger": { "label": "여호와의 낯을 피해 다시스행 배에 오름", "verse": "욘 1:4" },
+    "trigger": { "label": "하나님이 니느웨로 가서 외치라 명하심", "verse": "욘 1:2" },
+    "response": { "label": "명을 피해 다시스행 배에 오름 — 불순종", "verse": "욘 1:3" },
     "outcome": { "label": "여호와께서 대풍을 보내 배를 심판하심", "verse": "욘 1:4" }
   },
   {
@@ -21,13 +16,7 @@
   {
     "mode": "물음-응답",
     "approxYear": -760,
-    "trigger": { "label": "물고기 뱃속에서 기도하며 구원을 의탁함", "verse": "욘 2:9" },
-    "outcome": { "label": "구원은 여호와께 있다 고백하며 응답받음", "verse": "욘 2:9", "kind": "이룸" }
-  },
-  {
-    "mode": "물음-응답",
-    "approxYear": -760,
-    "trigger": { "label": "물고기 뱃속에서 육지로의 구원을 구함", "verse": "욘 2:10" },
+    "trigger": { "label": "물고기 뱃속에서 구원을 여호와께 의탁하며 기도함", "verse": "욘 2:9" },
     "outcome": { "label": "여호와의 명으로 물고기가 요나를 육지에 토함", "verse": "욘 2:10", "kind": "이룸" }
   },
   {

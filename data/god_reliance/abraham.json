@@ -25,11 +25,6 @@
     "outcome": { "label": "의인을 위해 멸하지 않으리라 응답하심", "verse": "창 18:23", "kind": "이룸" } },
   { "mode": "부르심", "approxYear": -2050, "obeyed": true,
     "trigger": { "label": "이삭을 번제로 바치라 시험하심", "verse": "창 22:2" },
-    "outcome": { "label": "명령에 순종해 모리아산으로 감", "verse": "창 22:2" } },
-  { "mode": "물음-응답", "approxYear": -2050,
-    "trigger": { "label": "칼을 들어 이삭을 잡으려 함", "verse": "창 22:12" },
-    "outcome": { "label": "순종을 보시고 사자가 손을 멈추게 하심", "verse": "창 22:12", "kind": "다르게" } },
-  { "mode": "물음-응답", "approxYear": -2050,
-    "trigger": { "label": "순종으로 이삭을 아끼지 않음", "verse": "창 22:18" },
-    "outcome": { "label": "네 씨로 만민이 복 받으리라 맹세하심", "verse": "창 22:18", "kind": "더하심" } }
+    "response": { "label": "칼을 들어 이삭을 잡으려 순종함", "verse": "창 22:12" },
+    "outcome": { "label": "네 씨로 만민이 복 받으리라 맹세하심", "verse": "창 22:18" } }
 ]

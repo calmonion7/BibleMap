@@ -3,13 +3,7 @@
     "mode": "물음-응답",
     "approxYear": -970,
     "trigger": { "label": "기브온 꿈에 나타나신 하나님께 다스릴 지혜로운 마음을 구함", "verse": "왕상 3:5" },
-    "outcome": { "label": "구하는 것을 들으시고 지혜롭고 총명한 마음을 주겠다 하심", "verse": "왕상 3:5", "kind": "이룸" }
-  },
-  {
-    "mode": "물음-응답",
-    "approxYear": -970,
-    "trigger": { "label": "재판할 지혜만을 구했던 솔로몬의 요청", "verse": "왕상 3:12" },
-    "outcome": { "label": "구하지 않은 부와 영광까지 더하여 주심", "verse": "왕상 3:12", "kind": "더하심" }
+    "outcome": { "label": "지혜에 더해 구하지 않은 부와 영광까지 주심", "verse": "왕상 3:12", "kind": "더하심" }
   },
   {
     "mode": "물음-응답",
@@ -25,27 +19,10 @@
   },
   {
     "mode": "부르심",
-    "approxYear": -959,
+    "approxYear": -935,
     "obeyed": false,
     "trigger": { "label": "다른 신을 따르지 말고 계명을 지키라 명하심", "verse": "왕상 9:6" },
-    "outcome": { "label": "훗날 이 명을 어기고 다른 신을 따름", "verse": "왕상 9:6" }
-  },
-  {
-    "mode": "독단-어긋남",
-    "approxYear": -935,
-    "trigger": { "label": "노년에 이방 아내들을 따라 자기 마음대로 행함", "verse": "왕상 11:4" },
-    "outcome": { "label": "마음이 다른 신에게로 돌아서 여호와 앞에 온전치 못함", "verse": "왕상 11:4" }
-  },
-  {
-    "mode": "독단-어긋남",
-    "approxYear": -935,
-    "trigger": { "label": "명령을 어기고 마음이 여호와를 떠난 독단", "verse": "왕상 11:9" },
-    "outcome": { "label": "여호와께서 진노하심", "verse": "왕상 11:9" }
-  },
-  {
-    "mode": "독단-어긋남",
-    "approxYear": -935,
-    "trigger": { "label": "언약과 법도를 지키지 않은 독단", "verse": "왕상 11:11" },
+    "response": { "label": "노년에 이방 아내를 따라 다른 신에게로 마음이 돌아섬", "verse": "왕상 11:4" },
     "outcome": { "label": "나라를 찢어 신하에게 주리라는 심판을 선고하심", "verse": "왕상 11:11" }
   }
 ]

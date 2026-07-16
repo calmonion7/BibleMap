@@ -61,13 +61,7 @@
     "approxYear": 40,
     "obeyed": true,
     "trigger": { "label": "보자기 환상으로 속되다 말라 명하심", "verse": "행 10:15" },
-    "outcome": { "label": "하나님이 깨끗케 하신 것을 순종하여 받음", "verse": "행 10:15" }
-  },
-  {
-    "mode": "물음-응답",
-    "approxYear": 40,
-    "trigger": { "label": "환상 따라 이방인 고넬료 집에 가서 전함", "verse": "행 10:1" },
-    "outcome": { "label": "말씀 듣는 중 성령이 임하심", "verse": "행 10:1", "kind": "더하심" }
+    "outcome": { "label": "순종하여 고넬료 집에 가 전하니 성령이 임하심", "verse": "행 10:1" }
   },
   {
     "mode": "물음-응답",

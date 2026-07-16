@@ -2,23 +2,9 @@
   {
     "mode": "부르심",
     "approxYear": -740,
-    "covenant": true,
-    "trigger": { "label": "웃시야 죽던 해 성전에서 높이 들린 주의 영광을 보이심", "verse": "사 6:1" },
-    "outcome": { "label": "소명을 받음", "verse": "사 6:1" }
-  },
-  {
-    "mode": "부르심",
-    "approxYear": -740,
     "obeyed": true,
-    "trigger": { "label": "누구를 보내며 누가 우리를 위하여 갈꼬 물으심", "verse": "사 6:8" },
-    "outcome": { "label": "'내가 여기 있나이다 나를 보내소서' 응답해 순종", "verse": "사 6:8" }
-  },
-  {
-    "mode": "부르심",
-    "approxYear": -740,
-    "obeyed": true,
-    "trigger": { "label": "완악한 백성에게 심판을 선포하라 명하심", "verse": "사 6:9" },
-    "outcome": { "label": "명하신 대로 나아가 순종함", "verse": "사 6:9" }
+    "trigger": { "label": "웃시야 죽던 해 성전 환상으로 소명을 보이심", "verse": "사 6:1" },
+    "outcome": { "label": "'내가 여기 있나이다 나를 보내소서' 응답하여 순종함", "verse": "사 6:8" }
   },
   {
     "mode": "부르심",

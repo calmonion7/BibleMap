@@ -30,13 +30,6 @@
     "mode": "독단-어긋남",
     "approxYear": -1407,
     "trigger": { "label": "모세가 명령을 어기고 반석을 두 번 침", "verse": "민 20:12" },
-    "outcome": { "label": "가나안 입성이 금지되는 심판을 받음", "verse": "민 20:12" }
-  },
-  {
-    "mode": "부르심",
-    "approxYear": -1406,
-    "covenant": true,
-    "trigger": { "label": "하나님이 가나안에 못 들어간다 말씀하심", "verse": "신 34:5" },
-    "outcome": { "label": "말씀대로 모압 땅에서 죽음을 받음", "verse": "신 34:5" }
+    "outcome": { "label": "가나안 입성이 금지되어 모압 땅에서 죽음", "verse": "신 34:5" }
   }
 ]

@@ -32,6 +32,7 @@ function segColor(ph) {
 // 구절 레이어 계기→결과 라벨 — segKey별 [계기, 결과]. 부르심은 obeyed로 순종/불순종 파생.
 // response(중간 단)가 있는 3단 항목은 STEP_LABELS_3을 쓴다.
 const STEP_LABELS_3 = {
+  '부르심-순종': ['부르심', '순종', '이루심'],
   '부르심-불순종': ['부르심', '불순종', '심판'],
 }
 const STEP_LABELS = {
