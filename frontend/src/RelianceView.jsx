@@ -77,9 +77,29 @@ function VerseCard({ seg, lang, color }) {
 }
 
 // 도넛 게이지 — 반경 R 원호를 percent만큼 채움. 중앙에 % + '의존도'.
+// 입장 스윕: 0에서 시작해 마운트 다음 프레임에 목표값을 설정(transition이 스윕을 만든다 —
+// 최종값으로 첫 렌더하면 전환이 재생되지 않는다). %는 rAF 카운트업, reduce 설정 시 둘 다 즉시.
+const REDUCE_MOTION = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 function Donut({ percent }) {
   const R = 58, SW = 12, C = 2 * Math.PI * R, SIZE = (R + SW) * 2
-  const filled = (percent / 100) * C
+  const instant = REDUCE_MOTION()
+  const [shown, setShown] = useState(instant ? percent : 0)      // 원호 목표값
+  const [count, setCount] = useState(instant ? percent : 0)      // % 표기 카운트업
+  useEffect(() => {
+    if (REDUCE_MOTION()) { setShown(percent); setCount(percent); return }
+    let raf = requestAnimationFrame(() => {
+      setShown(percent)
+      const t0 = performance.now(), D = 900
+      const tick = now => {
+        const t = Math.min((now - t0) / D, 1)
+        setCount(Math.round(percent * (1 - (1 - t) ** 3)))  // ease-out cubic — 원호와 체감 동기
+        if (t < 1) raf = requestAnimationFrame(tick)
+      }
+      raf = requestAnimationFrame(tick)
+    })
+    return () => cancelAnimationFrame(raf)
+  }, [percent])
+  const filled = (shown / 100) * C
   return (
     <svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`} style={{ display: 'block' }}>
       <g transform={`rotate(-90 ${SIZE / 2} ${SIZE / 2})`}>
@@ -88,11 +108,11 @@ function Donut({ percent }) {
           cx={SIZE / 2} cy={SIZE / 2} r={R} fill="none"
           stroke="var(--gold)" strokeWidth={SW} strokeLinecap="round"
           strokeDasharray={`${filled} ${C - filled}`}
-          style={{ transition: 'stroke-dasharray 0.9s var(--ease-out)' }}
+          style={{ transition: 'stroke-dasharray calc(var(--dur-slow) * 2.25) var(--ease-out)' }}
         />
       </g>
       <text x="50%" y="47%" textAnchor="middle" dominantBaseline="middle"
-        style={{ fontFamily: 'var(--serif)', fontWeight: 700, fontSize: 34, fill: 'var(--ink)' }}>{percent}%</text>
+        style={{ fontFamily: 'var(--serif)', fontWeight: 700, fontSize: 34, fill: 'var(--ink)' }}>{count}%</text>
       <text x="50%" y="65%" textAnchor="middle" dominantBaseline="middle"
         style={{ fontSize: 12, fill: 'var(--ink-faint)' }}>하나님 의존도</text>
     </svg>
@@ -165,8 +185,9 @@ function Trajectory({ phases, colorOf, onOpen }) {
       {w > 0 && phases.map((ph, gi) => {
         const { r, col } = pos(gi)
         return (
-          <button key={gi} onClick={() => onOpen(ph)}
+          <button key={gi} onClick={() => onOpen(ph)} className="card-in"
             style={{
+              animationDelay: `${Math.min(gi * 30, 500)}ms`,
               position: 'absolute', left: col * colW, top: r * TRAJ_ROW_H, width: colW, height: TRAJ_ROW_H,
               padding: '0 4px', border: 'none', background: 'none', cursor: 'pointer',
               display: 'flex', flexDirection: 'column', alignItems: 'center',
@@ -278,7 +299,7 @@ function RelianceView({ personId, personName, verseLang, setVerseLang, onSelectP
 
               {/* mode 분해 막대 */}
               <div style={{ margin: '18px 0 6px' }}>
-                <div style={{ display: 'flex', height: 14, borderRadius: 7, overflow: 'hidden', border: '1px solid var(--line)' }}>
+                <div className="bar-reveal" style={{ display: 'flex', height: 14, borderRadius: 7, overflow: 'hidden', border: '1px solid var(--line)' }}>
                   {SEGMENT_ORDER.filter(k => counts[k]).map(k => (
                     <div key={k} title={`${MODE_META[k].label} ${counts[k]}`}
                       style={{ width: `${(counts[k] / total) * 100}%`, background: MODE_META[k].color }} />
@@ -412,7 +433,7 @@ function RelianceView({ personId, personName, verseLang, setVerseLang, onSelectP
                   {r.nameKo}{r.lowSample ? <span style={{ fontSize: 10, color: 'var(--ink-faint)' }}> ·표본적음</span> : ''}
                 </span>
                 <span style={{ flex: 1, height: 8, background: 'var(--bg-3)', borderRadius: 4, overflow: 'hidden' }}>
-                  <span style={{ display: 'block', height: '100%', width: `${r.percent}%`, background: 'var(--gold)' }} />
+                  <span className="bar-reveal" style={{ display: 'block', height: '100%', width: `${r.percent}%`, background: 'var(--gold)' }} />
                 </span>
                 <span style={{ fontSize: 12.5, fontWeight: 700, color: 'var(--gold)', width: 38, textAlign: 'right' }}>{r.percent}%</span>
               </button>

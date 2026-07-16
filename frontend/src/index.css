@@ -220,6 +220,16 @@ h2 {
   animation: card-in var(--dur-slow) var(--ease-out) both;
 }
 
+/* 데이터 막대 성장 — 의존도 mode 분해·랭킹 막대(width 애니 금지, transform만) */
+@keyframes bar-reveal {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.bar-reveal {
+  transform-origin: left;
+  animation: bar-reveal var(--dur-slow) var(--ease-out) both;
+}
+
 /* 여정 활성 정차지 — 왼쪽 금색 바가 위에서 자라며 등장(근사-불가시 한도, transform만) */
 @keyframes bar-in {
   from { transform: scaleY(0); }

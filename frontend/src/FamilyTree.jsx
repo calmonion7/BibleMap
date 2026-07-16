@@ -127,7 +127,7 @@ function FamilyTree({ personId, onRecenter = () => {}, onOpenPerson = () => {} }
   const focusNode = byId[focus]
 
   return (
-    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: 'var(--bg-0)' }}>
+    <div className="stage-in" style={{ height: '100%', display: 'flex', flexDirection: 'column', background: 'var(--bg-0)' }}>
       {/* focus 인물 액션 바 — 인물 페이지(탐험)로 바로가기. 다른 인물은 노드 클릭으로 재중심화 후 이동. */}
       {focusNode && (
         <div style={{
