@@ -1,6 +1,7 @@
 """data/person_context/people.json이 인물 소개 DoD를 지키는지 기계검증한다.
 
-검사: ① 인물 수 86 ② role/intro 비어있지 않음·intro 길이 300 이하 ③ verses 1개 이상
+2단 품질 계층(ADR-0027): 서사 인물은 role+intro+verses, 족보 단역은 intro 없이 role 한줄+verses.
+검사: ① 인물 수 최소 86 ② role 비어있지 않음(80자 이하)·intro는 있으면 300자 이하 ③ verses 1개 이상
 ④ verse_ref 형식(validate_traits.py REF_RE 재사용) ⑤ textKo·textEn 프리베이크(null 아님).
 위반이 있으면 목록을 출력하고 종료 코드 1.
 """
@@ -12,7 +13,7 @@ import sys
 SCRIPT_DIR = os.path.dirname(__file__)
 PEOPLE_PATH = os.path.normpath(os.path.join(SCRIPT_DIR, "..", "..", "data", "person_context", "people.json"))
 
-EXPECTED_COUNT = 86
+MIN_COUNT = 86
 
 # 개역 약어 + 장:절[-절[:절]] (예: "창 32:26", "창 18:2-5", "시 51:3-4")
 REF_RE = re.compile(r"^[가-힣]{1,4}(?:[전후상하]|[0-9])?\s\d+:\d+(?:-\d+(?::\d+)?)?$")
@@ -23,19 +24,23 @@ def main():
         data = json.load(f)
 
     errors = []
-    if len(data) != EXPECTED_COUNT:
-        errors.append(f"인물 수 {len(data)}명 (기대 {EXPECTED_COUNT})")
+    if len(data) < MIN_COUNT:
+        errors.append(f"인물 수 {len(data)}명 (최소 {MIN_COUNT})")
 
     for pid, p in data.items():
         role = p.get("role")
         if not (isinstance(role, str) and role):
             errors.append(f"{pid}: role 비어있음")
+        elif len(role) > 80:
+            errors.append(f"{pid}: role 길이 {len(role)} (허용 ≤80)")
 
+        # 2단 계층(ADR-0027): intro는 서사 인물만 갖는다 — 있으면 규칙 검사, 없으면 족보 단역
         intro = p.get("intro")
-        if not (isinstance(intro, str) and intro):
-            errors.append(f"{pid}: intro 비어있음")
-        elif len(intro) > 300:
-            errors.append(f"{pid}: intro 길이 {len(intro)} (허용 ≤300)")
+        if intro is not None:
+            if not (isinstance(intro, str) and intro):
+                errors.append(f"{pid}: intro 비어있음")
+            elif len(intro) > 300:
+                errors.append(f"{pid}: intro 길이 {len(intro)} (허용 ≤300)")
 
         verses = p.get("verses")
         if not (isinstance(verses, list) and len(verses) >= 1):

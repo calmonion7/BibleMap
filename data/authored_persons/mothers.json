@@ -1,0 +1,19 @@
+{
+  "note": "성경에 어머니가 명시된 경우만 담는 어머니-자식 보강 간선 (ADR-0027, task#195). theographic 원본이 이미 모후 정형구(열왕기·역대) 대부분을 커버함을 전수 확인했고(다윗 아들들 삼하 3:2-5·대상 3:1-9, 유다 왕 모후 전원), 남은 성경 명시 사례는 이 2쌍뿐이다. 다윗의 나머지 예루살렘 출생 아들들(입할·엘리사마 등, 대상 3:6-8)은 성경이 어머니를 기록하지 않아 비대상. 다말은 삼하 13:1(압살롬의 친누이)+대상 3:9 경유의 정경 통설 추론, 아사는 왕상 15:10 모후 정형구 그대로(마아가 노드는 theographic이 아비야의 어머니로 해석한 우리엘의 딸 마아가와 동일 노드 — 일관성 유지). 로더: load_authored_mothers.py (노드 신규 생성 없음, 간선만 MERGE).",
+  "pairs": [
+    {
+      "motherId": "recA4tXUHqbDfzT8o",
+      "motherKo": "마아가",
+      "childId": "recWfXI5GaLhZTDeT",
+      "childKo": "다말",
+      "ref": "삼하 13:1"
+    },
+    {
+      "motherId": "recmGUzaFR2xi2Fjr",
+      "motherKo": "마아가",
+      "childId": "recaraSBvlHIwaaOB",
+      "childKo": "아사",
+      "ref": "왕상 15:10"
+    }
+  ]
+}
