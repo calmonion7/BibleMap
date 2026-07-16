@@ -72,7 +72,9 @@ def main():
                 errors.append(f"{tag}: approxYear 정수 아님 '{e.get('approxYear')}'")
             if "verse" in e or "label" in e:
                 errors.append(f"{tag}: 구 스키마 최상위 verse/label 잔존")
-            for seg in ("trigger", "outcome"):
+            # response는 선택적 중간 단(계기→행동→결과 3단) — 있으면 trigger/outcome과 동일 검사
+            segs = ("trigger", "response", "outcome") if "response" in e else ("trigger", "outcome")
+            for seg in segs:
                 s = e.get(seg)
                 if not isinstance(s, dict):
                     errors.append(f"{tag}: {seg} 객체 결손")

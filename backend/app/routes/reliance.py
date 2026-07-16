@@ -122,6 +122,8 @@ def get_person_reliance(person_id: str):
             "trigger": _seg(trig["verse"], trig["label"]),
             "outcome": outc,
         }
+        if "response" in e:  # 선택적 중간 단(계기→행동→결과 3단)
+            ph["response"] = _seg(e["response"]["verse"], e["response"]["label"])
         if "obeyed" in e:
             ph["obeyed"] = e["obeyed"]
         if e.get("covenant"):

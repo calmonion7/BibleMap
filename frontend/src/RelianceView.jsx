@@ -30,6 +30,10 @@ function segColor(ph) {
 }
 
 // 구절 레이어 계기→결과 라벨 — segKey별 [계기, 결과]. 부르심은 obeyed로 순종/불순종 파생.
+// response(중간 단)가 있는 3단 항목은 STEP_LABELS_3을 쓴다.
+const STEP_LABELS_3 = {
+  '부르심-불순종': ['부르심', '불순종', '심판'],
+}
 const STEP_LABELS = {
   '물음-응답': ['요청', '응답'],
   '물음-침묵': ['요청', '침묵'],
@@ -344,7 +348,9 @@ function RelianceView({ personId, personName, verseLang, setVerseLang, onSelectP
             </div>
             {(() => {
               const ph = verseView.ph
-              const [tLabel, oLabel] = STEP_LABELS[segKey(ph)] || ['계기', '결과']
+              const [tLabel, rLabel, oLabel] = ph.response
+                ? (STEP_LABELS_3[segKey(ph)] || ['계기', '행동', '결과'])
+                : (() => { const [t, o] = STEP_LABELS[segKey(ph)] || ['계기', '결과']; return [t, null, o] })()
               const color = segColor(ph)
               const kind = ph.outcome?.kind
               return (
@@ -352,9 +358,18 @@ function RelianceView({ personId, personName, verseLang, setVerseLang, onSelectP
                   {/* 계기 */}
                   <StepChip color={color} text={tLabel} />
                   <div style={{ fontSize: 13.5, color: 'var(--paper-ink)', marginTop: 3, fontFamily: 'var(--serif)' }}>{ph.trigger.label}</div>
-                  {!ph.sameVerse && <VerseCard seg={ph.trigger} lang={verseLang} color={color} />}
+                  {(ph.response || !ph.sameVerse) && <VerseCard seg={ph.trigger} lang={verseLang} color={color} />}
                   {/* 흐름 화살표 */}
                   <div style={{ textAlign: 'center', color: 'var(--paper-accent)', fontSize: 18, margin: '10px 0', lineHeight: 1 }}>↓</div>
+                  {/* 중간 단(행동) — response가 있는 3단 항목만 */}
+                  {ph.response && (
+                    <>
+                      <StepChip color={color} text={rLabel} />
+                      <div style={{ fontSize: 13.5, color: 'var(--paper-ink)', marginTop: 3, fontFamily: 'var(--serif)' }}>{ph.response.label}</div>
+                      <VerseCard seg={ph.response} lang={verseLang} color={color} />
+                      <div style={{ textAlign: 'center', color: 'var(--paper-accent)', fontSize: 18, margin: '10px 0', lineHeight: 1 }}>↓</div>
+                    </>
+                  )}
                   {/* 결과 */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
                     <StepChip color={color} text={oLabel} />

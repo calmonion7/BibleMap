@@ -33,57 +33,13 @@
       "label": "선악과를 먹지 말라 명하심",
       "verse": "창 2:17"
     },
-    "outcome": {
-      "label": "훗날 명을 어기고 먹음",
-      "verse": "창 2:17"
-    }
-  },
-  {
-    "mode": "독단-어긋남",
-    "approxYear": -4000,
-    "trigger": {
-      "label": "하나님의 명을 어기고 선악과를 스스로 따먹음",
+    "response": {
+      "label": "명을 어기고 선악과를 따먹음",
       "verse": "창 3:6"
     },
     "outcome": {
-      "label": "죄가 세상에 들어와 어그러짐",
-      "verse": "창 3:6"
-    }
-  },
-  {
-    "mode": "독단-어긋남",
-    "approxYear": -4000,
-    "trigger": {
-      "label": "선악과를 먹은 죄로 심판대에 섬",
+      "label": "죽음을 선고받고 에덴에서 쫓겨남",
       "verse": "창 3:19"
-    },
-    "outcome": {
-      "label": "흙으로 돌아가리라는 죽음의 선고를 받음",
-      "verse": "창 3:19"
-    }
-  },
-  {
-    "mode": "독단-어긋남",
-    "approxYear": -4000,
-    "trigger": {
-      "label": "선악과를 먹은 죄",
-      "verse": "창 3:23"
-    },
-    "outcome": {
-      "label": "에덴에서 쫓겨나 생명나무 길이 막힘",
-      "verse": "창 3:23"
-    }
-  },
-  {
-    "mode": "독단-어긋남",
-    "approxYear": -3070,
-    "trigger": {
-      "label": "죽음을 선고받은 죄인의 생애",
-      "verse": "창 5:5"
-    },
-    "outcome": {
-      "label": "930세에 죽어 선고대로 흙으로 돌아감",
-      "verse": "창 5:5"
     }
   }
 ]
