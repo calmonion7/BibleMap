@@ -170,7 +170,7 @@ function App() {
                   color: active ? 'var(--ink)' : 'var(--ink-faint)',
                   borderBottom: active ? '2px solid var(--gold)' : '2px solid transparent',
                   border: 'none', background: 'none', cursor: 'pointer',
-                  transition: 'color 0.15s',
+                  transition: 'color var(--dur-fast), border-color var(--dur-fast)',
                 }}
               >
                 <Icon size={18} />
@@ -227,7 +227,7 @@ function App() {
               display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
               color: 'var(--ink-faint)',
               border: 'none', background: 'none', cursor: 'pointer',
-              transition: 'color 0.15s',
+              transition: 'color var(--dur-fast), border-color var(--dur-fast)',
             }}
           >
             <BarChart3 size={18} />
@@ -282,7 +282,7 @@ function App() {
               display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
               color: 'var(--ink-faint)',
               border: 'none', background: 'none', cursor: 'pointer',
-              transition: 'color 0.15s',
+              transition: 'color var(--dur-fast), border-color var(--dur-fast)',
             }}
           >
             <BarChart3 size={18} />
@@ -359,7 +359,7 @@ function App() {
                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
                 color: 'var(--ink-faint)',
                 border: 'none', background: 'none', cursor: 'pointer',
-                transition: 'color 0.15s',
+                transition: 'color var(--dur-fast), border-color var(--dur-fast)',
               }}
             >
               <BookOpen size={18} />
@@ -420,7 +420,7 @@ function App() {
 
       {/* 허브 단계 — 인물 선택 전 */}
       {activeStage === 'hub' && (
-        <div style={{ flex: 1, overflow: 'hidden' }}>
+        <div className="stage-in" style={{ flex: 1, overflow: 'hidden' }}>
           <PersonHub
             onSelectPerson={(id) => selectPerson(id, 'intro')}
             onOpenOverview={openOverview}
@@ -433,7 +433,7 @@ function App() {
       {activeStage === 'overview' && (
         <>
           {renderOverviewNav()}
-          <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+          <div className="stage-in" style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
             <BibleOverviewView
               onSelectNode={openBook}
               selectedNode={bookId}
@@ -446,7 +446,7 @@ function App() {
       {activeStage === 'book' && (
         <>
           {renderBookNav()}
-          <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+          <div className="stage-in" style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
             <div style={{ height: '100%', overflowY: 'auto', background: 'var(--bg-0)' }}>
               <div style={{ maxWidth: 600, margin: '0 auto' }}>
                 {/* SidePanel 재사용 — bookId 대상. onClose·canGoBack 미주입이라 X/뒤로 칩 없이 페이지 본문만.
@@ -473,7 +473,7 @@ function App() {
       {activeStage === 'family' && (
         <>
           {renderFamilyNav()}
-          <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+          <div className="stage-in" style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
             <FamilyTree
               key={familyId}
               personId={familyId}
@@ -488,7 +488,7 @@ function App() {
       {activeStage === 'words' && (
         <>
           {renderWordsNav()}
-          <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+          <div className="stage-in" style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
             <WordDistributionView
               bookId={wordsBookId}
               onSelectBook={selectWordsBook}
@@ -503,7 +503,7 @@ function App() {
       {activeStage === 'tours' && (
         <>
           {renderToursNav()}
-          <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+          <div className="stage-in" style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
             <TourList onSelectTour={selectTour} />
           </div>
         </>
@@ -515,7 +515,7 @@ function App() {
           {renderExploreNav()}
 
           {/* 전체화면 뷰 — 항상 마운트, CSS 토글로 상태 보존 */}
-          <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+          <div className="stage-in" style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
             <div style={{ display: exploreView === 'map' ? 'flex' : 'none', height: '100%' }}>
               {/* 여정 사이드 리스트 — 데스크톱: 좌측 200px 고정 / 모바일: 숨김(지도 위에 하단 미니시트) */}
               {!isMobile && journeyStops && journeyStops.length > 0 && (
@@ -627,7 +627,7 @@ function App() {
         <div
           style={{
             position: 'absolute', background: 'var(--bg-1)', overflowY: 'auto', zIndex: 10,
-            transition: 'transform 0.25s ease',
+            transition: 'transform var(--dur-base) var(--ease-drawer)',
             ...(isMobile
               ? {
                   left: 0, right: 0, bottom: 0, height: `${SHEET_VH}vh`,

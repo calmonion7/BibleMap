@@ -63,8 +63,8 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
     const ovBooks = overlay ? (overlay.books || []) : []
     const selBook = ovBooks.find(b => b.bookId === verseView.bookId) || ovBooks[0]
     return createPortal(
-      <div onClick={closeVerseView} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
-        <div onClick={e => e.stopPropagation()} style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
+      <div onClick={closeVerseView} className="overlay-in" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
+        <div onClick={e => e.stopPropagation()} className="modal-in" style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
             <span style={{ fontWeight: 700, fontSize: 15, flex: 1, fontFamily: 'var(--serif)' }}>{verseView.label}</span>
             <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
@@ -164,7 +164,7 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
               borderBottom: '1px solid var(--line)',
               background: isActive ? 'var(--bg-3)' : 'transparent',
               position: 'relative',
-              transition: 'background 0.15s',
+              transition: 'background var(--dur-fast)',
             }}
           >
             {/* 활성 행 — 왼쪽 금색 바(목업 .stop.on::before) */}

@@ -122,9 +122,9 @@ function PersonIntro({ personId, verseLang, setVerseLang, onSwitchView = () => {
       {layer && createPortal(
         <div
           onClick={() => setLayer(null)}
-          style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
+          className="overlay-in" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
         >
-          <div onClick={e => e.stopPropagation()} style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
+          <div onClick={e => e.stopPropagation()} className="modal-in" style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
               <span style={{ fontWeight: 700, fontSize: 15, flex: 1, fontFamily: 'var(--serif)' }}>{layer.title}</span>
               <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
@@ -213,7 +213,7 @@ function PersonIntro({ personId, verseLang, setVerseLang, onSwitchView = () => {
                   flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
                   padding: '14px 8px', borderRadius: 10, cursor: 'pointer', font: 'inherit',
                   background: 'var(--bg-1)', border: '1px solid var(--line)',
-                  transition: 'background 0.12s, border-color 0.12s',
+                  transition: 'background var(--dur-fast), border-color var(--dur-fast)',
                 }}
                 onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-2)'; e.currentTarget.style.borderColor = 'var(--line-strong)' }}
                 onMouseLeave={e => { e.currentTarget.style.background = 'var(--bg-1)'; e.currentTarget.style.borderColor = 'var(--line)' }}
@@ -236,7 +236,7 @@ function PersonIntro({ personId, verseLang, setVerseLang, onSwitchView = () => {
             padding: '13px 12px', borderRadius: 10, cursor: 'pointer', font: 'inherit',
             background: 'var(--bg-1)', border: '1px solid var(--line)',
             fontSize: 13.5, fontWeight: 700, color: 'var(--ink)',
-            transition: 'background 0.12s, border-color 0.12s',
+            transition: 'background var(--dur-fast), border-color var(--dur-fast)',
           }}
           onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-2)'; e.currentTarget.style.borderColor = 'var(--line-strong)' }}
           onMouseLeave={e => { e.currentTarget.style.background = 'var(--bg-1)'; e.currentTarget.style.borderColor = 'var(--line)' }}

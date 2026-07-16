@@ -88,7 +88,7 @@ function Donut({ percent }) {
           cx={SIZE / 2} cy={SIZE / 2} r={R} fill="none"
           stroke="var(--gold)" strokeWidth={SW} strokeLinecap="round"
           strokeDasharray={`${filled} ${C - filled}`}
-          style={{ transition: 'stroke-dasharray 0.9s cubic-bezier(0.4,0,0.2,1)' }}
+          style={{ transition: 'stroke-dasharray 0.9s var(--ease-out)' }}
         />
       </g>
       <text x="50%" y="47%" textAnchor="middle" dominantBaseline="middle"
@@ -337,8 +337,8 @@ function RelianceView({ personId, personName, verseLang, setVerseLang, onSelectP
       {/* 구절 레이어 — 양피지 포털(WordDistribution·사건 구절 레이어와 동일 패턴) */}
       {verseView && createPortal(
         <div onClick={() => setVerseView(null)}
-          style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
-          <div onClick={e => e.stopPropagation()}
+          className="overlay-in" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
+          <div onClick={e => e.stopPropagation()} className="modal-in"
             style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
               <span style={{ width: 10, height: 10, borderRadius: '50%', background: segColor(verseView.ph), flexShrink: 0 }} />
@@ -391,8 +391,8 @@ function RelianceView({ personId, personName, verseLang, setVerseLang, onSelectP
       {/* 인물 랭킹 모달 */}
       {(rankLoading || ranking) && createPortal(
         <div onClick={() => { setRanking(null) }}
-          style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
-          <div onClick={e => e.stopPropagation()}
+          className="overlay-in" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
+          <div onClick={e => e.stopPropagation()} className="modal-in"
             style={{ background: 'var(--bg-1)', color: 'var(--ink)', borderRadius: 'var(--r-m)', maxWidth: 460, width: '100%', maxHeight: '82%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '16px 18px', border: '1px solid var(--line-strong)' }}>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: 12 }}>
               <span style={{ fontWeight: 700, fontSize: 15, fontFamily: 'var(--serif)', color: 'var(--ink)' }}>하나님 의존도 랭킹</span>

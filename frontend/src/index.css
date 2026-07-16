@@ -47,6 +47,16 @@
   --serif: 'Noto Serif KR', 'Nanum Myeongjo', AppleMyungjo, Batang, serif;
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
 
+  /* 모션 토큰 — 정본: .forge/reports/motion-opportunities.md (task#189).
+     transform·opacity만 애니메이트. 새 duration/easing 하드코딩 금지 — 이 토큰만 참조. */
+  --dur-fast: 150ms; /* 마이크로 피드백·칩·탭 */
+  --dur-base: 250ms; /* 모달·시트·스테이지 전환 */
+  --dur-slow: 400ms; /* 입장 스태거·게이지류 */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1); /* 시트/드로어 */
+  --ease-pop: cubic-bezier(0.2, 0.7, 0.3, 1.1); /* 오버슛 팝(워드클라우드) */
+
   /* 하위호환 별칭(기존 var 사용처) */
   --text: var(--ink-dim);
   --text-h: var(--ink);
@@ -103,6 +113,22 @@
   color-scheme: light;
 }
 
+/* reduced-motion 가드 — 토큰 붕괴로 토큰 참조 모션 전부를 즉시 완료시킨다(이동 제거).
+   스태거 지연도 무효화(fill:both가 지연 동안 from 상태를 유지해 콘텐츠를 숨기는 것 방지).
+   Spinner(0.7s 하드코딩 회전)는 로딩 상태 표시라 의도적으로 예외. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 1ms;
+    --dur-base: 1ms;
+    --dur-slow: 1ms;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-delay: 0ms !important;
+  }
+}
+
 body {
   margin: 0;
 }
@@ -119,7 +145,7 @@ body {
   border: 1px solid var(--line-strong);
   color: var(--ink-dim);
   text-align: left; /* 모바일에서 두 줄로 감길 때 button 기본 가운데 정렬이 들쭉날쭉 — 좌정렬 고정 */
-  transition: background 0.1s ease, transform 0.06s ease, border-color 0.1s ease;
+  transition: background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
 }
 .rel-chip:active {
   background: var(--bg-3);
@@ -147,12 +173,47 @@ h2 {
   to { opacity: 1; transform: none; }
 }
 .cloud-in {
-  animation: cloud-in 0.5s ease both;
+  animation: cloud-in var(--dur-slow) var(--ease-out) both;
 }
 @keyframes word-in {
   from { opacity: 0; transform: scale(0.5); }
   to { opacity: var(--w-op, 1); transform: none; }
 }
 .word-in {
-  animation: word-in 0.45s cubic-bezier(0.2, 0.7, 0.3, 1.1) both;
+  animation: word-in var(--dur-slow) var(--ease-pop) both;
+}
+
+/* 스테이지 입장 — 최상위 화면 전환(hub·overview·book·family·words·tours·explore)의 브리지.
+   enter만(언마운트 지연 비용 회피). 수십/일 빈도라 4px 이상 움직이지 않는다. */
+@keyframes stage-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+.stage-in {
+  animation: stage-in var(--dur-base) var(--ease-out) both;
+}
+
+/* 양피지 모달·랭킹 모달 등 전역 포털 레이어 — 오버레이 페이드 + 카드 스케일 입장.
+   exit는 즉시(언마운트) — 닫힘은 빠를수록 좋다. */
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.overlay-in {
+  animation: overlay-in var(--dur-fast) var(--ease-out) both;
+}
+@keyframes modal-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+.modal-in {
+  animation: modal-in var(--dur-base) var(--ease-out) both;
+}
+
+/* 누름 피드백 — 카드·버튼 공용(.rel-chip 선례의 큰 면적판, 인라인 스타일은 :active 불가라 클래스로) */
+.pressable {
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.pressable:active {
+  transform: scale(0.97);
 }

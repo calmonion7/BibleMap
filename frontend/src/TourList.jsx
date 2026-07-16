@@ -37,6 +37,7 @@ export default function TourList({ onSelectTour }) {
         {tours.map(t => (
           <button
             key={t.id}
+            className="pressable"
             onClick={() => onSelectTour(t.id)}
             aria-label={`${t.title} — ${t.era} 시대, 정차지 ${t.stopCount}곳`}
             style={{

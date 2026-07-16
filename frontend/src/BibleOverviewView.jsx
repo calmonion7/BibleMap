@@ -29,6 +29,7 @@ function BookCard({ book, onSelectNode, isSelected, hideKeyVerse }) {
 
   return (
     <div
+      className="pressable"
       onClick={() => onSelectNode(book.id)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -39,7 +40,7 @@ function BookCard({ book, onSelectNode, isSelected, hideKeyVerse }) {
         padding: 12,
         boxSizing: 'border-box',
         cursor: 'pointer',
-        transition: 'border-color 0.15s, background 0.15s',
+        transition: 'border-color var(--dur-fast), background var(--dur-fast), transform var(--dur-fast) var(--ease-out)',
       }}
     >
       <div style={{ color: 'var(--ink)', fontFamily: 'var(--serif)', fontWeight: 600, fontSize: 14, marginBottom: book.authorKo ? 2 : 6 }}>
@@ -265,7 +266,7 @@ export default function BibleOverviewView({ onSelectNode, selectedNode }) {
                   background: active ? 'var(--bg-3)' : 'var(--bg-2)',
                   color: active ? 'var(--gold)' : 'var(--ink-dim)',
                   fontWeight: active ? 700 : 400,
-                  transition: 'background 0.15s, color 0.15s',
+                  transition: 'background var(--dur-fast), color var(--dur-fast)',
                 }}
               >
                 {(GENRE_META[g] || { displayName: g }).displayName}

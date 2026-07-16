@@ -43,6 +43,7 @@ function PersonCard({ person, onSelectPerson }) {
 
   return (
     <button
+      className="pressable"
       onClick={() => onSelectPerson(person.id)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -54,7 +55,7 @@ function PersonCard({ person, onSelectPerson }) {
         padding: '18px 16px',
         cursor: 'pointer',
         textAlign: 'left',
-        transition: 'background 0.15s, border-color 0.15s, box-shadow 0.15s',
+        transition: 'background var(--dur-fast), border-color var(--dur-fast), box-shadow var(--dur-fast), transform var(--dur-fast) var(--ease-out)',
         boxShadow: 'var(--shadow-1)',
         display: 'flex',
         flexDirection: 'column',
@@ -295,6 +296,7 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
         {/* 보조 진입 — 성경 책 둘러보기 · 테마 투어 */}
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
           <button
+            className="pressable"
             onClick={onOpenOverview}
             style={{
               display: 'inline-flex',
@@ -309,7 +311,7 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
               fontWeight: 600,
               cursor: 'pointer',
               letterSpacing: '0.03em',
-              transition: 'background 0.15s, border-color 0.15s',
+              transition: 'background var(--dur-fast), border-color var(--dur-fast), transform var(--dur-fast) var(--ease-out)',
             }}
             onMouseEnter={e => {
               e.currentTarget.style.background = `color-mix(in srgb, ${GOLD} 13%, transparent)`
@@ -324,6 +326,7 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
             성경 책 둘러보기
           </button>
           <button
+            className="pressable"
             onClick={onOpenTours}
             style={{
               display: 'inline-flex',
@@ -338,7 +341,7 @@ export default function PersonHub({ onSelectPerson, onOpenOverview, onOpenTours 
               fontWeight: 600,
               cursor: 'pointer',
               letterSpacing: '0.03em',
-              transition: 'background 0.15s, border-color 0.15s',
+              transition: 'background var(--dur-fast), border-color var(--dur-fast), transform var(--dur-fast) var(--ease-out)',
             }}
             onMouseEnter={e => {
               e.currentTarget.style.background = `color-mix(in srgb, ${PURPLE} 13%, transparent)`

@@ -175,9 +175,9 @@ function WordDistributionView({ bookId, onSelectBook, verseLang, setVerseLang })
       {verseView && createPortal(
         <div
           onClick={() => setVerseView(null)}
-          style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
+          className="overlay-in" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
         >
-          <div onClick={e => e.stopPropagation()} style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
+          <div onClick={e => e.stopPropagation()} className="modal-in" style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
               <span style={{ fontWeight: 700, fontSize: 15, flex: 1, fontFamily: 'var(--serif)', color: verseView.color }}>{verseView.word}</span>
               <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />

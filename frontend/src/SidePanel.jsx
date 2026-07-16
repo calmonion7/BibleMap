@@ -246,10 +246,10 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
       <div
         onClick={closePlaceVerseView}
         // 모달 스크림 — 전용 토큰 없어 값 유지(다크 배경 위 반투명 오버레이라 무해)
-        style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
+        className="overlay-in" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
       >
         {/* 근거 구절 모달 = 양피지 카드(원칙 2) */}
-        <div onClick={e => e.stopPropagation()} style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
+        <div onClick={e => e.stopPropagation()} className="modal-in" style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
             <span style={{ fontWeight: 700, fontSize: 15, flex: 1, fontFamily: 'var(--serif)' }}>{placeVerseView.label}</span>
             <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
@@ -312,9 +312,9 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     return createPortal(
       <div
         onClick={() => setTraitLayer(null)}
-        style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
+        className="overlay-in" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
       >
-        <div onClick={e => e.stopPropagation()} style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
+        <div onClick={e => e.stopPropagation()} className="modal-in" style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
             <span style={{ fontWeight: 700, fontSize: 15, flex: 1, fontFamily: 'var(--serif)' }}>{t.trait}</span>
             <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
@@ -337,9 +337,9 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     return createPortal(
       <div
         onClick={() => setPersonVerseView(null)}
-        style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
+        className="overlay-in" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
       >
-        <div onClick={e => e.stopPropagation()} style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
+        <div onClick={e => e.stopPropagation()} className="modal-in" style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: p.role ? 4 : 10 }}>
             <span style={{ fontWeight: 700, fontSize: 15, flex: 1, fontFamily: 'var(--serif)' }}>{p.name}</span>
             <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
@@ -627,7 +627,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                       borderRadius: 6, padding: '7px 10px',
                     }
                     return p.journeyId ? (
-                      <button key={p.key} onClick={() => onExploreJourney(p.journeyId)} style={{ ...rowStyle, cursor: 'pointer', transition: 'background 0.12s' }}
+                      <button key={p.key} onClick={() => onExploreJourney(p.journeyId)} style={{ ...rowStyle, cursor: 'pointer', transition: 'background var(--dur-fast)' }}
                         onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-2)' }}
                         onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
                       >
@@ -635,7 +635,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                         <span style={{ ...placeChipBase, flexShrink: 0 }}><Route size={12} />여정 ▸</span>
                       </button>
                     ) : p.verses?.length ? (
-                      <button key={p.key} onClick={() => setPersonVerseView(p)} style={{ ...rowStyle, cursor: 'pointer', transition: 'background 0.12s' }}
+                      <button key={p.key} onClick={() => setPersonVerseView(p)} style={{ ...rowStyle, cursor: 'pointer', transition: 'background var(--dur-fast)' }}
                         onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-2)' }}
                         onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
                       >
@@ -668,7 +668,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                         cursor: 'pointer',
                         borderLeft: `3px solid ${TYPE_COLOR.Event}`,
                         borderRadius: 6, padding: '7px 10px',
-                        transition: 'background 0.12s',
+                        transition: 'background var(--dur-fast)',
                       }}
                         onMouseEnter={ev => { ev.currentTarget.style.background = 'var(--bg-2)' }}
                         onMouseLeave={ev => { ev.currentTarget.style.background = 'none' }}
@@ -788,7 +788,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                       border: 'none', background: 'none', cursor: 'pointer',
                       borderLeft: `3px solid ${TYPE_COLOR[t]}`,
                       borderRadius: 6, padding: '8px 10px',
-                      transition: 'background 0.12s',
+                      transition: 'background var(--dur-fast)',
                     }}
                     onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-2)' }}
                     onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
