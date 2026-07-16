@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: e53ec23d634a48d16bd1abf3e131c340cfbaac1f
-mapped: 2026-07-14
+last_mapped_commit: 23e41eee5bbfdd1fbd7a942d7fb14b1df1620d3d
+mapped: 2026-07-16
 ---
 
 # TESTING
@@ -46,6 +46,7 @@ BibleMap이 정확성을 검증하는 방식. 이 프로젝트에는 **정식 �
 - 프론트: nginx가 `./frontend/dist:/usr/share/nginx/html:ro`를 마운트한다 — HMR이 아니라 빌드 산출물을 서빙한다. 프론트 변경 확인 전 반드시 `cd frontend && npm run build`(`.env.production`의 `VITE_API_URL=/api` 자동 적용). 소스만 고치고 빌드를 빼먹으면 `localhost:8080`은 옛 화면을 계속 보여준다.
 - 백엔드 데이터: `api`가 `./data:/app/data`를 마운트하므로 오버레이 JSON 변경은 재빌드 없이 반영되지만, 백엔드가 `@functools.lru_cache`로 기동 시 메모리 캐시한다(CONVENTIONS §1.3) → **`docker compose restart api`로 캐시를 비워야** 신규 데이터가 보인다. `docker compose up -d api`는 config 무변경 시 컨테이너를 재생성하지 않아("Running") 옛 데이터를 계속 서빙한다.
 - 백엔드 코드: 코드 변경은 이미지 재빌드 필요 — `docker compose up -d --build api`.
+- 브라우저 측 API 캐시(footgun 일부 해소): `frontend/src/api.js`의 `apiGet`이 모든 요청에 빌드 식별자 `?v=<BUILD_ID>`를 자동 부착해(CONVENTIONS §2.3) 배포로 데이터가 바뀐 직후에도 브라우저가 `Cache-Control: max-age`가 걸린 옛 API 응답을 재사용하는 문제는 해소됐다. 남는 footgun은 위 백엔드 `lru_cache`(컨테이너 재기동 전까지 유지)뿐이다.
 - 로컬 개발 서버(선택): README는 `python3 -m uvicorn backend.app.main:app --reload`(:8000)와 `npm run dev`(:5173)도 안내하나, 배포본과 동형으로 확인하려면 위의 dist 마운트 경로(:8080)를 쓴다.
 - API만 먼저 확인할 땐 curl로 계약을 훑는다(예: `/api/words/{id}` 60단어 반환·substring 매칭·미지 book 404 — task#176 검증 방식).
 
@@ -79,7 +80,18 @@ UI 동작 검증은 **Python Playwright**(sync API, `/opt/homebrew`에 설치)�
   ```
 - 테마가 얽힌 UI 변경은 두 테마 × 데스크톱/모바일 매트릭스로 스크린샷 검수한다(task#173 라이트 테마가 8개 화면 × 2테마 × 2뷰포트로 검증한 전례).
 
-### 4.4 저작 검증 흐름 예
+### 4.4 모션 검증 매트릭스 (ADR-0024, task#189~191)
+
+모션 토큰(CONVENTIONS §2.1d) 도입 이후의 화면 검증은 기존 §4.2~4.3의 테마×뷰포트 매트릭스에 **reduced-motion on/off** 축을 더한 3축 매트릭스로 짠다.
+
+- Playwright의 `page.emulate_media(reduced_motion='reduce')`로 강제하고, 다크/라이트 × 데스크톱/모바일 × reduce on/off 조합을 화면별 판정 항목 단위로 통과시킨다(실측: task#189 13/13, task#190 7/7, task#191 7/7 PASS — 수치는 3축 조합 수가 아니라 화면·항목별 판정 개수).
+- 헤드리스 크로미움은 소프트웨어 GL(SwiftShader)로 렌더링해 MapLibre 캔버스 위 오버레이가 부분 페인트되는 아티팩트를 낼 수 있어 앱 버그로 오인하기 쉽다(task#173 실사례). `chromium.launch(args=["--enable-gpu", "--use-angle=metal"])`(macOS 기준) 같은 **GPU 플래그 A/B 비교를 최우선 1분 테스트**로 돌려 환경 아티팩트인지 앱 회귀인지부터 가른다.
+- 배포 직후 검증인데 옛 화면이 남아 있으면, `api.js`의 자동 `?v=<BUILD_ID>` 캐시버스터(위 §3, CONVENTIONS §2.3)가 실제로 최신 빌드값을 싣고 있는지부터 확인한다 — 네트워크 캡처로 요청 URL의 `?v=` 값이 최신 빌드 타임스탬프인지 대조.
+- 애니메이션 상태 판정(요소 등장 여부)은 스크린샷과 함께 `print(f'{label} >> visible={loc.is_visible()}')` 류의 텍스트 라인으로 방출해 매트릭스 각 항목의 PASS/FAIL을 로그로 남긴다(§4.1 print 관례의 모션 확장).
+- reduced-motion 판정은 **토큰 붕괴(1ms) 직후 최소 1프레임 뒤에 샘플링**한다 — 같은 프레임에서 즉시 읽으면 전환이 끝나기 전 값을 관측해 오탐할 수 있다(task#190에서 검증 스크립트 자체의 레이스 결함으로 실측·수정).
+- 세션 1회 재생 스태거(카드 `card-in` — CONVENTIONS §2.1d)는 같은 브라우저 컨텍스트에서 페이지에 두 번 진입시켜, 두 번째 진입에 `card-in` 클래스/애니메이션이 재생되지 않음을 확인한다.
+
+### 4.5 저작 검증 흐름 예
 
 `data/person_relations/AUTHORING.md` §8: `/api/persons/curated`로 node_id 확보 → `/api/person/{node_id}/relations`가 국면을 반환하는지 확인 → Playwright로 화면 렌더 확인.
 

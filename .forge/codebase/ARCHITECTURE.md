@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: e53ec23d634a48d16bd1abf3e131c340cfbaac1f
-mapped: 2026-07-14
+last_mapped_commit: 23e41eee5bbfdd1fbd7a942d7fb14b1df1620d3d
+mapped: 2026-07-16
 ---
 
 # ARCHITECTURE
@@ -15,10 +15,10 @@ data/*.json  ──(load/inject/generate/build 스크립트)──▶  Neo4j 그
                                               런타임 오버레이 JSON (data/*) ────┘  (요청 시 파일 직접 읽음)
 ```
 
-- **빌드타임 파이프라인**: `data/` 하위의 JSON을 스크립트가 읽어 Neo4j에 노드/관계로 적재(`load_*`)하거나 기존 노드에 속성을 SET(`inject_*`)한다. 콘텐츠 JSON 자체를 만드는 것은 `generate_*`, 정본 JSON을 다른 정본에서 파생 산출하는 것은 `build_*`(예: `backend/scripts/build_word_distribution.py`), 규칙 검증은 `validate_*`다. 이 스크립트들은 API 서버 밖에서 수동/배포 시점에 실행되는 일회성 배치다.
+- **빌드타임 파이프라인**: `data/` 하위의 JSON을 스크립트가 읽어 Neo4j에 노드/관계로 적재(`load_*`)하거나 기존 노드에 속성을 SET(`inject_*`)한다. 콘텐츠 JSON 자체를 만드는 것은 `generate_*`, 정본 JSON을 다른 정본에서 파생 산출하는 것은 `build_*`(예: `backend/scripts/build_word_distribution.py`, `build_verse_persons.py`, `build_word_verse_index.py`), 규칙 검증은 `validate_*`다. 이 스크립트들은 API 서버 밖에서 수동/배포 시점에 실행되는 일회성 배치다.
 - **런타임 경로**: 일부 `data/` JSON은 Neo4j에 넣지 않고 API가 요청 시점에 직접 읽는다(런타임 오버레이). `backend/app/overlays.py`가 이 파일 해석/캐시를 담당한다.
-- **API 계층**: `backend/app/routes/`의 10개 라우터가 Neo4j Cypher 조회 결과와 런타임 오버레이를 머지해 JSON으로 반환한다. 모두 GET 전용 읽기 API다.
-- **프론트 계층**: React SPA가 `apiGet`으로 `/api/*`를 fetch해 지도·타임라인·관계·가계도·단어 분포·상세 패널을 렌더한다. 라우터 라이브러리 없이 자체 스테이지 상태 머신으로 화면을 전환하고 해시 URL로 딥링크한다.
+- **API 계층**: `backend/app/routes/`의 12개 라우터가 Neo4j Cypher 조회 결과와 런타임 오버레이를 머지해 JSON으로 반환한다. 모두 GET 전용 읽기 API다.
+- **프론트 계층**: React SPA가 `apiGet`으로 `/api/*`를 fetch해 지도·타임라인·관계·가계도·단어 분포·의존도·상세 패널을 렌더한다. 라우터 라이브러리 없이 자체 스테이지 상태 머신으로 화면을 전환하고 해시 URL로 딥링크한다.
 
 ## 계층 상세
 
@@ -32,8 +32,8 @@ data/*.json  ──(load/inject/generate/build 스크립트)──▶  Neo4j 그
 
 ### 2. FastAPI 백엔드 (읽기 API)
 
-- 엔트리: `backend/app/main.py` — `FastAPI(lifespan=...)`. 기동 시 인덱스 생성, `CORSMiddleware`(모든 origin 허용, `GET`만 허용), 10개 라우터 include. `_configure_logging()`가 라우터 import 전에 1회 호출돼 서드파티 로거를 WARNING으로 승격하고 uvicorn 로거 중복 emit을 차단한다(로깅 규약은 `CONVENTIONS.md` §13 참조).
-- 라우터(모두 `backend/app/routes/`, prefix 없이 flat 경로):
+- 엔트리: `backend/app/main.py` — `FastAPI(lifespan=...)`. 기동 시 인덱스 생성, `CORSMiddleware`(모든 origin 허용, `GET`만 허용), 12개 라우터 include. `_configure_logging()`가 라우터 import 전에 1회 호출돼 서드파티 로거를 WARNING으로 승격하고 uvicorn 로거 중복 emit을 차단한다(로깅 규약은 `CONVENTIONS.md` §13 참조).
+- 라우터(모두 `backend/app/routes/`, prefix 없이 flat 경로, `main.py`가 `nodes, events, search, books, persons, journey, places, tours, family, words, verses, reliance` 순으로 include):
   - `nodes.py` — `/node/{id}`(노드 상세 + 이웃 + Book이면 `topPersons`/`topEvents`), `/node/{id}/neighbors/grouped`, `/node/{id}/places`, `/person/{id}/event-ids`.
   - `events.py` — `/events`(타임라인 목록), `/event/{id}/verses`(근거 구절 드릴다운).
   - `books.py` — `/books-overview`.
@@ -44,23 +44,27 @@ data/*.json  ──(load/inject/generate/build 스크립트)──▶  Neo4j 그
   - `tours.py` — `/tours`, `/tour/{id}`.
   - `family.py` — `/person/{id}/family`(인물 중심 가계도 서브그래프, 아래 §5).
   - `words.py` — `/words/{book_id}`(책 또는 `"all"`의 단어 분포 `[{word, count, polarity}]`), `/words/{book_id}/verses?w=`(해당 범위에서 `textKo` substring 매칭 구절, `VERSE_LIMIT=200`). 그래프 미접근 — 오버레이만 읽는다(아래 §6).
-- 캐싱: 조회 비용이 큰 계산은 `functools.lru_cache`로 프로세스 메모리에 보관한다(예: `events.py`의 `_compute_events`, `tours.py`의 `_list_tours`, `places.py`의 `_place_to_persons`, `persons.py`의 `_build_list`·`_build_connections`·`_build_relations`, `family.py`의 `_family_role_pairs`). 캐시 무효화는 앱 재시작으로만 이뤄지므로, 오버레이/그래프 변경 후 반영하려면 `api` 컨테이너 재시작이 필요하다. 응답에는 대체로 `Cache-Control` 헤더를 붙인다.
+  - `verses.py` — `/verse/{verse_id}/persons`(그 절에 등장/언급되는 인물 목록). `overlays.verse_persons()` 색인에서 rec id를 얻고 Neo4j에서 이름을 해석(우리가 적재하지 않은 rec id는 이름 없이 id만 반환). **현재 프론트 어느 화면도 이 엔드포인트를 호출하지 않는다** — 색인 인프라만 먼저 구축된 상태.
+  - `reliance.py` — `/person/{id}/reliance`, `/reliance/ranking`(인물별 하나님 의존도, 아래 §9).
+- 캐싱: 조회 비용이 큰 계산은 `functools.lru_cache`로 프로세스 메모리에 보관한다(예: `events.py`의 `_compute_events`, `tours.py`의 `_list_tours`, `places.py`의 `_place_to_persons`, `persons.py`의 `_build_list`·`_build_connections`·`_build_relations`, `family.py`의 `_family_role_pairs`, `reliance.py`의 `_slug_to_id`·`_load_entries`·`_all_percents`). 캐시 무효화는 앱 재시작으로만 이뤄지므로, 오버레이/그래프 변경 후 반영하려면 `api` 컨테이너 재시작이 필요하다. 응답에는 대체로 `Cache-Control: public, max-age=3600` 헤더를 붙인다. 이 서버측 캐시와 별개로 브라우저 캐시 무력화는 프론트 `api.js`의 빌드 버전 쿼리(§4 하단)가 맡는다.
 
 ### 3. 런타임 오버레이 vs 그래프 노드
 
 `backend/app/overlays.py`가 요청 시점에 읽는 JSON 오버레이의 로더/해석기다.
 
 - 경로 해석: `_resolve(subpath)`/`_resolve_dir(subpath)`가 `DATA_DIR` 환경변수(컨테이너 기본 `/app/data`) → 리포지토리 `data/`(`_REPO_DATA_DIR`) 순으로 탐색한다. 파일이 없으면 경고 로그 후 빈 데이터로 폴백한다(서버가 죽지 않음).
-- `overlays.py` 자체 캐시 로더 5종(`lru_cache(maxsize=1)`): `book_events_raw()`(`data/book_events/books.json`), `event_verses()`(`data/event_verses/events.json`), `bible_verses()`(`data/bible/verses.json` — `verseID → {textKo, textEn}` 정본 절 사전), `word_distribution()`(`data/word_distribution.json` — `bookId|"all" → {nameKo?, words}`), `books_ko()`(`data/names_ko/books.json` — `theographic_id → {ko, alias}`, 정경 순). 그 밖의 오버레이 파일은 각 라우터가 `_resolve`로 직접 열고 자체 `lru_cache`에 담는다.
+- `overlays.py` 자체 캐시 로더 7종(`lru_cache(maxsize=1)`): `book_events_raw()`(`data/book_events/books.json`), `event_verses()`(`data/event_verses/events.json`), `bible_verses()`(`data/bible/verses.json` — `verseID → {textKo, textEn}` 정본 절 사전), `word_distribution()`(`data/word_distribution.json` — `bookId|"all" → {nameKo?, words}`), `books_ko()`(`data/names_ko/books.json` — `theographic_id → {ko, alias}`, 정경 순), `word_verse_index()`(`data/word_verse_index/index.json` — 단어(lemma)→`[verseID]` 역색인, `build_word_verse_index.py` 산출물이나 **현재 어느 라우터도 호출하지 않는 미사용 로더**), `verse_persons()`(`data/verse_persons/index.json` — `verseID→[personRecId]` 색인, `verses.py`가 소비). 그 밖의 오버레이 파일은 각 라우터가 `_resolve`로 직접 열고 자체 `lru_cache`에 담는다.
 - 그래프에 **넣지 않고** API가 직접 읽는 오버레이:
   - `data/book_events/books.json` — `events.py`가 `{bookId:[eventId]}`를 역방향 인덱스로 뒤집어 각 사건에 추정책을 부착.
   - `data/event_verses/events.json` — `events.py`의 `/event/{id}/verses`가 권별 근거 구절을 반환.
-  - `data/bible/verses.json` — 절 본문(한/영) 정본 사전. `words.py`의 구절 substring 검색도 이 사전을 순회한다.
+  - `data/bible/verses.json` — 절 본문(한/영) 정본 사전. `words.py`의 구절 substring 검색과 `reliance.py`의 계기/결과 구절 합성도 이 사전을 순회/조회한다.
   - `data/word_distribution.json` — `words.py`가 서빙하는 책별 단어 분포 정본(빌드타임 산출물, 아래 §6).
-  - `data/person_events/*.json` — `persons.py`(`/persons/curated`, `/connections`), `journey.py`(`/journey`), `places.py`(`/curated-persons`)가 인물별 여정 파일을 직접 파싱.
+  - `data/word_verse_index/index.json`, `data/verse_persons/index.json` — 구절 색인 정본(위 참조). 전자는 미사용, 후자는 `verses.py`가 소비.
+  - `data/person_events/*.json` — `persons.py`(`/persons/curated`, `/connections`), `journey.py`(`/journey`), `places.py`(`/curated-persons`)가 인물별 여정 파일을 직접 파싱. `reliance.py`도 `_slug_to_id()`에서 각 파일의 `events[0].participants[0]`을 읽어 god_reliance 슬러그↔인물 id 매핑을 만든다.
   - `data/person_relations/relations.json` — `persons.py`의 `/relations`(국면·근거 구절)와 `family.py`의 `_family_role_pairs`(가족 관계 role 라벨)가 함께 읽음.
   - `data/keypeople/identity.json` + `data/person_context/people.json` + `data/keypeople_verses/people.json` — `persons.py`의 `/keypeople-cards`가 세 파일을 조인해 책별 keyPeople 카드를 조립(ADR-0017·0018).
   - `data/tours/*.json` — `tours.py`가 event-reference 오버레이로 읽음(ADR-0011: Neo4j 노드 추가/주입 없음).
+  - `data/god_reliance/<slug>.json` — `reliance.py`가 인물별 하나님-상호작용 순간 배열을 읽음(아래 §9).
 
 즉 "그래프에 상주하는 데이터"와 "요청 시점에만 파일로 읽는 오버레이"가 공존하며, 라우터가 둘을 머지해 응답을 만든다.
 
@@ -69,11 +73,11 @@ data/*.json  ──(load/inject/generate/build 스크립트)──▶  Neo4j 그
 프론트는 **React 19 + Vite 8**이다(`frontend/src/`에 `App.jsx`·`main.jsx` 등 JSX, `react`/`react-dom`/`@vitejs/plugin-react` 의존). Vue 아님.
 
 - 엔트리: `frontend/index.html` → `frontend/src/main.jsx`(`createRoot`, `StrictMode`). `main.jsx`는 렌더 전에 `localStorage['biblemap-theme'] === 'light'`면 `document.documentElement.dataset.theme = 'light'`를 동기 반영한다(첫 페인트 깜빡임 방지, ADR-0020) → `frontend/src/App.jsx`.
-- API 클라이언트: `frontend/src/api.js` — 단일 베이스 URL(`import.meta.env.VITE_API_URL || 'http://localhost:8000'`) + `apiGet(path, {signal})` 헬퍼. 프로덕션 빌드는 `frontend/.env.production`의 `VITE_API_URL=/api`로 주입돼 nginx 프록시를 탄다.
+- API 클라이언트: `frontend/src/api.js` — 단일 베이스 URL(`import.meta.env.VITE_API_URL || 'http://localhost:8000'`) + `apiGet(path, {signal})` 헬퍼. 프로덕션 빌드는 `frontend/.env.production`의 `VITE_API_URL=/api`로 주입돼 nginx 프록시를 탄다. 모든 요청에 `?v=<BUILD_ID>` 쿼리를 부착한다 — `BUILD_ID`는 `frontend/vite.config.js`의 `define: { __BUILD_ID__: JSON.stringify(String(Date.now())) }`로 빌드 시점에 박히는 타임스탬프이며, 배포마다 값이 바뀌어 백엔드의 `Cache-Control: max-age=3600` 응답 캐시를 배포 직후 무력화한다(같은 배포 안에서는 값이 고정이라 1시간 캐시 이점은 유지).
 - 화면 구조: 라우터 라이브러리 없이 `App.jsx`가 스테이지 상태 머신을 운용한다(아래 §7). 상태·URL·브라우저 히스토리 동기화는 훅 `frontend/src/useStageNavigation.js` + `frontend/src/urlState.js`, 노드 선택은 `frontend/src/useNodeSelection.js`가 담당한다.
-- 주요 뷰 컴포넌트: `PersonHub.jsx`(진입 허브 + 테마 토글), `BibleOverviewView.jsx`, `TourList.jsx`, `MapView.jsx`(지도 — `maplibre-gl`), `TimelineView.jsx`, `RelationsView.jsx`, `PersonIntro.jsx`(인물 소개 뷰), `FamilyTree.jsx`(가계도 뷰), `WordDistributionView.jsx`(단어 분포 워드클라우드 뷰), `JourneyList.jsx`, `SidePanel.jsx`(공유 상세 패널, 책 상세 페이지로도 재사용), `VerseLangTabs.jsx`, `Spinner.jsx`.
+- 주요 뷰 컴포넌트: `PersonHub.jsx`(진입 허브 + 테마 토글), `BibleOverviewView.jsx`, `TourList.jsx`, `MapView.jsx`(지도 — `maplibre-gl`), `TimelineView.jsx`, `RelationsView.jsx`, `PersonIntro.jsx`(인물 소개 뷰), `FamilyTree.jsx`(가계도 뷰), `WordDistributionView.jsx`(단어 분포 워드클라우드 뷰), `RelianceView.jsx`(하나님 의존도 뷰, 아래 §9), `JourneyList.jsx`, `SidePanel.jsx`(공유 상세 패널, 책 상세 페이지로도 재사용), `VerseLangTabs.jsx`, `Spinner.jsx`.
 - 지도 서브시스템: `MapView.jsx` + `mapLayers.js` + `mapGeo.js` + `mapRingController.js`.
-- 공유 모듈: `theme.js`(`TYPE_COLOR` 등), `constants.js`(모바일 브레이크포인트·시트 높이), `dates.js`, `index.css`(CSS 변수 기반 인라인 스타일).
+- 공유 모듈: `theme.js`(`TYPE_COLOR` 등), `constants.js`(모바일 브레이크포인트·시트 높이), `dates.js`, `index.css`(CSS 변수 기반 인라인 스타일 + 모션 토큰/클래스, 아래 §10).
 - **듀얼 테마 (ADR-0020)**: 다크(Night Atlas)가 기본, 라이트(Day Atlas)는 옵트인. `frontend/src/index.css`가 같은 토큰 계약(`--type-*`, `--valence-*`, `--select-hl`, 표면/잉크 변수)에 값 두 벌을 정의하고 `:root[data-theme='light']`로 분기한다. `frontend/src/theme.js`의 `TYPE_COLOR`/`VALENCE_COLOR`/`SELECT_HL`은 리터럴 hex가 아니라 `var(--type-person)` 같은 **CSS var 참조**라 CSS 컨텍스트(인라인 style) 전용이다 — 리터럴이 필요한 캔버스류엔 못 쓴다. 토글 UI는 `PersonHub.jsx`(`localStorage['biblemap-theme']` 저장).
 - 번들 분할: `frontend/vite.config.js`가 `maplibre-gl`을 별도 청크(`maplibre`), 나머지 `node_modules`를 `vendor`로 `manualChunks` 분리.
 
@@ -92,9 +96,9 @@ data/*.json  ──(load/inject/generate/build 스크립트)──▶  Neo4j 그
 
 빌드타임 정본 산출 → 오버레이 서빙 → 워드클라우드 렌더의 3단이다. **런타임 형태소 분석은 없다.**
 
-- **빌드타임**: `backend/scripts/build_word_distribution.py`가 `data/bible/verses.json`(textKo)에서 kiwipiepy로 일반명사(NNG)·고유명사(NNP)를 추출해 책별 상위 60개 + 성경 전체(`"all"`) 상위 120개를 집계하고(최소 빈도 2, `STOPWORDS` 제외), 감정 극성 정본 `data/word_sentiment.json`(`word → positive|negative|neutral`, 손큐레이션)을 병합해 `data/word_distribution.json`을 쓴다. 미분류 단어가 있으면 실패로 중단하며 `--dump-words`로 목록을 뽑아 큐레이션한다. 그래프 미접근(Neo4j 환경변수 불필요), kiwipiepy는 별도 venv로 실행한다(도큐스트링 참조). 책 번호 규약: `data/names_ko/books.json`의 키 순서(정경 66권) = `verses.json` 키 `BBCCCVVV`의 `BB`(1~66).
+- **빌드타임**: `backend/scripts/build_word_distribution.py`가 `data/bible/verses.json`(textKo)에서 kiwipiepy로 일반명사(NNG)·고유명사(NNP)를 추출해 책별 상위 60개 + 성경 전체(`"all"`) 상위 120개를 집계하고(최소 빈도 2, `STOPWORDS` 제외), 감정 극성 정본 `data/word_sentiment.json`(`word → positive|negative|neutral`, 손큐레이션)을 병합해 `data/word_distribution.json`을 쓴다. 미분류 단어가 있으면 실패로 중단하며 `--dump-words`로 목록을 뽑아 큐레이션한다. 그래프 미접근(Neo4j 환경변수 불필요), kiwipiepy는 별도 venv로 실행한다(도큐스트링 참조). 책 번호 규약: `data/names_ko/books.json`의 키 순서(정경 66권) = `verses.json` 키 `BBCCCVVV`의 `BB`(1~66). 같은 STOPWORDS/토큰화 규약을 `build_word_verse_index.py`(구절↔단어 역색인, §3)가 import해 재사용 — 두 산출물의 어휘 드리프트를 방지한다.
 - **API**: `backend/app/routes/words.py` — `/words/{book_id}`는 `overlays.word_distribution()`을 그대로 서빙, `/words/{book_id}/verses?w=`는 `overlays.bible_verses()`를 순회해 `textKo`에 `w`가 substring으로 포함되는 구절을 책 prefix 필터로 추려 최대 200건 반환한다(활용형 포함 매칭). 구절 ref 표기는 `overlays.books_ko()`의 약칭(alias)으로 조립.
-- **프론트**: `frontend/src/WordDistributionView.jsx` — 단일 타이포그래피 클라우드(감정 극성은 색+범례). 폰트 크기 ∝ √(빈도/최대빈도)(13~34px), 배치는 라이브러리 없이 canvas `measureText`로 폭을 재고 아르키메데스 나선(y 0.55 압축)을 따라 겹치지 않는 첫 자리에 놓는 자체 `layoutCloud()`. 단어 탭 → `/words/{id}/verses` 구절 양피지 레이어. 책 선택 드롭다운으로 같은 스테이지에서 대상 책만 교체.
+- **프론트**: `frontend/src/WordDistributionView.jsx` — 단일 타이포그래피 클라우드(감정 극성은 색+범례). 폰트 크기 ∝ √(빈도/최대빈도)(13~34px), 배치는 라이브러리 없이 canvas `measureText`로 폭을 재고 아르키메데스 나선(y 0.55 압축)을 따라 겹치지 않는 첫 자리에 놓는 자체 `layoutCloud()`. 단어 탭 → `/words/{id}/verses` 구절 양피지 레이어. 책 선택 드롭다운으로 같은 스테이지에서 대상 책만 교체. 컨테이너는 `cloud-in`, 단어 하나하나는 `word-in` 스태거로 입장한다(§10).
 
 ### 7. 프론트 스테이지 상태 머신
 
@@ -106,8 +110,8 @@ data/*.json  ──(load/inject/generate/build 스크립트)──▶  Neo4j 그
 - **family** — 가계도 전용 전체화면. `familyId`(bookId와 동형으로 selectedNode와 분리)로 `FamilyTree` 렌더. 인물 상세/소개의 "가계도"에서 `openFamily(id)`로 진입, 트리 노드 클릭은 `recenterFamily(id)`로 focus만 교체, 뒤로는 `window.history.back()` 위임.
 - **words** — 단어 분포 전용 전체화면(family와 동형). `wordsBookId`(`'all'` 가능)로 `WordDistributionView` 렌더. `openWords(id)`로 진입, 페이지 내 책 드롭다운은 `selectWordsBook(id)`로 대상만 교체(가계도 재중심화와 동형), 뒤로는 `history.back()` 위임(`wordsBack`). 내비 바엔 대상이 실제 책일 때만(전체 제외) "책 정보" 바로가기 탭이 나타난다.
 - **tours** — `TourList`. 투어 선택 시 explore로.
-- **explore** — 인물/투어 탐험. 내부 `exploreView` 토글(`intro`·`map`·`timeline`·`relations`)로 `PersonIntro`/`MapView`/`TimelineView`/`RelationsView`를 전환. `explorePersonId`/`exploreTourId`는 상호배타이며 `selectedNode`와 분리된다.
-- 상세 패널(`SidePanel`)은 hub를 제외한 스테이지에서 공유되며, 데스크톱은 우측 슬라이드인, 모바일은 하단 시트로 나타난다. 시트 열림 판정(`selectedNode != null && selectedNode !== explorePersonId`)이 모바일 표시와 history push의 단일 출처다.
+- **explore** — 인물/투어 탐험. 내부 `exploreView` 토글로 뷰를 전환하며, 인물 모드에서는 `intro`·`map`·`timeline`·`relations`·`reliance` 5개 값 + 전용 스테이지 진입점인 `family` 탭(클릭 시 토글이 아니라 `openFamily`로 이탈)을, 투어 모드에서는 `map`·`timeline` 2개 값만 쓴다(`App.jsx`의 `EXPLORE_TABS`/`INTRO_TAB`/`RELATIONS_TAB`/`RELIANCE_TAB`/`FAMILY_TAB` 상수). `PersonIntro`/`MapView`/`TimelineView`/`RelationsView`/`RelianceView`를 전환. `explorePersonId`/`exploreTourId`는 상호배타이며 `selectedNode`와 분리된다.
+- 상세 패널(`SidePanel`)은 hub를 제외한 스테이지에서 공유되며, 데스크톱은 우측 슬라이드인, 모바일은 하단 시트로 나타난다. 시트 열림 판정(`selectedNode != null && selectedNode !== explorePersonId`)이 모바일 표시와 history push의 단일 출처다. `relations`·`reliance`(그리고 `intro`에서 본인 선택)일 땐 SidePanel을 우측으로 밀어 넣어(transform) 숨긴다.
 
 ### 8. 해시 딥링크 (ADR-0009 · ADR-0010)
 
@@ -117,16 +121,36 @@ data/*.json  ──(load/inject/generate/build 스크립트)──▶  Neo4j 그
 - `#/book/<id>` 책 상세(id = `theographic_id`, 책은 slug 없음).
 - `#/family/<id>` 가계도(id = focus 인물 `theographic_id`).
 - `#/words/<id>` 단어 분포(id = 책 `theographic_id` 또는 `all`).
-- `#/person/<slug>` 탐험(인물), 뷰 접미사 `/timeline`·`/relations`·`/intro`.
+- `#/person/<slug>` 탐험(인물), 뷰 접미사 `/timeline`·`/relations`·`/intro`·`/reliance`.
 - `#/tour/<slug>` 탐험(투어), 뷰 접미사 `/timeline`.
 - `useStageNavigation`이 마운트 시 해시를 1회 파싱해 상태를 복원하고(인물 slug 해석은 `/persons/curated`의 slug↔id 맵 준비 후), 이후 상태 변화를 `pushState`/`replaceState`로 미러한다. push 조건은 stage/인물/투어/책/가계도/단어책 변경 또는 시트 열림(false→true), 그 외(뷰 토글·베이스)는 replace. `popstate`는 `history.state`에서 내비 상태를 복원한다.
 
+### 9. 하나님 의존도 엔드포인트 + 뷰 (`/person/{id}/reliance`, ADR-0023)
+
+`backend/app/routes/reliance.py`는 인물별 "하나님-상호작용 순간"을 계기(trigger)→(선택적)행동(response)→결과(outcome)의 2~3단 구조로 서빙한다. 정본은 `data/god_reliance/<slug>.json`(32명), 스키마·저작 규칙은 `data/god_reliance/AUTHORING.md`, 지표 정의는 `.forge/adr/0023-god-reliance-metric-definition.md`.
+
+- 각 항목의 `mode`는 통제어휘 5종(`물음-응답`·`물음-침묵`·`부르심`·`독단-개입`·`독단-어긋남`) 중 하나. `부르심`은 `obeyed`(명령형, 순종/불순종 불리언) 또는 `covenant: true`(언약형) 중 정확히 하나를 추가로 가진다. 명령 위반처럼 인물의 **행동**이 계기·결과와 구분되는 사건만 선택적 3단째 `response`를 넣는다(그 외는 계기→결과 2단). **사건 단위 원칙**: 하나의 하나님-상호작용 사건은 하나의 순간으로만 센다(같은 죄의 명령·행동·심판·여파를 별도 항목으로 쪼개 분모를 부풀리지 않음, ADR-0023 Amendment 2026-07-16).
+- `reliance.py`가 하는 일: ① `_slug_to_id()`로 god_reliance 슬러그 ↔ 인물 `theographic_id` 매핑(`data/person_events/<slug>.json`의 `events[0].participants[0]` 규약, journey.py·persons.py와 동형), ② 각 계기/행동/결과의 `verse` 참조("창 2:7" 형태)를 `_resolve_verse()`로 정본 절 키(`BBCCCVVV`)로 변환해 `overlays.bible_verses()`에서 본문을 합성, ③ `_percent()`로 의존도 %를 계산(분자 = `물음-*` 전체 + `obeyed`/`covenant`인 `부르심`), ④ 전 인물 백분위/순위(`_all_percents()` 기반). 응답은 `phases`(연대순 정렬) + `percent`/`percentile`/`rank`/`total`/`modeCounts`/`sampleSize`/`lowSample`(표본 6건 미만 플래그).
+- `/reliance/ranking`은 전 인물 랭킹 배열(퍼센트 내림차순, 동률은 이름순)을 반환.
+- 검증: `backend/scripts/validate_god_reliance.py`가 통제어휘·구절 해석 가능 여부·`obeyed` 유효 범위·구 스키마 잔존 등을 기계 검증.
+- **프론트**: `frontend/src/RelianceView.jsx` — 인물 탐험의 `reliance` 탭(위 §7). 의존도 %를 도넛 게이지(입장 시 0→목표값 스윕 + rAF 카운트업)로, mode 분해를 색상 세그먼트 막대로, 순간들을 연대순 "생애 궤적"(뱀 배치 + 둥근 베지어 커넥터, 자체 레이아웃)으로 보여준다. 궤적 점 클릭 시 양피지 포털에 계기→(행동)→결과 구절 레이어를 연다(`response` 유무로 2단/3단 문구 자동 분기: `STEP_LABELS`/`STEP_LABELS_3`). "은혜의 순간"(독단이었으나 결과가 개입인 항목)을 별도 하이라이트. "인물 랭킹" 버튼이 `/reliance/ranking`을 지연 로드해 모달로 띄운다.
+
+### 10. 모션 클래스 레이어 (ADR-0024)
+
+`frontend/src/index.css`가 정의하는 무의존(라이브러리 없는) CSS 애니메이션 토큰·클래스 체계. task#189~191에서 신설(이전엔 transition 19곳·keyframes 2개뿐이던 사실상 정적 상태).
+
+- **토큰**: `--dur-fast`(150ms, 마이크로 피드백)·`--dur-base`(250ms, 모달/스테이지 전환)·`--dur-slow`(400ms, 입장 스태거/게이지) + `--ease-out`/`--ease-in-out`/`--ease-drawer`/`--ease-pop`. 컴포넌트(인라인 스타일 포함)는 duration·easing을 하드코딩하지 않고 이 토큰만 참조한다.
+- **reduced-motion 가드**: `@media (prefers-reduced-motion: reduce)`가 `--dur-*`를 전부 1ms로 붕괴시켜, 토큰을 참조하는 모션이 즉시 완료 상태로 끝나게 한다(+ `animation-delay`도 전역 0으로 무효화, 스태거 지연 동안 `fill:both`가 콘텐츠를 숨기는 것 방지). 개별 컴포넌트가 reduce 분기를 따로 구현할 필요가 없다. `Spinner`(로딩 회전)만 의도적 예외.
+- **클래스**: `stage-in`(최상위 스테이지 전환 브리지, `App.jsx`가 hub/overview/book/family/words/tours 컨테이너 + `FamilyTree.jsx`에 부착), `overlay-in`/`modal-in`(양피지·랭킹 등 전역 포털 레이어의 배경 페이드/카드 스케일 입장 — `RelianceView.jsx`·`WordDistributionView.jsx`·`SidePanel.jsx` 등), `card-in`(허브/투어/책 카드 스태거, `PersonHub.jsx`·`TourList.jsx`·`BibleOverviewView.jsx`가 `pressable`과 함께 세션 첫 진입에만 적용), `cloud-in`/`word-in`(워드클라우드 컨테이너/단어별 입장, `WordDistributionView.jsx`), `bar-reveal`(의존도 mode 막대·랭킹 막대의 `scaleX` 성장, `RelianceView.jsx`), `stop-bar-in`(여정 정차지 활성 바의 `scaleY` 성장, `JourneyList.jsx`), `pressable`(카드/버튼 공용 `:active` 눌림 피드백).
+- **제약**: transform·opacity만 애니메이트(레이아웃 속성 금지). 입장(enter)만 있고 exit는 즉시 언마운트. 지도(MapLibre 캔버스)는 이 체계 밖 — `flyTo` 자체 이징을 유지.
+- 값 제안의 근거 문서는 `.forge/reports/motion-opportunities.md`(task#189 오디트), 결정 근거는 `.forge/adr/0024-motion-system-css-tokens-no-library.md`.
+
 ## 데이터 흐름 (엔드투엔드)
 
-1. **원천**: theographic 원본은 `robertrouse/theographic-bible-metadata` GitHub raw JSON에서 fetch(`load_theographic.py`·`load_books.py`). 저작/보정/콘텐츠 데이터는 `data/` 하위 JSON에 손으로/`generate_*` 스크립트로 작성. 파생 정본은 `build_*` 스크립트로 산출(`data/word_distribution.json`).
+1. **원천**: theographic 원본은 `robertrouse/theographic-bible-metadata` GitHub raw JSON에서 fetch(`load_theographic.py`·`load_books.py`·`build_verse_persons.py`). 저작/보정/콘텐츠 데이터는 `data/` 하위 JSON에 손으로/`generate_*` 스크립트로 작성. 파생 정본은 `build_*` 스크립트로 산출(`data/word_distribution.json`, `data/word_verse_index/index.json`, `data/verse_persons/index.json`).
 2. **적재**: `load_*` 스크립트가 Neo4j에 노드/관계를 `MERGE`로 멱등 적재(가족 폐포 wip 포함 규칙은 §1). `inject_*` 스크립트가 기존 노드에 속성을 `SET`. `apply_event_dedupe.py`가 중복 이벤트를 실삭제(구절 게이트, ADR-0016).
-3. **런타임 머지**: API가 Neo4j 조회 + 런타임 오버레이(`data/book_events`, `data/event_verses`, `data/bible`, `data/word_distribution.json`, `data/person_events`, `data/person_relations`, `data/keypeople*`, `data/person_context`, `data/tours`)를 합쳐 JSON 반환.
-4. **소비**: 프론트가 `/api/*`를 fetch해 렌더.
+3. **런타임 머지**: API가 Neo4j 조회 + 런타임 오버레이(`data/book_events`, `data/event_verses`, `data/bible`, `data/word_distribution.json`, `data/word_verse_index`, `data/verse_persons`, `data/person_events`, `data/person_relations`, `data/keypeople*`, `data/person_context`, `data/tours`, `data/god_reliance`)를 합쳐 JSON 반환.
+4. **소비**: 프론트가 `/api/*`를 fetch해(모든 요청에 캐시 무력화용 `?v=<BUILD_ID>` 부착) 렌더.
 
 ## 노드 provenance 모델 (authored vs theographic originals vs runtime overlays)
 
@@ -134,7 +158,7 @@ data/*.json  ──(load/inject/generate/build 스크립트)──▶  Neo4j 그
 
 - **theographic originals** — `load_theographic.py`가 GitHub theographic JSON을 fetch해 각 레코드의 `id`를 `theographic_id`로 `MERGE`한 노드. Person/Place/Event/PeopleGroup 및 그 사이 관계. Person은 `filter_published`의 publish분 + 가족 폐포 wip분(`status="wip"` 마킹, §1)이고, 나머지 라벨은 publish만(status 없는 Event/PeopleGroup은 전량). `theographic_id`는 `recXXXX` 형태의 원본 레코드 id 문자열이다.
 - **authored 노드** — `data/authored_events/events.json`, `data/authored_persons/people.json`, `data/person_events/*.json`, `data/verse_events/events.json`에 손으로 작성한 노드를 `load_authored_events.py`·`load_authored_persons.py`·`load_person_events.py`·`load_verse_events.py`가 `MERGE ... SET authored = true`로 적재. `theographic_id`는 `authored-*`(예: `authored-place-bethlehem`) 슬러그 문자열이다. `authored` 불리언 마커로 API가 원본과 저작본을 구분한다(예: `nodes.py`·`family.py` 응답의 `authored` 필드). **ADR-0021·0022 이관 이후 authored Person은 `authored-person-elijah`·`authored-person-daniel` 2명만 남았다** — 나머지 큐레이션 저작 인물 11명과 마태1 사슬 인물들은 theographic 실레코드(rec id)로 이관됐다.
-- **runtime overlays** — 그래프 노드로 만들지 않고 API가 요청 시 파일로 읽는 JSON(위 §3). tours가 대표적으로 ADR-0011에 따라 "event-reference 오버레이"이며 노드 주입이 없다.
+- **runtime overlays** — 그래프 노드로 만들지 않고 API가 요청 시 파일로 읽는 JSON(위 §3). tours가 대표적으로 ADR-0011에 따라 "event-reference 오버레이"이며 노드 주입이 없다. `god_reliance`도 동형 — 인물 노드는 이미 그래프에 있고, 의존 순간 배열만 별도 파일로 읽어 API가 머지한다.
 
 이 외에 **속성 주입 오버레이**가 있다. 그래프 노드는 이미 존재하고, `inject_*` 스크립트가 별도 JSON을 읽어 노드 속성만 `SET`한다: `inject_ko_names.py`(`data/names_ko/*.json` → `nameKo`/`aliasesKo`), `inject_book_context.py`(`data/book_context/books.json`), `inject_place_context.py`(`data/place_context/places.json`), `inject_person_context.py`(`data/person_context/people.json`), `inject_person_traits.py`(`data/character_traits/people.json` → `traits`를 JSON 문자열로 저장하며 `nodes.py`가 응답 시 파싱), `inject_date_corrections.py`(아래). 이들은 런타임 오버레이와 달리 결과가 그래프에 상주한다.
 
@@ -153,15 +177,15 @@ theographic 원본은 Ussher형 연대계라 저작 레이어(보수 연대계)�
 
 ## 엔트리 포인트 요약
 
-- 백엔드 앱: `backend/app/main.py`(FastAPI, lifespan 인덱스, 10개 라우터 include).
+- 백엔드 앱: `backend/app/main.py`(FastAPI, lifespan 인덱스, 12개 라우터 include).
 - Neo4j 드라이버: `backend/app/db.py`(`get_driver` 싱글턴).
 - 오버레이 로더: `backend/app/overlays.py`.
 - 프론트 앱: `frontend/src/main.jsx`(테마 동기 반영 → createRoot) → `frontend/src/App.jsx`. HTML 진입 `frontend/index.html`.
-- 프론트 API 클라이언트: `frontend/src/api.js`.
+- 프론트 API 클라이언트: `frontend/src/api.js`(빌드 버전 쿼리는 `frontend/vite.config.js`의 `define.__BUILD_ID__`).
 
 ## 배포 위상
 
 - 컨테이너: `docker-compose.yml` — `neo4j`(neo4j:5, 볼륨 `neo4j_data`, 127.0.0.1로만 노출), `api`(`build: ./backend`, `./data:/app/data` 마운트로 오버레이 접근), `nginx`(nginx:alpine, `frontend/dist`와 `nginx/nginx.conf` 마운트, `8080:80` 노출). API 포트는 외부 미노출 — 프론트는 nginx 프록시로만 접근.
 - 백엔드 이미지: `backend/Dockerfile`(python:3.12-slim, `uvicorn app.main:app --host 0.0.0.0 --port 8000`). 의존성 `backend/requirements.txt`(fastapi / neo4j / uvicorn).
 - 리버스 프록시: `nginx/nginx.conf` — `location /api/` → `http://api:8000/`, 정적 자산 장기 캐시(immutable), `location /` SPA 폴백(`try_files $uri /index.html`), `index.html`은 no-cache.
-- 배포 스크립트: `deploy.sh` — 프론트 빌드 → api 이미지 빌드 → `docker compose -p biblemap up -d api nginx` → `inject_ko_names.py` 재주입(Neo4j 준비까지 최대 15회 재시도). `load_*` 스크립트는 실행하지 않는다. CI는 `.github/workflows/deploy.yml`(self-hosted 러너).
+- 배포 스크립트: `deploy.sh` — 프론트 빌드(빌드 시점에 `__BUILD_ID__`가 새로 박힘) → api 이미지 빌드 → `docker compose -p biblemap up -d api nginx` → `inject_ko_names.py` 재주입(Neo4j 준비까지 최대 15회 재시도). `load_*` 스크립트는 실행하지 않는다. CI는 `.github/workflows/deploy.yml`(self-hosted 러너).

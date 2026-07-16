@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: e53ec23d634a48d16bd1abf3e131c340cfbaac1f
-mapped: 2026-07-14
+last_mapped_commit: 23e41eee5bbfdd1fbd7a942d7fb14b1df1620d3d
+mapped: 2026-07-16
 ---
 
 # CONVENTIONS
@@ -89,6 +89,16 @@ BibleMap의 코드 스타일·패턴 정본. 백엔드(FastAPI + Neo4j), 프론�
   - **인라인 카드**: `SidePanel.jsx`의 `var(--paper)` + `--shadow-1` 카드(라이트 테마 경계용 `--line-strong` 테두리 포함).
 - 구절 텍스트 스타일은 `fontFamily: 'var(--serif)'`·`fontSize: 15.5`·`lineHeight: 1.8`·`color: 'var(--paper-ink)'`, 장절 라벨·보조 텍스트·닫기 버튼은 `var(--paper-accent)`. 언어 전환은 `frontend/src/VerseLangTabs.jsx` 공용 컴포넌트.
 
+### 2.1d 모션 시스템 — 무의존 CSS 토큰 (ADR-0024)
+
+- 모션 정본은 `index.css` `:root`의 `--dur-fast`(150ms)/`--dur-base`(250ms)/`--dur-slow`(400ms) + `--ease-out`/`--ease-in-out`/`--ease-drawer`/`--ease-pop` 7종 커스텀 프로퍼티. 새 duration·easing 값을 리터럴로 하드코딩하지 않고(인라인 스타일 포함) 이 토큰만 참조한다. 값 산출 근거는 `.forge/reports/motion-opportunities.md`.
+- 애니메이트 가능한 속성은 **transform·opacity만**(레이아웃 속성 금지 — 모바일 60fps 예산). `index.css`의 `stage-in`/`overlay-in`/`modal-in`/`card-in`/`bar-reveal`/`bar-in`(`stop-bar-in`) keyframes 전부 이 두 속성만 다룬다. 입장(enter)만 만들고 exit는 즉시 언마운트로 처리한다(React 언마운트 지연 상태기계 비용 회피 — 시트·모달·구절 모달 공통).
+- reduced-motion은 `@media (prefers-reduced-motion: reduce)`에서 `--dur-*`를 1ms로 붕괴시켜 토큰 참조 모션 전부를 즉시 완료 상태로 만드는 **토큰 붕괴 가드**(`index.css`) — 개별 컴포넌트가 reduce 분기를 따로 짤 필요가 없다. `animation-fill-mode: both` + 스태거 `animation-delay`는 duration이 1ms여도 delay 동안 from 상태를 유지하므로 전역 `animation-delay: 0ms !important`를 함께 붕괴시킨다(Spinner의 0.7s 회전은 로딩 표시라 의도적 예외). **CSS 트랜지션이 아닌 JS `requestAnimationFrame` 애니메이션(도넛 스윕·% 카운트업 — `RelianceView.jsx`의 `Donut`)은 토큰 붕괴로 가려지지 않으므로** `window.matchMedia('(prefers-reduced-motion: reduce)').matches`를 직접 분기해 즉시 최종값을 렌더한다.
+- 인라인 `style.transition`은 클래스의 `transition` 선언을 프로퍼티 단위가 아니라 통째로 덮는다 — `.pressable`(`index.css`, `:active { transform: scale(0.97) }`)류 클래스 모션을 인라인 스타일 카드에 병용할 땐 인라인 `transition` 목록에 `transform var(--dur-fast) var(--ease-out)`을 반드시 병기한다(`PersonHub.jsx`의 `PersonCard`, `BibleOverviewView.jsx`의 `BookCard`, `TourList.jsx`의 `TourCard`가 이 패턴).
+- 옵션 객체에 `undefined` 값을 가진 키를 명시적으로 넣지 않는다 — maplibre `easeTo({ offset: undefined, ... })`처럼 키 자체가 존재하면 라이브러리 내부 기본값 병합이 깨져 `Point.convert(undefined)`가 throw하고 React 루트가 통째로 언마운트된다(`MapView.jsx`의 실사용 크래시 사례). 조건부 옵션은 `...(x ? { x } : {})` 스프레드로 키 자체를 생략한다(`MapView.jsx`의 `offset` 처리가 정본).
+- 카드 그룹 입장 스태거(허브·투어·책 카드)는 **세션 1회만 재생**한다 — 모듈 스코프 플래그(`PersonHub.jsx`의 `hubEntrancePlayed`, `TourList.jsx`의 `toursEntrancePlayed`, `BibleOverviewView.jsx`의 `overviewEntrancePlayed`)로 첫 마운트만 `card-in` 클래스 + `animationDelay`(`Math.min(i * 30, 400)`ms)를 적용하고, `useEffect`에서 플래그를 세워 이후 재마운트(복귀)는 애니메이션 없이 렌더한다.
+- 정본 참조: `.forge/adr/0024-motion-system-css-tokens-no-library.md`(라이브러리 대신 CSS 토큰을 택한 이유), `.forge/reports/motion-opportunities.md`(토큰 값 산출 근거·화면별 적용/기각 현황).
+
 ### 2.2 파일·컴포넌트 네이밍
 
 - View/컴포넌트는 PascalCase `.jsx`: `App`·`MapView`·`SidePanel`·`TimelineView`·`RelationsView`·`BibleOverviewView`·`PersonHub`·`PersonIntro`·`FamilyTree`·`TourList`·`JourneyList`·`WordDistributionView`·`Spinner`·`VerseLangTabs`.
@@ -100,6 +110,7 @@ BibleMap의 코드 스타일·패턴 정본. 백엔드(FastAPI + Neo4j), 프론�
 
 - 모든 fetch는 `frontend/src/api.js`의 `apiGet(path, { signal })` 하나를 거친다. 베이스 URL은 `import.meta.env.VITE_API_URL || 'http://localhost:8000'` — 프로덕션은 빌드타임에 `/api`가 주입돼 nginx 프록시(`/api → api:8000`)를 탄다.
 - 비-OK 응답은 `.status`를 단 `Error`를 throw. `AbortError`는 fetch에서 그대로 전파되며, 호출부가 `e?.name !== 'AbortError'`로 취소를 구분한다.
+- 모든 요청에 빌드 식별자 쿼리 `?v=<BUILD_ID>`가 자동 부착된다(`vite.config.js`의 `define: { __BUILD_ID__: JSON.stringify(String(Date.now())) }`를 `api.js`가 URL에 실음). 캐시 가능 API 응답(§1.2의 `Cache-Control: max-age`)이 배포 직후에도 브라우저에 재사용되는 걸 막는다 — 같은 배포 안에서는 값이 고정이라 캐시 이점은 유지된다.
 
 ### 2.4 해시 기반 내비게이션 (라우터 라이브러리 없음)
 
