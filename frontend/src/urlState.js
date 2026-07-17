@@ -2,12 +2,17 @@
 // state = { stage: 'hub'|'explore'|'overview'|'tours', personSlug|tourSlug: string|null, exploreView: 'map'|'timeline' }
 //   허브    #/            개요  #/books        테마 목록  #/tours
 //   책 상세  #/book/<id>  (id = theographic_id, 책은 slug 없음)
+//   본문 리더  #/read/<id>(장 그리드) · #/read/<id>/<n>(장 본문)
 //   탐험(인물)  #/person/<slug>     탐험(인물,타임라인) #/person/<slug>/timeline
 //   탐험(투어)  #/tour/<slug>       탐험(투어,타임라인) #/tour/<slug>/timeline
 
-export function encodeHash({ stage, personSlug, exploreView, tourSlug, bookId, familyId, wordsBookId }) {
+export function encodeHash({ stage, personSlug, exploreView, tourSlug, bookId, familyId, wordsBookId, readerBookId, readerChapter }) {
   if (stage === 'overview') return '#/books'
   if (stage === 'book' && bookId) return `#/book/${encodeURIComponent(bookId)}`
+  if (stage === 'reader' && readerBookId) {
+    const base = `#/read/${encodeURIComponent(readerBookId)}`
+    return readerChapter ? `${base}/${readerChapter}` : base
+  }
   if (stage === 'family' && familyId) return `#/family/${encodeURIComponent(familyId)}`
   if (stage === 'words' && wordsBookId) return `#/words/${encodeURIComponent(wordsBookId)}`
   if (stage === 'tours') return '#/tours'
@@ -34,6 +39,8 @@ export function parseHash(hash) {
   if (h === '/tours') return { stage: 'tours', personSlug: null, tourSlug: null, exploreView: 'map' }
   const bk = h.match(/^\/book\/([^/]+)$/)
   if (bk) return { stage: 'book', bookId: decodeURIComponent(bk[1]), personSlug: null, tourSlug: null, exploreView: 'map' }
+  const rd = h.match(/^\/read\/([^/]+)(?:\/(\d+))?$/)
+  if (rd) return { stage: 'reader', readerBookId: decodeURIComponent(rd[1]), readerChapter: rd[2] ? Number(rd[2]) : null, personSlug: null, tourSlug: null, exploreView: 'map' }
   const fm = h.match(/^\/family\/([^/]+)$/)
   if (fm) return { stage: 'family', familyId: decodeURIComponent(fm[1]), personSlug: null, tourSlug: null, exploreView: 'map' }
   const wd = h.match(/^\/words\/([^/]+)$/)

@@ -17,6 +17,9 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   const [familyId, setFamilyId] = useState(null)
   // 단어 분포 페이지의 대상 책 id('all' 포함) — bookId·familyId와 동형.
   const [wordsBookId, setWordsBookId] = useState(null)
+  // 본문 리더의 대상 책 id·장 번호(null = 장 그리드) — wordsBookId와 동형(task#205).
+  const [readerBookId, setReaderBookId] = useState(null)
+  const [readerChapter, setReaderChapter] = useState(null)
   // 탐험 내 토글: 'map' | 'timeline'
   const [exploreView, setExploreView] = useState('map')
   // 탐험 중인 인물 — selectedNode와 분리해 장소 클릭 시에도 여정·맵 장소 기준 유지
@@ -31,7 +34,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   const curatedIdToSlug = useRef({})
   const curatedSlugToId = useRef({})
   // 히스토리 통합(ADR-0010) — 직전 nav-key 추적 + popstate 복원 중 재-push 방지.
-  const navSyncRef = useRef({ initialized: false, stage: null, person: null, tour: null, book: null, family: null, sheetOpen: false })
+  const navSyncRef = useRef({ initialized: false, stage: null, person: null, tour: null, book: null, family: null, reader: null, chapter: null, sheetOpen: false })
   const popstateGuard = useRef(false)
   // 복원 완료 신호(state) — sync effect의 dep. ref가 아니라 state여야 복원 직후 베이스 엔트리 write가 트리거됨.
   const [restored, setRestored] = useState(false)
@@ -90,6 +93,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
         else if (parsed.stage === 'book' && parsed.bookId) { setBookId(parsed.bookId); setActiveStage('book') }
         else if (parsed.stage === 'family' && parsed.familyId) { setFamilyId(parsed.familyId); setActiveStage('family') }
         else if (parsed.stage === 'words' && parsed.wordsBookId) { setWordsBookId(parsed.wordsBookId); setActiveStage('words') }
+        else if (parsed.stage === 'reader' && parsed.readerBookId) { setReaderBookId(parsed.readerBookId); setReaderChapter(parsed.readerChapter ?? null); setActiveStage('reader') }
         else if (parsed.stage === 'tours') setActiveStage('tours')
         else if (parsed.stage === 'explore' && parsed.tourSlug) {
           setExploreTourId(parsed.tourSlug); setActiveStage('explore'); setExploreView(parsed.exploreView)
@@ -115,23 +119,23 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     const slug = explorePersonId ? curatedIdToSlug.current[explorePersonId] : null
     if (activeStage === 'explore' && !slug && !exploreTourId) return // slug/tour 미해결 시 깨진 URL 안 씀
     const sheetOpen = selectedNode != null && selectedNode !== explorePersonId
-    const hash = encodeHash({ stage: activeStage, personSlug: slug, exploreView, tourSlug: exploreTourId, bookId, familyId, wordsBookId })
-    const state = { stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, words: wordsBookId, view: exploreView, node: selectedNode }
+    const hash = encodeHash({ stage: activeStage, personSlug: slug, exploreView, tourSlug: exploreTourId, bookId, familyId, wordsBookId, readerBookId, readerChapter })
+    const state = { stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, words: wordsBookId, reader: readerBookId, chapter: readerChapter, view: exploreView, node: selectedNode }
     if (popstateGuard.current) {
       // popstate 복원 중 — 브라우저가 이미 히스토리를 옮겼으니 재-push 없이 ref만 동기화.
       popstateGuard.current = false
-      navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, words: wordsBookId, sheetOpen }
+      navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, words: wordsBookId, reader: readerBookId, chapter: readerChapter, sheetOpen }
       return
     }
     const prev = navSyncRef.current
     const isForward = prev.initialized &&
-      (prev.stage !== activeStage || prev.person !== explorePersonId || prev.tour !== exploreTourId || prev.book !== bookId || prev.family !== familyId || prev.words !== wordsBookId || (!prev.sheetOpen && sheetOpen))
-    navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, words: wordsBookId, sheetOpen }
+      (prev.stage !== activeStage || prev.person !== explorePersonId || prev.tour !== exploreTourId || prev.book !== bookId || prev.family !== familyId || prev.words !== wordsBookId || prev.reader !== readerBookId || prev.chapter !== readerChapter || (!prev.sheetOpen && sheetOpen))
+    navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, words: wordsBookId, reader: readerBookId, chapter: readerChapter, sheetOpen }
     if (isForward) window.history.pushState(state, '', hash)
     else window.history.replaceState(state, '', hash)
     // curatedIds 추가(#11): 카드 클릭이 slug맵 로드보다 빨라 :88에서 조기반환했더라도,
     // curatedIds null→Set 시 재실행돼 slug 해석 후 올바른 pushState가 찍히게 한다.
-  }, [restored, activeStage, explorePersonId, exploreTourId, bookId, familyId, wordsBookId, exploreView, selectedNode, curatedIds])
+  }, [restored, activeStage, explorePersonId, exploreTourId, bookId, familyId, wordsBookId, readerBookId, readerChapter, exploreView, selectedNode, curatedIds])
 
   // popstate — 브라우저/OS 뒤로·앞으로 시 event.state에서 내비 복원(가드로 재-push 방지).
   useEffect(() => {
@@ -139,13 +143,15 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
       const s = e.state
       popstateGuard.current = true
       Promise.resolve().then(() => {
-        if (!s) { setActiveStage('hub'); setExplorePersonId(null); setExplorePersonName(null); setExploreTourId(null); setBookId(null); setFamilyId(null); setWordsBookId(null); closePanel(); return }
+        if (!s) { setActiveStage('hub'); setExplorePersonId(null); setExplorePersonName(null); setExploreTourId(null); setBookId(null); setFamilyId(null); setWordsBookId(null); setReaderBookId(null); setReaderChapter(null); closePanel(); return }
         setActiveStage(s.stage)
         setExplorePersonId(s.person ?? null)
         setExploreTourId(s.tour ?? null)
         setBookId(s.book ?? null)
         setFamilyId(s.family ?? null)
         setWordsBookId(s.words ?? null)
+        setReaderBookId(s.reader ?? null)
+        setReaderChapter(s.chapter ?? null)
         setExploreView(s.view || 'map')
         if (s.node) selectNodeFresh(s.node); else closePanel()
       })
@@ -245,6 +251,25 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     window.history.back()
   }
 
+  // 본문 리더 진입 — 책 상세 "본문 읽기" 탭(또는 딥링크). 장 미지정(null)이면 장 그리드(task#205).
+  function handleOpenReader(id, chapter = null) {
+    closePanel()
+    setReaderBookId(id)
+    setReaderChapter(chapter)
+    setExploreView('map')
+    setActiveStage('reader')
+  }
+
+  // 장 이동(그리드→본문·이전/다음 장·목차 복귀 null) — 같은 스테이지에서 장만 교체(단어 분포 책 교체와 동형).
+  function handleSelectChapter(n) {
+    setReaderChapter(n)
+  }
+
+  // 리더에서 뒤로 — 진입 지점에 무관하게 브라우저 히스토리 위임(단어 분포와 동형).
+  function handleReaderBack() {
+    window.history.back()
+  }
+
   // 허브에서 "테마 투어" 클릭 — 투어 목록 스테이지
   function handleOpenTours() {
     setActiveStage('tours')
@@ -282,7 +307,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   const getPersonSlug = (id) => curatedIdToSlug.current[id] ?? null
 
   return {
-    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, familyId, wordsBookId, curatedIds, keyPeopleCards, sheetOpen,
+    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, familyId, wordsBookId, readerBookId, readerChapter, curatedIds, keyPeopleCards, sheetOpen,
     // 탐험 인물 slug — 인장 렌더 등 표시용(state 맵에서 파생 — 렌더 중 ref 접근 금지)
     explorePersonSlug: explorePersonId ? (curatedSlugById?.[explorePersonId] ?? null) : null,
     setExploreView,
@@ -299,6 +324,9 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     openWords: handleOpenWords,
     selectWordsBook: handleSelectWordsBook,
     wordsBack: handleWordsBack,
+    openReader: handleOpenReader,
+    selectChapter: handleSelectChapter,
+    readerBack: handleReaderBack,
     openTours: handleOpenTours,
     selectTour: handleSelectTour,
     toursBack: handleToursBack,

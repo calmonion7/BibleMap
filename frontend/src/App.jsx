@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
-import { Route, Clock, BookOpen, Users, UserRound, Network, BarChart3, HeartHandshake } from 'lucide-react'
+import { Route, Clock, BookOpen, Users, UserRound, Network, BarChart3, HeartHandshake, ScrollText } from 'lucide-react'
 import { TYPE_COLOR } from './theme'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
@@ -12,6 +12,7 @@ import SpineHeader, { HEADER_H } from './SpineHeader'
 import PersonSymbol from './personSymbols'
 import FamilyTree from './FamilyTree'
 import WordDistributionView from './WordDistributionView'
+import ChapterReader from './ChapterReader'
 import RelianceView from './RelianceView'
 import TourList from './TourList'
 import JourneyList from './JourneyList'
@@ -49,10 +50,10 @@ function App() {
 
   // 화면 단계(Stage)·URL·브라우저 히스토리 상태 머신 — 노드 선택 원시값을 주입(useStageNavigation).
   const {
-    activeStage, exploreView, explorePersonId, explorePersonName, explorePersonSlug, exploreTourId, bookId, familyId, wordsBookId, curatedIds, keyPeopleCards, sheetOpen,
+    activeStage, exploreView, explorePersonId, explorePersonName, explorePersonSlug, exploreTourId, bookId, familyId, wordsBookId, readerBookId, readerChapter, curatedIds, keyPeopleCards, sheetOpen,
     setExploreView, selectPerson, explorePerson, backToHub, openOverview, overviewBack,
     openTours, selectTour, toursBack, openBook, bookBack, openFamily, recenterFamily, familyBack,
-    openWords, selectWordsBook, wordsBack, onNodeLoaded, getPersonSlug,
+    openWords, selectWordsBook, wordsBack, openReader, selectChapter, readerBack, onNodeLoaded, getPersonSlug,
   } = useStageNavigation({ selectedNode, selectNodeFresh, closePanel, handleNodeLoaded })
 
   // 여정 데이터 — 인물/투어 선택 시 한 번 fetch, MapView·JourneyList 공유
@@ -123,9 +124,9 @@ function App() {
 
   const NAV_H = 48
 
-  // 책등 헤더의 활성 부(部) — 개요·책·단어는 '성경책', 투어 목록·투어 탐험은 '투어', 나머지는 '인물'(ADR-0026)
+  // 책등 헤더의 활성 부(部) — 개요·책·단어·리더는 '성경책', 투어 목록·투어 탐험은 '투어', 나머지는 '인물'(ADR-0026)
   const activeSection =
-    activeStage === 'overview' || activeStage === 'book' || activeStage === 'words' ? 'books'
+    activeStage === 'overview' || activeStage === 'book' || activeStage === 'words' || activeStage === 'reader' ? 'books'
       : activeStage === 'tours' || (activeStage === 'explore' && exploreTourId != null) ? 'tours'
         : 'persons'
 
@@ -300,7 +301,88 @@ function App() {
             <span style={{ fontSize: 10, lineHeight: 1 }}>책 정보</span>
           </button>
           <button
+            onClick={() => openReader(bookId)}
+            style={{
+              padding: '0 14px', height: '100%',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
+              color: 'var(--ink-faint)',
+              border: 'none', background: 'none', cursor: 'pointer',
+              transition: 'color var(--dur-fast), border-color var(--dur-fast)',
+            }}
+          >
+            <ScrollText size={18} />
+            <span style={{ fontSize: 10, lineHeight: 1 }}>본문 읽기</span>
+          </button>
+          <button
             onClick={() => openWords(bookId)}
+            style={{
+              padding: '0 14px', height: '100%',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
+              color: 'var(--ink-faint)',
+              border: 'none', background: 'none', cursor: 'pointer',
+              transition: 'color var(--dur-fast), border-color var(--dur-fast)',
+            }}
+          >
+            <BarChart3 size={18} />
+            <span style={{ fontSize: 10, lineHeight: 1 }}>단어 분포</span>
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  // 본문 리더 단계 내비게이션 바 — 뒤로 + 하위 메뉴 탭(책 정보 · 본문 읽기(활성) · 단어 분포, 단어 분포 내비와 대칭).
+  function renderReaderNav() {
+    return (
+      <div style={{
+        height: NAV_H, flexShrink: 0,
+        display: 'flex', alignItems: 'center',
+        background: 'var(--bg-1)', borderBottom: '1px solid var(--gold-dim)',
+        zIndex: 20, boxShadow: 'var(--shadow-1)',
+        gap: 0,
+      }}>
+        <button
+          onClick={readerBack}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 6,
+            padding: '0 14px', height: '100%',
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: 'var(--ink-dim)',
+            borderRight: '1px solid var(--line)',
+            flexShrink: 0,
+          }}
+        >
+          <span style={{ fontSize: 13 }}>←</span>
+          <span style={{ fontSize: 13 }}>뒤로</span>
+        </button>
+        <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+          <button
+            onClick={() => openBook(readerBookId)}
+            style={{
+              padding: '0 14px', height: '100%',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
+              color: 'var(--ink-faint)',
+              border: 'none', background: 'none', cursor: 'pointer',
+              transition: 'color var(--dur-fast), border-color var(--dur-fast)',
+            }}
+          >
+            <BookOpen size={18} />
+            <span style={{ fontSize: 10, lineHeight: 1 }}>책 정보</span>
+          </button>
+          <button
+            style={{
+              padding: '0 14px', height: '100%',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
+              color: 'var(--ink)',
+              borderBottom: '2px solid var(--gold)',
+              border: 'none', background: 'none', cursor: 'default',
+            }}
+          >
+            <ScrollText size={18} />
+            <span style={{ fontSize: 10, lineHeight: 1 }}>본문 읽기</span>
+          </button>
+          <button
+            onClick={() => openWords(readerBookId)}
             style={{
               padding: '0 14px', height: '100%',
               display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
@@ -522,6 +604,22 @@ function App() {
             <WordDistributionView
               bookId={wordsBookId}
               onSelectBook={selectWordsBook}
+              verseLang={verseLang}
+              setVerseLang={setVerseLang}
+            />
+          </div>
+        </>
+      )}
+
+      {/* 본문 리더 단계 — 책 상세 "본문 읽기"에서 진입. 전용 전체화면 페이지(words와 동형, readerBookId·readerChapter 구동). */}
+      {activeStage === 'reader' && (
+        <>
+          {renderReaderNav()}
+          <div className="stage-in" style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+            <ChapterReader
+              bookId={readerBookId}
+              chapter={readerChapter}
+              onSelectChapter={selectChapter}
               verseLang={verseLang}
               setVerseLang={setVerseLang}
             />
