@@ -5,6 +5,7 @@ import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
 import VerseLayer, { VerseBookTabs, paperTextStyle } from './VerseLayer'
 import Spinner from './Spinner'
+import BookStageMap from './BookStageMap'
 import { parseYear } from './dates'
 
 const REL_KO = {
@@ -80,6 +81,10 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
   const [connectionsState, setConnectionsState] = useState(null)
   const connections = connectionsState?.forNodeId === nodeId ? connectionsState : null
 
+  // Book 블록 — 책의 무대 장소(task#207): { forNodeId, places } | null. 0곳이면 섹션 미렌더.
+  const [bookPlacesState, setBookPlacesState] = useState(null)
+  const bookPlaces = bookPlacesState?.forNodeId === nodeId ? bookPlacesState.places : null
+
   // 인물 성품 구절 레이어 — 인라인 아코디언 대신 양피지 포털 모달(사건 구절 레이어와 동일 패턴).
   // forNodeId 키로 인물 변경 시 자동 닫힘.
   const [traitLayerRaw, setTraitLayer] = useState(null)   // { forNodeId, idx } | null
@@ -94,7 +99,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
         // Place는 서술 섹션(배경·대표 구절)만 기본 펼침 — 이웃 목록(사건·인물)은 접힘 유지(M3)
         setCollapsed(data.label === 'Book' ? {
           'book-central': false, 'book-themes': false, 'book-keyverse': false, 'book-background': false,
-          'book-structure': false, 'book-keyppl': false, 'book-persons': false, 'book-events': false,
+          'book-structure': false, 'book-stage': false, 'book-keyppl': false, 'book-persons': false, 'book-events': false,
         } : data.label === 'Place' ? {
           'place-background': false, 'place-keyverse': false,
         } : {})
@@ -118,6 +123,18 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
       .catch(e => { if (!cancelled) { console.warn('[SidePanel] 장소 경유 인물 로드 실패', e); setPlacePersonsState({ forNodeId: nodeId, persons: [] }) } })
     return () => { cancelled = true }
   }, [nodeId, state.id, state.node, explorePersonId])
+
+  // Book 블록 — 책의 무대 장소 fetch (primary 사건 장소, 좌표 보유만 — 기존 /places Book 분기)
+  useEffect(() => {
+    if (!nodeId) return
+    const node = state.id === nodeId ? state.node : null
+    if (!node || node.label !== 'Book') return
+    let cancelled = false
+    apiGet(`/node/${nodeId}/places`)
+      .then(data => { if (!cancelled) setBookPlacesState({ forNodeId: nodeId, places: data.places ?? [] }) })
+      .catch(e => { if (!cancelled) { console.warn('[SidePanel] 책 장소 로드 실패', e); setBookPlacesState({ forNodeId: nodeId, places: [] }) } })
+    return () => { cancelled = true }
+  }, [nodeId, state.id, state.node])
 
   // Person 블록 — 인물 연결 fetch (큐레이션 인물만)
   useEffect(() => {
@@ -571,6 +588,16 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                     )
                   })}
                 </div>
+              )}
+            </div>
+          )}
+
+          {/* 책의 무대 — primary 사건 장소 미니맵(task#207). 장소 0곳이면 섹션 자체 미렌더(빈 섹션 금지) */}
+          {bookPlaces?.length > 0 && (
+            <div style={{ marginBottom: 12 }}>
+              <SectionHeader label="책의 무대" color={TYPE_COLOR.Place} count={bookPlaces.length} sectionKey="book-stage" collapsed={collapsed} onToggle={toggle} />
+              {collapsed['book-stage'] === false && (
+                <BookStageMap places={bookPlaces} onSelectPlace={onSelectNode} />
               )}
             </div>
           )}
