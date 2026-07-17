@@ -80504,6 +80504,18 @@
             "verse": 16
           }
         ]
+      },
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "bookOrder": 42,
+        "rangeLabel": "4:31",
+        "verses": [
+          {
+            "verseID": "42004031",
+            "chapter": 4,
+            "verse": 31
+          }
+        ]
       }
     ]
   },
@@ -80651,6 +80663,68 @@
             "verse": 34
           }
         ]
+      },
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "bookOrder": 42,
+        "rangeLabel": "4:31–41",
+        "verses": [
+          {
+            "verseID": "42004031",
+            "chapter": 4,
+            "verse": 31
+          },
+          {
+            "verseID": "42004032",
+            "chapter": 4,
+            "verse": 32
+          },
+          {
+            "verseID": "42004033",
+            "chapter": 4,
+            "verse": 33
+          },
+          {
+            "verseID": "42004034",
+            "chapter": 4,
+            "verse": 34
+          },
+          {
+            "verseID": "42004035",
+            "chapter": 4,
+            "verse": 35
+          },
+          {
+            "verseID": "42004036",
+            "chapter": 4,
+            "verse": 36
+          },
+          {
+            "verseID": "42004037",
+            "chapter": 4,
+            "verse": 37
+          },
+          {
+            "verseID": "42004038",
+            "chapter": 4,
+            "verse": 38
+          },
+          {
+            "verseID": "42004039",
+            "chapter": 4,
+            "verse": 39
+          },
+          {
+            "verseID": "42004040",
+            "chapter": 4,
+            "verse": 40
+          },
+          {
+            "verseID": "42004041",
+            "chapter": 4,
+            "verse": 41
+          }
+        ]
       }
     ]
   },
@@ -80731,6 +80805,60 @@
             "verseID": "40016016",
             "chapter": 16,
             "verse": 16
+          }
+        ]
+      },
+      {
+        "bookId": "recNvq1wZtB13BbbW",
+        "bookOrder": 41,
+        "rangeLabel": "8:27–30",
+        "verses": [
+          {
+            "verseID": "41008027",
+            "chapter": 8,
+            "verse": 27
+          },
+          {
+            "verseID": "41008028",
+            "chapter": 8,
+            "verse": 28
+          },
+          {
+            "verseID": "41008029",
+            "chapter": 8,
+            "verse": 29
+          },
+          {
+            "verseID": "41008030",
+            "chapter": 8,
+            "verse": 30
+          }
+        ]
+      },
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "bookOrder": 42,
+        "rangeLabel": "9:18–21",
+        "verses": [
+          {
+            "verseID": "42009018",
+            "chapter": 9,
+            "verse": 18
+          },
+          {
+            "verseID": "42009019",
+            "chapter": 9,
+            "verse": 19
+          },
+          {
+            "verseID": "42009020",
+            "chapter": 9,
+            "verse": 20
+          },
+          {
+            "verseID": "42009021",
+            "chapter": 9,
+            "verse": 21
           }
         ]
       }
@@ -80881,6 +81009,115 @@
             "verse": 46
           }
         ]
+      },
+      {
+        "bookId": "recNvq1wZtB13BbbW",
+        "bookOrder": 41,
+        "rangeLabel": "14:32–42",
+        "verses": [
+          {
+            "verseID": "41014032",
+            "chapter": 14,
+            "verse": 32
+          },
+          {
+            "verseID": "41014033",
+            "chapter": 14,
+            "verse": 33
+          },
+          {
+            "verseID": "41014034",
+            "chapter": 14,
+            "verse": 34
+          },
+          {
+            "verseID": "41014035",
+            "chapter": 14,
+            "verse": 35
+          },
+          {
+            "verseID": "41014036",
+            "chapter": 14,
+            "verse": 36
+          },
+          {
+            "verseID": "41014037",
+            "chapter": 14,
+            "verse": 37
+          },
+          {
+            "verseID": "41014038",
+            "chapter": 14,
+            "verse": 38
+          },
+          {
+            "verseID": "41014039",
+            "chapter": 14,
+            "verse": 39
+          },
+          {
+            "verseID": "41014040",
+            "chapter": 14,
+            "verse": 40
+          },
+          {
+            "verseID": "41014041",
+            "chapter": 14,
+            "verse": 41
+          },
+          {
+            "verseID": "41014042",
+            "chapter": 14,
+            "verse": 42
+          }
+        ]
+      },
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "bookOrder": 42,
+        "rangeLabel": "22:39–46",
+        "verses": [
+          {
+            "verseID": "42022039",
+            "chapter": 22,
+            "verse": 39
+          },
+          {
+            "verseID": "42022040",
+            "chapter": 22,
+            "verse": 40
+          },
+          {
+            "verseID": "42022041",
+            "chapter": 22,
+            "verse": 41
+          },
+          {
+            "verseID": "42022042",
+            "chapter": 22,
+            "verse": 42
+          },
+          {
+            "verseID": "42022043",
+            "chapter": 22,
+            "verse": 43
+          },
+          {
+            "verseID": "42022044",
+            "chapter": 22,
+            "verse": 44
+          },
+          {
+            "verseID": "42022045",
+            "chapter": 22,
+            "verse": 45
+          },
+          {
+            "verseID": "42022046",
+            "chapter": 22,
+            "verse": 46
+          }
+        ]
       }
     ]
   },
@@ -80910,6 +81147,107 @@
             "verseID": "40003004",
             "chapter": 3,
             "verse": 4
+          }
+        ]
+      },
+      {
+        "bookId": "recNvq1wZtB13BbbW",
+        "bookOrder": 41,
+        "rangeLabel": "1:2–6",
+        "verses": [
+          {
+            "verseID": "41001002",
+            "chapter": 1,
+            "verse": 2
+          },
+          {
+            "verseID": "41001003",
+            "chapter": 1,
+            "verse": 3
+          },
+          {
+            "verseID": "41001004",
+            "chapter": 1,
+            "verse": 4
+          },
+          {
+            "verseID": "41001005",
+            "chapter": 1,
+            "verse": 5
+          },
+          {
+            "verseID": "41001006",
+            "chapter": 1,
+            "verse": 6
+          }
+        ]
+      },
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "bookOrder": 42,
+        "rangeLabel": "3:1–6",
+        "verses": [
+          {
+            "verseID": "42003001",
+            "chapter": 3,
+            "verse": 1
+          },
+          {
+            "verseID": "42003002",
+            "chapter": 3,
+            "verse": 2
+          },
+          {
+            "verseID": "42003003",
+            "chapter": 3,
+            "verse": 3
+          },
+          {
+            "verseID": "42003004",
+            "chapter": 3,
+            "verse": 4
+          },
+          {
+            "verseID": "42003005",
+            "chapter": 3,
+            "verse": 5
+          },
+          {
+            "verseID": "42003006",
+            "chapter": 3,
+            "verse": 6
+          }
+        ]
+      },
+      {
+        "bookId": "recq8W1kWwtVoUlwB",
+        "bookOrder": 43,
+        "rangeLabel": "1:19–23",
+        "verses": [
+          {
+            "verseID": "43001019",
+            "chapter": 1,
+            "verse": 19
+          },
+          {
+            "verseID": "43001020",
+            "chapter": 1,
+            "verse": 20
+          },
+          {
+            "verseID": "43001021",
+            "chapter": 1,
+            "verse": 21
+          },
+          {
+            "verseID": "43001022",
+            "chapter": 1,
+            "verse": 22
+          },
+          {
+            "verseID": "43001023",
+            "chapter": 1,
+            "verse": 23
           }
         ]
       }
@@ -82040,6 +82378,18 @@
             "verse": 1
           }
         ]
+      },
+      {
+        "bookId": "rec6qL6gTvX4tUw4A",
+        "bookOrder": 3,
+        "rangeLabel": "26:46",
+        "verses": [
+          {
+            "verseID": "03026046",
+            "chapter": 26,
+            "verse": 46
+          }
+        ]
       }
     ]
   },
@@ -82689,6 +83039,98 @@
             "verseID": "11006038",
             "chapter": 6,
             "verse": 38
+          }
+        ]
+      },
+      {
+        "bookId": "rec410yOewjNfbeE3",
+        "bookOrder": 14,
+        "rangeLabel": "3:1–17",
+        "verses": [
+          {
+            "verseID": "14003001",
+            "chapter": 3,
+            "verse": 1
+          },
+          {
+            "verseID": "14003002",
+            "chapter": 3,
+            "verse": 2
+          },
+          {
+            "verseID": "14003003",
+            "chapter": 3,
+            "verse": 3
+          },
+          {
+            "verseID": "14003004",
+            "chapter": 3,
+            "verse": 4
+          },
+          {
+            "verseID": "14003005",
+            "chapter": 3,
+            "verse": 5
+          },
+          {
+            "verseID": "14003006",
+            "chapter": 3,
+            "verse": 6
+          },
+          {
+            "verseID": "14003007",
+            "chapter": 3,
+            "verse": 7
+          },
+          {
+            "verseID": "14003008",
+            "chapter": 3,
+            "verse": 8
+          },
+          {
+            "verseID": "14003009",
+            "chapter": 3,
+            "verse": 9
+          },
+          {
+            "verseID": "14003010",
+            "chapter": 3,
+            "verse": 10
+          },
+          {
+            "verseID": "14003011",
+            "chapter": 3,
+            "verse": 11
+          },
+          {
+            "verseID": "14003012",
+            "chapter": 3,
+            "verse": 12
+          },
+          {
+            "verseID": "14003013",
+            "chapter": 3,
+            "verse": 13
+          },
+          {
+            "verseID": "14003014",
+            "chapter": 3,
+            "verse": 14
+          },
+          {
+            "verseID": "14003015",
+            "chapter": 3,
+            "verse": 15
+          },
+          {
+            "verseID": "14003016",
+            "chapter": 3,
+            "verse": 16
+          },
+          {
+            "verseID": "14003017",
+            "chapter": 3,
+            "verse": 17
           }
         ]
       }
@@ -84149,6 +84591,23 @@
             "verse": 17
           }
         ]
+      },
+      {
+        "bookId": "recDZc63lmQiSe0gn",
+        "bookOrder": 52,
+        "rangeLabel": "3:6–7",
+        "verses": [
+          {
+            "verseID": "52003006",
+            "chapter": 3,
+            "verse": 6
+          },
+          {
+            "verseID": "52003007",
+            "chapter": 3,
+            "verse": 7
+          }
+        ]
       }
     ]
   },
@@ -84363,6 +84822,23 @@
             "verseID": "44019041",
             "chapter": 19,
             "verse": 41
+          }
+        ]
+      },
+      {
+        "bookId": "recVtbTyqtbbtqRC5",
+        "bookOrder": 46,
+        "rangeLabel": "16:8–9",
+        "verses": [
+          {
+            "verseID": "46016008",
+            "chapter": 16,
+            "verse": 8
+          },
+          {
+            "verseID": "46016009",
+            "chapter": 16,
+            "verse": 9
           }
         ]
       }
@@ -84683,6 +85159,74 @@
             "verseID": "44028031",
             "chapter": 28,
             "verse": 31
+          }
+        ]
+      },
+      {
+        "bookId": "rec3IwUp30NnnEqSL",
+        "bookOrder": 49,
+        "rangeLabel": "6:19–20",
+        "verses": [
+          {
+            "verseID": "49006019",
+            "chapter": 6,
+            "verse": 19
+          },
+          {
+            "verseID": "49006020",
+            "chapter": 6,
+            "verse": 20
+          }
+        ]
+      },
+      {
+        "bookId": "recY95JJhNEzOwMNv",
+        "bookOrder": 50,
+        "rangeLabel": "1:12–14",
+        "verses": [
+          {
+            "verseID": "50001012",
+            "chapter": 1,
+            "verse": 12
+          },
+          {
+            "verseID": "50001013",
+            "chapter": 1,
+            "verse": 13
+          },
+          {
+            "verseID": "50001014",
+            "chapter": 1,
+            "verse": 14
+          }
+        ]
+      },
+      {
+        "bookId": "recY37UhYyyAlabnd",
+        "bookOrder": 51,
+        "rangeLabel": "4:3–4",
+        "verses": [
+          {
+            "verseID": "51004003",
+            "chapter": 4,
+            "verse": 3
+          },
+          {
+            "verseID": "51004004",
+            "chapter": 4,
+            "verse": 4
+          }
+        ]
+      },
+      {
+        "bookId": "recZm66X4kEQ7X3j2",
+        "bookOrder": 57,
+        "rangeLabel": "1:1",
+        "verses": [
+          {
+            "verseID": "57001001",
+            "chapter": 1,
+            "verse": 1
           }
         ]
       }
@@ -86403,6 +86947,45 @@
             "verse": 17
           }
         ]
+      },
+      {
+        "bookId": "recNvq1wZtB13BbbW",
+        "bookOrder": 41,
+        "rangeLabel": "1:9–11",
+        "verses": [
+          {
+            "verseID": "41001009",
+            "chapter": 1,
+            "verse": 9
+          },
+          {
+            "verseID": "41001010",
+            "chapter": 1,
+            "verse": 10
+          },
+          {
+            "verseID": "41001011",
+            "chapter": 1,
+            "verse": 11
+          }
+        ]
+      },
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "bookOrder": 42,
+        "rangeLabel": "3:21–22",
+        "verses": [
+          {
+            "verseID": "42003021",
+            "chapter": 3,
+            "verse": 21
+          },
+          {
+            "verseID": "42003022",
+            "chapter": 3,
+            "verse": 22
+          }
+        ]
       }
     ]
   },
@@ -86467,6 +87050,95 @@
             "verseID": "40004011",
             "chapter": 4,
             "verse": 11
+          }
+        ]
+      },
+      {
+        "bookId": "recNvq1wZtB13BbbW",
+        "bookOrder": 41,
+        "rangeLabel": "1:12–13",
+        "verses": [
+          {
+            "verseID": "41001012",
+            "chapter": 1,
+            "verse": 12
+          },
+          {
+            "verseID": "41001013",
+            "chapter": 1,
+            "verse": 13
+          }
+        ]
+      },
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "bookOrder": 42,
+        "rangeLabel": "4:1–13",
+        "verses": [
+          {
+            "verseID": "42004001",
+            "chapter": 4,
+            "verse": 1
+          },
+          {
+            "verseID": "42004002",
+            "chapter": 4,
+            "verse": 2
+          },
+          {
+            "verseID": "42004003",
+            "chapter": 4,
+            "verse": 3
+          },
+          {
+            "verseID": "42004004",
+            "chapter": 4,
+            "verse": 4
+          },
+          {
+            "verseID": "42004005",
+            "chapter": 4,
+            "verse": 5
+          },
+          {
+            "verseID": "42004006",
+            "chapter": 4,
+            "verse": 6
+          },
+          {
+            "verseID": "42004007",
+            "chapter": 4,
+            "verse": 7
+          },
+          {
+            "verseID": "42004008",
+            "chapter": 4,
+            "verse": 8
+          },
+          {
+            "verseID": "42004009",
+            "chapter": 4,
+            "verse": 9
+          },
+          {
+            "verseID": "42004010",
+            "chapter": 4,
+            "verse": 10
+          },
+          {
+            "verseID": "42004011",
+            "chapter": 4,
+            "verse": 11
+          },
+          {
+            "verseID": "42004012",
+            "chapter": 4,
+            "verse": 12
+          },
+          {
+            "verseID": "42004013",
+            "chapter": 4,
+            "verse": 13
           }
         ]
       }
@@ -86576,6 +87248,33 @@
             "verse": 12
           }
         ]
+      },
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "bookOrder": 42,
+        "rangeLabel": "6:20–23",
+        "verses": [
+          {
+            "verseID": "42006020",
+            "chapter": 6,
+            "verse": 20
+          },
+          {
+            "verseID": "42006021",
+            "chapter": 6,
+            "verse": 21
+          },
+          {
+            "verseID": "42006022",
+            "chapter": 6,
+            "verse": 22
+          },
+          {
+            "verseID": "42006023",
+            "chapter": 6,
+            "verse": 23
+          }
+        ]
       }
     ]
   },
@@ -86625,6 +87324,100 @@
             "verseID": "40017008",
             "chapter": 17,
             "verse": 8
+          }
+        ]
+      },
+      {
+        "bookId": "recNvq1wZtB13BbbW",
+        "bookOrder": 41,
+        "rangeLabel": "9:2–8",
+        "verses": [
+          {
+            "verseID": "41009002",
+            "chapter": 9,
+            "verse": 2
+          },
+          {
+            "verseID": "41009003",
+            "chapter": 9,
+            "verse": 3
+          },
+          {
+            "verseID": "41009004",
+            "chapter": 9,
+            "verse": 4
+          },
+          {
+            "verseID": "41009005",
+            "chapter": 9,
+            "verse": 5
+          },
+          {
+            "verseID": "41009006",
+            "chapter": 9,
+            "verse": 6
+          },
+          {
+            "verseID": "41009007",
+            "chapter": 9,
+            "verse": 7
+          },
+          {
+            "verseID": "41009008",
+            "chapter": 9,
+            "verse": 8
+          }
+        ]
+      },
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "bookOrder": 42,
+        "rangeLabel": "9:28–36",
+        "verses": [
+          {
+            "verseID": "42009028",
+            "chapter": 9,
+            "verse": 28
+          },
+          {
+            "verseID": "42009029",
+            "chapter": 9,
+            "verse": 29
+          },
+          {
+            "verseID": "42009030",
+            "chapter": 9,
+            "verse": 30
+          },
+          {
+            "verseID": "42009031",
+            "chapter": 9,
+            "verse": 31
+          },
+          {
+            "verseID": "42009032",
+            "chapter": 9,
+            "verse": 32
+          },
+          {
+            "verseID": "42009033",
+            "chapter": 9,
+            "verse": 33
+          },
+          {
+            "verseID": "42009034",
+            "chapter": 9,
+            "verse": 34
+          },
+          {
+            "verseID": "42009035",
+            "chapter": 9,
+            "verse": 35
+          },
+          {
+            "verseID": "42009036",
+            "chapter": 9,
+            "verse": 36
           }
         ]
       }
@@ -86691,6 +87484,187 @@
             "verseID": "40021011",
             "chapter": 21,
             "verse": 11
+          }
+        ]
+      },
+      {
+        "bookId": "recNvq1wZtB13BbbW",
+        "bookOrder": 41,
+        "rangeLabel": "11:1–11",
+        "verses": [
+          {
+            "verseID": "41011001",
+            "chapter": 11,
+            "verse": 1
+          },
+          {
+            "verseID": "41011002",
+            "chapter": 11,
+            "verse": 2
+          },
+          {
+            "verseID": "41011003",
+            "chapter": 11,
+            "verse": 3
+          },
+          {
+            "verseID": "41011004",
+            "chapter": 11,
+            "verse": 4
+          },
+          {
+            "verseID": "41011005",
+            "chapter": 11,
+            "verse": 5
+          },
+          {
+            "verseID": "41011006",
+            "chapter": 11,
+            "verse": 6
+          },
+          {
+            "verseID": "41011007",
+            "chapter": 11,
+            "verse": 7
+          },
+          {
+            "verseID": "41011008",
+            "chapter": 11,
+            "verse": 8
+          },
+          {
+            "verseID": "41011009",
+            "chapter": 11,
+            "verse": 9
+          },
+          {
+            "verseID": "41011010",
+            "chapter": 11,
+            "verse": 10
+          },
+          {
+            "verseID": "41011011",
+            "chapter": 11,
+            "verse": 11
+          }
+        ]
+      },
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "bookOrder": 42,
+        "rangeLabel": "19:28–40",
+        "verses": [
+          {
+            "verseID": "42019028",
+            "chapter": 19,
+            "verse": 28
+          },
+          {
+            "verseID": "42019029",
+            "chapter": 19,
+            "verse": 29
+          },
+          {
+            "verseID": "42019030",
+            "chapter": 19,
+            "verse": 30
+          },
+          {
+            "verseID": "42019031",
+            "chapter": 19,
+            "verse": 31
+          },
+          {
+            "verseID": "42019032",
+            "chapter": 19,
+            "verse": 32
+          },
+          {
+            "verseID": "42019033",
+            "chapter": 19,
+            "verse": 33
+          },
+          {
+            "verseID": "42019034",
+            "chapter": 19,
+            "verse": 34
+          },
+          {
+            "verseID": "42019035",
+            "chapter": 19,
+            "verse": 35
+          },
+          {
+            "verseID": "42019036",
+            "chapter": 19,
+            "verse": 36
+          },
+          {
+            "verseID": "42019037",
+            "chapter": 19,
+            "verse": 37
+          },
+          {
+            "verseID": "42019038",
+            "chapter": 19,
+            "verse": 38
+          },
+          {
+            "verseID": "42019039",
+            "chapter": 19,
+            "verse": 39
+          },
+          {
+            "verseID": "42019040",
+            "chapter": 19,
+            "verse": 40
+          }
+        ]
+      },
+      {
+        "bookId": "recq8W1kWwtVoUlwB",
+        "bookOrder": 43,
+        "rangeLabel": "12:12–19",
+        "verses": [
+          {
+            "verseID": "43012012",
+            "chapter": 12,
+            "verse": 12
+          },
+          {
+            "verseID": "43012013",
+            "chapter": 12,
+            "verse": 13
+          },
+          {
+            "verseID": "43012014",
+            "chapter": 12,
+            "verse": 14
+          },
+          {
+            "verseID": "43012015",
+            "chapter": 12,
+            "verse": 15
+          },
+          {
+            "verseID": "43012016",
+            "chapter": 12,
+            "verse": 16
+          },
+          {
+            "verseID": "43012017",
+            "chapter": 12,
+            "verse": 17
+          },
+          {
+            "verseID": "43012018",
+            "chapter": 12,
+            "verse": 18
+          },
+          {
+            "verseID": "43012019",
+            "chapter": 12,
+            "verse": 19
           }
         ]
       }
@@ -87129,6 +88103,23 @@
             "verseID": "40002023",
             "chapter": 2,
             "verse": 23
+          }
+        ]
+      },
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "bookOrder": 42,
+        "rangeLabel": "2:39–40",
+        "verses": [
+          {
+            "verseID": "42002039",
+            "chapter": 2,
+            "verse": 39
+          },
+          {
+            "verseID": "42002040",
+            "chapter": 2,
+            "verse": 40
           }
         ]
       }
@@ -94607,6 +95598,33 @@
             "verse": 29
           }
         ]
+      },
+      {
+        "bookId": "reczL2ckRW1qHvVfe",
+        "bookOrder": 7,
+        "rangeLabel": "2:6–9",
+        "verses": [
+          {
+            "verseID": "07002006",
+            "chapter": 2,
+            "verse": 6
+          },
+          {
+            "verseID": "07002007",
+            "chapter": 2,
+            "verse": 7
+          },
+          {
+            "verseID": "07002008",
+            "chapter": 2,
+            "verse": 8
+          },
+          {
+            "verseID": "07002009",
+            "chapter": 2,
+            "verse": 9
+          }
+        ]
       }
     ]
   },
@@ -95265,6 +96283,30 @@
             "verse": 25
           }
         ]
+      },
+      {
+        "bookId": "rec2ZFQHqI4eUjhqX",
+        "bookOrder": 13,
+        "rangeLabel": "1:1",
+        "verses": [
+          {
+            "verseID": "13001001",
+            "chapter": 1,
+            "verse": 1
+          }
+        ]
+      },
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "bookOrder": 42,
+        "rangeLabel": "3:38",
+        "verses": [
+          {
+            "verseID": "42003038",
+            "chapter": 3,
+            "verse": 38
+          }
+        ]
       }
     ]
   },
@@ -95279,6 +96321,18 @@
             "verseID": "01004026",
             "chapter": 4,
             "verse": 26
+          }
+        ]
+      },
+      {
+        "bookId": "rec2ZFQHqI4eUjhqX",
+        "bookOrder": 13,
+        "rangeLabel": "1:1",
+        "verses": [
+          {
+            "verseID": "13001001",
+            "chapter": 1,
+            "verse": 1
           }
         ]
       }
