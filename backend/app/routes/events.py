@@ -54,6 +54,7 @@ def _load_approx_book_index():
 def _compute_events():
     """Neo4j 쿼리 + approx_index 머지. 앱 재시작 전까지 결과를 메모리에 보관."""
     approx_index = _load_approx_book_index()
+    event_verses = overlays.event_verses()
     driver = get_driver()
     with driver.session() as session:
         result = session.run(
@@ -72,7 +73,15 @@ def _compute_events():
             contains_books = [b for b in record["books"] if b is not None]
             approx_books = approx_index.get(event_id, [])
             contains_ids = {b["id"] for b in contains_books}
-            extra = [b for b in approx_books if b["id"] not in contains_ids]
+            # 추정(⚡) 권은 그 (권,사건)이 event_verses에 근거 구절을 가질 때만 근거 칩에 합류
+            # (구절 없는 집필 배경 연결은 책 마커 행 ⚡ 칩으로만 남는다 — CONTEXT.md 'Book Events')
+            verse_book_ids = {
+                b.get("bookId") for b in event_verses.get(event_id, {}).get("books", [])
+            }
+            extra = [
+                b for b in approx_books
+                if b["id"] not in contains_ids and b["id"] in verse_book_ids
+            ]
             events.append({
                 "id": event_id,
                 "title": props.get("title", ""),
