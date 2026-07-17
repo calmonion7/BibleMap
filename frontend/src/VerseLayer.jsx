@@ -18,6 +18,7 @@ const cardBase = {
 }
 
 // 구절 본문 공통 스타일 — 기존 파일들의 15/15.5 fontSize 불일치를 15.5로 통일하는 기준.
+// eslint-disable-next-line react-refresh/only-export-components
 export const paperTextStyle = { fontFamily: 'var(--serif)', fontSize: 15.5, lineHeight: 1.8, color: 'var(--paper-ink)' }
 
 // 다권 pill 탭(JourneyList 기존 스타일 승격). activeIdx는 배열 인덱스가 아니라 활성 book의 bookId(선택 식별자).
@@ -50,6 +51,7 @@ export default function VerseLayer({
   const [closing, setClosing] = useState(false)
   const [entered, setEntered] = useState(false)   // sheet-in(fill 있는 keyframe)이 인라인 transform을 덮지 않도록 종료 후 클래스 제거
   const [dragY, setDragY] = useState(0)   // 시각적 transform 전용
+  const [dragging, setDragging] = useState(false)   // 드래그 중 transition 차단용(렌더에서 ref를 읽지 않기 위한 state)
   const dragFrom = useRef(null)
   const dragPx = useRef(0)   // 닫기 판정 전용 — state 클로저는 연속 터치에서 리렌더보다 늦을 수 있다
 
@@ -83,10 +85,10 @@ export default function VerseLayer({
   )
 
   // eco: 시트/모달은 존별 패딩 고정이라 cardStyle의 padding 오버라이드는 무시(랭킹 모달 16/18↔기본 18/20 차이는 시각적으로 무의미)
-  const { padding: _pad, ...cardRest } = cardStyle || {}
+  const cardRest = { ...(cardStyle || {}) }
+  delete cardRest.padding
 
   if (isMobile) {
-    const dragging = dragFrom.current != null
     return createPortal(
       <div style={{ position: 'fixed', inset: 0, zIndex: 'var(--z-verse)' }}>
         <div className="overlay-in" onClick={requestClose} style={{ position: 'absolute', inset: 0, background: 'var(--scrim)' }} />
@@ -108,7 +110,7 @@ export default function VerseLayer({
         >
           {/* 드래그 존 — 핸들+헤더. 본문 스크롤과 분리돼 스크롤 위치와 무관하게 언제든 끌어내려 닫는다. */}
           <div
-            onTouchStart={e => { dragFrom.current = e.touches[0].clientY }}
+            onTouchStart={e => { dragFrom.current = e.touches[0].clientY; setDragging(true) }}
             onTouchMove={e => {
               if (dragFrom.current == null) return
               const dy = Math.max(0, e.touches[0].clientY - dragFrom.current)
@@ -119,6 +121,7 @@ export default function VerseLayer({
               const passed = dragPx.current > CLOSE_DRAG_PX
               dragFrom.current = null
               dragPx.current = 0
+              setDragging(false)
               if (passed) setClosing(true)
               else setDragY(0)   // 스프링백
             }}
