@@ -307,6 +307,7 @@ def _build_relations(node_id: str) -> dict:
                 "note": other.get("role") or pair.get("note"),
                 "withNameKo": other.get("nameKo"),
                 "withId": slug_to_id.get(other["slug"]) if other.get("slug") else None,
+                "withSlug": other.get("slug"),  # 인장 선화 렌더용(큐레이션 상대만 존재)
                 "phases": pair.get("phases", []),
             }
         )

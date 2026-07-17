@@ -612,6 +612,8 @@ function App() {
                   setVerseLang={setVerseLang}
                   curatedIds={curatedIds}
                   onExploreJourney={selectPerson}
+                  onSwitchView={setExploreView}
+                  onOpenFamily={() => openFamily(explorePersonId)}
                 />
               </div>
             )}
