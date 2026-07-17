@@ -99,6 +99,8 @@ export default function VerseLayer({
             ...cardBase,
             position: 'absolute', left: 0, right: 0, bottom: 0,
             borderRadius: '16px 16px 0 0', maxHeight: '80vh',
+            minHeight: '38vh',   // 구절이 1–2절이어도 바닥에 낮게 깔리지 않게 — 읽기 위치를 엄지·시선 존으로 올림
+
             transform: closing ? 'translateY(105%)' : `translateY(${dragY}px)`,
             transition: dragging ? 'none' : 'transform var(--dur-fast) var(--ease-drawer)',
             ...cardRest,
