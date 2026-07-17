@@ -1,0 +1,3483 @@
+{
+ "quotations": [
+  {
+   "ntVerseIds": [
+    "40001023"
+   ],
+   "otVerseIds": [
+    "23007014"
+   ],
+   "ntRangeLabel": "마 1:23",
+   "otRangeLabel": "사 7:14",
+   "note": "처녀 잉태 임마누엘 예언"
+  },
+  {
+   "ntVerseIds": [
+    "40002006"
+   ],
+   "otVerseIds": [
+    "33005002"
+   ],
+   "ntRangeLabel": "마 2:6",
+   "otRangeLabel": "미 5:2",
+   "note": "베들레헴 통치자 예언"
+  },
+  {
+   "ntVerseIds": [
+    "40002015"
+   ],
+   "otVerseIds": [
+    "28011001"
+   ],
+   "ntRangeLabel": "마 2:15",
+   "otRangeLabel": "호 11:1",
+   "note": "애굽에서 아들을 부름"
+  },
+  {
+   "ntVerseIds": [
+    "40002018"
+   ],
+   "otVerseIds": [
+    "24031015"
+   ],
+   "ntRangeLabel": "마 2:18",
+   "otRangeLabel": "렘 31:15",
+   "note": "라헬이 자식 위해 애곡"
+  },
+  {
+   "ntVerseIds": [
+    "40003003"
+   ],
+   "otVerseIds": [
+    "23040003"
+   ],
+   "ntRangeLabel": "마 3:3",
+   "otRangeLabel": "사 40:3",
+   "note": "광야 외치는 자의 소리"
+  },
+  {
+   "ntVerseIds": [
+    "40004004"
+   ],
+   "otVerseIds": [
+    "05008003"
+   ],
+   "ntRangeLabel": "마 4:4",
+   "otRangeLabel": "신 8:3",
+   "note": "떡으로만 살 것 아님"
+  },
+  {
+   "ntVerseIds": [
+    "40004006"
+   ],
+   "otVerseIds": [
+    "19091011",
+    "19091012"
+   ],
+   "ntRangeLabel": "마 4:6",
+   "otRangeLabel": "시 91:11-12",
+   "note": "천사가 발 부딪히지 않게"
+  },
+  {
+   "ntVerseIds": [
+    "40004007"
+   ],
+   "otVerseIds": [
+    "05006016"
+   ],
+   "ntRangeLabel": "마 4:7",
+   "otRangeLabel": "신 6:16",
+   "note": "주 하나님을 시험 말라"
+  },
+  {
+   "ntVerseIds": [
+    "40004010"
+   ],
+   "otVerseIds": [
+    "05006013"
+   ],
+   "ntRangeLabel": "마 4:10",
+   "otRangeLabel": "신 6:13",
+   "note": "주만 경배하고 섬기라"
+  },
+  {
+   "ntVerseIds": [
+    "40004015",
+    "40004016"
+   ],
+   "otVerseIds": [
+    "23009001",
+    "23009002"
+   ],
+   "ntRangeLabel": "마 4:15-16",
+   "otRangeLabel": "사 9:1-2",
+   "note": "갈릴리 흑암 백성 큰 빛"
+  },
+  {
+   "ntVerseIds": [
+    "40005021"
+   ],
+   "otVerseIds": [
+    "02020013"
+   ],
+   "ntRangeLabel": "마 5:21",
+   "otRangeLabel": "출 20:13",
+   "note": "살인하지 말라 계명"
+  },
+  {
+   "ntVerseIds": [
+    "40005027"
+   ],
+   "otVerseIds": [
+    "02020014"
+   ],
+   "ntRangeLabel": "마 5:27",
+   "otRangeLabel": "출 20:14",
+   "note": "간음하지 말라 계명"
+  },
+  {
+   "ntVerseIds": [
+    "40005031"
+   ],
+   "otVerseIds": [
+    "05024001"
+   ],
+   "ntRangeLabel": "마 5:31",
+   "otRangeLabel": "신 24:1",
+   "note": "이혼 증서 규정"
+  },
+  {
+   "ntVerseIds": [
+    "40005033"
+   ],
+   "otVerseIds": [
+    "03019012"
+   ],
+   "ntRangeLabel": "마 5:33",
+   "otRangeLabel": "레 19:12",
+   "note": "헛 맹세 금지"
+  },
+  {
+   "ntVerseIds": [
+    "40005034",
+    "40005035"
+   ],
+   "otVerseIds": [
+    "23066001"
+   ],
+   "ntRangeLabel": "마 5:34-35",
+   "otRangeLabel": "사 66:1",
+   "note": "하늘은 보좌 땅은 발등상"
+  },
+  {
+   "ntVerseIds": [
+    "40005038"
+   ],
+   "otVerseIds": [
+    "02021024"
+   ],
+   "ntRangeLabel": "마 5:38",
+   "otRangeLabel": "출 21:24",
+   "note": "눈은 눈 이는 이"
+  },
+  {
+   "ntVerseIds": [
+    "40005043"
+   ],
+   "otVerseIds": [
+    "03019018"
+   ],
+   "ntRangeLabel": "마 5:43",
+   "otRangeLabel": "레 19:18",
+   "note": "이웃 사랑하라 계명"
+  },
+  {
+   "ntVerseIds": [
+    "40008017"
+   ],
+   "otVerseIds": [
+    "23053004"
+   ],
+   "ntRangeLabel": "마 8:17",
+   "otRangeLabel": "사 53:4",
+   "note": "연약함과 병 짊어지심"
+  },
+  {
+   "ntVerseIds": [
+    "40009013"
+   ],
+   "otVerseIds": [
+    "28006006"
+   ],
+   "ntRangeLabel": "마 9:13",
+   "otRangeLabel": "호 6:6",
+   "note": "자비 원하고 제사 아님"
+  },
+  {
+   "ntVerseIds": [
+    "40010035",
+    "40010036"
+   ],
+   "otVerseIds": [
+    "33007006"
+   ],
+   "ntRangeLabel": "마 10:35-36",
+   "otRangeLabel": "미 7:6",
+   "note": "집안 식구가 원수 됨"
+  },
+  {
+   "ntVerseIds": [
+    "40011005"
+   ],
+   "otVerseIds": [
+    "23035005",
+    "23035006"
+   ],
+   "ntRangeLabel": "마 11:5",
+   "otRangeLabel": "사 35:5-6",
+   "note": "소경 보고 못걷는자 걸음"
+  },
+  {
+   "ntVerseIds": [
+    "40011005"
+   ],
+   "otVerseIds": [
+    "23061001"
+   ],
+   "ntRangeLabel": "마 11:5",
+   "otRangeLabel": "사 61:1",
+   "note": "가난한 자에 복음 전파"
+  },
+  {
+   "ntVerseIds": [
+    "40011010"
+   ],
+   "otVerseIds": [
+    "39003001"
+   ],
+   "ntRangeLabel": "마 11:10",
+   "otRangeLabel": "말 3:1",
+   "note": "사자를 앞서 보냄"
+  },
+  {
+   "ntVerseIds": [
+    "40012007"
+   ],
+   "otVerseIds": [
+    "28006006"
+   ],
+   "ntRangeLabel": "마 12:7",
+   "otRangeLabel": "호 6:6",
+   "note": "자비 원함 재인용"
+  },
+  {
+   "ntVerseIds": [
+    "40012018",
+    "40012019",
+    "40012020",
+    "40012021"
+   ],
+   "otVerseIds": [
+    "23042001",
+    "23042002",
+    "23042003",
+    "23042004"
+   ],
+   "ntRangeLabel": "마 12:18-21",
+   "otRangeLabel": "사 42:1-4",
+   "note": "택한 종 이방에 소망"
+  },
+  {
+   "ntVerseIds": [
+    "40013014",
+    "40013015"
+   ],
+   "otVerseIds": [
+    "23006009",
+    "23006010"
+   ],
+   "ntRangeLabel": "마 13:14-15",
+   "otRangeLabel": "사 6:9-10",
+   "note": "듣고도 깨닫지 못함"
+  },
+  {
+   "ntVerseIds": [
+    "40013035"
+   ],
+   "otVerseIds": [
+    "19078002"
+   ],
+   "ntRangeLabel": "마 13:35",
+   "otRangeLabel": "시 78:2",
+   "note": "비유로 감추인 것 드러냄"
+  },
+  {
+   "ntVerseIds": [
+    "40015004"
+   ],
+   "otVerseIds": [
+    "02020012"
+   ],
+   "ntRangeLabel": "마 15:4",
+   "otRangeLabel": "출 20:12",
+   "note": "부모 공경 계명"
+  },
+  {
+   "ntVerseIds": [
+    "40015004"
+   ],
+   "otVerseIds": [
+    "02021017"
+   ],
+   "ntRangeLabel": "마 15:4",
+   "otRangeLabel": "출 21:17",
+   "note": "부모 훼방자 사형"
+  },
+  {
+   "ntVerseIds": [
+    "40015008",
+    "40015009"
+   ],
+   "otVerseIds": [
+    "23029013"
+   ],
+   "ntRangeLabel": "마 15:8-9",
+   "otRangeLabel": "사 29:13",
+   "note": "입술 공경 마음은 멀음"
+  },
+  {
+   "ntVerseIds": [
+    "40018016"
+   ],
+   "otVerseIds": [
+    "05019015"
+   ],
+   "ntRangeLabel": "마 18:16",
+   "otRangeLabel": "신 19:15",
+   "note": "두세 증인의 확증"
+  },
+  {
+   "ntVerseIds": [
+    "40019004"
+   ],
+   "otVerseIds": [
+    "01001027"
+   ],
+   "ntRangeLabel": "마 19:4",
+   "otRangeLabel": "창 1:27",
+   "note": "남자와 여자로 지으심"
+  },
+  {
+   "ntVerseIds": [
+    "40019005"
+   ],
+   "otVerseIds": [
+    "01002024"
+   ],
+   "ntRangeLabel": "마 19:5",
+   "otRangeLabel": "창 2:24",
+   "note": "부모 떠나 한 몸 이룸"
+  },
+  {
+   "ntVerseIds": [
+    "40019007"
+   ],
+   "otVerseIds": [
+    "05024001"
+   ],
+   "ntRangeLabel": "마 19:7",
+   "otRangeLabel": "신 24:1",
+   "note": "이혼 증서 재인용"
+  },
+  {
+   "ntVerseIds": [
+    "40019018",
+    "40019019"
+   ],
+   "otVerseIds": [
+    "02020012",
+    "02020013",
+    "02020014",
+    "02020015",
+    "02020016"
+   ],
+   "ntRangeLabel": "마 19:18-19",
+   "otRangeLabel": "출 20:12-16",
+   "note": "십계명 다섯 계명 나열"
+  },
+  {
+   "ntVerseIds": [
+    "40019019"
+   ],
+   "otVerseIds": [
+    "03019018"
+   ],
+   "ntRangeLabel": "마 19:19",
+   "otRangeLabel": "레 19:18",
+   "note": "이웃 사랑 재인용"
+  },
+  {
+   "ntVerseIds": [
+    "40021005"
+   ],
+   "otVerseIds": [
+    "38009009"
+   ],
+   "ntRangeLabel": "마 21:5",
+   "otRangeLabel": "슥 9:9",
+   "note": "겸손한 왕 나귀 타고 옴"
+  },
+  {
+   "ntVerseIds": [
+    "40021009"
+   ],
+   "otVerseIds": [
+    "19118026"
+   ],
+   "ntRangeLabel": "마 21:9",
+   "otRangeLabel": "시 118:26",
+   "note": "주의 이름으로 오시는 이"
+  },
+  {
+   "ntVerseIds": [
+    "40021013"
+   ],
+   "otVerseIds": [
+    "23056007"
+   ],
+   "ntRangeLabel": "마 21:13",
+   "otRangeLabel": "사 56:7",
+   "note": "내 집은 기도하는 집"
+  },
+  {
+   "ntVerseIds": [
+    "40021013"
+   ],
+   "otVerseIds": [
+    "24007011"
+   ],
+   "ntRangeLabel": "마 21:13",
+   "otRangeLabel": "렘 7:11",
+   "note": "강도의 소굴"
+  },
+  {
+   "ntVerseIds": [
+    "40021016"
+   ],
+   "otVerseIds": [
+    "19008002"
+   ],
+   "ntRangeLabel": "마 21:16",
+   "otRangeLabel": "시 8:2",
+   "note": "어린아이 입의 찬미"
+  },
+  {
+   "ntVerseIds": [
+    "40021042"
+   ],
+   "otVerseIds": [
+    "19118022",
+    "19118023"
+   ],
+   "ntRangeLabel": "마 21:42",
+   "otRangeLabel": "시 118:22-23",
+   "note": "버린 돌이 모퉁잇돌 됨"
+  },
+  {
+   "ntVerseIds": [
+    "40022024"
+   ],
+   "otVerseIds": [
+    "05025005"
+   ],
+   "ntRangeLabel": "마 22:24",
+   "otRangeLabel": "신 25:5",
+   "note": "계대결혼 규정"
+  },
+  {
+   "ntVerseIds": [
+    "40022032"
+   ],
+   "otVerseIds": [
+    "02003006"
+   ],
+   "ntRangeLabel": "마 22:32",
+   "otRangeLabel": "출 3:6",
+   "note": "아브라함 이삭 야곱 하나님"
+  },
+  {
+   "ntVerseIds": [
+    "40022037"
+   ],
+   "otVerseIds": [
+    "05006005"
+   ],
+   "ntRangeLabel": "마 22:37",
+   "otRangeLabel": "신 6:5",
+   "note": "마음 다해 하나님 사랑"
+  },
+  {
+   "ntVerseIds": [
+    "40022039"
+   ],
+   "otVerseIds": [
+    "03019018"
+   ],
+   "ntRangeLabel": "마 22:39",
+   "otRangeLabel": "레 19:18",
+   "note": "이웃 사랑 재인용"
+  },
+  {
+   "ntVerseIds": [
+    "40022044"
+   ],
+   "otVerseIds": [
+    "19110001"
+   ],
+   "ntRangeLabel": "마 22:44",
+   "otRangeLabel": "시 110:1",
+   "note": "내 우편에 앉으라"
+  },
+  {
+   "ntVerseIds": [
+    "40023039"
+   ],
+   "otVerseIds": [
+    "19118026"
+   ],
+   "ntRangeLabel": "마 23:39",
+   "otRangeLabel": "시 118:26",
+   "note": "주의 이름 재인용"
+  },
+  {
+   "ntVerseIds": [
+    "40024015"
+   ],
+   "otVerseIds": [
+    "27009027"
+   ],
+   "ntRangeLabel": "마 24:15",
+   "otRangeLabel": "단 9:27",
+   "note": "멸망의 가증한 것"
+  },
+  {
+   "ntVerseIds": [
+    "40026031"
+   ],
+   "otVerseIds": [
+    "38013007"
+   ],
+   "ntRangeLabel": "마 26:31",
+   "otRangeLabel": "슥 13:7",
+   "note": "목자를 치면 양 흩어짐"
+  },
+  {
+   "ntVerseIds": [
+    "40027009",
+    "40027010"
+   ],
+   "otVerseIds": [
+    "38011012",
+    "38011013"
+   ],
+   "ntRangeLabel": "마 27:9-10",
+   "otRangeLabel": "슥 11:12-13",
+   "note": "은 삼십에 판 값 토기장이"
+  },
+  {
+   "ntVerseIds": [
+    "40027046"
+   ],
+   "otVerseIds": [
+    "19022001"
+   ],
+   "ntRangeLabel": "마 27:46",
+   "otRangeLabel": "시 22:1",
+   "note": "어찌 나를 버리셨나이까"
+  },
+  {
+   "ntVerseIds": [
+    "41001002"
+   ],
+   "otVerseIds": [
+    "39003001"
+   ],
+   "ntRangeLabel": "막 1:2",
+   "otRangeLabel": "말 3:1",
+   "note": "사자를 앞서 보냄"
+  },
+  {
+   "ntVerseIds": [
+    "41001003"
+   ],
+   "otVerseIds": [
+    "23040003"
+   ],
+   "ntRangeLabel": "막 1:3",
+   "otRangeLabel": "사 40:3",
+   "note": "광야의 외치는 소리"
+  },
+  {
+   "ntVerseIds": [
+    "41004012"
+   ],
+   "otVerseIds": [
+    "23006009",
+    "23006010"
+   ],
+   "ntRangeLabel": "막 4:12",
+   "otRangeLabel": "사 6:9-10",
+   "note": "보아도 깨닫지 못함"
+  },
+  {
+   "ntVerseIds": [
+    "41007006",
+    "41007007"
+   ],
+   "otVerseIds": [
+    "23029013"
+   ],
+   "ntRangeLabel": "막 7:6-7",
+   "otRangeLabel": "사 29:13",
+   "note": "입술만의 공경 책망"
+  },
+  {
+   "ntVerseIds": [
+    "41007010"
+   ],
+   "otVerseIds": [
+    "02020012"
+   ],
+   "ntRangeLabel": "막 7:10",
+   "otRangeLabel": "출 20:12",
+   "note": "부모 공경 계명"
+  },
+  {
+   "ntVerseIds": [
+    "41007010"
+   ],
+   "otVerseIds": [
+    "02021017"
+   ],
+   "ntRangeLabel": "막 7:10",
+   "otRangeLabel": "출 21:17",
+   "note": "부모 비방자는 죽임"
+  },
+  {
+   "ntVerseIds": [
+    "41009048"
+   ],
+   "otVerseIds": [
+    "23066024"
+   ],
+   "ntRangeLabel": "막 9:48",
+   "otRangeLabel": "사 66:24",
+   "note": "구더기·불 꺼지지 않음"
+  },
+  {
+   "ntVerseIds": [
+    "41010006"
+   ],
+   "otVerseIds": [
+    "01001027"
+   ],
+   "ntRangeLabel": "막 10:6",
+   "otRangeLabel": "창 1:27",
+   "note": "남자와 여자로 창조"
+  },
+  {
+   "ntVerseIds": [
+    "41010007",
+    "41010008"
+   ],
+   "otVerseIds": [
+    "01002024"
+   ],
+   "ntRangeLabel": "막 10:7-8",
+   "otRangeLabel": "창 2:24",
+   "note": "둘이 한 몸이 됨"
+  },
+  {
+   "ntVerseIds": [
+    "41010019"
+   ],
+   "otVerseIds": [
+    "02020012",
+    "02020013",
+    "02020014",
+    "02020015",
+    "02020016"
+   ],
+   "ntRangeLabel": "막 10:19",
+   "otRangeLabel": "출 20:12-16",
+   "note": "십계명 인용"
+  },
+  {
+   "ntVerseIds": [
+    "41011009",
+    "41011010"
+   ],
+   "otVerseIds": [
+    "19118025",
+    "19118026"
+   ],
+   "ntRangeLabel": "막 11:9-10",
+   "otRangeLabel": "시 118:25-26",
+   "note": "호산나 찬송"
+  },
+  {
+   "ntVerseIds": [
+    "41011017"
+   ],
+   "otVerseIds": [
+    "23056007"
+   ],
+   "ntRangeLabel": "막 11:17",
+   "otRangeLabel": "사 56:7",
+   "note": "만민의 기도하는 집"
+  },
+  {
+   "ntVerseIds": [
+    "41011017"
+   ],
+   "otVerseIds": [
+    "24007011"
+   ],
+   "ntRangeLabel": "막 11:17",
+   "otRangeLabel": "렘 7:11",
+   "note": "강도의 소굴"
+  },
+  {
+   "ntVerseIds": [
+    "41012010",
+    "41012011"
+   ],
+   "otVerseIds": [
+    "19118022",
+    "19118023"
+   ],
+   "ntRangeLabel": "막 12:10-11",
+   "otRangeLabel": "시 118:22-23",
+   "note": "버린 돌이 머릿돌 됨"
+  },
+  {
+   "ntVerseIds": [
+    "41012019"
+   ],
+   "otVerseIds": [
+    "05025005"
+   ],
+   "ntRangeLabel": "막 12:19",
+   "otRangeLabel": "신 25:5",
+   "note": "계대결혼 규정"
+  },
+  {
+   "ntVerseIds": [
+    "41012026"
+   ],
+   "otVerseIds": [
+    "02003006"
+   ],
+   "ntRangeLabel": "막 12:26",
+   "otRangeLabel": "출 3:6",
+   "note": "아브라함의 하나님"
+  },
+  {
+   "ntVerseIds": [
+    "41012029",
+    "41012030"
+   ],
+   "otVerseIds": [
+    "05006004",
+    "05006005"
+   ],
+   "ntRangeLabel": "막 12:29-30",
+   "otRangeLabel": "신 6:4-5",
+   "note": "쉐마, 하나님 사랑"
+  },
+  {
+   "ntVerseIds": [
+    "41012031"
+   ],
+   "otVerseIds": [
+    "03019018"
+   ],
+   "ntRangeLabel": "막 12:31",
+   "otRangeLabel": "레 19:18",
+   "note": "이웃 사랑 계명"
+  },
+  {
+   "ntVerseIds": [
+    "41012036"
+   ],
+   "otVerseIds": [
+    "19110001"
+   ],
+   "ntRangeLabel": "막 12:36",
+   "otRangeLabel": "시 110:1",
+   "note": "내 우편에 앉으라"
+  },
+  {
+   "ntVerseIds": [
+    "41014027"
+   ],
+   "otVerseIds": [
+    "38013007"
+   ],
+   "ntRangeLabel": "막 14:27",
+   "otRangeLabel": "슥 13:7",
+   "note": "목자를 치니 양 흩어짐"
+  },
+  {
+   "ntVerseIds": [
+    "41014062"
+   ],
+   "otVerseIds": [
+    "19110001"
+   ],
+   "ntRangeLabel": "막 14:62",
+   "otRangeLabel": "시 110:1",
+   "note": "권능자 우편에 좌정"
+  },
+  {
+   "ntVerseIds": [
+    "41014062"
+   ],
+   "otVerseIds": [
+    "27007013"
+   ],
+   "ntRangeLabel": "막 14:62",
+   "otRangeLabel": "단 7:13",
+   "note": "인자가 구름 타고 옴"
+  },
+  {
+   "ntVerseIds": [
+    "41015034"
+   ],
+   "otVerseIds": [
+    "19022001"
+   ],
+   "ntRangeLabel": "막 15:34",
+   "otRangeLabel": "시 22:1",
+   "note": "어찌 나를 버리셨나이까"
+  },
+  {
+   "ntVerseIds": [
+    "42002023"
+   ],
+   "otVerseIds": [
+    "02013002"
+   ],
+   "ntRangeLabel": "눅 2:23",
+   "otRangeLabel": "출 13:2",
+   "note": "첫 태의 남자는 거룩"
+  },
+  {
+   "ntVerseIds": [
+    "42002024"
+   ],
+   "otVerseIds": [
+    "03012008"
+   ],
+   "ntRangeLabel": "눅 2:24",
+   "otRangeLabel": "레 12:8",
+   "note": "산비둘기·집비둘기 제사"
+  },
+  {
+   "ntVerseIds": [
+    "42003004",
+    "42003005",
+    "42003006"
+   ],
+   "otVerseIds": [
+    "23040003",
+    "23040004",
+    "23040005"
+   ],
+   "ntRangeLabel": "눅 3:4-6",
+   "otRangeLabel": "사 40:3-5",
+   "note": "주의 길을 예비하라"
+  },
+  {
+   "ntVerseIds": [
+    "42004004"
+   ],
+   "otVerseIds": [
+    "05008003"
+   ],
+   "ntRangeLabel": "눅 4:4",
+   "otRangeLabel": "신 8:3",
+   "note": "떡으로만 살 것 아님"
+  },
+  {
+   "ntVerseIds": [
+    "42004008"
+   ],
+   "otVerseIds": [
+    "05006013"
+   ],
+   "ntRangeLabel": "눅 4:8",
+   "otRangeLabel": "신 6:13",
+   "note": "주만 경배하고 섬김"
+  },
+  {
+   "ntVerseIds": [
+    "42004010",
+    "42004011"
+   ],
+   "otVerseIds": [
+    "19091011",
+    "19091012"
+   ],
+   "ntRangeLabel": "눅 4:10-11",
+   "otRangeLabel": "시 91:11-12",
+   "note": "천사가 지켜 줌"
+  },
+  {
+   "ntVerseIds": [
+    "42004012"
+   ],
+   "otVerseIds": [
+    "05006016"
+   ],
+   "ntRangeLabel": "눅 4:12",
+   "otRangeLabel": "신 6:16",
+   "note": "하나님을 시험 말라"
+  },
+  {
+   "ntVerseIds": [
+    "42004018",
+    "42004019"
+   ],
+   "otVerseIds": [
+    "23061001",
+    "23061002"
+   ],
+   "ntRangeLabel": "눅 4:18-19",
+   "otRangeLabel": "사 61:1-2",
+   "note": "가난한 자에게 복음"
+  },
+  {
+   "ntVerseIds": [
+    "42007027"
+   ],
+   "otVerseIds": [
+    "39003001"
+   ],
+   "ntRangeLabel": "눅 7:27",
+   "otRangeLabel": "말 3:1",
+   "note": "사자를 앞서 보냄"
+  },
+  {
+   "ntVerseIds": [
+    "42008010"
+   ],
+   "otVerseIds": [
+    "23006009"
+   ],
+   "ntRangeLabel": "눅 8:10",
+   "otRangeLabel": "사 6:9",
+   "note": "보아도 깨닫지 못함"
+  },
+  {
+   "ntVerseIds": [
+    "42010027"
+   ],
+   "otVerseIds": [
+    "05006005"
+   ],
+   "ntRangeLabel": "눅 10:27",
+   "otRangeLabel": "신 6:5",
+   "note": "하나님 사랑 계명"
+  },
+  {
+   "ntVerseIds": [
+    "42010027"
+   ],
+   "otVerseIds": [
+    "03019018"
+   ],
+   "ntRangeLabel": "눅 10:27",
+   "otRangeLabel": "레 19:18",
+   "note": "이웃 사랑 계명"
+  },
+  {
+   "ntVerseIds": [
+    "42018020"
+   ],
+   "otVerseIds": [
+    "02020012",
+    "02020013",
+    "02020014",
+    "02020015",
+    "02020016"
+   ],
+   "ntRangeLabel": "눅 18:20",
+   "otRangeLabel": "출 20:12-16",
+   "note": "십계명 인용"
+  },
+  {
+   "ntVerseIds": [
+    "42019038"
+   ],
+   "otVerseIds": [
+    "19118026"
+   ],
+   "ntRangeLabel": "눅 19:38",
+   "otRangeLabel": "시 118:26",
+   "note": "주의 이름으로 오는 왕"
+  },
+  {
+   "ntVerseIds": [
+    "42019046"
+   ],
+   "otVerseIds": [
+    "23056007"
+   ],
+   "ntRangeLabel": "눅 19:46",
+   "otRangeLabel": "사 56:7",
+   "note": "만민의 기도하는 집"
+  },
+  {
+   "ntVerseIds": [
+    "42019046"
+   ],
+   "otVerseIds": [
+    "24007011"
+   ],
+   "ntRangeLabel": "눅 19:46",
+   "otRangeLabel": "렘 7:11",
+   "note": "강도의 소굴"
+  },
+  {
+   "ntVerseIds": [
+    "42020017"
+   ],
+   "otVerseIds": [
+    "19118022"
+   ],
+   "ntRangeLabel": "눅 20:17",
+   "otRangeLabel": "시 118:22",
+   "note": "버린 돌이 머릿돌 됨"
+  },
+  {
+   "ntVerseIds": [
+    "42020028"
+   ],
+   "otVerseIds": [
+    "05025005"
+   ],
+   "ntRangeLabel": "눅 20:28",
+   "otRangeLabel": "신 25:5",
+   "note": "계대결혼 규정"
+  },
+  {
+   "ntVerseIds": [
+    "42020037"
+   ],
+   "otVerseIds": [
+    "02003006"
+   ],
+   "ntRangeLabel": "눅 20:37",
+   "otRangeLabel": "출 3:6",
+   "note": "아브라함의 하나님"
+  },
+  {
+   "ntVerseIds": [
+    "42020042",
+    "42020043"
+   ],
+   "otVerseIds": [
+    "19110001"
+   ],
+   "ntRangeLabel": "눅 20:42-43",
+   "otRangeLabel": "시 110:1",
+   "note": "내 우편에 앉으라"
+  },
+  {
+   "ntVerseIds": [
+    "42022037"
+   ],
+   "otVerseIds": [
+    "23053012"
+   ],
+   "ntRangeLabel": "눅 22:37",
+   "otRangeLabel": "사 53:12",
+   "note": "불법자의 동류로 여김"
+  },
+  {
+   "ntVerseIds": [
+    "42023046"
+   ],
+   "otVerseIds": [
+    "19031005"
+   ],
+   "ntRangeLabel": "눅 23:46",
+   "otRangeLabel": "시 31:5",
+   "note": "내 영혼을 부탁함"
+  },
+  {
+   "ntVerseIds": [
+    "43001023"
+   ],
+   "otVerseIds": [
+    "23040003"
+   ],
+   "ntRangeLabel": "요 1:23",
+   "otRangeLabel": "사 40:3",
+   "note": "광야의 외치는 소리"
+  },
+  {
+   "ntVerseIds": [
+    "43002017"
+   ],
+   "otVerseIds": [
+    "19069009"
+   ],
+   "ntRangeLabel": "요 2:17",
+   "otRangeLabel": "시 69:9",
+   "note": "성전 향한 열심이 삼킴"
+  },
+  {
+   "ntVerseIds": [
+    "43006031"
+   ],
+   "otVerseIds": [
+    "19078024"
+   ],
+   "ntRangeLabel": "요 6:31",
+   "otRangeLabel": "시 78:24",
+   "note": "하늘 양식(만나)"
+  },
+  {
+   "ntVerseIds": [
+    "43006045"
+   ],
+   "otVerseIds": [
+    "23054013"
+   ],
+   "ntRangeLabel": "요 6:45",
+   "otRangeLabel": "사 54:13",
+   "note": "하나님께 가르침 받음"
+  },
+  {
+   "ntVerseIds": [
+    "43007042"
+   ],
+   "otVerseIds": [
+    "33005002"
+   ],
+   "ntRangeLabel": "요 7:42",
+   "otRangeLabel": "미 5:2",
+   "note": "베들레헴에서 나신 그리스도"
+  },
+  {
+   "ntVerseIds": [
+    "43008017"
+   ],
+   "otVerseIds": [
+    "05019015"
+   ],
+   "ntRangeLabel": "요 8:17",
+   "otRangeLabel": "신 19:15",
+   "note": "두 증인의 증언"
+  },
+  {
+   "ntVerseIds": [
+    "43010034"
+   ],
+   "otVerseIds": [
+    "19082006"
+   ],
+   "ntRangeLabel": "요 10:34",
+   "otRangeLabel": "시 82:6",
+   "note": "너희를 신이라 하심"
+  },
+  {
+   "ntVerseIds": [
+    "43012013"
+   ],
+   "otVerseIds": [
+    "19118025",
+    "19118026"
+   ],
+   "ntRangeLabel": "요 12:13",
+   "otRangeLabel": "시 118:25-26",
+   "note": "호산나 찬송"
+  },
+  {
+   "ntVerseIds": [
+    "43012015"
+   ],
+   "otVerseIds": [
+    "38009009"
+   ],
+   "ntRangeLabel": "요 12:15",
+   "otRangeLabel": "슥 9:9",
+   "note": "나귀 타고 오는 왕"
+  },
+  {
+   "ntVerseIds": [
+    "43012038"
+   ],
+   "otVerseIds": [
+    "23053001"
+   ],
+   "ntRangeLabel": "요 12:38",
+   "otRangeLabel": "사 53:1",
+   "note": "전한 바 누가 믿었나"
+  },
+  {
+   "ntVerseIds": [
+    "43012040"
+   ],
+   "otVerseIds": [
+    "23006010"
+   ],
+   "ntRangeLabel": "요 12:40",
+   "otRangeLabel": "사 6:10",
+   "note": "눈멀고 마음 완고케 함"
+  },
+  {
+   "ntVerseIds": [
+    "43013018"
+   ],
+   "otVerseIds": [
+    "19041009"
+   ],
+   "ntRangeLabel": "요 13:18",
+   "otRangeLabel": "시 41:9",
+   "note": "내 떡 먹는 자의 배반"
+  },
+  {
+   "ntVerseIds": [
+    "43015025"
+   ],
+   "otVerseIds": [
+    "19069004"
+   ],
+   "ntRangeLabel": "요 15:25",
+   "otRangeLabel": "시 69:4",
+   "note": "까닭 없이 미움받음"
+  },
+  {
+   "ntVerseIds": [
+    "43019024"
+   ],
+   "otVerseIds": [
+    "19022018"
+   ],
+   "ntRangeLabel": "요 19:24",
+   "otRangeLabel": "시 22:18",
+   "note": "옷을 나눠 제비 뽑음"
+  },
+  {
+   "ntVerseIds": [
+    "43019028"
+   ],
+   "otVerseIds": [
+    "19069021"
+   ],
+   "ntRangeLabel": "요 19:28",
+   "otRangeLabel": "시 69:21",
+   "note": "내가 목마르다"
+  },
+  {
+   "ntVerseIds": [
+    "43019036"
+   ],
+   "otVerseIds": [
+    "02012046"
+   ],
+   "ntRangeLabel": "요 19:36",
+   "otRangeLabel": "출 12:46",
+   "note": "뼈가 꺾이지 않음"
+  },
+  {
+   "ntVerseIds": [
+    "43019037"
+   ],
+   "otVerseIds": [
+    "38012010"
+   ],
+   "ntRangeLabel": "요 19:37",
+   "otRangeLabel": "슥 12:10",
+   "note": "찌른 자를 보리라"
+  },
+  {
+   "ntVerseIds": [
+    "44001020"
+   ],
+   "otVerseIds": [
+    "19069025"
+   ],
+   "ntRangeLabel": "행 1:20",
+   "otRangeLabel": "시 69:25",
+   "note": "그 거처 황폐하리라 예언"
+  },
+  {
+   "ntVerseIds": [
+    "44001020"
+   ],
+   "otVerseIds": [
+    "19109008"
+   ],
+   "ntRangeLabel": "행 1:20",
+   "otRangeLabel": "시 109:8",
+   "note": "그 직분 타인이 취함"
+  },
+  {
+   "ntVerseIds": [
+    "44002017",
+    "44002018",
+    "44002019",
+    "44002020",
+    "44002021"
+   ],
+   "otVerseIds": [
+    "29002028",
+    "29002029",
+    "29002030",
+    "29002031",
+    "29002032"
+   ],
+   "ntRangeLabel": "행 2:17-21",
+   "otRangeLabel": "욜 2:28-32",
+   "note": "말세에 성령 부어주심"
+  },
+  {
+   "ntVerseIds": [
+    "44002025",
+    "44002026",
+    "44002027",
+    "44002028"
+   ],
+   "otVerseIds": [
+    "19016008",
+    "19016009",
+    "19016010",
+    "19016011"
+   ],
+   "ntRangeLabel": "행 2:25-28",
+   "otRangeLabel": "시 16:8-11",
+   "note": "주의 거룩한 자 썩지 않음"
+  },
+  {
+   "ntVerseIds": [
+    "44002030"
+   ],
+   "otVerseIds": [
+    "19132011"
+   ],
+   "ntRangeLabel": "행 2:30",
+   "otRangeLabel": "시 132:11",
+   "note": "다윗 자손 왕위 계승 맹세"
+  },
+  {
+   "ntVerseIds": [
+    "44002034",
+    "44002035"
+   ],
+   "otVerseIds": [
+    "19110001"
+   ],
+   "ntRangeLabel": "행 2:34-35",
+   "otRangeLabel": "시 110:1",
+   "note": "내 우편에 앉으라"
+  },
+  {
+   "ntVerseIds": [
+    "44003022"
+   ],
+   "otVerseIds": [
+    "05018015"
+   ],
+   "ntRangeLabel": "행 3:22",
+   "otRangeLabel": "신 18:15",
+   "note": "나와 같은 선지자 세우리라"
+  },
+  {
+   "ntVerseIds": [
+    "44003023"
+   ],
+   "otVerseIds": [
+    "05018019"
+   ],
+   "ntRangeLabel": "행 3:23",
+   "otRangeLabel": "신 18:19",
+   "note": "안 들으면 백성 중 멸망"
+  },
+  {
+   "ntVerseIds": [
+    "44003025"
+   ],
+   "otVerseIds": [
+    "01022018"
+   ],
+   "ntRangeLabel": "행 3:25",
+   "otRangeLabel": "창 22:18",
+   "note": "네 씨로 만민이 복 받으리라"
+  },
+  {
+   "ntVerseIds": [
+    "44004011"
+   ],
+   "otVerseIds": [
+    "19118022"
+   ],
+   "ntRangeLabel": "행 4:11",
+   "otRangeLabel": "시 118:22",
+   "note": "버린 돌이 모퉁이 머릿돌"
+  },
+  {
+   "ntVerseIds": [
+    "44004025",
+    "44004026"
+   ],
+   "otVerseIds": [
+    "19002001",
+    "19002002"
+   ],
+   "ntRangeLabel": "행 4:25-26",
+   "otRangeLabel": "시 2:1-2",
+   "note": "열방과 열왕이 주를 대적"
+  },
+  {
+   "ntVerseIds": [
+    "44007003"
+   ],
+   "otVerseIds": [
+    "01012001"
+   ],
+   "ntRangeLabel": "행 7:3",
+   "otRangeLabel": "창 12:1",
+   "note": "본토 친척 떠나라 명령"
+  },
+  {
+   "ntVerseIds": [
+    "44007006",
+    "44007007"
+   ],
+   "otVerseIds": [
+    "01015013",
+    "01015014"
+   ],
+   "ntRangeLabel": "행 7:6-7",
+   "otRangeLabel": "창 15:13-14",
+   "note": "사백년 이방서 종살이 예언"
+  },
+  {
+   "ntVerseIds": [
+    "44007018"
+   ],
+   "otVerseIds": [
+    "02001008"
+   ],
+   "ntRangeLabel": "행 7:18",
+   "otRangeLabel": "출 1:8",
+   "note": "요셉 알지 못하는 새 왕"
+  },
+  {
+   "ntVerseIds": [
+    "44007027",
+    "44007028"
+   ],
+   "otVerseIds": [
+    "02002014"
+   ],
+   "ntRangeLabel": "행 7:27-28",
+   "otRangeLabel": "출 2:14",
+   "note": "누가 너를 관원 삼았느냐"
+  },
+  {
+   "ntVerseIds": [
+    "44007032"
+   ],
+   "otVerseIds": [
+    "02003006"
+   ],
+   "ntRangeLabel": "행 7:32",
+   "otRangeLabel": "출 3:6",
+   "note": "아브라함 이삭 야곱의 하나님"
+  },
+  {
+   "ntVerseIds": [
+    "44007033"
+   ],
+   "otVerseIds": [
+    "02003005"
+   ],
+   "ntRangeLabel": "행 7:33",
+   "otRangeLabel": "출 3:5",
+   "note": "네 발의 신을 벗으라 거룩한 땅"
+  },
+  {
+   "ntVerseIds": [
+    "44007034"
+   ],
+   "otVerseIds": [
+    "02003007",
+    "02003008"
+   ],
+   "ntRangeLabel": "행 7:34",
+   "otRangeLabel": "출 3:7-8",
+   "note": "내 백성 고난 보고 건지리라"
+  },
+  {
+   "ntVerseIds": [
+    "44007037"
+   ],
+   "otVerseIds": [
+    "05018015"
+   ],
+   "ntRangeLabel": "행 7:37",
+   "otRangeLabel": "신 18:15",
+   "note": "나와 같은 선지자 세우리라"
+  },
+  {
+   "ntVerseIds": [
+    "44007040"
+   ],
+   "otVerseIds": [
+    "02032001"
+   ],
+   "ntRangeLabel": "행 7:40",
+   "otRangeLabel": "출 32:1",
+   "note": "우리 위해 신들을 만들라"
+  },
+  {
+   "ntVerseIds": [
+    "44007042",
+    "44007043"
+   ],
+   "otVerseIds": [
+    "30005025",
+    "30005026",
+    "30005027"
+   ],
+   "ntRangeLabel": "행 7:42-43",
+   "otRangeLabel": "암 5:25-27",
+   "note": "광야 사십년 우상 숭배 심판"
+  },
+  {
+   "ntVerseIds": [
+    "44007049",
+    "44007050"
+   ],
+   "otVerseIds": [
+    "23066001",
+    "23066002"
+   ],
+   "ntRangeLabel": "행 7:49-50",
+   "otRangeLabel": "사 66:1-2",
+   "note": "하늘은 보좌 땅은 발등상"
+  },
+  {
+   "ntVerseIds": [
+    "44008032",
+    "44008033"
+   ],
+   "otVerseIds": [
+    "23053007",
+    "23053008"
+   ],
+   "ntRangeLabel": "행 8:32-33",
+   "otRangeLabel": "사 53:7-8",
+   "note": "도살장 끌려가는 어린양"
+  },
+  {
+   "ntVerseIds": [
+    "44013022"
+   ],
+   "otVerseIds": [
+    "19089020"
+   ],
+   "ntRangeLabel": "행 13:22",
+   "otRangeLabel": "시 89:20",
+   "note": "내가 만난 이새의 아들 다윗"
+  },
+  {
+   "ntVerseIds": [
+    "44013022"
+   ],
+   "otVerseIds": [
+    "09013014"
+   ],
+   "ntRangeLabel": "행 13:22",
+   "otRangeLabel": "삼상 13:14",
+   "note": "내 마음에 합한 사람"
+  },
+  {
+   "ntVerseIds": [
+    "44013033"
+   ],
+   "otVerseIds": [
+    "19002007"
+   ],
+   "ntRangeLabel": "행 13:33",
+   "otRangeLabel": "시 2:7",
+   "note": "너는 내 아들 오늘 낳았다"
+  },
+  {
+   "ntVerseIds": [
+    "44013034"
+   ],
+   "otVerseIds": [
+    "23055003"
+   ],
+   "ntRangeLabel": "행 13:34",
+   "otRangeLabel": "사 55:3",
+   "note": "다윗에게 허락한 확실한 은혜"
+  },
+  {
+   "ntVerseIds": [
+    "44013035"
+   ],
+   "otVerseIds": [
+    "19016010"
+   ],
+   "ntRangeLabel": "행 13:35",
+   "otRangeLabel": "시 16:10",
+   "note": "거룩한 자 썩음 당치 않음"
+  },
+  {
+   "ntVerseIds": [
+    "44013041"
+   ],
+   "otVerseIds": [
+    "35001005"
+   ],
+   "ntRangeLabel": "행 13:41",
+   "otRangeLabel": "합 1:5",
+   "note": "너희 날에 행할 일 예언"
+  },
+  {
+   "ntVerseIds": [
+    "44013047"
+   ],
+   "otVerseIds": [
+    "23049006"
+   ],
+   "ntRangeLabel": "행 13:47",
+   "otRangeLabel": "사 49:6",
+   "note": "이방의 빛 땅끝까지 구원"
+  },
+  {
+   "ntVerseIds": [
+    "44015016",
+    "44015017"
+   ],
+   "otVerseIds": [
+    "30009011",
+    "30009012"
+   ],
+   "ntRangeLabel": "행 15:16-17",
+   "otRangeLabel": "암 9:11-12",
+   "note": "다윗의 무너진 장막 재건"
+  },
+  {
+   "ntVerseIds": [
+    "44023005"
+   ],
+   "otVerseIds": [
+    "02022028"
+   ],
+   "ntRangeLabel": "행 23:5",
+   "otRangeLabel": "출 22:28",
+   "note": "백성의 관원을 비방 말라"
+  },
+  {
+   "ntVerseIds": [
+    "44028026",
+    "44028027"
+   ],
+   "otVerseIds": [
+    "23006009",
+    "23006010"
+   ],
+   "ntRangeLabel": "행 28:26-27",
+   "otRangeLabel": "사 6:9-10",
+   "note": "듣기는 들어도 깨닫지 못함"
+  },
+  {
+   "ntVerseIds": [
+    "45001017"
+   ],
+   "otVerseIds": [
+    "35002004"
+   ],
+   "ntRangeLabel": "롬 1:17",
+   "otRangeLabel": "합 2:4",
+   "note": "의인은 믿음으로 살리라"
+  },
+  {
+   "ntVerseIds": [
+    "45002024"
+   ],
+   "otVerseIds": [
+    "23052005"
+   ],
+   "ntRangeLabel": "롬 2:24",
+   "otRangeLabel": "사 52:5",
+   "note": "이방인 중 하나님 이름 모독"
+  },
+  {
+   "ntVerseIds": [
+    "45003004"
+   ],
+   "otVerseIds": [
+    "19051004"
+   ],
+   "ntRangeLabel": "롬 3:4",
+   "otRangeLabel": "시 51:4",
+   "note": "주의 말씀에 의롭다 하심"
+  },
+  {
+   "ntVerseIds": [
+    "45003010",
+    "45003011",
+    "45003012"
+   ],
+   "otVerseIds": [
+    "19014001",
+    "19014002",
+    "19014003"
+   ],
+   "ntRangeLabel": "롬 3:10-12",
+   "otRangeLabel": "시 14:1-3",
+   "note": "의인은 없나니 하나도 없음"
+  },
+  {
+   "ntVerseIds": [
+    "45003013"
+   ],
+   "otVerseIds": [
+    "19005009"
+   ],
+   "ntRangeLabel": "롬 3:13",
+   "otRangeLabel": "시 5:9",
+   "note": "목구멍은 열린 무덤"
+  },
+  {
+   "ntVerseIds": [
+    "45003013"
+   ],
+   "otVerseIds": [
+    "19140003"
+   ],
+   "ntRangeLabel": "롬 3:13",
+   "otRangeLabel": "시 140:3",
+   "note": "입술에 독사의 독"
+  },
+  {
+   "ntVerseIds": [
+    "45003014"
+   ],
+   "otVerseIds": [
+    "19010007"
+   ],
+   "ntRangeLabel": "롬 3:14",
+   "otRangeLabel": "시 10:7",
+   "note": "입에 저주와 악독 가득"
+  },
+  {
+   "ntVerseIds": [
+    "45003015",
+    "45003016",
+    "45003017"
+   ],
+   "otVerseIds": [
+    "23059007",
+    "23059008"
+   ],
+   "ntRangeLabel": "롬 3:15-17",
+   "otRangeLabel": "사 59:7-8",
+   "note": "피 흘리기에 빠른 발"
+  },
+  {
+   "ntVerseIds": [
+    "45003018"
+   ],
+   "otVerseIds": [
+    "19036001"
+   ],
+   "ntRangeLabel": "롬 3:18",
+   "otRangeLabel": "시 36:1",
+   "note": "눈 앞에 하나님 두려움 없음"
+  },
+  {
+   "ntVerseIds": [
+    "45004003"
+   ],
+   "otVerseIds": [
+    "01015006"
+   ],
+   "ntRangeLabel": "롬 4:3",
+   "otRangeLabel": "창 15:6",
+   "note": "아브라함이 하나님 믿어 의롭다"
+  },
+  {
+   "ntVerseIds": [
+    "45004007",
+    "45004008"
+   ],
+   "otVerseIds": [
+    "19032001",
+    "19032002"
+   ],
+   "ntRangeLabel": "롬 4:7-8",
+   "otRangeLabel": "시 32:1-2",
+   "note": "불법 사함받은 자의 복"
+  },
+  {
+   "ntVerseIds": [
+    "45004017"
+   ],
+   "otVerseIds": [
+    "01017005"
+   ],
+   "ntRangeLabel": "롬 4:17",
+   "otRangeLabel": "창 17:5",
+   "note": "여러 민족의 아비로 삼음"
+  },
+  {
+   "ntVerseIds": [
+    "45004018"
+   ],
+   "otVerseIds": [
+    "01015005"
+   ],
+   "ntRangeLabel": "롬 4:18",
+   "otRangeLabel": "창 15:5",
+   "note": "네 후손이 이와 같으리라"
+  },
+  {
+   "ntVerseIds": [
+    "45007007"
+   ],
+   "otVerseIds": [
+    "02020017"
+   ],
+   "ntRangeLabel": "롬 7:7",
+   "otRangeLabel": "출 20:17",
+   "note": "탐내지 말라"
+  },
+  {
+   "ntVerseIds": [
+    "45008036"
+   ],
+   "otVerseIds": [
+    "19044022"
+   ],
+   "ntRangeLabel": "롬 8:36",
+   "otRangeLabel": "시 44:22",
+   "note": "종일 죽임당할 양 같음"
+  },
+  {
+   "ntVerseIds": [
+    "45009007"
+   ],
+   "otVerseIds": [
+    "01021012"
+   ],
+   "ntRangeLabel": "롬 9:7",
+   "otRangeLabel": "창 21:12",
+   "note": "이삭에게서 난 자라야 씨"
+  },
+  {
+   "ntVerseIds": [
+    "45009009"
+   ],
+   "otVerseIds": [
+    "01018010"
+   ],
+   "ntRangeLabel": "롬 9:9",
+   "otRangeLabel": "창 18:10",
+   "note": "사라가 아들을 낳으리라"
+  },
+  {
+   "ntVerseIds": [
+    "45009012"
+   ],
+   "otVerseIds": [
+    "01025023"
+   ],
+   "ntRangeLabel": "롬 9:12",
+   "otRangeLabel": "창 25:23",
+   "note": "큰 자가 어린 자를 섬김"
+  },
+  {
+   "ntVerseIds": [
+    "45009013"
+   ],
+   "otVerseIds": [
+    "39001002",
+    "39001003"
+   ],
+   "ntRangeLabel": "롬 9:13",
+   "otRangeLabel": "말 1:2-3",
+   "note": "야곱은 사랑 에서는 미움"
+  },
+  {
+   "ntVerseIds": [
+    "45009015"
+   ],
+   "otVerseIds": [
+    "02033019"
+   ],
+   "ntRangeLabel": "롬 9:15",
+   "otRangeLabel": "출 33:19",
+   "note": "긍휼히 여길 자를 긍휼히"
+  },
+  {
+   "ntVerseIds": [
+    "45009017"
+   ],
+   "otVerseIds": [
+    "02009016"
+   ],
+   "ntRangeLabel": "롬 9:17",
+   "otRangeLabel": "출 9:16",
+   "note": "바로를 세우신 목적"
+  },
+  {
+   "ntVerseIds": [
+    "45009020"
+   ],
+   "otVerseIds": [
+    "23029016"
+   ],
+   "ntRangeLabel": "롬 9:20",
+   "otRangeLabel": "사 29:16",
+   "note": "지음받은 것이 지은이께 항변"
+  },
+  {
+   "ntVerseIds": [
+    "45009025"
+   ],
+   "otVerseIds": [
+    "28002023"
+   ],
+   "ntRangeLabel": "롬 9:25",
+   "otRangeLabel": "호 2:23",
+   "note": "내 백성 아닌 자를 내 백성"
+  },
+  {
+   "ntVerseIds": [
+    "45009026"
+   ],
+   "otVerseIds": [
+    "28001010"
+   ],
+   "ntRangeLabel": "롬 9:26",
+   "otRangeLabel": "호 1:10",
+   "note": "너희는 내 백성 아니라 하던 곳"
+  },
+  {
+   "ntVerseIds": [
+    "45009027",
+    "45009028"
+   ],
+   "otVerseIds": [
+    "23010022",
+    "23010023"
+   ],
+   "ntRangeLabel": "롬 9:27-28",
+   "otRangeLabel": "사 10:22-23",
+   "note": "남은 자만 구원받으리라"
+  },
+  {
+   "ntVerseIds": [
+    "45009029"
+   ],
+   "otVerseIds": [
+    "23001009"
+   ],
+   "ntRangeLabel": "롬 9:29",
+   "otRangeLabel": "사 1:9",
+   "note": "소돔 고모라 같이 되었으리라"
+  },
+  {
+   "ntVerseIds": [
+    "45009033"
+   ],
+   "otVerseIds": [
+    "23028016"
+   ],
+   "ntRangeLabel": "롬 9:33",
+   "otRangeLabel": "사 28:16",
+   "note": "시온에 걸림돌을 두노라"
+  },
+  {
+   "ntVerseIds": [
+    "45009033"
+   ],
+   "otVerseIds": [
+    "23008014"
+   ],
+   "ntRangeLabel": "롬 9:33",
+   "otRangeLabel": "사 8:14",
+   "note": "부딪히는 돌과 거치는 반석"
+  },
+  {
+   "ntVerseIds": [
+    "45010005"
+   ],
+   "otVerseIds": [
+    "03018005"
+   ],
+   "ntRangeLabel": "롬 10:5",
+   "otRangeLabel": "레 18:5",
+   "note": "율법의 의를 행하면 삶"
+  },
+  {
+   "ntVerseIds": [
+    "45010006",
+    "45010007",
+    "45010008"
+   ],
+   "otVerseIds": [
+    "05030012",
+    "05030013",
+    "05030014"
+   ],
+   "ntRangeLabel": "롬 10:6-8",
+   "otRangeLabel": "신 30:12-14",
+   "note": "말씀이 네 입과 마음에 가까움"
+  },
+  {
+   "ntVerseIds": [
+    "45010011"
+   ],
+   "otVerseIds": [
+    "23028016"
+   ],
+   "ntRangeLabel": "롬 10:11",
+   "otRangeLabel": "사 28:16",
+   "note": "믿는 자는 부끄럽지 않음"
+  },
+  {
+   "ntVerseIds": [
+    "45010013"
+   ],
+   "otVerseIds": [
+    "29002032"
+   ],
+   "ntRangeLabel": "롬 10:13",
+   "otRangeLabel": "욜 2:32",
+   "note": "주의 이름 부르면 구원"
+  },
+  {
+   "ntVerseIds": [
+    "45010015"
+   ],
+   "otVerseIds": [
+    "23052007"
+   ],
+   "ntRangeLabel": "롬 10:15",
+   "otRangeLabel": "사 52:7",
+   "note": "좋은 소식 전하는 발"
+  },
+  {
+   "ntVerseIds": [
+    "45010016"
+   ],
+   "otVerseIds": [
+    "23053001"
+   ],
+   "ntRangeLabel": "롬 10:16",
+   "otRangeLabel": "사 53:1",
+   "note": "우리가 전한 것을 누가 믿었나"
+  },
+  {
+   "ntVerseIds": [
+    "45010018"
+   ],
+   "otVerseIds": [
+    "19019004"
+   ],
+   "ntRangeLabel": "롬 10:18",
+   "otRangeLabel": "시 19:4",
+   "note": "그 소리가 온 땅에 퍼짐"
+  },
+  {
+   "ntVerseIds": [
+    "45010019"
+   ],
+   "otVerseIds": [
+    "05032021"
+   ],
+   "ntRangeLabel": "롬 10:19",
+   "otRangeLabel": "신 32:21",
+   "note": "백성 아닌 자로 시기케 함"
+  },
+  {
+   "ntVerseIds": [
+    "45010020"
+   ],
+   "otVerseIds": [
+    "23065001"
+   ],
+   "ntRangeLabel": "롬 10:20",
+   "otRangeLabel": "사 65:1",
+   "note": "구하지 않은 자에게 나타남"
+  },
+  {
+   "ntVerseIds": [
+    "45010021"
+   ],
+   "otVerseIds": [
+    "23065002"
+   ],
+   "ntRangeLabel": "롬 10:21",
+   "otRangeLabel": "사 65:2",
+   "note": "순종치 않는 백성에 손을 폄"
+  },
+  {
+   "ntVerseIds": [
+    "45011003"
+   ],
+   "otVerseIds": [
+    "11019010"
+   ],
+   "ntRangeLabel": "롬 11:3",
+   "otRangeLabel": "왕상 19:10",
+   "note": "주의 선지자들을 죽임"
+  },
+  {
+   "ntVerseIds": [
+    "45011004"
+   ],
+   "otVerseIds": [
+    "11019018"
+   ],
+   "ntRangeLabel": "롬 11:4",
+   "otRangeLabel": "왕상 19:18",
+   "note": "바알에 무릎 꿇지 않은 칠천"
+  },
+  {
+   "ntVerseIds": [
+    "45011008"
+   ],
+   "otVerseIds": [
+    "05029004"
+   ],
+   "ntRangeLabel": "롬 11:8",
+   "otRangeLabel": "신 29:4",
+   "note": "보지 못할 눈 듣지 못할 귀"
+  },
+  {
+   "ntVerseIds": [
+    "45011008"
+   ],
+   "otVerseIds": [
+    "23029010"
+   ],
+   "ntRangeLabel": "롬 11:8",
+   "otRangeLabel": "사 29:10",
+   "note": "혼미한 심령을 주심"
+  },
+  {
+   "ntVerseIds": [
+    "45011009",
+    "45011010"
+   ],
+   "otVerseIds": [
+    "19069022",
+    "19069023"
+   ],
+   "ntRangeLabel": "롬 11:9-10",
+   "otRangeLabel": "시 69:22-23",
+   "note": "밥상이 올무와 덫이 됨"
+  },
+  {
+   "ntVerseIds": [
+    "45011026",
+    "45011027"
+   ],
+   "otVerseIds": [
+    "23059020",
+    "23059021"
+   ],
+   "ntRangeLabel": "롬 11:26-27",
+   "otRangeLabel": "사 59:20-21",
+   "note": "구원자가 시온에서 오심"
+  },
+  {
+   "ntVerseIds": [
+    "45011026",
+    "45011027"
+   ],
+   "otVerseIds": [
+    "23027009"
+   ],
+   "ntRangeLabel": "롬 11:26-27",
+   "otRangeLabel": "사 27:9",
+   "note": "그들과 세운 언약"
+  },
+  {
+   "ntVerseIds": [
+    "45011034"
+   ],
+   "otVerseIds": [
+    "23040013"
+   ],
+   "ntRangeLabel": "롬 11:34",
+   "otRangeLabel": "사 40:13",
+   "note": "누가 주의 마음을 알았으랴"
+  },
+  {
+   "ntVerseIds": [
+    "45011035"
+   ],
+   "otVerseIds": [
+    "18041011"
+   ],
+   "ntRangeLabel": "롬 11:35",
+   "otRangeLabel": "욥 41:11",
+   "note": "누가 먼저 드려 갚음 받으랴"
+  },
+  {
+   "ntVerseIds": [
+    "45012019"
+   ],
+   "otVerseIds": [
+    "05032035"
+   ],
+   "ntRangeLabel": "롬 12:19",
+   "otRangeLabel": "신 32:35",
+   "note": "원수 갚는 것이 내게 있음"
+  },
+  {
+   "ntVerseIds": [
+    "45012020"
+   ],
+   "otVerseIds": [
+    "20025021",
+    "20025022"
+   ],
+   "ntRangeLabel": "롬 12:20",
+   "otRangeLabel": "잠 25:21-22",
+   "note": "원수가 주리면 먹이라"
+  },
+  {
+   "ntVerseIds": [
+    "45013009"
+   ],
+   "otVerseIds": [
+    "03019018"
+   ],
+   "ntRangeLabel": "롬 13:9",
+   "otRangeLabel": "레 19:18",
+   "note": "네 이웃을 네 몸같이 사랑"
+  },
+  {
+   "ntVerseIds": [
+    "45014011"
+   ],
+   "otVerseIds": [
+    "23045023"
+   ],
+   "ntRangeLabel": "롬 14:11",
+   "otRangeLabel": "사 45:23",
+   "note": "모든 무릎이 내게 꿇으리라"
+  },
+  {
+   "ntVerseIds": [
+    "45015003"
+   ],
+   "otVerseIds": [
+    "19069009"
+   ],
+   "ntRangeLabel": "롬 15:3",
+   "otRangeLabel": "시 69:9",
+   "note": "주를 비방하는 비방이 내게"
+  },
+  {
+   "ntVerseIds": [
+    "45015009"
+   ],
+   "otVerseIds": [
+    "19018049"
+   ],
+   "ntRangeLabel": "롬 15:9",
+   "otRangeLabel": "시 18:49",
+   "note": "열방 중에 주께 감사하리라"
+  },
+  {
+   "ntVerseIds": [
+    "45015010"
+   ],
+   "otVerseIds": [
+    "05032043"
+   ],
+   "ntRangeLabel": "롬 15:10",
+   "otRangeLabel": "신 32:43",
+   "note": "열방아 그 백성과 함께 즐거워"
+  },
+  {
+   "ntVerseIds": [
+    "45015011"
+   ],
+   "otVerseIds": [
+    "19117001"
+   ],
+   "ntRangeLabel": "롬 15:11",
+   "otRangeLabel": "시 117:1",
+   "note": "모든 열방아 주를 찬양하라"
+  },
+  {
+   "ntVerseIds": [
+    "45015012"
+   ],
+   "otVerseIds": [
+    "23011010"
+   ],
+   "ntRangeLabel": "롬 15:12",
+   "otRangeLabel": "사 11:10",
+   "note": "이새의 뿌리가 열방을 다스림"
+  },
+  {
+   "ntVerseIds": [
+    "45015021"
+   ],
+   "otVerseIds": [
+    "23052015"
+   ],
+   "ntRangeLabel": "롬 15:21",
+   "otRangeLabel": "사 52:15",
+   "note": "듣지 못한 자들이 깨달음"
+  },
+  {
+   "ntVerseIds": [
+    "46001019"
+   ],
+   "otVerseIds": [
+    "23029014"
+   ],
+   "ntRangeLabel": "고전 1:19",
+   "otRangeLabel": "사 29:14",
+   "note": "지혜자의 지혜를 멸하리라"
+  },
+  {
+   "ntVerseIds": [
+    "46001031"
+   ],
+   "otVerseIds": [
+    "24009024"
+   ],
+   "ntRangeLabel": "고전 1:31",
+   "otRangeLabel": "렘 9:24",
+   "note": "자랑은 주 안에서 하라"
+  },
+  {
+   "ntVerseIds": [
+    "46002009"
+   ],
+   "otVerseIds": [
+    "23064004"
+   ],
+   "ntRangeLabel": "고전 2:9",
+   "otRangeLabel": "사 64:4",
+   "note": "눈·귀·마음이 알지못한 예비"
+  },
+  {
+   "ntVerseIds": [
+    "46002016"
+   ],
+   "otVerseIds": [
+    "23040013"
+   ],
+   "ntRangeLabel": "고전 2:16",
+   "otRangeLabel": "사 40:13",
+   "note": "누가 주의 마음을 알리요"
+  },
+  {
+   "ntVerseIds": [
+    "46003019"
+   ],
+   "otVerseIds": [
+    "18005013"
+   ],
+   "ntRangeLabel": "고전 3:19",
+   "otRangeLabel": "욥 5:13",
+   "note": "지혜자를 자기 꾀에 빠뜨림"
+  },
+  {
+   "ntVerseIds": [
+    "46003020"
+   ],
+   "otVerseIds": [
+    "19094011"
+   ],
+   "ntRangeLabel": "고전 3:20",
+   "otRangeLabel": "시 94:11",
+   "note": "사람 생각의 헛됨을 아심"
+  },
+  {
+   "ntVerseIds": [
+    "46006016"
+   ],
+   "otVerseIds": [
+    "01002024"
+   ],
+   "ntRangeLabel": "고전 6:16",
+   "otRangeLabel": "창 2:24",
+   "note": "둘이 한 육체가 됨"
+  },
+  {
+   "ntVerseIds": [
+    "46009009"
+   ],
+   "otVerseIds": [
+    "05025004"
+   ],
+   "ntRangeLabel": "고전 9:9",
+   "otRangeLabel": "신 25:4",
+   "note": "떠는 소에 망 씌우지 말라"
+  },
+  {
+   "ntVerseIds": [
+    "46010007"
+   ],
+   "otVerseIds": [
+    "02032006"
+   ],
+   "ntRangeLabel": "고전 10:7",
+   "otRangeLabel": "출 32:6",
+   "note": "먹고 마시며 뛰논 금송아지"
+  },
+  {
+   "ntVerseIds": [
+    "46010026"
+   ],
+   "otVerseIds": [
+    "19024001"
+   ],
+   "ntRangeLabel": "고전 10:26",
+   "otRangeLabel": "시 24:1",
+   "note": "땅과 충만함이 주의 것"
+  },
+  {
+   "ntVerseIds": [
+    "46014021"
+   ],
+   "otVerseIds": [
+    "23028011",
+    "23028012"
+   ],
+   "ntRangeLabel": "고전 14:21",
+   "otRangeLabel": "사 28:11-12",
+   "note": "다른 방언·입술로 경고"
+  },
+  {
+   "ntVerseIds": [
+    "46015027"
+   ],
+   "otVerseIds": [
+    "19008006"
+   ],
+   "ntRangeLabel": "고전 15:27",
+   "otRangeLabel": "시 8:6",
+   "note": "만물을 발 아래 두심"
+  },
+  {
+   "ntVerseIds": [
+    "46015032"
+   ],
+   "otVerseIds": [
+    "23022013"
+   ],
+   "ntRangeLabel": "고전 15:32",
+   "otRangeLabel": "사 22:13",
+   "note": "내일 죽으니 먹고 마시자"
+  },
+  {
+   "ntVerseIds": [
+    "46015045"
+   ],
+   "otVerseIds": [
+    "01002007"
+   ],
+   "ntRangeLabel": "고전 15:45",
+   "otRangeLabel": "창 2:7",
+   "note": "아담이 산 영이 됨"
+  },
+  {
+   "ntVerseIds": [
+    "46015054"
+   ],
+   "otVerseIds": [
+    "23025008"
+   ],
+   "ntRangeLabel": "고전 15:54",
+   "otRangeLabel": "사 25:8",
+   "note": "사망을 영원히 삼키심"
+  },
+  {
+   "ntVerseIds": [
+    "46015055"
+   ],
+   "otVerseIds": [
+    "28013014"
+   ],
+   "ntRangeLabel": "고전 15:55",
+   "otRangeLabel": "호 13:14",
+   "note": "사망아 네 쏘는것 어디"
+  },
+  {
+   "ntVerseIds": [
+    "47004013"
+   ],
+   "otVerseIds": [
+    "19116010"
+   ],
+   "ntRangeLabel": "고후 4:13",
+   "otRangeLabel": "시 116:10",
+   "note": "내가 믿는고로 말하였다"
+  },
+  {
+   "ntVerseIds": [
+    "47006002"
+   ],
+   "otVerseIds": [
+    "23049008"
+   ],
+   "ntRangeLabel": "고후 6:2",
+   "otRangeLabel": "사 49:8",
+   "note": "은혜의 때 구원의 날 도움"
+  },
+  {
+   "ntVerseIds": [
+    "47006016"
+   ],
+   "otVerseIds": [
+    "03026012"
+   ],
+   "ntRangeLabel": "고후 6:16",
+   "otRangeLabel": "레 26:12",
+   "note": "내 백성 되리라는 언약"
+  },
+  {
+   "ntVerseIds": [
+    "47006017"
+   ],
+   "otVerseIds": [
+    "23052011"
+   ],
+   "ntRangeLabel": "고후 6:17",
+   "otRangeLabel": "사 52:11",
+   "note": "부정한 것 만지지 말라"
+  },
+  {
+   "ntVerseIds": [
+    "47006018"
+   ],
+   "otVerseIds": [
+    "10007014"
+   ],
+   "ntRangeLabel": "고후 6:18",
+   "otRangeLabel": "삼하 7:14",
+   "note": "아버지와 자녀가 되리라"
+  },
+  {
+   "ntVerseIds": [
+    "47008015"
+   ],
+   "otVerseIds": [
+    "02016018"
+   ],
+   "ntRangeLabel": "고후 8:15",
+   "otRangeLabel": "출 16:18",
+   "note": "많이도 적게도 남지 않음"
+  },
+  {
+   "ntVerseIds": [
+    "47009009"
+   ],
+   "otVerseIds": [
+    "19112009"
+   ],
+   "ntRangeLabel": "고후 9:9",
+   "otRangeLabel": "시 112:9",
+   "note": "흩어 가난한 자에게 줌"
+  },
+  {
+   "ntVerseIds": [
+    "47010017"
+   ],
+   "otVerseIds": [
+    "24009024"
+   ],
+   "ntRangeLabel": "고후 10:17",
+   "otRangeLabel": "렘 9:24",
+   "note": "자랑은 주 안에서 하라"
+  },
+  {
+   "ntVerseIds": [
+    "47013001"
+   ],
+   "otVerseIds": [
+    "05019015"
+   ],
+   "ntRangeLabel": "고후 13:1",
+   "otRangeLabel": "신 19:15",
+   "note": "두세 증인으로 확정함"
+  },
+  {
+   "ntVerseIds": [
+    "48003006"
+   ],
+   "otVerseIds": [
+    "01015006"
+   ],
+   "ntRangeLabel": "갈 3:6",
+   "otRangeLabel": "창 15:6",
+   "note": "아브라함이 하나님을 믿음"
+  },
+  {
+   "ntVerseIds": [
+    "48003008"
+   ],
+   "otVerseIds": [
+    "01012003"
+   ],
+   "ntRangeLabel": "갈 3:8",
+   "otRangeLabel": "창 12:3",
+   "note": "이방인이 너로 인해 복받음"
+  },
+  {
+   "ntVerseIds": [
+    "48003010"
+   ],
+   "otVerseIds": [
+    "05027026"
+   ],
+   "ntRangeLabel": "갈 3:10",
+   "otRangeLabel": "신 27:26",
+   "note": "율법 행치않으면 저주"
+  },
+  {
+   "ntVerseIds": [
+    "48003011"
+   ],
+   "otVerseIds": [
+    "35002004"
+   ],
+   "ntRangeLabel": "갈 3:11",
+   "otRangeLabel": "합 2:4",
+   "note": "의인은 믿음으로 살리라"
+  },
+  {
+   "ntVerseIds": [
+    "48003012"
+   ],
+   "otVerseIds": [
+    "03018005"
+   ],
+   "ntRangeLabel": "갈 3:12",
+   "otRangeLabel": "레 18:5",
+   "note": "행하는 자가 그로 살리라"
+  },
+  {
+   "ntVerseIds": [
+    "48003013"
+   ],
+   "otVerseIds": [
+    "05021023"
+   ],
+   "ntRangeLabel": "갈 3:13",
+   "otRangeLabel": "신 21:23",
+   "note": "나무에 달린 자는 저주"
+  },
+  {
+   "ntVerseIds": [
+    "48004027"
+   ],
+   "otVerseIds": [
+    "23054001"
+   ],
+   "ntRangeLabel": "갈 4:27",
+   "otRangeLabel": "사 54:1",
+   "note": "잉태못한 자여 즐거워하라"
+  },
+  {
+   "ntVerseIds": [
+    "48004030"
+   ],
+   "otVerseIds": [
+    "01021010"
+   ],
+   "ntRangeLabel": "갈 4:30",
+   "otRangeLabel": "창 21:10",
+   "note": "여종과 아들을 내쫓으라"
+  },
+  {
+   "ntVerseIds": [
+    "48005014"
+   ],
+   "otVerseIds": [
+    "03019018"
+   ],
+   "ntRangeLabel": "갈 5:14",
+   "otRangeLabel": "레 19:18",
+   "note": "네 이웃을 네 몸같이 사랑"
+  },
+  {
+   "ntVerseIds": [
+    "49001022"
+   ],
+   "otVerseIds": [
+    "19008006"
+   ],
+   "ntRangeLabel": "엡 1:22",
+   "otRangeLabel": "시 8:6",
+   "note": "만물을 발 아래 복종시킴"
+  },
+  {
+   "ntVerseIds": [
+    "49002017"
+   ],
+   "otVerseIds": [
+    "23057019"
+   ],
+   "ntRangeLabel": "엡 2:17",
+   "otRangeLabel": "사 57:19",
+   "note": "먼데 가까운데 평안 전함"
+  },
+  {
+   "ntVerseIds": [
+    "49004008"
+   ],
+   "otVerseIds": [
+    "19068018"
+   ],
+   "ntRangeLabel": "엡 4:8",
+   "otRangeLabel": "시 68:18",
+   "note": "사로잡은 자에게 선물줌"
+  },
+  {
+   "ntVerseIds": [
+    "49004025"
+   ],
+   "otVerseIds": [
+    "38008016"
+   ],
+   "ntRangeLabel": "엡 4:25",
+   "otRangeLabel": "슥 8:16",
+   "note": "이웃과 더불어 참된 말"
+  },
+  {
+   "ntVerseIds": [
+    "49004026"
+   ],
+   "otVerseIds": [
+    "19004004"
+   ],
+   "ntRangeLabel": "엡 4:26",
+   "otRangeLabel": "시 4:4",
+   "note": "분내어도 죄짓지 말라"
+  },
+  {
+   "ntVerseIds": [
+    "49005031"
+   ],
+   "otVerseIds": [
+    "01002024"
+   ],
+   "ntRangeLabel": "엡 5:31",
+   "otRangeLabel": "창 2:24",
+   "note": "둘이 한 육체가 됨"
+  },
+  {
+   "ntVerseIds": [
+    "49006002",
+    "49006003"
+   ],
+   "otVerseIds": [
+    "02020012"
+   ],
+   "ntRangeLabel": "엡 6:2-3",
+   "otRangeLabel": "출 20:12",
+   "note": "부모공경, 장수의 약속"
+  },
+  {
+   "ntVerseIds": [
+    "50002010",
+    "50002011"
+   ],
+   "otVerseIds": [
+    "23045023"
+   ],
+   "ntRangeLabel": "빌 2:10-11",
+   "otRangeLabel": "사 45:23",
+   "note": "모든 무릎 꿇고 시인함"
+  },
+  {
+   "ntVerseIds": [
+    "53002008"
+   ],
+   "otVerseIds": [
+    "23011004"
+   ],
+   "ntRangeLabel": "살후 2:8",
+   "otRangeLabel": "사 11:4",
+   "note": "입의 기운으로 죽이심"
+  },
+  {
+   "ntVerseIds": [
+    "54005018"
+   ],
+   "otVerseIds": [
+    "05025004"
+   ],
+   "ntRangeLabel": "딤전 5:18",
+   "otRangeLabel": "신 25:4",
+   "note": "떠는 소에 망 씌우지 말라"
+  },
+  {
+   "ntVerseIds": [
+    "55002019"
+   ],
+   "otVerseIds": [
+    "04016005"
+   ],
+   "ntRangeLabel": "딤후 2:19",
+   "otRangeLabel": "민 16:5",
+   "note": "주께서 자기 백성 아심"
+  },
+  {
+   "ntVerseIds": [
+    "58001005"
+   ],
+   "otVerseIds": [
+    "19002007"
+   ],
+   "ntRangeLabel": "히 1:5",
+   "otRangeLabel": "시 2:7",
+   "note": "내 아들, 오늘 낳았다"
+  },
+  {
+   "ntVerseIds": [
+    "58001005"
+   ],
+   "otVerseIds": [
+    "10007014"
+   ],
+   "ntRangeLabel": "히 1:5",
+   "otRangeLabel": "삼하 7:14",
+   "note": "내가 아버지, 그가 아들"
+  },
+  {
+   "ntVerseIds": [
+    "58001006"
+   ],
+   "otVerseIds": [
+    "05032043"
+   ],
+   "ntRangeLabel": "히 1:6",
+   "otRangeLabel": "신 32:43",
+   "note": "천사들아 그에게 경배하라"
+  },
+  {
+   "ntVerseIds": [
+    "58001007"
+   ],
+   "otVerseIds": [
+    "19104004"
+   ],
+   "ntRangeLabel": "히 1:7",
+   "otRangeLabel": "시 104:4",
+   "note": "바람은 사자, 불꽃은 사역자"
+  },
+  {
+   "ntVerseIds": [
+    "58001008",
+    "58001009"
+   ],
+   "otVerseIds": [
+    "19045006",
+    "19045007"
+   ],
+   "ntRangeLabel": "히 1:8-9",
+   "otRangeLabel": "시 45:6-7",
+   "note": "주의 보좌는 영원함"
+  },
+  {
+   "ntVerseIds": [
+    "58001010",
+    "58001011",
+    "58001012"
+   ],
+   "otVerseIds": [
+    "19102025",
+    "19102026",
+    "19102027"
+   ],
+   "ntRangeLabel": "히 1:10-12",
+   "otRangeLabel": "시 102:25-27",
+   "note": "태초에 땅의 기초 두심"
+  },
+  {
+   "ntVerseIds": [
+    "58001013"
+   ],
+   "otVerseIds": [
+    "19110001"
+   ],
+   "ntRangeLabel": "히 1:13",
+   "otRangeLabel": "시 110:1",
+   "note": "내 우편에, 원수는 발등상"
+  },
+  {
+   "ntVerseIds": [
+    "58002006",
+    "58002007",
+    "58002008"
+   ],
+   "otVerseIds": [
+    "19008004",
+    "19008005",
+    "19008006"
+   ],
+   "ntRangeLabel": "히 2:6-8",
+   "otRangeLabel": "시 8:4-6",
+   "note": "사람이 무엇이관대"
+  },
+  {
+   "ntVerseIds": [
+    "58002012"
+   ],
+   "otVerseIds": [
+    "19022022"
+   ],
+   "ntRangeLabel": "히 2:12",
+   "otRangeLabel": "시 22:22",
+   "note": "형제들에게 주 이름 선포"
+  },
+  {
+   "ntVerseIds": [
+    "58002013"
+   ],
+   "otVerseIds": [
+    "23008017"
+   ],
+   "ntRangeLabel": "히 2:13",
+   "otRangeLabel": "사 8:17",
+   "note": "내가 그를 의지하리라"
+  },
+  {
+   "ntVerseIds": [
+    "58002013"
+   ],
+   "otVerseIds": [
+    "23008018"
+   ],
+   "ntRangeLabel": "히 2:13",
+   "otRangeLabel": "사 8:18",
+   "note": "나와 자녀는 표적"
+  },
+  {
+   "ntVerseIds": [
+    "58003007",
+    "58003008",
+    "58003009",
+    "58003010",
+    "58003011"
+   ],
+   "otVerseIds": [
+    "19095007",
+    "19095008",
+    "19095009",
+    "19095010",
+    "19095011"
+   ],
+   "ntRangeLabel": "히 3:7-11",
+   "otRangeLabel": "시 95:7-11",
+   "note": "오늘 음성 들으면 강퍅말라"
+  },
+  {
+   "ntVerseIds": [
+    "58003015"
+   ],
+   "otVerseIds": [
+    "19095007",
+    "19095008"
+   ],
+   "ntRangeLabel": "히 3:15",
+   "otRangeLabel": "시 95:7-8",
+   "note": "오늘 음성, 재차 인용"
+  },
+  {
+   "ntVerseIds": [
+    "58004003"
+   ],
+   "otVerseIds": [
+    "19095011"
+   ],
+   "ntRangeLabel": "히 4:3",
+   "otRangeLabel": "시 95:11",
+   "note": "내 안식에 못 들어옴"
+  },
+  {
+   "ntVerseIds": [
+    "58004004"
+   ],
+   "otVerseIds": [
+    "01002002"
+   ],
+   "ntRangeLabel": "히 4:4",
+   "otRangeLabel": "창 2:2",
+   "note": "칠일째 안식하심"
+  },
+  {
+   "ntVerseIds": [
+    "58004005"
+   ],
+   "otVerseIds": [
+    "19095011"
+   ],
+   "ntRangeLabel": "히 4:5",
+   "otRangeLabel": "시 95:11",
+   "note": "안식 불가, 재차 인용"
+  },
+  {
+   "ntVerseIds": [
+    "58004007"
+   ],
+   "otVerseIds": [
+    "19095007",
+    "19095008"
+   ],
+   "ntRangeLabel": "히 4:7",
+   "otRangeLabel": "시 95:7-8",
+   "note": "다윗의 글, 오늘 재인용"
+  },
+  {
+   "ntVerseIds": [
+    "58005005"
+   ],
+   "otVerseIds": [
+    "19002007"
+   ],
+   "ntRangeLabel": "히 5:5",
+   "otRangeLabel": "시 2:7",
+   "note": "내 아들, 오늘 낳음 재인용"
+  },
+  {
+   "ntVerseIds": [
+    "58005006"
+   ],
+   "otVerseIds": [
+    "19110004"
+   ],
+   "ntRangeLabel": "히 5:6",
+   "otRangeLabel": "시 110:4",
+   "note": "멜기세덱 반차 영원한 제사장"
+  },
+  {
+   "ntVerseIds": [
+    "58006014"
+   ],
+   "otVerseIds": [
+    "01022017"
+   ],
+   "ntRangeLabel": "히 6:14",
+   "otRangeLabel": "창 22:17",
+   "note": "복 주고 번성케 하리라"
+  },
+  {
+   "ntVerseIds": [
+    "58007017"
+   ],
+   "otVerseIds": [
+    "19110004"
+   ],
+   "ntRangeLabel": "히 7:17",
+   "otRangeLabel": "시 110:4",
+   "note": "멜기세덱 반차, 재인용"
+  },
+  {
+   "ntVerseIds": [
+    "58007021"
+   ],
+   "otVerseIds": [
+    "19110004"
+   ],
+   "ntRangeLabel": "히 7:21",
+   "otRangeLabel": "시 110:4",
+   "note": "맹세로 세운 제사장"
+  },
+  {
+   "ntVerseIds": [
+    "58008005"
+   ],
+   "otVerseIds": [
+    "02025040"
+   ],
+   "ntRangeLabel": "히 8:5",
+   "otRangeLabel": "출 25:40",
+   "note": "산에서 보인 본대로 지으라"
+  },
+  {
+   "ntVerseIds": [
+    "58008008",
+    "58008009",
+    "58008010",
+    "58008011",
+    "58008012"
+   ],
+   "otVerseIds": [
+    "24031031",
+    "24031032",
+    "24031033",
+    "24031034"
+   ],
+   "ntRangeLabel": "히 8:8-12",
+   "otRangeLabel": "렘 31:31-34",
+   "note": "새 언약을 세우리라"
+  },
+  {
+   "ntVerseIds": [
+    "58009020"
+   ],
+   "otVerseIds": [
+    "02024008"
+   ],
+   "ntRangeLabel": "히 9:20",
+   "otRangeLabel": "출 24:8",
+   "note": "언약의 피"
+  },
+  {
+   "ntVerseIds": [
+    "58010005",
+    "58010006",
+    "58010007"
+   ],
+   "otVerseIds": [
+    "19040006",
+    "19040007",
+    "19040008"
+   ],
+   "ntRangeLabel": "히 10:5-7",
+   "otRangeLabel": "시 40:6-8",
+   "note": "제사보다 순종, 내가 왔나이다"
+  },
+  {
+   "ntVerseIds": [
+    "58010016",
+    "58010017"
+   ],
+   "otVerseIds": [
+    "24031033",
+    "24031034"
+   ],
+   "ntRangeLabel": "히 10:16-17",
+   "otRangeLabel": "렘 31:33-34",
+   "note": "새 언약, 마음에 새김"
+  },
+  {
+   "ntVerseIds": [
+    "58010030"
+   ],
+   "otVerseIds": [
+    "05032035",
+    "05032036"
+   ],
+   "ntRangeLabel": "히 10:30",
+   "otRangeLabel": "신 32:35-36",
+   "note": "원수 갚음은 내게 있음"
+  },
+  {
+   "ntVerseIds": [
+    "58010037",
+    "58010038"
+   ],
+   "otVerseIds": [
+    "35002003",
+    "35002004"
+   ],
+   "ntRangeLabel": "히 10:37-38",
+   "otRangeLabel": "합 2:3-4",
+   "note": "의인은 믿음으로 산다"
+  },
+  {
+   "ntVerseIds": [
+    "58012005",
+    "58012006"
+   ],
+   "otVerseIds": [
+    "20003011",
+    "20003012"
+   ],
+   "ntRangeLabel": "히 12:5-6",
+   "otRangeLabel": "잠 3:11-12",
+   "note": "주의 징계 경히 여기지 말라"
+  },
+  {
+   "ntVerseIds": [
+    "58012020"
+   ],
+   "otVerseIds": [
+    "02019012",
+    "02019013"
+   ],
+   "ntRangeLabel": "히 12:20",
+   "otRangeLabel": "출 19:12-13",
+   "note": "산 범하면 돌에 맞아 죽음"
+  },
+  {
+   "ntVerseIds": [
+    "58012026"
+   ],
+   "otVerseIds": [
+    "37002006"
+   ],
+   "ntRangeLabel": "히 12:26",
+   "otRangeLabel": "학 2:6",
+   "note": "하늘과 땅을 진동시킴"
+  },
+  {
+   "ntVerseIds": [
+    "58013005"
+   ],
+   "otVerseIds": [
+    "05031006"
+   ],
+   "ntRangeLabel": "히 13:5",
+   "otRangeLabel": "신 31:6",
+   "note": "결코 버리지 아니하리라"
+  },
+  {
+   "ntVerseIds": [
+    "58013006"
+   ],
+   "otVerseIds": [
+    "19118006"
+   ],
+   "ntRangeLabel": "히 13:6",
+   "otRangeLabel": "시 118:6",
+   "note": "주는 나를 돕는 이"
+  },
+  {
+   "ntVerseIds": [
+    "59002008"
+   ],
+   "otVerseIds": [
+    "03019018"
+   ],
+   "ntRangeLabel": "약 2:8",
+   "otRangeLabel": "레 19:18",
+   "note": "네 이웃을 네 몸같이 사랑"
+  },
+  {
+   "ntVerseIds": [
+    "59002011"
+   ],
+   "otVerseIds": [
+    "02020014"
+   ],
+   "ntRangeLabel": "약 2:11",
+   "otRangeLabel": "출 20:14",
+   "note": "간음하지 말라"
+  },
+  {
+   "ntVerseIds": [
+    "59002011"
+   ],
+   "otVerseIds": [
+    "02020013"
+   ],
+   "ntRangeLabel": "약 2:11",
+   "otRangeLabel": "출 20:13",
+   "note": "살인하지 말라"
+  },
+  {
+   "ntVerseIds": [
+    "59002023"
+   ],
+   "otVerseIds": [
+    "01015006"
+   ],
+   "ntRangeLabel": "약 2:23",
+   "otRangeLabel": "창 15:6",
+   "note": "아브라함, 믿음을 의로 여김"
+  },
+  {
+   "ntVerseIds": [
+    "59004006"
+   ],
+   "otVerseIds": [
+    "20003034"
+   ],
+   "ntRangeLabel": "약 4:6",
+   "otRangeLabel": "잠 3:34",
+   "note": "교만한 자 대적, 겸손한 자 은혜"
+  },
+  {
+   "ntVerseIds": [
+    "60001016"
+   ],
+   "otVerseIds": [
+    "03011044"
+   ],
+   "ntRangeLabel": "벧전 1:16",
+   "otRangeLabel": "레 11:44",
+   "note": "내가 거룩하니 너희도 거룩하라"
+  },
+  {
+   "ntVerseIds": [
+    "60001024",
+    "60001025"
+   ],
+   "otVerseIds": [
+    "23040006",
+    "23040007",
+    "23040008"
+   ],
+   "ntRangeLabel": "벧전 1:24-25",
+   "otRangeLabel": "사 40:6-8",
+   "note": "육체는 풀, 말씀은 영원"
+  },
+  {
+   "ntVerseIds": [
+    "60002006"
+   ],
+   "otVerseIds": [
+    "23028016"
+   ],
+   "ntRangeLabel": "벧전 2:6",
+   "otRangeLabel": "사 28:16",
+   "note": "시온의 보배로운 모퉁잇돌"
+  },
+  {
+   "ntVerseIds": [
+    "60002007"
+   ],
+   "otVerseIds": [
+    "19118022"
+   ],
+   "ntRangeLabel": "벧전 2:7",
+   "otRangeLabel": "시 118:22",
+   "note": "버린 돌이 머릿돌 됨"
+  },
+  {
+   "ntVerseIds": [
+    "60002008"
+   ],
+   "otVerseIds": [
+    "23008014"
+   ],
+   "ntRangeLabel": "벧전 2:8",
+   "otRangeLabel": "사 8:14",
+   "note": "부딪히는 돌, 거치는 반석"
+  },
+  {
+   "ntVerseIds": [
+    "60002022"
+   ],
+   "otVerseIds": [
+    "23053009"
+   ],
+   "ntRangeLabel": "벧전 2:22",
+   "otRangeLabel": "사 53:9",
+   "note": "죄도 거짓도 없으신 종"
+  },
+  {
+   "ntVerseIds": [
+    "60002024"
+   ],
+   "otVerseIds": [
+    "23053005"
+   ],
+   "ntRangeLabel": "벧전 2:24",
+   "otRangeLabel": "사 53:5",
+   "note": "채찍에 맞음으로 나음 얻음"
+  },
+  {
+   "ntVerseIds": [
+    "60002025"
+   ],
+   "otVerseIds": [
+    "23053006"
+   ],
+   "ntRangeLabel": "벧전 2:25",
+   "otRangeLabel": "사 53:6",
+   "note": "양처럼 길 잃었다 돌아옴"
+  },
+  {
+   "ntVerseIds": [
+    "60003010",
+    "60003011",
+    "60003012"
+   ],
+   "otVerseIds": [
+    "19034012",
+    "19034013",
+    "19034014",
+    "19034015",
+    "19034016"
+   ],
+   "ntRangeLabel": "벧전 3:10-12",
+   "otRangeLabel": "시 34:12-16",
+   "note": "혀를 금하고 선을 행하라"
+  },
+  {
+   "ntVerseIds": [
+    "60003014",
+    "60003015"
+   ],
+   "otVerseIds": [
+    "23008012",
+    "23008013"
+   ],
+   "ntRangeLabel": "벧전 3:14-15",
+   "otRangeLabel": "사 8:12-13",
+   "note": "그들의 두려움을 두려워말라"
+  },
+  {
+   "ntVerseIds": [
+    "60004008"
+   ],
+   "otVerseIds": [
+    "20010012"
+   ],
+   "ntRangeLabel": "벧전 4:8",
+   "otRangeLabel": "잠 10:12",
+   "note": "사랑은 허다한 죄를 덮음"
+  },
+  {
+   "ntVerseIds": [
+    "60004018"
+   ],
+   "otVerseIds": [
+    "20011031"
+   ],
+   "ntRangeLabel": "벧전 4:18",
+   "otRangeLabel": "잠 11:31",
+   "note": "의인도 겨우 구원 얻음"
+  },
+  {
+   "ntVerseIds": [
+    "60005005"
+   ],
+   "otVerseIds": [
+    "20003034"
+   ],
+   "ntRangeLabel": "벧전 5:5",
+   "otRangeLabel": "잠 3:34",
+   "note": "교만한 자 대적, 겸손한 자 은혜"
+  },
+  {
+   "ntVerseIds": [
+    "61002022"
+   ],
+   "otVerseIds": [
+    "20026011"
+   ],
+   "ntRangeLabel": "벧후 2:22",
+   "otRangeLabel": "잠 26:11",
+   "note": "개가 토한 것 도로 먹음"
+  }
+ ]
+}
