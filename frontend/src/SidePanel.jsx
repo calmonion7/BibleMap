@@ -6,6 +6,7 @@ import VerseLangTabs from './VerseLangTabs'
 import VerseLayer, { VerseBookTabs, paperTextStyle } from './VerseLayer'
 import Spinner from './Spinner'
 import BookStageMap from './BookStageMap'
+import BookSymbol from './bookSymbols'
 import { parseYear } from './dates'
 
 const REL_KO = {
@@ -380,10 +381,17 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
           >← 뒤로</button>
         )}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span style={{ width: 10, height: 10, borderRadius: '50%', background: headColor, flexShrink: 0 }} />
+          {/* 책 인장(task#208) — 책 상세 히어로: 타입 점 대신 인장 draw-on(노드 변경 시 key 리마운트로 1회 재생) */}
+          {node.label === 'Book' ? (
+            <span key={node.id} style={{ color: 'var(--gold)', flexShrink: 0, display: 'inline-flex' }}>
+              <BookSymbol bookId={node.id} size={30} draw />
+            </span>
+          ) : (
+            <span style={{ width: 10, height: 10, borderRadius: '50%', background: headColor, flexShrink: 0 }} />
+          )}
           <h2 style={{ margin: 0, fontSize: 18, fontWeight: 700, color: 'var(--ink)', lineHeight: 1.3 }}>{title}</h2>
         </div>
-        <div style={{ fontSize: 12, color: 'var(--ink-faint)', marginTop: 3, marginLeft: 18 }}>{subtitle}</div>
+        <div style={{ fontSize: 12, color: 'var(--ink-faint)', marginTop: 3, marginLeft: node.label === 'Book' ? 38 : 18 }}>{subtitle}</div>
       </div>
 
       {/* Person 여정 탐험 CTA — 큐레이션 인물만, 현재 탐험 중인 인물 제외 */}

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { apiGet } from './api'
 import Spinner from './Spinner'
+import BookSymbol from './bookSymbols'
 import { SELECT_HL, GENRE_META } from './theme'
 import { MOBILE_BREAKPOINT } from './constants'
 
@@ -47,7 +48,11 @@ function BookCard({ book, onSelectNode, isSelected, hideKeyVerse, entrance, dela
         transition: 'border-color var(--dur-fast), background var(--dur-fast), transform var(--dur-fast) var(--ease-out)',
       }}
     >
-      <div style={{ color: 'var(--ink)', fontFamily: 'var(--serif)', fontWeight: 600, fontSize: 14, marginBottom: book.authorKo ? 2 : 6 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 7, color: 'var(--ink)', fontFamily: 'var(--serif)', fontWeight: 600, fontSize: 14, marginBottom: book.authorKo ? 2 : 6 }}>
+        {/* 책 인장(task#208) — 카드 스태거와 같은 지연으로 draw-on(세션 첫 진입만), 이후 정적 */}
+        <span style={{ color: 'var(--gold)', flexShrink: 0, display: 'inline-flex' }}>
+          <BookSymbol bookId={book.id} size={22} draw={entrance} delayMs={delayMs} />
+        </span>
         {book.nameKo}
       </div>
       {book.authorKo && (
