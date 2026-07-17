@@ -124,6 +124,17 @@ function App() {
 
   const NAV_H = 48
 
+  // 정경 순서 내비(task#211) — 책 상세 이전/다음 권. /books-overview 순서 재사용(신규 API 없음), 첫 book 진입 시 1회 로드.
+  const [booksOrder, setBooksOrder] = useState(null)
+  useEffect(() => {
+    if (activeStage !== 'book' || booksOrder) return
+    let cancelled = false
+    apiGet('/books-overview')
+      .then(list => { if (!cancelled) setBooksOrder(list.map(b => ({ id: b.id, nameKo: b.nameKo }))) })
+      .catch(e => { if (!cancelled) console.warn('[App] 책 목록 로드 실패 — 정경 내비 미노출', e) })
+    return () => { cancelled = true }
+  }, [activeStage, booksOrder])
+
   // 책등 헤더의 활성 부(部) — 개요·책·단어·리더는 '성경책', 투어 목록·투어 탐험은 '투어', 나머지는 '인물'(ADR-0026)
   const activeSection =
     activeStage === 'overview' || activeStage === 'book' || activeStage === 'words' || activeStage === 'reader' ? 'books'
@@ -575,6 +586,30 @@ function App() {
                   onExploreJourney={selectPerson}
                   onOpenFamily={openFamily}
                 />
+                {/* 정경 순서 내비(task#211) — 끝 권은 해당 방향 버튼 미노출(창세기 이전·계시록 다음 없음) */}
+                {booksOrder && (() => {
+                  const idx = booksOrder.findIndex(b => b.id === bookId)
+                  if (idx < 0) return null
+                  const prevBook = idx > 0 ? booksOrder[idx - 1] : null
+                  const nextBook = idx < booksOrder.length - 1 ? booksOrder[idx + 1] : null
+                  const navBtn = {
+                    display: 'inline-flex', alignItems: 'center', gap: 6,
+                    padding: '8px 16px', borderRadius: 999, cursor: 'pointer',
+                    border: '1px solid var(--line)', background: 'var(--bg-1)',
+                    color: 'var(--ink)', fontSize: 13, fontFamily: 'var(--serif)',
+                    transition: 'border-color var(--dur-fast)',
+                  }
+                  return (
+                    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 16px 28px' }}>
+                      {prevBook ? (
+                        <button onClick={() => openBook(prevBook.id)} style={navBtn}>← {prevBook.nameKo}</button>
+                      ) : <span />}
+                      {nextBook ? (
+                        <button onClick={() => openBook(nextBook.id)} style={navBtn}>{nextBook.nameKo} →</button>
+                      ) : <span />}
+                    </div>
+                  )
+                })()}
               </div>
             </div>
           </div>
