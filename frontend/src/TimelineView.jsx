@@ -7,6 +7,25 @@ import { parseYear } from './dates'
 
 const BOOK_COLOR = TYPE_COLOR.Book
 
+// 시대 밴드(task#200) — ADR-0014 보수 연대 기반 연도 경계, persons.py _ERA_ORDER 8구간과 정합.
+// 경계 근거: 아브라함 출생 BC 2166 · 야곱 애굽 이주 BC 1876 · 사사기 시작 BC 1375 ·
+// 사울 즉위 BC 1050 · 왕국 분열 BC 930 · 예루살렘 함락 BC 586 · 예수 탄생 BC 5경.
+const ERA_BANDS = [
+  { name: '원시사', from: -Infinity, range: '창조 – BC 2166' },
+  { name: '족장', from: -2166, range: 'BC 2166 – 1876' },
+  { name: '출애굽·정복', from: -1876, range: 'BC 1876 – 1375' },
+  { name: '사사', from: -1375, range: 'BC 1375 – 1050' },
+  { name: '왕국', from: -1050, range: 'BC 1050 – 930' },
+  { name: '선지자', from: -930, range: 'BC 930 – 586' },
+  { name: '포로', from: -586, range: 'BC 586 – 5' },
+  { name: '신약', from: -5, range: 'BC 5 –' },
+]
+const eraOf = (y) => {
+  let band = ERA_BANDS[0]
+  for (const b of ERA_BANDS) { if (y >= b.from) band = b }
+  return band
+}
+
 function fmtYear(y) {
   return y == null ? '?' : (y < 0 ? `BC ${-y}` : `AD ${y}`)
 }
@@ -87,7 +106,8 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
 
   const activeFilter = bookFilter && dismissedFilter !== bookFilter ? bookFilter : null
   const activePersonFilter = personFilter && dismissedPersonFilter !== personFilter ? personFilter : null
-  const { timeline } = useMemo(() => {
+  // 시대 밴드 섹션 — 필터 통과 그룹을 시간순으로 시대별 묶음(비는 시대는 자연 생략)
+  const { sections } = useMemo(() => {
     const inFilter = (y) => {
       if (!activeFilter) return true
       if (y === null) return false
@@ -98,8 +118,14 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
     const vg = groups
       .filter(g => inFilter(sortKeyToYear(g.sortKey)))
       .filter(g => !activePersonFilter || g.members.some(ev => activePersonFilter.has(ev.id)))
-    const tl = [...vg.map(g => ({ kind: 'group', sortKey: g.sortKey, group: g }))].sort((a, b) => a.sortKey - b.sortKey)
-    return { timeline: tl }
+      .sort((a, b) => a.sortKey - b.sortKey)
+    const secs = []
+    for (const g of vg) {
+      const band = eraOf(sortKeyToYear(g.sortKey) ?? 0)
+      if (!secs.length || secs[secs.length - 1].era !== band) secs.push({ era: band, groups: [] })
+      secs[secs.length - 1].groups.push(g)
+    }
+    return { sections: secs }
   }, [groups, activeFilter, activePersonFilter])
 
   // 사건의 근거 권 칩. 클릭 → 그 사건 아래 인라인 구절 뷰 토글(권 선택 → 인용범위 → 절 본문).
@@ -217,86 +243,99 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
     )
   }
 
+  // 연도 칸 반응형 폭 — 데스크톱 96px, 모바일은 뷰포트 비례(레일 위치는 같은 변수로 정렬)
+  const YEAR_W = 'clamp(78px, 21vw, 96px)'
+
+  // 필터 배너 — 스크롤 밖 상단 고정(시대 sticky 헤더와 겹침 없음), 금색 포인트
+  const renderBanner = (label, onClose) => (
+    <div style={{
+      display: 'flex', alignItems: 'center', gap: 8,
+      background: 'var(--bg-1)', borderBottom: '1px solid var(--line)', borderLeft: '3px solid var(--gold-dim)',
+      padding: '6px 12px', fontSize: 12, color: 'var(--ink-dim)',
+    }}>
+      <span>{label}</span>
+      <button
+        onClick={onClose}
+        style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--ink-dim)', fontSize: 13, padding: '0 4px' }}
+      >× 닫기</button>
+    </div>
+  )
+
   return (
-    // 비스크롤 루트 + 스크롤 리스트 + 구절 레이어 형제 구조 — 모달을 overflow:auto 자식에 두면 오배치(회고 선례)
-    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', background: 'var(--bg-0)', WebkitTapHighlightColor: 'transparent' }}>
+    // 비스크롤 루트(세로 flex: 배너 + 스크롤 리스트) + 구절 레이어 형제 — 모달을 overflow:auto 자식에 두면 오배치(회고 선례)
+    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', background: 'var(--bg-0)', WebkitTapHighlightColor: 'transparent', display: 'flex', flexDirection: 'column' }}>
+    {activeFilter && renderBanner(`${activeFilter.nameKo} 범위: ${fmtYear(activeFilter.startYear)} ~ ${fmtYear(activeFilter.endYear)}`, () => setDismissedFilter(bookFilter))}
+    {activePersonFilter && renderBanner(`${personName}이 언급된 사건`, () => setDismissedPersonFilter(personFilter))}
     <div
       ref={containerRef}
-      style={{ width: '100%', height: '100%', boxSizing: 'border-box', overflowY: 'auto', position: 'relative', paddingTop: 16, paddingBottom: 48 }}
+      style={{ width: '100%', flex: 1, minHeight: 0, boxSizing: 'border-box', overflowY: 'auto', position: 'relative', paddingBottom: 48 }}
     >
-      {(activeFilter || activePersonFilter) && (
-        <div style={{ position: 'sticky', top: 0, zIndex: 10 }}>
-          {activeFilter && (
-            <div style={{
-              display: 'flex', alignItems: 'center', gap: 8,
-              background: 'var(--bg-2)', borderBottom: '1px solid var(--line)',
-              padding: '6px 12px', fontSize: 12, color: 'var(--ink-dim)',
-            }}>
-              <span>{activeFilter.nameKo} 범위: {fmtYear(activeFilter.startYear)} ~ {fmtYear(activeFilter.endYear)}</span>
-              <button
-                onClick={() => setDismissedFilter(bookFilter)}
-                style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--ink-dim)', fontSize: 13, padding: '0 4px' }}
-              >× 닫기</button>
-            </div>
-          )}
-          {activePersonFilter && (
-            <div style={{
-              display: 'flex', alignItems: 'center', gap: 8,
-              background: 'var(--bg-2)', borderBottom: '1px solid var(--line)',
-              padding: '6px 12px', fontSize: 12, color: 'var(--ink-dim)',
-            }}>
-              <span>{personName}이 언급된 사건</span>
-              <button
-                onClick={() => setDismissedPersonFilter(personFilter)}
-                style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--ink-dim)', fontSize: 13, padding: '0 4px' }}
-              >× 닫기</button>
-            </div>
-          )}
-        </div>
-      )}
-      {timeline.map((item) => {
-        const { startDate, members, rep } = item.group
-        const isSelected = selectedNode && members.some(e => e.id === selectedNode)
-        const isAuthored = rep.authored === true
-        const yearLabel = isAuthored && rep.yearLabel ? rep.yearLabel : parseYear(startDate)
-        const groupKey = startDate
+      {sections.map((sec) => (
+        <div key={sec.era.name}>
+          {/* 시대 밴드 헤더 — sticky(배너가 스크롤 밖이라 top:0 충돌 없음) */}
+          <div style={{
+            position: 'sticky', top: 0, zIndex: 10,
+            display: 'flex', alignItems: 'baseline', gap: 8,
+            background: 'var(--bg-0)', borderBottom: '1px solid var(--line)',
+            padding: '10px 12px 6px',
+          }}>
+            <span style={{ fontFamily: 'var(--serif)', fontSize: 14, fontWeight: 700, color: 'var(--gold)', letterSpacing: '0.05em' }}>{sec.era.name}</span>
+            <span style={{ fontSize: 11, color: 'var(--ink-faint)' }}>{sec.era.range}</span>
+            <span style={{ flex: 1 }} />
+            <span style={{ fontSize: 11, color: 'var(--ink-faint)' }}>{sec.groups.reduce((n, g) => n + g.members.length, 0)}</span>
+          </div>
+          {/* 섹션 본문 — 연속 세로 레일 위 사건 도트 */}
+          <div style={{ position: 'relative', padding: '6px 0' }}>
+            <span style={{ position: 'absolute', top: 0, bottom: 0, left: `calc(${YEAR_W} + 8px + 9px)`, width: 2, background: 'var(--line)' }} />
+            {sec.groups.map((group) => {
+              const { startDate, members, rep } = group
+              const isSelected = selectedNode && members.some(e => e.id === selectedNode)
+              const isAuthored = rep.authored === true
+              const yearLabel = isAuthored && rep.yearLabel ? rep.yearLabel : parseYear(startDate)
+              const groupKey = startDate
 
-        return (
-          <div key={groupKey} ref={el => { groupRefs.current[groupKey] = el }}>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'flex-start',
-              padding: '4px 8px',
-              minHeight: '28px',
-              backgroundColor: isSelected ? SELECT_HL : 'transparent',
-              position: 'relative',
-            }}
-          >
-            {/* 연도 칸은 고정 폭 — minWidth만 주면 긴 라벨(태초 무렵 (전통 BC 4000경) 등)이 행마다 폭을 늘려 제목 시작점이 어긋난다. 긴 라벨은 줄바꿈. */}
-            <div style={{ width: 108, flexShrink: 0, textAlign: 'right', color: 'var(--ink-faint)', fontSize: '12px', lineHeight: 1.35, paddingTop: 2 }}>
-              {/* 연대추정 표기는 yearLabel의 '경' 접미가 담당 — '~' 중복 표기는 뺀다 */}
-              {isAuthored ? <span title="연대추정 (저작 배경 기준)">{yearLabel}</span> : yearLabel}
-            </div>
-            <div style={{ borderLeft: '2px solid var(--line)', margin: '0 12px', alignSelf: 'stretch', minHeight: 20 }} />
-            {/* 같은 날짜의 사건들을 모두 인라인 표시 — 플로팅 그룹 팝업(외 N건) 제거, 각 사건이 직접 클릭 가능 */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 3, paddingTop: 2, minWidth: 0 }}>
-              {members.map(ev => (
-                <div key={ev.id} style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-                  <span
-                    style={{ fontSize: '13px', cursor: 'pointer', color: 'var(--ink)' }}
-                    onClick={(e) => { e.stopPropagation(); onSelectNode && onSelectNode(ev.id) }}
-                  >
-                    {ev.nameKo || ev.title}
-                  </span>
-                  {renderBookChip(ev)}
+              return (
+                <div key={groupKey} ref={el => { groupRefs.current[groupKey] = el }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    padding: '4px 8px',
+                    minHeight: '28px',
+                    backgroundColor: isSelected ? SELECT_HL : 'transparent',
+                    position: 'relative',
+                  }}
+                >
+                  {/* 연도 칸은 고정 폭 — minWidth만 주면 긴 라벨(태초 무렵 (전통 BC 4000경) 등)이 행마다 폭을 늘려 제목 시작점이 어긋난다. 긴 라벨은 줄바꿈. */}
+                  <div style={{ width: YEAR_W, flexShrink: 0, textAlign: 'right', color: 'var(--ink-faint)', fontSize: '11.5px', lineHeight: 1.35, paddingTop: 3 }}>
+                    {/* 연대추정 표기는 yearLabel의 '경' 접미가 담당 — '~' 중복 표기는 뺀다 */}
+                    {isAuthored ? <span title="연대추정 (저작 배경 기준)">{yearLabel}</span> : yearLabel}
+                  </div>
+                  {/* 레일 도트 — 섹션 연속 레일 위, 선택 시 금색 */}
+                  <div style={{ width: 20, flexShrink: 0, display: 'flex', justifyContent: 'center', paddingTop: 6 }}>
+                    <span style={{ width: 8, height: 8, borderRadius: '50%', background: isSelected ? 'var(--gold)' : 'var(--line-strong)', boxShadow: '0 0 0 3px var(--bg-0)', position: 'relative', zIndex: 1 }} />
+                  </div>
+                  {/* 같은 날짜의 사건들을 모두 인라인 표시 — 플로팅 그룹 팝업(외 N건) 제거, 각 사건이 직접 클릭 가능 */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 3, paddingTop: 2, minWidth: 0, paddingLeft: 4 }}>
+                    {members.map(ev => (
+                      <div key={ev.id} style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+                        <span
+                          style={{ fontSize: '13px', cursor: 'pointer', color: 'var(--ink)' }}
+                          onClick={(e) => { e.stopPropagation(); onSelectNode && onSelectNode(ev.id) }}
+                        >
+                          {ev.nameKo || ev.title}
+                        </span>
+                        {renderBookChip(ev)}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
-            </div>
+                </div>
+              )
+            })}
           </div>
-          </div>
-        )
-      })}
+        </div>
+      ))}
     </div>
     {renderVerseLayer()}
     </div>
