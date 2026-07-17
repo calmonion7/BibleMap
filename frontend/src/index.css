@@ -225,16 +225,8 @@ h2 {
   animation: sheet-in var(--dur-base) var(--ease-drawer) both;
 }
 
-/* 구절 레이어(양피지) 하단 시트 퇴장(task#202) — 스와이프/ESC/배경탭 닫힘 시 재생 후 언마운트.
-   exit-즉시-언마운트 원칙(ADR-0024)의 의도된 예외 — 시트는 슬라이드다운으로 닫히는 게 자연스럽다는 결정.
-   duration은 신규 하드코딩 대신 기존 --dur-fast(150ms, "~160ms" 스펙에 최근접)를 재사용. */
-@keyframes sheet-out {
-  from { transform: none; }
-  to { transform: translateY(100%); }
-}
-.sheet-out {
-  animation: sheet-out var(--dur-fast) var(--ease-drawer) both;
-}
+/* 구절 레이어(양피지) 시트 퇴장은 keyframe이 아니라 VerseLayer 인라인 transform 트랜지션(--dur-fast)으로 처리 —
+   드래그 추종 위치에서 이어서 내려가야 해서다(exit-즉시-언마운트 원칙(ADR-0024)의 의도된 예외, 시트 한정). */
 
 /* 메시아의 실(task#197) — 가계도 lineage 커넥터 금색 드로인(위→아래 스태거는 인라인 --thread-delay).
    pathLength=1 정규화 실선 전용(점선 세그먼트 구간은 dasharray 충돌 — 페이드로 대체). */
