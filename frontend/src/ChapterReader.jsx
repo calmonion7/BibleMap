@@ -6,9 +6,9 @@ import { paperTextStyle } from './VerseLayer'
 
 // 본문 리더(task#205) — 장 단위 통독 화면. chapter가 null이면 장 그리드(목차), 지정되면 그 장 본문.
 // 본문 데이터는 프리베이크 정본 절 사전(/book/{id}/chapter/{n}, ADR-0003·0015) — 신규 저작 0.
-// 장 그리드의 책 이름·장 수는 Book 노드(/node/{id})의 nameKo·chapterCount.
+// 장 목차(nameKo·chapterCount·장별 개요)는 /book/{id}/chapters — 개요 오버레이 없으면 숫자 그리드 폴백(task#206).
 function ChapterReader({ bookId, chapter, onSelectChapter, verseLang, setVerseLang }) {
-  const [bookMeta, setBookMeta] = useState(null)   // { nameKo, chapterCount } — 그리드·로딩 헤더용
+  const [bookMeta, setBookMeta] = useState(null)   // { nameKo, chapterCount, chapters } — 그리드·로딩 헤더용
   const [data, setData] = useState(null)           // /book/{id}/chapter/{n} 응답
   const [failed, setFailed] = useState(false)
 
@@ -16,9 +16,9 @@ function ChapterReader({ bookId, chapter, onSelectChapter, verseLang, setVerseLa
     const ctrl = new AbortController()
     let alive = true
     Promise.resolve().then(() => { if (alive) setBookMeta(null) })
-    apiGet(`/node/${encodeURIComponent(bookId)}`, { signal: ctrl.signal })
-      .then(node => { if (alive) setBookMeta({ nameKo: node.nameKo, chapterCount: node.properties?.chapterCount }) })
-      .catch(e => { if (e?.name !== 'AbortError') console.warn('[ChapterReader] 책 정보 로드 실패 — 그리드 헤더 미노출', e) })
+    apiGet(`/book/${encodeURIComponent(bookId)}/chapters`, { signal: ctrl.signal })
+      .then(d => { if (alive) setBookMeta(d) })
+      .catch(e => { if (e?.name !== 'AbortError') console.warn('[ChapterReader] 장 목차 로드 실패 — 그리드 헤더 미노출', e) })
     return () => { alive = false; ctrl.abort() }
   }, [bookId])
 
@@ -44,8 +44,9 @@ function ChapterReader({ bookId, chapter, onSelectChapter, verseLang, setVerseLa
     opacity: disabled ? 0.5 : 1,
   })
 
-  // 장 그리드(목차) — 장 번호 버튼만, 요약 노출은 task#206 별도.
+  // 장 그리드(목차) — 장 개요가 있으면 "읽히는 목차"(번호+요약 행, task#206), 없으면 숫자 그리드 폴백.
   if (chapter == null) {
+    const summaries = bookMeta?.chapters?.length ? bookMeta.chapters : null
     return (
       <div style={{ height: '100%', overflowY: 'auto', background: 'var(--bg-0)' }}>
         <div style={{ maxWidth: 600, margin: '0 auto', padding: '20px 16px 48px' }}>
@@ -59,6 +60,27 @@ function ChapterReader({ bookId, chapter, onSelectChapter, verseLang, setVerseLa
           </div>
           {chapterCount == null ? (
             <Spinner />
+          ) : summaries ? (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              {summaries.map(e => (
+                <button
+                  key={e.chapter}
+                  onClick={() => onSelectChapter(e.chapter)}
+                  style={{
+                    display: 'flex', alignItems: 'baseline', gap: 10, width: '100%', textAlign: 'left',
+                    padding: '9px 10px', borderRadius: 8, cursor: 'pointer',
+                    border: 'none', background: 'none', font: 'inherit',
+                    borderLeft: '3px solid var(--gold-dim)',
+                    transition: 'background var(--dur-fast)',
+                  }}
+                  onMouseEnter={ev => { ev.currentTarget.style.background = 'var(--bg-1)' }}
+                  onMouseLeave={ev => { ev.currentTarget.style.background = 'none' }}
+                >
+                  <span style={{ fontFamily: 'var(--serif)', fontSize: 14, fontWeight: 700, color: 'var(--gold)', flexShrink: 0, minWidth: 22, textAlign: 'right' }}>{e.chapter}</span>
+                  <span style={{ fontSize: 13, color: 'var(--ink-dim)', lineHeight: 1.5 }}>{e.summary}</span>
+                </button>
+              ))}
+            </div>
           ) : (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(52px, 1fr))', gap: 8 }}>
               {Array.from({ length: chapterCount }, (_, i) => i + 1).map(n => (
@@ -98,6 +120,13 @@ function ChapterReader({ bookId, chapter, onSelectChapter, verseLang, setVerseLa
           </div>
           <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
         </div>
+
+        {/* 장 개요(task#206) — 리더 헤더 아래 한 줄, 오버레이 없으면 조용히 생략 */}
+        {data?.summary && (
+          <div style={{ fontSize: 12, color: 'var(--ink-dim)', textAlign: 'center', margin: '-6px 0 12px', lineHeight: 1.5 }}>
+            {data.summary}
+          </div>
+        )}
 
         <div style={{
           background: 'var(--paper)', color: 'var(--paper-ink)', boxShadow: 'var(--shadow-2)',

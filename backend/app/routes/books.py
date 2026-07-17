@@ -60,11 +60,17 @@ def _chapter_payload(book_id: str, n: int) -> "dict | None":
     verses_all = overlays.bible_verses()
     keys = sorted(k for k in verses_all if k.startswith(prefix))
     meta = _book_meta().get(book_id, {})
+    # 장 개요 오버레이 합성(task#206) — 없으면 None(리더 헤더가 조용히 생략)
+    summary = next(
+        (e.get("summary") for e in overlays.chapter_summaries().get(book_id, []) if e.get("chapter") == n),
+        None,
+    )
     return {
         "bookId": book_id,
         "nameKo": meta.get("nameKo") or overlays.books_ko().get(book_id, {}).get("ko"),
         "chapterCount": meta.get("chapterCount"),
         "chapter": n,
+        "summary": summary,
         "verses": [
             {
                 "verseId": k,
@@ -75,6 +81,24 @@ def _chapter_payload(book_id: str, n: int) -> "dict | None":
             for k in keys
         ],
     }
+
+
+@router.get("/book/{book_id}/chapters")
+def get_book_chapters(book_id: str):
+    """본문 리더 장 목차(task#206) — 장별 개요·대표절 목록. 오버레이 없으면 빈 chapters로 폴백."""
+    bb = _book_bb().get(book_id)
+    if not bb:
+        raise HTTPException(status_code=404, detail="unknown book")
+    meta = _book_meta().get(book_id, {})
+    return JSONResponse(
+        {
+            "bookId": book_id,
+            "nameKo": meta.get("nameKo") or overlays.books_ko().get(book_id, {}).get("ko"),
+            "chapterCount": meta.get("chapterCount"),
+            "chapters": overlays.chapter_summaries().get(book_id, []),
+        },
+        headers={"Cache-Control": "public, max-age=3600"},
+    )
 
 
 @router.get("/book/{book_id}/chapter/{n}")

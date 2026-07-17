@@ -75,6 +75,12 @@ def books_ko() -> dict:
 
 
 @functools.lru_cache(maxsize=1)
+def chapter_summaries() -> dict:
+    """장 개요 정본(bookId → [{chapter, summary, keyVerseId}]) 오버레이. 1회 로드 캐시."""
+    return _load("chapter_summaries/books.json")
+
+
+@functools.lru_cache(maxsize=1)
 def verse_persons() -> dict:
     """구절↔인물 색인 정본(verseID → [personRecId, ...]). 1회 로드 캐시.
     build_verse_persons.py 산출물(theographic verses.people 투영)."""
