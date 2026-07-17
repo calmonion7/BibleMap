@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Crown, Heart, Handshake, Shield, Scroll, Swords, Users, GraduationCap, Sun, Network, HeartHandshake } from 'lucide-react'
 import { apiGet } from './api'
-import VerseLangTabs from './VerseLangTabs'
 import Spinner from './Spinner'
 import PersonSymbol, { hasSymbol } from './personSymbols'
 import { VALENCE_COLOR } from './theme'
+import VerseLayer, { paperTextStyle } from './VerseLayer'
 
 // 인물 관계 뷰(CONTEXT '인물 관계') — 유형 섹션 + 관계 카드(인장 아바타 + 사건 칩) 개요 + 초점 쌍 + 근거 구절 레이어.
 // 전역 시간축 없음(개요) — 칩은 시간순 나열, 시간은 칩의 연도로. person-centric. (task#198 카드형 개편)
@@ -69,41 +69,34 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
     return Math.min(...a.phases.map(p => p.approxYear)) - Math.min(...b.phases.map(p => p.approxYear))
   })
 
-  // 근거 구절 레이어
-  function VerseLayer() {
+  // 근거 구절 레이어 — 통일 쉘(VerseLayer, task#202 S2)에 본문(ctx 강조/원문)만 children으로 얹는다.
+  const renderVerseLayer = () => {
     if (!versePhase) return null
     const ph = sorted[versePhase.relIdx]?.phases[versePhase.phaseIdx]
     if (!ph) return null
     const ctx = verseLang === 'ko' ? ph.contextKo : ph.contextEn
     const text = verseLang === 'ko' ? ph.verseTextKo : ph.verseTextEn
     return (
-      <div
-        onClick={() => setVersePhase(null)}
-        // 모달 스크림 — 전용 토큰 없어 값 유지(다크 배경 위 반투명 오버레이라 무해)
-        style={{ position: 'absolute', inset: 0, zIndex: 100, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
+      <VerseLayer
+        title={ph.label}
+        dotColor={VALENCE_COLOR[ph.valence] ?? VALENCE_COLOR.중립}
+        refLine={`${ph.verse} · ${era(ph.approxYear)}`}
+        onClose={() => setVersePhase(null)}
+        verseLang={verseLang}
+        setVerseLang={setVerseLang}
       >
-        {/* 근거 구절 모달 = 양피지 카드(원칙 2) */}
-        <div onClick={e => e.stopPropagation()} style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-            <span style={{ width: 10, height: 10, borderRadius: '50%', background: VALENCE_COLOR[ph.valence] ?? VALENCE_COLOR.중립, flexShrink: 0 }} />
-            <span style={{ fontWeight: 700, fontSize: 15, flex: 1 }}>{ph.label}</span>
-            <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
-            <button onClick={() => setVersePhase(null)} style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: 20, color: 'var(--paper-accent)', lineHeight: 1, padding: '0 2px' }}>×</button>
-          </div>
-          <div style={{ fontSize: 12, color: 'var(--paper-accent)', marginBottom: 8 }}>{ph.verse} · {era(ph.approxYear)}</div>
-          {Array.isArray(ctx) && ctx.length ? (
-            <p style={{ fontSize: 15, lineHeight: 1.8, fontFamily: 'var(--serif)', color: 'var(--paper-ink)', margin: 0 }}>
-              {ctx.map((c, i) => (
-                <span key={i} style={c.a ? { fontWeight: 700, color: 'var(--paper-accent)' } : undefined}>
-                  <sup style={{ color: 'var(--paper-accent)', fontWeight: 400, marginRight: 1 }}>{c.v}</sup>{c.t}{i < ctx.length - 1 ? ' ' : ''}
-                </span>
-              ))}
-            </p>
-          ) : (
-            <p style={{ fontSize: 15, lineHeight: 1.8, fontFamily: 'var(--serif)', color: 'var(--paper-ink)', margin: 0 }}>{text || '본문을 불러오지 못했습니다.'}</p>
-          )}
-        </div>
-      </div>
+        {Array.isArray(ctx) && ctx.length ? (
+          <p style={{ ...paperTextStyle, margin: 0 }}>
+            {ctx.map((c, i) => (
+              <span key={i} style={c.a ? { fontWeight: 700, color: 'var(--paper-accent)' } : undefined}>
+                <sup style={{ color: 'var(--paper-accent)', fontWeight: 400, marginRight: 1 }}>{c.v}</sup>{c.t}{i < ctx.length - 1 ? ' ' : ''}
+              </span>
+            ))}
+          </p>
+        ) : (
+          <p style={{ ...paperTextStyle, margin: 0 }}>{text || '본문을 불러오지 못했습니다.'}</p>
+        )}
+      </VerseLayer>
     )
   }
 
@@ -156,7 +149,7 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
           </div>
         </div>
         </div>
-        {VerseLayer()}
+        {renderVerseLayer()}
       </div>
     )
   }
@@ -247,7 +240,7 @@ function RelationsView({ personId, personName, verseLang, setVerseLang, curatedI
         )}
       </div>
       </div>
-      {VerseLayer()}
+      {renderVerseLayer()}
     </div>
   )
 }

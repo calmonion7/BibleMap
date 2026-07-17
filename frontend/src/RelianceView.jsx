@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef, useLayoutEffect } from 'react'
-import { createPortal } from 'react-dom'
 import { apiGet } from './api'
 import Spinner from './Spinner'
-import VerseLangTabs from './VerseLangTabs'
+import VerseLayer, { paperTextStyle } from './VerseLayer'
 
 // 하나님 의존 뷰 — 한 인물이 얼마나 하나님을 의지했는가를 도넛 게이지(정의 ii: 물음+순종한 부르심 ÷ 전체)로,
 // 하나님-상호작용 순간들을 mode 분해 막대 + 생애 궤적으로, 근거는 양피지 구절 레이어로 보여준다.
@@ -67,7 +66,7 @@ function VerseCard({ seg, lang, color }) {
   const txt = lang === 'en' && seg.verseTextEn ? seg.verseTextEn : (seg.verseTextKo || seg.verseTextEn || '구절 본문 없음')
   return (
     <div style={{
-      fontFamily: 'var(--serif)', fontSize: 15, lineHeight: 1.8, color: 'var(--paper-ink)',
+      ...paperTextStyle,
       borderLeft: `3px solid ${color}`, paddingLeft: 11, marginTop: 6,
     }}>
       <span style={{ fontWeight: 700, color: 'var(--paper-accent)', marginRight: 6 }}>{seg.verse}</span>
@@ -221,6 +220,7 @@ function RelianceView({ personId, personName, verseLang, setVerseLang, onSelectP
   const [verseView, setVerseView] = useState(null)   // { ph } | null — 궤적 점 클릭 구절 레이어
   const [ranking, setRanking] = useState(null)        // null=미열림, []=로딩, [...]=목록
   const [rankLoading, setRankLoading] = useState(false)
+  const [rankOpen, setRankOpen] = useState(false)   // 열림은 데이터 상태와 분리 — 로딩 중 닫기 레이스 방지
 
   // 부모가 key={personId}로 리마운트하므로 초기 상태(null/false)가 이미 신선 — effect 내 동기 리셋 불필요.
   useEffect(() => {
@@ -232,7 +232,8 @@ function RelianceView({ personId, personName, verseLang, setVerseLang, onSelectP
   }, [personId])
 
   function openRanking() {
-    if (ranking) return
+    setRankOpen(true)
+    if (ranking || rankLoading) return
     setRankLoading(true)
     apiGet('/reliance/ranking')
       .then(({ ranking }) => setRanking(ranking || []))
@@ -356,92 +357,81 @@ function RelianceView({ personId, personName, verseLang, setVerseLang, onSelectP
         })()}
       </div>
 
-      {/* 구절 레이어 — 양피지 포털(WordDistribution·사건 구절 레이어와 동일 패턴) */}
-      {verseView && createPortal(
-        <div onClick={() => setVerseView(null)}
-          className="overlay-in" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
-          <div onClick={e => e.stopPropagation()} className="modal-in"
-            style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-              <span style={{ width: 10, height: 10, borderRadius: '50%', background: segColor(verseView.ph), flexShrink: 0 }} />
-              <span style={{ fontWeight: 700, fontSize: 12.5, color: 'var(--paper-accent)' }}>{MODE_META[segKey(verseView.ph)]?.label}</span>
-              <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
-              <button onClick={() => setVerseView(null)} aria-label="닫기"
-                style={{ marginLeft: 'auto', border: 'none', background: 'none', cursor: 'pointer', fontSize: 20, color: 'var(--paper-accent)', lineHeight: 1, padding: '0 2px' }}>×</button>
-            </div>
-            {(() => {
-              const ph = verseView.ph
-              const [tLabel, rLabel, oLabel] = ph.response
-                ? (STEP_LABELS_3[segKey(ph)] || ['계기', '행동', '결과'])
-                : (() => { const [t, o] = STEP_LABELS[segKey(ph)] || ['계기', '결과']; return [t, null, o] })()
-              const color = segColor(ph)
-              const kind = ph.outcome?.kind
-              return (
-                <div>
-                  {/* 계기 */}
-                  <StepChip color={color} text={tLabel} />
-                  <div style={{ fontSize: 13.5, color: 'var(--paper-ink)', marginTop: 3, fontFamily: 'var(--serif)' }}>{ph.trigger.label}</div>
-                  {(ph.response || !ph.sameVerse) && <VerseCard seg={ph.trigger} lang={verseLang} color={color} />}
-                  {/* 흐름 화살표 */}
-                  <div style={{ textAlign: 'center', color: 'var(--paper-accent)', fontSize: 18, margin: '10px 0', lineHeight: 1 }}>↓</div>
-                  {/* 중간 단(행동) — response가 있는 3단 항목만 */}
-                  {ph.response && (
-                    <>
-                      <StepChip color={color} text={rLabel} />
-                      <div style={{ fontSize: 13.5, color: 'var(--paper-ink)', marginTop: 3, fontFamily: 'var(--serif)' }}>{ph.response.label}</div>
-                      <VerseCard seg={ph.response} lang={verseLang} color={color} />
-                      <div style={{ textAlign: 'center', color: 'var(--paper-accent)', fontSize: 18, margin: '10px 0', lineHeight: 1 }}>↓</div>
-                    </>
+      {/* 구절 레이어 — 통일 쉘(VerseLayer, task#202 S1). 모드색 점은 dotColor, 본문(StepChip/VerseCard/KIND_BADGE)은 children. */}
+      {verseView && (
+        <VerseLayer
+          title={MODE_META[segKey(verseView.ph)]?.label}
+          dotColor={segColor(verseView.ph)}
+          onClose={() => setVerseView(null)}
+          verseLang={verseLang}
+          setVerseLang={setVerseLang}
+        >
+          {(() => {
+            const ph = verseView.ph
+            const [tLabel, rLabel, oLabel] = ph.response
+              ? (STEP_LABELS_3[segKey(ph)] || ['계기', '행동', '결과'])
+              : (() => { const [t, o] = STEP_LABELS[segKey(ph)] || ['계기', '결과']; return [t, null, o] })()
+            const color = segColor(ph)
+            const kind = ph.outcome?.kind
+            return (
+              <div>
+                {/* 계기 */}
+                <StepChip color={color} text={tLabel} />
+                <div style={{ fontSize: 13.5, color: 'var(--paper-ink)', marginTop: 3, fontFamily: 'var(--serif)' }}>{ph.trigger.label}</div>
+                {(ph.response || !ph.sameVerse) && <VerseCard seg={ph.trigger} lang={verseLang} color={color} />}
+                {/* 흐름 화살표 */}
+                <div style={{ textAlign: 'center', color: 'var(--paper-accent)', fontSize: 18, margin: '10px 0', lineHeight: 1 }}>↓</div>
+                {/* 중간 단(행동) — response가 있는 3단 항목만 */}
+                {ph.response && (
+                  <>
+                    <StepChip color={color} text={rLabel} />
+                    <div style={{ fontSize: 13.5, color: 'var(--paper-ink)', marginTop: 3, fontFamily: 'var(--serif)' }}>{ph.response.label}</div>
+                    <VerseCard seg={ph.response} lang={verseLang} color={color} />
+                    <div style={{ textAlign: 'center', color: 'var(--paper-accent)', fontSize: 18, margin: '10px 0', lineHeight: 1 }}>↓</div>
+                  </>
+                )}
+                {/* 결과 */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                  <StepChip color={color} text={oLabel} />
+                  {kind && KIND_BADGE[kind] && (
+                    <span style={{ fontSize: 10.5, fontWeight: 700, color: 'var(--paper)', background: 'var(--paper-accent)', borderRadius: 999, padding: '2px 8px' }}>{KIND_BADGE[kind]}</span>
                   )}
-                  {/* 결과 */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                    <StepChip color={color} text={oLabel} />
-                    {kind && KIND_BADGE[kind] && (
-                      <span style={{ fontSize: 10.5, fontWeight: 700, color: 'var(--paper)', background: 'var(--paper-accent)', borderRadius: 999, padding: '2px 8px' }}>{KIND_BADGE[kind]}</span>
-                    )}
-                  </div>
-                  <div style={{ fontSize: 13.5, color: 'var(--paper-ink)', marginTop: 3, fontFamily: 'var(--serif)' }}>{ph.outcome.label}</div>
-                  <VerseCard seg={ph.outcome} lang={verseLang} color={color} />
                 </div>
-              )
-            })()}
-          </div>
-        </div>,
-        document.body
+                <div style={{ fontSize: 13.5, color: 'var(--paper-ink)', marginTop: 3, fontFamily: 'var(--serif)' }}>{ph.outcome.label}</div>
+                <VerseCard seg={ph.outcome} lang={verseLang} color={color} />
+              </div>
+            )
+          })()}
+        </VerseLayer>
       )}
 
-      {/* 인물 랭킹 모달 */}
-      {(rankLoading || ranking) && createPortal(
-        <div onClick={() => { setRanking(null) }}
-          className="overlay-in" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
-          <div onClick={e => e.stopPropagation()} className="modal-in"
-            style={{ background: 'var(--bg-1)', color: 'var(--ink)', borderRadius: 'var(--r-m)', maxWidth: 460, width: '100%', maxHeight: '82%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '16px 18px', border: '1px solid var(--line-strong)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: 12 }}>
-              <span style={{ fontWeight: 700, fontSize: 15, fontFamily: 'var(--serif)', color: 'var(--ink)' }}>하나님 의존도 랭킹</span>
-              <button onClick={() => setRanking(null)} aria-label="닫기"
-                style={{ marginLeft: 'auto', border: 'none', background: 'none', cursor: 'pointer', fontSize: 20, color: 'var(--ink-faint)', lineHeight: 1 }}>×</button>
-            </div>
-            {rankLoading && <Spinner />}
-            {ranking && ranking.map((r, i) => (
-              <button key={r.slug}
-                onClick={() => { setRanking(null); onSelectPerson && onSelectPerson(r.personId, 'reliance') }}
-                style={{
-                  width: '100%', textAlign: 'left', cursor: 'pointer', border: 'none', background: r.slug === data?.slug ? 'var(--bg-2)' : 'none',
-                  padding: '7px 8px', borderRadius: 8, display: 'flex', alignItems: 'center', gap: 10,
-                }}>
-                <span style={{ fontSize: 11, color: 'var(--ink-faint)', width: 20, textAlign: 'right' }}>{i + 1}</span>
-                <span style={{ fontSize: 13.5, color: 'var(--ink)', width: 88, fontFamily: 'var(--serif)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                  {r.nameKo}{r.lowSample ? <span style={{ fontSize: 10, color: 'var(--ink-faint)' }}> ·표본적음</span> : ''}
-                </span>
-                <span style={{ flex: 1, height: 8, background: 'var(--bg-3)', borderRadius: 4, overflow: 'hidden' }}>
-                  <span className="bar-reveal" style={{ display: 'block', height: '100%', width: `${r.percent}%`, background: 'var(--gold)' }} />
-                </span>
-                <span style={{ fontSize: 12.5, fontWeight: 700, color: 'var(--gold)', width: 38, textAlign: 'right' }}>{r.percent}%</span>
-              </button>
-            ))}
-          </div>
-        </div>,
-        document.body
+      {/* 인물 랭킹 모달 — 다크 카드(양피지 아님) → cardStyle 오버라이드 + hideLangTabs */}
+      {rankOpen && (
+        <VerseLayer
+          title="하나님 의존도 랭킹"
+          onClose={() => setRankOpen(false)}
+          hideLangTabs
+          cardStyle={{ background: 'var(--bg-1)', color: 'var(--ink)', maxWidth: 460, border: '1px solid var(--line-strong)', padding: '16px 18px' }}
+        >
+          {rankLoading && <Spinner />}
+          {ranking && ranking.map((r, i) => (
+            <button key={r.slug}
+              onClick={() => { setRankOpen(false); onSelectPerson && onSelectPerson(r.personId, 'reliance') }}
+              style={{
+                width: '100%', textAlign: 'left', cursor: 'pointer', border: 'none', background: r.slug === data?.slug ? 'var(--bg-2)' : 'none',
+                padding: '7px 8px', borderRadius: 8, display: 'flex', alignItems: 'center', gap: 10,
+              }}>
+              <span style={{ fontSize: 11, color: 'var(--ink-faint)', width: 20, textAlign: 'right' }}>{i + 1}</span>
+              <span style={{ fontSize: 13.5, color: 'var(--ink)', width: 88, fontFamily: 'var(--serif)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                {r.nameKo}{r.lowSample ? <span style={{ fontSize: 10, color: 'var(--ink-faint)' }}> ·표본적음</span> : ''}
+              </span>
+              <span style={{ flex: 1, height: 8, background: 'var(--bg-3)', borderRadius: 4, overflow: 'hidden' }}>
+                <span className="bar-reveal" style={{ display: 'block', height: '100%', width: `${r.percent}%`, background: 'var(--gold)' }} />
+              </span>
+              <span style={{ fontSize: 12.5, fontWeight: 700, color: 'var(--gold)', width: 38, textAlign: 'right' }}>{r.percent}%</span>
+            </button>
+          ))}
+        </VerseLayer>
       )}
     </div>
   )

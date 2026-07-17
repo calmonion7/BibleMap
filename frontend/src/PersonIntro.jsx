@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
-import { createPortal } from 'react-dom'
 import { Route, Clock, Users } from 'lucide-react'
 import { TYPE_COLOR } from './theme'
 import { apiGet } from './api'
-import VerseLangTabs from './VerseLangTabs'
+import VerseLayer, { paperTextStyle } from './VerseLayer'
 import Spinner from './Spinner'
 import PersonSymbol from './personSymbols'
 
@@ -44,7 +43,6 @@ const chipStyle = {
   border: '1px solid var(--line-strong)', cursor: 'pointer', fontWeight: 600,
   background: 'var(--bg-2)', color: TYPE_COLOR.Book,
 }
-const paperTextStyle = { fontFamily: 'var(--serif)', fontSize: 15.5, lineHeight: 1.8, color: 'var(--paper-ink)' }
 
 function PersonIntro({ personId, verseLang, setVerseLang, onSwitchView = () => {}, onOpenFamily = () => {}, journeyStops = null, personEventIds = null }) {
   // 노드/메타 fetch — 어느 personId의 결과인지 id로 추적(stale 응답 무시). setState는 콜백에서만.
@@ -119,27 +117,19 @@ function PersonIntro({ personId, verseLang, setVerseLang, onSwitchView = () => {
 
   return (
     <div style={{ fontFamily: 'var(--sans)', padding: '0 16px' }}>
-      {/* 양피지 구절 레이어 — 시트/스크롤 래퍼 밖 body에 포털(오배치 함정 회피, 타 뷰 모달과 동일 UX) */}
-      {layer && createPortal(
-        <div
-          onClick={() => setLayer(null)}
-          className="overlay-in" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
+      {/* 양피지 구절 레이어 — 통일 쉘(VerseLayer, task#202 S1). openVerse/openTrait 공용. */}
+      {layer && (
+        <VerseLayer
+          title={layer.title}
+          refLine={layer.ref && layer.ref !== layer.title ? layer.ref : undefined}
+          onClose={() => setLayer(null)}
+          verseLang={verseLang}
+          setVerseLang={setVerseLang}
         >
-          <div onClick={e => e.stopPropagation()} className="modal-in" style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-              <span style={{ fontWeight: 700, fontSize: 15, flex: 1, fontFamily: 'var(--serif)' }}>{layer.title}</span>
-              <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
-              <button onClick={() => setLayer(null)} style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: 20, color: 'var(--paper-accent)', lineHeight: 1, padding: '0 2px' }}>×</button>
-            </div>
-            {layer.ref && layer.ref !== layer.title && (
-              <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--paper-accent)', marginBottom: 8 }}>{layer.ref}</div>
-            )}
-            {(verseLang === 'ko' ? layer.textKo : layer.textEn)
-              ? <div style={paperTextStyle}>{verseLang === 'ko' ? layer.textKo : layer.textEn}</div>
-              : <div style={{ fontSize: 13, color: 'var(--paper-accent)' }}>원문이 없습니다</div>}
-          </div>
-        </div>,
-        document.body,
+          {(verseLang === 'ko' ? layer.textKo : layer.textEn)
+            ? <div style={paperTextStyle}>{verseLang === 'ko' ? layer.textKo : layer.textEn}</div>
+            : <div style={{ fontSize: 13, color: 'var(--paper-accent)' }}>원문이 없습니다</div>}
+        </VerseLayer>
       )}
 
       {/* 상징물 히어로 — 진입마다 대형 선화가 그려지는 시그니처 순간(ADR-0025).

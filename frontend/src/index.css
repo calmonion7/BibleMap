@@ -43,6 +43,10 @@
   --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.4);
   --shadow-2: 0 8px 32px rgba(0, 0, 0, 0.55);
 
+  /* 레이어 z-index·스크림 — 전역 포털 오버레이(양피지 구절 레이어 등) 공용 토큰(task#202) */
+  --z-verse: 1000;
+  --scrim: rgba(20, 26, 40, 0.45);
+
   /* 서체 — 명조는 서사 주체(제목·인물·책·구절), 산스는 데이터·UI */
   --serif: 'Noto Serif KR', 'Nanum Myeongjo', AppleMyungjo, Batang, serif;
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
@@ -219,6 +223,17 @@ h2 {
 }
 .sheet-in {
   animation: sheet-in var(--dur-base) var(--ease-drawer) both;
+}
+
+/* 구절 레이어(양피지) 하단 시트 퇴장(task#202) — 스와이프/ESC/배경탭 닫힘 시 재생 후 언마운트.
+   exit-즉시-언마운트 원칙(ADR-0024)의 의도된 예외 — 시트는 슬라이드다운으로 닫히는 게 자연스럽다는 결정.
+   duration은 신규 하드코딩 대신 기존 --dur-fast(150ms, "~160ms" 스펙에 최근접)를 재사용. */
+@keyframes sheet-out {
+  from { transform: none; }
+  to { transform: translateY(100%); }
+}
+.sheet-out {
+  animation: sheet-out var(--dur-fast) var(--ease-drawer) both;
 }
 
 /* 메시아의 실(task#197) — 가계도 lineage 커넥터 금색 드로인(위→아래 스태거는 인라인 --thread-delay).

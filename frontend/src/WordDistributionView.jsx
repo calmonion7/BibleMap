@@ -1,8 +1,7 @@
 import { useState, useEffect, useLayoutEffect, useMemo, useRef } from 'react'
-import { createPortal } from 'react-dom'
 import { apiGet } from './api'
 import Spinner from './Spinner'
-import VerseLangTabs from './VerseLangTabs'
+import VerseLayer, { paperTextStyle } from './VerseLayer'
 
 // 단어 분포 페이지 — 책(또는 성경 전체)의 상위 빈도 명사를 단일 타이포그래피 클라우드로 표시.
 // 감정 극성(긍정/중립/부정)은 색+범례로만 구분(영역 분리 없음). 크기 ∝ √빈도,
@@ -173,44 +172,35 @@ function WordDistributionView({ bookId, onSelectBook, verseLang, setVerseLang })
         )}
       </div>
 
-      {/* 구절 레이어 — 사건·성품 구절 레이어와 동일한 양피지 포털 모달(SidePanel 패턴 복제) */}
-      {verseView && createPortal(
-        <div
-          onClick={() => setVerseView(null)}
-          className="overlay-in" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
+      {/* 구절 레이어 — 통일 양피지 레이어(VerseLayer, task#202) */}
+      {verseView && (
+        <VerseLayer
+          title={verseView.word}
+          titleColor={verseView.color}
+          onClose={() => setVerseView(null)}
+          verseLang={verseLang}
+          setVerseLang={setVerseLang}
         >
-          <div onClick={e => e.stopPropagation()} className="modal-in" style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-              <span style={{ fontWeight: 700, fontSize: 15, flex: 1, fontFamily: 'var(--serif)', color: verseView.color }}>{verseView.word}</span>
-              <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
-              <button
-                onClick={() => setVerseView(null)}
-                aria-label="닫기"
-                style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: 20, color: 'var(--paper-accent)', lineHeight: 1, padding: '0 2px' }}
-              >×</button>
+          {!verseView.loading && (
+            <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--paper-accent)', marginBottom: 8 }}>
+              {verseView.total}구절{verseView.total > verseView.verses.length ? ` 중 ${verseView.verses.length}` : ''}
             </div>
-            {!verseView.loading && (
-              <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--paper-accent)', marginBottom: 8 }}>
-                {verseView.total}구절{verseView.total > verseView.verses.length ? ` 중 ${verseView.verses.length}` : ''}
-              </div>
-            )}
-            {verseView.loading ? (
-              <div style={{ padding: '12px 0' }}><Spinner size={20} color="var(--paper-accent)" /></div>
-            ) : verseView.verses.length === 0 ? (
-              <div style={{ fontSize: 13, color: 'var(--paper-accent)', padding: '4px 0' }}>구절을 찾지 못했습니다.</div>
-            ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                {verseView.verses.map(v => (
-                  <div key={v.ref + v.textKo.slice(0, 8)} style={{ fontFamily: 'var(--serif)', fontSize: 15.5, lineHeight: 1.8, color: 'var(--paper-ink)' }}>
-                    <span style={{ fontWeight: 700, color: 'var(--paper-accent)', marginRight: 6 }}>{v.ref}</span>
-                    {verseLang === 'en' && v.textEn ? v.textEn : v.textKo}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>,
-        document.body
+          )}
+          {verseView.loading ? (
+            <div style={{ padding: '12px 0' }}><Spinner size={20} color="var(--paper-accent)" /></div>
+          ) : verseView.verses.length === 0 ? (
+            <div style={{ fontSize: 13, color: 'var(--paper-accent)', padding: '4px 0' }}>구절을 찾지 못했습니다.</div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+              {verseView.verses.map(v => (
+                <div key={v.ref + v.textKo.slice(0, 8)} style={paperTextStyle}>
+                  <span style={{ fontWeight: 700, color: 'var(--paper-accent)', marginRight: 6 }}>{v.ref}</span>
+                  {verseLang === 'en' && v.textEn ? v.textEn : v.textKo}
+                </div>
+              ))}
+            </div>
+          )}
+        </VerseLayer>
       )}
     </div>
   )

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { SELECT_HL, TYPE_COLOR } from './theme'
 import { apiGet } from './api'
-import VerseLangTabs from './VerseLangTabs'
+import VerseLayer, { VerseBookTabs, paperTextStyle } from './VerseLayer'
 import Spinner from './Spinner'
 import { parseYear } from './dates'
 
@@ -53,7 +53,6 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
   // 어떤 bookFilter에 대해 "닫기"를 눌렀는지 식별자로 추적 — 새 필터(다른 참조)면 자동으로 다시 표시(effect 불필요).
   const [dismissedFilter, setDismissedFilter] = useState(null)
   const [dismissedPersonFilter, setDismissedPersonFilter] = useState(null)
-  const containerRef = useRef(null)
   const groupRefs = useRef({})
 
   useEffect(() => {
@@ -72,17 +71,6 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
     })
     return () => cancelAnimationFrame(raf)
   }, [selectedNode, events])
-
-  useEffect(() => {
-    if (verseView === null) return
-    const handler = (e) => {
-      if (containerRef.current && !containerRef.current.contains(e.target)) {
-        setVerseView(null)
-      }
-    }
-    document.addEventListener('click', handler)
-    return () => document.removeEventListener('click', handler)
-  }, [verseView])
 
   const groups = useMemo(() => {
     const groupMap = new Map()
@@ -174,64 +162,38 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
     )
   }
 
-  // 구절 레이어 — 스크롤 컨테이너의 형제(absolute inset 0)로 띄우는 양피지 모달 (RelationsView VerseLayer 패턴).
+  // 구절 레이어 — 통일 쉘(VerseLayer, task#202 S1)에 본문(로딩/빈 상태/절 목록)만 children으로 얹는다.
+  // 포털·반응형 프리젠테이션(모바일 시트/데스크톱 모달)·ESC·배경탭 닫힘은 VerseLayer가 담당.
   const renderVerseLayer = () => {
     if (!verseView) return null
     const ev = verseView.event
     const overlay = eventVerses.id === ev.id ? eventVerses.data : null
-    const nameById = new Map((ev.books || []).map(b => [b.id, b.nameKo || b.name]))
     const ovBooks = overlay ? (overlay.books || []) : []
     const selBook = ovBooks.find(b => b.bookId === verseView.bookId) || ovBooks[0]
-    const selName = selBook ? (nameById.get(selBook.bookId) || '') : ''
     return (
-      <div
-        onClick={closeVerseView}
-        // 모달 스크림 — 전용 토큰 없어 값 유지(다크 배경 위 반투명 오버레이라 무해)
-        style={{ position: 'absolute', inset: 0, zIndex: 100, background: 'rgba(20,26,40,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
-      >
-        {/* 근거 구절 모달 = 양피지 카드(원칙 2) */}
-        <div onClick={e => e.stopPropagation()} style={{ background: 'var(--paper)', color: 'var(--paper-ink)', borderRadius: 'var(--r-m)', maxWidth: 520, width: '100%', maxHeight: '80%', overflowY: 'auto', boxShadow: 'var(--shadow-2)', padding: '18px 20px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-            <span style={{ fontWeight: 700, fontSize: 15, flex: 1, fontFamily: 'var(--serif)' }}>{ev.nameKo || ev.title}</span>
-            <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
-            <button onClick={closeVerseView} style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: 20, color: 'var(--paper-accent)', lineHeight: 1, padding: '0 2px' }}>×</button>
-          </div>
-          {ovBooks.length > 1 && (
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 8 }}>
-              {ovBooks.map(b => {
-                const sel = b.bookId === selBook.bookId
+      <VerseLayer title={ev.nameKo || ev.title} onClose={closeVerseView} verseLang={verseLang} setVerseLang={setVerseLang}>
+        <VerseBookTabs books={ovBooks} activeIdx={selBook?.bookId} onSelect={selectVerseBook} />
+        {overlay === null ? (
+          <div style={{ padding: '12px 0' }}><Spinner size={20} color="var(--paper-accent)" /></div>
+        ) : ovBooks.length === 0 ? (
+          <div style={{ fontSize: 13, padding: '8px 0' }}>표시할 구절이 없습니다</div>
+        ) : (
+          <>
+            <div style={{ fontSize: 12, color: 'var(--paper-accent)', marginBottom: 8 }}>{selBook.bookNameKo} {selBook.rangeLabel}</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+              {selBook.verses.map(v => {
+                const body = (verseLang === 'ko' ? v.textKo : v.textEn) || '원문이 없습니다'
                 return (
-                  <button
-                    key={b.bookId}
-                    onClick={() => selectVerseBook(b.bookId)}
-                    style={{ ...chipBase, background: sel ? BOOK_COLOR : 'transparent', color: sel ? 'var(--bg-0)' : 'var(--paper-accent)', borderColor: 'var(--paper-accent)' }}
-                  >{nameById.get(b.bookId) || b.bookId}</button>
+                  <div key={v.verseID} style={paperTextStyle}>
+                    <span style={{ fontWeight: 600, color: 'var(--paper-accent)', marginRight: 6, fontSize: 12 }}>{v.chapter}:{v.verse}</span>
+                    {body}
+                  </div>
                 )
               })}
             </div>
-          )}
-          {overlay === null ? (
-            <div style={{ padding: '12px 0' }}><Spinner size={20} color="var(--paper-accent)" /></div>
-          ) : ovBooks.length === 0 ? (
-            <div style={{ fontSize: 13, padding: '8px 0' }}>표시할 구절이 없습니다</div>
-          ) : (
-            <>
-              <div style={{ fontSize: 12, color: 'var(--paper-accent)', marginBottom: 8 }}>{selName} {selBook.rangeLabel}</div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                {selBook.verses.map(v => {
-                  const body = (verseLang === 'ko' ? v.textKo : v.textEn) || '원문이 없습니다'
-                  return (
-                    <div key={v.verseID} style={{ fontSize: 15, color: 'var(--paper-ink)', fontFamily: 'var(--serif)', lineHeight: 1.8 }}>
-                      <span style={{ fontWeight: 600, color: 'var(--paper-accent)', marginRight: 6, fontSize: 12 }}>{v.chapter}:{v.verse}</span>
-                      {body}
-                    </div>
-                  )
-                })}
-              </div>
-            </>
-          )}
-        </div>
-      </div>
+          </>
+        )}
+      </VerseLayer>
     )
   }
 
@@ -262,12 +224,11 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
   )
 
   return (
-    // 비스크롤 루트(세로 flex: 배너 + 스크롤 리스트) + 구절 레이어 형제 — 모달을 overflow:auto 자식에 두면 오배치(회고 선례)
+    // 비스크롤 루트(세로 flex: 배너 + 스크롤 리스트). 구절 레이어는 VerseLayer가 document.body로 포털해 이 트리와 무관.
     <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', background: 'var(--bg-0)', WebkitTapHighlightColor: 'transparent', display: 'flex', flexDirection: 'column' }}>
     {activeFilter && renderBanner(`${activeFilter.nameKo} 범위: ${fmtYear(activeFilter.startYear)} ~ ${fmtYear(activeFilter.endYear)}`, () => setDismissedFilter(bookFilter))}
     {activePersonFilter && renderBanner(`${personName}이 언급된 사건`, () => setDismissedPersonFilter(personFilter))}
     <div
-      ref={containerRef}
       style={{ width: '100%', flex: 1, minHeight: 0, boxSizing: 'border-box', overflowY: 'auto', position: 'relative', paddingBottom: 48 }}
     >
       {sections.map((sec) => (
