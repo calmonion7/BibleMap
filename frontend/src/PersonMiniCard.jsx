@@ -47,7 +47,7 @@ function PersonMiniCard({ node, parents = [], isFocus, onRecenter, onOpenPerson,
         style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)' }} />
       {/* 바텀시트 */}
       <div className="sheet-in"
-        onTouchStart={e => { touchY.current = e.touches[0].clientY }}
+        onTouchStart={e => { touchY.current = e.currentTarget.scrollTop > 0 ? null : e.touches[0].clientY }}
         onTouchEnd={e => {
           if (touchY.current != null && e.changedTouches[0].clientY - touchY.current > 60) onClose()
           touchY.current = null

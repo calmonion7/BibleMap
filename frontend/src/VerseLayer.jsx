@@ -84,7 +84,7 @@ export default function VerseLayer({
           role="dialog" aria-modal="true"
           className={closing ? 'sheet-out' : 'sheet-in'}
           onAnimationEnd={() => { if (closing) onClose() }}
-          onTouchStart={e => { touchY.current = e.touches[0].clientY }}
+          onTouchStart={e => { touchY.current = e.currentTarget.scrollTop > 0 ? null : e.touches[0].clientY }}
           onTouchEnd={e => {
             if (touchY.current != null && e.changedTouches[0].clientY - touchY.current > 60) requestClose()
             touchY.current = null
