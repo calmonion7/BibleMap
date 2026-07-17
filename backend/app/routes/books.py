@@ -101,6 +101,62 @@ def get_book_chapters(book_id: str):
     )
 
 
+@functools.lru_cache(maxsize=66)
+def _quotations_payload(book_id: str) -> "dict | None":
+    """인용 관계 페이로드(task#210) — 구약 권은 '이 책을 인용한 신약'(quotedBy), 신약 권은
+    '이 책이 인용한 구약'(quotes). 본문은 정본 절 사전에서 합성(ADR-0015), 권별 집계 동봉."""
+    bb = _book_bb().get(book_id)
+    if not bb:
+        return None
+    is_ot = bb <= 39
+    prefix = f"{bb:02d}"
+    verses_all = overlays.bible_verses()
+    books_ko = overlays.books_ko()
+    tids = list(books_ko)
+
+    def side(ids, label):
+        return {
+            "rangeLabel": label,
+            "verses": [
+                {"verseId": k, "textKo": verses_all.get(k, {}).get("textKo"), "textEn": verses_all.get(k, {}).get("textEn")}
+                for k in ids
+            ],
+        }
+
+    pairs = []
+    for q in overlays.quotations():
+        mine = q["otVerseIds"] if is_ot else q["ntVerseIds"]
+        if not mine[0].startswith(prefix):
+            continue
+        other_ids = q["ntVerseIds"] if is_ot else q["otVerseIds"]
+        other_tid = tids[int(other_ids[0][:2]) - 1]
+        pairs.append({
+            "counterpartBookId": other_tid,
+            "counterpartNameKo": books_ko[other_tid]["ko"],
+            "nt": side(q["ntVerseIds"], q["ntRangeLabel"]),
+            "ot": side(q["otVerseIds"], q["otRangeLabel"]),
+            **({"note": q["note"]} if q.get("note") else {}),
+        })
+
+    counts: dict = {}
+    for p in pairs:
+        counts[p["counterpartBookId"]] = counts.get(p["counterpartBookId"], 0) + 1
+    books = [
+        {"bookId": tid, "nameKo": books_ko[tid]["ko"], "count": counts[tid]}
+        for tid in tids if tid in counts  # 정경 순
+    ]
+    return {"bookId": book_id, "direction": "quotedBy" if is_ot else "quotes", "books": books, "pairs": pairs}
+
+
+@router.get("/book/{book_id}/quotations")
+def get_book_quotations(book_id: str):
+    """책 기준 인용 관계(task#210) — 미지 책 404, 인용 0건 권은 빈 배열."""
+    payload = _quotations_payload(book_id)
+    if payload is None:
+        raise HTTPException(status_code=404, detail="unknown book")
+    return JSONResponse(payload, headers={"Cache-Control": "public, max-age=3600"})
+
+
 @router.get("/book/{book_id}/chapter/{n}")
 def get_book_chapter(book_id: str, n: int):
     """본문 리더(task#205) — 책의 n장 절 목록(한/영). 미지의 책은 404, 범위 밖 장은 빈 목록."""

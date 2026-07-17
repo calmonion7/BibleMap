@@ -86,6 +86,15 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
   const [bookPlacesState, setBookPlacesState] = useState(null)
   const bookPlaces = bookPlacesState?.forNodeId === nodeId ? bookPlacesState.places : null
 
+  // Book 블록 — 인용 관계(task#210): { forNodeId, data } | null. 0건이면 섹션 미렌더.
+  const [bookQuotesState, setBookQuotesState] = useState(null)
+  const bookQuotes = bookQuotesState?.forNodeId === nodeId ? bookQuotesState.data : null
+  // 인용 쌍 레이어·권별 pill 필터 — forNodeId 키로 노드 변경 시 자동 무효화(기존 레이어 패턴)
+  const [quoteLayerRaw, setQuoteLayer] = useState(null)   // { forNodeId, pair } | null
+  const quotePair = quoteLayerRaw?.forNodeId === nodeId ? quoteLayerRaw.pair : null
+  const [quoteFilterRaw, setQuoteFilter] = useState(null) // { forNodeId, bookId } | null
+  const quoteFilter = quoteFilterRaw?.forNodeId === nodeId ? quoteFilterRaw.bookId : null
+
   // 인물 성품 구절 레이어 — 인라인 아코디언 대신 양피지 포털 모달(사건 구절 레이어와 동일 패턴).
   // forNodeId 키로 인물 변경 시 자동 닫힘.
   const [traitLayerRaw, setTraitLayer] = useState(null)   // { forNodeId, idx } | null
@@ -134,6 +143,18 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     apiGet(`/node/${nodeId}/places`)
       .then(data => { if (!cancelled) setBookPlacesState({ forNodeId: nodeId, places: data.places ?? [] }) })
       .catch(e => { if (!cancelled) { console.warn('[SidePanel] 책 장소 로드 실패', e); setBookPlacesState({ forNodeId: nodeId, places: [] }) } })
+    return () => { cancelled = true }
+  }, [nodeId, state.id, state.node])
+
+  // Book 블록 — 인용 관계 fetch (1of2 정본 오버레이 서빙, task#210)
+  useEffect(() => {
+    if (!nodeId) return
+    const node = state.id === nodeId ? state.node : null
+    if (!node || node.label !== 'Book') return
+    let cancelled = false
+    apiGet(`/book/${nodeId}/quotations`)
+      .then(data => { if (!cancelled) setBookQuotesState({ forNodeId: nodeId, data }) })
+      .catch(e => { if (!cancelled) { console.warn('[SidePanel] 인용 관계 로드 실패', e); setBookQuotesState({ forNodeId: nodeId, data: null }) } })
     return () => { cancelled = true }
   }, [nodeId, state.id, state.node])
 
@@ -318,6 +339,34 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
     )
   }
 
+  // 인용 쌍 레이어(task#210) — 인용문(신약) ↔ 원문(구약) 2단 대조, 양피지 포털(기존 레이어와 동일 쉘)
+  function renderQuoteLayer() {
+    if (!quotePair || node?.label !== 'Book') return null
+    const p = quotePair
+    const block = (heading, side, last) => (
+      <div style={{ marginBottom: last ? 0 : 14 }}>
+        <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--paper-accent)', marginBottom: 4 }}>
+          {heading} — {side.rangeLabel}
+        </div>
+        {side.verses.map(v => (
+          <div key={v.verseId} style={paperTextStyle}>{verseLang === 'ko' ? v.textKo : v.textEn}</div>
+        ))}
+      </div>
+    )
+    return (
+      <VerseLayer
+        title={p.note || '인용 대조'}
+        refLine={`${p.nt.rangeLabel} ← ${p.ot.rangeLabel}`}
+        onClose={() => setQuoteLayer(null)}
+        verseLang={verseLang}
+        setVerseLang={setVerseLang}
+      >
+        {block('인용문 (신약)', p.nt, false)}
+        {block('원문 (구약)', p.ot, true)}
+      </VerseLayer>
+    )
+  }
+
   // 여정 없는 인물 근거 구절 모달 — 성품/사건 구절 레이어와 동일 양피지 포털. role·intro·근거구절.
   function renderPersonVerseLayer() {
     if (!personVerseView || node?.label !== 'Book') return null
@@ -351,6 +400,7 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
       {renderVerseLayer()}
       {renderTraitLayer()}
       {renderPersonVerseLayer()}
+      {renderQuoteLayer()}
       {/* 헤더 — 표면 var(--bg-1), 경계 var(--line), 제목 var(--serif)(h2 전역 규칙 상속) */}
       <div style={{
         padding: '14px 44px 14px 16px',
@@ -683,6 +733,62 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
                     </div>
                   ))}
                 </div>
+              )}
+            </div>
+          )}
+
+          {/* 인용 관계 — 구약↔신약 직접 인용(task#210). 0건 권은 섹션 미렌더, 긴 목록이라 기본 접힘 */}
+          {bookQuotes?.pairs?.length > 0 && (
+            <div style={{ marginTop: 4 }}>
+              <SectionHeader
+                label={bookQuotes.direction === 'quotedBy' ? '인용 관계 — 이 책을 인용한 신약' : '인용 관계 — 이 책이 인용한 구약'}
+                color={TYPE_COLOR.Book} count={bookQuotes.pairs.length}
+                sectionKey="book-quotes" collapsed={collapsed} onToggle={toggle}
+              />
+              {collapsed['book-quotes'] === false && (
+                <>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 8 }}>
+                    {bookQuotes.books.map(b => {
+                      const sel = quoteFilter === b.bookId
+                      return (
+                        <button
+                          key={b.bookId}
+                          onClick={() => setQuoteFilter(sel ? null : { forNodeId: nodeId, bookId: b.bookId })}
+                          style={{
+                            fontSize: 11, padding: '2px 9px', borderRadius: 999, cursor: 'pointer', lineHeight: 1.7,
+                            border: `1px solid ${sel ? TYPE_COLOR.Book : 'var(--line-strong)'}`,
+                            background: sel ? 'var(--bg-2)' : 'none',
+                            color: sel ? 'var(--ink)' : 'var(--ink-dim)', fontWeight: sel ? 700 : 500,
+                          }}
+                        >{b.nameKo} {b.count}</button>
+                      )
+                    })}
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 2, paddingBottom: 4 }}>
+                    {bookQuotes.pairs.filter(p => !quoteFilter || p.counterpartBookId === quoteFilter).map((p, i) => (
+                      <button
+                        key={`${p.nt.rangeLabel}-${p.ot.rangeLabel}-${i}`}
+                        onClick={() => setQuoteLayer({ forNodeId: nodeId, pair: p })}
+                        style={{
+                          display: 'flex', alignItems: 'center', gap: 8, width: '100%', textAlign: 'left', font: 'inherit',
+                          border: 'none', background: 'none', cursor: 'pointer',
+                          borderLeft: `3px solid ${TYPE_COLOR.Book}`, borderRadius: 6, padding: '7px 10px',
+                          transition: 'background var(--dur-fast)',
+                        }}
+                        onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-2)' }}
+                        onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
+                      >
+                        <span style={{ flexShrink: 0, fontSize: 12, fontWeight: 600, color: 'var(--ink)' }}>
+                          {p.nt.rangeLabel} ← {p.ot.rangeLabel}
+                        </span>
+                        <span style={{ flex: 1, fontSize: 12, color: 'var(--ink-faint)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                          {p.note}
+                        </span>
+                        <span style={{ ...placeChipBase, flexShrink: 0 }}>📖 대조 ▸</span>
+                      </button>
+                    ))}
+                  </div>
+                </>
               )}
             </div>
           )}

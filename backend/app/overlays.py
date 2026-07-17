@@ -81,6 +81,12 @@ def chapter_summaries() -> dict:
 
 
 @functools.lru_cache(maxsize=1)
+def quotations() -> list:
+    """구약↔신약 직접 인용 쌍 정본([{ntVerseIds, otVerseIds, ntRangeLabel, otRangeLabel, note?}]). 1회 로드 캐시."""
+    return _load("quotations/quotations.json").get("quotations", [])
+
+
+@functools.lru_cache(maxsize=1)
 def verse_persons() -> dict:
     """구절↔인물 색인 정본(verseID → [personRecId, ...]). 1회 로드 캐시.
     build_verse_persons.py 산출물(theographic verses.people 투영)."""
