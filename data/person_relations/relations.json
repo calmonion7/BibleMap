@@ -23940,6 +23940,461 @@
           ]
         }
       ]
+    },
+    {
+      "type": "하나님",
+      "endpoints": [
+        {
+          "nameKo": "셋",
+          "slug": "seth"
+        },
+        {
+          "nameKo": "하나님"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "가인이 죽인 아벨 대신 주신 다른 씨",
+          "verse": "창 4:25",
+          "approxYear": -3800,
+          "context": "창 4:25-26",
+          "verseTextKo": "아담이 다시 아내와 동침하매 그가 아들을 낳아 그 이름을 셋이라 하였으니 이는 하나님이 내게 가인의 죽인 아벨 대신에 다른 씨를 주셨다 함이며 ",
+          "verseTextEn": "And Adam knew his wife again; and she bare a son, and called his name Seth: For God, said she, hath appointed me another seed instead of Abel, whom Cain slew.",
+          "contextKo": [
+            {
+              "v": 25,
+              "t": "아담이 다시 아내와 동침하매 그가 아들을 낳아 그 이름을 셋이라 하였으니 이는 하나님이 내게 가인의 죽인 아벨 대신에 다른 씨를 주셨다 함이며 ",
+              "a": true
+            },
+            {
+              "v": 26,
+              "t": "셋도 아들을 낳고 그 이름을 에노스라 하였으며 그 때에 사람들이 비로소 여호와의 이름을 불렀더라  "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 25,
+              "t": "And Adam knew his wife again; and she bare a son, and called his name Seth: For God, said she, hath appointed me another seed instead of Abel, whom Cain slew.",
+              "a": true
+            },
+            {
+              "v": 26,
+              "t": "And to Seth, to him also there was born a son; and he called his name Enos: then began men to call upon the name of the Lord. "
+            }
+          ]
+        },
+        {
+          "valence": "긍정",
+          "label": "셋의 때에 비로소 여호와의 이름을 부름",
+          "verse": "창 4:26",
+          "approxYear": -3770,
+          "context": "창 4:25-26",
+          "verseTextKo": "셋도 아들을 낳고 그 이름을 에노스라 하였으며 그 때에 사람들이 비로소 여호와의 이름을 불렀더라  ",
+          "verseTextEn": "And to Seth, to him also there was born a son; and he called his name Enos: then began men to call upon the name of the Lord. ",
+          "contextKo": [
+            {
+              "v": 25,
+              "t": "아담이 다시 아내와 동침하매 그가 아들을 낳아 그 이름을 셋이라 하였으니 이는 하나님이 내게 가인의 죽인 아벨 대신에 다른 씨를 주셨다 함이며 "
+            },
+            {
+              "v": 26,
+              "t": "셋도 아들을 낳고 그 이름을 에노스라 하였으며 그 때에 사람들이 비로소 여호와의 이름을 불렀더라  ",
+              "a": true
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 25,
+              "t": "And Adam knew his wife again; and she bare a son, and called his name Seth: For God, said she, hath appointed me another seed instead of Abel, whom Cain slew."
+            },
+            {
+              "v": 26,
+              "t": "And to Seth, to him also there was born a son; and he called his name Enos: then began men to call upon the name of the Lord. ",
+              "a": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "아버지",
+      "endpoints": [
+        {
+          "nameKo": "노아",
+          "slug": "noah"
+        },
+        {
+          "nameKo": "라멕"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "이름을 노아라 함 — 우리를 안위하리라",
+          "verse": "창 5:29",
+          "approxYear": -3000,
+          "context": "창 5:28-29",
+          "verseTextKo": "이름을 노아라 하여 가로되 여호와께서 땅을 저주하시므로 수고로이 일하는 우리를 이 아들이 안위하리라 하였더라 ",
+          "verseTextEn": "And he called his name Noah, saying, This same shall comfort us concerning our work and toil of our hands, because of the ground which the Lord hath cursed.",
+          "contextKo": [
+            {
+              "v": 28,
+              "t": "라멕은 일백팔십이 세에 아들을 낳고 "
+            },
+            {
+              "v": 29,
+              "t": "이름을 노아라 하여 가로되 여호와께서 땅을 저주하시므로 수고로이 일하는 우리를 이 아들이 안위하리라 하였더라 ",
+              "a": true
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 28,
+              "t": "And Lamech lived an hundred eighty and two years, and begat a son:"
+            },
+            {
+              "v": 29,
+              "t": "And he called his name Noah, saying, This same shall comfort us concerning our work and toil of our hands, because of the ground which the Lord hath cursed.",
+              "a": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "군주",
+      "endpoints": [
+        {
+          "nameKo": "요나",
+          "slug": "jonah"
+        },
+        {
+          "nameKo": "니느웨 왕"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "긍정",
+          "label": "요나의 선포에 보좌에서 내려 재에 앉음",
+          "verse": "욘 3:6",
+          "approxYear": -760,
+          "context": "욘 3:4-6",
+          "verseTextKo": "그 소문이 니느웨 왕에게 들리매 왕이 보좌에서 일어나 조복을 벗고 굵은 베를 입고 재에 앉으니라 ",
+          "verseTextEn": "For word came unto the king of Nineveh, and he arose from his throne, and he laid his robe from him, and covered him with sackcloth, and sat in ashes.",
+          "contextKo": [
+            {
+              "v": 4,
+              "t": "요나가 그 성에 들어가며 곧 하룻길을 행하며 외쳐 가로되 사십 일이 지나면 니느웨가 무너지리라 하였더니 "
+            },
+            {
+              "v": 5,
+              "t": "니느웨 백성이 하나님을 믿고 금식을 선포하고 무론 대소하고 굵은 베를 입은지라 "
+            },
+            {
+              "v": 6,
+              "t": "그 소문이 니느웨 왕에게 들리매 왕이 보좌에서 일어나 조복을 벗고 굵은 베를 입고 재에 앉으니라 ",
+              "a": true
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 4,
+              "t": "And Jonah began to enter into the city a day’s journey, and he cried, and said, Yet forty days, and Nineveh shall be overthrown."
+            },
+            {
+              "v": 5,
+              "t": "So the people of Nineveh believed God, and proclaimed a fast, and put on sackcloth, from the greatest of them even to the least of them."
+            },
+            {
+              "v": 6,
+              "t": "For word came unto the king of Nineveh, and he arose from his throne, and he laid his robe from him, and covered him with sackcloth, and sat in ashes.",
+              "a": true
+            }
+          ]
+        },
+        {
+          "valence": "긍정",
+          "label": "금식 조서 — 각기 악한 길에서 떠날지라",
+          "verse": "욘 3:8",
+          "approxYear": -760,
+          "context": "욘 3:7-10",
+          "verseTextKo": "사람이든지 짐승이든지 다 굵은 베를 입을 것이요 힘써 여호와께 부르짖을 것이며 각기 악한 길과 손으로 행한 강포에서 떠날 것이라 ",
+          "verseTextEn": "But let man and beast be covered with sackcloth, and cry mightily unto God: yea, let them turn every one from his evil way, and from the violence that is in their hands.",
+          "contextKo": [
+            {
+              "v": 7,
+              "t": "왕이 그 대신으로 더불어 조서를 내려 니느웨에 선포하여 가로되 사람이나 짐승이나 소떼나 양떼나 아무 것도 입에 대지 말지니 곧 먹지도 말 것이요 물도 마시지 말 것이며 "
+            },
+            {
+              "v": 8,
+              "t": "사람이든지 짐승이든지 다 굵은 베를 입을 것이요 힘써 여호와께 부르짖을 것이며 각기 악한 길과 손으로 행한 강포에서 떠날 것이라 ",
+              "a": true
+            },
+            {
+              "v": 9,
+              "t": "하나님이 혹시 뜻을 돌이키시고 그 진노를 그치사 우리로 멸망치 않게 하시리라 그렇지 않을 줄을 누가 알겠느냐 한지라 "
+            },
+            {
+              "v": 10,
+              "t": "하나님이 그들의 행한 것 곧 그 악한 길에서 돌이켜 떠난 것을 감찰하시고 뜻을 돌이키사 그들에게 내리리라 말씀하신 재앙을 내리지 아니하시니라  "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 7,
+              "t": "And he caused it to be proclaimed and published through Nineveh by the decree of the king and his nobles, saying, Let neither man nor beast, herd nor flock, taste any thing: let them not feed, nor drink water:"
+            },
+            {
+              "v": 8,
+              "t": "But let man and beast be covered with sackcloth, and cry mightily unto God: yea, let them turn every one from his evil way, and from the violence that is in their hands.",
+              "a": true
+            },
+            {
+              "v": 9,
+              "t": "Who can tell if God will turn and repent, and turn away from his fierce anger, that we perish not?"
+            },
+            {
+              "v": 10,
+              "t": "And God saw their works, that they turned from their evil way; and God repented of the evil, that he had said that he would do unto them; and he did it not. "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "가족",
+      "note": "동서",
+      "endpoints": [
+        {
+          "nameKo": "룻",
+          "slug": "ruth"
+        },
+        {
+          "nameKo": "오르바"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "중립",
+          "label": "모압에서 형제의 아내 된 두 여인",
+          "verse": "룻 1:4",
+          "approxYear": -1105,
+          "context": "룻 1:3-5",
+          "verseTextKo": "그들은 모압 여자 중에서 아내를 취하였는데 하나의 이름은 오르바요 하나의 이름은 룻이더라 거기 거한지 십 년 즈음에 ",
+          "verseTextEn": "And they took them wives of the women of Moab; the name of the one was Orpah, and the name of the other Ruth: and they dwelled there about ten years.",
+          "contextKo": [
+            {
+              "v": 3,
+              "t": "나오미의 남편 엘리멜렉이 죽고 나오미와 그 두 아들이 남았으며 "
+            },
+            {
+              "v": 4,
+              "t": "그들은 모압 여자 중에서 아내를 취하였는데 하나의 이름은 오르바요 하나의 이름은 룻이더라 거기 거한지 십 년 즈음에 ",
+              "a": true
+            },
+            {
+              "v": 5,
+              "t": "말론과 기룐 두 사람이 다 죽고 그 여인은 두 아들과 남편의 뒤에 남았더라 "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 3,
+              "t": "And Elimelech Naomi’s husband died; and she was left, and her two sons."
+            },
+            {
+              "v": 4,
+              "t": "And they took them wives of the women of Moab; the name of the one was Orpah, and the name of the other Ruth: and they dwelled there about ten years.",
+              "a": true
+            },
+            {
+              "v": 5,
+              "t": "And Mahlon and Chilion died also both of them; and the woman was left of her two sons and her husband."
+            }
+          ]
+        },
+        {
+          "valence": "중립",
+          "label": "오르바는 입 맞추고 돌아가고 룻은 붙좇음",
+          "verse": "룻 1:14",
+          "approxYear": -1100,
+          "context": "룻 1:11-15",
+          "verseTextKo": "그들이 소리를 높여 다시 울더니 오르바는 그 시모에게 입맞추되 룻은 그를 붙좇았더라 ",
+          "verseTextEn": "And they lifted up their voice, and wept again: and Orpah kissed her mother in law; but Ruth clave unto her.",
+          "contextKo": [
+            {
+              "v": 11,
+              "t": "나오미가 가로되 내 딸들아 돌아가라 너희가 어찌 나와 함께 가려느냐 나의 태중에 너희 남편될 아들들이 오히려 있느냐 "
+            },
+            {
+              "v": 12,
+              "t": "내 딸들아 돌이켜 너희 길로 가라 나는 늙었으니 남편을 두지 못할지라 가령 내가 소망이 있다고 말한다든지 오늘 밤에 남편을 두어서 아들들을 생산한다 하자 "
+            },
+            {
+              "v": 13,
+              "t": "너희가 어찌 그것을 인하여 그들의 자라기를 기다리겠느냐 어찌 그것을 인하여 남편두기를 멈추겠느냐 내 딸들아 그렇지 아니하니라 여호와의 손이 나를 치셨으므로 나는 너희로 인하여 더욱 마음이 아프도다 "
+            },
+            {
+              "v": 14,
+              "t": "그들이 소리를 높여 다시 울더니 오르바는 그 시모에게 입맞추되 룻은 그를 붙좇았더라 ",
+              "a": true
+            },
+            {
+              "v": 15,
+              "t": "나오미가 또 가로되 보라 네 동서는 그 백성과 그 신에게로 돌아가나니 너도 동서를 따라 돌아가라 "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 11,
+              "t": "And Naomi said, Turn again, my daughters: why will ye go with me? are there yet any more sons in my womb, that they may be your husbands?"
+            },
+            {
+              "v": 12,
+              "t": "Turn again, my daughters, go your way; for I am too old to have an husband. If I should say, I have hope, if I should have an husband also to night, and should also bear sons;"
+            },
+            {
+              "v": 13,
+              "t": "Would ye tarry for them till they were grown? would ye stay for them from having husbands? nay, my daughters; for it grieveth me much for your sakes that the hand of the Lord is gone out against me."
+            },
+            {
+              "v": 14,
+              "t": "And they lifted up their voice, and wept again: and Orpah kissed her mother in law; but Ruth clave unto her.",
+              "a": true
+            },
+            {
+              "v": 15,
+              "t": "And she said, Behold, thy sister in law is gone back unto her people, and unto her gods: return thou after thy sister in law."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "대적",
+      "endpoints": [
+        {
+          "nameKo": "입다",
+          "slug": "jephthah"
+        },
+        {
+          "nameKo": "암몬 왕"
+        }
+      ],
+      "phases": [
+        {
+          "valence": "중립",
+          "label": "사신을 보내 땅 시비를 변론함",
+          "verse": "삿 11:12",
+          "approxYear": -1081,
+          "context": "삿 11:12-15",
+          "verseTextKo": "입다가 암몬 자손의 왕에게 사자를 보내어 이르되 네가 나와 무슨 상관이 있기에 내 땅을 치러 내게 왔느냐 ",
+          "verseTextEn": "And Jephthah sent messengers unto the king of the children of Ammon, saying, What hast thou to do with me, that thou art come against me to fight in my land?",
+          "contextKo": [
+            {
+              "v": 12,
+              "t": "입다가 암몬 자손의 왕에게 사자를 보내어 이르되 네가 나와 무슨 상관이 있기에 내 땅을 치러 내게 왔느냐 ",
+              "a": true
+            },
+            {
+              "v": 13,
+              "t": "암몬 자손의 왕이 입다의 사자에게 대답하되 이스라엘이 애굽에서 올라올 때에 아르논에서부터 얍복과 요단까지 내 땅을 취한 연고니 이제 그것을 화평히 다시 돌리라 "
+            },
+            {
+              "v": 14,
+              "t": "입다가 암몬 자손의 왕에게 다시 사자를 보내어 "
+            },
+            {
+              "v": 15,
+              "t": "그에게 이르되 입다가 말하노라 이스라엘이 모압 땅과 암몬 자손의 땅을 취하지 아니하였느니라 "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 12,
+              "t": "And Jephthah sent messengers unto the king of the children of Ammon, saying, What hast thou to do with me, that thou art come against me to fight in my land?",
+              "a": true
+            },
+            {
+              "v": 13,
+              "t": "And the king of the children of Ammon answered unto the messengers of Jephthah, Because Israel took away my land, when they came up out of Egypt, from Arnon even unto Jabbok, and unto Jordan: now therefore restore those lands again peaceably."
+            },
+            {
+              "v": 14,
+              "t": "And Jephthah sent messengers again unto the king of the children of Ammon:"
+            },
+            {
+              "v": 15,
+              "t": "And said unto him, Thus saith Jephthah, Israel took not away the land of Moab, nor the land of the children of Ammon:"
+            }
+          ]
+        },
+        {
+          "valence": "부정",
+          "label": "말을 듣지 아니함 — 여호와께서 입다의 손에 넘기심",
+          "verse": "삿 11:32",
+          "approxYear": -1080,
+          "context": "삿 11:28-33",
+          "verseTextKo": "이에 입다가 암몬 자손에게 이르러 그들과 싸우더니 여호와께서 그들을 그 손에 붙이시매 ",
+          "verseTextEn": "So Jephthah passed over unto the children of Ammon to fight against them; and the Lord delivered them into his hands.",
+          "contextKo": [
+            {
+              "v": 28,
+              "t": "암몬 자손의 왕이 입다의 보내어 말한 것을 듣지 아니하였더라 "
+            },
+            {
+              "v": 29,
+              "t": "이에 여호와의 신이 입다에게 임하시니 입다가 길르앗과 므낫세를 지나서 길르앗 미스베에 이르고 길르앗 미스베에서부터 암몬 자손들에게로 나아갈 때에 "
+            },
+            {
+              "v": 30,
+              "t": "그가 여호와께 서원하여 가로되 주께서 과연 암몬 자손을 내게 붙이시면 "
+            },
+            {
+              "v": 31,
+              "t": "내가 암몬 자손에게서 평안히 돌아올 때에 누구든지 내 집 문에서 나와서 나를 영접하는 그는 여호와께 돌릴 것이니 내가 그를 번제로 드리겠나이다 하니라 "
+            },
+            {
+              "v": 32,
+              "t": "이에 입다가 암몬 자손에게 이르러 그들과 싸우더니 여호와께서 그들을 그 손에 붙이시매 ",
+              "a": true
+            },
+            {
+              "v": 33,
+              "t": "아로엘에서부터 민닛에 이르기까지 이십 성읍을 치고 또 아벨 그라밈까지 크게 도륙하니 이에 암몬 자손이 이스라엘 자손 앞에 항복하였더라 "
+            }
+          ],
+          "contextEn": [
+            {
+              "v": 28,
+              "t": "Howbeit the king of the children of Ammon hearkened not unto the words of Jephthah which he sent him."
+            },
+            {
+              "v": 29,
+              "t": "Then the Spirit of the Lord came upon Jephthah, and he passed over Gilead, and Manasseh, and passed over Mizpeh of Gilead, and from Mizpeh of Gilead he passed over unto the children of Ammon."
+            },
+            {
+              "v": 30,
+              "t": "And Jephthah vowed a vow unto the Lord, and said, If thou shalt without fail deliver the children of Ammon into mine hands,"
+            },
+            {
+              "v": 31,
+              "t": "Then it shall be, that whatsoever cometh forth of the doors of my house to meet me, when I return in peace from the children of Ammon, shall surely be the Lord’s, and I will offer it up for a burnt offering."
+            },
+            {
+              "v": 32,
+              "t": "So Jephthah passed over unto the children of Ammon to fight against them; and the Lord delivered them into his hands.",
+              "a": true
+            },
+            {
+              "v": 33,
+              "t": "And he smote them from Aroer, even till thou come to Minnith, even twenty cities, and unto the plain of the vineyards, with a very great slaughter. Thus the children of Ammon were subdued before the children of Israel."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
