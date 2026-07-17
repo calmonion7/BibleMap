@@ -49,7 +49,7 @@ function App() {
 
   // 화면 단계(Stage)·URL·브라우저 히스토리 상태 머신 — 노드 선택 원시값을 주입(useStageNavigation).
   const {
-    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, familyId, wordsBookId, curatedIds, keyPeopleCards, sheetOpen,
+    activeStage, exploreView, explorePersonId, explorePersonName, explorePersonSlug, exploreTourId, bookId, familyId, wordsBookId, curatedIds, keyPeopleCards, sheetOpen,
     setExploreView, selectPerson, explorePerson, backToHub, openOverview, overviewBack,
     openTours, selectTour, toursBack, openBook, bookBack, openFamily, recenterFamily, familyBack,
     openWords, selectWordsBook, wordsBack, onNodeLoaded, getPersonSlug,
@@ -67,6 +67,8 @@ function App() {
   // 인물 타임라인 필터 — explorePersonId 구동(선택 노드와 무관, tourEventIds와 대칭). 헌트 #10:
   // 노드 클릭에 소실되지 않도록 selectedNode가 아닌 탐험 인물에 묶는다.
   const [personEventIds, setPersonEventIds] = useState(null)
+  // 무좌표 여정(task#201) — 정차 전부가 지도 좌표 없음(셋·아벨·에녹) → 지도 대신 전면 리스트
+  const journeyMapless = !!(journeyStops && journeyStops.length > 0 && !journeyStops.some(s => s.lng != null && s.lat != null))
   useEffect(() => {
     let cancelled = false
     if (explorePersonId) {
@@ -545,8 +547,25 @@ function App() {
           {/* 전체화면 뷰 — 항상 마운트, CSS 토글로 상태 보존 */}
           <div className="stage-in" style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
             <div style={{ display: exploreView === 'map' ? 'flex' : 'none', height: '100%' }}>
+              {/* 무좌표 여정(셋·아벨·에녹 등) — 지도가 무관한 기본 지역만 보여줘 숨기고 전면 리스트로(task#201).
+                  MapView는 언마운트하지 않고 display:none(항상 마운트 규약 유지). */}
+              {journeyMapless && (
+                <div style={{ flex: 1, overflow: 'hidden' }}>
+                  <JourneyList
+                    stops={journeyStops}
+                    activeStopIdx={activeStopIdx}
+                    onStopSelect={setActiveStopIdx}
+                    verseLang={verseLang}
+                    setVerseLang={setVerseLang}
+                    personName={exploreTourId ? null : explorePersonName}
+                    tourName={exploreTourId ? exploreTourName : null}
+                    personSlug={exploreTourId ? null : explorePersonSlug}
+                    mapless
+                  />
+                </div>
+              )}
               {/* 여정 사이드 리스트 — 데스크톱: 좌측 200px 고정 / 모바일: 숨김(지도 위에 하단 미니시트) */}
-              {!isMobile && journeyStops && journeyStops.length > 0 && (
+              {!isMobile && !journeyMapless && journeyStops && journeyStops.length > 0 && (
                 <div style={{ width: 290, flexShrink: 0, overflow: 'hidden' }}>
                   <JourneyList
                     stops={journeyStops}
@@ -556,21 +575,22 @@ function App() {
                     setVerseLang={setVerseLang}
                     personName={exploreTourId ? null : explorePersonName}
                     tourName={exploreTourId ? exploreTourName : null}
+                    personSlug={exploreTourId ? null : explorePersonSlug}
                   />
                 </div>
               )}
-              <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+              <div style={{ flex: 1, overflow: 'hidden', position: 'relative', display: journeyMapless ? 'none' : undefined }}>
                 <MapView
                   onSelectNode={selectNode}
                   selectedNode={selectedNode}
                   personId={explorePersonId}
-                  isVisible={exploreView === 'map'}
+                  isVisible={exploreView === 'map' && !journeyMapless}
                   journeyStops={journeyStops}
                   activeStopIdx={activeStopIdx}
                   onStopSelect={setActiveStopIdx}
                 />
                 {/* 모바일 여정 — 하단 세로 리스트(데스크톱과 동일 JourneyList 재사용). 📖는 양피지 모달로 연다. */}
-                {isMobile && journeyStops && journeyStops.length > 0 && (
+                {isMobile && !journeyMapless && journeyStops && journeyStops.length > 0 && (
                   <div style={{
                     position: 'absolute', bottom: 0, left: 0, right: 0,
                     height: `${JOURNEY_SHEET_VH}dvh`, zIndex: 5,
@@ -585,6 +605,7 @@ function App() {
                       setVerseLang={setVerseLang}
                       personName={exploreTourId ? null : explorePersonName}
                       tourName={exploreTourId ? exploreTourName : null}
+                      personSlug={exploreTourId ? null : explorePersonSlug}
                     />
                   </div>
                 )}

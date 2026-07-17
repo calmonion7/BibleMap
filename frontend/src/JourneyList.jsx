@@ -12,9 +12,12 @@ import { MapPinOff } from 'lucide-react'
 import { apiGet } from './api'
 import VerseLangTabs from './VerseLangTabs'
 import Spinner from './Spinner'
+import PersonSymbol, { hasSymbol } from './personSymbols'
 import { TYPE_COLOR } from './theme'
 
-export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseLang, setVerseLang, personName, tourName }) {
+// personSlug: 큐레이션 인물이면 헤더에 소형 인장(ADR-0025). mapless: 무좌표 여정 전면 리스트 모드(task#201) —
+// 상단에 지도 미표시 안내 한 줄, 본문 폭 제한(전폭 스트레치 방지).
+export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseLang, setVerseLang, personName, tourName, personSlug = null, mapless = false }) {
   const listRef = useRef(null)
   const activeRef = useRef(null)
   // 리스트에서 직접 클릭해 선택한 경우 자동 스크롤 억제(이미 보고 있는 행이 동일장소의 다른 행으로 점프하지 않게)
@@ -136,16 +139,28 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
         WebkitTapHighlightColor: 'transparent',  // 📖 등 탭 시 기본 하이라이트(사각형) 깜빡임 제거 (RelationsView 패턴, 상속 속성)
       }}
     >
-      {/* 헤더 — 여정 = 사건 묶음임을 명시(여정 > 사건 N개 > 각 사건의 구절) */}
-      <div style={{ padding: '12px 14px 8px', borderBottom: '1px solid var(--line)' }}>
-        <div style={{ color: 'var(--ink)', fontSize: 13, fontWeight: 700, fontFamily: 'var(--serif)' }}>
-          {tourName || (personName ? `${personName}의 여정` : '여정')}
-        </div>
-        <div style={{ color: 'var(--ink-faint)', fontSize: 10, marginTop: 2 }}>
-          사건 {stops.length}개 · 📖 눌러 구절 보기
+      {/* 헤더 — 여정 = 사건 묶음임을 명시(여정 > 사건 N개 > 각 사건의 구절). 큐레이션 인물이면 소형 인장. */}
+      <div style={{ maxWidth: mapless ? 640 : undefined, margin: mapless ? '0 auto' : undefined, padding: mapless ? '16px 16px 8px' : '12px 14px 8px', borderBottom: '1px solid var(--line)', display: 'flex', alignItems: 'center', gap: 10 }}>
+        {personSlug && hasSymbol(personSlug) && (
+          <span style={{ color: 'var(--gold)', flexShrink: 0 }}><PersonSymbol slug={personSlug} size={mapless ? 34 : 26} /></span>
+        )}
+        <div style={{ minWidth: 0 }}>
+          <div style={{ color: 'var(--ink)', fontSize: mapless ? 15 : 13, fontWeight: 700, fontFamily: 'var(--serif)' }}>
+            {tourName || (personName ? `${personName}의 여정` : '여정')}
+          </div>
+          <div style={{ color: 'var(--ink-faint)', fontSize: 10, marginTop: 2 }}>
+            사건 {stops.length}개 · 📖 눌러 구절 보기
+          </div>
         </div>
       </div>
+      {/* 무좌표 여정 안내 — 지도 대신 전면 리스트인 이유를 한 줄로 명시 */}
+      {mapless && (
+        <div style={{ maxWidth: 640, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 6, padding: '8px 16px', fontSize: 11, color: 'var(--ink-faint)', fontStyle: 'italic', borderBottom: '1px solid var(--line)' }}>
+          <MapPinOff size={12} />이 여정의 사건들은 지도에 표시할 위치가 없습니다
+        </div>
+      )}
 
+      <div style={{ maxWidth: mapless ? 640 : undefined, margin: mapless ? '0 auto' : undefined }}>
       {stops.map((stop, rawIdx) => {
         const hasCoord = stop.lng != null && stop.lat != null
         const k = hasCoord ? coKey(stop) : null
@@ -275,6 +290,7 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
           </div>
         )
       })}
+      </div>
 
       {renderVerseLayer()}
     </div>

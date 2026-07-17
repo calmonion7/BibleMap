@@ -39,6 +39,8 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   // 큐레이션 인물 id 집합 — SidePanel '여정 탐험' CTA 노출 판단용.
   // 실패 시 CTA가 새로고침 전까지 조용히 사라지므로 유한 재시도(1s→2s→4s)로 자가 회복.
   const [curatedIds, setCuratedIds] = useState(null)
+  // id → slug 렌더용 state 맵(인장 등 표시용 — ref 맵은 렌더 중 접근 금지라 별도 보관)
+  const [curatedSlugById, setCuratedSlugById] = useState(null)
   useEffect(() => {
     let timer, cancelled = false
     const load = attempt => {
@@ -47,6 +49,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
           if (cancelled) return
           curatedIdToSlug.current = Object.fromEntries(list.map(p => [p.id, p.slug]))
           curatedSlugToId.current = Object.fromEntries(list.map(p => [p.slug, p.id]))
+          setCuratedSlugById(curatedIdToSlug.current)
           setCuratedIds(new Set(list.map(p => p.id)))
         })
         .catch(() => {
@@ -280,6 +283,8 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
 
   return {
     activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, familyId, wordsBookId, curatedIds, keyPeopleCards, sheetOpen,
+    // 탐험 인물 slug — 인장 렌더 등 표시용(state 맵에서 파생 — 렌더 중 ref 접근 금지)
+    explorePersonSlug: explorePersonId ? (curatedSlugById?.[explorePersonId] ?? null) : null,
     setExploreView,
     selectPerson: handleSelectPerson,
     explorePerson: handleExplorePerson,
