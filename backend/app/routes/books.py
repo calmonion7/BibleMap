@@ -85,7 +85,7 @@ def _chapter_payload(book_id: str, n: int) -> "dict | None":
 
 @router.get("/book/{book_id}/chapters")
 def get_book_chapters(book_id: str):
-    """본문 리더 장 목차(task#206) — 장별 개요·대표절 목록. 오버레이 없으면 빈 chapters로 폴백."""
+    """본문 리더 장 목차(task#206) — 장별 개요·대표절 목록 + 장 묶음(task#212). 오버레이 없으면 빈 목록으로 폴백."""
     bb = _book_bb().get(book_id)
     if not bb:
         raise HTTPException(status_code=404, detail="unknown book")
@@ -96,6 +96,7 @@ def get_book_chapters(book_id: str):
             "nameKo": meta.get("nameKo") or overlays.books_ko().get(book_id, {}).get("ko"),
             "chapterCount": meta.get("chapterCount"),
             "chapters": overlays.chapter_summaries().get(book_id, []),
+            "sections": overlays.chapter_sections().get(book_id, []),
         },
         headers={"Cache-Control": "public, max-age=3600"},
     )

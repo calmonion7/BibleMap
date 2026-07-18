@@ -81,6 +81,12 @@ def chapter_summaries() -> dict:
 
 
 @functools.lru_cache(maxsize=1)
+def chapter_sections() -> dict:
+    """장 묶음 정본(bookId → [{title, startChapter, endChapter}]) 오버레이. 1회 로드 캐시. 단장권은 부재."""
+    return _load("chapter_sections/books.json")
+
+
+@functools.lru_cache(maxsize=1)
 def quotations() -> list:
     """구약↔신약 직접 인용 쌍 정본([{ntVerseIds, otVerseIds, ntRangeLabel, otRangeLabel, note?}]). 1회 로드 캐시."""
     return _load("quotations/quotations.json").get("quotations", [])

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 import { apiGet } from './api'
 import Spinner from './Spinner'
 import VerseLangTabs from './VerseLangTabs'
@@ -47,6 +47,8 @@ function ChapterReader({ bookId, chapter, onSelectChapter, verseLang, setVerseLa
   // 장 그리드(목차) — 장 개요가 있으면 "읽히는 목차"(번호+요약 행, task#206), 없으면 숫자 그리드 폴백.
   if (chapter == null) {
     const summaries = bookMeta?.chapters?.length ? bookMeta.chapters : null
+    // 장 묶음(task#212) — 있으면 요약 목록에 묶음 헤더를 끼워 구조화된 개요로. 단장권·미저작권은 헤더 없이 평면.
+    const sectionAt = bookMeta?.sections?.length ? new Map(bookMeta.sections.map(s => [s.startChapter, s])) : null
     return (
       <div style={{ height: '100%', overflowY: 'auto', background: 'var(--bg-0)' }}>
         <div style={{ maxWidth: 600, margin: '0 auto', padding: '20px 16px 48px' }}>
@@ -62,24 +64,40 @@ function ChapterReader({ bookId, chapter, onSelectChapter, verseLang, setVerseLa
             <Spinner />
           ) : summaries ? (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              {summaries.map(e => (
-                <button
-                  key={e.chapter}
-                  onClick={() => onSelectChapter(e.chapter)}
-                  style={{
-                    display: 'flex', alignItems: 'baseline', gap: 10, width: '100%', textAlign: 'left',
-                    padding: '9px 10px', borderRadius: 8, cursor: 'pointer',
-                    border: 'none', background: 'none', font: 'inherit',
-                    borderLeft: '3px solid var(--gold-dim)',
-                    transition: 'background var(--dur-fast)',
-                  }}
-                  onMouseEnter={ev => { ev.currentTarget.style.background = 'var(--bg-1)' }}
-                  onMouseLeave={ev => { ev.currentTarget.style.background = 'none' }}
-                >
-                  <span style={{ fontFamily: 'var(--serif)', fontSize: 14, fontWeight: 700, color: 'var(--gold)', flexShrink: 0, minWidth: 22, textAlign: 'right' }}>{e.chapter}</span>
-                  <span style={{ fontSize: 13, color: 'var(--ink-dim)', lineHeight: 1.5 }}>{e.summary}</span>
-                </button>
-              ))}
+              {summaries.map(e => {
+                const sec = sectionAt?.get(e.chapter)
+                return (
+                  <Fragment key={e.chapter}>
+                    {sec && (
+                      <div style={{
+                        display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 10,
+                        padding: '14px 10px 6px', marginTop: e.chapter === 1 ? 0 : 10,
+                        borderBottom: '1px solid var(--line)',
+                      }}>
+                        <span style={{ fontFamily: 'var(--serif)', fontSize: 14, fontWeight: 700, color: 'var(--gold)' }}>{sec.title}</span>
+                        <span style={{ fontSize: 11, color: 'var(--ink-faint)', flexShrink: 0 }}>
+                          {sec.startChapter === sec.endChapter ? `${sec.startChapter}장` : `${sec.startChapter}–${sec.endChapter}장`}
+                        </span>
+                      </div>
+                    )}
+                    <button
+                      onClick={() => onSelectChapter(e.chapter)}
+                      style={{
+                        display: 'flex', alignItems: 'baseline', gap: 10, width: '100%', textAlign: 'left',
+                        padding: '9px 10px', borderRadius: 8, cursor: 'pointer',
+                        border: 'none', background: 'none', font: 'inherit',
+                        borderLeft: '3px solid var(--gold-dim)',
+                        transition: 'background var(--dur-fast)',
+                      }}
+                      onMouseEnter={ev => { ev.currentTarget.style.background = 'var(--bg-1)' }}
+                      onMouseLeave={ev => { ev.currentTarget.style.background = 'none' }}
+                    >
+                      <span style={{ fontFamily: 'var(--serif)', fontSize: 14, fontWeight: 700, color: 'var(--gold)', flexShrink: 0, minWidth: 22, textAlign: 'right' }}>{e.chapter}</span>
+                      <span style={{ fontSize: 13, color: 'var(--ink-dim)', lineHeight: 1.5 }}>{e.summary}</span>
+                    </button>
+                  </Fragment>
+                )
+              })}
             </div>
           ) : (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(52px, 1fr))', gap: 8 }}>
