@@ -100119,5 +100119,113 @@
         ]
       }
     ]
+  },
+  "authored-mary-bethlehem-nativity": {
+    "books": [
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "bookOrder": 42,
+        "rangeLabel": "2:1–7",
+        "verses": [
+          {
+            "chapter": 2,
+            "verse": 1,
+            "verseID": "42002001"
+          },
+          {
+            "chapter": 2,
+            "verse": 2,
+            "verseID": "42002002"
+          },
+          {
+            "chapter": 2,
+            "verse": 3,
+            "verseID": "42002003"
+          },
+          {
+            "chapter": 2,
+            "verse": 4,
+            "verseID": "42002004"
+          },
+          {
+            "chapter": 2,
+            "verse": 5,
+            "verseID": "42002005"
+          },
+          {
+            "chapter": 2,
+            "verse": 6,
+            "verseID": "42002006"
+          },
+          {
+            "chapter": 2,
+            "verse": 7,
+            "verseID": "42002007"
+          }
+        ]
+      }
+    ]
+  },
+  "authored-mary-flight-to-egypt": {
+    "books": [
+      {
+        "bookId": "recEJId5B98HV0x6D",
+        "bookOrder": 40,
+        "rangeLabel": "2:13–15",
+        "verses": [
+          {
+            "chapter": 2,
+            "verse": 13,
+            "verseID": "40002013"
+          },
+          {
+            "chapter": 2,
+            "verse": 14,
+            "verseID": "40002014"
+          },
+          {
+            "chapter": 2,
+            "verse": 15,
+            "verseID": "40002015"
+          }
+        ]
+      }
+    ]
+  },
+  "authored-mary-return-nazareth": {
+    "books": [
+      {
+        "bookId": "recEJId5B98HV0x6D",
+        "bookOrder": 40,
+        "rangeLabel": "2:19–23",
+        "verses": [
+          {
+            "chapter": 2,
+            "verse": 19,
+            "verseID": "40002019"
+          },
+          {
+            "chapter": 2,
+            "verse": 20,
+            "verseID": "40002020"
+          },
+          {
+            "chapter": 2,
+            "verse": 21,
+            "verseID": "40002021"
+          },
+          {
+            "chapter": 2,
+            "verse": 22,
+            "verseID": "40002022"
+          },
+          {
+            "chapter": 2,
+            "verse": 23,
+            "verseID": "40002023"
+          }
+        ]
+      }
+    ]
   }
 }

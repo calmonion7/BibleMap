@@ -86,5 +86,71 @@
         "rangeLabel": "1:39–56"
       }
     ]
+  },
+  {
+    "id": "authored-mary-bethlehem-nativity",
+    "title": "Birth of Jesus in Bethlehem",
+    "nameKo": "베들레헴 예수 탄생",
+    "startDate": "-5",
+    "sortKey": -4.8,
+    "yearLabel": "BC 5경",
+    "context": "호적하러 베들레헴에 올라간 마리아가 여관에 있을 곳이 없어 아기 예수를 낳아 강보로 싸서 구유에 뉘임 (Luke 2:1–7).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-bethlehem"
+    ],
+    "participants": [
+      "recnheSkryxih4g9J"
+    ],
+    "books": [
+      {
+        "bookId": "recclIex2hH0wdTST",
+        "rangeLabel": "2:1–7"
+      }
+    ]
+  },
+  {
+    "id": "authored-mary-flight-to-egypt",
+    "title": "Flight to Egypt",
+    "nameKo": "애굽으로 피신",
+    "startDate": "-5",
+    "sortKey": -4.7,
+    "yearLabel": "BC 5경",
+    "context": "헤롯이 아기를 죽이려 하자 요셉이 마리아와 아기 예수를 데리고 밤에 베들레헴을 떠나 애굽으로 피신함 (Matt 2:13–15).",
+    "authored": true,
+    "occursAt": [
+      "recfrXyxhuYOczKTm"
+    ],
+    "participants": [
+      "recnheSkryxih4g9J"
+    ],
+    "books": [
+      {
+        "bookId": "recEJId5B98HV0x6D",
+        "rangeLabel": "2:13–15"
+      }
+    ]
+  },
+  {
+    "id": "authored-mary-return-nazareth",
+    "title": "Return from Egypt to Nazareth",
+    "nameKo": "애굽에서 나사렛 귀환",
+    "startDate": "-4",
+    "sortKey": -4.6,
+    "yearLabel": "BC 4경",
+    "context": "헤롯이 죽은 후 요셉이 애굽에서 마리아와 아기 예수를 데리고 이스라엘로 돌아와 갈릴리 나사렛에 정착함 (Matt 2:19–23).",
+    "authored": true,
+    "occursAt": [
+      "recmRfnw4XzPBH9jc"
+    ],
+    "participants": [
+      "recnheSkryxih4g9J"
+    ],
+    "books": [
+      {
+        "bookId": "recEJId5B98HV0x6D",
+        "rangeLabel": "2:19–23"
+      }
+    ]
   }
 ]
