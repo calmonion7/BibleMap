@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { apiGet } from './api'
 import Spinner from './Spinner'
 import PersonSymbol from './personSymbols'
 import { MOBILE_BREAKPOINT } from './constants'
+import { saveScroll, loadScroll } from './scrollMemory'
 
 // 시대 표시 순서 — persons.py _ERA_ORDER와 동일.
 const ERA_ORDER = ['원시사', '족장', '출애굽·정복', '사사', '왕국', '선지자', '포로', '신약']
@@ -190,6 +191,7 @@ export default function PersonHub({ onSelectPerson }) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const isMobile = useIsMobile()
+  const scrollRef = useRef(null)  // 목록 스크롤 컨테이너 — 위치 복원용(task#214)
 
   useEffect(() => {
     // 일시 장애로 허브 전체가 에러 화면에 고착되지 않도록 유한 재시도(1s→2s→4s).
@@ -215,6 +217,23 @@ export default function PersonHub({ onSelectPerson }) {
     load(0)
     return () => { cancelled = true; clearTimeout(timer) }
   }, [])
+
+  // 스크롤 위치 복원 — 목록 렌더(loading=false) 후 콘텐츠 높이 확보 시점에 눌렀던 위치로(task#214).
+  useLayoutEffect(() => {
+    if (loading) return
+    const el = scrollRef.current
+    if (el) el.scrollTop = loadScroll('hub')
+  }, [loading])
+
+  // 스크롤 위치 캡처 — 스크롤마다 최신값 저장(패시브). 목록 div가 마운트된 뒤(loading=false)에만 부착.
+  useEffect(() => {
+    if (loading) return
+    const el = scrollRef.current
+    if (!el) return
+    const onScroll = () => saveScroll('hub', el.scrollTop)
+    el.addEventListener('scroll', onScroll, { passive: true })
+    return () => el.removeEventListener('scroll', onScroll)
+  }, [loading])
 
   if (loading) {
     return (
@@ -249,7 +268,7 @@ export default function PersonHub({ onSelectPerson }) {
   const eras = ERA_ORDER.filter(e => byEra[e]?.length > 0)
 
   return (
-    <div className={entrance ? 'book-open' : undefined} style={{
+    <div ref={scrollRef} className={entrance ? 'book-open' : undefined} style={{
       background: GROUND,
       // 지면 질감 — 상단에서 번지는 금박 빛(다크=밤의 서재 촛불, 라이트=양피지 워시). 테마 변수 자동 추종.
       backgroundImage: 'radial-gradient(120% 55% at 50% 0%, color-mix(in srgb, var(--gold) 6%, transparent), transparent 60%)',

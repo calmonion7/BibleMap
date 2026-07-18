@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { apiGet } from './api'
 import Spinner from './Spinner'
 import BookSymbol from './bookSymbols'
 import { SELECT_HL, GENRE_META } from './theme'
 import { MOBILE_BREAKPOINT } from './constants'
+import { saveScroll, loadScroll } from './scrollMemory'
 
 const OT_GENRE_ORDER = ['Pentateuch', 'Historical', 'Poetry-Wisdom', 'Major Prophets', 'Minor Prophets']
 const NT_GENRE_ORDER = ['Gospels', 'Acts', 'Pauline Epistles', 'General Epistles', 'Revelation']
@@ -152,6 +153,7 @@ export default function BibleOverviewView({ onSelectNode, selectedNode }) {
     const root = scrollRef.current
     if (!root) return
     const onScroll = () => {
+      saveScroll('overview', root.scrollTop)  // 위치 캡처 — 뒤로 복원용(task#214)
       const rootTop = root.getBoundingClientRect().top
       let current = null
       for (const s of root.querySelectorAll('[data-genre]')) {
@@ -162,6 +164,14 @@ export default function BibleOverviewView({ onSelectNode, selectedNode }) {
     onScroll()
     root.addEventListener('scroll', onScroll, { passive: true })
     return () => root.removeEventListener('scroll', onScroll)
+  }, [loading])
+
+  // 스크롤 위치 복원 — 목록 렌더(loading=false) 후 눌렀던 위치로(task#214). 장르 추적 effect보다
+  // 먼저(layout effect) 실행돼 복원된 위치 기준으로 활성 장르가 계산된다.
+  useLayoutEffect(() => {
+    if (loading) return
+    const root = scrollRef.current
+    if (root) root.scrollTop = loadScroll('overview')
   }, [loading])
 
   // 활성 칩을 칩 바 가시 영역으로 (세로 스크롤엔 영향 없음 — block: nearest)
