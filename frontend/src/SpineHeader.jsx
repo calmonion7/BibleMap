@@ -4,6 +4,8 @@ import { TYPE_COLOR } from './theme'
 
 // 책등(spine) 전역 헤더 높이 — App의 사이드패널 top 오프셋 계산에 공유(ADR-0026).
 export const HEADER_H = 40
+// 활성 책갈피 리본이 헤더 아래로 드리워지는 깊이 — App이 이만큼 여백을 확보해 리본이 스테이지 내비 탭을 안 덮게 한다.
+export const RIBBON_OVERHANG = 13
 
 // 책갈피 리본 3부 — 어느 화면에서든 인물/성경책/투어 부(部)로 이동.
 // accent: 인물·성경책은 골드(책의 금박), 투어는 기존 투어 색(Book 보라) 유지.
@@ -86,7 +88,7 @@ export default function SpineHeader({ activeSection, onSelectSection, isMobile }
               onClick={() => onSelectSection(r.key)}
               aria-current={active ? 'page' : undefined}
               style={{
-                height: active ? HEADER_H + 13 : HEADER_H + 3,
+                height: active ? HEADER_H + RIBBON_OVERHANG : HEADER_H + 3,
                 padding: '0 11px 9px',
                 display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
                 border: 'none', cursor: 'pointer',

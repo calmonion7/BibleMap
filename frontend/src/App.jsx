@@ -8,7 +8,7 @@ import RelationsView from './RelationsView'
 import BibleOverviewView from './BibleOverviewView'
 import PersonHub from './PersonHub'
 import PersonIntro from './PersonIntro'
-import SpineHeader, { HEADER_H } from './SpineHeader'
+import SpineHeader, { HEADER_H, RIBBON_OVERHANG } from './SpineHeader'
 import PersonSymbol from './personSymbols'
 import FamilyTree from './FamilyTree'
 import WordDistributionView from './WordDistributionView'
@@ -545,6 +545,9 @@ function App() {
         isMobile={isMobile}
       />
 
+      {/* 책갈피 리본이 헤더 아래로 드리워지는 만큼의 여백 — 리본 꼬리가 스테이지 내비 탭을 덮지 않게(ADR-0026) */}
+      <div style={{ height: RIBBON_OVERHANG, flexShrink: 0, background: 'var(--bg-1)' }} />
+
       {/* 허브 단계 — 인물 선택 전 */}
       {activeStage === 'hub' && (
         <div className="stage-in" style={{ flex: 1, overflow: 'hidden' }}>
@@ -822,7 +825,7 @@ function App() {
                   transform: sheetOpen ? 'translateY(0)' : 'translateY(100%)',
                 }
               : {
-                  top: HEADER_H + NAV_H, right: 0, bottom: 0, width: 360,
+                  top: HEADER_H + RIBBON_OVERHANG + NAV_H, right: 0, bottom: 0, width: 360,
                   boxShadow: 'var(--shadow-2)',
                   // 관계·하나님 의존 뷰는 전용 전체화면 — 탐험 인물 자신의 상세 시트로 우측을 덮지 않는다(다른 뷰로 토글 시 복귀).
                   // 소개 뷰는 자기 자신이 본문이라 자기 시트만 억제(다른 노드 선택 시에는 정상 표시).
