@@ -1,3 +1,14 @@
+/* 헤더 워드마크 전용 동판화체 — IM Fell English(SIL OFL, self-host).
+   프로젝트 유일의 웹폰트: 브랜드 워드마크에만 쓰고 본문/UI는 시스템 명조(--serif) 유지.
+   라이선스: /fonts/IM-Fell-English-OFL.txt */
+@font-face {
+  font-family: 'IM Fell English';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/im-fell-english-latin.woff2') format('woff2');
+}
+
 /* Night Atlas 디자인 토큰 — 정본: .forge/reports/design-direction.md (ADR-0013 다크 단일).
    어두운 UI에서 밝은 표면은 둘만: 성경 구절 본문(--paper*)과 지도(무라벨 지형 타일). */
 :root {
@@ -50,6 +61,8 @@
   /* 서체 — 명조는 서사 주체(제목·인물·책·구절), 산스는 데이터·UI */
   --serif: 'Noto Serif KR', 'Nanum Myeongjo', AppleMyungjo, Batang, serif;
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  /* 헤더 워드마크 전용 동판화체(로드 실패·로딩 중 명조 폴백) */
+  --serif-display: 'IM Fell English', var(--serif);
 
   /* 모션 토큰 — 정본: .forge/reports/motion-opportunities.md (task#189).
      transform·opacity만 애니메이트. 새 duration/easing 하드코딩 금지 — 이 토큰만 참조. */

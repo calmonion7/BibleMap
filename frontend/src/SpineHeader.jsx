@@ -15,6 +15,38 @@ const RIBBONS = [
   { key: 'tours', label: '투어', accent: TYPE_COLOR.Book },
 ]
 
+// 헤더 브랜드 마크 — 나침반 장미(네 방위침 = 지도/아틀라스)와 십자가(길게 뻗은 네 침이
+// 십자로 읽힘)를 인라인용으로 단순화한 플랫 금색 글리프. 원반 배경 없음, 장식이라 aria-hidden.
+// 색은 var(--gold) 하나로 다크·라이트(Day Atlas) 양 테마에 자동 대응.
+function CompassCrossMark({ size = 24 }) {
+  return (
+    <svg
+      width={size} height={size} viewBox="0 0 24 24"
+      aria-hidden="true" focusable="false"
+      style={{ flexShrink: 0, display: 'block' }}
+    >
+      {/* 대각 방위침 — 짧고 옅게, 나침반 장미의 결 */}
+      <path
+        fill="var(--gold)" opacity="0.45"
+        d="M16.24,7.76 L13.4,12 L12,12 L12,10.6 Z
+           M16.24,16.24 L12,13.4 L12,12 L13.4,12 Z
+           M7.76,16.24 L12,13.4 L12,12 L10.6,12 Z
+           M7.76,7.76 L10.6,12 L12,12 L12,10.6 Z"
+      />
+      {/* 기본 방위침 — 길고 진하게, 네 침이 십자가로 읽힌다 */}
+      <path
+        fill="var(--gold)"
+        d="M12,1.5 L13.2,10.8 L12,12 L10.8,10.8 Z
+           M22.5,12 L13.2,13.2 L12,12 L13.2,10.8 Z
+           M12,22.5 L13.2,13.2 L12,12 L10.8,13.2 Z
+           M1.5,12 L10.8,10.8 L12,12 L10.8,13.2 Z"
+      />
+      {/* 중심 허브 */}
+      <circle cx="12" cy="12" r="1.4" fill="var(--gold)" />
+    </svg>
+  )
+}
+
 /**
  * SpineHeader — 전 화면 상시 표시되는 "책등" 헤더 (ADR-0026).
  *
@@ -51,24 +83,27 @@ export default function SpineHeader({ activeSection, onSelectSection, isMobile }
         onClick={() => onSelectSection('persons')}
         aria-label="대문으로 — BibleMap"
         style={{
-          display: 'flex', alignItems: 'baseline', gap: 7,
+          display: 'flex', alignItems: 'center', gap: isMobile ? 7 : 9,
           background: 'none', border: 'none', cursor: 'pointer', padding: 0,
         }}
       >
-        <span style={{
-          color: 'var(--ink)',
-          fontFamily: 'var(--serif)',
-          fontWeight: 700,
-          fontSize: 16,
-          letterSpacing: '0.02em',
-        }}>
-          BibleMap
-        </span>
-        {!isMobile && (
-          <span style={{ color: 'var(--ink-faint)', fontSize: 11, letterSpacing: '0.06em' }}>
-            성경 인물·장소·사건의 지도
+        <CompassCrossMark size={isMobile ? 21 : 24} />
+        <span style={{ display: 'flex', alignItems: 'baseline', gap: 7 }}>
+          <span style={{
+            fontFamily: 'var(--serif-display)',
+            fontWeight: 400, // IM Fell English는 400만 제공 — faux-bold 방지
+            fontSize: 18,
+            letterSpacing: '0.01em',
+          }}>
+            <span style={{ color: 'var(--ink)' }}>Bible</span>
+            <span style={{ color: 'var(--gold)' }}>Map</span>
           </span>
-        )}
+          {!isMobile && (
+            <span style={{ color: 'var(--ink-faint)', fontSize: 11, letterSpacing: '0.06em' }}>
+              성경 인물·장소·사건의 지도
+            </span>
+          )}
+        </span>
       </button>
 
       <div style={{ flex: 1 }} />
