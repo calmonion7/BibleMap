@@ -105,7 +105,16 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
     }
     const vg = groups
       .filter(g => inFilter(sortKeyToYear(g.sortKey)))
-      .filter(g => !activePersonFilter || g.members.some(ev => activePersonFilter.has(ev.id)))
+      // 인물 필터는 그룹 단위가 아니라 멤버 단위 — startDate만 같은 비참여 사건 편승 방지(task#218).
+      // 필터에 든 사건만 남기고, 남은 멤버가 없는 그룹은 렌더에서 제외. 필터 없으면 전체 유지.
+      .map(g => {
+        if (!activePersonFilter) return g
+        const members = g.members.filter(ev => activePersonFilter.has(ev.id))
+        if (members.length === 0) return null
+        const rep = members.find(e => e.nameKo) || members[0]
+        return { ...g, members, rep }
+      })
+      .filter(Boolean)
       .sort((a, b) => a.sortKey - b.sortKey)
     const secs = []
     for (const g of vg) {
