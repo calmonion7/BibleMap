@@ -1,11 +1,5 @@
 [
   {
-    "mode": "물음-응답",
-    "approxYear": -3400,
-    "trigger": { "label": "하나님과 동행하며 삼백 년을 살아감", "verse": "창 5:22" },
-    "outcome": { "label": "신실한 교제로 받아들여짐", "verse": "창 5:22", "kind": "이룸" }
-  },
-  {
     "mode": "부르심",
     "approxYear": -3300,
     "obeyed": true,
@@ -16,12 +10,6 @@
     "mode": "물음-응답",
     "approxYear": -3100,
     "trigger": { "label": "믿음으로 하나님을 기쁘시게 함", "verse": "히 11:5" },
-    "outcome": { "label": "옮겨질 것을 증거로 받음", "verse": "히 11:5", "kind": "이룸" }
-  },
-  {
-    "mode": "물음-응답",
-    "approxYear": -3100,
-    "trigger": { "label": "하나님과 동행하는 믿음의 삶", "verse": "창 5:24" },
     "outcome": { "label": "죽음을 보지 않고 하나님께로 옮겨짐", "verse": "창 5:24", "kind": "더하심" }
   }
 ]

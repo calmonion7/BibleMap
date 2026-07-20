@@ -1,6 +1,13 @@
 [
   {
     "mode": "부르심",
+    "approxYear": -1105,
+    "covenant": true,
+    "trigger": { "label": "한나가 서원대로 젖 뗀 사무엘을 실로에 데려와 드림", "verse": "삼상 1:24" },
+    "outcome": { "label": "평생 여호와의 종으로 성전에 바쳐짐", "verse": "삼상 1:24" }
+  },
+  {
+    "mode": "부르심",
     "approxYear": -1095,
     "obeyed": true,
     "trigger": { "label": "여호와께서 밤에 세 번 사무엘을 부르심", "verse": "삼상 3:10" },
@@ -41,6 +48,6 @@
     "approxYear": -1025,
     "obeyed": true,
     "trigger": { "label": "사울 애도 그치고 이새 집으로 가라 명하심", "verse": "삼상 16:1" },
-    "outcome": { "label": "명하신 대로 순종하여 새 왕에게 기름 부으러 감", "verse": "삼상 16:1" }
+    "outcome": { "label": "베들레헴에서 다윗을 찾아 기름 부어 순종함", "verse": "삼상 16:4" }
   }
 ]

@@ -2,19 +2,14 @@
   {
     "mode": "물음-침묵",
     "approxYear": -3880,
-    "trigger": { "label": "가인이 땅의 소산으로 드린 제물을 여호와께 가져옴", "verse": "창 4:5" },
+    "trigger": { "label": "가인이 땅의 소산으로 드린 제물을 여호와께 가져옴", "verse": "창 4:3" },
     "outcome": { "label": "제물이 열납되지 않고 거절당하여 안색이 변함", "verse": "창 4:5", "kind": "거절" }
   },
   {
     "mode": "독단-어긋남",
     "approxYear": -3880,
-    "trigger": { "label": "아우의 행방을 묻는 하나님께 모른다고 잡아뗌", "verse": "창 4:9" },
-    "outcome": { "label": "지키는 자냐며 되물어 책임을 회피함", "verse": "창 4:9" }
-  },
-  {
-    "mode": "독단-어긋남",
-    "approxYear": -3880,
-    "trigger": { "label": "가인이 아우 아벨을 죽여 피를 땅에 흘림", "verse": "창 4:11" },
+    "trigger": { "label": "가인이 들에서 아우 아벨을 쳐 죽임", "verse": "창 4:8" },
+    "response": { "label": "행방을 묻는 하나님께 모른다며 잡아떼고 발뺌함", "verse": "창 4:9" },
     "outcome": { "label": "땅의 저주를 받아 유리하며 방황하는 신세가 됨", "verse": "창 4:11" }
   },
   {

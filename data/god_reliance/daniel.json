@@ -12,6 +12,20 @@
     "outcome": { "label": "밤 환상 중 계시받아 하늘의 하나님을 송축함", "verse": "단 2:19", "kind": "이룸" }
   },
   {
+    "mode": "부르심",
+    "covenant": true,
+    "approxYear": -553,
+    "trigger": { "label": "벨사살 원년 밤에 네 짐승 환상을 보이심", "verse": "단 7:1" },
+    "outcome": { "label": "다니엘이 영원한 나라에 대한 계시를 받음", "verse": "단 7:1" }
+  },
+  {
+    "mode": "부르심",
+    "covenant": true,
+    "approxYear": -551,
+    "trigger": { "label": "벨사살 3년 밤에 숫양과 숫염소 환상을 보이심", "verse": "단 8:1" },
+    "outcome": { "label": "가브리엘의 계시로 나라들의 흥망을 받음", "verse": "단 8:1" }
+  },
+  {
     "mode": "물음-응답",
     "approxYear": -538,
     "trigger": { "label": "예레미야의 70년 예언을 깨닫고 금식·베옷·재로 죄를 자복하며 기도함", "verse": "단 9:3" },

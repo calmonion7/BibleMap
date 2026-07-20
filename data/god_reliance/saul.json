@@ -14,6 +14,13 @@
     "outcome": { "label": "숨었으나 찾아내어져 왕으로 택함받음", "verse": "삼상 10:17" }
   },
   {
+    "mode": "부르심",
+    "approxYear": -1049,
+    "obeyed": true,
+    "trigger": { "label": "나하스의 위협에 하나님의 영이 사울에게 크게 임하심", "verse": "삼상 11:1" },
+    "outcome": { "label": "이스라엘을 소집해 암몬을 무찌르고 야베스 길르앗을 구원함", "verse": "삼상 11:1" }
+  },
+  {
     "mode": "물음-응답",
     "approxYear": -1049,
     "trigger": { "label": "길갈에서 화목제 드리며 여호와 앞에 나아감", "verse": "삼상 11:14" },
