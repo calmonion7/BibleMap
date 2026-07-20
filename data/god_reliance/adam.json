@@ -17,12 +17,51 @@
     "approxYear": -4000,
     "obeyed": true,
     "trigger": {
+      "label": "생육하고 번성하라 복 주시며 명하심",
+      "verse": "창 1:28"
+    },
+    "outcome": {
+      "label": "셋을 낳아 번성 명령을 이룸",
+      "verse": "창 5:3"
+    }
+  },
+  {
+    "mode": "부르심",
+    "approxYear": -4000,
+    "obeyed": true,
+    "trigger": {
       "label": "에덴에 두어 경작하며 지키게 하신 부르심",
       "verse": "창 2:15"
     },
     "outcome": {
       "label": "사명을 성실히 수행함",
       "verse": "창 2:15"
+    }
+  },
+  {
+    "mode": "부르심",
+    "approxYear": -4000,
+    "obeyed": true,
+    "trigger": {
+      "label": "각종 생물을 이끌어 이름 짓게 하심",
+      "verse": "창 2:19"
+    },
+    "outcome": {
+      "label": "모든 생물의 이름을 지어 다스림",
+      "verse": "창 2:20"
+    }
+  },
+  {
+    "mode": "부르심",
+    "approxYear": -4000,
+    "covenant": true,
+    "trigger": {
+      "label": "갈빗대로 하와를 지어 이끌어 오심",
+      "verse": "창 2:22"
+    },
+    "outcome": {
+      "label": "'내 뼈 중의 뼈'라 받아들임",
+      "verse": "창 2:23"
     }
   },
   {
@@ -40,6 +79,19 @@
     "outcome": {
       "label": "죽음을 선고받고 에덴에서 쫓겨남",
       "verse": "창 3:19"
+    }
+  },
+  {
+    "mode": "부르심",
+    "approxYear": -4000,
+    "covenant": true,
+    "trigger": {
+      "label": "가죽옷을 지어 입히심",
+      "verse": "창 3:21"
+    },
+    "outcome": {
+      "label": "벗은 수치를 덮는 은혜를 받음",
+      "verse": "창 3:21"
     }
   }
 ]
