@@ -122,7 +122,7 @@ function TourSketch({ eventId, width = 280, reduce = false }) {
     <svg
       viewBox="0 0 120 64"
       width={width}
-      height={Math.round(width * 64 / 120)}
+      height={typeof width === 'number' ? Math.round(width * 64 / 120) : undefined}
       className={reduce ? undefined : 'symbol-draw'}
       style={{ display: 'block' }}
       fill="none"
@@ -137,52 +137,37 @@ function TourSketch({ eventId, width = 280, reduce = false }) {
   )
 }
 
-// 재생 오버레이 — 카메라 easeTo(400ms) 정착 후 양피지 패널 위에 장면이 그려진다(짧은 동영상 연출).
-// 스케치 없는 정차지로 넘어가면 짧게 페이드아웃 후 제거. reduce: 딜레이·모션 없이 최종 장면 정적 표시.
-export function TourSketchOverlay({ eventId, isMobile }) {
-  const [shown, setShown] = useState(null)   // 현재 그려진 eventId
-  const [leaving, setLeaving] = useState(false)
-
-  useEffect(() => {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (hasSketch(eventId)) {
-      setLeaving(false)
-      const t = setTimeout(() => setShown(eventId), reduce ? 0 : 450)
-      return () => clearTimeout(t)
-    }
-    setLeaving(true)
-    const t = setTimeout(() => { setShown(null); setLeaving(false) }, reduce ? 0 : 250)
-    return () => clearTimeout(t)
-  }, [eventId])
-
-  if (!shown) return null
+// 카드 상단 삽화 패널 — 해설 카드에 통합(그림·설명이 한 장으로 읽히도록, 사용자 피드백 5차).
+// 카메라 easeTo(400ms) 정착 후 draw 시작(그 전엔 자리만 확보해 카드 높이 점프 방지).
+// 스케치 없는 정차지는 아무것도 렌더하지 않음. reduce: 딜레이 없이 최종 장면 정적 표시.
+export function TourSketchPanel({ eventId }) {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  const caption = SCENES[shown]?.caption
+  const [ready, setReady] = useState(reduce)
+  useEffect(() => {
+    if (reduce) return
+    const t = setTimeout(() => setReady(true), 450)
+    return () => clearTimeout(t)
+  }, [reduce])
+
+  if (!hasSketch(eventId)) return null
+  const caption = SCENES[eventId]?.caption
   return (
-    <div data-sketch-overlay style={{
-      position: 'absolute', inset: 0, zIndex: 5, pointerEvents: 'none',
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      // 하단 해설 카드 위 가시영역 중앙에 오도록 바닥 여백 확보
-      paddingBottom: isMobile ? '32dvh' : 170,
-      opacity: leaving ? 0 : 1,
-      transition: 'opacity var(--dur-base) var(--ease-out)',
+    <div data-sketch-panel style={{
+      background: 'var(--paper)', color: 'var(--paper-ink)',
+      borderBottom: '1px solid color-mix(in srgb, var(--paper-accent) 40%, transparent)',
+      padding: '12px 16px 6px',
     }}>
-      {/* 양피지 패널 — 지도 위 가독성(사용자 피드백). 밝은 표면 예외는 구절 양피지 관용구를 따른다. */}
-      <div key={shown} className="stage-in" style={{
-        background: 'var(--paper)', color: 'var(--paper-ink)',
-        border: '1px solid color-mix(in srgb, var(--paper-accent) 45%, transparent)',
-        borderRadius: 12, padding: '14px 16px 8px',
-        boxShadow: 'var(--shadow-2)',
-      }}>
-        <TourSketch eventId={shown} width={isMobile ? 250 : 360} reduce={reduce} />
-        {caption && (
-          <div style={{
-            marginTop: 6, textAlign: 'center',
-            fontFamily: 'var(--serif)', fontSize: 11.5, letterSpacing: '0.04em',
-            color: 'var(--paper-accent)',
-          }}>{caption}</div>
-        )}
+      {/* draw 시작 전에도 동일 비율 자리 확보 — 카드 높이 점프 방지 */}
+      <div style={{ aspectRatio: '120 / 64', width: '100%' }}>
+        {ready && <TourSketch eventId={eventId} width="100%" reduce={reduce} />}
       </div>
+      {caption && (
+        <div style={{
+          marginTop: 4, textAlign: 'center',
+          fontFamily: 'var(--serif)', fontSize: 11.5, letterSpacing: '0.04em',
+          color: 'var(--paper-accent)',
+        }}>{caption}</div>
+      )}
     </div>
   )
 }

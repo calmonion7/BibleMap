@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Play, Pause, SkipBack, SkipForward, X } from 'lucide-react'
 import { TYPE_COLOR } from './theme'
+import { TourSketchPanel } from './tourSketches'
 
 // 투어 자동재생(playback) — 시퀀서 훅 + 해설 카드 (task#223, ADR-0028).
 // 사건 단위로 진행(좌표 없는 정차지도 건너뛰지 않음 — 카메라 유지·카드만 교체).
@@ -57,8 +58,11 @@ export default function TourPlaybackCard({ stops, idx, playing, onToggle, onPrev
       background: 'var(--bg-1)', border: '1px solid var(--line-strong)',
       boxShadow: 'var(--shadow-2)', overflow: 'hidden',
     }}>
-      {/* 본문 — 사건 전환마다 key 리마운트로 stage-in 페이드(ADR-0024 토큰, reduce 자동 존중) */}
-      <div key={s.eventId ?? idx} className="stage-in" style={{ padding: isMobile ? '12px 16px 4px' : '14px 18px 6px' }}>
+      {/* 본문 — 사건 전환마다 key 리마운트로 stage-in 페이드(ADR-0024 토큰, reduce 자동 존중).
+          장면 스케치는 카드 상단 삽화로 통합(그림·설명 한 장, task#226 5차) — key 리마운트로 draw 재생. */}
+      <div key={s.eventId ?? idx} className="stage-in">
+      <TourSketchPanel eventId={s.eventId} />
+      <div style={{ padding: isMobile ? '12px 16px 4px' : '14px 18px 6px' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
           <span style={{ fontSize: 11, fontWeight: 700, color: PURPLE, fontVariantNumeric: 'tabular-nums' }}>
             {idx + 1}/{stops.length}
@@ -72,6 +76,7 @@ export default function TourPlaybackCard({ stops, idx, playing, onToggle, onPrev
             {s.note}
           </p>
         )}
+      </div>
       </div>
       {/* 컨트롤 — 이전 · 재생/일시정지 · 다음 · 종료 */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, padding: '10px 16px 12px' }}>

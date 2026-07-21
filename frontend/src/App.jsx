@@ -17,7 +17,6 @@ import RelianceView from './RelianceView'
 import TourList from './TourList'
 import TourIntro from './TourIntro'
 import TourPlaybackCard, { useTourPlayback } from './TourPlayback'
-import { TourSketchOverlay } from './tourSketches'
 import { journeyStopGroups } from './mapGeo'
 import JourneyList from './JourneyList'
 import { MOBILE_BREAKPOINT, SHEET_VH, JOURNEY_SHEET_VH } from './constants'
@@ -760,11 +759,8 @@ function App() {
                     <Play size={14} /> 투어 재생
                   </button>
                 )}
-                {/* 재생 장면 스케치 — 카메라 정착 후 지도 중앙 draw-on(task#226 프로토타입, 등록 정차지만) */}
-                {exploreTourId != null && playback.active && (
-                  <TourSketchOverlay eventId={journeyStops?.[playback.idx]?.eventId} isMobile={isMobile} />
-                )}
-                {/* 재생 해설 카드 — 데스크톱: 지도 위 오버레이 / 모바일: 하단 시트 영역 대체 */}
+                {/* 재생 해설 카드 — 데스크톱: 지도 위 오버레이 / 모바일: 하단 시트 영역 대체.
+                    장면 스케치(task#226)는 카드 상단 삽화로 통합돼 카드가 렌더한다. */}
                 {exploreTourId != null && playback.active && (
                   <TourPlaybackCard
                     stops={journeyStops}
