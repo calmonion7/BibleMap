@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 // 투어 정차지 장면 스케치 (task#226 프로토타입) — eventId 키의 손저작 stroke-only 시퀀스 장면.
 // ADR-0025의 선화 규약(stroke=currentColor, pathLength=1, .symbol-draw dash, 얼굴 초상 없음)을
-// 따르되 장면용으로 확장: 시네마틱 viewBox 96×64, 단계별 draw 딜레이, SMIL 안무(물매 회전·
+// 따르되 장면용으로 확장: 시네마틱 viewBox 120×64, 단계별 draw 딜레이, SMIL 안무(물매 회전·
 // 돌 비행·쓰러짐·지면 진동)로 "짧은 동영상" 연출. 지도 가독성을 위해 양피지(--paper) 패널 위에 그린다.
 // 등록 없는 정차지는 아무것도 안 뜸(그레이스풀). 골리앗 예제 1편 — 평가 후 확대는 별도 태스크.
 
@@ -26,41 +26,41 @@ function GoliathScene({ reduce }) {
 
       {/* 0단계 — 엘라 골짜기: 지평선·양쪽 능선·시내와 자갈 */}
       <g style={d(0, reduce)}>
-        <path d="M4 54 h88" {...P} />
+        <path d="M4 54 h112" {...P} />
         <path d="M4 41 q13 -10 26 -2" {...thin} opacity="0.45" />
-        <path d="M62 39 q16 -12 30 -3" {...thin} opacity="0.45" />
-        <path d="M38 53 q7 -2.5 14 0" {...thin} opacity="0.6" />
-        <path d="M43 51.5 h2 M48 52 h2 M40 52.5 h1.5" {...thin} opacity="0.6" />
+        <path d="M84 39 q18 -12 32 -3" {...thin} opacity="0.45" />
+        <path d="M50 53 q8 -2.5 16 0" {...thin} opacity="0.6" />
+        <path d="M56 51.5 h2 M62 52 h2 M52 52.5 h1.5" {...thin} opacity="0.6" />
       </g>
 
       {/* 1단계 — 골리앗의 위용(우측, 신장 ~44px): 깃털 투구·비늘 갑주·버팀 창·대형 방패 */}
-      <g style={d(700, reduce)} transform={reduce ? 'rotate(-80 77 54)' : undefined}>
+      <g style={d(700, reduce)} transform={reduce ? 'rotate(-80 103 54)' : undefined}>
         {/* 다리·정강이받이 */}
-        <path d="M72.5 54 l1.5 -13 M82.5 54 l-1.5 -13" {...P} />
-        <path d="M73 47 h2.5 M80 47 h2.5" {...thin} />
+        <path d="M98.5 54 l1.5 -13 M108.5 54 l-1.5 -13" {...P} />
+        <path d="M99 47 h2.5 M106 47 h2.5" {...thin} />
         {/* 몸통(넓은 어깨)·허리띠·갑주 자락 */}
-        <path d="M70 41 l2.5 -15 M85 41 l-2.5 -15 M72.5 26 h10" {...P} />
-        <path d="M70 41 h15 M71.5 38.5 h12" {...P} />
+        <path d="M96 41 l2.5 -15 M111 41 l-2.5 -15 M98.5 26 h10" {...P} />
+        <path d="M96 41 h15 M97.5 38.5 h12" {...P} />
         {/* 비늘 갑주 2열(물결) */}
-        <path d="M73 30.5 q2 2 4 0 q2 2 4 0" {...thin} />
-        <path d="M72.5 34.5 q2 2 4 0 q2 2 4 0 q1.5 1.5 3 0" {...thin} />
+        <path d="M99 30.5 q2 2 4 0 q2 2 4 0" {...thin} />
+        <path d="M98.5 34.5 q2 2 4 0 q2 2 4 0 q1.5 1.5 3 0" {...thin} />
         {/* 팔 — 오른손 창·왼팔 방패 */}
-        <path d="M83.5 27 q4.5 3 4 8.5" {...P} />
-        <path d="M72 27.5 q-5 3 -5.5 7.5" {...P} />
+        <path d="M109.5 27 q4.5 3 4 8.5" {...P} />
+        <path d="M98 27.5 q-5 3 -5.5 7.5" {...P} />
         {/* 투구(정면 — 얼굴 없음): 돔·챙·코가리개·깃털 장식 */}
-        <path d="M73.5 21 a4.6 4.6 0 0 1 9.2 0" {...P} />
-        <path d="M73 21.3 h10.2 M78.1 21.3 v4.2" {...P} />
-        <path d="M76.5 16 q2.5 -6 8.5 -5.5 q-1.5 5 -6 6" {...thin} />
+        <path d="M99.5 21 a4.6 4.6 0 0 1 9.2 0" {...P} />
+        <path d="M99 21.3 h10.2 M104.1 21.3 v4.2" {...P} />
+        <path d="M102.5 16 q2.5 -6 8.5 -5.5 q-1.5 5 -6 6" {...thin} />
         {/* 창(베틀 채 같은 — 굵게) + 창날 */}
-        <path d="M87.8 54 V10" {...heavy} />
-        <path d="M87.8 10 l-3.5 6.5 m3.5 -6.5 l3.5 6.5" {...P} />
+        <path d="M113.5 54 V10" {...heavy} />
+        <path d="M113.5 10 l-3.5 6.5 m3.5 -6.5 l3.5 6.5" {...P} />
         {/* 대형 원형 방패 + 중심 돌기 */}
-        <circle cx="64.5" cy="37" r="6" {...P} />
-        <circle cx="64.5" cy="37" r="1.7" {...thin} />
+        <circle cx="90.5" cy="37" r="6" {...P} />
+        <circle cx="90.5" cy="37" r="1.7" {...thin} />
         {/* 휘청 → 앞으로(다윗 쪽) 쓰러짐 — 발치 기준. reduce는 정적 최종 상태 */}
         {!reduce && (
           <animateTransform attributeName="transform" type="rotate"
-            values="0 77 54; 5 77 54; -80 77 54" keyTimes="0; 0.22; 1"
+            values="0 103 54; 5 103 54; -80 103 54" keyTimes="0; 0.22; 1"
             begin="3.95s" dur="0.95s" fill="freeze"
             calcMode="spline" keySplines="0.4 0 0.6 1; 0.55 0 0.85 0.7" />
         )}
@@ -91,18 +91,18 @@ function GoliathScene({ reduce }) {
       {/* 3단계 — 물매 돌: 드로우 인과 동시에 포물선 비행(투구를 향해). reduce는 명중 후 시점이라 미표시 */}
       {!reduce && (
         <circle cx="42" cy="20" r="2" {...P} style={d(3500, false)}>
-          <animateMotion path="M0 0 q18 -12 36 -2" begin="3.5s" dur="0.45s" fill="freeze"
+          <animateMotion path="M0 0 q31 -17 62 -3" begin="3.5s" dur="0.55s" fill="freeze"
             calcMode="spline" keySplines="0.3 0 0.75 1" keyTimes="0;1" />
           {/* 명중 직후 소멸 — 공중 잔상 방지 */}
-          <animate attributeName="opacity" to="0" begin="4.0s" dur="0.15s" fill="freeze" />
+          <animate attributeName="opacity" to="0" begin="4.1s" dur="0.15s" fill="freeze" />
         </circle>
       )}
 
       {/* 4단계 — 착지 흙먼지(강조색): 피어오르는 호 + 튀는 자갈 */}
       <g style={d(reduce ? 0 : 5000, reduce)} stroke="var(--paper-accent)">
-        <path d="M39 47 q-3.5 -4 -7 -4.5 M43.5 44 q-0.5 -5 -3.5 -7.5 M49 44.5 q3 -4.5 7 -5 M52 48 q4 -2 7.5 -1.5" {...thin} />
-        <circle cx="36" cy="42" r="0.9" {...thin} />
-        <circle cx="47" cy="39.5" r="0.9" {...thin} />
+        <path d="M62 47 q-3.5 -4 -7 -4.5 M66.5 44 q-0.5 -5 -3.5 -7.5 M72 44.5 q3 -4.5 7 -5 M76 48 q4 -2 7.5 -1.5" {...thin} />
+        <circle cx="59" cy="42" r="0.9" {...thin} />
+        <circle cx="70" cy="39.5" r="0.9" {...thin} />
       </g>
     </g>
   )
@@ -120,9 +120,9 @@ function TourSketch({ eventId, width = 280, reduce = false }) {
   const { Scene } = entry
   return (
     <svg
-      viewBox="0 0 96 64"
+      viewBox="0 0 120 64"
       width={width}
-      height={Math.round(width * 64 / 96)}
+      height={Math.round(width * 64 / 120)}
       className={reduce ? undefined : 'symbol-draw'}
       style={{ display: 'block' }}
       fill="none"
@@ -174,7 +174,7 @@ export function TourSketchOverlay({ eventId, isMobile }) {
         borderRadius: 12, padding: '14px 16px 8px',
         boxShadow: 'var(--shadow-2)',
       }}>
-        <TourSketch eventId={shown} width={isMobile ? 210 : 300} reduce={reduce} />
+        <TourSketch eventId={shown} width={isMobile ? 250 : 360} reduce={reduce} />
         {caption && (
           <div style={{
             marginTop: 6, textAlign: 'center',
