@@ -4,11 +4,13 @@ import creation from './sketches/creationToFlood'
 import patriarchs from './sketches/patriarchsCovenant'
 import exodus from './sketches/exodusToConquest'
 import judges from './sketches/ageOfJudges'
+import elijah from './sketches/elijahAndElisha'
+import exile from './sketches/exileAndReturn'
 
 // 투어 정차지 장면 스케치 — 투어별 모듈(frontend/src/sketches/)의 레지스트리를 집계해 렌더.
 // 표준·규약은 sketches/lib.jsx 참조(task#227 확정). 등록 없는 정차지는 아무것도 안 뜸.
 
-const SCENES = { ...david, ...creation, ...patriarchs, ...exodus, ...judges }
+const SCENES = { ...david, ...creation, ...patriarchs, ...exodus, ...judges, ...elijah, ...exile }
 
 export const hasSketch = (eventId) => Boolean(eventId && SCENES[eventId])
 
