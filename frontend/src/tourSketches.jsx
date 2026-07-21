@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
 const P = { pathLength: 1 }
 // 굵기 헬퍼 — sw(굵기[, 불투명도]). 모든 stroke 요소는 pathLength=1 정규화 유지.
 // 전역 배율 0.72 — 위계(원경→핵심)는 유지하되 렌더 크기 기준 과굵기 해소(사용자 피드백)
-const W = 0.72
+const W = 0.55
 const sw = (n, o) => (o != null ? { pathLength: 1, strokeWidth: +(n * W).toFixed(2), opacity: o } : { pathLength: 1, strokeWidth: +(n * W).toFixed(2) })
 // 단계 딜레이(ms) — g 래퍼의 --sym-delay로 자식 stroke에 상속. reduce 모드에선 0.
 const d = (ms, reduce) => ({ '--sym-delay': reduce ? '0ms' : `${ms}ms` })
@@ -788,24 +788,24 @@ function TempleDedicationScene({ reduce }) {
 }
 
 const SCENES = {
-  'authored-saul-mizpah-chosen': { Scene: MizpahChosenScene, caption: '미스바의 제비뽑기 — 사무엘상 10장' },
-  'authored-saul-jabesh-rescue': { Scene: JabeshRescueScene, caption: '야베스 길르앗 구원 — 사무엘상 11장' },
-  'authored-saul-gilgal-coronation': { Scene: GilgalCoronationScene, caption: '길갈의 대관식 — 사무엘상 11장' },
-  'authored-saul-michmash-battle': { Scene: MichmashBattleScene, caption: '믹마스 협곡의 기습 — 사무엘상 14장' },
-  'authored-saul-gilgal-amalek': { Scene: GilgalAmalekScene, mood: 'dark', caption: '찢어진 옷자락 — 사무엘상 15장' },
-  'authored-samuel-bethlehem-david-anointing': { Scene: BethlehemAnointingScene, caption: '베들레헴의 기름부음 — 사무엘상 16장' },
-  'authored-saul-gibeah-spear': { Scene: GibeahSpearScene, mood: 'dark', caption: '수금과 창 — 사무엘상 18장' },
-  'authored-david-goliath-gath': { Scene: GoliathScene, caption: '다윗과 골리앗 — 사무엘상 17장' },
-  'authored-david-en-gedi-saul': { Scene: EnGediScene, caption: '엔게디 동굴의 자비 — 사무엘상 24장' },
-  'authored-saul-endor-medium': { Scene: EndorMediumScene, mood: 'dark', caption: '엔돌의 밤 — 사무엘상 28장' },
-  'authored-saul-gilboa-death': { Scene: GilboaDeathScene, mood: 'dark', caption: '길보아 산의 최후 — 사무엘상 31장' },
-  'authored-david-hebron-king-judah': { Scene: HebronKingScene, caption: '헤브론의 유다 왕 — 사무엘하 2장' },
-  'authored-david-jerusalem-conquest': { Scene: JerusalemConquestScene, caption: '다윗 성 정복 — 사무엘하 5장' },
-  'authored-david-ark-jerusalem': { Scene: ArkJerusalemScene, caption: '언약궤의 입성 — 사무엘하 6장' },
-  'authored-david-nathan-covenant': { Scene: NathanCovenantScene, caption: '다윗 언약의 밤 — 사무엘하 7장' },
-  'authored-solomon-gibeon-dream': { Scene: GibeonDreamScene, caption: '기브온의 꿈 — 열왕기상 3장' },
-  'authored-solomon-jerusalem-temple-build': { Scene: TempleBuildScene, caption: '성전 건축 — 열왕기상 6장' },
-  'authored-solomon-jerusalem-temple-dedication': { Scene: TempleDedicationScene, caption: '성전 봉헌의 불 — 열왕기상 8장' },
+  'authored-saul-mizpah-chosen': { Scene: MizpahChosenScene, desc: '백성의 요구에 응답해 제비뽑기로 첫 왕이 세워지다', caption: '미스바의 제비뽑기 — 사무엘상 10장' },
+  'authored-saul-jabesh-rescue': { Scene: JabeshRescueScene, desc: '하나님의 영에 사로잡힌 사울이 새벽에 야베스를 구원하다', caption: '야베스 길르앗 구원 — 사무엘상 11장' },
+  'authored-saul-gilgal-coronation': { Scene: GilgalCoronationScene, desc: '온 백성이 길갈에서 사울을 왕으로 세우고 화목제를 드리다', caption: '길갈의 대관식 — 사무엘상 11장' },
+  'authored-saul-michmash-battle': { Scene: MichmashBattleScene, desc: '요나단이 병기 든 자와 단둘이 절벽을 올라 적진을 치다', caption: '믹마스 협곡의 기습 — 사무엘상 14장' },
+  'authored-saul-gilgal-amalek': { Scene: GilgalAmalekScene, mood: 'dark', desc: '순종이 제사보다 낫다 — 옷자락처럼 왕국이 찢기다', caption: '찢어진 옷자락 — 사무엘상 15장' },
+  'authored-samuel-bethlehem-david-anointing': { Scene: BethlehemAnointingScene, desc: '사무엘이 이새의 막내 다윗에게 기름을 붓다', caption: '베들레헴의 기름부음 — 사무엘상 16장' },
+  'authored-saul-gibeah-spear': { Scene: GibeahSpearScene, mood: 'dark', desc: '수금 타는 다윗에게 시기에 사로잡힌 사울이 창을 던지다', caption: '수금과 창 — 사무엘상 18장' },
+  'authored-david-goliath-gath': { Scene: GoliathScene, desc: '물매 돌 하나가 가드의 거인을 쓰러뜨리다', caption: '다윗과 골리앗 — 사무엘상 17장' },
+  'authored-david-en-gedi-saul': { Scene: EnGediScene, desc: '다윗이 잠든 사울의 옷자락만 베고 목숨은 살려주다', caption: '엔게디 동굴의 자비 — 사무엘상 24장' },
+  'authored-saul-endor-medium': { Scene: EndorMediumScene, mood: 'dark', desc: '버림받은 왕이 신접한 여인에게 죽은 사무엘을 불러내다', caption: '엔돌의 밤 — 사무엘상 28장' },
+  'authored-saul-gilboa-death': { Scene: GilboaDeathScene, mood: 'dark', desc: '사울이 길보아 산에서 아들들과 함께 최후를 맞다', caption: '길보아 산의 최후 — 사무엘상 31장' },
+  'authored-david-hebron-king-judah': { Scene: HebronKingScene, desc: '유다 지파가 헤브론에서 다윗을 왕으로 세우다', caption: '헤브론의 유다 왕 — 사무엘하 2장' },
+  'authored-david-jerusalem-conquest': { Scene: JerusalemConquestScene, desc: '다윗이 물 긷는 통로로 여부스 요새를 빼앗아 수도로 삼다', caption: '다윗 성 정복 — 사무엘하 5장' },
+  'authored-david-ark-jerusalem': { Scene: ArkJerusalemScene, desc: '다윗이 춤추며 언약궤를 예루살렘으로 모셔 오다', caption: '언약궤의 입성 — 사무엘하 6장' },
+  'authored-david-nathan-covenant': { Scene: NathanCovenantScene, desc: '네 집과 네 나라가 영원히 보전되리라 — 언약의 밤', caption: '다윗 언약의 밤 — 사무엘하 7장' },
+  'authored-solomon-gibeon-dream': { Scene: GibeonDreamScene, desc: '일천번제 후 꿈에 나타나신 하나님께 지혜를 구하다', caption: '기브온의 꿈 — 열왕기상 3장' },
+  'authored-solomon-jerusalem-temple-build': { Scene: TempleBuildScene, desc: '모리아산에 하나님의 이름을 둘 성전이 세워지다', caption: '성전 건축 — 열왕기상 6장' },
+  'authored-solomon-jerusalem-temple-dedication': { Scene: TempleDedicationScene, desc: '봉헌 기도에 불이 내려오고 영광이 성전에 가득하다', caption: '성전 봉헌의 불 — 열왕기상 8장' },
 }
 
 export const hasSketch = (eventId) => Boolean(eventId && SCENES[eventId])
@@ -823,7 +823,7 @@ function TourSketch({ eventId, width = 280, reduce = false }) {
       style={{ display: 'block' }}
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.45"
+      strokeWidth="1.1"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
@@ -847,6 +847,7 @@ export function TourSketchPanel({ eventId }) {
 
   if (!hasSketch(eventId)) return null
   const caption = SCENES[eventId]?.caption
+  const desc = SCENES[eventId]?.desc
   const dark = SCENES[eventId]?.mood === 'dark'
   return (
     <div data-sketch-panel style={{
@@ -862,12 +863,20 @@ export function TourSketchPanel({ eventId }) {
       <div style={{ aspectRatio: '120 / 64', width: '100%' }}>
         {ready && <TourSketch eventId={eventId} width="100%" reduce={reduce} />}
       </div>
-      {caption && (
-        <div style={{
-          marginTop: 4, textAlign: 'center',
-          fontFamily: 'var(--serif)', fontSize: 11.5, letterSpacing: '0.04em',
-          color: 'var(--paper-accent)',
-        }}>{caption}</div>
+      {(desc || caption) && (
+        <div style={{ marginTop: 5, textAlign: 'center' }}>
+          {/* 상황설명 — 그림이 담은 사건을 한 줄 서술(사용자 피드백) */}
+          {desc && (
+            <div style={{ fontFamily: 'var(--serif)', fontSize: 12.5, lineHeight: 1.45, color: 'var(--paper-ink)' }}>{desc}</div>
+          )}
+          {caption && (
+            <div style={{
+              marginTop: 2,
+              fontFamily: 'var(--serif)', fontSize: 10.5, letterSpacing: '0.04em',
+              color: 'var(--paper-accent)',
+            }}>{caption}</div>
+          )}
+        </div>
       )}
     </div>
   )
