@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
-import { Route, Clock, BookOpen, Users, UserRound, Network, BarChart3, HeartHandshake, ScrollText } from 'lucide-react'
+import { Route, Clock, BookOpen, Users, UserRound, Network, BarChart3, HeartHandshake, ScrollText, Play } from 'lucide-react'
 import { TYPE_COLOR } from './theme'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
@@ -16,6 +16,8 @@ import ChapterReader from './ChapterReader'
 import RelianceView from './RelianceView'
 import TourList from './TourList'
 import TourIntro from './TourIntro'
+import TourPlaybackCard, { useTourPlayback } from './TourPlayback'
+import { journeyStopGroups } from './mapGeo'
 import JourneyList from './JourneyList'
 import { MOBILE_BREAKPOINT, SHEET_VH, JOURNEY_SHEET_VH } from './constants'
 import { useNodeSelection } from './useNodeSelection'
@@ -87,6 +89,21 @@ function App() {
     return () => { cancelled = true }
   }, [explorePersonId])
   const [activeStopIdx, setActiveStopIdx] = useState(null)
+
+  // 투어 자동재생(task#223) — 사건 단위 시퀀서. 카메라는 아래 동기 effect가 activeStopIdx로 구동.
+  const playback = useTourPlayback(journeyStops)
+  // 재생 카메라 동기 — 현재 사건의 장소 그룹으로 이동(기존 easeTo 경로 재사용). 무좌표 사건은 카메라 유지·카드만 교체.
+  useEffect(() => {
+    if (playback.idx == null || !journeyStops) return
+    const s = journeyStops[playback.idx]
+    if (!s || s.lng == null || s.lat == null) return
+    const gi = journeyStopGroups(journeyStops).findIndex(g => g.stops.some(x => x.eventId === s.eventId))
+    if (gi >= 0) setActiveStopIdx(gi)
+  }, [playback.idx, journeyStops])
+  // 투어 이탈·탭 전환 시 재생 종료(경로선 전체 복원은 MapView가 playbackIdx null로 처리)
+  useEffect(() => {
+    if (playback.active && (exploreTourId == null || exploreView !== 'map')) playback.exit()
+  }, [exploreTourId, exploreView, playback.active])
 
   useEffect(() => {
     const ctrl = new AbortController()
@@ -729,9 +746,34 @@ function App() {
                   journeyStops={journeyStops}
                   activeStopIdx={activeStopIdx}
                   onStopSelect={setActiveStopIdx}
+                  playbackIdx={playback.idx}
                 />
-                {/* 모바일 여정 — 하단 세로 리스트(데스크톱과 동일 JourneyList 재사용). 📖는 양피지 모달로 연다. */}
-                {isMobile && !journeyMapless && journeyStops && journeyStops.length > 0 && (
+                {/* ▶ 투어 재생 — 투어 모드 지도 상단 진입점(task#223). 재생 중엔 카드가 컨트롤 담당. */}
+                {exploreTourId != null && !playback.active && journeyStops && journeyStops.length > 0 && (
+                  <button className="pressable" onClick={playback.start} style={{
+                    position: 'absolute', top: 12, left: '50%', transform: 'translateX(-50%)', zIndex: 6,
+                    display: 'flex', alignItems: 'center', gap: 6, padding: '9px 18px', borderRadius: 999,
+                    background: TYPE_COLOR.Book, color: '#fff', border: 'none', cursor: 'pointer',
+                    fontSize: 13, fontWeight: 700, font: 'inherit', boxShadow: 'var(--shadow-2)',
+                  }}>
+                    <Play size={14} /> 투어 재생
+                  </button>
+                )}
+                {/* 재생 해설 카드 — 데스크톱: 지도 위 오버레이 / 모바일: 하단 시트 영역 대체 */}
+                {exploreTourId != null && playback.active && (
+                  <TourPlaybackCard
+                    stops={journeyStops}
+                    idx={playback.idx}
+                    playing={playback.playing}
+                    onToggle={playback.toggle}
+                    onPrev={playback.prev}
+                    onNext={playback.next}
+                    onExit={playback.exit}
+                    isMobile={isMobile}
+                  />
+                )}
+                {/* 모바일 여정 — 하단 세로 리스트(데스크톱과 동일 JourneyList 재사용). 📖는 양피지 모달로 연다. 재생 중엔 해설 카드가 대체. */}
+                {isMobile && !journeyMapless && !playback.active && journeyStops && journeyStops.length > 0 && (
                   <div style={{
                     position: 'absolute', bottom: 0, left: 0, right: 0,
                     height: `${JOURNEY_SHEET_VH}dvh`, zIndex: 5,
@@ -809,6 +851,7 @@ function App() {
                     description={exploreTourMeta?.description}
                     journeyStops={journeyStops}
                     onSwitchView={setExploreView}
+                    onPlay={() => { setExploreView('map'); playback.start() }}
                   />
                 </div>
               </div>

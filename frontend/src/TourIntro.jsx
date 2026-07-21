@@ -1,4 +1,4 @@
-import { Route, Clock } from 'lucide-react'
+import { Route, Clock, Play } from 'lucide-react'
 import { TYPE_COLOR } from './theme'
 import Spinner from './Spinner'
 
@@ -7,7 +7,7 @@ import Spinner from './Spinner'
 // 신규 fetch 없음 — 메타는 App의 /tour 응답, stops는 journeyStops prop 재사용.
 const PURPLE = TYPE_COLOR.Book
 
-function TourIntro({ title, subtitle, era, description, journeyStops, onSwitchView = () => {} }) {
+function TourIntro({ title, subtitle, era, description, journeyStops, onSwitchView = () => {}, onPlay = null }) {
   if (journeyStops == null) {
     return <div style={{ display: 'flex', justifyContent: 'center', padding: 40 }}><Spinner color={PURPLE} /></div>
   }
@@ -37,6 +37,19 @@ function TourIntro({ title, subtitle, era, description, journeyStops, onSwitchVi
         <div style={{ padding: '16px 0 4px' }}>
           <p style={{ margin: 0, fontSize: 14.5, lineHeight: 1.75, color: 'var(--ink)' }}>{description}</p>
         </div>
+      )}
+
+      {/* ▶ 투어 재생 CTA — 지도 뷰로 전환해 자동재생 시작(task#223) */}
+      {onPlay && journeyStops.length > 0 && (
+        <button className="pressable" onClick={onPlay} style={{
+          width: '100%', marginTop: 16,
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+          padding: '13px 12px', borderRadius: 10, cursor: 'pointer', font: 'inherit',
+          background: PURPLE, border: 'none', color: '#fff',
+          fontSize: 14, fontWeight: 700,
+        }}>
+          <Play size={16} /> 투어 재생 — 정차지를 따라 여행하기
+        </button>
       )}
 
       {/* 정차지 개요 리스트 — seq · 인물명 · 사건 제목 · 장소 (좌표 없는 stop은 seq 없이) */}

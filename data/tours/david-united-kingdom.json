@@ -5,23 +5,77 @@
   "era": "왕국",
   "description": "사무엘이 사울을 왕으로 세운 날부터 솔로몬이 예루살렘 성전을 봉헌하는 날까지, 약 100년에 걸친 이스라엘 통일왕국의 대서사시다. 사울의 선출과 몰락, 다윗의 부상과 예루살렘 정복, 솔로몬의 지혜와 성전 건축이 하나의 흐름으로 이어지며 다윗 언약의 의미를 드러낸다.",
   "stops": [
-    "authored-saul-mizpah-chosen",
-    "authored-saul-jabesh-rescue",
-    "authored-saul-gilgal-coronation",
-    "authored-saul-michmash-battle",
-    "authored-saul-gilgal-amalek",
-    "authored-samuel-bethlehem-david-anointing",
-    "authored-saul-gibeah-spear",
-    "authored-david-goliath-gath",
-    "authored-david-en-gedi-saul",
-    "authored-saul-endor-medium",
-    "authored-saul-gilboa-death",
-    "authored-david-hebron-king-judah",
-    "authored-david-jerusalem-conquest",
-    "authored-david-ark-jerusalem",
-    "authored-david-nathan-covenant",
-    "authored-solomon-gibeon-dream",
-    "authored-solomon-jerusalem-temple-build",
-    "authored-solomon-jerusalem-temple-dedication"
+    {
+      "id": "authored-saul-mizpah-chosen",
+      "note": "통일왕국 서사의 막이 오르는 장면이다. 백성의 왕을 달라는 요구에 응답해 첫 왕 사울이 제비뽑기로 세워진다. 짐 보따리 사이에 숨은 청년의 등장은, 왕정이라는 새 실험이 인간 왕의 됨됨이에 달려 있음을 예고한다."
+    },
+    {
+      "id": "authored-saul-jabesh-rescue",
+      "note": "사울의 가장 빛나는 순간이다. 하나님의 영에 크게 사로잡혀 야베스 길르앗을 구원한 이 승리로 그는 왕의 자격을 백성 앞에 증명했다. 훗날 길보아에서 전사한 그의 시신을 거둔 이들이 바로 이 야베스 사람들이라는 점에서, 사울 이야기의 처음과 끝이 이곳에서 맞물린다."
+    },
+    {
+      "id": "authored-saul-gilgal-coronation",
+      "note": "야베스 구원의 승리를 안고 온 백성이 길갈에서 사울의 왕위를 확정하며 통일왕국이 공식 출범한다. 그러나 같은 길갈이 훗날 성급한 제사와 아말렉 불순종의 무대가 된다는 점에서, 이 기쁨의 자리에는 몰락의 복선이 함께 깔려 있다."
+    },
+    {
+      "id": "authored-saul-michmash-battle",
+      "note": "사울 몰락의 첫 균열이다. 사무엘을 기다리지 못한 성급한 번제는 왕도 하나님의 질서 아래 있어야 한다는 왕정의 대전제를 어겼다. 전투는 요나단의 믿음으로 이겼으나, 그 왕위가 길지 못하리라는 첫 책망이 이곳에서 내려진다."
+    },
+    {
+      "id": "authored-saul-gilgal-amalek",
+      "note": "'순종이 제사보다 낫다' — 사울이 왕으로서 최종적으로 버림받는 분기점이다. 찢어진 사무엘의 옷자락은 왕국이 사울에게서 찢겨 나감을 상징하며, 서사의 무게중심이 다윗에게 넘어갈 길이 여기서 열린다."
+    },
+    {
+      "id": "authored-samuel-bethlehem-david-anointing",
+      "note": "서사의 주인공이 교체되는 장면이다. 사람은 외모를 보나 하나님은 중심을 보신다는 선언과 함께 베들레헴의 막내 목동에게 기름이 부어진다. 왕좌에 오르기까지는 아직 멀었지만, 통일왕국의 진짜 주인공이 여기서 지명된다."
+    },
+    {
+      "id": "authored-saul-gibeah-spear",
+      "note": "버림받은 왕과 기름 부음 받은 목동이 한 궁정에 공존하는 긴장의 장면이다. '사울은 천천, 다윗은 만만'의 노래가 촉발한 시기는 창끝이 되어 날아가고, 다윗의 긴 도피 시절이 예고된다."
+    },
+    {
+      "id": "authored-david-goliath-gath",
+      "note": "물매 돌 하나로 거인을 쓰러뜨린 이 승리는 다윗을 무명의 목동에서 이스라엘의 영웅으로 끌어올렸다. 전쟁은 여호와께 속했다는 그의 고백은, 힘이 아니라 하나님을 의지함이 이 왕국의 참된 토대임을 보여준다."
+    },
+    {
+      "id": "authored-david-en-gedi-saul",
+      "note": "광야 도피의 절정에서 다윗의 왕재가 드러난다. 원수를 벨 기회 앞에서 '기름 부음 받은 자'를 해하지 않는 절제는, 왕위를 스스로 빼앗지 않고 하나님의 때를 기다리는 다윗식 왕권의 문법을 보여준다."
+    },
+    {
+      "id": "authored-saul-endor-medium",
+      "note": "하나님께 버림받은 사울의 영적 파산을 보여주는 어두운 장면이다. 스스로 금했던 신접한 여인을 찾아가 죽은 사무엘에게 묻는 왕의 모습은, 응답 없는 하늘 아래 무너져 가는 첫 왕조의 마지막 밤을 그린다."
+    },
+    {
+      "id": "authored-saul-gilboa-death",
+      "note": "첫 왕의 비극적 종막이다. 길보아 산의 패전으로 사울 시대가 끝나고 왕위 교체의 길이 열린다. 야베스 길르앗 사람들의 장사는 그의 첫 승리에 대한 보은으로, 사울 서사를 처음과 끝이 맞물리게 닫는다."
+    },
+    {
+      "id": "authored-david-hebron-king-judah",
+      "note": "다윗 왕정의 첫 발이다. 사울 사후에도 다윗은 전국의 왕좌로 직행하지 않고 유다 한 지파의 왕으로 헤브론에서 7년 반을 다스린다. 분열에서 통일로 가는 과도기로, 왕국이 하루아침에 세워지지 않았음을 보여준다."
+    },
+    {
+      "id": "authored-david-jerusalem-conquest",
+      "note": "통일왕국의 지리적 완성이다. 어느 지파에도 속하지 않던 여부스 요새를 정복해 수도로 삼음으로써 남북 지파를 아우르는 중립적 중심을 얻었다. 이후 3천 년 예루살렘 역사가 여기서 시작된다."
+    },
+    {
+      "id": "authored-david-ark-jerusalem",
+      "note": "정치적 수도에 신앙의 중심이 더해진 사건이다. 언약궤가 들어옴으로 예루살렘은 왕의 도시이자 하나님이 임재하시는 도시가 된다. 체면을 벗고 춤추는 다윗의 모습은 왕 위에 하나님을 두는 이 왕국의 질서를 압축한다."
+    },
+    {
+      "id": "authored-david-nathan-covenant",
+      "note": "이 투어 전체의 신학적 정점이다. 성전을 짓겠다는 다윗에게 하나님은 오히려 다윗의 집, 곧 왕조를 지어 주시겠다고 약속하신다. 영원한 왕좌의 약속은 솔로몬을 넘어 메시아 대망으로 이어지는 성경 전체의 축이 된다."
+    },
+    {
+      "id": "authored-solomon-gibeon-dream",
+      "note": "왕위를 이은 솔로몬 시대의 문이 열린다. 부와 장수가 아닌 듣는 마음, 곧 지혜를 구한 선택이 하나님을 기쁘시게 했고, 통일왕국의 전성기가 여기서 시작된다."
+    },
+    {
+      "id": "authored-solomon-jerusalem-temple-build",
+      "note": "다윗이 꿈꾸고 솔로몬이 완성한 왕국의 정점이다. 광야 이래의 이동식 성막 시대가 끝나고 하나님의 이름을 둘 영구한 처소가 모리아산에 선다. 네 아들이 내 이름을 위해 집을 지으리라는 다윗 언약의 성취다."
+    },
+    {
+      "id": "authored-solomon-jerusalem-temple-dedication",
+      "note": "미스바의 제비뽑기에서 시작된 약 100년 여정의 대단원이다. 법궤가 지성소에 안치되고 봉헌 기도와 함께 불이 내려 번제물을 사르니, 왕국과 성전과 언약이 하나로 완성된다. 통일왕국의 절정이자 이후 시대를 비추는 기준점이다."
+    }
   ]
 }

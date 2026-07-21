@@ -5,24 +5,81 @@
   "era": "족장",
   "description": "아브라함이 고향을 떠나라는 음성을 들은 날부터 요셉이 '내 해골을 메고 올라가라' 맹세시키는 날까지, 네 세대에 걸쳐 하나의 언약이 어떻게 이어지는지를 따라간다. 땅과 자손과 복이라는 약속은 기근·배신·노예·감옥을 통과하면서도 끊기지 않으며, 각 세대마다 새로운 이름과 장소에서 같은 하나님의 신실함이 확인된다.",
   "stops": [
-    "authored-abraham-call-ur",
-    "authored-abraham-shechem-promise",
-    "authored-abraham-covenant-ceremony",
-    "authored-abraham-sodom-intercession",
-    "authored-abraham-isaac-binding",
-    "authored-abraham-sarah-burial",
-    "authored-isaac-birth-beersheba",
-    "authored-isaac-rebekah-marriage",
-    "authored-isaac-esau-jacob-birth",
-    "authored-isaac-blessing-jacob",
-    "authored-jacob-bethel-dream",
-    "authored-jacob-haran-sojourn",
-    "authored-jacob-peniel-wrestling",
-    "authored-jacob-bethel-return",
-    "authored-joseph-dothan-pit",
-    "authored-joseph-egypt-prime-minister",
-    "authored-joseph-egypt-family-reunion",
-    "authored-joseph-jacob-blesses-ephraim-manasseh",
-    "authored-joseph-egypt-death-bones"
+    {
+      "id": "authored-abraham-call-ur",
+      "note": null
+    },
+    {
+      "id": "authored-abraham-shechem-promise",
+      "note": null
+    },
+    {
+      "id": "authored-abraham-covenant-ceremony",
+      "note": null
+    },
+    {
+      "id": "authored-abraham-sodom-intercession",
+      "note": null
+    },
+    {
+      "id": "authored-abraham-isaac-binding",
+      "note": null
+    },
+    {
+      "id": "authored-abraham-sarah-burial",
+      "note": null
+    },
+    {
+      "id": "authored-isaac-birth-beersheba",
+      "note": null
+    },
+    {
+      "id": "authored-isaac-rebekah-marriage",
+      "note": null
+    },
+    {
+      "id": "authored-isaac-esau-jacob-birth",
+      "note": null
+    },
+    {
+      "id": "authored-isaac-blessing-jacob",
+      "note": null
+    },
+    {
+      "id": "authored-jacob-bethel-dream",
+      "note": null
+    },
+    {
+      "id": "authored-jacob-haran-sojourn",
+      "note": null
+    },
+    {
+      "id": "authored-jacob-peniel-wrestling",
+      "note": null
+    },
+    {
+      "id": "authored-jacob-bethel-return",
+      "note": null
+    },
+    {
+      "id": "authored-joseph-dothan-pit",
+      "note": null
+    },
+    {
+      "id": "authored-joseph-egypt-prime-minister",
+      "note": null
+    },
+    {
+      "id": "authored-joseph-egypt-family-reunion",
+      "note": null
+    },
+    {
+      "id": "authored-joseph-jacob-blesses-ephraim-manasseh",
+      "note": null
+    },
+    {
+      "id": "authored-joseph-egypt-death-bones",
+      "note": null
+    }
   ]
 }

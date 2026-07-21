@@ -7,7 +7,7 @@ import { coreBounds, placesToGeoJSON, buildJourneyLineGeoJSON, buildJourneyStops
 import { EMPTY_GEOJSON, registerEventHandlers, setupMapSources } from './mapLayers'
 import { createRingController } from './mapRingController'
 
-export default function MapView({ onSelectNode, selectedNode, personId, isVisible, journeyStops, activeStopIdx, onStopSelect }) {
+export default function MapView({ onSelectNode, selectedNode, personId, isVisible, journeyStops, activeStopIdx, onStopSelect, playbackIdx = null }) {
   const mapContainer = useRef(null)
   const mapRef = useRef(null)
   const popupRef = useRef(null)
@@ -180,6 +180,17 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
     }
   }, [journeyStops, mapLoaded, personId])
 
+  // 재생 점진 경로선(task#223) — 현재 정차지까지의 좌표만 그려 진행에 따라 선이 자라난다.
+  // playbackIdx null(재생 종료·이탈) 시 전체 선 복원. 무좌표 정차지는 slice에 포함돼도 필터돼 선 유지.
+  useEffect(() => {
+    if (!mapLoaded) return
+    const map = mapRef.current
+    if (!map) return
+    const stops = journeyStops ?? []
+    const lineStops = playbackIdx != null ? stops.slice(0, playbackIdx + 1) : stops
+    map.getSource('journey-line-source').setData(buildJourneyLineGeoJSON(lineStops))
+  }, [playbackIdx, mapLoaded, journeyStops])
+
   // 활성 정차지 강조 + 카메라 이동 (activeStopIdx prop 변경 시)
   useEffect(() => {
     if (!mapLoaded) return
@@ -207,7 +218,9 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
     // offset 키를 undefined로 명시하면 maplibre easeTo의 기본값(Point 0,0) 병합이 깨져
     // Point.convert(undefined)가 던지고 React 루트가 언마운트된다 — 모바일일 때만 키를 싣는다.
     const offset = isMobile ? [0, -Math.round(window.innerHeight * JOURNEY_SHEET_VH / 100) / 2] : null
-    map.easeTo({ center: [g.lng, g.lat], ...(offset ? { offset } : {}), duration: 400 })
+    // prefers-reduced-motion: 카메라 즉시 점프(ADR-0024 — 재생·수동 이동 공통)
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    map.easeTo({ center: [g.lng, g.lat], ...(offset ? { offset } : {}), duration: reduceMotion ? 0 : 400 })
   }, [activeStopIdx, mapLoaded, journeyStops])
 
   useEffect(() => {

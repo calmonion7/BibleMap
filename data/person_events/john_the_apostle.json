@@ -206,7 +206,9 @@
     "yearLabel": "AD 95경",
     "context": "하나님의 말씀과 예수의 증거로 인해 밧모라는 섬에 유배된 요한이, 주의 날에 성령에 감동되어 일곱 교회에 보내는 계시를 받음 (계 1:9–11).",
     "authored": true,
-    "occursAt": [],
+    "occursAt": [
+      "authored-place-patmos"
+    ],
     "participants": [
       "recvAB7vkczUEFH8Z"
     ],

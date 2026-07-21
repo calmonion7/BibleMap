@@ -1,8 +1,9 @@
 """GET /tours — 테마 투어 목록
 GET /tour/{tour_id} — 테마 투어 상세 (stops 포함)
 
-투어 정의: data/tours/{id}.json  {id, title, subtitle, era, description, stops:[eventId,...]}
+투어 정의: data/tours/{id}.json  {id, title, subtitle, era, description, stops:[{id, note},...]}
 ADR-0011: tours는 event-reference 오버레이 — Neo4j 노드 추가·주입 없음.
+ADR-0028: stops는 객체 배열 — note는 그 투어 관점의 정차지 해설(nullable), 객체 형식만 파싱(이중 파서 없음).
 """
 import functools
 import glob
@@ -96,7 +97,9 @@ def get_tour(tour_id: str):
         tour = json.load(f)
 
     event_index = _build_event_index()
-    stop_ids: list[str] = tour.get("stops", [])
+    stop_entries: list[dict] = tour.get("stops", [])
+    stop_ids = [s["id"] for s in stop_entries]
+    notes = {s["id"]: s.get("note") for s in stop_entries}
 
     # 알 수 없는 id 제거 후 sortKey 순 정렬
     events = sorted(
@@ -144,6 +147,7 @@ def get_tour(tour_id: str):
             "placeNameKo": place_info["nameKo"] if place_info else None,
             "lng": place_info["lng"] if place_info else None,
             "lat": place_info["lat"] if place_info else None,
+            "note": notes.get(event["id"]),
         })
 
     return JSONResponse(

@@ -5,26 +5,89 @@
   "era": "포로",
   "description": "BC 605년 바벨론으로 끌려간 다니엘부터 BC 444년 느헤미야가 예루살렘 성벽 재건을 완수하기까지, 약 160년에 걸친 포로와 귀환의 대서사시다. 이방 왕궁에서 신앙을 지킨 다니엘, 페르시아 왕궁에서 민족을 구한 에스더, 폐허가 된 성읍으로 돌아와 52일 만에 성벽을 쌓은 느헤미야 — 세 인물의 여정이 교차하며 포로지에서도 이스라엘을 붙드신 하나님의 섭리를 드러낸다.",
   "stops": [
-    "authored-daniel-babylon-diet",
-    "authored-daniel-babylon-image-dream",
-    "authored-daniel-babylon-tree-dream",
-    "authored-daniel-babylon-four-beasts",
-    "authored-daniel-susa-vision",
-    "authored-daniel-babylon-writing-wall",
-    "authored-daniel-babylon-darius-administrator",
-    "authored-daniel-babylon-lions-den",
-    "authored-daniel-babylon-seventy-weeks",
-    "authored-daniel-tigris-vision",
-    "authored-esther-queen-chosen",
-    "authored-esther-haman-decree",
-    "authored-esther-if-i-perish",
-    "authored-esther-haman-downfall",
-    "authored-esther-purim",
-    "authored-nehemiah-news-prayer",
-    "authored-nehemiah-kings-permission",
-    "authored-nehemiah-night-inspection",
-    "authored-nehemiah-wall-opposition",
-    "authored-nehemiah-wall-completed",
-    "authored-nehemiah-law-reading"
+    {
+      "id": "authored-daniel-babylon-diet",
+      "note": null
+    },
+    {
+      "id": "authored-daniel-babylon-image-dream",
+      "note": null
+    },
+    {
+      "id": "authored-daniel-babylon-tree-dream",
+      "note": null
+    },
+    {
+      "id": "authored-daniel-babylon-four-beasts",
+      "note": null
+    },
+    {
+      "id": "authored-daniel-susa-vision",
+      "note": null
+    },
+    {
+      "id": "authored-daniel-babylon-writing-wall",
+      "note": null
+    },
+    {
+      "id": "authored-daniel-babylon-darius-administrator",
+      "note": null
+    },
+    {
+      "id": "authored-daniel-babylon-lions-den",
+      "note": null
+    },
+    {
+      "id": "authored-daniel-babylon-seventy-weeks",
+      "note": null
+    },
+    {
+      "id": "authored-daniel-tigris-vision",
+      "note": null
+    },
+    {
+      "id": "authored-esther-queen-chosen",
+      "note": null
+    },
+    {
+      "id": "authored-esther-haman-decree",
+      "note": null
+    },
+    {
+      "id": "authored-esther-if-i-perish",
+      "note": null
+    },
+    {
+      "id": "authored-esther-haman-downfall",
+      "note": null
+    },
+    {
+      "id": "authored-esther-purim",
+      "note": null
+    },
+    {
+      "id": "authored-nehemiah-news-prayer",
+      "note": null
+    },
+    {
+      "id": "authored-nehemiah-kings-permission",
+      "note": null
+    },
+    {
+      "id": "authored-nehemiah-night-inspection",
+      "note": null
+    },
+    {
+      "id": "authored-nehemiah-wall-opposition",
+      "note": null
+    },
+    {
+      "id": "authored-nehemiah-wall-completed",
+      "note": null
+    },
+    {
+      "id": "authored-nehemiah-law-reading",
+      "note": null
+    }
   ]
 }

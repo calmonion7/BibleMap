@@ -5,28 +5,97 @@
   "era": "신약",
   "description": "천사 가브리엘이 마리아에게 나타난 날부터 예수께서 하늘로 오르신 날까지, 세례 요한·예수·마리아 세 인물의 발걸음이 한 서사 안에서 교차한다. 요한은 길을 예비하고, 마리아는 그 길의 시작과 끝을 함께 걸으며, 예수는 세례·공생애·수난·부활을 거쳐 하나님의 구원 계획을 완성한다. 어느 한 인물만으로는 보이지 않는 복음의 전체 지형이 세 여정의 교차 속에서 드러난다.",
   "stops": [
-    "authored-mary-nazareth-annunciation",
-    "authored-mary-judah-visitation",
-    "authored-john-baptist-birth-naming",
-    "authored-jesus-bethlehem-birth",
-    "authored-jesus-temple-presentation",
-    "authored-jesus-flight-egypt",
-    "authored-jesus-boy-at-temple",
-    "authored-john-baptist-wilderness-ministry",
-    "authored-jesus-jordan-baptism",
-    "authored-jesus-wilderness-temptation",
-    "authored-mary-cana-wedding",
-    "authored-jesus-capernaum-base",
-    "authored-jesus-sermon-mount",
-    "authored-john-baptist-machaerus-death",
-    "authored-jesus-caesarea-philippi",
-    "authored-jesus-bethany-lazarus",
-    "authored-jesus-triumphal-entry",
-    "authored-jesus-last-supper",
-    "authored-jesus-gethsemane-prayer",
-    "authored-jesus-crucifixion",
-    "authored-mary-jerusalem-cross",
-    "authored-jesus-resurrection",
-    "authored-jesus-ascension"
+    {
+      "id": "authored-mary-nazareth-annunciation",
+      "note": null
+    },
+    {
+      "id": "authored-mary-judah-visitation",
+      "note": null
+    },
+    {
+      "id": "authored-john-baptist-birth-naming",
+      "note": null
+    },
+    {
+      "id": "authored-jesus-bethlehem-birth",
+      "note": null
+    },
+    {
+      "id": "authored-jesus-temple-presentation",
+      "note": null
+    },
+    {
+      "id": "authored-jesus-flight-egypt",
+      "note": null
+    },
+    {
+      "id": "authored-jesus-boy-at-temple",
+      "note": null
+    },
+    {
+      "id": "authored-john-baptist-wilderness-ministry",
+      "note": null
+    },
+    {
+      "id": "authored-jesus-jordan-baptism",
+      "note": null
+    },
+    {
+      "id": "authored-jesus-wilderness-temptation",
+      "note": null
+    },
+    {
+      "id": "authored-mary-cana-wedding",
+      "note": null
+    },
+    {
+      "id": "authored-jesus-capernaum-base",
+      "note": null
+    },
+    {
+      "id": "authored-jesus-sermon-mount",
+      "note": null
+    },
+    {
+      "id": "authored-john-baptist-machaerus-death",
+      "note": null
+    },
+    {
+      "id": "authored-jesus-caesarea-philippi",
+      "note": null
+    },
+    {
+      "id": "authored-jesus-bethany-lazarus",
+      "note": null
+    },
+    {
+      "id": "authored-jesus-triumphal-entry",
+      "note": null
+    },
+    {
+      "id": "authored-jesus-last-supper",
+      "note": null
+    },
+    {
+      "id": "authored-jesus-gethsemane-prayer",
+      "note": null
+    },
+    {
+      "id": "authored-jesus-crucifixion",
+      "note": null
+    },
+    {
+      "id": "authored-mary-jerusalem-cross",
+      "note": null
+    },
+    {
+      "id": "authored-jesus-resurrection",
+      "note": null
+    },
+    {
+      "id": "authored-jesus-ascension",
+      "note": null
+    }
   ]
 }

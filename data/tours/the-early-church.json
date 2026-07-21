@@ -5,24 +5,81 @@
   "era": "신약",
   "description": "예수의 부활 이후 베드로와 요한이 예루살렘에서 교회를 세우고, 박해를 뚫고 사마리아와 이방인에게까지 복음의 경계를 넓혀간다. 다메섹 도상에서 회심한 바울이 합류해 소아시아·유럽·로마까지 세 차례 선교여행을 완주하고, 마지막으로 살아남은 사도 요한이 밧모 섬에서 계시록을 남기며 초대교회의 대서사가 마무리된다.",
   "stops": [
-    "authored-peter-pentecost",
-    "authored-peter-lame-man",
-    "authored-peter-solomons-portico-trial",
-    "authored-peter-samaria",
-    "authored-paul-damascus-conversion",
-    "authored-peter-aeneas-dorcas",
-    "authored-peter-cornelius",
-    "authored-peter-defends-gentiles",
-    "authored-paul-antioch-ministry",
-    "authored-peter-herod-prison",
-    "authored-paul-jerusalem-council",
-    "authored-paul-philippi",
-    "authored-paul-athens-areopagus",
-    "authored-paul-corinth",
-    "authored-paul-ephesus",
-    "authored-paul-miletus-farewell",
-    "authored-paul-rome-house-arrest",
-    "authored-john-ephesus",
-    "authored-john-patmos"
+    {
+      "id": "authored-peter-pentecost",
+      "note": null
+    },
+    {
+      "id": "authored-peter-lame-man",
+      "note": null
+    },
+    {
+      "id": "authored-peter-solomons-portico-trial",
+      "note": null
+    },
+    {
+      "id": "authored-peter-samaria",
+      "note": null
+    },
+    {
+      "id": "authored-paul-damascus-conversion",
+      "note": null
+    },
+    {
+      "id": "authored-peter-aeneas-dorcas",
+      "note": null
+    },
+    {
+      "id": "authored-peter-cornelius",
+      "note": null
+    },
+    {
+      "id": "authored-peter-defends-gentiles",
+      "note": null
+    },
+    {
+      "id": "authored-paul-antioch-ministry",
+      "note": null
+    },
+    {
+      "id": "authored-peter-herod-prison",
+      "note": null
+    },
+    {
+      "id": "authored-paul-jerusalem-council",
+      "note": null
+    },
+    {
+      "id": "authored-paul-philippi",
+      "note": null
+    },
+    {
+      "id": "authored-paul-athens-areopagus",
+      "note": null
+    },
+    {
+      "id": "authored-paul-corinth",
+      "note": null
+    },
+    {
+      "id": "authored-paul-ephesus",
+      "note": null
+    },
+    {
+      "id": "authored-paul-miletus-farewell",
+      "note": null
+    },
+    {
+      "id": "authored-paul-rome-house-arrest",
+      "note": null
+    },
+    {
+      "id": "authored-john-ephesus",
+      "note": null
+    },
+    {
+      "id": "authored-john-patmos",
+      "note": null
+    }
   ]
 }

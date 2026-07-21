@@ -5,17 +5,53 @@
   "era": "원시사",
   "description": "하나님이 흙으로 사람을 빚고 에덴에 두신 날부터 홍수 후 무지개 언약을 세우시는 날까지, 인류 원시사의 대서사다. 아담의 타락과 에덴 추방, 가인의 형제 살인과 유리하는 삶, 셋과 에녹으로 이어지는 경건한 계보, 그리고 의인 노아를 통한 새 창조가 하나의 흐름으로 이어지며 하나님의 심판과 은혜가 번갈아 드러난다.",
   "stops": [
-    "authored-adam-placed-in-eden",
-    "authored-adam-fall",
-    "authored-adam-expelled-from-eden",
-    "authored-abel-offering",
-    "authored-cain-kills-abel",
-    "authored-cain-dwells-in-nod",
-    "authored-seth-enosh-and-calling",
-    "authored-enoch-taken-by-god",
-    "authored-noah-righteous-man",
-    "authored-noah-flood-begins",
-    "authored-noah-ark-rests-ararat",
-    "authored-noah-rainbow-covenant"
+    {
+      "id": "authored-adam-placed-in-eden",
+      "note": null
+    },
+    {
+      "id": "authored-adam-fall",
+      "note": null
+    },
+    {
+      "id": "authored-adam-expelled-from-eden",
+      "note": null
+    },
+    {
+      "id": "authored-abel-offering",
+      "note": null
+    },
+    {
+      "id": "authored-cain-kills-abel",
+      "note": null
+    },
+    {
+      "id": "authored-cain-dwells-in-nod",
+      "note": null
+    },
+    {
+      "id": "authored-seth-enosh-and-calling",
+      "note": null
+    },
+    {
+      "id": "authored-enoch-taken-by-god",
+      "note": null
+    },
+    {
+      "id": "authored-noah-righteous-man",
+      "note": null
+    },
+    {
+      "id": "authored-noah-flood-begins",
+      "note": null
+    },
+    {
+      "id": "authored-noah-ark-rests-ararat",
+      "note": null
+    },
+    {
+      "id": "authored-noah-rainbow-covenant",
+      "note": null
+    }
   ]
 }
