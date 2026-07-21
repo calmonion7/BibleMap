@@ -20,7 +20,8 @@ const d = (ms, reduce) => ({ '--sym-delay': reduce ? '0ms' : `${ms}ms` })
 function Label({ x, y, at = 0, reduce, anchor = 'middle', size = 4.6, children }) {
   return (
     <text x={x} y={y} fontSize={size} fontFamily="var(--serif)" fontWeight="600"
-      fill="var(--paper-accent)" stroke="none" textAnchor={anchor} opacity={reduce ? 1 : 0}>
+      fill="var(--paper-accent)" stroke="var(--paper)" strokeWidth="2.4" paintOrder="stroke"
+      strokeLinejoin="round" textAnchor={anchor} opacity={reduce ? 1 : 0}>
       {children}
       {!reduce && <animate attributeName="opacity" to="1" begin={`${at}s`} dur="0.4s" fill="freeze" />}
     </text>
@@ -31,7 +32,6 @@ function Label({ x, y, at = 0, reduce, anchor = 'middle', size = 4.6, children }
 function GoliathScene({ reduce }) {
   return (
     <g>
-      <Label x="20" y="12" at="2.6" reduce={reduce}>다윗</Label><Label x="100" y="7" at="1.6" reduce={reduce}>골리앗</Label>
       {!reduce && (
         <animateTransform attributeName="transform" type="translate"
           values="0 0; 0 1.3; 0 0; 0 0.6; 0 0" keyTimes="0;0.25;0.5;0.75;1"
@@ -106,6 +106,7 @@ function GoliathScene({ reduce }) {
         <circle cx="59" cy="42" r="0.9" {...sw(1.3)} />
         <circle cx="70" cy="39.5" r="0.9" {...sw(1.3)} />
       </g>
+      <Label x="20" y="12" at="2.6" reduce={reduce}>다윗</Label><Label x="100" y="7" at="1.6" reduce={reduce}>골리앗</Label>
     </g>
   )
 }
@@ -116,7 +117,6 @@ function GoliathScene({ reduce }) {
 function MizpahChosenScene({ reduce }) {
   return (
     <g>
-      <Label x="31" y="35" at="1.5" reduce={reduce}>백성</Label><Label x="63" y="36" at="2.3" reduce={reduce}>제비뽑기</Label><Label x="99" y="16" at="3.5" reduce={reduce}>사울</Label>
       <g style={d(0, reduce)}>
         <path d="M6 54 h108" {...sw(1.6)} />
         <path d="M8 42 q14 -9 27 -2" {...sw(1.1, 0.4)} />
@@ -157,6 +157,7 @@ function MizpahChosenScene({ reduce }) {
       <g style={d(reduce ? 0 : 3700, reduce)} stroke="var(--paper-accent)">
         <path d="M17 46 l-3 -4 M23 46 l3 -4 M28 47 l-3 -4 M34 47 l3 -4" {...sw(1.4)} />
       </g>
+      <Label x="31" y="35" at="1.5" reduce={reduce}>백성</Label><Label x="63" y="36" at="2.3" reduce={reduce}>제비뽑기</Label><Label x="99" y="16" at="3.5" reduce={reduce}>사울</Label>
     </g>
   )
 }
@@ -165,7 +166,6 @@ function MizpahChosenScene({ reduce }) {
 function JabeshRescueScene({ reduce }) {
   return (
     <g>
-      <Label x="98" y="27" at="0.9" reduce={reduce}>야베스 성</Label><Label x="30" y="34" at="3.2" reduce={reduce}>사울의 군대</Label>
       <g style={d(0, reduce)}>
         <path d="M6 54 h108" {...sw(1.6)} />
         <path d="M88 54 v-16 h20 v16 M90 44 h16 M92 38 v-6 h7 v6" {...sw(2)} />
@@ -194,6 +194,7 @@ function JabeshRescueScene({ reduce }) {
             begin="2.5s" dur="0.9s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.6 1" keyTimes="0;1" />
         )}
       </g>
+      <Label x="98" y="27" at="0.9" reduce={reduce}>야베스 성</Label><Label x="30" y="34" at="3.2" reduce={reduce}>사울의 군대</Label>
     </g>
   )
 }
@@ -202,7 +203,6 @@ function JabeshRescueScene({ reduce }) {
 function GilgalCoronationScene({ reduce }) {
   return (
     <g>
-      <Label x="40" y="30" at="1.5" reduce={reduce}>화목제</Label><Label x="79" y="21" at="3.3" reduce={reduce}>사울</Label>
       <g style={d(0, reduce)}>
         <path d="M6 54 h108" {...sw(1.6)} />
         <path d="M78 41 q16 -9 30 -2" {...sw(1.1, 0.4)} />
@@ -233,6 +233,7 @@ function GilgalCoronationScene({ reduce }) {
         <path d="M92 47.5 v4 M89.8 54 l2.2 -2.5 l2.2 2.5" {...sw(1.8)} />
         <path d="M89 43 l-2.8 -3.6 M95 43 l2.8 -3.6" stroke="var(--paper-accent)" {...sw(1.4)} />
       </g>
+      <Label x="40" y="30" at="1.5" reduce={reduce}>화목제</Label><Label x="79" y="21" at="3.3" reduce={reduce}>사울</Label>
     </g>
   )
 }
@@ -241,7 +242,6 @@ function GilgalCoronationScene({ reduce }) {
 function MichmashBattleScene({ reduce }) {
   return (
     <g>
-      <Label x="99" y="12" at="1.7" reduce={reduce}>블레셋 진영</Label><Label x="84" y="30" at="3.7" reduce={reduce}>요나단</Label>
       <g style={d(0, reduce)}>
         <path d="M6 54 h108" {...sw(1.6)} />
         <path d="M6 44 l14 -14 l10 7 l8 17" {...sw(2.2)} />
@@ -271,6 +271,7 @@ function MichmashBattleScene({ reduce }) {
             begin="2.2s" dur="1.4s" fill="freeze" calcMode="spline" keySplines="0.35 0 0.6 1" keyTimes="0;1" />
         )}
       </g>
+      <Label x="99" y="12" at="1.7" reduce={reduce}>블레셋 진영</Label><Label x="84" y="30" at="3.7" reduce={reduce}>요나단</Label>
     </g>
   )
 }
@@ -279,7 +280,6 @@ function MichmashBattleScene({ reduce }) {
 function GilgalAmalekScene({ reduce }) {
   return (
     <g>
-      <Label x="30" y="17" at="1.5" reduce={reduce}>사무엘</Label><Label x="55" y="31" at="2.3" reduce={reduce}>사울</Label><Label x="90" y="60" at="3" reduce={reduce}>살려둔 양</Label>
       <g style={d(0, reduce)}>
         <path d="M6 54 h108" {...sw(1.6)} />
         <path d="M10 43 q13 -8 25 -2" {...sw(1.1, 0.4)} />
@@ -314,6 +314,7 @@ function GilgalAmalekScene({ reduce }) {
           )}
         </path>
       </g>
+      <Label x="30" y="17" at="1.5" reduce={reduce}>사무엘</Label><Label x="55" y="31" at="2.3" reduce={reduce}>사울</Label><Label x="90" y="60" at="3" reduce={reduce}>살려둔 양</Label>
     </g>
   )
 }
@@ -322,7 +323,6 @@ function GilgalAmalekScene({ reduce }) {
 function BethlehemAnointingScene({ reduce }) {
   return (
     <g>
-      <Label x="32" y="18" at="1.5" reduce={reduce}>사무엘</Label><Label x="60" y="60" at="2.3" reduce={reduce}>다윗</Label><Label x="70" y="27" at="3.5" reduce={reduce} anchor="start">기름 뿔</Label>
       <g style={d(0, reduce)}>
         <path d="M6 54 h108" {...sw(1.6)} />
         <path d="M82 44 q14 -8 28 -2" {...sw(1.1, 0.4)} />
@@ -359,6 +359,7 @@ function BethlehemAnointingScene({ reduce }) {
       <g style={d(reduce ? 0 : 4000, reduce)} stroke="var(--paper-accent)">
         <path d="M58 20 v-4 M49 23 l-3 -3 M67 23 l3 -3 M53 21 l-1.6 -2.6 M63 21 l1.6 -2.6" {...sw(1.4)} />
       </g>
+      <Label x="32" y="18" at="1.5" reduce={reduce}>사무엘</Label><Label x="60" y="60" at="2.3" reduce={reduce}>다윗</Label><Label x="70" y="27" at="3.5" reduce={reduce} anchor="start">기름 뿔</Label>
     </g>
   )
 }
@@ -367,7 +368,6 @@ function BethlehemAnointingScene({ reduce }) {
 function GibeahSpearScene({ reduce }) {
   return (
     <g>
-      <Label x="30" y="29" at="2.4" reduce={reduce}>다윗</Label><Label x="98" y="28" at="1.5" reduce={reduce}>사울</Label>
       <g style={d(0, reduce)}>
         <path d="M6 54 h108" {...sw(1.6)} />
         <path d="M14 54 V24" {...sw(2.2)} />
@@ -403,6 +403,7 @@ function GibeahSpearScene({ reduce }) {
         </g>
       )}
       {reduce && <path d="M24 47.5 l8 -1.5" {...sw(3)} />}
+      <Label x="30" y="29" at="2.4" reduce={reduce}>다윗</Label><Label x="98" y="28" at="1.5" reduce={reduce}>사울</Label>
     </g>
   )
 }
@@ -411,7 +412,6 @@ function GibeahSpearScene({ reduce }) {
 function EnGediScene({ reduce }) {
   return (
     <g>
-      <Label x="36" y="34" at="2.8" reduce={reduce}>다윗</Label><Label x="79" y="42" at="1.8" reduce={reduce}>잠든 사울</Label>
       <g style={d(0, reduce)}>
         <path d="M6 54 h108" {...sw(1.6)} />
         <path d="M12 54 q3 -27 38 -29 q36 -2 44 29" {...sw(2.4)} />
@@ -441,6 +441,7 @@ function EnGediScene({ reduce }) {
           )}
         </path>
       </g>
+      <Label x="36" y="34" at="2.8" reduce={reduce}>다윗</Label><Label x="79" y="42" at="1.8" reduce={reduce}>잠든 사울</Label>
     </g>
   )
 }
@@ -449,7 +450,6 @@ function EnGediScene({ reduce }) {
 function EndorMediumScene({ reduce }) {
   return (
     <g>
-      <Label x="66" y="17" at="3.2" reduce={reduce}>사무엘의 혼</Label><Label x="95" y="42" at="2.3" reduce={reduce}>사울</Label>
       <g style={d(0, reduce)}>
         <path d="M6 54 h108" {...sw(1.6)} />
         <path d="M8 22 q22 9 42 5 M66 18 q24 7 40 12" {...sw(1.2, 0.45)} />
@@ -479,6 +479,7 @@ function EndorMediumScene({ reduce }) {
         <path d="M96.5 51.5 q3.5 -1.2 6.5 0.8" {...sw(1.3, 0.6)} />
         <path d="M83 52.5 v-2 l1.4 1 l1.3 -1.6 l1.3 1.6 l1.4 -1 v2" {...sw(1.6)} />
       </g>
+      <Label x="66" y="17" at="3.2" reduce={reduce}>사무엘의 혼</Label><Label x="95" y="42" at="2.3" reduce={reduce}>사울</Label>
     </g>
   )
 }
@@ -487,7 +488,6 @@ function EndorMediumScene({ reduce }) {
 function GilboaDeathScene({ reduce }) {
   return (
     <g>
-      <Label x="44" y="17" at="1.8" reduce={reduce}>사울의 검</Label><Label x="80" y="52" at="3.9" reduce={reduce}>떨어진 왕관</Label>
       <g style={d(0, reduce)}>
         <path d="M6 54 h108" {...sw(1.6)} />
         <path d="M6 52 L38 28 L62 38 L94 20 L114 30" {...sw(2.2)} />
@@ -512,6 +512,7 @@ function GilboaDeathScene({ reduce }) {
       <g style={d(reduce ? 0 : 3900, reduce)}>
         <path d="M94 13 q2 -2 4 0 q2 -2 4 0 M102 18 q1.8 -1.8 3.6 0 q1.8 -1.8 3.6 0" {...sw(1.3)} />
       </g>
+      <Label x="44" y="17" at="1.8" reduce={reduce}>사울의 검</Label><Label x="80" y="52" at="3.9" reduce={reduce}>떨어진 왕관</Label>
     </g>
   )
 }
@@ -520,7 +521,6 @@ function GilboaDeathScene({ reduce }) {
 function HebronKingScene({ reduce }) {
   return (
     <g>
-      <Label x="48" y="22" at="1.8" reduce={reduce}>다윗</Label><Label x="88" y="31" at="0.9" reduce={reduce}>헤브론 성문</Label>
       <g style={d(0, reduce)}>
         <path d="M6 54 h108" {...sw(1.6)} />
         <path d="M78 54 v-18 q10 -8 20 0 v18 M82 54 v-13 q6 -5 12 0 v13" {...sw(2)} />
@@ -548,6 +548,7 @@ function HebronKingScene({ reduce }) {
         <path d="M30 48.4 v3.1 M28 54 l2 -2.4 l2 2.4" {...sw(1.8)} />
         <path d="M17 43 l-2.8 -3.5 M23 43 l2.6 -3.4 M33 44 l2.6 -3.4" stroke="var(--paper-accent)" {...sw(1.4)} />
       </g>
+      <Label x="48" y="22" at="1.8" reduce={reduce}>다윗</Label><Label x="88" y="31" at="0.9" reduce={reduce}>헤브론 성문</Label>
     </g>
   )
 }
@@ -556,7 +557,6 @@ function HebronKingScene({ reduce }) {
 function JerusalemConquestScene({ reduce }) {
   return (
     <g>
-      <Label x="60" y="21" at="0.9" reduce={reduce}>여부스 요새</Label><Label x="79" y="47" at="2.8" reduce={reduce} anchor="start">물 긷는 통로</Label>
       <g style={d(0, reduce)}>
         <path d="M6 54 h108" {...sw(1.6)} />
         <path d="M26 54 q6 -14 20 -17 M94 54 q-6 -14 -20 -17" {...sw(2)} />
@@ -582,6 +582,7 @@ function JerusalemConquestScene({ reduce }) {
         <path d="M60 26 v-9" {...sw(2.2)} />
         <path d="M60 17 q4 1.5 7 0 l0 4.5 q-3 1.5 -7 0" {...sw(1.6)} />
       </g>
+      <Label x="60" y="21" at="0.9" reduce={reduce}>여부스 요새</Label><Label x="79" y="47" at="2.8" reduce={reduce} anchor="start">물 긷는 통로</Label>
     </g>
   )
 }
@@ -590,7 +591,6 @@ function JerusalemConquestScene({ reduce }) {
 function ArkJerusalemScene({ reduce }) {
   return (
     <g>
-      <Label x="59" y="26" at="1.7" reduce={reduce}>언약궤</Label><Label x="22" y="24" at="2.8" reduce={reduce}>춤추는 다윗</Label>
       <g style={d(0, reduce)}>
         <path d="M6 54 h108" {...sw(1.6)} />
         <path d="M96 42 q10 -7 18 -2" {...sw(1.1, 0.4)} />
@@ -628,6 +628,7 @@ function ArkJerusalemScene({ reduce }) {
         <circle cx="11" cy="24.6" r="1" {...sw(1.4)} />
         <circle cx="14.5" cy="22.6" r="1" {...sw(1.4)} />
       </g>
+      <Label x="59" y="26" at="1.7" reduce={reduce}>언약궤</Label><Label x="22" y="24" at="2.8" reduce={reduce}>춤추는 다윗</Label>
     </g>
   )
 }
@@ -636,7 +637,6 @@ function ArkJerusalemScene({ reduce }) {
 function NathanCovenantScene({ reduce }) {
   return (
     <g>
-      <Label x="88" y="47" at="1" reduce={reduce} anchor="start">다윗의 집</Label>
       <g style={d(0, reduce)}>
         <path d="M6 54 h108" {...sw(1.6)} />
         <path d="M48 54 v-12 l12 -8 l12 8 v12 M56 54 v-7 h8 v7" {...sw(2.4)} />
@@ -665,6 +665,7 @@ function NathanCovenantScene({ reduce }) {
         </path>
         <path d="M60 17 v2 m0 3 v2 m0 3 v2" {...sw(1.3)} />
       </g>
+      <Label x="88" y="47" at="1" reduce={reduce} anchor="start">다윗의 집</Label>
     </g>
   )
 }
@@ -673,7 +674,6 @@ function NathanCovenantScene({ reduce }) {
 function GibeonDreamScene({ reduce }) {
   return (
     <g>
-      <Label x="23" y="26" at="1.4" reduce={reduce}>일천번제</Label><Label x="86" y="45" at="2.3" reduce={reduce}>솔로몬</Label><Label x="76" y="35" at="4" reduce={reduce}>지혜의 꿈</Label>
       <g style={d(0, reduce)}>
         <path d="M6 54 h108" {...sw(1.6)} />
         <path d="M16 54 v-6 h14 v6 M14 48 h18" {...sw(2.2)} />
@@ -702,6 +702,7 @@ function GibeonDreamScene({ reduce }) {
         <path d="M72 27 h8 M74 27 q0 -2.5 2 -2.5 q2 0 2 2.5" {...sw(2)} />
         <path d="M76 22.5 q-1.3 -2.5 0 -4.5 q1.3 2 0 4.5" {...sw(1.6)} />
       </g>
+      <Label x="23" y="26" at="1.4" reduce={reduce}>일천번제</Label><Label x="86" y="45" at="2.3" reduce={reduce}>솔로몬</Label><Label x="76" y="35" at="4" reduce={reduce}>지혜의 꿈</Label>
     </g>
   )
 }
@@ -710,7 +711,6 @@ function GibeonDreamScene({ reduce }) {
 function TempleBuildScene({ reduce }) {
   return (
     <g>
-      <Label x="44" y="60" at="1.4" reduce={reduce} size="4.2">보아스</Label><Label x="76" y="60" at="1.4" reduce={reduce} size="4.2">야긴</Label><Label x="60" y="20" at="3.2" reduce={reduce}>성전</Label>
       <g style={d(0, reduce)}>
         <path d="M6 54 h108" {...sw(1.6)} />
         <path d="M28 54 h64 M32 50 h56" {...sw(2.2)} />
@@ -741,6 +741,7 @@ function TempleBuildScene({ reduce }) {
       <g style={d(reduce ? 0 : 4400, reduce)} stroke="var(--paper-accent)">
         <path d="M60 16 v-3.5 M52 18 l-2.4 -2.4 M68 18 l2.4 -2.4" {...sw(1.4)} />
       </g>
+      <Label x="44" y="60" at="1.4" reduce={reduce} size="4.2">보아스</Label><Label x="76" y="60" at="1.4" reduce={reduce} size="4.2">야긴</Label><Label x="60" y="20" at="3.2" reduce={reduce}>성전</Label>
     </g>
   )
 }
@@ -749,7 +750,6 @@ function TempleBuildScene({ reduce }) {
 function TempleDedicationScene({ reduce }) {
   return (
     <g>
-      <Label x="21" y="33" at="3.4" reduce={reduce}>여호와의 불</Label><Label x="64" y="22" at="0.9" reduce={reduce}>성전</Label>
       <g style={d(0, reduce)}>
         <path d="M6 54 h108" {...sw(1.6)} />
         <path d="M34 54 h60 M42 50 h44" {...sw(2)} />
@@ -782,6 +782,7 @@ function TempleDedicationScene({ reduce }) {
         <path d="M34 18 q30 -12 60 0" {...sw(1.8)} />
         <path d="M40 13 q24 -9 48 0" {...sw(1.3)} />
       </g>
+      <Label x="21" y="33" at="3.4" reduce={reduce}>여호와의 불</Label><Label x="64" y="22" at="0.9" reduce={reduce}>성전</Label>
     </g>
   )
 }
@@ -791,13 +792,13 @@ const SCENES = {
   'authored-saul-jabesh-rescue': { Scene: JabeshRescueScene, caption: '야베스 길르앗 구원 — 사무엘상 11장' },
   'authored-saul-gilgal-coronation': { Scene: GilgalCoronationScene, caption: '길갈의 대관식 — 사무엘상 11장' },
   'authored-saul-michmash-battle': { Scene: MichmashBattleScene, caption: '믹마스 협곡의 기습 — 사무엘상 14장' },
-  'authored-saul-gilgal-amalek': { Scene: GilgalAmalekScene, caption: '찢어진 옷자락 — 사무엘상 15장' },
+  'authored-saul-gilgal-amalek': { Scene: GilgalAmalekScene, mood: 'dark', caption: '찢어진 옷자락 — 사무엘상 15장' },
   'authored-samuel-bethlehem-david-anointing': { Scene: BethlehemAnointingScene, caption: '베들레헴의 기름부음 — 사무엘상 16장' },
-  'authored-saul-gibeah-spear': { Scene: GibeahSpearScene, caption: '수금과 창 — 사무엘상 18장' },
+  'authored-saul-gibeah-spear': { Scene: GibeahSpearScene, mood: 'dark', caption: '수금과 창 — 사무엘상 18장' },
   'authored-david-goliath-gath': { Scene: GoliathScene, caption: '다윗과 골리앗 — 사무엘상 17장' },
   'authored-david-en-gedi-saul': { Scene: EnGediScene, caption: '엔게디 동굴의 자비 — 사무엘상 24장' },
-  'authored-saul-endor-medium': { Scene: EndorMediumScene, caption: '엔돌의 밤 — 사무엘상 28장' },
-  'authored-saul-gilboa-death': { Scene: GilboaDeathScene, caption: '길보아 산의 최후 — 사무엘상 31장' },
+  'authored-saul-endor-medium': { Scene: EndorMediumScene, mood: 'dark', caption: '엔돌의 밤 — 사무엘상 28장' },
+  'authored-saul-gilboa-death': { Scene: GilboaDeathScene, mood: 'dark', caption: '길보아 산의 최후 — 사무엘상 31장' },
   'authored-david-hebron-king-judah': { Scene: HebronKingScene, caption: '헤브론의 유다 왕 — 사무엘하 2장' },
   'authored-david-jerusalem-conquest': { Scene: JerusalemConquestScene, caption: '다윗 성 정복 — 사무엘하 5장' },
   'authored-david-ark-jerusalem': { Scene: ArkJerusalemScene, caption: '언약궤의 입성 — 사무엘하 6장' },
@@ -846,11 +847,16 @@ export function TourSketchPanel({ eventId }) {
 
   if (!hasSketch(eventId)) return null
   const caption = SCENES[eventId]?.caption
+  const dark = SCENES[eventId]?.mood === 'dark'
   return (
     <div data-sketch-panel style={{
-      background: 'var(--paper)', color: 'var(--paper-ink)',
+      // 무드 표현(사용자 피드백): 어두운 장면은 종이가 차갑게 가라앉고 강조색(이름표·캡션·포인트)도 슬레이트로.
+      background: dark ? 'color-mix(in srgb, var(--paper) 82%, #55607a)' : 'var(--paper)',
+      color: 'var(--paper-ink)',
+      ...(dark ? { '--paper-accent': '#5c6880', '--paper': '#dfdcd4' } : {}),
       borderBottom: '1px solid color-mix(in srgb, var(--paper-accent) 40%, transparent)',
       padding: '12px 16px 6px',
+      transition: 'background var(--dur-base)',
     }}>
       {/* draw 시작 전에도 동일 비율 자리 확보 — 카드 높이 점프 방지 */}
       <div style={{ aspectRatio: '120 / 64', width: '100%' }}>
