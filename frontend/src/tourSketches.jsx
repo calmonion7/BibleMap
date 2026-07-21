@@ -851,13 +851,12 @@ export function TourSketchPanel({ eventId }) {
   const dark = SCENES[eventId]?.mood === 'dark'
   return (
     <div data-sketch-panel style={{
-      // 무드 표현(사용자 피드백): 어두운 장면은 종이가 차갑게 가라앉고 강조색(이름표·캡션·포인트)도 슬레이트로.
-      background: dark ? 'color-mix(in srgb, var(--paper) 82%, #55607a)' : 'var(--paper)',
-      color: 'var(--paper-ink)',
-      ...(dark ? { '--paper-accent': '#5c6880', '--paper': '#dfdcd4' } : {}),
+      // 무드 표현 — 종이는 항상 크림(양피지 관용구 유지, 배경 틴트는 부조화로 제거).
+      // 어두운 장면은 강조색(이름표·캡션·포인트)만 금색 → 따뜻한 목탄으로 가라앉힌다.
+      background: 'var(--paper)', color: 'var(--paper-ink)',
+      ...(dark ? { '--paper-accent': '#5f584c' } : {}),
       borderBottom: '1px solid color-mix(in srgb, var(--paper-accent) 40%, transparent)',
       padding: '12px 16px 6px',
-      transition: 'background var(--dur-base)',
     }}>
       {/* draw 시작 전에도 동일 비율 자리 확보 — 카드 높이 점프 방지 */}
       <div style={{ aspectRatio: '120 / 64', width: '100%' }}>
