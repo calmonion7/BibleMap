@@ -281,7 +281,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     setExplorePersonId(null)
     setExplorePersonName(null)
     setExploreTourId(id)
-    setExploreView('map')  // 관계 뷰는 인물 전용 — 투어 진입 시 지도로 리셋
+    setExploreView('intro')  // 투어 진입은 개요 탭부터(task#222) — 인물 전용 뷰(관계 등) 잔상도 함께 해소
     setActiveStage('explore')
   }
 

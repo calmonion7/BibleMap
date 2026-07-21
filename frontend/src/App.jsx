@@ -15,6 +15,7 @@ import WordDistributionView from './WordDistributionView'
 import ChapterReader from './ChapterReader'
 import RelianceView from './RelianceView'
 import TourList from './TourList'
+import TourIntro from './TourIntro'
 import JourneyList from './JourneyList'
 import { MOBILE_BREAKPOINT, SHEET_VH, JOURNEY_SHEET_VH } from './constants'
 import { useNodeSelection } from './useNodeSelection'
@@ -30,6 +31,8 @@ const EXPLORE_TABS = [
   { key: 'timeline', icon: Clock, label: '연표' },  // '타임라인'은 모바일 6탭 폭에서 2줄 — 2글자로 축약
 ]
 const INTRO_TAB = { key: 'intro', icon: UserRound, label: '소개' }
+// 투어 개요 탭 — 인물 소개 탭의 투어판(task#222). 같은 'intro' 키로 뷰 상태 공유, 라벨·아이콘만 투어용.
+const TOUR_INTRO_TAB = { key: 'intro', icon: ScrollText, label: '개요' }
 const RELATIONS_TAB = { key: 'relations', icon: Users, label: '관계' }
 // 하나님 의존 — 관계와 동형 탭(setExploreView). 그 인물의 하나님 의존도·궤적.
 // 라벨은 짧게 '의존'(모바일 6탭 폭에서 '하나님 의존'은 3줄로 감김) — 아이콘·본문 헤더가 맥락 전달.
@@ -60,6 +63,8 @@ function App() {
   const [journeyStops, setJourneyStops] = useState(null)
   // 탐험 중 투어의 제목 — /tour 응답에서 채움(내비 헤더·JourneyList·타임라인 라벨용)
   const [exploreTourName, setExploreTourName] = useState(null)
+  // 투어 개요 메타 — /tour 응답의 subtitle·era·description(개요 탭용, task#222). 저작돼 있으나 버려지던 필드 소비.
+  const [exploreTourMeta, setExploreTourMeta] = useState(null)
   // 투어 타임라인 필터 — TimelineView가 Set.has()로 쓰므로 Set으로, 참조 안정화(인물의 personEventIds와 동일 형태)
   const tourEventIds = useMemo(
     () => (exploreTourId && journeyStops ? new Set(journeyStops.map(s => s.eventId)) : null),
@@ -87,15 +92,15 @@ function App() {
     const ctrl = new AbortController()
     if (explorePersonId) {
       apiGet(`/person/${explorePersonId}/journey`, { signal: ctrl.signal })
-        .then(({ stops }) => { setJourneyStops(stops); setActiveStopIdx(null); setExploreTourName(null) }) // async 콜백 — v7 OK
+        .then(({ stops }) => { setJourneyStops(stops); setActiveStopIdx(null); setExploreTourName(null); setExploreTourMeta(null) }) // async 콜백 — v7 OK
         .catch((e) => { if (e?.name !== 'AbortError') { console.warn('[App] 인물 여정 로드 실패', e); setJourneyStops([]) } })
     } else if (exploreTourId) {
       apiGet(`/tour/${exploreTourId}`, { signal: ctrl.signal })
-        .then(({ title, stops }) => { setJourneyStops(stops); setActiveStopIdx(null); setExploreTourName(title) })
+        .then(({ title, subtitle, era, description, stops }) => { setJourneyStops(stops); setActiveStopIdx(null); setExploreTourName(title); setExploreTourMeta({ subtitle, era, description }) })
         .catch((e) => { if (e?.name !== 'AbortError') { console.warn('[App] 투어 로드 실패', e); setJourneyStops([]) } })
     } else {
       // 인물·투어 모두 미선택 → 비동기로 초기화(effect 동기 setState 금지 규칙 회피)
-      Promise.resolve().then(() => { setJourneyStops(null); setActiveStopIdx(null); setExploreTourName(null) })
+      Promise.resolve().then(() => { setJourneyStops(null); setActiveStopIdx(null); setExploreTourName(null); setExploreTourMeta(null) })
     }
     return () => ctrl.abort()
   }, [explorePersonId, exploreTourId])
@@ -192,8 +197,8 @@ function App() {
 
         {/* 지도 / 타임라인 / 관계(인물 모드 한정) 토글 */}
         <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-          {/* 인물 모드: 소개(맨앞) · 여정길 · 타임라인 · 관계 / 투어 모드: 여정길 · 타임라인 */}
-          {(explorePersonId && !exploreTourId ? [INTRO_TAB, ...EXPLORE_TABS, RELATIONS_TAB, RELIANCE_TAB, FAMILY_TAB] : EXPLORE_TABS).map(tab => {
+          {/* 인물 모드: 소개(맨앞) · 여정길 · 타임라인 · 관계 / 투어 모드: 개요(맨앞) · 여정길 · 타임라인 */}
+          {(explorePersonId && !exploreTourId ? [INTRO_TAB, ...EXPLORE_TABS, RELATIONS_TAB, RELIANCE_TAB, FAMILY_TAB] : [TOUR_INTRO_TAB, ...EXPLORE_TABS]).map(tab => {
             const Icon = tab.icon
             const active = exploreView === tab.key
             return (
@@ -788,6 +793,22 @@ function App() {
                     onOpenFamily={openFamily}
                     journeyStops={journeyStops}
                     personEventIds={personEventIds}
+                  />
+                </div>
+              </div>
+            )}
+            {/* 투어 개요 뷰 — 인물 소개의 투어판(TourIntro, task#222). subtitle·description·era + 정차지 조망. */}
+            {exploreView === 'intro' && exploreTourId != null && (
+              <div style={{ height: '100%', overflowY: 'auto', background: 'var(--bg-0)' }}>
+                <div style={{ maxWidth: 560, margin: '0 auto', padding: '4px 0 48px' }}>
+                  <TourIntro
+                    key={exploreTourId}
+                    title={exploreTourName}
+                    subtitle={exploreTourMeta?.subtitle}
+                    era={exploreTourMeta?.era}
+                    description={exploreTourMeta?.description}
+                    journeyStops={journeyStops}
+                    onSwitchView={setExploreView}
                   />
                 </div>
               </div>

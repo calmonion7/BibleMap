@@ -46,6 +46,7 @@ def _list_tours() -> list[dict]:
             "title": t.get("title"),
             "subtitle": t.get("subtitle"),
             "era": t.get("era"),
+            "description": t.get("description"),
             "stopCount": len(t.get("stops", [])),
         })
     results.sort(key=lambda t: (_ERA_ORDER.index(t["era"]) if t["era"] in _ERA_ORDER else len(_ERA_ORDER), t["id"]))

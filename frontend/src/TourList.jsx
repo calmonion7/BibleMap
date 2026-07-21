@@ -36,6 +36,10 @@ function TourCard({ tour, onSelectTour, entrance, delayMs }) {
       <span style={{ color: PURPLE, fontSize: 11, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase' }}>{tour.era}</span>
       <span style={{ color: TEXT, fontFamily: 'var(--serif)', fontWeight: 700, fontSize: 18, lineHeight: 1.2 }}>{tour.title}</span>
       {tour.subtitle && <span style={{ color: 'var(--ink-dim)', fontSize: 13, lineHeight: 1.4 }}>{tour.subtitle}</span>}
+      {/* 설명 미리보기 — 목록 단계에서도 저작 콘텐츠 노출(task#222), 2줄 말줄임 */}
+      {tour.description && (
+        <span style={{ color: 'var(--ink-faint)', fontSize: 12, lineHeight: 1.5, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{tour.description}</span>
+      )}
       <span style={{ color: 'var(--ink-dim)', fontSize: 12, marginTop: 2 }}>정차지 {tour.stopCount}곳</span>
     </button>
   )
