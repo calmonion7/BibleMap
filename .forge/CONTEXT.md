@@ -53,7 +53,7 @@ Person 노드에 주입되는 속성 `traits` (JSON 문자열 배열). 각 항�
 
 Event 노드의 발생 시점 속성. **혼재 형식의 문자열**이다 — 연도만("-4003", "30"), 연-월("-1451-01"), 연-월-일 3파트가 공존하고 BC는 음수 접두. 따라서 **문자열 사전순 정렬은 BC 연도를 역전**시킨다("-1451" < "-4003"). 정렬·비교·필터에 쓸 때는 반드시 연도를 파싱해 수치로 다룬다(부호 분리 후 첫 파트를 정수화 — 프론트 `dates.js`의 `parseYear`, 백엔드 nodes.py `_year`가 같은 규칙). 책의 `startYear`는 이 값을 집계해 파생된다(추정연도 항목 참조).
 
-**정본 연대계는 현대 보수 연대계**다(출애굽 BC 1446 · 다윗 통치 1010–970 · 성전 착공 966, 분열왕국은 Thiele 왕 연대 — ADR-0014). theographic 원본 연대는 Ussher계(출애굽 1491 등)로 기록돼 있어 보수계로 저작된 [[저작-사건-authored-event]]·인물 여정과 한 타임라인에서 충돌했고, 교정 오버레이(`data/date_corrections/`)가 원본 이벤트의 `startDate`/`sortKey`를 정본계로 재정렬한다. Person의 `birthYear`/`deathYear`는 UI 미사용이라 Ussher계로 잔존한다(노출 전 ADR-0014 재검토).
+**정본 연대계는 현대 보수 연대계**다(출애굽 BC 1446 · 다윗 통치 1010–970 · 성전 착공 966, 분열왕국은 Thiele 왕 연대 — ADR-0014; 신약 앵커는 십자가 AD 33 — ADR-260722-070154). theographic 원본 연대는 구약이 Ussher계(출애굽 1491 등)·신약이 십자가 AD 30 기준으로 기록돼 있어 보수계로 저작된 [[저작-사건-authored-event]]·인물 여정과 한 타임라인에서 충돌했고, 교정 오버레이(`data/date_corrections/`, 구약 113 + 신약 138 = 251건)가 원본 이벤트의 `startDate`/`sortKey`를 정본계로 재정렬한다(task#158 구약, #237·238 신약 — 판정표 `.forge/reports/nt-corrections-*.md`). 신약 이관 규약: 원본·저작이 같은 장면이면 저작 앵커 **인접** 배치, 복음서 배열 충돌(마태 주제별 vs 마가·누가 연대순)은 이중 증언 우선, 연도 라벨은 인접 저작 앵커 라벨 준수. Person의 `birthYear`/`deathYear`는 UI 미사용이라 Ussher계로 잔존한다(노출 전 ADR-0014 재검토). **교정은 오버레이라 로더(load_theographic 등) 재실행이 되돌린다 — 재적재 후 `inject_date_corrections.py` 재실행 필수.**
 
 ## Book Events (책-사건 연결 오버레이)
 
