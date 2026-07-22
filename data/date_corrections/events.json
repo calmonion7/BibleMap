@@ -902,5 +902,629 @@
     "newStartDate": "-652",
     "newSortKey": -651.65998999,
     "rationale": "분열 왕국 시대 예언자 사역 — 본문의 왕대 동시화(예: 아모스 1:1 웃시야·여로보암 2세, 이사야 1:1 웃시야-히스기야) 또는 인접 왕대와의 정합을 위해 해당 시대 오프셋을 동일 적용. 개별 예언서의 정확한 사역 개시년은 학계에서도 다소 유동적이므로, 시대 정합 목적의 근사치."
+  },
+  {
+    "id": "recBwb7o0eXRqj1Oa",
+    "title": "Visiting Capernaum",
+    "oldStartDate": "27",
+    "newStartDate": "27",
+    "newSortKey": 27.07,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 요 2:12 — 가나 혼인(저작 27) 직후·가버나움 정착(27.2) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recajWYSuk71jMpgi",
+    "title": "First Passover and Temple Cleansing",
+    "oldStartDate": "27",
+    "newStartDate": "27",
+    "newSortKey": 27.08,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 요 2:13 — 첫 유월절 — 가버나움 정착(27.2) 전 유대 사역. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recqe4jV2tmZC9XuG",
+    "title": "Jesus and Nicodemus",
+    "oldStartDate": "27",
+    "newStartDate": "27",
+    "newSortKey": 27.09,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 요 3:1 — 첫 유월절 직후 예루살렘 — 정착(27.2) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recj0lpW2pEiRfASU",
+    "title": "John the Baptist Witnesses",
+    "oldStartDate": "27",
+    "newStartDate": "27",
+    "newSortKey": 27.1,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 요 3:22 — 유대 사역기(요 3:24 요한 투옥 전) — 정착(27.2) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recThval8jPdpjMQd",
+    "title": "Jesus Leaves Judea toward Galilee",
+    "oldStartDate": "27",
+    "newStartDate": "27",
+    "newSortKey": 27.11,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 4:12·요 4:1-3 — 유대 사역 종료 → 갈릴리 이동 — 정착(27.2) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recZVzEsSsBBuv6XX",
+    "title": "The Samaritan Woman",
+    "oldStartDate": "27",
+    "newStartDate": "27",
+    "newSortKey": 27.12,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 요 4:5 — 유대→갈릴리 이동 중 사마리아 — 정착(27.2) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recokV9koCd9sHkZo",
+    "title": "Jesus visits Galilee",
+    "oldStartDate": "27",
+    "newStartDate": "27",
+    "newSortKey": 27.13,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 요 4:43 — 사마리아 경유 후 갈릴리 도착 — 정착(27.2) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recDZ5yPUfsW2mQCB",
+    "title": "Jesus Rejected at Nazareth",
+    "oldStartDate": "27",
+    "newStartDate": "27",
+    "newSortKey": 27.15,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 눅 4:16-31 — 갈릴리 도착 직후, 가버나움 정착(27.2) 직전(눅 4:31). 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "reczf8H4EoM3gfimU",
+    "title": "Peter's Mother-in-law and Others Healed",
+    "oldStartDate": "27",
+    "newStartDate": "28",
+    "newSortKey": 28.02,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 8:14·막 1:29-34 — 저작 가버나움 치유(28)와 동일 장면(가버나움의 하루) 인접. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recbsEPvWlO2Ajcfo",
+    "title": "John the Baptist Imprisoned",
+    "oldStartDate": "27",
+    "newStartDate": "28",
+    "newSortKey": 28.12,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 14:3 — 저작 마케루스 투옥(28.1)과 동일 장면 인접. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "rechbRJbRUie1YGOk",
+    "title": "Jesus' 1st Tour of Galilee",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.14,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 막 1:35-39 — 가버나움의 하루(28) 후·문둥병자(막 1:40) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recrx5gqQTez5Oz5h",
+    "title": "Healing the Leper",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.16,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 8:1·막 1:40 — 1차 순회 후·중풍병자(막 2:1) 전 — 열두 제자(28.4) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "rec9Ni8NXcob4ou2m",
+    "title": "Healing the Man with Palsy",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.18,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 9:1·막 2:1 — 문둥병자 후 가버나움 — 열두 제자(28.4) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recbiDrbxO70fDsta",
+    "title": "Jesus Calls Matthew",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.2,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 9:9·막 2:14 — 중풍병자 직후 — 열두 제자(28.4) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recbt0ME8XMDoNbVc",
+    "title": "Fasting Question",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.22,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 9:14·막 2:18 — 마태 부름 직후 — 열두 제자(28.4) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "rec4P9y8WdotpjMm9",
+    "title": "Parable of the Winseskins",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.24,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 9:16 — 금식 문답과 동일 담화 — 열두 제자(28.4) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recGpBzggp7LyILNR",
+    "title": "Bethesda pool healing",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.26,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 요 5:1 — 무명 명절(조화상 안식일 논쟁 군집 직전) — 열두 제자(28.4) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recDFt0ANS33dAxri",
+    "title": "Corn on the Sabbath",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.28,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 12:1·막 2:23 — 안식일 논쟁 개시 — 열두 제자(28.4) 전(막 2:23<3:13). 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "reciGxBNHjPZwHKvO",
+    "title": "Healing a Withered Hand",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.3,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 12:9·막 3:1 — 안식일 논쟁 — 열두 제자(28.4) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recpYSwD914PD9tHU",
+    "title": "Healing Multitudes",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.32,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 12:15·막 3:7 — 바닷가 무리 치유 — 열두 제자 지명(막 3:13=28.4) 직전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "rec6mNLyG5AVN4X1b",
+    "title": "Healing Centurion's Servant",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.52,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 8:5·눅 7:1 — 산상수훈(28.5=눅 6:17) 직후 가버나움(눅 7:1). 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recsTeovHSah64TzF",
+    "title": "Widow's Son Resurrected",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.54,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 눅 7:11 — 백부장 하인 직후 나인 — 옥중 질문(28.6=눅 7:18) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recdgE4vWpwc2fVpK",
+    "title": "Jesus' Message on John the Baptist",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.62,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 11:2-19·눅 7:18-35 — 저작 옥중 질문(28.6)과 동일 장면 인접. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recYaZ1gwefzzNB1V",
+    "title": "Woe to Chorazin and Bethsaida",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.64,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 11:20 — 요한 증언 담화에 이어지는 책망 — 옥중 질문(28.6) 후. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recXZv0xfad7smkqB",
+    "title": "Anointed by a Sinner Woman",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.66,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 눅 7:36 — 옥중 질문(눅 7:18) 후 동일 장 — 28.6 후. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recgL37NW080FcKh8",
+    "title": "Jesus' 2nd Tour of Galilee",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.68,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 눅 8:1 — 죄인 여인 향유 직후 2차 순회. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recqkOAX88FDIN0ee",
+    "title": "Blind and Dumb Demoniac and Following Discourse",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.7,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 12:22·막 3:20-30 — 열두 제자 지명(막 3:13) 후 바알세불 논쟁. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "rec7WzLFXKdweuzOD",
+    "title": "Seaside Parables and Miracle",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.72,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 13:1·막 4:1 — 바알세불 논쟁 후 해변 비유(막 4). 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recY3vd5gVnwqoRV1",
+    "title": "Gadarene Demoniacs",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.74,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 8:28·막 5:1 — 해변 비유의 날 풍랑 후 거라사(막 4:35→5:1). 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recMTSIklCghjlACt",
+    "title": "Capernaum Miracles",
+    "oldStartDate": "28",
+    "newStartDate": "28",
+    "newSortKey": 28.76,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 9:18·막 5:21 — 거라사 귀환 후 야이로의 딸·혈루증(막 5:21). 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recnCLTHvWRdrFwVY",
+    "title": "2nd Rejection at Nazareth",
+    "oldStartDate": "29",
+    "newStartDate": "28",
+    "newSortKey": 28.8,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 13:54·막 6:1 — 야이로 기적 후 나사렛(막 6:1) — 요한 처형(저작 29) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "rec6tRRdOlOUY9UNN",
+    "title": "3rd Tour of Galilee",
+    "oldStartDate": "29",
+    "newStartDate": "28",
+    "newSortKey": 28.85,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 9:35·막 6:6b — 나사렛 배척 후 순회·파송(막 6:6b) — 요한 처형(29) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "rec5E1T7Mq1psBubn",
+    "title": "John Beheaded",
+    "oldStartDate": "29",
+    "newStartDate": "29",
+    "newSortKey": 29.02,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 14:6·막 6:14-29 — 저작 마케루스 처형(29)과 동일 장면 인접. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "rec8AUk5qsGus2shA",
+    "title": "Feeding of Five Thousand",
+    "oldStartDate": "29",
+    "newStartDate": "29",
+    "newSortKey": 29.06,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 14:13·막 6:30 — 저작 오병이어(29.05)와 동일 장면 인접 — 물 위 걷기(29.1) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "rec4eZvHbmI1QToIw",
+    "title": "Foretelling the Death and Resurrection",
+    "oldStartDate": "29",
+    "newStartDate": "30",
+    "newSortKey": 30.1,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 16:21 — 베드로 고백(저작 30) 직후·변화산(30.3) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recXhKGCw4B1CjXQB",
+    "title": "Healing a Boy with a Demon",
+    "oldStartDate": "29",
+    "newStartDate": "30",
+    "newSortKey": 30.32,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 17:14 — 변화산(30.3) 하산 직후. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recyFfX2l12rwEkqk",
+    "title": "Second Foretelling of Death and Resurrection",
+    "oldStartDate": "29",
+    "newStartDate": "30",
+    "newSortKey": 30.34,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 17:22 — 변화산 후 갈릴리 재통과. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recvkY2icLy3QDClR",
+    "title": "Tax Coin in a Fish's Mouth",
+    "oldStartDate": "29",
+    "newStartDate": "30",
+    "newSortKey": 30.36,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 17:24 — 가버나움 성전세 — 변화산 후. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recIZ6XquF0X7jaNE",
+    "title": "Teachings on Humility/Temptation/Reconciliation",
+    "oldStartDate": "29",
+    "newStartDate": "30",
+    "newSortKey": 30.38,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 18:1 — 가버나움 겸손 담화 — 변화산 후. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recO855E9csJLnyFO",
+    "title": "Samaritans Reject Jesus",
+    "oldStartDate": "29",
+    "newStartDate": "30",
+    "newSortKey": 30.4,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 눅 9:51 — 예루살렘 향한 여정 개시 — 변화산(30.3) 후. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recZcjp3TlQQqapTX",
+    "title": "Feast of Tabernacles",
+    "oldStartDate": "0029-10-9",
+    "newStartDate": "0030-10-9",
+    "newSortKey": 30.45,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 요 7:1-52 — 초막절(10월) 상경 — 변화산 후·수전절 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recWT2eiDCOXEAbGB",
+    "title": "Woman Caught in Adultery",
+    "oldStartDate": "29",
+    "newStartDate": "30",
+    "newSortKey": 30.5,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 요 7:53-8:11 — 초막절 방문 중 성전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recD6VSiTfaITZLz4",
+    "title": "Light of the World/I am discourse",
+    "oldStartDate": "29",
+    "newStartDate": "30",
+    "newSortKey": 30.55,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 요 8:12-59 — 초막절 방문 연속 담화. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recxURN2uAbTe7CGr",
+    "title": "Blind Man Healed",
+    "oldStartDate": "29",
+    "newStartDate": "30",
+    "newSortKey": 30.6,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 요 9:1 — 초막절 방문 연속 — 선한 목자 담화 직전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recs2ESnv8JHoLJNs",
+    "title": "The Good Shepherd Teaching",
+    "oldStartDate": "29",
+    "newStartDate": "30",
+    "newSortKey": 30.62,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 요 10:1-21 — 맹인 치유에 이어지는 담화. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "rec5EAcIz2rHZRN8q",
+    "title": "70 Sent Out",
+    "oldStartDate": "29",
+    "newStartDate": "30",
+    "newSortKey": 30.65,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 눅 10:1 — 여행 서사 — 초막절 방문 후·수전절 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recm9poq0bKg2RuU5",
+    "title": "Good Samaritan Parable Taught",
+    "oldStartDate": "29",
+    "newStartDate": "30",
+    "newSortKey": 30.67,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 눅 10:25 — 70인 파송 후. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recycS0pNycJe2Xet",
+    "title": "Jesus meets Martha and Mary",
+    "oldStartDate": "29",
+    "newStartDate": "30",
+    "newSortKey": 30.7,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 눅 10:38 — 베다니 — 여행 서사. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "reco0PVfMeFcQrURu",
+    "title": "Lord's Prayer Taught",
+    "oldStartDate": "29",
+    "newStartDate": "30",
+    "newSortKey": 30.72,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 눅 11:1 — 여행 서사. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recrSSo7ihKbdos1g",
+    "title": "Woes and Parables with Pharisees",
+    "oldStartDate": "29",
+    "newStartDate": "30",
+    "newSortKey": 30.74,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 눅 11:37 — 여행 서사 — 수전절(30.76) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recs1VxMp6PJ11GLW",
+    "title": "Feast of Dedication",
+    "oldStartDate": "0029-12-17",
+    "newStartDate": "0030-12-17",
+    "newSortKey": 30.76,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 요 10:22 — 수전절(12월) — 나사로(31) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "receThtYDpzQmFpc1",
+    "title": "Healing Woman With 18-year Infirmity",
+    "oldStartDate": "29",
+    "newStartDate": "30",
+    "newSortKey": 30.8,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 눅 13:11 — 수전절 후 베레아기 — 나사로(31) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recoUkvcVV6nR1G2D",
+    "title": "Mustard Seed and Leaven Teaching",
+    "oldStartDate": "29",
+    "newStartDate": "30",
+    "newSortKey": 30.82,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 눅 13:18 — 18년 병 여인 직후 동일 회당. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "rec70ZLu9pdrEWXR9",
+    "title": "Teaching and Healing in Perea to Jerusalem",
+    "oldStartDate": "30",
+    "newStartDate": "30",
+    "newSortKey": 30.9,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 요 10:40 — 요단 저편 은거 — 나사로 살리심(저작 31) 직전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recZhxqZJmXuGMdvd",
+    "title": "Chief Priests Conspire Against Jesus",
+    "oldStartDate": "30",
+    "newStartDate": "31",
+    "newSortKey": 31.1,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 요 11:47 — 나사로 살리심(저작 31) 직후 공회 모의. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recMIEeRCAf7IGRwc",
+    "title": "Jesus Withdraws to Ephraim",
+    "oldStartDate": "30",
+    "newStartDate": "31",
+    "newSortKey": 31.2,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 요 11:54 — 공회 모의 직후 에브라임 은거. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recR3zid90odgmB6g",
+    "title": "Jesus Teaches in Perea",
+    "oldStartDate": "30",
+    "newStartDate": "31",
+    "newSortKey": 31.3,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 19:1 — 에브라임 후 베레아 최종 여정 — 삭개오(32) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recTplXPehmPfFUiG",
+    "title": "Lepers Healed",
+    "oldStartDate": "30",
+    "newStartDate": "31",
+    "newSortKey": 31.4,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 눅 17:11 — 사마리아·갈릴리 경계 열 문둥병자 — 삭개오(32) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recrwlbTDWOETPpei",
+    "title": "Discourse on the Kingdom and Other Parables",
+    "oldStartDate": "30",
+    "newStartDate": "31",
+    "newSortKey": 31.5,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 눅 17:20 — 베레아 담화 — 삭개오(32) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recN2veKNMtB7HzFi",
+    "title": "Healing Blind Bartimaeus",
+    "oldStartDate": "30",
+    "newStartDate": "31",
+    "newSortKey": 31.9,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 20:29·눅 18:35 — 여리고 진입 — 삭개오(저작 32) 직전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recrB2eWea9OCFtOz",
+    "title": "Mary Anoints Jesus",
+    "oldStartDate": "0030-03-30",
+    "newStartDate": "0032-03-30",
+    "newSortKey": 32.3,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 요 12:1 — 유월절 엿새 전 베다니 — 입성(저작 32.5, 라벨 0032) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recmXmhZt51doQu7o",
+    "title": "Holy Week",
+    "oldStartDate": "0030-03-31",
+    "newStartDate": "0032-03-31",
+    "newSortKey": 32.52,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 21:1 — 입성(저작 32.5) 직후 우산 사건. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recotN6XCwPBF0OzT",
+    "title": "Fig Tree Cursed",
+    "oldStartDate": "0030-04-01",
+    "newStartDate": "0032-04-01",
+    "newSortKey": 32.54,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 막 11:12 — 입성 이튿날 아침(막 11:12) — 성전 정화 직전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "rece7YQZcZkN73mF8",
+    "title": "Temple Cleansed",
+    "oldStartDate": "0030-04-01",
+    "newStartDate": "0032-04-01",
+    "newSortKey": 32.56,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 21:12·막 11:15 — 무화과 저주 직후 성전 정화(막의 순서). 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recYOqX5Qe2a0FHvw",
+    "title": "Teaching by the Fig Tree",
+    "oldStartDate": "0030-04-02",
+    "newStartDate": "0032-04-02",
+    "newSortKey": 32.58,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 막 11:20 — 다음 날 아침 마른 무화과 교훈. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recOZxrWd00qyF4Ej",
+    "title": "Debates in the Temple",
+    "oldStartDate": "0030-04-02",
+    "newStartDate": "0032-04-02",
+    "newSortKey": 32.6,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 21:23 — 성전 논쟁의 날. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recN1gyMPKbPPQIMa",
+    "title": "Olivet Discourse",
+    "oldStartDate": "0030-04-02",
+    "newStartDate": "0032-04-02",
+    "newSortKey": 32.62,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 24:1 — 논쟁의 날 저녁 감람산 강화. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recym9Dfibw7KdshX",
+    "title": "Sanhedrin Conspiracy",
+    "oldStartDate": "0030-04-02",
+    "newStartDate": "0032-04-02",
+    "newSortKey": 32.64,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 26:1-5 — 감람산 강화 후 공회 모의. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "rec3IGuoFfX4wwc0u",
+    "title": "Judas Plans Betrayal",
+    "oldStartDate": "0030-04-03",
+    "newStartDate": "0032-04-03",
+    "newSortKey": 32.66,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 26:14 — 공회 모의에 이은 유다 배신 계획 — 만찬(32.8) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recehyRQPiIuEscz4",
+    "title": "The Last Supper",
+    "oldStartDate": "0030-04-04",
+    "newStartDate": "0033-04-04",
+    "newSortKey": 32.82,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 26:17 — 저작 최후의 만찬(32.8, 라벨 0033)과 동일 장면 인접. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recu6M6co9Iaw0Ow5",
+    "title": "Upper Room Discourse",
+    "oldStartDate": "0030-04-04",
+    "newStartDate": "0033-04-04",
+    "newSortKey": 32.87,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 요 13:31-17장 — 만찬 후 다락방 강화 — 겟세마네(33) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recP6WhPl8eV4tavO",
+    "title": "Jewish Trials",
+    "oldStartDate": "0030-04-04",
+    "newStartDate": "0033-04-04",
+    "newSortKey": 33.07,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 26:57 — 베드로 부인(33.05)과 동시간 공회 심문 — 십자가(33.2) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recvsq3X87BSBcInj",
+    "title": "Judas' Suicide",
+    "oldStartDate": "0030-04-04",
+    "newStartDate": "0033-04-04",
+    "newSortKey": 33.09,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 27:3 — 유죄 판결 직후 — 로마 재판 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recUlD55WynUKdHAo",
+    "title": "Roman Trials",
+    "oldStartDate": "0030-04-04",
+    "newStartDate": "0033-04-04",
+    "newSortKey": 33.11,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 27:11 — 빌라도 심문 — 십자가(33.2) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "rec7pLeyxV0yEdrcl",
+    "title": "Bearing Cross to Golgotha",
+    "oldStartDate": "0030-04-04",
+    "newStartDate": "0033-04-04",
+    "newSortKey": 33.13,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 27:32 — 골고다 행로 — 십자가(저작 33.2) 직전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "rechX4p94qqiHLqLx",
+    "title": "Crucifixion and Burial",
+    "oldStartDate": "0030-04-04",
+    "newStartDate": "0033-04-04",
+    "newSortKey": 33.28,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 요 19:18 — 저작 십자가(33.2)·십자가 곁 마리아/요한(33.25/33.26) 후 매장까지의 우산 사건 — 부활(33.4) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recwQXXtK8ZbnYuIJ",
+    "title": "Resurrection and Ascension",
+    "oldStartDate": "0030-04-07",
+    "newStartDate": "0033-04-07",
+    "newSortKey": 33.41,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 마 28장 — 저작 부활(33.4) 인접 우산 사건(승천 33.6까지 포괄). 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "recvfB75N6vrQwhWW",
+    "title": "The Holy Spirit is promised",
+    "oldStartDate": "0030-05-01",
+    "newStartDate": "0033-05-01",
+    "newSortKey": 33.55,
+    "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 1:4 — 부활 현현기(디베랴 33.48·회복 33.5 후) — 승천(33.6) 직전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
   }
 ]

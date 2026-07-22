@@ -61,36 +61,33 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
       .catch(() => setError(true))
   }, [])
 
-  useEffect(() => {
-    if (!selectedNode || events.length === 0) return
-    const ev = events.find(e => e.id === selectedNode)
-    if (!ev) return
-    const key = ev.startDate ?? ''
-    const raf = requestAnimationFrame(() => {
-      groupRefs.current[key]?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    })
-    return () => cancelAnimationFrame(raf)
-  }, [selectedNode, events])
-
   const groups = useMemo(() => {
-    const groupMap = new Map()
+    // 연속 동일 startDate 런(run) 단위 그룹 — startDate 전체 병합은 층(저작 "0030" vs 원본 "30")이
+    // 문자열만 달라도 그룹이 통째로 분리 렌더돼 sortKey 병합 순서를 시각적으로 뒤집는다(task#237).
+    // /events는 sortKey 순이므로 런 나열 = 병합 정렬 순서가 보장된다.
+    const runs = []
     for (const ev of events) {
       const key = ev.startDate ?? ''
-      if (!groupMap.has(key)) groupMap.set(key, [])
-      groupMap.get(key).push(ev)
+      const last = runs[runs.length - 1]
+      if (last && last.startDate === key) last.members.push(ev)
+      else runs.push({ startDate: key, members: [ev] })
     }
-    return Array.from(groupMap.entries())
-      .map(([startDate, members]) => {
-        const sortKey = members[0].sortKey ?? 0
-        const rep = members.find(e => e.nameKo) || members[0]
-        return { startDate, members, sortKey, rep }
-      })
-      .sort((a, b) => {
-        if (a.sortKey < b.sortKey) return -1
-        if (a.sortKey > b.sortKey) return 1
-        return 0
-      })
+    return runs.map((r, i) => {
+      const sortKey = r.members[0].sortKey ?? 0
+      const rep = r.members.find(e => e.nameKo) || r.members[0]
+      return { ...r, sortKey, rep, key: `${r.startDate}#${i}` }
+    })
   }, [events])
+
+  useEffect(() => {
+    if (!selectedNode || groups.length === 0) return
+    const g = groups.find(gr => gr.members.some(e => e.id === selectedNode))
+    if (!g) return
+    const raf = requestAnimationFrame(() => {
+      groupRefs.current[g.key]?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    })
+    return () => cancelAnimationFrame(raf)
+  }, [selectedNode, groups])
 
   const activeFilter = bookFilter && dismissedFilter !== bookFilter ? bookFilter : null
   const activePersonFilter = personFilter && dismissedPersonFilter !== personFilter ? personFilter : null
@@ -262,7 +259,7 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
               const isSelected = selectedNode && members.some(e => e.id === selectedNode)
               const isAuthored = rep.authored === true
               const yearLabel = isAuthored && rep.yearLabel ? rep.yearLabel : parseYear(startDate)
-              const groupKey = startDate
+              const groupKey = group.key
 
               return (
                 <div key={groupKey} ref={el => { groupRefs.current[groupKey] = el }}>
