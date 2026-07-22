@@ -1526,5 +1526,485 @@
     "newStartDate": "0033-05-01",
     "newSortKey": 33.55,
     "rationale": "복음서 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 1:4 — 부활 현현기(디베랴 33.48·회복 33.5 후) — 승천(33.6) 직전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 정경 조화 순서로 재배치(ADR-0014 오버레이, task#237)."
+  },
+  {
+    "id": "reczDqE366xgbgv2C",
+    "title": "Matthias replaces Judas",
+    "oldStartDate": "0030-05-01",
+    "newStartDate": "0033-05-01",
+    "newSortKey": 33.62,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 1:12-26 — 승천(저작 33.6)~오순절(33.65) 사이. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recIu7xhASS4Ufyfd",
+    "title": "The Holy Spirit comes",
+    "oldStartDate": "0030-05-02",
+    "newStartDate": "0033-05-02",
+    "newSortKey": 33.66,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 2:1 — 저작 오순절 설교(33.65)와 동일 장면 인접. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recVrh6Nbm3PruADf",
+    "title": "The church grows",
+    "oldStartDate": "0030",
+    "newStartDate": "0033",
+    "newSortKey": 33.68,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 2:42-47 — 오순절 후·성전 미문 치유(33.7) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "rech8qvzNnkDTqCi3",
+    "title": "Peter and John's Trial",
+    "oldStartDate": "0030",
+    "newStartDate": "0033",
+    "newSortKey": 33.77,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 4:1-22 — 저작 공회 심문 쌍(33.75/33.76)과 동일 장면 인접. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recNQxwdQFjZidQTP",
+    "title": "Believers pray for boldness",
+    "oldStartDate": "0030",
+    "newStartDate": "0033",
+    "newSortKey": 33.78,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 4:23 — 공회 방면 직후. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "rec5Y0EXegwQ5m9mX",
+    "title": "Believers share all things",
+    "oldStartDate": "0030",
+    "newStartDate": "0033",
+    "newSortKey": 33.79,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 4:32 — 초대교회 공동체 요약. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recnjhZVhcbtc7WL0",
+    "title": "Ananias and Sapphira lie to God",
+    "oldStartDate": "0030",
+    "newStartDate": "0033",
+    "newSortKey": 33.8,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 5:1 — 공동 소유 직후. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "rectkWZqlKG1cfOQT",
+    "title": "Apostles work signs and wonders in Solomon's Portico",
+    "oldStartDate": "0030",
+    "newStartDate": "0033",
+    "newSortKey": 33.81,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 5:12 — 아나니아 사건 후. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recCcRDJtUxaIqXnD",
+    "title": "Apostles arrested, put on trial",
+    "oldStartDate": "0030",
+    "newStartDate": "0033",
+    "newSortKey": 33.82,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 5:18 — 표적 확산에 이은 2차 체포. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "rec1qE6wAe0XINRoV",
+    "title": "Gamaliel advises the counsel and Apostles freed",
+    "oldStartDate": "0030",
+    "newStartDate": "0033",
+    "newSortKey": 33.83,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 5:34 — 2차 공회 심문. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recXUpfeHouc4qLEl",
+    "title": "Seven chosen to serve",
+    "oldStartDate": "0030",
+    "newStartDate": "0033",
+    "newSortKey": 33.84,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 6:1-7 — 공동체 성장 후 일곱 집사. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "reclAFi4IpJvlWCDp",
+    "title": "Stephen is seized",
+    "oldStartDate": "0030",
+    "newStartDate": "0033",
+    "newSortKey": 33.85,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 6:12 — 집사 선출 후. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recNZVX1qwBc7F9AU",
+    "title": "Stephen addresses the council",
+    "oldStartDate": "0030",
+    "newStartDate": "0033",
+    "newSortKey": 33.86,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 7:1 — 스데반 체포 직후. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recgcZKRVZDvMUMOa",
+    "title": "Stephen is stoned",
+    "oldStartDate": "0031",
+    "newStartDate": "0033",
+    "newSortKey": 33.87,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 7:54-60 — 공회 연설 직후 순교. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recVjdJplfI1wSxYk",
+    "title": "Saul persecutes the church",
+    "oldStartDate": "0031",
+    "newStartDate": "0033",
+    "newSortKey": 33.88,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 8:1-3 — 스데반 순교 직후 대핍박. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recP6mZs3oSlZdrT0",
+    "title": "Philip preaches in Samaria",
+    "oldStartDate": "0031",
+    "newStartDate": "0033",
+    "newSortKey": 33.89,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 8:4-13 — 베드로 사마리아 안수(저작 33.9, 행 8:14 후속) 직전 — 플랜 명시. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recvI0SgATGCasGsV",
+    "title": "Conversion of Ethiopian Eunuch",
+    "oldStartDate": "0032",
+    "newStartDate": "0034",
+    "newSortKey": 33.95,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 8:26-40 — 사마리아 안수(33.9) 후·다메섹 회심(34) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "reczeOH6wbjkZHP1w",
+    "title": "Saul proclaims Jesus",
+    "oldStartDate": "0038",
+    "newStartDate": "0034",
+    "newSortKey": 34.5,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 9:20-22 — 다메섹 회심(34) 직후 — 원본 38.44는 아이네아(37)·고넬료(38) 뒤 역전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recn2U67FPmywxqcb",
+    "title": "Disciples first called Christians",
+    "oldStartDate": "0040",
+    "newStartDate": "0043",
+    "newSortKey": 43.1,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 11:26 — 바나바·사울 안디옥 사역(저작 43) 인접 후속. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recCCk6aW2ZbOCRTd",
+    "title": "Herod kills James",
+    "oldStartDate": "0040",
+    "newStartDate": "0044",
+    "newSortKey": 43.9,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 12:1-2 — 베드로 투옥·구출(44) 직전 — 헤롯 아그립바 1세 말년(AD 44). 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recDiHn0k1yUMCdjc",
+    "title": "Herod imprisons Peter",
+    "oldStartDate": "0040",
+    "newStartDate": "0044",
+    "newSortKey": 43.95,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 12:3 — 저작 천사 구출(44)과 동일 장면 — 투옥이 구출 직전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recTAdkQX4sglPtLl",
+    "title": "Herod dies",
+    "oldStartDate": "0045",
+    "newStartDate": "0044",
+    "newSortKey": 44.1,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 12:20-23 — 역사 앵커 AD 44(아그립바 1세 사망) — 원본 45 교정, 플랜 명시. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recUWXmZlrKxIx99u",
+    "title": "First Missionary Journey",
+    "oldStartDate": "0045",
+    "newStartDate": "0046",
+    "newSortKey": 45.9,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 12:24~14장 우산 — 구브로(저작 46) 직전 개시 군집 — 우산·개시 쌍 인접 배치. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recJl6YAS1kSQ6t8W",
+    "title": "First missionary journey begins",
+    "oldStartDate": "0045-04-01",
+    "newStartDate": "0046-04-01",
+    "newSortKey": 45.95,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 13:1-3 — 안디옥 파송 — 구브로(46) 직전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recJeAtSLg0KP2loe",
+    "title": "Barnabas and Saul go to Cyprus",
+    "oldStartDate": "0045-04-01",
+    "newStartDate": "0046-04-01",
+    "newSortKey": 45.98,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 13:4 — 구브로 항해 — 저작 구브로 선교(46) 직전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "receeGDZ90DJxYxnX",
+    "title": "Mission to Iconium",
+    "oldStartDate": "0046-01-01",
+    "newStartDate": "0047-01-01",
+    "newSortKey": 47.52,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 14:1 — 저작 이고니온·루스드라·더베(47.5)와 동일 장면 인접 — 비시디아 안디옥(47) 후. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recrre0r2IHdN3Y7Z",
+    "title": "Mission to Lystra and Derbe",
+    "oldStartDate": "0046-03-01",
+    "newStartDate": "0047-03-01",
+    "newSortKey": 47.54,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 14:6 — 이고니온에 이어지는 루스드라·더베. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "reckt5soySSqCZnoa",
+    "title": "Return to Antioch in Syria",
+    "oldStartDate": "0046-08-01",
+    "newStartDate": "0047-08-01",
+    "newSortKey": 47.7,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 14:21-26 — 1차 여행 귀환 — 공의회(49) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "reciR4wcxOAcLxak0",
+    "title": "Second Missionary Journey",
+    "oldStartDate": "0046",
+    "newStartDate": "0049",
+    "newSortKey": 49.15,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 15:36~18장 우산 — 공의회(저작 49) 후 개시 군집 — 우산·개시 쌍 인접 배치. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recW2x0namY3sL2iX",
+    "title": "Paul and Barnabas part ways",
+    "oldStartDate": "0047",
+    "newStartDate": "0049",
+    "newSortKey": 49.2,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 15:36-39 — 공의회 후 — 원본 47.44는 공의회(49) 앞 역전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recsnRcoxqD4pQGHp",
+    "title": "Second Missionary Journey begins",
+    "oldStartDate": "0047-04-01",
+    "newStartDate": "0049-04-01",
+    "newSortKey": 49.3,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 15:40 — 실라와 출발. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recinOtqH81aspLoO",
+    "title": "Timothy Joins Paul and Silas",
+    "oldStartDate": "0047-05-01",
+    "newStartDate": "0049-05-01",
+    "newSortKey": 49.52,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 16:1 — 루스드라 경유. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recayBHkzCbMe6dnD",
+    "title": "Mission to Phrygia, Galatia and Asia",
+    "oldStartDate": "0047-06-01",
+    "newStartDate": "0049-06-01",
+    "newSortKey": 49.54,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 16:6 — 내륙 경유. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recmIpAsHFs5pOzZ6",
+    "title": "Call to Macedonia",
+    "oldStartDate": "0047-07-01",
+    "newStartDate": "0049-07-01",
+    "newSortKey": 49.56,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 16:9 — 드로아 환상 — 빌립보(50) 직전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "reczE4p2AzSrs4ppP",
+    "title": "Lydia's Conversion",
+    "oldStartDate": "0047",
+    "newStartDate": "0050",
+    "newSortKey": 50.02,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 16:13-15 — 저작 빌립보(50) 동일 장면 인접. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "rec1Olk9cxeWoT5Jl",
+    "title": "Paul casts demon out of soothsayer",
+    "oldStartDate": "0047",
+    "newStartDate": "0050",
+    "newSortKey": 50.04,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 16:16 — 빌립보 사역. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recVY5whVRxmh37rH",
+    "title": "Paul and Silas imprisoned",
+    "oldStartDate": "0047",
+    "newStartDate": "0050",
+    "newSortKey": 50.06,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 16:19-24 — 점술 축귀 직후. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recX4DzqXgIe0R2T4",
+    "title": "Philippian jailer converted",
+    "oldStartDate": "0047",
+    "newStartDate": "0050",
+    "newSortKey": 50.08,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 16:25-34 — 옥중 찬송·지진. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "rec611BDzVM1WOUa5",
+    "title": "Paul and Silas released",
+    "oldStartDate": "0047",
+    "newStartDate": "0050",
+    "newSortKey": 50.1,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 16:35-40 — 석방 — 데살로니가(50.5) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recrnXnFkh9CGTgkn",
+    "title": "Uproar in Thessalonica",
+    "oldStartDate": "0048-01-01",
+    "newStartDate": "0050-01-01",
+    "newSortKey": 50.52,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 17:1-9 — 저작 데살로니가·베뢰아(50.5) 동일 장면 인접. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recF289Cj0XMYVOmr",
+    "title": "Mission to Berea",
+    "oldStartDate": "0048-02-01",
+    "newStartDate": "0050-02-01",
+    "newSortKey": 50.54,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 17:10 — 데살로니가 소동 직후 — 아덴(51) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recxAgEs5O3piUpAG",
+    "title": "Return from Second Missionary Journey",
+    "oldStartDate": "0050-09-01",
+    "newStartDate": "0051-09-01",
+    "newSortKey": 51.7,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 18:18-22 — 고린도 1년 반(저작 51.5) 후 귀환 — 원본 50.44는 데살로니가(50.5) 앞 역전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "rec4bAiAcAOo9mPwO",
+    "title": "Third Missionary Journey",
+    "oldStartDate": "0050",
+    "newStartDate": "0053",
+    "newSortKey": 53.4,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 18:23~21장 우산 — 에베소(저작 54) 전 개시 군집 — 우산·개시 쌍 인접 배치. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "receG7A0Y0VjWPff1",
+    "title": "Third Missionary Journey Begins",
+    "oldStartDate": "0050-04-01",
+    "newStartDate": "0053-04-01",
+    "newSortKey": 53.45,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 18:23 — 갈라디아·브루기아 순회 출발. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recl2rPfuRl5ZYiYP",
+    "title": "Riot in Ephesus",
+    "oldStartDate": "0053-05-01",
+    "newStartDate": "0054-05-01",
+    "newSortKey": 54.5,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 19:23-41 — 에베소 체류(저작 54) 말미 소동 — 원본 53.44는 에베소(54) 앞 역전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recGXoNtdiKu28Wff",
+    "title": "Mission to Macedonia and Greece",
+    "oldStartDate": "0054-06-01",
+    "newStartDate": "0055-06-01",
+    "newSortKey": 55.0,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 20:1-3 — 에베소 소동 후 — 밀레도(57) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recCiHwYp3CSqFWrK",
+    "title": "Eutychus revived",
+    "oldStartDate": "0054-04-01",
+    "newStartDate": "0056-04-01",
+    "newSortKey": 56.5,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 20:7-12 — 드로아 — 밀레도(57) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recbGb0Cb2yIRqmle",
+    "title": "Voyage to Miletus",
+    "oldStartDate": "0054-04-02",
+    "newStartDate": "0056-04-02",
+    "newSortKey": 56.7,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 20:13-16 — 밀레도 고별(저작 57) 직전 항해. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recxOoLkd6wFyKysC",
+    "title": "Voyage from Miletus to Jerusalem",
+    "oldStartDate": "0054-05-03",
+    "newStartDate": "0057-05-03",
+    "newSortKey": 57.1,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 21:1-17 — 밀레도 고별(57) 후 예루살렘행. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recYE6hOLCtnqejur",
+    "title": "Paul visits elders in Jerusalem",
+    "oldStartDate": "0054",
+    "newStartDate": "0057",
+    "newSortKey": 57.2,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 21:18-26 — 도착 직후 — 성전 체포(57.5) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recR2Yyty10Qn41wQ",
+    "title": "Paul gives his testimony",
+    "oldStartDate": "0054",
+    "newStartDate": "0057",
+    "newSortKey": 57.55,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 21:37-22:29 — 저작 성전 체포(57.5) 직후 계단 변론. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "rec9DRZs8DbQy0fv5",
+    "title": "Paul goes before the Council",
+    "oldStartDate": "0054",
+    "newStartDate": "0057",
+    "newSortKey": 57.6,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 22:30-23:10 — 체포 이튿날 공회. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "rectG8MR4Z2zb8mwZ",
+    "title": "The conspiracy to kill Paul",
+    "oldStartDate": "0054",
+    "newStartDate": "0057",
+    "newSortKey": 57.65,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 23:12-22 — 공회 후 암살 모의. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recODnfv69EyvRMvA",
+    "title": "Paul sent to Felix",
+    "oldStartDate": "0056",
+    "newStartDate": "0057",
+    "newSortKey": 57.7,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 23:23-35 — 가이사랴 야간 이송 — 구금·변호(59) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recjSyWPVWxolQ2r4",
+    "title": "Paul appeals to Caesar",
+    "oldStartDate": "0056",
+    "newStartDate": "0059",
+    "newSortKey": 59.2,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 25:11 — 저작 가이사랴 구금·변호(59) 인접 — 베스도 부임 후. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recZZnST3yj4b1akY",
+    "title": "Agrippa and Bernice meet Festus",
+    "oldStartDate": "0056",
+    "newStartDate": "0059",
+    "newSortKey": 59.3,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 25:13 — 상소 직후. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recltAvLmGRfERhYp",
+    "title": "Paul goes before Agrippa",
+    "oldStartDate": "0056",
+    "newStartDate": "0059",
+    "newSortKey": 59.4,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 25:22-26:32 — 아그립바 앞 변론. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recAIElabptRPkpxz",
+    "title": "Paul's Journey to Rome",
+    "oldStartDate": "0056",
+    "newStartDate": "0059",
+    "newSortKey": 59.5,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 27장 우산 — 로마행 개시 군집 — 몰타(60) 전, 우산·개시 쌍 인접 배치. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recJWNH2OCuUoOz6e",
+    "title": "Journey to Rome begins",
+    "oldStartDate": "0056",
+    "newStartDate": "0059",
+    "newSortKey": 59.55,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 27:1 — 호송 출항. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
+  },
+  {
+    "id": "recXUXZhzA47ZRt5F",
+    "title": "Paul stays at Malta",
+    "oldStartDate": "0057",
+    "newStartDate": "0060",
+    "newSortKey": 60.02,
+    "rationale": "사도행전·선교기 원본→저작 신약 앵커(십자가 AD33) 프레임 이관: 행 28:1-10 — 저작 몰타 난파(60)와 동일 장면 인접 — 로마(61) 전. 원본 30년 기준 연대가 저작 층(ADR-260722-070154)과 층간 역전을 일으켜 행전 장 순서·역사 앵커로 재배치(ADR-0014 오버레이, task#238)."
   }
 ]
