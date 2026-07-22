@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 304eda1c53acff4c4860b838e8627483c666f74c
-mapped: 2026-07-18
+last_mapped_commit: f5e17ae2993e228f8b7481dba03478ddec8616f4
+mapped: 2026-07-22
 ---
 
 # CONVENTIONS
@@ -65,6 +65,12 @@ BibleMap의 코드 스타일·품질 관련 정본. 라우팅 구조·DB 접근�
 
 - 수백~수천 항목의 병렬 저작은 **저작 에이전트가 파일을 직접 만지지 않고 JSON만 반환**하고, 별도 병합 스크립트가 기계검증 후 정본 파일에 반영하는 구도를 쓴다. 정본 예시는 `.forge/scratch/task203/validate_and_merge.py`(사건 근거 구절 반영)·`.forge/scratch/genealogy-authoring/`의 `s1_classify.py`/`merge_validate.py`(가계도 전원 저작). 저작 프롬프트에는 근거 인정 경계와 "스킵 허용"을 항상 명시해 억지 인용을 막는다.
 - 2026-07-18(`장 묶음` 저작, task#212) 회고에서 확인된 이 구도의 실전 이점: 계정 사용량 한도로 병렬 워크플로가 중도 실패해 절반은 서브에이전트, 절반은 메인 세션이 직접 저작했지만 **저자가 누구든 `validate_chapter_sections.py`가 61권 전수 불변식을 보증**해 산출물 품질에 차이가 없었다(`.forge/retro/2026-07-18-chapter-sections.md`).
+- 예외: 항목이 짧은 구조화 라벨(성품 어휘·연대 판정 등)이 아니라 **긴 산문**(투어 정차지 해설처럼 문체 일관성이 중요한 서술)이면 병렬 분업 대신 **워크플로우 없이 단일 컨텍스트로 전량 저작**하는 쪽을 택한다 — 2026-07-22(투어 사건 커버리지 보강, task#233~235) 회고: 해설 110건을 단일 세션이 직접 저작해 문체 일관성을 확보했고, 검증은 여전히 항목 단위 기계 게이트(아래 §3.6·`TESTING.md`)로 닫았다(`.forge/retro/2026-07-22-tour-event-coverage.md`).
+
+### 3.6 투어 정차지 해설 — 투어 파일 안에 통합 (ADR-0028)
+
+- 투어의 정차지 배열 `stops`는 `["eventId", ...]`가 아니라 `[{"id": "eventId", "note": "..."}]` 객체 배열이다(`backend/app/routes/tours.py`). `note`는 그 **투어 관점**의 해설(2~3문장, nullable)이며 사건 본문(`data/person_events/`)에 병합하지 않는다 — 같은 사건이 여러 투어에 속할 때 투어마다 다른 서술이 필요하기 때문(ADR-0011의 "투어는 사건 순서 + 틀" 계약 유지).
+- `tours.py`는 **객체 형식만 파싱**한다(이중 파서 없음 — §3의 핵심 원칙과 동일). 새 투어·정차지 추가 시 `note`는 `null`로 두고 저작은 나중에 채워도 된다(그레이스풀 부분 저작).
 
 ---
 
@@ -72,7 +78,7 @@ BibleMap의 코드 스타일·품질 관련 정본. 라우팅 구조·DB 접근�
 
 - **백엔드**: 알 수 없는 리소스 id는 `raise HTTPException(status_code=404, detail="...")`로 답한다(`backend/app/routes/books.py`의 unknown book, `backend/app/routes/nodes.py`의 Node not found, `backend/app/routes/words.py`의 unknown book). 그 밖의 파싱/파일 실패는 예외를 올리지 않고 §1·§3.1의 로깅 + 빈 값/빈 목록 폴백으로 흡수한다 — 오버레이 결손이나 JSON 파싱 실패가 500으로 전파되지 않는 것이 원칙(`backend/app/routes/nodes.py`의 traits/verses JSON 파싱 `except Exception as e: logger.warning(...); clean_props["traits"] = []`가 대표 패턴).
 - **프론트**: fetch 에러는 §2의 `console.warn` + 폴백 state로 흡수한다. `AbortError`(요청 취소)는 에러가 아니므로 경고·폴백 모두에서 제외한다. 사용자에게 실패를 알려야 하는 화면은 전용 `failed` 불리언으로 인라인 안내를 렌더하고(§2 말미), 지도처럼 이미 진행 중인 렌더를 막지 않아야 하는 화면은 부분 실패를 별도 배너로 얹는다.
-- **로더/빌더 스크립트**(`backend/scripts/`)는 반환값이 아니라 프로세스 종료 코드로 실패를 알린다: 사슬 단절·건수 불일치 등은 `raise SystemExit("FAIL: ...")`(`load_authored_genealogy.py`·`load_authored_mothers.py`), 통제 어휘 미분류가 있으면 `sys.exit(...)`로 산출을 중단(`build_word_distribution.py`) — 상세는 `TESTING.md` §1·§2.
+- **로더/빌더 스크립트**(`backend/scripts/`)는 반환값이 아니라 프로세스 종료 코드로 실패를 알린다: 사슬 단절·건수 불일치 등은 `raise SystemExit("FAIL: ...")`(`load_authored_genealogy.py`·`load_authored_mothers.py`), 통제 어휘 미분류가 있으면 `sys.exit(...)`로 산출을 중단(`build_word_distribution.py`) — 상세는 `TESTING.md` §1·§3.
 
 ---
 
@@ -84,6 +90,7 @@ BibleMap의 코드 스타일·품질 관련 정본. 라우팅 구조·DB 접근�
 - 디자인 토큰의 단일 출처는 `frontend/src/index.css`의 `:root` 커스텀 프로퍼티: `--bg-0..3`·`--line`/`--line-strong`·`--ink`/`--ink-dim`/`--ink-faint`·`--gold`/`--gold-dim`·`--paper*`·`--type-*`(6종)·`--valence-*`(3종)·`--select-hl`·`--danger`·`--r-s/m/l`·`--shadow-1/2`·`--z-verse`/`--scrim`·`--serif`/`--sans`·모션 토큰 `--dur-*`/`--ease-*`(§5.3). 인라인 스타일은 `var(--gold)` 식으로 참조한다.
 - 알파 결합은 hex 이어붙임 대신 `color-mix(in srgb, ${color} 13%, transparent)`를 쓴다(var() 참조도 받음 — `frontend/src/Spinner.jsx`·`SpineHeader.jsx`).
 - 클래스가 필요한 특수 케이스만 `index.css`에 둔다: `.rel-chip`·`.pressable`(`:active` — 인라인 background/transform이 이기는 특이성 문제 회피), keyframe 애니메이션 클래스.
+- 예외적으로 브랜드 워드마크 1곳만 셀프호스트 웹폰트를 쓴다: `--serif-display`(IM Fell English, SIL OFL, `frontend/public/fonts/`) — 로드 실패·로딩 중엔 `var(--serif)`로 폴백하고 `font-weight: 400`만 쓴다(이 폰트는 400 하나만 있어 임의 굵기 지정은 faux-bold를 유발). 본문/UI는 계속 시스템 명조·산스(`--serif`/`--sans`)이며 프로젝트 전역에 이 1건 외 웹폰트는 없다.
 
 ### 5.2 다크 기본 + 라이트 옵트인 (ADR-0020)
 
@@ -104,3 +111,10 @@ BibleMap의 코드 스타일·품질 관련 정본. 라우팅 구조·DB 접근�
 
 - 인물·책 대표 이미지는 얼굴 초상/외부 이미지가 아니라 **손저작 stroke-only SVG 선화**다. 정본은 `frontend/src/personSymbols.jsx`의 `SYMBOLS`(인물, slug 키)와 `frontend/src/bookSymbols.jsx`의 `SYMBOLS`(책, theographic_id 키 — 책은 slug가 없음).
 - 공통 저작 규격: `viewBox 64×64`, `stroke="currentColor"`(듀얼 테마 자동 추종), `strokeWidth 2`, fill 없음, 모든 stroke 요소에 `pathLength={1}`(`.symbol-draw`의 dash 1 = 전체 선 draw-on 전제). 미등록 키는 범용 폴백 인장으로 렌더해 부분 저작 상태에서도 화면이 깨지지 않는다.
+
+### 5.5 투어 장면 스케치 — 투어당 1개 JSX 코드 모듈 (ADR-0029)
+
+- 투어 재생 정차지의 삽화 시퀀스 애니메이션("장면 스케치")은 SVG/JSON 데이터가 아니라 **`frontend/src/sketches/` 아래 투어당 1개 JSX 모듈**로 저작한다(`davidUnitedKingdom.jsx`·`creationToFlood.jsx`·`patriarchsCovenant.jsx`·`exodusToConquest.jsx`·`ageOfJudges.jsx`·`elijahAndElisha.jsx`·`exileAndReturn.jsx`·`gospelOfJesus.jsx`·`theEarlyChurch.jsx`). 각 모듈은 eventId를 키로 하는 레지스트리 객체(`{ Scene, mood, desc, caption }`)를 default export한다 — 연출(단계 draw 딜레이·SMIL 안무·reduce 분기)이 표현의 본질이라 데이터 스키마 대신 코드로 둔 결정.
+- 공용 표준은 `frontend/src/sketches/lib.jsx`가 정본: 선 굵기 위계(원경 1.1·질감 1.3·지면 1.6·보조 1.8~2·주역 2.4~2.6·핵심 3, 전역 배율 `W = 0.55`)를 `sw(n, opacity?)` 헬퍼로 적용, 단계 딜레이는 `d(ms, reduce)`가 CSS 변수 `--sym-delay`로 자식 stroke에 상속, 장면 내 이름표는 `<Label>`(양피지색 헤일로 + 대상 그려진 뒤 페이드인). ADR-0025의 선화 규약(stroke-only, 얼굴 초상 없음)을 그대로 계승한다.
+- `frontend/src/tourSketches.jsx`가 9개 모듈의 레지스트리를 한 `SCENES` 맵으로 스프레드 병합하고 `hasSketch(eventId)`/`<TourSketchPanel>`(양피지 패널 렌더, `mood: 'dark'`면 `--paper-accent`만 목탄색으로 오버라이드— 종이 배경은 항상 크림 유지)을 export한다. 등록 없는 정차지는 아무것도 렌더하지 않는다 — §5.4의 인물/책 심볼과 동일한 그레이스풀 부분 저작 원칙.
+- 데이터(투어 `stops`, §3.6)와 코드(장면 레지스트리)가 eventId로 페어링되므로 커버리지는 **집합 대조**(stops의 id ⊆ 레지스트리 키)로 검증한다(`TESTING.md` 참조) — 새 정차지 추가 시 스케치 누락이 이 대조로 잡힌다.

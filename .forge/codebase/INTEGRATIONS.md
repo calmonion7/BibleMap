@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 304eda1c53acff4c4860b838e8627483c666f74c
-mapped: 2026-07-18
+last_mapped_commit: f5e17ae2993e228f8b7481dba03478ddec8616f4
+mapped: 2026-07-22
 ---
 
 # INTEGRATIONS
@@ -23,7 +23,7 @@ theographic 원본은 Ussher 연대계라 저작 레이어(보수 연대계)와 
 
 ### getbible v2 API (성경 본문)
 
-한국어·영어 성경 본문 수집원(빌드타임 전용 — "미리굽기"). `backend/scripts/generate_bible_text.py`가 전체 번역본 단일 파일 `https://api.getbible.net/v2/{slug}.json`을 번역본당 1회 fetch(korean + kjv)해 정본 절 사전 `data/bible/verses.json`(키 BBCCCVVV)을 만든다. `backend/scripts/generate_verse_text.py`는 장 단위 `https://api.getbible.net/v2/{slug}/{book_order}/{chapter}.json`으로 `book_context`·`character_traits`·`place_context`·`person_relations`·`person_context`의 인용 절 본문을 인라인 채운다. getbible는 기본 `Python-urllib` UA에 403을 주므로 두 스크립트 모두 브라우저류 UA 헤더(`Mozilla/5.0 (compatible; BibleMap-build/1.0)`)로 요청한다.
+한국어·영어 성경 본문 수집원(빌드타임 전용 — "미리굽기"). `backend/scripts/generate_bible_text.py`가 전체 번역본 단일 파일 `https://api.getbible.net/v2/{slug}.json`을 번역본당 1회 fetch(korean + kjv)해 정본 절 사전 `data/bible/verses.json`(키 BBCCCVVV)을 만든다. 장 단위 엔드포인트 `https://api.getbible.net/v2/{slug}/{book_order}/{chapter}.json`은 두 스크립트가 소비: `backend/scripts/generate_verse_text.py`(`book_context`·`character_traits`·`place_context`·`person_relations`·`person_context`의 인용 절 본문 인라인 채움), `backend/scripts/generate_person_event_verses.py`(`data/person_events/*.json` 사건 context에서 파싱한 구절 참조의 본문 채움). getbible는 기본 `Python-urllib` UA에 403을 주므로 세 스크립트 모두 브라우저류 UA 헤더(`Mozilla/5.0 (compatible; BibleMap-build/1.0)`)로 요청한다.
 
 런타임 API는 `data/bible/verses.json`에서 본문을 합성해 서빙한다(`backend/app/overlays.py`의 `bible_verses()`) — `backend/app/routes/books.py`의 `/book/{id}/chapter/{n}`(장 본문), `/book/{id}/quotations`(인용 절 대조)이 이 사전을 직접 소비. `backend/scripts/build_word_verse_index.py`도 같은 `data/bible/verses.json`을 입력으로 소비하지만 네트워크 fetch는 하지 않는다(로컬 파일 → kiwipiepy 형태소 분석 → 역색인).
 
@@ -35,13 +35,13 @@ theographic 원본은 Ussher 연대계라 저작 레이어(보수 연대계)와 
 - 모델: 확인된 값은 모두 `claude-haiku-4-5-20251001`.
 - 인증: `ANTHROPIC_API_KEY` 환경변수(미설정 시 `RuntimeError`). 키 값은 저장소에 없음.
 
-오프라인 저작 단계에서만 실행되며, 산출물은 `data/` 하위 JSON으로 커밋되어 런타임 API가 오버레이로 읽는다(런타임에 Claude를 호출하지 않음). `data/god_reliance/*.json`·`data/person_context/people.json` 등 일부 데이터는 수작업 저작이며 각 디렉터리의 `AUTHORING.md`가 저작 규칙을 문서화하고 `validate_god_reliance.py`·`validate_person_context.py`로 검증한다. `data/chapter_summaries/`·`data/chapter_sections/`(장 개요·장 묶음 저작)·`data/quotations/`(구약↔신약 인용 302쌍)는 `validate_chapter_summaries.py`·`validate_chapter_sections.py`·`validate_quotations.py`로 검증(모두 Neo4j 미접근, 파일 스키마·참조 무결성 검사).
+오프라인 저작 단계에서만 실행되며, 산출물은 `data/` 하위 JSON으로 커밋되어 런타임 API가 오버레이로 읽는다(런타임에 Claude를 호출하지 않음). `backend/scripts/generate_book_context_enrich.py`는 실행 스크립트가 아니라 재생성 시 필드 목록·절차를 안내하는 docstring 레시피(ADR-0006 — 실제 생성은 Anthropic API 또는 Claude Code로 수행 후 수동 병합). `data/god_reliance/*.json`·`data/person_context/people.json` 등 일부 데이터는 수작업 저작이며 각 디렉터리의 `AUTHORING.md`가 저작 규칙을 문서화하고 `validate_god_reliance.py`·`validate_person_context.py`로 검증한다. `data/chapter_summaries/`·`data/chapter_sections/`(장 개요·장 묶음 저작)·`data/quotations/`(구약↔신약 인용 302쌍)는 `validate_chapter_summaries.py`·`validate_chapter_sections.py`·`validate_quotations.py`로 검증(모두 Neo4j 미접근, 파일 스키마·참조 무결성 검사).
 
 ### 저작 데이터 레이어 (`data/`)
 
 런타임 API(`backend/app/overlays.py`)가 읽는 저장소 내 JSON 오버레이. 탐색 우선순위는 `DATA_DIR`(기본 `/app/data`, compose가 `./data`를 마운트) → 저장소 `data/`. 로더는 `lru_cache(maxsize=1)`이므로 데이터 변경 반영은 `docker compose restart api`.
 
-- 하위 디렉터리: `authored_events/`, `authored_persons/`(가계 저작 — `mothers.json`은 어머니-자식 간선 원본, `load_authored_mothers.py`가 적재), `bible/`(정본 절 사전), `book_context/`, `book_events/`, `book_years_approx/`, `chapter_sections/`(장 묶음 정본, `overlays.chapter_sections()`), `chapter_summaries/`(장별 한줄 요약+대표절, `overlays.chapter_summaries()`), `character_traits/`, `date_corrections/`, `event_dedupe/`, `event_verses/`, `god_reliance/`(인물별 하나님 의존 분류 JSON + `AUTHORING.md`), `keypeople/`, `keypeople_verses/`, `names_ko/`, `person_context/`(저작 `people.json` + `AUTHORING.md`), `person_events/`, `person_relations/`, `person_slugs/`(`seal_slugs.json` — 비큐레이션 인장 보유 인물 목록, `backend/app/routes/family.py`가 소비), `place_context/`, `place_coords/`, `quotations/`(구약↔신약 직접 인용 302쌍 정본, `overlays.quotations()`), `tours/`, `verse_events/`, `verse_persons/`(`build_verse_persons.py` 산출, `backend/app/routes/verses.py`가 소비), `word_verse_index/`(`build_word_verse_index.py` 산출 — 런타임 로더·소비 라우트 없음, 인프라 전용 산출물).
+- 하위 디렉터리: `authored_events/`, `authored_persons/`(가계 저작 — `mothers.json`은 어머니-자식 간선 원본, `load_authored_mothers.py`가 적재), `bible/`(정본 절 사전), `book_context/`, `book_events/`, `book_years_approx/`, `chapter_sections/`(장 묶음 정본, `overlays.chapter_sections()`), `chapter_summaries/`(장별 한줄 요약+대표절, `overlays.chapter_summaries()`), `character_traits/`, `date_corrections/`, `event_dedupe/`, `event_verses/`, `god_reliance/`(인물별 하나님 의존 분류 JSON + `AUTHORING.md`), `keypeople/`, `keypeople_verses/`, `names_ko/`, `person_context/`(저작 `people.json` + `AUTHORING.md`), `person_events/`, `person_relations/`, `person_slugs/`(`seal_slugs.json` — 비큐레이션 인장 보유 인물 목록, `backend/app/routes/family.py`가 소비), `place_context/`, `place_coords/`, `quotations/`(구약↔신약 직접 인용 302쌍 정본, `overlays.quotations()`), `tours/`(`{slug}.json`의 `stops`는 `[{id, note}]` 객체 배열 — ADR-0028, `note`는 그 투어 관점의 정차지 해설·nullable, `backend/app/routes/tours.py`는 객체 형식만 파싱), `verse_events/`, `verse_persons/`(`build_verse_persons.py` 산출, `backend/app/routes/verses.py`가 소비), `word_verse_index/`(`build_word_verse_index.py` 산출 — 런타임 로더·소비 라우트 없음, 인프라 전용 산출물).
 - 루트 파일: `data/word_distribution.json`(책별·전체 상위 명사+극성 정본, `backend/scripts/build_word_distribution.py` 산출)·`data/word_sentiment.json`(단어→positive|negative|neutral 큐레이션) — `backend/app/routes/words.py`의 `/words/*` 엔드포인트가 소비.
 
 ## Neo4j 데이터베이스
@@ -50,7 +50,7 @@ theographic 원본은 Ussher 연대계라 저작 레이어(보수 연대계)와 
 - 인증: `NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}` — compose가 `.env`의 `NEO4J_PASSWORD`에서 파생. 미설정이면 compose가 실패(`:?NEO4J_PASSWORD must be set`).
 - API 접속: `api` 서비스는 `NEO4J_URI=bolt://neo4j:7687`, `NEO4J_USER=neo4j`, `NEO4J_PASSWORD`를 환경변수로 받아 `backend/app/db.py`가 Bolt 드라이버 싱글턴 생성. 호스트에서 직접 실행하는 스크립트는 기본 `bolt://localhost:7687`(`deploy.sh`가 `.env`를 로드해 동일 비번 공유).
 - 인덱스: `backend/app/main.py`의 `lifespan`이 `Person`·`Place`·`Event`·`PeopleGroup`·`Book`의 `theographic_id` 인덱스를 생성.
-- 노드 레이블: `Person`, `Place`, `Event`, `PeopleGroup`, `Book`. 가계 간선: `PARENT_OF`/`CHILD_OF` — `backend/scripts/load_authored_genealogy.py`·`load_authored_mothers.py`가 양방향 멱등 적재하고 `backend/app/routes/family.py`가 서브그래프 조회.
+- 노드 레이블: `Person`, `Place`, `Event`, `PeopleGroup`, `Book`. 가계 간선: `PARENT_OF`/`CHILD_OF` — `backend/scripts/load_authored_genealogy.py`·`load_authored_mothers.py`가 양방향(`MERGE` 양쪽 SET) 멱등 적재하고 `backend/app/routes/family.py`가 서브그래프 조회. 무방향 이웃 조회 시 같은 쌍이 2행으로 겹칠 수 있어 `backend/app/routes/nodes.py`의 `get_node()`가 `startNode(r) = n` 비교로 방향 정규화 후 디듀프.
 - 하이브리드 조회 사례: `backend/app/routes/verses.py`의 `/verse/{verse_id}/persons`는 `overlays.verse_persons()`(JSON 색인)로 rec id를 얻은 뒤 Neo4j `MATCH (p:Person) WHERE p.theographic_id IN $ids`로 이름만 해석 — 오버레이·그래프 DB를 한 엔드포인트에서 함께 사용.
 
 ## 프론트엔드 런타임 외부 서비스 (지도 타일·폰트)
@@ -59,6 +59,8 @@ theographic 원본은 Ussher 연대계라 저작 레이어(보수 연대계)와 
 
 - 래스터 타일: `https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}` (ArcGIS Online NatGeo World Map).
 - 글리프(폰트): `https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf`.
+
+지도 이외 UI 폰트(IM Fell English)는 `frontend/public/fonts/`에 자체 호스팅(외부 CDN 미사용) — STACK.md 참고.
 
 ## 인증·보안 표면
 
@@ -74,7 +76,7 @@ theographic 원본은 Ussher 연대계라 저작 레이어(보수 연대계)와 
 - 정적 자산(`js|css|png|...|woff2?`) → `max-age=31536000, immutable`.
 - `location /` → `try_files $uri /index.html` (SPA 폴백). 루트 `/usr/share/nginx/html`은 compose가 `./frontend/dist`를 읽기전용 마운트 — 프론트 검증 전 `npm run build` 필요(HMR 아님).
 
-프론트가 API GET 응답에 `?v=<빌드ID>` 캐시버스터(`frontend/src/api.js` + `vite.config.js`의 `__BUILD_ID__`)를 부착하는 것은 이 nginx 계층과 무관한 별도 방어선 — API 응답 자체의 `Cache-Control`(예: `books.py`·`reliance.py`의 `public, max-age=3600`)을 배포 시점에 무력화해, 데이터가 바뀐 배포 직후에도 브라우저가 옛 응답을 재사용하지 않게 한다.
+프론트가 API GET 응답에 `?v=<빌드ID>` 캐시버스터(`frontend/src/api.js` + `vite.config.js`의 `__BUILD_ID__`)를 부착하는 것은 이 nginx 계층과 무관한 별도 방어선 — API 응답 자체의 `Cache-Control`(예: `books.py`·`reliance.py`의 `public, max-age=3600`, `books.py`의 목차 엔드포인트는 `no-store`)을 배포 시점에 무력화해, 데이터가 바뀐 배포 직후에도 브라우저가 옛 응답을 재사용하지 않게 한다.
 
 ## docker-compose 서비스 (`docker-compose.yml`)
 
@@ -93,4 +95,4 @@ theographic 원본은 Ussher 연대계라 저작 레이어(보수 연대계)와 
   4. `[3/4]` `docker compose -p biblemap up -d api nginx`.
   5. `[4/4]` `backend/scripts/inject_ko_names.py`를 최대 15회 재시도(Neo4j 준비 대기). 실패 시 배포 중단(exit 1). 그 외 `load_*`·`inject_*` 스크립트는 실행하지 않는다.
 - Compose 프로젝트명은 `-p biblemap`으로 고정.
-- 공개 도메인: `https://biblemap.taebro.com` — 이 머신의 스택을 Cloudflare Tunnel(cloudflared, `~/.cloudflared/config.yml`의 공유 터널 ingress 규칙)로 노출한다(`BIBLEMAP_PLAN.md` 배포 절). 터널 설정 파일은 이 저장소 밖(머신 레벨). cloudflared는 outbound 전용 연결이라 인바운드 포트를 열지 않으며, ingress에 등록된 것(api:8000 상당)만 외부 접근 가능 — Neo4j는 구조적으로 차단. 따라서 `localhost:8080` == 프로덕션(동일 컨테이너·동일 Neo4j).
+- 공개 도메인: `https://biblemap.taebro.com` — 이 머신의 스택을 Cloudflare Tunnel(cloudflared, `~/.cloudflared/config.yml`의 공유 터널 ingress 규칙, `service: http://localhost:8080`)로 노출한다(`BIBLEMAP_PLAN.md` 배포 절). 터널 설정 파일은 이 저장소 밖(머신 레벨). cloudflared는 outbound 전용 연결이라 인바운드 포트를 열지 않으며, ingress에 등록된 것(nginx의 8080)만 외부 접근 가능 — Neo4j는 구조적으로 차단. 따라서 `localhost:8080` == 프로덕션(동일 컨테이너·동일 Neo4j).

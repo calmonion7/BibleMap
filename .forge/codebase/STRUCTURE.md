@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 304eda1c53acff4c4860b838e8627483c666f74c
-mapped: 2026-07-18
+last_mapped_commit: f5e17ae2993e228f8b7481dba03478ddec8616f4
+mapped: 2026-07-22
 ---
 
 # STRUCTURE
@@ -45,7 +45,7 @@ backend/
 │       ├── journey.py       # /person/{id}/journey
 │       ├── places.py        # /place/{id}/curated-persons
 │       ├── search.py        # /search (status='wip' 제외)
-│       ├── tours.py         # /tours, /tour/{id}
+│       ├── tours.py         # /tours, /tour/{id} (stops는 {id, note} 객체 배열, ADR-0028)
 │       ├── family.py        # /person/{id}/family (가계도 서브그래프 + mothers·slug·lineage 확장, ADR-0019·task#196)
 │       ├── words.py         # /words/{book}, /words/{book}/verses (단어 분포, 오버레이 전용)
 │       ├── verses.py        # /verse/{id}/persons (구절→인물, 색인만 구축·프론트 미사용)
@@ -77,6 +77,7 @@ frontend/
 ├── eslint.config.js
 ├── .env.production          # VITE_API_URL=/api (프로덕션 빌드 주입)
 ├── public/                  # favicon.svg 등 정적 자산
+│   └── fonts/               # 자체 호스팅 웹폰트 — im-fell-english-latin.woff2 + IM-Fell-English-OFL.txt (헤더 워드마크 전용, ADR-0026 리뉴얼)
 ├── dist/                    # 빌드 산출물 (gitignore, nginx가 마운트해 서빙)
 ├── node_modules/            # (gitignore)
 └── src/
@@ -87,12 +88,15 @@ frontend/
     ├── theme.js             # TYPE_COLOR 등 색상 토큰 (값은 var(--type-*) 참조 — CSS 컨텍스트 전용)
     ├── constants.js         # 모바일 브레이크포인트, 시트 높이
     ├── dates.js             # 연대 표기 유틸
+    ├── scrollMemory.js      # 목록 스테이지(hub·overview) 스크롤 위치 기억 — saveScroll/loadScroll (task#214)
     │
-    ├── SpineHeader.jsx      # 책등 전역 헤더 — 리본 3부 + 테마 토글, HEADER_H export (ADR-0026)
-    ├── PersonHub.jsx        # 인물 목차(대문) 뷰 (hub 스테이지) — 시대 8구간 장 섹션 + 인장 카드 + book-open 입장
-    ├── BibleOverviewView.jsx# 성경 책 개요 (overview 스테이지) — 책 인장(BookSymbol) 카드
-    ├── TourList.jsx         # 테마 투어 목록 (tours 스테이지)
-    ├── MapView.jsx          # 지도 뷰 (maplibre-gl)
+    ├── SpineHeader.jsx      # 책등 전역 헤더 — 리본 3부 + 테마 토글 + 브랜드 마크(CompassCrossMark), HEADER_H·RIBBON_OVERHANG export (ADR-0026, task#216·217)
+    ├── PersonHub.jsx        # 인물 목차(대문) 뷰 (hub 스테이지) — 시대 8구간 장 섹션 + 인장 카드 + book-open 입장 + 스크롤 위치 복원(task#214)
+    ├── BibleOverviewView.jsx# 성경 책 개요 (overview 스테이지) — 책 인장(BookSymbol) 카드 + 스크롤 위치 복원(task#214)
+    ├── TourList.jsx         # 테마 투어 목록 (tours 스테이지) — description 2줄 미리보기(task#222)
+    ├── TourIntro.jsx        # 투어 개요 뷰 (explore/intro, 투어 모드) — subtitle·description·정차지 조망 + 재생 CTA (task#222)
+    ├── TourPlayback.jsx     # 투어 자동재생 — useTourPlayback 훅 + TourPlaybackCard 해설 카드 (task#223, ADR-0028)
+    ├── MapView.jsx          # 지도 뷰 (maplibre-gl) — playbackIdx prop으로 재생 점진 경로선 구동
     ├── BookStageMap.jsx     # 책의 무대 미니맵 — 잠긴(비대화형) 소형 지도, SidePanel Book 섹션 전용 (task#207)
     ├── TimelineView.jsx     # 타임라인 뷰 — 8구간 시대 밴드 sticky 헤더 + 연속 레일 (task#200)
     ├── RelationsView.jsx    # 관계 뷰 — 유형 섹션·인장 카드·초점 쌍·타축 푸터 (task#198)
@@ -101,6 +105,8 @@ frontend/
     ├── PersonMiniCard.jsx   # 가계도 노드 탭 바텀시트 — 즉시 렌더 + /node/{id} 지연 fetch (task#197)
     ├── personSymbols.jsx    # 인물 상징물 선화 50점(SYMBOLS) + PersonSymbol/hasSymbol (ADR-0025)
     ├── bookSymbols.jsx      # 책 상징물 선화 66권 + BookSymbol(bookId) — 인물 인장의 "책판" (ADR-0025, task#208)
+    ├── tourSketches.jsx     # 투어 장면 스케치 집계·렌더 — SCENES 병합, hasSketch/TourSketchPanel (ADR-0029)
+    ├── sketches/            # 투어당 1개 장면 레지스트리 모듈 (task#223~231) — 아래 별도 목록
     ├── WordDistributionView.jsx # 단어 분포 워드클라우드 (words 스테이지) — 자체 나선 배치 layoutCloud()
     ├── ChapterReader.jsx    # 본문 리더 (reader 스테이지) — 장 그리드(개요/묶음 헤더)↔장 본문, 프리베이크 절 사전만 소비 (task#205·206·212)
     ├── RelianceView.jsx     # 하나님 의존도 뷰 (explore/reliance 탭) — 도넛 게이지 + mode 막대 + 생애 궤적
@@ -115,8 +121,24 @@ frontend/
     ├── mapRingController.js # 지도 링(경로) 제어
     │
     ├── useNodeSelection.js  # 노드 선택 훅
-    ├── useStageNavigation.js# 스테이지/URL/히스토리 상태 머신 훅 (8 스테이지, explorePersonSlug·getPersonSlug 포함)
+    ├── useStageNavigation.js# 스테이지/URL/히스토리 상태 머신 훅 (8 스테이지, explorePersonSlug·getPersonSlug 포함, 투어 진입 기본 뷰 'intro')
     └── urlState.js          # 해시 URL 직렬화/파싱 (encodeHash/parseHash)
+```
+
+`src/sketches/` — 투어 장면 스케치 레지스트리 모듈(ADR-0029). 파일명은 투어 id(케밥케이스)를 카멜케이스로 변환한 이름:
+
+```
+sketches/
+├── lib.jsx                  # 공용 표준 정본 — 선 굵기 위계·전역 배율 W·sw()/d() 딜레이 헬퍼·Label 이름표
+├── creationToFlood.jsx      # tours/creation-to-flood.json 대응
+├── patriarchsCovenant.jsx   # tours/patriarchs-covenant.json 대응
+├── exodusToConquest.jsx     # tours/exodus-to-conquest.json 대응
+├── ageOfJudges.jsx          # tours/age-of-judges.json 대응
+├── davidUnitedKingdom.jsx   # tours/david-united-kingdom.json 대응
+├── elijahAndElisha.jsx      # tours/elijah-and-elisha.json 대응
+├── exileAndReturn.jsx       # tours/exile-and-return.json 대응
+├── gospelOfJesus.jsx        # tours/gospel-of-jesus.json 대응
+└── theEarlyChurch.jsx       # tours/the-early-church.json 대응
 ```
 
 ## data/
@@ -178,7 +200,7 @@ data/
 │   ├── relations.json
 │   └── AUTHORING.md
 │
-└── tours/                             # 테마 투어 (event-reference 오버레이, ADR-0011)
+└── tours/                             # 테마 투어 (event-reference 오버레이, ADR-0011). stops는 {id, note} 객체 배열(ADR-0028, note는 정차지 해설·nullable)
     ├── age-of-judges.json             # 투어당 파일 1개 (파일명 = tour id), 9개
     ├── creation-to-flood.json
     ├── david-united-kingdom.json
@@ -213,7 +235,7 @@ data/
 
 ### 프론트엔드
 
-- 컴포넌트: PascalCase `.jsx`(`SidePanel.jsx`, `FamilyTree.jsx`, `PersonIntro.jsx`, `SpineHeader.jsx`, `VerseLayer.jsx`, `PersonMiniCard.jsx`, `ChapterReader.jsx`, `BookStageMap.jsx`). 뷰 컴포넌트는 접미사 `View`(`MapView`, `TimelineView`, `RelationsView`, `BibleOverviewView`, `WordDistributionView`, `RelianceView`); `PersonHub`·`PersonIntro`·`FamilyTree`·`TourList`·`JourneyList`·`SidePanel`·`SpineHeader`·`VerseLayer`·`PersonMiniCard`·`ChapterReader`·`BookStageMap`은 예외 없이 전체화면/패널/쉘/미니맵 단위 컴포넌트다. `personSymbols.jsx`·`bookSymbols.jsx`는 컴포넌트(`PersonSymbol`/`BookSymbol`)와 심볼 데이터(`SYMBOLS`)를 함께 담는 카멜케이스 `.jsx` 두 예외다.
-- 훅: `useXxx.js` 카멜케이스(`useNodeSelection.js`, `useStageNavigation.js`).
-- 비컴포넌트 모듈: 카멜케이스 `.js`(`api.js`, `theme.js`, `mapLayers.js`, `urlState.js`).
+- 컴포넌트: PascalCase `.jsx`(`SidePanel.jsx`, `FamilyTree.jsx`, `PersonIntro.jsx`, `SpineHeader.jsx`, `VerseLayer.jsx`, `PersonMiniCard.jsx`, `ChapterReader.jsx`, `BookStageMap.jsx`, `TourIntro.jsx`). 뷰 컴포넌트는 접미사 `View`(`MapView`, `TimelineView`, `RelationsView`, `BibleOverviewView`, `WordDistributionView`, `RelianceView`); `PersonHub`·`PersonIntro`·`FamilyTree`·`TourList`·`TourIntro`·`JourneyList`·`SidePanel`·`SpineHeader`·`VerseLayer`·`PersonMiniCard`·`ChapterReader`·`BookStageMap`은 예외 없이 전체화면/패널/쉘/미니맵 단위 컴포넌트다. `personSymbols.jsx`·`bookSymbols.jsx`·`tourSketches.jsx`는 컴포넌트(`PersonSymbol`/`BookSymbol`/`TourSketchPanel`)와 데이터(`SYMBOLS`/`SCENES`)를 함께 담는 카멜케이스 `.jsx` 예외다. `frontend/src/sketches/<tourId 카멜케이스>.jsx`(투어 id의 케밥케이스를 카멜케이스로 변환, 예: `age-of-judges` → `ageOfJudges.jsx`)는 투어별 장면 레지스트리 모듈 — 표준은 `sketches/lib.jsx`.
+- 훅: `useXxx.js` 카멜케이스(`useNodeSelection.js`, `useStageNavigation.js`), 또는 컴포넌트 파일 내 export(`useTourPlayback` in `TourPlayback.jsx`).
+- 비컴포넌트 모듈: 카멜케이스 `.js`(`api.js`, `theme.js`, `mapLayers.js`, `urlState.js`, `scrollMemory.js`).
 - 스타일: 컴포넌트 인라인 스타일 + `index.css`의 CSS 변수(`var(--bg-1)`, `var(--gold)`, `var(--type-person)`, `var(--paper)`, `var(--z-verse)` 등) + 모션 클래스(`stage-in`, `modal-in`, `overlay-in`, `sheet-in`, `card-in`, `cloud-in`, `word-in`, `bar-reveal`, `stop-bar-in`, `symbol-draw`, `thread-draw`, `book-open`, `pressable` — ADR-0024~0026). 테마별 값은 `index.css`에서 다크(기본)와 `:root[data-theme='light']` 두 벌로 갈리고, `theme.js` 상수는 리터럴이 아닌 `var(...)` 참조다(ADR-0020). 양피지 토큰(`--paper*`)은 테마 불변 — 성경 구절 본문 전용. 모션 duration/easing은 `--dur-*`/`--ease-*` 토큰만 참조(하드코딩 금지). 별도 CSS 모듈/스타일 라이브러리 없음.

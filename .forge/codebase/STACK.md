@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 304eda1c53acff4c4860b838e8627483c666f74c
-mapped: 2026-07-18
+last_mapped_commit: f5e17ae2993e228f8b7481dba03478ddec8616f4
+mapped: 2026-07-22
 ---
 
 # STACK
@@ -9,7 +9,7 @@ BibleMap은 백엔드(FastAPI + Neo4j)와 프론트엔드(React 19 + Vite)로 �
 
 ## 언어·런타임
 
-- **백엔드**: Python. 컨테이너 이미지는 `backend/Dockerfile`의 `FROM python:3.12-slim`. `README.md`는 개발 사전 준비로 Python 3.11+를 표기. 로컬 인터프리터는 `/opt/homebrew/bin/python3`(3.14)로 컨테이너와 버전이 다름(`backend/app/__pycache__/*.cpython-314.pyc`로 확인).
+- **백엔드**: Python. 컨테이너 이미지는 `backend/Dockerfile`의 `FROM python:3.12-slim`. `README.md`는 개발 사전 준비로 Python 3.11+를 표기.
 - **프론트엔드**: JavaScript(ES 모듈) + JSX, React 19. `frontend/package.json`은 `"type": "module"`.
 - **인프라 스크립트**: Bash(`deploy.sh`), zsh 셸 환경(macOS).
 
@@ -35,14 +35,14 @@ BibleMap은 백엔드(FastAPI + Neo4j)와 프론트엔드(React 19 + Vite)로 �
 
 ### 데이터 생성/적재 스크립트 (`backend/scripts/`)
 
-41개 독립 스크립트(런타임 API 컨테이너에는 포함되지 않음 — `backend/Dockerfile`은 `app/`만 COPY). 역할별 접두:
+37개 독립 스크립트(런타임 API 컨테이너에는 포함되지 않음 — `backend/Dockerfile`은 `app/`만 COPY). 역할별 접두:
 
-- `load_*.py` — theographic 원본 및 저작 데이터를 Neo4j에 최초 적재(`load_theographic.py`, `load_books.py`, `load_authored_events.py`, `load_authored_persons.py`, `load_authored_genealogy.py`, `load_authored_mothers.py`, `load_person_events.py`, `load_verse_events.py`).
-- `inject_*.py` — Neo4j 기존 노드에 보정 필드 SET(`inject_ko_names.py`, `inject_date_corrections.py`, `inject_person_traits.py`, `inject_person_context.py`, `inject_book_context.py`, `inject_place_context.py`).
-- `generate_*.py` — `data/` JSON 콘텐츠 생성(일부는 Anthropic Claude API 호출, 일부는 getbible/theographic fetch). 상세는 INTEGRATIONS.md.
-- `build_*.py` — 파생 인덱스 산출(`build_word_distribution.py`, `build_word_verse_index.py`, `build_verse_persons.py`) — 셋 다 Neo4j 미접근.
-- `validate_*.py` — 생성 데이터 정합성 검증, Neo4j 미접근·CI 없이 수동 실행: `validate_event_chronology.py`, `validate_traits.py`, `validate_person_context.py`, `validate_god_reliance.py`, `validate_chapter_summaries.py`, `validate_chapter_sections.py`, `validate_quotations.py`.
-- 기타: `apply_event_dedupe.py`, `enrich_place_coords.py`.
+- `load_*.py`(8개) — theographic 원본 및 저작 데이터를 Neo4j에 최초 적재(`load_theographic.py`, `load_books.py`, `load_authored_events.py`, `load_authored_persons.py`, `load_authored_genealogy.py`, `load_authored_mothers.py`, `load_person_events.py`, `load_verse_events.py`).
+- `inject_*.py`(6개) — Neo4j 기존 노드에 보정 필드 SET(`inject_ko_names.py`, `inject_date_corrections.py`, `inject_person_traits.py`, `inject_person_context.py`, `inject_book_context.py`, `inject_place_context.py`).
+- `generate_*.py`(11개) — `data/` JSON 콘텐츠 생성. Anthropic Claude API 호출 5개(`generate_book_events.py`, `generate_book_context.py`, `generate_person_context.py`, `generate_person_traits.py`, `generate_verse_events.py`), getbible fetch 3개(`generate_bible_text.py`, `generate_verse_text.py`, `generate_person_event_verses.py`), theographic fetch 1개(`generate_event_verses.py`), 네트워크 미사용 로컬 산출 2개(`generate_approx_book_verses.py`, `generate_book_context_enrich.py` — 후자는 실행 스크립트가 아니라 재생성 레시피 docstring). 상세는 INTEGRATIONS.md.
+- `build_*.py`(3개) — 파생 인덱스 산출(`build_word_distribution.py`, `build_word_verse_index.py`, `build_verse_persons.py`) — 셋 다 Neo4j 미접근.
+- `validate_*.py`(7개) — 생성 데이터 정합성 검증, Neo4j 미접근·CI 없이 수동 실행: `validate_event_chronology.py`, `validate_traits.py`, `validate_person_context.py`, `validate_god_reliance.py`, `validate_chapter_summaries.py`, `validate_chapter_sections.py`, `validate_quotations.py`.
+- 기타(2개): `apply_event_dedupe.py`, `enrich_place_coords.py`.
 
 스크립트는 대부분 `urllib.request`로 외부 JSON을 fetch하거나 `neo4j.GraphDatabase`로 직접 DB에 쓴다(FastAPI를 거치지 않음). 호스트에서 직접 실행 시 Neo4j 기본 접속은 `bolt://localhost:7687`. README.md의 최초 셋업 순서: `load_theographic.py` → `inject_ko_names.py` → `inject_date_corrections.py`.
 
@@ -63,8 +63,9 @@ BibleMap은 백엔드(FastAPI + Neo4j)와 프론트엔드(React 19 + Vite)로 �
 ### 엔트리·API 접근
 
 - `frontend/index.html` → `frontend/src/main.jsx` → `App.jsx` 마운트.
-- API 접근은 `frontend/src/api.js`의 `apiGet()` 단일 헬퍼로 통일. 베이스 URL은 `import.meta.env.VITE_API_URL || 'http://localhost:8000'`.
+- API 접근은 `frontend/src/api.js`의 `apiGet()` 단일 헬퍼로 통일. 베이스 URL은 `import.meta.env.VITE_API_URL || 'http://localhost:8000'`. 저장소 전체에서 다른 fetch 호출 지점 없음(확인됨).
 - 산출물 `frontend/dist/`(`.gitignore` 처리) — docker-compose가 nginx 컨테이너에 read-only 마운트.
+- `frontend/public/fonts/im-fell-english-latin.woff2` — 자체 호스팅 웹폰트(IM Fell English, OFL 라이선스 `frontend/public/fonts/IM-Fell-English-OFL.txt`), 외부 폰트 CDN 미사용.
 
 ### 프론트엔드 환경변수
 

@@ -1,11 +1,11 @@
 ---
-last_mapped_commit: 304eda1c53acff4c4860b838e8627483c666f74c
-mapped: 2026-07-18
+last_mapped_commit: f5e17ae2993e228f8b7481dba03478ddec8616f4
+mapped: 2026-07-22
 ---
 
 # TESTING
 
-BibleMap이 정확성을 검증하는 방식. 이 프로젝트에는 **정식 유닛 테스트 프레임워크가 없다** — 검증은 (1) 데이터용 기계검증 스크립트(`validate_*.py`), (2) 로더/빌더/inject 스크립트의 자체 검증, (3) 화면 레벨 Python Playwright 검증, (4) 배포 게이트로 이뤄진다.
+BibleMap이 정확성을 검증하는 방식. 이 프로젝트에는 **정식 유닛 테스트 프레임워크가 없다** — 검증은 (1) 데이터용 기계검증 스크립트(`validate_*.py`), (2) 커밋되지 않는 ephemeral API assert/앵커 산술 감사, (3) 로더/빌더/inject 스크립트의 자체 검증, (4) 화면 레벨 Python Playwright 검증, (5) 배포 게이트로 이뤄진다.
 
 ---
 
@@ -13,7 +13,7 @@ BibleMap이 정확성을 검증하는 방식. 이 프로젝트에는 **정식 �
 
 - pytest·unittest·vitest·jest 없음. `*_test.py`·`*.test.jsx`·`*.spec.*`·`conftest.py` 파일이 리포지토리에 없다. 백엔드 `backend/requirements.txt`는 `fastapi`/`neo4j`/`uvicorn`만 갖고, 프론트 `devDependencies`엔 테스트 러너가 없다.
 - 프론트의 유일한 정적 게이트는 ESLint(`cd frontend && npm run lint`, flat config `frontend/eslint.config.js`, `@eslint/js` 권장 + `eslint-plugin-react-hooks` + `eslint-plugin-react-refresh`).
-- 즉 "테스트를 돌린다"의 실체는 아래 §1의 `validate_*` 스크립트 · §2의 로더 자체검증 · §4의 Playwright 화면검증이다.
+- 즉 "테스트를 돌린다"의 실체는 아래 §1의 `validate_*` 스크립트 · §2의 ephemeral assert/앵커 감사 · §3의 로더 자체검증 · §5의 Playwright 화면검증이다.
 
 ---
 
@@ -32,25 +32,36 @@ BibleMap이 정확성을 검증하는 방식. 이 프로젝트에는 **정식 �
 
 ---
 
-## 2. 로더/빌더/inject 자체 검증
+## 2. 정합 감사 — API assert 스크립트 + 앵커 산술 (ephemeral)
+
+대량 연대 교정·투어 사건 커버리지 보강 같은 감사성 작업(task#232·236·237·238, 2026-07-22)에서 반복되는, `validate_*.py`로 커버되지 않는 3가지 검증 관행. **모두 리포지토리에 커밋되지 않는다** — 태스크 중 즉석으로 작성해 실행하고 버린다(`.forge/scratch/`에도 남지 않음, `validate_*.py`와의 핵심 차이).
+
+- **API assert 스크립트**: 실행 중인 API(`/events`·`/tour/{id}`·`/person/{id}/events` 등)를 호출해 알려진 연대·순서 관계("이삭 출생 < 모리아", "오순절 > 승천" 등)를 개별 assert로 판정하는 일회성 스크립트. 회고에 남는 실측 규모: 전역 타임라인 17~20건 assert, 9투어 275정차지 단조성/인접 동률 0건, 인물 연표 4~5명 순서 확인. `validate_event_chronology.py`(§1)가 구조적 이상(역전·이탈창)을 자동 스캔하는 것과 달리, 이쪽은 그 감사에서 도출된 **특정 known-good 관계**를 하나씩 확인하는 손저작 체크리스트다.
+- **앵커 산술 감사**: 대규모 연대 정합 감사(task#236, 35파일 306사건)에서 쓰인 3축 판정 — ① 파일 내 서사 순서 ② 파일 간 동일 장면 정합 ③ **정본 앵커 체인 대비 절대값 대조**(성전 966→출애굽 1446→애굽 이주 1876→야곱 2006→이삭 2066→아브라함 2091 — 창세기 47:9·왕상 6:1 등 성경 내부 연산으로 도출). 핵심 교훈: "상대적으로 안 뒤집히면 OK"인 ①·②만으로는 파일 전체가 통째로 오프셋된 이탈(예: 이삭 연표 전면)을 못 잡는다 — 절대 앵커 대조가 있어야 드러난다.
+- **커버리지 등식 게이트**: 대량 삽입/저작 작업에서 "잔여 = 제외 목록"이 산술적으로 맞아떨어지는지 확인하는 집합 대조. 투어 정차지 보강(task#233~235, 165→275/306)에서 판정표엔 "채택"인데 실제 삽입 목록에서 누락된 1건을 이 등식이 잡아냈다. `frontend/src/sketches/`의 장면 스케치 커버리지(투어 stops의 id ⊆ 레지스트리 키, `CONVENTIONS.md` §5.5·ADR-0029)도 같은 원리 — 대량 저작·삽입 태스크에는 이 등식 게이트를 항상 둔다.
+
+---
+
+## 3. 로더/빌더/inject 자체 검증
 
 적재·산출 스크립트는 실행 직후 스스로 결과를 검증하거나 안전장치를 둔다.
 
 - `backend/scripts/load_authored_genealogy.py` — 족보 사슬 적재 후 Cypher 도달성 검증: 사슬 끝(후손)에서 `CHILD_OF*`로 사슬 머리(조상)까지 연속인지 `EXISTS { ... }`로 확인하고, 끊겼으면 `raise SystemExit("FAIL: ... 사슬 단절")`.
 - `backend/scripts/load_authored_mothers.py` — 어머니-자식 간선 적재(`MATCH` 전용 — 노드 신규 생성 없음) 후 `merged: n/len(pairs)` 건수를 대조, 불일치(노드 미존재 쌍)면 `raise SystemExit`. 멱등(`MERGE`), 그래프 초기화 후 재적재 대상.
-- `backend/scripts/inject_date_corrections.py` — 에코 필드 가드(`CONVENTIONS.md` §3.4): DB 현재값이 에코와 불일치하면 스킵+`[WARN]`, 이미 새 값이면 조용히 통과. 멱등·재실행 안전. 결과를 "적용/이미 적용/스킵" 건수로 방출한다.
+- `backend/scripts/inject_date_corrections.py` — 에코 필드 가드(`CONVENTIONS.md` §3.4): DB 현재값이 에코와 불일치하면 스킵+`[WARN]`, 이미 새 값이면 조용히 통과. 멱등·재실행 안전. 결과를 "적용/이미 적용/스킵" 건수로 방출한다. 건수 해석 주의(task#238 학습): 라벨만 안 바뀐 교정(`old == newStartDate`)도 매 실행 동일값 `SET`으로 "적용" 건수에 잡히므로(무해) **회귀 신호는 스킵/경고 건수만 봐야** 한다 — "적용 건수 증가"는 회귀 판정 근거가 안 된다.
 - `inject_*.py` 공통 — 적재 후 `MATCH ... WHERE <속성> IS NOT NULL RETURN count(...)`로 반영 건수를 `print`하고, 일부는 대표 노드를 샘플 출력해 육안 확인을 돕는다.
 - `backend/scripts/build_word_distribution.py` — 산출 전 게이트 두 겹: ① `data/names_ko/books.json` 66권 `assert` ② 상위 단어 중 `data/word_sentiment.json` 미분류가 있으면 `sys.exit`(메시지로 `--dump-words` 안내) — 극성 큐레이션이 끝나야만 정본이 써진다.
 - 대량 병렬 저작의 병합·재스캔 스크립트(`.forge/scratch/task203/validate_and_merge.py`·`rescan.py`, `.forge/scratch/genealogy-authoring/merge_validate.py`·`verify_tree*.py`)도 같은 원칙 — 저작 산출 JSON을 항목 단위로 기계검증한 뒤 정본에 반영, 마지막에 API 레벨 전수 재스캔으로 정합성을 닫는다.
 
 ---
 
-## 3. 로컬 검증 = 빌드 후 확인 (footgun)
+## 4. 로컬 검증 = 빌드 후 확인 (footgun)
 
 로컬에서 변경을 눈으로 확인하려면 **빌드가 선행**돼야 한다. `docker-compose.yml`이 다음을 강제한다:
 
 - 프론트: nginx가 `./frontend/dist:/usr/share/nginx/html:ro`를 마운트한다 — HMR이 아니라 빌드 산출물을 서빙한다. 프론트 변경 확인 전 반드시 `cd frontend && npm run build`(`.env.production`의 `VITE_API_URL=/api` 자동 적용). 소스만 고치고 빌드를 빼먹으면 `localhost:8080`은 옛 화면을 계속 보여준다.
 - 백엔드 데이터: `api`가 `./data:/app/data`를 마운트하므로 오버레이 JSON 변경은 재빌드 없이 반영되지만, 백엔드가 `@functools.lru_cache`로 기동 시 메모리 캐시한다(`CONVENTIONS.md` §3.1) → **`docker compose restart api`로 캐시를 비워야** 신규 데이터가 보인다. `docker compose up -d api`는 config 무변경 시 컨테이너를 재생성하지 않아 옛 데이터를 계속 서빙한다.
+- **라우트별 데이터 소스가 다르다**(task#236 학습): 인물 여정·투어·장소 라우트는 오버레이 JSON을 직독하므로 위의 `restart api`만으로 충분하지만, **전역 타임라인 `/events`는 Neo4j를 직접 읽는다**(`ORDER BY e.sortKey`) — `person_events` JSON을 교정해도 `restart api`로는 반영되지 않고 **`python3 backend/scripts/load_person_events.py` 재실행이 필수**다(멱등, `MERGE+SET`이라 재실행 안전). 연대 교정처럼 여러 라우트에 걸친 검증을 할 땐 라우트마다 데이터 소스(JSON 직독 vs Neo4j)를 먼저 확인한다(`.forge/retro/2026-07-22-person-chronology-audit.md`).
 - 백엔드 코드: 코드 변경은 이미지 재빌드 필요 — `docker compose up -d --build api`.
 - 브라우저 측 API 캐시(footgun 일부 해소): `frontend/src/api.js`의 `apiGet`이 모든 요청에 빌드 식별자 `?v=<BUILD_ID>`를 자동 부착해 배포 직후 브라우저가 `Cache-Control: max-age`가 걸린 옛 API 응답을 재사용하는 문제는 해소됐다. 남는 footgun은 백엔드 `lru_cache`(컨테이너 재기동 전까지 유지)뿐이다.
 - 로컬 개발 서버(선택): README는 `python3 -m uvicorn backend.app.main:app --reload`(:8000)와 `npm run dev`(:5173)도 안내하나, 배포본과 동형으로 확인하려면 위의 dist 마운트 경로(:8080)를 쓴다.
@@ -58,11 +69,11 @@ BibleMap이 정확성을 검증하는 방식. 이 프로젝트에는 **정식 �
 
 ---
 
-## 4. Playwright 화면 테스트
+## 5. Playwright 화면 테스트
 
 UI 동작 검증은 **Python Playwright**(sync API, `/opt/homebrew`에 설치)로 한다. 패턴: 네트워크 캡처 + 스크린샷으로 `localhost:8080`(또는 프로덕션 도메인)을 렌더 확인하고 **콘솔/네트워크 에러 0**을 확인한다. 프로덕션은 API `:8000`이 미노출이라 nginx `/api` 프록시를 거친다 — 검증도 `:8080` 기준.
 
-### 4.1 스크립트 구조 관례
+### 5.1 스크립트 구조 관례
 
 일회성 검증 스크립트는 `.forge/scratch/`에 둔다. 최근 관례는 **태스크별 하위 디렉터리**(`.forge/scratch/task202/`·`.forge/scratch/task203/`·`.forge/scratch/task210/`·`.forge/scratch/task211/`)에 스크립트와 스크린샷을 함께 모으는 것 — 전수 UAT `uat.py`, 개별 수정 검증 `*_verify.py`, 탐색용 `explore_*.py`/`debug*.py`가 공존한다. 스크린샷 산출물만 남고 검증 스크립트는 회수된 사례도 있다(`.forge/scratch/task210/`·`task211/`엔 데스크톱/모바일 스크린샷 6장씩만 잔존).
 
@@ -73,13 +84,14 @@ UI 동작 검증은 **Python Playwright**(sync API, `/opt/homebrew`에 설치)�
 - 시나리오 단계마다 `page.screenshot(path=...)` + `print`로 진행 방출. 사이트×뷰포트 전수 UAT는 `<site>-<viewport>.png`로 저장하고 **실패 시 `<site>-<viewport>-ERROR.png`**를 따로 남긴다.
 - 텍스트 특정 함정: "외 2권" 같은 부분 텍스트만으로 칩을 특정하면 같은 문구의 다른 행이 먼저 매치된다 — 사건명 등으로 **행을 먼저 특정한 뒤 행 내부에서** 클릭한다(`xpath=following::button[...]` 체이닝은 `uat.py` 참조).
 
-### 4.2 뷰포트 = 데스크톱 + 모바일
+### 5.2 뷰포트 = 데스크톱 + 모바일
 
 - 디자인/레이아웃 지적은 대개 실폰(배포본) 기준이므로 뷰포트를 먼저 확정하고 시나리오에 **모바일 폭을 반드시 포함**한다. 최근 실측 조합: 데스크톱 1280(×800/900) + 모바일 390~393. task#210(인용 관계 UI)·task#211(정경 순서 내비)도 각각 데스크톱/모바일 두 폭 스크린샷을 남겼다.
 - SPA 특성상 URL(딥링크)마다 **새 브라우저 컨텍스트**로 여는 것이 안전하다 — 같은 페이지에서 해시만 바꾸면 상태가 오염된다.
 - **모바일 전용 UI(바텀시트 등)의 UAT엔 "긴 콘텐츠 스크롤 후 조작" 케이스를 반드시 포함**한다 — 개폐·ESC만 확인한 전수 UAT가 통과하고도 스크롤 상호작용 결함이 실기기 피드백으로 돌아온 실사례가 있다. 터치 제스처는 Playwright 합성 디스패치에서 이벤트가 한 태스크에 몰려 state 클로저 레이스가 재현된다 — 판정 로직이 ref를 쓰는지 확인한다.
+- **정렬/그룹핑 UI 검증은 API assert(§2)만으론 불충분** — 데이터가 정합해도 화면 레이어의 렌더 순서가 뒤집힐 수 있다. 실사례(task#238): `TimelineView`가 `startDate`를 문자열 그대로 그룹핑해 표기 차이("0030" vs "30")만으로 같은 시점이 다른 그룹으로 갈라지며 sortKey 병합 순서가 화면에서 뒤집혔는데, API assert(정렬 자체는 통과)로는 안 잡히고 Playwright 스크린샷으로만 드러났다. 연대·순서가 걸린 검증엔 항상 실제 렌더 스크린샷을 포함한다.
 
-### 4.3 테마 검증 = localStorage `biblemap-theme` 주입
+### 5.3 테마 검증 = localStorage `biblemap-theme` 주입
 
 - 앱 테마는 CSS `prefers-color-scheme`이 아니라 localStorage `biblemap-theme` + `documentElement.dataset.theme`으로 구동된다(`frontend/src/main.jsx`, ADR-0020). 따라서 Playwright의 `color_scheme='light'`는 **무효** — 헛통과 footgun.
 - 라이트 테마 강제는 페이지 로드 전 init script로 키를 주입한다:
@@ -89,9 +101,9 @@ UI 동작 검증은 **Python Playwright**(sync API, `/opt/homebrew`에 설치)�
   ```
 - 테마가 얽힌 UI 변경은 두 테마 × 데스크톱/모바일 매트릭스로 스크린샷 검수한다.
 
-### 4.4 모션 검증 매트릭스 (ADR-0024)
+### 5.4 모션 검증 매트릭스 (ADR-0024)
 
-모션 토큰(`CONVENTIONS.md` §5.3) 도입 이후의 화면 검증은 §4.2~4.3의 테마×뷰포트 매트릭스에 **reduced-motion on/off** 축을 더한 3축 매트릭스로 짠다.
+모션 토큰(`CONVENTIONS.md` §5.3) 도입 이후의 화면 검증은 §5.2~5.3의 테마×뷰포트 매트릭스에 **reduced-motion on/off** 축을 더한 3축 매트릭스로 짠다.
 
 - Playwright의 `page.emulate_media(reduced_motion='reduce')`로 강제하고, 다크/라이트 × 데스크톱/모바일 × reduce on/off 조합을 화면별 판정 항목 단위로 통과시킨다.
 - 헤드리스 크로미움은 소프트웨어 GL(SwiftShader)로 렌더링해 MapLibre 캔버스 위 오버레이가 부분 페인트되는 아티팩트를 낼 수 있어 앱 버그로 오인하기 쉽다. `chromium.launch(args=["--enable-gpu", "--use-angle=metal"])`(macOS 기준) 같은 GPU 플래그 A/B 비교를 최우선 1분 테스트로 돌려 환경 아티팩트인지 앱 회귀인지부터 가른다.
@@ -100,27 +112,29 @@ UI 동작 검증은 **Python Playwright**(sync API, `/opt/homebrew`에 설치)�
 - reduced-motion 판정은 **토큰 붕괴(1ms) 직후 최소 1프레임 뒤에 샘플링**한다 — 같은 프레임에서 즉시 읽으면 전환이 끝나기 전 값을 관측해 오탐할 수 있다.
 - 세션 1회 재생 스태거(카드 `card-in`·책 펼침 `book-open`)는 같은 브라우저 컨텍스트에서 페이지에 두 번 진입시켜, 두 번째 진입에 해당 클래스/애니메이션이 재생되지 않음을 확인한다.
 
-### 4.5 저작 검증 흐름 예
+### 5.5 저작 검증 흐름 예
 
 `data/person_relations/AUTHORING.md` §8: `/api/persons/curated`로 node_id 확보 → `/api/person/{node_id}/relations`가 국면을 반환하는지 확인 → Playwright로 화면 렌더 확인. 인용 관계(task#209/210)도 동형: `/api/book/{id}/quotations`(또는 대응 엔드포인트)로 데이터 반환 확인 → SidePanel 인용 섹션 렌더를 Playwright로 확인.
 
 ---
 
-## 5. 저작 → 검증 파이프라인 (정본 순서)
+## 6. 저작 → 검증 파이프라인 (정본 순서)
 
 `data/person_relations/AUTHORING.md` §8이 정리한, 저작 후 반드시 밟는 순서:
 
 1. `python3 backend/scripts/generate_verse_text.py` — 멱등, 본문+문맥 프리베이크(getbible UA 우회 내장).
 2. (아이콘/프론트 자원 추가 시) `cd frontend && npm run build` — dist 마운트라 빌드 필수.
-3. `docker compose restart api` — lru_cache 캐시 비우기(위 §3).
+3. `docker compose restart api` — lru_cache 캐시 비우기(위 §4). 단, 전역 타임라인 `/events` 등 Neo4j 직독 라우트를 검증할 땐 restart로 부족할 수 있다 — 아래 재적재 순서와 §4의 라우트별 데이터 소스 footgun 참조.
 4. API 엔드포인트로 데이터 반환 확인.
 5. Playwright로 `localhost:8080` 렌더 확인, 콘솔/네트워크 에러 0.
 
-성품·연대·의존도·인용·장 개요/묶음 같은 규칙 데이터는 이 앞에 해당 `validate_*.py`(위 §1)를 돌려 위반 0을 확인한 뒤 반영한다. 단어 분포는 `build_word_distribution.py`(자체 게이트, 위 §2)로 정본을 재산출한 뒤 3~5를 밟는다. 그래프 초기화 후 재적재 시엔 `load_theographic.py` 다음에 `load_authored_genealogy.py`·`load_authored_mothers.py`도 재실행해야 저작 간선이 복원된다.
+성품·연대·의존도·인용·장 개요/묶음 같은 규칙 데이터는 이 앞에 해당 `validate_*.py`(위 §1)를 돌려 위반 0을 확인한 뒤 반영한다. 단어 분포는 `build_word_distribution.py`(자체 게이트, 위 §3)로 정본을 재산출한 뒤 3~5를 밟는다.
+
+그래프 초기화 후 재적재 순서(README 기준): `load_theographic.py` → `inject_ko_names.py` → `inject_date_corrections.py` → `load_authored_genealogy.py`·`load_authored_mothers.py`(저작 간선 복원) → `load_person_events.py`(person_events 저작 간선·연대가 `/events` 등 Neo4j 직독 라우트에 반영되려면 필수, 위 §4 참조). **이 순서를 생략하면 무음으로 원복된다**(task#238 실사례: `load_theographic.py` 재적재 후 `inject_date_corrections.py`를 건너뛰어 이전에 교정했던 값이 업스트림 원본값으로 되돌아가 있었음, 이번 inject가 재적용해서야 발견) — inject 계열은 순서상 항상 로더 재실행 **다음**에 온다.
 
 ---
 
-## 6. CI / 배포 게이트
+## 7. CI / 배포 게이트
 
 - `.github/workflows/deploy.yml` — `main` push 시 self-hosted 러너에서 `git reset --hard origin/main` 후 `bash deploy.sh`. **테스트 스텝은 없다** — 검증은 저작 시점의 `validate_*`·Playwright에 위임한다.
 - `deploy.sh` 게이트: ① `npm install` + `npm run build`(프론트) ② `docker compose build api` ③ `docker compose up -d api nginx` ④ `inject_ko_names.py`를 Neo4j 준비까지 최대 15회 재시도하고, 끝내 실패하면 배포를 `exit 1`로 중단한다. lock 파일로 동시 배포를 막는다. `deploy.sh`는 `load_*`를 실행하지 않는다 — 그래프 적재는 저작 시점 수동.
