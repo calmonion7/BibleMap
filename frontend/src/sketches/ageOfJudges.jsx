@@ -549,24 +549,620 @@ function GazaDeathScene({ reduce }) {
   )
 }
 
+// 벧엘의 재판석 (삿 4:4-5)
+function DeborahJudgingScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        {/* 압제의 원경 — 야빈의 병거 그림자 */}
+        <circle cx="104" cy="49.5" r="2.6" {...sw(1.3, 0.35)} />
+        <path d="M104 46 v7 M100.5 49.5 h7" {...sw(1.3, 0.35)} />
+      </g>
+      {/* 드보라의 종려나무 */}
+      <g style={d(900, reduce)}>
+        <path d="M40 54 q-1 -10 1 -18" {...sw(2)} />
+        <path d="M41 36 q-7 -4 -12 -2 M41 36 q-7 1 -11 6 M41 36 q6 -5 12 -3 M41 36 q7 0 11 5 M41 36 q1 -6 -2 -10 M41 36 q3 -5 7 -8" {...sw(1.4, 0.75)} />
+      </g>
+      {/* 앉은 드보라 — 재판석 */}
+      <g style={d(1800, reduce)}>
+        <circle cx="40" cy="44" r="2.6" {...sw(2.4)} />
+        <path d="M40 46.6 q-0.5 4 0 7.4 M37 54 q3 -3 6 0" {...sw(2.4)} />
+        <path d="M37.5 48 q-2.5 1 -3 3.5" {...sw(1.8)} />
+      </g>
+      {/* 재판을 구하는 자 */}
+      <g style={d(2700, reduce)}>
+        <circle cx="70" cy="46" r="2.2" {...sw(1.8, 0.85)} />
+        <path d="M67 54 l1.7 -6 h3 l1.7 6" {...sw(1.8, 0.85)} />
+      </g>
+      <Label x="40" y="34" at="2.3" reduce={reduce}>드보라의 종려나무</Label>
+      <Label x="70" y="38" at="3.2" reduce={reduce} size="4.2">재판을 구하는 자</Label>
+    </g>
+  )
+}
+
+// 바락을 세움 (삿 4:6-9)
+function DeborahSummonsScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M84 54 q10 -14 24 0" {...sw(1.2, 0.45)} />
+      </g>
+      {/* 드보라 — 명을 전하다, 팔을 뻗음 */}
+      <g style={d(900, reduce)}>
+        <circle cx="34" cy="35" r="2.8" {...sw(2.5)} />
+        <path d="M34 37.8 v11 M30.5 54 l3.5 -6.6 l3.5 6.6" {...sw(2.5)} />
+        <path d="M36.5 40 q6 -1 10 2" {...sw(2.2)} />
+      </g>
+      {/* 바락 — 머뭇거림 */}
+      <g style={d(1900, reduce)}>
+        <circle cx="60" cy="37" r="2.7" {...sw(2.2, 0.9)} />
+        <path d="M60 39.7 v9.8 M56.7 54 l3.3 -6.5 l3.3 6.5" {...sw(2.2, 0.9)} />
+        <path d="M58 42 q-2.5 1.5 -3 4" {...sw(1.7, 0.85)} />
+      </g>
+      <g style={d(reduce ? 0 : 2900, reduce)} stroke="var(--paper-accent)">
+        <path d="M55 26 v-3 m-1.5 1.5 h3" {...sw(1.4)} />
+      </g>
+      <Label x="34" y="25" at="1.8" reduce={reduce}>드보라</Label>
+      <Label x="60" y="27" at="2.8" reduce={reduce}>바락</Label>
+    </g>
+  )
+}
+
+// 야엘의 장막 (삿 4:17-22)
+function JaelTentScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        {/* 장막 */}
+        <path d="M70 54 l14 -16 l14 16 M76 54 v-9 M92 54 v-9" {...sw(2.2)} />
+      </g>
+      {/* 누운 시스라 — 지친 패주자 */}
+      <g style={d(1000, reduce)}>
+        <path d="M74 49 h13 M74 49 q-1.5 0 -1.5 2 t1.5 2 M87 49 q1 2 -1 4" {...sw(2.3)} />
+      </g>
+      {/* 야엘 — 곁에 서다 */}
+      <g style={d(2000, reduce)}>
+        <circle cx="60" cy="38" r="2.7" {...sw(2.4)} />
+        <path d="M60 40.7 v9.3 M56.8 54 l3.2 -6 l3.2 6" {...sw(2.4)} />
+        <path d="M62 41 q4 -1 6 2" {...sw(2)} />
+      </g>
+      {/* 장막 말뚝 — 핵심 */}
+      <g style={d(2800, reduce)} stroke="var(--paper-accent)">
+        <path d="M66 40 l4 4" {...sw(2.4)} />
+      </g>
+      <Label x="60" y="28" at="2.3" reduce={reduce}>야엘</Label>
+      <Label x="80" y="60" at="3.1" reduce={reduce} size="4.2">여인의 손에 파하시다</Label>
+    </g>
+  )
+}
+
+// 드보라의 노래 (삿 5장)
+function DeborahSongScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M10 16 q18 6 34 3 M76 14 q18 5 34 9" {...sw(1.1, 0.4)} />
+      </g>
+      {/* 드보라 — 찬양, 팔을 들다 */}
+      <g style={d(1000, reduce)}>
+        <circle cx="46" cy="33" r="2.8" {...sw(2.5)} />
+        <path d="M46 35.8 v11.2 M42.5 54 l3.5 -7 l3.5 7" {...sw(2.5)} />
+        <path d="M46 37 q-4.5 -3 -5.5 -7.5 M46 37 q4.5 -3 5.5 -7.5" {...sw(2.2)} />
+      </g>
+      {/* 바락 — 함께 찬양 */}
+      <g style={d(2000, reduce)}>
+        <circle cx="60" cy="35" r="2.6" {...sw(2.2, 0.9)} />
+        <path d="M60 37.6 v9.4 M57 54 l3 -7 l3 7" {...sw(2.2, 0.9)} />
+        <path d="M60 39 q-4 -2.5 -5 -6.5 M60 39 q4 -2.5 5 -6.5" {...sw(1.8, 0.85)} />
+      </g>
+      {/* 노래의 표 — 오르는 소리 */}
+      <g style={d(2900, reduce)} stroke="var(--paper-accent)">
+        <path d="M52 20 q1 -3 0 -5 M56 18 q1 -3 0 -5" {...sw(1.4)} />
+      </g>
+      <Label x="53" y="24" at="2.3" reduce={reduce}>드보라와 바락의 노래</Label>
+      <Label x="53" y="60" at="3.3" reduce={reduce} size="4.2">사십 년의 평온</Label>
+    </g>
+  )
+}
+
+// 양털 표징 (삿 6:36-40)
+function GideonFleeceScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+      </g>
+      {/* 양털 — 땅 위에 놓이다 */}
+      <g style={d(900, reduce)}>
+        <path d="M38 54 q-4 -0.5 -4 -3.5 q0 -3 4 -3 q1 -2 4 -1 q3 -1.5 5 0.5 q3 -1 4 1.5 q0.5 3 -3 3.5 q0 2.5 -3 2.5 q-4 0.5 -7 -0.5" {...sw(2.2)} />
+      </g>
+      {/* 이슬 방울 — 마른 땅 위 */}
+      <g style={d(1700, reduce)}>
+        <path d="M30 51 q0.5 -1.3 1 0 q0.5 1.3 -0.5 1.4 q-1 -0.1 -0.5 -1.4 M58 50 q0.5 -1.3 1 0 q0.5 1.3 -0.5 1.4 q-1 -0.1 -0.5 -1.4" {...sw(1.3, 0.7)} />
+      </g>
+      {/* 기드온 — 짜내는 웅크림 */}
+      <g style={d(2500, reduce)}>
+        <circle cx="66" cy="41" r="2.6" {...sw(2.4)} />
+        <path d="M66 43.6 q-1.5 3 -1 5.4 M62 51 h7" {...sw(2.4)} />
+        <path d="M63.5 44.5 l-6 3 M56 49 l-2.5 -1.2" {...sw(2)} />
+      </g>
+      {/* 그릇 — 짜낸 물 한 그릇 */}
+      <g style={d(reduce ? 0 : 3200, reduce)}>
+        <path d="M48 52 q3 2 6 0" {...sw(1.6)} />
+      </g>
+      <Label x="46" y="34" at="1.7" reduce={reduce}>양털</Label>
+      <Label x="66" y="30" at="2.9" reduce={reduce}>기드온</Label>
+    </g>
+  )
+}
+
+// 숙곳의 냉대 (삿 8:4-9)
+function GideonSuccothScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        {/* 요단 강 물결 */}
+        <path d="M10 50 q6 -2.5 12 0 q6 -2.5 12 0" {...sw(1.7, 0.7)} />
+      </g>
+      {/* 지친 삼백 — 행군 */}
+      <g transform={reduce ? 'translate(8 0)' : undefined} style={d(1000, reduce)}>
+        <circle cx="42" cy="45" r="2.3" {...sw(2, 0.9)} />
+        <path d="M39.2 54 l1.7 -6.6 h3 l1.7 6.6" {...sw(2, 0.9)} />
+        <path d="M52 47 l7 -3 M54 44 l6 -2.5" {...sw(1.7, 0.75)} />
+        {!reduce && (
+          <animateTransform attributeName="transform" type="translate" from="0 0" to="8 0"
+            begin="2.6s" dur="1.2s" fill="freeze" />
+        )}
+      </g>
+      {/* 숙곳 방백들 — 등 돌림 */}
+      <g style={d(2000, reduce)}>
+        <circle cx="86" cy="42" r="2.6" {...sw(2.2)} />
+        <path d="M83 54 l1.9 -8.5 h3.4 l1.9 8.5 M89 45 q2.5 0.5 3 2.5" {...sw(2.2)} />
+        <circle cx="98" cy="43" r="2.4" {...sw(2, 0.9)} />
+        <path d="M95.3 54 l1.8 -7.5 h3 l1.8 7.5" {...sw(2, 0.9)} />
+      </g>
+      {/* 거절당한 떡 */}
+      <g style={d(2800, reduce)}>
+        <path d="M78 52 q3 -1.5 6 0 q1.5 1.5 -0.5 2.5 h-5 q-2 -1 -0.5 -2.5" {...sw(1.8)} />
+      </g>
+      <Label x="42" y="35" at="1.7" reduce={reduce}>지친 삼백</Label>
+      <Label x="92" y="32" at="2.7" reduce={reduce}>숙곳의 방백들</Label>
+    </g>
+  )
+}
+
+// 브누엘 추격 (삿 8:10-21)
+function GideonPenuelScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M8 46 q10 -6 20 -1" {...sw(1.1, 0.4)} />
+      </g>
+      {/* 사로잡힌 두 왕 — 결박 */}
+      <g style={d(1000, reduce)}>
+        <circle cx="72" cy="45" r="2.3" {...sw(2, 0.9)} />
+        <path d="M70 54 l1.5 -6.5 h2.6 l1.5 6.5 M70.5 49 h3.5" {...sw(2, 0.9)} />
+        <circle cx="84" cy="45.5" r="2.2" {...sw(1.9, 0.85)} />
+        <path d="M82 54 l1.4 -6 h2.4 l1.4 6 M82.5 49.5 h3" {...sw(1.9, 0.85)} />
+      </g>
+      {/* 기드온 — 원수를 갚다 */}
+      <g style={d(2000, reduce)}>
+        <circle cx="46" cy="33" r="2.9" {...sw(2.6)} />
+        <path d="M46 35.9 v10.6 M42.5 54 l3.5 -7.5 l3.5 7.5" {...sw(2.6)} />
+        <path d="M48.5 40 l4.5 -6 M48 39.5 h4" {...sw(2.2)} />
+      </g>
+      <Label x="46" y="25" at="2.3" reduce={reduce}>기드온</Label>
+      <Label x="78" y="35" at="1.7" reduce={reduce}>세바와 살문나</Label>
+      <Label x="46" y="60" at="3" reduce={reduce} size="4.2">다볼의 형제들, 원수를 갚다</Label>
+    </g>
+  )
+}
+
+// 타작마당의 밤 (룻 3장)
+function RuthThreshingScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        {/* 밤 — 달 */}
+        <path d="M96 14 q4 -3 8 0 q-2 4 -8 0" {...sw(1.6, 0.7)} />
+      </g>
+      {/* 타작마당 — 곡식 더미 */}
+      <g style={d(900, reduce)}>
+        <path d="M60 54 q-6 0 -6 -5 q0 -4 6 -4 q6 -1 6 4 q0 5 -6 5" {...sw(1.8, 0.8)} />
+      </g>
+      {/* 잠든 보아스 */}
+      <g style={d(1800, reduce)}>
+        <path d="M40 50 h20 M40 50 q-1.5 0 -1.5 2 t1.5 2 M60 50 q1.5 0 1.5 2 t-1.5 2" {...sw(2.4)} />
+        <circle cx="38" cy="48" r="2.3" {...sw(2.4)} />
+      </g>
+      {/* 룻 — 발치에 눕다 */}
+      <g style={d(2600, reduce)}>
+        <path d="M62 52 h12 M62 52 q-1.2 0 -1.2 1.6 t1.2 1.6" {...sw(2)} />
+        <circle cx="76" cy="51" r="1.9" {...sw(2)} />
+      </g>
+      <Label x="38" y="38" at="1.9" reduce={reduce}>보아스</Label>
+      <Label x="76" y="42" at="2.9" reduce={reduce}>룻</Label>
+      <Label x="60" y="61" at="3.2" reduce={reduce} size="4.2">옷자락으로 덮으소서</Label>
+    </g>
+  )
+}
+
+// 사무엘의 봉헌 (삼상 1장)
+function SamuelDedicationScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        {/* 실로 성막 */}
+        <path d="M80 54 v-14 h26 v14 M84 40 h18" {...sw(1.6, 0.6)} />
+      </g>
+      {/* 한나 — 아이를 이끌다 */}
+      <g style={d(1000, reduce)}>
+        <circle cx="28" cy="35" r="2.8" {...sw(2.4)} />
+        <path d="M28 37.8 v11 M24.5 54 l3.5 -6.6 l3.5 6.6" {...sw(2.4)} />
+        <path d="M30.5 42 q3.5 1 5 3.5" {...sw(1.9)} />
+      </g>
+      {/* 어린 사무엘 */}
+      <g style={d(1900, reduce)}>
+        <circle cx="40" cy="45" r="1.8" {...sw(1.9)} />
+        <path d="M40 46.8 v5.7 M37.6 54 l2.4 -4.2 l2.4 4.2" {...sw(1.9)} />
+      </g>
+      {/* 엘리 — 받아들이다 */}
+      <g style={d(2700, reduce)}>
+        <circle cx="60" cy="34" r="2.9" {...sw(2.2, 0.9)} />
+        <path d="M60 36.9 v10.5 M56.5 54 l3.5 -6.6 l3.5 6.6" {...sw(2.2, 0.9)} />
+        <path d="M57.5 41 q-3.5 1 -5 3.5" {...sw(1.7, 0.85)} />
+      </g>
+      <Label x="28" y="25" at="1.7" reduce={reduce}>한나</Label>
+      <Label x="60" y="24" at="3" reduce={reduce}>엘리</Label>
+      <Label x="40" y="58" at="2.4" reduce={reduce} size="4.2">평생을 여호와께 드리다</Label>
+    </g>
+  )
+}
+
+// 사무엘의 부르심 (삼상 3장)
+function SamuelCallingScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M100 14 q4 -3 8 0 q-2 4 -8 0" {...sw(1.6, 0.7)} />
+      </g>
+      {/* 누운 소년 사무엘 */}
+      <g style={d(1000, reduce)}>
+        <path d="M36 50 h18 M36 50 q-1.4 0 -1.4 1.8 t1.4 1.8" {...sw(2.4)} />
+        <circle cx="34" cy="47.5" r="2" {...sw(2.4)} />
+      </g>
+      {/* 부르시는 음성 — 세 번 */}
+      <g style={d(1900, reduce)} stroke="var(--paper-accent)">
+        <path d="M60 34 q4 -1 7 0.5 M60 38 q4 -1 7 0.5 M60 42 q4 -1 7 0.5" {...sw(1.4, 0.8)} />
+      </g>
+      {/* 엘리에게 달려가 응답 */}
+      <g style={d(2700, reduce)}>
+        <circle cx="90" cy="33" r="2.8" {...sw(2.1, 0.9)} />
+        <path d="M90 35.8 v10.6 M86.6 54 l3.4 -7.6 l3.4 7.6" {...sw(2.1, 0.9)} />
+        <path d="M87.5 40 q-3.5 1 -5 3.5" {...sw(1.6, 0.85)} />
+      </g>
+      <Label x="34" y="41" at="1.7" reduce={reduce}>어린 사무엘</Label>
+      <Label x="90" y="24" at="2.9" reduce={reduce}>엘리</Label>
+      <Label x="60" y="60" at="3.2" reduce={reduce} size="4.2">말씀하옵소서 듣겠나이다</Label>
+    </g>
+  )
+}
+
+// 돕 땅의 추방자 (삿 11:1-3)
+function JephthahExileScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+      </g>
+      {/* 형제들 — 내쫓다 */}
+      <g style={d(900, reduce)}>
+        <circle cx="30" cy="34" r="2.6" {...sw(2.1, 0.9)} />
+        <path d="M30 36.6 v10 M26.7 54 l3.3 -7.4 l3.3 7.4" {...sw(2.1, 0.9)} />
+        <path d="M32.5 40 q4 0 6 -2" {...sw(1.7, 0.85)} />
+        <circle cx="18" cy="35.5" r="2.4" {...sw(2, 0.85)} />
+        <path d="M15 54 l1.8 -9.5 h3 l1.8 9.5" {...sw(2, 0.85)} />
+      </g>
+      {/* 떠나는 입다 */}
+      <g transform={reduce ? 'translate(38 0)' : undefined} style={d(1800, reduce)}>
+        <circle cx="54" cy="33" r="2.8" {...sw(2.4)} />
+        <path d="M54 35.8 v10.4 M50.6 54 l3.4 -7.4 l3.4 7.4" {...sw(2.4)} />
+        {!reduce && (
+          <animateTransform attributeName="transform" type="translate" from="0 0" to="40 0"
+            begin="2.7s" dur="1.6s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.7 1" keyTimes="0;1" />
+        )}
+      </g>
+      {/* 돕 땅 잡류 — 우두머리 */}
+      <g style={d(2900, reduce)}>
+        <circle cx="100" cy="42" r="2" {...sw(1.7, 0.75)} />
+        <path d="M98 54 l1.4 -8 h2.4 l1.4 8" {...sw(1.7, 0.75)} />
+        <circle cx="108" cy="44" r="1.8" {...sw(1.5, 0.65)} />
+        <path d="M106.3 54 l1.2 -7 h2 l1.2 7" {...sw(1.5, 0.65)} />
+      </g>
+      <Label x="24" y="26" at="1.6" reduce={reduce}>형제들이 내쫓다</Label>
+      <Label x="98" y="34" at="3.1" reduce={reduce}>돕 땅의 잡류</Label>
+    </g>
+  )
+}
+
+// 쉽볼렛 (삿 12장)
+function ShibbolethScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        {/* 요단 나루 */}
+        <path d="M46 54 q7 -3 14 0 q7 -3 14 0" {...sw(2, 0.75)} />
+      </g>
+      {/* 나루를 막은 길르앗 사람 */}
+      <g style={d(1000, reduce)}>
+        <circle cx="40" cy="36" r="2.8" {...sw(2.4)} />
+        <path d="M40 38.8 v9.6 M36.6 54 l3.4 -5.6 l3.4 5.6" {...sw(2.4)} />
+        <path d="M42.5 42 l6 -1" {...sw(2)} />
+      </g>
+      {/* 건너려는 에브라임 사람 */}
+      <g transform={reduce ? 'translate(-4 1)' : undefined} style={d(2000, reduce)}>
+        <circle cx="74" cy="38" r="2.6" {...sw(2, 0.85)} />
+        <path d="M74 40.6 v8.4 M71 54 l3 -5 l3 5" {...sw(2, 0.85)} />
+        <path d="M71.5 43 q-3 0.5 -5 -0.5" {...sw(1.6, 0.7)} />
+        {!reduce && (
+          <animateTransform attributeName="transform" type="translate" from="0 0" to="-4 1"
+            begin="3s" dur="0.6s" fill="freeze" />
+        )}
+      </g>
+      <g style={d(reduce ? 0 : 2900, reduce)} stroke="var(--paper-accent)">
+        <path d="M54 26 h3 m2.5 0 h3" {...sw(1.6)} />
+      </g>
+      <Label x="55" y="22" at="3.1" reduce={reduce}>쉽볼렛</Label>
+      <Label x="40" y="27" at="1.7" reduce={reduce}>길르앗 사람</Label>
+      <Label x="80" y="60" at="2.7" reduce={reduce} size="4.2">사만 이천 명이 엎드러지다</Label>
+    </g>
+  )
+}
+
+// 딤나의 수수께끼 (삿 14장)
+function SamsonRiddleScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+      </g>
+      {/* 사자 — 찢기다 */}
+      <g style={d(900, reduce)}>
+        <path d="M20 54 q-3 -1 -3 -4 q0 -3 3 -3 q1 -2.5 4 -1.5 q1 -3 4 -0.5 q3 0 2 3 q2 1.5 -0.5 3.5 q0.5 3 -3 2.5 q-3.5 1 -6.5 -0.5" {...sw(2.3)} />
+      </g>
+      {/* 삼손 — 맨손으로 */}
+      <g style={d(1800, reduce)}>
+        <circle cx="40" cy="34" r="3" {...sw(2.6)} />
+        <path d="M40 37 v9 M36.5 54 l3.5 -8 l3.5 8" {...sw(2.6)} />
+        <path d="M37 40 l-9 6 M28.5 46 l7 0" {...sw(2.3)} />
+      </g>
+      {/* 꿀 — 사자 몸의 벌집 */}
+      <g style={d(2600, reduce)}>
+        <path d="M18 50 q1.5 -2 3 0 q1.5 -2 3 0" {...sw(1.4, 0.7)} />
+      </g>
+      {/* 혼인 잔치 — 눈물의 신부 */}
+      <g style={d(3200, reduce)}>
+        <circle cx="90" cy="36" r="2.6" {...sw(2, 0.85)} />
+        <path d="M90 38.6 v9.4 M86.6 54 l3.4 -6 l3.4 6" {...sw(2, 0.85)} />
+        <path d="M88.5 41 q1 1.5 0.3 3" {...sw(1.2, 0.6)} />
+      </g>
+      <Label x="40" y="24" at="2.4" reduce={reduce}>삼손</Label>
+      <Label x="90" y="26" at="3.6" reduce={reduce}>눈물의 신부</Label>
+      <Label x="24" y="60" at="1.6" reduce={reduce} size="4.2">먹는 자에게서 먹는 것이 나오다</Label>
+    </g>
+  )
+}
+
+// 레히의 턱뼈 (삿 15장)
+function SamsonJawboneScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+      </g>
+      {/* 끊어지는 밧줄 */}
+      <g style={d(900, reduce)}>
+        <path d="M36 44 q3 -2 6 0 M36 48 q3 -2 6 0" {...sw(1.6, 0.7)} />
+      </g>
+      {/* 삼손 — 턱뼈를 들다 */}
+      <g style={d(1700, reduce)}>
+        <circle cx="46" cy="33" r="3" {...sw(2.6)} />
+        <path d="M46 36 v10 M42.5 54 l3.5 -8 l3.5 8" {...sw(2.6)} />
+        <path d="M49 38 l7 -6" {...sw(2.3)} />
+        <g transform={reduce ? 'rotate(-25 58 33)' : undefined}>
+          <path d="M56 32 q3 -1 5 1 q0.5 2 -2 2.5 q-3 0.5 -3 -3.5" {...sw(2.4)} stroke="var(--paper-accent)" />
+          {!reduce && (
+            <animateTransform attributeName="transform" type="rotate" from="0 58 33" to="-25 58 33"
+              begin="2.6s" dur="0.5s" fill="freeze" />
+          )}
+        </g>
+      </g>
+      {/* 쓰러진 자들 */}
+      <g style={d(2600, reduce)}>
+        <path d="M78 52 h9 M78 52 q-1.2 0 -1.2 1.6 t1.2 1.6 M96 51 h8 M96 51 q-1.1 0 -1.1 1.5 t1.1 1.5" {...sw(1.7, 0.7)} />
+      </g>
+      {/* 엔학고레 샘 — 목마름의 응답 */}
+      <g style={d(3300, reduce)}>
+        <path d="M46 54 q0 -3 2 -3 q2 0 2 3" {...sw(1.6)} />
+      </g>
+      <Label x="46" y="24" at="2.1" reduce={reduce}>나귀 턱뼈</Label>
+      <Label x="46" y="60" at="3.5" reduce={reduce} size="4.2">엔학고레 — 부르짖음에 응답한 샘</Label>
+    </g>
+  )
+}
+
+// 가사 성문 (삿 16:1-3)
+function SamsonGateScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        {/* 헤브론 앞산 원경 */}
+        <path d="M84 54 q10 -14 24 0" {...sw(1.2, 0.45)} />
+        <path d="M96 12 q4 -3 8 0 q-2 4 -8 0" {...sw(1.4, 0.6)} />
+      </g>
+      {/* 성문 — 빗장째 들어 올리다 */}
+      <g transform={reduce ? 'translate(0 -20)' : undefined} style={d(1000, reduce)}>
+        <path d="M34 54 v-16 h24 v16 M34 46 h24" {...sw(2.4)} />
+        {!reduce && (
+          <animateTransform attributeName="transform" type="translate" from="0 0" to="0 -20"
+            begin="2.6s" dur="1s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.7 1" keyTimes="0;1" />
+        )}
+      </g>
+      {/* 삼손 — 짊어지다 */}
+      <g style={d(1900, reduce)}>
+        <circle cx="46" cy="35" r="3" {...sw(2.6)} />
+        <path d="M46 38 v9 M42.5 54 l3.5 -7 l3.5 7" {...sw(2.6)} />
+        <path d="M43 40 q-3 -2 -4 -4.5 M49 40 q3 -2 4 -4.5" {...sw(2.3)} />
+      </g>
+      <Label x="46" y="25" at="2.2" reduce={reduce}>삼손</Label>
+      <Label x="46" y="60" at="3" reduce={reduce} size="4.2">성문을 빗장째 메고 오르다</Label>
+    </g>
+  )
+}
+
+// 에벤에셀 (삼상 7장)
+function SamuelMizpahVictoryScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+      </g>
+      {/* 금식하며 자백하는 백성 */}
+      <g style={d(900, reduce)}>
+        <circle cx="26" cy="46" r="2.2" {...sw(1.9, 0.85)} />
+        <path d="M23.5 54 l1.4 -6 h2.2 l1.4 6" {...sw(1.9, 0.85)} />
+        <circle cx="36" cy="45.5" r="2" {...sw(1.7, 0.75)} />
+        <path d="M33.8 54 l1.3 -6.5 h2 l1.3 6.5" {...sw(1.7, 0.75)} />
+      </g>
+      {/* 진격하는 블레셋 — 흩어지다 */}
+      <g transform={reduce ? 'translate(10 4)' : undefined} style={d(1800, reduce)}>
+        <path d="M76 48 l8 -4 M80 46 l7 -3.5" {...sw(2, 0.8)} />
+        {!reduce && (
+          <animateTransform attributeName="transform" type="translate" from="0 0" to="10 4"
+            begin="3s" dur="0.9s" fill="freeze" />
+        )}
+      </g>
+      {/* 큰 우레 */}
+      <g style={d(2400, reduce)} stroke="var(--paper-accent)">
+        <path d="M70 14 l-3 6 h4 l-3 6" {...sw(2.2)} />
+      </g>
+      {/* 에벤에셀 돌 */}
+      <g style={d(3300, reduce)}>
+        <path d="M54 54 v-9 q0 -2.5 3 -2.5 q3 0 3 2.5 v9" {...sw(2)} />
+      </g>
+      <Label x="30" y="37" at="1.7" reduce={reduce} size="4.2">범죄하였나이다</Label>
+      <Label x="57" y="61" at="3.5" reduce={reduce}>에벤에셀</Label>
+    </g>
+  )
+}
+
+// 순회 재판 (삼상 7:15-17)
+function SamuelCircuitScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        {/* 순회 길 */}
+        <path d="M18 50 q20 -10 40 0 q20 -10 40 0" {...sw(1.3, 0.5)} />
+      </g>
+      {/* 세 성읍 표지 */}
+      <g style={d(900, reduce)}>
+        <path d="M18 54 v-4 h4 v4 M56 54 v-5 h4 v5 M94 54 v-4 h4 v4" {...sw(1.7, 0.7)} />
+      </g>
+      {/* 사무엘 — 순회하는 재판자 */}
+      <g transform={reduce ? 'translate(88 0)' : undefined} style={d(1900, reduce)}>
+        <circle cx="20" cy="40" r="2.7" {...sw(2.4)} />
+        <path d="M20 42.7 v9.8 M16.6 54 l3.4 -6.6 l3.4 6.6" {...sw(2.4)} />
+        {!reduce && (
+          <animateTransform attributeName="transform" type="translate" from="0 0" to="90 0"
+            begin="2.8s" dur="2.4s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.7 1" keyTimes="0;1" />
+        )}
+      </g>
+      <Label x="18" y="45" at="1.6" reduce={reduce}>벧엘·길갈·미스바</Label>
+      <Label x="100" y="60" at="3" reduce={reduce} size="4.2">라마로 돌아오다</Label>
+    </g>
+  )
+}
+
+// 나욧의 학교 (삼상 19장)
+function SamuelRamahSchoolScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+      </g>
+      {/* 사무엘 — 가르치다 */}
+      <g style={d(900, reduce)}>
+        <circle cx="34" cy="33" r="2.9" {...sw(2.5)} />
+        <path d="M34 35.9 v11 M30.5 54 l3.5 -7.4 l3.5 7.4" {...sw(2.5)} />
+        <path d="M36.5 40 q4 0 6 2" {...sw(2)} />
+      </g>
+      {/* 생도들 — 둘러앉다 */}
+      <g style={d(1800, reduce)}>
+        <circle cx="58" cy="45" r="2" {...sw(1.7, 0.8)} />
+        <path d="M56 54 q0 -5 2 -6 q2 1 2 6" {...sw(1.7, 0.8)} />
+        <circle cx="70" cy="46" r="1.9" {...sw(1.6, 0.75)} />
+        <path d="M68.2 54 q0 -4.5 1.8 -5.5 q1.8 1 1.8 5.5" {...sw(1.6, 0.75)} />
+        <circle cx="82" cy="45.5" r="1.9" {...sw(1.6, 0.7)} />
+        <path d="M80.2 54 q0 -4.5 1.8 -5.5 q1.8 1 1.8 5.5" {...sw(1.6, 0.7)} />
+      </g>
+      {/* 두루마리 */}
+      <g style={d(2700, reduce)}>
+        <path d="M42 49 q3 -1 6 0" {...sw(1.4, 0.65)} />
+      </g>
+      <Label x="34" y="24" at="1.7" reduce={reduce}>사무엘</Label>
+      <Label x="70" y="38" at="2.6" reduce={reduce} size="4.2">라마 나욧의 선지자 생도들</Label>
+    </g>
+  )
+}
+
 const SCENES = {
+  'authored-deborah-bethel-judging': { Scene: DeborahJudgingScene, desc: '종려나무 아래 드보라가 이스라엘을 재판하다', caption: '재판 — 사사기 4장' },
+  'authored-deborah-kedesh-summons': { Scene: DeborahSummonsScene, desc: '드보라가 바락을 불러 다볼산 진군을 명하다', caption: '부름 — 사사기 4장' },
   'authored-deborah-tabor-muster': { Scene: TaborMusterScene, desc: '다볼산에 만 명이 진을 치다', caption: '집결 — 사사기 4장' },
   'authored-deborah-kishon-victory': { Scene: KishonVictoryScene, desc: '기손 강이 시스라의 병거를 휩쓸다', caption: '기손 강 — 사사기 4장' },
+  'authored-deborah-kedesh-jael': { Scene: JaelTentScene, mood: 'dark', desc: '야엘의 장막 말뚝으로 시스라를 파하다', caption: '야엘의 장막 — 사사기 4장' },
+  'authored-deborah-song': { Scene: DeborahSongScene, desc: '드보라와 바락이 승리를 노래로 돌리다', caption: '드보라의 노래 — 사사기 5장' },
   'authored-gideon-ophrah-call': { Scene: GideonCallScene, desc: '포도주 틀의 겁쟁이를 큰 용사라 부르시다', caption: '부르심 — 사사기 6장' },
+  'authored-gideon-ophrah-fleece': { Scene: GideonFleeceScene, desc: '겁 많은 기드온이 양털로 표징을 구하다', caption: '양털 표징 — 사사기 6장' },
   'authored-gideon-harod-selection': { Scene: HarodSelectionScene, desc: '물을 핥은 삼백 명만 남기시다', caption: '하롯 샘 — 사사기 7장' },
   'authored-gideon-moreh-victory': { Scene: MorehVictoryScene, desc: '횃불과 나팔에 미디안이 무너지다', caption: '야습 — 사사기 7장' },
+  'authored-gideon-succoth-pursuit': { Scene: GideonSuccothScene, desc: '지친 삼백이 숙곳에서 떡을 거절당하다', caption: '숙곳의 냉대 — 사사기 8장' },
+  'authored-gideon-penuel-pursuit': { Scene: GideonPenuelScene, mood: 'dark', desc: '갈골에서 세바와 살문나를 사로잡아 원수를 갚다', caption: '브누엘 추격 — 사사기 8장' },
   'authored-gideon-ophrah-ephod': { Scene: OphrahEphodScene, mood: 'dark', desc: '전리품 금이 온 이스라엘의 올무가 되다', caption: '에봇 — 사사기 8장' },
   'authored-ruth-moab-sojourn': { Scene: RuthMoabScene, mood: 'dark', desc: '기근과 죽음이 모압 땅에 두 여인을 남기다', caption: '모압 우거 — 룻기 1장' },
   'authored-ruth-bethlehem-return': { Scene: RuthReturnScene, desc: '어머니의 하나님이 나의 하나님 — 함께 돌아오다', caption: '귀향 — 룻기 1장' },
   'authored-ruth-bethlehem-gleaning': { Scene: RuthGleaningScene, desc: '보아스의 밭에서 이삭을 줍다', caption: '이삭줍기 — 룻기 2장' },
+  'authored-ruth-bethlehem-threshing': { Scene: RuthThreshingScene, desc: '룻이 타작마당의 보아스 발치에 눕다', caption: '타작마당의 밤 — 룻기 3장' },
   'authored-ruth-bethlehem-redemption': { Scene: RuthRedemptionScene, desc: '성문에서 기업 무름이 이루어지다', caption: '기업 무름 — 룻기 4장' },
+  'authored-samuel-shiloh-dedication': { Scene: SamuelDedicationScene, desc: '한나가 젖 뗀 사무엘을 실로에 봉헌하다', caption: '봉헌 — 사무엘상 1장' },
+  'authored-samuel-shiloh-calling': { Scene: SamuelCallingScene, desc: '세 번 부르시는 음성에 소년이 응답하다', caption: '부르심 — 사무엘상 3장' },
+  'authored-jephthah-gilead-exile': { Scene: JephthahExileScene, desc: '쫓겨난 입다가 돕 땅 잡류의 우두머리가 되다', caption: '돕 땅의 추방자 — 사사기 11장' },
   'authored-jephthah-mizpah-summons': { Scene: JephthahSummonsScene, desc: '쫓겨난 자를 머리로 세우다', caption: '입다 — 사사기 11장' },
   'authored-jephthah-mizpah-vow': { Scene: JephthahVowScene, mood: 'dark', desc: '승리를 흥정하는 서원을 입에 담다', caption: '서원 — 사사기 11장' },
   'authored-jephthah-aroer-victory': { Scene: JephthahVictoryScene, desc: '아로엘에서 암몬 이십 성읍을 치다', caption: '대승 — 사사기 11장' },
   'authored-jephthah-mizpah-daughter': { Scene: JephthahDaughterScene, mood: 'dark', desc: '소고 치며 나온 것은 무남독녀였다', caption: '입다의 딸 — 사사기 11장' },
+  'authored-jephthah-jordan-shibboleth': { Scene: ShibbolethScene, mood: 'dark', desc: '쉽볼렛 발음이 생사를 가르다', caption: '쉽볼렛 — 사사기 12장' },
   'authored-samson-zorah-birth': { Scene: SamsonBirthScene, desc: '제단 불꽃 위로 천사가 올라가다', caption: '출생 예고 — 사사기 13장' },
+  'authored-samson-timnah-riddle': { Scene: SamsonRiddleScene, desc: '삼손이 사자를 찢고 꿀로 수수께끼를 내다', caption: '딤나의 수수께끼 — 사사기 14장' },
+  'authored-samson-lehi-jawbone': { Scene: SamsonJawboneScene, desc: '나귀 턱뼈로 천 명을 치고 샘으로 응답받다', caption: '레히의 턱뼈 — 사사기 15장' },
+  'authored-samson-gaza-gate': { Scene: SamsonGateScene, desc: '삼손이 가사 성문을 빗장째 뽑아 메고 오르다', caption: '가사 성문 — 사사기 16장' },
   'authored-samson-sorek-delilah': { Scene: SorekDelilahScene, mood: 'dark', desc: '머리털과 함께 힘이 떠나다', caption: '소렉 골짜기 — 사사기 16장' },
   'authored-samson-gaza-death': { Scene: GazaDeathScene, mood: 'dark', desc: '기둥을 무너뜨려 마지막 승리를 거두다', caption: '가사 신전 — 사사기 16장' },
+  'authored-samuel-mizpah-victory': { Scene: SamuelMizpahVictoryScene, desc: '미스바의 회개 위로 우레가 블레셋을 흩다', caption: '에벤에셀 — 사무엘상 7장' },
+  'authored-samuel-circuit-judge': { Scene: SamuelCircuitScene, desc: '사무엘이 세 성읍을 돌며 재판하다', caption: '순회 재판 — 사무엘상 7장' },
+  'authored-samuel-ramah-school': { Scene: SamuelRamahSchoolScene, desc: '라마에서 선지자 생도들을 길러내다', caption: '나욧의 학교 — 사무엘상 19장' },
 }
 
 export default SCENES

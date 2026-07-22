@@ -583,16 +583,525 @@ function IsaiahCallingScene({ reduce }) {
   )
 }
 
+// 그릿 시냇가의 까마귀 (왕상 17:2-7)
+function CherithRavensScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M8 46 l0 -4 M12 47 l0 -5 M16 46 l0 -3.5" {...sw(1.2, 0.4)} />
+        <path d="M100 48 q3 -4 6 -2 q3 -4 6 0" {...sw(1.1, 0.35)} />
+      </g>
+      {/* 그릿 시냇물 */}
+      <g style={d(900, reduce)}>
+        <path d="M10 48 q8 -3 16 0 q8 -3 16 0 q8 -3 16 0" {...sw(2.2)} />
+        <path d="M14 52 q8 -2.5 16 0 q8 -2.5 16 0" {...sw(1.4, 0.65)} />
+        <path d="M8 50 q2 -2 4 0 M40 51 q2 -1.5 4 0" {...sw(1.3, 0.5)} />
+      </g>
+      {/* 숨은 엘리야 — 웅크림 */}
+      <g style={d(1800, reduce)}>
+        <circle cx="30" cy="36" r="2.7" {...sw(2.6)} />
+        <path d="M27.5 54 q0 -8 2.5 -9 q2.5 1 2.5 9 M27.5 54 h6" {...sw(2.6)} />
+        <path d="M32.5 45 q3 -1 4 -3" {...sw(2.2)} />
+      </g>
+      {/* 까마귀 — 떡과 고기를 나름 */}
+      <g style={d(2600, reduce)} stroke="var(--paper-accent)">
+        <path d="M68 16 q4 -4 8 0 q4 -4 8 0" {...sw(1.6)} />
+        <circle cx="76" cy="19" r="0.9" {...sw(1.3)} />
+        <path d="M92 22 q3 -3 6 0 q3 -3 6 0" {...sw(1.4, 0.8)} />
+        {!reduce && (
+          <animateMotion path="M0 0 q-19 10 -40 22" begin="2.8s" dur="1s" fill="freeze"
+            calcMode="spline" keySplines="0.3 0 0.7 1" keyTimes="0;1" />
+        )}
+      </g>
+      <Label x="30" y="27" at="2.3" reduce={reduce}>엘리야</Label>
+      <Label x="82" y="10" at="3" reduce={reduce}>까마귀</Label>
+    </g>
+  )
+}
+
+// 기손 시내의 심판 (왕상 18:40)
+function KishonSlaughterScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M8 48 l0 -4 M12 48 l0 -5 M16 48 l0 -3.5" {...sw(1.2, 0.4)} />
+        <path d="M10 48 q10 -4 20 0 q10 -4 20 0 q10 -4 20 0 q10 -4 20 0" {...sw(2.2)} />
+      </g>
+      {/* 쓰러진 바알 선지자들 */}
+      <g style={d(900, reduce)}>
+        <circle cx="66" cy="49.5" r="2" {...sw(1.8, 0.8)} />
+        <path d="M68 50 q5 1.5 9 0" {...sw(1.8, 0.8)} />
+        <circle cx="84" cy="50.5" r="1.9" {...sw(1.7, 0.7)} />
+        <path d="M86 51 q5 1.2 8.5 -0.2" {...sw(1.7, 0.7)} />
+        <circle cx="100" cy="49.5" r="1.9" {...sw(1.6, 0.6)} />
+        <path d="M102 50 q4.5 1.2 8 -0.5" {...sw(1.6, 0.6)} />
+      </g>
+      {/* 엘리야 — 주역: 심판을 명함 */}
+      <g style={d(1900, reduce)}>
+        <circle cx="30" cy="30" r="3" {...sw(2.6)} />
+        <path d="M26 54 l2 -19.5 h4 l2 19.5 M26 54 h8" {...sw(2.6)} />
+        <path d="M34 33 q8 3 12 10" {...sw(2.4)} />
+      </g>
+      <Label x="30" y="21" at="2.4" reduce={reduce}>엘리야</Label>
+      <Label x="60" y="60" at="1.3" reduce={reduce} size="4.2">기손 시내</Label>
+    </g>
+  )
+}
+
+// 이스르엘로 달리다 (왕상 18:41-46)
+function JezreelRainRunScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M6 44 q14 -10 28 -6" {...sw(1.3, 0.5)} />
+        <path d="M38 44 q3 -1.5 6 0 q3 -1.5 6 0" {...sw(1.2, 0.4)} />
+      </g>
+      {/* 일곱 번 엎드린 엘리야 */}
+      <g style={d(900, reduce)}>
+        <circle cx="22" cy="41" r="2.4" {...sw(2.4)} />
+        <path d="M22 43.3 q3 2 2 5.5 q-4 2 -7 0" {...sw(2.4)} />
+      </g>
+      {/* 손바닥만한 구름 — 떠오름 */}
+      <g transform={reduce ? 'translate(0 -20)' : undefined} style={d(1800, reduce)} stroke="var(--paper-accent)">
+        <path d="M44 40 q3 -2.5 6 0 q3 -2 5 0.5" {...sw(1.6)} />
+        {!reduce && (
+          <animateTransform attributeName="transform" type="translate" from="0 0" to="0 -20"
+            begin="2.1s" dur="1.2s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.7 1" keyTimes="0;1" />
+        )}
+      </g>
+      {/* 캄캄해진 하늘 — 큰 비 */}
+      <g style={d(2600, reduce)}>
+        <path d="M56 20 l-2 6 M64 18 l-2 6 M72 22 l-2 6 M80 19 l-2 6 M48 26 l-2 5" {...sw(1.4, 0.7)} />
+      </g>
+      {/* 병거를 앞지르는 엘리야 */}
+      <g style={d(3400, reduce)}>
+        <path d="M92 54 v-5 h9 v5 M96.5 49 V44" {...sw(1.8)} />
+        <circle cx="96.5" cy="52" r="1.6" {...sw(1.6)} />
+        <circle cx="70" cy="46" r="2.5" {...sw(2.5)} />
+        <path d="M68 48.3 v5.7 M65.5 54 l2.5 -3.5 l2.5 3.5 M70.5 49 l4 -2" {...sw(2.5)} />
+      </g>
+      <Label x="22" y="33" at="1.3" reduce={reduce}>엘리야</Label>
+      <Label x="70" y="38" at="3.7" reduce={reduce} size="4.2">병거를 앞지르다</Label>
+    </g>
+  )
+}
+
+// 하늘 불이 오십부장을 삼키다 (왕하 1:9-12)
+function AhaziahFireScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M6 40 q14 -14 28 -12 q6 0 10 3" {...sw(1.4, 0.5)} />
+      </g>
+      {/* 산 위의 엘리야 */}
+      <g style={d(900, reduce)}>
+        <circle cx="26" cy="30" r="2.8" {...sw(2.6)} />
+        <path d="M22.5 54 l2 -19.5 h3.5 l2 19.5 M22.5 54 h8" {...sw(2.6)} />
+        <path d="M30.5 33 q6 -2 9 1" {...sw(2.4)} />
+      </g>
+      {/* 오십부장과 무리 */}
+      <g style={d(1800, reduce)}>
+        <circle cx="66" cy="45" r="2.1" {...sw(1.9)} />
+        <path d="M66 47.1 v4.9 M64 54 l2 -3 l2 3 M63.5 47.5 l-3 2" {...sw(1.9)} />
+        <circle cx="80" cy="46" r="1.9" {...sw(1.8, 0.85)} />
+        <path d="M80 48 v4 M78.2 54 l1.8 -2.6 l1.8 2.6" {...sw(1.8, 0.85)} />
+        <circle cx="92" cy="45.5" r="1.9" {...sw(1.7, 0.75)} />
+        <path d="M92 47.5 v4.3 M90.3 54 l1.7 -2.7 l1.7 2.7" {...sw(1.7, 0.75)} />
+      </g>
+      {/* 하늘 불 — 핵심: 내려와 삼킴 */}
+      <g transform={reduce ? undefined : 'translate(0 -30)'} style={d(2700, reduce)}>
+        <path d="M74 39 q-3 -6 0 -11 q3 5 0 11 M80 39 q-2.4 -6.5 0.8 -11 M86 39 q-2 -6 0.5 -10" {...sw(2.8)} stroke="var(--paper-accent)" />
+        {!reduce && (
+          <animateTransform attributeName="transform" type="translate" from="0 -30" to="0 0"
+            begin="3s" dur="0.5s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.8 1" keyTimes="0;1" />
+        )}
+      </g>
+      <Label x="26" y="21" at="1.3" reduce={reduce}>엘리야</Label>
+      <Label x="82" y="60" at="1.9" reduce={reduce} size="4.2">오십부장 두 무리</Label>
+    </g>
+  )
+}
+
+// 길갈의 국과 떡 (왕하 4:38-44)
+function GilgalStewBreadScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+      </g>
+      {/* 가마솥 */}
+      <g style={d(900, reduce)}>
+        <path d="M28 54 q0 -8 10 -8 q10 0 10 8" {...sw(2.4)} />
+        <path d="M24 46 h28" {...sw(1.8)} />
+        <path d="M30 40 l-2 -4 M46 40 l2 -4" {...sw(1.4, 0.6)} />
+      </g>
+      {/* 가루 한 움큼 — 정화 */}
+      <g style={d(1700, reduce)} stroke="var(--paper-accent)">
+        <path d="M40 36 l1 3 m1.5 -2 l1 3 m-6 -2 l1 2.6" {...sw(1.3)} />
+      </g>
+      {/* 엘리사 */}
+      <g style={d(2400, reduce)}>
+        <circle cx="20" cy="34" r="2.7" {...sw(2.5)} />
+        <path d="M16.5 54 l1.8 -17 h3.4 l1.8 17 M16.5 54 h7 M23 37 q3.5 -1.5 5 -3" {...sw(2.5)} />
+      </g>
+      {/* 보리떡 스무 개 — 남는 떡 무더기 */}
+      <g style={d(3100, reduce)}>
+        <path d="M66 54 q-1 -3 2.5 -3.5 q3.5 -0.5 3.5 3.5 z" {...sw(2)} />
+        <path d="M76 54 q-1 -3.5 3 -4 q4 -0.5 4 4 z" {...sw(2.1)} />
+        <path d="M86 54 q-1 -3 2.5 -3.5 q3.5 -0.5 3.5 3.5 z" {...sw(2)} />
+        <path d="M96 54 q-1 -3.5 3 -4 q4 -0.5 4 4 z" {...sw(1.9, 0.85)} />
+        <circle cx="106" cy="46" r="2" {...sw(1.7, 0.7)} />
+        <path d="M106 48 v4 M104.3 54 l1.7 -2.5 l1.7 2.5" {...sw(1.7, 0.7)} />
+      </g>
+      <Label x="20" y="25" at="2.8" reduce={reduce}>엘리사</Label>
+      <Label x="38" y="30" at="2.1" reduce={reduce}>독 든 국</Label>
+      <Label x="86" y="61" at="3.5" reduce={reduce} size="4.2">먹고 남은 보리떡</Label>
+    </g>
+  )
+}
+
+// 바다의 폭풍 (욘 1:4-15)
+function JonahStormSeaScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M6 48 q8 -5 16 0 q8 -5 16 0 q8 -5 16 0 q8 -5 16 0 q8 -5 16 0 q8 -5 16 0" {...sw(2.2)} />
+      </g>
+      {/* 요동하는 배 */}
+      <g transform={reduce ? 'rotate(-6 60 42)' : undefined} style={d(900, reduce)}>
+        <path d="M42 44 q2 5 8 5 h20 q6 0 8 -5 l-3 -4 h-30 z" {...sw(2.4)} />
+        <path d="M60 40 V26 M60 26 q-8 2 -11 10 M62 28 q4 1 6 4" {...sw(2)} />
+        <path d="M55 46 q2 -3.5 5.5 -4.5 M67 46 q-2 -3.5 -5.5 -4.5" {...sw(2)} />
+        {!reduce && (
+          <animateTransform attributeName="transform" type="rotate"
+            values="0 60 42;-9 60 42;6 60 42;-4 60 42" begin="1.1s" dur="2s" fill="freeze" />
+        )}
+      </g>
+      {/* 두려워하는 선원들 */}
+      <g style={d(1800, reduce)}>
+        <circle cx="46" cy="42" r="1.9" {...sw(1.8, 0.8)} />
+        <path d="M48 41.5 q3 -2 5.5 -0.5 M44 43.5 l-2.5 3" {...sw(1.8, 0.8)} />
+        <circle cx="76" cy="42.5" r="1.9" {...sw(1.7, 0.7)} />
+        <path d="M74 42 q-3 -2 -5.5 -0.5 M78 44 l2.5 3" {...sw(1.7, 0.7)} />
+        <path d="M50 50 l3 -2 l3 2" {...sw(1.5, 0.6)} />
+      </g>
+      {/* 요나 — 바다로 던져짐 */}
+      <g style={d(2600, reduce)}>
+        <circle cx="60" cy="18" r="2.6" {...sw(2.6)} />
+        <path d="M60 20.6 v6.4 M57 30 l3 -3 l3 3" {...sw(2.6)} />
+        {!reduce && (
+          <animateMotion path="M0 0 q4 20 -4 30" begin="3s" dur="1.3s" fill="freeze"
+            calcMode="spline" keySplines="0.4 0 0.7 1" keyTimes="0;1" />
+        )}
+      </g>
+      <g style={d(reduce ? 0 : 3400, reduce)} stroke="var(--paper-accent)">
+        <path d="M56 46 q1.5 -1.6 3.5 -1 M62 47 q1.6 -1.4 3.4 -0.6" {...sw(1.3)} />
+      </g>
+      <Label x="60" y="12" at="3.3" reduce={reduce}>요나</Label>
+      <Label x="60" y="61" at="1.4" reduce={reduce} size="4.2">나를 바다에 던지라</Label>
+    </g>
+  )
+}
+
+// 물고기 뱃속의 기도 (욘 1:17-2:10)
+function JonahFishPrayerScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M8 50 q10 -3 20 0 q10 -3 20 0 q10 -3 20 0 q10 -3 20 0 q10 -3 20 0" {...sw(1.3, 0.5)} />
+        <path d="M78 20 l-4 10 M86 18 l-4 10 M94 22 l-3 8" {...sw(1.1, 0.35)} />
+      </g>
+      {/* 큰 물고기 */}
+      <g style={d(900, reduce)}>
+        <path d="M20 40 q10 -12 40 -12 q28 0 34 12 q-6 12 -34 12 q-30 0 -40 -12 z" {...sw(2.4)} />
+        <path d="M94 40 l10 -8 l-2 8 l2 8 z" {...sw(2.2)} />
+        <path d="M40 30 q2 -3 4 0 M56 29 q2 -3 4 0" {...sw(1.3, 0.5)} />
+        <path d="M50 46 q4 2 8 0" {...sw(1.4, 0.6)} />
+      </g>
+      {/* 뱃속에 웅크린 요나 — 기도 */}
+      <g style={d(1900, reduce)}>
+        <circle cx="52" cy="42" r="2.4" {...sw(2.4)} />
+        <path d="M52 44.4 q0 3 -2.5 4 q3 2 6.5 0.5 q-2.5 -1 -2.5 -4" {...sw(2.4)} />
+        <path d="M48.5 42 q-2 -1.5 -1.5 -4 M55.5 42 q2 -1.5 1.5 -4" {...sw(2)} />
+        <circle cx="60" cy="38" r="0.6" {...sw(1)} />
+        <circle cx="45" cy="40" r="0.5" {...sw(1)} />
+      </g>
+      {/* 부르짖는 기도 — 강조 */}
+      <g style={d(reduce ? 0 : 2900, reduce)} stroke="var(--paper-accent)">
+        <path d="M50 34 q1 -3 0 -5.5 M56 34 q-1 -3 0 -5.5 M53 33 q0 -3.5 0 -6.5" {...sw(1.3)} />
+      </g>
+      <Label x="52" y="24" at="3" reduce={reduce}>요나의 기도</Label>
+      <Label x="88" y="30" at="1.4" reduce={reduce}>큰 물고기</Label>
+    </g>
+  )
+}
+
+// 박넝쿨의 교훈 (욘 4:5-11)
+function JonahGourdLessonScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M84 54 v-16 h20 v16" {...sw(1.6, 0.6)} />
+      </g>
+      {/* 초막과 박넝쿨 — 시듦 */}
+      <g style={d(900, reduce)}>
+        <path d="M26 54 v-14 M46 54 v-14 M24 40 h24" {...sw(1.8)} />
+        <path d="M30 40 q-2 -8 3 -12 q-3 6 1 11 M38 40 q3 -8 -1 -13 q4 5 0 12" {...sw(1.6, 0.7)} />
+        <path d="M28 52 q2 -1.5 4 0 q2 -1.5 3 0" {...sw(1.2, 0.5)} />
+      </g>
+      {/* 뜨거운 해 — 강조 */}
+      <g style={d(1800, reduce)} stroke="var(--paper-accent)">
+        <circle cx="70" cy="14" r="4.2" {...sw(2)} />
+        <path d="M70 6.5 v-2 M62.8 14 h-2 M65 8 l-1.6 -1.6 M75 8 l1.6 -1.6 M65 20 l-1.6 1.6 M75 20 l1.6 1.6" {...sw(1.4)} />
+      </g>
+      {/* 낙심한 요나 */}
+      <g style={d(2700, reduce)}>
+        <circle cx="36" cy="46" r="2.6" {...sw(2.5)} />
+        <path d="M36 48.5 q0 3 -2.5 3.5 q3 2 6 0.8" {...sw(2.5)} />
+        <path d="M32.5 46.5 q-2 1.5 -1.5 4 M39.5 46.5 q2 1.5 1.5 4" {...sw(2)} />
+      </g>
+      <Label x="36" y="38" at="3.1" reduce={reduce}>요나</Label>
+      <Label x="34" y="24" at="1.2" reduce={reduce}>시든 박넝쿨</Label>
+      <Label x="94" y="60" at="0.9" reduce={reduce}>니느웨</Label>
+    </g>
+  )
+}
+
+// 임마누엘의 표징 (사 7:1-14)
+function IsaiahAhazSignScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M6 44 l4 -6 l4 6 M14 44 l4 -6 l4 6" {...sw(1.2, 0.4)} />
+        <path d="M10 54 v-14 h16 v14 M94 54 v-18 h18 v18" {...sw(1.5, 0.6)} />
+      </g>
+      {/* 떠는 아하스 — 왕관 */}
+      <g style={d(900, reduce)}>
+        <circle cx="34" cy="38" r="2.7" {...sw(2.2)} />
+        <path d="M34 40.7 v8.3 M31.5 54 l2.5 -5 l2.5 5 M31 41 q-2 2 -2.5 4.5" {...sw(2.2)} />
+        <path d="M31.8 33.8 v-2.2 l1.3 1.2 l0.9 -1.8 l0.9 1.8 l1.3 -1.2 v2.2" {...sw(1.5)} />
+      </g>
+      {/* 이사야 — 표징을 선언 */}
+      <g style={d(1900, reduce)}>
+        <circle cx="62" cy="31" r="3" {...sw(2.6)} />
+        <path d="M58 54 l2 -19.5 h4 l2 19.5 M58 54 h8" {...sw(2.6)} />
+        <path d="M66 34 q6 -1.5 9 2" {...sw(2.4)} />
+      </g>
+      {/* 임마누엘 표징 — 어머니와 아기 */}
+      <g style={d(2700, reduce)} stroke="var(--paper-accent)">
+        <circle cx="86" cy="41" r="2" {...sw(1.9)} />
+        <path d="M86 43 q0 3 -2 4 q2.5 1.5 5 0" {...sw(1.9)} />
+        <circle cx="87.5" cy="46.5" r="1" {...sw(1.5)} />
+      </g>
+      <Label x="34" y="29" at="1.3" reduce={reduce}>아하스</Label>
+      <Label x="62" y="22" at="2.4" reduce={reduce}>이사야</Label>
+      <Label x="86" y="60" at="3.2" reduce={reduce} size="4.2">임마누엘의 표징</Label>
+    </g>
+  )
+}
+
+// 벗은 몸의 표징 (사 20장)
+function IsaiahNakedSignScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M8 50 l6 -8 l6 8 z M20 54 q3 -10 0 -16" {...sw(1.2, 0.4)} />
+      </g>
+      {/* 이사야 — 벗은 몸, 벗은 발 */}
+      <g style={d(900, reduce)}>
+        <circle cx="34" cy="30" r="3" {...sw(2.6)} />
+        <path d="M34 33 v10 M30.5 54 l3.5 -11 l3.5 11" {...sw(2.4)} />
+        <path d="M31 38 q3 1.5 6 0" {...sw(2)} />
+      </g>
+      {/* 삼 년 — 시간 표시 */}
+      <g style={d(1800, reduce)}>
+        <circle cx="52" cy="18" r="1.6" {...sw(1.6)} />
+        <circle cx="58" cy="18" r="1.6" {...sw(1.6)} />
+        <circle cx="64" cy="18" r="1.6" {...sw(1.6)} />
+      </g>
+      {/* 애굽을 의지하는 자들 — 끌려갈 포로들 */}
+      <g style={d(2600, reduce)} stroke="var(--paper-accent)">
+        <circle cx="86" cy="43" r="2" {...sw(1.8, 0.85)} />
+        <path d="M84 45 v6 M82.5 54 l1.5 -3 l1.5 3 M84 46.5 l-4 1.5" {...sw(1.8, 0.85)} />
+        <circle cx="98" cy="43.5" r="1.9" {...sw(1.7, 0.75)} />
+        <path d="M96.2 45.5 v5.5 M94.8 54 l1.4 -2.8 l1.4 2.8 M96 47 l-3.5 1.6" {...sw(1.7, 0.75)} />
+        <path d="M80 47 q10 -1.5 20 0" {...sw(1.4)} />
+      </g>
+      <Label x="34" y="21" at="1.3" reduce={reduce}>이사야</Label>
+      <Label x="58" y="12" at="2.3" reduce={reduce}>삼 년</Label>
+      <Label x="92" y="60" at="3.1" reduce={reduce} size="4.2">애굽으로 끌려갈 표적</Label>
+    </g>
+  )
+}
+
+// 히스기야의 병 — 물러간 해 그림자 (사 38장)
+function HezekiahIllnessScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M18 54 h40 M18 54 v-10 M58 54 v-10" {...sw(1.8)} />
+      </g>
+      {/* 벽을 향해 누운 히스기야 */}
+      <g style={d(900, reduce)}>
+        <circle cx="30" cy="44" r="2.6" {...sw(2.4)} />
+        <path d="M32.5 44 q6 1.5 12 0.5" {...sw(2.2)} />
+      </g>
+      <g style={d(reduce ? 0 : 1500, reduce)} stroke="var(--paper-accent)">
+        <path d="M28.5 46 q-1.5 2 -1 4.5" {...sw(1.5)} />
+      </g>
+      {/* 이사야 — 말씀 전함 */}
+      <g style={d(2000, reduce)}>
+        <circle cx="76" cy="34" r="2.8" {...sw(2.5)} />
+        <path d="M72.5 54 l1.8 -18 h3.4 l1.8 18 M72.5 54 h7 M79 37 q4 -1.2 6 1" {...sw(2.5)} />
+      </g>
+      {/* 해시계 그림자 — 핵심: 십 도를 물러감 */}
+      <g style={d(2900, reduce)}>
+        <path d="M94 54 h18 M103 54 v-14" {...sw(1.8)} />
+        <path d="M96 52 l7 -1.5 M98.5 50 l4.5 -0.8 M100.5 48 l2.5 -0.4" {...sw(1.4, 0.6)} />
+        <g transform={reduce ? 'rotate(-24 103 54)' : undefined}>
+          <path d="M103 40 l-6 12" {...sw(2)} stroke="var(--paper-accent)" />
+          {!reduce && (
+            <animateTransform attributeName="transform" type="rotate" from="0 103 54" to="-24 103 54"
+              begin="3.2s" dur="1.2s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.7 1" keyTimes="0;1" />
+          )}
+        </g>
+      </g>
+      <Label x="30" y="35" at="1.3" reduce={reduce}>히스기야</Label>
+      <Label x="76" y="25" at="2.4" reduce={reduce}>이사야</Label>
+      <Label x="103" y="61" at="4.4" reduce={reduce} size="4.2">물러간 해 그림자</Label>
+    </g>
+  )
+}
+
+// 예루살렘의 구원 (사 36-37장)
+function HezekiahDeliveranceScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M18 54 v-16 h20 v16 M46 54 v-10 h4 v10" {...sw(1.6, 0.6)} />
+      </g>
+      {/* 히스기야 — 협박 편지를 펼침 */}
+      <g style={d(900, reduce)}>
+        <circle cx="30" cy="36" r="2.7" {...sw(2.4)} />
+        <path d="M30 38.7 v9.3 M27 54 l3 -6 l3 6 M27 40 q3 2 6 0" {...sw(2.4)} />
+        <path d="M24 42 h12 M24 42 q0 -2 2 -2 h8 q2 0 2 2" {...sw(1.5)} />
+      </g>
+      {/* 이사야 — 확언 */}
+      <g style={d(1900, reduce)}>
+        <circle cx="60" cy="31" r="3" {...sw(2.6)} />
+        <path d="M56 54 l2 -19.5 h4 l2 19.5 M56 54 h8" {...sw(2.6)} />
+        <path d="M64 34 q6 -1.5 9 2" {...sw(2.4)} />
+      </g>
+      {/* 밤사이 무너진 앗수르 진영 — 강조 */}
+      <g style={d(2800, reduce)} stroke="var(--paper-accent)">
+        <path d="M86 54 l6 -8 l6 8 z" {...sw(1.6)} />
+        <path d="M100 54 l5.5 -7 l5.5 7 z" {...sw(1.6, 0.85)} />
+        <path d="M90 46 l-3 3 M104 47 l3 3" {...sw(1.4)} />
+      </g>
+      <Label x="30" y="27" at="1.3" reduce={reduce}>히스기야</Label>
+      <Label x="60" y="22" at="2.4" reduce={reduce}>이사야</Label>
+      <Label x="98" y="60" at="3.3" reduce={reduce} size="4.2">무너진 앗수르 진영</Label>
+    </g>
+  )
+}
+
+// 바벨론 사신과 보물고 (사 39장)
+function BabylonEnvoysScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M14 54 v-18 h30 v18" {...sw(1.6, 0.6)} />
+      </g>
+      {/* 보물고 — 열린 궤들 */}
+      <g style={d(900, reduce)}>
+        <path d="M22 54 v-7 h10 v7 M22 47 l5 -3 l5 3" {...sw(2.2)} />
+        <path d="M36 54 v-6 h9 v6 M36 48 l4.5 -2.6 l4.5 2.6" {...sw(2)} />
+        <circle cx="27" cy="49" r="1" {...sw(1.4)} />
+        <circle cx="40.5" cy="50" r="1" {...sw(1.4)} />
+      </g>
+      {/* 히스기야 — 자랑하듯 보임 */}
+      <g style={d(1900, reduce)}>
+        <circle cx="60" cy="34" r="2.7" {...sw(2.4)} />
+        <path d="M60 36.7 v9.3 M57 54 l3 -6 l3 6 M63 38 q4 -1 6.5 -3" {...sw(2.4)} />
+      </g>
+      {/* 바벨론 사신들 */}
+      <g style={d(2600, reduce)}>
+        <circle cx="82" cy="40" r="2.3" {...sw(2)} />
+        <path d="M79.5 54 l2 -11.5 h3.4 l2 11.5 M79.5 54 h7" {...sw(2)} />
+        <circle cx="94" cy="40" r="2.2" {...sw(1.9, 0.85)} />
+        <path d="M91.6 54 l1.9 -11.5 h3.4 l1.9 11.5 M91.6 54 h7" {...sw(1.9, 0.85)} />
+      </g>
+      {/* 이사야 — 심판을 예고 */}
+      <g style={d(3300, reduce)} stroke="var(--paper-accent)">
+        <circle cx="18" cy="38" r="2.4" {...sw(2.2)} />
+        <path d="M18 40.4 v7.6 M15.5 54 l2.5 -6 l2.5 6 M21 41 q3 1.5 4.5 4" {...sw(2.2)} />
+      </g>
+      <Label x="60" y="25" at="2.4" reduce={reduce}>히스기야</Label>
+      <Label x="18" y="29" at="3.7" reduce={reduce}>이사야</Label>
+      <Label x="86" y="60" at="3" reduce={reduce} size="4.2">바벨론으로 옮겨질 보물고</Label>
+    </g>
+  )
+}
+
+// 목자 고레스의 예언 (사 44:28-45:1)
+function CyrusProphecyScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M10 54 v-10 h6 v3 h6 v-6 h6 v13" {...sw(1.6, 0.65)} />
+        <path d="M14 44 l3 3 M26 41 l-2 3" {...sw(1.3, 0.5)} />
+      </g>
+      {/* 이사야 */}
+      <g style={d(1000, reduce)}>
+        <circle cx="46" cy="31" r="3" {...sw(2.6)} />
+        <path d="M42 54 l2 -19.5 h4 l2 19.5 M42 54 h8" {...sw(2.6)} />
+        <path d="M50 34 q6 -1.5 9 2" {...sw(2.4)} />
+      </g>
+      {/* 고레스 — 목자 지팡이 */}
+      <g style={d(2000, reduce)}>
+        <circle cx="82" cy="36" r="2.6" {...sw(2.3)} />
+        <path d="M82 38.6 v9.4 M79 54 l3 -6 l3 6" {...sw(2.3)} />
+        <path d="M85 40 v14 M85 40 q3 0 3 3" {...sw(1.8)} />
+      </g>
+      {/* 재건되는 성벽 — 강조 */}
+      <g style={d(2900, reduce)} stroke="var(--paper-accent)">
+        <path d="M96 54 v-8 h6 v8 M102 50 h6 v4" {...sw(1.8)} />
+      </g>
+      <Label x="46" y="22" at="1.4" reduce={reduce}>이사야</Label>
+      <Label x="82" y="27" at="2.4" reduce={reduce}>고레스</Label>
+      <Label x="60" y="61" at="3.3" reduce={reduce} size="4.2">무너질 성과 재건될 성전</Label>
+    </g>
+  )
+}
+
 const SCENES = {
   'authored-elijah-samaria-drought': { Scene: SamariaDroughtScene, desc: '내 말이 없으면 비도 이슬도 없으리라', caption: '가뭄 선언 — 열왕기상 17장' },
+  'authored-elijah-cherith-ravens': { Scene: CherithRavensScene, desc: '까마귀가 아침저녁으로 떡과 고기를 나르다', caption: '그릿 시냇가 — 열왕기상 17장' },
   'authored-elijah-zarephath-widow': { Scene: ZarephathWidowScene, desc: '통의 가루와 병의 기름이 마르지 않다', caption: '사르밧 — 열왕기상 17장' },
   'authored-elijah-carmel-contest': { Scene: CarmelContestScene, desc: '여호와께서 불로 응답하시다', caption: '갈멜산 — 열왕기상 18장' },
+  'authored-elijah-kishon-slaughter': { Scene: KishonSlaughterScene, mood: 'dark', desc: '바알 선지자 사백오십 인이 기손 시내에서 처단되다', caption: '기손 시내 — 열왕기상 18장' },
+  'authored-elijah-jezreel-rain-run': { Scene: JezreelRainRunScene, desc: '손바닥만한 구름이 큰 비로, 엘리야가 병거를 앞지르다', caption: '이스르엘 — 열왕기상 18장' },
   'authored-elijah-horeb-whisper': { Scene: HorebWhisperScene, desc: '바람과 지진과 불이 아닌 세미한 소리', caption: '호렙산 — 열왕기상 19장' },
   'authored-elijah-abelmeholah-elisha': { Scene: CallElishaScene, desc: '밭 갈던 엘리사에게 겉옷이 던져지다', caption: '부르심 — 열왕기상 19장' },
   'authored-elijah-naboth-vineyard': { Scene: NabothVineyardScene, mood: 'dark', desc: '네가 죽이고 또 빼앗았느냐', caption: '나봇의 포도원 — 열왕기상 21장' },
+  'authored-elijah-ahaziah-fire': { Scene: AhaziahFireScene, mood: 'dark', desc: '하늘 불이 오십부장 두 무리를 삼키다', caption: '아하시야 — 열왕기하 1장' },
   'authored-elijah-jordan-ascension': { Scene: JordanAscensionScene, desc: '불수레와 회오리로 하늘에 오르다', caption: '승천 — 열왕기하 2장' },
   'authored-elisha-jericho-water': { Scene: JerichoWaterScene, desc: '소금을 던지니 물이 고쳐지다', caption: '여리고의 샘 — 열왕기하 2장' },
   'authored-elisha-widow-oil': { Scene: WidowOilScene, desc: '빈 그릇마다 기름이 차오르다', caption: '과부의 기름 — 열왕기하 4장' },
+  'authored-elisha-gilgal-stew-bread': { Scene: GilgalStewBreadScene, desc: '독 든 국이 정화되고 보리떡이 백 명을 먹이고도 남다', caption: '길갈 — 열왕기하 4장' },
   'authored-elisha-shunem-son': { Scene: ShunemSonScene, desc: '죽은 아이가 다시 숨을 쉬다', caption: '수넴 — 열왕기하 4장' },
   'authored-elisha-naaman': { Scene: NaamanScene, desc: '일곱 번 씻으매 어린아이 살같이 되다', caption: '나아만 — 열왕기하 5장' },
   'authored-elisha-dothan-chariots': { Scene: DothanChariotsScene, desc: '산에 가득한 불말과 불병거를 보다', caption: '도단 — 열왕기하 6장' },
@@ -600,8 +1109,17 @@ const SCENES = {
   'authored-elisha-samaria-siege': { Scene: SamariaSiegeScene, desc: '내일 이맘때 고운 가루가 헐값 되리라', caption: '포위의 끝 — 열왕기하 7장' },
   'authored-elisha-death-bone-resurrection': { Scene: BoneResurrectionScene, desc: '엘리사의 뼈에 닿자 죽은 자가 일어서다', caption: '마지막 기적 — 열왕기하 13장' },
   'authored-jonah-flight-joppa': { Scene: JonahFlightScene, mood: 'dark', desc: '니느웨를 피해 다시스로 달아나다', caption: '욥바 — 요나 1장' },
+  'authored-jonah-storm-sea': { Scene: JonahStormSeaScene, mood: 'dark', desc: '나를 들어 바다에 던지라', caption: '바다의 폭풍 — 요나 1장' },
+  'authored-jonah-fish-prayer': { Scene: JonahFishPrayerScene, desc: '스올의 뱃속에서 구원은 여호와께 속하였다 부르짖다', caption: '물고기 뱃속 — 요나 2장' },
   'authored-jonah-nineveh-preaching': { Scene: JonahNinevehScene, desc: '왕부터 백성까지 굵은 베를 입다', caption: '니느웨 — 요나 3장' },
+  'authored-jonah-gourd-lesson': { Scene: JonahGourdLessonScene, desc: '하물며 니느웨를 내가 아끼지 아니하겠느냐', caption: '박넝쿨의 교훈 — 요나 4장' },
   'authored-isaiah-jerusalem-calling': { Scene: IsaiahCallingScene, desc: '내가 여기 있나이다 나를 보내소서', caption: '소명 — 이사야 6장' },
+  'authored-isaiah-jerusalem-ahaz': { Scene: IsaiahAhazSignScene, desc: '처녀가 잉태하여 아들을 낳고 임마누엘이라 하리라', caption: '임마누엘의 표징 — 이사야 7장' },
+  'authored-isaiah-jerusalem-naked-sign': { Scene: IsaiahNakedSignScene, mood: 'dark', desc: '벗은 몸과 벗은 발로 애굽의 포로 됨을 표적하다', caption: '벗은 몸의 표징 — 이사야 20장' },
+  'authored-isaiah-jerusalem-hezekiah-illness': { Scene: HezekiahIllnessScene, mood: 'dark', desc: '기도로 십오 년이 더해지고 해 그림자가 물러가다', caption: '히스기야의 병 — 이사야 38장' },
+  'authored-isaiah-jerusalem-hezekiah': { Scene: HezekiahDeliveranceScene, desc: '앗수르 군대가 밤사이 쓰러지고 예루살렘이 살아남다', caption: '예루살렘의 구원 — 이사야 36-37장' },
+  'authored-isaiah-jerusalem-babylon-envoys': { Scene: BabylonEnvoysScene, mood: 'dark', desc: '보물고를 다 보이니 바벨론으로 옮겨질 날이 예고되다', caption: '바벨론 사신 — 이사야 39장' },
+  'authored-isaiah-jerusalem-cyrus-prophecy': { Scene: CyrusProphecyScene, desc: '무너질 예루살렘과 목자 고레스를 통한 재건을 예언하다', caption: '고레스의 예언 — 이사야 44-45장' },
 }
 
 export default SCENES

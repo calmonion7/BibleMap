@@ -653,23 +653,603 @@ function DeathBonesScene({ reduce }) {
   )
 }
 
+// 하란을 떠나다 (창 12:4-5)
+function DepartsHaranScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M6 46 q10 -4 20 -2" {...sw(1.1, 0.4)} />
+        {/* 하란 집들 — 원경, 뒤에 남겨짐 */}
+        <path d="M10 54 v-9 h9 v9 M13 54 v-5 h3 v5" {...sw(1.3, 0.5)} />
+        <path d="M23 54 v-11 h10 v11 M26 54 v-6 h4 v6" {...sw(1.3, 0.5)} />
+      </g>
+      {/* 짐 실은 나귀 — 보조 */}
+      <g style={d(900, reduce)}>
+        <path d="M56 54 l0.5 -7 M66 54 l-0.5 -7 M56.5 47 q5 -5 9 0" {...sw(1.8)} />
+        <path d="M60 43 q1.5 -2 4 -1" {...sw(1.3, 0.6)} />
+      </g>
+      {/* 아브람 — 주역: 지팡이 짚고 걸어감 */}
+      <g transform={reduce ? 'translate(12 0)' : undefined} style={d(1700, reduce)}>
+        <circle cx="80" cy="35" r="2.9" {...sw(2.5)} />
+        <path d="M80 37.9 v9.6 M77 54 l3 -6.5 l3 6.5" {...sw(2.5)} />
+        <path d="M77.5 41 l-3.5 9 M82.5 40.5 l4.5 -2.5 q2.5 0 3.5 2" {...sw(2)} />
+        {!reduce && (
+          <animateTransform attributeName="transform" type="translate" from="0 0" to="12 0"
+            begin="2.6s" dur="2.2s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.7 1" keyTimes="0;1" />
+        )}
+      </g>
+      <Label x="18" y="40" at="1" reduce={reduce}>하란</Label>
+      <Label x="80" y="26" at="1.9" reduce={reduce}>아브람</Label>
+    </g>
+  )
+}
+
+// 벧엘의 단 (창 12:8)
+function BethelAltarScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M6 44 q14 -8 28 -3" {...sw(1.1, 0.4)} />
+      </g>
+      {/* 장막 — 보조 */}
+      <g style={d(800, reduce)}>
+        <path d="M12 54 l11 -15 l11 15 M18 54 l5 -7 l5 7" {...sw(1.9)} />
+        <path d="M15 48 l4 -5.5 M30 48 l-4 -5.5" {...sw(1.2, 0.5)} />
+      </g>
+      {/* 제단 — 핵심 */}
+      <g style={d(1600, reduce)}>
+        <path d="M58 54 v-6 h13 v6 M56 48 h17" {...sw(2.2)} />
+        <path d="M60 51.2 h3 m4 0 h3" {...sw(1.2, 0.55)} />
+      </g>
+      {/* 아브람 — 주역: 서서 이름을 부름 */}
+      <g style={d(2300, reduce)}>
+        <circle cx="90" cy="36" r="2.9" {...sw(2.5)} />
+        <path d="M90 38.9 v9.6 M87 54 l3 -6.5 l3 6.5" {...sw(2.5)} />
+        <path d="M87.5 40.5 q-3.5 1 -5 4 M92.5 40 q3.5 -1.5 4.5 -5" {...sw(2.3)} />
+      </g>
+      <g style={d(reduce ? 0 : 3000, reduce)} stroke="var(--paper-accent)">
+        <path d="M64.5 40 v-4 M58.5 42 l-2.8 -2.8 M70.5 42 l2.8 -2.8" {...sw(1.4)} />
+      </g>
+      <Label x="22" y="34" at="1.2" reduce={reduce}>벧엘과 아이 사이</Label>
+      <Label x="90" y="27" at="2.7" reduce={reduce}>아브람</Label>
+    </g>
+  )
+}
+
+// 애굽으로 내려가다 (창 12:10-20)
+function EgyptFamineScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        {/* 갈라진 땅 — 기근 */}
+        <path d="M14 54 l3 -4 M24 54 l-2.5 -3.5 M34 54 l3 -3" {...sw(1.3, 0.5)} />
+        <path d="M18 54 v-4 q0 -3 -3 -4" {...sw(1.1, 0.4)} />
+      </g>
+      {/* 시든 줄기 — 질감 */}
+      <g style={d(700, reduce)}>
+        <path d="M42 54 q0 -6 -1 -9 M40 48 q-2 -1 -2.5 -3 M43 47 q2 -1 2 -3.5" {...sw(1.3, 0.55)} />
+      </g>
+      {/* 피라미드 — 원경: 애굽 */}
+      <g style={d(1400, reduce)}>
+        <path d="M84 54 l11 -16 l11 16 M90 54 l5 -8 l5 8" {...sw(1.6, 0.7)} />
+      </g>
+      {/* 아브람과 사래 — 주역: 함께 내려감 */}
+      <g style={d(2100, reduce)}>
+        <circle cx="58" cy="35" r="2.9" {...sw(2.5)} />
+        <path d="M58 37.9 v9.6 M55 54 l3 -6.5 l3 6.5" {...sw(2.5)} />
+        <circle cx="66" cy="37" r="2.5" {...sw(2.2)} />
+        <path d="M66 39.5 v8 M63.5 54 l2.5 -6 l2.5 6" {...sw(2.2)} />
+      </g>
+      <Label x="58" y="27" at="2.5" reduce={reduce}>아브람과 사래</Label>
+      <Label x="95" y="34" at="1.7" reduce={reduce}>애굽</Label>
+    </g>
+  )
+}
+
+// 롯과의 이별 (창 13:8-18)
+function LotSeparationScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        {/* 갈라지는 두 길 */}
+        <path d="M50 54 q-14 -10 -30 -14 M56 54 q16 -8 34 -10" {...sw(1.2, 0.5)} />
+      </g>
+      {/* 소돔 골짜기 — 비옥한 요단 평지, 원경 */}
+      <g style={d(800, reduce)}>
+        <path d="M92 54 q10 -2 20 0" {...sw(1.1, 0.4)} />
+        <path d="M96 51 q2 -3 5 0 m4 -1 q2 -3 5 0" {...sw(1.3, 0.55)} />
+      </g>
+      {/* 아브람 — 주역: 손을 벌려 사방을 가리킴 */}
+      <g style={d(1600, reduce)}>
+        <circle cx="28" cy="34" r="2.9" {...sw(2.5)} />
+        <path d="M28 36.9 v9.6 M25 54 l3 -6.5 l3 6.5" {...sw(2.5)} />
+        <path d="M25 39 q-5 -1 -8 1.5 M31 39 q5 -1 8 1.5" {...sw(2.3)} />
+      </g>
+      {/* 롯 — 요단 평지로 떠남 */}
+      <g transform={reduce ? 'translate(14 0)' : undefined} style={d(2400, reduce)}>
+        <circle cx="66" cy="38" r="2.6" {...sw(2.2)} />
+        <path d="M66 40.6 v8.4 M63.5 54 l2.5 -6 l2.5 6" {...sw(2.2)} />
+        {!reduce && (
+          <animateTransform attributeName="transform" type="translate" from="0 0" to="14 0"
+            begin="2.8s" dur="2s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.7 1" keyTimes="0;1" />
+        )}
+      </g>
+      <Label x="28" y="25" at="2.1" reduce={reduce}>아브람</Label>
+      <Label x="66" y="30" at="3.3" reduce={reduce}>롯</Label>
+    </g>
+  )
+}
+
+// 롯을 구출하다 (창 14)
+function LotRescueScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M6 47 q20 -6 40 -1" {...sw(1.1, 0.4)} />
+      </g>
+      {/* 아브람 — 주역: 창을 들고 추격 */}
+      <g transform={reduce ? 'translate(10 0)' : undefined} style={d(900, reduce)}>
+        <circle cx="30" cy="34" r="2.9" {...sw(2.5)} />
+        <path d="M30 36.9 v9.6 M27 54 l3 -6.5 l3 6.5" {...sw(2.5)} />
+        <path d="M32.5 39 l9 -6 M32 37.5 l2 -8" {...sw(2.3)} />
+        {!reduce && (
+          <animateTransform attributeName="transform" type="translate" from="0 0" to="10 0"
+            begin="1.3s" dur="1.6s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.7 1" keyTimes="0;1" />
+        )}
+      </g>
+      {/* 가신들 — 보조: 뒤따름 */}
+      <g style={d(1500, reduce)}>
+        <circle cx="18" cy="38" r="2.2" {...sw(1.8)} />
+        <path d="M18 40.2 v6.8 M16 54 l2 -5 l2 5" {...sw(1.8)} />
+        <circle cx="8" cy="39.5" r="2" {...sw(1.5, 0.8)} />
+        <path d="M8 41.5 v6 M6.5 54 l1.5 -4.5 l1.5 4.5" {...sw(1.5, 0.8)} />
+      </g>
+      {/* 소돔 왕의 재물 — 거절 */}
+      <g style={d(2400, reduce)}>
+        <circle cx="88" cy="47" r="1.9" {...sw(1.6)} />
+        <circle cx="93" cy="49" r="1.9" {...sw(1.6)} />
+        <circle cx="97" cy="46.5" r="1.9" {...sw(1.6)} />
+      </g>
+      <g style={d(reduce ? 0 : 3100, reduce)}>
+        <path d="M78 44 q3 -1.5 6 0 m-1 3 q3 -1.5 6 0" {...sw(1.6)} />
+      </g>
+      <Label x="30" y="25" at="1.9" reduce={reduce}>아브람</Label>
+      <Label x="93" y="40" at="3" reduce={reduce} size="4.2">실 한 오라기도 받지 않다</Label>
+    </g>
+  )
+}
+
+// 하갈의 광야 (창 16:6-14)
+function HagarWildernessScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        {/* 마른 덤불 — 광야 */}
+        <path d="M12 54 q0 -4 -2 -6 m4 6 q0 -3 2 -5" {...sw(1.3, 0.5)} />
+        <path d="M100 54 q0 -3 -1.5 -4.5 m3 4.5 q0 -3 1.5 -4.5" {...sw(1.3, 0.5)} />
+      </g>
+      {/* 샘물 — 보조 */}
+      <g style={d(800, reduce)}>
+        <path d="M60 54 q-1 -4 0 -6 q1 2 0 6" {...sw(1.6, 0.7)} />
+        <path d="M56 53 q4 -2 8 0" {...sw(1.2, 0.5)} />
+      </g>
+      {/* 하갈 — 주역: 웅크려 앉음 */}
+      <g style={d(1600, reduce)}>
+        <circle cx="34" cy="40" r="2.8" {...sw(2.5)} />
+        <path d="M34 42.8 q-0.5 5 -1.5 8 M32.5 50 l-3.5 4 M38 54 l-2.5 -6" {...sw(2.5)} />
+        <path d="M32.5 44 q-2.5 2 -2 6" {...sw(2.2)} />
+      </g>
+      {/* 천사의 빛 — 핵심: 나타나심 */}
+      <g style={d(2400, reduce)} stroke="var(--paper-accent)">
+        <path d="M34 22 v-4.5 M28 26 l-2.8 -2.8 M40 26 l2.8 -2.8" {...sw(1.8)} />
+        <path d="M34 15 v2 m0 3 v2" {...sw(1.3)} />
+      </g>
+      <Label x="34" y="31" at="2.1" reduce={reduce}>하갈</Label>
+      <Label x="34" y="12" at="2.9" reduce={reduce} size="4.2">나를 살피시는 하나님</Label>
+    </g>
+  )
+}
+
+// 브엘세바의 우물 (창 21:22-34)
+function BeershebaWellScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+      </g>
+      {/* 우물 — 핵심 */}
+      <g style={d(700, reduce)}>
+        <path d="M50 54 v-8 h18 v8 M48 46 h22" {...sw(2.2)} />
+        <path d="M52 43 q7 -3 14 0" {...sw(1.3, 0.55)} />
+      </g>
+      {/* 에셀나무 — 갓 심은 묘목 */}
+      <g style={d(1500, reduce)}>
+        <path d="M84 54 v-9" {...sw(2)} />
+        <path d="M84 47 q-4 -1 -5 -5 q4 -1 5 3 q1 -4 5 -3 q-1 4 -5 5" {...sw(1.6, 0.7)} />
+      </g>
+      {/* 아브라함과 아비멜렉 — 맹세의 악수 */}
+      <g style={d(2300, reduce)}>
+        <circle cx="24" cy="37" r="2.7" {...sw(2.4)} />
+        <path d="M24 39.7 v8.3 M21.5 54 l2.5 -6 l2.5 6 M26.5 41 q3 1.5 5 1" {...sw(2.4)} />
+        <circle cx="35" cy="38" r="2.4" {...sw(2)} />
+        <path d="M35 40.4 v7.6 M33 54 l2 -5.5 l2 5.5 M32.5 40.5 q-3 1 -5 0.5" {...sw(2)} />
+      </g>
+      <Label x="24" y="28" at="2.6" reduce={reduce}>아브라함</Label>
+      <Label x="59" y="60" at="1.1" reduce={reduce}>브엘세바</Label>
+    </g>
+  )
+}
+
+// 그랄의 우물들 (창 26:12-22)
+function GerarSojournScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+      </g>
+      {/* 빼앗긴 우물 둘 — 원경, 흐릿하게 남음 */}
+      <g style={d(700, reduce)}>
+        <path d="M18 54 v-5 h11 v5 M16 49 h15" {...sw(1.4, 0.5)} />
+        <path d="M42 54 v-5 h11 v5 M40 49 h15" {...sw(1.4, 0.5)} />
+      </g>
+      {/* 이삭 — 주역: 다시 자리를 옮겨 판다 */}
+      <g transform={reduce ? 'translate(28 0)' : undefined} style={d(1500, reduce)}>
+        <circle cx="52" cy="35" r="2.8" {...sw(2.5)} />
+        <path d="M52 37.8 v9.2 M49 54 l3 -6.5 l3 6.5" {...sw(2.5)} />
+        <path d="M49.5 41 l-3 8 M54.5 40 l4 -2 q2 0 3 2" {...sw(2.2)} />
+        {!reduce && (
+          <animateTransform attributeName="transform" type="translate" from="0 0" to="28 0"
+            begin="2s" dur="2.4s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.7 1" keyTimes="0;1" />
+        )}
+      </g>
+      {/* 르호봇 — 넓은 우물, 핵심 */}
+      <g style={d(2900, reduce)}>
+        <path d="M84 54 v-8 h18 v8 M82 46 h22" {...sw(2.4)} />
+        <path d="M86 43 q9 -4 18 0" {...sw(1.4, 0.6)} />
+      </g>
+      <Label x="52" y="26" at="2" reduce={reduce}>이삭</Label>
+      <Label x="93" y="61" at="3.4" reduce={reduce}>르호봇 — 넓은 곳</Label>
+    </g>
+  )
+}
+
+// 브엘세바 언약의 반복 (창 26:26-33)
+function IsaacBeershebaCovenantScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+      </g>
+      {/* 우물 — 다시 새겨진 이름 */}
+      <g style={d(700, reduce)}>
+        <path d="M60 54 v-8 h16 v8 M58 46 h20" {...sw(2.2)} />
+        <path d="M62 43 q6 -3 12 0" {...sw(1.3, 0.55)} />
+      </g>
+      {/* 이삭 — 주역 */}
+      <g style={d(1500, reduce)}>
+        <circle cx="40" cy="36" r="2.8" {...sw(2.5)} />
+        <path d="M40 38.8 v9.2 M37 54 l3 -6.5 l3 6.5 M42.5 40 q3.5 1.5 5 1" {...sw(2.5)} />
+      </g>
+      {/* 아비멜렉 — 화평을 청함 */}
+      <g style={d(2300, reduce)}>
+        <circle cx="24" cy="38" r="2.4" {...sw(2)} />
+        <path d="M24 40.4 v7.6 M22 54 l2 -5.5 l2 5.5 M26.5 40.5 q3 1 5 0.5" {...sw(2)} />
+      </g>
+      <g style={d(reduce ? 0 : 3100, reduce)} stroke="var(--paper-accent)">
+        <path d="M32 30 v-3.5 M26 32 l-2.4 -2.4 M38 32 l2.4 -2.4" {...sw(1.4)} />
+      </g>
+      <Label x="40" y="27" at="2" reduce={reduce}>이삭</Label>
+      <Label x="24" y="30" at="2.8" reduce={reduce}>아비멜렉</Label>
+      <Label x="68" y="60" at="1.1" reduce={reduce}>브엘세바</Label>
+    </g>
+  )
+}
+
+// 세겜에 정착하다 (창 33:18-20)
+function ShechemSettlementScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M10 43 q12 -7 24 -2" {...sw(1.1, 0.4)} />
+      </g>
+      {/* 장막 */}
+      <g style={d(800, reduce)}>
+        <path d="M78 54 l11 -15 l11 15 M84 54 l5 -8 l5 8" {...sw(1.9)} />
+      </g>
+      {/* 제단 — 핵심 */}
+      <g style={d(1600, reduce)}>
+        <path d="M44 54 v-6 h13 v6 M42 48 h17" {...sw(2.2)} />
+        <path d="M46 51.2 h3 m4 0 h3" {...sw(1.2, 0.55)} />
+      </g>
+      {/* 야곱 — 주역 */}
+      <g style={d(2300, reduce)}>
+        <circle cx="28" cy="37" r="2.8" {...sw(2.5)} />
+        <path d="M28 39.8 v9.2 M25 54 l3 -6.5 l3 6.5 M30.5 41 q3.5 1.5 5 1" {...sw(2.5)} />
+      </g>
+      <g style={d(reduce ? 0 : 3100, reduce)} stroke="var(--paper-accent)">
+        <path d="M50.5 40 v-4 M44.5 42 l-2.8 -2.8 M56.5 42 l2.8 -2.8" {...sw(1.4)} />
+      </g>
+      <Label x="28" y="28" at="2" reduce={reduce}>야곱</Label>
+      <Label x="50" y="61" at="3.4" reduce={reduce} size="4.2">엘엘로헤이스라엘</Label>
+    </g>
+  )
+}
+
+// 요셉의 두 꿈 (창 37:5-11)
+function JosephTwoDreamsScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+      </g>
+      {/* 잠든 요셉 */}
+      <g style={d(700, reduce)}>
+        <circle cx="26" cy="48" r="2.6" {...sw(2.4)} />
+        <path d="M29 49 q9 1.3 16 0.8" {...sw(2.4)} />
+        <path d="M22 51 q0 -3 3 -3 q2 0 2.6 1.4" {...sw(1.7)} />
+      </g>
+      {/* 곡식단 — 첫 꿈: 절하는 단들 */}
+      <g style={d(1500, reduce)}>
+        <path d="M60 54 v-9 m-3 5 l6 0 m-6 -2.5 l6 0" {...sw(1.8)} />
+        <path d="M76 54 q-2 -6 -1 -10 m-3 4 l4.5 -1 m-4 3.5 l4.5 -1" {...sw(1.6, 0.75)} />
+        <path d="M90 54 q-2 -5 -1 -8.5 m-2.5 3.3 l3.8 -0.8 m-3.4 3 l3.8 -0.8" {...sw(1.4, 0.6)} />
+      </g>
+      {/* 해와 달과 별 — 둘째 꿈 */}
+      <g style={d(2400, reduce)} stroke="var(--paper-accent)">
+        <circle cx="60" cy="14" r="3" {...sw(1.8)} />
+        <path d="M60 8.5 v-2 M53.5 14 h-2 M55.3 9.3 l-1.4 -1.4 M64.7 9.3 l1.4 -1.4" {...sw(1.3)} />
+        <path d="M78 12 q4 -2.5 6 0.5 q-3 3 -6 -0.5" {...sw(1.4)} />
+        <path d="M40 16 v2 m-1 -1 h2" {...sw(1.2)} />
+      </g>
+      <Label x="26" y="39" at="1" reduce={reduce}>요셉</Label>
+      <Label x="75" y="60" at="1.9" reduce={reduce}>절하는 곡식단</Label>
+    </g>
+  )
+}
+
+// 보디발의 집 (창 39:2-6)
+function JosephSlaveScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        {/* 애굽 저택 — 원경 */}
+        <path d="M74 54 v-16 h34 v16 M78 38 h26" {...sw(1.4, 0.55)} />
+        <path d="M82 54 v-9 M92 54 v-9 M102 54 v-9" {...sw(1.1, 0.4)} />
+      </g>
+      {/* 곡식·재물 — 보조: 요셉이 맡은 살림 */}
+      <g style={d(900, reduce)}>
+        <path d="M56 54 v-6 h8 v6 M58 51 h4" {...sw(1.6, 0.65)} />
+      </g>
+      {/* 요셉 — 주역: 집을 다스림 */}
+      <g style={d(1700, reduce)}>
+        <circle cx="34" cy="35" r="2.9" {...sw(2.5)} />
+        <path d="M34 37.9 v9.6 M31 54 l3 -6.5 l3 6.5" {...sw(2.5)} />
+        <path d="M36.5 40 q3.5 -1.5 5.5 1 M31.5 40 q-3.5 1 -4.5 4" {...sw(2.2)} />
+      </g>
+      {/* 함께하심 — 핵심: 은은한 빛 */}
+      <g style={d(reduce ? 0 : 2600, reduce)} stroke="var(--paper-accent)">
+        <path d="M34 22 v-3.5 M28 25 l-2.4 -2.4 M40 25 l2.4 -2.4" {...sw(1.4)} />
+      </g>
+      <Label x="34" y="27" at="2.1" reduce={reduce}>요셉</Label>
+      <Label x="91" y="33" at="1.3" reduce={reduce}>보디발의 집</Label>
+    </g>
+  )
+}
+
+// 보디발의 아내와 감옥 (창 39:7-20)
+function PotipharWifePrisonScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+      </g>
+      {/* 붙잡힌 겉옷 — 핵심: 뒤에 남음 */}
+      <g style={d(800, reduce)}>
+        <path d="M42 46 q4 3 3 8 q-3 1 -4 -3 q-1 -3 1 -5" {...sw(1.8, 0.75)} />
+        <path d="M36 44 l6 2" {...sw(1.6, 0.75)} />
+      </g>
+      {/* 요셉 — 주역: 뒤도 안 보고 도망 */}
+      <g transform={reduce ? 'translate(14 0)' : undefined} style={d(1500, reduce)}>
+        <circle cx="30" cy="35" r="2.8" {...sw(2.5)} />
+        <path d="M30 37.8 v9.2 M27 54 l3 -6.5 l3 6.5" {...sw(2.5)} />
+        <path d="M27.5 40 l-4 3.5 M32.5 40 l4 -2" {...sw(2.2)} />
+        {!reduce && (
+          <animateTransform attributeName="transform" type="translate" from="0 0" to="14 0"
+            begin="2s" dur="1.6s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.7 1" keyTimes="0;1" />
+        )}
+      </g>
+      {/* 감옥 창살 — 결말 */}
+      <g style={d(2600, reduce)}>
+        <path d="M78 54 v-14 h20 v14" {...sw(2.4)} />
+        <path d="M83 54 v-14 M88 54 v-14 M93 54 v-14" {...sw(1.6)} />
+      </g>
+      <Label x="30" y="26" at="1.7" reduce={reduce}>요셉</Label>
+      <Label x="88" y="36" at="3" reduce={reduce}>감옥</Label>
+    </g>
+  )
+}
+
+// 감옥의 두 꿈 (창 40)
+function PrisonDreamsScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        {/* 감옥 창살 — 원경 */}
+        <path d="M6 54 v-18 h20 v18" {...sw(2, 0.7)} />
+        <path d="M11 54 v-18 M16 54 v-18 M21 54 v-18" {...sw(1.4, 0.5)} />
+      </g>
+      {/* 요셉 — 주역: 꿈을 해석 */}
+      <g style={d(900, reduce)}>
+        <circle cx="46" cy="34" r="2.8" {...sw(2.5)} />
+        <path d="M46 36.8 v9.2 M43 54 l3 -6.5 l3 6.5 M48.5 38 q3.5 1 5 3" {...sw(2.5)} />
+      </g>
+      {/* 술 맡은 관원 — 포도나무 잔 */}
+      <g style={d(1700, reduce)}>
+        <circle cx="68" cy="38" r="2.3" {...sw(1.9)} />
+        <path d="M68 40.3 v7.7 M66 54 l2 -5.5 l2 5.5" {...sw(1.9)} />
+        <path d="M64 43 q1 -3 4 -3 q3 0 4 3" {...sw(1.4, 0.6)} />
+      </g>
+      {/* 떡 굽는 관원 — 광주리 */}
+      <g style={d(2500, reduce)}>
+        <circle cx="88" cy="39" r="2.1" {...sw(1.7, 0.85)} />
+        <path d="M88 41.1 v6.9 M86 54 l2 -5 l2 5" {...sw(1.7, 0.85)} />
+        <path d="M84.5 43.5 h7 v3.5 h-7 z" {...sw(1.3, 0.6)} />
+      </g>
+      {/* 잊힌 두 해 — 흐려지는 표시 */}
+      <g style={d(reduce ? 0 : 3300, reduce)}>
+        <path d="M46 20 v2 m0 3 v2 m0 3 v2" {...sw(1.2, 0.5)} />
+      </g>
+      <Label x="46" y="25" at="1.3" reduce={reduce}>요셉</Label>
+      <Label x="78" y="61" at="3.7" reduce={reduce} size="4.2">두 해를 잊힌 채</Label>
+    </g>
+  )
+}
+
+// 이삭의 죽음 (창 35:27-29)
+function IsaacHebronDeathScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        {/* 막벨라 동굴 */}
+        <path d="M64 54 q2 -22 26 -22 q22 0 24 22" {...sw(2.4)} />
+        <path d="M74 54 q1 -12 16 -12 q14 0 15 12" {...sw(1.6, 0.6)} />
+      </g>
+      {/* 나무 */}
+      <g style={d(900, reduce)}>
+        <path d="M18 54 v-9 M18 45 q-5 -1 -6 -6 q6 -1 6 6 q0 -7 6 -6 q-1 5 -6 6" {...sw(1.5, 0.65)} />
+      </g>
+      {/* 에서 — 함께 장사함 */}
+      <g style={d(1700, reduce)}>
+        <circle cx="36" cy="37" r="2.7" {...sw(2.3)} />
+        <path d="M35 39.7 q-0.8 5.5 -1.2 12.3 M32.5 54 l2.5 -5 M39 42 q2.5 1.3 4.5 0.5" {...sw(2.3)} />
+      </g>
+      {/* 야곱 — 나란히 서서 */}
+      <g style={d(2400, reduce)}>
+        <circle cx="48" cy="37" r="2.7" {...sw(2.3)} />
+        <path d="M47 39.7 q-0.8 5.5 -1.2 12.3 M44.5 54 l2.5 -5 M43.5 42 q-2.5 1.3 -4.5 0.5" {...sw(2.3)} />
+      </g>
+      <Label x="36" y="28" at="2.1" reduce={reduce}>에서</Label>
+      <Label x="48" y="28" at="2.8" reduce={reduce}>야곱</Label>
+      <Label x="89" y="28" at="1.3" reduce={reduce}>막벨라 굴</Label>
+    </g>
+  )
+}
+
+// 형들의 첫 방문 (창 42)
+function JosephBrothersFirstScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M14 54 v-24 M11 30 h7" {...sw(1.3, 0.5)} />
+      </g>
+      {/* 요셉 — 주역: 총리의 자리 */}
+      <g style={d(900, reduce)}>
+        <circle cx="88" cy="32" r="3" {...sw(2.6)} />
+        <path d="M88 35 v11.5 M84.5 54 l3.5 -7.5 l3.5 7.5" {...sw(2.6)} />
+        <path d="M84.5 38 q6 -1.5 9 0" {...sw(1.3, 0.6)} />
+      </g>
+      {/* 절하는 형들 — 핵심 */}
+      <g transform={reduce ? 'rotate(-10 40 54)' : undefined} style={d(1700, reduce)}>
+        <circle cx="34" cy="47" r="2.2" {...sw(1.9)} />
+        <path d="M36 48.2 q5 -1.6 8.5 1.1 M32 48.5 l-3 3.5" {...sw(1.9)} />
+        <circle cx="46" cy="48.5" r="2" {...sw(1.6, 0.8)} />
+        <path d="M48 49.5 q4.5 -1.5 7.5 0.8 M44 49.8 l-2.5 3" {...sw(1.6, 0.8)} />
+        {!reduce && (
+          <animateTransform attributeName="transform" type="rotate" from="0 40 54" to="-10 40 54"
+            begin="2.1s" dur="0.8s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.5 1" keyTimes="0;1" />
+        )}
+      </g>
+      {/* 시므온 — 볼모로 붙잡힘 */}
+      <g style={d(2500, reduce)}>
+        <circle cx="66" cy="40" r="2.2" {...sw(1.8)} />
+        <path d="M66 42.2 v6.8 M64 54 l2 -5 l2 5" {...sw(1.8)} />
+        <path d="M62 40 h8 v9 h-8 z" {...sw(1.3, 0.55)} />
+      </g>
+      <Label x="88" y="23" at="1.3" reduce={reduce}>총리 요셉</Label>
+      <Label x="40" y="41" at="2.1" reduce={reduce}>형들</Label>
+      <Label x="66" y="34" at="2.9" reduce={reduce}>시므온</Label>
+    </g>
+  )
+}
+
+// 은잔과 베냐민 (창 44)
+function SilverCupBenjaminScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+      </g>
+      {/* 자루 속 은잔 — 핵심 */}
+      <g style={d(700, reduce)}>
+        <path d="M70 54 v-9 q0 -3 4 -3 q4 0 4 3 v9 z" {...sw(2.2)} />
+        <path d="M72 44 q2 -2.5 4 0" {...sw(1.6)} stroke="var(--paper-accent)" />
+      </g>
+      {/* 베냐민 — 보조: 뒤에 섬 */}
+      <g style={d(1500, reduce)}>
+        <circle cx="90" cy="38" r="2.4" {...sw(1.9)} />
+        <path d="M90 40.4 v7.6 M88 54 l2 -5.5 l2 5.5" {...sw(1.9)} />
+      </g>
+      {/* 유다 — 주역: 무릎 꿇고 대신하겠다 */}
+      <g transform={reduce ? undefined : 'translate(0 -5)'} style={d(2300, reduce)}>
+        <circle cx="34" cy="41" r="2.8" {...sw(2.5)} />
+        <path d="M34 43.8 l-1.5 5.2 M27.5 54 h10 M33 48 q-3.5 1.8 -5 5 M35.5 47.5 q3 -1.3 4.5 -4" {...sw(2.5)} />
+        {!reduce && (
+          <animateTransform attributeName="transform" type="translate" from="0 -5" to="0 0"
+            begin="2.7s" dur="0.7s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.5 1" keyTimes="0;1" />
+        )}
+      </g>
+      <Label x="34" y="32" at="2.6" reduce={reduce}>유다</Label>
+      <Label x="90" y="29" at="1.9" reduce={reduce}>베냐민</Label>
+      <Label x="74" y="61" at="1.1" reduce={reduce}>은잔</Label>
+    </g>
+  )
+}
+
 const SCENES = {
+  'authored-abraham-departs-haran': { Scene: DepartsHaranScene, desc: '갈 바를 알지 못한 채 하란을 떠나 가나안으로 향하다', caption: '하란을 떠나다 — 창세기 12장' },
   'authored-abraham-call-ur': { Scene: CallUrScene, desc: '고향 우르를 떠나라는 부르심을 따라나서다', caption: '부르심 — 창세기 12장' },
   'authored-abraham-shechem-promise': { Scene: ShechemPromiseScene, desc: '가나안 첫 자리에서 땅의 약속을 받고 단을 쌓다', caption: '세겜의 약속 — 창세기 12장' },
+  'authored-abraham-bethel-altar': { Scene: BethelAltarScene, desc: '벧엘과 아이 사이에 단을 쌓고 여호와의 이름을 부르다', caption: '벧엘의 단 — 창세기 12장' },
+  'authored-abraham-egypt-famine': { Scene: EgyptFamineScene, mood: 'dark', desc: '기근을 피해 애굽으로 내려가나 하나님이 사래를 지키시다', caption: '애굽으로 내려가다 — 창세기 12장' },
+  'authored-abraham-lot-separation': { Scene: LotSeparationScene, desc: '롯에게 좋은 땅을 내주고 마므레에 단을 쌓다', caption: '롯과의 이별 — 창세기 13장' },
+  'authored-abraham-lot-rescue': { Scene: LotRescueScene, desc: '네 왕을 추격해 롯을 구하고도 소돔의 재물은 사양하다', caption: '롯을 구출하다 — 창세기 14장' },
   'authored-abraham-covenant-ceremony': { Scene: CovenantCeremonyScene, desc: '쪼갠 제물 사이로 타는 횃불이 지나가다', caption: '횃불 언약 — 창세기 15장' },
+  'authored-abraham-hagar-wilderness': { Scene: HagarWildernessScene, desc: '도망친 하갈에게 천사가 나타나 살피시는 하나님을 알리다', caption: '하갈의 광야 — 창세기 16장' },
   'authored-abraham-sodom-intercession': { Scene: SodomIntercessionScene, desc: '열 명의 의인을 두고 소돔을 위해 간구하다', caption: '중보 — 창세기 18장' },
+  'authored-abraham-beersheba-well': { Scene: BeershebaWellScene, desc: '우물 분쟁을 언약으로 맺고 브엘세바에 나무를 심다', caption: '브엘세바의 우물 — 창세기 21장' },
   'authored-abraham-isaac-binding': { Scene: IsaacBindingScene, desc: '모리아 산에서 하나님이 숫양을 예비하시다', caption: '여호와 이레 — 창세기 22장' },
   'authored-abraham-sarah-burial': { Scene: SarahBurialScene, mood: 'dark', desc: '사라를 장사하며 약속의 땅 첫 소유를 얻다', caption: '막벨라 굴 — 창세기 23장' },
   'authored-isaac-birth-beersheba': { Scene: IsaacBirthScene, desc: '백 세 아브라함에게 약속의 아들이 태어나다', caption: '이삭의 출생 — 창세기 21장' },
   'authored-isaac-rebekah-marriage': { Scene: RebekahMarriageScene, desc: '종의 기도에 응답된 리브가가 아내가 되다', caption: '우물가의 리브가 — 창세기 24장' },
+  'authored-isaac-gerar-sojourn': { Scene: GerarSojournScene, desc: '빼앗겨도 다투지 않고 옮겨 파다가 마침내 넓은 곳을 얻다', caption: '그랄의 우물들 — 창세기 26장' },
+  'authored-isaac-beersheba-covenant': { Scene: IsaacBeershebaCovenantScene, desc: '아비멜렉이 여호와의 함께하심을 보고 화평을 청하다', caption: '브엘세바의 화평 — 창세기 26장' },
   'authored-isaac-esau-jacob-birth': { Scene: TwinsBirthScene, desc: '발꿈치를 잡은 야곱과 에서가 태어나다', caption: '쌍둥이 — 창세기 25장' },
   'authored-isaac-blessing-jacob': { Scene: BlessingJacobScene, desc: '눈 어두운 이삭이 야곱에게 장자의 복을 빌다', caption: '축복 — 창세기 27장' },
   'authored-jacob-bethel-dream': { Scene: BethelDreamScene, desc: '돌베개 위 꿈에서 하늘 사닥다리를 보다', caption: '벧엘의 꿈 — 창세기 28장' },
   'authored-jacob-haran-sojourn': { Scene: HaranSojournScene, desc: '라반의 집 20년, 열두 아들과 양 떼를 얻다', caption: '하란 체류 — 창세기 29-31장' },
   'authored-jacob-peniel-wrestling': { Scene: PenielWrestlingScene, desc: '얍복 나루의 씨름 끝에 이스라엘이 되다', caption: '브니엘 — 창세기 32장' },
+  'authored-jacob-shechem-settlement': { Scene: ShechemSettlementScene, desc: '세겜에 단을 쌓고 엘엘로헤이스라엘이라 부르다', caption: '세겜에 정착하다 — 창세기 33장' },
   'authored-jacob-bethel-return': { Scene: BethelReturnScene, desc: '서원대로 벧엘에 돌아와 제단을 쌓다', caption: '벧엘 귀환 — 창세기 35장' },
+  'authored-joseph-two-dreams': { Scene: JosephTwoDreamsScene, desc: '곡식단과 별들이 절하는 꿈을 꾸고 형들의 시기를 사다', caption: '요셉의 꿈 — 창세기 37장' },
   'authored-joseph-dothan-pit': { Scene: DothanPitScene, mood: 'dark', desc: '형들이 요셉을 구덩이에 던지고 팔아넘기다', caption: '도단 구덩이 — 창세기 37장' },
+  'authored-joseph-egypt-slave': { Scene: JosephSlaveScene, desc: '보디발의 집에서 여호와께서 함께하시므로 형통하다', caption: '보디발의 집 — 창세기 39장' },
+  'authored-joseph-potiphar-wife-prison': { Scene: PotipharWifePrisonScene, mood: 'dark', desc: '유혹을 물리치나 무고를 당해 감옥에 갇히다', caption: '무고와 투옥 — 창세기 39장' },
+  'authored-joseph-egypt-prison-dreams': { Scene: PrisonDreamsScene, mood: 'dark', desc: '관원들의 꿈을 풀어주고도 두 해를 잊힌 채 갇혀있다', caption: '감옥의 두 꿈 — 창세기 40장' },
   'authored-joseph-egypt-prime-minister': { Scene: PrimeMinisterScene, desc: '바로의 꿈을 풀어 애굽의 총리가 되다', caption: '애굽 총리 — 창세기 41장' },
+  'authored-isaac-hebron-death': { Scene: IsaacHebronDeathScene, mood: 'dark', desc: '180세 이삭이 죽고 에서와 야곱이 함께 장사하다', caption: '이삭의 죽음 — 창세기 35장' },
+  'authored-joseph-egypt-brothers-first': { Scene: JosephBrothersFirstScene, desc: '형들이 알지 못한 채 절하고 시므온이 볼모로 잡히다', caption: '형들의 첫 방문 — 창세기 42장' },
+  'authored-joseph-silver-cup-benjamin': { Scene: SilverCupBenjaminScene, desc: '은잔이 발견되자 유다가 대신 종이 되겠다 나서다', caption: '은잔과 베냐민 — 창세기 44장' },
   'authored-joseph-egypt-family-reunion': { Scene: FamilyReunionScene, desc: '요셉이 형들 앞에 정체를 밝히고 울다', caption: '상봉 — 창세기 45장' },
   'authored-joseph-jacob-blesses-ephraim-manasseh': { Scene: EphraimManassehScene, desc: '야곱이 손을 엇바꾸어 두 손자를 축복하다', caption: '엇바꾼 축복 — 창세기 48장' },
   'authored-joseph-egypt-death-bones': { Scene: DeathBonesScene, desc: '내 해골을 메고 올라가라 — 마지막 유언', caption: '유골의 맹세 — 창세기 50장' },

@@ -652,6 +652,49 @@ function LawReadingScene({ reduce }) {
   )
 }
 
+// 모르드개의 발각 (에 2:21-23)
+function MordecaiPlotScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M14 54 v-24 M32 54 v-24 M11 30 h24" {...sw(1.4, 0.55)} />
+        <path d="M19 34 h6 m-6 8 h6" {...sw(1.1, 0.4)} />
+      </g>
+      {/* 대궐 문에 앉은 모르드개 — 주역 */}
+      <g style={d(900, reduce)}>
+        <circle cx="23" cy="38" r="2.8" {...sw(2.6)} />
+        <path d="M23 40.8 q-1.5 4 -5 5 M15 54 l4.5 -6 M25 46 l2 7" {...sw(2.6)} />
+      </g>
+      {/* 빅단과 데레스 — 음모하는 두 내시 */}
+      <g style={d(1800, reduce)}>
+        <circle cx="65" cy="34" r="2.4" {...sw(2)} />
+        <path d="M65 36.4 v8.6 M62 54 l3 -9 l3 9 M67 39 q3 -1 4 -3" {...sw(2)} />
+        <circle cx="76" cy="35" r="2.3" {...sw(1.9, 0.9)} />
+        <path d="M76 37.3 v8.2 M73 54 l3 -8.5 l3 8.5 M74 39.5 q-3 -1 -4 -3" {...sw(1.9, 0.9)} />
+        <path d="M68 35 q3.5 -1 5 0.5" {...sw(1.3, 0.6)} />
+      </g>
+      {/* 알아채고 에스더에게 전함 — 핵심 */}
+      <g style={d(2600, reduce)} stroke="var(--paper-accent)">
+        <path d="M26 36 q3 -1.5 5 0.3" {...sw(1.5)} />
+        <path d="M30 33 L54 20" {...sw(1.8)}>
+          {!reduce && <animate attributeName="stroke-dashoffset" from="1" to="0" begin="2.6s" dur="0.8s" fill="freeze" />}
+        </path>
+        <path d="M50.5 20 v-2.6 l1.5 1.6 l1.4 -2.4 l1.4 2.4 l1.5 -1.6 v2.6 h-5.8" {...sw(2.2)} />
+      </g>
+      {/* 궁중 일기에 기록되다 */}
+      <g style={d(3400, reduce)}>
+        <path d="M92 46 q4 -2 8 0 q4 -2 8 0" {...sw(1.8)} />
+        <path d="M92 50 q4 -2 8 0 q4 -2 8 0" {...sw(1.4, 0.7)} />
+        <path d="M92 46 v4 M108 46 v4 M100 45.5 v4.5" {...sw(1.3)} />
+      </g>
+      <Label x="23" y="25" at="1.4" reduce={reduce}>모르드개</Label>
+      <Label x="70" y="26" at="2.3" reduce={reduce} size="4.2">빅단과 데레스</Label>
+      <Label x="60" y="61" at="3.9" reduce={reduce} size="4.2">궁중 일기에 기록되다</Label>
+    </g>
+  )
+}
+
 const SCENES = {
   'authored-daniel-babylon-diet': { Scene: BabylonDietScene, desc: '왕의 음식 대신 채식을 청하다', caption: '결단 — 다니엘 1장' },
   'authored-daniel-babylon-image-dream': { Scene: ImageDreamScene, desc: '뜨인 돌이 신상을 쳐서 부수다', caption: '신상 꿈 — 다니엘 2장' },
@@ -664,6 +707,7 @@ const SCENES = {
   'authored-daniel-babylon-seventy-weeks': { Scene: SeventyWeeksScene, desc: '금식하며 기도할 때 가브리엘이 이르다', caption: '칠십 이레 — 다니엘 9장' },
   'authored-daniel-tigris-vision': { Scene: TigrisVisionScene, desc: '히데겔 강가에서 마지막 계시를 받다', caption: '마지막 환상 — 다니엘 10-12장' },
   'authored-esther-queen-chosen': { Scene: QueenChosenScene, desc: '에스더가 왕후의 관을 쓰다', caption: '간택 — 에스더 2장' },
+  'authored-esther-mordecai-plot': { Scene: MordecaiPlotScene, desc: '모르드개가 왕 암살 음모를 밝혀 궁중 일기에 기록되다', caption: '음모의 발각 — 에스더 2장' },
   'authored-esther-haman-decree': { Scene: HamanDecreeScene, mood: 'dark', desc: '유다인을 멸하라는 조서가 내리다', caption: '하만의 조서 — 에스더 3장' },
   'authored-esther-if-i-perish': { Scene: IfIPerishScene, desc: '죽으면 죽으리이다 — 왕 앞에 나아가다', caption: '결단 — 에스더 4장' },
   'authored-esther-haman-downfall': { Scene: HamanDownfallScene, desc: '자기가 세운 나무에 하만이 달리다', caption: '반전 — 에스더 7장' },

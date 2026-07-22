@@ -591,6 +591,378 @@ function PatmosScene({ reduce }) {
   )
 }
 
+// 구브로 선교 (행 13:1-12)
+function CyprusMissionScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M60 50 q6 -2.5 12 0 q6 -2.5 12 0 M56 46 q5 -2 10 0" {...sw(1.1, 0.5)} />
+      </g>
+      {/* 안디옥의 파송 — 안수 */}
+      <g style={d(900, reduce)}>
+        <circle cx="20" cy="30" r="2.7" {...sw(2.4)} />
+        <path d="M20 32.7 v10.3 M17.5 54 l2.5 -11 l2.5 11 M22 36 q4 1 6 4" {...sw(2.4)} />
+        <circle cx="34" cy="42" r="2.2" {...sw(1.9, 0.85)} />
+        <path d="M34 44.2 l-1.1 3.5 M31 53.5 h6" {...sw(1.9, 0.85)} />
+        <circle cx="42" cy="43" r="2.1" {...sw(1.8, 0.8)} />
+        <path d="M42 45.1 l-1 3.4 M39.3 53.6 h5.5" {...sw(1.8, 0.8)} />
+      </g>
+      {/* 구브로로 가는 배 */}
+      <g style={d(1700, reduce)}>
+        <path d="M64 46 q1.5 3.5 6 3.5 h9 q4.5 0 6 -3.5 l-2 -3 h-17 z M73 43 v-8 M73 35 q-5 1.5 -6.5 7" {...sw(1.7, 0.8)} />
+      </g>
+      {/* 서기오 바울과 눈이 어두워진 엘루마 */}
+      <g style={d(2500, reduce)}>
+        <circle cx="100" cy="34" r="2.6" {...sw(2.3)} />
+        <path d="M100 36.6 v9.4 M97 54 l3 -8 l3 8 M102.5 38 q3 -1.5 5 -4" {...sw(2.3)} />
+        <circle cx="88" cy="38" r="2.3" {...sw(2, 0.8)} />
+        <path d="M88 40.3 v8.7 M85.5 54 l2.5 -5 l2.5 5 M85.5 41 q-3 1 -4.5 3.5" {...sw(2, 0.8)} />
+        <path d="M86 33.5 q1 -1.6 2 0 q1 -1.6 2 0" {...sw(1.3, 0.7)} />
+      </g>
+      <g style={d(reduce ? 0 : 3200, reduce)} stroke="var(--paper-accent)">
+        <path d="M100 24 v-4 M94 26 l-3 -3 M106 26 l3 -3" {...sw(1.4)}>
+          {!reduce && <animate attributeName="opacity" values="1;0.5;1" begin="3.2s" dur="1s" repeatCount="2" />}
+        </path>
+      </g>
+      <Label x="27" y="21" at="1.3" reduce={reduce}>바나바와 사울을 보내다</Label>
+      <Label x="86" y="47" at="2.9" reduce={reduce}>눈이 어두워진 엘루마</Label>
+      <Label x="60" y="61" at="3.4" reduce={reduce} size="4.2">총독이 믿고, 사울이 바울이라 불리다</Label>
+    </g>
+  )
+}
+
+// 비시디아 안디옥 (행 13:13-52)
+function PisidianAntiochScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M20 54 v-4 h30 v4" {...sw(1.4, 0.55)} />
+      </g>
+      {/* 바울의 회당 설교 */}
+      <g style={d(900, reduce)}>
+        <circle cx="54" cy="30" r="3" {...sw(2.6)} />
+        <path d="M54 33 v12 M50.5 54 l3.5 -9 l3.5 9 M54 36 q-5 0 -8 -2 M54 36 q5 1 8 3" {...sw(2.6)} />
+      </g>
+      {/* 시기하는 유대인들 */}
+      <g style={d(1800, reduce)}>
+        <circle cx="22" cy="42" r="2.4" {...sw(2, 0.9)} />
+        <path d="M22 44.4 v6.6 M19.5 54 l2.5 -3 l2.5 3 M19.5 47 q2.5 -2 5 0" {...sw(2, 0.9)} />
+        <circle cx="33" cy="43" r="2.3" {...sw(1.9, 0.85)} />
+        <path d="M33 45.3 v6 M30.7 54 l2.3 -2.7 l2.3 2.7 M30.7 47.5 q2.3 -1.8 4.6 0" {...sw(1.9, 0.85)} />
+      </g>
+      {/* 이방인에게로 — 열린 무리 */}
+      <g style={d(2600, reduce)}>
+        <circle cx="90" cy="42" r="2.4" {...sw(2)} />
+        <path d="M90 44.4 v6.6 M87.5 54 l2.5 -3 l2.5 3 M87.5 46.5 q-3 -1 -5 1 M92.5 46.5 q3 -1 5 1" {...sw(2)} />
+      </g>
+      <g style={d(reduce ? 0 : 2600, reduce)} stroke="var(--paper-accent)">
+        <path d="M62 30 q10 2 20 8" {...sw(1.5)}>
+          {!reduce && <animate attributeName="opacity" values="1;0.45;1" begin="2.7s" dur="0.9s" repeatCount="2" />}
+        </path>
+      </g>
+      <Label x="54" y="20" at="1.6" reduce={reduce}>바울의 회당 설교</Label>
+      <Label x="27" y="33" at="2.3" reduce={reduce}>시기하는 무리</Label>
+      <Label x="60" y="61" at="3" reduce={reduce} size="4.2">우리가 이방인에게로 향하노라</Label>
+    </g>
+  )
+}
+
+// 루스드라 (행 14)
+function LystraScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M96 54 v-14 q6 -6 12 0 v14" {...sw(1.3, 0.5)} />
+      </g>
+      {/* 치유된 이 — 신격화되는 무리 */}
+      <g style={d(1000, reduce)}>
+        <g transform={reduce ? undefined : 'translate(0 7)'}>
+          <circle cx="30" cy="34" r="2.6" {...sw(2.3)} />
+          <path d="M30 36.6 v9.4 M27 54 l3 -8 l3 8 M32.5 38 q3 -1 5 -3" {...sw(2.3)} />
+          {!reduce && (
+            <animateTransform attributeName="transform" type="translate" from="0 7" to="0 0"
+              begin="1s" dur="0.8s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.5 1" keyTimes="0;1" />
+          )}
+        </g>
+        <circle cx="48" cy="42" r="2.2" {...sw(1.9, 0.85)} />
+        <path d="M48 44.2 v6.5 M45.8 54 l2.2 -3.3 l2.2 3.3 M45.8 45 q2.2 -3 4.4 -1" {...sw(1.9, 0.85)} />
+        <path d="M22 30 q8 -5 16 0" {...sw(1.6)} />
+      </g>
+      {/* 돌팔매에 쓰러지다 */}
+      <g style={d(2000, reduce)}>
+        <circle cx="66" cy="30" r="0.9" {...sw(1.4)} />
+        <circle cx="72" cy="27" r="0.9" {...sw(1.4)} />
+        <circle cx="78" cy="31" r="0.9" {...sw(1.4)} />
+        <circle cx="60" cy="48" r="2.6" {...sw(2.4)} />
+        <path d="M62.6 49 q5 -1 8 1.5 M57.5 49.5 l-5 2.5" {...sw(2.4)} />
+      </g>
+      {/* 다시 일어나 더베로 */}
+      <g style={d(2900, reduce)}>
+        <circle cx="94" cy="36" r="2.5" {...sw(2.2)} />
+        <path d="M94 38.5 v9.5 M91 54 l3 -6 l4 6 M96.5 40 q3 1 5 3" {...sw(2.2)} />
+      </g>
+      <Label x="30" y="24" at="1.6" reduce={reduce}>루스드라의 치유</Label>
+      <Label x="48" y="33" at="1.9" reduce={reduce}>신이라 외치는 무리</Label>
+      <Label x="60" y="61" at="3.1" reduce={reduce} size="4.2">하나님 나라에 들어가려면 많은 환난을 겪어야 하리라</Label>
+    </g>
+  )
+}
+
+// 데살로니가와 베뢰아 (행 17:1-15)
+function ThessalonicaBereaScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M10 54 v-10 h14 v10" {...sw(1.3, 0.5)} />
+        <path d="M96 54 v-10 h14 v10" {...sw(1.3, 0.5)} />
+      </g>
+      {/* 데살로니가의 소동 */}
+      <g style={d(900, reduce)}>
+        <circle cx="26" cy="40" r="2.3" {...sw(2, 0.9)} />
+        <path d="M23.7 54 l1.4 -8 h2.6 l1.4 8 M23.7 46 l-3 -3 M28.3 46 l3 -3" {...sw(2, 0.9)} />
+        <circle cx="36" cy="41.5" r="2.2" {...sw(1.9, 0.85)} />
+        <path d="M33.9 54 l1.3 -7.5 h2.4 l1.3 7.5 M33.9 47.5 l-2.7 -2.5 M38.1 47.5 l2.7 -2.5" {...sw(1.9, 0.85)} />
+      </g>
+      {/* 베뢰아 — 성경을 상고하다 */}
+      <g style={d(1900, reduce)}>
+        <circle cx="88" cy="42" r="2.3" {...sw(2)} />
+        <path d="M85.7 54 l1.4 -7.5 h2.6 l1.4 7.5 M83 50 h5.5" {...sw(2)} />
+        <path d="M80 50 h9 q1.3 0 1.3 1.3 v0 q0 1.3 -1.3 1.3 h-9" {...sw(1.6)} />
+        <circle cx="98" cy="42.5" r="2.2" {...sw(1.9, 0.9)} />
+        <path d="M95.9 54 l1.2 -7 h2.3 l1.2 7 M99 50 h4" {...sw(1.9, 0.9)} />
+      </g>
+      <g style={d(reduce ? 0 : 2700, reduce)} stroke="var(--paper-accent)">
+        <path d="M82 51.6 h6" {...sw(1.3)}>
+          {!reduce && <animate attributeName="opacity" values="1;0.4;1" begin="2.7s" dur="1s" repeatCount="2" />}
+        </path>
+      </g>
+      <Label x="31" y="32" at="1.5" reduce={reduce}>데살로니가의 소동</Label>
+      <Label x="90" y="33" at="2.3" reduce={reduce}>날마다 말씀을 상고하다</Label>
+      <Label x="60" y="61" at="3" reduce={reduce} size="4.2">이것이 그러한가 성경을 상고하다</Label>
+    </g>
+  )
+}
+
+// 예루살렘 체포 (행 21:27-36)
+function JerusalemArrestScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M18 54 V24 M30 54 V24 M14 24 h20" {...sw(1.4, 0.5)} />
+      </g>
+      {/* 성전 앞 격앙된 무리 */}
+      <g style={d(900, reduce)}>
+        <circle cx="70" cy="40" r="2.3" {...sw(2, 0.9)} />
+        <path d="M67.7 54 l1.4 -8 h2.6 l1.4 8 M70 46 l3 -4 M67.7 46 l-2 -3" {...sw(2, 0.9)} />
+        <circle cx="80" cy="41" r="2.2" {...sw(1.9, 0.85)} />
+        <path d="M77.9 54 l1.2 -7.5 h2.4 l1.2 7.5 M80 47 l3 -3.5" {...sw(1.9, 0.85)} />
+        <circle cx="90" cy="40.5" r="2.2" {...sw(1.9, 0.8)} />
+        <path d="M87.9 54 l1.2 -8 h2.4 l1.2 8 M90 46.5 l-3 -4" {...sw(1.9, 0.8)} />
+      </g>
+      {/* 붙잡힌 바울 */}
+      <g style={d(1900, reduce)}>
+        <circle cx="52" cy="32" r="2.9" {...sw(2.6)} />
+        <path d="M52 34.9 v11.1 M49 54 l3 -8 l3 8 M49.5 37 q-3.5 0 -5.5 2 M54.5 37 q3.5 0 5.5 2" {...sw(2.6)} />
+      </g>
+      {/* 결박하는 쇠사슬 */}
+      <g style={d(2700, reduce)}>
+        <path d="M40 50 v-16 M38 36 l4 -2" {...sw(1.6, 0.85)} />
+        <path d="M46 46 q1.6 -1.6 3.2 0 q1.6 1.6 3.2 0" {...sw(1.7)}>
+          {!reduce && <animate attributeName="opacity" values="0.5;1" begin="2.7s" dur="0.6s" fill="freeze" />}
+        </path>
+      </g>
+      <Label x="80" y="32" at="1.6" reduce={reduce}>성전의 무리</Label>
+      <Label x="52" y="22" at="2.4" reduce={reduce}>결박된 바울</Label>
+      <Label x="60" y="61" at="3" reduce={reduce} size="4.2">결박과 환난이 나를 기다리는 줄 알았노라</Label>
+    </g>
+  )
+}
+
+// 가이사랴 감금 (행 24-26)
+function CaesareaScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M74 54 v-10 h34 v10 M78 44 h26" {...sw(2)} />
+      </g>
+      {/* 벨릭스와 아그립바 */}
+      <g style={d(900, reduce)}>
+        <circle cx="86" cy="36" r="2.3" {...sw(1.9)} />
+        <path d="M83.7 44 l1.2 -4.5 h2.6 l1.2 4.5" {...sw(1.9)} />
+        <circle cx="98" cy="35.5" r="2.3" {...sw(1.9)} />
+        <path d="M95.7 44 l1.2 -5 h2.6 l1.2 5" {...sw(1.9)} />
+      </g>
+      {/* 바울의 변론 — 사슬 찬 손 */}
+      <g style={d(1900, reduce)}>
+        <circle cx="34" cy="32" r="2.9" {...sw(2.6)} />
+        <path d="M34 34.9 v11.1 M31 54 l3 -8 l3 8 M31.5 37 q-4.5 0.5 -7 2.5 M36.5 37 q4.5 0.5 7 2.5" {...sw(2.6)} />
+        <path d="M29 47 q1.4 -1.4 2.8 0" {...sw(1.5, 0.8)} />
+      </g>
+      <g style={d(reduce ? 0 : 2700, reduce)} stroke="var(--paper-accent)">
+        <path d="M34 20 v-4 M28 22 l-2.6 -2.6 M40 22 l2.6 -2.6" {...sw(1.4)}>
+          {!reduce && <animate attributeName="opacity" values="1;0.5;1" begin="2.7s" dur="0.9s" repeatCount="2" />}
+        </path>
+      </g>
+      <Label x="92" y="27" at="1.5" reduce={reduce}>벨릭스와 아그립바 앞에서</Label>
+      <Label x="20" y="23" at="2.3" reduce={reduce}>바울의 변론</Label>
+      <Label x="60" y="61" at="3" reduce={reduce} size="4.2">내가 가이사에게 상소하노라</Label>
+    </g>
+  )
+}
+
+// 멜리데 난파 (행 27-28)
+function MaltaScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M10 50 q6 -2.5 12 0 q6 -2.5 12 0 M70 50 q8 -3 16 0 q8 -3 16 0" {...sw(1.3, 0.55)} />
+        <path d="M46 46 q1 3 5 3 h7 l1 -4 M64 45 l1 4 h7 q4 0 5 -3 M58 42 v-10 M58 32 q-5 1.5 -6 6" {...sw(1.7, 0.75)} />
+      </g>
+      {/* 광풍 */}
+      <g style={d(900, reduce)}>
+        <path d="M14 16 q7 -3 14 0 M90 14 q7 -3 14 0 M30 10 q6 -2.5 12 0" {...sw(1.3, 0.5)} />
+      </g>
+      {/* 해안에 오른 생존자들 */}
+      <g style={d(1900, reduce)}>
+        <circle cx="30" cy="42" r="2.5" {...sw(2.2)} />
+        <path d="M30 44.5 v6.5 M27.5 54 l2.5 -3 l2.5 3 M27.5 47 q-2.5 2 -4 4.5" {...sw(2.2)} />
+        <circle cx="40" cy="43" r="2.3" {...sw(2, 0.85)} />
+        <path d="M40 45.3 v6 M37.7 54 l2.3 -2.7 l2.3 2.7" {...sw(2, 0.85)} />
+      </g>
+      {/* 독사에 물려도 상하지 않은 바울 */}
+      <g style={d(2700, reduce)}>
+        <circle cx="86" cy="34" r="2.8" {...sw(2.5)} />
+        <path d="M86 36.8 v10.2 M83 54 l3 -7.5 l3 7.5 M88.5 39 q4 -1 6 -3.5" {...sw(2.5)} />
+        <circle cx="100" cy="45" r="2" {...sw(1.7, 0.8)} />
+        <path d="M98.3 54 l0.9 -5.5 M101.7 54 l-0.9 -5.5 M98.3 48.5 h3.4" {...sw(1.7, 0.8)} />
+        <g transform={reduce ? undefined : 'translate(0 0)'}>
+          <path d="M94 34 q3 -1.5 2 -4 q-1 -2 -3.5 -1" {...sw(1.5, 0.8)} />
+          {!reduce && (
+            <animateTransform attributeName="transform" type="translate" from="0 0" to="3 5"
+              begin="3s" dur="0.7s" fill="freeze" />
+          )}
+          {!reduce && <animate attributeName="opacity" from="1" to="0" begin="3s" dur="0.7s" fill="freeze" />}
+        </g>
+      </g>
+      <Label x="58" y="24" at="1.2" reduce={reduce}>멜리데의 파선</Label>
+      <Label x="94" y="25" at="2.9" reduce={reduce}>독사에 물려도 상하지 않다</Label>
+      <Label x="60" y="61" at="3.1" reduce={reduce} size="4.2">네가 가이사 앞에 서야 하리라</Label>
+    </g>
+  )
+}
+
+// 목회서신 (딤전·딛 — 로마 첫 투옥 이후)
+function ReleasePastoralsScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M20 54 v-6 h20 v6 M22 48 h16" {...sw(2)} />
+      </g>
+      {/* 목회서신을 쓰는 바울 */}
+      <g style={d(900, reduce)}>
+        <circle cx="30" cy="34" r="2.8" {...sw(2.5)} />
+        <path d="M27 48 l1.5 -11.4 h3 l1.5 11.4 M32.5 39 q4 1 6 3.5" {...sw(2.5)} />
+        <path d="M36 44 l3 3 M39.5 47.5 l1.6 -0.3" {...sw(1.6)} />
+      </g>
+      {/* 디모데와 디도 */}
+      <g style={d(1900, reduce)}>
+        <circle cx="70" cy="40" r="2.3" {...sw(2)} />
+        <path d="M67.7 54 l1.4 -8 h2.6 l1.4 8 M70 46 q3 -1 5 -3" {...sw(2)} />
+        <path d="M75 42 h6 q1.2 0 1.2 1.2 v0 q0 1.2 -1.2 1.2 h-6" {...sw(1.6)} />
+        <circle cx="88" cy="40.5" r="2.3" {...sw(2)} />
+        <path d="M85.7 54 l1.4 -7.5 h2.6 l1.4 7.5 M88 46.5 q3 -1 5 -3" {...sw(2)} />
+        <path d="M93 42.5 h6 q1.2 0 1.2 1.2 v0 q0 1.2 -1.2 1.2 h-6" {...sw(1.6)} />
+      </g>
+      <g style={d(reduce ? 0 : 2700, reduce)} stroke="var(--paper-accent)">
+        <path d="M76.5 43.6 h3.5 M94.5 44.1 h3.5" {...sw(1.3)}>
+          {!reduce && <animate attributeName="opacity" values="1;0.5;1" begin="2.7s" dur="1s" repeatCount="2" />}
+        </path>
+      </g>
+      <Label x="30" y="24" at="1.5" reduce={reduce}>목회서신을 쓰는 바울</Label>
+      <Label x="79" y="32" at="2.3" reduce={reduce}>디모데와 디도</Label>
+      <Label x="60" y="61" at="3" reduce={reduce} size="4.2">복음의 바통을 다음 세대에 넘기다</Label>
+    </g>
+  )
+}
+
+// 베드로의 로마 순교 (요 21:18-19)
+function PeterRomeMartyrdomScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M80 54 v-14 q14 -10 28 0 v14 M86 54 v-9 M94 54 v-9 M102 54 v-9" {...sw(1.4, 0.5)} />
+        <path d="M16 46 q5 -4.5 10 0" {...sw(1.3, 0.5)} />
+      </g>
+      {/* 노년의 베드로 — 지팡이 짚은 */}
+      <g style={d(900, reduce)}>
+        <circle cx="40" cy="34" r="2.8" {...sw(2.5)} />
+        <path d="M40 36.8 q0 6 -1.5 10 M38.5 46.8 l-1 7 M41.5 47 l1 7 M43 38 q3.5 2 5 6" {...sw(2.5)} />
+        <path d="M48 44 v10" {...sw(1.8)} />
+      </g>
+      {/* 결박하는 사슬 */}
+      <g style={d(1900, reduce)}>
+        <path d="M35 44 q1.6 -1.6 3.2 0 q1.6 1.6 3.2 0" {...sw(1.7, 0.85)} />
+      </g>
+      {/* 하늘 향한 소망 */}
+      <g style={d(reduce ? 0 : 2700, reduce)}>
+        <g transform={reduce ? undefined : 'translate(0 3)'} stroke="var(--paper-accent)">
+          <path d="M40 22 v-6 M35 24 l-3 -3.5 M45 24 l3 -3.5" {...sw(1.6)} />
+          {!reduce && (
+            <animateTransform attributeName="transform" type="translate" from="0 3" to="0 -3"
+              begin="2.7s" dur="1.4s" fill="freeze" />
+          )}
+          {!reduce && <animate attributeName="opacity" values="0.6;1" begin="2.7s" dur="1.4s" fill="freeze" />}
+        </g>
+      </g>
+      <Label x="54" y="22" at="1.5" reduce={reduce}>로마의 노사도 베드로</Label>
+      <Label x="94" y="33" at="1" reduce={reduce}>로마</Label>
+      <Label x="60" y="61" at="3" reduce={reduce} size="4.2">네 양을 먹이라 — 장막을 벗을 날이 가까웠도다</Label>
+    </g>
+  )
+}
+
+// 바울의 로마 순교 (딤후 4장)
+function PaulRomeMartyrdomScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M78 54 V26 h26 V54 M84 54 V30 M90 54 V30 M96 54 V30" {...sw(2)} />
+      </g>
+      {/* 옥중에서 마지막 편지를 쓰다 */}
+      <g style={d(900, reduce)}>
+        <circle cx="30" cy="34" r="2.8" {...sw(2.5)} />
+        <path d="M27 48 l1.5 -11.4 h3 l1.5 11.4 M32.5 39 q4 1 6 3.5" {...sw(2.5)} />
+        <path d="M25 44 q1.5 -1.5 3 0" {...sw(1.6, 0.8)} />
+        <path d="M38 44 l3 2.5 M41.5 47 l1.6 -0.2" {...sw(1.6)} />
+      </g>
+      {/* 관제와 같이 부어지다 */}
+      <g style={d(1900, reduce)}>
+        <path d="M52 48 q1 -5 5 -5 q4 0 5 5 l-1 3 h-8 z" {...sw(1.8)} />
+        <path d="M60 46 q3 1 4 4.5" {...sw(1.5, 0.75)} />
+      </g>
+      {/* 의의 면류관 */}
+      <g style={d(reduce ? 0 : 2700, reduce)} stroke="var(--paper-accent)">
+        <path d="M60 24 l2 -4 l2 3 l2 -4 l2 3 l2 -4 l2 4" {...sw(1.6)}>
+          {!reduce && <animate attributeName="opacity" values="1;0.55;1" begin="2.7s" dur="1s" repeatCount="2" />}
+        </path>
+      </g>
+      <Label x="30" y="24" at="1.5" reduce={reduce}>옥중에서 마지막 편지를 쓰다</Label>
+      <Label x="60" y="40" at="2" reduce={reduce}>관제와 같이 부어지다</Label>
+      <Label x="60" y="61" at="3.1" reduce={reduce} size="4.2">선한 싸움을 싸우고 달려갈 길을 마치다</Label>
+    </g>
+  )
+}
+
 const SCENES = {
   'authored-peter-pentecost': { Scene: PentecostScene, desc: '성령이 불의 혀같이 각 사람 위에', caption: '오순절 — 사도행전 2장' },
   'authored-peter-lame-man': { Scene: LameManScene, desc: '나사렛 예수의 이름으로 일어나 걸으라', caption: '미문 — 사도행전 3장' },
@@ -602,13 +974,23 @@ const SCENES = {
   'authored-peter-defends-gentiles': { Scene: DefendsGentilesScene, desc: '고넬료 집의 일을 차례로 증언하다', caption: '변호 — 사도행전 11장' },
   'authored-paul-antioch-ministry': { Scene: AntiochScene, desc: '일 년간 함께 가르치다 — 그리스도인의 탄생', caption: '안디옥 — 사도행전 11장' },
   'authored-peter-herod-prison': { Scene: HerodPrisonScene, desc: '쇠사슬이 벗어지고 옥문이 열리다', caption: '구출 — 사도행전 12장' },
+  'authored-paul-cyprus-mission': { Scene: CyprusMissionScene, desc: '금식 중 성령의 지시로 바나바와 사울을 보내다 — 총독이 믿다', caption: '구브로 — 사도행전 13장' },
+  'authored-paul-pisidian-antioch': { Scene: PisidianAntiochScene, desc: '시기하는 무리 앞에서 이방인에게로 향하다', caption: '비시디아 안디옥 — 사도행전 13장' },
+  'authored-paul-iconium-lystra-derbe': { Scene: LystraScene, desc: '신으로 떠받들리다 돌에 맞고, 다시 일어나 더베로 가다', caption: '루스드라 — 사도행전 14장' },
   'authored-paul-jerusalem-council': { Scene: JerusalemCouncilScene, desc: '이방인에게 율법의 멍에를 지우지 말라', caption: '공의회 — 사도행전 15장' },
   'authored-paul-philippi': { Scene: PhilippiScene, desc: '한밤의 찬송에 옥터가 흔들리다', caption: '빌립보 — 사도행전 16장' },
+  'authored-paul-thessalonica-berea': { Scene: ThessalonicaBereaScene, desc: '폭동으로 끝난 데살로니가와 날마다 상고한 베뢰아', caption: '데살로니가와 베뢰아 — 사도행전 17장' },
   'authored-paul-athens-areopagus': { Scene: AthensScene, desc: '알지 못하는 신에게 — 그를 전하노라', caption: '아레오바고 — 사도행전 17장' },
   'authored-paul-corinth': { Scene: CorinthScene, desc: '장막을 지으며 일 년 육 개월을 머물다', caption: '고린도 — 사도행전 18장' },
   'authored-paul-ephesus': { Scene: EphesusScene, desc: '두란노에서 두 해 동안 강론하다', caption: '에베소 — 사도행전 19장' },
   'authored-paul-miletus-farewell': { Scene: MiletusScene, desc: '결박이 기다림을 알고도 작별하다', caption: '밀레도 — 사도행전 20장' },
+  'authored-paul-jerusalem-arrest': { Scene: JerusalemArrestScene, mood: 'dark', desc: '성전에서 붙잡혀 쇠사슬에 결박되다', caption: '체포 — 사도행전 21장' },
+  'authored-paul-caesarea-imprisonment': { Scene: CaesareaScene, mood: 'dark', desc: '총독과 왕 앞에서 변론하고 가이사에게 상소하다', caption: '가이사랴 — 사도행전 25장' },
+  'authored-paul-voyage-malta': { Scene: MaltaScene, mood: 'dark', desc: '광풍에 파선하나 한 생명도 잃지 않고 독사에도 상하지 않다', caption: '멜리데 난파 — 사도행전 27장' },
   'authored-paul-rome-house-arrest': { Scene: RomeScene, desc: '셋집에서 담대히 하나님 나라를 전하다', caption: '로마 — 사도행전 28장' },
+  'authored-paul-release-pastorals': { Scene: ReleasePastoralsScene, desc: '풀려난 뒤 디모데와 디도에게 목회서신을 쓰다', caption: '목회서신 — 디모데전서 1장' },
+  'authored-peter-rome-martyrdom': { Scene: PeterRomeMartyrdomScene, mood: 'dark', desc: '장막을 벗을 날을 알며 로마에서 생을 마치다', caption: '순교 — 요한복음 21장' },
+  'authored-paul-rome-martyrdom': { Scene: PaulRomeMartyrdomScene, mood: 'dark', desc: '선한 싸움을 마치고 의의 면류관을 바라보다', caption: '순교 — 디모데후서 4장' },
   'authored-john-ephesus': { Scene: JohnEphesusScene, desc: '우리가 보고 만진 생명의 말씀을 쓰다', caption: '에베소의 요한 — 요한일서 1장' },
   'authored-john-patmos': { Scene: PatmosScene, desc: '주의 날에 일곱 교회에 보낼 계시를 받다', caption: '밧모 섬 — 요한계시록 1장' },
 }

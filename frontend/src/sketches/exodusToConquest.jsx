@@ -1,6 +1,77 @@
 // 출애굽에서 가나안까지 — 18개 정차지 장면 (task#229, #227 표준)
 import { sw, d, Label } from './lib'
 
+// 아기 모세 (출 1:22-2:10)
+function BirthEgyptScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M6 50 q10 -3 20 0 q10 -3 20 0 q10 -3 20 0 q10 -3 20 0 q10 -3 20 0" {...sw(1.1, 0.5)} />
+      </g>
+      {/* 갈대 — 강가 */}
+      <g style={d(700, reduce)}>
+        <path d="M14 54 q-1 -12 1 -20 M18 54 q1 -14 -1 -22 M22 54 q-1 -10 2 -16" {...sw(1.3, 0.6)} />
+      </g>
+      {/* 갈 상자의 아기 — 핵심 */}
+      <g style={d(1400, reduce)}>
+        <path d="M40 51.5 q4 1.5 8 0 q4 1.5 8 0" {...sw(1.1, 0.4)} />
+        <g>
+          <path d="M42 50 q6 -3 12 0 q0 3 -6 3.5 q-6 -0.5 -6 -3.5 z" {...sw(2.6)} />
+          <circle cx="48" cy="47.5" r="1.6" {...sw(2)} />
+          {!reduce && (
+            <animateTransform attributeName="transform" type="translate" values="0 0;0 -1;0 0"
+              begin="2s" dur="1.8s" repeatCount="indefinite" />
+          )}
+        </g>
+      </g>
+      {/* 바로의 딸과 시녀 — 발견 */}
+      <g style={d(2200, reduce)}>
+        <circle cx="88" cy="30" r="2.8" {...sw(2.4)} />
+        <path d="M88 32.8 v11.5 M85 54 l3 -9.5 l3 9.5 M85.5 36 q-3 2 -4.5 5.5" {...sw(2.4)} />
+        <circle cx="98" cy="34" r="2.2" {...sw(1.8, 0.8)} />
+        <path d="M98 36.2 v8.5 M96 54 l2 -7 l2 7" {...sw(1.8, 0.8)} />
+      </g>
+      <Label x="48" y="43" at="1.9" reduce={reduce}>갈 상자의 아기</Label>
+      <Label x="90" y="24" at="2.7" reduce={reduce}>바로의 딸</Label>
+    </g>
+  )
+}
+
+// 미디안 도피 (출 2:11-15)
+function FleesMidianScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        {/* 애굽 — 멀어지는 피라미드 */}
+        <path d="M8 54 l7 -9 l7 9 M12 54 l4 -5 l4 5" {...sw(1.1, 0.35)} />
+      </g>
+      {/* 광야 지형 — 모래 언덕 */}
+      <g style={d(800, reduce)}>
+        <path d="M40 54 q14 -7 28 -1 q16 -6 34 0" {...sw(1.3, 0.5)} />
+      </g>
+      {/* 도망치는 모세 — 핵심: 뒤돌아봄 */}
+      <g transform={reduce ? 'translate(30 0)' : undefined} style={d(1600, reduce)}>
+        <circle cx="34" cy="32" r="2.8" {...sw(2.5)} />
+        <path d="M34 34.8 v10.2 M31 54 l3 -9 l3 9 M36.5 33.5 q2 -1.5 2.5 -3.5" {...sw(2.5)} />
+        <path d="M31.5 37 l-4.5 -3" {...sw(1.8)} />
+        {!reduce && (
+          <animateTransform attributeName="transform" type="translate" from="0 0" to="30 0"
+            begin="2.2s" dur="2s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.6 1" keyTimes="0;1" />
+        )}
+      </g>
+      {/* 미디안의 양떼 — 목자로의 예표 */}
+      <g style={d(2800, reduce)}>
+        <path d="M96 51 q2.5 -2.5 5 0 q1 -2 -0.5 -3.5" {...sw(1.6, 0.75)} />
+        <path d="M104 52 q2 -2 4 0" {...sw(1.4, 0.6)} />
+      </g>
+      <Label x="34" y="24" at="2.5" reduce={reduce}>도망치는 모세</Label>
+      <Label x="12" y="38" at="0.9" reduce={reduce}>애굽</Label>
+    </g>
+  )
+}
+
 // 떨기나무 (출 3:1-12)
 function BurningBushScene({ reduce }) {
   return (
@@ -583,7 +654,152 @@ function EbalCovenantScene({ reduce }) {
   )
 }
 
+// 기브온 전투 (수 10:1-14)
+function GibeonAllianceScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M70 48 q14 -8 28 -2 M14 46 q10 -6 20 -1" {...sw(1.1, 0.4)} />
+      </g>
+      {/* 해와 달 — 멈춰선 하늘 */}
+      <g style={d(800, reduce)}>
+        <circle cx="98" cy="13" r="5" {...sw(1.8)} />
+        <path d="M98 5 v-2.4 M106 13 h2.4 M92.5 6.5 l-1.7 -1.7 M103.5 6.5 l1.7 -1.7" {...sw(1.3, 0.6)} />
+        <path d="M18 12 a5 5 0 1 1 -3 -8.6 a6.5 6.5 0 0 0 3 8.6" {...sw(1.5, 0.6)} />
+      </g>
+      {/* 여호수아 — 핵심: 해를 향해 명함 */}
+      <g style={d(1800, reduce)}>
+        <circle cx="46" cy="30" r="3" {...sw(2.6)} />
+        <path d="M46 33 v12.5 M42.5 54 l3.5 -8.5 l3.5 8.5" {...sw(2.6)} />
+        <g transform={reduce ? undefined : 'rotate(40 46 33)'}>
+          <path d="M46 33 l14 -12" {...sw(2.4)} />
+          {!reduce && (
+            <animateTransform attributeName="transform" type="rotate" from="40 46 33" to="0 46 33"
+              begin="2.3s" dur="0.5s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.6 1" keyTimes="0;1" />
+          )}
+        </g>
+        <path d="M42.5 36 q3 1.6 5 0" {...sw(1.3, 0.6)} />
+      </g>
+      {/* 흩어지는 다섯 왕 무리 — 원경 */}
+      <g style={d(2800, reduce)}>
+        <circle cx="88" cy="42" r="1.8" {...sw(1.5, 0.7)} />
+        <path d="M88 43.8 v3.2 M86.5 54 l1.5 -3.6 l1.5 3.6" {...sw(1.5, 0.7)} />
+        <circle cx="94" cy="44" r="1.6" {...sw(1.4, 0.6)} />
+        <path d="M94 45.6 v2.8 M92.7 54 l1.3 -3.4 l1.3 3.4" {...sw(1.4, 0.6)} />
+      </g>
+      <Label x="46" y="24" at="2.4" reduce={reduce}>여호수아</Label>
+      <Label x="98" y="24" at="1.2" reduce={reduce}>멈춰 선 해</Label>
+    </g>
+  )
+}
+
+// 실로 회막 (수 18:1-10)
+function ShilohTabernacleScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M8 46 q14 -8 28 -1 M84 45 q14 -8 28 -1" {...sw(1.1, 0.4)} />
+      </g>
+      {/* 회막 — 핵심 */}
+      <g style={d(900, reduce)}>
+        <path d="M46 54 v-20 h28 v20 M46 34 l14 -6 l14 6" {...sw(2.6)} />
+        <path d="M52 54 v-14 h16 v14" {...sw(1.6, 0.75)} />
+        <path d="M50 40 h20 M50 45 h20 M50 50 h20" {...sw(1.2, 0.5)} />
+      </g>
+      {/* 제비뽑기 — 지파별 분배 */}
+      <g style={d(1800, reduce)}>
+        <circle cx="24" cy="38" r="2.4" {...sw(2.2)} />
+        <path d="M24 40.4 v7.6 M21.5 54 l2.5 -6 l2.5 6 M26.5 42 q2 -1 3 -3" {...sw(2.2)} />
+        <ellipse cx="30" cy="48.5" rx="3.2" ry="1.4" {...sw(1.6)} />
+        <path d="M28.5 40 l1 1.5 l-1 1.5" {...sw(1.4)}>
+          {!reduce && <animateMotion path="M0 0 q1 5 1.5 8.5" begin="2.4s" dur="0.6s" fill="freeze" />}
+        </path>
+      </g>
+      {/* 지파 경계선 — 갈라진 기업 */}
+      <g style={d(2800, reduce)}>
+        <path d="M60 54 v-14 M60 40 l-10 -4 M60 40 l12 -3 M60 40 l6 6" {...sw(1.3, 0.55)} strokeDasharray="2.2 2" />
+      </g>
+      <Label x="60" y="30" at="2" reduce={reduce}>실로의 회막</Label>
+      <Label x="26" y="32" at="3" reduce={reduce}>제비뽑기</Label>
+    </g>
+  )
+}
+
+// 세겜 언약 갱신 (수 24:1-27)
+function ShechemCovenantScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M8 47 q12 -7 24 -1 M88 46 q12 -7 24 -1" {...sw(1.1, 0.4)} />
+      </g>
+      {/* 상수리나무 — 세겜의 언약 나무 */}
+      <g style={d(900, reduce)}>
+        <path d="M56 54 v-16" {...sw(2.2)} />
+        <path d="M48 38 q0 -8 8 -9 q3 -5 10 -3 q7 -1 8 6 q5 1 3 6 q-4 4 -10 3 q-9 3 -14 -1 q-5 1 -5 -2 z" {...sw(1.8)} />
+      </g>
+      {/* 증거의 돌 */}
+      <g style={d(1700, reduce)}>
+        <path d="M40 54 v-11 q0 -2.5 2.5 -2.5 h2 q2.5 0 2.5 2.5 v11 z" {...sw(2.6)} />
+      </g>
+      {/* 새겨진 증언 — 강조색 */}
+      <g style={d(reduce ? 0 : 2200, reduce)} stroke="var(--paper-accent)">
+        <path d="M41.5 44.5 h4 m-4 3 h4" {...sw(1.3)} />
+      </g>
+      {/* 여호수아 + 응답하는 회중 */}
+      <g style={d(2800, reduce)}>
+        <circle cx="26" cy="36" r="2.6" {...sw(2.4)} />
+        <path d="M26 38.6 v9.4 M23.5 54 l2.5 -7 l2.5 7 M28.5 40 q2.5 -1 3.5 -3" {...sw(2.4)} />
+        <circle cx="88" cy="40" r="1.9" {...sw(1.7, 0.8)} />
+        <path d="M88 41.9 v6.4 M86.1 54 l1.9 -5.7 l1.9 5.7 M89.5 42 l2.5 -2" {...sw(1.7, 0.8)} />
+        <circle cx="96" cy="41.5" r="1.8" {...sw(1.6, 0.7)} />
+        <path d="M96 43.3 v5.7 M94.2 54 l1.8 -5 l1.8 5 M97.5 43 l2 -1.7" {...sw(1.6, 0.7)} />
+      </g>
+      <Label x="60" y="30" at="1.9" reduce={reduce}>세겜의 상수리나무</Label>
+      <Label x="44" y="40" at="2.3" reduce={reduce}>증거의 돌</Label>
+    </g>
+  )
+}
+
+// 여호수아의 죽음 (수 24:29-31)
+function FarewellDeathScene({ reduce }) {
+  return (
+    <g>
+      <g style={d(0, reduce)}>
+        <path d="M6 54 h108" {...sw(1.6)} />
+        <path d="M8 50 q16 -7 30 -3 M76 48 q16 -7 30 -3" {...sw(1.2, 0.45)} />
+        {/* 딤낫세라 — 원경 성읍 */}
+        <path d="M84 54 v-8 h6 v8 m6 0 v-11 h6 v11 m6 0 v-7 h6 v7" {...sw(1.2, 0.4)} />
+      </g>
+      {/* 기우는 해 — 세대의 저묾 */}
+      <g style={d(1000, reduce)}>
+        <path d="M22 24 a5 5 0 1 1 3.5 -8.7" {...sw(1.6)}>
+          {!reduce && <animate attributeName="opacity" values="1;0.4" begin="2.5s" dur="1.8s" fill="freeze" />}
+        </path>
+      </g>
+      {/* 홀로 선 무덤 표석 — 핵심 */}
+      <g style={d(1800, reduce)}>
+        <path d="M56 54 v-15 q0 -3 3 -3 h2 q3 0 3 3 v15 z" {...sw(2.8)} />
+        <path d="M58 40 h4" {...sw(1.3)} />
+      </g>
+      {/* 지켜보는 장로들 */}
+      <g style={d(2600, reduce)}>
+        <circle cx="72" cy="45" r="1.9" {...sw(1.6, 0.7)} />
+        <path d="M72 46.9 v3.3 M70.4 54 l1.6 -3.8 l1.6 3.8" {...sw(1.6, 0.7)} />
+        <circle cx="80" cy="46" r="1.7" {...sw(1.4, 0.6)} />
+        <path d="M80 47.7 v2.8 M78.6 54 l1.4 -3.5 l1.4 3.5" {...sw(1.4, 0.6)} />
+      </g>
+      <Label x="60" y="34" at="2.4" reduce={reduce}>여호수아의 묻힌 곳</Label>
+      <Label x="95" y="60" at="1.4" reduce={reduce}>딤낫세라</Label>
+    </g>
+  )
+}
+
 const SCENES = {
+  'authored-moses-birth-egypt': { Scene: BirthEgyptScene, desc: '학살령 아래 태어나 나일강 상자에 놓이다', caption: '아기 모세 — 출애굽기 1-2장' },
+  'authored-moses-flees-midian': { Scene: FleesMidianScene, mood: 'dark', desc: '애굽인을 죽이고 미디안 광야로 도망치다', caption: '미디안 도피 — 출애굽기 2장' },
   'authored-moses-burning-bush': { Scene: BurningBushScene, desc: '떨기나무 불꽃 가운데서 부르심을 받다', caption: '떨기나무 — 출애굽기 3장' },
   'authored-moses-returns-egypt': { Scene: ReturnsEgyptScene, desc: '아론과 만나 애굽으로 돌아가다', caption: '귀환 — 출애굽기 4장' },
   'authored-moses-passover-night': { Scene: PassoverNightScene, desc: '어린양의 피 아래 죽음이 넘어가다', caption: '유월절 밤 — 출애굽기 12장' },
@@ -602,6 +818,10 @@ const SCENES = {
   'authored-joshua-jericho-conquest': { Scene: JerichoConquestScene, desc: '이레째 함성에 성벽이 무너지다', caption: '여리고 — 여호수아 6장' },
   'authored-joshua-ai-conquest': { Scene: AiConquestScene, desc: '정결하게 한 후 매복으로 아이를 취하다', caption: '아이 성 — 여호수아 8장' },
   'authored-joshua-ebal-covenant': { Scene: EbalCovenantScene, desc: '에발산에서 율법을 돌에 새겨 낭독하다', caption: '에발산 언약 — 여호수아 8장' },
+  'authored-joshua-gibeon-alliance': { Scene: GibeonAllianceScene, desc: '태양을 향해 명하니 해와 달이 멈춰 서다', caption: '기브온 전투 — 여호수아 10장' },
+  'authored-joshua-shiloh-tabernacle': { Scene: ShilohTabernacleScene, desc: '실로에 회막을 세우고 땅을 제비뽑아 나누다', caption: '실로 회막 — 여호수아 18장' },
+  'authored-joshua-shechem-covenant': { Scene: ShechemCovenantScene, desc: '섬길 자를 오늘 택하라, 세겜에서 언약을 새기다', caption: '세겜 언약 — 여호수아 24장' },
+  'authored-joshua-farewell-death': { Scene: FarewellDeathScene, mood: 'dark', desc: '나와 내 집은 여호와를 섬기리라, 110세로 잠들다', caption: '여호수아의 죽음 — 여호수아 24장' },
 }
 
 export default SCENES
