@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: f5e17ae2993e228f8b7481dba03478ddec8616f4
-mapped: 2026-07-22
+last_mapped_commit: 473bf605f082467f6f19863530b017b180a80058
+mapped: 2026-07-23
 ---
 
 # ARCHITECTURE
@@ -79,9 +79,9 @@ data/*.json  ──(load/inject/generate/build 스크립트)──▶  Neo4j 그
 
 - 엔트리: `frontend/index.html` → `frontend/src/main.jsx`(`createRoot`, `StrictMode`). `main.jsx`는 렌더 전에 `localStorage['biblemap-theme'] === 'light'`면 `document.documentElement.dataset.theme = 'light'`를 동기 반영한다(첫 페인트 깜빡임 방지, ADR-0020) → `frontend/src/App.jsx`.
 - API 클라이언트: `frontend/src/api.js` — 단일 베이스 URL(`import.meta.env.VITE_API_URL || 'http://localhost:8000'`) + `apiGet(path, {signal})` 헬퍼. 프로덕션 빌드는 `frontend/.env.production`의 `VITE_API_URL=/api`로 주입돼 nginx 프록시를 탄다. 모든 요청에 `?v=<BUILD_ID>` 쿼리를 부착한다 — `BUILD_ID`는 `frontend/vite.config.js`의 `define.__BUILD_ID__`로 빌드 시점에 박히는 타임스탬프이며, 배포마다 값이 바뀌어 백엔드의 `Cache-Control: max-age=3600` 응답 캐시를 배포 직후 무력화한다.
-- **책등 전역 헤더 (ADR-0026, task#192~194 → 브랜드 리뉴얼 task#216·217)**: `frontend/src/SpineHeader.jsx`가 전 스테이지 상시 표시되는 높이 40px(`HEADER_H` export — `App.jsx`의 사이드패널 top 오프셋 계산에 공유) 헤더를 렌더한다. 표제(`CompassCrossMark` 나침반+십자가 금색 인라인 SVG 글리프 + "BibleMap" 동판화체 워드마크, 클릭 시 대문) + 책갈피 리본 3부(인물·성경책·투어 — 활성 부만 길게 드리워지는 clip-path 리본, 드리움 깊이 `RIBBON_OVERHANG`(13px) export — `App.jsx`가 이 높이만큼 여백을 둬 리본이 스테이지 내비 탭을 덮지 않게 한다) + 테마 토글(`localStorage['biblemap-theme']`). 워드마크 서체는 자체 호스팅 웹폰트 **IM Fell English**(SIL OFL, `frontend/public/fonts/im-fell-english-latin.woff2` + `IM-Fell-English-OFL.txt`)를 `index.css`의 `--serif-display` 토큰(로드 실패 시 `--serif` 폴백)으로 참조 — 프로젝트 유일의 웹폰트이며 브랜드 워드마크 전용, 본문/UI는 시스템 명조 유지. `App.jsx`가 `activeStage`에서 활성 부를 파생하고(`overview`/`book`/`words`/`reader`→성경책, `tours`/투어 탐험→투어, 나머지→인물), 리본 클릭은 기존 내비 콜백 조합(`backToHub`/`openOverview`/`openTours`)만 호출한다.
+- **책등 전역 헤더 (ADR-0026, task#192~194 → 브랜드 리뉴얼 task#216·217 → 인트로 재열람 task#239)**: `frontend/src/SpineHeader.jsx`가 전 스테이지 상시 표시되는 높이 40px(`HEADER_H` export — `App.jsx`의 사이드패널 top 오프셋 계산에 공유) 헤더를 렌더한다. 표제(`CompassCrossMark` 나침반+십자가 금색 인라인 SVG 글리프 + "BibleMap" 동판화체 워드마크, 클릭 시 대문) + 책갈피 리본 3부(인물·성경책·투어 — 활성 부만 길게 드리워지는 clip-path 리본, 드리움 깊이 `RIBBON_OVERHANG`(13px) export — `App.jsx`가 이 높이만큼 여백을 둬 리본이 스테이지 내비 탭을 덮지 않게 한다) + ⓘ 인트로 재열람 버튼(`onOpenIntro` prop, lucide `Info`) + 테마 토글(`localStorage['biblemap-theme']`). 워드마크 서체는 자체 호스팅 웹폰트 **IM Fell English**(SIL OFL, `frontend/public/fonts/im-fell-english-latin.woff2` + `IM-Fell-English-OFL.txt`)를 `index.css`의 `--serif-display` 토큰(로드 실패 시 `--serif` 폴백)으로 참조 — 프로젝트 유일의 웹폰트이며 브랜드 워드마크 전용, 본문/UI는 시스템 명조 유지. `App.jsx`가 `activeStage`에서 활성 부를 파생하고(`overview`/`book`/`words`/`reader`→성경책, `tours`/투어 탐험→투어, `intro`→어느 부도 아님(리본 전체 비활성), 나머지→인물), 리본 클릭은 기존 내비 콜백 조합(`backToHub`/`openOverview`/`openTours`)만 호출한다.
 - 화면 구조: 라우터 라이브러리 없이 `App.jsx`가 스테이지 상태 머신을 운용한다(아래 §7). 상태·URL·브라우저 히스토리 동기화는 훅 `frontend/src/useStageNavigation.js` + `frontend/src/urlState.js`, 노드 선택은 `frontend/src/useNodeSelection.js`가 담당한다.
-- 주요 뷰 컴포넌트: `PersonHub.jsx`(인물 목차 대문), `BibleOverviewView.jsx`, `TourList.jsx`, `TourIntro.jsx`(투어 개요 — 인물 소개(`PersonIntro`)의 투어판 축약, 아래 §17), `MapView.jsx`(지도 — `maplibre-gl`), `TimelineView.jsx`, `RelationsView.jsx`, `PersonIntro.jsx`, `FamilyTree.jsx`, `WordDistributionView.jsx`, `ChapterReader.jsx`(본문 리더, 아래 §14), `RelianceView.jsx`, `JourneyList.jsx`, `SidePanel.jsx`(공유 상세 패널, 책 상세 페이지로도 재사용), `PersonMiniCard.jsx`(가계도 노드 바텀시트), `VerseLayer.jsx`(공통 구절 레이어 쉘, 아래 §11), `VerseLangTabs.jsx`, `Spinner.jsx`.
+- 주요 뷰 컴포넌트: `IntroView.jsx`(사이트 인트로 대문 — 히어로 스태거 입장 + 기능 6섹션 스크롤 리빌, 아래 §7·task#239), `PersonHub.jsx`(인물 목차 대문), `BibleOverviewView.jsx`, `TourList.jsx`, `TourIntro.jsx`(투어 개요 — 인물 소개(`PersonIntro`)의 투어판 축약, 아래 §17), `MapView.jsx`(지도 — `maplibre-gl`), `TimelineView.jsx`, `RelationsView.jsx`, `PersonIntro.jsx`, `FamilyTree.jsx`, `WordDistributionView.jsx`, `ChapterReader.jsx`(본문 리더, 아래 §14), `RelianceView.jsx`, `JourneyList.jsx`, `SidePanel.jsx`(공유 상세 패널, 책 상세 페이지로도 재사용), `PersonMiniCard.jsx`(가계도 노드 바텀시트), `VerseLayer.jsx`(공통 구절 레이어 쉘, 아래 §11), `VerseLangTabs.jsx`, `Spinner.jsx`.
 - 지도 서브시스템: `MapView.jsx` + `mapLayers.js` + `mapGeo.js` + `mapRingController.js`. 책 상세 전용 미니맵은 별도 컴포넌트 `BookStageMap.jsx`(§14 인접, task#207 — 상호작용 잠금, 같은 NatGeo 타일). 투어 자동재생(§17)의 점진 경로선·카메라도 `MapView.jsx`가 `playbackIdx` prop으로 구동.
 - 공유 모듈: `theme.js`(`TYPE_COLOR` 등), `constants.js`(모바일 브레이크포인트·시트 높이), `dates.js`, `personSymbols.jsx`(인물 인장 선화, 아래 §12), `bookSymbols.jsx`(책 인장 선화, 아래 §16), `scrollMemory.js`(목록 스테이지 스크롤 위치 기억, 아래 §7), `index.css`(CSS 변수 기반 인라인 스타일 + 모션 토큰/클래스, 아래 §10).
 - **듀얼 테마 (ADR-0020)**: 다크(Night Atlas)가 기본, 라이트(Day Atlas)는 옵트인. `frontend/src/index.css`가 같은 토큰 계약(`--type-*`, `--valence-*`, `--select-hl`, 표면/잉크 변수)에 값 두 벌을 정의하고 `:root[data-theme='light']`로 분기한다. `frontend/src/theme.js`의 `TYPE_COLOR`/`VALENCE_COLOR`/`SELECT_HL`은 리터럴 hex가 아니라 `var(--type-person)` 같은 **CSS var 참조**라 CSS 컨텍스트(인라인 style) 전용이다. 토글 UI는 `SpineHeader.jsx`에 있다.
@@ -107,8 +107,9 @@ data/*.json  ──(load/inject/generate/build 스크립트)──▶  Neo4j 그
 
 ### 7. 프론트 스테이지 상태 머신
 
-`frontend/src/useStageNavigation.js`가 `activeStage`를 8개 값으로 관리한다: `hub` | `overview` | `book` | `family` | `words` | `reader` | `tours` | `explore`. 전 스테이지 위에 `SpineHeader`가 상시 얹힌다(§4).
+`frontend/src/useStageNavigation.js`가 `activeStage`를 9개 값으로 관리한다: `intro` | `hub` | `overview` | `book` | `family` | `words` | `reader` | `tours` | `explore`. 전 스테이지 위에 `SpineHeader`가 상시 얹힌다(§4).
 
+- **intro** — `IntroView`(사이트 인트로 대문, task#239). `activeStage` 초기값 계산 시(`useState` 이니셜라이저) 해시가 무대상(빈 값·`#`·`#/`)이고 `localStorage['biblemap-intro'] !== 'off'`이면 `hub` 대신 `intro`로 시작한다 — 딥링크(해시 있음)는 무조건 스킵. 해시 복원 effect는 `parsed.stage === 'intro'`일 때만 `intro`로 세팅하고 그 외 케이스에서 이 초기값을 건드리지 않는다. 온오프는 `IntroView`의 "다시 보지 않기" 체크박스가 `localStorage['biblemap-intro']`를 `'off'`로 세팅/제거하며, 꺼진 뒤 재열람은 `SpineHeader`의 ⓘ 버튼(`handleOpenIntro` — `closePanel` 후 `setActiveStage('intro')`)이 스테이지·시트 무관하게 언제든 연다. "탐험 시작하기"·"인물 목차 열기" CTA는 `backToHub`, "투어 보기"/"성경책 펼치기"는 각각 `openTours`/`openOverview`로 이동.
 - **hub** — `PersonHub` 인물 목차(대문). 시대(era) 8구간 장(章) 섹션으로 큐레이션 인물 카드를 배열하고, 카드에 인장 선화(`PersonSymbol`)를 얹는다. 세션 첫 진입 시 `book-open`(책 펼침 원근 회전) 입장. 책/투어 진입점과 테마 토글은 `SpineHeader` 리본으로 이관돼 props가 `onSelectPerson` 하나로 줄었다.
 - **overview** — `BibleOverviewView`. 책 카드 클릭 시 `openBook(id)`로 book 스테이지 진입. 내비 바 하위 메뉴 탭(책 둘러보기 · 단어 분포)에서 `openWords('all')`.
 - **스크롤 위치 복원 (task#214)**: `hub`·`overview`는 `frontend/src/scrollMemory.js`의 모듈 스코프 plain object(`saveScroll`/`loadScroll`, 스테이지 키별)로 목록 스크롤 위치를 기억한다. `history.state`가 아니라 모듈 메모리를 쓰는 이유는 인앱 "← 뒤로" 버튼이 `popstate`가 아니라 전진 `push`라 `history.state`로는 인앱 뒤로 시 복원되지 않기 때문(ADR-0010) — 모듈 메모리는 인앱 뒤로·OS 뒤로 모두 커버한다. 각 뷰가 `useLayoutEffect`(목록 렌더 후 즉시, 장르/시대 추적 effect보다 먼저)로 복원하고 스크롤 이벤트로 저장한다.
@@ -124,7 +125,7 @@ data/*.json  ──(load/inject/generate/build 스크립트)──▶  Neo4j 그
 
 `frontend/src/urlState.js`가 스테이지 ↔ 해시 문자열을 순수 매핑한다(라우팅 라이브러리 없음).
 
-- `#/` 허브, `#/books` 개요, `#/tours` 투어 목록.
+- `#/` 허브, `#/books` 개요, `#/tours` 투어 목록, `#/intro` 사이트 인트로(task#239).
 - `#/book/<id>` 책 상세(id = `theographic_id`, 책은 slug 없음).
 - `#/family/<id>` 가계도(id = focus 인물 `theographic_id`).
 - `#/words/<id>` 단어 분포(id = 책 `theographic_id` 또는 `all`).
@@ -148,7 +149,7 @@ data/*.json  ──(load/inject/generate/build 스크립트)──▶  Neo4j 그
 
 - **토큰**: `--dur-fast`(150ms)·`--dur-base`(250ms)·`--dur-slow`(400ms)·`--dur-draw`(1000ms, 선화 draw-on) + `--ease-out`/`--ease-in-out`/`--ease-drawer`/`--ease-pop`. 컴포넌트는 duration·easing을 하드코딩하지 않고 이 토큰만 참조한다. 전역 포털 레이어 공용으로 `--z-verse`(1000)·`--scrim` 토큰도 여기 정의(task#202).
 - **reduced-motion 가드**: `@media (prefers-reduced-motion: reduce)`가 `--dur-*`를 전부 1ms로 붕괴시키고 `animation-delay`를 전역 0으로 무효화한다. `Spinner`만 의도적 예외.
-- **클래스**: `stage-in`(스테이지 전환), `overlay-in`/`modal-in`(포털 배경/카드 입장), `sheet-in`(바텀시트 드로어 입장 — `PersonMiniCard`·`VerseLayer` 모바일), `card-in`(카드 스태거), `cloud-in`/`word-in`(워드클라우드), `bar-reveal`·`stop-bar-in`(막대 성장), `symbol-draw`(인장 선화 draw-on — `personSymbols.jsx`/`bookSymbols.jsx`의 `pathLength=1` 정규화 전제, 지연은 `--sym-delay`), `thread-draw`(가계도 메시아의 실 금색 드로인, 지연은 `--thread-delay`), `book-open`(허브 대문 책 펼침 원근 회전, 세션 첫 진입 1회), `pressable`(`:active` 눌림 피드백).
+- **클래스**: `stage-in`(스테이지 전환), `overlay-in`/`modal-in`(포털 배경/카드 입장), `sheet-in`(바텀시트 드로어 입장 — `PersonMiniCard`·`VerseLayer` 모바일), `card-in`(카드 스태거), `cloud-in`/`word-in`(워드클라우드), `bar-reveal`·`stop-bar-in`(막대 성장), `symbol-draw`(인장 선화 draw-on — `personSymbols.jsx`/`bookSymbols.jsx`의 `pathLength=1` 정규화 전제, 지연은 `--sym-delay`), `thread-draw`(가계도 메시아의 실 금색 드로인, 지연은 `--thread-delay`), `book-open`(허브 대문 책 펼침 원근 회전, 세션 첫 진입 1회), `intro-rise`(인트로 히어로/섹션 텍스트 상승 페이드, task#239), `intro-line`(인트로 히어로 금선 분할선 — 중앙에서 좌우로 scaleX 드로인), `intro-sec`(인트로 섹션 카드 — `IntersectionObserver`가 뷰포트 진입 시 `.intro-seen`을 부여할 때만 `intro-rise` 애니메이션 재생, 그 전엔 `opacity:0`으로 불가시), `pressable`(`:active` 눌림 피드백).
 - **제약**: transform·opacity만 애니메이트. 입장(enter)만 있고 exit는 즉시 언마운트 — 단 `VerseLayer` 모바일 시트의 퇴장은 드래그 추종 위치에서 이어 내려가야 해서 인라인 transform 트랜지션으로 처리하는 **의도된 예외**다(시트 한정). 지도(MapLibre 캔버스)는 이 체계 밖.
 
 ### 11. 구절 레이어 공통 쉘 (`VerseLayer.jsx`, task#202)
@@ -208,14 +209,14 @@ data/*.json  ──(load/inject/generate/build 스크립트)──▶  Neo4j 그
 - **카메라·경로선 동기**: `App.jsx`가 `playback.idx` 변화를 구독해 `mapGeo.js`의 `journeyStopGroups()`로 해당 정차지의 지도 그룹을 찾아 `activeStopIdx`를 갱신(기존 easeTo 카메라 경로 재사용, 좌표 없는 정차지는 카메라 유지·카드만 교체). `MapView.jsx`는 `playbackIdx` prop을 받아 경로선을 정차지 인덱스까지만 그려(`buildJourneyLineGeoJSON(stops.slice(0, playbackIdx+1))`) 재생 진행에 따라 선이 자라나게 하고, `playbackIdx`가 null이면(재생 종료·이탈) 전체 선으로 복원한다. 투어 이탈·`exploreView`가 `map`을 벗어나면 재생을 자동 종료.
 - **해설 카드**: `TourPlaybackCard`(`TourPlayback.jsx` export)가 현재 정차지의 seq·인물·제목·`note`(없으면 제목만, 그레이스풀)와 이전/재생·일시정지/다음/종료 컨트롤을 렌더한다. 카드 상단에 장면 스케치(§18)를 통합 삽화로 얹는다.
 
-### 18. 투어 장면 스케치 (`frontend/src/sketches/`, ADR-0029, task#223~231)
+### 18. 투어 장면 스케치 (`frontend/src/sketches/`, ADR-0029, task#223~231 → 커버리지 백필 task#240~242)
 
-투어 정차지 재생 해설 카드에 붙는 저작 삽화 애니메이션(9투어 165장면, 이후 커버리지 보강으로 275개 정차지까지 확장) 시스템.
+투어 정차지 재생 해설 카드에 붙는 저작 삽화 애니메이션(9투어 275장면 — 9투어 275정차지 전량 커버) 시스템. task#223~231이 저작한 165장면은 당시 정차지 165개 전량이었으나, 이후 정차지가 275개로 확장(task#233~235)되며 신규 110개 정차지가 스케치 없이 남았다. task#240~242(3부작, 34+38+38건)가 기존 9개 모듈에 순수 추가로 이 누락분을 백필해 275/275 커버리지를 완성했다 — 신규 모듈 파일은 없다.
 
 - **모듈 구성**: 투어당 1개 JSX 모듈(`sketches/davidUnitedKingdom.jsx`·`creationToFlood.jsx`·`patriarchsCovenant.jsx`·`exodusToConquest.jsx`·`ageOfJudges.jsx`·`elijahAndElisha.jsx`·`exileAndReturn.jsx`·`gospelOfJesus.jsx`·`theEarlyChurch.jsx`)가 eventId 키의 레지스트리(`{ Scene, mood, desc, caption }`)를 export한다. 공용 표준(선 굵기 위계, 전역 배율 `W`, 단계 딜레이 헬퍼 `sw`/`d`, 이름표 컴포넌트 `Label`)은 `sketches/lib.jsx`가 정본이다.
 - **집계·렌더**: `frontend/src/tourSketches.jsx`가 9개 모듈의 레지스트리를 `SCENES`로 스프레드 병합하고, `hasSketch(eventId)`(존재 판정)와 `TourSketchPanel({eventId})`(카드 상단 삽화 패널 — 양피지 배경, draw-on SVG, `desc`/`caption` 캡션)를 export한다. 등록 없는 정차지는 아무것도 렌더하지 않는다(부분 저작 허용, 그레이스풀). 카메라 정착(400ms) 후에야 draw를 시작해 카드 높이 점프를 방지한다.
 - **선화 규약**: `stroke=currentColor`, `pathLength=1` 정규화(`.symbol-draw` dash 1 = 전체 선), 얼굴 초상 없음(ADR-0025 계승). 선 굵기 위계(원경 1.1 · 질감/주름 1.3 · 지면 1.6 · 보조 1.8~2 · 주역 2.4~2.6 · 핵심 3, 전역 배율 `W=0.55`)와 무드(어두운 장면은 강조색만 금→목탄 오버라이드)는 코드로 표현되는 "미니 애니메이션 DSL"이라 데이터 파일이 아닌 JSX 모듈로 저작한다(ADR-0029 결정 사유).
-- **coverage 원칙**: 데이터(투어 `stops`)와 코드(장면 레지스트리)가 eventId로 페어링되므로 ADR-0029는 "stops의 id ⊆ 레지스트리 키" 대조를 커버리지 검증 게이트로 지정한다(현재 자동화 스크립트는 리포지토리에 없음 — 저작 시점 수동 대조).
+- **coverage 원칙**: 데이터(투어 `stops`)와 코드(장면 레지스트리)가 eventId로 페어링되므로 ADR-0029는 "stops의 id ⊆ 레지스트리 키" 대조를 커버리지 검증 게이트로 지정한다(현재 자동화 스크립트는 리포지토리에 없음 — 저작 시점 수동 대조). task#240~242 완료 시점에 9투어 집합 대조로 missing 0(275/275)을 확인했으나, 이는 저작 시점 1회성 수동 검증이라 이후 정차지가 다시 늘면 재대조가 필요하다.
 
 ## 데이터 흐름 (엔드투엔드)
 
@@ -253,7 +254,7 @@ theographic 원본은 Ussher형 연대계라 저작 레이어(보수 연대계)�
 - 백엔드 앱: `backend/app/main.py`(FastAPI, lifespan 인덱스, 12개 라우터 include).
 - Neo4j 드라이버: `backend/app/db.py`(`get_driver` 싱글턴).
 - 오버레이 로더: `backend/app/overlays.py`(캐시 로더 9종 + `curated_person_id`).
-- 프론트 앱: `frontend/src/main.jsx`(테마 동기 반영 → createRoot) → `frontend/src/App.jsx`(SpineHeader + 8스테이지 분기). HTML 진입 `frontend/index.html`.
+- 프론트 앱: `frontend/src/main.jsx`(테마 동기 반영 → createRoot) → `frontend/src/App.jsx`(SpineHeader + 9스테이지 분기). HTML 진입 `frontend/index.html`.
 - 프론트 API 클라이언트: `frontend/src/api.js`(빌드 버전 쿼리는 `frontend/vite.config.js`의 `define.__BUILD_ID__`).
 
 ## 배포 위상

@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: f5e17ae2993e228f8b7481dba03478ddec8616f4
-mapped: 2026-07-22
+last_mapped_commit: 473bf605f082467f6f19863530b017b180a80058
+mapped: 2026-07-23
 ---
 
 # STRUCTURE
@@ -82,7 +82,7 @@ frontend/
 ├── node_modules/            # (gitignore)
 └── src/
     ├── main.jsx             # 테마 동기 반영(localStorage biblemap-theme, ADR-0020) + createRoot/StrictMode
-    ├── App.jsx              # SpineHeader + 스테이지 상태 머신 + 레이아웃 셸 (8 스테이지 렌더 분기 + 스테이지별 내비 바 + 무좌표 여정 분기 + 책 정경 순서 내비)
+    ├── App.jsx              # SpineHeader + 스테이지 상태 머신 + 레이아웃 셸 (9 스테이지 렌더 분기 + 스테이지별 내비 바 + 무좌표 여정 분기 + 책 정경 순서 내비)
     ├── api.js               # apiGet() 단일 API 클라이언트 — 모든 요청에 ?v=__BUILD_ID__ 부착(캐시 무력화)
     ├── index.css            # CSS 변수/전역 스타일 — 듀얼 테마 토큰 두 벌 + 모션 토큰·keyframes·클래스(ADR-0024) + --z-verse/--scrim
     ├── theme.js             # TYPE_COLOR 등 색상 토큰 (값은 var(--type-*) 참조 — CSS 컨텍스트 전용)
@@ -90,7 +90,8 @@ frontend/
     ├── dates.js             # 연대 표기 유틸
     ├── scrollMemory.js      # 목록 스테이지(hub·overview) 스크롤 위치 기억 — saveScroll/loadScroll (task#214)
     │
-    ├── SpineHeader.jsx      # 책등 전역 헤더 — 리본 3부 + 테마 토글 + 브랜드 마크(CompassCrossMark), HEADER_H·RIBBON_OVERHANG export (ADR-0026, task#216·217)
+    ├── SpineHeader.jsx      # 책등 전역 헤더 — 리본 3부 + ⓘ 인트로 재열람 버튼 + 테마 토글 + 브랜드 마크(CompassCrossMark), HEADER_H·RIBBON_OVERHANG export (ADR-0026, task#216·217 → task#239)
+    ├── IntroView.jsx        # 사이트 인트로 대문 뷰 (intro 스테이지) — 히어로 스태거 입장 + 기능 6섹션 스크롤 리빌(IntersectionObserver), INTRO_STORAGE_KEY export (task#239)
     ├── PersonHub.jsx        # 인물 목차(대문) 뷰 (hub 스테이지) — 시대 8구간 장 섹션 + 인장 카드 + book-open 입장 + 스크롤 위치 복원(task#214)
     ├── BibleOverviewView.jsx# 성경 책 개요 (overview 스테이지) — 책 인장(BookSymbol) 카드 + 스크롤 위치 복원(task#214)
     ├── TourList.jsx         # 테마 투어 목록 (tours 스테이지) — description 2줄 미리보기(task#222)
@@ -121,8 +122,8 @@ frontend/
     ├── mapRingController.js # 지도 링(경로) 제어
     │
     ├── useNodeSelection.js  # 노드 선택 훅
-    ├── useStageNavigation.js# 스테이지/URL/히스토리 상태 머신 훅 (8 스테이지, explorePersonSlug·getPersonSlug 포함, 투어 진입 기본 뷰 'intro')
-    └── urlState.js          # 해시 URL 직렬화/파싱 (encodeHash/parseHash)
+    ├── useStageNavigation.js# 스테이지/URL/히스토리 상태 머신 훅 (activeStage 9종 — 사이트 인트로 스테이지 'intro' 신설분(초기값은 localStorage biblemap-intro 분기, task#239), explorePersonSlug·getPersonSlug 포함, exploreView 쪽 투어 진입 기본값도 별개로 'intro')
+    └── urlState.js          # 해시 URL 직렬화/파싱 (encodeHash/parseHash) — #/intro 포함
 ```
 
 `src/sketches/` — 투어 장면 스케치 레지스트리 모듈(ADR-0029). 파일명은 투어 id(케밥케이스)를 카멜케이스로 변환한 이름:
@@ -235,7 +236,7 @@ data/
 
 ### 프론트엔드
 
-- 컴포넌트: PascalCase `.jsx`(`SidePanel.jsx`, `FamilyTree.jsx`, `PersonIntro.jsx`, `SpineHeader.jsx`, `VerseLayer.jsx`, `PersonMiniCard.jsx`, `ChapterReader.jsx`, `BookStageMap.jsx`, `TourIntro.jsx`). 뷰 컴포넌트는 접미사 `View`(`MapView`, `TimelineView`, `RelationsView`, `BibleOverviewView`, `WordDistributionView`, `RelianceView`); `PersonHub`·`PersonIntro`·`FamilyTree`·`TourList`·`TourIntro`·`JourneyList`·`SidePanel`·`SpineHeader`·`VerseLayer`·`PersonMiniCard`·`ChapterReader`·`BookStageMap`은 예외 없이 전체화면/패널/쉘/미니맵 단위 컴포넌트다. `personSymbols.jsx`·`bookSymbols.jsx`·`tourSketches.jsx`는 컴포넌트(`PersonSymbol`/`BookSymbol`/`TourSketchPanel`)와 데이터(`SYMBOLS`/`SCENES`)를 함께 담는 카멜케이스 `.jsx` 예외다. `frontend/src/sketches/<tourId 카멜케이스>.jsx`(투어 id의 케밥케이스를 카멜케이스로 변환, 예: `age-of-judges` → `ageOfJudges.jsx`)는 투어별 장면 레지스트리 모듈 — 표준은 `sketches/lib.jsx`.
+- 컴포넌트: PascalCase `.jsx`(`SidePanel.jsx`, `FamilyTree.jsx`, `PersonIntro.jsx`, `SpineHeader.jsx`, `VerseLayer.jsx`, `PersonMiniCard.jsx`, `ChapterReader.jsx`, `BookStageMap.jsx`, `TourIntro.jsx`, `IntroView.jsx`). 뷰 컴포넌트는 접미사 `View`(`MapView`, `TimelineView`, `RelationsView`, `BibleOverviewView`, `WordDistributionView`, `RelianceView`); `PersonHub`·`PersonIntro`·`FamilyTree`·`TourList`·`TourIntro`·`JourneyList`·`SidePanel`·`SpineHeader`·`VerseLayer`·`PersonMiniCard`·`ChapterReader`·`BookStageMap`은 예외 없이 전체화면/패널/쉘/미니맵 단위 컴포넌트다. `personSymbols.jsx`·`bookSymbols.jsx`·`tourSketches.jsx`는 컴포넌트(`PersonSymbol`/`BookSymbol`/`TourSketchPanel`)와 데이터(`SYMBOLS`/`SCENES`)를 함께 담는 카멜케이스 `.jsx` 예외다. `frontend/src/sketches/<tourId 카멜케이스>.jsx`(투어 id의 케밥케이스를 카멜케이스로 변환, 예: `age-of-judges` → `ageOfJudges.jsx`)는 투어별 장면 레지스트리 모듈 — 표준은 `sketches/lib.jsx`.
 - 훅: `useXxx.js` 카멜케이스(`useNodeSelection.js`, `useStageNavigation.js`), 또는 컴포넌트 파일 내 export(`useTourPlayback` in `TourPlayback.jsx`).
 - 비컴포넌트 모듈: 카멜케이스 `.js`(`api.js`, `theme.js`, `mapLayers.js`, `urlState.js`, `scrollMemory.js`).
-- 스타일: 컴포넌트 인라인 스타일 + `index.css`의 CSS 변수(`var(--bg-1)`, `var(--gold)`, `var(--type-person)`, `var(--paper)`, `var(--z-verse)` 등) + 모션 클래스(`stage-in`, `modal-in`, `overlay-in`, `sheet-in`, `card-in`, `cloud-in`, `word-in`, `bar-reveal`, `stop-bar-in`, `symbol-draw`, `thread-draw`, `book-open`, `pressable` — ADR-0024~0026). 테마별 값은 `index.css`에서 다크(기본)와 `:root[data-theme='light']` 두 벌로 갈리고, `theme.js` 상수는 리터럴이 아닌 `var(...)` 참조다(ADR-0020). 양피지 토큰(`--paper*`)은 테마 불변 — 성경 구절 본문 전용. 모션 duration/easing은 `--dur-*`/`--ease-*` 토큰만 참조(하드코딩 금지). 별도 CSS 모듈/스타일 라이브러리 없음.
+- 스타일: 컴포넌트 인라인 스타일 + `index.css`의 CSS 변수(`var(--bg-1)`, `var(--gold)`, `var(--type-person)`, `var(--paper)`, `var(--z-verse)` 등) + 모션 클래스(`stage-in`, `modal-in`, `overlay-in`, `sheet-in`, `card-in`, `cloud-in`, `word-in`, `bar-reveal`, `stop-bar-in`, `symbol-draw`, `thread-draw`, `book-open`, `intro-rise`, `intro-line`, `intro-sec`, `pressable` — ADR-0024~0026, task#239). 테마별 값은 `index.css`에서 다크(기본)와 `:root[data-theme='light']` 두 벌로 갈리고, `theme.js` 상수는 리터럴이 아닌 `var(...)` 참조다(ADR-0020). 양피지 토큰(`--paper*`)은 테마 불변 — 성경 구절 본문 전용. 모션 duration/easing은 `--dur-*`/`--ease-*` 토큰만 참조(하드코딩 금지). 별도 CSS 모듈/스타일 라이브러리 없음.

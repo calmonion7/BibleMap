@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: f5e17ae2993e228f8b7481dba03478ddec8616f4
-mapped: 2026-07-22
+last_mapped_commit: 473bf605f082467f6f19863530b017b180a80058
+mapped: 2026-07-23
 ---
 
 # CONVENTIONS
@@ -99,12 +99,14 @@ BibleMap의 코드 스타일·품질 관련 정본. 라우팅 구조·DB 접근�
 - 테마 불변 영역: 양피지(`--paper`/`--paper-ink`/`--paper-accent`, 성경 구절 본문 전용 배경)와 지도(`frontend/src/MapView.jsx`·`frontend/src/mapLayers.js`의 리터럴 색) — 라이트 블록에 이 토큰들의 오버라이드는 없다.
 - 새 색을 넣을 땐 테마 민감한 색이면 `index.css` 두 블록 모두에 토큰을 정의하고 var로 참조한다. 에러색은 `--danger`(§4의 실패 배너가 실사용 예). 라이트 값은 명도를 낮춰 대비를 확보한다(본문 4.5:1·칩 3:1 목표).
 - JS 팔레트 상수는 `frontend/src/theme.js`(`TYPE_COLOR`/`TYPE_KO`/`TYPE_ORDER`/`VALENCE_COLOR`/`SELECT_HL`/`GENRE_META`) — 값의 정본은 `index.css`의 `--type-*`/`--valence-*`이고 `theme.js`는 `'var(--type-person)'` 같은 **var 참조 문자열**만 갖는다(인라인 style 전용, 캔버스/maplibre류에는 못 씀).
+- localStorage 키는 `biblemap-` 접두를 공유한다: `biblemap-theme`(테마, 위) 외에 `biblemap-intro`(사이트 인트로 온오프, task#239 — `frontend/src/IntroView.jsx`가 `INTRO_STORAGE_KEY` 상수로 export). 후자는 값이 아니라 **키의 존재 자체**가 상태다 — `'off'`로 설정하면 숨김, 키 부재(기본)면 노출(`frontend/src/useStageNavigation.js`가 무해시 진입 시 이 키로 `intro`/`hub` 시작 스테이지를 분기).
 
 ### 5.3 모션 토큰 (ADR-0024)
 
 - 모션 정본은 `index.css` `:root`의 `--dur-fast`(150ms)/`--dur-base`(250ms)/`--dur-slow`(400ms)/`--dur-draw`(1000ms) + `--ease-out`/`--ease-in-out`/`--ease-drawer`/`--ease-pop`. 새 duration·easing을 리터럴로 하드코딩하지 않고 이 토큰만 참조한다.
 - 애니메이트 가능한 속성은 **transform·opacity**(+ 선화의 `stroke-dashoffset`)만 — 레이아웃 속성 금지. 입장(enter)만 만들고 exit는 즉시 언마운트로 처리한다.
 - `@media (prefers-reduced-motion: reduce)`에서 `--dur-*` 전부와 `animation-delay`를 1ms/0ms로 붕괴시키는 **토큰 붕괴 가드**가 개별 컴포넌트의 reduce 분기를 대체한다(`index.css`). CSS 트랜지션이 아닌 JS `requestAnimationFrame` 애니메이션(`RelianceView.jsx`의 `Donut`)은 이 가드로 가려지지 않아 `window.matchMedia(...)`를 직접 분기한다.
+- 히어로 스태거 입장 + 스크롤 리빌 조합은 `index.css`에 전용 클래스 3종으로 저작한다(task#239, `frontend/src/IntroView.jsx`): `.intro-rise`(`--dur-slow`/`--ease-out` fade+translateY, 자식별 스태거는 인라인 `animationDelay`로 부여)·`.intro-line`(`--dur-draw`/`--ease-in-out`, 중앙 기준 `scaleX(0→1)` 분할선)·`.intro-sec`(초기 `opacity: 0`인 스크롤 리빌 카드 컨테이너 — `useReveal()`의 `IntersectionObserver`가 뷰포트 진입을 1회 감지해 `.intro-seen`을 부여하면 `intro-rise` keyframe이 재생되고 이후 관찰을 해제한다).
 - 정본 참조: `.forge/adr/0024-motion-system-css-tokens-no-library.md`.
 
 ### 5.4 인물/책 상징물 선화 (ADR-0025)

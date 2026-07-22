@@ -1,13 +1,15 @@
 ---
-last_mapped_commit: f5e17ae2993e228f8b7481dba03478ddec8616f4
-mapped: 2026-07-22
+last_mapped_commit: 473bf605f082467f6f19863530b017b180a80058
+mapped: 2026-07-23
 ---
 
 # CONCERNS
 
-현재 코드베이스에서 확인된 기술 부채·버그 위험·보안·성능·취약 지점 목록. 각 항목은 HEAD(`f5e17ae`)에서 실제 파일·라인 재추적, 라이브 API(`localhost:8080`, prod와 동일 스택) 조회, ESLint·데이터 검증 스크립트(7종) 재실행으로 확인했다.
+현재 코드베이스에서 확인된 기술 부채·버그 위험·보안·성능·취약 지점 목록. 대부분 항목은 HEAD(`f5e17ae`)에서 실제 파일·라인 재추적, 라이브 API(`localhost:8080`, prod와 동일 스택) 조회, ESLint·데이터 검증 스크립트(7종) 재실행으로 확인했다.
 
 이번 갱신 배경: 직전 매핑(`304eda1`, 2026-07-18) 이후 인물 여정 마리아 사건 보강(task#213), 내비·스크롤 복원(task#214·215), 브랜드 헤더(task#216~217), 인물 연표 필터 수정(task#218), 하나님 의존도 재정규화(task#219~220), 테마 투어 개요·자동재생 엔진·정차지 해설(task#222~225), 장면 스케치 애니메이션 9투어 165장면 저작(task#226~231), 투어 서사 순서·사건 커버리지 보강 165→275(task#232~235), 인물 여정 연대계 35파일 전수 감사(task#236), 신약 date_corrections 확장(task#237~238), 가족 이웃 디듀프·죽은 ID 재매핑(직전 HEAD)이 들어왔다.
+
+**2026-07-23 갱신(부분)**: `f5e17ae` 이후 2커밋만 반영 — 사이트 인트로 대문 신설(`091010a`, `frontend/src/IntroView.jsx` 등, task#239)과 투어 장면 스케치 110편 백필(`473bf60`, task#240~242). 아래 관련 항목만 재확인·갱신했고 나머지는 f5e17ae 시점 그대로다.
 
 ---
 
@@ -64,7 +66,7 @@ mapped: 2026-07-22
 
 **`load_books.py` 재실행이 교정 연대를 Ussher 값으로 롤백 (잔존):** 매 실행 GitHub 원본을 새로 받아 Book `startYear`/`endYear`를 덮어쓴다. 신약 date_corrections 251건 확장 이후에도 이 재계산 경로는 Neo4j의 교정된 Event.startDate가 아니라 raw events.json에서 값을 다시 뽑아 쓴다(`backend/scripts/load_books.py:80-102`) — 재실행 시 Book 범위가 다시 오염될 여지 그대로.
 
-**Person `birthYear`/`deathYear`가 Event 연대 교정과 별도 관리돼 어긋남이 라이브로 재현됨 (신규 확증):** `validate_event_chronology.py` 실행 결과(HEAD, `.env` 로드) — 인물 출생 대비 참여 이벤트 역전 2건("Terah 참여 이벤트 1건이 출생(-2125)보다 앞섬 — 최악 사례 'Birth of Abraham'(-2166)", "Isaac 참여 이벤트 1건이 출생(-2065)보다 앞섬 — 최악 사례 'Isaac's birth in Beersheba region'(-2066)")과 Person 스캔(사망<출생) 3건(Samson·Ahaziah·Jehoram)으로 총 5건 위반이 현재도 보고된다. task#236의 41건 사건 연대 교정은 Event 노드의 `startDate`/`sortKey`만 갱신했고 Person 노드의 `birthYear`/`deathYear`(theographic 원본, Ussher 연대계)는 별도 필드라 갱신 대상이 아니었던 것으로 추정 — 기존 "Person birthYear/deathYear는 Ussher 연대 잔존" 한계의 구체적 재현이다.
+**Person `birthYear`/`deathYear`가 Event 연대 교정과 별도 관리돼 어긋남이 라이브로 재현됨 (2026-07-23 재실행, 동일 5건 잔존):** `validate_event_chronology.py` 실행 결과(HEAD, `.env` 로드) — 인물 출생 대비 참여 이벤트 역전 2건("Terah 참여 이벤트 1건이 출생(-2125)보다 앞섬 — 최악 사례 'Birth of Abraham'(-2166)", "Isaac 참여 이벤트 1건이 출생(-2065)보다 앞섬 — 최악 사례 'Isaac's birth in Beersheba region'(-2066)")과 Person 스캔(사망<출생) 3건(Samson·Ahaziah·Jehoram)으로 총 5건 위반이 현재도 보고된다. 이번 2커밋(인트로·장면 스케치)은 Person/Event 연대 데이터를 건드리지 않아 위반 내용·건수 모두 직전과 동일하다. task#236의 41건 사건 연대 교정은 Event 노드의 `startDate`/`sortKey`만 갱신했고 Person 노드의 `birthYear`/`deathYear`(theographic 원본, Ussher 연대계)는 별도 필드라 갱신 대상이 아니었던 것으로 추정 — 기존 "Person birthYear/deathYear는 Ussher 연대 잔존" 한계의 구체적 재현이다.
 
 **서신서 Book 연대 범위 오표기 (수용된 한계, 불변):** ADR-0012의 "첫 참조(`verses[0]`)=발생" 규약(`backend/scripts/load_books.py:130`)이 서신서의 회고 인용을 발생으로 오판정 — authored_events 경로가 없는 책이라 근본 해소 불가. ADR-0012 자체가 이를 "범위 밖(잔존)"으로 명시.
 
@@ -78,11 +80,11 @@ mapped: 2026-07-22
 
 **시드 파이프라인 ↔ `deploy.sh` 단절 (그대로):** `deploy.sh`의 데이터 주입은 `inject_ko_names.py`(`:49`) 하나. `inject_date_corrections.py`·`load_authored_*` 계열 모두 미배선. 로그 라벨 `[1/3]`·`[2/3]`·`[3/4]`·`[4/4]` 어긋남도 잔존(코스메틱).
 
-**번들 크기 — 메인 청크가 이번 마일스톤에서 2배 이상 증가:** `frontend/dist/assets/index-*.js` **449.16KB**(직전 205.7KB — 장면 스케치 165장면·투어 재생 엔진·개요 페이지가 메인 청크에 편입돼 급증), `maplibre-*.js` 여전히 **1,027.60KB**. `vite build` 경고("Some chunks are larger than 500 kB") 그대로, `chunkSizeWarningLimit` 미설정.
+**번들 크기 — 장면 스케치 110편 백필로 메인 청크가 재차 급증 (2026-07-23 재실측):** `frontend/dist/assets/index-*.js` **614.43KB**(직전 449.16KB — 스케치 110편 순수 추가분이 그대로 메인 청크에 편입, gzip 134.61KB), `maplibre-*.js` 여전히 **1,027.60KB**(불변). `vite build` 경고("Some chunks are larger than 500 kB") 그대로, `chunkSizeWarningLimit` 미설정. 코드 스플리팅 없이 스케치 저작이 계속 늘어나는 구조라 메인 청크는 앞으로도 저작량에 비례해 커진다.
 
-**대형 프론트엔드 컴포넌트 + 신규 대형 디렉터리:** `frontend/src/App.jsx` **936줄**(직전 868 — 투어 재생 스테이지 배선), `frontend/src/SidePanel.jsx` 928줄(불변). **신규 `frontend/src/sketches/` 디렉터리 총 5,744줄**(9개 투어별 모듈 + `lib.jsx`) — `davidUnitedKingdom.jsx` 784줄·`gospelOfJesus.jsx` 734줄·`exileAndReturn.jsx` 679줄·`patriarchsCovenant.jsx` 678줄·`theEarlyChurch.jsx` 616줄·`exodusToConquest.jsx`/`elijahAndElisha.jsx` 각 607줄·`ageOfJudges.jsx` 572줄·`creationToFlood.jsx` 443줄. ADR-0029가 "투어당 1개 모듈로 분리"를 의도적 설계로 명시하나(단일 파일이면 "10k줄, 편집·리뷰 불능"), 결과적으로 코드베이스에 SVG 애니메이션 저작물 5,744줄이 편입된 것은 사실이다. `bookSymbols.jsx`(670줄)·`personSymbols.jsx`(519줄)·`FamilyTree.jsx`(485줄)·`mapLayers.js`(451줄)는 불변.
+**대형 프론트엔드 컴포넌트 + 대형 디렉터리 — 장면 스케치 백필로 재차 증가 (2026-07-23 재실측):** `frontend/src/App.jsx` **951줄**(직전 936 — 인트로 스테이지 배선), `frontend/src/SidePanel.jsx` 928줄(불변). **`frontend/src/sketches/` 디렉터리 총 9,692줄**(직전 5,744줄 — 110편 백필로 68% 증가, 9개 투어별 모듈 + `lib.jsx`) — `davidUnitedKingdom.jsx` 1,523줄·`patriarchsCovenant.jsx` 1,258줄·`gospelOfJesus.jsx` 1,206줄·`ageOfJudges.jsx` 1,168줄·`elijahAndElisha.jsx` 1,125줄·`theEarlyChurch.jsx` 998줄·`creationToFlood.jsx` 840줄·`exodusToConquest.jsx` 827줄·`exileAndReturn.jsx` 723줄. ADR-0029가 "투어당 1개 모듈로 분리"를 의도적 설계로 명시하나(단일 파일이면 "10k줄, 편집·리뷰 불능"), 결과적으로 코드베이스에 SVG 애니메이션 저작물 9,692줄이 편입된 것은 사실이고 개별 모듈 상당수가 이미 1,000줄을 넘어섰다. `bookSymbols.jsx`(670줄)·`personSymbols.jsx`(519줄)·`FamilyTree.jsx`(485줄)·`mapLayers.js`(451줄)는 불변.
 
-**ADR-0029가 약속한 "장면 스케치 커버리지 검증 게이트" 스크립트가 아직 없음 (신규 확인):** ADR(`0029-scene-sketches-as-code-modules.md:13`)은 "투어 stops와 장면 레지스트리 집합 대조 스크립트가 커버리지 검증 게이트"라고 명시하지만, `backend/scripts/`·`frontend/`에 이런 대조 스크립트는 없다(grep 0건). 실측: 투어 `stops` 총 275개(9개 투어 전부 note 100% 저작 완료, `data/tours/*.json`)인데 반해 장면 레지스트리(`tourSketches.jsx`의 `SCENES`) 키는 165개뿐 — 110개 정차지는 장면 스케치가 없다. `hasSketch()`가 `false`를 반환해 `TourSketch`가 아무것도 렌더하지 않는 그레이스풀 설계(ADR 명시)라 버그는 아니지만, 향후 정차지 추가 시 스케치 누락이나 eventId 오타로 인한 커버리지 회귀를 잡아줄 자동 검사가 여전히 없다.
+**투어 stops ↔ 장면 스케치 커버리지 — 데이터는 전량 커버로 해소, 자동 검증 게이트는 여전히 없음 (2026-07-23 재확인):** `473bf60`(장면 스케치 110편 백필)이 `frontend/src/sketches/` 9개 모듈에 순수 추가만으로 나머지 정차지를 채웠다. 실측(9개 모듈의 `SCENES` 객체 키 전수 대조, `data/tours/*.json`의 `stops[].id`와 집합 비교): 275 stops · 275 scene 키, missing 0·extra 0 — **9투어 275정차지 전량 커버 확인**(직전 매핑의 165/275, 60% 대비 해소). 다만 ADR(`0029-scene-sketches-as-code-modules.md:13`)이 약속한 "투어 stops와 장면 레지스트리 집합 대조 스크립트"는 여전히 코드베이스에 없다(grep 0건, `backend/scripts/`·`frontend/` 전역) — 이번 전량 커버는 커밋 메시지가 명시한 수기 대조로 확인된 것으로 보이고, 향후 정차지 추가·eventId 오타 시 회귀를 잡아줄 자동 게이트는 부재한 채다.
 
 **"큐레이션 13인" 주석 드리프트 (잔존):** `backend/app/routes/persons.py:1`·`:136`의 "13인", `:287`의 "34인"이 실제 35 slug와 계속 어긋난다.
 
@@ -179,14 +181,14 @@ mapped: 2026-07-22
 ## Test Coverage Gaps
 
 - `*.test.*`/`*.spec.*` 0건, pytest/vitest 설정 전무, `frontend/package.json` scripts에 test 없음 — 이번 재확인에서도 동일.
-- **ESLint 0 → 7 errors + 1 warning으로 재파손 (신규 회귀, 실측):** `npx eslint src` 결과 4개 파일에서 위반.
+- **ESLint 0 → 7 errors + 1 warning으로 재파손 (실측, 2026-07-23 재확인 — 동일 4개 파일·동일 위반으로 잔존, 신규 인트로/스케치 코드는 0건 추가):** `npx eslint src` 결과 4개 파일에서 위반.
   - `frontend/src/App.jsx:101` — `react-hooks/set-state-in-effect`("Calling setState synchronously within an effect"), `:106` — `react-hooks/exhaustive-deps`(playback 의존성 누락) 경고.
   - `frontend/src/TourPlayback.jsx:16` — `react-refresh/only-export-components`, `:24` — `react-hooks/set-state-in-effect`.
   - `frontend/src/sketches/lib.jsx:6`·`:8`·`:12` — `react-refresh/only-export-components`(상수·헬퍼 함수를 컴포넌트 파일에서 export).
   - `frontend/src/tourSketches.jsx:17` — `react-refresh/only-export-components`.
   - `react-refresh` 위반들은 dev HMR 저하(코스메틱)에 그치지만, `set-state-in-effect` 2건은 React 팀이 명시적으로 "cascading renders" 리스크로 분류하는 패턴이다. lint가 CI/`deploy.sh`에 게이팅돼 있지 않아 배포는 막히지 않는다 — 직전 문서가 우려한 "0 유지 목표가 조용히 무너지는 구조"가 이번에 실제로 재현됐다.
 - 데이터 검증 스크립트 7종 중 6종은 위반 0, **`validate_event_chronology.py`는 5건 위반**(위 Data Pipeline Footguns 참조) — CI 미연결·수동 실행 의존은 그대로.
-- **투어 장면 스케치 커버리지 검증 게이트(ADR-0029 명시) 미구현** — 위 Tech Debt 참조. 현재 275 stops 중 165(60%)만 스케치 보유, 나머지는 그레이스풀 미표시(설계 의도)지만 회귀를 잡을 자동 대조는 없다.
+- **투어 장면 스케치 커버리지 검증 게이트(ADR-0029 명시) 미구현 — 데이터는 275/275 전량 커버로 해소, 게이트 부재만 잔존 (2026-07-23 재확인)** — 위 Tech Debt 참조. 275 stops 전량 스케치 보유를 실측했으나, 이를 자동으로 대조·고정하는 스크립트는 여전히 없어 향후 정차지 추가 시 커버리지 회귀를 잡을 수단이 없다.
 - `event_dedupe` 정리 대상에 `generate_approx_book_verses.py`의 `VERSE_MAP` 하드코딩 ID가 빠져 있어, 향후 dedupe 실행마다 stale 참조가 자동 검출 없이 재발할 수 있다(위 Data Pipeline Footguns).
 - wip 계약·slug 소스 5계열 일치·`ERA_BANDS`/`_ERA_ORDER` 정합·BC/AD 연도 파싱 다중 사본은 여전히 자동 검증 없음(잔존).
 - `/node/{id}` vs `/node/{id}/neighbors/grouped` 두 이웃 엔드포인트의 동작 일치를 검사하는 테스트 없음(이번에 라이브 수기 대조로 불일치 확인).
