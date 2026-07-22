@@ -307,6 +307,32 @@ h2 {
   animation: book-open var(--dur-slow) var(--ease-out) both;
 }
 
+/* 인트로(task#239) — 히어로 스태거 입장 + 섹션 스크롤 리빌. 딜레이는 인라인 animationDelay
+   (reduce 모드에선 위 전역 animation-delay: 0 가드가 인라인보다 우선해 즉시 완료). */
+@keyframes intro-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+.intro-rise {
+  animation: intro-rise var(--dur-slow) var(--ease-out) both;
+}
+/* 금선 분할선 — 중앙에서 좌우로 그려짐 */
+@keyframes intro-line {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.intro-line {
+  transform-origin: center;
+  animation: intro-line var(--dur-draw) var(--ease-in-out) both;
+}
+/* 섹션 카드 — 뷰포트 진입 전 불가시, IntersectionObserver가 .intro-seen 부여 시 1회 rise */
+.intro-sec {
+  opacity: 0;
+}
+.intro-sec.intro-seen {
+  animation: intro-rise var(--dur-slow) var(--ease-out) both;
+}
+
 /* 누름 피드백 — 카드·버튼 공용(.rel-chip 선례의 큰 면적판, 인라인 스타일은 :active 불가라 클래스로) */
 .pressable {
   transition: transform var(--dur-fast) var(--ease-out);

@@ -8,6 +8,7 @@ import RelationsView from './RelationsView'
 import BibleOverviewView from './BibleOverviewView'
 import PersonHub from './PersonHub'
 import PersonIntro from './PersonIntro'
+import IntroView from './IntroView'
 import SpineHeader, { HEADER_H, RIBBON_OVERHANG } from './SpineHeader'
 import PersonSymbol from './personSymbols'
 import FamilyTree from './FamilyTree'
@@ -56,7 +57,7 @@ function App() {
   // 화면 단계(Stage)·URL·브라우저 히스토리 상태 머신 — 노드 선택 원시값을 주입(useStageNavigation).
   const {
     activeStage, exploreView, explorePersonId, explorePersonName, explorePersonSlug, exploreTourId, bookId, familyId, wordsBookId, readerBookId, readerChapter, curatedIds, keyPeopleCards, sheetOpen,
-    setExploreView, selectPerson, explorePerson, backToHub, openOverview, overviewBack,
+    setExploreView, selectPerson, explorePerson, backToHub, openIntro, openOverview, overviewBack,
     openTours, selectTour, toursBack, openBook, bookBack, openFamily, recenterFamily, familyBack,
     openWords, selectWordsBook, wordsBack, openReader, selectChapter, readerBack, onNodeLoaded, getPersonSlug,
   } = useStageNavigation({ selectedNode, selectNodeFresh, closePanel, handleNodeLoaded })
@@ -159,9 +160,10 @@ function App() {
 
   // 책등 헤더의 활성 부(部) — 개요·책·단어·리더는 '성경책', 투어 목록·투어 탐험은 '투어', 나머지는 '인물'(ADR-0026)
   const activeSection =
-    activeStage === 'overview' || activeStage === 'book' || activeStage === 'words' || activeStage === 'reader' ? 'books'
-      : activeStage === 'tours' || (activeStage === 'explore' && exploreTourId != null) ? 'tours'
-        : 'persons'
+    activeStage === 'intro' ? null // 인트로는 어느 부(部)도 아님 — 리본 전체 비활성
+      : activeStage === 'overview' || activeStage === 'book' || activeStage === 'words' || activeStage === 'reader' ? 'books'
+        : activeStage === 'tours' || (activeStage === 'explore' && exploreTourId != null) ? 'tours'
+          : 'persons'
 
   // 리본 클릭 — 기존 내비 콜백 조합만(상태 머신·URL 무변경). 탐험 중 열린 시트가 새 부로 넘어오지 않게 closePanel 동반.
   function handleSelectSection(key) {
@@ -564,11 +566,24 @@ function App() {
       <SpineHeader
         activeSection={activeSection}
         onSelectSection={handleSelectSection}
+        onOpenIntro={openIntro}
         isMobile={isMobile}
       />
 
       {/* 책갈피 리본이 헤더 아래로 드리워지는 만큼의 여백 — 리본 꼬리가 스테이지 내비 탭을 덮지 않게(ADR-0026) */}
       <div style={{ height: RIBBON_OVERHANG, flexShrink: 0, background: 'var(--bg-1)' }} />
+
+      {/* 인트로 단계 — 무해시 첫 진입의 기능 소개 관문(task#239). 온오프·재진입은 IntroView·헤더 ⓘ */}
+      {activeStage === 'intro' && (
+        <div className="stage-in" style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+          <IntroView
+            isMobile={isMobile}
+            onStart={backToHub}
+            onOpenTours={openTours}
+            onOpenOverview={openOverview}
+          />
+        </div>
+      )}
 
       {/* 허브 단계 — 인물 선택 전 */}
       {activeStage === 'hub' && (

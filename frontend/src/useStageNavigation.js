@@ -7,8 +7,14 @@ import { encodeHash, parseHash } from './urlState'
 // 구조분해하지 않으므로, 전역 Map/history 섀도잉 함정이 구조적으로 없다(과거 두 차례 런타임 크래시 원인).
 // 노드 선택 원시값(selectedNode/selectNodeFresh/closePanel/handleNodeLoaded)은 useNodeSelection에서 주입받는다.
 export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, handleNodeLoaded }) {
-  // 'hub' | 'explore' | 'overview' | 'tours' | 'book' | 'family'
-  const [activeStage, setActiveStage] = useState('hub')
+  // 'intro' | 'hub' | 'explore' | 'overview' | 'tours' | 'book' | 'family'
+  // 인트로(task#239) — 무해시 진입 + 켜짐(biblemap-intro !== 'off')이면 허브 대신 인트로가 시작 화면.
+  // 딥링크(해시 있음)는 무조건 스킵. 복원 effect는 hub 해시에 activeStage를 건드리지 않아 이 초기값이 유지된다.
+  const [activeStage, setActiveStage] = useState(() => {
+    const h = window.location.hash
+    const noTarget = !h || h === '#' || h === '#/'
+    return noTarget && localStorage.getItem('biblemap-intro') !== 'off' ? 'intro' : 'hub'
+  })
   // 책 상세 페이지의 대상 책 id — selectedNode와 분리(explorePersonId와 대칭). 책 페이지 안에서
   // 사건을 클릭해 시트를 띄워도(selectedNode 변경) 페이지 대상·URL이 흔들리지 않게 한다.
   const [bookId, setBookId] = useState(null)
@@ -89,7 +95,8 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     // '복원된 stage'로 찍힌다(딥링크면 explore가 베이스). 깨진 해시(parsed null)도 허브 베이스로 복원 신호.
     Promise.resolve().then(() => {
       if (parsed) {
-        if (parsed.stage === 'overview') setActiveStage('overview')
+        if (parsed.stage === 'intro') setActiveStage('intro')
+        else if (parsed.stage === 'overview') setActiveStage('overview')
         else if (parsed.stage === 'book' && parsed.bookId) { setBookId(parsed.bookId); setActiveStage('book') }
         else if (parsed.stage === 'family' && parsed.familyId) { setFamilyId(parsed.familyId); setActiveStage('family') }
         else if (parsed.stage === 'words' && parsed.wordsBookId) { setWordsBookId(parsed.wordsBookId); setActiveStage('words') }
@@ -186,6 +193,12 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     setExplorePersonName(null)
     setExploreTourId(null)
     setActiveStage('hub')
+  }
+
+  // 헤더 ⓘ 소개 버튼 — 어느 화면에서든 인트로 재열람(끈 뒤 재진입 경로, task#239)
+  function handleOpenIntro() {
+    closePanel()
+    setActiveStage('intro')
   }
 
   // 허브에서 "성경 책 둘러보기" 클릭
@@ -314,6 +327,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     selectPerson: handleSelectPerson,
     explorePerson: handleExplorePerson,
     backToHub: handleBackToHub,
+    openIntro: handleOpenIntro,
     openOverview: handleOpenOverview,
     overviewBack: handleOverviewBack,
     openBook: handleOpenBook,

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Sun, Moon } from 'lucide-react'
+import { Sun, Moon, Info } from 'lucide-react'
 import { TYPE_COLOR } from './theme'
 
 // 책등(spine) 전역 헤더 높이 — App의 사이드패널 top 오프셋 계산에 공유(ADR-0026).
@@ -57,7 +57,7 @@ function CompassCrossMark({ size = 24 }) {
  *
  * 테마 토글은 PersonHub에서 이관(전역 승격, ADR-0020 로직 동일).
  */
-export default function SpineHeader({ activeSection, onSelectSection, isMobile }) {
+export default function SpineHeader({ activeSection, onSelectSection, onOpenIntro, isMobile }) {
   // 테마 전환은 CSS 변수만 갈아끼우므로 리렌더 불요 — state는 토글 아이콘(해/달) 표시용
   const [theme, setTheme] = useState(() => document.documentElement.dataset.theme === 'light' ? 'light' : 'dark')
   const toggleTheme = () => {
@@ -145,6 +145,25 @@ export default function SpineHeader({ activeSection, onSelectSection, isMobile }
           )
         })}
       </div>
+
+      {/* 인트로 재열람 — 사이트 소개(task#239). 인트로를 꺼도 여기서 언제든 다시 연다 */}
+      <button
+        onClick={onOpenIntro}
+        aria-label="사이트 소개 보기"
+        title="사이트 소개 보기"
+        style={{
+          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+          width: 28, height: 28, flexShrink: 0,
+          marginRight: isMobile ? 6 : 8,
+          borderRadius: '50%',
+          border: '1px solid var(--line-strong)',
+          background: 'var(--bg-2)',
+          color: 'var(--gold)',
+          cursor: 'pointer',
+        }}
+      >
+        <Info size={14} />
+      </button>
 
       {/* 테마 토글 — 라이트(Day Atlas)는 옵트인, 선택은 localStorage 유지(ADR-0020) */}
       <button
