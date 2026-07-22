@@ -68,9 +68,9 @@ VERSE_MAP = {
     # 골로새서 (bookOrder=51): 첫 번째 로마 투옥
     ("recY37UhYyyAlabnd", "recGrIgOxWnxVl8h0"): {"bookOrder": 51, "verses": [(1, 1), (1, 2)]},
     # 데살로니가전서 (bookOrder=52): 고린도 전도
-    ("recDZc63lmQiSe0gn", "recZLqdKx9mrT0bCv"): {"bookOrder": 52, "verses": [(1, 1), (1, 2), (1, 3)]},
+    ("recDZc63lmQiSe0gn", "authored-paul-corinth"): {"bookOrder": 52, "verses": [(1, 1), (1, 2), (1, 3)]},
     # 데살로니가후서 (bookOrder=53): 고린도 전도
-    ("recnZBkoT7W0SV19v", "recZLqdKx9mrT0bCv"): {"bookOrder": 53, "verses": [(1, 1), (1, 2)]},
+    ("recnZBkoT7W0SV19v", "authored-paul-corinth"): {"bookOrder": 53, "verses": [(1, 1), (1, 2)]},
     # 디모데전서 (bookOrder=54): 석방기 목회서신
     ("rec2yyoaHMOHZcynX", "authored-paul-release-pastorals"): {"bookOrder": 54, "verses": [(1, 1), (1, 2)]},
     # 디모데후서 (bookOrder=55): 2차 로마 투옥 / 순교
@@ -80,7 +80,7 @@ VERSE_MAP = {
     # 빌레몬서 (bookOrder=57): 첫 번째 로마 투옥
     ("recZm66X4kEQ7X3j2", "recGrIgOxWnxVl8h0"): {"bookOrder": 57, "verses": [(1, 1), (1, 2), (1, 3)]},
     # 야고보서 (bookOrder=59): 예루살렘 공의회
-    ("recDk5A8p9VHMaXAC", "recwmsQ1HEDGztu9O"): {"bookOrder": 59, "verses": [(1, 1), (1, 2)]},
+    ("recDk5A8p9VHMaXAC", "authored-paul-jerusalem-council"): {"bookOrder": 59, "verses": [(1, 1), (1, 2)]},
     # 베드로전서 (bookOrder=60): 베드로 로마 사역
     ("receVE4rg7HzwRays", "authored-peter-rome-martyrdom"): {"bookOrder": 60, "verses": [(1, 1), (1, 2)]},
     # 베드로후서 (bookOrder=61): 베드로 로마 사역
