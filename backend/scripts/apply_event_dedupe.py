@@ -138,10 +138,11 @@ def main():
         tour = load_json(rel)
         new_stops, seen = [], set()
         for s in tour.get("stops", []):
-            s2 = keep_of.get(s, s)
-            if s2 not in seen:
-                new_stops.append(s2)
-                seen.add(s2)
+            # 스톱은 {id, note} 객체(ADR-0028) — id만 리매핑·디듀프하고 note는 보존
+            sid = keep_of.get(s["id"], s["id"])
+            if sid not in seen:
+                new_stops.append({**s, "id": sid})
+                seen.add(sid)
         if new_stops != tour.get("stops", []):
             remapped += 1
             tour["stops"] = new_stops

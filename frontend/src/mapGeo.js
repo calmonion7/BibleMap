@@ -180,14 +180,15 @@ export function journeyStopGroups(stops) {
 }
 
 // 여정 정차지 GeoJSON — 좌표 있는 stops를 장소 단위 Point Feature로.
-// properties: seqLabel(장소 번호, 리스트와 동일), title, isStart, isEnd.
+// properties: idx(그룹 인덱스=activeStopIdx·JourneyList와 동일), seqLabel(장소 번호), title, isStart, isEnd.
 export function buildJourneyStopsGeoJSON(stops) {
   return {
     type: 'FeatureCollection',
-    features: journeyStopGroups(stops).map((g) => ({
+    features: journeyStopGroups(stops).map((g, i) => ({
       type: 'Feature',
       geometry: { type: 'Point', coordinates: [g.lng, g.lat] },
       properties: {
+        idx: i,
         seqLabel: g.seqLabel,
         title: g.title,
         isStart: g.isStart,

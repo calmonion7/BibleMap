@@ -168,10 +168,18 @@ def get_node(node_id: str):
         name = props.get("name") or props.get("title", "")
         name_ko = props.get("nameKo")
 
-        # 이웃 조회 + 총수 — 단일 쿼리로 2 → 1 왕복
+        # 이웃 조회 + 총수 — 단일 쿼리로 2 → 1 왕복.
+        # 가족 간선은 상호쌍(PARENT_OF+CHILD_OF)으로 저장돼 무방향 매치에서 같은 이웃이 2행으로 나오고
+        # 방향 소실로 라벨도 뒤섞인다 — 이웃의 역할 기준으로 rel을 정규화한 뒤 (이웃,역할) DISTINCT로 디듀프해
+        # total은 고유 이웃 수로, rows는 디듀프 후 상한 절단(중복이 고유 이웃 자리를 밀어내지 않게)한다.
         neighbors_result = session.run(
             f"MATCH (n {{theographic_id: $id}})-[r]-(m) "
-            f"WITH count(m) AS total, collect({{m: m, rel: type(r), out: startNode(r) = n, mlabels: labels(m)}})[0..{NODE_NEIGHBOR_LIMIT}] AS rows "
+            f"WITH m, labels(m) AS mlabels, "
+            f"     CASE WHEN type(r) IN ['PARENT_OF', 'CHILD_OF'] "
+            f"          THEN (CASE WHEN (type(r) = 'PARENT_OF') XOR (startNode(r) = n) THEN 'PARENT_OF' ELSE 'CHILD_OF' END) "
+            f"          ELSE type(r) END AS rel "
+            f"WITH DISTINCT m, mlabels, rel "
+            f"WITH count(*) AS total, collect({{m: m, rel: rel, mlabels: mlabels}})[0..{NODE_NEIGHBOR_LIMIT}] AS rows "
             f"RETURN rows, total",
             id=node_id
         )
@@ -180,29 +188,17 @@ def get_node(node_id: str):
         neighbor_total = nr_record["total"]
 
         neighbors = []
-        seen_pairs = set()
         for row in rows:
-            m = row["m"]
-            m_props = dict(m)
+            m_props = dict(row["m"])
             m_name_ko = m_props.get("nameKo")
             m_name = m_props.get("name") or m_props.get("title", "")
-            rel = row["rel"]
-            # 가족 간선은 상호쌍(PARENT_OF+CHILD_OF)으로 저장돼 무방향 매치에서 같은 이웃이
-            # 2행으로 나오고 방향 소실로 라벨도 뒤섞인다 — 이웃의 역할 기준으로 정규화 후 디듀프.
-            if rel in ("PARENT_OF", "CHILD_OF"):
-                neighbor_is_parent = (rel == "PARENT_OF") != bool(row["out"])
-                rel = "PARENT_OF" if neighbor_is_parent else "CHILD_OF"
-            pair = (m_props.get("theographic_id", ""), rel)
-            if pair in seen_pairs:
-                continue
-            seen_pairs.add(pair)
             neighbors.append({
                 "id": m_props.get("theographic_id", ""),
                 "label": row["mlabels"][0] if row["mlabels"] else "Unknown",
                 "name": m_name,
                 "nameKo": m_name_ko if m_name_ko else m_name,
                 "nameKoMissing": m_name_ko is None,
-                "relation": rel,
+                "relation": row["rel"],
             })
 
         # properties: name/nameKo/theographic_id/aliasesKo 제외
