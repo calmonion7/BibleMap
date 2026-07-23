@@ -333,6 +333,23 @@ h2 {
   animation: intro-rise var(--dur-slow) var(--ease-out) both;
 }
 
+/* 인트로 시네마틱 필름(task#244) — 비트 입장(오토플레이 오프닝). 지속·이징은 토큰만이라
+   reduced-motion에선 1ms로 붕괴. 씬 진행은 JS 타이머(체류 시간)이고, 시각 연출만 이 keyframe. */
+@keyframes film-in {
+  from { opacity: 0; transform: scale(1.03); }
+  to { opacity: 1; transform: none; }
+}
+.film-in {
+  animation: film-in var(--dur-slow) var(--ease-out) both;
+}
+@keyframes film-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.film-fade {
+  animation: film-fade var(--dur-slow) var(--ease-out) both;
+}
+
 /* 누름 피드백 — 카드·버튼 공용(.rel-chip 선례의 큰 면적판, 인라인 스타일은 :active 불가라 클래스로) */
 .pressable {
   transition: transform var(--dur-fast) var(--ease-out);
