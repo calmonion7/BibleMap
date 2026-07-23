@@ -3,20 +3,35 @@ import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { apiGet } from './api'
 import { MOBILE_BREAKPOINT, SHEET_VH, JOURNEY_SHEET_VH } from './constants'
-import { coreBounds, placesToGeoJSON, buildJourneyLineGeoJSON, buildJourneyStopsGeoJSON, journeyStopGroups } from './mapGeo'
+import { coreBounds, placesToGeoJSON, buildJourneyLineGeoJSON, buildJourneyStopsGeoJSON, journeyStopGroups, buildParablesMiraclesGeoJSON } from './mapGeo'
 import { EMPTY_GEOJSON, registerEventHandlers, setupMapSources } from './mapLayers'
 import { createRingController } from './mapRingController'
+import { PM_TYPE_COLOR } from './theme'
+
+// 비유·기적 필터 칩(task#249) — 지도 토글·연표 섹션(TimelineView)이 동일 순서·라벨 공유.
+const PM_FILTERS = [['all', '전체'], ['parable', '비유'], ['miracle', '기적']]
 
 export default function MapView({ onSelectNode, selectedNode, personId, isVisible, journeyStops, activeStopIdx, onStopSelect, playbackIdx = null }) {
   const mapContainer = useRef(null)
   const mapRef = useRef(null)
   const popupRef = useRef(null)
+  const pmPopupRef = useRef(null) // 비유·기적 팝업 — popupRef와 분리(생명주기가 달라 outside-click 정리도 별도)
   // 사건 링 펼침 제어 — selection effect가 자동 펼침을 위해 공유한다.
   const expandPlaceRef = useRef(null)        // (placeId, lng, lat) => 링 fly-out
   const expandedPlaceRef = useRef(null)      // 현재 펼쳐진 장소 { id, lng, lat, events, targets }
   const [mapLoaded, setMapLoaded] = useState(false)
   const [error, setError] = useState(false)
   const [noLocation, setNoLocation] = useState(false) // 선택 노드의 /places가 빈 배열일 때 안내
+  // 비유·기적 색인 레이어(task#249) — 인물/투어 선택과 무관하게 1회 fetch, 토글로 켜고 종류로 거른다.
+  const [pmItems, setPmItems] = useState([])
+  const [pmVisible, setPmVisible] = useState(false)
+  const [pmFilter, setPmFilter] = useState('all')
+
+  useEffect(() => {
+    apiGet('/parables-miracles')
+      .then(setPmItems)
+      .catch(e => { console.warn('[MapView] 비유·기적 로드 실패', e); setPmItems([]) })
+  }, [])
 
   useEffect(() => {
     const map = new maplibregl.Map({
@@ -46,7 +61,7 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
 
     map.on('load', () => {
       setupMapSources(map)
-      registerEventHandlers(map, { ...ring, onSelectNode, popupRef, expandedPlaceRef, onJourneyStopClick: onStopSelect })
+      registerEventHandlers(map, { ...ring, onSelectNode, popupRef, expandedPlaceRef, onJourneyStopClick: onStopSelect, pmPopupRef })
       mapRef.current = map
       setMapLoaded(true)
     })
@@ -54,6 +69,7 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
     return () => {
       ring.destroy()
       if (popupRef.current) { popupRef.current.remove(); popupRef.current = null }
+      if (pmPopupRef.current) { pmPopupRef.current.remove(); pmPopupRef.current = null }
       expandPlaceRef.current = null
       expandedPlaceRef.current = null
       mapRef.current = null
@@ -223,6 +239,21 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
     map.easeTo({ center: [g.lng, g.lat], ...(offset ? { offset } : {}), duration: reduceMotion ? 0 : 400 })
   }, [activeStopIdx, mapLoaded, journeyStops])
 
+  // 비유·기적 소스 데이터(task#249) — 인물/투어 선택과 무관하게 fetch 결과가 오면 1회 반영.
+  useEffect(() => {
+    if (!mapLoaded) return
+    mapRef.current?.getSource('pm-source').setData(buildParablesMiraclesGeoJSON(pmItems))
+  }, [pmItems, mapLoaded])
+
+  // 비유·기적 표시 토글·종류 필터 — 레이어 visibility + circle filter만 갱신(소스 재계산 없음).
+  useEffect(() => {
+    if (!mapLoaded) return
+    const map = mapRef.current
+    if (!map) return
+    map.setLayoutProperty('pm-circle', 'visibility', pmVisible ? 'visible' : 'none')
+    map.setFilter('pm-circle', pmFilter === 'all' ? null : ['==', ['get', 'type'], pmFilter])
+  }, [pmVisible, pmFilter, mapLoaded])
+
   useEffect(() => {
     if (isVisible && mapRef.current) mapRef.current.resize()
   }, [isVisible])
@@ -248,6 +279,30 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
           maxWidth: '82%', textAlign: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.25)',
         }}>
           이 항목은 지도에 표시할 위치 정보가 없습니다 — 그래프·타임라인에서 살펴보세요
+        </div>
+      )}
+      {/* 비유·기적 색인 토글(task#249) — 인물/투어 탐험과 독립적인 별도 레이어. 켜면 종류 필터 칩 노출. */}
+      {pmItems.length > 0 && (
+        // 우측 상단은 selectedNode 시트(SidePanel, zIndex:10)가 데스크톱에서 덮으므로 좌측 상단에 배치.
+        <div style={{ position: 'absolute', top: 12, left: 12, zIndex: 6, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 6 }}>
+          <button className="pressable" onClick={() => setPmVisible(v => !v)} style={{
+            display: 'flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 999,
+            background: pmVisible ? PM_TYPE_COLOR.parable : 'var(--bg-1)', color: pmVisible ? '#fff' : 'var(--ink)',
+            border: '1px solid var(--line)', cursor: 'pointer', fontSize: 12, fontWeight: 600, font: 'inherit',
+            boxShadow: 'var(--shadow-1)',
+          }}>✨ 비유·기적</button>
+          {pmVisible && (
+            <div style={{ display: 'flex', gap: 4, background: 'var(--bg-1)', border: '1px solid var(--line)', borderRadius: 999, padding: 4, boxShadow: 'var(--shadow-1)' }}>
+              {PM_FILTERS.map(([key, label]) => (
+                <button key={key} onClick={() => setPmFilter(key)} style={{
+                  padding: '4px 10px', borderRadius: 999, border: 'none', cursor: 'pointer', font: 'inherit', fontSize: 11.5,
+                  background: pmFilter === key ? 'var(--ink)' : 'transparent',
+                  color: pmFilter === key ? 'var(--bg-1)' : 'var(--ink-dim)',
+                  fontWeight: pmFilter === key ? 700 : 500,
+                }}>{label}</button>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

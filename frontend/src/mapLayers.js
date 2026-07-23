@@ -1,4 +1,5 @@
 import maplibregl from 'maplibre-gl'
+import { PM_TYPE_COLOR } from './theme'
 
 export const EMPTY_GEOJSON = { type: 'FeatureCollection', features: [] }
 
@@ -28,7 +29,36 @@ function placePopupHTML(label, isPrimary) {
   `
 }
 
-export function registerEventHandlers(map, { collapseRing, collapseSpider, expandPlace, spiderifyPlaces, onSelectNode, popupRef, expandedPlaceRef, onJourneyStopClick }) {
+// 비유·기적 팝업(task#249) — placePopupHTML과 동형. type별 뱃지색은 PM_TYPE_COLOR(theme.js) 공유.
+function parableMiraclePopupHTML({ type, name, placeName, note, verseText }) {
+  const typeLabel = type === 'miracle' ? '✨ 기적' : '📜 비유'
+  const color = PM_TYPE_COLOR[type] || PM_TYPE_COLOR.parable
+  const quote = verseText && verseText.length > 140 ? verseText.slice(0, 140) + '…' : verseText
+  return `
+    <div style="font-family: system-ui, -apple-system, sans-serif; padding: 4px 2px; max-width: 220px;">
+      <div style="font-size: 11px; font-weight: 700; color: ${color}; margin-bottom: 3px;">${typeLabel}</div>
+      <div style="font-size: 14px; font-weight: 700; color: #1a1a2e; margin-bottom: 4px;">${escapeHtml(name)}</div>
+      ${placeName ? `<div style="font-size: 11px; color: #7c8db0; margin-bottom: 6px;">📍 ${escapeHtml(placeName)}</div>` : ''}
+      ${note ? `<div style="font-size: 12px; color: #333; line-height: 1.5; margin-bottom: 6px;">${escapeHtml(note)}</div>` : ''}
+      ${quote ? `<div style="font-size: 11.5px; color: #555; line-height: 1.5; font-style: italic; border-left: 2px solid ${color}; padding-left: 6px;">${escapeHtml(quote)}</div>` : ''}
+    </div>
+  `
+}
+
+export function registerEventHandlers(map, { collapseRing, collapseSpider, expandPlace, spiderifyPlaces, onSelectNode, popupRef, expandedPlaceRef, onJourneyStopClick, pmPopupRef }) {
+  map.on('click', 'pm-circle', (e) => {
+    const coords = e.features[0].geometry.coordinates.slice()
+    if (pmPopupRef.current) pmPopupRef.current.remove()
+    const popup = new maplibregl.Popup({ closeButton: true, closeOnClick: false, maxWidth: '240px', offset: 12 })
+      .setLngLat(coords)
+      .setHTML(parableMiraclePopupHTML(e.features[0].properties))
+      .addTo(map)
+    pmPopupRef.current = popup
+  })
+
+  map.on('mouseenter', 'pm-circle', () => { map.getCanvas().style.cursor = 'pointer' })
+  map.on('mouseleave', 'pm-circle', () => { map.getCanvas().style.cursor = '' })
+
   map.on('click', 'places-circle', (e) => {
     const overlapping = map.queryRenderedFeatures(e.point, { layers: ['places-circle'] })
     if (overlapping.length > 1) {
@@ -134,11 +164,13 @@ export function registerEventHandlers(map, { collapseRing, collapseSpider, expan
     const placeFeatures = map.queryRenderedFeatures(e.point, { layers: ['places-circle'] })
     const eventFeatures = map.queryRenderedFeatures(e.point, { layers: ['event-ring-circle'] })
     const spiderFeatures = map.queryRenderedFeatures(e.point, { layers: ['place-spider-circle'] })
+    const pmFeatures = map.queryRenderedFeatures(e.point, { layers: ['pm-circle'] })
     if (!placeFeatures.length && !eventFeatures.length && !spiderFeatures.length) {
       collapseRing()
       collapseSpider()
       if (popupRef.current) { popupRef.current.remove(); popupRef.current = null }
     }
+    if (!pmFeatures.length && pmPopupRef?.current) { pmPopupRef.current.remove(); pmPopupRef.current = null }
   })
 }
 
@@ -440,6 +472,21 @@ export function setupMapSources(map) {
       'text-color': '#1a1a2e',
       'text-halo-color': 'rgba(255,255,255,0.95)',
       'text-halo-width': 2,
+    },
+  })
+
+  // 비유·기적 색인 레이어(task#249) — 기본 숨김(visibility:none), MapView가 토글 버튼으로 켠다.
+  map.addSource('pm-source', { type: 'geojson', data: EMPTY_GEOJSON })
+  map.addLayer({
+    id: 'pm-circle',
+    type: 'circle',
+    source: 'pm-source',
+    layout: { visibility: 'none' },
+    paint: {
+      'circle-radius': 7,
+      'circle-color': ['case', ['==', ['get', 'type'], 'miracle'], PM_TYPE_COLOR.miracle, PM_TYPE_COLOR.parable],
+      'circle-stroke-width': 2,
+      'circle-stroke-color': '#f2ecdc',
     },
   })
 

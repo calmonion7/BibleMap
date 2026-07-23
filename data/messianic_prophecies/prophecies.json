@@ -1,0 +1,342 @@
+{
+ "prophecies": [
+  {
+   "id": "birth-virgin-immanuel",
+   "theme": "탄생",
+   "otVerseIds": [
+    "23007014"
+   ],
+   "ntVerseIds": [
+    "40001023"
+   ],
+   "otRangeLabel": "사 7:14",
+   "ntRangeLabel": "마 1:23",
+   "note": "처녀가 잉태하여 아들을 낳고 임마누엘이라 부를 것이라는 예언이 예수의 나심으로 성취됨"
+  },
+  {
+   "id": "birth-bethlehem-ruler",
+   "theme": "탄생",
+   "otVerseIds": [
+    "33005002"
+   ],
+   "ntVerseIds": [
+    "40002006"
+   ],
+   "otRangeLabel": "미 5:2",
+   "ntRangeLabel": "마 2:6",
+   "note": "베들레헴에서 이스라엘을 다스릴 자가 나올 것이라는 예언이 예수의 출생지로 성취됨"
+  },
+  {
+   "id": "birth-out-of-egypt",
+   "theme": "탄생",
+   "otVerseIds": [
+    "28011001"
+   ],
+   "ntVerseIds": [
+    "40002015"
+   ],
+   "otRangeLabel": "호 11:1",
+   "ntRangeLabel": "마 2:15",
+   "note": "애굽에서 내 아들을 불렀다는 말씀이 아기 예수의 피난과 귀환으로 성취됨"
+  },
+  {
+   "id": "birth-child-is-given",
+   "theme": "탄생",
+   "otVerseIds": [
+    "23009006"
+   ],
+   "ntVerseIds": [
+    "42002011"
+   ],
+   "otRangeLabel": "사 9:6",
+   "ntRangeLabel": "눅 2:11",
+   "note": "한 아기가 나고 한 아들을 우리에게 주셨다는 예언이 다윗의 동네에서 나신 구주로 성취됨"
+  },
+  {
+   "id": "birth-star-of-jacob",
+   "theme": "탄생",
+   "otVerseIds": [
+    "04024017"
+   ],
+   "ntVerseIds": [
+    "40002002"
+   ],
+   "otRangeLabel": "민 24:17",
+   "ntRangeLabel": "마 2:2",
+   "note": "한 별이 야곱에게서 나오리라는 예언이 동방박사가 본 별로 성취됨"
+  },
+  {
+   "id": "kingship-scepter-of-judah",
+   "theme": "왕권",
+   "otVerseIds": [
+    "01049010"
+   ],
+   "ntVerseIds": [
+    "66005005"
+   ],
+   "otRangeLabel": "창 49:10",
+   "ntRangeLabel": "계 5:5",
+   "note": "규가 유다를 떠나지 아니하리라는 예언이 유다 지파의 사자 그리스도의 승리로 성취됨"
+  },
+  {
+   "id": "kingship-davidic-throne",
+   "theme": "왕권",
+   "otVerseIds": [
+    "10007012",
+    "10007013"
+   ],
+   "ntVerseIds": [
+    "42001032",
+    "42001033"
+   ],
+   "otRangeLabel": "삼하 7:12-13",
+   "ntRangeLabel": "눅 1:32-33",
+   "note": "다윗의 나라 왕위를 영원히 견고케 하리라는 언약이 예수께서 영원히 다스리실 것이라는 선포로 성취됨"
+  },
+  {
+   "id": "kingship-seated-at-right-hand",
+   "theme": "왕권",
+   "otVerseIds": [
+    "19110001"
+   ],
+   "ntVerseIds": [
+    "40022044"
+   ],
+   "otRangeLabel": "시 110:1",
+   "ntRangeLabel": "마 22:44",
+   "note": "내 우편에 앉으라 하신 시가 그리스도의 높아지심으로 성취되어 예수께서 친히 인용하심"
+  },
+  {
+   "id": "ministry-voice-in-wilderness",
+   "theme": "사역",
+   "otVerseIds": [
+    "23040003"
+   ],
+   "ntVerseIds": [
+    "40003003"
+   ],
+   "otRangeLabel": "사 40:3",
+   "ntRangeLabel": "마 3:3",
+   "note": "광야에서 외치는 자의 소리라는 예언이 세례 요한의 사역으로 성취됨"
+  },
+  {
+   "id": "ministry-spirit-anointed",
+   "theme": "사역",
+   "otVerseIds": [
+    "23061001",
+    "23061002"
+   ],
+   "ntVerseIds": [
+    "42004018",
+    "42004019"
+   ],
+   "otRangeLabel": "사 61:1-2",
+   "ntRangeLabel": "눅 4:18-19",
+   "note": "주의 성령이 내게 임하셨다는 예언이 나사렛 회당에서 읽으신 예수의 사명 선언으로 성취됨"
+  },
+  {
+   "id": "ministry-blind-see-lame-walk",
+   "theme": "사역",
+   "otVerseIds": [
+    "23035005",
+    "23035006"
+   ],
+   "ntVerseIds": [
+    "40011005"
+   ],
+   "otRangeLabel": "사 35:5-6",
+   "ntRangeLabel": "마 11:5",
+   "note": "맹인이 보고 못 걷는 자가 걷게 되리라는 예언이 예수의 치유 사역으로 성취됨"
+  },
+  {
+   "id": "ministry-chosen-servant",
+   "theme": "사역",
+   "otVerseIds": [
+    "23042001",
+    "23042002",
+    "23042003",
+    "23042004"
+   ],
+   "ntVerseIds": [
+    "40012018",
+    "40012019",
+    "40012020",
+    "40012021"
+   ],
+   "otRangeLabel": "사 42:1-4",
+   "ntRangeLabel": "마 12:18-21",
+   "note": "택한 종을 세워 이방에 정의를 베풀리라는 예언이 온유한 사역으로 성취됨"
+  },
+  {
+   "id": "ministry-bore-our-sicknesses",
+   "theme": "사역",
+   "otVerseIds": [
+    "23053004"
+   ],
+   "ntVerseIds": [
+    "40008017"
+   ],
+   "otRangeLabel": "사 53:4",
+   "ntRangeLabel": "마 8:17",
+   "note": "그가 우리의 연약함과 병을 친히 담당하셨다는 예언이 병자를 고치신 사역으로 성취됨"
+  },
+  {
+   "id": "passion-triumphal-entry",
+   "theme": "수난",
+   "otVerseIds": [
+    "38009009"
+   ],
+   "ntVerseIds": [
+    "40021005"
+   ],
+   "otRangeLabel": "슥 9:9",
+   "ntRangeLabel": "마 21:5",
+   "note": "겸손한 왕이 나귀를 타고 오시리라는 예언이 예루살렘 입성(종려주일)으로 성취됨"
+  },
+  {
+   "id": "passion-thirty-pieces-of-silver",
+   "theme": "수난",
+   "otVerseIds": [
+    "38011012",
+    "38011013"
+   ],
+   "ntVerseIds": [
+    "40027009",
+    "40027010"
+   ],
+   "otRangeLabel": "슥 11:12-13",
+   "ntRangeLabel": "마 27:9-10",
+   "note": "은 삼십에 팔려 토기장이 밭 값이 되리라는 예언이 가룟 유다의 배반으로 성취됨"
+  },
+  {
+   "id": "passion-betrayed-by-a-friend",
+   "theme": "수난",
+   "otVerseIds": [
+    "19041009"
+   ],
+   "ntVerseIds": [
+    "43013018"
+   ],
+   "otRangeLabel": "시 41:9",
+   "ntRangeLabel": "요 13:18",
+   "note": "내 떡을 먹는 자가 나를 대적하리라는 시가 가룟 유다의 배반으로 성취됨"
+  },
+  {
+   "id": "passion-forsaken-cry",
+   "theme": "수난",
+   "otVerseIds": [
+    "19022001"
+   ],
+   "ntVerseIds": [
+    "40027046"
+   ],
+   "otRangeLabel": "시 22:1",
+   "ntRangeLabel": "마 27:46",
+   "note": "내 하나님 내 하나님 어찌 나를 버리셨나이까 하는 시가 십자가 위 예수의 외침으로 성취됨"
+  },
+  {
+   "id": "passion-pierced-hands-and-feet",
+   "theme": "수난",
+   "otVerseIds": [
+    "19022016"
+   ],
+   "ntVerseIds": [
+    "43019018"
+   ],
+   "otRangeLabel": "시 22:16",
+   "ntRangeLabel": "요 19:18",
+   "note": "내 손과 발을 찔렀다는 시가 예수께서 십자가에 못 박히심으로 성취됨"
+  },
+  {
+   "id": "passion-garments-divided",
+   "theme": "수난",
+   "otVerseIds": [
+    "19022018"
+   ],
+   "ntVerseIds": [
+    "43019024"
+   ],
+   "otRangeLabel": "시 22:18",
+   "ntRangeLabel": "요 19:24",
+   "note": "내 옷을 나누고 속옷을 제비 뽑는다는 시가 십자가 아래 군병들의 행동으로 성취됨"
+  },
+  {
+   "id": "resurrection-on-the-third-day",
+   "theme": "부활",
+   "otVerseIds": [
+    "28006002"
+   ],
+   "ntVerseIds": [
+    "46015004"
+   ],
+   "otRangeLabel": "호 6:2",
+   "ntRangeLabel": "고전 15:4",
+   "note": "이틀 후에 우리를 살리시며 제삼일에 일으키시리라는 말씀이 성경대로 사흘 만에 다시 사신 그리스도의 부활로 성취됨"
+  },
+  {
+   "id": "resurrection-sign-of-jonah",
+   "theme": "부활",
+   "otVerseIds": [
+    "32001017"
+   ],
+   "ntVerseIds": [
+    "40012040"
+   ],
+   "otRangeLabel": "욘 1:17",
+   "ntRangeLabel": "마 12:40",
+   "note": "요나가 사흘 밤낮 물고기 뱃속에 있었던 것처럼 인자도 사흘 밤낮 땅속에 있으리라는 예수의 말씀이 죽으심과 부활로 성취됨"
+  },
+  {
+   "id": "resurrection-no-decay",
+   "theme": "부활",
+   "otVerseIds": [
+    "19016010"
+   ],
+   "ntVerseIds": [
+    "44013035"
+   ],
+   "otRangeLabel": "시 16:10",
+   "ntRangeLabel": "행 13:35",
+   "note": "주의 거룩한 자로 썩지 않게 하시리라는 시가 그리스도의 부활로 성취됨"
+  },
+  {
+   "id": "resurrection-begotten-today",
+   "theme": "부활",
+   "otVerseIds": [
+    "19002007"
+   ],
+   "ntVerseIds": [
+    "44013033"
+   ],
+   "otRangeLabel": "시 2:7",
+   "ntRangeLabel": "행 13:33",
+   "note": "너는 내 아들이라 오늘 내가 너를 낳았다는 시가 그리스도를 죽은 자 가운데서 일으키심으로 성취됨"
+  },
+  {
+   "id": "ascension-gifts-to-men",
+   "theme": "승천",
+   "otVerseIds": [
+    "19068018"
+   ],
+   "ntVerseIds": [
+    "49004008"
+   ],
+   "otRangeLabel": "시 68:18",
+   "ntRangeLabel": "엡 4:8",
+   "note": "높은 곳으로 오르사 사람들에게 선물을 주시리라는 시가 그리스도의 승천으로 성취됨"
+  },
+  {
+   "id": "priesthood-order-of-melchizedek",
+   "theme": "제사장직",
+   "otVerseIds": [
+    "19110004"
+   ],
+   "ntVerseIds": [
+    "58005006"
+   ],
+   "otRangeLabel": "시 110:4",
+   "ntRangeLabel": "히 5:6",
+   "note": "멜기세덱의 반차를 좇는 영원한 제사장이라는 시가 그리스도의 대제사장직으로 성취됨"
+  }
+ ]
+}

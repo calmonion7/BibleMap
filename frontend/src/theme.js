@@ -25,6 +25,9 @@ export const typeKo = (label) => TYPE_KO[label] || label
 // valence(관계 성격) 색 — 값의 정본은 index.css --valence-*(테마별)
 export const VALENCE_COLOR = { 긍정: 'var(--valence-pos)', 부정: 'var(--valence-neg)', 중립: 'var(--valence-neutral)' }
 
+// 비유·기적 색인(task#249) 종류색 — 리터럴 hex(maplibre paint는 CSS var 불가라 TimelineView·mapLayers.js가 공유).
+export const PM_TYPE_COLOR = { parable: '#8b5cf6', miracle: '#2f9e63' }
+
 // 선택(selectedNode) 시각 강조 — 뷰 공통. 선택 = 금색(브랜드 액센트), 테마별 값은 index.css --select-hl
 export const SELECT_HL = 'var(--select-hl)'
 

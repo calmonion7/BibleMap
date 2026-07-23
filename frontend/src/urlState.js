@@ -16,6 +16,8 @@ export function encodeHash({ stage, personSlug, exploreView, tourSlug, bookId, f
   }
   if (stage === 'family' && familyId) return `#/family/${encodeURIComponent(familyId)}`
   if (stage === 'words' && wordsBookId) return `#/words/${encodeURIComponent(wordsBookId)}`
+  if (stage === 'stats') return '#/stats'
+  if (stage === 'topics') return '#/topics'
   if (stage === 'tours') return '#/tours'
   if (stage === 'explore' && tourSlug) {
     const base = `#/tour/${encodeURIComponent(tourSlug)}`
@@ -38,6 +40,8 @@ export function parseHash(hash) {
   if (h === '' || h === '/') return { stage: 'hub', personSlug: null, tourSlug: null, exploreView: 'map' }
   if (h === '/intro') return { stage: 'intro', personSlug: null, tourSlug: null, exploreView: 'map' }
   if (h === '/books') return { stage: 'overview', personSlug: null, tourSlug: null, exploreView: 'map' }
+  if (h === '/stats') return { stage: 'stats', personSlug: null, tourSlug: null, exploreView: 'map' }
+  if (h === '/topics') return { stage: 'topics', personSlug: null, tourSlug: null, exploreView: 'map' }
   if (h === '/tours') return { stage: 'tours', personSlug: null, tourSlug: null, exploreView: 'map' }
   const bk = h.match(/^\/book\/([^/]+)$/)
   if (bk) return { stage: 'book', bookId: decodeURIComponent(bk[1]), personSlug: null, tourSlug: null, exploreView: 'map' }

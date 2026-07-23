@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { SELECT_HL, TYPE_COLOR } from './theme'
+import { SELECT_HL, TYPE_COLOR, PM_TYPE_COLOR } from './theme'
 import { apiGet } from './api'
 import VerseLayer, { VerseBookTabs, paperTextStyle } from './VerseLayer'
 import Spinner from './Spinner'
 import { parseYear } from './dates'
 
 const BOOK_COLOR = TYPE_COLOR.Book
+// 비유·기적 필터 칩(task#249) — MapView의 PM_FILTERS와 순서·라벨 동일(별 파일이라 상수는 각자 보관).
+const PM_FILTERS = [['all', '전체'], ['parable', '비유'], ['miracle', '기적']]
 
 // 시대 밴드(task#200) — ADR-0014 보수 연대 기반 연도 경계, persons.py _ERA_ORDER 8구간과 정합.
 // 경계 근거: 아브라함 출생 BC 2166 · 야곱 애굽 이주 BC 1876 · 사사기 시작 BC 1375 ·
@@ -41,6 +43,13 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
     console.error('TimelineView: personFilter must be a Set, got', personFilter)
   const [events, setEvents] = useState([])
   const [error, setError] = useState(false)
+  // 언약 오버레이(task#247 S2) — 사건과 별개 레이어. 시대 위치에 리본으로 얹고, 상세는 covenantView로 연다.
+  const [covenants, setCovenants] = useState([])
+  const [covenantView, setCovenantView] = useState(null)
+  // 비유·기적 색인(task#249) — 신약 시대 섹션에 종류 필터 걸린 목록으로 얹고, 상세는 pmView로 연다.
+  const [pmItems, setPmItems] = useState([])
+  const [pmFilter, setPmFilter] = useState('all')
+  const [pmView, setPmView] = useState(null)
   // 근거 구절 인라인 뷰를 펼친 사건 — { eventId, bookId, expanded } (한 번에 하나만).
   // bookId: 선택된 권(다권이면 탭 전환). expanded: 선택 권의 절 본문을 펼쳤는지(▾).
   const [verseView, setVerseView] = useState(null)
@@ -60,6 +69,30 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
       .then(data => setEvents(data))
       .catch(() => setError(true))
   }, [])
+
+  useEffect(() => {
+    apiGet('/covenants')
+      .then(data => setCovenants(data))
+      .catch(e => { console.warn('[Timeline] 언약 로드 실패', e); setCovenants([]) })
+  }, [])
+
+  useEffect(() => {
+    apiGet('/parables-miracles')
+      .then(data => setPmItems(data))
+      .catch(e => { console.warn('[Timeline] 비유·기적 로드 실패', e); setPmItems([]) })
+  }, [])
+
+  const pmFiltered = useMemo(
+    () => pmFilter === 'all' ? pmItems : pmItems.filter(it => it.type === pmFilter),
+    [pmItems, pmFilter],
+  )
+
+  // era(한글 시대명) → 그 시대의 언약들. covenants.json의 era 값은 ERA_BANDS의 name과 그대로 일치.
+  const covenantsByEra = useMemo(() => {
+    const map = {}
+    for (const c of covenants) (map[c.era] ??= []).push(c)
+    return map
+  }, [covenants])
 
   const groups = useMemo(() => {
     // 연속 동일 startDate 런(run) 단위 그룹 — startDate 전체 병합은 층(저작 "0030" vs 원본 "30")이
@@ -203,6 +236,113 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
     )
   }
 
+  // 언약 리본 — 사건 마커(레일 도트)와 시각적으로 구분되는 별도 밴드. 클릭 → 상세(당사자·약속·표징·핵심절).
+  const renderCovenantRibbon = (cov) => (
+    <div
+      key={cov.id}
+      onClick={() => setCovenantView(cov)}
+      style={{
+        display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap',
+        margin: '6px 12px', padding: '6px 10px',
+        background: 'var(--bg-1)', border: '1px solid var(--gold-dim)', borderLeft: '3px solid var(--gold)',
+        borderRadius: 'var(--r-s)', cursor: 'pointer',
+      }}
+    >
+      <span style={{ fontSize: 10.5, fontWeight: 700, color: 'var(--gold)', letterSpacing: '0.05em' }}>언약</span>
+      <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--ink)' }}>{cov.name}</span>
+      <span style={{ fontSize: 11, color: 'var(--ink-faint)' }}>{parseYear(cov.startDate)}</span>
+      {/* marginLeft:auto로 우측 끝까지 밀면 데스크톱 상세 시트(SidePanel, zIndex:10)가 덮는 폭 안에 들어가
+          완전히 안 보이는 버그(task#249 비유·기적 섹션 작업 중 발견 — 동일 패턴 공유라 함께 수정) */}
+      {cov.sign && <span style={{ fontSize: 11, color: 'var(--ink-faint)' }}>표징: {cov.sign}</span>}
+    </div>
+  )
+
+  // 언약 상세 — 구절 레이어(양피지) 패턴 재사용. keyVerses(textKo/textEn)는 /covenants 응답에 이미 동봉(추가 fetch 없음).
+  const renderCovenantLayer = () => {
+    if (!covenantView) return null
+    const cov = covenantView
+    return (
+      <VerseLayer
+        title={cov.name}
+        refLine={`${cov.era} · ${parseYear(cov.startDate)}`}
+        dotColor="var(--gold)"
+        onClose={() => setCovenantView(null)}
+        verseLang={verseLang}
+        setVerseLang={setVerseLang}
+      >
+        <div style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--paper-ink)', marginBottom: 14 }}>
+          <div><span style={{ fontWeight: 700, color: 'var(--paper-accent)' }}>당사자</span> — {cov.parties}</div>
+          <div style={{ marginTop: 6 }}><span style={{ fontWeight: 700, color: 'var(--paper-accent)' }}>약속</span> — {cov.promise}</div>
+          {cov.sign && <div style={{ marginTop: 6 }}><span style={{ fontWeight: 700, color: 'var(--paper-accent)' }}>표징</span> — {cov.sign}</div>}
+        </div>
+        <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--paper-accent)', marginBottom: 4 }}>핵심절</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          {cov.keyVerses.map(v => (
+            <div key={v.verseId} style={paperTextStyle}>{(verseLang === 'ko' ? v.textKo : v.textEn) || '원문이 없습니다'}</div>
+          ))}
+        </div>
+      </VerseLayer>
+    )
+  }
+
+  // 비유·기적 섹션(task#249) — 신약 시대 한 곳에 얹는 종류 필터 목록. 날짜가 없어(사역 시대에 산발) 언약 리본처럼
+  // 개별 사건 위치에 꽂지 않고, '신약' era 섹션 머리에 한 번만 렌더한다.
+  const renderPmSection = () => {
+    if (pmItems.length === 0) return null
+    return (
+      <div style={{ margin: '6px 12px', padding: '8px 10px', background: 'var(--bg-1)', border: '1px solid var(--line)', borderLeft: `3px solid ${PM_TYPE_COLOR.parable}`, borderRadius: 'var(--r-s)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
+          <span style={{ fontSize: 10.5, fontWeight: 700, color: PM_TYPE_COLOR.parable, letterSpacing: '0.05em' }}>비유·기적</span>
+          {/* marginLeft:auto로 우측 끝까지 밀지 않는다 — 데스크톱 상세 시트(SidePanel, zIndex:10)가
+              타임라인 우측 360px를 덮어 그 자리에 놓인 컨트롤은 클릭 불가(라벨 바로 옆에 이어 배치). */}
+          <div style={{ display: 'flex', gap: 4 }}>
+            {PM_FILTERS.map(([key, label]) => (
+              <button key={key} onClick={() => setPmFilter(key)} style={{
+                padding: '2px 9px', borderRadius: 999, border: '1px solid var(--line)', cursor: 'pointer', font: 'inherit', fontSize: 11,
+                background: pmFilter === key ? 'var(--ink)' : 'transparent',
+                color: pmFilter === key ? 'var(--bg-1)' : 'var(--ink-dim)',
+              }}>{label}</button>
+            ))}
+          </div>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 4, maxHeight: 260, overflowY: 'auto' }}>
+          {pmFiltered.map(item => (
+            <div key={item.id} onClick={() => setPmView(item)} style={{ display: 'flex', alignItems: 'baseline', gap: 6, cursor: 'pointer', fontSize: 13 }}>
+              <span style={{ fontSize: 10, color: item.type === 'miracle' ? PM_TYPE_COLOR.miracle : PM_TYPE_COLOR.parable }}>
+                {item.type === 'miracle' ? '✨' : '📜'}
+              </span>
+              <span style={{ color: 'var(--ink)' }}>{item.name}</span>
+              {item.placeName && <span style={{ fontSize: 11, color: 'var(--ink-faint)' }}>· {item.placeName}</span>}
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  // 비유·기적 상세 — 구절 레이어(양피지) 패턴 재사용. verses(textKo/textEn)는 /parables-miracles 응답에 이미 동봉.
+  const renderPmLayer = () => {
+    if (!pmView) return null
+    const item = pmView
+    return (
+      <VerseLayer
+        title={item.name}
+        refLine={item.placeName || undefined}
+        dotColor={item.type === 'miracle' ? PM_TYPE_COLOR.miracle : PM_TYPE_COLOR.parable}
+        onClose={() => setPmView(null)}
+        verseLang={verseLang}
+        setVerseLang={setVerseLang}
+      >
+        {item.note && <div style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--paper-ink)', marginBottom: 14 }}>{item.note}</div>}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          {item.verses.map(v => (
+            <div key={v.verseId} style={paperTextStyle}>{(verseLang === 'ko' ? v.textKo : v.textEn) || '원문이 없습니다'}</div>
+          ))}
+        </div>
+      </VerseLayer>
+    )
+  }
+
   if (error) {
     return (
       <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-0)', color: 'var(--ink-faint)', fontSize: 14 }}>
@@ -251,6 +391,10 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
             <span style={{ flex: 1 }} />
             <span style={{ fontSize: 11, color: 'var(--ink-faint)' }}>{sec.groups.reduce((n, g) => n + g.members.length, 0)}</span>
           </div>
+          {/* 언약 리본 — 이 시대에 속한 언약(있으면), 사건 레일과 분리된 별도 밴드 */}
+          {(covenantsByEra[sec.era.name] || []).map(renderCovenantRibbon)}
+          {/* 비유·기적 섹션 — 신약 era에 한 번만(날짜가 없어 개별 사건 위치에 못 꽂음) */}
+          {sec.era.name === '신약' && renderPmSection()}
           {/* 섹션 본문 — 연속 세로 레일 위 사건 도트 */}
           <div style={{ position: 'relative', padding: '6px 0' }}>
             <span style={{ position: 'absolute', top: 0, bottom: 0, left: `calc(${YEAR_W} + 8px + 9px)`, width: 2, background: 'var(--line)' }} />
@@ -305,6 +449,8 @@ function TimelineView({ onSelectNode, selectedNode, bookFilter, personFilter, pe
       ))}
     </div>
     {renderVerseLayer()}
+    {renderCovenantLayer()}
+    {renderPmLayer()}
     </div>
   )
 }

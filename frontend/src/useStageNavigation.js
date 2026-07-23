@@ -101,6 +101,8 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
         else if (parsed.stage === 'family' && parsed.familyId) { setFamilyId(parsed.familyId); setActiveStage('family') }
         else if (parsed.stage === 'words' && parsed.wordsBookId) { setWordsBookId(parsed.wordsBookId); setActiveStage('words') }
         else if (parsed.stage === 'reader' && parsed.readerBookId) { setReaderBookId(parsed.readerBookId); setReaderChapter(parsed.readerChapter ?? null); setActiveStage('reader') }
+        else if (parsed.stage === 'stats') setActiveStage('stats')
+        else if (parsed.stage === 'topics') setActiveStage('topics')
         else if (parsed.stage === 'tours') setActiveStage('tours')
         else if (parsed.stage === 'explore' && parsed.tourSlug) {
           setExploreTourId(parsed.tourSlug); setActiveStage('explore'); setExploreView(parsed.exploreView)
@@ -264,6 +266,30 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     window.history.back()
   }
 
+  // 통계 페이지 진입 — 개요 "통계" 탭(또는 딥링크). exploreView는 'map'으로 리셋(words·family와 동형).
+  function handleOpenStats() {
+    closePanel()
+    setExploreView('map')
+    setActiveStage('stats')
+  }
+
+  // 통계에서 뒤로 — 진입 지점에 무관하게 브라우저 히스토리 위임(단어 분포와 동형).
+  function handleStatsBack() {
+    window.history.back()
+  }
+
+  // 주제 성구 페이지 진입 — 개요 "주제 성구" 탭(또는 딥링크). 통계와 동형(대상 id 없는 고정 뷰).
+  function handleOpenTopics() {
+    closePanel()
+    setExploreView('map')
+    setActiveStage('topics')
+  }
+
+  // 주제 성구에서 뒤로 — 진입 지점에 무관하게 브라우저 히스토리 위임(통계와 동형).
+  function handleTopicsBack() {
+    window.history.back()
+  }
+
   // 본문 리더 진입 — 책 상세 "본문 읽기" 탭(또는 딥링크). 장 미지정(null)이면 장 그리드(task#205).
   function handleOpenReader(id, chapter = null) {
     closePanel()
@@ -338,6 +364,10 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     openWords: handleOpenWords,
     selectWordsBook: handleSelectWordsBook,
     wordsBack: handleWordsBack,
+    openStats: handleOpenStats,
+    statsBack: handleStatsBack,
+    openTopics: handleOpenTopics,
+    topicsBack: handleTopicsBack,
     openReader: handleOpenReader,
     selectChapter: handleSelectChapter,
     readerBack: handleReaderBack,

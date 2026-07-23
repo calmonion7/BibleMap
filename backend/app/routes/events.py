@@ -116,6 +116,85 @@ def _book_name_map() -> dict:
     return {r["id"]: r["nameKo"] or r["name"] or r["id"] for r in rows}
 
 
+@router.get("/covenants")
+def get_covenants():
+    """주요 언약 목록(task#247) — 연표를 가로지르는 주제 실. 각 언약의 keyVerseIds를
+    정본 절 사전(bible_verses)으로 해석해 절 본문(한/영)을 keyVerses로 동봉한다."""
+    bible = overlays.bible_verses()
+    result = []
+    for c in overlays.covenants().get("covenants", []):
+        key_verses = [
+            {"verseId": vid, "textKo": bible.get(vid, {}).get("textKo"), "textEn": bible.get(vid, {}).get("textEn")}
+            for vid in c.get("keyVerseIds", [])
+        ]
+        result.append({**c, "keyVerses": key_verses})
+    return JSONResponse(content=result, headers={"Cache-Control": "max-age=300"})
+
+
+@router.get("/messianic-prophecies")
+def get_messianic_prophecies():
+    """메시아 예언↔성취 쌍 목록(task#246) — 주제(theme)별로 그룹핑. 각 쌍의 otVerseIds·
+    ntVerseIds를 정본 절 사전(bible_verses)으로 해석해 절 본문(한/영)을 동봉한다."""
+    bible = overlays.bible_verses()
+
+    def resolve(ids):
+        return [
+            {"verseId": vid, "textKo": bible.get(vid, {}).get("textKo"), "textEn": bible.get(vid, {}).get("textEn")}
+            for vid in ids
+        ]
+
+    themes: dict = {}
+    for p in overlays.messianic_prophecies().get("prophecies", []):
+        pair = {
+            "id": p["id"],
+            "otRangeLabel": p["otRangeLabel"],
+            "ntRangeLabel": p["ntRangeLabel"],
+            "note": p.get("note"),
+            "otVerses": resolve(p.get("otVerseIds", [])),
+            "ntVerses": resolve(p.get("ntVerseIds", [])),
+        }
+        themes.setdefault(p["theme"], []).append(pair)
+
+    result = [{"theme": theme, "pairs": pairs} for theme, pairs in themes.items()]
+    return JSONResponse(content=result, headers={"Cache-Control": "max-age=300"})
+
+
+@router.get("/topical-verses")
+def get_topical_verses():
+    """주제별 큐레이션 성구 색인(task#250) — 믿음·사랑·용서 등 주제마다 verseIds를
+    정본 절 사전(bible_verses)으로 해석해 절 본문(한/영)을 verses로 동봉한다."""
+    bible = overlays.bible_verses()
+    result = []
+    for t in overlays.topical_verses().get("topics", []):
+        verses = [
+            {"verseId": vid, "textKo": bible.get(vid, {}).get("textKo"), "textEn": bible.get(vid, {}).get("textEn")}
+            for vid in t.get("verseIds", [])
+        ]
+        result.append({**t, "verses": verses})
+    return JSONResponse(content=result, headers={"Cache-Control": "max-age=300"})
+
+
+@router.get("/parables-miracles")
+def get_parables_miracles():
+    """예수의 비유·기적 색인(task#249) — 지도·연표에 종류(type: parable|miracle)로 필터되는 레이어용.
+    각 항목의 verseIds를 정본 절 사전(bible_verses)으로 해석해 절 본문(한/영)을 verses로 동봉하고,
+    placeId가 있으면 place_coords 오버레이에서 lat/lng을 해석해 채운다(없으면 항목 자체 lat/lng 사용)."""
+    bible = overlays.bible_verses()
+    places = overlays.place_coords()
+    result = []
+    for item in overlays.parables_miracles().get("items", []):
+        verses = [
+            {"verseId": vid, "textKo": bible.get(vid, {}).get("textKo"), "textEn": bible.get(vid, {}).get("textEn")}
+            for vid in item.get("verseIds", [])
+        ]
+        place_id = item.get("placeId")
+        lat, lng = item.get("lat"), item.get("lng")
+        if place_id and place_id in places:
+            lat, lng = places[place_id].get("lat"), places[place_id].get("lng")
+        result.append({**item, "lat": lat, "lng": lng, "verses": verses})
+    return JSONResponse(content=result, headers={"Cache-Control": "max-age=300"})
+
+
 @router.get("/event/{event_id}/verses")
 def get_event_verses(event_id: str):
     """사건의 근거 구절을 권별로 그룹·정경순으로 반환(드릴다운용). 책 키 bookId는

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
-import { Route, Clock, BookOpen, Users, UserRound, Network, BarChart3, HeartHandshake, ScrollText, Play } from 'lucide-react'
+import { Route, Clock, BookOpen, Users, UserRound, Network, BarChart3, HeartHandshake, ScrollText, Play, PieChart, Quote } from 'lucide-react'
 import { TYPE_COLOR } from './theme'
 import MapView from './MapView'
 import SidePanel from './SidePanel'
@@ -13,6 +13,8 @@ import SpineHeader, { HEADER_H, RIBBON_OVERHANG } from './SpineHeader'
 import PersonSymbol from './personSymbols'
 import FamilyTree from './FamilyTree'
 import WordDistributionView from './WordDistributionView'
+import StatsView from './StatsView'
+import TopicalVersesView from './TopicalVersesView'
 import ChapterReader from './ChapterReader'
 import RelianceView from './RelianceView'
 import TourList from './TourList'
@@ -59,7 +61,7 @@ function App() {
     activeStage, exploreView, explorePersonId, explorePersonName, explorePersonSlug, exploreTourId, bookId, familyId, wordsBookId, readerBookId, readerChapter, curatedIds, keyPeopleCards, sheetOpen,
     setExploreView, selectPerson, explorePerson, backToHub, openIntro, openOverview, overviewBack,
     openTours, selectTour, toursBack, openBook, bookBack, openFamily, recenterFamily, familyBack,
-    openWords, selectWordsBook, wordsBack, openReader, selectChapter, readerBack, onNodeLoaded, getPersonSlug,
+    openWords, selectWordsBook, wordsBack, openReader, selectChapter, readerBack, openStats, statsBack, openTopics, topicsBack, onNodeLoaded, getPersonSlug,
   } = useStageNavigation({ selectedNode, selectNodeFresh, closePanel, handleNodeLoaded })
 
   // 여정 데이터 — 인물/투어 선택 시 한 번 fetch, MapView·JourneyList 공유
@@ -161,7 +163,7 @@ function App() {
   // 책등 헤더의 활성 부(部) — 개요·책·단어·리더는 '성경책', 투어 목록·투어 탐험은 '투어', 나머지는 '인물'(ADR-0026)
   const activeSection =
     activeStage === 'intro' ? null // 인트로는 어느 부(部)도 아님 — 리본 전체 비활성
-      : activeStage === 'overview' || activeStage === 'book' || activeStage === 'words' || activeStage === 'reader' ? 'books'
+      : activeStage === 'overview' || activeStage === 'book' || activeStage === 'words' || activeStage === 'reader' || activeStage === 'stats' || activeStage === 'topics' ? 'books'
         : activeStage === 'tours' || (activeStage === 'explore' && exploreTourId != null) ? 'tours'
           : 'persons'
 
@@ -243,7 +245,7 @@ function App() {
     )
   }
 
-  // 개요 단계 내비게이션 바 — 하위 메뉴 탭(책 둘러보기 · 단어 분포), 탐험 뷰 토글과 동형
+  // 개요 단계 내비게이션 바 — 하위 메뉴 탭(책 둘러보기 · 단어 분포 · 통계), 탐험 뷰 토글과 동형
   function renderOverviewNav() {
     return (
       <div style={{
@@ -292,6 +294,32 @@ function App() {
           >
             <BarChart3 size={18} />
             <span style={{ fontSize: 10, lineHeight: 1 }}>단어 분포</span>
+          </button>
+          <button
+            onClick={openStats}
+            style={{
+              padding: '0 14px', height: '100%',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
+              color: 'var(--ink-faint)',
+              border: 'none', background: 'none', cursor: 'pointer',
+              transition: 'color var(--dur-fast), border-color var(--dur-fast)',
+            }}
+          >
+            <PieChart size={18} />
+            <span style={{ fontSize: 10, lineHeight: 1 }}>통계</span>
+          </button>
+          <button
+            onClick={openTopics}
+            style={{
+              padding: '0 14px', height: '100%',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
+              color: 'var(--ink-faint)',
+              border: 'none', background: 'none', cursor: 'pointer',
+              transition: 'color var(--dur-fast), border-color var(--dur-fast)',
+            }}
+          >
+            <Quote size={18} />
+            <span style={{ fontSize: 10, lineHeight: 1 }}>주제 성구</span>
           </button>
         </div>
       </div>
@@ -527,6 +555,70 @@ function App() {
     )
   }
 
+  // 통계 단계 내비게이션 바 — 뒤로(가계도와 동형, 하위 탭 없는 단일 페이지)
+  function renderStatsNav() {
+    return (
+      <div style={{
+        height: NAV_H, flexShrink: 0,
+        display: 'flex', alignItems: 'center',
+        background: 'var(--bg-1)', borderBottom: '1px solid var(--gold-dim)',
+        zIndex: 20, boxShadow: 'var(--shadow-1)',
+        gap: 0,
+      }}>
+        <button
+          onClick={statsBack}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 6,
+            padding: '0 14px', height: '100%',
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: 'var(--ink-dim)',
+            borderRight: '1px solid var(--line)',
+            flexShrink: 0,
+          }}
+        >
+          <span style={{ fontSize: 13 }}>←</span>
+          <span style={{ fontSize: 13 }}>뒤로</span>
+        </button>
+        <div style={{ display: 'flex', alignItems: 'center', height: '100%', padding: '0 14px', gap: 8 }}>
+          <PieChart size={18} color="var(--gold)" />
+          <span style={{ color: 'var(--ink-dim)', fontSize: 13, fontFamily: 'var(--serif)', fontWeight: 600 }}>성경 통계</span>
+        </div>
+      </div>
+    )
+  }
+
+  // 주제 성구 단계 내비게이션 바 — 뒤로(통계와 동형, 하위 탭 없는 단일 페이지)
+  function renderTopicsNav() {
+    return (
+      <div style={{
+        height: NAV_H, flexShrink: 0,
+        display: 'flex', alignItems: 'center',
+        background: 'var(--bg-1)', borderBottom: '1px solid var(--gold-dim)',
+        zIndex: 20, boxShadow: 'var(--shadow-1)',
+        gap: 0,
+      }}>
+        <button
+          onClick={topicsBack}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 6,
+            padding: '0 14px', height: '100%',
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: 'var(--ink-dim)',
+            borderRight: '1px solid var(--line)',
+            flexShrink: 0,
+          }}
+        >
+          <span style={{ fontSize: 13 }}>←</span>
+          <span style={{ fontSize: 13 }}>뒤로</span>
+        </button>
+        <div style={{ display: 'flex', alignItems: 'center', height: '100%', padding: '0 14px', gap: 8 }}>
+          <Quote size={18} color="var(--gold)" />
+          <span style={{ color: 'var(--ink-dim)', fontSize: 13, fontFamily: 'var(--serif)', fontWeight: 600 }}>주제 성구</span>
+        </div>
+      </div>
+    )
+  }
+
   // 투어 목록 단계 내비게이션 바
   function renderToursNav() {
     return (
@@ -600,6 +692,8 @@ function App() {
             <BibleOverviewView
               onSelectNode={openBook}
               selectedNode={bookId}
+              verseLang={verseLang}
+              setVerseLang={setVerseLang}
             />
           </div>
         </>
@@ -679,6 +773,32 @@ function App() {
             <WordDistributionView
               bookId={wordsBookId}
               onSelectBook={selectWordsBook}
+              verseLang={verseLang}
+              setVerseLang={setVerseLang}
+            />
+          </div>
+        </>
+      )}
+
+      {/* 통계 단계 — 개요 "통계" 탭에서 진입. 전용 전체화면 페이지(family와 동형, 대상 id 없는 고정 뷰). */}
+      {activeStage === 'stats' && (
+        <>
+          {renderStatsNav()}
+          <div className="stage-in" style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+            <StatsView
+              onSelectPerson={(id) => selectPerson(id, 'intro')}
+              onSelectBook={openBook}
+            />
+          </div>
+        </>
+      )}
+
+      {/* 주제 성구 단계 — 개요 "주제 성구" 탭에서 진입. 전용 전체화면 페이지(stats와 동형, 대상 id 없는 고정 뷰). */}
+      {activeStage === 'topics' && (
+        <>
+          {renderTopicsNav()}
+          <div className="stage-in" style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+            <TopicalVersesView
               verseLang={verseLang}
               setVerseLang={setVerseLang}
             />

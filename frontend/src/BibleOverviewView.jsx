@@ -5,6 +5,7 @@ import BookSymbol from './bookSymbols'
 import { SELECT_HL, GENRE_META } from './theme'
 import { MOBILE_BREAKPOINT } from './constants'
 import { saveScroll, loadScroll } from './scrollMemory'
+import VerseLayer, { paperTextStyle } from './VerseLayer'
 
 const OT_GENRE_ORDER = ['Pentateuch', 'Historical', 'Poetry-Wisdom', 'Major Prophets', 'Minor Prophets']
 const NT_GENRE_ORDER = ['Gospels', 'Acts', 'Pauline Epistles', 'General Epistles', 'Revelation']
@@ -135,8 +136,11 @@ function Testament({ label, genreOrder, booksByGenre, onSelectNode, selectedNode
   )
 }
 
-export default function BibleOverviewView({ onSelectNode, selectedNode }) {
+export default function BibleOverviewView({ onSelectNode, selectedNode, verseLang, setVerseLang }) {
   const [booksByTestamentGenre, setBooksByTestamentGenre] = useState({ OT: {}, NT: {} })
+  // 메시아 예언→성취 스레드(task#246) — 테마별 그룹. 실패 시 빈 배열 폴백, 섹션은 0건이면 미렌더.
+  const [prophecyThemes, setProphecyThemes] = useState([])
+  const [prophecyLayer, setProphecyLayer] = useState(null)
   const [entrance] = useState(() => !overviewEntrancePlayed)
   useEffect(() => { overviewEntrancePlayed = true }, [])
   const [loading, setLoading] = useState(true)
@@ -216,6 +220,14 @@ export default function BibleOverviewView({ onSelectNode, selectedNode }) {
     return () => { cancelled = true }
   }, [])
 
+  useEffect(() => {
+    let cancelled = false
+    apiGet('/messianic-prophecies')
+      .then(data => { if (!cancelled) setProphecyThemes(data) })
+      .catch(err => { if (!cancelled) { console.warn('[BibleOverview] 메시아 예언 로드 실패', err); setProphecyThemes([]) } })
+    return () => { cancelled = true }
+  }, [])
+
   if (loading) {
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', background: 'var(--bg-0)' }}>
@@ -248,6 +260,35 @@ export default function BibleOverviewView({ onSelectNode, selectedNode }) {
     { label: '신약', genres: NT_GENRE_ORDER.filter(g => booksByTestamentGenre.NT[g]?.length > 0) },
   ]
 
+  // 메시아 예언→성취 상세 — 구절 레이어(양피지) 패턴 재사용(SidePanel 인용 대조 레이어와 동일 쉘).
+  function renderProphecyLayer() {
+    if (!prophecyLayer) return null
+    const p = prophecyLayer
+    const block = (heading, rangeLabel, verses) => (
+      <div style={{ marginBottom: 14 }}>
+        <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--paper-accent)', marginBottom: 4 }}>
+          {heading} — {rangeLabel}
+        </div>
+        {verses.map(v => (
+          <div key={v.verseId} style={paperTextStyle}>{(verseLang === 'ko' ? v.textKo : v.textEn) || '원문이 없습니다'}</div>
+        ))}
+      </div>
+    )
+    return (
+      <VerseLayer
+        title={p.note || '메시아 예언 → 성취'}
+        refLine={`${p.otRangeLabel} → ${p.ntRangeLabel}`}
+        dotColor="var(--gold)"
+        onClose={() => setProphecyLayer(null)}
+        verseLang={verseLang}
+        setVerseLang={setVerseLang}
+      >
+        {block('예언 (구약)', p.otRangeLabel, p.otVerses)}
+        {block('성취 (신약)', p.ntRangeLabel, p.ntVerses)}
+      </VerseLayer>
+    )
+  }
+
   return (
     <div ref={scrollRef} style={{
       background: 'var(--bg-0)',
@@ -255,6 +296,7 @@ export default function BibleOverviewView({ onSelectNode, selectedNode }) {
       overflowY: 'auto',
       boxSizing: 'border-box',
     }}>
+      {renderProphecyLayer()}
       {/* 점프 내비 칩 바 — sticky. 배경·구분선은 전폭, 칩 내용은 본문과 같은 중앙 컬럼 정렬. 좁은 화면에선 가로 스크롤 */}
       <div style={{
         position: 'sticky', top: 0, zIndex: 5,
@@ -321,6 +363,50 @@ export default function BibleOverviewView({ onSelectNode, selectedNode }) {
             entrance={entrance}
           />
         </div>
+
+        {/* 메시아 예언→성취 스레드(task#246) — 구약·신약을 가로지르는 주제 실. 언약 리본과 같은 gold 악센트. */}
+        {prophecyThemes.length > 0 && (
+          <div style={{ marginTop: 32 }}>
+            <div style={{ color: 'var(--ink)', fontFamily: 'var(--serif)', fontWeight: 700, fontSize: 20, marginBottom: 12 }}>
+              메시아 예언 → 성취
+            </div>
+            {prophecyThemes.map(group => (
+              <div key={group.theme} style={{ marginTop: 16 }}>
+                <div style={{ marginBottom: 8 }}>
+                  <span style={{ color: 'var(--ink)', fontWeight: 700, fontSize: 16 }}>{group.theme}</span>
+                  <span style={{ color: 'var(--ink-faint)', fontSize: 13, marginLeft: 8 }}>{group.pairs.length}쌍</span>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  {group.pairs.map(p => (
+                    <button
+                      key={p.id}
+                      onClick={() => setProphecyLayer(p)}
+                      style={{
+                        display: 'flex', alignItems: 'center', gap: 8, width: '100%', textAlign: 'left', font: 'inherit',
+                        border: 'none', background: 'none', cursor: 'pointer',
+                        borderLeft: '3px solid var(--gold)', borderRadius: 6, padding: '7px 10px',
+                        transition: 'background var(--dur-fast)',
+                      }}
+                      onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-2)' }}
+                      onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
+                    >
+                      <span style={{ flexShrink: 0, fontSize: 12, fontWeight: 600, color: 'var(--ink)' }}>
+                        {p.otRangeLabel} → {p.ntRangeLabel}
+                      </span>
+                      <span style={{ flex: 1, fontSize: 12, color: 'var(--ink-faint)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {p.note}
+                      </span>
+                      <span style={{
+                        flexShrink: 0, fontSize: 11, padding: '1px 7px', borderRadius: 999, lineHeight: 1.7, fontWeight: 600,
+                        border: '1px solid var(--gold-dim)', color: 'var(--gold)',
+                      }}>📖 대조 ▸</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )

@@ -198,6 +198,28 @@ export function buildJourneyStopsGeoJSON(stops) {
   }
 }
 
+// 비유·기적 색인(task#249) GeoJSON — 좌표 보유 항목만 Point Feature로. verses는 팝업용 텍스트 1개로 합침
+// (geojson-vt는 평면 속성만 보존 — 배열/객체는 못 씀).
+export function buildParablesMiraclesGeoJSON(items) {
+  return {
+    type: 'FeatureCollection',
+    features: items
+      .filter((it) => it.lat != null && it.lng != null)
+      .map((it) => ({
+        type: 'Feature',
+        geometry: { type: 'Point', coordinates: [it.lng, it.lat] },
+        properties: {
+          id: it.id,
+          type: it.type,
+          name: it.name,
+          placeName: it.placeName || '',
+          note: it.note || '',
+          verseText: (it.verses || []).map((v) => v.textKo).filter(Boolean).join(' '),
+        },
+      })),
+  }
+}
+
 export function buildSpiderGeoJSON(features, positions, anchors) {
   return {
     type: 'FeatureCollection',

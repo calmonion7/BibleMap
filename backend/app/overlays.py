@@ -93,6 +93,38 @@ def quotations() -> list:
 
 
 @functools.lru_cache(maxsize=1)
+def messianic_prophecies() -> dict:
+    """메시아 예언↔성취 정본({"prophecies": [{id, theme, otVerseIds, ntVerseIds, otRangeLabel, ntRangeLabel, note}]}). 1회 로드 캐시."""
+    return _load("messianic_prophecies/prophecies.json")
+
+
+@functools.lru_cache(maxsize=1)
+def covenants() -> dict:
+    """주요 언약 정본({"covenants": [{id, name, nameEn, parties, promise, sign, keyVerseIds, startDate, era}]}). 1회 로드 캐시."""
+    return _load("covenants/covenants.json")
+
+
+@functools.lru_cache(maxsize=1)
+def parables_miracles() -> dict:
+    """예수의 비유·기적 색인 정본({"items": [{id, type, name, placeName, placeId, lat, lng, verseIds, note}]}). 1회 로드 캐시."""
+    return _load("jesus_parables_miracles/index.json")
+
+
+@functools.lru_cache(maxsize=1)
+def place_coords() -> dict:
+    """저작 장소 좌표 정본(id → {name, nameKo, lat, lng, note}). place_coords/places.json 리스트를
+    id 키 dict로 변환. 1회 로드 캐시."""
+    raw = _load("place_coords/places.json")
+    return raw if isinstance(raw, dict) else {p["id"]: p for p in raw}
+
+
+@functools.lru_cache(maxsize=1)
+def topical_verses() -> dict:
+    """주제별 큐레이션 성구 정본({"topics": [{id, name, description, verseIds}]}). 1회 로드 캐시."""
+    return _load("topical_verses/topics.json")
+
+
+@functools.lru_cache(maxsize=1)
 def verse_persons() -> dict:
     """구절↔인물 색인 정본(verseID → [personRecId, ...]). 1회 로드 캐시.
     build_verse_persons.py 산출물(theographic verses.people 투영)."""

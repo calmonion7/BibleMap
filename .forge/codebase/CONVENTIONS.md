@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 473bf605f082467f6f19863530b017b180a80058
-mapped: 2026-07-23
+last_mapped_commit: 70f5fc64daa7b3c71f2773a4357ad68bba9ae7a5
+mapped: 2026-07-24
 ---
 
 # CONVENTIONS
@@ -45,12 +45,14 @@ BibleMap의 코드 스타일·품질 관련 정본. 라우팅 구조·DB 접근�
 
 - `_resolve(subpath)`/`_resolve_dir(subpath)`는 `DATA_DIR` 환경변수(기본 `/app/data`, 컨테이너 마운트) → 리포지토리 `data/` 순으로 파일/디렉터리를 찾고, 없으면 `logger.warning` 후 `None`을 반환한다(§1의 로깅 규약과 동일 계약).
 - `_load(subpath)`는 파일 없음·JSON 파싱 실패 모두 `logger.warning` 후 빈 dict로 폴백한다 — 오버레이 결손이 500 에러가 되지 않게 한다(§4의 에러 처리 원칙과 직결).
-- 새 오버레이는 `overlays.py`에 `@functools.lru_cache(maxsize=1)` 로더 함수를 추가한다. 최근 추가분: `chapter_summaries()`(`data/chapter_summaries/books.json`)·`chapter_sections()`(`data/chapter_sections/books.json`)·`quotations()`(`data/quotations/quotations.json`, 리스트 반환)·`verse_persons()`(`data/verse_persons/index.json`) — 기존 `book_events_raw`/`event_verses`/`bible_verses`/`word_distribution`/`books_ko`와 동일 패턴.
+- 새 오버레이는 `overlays.py`에 `@functools.lru_cache(maxsize=1)` 로더 함수를 추가한다. 커밋 `70f5fc6` 기준 `overlays.py`의 로더 전체(선언 순): `book_events_raw()`(`data/book_events/books.json`)·`event_verses()`(`data/event_verses/events.json`)·`bible_verses()`(`data/bible/verses.json`, verse-grounding의 정본 절 사전 — §3.2)·`word_distribution()`(`data/word_distribution.json`)·`books_ko()`(`data/names_ko/books.json`)·`chapter_summaries()`(`data/chapter_summaries/books.json`)·`chapter_sections()`(`data/chapter_sections/books.json`)·`quotations()`(`data/quotations/quotations.json`, `.get("quotations", [])`로 **리스트 반환**)·`messianic_prophecies()`(`data/messianic_prophecies/prophecies.json`)·`covenants()`(`data/covenants/covenants.json`)·`parables_miracles()`(`data/jesus_parables_miracles/index.json`)·`place_coords()`(`data/place_coords/places.json` 리스트를 `id` 키 dict로 정규화)·`topical_verses()`(`data/topical_verses/topics.json`)·`verse_persons()`(`data/verse_persons/index.json`). 뒤 5개(`messianic_prophecies`~`topical_verses`)와 대응 `data/` 디렉터리·`validate_*.py`는 이 세션(task#246~250)에 추가돼 커밋 `70f5fc6` 시점엔 아직 워킹트리 미추적(`??`) 상태다.
+- `overlays.py`에는 lru_cache 로더가 아닌 순수 헬퍼도 1개 산다: `curated_person_id(events)` — 큐레이션 신원 규약의 단일 지점으로 `person_events/<slug>.json`의 `events[0].participants[0]`을 그 인물의 `theographic_id`로 해석한다(소비처 `persons.py`·`places.py`·`reliance.py`; 로더 캐시가 아니므로 데코레이터 없음).
 
 ### 3.2 저작 규칙 문서 — `data/<도메인>/AUTHORING.md`
 
 - 규칙이 있는 저작 도메인은 `data/<도메인>/AUTHORING.md`에 스키마·통제 어휘·검증 파이프라인을 정본으로 둔다: `data/person_context/AUTHORING.md`·`data/person_relations/AUTHORING.md`·`data/character_traits/AUTHORING.md`·`data/god_reliance/AUTHORING.md`.
 - 본문 필드(`textKo`/`textEn` 등)는 저작자가 손으로 쓰지 않는다 — 저작자는 **구절 참조만**(`verse`/`ref`, 개역 약어 + "장:절") 쓰고, `backend/scripts/generate_verse_text.py` 같은 빌드타임 스크립트가 getbible에서 본문을 채운다. 이 분리는 통제 어휘·연대·인용 저작에도 반복 적용된다.
+- **구절 근거(verse-grounding) 규약**: 성경 참조는 두 표현이 공존한다 — 사람이 쓰는 **범위 라벨**(`otRangeLabel`/`ntRangeLabel`/`verse_ref`, "마 5:3-12" 식 한글 약어 + 장:절[-절])과 기계 정본 **verseID**(`BBCCCVVV` 8자리, 예 `40005003`). 참조를 가진 오버레이는 verseID 배열(`verseIds`/`keyVerseIds`/`otVerseIds`/`ntVerseIds`)이 정본이며, 모든 verseID는 `bible_verses()`가 로드하는 정본 절 사전 `data/bible/verses.json`에 **실존해야** 한다 — 근거 없는 구절 인용을 원천 차단하는 불변식이다. 라벨과 verseID의 자기일치(라벨을 파싱한 결과 = verseID 배열)는 대응 `validate_*.py`가 강제한다(§3.3·`TESTING.md` §1). 이번 세션 추가 오버레이(`covenants`·`messianic_prophecies`·`parables_miracles`·`topical_verses`)는 모두 이 verse-grounding 계약을 따른다.
 
 ### 3.3 통제 어휘는 문서·검증 스크립트 동시 갱신
 
@@ -106,7 +108,9 @@ BibleMap의 코드 스타일·품질 관련 정본. 라우팅 구조·DB 접근�
 - 모션 정본은 `index.css` `:root`의 `--dur-fast`(150ms)/`--dur-base`(250ms)/`--dur-slow`(400ms)/`--dur-draw`(1000ms) + `--ease-out`/`--ease-in-out`/`--ease-drawer`/`--ease-pop`. 새 duration·easing을 리터럴로 하드코딩하지 않고 이 토큰만 참조한다.
 - 애니메이트 가능한 속성은 **transform·opacity**(+ 선화의 `stroke-dashoffset`)만 — 레이아웃 속성 금지. 입장(enter)만 만들고 exit는 즉시 언마운트로 처리한다.
 - `@media (prefers-reduced-motion: reduce)`에서 `--dur-*` 전부와 `animation-delay`를 1ms/0ms로 붕괴시키는 **토큰 붕괴 가드**가 개별 컴포넌트의 reduce 분기를 대체한다(`index.css`). CSS 트랜지션이 아닌 JS `requestAnimationFrame` 애니메이션(`RelianceView.jsx`의 `Donut`)은 이 가드로 가려지지 않아 `window.matchMedia(...)`를 직접 분기한다.
-- 히어로 스태거 입장 + 스크롤 리빌 조합은 `index.css`에 전용 클래스 3종으로 저작한다(task#239, `frontend/src/IntroView.jsx`): `.intro-rise`(`--dur-slow`/`--ease-out` fade+translateY, 자식별 스태거는 인라인 `animationDelay`로 부여)·`.intro-line`(`--dur-draw`/`--ease-in-out`, 중앙 기준 `scaleX(0→1)` 분할선)·`.intro-sec`(초기 `opacity: 0`인 스크롤 리빌 카드 컨테이너 — `useReveal()`의 `IntersectionObserver`가 뷰포트 진입을 1회 감지해 `.intro-seen`을 부여하면 `intro-rise` keyframe이 재생되고 이후 관찰을 해제한다).
+- 사이트 인트로는 커밋 `70f5fc6`(task#244)에서 스크롤 리빌형에서 **오토플레이 시네마틱 필름**으로 재구성됐다(`frontend/src/IntroView.jsx`). 구조: phase state 머신이 `setTimeout`으로 비트(beat)를 순차 진행하고, 비트 전환은 **겹치지 않는 순차 디졸브** — 이전 비트가 `.beat-out`(`beat-out-fade`, `--dur-base` 페이드아웃)으로 빠진 뒤 `TRANS_MS` 지연 후 새 비트가 `.beat-in`(`beat-in-fade`, `--dur-slow` 페이드인)으로 들어온다(이중노출 없음). 비트 안의 씬 요소(선화 획·아이콘·라벨)는 `.film-fade`(`film-fade` keyframe)에 인라인 `animationDelay`로 스태거를 주고, 선 그리기는 `.thread-draw`(`--thread-delay` CSS 변수로 지연)로 표현한다.
+- 비트 내 히어로 텍스트·구분선은 기존 클래스를 재사용한다: `.intro-rise`(`--dur-slow`/`--ease-out` fade+translateY, 자식별 스태거는 인라인 `animationDelay`)·`.intro-line`(`--dur-draw`/`--ease-in-out`, 중앙 기준 `scaleX(0→1)` 분할선). 구 스크롤 리빌 클래스 `.intro-sec`/`.intro-seen`은 `index.css`에 남아 있으나 재구성 후 `IntroView.jsx`가 더 이상 참조하지 않는다(잔존 — 발견 시 별건 정리).
+- 인트로 노출 여부의 정본은 `localStorage`의 `biblemap-intro` 키(`INTRO_STORAGE_KEY`로 export) — 값이 아니라 **키의 존재 자체**가 상태(`'off'`면 숨김, 부재면 노출, §5.2).
 - 정본 참조: `.forge/adr/0024-motion-system-css-tokens-no-library.md`.
 
 ### 5.4 인물/책 상징물 선화 (ADR-0025)

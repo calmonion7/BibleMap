@@ -1,0 +1,994 @@
+{
+  "items": [
+    {
+      "id": "sower",
+      "type": "parable",
+      "name": "씨 뿌리는 자의 비유",
+      "placeName": "갈릴리 호숫가",
+      "placeId": null,
+      "lat": 32.83,
+      "lng": 35.59,
+      "verseIds": [
+        "40013003",
+        "40013008",
+        "40013009"
+      ],
+      "note": "말씀이 뿌려지는 마음의 네 가지 상태(길가·돌밭·가시떨기·좋은 땅)를 비유하심."
+    },
+    {
+      "id": "weeds",
+      "type": "parable",
+      "name": "가라지 비유",
+      "placeName": "갈릴리 호숫가",
+      "placeId": null,
+      "lat": 32.83,
+      "lng": 35.59,
+      "verseIds": [
+        "40013024",
+        "40013025",
+        "40013030"
+      ],
+      "note": "원수가 밀 가운데 뿌린 가라지도 추수 때까지 함께 자라게 두라 하심 — 심판은 마지막 때에."
+    },
+    {
+      "id": "mustard-seed",
+      "type": "parable",
+      "name": "겨자씨 비유",
+      "placeName": "갈릴리 호숫가",
+      "placeId": null,
+      "lat": 32.83,
+      "lng": 35.59,
+      "verseIds": [
+        "40013031",
+        "40013032"
+      ],
+      "note": "지극히 작은 겨자씨가 자라 큰 나무가 되듯 천국이 작게 시작해 크게 자람을 비유하심."
+    },
+    {
+      "id": "leaven",
+      "type": "parable",
+      "name": "누룩 비유",
+      "placeName": "갈릴리 호숫가",
+      "placeId": null,
+      "lat": 32.83,
+      "lng": 35.59,
+      "verseIds": [
+        "40013033"
+      ],
+      "note": "여인이 넣은 적은 누룩이 온 덩이에 퍼지듯 천국이 서서히 온전히 퍼짐을 비유하심."
+    },
+    {
+      "id": "hidden-treasure",
+      "type": "parable",
+      "name": "감추인 보화 비유",
+      "placeName": "가버나움",
+      "placeId": "authored-place-capernaum",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "40013044"
+      ],
+      "note": "밭에 감추인 보화를 발견한 사람이 모든 소유를 팔아 그 밭을 사듯 천국의 가치를 비유하심."
+    },
+    {
+      "id": "pearl",
+      "type": "parable",
+      "name": "진주 비유",
+      "placeName": "가버나움",
+      "placeId": "authored-place-capernaum",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "40013045",
+        "40013046"
+      ],
+      "note": "극히 값진 진주 하나를 위해 모든 소유를 파는 장사꾼처럼 천국을 구하라 하심."
+    },
+    {
+      "id": "net",
+      "type": "parable",
+      "name": "그물 비유",
+      "placeName": "가버나움",
+      "placeId": "authored-place-capernaum",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "40013047",
+        "40013049",
+        "40013050"
+      ],
+      "note": "바다에 던진 그물이 온갖 종류를 모으듯 마지막 심판 때 의인과 악인이 갈릴 것을 비유하심."
+    },
+    {
+      "id": "growing-seed",
+      "type": "parable",
+      "name": "저절로 자라는 씨 비유",
+      "placeName": "갈릴리 호숫가",
+      "placeId": null,
+      "lat": 32.83,
+      "lng": 35.59,
+      "verseIds": [
+        "41004026",
+        "41004027",
+        "41004029"
+      ],
+      "note": "사람이 알지 못하는 사이에 씨가 자라듯 하나님 나라도 스스로 자라감을 비유하심."
+    },
+    {
+      "id": "lamp-under-basket",
+      "type": "parable",
+      "name": "등불 비유",
+      "placeName": "팔복산(갈릴리)",
+      "placeId": null,
+      "lat": 32.874,
+      "lng": 35.562,
+      "verseIds": [
+        "40005014",
+        "40005015",
+        "40005016"
+      ],
+      "note": "등불을 말 아래 두지 않고 등경 위에 두듯 제자들이 세상의 빛으로 선한 행실을 비추라 하심."
+    },
+    {
+      "id": "wise-foolish-builders",
+      "type": "parable",
+      "name": "반석과 모래 위에 지은 집 비유",
+      "placeName": "팔복산(갈릴리)",
+      "placeId": null,
+      "lat": 32.874,
+      "lng": 35.562,
+      "verseIds": [
+        "40007024",
+        "40007026",
+        "40007027"
+      ],
+      "note": "말씀을 듣고 행하는 자는 반석 위에, 듣고 행치 않는 자는 모래 위에 집 지은 것과 같다 하심."
+    },
+    {
+      "id": "good-samaritan",
+      "type": "parable",
+      "name": "선한 사마리아인 비유",
+      "placeName": "유대 (예루살렘으로 가는 길)",
+      "placeId": null,
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "42010030",
+        "42010033",
+        "42010037"
+      ],
+      "note": "강도 만난 자를 지나친 제사장·레위인과 달리 돌본 사마리아인처럼 이웃을 사랑하라 하심."
+    },
+    {
+      "id": "friend-at-midnight",
+      "type": "parable",
+      "name": "밤중에 찾아온 친구 비유",
+      "placeName": "유대 (여정 중)",
+      "placeId": null,
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "42011005",
+        "42011007",
+        "42011008"
+      ],
+      "note": "끈질기게 구하면 벗의 정 때문에라도 응답받듯 기도에 항상 힘쓰라 하심."
+    },
+    {
+      "id": "rich-fool",
+      "type": "parable",
+      "name": "어리석은 부자 비유",
+      "placeName": "유대 (여정 중)",
+      "placeId": null,
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "42012016",
+        "42012019",
+        "42012020"
+      ],
+      "note": "곳간을 헐고 크게 짓고도 그 밤에 영혼을 도로 찾기운 부자처럼 재물을 하나님께 두지 않는 삶을 경계하심."
+    },
+    {
+      "id": "barren-fig-tree",
+      "type": "parable",
+      "name": "열매 없는 무화과나무 비유",
+      "placeName": "갈릴리-유대 여정 중",
+      "placeId": null,
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "42013006",
+        "42013007",
+        "42013009"
+      ],
+      "note": "삼 년째 열매 없는 무화과나무에 한 해를 더 주어 회개할 기회를 구하는 비유로 회개를 촉구하심."
+    },
+    {
+      "id": "lost-sheep",
+      "type": "parable",
+      "name": "잃은 양 비유",
+      "placeName": "베뢰아 (여정 중)",
+      "placeId": null,
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "42015004",
+        "42015006",
+        "42015007"
+      ],
+      "note": "아흔아홉을 두고 잃은 한 마리를 찾는 목자처럼 죄인 하나가 회개함을 하늘이 기뻐한다 하심."
+    },
+    {
+      "id": "lost-coin",
+      "type": "parable",
+      "name": "잃은 드라크마 비유",
+      "placeName": "베뢰아 (여정 중)",
+      "placeId": null,
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "42015008",
+        "42015009",
+        "42015010"
+      ],
+      "note": "잃은 드라크마 하나를 찾은 여인의 기쁨처럼 회개하는 죄인 하나로 하나님의 천사들이 기뻐한다 하심."
+    },
+    {
+      "id": "prodigal-son",
+      "type": "parable",
+      "name": "탕자의 비유",
+      "placeName": "베뢰아 (여정 중)",
+      "placeId": null,
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "42015011",
+        "42015013",
+        "42015020",
+        "42015031",
+        "42015032"
+      ],
+      "note": "재산을 탕진하고 돌아온 둘째 아들을 아버지가 달려가 맞이하듯 회개하는 자를 향한 하나님의 사랑을 비유하심."
+    },
+    {
+      "id": "unjust-steward",
+      "type": "parable",
+      "name": "불의한 청지기 비유",
+      "placeName": "베뢰아 (여정 중)",
+      "placeId": null,
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "42016001",
+        "42016002",
+        "42016008"
+      ],
+      "note": "쫓겨날 처지의 청지기가 빚을 감해주며 살 길을 도모하듯 재물로 지혜롭게 대비하라 하심."
+    },
+    {
+      "id": "rich-man-lazarus",
+      "type": "parable",
+      "name": "부자와 나사로 비유",
+      "placeName": "베뢰아 (여정 중)",
+      "placeId": null,
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "42016019",
+        "42016020",
+        "42016024",
+        "42016025"
+      ],
+      "note": "호화로이 살던 부자와 그 문 앞의 거지 나사로가 죽은 후 처지가 뒤바뀜으로 재물과 긍휼을 경계하심."
+    },
+    {
+      "id": "persistent-widow",
+      "type": "parable",
+      "name": "불의한 재판관과 과부 비유",
+      "placeName": "베뢰아 (여정 중)",
+      "placeId": null,
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "42018001",
+        "42018006",
+        "42018007",
+        "42018008"
+      ],
+      "note": "불의한 재판관도 과부의 간청에 굴복하듯 하나님께서 밤낮 부르짖는 자의 원한을 풀어주실 것이라 하심."
+    },
+    {
+      "id": "pharisee-tax-collector",
+      "type": "parable",
+      "name": "바리새인과 세리 비유",
+      "placeName": "베뢰아 (여정 중)",
+      "placeId": null,
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "42018010",
+        "42018011",
+        "42018013",
+        "42018014"
+      ],
+      "note": "자기를 의롭다 하는 바리새인보다 가슴 치며 죄인이라 한 세리가 의롭다 하심을 받았다 하심."
+    },
+    {
+      "id": "two-debtors",
+      "type": "parable",
+      "name": "두 빚진 자 비유",
+      "placeName": "갈릴리 (시몬의 집)",
+      "placeId": null,
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "42007041",
+        "42007042",
+        "42007043"
+      ],
+      "note": "많이 탕감받은 자가 더 사랑하듯 죄 사함의 크기와 사랑의 크기가 비례함을 시몬에게 비유하심."
+    },
+    {
+      "id": "workers-in-vineyard",
+      "type": "parable",
+      "name": "포도원 품꾼 비유",
+      "placeName": "베뢰아 (예루살렘 여정 중)",
+      "placeId": null,
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "40020001",
+        "40020002",
+        "40020009",
+        "40020010",
+        "40020016"
+      ],
+      "note": "이른 아침에 온 자나 늦게 온 자나 같은 한 데나리온을 받듯 하나님 나라의 은혜는 인간의 계산과 다르다 하심."
+    },
+    {
+      "id": "unforgiving-servant",
+      "type": "parable",
+      "name": "용서하지 않는 종 비유",
+      "placeName": "가버나움",
+      "placeId": "authored-place-capernaum",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "40018023",
+        "40018024",
+        "40018032",
+        "40018035"
+      ],
+      "note": "만 달란트 탕감받고도 백 데나리온 빚진 동료를 옥에 가둔 종의 이야기로 형제를 마음으로 용서하라 하심."
+    },
+    {
+      "id": "two-sons",
+      "type": "parable",
+      "name": "두 아들 비유",
+      "placeName": "예루살렘 (성전)",
+      "placeId": "recL1WV82pXaRBQ59",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "40021028",
+        "40021031"
+      ],
+      "note": "가겠다 하고 안 간 아들과 싫다 하고 간 아들 중 회개하고 행한 자가 아버지의 뜻대로 한 것이라 하심."
+    },
+    {
+      "id": "wicked-tenants",
+      "type": "parable",
+      "name": "악한 포도원 농부 비유",
+      "placeName": "예루살렘 (성전)",
+      "placeId": "recL1WV82pXaRBQ59",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "40021033",
+        "40021037",
+        "40021038",
+        "40021040",
+        "40021041"
+      ],
+      "note": "주인의 종들과 아들마저 죽인 농부들처럼 선지자와 자신을 배척하는 종교 지도자들을 책망하심."
+    },
+    {
+      "id": "wedding-feast",
+      "type": "parable",
+      "name": "혼인 잔치 비유",
+      "placeName": "예루살렘 (성전)",
+      "placeId": "recL1WV82pXaRBQ59",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "40022002",
+        "40022003",
+        "40022008",
+        "40022009",
+        "40022013"
+      ],
+      "note": "청함받은 자들이 거절하자 길거리 사람들을 청해 잔치를 채운 임금처럼 하나님 나라의 초청을 비유하심."
+    },
+    {
+      "id": "ten-virgins",
+      "type": "parable",
+      "name": "열 처녀 비유",
+      "placeName": "감람산",
+      "placeId": null,
+      "lat": 31.778,
+      "lng": 35.25,
+      "verseIds": [
+        "40025001",
+        "40025002",
+        "40025010",
+        "40025013"
+      ],
+      "note": "기름을 준비한 슬기로운 처녀와 그렇지 못한 미련한 처녀로 신랑 맞을 준비, 곧 깨어 있으라 하심."
+    },
+    {
+      "id": "talents",
+      "type": "parable",
+      "name": "달란트 비유",
+      "placeName": "감람산",
+      "placeId": null,
+      "lat": 31.778,
+      "lng": 35.25,
+      "verseIds": [
+        "40025014",
+        "40025015",
+        "40025021",
+        "40025029",
+        "40025030"
+      ],
+      "note": "맡겨진 달란트로 남긴 종은 칭찬받고 땅에 묻어둔 종은 책망받듯 맡겨진 것으로 신실히 살라 하심."
+    },
+    {
+      "id": "sheep-and-goats",
+      "type": "parable",
+      "name": "양과 염소 비유",
+      "placeName": "감람산",
+      "placeId": null,
+      "lat": 31.778,
+      "lng": 35.25,
+      "verseIds": [
+        "40025031",
+        "40025032",
+        "40025034",
+        "40025041",
+        "40025046"
+      ],
+      "note": "지극히 작은 자에게 행한 것이 곧 주께 행한 것이듯 마지막 심판에서 양과 염소가 갈릴 것이라 하심."
+    },
+    {
+      "id": "cana-wine",
+      "type": "miracle",
+      "name": "가나의 혼인잔치 — 물로 포도주를 만드심",
+      "placeName": "가나 (갈릴리)",
+      "placeId": "authored-place-cana",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "43002007",
+        "43002008",
+        "43002009",
+        "43002011"
+      ],
+      "note": "물 항아리의 물이 포도주로 변한 첫 표적으로 그 영광을 나타내시니 제자들이 믿으니라."
+    },
+    {
+      "id": "nobleman-son",
+      "type": "miracle",
+      "name": "왕의 신하 아들 치유",
+      "placeName": "가나 (갈릴리)",
+      "placeId": "authored-place-cana",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "43004050",
+        "43004052",
+        "43004053"
+      ],
+      "note": "가버나움에 있는 왕의 신하의 아들을 가나에서 말씀으로 낫게 하시니 그 시각에 나으니라."
+    },
+    {
+      "id": "first-catch-of-fish",
+      "type": "miracle",
+      "name": "첫 번째 고기잡이 기적",
+      "placeName": "가버나움 (갈릴리 호수)",
+      "placeId": "authored-place-capernaum",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "42005005",
+        "42005006",
+        "42005010",
+        "42005011"
+      ],
+      "note": "밤새 헛수고한 후 말씀에 의지해 그물을 내리자 물고기가 가득 차 그물이 찢어질 정도였다."
+    },
+    {
+      "id": "capernaum-demoniac",
+      "type": "miracle",
+      "name": "가버나움 회당 귀신들린 자 치유",
+      "placeName": "가버나움",
+      "placeId": "authored-place-capernaum",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "41001023",
+        "41001025",
+        "41001026",
+        "41001027"
+      ],
+      "note": "회당에서 더러운 귀신 들린 사람을 꾸짖어 나가게 하시니 무리가 그 권세 있는 새 교훈에 놀라니라."
+    },
+    {
+      "id": "peters-mother-in-law",
+      "type": "miracle",
+      "name": "베드로의 장모 치유",
+      "placeName": "가버나움",
+      "placeId": "authored-place-capernaum",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "41001030",
+        "41001031"
+      ],
+      "note": "열병으로 누운 시몬의 장모의 손을 잡아 일으키시니 열병이 떠나고 저희에게 수종드니라."
+    },
+    {
+      "id": "healing-at-evening",
+      "type": "miracle",
+      "name": "저녁에 많은 병자를 고치심",
+      "placeName": "가버나움",
+      "placeId": "authored-place-capernaum",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "41001032",
+        "41001033",
+        "41001034"
+      ],
+      "note": "해 질 때 각종 병자와 귀신들린 자들을 그 동네 사람들이 데려오매 많은 사람을 고치시니라."
+    },
+    {
+      "id": "cleansing-leper",
+      "type": "miracle",
+      "name": "나병환자 치유",
+      "placeName": "갈릴리",
+      "placeId": null,
+      "lat": 32.83,
+      "lng": 35.59,
+      "verseIds": [
+        "41001040",
+        "41001041",
+        "41001042"
+      ],
+      "note": "내가 원하노니 깨끗함을 받으라 손을 내밀어 대시니 곧 나병이 그에게서 떠나 깨끗하게 되니라."
+    },
+    {
+      "id": "paralytic-through-roof",
+      "type": "miracle",
+      "name": "지붕을 뚫고 내려온 중풍병자 치유",
+      "placeName": "가버나움",
+      "placeId": "authored-place-capernaum",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "41002003",
+        "41002005",
+        "41002011",
+        "41002012"
+      ],
+      "note": "지붕을 뜯고 달아 내린 중풍병자에게 죄 사함과 함께 일어나 걸어가라 하시니 곧 일어나 나가니라."
+    },
+    {
+      "id": "withered-hand",
+      "type": "miracle",
+      "name": "손 마른 사람 치유",
+      "placeName": "갈릴리 (회당)",
+      "placeId": null,
+      "lat": 32.83,
+      "lng": 35.59,
+      "verseIds": [
+        "41003001",
+        "41003005"
+      ],
+      "note": "안식일에 회당에서 손 마른 사람에게 손을 내밀라 하시니 그 손이 회복되어 성하게 되니라."
+    },
+    {
+      "id": "calming-the-storm",
+      "type": "miracle",
+      "name": "광풍을 잔잔케 하심",
+      "placeName": "갈릴리 호수",
+      "placeId": null,
+      "lat": 32.83,
+      "lng": 35.59,
+      "verseIds": [
+        "41004037",
+        "41004039",
+        "41004041"
+      ],
+      "note": "배에 물이 가득 찰 만큼 큰 광풍을 잠잠하라 꾸짖으시니 아주 잔잔해져 제자들이 심히 두려워하니라."
+    },
+    {
+      "id": "gerasene-demoniac",
+      "type": "miracle",
+      "name": "거라사 광인(군대 귀신) 치유",
+      "placeName": "거라사 지방",
+      "placeId": null,
+      "lat": 32.83,
+      "lng": 35.65,
+      "verseIds": [
+        "41005002",
+        "41005008",
+        "41005009",
+        "41005013"
+      ],
+      "note": "무덤 사이에 거하며 자기를 해치던 군대 귀신을 돼지떼로 들어가게 하시니 그 사람이 정신이 온전해지니라."
+    },
+    {
+      "id": "jairus-daughter",
+      "type": "miracle",
+      "name": "야이로의 딸을 살리심",
+      "placeName": "가버나움",
+      "placeId": "authored-place-capernaum",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "41005022",
+        "41005023",
+        "41005041",
+        "41005042"
+      ],
+      "note": "죽은 회당장의 딸의 손을 잡고 달리다굼 하시니 소녀가 곧 일어나 걸으니라."
+    },
+    {
+      "id": "woman-with-issue-of-blood",
+      "type": "miracle",
+      "name": "혈루증 앓던 여인 치유",
+      "placeName": "가버나움",
+      "placeId": "authored-place-capernaum",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "41005025",
+        "41005029",
+        "41005034"
+      ],
+      "note": "십이 년 혈루증을 앓던 여인이 예수의 옷에 손을 대자 즉시 그 근원이 마르고 병이 나으니라."
+    },
+    {
+      "id": "two-blind-men-capernaum",
+      "type": "miracle",
+      "name": "두 맹인 치유",
+      "placeName": "가버나움",
+      "placeId": "authored-place-capernaum",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "40009027",
+        "40009028",
+        "40009029",
+        "40009030"
+      ],
+      "note": "다윗의 자손이여 우리를 불쌍히 여기소서 부르짖던 두 맹인의 눈을 만지시니 그 눈이 밝아지니라."
+    },
+    {
+      "id": "mute-demoniac",
+      "type": "miracle",
+      "name": "말 못하는 귀신들린 자 치유",
+      "placeName": "가버나움",
+      "placeId": "authored-place-capernaum",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "40009032",
+        "40009033"
+      ],
+      "note": "귀신 들려 벙어리 된 자에게서 귀신이 쫓겨나가매 벙어리가 말을 하니 무리가 놀라니라."
+    },
+    {
+      "id": "feeding-5000",
+      "type": "miracle",
+      "name": "오병이어 — 오천 명을 먹이심",
+      "placeName": "벳새다",
+      "placeId": "authored-place-bethsaida",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "43006009",
+        "43006011",
+        "43006013"
+      ],
+      "note": "보리떡 다섯 개와 물고기 두 마리로 오천 명이 배불리 먹고 남은 조각이 열두 바구니에 찼더라."
+    },
+    {
+      "id": "walking-on-water",
+      "type": "miracle",
+      "name": "물 위를 걸으심",
+      "placeName": "갈릴리 호수",
+      "placeId": null,
+      "lat": 32.83,
+      "lng": 35.59,
+      "verseIds": [
+        "40014025",
+        "40014027",
+        "40014031",
+        "40014032"
+      ],
+      "note": "밤 사경에 바다 위로 걸어 제자들에게 오시고 빠져가던 베드로의 손을 잡아 건지시니 바람이 그치니라."
+    },
+    {
+      "id": "syrophoenician-daughter",
+      "type": "miracle",
+      "name": "수로보니게 여인의 딸 치유",
+      "placeName": "두로 지방",
+      "placeId": null,
+      "lat": 33.27,
+      "lng": 35.194,
+      "verseIds": [
+        "41007026",
+        "41007029",
+        "41007030"
+      ],
+      "note": "귀신들린 어린 딸을 위해 간청한 이방 여인의 믿음을 보시고 말씀으로 그 딸에게서 귀신이 나가게 하시니라."
+    },
+    {
+      "id": "deaf-mute-decapolis",
+      "type": "miracle",
+      "name": "귀먹고 말 더듬는 자 치유",
+      "placeName": "데가볼리",
+      "placeId": null,
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "41007032",
+        "41007034",
+        "41007035"
+      ],
+      "note": "귀에 손가락을 넣고 에바다 하시니 그 귀가 열리고 혀가 풀려 말이 분명하게 되니라."
+    },
+    {
+      "id": "feeding-4000",
+      "type": "miracle",
+      "name": "칠병이어 — 사천 명을 먹이심",
+      "placeName": "데가볼리 (갈릴리 동편)",
+      "placeId": null,
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "41008005",
+        "41008006",
+        "41008008"
+      ],
+      "note": "떡 일곱 개와 작은 생선 두어 마리로 사천 명이 배불리 먹고 남은 것이 일곱 광주리에 찼더라."
+    },
+    {
+      "id": "blind-man-bethsaida",
+      "type": "miracle",
+      "name": "벳새다 맹인 치유",
+      "placeName": "벳새다",
+      "placeId": "authored-place-bethsaida",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "41008023",
+        "41008025"
+      ],
+      "note": "맹인의 눈에 침을 뱉고 안수하시니 처음엔 사람이 나무처럼 보이다가 다시 안수하시매 밝히 보게 되니라."
+    },
+    {
+      "id": "boy-with-unclean-spirit",
+      "type": "miracle",
+      "name": "간질하는 아이(귀신들린 아이) 치유",
+      "placeName": "가이사랴 빌립보 인근",
+      "placeId": "authored-place-caesarea-philippi",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "41009017",
+        "41009018",
+        "41009025",
+        "41009026",
+        "41009027"
+      ],
+      "note": "어릴 때부터 아이를 해치던 벙어리 귀신을 꾸짖어 다시 들어가지 못하게 쫓아내시니 아이가 일어서니라."
+    },
+    {
+      "id": "temple-tax-fish",
+      "type": "miracle",
+      "name": "물고기 입에서 성전세를 얻으심",
+      "placeName": "가버나움",
+      "placeId": "authored-place-capernaum",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "40017024",
+        "40017027"
+      ],
+      "note": "베드로에게 먼저 오르는 물고기의 입을 열면 돈 한 세겔을 얻으리니 그것으로 성전세를 내라 하시니라."
+    },
+    {
+      "id": "man-born-blind",
+      "type": "miracle",
+      "name": "날 때부터 맹인된 자 치유",
+      "placeName": "예루살렘",
+      "placeId": "recL1WV82pXaRBQ59",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "43009001",
+        "43009006",
+        "43009007"
+      ],
+      "note": "땅에 침 뱉어 진흙을 이겨 눈에 바르고 실로암 못에 가서 씻으라 하시니 밝은 눈으로 왔더라."
+    },
+    {
+      "id": "man-with-dropsy",
+      "type": "miracle",
+      "name": "고창병 든 사람 치유",
+      "placeName": "바리새인의 집 (여정 중)",
+      "placeId": null,
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "42014002",
+        "42014003",
+        "42014004"
+      ],
+      "note": "안식일에 바리새인 지도자의 집에서 고창병 든 사람을 고치시며 안식일에 선을 행함이 옳다 하심."
+    },
+    {
+      "id": "ten-lepers",
+      "type": "miracle",
+      "name": "열 명의 나병환자 치유",
+      "placeName": "사마리아와 갈릴리 사이의 한 마을",
+      "placeId": null,
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "42017012",
+        "42017013",
+        "42017014",
+        "42017019"
+      ],
+      "note": "제사장에게 가서 몸을 보이라는 말씀에 순종해 가다가 열 명 모두 깨끗함을 받되 사마리아인 한 사람만 감사하러 돌아오니라."
+    },
+    {
+      "id": "bartimaeus",
+      "type": "miracle",
+      "name": "맹인 바디매오 치유",
+      "placeName": "여리고",
+      "placeId": "authored-place-jericho",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "41010046",
+        "41010047",
+        "41010051",
+        "41010052"
+      ],
+      "note": "다윗의 자손 예수여 나를 불쌍히 여기소서 부르짖던 소경 바디매오가 믿음으로 다시 보게 되니라."
+    },
+    {
+      "id": "raising-lazarus",
+      "type": "miracle",
+      "name": "나사로를 살리심",
+      "placeName": "베다니",
+      "placeId": "authored-place-bethany-jeru",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "43011039",
+        "43011043",
+        "43011044"
+      ],
+      "note": "죽은 지 나흘 된 나사로를 향해 큰 소리로 나오라 부르시니 죽은 자가 수족을 베로 동인 채로 나오니라."
+    },
+    {
+      "id": "withered-fig-tree",
+      "type": "miracle",
+      "name": "무화과나무를 저주하심",
+      "placeName": "베다니-예루살렘 길",
+      "placeId": "authored-place-bethany-jeru",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "41011013",
+        "41011014",
+        "41011020",
+        "41011021"
+      ],
+      "note": "열매 없는 무화과나무를 향해 이제부터 영원토록 사람이 네게서 열매를 따 먹지 못하리라 하시니 이튿날 뿌리째 마르니라."
+    },
+    {
+      "id": "malchus-ear",
+      "type": "miracle",
+      "name": "말고의 귀를 고치심",
+      "placeName": "겟세마네",
+      "placeId": "authored-place-gethsemane",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "42022050",
+        "42022051"
+      ],
+      "note": "잡히시던 밤 한 제자가 벤 대제사장의 종의 귀를 만져 낫게 하시니라."
+    },
+    {
+      "id": "second-catch-of-fish",
+      "type": "miracle",
+      "name": "두 번째 고기잡이 기적 (부활 후)",
+      "placeName": "갈릴리 호수(디베랴 바다)",
+      "placeId": null,
+      "lat": 32.83,
+      "lng": 35.59,
+      "verseIds": [
+        "43021006",
+        "43021011"
+      ],
+      "note": "밤새 잡지 못한 후 배 오른편에 그물을 던지라는 말씀대로 하니 백쉰세 마리의 큰 고기가 가득 찼으나 그물이 찢어지지 않으니라."
+    },
+    {
+      "id": "blind-mute-demoniac",
+      "type": "miracle",
+      "name": "눈멀고 말 못하는 귀신들린 자 치유",
+      "placeName": "갈릴리",
+      "placeId": null,
+      "lat": 32.83,
+      "lng": 35.59,
+      "verseIds": [
+        "40012022"
+      ],
+      "note": "귀신들려 눈멀고 벙어리 된 자를 고치시매 그가 보고 말하거늘 무리가 심히 놀라니라."
+    },
+    {
+      "id": "centurions-servant",
+      "type": "miracle",
+      "name": "백부장의 종 치유",
+      "placeName": "가버나움",
+      "placeId": "authored-place-capernaum",
+      "lat": null,
+      "lng": null,
+      "verseIds": [
+        "40008005",
+        "40008008",
+        "40008013"
+      ],
+      "note": "한 말씀만 하사 내 하인을 낫게 하소서 하는 백부장의 큰 믿음을 칭찬하시고 그 시로 하인이 나으니라."
+    },
+    {
+      "id": "widow-of-nain-son",
+      "type": "miracle",
+      "name": "나인성 과부의 아들을 살리심",
+      "placeName": "나인",
+      "placeId": null,
+      "lat": 32.6,
+      "lng": 35.339,
+      "verseIds": [
+        "42007012",
+        "42007013",
+        "42007014",
+        "42007015"
+      ],
+      "note": "독자를 잃고 우는 과부를 불쌍히 여겨 관에 손을 대고 청년아 일어나라 하시니 죽었던 자가 일어나 말을 하니라."
+    },
+    {
+      "id": "crippled-woman-18-years",
+      "type": "miracle",
+      "name": "18년간 꼬부라진 여인 치유",
+      "placeName": "갈릴리 (회당)",
+      "placeId": null,
+      "lat": 32.83,
+      "lng": 35.59,
+      "verseIds": [
+        "42013011",
+        "42013012",
+        "42013013"
+      ],
+      "note": "십팔 년 동안 꼬부라져 펴지 못하던 여인에게 안식일에 손을 얹으시니 곧 펴져 하나님께 영광을 돌리니라."
+    }
+  ]
+}

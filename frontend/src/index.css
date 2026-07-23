@@ -349,6 +349,12 @@ h2 {
 .film-fade {
   animation: film-fade var(--dur-slow) var(--ease-out) both;
 }
+/* 인트로 비트 전환(task#245) — 장면이 "겹치지" 않게 순차 디졸브: 이전 비트가 먼저 페이드아웃
+   (--dur-base) 하고, 새 비트는 그 뒤(인라인 animation-delay) 페이드인(--dur-slow). 동시 노출 없음. */
+@keyframes beat-out-fade { from { opacity: 1; } to { opacity: 0; } }
+@keyframes beat-in-fade { from { opacity: 0; } to { opacity: 1; } }
+.beat-out { animation: beat-out-fade var(--dur-base) var(--ease-out) forwards; }
+.beat-in { animation: beat-in-fade var(--dur-slow) var(--ease-out) both; }
 
 /* 누름 피드백 — 카드·버튼 공용(.rel-chip 선례의 큰 면적판, 인라인 스타일은 :active 불가라 클래스로) */
 .pressable {

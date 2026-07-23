@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: f5e17ae2993e228f8b7481dba03478ddec8616f4
-mapped: 2026-07-22
+last_mapped_commit: 70f5fc64daa7b3c71f2773a4357ad68bba9ae7a5
+mapped: 2026-07-24
 ---
 
 # TESTING
@@ -28,6 +28,10 @@ BibleMap이 정확성을 검증하는 방식. 이 프로젝트에는 **정식 �
 - `backend/scripts/validate_chapter_sections.py`(task#212) — `data/chapter_sections/books.json`(다장권의 장 묶음, 목차 헤더용)이 규칙을 지키는지: ① 다장권(장 수≥2) 61권 전수 존재, 미지 bookId 없음 ② 각 권의 묶음이 연속·전수·비중첩(첫 시작=1, 끝=해당 권 총 장 수, 경계 연속) ③ 제목이 비어있지 않은 1~24자. 단장권 5권은 묶음 부재가 정상.
 - `backend/scripts/validate_chapter_summaries.py`(task#206) — `data/chapter_summaries/books.json`(장별 한줄 요약+대표절)이 규칙을 지키는지: ① 66권 전수, 권별 장 수가 정본 절 사전(`data/bible/verses.json`에서 도출한 BB→최대 CCC)과 정확히 일치, 장 번호 1..N 연속 ② `summary`가 1~60자 한글 ③ `keyVerseId`(BBCCCVVV)가 정본 절 사전에 실존하고 그 권·그 장 소속.
 - `backend/scripts/validate_quotations.py`(task#209) — `data/quotations/quotations.json`(구약↔신약 직접 인용 쌍)이 규칙을 지키는지: ① verseID 전수가 정본 절 사전에 실존 ② 측 위반 없음(NT측 verseID는 신약 권 BB≥40, OT측은 구약 권 BB≤39) ③ `rangeLabel`(예: "마 5:3-12") 파싱 결과가 `verseIds` 배열과 자기일치 ④ (`ntVerseIds`, `otVerseIds`) 조합 중복 쌍 0.
+- `backend/scripts/validate_messianic_prophecies.py`(task#246, 이번 세션 신규) — `data/messianic_prophecies/prophecies.json`(메시아 예언↔성취 쌍)이 규칙을 지키는지: ① `otVerseIds`/`ntVerseIds` verseID 전수 실존(정본 절 사전 대조) ② `otRangeLabel`/`ntRangeLabel`을 정규식(`names_ko/books.json` 별칭으로 BB 해석)으로 파싱한 결과가 verseID 배열과 자기일치 ③ 쌍마다 ot·nt 최소 1개·`theme` 존재 ④ `id` 유일 ⑤ 쌍 수 20~30(목표 ~25). 위반 목록 `print` 후 `sys.exit(1)`.
+- `backend/scripts/validate_covenants.py`(task#247, 이번 세션 신규) — `data/covenants/covenants.json`(주요 언약)이 규칙을 지키는지: ① 언약 수 5~6 ② `keyVerseIds` verseID 전수 실존 ③ `startDate` `int()` 파싱 가능. **`assert`로 첫 위반에서 즉시 `AssertionError` 중단**하는 방식(다른 검증기의 "위반 목록 수집 후 `sys.exit(1)`"과 달리 항목 열거 없음, 통과 시 `PASS` 출력)이라 §1 공통 계약의 예외다.
+- `backend/scripts/validate_parables_miracles.py`(task#249, 이번 세션 신규) — `data/jesus_parables_miracles/index.json`(예수의 비유·기적 색인)이 규칙을 지키는지: ① `verseIds` verseID 전수 실존 ② `type`이 `"parable"`|`"miracle"` ③ `placeId`가 있으면 `data/place_coords/places.json`에 실존 ④ `id` 유일 ⑤ 비유 25~35·기적 25~40건. 위반 목록 `print` 후 `sys.exit(1)`.
+- `backend/scripts/validate_topical_verses.py`(task#250, 이번 세션 신규) — `data/topical_verses/topics.json`(주제별 큐레이션 성구)이 규칙을 지키는지: ① 주제 수 10~14 ② 주제당 `verseIds` 최소 3개 ③ verseID 전수 실존 ④ `id` 유일. 위반 목록 `print` 후 `sys.exit(1)`. 이 4개(messianic/covenants/parables_miracles/topical) 모두 `data/bible/verses.json` 정본 절 사전만 읽는 verse-grounding 게이트(`CONVENTIONS.md` §3.2)이며 대응 `data/` 디렉터리와 함께 커밋 `70f5fc6` 시점엔 워킹트리 미추적(`??`) 상태다.
 - 실행: `python3 backend/scripts/validate_<name>.py`. Neo4j를 읽는 검증기(`validate_event_chronology.py`)는 `NEO4J_PASSWORD` 환경변수 필요(`.env`에서 로드), 나머지는 `data/` JSON만 읽어 DB 접속 불필요.
 
 ---
