@@ -8,9 +8,9 @@ import { TourSketchPanel } from './tourSketches'
 // 카메라·경로선은 App/MapView가 idx를 구독해 구동, 이 파일은 상태와 카드 UI만.
 const PURPLE = TYPE_COLOR.Book
 
-// 자동 진행 간격 — note 길이 비례(최소 6초). 수동 이전/다음은 항상 가능.
+// 자동 진행 간격 — note 길이 비례(최소 4초). 수동 이전/다음은 항상 가능.
 function stepDuration(note) {
-  return 6000 + (note ? Math.min(note.length * 35, 6000) : 0)
+  return 4000 + (note ? Math.min(note.length * 35, 4000) : 0)
 }
 
 export function useTourPlayback(stops) {
