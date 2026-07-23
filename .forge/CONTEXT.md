@@ -69,6 +69,8 @@ Event 노드의 발생 시점 속성. **혼재 형식의 문자열**이다 — �
 
 성경인물탐험에 큐레이션하려는 주인공이지만 Theographic 그래프에 Person 노드가 없는 인물. 기존 큐레이션 16인은 실제 Theographic `rec` id를 재사용하지만, 재사용할 노드가 없으면 **마킹된 authored Person 노드를 새로 만든다 (ADR-0008)**. **단, theographic에 검증 가능한 대응 실레코드가 있으면(가족 링크의 성경 사실 일치로 판정) 저작 노드가 아니라 그 실레코드가 정식 신원이다 — 저작 노드는 원본에 아예 없을 때만 만들고 유지한다(ADR-0022, 사울·룻·기드온 등 11명 이관; 다니엘·엘리야만 저작 잔존).** `data/authored_persons/people.json` → `load_authored_persons.py`가 `MERGE (p:Person {theographic_id})` + `authored:true` + `name`/`nameKo`로 멱등 적재. 식별자는 `authored-person-<slug>`(저작 사건 `authored-<slug>`·저작 장소 `authored-place-<name>`와 같은 계열). **적재 순서 제약**: authored Person이 `load_person_events.py`보다 먼저 적재돼야 인물 여정 사건의 `HAS_PARTICIPANT` MATCH가 성립한다. authored **사건의 주변 참여자**(네로·에스더 등 — 카드·여정 없음)는 이 대상이 아니라 여전히 노드 없이 둔다(ADR-0005의 경계). 카드·여정·SidePanel·지도가 일급 Person으로 소비하지만 traits 부여는 별도 enrich 경로다.
 
+**MERGE 로더의 추가·제거 비대칭**: `load_person_events.py`(및 authored 로더 계열)는 노드·간선을 `MERGE`만 한다 — 여정 사건·참여자 **추가**는 `data/*` 파일 편집 → 재적재로 반영되나(멱등), 관계형 필드 **제거**(`participants`에서 한 명 빼기 등)는 재적재로 사라지지 않아 **기존 간선을 Neo4j에서 직접 DELETE**해야 반영된다(이후 재적재 시 JSON에 없어 재생성 안 됨 = 멱등). 새 여정 사건의 완전 반영은 **①파일 편집 ②`load_person_events.py` 적재 ③api 재시작** 3단 세트이며, 적재 스크립트는 api 컨테이너에 없어(app·data만 복사) **호스트 python**(neo4j 127.0.0.1:7687 + `.env` 비밀번호)으로 실행한다. → [[여정-journey]]
+
 ## 화면 단계 (Stage)
 
 앱 최상위 화면 전환 단위. 주요 단계 — **인물 허브(hub)**: 큐레이션 인물 카드 목록, 시작 화면(단, [[인트로-site-intro]]가 켜져 있으면 무해시 진입에서 인트로가 먼저 보인다). **탐험(explore)**: 선택한 인물의 여정 또는 [[테마 투어]]의 지도·타임라인 — 인물·투어 중 **하나가** 정차지를 공급하며 둘은 상호배타다(투어 구동 시 선택 인물 없음). **테마 투어 목록(tours)**: 테마 투어 카드 목록, 허브에서 진입. **성경 책 둘러보기(overview)**: 66권을 구약/신약·장르(율법서·역사서 등 10범주)로 훑는 화면. 사용자에게 노출되는 라벨은 **"성경 책 둘러보기"로 통일**한다 — "성경 개요"는 같은 단계를 가리키던 옛 표기로, 진입 버튼("성경 책 둘러보기")과 어긋나 혼동을 주므로 쓰지 않는다.

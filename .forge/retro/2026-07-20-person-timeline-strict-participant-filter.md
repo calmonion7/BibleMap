@@ -1,4 +1,4 @@
-# 2026-07-20 — 인물 연표 "참여 사건만" 엄격 필터 + 승천 중복 제거 (task#218)
+# 2026-07-20 — 인물 연표 "참여 사건만" 엄격 필터 + 승천 중복 제거 (task#218) [일괄 승급]
 
 ## Plan vs actual
 - What went as planned: 슬라이스 3개 모두 계획대로. `elisha.json` 참여자 제거 + Neo4j 간선 삭제로 승천 중복 해소, `TimelineView.jsx` 멤버 단위 필터로 편승 차단, Playwright(데스크톱+모바일)로 엘리야 11건·"회오리바람 불수레 승천" 종료·금지 6건 미노출·다윗 회귀 정상 확인.
@@ -14,5 +14,5 @@
 - 관찰(후속 후보): `authored-elisha-mantle-jordan`의 `nameKo`가 "엘리야 승천 — 겉옷으로 요단을 가르다"로 남아 **엘리사 연표**에 이 제목으로 표시됨(영문 title·context는 이미 엘리사 중심). 어색하면 fg-quick로 nameKo만 엘리사 중심 정정 검토.
 
 ## Doc updates
-- CONTEXT.md promotion: none (편승·필터는 구현 동작, 도메인 용어 아님)
+- CONTEXT.md promotion: 「저작 인물」 절 — MERGE 로더 비대칭 중 **제거 경로**(관계형 필드 제거는 재적재로 안 사라짐 → Neo4j 직접 DELETE, 이후 멱등) 승급. *데이터 적재 파이프라인 아크 일괄 승급*으로 #213(추가 경로)과 함께 반영. 편승·타임라인 startDate 그룹 필터 교차효과는 구현 동작이라 미승급(「사건 연대」 절 run 그룹핑이 이미 커버).
 - ADR added: none (엄격 필터 결정은 유익하나 "번복 난이도"가 약해 ADR 3요건 미충족 — 회고 로그에 기록)

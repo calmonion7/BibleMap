@@ -1,4 +1,4 @@
-# 2026-07-18 — 마리아 여정에 베들레헴 탄생·애굽 피신·귀환 3사건 추가 (task#213)
+# 2026-07-18 — 마리아 여정에 베들레헴 탄생·애굽 피신·귀환 3사건 추가 (task#213) [일괄 승급]
 
 ## Plan vs actual
 - What went as planned: 4슬라이스 전부 계획대로. mary.json 7사건(sortKey 정렬), event_verses 3엔트리(15 verseID 전부 `bible/verses.json` 실존 사전검증 통과), `load_person_events.py` 멱등 재적재, api 재시작 후 엔드포인트·Playwright 모바일 검증 통과. verified: yes.
@@ -15,5 +15,5 @@
   - **저작→검증 분리 재사용** — 15 verseID를 쓰기 전에 `bible/verses.json` 실존을 스크립트로 사전 검증(탈락 시 abort). 대량 저작뿐 아니라 소량 데이터 추가에도 값싼 안전장치.
 
 ## Doc updates
-- CONTEXT.md promotion: none (새 도메인 용어 없음 — "사건의 근거" 두 층 원칙은 기존 항목)
+- CONTEXT.md promotion: 「저작 인물」 절 — MERGE 로더 추가·제거 비대칭 중 **추가 경로**(새 여정 사건 = 파일 편집→`load_person_events.py` 적재→api 재시작 3단 세트, 스크립트는 컨테이너 밖이라 호스트 python) 승급. *데이터 적재 파이프라인 아크 일괄 승급*으로 #218(제거 경로)과 함께 반영 — 두 회고가 MERGE 로더 계약의 양방향(추가/제거)을 이뤄 승격.
 - ADR added: none (되돌리기 비용 낮음, person_events→그래프 적재는 기존 ADR-0005 범위 안 — 새 트레이드오프 아님)
