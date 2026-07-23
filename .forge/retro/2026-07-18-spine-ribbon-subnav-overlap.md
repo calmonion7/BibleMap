@@ -1,4 +1,4 @@
-# 2026-07-18 — 상단 책갈피 리본이 스테이지 내비 탭을 덮는 겹침 해소
+# 2026-07-18 — 상단 책갈피 리본이 스테이지 내비 탭을 덮는 겹침 해소 (task#215) [일괄 승급]
 
 ## Plan vs actual
 - What went as planned: 계획 4슬라이스 그대로. `RIBBON_OVERHANG` 상수 단일화(S1) → 헤더 아래 bg-1 스페이서(S2) → 사이드패널 오프셋 보정(S3) → 빌드+Playwright 검증(S4). 규모가 작아 Dynamic Workflow 없이 직접 실행(계획이 예상한 소형 경로).
@@ -9,5 +9,5 @@
 - 드레이프 깊이가 `SpineHeader`(리본 높이)와 `App`(여백·패널 오프셋) 두 곳에서 맞아야 해서 `RIBBON_OVERHANG` 상수를 export해 단일 출처로 뒀다 — 매직넘버 13이 흩어지면 어긋나는 종류의 결합.
 
 ## Doc updates
-- CONTEXT.md promotion: none (신규 도메인 용어 없음 — `RIBBON_OVERHANG`은 구현 상수)
+- CONTEXT.md promotion: 「화면 단계」 절 — **전역 헤더 밑 드레이프는 하위 내비 유무 두 스테이지를 함께 검증**(ADR-0026 드레이프 관용구는 허브 기준 설계) + RIBBON_OVERHANG 단일 출처 노트 승급. *프론트 화면단계·레이아웃 아크 일괄 승급*으로 #214와 함께 반영.
 - ADR added: none (되돌리기 쉬운 레이아웃 조정 — ADR 3조건 미충족. ADR-0026 관용구는 유지)
