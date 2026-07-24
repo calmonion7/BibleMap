@@ -1,5 +1,6 @@
 // 엘리야와 엘리사 — 18개 정차지 장면 (task#230, #227 표준)
-import { sw, d, Label } from './lib'
+import { sw, d } from './lib'
+import { Label } from './SceneLabel'
 
 // 가뭄 선언 (왕상 17:1)
 function SamariaDroughtScene({ reduce }) {

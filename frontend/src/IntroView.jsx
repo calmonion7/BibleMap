@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { UserRound, Route, Clock, Users, HeartHandshake, Network, BookOpen, BarChart3, ScrollText } from 'lucide-react'
 import PersonSymbol from './personSymbols'
-import TourSketch from './tourSketches'
+// 투어 스케치(9모듈 ~9.7천 줄)는 지연 로드 — 딥링크 진입(인트로 스킵) 초기 번들에서 제외(task#254).
+const TourSketch = lazy(() => import('./tourSketches'))
 
 // 사이트 인트로(Site Intro, task#244) — 대문(인물 허브) 앞의 선택적 관문을 시네마틱 오프닝 "필름"으로 재구성.
 // 실제 영상 파일이 아니라 무의존 CSS/SVG 오토플레이 연출(ADR-0024: 토큰 참조·transform/opacity·reduced-motion 붕괴).
@@ -184,7 +185,7 @@ function MontageBeat({ era, isMobile }) {
         border: '1px solid color-mix(in srgb, var(--paper-accent) 40%, transparent)', borderRadius: 10,
         overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center',
       }}>
-        <TourSketch eventId={ERA_SCENES[era]} width="100%" reduce />
+        <Suspense fallback={null}><TourSketch eventId={ERA_SCENES[era]} width="100%" reduce /></Suspense>
       </div>
     </div>
   )

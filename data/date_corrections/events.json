@@ -67,9 +67,9 @@
     "id": "recMAoYK2dHmjhRh9",
     "title": "Lifetime of Isaac",
     "oldStartDate": "-1895",
-    "newStartDate": "-2065",
-    "newSortKey": -2064.98982981,
-    "rationale": "족장 시대 이벤트 — theographic 원본(Ussher형 연대계)과 저작 레이어(보수 연대계) 간 정본 오프셋 -170년 적용(아브라함 출생 BC 2166 앵커 기준 역산, ADR-0014). Person 'Abraham/Isaac/Jacob/Joseph'의 authored 참여 이벤트가 이 출생/사망 기준보다 앞서는 역전(personBioReversal)을 해소."
+    "newStartDate": "-2066",
+    "newSortKey": -2065.98982981,
+    "rationale": "족장 시대 이벤트 — theographic 원본(Ussher형, -1895)을 보수계로 이관(ADR-0014). 저작 출생 사건 'Isaac's birth in Beersheba region'(-2066, 아브라함 100세 시 이삭 출생=2066 BC)에 정확 정렬 — 기존 -170 기계 오프셋이 원본 -1895 기준이라 -2065로 1년 어긋났던 것을 -2066으로 교정(참여 역전 personBioReversal 해소)."
   },
   {
     "id": "recSDGDMwUBAMUgur",
@@ -2022,5 +2022,29 @@
     "newStartDate": "29",
     "newSortKey": 29.40015025,
     "rationale": "복음서 원본 내 책순 인코딩 교정(task#237 판정표 비고 이행): 막 7:31 데가볼리 무리 치유(귀 먹고 어눌한 자)는 가나안 여인(마 15:21) 후·사천 명 먹이심(막 8:1=마 15:32) 전. 원본 책순 키(41권)가 마태 사건들 뒤에 놓던 조화 이탈 해소."
+  },
+  {
+    "id": "recePREjv2zZ8Esoo",
+    "title": "Birth of Terah",
+    "oldStartDate": "-2125",
+    "newStartDate": "-2295",
+    "newSortKey": -2294.98988976,
+    "rationale": "족장 시대 이벤트 — theographic 원본(Ussher형)과 저작 레이어(보수계) 오프셋 -170년 적용(ADR-0014). 데라 출생이 아들 아브라함 출생 이벤트(-2166, 보수계)보다 뒤여서 생긴 참여 역전(Terah가 'Birth of Abraham'에 참여) 해소. 행 7:4·창 11:32+12:4 근거 데라는 아브라함 출생 시 ~130세(=born 2295 BC)."
+  },
+  {
+    "id": "recB5Rg7JlgsMcPyq",
+    "title": "Lifetime of Terah",
+    "oldStartDate": "-2125",
+    "newStartDate": "-2295",
+    "newSortKey": -2294.98988974,
+    "rationale": "위 'Birth of Terah'와 동일한 -170년 족장 오프셋(ADR-0014) — 데라 생애 앵커를 보수계로 이동."
+  },
+  {
+    "id": "recYgh6yAIxRItDC9",
+    "title": "Death of Terah",
+    "oldStartDate": "-1920",
+    "newStartDate": "-2090",
+    "newSortKey": -2089.98988968,
+    "rationale": "위 데라 출생과 동일한 -170년 오프셋(ADR-0014). 데라 205세 수명(창 11:32)과 정합: born -2295 + 205 = died -2090."
   }
 ]

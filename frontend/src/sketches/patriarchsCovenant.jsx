@@ -1,5 +1,6 @@
 // 언약의 4세대 — 19개 정차지 장면 (task#228, #227 표준)
-import { sw, d, Label } from './lib'
+import { sw, d } from './lib'
+import { Label } from './SceneLabel'
 
 // 우르의 부르심 (창 12:1-3)
 function CallUrScene({ reduce }) {

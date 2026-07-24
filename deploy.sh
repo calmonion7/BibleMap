@@ -31,6 +31,14 @@ if [ -f "$WORKTREE/.env" ]; then
   set -a; . "$WORKTREE/.env"; set +a
 fi
 
+log "[검증] 배포 전 검증 게이트 (데이터·ERA_BANDS 정합·커버리지·ESLint·연대, task#255)..."
+bash "$WORKTREE/scripts/check.sh" 2>&1 | tee -a "$LOG"
+if [ "${PIPESTATUS[0]}" -ne 0 ]; then
+  log "      검증 실패 — 배포 중단 (위 ✗ 항목 수정 후 재배포)."
+  exit 1
+fi
+log "      검증 통과."
+
 log "[1/3] 프론트엔드 빌드..."
 cd "$WORKTREE/frontend"
 npm install --silent

@@ -11,14 +11,4 @@ export const sw = (n, o) => (o != null
 // 단계 딜레이(ms) — g 래퍼의 --sym-delay로 자식 stroke에 상속. reduce 모드에선 0.
 export const d = (ms, reduce) => ({ '--sym-delay': reduce ? '0ms' : `${ms}ms` })
 
-// 장면 내 이름표 — 대상이 그려진 뒤 페이드인, 양피지색 헤일로로 그림 위에서 판독.
-export function Label({ x, y, at = 0, reduce, anchor = 'middle', size = 4.6, children }) {
-  return (
-    <text x={x} y={y} fontSize={size} fontFamily="var(--serif)" fontWeight="600"
-      fill="var(--paper-accent)" stroke="var(--paper)" strokeWidth="2.4" paintOrder="stroke"
-      strokeLinejoin="round" textAnchor={anchor} opacity={reduce ? 1 : 0}>
-      {children}
-      {!reduce && <animate attributeName="opacity" to="1" begin={`${at}s`} dur="0.4s" fill="freeze" />}
-    </text>
-  )
-}
+// 장면 이름표 컴포넌트(Label)는 SceneLabel.jsx로 분리 — 이 파일은 순수 헬퍼만(react-refresh 규칙, task#253).

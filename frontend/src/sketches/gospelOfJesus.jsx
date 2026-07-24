@@ -1,5 +1,6 @@
 // 예수의 생애 — 23개 정차지 장면 (task#231, #227 표준). 세 인물(요한·예수·마리아) 교차 서사.
-import { sw, d, Label } from './lib'
+import { sw, d } from './lib'
+import { Label } from './SceneLabel'
 
 // 수태고지 (눅 1:26-38)
 function AnnunciationScene({ reduce }) {

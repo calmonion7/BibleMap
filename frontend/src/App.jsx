@@ -19,7 +19,8 @@ import ChapterReader from './ChapterReader'
 import RelianceView from './RelianceView'
 import TourList from './TourList'
 import TourIntro from './TourIntro'
-import TourPlaybackCard, { useTourPlayback } from './TourPlayback'
+import TourPlaybackCard from './TourPlayback'
+import { useTourPlayback } from './useTourPlayback'
 import { journeyStopGroups } from './mapGeo'
 import JourneyList from './JourneyList'
 import { MOBILE_BREAKPOINT, SHEET_VH, JOURNEY_SHEET_VH } from './constants'
@@ -93,20 +94,28 @@ function App() {
   }, [explorePersonId])
   const [activeStopIdx, setActiveStopIdx] = useState(null)
 
-  // 투어 자동재생(task#223) — 사건 단위 시퀀서. 카메라는 아래 동기 effect가 activeStopIdx로 구동.
+  // 투어 자동재생(task#223) — 사건 단위 시퀀서. 카메라는 activeStopIdx를 구독한 effect가 구동.
   const playback = useTourPlayback(journeyStops)
-  // 재생 카메라 동기 — 현재 사건의 장소 그룹으로 이동(기존 easeTo 경로 재사용). 무좌표 사건은 카메라 유지·카드만 교체.
-  useEffect(() => {
-    if (playback.idx == null || !journeyStops) return
-    const s = journeyStops[playback.idx]
-    if (!s || s.lng == null || s.lat == null) return
-    const gi = journeyStopGroups(journeyStops).findIndex(g => g.stops.some(x => x.eventId === s.eventId))
-    if (gi >= 0) setActiveStopIdx(gi)
+  // 재생 중 활성 정차지 그룹 인덱스 — playback.idx를 그룹 인덱스로 파생(effect+setState 대신, task#253).
+  // 무좌표 사건은 직전 좌표 사건 그룹을 유지(카메라 유지·카드만 교체 규약).
+  const playbackStopIdx = useMemo(() => {
+    if (playback.idx == null || !journeyStops) return null
+    const groups = journeyStopGroups(journeyStops)
+    for (let i = playback.idx; i >= 0; i--) {
+      const s = journeyStops[i]
+      if (s && s.lng != null && s.lat != null) {
+        const gi = groups.findIndex(g => g.stops.some(x => x.eventId === s.eventId))
+        if (gi >= 0) return gi
+      }
+    }
+    return null
   }, [playback.idx, journeyStops])
+  // 재생 중이면 파생 인덱스, 아니면 사용자가 클릭한 activeStopIdx — 지도·리스트 하이라이트/카메라 구동원.
+  const effectiveStopIdx = playback.active && playbackStopIdx != null ? playbackStopIdx : activeStopIdx
   // 투어 이탈·탭 전환 시 재생 종료(경로선 전체 복원은 MapView가 playbackIdx null로 처리)
   useEffect(() => {
     if (playback.active && (exploreTourId == null || exploreView !== 'map')) playback.exit()
-  }, [exploreTourId, exploreView, playback.active])
+  }, [exploreTourId, exploreView, playback])
 
   useEffect(() => {
     const ctrl = new AbortController()
@@ -846,7 +855,7 @@ function App() {
                 <div style={{ flex: 1, overflow: 'hidden' }}>
                   <JourneyList
                     stops={journeyStops}
-                    activeStopIdx={activeStopIdx}
+                    activeStopIdx={effectiveStopIdx}
                     onStopSelect={setActiveStopIdx}
                     verseLang={verseLang}
                     setVerseLang={setVerseLang}
@@ -862,7 +871,7 @@ function App() {
                 <div style={{ width: 290, flexShrink: 0, overflow: 'hidden' }}>
                   <JourneyList
                     stops={journeyStops}
-                    activeStopIdx={activeStopIdx}
+                    activeStopIdx={effectiveStopIdx}
                     onStopSelect={setActiveStopIdx}
                     verseLang={verseLang}
                     setVerseLang={setVerseLang}
@@ -879,7 +888,7 @@ function App() {
                   personId={explorePersonId}
                   isVisible={exploreView === 'map' && !journeyMapless}
                   journeyStops={journeyStops}
-                  activeStopIdx={activeStopIdx}
+                  activeStopIdx={effectiveStopIdx}
                   onStopSelect={setActiveStopIdx}
                   playbackIdx={playback.idx}
                 />
@@ -918,7 +927,7 @@ function App() {
                   }}>
                     <JourneyList
                       stops={journeyStops}
-                      activeStopIdx={activeStopIdx}
+                      activeStopIdx={effectiveStopIdx}
                       onStopSelect={setActiveStopIdx}
                       verseLang={verseLang}
                       setVerseLang={setVerseLang}

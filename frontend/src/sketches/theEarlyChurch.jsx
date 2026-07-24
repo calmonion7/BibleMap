@@ -1,5 +1,6 @@
 // 초대교회와 바울 — 19개 정차지 장면 (task#231, #227 표준)
-import { sw, d, Label } from './lib'
+import { sw, d } from './lib'
+import { Label } from './SceneLabel'
 
 // 오순절 (행 2:14-41)
 function PentecostScene({ reduce }) {

@@ -1,5 +1,6 @@
 // 포로와 귀환 — 21개 정차지 장면 (task#230, #227 표준)
-import { sw, d, Label } from './lib'
+import { sw, d } from './lib'
+import { Label } from './SceneLabel'
 
 // 왕의 음식 거절 (단 1)
 function BabylonDietScene({ reduce }) {

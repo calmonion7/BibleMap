@@ -14,7 +14,7 @@ import church from './sketches/theEarlyChurch'
 
 const SCENES = { ...david, ...creation, ...patriarchs, ...exodus, ...judges, ...elijah, ...exile, ...gospel, ...church }
 
-export const hasSketch = (eventId) => Boolean(eventId && SCENES[eventId])
+const hasSketch = (eventId) => Boolean(eventId && SCENES[eventId])
 
 function TourSketch({ eventId, width = 280, reduce = false }) {
   const entry = SCENES[eventId]

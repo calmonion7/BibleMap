@@ -1,5 +1,6 @@
 // 출애굽에서 가나안까지 — 18개 정차지 장면 (task#229, #227 표준)
-import { sw, d, Label } from './lib'
+import { sw, d } from './lib'
+import { Label } from './SceneLabel'
 
 // 아기 모세 (출 1:22-2:10)
 function BirthEgyptScene({ reduce }) {

@@ -11,6 +11,27 @@ import { PM_TYPE_COLOR } from './theme'
 // 비유·기적 필터 칩(task#249) — 지도 토글·연표 섹션(TimelineView)이 동일 순서·라벨 공유.
 const PM_FILTERS = [['all', '전체'], ['parable', '비유'], ['miracle', '기적']]
 
+// fitBounds 패딩 합이 컨테이너 실효 크기를 넘으면 maplibre가 bounds를 못 맞춰 줌을 최소로
+// 클램프한다(모바일에서 지도가 성지 대신 세계축소 뷰로 튀던 선재 버그, task#251). 각 축 패딩 합을
+// 컨테이너 크기의 60% 이내로 제한해 최소 40% 가시영역을 남긴다. 데스크톱(큰 컨테이너)에선 무변화.
+function clampPadding(map, padding) {
+  const c = map.getContainer()
+  const w = c.clientWidth, h = c.clientHeight
+  const p = typeof padding === 'number'
+    ? { top: padding, bottom: padding, left: padding, right: padding }
+    : { top: 0, bottom: 0, left: 0, right: 0, ...padding }
+  const capAxis = (a, b, size) => {
+    const max = size * 0.6
+    const sum = a + b
+    if (!size || sum <= max || sum === 0) return [a, b]
+    const k = max / sum
+    return [Math.round(a * k), Math.round(b * k)]
+  }
+  const [top, bottom] = capAxis(p.top, p.bottom, h)
+  const [left, right] = capAxis(p.left, p.right, w)
+  return { top, bottom, left, right }
+}
+
 export default function MapView({ onSelectNode, selectedNode, personId, isVisible, journeyStops, activeStopIdx, onStopSelect, playbackIdx = null }) {
   const mapContainer = useRef(null)
   const mapRef = useRef(null)
@@ -62,6 +83,9 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
     map.on('load', () => {
       setupMapSources(map)
       registerEventHandlers(map, { ...ring, onSelectNode, popupRef, expandedPlaceRef, onJourneyStopClick: onStopSelect, pmPopupRef })
+      // 컨테이너 실효 크기로 캔버스 동기화 — 모바일 최초 진입 시 캔버스가 미확정 크기로 생성돼
+      // fitBounds가 세계축소로 클램프되던 문제 방지(task#251). setMapLoaded 전에 호출해 프레이밍 effect보다 선행.
+      map.resize()
       mapRef.current = map
       setMapLoaded(true)
     })
@@ -147,14 +171,14 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
           const padding = isMobile
             ? { top: 100, bottom: sheet + 120, left: 90, right: 120 }
             : 140
-          map.fitBounds(bounds, { padding, maxZoom: 7, duration: 600 })
+          map.fitBounds(bounds, { padding: clampPadding(map, padding), maxZoom: 7, duration: 600 })
         } else if (!primary) {
           // 인물/집단 — 전체 장소를 한눈에. 모바일은 하단 시트/상단 네비만큼 패딩.
           const padding = isMobile
             ? { top: 70, bottom: sheet + 20, left: 40, right: 40 }
             : 80
           // outlier(원거리 장소)는 프레이밍에서 제외 — 근접 무리가 뭉치지 않게(마커는 그대로 렌더).
-          map.fitBounds(coreBounds(places) || bounds, { padding, maxZoom: 10, duration: 600 })
+          map.fitBounds(coreBounds(places) || bounds, { padding: clampPadding(map, padding), maxZoom: 10, duration: 600 })
         }
         // primary가 이미 펼쳐져 있으면(마커 클릭으로 현재 줌에서 펼친 경우) 카메라를 건드리지 않는다.
       })
@@ -191,7 +215,7 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
         const isMobile = window.innerWidth <= MOBILE_BREAKPOINT
         const sheet = Math.round(window.innerHeight * (JOURNEY_SHEET_VH / 100))
         const padding = isMobile ? { top: 70, bottom: sheet + 20, left: 40, right: 40 } : 80
-        map.fitBounds(bounds, { padding, maxZoom: 10, duration: 600 })
+        map.fitBounds(bounds, { padding: clampPadding(map, padding), maxZoom: 10, duration: 600 })
       }
     }
   }, [journeyStops, mapLoaded, personId])
@@ -256,7 +280,11 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
 
   useEffect(() => {
     if (isVisible && mapRef.current) mapRef.current.resize()
-  }, [isVisible])
+  }, [isVisible, mapLoaded])
+
+  // 위치 없는 비유·기적 건수(task#251) — placeId·직접 좌표 둘 다 없어 지도에 못 얹는 항목.
+  // 연표(TimelineView)는 전건을 노출하므로 지도↔연표 커버리지 간극을 이 수치로 명시화한다.
+  const pmNoLocCount = pmItems.filter((it) => it.lng == null || it.lat == null).length
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
@@ -301,6 +329,16 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
                   fontWeight: pmFilter === key ? 700 : 500,
                 }}>{label}</button>
               ))}
+            </div>
+          )}
+          {/* 지도↔연표 커버리지 간극 명시화(task#251) — 장소 없는 "가르침" 비유는 지도에 못 얹으므로 연표로 안내. */}
+          {pmVisible && pmNoLocCount > 0 && (
+            <div style={{
+              maxWidth: 220, fontSize: 11, lineHeight: 1.4, color: 'var(--ink-dim)',
+              background: 'var(--bg-1)', border: '1px solid var(--line)', borderRadius: 8,
+              padding: '6px 10px', boxShadow: 'var(--shadow-1)',
+            }}>
+              위치 없는 비유 {pmNoLocCount}건은 연표에서 확인
             </div>
           )}
         </div>

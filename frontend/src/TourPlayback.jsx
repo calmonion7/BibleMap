@@ -1,42 +1,11 @@
-import { useEffect, useState } from 'react'
+import { lazy, Suspense } from 'react'
 import { Play, Pause, SkipBack, SkipForward, X } from 'lucide-react'
 import { TYPE_COLOR } from './theme'
-import { TourSketchPanel } from './tourSketches'
+// 투어 스케치는 지연 로드 — 재생 시작 시점에만 로드(task#254).
+const TourSketchPanel = lazy(() => import('./tourSketches').then(m => ({ default: m.TourSketchPanel })))
 
-// 투어 자동재생(playback) — 시퀀서 훅 + 해설 카드 (task#223, ADR-0028).
-// 사건 단위로 진행(좌표 없는 정차지도 건너뛰지 않음 — 카메라 유지·카드만 교체).
-// 카메라·경로선은 App/MapView가 idx를 구독해 구동, 이 파일은 상태와 카드 UI만.
+// 투어 자동재생 해설 카드 (task#223, ADR-0028). 시퀀서 훅은 useTourPlayback.js로 분리(task#253).
 const PURPLE = TYPE_COLOR.Book
-
-// 자동 진행 간격 — note 길이 비례(최소 4초). 수동 이전/다음은 항상 가능.
-function stepDuration(note) {
-  return 4000 + (note ? Math.min(note.length * 35, 4000) : 0)
-}
-
-export function useTourPlayback(stops) {
-  const [idx, setIdx] = useState(null) // 사건 인덱스(journeyStops 기준), null = 재생 모드 아님
-  const [playing, setPlaying] = useState(false)
-  const total = stops ? stops.length : 0
-
-  // 자동 진행 타이머 — 마지막 정차지에서 자동 정지(재생 모드는 유지, 종료는 ✕)
-  useEffect(() => {
-    if (!playing || idx == null || total === 0) return
-    if (idx >= total - 1) { setPlaying(false); return }
-    const t = setTimeout(() => setIdx(i => i + 1), stepDuration(stops[idx]?.note))
-    return () => clearTimeout(t)
-  }, [playing, idx, stops, total])
-
-  return {
-    idx,
-    playing,
-    active: idx != null,
-    start: () => { setIdx(0); setPlaying(true) },
-    exit: () => { setIdx(null); setPlaying(false) },
-    toggle: () => setPlaying(p => !p),
-    next: () => setIdx(i => (i == null ? 0 : Math.min(i + 1, total - 1))),
-    prev: () => setIdx(i => (i == null ? 0 : Math.max(i - 1, 0))),
-  }
-}
 
 const ctrlBtnStyle = {
   display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -61,7 +30,7 @@ export default function TourPlaybackCard({ stops, idx, playing, onToggle, onPrev
       {/* 본문 — 사건 전환마다 key 리마운트로 stage-in 페이드(ADR-0024 토큰, reduce 자동 존중).
           장면 스케치는 카드 상단 삽화로 통합(그림·설명 한 장, task#226 5차) — key 리마운트로 draw 재생. */}
       <div key={s.eventId ?? idx} className="stage-in">
-      <TourSketchPanel eventId={s.eventId} />
+      <Suspense fallback={null}><TourSketchPanel eventId={s.eventId} /></Suspense>
       <div style={{ padding: isMobile ? '12px 16px 4px' : '14px 18px 6px' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
           <span style={{ fontSize: 11, fontWeight: 700, color: PURPLE, fontVariantNumeric: 'tabular-nums' }}>

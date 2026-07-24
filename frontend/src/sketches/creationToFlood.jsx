@@ -1,5 +1,6 @@
 // 창조에서 홍수까지 — 12개 정차지 장면 (task#228, #227 표준: 얇은 선 위계·이름표·상황설명·무드·SMIL 안무)
-import { sw, d, Label } from './lib'
+import { sw, d } from './lib'
+import { Label } from './SceneLabel'
 
 // 에덴동산에 아담을 두심 (창 2:8,15)
 function AdamEdenScene({ reduce }) {

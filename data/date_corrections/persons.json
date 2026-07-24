@@ -6,5 +6,29 @@
     "oldValue": "-2692",
     "newValue": "-2962",
     "rationale": "전치 오타 교정 — 셋의 사망 연령은 창 5:8 '912세'와 정합해야 하는데(출생 -3874, 912세 사망 시 -3874-912=-4786이 아니라, birthYear가 이미 나이 계산 기준이 아닌 절대연도이므로 사망은 출생+912=-3874+912=-2962). 원본 '-2692'는 '-2962'의 자릿수 전치(6↔9)로 확정."
+  },
+  {
+    "id": "recwcML6FMulTblKH",
+    "name": "Samson",
+    "field": "deathYear",
+    "oldValue": "-1101",
+    "newValue": "-1075",
+    "rationale": "사망<출생 역전 교정 — 원본 deathYear -1101이 birthYear -1090은 물론 저작 사망 사건 'Samson's death in the temple at Gaza'(-1075)보다도 앞섰다. 성경이 삼손 사망 연령을 명시하지 않으므로 deathYear를 저작 사망 사건 연도(-1075, 삼손 서사 정본 앵커)에 정렬해 birthYear(-1090) 뒤가 되게 함. ADR-0014."
+  },
+  {
+    "id": "rec83PZfB7PGjHMh0",
+    "name": "Ahaziah",
+    "field": "birthYear",
+    "oldValue": "-822",
+    "newValue": "-866",
+    "rationale": "사망<출생 역전 교정 (유다 왕 아하시야, 요람·아달랴의 아들 — 이스라엘 왕 아하시야와 별도 노드). 원본 birthYear -822가 deathYear -844보다 뒤였다. 왕하 8:26 '왕이 될 때 22세', 1년 통치 후 예후 정변으로 죽음 → 사망(-844) 기준 22세 역산해 birthYear -866. ADR-0014."
+  },
+  {
+    "id": "recsyU2HqpyE9PeTo",
+    "name": "Jehoram",
+    "field": "birthYear",
+    "oldValue": "-802",
+    "newValue": "-884",
+    "rationale": "사망<출생 역전 교정 (유다 왕 요람, 여호사밧의 아들 — 이스라엘 왕 요람과 별도 노드). 원본 birthYear -802가 deathYear -844보다 뒤였다. 왕하 8:17·대하 21:20 '32세 즉위, 8년 통치, 40세에 죽음' → 사망(-844) 기준 40세 역산해 birthYear -884. ADR-0014."
   }
 ]

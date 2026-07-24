@@ -1,5 +1,6 @@
 // 다윗과 통일왕국 — 18개 정차지 장면 (task#226·227 저작 확정본)
-import { sw, d, Label } from './lib'
+import { sw, d } from './lib'
+import { Label } from './SceneLabel'
 
 // 골리앗 (삼상 17:49-50) — 물매 2회전 → 투석 → 휘청·쓰러짐 → 지면 진동 + 흙먼지
 function GoliathScene({ reduce }) {

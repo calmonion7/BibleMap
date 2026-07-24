@@ -1,5 +1,6 @@
 // 사사들의 시대 — 17개 정차지 장면 (task#229, #227 표준)
-import { sw, d, Label } from './lib'
+import { sw, d } from './lib'
+import { Label } from './SceneLabel'
 
 // 다볼산 집결 (삿 4:12-14)
 function TaborMusterScene({ reduce }) {
