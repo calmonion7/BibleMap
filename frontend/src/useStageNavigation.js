@@ -50,6 +50,8 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   const [curatedIds, setCuratedIds] = useState(null)
   // id → slug 렌더용 state 맵(인장 등 표시용 — ref 맵은 렌더 중 접근 금지라 별도 보관)
   const [curatedSlugById, setCuratedSlugById] = useState(null)
+  // id → era 맵(비유·기적 신약 게이트용, task#256) — era 원천은 백엔드 _ERA(/persons/curated 응답)
+  const [curatedEraById, setCuratedEraById] = useState(null)
   useEffect(() => {
     let timer, cancelled = false
     const load = attempt => {
@@ -59,6 +61,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
           curatedIdToSlug.current = Object.fromEntries(list.map(p => [p.id, p.slug]))
           curatedSlugToId.current = Object.fromEntries(list.map(p => [p.slug, p.id]))
           setCuratedSlugById(curatedIdToSlug.current)
+          setCuratedEraById(Object.fromEntries(list.map(p => [p.id, p.era])))
           setCuratedIds(new Set(list.map(p => p.id)))
         })
         .catch(() => {
@@ -349,6 +352,8 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, familyId, wordsBookId, readerBookId, readerChapter, curatedIds, keyPeopleCards, sheetOpen,
     // 탐험 인물 slug — 인장 렌더 등 표시용(state 맵에서 파생 — 렌더 중 ref 접근 금지)
     explorePersonSlug: explorePersonId ? (curatedSlugById?.[explorePersonId] ?? null) : null,
+    // 탐험 인물 era — 비유·기적 신약 게이트용(task#256)
+    explorePersonEra: explorePersonId ? (curatedEraById?.[explorePersonId] ?? null) : null,
     setExploreView,
     selectPerson: handleSelectPerson,
     explorePerson: handleExplorePerson,

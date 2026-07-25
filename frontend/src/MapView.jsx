@@ -32,7 +32,7 @@ function clampPadding(map, padding) {
   return { top, bottom, left, right }
 }
 
-export default function MapView({ onSelectNode, selectedNode, personId, isVisible, journeyStops, activeStopIdx, onStopSelect, playbackIdx = null }) {
+export default function MapView({ onSelectNode, selectedNode, personId, pmEnabled = false, isVisible, journeyStops, activeStopIdx, onStopSelect, playbackIdx = null }) {
   const mapContainer = useRef(null)
   const mapRef = useRef(null)
   const popupRef = useRef(null)
@@ -274,9 +274,10 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
     if (!mapLoaded) return
     const map = mapRef.current
     if (!map) return
-    map.setLayoutProperty('pm-circle', 'visibility', pmVisible ? 'visible' : 'none')
+    // pmEnabled(신약 era 게이트, task#256) 포함 — 토글 켠 채 비신약 인물로 전환해도 레이어가 잔류하지 않는다.
+    map.setLayoutProperty('pm-circle', 'visibility', pmEnabled && pmVisible ? 'visible' : 'none')
     map.setFilter('pm-circle', pmFilter === 'all' ? null : ['==', ['get', 'type'], pmFilter])
-  }, [pmVisible, pmFilter, mapLoaded])
+  }, [pmEnabled, pmVisible, pmFilter, mapLoaded])
 
   useEffect(() => {
     if (isVisible && mapRef.current) mapRef.current.resize()
@@ -309,8 +310,8 @@ export default function MapView({ onSelectNode, selectedNode, personId, isVisibl
           이 항목은 지도에 표시할 위치 정보가 없습니다 — 그래프·타임라인에서 살펴보세요
         </div>
       )}
-      {/* 비유·기적 색인 토글(task#249) — 인물/투어 탐험과 독립적인 별도 레이어. 켜면 종류 필터 칩 노출. */}
-      {pmItems.length > 0 && (
+      {/* 비유·기적 색인 토글(task#249) — 신약 era 컨텍스트에서만 노출(task#256). 켜면 종류 필터 칩 노출. */}
+      {pmEnabled && pmItems.length > 0 && (
         // 우측 상단은 selectedNode 시트(SidePanel, zIndex:10)가 데스크톱에서 덮으므로 좌측 상단에 배치.
         <div style={{ position: 'absolute', top: 12, left: 12, zIndex: 6, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 6 }}>
           <button className="pressable" onClick={() => setPmVisible(v => !v)} style={{

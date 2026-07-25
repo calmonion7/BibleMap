@@ -59,7 +59,7 @@ function App() {
 
   // 화면 단계(Stage)·URL·브라우저 히스토리 상태 머신 — 노드 선택 원시값을 주입(useStageNavigation).
   const {
-    activeStage, exploreView, explorePersonId, explorePersonName, explorePersonSlug, exploreTourId, bookId, familyId, wordsBookId, readerBookId, readerChapter, curatedIds, keyPeopleCards, sheetOpen,
+    activeStage, exploreView, explorePersonId, explorePersonName, explorePersonSlug, explorePersonEra, exploreTourId, bookId, familyId, wordsBookId, readerBookId, readerChapter, curatedIds, keyPeopleCards, sheetOpen,
     setExploreView, selectPerson, explorePerson, backToHub, openIntro, openOverview, overviewBack,
     openTours, selectTour, toursBack, openBook, bookBack, openFamily, recenterFamily, familyBack,
     openWords, selectWordsBook, wordsBack, openReader, selectChapter, readerBack, openStats, statsBack, openTopics, topicsBack, onNodeLoaded, getPersonSlug,
@@ -886,6 +886,7 @@ function App() {
                   onSelectNode={selectNode}
                   selectedNode={selectedNode}
                   personId={explorePersonId}
+                  pmEnabled={(explorePersonId ? explorePersonEra : exploreTourMeta?.era) === '신약'}
                   isVisible={exploreView === 'map' && !journeyMapless}
                   journeyStops={journeyStops}
                   activeStopIdx={effectiveStopIdx}
