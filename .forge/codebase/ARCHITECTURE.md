@@ -1,171 +1,243 @@
 ---
-last_mapped_commit: 70f5fc64daa7b3c71f2773a4357ad68bba9ae7a5
-mapped: 2026-07-24
+last_mapped_commit: 43f987cb37c2341c3cfeb54e4cf4dc33b4549c64
+mapped: 2026-08-01
 ---
 
 # ARCHITECTURE
 
 ## 전체 패턴
 
-세 계층 단방향 읽기 파이프라인이다.
+세 계층 단방향 읽기 파이프라인이다. 쓰기 경로는 앱에 없고, 그래프를 채우는 일은 전부 빌드타임 스크립트가 한다.
 
 ```
-Neo4j 그래프(진리의 원천)  ──►  FastAPI 읽기 전용 API  ──►  React SPA(단일 페이지, 해시 라우팅)
-        ▲                              ▲
-   빌드타임 로더/주입 스크립트      런타임 오버레이(data/*.json, lru_cache)
-   (backend/scripts/*)              (backend/app/overlays.py)
+저작 JSON(data/) ─┬─► 로더/주입 스크립트(backend/scripts/load_*·inject_*) ─► Neo4j 그래프
+                  │                                                              │
+                  └─► 런타임 오버레이(backend/app/overlays.py, lru_cache) ───┐    │
+                                                                            ▼    ▼
+                                                        FastAPI 읽기 API(backend/app/)
+                                                                            │
+                                                                            ▼
+                                       React SPA(frontend/src/) — 스테이지 머신 + 해시 딥링크
 ```
 
-- 그래프는 **빌드타임에** 로더 스크립트(`backend/scripts/load_*.py`·`inject_*.py`)로 채워지고, 앱은 런타임에 이를 **읽기만** 한다. API 라우트는 전부 `@router.get` — 쓰기 엔드포인트가 없다(`backend/app/main.py:49` `allow_methods=["GET"]`).
-- 그래프 노드로 승격하지 않는 콘텐츠(사건 근거 구절, 언약, 메시아 예언, 비유·기적, 주제 성구, 절 본문 등)는 `data/` 아래 JSON **오버레이**로 두고 `backend/app/overlays.py`가 `functools.lru_cache`로 1회 로드해 그래프 쿼리 결과와 합성한다.
+- API 라우트는 전부 `@router.get` 이고 CORS도 GET만 허용한다(`backend/app/main.py`의 `allow_methods=["GET"]`). 앱은 그래프를 읽기만 한다.
+- 그래프 노드로 승격하지 않는 콘텐츠(사건 근거 구절·언약·메시아 예언·비유/기적·주제 성구·절 본문 등)는 `data/` 아래 JSON **오버레이**로 두고 `backend/app/overlays.py`가 `functools.lru_cache`로 1회 로드해 그래프 쿼리 결과와 합성한다.
 - 프론트는 라우팅 라이브러리 없이 **스테이지(Stage) 상태 머신 + 해시 딥링크**로 화면을 전환한다(`frontend/src/useStageNavigation.js`·`frontend/src/urlState.js`).
 
 ## 계층 상세
 
-### 1. Neo4j 그래프 — 진리의 원천
+### 1. Neo4j 그래프
 
-- 접속은 `backend/app/db.py`의 `get_driver()` 싱글턴(`GraphDatabase.driver`, `NEO4J_URI`/`NEO4J_USER`/`NEO4J_PASSWORD` 환경변수). 비밀번호 미설정 시 기동하지 않고 `RuntimeError`.
-- 노드 라벨: `Person`, `Place`, `Event`, `PeopleGroup`, `Book`. 각 노드의 안정 식별자는 `theographic_id` 프로퍼티.
-- 앱 기동 시(`backend/app/main.py:26` `lifespan`) 각 라벨에 `theographic_id` 인덱스를 `CREATE INDEX ... IF NOT EXISTS`로 보장한다(실패해도 계속 진행).
-- 그래프 적재는 두 소스가 합쳐진다:
-  - **theographic 원본**: `backend/scripts/load_theographic.py`가 GitHub(`robertrouse/theographic-bible-metadata`)의 people/places/events/peopleGroups JSON을 내려받아 노드·관계로 적재. `status=publish`만 적재하되, 가족 폐포(closure) 알고리즘으로 `wip` 인물도 가족 간선 완전성 위해 시드에서 도달 가능하면 포함(ADR-0021/0022).
-  - **저작(authored) 레이어**: `load_authored_events.py`·`load_authored_persons.py`·`load_authored_genealogy.py`·`load_authored_mothers.py`·`load_books.py`·`load_person_events.py`·`load_verse_events.py`가 `data/authored_*`·`data/person_events`·`data/verse_events`의 큐레이션 데이터를 멱등 적재.
-- 적재 후 **주입(inject) 스크립트**가 노드에 프로퍼티를 SET한다: `inject_ko_names.py`(한글 이름), `inject_date_corrections.py`(Ussher 연대 → 보수 연대 교정, ADR-0014), `inject_book_context.py`·`inject_person_context.py`·`inject_person_traits.py`·`inject_place_context.py`. **`load_theographic.py` 재적재 시 inject를 반드시 재실행**해야 한다(README).
+- 드라이버는 `backend/app/db.py`의 `get_driver()` 싱글턴(`NEO4J_URI`/`NEO4J_USER`/`NEO4J_PASSWORD` 환경변수). 비밀번호 미설정이면 `RuntimeError`로 즉시 실패한다.
+- 노드 라벨: `Person`·`Place`·`Event`·`PeopleGroup`·`Book`. 안정 식별자는 모든 라벨에서 `theographic_id` 프로퍼티.
+- 앱 기동 시 `backend/app/main.py`의 `lifespan`이 다섯 라벨에 `CREATE INDEX <label>_tid IF NOT EXISTS ... ON (n.theographic_id)`를 실행한다. 실패해도 예외를 삼키고 인덱스 없이 계속 진행한다(`[Startup]` 로그).
+- 그래프에는 두 소스가 합쳐진다.
+  - **원본 적재**: `backend/scripts/load_theographic.py`가 GitHub `robertrouse/theographic-bible-metadata`의 people/places/events/peopleGroups JSON을 내려받아 노드·관계로 적재. `status=publish`만 적재하되 가족 폐포(closure)로 `wip` 인물도 가족 간선 완전성을 위해 포함(ADR-0021/0022). 시드는 `curated_person_ids()`가 `data/person_events/*.json`에서 뽑는다.
+  - **저작 레이어 적재**: `load_authored_events.py`·`load_authored_persons.py`·`load_authored_genealogy.py`·`load_authored_mothers.py`·`load_books.py`·`load_person_events.py`·`load_verse_events.py`가 `data/authored_*`·`data/person_events`·`data/verse_events`를 멱등(MERGE) 적재.
+- 적재 뒤 **주입(inject)** 스크립트가 기존 노드에 프로퍼티를 SET한다: `inject_ko_names.py`·`inject_date_corrections.py`·`inject_book_context.py`·`inject_person_context.py`·`inject_person_traits.py`·`inject_place_context.py`. `load_theographic.py`를 다시 돌리면 원본 값이 복원되므로 **inject를 반드시 재실행**해야 한다(`README.md`에 명시).
+- `backend/Dockerfile`은 `COPY app/ ./app/`만 한다 — **`backend/scripts/`는 API 이미지에 들어가지 않는다**. 로더·주입·검증 스크립트는 항상 호스트에서 `python3`로 돌린다.
 
 ### 2. FastAPI 읽기 API
 
-- 진입점 `backend/app/main.py` — `_configure_logging()`를 라우터 import 전에 1회 호출, `lifespan`으로 인덱스 준비, CORS는 전 오리진 GET 허용. 라우터를 `app.include_router()`로 등록.
-- 라우터 모듈: `backend/app/routes/` 아래 `nodes`·`events`·`search`·`books`·`persons`·`journey`·`places`·`tours`·`family`·`words`·`verses`·`reliance`·`stats`.
-- 집계·전역 응답 라우트는 대부분 함수 단위 `@functools.lru_cache(maxsize=1)`로 결과를 앱 재시작 전까지 메모리에 보관한다(예: `events.py:_compute_events`, `stats.py:_compute_stats`, `tours.py:_list_tours`). 응답은 `Cache-Control: max-age=300`(집계) 또는 브라우저 캐시.
-- 핵심 엔드포인트:
-  - `GET /node/{id}`(`nodes.py`) — SidePanel의 범용 노드 상세. 노드 프로퍼티 + 이웃(무방향, 가족 상호쌍 `PARENT_OF`/`CHILD_OF` 정규화·디듀프 후 `NODE_NEIGHBOR_LIMIT` 절단) + `total`. Book이면 top_persons/top_events 추가.
-  - `GET /events`(`events.py`) — 타임라인 사건 목록. 그래프 `CONTAINS_BOOK` + `book_events` 오버레이 역방향 인덱스를 머지해 각 사건에 근거 성경권을 정경순(`bookOrder`)으로 첨부.
-  - `GET /person/{id}/journey`(`journey.py`)·`GET /tour/{id}`(`tours.py`) — 여정/투어 정차지(장소 좌표는 Neo4j `Place`의 longitude/latitude 배치 조회).
-  - `GET /search`·`GET /person/{id}/relations`·`GET /person/{id}/family`·`GET /person/{id}/reliance`·`GET /reliance/ranking`·`GET /words/{book}`·`GET /verse/{id}/persons`·`GET /books-overview`·`GET /keypeople-cards`·`GET /persons/curated` 등.
+- 진입점 `backend/app/main.py`: `_configure_logging()`를 **라우터 import 전에** 모듈 최상단에서 1회 호출(서드파티 로거 WARNING 승격, `uvicorn`/`uvicorn.access`는 `propagate=False`), `lifespan`으로 인덱스 준비, CORS(GET), `include_router` 13개.
+- 라우터 모듈은 `backend/app/routes/` 아래 13개(`nodes`·`events`·`search`·`books`·`persons`·`journey`·`places`·`tours`·`family`·`words`·`verses`·`reliance`·`stats`). prefix 없이 절대 경로를 선언한다.
+- 캐싱 관행 두 층:
+  - 서버 메모리 — 사용자 입력이 없는 전역/집계 함수는 `@functools.lru_cache(maxsize=1)`(예: `events._compute_events`·`stats._compute_stats`·`tours._list_tours`·`tours._build_event_index`·`persons._build_list`). 입력이 있는 것은 유한 캐시(`books._chapter_payload` 2048, `persons._build_connections` 256, `places._place_to_persons` 256).
+  - 브라우저 — `JSONResponse(..., headers={"Cache-Control": ...})`. 집계·목록류는 `max-age=300`, 절 본문처럼 사실상 불변인 것은 `public, max-age=3600`, `/books-overview`만 `no-store`.
+- 라우트 간 재사용은 헬퍼 직접 import로 한다. `persons.py`의 `_ERA`(slug→시대)·`_NAME_KO`(slug→한글명)·`_ERA_ORDER`가 사실상 큐레이션 인물 레지스트리이고(현재 35 slug), `journey.py`·`tours.py`·`stats.py`가 이를 import한다. `stats.py`는 `journey._build_id_to_slug`·`_load_events`·`_fetch_place_coords`와 `persons._build_list`·`_NAME_KO`를 재사용해 새 쿼리 없이 집계를 만든다.
 
-### 3. 런타임 오버레이 vs 그래프 노드
+### 3. 런타임 오버레이 — 그래프에 없는 콘텐츠
 
-**핵심 패턴** — `backend/app/overlays.py`:
+`backend/app/overlays.py`가 이 계층의 전부다.
 
-- `_resolve(subpath)`/`_resolve_dir(subpath)`가 두 베이스(`os.environ["DATA_DIR"]` 기본 `/app/data`, 그리고 리포지토리 `data/`인 `_REPO_DATA_DIR`)를 순서대로 탐색해 첫 존재 경로를 반환. 없으면 경고 로그 후 `None`(빈 데이터 폴백).
-- `_load(subpath)`는 파일을 읽어 dict 반환, 파싱 실패 시 `{}` 폴백.
-- 각 오버레이는 인자 없는 함수 + `@functools.lru_cache(maxsize=1)` — **1회 로드 후 프로세스 재시작 전까지 캐시**. 따라서 `data/` 변경 후에는 API 컨테이너 재시작이 필요하다(`docker compose restart api`).
-- 오버레이 함수 → 데이터 파일 매핑:
-  - `book_events_raw()` → `book_events/books.json`
-  - `event_verses()` → `event_verses/events.json`
-  - `bible_verses()` → `bible/verses.json`(정본 절 사전 `verseID → {textKo, textEn}`)
-  - `word_distribution()` → `word_distribution.json`
-  - `books_ko()` → `names_ko/books.json`
-  - `chapter_summaries()` → `chapter_summaries/books.json`
-  - `chapter_sections()` → `chapter_sections/books.json`
-  - `quotations()` → `quotations/quotations.json`(`.get("quotations", [])`)
-  - `messianic_prophecies()` → `messianic_prophecies/prophecies.json`
-  - `covenants()` → `covenants/covenants.json`
-  - `parables_miracles()` → `jesus_parables_miracles/index.json`
-  - `place_coords()` → `place_coords/places.json`(리스트면 `id` 키 dict로 변환)
-  - `topical_verses()` → `topical_verses/topics.json`
-  - `verse_persons()` → `verse_persons/index.json`
-- `overlays.curated_person_id(events)`는 큐레이션 신원 규약의 단일 지점(`person_events/<slug>.json`의 `events[0].participants[0]` = 그 인물의 `theographic_id`). `persons.py`·`places.py`·`reliance.py`가 소비.
-- **합성 규칙**: 오버레이 JSON은 대개 `verseID` 참조만 보유하고, 절 본문(textKo/textEn)은 라우트에서 `overlays.bible_verses()`로 해석해 동봉한다. `events.py`의 `/covenants`·`/messianic-prophecies`·`/topical-verses`·`/parables-miracles`·`/event/{id}/verses`가 모두 이 패턴. `/parables-miracles`는 추가로 `placeId`를 `place_coords`에서 lat/lng으로 해석(없으면 항목 자체 lat/lng).
+- `_resolve(subpath)`/`_resolve_dir(subpath)`가 두 베이스를 순서대로 탐색한다: `os.environ.get("DATA_DIR", "/app/data")` → 리포지토리 `data/`(`_REPO_DATA_DIR`). 없으면 `[Overlays]` 경고 후 `None`(빈 데이터 폴백). 컨테이너에서는 앞쪽이, 호스트 직접 실행에서는 뒤쪽이 맞는다.
+- `_load(subpath)`는 JSON을 읽어 dict 반환, 파싱 실패 시 `{}` 폴백.
+- 모든 오버레이는 **인자 없는 함수 + `@functools.lru_cache(maxsize=1)`** — 프로세스당 1회 로드. 따라서 `data/`를 고친 뒤에는 `docker compose restart api`가 필요하다.
+- 오버레이 함수 ↔ 파일 매핑:
 
-이 세션(미커밋 워킹트리)에서 추가된 오버레이 기반 기능:
+  | 함수 | 파일 |
+  |---|---|
+  | `book_events_raw()` | `data/book_events/books.json` |
+  | `event_verses()` | `data/event_verses/events.json` |
+  | `bible_verses()` | `data/bible/verses.json` |
+  | `word_distribution()` | `data/word_distribution.json` |
+  | `books_ko()` | `data/names_ko/books.json` |
+  | `chapter_summaries()` | `data/chapter_summaries/books.json` |
+  | `chapter_sections()` | `data/chapter_sections/books.json` |
+  | `quotations()` | `data/quotations/quotations.json`(`.get("quotations", [])`) |
+  | `messianic_prophecies()` | `data/messianic_prophecies/prophecies.json` |
+  | `covenants()` | `data/covenants/covenants.json` |
+  | `parables_miracles()` | `data/jesus_parables_miracles/index.json` |
+  | `place_coords()` | `data/place_coords/places.json`(리스트면 `id` 키 dict로 변환) |
+  | `topical_verses()` | `data/topical_verses/topics.json` |
+  | `verse_persons()` | `data/verse_persons/index.json` |
 
-| 오버레이 함수 | 라우트(`events.py`) | 데이터 파일 |
+- **합성 규칙**: 오버레이 JSON은 `verseID` 참조만 들고 있고, 절 본문(`textKo`/`textEn`)은 라우트에서 `overlays.bible_verses()`로 해석해 응답에 동봉한다(ADR-0003/0015). `events.py`의 `/covenants`·`/messianic-prophecies`·`/topical-verses`·`/parables-miracles`·`/event/{id}/verses`가 모두 같은 모양이다. `/parables-miracles`는 추가로 `placeId`를 `place_coords()`로 lat/lng 해석하고, 없으면 항목 자체 lat/lng를 쓴다.
+- `overlays.curated_person_id(events)`는 큐레이션 신원 규약의 단일 지점 — `data/person_events/<slug>.json`의 `events[0].participants[0]`이 그 인물의 `theographic_id`다. `persons.py`·`places.py`·`reliance.py`가 소비하고, `load_theographic.py`는 앱을 import하지 않는 관행 때문에 같은 규약을 자체 구현한다.
+- `overlays`를 거치지 않고 `_resolve`/`_resolve_dir`만 직접 쓰는 라우트도 있다(`journey.py`·`tours.py`·`persons.py`·`reliance.py`·`family.py`) — 파일이 slug별로 쪼개져 있어 전역 dict 캐시가 맞지 않는 경우다.
+- `stats.py`는 오버레이가 아니라 **그래프 집계** 라우트다: `_fetch_totals`(라벨별 총계)·`_fetch_top_persons`(`HAS_PARTICIPANT` 기준, `name='God'` 제외)·`_compute_longest_journeys`(큐레이션 인물 정차지 수)·`_fetch_era_distribution`·`_fetch_books`.
+
+### 4. React SPA
+
+- 엔트리 `frontend/src/main.jsx` → `frontend/src/App.jsx`(`StrictMode`). 라이트 테마는 렌더 전에 동기 반영한다(ADR-0020, `localStorage['biblemap-theme'] === 'light'`이면 `document.documentElement.dataset.theme = 'light'`).
+- 상태는 두 훅으로 분리된다.
+  - `frontend/src/useNodeSelection.js` — 노드 선택 원시값(`selectedNode`·`selectedNodeMeta`·`history`·`selectNode`·`selectNodeFresh`·`goBack`·`closePanel`·`handleNodeLoaded`).
+  - `frontend/src/useStageNavigation.js` — 스테이지·URL·브라우저 히스토리 상태 머신. 위 원시값을 **주입받는다**. 이 파일은 의도적으로 `lucide-react`의 `Map`을 import하지 않고 `history` 배열을 구조분해하지 않는다(전역 `Map`/`history` 섀도잉 크래시 예방, 파일 주석에 근거).
+- `App.jsx`는 스테이지별 내비 바 렌더 함수(`renderExploreNav`·`renderOverviewNav`·`renderBookNav`·`renderReaderNav`·`renderFamilyNav`·`renderWordsNav`·`renderStatsNav`·`renderTopicsNav`·`renderToursNav`)와 `activeStage === '...' && <View/>` 조건 렌더의 집합이다. 전역 헤더는 `frontend/src/SpineHeader.jsx`(책등 리본 3부 + 테마 토글, ADR-0026, `HEADER_H`·`RIBBON_OVERHANG` export).
+- 스타일은 CSS-in-JS 없이 **인라인 style + `frontend/src/index.css`의 CSS 변수**로 한다. 토큰(`--bg-*`·`--ink-*`·`--gold*`·`--paper*`·`--type-*`·`--dur-*`·`--ease-*`)의 정본이 `index.css`이고, `frontend/src/theme.js`는 그 `var()`를 감싼 JS 상수다. 모션 클래스도 `index.css`에 모여 있다(`stage-in`·`thread-draw`·`symbol-draw`·`film-fade`·`film-in`·`beat-in`/`beat-out`·`intro-rise`·`intro-line`·`pressable`, ADR-0024).
+- 지연 로드는 두 곳뿐이다 — `frontend/src/TourPlayback.jsx`와 `frontend/src/IntroView.jsx`가 `React.lazy`로 `./tourSketches`를 불러온다. 스케치 9모듈(~9.7천 줄)을 초기 번들에서 뺀 조치다. 청크 분할은 `frontend/vite.config.js`의 `manualChunks`(maplibre / vendor).
+
+## 프론트 스테이지 상태 머신
+
+### 스테이지
+
+`useStageNavigation`의 `activeStage` 값은 11종이다.
+
+`intro` · `hub` · `overview` · `book` · `family` · `words` · `reader` · `stats` · `topics` · `tours` · `explore`
+
+- 초기값은 lazy initializer가 정한다: 해시가 없고(`''`/`#`/`#/`) `localStorage['biblemap-intro'] !== 'off'`이면 `intro`, 그 외엔 `hub`. 해시가 있으면(딥링크) 인트로는 무조건 건너뛴다.
+- **스테이지 대상 id는 `selectedNode`와 분리된 전용 state**다: `bookId`·`familyId`·`wordsBookId`·`readerBookId`/`readerChapter`·`explorePersonId`·`exploreTourId`. 페이지 안에서 노드를 클릭해 시트를 띄워도 페이지 대상과 URL이 흔들리지 않게 하려는 설계다.
+- `explore` 스테이지만 내부 서브뷰 `exploreView`를 갖는다: `map` · `timeline` · `relations` · `intro` · `reliance`. 인물 모드는 `[소개, 여정, 연표, 관계, 의존, 족보]` 탭(족보는 탭이 아니라 `openFamily`로 전용 스테이지 진입), 투어 모드는 `[개요, 여정, 연표]`.
+- `explorePersonId`와 `exploreTourId`는 **상호배타** — 하나를 세팅하는 핸들러가 다른 하나를 null로 만든다.
+- 스테이지 전환은 전부 `useStageNavigation`이 export하는 핸들러로만 한다: `selectPerson`·`explorePerson`·`backToHub`·`openIntro`·`openOverview`/`overviewBack`·`openBook`/`bookBack`·`openFamily`/`recenterFamily`/`familyBack`·`openWords`/`selectWordsBook`/`wordsBack`·`openStats`/`statsBack`·`openTopics`/`topicsBack`·`openReader`/`selectChapter`/`readerBack`·`openTours`/`selectTour`/`toursBack`. 진입 지점이 다양한 페이지(`family`·`words`·`stats`·`topics`·`reader`)의 "뒤로"는 `window.history.back()`에 위임한다(ADR-0010).
+- `App.jsx`의 `activeSection`이 스테이지를 헤더 리본 3부로 접는다: `overview`/`book`/`words`/`reader`/`stats`/`topics` → `books`, `tours` 및 투어 탐험 → `tours`, 나머지 → `persons`, `intro`는 `null`(리본 전체 비활성).
+
+### 해시 딥링크
+
+라우터 없이 `frontend/src/urlState.js`의 `encodeHash`/`parseHash`가 상태 ↔ 해시를 순수 매핑한다(ADR-0009).
+
+| 해시 | 스테이지 |
+|---|---|
+| `#/` | `hub` |
+| `#/intro` | `intro` |
+| `#/books` | `overview` |
+| `#/book/<theographic_id>` | `book` |
+| `#/read/<id>` · `#/read/<id>/<n>` | `reader`(장 그리드 / 장 본문) |
+| `#/family/<id>` | `family` |
+| `#/words/<id>`(`all` 포함) | `words` |
+| `#/stats` | `stats` |
+| `#/topics` | `topics` |
+| `#/tours` | `tours` |
+| `#/person/<slug>`(+`/timeline`·`/relations`·`/intro`·`/reliance`) | `explore`(인물) |
+| `#/tour/<slug>`(+`/timeline`) | `explore`(투어) |
+
+- 인식 못 하는 해시는 `parseHash`가 `null`을 반환하고 호출부가 허브로 폴백한다.
+- 노드 id는 **URL에 넣지 않는다** — `history.state.node`에만 실린다.
+
+### 히스토리 통합 (ADR-0010)
+
+`useStageNavigation` 안의 세 effect가 순서대로 물린다.
+
+1. **복원 effect** — `curatedIds`(=`/persons/curated` 응답)가 준비되면 마운트 시점 해시(`initialHashRef`)를 1회 파싱해 상태를 복원하고 `setRestored(true)`. person slug만 slug↔id 맵이 필요하므로, `overview`/`tours`/`tourSlug`/`hub`는 curated 로드 실패와 무관하게 즉시 복원된다. setState는 `Promise.resolve().then(...)`으로 마이크로태스크에 미룬다(effect 본문 동기 setState 금지 관행).
+2. **sync effect** — `restored` 이후에만 write한다. `encodeHash`로 해시를, `{stage, person, tour, book, family, words, reader, chapter, view, node}`로 `history.state`를 만든다. **push 조건**은 `navSyncRef`의 직전 값과 비교해 스테이지/인물/투어/책/가계도/단어/리더/장이 바뀌었거나 시트가 false→true로 열렸을 때이고, 그 외(뷰 토글·같은 대상 재설정·베이스 write)는 `replaceState`. `explore`인데 slug도 tour도 없으면 깨진 URL을 쓰지 않고 조기 반환한다.
+3. **popstate effect** — 마운트 1회 등록. `event.state`에서 전 필드를 복원하고, `popstateGuard`를 세워 sync effect가 재-push하지 않게 한다. `state`가 없으면 허브로 리셋.
+
+`curatedIds`가 sync effect의 dep에 들어 있는 이유는, 카드 클릭이 slug 맵 로드보다 빨라 조기 반환했더라도 맵이 도착하면 재실행돼 올바른 `pushState`가 찍히게 하기 위해서다.
+
+## 뷰 ↔ API 대응
+
+| 스테이지/뷰 | 컴포넌트 | 소비 API |
 |---|---|---|
-| `covenants()` | `GET /covenants` | `covenants/covenants.json` |
-| `messianic_prophecies()` | `GET /messianic-prophecies` | `messianic_prophecies/prophecies.json` |
-| `parables_miracles()` + `place_coords()` | `GET /parables-miracles` | `jesus_parables_miracles/index.json` + `place_coords/places.json` |
-| `topical_verses()` | `GET /topical-verses` | `topical_verses/topics.json` |
+| `intro` | `IntroView.jsx` | (없음 — 순수 연출) |
+| `hub` | `PersonHub.jsx` | `/persons/curated` |
+| `overview` | `BibleOverviewView.jsx` | `/books-overview`, `/messianic-prophecies` |
+| `book` | `SidePanel.jsx`(재사용) | `/node/{id}`, `/node/{id}/places`, `/book/{id}/quotations` |
+| `reader` | `ChapterReader.jsx` | `/book/{id}/chapters`, `/book/{id}/chapter/{n}` |
+| `family` | `FamilyTree.jsx` | `/person/{id}/family` |
+| `words` | `WordDistributionView.jsx` | `/books-overview`, `/words/{book}`, `/words/{book}/verses` |
+| `stats` | `StatsView.jsx` | `/stats` |
+| `topics` | `TopicalVersesView.jsx` | `/topical-verses` |
+| `tours` | `TourList.jsx` | `/tours` |
+| `explore/map` | `MapView.jsx` + `JourneyList.jsx` | `/node/{id}/places`, `/parables-miracles`, `/event/{id}/verses` |
+| `explore/timeline` | `TimelineView.jsx` | `/events`, `/covenants`, `/parables-miracles`, `/event/{id}/verses` |
+| `explore/relations` | `RelationsView.jsx` | `/person/{id}/relations` |
+| `explore/reliance` | `RelianceView.jsx` | `/person/{id}/reliance`, `/reliance/ranking` |
+| `explore/intro`(인물) | `PersonIntro.jsx` | `/node/{id}`, `/persons/curated`, `/person/{id}/relations` |
+| `explore/intro`(투어) | `TourIntro.jsx` | (App이 넘긴 `/tour/{id}` 응답 재사용) |
+| 전역 시트 | `SidePanel.jsx` | `/node/{id}`, `/person/{id}/connections` 등 |
 
-- `GET /stats`(`backend/app/routes/stats.py`)는 오버레이가 아니라 **그래프 집계** 라우트(`_compute_stats` lru_cache): 헤드라인 총계(`_fetch_totals`)·최다 등장 인물(`_fetch_top_persons`, `HAS_PARTICIPANT`, `God` 제외)·최장 여정(`_compute_longest_journeys`)·시대별 사건 분포(`_fetch_era_distribution`)·책별 장 수(`_fetch_books`). `stats.py`의 `ERA_BANDS`는 `frontend/src/TimelineView.jsx`의 `ERA_BANDS`와 수동 복제 관계(경계 변경 시 함께 갱신 주석).
+`App.jsx`가 직접 호출하는 것: `/person/{id}/event-ids`(연표 인물 필터용 Set), `/person/{id}/journey`, `/tour/{id}`, `/books-overview`(책 상세 정경순 이전/다음 내비). `useStageNavigation`이 직접 호출하는 것: `/persons/curated`(유한 재시도 1s→2s→4s), `/keypeople-cards`.
 
-### 4. React SPA 스테이지 머신
+## 투어 · 연표 · 지도 서브시스템의 관계
 
-- 엔트리 `frontend/src/main.jsx` → `frontend/src/App.jsx`(`StrictMode`). 라이트 테마는 렌더 전 동기 반영(ADR-0020, `localStorage['biblemap-theme']`).
-- **단일 상태 머신** `frontend/src/useStageNavigation.js`가 `activeStage`를 관리. 스테이지 값:
-  `intro` · `hub` · `overview` · `book` · `family` · `words` · `reader` · `stats` · `topics` · `tours` · `explore`.
-- 무해시 첫 진입 + `localStorage['biblemap-intro'] !== 'off'`이면 초기 스테이지가 `intro`(그 외 `hub`).
-- 스테이지 대상 id는 `selectedNode`(SidePanel 선택)와 **분리된** 전용 state로 보관 — `bookId`·`familyId`·`wordsBookId`·`readerBookId`/`readerChapter`·`explorePersonId`·`exploreTourId`. 페이지 안에서 노드를 클릭해 시트를 띄워도 페이지 대상·URL이 흔들리지 않게 하기 위함.
-- `explore` 스테이지 내부 서브뷰 `exploreView`: `map` · `timeline` · `relations` · `intro` · `reliance`. 인물 모드는 소개/여정/연표/관계/의존 탭 + 족보 전용 스테이지, 투어 모드는 개요/여정/연표.
-- 인물 vs 투어는 상호배타(`explorePersonId`↔`exploreTourId` 하나가 세팅되면 다른 하나 null).
-- `App.jsx`가 스테이지별 내비 바(`renderOverviewNav`·`renderBookNav`·`renderReaderNav`·`renderFamilyNav`·`renderWordsNav`·`renderStatsNav`·`renderTopicsNav`·`renderToursNav`·`renderExploreNav`)와 스테이지 본문(`activeStage === '...' && <View/>`)을 조건 렌더. 전역 헤더는 `frontend/src/SpineHeader.jsx`(책등 리본 3부 + 테마 토글, ADR-0026).
-- 뷰 컴포넌트: `IntroView`·`PersonHub`·`BibleOverviewView`·`SidePanel`+`ChapterReader`·`FamilyTree`·`WordDistributionView`·`StatsView`·`TopicalVersesView`·`TourList`·`MapView`·`TimelineView`·`RelationsView`·`RelianceView`·`PersonIntro`·`TourIntro`·`JourneyList`·`TourPlayback`.
-- 노드 선택 원시값은 `frontend/src/useNodeSelection.js`(selectedNode·history·goBack 등)에서 나와 `useStageNavigation`에 주입된다. `useStageNavigation`이 `lucide-react`의 `Map`을 import하지 않고 history 배열을 구조분해하지 않는 것은 전역 `Map`/`history` 섀도잉 크래시를 구조적으로 막기 위함(파일 주석).
-- 개요(overview) 서브 내비 탭(`App.jsx:renderOverviewNav`): 책 둘러보기 · 단어 분포(`openWords('all')`) · 통계(`openStats`) · 주제 성구(`openTopics`) — 이 세션에서 통계·주제 성구 탭이 추가됨.
+세 서브시스템은 **`journeyStops` 배열 하나를 공유**한다. `App.jsx`가 인물이면 `/person/{id}/journey`, 투어면 `/tour/{id}`에서 받아 `journeyStops` state에 담고, 백엔드가 두 응답의 `stops` 구조를 동일하게 맞춰 놓았다(`backend/app/routes/tours.py`의 주석 "journey.py 와 동일한 stops 구조": `seq`·`eventId`·`title`·`nameKo`·`sortKey`·`placeId`·`placeNameKo`·`lng`·`lat`, 투어는 여기에 `personNameKo`·`note` 추가).
 
-### 5. 해시 딥링크
+- **투어 정의**는 `data/tours/<id>.json`(`{id, title, subtitle, era, description, stops:[{id, note}]}`). ADR-0011: 투어는 event-reference 오버레이라 Neo4j 노드를 만들지 않는다. `tours.py`가 `_build_event_index()`로 `data/person_events/*.json` 전체를 스캔해 stop id → event body를 해석하고 `sortKey`로 정렬한 뒤 Neo4j에서 좌표를 배치 조회한다. 미존재 투어는 404가 아니라 빈 stops(soft-empty, `journey.py`와 동일 관행).
+- **자동재생**은 `frontend/src/useTourPlayback.js`(순수 시퀀서: `idx`·`playing`·`active`·`start`/`exit`/`toggle`/`next`/`prev`)와 `frontend/src/TourPlayback.jsx`(해설 카드 UI)로 나뉜다. 진행 간격은 `stepDuration(note) = 4000 + min(note.length*35, 4000)` ms. 사건 단위로 진행하며 좌표 없는 정차지도 건너뛰지 않는다(카메라 유지·카드만 교체).
+- **재생 ↔ 지도 카메라**의 연결은 `App.jsx`가 한다. `playback.idx`(사건 인덱스)를 `mapGeo.journeyStopGroups`가 만든 **장소 그룹 인덱스**로 `useMemo` 파생(`playbackStopIdx`)하고, 무좌표 사건이면 직전 좌표 사건의 그룹을 유지한다. 재생 중이면 이 파생값이, 아니면 사용자가 클릭한 `activeStopIdx`가 `effectiveStopIdx`로 합쳐져 `MapView`·`JourneyList`에 함께 내려간다. 투어를 벗어나거나 `exploreView`가 `map`이 아니게 되면 effect가 `playback.exit()`.
+- **장면 스케치**는 `frontend/src/tourSketches.jsx`가 `frontend/src/sketches/*.jsx` 9개 모듈의 레지스트리를 `SCENES`로 병합해 `eventId`로 조회한다. 등록 없는 정차지는 아무것도 렌더하지 않는다. `TourSketchPanel`이 카메라 `easeTo`(400ms) 정착 후 450ms 뒤 draw를 시작해 카드 높이 점프를 막는다. `IntroView`도 같은 레지스트리를 몽타주 비트에 쓴다(ADR-0029).
+- **연표**(`TimelineView.jsx`)는 `/events`를 시대 밴드(`ERA_BANDS`)로 접는다. 그룹핑은 startDate 전체 병합이 아니라 **연속 동일 `startDate` 런(run)** 단위다 — `/events`가 `sortKey` 순이라 런 나열이 곧 병합 정렬 순서가 된다(저작 `"0030"` vs 원본 `"30"`처럼 문자열만 다른 층이 그룹을 통째로 갈라 순서를 뒤집던 문제 대응). 인물/투어 필터는 `App.jsx`가 넘기는 `Set`(`personEventIds` 또는 `tourEventIds`)으로 **멤버 단위** 필터링한다.
+- **`ERA_BANDS`는 두 곳에 수동 복제**돼 있다: `frontend/src/TimelineView.jsx`와 `backend/app/routes/stats.py`. 두 파일 모두 주석으로 서로를 가리키고, `backend/scripts/validate_era_bands_consistency.py`가 정합을 검사한다(`scripts/check.sh` 게이트 항목).
+- **비유·기적**은 지도와 연표 양쪽에 얹힌다. 지도는 `pm-source`/`pm-circle` 레이어(기본 `visibility:none`)로 `MapView`가 `/parables-miracles`를 1회 fetch한 뒤 토글(`pmVisible`)·종류 필터(`pmFilter`: all|parable|miracle)로 `setLayoutProperty`/`setFilter`만 갱신한다. 연표는 `'신약'` era 섹션 머리에 목록 한 벌을 렌더한다(날짜가 없어 개별 사건 위치에 못 꽂음). 두 UI는 필터 칩 정의를 각자 `PM_FILTERS` 상수로 갖는다(별 파일이라 공유 안 함). 노출 게이트는 `App.jsx`가 계산하는 `pmEnabled = (explorePersonId ? explorePersonEra : exploreTourMeta?.era) === '신약'`이고, era의 원천은 백엔드 `persons._ERA`(`/persons/curated` 응답)다. 지도에 못 얹는 무좌표 항목 수는 `MapView`가 `pmNoLocCount`로 세어 "연표에서 확인" 안내를 띄운다.
+- **언약**은 연표 전용이다 — `/covenants`의 `era` 값이 `ERA_BANDS`의 `name`과 그대로 일치한다는 전제로 시대 섹션에 리본으로 얹는다.
 
-- 라우팅 라이브러리 없이 `frontend/src/urlState.js`의 `encodeHash`/`parseHash`가 스테이지 상태 ↔ 해시 문자열을 순수 매핑(ADR-0009).
-- 해시 스킴:
-  - `#/`(허브) · `#/intro` · `#/books`(개요) · `#/tours` · `#/stats` · `#/topics`
-  - `#/book/<theographic_id>` · `#/read/<id>`(장 그리드)·`#/read/<id>/<n>`(장 본문)
-  - `#/family/<id>` · `#/words/<id>`
-  - `#/person/<slug>`(+ `/timeline`·`/relations`·`/intro`·`/reliance`)
-  - `#/tour/<slug>`(+ `/timeline`)
-- `#/stats`·`#/topics`는 이 세션에서 추가됨(`urlState.js` encodeHash `:19-20`, parseHash `:43-44`).
-- 히스토리 통합(ADR-0010): `useStageNavigation`의 sync effect가 스테이지/인물/시트 변경을 `pushState`, 뷰 토글·드릴다운·베이스는 `replaceState`로 미러. `popstate`는 `event.state`에서 복원(`popstateGuard`로 재-push 방지). 노드 id는 URL이 아닌 `history.state.node`에만 보관.
-- 마운트 시 해시를 1회 파싱해 복원(`restoredRef`), person slug는 `/persons/curated`(slug↔id 맵) 준비 후 해석. 복원 완료 신호는 state(`restored`)로 sync effect 트리거.
+## 지도 서브시스템 내부
 
-### 6. 절 레이어(Verse Layer)
+`frontend/src/MapView.jsx`가 maplibre-gl 지도 인스턴스를 소유하고, 배선은 세 모듈로 나뉜다.
 
-- `frontend/src/VerseLayer.jsx` — "양피지 구절 모달" 공통 쉘(task#202). 반응형: ≤768px(`MOBILE_BREAKPOINT`)는 하단 시트(드래그 닫기 80px 임계), >768px는 중앙 모달. `createPortal`로 `document.body`에 렌더, 헤더(제목·한/영 탭·×)는 고정, 본문(`children`)만 스크롤.
-- 언어 탭은 `frontend/src/VerseLangTabs.jsx`, 표시 언어 `verseLang`('ko'|'en')는 `App.jsx`가 소유해 타임라인·SidePanel·주제 성구·언약 레이어가 공유.
-- 소비처: `TimelineView`(언약 상세·비유/기적 상세), `BibleOverviewView`(메시아 예언→성취), `TopicalVersesView`(주제 성구), SidePanel 인용 대조 등. `paperTextStyle`·`VerseBookTabs`는 이 모듈에서 export.
+- `frontend/src/mapLayers.js` — `setupMapSources(map)`(소스·레이어 선언)와 `registerEventHandlers(map, {...})`(클릭·팝업). 레이어 그룹: 여정선(`journey-line` + 방향 화살표, `lineMetrics:true`), 정차지 배지(`journey-stop-*`), 활성 강조(`journey-active-*`), 장소(`places-*` 클러스터 + `place-spider-*`), 사건 링(`event-ring-*`), 비유·기적(`pm-circle`). `EMPTY_GEOJSON` 상수도 여기서 export.
+- `frontend/src/mapGeo.js` — 순수 GeoJSON 변환·기하 계산(`coreBounds`·`placesToGeoJSON`·`buildJourneyLineGeoJSON`·`buildJourneyStopsGeoJSON`·`journeyStopGroups`·`buildParablesMiraclesGeoJSON`·`buildEventGeoJSON`·`buildSpiderGeoJSON`·`ringPositions`·`ringLabels`·`easeOutCubic`).
+- `frontend/src/mapRingController.js` — `createRingController(map, {...})`로 사건 링 펼침/접기 애니메이션과 스파이더 상태를 캡슐화. `MapView`가 `expandPlaceRef`/`expandedPlaceRef`로 selection effect와 공유한다.
 
-### 7. 심볼 시스템
+`MapView`의 프레이밍은 `clampPadding(map, padding)`을 거친다 — fitBounds 패딩 합이 컨테이너의 60%를 넘으면 maplibre가 줌을 최소로 클램프해 모바일에서 세계축소 뷰로 튀기 때문이다. 팝업 ref는 장소용(`popupRef`)과 비유·기적용(`pmPopupRef`)이 분리돼 있다.
 
-- 인물 인장 `frontend/src/personSymbols.jsx` — 키는 인물 `slug`, 미등록이면 범용 폴백(`FALLBACK`). `hasSymbol(slug)`로 등록 여부 판정(가계도 앵커용). `PersonSymbol` 컴포넌트가 `draw` prop으로 1회 stroke 애니메이션.
-- 책 상징 `frontend/src/bookSymbols.jsx` — 키는 책 `theographic_id`(책은 slug 없음), `BookSymbol` 컴포넌트.
-- 타입 팔레트 `frontend/src/theme.js` — `TYPE_COLOR`/`TYPE_KO`/`TYPE_ORDER`(값의 정본은 `index.css`의 `--type-*`, 테마별). `PM_TYPE_COLOR = { parable, miracle }`는 리터럴 hex(maplibre paint가 CSS var 불가라 `TimelineView`·`mapLayers.js`가 공유). `GENRE_META`(장르 표시명·설명)·`VALENCE_COLOR`도 여기.
+## 절 레이어(VerseLayer)
 
-### 8. 투어(Tours)
+`frontend/src/VerseLayer.jsx`가 "양피지 구절 모달" 공통 쉘이다. `createPortal`로 `document.body`에 렌더하므로 호출 트리와 무관하고, ≤`MOBILE_BREAKPOINT`(768)는 하단 시트, 그 위는 중앙 모달이다. `paperTextStyle`·`VerseBookTabs`를 함께 export한다. 언어 탭 UI는 `frontend/src/VerseLangTabs.jsx`이고, 표시 언어 state `verseLang`('ko'|'en')는 **`App.jsx`가 소유**해 `TimelineView`·`SidePanel`·`BibleOverviewView`·`TopicalVersesView`·`ChapterReader`·`WordDistributionView`·`JourneyList`·`RelationsView`·`RelianceView`·`PersonIntro`에 prop으로 내려간다.
 
-- 정의 파일 `data/tours/<id>.json`(`{id, title, subtitle, era, description, stops:[{id, note}]}`). ADR-0011: 투어는 event-reference 오버레이 — Neo4j 노드 추가 없음. ADR-0028: stops는 객체 배열, `note`는 그 투어 관점의 정차지 해설.
-- `backend/app/routes/tours.py` — `GET /tours`(목록, `_list_tours`, 시대순 정렬)·`GET /tour/{id}`(상세, `person_events/*.json`을 `_build_event_index`로 스캔해 stop id → event-body 해석 후 sortKey 정렬, Neo4j에서 좌표 조회). 미존재 투어는 404가 아니라 빈 stops(soft-empty).
-- 프론트 자동재생: `frontend/src/TourPlayback.jsx`(`useTourPlayback` 시퀀서)·`App.jsx`가 카메라 동기(`playback.idx` → `journeyStopGroups`). 정차지 장면 삽화는 `frontend/src/tourSketches.jsx`가 `frontend/src/sketches/*.jsx` 모듈 레지스트리(`SCENES`, `hasSketch(eventId)`)를 집계해 렌더.
+## 심볼 시스템
 
-### 9. 지도 레이어(MapView / mapLayers)
+- `frontend/src/personSymbols.jsx` — 인물 인장. 키는 인물 `slug`, 미등록은 범용 폴백. `hasSymbol(slug)`로 등록 여부를 판정하고(가계도 앵커 등), `PersonSymbol` 컴포넌트가 `draw` prop으로 1회 stroke 애니메이션(`symbol-draw`).
+- `frontend/src/bookSymbols.jsx` — 책 상징. 책은 slug가 없으므로 키가 `theographic_id`다.
+- `frontend/src/sketches/lib.jsx` — 장면 스케치 공용 헬퍼(`P`·`W`·`sw(n,o)`·`d(ms,reduce)`)만 두는 순수 모듈. 이름표 컴포넌트 `Label`은 `react-refresh/only-export-components` 규칙 때문에 `frontend/src/sketches/SceneLabel.jsx`로 분리돼 있다.
 
-- `frontend/src/MapView.jsx`가 maplibre-gl 지도를 소유, `frontend/src/mapLayers.js`의 `setupMapSources(map)`·`registerEventHandlers(map, ...)`가 소스/레이어/클릭 핸들러를 배선. GeoJSON 변환은 `frontend/src/mapGeo.js`(`placesToGeoJSON`·`buildJourneyLineGeoJSON`·`buildJourneyStopsGeoJSON`·`journeyStopGroups`·`buildParablesMiraclesGeoJSON` 등). 링(사건 마커) 애니메이션은 `frontend/src/mapRingController.js`.
-- 레이어: 여정선(`journey-line`+화살표)·정차지 배지(`journey-stop-*`)·활성 강조(`journey-active-*`)·장소(`places-*` 클러스터/스파이더)·사건 링(`event-ring-*`).
-- 비유·기적 레이어(`pm-source`/`pm-circle`)는 이 세션 추가(task#249) — 기본 `visibility:none`. `MapView`가 `/parables-miracles`를 1회 fetch(`pmItems`)하고 토글(`pmVisible`)·종류 필터(`pmFilter`: all|parable|miracle)로 `setLayoutProperty`/`setFilter`만 갱신. 팝업은 `pmPopupRef`(장소 팝업 `popupRef`와 분리).
+## 데이터 흐름 (엔드투엔드)
 
-## 데이터 흐름(엔드투엔드)
-
-### 빌드타임(그래프·오버레이 준비)
+### 빌드타임 — 그래프·오버레이 준비
 
 1. `docker compose up -d`로 Neo4j 기동.
 2. `python3 backend/scripts/load_theographic.py` — 원본 그래프 적재.
-3. `python3 backend/scripts/inject_ko_names.py`, `inject_date_corrections.py`(및 기타 저작 로더/inject) — 프로퍼티 SET·저작 레이어 병합.
-4. 오버레이 JSON은 `generate_*.py`/`build_*.py`로 산출(예: `generate_bible_text.py` → `bible/verses.json`, `build_word_distribution.py` → `word_distribution.json`, `generate_event_verses.py` → `event_verses/events.json`, `build_verse_persons.py` → `verse_persons/index.json`). `covenants`·`messianic_prophecies`·`topical_verses`·`jesus_parables_miracles`·`place_coords`는 `data/` 아래 정본 JSON.
+3. `python3 backend/scripts/inject_ko_names.py`, `python3 backend/scripts/inject_date_corrections.py`(및 나머지 저작 로더·inject) — 프로퍼티 SET·저작 레이어 병합. **로더 재실행 시 inject 재실행 필수.**
+4. 오버레이 JSON 중 파생물은 `generate_*.py`/`build_*.py`가 만든다(`generate_bible_text.py` → `data/bible/verses.json`, `build_word_distribution.py` → `data/word_distribution.json`, `generate_event_verses.py` → `data/event_verses/events.json`, `build_verse_persons.py` → `data/verse_persons/index.json`, `build_word_verse_index.py` → `data/word_verse_index/index.json`). `covenants`·`messianic_prophecies`·`topical_verses`·`jesus_parables_miracles`·`place_coords`·`tours`는 직접 저작한 정본이라 생성기가 없다.
 
-### 런타임(요청)
+### 런타임 — 요청 한 번
 
-1. 브라우저가 해시 URL 진입 → `useStageNavigation`이 `parseHash`로 스테이지 복원.
-2. 뷰 컴포넌트가 `frontend/src/api.js`의 `apiGet(path)`로 fetch. 프로덕션은 `VITE_API_URL=/api`(빌드타임 주입)로 nginx 프록시(`/api` → `api:8000`)를 탄다. 모든 요청에 `?v=<BUILD_ID>`(빌드마다 갱신, `vite.config.js`의 `define.__BUILD_ID__ = Date.now()`)를 붙여 배포 직후 옛 응답 캐시 재사용을 막는다.
-3. FastAPI 라우트가 `get_driver()`로 그래프 쿼리 + `overlays.*()`(lru_cache) 오버레이를 합성해 JSON 반환.
-4. 프론트가 결과를 렌더. 절 본문 드릴다운은 `VerseLayer` 양피지 모달로.
+1. 브라우저가 해시 URL로 진입 → `useStageNavigation`이 `parseHash`로 스테이지 복원.
+2. 뷰가 `frontend/src/api.js`의 `apiGet(path, {signal})`로 fetch. 베이스는 `import.meta.env.VITE_API_URL || 'http://localhost:8000'`(프로덕션은 `/api` → nginx 프록시). 모든 요청에 `?v=<BUILD_ID>`가 붙는다 — `frontend/vite.config.js`의 `define.__BUILD_ID__ = Date.now()`라 배포마다 값이 바뀌어 옛 응답 캐시를 무력화하고, 같은 배포 안에서는 고정이라 `max-age` 이점은 유지된다. 비-OK 응답은 `err.status`를 실은 `Error`로 reject하고 `AbortError`는 그대로 전파한다.
+3. FastAPI 라우트가 `get_driver()` 그래프 쿼리 + `overlays.*()` 오버레이를 합성해 `JSONResponse`로 반환.
+4. 프론트가 렌더. 절 본문 드릴다운은 `VerseLayer` 양피지 모달로.
 
 ### 배포
 
-- `push → main` → GitHub Actions `self-hosted` 러너(`.github/workflows/deploy.yml`)가 `git reset --hard origin/main` 후 `deploy.sh` 실행.
-- `deploy.sh`: 프론트 `npm run build`(→ `frontend/dist`) → `docker compose -p biblemap build api` → `up -d api nginx` → `inject_ko_names.py`(Neo4j 준비 대기 재시도). **`deploy.sh`는 `load_*`/기타 inject를 실행하지 않는다** — 데이터 재적재는 수동.
-- `docker-compose.yml` 서비스: `neo4j`(볼륨 `neo4j_data`, 127.0.0.1 바인딩), `api`(`./data:/app/data` 마운트 → 오버레이가 이 경로를 읽음, `DATA_DIR` 기본 `/app/data`), `nginx`(`./frontend/dist` + `nginx/nginx.conf` 마운트, 8080 노출).
-- 프론트 :8080은 `frontend/dist` 마운트(HMR 아님) — 로컬 검증 전 `cd frontend && npm run build` 필요.
+- `push → main` → GitHub Actions `self-hosted` 러너(`.github/workflows/deploy.yml`)가 `git fetch` + `git reset --hard origin/main` 후 `bash deploy.sh`.
+- `deploy.sh`는 lock 파일(`/tmp/biblemap-deploy.lock`)로 중복 실행을 막고, macOS 키체인 우회를 위해 임시 `DOCKER_CONFIG`를 만든 뒤(기본 `cli-plugins` 심볼릭 링크 포함) `.env`를 로드한다. 그리고:
+  1. **검증 게이트** — `bash scripts/check.sh`. 실패하면 빌드 전에 배포를 중단한다.
+  2. 프론트 `npm install` + `npm run build` → `frontend/dist`.
+  3. `docker compose -p biblemap build api`.
+  4. `docker compose -p biblemap up -d api nginx`.
+  5. `inject_ko_names.py`를 Neo4j 준비까지 최대 15회(2초 간격) 재시도. 끝내 실패하면 배포를 실패로 끝낸다.
+- **`deploy.sh`는 `load_*`나 그 밖의 `inject_*`를 실행하지 않는다** — 데이터 재적재는 수동이다.
+- `scripts/check.sh`는 AI 없이 도는 게이트다: 파일 기반 검증 12종(`validate_covenants`·`messianic_prophecies`·`parables_miracles`·`topical_verses`·`pm_map_coverage`·`chapter_sections`·`chapter_summaries`·`quotations`·`person_context`·`god_reliance`·`traits`·`era_bands_consistency`)을 `python3 -m backend.scripts.validate_*`로 돌리고, ESLint(`frontend/node_modules` 있을 때만), Neo4j 연대 정합(`validate_event_chronology`, 127.0.0.1:7687 기동 시에만)을 검사한다. 환경 미충족 항목은 스킵-경고이고 하드 항목이 하나라도 실패하면 종료 코드 1.
+- `docker-compose.yml`(프로젝트명 `biblemap`) 서비스 3개: `neo4j`(볼륨 `neo4j_data`, 포트는 `127.0.0.1`에만 바인딩), `api`(`./data:/app/data` 마운트 — 오버레이가 읽는 경로, 외부 포트 미노출), `nginx`(`./frontend/dist` + `./nginx/nginx.conf` 마운트, 8080 노출).
+- `nginx/nginx.conf`: `/api/` → `http://api:8000/` 프록시, `index.html`은 `no-store` 계열, 해시 붙은 정적 자산은 `max-age=31536000, immutable`, 나머지는 `try_files $uri /index.html`(SPA 폴백).
+- 프론트 :8080은 `frontend/dist` 마운트라 HMR이 아니다 — 로컬 검증 전에 `cd frontend && npm run build`가 필요하다.
 
 ## 핵심 추상화
 
-- **오버레이 로더**(`overlays._load` + `lru_cache`) — 그래프에 없는 콘텐츠를 JSON으로 관리, verseID 참조를 `bible_verses()`로 본문 합성.
-- **스테이지 머신**(`useStageNavigation`) — 대상 id를 `selectedNode`와 분리해 페이지 안정성 확보, sync effect가 URL/히스토리 미러.
+- **오버레이 로더**(`overlays._load` + `lru_cache(maxsize=1)`) — 그래프에 없는 콘텐츠를 JSON으로 관리하고, `verseID` 참조를 `bible_verses()`로 본문 합성한다.
+- **큐레이션 인물 레지스트리**(`backend/app/routes/persons.py`의 `_ERA`/`_NAME_KO`/`_ERA_ORDER`) — slug 목록·시대·한글명의 단일 출처. `journey`·`tours`·`stats`가 import한다.
+- **큐레이션 신원 규약**(`overlays.curated_person_id`) — `data/person_events/<slug>.json`의 `events[0].participants[0]`가 그 인물의 `theographic_id`. id↔slug 해석의 단일 출처.
+- **스테이지 머신**(`useStageNavigation`) — 대상 id를 `selectedNode`와 분리하고, sync effect가 URL·히스토리를 미러한다.
 - **해시 코덱**(`urlState.encodeHash`/`parseHash`) — 라우터 없는 순수 문자열 매핑.
-- **양피지 절 레이어**(`VerseLayer`) — 반응형 구절 모달 공통 쉘, 다수 뷰 재사용.
-- **공유 API 클라이언트**(`api.apiGet`) — 단일 베이스 URL + 캐시 버스팅.
-- **큐레이션 신원 규약**(`overlays.curated_person_id`, `person_events/<slug>.json`의 `events[0].participants[0]`) — id↔slug 해석의 단일 출처.
+- **공유 stops 계약** — `/person/{id}/journey`와 `/tour/{id}`가 같은 stops 구조를 반환해 `MapView`·`JourneyList`·`TimelineView`·`TourPlayback`이 분기 없이 재사용한다.
+- **양피지 절 레이어**(`VerseLayer`) — 포털 기반 반응형 구절 모달 공통 쉘.
+- **공유 API 클라이언트**(`api.apiGet`) — 단일 베이스 URL + 빌드 ID 캐시 버스팅.
+- **스케치 레지스트리**(`tourSketches.SCENES`) — `eventId` → `{Scene, desc, caption, mood?}` 매핑, 미등록은 무렌더.
 
 ## 진입점
 
-- 백엔드 앱: `backend/app/main.py`(`app` = FastAPI). 컨테이너 CMD: `uvicorn app.main:app`(`backend/Dockerfile`).
-- 프론트 앱: `frontend/src/main.jsx` → `frontend/src/App.jsx`.
-- 데이터 적재 진입: `backend/scripts/load_theographic.py`(원본) 이후 inject 스크립트들.
-- 배포 진입: `deploy.sh`(러너가 호출), `.github/workflows/deploy.yml`.
-- 로컬 개발: 백엔드 `python3 -m uvicorn backend.app.main:app --reload`(:8000), 프론트 `npm run dev`(:5173).
+- 백엔드 앱: `backend/app/main.py`의 `app`. 컨테이너 CMD는 `uvicorn app.main:app --host 0.0.0.0 --port 8000`(`backend/Dockerfile`). 로컬은 `python3 -m uvicorn backend.app.main:app --reload`(:8000).
+- 프론트 앱: `frontend/src/main.jsx` → `frontend/src/App.jsx`. 로컬 개발 서버는 `cd frontend && npm run dev`(:5173).
+- 데이터 적재: `backend/scripts/load_theographic.py`(원본) → `load_authored_*`/`load_books`/`load_person_events`/`load_verse_events`(저작) → `inject_*`. 전부 호스트에서 실행하며 `python3 -m backend.scripts.<name>`으로도 부를 수 있다(`backend/scripts/__init__.py` 존재).
+- 검증 게이트: `scripts/check.sh`(단독 실행 가능).
+- 배포: `deploy.sh`(러너가 호출), `.github/workflows/deploy.yml`.
