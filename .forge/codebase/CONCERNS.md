@@ -202,30 +202,26 @@ ADR-0014는 "교정 후 `load_books.py` 재실행이 필요하다"고 적었지�
 
 ## Performance Bottlenecks
 
-### 1. nginx에 gzip이 없다 — 정적 자산·API 응답 전부 무압축 전송
+### 1. nginx에 gzip이 없다 — 정적 자산·API 응답 전부 무압축 전송 (**해소 — task#260**)
 
-**심각도: 높음 · 시급도: 높음(단일 최대 개선 지렛대, 설정 3줄)**
+**심각도: 높음 · 시급도: 높음 → 해소**
 
-`nginx/nginx.conf` 전체에 `gzip on;`이 **없다.** 실측 확인:
+`nginx/nginx.conf`의 `http` 블록에 `gzip on` + `gzip_types`(js/css/json/geo+json/svg/xml) · `gzip_min_length 1024` · `gzip_proxied any` · `gzip_vary on` · `gzip_comp_level 5`를 넣었다. `gzip_proxied any`가 없으면 `/api/*` 프록시 응답이 통째로 빠진다.
 
-```
-curl -H "Accept-Encoding: gzip, br" http://localhost:8080/assets/maplibre-DntM08T7.js
-→ Content-Length: 1027608   (Content-Encoding 헤더 없음)
-curl -H "Accept-Encoding: gzip" http://localhost:8080/api/stats
-→ Content-Length: 10321     (Content-Encoding 헤더 없음)
-```
+배포 후 실측(2026-08-01, `localhost:8080`):
 
-`frontend/dist/assets/` raw ↔ gzip 실측:
-
-| 파일 | raw | gzip | 절감 |
+| 경로 | raw | gzip 전송 | 절감 |
 |---|---|---|---|
-| `maplibre-DntM08T7.js` | 1,027,608 | 270,093 | −73.7% |
-| `tourSketches-Dwfi4Y4b.js` | 391,399 | 77,479 | −80.2% |
-| `index-CBiAjk8N.js` | 250,811 | 61,426 | −75.5% |
-| `vendor-BEFIG7g-.js` | 197,604 | 62,124 | −68.6% |
-| `maplibre-B2k4QVOw.css` | 69,808 | 10,073 | −85.6% |
+| `vendor-BEFIG7g-.js` | 197,604 | 62,697 | −68.3% |
+| `maplibre-B2k4QVOw.css` | 69,808 | 10,152 | −85.5% |
+| `/api/stats` | 10,321 | 2,945 | −71.5% |
+| `/api/events` | 209,079 | 38,865 | −81.4% |
 
-초기 진입 필수 자산(index + maplibre js/css + vendor + runtime)만 **약 1.55 MB가 무압축**으로 나간다. gzip만 켜면 약 406 KB — **1.1 MB 절감**. API도 동일(`/events` 209,079 B, `/parables-miracles` 85,460 B 실측).
+`frontend/dist/assets/`의 js+css 전체 집계는 **1,935,810 B → 491,063 B (−74.6%)**.
+
+- **레벨 5인 이유**: 사전압축(`gzip_static`)이 없어 요청마다 재압축한다. `vendor.js` 기준 레벨 5는 62,716 B이고 레벨 9도 61,990 B — **0.4% 더 줄이자고 CPU를 더 쓸 이유가 없다**(설정에 `eco:` 주석으로 근거 기록).
+- **미도입**: `gzip_static`(vite가 `.gz`를 내지 않음) · brotli(`nginx:alpine`에 모듈 없음). 둘 다 새 빌드 플러그인이나 커스텀 이미지가 필요하다.
+- **footgun (신규 확인)**: `docker-compose.yml:31`은 `nginx.conf`를 **단일 파일 bind mount**한다. 에디터가 파일을 inode 교체 방식으로 저장하면 컨테이너는 **옛/잘린 내용을 계속 본다**(이번에 45줄 파일이 컨테이너에서 25줄로 보였다). `docker compose restart nginx`로는 안 고쳐지고 **`up -d --force-recreate nginx`가 필요**하다. 설정 검증은 prod를 건드리기 전에 일회용 컨테이너로 하는 편이 안전하다: `docker run --rm --network biblemap_default -v "$PWD/nginx/nginx.conf:/etc/nginx/nginx.conf:ro" nginx:alpine nginx -t`.
 
 ### 2. `maplibre-gl`(1 MB)이 모든 화면의 크리티컬 패스에 있다
 
