@@ -25,6 +25,8 @@ python3 backend/scripts/inject_date_corrections.py
 > theographic 원본은 Ussher 연대계라 저작 레이어(보수 연대계)와 충돌하는 연대가 있다(ADR-0014).
 > `inject_date_corrections.py`가 `data/date_corrections/`의 교정 테이블을 DB에 SET한다 — `load_theographic.py`로
 > 원본을 재적재할 때마다(업스트림 갱신 등) **반드시 재실행**해야 한다(멱등, 재실행 안전).
+> 배포(`deploy.sh`)는 검증 게이트 앞에서 주입 2종(21·22행)을 자동 재적용한다. 그래프 적재(`load_theographic.py`)는
+> 자동화하지 않는다 — 로더가 교정을 덮어쓰기 때문(ADR `260801-195022`).
 
 ### 3. API 서버
 ```bash

@@ -1,8 +1,10 @@
 #!/bin/bash
-# 배포 전 검증 게이트 (task#255) — 데이터 검증 + ERA_BANDS 3곳 정합 + 비유↔연표 커버리지 + ESLint.
+# 배포 전 검증 게이트 (task#255) — 데이터 검증 + ERA_BANDS 3곳 정합 + 비유↔연표·장면 커버리지 + ESLint.
 # 하나라도 하드 항목 실패 시 비0 종료. 환경 의존 항목은 미충족 시 스킵-경고(하드 게이트 유지):
 #   - Neo4j 연대 정합: 127.0.0.1:7687 미기동 시 스킵
 #   - ESLint: frontend/node_modules 부재 시 스킵
+# CHECK_STRICT=1이면 위 두 스킵이 실패로 승격된다(task#259) — 배포 경로는 반드시 이 모드로 부른다.
+# 스킵-경고 계약은 단독 개발 실행용으로 유지(Neo4j 없이 파일 검증만 돌리는 정당한 용법).
 # deploy.sh가 빌드 전 호출하며, 단독 실행도 가능(AI 불요 CI 게이트).
 set -u
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -19,10 +21,18 @@ run() {  # run <라벨> <명령...>
   fi
 }
 
-echo "=== check: 파일 기반 데이터 검증 (12종) ==="
+skip() {  # skip <라벨> <사유> — 엄격 모드에서는 스킵이 실패다
+  if [ "${CHECK_STRICT:-0}" != 0 ]; then
+    echo "  ✗ $1 — $2 (CHECK_STRICT: 스킵 불가)"; fail=1
+  else
+    echo "  ⊘ $1 스킵 — $2"
+  fi
+}
+
+echo "=== check: 파일 기반 데이터 검증 (13종) ==="
 for s in covenants messianic_prophecies parables_miracles topical_verses pm_map_coverage \
-         chapter_sections chapter_summaries quotations person_context god_reliance traits \
-         era_bands_consistency; do
+         scene_coverage chapter_sections chapter_summaries quotations person_context \
+         god_reliance traits era_bands_consistency; do
   run "validate_$s" python3 -m "backend.scripts.validate_$s"
 done
 
@@ -30,7 +40,7 @@ echo "=== check: ESLint ==="
 if [ -d "$ROOT/frontend/node_modules" ]; then
   run "eslint src" bash -c "cd '$ROOT/frontend' && npx --no-install eslint src"
 else
-  echo "  ⊘ eslint 스킵 — frontend/node_modules 부재"
+  skip "eslint src" "frontend/node_modules 부재"
 fi
 
 echo "=== check: 연대 정합 (Neo4j) ==="
@@ -39,7 +49,7 @@ if python3 -c "import socket; s=socket.socket(); s.settimeout(1); s.connect(('12
   NEO4J_URI="${NEO4J_URI:-bolt://localhost:7687}" NEO4J_USER="${NEO4J_USER:-neo4j}" \
     run "validate_event_chronology" python3 -m backend.scripts.validate_event_chronology
 else
-  echo "  ⊘ validate_event_chronology 스킵 — Neo4j(127.0.0.1:7687) 미기동"
+  skip "validate_event_chronology" "Neo4j(127.0.0.1:7687) 미기동"
 fi
 
 rm -f "$OUT"

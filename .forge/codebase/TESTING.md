@@ -20,21 +20,23 @@ BibleMap이 정확성을 검증하는 방식. 이 프로젝트에는 **정식 �
 
 ## 1. `scripts/check.sh` — 배포 전 검증 게이트 (AI 불요 CI 게이트)
 
-task#255에서 흩어져 있던 검증을 단일 엔트리로 묶은 스크립트. **`deploy.sh`가 프론트 빌드보다 앞에서 호출**하며 단독 실행도 가능하다.
+task#255에서 흩어져 있던 검증을 단일 엔트리로 묶은 스크립트. **`deploy.sh`가 데이터 주입·`npm install` 다음, 프론트 빌드보다 앞에서 `CHECK_STRICT=1`로 호출**하며 단독 실행도 가능하다.
 
 ```
-bash scripts/check.sh      # 리포지토리 어디서 실행해도 자기 위치로 ROOT 유도
+bash scripts/check.sh                 # 리포지토리 어디서 실행해도 자기 위치로 ROOT 유도
+CHECK_STRICT=1 bash scripts/check.sh  # 엄격 모드 — 환경 미충족 스킵을 실패로 승격(배포 경로)
 ```
 
 - **구성 3블록**
-  1. **파일 기반 데이터 검증 12종** — `python3 -m backend.scripts.validate_<name>` 모듈 실행으로 순서대로: `covenants` · `messianic_prophecies` · `parables_miracles` · `topical_verses` · `pm_map_coverage` · `chapter_sections` · `chapter_summaries` · `quotations` · `person_context` · `god_reliance` · `traits` · `era_bands_consistency`. 전부 **하드 게이트**(DB·네트워크 불요).
-  2. **ESLint** — `frontend/node_modules`가 있으면 `npx --no-install eslint src`, 없으면 `⊘ 스킵` 경고만.
-  3. **연대 정합(Neo4j)** — `.env`를 `set -a`로 로드한 뒤 `127.0.0.1:7687` 소켓 연결이 되면 `python3 -m backend.scripts.validate_event_chronology`, 미기동이면 `⊘ 스킵`.
+  1. **파일 기반 데이터 검증 13종** — `python3 -m backend.scripts.validate_<name>` 모듈 실행으로 순서대로: `covenants` · `messianic_prophecies` · `parables_miracles` · `topical_verses` · `pm_map_coverage` · `scene_coverage` · `chapter_sections` · `chapter_summaries` · `quotations` · `person_context` · `god_reliance` · `traits` · `era_bands_consistency`. 전부 **하드 게이트**(DB·네트워크 불요).
+  2. **ESLint** — `frontend/node_modules`가 있으면 `npx --no-install eslint src`, 없으면 `⊘ 스킵` 경고(엄격 모드에서는 `✗ 실패`).
+  3. **연대 정합(Neo4j)** — `.env`를 `set -a`로 로드한 뒤 `127.0.0.1:7687` 소켓 연결이 되면 `python3 -m backend.scripts.validate_event_chronology`, 미기동이면 `⊘ 스킵`(엄격 모드에서는 `✗ 실패`).
 - **출력 계약**: 항목마다 `  ✓ <라벨>` / `  ✗ <라벨>` + 실패 시 출력 마지막 8줄. 하나라도 실패하면 `=== check FAILED ===` 후 `exit 1`, 전부 통과면 `=== check PASS ===` 후 0.
 - **환경 의존 항목만 스킵-경고**, 파일 기반 검증은 절대 스킵하지 않는다(스크립트 상단 주석의 설계 계약).
-- **신규 `validate_*.py`를 만들면 반드시 `scripts/check.sh`의 목록에도 등록한다** — 안 하면 게이트가 잡지 못한다(`.forge/retro/260724-111705-predeploy-validation-gate.md`). 현재 `backend/scripts/validate_*.py`는 13개이며 12개(파일 기반) + 1개(Neo4j)로 **전수가 게이트에 등록돼 있다**.
+- **`CHECK_STRICT` 계약(task#259)** — 참이면 위 두 스킵 분기가 `skip()` 헬퍼를 통해 `✗ … (CHECK_STRICT: 스킵 불가)` + `fail=1`이 된다. **`check PASS`가 "전 검사를 실제로 통과했다"를 뜻하는 건 엄격 모드일 때뿐이다.** 미설정 시 스킵-경고 동작은 그대로 — Neo4j 없이 파일 검증만 돌리는 단독 개발 실행이 정당한 용법이기 때문(ADR `260801-195022`).
+- **신규 `validate_*.py`를 만들면 반드시 `scripts/check.sh`의 목록에도 등록한다** — 안 하면 게이트가 잡지 못한다(`.forge/retro/260724-111705-predeploy-validation-gate.md`). 현재 `backend/scripts/validate_*.py`는 14개이며 13개(파일 기반) + 1개(Neo4j)로 **전수가 게이트에 등록돼 있다**.
 - **배포 footgun**: `deploy.sh`가 `check.sh`를 호출하므로 신규 스크립트는 **`deploy.sh` 변경과 반드시 함께 커밋**한다. 러너 체크아웃에 파일이 없으면 게이트가 파일 부재로 배포를 막는다.
-- 실측(2026-08-01, HEAD `43f987c`, Neo4j 기동 상태): 14개 항목 전부 `✓`, `check PASS`.
+- 실측(2026-08-01, task#259, Neo4j 기동 상태): `CHECK_STRICT=1`로 15개 항목 전부 `✓`, `check PASS`. `frontend/node_modules`가 없는 트리에서는 미설정 시 `⊘` + `check PASS`(exit 0), `CHECK_STRICT=1`은 `✗ eslint src` + `check FAILED`(exit 1).
 
 ---
 
@@ -54,11 +56,12 @@ bash scripts/check.sh      # 리포지토리 어디서 실행해도 자기 위�
 | `validate_topical_verses.py` | `data/topical_verses/topics.json` | 주제 수 10~14 · 주제당 `verseIds` ≥3 · verseID 전수 실존 · `id` 유일 |
 | `validate_parables_miracles.py` | `data/jesus_parables_miracles/index.json` | `verseIds` 전수 실존 · `type` ∈ {`parable`,`miracle`} · `placeId`가 있으면 `place_coords`에 실존 · `id` 유일 · 비유 25~35 · 기적 25~40 |
 | `validate_pm_map_coverage.py` | 위 색인 ↔ `data/place_coords/places.json` | **지도↔연표 커버리지 간극 고정**. `/parables-miracles`(`backend/app/routes/events.py`)와 동일한 mappable 판정으로 좌표 없는 항목 집합을 계산해 `EXPECTED_UNMAPPABLE`(17건 정본)과 대조 — 예상 밖 누락(회귀)·이제 뜨는 항목·해석 안 되는 `placeId`를 각각 `assert`로 잡는다 |
+| `validate_scene_coverage.py` | `data/tours/*.json` ↔ `frontend/src/sketches/*.jsx` ↔ `tourSketches.jsx` | **투어 정차지↔장면 스케치 양방향 커버리지**. 정차지 `stops[].id` 집합과 스케치 레지스트리 키(좁은 정규식 `'authored-…':`)를 대조해 (a) 미저작 정차지(`EXPECTED_UNCOVERED` 허용목록, 현재 비어 있음) (b) 정차지에 없는 고아 키 (c) 허용목록 잔존 (d) **`tourSketches.jsx`에 import·스프레드되지 않은 모듈**을 `assert`로 잡는다. (d)가 없으면 키는 있는데 앱은 아무것도 렌더하지 않는 구멍이 통과한다 |
 | `validate_covenants.py` | `data/covenants/covenants.json` | 언약 수 5~6 · `keyVerseIds` 전수 실존 · `startDate` `int()` 파싱 가능 |
 | `validate_era_bands_consistency.py` | 소스 3곳 + `covenants.json` | `frontend/src/TimelineView.jsx`의 `ERA_BANDS` · `backend/app/routes/stats.py`의 `ERA_BANDS` · `backend/app/routes/persons.py`의 `_ERA_ORDER`를 **정규식으로 파싱**해 이름·순서·경계 일치를 단언하고, `covenants.json`의 `era`가 유효 시대인지 확인(`CONVENTIONS.md` §4.3). `-Infinity`(JS)/`float("-inf")`(Py) 정규화 주의 |
 | `validate_event_chronology.py` | **Neo4j 직독** | (a) 인물 출생<활동<사망 서사 역전 (b) 사사 승계 순서(삿 10–12장) 역전 (c) 대표 앵커(출애굽 -1446·아브라함 소명 -2091·가뭄 선포 -870) 대비 역전 (d) 교정 창(-2200~-600) 내 `rec` 이벤트 목록화 (e) 형제군 ±150년 고립 이탈(전치 오타 후보) + Person 스캔(사망<출생·수명>1000년). 신학적 참여는 `THEOLOGICAL_WHITELIST`로 제외. `--json PATH`로 구조화 리포트 저장 |
 
-- **공통 계약의 예외 3건** — `validate_covenants.py`·`validate_pm_map_coverage.py`·`validate_era_bands_consistency.py`는 위반 목록을 모으지 않고 **`assert`로 첫 위반에서 즉시 중단**한다(통과 시 `PASS` 출력). 항목 열거가 필요 없는 소규모/집합 대조 검증에 쓰는 변형.
+- **공통 계약의 예외 4건** — `validate_covenants.py`·`validate_pm_map_coverage.py`·`validate_scene_coverage.py`·`validate_era_bands_consistency.py`는 위반 목록을 모으지 않고 **`assert`로 첫 위반에서 즉시 중단**한다(통과 시 `PASS` 출력). 항목 열거가 필요 없는 소규모/집합 대조 검증에 쓰는 변형.
 - **실행 방법 두 가지**: `python3 backend/scripts/validate_<name>.py`(문서·AUTHORING.md 표기)와 `python3 -m backend.scripts.validate_<name>`(`scripts/check.sh` 표기). 새 검증기는 둘 다 동작해야 한다.
 - **환경 요구**: `validate_event_chronology.py`만 `NEO4J_PASSWORD`(+선택 `NEO4J_URI`/`NEO4J_USER`)가 필요하다 — 나머지는 `data/` JSON과 소스 파일만 읽어 DB 접속 불요.
 - 검증기가 참조하는 **정본 절 사전은 `data/bible/verses.json`** 하나다(verseID 실존 확인의 공통 기준, `CONVENTIONS.md` §6.2).
@@ -176,7 +179,9 @@ UI 동작 검증은 **Python Playwright**(sync API, `/opt/homebrew`의 Python 3.
 ## 8. CI / 배포 게이트
 
 - `.github/workflows/deploy.yml` — `main` push 시 self-hosted 러너에서 `git fetch origin` → `git reset --hard origin/main` → `bash deploy.sh`. **워크플로 자체에는 테스트 스텝이 없다** — 게이트는 `deploy.sh` 안으로 내려가 있다.
-- `deploy.sh` 순서: lock 파일로 동시 배포 차단(`/tmp/biblemap-deploy.lock`, `trap`으로 해제) → macOS 키체인 우회용 임시 `DOCKER_CONFIG` → `.env` 로드 → **`bash scripts/check.sh`(§1) — 실패 시 `exit 1`로 빌드 전에 배포 중단** → `[1/3]` 프론트 `npm install` + `npm run build` → `[2/3]` `docker compose -p biblemap build api` → `[3/4]` `up -d api nginx` → `[4/4]` `inject_ko_names.py`를 Neo4j 준비까지 최대 15회 재시도, 끝내 실패하면 `exit 1`.
+- `deploy.sh` 순서(task#259 재배치): lock 파일로 동시 배포 차단(`/tmp/biblemap-deploy.lock`, `trap`으로 해제) → macOS 키체인 우회용 임시 `DOCKER_CONFIG` → `.env` 로드 → `[1/7]` **Neo4j 도달 대기**(소켓 확인 최대 15회, 미도달이면 `exit 1`) → `[2/7]` **주입 2종**(`inject_ko_names.py` · `inject_date_corrections.py`, 둘 다 멱등) → `[3/7]` 프론트 `npm install` → `[4/7]` **`CHECK_STRICT=1 bash scripts/check.sh`(§1) — 실패 시 `exit 1`로 빌드 전에 배포 중단** → `[5/7]` `npm run build` → `[6/7]` `docker compose -p biblemap build api` → `[7/7]` `up -d api nginx`.
+- **왜 주입이 게이트 앞인가**: 뒤에 두면 아무 일도 못 한다 — 교정이 롤백된 DB에서는 게이트의 `validate_event_chronology`가 먼저 배포를 막아 주입에 도달하지 못하고, 게이트가 통과하면 이미 적용돼 있어 no-op이다. 주입은 멱등이므로 검증 전에 DB를 정본으로 되돌린다(ADR `260801-195022`). **`npm install`이 게이트 앞인 이유**는 클린 체크아웃에서 ESLint가 스킵되던 순서 버그의 직접 원인이었기 때문.
+- 대기와 주입이 분리되면서 주입 호출의 `2>/dev/null`이 제거됐다 — 이전에는 `NEO4J_PASSWORD` 미설정 예외가 "Neo4j 준비 대기 중"으로 위장돼 원인이 숨었다.
 - `tee -a "$LOG"` 뒤의 종료코드는 `${PIPESTATUS[0]}`로 포착한다(비-pipefail 환경 관용구).
 - **`deploy.sh`는 `load_*`를 실행하지 않는다** — 그래프 적재는 저작 시점 수동(§7).
 - 배포 후 확인은 `gh run list`(success). 배포 무음 실패(백엔드가 옛 코드) 의심 시엔 폴러보다 **러너부터** 확인한다(글로벌 인프라 격리 규칙).

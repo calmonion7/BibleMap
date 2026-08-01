@@ -30,12 +30,13 @@ mapped: 2026-08-01
 | **신규 데이터 디렉터리 4종 미커밋** | `git status` | 전부 커밋됨(`87846fb`). `data/covenants/`·`data/messianic_prophecies/`·`data/topical_verses/`·`data/jesus_parables_miracles/` 모두 추적 중 |
 | **ERA_BANDS 3중 중복에 정합 게이트 없음** | 스크립트 실행 | `backend/scripts/validate_era_bands_consistency.py` 신설 — TimelineView↔stats.py 경계·이름·순서 + persons.py `_ERA_ORDER` 순서 + covenants.json `era` 유효성 검사, `scripts/check.sh` 배선. **단 커버리지 부분적 — 아래 데이터 정합성 §4** |
 | **비유·기적 지도↔연표 커버리지 무경고 누락 17건** | 스크립트 실행 + 코드 확인 | `backend/scripts/validate_pm_map_coverage.py`가 누락 17건을 `EXPECTED_UNMAPPABLE` 정본으로 고정(회귀·미해석 `placeId` 탐지). UI도 `frontend/src/MapView.jsx:336-342`에서 "위치 없는 비유 N건은 연표에서" 안내 |
-| **데이터 검증 스크립트 CI 미연결** | `deploy.sh:34-40` | `scripts/check.sh`가 배포 전 하드 게이트로 배선. 실패 시 `exit 1`로 배포 중단. **단 무음 스킵 경로 2개 존재 — 아래 배포/운영 §1** |
+| **데이터 검증 스크립트 CI 미연결** | `deploy.sh` 게이트 단계 | `scripts/check.sh`가 배포 전 하드 게이트로 배선. 실패 시 `exit 1`로 배포 중단. 무음 스킵 경로 2개는 `CHECK_STRICT=1`로 **해소**(task#259, 배포/운영 §1) |
+| **투어 정차지 장면 커버리지 자동 게이트 부재** | 스크립트 실행 | `backend/scripts/validate_scene_coverage.py` 신설 — 정차지 275건↔스케치 키 275건 양방향 대조 + `tourSketches.jsx` 미병합 모듈 탐지, `scripts/check.sh` 배선(task#259) |
 | **언약 리본 `marginLeft:auto` 클리핑** | 직전 세션 수정 확인 | `frontend/src/TimelineView.jsx` 잔존 없음 |
 
 ### 잔존 (아래 각 절에서 상세)
 
-투어 정차지 장면 커버리지 자동 게이트 부재 · `deploy.sh`의 `load_*`/`inject_date_corrections` 미배선 · 캐시 무효화가 재시작 의존 · "큐레이션 13인" 주석 드리프트 · CORS `*` · `words.py` 전수 스캔 · `search.py` 전역 스캔 · `journey.py` 무캐시 · 오버레이 빈 폴백 비대칭 · `api.js` 캐시·디듀프 부재 · SPA `hashchange` 미청취 · 대형 컴포넌트 · 대용량 오버레이 상주 · 의존성 caret 미고정 · 테스트 0건.
+`deploy.sh`의 `load_*` 미배선(의도된 결정 — ADR `260801-195022`) · 캐시 무효화가 재시작 의존 · "큐레이션 13인" 주석 드리프트 · CORS `*` · `words.py` 전수 스캔 · `search.py` 전역 스캔 · `journey.py` 무캐시 · 오버레이 빈 폴백 비대칭 · `api.js` 캐시·디듀프 부재 · SPA `hashchange` 미청취 · 대형 컴포넌트 · 대용량 오버레이 상주 · 의존성 caret 미고정 · 테스트 0건.
 
 ---
 
@@ -94,8 +95,8 @@ ADR-0014는 "교정 후 `load_books.py` 재실행이 필요하다"고 적었지�
 **심각도: 높음 · 시급도: 중간**
 
 - **(a) 로더 재실행이 교정을 되돌린다.** `backend/scripts/load_theographic.py:175-179`가 `SET e.startDate`·`e.sortKey`를 쓰는데 이는 `backend/scripts/inject_date_corrections.py:51-55`가 쓰는 **바로 그 두 속성**이다. `load_theographic.py` 재실행 후 `inject_date_corrections.py`를 잊으면 전 교정이 조용히 소실된다.
-- **(b) `deploy.sh`가 재적용하지 않는다.** `deploy.sh:60`이 실행하는 데이터 주입은 `inject_ko_names.py` **하나뿐**이다. `README.md:20-22`가 명시한 3단계 중 `inject_date_corrections.py`가 빠져 있다.
-- **(c) 부분 완화(신규)**: `scripts/check.sh:38-43`이 배포 전 라이브 `validate_event_chronology`를 돌리므로, 교정이 롤백된 상태로는 배포가 **차단된다**. 단 Neo4j가 `127.0.0.1:7687`에 안 떠 있으면 그냥 스킵된다(§배포/운영 1).
+- ~~**(b) `deploy.sh`가 재적용하지 않는다.**~~ → **해소(task#259)**: 배포가 게이트 **앞**에서 `inject_ko_names.py`·`inject_date_corrections.py` 2종을 모두 실행한다(둘 다 멱등). 주입이 게이트보다 앞인 이유는 뒤에 두면 아무 일도 못 하기 때문 — 교정이 롤백된 DB에서는 게이트가 먼저 배포를 막고, 게이트가 통과하면 이미 적용돼 있어 no-op이다. **단 `load_*` 로더는 여전히 미배선** — 자동화하면 `build_book_year_range()`가 매 배포마다 교정을 덮어쓴다(위 §2, ADR `260801-195022`).
+- **(c) 완화**: `scripts/check.sh`가 배포 전 라이브 `validate_event_chronology`를 돌리므로 교정이 롤백된 상태로는 배포가 **차단된다**. 배포는 `CHECK_STRICT=1`로 부르므로 Neo4j 미기동 시 스킵이 아니라 **실패**다(task#259).
 - **(d) 중간값 무음 스킵**: `inject_date_corrections.py:40-51`은 DB 현재값이 `oldStartDate`와도 `newStartDate`와도 다르면 **경고만 찍고 스킵**한다. 교정 테이블의 `newStartDate`만 수정하고 DB가 이전 교정 결과(중간값)를 들고 있으면 재실행이 조용히 아무 일도 안 한다(`.forge/retro/260724-111702-person-chronology-corrections.md`에 실사례).
 
 ### 4. 시대(era) 결합점이 5곳인데 검증기는 3곳만 본다
@@ -153,18 +154,15 @@ ADR-0014는 "교정 후 `load_books.py` 재실행이 필요하다"고 적었지�
 
 ## Deployment / Ops Risks
 
-### 1. 배포 게이트가 두 경로에서 무음으로 무력화된다 — 그중 하나는 순서 버그
+### 1. 배포 게이트가 두 경로에서 무음으로 무력화된다 — 그중 하나는 순서 버그 (**해소 — task#259**)
 
-**심각도: 높음 · 시급도: 높음**
+**심각도: 높음 · 시급도: 높음 → 해소**
 
-`scripts/check.sh`는 두 검사를 환경 미충족 시 `⊘` 한 줄만 찍고 **통과시킨다**.
+과거: `scripts/check.sh`가 `frontend/node_modules` 부재 시 ESLint를, `127.0.0.1:7687` 미기동 시 `validate_event_chronology`를 `⊘` 한 줄만 찍고 통과시켰다. 게다가 `deploy.sh`가 `npm install`보다 **먼저** 게이트를 불러 **클린 체크아웃의 첫 배포에서는 ESLint가 항상 스킵**됐다.
 
-- `scripts/check.sh:30-34` — `frontend/node_modules` 부재 시 ESLint 스킵
-- `scripts/check.sh:38-43` — `127.0.0.1:7687` 미기동 시 `validate_event_chronology` 스킵
+해소(ADR `260801-195022`): ① `check.sh`에 `skip()` 헬퍼 도입 — `CHECK_STRICT`가 참이면 두 스킵 분기가 `✗` + `fail=1`이 된다. ② `deploy.sh`가 `CHECK_STRICT=1`로 호출한다. ③ `npm install`·주입 2종을 게이트 **앞**으로 재배치했다. 순서만 고치지 않고 게이트 안에 보증을 내린 이유는, 순서 수정만으로는 누군가 다시 재배치했을 때 같은 무음 통과가 재발하기 때문. 스킵-경고 계약 자체는 단독 개발 실행용으로 남는다(엄격 모드는 배포 호출자만 켠다).
 
-**순서 버그**: `deploy.sh`는 `:35`에서 `check.sh`를 부르고 `:43-45`에서야 `npm install`을 한다. 따라서 **클린 체크아웃의 첫 배포에서는 ESLint가 항상 스킵**된다. 마찬가지로 Neo4j 컨테이너가 재시작 중이면 연대 검증이 스킵된 채 "check PASS"가 찍힌다. 두 경우 모두 게이트가 파일 기반 12종만 돌고 통과한다.
-
-`scripts/check.sh:7`은 `set -u`만 쓰고 `set -e`/`set -o pipefail`이 없다(`run()` 헬퍼가 종료코드를 개별 수집하므로 치명적이진 않다).
+`scripts/check.sh:7`은 여전히 `set -u`만 쓰고 `set -e`/`set -o pipefail`이 없다(`run()` 헬퍼가 종료코드를 개별 수집하므로 치명적이진 않다).
 
 ### 2. PR 시점 CI가 전무 — 게이트는 머지 이후에만 돈다
 
@@ -182,8 +180,8 @@ ADR-0014는 "교정 후 `load_books.py` 재실행이 필요하다"고 적었지�
 
 **심각도: 중간 · 시급도: 중간**
 
-- `deploy.sh:60` — `python3 .../inject_ko_names.py 2>/dev/null`이 **stderr 전량을 버린다**. `inject_ko_names.py`는 `NEO4J_PASSWORD` 미설정 시 import 시점에 예외를 던지는데, 이것이 "Neo4j 준비 대기 중" 15회 재시도(`deploy.sh:62-66`)로 위장돼 **원인이 완전히 숨는다**.
-- `deploy.sh:29-31` — `.env`를 `set -a`로 export한다. `deploy.sh:35`가 `check.sh` 출력을 `/Users/calmonion/Library/Logs/com.biblemap.deploy.log`에 `tee`하므로, 환경을 덤프하는 하위 프로세스가 하나라도 생기면 자격증명이 로그로 새어 나간다(현재 그런 경로는 없음 — 잠재 위험).
+- ~~`deploy.sh:60` — 주입 호출의 `2>/dev/null`이 stderr 전량을 버려 `NEO4J_PASSWORD` 미설정 예외가 "Neo4j 준비 대기 중" 재시도로 위장됐다~~ → **해소(task#259)**: 도달 대기(소켓 확인)와 주입이 분리되면서 `2>/dev/null`이 제거됐다. 주입 실패는 이제 `set -e`가 그대로 잡는다(`| tee`를 쓰지 않는 이유 — 파이프라인 종료코드가 삼켜져 fail-closed가 깨진다).
+- `deploy.sh:29-31` — `.env`를 `set -a`로 export한다. 게이트 호출이 `check.sh` 출력을 `/Users/calmonion/Library/Logs/com.biblemap.deploy.log`에 `tee`하므로, 환경을 덤프하는 하위 프로세스가 하나라도 생기면 자격증명이 로그로 새어 나간다(현재 그런 경로는 없음 — 잠재 위험).
 - `backend/scripts/apply_event_dedupe.py:23`만 `os.environ["NEO4J_PASSWORD"]`(맨 `KeyError`)를 쓰고 나머지 스크립트는 친절한 `RuntimeError`를 쓴다 — 비일관.
 
 ### 5. 배포 워크플로가 개발 워킹트리를 하드리셋 + 절대경로 하드코딩
@@ -192,9 +190,9 @@ ADR-0014는 "교정 후 `load_books.py` 재실행이 필요하다"고 적었지�
 
 `.github/workflows/deploy.yml:13`에 `/Users/calmonion/Project/BibleMap` 절대경로가 박혀 있고 `:15`가 `git reset --hard origin/main`을 한다. 이 디렉터리는 개발 머신 워킹트리이자 `docker-compose.yml:20`의 `./data` 볼륨 마운트 원본이다. push 시점에 미커밋 데이터 편집이 있으면 소실된다(§데이터 정합성 7).
 
-### 6. `deploy.sh` 단계 라벨 어긋남 (코스메틱)
+### 6. `deploy.sh` 단계 라벨 어긋남 (코스메틱) (**해소 — task#259**)
 
-`deploy.sh:42`(`[1/3]`)·`:47`(`[2/3]`)·`:52`(`[3/4]`)·`:56`(`[4/4]`) — 분모가 섞였고 `:34`의 검증 단계는 번호가 없다.
+과거 `[1/3]`·`[2/3]`·`[3/4]`·`[4/4]`로 분모가 섞였고 검증 단계엔 번호가 없었다. 재배치와 함께 `[1/7]`~`[7/7]`로 통일했다(대기 → 주입 → `npm install` → 게이트 → 빌드 → 이미지 → 기동).
 
 ### 7. 프론트 `:8080`은 `frontend/dist` 정적 마운트 (HMR 아님)
 
