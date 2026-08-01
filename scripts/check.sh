@@ -36,11 +36,13 @@ for s in covenants messianic_prophecies parables_miracles topical_verses pm_map_
   run "validate_$s" python3 -m "backend.scripts.validate_$s"
 done
 
-echo "=== check: ESLint ==="
+echo "=== check: 프론트 (ESLint · 유닛 테스트) ==="
 if [ -d "$ROOT/frontend/node_modules" ]; then
   run "eslint src" bash -c "cd '$ROOT/frontend' && npx --no-install eslint src"
+  run "vitest" bash -c "cd '$ROOT/frontend' && npm test --silent"
 else
   skip "eslint src" "frontend/node_modules 부재"
+  skip "vitest" "frontend/node_modules 부재"
 fi
 
 echo "=== check: 연대 정합 (Neo4j) ==="

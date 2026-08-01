@@ -5,16 +5,21 @@ mapped: 2026-08-01
 
 # TESTING
 
-BibleMap이 정확성을 검증하는 방식. 이 프로젝트에는 **정식 유닛 테스트 프레임워크가 없다** — 검증은 (1) 배포 전 단일 게이트 `scripts/check.sh`, (2) 데이터 기계검증 스크립트 `backend/scripts/validate_*.py`, (3) 로더/빌더/inject의 자체 검증과 인라인 assert, (4) 커밋되지 않는 ephemeral 정합 감사, (5) Python Playwright 화면 검증, (6) 배포 파이프라인 게이트로 이뤄진다.
+BibleMap이 정확성을 검증하는 방식. 검증은 (1) 배포 전 단일 게이트 `scripts/check.sh`, (2) 데이터 기계검증 스크립트 `backend/scripts/validate_*.py`, (3) **프론트 순수 함수 vitest 유닛 테스트**, (4) 로더/빌더/inject의 자체 검증과 인라인 assert, (5) 커밋되지 않는 ephemeral 정합 감사, (6) Python Playwright 화면 검증, (7) 배포 파이프라인 게이트로 이뤄진다. 백엔드에는 여전히 테스트 러너가 없다(의도된 결정 — 아래 §0).
 
 ---
 
-## 0. 정식 테스트 프레임워크 부재
+## 0. 테스트 러너 실태 — 프론트만 vitest, 백엔드는 의도적 부재
 
-- pytest·unittest·vitest·jest 없음. `*_test.py`·`*.test.jsx`·`*.spec.*`·`conftest.py` 파일이 리포지토리에 **하나도 없다**(`git ls-files | grep -iE "test|spec|conftest"` 결과가 이 문서 자신뿐).
-- 백엔드 `backend/requirements.txt`는 `fastapi`/`neo4j`/`uvicorn` 3줄이고, 프론트 `frontend/package.json`의 `devDependencies`엔 테스트 러너·`@testing-library`·`@playwright/test`가 없다. Playwright는 npm이 아니라 **호스트 Python**(`/opt/homebrew/lib/python3.14/site-packages/playwright`)에 설치돼 있다(§5).
-- 프론트의 유일한 정적 게이트는 ESLint(`CONVENTIONS.md` §8) — 커밋 `43f987c` 기준 `npm run lint`·`npx eslint src` 모두 0 error / 0 warning.
-- 즉 "테스트를 돌린다"의 실체는 **`bash scripts/check.sh`**(§1)와 §5의 Playwright 화면 검증이다.
+- **프론트: vitest 도입됨(task#261).** `frontend/package.json`의 `devDependencies`에 `vitest`, 스크립트는 `npm test`(= `vitest run`). 별도 config 파일 없음 — vite 설정을 그대로 쓰고 환경은 기본값(`node`, 대상이 순수 함수라 DOM 불요). 대상 3모듈 73건:
+  - `src/urlState.test.js` — `encodeHash`/`parseHash` 왕복 대칭(9필드 조합·빈/부분 상태·알 수 없는 해시 방어)
+  - `src/mapGeo.test.js` — 11개 export 전수, 빌더마다 **빈 입력 → 유효한 빈 FeatureCollection** 케이스 포함
+  - `src/mapRingController.test.js` — 생성 계약과 조기 반환만(순수부가 없어 나머지는 명시 제외, 파일 상단 주석)
+- **백엔드: pytest 미도입 — 의도된 결정**(ADR `260801-195023`). Neo4j 없이 테스트 가능한 라우트가 `tours.py`·`words.py` 둘뿐이라 회수가 적다.
+- **React 렌더/상호작용 테스트(jsdom·testing-library)도 미도입** — §5의 Playwright 화면 검증이 이미 덮는다. Playwright는 npm이 아니라 **호스트 Python**(`/opt/homebrew/lib/python3.14/site-packages/playwright`)에 설치돼 있다.
+- **커버리지 도구(c8 등) 미도입** — 측정 대상이 세 모듈뿐이라 숫자가 의미 없다.
+- 프론트의 정적 게이트는 ESLint(`CONVENTIONS.md` §8) — `npm run lint`·`npx eslint src` 모두 0 error / 0 warning(테스트 파일 포함).
+- 즉 "테스트를 돌린다"의 실체는 **`bash scripts/check.sh`**(§1, vitest를 포함한다)와 §5의 Playwright 화면 검증이다.
 
 ---
 
@@ -29,7 +34,7 @@ CHECK_STRICT=1 bash scripts/check.sh  # 엄격 모드 — 환경 미충족 스�
 
 - **구성 3블록**
   1. **파일 기반 데이터 검증 13종** — `python3 -m backend.scripts.validate_<name>` 모듈 실행으로 순서대로: `covenants` · `messianic_prophecies` · `parables_miracles` · `topical_verses` · `pm_map_coverage` · `scene_coverage` · `chapter_sections` · `chapter_summaries` · `quotations` · `person_context` · `god_reliance` · `traits` · `era_bands_consistency`. 전부 **하드 게이트**(DB·네트워크 불요).
-  2. **ESLint** — `frontend/node_modules`가 있으면 `npx --no-install eslint src`, 없으면 `⊘ 스킵` 경고(엄격 모드에서는 `✗ 실패`).
+  2. **프론트(ESLint · 유닛 테스트)** — `frontend/node_modules`가 있으면 `npx --no-install eslint src`와 `npm test`(vitest, §0)를 이어서 돌리고, 없으면 둘 다 `⊘ 스킵` 경고(엄격 모드에서는 `✗ 실패`). 두 검사가 같은 `node_modules` 가드를 공유한다.
   3. **연대 정합(Neo4j)** — `.env`를 `set -a`로 로드한 뒤 `127.0.0.1:7687` 소켓 연결이 되면 `python3 -m backend.scripts.validate_event_chronology`, 미기동이면 `⊘ 스킵`(엄격 모드에서는 `✗ 실패`).
 - **출력 계약**: 항목마다 `  ✓ <라벨>` / `  ✗ <라벨>` + 실패 시 출력 마지막 8줄. 하나라도 실패하면 `=== check FAILED ===` 후 `exit 1`, 전부 통과면 `=== check PASS ===` 후 0.
 - **환경 의존 항목만 스킵-경고**, 파일 기반 검증은 절대 스킵하지 않는다(스크립트 상단 주석의 설계 계약).
@@ -190,6 +195,6 @@ UI 동작 검증은 **Python Playwright**(sync API, `/opt/homebrew`의 Python 3.
 
 ## 9. 커버리지 실태
 
-- **자동 회귀 안전망이 있는 영역**: 저작 데이터의 스키마·통제 어휘·verseID 실존·집합 커버리지(§2, 13종) · 시대 경계 3중복 드리프트(§2 `validate_era_bands_consistency`) · Neo4j 연대 이상(§2 `validate_event_chronology`) · 프론트 정적 규칙(ESLint) · 적재 스크립트의 사슬/건수 자체검증(§3) · `_parse_year` 인라인 assert(§3).
-- **자동 안전망이 없는 영역**: FastAPI 라우트의 응답 계약(엔드포인트 단위 테스트 0건) · Cypher 쿼리 결과 · React 컴포넌트 렌더/상호작용 · `frontend/src/mapGeo.js`·`mapRingController.js`·`urlState.js` 같은 순수 함수 모듈(왕복 대칭 테스트 없음) · 투어 장면 스케치 커버리지(§4의 집합 대조가 아직 스크립트화되지 않음). 이 영역의 회귀는 전적으로 §5의 Playwright 수동 검증과 사용자 피드백에 의존한다.
-- **커버리지 수치는 측정되지 않는다** — coverage 도구(pytest-cov·c8 등) 설정이 없고, CI에 품질 리포트도 없다. `scripts/check.sh`의 PASS/FAIL이 유일한 기계 판정이다.
+- **자동 회귀 안전망이 있는 영역**: 저작 데이터의 스키마·통제 어휘·verseID 실존·집합 커버리지(§2, 13종) · 투어 정차지↔장면 스케치 커버리지(§2 `validate_scene_coverage`) · 시대 경계 3중복 드리프트(§2 `validate_era_bands_consistency`) · Neo4j 연대 이상(§2 `validate_event_chronology`) · 프론트 정적 규칙(ESLint) · **프론트 순수 함수 3모듈(§0, vitest 73건)** · 적재 스크립트의 사슬/건수 자체검증 · `_parse_year` 인라인 assert.
+- **자동 안전망이 없는 영역**: FastAPI 라우트의 응답 계약(엔드포인트 단위 테스트 0건 — 의도된 결정, ADR `260801-195023`) · Cypher 쿼리 결과 · React 컴포넌트 렌더/상호작용 · `mapRingController.js`의 애니메이션 진행·`expandPlace` 경로(맵 인스턴스 의존이라 명시 제외). 이 영역의 회귀는 Playwright 화면 검증과 사용자 피드백에 의존한다.
+- **커버리지 수치는 측정되지 않는다** — coverage 도구(pytest-cov·c8 등) 설정이 없다(의도적 — 측정 대상이 세 모듈뿐). `scripts/check.sh`의 PASS/FAIL이 유일한 기계 판정이다.

@@ -36,7 +36,7 @@ mapped: 2026-08-01
 
 ### 잔존 (아래 각 절에서 상세)
 
-`deploy.sh`의 `load_*` 미배선(의도된 결정 — ADR `260801-195022`) · 캐시 무효화가 재시작 의존 · "큐레이션 13인" 주석 드리프트 · CORS `*` · `words.py` 전수 스캔 · `search.py` 전역 스캔 · `journey.py` 무캐시 · 오버레이 빈 폴백 비대칭 · `api.js` 캐시·디듀프 부재 · SPA `hashchange` 미청취 · 대형 컴포넌트 · 대용량 오버레이 상주 · 의존성 caret 미고정 · 테스트 0건.
+`deploy.sh`의 `load_*` 미배선(의도된 결정 — ADR `260801-195022`) · 캐시 무효화가 재시작 의존 · "큐레이션 13인" 주석 드리프트 · CORS `*` · `words.py` 전수 스캔 · `search.py` 전역 스캔 · `journey.py` 무캐시 · 오버레이 빈 폴백 비대칭 · `api.js` 캐시·디듀프 부재 · SPA `hashchange` 미청취 · 대형 컴포넌트 · 대용량 오버레이 상주 · 의존성 caret 미고정 · 백엔드 테스트 0건(의도된 결정 — ADR `260801-195023`).
 
 ---
 
@@ -430,9 +430,9 @@ ADR-0014는 "교정 후 `load_books.py` 재실행이 필요하다"고 적었지�
 
 ## Test Coverage Gaps
 
-- **자동화 테스트 0건.** `*.test.*`/`*.spec.*` 파일 없음, `backend/`에 pytest 디렉터리·설정 없음, `frontend/package.json`에 `test` 스크립트도 테스트 러너 devDependency도 없음(`dev`·`build`·`lint`·`preview`만).
-- **ESLint는 통과하지만 PR에서 안 돈다.** `npm run lint`는 수동. 게이트는 `scripts/check.sh:30-34`뿐이고 그마저 `frontend/node_modules` 부재 시 스킵(§배포/운영 1).
-- **ADR-0029가 약속한 투어 정차지 ↔ 장면 스케치 커버리지 대조 스크립트가 여전히 없다.** ADR-0029 Consequences가 "집합 대조 스크립트(stops의 id ⊆ 레지스트리 키)가 커버리지 검증 게이트"라고 못 박았으나 `backend/scripts/`에도 `scripts/check.sh`에도 없다. **일회성 대조 결과 현재 커버리지는 275/275(100%)** — `data/tours/*.json` 9파일 275 stops 전부 `frontend/src/sketches/` 레지스트리에 대응 키가 있다(모듈별: `ageOfJudges` 35 · `creationToFlood` 23 · `davidUnitedKingdom` 37 · `elijahAndElisha` 32 · `exileAndReturn` 22 · `exodusToConquest` 24 · `gospelOfJesus` 37 · `patriarchsCovenant` 36 · `theEarlyChurch` 29). 즉 **지금은 문제없지만 새 정차지 추가 시 조용히 빈 카드가 뜨는 것을 막을 장치가 없다**(`frontend/src/tourSketches.jsx:17`의 `hasSketch`가 없으면 `null` 렌더 — 에러 없음). **심각도: 낮음 · 시급도: 중간(게이트 자체는 비용 작음)**
+- ~~**자동화 테스트 0건.**~~ → **부분 해소(task#261)**: 프론트 순수 함수 3모듈에 vitest 73건(`urlState`·`mapGeo`·`mapRingController`), `npm test`로 실행되고 `scripts/check.sh`의 프론트 블록에 배선됐다. **백엔드 pytest는 여전히 0건 — 의도된 결정**(ADR `260801-195023`: Neo4j 없이 테스트 가능한 라우트가 둘뿐이라 회수가 적다). React 렌더 테스트·커버리지 도구도 의도적 미도입.
+- **ESLint·유닛 테스트는 PR에서 안 돈다.** `npm run lint`/`npm test`는 수동이거나 배포 게이트 시점. 게이트의 프론트 블록은 `frontend/node_modules` 부재 시 스킵이지만, 배포는 `CHECK_STRICT=1`로 호출하므로 **스킵이 곧 실패**다(task#259). PR 시점 CI가 없는 건 그대로(이 프로젝트는 PR을 쓰지 않는다).
+- ~~**ADR-0029가 약속한 투어 정차지 ↔ 장면 스케치 커버리지 대조 스크립트가 없다.**~~ → **해소(task#259)**: `backend/scripts/validate_scene_coverage.py`가 양방향 대조(275↔275) + `tourSketches.jsx` 미병합 모듈까지 잡고 `scripts/check.sh`에 배선됐다.
 - **시대 결합 검증이 부분 커버**(§데이터 정합성 4) — `_ERA` 값·투어 JSON `era`·`App.jsx:889`의 `'신약'` 리터럴 미검사. 게다가 `validate_era_bands_consistency.py`가 **소스 정규식 스크래핑** 방식이라 포매팅 변경에 취약.
 - **`_ERA` ↔ `_NAME_KO` 35키 정합 검증 없음**(§데이터 정합성 5).
 - **`data/authored_persons/` 전용 validate 없음** — 다른 저작 데이터 12종은 검증기가 있다.
