@@ -80,7 +80,10 @@ docker compose -p biblemap build api
 log "      완료."
 
 log "[7/7] 컨테이너 재시작..."
-docker compose -p biblemap up -d api nginx
+docker compose -p biblemap up -d api
+# nginx는 이미지 빌드가 없고 바인드 마운트 스펙도 불변이라 nginx.conf만 바뀌면 Compose가 재생성을
+# 판단하지 못해 no-op 처리된다(task#263) — 정적 서빙 컨테이너라 매 배포 강제 재생성해도 비용이 거의 없다.
+docker compose -p biblemap up -d --force-recreate nginx
 log "      완료."
 
 log "=== 배포 완료 ==="

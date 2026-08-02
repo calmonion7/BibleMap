@@ -11,7 +11,6 @@ import PersonIntro from './PersonIntro'
 import TourIntro from './TourIntro'
 import TourPlaybackCard from './TourPlayback'
 import JourneyList from './JourneyList'
-import { useTourPlayback } from './useTourPlayback'
 import { journeyStopGroups } from './mapGeo'
 import { JOURNEY_SHEET_VH } from './constants'
 
@@ -32,10 +31,12 @@ const RELIANCE_TAB = { key: 'reliance', icon: HeartHandshake, label: '의존' }
 const FAMILY_TAB = { key: 'family', icon: Network, label: '족보' }
 
 // 탐험 단계 — 인물/투어 선택 후의 지도·연표·관계·소개·투어개요·의존 6뷰 + 여정 리스트 + 투어 재생.
-// journey는 App이 소유하는 useExploreJourney의 반환(수명 이유는 그 훅 상단 주석 — 족보 진입 시 이 컴포넌트가
-// 언마운트되므로 여정 상태를 여기서 소유하면 안 된다).
+// journey는 App이 소유하는 useExploreJourney의 반환, playback은 App이 소유하는 useTourPlayback의 반환
+// (수명 이유는 각 훅 상단 주석 — 족보 진입·헤더 리본 이탈 등으로 이 컴포넌트가 재마운트되므로
+// 여정·재생 상태를 여기서 소유하면 안 된다).
 export default function ExploreStage({
   journey,
+  playback,
   exploreView, setExploreView,
   explorePersonId, explorePersonName, explorePersonSlug, explorePersonEra, exploreTourId,
   backToHub, toursBack, openFamily, selectPerson, curatedIds, getPersonSlug,
@@ -52,8 +53,8 @@ export default function ExploreStage({
   // 무좌표 여정(task#201) — 정차 전부가 지도 좌표 없음(셋·아벨·에녹) → 지도 대신 전면 리스트
   const journeyMapless = !!(journeyStops && journeyStops.length > 0 && !journeyStops.some(s => s.lng != null && s.lat != null))
 
-  // 투어 자동재생(task#223) — 사건 단위 시퀀서. 카메라는 activeStopIdx를 구독한 effect가 구동.
-  const playback = useTourPlayback(journeyStops)
+  // 투어 자동재생(task#223) — 사건 단위 시퀀서(playback은 App 소유 prop, task#263 — 헤더 리본 이탈→뒤로가기
+  // 재마운트에도 재생 상태가 살아남게). 카메라는 activeStopIdx를 구독한 effect가 구동.
   // 재생 중 활성 정차지 그룹 인덱스 — playback.idx를 그룹 인덱스로 파생(effect+setState 대신, task#253).
   // 무좌표 사건은 직전 좌표 사건 그룹을 유지(카메라 유지·카드만 교체 규약).
   const playbackStopIdx = useMemo(() => {

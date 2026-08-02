@@ -9,6 +9,7 @@ import SpineHeader, { HEADER_H, RIBBON_OVERHANG } from './SpineHeader'
 import StageNav, { NAV_H } from './StageNav'
 import ExploreStage from './ExploreStage'
 import { useExploreJourney } from './useExploreJourney'
+import { useTourPlayback } from './useTourPlayback'
 import PersonSymbol from './personSymbols'
 import FamilyTree from './FamilyTree'
 import WordDistributionView from './WordDistributionView'
@@ -45,6 +46,9 @@ function App() {
   // 여정 데이터 상태 — 코드는 useExploreJourney, **수명은 App**(족보 스테이지 진입 시 ExploreStage가
   // 언마운트되므로 여기서 소유해야 복귀 시 재fetch·정차지 초기화가 없다. 훅 상단 주석 참조).
   const journey = useExploreJourney({ explorePersonId, exploreTourId })
+  // 투어 자동재생(task#223) 상태 — 같은 이유로 App 소유(task#263). ExploreStage가 헤더 리본 이탈→뒤로가기로
+  // 재마운트돼도 재생 idx·playing이 살아남는다(이전엔 ExploreStage 로컬 state라 재마운트 시 소실됐다).
+  const playback = useTourPlayback(journey.journeyStops)
 
   useEffect(() => {
     const mq = window.matchMedia(MOBILE_QUERY)
@@ -312,6 +316,7 @@ function App() {
       {activeStage === 'explore' && (
         <ExploreStage
           journey={journey}
+          playback={playback}
           exploreView={exploreView}
           setExploreView={setExploreView}
           explorePersonId={explorePersonId}
@@ -353,8 +358,8 @@ function App() {
                   top: HEADER_H + RIBBON_OVERHANG + NAV_H, right: 0, bottom: 0, width: 360,
                   boxShadow: 'var(--shadow-2)',
                   // 관계·하나님 의존 뷰는 전용 전체화면 — 탐험 인물 자신의 상세 시트로 우측을 덮지 않는다(다른 뷰로 토글 시 복귀).
-                  // 소개 뷰는 자기 자신이 본문이라 자기 시트만 억제(다른 노드 선택 시에는 정상 표시).
-                  transform: selectedNode && exploreView !== 'relations' && exploreView !== 'reliance' && !(exploreView === 'intro' && selectedNode === explorePersonId) ? 'translateX(0)' : 'translateX(100%)',
+                  // 탐험 인물 자신의 상세는 어느 뷰에서도 시트로 띄우지 않는다(모바일 sheetOpen과 동일 규약, task#263 — 이전엔 intro 뷰에만 한정돼 map 등 다른 뷰 진입 시 자기시트가 새 노출됐다).
+                  transform: selectedNode && exploreView !== 'relations' && exploreView !== 'reliance' && selectedNode !== explorePersonId ? 'translateX(0)' : 'translateX(100%)',
                 }),
           }}
           onTouchStart={isMobile ? onSheetTouchStart : undefined}

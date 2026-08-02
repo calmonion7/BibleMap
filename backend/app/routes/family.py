@@ -38,16 +38,19 @@ MAX_GENERATIONS = 100  # 조상선 상한 (아담→예수 ~76대 여유)
 
 @lru_cache(maxsize=1)
 def _family_role_pairs() -> dict:
-    """person_relations '가족' 관계의 정본 role → {frozenset({nameKoA,nameKoB}): {nameKo: role}}.
+    """person_relations '가족' 관계의 정본 role → {frozenset({idA,idB}): {id: role}}.
 
     role은 손큐레이션된 원근 라벨(맏아들·둘째 아들·편애한 아들·아버지 등, ADR 없음/ CONTEXT '인물 관계').
     theographic엔 출생순이 없어(children 배열 비정렬) 첫째/둘째는 이 큐레이션이 유일한 정본 원천이다.
+    endpoints의 slug(둘 다 있는 관계만)를 theographic_id로 해석해 키를 만든다 — nameKo 문자열만 쓰면
+    동명이인(theographic엔 다수 존재, 예: 요셉 6명)에게 다른 서사의 role이 잘못 유출된다(task#263).
     """
     path = _resolve("person_relations/relations.json")
     if path is None:
         return {}
     with open(path, encoding="utf-8") as f:
         rels = json.load(f).get("relations", [])
+    slug_to_id = {slug: pid for pid, slug in _id_to_slug().items()}
     out: dict = {}
     for r in rels:
         if r.get("type") != "가족":
@@ -56,14 +59,14 @@ def _family_role_pairs() -> dict:
         if len(eps) != 2:
             continue
         a, b = eps[0], eps[1]
-        ka, kb = a.get("nameKo"), b.get("nameKo")
-        if not ka or not kb or ka == kb:
+        ia, ib = slug_to_id.get(a.get("slug")), slug_to_id.get(b.get("slug"))
+        if not ia or not ib or ia == ib:
             continue
-        m = out.setdefault(frozenset({ka, kb}), {})
+        m = out.setdefault(frozenset({ia, ib}), {})
         if a.get("role"):
-            m[ka] = a["role"]
+            m[ia] = a["role"]
         if b.get("role"):
-            m[kb] = b["role"]
+            m[ib] = b["role"]
     return out
 
 
@@ -230,16 +233,15 @@ def get_person_family(node_id: str):
         partner_ids = [pid for pid in (add(r["pt"]) for r in partners) if pid]
 
         # focus 기준 큐레이션 정본 role(맏아들·둘째 아들 등) — 있으면 프론트가 gender 폴백 대신 표시.
-        focus_ko = nodes.get(node_id, {}).get("nameKo")
+        # theographic_id로 조회(task#263) — nameKo로 조회하면 동명이인 노드에 role이 잘못 유출된다.
         pairs = _family_role_pairs()
         roles = {}
-        if focus_ko:
-            for nid, n in nodes.items():
-                if nid == node_id:
-                    continue
-                role = pairs.get(frozenset({n["nameKo"], focus_ko}), {}).get(n["nameKo"])
-                if role:
-                    roles[nid] = role
+        for nid in nodes:
+            if nid == node_id:
+                continue
+            role = pairs.get(frozenset({nid, node_id}), {}).get(nid)
+            if role:
+                roles[nid] = role
 
         return JSONResponse(
             content={
