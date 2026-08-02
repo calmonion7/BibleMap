@@ -1,18 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
 import { apiGet } from './api'
 import PersonSymbol from './personSymbols'
+import { parseYear } from './dates'
 
 // 인물 미니 카드(task#197) — 가계도 노드 탭 시 열리는 바텀시트 요약.
 // family 노드 데이터(이름·slug·role)로 즉시 렌더하고 상세(/node/{id}: 생몰·intro·구절)는 지연 fetch.
 // 데이터 계층(큐레이션 → 소개 보유 → 단역, ADR-0027)에 따라 있는 필드만 자연 폴백 표시.
 // 닫기: 배경 탭 / 아래 스와이프. exit는 즉시 언마운트(전역 모달 규약).
-
-// "-1085" → "BC 1085", "30" → "AD 30"
-function fmtYear(y) {
-  if (!y) return null
-  const s = String(y)
-  return s.startsWith('-') ? `BC ${s.slice(1).split('-')[0]}` : `AD ${s.split('-')[0]}`
-}
 
 function PersonMiniCard({ node, parents = [], isFocus, onRecenter, onOpenPerson, onClose }) {
   const [detail, setDetail] = useState(null)
@@ -30,7 +24,7 @@ function PersonMiniCard({ node, parents = [], isFocus, onRecenter, onOpenPerson,
   const props = detail?.properties || {}
   const intro = props.intro || null
   const verses = Array.isArray(props.verses) ? props.verses : []
-  const born = fmtYear(props.birthYear), died = fmtYear(props.deathYear)
+  const born = parseYear(props.birthYear), died = parseYear(props.deathYear)
   const life = born || died ? [born, died].filter(Boolean).join(' – ') : null
   const father = parents.find(p => p.gender === 'Male')
   const mother = parents.find(p => p.gender === 'Female')

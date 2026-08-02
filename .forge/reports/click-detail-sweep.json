@@ -1,0 +1,250 @@
+[
+  {
+    "path": "연표 사건 제목 (abraham desktop, 22건 전수)",
+    "clicked": true,
+    "apiRequest": true,
+    "sheetOpened": true,
+    "intended": false,
+    "evidence": "22건 전수 클릭 → 죽은 경로 0건 · /api/node/<id> + h2 일치 · bbox 뷰포트 내"
+  },
+  {
+    "path": "연표 사건 제목 (abraham mobile, 22건 전수)",
+    "clicked": true,
+    "apiRequest": true,
+    "sheetOpened": true,
+    "intended": false,
+    "evidence": "22건 전수 클릭 → 죽은 경로 0건 · /api/node/<id> + h2 일치 · bbox 뷰포트 내"
+  },
+  {
+    "path": "연표 사건 제목 (paul desktop, 60건 전수)",
+    "clicked": true,
+    "apiRequest": true,
+    "sheetOpened": true,
+    "intended": false,
+    "evidence": "60건 전수 클릭 → 죽은 경로 0건 · /api/node/<id> + h2 일치 · bbox 뷰포트 내"
+  },
+  {
+    "path": "연표 사건 제목 (moses desktop, 18건 전수)",
+    "clicked": true,
+    "apiRequest": true,
+    "sheetOpened": true,
+    "intended": false,
+    "evidence": "18건 전수 클릭 → 죽은 경로 0건 · /api/node/<id> + h2 일치 · bbox 뷰포트 내"
+  },
+  {
+    "path": "지도 장소 핀 (desktop)",
+    "clicked": true,
+    "apiRequest": true,
+    "sheetOpened": true,
+    "intended": false,
+    "evidence": "클릭점 (784.5235849056603, 451.0707547169811) → ['http://localhost:8080/api/node/recgQtoCtBjbsPwAw/neighbors/grouped?v=1785638284403', 'http://localhost:8080/api/node/recgQtoCtBjbsPwAw?v=1785638284403'] + h2='우르' bbox(954,147) 뷰포트 내",
+    "note": ""
+  },
+  {
+    "path": "지도 장소 핀 (mobile)",
+    "clicked": true,
+    "apiRequest": true,
+    "sheetOpened": true,
+    "intended": false,
+    "evidence": "클릭점 (189.38028169014083, 456.7323943661972) → ['http://localhost:8080/api/node/recJK76HLZSOzxTWW/neighbors/grouped?v=1785638284403', 'http://localhost:8080/api/node/recJK76HLZSOzxTWW?v=1785638284403'] + h2='벧엘' bbox(34,272) 뷰포트 내",
+    "note": ""
+  },
+  {
+    "path": "지도 장소 핀 파울 (desktop)",
+    "clicked": true,
+    "apiRequest": true,
+    "sheetOpened": true,
+    "intended": false,
+    "evidence": "클릭점 (665.5398773006135, 431.1042944785276) → ['http://localhost:8080/api/node/rec9KPrYOwTjrP0jA/neighbors/grouped?v=1785638284403', 'http://localhost:8080/api/node/rec9KPrYOwTjrP0jA?v=1785638284403'] + h2='미항' bbox(954,147) 뷰포트 내",
+    "note": ""
+  },
+  {
+    "path": "지도 장소 핀 파울 (mobile)",
+    "clicked": true,
+    "apiRequest": true,
+    "sheetOpened": true,
+    "intended": false,
+    "evidence": "클릭점 (181.34848484848484, 459.07575757575756) → ['http://localhost:8080/api/node/recHrXj4CZl6AH9TQ/neighbors/grouped?v=1785638284403', 'http://localhost:8080/api/node/recHrXj4CZl6AH9TQ?v=1785638284403'] + h2='안디바드리' bbox(34,272) 뷰포트 내",
+    "note": ""
+  },
+  {
+    "path": "여정 리스트 정차지 (desktop)",
+    "clicked": true,
+    "apiRequest": false,
+    "sheetOpened": true,
+    "intended": true,
+    "evidence": "행 클릭 → /api/node 요청 0건, h2=[{'t': '아브라함', 'r': {'x': 954, 'y': 115, 'width': 67.46875, 'height': 23.390625, 'top': 115, 'right': 1021.46875, 'bottom': 138.390625, 'left': 954}}] — JourneyList.jsx 상단 주석('좌표 있는 정차의 행 클릭은 지도 선택(onStopSelect)만 하고') + onStopSelect=setActiveStopIdx(camera pan)이며 onSelectNode를 호출하지 않음(MapView.jsx 234-264줄) — 상세 시트가 아니라 지도 카메라 이동이 계약된 동작",
+    "note": "구절은 📖 칩으로 열리며 별도 계약(구절 레이어). 참고: h2 '아브라함'은 이 클릭 이전부터 떠 있던 잔존 시트(허브 카드 진입 시 selectedNode=explorePersonId로 세팅된 뒤, App.jsx 357줄의 자기시트 억제조건이 exploreView==='intro'에만 걸려 있어 '여정' 탭으로 전환하면 재노출됨) — 이 클릭이 새로 연 것이 아니라 클릭 전후로 텍스트·apiRequest 변화가 없음(범위 밖 관찰, Group A 대상 아님)"
+  },
+  {
+    "path": "여정 리스트 정차지 (mobile)",
+    "clicked": true,
+    "apiRequest": false,
+    "sheetOpened": false,
+    "intended": true,
+    "evidence": "행 클릭 → /api/node 요청 0건, h2=[{'t': '아브라함', 'r': {'x': 34, 'y': 874, 'width': 67.46875, 'height': 23.390625, 'top': 874, 'right': 101.46875, 'bottom': 897.390625, 'left': 34}}] — JourneyList.jsx 상단 주석('좌표 있는 정차의 행 클릭은 지도 선택(onStopSelect)만 하고') + onStopSelect=setActiveStopIdx(camera pan)이며 onSelectNode를 호출하지 않음(MapView.jsx 234-264줄) — 상세 시트가 아니라 지도 카메라 이동이 계약된 동작",
+    "note": "구절은 📖 칩으로 열리며 별도 계약(구절 레이어). 모바일은 잔존 자기시트가 뷰포트 밖(y=874)으로 밀려 있어 desktop과 달리 관측되지 않음"
+  },
+  {
+    "path": "인물 허브 카드 (desktop)",
+    "clicked": true,
+    "apiRequest": true,
+    "sheetOpened": true,
+    "intended": true,
+    "evidence": "카드 클릭 → selectPerson으로 탐험(소개 탭) 진입, /api/node 요청 2건(백그라운드 selectedNode 세팅), h2=[{'t': '아브라함', 'r': {'x': 376, 'y': 267, 'width': 90.265625, 'height': 28.796875, 'top': 267, 'right': 466.265625, 'bottom': 295.796875, 'left': 376}}, {'t': '아브라함', 'r': {'x': 1314, 'y': 115, 'width': 67.46875, 'height': 23.390625, 'top': 115, 'right': 1381.46875, 'bottom': 138.390625, 'left': 1314}}] — App.jsx 357줄 조건 `!(exploreView==='intro' && selectedNode===explorePersonId)`로 소개 탭에서 자기 시트를 억제(시트 h2 rect가 뷰포트 밖: {'t': '아브라함', 'r': {'x': 376, 'y': 267, 'width': 90.265625, 'height': 28.796875, 'top': 267, 'right': 466.265625, 'bottom': 295.796875, 'left': 376}}) + CONTEXT.md '상세 시트' 절 '허브 화면에는 선택 대상이 없어 시트가 없다', PersonHub.jsx의 PersonCard onClick=onSelectPerson(id)는 탐험 진입(네비게이션)이며 selectNode/시트 오픈이 아님",
+    "note": "PersonCard 클릭은 상세 시트 계약 대상이 아니라 탐험 진입 내비게이션"
+  },
+  {
+    "path": "인물 허브 카드 (mobile)",
+    "clicked": true,
+    "apiRequest": true,
+    "sheetOpened": true,
+    "intended": true,
+    "evidence": "카드 클릭 → selectPerson으로 탐험(소개 탭) 진입, /api/node 요청 2건(백그라운드 selectedNode 세팅), h2=[{'t': '아브라함', 'r': {'x': 16, 'y': 267, 'width': 90.265625, 'height': 28.796875, 'top': 267, 'right': 106.265625, 'bottom': 295.796875, 'left': 16}}, {'t': '아브라함', 'r': {'x': 34, 'y': 874, 'width': 67.46875, 'height': 23.390625, 'top': 874, 'right': 101.46875, 'bottom': 897.390625, 'left': 34}}] — App.jsx 357줄 조건 `!(exploreView==='intro' && selectedNode===explorePersonId)`로 소개 탭에서 자기 시트를 억제(시트 h2 rect가 뷰포트 밖: {'t': '아브라함', 'r': {'x': 16, 'y': 267, 'width': 90.265625, 'height': 28.796875, 'top': 267, 'right': 106.265625, 'bottom': 295.796875, 'left': 16}}) + CONTEXT.md '상세 시트' 절 '허브 화면에는 선택 대상이 없어 시트가 없다', PersonHub.jsx의 PersonCard onClick=onSelectPerson(id)는 탐험 진입(네비게이션)이며 selectNode/시트 오픈이 아님",
+    "note": "PersonCard 클릭은 상세 시트 계약 대상이 아니라 탐험 진입 내비게이션"
+  },
+  {
+    "path": "책 상세 책의 무대 장소 칩 (desktop)",
+    "clicked": true,
+    "apiRequest": true,
+    "sheetOpened": true,
+    "intended": false,
+    "evidence": "클릭 대상='놋 땅' · node_req=['http://localhost:8080/api/node/authored-place-land-of-nod?v=1785638284403'] · h2매치=[{'text': '놋 땅', 'inView': True, 'rect': [954, 115, 993, 138]}]",
+    "note": "마커 35건 발견"
+  },
+  {
+    "path": "책 상세 책의 무대 장소 칩 (mobile)",
+    "clicked": true,
+    "apiRequest": true,
+    "sheetOpened": true,
+    "intended": false,
+    "evidence": "클릭 대상='놋 땅' · node_req=['http://localhost:8080/api/node/authored-place-land-of-nod?v=1785638284403'] · h2매치=[{'text': '놋 땅', 'inView': True, 'rect': [34, 241, 73, 264]}]",
+    "note": "마커 35건 발견"
+  },
+  {
+    "path": "연표 책 칩 (📖) (desktop)",
+    "clicked": true,
+    "apiRequest": false,
+    "sheetOpened": false,
+    "intended": true,
+    "evidence": "클릭 대상='📖 창세기 ▸' · /api/node 요청=[] · /api/event/{id}/verses 요청=['http://localhost:8080/api/event/recXveJRjCtPNMLqs/verses?v=1785638284403'] · h2목록=[{'text': '아브라함', 'inView': True, 'rect': [954, 115, 1021, 138]}] · 코드: TimelineView.jsx:196-201 renderBookChip → onClick=toggleVerseView(ev) → verseView state(구절 레이어, task#202 S1 통일쉘) 오픈, selectedNode/SidePanel과 무관. CONTEXT.md '구절 레이어(Verse Layer)': 상세 시트와 별개 패턴으로 명시 구분.",
+    "note": "칩 26건 발견"
+  },
+  {
+    "path": "연표 책 칩 (📖) (mobile)",
+    "clicked": true,
+    "apiRequest": false,
+    "sheetOpened": false,
+    "intended": true,
+    "evidence": "클릭 대상='📖 창세기 ▸' · /api/node 요청=[] · /api/event/{id}/verses 요청=['http://localhost:8080/api/event/recXveJRjCtPNMLqs/verses?v=1785638284403'] · h2목록=[{'text': '아브라함', 'inView': False, 'rect': [34, 874, 101, 897]}] · 코드: TimelineView.jsx:196-201 renderBookChip → onClick=toggleVerseView(ev) → verseView state(구절 레이어, task#202 S1 통일쉘) 오픈, selectedNode/SidePanel과 무관. CONTEXT.md '구절 레이어(Verse Layer)': 상세 시트와 별개 패턴으로 명시 구분.",
+    "note": "칩 26건 발견"
+  },
+  {
+    "path": "검색 결과 (desktop)",
+    "clicked": false,
+    "apiRequest": false,
+    "sheetOpened": false,
+    "intended": true,
+    "evidence": "ADR-0007(2026-06-27, .forge/adr/0007-person-first-map-two-stage-remove-search.md): '범용 검색(useSearch·검색박스·드롭다운·`/` 단축키)은 제거' — 인물 우선 2단계 IA로 대체. frontend/src에 useSearch.js/SearchBar류 파일 없음(설계 결정으로 삭제됨) — 진입점이 코드에 존재하지 않아 clicked/apiRequest/sheetOpened 모두 false인 게 맞다.",
+    "note": "버그 아님 — 검색 UI 자체가 ADR-0007로 제거된 기능. 재정정: intended:false→true."
+  },
+  {
+    "path": "검색 결과 (mobile)",
+    "clicked": false,
+    "apiRequest": false,
+    "sheetOpened": false,
+    "intended": true,
+    "evidence": "ADR-0007(2026-06-27): 범용 검색 제거(desktop과 동일 근거). frontend/src에 검색 UI 파일 없음.",
+    "note": "버그 아님 — 검색 UI 자체가 ADR-0007로 제거된 기능. 재정정: intended:false→true."
+  },
+  {
+    "path": "관계 뷰 노드 — 자기 자신(자동선택) 억제 (desktop)",
+    "clicked": false,
+    "apiRequest": true,
+    "sheetOpened": false,
+    "intended": true,
+    "evidence": "#/person/abraham/relations 직행 시 explorePersonId 자동선택으로 /api/node/reccdFYIq50NyxNej 1건 자동 발사(진입 관례)되지만 h2='아브라함' bbox=(1314,115,67,23) 로 뷰포트 밖(desktop 1280×800) — App.jsx:357 조건(exploreView!=='relations') 이 self를 억제. RelationsView.jsx는 onSelectNode/selectNode prop을 받지 않아(ExploreStage.jsx:223) 관계 뷰 자체에는 상세 시트를 여는 클릭 대상이 없음(관계 카드→로컬 focusIdx 초점쌍 뷰, 사건 칩→VerseLayer, 모두 /api/node 미호출).",
+    "note": "clicked=false는 '관계 뷰 안에 상세시트를 여는 클릭 요소가 없음'을 뜻함(코드상 계약)."
+  },
+  {
+    "path": "관계 뷰 노드 — 자기 자신(자동선택) 억제 (mobile)",
+    "clicked": false,
+    "apiRequest": true,
+    "sheetOpened": false,
+    "intended": true,
+    "evidence": "동일 URL 모바일(390×844): /api/node/reccdFYIq50NyxNej 자동 발사되지만 h2 bbox=(34,874,67,23) 로 뷰포트(844) 밖 — mobile sheetOpen = selectedNode!=null && selectedNode!==explorePersonId(useStageNavigation.js:346) 자체가 self를 이미 배제해 view 무관하게 억제. desktop·mobile 모두 self 억제는 일관.",
+    "note": null
+  },
+  {
+    "path": "관계 뷰 — 다른 화면에서 선택한 타 노드가 관계 탭 전환 후에도 억제되는지 (desktop)",
+    "clicked": true,
+    "apiRequest": true,
+    "sheetOpened": false,
+    "intended": true,
+    "evidence": "#/person/abraham/timeline (D)에서 사건 '아브라함의 출생' 클릭 → /api/node/recXveJRjCtPNMLqs 발사 + h2 bbox=(954,147,123,23) 뷰포트 내(시트 열림 확인) → '관계' 탭 클릭 후 동일 h2 bbox=(1314,147,123,23)로 이동, 뷰포트 밖(닫힘). App.jsx:357 조건은 self/other 구분 없이 exploreView==='relations'면 무조건 translateX(100%) — 코드 주석('관계·하나님 의존 뷰는 전용 전체화면')과 일치, self든 타 노드든 관계 탭에서는 시트를 안 띄우는 게 desktop의 실제 계약.",
+    "note": null
+  },
+  {
+    "path": "관계 뷰 — 다른 화면에서 선택한 타 노드가 관계 탭 전환 후에도 억제되는지 (mobile)",
+    "clicked": true,
+    "apiRequest": true,
+    "sheetOpened": true,
+    "intended": false,
+    "evidence": "#/person/abraham/timeline (M)에서 '아브라함의 출생' 클릭 → h2 bbox=(34,272,123,23) inView=true(시트 열림) → '관계' 탭 클릭 후에도 동일 h2가 동일 bbox(34,272,123,23)로 inView=true 그대로 — 시트가 안 닫힘. 동시에 RelationsView 고유 텍스트('...의 관계')도 DOM에 count=2로 존재(관계 뷰는 정상 렌더) — 즉 관계 뷰 위에 이전 사건의 하단 시트가 계속 겹쳐 있음. 원인: useStageNavigation.js:346 sheetOpen = selectedNode!=null && selectedNode!==explorePersonId 는 exploreView를 전혀 참조하지 않아 App.jsx:350(모바일 translateY)에 desktop(App.jsx:357)과 같은 relations/reliance 제외 조건이 없음 — desktop·mobile 불일치. 주의: apiRequest/sheetOpened가 모두 true라 아래 '죽은 경로' 집계 정의(intended:false & (apiRequest false or sheetOpened false))에는 걸리지 않음 — 이 항목은 죽은 경로가 아니라 '시트가 닫혀야 할 때 안 닫히는' 별종 회귀(잔존 시트 버그)로, 죽은 경로 집계와는 다른 카테고리.",
+    "note": "스크린샷 없음(수치 실측으로 판정) — 재현: #/person/abraham/timeline(390×844)→이벤트 클릭→'관계' 탭 클릭→하단 시트가 안 닫히고 관계 화면 위에 계속 표시."
+  },
+  {
+    "path": "가계도 노드(미니카드) (desktop)",
+    "clicked": true,
+    "apiRequest": true,
+    "sheetOpened": false,
+    "intended": true,
+    "evidence": "#/family/reccdFYIq50NyxNej (D) button[title='아담'] 클릭 → /api/node/recyYgUiSETdWFgEP 발사 + PersonMiniCard 오픈(button:has-text('인물 페이지') count>0, 이름 '아담' 렌더 count=2) — 그러나 범용 상세 시트(<h2> 기반)는 열리지 않음(h2s=[]). FamilyTree.jsx NodeChip onClick=onOpenCard(node.id)→setCardId→PersonMiniCard.jsx(고정 오버레이 zIndex 40, apiGet('/node/'+id) 내부 지연조회, 헤더는 <span>이라 범용 시트의 <h2> 계약과 별개 컴포넌트) — 코드 주석(FamilyTree.jsx:6 '가계도 노드 탭 시 열리는 바텀시트', :130 '탭은 전부 미니 카드 열기')상 미니카드가 계약.",
+    "note": "focus 노드(아브라함) 클릭도 동일 onOpenCard 경로라 미니카드가 열림(별도 확인 안 함, 코드상 대칭)."
+  },
+  {
+    "path": "가계도 노드(미니카드) (mobile)",
+    "clicked": true,
+    "apiRequest": true,
+    "sheetOpened": false,
+    "intended": true,
+    "evidence": "동일 URL 모바일(390×844): button[title='아담'] 클릭 → /api/node/recyYgUiSETdWFgEP 발사 + PersonMiniCard 오픈(동일 조건), h2s=[] — desktop과 동일 거동.",
+    "note": null
+  },
+  {
+    "path": "#/stats 통계 대시보드 — 인물/책 bar row (desktop)",
+    "clicked": true,
+    "apiRequest": true,
+    "sheetOpened": false,
+    "intended": true,
+    "evidence": "#/stats에서 button:has-text('아브라함') 클릭 → 해시 #/stats → #/person/abraham/intro 로 전체 스테이지 전환(상세 시트 아님). /api/node/reccdFYIq50NyxNej 2건 발사는 진입 인물 자동 자기소개 로드(자기 시트 억제와 동일 메커니즘)이고 상세 시트 열람 목적이 아님. StatsView.jsx: BarRow onClick={()=>onSelectPerson(p.id)} → App.jsx onSelectPerson={(id)=>selectPerson(id,'intro')}(책도 onSelectBook={openBook}) — 둘 다 전용 스테이지 내비게이션이라 상세 시트 계약 대상이 아님.",
+    "note": "책 bar row(onSelectBook)는 별도 실측 안 함 — 동일 패턴(전체 전환) 코드로 확인."
+  },
+  {
+    "path": "#/topics 주제 성구 카드 (desktop)",
+    "clicked": true,
+    "apiRequest": false,
+    "sheetOpened": false,
+    "intended": true,
+    "evidence": "#/topics에서 주제 카드('믿음') 클릭 → /api/node 요청 0건, 뷰포트 내 h2는 페이지 고정 제목 '주제별 성구' 그대로(주제별 h2 없음) — TopicalVersesView.jsx: onClick={()=>setActive(t)} → VerseLayer(제목은 <span>, title prop) 오버레이 오픈. /topical-verses는 그래프 노드가 아닌 큐레이션 정적 색인(주제→성구 목록)이라 /api/node 대상 자체가 존재하지 않음 — 클릭 가능 대상은 있으나 '상세 시트' 계약의 대상 종류가 아님.",
+    "note": null
+  },
+  {
+    "path": "#/tours → 투어 진입 후 지도 정차지 핀 (desktop)",
+    "clicked": true,
+    "apiRequest": true,
+    "sheetOpened": true,
+    "intended": false,
+    "evidence": "[수정 후 실측] #/tour/patriarchs-covenant → 지도 탭 → 정차지 핀 '1'(우르) 클릭 → /api/node/recgQtoCtBjbsPwAw + /places + /neighbors/grouped 발사, h2='우르' 시트 정상 오픈(장소 배경·대표 구절·이 장소의 사건 2·지난 인물 1). 리스트 1행도 동시에 금색 활성 표시(onStopSelect 유지) — 카메라 이동과 상세 시트가 함께 동작. [원인] mapLayers.js journey-stop-circle 클릭 핸들러가 onJourneyStopClick(idx)만 부르고 onSelectNode를 호출하지 않던 것이 원인 — 다른 지도 핀(places-circle 등)과 달리 이 레이어만 상세 시트 오픈 경로가 빠져 있었음. places-circle의 투어모드 EMPTY_GEOJSON은 투어 모드에서 장소 핀 레이어 자체를 안 쓰는 정상 설계이고 이 버그의 원인이 아니었음(레드헤링).",
+    "note": "[수정] mapGeo.js buildJourneyStopsGeoJSON에 placeId 속성 추가 + mapLayers.js journey-stop-circle 핸들러가 placeId 있으면 onSelectNode(placeId) 호출하도록 수정. | 루프 정정: 수정 후 계약대로 시트가 열리므로 intended:false가 맞다(intended:true는 죽은경로 집계에서 제외되어 향후 회귀를 가린다)."
+  },
+  {
+    "path": "#/tours → 투어 진입 후 지도 정차지 핀 (mobile)",
+    "clicked": true,
+    "apiRequest": true,
+    "sheetOpened": true,
+    "intended": false,
+    "evidence": "[수정 후 실측] #/tour/elijah-and-elisha(정차지가 좁은 지역에 몰려 모바일에서도 핀이 시트 위 여백에 노출) → 지도 탭 → 정차지 핀 '7'(호렙산) 클릭 (48,470) → /api/node/authored-place-horeb + /places + /neighbors/grouped 발사, h2='호렙산' 모바일 하단시트 정상 오픈(Mount Horeb·장소, 이 장소의 사건 1·지난 인물 1). 데스크톱과 동일한 mapLayers.js 공용 핸들러(뷰포트 분기 없음)라 원인·수정 동일. 참고: patriarchs-covenant처럼 위도·경도 폭이 매우 큰 투어는 모바일 좁은 화면+42vh 하단 JourneyList 시트 때문에 핀 대부분이 시트에 가려지거나 화면 밖으로 밀려(캔버스 상단 대부분이 렌더 안 된 상태로 관찰됨) 실측 클릭이 어려운 경우가 있음 — 이는 카메라 프레이밍/시트 높이의 별개 사전 이슈이며 이번 클릭→시트 핸들러 버그와는 무관(이번 수정 범위 밖, 손대지 않음).",
+    "note": "[수정] desktop과 동일 코드 경로(mapLayers.js) — 좁은 지역 투어로 재검증해 시트 오픈 확인. 넓은 지역 투어에서의 핀 시야 확보는 별개 이슈로 남음(미수정, 관찰만). | 루프 정정: 수정 후 계약대로 시트가 열리므로 intended:false가 맞다(intended:true는 죽은경로 집계에서 제외되어 향후 회귀를 가린다)."
+  }
+]

@@ -180,7 +180,8 @@ export function journeyStopGroups(stops) {
 }
 
 // 여정 정차지 GeoJSON — 좌표 있는 stops를 장소 단위 Point Feature로.
-// properties: idx(그룹 인덱스=activeStopIdx·JourneyList와 동일), seqLabel(장소 번호), title, isStart, isEnd.
+// properties: idx(그룹 인덱스=activeStopIdx·JourneyList와 동일), seqLabel(장소 번호), title, isStart, isEnd,
+// placeId(상세 시트 오픈용 — 같은 좌표 그룹의 첫 정차지 것을 대표로 싣는다).
 export function buildJourneyStopsGeoJSON(stops) {
   return {
     type: 'FeatureCollection',
@@ -193,6 +194,7 @@ export function buildJourneyStopsGeoJSON(stops) {
         title: g.title,
         isStart: g.isStart,
         isEnd: g.isEnd,
+        placeId: g.stops[0].placeId ?? null,
       },
     })),
   }

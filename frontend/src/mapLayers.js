@@ -149,8 +149,9 @@ export function registerEventHandlers(map, { collapseRing, collapseSpider, expan
   })
 
   map.on('click', 'journey-stop-circle', (e) => {
-    const { idx } = e.features[0].properties
+    const { idx, placeId } = e.features[0].properties
     if (onJourneyStopClick && idx != null) onJourneyStopClick(idx) // idx는 장소 그룹 인덱스(activeStopIdx와 동일)
+    if (placeId) onSelectNode(placeId) // 다른 장소 핀과 동일하게 상세 시트도 연다
   })
 
   map.on('mouseenter', 'journey-stop-circle', () => {
