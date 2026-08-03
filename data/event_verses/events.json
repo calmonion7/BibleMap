@@ -100227,5 +100227,1636 @@
         ]
       }
     ]
+  },
+  "authored-moses-red-sea-crossing": {
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "bookOrder": 2,
+        "rangeLabel": "14:21–31",
+        "verses": [
+          {
+            "verseID": "02014021",
+            "chapter": 14,
+            "verse": 21,
+            "textKo": "모세가 바다 위로 손을 내어민대 여호와께서 큰 동풍으로 밤새도록 바닷물을 물러가게 하시니 물이 갈라져 바다가 마른 땅이 된지라 ",
+            "textEn": "And Moses stretched out his hand over the sea; and the Lord caused the sea to go back by a strong east wind all that night, and made the sea dry land, and the waters were divided."
+          },
+          {
+            "verseID": "02014022",
+            "chapter": 14,
+            "verse": 22,
+            "textKo": "이스라엘 자손이 바다 가운데 육지로 행하고 물은 그들의 좌우에 벽이 되니 ",
+            "textEn": "And the children of Israel went into the midst of the sea upon the dry ground: and the waters were a wall unto them on their right hand, and on their left."
+          },
+          {
+            "verseID": "02014023",
+            "chapter": 14,
+            "verse": 23,
+            "textKo": "애굽 사람들과 바로의 말들, 병거들과 그 마병들이 다 그 뒤를 쫓아 바다 가운데로 들어 오는지라 ",
+            "textEn": "And the Egyptians pursued, and went in after them to the midst of the sea, even all Pharaoh’s horses, his chariots, and his horsemen."
+          },
+          {
+            "verseID": "02014024",
+            "chapter": 14,
+            "verse": 24,
+            "textKo": "새벽에 여호와께서 불 구름기둥 가운데서 애굽 군대를 보시고 그 군대를 어지럽게 하시며 ",
+            "textEn": "And it came to pass, that in the morning watch the Lord looked unto the host of the Egyptians through the pillar of fire and of the cloud, and troubled the host of the Egyptians,"
+          },
+          {
+            "verseID": "02014025",
+            "chapter": 14,
+            "verse": 25,
+            "textKo": "그 병거 바퀴를 벗겨서 달리기에 극난하게 하시니 애굽 사람들이 가로되 이스라엘 앞에서 우리가 도망하자 여호와가 그들을 위하여 싸워 애굽 사람들을 치는도다 ",
+            "textEn": "And took off their chariot wheels, that they drave them heavily: so that the Egyptians said, Let us flee from the face of Israel; for the Lord fighteth for them against the Egyptians."
+          },
+          {
+            "verseID": "02014026",
+            "chapter": 14,
+            "verse": 26,
+            "textKo": "여호와께서 모세에게 이르시되 네 손을 바다 위로 내어밀어 물이 애굽 사람들과 그 병거들과 마병들 위에 다시 흐르게 하라 하시니 ",
+            "textEn": "And the Lord said unto Moses, Stretch out thine hand over the sea, that the waters may come again upon the Egyptians, upon their chariots, and upon their horsemen."
+          },
+          {
+            "verseID": "02014027",
+            "chapter": 14,
+            "verse": 27,
+            "textKo": "모세가 곧 손을 바다 위로 내어밀매 새벽에 미쳐 바다의 그 세력이 회복된지라 애굽 사람들이 물을 거스려 도망하나 여호와께서 애굽 사람들을 바다 가운데 엎으시니 ",
+            "textEn": "And Moses stretched forth his hand over the sea, and the sea returned to his strength when the morning appeared; and the Egyptians fled against it; and the Lord overthrew the Egyptians in the midst of the sea."
+          },
+          {
+            "verseID": "02014028",
+            "chapter": 14,
+            "verse": 28,
+            "textKo": "물이 다시 흘러 병거들과 기병들을 덮되 그들의 뒤를 쫓아 바다에 들어간 바로의 군대를 다 덮고 하나도 남기지 아니하였더라 ",
+            "textEn": "And the waters returned, and covered the chariots, and the horsemen, and all the host of Pharaoh that came into the sea after them; there remained not so much as one of them."
+          },
+          {
+            "verseID": "02014029",
+            "chapter": 14,
+            "verse": 29,
+            "textKo": "그러나 이스라엘 자손은 바다 가운데 육지로 행하였고 물이 좌우에 벽이 되었었더라 ",
+            "textEn": "But the children of Israel walked upon dry land in the midst of the sea; and the waters were a wall unto them on their right hand, and on their left."
+          },
+          {
+            "verseID": "02014030",
+            "chapter": 14,
+            "verse": 30,
+            "textKo": "그 날에 여호와께서 이같이 이스라엘을 애굽 사람의 손에서 구원하시매 이스라엘이 바닷가의 애굽 사람의 시체를 보았더라 ",
+            "textEn": "Thus the Lord saved Israel that day out of the hand of the Egyptians; and Israel saw the Egyptians dead upon the sea shore."
+          },
+          {
+            "verseID": "02014031",
+            "chapter": 14,
+            "verse": 31,
+            "textKo": "이스라엘이 여호와께서 애굽 사람들에게 베푸신 큰 일을 보았으므로 백성이 여호와를 경외하며 여호와와 그 종 모세를 믿었더라  ",
+            "textEn": "And Israel saw that great work which the Lord did upon the Egyptians: and the people feared the Lord, and believed the Lord, and his servant Moses. "
+          }
+        ]
+      }
+    ]
+  },
+  "authored-moses-marah-elim": {
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "bookOrder": 2,
+        "rangeLabel": "15:22–27",
+        "verses": [
+          {
+            "verseID": "02015022",
+            "chapter": 15,
+            "verse": 22,
+            "textKo": "모세가 홍해에서 이스라엘을 인도하매 그들이 나와서 수르 광야로 들어가서 거기서 사흘길을 행하였으나 물을 얻지 못하고 ",
+            "textEn": "So Moses brought Israel from the Red sea, and they went out into the wilderness of Shur; and they went three days in the wilderness, and found no water."
+          },
+          {
+            "verseID": "02015023",
+            "chapter": 15,
+            "verse": 23,
+            "textKo": "마라에 이르렀더니 그 곳 물이 써서 마시지 못하겠으므로 그 이름을 마라라 하였더라 ",
+            "textEn": "And when they came to Marah, they could not drink of the waters of Marah, for they were bitter: therefore the name of it was called Marah."
+          },
+          {
+            "verseID": "02015024",
+            "chapter": 15,
+            "verse": 24,
+            "textKo": "백성이 모세를 대하여 원망하여 가로되 우리가 무엇을 마실까 하매 ",
+            "textEn": "And the people murmured against Moses, saying, What shall we drink?"
+          },
+          {
+            "verseID": "02015025",
+            "chapter": 15,
+            "verse": 25,
+            "textKo": "모세가 여호와께 부르짖었더니 여호와께서 그에게 한 나무를 지시하시니 그가 물에 던지매 물이 달아졌더라 거기서 여호와께서 그들을 위하여 법도와 율례를 정하시고 그들을 시험하실새 ",
+            "textEn": "And he cried unto the Lord; and the Lord shewed him a tree, which when he had cast into the waters, the waters were made sweet: there he made for them a statute and an ordinance, and there he proved them,"
+          },
+          {
+            "verseID": "02015026",
+            "chapter": 15,
+            "verse": 26,
+            "textKo": "가라사대 너희가 너희 하나님 나 여호와의 말을 청종하고 나의 보기에 의를 행하며 내 계명에 귀를 기울이며 내 모든 규례를 지키면 내가 애굽 사람에게 내린 모든 질병의 하나도 너희에게 내리지 아니하리니 나는 너희를 치료하는 여호와임이니라 ",
+            "textEn": "And said, If thou wilt diligently hearken to the voice of the Lord thy God, and wilt do that which is right in his sight, and wilt give ear to his commandments, and keep all his statutes, I will put none of these diseases upon thee, which I have brought upon the Egyptians: for I am the Lord that healeth thee."
+          },
+          {
+            "verseID": "02015027",
+            "chapter": 15,
+            "verse": 27,
+            "textKo": "그들이 엘림에 이르니 거기 물샘 열둘과 종려 칠십 주가 있는지라 거기서 그들이 그 물 곁에 장막을 치니라  ",
+            "textEn": "And they came to Elim, where were twelve wells of water, and threescore and ten palm trees: and they encamped there by the waters. "
+          }
+        ]
+      }
+    ]
+  },
+  "authored-moses-manna-quail": {
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "bookOrder": 2,
+        "rangeLabel": "16:11–15",
+        "verses": [
+          {
+            "verseID": "02016011",
+            "chapter": 16,
+            "verse": 11,
+            "textKo": "여호와께서 모세에게 일러 가라사대 ",
+            "textEn": "And the Lord spake unto Moses, saying,"
+          },
+          {
+            "verseID": "02016012",
+            "chapter": 16,
+            "verse": 12,
+            "textKo": "내가 이스라엘 자손의 원망함을 들었노라 그들에게 고하여 이르기를 너희가 해 질 때에는 고기를 먹고 아침에는 떡으로 배부르리니 나는 여호와 너희의 하나님인 줄 알리라 하라 하시니라 ",
+            "textEn": "I have heard the murmurings of the children of Israel: speak unto them, saying, At even ye shall eat flesh, and in the morning ye shall be filled with bread; and ye shall know that I am the Lord your God."
+          },
+          {
+            "verseID": "02016013",
+            "chapter": 16,
+            "verse": 13,
+            "textKo": "저녁에는 메추라기가 와서 진에 덮이고 아침에는 이슬이 진 사면에 있더니 ",
+            "textEn": "And it came to pass, that at even the quails came up, and covered the camp: and in the morning the dew lay round about the host."
+          },
+          {
+            "verseID": "02016014",
+            "chapter": 16,
+            "verse": 14,
+            "textKo": "그 이슬이 마른 후에 광야 지면에 작고 둥글며 서리 같이 세미한 것이 있는지라 ",
+            "textEn": "And when the dew that lay was gone up, behold, upon the face of the wilderness there lay a small round thing, as small as the hoar frost on the ground."
+          },
+          {
+            "verseID": "02016015",
+            "chapter": 16,
+            "verse": 15,
+            "textKo": "이스라엘 자손이 보고 그것이 무엇인지 알지 못하여 서로 이르되 이것이 무엇이냐 하니 모세가 그들에게 이르되 이는 여호와께서 너희에게 주어 먹게 하신 양식이라 ",
+            "textEn": "And when the children of Israel saw it, they said one to another, It is manna: for they wist not what it was. And Moses said unto them, This is the bread which the Lord hath given you to eat."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-moses-rephidim-water": {
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "bookOrder": 2,
+        "rangeLabel": "17:1–7",
+        "verses": [
+          {
+            "verseID": "02017001",
+            "chapter": 17,
+            "verse": 1,
+            "textKo": "이스라엘 자손의 온 회중이 여호와의 명령대로 신 광야에서 떠나 그 노정대로 행하여 르비딤에 장막을 쳤으나 백성이 마실 물이 없는지라 ",
+            "textEn": "And all the congregation of the children of Israel journeyed from the wilderness of Sin, after their journeys, according to the commandment of the Lord, and pitched in Rephidim: and there was no water for the people to drink."
+          },
+          {
+            "verseID": "02017002",
+            "chapter": 17,
+            "verse": 2,
+            "textKo": "백성이 모세와 다투어 가로되 우리에게 물을 주어 마시게 하라 모세가 그들에게 이르되 너희가 어찌하여 나와 다투느냐 너희가 어찌하여 여호와를 시험하느냐 ",
+            "textEn": "Wherefore the people did chide with Moses, and said, Give us water that we may drink. And Moses said unto them, Why chide ye with me? wherefore do ye tempt the Lord?"
+          },
+          {
+            "verseID": "02017003",
+            "chapter": 17,
+            "verse": 3,
+            "textKo": "거기서 백성이 물에 갈하매 그들이 모세를 대하여 원망하여 가로되 당신이 어찌하여 우리를 애굽에서 인도하여 내어서 우리와 우리 자녀와 우리 생축으로 목말라 죽게 하느냐 ",
+            "textEn": "And the people thirsted there for water; and the people murmured against Moses, and said, Wherefore is this that thou hast brought us up out of Egypt, to kill us and our children and our cattle with thirst?"
+          },
+          {
+            "verseID": "02017004",
+            "chapter": 17,
+            "verse": 4,
+            "textKo": "모세가 여호와께 부르짖어 가로되 내가 이 백성에게 어떻게 하리이까 그들이 얼마 아니면 내게 돌질 하겠나이다 ",
+            "textEn": "And Moses cried unto the Lord, saying, What shall I do unto this people? they be almost ready to stone me."
+          },
+          {
+            "verseID": "02017005",
+            "chapter": 17,
+            "verse": 5,
+            "textKo": "여호와께서 모세에게 이르시되 백성 앞을 지나가서 이스라엘 장로들을 데리고 하수를 치던 네 지팡이를 손에 잡고 가라 ",
+            "textEn": "And the Lord said unto Moses, Go on before the people, and take with thee of the elders of Israel; and thy rod, wherewith thou smotest the river, take in thine hand, and go."
+          },
+          {
+            "verseID": "02017006",
+            "chapter": 17,
+            "verse": 6,
+            "textKo": "내가 거기서 호렙 산 반석 위에 너를 대하여 서리니 너는 반석을 치라 그것에서 물이 나리니 백성이 마시리라 모세가 이스라엘 장로들의 목전에서 그대로 행하니라 ",
+            "textEn": "Behold, I will stand before thee there upon the rock in Horeb; and thou shalt smite the rock, and there shall come water out of it, that the people may drink. And Moses did so in the sight of the elders of Israel."
+          },
+          {
+            "verseID": "02017007",
+            "chapter": 17,
+            "verse": 7,
+            "textKo": "그가 그곳 이름을 맛사라 또는 므리바라 불렀으니 이는 이스라엘 자손이 다투었음이요 또는 그들이 여호와를 시험하여 이르기를 여호와께서 우리 중에 계신가 아닌가 하였음이더라 ",
+            "textEn": "And he called the name of the place Massah, and Meribah, because of the chiding of the children of Israel, and because they tempted the Lord, saying, Is the Lord among us, or not?"
+          }
+        ]
+      }
+    ]
+  },
+  "authored-moses-amalek-battle": {
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "bookOrder": 2,
+        "rangeLabel": "17:8–13",
+        "verses": [
+          {
+            "verseID": "02017008",
+            "chapter": 17,
+            "verse": 8,
+            "textKo": "때에 아말렉이 이르러 이스라엘과 르비딤에서 싸우니라 ",
+            "textEn": "Then came Amalek, and fought with Israel in Rephidim."
+          },
+          {
+            "verseID": "02017009",
+            "chapter": 17,
+            "verse": 9,
+            "textKo": "모세가 여호수아에게 이르되 우리를 위하여 사람들을 택하여 나가서 아말렉과 싸우라 내일 내가 하나님의 지팡이를 손에 잡고 산꼭대기에 서리라 ",
+            "textEn": "And Moses said unto Joshua, Choose us out men, and go out, fight with Amalek: to morrow I will stand on the top of the hill with the rod of God in mine hand."
+          },
+          {
+            "verseID": "02017010",
+            "chapter": 17,
+            "verse": 10,
+            "textKo": "여호수아가 모세의 말대로 행하여 아말렉과 싸우고 모세와 아론과 훌은 산꼭대기에 올라가서 ",
+            "textEn": "So Joshua did as Moses had said to him, and fought with Amalek: and Moses, Aaron, and Hur went up to the top of the hill."
+          },
+          {
+            "verseID": "02017011",
+            "chapter": 17,
+            "verse": 11,
+            "textKo": "모세가 손을 들면 이스라엘이 이기고 손을 내리면 아말렉이 이기더니 ",
+            "textEn": "And it came to pass, when Moses held up his hand, that Israel prevailed: and when he let down his hand, Amalek prevailed."
+          },
+          {
+            "verseID": "02017012",
+            "chapter": 17,
+            "verse": 12,
+            "textKo": "모세의 팔이 피곤하매 그들이 돌을 가져다가 모세의 아래에 놓아 그로 그 위에 앉게 하고 아론과 훌이 하나는 이편에서 하나는 저편에서 모세의 손을 붙들어 올렸더니 그 손이 해가 지도록 내려오지 아니한지라 ",
+            "textEn": "But Moses’ hands were heavy; and they took a stone, and put it under him, and he sat thereon; and Aaron and Hur stayed up his hands, the one on the one side, and the other on the other side; and his hands were steady until the going down of the sun."
+          },
+          {
+            "verseID": "02017013",
+            "chapter": 17,
+            "verse": 13,
+            "textKo": "여호수아가 칼날로 아말렉과 그 백성을 쳐서 파하니라 ",
+            "textEn": "And Joshua discomfited Amalek and his people with the edge of the sword."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-moses-ten-plagues": {
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "bookOrder": 2,
+        "rangeLabel": "7:14–12:30",
+        "verses": [
+          {
+            "verseID": "02007014",
+            "chapter": 7,
+            "verse": 14,
+            "textKo": "여호와께서 모세에게 이르시되 바로의 마음이 완강하여 백성 보내기를 거절하는도다 ",
+            "textEn": "And the Lord said unto Moses, Pharaoh’s heart is hardened, he refuseth to let the people go."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-moses-jethro-counsel": {
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "bookOrder": 2,
+        "rangeLabel": "18:1–26",
+        "verses": [
+          {
+            "verseID": "02018001",
+            "chapter": 18,
+            "verse": 1,
+            "textKo": "모세의 장인 미디안 제사장 이드로가 하나님이 모세에게와 자기 백성 이스라엘에게 하신 일 곧 여호와께서 이스라엘을 애굽에서 인도하여 내신 모든 일을 들으니라 ",
+            "textEn": "When Jethro, the priest of Midian, Moses’ father in law, heard of all that God had done for Moses, and for Israel his people, and that the Lord had brought Israel out of Egypt;"
+          },
+          {
+            "verseID": "02018002",
+            "chapter": 18,
+            "verse": 2,
+            "textKo": "모세의 장인 이드로가 모세가 돌려 보내었던 그의 아내 십보라와 ",
+            "textEn": "Then Jethro, Moses’ father in law, took Zipporah, Moses’ wife, after he had sent her back,"
+          },
+          {
+            "verseID": "02018003",
+            "chapter": 18,
+            "verse": 3,
+            "textKo": "그 두 아들을 데렸으니 그 하나의 이름은 게르솜이라 이는 모세가 이르기를 내가 이방에서 객이 되었다 함이요 ",
+            "textEn": "And her two sons; of which the name of the one was Gershom; for he said, I have been an alien in a strange land:"
+          },
+          {
+            "verseID": "02018004",
+            "chapter": 18,
+            "verse": 4,
+            "textKo": "하나의 이름은 엘리에셀이라 이는 내 아버지의 하나님이 나를 도우사 바로의 칼에서 구원하셨다 함이더라 ",
+            "textEn": "And the name of the other was Eliezer; for the God of my father, said he, was mine help, and delivered me from the sword of Pharaoh:"
+          },
+          {
+            "verseID": "02018005",
+            "chapter": 18,
+            "verse": 5,
+            "textKo": "모세의 장인 이드로가 모세의 아들들과 그 아내로 더불어 광야에 들어와 모세에게 이르니 곧 모세가 하나님의 산에 진 친 곳이라 ",
+            "textEn": "And Jethro, Moses’ father in law, came with his sons and his wife unto Moses into the wilderness, where he encamped at the mount of God:"
+          },
+          {
+            "verseID": "02018006",
+            "chapter": 18,
+            "verse": 6,
+            "textKo": "그가 모세에게 전언하되 그대의 장인 나 이드로가 그대의 아내와 그와 함께한 그 두 아들로 더불어 그대에게 왔노라 ",
+            "textEn": "And he said unto Moses, I thy father in law Jethro am come unto thee, and thy wife, and her two sons with her."
+          },
+          {
+            "verseID": "02018007",
+            "chapter": 18,
+            "verse": 7,
+            "textKo": "모세가 나가서 그 장인을 맞아 절하고 그에게 입맞추고 그들이 서로 문안하고 함께 장막에 들어가서 ",
+            "textEn": "And Moses went out to meet his father in law, and did obeisance, and kissed him; and they asked each other of their welfare; and they came into the tent."
+          },
+          {
+            "verseID": "02018008",
+            "chapter": 18,
+            "verse": 8,
+            "textKo": "모세가 여호와께서 이스라엘을 위하여 바로와 애굽 사람에게 행하신 모든 일과 길에서 그들의 당한 모든 고난과 여호와께서 그들을 구원하신 일을 다 그 장인에게 고하매 ",
+            "textEn": "And Moses told his father in law all that the Lord had done unto Pharaoh and to the Egyptians for Israel’s sake, and all the travail that had come upon them by the way, and how the Lord delivered them."
+          },
+          {
+            "verseID": "02018009",
+            "chapter": 18,
+            "verse": 9,
+            "textKo": "이드로가 여호와께서 이스라엘에게 모든 은혜를 베푸사 애굽 사람의 손에서 구원하심을 기뻐하여 ",
+            "textEn": "And Jethro rejoiced for all the goodness which the Lord had done to Israel, whom he had delivered out of the hand of the Egyptians."
+          },
+          {
+            "verseID": "02018010",
+            "chapter": 18,
+            "verse": 10,
+            "textKo": "가로되 여호와를 찬송하리로다 너희를 애굽 사람의 손에서와 바로의 손에서 건져내시고 백성을 애굽 사람의 손 밑에서 건지셨도다 ",
+            "textEn": "And Jethro said, Blessed be the Lord, who hath delivered you out of the hand of the Egyptians, and out of the hand of Pharaoh, who hath delivered the people from under the hand of the Egyptians."
+          },
+          {
+            "verseID": "02018011",
+            "chapter": 18,
+            "verse": 11,
+            "textKo": "이제 내가 알았도다 여호와는 모든 신보다 크시므로 이스라엘에게 교만히 행하는 그들을 이기셨도다 하고 ",
+            "textEn": "Now I know that the Lord is greater than all gods: for in the thing wherein they dealt proudly he was above them."
+          },
+          {
+            "verseID": "02018012",
+            "chapter": 18,
+            "verse": 12,
+            "textKo": "모세의 장인 이드로가 번제물과 희생을 하나님께 가져오매 아론과 이스라엘 모든 장로가 와서 모세의 장인과 함께 하나님 앞에서 떡을 먹으니라 ",
+            "textEn": "And Jethro, Moses’ father in law, took a burnt offering and sacrifices for God: and Aaron came, and all the elders of Israel, to eat bread with Moses’ father in law before God."
+          },
+          {
+            "verseID": "02018013",
+            "chapter": 18,
+            "verse": 13,
+            "textKo": "이튿날에 모세가 백성을 재판하느라고 앉았고 백성은 아침부터 저녁까지 모세의 곁에 섰는지라 ",
+            "textEn": "And it came to pass on the morrow, that Moses sat to judge the people: and the people stood by Moses from the morning unto the evening."
+          },
+          {
+            "verseID": "02018014",
+            "chapter": 18,
+            "verse": 14,
+            "textKo": "모세의 장인이 모세가 백성에게 행하는 모든 일을 보고 가로되 그대가 이 백성에게 행하는 이 일이 어찜이뇨 어찌하여 그대는 홀로 앉았고 백성은 아침부터 저녁까지 그대의 곁에 섰느뇨 ",
+            "textEn": "And when Moses’ father in law saw all that he did to the people, he said, What is this thing that thou doest to the people? why sittest thou thyself alone, and all the people stand by thee from morning unto even?"
+          },
+          {
+            "verseID": "02018015",
+            "chapter": 18,
+            "verse": 15,
+            "textKo": "모세가 그 장인에게 대답하되 백성이 하나님께 물으려고 내게로 옴이라 ",
+            "textEn": "And Moses said unto his father in law, Because the people come unto me to enquire of God:"
+          },
+          {
+            "verseID": "02018016",
+            "chapter": 18,
+            "verse": 16,
+            "textKo": "그들이 일이 있으면 내게로 오나니 내가 그 양편을 판단하여 하나님의 율례와 법도를 알게 하나이다 ",
+            "textEn": "When they have a matter, they come unto me; and I judge between one and another, and I do make them know the statutes of God, and his laws."
+          },
+          {
+            "verseID": "02018017",
+            "chapter": 18,
+            "verse": 17,
+            "textKo": "모세의 장인이 그에게 이르되 그대의 하는 것이 선하지 못하도다 ",
+            "textEn": "And Moses’ father in law said unto him, The thing that thou doest is not good."
+          },
+          {
+            "verseID": "02018018",
+            "chapter": 18,
+            "verse": 18,
+            "textKo": "그대와 그대와 함께한 이 백성이 필연 기력이 쇠하리니 이 일이 그대에게 너무 중함이라 그대가 혼자 할 수 없으리라 ",
+            "textEn": "Thou wilt surely wear away, both thou, and this people that is with thee: for this thing is too heavy for thee; thou art not able to perform it thyself alone."
+          },
+          {
+            "verseID": "02018019",
+            "chapter": 18,
+            "verse": 19,
+            "textKo": "이제 내 말을 들으라 내가 그대에게 방침을 가르치리니 하나님이 그대와 함께 계실지로다 그대는 백성을 위하여 하나님 앞에 있어서 소송을 하나님께 베풀며 ",
+            "textEn": "Hearken now unto my voice, I will give thee counsel, and God shall be with thee: Be thou for the people to God-ward, that thou mayest bring the causes unto God:"
+          },
+          {
+            "verseID": "02018020",
+            "chapter": 18,
+            "verse": 20,
+            "textKo": "그들에게 율례와 법도를 가르쳐서 마땅히 갈 길과 할 일을 그들에게 보이고 ",
+            "textEn": "And thou shalt teach them ordinances and laws, and shalt shew them the way wherein they must walk, and the work that they must do."
+          },
+          {
+            "verseID": "02018021",
+            "chapter": 18,
+            "verse": 21,
+            "textKo": "그대는 또 온 백성 가운데서 재덕이 겸전한 자 곧 하나님을 두려워하며 진실무망하며 불의한 이를 미워하는 자를 빼서 백성 위에 세워 천부장과 백부장과 오십부장과 십부장을 삼아 ",
+            "textEn": "Moreover thou shalt provide out of all the people able men, such as fear God, men of truth, hating covetousness; and place such over them, to be rulers of thousands, and rulers of hundreds, rulers of fifties, and rulers of tens:"
+          },
+          {
+            "verseID": "02018022",
+            "chapter": 18,
+            "verse": 22,
+            "textKo": "그들로 때를 따라 백성을 재판하게 하라 무릇 큰 일이면 그대에게 베풀 것이고 무릇 작은 일이면 그들이 스스로 재판할 것이니 그리하면 그들이 그대와 함께 담당할 것인즉 일이 그대에게 쉬우리라 ",
+            "textEn": "And let them judge the people at all seasons: and it shall be, that every great matter they shall bring unto thee, but every small matter they shall judge: so shall it be easier for thyself, and they shall bear the burden with thee."
+          },
+          {
+            "verseID": "02018023",
+            "chapter": 18,
+            "verse": 23,
+            "textKo": "그대가 만일 이 일을 하고 하나님께서도 그대에게 인가하시면 그대가 이 일을 감당하고 이 모든 백성도 자기 곳으로 평안히 가리라 ",
+            "textEn": "If thou shalt do this thing, and God command thee so, then thou shalt be able to endure, and all this people shall also go to their place in peace."
+          },
+          {
+            "verseID": "02018024",
+            "chapter": 18,
+            "verse": 24,
+            "textKo": "이에 모세가 자기 장인의 말을 듣고 그 모든 말대로 하여 ",
+            "textEn": "So Moses hearkened to the voice of his father in law, and did all that he had said."
+          },
+          {
+            "verseID": "02018025",
+            "chapter": 18,
+            "verse": 25,
+            "textKo": "이스라엘 무리 중에서 재덕이 겸전한 자를 빼서 그들로 백성의 두목 곧 천부장과 백부장과 오십부장과 십부장을 삼으매 ",
+            "textEn": "And Moses chose able men out of all Israel, and made them heads over the people, rulers of thousands, rulers of hundreds, rulers of fifties, and rulers of tens."
+          },
+          {
+            "verseID": "02018026",
+            "chapter": 18,
+            "verse": 26,
+            "textKo": "그들이 때를 따라 백성을 재판하되 어려운 일은 모세에게 베풀고 쉬운 일은 자단하더라 ",
+            "textEn": "And they judged the people at all seasons: the hard causes they brought unto Moses, but every small matter they judged themselves."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-moses-tabernacle-glory": {
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "bookOrder": 2,
+        "rangeLabel": "40:17–38",
+        "verses": [
+          {
+            "verseID": "02040017",
+            "chapter": 40,
+            "verse": 17,
+            "textKo": "제 이년 정월 곧 그 달 초일일에 성막을 세우니라 ",
+            "textEn": "And it came to pass in the first month in the second year, on the first day of the month, that the tabernacle was reared up."
+          },
+          {
+            "verseID": "02040018",
+            "chapter": 40,
+            "verse": 18,
+            "textKo": "모세가 성막을 세우되 그 받침들을 놓고 그 널판들을 세우고 그 띠를 띠우고 그 기둥들을 세우고 ",
+            "textEn": "And Moses reared up the tabernacle, and fastened his sockets, and set up the boards thereof, and put in the bars thereof, and reared up his pillars."
+          },
+          {
+            "verseID": "02040019",
+            "chapter": 40,
+            "verse": 19,
+            "textKo": "또 성막 위에 막을 펴고 그 위에 덮개를 덮으니 여호와께서 모세에게 명하신 대로 되니라 ",
+            "textEn": "And he spread abroad the tent over the tabernacle, and put the covering of the tent above upon it; as the Lord commanded Moses."
+          },
+          {
+            "verseID": "02040020",
+            "chapter": 40,
+            "verse": 20,
+            "textKo": "그가 또 증거판을 궤 속에 넣고 채를 궤에 꿰고 속죄소를 궤 위에 두고 ",
+            "textEn": "And he took and put the testimony into the ark, and set the staves on the ark, and put the mercy seat above upon the ark:"
+          },
+          {
+            "verseID": "02040021",
+            "chapter": 40,
+            "verse": 21,
+            "textKo": "또 그 궤를 성막에 들여 놓고 장을 드리워서 그 증거궤를 가리우니 여호와께서 모세에게 명하신 대로 되니라 ",
+            "textEn": "And he brought the ark into the tabernacle, and set up the vail of the covering, and covered the ark of the testimony; as the Lord commanded Moses."
+          },
+          {
+            "verseID": "02040022",
+            "chapter": 40,
+            "verse": 22,
+            "textKo": "그가 또 회막 안 곧 성막 북편으로 장 밖에 상을 놓고 ",
+            "textEn": "And he put the table in the tent of the congregation, upon the side of the tabernacle northward, without the vail."
+          },
+          {
+            "verseID": "02040023",
+            "chapter": 40,
+            "verse": 23,
+            "textKo": "또 여호와 앞 그 상 위에 떡을 진설하니 여호와께서 모세에게 명하신 대로 되니라 ",
+            "textEn": "And he set the bread in order upon it before the Lord; as the Lord had commanded Moses."
+          },
+          {
+            "verseID": "02040024",
+            "chapter": 40,
+            "verse": 24,
+            "textKo": "그가 또 회막 안 곧 성막 남편에 등대를 놓아 상과 대하게 하고 ",
+            "textEn": "And he put the candlestick in the tent of the congregation, over against the table, on the side of the tabernacle southward."
+          },
+          {
+            "verseID": "02040025",
+            "chapter": 40,
+            "verse": 25,
+            "textKo": "또 여호와 앞에 등잔에 불을 켜니 여호와께서 모세에게 명하신 대로 되니라 ",
+            "textEn": "And he lighted the lamps before the Lord; as the Lord commanded Moses."
+          },
+          {
+            "verseID": "02040026",
+            "chapter": 40,
+            "verse": 26,
+            "textKo": "그가 또 금 향단을 회막 안 장 앞에 두고 ",
+            "textEn": "And he put the golden altar in the tent of the congregation before the vail:"
+          },
+          {
+            "verseID": "02040027",
+            "chapter": 40,
+            "verse": 27,
+            "textKo": "그 위에 향기로운 향을 사르니 여호와께서 모세에게 명하신 대로 되니라 ",
+            "textEn": "And he burnt sweet incense thereon; as the Lord commanded Moses."
+          },
+          {
+            "verseID": "02040028",
+            "chapter": 40,
+            "verse": 28,
+            "textKo": "그가 또 성막 문에 장을 달고 ",
+            "textEn": "And he set up the hanging at the door of the tabernacle."
+          },
+          {
+            "verseID": "02040029",
+            "chapter": 40,
+            "verse": 29,
+            "textKo": "또 회막의 성막 문 앞에 번제단을 두고 번제와 소제를 그 위에 드리니 여호와께서 모세에게 명하신 대로 되니라 ",
+            "textEn": "And he put the altar of burnt offering by the door of the tabernacle of the tent of the congregation, and offered upon it the burnt offering and the meat offering; as the Lord commanded Moses."
+          },
+          {
+            "verseID": "02040030",
+            "chapter": 40,
+            "verse": 30,
+            "textKo": "그가 또 물두멍을 회막과 단 사이에 두고 거기 씻을 물을 담고 ",
+            "textEn": "And he set the laver between the tent of the congregation and the altar, and put water there, to wash withal."
+          },
+          {
+            "verseID": "02040031",
+            "chapter": 40,
+            "verse": 31,
+            "textKo": "자기와 아론과 그 아들들이 거기서 수족을 씻되 ",
+            "textEn": "And Moses and Aaron and his sons washed their hands and their feet thereat:"
+          },
+          {
+            "verseID": "02040032",
+            "chapter": 40,
+            "verse": 32,
+            "textKo": "그들이 회막에 들어갈 때와 단에 가까이 갈 때에 씻었으니 여호와께서 모세에게 명하신 대로 되니라 ",
+            "textEn": "When they went into the tent of the congregation, and when they came near unto the altar, they washed; as the Lord commanded Moses."
+          },
+          {
+            "verseID": "02040033",
+            "chapter": 40,
+            "verse": 33,
+            "textKo": "그가 또 성막과 단 사면 뜰에 포장을 치고 뜰문의 장을 다니라 모세가 이같이 역사를 필하였더라 ",
+            "textEn": "And he reared up the court round about the tabernacle and the altar, and set up the hanging of the court gate. So Moses finished the work."
+          },
+          {
+            "verseID": "02040034",
+            "chapter": 40,
+            "verse": 34,
+            "textKo": "그 후에 구름이 회막에 덮이고 여호와의 영광이 성막에 충만하매 ",
+            "textEn": "Then a cloud covered the tent of the congregation, and the glory of the Lord filled the tabernacle."
+          },
+          {
+            "verseID": "02040035",
+            "chapter": 40,
+            "verse": 35,
+            "textKo": "모세가 회막에 들어갈 수 없었으니 이는 구름이 회막 위에 덮이고 여호와의 영광이 성막에 충만함이었으며 ",
+            "textEn": "And Moses was not able to enter into the tent of the congregation, because the cloud abode thereon, and the glory of the Lord filled the tabernacle."
+          },
+          {
+            "verseID": "02040036",
+            "chapter": 40,
+            "verse": 36,
+            "textKo": "구름이 성막 위에서 떠오를 때에는 이스라엘 자손이 그 모든 행하는 길에 앞으로 발행하였고 ",
+            "textEn": "And when the cloud was taken up from over the tabernacle, the children of Israel went onward in all their journeys:"
+          },
+          {
+            "verseID": "02040037",
+            "chapter": 40,
+            "verse": 37,
+            "textKo": "구름이 떠오르지 않을 때에는 떠오르는 날까지 발행하지 아니하였으며 ",
+            "textEn": "But if the cloud were not taken up, then they journeyed not till the day that it was taken up."
+          },
+          {
+            "verseID": "02040038",
+            "chapter": 40,
+            "verse": 38,
+            "textKo": "낮에는 여호와의 구름이 성막 위에 있고 밤에는 불이 그 구름 가운데 있음을 이스라엘의 온 족속이 그 모든 행하는 길에서 친히 보았더라   ",
+            "textEn": "For the cloud of the Lord was upon the tabernacle by day, and fire was on it by night, in the sight of all the house of Israel, throughout all their journeys.  "
+          }
+        ]
+      }
+    ]
+  },
+  "authored-moses-kibroth-hattaavah": {
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "bookOrder": 4,
+        "rangeLabel": "11:31–34",
+        "verses": [
+          {
+            "verseID": "04011031",
+            "chapter": 11,
+            "verse": 31,
+            "textKo": "바람이 여호와에게로서 나와 바다에서부터 메추라기를 몰아 진곁 이편 저편 곧 진 사방으로 각기 하룻길 되는 지면 위 두 규빗쯤에 내리게 한지라 ",
+            "textEn": "And there went forth a wind from the Lord, and brought quails from the sea, and let them fall by the camp, as it were a day’s journey on this side, and as it were a day’s journey on the other side, round about the camp, and as it were two cubits high upon the face of the earth."
+          },
+          {
+            "verseID": "04011032",
+            "chapter": 11,
+            "verse": 32,
+            "textKo": "백성이 일어나 종일 종야와 그 이튿날 종일토록 메추라기를 모으니 적게 모은 자도 십 호멜이라 그들이 자기를 위하여 진 사면에 펴 두었더라 ",
+            "textEn": "And the people stood up all that day, and all that night, and all the next day, and they gathered the quails: he that gathered least gathered ten homers: and they spread them all abroad for themselves round about the camp."
+          },
+          {
+            "verseID": "04011033",
+            "chapter": 11,
+            "verse": 33,
+            "textKo": "고기가 아직 잇사이에 있어 씹히기 전에 여호와께서 백성에게 대하여 진노하사 심히 큰 재앙으로 치셨으므로 ",
+            "textEn": "And while the flesh was yet between their teeth, ere it was chewed, the wrath of the Lord was kindled against the people, and the Lord smote the people with a very great plague."
+          },
+          {
+            "verseID": "04011034",
+            "chapter": 11,
+            "verse": 34,
+            "textKo": "그곳 이름을 기브롯 핫다아와라 칭하였으니 탐욕을 낸 백성을 거기 장사함이었더라 ",
+            "textEn": "And he called the name of that place Kibroth–hattaavah: because there they buried the people that lusted."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-moses-miriam-aaron-rebuke": {
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "bookOrder": 4,
+        "rangeLabel": "12:1–15",
+        "verses": [
+          {
+            "verseID": "04012001",
+            "chapter": 12,
+            "verse": 1,
+            "textKo": "모세가 구스 여자를 취하였더니 그 구스 여자를 취하였으므로 미리암과 아론이 모세를 비방하니라 ",
+            "textEn": "And Miriam and Aaron spake against Moses because of the Ethiopian woman whom he had married: for he had married an Ethiopian woman."
+          },
+          {
+            "verseID": "04012002",
+            "chapter": 12,
+            "verse": 2,
+            "textKo": "그들이 이르되 여호와께서 모세와만 말씀하셨느냐 우리와도 말씀하지 아니하셨느냐 하매 여호와께서 이 말을 들으셨더라 ",
+            "textEn": "And they said, Hath the Lord indeed spoken only by Moses? hath he not spoken also by us? And the Lord heard it."
+          },
+          {
+            "verseID": "04012003",
+            "chapter": 12,
+            "verse": 3,
+            "textKo": "이 사람 모세는 온유함이 지면의 모든 사람보다 승하더라 ",
+            "textEn": "(Now the man Moses was very meek, above all the men which were upon the face of the earth.)"
+          },
+          {
+            "verseID": "04012004",
+            "chapter": 12,
+            "verse": 4,
+            "textKo": "여호와께서 갑자기 모세와 아론과 미리암에게 이르시되 너희 삼인은 회막으로 나아오라 하시니 그 삼인이 나아가매 ",
+            "textEn": "And the Lord spake suddenly unto Moses, and unto Aaron, and unto Miriam, Come out ye three unto the tabernacle of the congregation. And they three came out."
+          },
+          {
+            "verseID": "04012005",
+            "chapter": 12,
+            "verse": 5,
+            "textKo": "여호와께서 구름 기둥 가운데로서 강림하사 장막 문에 서시고 아론과 미리암을 부르시는지라 그 두 사람이 나아가매 ",
+            "textEn": "And the Lord came down in the pillar of the cloud, and stood in the door of the tabernacle, and called Aaron and Miriam: and they both came forth."
+          },
+          {
+            "verseID": "04012006",
+            "chapter": 12,
+            "verse": 6,
+            "textKo": "이르시되 내 말을 들으라 너희 중에 선지자가 있으면 나 여호와가 이상으로 나를 그에게 알리기도 하고 꿈으로 그와 말하기도 하거니와 ",
+            "textEn": "And he said, Hear now my words: If there be a prophet among you, I the Lord will make myself known unto him in a vision, and will speak unto him in a dream."
+          },
+          {
+            "verseID": "04012007",
+            "chapter": 12,
+            "verse": 7,
+            "textKo": "내 종 모세와는 그렇지 아니하니 그는 나의 온 집에 충성됨이라 ",
+            "textEn": "My servant Moses is not so, who is faithful in all mine house."
+          },
+          {
+            "verseID": "04012008",
+            "chapter": 12,
+            "verse": 8,
+            "textKo": "그와는 내가 대면하여 명백히 말하고 은밀한 말로 아니하며 그는 또 여호와의 형상을 보겠거늘 너희가 어찌하여 내 종 모세 비방하기를 두려워 아니하느냐 ",
+            "textEn": "With him will I speak mouth to mouth, even apparently, and not in dark speeches; and the similitude of the Lord shall he behold: wherefore then were ye not afraid to speak against my servant Moses?"
+          },
+          {
+            "verseID": "04012009",
+            "chapter": 12,
+            "verse": 9,
+            "textKo": "여호와께서 그들을 향하여 진노하시고 떠나시매 ",
+            "textEn": "And the anger of the Lord was kindled against them; and he departed."
+          },
+          {
+            "verseID": "04012010",
+            "chapter": 12,
+            "verse": 10,
+            "textKo": "구름이 장막 위에서 떠나갔고 미리암은 문둥병이 들려 눈과 같더라 아론이 미리암을 본즉 문둥병이 들었는지라 ",
+            "textEn": "And the cloud departed from off the tabernacle; and, behold, Miriam became leprous, white as snow: and Aaron looked upon Miriam, and, behold, she was leprous."
+          },
+          {
+            "verseID": "04012011",
+            "chapter": 12,
+            "verse": 11,
+            "textKo": "아론이 이에 모세에게 이르되 슬프다 내 주여 우리가 우매한 일을 하여 죄를 얻었으나 청컨대 그 허물을 우리에게 돌리지 마소서 ",
+            "textEn": "And Aaron said unto Moses, Alas, my lord, I beseech thee, lay not the sin upon us, wherein we have done foolishly, and wherein we have sinned."
+          },
+          {
+            "verseID": "04012012",
+            "chapter": 12,
+            "verse": 12,
+            "textKo": "그로 살이 반이나 썩고 죽어서 모태에서 나온 자 같이 되게 마옵소서 ",
+            "textEn": "Let her not be as one dead, of whom the flesh is half consumed when he cometh out of his mother’s womb."
+          },
+          {
+            "verseID": "04012013",
+            "chapter": 12,
+            "verse": 13,
+            "textKo": "모세가 여호와께 부르짖어 가로되 하나님이여 원컨대 그를 고쳐 주옵소서 ",
+            "textEn": "And Moses cried unto the Lord, saying, Heal her now, O God, I beseech thee."
+          },
+          {
+            "verseID": "04012014",
+            "chapter": 12,
+            "verse": 14,
+            "textKo": "여호와께서 모세에게 이르시되 그의 아비가 그의 얼굴에 침을 뱉았을지라도 그가 칠 일간 부끄러워 하지 않겠느냐 그런즉 그를 진 밖에 칠 일을 가두고 그 후에 들어오게 할지니라 하시니 ",
+            "textEn": "And the Lord said unto Moses, If her father had but spit in her face, should she not be ashamed seven days? let her be shut out from the camp seven days, and after that let her be received in again."
+          },
+          {
+            "verseID": "04012015",
+            "chapter": 12,
+            "verse": 15,
+            "textKo": "이에 미리암이 진 밖에 칠 일 동안 갇혔고 백성은 그를 다시 들어 오게 하기까지 진행치 아니하다가 ",
+            "textEn": "And Miriam was shut out from the camp seven days: and the people journeyed not till Miriam was brought in again."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-moses-korah-rebellion": {
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "bookOrder": 4,
+        "rangeLabel": "16:1–17:8",
+        "verses": [
+          {
+            "verseID": "04016001",
+            "chapter": 16,
+            "verse": 1,
+            "textKo": "레위의 증손 고핫의 손자 이스할의 아들 고라와 르우벤 자손 엘리압의 아들 다단과 아비람과 벨렛의 아들 온이 당을 짓고 ",
+            "textEn": "Now Korah, the son of Izhar, the son of Kohath, the son of Levi, and Dathan and Abiram, the sons of Eliab, and On, the son of Peleth, sons of Reuben, took men:"
+          }
+        ]
+      }
+    ]
+  },
+  "authored-moses-meribah-water": {
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "bookOrder": 4,
+        "rangeLabel": "20:1–13",
+        "verses": [
+          {
+            "verseID": "04020001",
+            "chapter": 20,
+            "verse": 1,
+            "textKo": "정월에 이스라엘 자손 곧 온 회중이 신 광야에 이르러서 백성이 가데스에 거하더니 미리암이 거기서 죽으매 거기 장사하니라 ",
+            "textEn": "Then came the children of Israel, even the whole congregation, into the desert of Zin in the first month: and the people abode in Kadesh; and Miriam died there, and was buried there."
+          },
+          {
+            "verseID": "04020002",
+            "chapter": 20,
+            "verse": 2,
+            "textKo": "회중이 물이 없으므로 모여서 모세와 아론을 공박하니라 ",
+            "textEn": "And there was no water for the congregation: and they gathered themselves together against Moses and against Aaron."
+          },
+          {
+            "verseID": "04020003",
+            "chapter": 20,
+            "verse": 3,
+            "textKo": "백성이 모세와 다투어 말하여 가로되 우리 형제들이 여호와 앞에서 죽을 때에 우리도 죽었더면 좋을 뻔 하였도다 ",
+            "textEn": "And the people chode with Moses, and spake, saying, Would God that we had died when our brethren died before the Lord!"
+          },
+          {
+            "verseID": "04020004",
+            "chapter": 20,
+            "verse": 4,
+            "textKo": "너희가 어찌하여 여호와의 총회를 이 광야로 인도하여 올려서 우리와 우리 짐승으로 다 여기서 죽게 하느냐 ",
+            "textEn": "And why have ye brought up the congregation of the Lord into this wilderness, that we and our cattle should die there?"
+          },
+          {
+            "verseID": "04020005",
+            "chapter": 20,
+            "verse": 5,
+            "textKo": "너희가 어찌하여 우리를 애굽에서 나오게 하여 이 악한 곳으로 인도하였느냐 이곳에는 파종할 곳이 없고 무화과도 없고 포도도 없고 석류도 없고 마실 물도 없도다 ",
+            "textEn": "And wherefore have ye made us to come up out of Egypt, to bring us in unto this evil place? it is no place of seed, or of figs, or of vines, or of pomegranates; neither is there any water to drink."
+          },
+          {
+            "verseID": "04020006",
+            "chapter": 20,
+            "verse": 6,
+            "textKo": "모세와 아론이 총회 앞을 떠나 회막문에 이르러 엎드리매 여호와의 영광이 그들에게 나타나며 ",
+            "textEn": "And Moses and Aaron went from the presence of the assembly unto the door of the tabernacle of the congregation, and they fell upon their faces: and the glory of the Lord appeared unto them."
+          },
+          {
+            "verseID": "04020007",
+            "chapter": 20,
+            "verse": 7,
+            "textKo": "여호와께서 모세에게 일러 가라사대 ",
+            "textEn": "And the Lord spake unto Moses, saying,"
+          },
+          {
+            "verseID": "04020008",
+            "chapter": 20,
+            "verse": 8,
+            "textKo": "지팡이를 가지고 네 형 아론과 함께 회중을 모으고 그들의 목전에서 너희는 반석에게 명하여 물을 내라 하라 네가 그 반석으로 물을 내게 하여 회중과 그들의 짐승에게 마시울지니라 ",
+            "textEn": "Take the rod, and gather thou the assembly together, thou, and Aaron thy brother, and speak ye unto the rock before their eyes; and it shall give forth his water, and thou shalt bring forth to them water out of the rock: so thou shalt give the congregation and their beasts drink."
+          },
+          {
+            "verseID": "04020009",
+            "chapter": 20,
+            "verse": 9,
+            "textKo": "모세가 그 명대로 여호와의 앞에서 지팡이를 취하니라 ",
+            "textEn": "And Moses took the rod from before the Lord, as he commanded him."
+          },
+          {
+            "verseID": "04020010",
+            "chapter": 20,
+            "verse": 10,
+            "textKo": "모세와 아론이 총회를 그 반석 앞에 모으고 모세가 그들에게 이르되 패역한 너희여 들으라 우리가 너희를 위하여 이 반석에서 물을 내랴 하고 ",
+            "textEn": "And Moses and Aaron gathered the congregation together before the rock, and he said unto them, Hear now, ye rebels; must we fetch you water out of this rock?"
+          },
+          {
+            "verseID": "04020011",
+            "chapter": 20,
+            "verse": 11,
+            "textKo": "그 손을 들어 그 지팡이로 반석을 두 번 치매 물이 많이 솟아 나오므로 회중과 그들의 짐승이 마시니라 ",
+            "textEn": "And Moses lifted up his hand, and with his rod he smote the rock twice: and the water came out abundantly, and the congregation drank, and their beasts also."
+          },
+          {
+            "verseID": "04020012",
+            "chapter": 20,
+            "verse": 12,
+            "textKo": "여호와께서 모세와 아론에게 이르시되 너희가 나를 믿지 아니하고 이스라엘 자손의 목전에 나의 거룩함을 나타내지 아니한고로 너희는 이 총회를 내가 그들에게 준 땅으로 인도하여 들이지 못하리라 하시니라 ",
+            "textEn": "And the Lord spake unto Moses and Aaron, Because ye believed me not, to sanctify me in the eyes of the children of Israel, therefore ye shall not bring this congregation into the land which I have given them."
+          },
+          {
+            "verseID": "04020013",
+            "chapter": 20,
+            "verse": 13,
+            "textKo": "이스라엘 자손이 여호와와 다투었으므로 이를 므리바 물이라 하니라 여호와께서 그들 중에서 그 거룩함을 나타내셨더라 ",
+            "textEn": "This is the water of Meribah; because the children of Israel strove with the Lord, and he was sanctified in them."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-moses-aaron-death-hor": {
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "bookOrder": 4,
+        "rangeLabel": "20:22–29",
+        "verses": [
+          {
+            "verseID": "04020022",
+            "chapter": 20,
+            "verse": 22,
+            "textKo": "이스라엘 자손 곧 온 회중이 가데스에서 진행하여 호르 산에 이르렀더니 ",
+            "textEn": "And the children of Israel, even the whole congregation, journeyed from Kadesh, and came unto mount Hor."
+          },
+          {
+            "verseID": "04020023",
+            "chapter": 20,
+            "verse": 23,
+            "textKo": "여호와께서 에돔 땅 변경 호르 산에서 모세와 아론에게 말씀하시니라 가라사대 ",
+            "textEn": "And the Lord spake unto Moses and Aaron in mount Hor, by the coast of the land of Edom, saying,"
+          },
+          {
+            "verseID": "04020024",
+            "chapter": 20,
+            "verse": 24,
+            "textKo": "아론은 그 열조에게로 돌아가고 내가 이스라엘 자손에게 준 땅에는 들어가지 못하리니 이는 너희가 므리바 물에서 내 말을 거역한 연고니라 ",
+            "textEn": "Aaron shall be gathered unto his people: for he shall not enter into the land which I have given unto the children of Israel, because ye rebelled against my word at the water of Meribah."
+          },
+          {
+            "verseID": "04020025",
+            "chapter": 20,
+            "verse": 25,
+            "textKo": "너는 아론과 그 아들 엘르아살을 데리고 호르 산에 올라 ",
+            "textEn": "Take Aaron and Eleazar his son, and bring them up unto mount Hor:"
+          },
+          {
+            "verseID": "04020026",
+            "chapter": 20,
+            "verse": 26,
+            "textKo": "아론의 옷을 벗겨 그 아들 엘르아살에게 입히라 아론은 거기서 죽어 그 열조에게로 돌아가리라 ",
+            "textEn": "And strip Aaron of his garments, and put them upon Eleazar his son: and Aaron shall be gathered unto his people, and shall die there."
+          },
+          {
+            "verseID": "04020027",
+            "chapter": 20,
+            "verse": 27,
+            "textKo": "모세가 여호와의 명을 좇아 그들과 함께 회중의 목전에서 호르 산에 오르니라 ",
+            "textEn": "And Moses did as the Lord commanded: and they went up into mount Hor in the sight of all the congregation."
+          },
+          {
+            "verseID": "04020028",
+            "chapter": 20,
+            "verse": 28,
+            "textKo": "모세가 아론의 옷을 벗겨 그 아들 엘르아살에게 입히매 아론이 그 산꼭대기에서 죽으니라 모세와 엘르아살이 산에서 내려오니 ",
+            "textEn": "And Moses stripped Aaron of his garments, and put them upon Eleazar his son; and Aaron died there in the top of the mount: and Moses and Eleazar came down from the mount."
+          },
+          {
+            "verseID": "04020029",
+            "chapter": 20,
+            "verse": 29,
+            "textKo": "온 회중 곧 이스라엘 온 족속이 아론의 죽은 것을 보고 위하여 삼십 일을 애곡하였더라  ",
+            "textEn": "And when all the congregation saw that Aaron was dead, they mourned for Aaron thirty days, even all the house of Israel. "
+          }
+        ]
+      }
+    ]
+  },
+  "authored-moses-golden-calf": {
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "bookOrder": 2,
+        "rangeLabel": "32:1–34:28",
+        "verses": [
+          {
+            "verseID": "02032001",
+            "chapter": 32,
+            "verse": 1,
+            "textKo": "백성이 모세가 산에서 내려옴이 더딤을 보고 모여 아론에게 이르러 가로되 일어나라 우리를 인도할 신을 우리를 위하여 만들라 이 모세 곧 우리를 애굽 땅에서 인도하여 낸 사람은 어찌 되었는지 알지 못함이라 ",
+            "textEn": "And when the people saw that Moses delayed to come down out of the mount, the people gathered themselves together unto Aaron, and said unto him, Up, make us gods, which shall go before us; for as for this Moses, the man that brought us up out of the land of Egypt, we wot not what is become of him."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-joshua-achan-sin": {
+    "books": [
+      {
+        "bookId": "rec5dSv8N1iv8z9uC",
+        "bookOrder": 6,
+        "rangeLabel": "7:1–26",
+        "verses": [
+          {
+            "verseID": "06007001",
+            "chapter": 7,
+            "verse": 1,
+            "textKo": "이스라엘 자손들이 바친 물건을 인하여 범죄하였으니 이는 유다 지파 세라의 증손 삽디의 손자 갈미의 아들 아간이 바친 물건을 취하였음이라 여호와께서 이스라엘 자손들에게 진노하시니라 ",
+            "textEn": "But the children of Israel committed a trespass in the accursed thing: for Achan, the son of Carmi, the son of Zabdi, the son of Zerah, of the tribe of Judah, took of the accursed thing: and the anger of the Lord was kindled against the children of Israel."
+          },
+          {
+            "verseID": "06007002",
+            "chapter": 7,
+            "verse": 2,
+            "textKo": "여호수아가 여리고에서 사람을 벧엘 동편 벧아웬 곁에 있는 아이로 보내며 그들에게 일러 가로되 올라가서 그 땅을 정탐하라 하매 그 사람들이 올라가서 아이를 정탐하고 ",
+            "textEn": "And Joshua sent men from Jericho to Ai, which is beside Beth–aven, on the east side of Beth–el, and spake unto them, saying, Go up and view the country. And the men went up and viewed Ai."
+          },
+          {
+            "verseID": "06007003",
+            "chapter": 7,
+            "verse": 3,
+            "textKo": "여호수아에게로 돌아와서 그에게 이르되 백성을 다 올라가게 말고 이삼천 명만 올라가서 아이를 치게 하소서 그들은 소수니 모든 백성을 그리로 보내어 수고롭게 마소서 하므로 ",
+            "textEn": "And they returned to Joshua, and said unto him, Let not all the people go up; but let about two or three thousand men go up and smite Ai; and make not all the people to labour thither; for they are but few."
+          },
+          {
+            "verseID": "06007004",
+            "chapter": 7,
+            "verse": 4,
+            "textKo": "백성중 삼천 명쯤 그리로 올라갔다가 아이 사람 앞에서 도망하니 ",
+            "textEn": "So there went up thither of the people about three thousand men: and they fled before the men of Ai."
+          },
+          {
+            "verseID": "06007005",
+            "chapter": 7,
+            "verse": 5,
+            "textKo": "아이 사람이 그들의 삼십육 인쯤 죽이고 성문 앞에서부터 스바림까지 쫓아와서 내려가는 비탈에서 쳤으므로 백성의 마음이 녹아 물 같이 된지라 ",
+            "textEn": "And the men of Ai smote of them about thirty and six men: for they chased them from before the gate even unto Shebarim, and smote them in the going down: wherefore the hearts of the people melted, and became as water."
+          },
+          {
+            "verseID": "06007006",
+            "chapter": 7,
+            "verse": 6,
+            "textKo": "여호수아가 옷을 찢고 이스라엘 장로들과 함께 여호와의 궤 앞에서 땅에 엎드려 머리에 티끌을 무릅쓰고 저물도록 있다가 ",
+            "textEn": "And Joshua rent his clothes, and fell to the earth upon his face before the ark of the Lord until the eventide, he and the elders of Israel, and put dust upon their heads."
+          },
+          {
+            "verseID": "06007007",
+            "chapter": 7,
+            "verse": 7,
+            "textKo": "여호수아가 가로되 슬프도소이다 주 여호와여 어찌하여 이 백성을 인도하여 요단을 건너게 하시고 우리를 아모리 사람의 손에 붙여 멸망시키려 하셨나이까 우리가 요단 저편을 족하게 여겨 거하였더면 좋을뻔 하였나이다 ",
+            "textEn": "And Joshua said, Alas, O Lord God, wherefore hast thou at all brought this people over Jordan, to deliver us into the hand of the Amorites, to destroy us? would to God we had been content, and dwelt on the other side Jordan!"
+          },
+          {
+            "verseID": "06007008",
+            "chapter": 7,
+            "verse": 8,
+            "textKo": "주여 이스라엘이 그 대적 앞에서 돌아섰으니 내가 무슨 말을 하오리이까 ",
+            "textEn": "O Lord, what shall I say, when Israel turneth their backs before their enemies!"
+          },
+          {
+            "verseID": "06007009",
+            "chapter": 7,
+            "verse": 9,
+            "textKo": "가나안 사람과 이 땅 모든 거민이 이를 듣고 우리를 둘러싸고 우리 이름을 세상에서 끊으리니 주의 크신 이름을 위하여 어떻게 하시려나이까 ",
+            "textEn": "For the Canaanites and all the inhabitants of the land shall hear of it, and shall environ us round, and cut off our name from the earth: and what wilt thou do unto thy great name?"
+          },
+          {
+            "verseID": "06007010",
+            "chapter": 7,
+            "verse": 10,
+            "textKo": "여호와께서 여호수아에게 이르시되 일어나라 어찌하여 이렇게 엎드렸느냐 ",
+            "textEn": "And the Lord said unto Joshua, Get thee up; wherefore liest thou thus upon thy face?"
+          },
+          {
+            "verseID": "06007011",
+            "chapter": 7,
+            "verse": 11,
+            "textKo": "이스라엘이 범죄하여 내가 그들에게 명한 나의 언약을 어기었나니 곧 그들이 바친 물건을 취하고 도적하고 사기하여 자기 기구 가운데 두었느니라 ",
+            "textEn": "Israel hath sinned, and they have also transgressed my covenant which I commanded them: for they have even taken of the accursed thing, and have also stolen, and dissembled also, and they have put it even among their own stuff."
+          },
+          {
+            "verseID": "06007012",
+            "chapter": 7,
+            "verse": 12,
+            "textKo": "그러므로 이스라엘 자손들이 자기 대적을 능히 당치 못하고 그 앞에서 돌아섰나니 이는 자기도 바친 것이 됨이라 그 바친 것을 너희 중에서 멸하지 아니하면 내가 다시는 너희와 함께 있지 아니하리라 ",
+            "textEn": "Therefore the children of Israel could not stand before their enemies, but turned their backs before their enemies, because they were accursed: neither will I be with you any more, except ye destroy the accursed from among you."
+          },
+          {
+            "verseID": "06007013",
+            "chapter": 7,
+            "verse": 13,
+            "textKo": "너는 일어나서 백성을 성결케 하여 이르기를 너희는 스스로 성결케 하여 내일을 기다리라 이스라엘의 하나님 여호와의 말씀에 이스라엘아 너의 중에 바친 물건이 있나니 네가 그 바친 물건을 너의 중에서 제하기 전에는 너의 대적을 당치 못하리라 ",
+            "textEn": "Up, sanctify the people, and say, Sanctify yourselves against to morrow: for thus saith the Lord God of Israel, There is an accursed thing in the midst of thee, O Israel: thou canst not stand before thine enemies, until ye take away the accursed thing from among you."
+          },
+          {
+            "verseID": "06007014",
+            "chapter": 7,
+            "verse": 14,
+            "textKo": "아침에 너희는 너희 지파대로 가까이 나아오라 여호와께 뽑히는 지파는 그 족속대로 가까이 나아올 것이요 여호와께 뽑히는 족속은 그 가족대로 가까이 나아올 것이요 여호와께 뽑히는 가족은 각 남자대로 가까이 나아올 것이며 ",
+            "textEn": "In the morning therefore ye shall be brought according to your tribes: and it shall be, that the tribe which the Lord taketh shall come according to the families thereof; and the family which the Lord shall take shall come by households; and the household which the Lord shall take shall come man by man."
+          },
+          {
+            "verseID": "06007015",
+            "chapter": 7,
+            "verse": 15,
+            "textKo": "바친 물건을 가진 자로 뽑힌 자를 불사르되 그와 그 모든 소유를 그리하라 이는 여호와의 언약을 어기고 이스라엘 가운데서 망령된 일을 행하였음이라 하셨다 하라 ",
+            "textEn": "And it shall be, that he that is taken with the accursed thing shall be burnt with fire, he and all that he hath: because he hath transgressed the covenant of the Lord, and because he hath wrought folly in Israel."
+          },
+          {
+            "verseID": "06007016",
+            "chapter": 7,
+            "verse": 16,
+            "textKo": "이에 여호수아가 아침 일찍이 일어나서 이스라엘을 그 지파대로 가까이 나아오게 하였더니 유다 지파가 뽑혔고 ",
+            "textEn": "So Joshua rose up early in the morning, and brought Israel by their tribes; and the tribe of Judah was taken:"
+          },
+          {
+            "verseID": "06007017",
+            "chapter": 7,
+            "verse": 17,
+            "textKo": "유다 족속을 가까이 나아오게 하였더니 세라 족속이 뽑혔고 세라 족속의 각 남자를 가까이 나아오게 하였더니 삽디가 뽑혔고 ",
+            "textEn": "And he brought the family of Judah; and he took the family of the Zarhites: and he brought the family of the Zarhites man by man; and Zabdi was taken:"
+          },
+          {
+            "verseID": "06007018",
+            "chapter": 7,
+            "verse": 18,
+            "textKo": "삽디의 가족 각 남자를 가까이 나아오게 하였더니 유다 지파 세라의 증손이요 삽디의 손자요 갈미의 아들인 아간이 뽑혔더라 ",
+            "textEn": "And he brought his household man by man; and Achan, the son of Carmi, the son of Zabdi, the son of Zerah, of the tribe of Judah, was taken."
+          },
+          {
+            "verseID": "06007019",
+            "chapter": 7,
+            "verse": 19,
+            "textKo": "여호수아가 아간에게 이르되 내 아들아 청하노라 이스라엘의 하나님 여호와께 영광을 돌려 그 앞에 자복하고 네 행한 일을 내게 고하라 그 일을 내게 숨기지 말라 ",
+            "textEn": "And Joshua said unto Achan, My son, give, I pray thee, glory to the Lord God of Israel, and make confession unto him; and tell me now what thou hast done; hide it not from me."
+          },
+          {
+            "verseID": "06007020",
+            "chapter": 7,
+            "verse": 20,
+            "textKo": "아간이 여호수아에게 대답하여 가로되 참으로 나는 이스라엘 하나님 여호와께 범죄하여 여차 여차히 행하였나이다 ",
+            "textEn": "And Achan answered Joshua, and said, Indeed I have sinned against the Lord God of Israel, and thus and thus have I done:"
+          },
+          {
+            "verseID": "06007021",
+            "chapter": 7,
+            "verse": 21,
+            "textKo": "내가 노략한 물건 중에 시날 산의 아름다운 외투 한 벌과 은 이백 세겔과 오십 세겔중의 금덩이 하나를 보고 탐내어 취하였나이다 보소서 이제 그 물건들을 내 장막 가운데 땅 속에 감추었는데 은은 그 밑에 있나이다 ",
+            "textEn": "When I saw among the spoils a goodly Babylonish garment, and two hundred shekels of silver, and a wedge of gold of fifty shekels weight, then I coveted them, and took them; and, behold, they are hid in the earth in the midst of my tent, and the silver under it."
+          },
+          {
+            "verseID": "06007022",
+            "chapter": 7,
+            "verse": 22,
+            "textKo": "이에 여호수아가 사자를 보내매 그의 장막에 달려가 본즉 물건이 그의 장막 안에 감취었는데 은은 그 밑에 있는지라 ",
+            "textEn": "So Joshua sent messengers, and they ran unto the tent; and, behold, it was hid in his tent, and the silver under it."
+          },
+          {
+            "verseID": "06007023",
+            "chapter": 7,
+            "verse": 23,
+            "textKo": "그들이 그것을 장막 가운데서 취하여 여호수아와 이스라엘 모든 자손에게로 가져오매 그들이 그것을 여호와 앞에 놓으니라 ",
+            "textEn": "And they took them out of the midst of the tent, and brought them unto Joshua, and unto all the children of Israel, and laid them out before the Lord."
+          },
+          {
+            "verseID": "06007024",
+            "chapter": 7,
+            "verse": 24,
+            "textKo": "여호수아가 이스라엘 모든 사람으로 더불어 세라의 아들 아간을 잡고 그 은과 외투와 금덩이와 그 아들들과 딸들과 소들과 나귀들과 양들과 장막과 무릇 그에게 속한 모든 것을 이끌고 아골 골짜기로 가서 ",
+            "textEn": "And Joshua, and all Israel with him, took Achan the son of Zerah, and the silver, and the garment, and the wedge of gold, and his sons, and his daughters, and his oxen, and his asses, and his sheep, and his tent, and all that he had: and they brought them unto the valley of Achor."
+          },
+          {
+            "verseID": "06007025",
+            "chapter": 7,
+            "verse": 25,
+            "textKo": "여호수아가 가로되 네가 어찌하여 우리를 괴롭게 하였느뇨 여호와께서 오늘날 너를 괴롭게 하시리라 하니 온 이스라엘이 그를 돌로 치고 그것들도 돌로 치고 불사르고 ",
+            "textEn": "And Joshua said, Why hast thou troubled us? the Lord shall trouble thee this day. And all Israel stoned him with stones, and burned them with fire, after they had stoned them with stones."
+          },
+          {
+            "verseID": "06007026",
+            "chapter": 7,
+            "verse": 26,
+            "textKo": "그 위에 돌 무더기를 크게 쌓았더니 오늘날까지 있더라 여호와께서 그 극렬한 분노를 그치시니 그러므로 그곳 이름을 오늘날까지 아골 골짜기라 부르더라  ",
+            "textEn": "And they raised over him a great heap of stones unto this day. So the Lord turned from the fierceness of his anger. Wherefore the name of that place was called, The valley of Achor, unto this day. "
+          }
+        ]
+      }
+    ]
+  },
+  "authored-joshua-southern-northern-campaign": {
+    "books": [
+      {
+        "bookId": "rec5dSv8N1iv8z9uC",
+        "bookOrder": 6,
+        "rangeLabel": "10:16–11:23",
+        "verses": [
+          {
+            "verseID": "06010016",
+            "chapter": 10,
+            "verse": 16,
+            "textKo": "그 다섯 왕이 도망하여 막게다의 굴에 숨었더니 ",
+            "textEn": "But these five kings fled, and hid themselves in a cave at Makkedah."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-joshua-caleb-hebron": {
+    "books": [
+      {
+        "bookId": "rec5dSv8N1iv8z9uC",
+        "bookOrder": 6,
+        "rangeLabel": "14:6–15",
+        "verses": [
+          {
+            "verseID": "06014006",
+            "chapter": 14,
+            "verse": 6,
+            "textKo": "때에 유다 자손이 길갈에 있는 여호수아에게 나아오고 그니스 사람 여분네의 아들 갈렙이 여호수아에게 말하되 여호와께서 가데스 바네아에서 나와 당신에게 대하여 하나님의 사람 모세에게 이르신 일을 당신이 아시는 바라 ",
+            "textEn": "Then the children of Judah came unto Joshua in Gilgal: and Caleb the son of Jephunneh the Kenezite said unto him, Thou knowest the thing that the Lord said unto Moses the man of God concerning me and thee in Kadesh–barnea."
+          },
+          {
+            "verseID": "06014007",
+            "chapter": 14,
+            "verse": 7,
+            "textKo": "내 나이 사십 세에 여호와의 종 모세가 가데스 바네아에서 나를 보내어 이 땅을 정탐케 하므로 내 마음에 성실한 대로 그에게 보고하였고 ",
+            "textEn": "Forty years old was I when Moses the servant of the Lord sent me from Kadesh–barnea to espy out the land; and I brought him word again as it was in mine heart."
+          },
+          {
+            "verseID": "06014008",
+            "chapter": 14,
+            "verse": 8,
+            "textKo": "나와 함께 올라갔던 내 형제들은 백성의 간담을 녹게 하였으나 나는 나의 하나님 여호와를 온전히 좇았으므로 ",
+            "textEn": "Nevertheless my brethren that went up with me made the heart of the people melt: but I wholly followed the Lord my God."
+          },
+          {
+            "verseID": "06014009",
+            "chapter": 14,
+            "verse": 9,
+            "textKo": "그 날에 모세가 맹세하여 가로되 네가 나의 하나님 여호와를 온전히 좇았은즉 네 발로 밟는 땅은 영영히 너와 네 자손의 기업이 되리라 하였나이다 ",
+            "textEn": "And Moses sware on that day, saying, Surely the land whereon thy feet have trodden shall be thine inheritance, and thy children’s for ever, because thou hast wholly followed the Lord my God."
+          },
+          {
+            "verseID": "06014010",
+            "chapter": 14,
+            "verse": 10,
+            "textKo": "이제 보소서 여호와께서 이 말씀을 모세에게 이르신 때로부터 이스라엘이 광야에 행한 이 사십오 년 동안을 여호와께서 말씀하신 대로 나를 생존케 하셨나이다 오늘날 내가 팔십오 세로되 ",
+            "textEn": "And now, behold, the Lord hath kept me alive, as he said, these forty and five years, even since the Lord spake this word unto Moses, while the children of Israel wandered in the wilderness: and now, lo, I am this day fourscore and five years old."
+          },
+          {
+            "verseID": "06014011",
+            "chapter": 14,
+            "verse": 11,
+            "textKo": "모세가 나를 보내던 날과 같이 오늘날 오히려 강건하니 나의 힘이 그때나 이제나 일반이라 싸움에나 출입에 감당할 수 있사온즉 ",
+            "textEn": "As yet I am as strong this day as I was in the day that Moses sent me: as my strength was then, even so is my strength now, for war, both to go out, and to come in."
+          },
+          {
+            "verseID": "06014012",
+            "chapter": 14,
+            "verse": 12,
+            "textKo": "그 날에 여호와께서 말씀하신 이 산지를 내게 주소서 당신도 그 날에 들으셨거니와 그 곳에는 아낙 사람이 있고 그 성읍들은 크고 견고할지라도 여호와께서 혹시 나와 함께 하시면 내가 필경 여호와의 말씀하신 대로 그들을 쫓아내리이다 ",
+            "textEn": "Now therefore give me this mountain, whereof the Lord spake in that day; for thou heardest in that day how the Anakims were there, and that the cities were great and fenced: if so be the Lord will be with me, then I shall be able to drive them out, as the Lord said."
+          },
+          {
+            "verseID": "06014013",
+            "chapter": 14,
+            "verse": 13,
+            "textKo": "여호수아가 여분네의 아들 갈렙을 위하여 축복하고 헤브론을 그에게 주어 기업을 삼게 하매 ",
+            "textEn": "And Joshua blessed him, and gave unto Caleb the son of Jephunneh Hebron for an inheritance."
+          },
+          {
+            "verseID": "06014014",
+            "chapter": 14,
+            "verse": 14,
+            "textKo": "헤브론이 그니스 사람 여분네의 아들 갈렙의 기업이 되어 오늘날까지 이르렀으니 이는 그가 이스라엘의 하나님 여호와를 온전히 좇았음이며 ",
+            "textEn": "Hebron therefore became the inheritance of Caleb the son of Jephunneh the Kenezite unto this day, because that he wholly followed the Lord God of Israel."
+          },
+          {
+            "verseID": "06014015",
+            "chapter": 14,
+            "verse": 15,
+            "textKo": "헤브론의 옛 이름은 기럇 아르바라 아르바는 아낙 사람 가운데 가장 큰 사람이었더라 그 땅에 전쟁이 그쳤더라  ",
+            "textEn": "And the name of Hebron before was Kirjath–arba; which Arba was a great man among the Anakims. And the land had rest from war. "
+          }
+        ]
+      }
+    ]
+  },
+  "authored-moses-bronze-serpent": {
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "bookOrder": 4,
+        "rangeLabel": "21:4–9",
+        "verses": [
+          {
+            "verseID": "04021004",
+            "chapter": 21,
+            "verse": 4,
+            "textKo": "백성이 호르 산에서 진행하여 홍해 길로 좇아 에돔 땅을 둘러 행하려 하였다가 길로 인하여 백성의 마음이 상하니라 ",
+            "textEn": "And they journeyed from mount Hor by the way of the Red sea, to compass the land of Edom: and the soul of the people was much discouraged because of the way."
+          },
+          {
+            "verseID": "04021005",
+            "chapter": 21,
+            "verse": 5,
+            "textKo": "백성이 하나님과 모세를 향하여 원망하되 어찌하여 우리를 애굽에서 인도하여 올려서 이 광야에서 죽게 하는고 이곳에는 식물도 없고 물도 없도다 우리 마음이 이 박한 식물을 싫어하노라 하매 ",
+            "textEn": "And the people spake against God, and against Moses, Wherefore have ye brought us up out of Egypt to die in the wilderness? for there is no bread, neither is there any water; and our soul loatheth this light bread."
+          },
+          {
+            "verseID": "04021006",
+            "chapter": 21,
+            "verse": 6,
+            "textKo": "여호와께서 불뱀들을 백성 중에 보내어 백성을 물게 하시므로 이스라엘 백성 중에 죽은 자가 많은지라 ",
+            "textEn": "And the Lord sent fiery serpents among the people, and they bit the people; and much people of Israel died."
+          },
+          {
+            "verseID": "04021007",
+            "chapter": 21,
+            "verse": 7,
+            "textKo": "백성이 모세에게 이르러 가로되 우리가 여호와와 당신을 향하여 원망하므로 범죄하였사오니 여호와께 기도하여 이 뱀들을 우리에게서 떠나게 하소서 모세가 백성을 위하여 기도하매 ",
+            "textEn": "Therefore the people came to Moses, and said, We have sinned, for we have spoken against the Lord, and against thee; pray unto the Lord, that he take away the serpents from us. And Moses prayed for the people."
+          },
+          {
+            "verseID": "04021008",
+            "chapter": 21,
+            "verse": 8,
+            "textKo": "여호와께서 모세에게 이르시되 불뱀을 만들어 장대 위에 달라 물린 자마다 그것을 보면 살리라 ",
+            "textEn": "And the Lord said unto Moses, Make thee a fiery serpent, and set it upon a pole: and it shall come to pass, that every one that is bitten, when he looketh upon it, shall live."
+          },
+          {
+            "verseID": "04021009",
+            "chapter": 21,
+            "verse": 9,
+            "textKo": "모세가 놋뱀을 만들어 장대 위에 다니 뱀에게 물린 자마다 놋뱀을 쳐다본즉 살더라 ",
+            "textEn": "And Moses made a serpent of brass, and put it upon a pole, and it came to pass, that if a serpent had bitten any man, when he beheld the serpent of brass, he lived."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-moses-sihon-og": {
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "bookOrder": 4,
+        "rangeLabel": "21:21–35",
+        "verses": [
+          {
+            "verseID": "04021021",
+            "chapter": 21,
+            "verse": 21,
+            "textKo": "이스라엘이 아모리 왕 시혼에게 사자를 보내어 가로되 ",
+            "textEn": "And Israel sent messengers unto Sihon king of the Amorites, saying,"
+          },
+          {
+            "verseID": "04021022",
+            "chapter": 21,
+            "verse": 22,
+            "textKo": "우리로 당신의 땅을 통과하게 하소서 우리가 밭에든지 포도원에든지 들어가지 아니하며 우물물도 공히 마시지 아니하고 우리가 당신의 지경에서 다 나가기까지 왕의 대로로만 통행하리이다 하나 ",
+            "textEn": "Let me pass through thy land: we will not turn into the fields, or into the vineyards; we will not drink of the waters of the well: but we will go along by the king’s high way, until we be past thy borders."
+          },
+          {
+            "verseID": "04021023",
+            "chapter": 21,
+            "verse": 23,
+            "textKo": "시혼이 자기 지경으로 이스라엘의 통과함을 용납하지 아니하고 그 백성을 다 모아 이스라엘을 치러 광야로 나와서 야하스에 이르러 이스라엘을 치므로 ",
+            "textEn": "And Sihon would not suffer Israel to pass through his border: but Sihon gathered all his people together, and went out against Israel into the wilderness: and he came to Jahaz, and fought against Israel."
+          },
+          {
+            "verseID": "04021024",
+            "chapter": 21,
+            "verse": 24,
+            "textKo": "이스라엘이 칼날로 그들을 쳐서 파하고 그 땅을 아르논부터 얍복까지 점령하여 암몬 자손에게까지 미치니 암몬 자손의 경계는 견고하더라 ",
+            "textEn": "And Israel smote him with the edge of the sword, and possessed his land from Arnon unto Jabbok, even unto the children of Ammon: for the border of the children of Ammon was strong."
+          },
+          {
+            "verseID": "04021025",
+            "chapter": 21,
+            "verse": 25,
+            "textKo": "이스라엘이 이같이 그 모든 성읍을 취하고 그 아모리인의 모든 성읍 헤스본과 그 모든 촌락에 거하였으니 ",
+            "textEn": "And Israel took all these cities: and Israel dwelt in all the cities of the Amorites, in Heshbon, and in all the villages thereof."
+          },
+          {
+            "verseID": "04021026",
+            "chapter": 21,
+            "verse": 26,
+            "textKo": "헤스본은 아모리인의 왕 시혼의 도성이라 시혼이 모압 전왕을 치고 그 모든 땅을 아르논까지 그 손에서 탈취하였더라 ",
+            "textEn": "For Heshbon was the city of Sihon the king of the Amorites, who had fought against the former king of Moab, and taken all his land out of his hand, even unto Arnon."
+          },
+          {
+            "verseID": "04021027",
+            "chapter": 21,
+            "verse": 27,
+            "textKo": "그러므로 시인이 읊어 가로되 너희는 헤스본으로 올지어다 시혼의 성을 세워 견고히 할지어다 ",
+            "textEn": "Wherefore they that speak in proverbs say, Come into Heshbon, let the city of Sihon be built and prepared:"
+          },
+          {
+            "verseID": "04021028",
+            "chapter": 21,
+            "verse": 28,
+            "textKo": "헤스본의 불이 나오며 시혼의 성에서 화염이 나와서 모압의 아르를 삼키며 아르논 높은 곳의 주인을 멸하였도다 ",
+            "textEn": "For there is a fire gone out of Heshbon, a flame from the city of Sihon: it hath consumed Ar of Moab, and the lords of the high places of Arnon."
+          },
+          {
+            "verseID": "04021029",
+            "chapter": 21,
+            "verse": 29,
+            "textKo": "모압아 네가 화를 당하였도다 그모스의 백성아 네가 멸망하였도다 그가 그 아들들로 도망케 하였고 그 딸들로 아모리인의 왕 시혼의 포로가 되게 하였도다 ",
+            "textEn": "Woe to thee, Moab! thou art undone, O people of Chemosh: he hath given his sons that escaped, and his daughters, into captivity unto Sihon king of the Amorites."
+          },
+          {
+            "verseID": "04021030",
+            "chapter": 21,
+            "verse": 30,
+            "textKo": "우리가 그들을 쏘아서 헤스본을 디본까지 멸하였고 메드바에 가까운 노바까지 황폐케 하였도다 하였더라 ",
+            "textEn": "We have shot at them; Heshbon is perished even unto Dibon, and we have laid them waste even unto Nophah, which reacheth unto Medeba."
+          },
+          {
+            "verseID": "04021031",
+            "chapter": 21,
+            "verse": 31,
+            "textKo": "이스라엘이 아모리인의 땅에 거하였더니 ",
+            "textEn": "Thus Israel dwelt in the land of the Amorites."
+          },
+          {
+            "verseID": "04021032",
+            "chapter": 21,
+            "verse": 32,
+            "textKo": "모세가 또 보내어 야셀을 정탐케 하고 그 촌락들을 취하고 그 곳에 있던 아모리인을 몰아 내었더라 ",
+            "textEn": "And Moses sent to spy out Jaazer, and they took the villages thereof, and drove out the Amorites that were there."
+          },
+          {
+            "verseID": "04021033",
+            "chapter": 21,
+            "verse": 33,
+            "textKo": "돌이켜 바산 길로 올라가매 바산 왕 옥이 그 백성을 다 거느리고 나와서 그들을 맞아 에드레이에서 싸우려 하는지라 ",
+            "textEn": "And they turned and went up by the way of Bashan: and Og the king of Bashan went out against them, he, and all his people, to the battle at Edrei."
+          },
+          {
+            "verseID": "04021034",
+            "chapter": 21,
+            "verse": 34,
+            "textKo": "여호와께서 모세에게 이르시되 그를 두려워 말라 내가 그와 그 백성과 그 땅을 네 손에 붙였나니 너는 헤스본에 거하던 아모리인의 왕 시혼에게 행한 것 같이 그에게도 행할지니라 ",
+            "textEn": "And the Lord said unto Moses, Fear him not: for I have delivered him into thy hand, and all his people, and his land; and thou shalt do to him as thou didst unto Sihon king of the Amorites, which dwelt at Heshbon."
+          },
+          {
+            "verseID": "04021035",
+            "chapter": 21,
+            "verse": 35,
+            "textKo": "이에 그와 그 아들들과 그 백성을 다 쳐서 한 사람도 남기지 아니하고 그 땅을 점령하였더라  ",
+            "textEn": "So they smote him, and his sons, and all his people, until there was none left him alive: and they possessed his land. "
+          }
+        ]
+      }
+    ]
+  },
+  "authored-moses-baal-peor": {
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "bookOrder": 4,
+        "rangeLabel": "25:1–9",
+        "verses": [
+          {
+            "verseID": "04025001",
+            "chapter": 25,
+            "verse": 1,
+            "textKo": "이스라엘이 싯딤에 머물러 있더니 그 백성이 모압 여자들과 음행하기를 시작하니라 ",
+            "textEn": "And Israel abode in Shittim, and the people began to commit whoredom with the daughters of Moab."
+          },
+          {
+            "verseID": "04025002",
+            "chapter": 25,
+            "verse": 2,
+            "textKo": "그 여자들이 그 신들에게 제사할 때에 백성을 청하매 백성이 먹고 그들의 신들에게 절하므로 ",
+            "textEn": "And they called the people unto the sacrifices of their gods: and the people did eat, and bowed down to their gods."
+          },
+          {
+            "verseID": "04025003",
+            "chapter": 25,
+            "verse": 3,
+            "textKo": "이스라엘이 바알브올에게 부속된지라 여호와께서 이스라엘에게 진노하시니라 ",
+            "textEn": "And Israel joined himself unto Baal–peor: and the anger of the Lord was kindled against Israel."
+          },
+          {
+            "verseID": "04025004",
+            "chapter": 25,
+            "verse": 4,
+            "textKo": "여호와께서 모세에게 이르시되 백성의 두령들을 잡아 태양을 향하여 여호와 앞에 목매어 달라 그리하면 여호와의 진노가 이스라엘을 떠나리라 ",
+            "textEn": "And the Lord said unto Moses, Take all the heads of the people, and hang them up before the Lord against the sun, that the fierce anger of the Lord may be turned away from Israel."
+          },
+          {
+            "verseID": "04025005",
+            "chapter": 25,
+            "verse": 5,
+            "textKo": "모세가 이스라엘 사사들에게 이르되 너희는 각기 관할하는 자 중에 바알브올에게 부속한 사람들을 죽이라 하니라 ",
+            "textEn": "And Moses said unto the judges of Israel, Slay ye every one his men that were joined unto Baal–peor."
+          },
+          {
+            "verseID": "04025006",
+            "chapter": 25,
+            "verse": 6,
+            "textKo": "이스라엘 자손의 온 회중이 회막문에서 울 때에 이스라엘 자손 한 사람이 모세와 온 회중의 목전에 미디안의 한 여인을 데리고 그 형제에게로 온지라 ",
+            "textEn": "And, behold, one of the children of Israel came and brought unto his brethren a Midianitish woman in the sight of Moses, and in the sight of all the congregation of the children of Israel, who were weeping before the door of the tabernacle of the congregation."
+          },
+          {
+            "verseID": "04025007",
+            "chapter": 25,
+            "verse": 7,
+            "textKo": "제사장 아론의 손자 엘르아살의 아들 비느하스가 보고 회중의 가운데서 일어나 손에 창을 들고 ",
+            "textEn": "And when Phinehas, the son of Eleazar, the son of Aaron the priest, saw it, he rose up from among the congregation, and took a javelin in his hand;"
+          },
+          {
+            "verseID": "04025008",
+            "chapter": 25,
+            "verse": 8,
+            "textKo": "그 이스라엘 남자를 따라 그의 막에 들어가서 이스라엘 남자와 그 여인의 배를 꿰뚫어서 두 사람을 죽이니 염병이 이스라엘 자손에게서 그쳤더라 ",
+            "textEn": "And he went after the man of Israel into the tent, and thrust both of them through, the man of Israel, and the woman through her belly. So the plague was stayed from the children of Israel."
+          },
+          {
+            "verseID": "04025009",
+            "chapter": 25,
+            "verse": 9,
+            "textKo": "그 염병으로 죽은 자가 이만 사천 명이었더라 ",
+            "textEn": "And those that died in the plague were twenty and four thousand."
+          }
+        ]
+      }
+    ]
+  },
+  "authored-moses-law-reading-commission": {
+    "books": [
+      {
+        "bookId": "rec2LnZw7EoTWReC0",
+        "bookOrder": 5,
+        "rangeLabel": "31:7–13",
+        "verses": [
+          {
+            "verseID": "05031007",
+            "chapter": 31,
+            "verse": 7,
+            "textKo": "모세가 여호수아를 불러 온 이스라엘 목전에서 그에게 이르되 너는 마음을 강하게 하고 담대히 하라 너는 이 백성을 거느리고 여호와께서 그들의 열조에게 주리라고 맹세하신 땅에 들어가서 그들로 그 땅을 얻게 하라 ",
+            "textEn": "And Moses called unto Joshua, and said unto him in the sight of all Israel, Be strong and of a good courage: for thou must go with this people unto the land which the Lord hath sworn unto their fathers to give them; and thou shalt cause them to inherit it."
+          },
+          {
+            "verseID": "05031008",
+            "chapter": 31,
+            "verse": 8,
+            "textKo": "여호와 그가 네 앞서 행하시며 너와 함께 하사 너를 떠나지 아니하시며 버리지 아니하시리니 너는 두려워 말라 놀라지 말라 ",
+            "textEn": "And the Lord, he it is that doth go before thee; he will be with thee, he will not fail thee, neither forsake thee: fear not, neither be dismayed."
+          },
+          {
+            "verseID": "05031009",
+            "chapter": 31,
+            "verse": 9,
+            "textKo": "모세가 이 율법을 써서 여호와의 언약궤를 메는 레위 자손 제사장들과 이스라엘 모든 장로에게 주고 ",
+            "textEn": "And Moses wrote this law, and delivered it unto the priests the sons of Levi, which bare the ark of the covenant of the Lord, and unto all the elders of Israel."
+          },
+          {
+            "verseID": "05031010",
+            "chapter": 31,
+            "verse": 10,
+            "textKo": "그들에게 명하여 이르기를 매 칠년 끝 해 곧 정기 면제년의 초막절에 ",
+            "textEn": "And Moses commanded them, saying, At the end of every seven years, in the solemnity of the year of release, in the feast of tabernacles,"
+          },
+          {
+            "verseID": "05031011",
+            "chapter": 31,
+            "verse": 11,
+            "textKo": "온 이스라엘이 네 하나님 여호와 앞 그 택하신 곳에 모일 때에 이 율법을 낭독하여 온 이스라엘로 듣게 할지니 ",
+            "textEn": "When all Israel is come to appear before the Lord thy God in the place which he shall choose, thou shalt read this law before all Israel in their hearing."
+          },
+          {
+            "verseID": "05031012",
+            "chapter": 31,
+            "verse": 12,
+            "textKo": "곧 백성의 남녀와 유치와 네 성안에 우거하는 타국인을 모으고 그들로 듣고 배우고 네 하나님 여호와를 경외하며 이 율법의 모든 말씀을 지켜 행하게 하고 ",
+            "textEn": "Gather the people together, men, and women, and children, and thy stranger that is within thy gates, that they may hear, and that they may learn, and fear the Lord your God, and observe to do all the words of this law:"
+          },
+          {
+            "verseID": "05031013",
+            "chapter": 31,
+            "verse": 13,
+            "textKo": "또 너희가 요단을 건너가서 얻을 땅에 거할 동안에 이 말씀을 알지 못하는 그들의 자녀로 듣고 네 하나님 여호와 경외하기를 배우게 할지니라 ",
+            "textEn": "And that their children, which have not known any thing, may hear, and learn to fear the Lord your God, as long as ye live in the land whither ye go over Jordan to possess it."
+          }
+        ]
+      }
+    ]
   }
 }

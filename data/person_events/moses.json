@@ -88,6 +88,28 @@
     ]
   },
   {
+    "id": "authored-moses-ten-plagues",
+    "title": "The ten plagues strike Egypt",
+    "nameKo": "애굽에 내린 열 재앙",
+    "startDate": "-1446",
+    "sortKey": -1446.5,
+    "yearLabel": "BC 1446경",
+    "context": "모세와 아론의 거듭된 경고에도 파라오가 마음을 완악하게 하자 하나님이 나일 강 핏물 재앙부터 흑암 재앙까지 아홉 재앙에 이어 초태생의 죽음으로 열 재앙을 내려 애굽을 치심 (Exod 7:14–12:30).",
+    "authored": true,
+    "occursAt": [
+      "recfrXyxhuYOczKTm"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "rangeLabel": "7:14–12:30"
+      }
+    ]
+  },
+  {
     "id": "authored-moses-passover-night",
     "title": "The Passover night and departure from Egypt",
     "nameKo": "유월절 밤과 애굽 탈출",
@@ -133,6 +155,139 @@
     ]
   },
   {
+    "id": "authored-moses-red-sea-crossing",
+    "title": "Israel crosses the Red Sea on dry ground",
+    "nameKo": "홍해를 가르고 건넌 이스라엘",
+    "startDate": "-1446",
+    "sortKey": -1445.88,
+    "yearLabel": "BC 1446경",
+    "context": "파라오의 추격군이 홍해까지 이스라엘을 몰아붙이자 모세가 손을 내밀매 바닷물이 갈라져 이스라엘이 마른 땅으로 건너고, 뒤쫓던 애굽 군대는 되돌아온 물에 잠겨 전멸함 (Exod 14:21–31).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-red-sea-crossing"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "rangeLabel": "14:21–31"
+      }
+    ]
+  },
+  {
+    "id": "authored-moses-marah-elim",
+    "title": "Bitter waters of Marah and the springs of Elim",
+    "nameKo": "마라의 쓴 물과 엘림의 열두 샘",
+    "startDate": "-1446",
+    "sortKey": -1445.86,
+    "yearLabel": "BC 1446경",
+    "context": "홍해를 건넌 지 사흘 만에 마라에 이른 이스라엘이 쓴 물에 원망하자 하나님이 나무를 던져 물을 달게 하시고, 이어 도착한 엘림에서 샘물 열둘과 종려나무 칠십 그루로 쉼을 얻음 (Exod 15:22–27).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-marah",
+      "authored-place-elim"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "rangeLabel": "15:22–27"
+      }
+    ]
+  },
+  {
+    "id": "authored-moses-manna-quail",
+    "title": "Manna and quail in the Wilderness of Sin",
+    "nameKo": "신 광야의 만나와 메추라기",
+    "startDate": "-1446",
+    "sortKey": -1445.84,
+    "yearLabel": "BC 1446경",
+    "context": "출애굽 한 달 보름 만에 양식이 떨어져 원망하는 이스라엘에게 하나님이 저녁마다 메추라기를, 아침마다 만나를 내려 이후 계속될 먹이심을 시작하심 (Exod 16:11–15).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-wilderness-of-sin"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "rangeLabel": "16:11–15"
+      }
+    ]
+  },
+  {
+    "id": "authored-moses-rephidim-water",
+    "title": "Water from the rock at Rephidim",
+    "nameKo": "르비딤 반석에서 솟은 물",
+    "startDate": "-1446",
+    "sortKey": -1445.82,
+    "yearLabel": "BC 1446경",
+    "context": "르비딤에 이른 이스라엘이 마실 물이 없어 모세와 다투자, 하나님이 호렙산 반석을 지팡이로 치라 명하시고 그 반석에서 물이 솟아나와 백성이 마심 (Exod 17:1–7).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-rephidim"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "rangeLabel": "17:1–7"
+      }
+    ]
+  },
+  {
+    "id": "authored-moses-amalek-battle",
+    "title": "Battle with Amalek and Moses' upheld hands",
+    "nameKo": "아말렉 전투와 들린 손",
+    "startDate": "-1446",
+    "sortKey": -1445.8,
+    "yearLabel": "BC 1446경",
+    "context": "르비딤에서 아말렉이 이스라엘을 공격하자 여호수아가 나가 싸우고, 모세가 산꼭대기에서 손을 들면 이기고 내리면 지므로 아론과 훌이 그 손을 붙들어 승리로 이끔 (Exod 17:8–13).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-rephidim"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "rangeLabel": "17:8–13"
+      }
+    ]
+  },
+  {
+    "id": "authored-moses-jethro-counsel",
+    "title": "Jethro's counsel and the appointment of judges",
+    "nameKo": "이드로의 조언과 재판관 세움",
+    "startDate": "-1446",
+    "sortKey": -1445.75,
+    "yearLabel": "BC 1446경",
+    "context": "모세의 장인 이드로가 십보라와 두 아들을 데리고 하나님의 산에 이르러, 홀로 백성의 소송을 처리하느라 지친 모세에게 천부장·백부장·오십부장·십부장을 세워 소송을 분담하라 조언함 (Exod 18:1–26).",
+    "authored": true,
+    "occursAt": [
+      "rec6V51IWkgvAcnOU"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "rangeLabel": "18:1–26"
+      }
+    ]
+  },
+  {
     "id": "authored-moses-sinai-law",
     "title": "God gives the Law to Moses on Mount Sinai",
     "nameKo": "시내산에서 율법을 받은 모세",
@@ -155,6 +310,51 @@
     ]
   },
   {
+    "id": "authored-moses-golden-calf",
+    "title": "The golden calf and Moses' new stone tablets",
+    "nameKo": "금송아지와 언약 갱신",
+    "startDate": "-1445",
+    "sortKey": -1445.6,
+    "yearLabel": "BC 1445경",
+    "context": "모세가 시내산에 오래 머무는 동안 백성이 아론에게 요구해 금송아지를 만들어 경배하자 진노한 모세가 돌판을 깨뜨리고 심판을 행하며, 다시 산에 올라 새 돌판을 받고 백성을 위해 중보함 (Exod 32:1–34:28).",
+    "authored": true,
+    "occursAt": [
+      "rec6V51IWkgvAcnOU"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha",
+      "recv0dAY2ULzJ687g"
+    ],
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "rangeLabel": "32:1–34:28"
+      }
+    ]
+  },
+  {
+    "id": "authored-moses-tabernacle-glory",
+    "title": "The tabernacle is completed and filled with the LORD's glory",
+    "nameKo": "성막 봉헌과 영광의 임재",
+    "startDate": "-1445",
+    "sortKey": -1445.5,
+    "yearLabel": "BC 1445경",
+    "context": "모세가 둘째 해 첫째 달 초하루에 성막을 세우고 지시대로 모든 기구를 배치하자 구름이 회막을 덮고 여호와의 영광이 성막에 충만하여 모세도 능히 들어가지 못했으며, 이후 구름이 오르면 행진하고 머무르면 진을 침 (Exod 40:17–38).",
+    "authored": true,
+    "occursAt": [
+      "rec6V51IWkgvAcnOU"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recsr5TGvFGOwA5SZ",
+        "rangeLabel": "40:17–38"
+      }
+    ]
+  },
+  {
     "id": "authored-moses-paran-wandering",
     "title": "Israel wanders in the Wilderness of Paran",
     "nameKo": "이스라엘의 바란 광야 방랑",
@@ -173,6 +373,52 @@
       {
         "bookId": "recs5u7KfYwwEE6JO",
         "rangeLabel": "10:12"
+      }
+    ]
+  },
+  {
+    "id": "authored-moses-kibroth-hattaavah",
+    "title": "Quail and plague at Kibroth Hattaavah",
+    "nameKo": "기브롯 핫다아와의 메추라기",
+    "startDate": "-1445",
+    "sortKey": -1444.9,
+    "yearLabel": "BC 1445경",
+    "context": "고기를 탐하며 원망하는 백성에게 하나님이 메추라기를 바람에 실어 진영 사방에 두 규빗 높이로 쌓이게 하셨으나, 탐욕으로 먹던 백성에게 큰 재앙이 내려 죽은 자를 장사하고 그곳을 기브롯 핫다아와라 부름 (Num 11:31–34).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-kibroth-hattaavah"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "rangeLabel": "11:31–34"
+      }
+    ]
+  },
+  {
+    "id": "authored-moses-miriam-aaron-rebuke",
+    "title": "Miriam and Aaron rebel against Moses; Miriam struck with leprosy",
+    "nameKo": "미리암과 아론의 비방",
+    "startDate": "-1445",
+    "sortKey": -1444.8,
+    "yearLabel": "BC 1445경",
+    "context": "미리암과 아론이 구스 여인을 아내로 맞은 모세를 비방하며 자신들도 선지자라 하자, 하나님이 모세와의 독특한 관계를 친히 변호하시고 진노하사 미리암에게 나병을 내리시니 모세의 중보로 이레 동안 진 밖에 갇혔다가 회복됨 (Num 12:1–15).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-hazeroth"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha",
+      "recvZksoA0NmFrYZ7",
+      "recv0dAY2ULzJ687g"
+    ],
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "rangeLabel": "12:1–15"
       }
     ]
   },
@@ -223,6 +469,142 @@
     ]
   },
   {
+    "id": "authored-moses-korah-rebellion",
+    "title": "Korah's rebellion and Aaron's budding rod",
+    "nameKo": "고라의 반역과 싹 난 지팡이",
+    "startDate": "-1444",
+    "sortKey": -1444.3,
+    "yearLabel": "BC 1444경",
+    "context": "고라 등 250인의 지도자가 모세·아론의 권위에 반역하자 땅이 갈라져 그들을 삼키고 분향하던 250인이 불에 타 죽었으며, 이튿날 백성의 원망에 염병이 돌았으나 아론의 속죄로 그쳤고, 그의 지팡이에만 싹 나고 살구 열매 맺혀 제사장 직분이 확증됨 (Num 16:1–17:8).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-paran"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha",
+      "recv0dAY2ULzJ687g"
+    ],
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "rangeLabel": "16:1–17:8"
+      }
+    ]
+  },
+  {
+    "id": "authored-moses-meribah-water",
+    "title": "Moses strikes the rock at Meribah and is barred from Canaan",
+    "nameKo": "므리바의 물 — 모세의 실수",
+    "startDate": "-1407",
+    "sortKey": -1407.5,
+    "yearLabel": "BC 1407경",
+    "context": "가데스에서 미리암이 죽어 장사된 후 물이 없어 원망하는 백성 앞에서 하나님이 반석에게 명하여 물을 내라 하셨으나 모세가 명령대로 말하지 않고 노하여 지팡이로 반석을 두 번 쳐 물을 내니, 이 불신으로 모세와 아론은 가나안 입성이 금지됨 (Num 20:1–13).",
+    "authored": true,
+    "occursAt": [
+      "rec1irrySVGkYieCr"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha",
+      "recv0dAY2ULzJ687g",
+      "recvZksoA0NmFrYZ7"
+    ],
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "rangeLabel": "20:1–13"
+      }
+    ]
+  },
+  {
+    "id": "authored-moses-aaron-death-hor",
+    "title": "Aaron dies on Mount Hor",
+    "nameKo": "호르산에서 아론의 죽음",
+    "startDate": "-1407",
+    "sortKey": -1407.4,
+    "yearLabel": "BC 1407경",
+    "context": "이스라엘이 가데스를 떠나 호르산에 이르자 므리바에서의 불신으로 아론의 죽을 때가 이르렀다 하신 하나님의 명대로, 모세가 온 회중이 보는 앞에서 아론의 제사장 옷을 벗겨 아들 엘르아살에게 입히니 아론이 그곳에서 죽고 온 이스라엘이 삼십 일을 애곡함 (Num 20:22–29).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-mount-hor"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha",
+      "recv0dAY2ULzJ687g"
+    ],
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "rangeLabel": "20:22–29"
+      }
+    ]
+  },
+  {
+    "id": "authored-moses-bronze-serpent",
+    "title": "The bronze serpent lifted up on a pole",
+    "nameKo": "놋뱀을 든 장대",
+    "startDate": "-1407",
+    "sortKey": -1407.3,
+    "yearLabel": "BC 1407경",
+    "context": "이스라엘이 에돔 땅을 피해 홍해 길로 돌아가다가 마음이 상하여 하나님과 모세를 원망하자 여호와께서 불뱀을 보내어 물려 죽는 자가 많았고, 모세의 중보로 하나님이 명하신 대로 놋뱀을 만들어 장대 위에 매다니 물린 자마다 그것을 보면 살더라 (Num 21:4–9).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-arabah"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "rangeLabel": "21:4–9"
+      }
+    ]
+  },
+  {
+    "id": "authored-moses-sihon-og",
+    "title": "Moses defeats Sihon and Og east of the Jordan",
+    "nameKo": "시혼과 옥을 격파한 요단 동편",
+    "startDate": "-1407",
+    "sortKey": -1407.2,
+    "yearLabel": "BC 1407경",
+    "context": "아모리 왕 시혼이 통과를 거절하고 야하스에서 싸움을 걸어오자 이스라엘이 그를 쳐서 아르논에서 얍복까지 그 땅을 차지해 헤스본에 정착하고, 이어 바산 왕 옥이 에드레이에서 맞서 싸우자 그도 쳐서 멸하여 요단 동편 땅을 얻음 (Num 21:21–35).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-heshbon"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "rangeLabel": "21:21–35"
+      }
+    ]
+  },
+  {
+    "id": "authored-moses-baal-peor",
+    "title": "Israel's apostasy at Baal of Peor",
+    "nameKo": "브올의 바알 배교",
+    "startDate": "-1407",
+    "sortKey": -1407,
+    "yearLabel": "BC 1407경",
+    "context": "싯딤에 머물던 이스라엘 백성이 모압 여인들과 음행하며 브올의 바알에게 절하니 여호와의 진노가 임하여 염병이 돌았고, 비느하스가 미디안 여인을 데려온 이스라엘 남자를 창으로 찔러 죽여 염병을 그치게 하니 이미 이만 사천 명이 죽은 뒤였음 (Num 25:1–9).",
+    "authored": true,
+    "occursAt": [
+      "recFPceE2ivY1B3sX"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha"
+    ],
+    "books": [
+      {
+        "bookId": "recs5u7KfYwwEE6JO",
+        "rangeLabel": "25:1–9"
+      }
+    ]
+  },
+  {
     "id": "authored-moses-plains-moab",
     "title": "Israel encamps on the plains of Moab opposite Jericho",
     "nameKo": "여리고 맞은편 모압 평지에 진을 친 이스라엘",
@@ -245,6 +627,29 @@
       {
         "bookId": "rec2LnZw7EoTWReC0",
         "rangeLabel": "1:1"
+      }
+    ]
+  },
+  {
+    "id": "authored-moses-law-reading-commission",
+    "title": "Moses reads the Law and commissions Joshua",
+    "nameKo": "율법 낭독과 여호수아 위임",
+    "startDate": "-1406",
+    "sortKey": -1406.92,
+    "yearLabel": "BC 1406경",
+    "context": "모압 평지에 진 친 이스라엘 앞에서 모세가 여호수아를 불러 강하고 담대하라, 네가 이 백성과 함께 여호와께서 조상들에게 맹세하신 땅에 들어가 그들에게 유업으로 얻게 하라 부탁하고, 이 율법을 써서 제사장들과 장로들에게 주며 칠 년마다 초막절에 온 이스라엘 앞에서 낭독해 남녀노소와 나그네까지 듣고 배우게 하라 명함 (Deut 31:7–13).",
+    "authored": true,
+    "occursAt": [
+      "recUn6eVJDoG4xI0j"
+    ],
+    "participants": [
+      "recjNRR60PAuFtjha",
+      "recLuZtSmAO6erIsc"
+    ],
+    "books": [
+      {
+        "bookId": "rec2LnZw7EoTWReC0",
+        "rangeLabel": "31:7–13"
       }
     ]
   },

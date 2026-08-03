@@ -678,5 +678,101 @@
     "lat": 37.3092,
     "lng": 26.547,
     "note": "요한이 유배되어 계시록을 받은 에게해의 섬 (계 1:9)"
+  },
+  {
+    "id": "authored-place-red-sea-crossing",
+    "name": "Red Sea Crossing",
+    "nameKo": "홍해 도하 지점",
+    "lat": 29.95,
+    "lng": 32.55,
+    "note": "이스라엘이 마른 땅으로 건넌 홍해 북단 나루 (Exod 14:21–31)"
+  },
+  {
+    "id": "authored-place-marah",
+    "name": "Marah",
+    "nameKo": "마라",
+    "lat": 29.13,
+    "lng": 33.06,
+    "note": "쓴 물이 나뭇가지로 달게 된 광야 첫 진영 (Exod 15:22–25)"
+  },
+  {
+    "id": "authored-place-elim",
+    "name": "Elim",
+    "nameKo": "엘림",
+    "lat": 29.05,
+    "lng": 33.13,
+    "note": "샘 열둘과 종려 칠십 그루가 있던 오아시스 (Exod 15:27)"
+  },
+  {
+    "id": "authored-place-wilderness-of-sin",
+    "name": "Wilderness of Sin",
+    "nameKo": "신 광야",
+    "lat": 28.95,
+    "lng": 33.35,
+    "note": "만나와 메추라기가 처음 내린 광야 (Exod 16:1–15)"
+  },
+  {
+    "id": "authored-place-rephidim",
+    "name": "Rephidim",
+    "nameKo": "르비딤",
+    "lat": 28.72,
+    "lng": 33.70,
+    "note": "반석에서 물이 나고 아말렉과 싸운 곳 (Exod 17:1–13)"
+  },
+  {
+    "id": "authored-place-kibroth-hattaavah",
+    "name": "Kibroth-hattaavah",
+    "nameKo": "기브롯 핫다아와",
+    "lat": 29.05,
+    "lng": 34.15,
+    "note": "고기를 탐하다 재앙으로 죽은 자들을 묻은 '탐욕의 무덤' (Num 11:34)"
+  },
+  {
+    "id": "authored-place-hazeroth",
+    "name": "Hazeroth",
+    "nameKo": "하세롯",
+    "lat": 28.98,
+    "lng": 34.42,
+    "note": "미리암과 아론이 모세를 비방하다 벌 받은 곳 (Num 12:1, 16)"
+  },
+  {
+    "id": "authored-place-mount-hor",
+    "name": "Mount Hor",
+    "nameKo": "호르산",
+    "lat": 30.32,
+    "lng": 35.41,
+    "note": "아론이 죽고 엘르아살이 대제사장직을 이은 에돔 접경 산 (Num 20:22–29)"
+  },
+  {
+    "id": "authored-place-arabah",
+    "name": "Arabah Road",
+    "nameKo": "아라바 광야길",
+    "lat": 30.05,
+    "lng": 35.15,
+    "note": "에돔을 우회해 홍해길로 돌아간 아라바 광야길 — 백성이 낙담해 원망하다 불뱀에 물린 곳 (Num 21:4)"
+  },
+  {
+    "id": "authored-place-heshbon",
+    "name": "Heshbon",
+    "nameKo": "헤스본",
+    "lat": 31.80,
+    "lng": 35.80,
+    "note": "아모리 왕 시혼의 수도 — 이스라엘이 시혼과 옥을 격파하고 차지한 요단 동편 (Num 21:21–30)"
+  },
+  {
+    "id": "authored-place-achor",
+    "name": "Valley of Achor",
+    "nameKo": "아골 골짜기",
+    "lat": 31.85,
+    "lng": 35.40,
+    "note": "아간이 온 가족·탈취물과 함께 돌에 맞아 죽은 골짜기 — '아골'은 '고통'이라는 뜻 (Josh 7:24–26)"
+  },
+  {
+    "id": "authored-place-hazor",
+    "name": "Hazor",
+    "nameKo": "하솔",
+    "lat": 33.02,
+    "lng": 35.57,
+    "note": "가나안 북부 연합군의 수도 — 여호수아가 격파하고 불사른 곳 (Josh 11:10–11)"
   }
 ]

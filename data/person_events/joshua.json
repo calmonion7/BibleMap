@@ -110,6 +110,28 @@
     ]
   },
   {
+    "id": "authored-joshua-achan-sin",
+    "title": "Achan's sin and the Valley of Achor",
+    "nameKo": "아간의 범죄와 아골 골짜기",
+    "startDate": "-1406",
+    "sortKey": -1404.5,
+    "yearLabel": "BC 1406경",
+    "context": "온전히 바쳐야 할 물건을 취하지 말라는 명을 어기고 유다 지파 아간이 시날 외투와 은과 금덩이를 감추자 그 죄로 아이 성 전투에서 이스라엘이 패퇴하니, 제비뽑아 아간을 찾아내어 온 이스라엘이 그와 그 가족·소유를 아골 골짜기에서 돌로 치고 불사른 후에야 여호와의 진노가 그침 (Josh 7:1–26).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-achor"
+    ],
+    "participants": [
+      "recLuZtSmAO6erIsc"
+    ],
+    "books": [
+      {
+        "bookId": "rec5dSv8N1iv8z9uC",
+        "rangeLabel": "7:1–26"
+      }
+    ]
+  },
+  {
     "id": "authored-joshua-ai-conquest",
     "title": "Conquest of Ai",
     "nameKo": "아이 성 전투 (아간 사건 이후)",
@@ -172,6 +194,50 @@
       {
         "bookId": "rec5dSv8N1iv8z9uC",
         "rangeLabel": "10:12–14"
+      }
+    ]
+  },
+  {
+    "id": "authored-joshua-southern-northern-campaign",
+    "title": "Joshua defeats the southern and northern coalitions",
+    "nameKo": "남부·북부 연합군 격파",
+    "startDate": "-1402",
+    "sortKey": -1402,
+    "yearLabel": "BC 1402경",
+    "context": "동굴에 숨은 다섯 왕을 큰 돌로 굴 어귀를 막아 가둔 뒤 여호수아가 막게다·립나·라기스·에글론·헤브론·드빌을 차례로 정복해 남부를 평정하고, 이어 하솔 왕 야빈이 규합한 북부 연합군마저 메롬 물가에서 급습해 격파하고 하솔을 불살라 가나안 땅에 전쟁이 그침 (Josh 10:16–11:23).",
+    "authored": true,
+    "occursAt": [
+      "authored-place-hazor"
+    ],
+    "participants": [
+      "recLuZtSmAO6erIsc"
+    ],
+    "books": [
+      {
+        "bookId": "rec5dSv8N1iv8z9uC",
+        "rangeLabel": "10:16–11:23"
+      }
+    ]
+  },
+  {
+    "id": "authored-joshua-caleb-hebron",
+    "title": "Caleb claims Hebron as his inheritance",
+    "nameKo": "갈렙의 헤브론 분배 요구",
+    "startDate": "-1400",
+    "sortKey": -1400,
+    "yearLabel": "BC 1400경",
+    "context": "85세 된 갈렙이 여호수아에게 나아가 가데스에서 정탐하던 45년 전 그날처럼 자신이 여전히 강건하다 말하며, 여호와께서 그날 자신에게 허락하신 아낙 자손의 땅 헤브론을 달라 요구하니 여호수아가 그를 축복하고 헤브론을 유업으로 줌 (Josh 14:6–15).",
+    "authored": true,
+    "occursAt": [
+      "recJSfVnIcPibY6aX"
+    ],
+    "participants": [
+      "recLuZtSmAO6erIsc"
+    ],
+    "books": [
+      {
+        "bookId": "rec5dSv8N1iv8z9uC",
+        "rangeLabel": "14:6–15"
       }
     ]
   },
