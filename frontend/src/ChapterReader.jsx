@@ -1,13 +1,16 @@
-import { useState, useEffect, Fragment } from 'react'
+import { useState, useEffect, useRef, Fragment } from 'react'
 import { apiGet } from './api'
 import Spinner from './Spinner'
 import VerseLangTabs from './VerseLangTabs'
+import BookmarkToggle from './BookmarkToggle'
 import { paperTextStyle } from './VerseLayer'
 
 // 본문 리더(task#205) — 장 단위 통독 화면. chapter가 null이면 장 그리드(목차), 지정되면 그 장 본문.
 // 본문 데이터는 프리베이크 정본 절 사전(/book/{id}/chapter/{n}, ADR-0003·0015) — 신규 저작 0.
 // 장 목차(nameKo·chapterCount·장별 개요)는 /book/{id}/chapters — 개요 오버레이 없으면 숫자 그리드 폴백(task#206).
-function ChapterReader({ bookId, chapter, onSelectChapter, verseLang, setVerseLang }) {
+function ChapterReader({ bookId, chapter, onSelectChapter, highlightVerseId, verseLang, setVerseLang,
+  bookmarkEntry, isBookmarked, onToggleBookmark, onRecordRecent,
+  isChapterRead, onToggleRead, bookReadCount }) {
   const [bookMeta, setBookMeta] = useState(null)   // { nameKo, chapterCount, chapters } — 그리드·로딩 헤더용
   const [data, setData] = useState(null)           // /book/{id}/chapter/{n} 응답
   const [failed, setFailed] = useState(false)
@@ -34,8 +37,26 @@ function ChapterReader({ bookId, chapter, onSelectChapter, verseLang, setVerseLa
     return () => { alive = false; ctrl.abort() }
   }, [bookId, chapter])
 
+  // 검색 결과로 들어온 절(task#267) — 본문이 그려진 뒤 그 절을 뷰포트 안으로 스크롤한다.
+  const highlightRef = useRef(null)
+  useEffect(() => {
+    if (!highlightVerseId || !data) return
+    highlightRef.current?.scrollIntoView({ block: 'center' })
+  }, [highlightVerseId, data])
+
   const nameKo = data?.nameKo || bookMeta?.nameKo || ''
   const chapterCount = data?.chapterCount ?? bookMeta?.chapterCount ?? null
+
+  // 저장·이어보기 라벨(task#268) — "창세기 22장" / 목차는 "창세기".
+  const readerLabel = nameKo ? (chapter != null ? `${nameKo} ${chapter}장` : nameKo) : null
+  // 읽기 진도(task#269)
+  const readCount = bookReadCount?.(bookId) ?? 0
+  const chapterRead = chapter != null && !!isChapterRead?.(chapter)
+
+  useEffect(() => {
+    if (!bookmarkEntry?.hash || !readerLabel) return
+    onRecordRecent?.({ ...bookmarkEntry, label: readerLabel })
+  }, [bookmarkEntry, readerLabel, onRecordRecent])
 
   const chapterBtnStyle = (disabled) => ({
     padding: '8px 16px', borderRadius: 999, cursor: disabled ? 'default' : 'pointer',
@@ -58,6 +79,18 @@ function ChapterReader({ bookId, chapter, onSelectChapter, verseLang, setVerseLa
             </div>
             {chapterCount != null && (
               <div style={{ fontSize: 12, color: 'var(--ink-dim)', marginTop: 4 }}>전 {chapterCount}장 — 장을 골라 읽기 시작</div>
+            )}
+            {/* 읽기 진도(task#269) — 진도 0이면 막대 자체를 렌더하지 않는다 */}
+            {chapterCount != null && readCount > 0 && (
+              <div data-reading-progress={`${readCount}/${chapterCount}`} style={{ marginTop: 10 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: 'var(--ink-faint)', marginBottom: 4 }}>
+                  <span>읽은 장</span>
+                  <span>{readCount}/{chapterCount}</span>
+                </div>
+                <div style={{ height: 4, borderRadius: 2, background: 'var(--line)', overflow: 'hidden' }}>
+                  <div style={{ width: `${Math.round((readCount / chapterCount) * 100)}%`, height: '100%', background: 'var(--gold)' }} />
+                </div>
+              </div>
             )}
           </div>
           {chapterCount == null ? (
@@ -94,6 +127,9 @@ function ChapterReader({ bookId, chapter, onSelectChapter, verseLang, setVerseLa
                     >
                       <span style={{ fontFamily: 'var(--serif)', fontSize: 14, fontWeight: 700, color: 'var(--gold)', flexShrink: 0, minWidth: 22, textAlign: 'right' }}>{e.chapter}</span>
                       <span style={{ fontSize: 13, color: 'var(--ink-dim)', lineHeight: 1.5 }}>{e.summary}</span>
+                      {isChapterRead?.(e.chapter) && (
+                        <span data-chapter-read={e.chapter} title="읽음" style={{ marginLeft: 'auto', flexShrink: 0, color: 'var(--gold)', fontSize: 12 }}>✓</span>
+                      )}
                     </button>
                   </Fragment>
                 )
@@ -105,10 +141,12 @@ function ChapterReader({ bookId, chapter, onSelectChapter, verseLang, setVerseLa
                 <button
                   key={n}
                   onClick={() => onSelectChapter(n)}
+                  {...(isChapterRead?.(n) ? { 'data-chapter-read': n } : null)}
                   style={{
                     padding: '12px 0', borderRadius: 8, cursor: 'pointer',
-                    border: '1px solid var(--line)', background: 'var(--bg-1)',
-                    color: 'var(--ink)', fontSize: 14, fontFamily: 'var(--serif)',
+                    border: `1px solid ${isChapterRead?.(n) ? 'var(--gold)' : 'var(--line)'}`,
+                    background: 'var(--bg-1)',
+                    color: isChapterRead?.(n) ? 'var(--gold)' : 'var(--ink)', fontSize: 14, fontFamily: 'var(--serif)',
                     transition: 'border-color var(--dur-fast), color var(--dur-fast)',
                   }}
                 >{n}</button>
@@ -136,7 +174,15 @@ function ChapterReader({ bookId, chapter, onSelectChapter, verseLang, setVerseLa
           <div style={{ fontFamily: 'var(--serif)', fontSize: 17, fontWeight: 700, color: 'var(--ink)' }}>
             {nameKo} {chapter}장
           </div>
-          <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <VerseLangTabs verseLang={verseLang} setVerseLang={setVerseLang} />
+            {bookmarkEntry && (
+              <BookmarkToggle
+                saved={isBookmarked}
+                onToggle={() => onToggleBookmark({ ...bookmarkEntry, label: readerLabel || bookmarkEntry.label })}
+              />
+            )}
+          </div>
         </div>
 
         {/* 장 개요(task#206) — 리더 헤더 아래 한 줄, 오버레이 없으면 조용히 생략 */}
@@ -157,14 +203,48 @@ function ChapterReader({ bookId, chapter, onSelectChapter, verseLang, setVerseLa
           ) : data.verses.length === 0 ? (
             <div style={{ ...paperTextStyle, textAlign: 'center', padding: '24px 0' }}>이 장에는 본문이 없어요.</div>
           ) : (
-            data.verses.map(v => (
-              <div key={v.verseId} style={{ ...paperTextStyle, marginBottom: 6 }}>
-                <sup style={{ fontSize: 11, color: 'var(--paper-accent)', marginRight: 4, fontWeight: 600 }}>{v.v}</sup>
-                {verseLang === 'ko' ? v.textKo : v.textEn}
-              </div>
-            ))
+            data.verses.map(v => {
+              const hit = v.verseId === highlightVerseId
+              return (
+                <div
+                  key={v.verseId}
+                  ref={hit ? highlightRef : undefined}
+                  data-verse-id={v.verseId}
+                  data-verse-highlight={hit ? 'true' : undefined}
+                  style={{
+                    ...paperTextStyle, marginBottom: 6,
+                    ...(hit ? {
+                      background: 'color-mix(in srgb, var(--paper-accent) 22%, transparent)',
+                      borderRadius: 4, padding: '2px 6px', margin: '0 -6px 6px',
+                    } : null),
+                  }}
+                >
+                  <sup style={{ fontSize: 11, color: 'var(--paper-accent)', marginRight: 4, fontWeight: 600 }}>{v.v}</sup>
+                  {verseLang === 'ko' ? v.textKo : v.textEn}
+                </div>
+              )
+            })
           )}
         </div>
+
+        {/* 읽음 토글(task#269) — 본문 끝에서 이 장을 읽음으로 표시 */}
+        {onToggleRead && (
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 16 }}>
+            <button
+              onClick={() => onToggleRead(bookId, chapter, nameKo || null)}
+              data-read-toggle={chapterRead ? 'on' : 'off'}
+              aria-pressed={chapterRead}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                padding: '8px 18px', borderRadius: 999, cursor: 'pointer',
+                border: `1px solid ${chapterRead ? 'var(--gold)' : 'var(--line)'}`,
+                background: chapterRead ? 'color-mix(in srgb, var(--gold) 12%, var(--bg-1))' : 'var(--bg-1)',
+                color: chapterRead ? 'var(--gold)' : 'var(--ink-dim)',
+                fontSize: 13, fontFamily: 'var(--serif)',
+              }}
+            >{chapterRead ? '✓ 읽음' : '읽음으로 표시'}</button>
+          </div>
+        )}
 
         {chapterCount != null && (
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 16 }}>

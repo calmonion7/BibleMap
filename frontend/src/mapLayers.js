@@ -7,8 +7,15 @@ function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
 }
 
-function placePopupHTML(label, isPrimary) {
+function placePopupHTML(label, isPrimary, placeId) {
   const typeLabel = isPrimary ? '📍 선택된 장소' : '📍 관련 장소'
+  // 장소 페이지 진입(task#270) — id 없는 피처는 링크를 달지 않는다.
+  const link = placeId
+    ? `<button data-open-place="${escapeHtml(placeId)}" style="
+        margin-top:8px;padding:5px 10px;border:1px solid #c9a227;border-radius:6px;
+        background:#fff;color:#8a6d1f;font-size:11px;cursor:pointer;font-family:inherit;
+      ">이 장소 보기 →</button>`
+    : ''
   return `
     <div style="
       font-family: system-ui, -apple-system, sans-serif;
@@ -25,6 +32,7 @@ function placePopupHTML(label, isPrimary) {
         color: #7c8db0;
         letter-spacing: 0.3px;
       ">${typeLabel}</div>
+      ${link}
     </div>
   `
 }
@@ -45,7 +53,14 @@ function parableMiraclePopupHTML({ type, name, placeName, note, verseText }) {
   `
 }
 
-export function registerEventHandlers(map, { collapseRing, collapseSpider, expandPlace, spiderifyPlaces, onSelectNode, popupRef, expandedPlaceRef, onJourneyStopClick, pmPopupRef }) {
+// 팝업 안 "이 장소 보기" 버튼 배선 — 팝업은 HTML 문자열이라 렌더 뒤 요소에 직접 리스너를 건다.
+function wirePlaceLink(popup, onOpenPlace) {
+  if (!onOpenPlace) return
+  const el = popup.getElement()?.querySelector('[data-open-place]')
+  if (el) el.addEventListener('click', () => onOpenPlace(el.getAttribute('data-open-place')))
+}
+
+export function registerEventHandlers(map, { collapseRing, collapseSpider, expandPlace, spiderifyPlaces, onSelectNode, popupRef, expandedPlaceRef, onJourneyStopClick, pmPopupRef, onOpenPlace }) {
   map.on('click', 'pm-circle', (e) => {
     const coords = e.features[0].geometry.coordinates.slice()
     if (pmPopupRef.current) pmPopupRef.current.remove()
@@ -85,9 +100,10 @@ export function registerEventHandlers(map, { collapseRing, collapseSpider, expan
       offset: 14,
     })
       .setLngLat(coords)
-      .setHTML(placePopupHTML(label, isPrimary))
+      .setHTML(placePopupHTML(label, isPrimary, id))
       .addTo(map)
     popupRef.current = popup
+    wirePlaceLink(popup, onOpenPlace)
     if (id) onSelectNode(id)
   })
 
@@ -110,9 +126,10 @@ export function registerEventHandlers(map, { collapseRing, collapseSpider, expan
       offset: 14,
     })
       .setLngLat([originalLng, originalLat])
-      .setHTML(placePopupHTML(label, isPrimary))
+      .setHTML(placePopupHTML(label, isPrimary, id))
       .addTo(map)
     popupRef.current = popup
+    wirePlaceLink(popup, onOpenPlace)
     if (id) onSelectNode(id)
   })
 

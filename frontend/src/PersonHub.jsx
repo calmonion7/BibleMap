@@ -113,6 +113,36 @@ function PersonCard({ person, onSelectPerson, entrance, delayMs }) {
   )
 }
 
+// 이어보기·저장한 것 가로 카드 줄(task#268) — 항목은 저장된 해시 하나로 복원된다.
+function SavedRow({ title, items, onOpen, testAttr }) {
+  return (
+    <div style={{ marginBottom: 14 }}>
+      <div style={{
+        fontFamily: 'var(--serif)', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em',
+        color: GOLD, marginBottom: 6,
+      }}>{title}</div>
+      <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4 }}>
+        {items.map(it => (
+          <button
+            key={it.hash}
+            data-saved-item={testAttr}
+            data-saved-hash={it.hash}
+            onClick={() => onOpen?.(it.hash)}
+            style={{
+              flexShrink: 0, maxWidth: 190,
+              textAlign: 'left', padding: '8px 12px', borderRadius: 8,
+              border: '1px solid var(--line)', background: 'var(--bg-1)',
+              color: TEXT, cursor: 'pointer',
+              fontFamily: 'var(--serif)', fontSize: 13,
+              whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+            }}
+          >{it.label || it.hash}</button>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 function EraSection({ era, persons, onSelectPerson, isFirst, entrance, baseIdx, chapterNo }) {
   const desc = ERA_META[era] || ''
 
@@ -183,7 +213,7 @@ function EraSection({ era, persons, onSelectPerson, isFirst, entrance, baseIdx, 
  * 데이터: 내부에서 GET /persons/curated 호출
  *   응답 항목: { id, slug, nameKo, era, eventCount }
  */
-export default function PersonHub({ onSelectPerson }) {
+export default function PersonHub({ onSelectPerson, bookmarks = [], recent = [], onOpenSaved, resume, onResumeReading }) {
   const [persons, setPersons] = useState([])
   // 입장 스태거는 세션 첫 허브 진입에만 — 마운트 시점 값 고정 후 플래그 마킹
   const [entrance] = useState(() => !hubEntrancePlayed)
@@ -303,6 +333,45 @@ export default function PersonHub({ onSelectPerson }) {
           인물을 고르면 활동 지역과 사건이 지도에 펼쳐집니다
         </p>
       </div>
+
+      {/* 이어보기 / 저장한 것(task#268) — 항목이 없으면 섹션 자체를 렌더하지 않는다(첫 방문 화면 유지) */}
+      {(recent.length > 0 || bookmarks.length > 0 || resume) && (
+        <div data-hub-personal style={{ padding: isMobile ? '18px 16px 0' : '24px 32px 0' }}>
+          {/* 이어읽기(task#269) — 진도가 없으면 resume이 null이라 렌더되지 않는다 */}
+          {resume && (
+            <button
+              data-resume-reading={`${resume.bookId}/${resume.chapter}`}
+              onClick={() => onResumeReading?.(resume)}
+              style={{
+                display: 'block', marginBottom: 14, padding: '10px 14px', borderRadius: 8,
+                border: '1px solid var(--gold-dim)', background: 'var(--bg-1)',
+                color: TEXT, cursor: 'pointer', textAlign: 'left',
+                fontFamily: 'var(--serif)', fontSize: 13,
+              }}
+            >
+              <span style={{ color: GOLD, fontWeight: 700, letterSpacing: '0.06em', fontSize: 12 }}>이어읽기</span>
+              <span style={{ marginLeft: 8 }}>{resume.label ? `${resume.label} ${resume.chapter}장` : `${resume.chapter}장`}</span>
+            </button>
+          )}
+          {recent.length > 0 && (
+            <SavedRow
+              title="이어보기"
+              items={recent}
+              onOpen={onOpenSaved}
+              testAttr="recent"
+            />
+          )}
+          {bookmarks.length > 0 && (
+            <SavedRow
+              title="저장한 것"
+              items={bookmarks}
+              onOpen={onOpenSaved}
+              testAttr="bookmark"
+            />
+          )}
+          <div style={{ fontSize: 11, color: 'var(--ink-faint)', marginTop: 4 }}>이 기기에 저장됨</div>
+        </div>
+      )}
 
       {/* 시대별 카드 그룹 */}
       <div style={{

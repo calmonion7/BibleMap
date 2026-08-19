@@ -21,6 +21,7 @@ def get_books_overview():
             books.append({
                 "id": props.get("theographic_id", ""),
                 "nameKo": props.get("nameKo"),
+                "chapterCount": props.get("chapterCount"),  # 개요 진도율 표시(task#269) — 읽은 장/전체 장
                 "testament": props.get("testament"),
                 "bookOrder": props.get("bookOrder"),
                 "genre": props.get("genre"),

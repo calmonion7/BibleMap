@@ -21,6 +21,8 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   // 가계도 페이지의 대상(focus) 인물 id — bookId와 동형으로 selectedNode와 분리. 트리 노드를
   // 클릭해 재중심화하면 familyId만 바뀌어 페이지·URL이 안정적으로 그 인물로 옮겨간다.
   const [familyId, setFamilyId] = useState(null)
+  // 장소 페이지 대상 id(task#270) — bookId와 대칭(전용 전체화면 스테이지)
+  const [placeId, setPlaceId] = useState(null)
   // 단어 분포 페이지의 대상 책 id('all' 포함) — bookId·familyId와 동형.
   const [wordsBookId, setWordsBookId] = useState(null)
   // 본문 리더의 대상 책 id·장 번호(null = 장 그리드) — wordsBookId와 동형(task#205).
@@ -85,6 +87,39 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     return () => { cancelled = true }
   }, [])
 
+  // 파싱된 해시 → 상태 적용. 딥링크 복원과 저장·이어보기 카드 복원(task#268)의 공용 경로.
+  function applyParsedHash(parsed) {
+    if (parsed.stage === 'intro') setActiveStage('intro')
+    else if (parsed.stage === 'overview') setActiveStage('overview')
+    else if (parsed.stage === 'book' && parsed.bookId) { setBookId(parsed.bookId); setActiveStage('book') }
+    else if (parsed.stage === 'family' && parsed.familyId) { setFamilyId(parsed.familyId); setActiveStage('family') }
+    else if (parsed.stage === 'place' && parsed.placeId) { setPlaceId(parsed.placeId); setActiveStage('place') }
+    else if (parsed.stage === 'words' && parsed.wordsBookId) { setWordsBookId(parsed.wordsBookId); setActiveStage('words') }
+    else if (parsed.stage === 'reader' && parsed.readerBookId) { setReaderBookId(parsed.readerBookId); setReaderChapter(parsed.readerChapter ?? null); setActiveStage('reader') }
+    else if (parsed.stage === 'canon') setActiveStage('canon')
+    else if (parsed.stage === 'stats') setActiveStage('stats')
+    else if (parsed.stage === 'topics') setActiveStage('topics')
+    else if (parsed.stage === 'tours') setActiveStage('tours')
+    else if (parsed.stage === 'hub') { setExplorePersonId(null); setExploreTourId(null); setActiveStage('hub') }
+    else if (parsed.stage === 'explore' && parsed.tourSlug) {
+      setExploreTourId(parsed.tourSlug); setExplorePersonId(null); setActiveStage('explore'); setExploreView(parsed.exploreView)
+    }
+    else if (parsed.stage === 'explore' && parsed.personSlug) {
+      const id = curatedSlugToId.current[parsed.personSlug]
+      if (id) { selectNodeFresh(id); setExplorePersonId(id); setExploreTourId(null); setActiveStage('explore'); setExploreView(parsed.exploreView) }
+      // 미지 slug → 허브 유지
+    }
+  }
+
+  // 저장·이어보기 카드 복원(task#268) — 문서 안에서 해시만 바꾸면 스테이지가 리마운트되지 않으므로
+  // 상태 머신을 직접 태운다(히스토리 해시는 sync effect가 뒤따라 맞춘다).
+  function handleGoToHash(hash) {
+    const parsed = parseHash(hash)
+    if (!parsed) return
+    closePanel()
+    applyParsedHash(parsed)
+  }
+
   // 딥링크 복원 — curated(slug↔id) 준비되면 마운트 해시를 1회 파싱해 상태 복원.
   // setState는 마이크로태스크로 미룸(effect 동기 setState 금지 규칙).
   useEffect(() => {
@@ -97,25 +132,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     // 복원 상태 적용 후 같은 마이크로태스크에서 setRestored(true) — 그래야 sync effect의 베이스 write가
     // '복원된 stage'로 찍힌다(딥링크면 explore가 베이스). 깨진 해시(parsed null)도 허브 베이스로 복원 신호.
     Promise.resolve().then(() => {
-      if (parsed) {
-        if (parsed.stage === 'intro') setActiveStage('intro')
-        else if (parsed.stage === 'overview') setActiveStage('overview')
-        else if (parsed.stage === 'book' && parsed.bookId) { setBookId(parsed.bookId); setActiveStage('book') }
-        else if (parsed.stage === 'family' && parsed.familyId) { setFamilyId(parsed.familyId); setActiveStage('family') }
-        else if (parsed.stage === 'words' && parsed.wordsBookId) { setWordsBookId(parsed.wordsBookId); setActiveStage('words') }
-        else if (parsed.stage === 'reader' && parsed.readerBookId) { setReaderBookId(parsed.readerBookId); setReaderChapter(parsed.readerChapter ?? null); setActiveStage('reader') }
-        else if (parsed.stage === 'stats') setActiveStage('stats')
-        else if (parsed.stage === 'topics') setActiveStage('topics')
-        else if (parsed.stage === 'tours') setActiveStage('tours')
-        else if (parsed.stage === 'explore' && parsed.tourSlug) {
-          setExploreTourId(parsed.tourSlug); setActiveStage('explore'); setExploreView(parsed.exploreView)
-        }
-        else if (parsed.stage === 'explore' && parsed.personSlug) {
-          const id = curatedSlugToId.current[parsed.personSlug]
-          if (id) { selectNodeFresh(id); setExplorePersonId(id); setActiveStage('explore'); setExploreView(parsed.exploreView) }
-          // 미지 slug → 허브 유지
-        }
-      }
+      if (parsed) applyParsedHash(parsed)
       setRestored(true)
     })
     // curatedIds 준비 시 1회만 복원 — selectNodeFresh 등은 의도적으로 dep 제외(popstate effect와 동일 패턴).
@@ -131,23 +148,23 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     const slug = explorePersonId ? curatedIdToSlug.current[explorePersonId] : null
     if (activeStage === 'explore' && !slug && !exploreTourId) return // slug/tour 미해결 시 깨진 URL 안 씀
     const sheetOpen = selectedNode != null && selectedNode !== explorePersonId
-    const hash = encodeHash({ stage: activeStage, personSlug: slug, exploreView, tourSlug: exploreTourId, bookId, familyId, wordsBookId, readerBookId, readerChapter })
-    const state = { stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, words: wordsBookId, reader: readerBookId, chapter: readerChapter, view: exploreView, node: selectedNode }
+    const hash = encodeHash({ stage: activeStage, personSlug: slug, exploreView, tourSlug: exploreTourId, bookId, familyId, wordsBookId, readerBookId, readerChapter, placeId })
+    const state = { stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, words: wordsBookId, reader: readerBookId, chapter: readerChapter, place: placeId, view: exploreView, node: selectedNode }
     if (popstateGuard.current) {
       // popstate 복원 중 — 브라우저가 이미 히스토리를 옮겼으니 재-push 없이 ref만 동기화.
       popstateGuard.current = false
-      navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, words: wordsBookId, reader: readerBookId, chapter: readerChapter, sheetOpen }
+      navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, words: wordsBookId, reader: readerBookId, chapter: readerChapter, place: placeId, sheetOpen }
       return
     }
     const prev = navSyncRef.current
     const isForward = prev.initialized &&
-      (prev.stage !== activeStage || prev.person !== explorePersonId || prev.tour !== exploreTourId || prev.book !== bookId || prev.family !== familyId || prev.words !== wordsBookId || prev.reader !== readerBookId || prev.chapter !== readerChapter || (!prev.sheetOpen && sheetOpen))
-    navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, words: wordsBookId, reader: readerBookId, chapter: readerChapter, sheetOpen }
+      (prev.stage !== activeStage || prev.person !== explorePersonId || prev.tour !== exploreTourId || prev.book !== bookId || prev.family !== familyId || prev.words !== wordsBookId || prev.reader !== readerBookId || prev.chapter !== readerChapter || prev.place !== placeId || (!prev.sheetOpen && sheetOpen))
+    navSyncRef.current = { initialized: true, stage: activeStage, person: explorePersonId, tour: exploreTourId, book: bookId, family: familyId, words: wordsBookId, reader: readerBookId, chapter: readerChapter, place: placeId, sheetOpen }
     if (isForward) window.history.pushState(state, '', hash)
     else window.history.replaceState(state, '', hash)
     // curatedIds 추가(#11): 카드 클릭이 slug맵 로드보다 빨라 :88에서 조기반환했더라도,
     // curatedIds null→Set 시 재실행돼 slug 해석 후 올바른 pushState가 찍히게 한다.
-  }, [restored, activeStage, explorePersonId, exploreTourId, bookId, familyId, wordsBookId, readerBookId, readerChapter, exploreView, selectedNode, curatedIds])
+  }, [restored, activeStage, explorePersonId, exploreTourId, bookId, familyId, wordsBookId, readerBookId, readerChapter, placeId, exploreView, selectedNode, curatedIds])
 
   // popstate — 브라우저/OS 뒤로·앞으로 시 event.state에서 내비 복원(가드로 재-push 방지).
   useEffect(() => {
@@ -155,7 +172,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
       const s = e.state
       popstateGuard.current = true
       Promise.resolve().then(() => {
-        if (!s) { setActiveStage('hub'); setExplorePersonId(null); setExplorePersonName(null); setExploreTourId(null); setBookId(null); setFamilyId(null); setWordsBookId(null); setReaderBookId(null); setReaderChapter(null); closePanel(); return }
+        if (!s) { setActiveStage('hub'); setExplorePersonId(null); setExplorePersonName(null); setExploreTourId(null); setBookId(null); setFamilyId(null); setWordsBookId(null); setReaderBookId(null); setReaderChapter(null); setPlaceId(null); closePanel(); return }
         setActiveStage(s.stage)
         setExplorePersonId(s.person ?? null)
         setExploreTourId(s.tour ?? null)
@@ -164,6 +181,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
         setWordsBookId(s.words ?? null)
         setReaderBookId(s.reader ?? null)
         setReaderChapter(s.chapter ?? null)
+        setPlaceId(s.place ?? null)
         setExploreView(s.view || 'map')
         if (s.node) selectNodeFresh(s.node); else closePanel()
       })
@@ -173,6 +191,29 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     // 안정 setter + 최초 캡처 함수만 사용(내부는 안정 setState) — 마운트 1회 등록.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  // 통사 연표 진입/복귀(task#271) — 스테이지만 바뀌는 단일 화면(통계·주제 성구와 동형).
+  function handleOpenCanon() {
+    closePanel()
+    setActiveStage('canon')
+  }
+
+  function handleCanonBack() {
+    window.history.back()
+  }
+
+  // 장소 페이지 진입(task#270) — 지도 마커·정차지·상세 시트 어디서든. 전용 전체화면(책 상세와 같은 패턴).
+  function handleOpenPlace(id) {
+    if (!id) return
+    closePanel()
+    setPlaceId(id)
+    setActiveStage('place')
+  }
+
+  // 장소 페이지 복귀 — 히스토리 위임(ADR-0010 관행). 직전 화면으로 정확히 돌아간다.
+  function handlePlaceBack() {
+    window.history.back()
+  }
 
   // 인물 탐험 진입 — 탐험으로 전환 (투어와 상호배타). 착지 뷰는 호출부가 지정:
   // 허브 카드는 'intro'(소개), 여정 탐험 CTA·관계 뷰 상대 클릭은 기본 'map'(관계 뷰에서 상대 클릭 시 빈 관계 뷰로 빠지지 않게).
@@ -349,7 +390,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   const getPersonSlug = (id) => curatedIdToSlug.current[id] ?? null
 
   return {
-    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, familyId, wordsBookId, readerBookId, readerChapter, curatedIds, keyPeopleCards, sheetOpen,
+    activeStage, exploreView, explorePersonId, explorePersonName, exploreTourId, bookId, familyId, wordsBookId, readerBookId, readerChapter, placeId, curatedIds, keyPeopleCards, sheetOpen,
     // 탐험 인물 slug — 인장 렌더 등 표시용(state 맵에서 파생 — 렌더 중 ref 접근 금지)
     explorePersonSlug: explorePersonId ? (curatedSlugById?.[explorePersonId] ?? null) : null,
     // 탐험 인물 era — 비유·기적 신약 게이트용(task#256)
@@ -373,6 +414,11 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
     statsBack: handleStatsBack,
     openTopics: handleOpenTopics,
     topicsBack: handleTopicsBack,
+    goToHash: handleGoToHash,
+    openPlace: handleOpenPlace,
+    openCanon: handleOpenCanon,
+    canonBack: handleCanonBack,
+    placeBack: handlePlaceBack,
     openReader: handleOpenReader,
     selectChapter: handleSelectChapter,
     readerBack: handleReaderBack,

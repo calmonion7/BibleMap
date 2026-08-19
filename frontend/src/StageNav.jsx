@@ -31,8 +31,9 @@ const ROW = { display: 'flex', alignItems: 'center', height: '100%' }
  * lead — 복귀 버튼의 ← 뒤에 끼우는 슬롯(인장·색 있는 제목 등). 탐험 내비 전용.
  * auxLabel — lead 뒤의 11px 보조 라벨. 넘기지 않으면 미노출(모바일 인물 모드에서 인장 폭 회수).
  * children — 우측 슬롯: StageNav.Tab 나열 또는 StageNav.Title.
+ * trailing — 내비 맨 오른쪽에 붙는 슬롯(저장 토글 등, task#268). 넘기지 않으면 미노출.
  */
-export default function StageNav({ onBack, backLabel, lead, auxLabel, children }) {
+export default function StageNav({ onBack, backLabel, lead, auxLabel, children, trailing }) {
   return (
     <div style={SHELL}>
       <button onClick={onBack} style={BACK}>
@@ -42,6 +43,7 @@ export default function StageNav({ onBack, backLabel, lead, auxLabel, children }
         {auxLabel && <span style={{ fontSize: 11, color: 'var(--ink-faint)' }}>{auxLabel}</span>}
       </button>
       <div style={ROW}>{children}</div>
+      {trailing && <div style={{ ...ROW, marginLeft: 'auto', paddingRight: 10 }}>{trailing}</div>}
     </div>
   )
 }

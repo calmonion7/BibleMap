@@ -59,7 +59,7 @@ function SectionHeader({ label, color, count, sectionKey, collapsed, onToggle })
   )
 }
 
-function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, onNodeLoaded, verseLang, setVerseLang, explorePersonId = null, onExplorePerson = () => {}, curatedIds = null, keyPeopleCards = null, onExploreJourney = () => {}, onOpenFamily = () => {}, onClose, stickyTop = 0 }) {
+function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBack = false, onNodeLoaded, verseLang, setVerseLang, explorePersonId = null, onExplorePerson = () => {}, curatedIds = null, keyPeopleCards = null, onExploreJourney = () => {}, onOpenFamily = () => {}, onOpenPlace, onClose, stickyTop = 0 }) {
   // 어느 nodeId의 결과인지 id로 추적 — loading은 파생, stale 응답은 무시.
   // setState는 비동기 콜백에서만 호출(react-hooks set-state-in-effect 준수).
   const [state, setState] = useState({ id: null, node: null, error: null })
@@ -801,6 +801,21 @@ function SidePanel({ nodeId, onSelectNode = () => {}, onBack = () => {}, canGoBa
         groups['Event']?.length > 0 || (placePersons && placePersons.length > 0)
       ) && (
         <div style={{ padding: '12px 16px 4px', fontSize: 14 }}>
+          {/* 장소 전용 화면 진입(task#270) — 이 곳의 배경·인물·사건을 한 화면에 모아 본다 */}
+          {onOpenPlace && (
+            <button
+              data-open-place={nodeId}
+              data-open-place-sheet={nodeId}
+              onClick={() => onOpenPlace(nodeId)}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 5, marginBottom: 12,
+                padding: '6px 12px', borderRadius: 999, cursor: 'pointer',
+                border: `1px solid ${TYPE_COLOR.Place}`, background: 'var(--bg-2)',
+                color: TYPE_COLOR.Place, fontSize: 12, fontFamily: 'var(--serif)',
+              }}
+            >이 장소 보기 →</button>
+          )}
+
           {/* 장소 배경 — 인용문 아닌 서술이라 다크 톤(양피지 아님) */}
           {node.properties.background && (
             <div style={{ marginBottom: 12 }}>

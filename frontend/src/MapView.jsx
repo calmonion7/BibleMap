@@ -32,10 +32,14 @@ function clampPadding(map, padding) {
   return { top, bottom, left, right }
 }
 
-export default function MapView({ onSelectNode, selectedNode, personId, pmEnabled = false, isVisible, journeyStops, activeStopIdx, onStopSelect, playbackIdx = null }) {
+export default function MapView({ onSelectNode, selectedNode, personId, pmEnabled = false, isVisible, journeyStops, activeStopIdx, onStopSelect, onOpenPlace, playbackIdx = null }) {
   const mapContainer = useRef(null)
   const mapRef = useRef(null)
   const popupRef = useRef(null)
+  // 지도 초기화 effect는 1회만 도는데 onOpenPlace는 렌더마다 새 함수 — ref로 최신 값을 읽는다.
+  // (렌더 중 ref 쓰기는 금지라 effect에서 동기화 — 팝업 클릭은 렌더 이후에만 일어난다.)
+  const onOpenPlaceRef = useRef(onOpenPlace)
+  useEffect(() => { onOpenPlaceRef.current = onOpenPlace }, [onOpenPlace])
   const pmPopupRef = useRef(null) // 비유·기적 팝업 — popupRef와 분리(생명주기가 달라 outside-click 정리도 별도)
   // 사건 링 펼침 제어 — selection effect가 자동 펼침을 위해 공유한다.
   const expandPlaceRef = useRef(null)        // (placeId, lng, lat) => 링 fly-out
@@ -82,7 +86,7 @@ export default function MapView({ onSelectNode, selectedNode, personId, pmEnable
 
     map.on('load', () => {
       setupMapSources(map)
-      registerEventHandlers(map, { ...ring, onSelectNode, popupRef, expandedPlaceRef, onJourneyStopClick: onStopSelect, pmPopupRef })
+      registerEventHandlers(map, { ...ring, onSelectNode, popupRef, expandedPlaceRef, onJourneyStopClick: onStopSelect, pmPopupRef, onOpenPlace: (id) => onOpenPlaceRef.current?.(id) })
       // 컨테이너 실효 크기로 캔버스 동기화 — 모바일 최초 진입 시 캔버스가 미확정 크기로 생성돼
       // fitBounds가 세계축소로 클램프되던 문제 방지(task#251). setMapLoaded 전에 호출해 프레이밍 effect보다 선행.
       map.resize()

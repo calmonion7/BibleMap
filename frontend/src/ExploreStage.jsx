@@ -2,6 +2,7 @@ import { useMemo, useEffect } from 'react'
 import { Route, Clock, UserRound, ScrollText, Users, HeartHandshake, Network, Play } from 'lucide-react'
 import { TYPE_COLOR } from './theme'
 import StageNav from './StageNav'
+import BookmarkToggle from './BookmarkToggle'
 import PersonSymbol from './personSymbols'
 import MapView from './MapView'
 import TimelineView from './TimelineView'
@@ -42,6 +43,7 @@ export default function ExploreStage({
   backToHub, toursBack, openFamily, selectPerson, curatedIds, getPersonSlug,
   selectedNode, selectedNodeMeta, selectNode,
   verseLang, setVerseLang, isMobile,
+  bookmarkEntry, isBookmarked, onToggleBookmark, onRecordRecent, onOpenPlace,
 }) {
   const { journeyStops, activeStopIdx, setActiveStopIdx, exploreTourName, exploreTourMeta, personEventIds } = journey
 
@@ -80,12 +82,25 @@ export default function ExploreStage({
   const isTour = exploreTourId != null
   const heading = isTour ? exploreTourName : explorePersonName
 
+  // 이어보기 기록(task#268) — 제목이 로드된 뒤 한 번. 뷰 토글로는 새 항목이 쌓이지 않게
+  // 항목 해시를 뷰 없는 기본 해시로 둔다(훅이 같은 해시를 최신으로 승격).
+  useEffect(() => {
+    if (!bookmarkEntry?.hash || !heading) return
+    onRecordRecent?.({ ...bookmarkEntry, label: heading })
+  }, [bookmarkEntry, heading, onRecordRecent])
+
   return (
     <>
       {/* 모바일 인물 모드는 보조 라벨을 생략한다 — 인장이 차지한 폭을 회수해 6탭(족보까지)이 뷰포트 안에 들게 */}
       <StageNav
         onBack={isTour ? toursBack : backToHub}
         auxLabel={isMobile && !isTour ? null : isTour ? '테마 목록' : '다른 인물'}
+        trailing={bookmarkEntry ? (
+          <BookmarkToggle
+            saved={isBookmarked}
+            onToggle={() => onToggleBookmark({ ...bookmarkEntry, label: heading || bookmarkEntry.label })}
+          />
+        ) : null}
         lead={(
           <>
             {/* 인장 — 탐험 중 인물의 상징물(인물 전환 시에만 key 리마운트로 1회 draw, 탭 전환엔 정적) */}
@@ -121,6 +136,7 @@ export default function ExploreStage({
           {journeyMapless && (
             <div style={{ flex: 1, overflow: 'hidden' }}>
               <JourneyList
+                onOpenPlace={onOpenPlace}
                 stops={journeyStops}
                 activeStopIdx={effectiveStopIdx}
                 onStopSelect={setActiveStopIdx}
@@ -137,6 +153,7 @@ export default function ExploreStage({
           {!isMobile && !journeyMapless && journeyStops && journeyStops.length > 0 && (
             <div style={{ width: 290, flexShrink: 0, overflow: 'hidden' }}>
               <JourneyList
+                onOpenPlace={onOpenPlace}
                 stops={journeyStops}
                 activeStopIdx={effectiveStopIdx}
                 onStopSelect={setActiveStopIdx}
@@ -150,6 +167,7 @@ export default function ExploreStage({
           )}
           <div style={{ flex: 1, overflow: 'hidden', position: 'relative', display: journeyMapless ? 'none' : undefined }}>
             <MapView
+              onOpenPlace={onOpenPlace}
               onSelectNode={selectNode}
               selectedNode={selectedNode}
               personId={explorePersonId}
@@ -194,6 +212,7 @@ export default function ExploreStage({
                 boxShadow: 'var(--shadow-2)',
               }}>
                 <JourneyList
+                onOpenPlace={onOpenPlace}
                   stops={journeyStops}
                   activeStopIdx={effectiveStopIdx}
                   onStopSelect={setActiveStopIdx}

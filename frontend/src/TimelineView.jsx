@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { SELECT_HL, TYPE_COLOR, PM_TYPE_COLOR } from './theme'
 import { apiGet } from './api'
+import { eraOf } from './eraBands'
 import VerseLayer, { VerseBookTabs, paperTextStyle } from './VerseLayer'
 import Spinner from './Spinner'
 import { parseYear } from './dates'
@@ -9,25 +10,7 @@ const BOOK_COLOR = TYPE_COLOR.Book
 // 비유·기적 필터 칩(task#249) — MapView의 PM_FILTERS와 순서·라벨 동일(별 파일이라 상수는 각자 보관).
 const PM_FILTERS = [['all', '전체'], ['parable', '비유'], ['miracle', '기적']]
 
-// 시대 밴드(task#200) — ADR-0014 보수 연대 기반 연도 경계, persons.py _ERA_ORDER 8구간과 정합.
-// 경계 근거: 아브라함 출생 BC 2166 · 야곱 애굽 이주 BC 1876 · 사사기 시작 BC 1375 ·
-// 사울 즉위 BC 1050 · 왕국 분열 BC 930 · 예루살렘 함락 BC 586 · 예수 탄생 BC 5경.
-const ERA_BANDS = [
-  { name: '원시사', from: -Infinity, range: '창조 – BC 2166' },
-  { name: '족장', from: -2166, range: 'BC 2166 – 1876' },
-  { name: '출애굽·정복', from: -1876, range: 'BC 1876 – 1375' },
-  { name: '사사', from: -1375, range: 'BC 1375 – 1050' },
-  { name: '왕국', from: -1050, range: 'BC 1050 – 930' },
-  { name: '선지자', from: -930, range: 'BC 930 – 586' },
-  { name: '포로', from: -586, range: 'BC 586 – 5' },
-  { name: '신약', from: -5, range: 'BC 5 –' },
-]
-const eraOf = (y) => {
-  let band = ERA_BANDS[0]
-  for (const b of ERA_BANDS) { if (y >= b.from) band = b }
-  return band
-}
-
+// 시대 밴드 상수·판정은 ./eraBands로 승급(task#271) — 통사 연표와 공유, 복제 금지.
 function fmtYear(y) {
   return y == null ? '?' : (y < 0 ? `BC ${-y}` : `AD ${y}`)
 }

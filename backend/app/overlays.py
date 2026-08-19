@@ -119,6 +119,13 @@ def place_coords() -> dict:
 
 
 @functools.lru_cache(maxsize=1)
+def place_context() -> dict:
+    """장소 컨텍스트 정본(id → {background, keyVerse, keyVerseTextKo, keyVerseTextEn}). 1회 로드 캐시.
+    Neo4j 주입본(inject_place_context.py)과 같은 파일을 읽는다 — 장소 페이지(task#270)의 단일 출처."""
+    return _load("place_context/places.json")
+
+
+@functools.lru_cache(maxsize=1)
 def topical_verses() -> dict:
     """주제별 큐레이션 성구 정본({"topics": [{id, name, description, verseIds}]}). 1회 로드 캐시."""
     return _load("topical_verses/topics.json")

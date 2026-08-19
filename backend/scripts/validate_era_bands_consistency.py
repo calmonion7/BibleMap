@@ -2,7 +2,7 @@
 
 공유 설정이 없어 수동 복제된 시대 경계가 어긋나면 시대 분류·언약 리본이 조용히 깨진다.
 검사 대상:
-  - frontend/src/TimelineView.jsx : const ERA_BANDS = [{name, from}]
+  - frontend/src/eraBands.js      : const ERA_BANDS = [{name, from}]  (task#271에 TimelineView.jsx에서 승급)
   - backend/app/routes/stats.py   : ERA_BANDS = [(name, from)]
   - backend/app/routes/persons.py : _ERA_ORDER = [name]  (순서만)
   - data/covenants/covenants.json : 각 언약 era ∈ 위 시대 이름 집합
@@ -28,7 +28,7 @@ def _norm(v):
 
 
 def _timeline_bands():
-    block = re.search(r"const ERA_BANDS = \[(.*?)\]", _read("frontend/src/TimelineView.jsx"), re.S).group(1)
+    block = re.search(r"const ERA_BANDS = \[(.*?)\]", _read("frontend/src/eraBands.js"), re.S).group(1)
     return [(m.group(1), _norm(m.group(2)))
             for m in re.finditer(r"\{\s*name:\s*'([^']+)',\s*from:\s*([^,]+),", block)]
 
@@ -52,11 +52,11 @@ def _covenant_eras():
 
 def main():
     tl, st, po = _timeline_bands(), _stats_bands(), _persons_order()
-    assert tl, "TimelineView ERA_BANDS 파싱 실패"
+    assert tl, "eraBands.js ERA_BANDS 파싱 실패"
     assert st, "stats.py ERA_BANDS 파싱 실패"
-    assert tl == st, f"TimelineView ↔ stats.py ERA_BANDS(이름·순서·경계) 불일치:\n  TL={tl}\n  ST={st}"
+    assert tl == st, f"eraBands.js ↔ stats.py ERA_BANDS(이름·순서·경계) 불일치:\n  TL={tl}\n  ST={st}"
     names = [n for n, _ in tl]
-    assert names == po, f"시대 이름/순서 불일치: TimelineView={names} vs persons._ERA_ORDER={po}"
+    assert names == po, f"시대 이름/순서 불일치: eraBands={names} vs persons._ERA_ORDER={po}"
     valid = set(names)
     bad = [e for e in _covenant_eras() if e not in valid]
     assert not bad, f"covenants.json era가 유효 시대 아님: {bad} (유효={sorted(valid)})"

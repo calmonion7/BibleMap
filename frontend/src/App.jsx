@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react'
-import { BookOpen, BarChart3, ScrollText, PieChart, Quote } from 'lucide-react'
+import { useState, useEffect, useRef, useMemo } from 'react'
+import { BookOpen, BarChart3, ScrollText, PieChart, Quote, MapPin, CalendarRange } from 'lucide-react'
 import { TYPE_COLOR } from './theme'
 import SidePanel from './SidePanel'
 import BibleOverviewView from './BibleOverviewView'
@@ -16,6 +16,11 @@ import WordDistributionView from './WordDistributionView'
 import StatsView from './StatsView'
 import TopicalVersesView from './TopicalVersesView'
 import ChapterReader from './ChapterReader'
+import SearchPanel from './SearchPanel'
+import { useBookmarks } from './useBookmarks'
+import { useReadingProgress } from './useReadingProgress'
+import PlaceView from './PlaceView'
+import CanonTimelineView from './CanonTimelineView'
 import TourList from './TourList'
 import { MOBILE_BREAKPOINT, SHEET_VH } from './constants'
 import { useNodeSelection } from './useNodeSelection'
@@ -37,11 +42,61 @@ function App() {
 
   // 화면 단계(Stage)·URL·브라우저 히스토리 상태 머신 — 노드 선택 원시값을 주입(useStageNavigation).
   const {
-    activeStage, exploreView, explorePersonId, explorePersonName, explorePersonSlug, explorePersonEra, exploreTourId, bookId, familyId, wordsBookId, readerBookId, readerChapter, curatedIds, keyPeopleCards, sheetOpen,
+    activeStage, exploreView, explorePersonId, explorePersonName, explorePersonSlug, explorePersonEra, exploreTourId, bookId, familyId, wordsBookId, readerBookId, readerChapter, placeId, curatedIds, keyPeopleCards, sheetOpen,
     setExploreView, selectPerson, explorePerson, backToHub, openIntro, openOverview, overviewBack,
     openTours, selectTour, toursBack, openBook, bookBack, openFamily, recenterFamily, familyBack,
-    openWords, selectWordsBook, wordsBack, openReader, selectChapter, readerBack, openStats, statsBack, openTopics, topicsBack, onNodeLoaded, getPersonSlug,
+    openWords, selectWordsBook, wordsBack, openReader, selectChapter, readerBack, goToHash, openPlace, placeBack, openCanon, canonBack, openStats, statsBack, openTopics, topicsBack, onNodeLoaded, getPersonSlug,
   } = useStageNavigation({ selectedNode, selectNodeFresh, closePanel, handleNodeLoaded })
+
+  // 개인화 저장 계층(task#268) — 이 기기에만 남는 북마크·이어보기(ADR 260819-191704).
+  // 훅 인스턴스는 App에 하나만 둔다(여러 곳에서 각자 호출하면 토글이 서로에게 즉시 반영되지 않는다).
+  const { bookmarks, recent, toggleBookmark, recordRecent } = useBookmarks()
+  // 읽기 진도(task#269) — 같은 이유로 App에 인스턴스 하나(리더·개요·허브가 같은 상태를 본다).
+  const { isRead, toggleRead, bookReadCount, resume } = useReadingProgress()
+
+  // 지금 화면의 저장 항목 — 뷰 토글로 항목이 갈라지지 않게 스테이지 단위 기본 해시를 쓴다.
+  const bookmarkEntry = useMemo(() => {
+    if (activeStage === 'explore' && explorePersonSlug) return { hash: `#/person/${explorePersonSlug}`, type: 'person', label: explorePersonSlug }
+    if (activeStage === 'explore' && exploreTourId) return { hash: `#/tour/${exploreTourId}`, type: 'tour', label: exploreTourId }
+    if (activeStage === 'reader' && readerBookId) {
+      return { hash: readerChapter ? `#/read/${readerBookId}/${readerChapter}` : `#/read/${readerBookId}`, type: 'reader', label: readerBookId }
+    }
+    return null
+  }, [activeStage, explorePersonSlug, exploreTourId, readerBookId, readerChapter])
+
+  const isBookmarked = !!bookmarkEntry && bookmarks.some(b => b.hash === bookmarkEntry.hash)
+
+  // 통합 검색(task#267) — 헤더 버튼과 `/` 단축키로 여는 전역 오버레이.
+  const [searchOpen, setSearchOpen] = useState(false)
+  // 검색 결과로 들어온 절 — 리더가 이 절을 강조하고 뷰포트로 스크롤한다. 장을 옮기면 해제.
+  const [highlightVerseId, setHighlightVerseId] = useState(null)
+
+  useEffect(() => {
+    function onKey(e) {
+      if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return
+      // 입력 중에는 `/`가 문자다 — 텍스트 입력·편집 가능 영역에서는 가로채지 않는다.
+      const t = e.target
+      if (t?.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(t?.tagName)) return
+      e.preventDefault()
+      setSearchOpen(true)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
+
+  // 이름 결과 — 큐레이션 인물은 인물 탐험으로, 그 밖의 노드는 상세 시트로(기존 두 경로 재사용).
+  function handleSearchNode(n) {
+    setSearchOpen(false)
+    if (n.label === 'Person' && curatedIds?.has(n.id)) selectPerson(n.id, 'intro')
+    else selectNode(n.id)
+  }
+
+  // 구절 결과 — 그 장의 리더를 열고 해당 절을 강조한다.
+  function handleSearchVerse(v) {
+    setSearchOpen(false)
+    setHighlightVerseId(v.verseId)
+    openReader(v.bookId, v.chapter)
+  }
 
   // 여정 데이터 상태 — 코드는 useExploreJourney, **수명은 App**(족보 스테이지 진입 시 ExploreStage가
   // 언마운트되므로 여기서 소유해야 복귀 시 재fetch·정차지 초기화가 없다. 훅 상단 주석 참조).
@@ -86,7 +141,7 @@ function App() {
   // 책등 헤더의 활성 부(部) — 개요·책·단어·리더는 '성경책', 투어 목록·투어 탐험은 '투어', 나머지는 '인물'(ADR-0026)
   const activeSection =
     activeStage === 'intro' ? null // 인트로는 어느 부(部)도 아님 — 리본 전체 비활성
-      : activeStage === 'overview' || activeStage === 'book' || activeStage === 'words' || activeStage === 'reader' || activeStage === 'stats' || activeStage === 'topics' ? 'books'
+      : activeStage === 'overview' || activeStage === 'book' || activeStage === 'words' || activeStage === 'reader' || activeStage === 'stats' || activeStage === 'topics' || activeStage === 'canon' ? 'books'
         : activeStage === 'tours' || (activeStage === 'explore' && exploreTourId != null) ? 'tours'
           : 'persons'
 
@@ -104,6 +159,7 @@ function App() {
         activeSection={activeSection}
         onSelectSection={handleSelectSection}
         onOpenIntro={openIntro}
+        onOpenSearch={() => setSearchOpen(true)}
         isMobile={isMobile}
       />
 
@@ -125,7 +181,14 @@ function App() {
       {/* 허브 단계 — 인물 선택 전 */}
       {activeStage === 'hub' && (
         <div className="stage-in" style={{ flex: 1, overflow: 'hidden' }}>
-          <PersonHub onSelectPerson={(id) => selectPerson(id, 'intro')} />
+          <PersonHub
+            onSelectPerson={(id) => selectPerson(id, 'intro')}
+            bookmarks={bookmarks}
+            recent={recent}
+            onOpenSaved={goToHash}
+            resume={resume}
+            onResumeReading={r => openReader(r.bookId, r.chapter)}
+          />
         </div>
       )}
 
@@ -137,6 +200,7 @@ function App() {
             <StageNav.Tab icon={BarChart3} label="단어 분포" onClick={() => openWords('all')} />
             <StageNav.Tab icon={PieChart} label="통계" onClick={openStats} />
             <StageNav.Tab icon={Quote} label="주제 성구" onClick={openTopics} />
+            <StageNav.Tab icon={CalendarRange} label="통사 연표" onClick={openCanon} />
           </StageNav>
           <div className="stage-in" style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
             <BibleOverviewView
@@ -144,6 +208,7 @@ function App() {
               selectedNode={bookId}
               verseLang={verseLang}
               setVerseLang={setVerseLang}
+              bookReadCount={bookReadCount}
             />
           </div>
         </>
@@ -292,9 +357,50 @@ function App() {
             <ChapterReader
               bookId={readerBookId}
               chapter={readerChapter}
-              onSelectChapter={selectChapter}
+              onSelectChapter={n => { setHighlightVerseId(null); selectChapter(n) }}
+              highlightVerseId={highlightVerseId}
               verseLang={verseLang}
               setVerseLang={setVerseLang}
+              bookmarkEntry={bookmarkEntry}
+              isBookmarked={isBookmarked}
+              onToggleBookmark={toggleBookmark}
+              onRecordRecent={recordRecent}
+              isChapterRead={n => isRead(readerBookId, n)}
+              onToggleRead={toggleRead}
+              bookReadCount={bookReadCount}
+            />
+          </div>
+        </>
+      )}
+
+      {/* 통사 연표 단계(task#271) — 전 성경을 한 연도 축에. 개요 내비 탭에서 진입 */}
+      {activeStage === 'canon' && (
+        <>
+          <StageNav onBack={canonBack} backLabel="뒤로">
+            <StageNav.Title icon={<CalendarRange size={18} color="var(--gold)" />} label="통사 연표" />
+          </StageNav>
+          <div className="stage-in" style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+            <CanonTimelineView
+              onSelectNode={selectNode}
+              onSelectPerson={(id) => selectPerson(id, 'intro')}
+              isMobile={isMobile}
+            />
+          </div>
+        </>
+      )}
+
+      {/* 장소 페이지 단계(task#270) — 지도 마커·정차지·상세 시트에서 진입하는 전용 전체화면 */}
+      {activeStage === 'place' && (
+        <>
+          <StageNav onBack={placeBack} backLabel="뒤로">
+            <StageNav.Title icon={<MapPin size={16} />} label="장소" />
+          </StageNav>
+          <div className="stage-in" style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+            <PlaceView
+              placeId={placeId}
+              onSelectPerson={(id) => selectPerson(id, 'intro')}
+              onSelectNode={selectNode}
+              verseLang={verseLang}
             />
           </div>
         </>
@@ -336,12 +442,19 @@ function App() {
           verseLang={verseLang}
           setVerseLang={setVerseLang}
           isMobile={isMobile}
+          bookmarkEntry={bookmarkEntry}
+          isBookmarked={isBookmarked}
+          onToggleBookmark={toggleBookmark}
+          onRecordRecent={recordRecent}
+          onOpenPlace={openPlace}
         />
       )}
 
       {/* 상세 패널 — 탐험·개요 단계 공유 (허브엔 선택 없음 → 숨김). 데스크톱: 우측 슬라이드인 / 모바일: 하단 시트 */}
       {activeStage !== 'hub' && (
         <div
+          data-node-sheet={selectedNode || undefined}
+          data-node-sheet-open={sheetOpen ? 'true' : 'false'}
           style={{
             position: 'absolute', background: 'var(--bg-1)', overflowY: 'auto', zIndex: 10,
             transition: 'transform var(--dur-base) var(--ease-drawer)',
@@ -388,10 +501,21 @@ function App() {
             keyPeopleCards={keyPeopleCards}
             onExploreJourney={selectPerson}
             onOpenFamily={openFamily}
+            onOpenPlace={openPlace}
             onClose={() => window.history.back()}
             stickyTop={isMobile ? 16 : 0}
           />
         </div>
+      )}
+
+      {/* 통합 검색 오버레이(task#267) — 전 스테이지 위. `/` 또는 헤더 검색 버튼으로 열린다 */}
+      {searchOpen && (
+        <SearchPanel
+          isMobile={isMobile}
+          onClose={() => setSearchOpen(false)}
+          onSelectNode={handleSearchNode}
+          onSelectVerse={handleSearchVerse}
+        />
       )}
 
     </div>

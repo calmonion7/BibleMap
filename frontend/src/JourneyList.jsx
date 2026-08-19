@@ -16,7 +16,7 @@ import { TYPE_COLOR } from './theme'
 
 // personSlug: 큐레이션 인물이면 헤더에 소형 인장(ADR-0025). mapless: 무좌표 여정 전면 리스트 모드(task#201) —
 // 상단에 지도 미표시 안내 한 줄, 본문 폭 제한(전폭 스트레치 방지).
-export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseLang, setVerseLang, personName, tourName, personSlug = null, mapless = false }) {
+export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseLang, setVerseLang, personName, tourName, personSlug = null, mapless = false, onOpenPlace }) {
   const listRef = useRef(null)
   const activeRef = useRef(null)
   // 리스트에서 직접 클릭해 선택한 경우 자동 스크롤 억제(이미 보고 있는 행이 동일장소의 다른 행으로 점프하지 않게)
@@ -241,7 +241,18 @@ export default function JourneyList({ stops, activeStopIdx, onStopSelect, verseL
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap',
                   }}>
-                    {stop.placeNameKo}
+                    {/* 장소 페이지 진입(task#270) — 정차 장소명을 누르면 그 장소의 전용 화면으로 */}
+                    {onOpenPlace && stop.placeId ? (
+                      <button
+                        data-open-place={stop.placeId}
+                        onClick={ev => { ev.stopPropagation(); onOpenPlace(stop.placeId) }}
+                        style={{
+                          border: 'none', background: 'none', padding: 0, font: 'inherit',
+                          color: 'var(--gold)', cursor: 'pointer', textDecoration: 'underline',
+                          textDecorationColor: 'var(--gold-dim)', textUnderlineOffset: 2,
+                        }}
+                      >{stop.placeNameKo}</button>
+                    ) : stop.placeNameKo}
                   </div>
                 ) : !hasCoord ? (
                   // 지도 위치 없음 — 빈칸(흐림)이 아니라 이유를 명시. 실제 장소명과 구분되게 이탤릭.

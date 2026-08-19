@@ -7,9 +7,10 @@ import functools
 import json
 import logging
 
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import JSONResponse
 
+from .. import overlays
 from ..overlays import _resolve, curated_person_id
 from .persons import _ERA, _NAME_KO, _ERA_ORDER
 
@@ -72,5 +73,74 @@ def get_place_curated_persons(
 
     return JSONResponse(
         content={"placeId": place_id, "persons": persons},
+        headers={"Cache-Control": "max-age=300"},
+    )
+
+
+@functools.lru_cache(maxsize=256)
+def _place_events(place_id: str) -> list[dict]:
+    """이 장소에서 일어난 사건 목록(연대순) — 인물 귀속 포함.
+
+    판정 기준은 `occursAt[0]`(정차 장소)로 `_place_to_persons`·journey·tours와 **일치**시킨다.
+    기준이 갈리면 같은 장소인데 화면마다 숫자가 달라진다(계획의 핵심 제약).
+    """
+    events = []
+    for slug in _ERA:
+        path = _resolve(f"person_events/{slug}.json")
+        if path is None:
+            continue
+        with open(path, encoding="utf-8") as f:
+            person_events = json.load(f)
+        for evt in person_events:
+            if (evt.get("occursAt") or [None])[0] != place_id:
+                continue
+            events.append({
+                "id": evt.get("id"),
+                "nameKo": evt.get("nameKo") or evt.get("title"),
+                "yearLabel": evt.get("yearLabel"),
+                "sortKey": evt.get("sortKey"),
+                "context": evt.get("context"),
+                "personSlug": slug,
+                "personNameKo": _NAME_KO[slug],
+            })
+    # 같은 사건이 여러 인물 파일에 있을 수 있다 — id 기준 1회만(먼저 만난 인물로 귀속).
+    seen, unique = set(), []
+    for e in sorted(events, key=lambda e: (e["sortKey"] if e["sortKey"] is not None else 0, e["id"] or "")):
+        if e["id"] in seen:
+            continue
+        seen.add(e["id"])
+        unique.append(e)
+    return unique
+
+
+@router.get("/place/{place_id}")
+def get_place(place_id: str):
+    """장소 페이지(task#270) — 배경·핵심 구절 + 좌표 + 거쳐 간 큐레이션 인물 + 그곳의 사건.
+
+    컨텍스트가 없는 좌표 전용 장소도 200으로 응답한다(빈 폴백) — 지도 마커 어디서 들어와도
+    화면이 열려야 하기 때문. 넷 다 비면 그때 404.
+    """
+    ctx = overlays.place_context().get(place_id) or {}
+    coords = overlays.place_coords().get(place_id) or {}
+    persons = _place_to_persons(place_id)
+    events = _place_events(place_id)
+
+    if not ctx and not coords and not persons and not events:
+        raise HTTPException(status_code=404, detail="unknown place")
+
+    return JSONResponse(
+        content={
+            "placeId": place_id,
+            "nameKo": coords.get("nameKo") or ctx.get("nameKo") or place_id,
+            "name": coords.get("name"),
+            "lat": coords.get("lat"),
+            "lng": coords.get("lng"),
+            "background": ctx.get("background"),
+            "keyVerse": ctx.get("keyVerse"),
+            "keyVerseTextKo": ctx.get("keyVerseTextKo"),
+            "keyVerseTextEn": ctx.get("keyVerseTextEn"),
+            "persons": persons,
+            "events": events,
+        },
         headers={"Cache-Control": "max-age=300"},
     )

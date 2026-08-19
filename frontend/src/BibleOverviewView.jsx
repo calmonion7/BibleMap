@@ -26,7 +26,7 @@ function useIsMobile() {
 // 입장 스태거 — 세션 첫 진입만(허브와 동일 패턴)
 let overviewEntrancePlayed = false
 
-function BookCard({ book, onSelectNode, isSelected, hideKeyVerse, entrance, delayMs }) {
+function BookCard({ book, onSelectNode, isSelected, hideKeyVerse, entrance, delayMs, readCount = 0 }) {
   const [hovered, setHovered] = useState(false)
   const themes = (book.themes || []).slice(0, 3)
   const keyVerse = !hideKeyVerse && book.keyVerseTextKo
@@ -85,11 +85,20 @@ function BookCard({ book, onSelectNode, isSelected, hideKeyVerse, entrance, dela
           {keyVerse}
         </div>
       )}
+      {/* 읽기 진도(task#269) — 읽은 장이 0이면 렌더하지 않는다 */}
+      {readCount > 0 && book.chapterCount ? (
+        <div data-book-progress={`${readCount}/${book.chapterCount}`} style={{ marginTop: 8 }}>
+          <div style={{ height: 3, borderRadius: 2, background: 'var(--line)', overflow: 'hidden' }}>
+            <div style={{ width: `${Math.round((readCount / book.chapterCount) * 100)}%`, height: '100%', background: 'var(--gold)' }} />
+          </div>
+          <div style={{ fontSize: 10, color: 'var(--gold)', marginTop: 3 }}>{readCount}/{book.chapterCount}장 읽음</div>
+        </div>
+      ) : null}
     </div>
   )
 }
 
-function GenreSection({ genre, books, isFirst, onSelectNode, selectedNode, hideKeyVerse, entrance }) {
+function GenreSection({ genre, books, isFirst, onSelectNode, selectedNode, hideKeyVerse, entrance, bookReadCount }) {
   const meta = GENRE_META[genre] || { displayName: genre, description: '' }
   const sorted = [...books].sort((a, b) => (a.bookOrder ?? 0) - (b.bookOrder ?? 0))
 
@@ -106,7 +115,7 @@ function GenreSection({ genre, books, isFirst, onSelectNode, selectedNode, hideK
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 8, marginBottom: 16 }}>
         {sorted.map((book, i) => (
-          <BookCard key={book.id} book={book} onSelectNode={onSelectNode} isSelected={book.id === selectedNode} hideKeyVerse={hideKeyVerse}
+          <BookCard key={book.id} book={book} onSelectNode={onSelectNode} isSelected={book.id === selectedNode} hideKeyVerse={hideKeyVerse} readCount={bookReadCount?.(book.id) ?? 0}
             entrance={entrance} delayMs={Math.min(i * 30, 400)} />
         ))}
       </div>
@@ -114,7 +123,7 @@ function GenreSection({ genre, books, isFirst, onSelectNode, selectedNode, hideK
   )
 }
 
-function Testament({ label, genreOrder, booksByGenre, onSelectNode, selectedNode, hideKeyVerse, entrance }) {
+function Testament({ label, genreOrder, booksByGenre, onSelectNode, selectedNode, hideKeyVerse, entrance, bookReadCount }) {
   const genres = genreOrder.filter(g => booksByGenre[g] && booksByGenre[g].length > 0)
 
   return (
@@ -122,6 +131,7 @@ function Testament({ label, genreOrder, booksByGenre, onSelectNode, selectedNode
       <div style={{ color: 'var(--ink)', fontFamily: 'var(--serif)', fontWeight: 700, fontSize: 20, marginBottom: 12 }}>{label}</div>
       {genres.map((genre, i) => (
         <GenreSection
+          bookReadCount={bookReadCount}
           key={genre}
           genre={genre}
           books={booksByGenre[genre]}
@@ -136,7 +146,7 @@ function Testament({ label, genreOrder, booksByGenre, onSelectNode, selectedNode
   )
 }
 
-export default function BibleOverviewView({ onSelectNode, selectedNode, verseLang, setVerseLang }) {
+export default function BibleOverviewView({ onSelectNode, selectedNode, verseLang, setVerseLang, bookReadCount }) {
   const [booksByTestamentGenre, setBooksByTestamentGenre] = useState({ OT: {}, NT: {} })
   // 메시아 예언→성취 스레드(task#246) — 테마별 그룹. 실패 시 빈 배열 폴백, 섹션은 0건이면 미렌더.
   const [prophecyThemes, setProphecyThemes] = useState([])
@@ -344,6 +354,7 @@ export default function BibleOverviewView({ onSelectNode, selectedNode, verseLan
 
       <div style={{ maxWidth: 900, margin: '0 auto', padding: 16 }}>
         <Testament
+          bookReadCount={bookReadCount}
           label="구약"
           genreOrder={OT_GENRE_ORDER}
           booksByGenre={booksByTestamentGenre.OT}
@@ -354,6 +365,7 @@ export default function BibleOverviewView({ onSelectNode, selectedNode, verseLan
         />
         <div style={{ marginTop: 32 }}>
           <Testament
+            bookReadCount={bookReadCount}
             label="신약"
             genreOrder={NT_GENRE_ORDER}
             booksByGenre={booksByTestamentGenre.NT}
