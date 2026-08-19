@@ -24,16 +24,19 @@ EVENT_VERSES_PATH = os.path.join(DATA_DIR, "event_verses", "events.json")
 # (bookId, eventId) → [(chapter, verse), ...] — 대표 구절 목록
 # bookOrder: 성경 정경순(Genesis=1 … Revelation=66)
 # verseID: f"{bookOrder:02d}{chapter:03d}{verse:03d}"
+# eventId는 apply_event_dedupe.py가 병합한 뒤의 신원이다(task#273) — 병합으로 사라진 원본 id를
+# 쓰면 아래 가드가 sys.exit(1)로 죽는다. 이관 매핑의 정본은 data/event_dedupe/dedupe.json의
+# clusters[].remove[].id → keepId.
 VERSE_MAP = {
     # 레위기 (bookOrder=3): 십계명 수여 / 성막 건축 — 하나님이 회막에서 모세를 부르심
-    ("rec6qL6gTvX4tUw4A", "reca8LvAmFPl1tmnN"): {"bookOrder": 3,  "verses": [(1, 1), (1, 2)]},
+    ("rec6qL6gTvX4tUw4A", "authored-moses-sinai-law"): {"bookOrder": 3,  "verses": [(1, 1), (1, 2)]},
     ("rec6qL6gTvX4tUw4A", "recvA947nCyo8kadV"): {"bookOrder": 3,  "verses": [(1, 1), (1, 2)]},
     # 룻기 (bookOrder=8): 사사 시대 배경 사건 — "사사들이 치리하던 때에"
     ("recZuCb9Bn0RErpsL", "reczOHadpTVOuiidp"): {"bookOrder": 8,  "verses": [(1, 1)]},
     ("recZuCb9Bn0RErpsL", "recSRPo1LlWZ7tNaO"): {"bookOrder": 8,  "verses": [(1, 1)]},
     # 역대하 (bookOrder=14): 5개 사건 — 각 왕통 시작절
     ("rec410yOewjNfbeE3", "recKTbnO8VY7lXLeX"): {"bookOrder": 14, "verses": [(1, 1)]},      # 솔로몬 통치
-    ("rec410yOewjNfbeE3", "recYlpu8OdsUJoG8g"): {"bookOrder": 14, "verses": [(3, 1)]},      # 성전 건축
+    ("rec410yOewjNfbeE3", "authored-solomon-jerusalem-temple-build"): {"bookOrder": 14, "verses": [(3, 1)]},      # 성전 건축
     ("rec410yOewjNfbeE3", "recX0KzMJywvbeM6D"): {"bookOrder": 14, "verses": [(10, 1)]},     # 르호보암
     ("rec410yOewjNfbeE3", "recRusMYR5At9TlEV"): {"bookOrder": 14, "verses": [(29, 1)]},     # 히스기야
     ("rec410yOewjNfbeE3", "recVf3eQjAq3nk94o"): {"bookOrder": 14, "verses": [(34, 1)]},     # 요시야
@@ -58,15 +61,15 @@ VERSE_MAP = {
     ("recyvIyxRMFob6SoM", "rec4bAiAcAOo9mPwO"): {"bookOrder": 45, "verses": [(1, 1), (1, 2), (1, 3)]},
     ("recyvIyxRMFob6SoM", "recGXoNtdiKu28Wff"): {"bookOrder": 45, "verses": [(1, 1), (1, 2), (1, 3)]},
     # 고린도전서 (bookOrder=46): 에베소 전도 — "우리 주 예수 그리스도의 이름으로 부르심을 받은"
-    ("recVtbTyqtbbtqRC5", "rec2buqN0Q38Yuqme"): {"bookOrder": 46, "verses": [(1, 1), (1, 2), (1, 3)]},
+    ("recVtbTyqtbbtqRC5", "authored-paul-ephesus"): {"bookOrder": 46, "verses": [(1, 1), (1, 2), (1, 3)]},
     # 고린도후서 (bookOrder=47): 마게도냐·그리스 — 바울의 인사
     ("rec0CTDRtMnNCmQr9", "recGXoNtdiKu28Wff"): {"bookOrder": 47, "verses": [(1, 1), (1, 2)]},
     # 에베소서 (bookOrder=49): 첫 번째 로마 투옥
-    ("rec3IwUp30NnnEqSL", "recGrIgOxWnxVl8h0"): {"bookOrder": 49, "verses": [(1, 1), (1, 2)]},
+    ("rec3IwUp30NnnEqSL", "authored-paul-rome-house-arrest"): {"bookOrder": 49, "verses": [(1, 1), (1, 2)]},
     # 빌립보서 (bookOrder=50): 첫 번째 로마 투옥
-    ("recY95JJhNEzOwMNv", "recGrIgOxWnxVl8h0"): {"bookOrder": 50, "verses": [(1, 1), (1, 2), (1, 3)]},
+    ("recY95JJhNEzOwMNv", "authored-paul-rome-house-arrest"): {"bookOrder": 50, "verses": [(1, 1), (1, 2), (1, 3)]},
     # 골로새서 (bookOrder=51): 첫 번째 로마 투옥
-    ("recY37UhYyyAlabnd", "recGrIgOxWnxVl8h0"): {"bookOrder": 51, "verses": [(1, 1), (1, 2)]},
+    ("recY37UhYyyAlabnd", "authored-paul-rome-house-arrest"): {"bookOrder": 51, "verses": [(1, 1), (1, 2)]},
     # 데살로니가전서 (bookOrder=52): 고린도 전도
     ("recDZc63lmQiSe0gn", "authored-paul-corinth"): {"bookOrder": 52, "verses": [(1, 1), (1, 2), (1, 3)]},
     # 데살로니가후서 (bookOrder=53): 고린도 전도
@@ -78,7 +81,7 @@ VERSE_MAP = {
     # 디도서 (bookOrder=56): 석방기 목회서신
     ("recZJmtLFS2QnJG2b", "authored-paul-release-pastorals"): {"bookOrder": 56, "verses": [(1, 1), (1, 2), (1, 3)]},
     # 빌레몬서 (bookOrder=57): 첫 번째 로마 투옥
-    ("recZm66X4kEQ7X3j2", "recGrIgOxWnxVl8h0"): {"bookOrder": 57, "verses": [(1, 1), (1, 2), (1, 3)]},
+    ("recZm66X4kEQ7X3j2", "authored-paul-rome-house-arrest"): {"bookOrder": 57, "verses": [(1, 1), (1, 2), (1, 3)]},
     # 야고보서 (bookOrder=59): 예루살렘 공의회
     ("recDk5A8p9VHMaXAC", "authored-paul-jerusalem-council"): {"bookOrder": 59, "verses": [(1, 1), (1, 2)]},
     # 베드로전서 (bookOrder=60): 베드로 로마 사역

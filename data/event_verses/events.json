@@ -84204,6 +84204,23 @@
             "verse": 35
           }
         ]
+      },
+      {
+        "bookId": "recDk5A8p9VHMaXAC",
+        "bookOrder": 59,
+        "rangeLabel": "1:1–2",
+        "verses": [
+          {
+            "verseID": "59001001",
+            "chapter": 1,
+            "verse": 1
+          },
+          {
+            "verseID": "59001002",
+            "chapter": 1,
+            "verse": 2
+          }
+        ]
       }
     ]
   },
@@ -84668,6 +84685,23 @@
             "verseID": "52003007",
             "chapter": 3,
             "verse": 7
+          }
+        ]
+      },
+      {
+        "bookId": "recnZBkoT7W0SV19v",
+        "bookOrder": 53,
+        "rangeLabel": "1:1–2",
+        "verses": [
+          {
+            "verseID": "53001001",
+            "chapter": 1,
+            "verse": 1
+          },
+          {
+            "verseID": "53001002",
+            "chapter": 1,
+            "verse": 2
           }
         ]
       }

@@ -12,6 +12,10 @@ from pathlib import Path
 
 from neo4j import GraphDatabase
 
+# 연도 파서는 load_books.py의 것을 재사용한다 — 같은 규칙을 네 번째로 선언하지 않는다
+# (ADR 260819-205242의 복제 금지 원칙). 같은 디렉터리이므로 스크립트 직접 실행 시 import된다.
+from load_books import _parse_year
+
 NEO4J_URI = os.getenv("NEO4J_URI", "bolt://localhost:7687")
 NEO4J_USER = os.getenv("NEO4J_USER", "neo4j")
 NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
@@ -89,6 +93,31 @@ def inject_persons(session, corrections):
     return applied, already, skipped
 
 
+def recompute_book_years(session):
+    """교정 후 Event.startDate로 Book.startYear/endYear를 다시 집계한다 (task#273).
+
+    load_books.py는 업스트림(Ussher형) events.json으로 이 범위를 계산하므로 교정 레이어를
+    반영하지 못한다 — 재시드하면 Book 범위와 Event 연대가 서로 다른 연대계에 남는다
+    (ADR-0014: 정본은 교정 후 연대, Book 범위는 그 파생값). 교정 주입 직후 여기서 닫는다.
+    집계 대상은 load_books.py가 만든 CONTAINS_BOOK 전체 — 발생/회고 인용을 구분하지 않는
+    기존 의미축을 그대로 유지한다(구분은 이번 범위 밖).
+    """
+    updates = []
+    for r in session.run(
+        "MATCH (b:Book)-[:CONTAINS_BOOK]->(e:Event) WHERE e.startDate IS NOT NULL "
+        "RETURN b.theographic_id AS bid, collect(e.startDate) AS dates"
+    ):
+        years = [y for y in (_parse_year(d) for d in r["dates"]) if y is not None]
+        if years:
+            updates.append({"bid": r["bid"], "startYear": min(years), "endYear": max(years)})
+    session.run(
+        "UNWIND $rows AS row MATCH (b:Book {theographic_id: row.bid}) "
+        "SET b.startYear = row.startYear, b.endYear = row.endYear",
+        rows=updates,
+    )
+    return len(updates)
+
+
 def main():
     events_corr = load_json("events.json")
     persons_corr = load_json("persons.json")
@@ -98,6 +127,7 @@ def main():
         with driver.session() as session:
             e_applied, e_already, e_skipped = inject_events(session, events_corr)
             p_applied, p_already, p_skipped = inject_persons(session, persons_corr)
+            books_updated = recompute_book_years(session)
     finally:
         driver.close()
 
@@ -109,6 +139,7 @@ def main():
         f"Person corrections applied: {p_applied} "
         f"(이미 적용 {p_already}, 스킵 {p_skipped}) / 총 {len(persons_corr)}"
     )
+    print(f"Book 연대 재집계: {books_updated}권")
 
 
 if __name__ == "__main__":
