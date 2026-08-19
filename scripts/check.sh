@@ -29,10 +29,10 @@ skip() {  # skip <라벨> <사유> — 엄격 모드에서는 스킵이 실패�
   fi
 }
 
-echo "=== check: 파일 기반 데이터 검증 (13종) ==="
+echo "=== check: 파일 기반 데이터 검증 (14종) ==="
 for s in covenants messianic_prophecies parables_miracles topical_verses pm_map_coverage \
          scene_coverage chapter_sections chapter_summaries quotations person_context \
-         god_reliance traits era_bands_consistency; do
+         god_reliance traits era_bands_consistency approx_book_verses; do
   run "validate_$s" python3 -m "backend.scripts.validate_$s"
 done
 
