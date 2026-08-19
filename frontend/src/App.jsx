@@ -51,8 +51,29 @@ function App() {
   // 개인화 저장 계층(task#268) — 이 기기에만 남는 북마크·이어보기(ADR 260819-191704).
   // 훅 인스턴스는 App에 하나만 둔다(여러 곳에서 각자 호출하면 토글이 서로에게 즉시 반영되지 않는다).
   const { bookmarks, recent, toggleBookmark, recordRecent } = useBookmarks()
+  // 정경 순서 내비(task#211)·이어읽기 완독 판정(task#276) — /books-overview의 순서와 장 수를 재사용(신규 API 없음).
+  // **허브에서도 로드한다**: 이어읽기가 완독을 판정하려면 그 책의 총 장 수가 필요하고, 진도율을 그리는
+  // 호출부가 실제로 그 값을 받아야 한다(회고 260820-001112 — "데이터가 어딘가 있다"와 "이 호출부가 받는다"는 다른 사실).
+  const [booksOrder, setBooksOrder] = useState(null)
+  useEffect(() => {
+    if ((activeStage !== 'book' && activeStage !== 'hub') || booksOrder) return
+    let cancelled = false
+    apiGet('/books-overview')
+      .then(list => { if (!cancelled) setBooksOrder(list.map(b => ({ id: b.id, nameKo: b.nameKo, chapterCount: b.chapterCount }))) })
+      .catch(e => { if (!cancelled) console.warn('[App] 책 목록 로드 실패 — 정경 내비·이어읽기 미노출', e) })
+    return () => { cancelled = true }
+  }, [activeStage, booksOrder])
+
+  // 책별 총 장 수 맵 — 이어읽기의 완독 판정 입력(참조가 매 렌더 바뀌지 않게 memo).
+  const chapterCounts = useMemo(() => {
+    if (!booksOrder) return null
+    const m = {}
+    for (const b of booksOrder) if (Number.isInteger(b.chapterCount)) m[b.id] = b.chapterCount
+    return m
+  }, [booksOrder])
+
   // 읽기 진도(task#269) — 같은 이유로 App에 인스턴스 하나(리더·개요·허브가 같은 상태를 본다).
-  const { isRead, toggleRead, bookReadCount, resume } = useReadingProgress()
+  const { isRead, toggleRead, bookReadCount, resume } = useReadingProgress(chapterCounts)
 
   // 지금 화면의 저장 항목 — 뷰 토글로 항목이 갈라지지 않게 스테이지 단위 기본 해시를 쓴다.
   const bookmarkEntry = useMemo(() => {
@@ -126,17 +147,6 @@ function App() {
     if (dy > 80 && sheetAtTop.current) window.history.back()
     swipeStartY.current = null
   }
-
-  // 정경 순서 내비(task#211) — 책 상세 이전/다음 권. /books-overview 순서 재사용(신규 API 없음), 첫 book 진입 시 1회 로드.
-  const [booksOrder, setBooksOrder] = useState(null)
-  useEffect(() => {
-    if (activeStage !== 'book' || booksOrder) return
-    let cancelled = false
-    apiGet('/books-overview')
-      .then(list => { if (!cancelled) setBooksOrder(list.map(b => ({ id: b.id, nameKo: b.nameKo }))) })
-      .catch(e => { if (!cancelled) console.warn('[App] 책 목록 로드 실패 — 정경 내비 미노출', e) })
-    return () => { cancelled = true }
-  }, [activeStage, booksOrder])
 
   // 책등 헤더의 활성 부(部) — 개요·책·단어·리더는 '성경책', 투어 목록·투어 탐험은 '투어', 나머지는 '인물'(ADR-0026)
   const activeSection =

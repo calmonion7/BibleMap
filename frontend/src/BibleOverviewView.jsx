@@ -89,7 +89,7 @@ function BookCard({ book, onSelectNode, isSelected, hideKeyVerse, entrance, dela
       {readCount > 0 && book.chapterCount ? (
         <div data-book-progress={`${readCount}/${book.chapterCount}`} style={{ marginTop: 8 }}>
           <div style={{ height: 3, borderRadius: 2, background: 'var(--line)', overflow: 'hidden' }}>
-            <div style={{ width: `${Math.round((readCount / book.chapterCount) * 100)}%`, height: '100%', background: 'var(--gold)' }} />
+            <div style={{ width: `${Math.min(100, Math.round((readCount / book.chapterCount) * 100))}%`, height: '100%', background: 'var(--gold)' }} />
           </div>
           <div style={{ fontSize: 10, color: 'var(--gold)', marginTop: 3 }}>{readCount}/{book.chapterCount}장 읽음</div>
         </div>

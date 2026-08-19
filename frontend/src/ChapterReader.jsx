@@ -52,6 +52,9 @@ function ChapterReader({ bookId, chapter, onSelectChapter, highlightVerseId, ver
   // 읽기 진도(task#269)
   const readCount = bookReadCount?.(bookId) ?? 0
   const chapterRead = chapter != null && !!isChapterRead?.(chapter)
+  // 범위 밖 장(task#276) — 딥링크(#/read/<book>/999)나 이미 오염된 저장값으로 들어온 장.
+  // chapterCount를 모르는 로딩 중에는 막지 않는다(정상 장에서 버튼이 깜빡이면 안 된다).
+  const outOfRange = chapterCount != null && chapter != null && chapter > chapterCount
 
   useEffect(() => {
     if (!bookmarkEntry?.hash || !readerLabel) return
@@ -88,7 +91,7 @@ function ChapterReader({ bookId, chapter, onSelectChapter, highlightVerseId, ver
                   <span>{readCount}/{chapterCount}</span>
                 </div>
                 <div style={{ height: 4, borderRadius: 2, background: 'var(--line)', overflow: 'hidden' }}>
-                  <div style={{ width: `${Math.round((readCount / chapterCount) * 100)}%`, height: '100%', background: 'var(--gold)' }} />
+                  <div style={{ width: `${Math.min(100, Math.round((readCount / chapterCount) * 100))}%`, height: '100%', background: 'var(--gold)' }} />
                 </div>
               </div>
             )}
@@ -232,11 +235,14 @@ function ChapterReader({ bookId, chapter, onSelectChapter, highlightVerseId, ver
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: 16 }}>
             <button
               onClick={() => onToggleRead(bookId, chapter, nameKo || null)}
+              disabled={outOfRange}
+              title={outOfRange ? `${nameKo || '이 책'}은 전 ${chapterCount}장입니다 — 없는 장은 진도에 넣지 않습니다` : undefined}
               data-read-toggle={chapterRead ? 'on' : 'off'}
               aria-pressed={chapterRead}
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 6,
-                padding: '8px 18px', borderRadius: 999, cursor: 'pointer',
+                padding: '8px 18px', borderRadius: 999,
+                cursor: outOfRange ? 'not-allowed' : 'pointer', opacity: outOfRange ? 0.45 : 1,
                 border: `1px solid ${chapterRead ? 'var(--gold)' : 'var(--line)'}`,
                 background: chapterRead ? 'color-mix(in srgb, var(--gold) 12%, var(--bg-1))' : 'var(--bg-1)',
                 color: chapterRead ? 'var(--gold)' : 'var(--ink-dim)',

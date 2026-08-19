@@ -33,7 +33,21 @@ function write(state) {
   }
 }
 
-export function useReadingProgress() {
+// 이어읽기(task#276) — 마지막으로 읽은 책에서 아직 읽지 않은 가장 앞 장. **그 책을 완독했으면 없다.**
+// 총 장 수(chapterCount)를 모르면 null을 준다: 책 목록이 도착하기 전에 없는 장을 가리키는 버튼을
+// 잠깐 보여주고 고치는 것보다, 늦게 나타나는 편이 낫다(깜빡임 대신 지연).
+// 이미 오염된 저장값(총 장 수를 넘는 장이 들어간 경우)도 이 상한 검사로 함께 걸러진다.
+export function computeResume(readChapters, last, chapterCount) {
+  if (!last?.bookId) return null
+  if (!Number.isInteger(chapterCount) || chapterCount < 1) return null
+  const set = new Set((readChapters || []).filter(n => Number.isInteger(n) && n > 0))
+  let n = 1
+  while (set.has(n)) n += 1
+  if (n > chapterCount) return null
+  return { bookId: last.bookId, chapter: n, label: last.label ?? null }
+}
+
+export function useReadingProgress(chapterCounts = null) {
   const [state, setState] = useState(read)
 
   const isRead = useCallback((bookId, chapter) => !!state.books[bookId]?.includes(chapter), [state])
@@ -65,15 +79,11 @@ export function useReadingProgress() {
     [state],
   )
 
-  // 이어읽기 — 마지막으로 읽은 책에서 아직 읽지 않은 가장 앞 장.
-  const resume = useMemo(() => {
-    const last = state.last
-    if (!last?.bookId) return null
-    const set = new Set(state.books[last.bookId] || [])
-    let n = 1
-    while (set.has(n)) n += 1
-    return { bookId: last.bookId, chapter: n, label: last.label ?? null }
-  }, [state])
+  // 이어읽기 — 총 장 수를 알아야 완독을 판정할 수 있으므로 순수 함수에 위임(computeResume).
+  const resume = useMemo(
+    () => computeResume(state.books[state.last?.bookId], state.last, chapterCounts?.[state.last?.bookId]),
+    [state, chapterCounts],
+  )
 
   return { readBooks: state.books, isRead, toggleRead, bookReadCount, totalRead, resume }
 }
