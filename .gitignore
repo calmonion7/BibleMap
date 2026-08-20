@@ -23,6 +23,9 @@ frontend/dist/
 .forge/run.md
 .forge/STATUS.md
 .forge/loop.md
+.forge/ask.md
+.forge/reports/
+.forge/scratch/
 # Whitelist permanent docs
 !.forge/CONTEXT.md
 !.forge/adr/

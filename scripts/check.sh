@@ -41,6 +41,18 @@ done
 run "validate_intro_menu_parity --selftest" python3 -m backend.scripts.validate_intro_menu_parity --selftest
 run "validate_curated_persons --selftest" python3 -m backend.scripts.validate_curated_persons --selftest
 
+echo "=== check: 영구 forge 문서 추적 (로컬 전용 가드) ==="
+# 데이터 검증이 아니므로 위 16종 루프에 넣지 않는다(task#279).
+# 로컬 전용 가드 — deploy.sh는 워킹트리를 하드리셋한 뒤 이 스크립트를 부르므로 CI 경로에서는
+# 미추적 파일이 애초에 없고 이 두 항목은 공허하게 통과한다. 실효는 커밋 전 로컬 실행에만 있다.
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  run "validate_forge_docs_tracked (로컬 전용 가드)" python3 -m backend.scripts.validate_forge_docs_tracked
+  run "validate_forge_docs_tracked --selftest (로컬 전용 가드)" python3 -m backend.scripts.validate_forge_docs_tracked --selftest
+else
+  skip "validate_forge_docs_tracked (로컬 전용 가드)" "git 미가용(작업트리 아님)"
+  skip "validate_forge_docs_tracked --selftest (로컬 전용 가드)" "git 미가용(작업트리 아님)"
+fi
+
 echo "=== check: 프론트 (ESLint · 유닛 테스트) ==="
 if [ -d "$ROOT/frontend/node_modules" ]; then
   run "eslint src" bash -c "cd '$ROOT/frontend' && npx --no-install eslint src"
