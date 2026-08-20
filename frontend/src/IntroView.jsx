@@ -156,6 +156,33 @@ function StarField() {
   )
 }
 
+// 비트 공용 프레임 — 이 파일에서 좌우 여백과 줄바꿈을 선언하는 **유일한** 지점.
+// 이 프로젝트는 `box-sizing` 전역 리셋이 없어 모든 요소가 `content-box`다. 그래서 `width:100%`와
+// 좌우 패딩을 함께 쓰면 박스가 뷰포트보다 패딩 2배만큼 넓어지고, 부모의 `alignItems:center`가 그것을
+// 좌우 대칭으로 삐져나가게 놓아 **선언된 패딩이 시각적으로 정확히 0이 된다**(실측: 375px에서
+// `left:-22, width:419`). 소스에 패딩이 멀쩡히 적혀 있어 리뷰로는 잡히지 않는 결함 클래스라,
+// 전역 리셋(폭발 반경이 크고 회수 수단이 없다) 대신 선언 지점을 이 한 곳으로 모아 막는다(ADR 260820-232144).
+//   boxSizing 'border-box' — 패딩이 폭 안으로 들어온다
+//   GUTTER                 — 거터 단일 토큰
+//   wordBreak 'keep-all'   — 한국어를 어절 단위로 끊는다("어디서나 찾 / 고" 방지)
+//   textWrap 'balance'     — 2줄 이상일 때 줄 길이 균형
+// `data-intro-frame`은 UAT가 프레임을 지목해 대조군을 주입하는 훅이다(scripts/uat_intro_gutter.py).
+// style은 프레임 선언보다 **먼저** 펼친다 — 호출부가 실수로 padding·boxSizing을 덮지 못하게.
+const GUTTER = { mobile: 24, desktop: 32 }
+function BeatFrame({ isMobile, maxWidth, style, children, ...rest }) {
+  return (
+    <div {...rest} data-intro-frame style={{
+      ...style,
+      boxSizing: 'border-box',
+      width: '100%', maxWidth,
+      padding: `0 ${isMobile ? GUTTER.mobile : GUTTER.desktop}px`,
+      wordBreak: 'keep-all', textWrap: 'balance',
+    }}>
+      {children}
+    </div>
+  )
+}
+
 // 공용 히어로(오프닝·도착지 공통) — 도착지에서 오프닝의 타이틀이 이어지는 연속감.
 function Hero({ isMobile }) {
   return (
@@ -184,7 +211,7 @@ function Hero({ isMobile }) {
 // 비트 ② — 지도 위에 여정선이 그려지고(thread-draw), 정차지 점이 뜨고, 인물 인장이 그려진다(symbol-draw).
 function MapBeat({ isMobile }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isMobile ? 16 : 22, width: '100%', maxWidth: 560, padding: '0 20px' }}>
+    <BeatFrame isMobile={isMobile} maxWidth={560} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isMobile ? 16 : 22 }}>
       <div className="intro-rise" style={{ fontFamily: 'var(--serif)', fontSize: isMobile ? 14 : 16, color: 'var(--ink-dim)', letterSpacing: '0.04em' }}>
         지도 위에서 인물의 발자취를 따라
       </div>
@@ -211,14 +238,14 @@ function MapBeat({ isMobile }) {
         <PersonSymbol slug="david" size={isMobile ? 56 : 72} draw />
         <span style={{ fontFamily: 'var(--serif)', fontSize: 13, color: 'var(--ink-dim)', letterSpacing: '0.06em' }}>다윗</span>
       </div>
-    </div>
+    </BeatFrame>
   )
 }
 
 // 비트 ③ — 시대 스케치 몽타주. 각 씬은 reduce 정적 렌더로 크로스페이드(개별 씬의 SMIL 안무는 몽타주엔 과함).
 function MontageBeat({ era, isMobile }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isMobile ? 14 : 18, width: '100%', maxWidth: 520, padding: '0 20px' }}>
+    <BeatFrame isMobile={isMobile} maxWidth={520} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isMobile ? 14 : 18 }}>
       <div className="intro-rise" style={{ fontFamily: 'var(--serif-display)', fontSize: isMobile ? 20 : 24, color: 'var(--ink)', letterSpacing: '0.02em' }}>
         창조에서 초대교회까지
       </div>
@@ -231,7 +258,7 @@ function MontageBeat({ era, isMobile }) {
       }}>
         <Suspense fallback={null}><TourSketch eventId={ERA_SCENES[era]} width="100%" reduce /></Suspense>
       </div>
-    </div>
+    </BeatFrame>
   )
 }
 
@@ -239,7 +266,7 @@ function MontageBeat({ era, isMobile }) {
 // 무슨 정보인지(부제) → 실제 하위 메뉴(앱과 동일한 lucide 아이콘 + 라벨). 프레임 없이 콘텐츠만.
 function MenuScene({ scene, isMobile }) {
   return (
-    <div data-intro-scene={scene.nav} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isMobile ? 9 : 13, width: '100%', maxWidth: 600, padding: '0 22px' }}>
+    <BeatFrame data-intro-scene={scene.nav} isMobile={isMobile} maxWidth={600} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isMobile ? 9 : 13 }}>
       <div style={{ marginBottom: isMobile ? 2 : 6 }}><SceneArt art={scene.art} isMobile={isMobile} /></div>
       <div className="intro-rise" style={{ fontFamily: 'var(--serif)', fontSize: isMobile ? 12 : 13, letterSpacing: '0.18em', color: 'var(--gold)' }}>
         {scene.nav}
@@ -258,14 +285,14 @@ function MenuScene({ scene, isMobile }) {
           </div>
         ))}
       </div>
-    </div>
+    </BeatFrame>
   )
 }
 
 // 비트 ⑤ = 도착지 화면 — 필름이 정지하는 마지막 프레임. 진입점·온오프·ⓘ 안내.
 function Destination({ isMobile, onStart, onOpenTours, onOpenOverview, hidden, toggleHidden }) {
   return (
-    <div style={{ width: '100%', maxWidth: 560, padding: '0 22px' }}>
+    <BeatFrame isMobile={isMobile} maxWidth={560}>
       <Hero isMobile={isMobile} />
       <div className="intro-rise" style={{ marginTop: isMobile ? 30 : 40, animationDelay: '440ms' }}>
         <button className="pressable" onClick={onStart} style={{
@@ -292,14 +319,22 @@ function Destination({ isMobile, onStart, onOpenTours, onOpenOverview, hidden, t
           꺼도 상단의 ⓘ 소개 버튼으로 언제든 다시 볼 수 있어요.
         </div>
       </div>
-    </div>
+    </BeatFrame>
   )
 }
 
 // 한 비트의 내용 렌더 — 오프닝은 밤하늘(StarField)을 함께 담아 전환에 같이 실린다.
 // 비트 3~6 = 컨텐츠 소개 장면(인물·성경책·투어 + 부에 속하지 않는 전역 기능), 7 = 도착지.
 function renderBeat(p, ctx) {
-  if (p === 0) return <><StarField /><Hero isMobile={ctx.isMobile} /></>
+  if (p === 0) return (
+    <>
+      <StarField />
+      <BeatFrame isMobile={ctx.isMobile} maxWidth={560}
+        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Hero isMobile={ctx.isMobile} />
+      </BeatFrame>
+    </>
+  )
   if (p === 1) return <MapBeat isMobile={ctx.isMobile} />
   if (p === 2) return <MontageBeat era={ctx.era} isMobile={ctx.isMobile} />
   if (p >= 3 && p <= 6) return <MenuScene scene={SCENES[p - 3]} isMobile={ctx.isMobile} />

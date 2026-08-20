@@ -1,5 +1,5 @@
 #!/bin/bash
-# 배포 전 검증 게이트 (task#255) — 데이터 검증 + ERA_BANDS 3곳 정합 + 인트로↔실제 메뉴 정합 + 비유↔연표·장면 커버리지 + ESLint.
+# 배포 전 검증 게이트 (task#255) — 데이터 검증 + ERA_BANDS 3곳 정합 + 인트로↔실제 메뉴 정합 + 인트로 비트 여백 불변식 + 비유↔연표·장면 커버리지 + ESLint.
 # 하나라도 하드 항목 실패 시 비0 종료. 환경 의존 항목은 미충족 시 스킵-경고(하드 게이트 유지):
 #   - Neo4j 연대 정합: 127.0.0.1:7687 미기동 시 스킵
 #   - ESLint: frontend/node_modules 부재 시 스킵
@@ -29,17 +29,22 @@ skip() {  # skip <라벨> <사유> — 엄격 모드에서는 스킵이 실패�
   fi
 }
 
-echo "=== check: 파일 기반 데이터 검증 (16종 + 정합 대조군) ==="
+echo "=== check: 파일 기반 데이터 검증 (17종 + 정합 대조군) ==="
 for s in covenants messianic_prophecies parables_miracles topical_verses pm_map_coverage \
          scene_coverage chapter_sections chapter_summaries quotations person_context \
          god_reliance traits era_bands_consistency approx_book_verses intro_menu_parity \
-         curated_persons; do
+         curated_persons intro_gutter; do
   run "validate_$s" python3 -m "backend.scripts.validate_$s"
 done
 # 정합 검사 자신의 대조군(task#277·278) — 고의 드리프트 주입에 FAIL하는지 인메모리로 순회 확인.
 # 기준선 PASS만으론 게이트가 살아있음을 증명하지 못한다(ADR 260820-003946).
 run "validate_intro_menu_parity --selftest" python3 -m backend.scripts.validate_intro_menu_parity --selftest
 run "validate_curated_persons --selftest" python3 -m backend.scripts.validate_curated_persons --selftest
+# 인트로 비트 여백 불변식(task#280) — content-box 함정은 소스에 패딩이 적힌 채 시각적 여백을 0으로
+# 만들어 리뷰로는 잡히지 않는다(ADR 260820-232144). 실측 여백은 scripts/uat_intro_gutter.py가 재지만
+# 그건 여기 배선하지 않는다 — deploy.sh는 빌드 **전**에 check.sh를 불러 그 시점 :8080이 옛 빌드를
+# 서빙하므로 초록·빨강이 둘 다 거짓이 된다. 게이트에는 브라우저 없이 항상 도는 소스 불변식만 둔다.
+run "validate_intro_gutter --selftest" python3 -m backend.scripts.validate_intro_gutter --selftest
 
 echo "=== check: 영구 forge 문서 추적 (배포 차단 가드) ==="
 # 데이터 검증이 아니므로 위 16종 루프에 넣지 않는다(task#279).
