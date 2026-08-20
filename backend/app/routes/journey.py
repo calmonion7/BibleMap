@@ -3,40 +3,14 @@
 응답 stops 필드:
   seq: 좌표가 있는 정차지에만 1부터 부여(없으면 null)
   연속 동일 좌표 사건도 각각 stop으로 포함(0길이 세그먼트 방지는 프론트 담당).
-큐레이션 13인이 아니면 빈 stops 반환(404 아님).
+큐레이션 35인이 아니면 빈 stops 반환(404 아님).
 """
-import json
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from ..db import get_driver
-from ..overlays import _resolve
-from .persons import _ERA, _NAME_KO
+from ..curated import CURATED, id_to_slug, person_events
 
 router = APIRouter()
-
-
-def _build_id_to_slug() -> dict[str, str]:
-    """theographic_id → slug 역매핑. 각 slug json의 첫 participants[0]으로 결정."""
-    mapping: dict[str, str] = {}
-    for slug in _ERA:
-        path = _resolve(f"person_events/{slug}.json")
-        if path is None:
-            continue
-        with open(path, encoding="utf-8") as f:
-            events = json.load(f)
-        if events and events[0].get("participants"):
-            person_id = events[0]["participants"][0]
-            mapping[person_id] = slug
-    return mapping
-
-
-def _load_events(slug: str) -> list[dict]:
-    path = _resolve(f"person_events/{slug}.json")
-    if path is None:
-        return []
-    with open(path, encoding="utf-8") as f:
-        events = json.load(f)
-    return sorted(events, key=lambda e: e["sortKey"])
 
 
 def _fetch_place_coords(place_ids: list[str]) -> dict[str, dict]:
@@ -74,12 +48,11 @@ def _fetch_place_coords(place_ids: list[str]) -> dict[str, dict]:
 def get_person_journey(person_id: str):
     """인물의 시간순 여정 정차지 목록.
 
-    큐레이션 13인이 아니면 stops=[] 빈 응답 반환.
+    큐레이션 35인이 아니면 stops=[] 빈 응답 반환.
     stops 각 항목:
       seq, eventId, title, nameKo, sortKey, placeId, placeNameKo, lng, lat
     """
-    id_to_slug = _build_id_to_slug()
-    slug = id_to_slug.get(person_id)
+    slug = id_to_slug().get(person_id)
 
     if slug is None:
         return JSONResponse(
@@ -87,7 +60,7 @@ def get_person_journey(person_id: str):
             headers={"Cache-Control": "max-age=300"},
         )
 
-    events = _load_events(slug)
+    events = person_events(slug)
 
     # 좌표가 필요한 place_id 수집 (occursAt[0] 기준)
     place_ids = list({
@@ -130,7 +103,7 @@ def get_person_journey(person_id: str):
     return JSONResponse(
         content={
             "personId": person_id,
-            "nameKo": _NAME_KO[slug],
+            "nameKo": CURATED[slug]["nameKo"],
             "stops": stops,
         },
         headers={"Cache-Control": "max-age=300"},

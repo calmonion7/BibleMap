@@ -1,4 +1,4 @@
-"""큐레이션된 13인 인물 목록 엔드포인트.
+"""큐레이션된 35인 인물 목록 엔드포인트.
 
 person_events/*.json 파일에서 eventCount 와 theographic_id(첫 번째 participants)를
 정적으로 읽어 반환한다. Neo4j 조회 없이 파일만으로 충분히 결정적이므로 단순성 우선."""
@@ -9,134 +9,21 @@ import logging
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
+from ..curated import curated_index, id_to_slug, slug_to_id
 from ..db import get_driver
-from ..overlays import _resolve, curated_person_id
+from ..overlays import _resolve
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
-# slug → era 고정 매핑
-_ERA: dict[str, str] = {
-    "adam": "원시사",
-    "noah": "원시사",
-    "cain": "원시사",
-    "abel": "원시사",
-    "seth": "원시사",
-    "enoch": "원시사",
-    "abraham": "족장",
-    "isaac": "족장",
-    "jacob": "족장",
-    "joseph": "족장",
-    "job": "족장",
-    "moses": "출애굽·정복",
-    "joshua": "출애굽·정복",
-    "gideon": "사사",
-    "deborah": "사사",
-    "jephthah": "사사",
-    "samson": "사사",
-    "ruth": "사사",
-    "saul": "왕국",
-    "samuel": "왕국",
-    "david": "왕국",
-    "solomon": "왕국",
-    "elijah": "선지자",
-    "elisha": "선지자",
-    "jonah": "선지자",
-    "isaiah": "선지자",
-    "daniel": "포로",
-    "esther": "포로",
-    "nehemiah": "포로",
-    "john_the_baptist": "신약",
-    "jesus": "신약",
-    "mary": "신약",
-    "paul": "신약",
-    "peter": "신약",
-    "john_the_apostle": "신약",
-}
-
-# slug → 한글 이름
-_NAME_KO: dict[str, str] = {
-    "adam": "아담",
-    "noah": "노아",
-    "cain": "가인",
-    "abel": "아벨",
-    "seth": "셋",
-    "enoch": "에녹",
-    "abraham": "아브라함",
-    "isaac": "이삭",
-    "jacob": "야곱",
-    "joseph": "요셉",
-    "job": "욥",
-    "moses": "모세",
-    "joshua": "여호수아",
-    "gideon": "기드온",
-    "deborah": "드보라",
-    "jephthah": "입다",
-    "samson": "삼손",
-    "ruth": "룻",
-    "saul": "사울",
-    "samuel": "사무엘",
-    "david": "다윗",
-    "solomon": "솔로몬",
-    "elijah": "엘리야",
-    "elisha": "엘리사",
-    "jonah": "요나",
-    "isaiah": "이사야",
-    "daniel": "다니엘",
-    "esther": "에스더",
-    "nehemiah": "느헤미야",
-    "john_the_baptist": "세례 요한",
-    "jesus": "예수",
-    "mary": "마리아",
-    "paul": "바울",
-    "peter": "베드로",
-    "john_the_apostle": "사도 요한",
-}
-
-# era 표시 순서
-_ERA_ORDER = ["원시사", "족장", "출애굽·정복", "사사", "왕국", "선지자", "포로", "신약"]
-
-
-@functools.lru_cache(maxsize=1)
-def _build_list() -> list[dict]:
-    result = []
-    for slug in sorted(_ERA.keys()):
-        path = _resolve(f"person_events/{slug}.json")
-        if path is None:
-            continue
-        with open(path, encoding="utf-8") as f:
-            events = json.load(f)
-
-        person_id = curated_person_id(events)
-        if person_id is None:
-            logger.warning("[Persons] curated: %s — events[0].participants 비어 있음, 건너뜀", slug)
-            continue
-        result.append(
-            {
-                "id": person_id,
-                "slug": slug,
-                "nameKo": _NAME_KO[slug],
-                "era": _ERA[slug],
-                "eventCount": len(events),
-                # 정렬 전용: 여정 최초 등장 시점(최소 sortKey). 응답 전 제거.
-                "_anchor": min(e["sortKey"] for e in events),
-            }
-        )
-
-    # 시대 그룹 내에서 최초 등장 시점(anchor) 시간순, 동시각은 slug tie-break
-    result.sort(key=lambda p: (_ERA_ORDER.index(p["era"]), p["_anchor"], p["slug"]))
-    for p in result:
-        del p["_anchor"]
-    return result
-
 
 @router.get("/persons/curated")
 def get_curated_persons():
-    """활동범위가 그려지는 큐레이션된 13인 목록.
+    """활동범위가 그려지는 큐레이션된 35인 목록.
     각 항목: { id, slug, nameKo, era, eventCount }"""
     return JSONResponse(
-        content=_build_list(),
+        content=curated_index(),
         headers={"Cache-Control": "max-age=300"},
     )
 
@@ -182,7 +69,7 @@ def get_keypeople_cards():
     identity = _load_keypeople_identity()
     pc = _load_person_context()
     kv = _load_keypeople_verses()
-    curated_ids = {p["id"] for p in _build_list()}
+    curated_ids = {p["id"] for p in curated_index()}
     out: dict = {}
     for book, mp in identity.items():
         cards = {}
@@ -222,8 +109,8 @@ def get_keypeople_cards():
 def _build_connections(node_id: str) -> dict:
     """큐레이션 인물의 연결 두 축(CONTEXT '인물 연결'). 큐레이션 인물로 한정.
     - coParticipants: 같은 Event에 HAS_PARTICIPANT로 함께 등장(2-hop), 큐레이션 교집합·self·God 제외, 공유 사건 수 desc.
-    - contemporaries: 같은 era 큐레이션 인물, self·coParticipants 제외(_build_list 정렬 순 유지)."""
-    curated = _build_list()
+    - contemporaries: 같은 era 큐레이션 인물, self·coParticipants 제외(curated_index 정렬 순 유지)."""
+    curated = curated_index()
     by_id = {p["id"]: p for p in curated}
     me = by_id.get(node_id)
     if me is None:
@@ -284,12 +171,9 @@ def _load_relations() -> list[dict]:
 @functools.lru_cache(maxsize=256)
 def _build_relations(node_id: str) -> dict:
     """subject(node_id)가 낀 관계 pair만 필터해 상대 endpoint와 시간순 phases를 반환.
-    상대에 slug가 있고 34인이면 withId를 해결(여정 점프 가능), 아니면 null. phases는 그대로 통과.
+    상대에 slug가 있고 35인이면 withId를 해결(여정 점프 가능), 아니면 null. phases는 그대로 통과.
     note는 상대 endpoint의 role(각 endpoint 관점 역할, 예: 아벨 상세에서 아담=아버지)을 우선하고, 없으면 pair note로 폴백."""
-    curated = _build_list()
-    id_to_slug = {p["id"]: p["slug"] for p in curated}
-    slug_to_id = {p["slug"]: p["id"] for p in curated}
-    me_slug = id_to_slug.get(node_id)
+    me_slug = id_to_slug().get(node_id)
     if me_slug is None:
         return {"relations": []}
 
@@ -306,7 +190,7 @@ def _build_relations(node_id: str) -> dict:
                 "type": pair.get("type"),
                 "note": other.get("role") or pair.get("note"),
                 "withNameKo": other.get("nameKo"),
-                "withId": slug_to_id.get(other["slug"]) if other.get("slug") else None,
+                "withId": slug_to_id().get(other["slug"]) if other.get("slug") else None,
                 "withSlug": other.get("slug"),  # 인장 선화 렌더용(큐레이션 상대만 존재)
                 "phases": pair.get("phases", []),
             }

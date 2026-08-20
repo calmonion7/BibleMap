@@ -13,8 +13,8 @@ import re
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
-from ..overlays import _resolve, _resolve_dir, bible_verses, books_ko, curated_person_id
-from .persons import _NAME_KO
+from ..curated import CURATED, slug_to_id
+from ..overlays import _resolve, _resolve_dir, bible_verses, books_ko
 
 router = APIRouter()
 
@@ -47,22 +47,13 @@ def _resolve_verse(ref: str):
 
 @functools.lru_cache(maxsize=1)
 def _slug_to_id() -> dict:
-    """god_reliance 슬러그 → 인물 theographic_id (person_events participants[0])."""
-    mapping = {}
+    """god_reliance 슬러그 → 인물 theographic_id. curated.slug_to_id()(35)를 god_reliance
+    파일 존재로 제한해 파생한다 — 별도 person_events 순회 없음."""
     d = _resolve_dir("god_reliance")
     if not d:
-        return mapping
-    for fp in glob.glob(os.path.join(d, "*.json")):
-        slug = os.path.splitext(os.path.basename(fp))[0]
-        pe = _resolve(f"person_events/{slug}.json")
-        if not pe:
-            continue
-        with open(pe, encoding="utf-8") as f:
-            events = json.load(f)
-        pid = curated_person_id(events)
-        if pid is not None:
-            mapping[slug] = pid
-    return mapping
+        return {}
+    present = {os.path.splitext(os.path.basename(fp))[0] for fp in glob.glob(os.path.join(d, "*.json"))}
+    return {slug: pid for slug, pid in slug_to_id().items() if slug in present}
 
 
 @functools.lru_cache(maxsize=1)
@@ -141,7 +132,7 @@ def get_person_reliance(person_id: str):
         {
             "personId": person_id,
             "slug": slug,
-            "nameKo": _NAME_KO.get(slug, slug),
+            "nameKo": CURATED.get(slug, {}).get("nameKo", slug),
             "available": True,
             "percent": pct,
             "sampleSize": len(entries),
@@ -165,7 +156,7 @@ def get_reliance_ranking():
             {
                 "slug": slug,
                 "personId": pid,
-                "nameKo": _NAME_KO.get(slug, slug),
+                "nameKo": CURATED.get(slug, {}).get("nameKo", slug),
                 "percent": _percent(entries),
                 "sampleSize": len(entries),
                 "lowSample": len(entries) < LOW_SAMPLE,

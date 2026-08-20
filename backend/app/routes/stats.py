@@ -10,8 +10,8 @@ from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
 from ..db import get_driver
-from .journey import _build_id_to_slug, _load_events, _fetch_place_coords
-from .persons import _build_list, _NAME_KO
+from ..curated import CURATED, id_to_slug, person_events, slug_to_id
+from .journey import _fetch_place_coords
 
 logger = logging.getLogger(__name__)
 
@@ -62,7 +62,7 @@ def _fetch_totals(session) -> dict:
 def _fetch_top_persons(session) -> list[dict]:
     """참여 사건 수(HAS_PARTICIPANT) 기준 상위 인물. God은 거의 모든 사건에 걸쳐
     순위를 무의미하게 만들어 기존 관행(nodes.py topPersons·persons.py connections)대로 제외."""
-    slug_by_id = {p["id"]: p["slug"] for p in _build_list()}
+    slug_by_id = id_to_slug()
     result = session.run(
         f"""
         MATCH (e:Event)-[:HAS_PARTICIPANT]->(p:Person)
@@ -103,11 +103,17 @@ def _fetch_books(session) -> list[dict]:
 
 
 def _compute_longest_journeys() -> list[dict]:
-    """큐레이션 13인의 정차지 수(journey.py와 동일한 occursAt[0] 좌표 보유 기준) 내림차순."""
-    id_to_slug = _build_id_to_slug()
+    """큐레이션 35인의 정차지 수(journey.py와 동일한 occursAt[0] 좌표 보유 기준) 내림차순.
+
+    CURATED 정의 순서로 순회한다(slug_to_id()·id_to_slug()는 curated_index()의 시대/등장시점
+    정렬 순서를 따라 이 함수의 stopCount 동률 안정정렬 타이브레이크가 바뀌므로 쓰지 않음)."""
+    slug_id_map = slug_to_id()
     results = []
-    for person_id, slug in id_to_slug.items():
-        events = _load_events(slug)
+    for slug in CURATED:
+        person_id = slug_id_map.get(slug)
+        if person_id is None:
+            continue
+        events = person_events(slug)
         place_ids = list({e["occursAt"][0] for e in events if e.get("occursAt")})
         coords = _fetch_place_coords(place_ids)
         stop_count = sum(
@@ -116,7 +122,7 @@ def _compute_longest_journeys() -> list[dict]:
             and coords.get(e["occursAt"][0], {}).get("lng") is not None
             and coords.get(e["occursAt"][0], {}).get("lat") is not None
         )
-        results.append({"id": person_id, "nameKo": _NAME_KO[slug], "stopCount": stop_count})
+        results.append({"id": person_id, "nameKo": CURATED[slug]["nameKo"], "stopCount": stop_count})
     results.sort(key=lambda r: -r["stopCount"])
     return results
 

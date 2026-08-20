@@ -3,17 +3,16 @@
 세 재료 모두 **기존 출처를 재사용**한다(신규 데이터 저작 0):
   - 시대 밴드 : `stats.ERA_BANDS` (백엔드 정본 — 새 복제를 만들지 않는다)
   - 사건      : `events._compute_events()` (`/events`와 같은 목록)
-  - 인물 구간 : `person_events/<slug>.json`의 `sortKey` min/max (persons.py가 min을 이미 앵커로 씀)
+  - 인물 구간 : `person_events/<slug>.json`의 `sortKey` min/max (curated.py가 min을 이미 앵커로 씀)
 """
 import functools
-import json
 
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
-from ..overlays import _resolve, curated_person_id
+from ..curated import CURATED, ERA_ORDER, person_events
+from ..overlays import curated_person_id
 from .events import _compute_events
-from .persons import _ERA, _ERA_ORDER, _NAME_KO
 from .stats import ERA_BANDS, _era_of
 
 router = APIRouter()
@@ -22,16 +21,12 @@ router = APIRouter()
 def _person_spans() -> list[dict]:
     """큐레이션 인물의 활동 구간 — (slug, nameKo, era, startYear, endYear).
 
-    persons.py `_build_list`와 **같은 정렬 규칙**(시대 순 → 최초 등장 → slug)을 써서
+    curated.curated_index()와 **같은 정렬 규칙**(시대 순 → 최초 등장 → slug)을 써서
     `/persons/curated` 순서와 모순되지 않게 한다.
     """
     spans = []
-    for slug in sorted(_ERA.keys()):
-        path = _resolve(f"person_events/{slug}.json")
-        if path is None:
-            continue
-        with open(path, encoding="utf-8") as f:
-            events = json.load(f)
+    for slug in sorted(CURATED.keys()):
+        events = person_events(slug)
         keys = [e["sortKey"] for e in events if e.get("sortKey") is not None]
         if not keys:
             continue
@@ -41,13 +36,13 @@ def _person_spans() -> list[dict]:
         spans.append({
             "id": person_id,
             "slug": slug,
-            "nameKo": _NAME_KO[slug],
-            "era": _ERA[slug],
+            "nameKo": CURATED[slug]["nameKo"],
+            "era": CURATED[slug]["era"],
             "startYear": min(keys),
             "endYear": max(keys),
             "eventCount": len(events),
         })
-    spans.sort(key=lambda p: (_ERA_ORDER.index(p["era"]), p["startYear"], p["slug"]))
+    spans.sort(key=lambda p: (ERA_ORDER.index(p["era"]), p["startYear"], p["slug"]))
     return spans
 
 

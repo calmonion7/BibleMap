@@ -4,7 +4,7 @@
 검사 대상:
   - frontend/src/eraBands.js      : const ERA_BANDS = [{name, from}]  (task#271에 TimelineView.jsx에서 승급)
   - backend/app/routes/stats.py   : ERA_BANDS = [(name, from)]
-  - backend/app/routes/persons.py : _ERA_ORDER = [name]  (순서만)
+  - backend/app/curated.py        : ERA_ORDER = [name]  (순서만)
   - data/covenants/covenants.json : 각 언약 era ∈ 위 시대 이름 집합
 이름·순서·경계(from)가 세 곳에서 일치하고, 언약 era가 유효 시대인지 단언한다.
 """
@@ -40,7 +40,7 @@ def _stats_bands():
 
 
 def _persons_order():
-    block = re.search(r"_ERA_ORDER = \[(.*?)\]", _read("backend/app/routes/persons.py"), re.S).group(1)
+    block = re.search(r"ERA_ORDER = \[(.*?)\]", _read("backend/app/curated.py"), re.S).group(1)
     return re.findall(r'"([^"]+)"', block)
 
 
@@ -56,7 +56,7 @@ def main():
     assert st, "stats.py ERA_BANDS 파싱 실패"
     assert tl == st, f"eraBands.js ↔ stats.py ERA_BANDS(이름·순서·경계) 불일치:\n  TL={tl}\n  ST={st}"
     names = [n for n, _ in tl]
-    assert names == po, f"시대 이름/순서 불일치: eraBands={names} vs persons._ERA_ORDER={po}"
+    assert names == po, f"시대 이름/순서 불일치: eraBands={names} vs curated.ERA_ORDER={po}"
     valid = set(names)
     bad = [e for e in _covenant_eras() if e not in valid]
     assert not bad, f"covenants.json era가 유효 시대 아님: {bad} (유효={sorted(valid)})"

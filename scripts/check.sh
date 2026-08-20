@@ -29,15 +29,17 @@ skip() {  # skip <라벨> <사유> — 엄격 모드에서는 스킵이 실패�
   fi
 }
 
-echo "=== check: 파일 기반 데이터 검증 (15종 + 정합 대조군) ==="
+echo "=== check: 파일 기반 데이터 검증 (16종 + 정합 대조군) ==="
 for s in covenants messianic_prophecies parables_miracles topical_verses pm_map_coverage \
          scene_coverage chapter_sections chapter_summaries quotations person_context \
-         god_reliance traits era_bands_consistency approx_book_verses intro_menu_parity; do
+         god_reliance traits era_bands_consistency approx_book_verses intro_menu_parity \
+         curated_persons; do
   run "validate_$s" python3 -m "backend.scripts.validate_$s"
 done
-# 정합 검사 자신의 대조군(task#277) — 고의 드리프트 주입에 FAIL하는지 인메모리로 순회 확인.
+# 정합 검사 자신의 대조군(task#277·278) — 고의 드리프트 주입에 FAIL하는지 인메모리로 순회 확인.
 # 기준선 PASS만으론 게이트가 살아있음을 증명하지 못한다(ADR 260820-003946).
 run "validate_intro_menu_parity --selftest" python3 -m backend.scripts.validate_intro_menu_parity --selftest
+run "validate_curated_persons --selftest" python3 -m backend.scripts.validate_curated_persons --selftest
 
 echo "=== check: 프론트 (ESLint · 유닛 테스트) ==="
 if [ -d "$ROOT/frontend/node_modules" ]; then

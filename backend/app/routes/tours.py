@@ -15,8 +15,8 @@ from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
 from ..overlays import _resolve, _resolve_dir
-from .journey import _fetch_place_coords, _build_id_to_slug
-from .persons import _ERA, _NAME_KO, _ERA_ORDER
+from ..curated import CURATED, ERA_ORDER, id_to_slug, person_events
+from .journey import _fetch_place_coords
 
 logger = logging.getLogger(__name__)
 
@@ -50,24 +50,16 @@ def _list_tours() -> list[dict]:
             "description": t.get("description"),
             "stopCount": len(t.get("stops", [])),
         })
-    results.sort(key=lambda t: (_ERA_ORDER.index(t["era"]) if t["era"] in _ERA_ORDER else len(_ERA_ORDER), t["id"]))
+    results.sort(key=lambda t: (ERA_ORDER.index(t["era"]) if t["era"] in ERA_ORDER else len(ERA_ORDER), t["id"]))
     return results
 
 
 @functools.lru_cache(maxsize=1)
 def _build_event_index() -> dict[str, dict]:
-    """eventId → event-body 인덱스. _ERA 내 모든 slug의 person_events/*.json 로드."""
+    """eventId → event-body 인덱스. CURATED 내 모든 slug의 person_events/*.json 로드."""
     index: dict[str, dict] = {}
-    for slug in _ERA:
-        path = _resolve(f"person_events/{slug}.json")
-        if path is None:
-            continue
-        try:
-            with open(path, encoding="utf-8") as f:
-                events = json.load(f)
-        except (json.JSONDecodeError, OSError) as e:
-            logger.warning("[Tours] person_events 로드 실패 — 사건 인덱스에서 건너뜀 (%s): %s", slug, e)
-            continue
+    for slug in CURATED:
+        events = person_events(slug)
         for e in events:
             if e["id"] in index:
                 logger.warning("[Tours] 중복 eventId — %s 사본으로 덮어씀 (id=%s)", slug, e["id"])
@@ -116,7 +108,7 @@ def get_tour(tour_id: str):
     coords = _fetch_place_coords(place_ids)
 
     # 사건별 주인공(participants[0]) 라벨 — 투어는 여러 인물을 엮으므로 각 정차지에 인물 표기.
-    id_to_slug = _build_id_to_slug()
+    id_to_slug_map = id_to_slug()
 
     # journey.py 와 동일한 stops 구조
     stops = []
@@ -125,7 +117,7 @@ def get_tour(tour_id: str):
         place_id = event["occursAt"][0] if event.get("occursAt") else None
         place_info = coords.get(place_id) if place_id else None
         pid = event["participants"][0] if event.get("participants") else None
-        person_name = _NAME_KO.get(id_to_slug.get(pid))
+        person_name = CURATED.get(id_to_slug_map.get(pid), {}).get("nameKo")
         has_coords = (
             place_info is not None
             and place_info["lng"] is not None

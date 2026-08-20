@@ -26,6 +26,7 @@ from functools import lru_cache
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
+from ..curated import curated_index, seal_id_to_slug
 from ..db import get_driver
 from ..overlays import _resolve
 
@@ -50,7 +51,7 @@ def _family_role_pairs() -> dict:
         return {}
     with open(path, encoding="utf-8") as f:
         rels = json.load(f).get("relations", [])
-    slug_to_id = {slug: pid for pid, slug in _id_to_slug().items()}
+    slug_to_id = {slug: pid for pid, slug in seal_id_to_slug().items()}
     out: dict = {}
     for r in rels:
         if r.get("type") != "가족":
@@ -71,25 +72,8 @@ def _family_role_pairs() -> dict:
 
 
 @lru_cache(maxsize=1)
-def _id_to_slug() -> dict:
-    """인장 조회용 id → slug. 큐레이션 35인(person_events/<slug>.json 신원 규약, persons._build_list)
-    + 비큐레이션 인장 보유 인물(person_slugs/seal_slugs.json, ADR-0025). 큐레이션이 우선."""
-    from .persons import _build_list
-    out = {p["id"]: p["slug"] for p in _build_list()}
-    path = _resolve("person_slugs/seal_slugs.json")
-    if path is not None:
-        with open(path, encoding="utf-8") as f:
-            seals = json.load(f)
-        for slug, pid in seals.items():
-            if slug != "note":
-                out.setdefault(pid, slug)
-    return out
-
-
-@lru_cache(maxsize=1)
 def _curated_ids() -> frozenset:
-    from .persons import _build_list
-    return frozenset(p["id"] for p in _build_list())
+    return frozenset(p["id"] for p in curated_index())
 
 
 _JESUS_ID = "recgkFqZovgbr3pAi"
@@ -133,7 +117,7 @@ def _node(p) -> dict:
         "nameKo": name_ko if name_ko else name,
         "gender": props.get("gender"),
         "authored": bool(props.get("authored")),
-        "slug": _id_to_slug().get(pid),
+        "slug": seal_id_to_slug().get(pid),
         "curated": pid in _curated_ids(),
         "hasIntro": props.get("intro") is not None,
         "role": props.get("role"),
