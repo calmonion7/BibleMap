@@ -39,3 +39,9 @@ decided: 2026-08-20 00:39
 - 같은 결함 클래스가 최소 1건 남아 있다: `persons.py`의 `_ERA`/`_NAME_KO` 35 slug 두 벌 ↔
   `data/person_events/`. 발현이 `KeyError` → 500이라 더 무겁고, 이번 검증기 형태를 거의 그대로
   재사용할 수 있다.
+
+- **(task#278에서 해소)** 위에서 지목한 잔존 1건이 닫혔다. `_ERA`/`_NAME_KO` 두 벌은 `backend/app/curated.py`의
+  단일 `CURATED` 리터럴로 병합되고, `validate_curated_persons.py`가 이 ADR의 형태를 그대로 재사용해
+  게이트에 편입됐다(`ast.literal_eval` 추출 · 양방향 대조 · `--selftest` 대조군 5종). 예상대로 이 ADR의
+  검증기 형태는 거의 수정 없이 재사용됐고, 이로써 소스 상수를 읽어 정합을 단언하는 검증기가 세 번째로 성립했다.
+  다만 이 검증기는 파일명 집합만 대조하므로 **손상된 `person_events` JSON은 여전히 통과**한다(다음 후보).
