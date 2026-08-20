@@ -41,16 +41,20 @@ done
 run "validate_intro_menu_parity --selftest" python3 -m backend.scripts.validate_intro_menu_parity --selftest
 run "validate_curated_persons --selftest" python3 -m backend.scripts.validate_curated_persons --selftest
 
-echo "=== check: 영구 forge 문서 추적 (로컬 전용 가드) ==="
+echo "=== check: 영구 forge 문서 추적 (배포 차단 가드) ==="
 # 데이터 검증이 아니므로 위 16종 루프에 넣지 않는다(task#279).
-# 로컬 전용 가드 — deploy.sh는 워킹트리를 하드리셋한 뒤 이 스크립트를 부르므로 CI 경로에서는
-# 미추적 파일이 애초에 없고 이 두 항목은 공허하게 통과한다. 실효는 커밋 전 로컬 실행에만 있다.
+# 배포 경로에서도 살아있다 — task#279가 계획의 반대 사실을 실측했다. deploy.yml은 개발 트리와
+# 같은 디렉터리에서 `git reset --hard origin/main` 후 deploy.sh를 부르는데, 하드리셋은 추적
+# 파일만 되돌리고 미추적 파일은 남긴다(`git clean`이 아니다). 따라서 미추적 ADR·회고는 이
+# 게이트에 노출되고, CHECK_STRICT=1인 배포 경로에서 **배포를 중단시킨다**(실패 메시지가
+# 미추적 파일 목록을 지목하므로 무음 실패는 아니다). 이 강도가 맞는지는 사람이 정할 몫 —
+# 약화하려면 이 절을 CHECK_STRICT 분기 밖으로 뺀다.
 if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-  run "validate_forge_docs_tracked (로컬 전용 가드)" python3 -m backend.scripts.validate_forge_docs_tracked
-  run "validate_forge_docs_tracked --selftest (로컬 전용 가드)" python3 -m backend.scripts.validate_forge_docs_tracked --selftest
+  run "validate_forge_docs_tracked (배포 차단 가드)" python3 -m backend.scripts.validate_forge_docs_tracked
+  run "validate_forge_docs_tracked --selftest (배포 차단 가드)" python3 -m backend.scripts.validate_forge_docs_tracked --selftest
 else
-  skip "validate_forge_docs_tracked (로컬 전용 가드)" "git 미가용(작업트리 아님)"
-  skip "validate_forge_docs_tracked --selftest (로컬 전용 가드)" "git 미가용(작업트리 아님)"
+  skip "validate_forge_docs_tracked (배포 차단 가드)" "git 미가용(작업트리 아님)"
+  skip "validate_forge_docs_tracked --selftest (배포 차단 가드)" "git 미가용(작업트리 아님)"
 fi
 
 echo "=== check: 프론트 (ESLint · 유닛 테스트) ==="
