@@ -1,12 +1,12 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
-import { UserRound, Route, Clock, Users, HeartHandshake, Network, BookOpen, BarChart3, ScrollText } from 'lucide-react'
+import { UserRound, Route, Clock, Users, HeartHandshake, Network, BookOpen, BarChart3, ScrollText, PieChart, Quote, CalendarRange, Search, Bookmark, BookOpenCheck } from 'lucide-react'
 import PersonSymbol from './personSymbols'
 // 투어 스케치(9모듈 ~9.7천 줄)는 지연 로드 — 딥링크 진입(인트로 스킵) 초기 번들에서 제외(task#254).
 const TourSketch = lazy(() => import('./tourSketches'))
 
 // 사이트 인트로(Site Intro, task#244) — 대문(인물 허브) 앞의 선택적 관문을 시네마틱 오프닝 "필름"으로 재구성.
 // 실제 영상 파일이 아니라 무의존 CSS/SVG 오토플레이 연출(ADR-0024: 토큰 참조·transform/opacity·reduced-motion 붕괴).
-// 진입하면 4비트가 타이머로 스스로 흘러가고, 끝나면 마지막 비트(도착지 화면)에 정지한다.
+// 진입하면 비트가 타이머로 스스로 흘러가고, 끝나면 마지막 비트(도착지 화면)에 정지한다.
 // 노출 조건·온오프·딥링크 스킵·ⓘ 재진입은 plan#239 계약 그대로 — 이 컴포넌트 밖(useStageNavigation·SpineHeader)이 소유.
 export const INTRO_STORAGE_KEY = 'biblemap-intro'
 
@@ -14,9 +14,11 @@ const prefersReduced = () => window.matchMedia('(prefers-reduced-motion: reduce)
 
 // 마지막 비트(도착지 화면). 애니메이션 duration/easing은 토큰 keyframe에서만 오고, 아래 상수는
 // "장면 체류 시간"일 뿐(plan#239 계약). reduced-motion이면 phase=END로 시작해 이 타이머는 돌지 않는다.
-// 컨텐츠 소개는 상단 메뉴별 장면(인물·성경책·투어)을 각각 별도 비트로 둬 비트 순차 전환(겹침 없음)을 그대로 탄다.
-const END = 6
-const BEAT_MS = [3000, 5000, 5000, 3000, 3000, 3000] // ①오프닝 ②지도+여정+인장 ③시대 몽타주 ④인물 메뉴 ⑤성경책 메뉴 ⑥투어 메뉴 (총 ~20초, 이후 도착지 정지)
+// 컨텐츠 소개는 상단 메뉴별 장면(인물·성경책·투어)과 전역 기능 장면을 각각 별도 비트로 둬 비트 순차 전환(겹침 없음)을 그대로 탄다.
+const END = 7
+// ①오프닝 ②지도+여정+인장 ③시대 몽타주 ④인물 메뉴 ⑤성경책 메뉴 ⑥투어 메뉴 ⑦전역 기능 (총 26.8초, 이후 도착지 정지)
+// 성경책은 탭 2→6종으로 늘어 3000ms에 못 읽어 4200, 신설 전역 기능은 3종이라 3600 (task#277 실물 판독으로 확정).
+const BEAT_MS = [3000, 5000, 5000, 3000, 4200, 3000, 3600]
 // 비트 전환 — 장면이 "겹치지" 않게 순차 디졸브: 이전 비트가 먼저 페이드아웃(--dur-base≈250ms) 한 뒤
 // 새 비트가 지연 후 페이드인(--dur-slow≈400ms). 동시 노출(이중노출) 없이 배경을 통해 부드럽게 교체.
 const BEAT_IN_DELAY = 260 // 새 비트 페이드인 시작 지연 = 이전 비트 페이드아웃이 끝난 직후
@@ -45,8 +47,9 @@ const SCENES = [
     nav: '성경책',
     art: 'books',
     lead: '성경 66권을 한눈에',
-    sub: '권별 주제 · 핵심 인물 · 지도, 그리고 단어의 분포까지',
-    tabs: [[BookOpen, '책 둘러보기'], [BarChart3, '단어 분포']],
+    sub: '권별 주제 · 지도 · 단어 분포에 통계 · 주제 성구 · 통사 연표, 그리고 본문 읽기까지',
+    // 개요 스테이지 5탭 + 책 상세의 「본문 읽기」 — App.jsx의 StageNav.Tab과 아이콘·라벨 한 글자까지 동일.
+    tabs: [[BookOpen, '책 둘러보기'], [BarChart3, '단어 분포'], [PieChart, '통계'], [Quote, '주제 성구'], [CalendarRange, '통사 연표'], [ScrollText, '본문 읽기']],
   },
   {
     nav: '투어',
@@ -54,6 +57,18 @@ const SCENES = [
     lead: '이야기를 따라 자동으로',
     sub: '테마별 여정을 지도 · 연표와 함께 재생',
     tabs: [[ScrollText, '개요'], [Route, '여정'], [Clock, '연표']],
+  },
+  {
+    // 어느 부(部)에도 속하지 않는 전역 기능(task#277). nav에 부 이름을 쓰면 ADR-0026의 3부 IA가
+    // 4부로 오해되므로 중립 라벨 '어디서나'. 아래 tabs는 상단 하위 메뉴가 아니라 전역 기능이라
+    // 인트로↔실제 탭 정합 검사(validate_intro_menu_parity)의 대조 대상에서 제외된다.
+    nav: '어디서나',
+    art: 'global',
+    lead: '어디서나 찾고, 이어서 본다',
+    sub: '이름이든 구절 본문이든 한 번에 검색 · 본 것을 저장해 이어보기 · 읽은 장은 진도로 남는다',
+    // Search는 SpineHeader의 검색 버튼, Bookmark는 BookmarkToggle이 쓰는 그 아이콘.
+    // 읽기 진도는 앱 UI가 ✓ 글리프(ChapterReader)라 대응 lucide가 없어 BookOpenCheck로 근사한다.
+    tabs: [[Search, '통합 검색'], [Bookmark, '저장·이어보기'], [BookOpenCheck, '읽기 진도']],
   },
 ]
 
@@ -81,6 +96,35 @@ function SceneArt({ art, isMobile }) {
           <rect key={i} className="film-fade" style={{ animationDelay: `${180 + i * 110}ms` }}
             x={28 + i * 13} y={26 + (i % 2 ? 5 : 0)} width="9" height={44 - (i % 2 ? 5 : 0)} rx="2" />
         ))}
+      </svg>
+    )
+  if (art === 'global')
+    // 전역 기능 — 낱장 위에 돋보기가 그려지고(검색), 위쪽에 책갈피 리본(저장·이어보기),
+    // 아래쪽 눈금 3칸 중 2칸이 차오른다(읽기 진도). 얼굴 묘사 0건(ADR-0025).
+    return (
+      <svg {...common}>
+        {/* 낱장(원경, 정적 옅은 선) */}
+        <g stroke="var(--ink-faint)" strokeWidth="1.2" opacity="0.6">
+          <path d="M32 12 H88 V68 H32 Z" />
+          <path d="M40 22 H74 M40 30 H68" opacity="0.7" />
+        </g>
+        {/* 책갈피 리본 — 낱장 위에 걸린다 */}
+        <g className="film-fade" style={{ animationDelay: '260ms' }} strokeWidth="1.9">
+          <path d="M72 8 V28 L78 23 L84 28 V8 Z" />
+        </g>
+        {/* 돋보기 — 손으로 그려지듯 */}
+        <g strokeWidth="2.4">
+          <circle className="thread-draw" style={{ '--thread-delay': '520ms' }} pathLength="1" cx="52" cy="40" r="13" />
+          <path className="thread-draw" style={{ '--thread-delay': '860ms' }} pathLength="1" d="M61.5 49.5 L73 61" />
+        </g>
+        {/* 읽기 진도 — 눈금 3칸, 앞 2칸이 차오른다 */}
+        <g strokeWidth="1.7">
+          {[0, 1, 2].map(i => (
+            <rect key={i} className="film-fade" style={{ animationDelay: `${1080 + i * 150}ms` }}
+              x={38 + i * 16} y="72" width="12" height="5" rx="1.5"
+              fill={i < 2 ? 'var(--gold)' : 'none'} stroke="var(--gold)" />
+          ))}
+        </g>
       </svg>
     )
   // tour — 미니 경로 그려지고 정차지·재생 삼각형 등장
@@ -195,7 +239,7 @@ function MontageBeat({ era, isMobile }) {
 // 무슨 정보인지(부제) → 실제 하위 메뉴(앱과 동일한 lucide 아이콘 + 라벨). 프레임 없이 콘텐츠만.
 function MenuScene({ scene, isMobile }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isMobile ? 9 : 13, width: '100%', maxWidth: 600, padding: '0 22px' }}>
+    <div data-intro-scene={scene.nav} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isMobile ? 9 : 13, width: '100%', maxWidth: 600, padding: '0 22px' }}>
       <div style={{ marginBottom: isMobile ? 2 : 6 }}><SceneArt art={scene.art} isMobile={isMobile} /></div>
       <div className="intro-rise" style={{ fontFamily: 'var(--serif)', fontSize: isMobile ? 12 : 13, letterSpacing: '0.18em', color: 'var(--gold)' }}>
         {scene.nav}
@@ -206,7 +250,7 @@ function MenuScene({ scene, isMobile }) {
       <div className="intro-rise" style={{ animationDelay: '190ms', fontFamily: 'var(--serif)', fontSize: isMobile ? 13.5 : 16, color: 'var(--ink-dim)', letterSpacing: '0.02em' }}>
         {scene.sub}
       </div>
-      <div style={{ display: 'flex', gap: isMobile ? 14 : 26, flexWrap: 'wrap', justifyContent: 'center', marginTop: isMobile ? 10 : 18, maxWidth: 480 }}>
+      <div data-intro-tabs style={{ display: 'flex', gap: isMobile ? 14 : 26, flexWrap: 'wrap', justifyContent: 'center', marginTop: isMobile ? 10 : 18, maxWidth: 480 }}>
         {scene.tabs.map(([Icon, label], i) => (
           <div key={label} className="intro-rise" style={{ animationDelay: `${330 + i * 90}ms`, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 7, color: 'var(--gold)' }}>
             <Icon size={isMobile ? 24 : 28} strokeWidth={1.6} />
@@ -253,12 +297,12 @@ function Destination({ isMobile, onStart, onOpenTours, onOpenOverview, hidden, t
 }
 
 // 한 비트의 내용 렌더 — 오프닝은 밤하늘(StarField)을 함께 담아 전환에 같이 실린다.
-// 비트 3~5 = 상단 메뉴별 컨텐츠 소개 장면(인물·성경책·투어), 6 = 도착지.
+// 비트 3~6 = 컨텐츠 소개 장면(인물·성경책·투어 + 부에 속하지 않는 전역 기능), 7 = 도착지.
 function renderBeat(p, ctx) {
   if (p === 0) return <><StarField /><Hero isMobile={ctx.isMobile} /></>
   if (p === 1) return <MapBeat isMobile={ctx.isMobile} />
   if (p === 2) return <MontageBeat era={ctx.era} isMobile={ctx.isMobile} />
-  if (p >= 3 && p <= 5) return <MenuScene scene={SCENES[p - 3]} isMobile={ctx.isMobile} />
+  if (p >= 3 && p <= 6) return <MenuScene scene={SCENES[p - 3]} isMobile={ctx.isMobile} />
   return <Destination {...ctx} />
 }
 
@@ -332,7 +376,7 @@ export default function IntroView({ onStart, onOpenTours, onOpenOverview, isMobi
 
       {/* 비트 레이어 — 이전 비트(exiting) 페이드아웃 → 새 비트(delay) 페이드인. 시차라 겹쳐 보이지 않는다. */}
       {layers.map(({ p, id, delay, exiting, settled }) => (
-        <div key={id} className={exiting ? 'beat-out' : settled ? undefined : 'beat-in'} style={{
+        <div key={id} data-intro-layer={p} className={exiting ? 'beat-out' : settled ? undefined : 'beat-in'} style={{
           position: 'absolute', inset: 0, zIndex: 1,
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
           animationDelay: delay ? `${delay}ms` : undefined,
