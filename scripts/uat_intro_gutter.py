@@ -23,10 +23,14 @@
 `getClientRects()`로 **줄 단위 실제 필적 사각형**을 얻는다. 줄바꿈된 각 줄이 따로 잡히므로
 "어느 한 줄이 화면에 붙었다"를 놓치지 않는다.
 
-진입은 `#/intro` 딥링크로 한다(`urlState.parseHash`의 `/intro`). 무해시 진입은 이 시점 기준으로
-인트로에 도달하지 않는다 — 마운트 초기값이 `intro`여도 딥링크 복원 effect가 `parseHash('')`의
-`{stage:'hub'}`를 적용해 허브로 덮는다(useStageNavigation.js). 그 라우팅 결함은 task#280의 범위가
-아니므로 여기서는 고치지 않고, 대신 결함과 무관하게 인트로에 도달하는 딥링크를 쓴다.
+진입은 `#/intro` 딥링크로 한다(`urlState.parseHash`의 `/intro`) — 이 자가 재는 것은 여백이지
+라우팅이 아니므로 비트 8곳에 가장 짧게 도달하는 경로를 쓴다. (task#281에서 무해시 진입도 다시
+인트로에 도달하게 고쳤다. 진입 계약 자체는 `scripts/uat_intro_entry.py`와
+`backend/scripts/validate_intro_entry_route.py`가 전담한다.)
+
+여백과 함께 **금색 구분선(.intro-line)의 프레임 대비 좌우 대칭**도 잰다(task#281 S4) — 블록 자식이라
+`margin: '18px 0'`이면 좌측에 붙고, 프레임이 flex+center인 비트에서만 우연히 가운데였다. 같은 프레임
+안의 시각적 정렬이므로 여백과 한 자에서 본다.
 
 **실패 계층을 자가 구별한다**(회고 260820-190352). 백지 렌더·마운트 끊김·옛 빌드는 "제품이
 틀렸다"가 아니라 "자가 죽었다"이고, 구별 없는 체크는 있지도 않은 결함에 fix-forward를 태우거나
@@ -70,6 +74,27 @@ _INK_JS = """
 """
 
 
+# 금색 구분선(Hero의 .intro-line)의 프레임 content-box 대비 좌우 여백 — 가운데 정렬 여부.
+# 블록 자식이라 `margin: '18px 0'`이면 좌측에 붙고, 부모가 flex+center인 비트에서만 우연히 가운데였다.
+# 결함 클래스 = "금선이 어느 비트에서든 프레임 안에서 좌우 비대칭이다"(특정 비트 하드코딩이 아니다).
+_LINE_JS = """
+(p) => {
+  const layer = document.querySelector('[data-intro-layer="' + p + '"]');
+  if (!layer) return { missing: true };
+  const line = layer.querySelector('.intro-line');
+  if (!line) return { absent: true };
+  const frame = line.closest('[data-intro-frame]');
+  if (!frame) return { noframe: true };
+  const f = frame.getBoundingClientRect(), l = line.getBoundingClientRect();
+  const cs = getComputedStyle(frame);
+  const cl = f.left + parseFloat(cs.paddingLeft), cr = f.right - parseFloat(cs.paddingRight);
+  return { left: l.left - cl, right: cr - l.right };
+}
+"""
+
+LINE_SKEW_MAX = 1.0             # 좌우 여백 차 허용치(px) — 서브픽셀 반올림만 허용
+
+
 class EnvError(Exception):
     """측정 환경 이상 — 제품 결함이 아니다(종료 코드 2)."""
 
@@ -111,6 +136,7 @@ def _measure(page, css=None):
             "worst": min(r["lines"], key=lambda l: min(l["left"], l["right"])),
             "n": len(r["lines"]),
             "scroll_over": r["scrollW"] - r["clientW"],
+            "line": page.evaluate(_LINE_JS, p),
         }
     return out
 
@@ -149,6 +175,19 @@ def _run_retry(pw, width, css=None):
         return _run(pw, width, css)
 
 
+def _line_violations(res):
+    """금선이 프레임 안에서 좌우 비대칭인 비트 — (비트, 좌, 우, 차)."""
+    out = []
+    for p, d in sorted(res.items()):
+        ln = d.get("line") or {}
+        if "left" not in ln:
+            continue        # 그 비트엔 금선이 없다(비트 1~6) — 측정 대상 아님
+        skew = abs(ln["left"] - ln["right"])
+        if skew > LINE_SKEW_MAX:
+            out.append((p, ln["left"], ln["right"], skew))
+    return out
+
+
 def _violations(res, floor):
     return [(p, d) for p, d in sorted(res.items())
             if min(d["min_left"], d["min_right"]) < floor or d["scroll_over"] > 0]
@@ -168,6 +207,18 @@ def _check(pw, kind):
         for p, d in v:   # 실패는 머리부터 전부 본다 — tail로 자르지 않는다(회고 260820-190352)
             bad.append("%dpx 비트 %d — 좌 %.1fpx · 우 %.1fpx (하한 %dpx) · overflow %dpx · «%s»"
                        % (w, p, d["min_left"], d["min_right"], floor, d["scroll_over"], d["worst"]["text"]))
+        lv = _line_violations(res)
+        measured = [p for p, d in sorted(res.items()) if "left" in (d.get("line") or {})]
+        print("  %s %4dpx — 금선 좌우 여백 차: %s (허용 %.0fpx, 비트 %s)"
+              % ("✗" if lv else "✓", w,
+                 " · ".join("비트 %d %.1fpx" % (p, s) for p, _, _, s in _line_violations(res)) or
+                 "전부 %.1fpx 이내" % LINE_SKEW_MAX,
+                 LINE_SKEW_MAX, "·".join(str(p) for p in measured) or "없음"), flush=True)
+        if not measured:
+            raise EnvError("금선(.intro-line)을 어느 비트에서도 못 찾았다 — 측정 훅이 사라졌다")
+        for p, l, r, skew in lv:
+            bad.append("%dpx 비트 %d 금선 — 프레임 대비 좌 %.1fpx · 우 %.1fpx (차 %.1fpx > 허용 %.0fpx)"
+                       % (w, p, l, r, skew, LINE_SKEW_MAX))
     return bad
 
 
@@ -186,7 +237,12 @@ def _selftest(pw):
         assert v, "주입 «%s»에도 검출기가 발화하지 않았다 — 이 UAT는 여백을 재고 있지 않다" % label
         print("  ✓ 주입 «%s» → 비트 %d곳에서 발화 (최악 %s)"
               % (label, len(v), min(("좌%.1f/우%.1f" % (d["min_left"], d["min_right"]) for _, d in v))))
-    print("대조군: 주입 2종 모두 발화 확인 (비트 8곳 순회)")
+    # 금선 검출기의 대조군 — 가운데 정렬을 고의로 무너뜨린다.
+    lv = _line_violations(_run_retry(pw, w, ".intro-line{margin-left:0!important;margin-right:auto!important}"))
+    assert lv, "주입 «금선 좌측 정렬»에도 검출기가 발화하지 않았다 — 이 UAT는 금선 정렬을 재고 있지 않다"
+    print("  ✓ 주입 «금선 좌측 정렬» → 비트 %d곳에서 발화 (최악 차 %.1fpx)"
+          % (len(lv), max(s for _, _, _, s in lv)))
+    print("대조군: 주입 3종 모두 발화 확인 (여백 2종 비트 8곳 순회 + 금선 정렬 1종)")
 
 
 def main():
@@ -207,7 +263,7 @@ def main():
             print("=== %s (하한 %dpx) ===" % (k, MIN_GUTTER[k]), flush=True)
             bad += _check(pw, k)
     if bad:
-        print("\n=== FAIL — 인트로 텍스트가 화면 끝에 붙는다 (%d건) ===" % len(bad))
+        print("\n=== FAIL — 인트로 여백·정렬 불변식 위반 (%d건) ===" % len(bad))
         for b in bad:
             print("  " + b)
         sys.exit(1)

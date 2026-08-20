@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { apiGet } from './api'
-import { encodeHash, parseHash } from './urlState'
+import { encodeHash, parseHash, isNoTarget } from './urlState'
 
 // 화면 단계(Stage)·URL·브라우저 히스토리 상태 머신 (ADR-0009 해시 딥링크 · ADR-0010 뒤로가기 통합).
 // App.jsx에서 추출 — 이 파일은 lucide-react의 Map을 import하지 않고 useNodeSelection의 history(배열)를
@@ -9,11 +9,12 @@ import { encodeHash, parseHash } from './urlState'
 export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, handleNodeLoaded }) {
   // 'intro' | 'hub' | 'explore' | 'overview' | 'tours' | 'book' | 'family'
   // 인트로(task#239) — 무해시 진입 + 켜짐(biblemap-intro !== 'off')이면 허브 대신 인트로가 시작 화면.
-  // 딥링크(해시 있음)는 무조건 스킵. 복원 effect는 hub 해시에 activeStage를 건드리지 않아 이 초기값이 유지된다.
+  // 딥링크(해시 있음)는 무조건 스킵. 무타깃 판정은 urlState의 isNoTarget 하나만 쓴다 — 이 초기값이
+  // 유지되는 것은 아래 마운트 복원 effect가 **같은 술어로** 무타깃을 걸러내고 나가기 때문이다(task#281).
+  // (그전엔 이 자리에 "복원 effect는 hub 해시에 activeStage를 건드리지 않는다"고 적혀 있었는데 정확히
+  //  그 반대였다 — 그 effect가 초기값을 허브로 덮고 있었다. 그래서 게이트를 옆에 뒀다.)
   const [activeStage, setActiveStage] = useState(() => {
-    const h = window.location.hash
-    const noTarget = !h || h === '#' || h === '#/'
-    return noTarget && localStorage.getItem('biblemap-intro') !== 'off' ? 'intro' : 'hub'
+    return isNoTarget(window.location.hash) && localStorage.getItem('biblemap-intro') !== 'off' ? 'intro' : 'hub'
   })
   // 책 상세 페이지의 대상 책 id — selectedNode와 분리(explorePersonId와 대칭). 책 페이지 안에서
   // 사건을 클릭해 시트를 띄워도(selectedNode 변경) 페이지 대상·URL이 흔들리지 않게 한다.
@@ -124,6 +125,16 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   // setState는 마이크로태스크로 미룸(effect 동기 setState 금지 규칙).
   useEffect(() => {
     if (restoredRef.current) return
+    // 무타깃 진입은 딥링크가 아니다 — 이 effect의 계약은 딥링크 복원이므로 여기서 걸러내고 나간다.
+    // 걸러내지 않으면 parseHash('')의 {stage:'hub'}가 applyParsedHash를 타고 초기값 'intro'를 덮는다
+    // (task#281의 결함). 마운트 직후라 applyParsedHash의 hub 분기가 하는 초기화(explorePerson/tour
+    // null)는 이미 그 상태이므로 건너뛰어도 잃는 것이 없다. setRestored만 태워 sync effect의 베이스
+    // 엔트리 write(#/intro 또는 #/)를 트리거한다.
+    if (isNoTarget(initialHashRef.current)) {
+      restoredRef.current = true
+      Promise.resolve().then(() => setRestored(true))
+      return
+    }
     const parsed = parseHash(initialHashRef.current)
     // person slug 해석만 curatedIds(slug↔id 맵)가 필요. overview/tours/tourSlug/hub는
     // curated 로드·실패와 무관하게 즉시 복원(#12: curated 실패 시 #/books·#/tours 고착 방지).

@@ -195,7 +195,7 @@ function Hero({ isMobile }) {
         <span style={{ color: 'var(--gold)' }}>Map</span>
       </h1>
       <div className="intro-line" style={{
-        width: isMobile ? 150 : 220, height: 1, margin: '18px 0',
+        width: isMobile ? 150 : 220, height: 1, margin: '18px auto',
         background: 'var(--gold-dim)', animationDelay: '200ms',
       }} />
       <p className="intro-rise" style={{

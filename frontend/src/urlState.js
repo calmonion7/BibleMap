@@ -37,6 +37,16 @@ export function encodeHash({ stage, personSlug, exploreView, tourSlug, bookId, f
   return '#/' // 허브 (또는 slug/tour 없는 explore — 정상 흐름엔 없음)
 }
 
+// 무타깃 진입 — 특정 화면을 가리키지 않는 첫 진입(`/`·`#`·`#/`)의 원시 해시 형태.
+// 두 가지를 동시에 뜻한다: ① 인트로 관문의 조건(task#239), ② **딥링크 복원의 대상이 아님**(task#281).
+// parseHash는 이 세 형태를 정상적인 허브 URL `{stage:'hub'}`로 파싱하고 그 계약은 유지된다
+// (`#/`는 진짜 허브 주소이고, 그 분기는 저장·이어보기 카드 복원과 공용이다) — 그래서 "딥링크인가"는
+// parseHash가 아니라 이 술어가 답한다. **판정은 이 한 곳에서만 한다**: 두 곳으로 갈리면 한쪽만
+// 고치는 결함이 다시 열린다(backend/scripts/validate_intro_entry_route.py가 게이트로 단언한다).
+export function isNoTarget(hash) {
+  return !hash || hash === '#' || hash === '#/'
+}
+
 // 알 수 없는 형태는 null → 호출부가 허브로 fallback.
 export function parseHash(hash) {
   const h = (hash || '').replace(/^#/, '')
