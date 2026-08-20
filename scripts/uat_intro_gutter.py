@@ -87,7 +87,12 @@ def _freshness():
 
 def _measure(page, css=None):
     """한 뷰포트에서 비트 0~7을 순회 측정 → {beat: {min_left, min_right, lines, scroll_over}}."""
-    page.goto(BASE + "/#/intro", wait_until="domcontentloaded")
+    try:
+        page.goto(BASE + "/#/intro", wait_until="domcontentloaded")
+    except Exception as e:
+        # 원격 BASE(프로덕션)에서는 내비게이션 자체가 일시적으로 실패한다 — 제품 결함이 아니라
+        # 측정 경로의 문제이므로 환경 이상으로 승격해 재시도를 태운다.
+        raise EnvError("%s/#/intro 진입 실패: %s" % (BASE, str(e).splitlines()[0]))
     if css:
         page.add_style_tag(content=css)
     out = {}
@@ -121,7 +126,12 @@ def _run(pw, width, css=None):
         try:
             res = _measure(page, css)
         finally:
-            ctx.close()
+            # 컨텍스트가 이미 죽었으면 close도 던진다 — 그 예외가 원인 예외를 덮으면
+            # 실패 계층 구별(제품 vs 환경)이 무의미해지므로 삼킨다.
+            try:
+                ctx.close()
+            except Exception:
+                pass
         if resp_ok and resp_ok[0] != 200:
             raise EnvError("%s 응답이 %d다 (nginx 마운트 끊김 의심 — docker compose restart nginx)"
                            % (BASE, resp_ok[0]))
