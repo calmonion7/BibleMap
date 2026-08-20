@@ -1,11 +1,11 @@
 ---
-last_mapped_commit: 43f987cb37c2341c3cfeb54e4cf4dc33b4549c64
-mapped: 2026-08-01
+last_mapped_commit: a002881c8e935e3d0f1dccd39ebe6419090ae30b
+mapped: 2026-08-20
 ---
 
 # CONCERNS
 
-현재 코드베이스의 기술 부채·확정 결함·보안 노출·성능 병목·취약 지점·데이터 정합성 위험 목록. 모든 항목을 HEAD(`43f987c`) 기준으로 재추적했고, 다음을 **실제로 실행해** 검증했다.
+현재 코드베이스의 기술 부채·확정 결함·보안 노출·성능 병목·취약 지점·데이터 정합성 위험 목록. 최초 전면 매핑은 HEAD `43f987c` 기준이었고, 이후 task#259~277 커밋들이 실어 나른 부분 갱신 + 이번 갱신(HEAD `a002881`)까지 누적 반영됐다. 이번 갱신에서 다음을 **실제로 실행해** 검증했다.
 
 - `bash scripts/check.sh` 전량 실행 → **12종 파일 검증 + ESLint + 라이브 Neo4j 연대 검증 전부 PASS**
 - `frontend/dist/assets/` 실측(raw·gzip 바이트)
@@ -14,6 +14,8 @@ mapped: 2026-08-01
 - `frontend/src/` · `backend/` 정적 grep(마커·중복·리스너 부재)
 
 직전 매핑(`70f5fc6`, 2026-07-24) 이후 3커밋(`87846fb` 콘텐츠 5종, `415374f` 후속작업 5종, `43f987c` 비유·기적 era 게이트)에서 **직전 문서가 지적한 항목 다수가 실제로 해소**됐다. 아래 첫 절에서 해소/잔존을 분리한다.
+
+이 문서는 이후에도 관련 태스크 커밋(task#259~277)에 실려 그때그때 부분 갱신됐다. 이번 갱신(HEAD `a002881`)은 그 부분 갱신에서 놓친 항목을 마저 닫는다 — 특히 **Known Bugs 2건 모두 해소**(VERSE_MAP 죽은 키 · PersonMiniCard 연도 포맷터 분기), **`Book.startYear/endYear`가 교정 연대의 파생값으로 봉인**(§데이터 정합성 2), ERA_BANDS가 `frontend/src/eraBands.js`로 승급, 절 본문 전수 스캔이 `verse_search.py`로 공용화(§성능 4)됐다.
 
 ---
 
@@ -31,34 +33,24 @@ mapped: 2026-08-01
 | **ERA_BANDS 3중 중복에 정합 게이트 없음** | 스크립트 실행 | `backend/scripts/validate_era_bands_consistency.py` 신설 — TimelineView↔stats.py 경계·이름·순서 + persons.py `_ERA_ORDER` 순서 + covenants.json `era` 유효성 검사, `scripts/check.sh` 배선. **단 커버리지 부분적 — 아래 데이터 정합성 §4** |
 | **비유·기적 지도↔연표 커버리지 무경고 누락 17건** | 스크립트 실행 + 코드 확인 | `backend/scripts/validate_pm_map_coverage.py`가 누락 17건을 `EXPECTED_UNMAPPABLE` 정본으로 고정(회귀·미해석 `placeId` 탐지). UI도 `frontend/src/MapView.jsx:336-342`에서 "위치 없는 비유 N건은 연표에서" 안내 |
 | **데이터 검증 스크립트 CI 미연결** | `deploy.sh` 게이트 단계 | `scripts/check.sh`가 배포 전 하드 게이트로 배선. 실패 시 `exit 1`로 배포 중단. 무음 스킵 경로 2개는 `CHECK_STRICT=1`로 **해소**(task#259, 배포/운영 §1) |
-| **투어 정차지 장면 커버리지 자동 게이트 부재** | 스크립트 실행 | `backend/scripts/validate_scene_coverage.py` 신설 — 정차지 275건↔스케치 키 275건 양방향 대조 + `tourSketches.jsx` 미병합 모듈 탐지, `scripts/check.sh` 배선(task#259) |
+| **투어 정차지 장면 커버리지 자동 게이트 부재** | 스크립트 실행 | `backend/scripts/validate_scene_coverage.py` 신설 — 정차지↔스케치 키 양방향 대조(task#264~266의 출애굽~정복 21건 보강 이후 **296건**↔296건) + `tourSketches.jsx` 미병합 모듈 탐지, `scripts/check.sh` 배선(task#259) |
 | **언약 리본 `marginLeft:auto` 클리핑** | 직전 세션 수정 확인 | `frontend/src/TimelineView.jsx` 잔존 없음 |
+| **`VERSE_MAP`의 죽은 eventId 4개 — 재실행 즉시 `sys.exit(1)`** | `ast.literal_eval`로 `VERSE_MAP` 추출 후 `data/book_events/books.json`과 교차 대조 | **죽은 키 0 · 미커버 0.** task#273(`2caf509`)이 `authored-*` 신원으로 재매핑했고, task#274(`53c94a1`)가 `backend/scripts/validate_approx_book_verses.py`로 이 조건을 배포 게이트에 **재현**(생성기는 실행하지 않음, ADR `260820-003946`) — `scripts/check.sh`의 15종 검증에 배선. 같은 결함 클래스가 `persons.py`의 `_ERA`/`_NAME_KO` 35 slug에 아직 남아 있다(§데이터 정합성 5) |
+| **`PersonMiniCard`의 연도 포맷터가 정본 헬퍼와 갈라짐** | 코드 확인 | task#262(`4353f34`)가 `PersonMiniCard.jsx`의 로컬 `fmtYear`를 지우고 `frontend/src/dates.js`의 `parseYear`를 직접 import — 제로패딩 분기가 사라져 갈라질 수 없다 |
+| **`load_books.py` 재실행이 교정 연대를 무시하고 업스트림 값을 쓴다** | `inject_date_corrections.py` diff 확인 + 라이브 실행 없이 정적 대조 | task#273(ADR `260819-233305`)이 `inject_date_corrections.py`에 `recompute_book_years()`를 추가 — 교정 주입 직후 `CONTAINS_BOOK` 사건의 교정 후 `startDate`로 `Book.startYear/endYear`를 재집계해 SET한다. `deploy.sh`가 이미 이 스크립트를 게이트 앞에서 부르므로 배포 경로에서 자동으로 닫힌다(§데이터 정합성 2) |
 
 ### 잔존 (아래 각 절에서 상세)
 
-`deploy.sh`의 `load_*` 미배선(의도된 결정 — ADR `260801-195022`) · 캐시 무효화가 재시작 의존 · "큐레이션 13인" 주석 드리프트 · CORS `*` · `words.py` 전수 스캔 · `search.py` 전역 스캔 · `journey.py` 무캐시 · 오버레이 빈 폴백 비대칭 · `api.js` 캐시·디듀프 부재 · SPA `hashchange` 미청취 · 대형 컴포넌트 · 대용량 오버레이 상주 · 의존성 caret 미고정 · 백엔드 테스트 0건(의도된 결정 — ADR `260801-195023`).
+`deploy.sh`의 `load_*` 미배선(의도된 결정 — ADR `260801-195022`) · 캐시 무효화가 재시작 의존 · "큐레이션 13인" 주석 드리프트 · CORS `*` · `words.py`·`search.py` 공용 절 전수 스캔(`verse_search.py`, task#267로 두 라우트가 공유) · `journey.py` 무캐시 · 오버레이 빈 폴백 비대칭 · `api.js` 캐시·디듀프 부재 · SPA `hashchange` 미청취 · 대형 컴포넌트(`SidePanel.jsx`, `App.jsx`는 task#257~258 분해로 이탈) · 대용량 오버레이 상주 · 의존성 caret 미고정 · 백엔드 테스트 0건(의도된 결정 — ADR `260801-195023`).
 
 ---
 
 ## Known Bugs (확정 결함)
 
-### 1. `generate_approx_book_verses.py`의 `VERSE_MAP`이 이미 죽어 있다 — 실행 즉시 종료
+**현재 0건 — 이전에 지적된 2건 모두 해소.**
 
-**심각도: 중간 · 시급도: 중간(재실행 시점에 100% 실패)**
-
-`backend/scripts/generate_approx_book_verses.py`의 `VERSE_MAP`(39항목) 중 **7항목(고유 eventId 4개)이 `data/book_events/books.json`에 더는 존재하지 않는다**. 4개 모두 `data/event_dedupe/dedupe.json` 원장에 등장 — 즉 `backend/scripts/apply_event_dedupe.py`가 병합·삭제하고 `data/book_events/books.json`을 다시 쓰면서 `VERSE_MAP`만 남겨둔 결과다.
-
-죽은 eventId(파일 내 `(bookId, eventId)` 쌍): `reca8LvAmFPl1tmnN` · `recYlpu8OdsUJoG8g` · `rec2buqN0Q38Yuqme` · `recGrIgOxWnxVl8h0`(4개 bookId에 중복 등장).
-
-역방향도 어긋난다 — `data/book_events/books.json`의 `authored-*` eventId **7건**(`authored-moses-sinai-law`·`authored-solomon-jerusalem-temple-build`·`authored-paul-ephesus`·`authored-paul-rome-house-arrest` 등)이 `VERSE_MAP`에 미등록이다.
-
-**만졌을 때 깨지는 것**: 스크립트 자신의 가드(`generate_approx_book_verses.py:131-138`)가 첫 죽은 키에서 `sys.exit(1)`을 내므로 **아무 작업도 못 하고 즉시 실패**한다. 책별 근사 절 매핑을 재생성할 수 없다. `scripts/check.sh`는 이 파일을 보지 않는다(생성기이지 검증기가 아니라 게이트 밖).
-
-### 2. `PersonMiniCard`의 연도 포맷터가 정본 헬퍼와 갈라진다 (잠재)
-
-**심각도: 낮음 · 시급도: 낮음(현재 데이터로는 미발현)**
-
-`frontend/src/dates.js:4` `parseYear`는 제로패딩을 벗기지만(`.replace(/^0+/, '')`), `frontend/src/PersonMiniCard.jsx:11-15`의 사본 `fmtYear`에는 그 처리가 없다. `frontend/src/dates.js:1-3` 주석이 `"0049-10-01"` 같은 제로패딩 형식이 실재함을 명시한다. 현재 이 함수는 `birthYear`/`deathYear`(`PersonMiniCard.jsx:33`)에만 쓰이고 라이브 API로 확인한 큐레이션 35인의 값은 전부 비패딩(`'-1085'`·`'30'` 형태)이라 **아직 발현하지 않는다**. 제로패딩 값이 하나라도 들어오면 같은 인물이 화면 위치에 따라 `AD 0049` / `AD 49`로 갈린다.
+- ~~`generate_approx_book_verses.py`의 `VERSE_MAP` 죽은 키 4개(`authored-*` 재키잉 이전 신원)로 재실행 즉시 `sys.exit(1)`~~ → **해소(task#273~274)**. `backend/scripts/generate_approx_book_verses.py`의 `VERSE_MAP`은 `apply_event_dedupe.py` 병합 이후 신원(`authored-moses-sinai-law` 등)으로 재매핑됐고, 지금은 `data/book_events/books.json`과 **39쌍 양방향 완전 일치**(죽은 키 0·미커버 0, 직접 실행해 확인). 이 조건은 이제 생성기 안에만 갇혀 있지 않다 — `backend/scripts/validate_approx_book_verses.py`가 `VERSE_MAP` 리터럴을 `ast.literal_eval`로 직접 읽어(실행 0) 같은 가드를 배포 게이트에 재현하고(ADR `260820-003946`), `scripts/check.sh`에 배선돼 있다. 같은 결함 클래스(하드코딩 slug 테이블 ↔ 데이터 드리프트)가 `persons.py`의 `_ERA`/`_NAME_KO` 35 slug에는 아직 게이트 없이 남아 있다 — §데이터 정합성 5.
+- ~~`PersonMiniCard`의 로컬 `fmtYear`가 제로패딩 처리 누락으로 `frontend/src/dates.js`의 `parseYear`와 갈라질 잠재 위험~~ → **해소(task#262)**. `frontend/src/PersonMiniCard.jsx:4,27`가 이제 `dates.js`의 `parseYear`를 직접 import해 쓴다 — 로컬 사본이 없어 갈라질 수 없다.
 
 ---
 
@@ -86,15 +78,15 @@ mapped: 2026-08-01
 - **검출 수단 없음** — `validate_event_chronology.py`는 앵커 대비 역전과 형제군 이탈은 보지만, "인물 파일별 기준연대가 서로 다름"은 보지 않는다. 새 정차지·사건을 추가할 때는 **인접 앵커와 직접 대조**하는 수밖에 없다(투어 커버리지 3부작이 매번 그렇게 잡았다).
 - **자매 축 — `sortKey` 순서와 `startDate` 순서의 역전(task#265 발견).** 위가 "사건들 사이의 기준연대 불일치"라면 이것은 **같은 사건의 두 필드가 서로 다른 순서를 말하는** 축이다. `sortKey`는 서사 순서를, `startDate`는 화면 연도를 결정하므로 역전되면 정렬과 라벨이 갈린다. 저작 규칙은 [[사건 연대 (startDate)]]로 승급했고(인접 앵커 실측값 사이 · 정수부 공식 금지), 검출도 마찬가지로 **전용 검증기가 없다**. **기존 잔존 2건**(교정하려면 기존 항목의 연도 판단을 건드려야 해 별도 태스크 감): `authored-moses-death-moab`(sd -1406) → `authored-joshua-divine-commission`(sd -1407), `authored-joshua-ebal-covenant`(sd -1404) → `authored-joshua-gibeon-alliance`(sd -1405). task#264~266은 **신규 21건이 걸린 인접쌍만** 게이트로 걸어 역전 0을 확인했다(사전 존재 결함을 게이트에 넣으면 범위 밖 수정을 강요하므로).
 
-### 2. `load_books.py` 재실행이 교정 연대를 무시하고 업스트림(Ussher) 값을 쓴다
+### 2. ~~`load_books.py` 재실행이 교정 연대를 무시하고 업스트림(Ussher) 값을 쓴다~~ (해소 — task#273)
 
-**심각도: 중간 · 시급도: 낮음(수동 실행 스크립트)**
+**심각도: 중간 · 시급도: 낮음 → 해소**
 
-`backend/scripts/load_books.py:80-102` `build_book_year_range()`는 Book의 `startYear`/`endYear`를 **GitHub에서 방금 받아온 원본 이벤트**(`load_books.py:15` `EVENTS_URL`, `:112` `fetch_json`)의 `startDate` 집계로 만든다. 즉 **DB에 적용된 `data/date_corrections/` 교정을 전혀 반영하지 않는다.** `backend/scripts/inject_date_corrections.py`도 Book 노드는 건드리지 않는다.
+과거: `backend/scripts/load_books.py:80-102` `build_book_year_range()`는 Book의 `startYear`/`endYear`를 GitHub 원본 이벤트의 `startDate` 집계로 만들어, `data/date_corrections/` 교정을 반영하지 않았다(ADR-0014의 "재실행 필요" 문서와 구현이 어긋났다).
 
-ADR-0014는 "교정 후 `load_books.py` 재실행이 필요하다"고 적었지만, 실제로 재실행하면 교정과 무관한 Ussher 파생 범위가 다시 쓰인다 — **문서와 구현이 어긋난다.**
+해소(ADR `260819-233305`): `backend/scripts/inject_date_corrections.py`에 `recompute_book_years()`를 추가해, 교정 이벤트 주입 **직후** `CONTAINS_BOOK` 관계로 연결된 사건의 **교정 후** `startDate`를 다시 집계해 `Book.startYear/endYear`를 SET한다. 연도 파싱은 `load_books.py::_parse_year`를 import해 재사용(4번째 파서 선언 금지, ADR `260819-205242`). `deploy.sh`가 이미 이 스크립트를 게이트 앞에서 매 배포 호출하므로(§배포/운영 3), 정본 파생값이 배포 경로에서 자동으로 닫힌다. `load_books.py` **단독** 실행 직후에는 여전히 업스트림 값이 남지만, 이는 기존 "로더 재실행 후 inject 재실행 필수" 규약에 흡수된다.
 
-**만졌을 때 깨지는 것**: 소비처가 실재한다. `frontend/src/useNodeSelection.js:16-17`이 `startYear`/`endYear`를 읽고 → `frontend/src/TimelineView.jsx:132-133`이 그것으로 연표를 필터링하며 `:375`에 "책 범위" 배너를 띄운다. 라이브 확인: 창세기 `startYear=-4003`(Ussher 창조), `endYear=-1406`. 범위 필터가 보수계 이벤트를 잘못 걸러낼 수 있다.
+소비처는 여전히 실재한다: `frontend/src/useNodeSelection.js`가 `startYear`/`endYear`를 읽고 `frontend/src/TimelineView.jsx`가 연표 필터·"책 범위" 배너에 쓴다 — 이제 그 값이 정본 연대계를 따른다.
 
 ### 3. `date_corrections` 재적용 footgun — 두 겹
 
@@ -109,27 +101,27 @@ ADR-0014는 "교정 후 `load_books.py` 재실행이 필요하다"고 적었지�
 
 **심각도: 중간 · 시급도: 중간**
 
-시대 이름·경계는 아래 다섯 곳에 각각 하드코딩돼 있다.
+시대 이름·경계는 아래 각 곳에 하드코딩돼 있다.
 
-1. `frontend/src/TimelineView.jsx:15-24` — `ERA_BANDS`(이름 + `from` 경계)
-2. `backend/app/routes/stats.py:24-33` — `ERA_BANDS`(동일 8튜플). `:22-23` 주석이 수동 복제임을 자백
+1. `frontend/src/eraBands.js:9-18` — `ERA_BANDS`(이름 + `from` 경계). **task#271(ADR `260819-205242`)로 `TimelineView.jsx`에서 이 전용 모듈로 승급** — 통사 연표(`CanonTimelineView.jsx`)가 같은 경계를 재선언 없이 import한다. `TimelineView.jsx`도 이제 자기 `eraOf` 사본 대신 이 모듈의 `eraOf`를 import(중복 1건 자연 소거).
+2. `backend/app/routes/stats.py:24-33` — `ERA_BANDS`(동일 8튜플). `:22-23` 주석이 수동 복제임을 자백. `backend/app/routes/timeline.py`도 신규 `/timeline/canon` 응답에 이 배열을 그대로 재사용(신규 복제 없음).
 3. `backend/app/routes/persons.py:98` — `_ERA_ORDER`(이름·순서만)
 4. `backend/app/routes/persons.py:20-56` — `_ERA`(slug 35개 → era 값)
 5. `data/tours/*.json`의 `era` 필드 · `data/covenants/covenants.json`의 `era` 필드
-6. (문자열 리터럴) `frontend/src/App.jsx:889` · `frontend/src/TimelineView.jsx:397`의 `=== '신약'` 매직 스트링 — 비유·기적 토글 게이트(task#256)
-7. `frontend/src/PersonHub.jsx:9` — `ERA_ORDER` 사본
+6. (문자열 리터럴) `frontend/src/TimelineView.jsx:380` · `frontend/src/ExploreStage.jsx:174`의 `=== '신약'` 매직 스트링 — 비유·기적 토글 게이트(task#256). **task#257~258의 `App.jsx` 분해로 `App.jsx:889`에서 `ExploreStage.jsx`로 위치만 이동**(같은 매직 스트링, 같은 미검증 상태).
+7. `frontend/src/PersonHub.jsx:9` — `ERA_ORDER` 사본. eraBands.js 승급 이후에도 **이 파일은 여전히 재선언**한다(`ERA_BANDS.map(b => b.name)`으로 대체 가능했으나 손대지 않음).
 
-`backend/scripts/validate_era_bands_consistency.py`는 **1·2·3과 covenants.json만** 검사한다. `_ERA` **값**의 유효성, `data/tours/*.json`의 `era`, `App.jsx`의 `'신약'` 리터럴, `PersonHub.jsx`의 `ERA_ORDER`는 **미검사**다. (일회성 대조 결과 현재는 전부 정합 — `_ERA` 35항목 값·투어 9개 era 전부 유효, `_ERA` slug 집합 == `data/person_events/*.json` 35파일.)
+`backend/scripts/validate_era_bands_consistency.py`는 **1·2·3과 covenants.json만** 검사한다(스크래핑 대상이 `TimelineView.jsx`에서 `eraBands.js`로 바뀌었을 뿐 커버리지는 그대로). `_ERA` **값**의 유효성, `data/tours/*.json`의 `era`, `'신약'` 리터럴, `PersonHub.jsx`의 `ERA_ORDER`는 **미검사**다. (일회성 대조 결과 현재는 전부 정합 — `_ERA` 35항목 값·투어 9개 era 전부 유효, `_ERA` slug 집합 == `data/person_events/*.json` 35파일, 언약 era 5건 검증기 통과.)
 
-검증기 자체도 취약하다: `validate_era_bands_consistency.py:31`·`:37`이 **파이썬/JSX 소스를 정규식으로 스크래핑**한다(`re.search(r"ERA_BANDS = \[(.*?)\]", ...)`). 포매팅만 바뀌어도 파싱이 깨지고, 그때 `assert tl, "..."`로 실패하므로 배포가 막힌다(fail-closed라 안전 방향이긴 하다).
+검증기 자체도 취약하다: `validate_era_bands_consistency.py:31`·`:37`이 **파이썬/JSX 소스를 정규식으로 스크래핑**한다(`re.search(r"ERA_BANDS = \[(.*?)\]", ...)`). 포매팅만 바뀌어도 파싱이 깨지고, 그때 `assert tl, "..."`로 실패하므로 배포가 막힌다(fail-closed라 안전 방향이긴 하다). ADR `260819-205242`는 스크래핑 대상을 25줄 전용 모듈로 좁혀 "무관한 편집이 게이트를 깨뜨릴 확률"만 줄였을 뿐, 정규식 스크래핑이라는 취약성 자체는 그대로 인정하고 남겨뒀다.
 
-**만졌을 때 깨지는 것**: `App.jsx:889`의 `'신약'`은 검증 밖이라, 시대 이름을 바꾸면 **비유·기적 토글이 어디서도 안 뜨게 되고 에러도 안 난다.**
+**만졌을 때 깨지는 것**: `'신약'` 리터럴은 검증 밖이라, 시대 이름을 바꾸면 **비유·기적 토글이 어디서도 안 뜨게 되고 에러도 안 난다.**
 
 ### 5. 35 slug 하드코딩 테이블 두 벌이 키 정합을 강제받지 않는다
 
 **심각도: 중간 · 시급도: 낮음**
 
-`backend/app/routes/persons.py:20-56`(`_ERA`)와 `:59-95`(`_NAME_KO`)는 35개 slug를 각각 나열한 병렬 딕셔너리다. `persons.py:119`·`backend/app/routes/places.py:46`이 가드 없이 `_NAME_KO[slug]`를 하므로, `data/person_events/`에 파일을 추가하며 두 딕셔너리 중 하나만 갱신하면 **`KeyError` → 500**이다. 이를 잡는 검증 스크립트가 없다.
+`backend/app/routes/persons.py:20-56`(`_ERA`)와 `:59-95`(`_NAME_KO`)는 35개 slug를 각각 나열한 병렬 딕셔너리다. 가드 없이 `_NAME_KO[slug]`를 하는 지점이 **task#267~271로 2곳에서 4곳으로 늘었다**: `persons.py:119` · `places.py:47`(장소별 인물, 기존) · `places.py:104`(신규 `_place_events` — 장소 페이지 task#270) · `timeline.py:44`(신규 `_person_spans` — 통사 연표 task#271). `data/person_events/`에 파일을 추가하며 두 딕셔너리 중 하나만 갱신하면 **`KeyError` → 500**이 이제 4개 라우트에서 터질 수 있다. 이를 잡는 검증 스크립트는 여전히 없다 — ADR `260820-003946`이 명시적으로 "같은 결함 클래스가 최소 1건 남아 있고, `validate_approx_book_verses.py` 형태를 거의 그대로 재사용할 수 있다"고 지목했다.
 
 ### 6. 하드코딩 단일 ID에 매달린 기능 — `_JESUS_ID`
 
@@ -141,18 +133,19 @@ ADR-0014는 "교정 후 `load_books.py` 재실행이 필요하다"고 적었지�
 
 **심각도: 중간 · 시급도: 낮음**
 
-`backend/scripts/apply_event_dedupe.py:31-33`은 DB뿐 아니라 **저장소의 `data/` JSON 자체**를 다시 쓴다(`person_events`·`verse_events`·`authored_events`·`tours`·`book_events`·`names_ko`·`date_corrections`). 실행하면 미커밋 워킹트리 diff가 생긴다. 그런데 `.github/workflows/deploy.yml:15`는 `git reset --hard origin/main`을 배포 머신 워킹트리(`/Users/calmonion/Project/BibleMap` — 개발 머신과 동일)에서 실행한다. **커밋 전에 push가 발생하면 그 편집이 날아간다.** 위 Known Bugs §1의 `VERSE_MAP` 스테일이 바로 이 스크립트의 파생 효과다.
+`backend/scripts/apply_event_dedupe.py:31-33`은 DB뿐 아니라 **저장소의 `data/` JSON 자체**를 다시 쓴다(`person_events`·`verse_events`·`authored_events`·`tours`·`book_events`·`names_ko`·`date_corrections`). 실행하면 미커밋 워킹트리 diff가 생긴다. 그런데 `.github/workflows/deploy.yml:15`는 `git reset --hard origin/main`을 배포 머신 워킹트리(`/Users/calmonion/Project/BibleMap` — 개발 머신과 동일)에서 실행한다. **커밋 전에 push가 발생하면 그 편집이 날아간다.** 과거 Known Bugs `VERSE_MAP` 죽은 키(현재 해소)가 바로 이 스크립트의 파생 효과였다 — 근본 원인(재쓰기와 하드리셋의 경합)은 여전히 남아 있고, 다음에 걸리는 것은 다른 하드코딩 테이블일 수 있다.
 
 ### 8. 오버레이 빈 폴백이 라우트마다 비대칭
 
 **심각도: 중간 · 시급도: 낮음**
 
-`backend/app/overlays.py:34-43` `_load()`는 파일 부재 시 `{}`, `json.JSONDecodeError` 시 `{}`+WARNING을 돌려준다. `OSError`는 잡지 않아 권한 오류·TOCTOU는 500으로 전파된다. 모든 로더가 `lru_cache(maxsize=1)`(총 **14개**: `overlays.py:46,52,58,64,70,77,83,89,95,101,107,113,121,127`)이라 **기동 시점의 실패가 프로세스 수명 내내 캐시**되고 재시도가 없다.
+`backend/app/overlays.py:34-43` `_load()`는 파일 부재 시 `{}`, `json.JSONDecodeError` 시 `{}`+WARNING을 돌려준다. `OSError`는 잡지 않아 권한 오류·TOCTOU는 500으로 전파된다. 모든 로더가 `lru_cache(maxsize=1)`(총 **15개**: `overlays.py:46,52,58,64,70,77,83,89,95,101,107,113,121,128,134` — task#270이 `:128` `place_context()`를 추가해 14→15)이라 **기동 시점의 실패가 프로세스 수명 내내 캐시**되고 재시도가 없다.
 
 하류 처리가 갈린다.
 
 - **조용히 빈 200을 주는 쪽**: `backend/app/routes/events.py:119`(`/covenants`)·`:134`(`/messianic-prophecies`)·`:162`(`/topical-verses`)·`:177`(`/parables-miracles`), `backend/app/routes/tours.py:88-94`(주석에 "404 아님" 명시), `backend/app/routes/journey.py:84-88`, `backend/app/routes/persons.py:134`·`:177`, `backend/app/routes/reliance.py:99-101`, `backend/app/routes/family.py:47-48`·`:76-83`(**로그조차 없음**).
 - **404를 던지는 쪽**: `backend/app/routes/books.py:89-91`·`:155-157`·`:164-166`, `backend/app/routes/words.py:14-15`·`:25-26`.
+- **혼합형(신규, task#270)**: `GET /place/{place_id}`(`backend/app/routes/places.py`)는 `place_context`·`place_coords`·`_place_to_persons`·`_place_events` **네 출처가 전부 비어야** 404이고, 하나라도 있으면 나머지가 비어도 200 + 부분 빈 필드다. 세 번째 분류축이라 "이 라우트가 404를 던지는가"의 답이 라우트 단위가 아니라 **필드 조합 단위**로 갈린다.
 
 즉 `data/names_ko/books.json`이나 `data/word_distribution.json`이 사라지면 책·단어 라우트는 **전 책 404**가 되고, 나머지는 전부 정상 200 + 빈 화면이 된다. 어느 쪽인지 알려줄 헬스/레디니스 엔드포인트가 없다.
 
@@ -267,17 +260,19 @@ ADR-0014는 "교정 후 `load_books.py` 재실행이 필요하다"고 적었지�
 
 현재 규모에선 체감이 없다(실측 `GET /person/{id}/journey` ≈ 10–16 ms).
 
-### 4. `/words/{book}/verses`가 매 요청 3만여 절 전수 substring 스캔
+### 4. `/words/{book}/verses`·`/search`가 매 요청 3만여 절 전수 substring 스캔
 
-**심각도: 중간 · 시급도: 낮음(현재 규모에선 ≈10–20 ms)**
+**심각도: 중간 · 시급도: 낮음(현재 규모에선 ≈10–20 ms) · 노출 라우트 1→2로 확대(task#267)**
 
-`backend/app/routes/words.py:31-37` — 사용자 입력 `w`로 `overlays.bible_verses()` 전 항목(31,103절, 10.3 MB)을 파이썬 루프로 substring 검사한다. 캐시 없음. `:44`의 `total = len(matches)`도 200건만 반환하면서 전수를 센다. 실측: `?w=사랑` 9–20 ms / 65 KB 응답.
+`backend/app/verse_search.py:12` `search_verses()` — 사용자 입력 `term`으로 `overlays.bible_verses()` 전 항목(31,103절, 10.3 MB)을 파이썬 루프로 substring 검사한다. `words.py`가 자체 구현하던 동일 로직을 이 공용 헬퍼로 흡수했고(중복 제거, 좋은 방향), 대신 **`backend/app/routes/search.py`의 통합 검색이 새로 이 스캔을 탄다** — `frontend/src/SearchPanel.jsx`가 250ms 디바운스로 타자마다 질의를 보내므로, 서로 다른 2자 이상 접두어 각각이 새 전수 스캔 1회를 유발한다(동일 접두어 반복은 `lru_cache`가 흡수). `search.py`는 `MIN_VERSE_QUERY=2`로 1자 질의만 걸러 최악값(전체 매칭)을 막는다. 실측(구 `words.py` 단독 기준): `?w=사랑` 9–20 ms / 65 KB 응답 — `/search`가 추가돼도 현재 규모에선 체감 없음.
 
 ### 5. `lru_cache` 키가 사용자 입력인 라우트들 — 캐시 축출 표면
 
 **심각도: 낮음 · 시급도: 낮음**
 
 `backend/app/routes/books.py:61`(`maxsize=2048`, 키 `(book_id, n)`에서 `n` 무제한)·`books.py:105`(`maxsize=66`, 키 `book_id`)·`persons.py:221`·`persons.py:284`·`places.py:21`(각 `maxsize=256`)이 **검증되지 않은 경로 파라미터**를 캐시 키로 쓴다. 무의미한 키를 반복 호출하면 유효 엔트리를 밀어낼 수 있다. 무인증 공개 API라 접근은 자유롭다.
+
+같은 부류가 task#267·270으로 2곳 늘었다: `backend/app/verse_search.py:12`의 `search_verses(term, book_id, match_en)`(`maxsize=256`)는 키가 **사용자 검색어 원문**이고, `backend/app/routes/places.py`의 신규 `_place_events(place_id)`(`maxsize=256`)는 `place_id`가 키다. 전자는 `/search`·`/words/{book}/verses` 양쪽에서 같은 캐시를 공유하므로 두 라우트의 서로 다른 질의가 같은 256슬롯을 다툰다.
 
 ### 6. `stats.py`의 인물별 Neo4j 왕복 (N+1)
 
@@ -360,15 +355,17 @@ ADR-0014는 "교정 후 `load_books.py` 재실행이 필요하다"고 적었지�
 
 `:122`·`:174`에 `eslint-disable-next-line react-hooks/exhaustive-deps` 2건(의도적, 주석으로 근거 명시).
 
+**우회 사례(task#268·270, 근본 해결 아님)**: 이어보기·저장한 항목 카드(`PersonHub.jsx`의 `SavedRow`)는 `<a href="#...">`가 아니라 `useStageNavigation.js`의 신설 `handleGoToHash()`를 직접 호출해 해시 파싱→상태 적용을 상태 머신 안에서 태운다. `hashchange`에 의존하지 않고 앱이 스스로 제어하는 경로라 이 특정 상호작용은 안전하지만, **네이티브 앵커 기반 해시 이동이나 외부 `location.hash` 대입 경로는 여전히 무방비**다 — 이 문제의 일반 해법(전역 `hashchange` 리스너)이 아니라 회피다.
+
 ### 3. 응답 무효화 패턴이 3종으로 갈리고 27곳에 손으로 반복
 
 **심각도: 낮음 · 시급도: 낮음(프론트 최대 반복 표면)**
 
-- 수동 `let cancelled = false` — 10파일 19곳: `frontend/src/SidePanel.jsx:105,127,142,154,166` · `PersonIntro.jsx:58,68,81` · `App.jsx:85,165` · `BibleOverviewView.jsx:197,224` · `useStageNavigation.js:56,81` · `RelationsView.jsx:47` · `TopicalVersesView.jsx:14` · `StatsView.jsx:54` · `WordDistributionView.jsx:71` · `TourList.jsx:56`
-- `AbortController` — 8파일: `App.jsx:121` · `ChapterReader.jsx:16,27` · `FamilyTree.jsx:207` · `mapRingController.js:112` · `MapView.jsx:120` · `PersonMiniCard.jsx:23` · `RelianceView.jsx:227` · `WordDistributionView.jsx:79`
+- 수동 `let cancelled = false` — 10파일 19곳: `frontend/src/SidePanel.jsx:105,127,142,154,166` · `PersonIntro.jsx:58,68,81` · `App.jsx:85,165` · `BibleOverviewView.jsx:197,224` · `useStageNavigation.js:56,81` · `RelationsView.jsx:47` · `TopicalVersesView.jsx:14` · `StatsView.jsx:54` · `WordDistributionView.jsx:71` · `TourList.jsx:56` · `frontend/src/useExploreJourney.js:27`(신규, task#267~271)
+- `AbortController` — 11파일: `App.jsx:121` · `ChapterReader.jsx:16,27` · `FamilyTree.jsx:207` · `mapRingController.js:112` · `MapView.jsx:120` · `PersonMiniCard.jsx:23` · `RelianceView.jsx:227` · `WordDistributionView.jsx:79` · `PlaceView.jsx:13`(신규) · `SearchPanel.jsx:37`(신규) · `CanonTimelineView.jsx:29`(신규) — 신규 3파일은 전부 이 패턴만 쓴다(좋은 방향)
 - id 키잉 state 비교 — `PersonIntro.jsx:59-61` · `SidePanel.jsx`의 `forNodeId` 가드
 
-`App.jsx`와 `WordDistributionView.jsx`는 한 파일 안에서 두 패턴을 섞어 쓴다. 공유 훅이 없다.
+`App.jsx`·`WordDistributionView.jsx`에 이어 `useExploreJourney.js`도 **한 파일 안에서 두 패턴(`cancelled` + `AbortController`)을 섞어 쓴다**. 공유 훅이 없다.
 
 ### 4. 지도 레이어 색상이 하드코딩 hex라 라이트 테마를 무시한다
 
@@ -381,8 +378,8 @@ ADR-0014는 "교정 후 `load_books.py` 재실행이 필요하다"고 적었지�
 **심각도: 낮음 · 시급도: 낮음**
 
 - 문자열 파서 3벌(동일 규칙, 주석으로 상호 참조): `frontend/src/dates.js:4` `parseYear` · `backend/app/routes/nodes.py:267-276` `_year`(라우트 핸들러 내부 중첩) · `backend/scripts/load_books.py:56-62` `_parse_year` · `backend/scripts/validate_event_chronology.py:66-71` `_year`
-- 프론트 표시용 변형 3벌: `frontend/src/TimelineView.jsx:31-33` `fmtYear`(숫자) · `frontend/src/PersonMiniCard.jsx:11-15` `fmtYear`(문자열, **제로패딩 처리 누락** — Known Bugs §2) · `frontend/src/PersonIntro.jsx:16-40` `formatLifespan`(정수)
-- 시대 분류 2벌: `frontend/src/TimelineView.jsx:25-28` `eraOf` · `backend/app/routes/stats.py:36-41` `_era_of`
+- 프론트 표시용 변형 2벌(task#262로 3벌→2벌 — `PersonMiniCard.jsx`가 자기 사본을 지우고 `dates.js`의 `parseYear`를 직접 씀): `frontend/src/TimelineView.jsx:31-33` `fmtYear`(숫자) · `frontend/src/PersonIntro.jsx:16-40` `formatLifespan`(정수)
+- 시대 분류 2벌(유지, 위치만 이동): `frontend/src/eraBands.js:20-24` `eraOf`(task#271로 `TimelineView.jsx`에서 승급 — `TimelineView.jsx`는 이제 이걸 import) · `backend/app/routes/stats.py:36-41` `_era_of`
 
 ### 6. 슬러그 해석 구현이 5벌 — 같은 이름의 함수가 다른 집합을 돌려준다
 
@@ -404,11 +401,13 @@ ADR-0014는 "교정 후 `load_books.py` 재실행이 필요하다"고 적었지�
 
 ## Tech Debt
 
-### 1. 대형 파일 — 스케치가 프론트 라인 수의 절반
+### 1. 대형 파일 — 스케치가 프론트 라인 수의 절반 가까이
 
-`frontend/src/sketches/` 11파일 합계 **462,928 B / 9,703줄**(전체 `frontend/src` 19,584줄의 약 50%). 1,000줄 초과: `sketches/davidUnitedKingdom.jsx`(1,524) · `sketches/patriarchsCovenant.jsx`(1,259) · `sketches/gospelOfJesus.jsx`(1,207) · `sketches/ageOfJudges.jsx`(1,169) · `sketches/elijahAndElisha.jsx`(1,126) · `frontend/src/App.jsx`(1,081줄 / 51,736 B — **유일한 비스케치 1,000줄 초과**). 다음 티어: `sketches/theEarlyChurch.jsx`(999) · `frontend/src/SidePanel.jsx`(928 / 49,485 B).
+`frontend/src/sketches/` 11파일 합계 **504,434 B / 10,532줄**(전체 `frontend/src` 21,875줄의 약 48% — task#264~266의 `exodusToConquest.jsx` +829줄 반영). 1,000줄 초과: `sketches/davidUnitedKingdom.jsx`(1,524) · `sketches/patriarchsCovenant.jsx`(1,259) · `sketches/gospelOfJesus.jsx`(1,207) · `sketches/ageOfJudges.jsx`(1,169) · `sketches/elijahAndElisha.jsx`(1,126). 다음 티어: `sketches/theEarlyChurch.jsx`(999) · `frontend/src/SidePanel.jsx`(943 / 50,233 B).
 
-스케치는 ADR-0029가 "투어당 1모듈"로 의도한 구조이고 lazy 청크로 격리됐으므로 부채 성격이 다르다. **`App.jsx`·`SidePanel.jsx`가 실질적 부채다.**
+~~`frontend/src/App.jsx`(1,081줄 — 유일한 비스케치 1,000줄 초과)~~ → **해소(task#257~258)**: `App.jsx`가 9개 내비를 `StageNav.jsx`로, 탐험 스테이지를 `ExploreStage.jsx`로 분리해 **535줄 / 26,775 B**로 절반 넘게 줄었다. 이후(task#267~271)의 개인화·검색 기능 추가에도 다시 1,000줄대로 돌아가지 않았다.
+
+스케치는 ADR-0029가 "투어당 1모듈"로 의도한 구조이고 lazy 청크로 격리됐으므로 부채 성격이 다르다. **이제 `SidePanel.jsx`(943줄)만 남은 비스케치 대형 파일이다.**
 
 ### 2. "큐레이션 13인" 주석 드리프트 — 실제는 35인, 새 사례까지 추가됨
 
@@ -458,13 +457,13 @@ ADR-0014는 "교정 후 `load_books.py` 재실행이 필요하다"고 적었지�
 
 ## Test Coverage Gaps
 
-- ~~**자동화 테스트 0건.**~~ → **부분 해소(task#261)**: 프론트 순수 함수 3모듈에 vitest 73건(`urlState`·`mapGeo`·`mapRingController`), `npm test`로 실행되고 `scripts/check.sh`의 프론트 블록에 배선됐다. **백엔드 pytest는 여전히 0건 — 의도된 결정**(ADR `260801-195023`: Neo4j 없이 테스트 가능한 라우트가 둘뿐이라 회수가 적다). React 렌더 테스트·커버리지 도구도 의도적 미도입.
+- ~~**자동화 테스트 0건.**~~ → **부분 해소(task#261, 이후 확대)**: 프론트 순수 함수 5모듈에 vitest **88건**(`urlState`·`mapGeo`·`mapRingController`·`dates`·`useReadingProgress`의 `computeResume`), `npm test`로 실행되고 `scripts/check.sh`의 프론트 블록에 배선됐다. `useReadingProgress.test.js`는 task#276이 잡은 회귀(완독한 책의 이어읽기가 없는 장을 가리키던 결함)의 재발 방지 테스트다. **백엔드 pytest는 여전히 0건 — 의도된 결정**(ADR `260801-195023`: Neo4j 없이 테스트 가능한 라우트가 둘뿐이라 회수가 적다). React 렌더 테스트·커버리지 도구도 의도적 미도입.
 - **ESLint·유닛 테스트는 PR에서 안 돈다.** `npm run lint`/`npm test`는 수동이거나 배포 게이트 시점. 게이트의 프론트 블록은 `frontend/node_modules` 부재 시 스킵이지만, 배포는 `CHECK_STRICT=1`로 호출하므로 **스킵이 곧 실패**다(task#259). PR 시점 CI가 없는 건 그대로(이 프로젝트는 PR을 쓰지 않는다).
 - ~~**ADR-0029가 약속한 투어 정차지 ↔ 장면 스케치 커버리지 대조 스크립트가 없다.**~~ → **해소(task#259)**: `backend/scripts/validate_scene_coverage.py`가 양방향 대조(275↔275) + `tourSketches.jsx` 미병합 모듈까지 잡고 `scripts/check.sh`에 배선됐다.
-- **시대 결합 검증이 부분 커버**(§데이터 정합성 4) — `_ERA` 값·투어 JSON `era`·`App.jsx:889`의 `'신약'` 리터럴 미검사. 게다가 `validate_era_bands_consistency.py`가 **소스 정규식 스크래핑** 방식이라 포매팅 변경에 취약.
-- **`_ERA` ↔ `_NAME_KO` 35키 정합 검증 없음**(§데이터 정합성 5).
+- **시대 결합 검증이 부분 커버**(§데이터 정합성 4) — `_ERA` 값·투어 JSON `era`·`TimelineView.jsx`/`ExploreStage.jsx`의 `'신약'` 리터럴·`PersonHub.jsx`의 `ERA_ORDER` 사본 미검사. 게다가 `validate_era_bands_consistency.py`가 **소스 정규식 스크래핑** 방식이라 포매팅 변경에 취약(스크래핑 대상은 `eraBands.js`로 좁아져 무관 편집에 깨질 확률은 줄었다).
+- **`_ERA` ↔ `_NAME_KO` 35키 정합 검증 없음**(§데이터 정합성 5) — 미가드 호출부가 2곳→4곳으로 늘었는데 게이트는 그대로 0.
 - **`data/authored_persons/` 전용 validate 없음** — 다른 저작 데이터 12종은 검증기가 있다.
-- **하드코딩 ID 테이블 스테일 검출 게이트 없음** — Known Bugs §1이 그 부재의 직접 결과.
+- ~~**하드코딩 ID 테이블 스테일 검출 게이트 없음**~~ → **VERSE_MAP 클래스는 해소(task#274)**: `validate_approx_book_verses.py`가 배포 게이트에 배선됐다. **같은 클래스가 `_ERA`/`_NAME_KO`에 여전히 미해소**(바로 위 항목) — ADR `260820-003946`이 "이번 검증기 형태를 거의 그대로 재사용할 수 있다"고 다음 후보로 명시했다.
 - **Person 생몰 ↔ Event 연대 계 격차 측정 게이트 없음**(§데이터 정합성 1).
 - **`/node/{id}` vs `/node/{id}/neighbors/grouped` 동작 일치 테스트 없음** — `backend/app/routes/nodes.py:120-147`의 `get_node_neighbors_grouped`는 여전히 `-[r]-(m)` 무방향 매치에 정규화·디듀프가 없다. 유일 소비처 `frontend/src/mapRingController.js:112`가 응답의 Event만 읽어 현재 UI 영향은 없다.
 - **UI 검증은 Playwright 수동 실행 의존**, CI 미연동. 증적은 `.forge/reports/`의 수동 캡처뿐.

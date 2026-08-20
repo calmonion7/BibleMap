@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 43f987cb37c2341c3cfeb54e4cf4dc33b4549c64
-mapped: 2026-08-01
+last_mapped_commit: a002881c8e935e3d0f1dccd39ebe6419090ae30b
+mapped: 2026-08-20
 ---
 
 # TESTING
@@ -11,13 +11,15 @@ BibleMap이 정확성을 검증하는 방식. 검증은 (1) 배포 전 단일 �
 
 ## 0. 테스트 러너 실태 — 프론트만 vitest, 백엔드는 의도적 부재
 
-- **프론트: vitest 도입됨(task#261).** `frontend/package.json`의 `devDependencies`에 `vitest`, 스크립트는 `npm test`(= `vitest run`). 별도 config 파일 없음 — vite 설정을 그대로 쓰고 환경은 기본값(`node`, 대상이 순수 함수라 DOM 불요). 대상 3모듈 73건:
+- **프론트: vitest 도입됨(task#261).** `frontend/package.json`의 `devDependencies`에 `vitest`, 스크립트는 `npm test`(= `vitest run`). 별도 config 파일 없음 — vite 설정을 그대로 쓰고 환경은 기본값(`node`, 대상이 순수 함수라 DOM 불요). 대상 5모듈 88건(실측, `npm test`):
   - `src/urlState.test.js` — `encodeHash`/`parseHash` 왕복 대칭(9필드 조합·빈/부분 상태·알 수 없는 해시 방어)
   - `src/mapGeo.test.js` — 11개 export 전수, 빌더마다 **빈 입력 → 유효한 빈 FeatureCollection** 케이스 포함
   - `src/mapRingController.test.js` — 생성 계약과 조기 반환만(순수부가 없어 나머지는 명시 제외, 파일 상단 주석)
+  - `src/dates.test.js` — `parseYear()`의 혼재 연대 문자열 파싱(음수·양수·연-월·제로패딩 등)
+  - `src/useReadingProgress.test.js` — 이어읽기 순수 헬퍼 `computeResume()`의 경계 케이스(완독·중간 공백·`last` 없음 등, task#276 결함의 회귀망). §9의 대조군 원칙 실제 사례.
 - **백엔드: pytest 미도입 — 의도된 결정**(ADR `260801-195023`). Neo4j 없이 테스트 가능한 라우트가 `tours.py`·`words.py` 둘뿐이라 회수가 적다.
 - **React 렌더/상호작용 테스트(jsdom·testing-library)도 미도입** — §5의 Playwright 화면 검증이 이미 덮는다. Playwright는 npm이 아니라 **호스트 Python**(`/opt/homebrew/lib/python3.14/site-packages/playwright`)에 설치돼 있다.
-- **커버리지 도구(c8 등) 미도입** — 측정 대상이 세 모듈뿐이라 숫자가 의미 없다.
+- **커버리지 도구(c8 등) 미도입** — 측정 대상이 다섯 모듈뿐이라 숫자가 의미 없다.
 - 프론트의 정적 게이트는 ESLint(`CONVENTIONS.md` §8) — `npm run lint`·`npx eslint src` 모두 0 error / 0 warning(테스트 파일 포함).
 - 즉 "테스트를 돌린다"의 실체는 **`bash scripts/check.sh`**(§1, vitest를 포함한다)와 §5의 Playwright 화면 검증이다.
 
@@ -33,15 +35,15 @@ CHECK_STRICT=1 bash scripts/check.sh  # 엄격 모드 — 환경 미충족 스�
 ```
 
 - **구성 3블록**
-  1. **파일 기반 데이터 검증 13종** — `python3 -m backend.scripts.validate_<name>` 모듈 실행으로 순서대로: `covenants` · `messianic_prophecies` · `parables_miracles` · `topical_verses` · `pm_map_coverage` · `scene_coverage` · `chapter_sections` · `chapter_summaries` · `quotations` · `person_context` · `god_reliance` · `traits` · `era_bands_consistency`. 전부 **하드 게이트**(DB·네트워크 불요).
+  1. **파일 기반 데이터 검증 15종 + 정합 대조군 1건** — `python3 -m backend.scripts.validate_<name>` 모듈 실행으로 순서대로: `covenants` · `messianic_prophecies` · `parables_miracles` · `topical_verses` · `pm_map_coverage` · `scene_coverage` · `chapter_sections` · `chapter_summaries` · `quotations` · `person_context` · `god_reliance` · `traits` · `era_bands_consistency` · `approx_book_verses`(task#274) · `intro_menu_parity`(task#277). 전부 **하드 게이트**(DB·네트워크 불요). 이어서 `validate_intro_menu_parity --selftest`를 별도 항목으로 돌려 — 이 검사 자신이 고의 드리프트에 실제로 FAIL하는지 대조군으로 확인한다(§9).
   2. **프론트(ESLint · 유닛 테스트)** — `frontend/node_modules`가 있으면 `npx --no-install eslint src`와 `npm test`(vitest, §0)를 이어서 돌리고, 없으면 둘 다 `⊘ 스킵` 경고(엄격 모드에서는 `✗ 실패`). 두 검사가 같은 `node_modules` 가드를 공유한다.
   3. **연대 정합(Neo4j)** — `.env`를 `set -a`로 로드한 뒤 `127.0.0.1:7687` 소켓 연결이 되면 `python3 -m backend.scripts.validate_event_chronology`, 미기동이면 `⊘ 스킵`(엄격 모드에서는 `✗ 실패`).
 - **출력 계약**: 항목마다 `  ✓ <라벨>` / `  ✗ <라벨>` + 실패 시 출력 마지막 8줄. 하나라도 실패하면 `=== check FAILED ===` 후 `exit 1`, 전부 통과면 `=== check PASS ===` 후 0.
 - **환경 의존 항목만 스킵-경고**, 파일 기반 검증은 절대 스킵하지 않는다(스크립트 상단 주석의 설계 계약).
 - **`CHECK_STRICT` 계약(task#259)** — 참이면 위 두 스킵 분기가 `skip()` 헬퍼를 통해 `✗ … (CHECK_STRICT: 스킵 불가)` + `fail=1`이 된다. **`check PASS`가 "전 검사를 실제로 통과했다"를 뜻하는 건 엄격 모드일 때뿐이다.** 미설정 시 스킵-경고 동작은 그대로 — Neo4j 없이 파일 검증만 돌리는 단독 개발 실행이 정당한 용법이기 때문(ADR `260801-195022`).
-- **신규 `validate_*.py`를 만들면 반드시 `scripts/check.sh`의 목록에도 등록한다** — 안 하면 게이트가 잡지 못한다(`.forge/retro/260724-111705-predeploy-validation-gate.md`). 현재 `backend/scripts/validate_*.py`는 14개이며 13개(파일 기반) + 1개(Neo4j)로 **전수가 게이트에 등록돼 있다**.
+- **신규 `validate_*.py`를 만들면 반드시 `scripts/check.sh`의 목록에도 등록한다** — 안 하면 게이트가 잡지 못한다(`.forge/retro/260724-111705-predeploy-validation-gate.md`). 현재 `backend/scripts/validate_*.py`는 16개이며 15개(파일 기반) + 1개(Neo4j)로 **전수가 게이트에 등록돼 있다**.
 - **배포 footgun**: `deploy.sh`가 `check.sh`를 호출하므로 신규 스크립트는 **`deploy.sh` 변경과 반드시 함께 커밋**한다. 러너 체크아웃에 파일이 없으면 게이트가 파일 부재로 배포를 막는다.
-- 실측(2026-08-01, task#259, Neo4j 기동 상태): `CHECK_STRICT=1`로 15개 항목 전부 `✓`, `check PASS`. `frontend/node_modules`가 없는 트리에서는 미설정 시 `⊘` + `check PASS`(exit 0), `CHECK_STRICT=1`은 `✗ eslint src` + `check FAILED`(exit 1).
+- 실측(2026-08-20, Neo4j 기동·`frontend/node_modules` 존재 상태): `CHECK_STRICT=1`로 19개 항목(파일 검증 15 + `--selftest` 1 + eslint 1 + vitest 1 + 연대 정합 1) 전부 `✓`, `check PASS`. `frontend/node_modules`가 없는 트리에서는 미설정 시 `⊘` + `check PASS`(exit 0), `CHECK_STRICT=1`은 `✗ eslint src`·`✗ vitest` + `check FAILED`(exit 1).
 
 ---
 
@@ -63,7 +65,9 @@ CHECK_STRICT=1 bash scripts/check.sh  # 엄격 모드 — 환경 미충족 스�
 | `validate_pm_map_coverage.py` | 위 색인 ↔ `data/place_coords/places.json` | **지도↔연표 커버리지 간극 고정**. `/parables-miracles`(`backend/app/routes/events.py`)와 동일한 mappable 판정으로 좌표 없는 항목 집합을 계산해 `EXPECTED_UNMAPPABLE`(17건 정본)과 대조 — 예상 밖 누락(회귀)·이제 뜨는 항목·해석 안 되는 `placeId`를 각각 `assert`로 잡는다 |
 | `validate_scene_coverage.py` | `data/tours/*.json` ↔ `frontend/src/sketches/*.jsx` ↔ `tourSketches.jsx` | **투어 정차지↔장면 스케치 양방향 커버리지**. 정차지 `stops[].id` 집합과 스케치 레지스트리 키(좁은 정규식 `'authored-…':`)를 대조해 (a) 미저작 정차지(`EXPECTED_UNCOVERED` 허용목록, 현재 비어 있음) (b) 정차지에 없는 고아 키 (c) 허용목록 잔존 (d) **`tourSketches.jsx`에 import·스프레드되지 않은 모듈**을 `assert`로 잡는다. (d)가 없으면 키는 있는데 앱은 아무것도 렌더하지 않는 구멍이 통과한다 |
 | `validate_covenants.py` | `data/covenants/covenants.json` | 언약 수 5~6 · `keyVerseIds` 전수 실존 · `startDate` `int()` 파싱 가능 |
-| `validate_era_bands_consistency.py` | 소스 3곳 + `covenants.json` | `frontend/src/TimelineView.jsx`의 `ERA_BANDS` · `backend/app/routes/stats.py`의 `ERA_BANDS` · `backend/app/routes/persons.py`의 `_ERA_ORDER`를 **정규식으로 파싱**해 이름·순서·경계 일치를 단언하고, `covenants.json`의 `era`가 유효 시대인지 확인(`CONVENTIONS.md` §4.3). `-Infinity`(JS)/`float("-inf")`(Py) 정규화 주의 |
+| `validate_era_bands_consistency.py` | 소스 3곳 + `covenants.json` | `frontend/src/eraBands.js`의 `ERA_BANDS`(task#271에 `TimelineView.jsx`에서 승급) · `backend/app/routes/stats.py`의 `ERA_BANDS` · `backend/app/routes/persons.py`의 `_ERA_ORDER`를 **정규식으로 파싱**해 이름·순서·경계 일치를 단언하고, `covenants.json`의 `era`가 유효 시대인지 확인(`CONVENTIONS.md` §4.3). `-Infinity`(JS)/`float("-inf")`(Py) 정규화 주의 |
+| `validate_approx_book_verses.py` | `generate_approx_book_verses.py`의 `VERSE_MAP` ↔ `data/book_events/books.json` | **양방향 정합**(task#274). `VERSE_MAP`에 있는데 `book_events`에 없는 "죽은 키"(생성기가 `sys.exit(1)`로 죽는 원인) · `book_events`에 있는데 `VERSE_MAP`에 없는 "미커버 쌍"(구절 없는 ⚡ 연결) 둘 다 위반. 생성기를 실행하지 않고 `ast.literal_eval`로 소스만 읽는다(배포 게이트는 판정자이지 작성자가 아니다) |
+| `validate_intro_menu_parity.py` | `frontend/src/IntroView.jsx`의 `SCENES` ↔ `App.jsx`/`ExploreStage.jsx`의 실제 탭 | **인트로 소개 장면 ↔ 실제 하위 메뉴 양방향 정합**(task#277). 부(인물·성경책·투어)별로 (아이콘, 라벨) 쌍 집합을 대조 — 실제에 있고 인트로에 없으면 누락, 인트로에 있고 실제에 없으면 유령. 앱을 실행하지 않고 소스 정적 파싱만으로 판정. `--selftest` 인자로 전 탭에 고의 누락·유령을 순회 주입해 검사가 실제로 FAIL하는지 확인하는 대조군 모드를 갖는다(§9) |
 | `validate_event_chronology.py` | **Neo4j 직독** | (a) 인물 출생<활동<사망 서사 역전 (b) 사사 승계 순서(삿 10–12장) 역전 (c) 대표 앵커(출애굽 -1446·아브라함 소명 -2091·가뭄 선포 -870) 대비 역전 (d) 교정 창(-2200~-600) 내 `rec` 이벤트 목록화 (e) 형제군 ±150년 고립 이탈(전치 오타 후보) + Person 스캔(사망<출생·수명>1000년). 신학적 참여는 `THEOLOGICAL_WHITELIST`로 제외. `--json PATH`로 구조화 리포트 저장 |
 
 - **공통 계약의 예외 4건** — `validate_covenants.py`·`validate_pm_map_coverage.py`·`validate_scene_coverage.py`·`validate_era_bands_consistency.py`는 위반 목록을 모으지 않고 **`assert`로 첫 위반에서 즉시 중단**한다(통과 시 `PASS` 출력). 항목 열거가 필요 없는 소규모/집합 대조 검증에 쓰는 변형.
@@ -117,6 +121,7 @@ UI 동작 검증은 **Python Playwright**(sync API, `/opt/homebrew`의 Python 3.
 - **지도 위 좌표 클릭**: MapLibre 마커는 DOM 셀렉터로 못 잡는다 — `.forge/scratch/task202/uat.py`의 `MAP_HELPER_JS`가 React fiber를 스캔해 map 인스턴스를 `window.__map`에 노출하고, `map.project([lng, lat])` + 캔버스 rect로 화면 좌표를 계산해 `page.mouse.click(x, y)`한다.
 - 시나리오 단계마다 `page.screenshot(path=...)` + `print`로 진행 방출. 애니메이션 상태 판정은 `print(f'{label} >> visible={loc.is_visible()}')` 류 텍스트 라인으로 매트릭스 각 항목의 PASS/FAIL을 로그에 남긴다.
 - 텍스트 특정 함정: "외 2권" 같은 부분 텍스트만으로 칩을 특정하면 같은 문구의 다른 행이 먼저 매치된다 — 사건명 등으로 **행을 먼저 특정한 뒤 행 내부에서** 클릭한다.
+- **`data-*` 속성으로 테스트 훅을 단다(task#267~270 이후 신규 관행)** — 텍스트·구조 매칭이 애매한 새 UI는 전용 `data-*` 속성을 붙여 Playwright가 텍스트 변경에 흔들리지 않고 정확히 특정하게 한다. 실측: `data-bookmark-toggle`·`data-saved-item`/`data-saved-hash`·`data-resume-reading`·`data-reading-progress`·`data-chapter-read`·`data-read-toggle`·`data-verse-id`/`data-verse-highlight`·`data-open-place`·`data-intro-scene`/`data-intro-tabs`/`data-intro-layer`. 값은 판정에 쓸 수 있는 실데이터(id·상태)를 담아, 존재 확인뿐 아니라 `getAttribute` 대조도 가능하게 한다. 기존 화면은 소급 추가하지 않는다 — 새 UI·저장/진도류처럼 텍스트가 자주 바뀌는 화면에 한해 적용.
 
 ### 5.3 뷰포트 = 데스크톱 + 모바일 (필수)
 
@@ -184,7 +189,7 @@ UI 동작 검증은 **Python Playwright**(sync API, `/opt/homebrew`의 Python 3.
 ## 8. CI / 배포 게이트
 
 - `.github/workflows/deploy.yml` — `main` push 시 self-hosted 러너에서 `git fetch origin` → `git reset --hard origin/main` → `bash deploy.sh`. **워크플로 자체에는 테스트 스텝이 없다** — 게이트는 `deploy.sh` 안으로 내려가 있다.
-- `deploy.sh` 순서(task#259 재배치): lock 파일로 동시 배포 차단(`/tmp/biblemap-deploy.lock`, `trap`으로 해제) → macOS 키체인 우회용 임시 `DOCKER_CONFIG` → `.env` 로드 → `[1/7]` **Neo4j 도달 대기**(소켓 확인 최대 15회, 미도달이면 `exit 1`) → `[2/7]` **주입 2종**(`inject_ko_names.py` · `inject_date_corrections.py`, 둘 다 멱등) → `[3/7]` 프론트 `npm install` → `[4/7]` **`CHECK_STRICT=1 bash scripts/check.sh`(§1) — 실패 시 `exit 1`로 빌드 전에 배포 중단** → `[5/7]` `npm run build` → `[6/7]` `docker compose -p biblemap build api` → `[7/7]` `up -d api nginx`.
+- `deploy.sh` 순서(task#259 재배치): lock 파일로 동시 배포 차단(`/tmp/biblemap-deploy.lock`, `trap`으로 해제) → macOS 키체인 우회용 임시 `DOCKER_CONFIG` → `.env` 로드 → `[1/7]` **Neo4j 도달 대기**(소켓 확인 최대 15회, 미도달이면 `exit 1`) → `[2/7]` **주입 2종**(`inject_ko_names.py` · `inject_date_corrections.py`, 둘 다 멱등) → `[3/7]` 프론트 `npm install` → `[4/7]` **`CHECK_STRICT=1 bash scripts/check.sh`(§1) — 실패 시 `exit 1`로 빌드 전에 배포 중단** → `[5/7]` `npm run build` → `[6/7]` `docker compose -p biblemap build api` → `[7/7]` **컨테이너 재시작 2단계**(task#263): `docker compose up -d api` 다음 `docker compose up -d --force-recreate nginx` — nginx는 이미지 빌드가 없고 바인드 마운트 스펙도 불변이라 `nginx.conf`만 바뀌면 Compose가 재생성 필요를 판단하지 못해 no-op이 되기 때문. 정적 서빙 컨테이너라 매 배포 강제 재생성해도 비용은 거의 없다.
 - **왜 주입이 게이트 앞인가**: 뒤에 두면 아무 일도 못 한다 — 교정이 롤백된 DB에서는 게이트의 `validate_event_chronology`가 먼저 배포를 막아 주입에 도달하지 못하고, 게이트가 통과하면 이미 적용돼 있어 no-op이다. 주입은 멱등이므로 검증 전에 DB를 정본으로 되돌린다(ADR `260801-195022`). **`npm install`이 게이트 앞인 이유**는 클린 체크아웃에서 ESLint가 스킵되던 순서 버그의 직접 원인이었기 때문.
 - 대기와 주입이 분리되면서 주입 호출의 `2>/dev/null`이 제거됐다 — 이전에는 `NEO4J_PASSWORD` 미설정 예외가 "Neo4j 준비 대기 중"으로 위장돼 원인이 숨었다.
 - `tee -a "$LOG"` 뒤의 종료코드는 `${PIPESTATUS[0]}`로 포착한다(비-pipefail 환경 관용구).
@@ -193,8 +198,18 @@ UI 동작 검증은 **Python Playwright**(sync API, `/opt/homebrew`의 Python 3.
 
 ---
 
-## 9. 커버리지 실태
+## 9. 회귀 검증의 대조군 원칙 — 기준선 PASS는 아무것도 증명하지 않는다
 
-- **자동 회귀 안전망이 있는 영역**: 저작 데이터의 스키마·통제 어휘·verseID 실존·집합 커버리지(§2, 13종) · 투어 정차지↔장면 스케치 커버리지(§2 `validate_scene_coverage`) · 시대 경계 3중복 드리프트(§2 `validate_era_bands_consistency`) · Neo4j 연대 이상(§2 `validate_event_chronology`) · 프론트 정적 규칙(ESLint) · **프론트 순수 함수 3모듈(§0, vitest 73건)** · 적재 스크립트의 사슬/건수 자체검증 · `_parse_year` 인라인 assert.
+task#276·#277에서 승급된 원칙(회고 `260820-003946`, ADR `260820-003946-script-guard-reproduced-in-gate.md`): **새로 만든 검사가 기준선에서 통과한다는 사실만으로는 그 검사가 실제로 무언가를 판정하고 있다는 근거가 안 된다.** 검사 로직 자체가 죽어 있거나(예: 파싱이 조용히 빈 결과를 내고 "위반 0"으로 오판) 대조 대상을 잘못 짚었을 수 있기 때문 — 이 경우 기준선 PASS와 "검사가 고장나 항상 PASS"는 겉으로 구별되지 않는다. 그래서 **회귀 검사·게이트는 "이 검사가 실패할 수 있다"를 스스로 증명하는 대조군을 함께 둔다**: 검사 대상에 알고 있는 결함을 고의로 주입한 사본을 만들어, 그 사본에서는 검사가 반드시 FAIL함을 확인한다.
+
+- **백엔드 검증기의 `--selftest`** — `backend/scripts/validate_intro_menu_parity.py`(§2)는 `--selftest` 인자로 인메모리 사본에 고의 드리프트(탭 누락 1건씩, 유령 탭 1건)를 **전 탭 순회로** 주입해 매번 FAIL하는지 확인한다. 대상을 하나로 고정하면 "그 항목에 우연히 맞춰진 검사"인지 가릴 수 없어서 전수 순회가 계약이다. `scripts/check.sh`(§1)가 기준선 실행과 별도 항목으로 `--selftest`를 호출해 배포 게이트에 상시 배선돼 있다.
+- **vitest 회귀 테스트의 "수정 전 실패 확인"** — `frontend/src/useReadingProgress.test.js`(§0)는 파일 상단 주석에 "이 테스트는 수정 전 소스(HEAD `0bd58a7`)에서 해당 케이스가 실제로 실패함을 확인한 뒤 추가했다"를 명시한다. 결함을 고친 커밋과 그 결함을 재현하는 테스트를 함께 작성할 때, 테스트가 그 결함을 정말 잡아내는지 **고친 커밋 이전 소스에 대고 한 번 돌려 확인**하는 것이 이 원칙의 최소 실천형이다.
+- **적용 기준**: 모든 검사에 대조군을 요구하지 않는다 — 근거가 명확한 구조적 스캔(예: verseID 실존, 통제 어휘 소속)은 로직이 단순해 죽은 검사가 되기 어렵다. 대조군은 **문자열/AST 정규식 파싱으로 소스를 스크래핑하는 검사**(파싱 패턴이 코드 리팩터로 조용히 깨질 수 있음)나 **"완료 기준"처럼 절대어로 판정하는 신규 회귀 테스트**에 우선 적용한다.
+
+---
+
+## 10. 커버리지 실태
+
+- **자동 회귀 안전망이 있는 영역**: 저작 데이터의 스키마·통제 어휘·verseID 실존·집합 커버리지(§2, 15종) · 투어 정차지↔장면 스케치 커버리지(§2 `validate_scene_coverage`) · 시대 경계 3중복 드리프트(§2 `validate_era_bands_consistency`) · `VERSE_MAP`↔`book_events` 양방향 정합(§2 `validate_approx_book_verses`) · 인트로↔실제 하위 메뉴 정합, 대조군 있음(§2·§9 `validate_intro_menu_parity`) · Neo4j 연대 이상(§2 `validate_event_chronology`) · 프론트 정적 규칙(ESLint) · **프론트 순수 함수 5모듈(§0, vitest 88건)** · 적재 스크립트의 사슬/건수 자체검증 · `_parse_year` 인라인 assert.
 - **자동 안전망이 없는 영역**: FastAPI 라우트의 응답 계약(엔드포인트 단위 테스트 0건 — 의도된 결정, ADR `260801-195023`) · Cypher 쿼리 결과 · React 컴포넌트 렌더/상호작용 · `mapRingController.js`의 애니메이션 진행·`expandPlace` 경로(맵 인스턴스 의존이라 명시 제외). 이 영역의 회귀는 Playwright 화면 검증과 사용자 피드백에 의존한다.
-- **커버리지 수치는 측정되지 않는다** — coverage 도구(pytest-cov·c8 등) 설정이 없다(의도적 — 측정 대상이 세 모듈뿐). `scripts/check.sh`의 PASS/FAIL이 유일한 기계 판정이다.
+- **커버리지 수치는 측정되지 않는다** — coverage 도구(pytest-cov·c8 등) 설정이 없다(의도적 — 측정 대상이 다섯 모듈뿐). `scripts/check.sh`의 PASS/FAIL이 유일한 기계 판정이다.

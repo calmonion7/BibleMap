@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 43f987cb37c2341c3cfeb54e4cf4dc33b4549c64
-mapped: 2026-08-01
+last_mapped_commit: a002881c8e935e3d0f1dccd39ebe6419090ae30b
+mapped: 2026-08-20
 ---
 
 # INTEGRATIONS
@@ -62,7 +62,7 @@ BibleMap이 의존하는 외부 데이터·서비스·데이터베이스·인프
 
 ## 인증 / 웹훅
 
-- 사용자 인증·세션·토큰 없음. API는 공개 읽기 전용 — `backend/app/main.py`의 `CORSMiddleware`가 `allow_origins=["*"]`, `allow_credentials=False`, `allow_methods=["GET"]`. 라우트 30개 전부 GET이며 쓰기 엔드포인트가 존재하지 않는다.
+- 사용자 인증·세션·토큰 없음. API는 공개 읽기 전용 — `backend/app/main.py`의 `CORSMiddleware`가 `allow_origins=["*"]`, `allow_credentials=False`, `allow_methods=["GET"]`. 라우트 32개 전부 GET이며 쓰기 엔드포인트가 존재하지 않는다.
 - 시스템에 존재하는 비밀은 두 개뿐: Neo4j 비밀번호(`NEO4J_PASSWORD`, 루트 `.env` — gitignore됨)와 빌드타임 전용 `ANTHROPIC_API_KEY`. OAuth·API 게이트웨이·JWT·레이트리밋 미들웨어 없음.
 - 애플리케이션 레벨 웹훅 없음. 유일한 인바운드 트리거는 GitHub `push`(main) 이벤트 → self-hosted 러너 배포.
 
@@ -71,27 +71,28 @@ BibleMap이 의존하는 외부 데이터·서비스·데이터베이스·인프
 - 리모트: `https://github.com/calmonion7/BibleMap.git`(origin). 워크플로는 `.github/workflows/deploy.yml` 하나뿐 — 테스트·린트 전용 워크플로 없음(린트/검증은 `deploy.sh`가 부르는 `scripts/check.sh`에서 배포 직전에 돈다).
 - 워크플로: `on: push` (`branches: [main]`) → `runs-on: self-hosted` → 단일 스텝이 `cd /Users/calmonion/Project/BibleMap && git fetch origin && git reset --hard origin/main && bash deploy.sh`. 체크아웃 액션도 없이 러너 머신의 작업 디렉터리(= 이 레포 클론)를 직접 리셋한다. GitHub Secrets 사용 없음(비밀은 머신 로컬 `.env`에서 온다).
 - self-hosted 러너: 이 레포 전용 디렉터리 `/Users/calmonion/actions-runner-biblemap` + 전용 launchd 서비스 `~/Library/LaunchAgents/actions.runner.calmonion7-BibleMap.calmonionui-MacBookPro-biblemap.plist`. 같은 머신에 다른 프로젝트 러너(`actions-runner-lab-taebro`, `actions-runner-portfolion`)가 공존하므로 러너 디렉터리를 재사용/재등록하면 이 레포가 무음 미배포된다.
-- 배포 실행체 `deploy.sh`: 락(`/tmp/biblemap-deploy.lock`) → 임시 `DOCKER_CONFIG`(macOS 키체인 우회, `~/.docker/cli-plugins` 심링크로 compose 플러그인 인식) → `.env` 로드 → `scripts/check.sh` 게이트 → 프론트 빌드 → `docker compose -p biblemap build api` → `up -d api nginx` → `python3 backend/scripts/inject_ko_names.py`(최대 15회 재시도, 실패 시 배포 중단). 로그는 `~/Library/Logs/com.biblemap.deploy.log`. `load_*` 적재는 배포가 하지 않는다.
+- 배포 실행체 `deploy.sh`(task#259/ADR `260801-195022`로 순서 재구성): 락(`/tmp/biblemap-deploy.lock`) → 임시 `DOCKER_CONFIG`(macOS 키체인 우회, `~/.docker/cli-plugins` 심링크로 compose 플러그인 인식) → `.env` 로드 → Neo4j 도달 대기 → **데이터 주입**(`inject_ko_names.py` → `inject_date_corrections.py`, 둘 다 멱등, 검증보다 앞) → `npm install` → `CHECK_STRICT=1 scripts/check.sh` 게이트(스킵-경고를 실패로 승격) → 프론트 빌드 → `docker compose -p biblemap build api` → `up -d api` + `up -d --force-recreate nginx`(task#263 — `nginx.conf`만 바뀌면 Compose가 재생성을 감지 못해 매번 강제 재생성). 로그는 `~/Library/Logs/com.biblemap.deploy.log`. `load_*` 적재는 배포가 하지 않는다.
 - 프로덕션 도메인은 이 머신 스택 앞단의 프록시라 `localhost:8080` == prod이며 동일 Neo4j를 본다. `data/`가 볼륨 마운트이므로 데이터만 바뀌면 `docker compose -p biblemap restart api`로 충분(lru_cache 비우기).
 - 컨테이너 레지스트리 미사용(이미지는 로컬 빌드), 클라우드 PaaS·CDN·오브젝트 스토리지 연동 없음.
 
-## API 엔드포인트 인벤토리 (런타임, GET 전용 30개)
+## API 엔드포인트 인벤토리 (런타임, GET 전용 32개)
 
 `backend/app/routes/*.py`. 모두 Neo4j + `data/` 오버레이에서 응답을 합성한다.
 
 - `nodes.py` (4): `/person/{node_id}/event-ids`, `/node/{node_id}/places`, `/node/{node_id}/neighbors/grouped`, `/node/{node_id}`
-- `search.py` (1): `/search`
+- `search.py` (1): `/search` — 통합 검색(task#267). Neo4j 노드 검색 + `verse_search.search_verses()`(절 본문 substring 검색, `words.py`와 공유)를 한 응답(`{nodes, verses}`)으로 합성
 - `events.py` (6): `/events`, `/covenants`, `/messianic-prophecies`, `/topical-verses`, `/parables-miracles`, `/event/{event_id}/verses`
 - `books.py` (4): `/books-overview`, `/book/{book_id}/chapters`, `/book/{book_id}/quotations`, `/book/{book_id}/chapter/{n}`
 - `persons.py` (4): `/persons/curated`, `/keypeople-cards`, `/person/{node_id}/connections`, `/person/{node_id}/relations`
 - `family.py` (1): `/person/{node_id}/family`
 - `journey.py` (1): `/person/{person_id}/journey`
-- `places.py` (1): `/place/{place_id}/curated-persons`
+- `places.py` (2, `/place/{place_id}` 신규): `/place/{place_id}/curated-persons`, `/place/{place_id}`(task#270 — 배경·핵심 구절·좌표·거쳐간 인물·그곳의 사건을 한 응답으로. 넷 다 비면 404)
 - `tours.py` (2): `/tours`, `/tour/{tour_id}`
 - `verses.py` (1): `/verse/{verse_id}/persons`
-- `words.py` (2): `/words/{book_id}`, `/words/{book_id}/verses`
+- `words.py` (2): `/words/{book_id}`, `/words/{book_id}/verses` — 절 검색은 `verse_search.search_verses()`로 위임(이전엔 자체 구현)
 - `reliance.py` (2): `/person/{person_id}/reliance`, `/reliance/ranking`
 - `stats.py` (1): `/stats` — 그래프 전역 집계(headline 총계·최다 등장 인물 Top10·최장 여정·시대별 사건 분포·책별 장수). `lru_cache(maxsize=1)` + `Cache-Control: max-age=300`.
+- `timeline.py` (1, 신규, task#271): `/timeline/canon` — 시대 밴드(`stats.ERA_BANDS` 재사용) + 전 성경 사건(`events._compute_events()` 재사용) + 큐레이션 인물 활동 구간(`person_events/<slug>.json`의 `sortKey` min/max)을 한 응답으로. 신규 데이터 저작 없이 기존 출처만 재조합. `functools.lru_cache(maxsize=1)` + `Cache-Control: max-age=300`.
 
 ## 오버레이 데이터셋 ↔ 로더 ↔ 엔드포인트 배선
 
@@ -110,7 +111,8 @@ BibleMap이 의존하는 외부 데이터·서비스·데이터베이스·인프
 | `messianic_prophecies/prophecies.json` | `messianic_prophecies()` | `events.py` `/messianic-prophecies` |
 | `covenants/covenants.json` | `covenants()` | `events.py` `/covenants` |
 | `jesus_parables_miracles/index.json` | `parables_miracles()` | `events.py` `/parables-miracles` |
-| `place_coords/places.json` | `place_coords()` | `events.py`·`journey.py`·`stats.py` |
+| `place_coords/places.json` | `place_coords()` | `events.py`·`journey.py`·`stats.py`·`places.py` `/place/{id}` |
+| `place_context/places.json` | `place_context()`(신규 로더 — 데이터·주입 스크립트 `inject_place_context.py`는 기존, 오버레이 배선만 신규) | `places.py` `/place/{id}` |
 | `topical_verses/topics.json` | `topical_verses()` | `events.py` `/topical-verses` |
 | `verse_persons/index.json` | `verse_persons()` | `verses.py` `/verse/{id}/persons` |
 

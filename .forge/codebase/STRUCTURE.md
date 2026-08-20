@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 43f987cb37c2341c3cfeb54e4cf4dc33b4549c64
-mapped: 2026-08-01
+last_mapped_commit: a002881c8e935e3d0f1dccd39ebe6419090ae30b
+mapped: 2026-08-20
 ---
 
 # STRUCTURE
@@ -23,10 +23,11 @@ BibleMap/
 │   ├── eslint.config.js      flat config, __BUILD_ID__ 전역 선언
 │   └── .env.production       VITE_API_URL=/api
 ├── data/                     그래프 로더 입력 + 런타임 오버레이 JSON(api가 /app/data로 마운트)
+├── assets/whiteboard/        앱 코드와 무관 — 화이트보드 애니메이션 소스(인트로 몽타주 영상 제작용, ADR 260820-005611)
 ├── scripts/check.sh          배포 전 검증 게이트(AI 불요, 단독 실행 가능)
 ├── nginx/nginx.conf          /api → api:8000 프록시 + 정적 캐시 규칙 + SPA 폴백
 ├── docker-compose.yml        neo4j · api · nginx (프로젝트명 biblemap)
-├── deploy.sh                 검증 → 프론트 빌드 → api 이미지 빌드 → up -d → inject_ko_names
+├── deploy.sh                 Neo4j 대기 → inject 2종 → npm install → 검증(엄격) → 빌드 → api 이미지 → up -d(nginx는 강제 재생성)
 ├── .github/workflows/deploy.yml   push main → self-hosted 러너 → deploy.sh
 ├── .forge/                   forge 루프 상태 + 영구 문서(CONTEXT.md·adr/·retro/·codebase/)
 ├── .claude/agents/           프로젝트 도메인 서브에이전트 카드 5종
@@ -42,10 +43,11 @@ BibleMap/
 
 | 파일 | 내용 |
 |---|---|
-| `main.py` | FastAPI 진입점. `_configure_logging()`(라우터 import 전 1회) → `lifespan`(인덱스) → CORS(GET) → `include_router` 13개 |
+| `main.py` | FastAPI 진입점. `_configure_logging()`(라우터 import 전 1회) → `lifespan`(인덱스) → CORS(GET) → `include_router` 14개 |
 | `db.py` | `get_driver()` Neo4j 드라이버 싱글턴 |
-| `overlays.py` | `_resolve`/`_resolve_dir`/`_load` + 오버레이 함수 14개(각 `@lru_cache(maxsize=1)`) + `curated_person_id` |
-| `routes/` | 라우터 모듈 13개(각 `router = APIRouter()`, prefix 없이 절대 경로) |
+| `overlays.py` | `_resolve`/`_resolve_dir`/`_load` + 오버레이 함수 15개(각 `@lru_cache(maxsize=1)`) + `curated_person_id` |
+| `verse_search.py` | `search_verses(term, book_id, match_en)` — 절 본문 substring 검색 공용 헬퍼(`@lru_cache(256)`), `search.py`·`words.py` 공유 |
+| `routes/` | 라우터 모듈 14개(각 `router = APIRouter()`, prefix 없이 절대 경로) |
 
 `backend/app/routes/` 파일별 주요 경로:
 
@@ -53,23 +55,24 @@ BibleMap/
 |---|---|
 | `nodes.py` | `/node/{id}`, `/node/{id}/places`, `/node/{id}/neighbors/grouped`, `/person/{id}/event-ids` |
 | `events.py` | `/events`, `/covenants`, `/messianic-prophecies`, `/topical-verses`, `/parables-miracles`, `/event/{id}/verses` |
-| `stats.py` | `/stats` (그래프 집계, `ERA_BANDS` — `TimelineView.jsx`와 수동 복제) |
+| `stats.py` | `/stats` (그래프 집계, `ERA_BANDS` — `frontend/src/eraBands.js`와 수동 복제) |
+| `timeline.py` | `/timeline/canon` (통사 연표, task#271 — 신규 저작 0, `stats.ERA_BANDS`·`events._compute_events`·`person_events/*.json`을 재조합) |
 | `books.py` | `/books-overview`, `/book/{id}/chapters`, `/book/{id}/quotations`, `/book/{id}/chapter/{n}` |
 | `persons.py` | `/persons/curated`, `/keypeople-cards`, `/person/{id}/connections`, `/person/{id}/relations` |
 | `journey.py` | `/person/{id}/journey` (+ 공유 헬퍼 `_build_id_to_slug`·`_load_events`·`_fetch_place_coords`) |
 | `tours.py` | `/tours`, `/tour/{id}` |
 | `family.py` | `/person/{id}/family` |
-| `places.py` | `/place/{id}/curated-persons` |
+| `places.py` | `/place/{id}/curated-persons`, `/place/{id}`(장소 페이지, task#270) |
 | `reliance.py` | `/person/{id}/reliance`, `/reliance/ranking` |
-| `words.py` | `/words/{book}`, `/words/{book}/verses` |
+| `words.py` | `/words/{book}`, `/words/{book}/verses`(`verse_search.search_verses` 재사용) |
 | `verses.py` | `/verse/{id}/persons` |
-| `search.py` | `/search` |
+| `search.py` | `/search`(통합 검색, task#267 — 노드 + 절 본문 `{nodes, verses}`, `verse_search.search_verses` 재사용) |
 
 라우트 간 결합에서 알아야 할 것:
 
-- `persons.py`의 모듈 상수 `_ERA`(slug→시대, 현재 35개)·`_NAME_KO`(slug→한글명)·`_ERA_ORDER`가 큐레이션 인물 레지스트리다. `journey.py`·`tours.py`·`stats.py`가 이를 import한다(모듈 docstring에 남은 "13인"은 오래된 표현이며 실제는 35 slug).
-- `stats.py`는 자체 헬퍼 대신 `journey._build_id_to_slug`·`_load_events`·`_fetch_place_coords`와 `persons._build_list`·`_NAME_KO`를 재사용한다.
-- `overlays` 모듈을 통째로 import하는 라우트는 `events.py`·`books.py`·`words.py`·`verses.py`. 나머지(`journey.py`·`tours.py`·`persons.py`·`reliance.py`·`family.py`·`places.py`)는 slug별 파일을 직접 읽어야 해서 `overlays._resolve`/`_resolve_dir`만 가져다 쓴다.
+- `persons.py`의 모듈 상수 `_ERA`(slug→시대, 현재 35개)·`_NAME_KO`(slug→한글명)·`_ERA_ORDER`가 큐레이션 인물 레지스트리다. `journey.py`·`tours.py`·`stats.py`·`places.py`·`timeline.py`가 이를 import한다(모듈 docstring에 남은 "13인"은 오래된 표현이며 실제는 35 slug).
+- `stats.py`는 자체 헬퍼 대신 `journey._build_id_to_slug`·`_load_events`·`_fetch_place_coords`와 `persons._build_list`·`_NAME_KO`를 재사용한다. `timeline.py`는 여기에 더해 `stats.ERA_BANDS`·`_era_of`와 `events._compute_events`를 재사용한다(신규 쿼리·저작 없이 세 출처를 재조합).
+- `overlays` 모듈을 통째로 import하는 라우트는 `events.py`·`books.py`·`words.py`·`verses.py`·`places.py`(task#270부터 — `place_context()`·`place_coords()` 소비). 나머지(`journey.py`·`tours.py`·`persons.py`·`reliance.py`·`family.py`)는 slug별 파일을 직접 읽어야 해서 `overlays._resolve`/`_resolve_dir`만 가져다 쓴다. `verse_search.py`도 `overlays.bible_verses()`·`books_ko()`를 통째 import로 쓴다(라우트는 아니지만 `search.py`·`words.py`가 위임하는 공용 모듈).
 
 ### 스크립트 (`backend/scripts/`)
 
@@ -81,7 +84,7 @@ BibleMap/
 | `inject_*` | 기존 노드에 프로퍼티 SET | `inject_ko_names`, `inject_date_corrections`, `inject_book_context`, `inject_person_context`, `inject_person_traits`, `inject_place_context` |
 | `generate_*` | 오버레이 JSON 산출(일부 LLM 사용, ADR-0006) | `generate_bible_text`, `generate_event_verses`, `generate_book_context`(+`_enrich`), `generate_book_events`, `generate_person_context`, `generate_person_event_verses`, `generate_person_traits`, `generate_verse_events`, `generate_verse_text`, `generate_approx_book_verses` |
 | `build_*` | 색인·분포 빌드 | `build_word_distribution`, `build_verse_persons`, `build_word_verse_index` |
-| `validate_*` | 데이터 검증(대부분 `scripts/check.sh` 게이트 항목) | `validate_covenants`, `validate_messianic_prophecies`, `validate_parables_miracles`, `validate_topical_verses`, `validate_pm_map_coverage`, `validate_chapter_sections`, `validate_chapter_summaries`, `validate_quotations`, `validate_person_context`, `validate_god_reliance`, `validate_traits`, `validate_era_bands_consistency`, `validate_event_chronology`(Neo4j 필요) |
+| `validate_*` | 데이터 검증(15종 `scripts/check.sh` 게이트 항목 + Neo4j 필요 1종) | `validate_covenants`, `validate_messianic_prophecies`, `validate_parables_miracles`, `validate_topical_verses`, `validate_pm_map_coverage`, `validate_scene_coverage`(투어 정차지↔장면 스케치 커버리지, task#259), `validate_chapter_sections`, `validate_chapter_summaries`, `validate_quotations`, `validate_person_context`, `validate_god_reliance`, `validate_traits`, `validate_era_bands_consistency`, `validate_approx_book_verses`(생성기 `VERSE_MAP`↔`book_events` 정합, task#274), `validate_intro_menu_parity`(인트로 소개 장면↔실제 하위 메뉴 정합, `--selftest` 대조군 있음, task#277), `validate_event_chronology`(Neo4j 필요) |
 | `apply_*` / `enrich_*` | 일회성 데이터 조작 | `apply_event_dedupe`(`data/event_dedupe/dedupe.json` 기반 실삭제), `enrich_place_coords` |
 
 ## 프론트엔드 (`frontend/src/`)
@@ -93,11 +96,17 @@ BibleMap/
 | 파일 | 역할 |
 |---|---|
 | `main.jsx` | 루트 렌더(StrictMode) + 라이트 테마 동기 반영 |
-| `App.jsx` | 스테이지 조건 렌더 + 스테이지별 내비 바 + 상세 시트/패널 + 여정 데이터 소유 |
+| `App.jsx` | 스테이지 조건 렌더(13종) + `StageNav` 조립 + 상세 시트/패널 + 검색 오버레이 + 여정·재생·개인화 훅 소유(task#257~258로 988줄→535줄 분해) |
+| `StageNav.jsx` | 스테이지 하위 내비 공용 껍데기(`onBack`·`lead`·`auxLabel`·`trailing` 슬롯 + `StageNav.Tab`/`StageNav.Title`, `NAV_H` export) — 과거 스테이지별 `render<X>Nav()` 9개를 대체 |
+| `ExploreStage.jsx` | `explore` 스테이지 전용(지도·연표·관계·소개·의존·족보 6뷰 조립) — App.jsx에서 분리(task#257), `journey`·`playback`은 prop으로 주입받음 |
 | `useStageNavigation.js` | 스테이지·URL·히스토리 상태 머신(모든 `open*`/`*Back` 핸들러 export) |
 | `useNodeSelection.js` | 노드 선택/히스토리 원시값 |
+| `useExploreJourney.js` | 탐험 여정 데이터(정차지·투어 메타·인물 사건 Set) — **App에서만 호출**(ExploreStage 언마운트 시 상태 유실 방지, 파일 상단 주석 근거) |
 | `useTourPlayback.js` | 투어 자동재생 시퀀서 훅(상태만, 카메라는 App/MapView) |
+| `useBookmarks.js` | 북마크·최근 이어보기(task#268, `localStorage` 전용, 서버 쓰기 없음) |
+| `useReadingProgress.js` | 장 단위 읽음 표시 + 이어읽기 판정 `computeResume`(task#269, `localStorage` 전용) |
 | `urlState.js` | `encodeHash`/`parseHash` 해시 코덱 |
+| `eraBands.js` | `ERA_BANDS`·`eraOf(y)` — task#271에 `TimelineView.jsx`에서 공용 모듈로 승급(`backend/app/routes/stats.py`와 수동 복제, `validate_era_bands_consistency`가 검사) |
 | `api.js` | `apiGet(path, {signal})` 공유 클라이언트 |
 | `theme.js` | `TYPE_COLOR`·`TYPE_KO`·`TYPE_ORDER`·`typeColor`/`typeKo`·`VALENCE_COLOR`·`PM_TYPE_COLOR`·`SELECT_HL`·`GENRE_META` |
 | `constants.js` | `MOBILE_BREAKPOINT`(768)·`SHEET_VH`(75)·`JOURNEY_SHEET_VH`(42) |
@@ -105,11 +114,13 @@ BibleMap/
 | `scrollMemory.js` | `saveScroll`/`loadScroll` |
 | `index.css` | 테마별 CSS 변수 정본 + keyframe/모션 클래스 |
 
+순수 함수 모듈 일부는 `vitest`(task#261) 단위 테스트가 같은 디렉터리에 나란히 있다: `dates.test.js`·`mapGeo.test.js`·`mapRingController.test.js`·`urlState.test.js`·`useReadingProgress.test.js`. `npm test`(=`vitest run`)로 실행, `scripts/check.sh`가 배포 게이트에 배선한다.
+
 ### 뷰 컴포넌트 (스테이지 본문)
 
 | 파일 | 스테이지 / 역할 |
 |---|---|
-| `IntroView.jsx` | `intro` — 6비트 오토플레이 시네마틱 필름(`INTRO_STORAGE_KEY` export) |
+| `IntroView.jsx` | `intro` — 7비트 오토플레이 시네마틱 필름(`INTRO_STORAGE_KEY` export) |
 | `PersonHub.jsx` | `hub` — 인물 선택 |
 | `BibleOverviewView.jsx` | `overview` — 책 둘러보기 + 메시아 예언→성취 스레드 |
 | `SidePanel.jsx` | `book` 본문(전체화면 재사용) + 우측/시트 노드 상세 |
@@ -118,12 +129,15 @@ BibleMap/
 | `WordDistributionView.jsx` | `words` — 단어 분포 |
 | `StatsView.jsx` | `stats` — 성경 통계(`/stats`) |
 | `TopicalVersesView.jsx` | `topics` — 주제 성구(`/topical-verses`) |
+| `CanonTimelineView.jsx` | `canon` — 통사 연표(`/timeline/canon`, task#271) |
+| `PlaceView.jsx` | `place` — 장소 페이지(`/place/{id}`, task#270) |
 | `TourList.jsx` | `tours` — 투어 목록 |
 | `MapView.jsx` | `explore/map` — maplibre 지도 + 비유·기적 토글 |
 | `TimelineView.jsx` | `explore/timeline` — 연표 + 언약 리본 + 비유·기적 섹션 |
 | `RelationsView.jsx` | `explore/relations` |
 | `RelianceView.jsx` | `explore/reliance` |
 | `PersonIntro.jsx` / `TourIntro.jsx` | `explore/intro`(인물 / 투어) |
+| `SearchPanel.jsx` | 전역(스테이지 무관) — `/` 단축키·헤더 검색 버튼으로 여는 통합 검색 오버레이(`/search`, task#267) |
 
 ### 지원 모듈
 
@@ -131,7 +145,8 @@ BibleMap/
 - 절/구절: `VerseLayer.jsx`(포털 모달 쉘, `paperTextStyle`·`VerseBookTabs` export)·`VerseLangTabs.jsx`.
 - 투어: `TourPlayback.jsx`(해설 카드, `tourSketches` lazy import)·`tourSketches.jsx`(`SCENES` 레지스트리 병합, `TourSketchPanel` export)·`sketches/`.
 - 심볼: `personSymbols.jsx`(`PersonSymbol` default + `hasSymbol`)·`bookSymbols.jsx`(`BookSymbol` default).
-- 기타: `SpineHeader.jsx`(전역 헤더, `HEADER_H`·`RIBBON_OVERHANG` export)·`JourneyList.jsx`·`PersonMiniCard.jsx`·`Spinner.jsx`·`BookStageMap.jsx`.
+- 개인화: `BookmarkToggle.jsx`(저장 토글 컴포넌트, `useBookmarks`가 넘긴 `saved`/`onToggle`만 받는 순수 표시).
+- 기타: `SpineHeader.jsx`(전역 헤더 + 검색 버튼, `HEADER_H`·`RIBBON_OVERHANG` export)·`JourneyList.jsx`·`PersonMiniCard.jsx`·`Spinner.jsx`·`BookStageMap.jsx`.
 
 ### 장면 스케치 (`frontend/src/sketches/`)
 
@@ -161,6 +176,7 @@ BibleMap/
 - **프론트 파일**: 뷰·컴포넌트는 PascalCase `.jsx`(`StatsView.jsx`), 훅은 camelCase `use*.js`(`useTourPlayback.js`), 순수 유틸은 camelCase `.js`(`urlState.js`·`mapGeo.js`). 심볼·스케치처럼 JSX를 반환하는 비컴포넌트 모듈은 camelCase `.jsx`(`personSymbols.jsx`·`tourSketches.jsx`).
 - **데이터**: 디렉터리는 snake_case(`jesus_parables_miracles`·`messianic_prophecies`), 파일은 대체로 `<복수명>.json`(`covenants.json`·`prophecies.json`·`topics.json`·`index.json`) 또는 `<slug>.json`. 투어 파일명은 kebab-case(`gospel-of-jesus.json`).
 - **스크립트**: 동사 접두사(`load_`·`inject_`·`generate_`·`build_`·`validate_`·`apply_`·`enrich_`) + snake_case 대상.
+- **프론트 테스트**: 대상 모듈과 같은 디렉터리에 `<name>.test.js`(vitest, task#261). 예: `mapGeo.js`↔`mapGeo.test.js`.
 - **로깅**: 백엔드는 모듈 logger + `[Component]` prefix(`[Overlays]`·`[Tours]`·`[Nodes]`·`[Startup]`), 프론트 빈값-폴백 catch는 `console.warn('[Component] ...')`. 상세는 `.forge/codebase/CONVENTIONS.md`의 로깅 방출 규약 절.
 - **주석·문서**: 한글. 코드 주석이 결정 번호(ADR-0009 해시 딥링크, ADR-0010 뒤로가기, ADR-0011 투어 오버레이, ADR-0014 보수 연대, ADR-0020 라이트 테마, ADR-0024 모션, ADR-0026 책등 헤더, ADR-0028 투어 note, ADR-0029 스케치 모듈)와 task 번호를 상호 참조한다. ADR 본문은 `.forge/adr/`.
 
@@ -172,11 +188,12 @@ BibleMap/
 2. `frontend/src/useStageNavigation.js` — 대상 id가 필요하면 state 추가, `handleOpen<X>`/`handle<X>Back` 작성(대상 없는 고정 뷰는 `handleOpenStats`/`handleStatsBack`이 최소 템플릿), return 객체에 export.
 3. `frontend/src/urlState.js` — `encodeHash`에 분기, `parseHash`에 패턴 추가.
 4. `useStageNavigation.js`의 **복원 effect**(`parsed.stage === '...'` 분기), **sync effect**(`encodeHash` 인자·`state` 객체·`navSyncRef`·`isForward` 비교), **popstate effect**(`s.<field>` 복원) 세 곳을 함께 갱신. 대상 id가 없는 뷰면 3·4는 스테이지 분기만 추가하면 된다.
-5. `frontend/src/App.jsx` — `render<X>Nav()` 추가, `activeStage === '<x>' && (...)` 조건 렌더 블록 추가, `activeSection` 계산에 스테이지 편입.
+5. `frontend/src/App.jsx` — `activeStage === '<x>' && (...)` 조건 렌더 블록 추가, 그 안에서 `<StageNav onBack=... backLabel=...><StageNav.Tab .../></StageNav>`로 하위 내비를 조립(대상 없는 고정 뷰는 `stats`/`topics`/`canon` 블록이 최소 템플릿), `activeSection` 계산에 스테이지 편입.
+6. 실제 하위 메뉴에 탭을 추가/변경했다면 `frontend/src/IntroView.jsx`의 해당 `SCENES` 항목 `tabs`도 같은 아이콘·라벨로 갱신한다 — `backend/scripts/validate_intro_menu_parity.py`가 배포 게이트에서 인트로↔실제 탭을 양방향 대조한다(task#277).
 
 ### 새 탐험 서브뷰(`exploreView` 탭)
 
-`App.jsx` 상단의 탭 상수(`EXPLORE_TABS`/`INTRO_TAB`/`RELATIONS_TAB`/`RELIANCE_TAB`/`FAMILY_TAB`/`TOUR_INTRO_TAB`)에 항목을 더하고, `renderExploreNav`의 탭 배열 조립부와 `App.jsx` 하단의 `exploreView === '<key>' && ...` 렌더 블록, `urlState.js`의 person 서브패스 정규식·`encodeHash` 분기를 함께 고친다.
+`frontend/src/ExploreStage.jsx` 상단의 탭 상수(`EXPLORE_TABS`/`INTRO_TAB`/`RELATIONS_TAB`/`RELIANCE_TAB`/`FAMILY_TAB`/`TOUR_INTRO_TAB`)에 항목을 더하고, 같은 파일의 탭 배열 조립부(`StageNav.Tab` 나열)와 그 아래 `exploreView === '<key>' && ...` 렌더 블록, `urlState.js`의 person 서브패스 정규식·`encodeHash` 분기를 함께 고친다. 이 탭도 `IntroView.jsx`의 인물/투어 `SCENES` 항목과 정합해야 한다(위 5번과 동일 게이트).
 
 ### 새 스케치(투어 정차지 삽화)
 
@@ -189,7 +206,7 @@ BibleMap/
 1. `data/<snake_case>/<name>.json` 저작.
 2. `backend/app/overlays.py`에 `@functools.lru_cache(maxsize=1)` 로더 함수 추가(docstring에 스키마 한 줄).
 3. 소비할 라우트에서 호출. `verseID`만 들고 있는 데이터면 라우트에서 `overlays.bible_verses()`로 본문을 합성해 응답에 동봉한다.
-4. 검증이 필요하면 `backend/scripts/validate_<name>.py`를 만들고 `scripts/check.sh`의 12종 루프 목록에 이름을 추가한다.
+4. 검증이 필요하면 `backend/scripts/validate_<name>.py`를 만들고 `scripts/check.sh`의 15종 루프 목록에 이름을 추가한다.
 5. 반영에는 **API 재시작**이 필요하다(`docker compose restart api`) — 로더가 `lru_cache`라 파일만 바꿔서는 안 바뀐다. `data/`는 볼륨 마운트라 이미지 재빌드는 불필요.
 
 ### 새 스크립트
@@ -206,4 +223,4 @@ BibleMap/
 
 ### 새 투어
 
-`data/tours/<kebab-id>.json`에 `{id, title, subtitle, era, description, stops:[{id, note}]}`를 쓴다. `era`는 `backend/app/routes/persons.py`의 `_ERA_ORDER` 값 중 하나여야 목록 정렬이 맞는다(`tours._list_tours`). `stops[].id`는 `data/person_events/*.json`에 존재하는 사건 id여야 하고, 모르는 id는 조용히 제거된다. Neo4j 적재는 필요 없다(ADR-0011). 정차지 삽화가 필요하면 위 "새 스케치" 절차를 따른다.
+`data/tours/<kebab-id>.json`에 `{id, title, subtitle, era, description, stops:[{id, note}]}`를 쓴다. `era`는 `backend/app/routes/persons.py`의 `_ERA_ORDER` 값 중 하나여야 목록 정렬이 맞는다(`tours._list_tours`). `stops[].id`는 `data/person_events/*.json`에 존재하는 사건 id여야 하고, 모르는 id는 조용히 제거된다. Neo4j 적재는 필요 없다(ADR-0011). 정차지 삽화가 필요하면 위 "새 스케치" 절차를 따른다 — `validate_scene_coverage.py`(task#259)가 배포 게이트에서 모든 `stops[].id`에 스케치가 있는지 강제하므로(정당한 미저작 예외 목록 `EXPECTED_UNCOVERED`은 비어 있는 것이 정본), 스케치 없는 정차지를 추가하면 배포가 막힌다.

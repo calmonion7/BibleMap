@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 43f987cb37c2341c3cfeb54e4cf4dc33b4549c64
-mapped: 2026-08-01
+last_mapped_commit: a002881c8e935e3d0f1dccd39ebe6419090ae30b
+mapped: 2026-08-20
 ---
 
 # CONVENTIONS
@@ -28,9 +28,9 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 ### 1.2 프론트 — 빈값 폴백 catch는 `console.warn` + `[Component]` prefix
 
 - 비치명적 로드 실패(fetch 실패, 하위 리소스 없음)는 조용히 폴백하고 `.catch(e => ...)` 안에서 **`console.warn`으로만** 기록한다. `console.error`는 실제 프로그래밍 오류 1건에만 쓰인다 — `frontend/src/TimelineView.jsx:43`의 `console.error('TimelineView: personFilter must be a Set, got', personFilter)` 방어 로그.
-- 메시지는 `[Component]` prefix로 시작한다. 실측 컴포넌트: `[App]`·`[Timeline]`·`[MapView]`·`[SidePanel]`·`[Stats]`·`[TopicalVerses]`·`[BibleOverview]`·`[ChapterReader]`·`[PersonIntro]`·`[PersonMiniCard]`·`[FamilyTree]`·`[Relations]`·`[Reliance]`·`[WordDistribution]`·`[JourneyList]`.
+- 메시지는 `[Component]` prefix로 시작한다. 실측 컴포넌트: `[App]`·`[Timeline]`·`[MapView]`·`[SidePanel]`·`[Stats]`·`[TopicalVerses]`·`[BibleOverview]`·`[ChapterReader]`·`[PersonIntro]`·`[PersonMiniCard]`·`[FamilyTree]`·`[Relations]`·`[Reliance]`·`[WordDistribution]`·`[JourneyList]`·`[PlaceView]`·`[ExploreJourney]`·`[useBookmarks]`·`[useReadingProgress]`.
 - 예외(prefix 없음, 잔존 2건): `frontend/src/useStageNavigation.js:70`(`/persons/curated 로드 실패 — 여정 탐험 CTA 미노출`)·`:84`(`/keypeople-cards 로드 실패 — keyPeople 칩 미노출`). 새 코드는 prefix를 갖추되 이 두 줄은 발견 시 별건으로만 고친다.
-- 취소 판정은 두 관용구가 공존한다 — `if (e?.name !== 'AbortError')`(`AbortController` 기반: `MapView.jsx`·`ChapterReader.jsx`·`FamilyTree.jsx`·`PersonMiniCard.jsx`·`RelianceView.jsx`·`WordDistributionView.jsx`·`App.jsx`의 여정 fetch)와 `if (!cancelled)`(`let cancelled = false` 클로저 가드: `App.jsx`·`PersonIntro.jsx`·`RelationsView.jsx`·`SidePanel.jsx`·`StatsView.jsx`·`TopicalVersesView.jsx`·`BibleOverviewView.jsx`). 어느 쪽이든 **취소된 요청의 실패는 경고하지 않는다**. `frontend/src/api.js` 상단 주석이 계약을 명시: "요청 취소(AbortError)는 fetch에서 그대로 전파 — 호출부가 `e.name === 'AbortError'`로 구분한다."
+- 취소 판정은 두 관용구가 공존한다 — `if (e?.name !== 'AbortError')`(`AbortController` 기반: `MapView.jsx`·`ChapterReader.jsx`·`FamilyTree.jsx`·`PersonMiniCard.jsx`·`RelianceView.jsx`·`WordDistributionView.jsx`·`PlaceView.jsx`·`useExploreJourney.js`·`App.jsx`의 여정 fetch)와 `if (!cancelled)`(`let cancelled = false` 클로저 가드: `App.jsx`·`PersonIntro.jsx`·`RelationsView.jsx`·`SidePanel.jsx`·`StatsView.jsx`·`TopicalVersesView.jsx`·`BibleOverviewView.jsx`). 어느 쪽이든 **취소된 요청의 실패는 경고하지 않는다**. `frontend/src/api.js` 상단 주석이 계약을 명시: "요청 취소(AbortError)는 fetch에서 그대로 전파 — 호출부가 `e.name === 'AbortError'`로 구분한다."
 - 열려 있는 항목에만 반영해야 하는 fetch는 ref 가드로 늦은 응답을 버린다: `if (openEventRef.current === ev.id) { ... }`(`TimelineView.jsx:177`·`JourneyList.jsx:56`·`SidePanel.jsx:260`).
 
 ---
@@ -40,7 +40,8 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 ### 2.1 백엔드 Python (`backend/app/`)
 
 - 파일·함수·변수 snake_case. 모듈 내부 전용은 `_` 접두(`_resolve`·`_load`·`_build_list`·`_era_of`·`_book_bb`·`_fetch_totals`). 상수는 대문자(`ERA_BANDS`·`TOP_PERSONS_LIMIT`·`_ERA_ORDER` — 사설 상수는 `_` + 대문자 혼용).
-- 라우터 파일은 도메인 단수/복수 명사(`persons.py`·`places.py`·`books.py`·`events.py`·`tours.py`·`words.py`·`verses.py`·`family.py`·`journey.py`·`reliance.py`·`search.py`·`stats.py`·`nodes.py`). 각 파일은 `router = APIRouter()` 하나만 두고 **prefix 없이** 전체 경로를 데코레이터에 적는다(`@router.get("/person/{node_id}/relations")`). 등록은 `backend/app/main.py`의 `app.include_router(...)` 나열.
+- 라우터 파일은 도메인 단수/복수 명사(`persons.py`·`places.py`·`books.py`·`events.py`·`tours.py`·`words.py`·`verses.py`·`family.py`·`journey.py`·`reliance.py`·`search.py`·`stats.py`·`nodes.py`·`timeline.py`). 각 파일은 `router = APIRouter()` 하나만 두고 **prefix 없이** 전체 경로를 데코레이터에 적는다(`@router.get("/person/{node_id}/relations")`). 등록은 `backend/app/main.py`의 `app.include_router(...)` 나열.
+- 라우터가 아닌 공용 헬퍼 모듈도 같은 디렉터리에 산다 — `backend/app/verse_search.py`(절 본문 substring 검색, `search.py`·`words.py`가 함께 씀, task#267)는 `overlays.py`·`db.py`와 같은 성격.
 - 경로 파라미터는 snake_case(`{node_id}`·`{book_id}`·`{event_id}`·`{verse_id}`·`{person_id}`·`{tour_id}`), URL 세그먼트는 kebab-case(`/books-overview`·`/keypeople-cards`·`/messianic-prophecies`·`/topical-verses`·`/parables-miracles`·`/person/{id}/event-ids`).
 - **응답 JSON 키는 camelCase**(`nameKo`·`bookOrder`·`keyVerseTextKo`·`eventIds`·`startDate`) — Python 내부 snake_case와 경계에서 갈린다.
 - 모듈·함수 docstring은 **한글**이며 첫 줄에 목적, 필요하면 `(task#NNN)`·`ADR-00NN` 근거를 단다(`backend/app/routes/stats.py` 상단이 대표).
@@ -74,8 +75,9 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 ## 3. 에러 처리
 
 - **백엔드**: 알 수 없는 리소스 id만 `raise HTTPException(status_code=404, detail="...")`(`backend/app/routes/books.py`의 unknown book, `nodes.py`의 Node not found, `words.py`의 unknown book). 그 밖의 파일/파싱 실패는 예외를 올리지 않고 §1.1의 로깅 + 빈 값/빈 목록 폴백으로 흡수한다 — **오버레이 결손이나 JSON 파싱 실패가 500으로 전파되지 않는 것이 원칙**. 대표 패턴은 `backend/app/routes/nodes.py`의 `except Exception as e: logger.warning(...); clean_props["traits"] = []`.
+  - **여러 소스를 합치는 엔드포인트는 "전부 비어야 404"** — `backend/app/routes/places.py`의 `GET /place/{place_id}`(task#270)는 컨텍스트·좌표·인물·사건 네 소스를 모으고, 그중 하나라도 있으면 200(빈 필드는 그대로 폴백), 넷 다 비어야 404. 지도 마커 등 어디서 들어와도 화면이 열리게 하기 위한 완화다.
 - **프론트**: fetch 에러는 §1.2의 `console.warn` + 폴백 state로 흡수한다. `AbortError`는 에러가 아니므로 경고·폴백 모두에서 제외. `frontend/src/api.js`의 `apiGet`이 비-OK 응답을 `Error(String(res.status))`(+`err.status`)로 reject하는 단일 지점이다.
-- 사용자에게 실패를 알려야 하는 화면은 **전용 불리언 state(`failed`)** 를 두고 인라인 안내를 렌더한다 — 공용 배너 컴포넌트는 없다. 실측: `RelianceView.jsx`·`WordDistributionView.jsx`·`StatsView.jsx`·`TopicalVersesView.jsx`·`ChapterReader.jsx`. `MapView.jsx`는 `error`/`noLocation` 두 불리언을 분리해 지도 위 배너로 각각 렌더한다.
+- 사용자에게 실패를 알려야 하는 화면은 **전용 불리언 state(`failed`)** 를 두고 인라인 안내를 렌더한다 — 공용 배너 컴포넌트는 없다. 실측: `RelianceView.jsx`·`WordDistributionView.jsx`·`StatsView.jsx`·`TopicalVersesView.jsx`·`ChapterReader.jsx`·`PlaceView.jsx`. `MapView.jsx`는 `error`/`noLocation` 두 불리언을 분리해 지도 위 배너로 각각 렌더한다.
 - 조용히 사라지면 곤란한 부트스트랩 fetch는 **유한 지수 재시도**를 붙인다 — `useStageNavigation.js`의 `/persons/curated` 로더(1s→2s→4s, 3회 후 `console.warn`).
 - **로더/빌더/inject 스크립트**는 반환값이 아니라 **프로세스 종료 코드**로 실패를 알린다: 사슬 단절·건수 불일치는 `raise SystemExit("FAIL: ...")`(`load_authored_genealogy.py:74`·`load_authored_mothers.py:46`), 통제 어휘 미분류는 `sys.exit(...)`로 산출 중단(`build_word_distribution.py:71`). 상세는 `TESTING.md`.
 
@@ -87,18 +89,19 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 
 - `_resolve(subpath)`/`_resolve_dir(subpath)`는 `DATA_DIR` 환경변수(기본 `/app/data`, 컨테이너 마운트) → 리포지토리 `data/` 순으로 찾고, 없으면 `logger.warning` 후 `None`을 반환한다.
 - `_load(subpath)`는 파일 없음·JSON 파싱 실패 모두 `logger.warning` 후 **빈 dict 폴백**(§3의 원칙).
-- 새 오버레이는 `overlays.py`에 `@functools.lru_cache(maxsize=1)` 로더 함수를 하나 추가하고 한글 docstring에 스키마 요약을 적는다. 커밋 `43f987c` 기준 로더 전체(선언 순): `book_events_raw()`·`event_verses()`·`bible_verses()`·`word_distribution()`·`books_ko()`·`chapter_summaries()`·`chapter_sections()`·`quotations()`·`messianic_prophecies()`·`covenants()`·`parables_miracles()`·`place_coords()`·`topical_verses()`·`verse_persons()`.
-- `overlays.py`에는 캐시 로더가 아닌 순수 헬퍼 1개가 함께 산다: `curated_person_id(events)` — `person_events/<slug>.json`의 `events[0].participants[0]`을 그 인물의 `theographic_id`로 해석하는 **큐레이션 신원 규약의 단일 지점**(소비처 `persons.py`·`places.py`·`reliance.py`; 로더 캐시가 아니라 데코레이터 없음).
+- 새 오버레이는 `overlays.py`에 `@functools.lru_cache(maxsize=1)` 로더 함수를 하나 추가하고 한글 docstring에 스키마 요약을 적는다. 커밋 `43f987c` 기준 로더 전체(선언 순): `book_events_raw()`·`event_verses()`·`bible_verses()`·`word_distribution()`·`books_ko()`·`chapter_summaries()`·`chapter_sections()`·`quotations()`·`messianic_prophecies()`·`covenants()`·`parables_miracles()`·`place_coords()`·`topical_verses()`·`verse_persons()`. 이후 추가: `place_context()`(장소 배경·핵심 구절, task#270 — `place_coords()`와 같은 `id` 키를 쓰되 별도 파일 `data/place_context/places.json`을 읽는다).
+- `overlays.py`에는 캐시 로더가 아닌 순수 헬퍼 1개가 함께 산다: `curated_person_id(events)` — `person_events/<slug>.json`의 `events[0].participants[0]`을 그 인물의 `theographic_id`로 해석하는 **큐레이션 신원 규약의 단일 지점**(소비처 `persons.py`·`places.py`·`reliance.py`·`timeline.py`; 로더 캐시가 아니라 데코레이터 없음).
+- **동명이인 대비 — id로 매칭, nameKo로 매칭하지 않는다**: theographic에는 동명이인이 흔해(예: 요셉 6명) `nameKo` 문자열로 관계를 매칭하면 다른 인물의 서사가 잘못 유출된다. `backend/app/routes/family.py`의 `_family_role_pairs()`가 대표 사례(task#263) — 큐레이션 role 매칭 키를 `nameKo` 쌍에서 `person_relations`의 `slug`를 `theographic_id`로 해석한 쌍으로 바꿨다. `curated_person_id`와 같은 원칙의 다른 적용.
 
 ### 4.2 캐시 두 겹 — `lru_cache` + `Cache-Control`
 
-- 사용자 입력이 없는 전역 집계는 라우트 안에서 `@functools.lru_cache(maxsize=1)` 헬퍼로 1회 계산한다(`events.py`·`books.py`·`persons.py`·`reliance.py`·`stats.py`·`tours.py`·`family.py`). id별 결과는 `maxsize=256`/`2048`/`66` 등 상한을 둔다(`persons.py:221`·`books.py:53`·`books.py:105`·`places.py:21`).
-- 응답은 `JSONResponse(content=..., headers={"Cache-Control": ...})`로 감싼다. 현행 값: 대부분 `max-age=300`(`events.py`·`journey.py`·`places.py`·`tours.py`·`family.py`는 5분), 절 본문처럼 불변에 가까운 것은 `public, max-age=3600`(`books.py`의 장/인용/본문), 예외적으로 `no-store`(`books.py`의 `/books-overview`).
+- 사용자 입력이 없는 전역 집계는 라우트 안에서 `@functools.lru_cache(maxsize=1)` 헬퍼로 1회 계산한다(`events.py`·`books.py`·`persons.py`·`reliance.py`·`stats.py`·`tours.py`·`family.py`·`timeline.py`의 `_canon_payload()`). id별 결과는 `maxsize=256`/`2048`/`66` 등 상한을 둔다(`persons.py:221`·`books.py:53`·`books.py:105`·`places.py:21`·`places.py`의 `_place_events()`·`verse_search.py`의 `search_verses()`, 모두 `maxsize=256`).
+- 응답은 `JSONResponse(content=..., headers={"Cache-Control": ...})`로 감싼다. 현행 값: 대부분 `max-age=300`(`events.py`·`journey.py`·`places.py`·`tours.py`·`family.py`·`timeline.py`는 5분), 절 본문처럼 불변에 가까운 것은 `public, max-age=3600`(`books.py`의 장/인용/본문), 예외적으로 `no-store`(`books.py`의 `/books-overview`).
 - **결과**: `data/` JSON을 고쳐도 `docker compose restart api` 전까지 반영되지 않는다(`TESTING.md`의 footgun 절). 프론트는 `api.js`가 모든 요청에 `?v=<BUILD_ID>`를 붙여 브라우저 측 캐시만 배포마다 무효화한다.
 
 ### 4.3 중복 상수는 "공유 대신 정합 검증"
 
-- 시대 경계 `ERA_BANDS`는 **3곳에 수동 복제**돼 있다: `frontend/src/TimelineView.jsx:15`(`{name, from, range}`)·`backend/app/routes/stats.py:24`(`(name, from)` 튜플)·`backend/app/routes/persons.py:98`(`_ERA_ORDER`, 이름 순서만) + `data/covenants/covenants.json`의 각 `era` 값. 프론트/백엔드가 코드를 공유할 수단이 없어 근본 통합 대신 **드리프트 검증 게이트**를 뒀다 — `backend/scripts/validate_era_bands_consistency.py`가 세 파일을 정규식으로 파싱해 이름·순서·경계를 대조하고 `covenants.json`의 `era`가 유효 시대인지 단언한다. 경계를 고칠 땐 세 곳을 함께 고치고 이 스크립트로 확인한다(`stats.py` 주석이 이 규약을 명시).
+- 시대 경계 `ERA_BANDS`의 전체 정의(`{name, from}`)는 **정확히 두 곳에만 선언한다**(ADR `260819-205242`): `frontend/src/eraBands.js`(`{name, from, range}`)·`backend/app/routes/stats.py:24`(`(name, from)` 튜플). 프론트 쪽은 원래 `TimelineView.jsx` 안에 있었으나 통사 연표(`CanonTimelineView.jsx`, task#271)도 같은 경계가 필요해지면서 전용 모듈로 승급했다 — 컴포넌트 파일에서 export하면 `react-refresh/only-export-components`에 걸리고, 재선언하면 **세 번째 복제**가 되기 때문. 이 밖에 이름·순서만 복제한 `backend/app/routes/persons.py:98`(`_ERA_ORDER`) + `data/covenants/covenants.json`의 각 `era` 값이 있다. 프론트/백엔드가 코드를 공유할 수단이 없어 근본 통합 대신 **드리프트 검증 게이트**를 뒀다 — `backend/scripts/validate_era_bands_consistency.py`가 `eraBands.js`·`stats.py`·`persons.py`를 정규식으로 파싱해 이름·순서·경계를 대조하고 `covenants.json`의 `era`가 유효 시대인지 단언한다. 경계를 고칠 땐 이 파일들을 함께 고치고 스크립트로 확인하며, **새 소비처가 생겨도 세 번째 전체-정의 복제를 만들지 않는다**(`eraBands.js` 파일 상단 주석이 이 계약을 명시).
 
 ---
 
@@ -109,12 +112,14 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 - **`useNodeSelection`**(`frontend/src/useNodeSelection.js`) — 선택 노드·메타·패널 히스토리 원시값만. `selectNode`는 `useCallback([])` + `selectedNodeRef`로 참조를 안정화한다(참조가 흔들리면 `MapView`의 effect가 재실행돼 진행 중 fetch가 abort되던 버그 방지 — 주석에 근거 명시).
 - **`useStageNavigation`**(`frontend/src/useStageNavigation.js`) — 화면 단계(Stage)·해시 URL·브라우저 히스토리 상태 머신. 노드 선택 원시값을 **주입받아** 조합한다. 이 파일은 `lucide-react`의 `Map`을 import하지 않고 `history` 배열을 구조분해하지 않는다 — 과거 두 차례 런타임 크래시를 낸 전역 `Map`/`history` 섀도잉을 구조적으로 막기 위한 규약(파일 상단 주석).
 - **`useTourPlayback`**(`frontend/src/useTourPlayback.js`) — 투어 자동재생 시퀀서. 상태만 갖고 카메라·경로선은 `App`/`MapView`가 `idx`를 구독해 구동한다. 반환 객체는 `useMemo`로 안정화해 소비처 effect의 의존성으로 안전하게 쓰인다.
-- **페이지 대상 id는 `selectedNode`와 분리해 별도 state로 둔다** — `bookId`·`familyId`·`wordsBookId`·`readerBookId`/`readerChapter`·`explorePersonId`·`exploreTourId`. 페이지 안에서 노드를 눌러 시트를 띄워도 페이지 대상과 URL이 흔들리지 않게 하는 대칭 패턴.
+- **페이지 대상 id는 `selectedNode`와 분리해 별도 state로 둔다** — `bookId`·`familyId`·`wordsBookId`·`readerBookId`/`readerChapter`·`explorePersonId`·`exploreTourId`·`placeId`(장소 페이지, task#270). 페이지 안에서 노드를 눌러 시트를 띄워도 페이지 대상과 URL이 흔들리지 않게 하는 대칭 패턴.
+- **훅의 상태 수명은 호출 위치가 정한다 — 논리적 소유자가 아니라 언마운트 여부로 판단**: `frontend/src/useExploreJourney.js`는 탐험(explore) 여정 상태를 갖지만 반드시 `App.jsx`에서 호출해야 하고 `ExploreStage.jsx` 안에서 호출하면 안 된다. 탐험 6탭 중 "족보"는 `setExploreView`가 아니라 `openFamily`로 전용 스테이지에 진입해 `activeStage === 'explore'` 조건부 렌더 블록 자체가 언마운트되기 때문 — 상태를 그 안에 두면 복귀 시 소실돼 재fetch·선택 초기화 회귀가 생긴다. 파일 상단 주석이 "수명은 App 레벨, 코드만 이 훅 — 옮기지 말 것"을 명시한다.
 
 ### 5.2 URL = 해시 문자열 매핑 (라우팅 라이브러리 없음)
 
-- `frontend/src/urlState.js`의 `encodeHash(state)`/`parseHash(hash)` 한 쌍이 정본이며 파일 상단 주석이 전체 딥링크 표를 담는다: `#/`·`#/intro`·`#/books`·`#/book/<id>`·`#/read/<id>[/<n>]`·`#/family/<id>`·`#/words/<id>`·`#/stats`·`#/topics`·`#/tours`·`#/tour/<slug>[/timeline]`·`#/person/<slug>[/timeline|/relations|/intro|/reliance]`.
+- `frontend/src/urlState.js`의 `encodeHash(state)`/`parseHash(hash)` 한 쌍이 정본이며 파일 상단 주석이 전체 딥링크 표를 담는다: `#/`·`#/intro`·`#/books`·`#/book/<id>`·`#/read/<id>[/<n>]`·`#/place/<id>`(task#270)·`#/timeline`(통사 연표, task#271)·`#/family/<id>`·`#/words/<id>`·`#/stats`·`#/topics`·`#/tours`·`#/tour/<slug>[/timeline]`·`#/person/<slug>[/timeline|/relations|/intro|/reliance]`.
 - **알 수 없는 형태는 `null` 반환 → 호출부가 허브로 폴백**. 새 스테이지를 추가하면 `encodeHash`·`parseHash` 양쪽을 함께 고친다(왕복 대칭이 계약).
+- **저장된 해시로 프로그램적으로 복귀할 땐 `location.hash` 대입이 아니라 상태 머신을 직접 태운다** — 같은 문서 안에서 해시만 바꿔도 스테이지가 리마운트되지 않아 상태가 갱신되지 않기 때문(`TESTING.md`의 Playwright 컨텍스트 분리 규칙과 같은 근본 원인). 정본 경로는 `useStageNavigation.js`의 `applyParsedHash(parsed)` — 마운트 시 딥링크 복원과 저장·이어보기 카드 복원(`handleGoToHash`, task#268)이 이 한 함수를 공유한다.
 
 ### 5.3 effect 안의 동기 `setState` 금지 (react-hooks v7)
 
@@ -123,14 +128,14 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 - **파생 상태로 승격**: effect+setState 대신 `useMemo`. 실측 — `App.jsx:101` `playbackStopIdx`(재생 인덱스 → 정차지 그룹 인덱스, task#253 리팩터), `App.jsx:75` `tourEventIds`.
 - **비동기 콜백으로 이동**: 타이머·프라미스 콜백 안의 setState는 규칙에 걸리지 않는다. 초기화가 필요하면 `Promise.resolve().then(() => { ... })`로 마이크로태스크에 미룬다(`App.jsx:96`·`App.jsx:137`·`useStageNavigation.js`의 딥링크 복원). fetch `.then` 안의 setState는 그대로 둔다(`// async 콜백 — v7 OK` 주석: `App.jsx:124`·`MapView.jsx:129`).
 - **키 기반 무효화**: 리셋용 effect 대신 결과 state에 대상 키를 함께 담고 렌더에서 대조한다 — `SidePanel.jsx`의 `{ forNodeId, ... }` 패턴(`:64`·`:69` 주석이 "set-state-in-effect 준수" 명시).
-- 남은 `// eslint-disable-next-line react-hooks/exhaustive-deps`는 `useStageNavigation.js:122`·`:174` 두 곳뿐이다(딥링크 복원/히스토리 동기화의 의도적 1회 실행).
+- 남은 `// eslint-disable-next-line react-hooks/exhaustive-deps`는 `useStageNavigation.js:139`·`:192` 두 곳뿐이다(딥링크 복원/히스토리 동기화의 의도적 1회 실행).
 
 ### 5.4 기타 상태 관용구
 
 - 전역 상태 라이브러리 없음(Redux/Zustand/Context 미사용). 공유가 필요한 값은 `App.jsx`가 소유하고 props로 내려준다(`verseLang`·`journeyStops`·`isMobile`).
 - 모바일 분기는 `window.matchMedia(MOBILE_QUERY)` 구독 state — 브레이크포인트 값의 단일 출처는 `frontend/src/constants.js`(`MOBILE_BREAKPOINT`·`SHEET_VH`·`JOURNEY_SHEET_VH`; 마지막 값은 App 시트 높이와 MapView 카메라 offset이 공유해야 하는 값이라 주석이 이유를 명시).
 - 목록 스크롤 위치는 React state가 아니라 **모듈 스코프 plain object**로 기억한다(`frontend/src/scrollMemory.js`) — 인앱 "뒤로"가 popstate가 아니라 전진 push라 `history.state`로는 복원되지 않기 때문(ADR-0010). 전역 `Map` 섀도잉 함정 회피를 위해 `Map`이 아닌 plain object.
-- `startDate`는 혼재 형식 문자열이므로 **숫자 강제변환·사전순 정렬 금지** — 라벨 변환은 반드시 `frontend/src/dates.js`의 `parseYear()`를 거친다. 백엔드 대응 구현은 `backend/scripts/load_books.py`의 `_parse_year()`·`backend/app/routes/nodes.py`의 `_year`(세 구현이 같은 규칙을 따라야 한다고 docstring이 명시).
+- `startDate`는 혼재 형식 문자열이므로 **숫자 강제변환·사전순 정렬 금지** — 라벨 변환은 반드시 `frontend/src/dates.js`의 `parseYear()`를 거친다. 백엔드 대응 구현은 `backend/scripts/load_books.py`의 `_parse_year()`·`backend/app/routes/nodes.py`의 `_year`(세 구현이 같은 규칙을 따라야 한다고 docstring이 명시). **새 소비처는 네 번째로 재선언하지 않고 import로 재사용한다** — `backend/scripts/inject_date_corrections.py`의 `recompute_book_years()`(task#273)는 `from load_books import _parse_year`로 끌어 쓴다(같은 디렉터리라 스크립트 직접 실행에도 해석됨). 복제 대신 재사용 원칙은 ADR `260819-205242`가 명시.
 
 ---
 
@@ -197,6 +202,7 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 - 테마 불변 영역: 양피지 3색(`--paper`/`--paper-ink`/`--paper-accent`, 성경 본문 전용 배경)과 지도(`frontend/src/mapLayers.js`의 리터럴 hex) — 라이트 블록에 이 토큰들의 오버라이드가 없다.
 - JS 팔레트 상수는 `frontend/src/theme.js`(`TYPE_COLOR`/`TYPE_KO`/`TYPE_ORDER`/`VALENCE_COLOR`/`SELECT_HL`/`GENRE_META`) — 값의 정본은 `index.css`이고 `theme.js`는 `'var(--type-person)'` 같은 **var 참조 문자열**만 갖는다(인라인 style 전용). **예외 1건**: `PM_TYPE_COLOR = { parable: '#8b5cf6', miracle: '#2f9e63' }`은 리터럴 hex다 — maplibre `paint`가 CSS 변수를 받지 못해 `mapLayers.js`와 `TimelineView.jsx`가 같은 리터럴을 공유해야 하기 때문(주석에 이유 명시).
 - `localStorage` 키는 `biblemap-` 접두를 공유한다: `biblemap-theme`(값이 `'light'`인지로 판정)과 `biblemap-intro`(`frontend/src/IntroView.jsx:11`이 `INTRO_STORAGE_KEY`로 export). 후자는 **키의 존재 자체가 상태** — `'off'`면 숨김, 키 부재(기본)면 노출(`useStageNavigation.js:16`이 무해시 진입 시 `intro`/`hub` 시작 스테이지를 분기).
+- **개인화 데이터(북마크·이어보기·읽기 진도)도 `localStorage` 전용**이며 서버 쓰기 경로가 없다(ADR `260819-191704`) — 백엔드에 이 데이터의 쓰기 엔드포인트를 만들지 않는다. 키는 `biblemap-bookmarks`·`biblemap-recent`(`frontend/src/useBookmarks.js`)·`biblemap-read`(`frontend/src/useReadingProgress.js`). 세 모듈 공통 관행: 저장값은 `{ v: <스키마 버전>, ... }`로 감싸고, 파손된 JSON이나 `v` 불일치는 **마이그레이션 없이 빈 값으로 폴백**한다(개인화는 유실돼도 앱이 망가지지 않는 데이터라는 전제) — 읽기/쓰기 각각 `try/catch` + `console.warn('[useBookmarks] ...')`/`console.warn('[useReadingProgress] ...')`(§1.2의 로깅 규약 그대로 적용).
 
 ### 7.3 모션 토큰 (ADR-0024)
 
@@ -204,7 +210,7 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 - 애니메이트 가능한 속성은 **transform·opacity**(+ 선화의 `stroke-dashoffset`)만 — 레이아웃 속성 금지. 입장(enter)만 만들고 exit는 즉시 언마운트.
 - `@media (prefers-reduced-motion: reduce)`(`index.css:137`)에서 `--dur-*` 전부와 `animation-delay`를 1ms/0ms로 붕괴시키는 **토큰 붕괴 가드**가 개별 컴포넌트의 reduce 분기를 대체한다. CSS 트랜지션이 아닌 JS 애니메이션(`RelianceView.jsx`의 `Donut`)과 SMIL/타이머 기반 연출(`tourSketches.jsx`·`IntroView.jsx`·`sketches/*`)은 이 가드로 가려지지 않아 `window.matchMedia('(prefers-reduced-motion: reduce)')`를 직접 분기한다.
 - 애니메이션 클래스 목록(`index.css`): `.cloud-in`·`.word-in`·`.stage-in`·`.overlay-in`·`.modal-in`·`.sheet-in`·`.thread-draw`·`.card-in`·`.bar-reveal`·`.stop-bar-in`·`.symbol-draw`·`.book-open`·`.intro-rise`·`.intro-line`·`.film-in`·`.film-fade`·`.beat-in`/`.beat-out`.
-- 사이트 인트로(`frontend/src/IntroView.jsx`)는 오토플레이 시네마틱 필름이다 — phase 상태 머신이 `setTimeout`으로 6비트(`BEAT_MS = [3000, 5000, 5000, 3000, 3000, 3000]`)를 순차 진행하고, 비트 전환은 **겹치지 않는 순차 디졸브**(이전 비트가 `.beat-out`으로 빠진 뒤 새 비트가 `.beat-in`으로 진입). 비트 안의 씬 요소는 `.film-fade` + 인라인 `animationDelay` 스태거, 선 그리기는 `.thread-draw`(`--thread-delay` CSS 변수).
+- 사이트 인트로(`frontend/src/IntroView.jsx`)는 오토플레이 시네마틱 필름이다 — phase 상태 머신이 `setTimeout`으로 7비트(`BEAT_MS = [3000, 5000, 5000, 3000, 4200, 3000, 3600]`, task#277에서 6→7비트로 확장)를 순차 진행하고, 비트 전환은 **겹치지 않는 순차 디졸브**(이전 비트가 `.beat-out`으로 빠진 뒤 새 비트가 `.beat-in`으로 진입). 비트 안의 씬 요소는 `.film-fade` + 인라인 `animationDelay` 스태거, 선 그리기는 `.thread-draw`(`--thread-delay` CSS 변수). 컨텐츠 소개 비트(③~⑥)는 `SCENES` 배열 하나가 정본이며, 각 원소는 `{ nav, art, lead, sub, tabs: [[Icon, '라벨'], ...] }` — `tabs`는 **앱의 실제 하위 메뉴와 아이콘·라벨까지 동일해야 하는 계약**이고, 배포 게이트 `validate_intro_menu_parity.py`가 `App.jsx`/`ExploreStage.jsx`의 실제 탭과 양방향 대조한다(`TESTING.md` §2). 어느 부(部)에도 속하지 않는 전역 기능(검색·저장·읽기 진도)은 중립 `nav: '어디서나'` 장면으로 별도 소개하며, 이 장면은 정합 검사 대조 대상에서 제외된다(상단 하위 메뉴가 아니므로).
 - **잔존 사각(정리 대상)**: 구 스크롤 리빌 클래스 `.intro-sec`/`.intro-seen`(`index.css:328~332`)은 어느 컴포넌트도 더 이상 참조하지 않는다.
 
 ### 7.4 인물/책 상징물 선화 (ADR-0025)
@@ -228,7 +234,7 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 - **ESLint(프론트 전용)** — flat config `frontend/eslint.config.js`. `globalIgnores(['dist'])` + `**/*.{js,jsx}`에 `@eslint/js` recommended · `eslint-plugin-react-hooks` flat recommended · `eslint-plugin-react-refresh` vite 프리셋. `languageOptions.globals`에 `...globals.browser`와 함께 **`__BUILD_ID__: 'readonly'`**(vite `define` 주입값)를 등록한다.
 - 버전(`frontend/package.json`): `eslint ^10.3.0` · `eslint-plugin-react-hooks ^7.1.1` · `eslint-plugin-react-refresh ^0.5.2` · `@eslint/js ^10.0.1` · `globals ^17.6.0`. react-hooks v7이 `set-state-in-effect` 등 신규 규칙을 켜므로 §5.3의 관용구가 필요하다.
 - 실행: `cd frontend && npm run lint`(= `eslint .`) 또는 게이트가 쓰는 `npx --no-install eslint src`(`scripts/check.sh`). 커밋 `43f987c` 기준 **둘 다 0 error / 0 warning**이며, 규칙 비활성화가 아니라 코드 리팩터로 달성한 상태다(task#253) — 규칙을 끄는 방향의 수정은 사용자 확인 없이 하지 않는다.
-- `eslint-disable` 잔존은 4곳뿐: `VerseLayer.jsx:21`·`personSymbols.jsx:488`(`react-refresh/only-export-components`), `useStageNavigation.js:122`·`:174`(`react-hooks/exhaustive-deps`).
+- `eslint-disable` 잔존은 4곳뿐: `VerseLayer.jsx:21`·`personSymbols.jsx:488`(`react-refresh/only-export-components`), `useStageNavigation.js:139`·`:192`(`react-hooks/exhaustive-deps`).
 - **빌드(Vite)** — `frontend/vite.config.js`: `@vitejs/plugin-react`, `define.__BUILD_ID__ = JSON.stringify(String(Date.now()))`(배포마다 바뀌는 캐시버스터, `api.js`가 소비), `build.rollupOptions.output.manualChunks`로 `node_modules` 중 `maplibre-gl`은 `maplibre` 청크·나머지는 `vendor` 청크로 분리. 앱 코드 추가 분할은 §7.5의 `React.lazy`로 한다.
 - **환경변수** — `frontend/.env.production`의 `VITE_API_URL=/api`(nginx `/api` 프록시). 개발 기본값은 `api.js`의 `'http://localhost:8000'` 폴백. 비밀값은 리포지토리 루트 `.env`(gitignore, 템플릿은 `.env.example`)에만 두고 `docker-compose.yml`이 `${NEO4J_PASSWORD:?...}`로 필수 주입한다.
 - **백엔드 의존성**은 핀 고정 3개뿐(`backend/requirements.txt`): `fastapi==0.136.3`·`neo4j==6.2.0`·`uvicorn==0.49.0`. 린터·포매터·테스트 러너는 포함되지 않는다.
