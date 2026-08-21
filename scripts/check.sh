@@ -29,11 +29,11 @@ skip() {  # skip <라벨> <사유> — 엄격 모드에서는 스킵이 실패�
   fi
 }
 
-echo "=== check: 파일 기반 데이터 검증 (18종 + 정합 대조군) ==="
+echo "=== check: 파일 기반 데이터 검증 (20종 + 정합 대조군) ==="
 for s in covenants messianic_prophecies parables_miracles topical_verses pm_map_coverage \
          scene_coverage chapter_sections chapter_summaries quotations person_context \
          god_reliance traits era_bands_consistency approx_book_verses intro_menu_parity \
-         curated_persons intro_gutter intro_entry_route; do
+         curated_persons intro_gutter intro_entry_route event_verses sortkey_startdate; do
   run "validate_$s" python3 -m "backend.scripts.validate_$s"
 done
 # 정합 검사 자신의 대조군(task#277·278) — 고의 드리프트 주입에 FAIL하는지 인메모리로 순회 확인.
@@ -50,6 +50,20 @@ run "validate_intro_gutter --selftest" python3 -m backend.scripts.validate_intro
 # 판정이 정본 밖에서 또 일어나지 않는다"를 단언한다(ADR 260821-000937). 실측은 scripts/uat_intro_entry.py가
 # 하지만 위 intro_gutter와 같은 이유로 여기 배선하지 않는다(빌드 전 호출 → :8080이 옛 빌드).
 run "validate_intro_entry_route --selftest" python3 -m backend.scripts.validate_intro_entry_route --selftest
+# 근거 절 ↔ 라벨 범위 정합(task#282) — 교차-장·장 단위 범위가 첫 절 1개만 베이킹돼 화면이
+# "38:1–42:6"이라 적고 본문은 1절만 보이던 결함 클래스. 불변식은 개수가 아니라 경계다
+# (베이킹 verseID 집합 == 라벨 범위 ∩ 정본 절 사전 — ADR 260821-000937·260821-125000).
+# 오라클이 저장소 안 파일이라 네트워크 없이 항상 돈다.
+run "validate_event_verses --selftest" python3 -m backend.scripts.validate_event_verses --selftest
+# 통합 시간축 sortKey↔startDate + 표시 라벨 정합(task#283) — [[사건 연대]]가 글로 못 박았지만
+# 자가 없던 축이다. **전역·교차파일**로 본다(파일 단위로 좁히면 moses→joshua 경계가 무음 통과).
+# 화면에 뜨는 연도는 startDate가 아니라 yearLabel이라 라벨 축도 함께 단언한다.
+# 파일만 읽어 판정하므로 Neo4j 없이 항상 돈다(게이트가 라이브 DB에 결합되지 않는다).
+run "validate_sortkey_startdate --selftest" python3 -m backend.scripts.validate_sortkey_startdate --selftest
+# 시대(era) 결합점 7축(task#284) — 시대 이름을 바꾸면 비유·기적 토글이 **에러도 없이** 사라지는
+# 결합(TimelineView·ExploreStage의 리터럴 게이트)과 투어 era·PersonHub 사본을 이 검증기가 본다.
+# 기준선 PASS만으론 살아있음을 증명하지 못한다(ADR 260820-003946) — 이 검증기엔 대조군이 없었다.
+run "validate_era_bands_consistency --selftest" python3 -m backend.scripts.validate_era_bands_consistency --selftest
 
 echo "=== check: 영구 forge 문서 추적 (배포 차단 가드) ==="
 # 데이터 검증이 아니므로 위 16종 루프에 넣지 않는다(task#279).

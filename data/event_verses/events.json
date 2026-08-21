@@ -80301,6 +80301,666 @@
             "verseID": "01029001",
             "chapter": 29,
             "verse": 1
+          },
+          {
+            "verseID": "01029002",
+            "chapter": 29,
+            "verse": 2
+          },
+          {
+            "verseID": "01029003",
+            "chapter": 29,
+            "verse": 3
+          },
+          {
+            "verseID": "01029004",
+            "chapter": 29,
+            "verse": 4
+          },
+          {
+            "verseID": "01029005",
+            "chapter": 29,
+            "verse": 5
+          },
+          {
+            "verseID": "01029006",
+            "chapter": 29,
+            "verse": 6
+          },
+          {
+            "verseID": "01029007",
+            "chapter": 29,
+            "verse": 7
+          },
+          {
+            "verseID": "01029008",
+            "chapter": 29,
+            "verse": 8
+          },
+          {
+            "verseID": "01029009",
+            "chapter": 29,
+            "verse": 9
+          },
+          {
+            "verseID": "01029010",
+            "chapter": 29,
+            "verse": 10
+          },
+          {
+            "verseID": "01029011",
+            "chapter": 29,
+            "verse": 11
+          },
+          {
+            "verseID": "01029012",
+            "chapter": 29,
+            "verse": 12
+          },
+          {
+            "verseID": "01029013",
+            "chapter": 29,
+            "verse": 13
+          },
+          {
+            "verseID": "01029014",
+            "chapter": 29,
+            "verse": 14
+          },
+          {
+            "verseID": "01029015",
+            "chapter": 29,
+            "verse": 15
+          },
+          {
+            "verseID": "01029016",
+            "chapter": 29,
+            "verse": 16
+          },
+          {
+            "verseID": "01029017",
+            "chapter": 29,
+            "verse": 17
+          },
+          {
+            "verseID": "01029018",
+            "chapter": 29,
+            "verse": 18
+          },
+          {
+            "verseID": "01029019",
+            "chapter": 29,
+            "verse": 19
+          },
+          {
+            "verseID": "01029020",
+            "chapter": 29,
+            "verse": 20
+          },
+          {
+            "verseID": "01029021",
+            "chapter": 29,
+            "verse": 21
+          },
+          {
+            "verseID": "01029022",
+            "chapter": 29,
+            "verse": 22
+          },
+          {
+            "verseID": "01029023",
+            "chapter": 29,
+            "verse": 23
+          },
+          {
+            "verseID": "01029024",
+            "chapter": 29,
+            "verse": 24
+          },
+          {
+            "verseID": "01029025",
+            "chapter": 29,
+            "verse": 25
+          },
+          {
+            "verseID": "01029026",
+            "chapter": 29,
+            "verse": 26
+          },
+          {
+            "verseID": "01029027",
+            "chapter": 29,
+            "verse": 27
+          },
+          {
+            "verseID": "01029028",
+            "chapter": 29,
+            "verse": 28
+          },
+          {
+            "verseID": "01029029",
+            "chapter": 29,
+            "verse": 29
+          },
+          {
+            "verseID": "01029030",
+            "chapter": 29,
+            "verse": 30
+          },
+          {
+            "verseID": "01029031",
+            "chapter": 29,
+            "verse": 31
+          },
+          {
+            "verseID": "01029032",
+            "chapter": 29,
+            "verse": 32
+          },
+          {
+            "verseID": "01029033",
+            "chapter": 29,
+            "verse": 33
+          },
+          {
+            "verseID": "01029034",
+            "chapter": 29,
+            "verse": 34
+          },
+          {
+            "verseID": "01029035",
+            "chapter": 29,
+            "verse": 35
+          },
+          {
+            "verseID": "01030001",
+            "chapter": 30,
+            "verse": 1
+          },
+          {
+            "verseID": "01030002",
+            "chapter": 30,
+            "verse": 2
+          },
+          {
+            "verseID": "01030003",
+            "chapter": 30,
+            "verse": 3
+          },
+          {
+            "verseID": "01030004",
+            "chapter": 30,
+            "verse": 4
+          },
+          {
+            "verseID": "01030005",
+            "chapter": 30,
+            "verse": 5
+          },
+          {
+            "verseID": "01030006",
+            "chapter": 30,
+            "verse": 6
+          },
+          {
+            "verseID": "01030007",
+            "chapter": 30,
+            "verse": 7
+          },
+          {
+            "verseID": "01030008",
+            "chapter": 30,
+            "verse": 8
+          },
+          {
+            "verseID": "01030009",
+            "chapter": 30,
+            "verse": 9
+          },
+          {
+            "verseID": "01030010",
+            "chapter": 30,
+            "verse": 10
+          },
+          {
+            "verseID": "01030011",
+            "chapter": 30,
+            "verse": 11
+          },
+          {
+            "verseID": "01030012",
+            "chapter": 30,
+            "verse": 12
+          },
+          {
+            "verseID": "01030013",
+            "chapter": 30,
+            "verse": 13
+          },
+          {
+            "verseID": "01030014",
+            "chapter": 30,
+            "verse": 14
+          },
+          {
+            "verseID": "01030015",
+            "chapter": 30,
+            "verse": 15
+          },
+          {
+            "verseID": "01030016",
+            "chapter": 30,
+            "verse": 16
+          },
+          {
+            "verseID": "01030017",
+            "chapter": 30,
+            "verse": 17
+          },
+          {
+            "verseID": "01030018",
+            "chapter": 30,
+            "verse": 18
+          },
+          {
+            "verseID": "01030019",
+            "chapter": 30,
+            "verse": 19
+          },
+          {
+            "verseID": "01030020",
+            "chapter": 30,
+            "verse": 20
+          },
+          {
+            "verseID": "01030021",
+            "chapter": 30,
+            "verse": 21
+          },
+          {
+            "verseID": "01030022",
+            "chapter": 30,
+            "verse": 22
+          },
+          {
+            "verseID": "01030023",
+            "chapter": 30,
+            "verse": 23
+          },
+          {
+            "verseID": "01030024",
+            "chapter": 30,
+            "verse": 24
+          },
+          {
+            "verseID": "01030025",
+            "chapter": 30,
+            "verse": 25
+          },
+          {
+            "verseID": "01030026",
+            "chapter": 30,
+            "verse": 26
+          },
+          {
+            "verseID": "01030027",
+            "chapter": 30,
+            "verse": 27
+          },
+          {
+            "verseID": "01030028",
+            "chapter": 30,
+            "verse": 28
+          },
+          {
+            "verseID": "01030029",
+            "chapter": 30,
+            "verse": 29
+          },
+          {
+            "verseID": "01030030",
+            "chapter": 30,
+            "verse": 30
+          },
+          {
+            "verseID": "01030031",
+            "chapter": 30,
+            "verse": 31
+          },
+          {
+            "verseID": "01030032",
+            "chapter": 30,
+            "verse": 32
+          },
+          {
+            "verseID": "01030033",
+            "chapter": 30,
+            "verse": 33
+          },
+          {
+            "verseID": "01030034",
+            "chapter": 30,
+            "verse": 34
+          },
+          {
+            "verseID": "01030035",
+            "chapter": 30,
+            "verse": 35
+          },
+          {
+            "verseID": "01030036",
+            "chapter": 30,
+            "verse": 36
+          },
+          {
+            "verseID": "01030037",
+            "chapter": 30,
+            "verse": 37
+          },
+          {
+            "verseID": "01030038",
+            "chapter": 30,
+            "verse": 38
+          },
+          {
+            "verseID": "01030039",
+            "chapter": 30,
+            "verse": 39
+          },
+          {
+            "verseID": "01030040",
+            "chapter": 30,
+            "verse": 40
+          },
+          {
+            "verseID": "01030041",
+            "chapter": 30,
+            "verse": 41
+          },
+          {
+            "verseID": "01030042",
+            "chapter": 30,
+            "verse": 42
+          },
+          {
+            "verseID": "01030043",
+            "chapter": 30,
+            "verse": 43
+          },
+          {
+            "verseID": "01031001",
+            "chapter": 31,
+            "verse": 1
+          },
+          {
+            "verseID": "01031002",
+            "chapter": 31,
+            "verse": 2
+          },
+          {
+            "verseID": "01031003",
+            "chapter": 31,
+            "verse": 3
+          },
+          {
+            "verseID": "01031004",
+            "chapter": 31,
+            "verse": 4
+          },
+          {
+            "verseID": "01031005",
+            "chapter": 31,
+            "verse": 5
+          },
+          {
+            "verseID": "01031006",
+            "chapter": 31,
+            "verse": 6
+          },
+          {
+            "verseID": "01031007",
+            "chapter": 31,
+            "verse": 7
+          },
+          {
+            "verseID": "01031008",
+            "chapter": 31,
+            "verse": 8
+          },
+          {
+            "verseID": "01031009",
+            "chapter": 31,
+            "verse": 9
+          },
+          {
+            "verseID": "01031010",
+            "chapter": 31,
+            "verse": 10
+          },
+          {
+            "verseID": "01031011",
+            "chapter": 31,
+            "verse": 11
+          },
+          {
+            "verseID": "01031012",
+            "chapter": 31,
+            "verse": 12
+          },
+          {
+            "verseID": "01031013",
+            "chapter": 31,
+            "verse": 13
+          },
+          {
+            "verseID": "01031014",
+            "chapter": 31,
+            "verse": 14
+          },
+          {
+            "verseID": "01031015",
+            "chapter": 31,
+            "verse": 15
+          },
+          {
+            "verseID": "01031016",
+            "chapter": 31,
+            "verse": 16
+          },
+          {
+            "verseID": "01031017",
+            "chapter": 31,
+            "verse": 17
+          },
+          {
+            "verseID": "01031018",
+            "chapter": 31,
+            "verse": 18
+          },
+          {
+            "verseID": "01031019",
+            "chapter": 31,
+            "verse": 19
+          },
+          {
+            "verseID": "01031020",
+            "chapter": 31,
+            "verse": 20
+          },
+          {
+            "verseID": "01031021",
+            "chapter": 31,
+            "verse": 21
+          },
+          {
+            "verseID": "01031022",
+            "chapter": 31,
+            "verse": 22
+          },
+          {
+            "verseID": "01031023",
+            "chapter": 31,
+            "verse": 23
+          },
+          {
+            "verseID": "01031024",
+            "chapter": 31,
+            "verse": 24
+          },
+          {
+            "verseID": "01031025",
+            "chapter": 31,
+            "verse": 25
+          },
+          {
+            "verseID": "01031026",
+            "chapter": 31,
+            "verse": 26
+          },
+          {
+            "verseID": "01031027",
+            "chapter": 31,
+            "verse": 27
+          },
+          {
+            "verseID": "01031028",
+            "chapter": 31,
+            "verse": 28
+          },
+          {
+            "verseID": "01031029",
+            "chapter": 31,
+            "verse": 29
+          },
+          {
+            "verseID": "01031030",
+            "chapter": 31,
+            "verse": 30
+          },
+          {
+            "verseID": "01031031",
+            "chapter": 31,
+            "verse": 31
+          },
+          {
+            "verseID": "01031032",
+            "chapter": 31,
+            "verse": 32
+          },
+          {
+            "verseID": "01031033",
+            "chapter": 31,
+            "verse": 33
+          },
+          {
+            "verseID": "01031034",
+            "chapter": 31,
+            "verse": 34
+          },
+          {
+            "verseID": "01031035",
+            "chapter": 31,
+            "verse": 35
+          },
+          {
+            "verseID": "01031036",
+            "chapter": 31,
+            "verse": 36
+          },
+          {
+            "verseID": "01031037",
+            "chapter": 31,
+            "verse": 37
+          },
+          {
+            "verseID": "01031038",
+            "chapter": 31,
+            "verse": 38
+          },
+          {
+            "verseID": "01031039",
+            "chapter": 31,
+            "verse": 39
+          },
+          {
+            "verseID": "01031040",
+            "chapter": 31,
+            "verse": 40
+          },
+          {
+            "verseID": "01031041",
+            "chapter": 31,
+            "verse": 41
+          },
+          {
+            "verseID": "01031042",
+            "chapter": 31,
+            "verse": 42
+          },
+          {
+            "verseID": "01031043",
+            "chapter": 31,
+            "verse": 43
+          },
+          {
+            "verseID": "01031044",
+            "chapter": 31,
+            "verse": 44
+          },
+          {
+            "verseID": "01031045",
+            "chapter": 31,
+            "verse": 45
+          },
+          {
+            "verseID": "01031046",
+            "chapter": 31,
+            "verse": 46
+          },
+          {
+            "verseID": "01031047",
+            "chapter": 31,
+            "verse": 47
+          },
+          {
+            "verseID": "01031048",
+            "chapter": 31,
+            "verse": 48
+          },
+          {
+            "verseID": "01031049",
+            "chapter": 31,
+            "verse": 49
+          },
+          {
+            "verseID": "01031050",
+            "chapter": 31,
+            "verse": 50
+          },
+          {
+            "verseID": "01031051",
+            "chapter": 31,
+            "verse": 51
+          },
+          {
+            "verseID": "01031052",
+            "chapter": 31,
+            "verse": 52
+          },
+          {
+            "verseID": "01031053",
+            "chapter": 31,
+            "verse": 53
+          },
+          {
+            "verseID": "01031054",
+            "chapter": 31,
+            "verse": 54
+          },
+          {
+            "verseID": "01031055",
+            "chapter": 31,
+            "verse": 55
           }
         ]
       }
@@ -81668,6 +82328,91 @@
             "verseID": "06004019",
             "chapter": 4,
             "verse": 19
+          },
+          {
+            "verseID": "06004020",
+            "chapter": 4,
+            "verse": 20
+          },
+          {
+            "verseID": "06004021",
+            "chapter": 4,
+            "verse": 21
+          },
+          {
+            "verseID": "06004022",
+            "chapter": 4,
+            "verse": 22
+          },
+          {
+            "verseID": "06004023",
+            "chapter": 4,
+            "verse": 23
+          },
+          {
+            "verseID": "06004024",
+            "chapter": 4,
+            "verse": 24
+          },
+          {
+            "verseID": "06005001",
+            "chapter": 5,
+            "verse": 1
+          },
+          {
+            "verseID": "06005002",
+            "chapter": 5,
+            "verse": 2
+          },
+          {
+            "verseID": "06005003",
+            "chapter": 5,
+            "verse": 3
+          },
+          {
+            "verseID": "06005004",
+            "chapter": 5,
+            "verse": 4
+          },
+          {
+            "verseID": "06005005",
+            "chapter": 5,
+            "verse": 5
+          },
+          {
+            "verseID": "06005006",
+            "chapter": 5,
+            "verse": 6
+          },
+          {
+            "verseID": "06005007",
+            "chapter": 5,
+            "verse": 7
+          },
+          {
+            "verseID": "06005008",
+            "chapter": 5,
+            "verse": 8
+          },
+          {
+            "verseID": "06005009",
+            "chapter": 5,
+            "verse": 9
+          },
+          {
+            "verseID": "06005010",
+            "chapter": 5,
+            "verse": 10
+          },
+          {
+            "verseID": "06005011",
+            "chapter": 5,
+            "verse": 11
+          },
+          {
+            "verseID": "06005012",
+            "chapter": 5,
+            "verse": 12
           }
         ]
       }
@@ -82438,6 +83183,256 @@
             "verseID": "02019001",
             "chapter": 19,
             "verse": 1
+          },
+          {
+            "verseID": "02019002",
+            "chapter": 19,
+            "verse": 2
+          },
+          {
+            "verseID": "02019003",
+            "chapter": 19,
+            "verse": 3
+          },
+          {
+            "verseID": "02019004",
+            "chapter": 19,
+            "verse": 4
+          },
+          {
+            "verseID": "02019005",
+            "chapter": 19,
+            "verse": 5
+          },
+          {
+            "verseID": "02019006",
+            "chapter": 19,
+            "verse": 6
+          },
+          {
+            "verseID": "02019007",
+            "chapter": 19,
+            "verse": 7
+          },
+          {
+            "verseID": "02019008",
+            "chapter": 19,
+            "verse": 8
+          },
+          {
+            "verseID": "02019009",
+            "chapter": 19,
+            "verse": 9
+          },
+          {
+            "verseID": "02019010",
+            "chapter": 19,
+            "verse": 10
+          },
+          {
+            "verseID": "02019011",
+            "chapter": 19,
+            "verse": 11
+          },
+          {
+            "verseID": "02019012",
+            "chapter": 19,
+            "verse": 12
+          },
+          {
+            "verseID": "02019013",
+            "chapter": 19,
+            "verse": 13
+          },
+          {
+            "verseID": "02019014",
+            "chapter": 19,
+            "verse": 14
+          },
+          {
+            "verseID": "02019015",
+            "chapter": 19,
+            "verse": 15
+          },
+          {
+            "verseID": "02019016",
+            "chapter": 19,
+            "verse": 16
+          },
+          {
+            "verseID": "02019017",
+            "chapter": 19,
+            "verse": 17
+          },
+          {
+            "verseID": "02019018",
+            "chapter": 19,
+            "verse": 18
+          },
+          {
+            "verseID": "02019019",
+            "chapter": 19,
+            "verse": 19
+          },
+          {
+            "verseID": "02019020",
+            "chapter": 19,
+            "verse": 20
+          },
+          {
+            "verseID": "02019021",
+            "chapter": 19,
+            "verse": 21
+          },
+          {
+            "verseID": "02019022",
+            "chapter": 19,
+            "verse": 22
+          },
+          {
+            "verseID": "02019023",
+            "chapter": 19,
+            "verse": 23
+          },
+          {
+            "verseID": "02019024",
+            "chapter": 19,
+            "verse": 24
+          },
+          {
+            "verseID": "02019025",
+            "chapter": 19,
+            "verse": 25
+          },
+          {
+            "verseID": "02020001",
+            "chapter": 20,
+            "verse": 1
+          },
+          {
+            "verseID": "02020002",
+            "chapter": 20,
+            "verse": 2
+          },
+          {
+            "verseID": "02020003",
+            "chapter": 20,
+            "verse": 3
+          },
+          {
+            "verseID": "02020004",
+            "chapter": 20,
+            "verse": 4
+          },
+          {
+            "verseID": "02020005",
+            "chapter": 20,
+            "verse": 5
+          },
+          {
+            "verseID": "02020006",
+            "chapter": 20,
+            "verse": 6
+          },
+          {
+            "verseID": "02020007",
+            "chapter": 20,
+            "verse": 7
+          },
+          {
+            "verseID": "02020008",
+            "chapter": 20,
+            "verse": 8
+          },
+          {
+            "verseID": "02020009",
+            "chapter": 20,
+            "verse": 9
+          },
+          {
+            "verseID": "02020010",
+            "chapter": 20,
+            "verse": 10
+          },
+          {
+            "verseID": "02020011",
+            "chapter": 20,
+            "verse": 11
+          },
+          {
+            "verseID": "02020012",
+            "chapter": 20,
+            "verse": 12
+          },
+          {
+            "verseID": "02020013",
+            "chapter": 20,
+            "verse": 13
+          },
+          {
+            "verseID": "02020014",
+            "chapter": 20,
+            "verse": 14
+          },
+          {
+            "verseID": "02020015",
+            "chapter": 20,
+            "verse": 15
+          },
+          {
+            "verseID": "02020016",
+            "chapter": 20,
+            "verse": 16
+          },
+          {
+            "verseID": "02020017",
+            "chapter": 20,
+            "verse": 17
+          },
+          {
+            "verseID": "02020018",
+            "chapter": 20,
+            "verse": 18
+          },
+          {
+            "verseID": "02020019",
+            "chapter": 20,
+            "verse": 19
+          },
+          {
+            "verseID": "02020020",
+            "chapter": 20,
+            "verse": 20
+          },
+          {
+            "verseID": "02020021",
+            "chapter": 20,
+            "verse": 21
+          },
+          {
+            "verseID": "02020022",
+            "chapter": 20,
+            "verse": 22
+          },
+          {
+            "verseID": "02020023",
+            "chapter": 20,
+            "verse": 23
+          },
+          {
+            "verseID": "02020024",
+            "chapter": 20,
+            "verse": 24
+          },
+          {
+            "verseID": "02020025",
+            "chapter": 20,
+            "verse": 25
+          },
+          {
+            "verseID": "02020026",
+            "chapter": 20,
+            "verse": 26
           }
         ]
       },
@@ -82482,6 +83477,341 @@
             "verseID": "04013001",
             "chapter": 13,
             "verse": 1
+          },
+          {
+            "verseID": "04013002",
+            "chapter": 13,
+            "verse": 2
+          },
+          {
+            "verseID": "04013003",
+            "chapter": 13,
+            "verse": 3
+          },
+          {
+            "verseID": "04013004",
+            "chapter": 13,
+            "verse": 4
+          },
+          {
+            "verseID": "04013005",
+            "chapter": 13,
+            "verse": 5
+          },
+          {
+            "verseID": "04013006",
+            "chapter": 13,
+            "verse": 6
+          },
+          {
+            "verseID": "04013007",
+            "chapter": 13,
+            "verse": 7
+          },
+          {
+            "verseID": "04013008",
+            "chapter": 13,
+            "verse": 8
+          },
+          {
+            "verseID": "04013009",
+            "chapter": 13,
+            "verse": 9
+          },
+          {
+            "verseID": "04013010",
+            "chapter": 13,
+            "verse": 10
+          },
+          {
+            "verseID": "04013011",
+            "chapter": 13,
+            "verse": 11
+          },
+          {
+            "verseID": "04013012",
+            "chapter": 13,
+            "verse": 12
+          },
+          {
+            "verseID": "04013013",
+            "chapter": 13,
+            "verse": 13
+          },
+          {
+            "verseID": "04013014",
+            "chapter": 13,
+            "verse": 14
+          },
+          {
+            "verseID": "04013015",
+            "chapter": 13,
+            "verse": 15
+          },
+          {
+            "verseID": "04013016",
+            "chapter": 13,
+            "verse": 16
+          },
+          {
+            "verseID": "04013017",
+            "chapter": 13,
+            "verse": 17
+          },
+          {
+            "verseID": "04013018",
+            "chapter": 13,
+            "verse": 18
+          },
+          {
+            "verseID": "04013019",
+            "chapter": 13,
+            "verse": 19
+          },
+          {
+            "verseID": "04013020",
+            "chapter": 13,
+            "verse": 20
+          },
+          {
+            "verseID": "04013021",
+            "chapter": 13,
+            "verse": 21
+          },
+          {
+            "verseID": "04013022",
+            "chapter": 13,
+            "verse": 22
+          },
+          {
+            "verseID": "04013023",
+            "chapter": 13,
+            "verse": 23
+          },
+          {
+            "verseID": "04013024",
+            "chapter": 13,
+            "verse": 24
+          },
+          {
+            "verseID": "04013025",
+            "chapter": 13,
+            "verse": 25
+          },
+          {
+            "verseID": "04013026",
+            "chapter": 13,
+            "verse": 26
+          },
+          {
+            "verseID": "04013027",
+            "chapter": 13,
+            "verse": 27
+          },
+          {
+            "verseID": "04013028",
+            "chapter": 13,
+            "verse": 28
+          },
+          {
+            "verseID": "04013029",
+            "chapter": 13,
+            "verse": 29
+          },
+          {
+            "verseID": "04013030",
+            "chapter": 13,
+            "verse": 30
+          },
+          {
+            "verseID": "04013031",
+            "chapter": 13,
+            "verse": 31
+          },
+          {
+            "verseID": "04013032",
+            "chapter": 13,
+            "verse": 32
+          },
+          {
+            "verseID": "04013033",
+            "chapter": 13,
+            "verse": 33
+          },
+          {
+            "verseID": "04014001",
+            "chapter": 14,
+            "verse": 1
+          },
+          {
+            "verseID": "04014002",
+            "chapter": 14,
+            "verse": 2
+          },
+          {
+            "verseID": "04014003",
+            "chapter": 14,
+            "verse": 3
+          },
+          {
+            "verseID": "04014004",
+            "chapter": 14,
+            "verse": 4
+          },
+          {
+            "verseID": "04014005",
+            "chapter": 14,
+            "verse": 5
+          },
+          {
+            "verseID": "04014006",
+            "chapter": 14,
+            "verse": 6
+          },
+          {
+            "verseID": "04014007",
+            "chapter": 14,
+            "verse": 7
+          },
+          {
+            "verseID": "04014008",
+            "chapter": 14,
+            "verse": 8
+          },
+          {
+            "verseID": "04014009",
+            "chapter": 14,
+            "verse": 9
+          },
+          {
+            "verseID": "04014010",
+            "chapter": 14,
+            "verse": 10
+          },
+          {
+            "verseID": "04014011",
+            "chapter": 14,
+            "verse": 11
+          },
+          {
+            "verseID": "04014012",
+            "chapter": 14,
+            "verse": 12
+          },
+          {
+            "verseID": "04014013",
+            "chapter": 14,
+            "verse": 13
+          },
+          {
+            "verseID": "04014014",
+            "chapter": 14,
+            "verse": 14
+          },
+          {
+            "verseID": "04014015",
+            "chapter": 14,
+            "verse": 15
+          },
+          {
+            "verseID": "04014016",
+            "chapter": 14,
+            "verse": 16
+          },
+          {
+            "verseID": "04014017",
+            "chapter": 14,
+            "verse": 17
+          },
+          {
+            "verseID": "04014018",
+            "chapter": 14,
+            "verse": 18
+          },
+          {
+            "verseID": "04014019",
+            "chapter": 14,
+            "verse": 19
+          },
+          {
+            "verseID": "04014020",
+            "chapter": 14,
+            "verse": 20
+          },
+          {
+            "verseID": "04014021",
+            "chapter": 14,
+            "verse": 21
+          },
+          {
+            "verseID": "04014022",
+            "chapter": 14,
+            "verse": 22
+          },
+          {
+            "verseID": "04014023",
+            "chapter": 14,
+            "verse": 23
+          },
+          {
+            "verseID": "04014024",
+            "chapter": 14,
+            "verse": 24
+          },
+          {
+            "verseID": "04014025",
+            "chapter": 14,
+            "verse": 25
+          },
+          {
+            "verseID": "04014026",
+            "chapter": 14,
+            "verse": 26
+          },
+          {
+            "verseID": "04014027",
+            "chapter": 14,
+            "verse": 27
+          },
+          {
+            "verseID": "04014028",
+            "chapter": 14,
+            "verse": 28
+          },
+          {
+            "verseID": "04014029",
+            "chapter": 14,
+            "verse": 29
+          },
+          {
+            "verseID": "04014030",
+            "chapter": 14,
+            "verse": 30
+          },
+          {
+            "verseID": "04014031",
+            "chapter": 14,
+            "verse": 31
+          },
+          {
+            "verseID": "04014032",
+            "chapter": 14,
+            "verse": 32
+          },
+          {
+            "verseID": "04014033",
+            "chapter": 14,
+            "verse": 33
+          },
+          {
+            "verseID": "04014034",
+            "chapter": 14,
+            "verse": 34
+          },
+          {
+            "verseID": "04014035",
+            "chapter": 14,
+            "verse": 35
           }
         ]
       }
@@ -85164,6 +86494,211 @@
             "verseID": "44027013",
             "chapter": 27,
             "verse": 13
+          },
+          {
+            "verseID": "44027014",
+            "chapter": 27,
+            "verse": 14
+          },
+          {
+            "verseID": "44027015",
+            "chapter": 27,
+            "verse": 15
+          },
+          {
+            "verseID": "44027016",
+            "chapter": 27,
+            "verse": 16
+          },
+          {
+            "verseID": "44027017",
+            "chapter": 27,
+            "verse": 17
+          },
+          {
+            "verseID": "44027018",
+            "chapter": 27,
+            "verse": 18
+          },
+          {
+            "verseID": "44027019",
+            "chapter": 27,
+            "verse": 19
+          },
+          {
+            "verseID": "44027020",
+            "chapter": 27,
+            "verse": 20
+          },
+          {
+            "verseID": "44027021",
+            "chapter": 27,
+            "verse": 21
+          },
+          {
+            "verseID": "44027022",
+            "chapter": 27,
+            "verse": 22
+          },
+          {
+            "verseID": "44027023",
+            "chapter": 27,
+            "verse": 23
+          },
+          {
+            "verseID": "44027024",
+            "chapter": 27,
+            "verse": 24
+          },
+          {
+            "verseID": "44027025",
+            "chapter": 27,
+            "verse": 25
+          },
+          {
+            "verseID": "44027026",
+            "chapter": 27,
+            "verse": 26
+          },
+          {
+            "verseID": "44027027",
+            "chapter": 27,
+            "verse": 27
+          },
+          {
+            "verseID": "44027028",
+            "chapter": 27,
+            "verse": 28
+          },
+          {
+            "verseID": "44027029",
+            "chapter": 27,
+            "verse": 29
+          },
+          {
+            "verseID": "44027030",
+            "chapter": 27,
+            "verse": 30
+          },
+          {
+            "verseID": "44027031",
+            "chapter": 27,
+            "verse": 31
+          },
+          {
+            "verseID": "44027032",
+            "chapter": 27,
+            "verse": 32
+          },
+          {
+            "verseID": "44027033",
+            "chapter": 27,
+            "verse": 33
+          },
+          {
+            "verseID": "44027034",
+            "chapter": 27,
+            "verse": 34
+          },
+          {
+            "verseID": "44027035",
+            "chapter": 27,
+            "verse": 35
+          },
+          {
+            "verseID": "44027036",
+            "chapter": 27,
+            "verse": 36
+          },
+          {
+            "verseID": "44027037",
+            "chapter": 27,
+            "verse": 37
+          },
+          {
+            "verseID": "44027038",
+            "chapter": 27,
+            "verse": 38
+          },
+          {
+            "verseID": "44027039",
+            "chapter": 27,
+            "verse": 39
+          },
+          {
+            "verseID": "44027040",
+            "chapter": 27,
+            "verse": 40
+          },
+          {
+            "verseID": "44027041",
+            "chapter": 27,
+            "verse": 41
+          },
+          {
+            "verseID": "44027042",
+            "chapter": 27,
+            "verse": 42
+          },
+          {
+            "verseID": "44027043",
+            "chapter": 27,
+            "verse": 43
+          },
+          {
+            "verseID": "44027044",
+            "chapter": 27,
+            "verse": 44
+          },
+          {
+            "verseID": "44028001",
+            "chapter": 28,
+            "verse": 1
+          },
+          {
+            "verseID": "44028002",
+            "chapter": 28,
+            "verse": 2
+          },
+          {
+            "verseID": "44028003",
+            "chapter": 28,
+            "verse": 3
+          },
+          {
+            "verseID": "44028004",
+            "chapter": 28,
+            "verse": 4
+          },
+          {
+            "verseID": "44028005",
+            "chapter": 28,
+            "verse": 5
+          },
+          {
+            "verseID": "44028006",
+            "chapter": 28,
+            "verse": 6
+          },
+          {
+            "verseID": "44028007",
+            "chapter": 28,
+            "verse": 7
+          },
+          {
+            "verseID": "44028008",
+            "chapter": 28,
+            "verse": 8
+          },
+          {
+            "verseID": "44028009",
+            "chapter": 28,
+            "verse": 9
+          },
+          {
+            "verseID": "44028010",
+            "chapter": 28,
+            "verse": 10
           }
         ]
       }
@@ -85986,6 +87521,191 @@
             "verseID": "44003011",
             "chapter": 3,
             "verse": 11
+          },
+          {
+            "verseID": "44003012",
+            "chapter": 3,
+            "verse": 12
+          },
+          {
+            "verseID": "44003013",
+            "chapter": 3,
+            "verse": 13
+          },
+          {
+            "verseID": "44003014",
+            "chapter": 3,
+            "verse": 14
+          },
+          {
+            "verseID": "44003015",
+            "chapter": 3,
+            "verse": 15
+          },
+          {
+            "verseID": "44003016",
+            "chapter": 3,
+            "verse": 16
+          },
+          {
+            "verseID": "44003017",
+            "chapter": 3,
+            "verse": 17
+          },
+          {
+            "verseID": "44003018",
+            "chapter": 3,
+            "verse": 18
+          },
+          {
+            "verseID": "44003019",
+            "chapter": 3,
+            "verse": 19
+          },
+          {
+            "verseID": "44003020",
+            "chapter": 3,
+            "verse": 20
+          },
+          {
+            "verseID": "44003021",
+            "chapter": 3,
+            "verse": 21
+          },
+          {
+            "verseID": "44003022",
+            "chapter": 3,
+            "verse": 22
+          },
+          {
+            "verseID": "44003023",
+            "chapter": 3,
+            "verse": 23
+          },
+          {
+            "verseID": "44003024",
+            "chapter": 3,
+            "verse": 24
+          },
+          {
+            "verseID": "44003025",
+            "chapter": 3,
+            "verse": 25
+          },
+          {
+            "verseID": "44003026",
+            "chapter": 3,
+            "verse": 26
+          },
+          {
+            "verseID": "44004001",
+            "chapter": 4,
+            "verse": 1
+          },
+          {
+            "verseID": "44004002",
+            "chapter": 4,
+            "verse": 2
+          },
+          {
+            "verseID": "44004003",
+            "chapter": 4,
+            "verse": 3
+          },
+          {
+            "verseID": "44004004",
+            "chapter": 4,
+            "verse": 4
+          },
+          {
+            "verseID": "44004005",
+            "chapter": 4,
+            "verse": 5
+          },
+          {
+            "verseID": "44004006",
+            "chapter": 4,
+            "verse": 6
+          },
+          {
+            "verseID": "44004007",
+            "chapter": 4,
+            "verse": 7
+          },
+          {
+            "verseID": "44004008",
+            "chapter": 4,
+            "verse": 8
+          },
+          {
+            "verseID": "44004009",
+            "chapter": 4,
+            "verse": 9
+          },
+          {
+            "verseID": "44004010",
+            "chapter": 4,
+            "verse": 10
+          },
+          {
+            "verseID": "44004011",
+            "chapter": 4,
+            "verse": 11
+          },
+          {
+            "verseID": "44004012",
+            "chapter": 4,
+            "verse": 12
+          },
+          {
+            "verseID": "44004013",
+            "chapter": 4,
+            "verse": 13
+          },
+          {
+            "verseID": "44004014",
+            "chapter": 4,
+            "verse": 14
+          },
+          {
+            "verseID": "44004015",
+            "chapter": 4,
+            "verse": 15
+          },
+          {
+            "verseID": "44004016",
+            "chapter": 4,
+            "verse": 16
+          },
+          {
+            "verseID": "44004017",
+            "chapter": 4,
+            "verse": 17
+          },
+          {
+            "verseID": "44004018",
+            "chapter": 4,
+            "verse": 18
+          },
+          {
+            "verseID": "44004019",
+            "chapter": 4,
+            "verse": 19
+          },
+          {
+            "verseID": "44004020",
+            "chapter": 4,
+            "verse": 20
+          },
+          {
+            "verseID": "44004021",
+            "chapter": 4,
+            "verse": 21
+          },
+          {
+            "verseID": "44004022",
+            "chapter": 4,
+            "verse": 22
           }
         ]
       }
@@ -94769,6 +96489,396 @@
             "verseID": "27010001",
             "chapter": 10,
             "verse": 1
+          },
+          {
+            "verseID": "27010002",
+            "chapter": 10,
+            "verse": 2
+          },
+          {
+            "verseID": "27010003",
+            "chapter": 10,
+            "verse": 3
+          },
+          {
+            "verseID": "27010004",
+            "chapter": 10,
+            "verse": 4
+          },
+          {
+            "verseID": "27010005",
+            "chapter": 10,
+            "verse": 5
+          },
+          {
+            "verseID": "27010006",
+            "chapter": 10,
+            "verse": 6
+          },
+          {
+            "verseID": "27010007",
+            "chapter": 10,
+            "verse": 7
+          },
+          {
+            "verseID": "27010008",
+            "chapter": 10,
+            "verse": 8
+          },
+          {
+            "verseID": "27010009",
+            "chapter": 10,
+            "verse": 9
+          },
+          {
+            "verseID": "27010010",
+            "chapter": 10,
+            "verse": 10
+          },
+          {
+            "verseID": "27010011",
+            "chapter": 10,
+            "verse": 11
+          },
+          {
+            "verseID": "27010012",
+            "chapter": 10,
+            "verse": 12
+          },
+          {
+            "verseID": "27010013",
+            "chapter": 10,
+            "verse": 13
+          },
+          {
+            "verseID": "27010014",
+            "chapter": 10,
+            "verse": 14
+          },
+          {
+            "verseID": "27010015",
+            "chapter": 10,
+            "verse": 15
+          },
+          {
+            "verseID": "27010016",
+            "chapter": 10,
+            "verse": 16
+          },
+          {
+            "verseID": "27010017",
+            "chapter": 10,
+            "verse": 17
+          },
+          {
+            "verseID": "27010018",
+            "chapter": 10,
+            "verse": 18
+          },
+          {
+            "verseID": "27010019",
+            "chapter": 10,
+            "verse": 19
+          },
+          {
+            "verseID": "27010020",
+            "chapter": 10,
+            "verse": 20
+          },
+          {
+            "verseID": "27010021",
+            "chapter": 10,
+            "verse": 21
+          },
+          {
+            "verseID": "27011001",
+            "chapter": 11,
+            "verse": 1
+          },
+          {
+            "verseID": "27011002",
+            "chapter": 11,
+            "verse": 2
+          },
+          {
+            "verseID": "27011003",
+            "chapter": 11,
+            "verse": 3
+          },
+          {
+            "verseID": "27011004",
+            "chapter": 11,
+            "verse": 4
+          },
+          {
+            "verseID": "27011005",
+            "chapter": 11,
+            "verse": 5
+          },
+          {
+            "verseID": "27011006",
+            "chapter": 11,
+            "verse": 6
+          },
+          {
+            "verseID": "27011007",
+            "chapter": 11,
+            "verse": 7
+          },
+          {
+            "verseID": "27011008",
+            "chapter": 11,
+            "verse": 8
+          },
+          {
+            "verseID": "27011009",
+            "chapter": 11,
+            "verse": 9
+          },
+          {
+            "verseID": "27011010",
+            "chapter": 11,
+            "verse": 10
+          },
+          {
+            "verseID": "27011011",
+            "chapter": 11,
+            "verse": 11
+          },
+          {
+            "verseID": "27011012",
+            "chapter": 11,
+            "verse": 12
+          },
+          {
+            "verseID": "27011013",
+            "chapter": 11,
+            "verse": 13
+          },
+          {
+            "verseID": "27011014",
+            "chapter": 11,
+            "verse": 14
+          },
+          {
+            "verseID": "27011015",
+            "chapter": 11,
+            "verse": 15
+          },
+          {
+            "verseID": "27011016",
+            "chapter": 11,
+            "verse": 16
+          },
+          {
+            "verseID": "27011017",
+            "chapter": 11,
+            "verse": 17
+          },
+          {
+            "verseID": "27011018",
+            "chapter": 11,
+            "verse": 18
+          },
+          {
+            "verseID": "27011019",
+            "chapter": 11,
+            "verse": 19
+          },
+          {
+            "verseID": "27011020",
+            "chapter": 11,
+            "verse": 20
+          },
+          {
+            "verseID": "27011021",
+            "chapter": 11,
+            "verse": 21
+          },
+          {
+            "verseID": "27011022",
+            "chapter": 11,
+            "verse": 22
+          },
+          {
+            "verseID": "27011023",
+            "chapter": 11,
+            "verse": 23
+          },
+          {
+            "verseID": "27011024",
+            "chapter": 11,
+            "verse": 24
+          },
+          {
+            "verseID": "27011025",
+            "chapter": 11,
+            "verse": 25
+          },
+          {
+            "verseID": "27011026",
+            "chapter": 11,
+            "verse": 26
+          },
+          {
+            "verseID": "27011027",
+            "chapter": 11,
+            "verse": 27
+          },
+          {
+            "verseID": "27011028",
+            "chapter": 11,
+            "verse": 28
+          },
+          {
+            "verseID": "27011029",
+            "chapter": 11,
+            "verse": 29
+          },
+          {
+            "verseID": "27011030",
+            "chapter": 11,
+            "verse": 30
+          },
+          {
+            "verseID": "27011031",
+            "chapter": 11,
+            "verse": 31
+          },
+          {
+            "verseID": "27011032",
+            "chapter": 11,
+            "verse": 32
+          },
+          {
+            "verseID": "27011033",
+            "chapter": 11,
+            "verse": 33
+          },
+          {
+            "verseID": "27011034",
+            "chapter": 11,
+            "verse": 34
+          },
+          {
+            "verseID": "27011035",
+            "chapter": 11,
+            "verse": 35
+          },
+          {
+            "verseID": "27011036",
+            "chapter": 11,
+            "verse": 36
+          },
+          {
+            "verseID": "27011037",
+            "chapter": 11,
+            "verse": 37
+          },
+          {
+            "verseID": "27011038",
+            "chapter": 11,
+            "verse": 38
+          },
+          {
+            "verseID": "27011039",
+            "chapter": 11,
+            "verse": 39
+          },
+          {
+            "verseID": "27011040",
+            "chapter": 11,
+            "verse": 40
+          },
+          {
+            "verseID": "27011041",
+            "chapter": 11,
+            "verse": 41
+          },
+          {
+            "verseID": "27011042",
+            "chapter": 11,
+            "verse": 42
+          },
+          {
+            "verseID": "27011043",
+            "chapter": 11,
+            "verse": 43
+          },
+          {
+            "verseID": "27011044",
+            "chapter": 11,
+            "verse": 44
+          },
+          {
+            "verseID": "27011045",
+            "chapter": 11,
+            "verse": 45
+          },
+          {
+            "verseID": "27012001",
+            "chapter": 12,
+            "verse": 1
+          },
+          {
+            "verseID": "27012002",
+            "chapter": 12,
+            "verse": 2
+          },
+          {
+            "verseID": "27012003",
+            "chapter": 12,
+            "verse": 3
+          },
+          {
+            "verseID": "27012004",
+            "chapter": 12,
+            "verse": 4
+          },
+          {
+            "verseID": "27012005",
+            "chapter": 12,
+            "verse": 5
+          },
+          {
+            "verseID": "27012006",
+            "chapter": 12,
+            "verse": 6
+          },
+          {
+            "verseID": "27012007",
+            "chapter": 12,
+            "verse": 7
+          },
+          {
+            "verseID": "27012008",
+            "chapter": 12,
+            "verse": 8
+          },
+          {
+            "verseID": "27012009",
+            "chapter": 12,
+            "verse": 9
+          },
+          {
+            "verseID": "27012010",
+            "chapter": 12,
+            "verse": 10
+          },
+          {
+            "verseID": "27012011",
+            "chapter": 12,
+            "verse": 11
+          },
+          {
+            "verseID": "27012012",
+            "chapter": 12,
+            "verse": 12
+          },
+          {
+            "verseID": "27012013",
+            "chapter": 12,
+            "verse": 13
           }
         ]
       }
@@ -96750,6 +98860,676 @@
             "verseID": "18038001",
             "chapter": 38,
             "verse": 1
+          },
+          {
+            "verseID": "18038002",
+            "chapter": 38,
+            "verse": 2
+          },
+          {
+            "verseID": "18038003",
+            "chapter": 38,
+            "verse": 3
+          },
+          {
+            "verseID": "18038004",
+            "chapter": 38,
+            "verse": 4
+          },
+          {
+            "verseID": "18038005",
+            "chapter": 38,
+            "verse": 5
+          },
+          {
+            "verseID": "18038006",
+            "chapter": 38,
+            "verse": 6
+          },
+          {
+            "verseID": "18038007",
+            "chapter": 38,
+            "verse": 7
+          },
+          {
+            "verseID": "18038008",
+            "chapter": 38,
+            "verse": 8
+          },
+          {
+            "verseID": "18038009",
+            "chapter": 38,
+            "verse": 9
+          },
+          {
+            "verseID": "18038010",
+            "chapter": 38,
+            "verse": 10
+          },
+          {
+            "verseID": "18038011",
+            "chapter": 38,
+            "verse": 11
+          },
+          {
+            "verseID": "18038012",
+            "chapter": 38,
+            "verse": 12
+          },
+          {
+            "verseID": "18038013",
+            "chapter": 38,
+            "verse": 13
+          },
+          {
+            "verseID": "18038014",
+            "chapter": 38,
+            "verse": 14
+          },
+          {
+            "verseID": "18038015",
+            "chapter": 38,
+            "verse": 15
+          },
+          {
+            "verseID": "18038016",
+            "chapter": 38,
+            "verse": 16
+          },
+          {
+            "verseID": "18038017",
+            "chapter": 38,
+            "verse": 17
+          },
+          {
+            "verseID": "18038018",
+            "chapter": 38,
+            "verse": 18
+          },
+          {
+            "verseID": "18038019",
+            "chapter": 38,
+            "verse": 19
+          },
+          {
+            "verseID": "18038020",
+            "chapter": 38,
+            "verse": 20
+          },
+          {
+            "verseID": "18038021",
+            "chapter": 38,
+            "verse": 21
+          },
+          {
+            "verseID": "18038022",
+            "chapter": 38,
+            "verse": 22
+          },
+          {
+            "verseID": "18038023",
+            "chapter": 38,
+            "verse": 23
+          },
+          {
+            "verseID": "18038024",
+            "chapter": 38,
+            "verse": 24
+          },
+          {
+            "verseID": "18038025",
+            "chapter": 38,
+            "verse": 25
+          },
+          {
+            "verseID": "18038026",
+            "chapter": 38,
+            "verse": 26
+          },
+          {
+            "verseID": "18038027",
+            "chapter": 38,
+            "verse": 27
+          },
+          {
+            "verseID": "18038028",
+            "chapter": 38,
+            "verse": 28
+          },
+          {
+            "verseID": "18038029",
+            "chapter": 38,
+            "verse": 29
+          },
+          {
+            "verseID": "18038030",
+            "chapter": 38,
+            "verse": 30
+          },
+          {
+            "verseID": "18038031",
+            "chapter": 38,
+            "verse": 31
+          },
+          {
+            "verseID": "18038032",
+            "chapter": 38,
+            "verse": 32
+          },
+          {
+            "verseID": "18038033",
+            "chapter": 38,
+            "verse": 33
+          },
+          {
+            "verseID": "18038034",
+            "chapter": 38,
+            "verse": 34
+          },
+          {
+            "verseID": "18038035",
+            "chapter": 38,
+            "verse": 35
+          },
+          {
+            "verseID": "18038036",
+            "chapter": 38,
+            "verse": 36
+          },
+          {
+            "verseID": "18038037",
+            "chapter": 38,
+            "verse": 37
+          },
+          {
+            "verseID": "18038038",
+            "chapter": 38,
+            "verse": 38
+          },
+          {
+            "verseID": "18038039",
+            "chapter": 38,
+            "verse": 39
+          },
+          {
+            "verseID": "18038040",
+            "chapter": 38,
+            "verse": 40
+          },
+          {
+            "verseID": "18038041",
+            "chapter": 38,
+            "verse": 41
+          },
+          {
+            "verseID": "18039001",
+            "chapter": 39,
+            "verse": 1
+          },
+          {
+            "verseID": "18039002",
+            "chapter": 39,
+            "verse": 2
+          },
+          {
+            "verseID": "18039003",
+            "chapter": 39,
+            "verse": 3
+          },
+          {
+            "verseID": "18039004",
+            "chapter": 39,
+            "verse": 4
+          },
+          {
+            "verseID": "18039005",
+            "chapter": 39,
+            "verse": 5
+          },
+          {
+            "verseID": "18039006",
+            "chapter": 39,
+            "verse": 6
+          },
+          {
+            "verseID": "18039007",
+            "chapter": 39,
+            "verse": 7
+          },
+          {
+            "verseID": "18039008",
+            "chapter": 39,
+            "verse": 8
+          },
+          {
+            "verseID": "18039009",
+            "chapter": 39,
+            "verse": 9
+          },
+          {
+            "verseID": "18039010",
+            "chapter": 39,
+            "verse": 10
+          },
+          {
+            "verseID": "18039011",
+            "chapter": 39,
+            "verse": 11
+          },
+          {
+            "verseID": "18039012",
+            "chapter": 39,
+            "verse": 12
+          },
+          {
+            "verseID": "18039013",
+            "chapter": 39,
+            "verse": 13
+          },
+          {
+            "verseID": "18039014",
+            "chapter": 39,
+            "verse": 14
+          },
+          {
+            "verseID": "18039015",
+            "chapter": 39,
+            "verse": 15
+          },
+          {
+            "verseID": "18039016",
+            "chapter": 39,
+            "verse": 16
+          },
+          {
+            "verseID": "18039017",
+            "chapter": 39,
+            "verse": 17
+          },
+          {
+            "verseID": "18039018",
+            "chapter": 39,
+            "verse": 18
+          },
+          {
+            "verseID": "18039019",
+            "chapter": 39,
+            "verse": 19
+          },
+          {
+            "verseID": "18039020",
+            "chapter": 39,
+            "verse": 20
+          },
+          {
+            "verseID": "18039021",
+            "chapter": 39,
+            "verse": 21
+          },
+          {
+            "verseID": "18039022",
+            "chapter": 39,
+            "verse": 22
+          },
+          {
+            "verseID": "18039023",
+            "chapter": 39,
+            "verse": 23
+          },
+          {
+            "verseID": "18039024",
+            "chapter": 39,
+            "verse": 24
+          },
+          {
+            "verseID": "18039025",
+            "chapter": 39,
+            "verse": 25
+          },
+          {
+            "verseID": "18039026",
+            "chapter": 39,
+            "verse": 26
+          },
+          {
+            "verseID": "18039027",
+            "chapter": 39,
+            "verse": 27
+          },
+          {
+            "verseID": "18039028",
+            "chapter": 39,
+            "verse": 28
+          },
+          {
+            "verseID": "18039029",
+            "chapter": 39,
+            "verse": 29
+          },
+          {
+            "verseID": "18039030",
+            "chapter": 39,
+            "verse": 30
+          },
+          {
+            "verseID": "18040001",
+            "chapter": 40,
+            "verse": 1
+          },
+          {
+            "verseID": "18040002",
+            "chapter": 40,
+            "verse": 2
+          },
+          {
+            "verseID": "18040003",
+            "chapter": 40,
+            "verse": 3
+          },
+          {
+            "verseID": "18040004",
+            "chapter": 40,
+            "verse": 4
+          },
+          {
+            "verseID": "18040005",
+            "chapter": 40,
+            "verse": 5
+          },
+          {
+            "verseID": "18040006",
+            "chapter": 40,
+            "verse": 6
+          },
+          {
+            "verseID": "18040007",
+            "chapter": 40,
+            "verse": 7
+          },
+          {
+            "verseID": "18040008",
+            "chapter": 40,
+            "verse": 8
+          },
+          {
+            "verseID": "18040009",
+            "chapter": 40,
+            "verse": 9
+          },
+          {
+            "verseID": "18040010",
+            "chapter": 40,
+            "verse": 10
+          },
+          {
+            "verseID": "18040011",
+            "chapter": 40,
+            "verse": 11
+          },
+          {
+            "verseID": "18040012",
+            "chapter": 40,
+            "verse": 12
+          },
+          {
+            "verseID": "18040013",
+            "chapter": 40,
+            "verse": 13
+          },
+          {
+            "verseID": "18040014",
+            "chapter": 40,
+            "verse": 14
+          },
+          {
+            "verseID": "18040015",
+            "chapter": 40,
+            "verse": 15
+          },
+          {
+            "verseID": "18040016",
+            "chapter": 40,
+            "verse": 16
+          },
+          {
+            "verseID": "18040017",
+            "chapter": 40,
+            "verse": 17
+          },
+          {
+            "verseID": "18040018",
+            "chapter": 40,
+            "verse": 18
+          },
+          {
+            "verseID": "18040019",
+            "chapter": 40,
+            "verse": 19
+          },
+          {
+            "verseID": "18040020",
+            "chapter": 40,
+            "verse": 20
+          },
+          {
+            "verseID": "18040021",
+            "chapter": 40,
+            "verse": 21
+          },
+          {
+            "verseID": "18040022",
+            "chapter": 40,
+            "verse": 22
+          },
+          {
+            "verseID": "18040023",
+            "chapter": 40,
+            "verse": 23
+          },
+          {
+            "verseID": "18040024",
+            "chapter": 40,
+            "verse": 24
+          },
+          {
+            "verseID": "18041001",
+            "chapter": 41,
+            "verse": 1
+          },
+          {
+            "verseID": "18041002",
+            "chapter": 41,
+            "verse": 2
+          },
+          {
+            "verseID": "18041003",
+            "chapter": 41,
+            "verse": 3
+          },
+          {
+            "verseID": "18041004",
+            "chapter": 41,
+            "verse": 4
+          },
+          {
+            "verseID": "18041005",
+            "chapter": 41,
+            "verse": 5
+          },
+          {
+            "verseID": "18041006",
+            "chapter": 41,
+            "verse": 6
+          },
+          {
+            "verseID": "18041007",
+            "chapter": 41,
+            "verse": 7
+          },
+          {
+            "verseID": "18041008",
+            "chapter": 41,
+            "verse": 8
+          },
+          {
+            "verseID": "18041009",
+            "chapter": 41,
+            "verse": 9
+          },
+          {
+            "verseID": "18041010",
+            "chapter": 41,
+            "verse": 10
+          },
+          {
+            "verseID": "18041011",
+            "chapter": 41,
+            "verse": 11
+          },
+          {
+            "verseID": "18041012",
+            "chapter": 41,
+            "verse": 12
+          },
+          {
+            "verseID": "18041013",
+            "chapter": 41,
+            "verse": 13
+          },
+          {
+            "verseID": "18041014",
+            "chapter": 41,
+            "verse": 14
+          },
+          {
+            "verseID": "18041015",
+            "chapter": 41,
+            "verse": 15
+          },
+          {
+            "verseID": "18041016",
+            "chapter": 41,
+            "verse": 16
+          },
+          {
+            "verseID": "18041017",
+            "chapter": 41,
+            "verse": 17
+          },
+          {
+            "verseID": "18041018",
+            "chapter": 41,
+            "verse": 18
+          },
+          {
+            "verseID": "18041019",
+            "chapter": 41,
+            "verse": 19
+          },
+          {
+            "verseID": "18041020",
+            "chapter": 41,
+            "verse": 20
+          },
+          {
+            "verseID": "18041021",
+            "chapter": 41,
+            "verse": 21
+          },
+          {
+            "verseID": "18041022",
+            "chapter": 41,
+            "verse": 22
+          },
+          {
+            "verseID": "18041023",
+            "chapter": 41,
+            "verse": 23
+          },
+          {
+            "verseID": "18041024",
+            "chapter": 41,
+            "verse": 24
+          },
+          {
+            "verseID": "18041025",
+            "chapter": 41,
+            "verse": 25
+          },
+          {
+            "verseID": "18041026",
+            "chapter": 41,
+            "verse": 26
+          },
+          {
+            "verseID": "18041027",
+            "chapter": 41,
+            "verse": 27
+          },
+          {
+            "verseID": "18041028",
+            "chapter": 41,
+            "verse": 28
+          },
+          {
+            "verseID": "18041029",
+            "chapter": 41,
+            "verse": 29
+          },
+          {
+            "verseID": "18041030",
+            "chapter": 41,
+            "verse": 30
+          },
+          {
+            "verseID": "18041031",
+            "chapter": 41,
+            "verse": 31
+          },
+          {
+            "verseID": "18041032",
+            "chapter": 41,
+            "verse": 32
+          },
+          {
+            "verseID": "18041033",
+            "chapter": 41,
+            "verse": 33
+          },
+          {
+            "verseID": "18041034",
+            "chapter": 41,
+            "verse": 34
+          },
+          {
+            "verseID": "18042001",
+            "chapter": 42,
+            "verse": 1
+          },
+          {
+            "verseID": "18042002",
+            "chapter": 42,
+            "verse": 2
+          },
+          {
+            "verseID": "18042003",
+            "chapter": 42,
+            "verse": 3
+          },
+          {
+            "verseID": "18042004",
+            "chapter": 42,
+            "verse": 4
+          },
+          {
+            "verseID": "18042005",
+            "chapter": 42,
+            "verse": 5
+          },
+          {
+            "verseID": "18042006",
+            "chapter": 42,
+            "verse": 6
           }
         ]
       }
@@ -100572,9 +103352,742 @@
           {
             "verseID": "02007014",
             "chapter": 7,
-            "verse": 14,
-            "textKo": "여호와께서 모세에게 이르시되 바로의 마음이 완강하여 백성 보내기를 거절하는도다 ",
-            "textEn": "And the Lord said unto Moses, Pharaoh’s heart is hardened, he refuseth to let the people go."
+            "verse": 14
+          },
+          {
+            "verseID": "02007015",
+            "chapter": 7,
+            "verse": 15
+          },
+          {
+            "verseID": "02007016",
+            "chapter": 7,
+            "verse": 16
+          },
+          {
+            "verseID": "02007017",
+            "chapter": 7,
+            "verse": 17
+          },
+          {
+            "verseID": "02007018",
+            "chapter": 7,
+            "verse": 18
+          },
+          {
+            "verseID": "02007019",
+            "chapter": 7,
+            "verse": 19
+          },
+          {
+            "verseID": "02007020",
+            "chapter": 7,
+            "verse": 20
+          },
+          {
+            "verseID": "02007021",
+            "chapter": 7,
+            "verse": 21
+          },
+          {
+            "verseID": "02007022",
+            "chapter": 7,
+            "verse": 22
+          },
+          {
+            "verseID": "02007023",
+            "chapter": 7,
+            "verse": 23
+          },
+          {
+            "verseID": "02007024",
+            "chapter": 7,
+            "verse": 24
+          },
+          {
+            "verseID": "02007025",
+            "chapter": 7,
+            "verse": 25
+          },
+          {
+            "verseID": "02008001",
+            "chapter": 8,
+            "verse": 1
+          },
+          {
+            "verseID": "02008002",
+            "chapter": 8,
+            "verse": 2
+          },
+          {
+            "verseID": "02008003",
+            "chapter": 8,
+            "verse": 3
+          },
+          {
+            "verseID": "02008004",
+            "chapter": 8,
+            "verse": 4
+          },
+          {
+            "verseID": "02008005",
+            "chapter": 8,
+            "verse": 5
+          },
+          {
+            "verseID": "02008006",
+            "chapter": 8,
+            "verse": 6
+          },
+          {
+            "verseID": "02008007",
+            "chapter": 8,
+            "verse": 7
+          },
+          {
+            "verseID": "02008008",
+            "chapter": 8,
+            "verse": 8
+          },
+          {
+            "verseID": "02008009",
+            "chapter": 8,
+            "verse": 9
+          },
+          {
+            "verseID": "02008010",
+            "chapter": 8,
+            "verse": 10
+          },
+          {
+            "verseID": "02008011",
+            "chapter": 8,
+            "verse": 11
+          },
+          {
+            "verseID": "02008012",
+            "chapter": 8,
+            "verse": 12
+          },
+          {
+            "verseID": "02008013",
+            "chapter": 8,
+            "verse": 13
+          },
+          {
+            "verseID": "02008014",
+            "chapter": 8,
+            "verse": 14
+          },
+          {
+            "verseID": "02008015",
+            "chapter": 8,
+            "verse": 15
+          },
+          {
+            "verseID": "02008016",
+            "chapter": 8,
+            "verse": 16
+          },
+          {
+            "verseID": "02008017",
+            "chapter": 8,
+            "verse": 17
+          },
+          {
+            "verseID": "02008018",
+            "chapter": 8,
+            "verse": 18
+          },
+          {
+            "verseID": "02008019",
+            "chapter": 8,
+            "verse": 19
+          },
+          {
+            "verseID": "02008020",
+            "chapter": 8,
+            "verse": 20
+          },
+          {
+            "verseID": "02008021",
+            "chapter": 8,
+            "verse": 21
+          },
+          {
+            "verseID": "02008022",
+            "chapter": 8,
+            "verse": 22
+          },
+          {
+            "verseID": "02008023",
+            "chapter": 8,
+            "verse": 23
+          },
+          {
+            "verseID": "02008024",
+            "chapter": 8,
+            "verse": 24
+          },
+          {
+            "verseID": "02008025",
+            "chapter": 8,
+            "verse": 25
+          },
+          {
+            "verseID": "02008026",
+            "chapter": 8,
+            "verse": 26
+          },
+          {
+            "verseID": "02008027",
+            "chapter": 8,
+            "verse": 27
+          },
+          {
+            "verseID": "02008028",
+            "chapter": 8,
+            "verse": 28
+          },
+          {
+            "verseID": "02008029",
+            "chapter": 8,
+            "verse": 29
+          },
+          {
+            "verseID": "02008030",
+            "chapter": 8,
+            "verse": 30
+          },
+          {
+            "verseID": "02008031",
+            "chapter": 8,
+            "verse": 31
+          },
+          {
+            "verseID": "02008032",
+            "chapter": 8,
+            "verse": 32
+          },
+          {
+            "verseID": "02009001",
+            "chapter": 9,
+            "verse": 1
+          },
+          {
+            "verseID": "02009002",
+            "chapter": 9,
+            "verse": 2
+          },
+          {
+            "verseID": "02009003",
+            "chapter": 9,
+            "verse": 3
+          },
+          {
+            "verseID": "02009004",
+            "chapter": 9,
+            "verse": 4
+          },
+          {
+            "verseID": "02009005",
+            "chapter": 9,
+            "verse": 5
+          },
+          {
+            "verseID": "02009006",
+            "chapter": 9,
+            "verse": 6
+          },
+          {
+            "verseID": "02009007",
+            "chapter": 9,
+            "verse": 7
+          },
+          {
+            "verseID": "02009008",
+            "chapter": 9,
+            "verse": 8
+          },
+          {
+            "verseID": "02009009",
+            "chapter": 9,
+            "verse": 9
+          },
+          {
+            "verseID": "02009010",
+            "chapter": 9,
+            "verse": 10
+          },
+          {
+            "verseID": "02009011",
+            "chapter": 9,
+            "verse": 11
+          },
+          {
+            "verseID": "02009012",
+            "chapter": 9,
+            "verse": 12
+          },
+          {
+            "verseID": "02009013",
+            "chapter": 9,
+            "verse": 13
+          },
+          {
+            "verseID": "02009014",
+            "chapter": 9,
+            "verse": 14
+          },
+          {
+            "verseID": "02009015",
+            "chapter": 9,
+            "verse": 15
+          },
+          {
+            "verseID": "02009016",
+            "chapter": 9,
+            "verse": 16
+          },
+          {
+            "verseID": "02009017",
+            "chapter": 9,
+            "verse": 17
+          },
+          {
+            "verseID": "02009018",
+            "chapter": 9,
+            "verse": 18
+          },
+          {
+            "verseID": "02009019",
+            "chapter": 9,
+            "verse": 19
+          },
+          {
+            "verseID": "02009020",
+            "chapter": 9,
+            "verse": 20
+          },
+          {
+            "verseID": "02009021",
+            "chapter": 9,
+            "verse": 21
+          },
+          {
+            "verseID": "02009022",
+            "chapter": 9,
+            "verse": 22
+          },
+          {
+            "verseID": "02009023",
+            "chapter": 9,
+            "verse": 23
+          },
+          {
+            "verseID": "02009024",
+            "chapter": 9,
+            "verse": 24
+          },
+          {
+            "verseID": "02009025",
+            "chapter": 9,
+            "verse": 25
+          },
+          {
+            "verseID": "02009026",
+            "chapter": 9,
+            "verse": 26
+          },
+          {
+            "verseID": "02009027",
+            "chapter": 9,
+            "verse": 27
+          },
+          {
+            "verseID": "02009028",
+            "chapter": 9,
+            "verse": 28
+          },
+          {
+            "verseID": "02009029",
+            "chapter": 9,
+            "verse": 29
+          },
+          {
+            "verseID": "02009030",
+            "chapter": 9,
+            "verse": 30
+          },
+          {
+            "verseID": "02009031",
+            "chapter": 9,
+            "verse": 31
+          },
+          {
+            "verseID": "02009032",
+            "chapter": 9,
+            "verse": 32
+          },
+          {
+            "verseID": "02009033",
+            "chapter": 9,
+            "verse": 33
+          },
+          {
+            "verseID": "02009034",
+            "chapter": 9,
+            "verse": 34
+          },
+          {
+            "verseID": "02009035",
+            "chapter": 9,
+            "verse": 35
+          },
+          {
+            "verseID": "02010001",
+            "chapter": 10,
+            "verse": 1
+          },
+          {
+            "verseID": "02010002",
+            "chapter": 10,
+            "verse": 2
+          },
+          {
+            "verseID": "02010003",
+            "chapter": 10,
+            "verse": 3
+          },
+          {
+            "verseID": "02010004",
+            "chapter": 10,
+            "verse": 4
+          },
+          {
+            "verseID": "02010005",
+            "chapter": 10,
+            "verse": 5
+          },
+          {
+            "verseID": "02010006",
+            "chapter": 10,
+            "verse": 6
+          },
+          {
+            "verseID": "02010007",
+            "chapter": 10,
+            "verse": 7
+          },
+          {
+            "verseID": "02010008",
+            "chapter": 10,
+            "verse": 8
+          },
+          {
+            "verseID": "02010009",
+            "chapter": 10,
+            "verse": 9
+          },
+          {
+            "verseID": "02010010",
+            "chapter": 10,
+            "verse": 10
+          },
+          {
+            "verseID": "02010011",
+            "chapter": 10,
+            "verse": 11
+          },
+          {
+            "verseID": "02010012",
+            "chapter": 10,
+            "verse": 12
+          },
+          {
+            "verseID": "02010013",
+            "chapter": 10,
+            "verse": 13
+          },
+          {
+            "verseID": "02010014",
+            "chapter": 10,
+            "verse": 14
+          },
+          {
+            "verseID": "02010015",
+            "chapter": 10,
+            "verse": 15
+          },
+          {
+            "verseID": "02010016",
+            "chapter": 10,
+            "verse": 16
+          },
+          {
+            "verseID": "02010017",
+            "chapter": 10,
+            "verse": 17
+          },
+          {
+            "verseID": "02010018",
+            "chapter": 10,
+            "verse": 18
+          },
+          {
+            "verseID": "02010019",
+            "chapter": 10,
+            "verse": 19
+          },
+          {
+            "verseID": "02010020",
+            "chapter": 10,
+            "verse": 20
+          },
+          {
+            "verseID": "02010021",
+            "chapter": 10,
+            "verse": 21
+          },
+          {
+            "verseID": "02010022",
+            "chapter": 10,
+            "verse": 22
+          },
+          {
+            "verseID": "02010023",
+            "chapter": 10,
+            "verse": 23
+          },
+          {
+            "verseID": "02010024",
+            "chapter": 10,
+            "verse": 24
+          },
+          {
+            "verseID": "02010025",
+            "chapter": 10,
+            "verse": 25
+          },
+          {
+            "verseID": "02010026",
+            "chapter": 10,
+            "verse": 26
+          },
+          {
+            "verseID": "02010027",
+            "chapter": 10,
+            "verse": 27
+          },
+          {
+            "verseID": "02010028",
+            "chapter": 10,
+            "verse": 28
+          },
+          {
+            "verseID": "02010029",
+            "chapter": 10,
+            "verse": 29
+          },
+          {
+            "verseID": "02011001",
+            "chapter": 11,
+            "verse": 1
+          },
+          {
+            "verseID": "02011002",
+            "chapter": 11,
+            "verse": 2
+          },
+          {
+            "verseID": "02011003",
+            "chapter": 11,
+            "verse": 3
+          },
+          {
+            "verseID": "02011004",
+            "chapter": 11,
+            "verse": 4
+          },
+          {
+            "verseID": "02011005",
+            "chapter": 11,
+            "verse": 5
+          },
+          {
+            "verseID": "02011006",
+            "chapter": 11,
+            "verse": 6
+          },
+          {
+            "verseID": "02011007",
+            "chapter": 11,
+            "verse": 7
+          },
+          {
+            "verseID": "02011008",
+            "chapter": 11,
+            "verse": 8
+          },
+          {
+            "verseID": "02011009",
+            "chapter": 11,
+            "verse": 9
+          },
+          {
+            "verseID": "02011010",
+            "chapter": 11,
+            "verse": 10
+          },
+          {
+            "verseID": "02012001",
+            "chapter": 12,
+            "verse": 1
+          },
+          {
+            "verseID": "02012002",
+            "chapter": 12,
+            "verse": 2
+          },
+          {
+            "verseID": "02012003",
+            "chapter": 12,
+            "verse": 3
+          },
+          {
+            "verseID": "02012004",
+            "chapter": 12,
+            "verse": 4
+          },
+          {
+            "verseID": "02012005",
+            "chapter": 12,
+            "verse": 5
+          },
+          {
+            "verseID": "02012006",
+            "chapter": 12,
+            "verse": 6
+          },
+          {
+            "verseID": "02012007",
+            "chapter": 12,
+            "verse": 7
+          },
+          {
+            "verseID": "02012008",
+            "chapter": 12,
+            "verse": 8
+          },
+          {
+            "verseID": "02012009",
+            "chapter": 12,
+            "verse": 9
+          },
+          {
+            "verseID": "02012010",
+            "chapter": 12,
+            "verse": 10
+          },
+          {
+            "verseID": "02012011",
+            "chapter": 12,
+            "verse": 11
+          },
+          {
+            "verseID": "02012012",
+            "chapter": 12,
+            "verse": 12
+          },
+          {
+            "verseID": "02012013",
+            "chapter": 12,
+            "verse": 13
+          },
+          {
+            "verseID": "02012014",
+            "chapter": 12,
+            "verse": 14
+          },
+          {
+            "verseID": "02012015",
+            "chapter": 12,
+            "verse": 15
+          },
+          {
+            "verseID": "02012016",
+            "chapter": 12,
+            "verse": 16
+          },
+          {
+            "verseID": "02012017",
+            "chapter": 12,
+            "verse": 17
+          },
+          {
+            "verseID": "02012018",
+            "chapter": 12,
+            "verse": 18
+          },
+          {
+            "verseID": "02012019",
+            "chapter": 12,
+            "verse": 19
+          },
+          {
+            "verseID": "02012020",
+            "chapter": 12,
+            "verse": 20
+          },
+          {
+            "verseID": "02012021",
+            "chapter": 12,
+            "verse": 21
+          },
+          {
+            "verseID": "02012022",
+            "chapter": 12,
+            "verse": 22
+          },
+          {
+            "verseID": "02012023",
+            "chapter": 12,
+            "verse": 23
+          },
+          {
+            "verseID": "02012024",
+            "chapter": 12,
+            "verse": 24
+          },
+          {
+            "verseID": "02012025",
+            "chapter": 12,
+            "verse": 25
+          },
+          {
+            "verseID": "02012026",
+            "chapter": 12,
+            "verse": 26
+          },
+          {
+            "verseID": "02012027",
+            "chapter": 12,
+            "verse": 27
+          },
+          {
+            "verseID": "02012028",
+            "chapter": 12,
+            "verse": 28
+          },
+          {
+            "verseID": "02012029",
+            "chapter": 12,
+            "verse": 29
+          },
+          {
+            "verseID": "02012030",
+            "chapter": 12,
+            "verse": 30
           }
         ]
       }
@@ -101103,9 +104616,292 @@
           {
             "verseID": "04016001",
             "chapter": 16,
-            "verse": 1,
-            "textKo": "레위의 증손 고핫의 손자 이스할의 아들 고라와 르우벤 자손 엘리압의 아들 다단과 아비람과 벨렛의 아들 온이 당을 짓고 ",
-            "textEn": "Now Korah, the son of Izhar, the son of Kohath, the son of Levi, and Dathan and Abiram, the sons of Eliab, and On, the son of Peleth, sons of Reuben, took men:"
+            "verse": 1
+          },
+          {
+            "verseID": "04016002",
+            "chapter": 16,
+            "verse": 2
+          },
+          {
+            "verseID": "04016003",
+            "chapter": 16,
+            "verse": 3
+          },
+          {
+            "verseID": "04016004",
+            "chapter": 16,
+            "verse": 4
+          },
+          {
+            "verseID": "04016005",
+            "chapter": 16,
+            "verse": 5
+          },
+          {
+            "verseID": "04016006",
+            "chapter": 16,
+            "verse": 6
+          },
+          {
+            "verseID": "04016007",
+            "chapter": 16,
+            "verse": 7
+          },
+          {
+            "verseID": "04016008",
+            "chapter": 16,
+            "verse": 8
+          },
+          {
+            "verseID": "04016009",
+            "chapter": 16,
+            "verse": 9
+          },
+          {
+            "verseID": "04016010",
+            "chapter": 16,
+            "verse": 10
+          },
+          {
+            "verseID": "04016011",
+            "chapter": 16,
+            "verse": 11
+          },
+          {
+            "verseID": "04016012",
+            "chapter": 16,
+            "verse": 12
+          },
+          {
+            "verseID": "04016013",
+            "chapter": 16,
+            "verse": 13
+          },
+          {
+            "verseID": "04016014",
+            "chapter": 16,
+            "verse": 14
+          },
+          {
+            "verseID": "04016015",
+            "chapter": 16,
+            "verse": 15
+          },
+          {
+            "verseID": "04016016",
+            "chapter": 16,
+            "verse": 16
+          },
+          {
+            "verseID": "04016017",
+            "chapter": 16,
+            "verse": 17
+          },
+          {
+            "verseID": "04016018",
+            "chapter": 16,
+            "verse": 18
+          },
+          {
+            "verseID": "04016019",
+            "chapter": 16,
+            "verse": 19
+          },
+          {
+            "verseID": "04016020",
+            "chapter": 16,
+            "verse": 20
+          },
+          {
+            "verseID": "04016021",
+            "chapter": 16,
+            "verse": 21
+          },
+          {
+            "verseID": "04016022",
+            "chapter": 16,
+            "verse": 22
+          },
+          {
+            "verseID": "04016023",
+            "chapter": 16,
+            "verse": 23
+          },
+          {
+            "verseID": "04016024",
+            "chapter": 16,
+            "verse": 24
+          },
+          {
+            "verseID": "04016025",
+            "chapter": 16,
+            "verse": 25
+          },
+          {
+            "verseID": "04016026",
+            "chapter": 16,
+            "verse": 26
+          },
+          {
+            "verseID": "04016027",
+            "chapter": 16,
+            "verse": 27
+          },
+          {
+            "verseID": "04016028",
+            "chapter": 16,
+            "verse": 28
+          },
+          {
+            "verseID": "04016029",
+            "chapter": 16,
+            "verse": 29
+          },
+          {
+            "verseID": "04016030",
+            "chapter": 16,
+            "verse": 30
+          },
+          {
+            "verseID": "04016031",
+            "chapter": 16,
+            "verse": 31
+          },
+          {
+            "verseID": "04016032",
+            "chapter": 16,
+            "verse": 32
+          },
+          {
+            "verseID": "04016033",
+            "chapter": 16,
+            "verse": 33
+          },
+          {
+            "verseID": "04016034",
+            "chapter": 16,
+            "verse": 34
+          },
+          {
+            "verseID": "04016035",
+            "chapter": 16,
+            "verse": 35
+          },
+          {
+            "verseID": "04016036",
+            "chapter": 16,
+            "verse": 36
+          },
+          {
+            "verseID": "04016037",
+            "chapter": 16,
+            "verse": 37
+          },
+          {
+            "verseID": "04016038",
+            "chapter": 16,
+            "verse": 38
+          },
+          {
+            "verseID": "04016039",
+            "chapter": 16,
+            "verse": 39
+          },
+          {
+            "verseID": "04016040",
+            "chapter": 16,
+            "verse": 40
+          },
+          {
+            "verseID": "04016041",
+            "chapter": 16,
+            "verse": 41
+          },
+          {
+            "verseID": "04016042",
+            "chapter": 16,
+            "verse": 42
+          },
+          {
+            "verseID": "04016043",
+            "chapter": 16,
+            "verse": 43
+          },
+          {
+            "verseID": "04016044",
+            "chapter": 16,
+            "verse": 44
+          },
+          {
+            "verseID": "04016045",
+            "chapter": 16,
+            "verse": 45
+          },
+          {
+            "verseID": "04016046",
+            "chapter": 16,
+            "verse": 46
+          },
+          {
+            "verseID": "04016047",
+            "chapter": 16,
+            "verse": 47
+          },
+          {
+            "verseID": "04016048",
+            "chapter": 16,
+            "verse": 48
+          },
+          {
+            "verseID": "04016049",
+            "chapter": 16,
+            "verse": 49
+          },
+          {
+            "verseID": "04016050",
+            "chapter": 16,
+            "verse": 50
+          },
+          {
+            "verseID": "04017001",
+            "chapter": 17,
+            "verse": 1
+          },
+          {
+            "verseID": "04017002",
+            "chapter": 17,
+            "verse": 2
+          },
+          {
+            "verseID": "04017003",
+            "chapter": 17,
+            "verse": 3
+          },
+          {
+            "verseID": "04017004",
+            "chapter": 17,
+            "verse": 4
+          },
+          {
+            "verseID": "04017005",
+            "chapter": 17,
+            "verse": 5
+          },
+          {
+            "verseID": "04017006",
+            "chapter": 17,
+            "verse": 6
+          },
+          {
+            "verseID": "04017007",
+            "chapter": 17,
+            "verse": 7
+          },
+          {
+            "verseID": "04017008",
+            "chapter": 17,
+            "verse": 8
           }
         ]
       }
@@ -101290,9 +105086,432 @@
           {
             "verseID": "02032001",
             "chapter": 32,
-            "verse": 1,
-            "textKo": "백성이 모세가 산에서 내려옴이 더딤을 보고 모여 아론에게 이르러 가로되 일어나라 우리를 인도할 신을 우리를 위하여 만들라 이 모세 곧 우리를 애굽 땅에서 인도하여 낸 사람은 어찌 되었는지 알지 못함이라 ",
-            "textEn": "And when the people saw that Moses delayed to come down out of the mount, the people gathered themselves together unto Aaron, and said unto him, Up, make us gods, which shall go before us; for as for this Moses, the man that brought us up out of the land of Egypt, we wot not what is become of him."
+            "verse": 1
+          },
+          {
+            "verseID": "02032002",
+            "chapter": 32,
+            "verse": 2
+          },
+          {
+            "verseID": "02032003",
+            "chapter": 32,
+            "verse": 3
+          },
+          {
+            "verseID": "02032004",
+            "chapter": 32,
+            "verse": 4
+          },
+          {
+            "verseID": "02032005",
+            "chapter": 32,
+            "verse": 5
+          },
+          {
+            "verseID": "02032006",
+            "chapter": 32,
+            "verse": 6
+          },
+          {
+            "verseID": "02032007",
+            "chapter": 32,
+            "verse": 7
+          },
+          {
+            "verseID": "02032008",
+            "chapter": 32,
+            "verse": 8
+          },
+          {
+            "verseID": "02032009",
+            "chapter": 32,
+            "verse": 9
+          },
+          {
+            "verseID": "02032010",
+            "chapter": 32,
+            "verse": 10
+          },
+          {
+            "verseID": "02032011",
+            "chapter": 32,
+            "verse": 11
+          },
+          {
+            "verseID": "02032012",
+            "chapter": 32,
+            "verse": 12
+          },
+          {
+            "verseID": "02032013",
+            "chapter": 32,
+            "verse": 13
+          },
+          {
+            "verseID": "02032014",
+            "chapter": 32,
+            "verse": 14
+          },
+          {
+            "verseID": "02032015",
+            "chapter": 32,
+            "verse": 15
+          },
+          {
+            "verseID": "02032016",
+            "chapter": 32,
+            "verse": 16
+          },
+          {
+            "verseID": "02032017",
+            "chapter": 32,
+            "verse": 17
+          },
+          {
+            "verseID": "02032018",
+            "chapter": 32,
+            "verse": 18
+          },
+          {
+            "verseID": "02032019",
+            "chapter": 32,
+            "verse": 19
+          },
+          {
+            "verseID": "02032020",
+            "chapter": 32,
+            "verse": 20
+          },
+          {
+            "verseID": "02032021",
+            "chapter": 32,
+            "verse": 21
+          },
+          {
+            "verseID": "02032022",
+            "chapter": 32,
+            "verse": 22
+          },
+          {
+            "verseID": "02032023",
+            "chapter": 32,
+            "verse": 23
+          },
+          {
+            "verseID": "02032024",
+            "chapter": 32,
+            "verse": 24
+          },
+          {
+            "verseID": "02032025",
+            "chapter": 32,
+            "verse": 25
+          },
+          {
+            "verseID": "02032026",
+            "chapter": 32,
+            "verse": 26
+          },
+          {
+            "verseID": "02032027",
+            "chapter": 32,
+            "verse": 27
+          },
+          {
+            "verseID": "02032028",
+            "chapter": 32,
+            "verse": 28
+          },
+          {
+            "verseID": "02032029",
+            "chapter": 32,
+            "verse": 29
+          },
+          {
+            "verseID": "02032030",
+            "chapter": 32,
+            "verse": 30
+          },
+          {
+            "verseID": "02032031",
+            "chapter": 32,
+            "verse": 31
+          },
+          {
+            "verseID": "02032032",
+            "chapter": 32,
+            "verse": 32
+          },
+          {
+            "verseID": "02032033",
+            "chapter": 32,
+            "verse": 33
+          },
+          {
+            "verseID": "02032034",
+            "chapter": 32,
+            "verse": 34
+          },
+          {
+            "verseID": "02032035",
+            "chapter": 32,
+            "verse": 35
+          },
+          {
+            "verseID": "02033001",
+            "chapter": 33,
+            "verse": 1
+          },
+          {
+            "verseID": "02033002",
+            "chapter": 33,
+            "verse": 2
+          },
+          {
+            "verseID": "02033003",
+            "chapter": 33,
+            "verse": 3
+          },
+          {
+            "verseID": "02033004",
+            "chapter": 33,
+            "verse": 4
+          },
+          {
+            "verseID": "02033005",
+            "chapter": 33,
+            "verse": 5
+          },
+          {
+            "verseID": "02033006",
+            "chapter": 33,
+            "verse": 6
+          },
+          {
+            "verseID": "02033007",
+            "chapter": 33,
+            "verse": 7
+          },
+          {
+            "verseID": "02033008",
+            "chapter": 33,
+            "verse": 8
+          },
+          {
+            "verseID": "02033009",
+            "chapter": 33,
+            "verse": 9
+          },
+          {
+            "verseID": "02033010",
+            "chapter": 33,
+            "verse": 10
+          },
+          {
+            "verseID": "02033011",
+            "chapter": 33,
+            "verse": 11
+          },
+          {
+            "verseID": "02033012",
+            "chapter": 33,
+            "verse": 12
+          },
+          {
+            "verseID": "02033013",
+            "chapter": 33,
+            "verse": 13
+          },
+          {
+            "verseID": "02033014",
+            "chapter": 33,
+            "verse": 14
+          },
+          {
+            "verseID": "02033015",
+            "chapter": 33,
+            "verse": 15
+          },
+          {
+            "verseID": "02033016",
+            "chapter": 33,
+            "verse": 16
+          },
+          {
+            "verseID": "02033017",
+            "chapter": 33,
+            "verse": 17
+          },
+          {
+            "verseID": "02033018",
+            "chapter": 33,
+            "verse": 18
+          },
+          {
+            "verseID": "02033019",
+            "chapter": 33,
+            "verse": 19
+          },
+          {
+            "verseID": "02033020",
+            "chapter": 33,
+            "verse": 20
+          },
+          {
+            "verseID": "02033021",
+            "chapter": 33,
+            "verse": 21
+          },
+          {
+            "verseID": "02033022",
+            "chapter": 33,
+            "verse": 22
+          },
+          {
+            "verseID": "02033023",
+            "chapter": 33,
+            "verse": 23
+          },
+          {
+            "verseID": "02034001",
+            "chapter": 34,
+            "verse": 1
+          },
+          {
+            "verseID": "02034002",
+            "chapter": 34,
+            "verse": 2
+          },
+          {
+            "verseID": "02034003",
+            "chapter": 34,
+            "verse": 3
+          },
+          {
+            "verseID": "02034004",
+            "chapter": 34,
+            "verse": 4
+          },
+          {
+            "verseID": "02034005",
+            "chapter": 34,
+            "verse": 5
+          },
+          {
+            "verseID": "02034006",
+            "chapter": 34,
+            "verse": 6
+          },
+          {
+            "verseID": "02034007",
+            "chapter": 34,
+            "verse": 7
+          },
+          {
+            "verseID": "02034008",
+            "chapter": 34,
+            "verse": 8
+          },
+          {
+            "verseID": "02034009",
+            "chapter": 34,
+            "verse": 9
+          },
+          {
+            "verseID": "02034010",
+            "chapter": 34,
+            "verse": 10
+          },
+          {
+            "verseID": "02034011",
+            "chapter": 34,
+            "verse": 11
+          },
+          {
+            "verseID": "02034012",
+            "chapter": 34,
+            "verse": 12
+          },
+          {
+            "verseID": "02034013",
+            "chapter": 34,
+            "verse": 13
+          },
+          {
+            "verseID": "02034014",
+            "chapter": 34,
+            "verse": 14
+          },
+          {
+            "verseID": "02034015",
+            "chapter": 34,
+            "verse": 15
+          },
+          {
+            "verseID": "02034016",
+            "chapter": 34,
+            "verse": 16
+          },
+          {
+            "verseID": "02034017",
+            "chapter": 34,
+            "verse": 17
+          },
+          {
+            "verseID": "02034018",
+            "chapter": 34,
+            "verse": 18
+          },
+          {
+            "verseID": "02034019",
+            "chapter": 34,
+            "verse": 19
+          },
+          {
+            "verseID": "02034020",
+            "chapter": 34,
+            "verse": 20
+          },
+          {
+            "verseID": "02034021",
+            "chapter": 34,
+            "verse": 21
+          },
+          {
+            "verseID": "02034022",
+            "chapter": 34,
+            "verse": 22
+          },
+          {
+            "verseID": "02034023",
+            "chapter": 34,
+            "verse": 23
+          },
+          {
+            "verseID": "02034024",
+            "chapter": 34,
+            "verse": 24
+          },
+          {
+            "verseID": "02034025",
+            "chapter": 34,
+            "verse": 25
+          },
+          {
+            "verseID": "02034026",
+            "chapter": 34,
+            "verse": 26
+          },
+          {
+            "verseID": "02034027",
+            "chapter": 34,
+            "verse": 27
+          },
+          {
+            "verseID": "02034028",
+            "chapter": 34,
+            "verse": 28
           }
         ]
       }
@@ -101501,9 +105720,257 @@
           {
             "verseID": "06010016",
             "chapter": 10,
-            "verse": 16,
-            "textKo": "그 다섯 왕이 도망하여 막게다의 굴에 숨었더니 ",
-            "textEn": "But these five kings fled, and hid themselves in a cave at Makkedah."
+            "verse": 16
+          },
+          {
+            "verseID": "06010017",
+            "chapter": 10,
+            "verse": 17
+          },
+          {
+            "verseID": "06010018",
+            "chapter": 10,
+            "verse": 18
+          },
+          {
+            "verseID": "06010019",
+            "chapter": 10,
+            "verse": 19
+          },
+          {
+            "verseID": "06010020",
+            "chapter": 10,
+            "verse": 20
+          },
+          {
+            "verseID": "06010021",
+            "chapter": 10,
+            "verse": 21
+          },
+          {
+            "verseID": "06010022",
+            "chapter": 10,
+            "verse": 22
+          },
+          {
+            "verseID": "06010023",
+            "chapter": 10,
+            "verse": 23
+          },
+          {
+            "verseID": "06010024",
+            "chapter": 10,
+            "verse": 24
+          },
+          {
+            "verseID": "06010025",
+            "chapter": 10,
+            "verse": 25
+          },
+          {
+            "verseID": "06010026",
+            "chapter": 10,
+            "verse": 26
+          },
+          {
+            "verseID": "06010027",
+            "chapter": 10,
+            "verse": 27
+          },
+          {
+            "verseID": "06010028",
+            "chapter": 10,
+            "verse": 28
+          },
+          {
+            "verseID": "06010029",
+            "chapter": 10,
+            "verse": 29
+          },
+          {
+            "verseID": "06010030",
+            "chapter": 10,
+            "verse": 30
+          },
+          {
+            "verseID": "06010031",
+            "chapter": 10,
+            "verse": 31
+          },
+          {
+            "verseID": "06010032",
+            "chapter": 10,
+            "verse": 32
+          },
+          {
+            "verseID": "06010033",
+            "chapter": 10,
+            "verse": 33
+          },
+          {
+            "verseID": "06010034",
+            "chapter": 10,
+            "verse": 34
+          },
+          {
+            "verseID": "06010035",
+            "chapter": 10,
+            "verse": 35
+          },
+          {
+            "verseID": "06010036",
+            "chapter": 10,
+            "verse": 36
+          },
+          {
+            "verseID": "06010037",
+            "chapter": 10,
+            "verse": 37
+          },
+          {
+            "verseID": "06010038",
+            "chapter": 10,
+            "verse": 38
+          },
+          {
+            "verseID": "06010039",
+            "chapter": 10,
+            "verse": 39
+          },
+          {
+            "verseID": "06010040",
+            "chapter": 10,
+            "verse": 40
+          },
+          {
+            "verseID": "06010041",
+            "chapter": 10,
+            "verse": 41
+          },
+          {
+            "verseID": "06010042",
+            "chapter": 10,
+            "verse": 42
+          },
+          {
+            "verseID": "06010043",
+            "chapter": 10,
+            "verse": 43
+          },
+          {
+            "verseID": "06011001",
+            "chapter": 11,
+            "verse": 1
+          },
+          {
+            "verseID": "06011002",
+            "chapter": 11,
+            "verse": 2
+          },
+          {
+            "verseID": "06011003",
+            "chapter": 11,
+            "verse": 3
+          },
+          {
+            "verseID": "06011004",
+            "chapter": 11,
+            "verse": 4
+          },
+          {
+            "verseID": "06011005",
+            "chapter": 11,
+            "verse": 5
+          },
+          {
+            "verseID": "06011006",
+            "chapter": 11,
+            "verse": 6
+          },
+          {
+            "verseID": "06011007",
+            "chapter": 11,
+            "verse": 7
+          },
+          {
+            "verseID": "06011008",
+            "chapter": 11,
+            "verse": 8
+          },
+          {
+            "verseID": "06011009",
+            "chapter": 11,
+            "verse": 9
+          },
+          {
+            "verseID": "06011010",
+            "chapter": 11,
+            "verse": 10
+          },
+          {
+            "verseID": "06011011",
+            "chapter": 11,
+            "verse": 11
+          },
+          {
+            "verseID": "06011012",
+            "chapter": 11,
+            "verse": 12
+          },
+          {
+            "verseID": "06011013",
+            "chapter": 11,
+            "verse": 13
+          },
+          {
+            "verseID": "06011014",
+            "chapter": 11,
+            "verse": 14
+          },
+          {
+            "verseID": "06011015",
+            "chapter": 11,
+            "verse": 15
+          },
+          {
+            "verseID": "06011016",
+            "chapter": 11,
+            "verse": 16
+          },
+          {
+            "verseID": "06011017",
+            "chapter": 11,
+            "verse": 17
+          },
+          {
+            "verseID": "06011018",
+            "chapter": 11,
+            "verse": 18
+          },
+          {
+            "verseID": "06011019",
+            "chapter": 11,
+            "verse": 19
+          },
+          {
+            "verseID": "06011020",
+            "chapter": 11,
+            "verse": 20
+          },
+          {
+            "verseID": "06011021",
+            "chapter": 11,
+            "verse": 21
+          },
+          {
+            "verseID": "06011022",
+            "chapter": 11,
+            "verse": 22
+          },
+          {
+            "verseID": "06011023",
+            "chapter": 11,
+            "verse": 23
           }
         ]
       }

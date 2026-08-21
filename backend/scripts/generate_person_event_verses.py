@@ -18,6 +18,7 @@ DATA_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, "..", "..", "data"))
 PERSON_EVENTS_DIR = os.path.join(DATA_DIR, "person_events")
 BOOKS_PATH = os.path.join(DATA_DIR, "names_ko", "books.json")
 EVENT_VERSES_PATH = os.path.join(DATA_DIR, "event_verses", "events.json")
+VERSES_PATH = os.path.join(DATA_DIR, "bible", "verses.json")
 
 _UA = "Mozilla/5.0 (compatible; BibleMap-build/1.0)"
 _chapter_cache: dict = {}
@@ -76,7 +77,10 @@ def _make_abbr_pattern(abbr_to_info: dict) -> re.Pattern:
 
 
 def parse_context_refs(context: str, abbr_to_info: dict, abbr_pat: re.Pattern) -> list:
-    """context 문자열 → [{bookId, bookOrder, rangeLabel, chapter, verseStart, verseEnd}]"""
+    """context 문자열 → [{bookId, bookOrder, rangeLabel}]
+
+    rangeLabel이 범위의 유일한 직렬화다 — 절 전개는 이 라벨만 보고 expand_range_label이 한다.
+    """
     results = []
     parens = re.findall(r"\(([^)]+)\)", context)
 
@@ -115,15 +119,13 @@ def parse_context_refs(context: str, abbr_to_info: dict, abbr_pat: re.Pattern) -
                 v1 = int(m_cross.group(2))
                 ch_end_cross = int(m_cross.group(3))
                 v2_cross = int(m_cross.group(4))
+                # 종점 정보는 rangeLabel이 무손실로 담는다("4:19–5:12") — 별도 배관 불요.
+                # 전개는 expand_range_label이 이 라벨만 보고 오프라인으로 수행한다.
                 range_label = f"{ch}:{v1}–{ch_end_cross}:{v2_cross}"
                 results.append({
                     "bookId": abbr_to_info[last_abbr]["bookId"],
                     "bookOrder": abbr_to_info[last_abbr]["bookOrder"],
                     "rangeLabel": range_label,
-                    "chapter": ch,
-                    "verseStart": v1,
-                    "verseEnd": None,  # 교차 장 범위는 단순 fetch 생략
-                    "_chapterEnd": ch_end_cross,
                 })
                 continue
 
@@ -154,13 +156,111 @@ def parse_context_refs(context: str, abbr_to_info: dict, abbr_pat: re.Pattern) -
                 "bookId": abbr_to_info[last_abbr]["bookId"],
                 "bookOrder": abbr_to_info[last_abbr]["bookOrder"],
                 "rangeLabel": range_label,
-                "chapter": ch,
-                "verseStart": v1,
-                "verseEnd": v2,
-                "_chapterEnd": ch_end,
             })
 
     return results
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 범위 전개 — 오라클은 네트워크 원본이 아니라 정본 절 사전이다 (ADR 260821-125000)
+#
+# event_verses에 저장되는 절은 {verseID, chapter, verse} 참조뿐이고 본문은 응답 시점에
+# GET /event/{id}/verses가 verses.json에서 다시 합성한다. 따라서 getbible에서 받아온
+# 본문은 저장도 사용도 되지 않고 남는 역할은 "그 절이 존재하는가"라는 존재 오라클 하나뿐인데,
+# 그 오라클은 이미 저장소 안에 있다 — verses.json은 BBCCCVVV 키 31,103개로 정경 전량을
+# 담고 그 키 형식이 verseID와 같다. 그래서 전개는 오프라인·결정적이다(fetch 0회).
+#
+# 전개를 rangeLabel 구동으로 두는 이유: 라벨이 종점 정보를 무손실로 담으므로(교차-장
+# "4:19–5:12", 장 단위 "29–31") 파싱 결과를 따로 배관할 필요가 없고, 검증기가 이 함수를
+# 그대로 import해 **같은 오라클**로 판정할 수 있다(파서 2벌 금지 — ADR 260819-205242).
+# 생성기와 검증기가 다른 진리원을 보면 검증기는 전개 버그가 아니라 두 원본의 차이를 잡는다.
+#
+# 존재 판정은 본문이 아니라 **키**로 한다. textKo가 null인 절이 19개 있어 "본문 비어있지
+# 않음"으로 판정하면 정상 데이터를 위반으로 지목한다(거짓 빨강 — ADR 260821-000937).
+# ─────────────────────────────────────────────────────────────────────────────
+
+_verse_keys_cache: dict | None = None
+
+
+def verse_keys_by_book() -> dict:
+    """정본 절 사전의 verseID 키를 bookOrder별 집합으로 (프로세스 내 1회 로드)."""
+    global _verse_keys_cache
+    if _verse_keys_cache is None:
+        with open(VERSES_PATH, encoding="utf-8") as f:
+            keys = list(json.load(f).keys())
+        cache: dict = {}
+        for k in keys:
+            cache.setdefault(int(k[:2]), set()).add(k)
+        _verse_keys_cache = cache
+    return _verse_keys_cache
+
+
+def _segment_bounds(seg: str, book_order: int) -> tuple | None:
+    """구간 문자열 → (하한 verseID, 상한 verseID). 파싱 불가 시 None.
+
+    verseID가 BBCCCVVV 고정폭·단조라 사전식 비교로 범위 판정이 족하다.
+    """
+    def vid(c: int, v: int) -> str:
+        return f"{book_order:02d}{c:03d}{v:03d}"
+
+    m = re.fullmatch(r"(\d+):(\d+)-(\d+):(\d+)", seg)      # 교차-장  "4:19-5:12"
+    if m:
+        c1, v1, c2, v2 = (int(x) for x in m.groups())
+        return vid(c1, v1), vid(c2, v2)
+    m = re.fullmatch(r"(\d+):(\d+)-(\d+)", seg)             # 같은 장   "38:1-11"
+    if m:
+        c, v1, v2 = (int(x) for x in m.groups())
+        return vid(c, v1), vid(c, v2)
+    m = re.fullmatch(r"(\d+):(\d+)", seg)                    # 단일 절   "4:2"
+    if m:
+        c, v = (int(x) for x in m.groups())
+        return vid(c, v), vid(c, v)
+    m = re.fullmatch(r"(\d+)-(\d+)", seg)                    # 장 범위   "29-31"
+    if m:
+        c1, c2 = (int(x) for x in m.groups())
+        return vid(c1, 1), vid(c2, 999)
+    m = re.fullmatch(r"(\d+)", seg)                          # 장 전체   "19"
+    if m:
+        c = int(m.group(1))
+        return vid(c, 1), vid(c, 999)
+    return None
+
+
+def expand_range_label(label: str, book_order: int, keys_by_book: dict | None = None) -> set | None:
+    """rangeLabel → 그 범위 안에서 verses.json에 존재하는 verseID 집합. 파싱 불가 시 None.
+
+    콤마로 구간을 여럿 적은 라벨("1:1–31, 2:1–3")도 각 구간을 합집합으로 전개한다.
+    """
+    text = (label or "").replace("–", "-").replace("—", "-").strip()
+    if not text:
+        return None
+    present = (keys_by_book if keys_by_book is not None else verse_keys_by_book()).get(book_order, set())
+    out: set = set()
+    for seg in (x.strip() for x in text.split(",")):
+        if not seg:
+            continue
+        bounds = _segment_bounds(seg, book_order)
+        if bounds is None:
+            return None
+        lo, hi = bounds
+        out |= {k for k in present if lo <= k <= hi}
+    return out
+
+
+def verses_for_label(label: str, book_order: int, keys_by_book: dict | None = None) -> list:
+    """rangeLabel → 베이킹용 절 참조 [{verseID, chapter, verse}] (verseID 오름차순)."""
+    ids = expand_range_label(label, book_order, keys_by_book)
+    if ids is None:
+        return []
+    return [{"verseID": k, "chapter": int(k[2:5]), "verse": int(k[5:8])} for k in sorted(ids)]
+
+
+# ─── 아래 getbible 경로는 과도기 비대칭으로 남아 있다 (ADR 260821-125000) ───
+# 범위 전개가 오프라인으로 넘어간 뒤 이 두 함수는 **현재 어디서도 호출되지 않는다.**
+# 걷어내지 않는 이유는 그 ADR의 수술적 범위(바꾸는 것은 범위 전개뿐) 때문이다 —
+# 새 참조를 처음 베이킹할 때의 기존 흐름을 이 결정이 폐기하지는 않았다.
+# 다시 쓰게 되면 verses.json에 없는 절을 근거로 만들 수 있음을 유의할 것: 화면 본문은
+# verses.json에서 오므로 그런 절은 "근거 있음"으로 통과하면서 화면에는 빈 줄로 뜬다.
 
 
 def fetch_chapter(slug: str, book_order: int, chapter: int) -> dict | None:
@@ -226,6 +326,8 @@ def process_event(ev: dict, abbr_to_info: dict, abbr_pat: re.Pattern) -> list:
     if not refs:
         return []
 
+    keys = verse_keys_by_book()
+
     # 같은 bookId 중복 제거 (여러 세그먼트에서 같은 권 참조 시 첫 번째만)
     seen_book_ids: set = set()
     book_entries = []
@@ -235,19 +337,9 @@ def process_event(ev: dict, abbr_to_info: dict, abbr_pat: re.Pattern) -> list:
             continue
         seen_book_ids.add(bid)
 
-        ch = ref["chapter"]
-        v1 = ref["verseStart"]
-        v2 = ref["verseEnd"]
-        ch_end = ref.get("_chapterEnd")
-
-        # 교차 장 범위 또는 장만 범위: 첫 절만 fetch
-        if ch_end and not v1:
-            verses = fetch_verses(ref["bookOrder"], ch, 1, None)
-        elif ch_end and v1:
-            # 교차 장 범위 (4:19-5:12): 첫 장의 절부터 end fetch
-            verses = fetch_verses(ref["bookOrder"], ch, v1, None)
-        else:
-            verses = fetch_verses(ref["bookOrder"], ch, v1, v2)
+        # 라벨이 가리키는 범위 전량을 오프라인으로 전개한다 — 교차-장·장 단위도 첫 절만
+        # 채우지 않는다(ADR 260821-125000). 네트워크 호출 0회.
+        verses = verses_for_label(ref["rangeLabel"], ref["bookOrder"], keys)
 
         book_entries.append({
             "bookId": bid,
@@ -257,6 +349,51 @@ def process_event(ev: dict, abbr_to_info: dict, abbr_pat: re.Pattern) -> list:
         })
 
     return book_entries
+
+
+def rebake_range_labels(dry_run: bool = False) -> int:
+    """기존 event_verses 블록의 절 집합을 rangeLabel 범위로 재전개한다 (task#282 S2).
+
+    main()의 멱등 스킵(`if "books" in ev: continue` · `if ev_id not in event_verses`)은
+    생성기를 재실행해도 **이미 있는 블록을 갱신하지 않는다.** 그래서 라벨과 절이 어긋난
+    기존 블록은 생성기를 몇 번 돌려도 고쳐지지 않는다 — 이 모드가 그 스킵을 우회한다.
+
+    라벨과 절이 **어긋난 블록만** 고쳐 쓴다. 이미 정합인 블록은 손대지 않으므로
+    부수 변경(예: 일부 블록에 남아 있는 textKo/textEn 잔여 필드 탈락)이 생기지 않는다.
+    """
+    keys = verse_keys_by_book()
+    event_verses: dict = json.load(open(EVENT_VERSES_PATH, encoding="utf-8"))
+
+    fixed = 0
+    unparsed = []
+    for ev_id in sorted(event_verses):
+        for block in event_verses[ev_id].get("books", []):
+            label = block.get("rangeLabel")
+            book_order = block.get("bookOrder")
+            expected = expand_range_label(label, book_order, keys)
+            if expected is None:
+                unparsed.append((ev_id, label))
+                continue
+            baked = {v["verseID"] for v in block.get("verses", [])}
+            if baked == expected:
+                continue
+            print(f"  {ev_id} bk{book_order:02d} '{label}': {len(baked)}절 → {len(expected)}절")
+            if not dry_run:
+                block["verses"] = verses_for_label(label, book_order, keys)
+            fixed += 1
+
+    for ev_id, label in unparsed:
+        print(f"  [파싱불가] {ev_id}: {label!r} — 손대지 않음")
+
+    if fixed and not dry_run:
+        with open(EVENT_VERSES_PATH, "w", encoding="utf-8") as f:
+            json.dump(event_verses, f, ensure_ascii=False, indent=2)
+        print(f"  event_verses/events.json 저장: {fixed}개 블록 재전개")
+    elif fixed:
+        print(f"  (dry-run) 재전개 대상 {fixed}개 블록")
+    else:
+        print("  재전개 대상 없음 — 모든 블록이 라벨 범위와 정합")
+    return fixed
 
 
 def main() -> None:
@@ -333,4 +470,9 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+
+    if "--rebake" in sys.argv:
+        rebake_range_labels(dry_run="--dry-run" in sys.argv)
+    else:
+        main()

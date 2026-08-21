@@ -5,7 +5,8 @@ import PersonSymbol from './personSymbols'
 import { MOBILE_BREAKPOINT } from './constants'
 import { saveScroll, loadScroll } from './scrollMemory'
 
-// 시대 표시 순서 — persons.py _ERA_ORDER와 동일.
+// 시대 표시 순서 — curated.py ERA_ORDER와 동일(task#278에 persons.py에서 이관).
+// 이 사본은 validate_era_bands_consistency 6축이 curated.py와 대조한다 — 갈라지면 배포가 막힌다.
 const ERA_ORDER = ['원시사', '족장', '출애굽·정복', '사사', '왕국', '선지자', '포로', '신약']
 
 // 시대별 부제 — 카드 그룹 헤더 아래 작은 설명.

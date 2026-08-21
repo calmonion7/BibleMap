@@ -79,7 +79,7 @@ def generate_context(client, name_en, name_ko):
 
 def build_roster():
     """data/person_events/*.json 각 파일의 events[0].participants[0]을 theographic_id로 삼는다
-    (persons.py _ERA의 35 slug와 동일 집합)."""
+    (curated.py CURATED의 35 slug와 동일 집합 — task#278에 persons.py에서 이관)."""
     roster = []
     for path in sorted(glob.glob(os.path.join(PERSON_EVENTS_DIR, "*.json"))):
         with open(path, encoding="utf-8") as f:
