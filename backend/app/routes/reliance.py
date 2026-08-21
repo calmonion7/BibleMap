@@ -143,7 +143,7 @@ def get_person_reliance(person_id: str):
             "modeCounts": mode_counts,
             "phases": phases,
         },
-        headers={"Cache-Control": "public, max-age=3600"},
+        headers={"Cache-Control": "max-age=300"},
     )
 
 
@@ -163,4 +163,4 @@ def get_reliance_ranking():
             }
         )
     rows.sort(key=lambda r: (-r["percent"], r["nameKo"]))
-    return JSONResponse({"ranking": rows}, headers={"Cache-Control": "public, max-age=3600"})
+    return JSONResponse({"ranking": rows}, headers={"Cache-Control": "max-age=300"})

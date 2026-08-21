@@ -44,5 +44,5 @@ def get_verse_persons(verse_id: str):
     persons = [resolved.get(rid, {"id": rid, "nameKo": None, "name": None, "slug": None}) for rid in rec_ids]
     return JSONResponse(
         {"verseId": verse_id, "persons": persons},
-        headers={"Cache-Control": "public, max-age=3600"},
+        headers={"Cache-Control": "max-age=300"},
     )

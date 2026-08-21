@@ -183,7 +183,17 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
       const s = e.state
       popstateGuard.current = true
       Promise.resolve().then(() => {
-        if (!s) { setActiveStage('hub'); setExplorePersonId(null); setExplorePersonName(null); setExploreTourId(null); setBookId(null); setFamilyId(null); setWordsBookId(null); setReaderBookId(null); setReaderChapter(null); setPlaceId(null); closePanel(); return }
+        if (!s) {
+          // state:null은 두 가지가 뭉뚱그려진 값이다 — ① 히스토리 시작점, ② 동일문서 프래그먼트
+          // 내비게이션(주소창에 다른 딥링크 해시를 붙여넣기)이 만든 무상태 엔트리. ②도 popstate를
+          // state:null로 발화시키므로, 구분 없이 허브로 리셋하면 URL이 가리키는 화면 대신 허브가
+          // 뜬다(3차 헌트 C4). state가 없어도 URL은 항상 신뢰 가능한 진실이므로 먼저 재해석한다.
+          // 무타깃 판정은 정본 술어만 쓴다(ADR 260821-000937 — 판정 지점은 정본 밖 0곳).
+          const raw = window.location.hash
+          const parsed = isNoTarget(raw) ? null : parseHash(raw)
+          if (parsed) { closePanel(); applyParsedHash(parsed); return }
+          setActiveStage('hub'); setExplorePersonId(null); setExplorePersonName(null); setExploreTourId(null); setBookId(null); setFamilyId(null); setWordsBookId(null); setReaderBookId(null); setReaderChapter(null); setPlaceId(null); closePanel(); return
+        }
         setActiveStage(s.stage)
         setExplorePersonId(s.person ?? null)
         setExploreTourId(s.tour ?? null)

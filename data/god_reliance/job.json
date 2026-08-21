@@ -9,13 +9,13 @@
     "mode": "물음-응답",
     "approxYear": -1900,
     "trigger": { "label": "모든 것을 잃은 중에도 엎드려 경배하며 나아감", "verse": "욥 1:20-21" },
-    "outcome": { "label": "'여호와의 이름을 찬송하리로다' 고백함", "verse": "욥 1:20-21", "kind": "이룸" }
+    "outcome": { "label": "'여호와의 이름을 찬송하리로다' 고백함", "verse": "욥 1:21", "kind": "이룸" }
   },
   {
     "mode": "물음-응답",
     "approxYear": -1900,
     "trigger": { "label": "악창과 아내의 조롱 중에도 하나님께 신실함을 지킴", "verse": "욥 2:7" },
-    "outcome": { "label": "'화도 받지 아니하겠느냐' 고백하며 범죄하지 않음", "verse": "욥 2:7", "kind": "이룸" }
+    "outcome": { "label": "'화도 받지 아니하겠느냐' 고백하며 범죄하지 않음", "verse": "욥 2:10", "kind": "이룸" }
   },
   {
     "mode": "물음-침묵",
@@ -33,7 +33,7 @@
     "mode": "물음-응답",
     "approxYear": -1897,
     "trigger": { "label": "귀로 듣던 주를 이제 눈으로 뵈옵음", "verse": "욥 42:5" },
-    "outcome": { "label": "티끌과 재 가운데 회개함", "verse": "욥 42:5", "kind": "이룸" }
+    "outcome": { "label": "티끌과 재 가운데 회개함", "verse": "욥 42:6", "kind": "이룸" }
   },
   {
     "mode": "물음-응답",

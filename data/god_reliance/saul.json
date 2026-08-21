@@ -10,39 +10,33 @@
     "mode": "부르심",
     "approxYear": -1050,
     "covenant": true,
-    "trigger": { "label": "제비 뽑혀 여호와께서 사울을 왕으로 지명하심", "verse": "삼상 10:17" },
-    "outcome": { "label": "숨었으나 찾아내어져 왕으로 택함받음", "verse": "삼상 10:17" }
+    "trigger": { "label": "제비 뽑혀 여호와께서 사울을 왕으로 지명하심", "verse": "삼상 10:21" },
+    "outcome": { "label": "숨었으나 찾아내어져 왕으로 택함받음", "verse": "삼상 10:24" }
   },
   {
     "mode": "부르심",
     "approxYear": -1049,
     "obeyed": true,
-    "trigger": { "label": "나하스의 위협에 하나님의 영이 사울에게 크게 임하심", "verse": "삼상 11:1" },
-    "outcome": { "label": "이스라엘을 소집해 암몬을 무찌르고 야베스 길르앗을 구원함", "verse": "삼상 11:1" }
+    "trigger": { "label": "나하스의 위협에 하나님의 영이 사울에게 크게 임하심", "verse": "삼상 11:6" },
+    "outcome": { "label": "이스라엘을 소집해 암몬을 무찌르고 야베스 길르앗을 구원함", "verse": "삼상 11:11" }
   },
   {
     "mode": "물음-응답",
     "approxYear": -1049,
-    "trigger": { "label": "길갈에서 화목제 드리며 여호와 앞에 나아감", "verse": "삼상 11:14" },
-    "outcome": { "label": "왕으로 다시 세워지고 백성과 크게 기뻐함", "verse": "삼상 11:14", "kind": "이룸" }
+    "trigger": { "label": "길갈에서 화목제 드리며 여호와 앞에 나아감", "verse": "삼상 11:15" },
+    "outcome": { "label": "왕으로 다시 세워지고 백성과 크게 기뻐함", "verse": "삼상 11:15", "kind": "이룸" }
   },
   {
     "mode": "독단-어긋남",
     "approxYear": -1048,
-    "trigger": { "label": "사무엘을 기다리지 않고 임의로 번제를 드림", "verse": "삼상 13:8" },
-    "outcome": { "label": "나라가 끊기리라는 책망을 받음", "verse": "삼상 13:8" }
+    "trigger": { "label": "사무엘을 기다리지 않고 임의로 번제를 드림", "verse": "삼상 13:9" },
+    "outcome": { "label": "나라가 끊기리라는 책망을 받음", "verse": "삼상 13:14" }
   },
   {
     "mode": "독단-어긋남",
     "approxYear": -1042,
-    "trigger": { "label": "아말렉 진멸 명령 어기고 좋은 것을 남겨 둠", "verse": "삼상 15:11" },
-    "outcome": { "label": "왕위 폐위를 선언받음", "verse": "삼상 15:11" }
-  },
-  {
-    "mode": "독단-어긋남",
-    "approxYear": -1024,
-    "trigger": { "label": "불순종을 지속함", "verse": "삼상 16:14" },
-    "outcome": { "label": "여호와의 영이 떠나고 악령이 번뇌하게 함", "verse": "삼상 16:14" }
+    "trigger": { "label": "아말렉 진멸 명령 어기고 좋은 것을 남겨 둠", "verse": "삼상 15:9" },
+    "outcome": { "label": "왕위 폐위를 선언받음", "verse": "삼상 15:23" }
   },
   {
     "mode": "물음-침묵",
@@ -54,6 +48,6 @@
     "mode": "독단-어긋남",
     "approxYear": -1010,
     "trigger": { "label": "여호와 대신 신접한 자에게 물음", "verse": "대상 10:13" },
-    "outcome": { "label": "여호와께서 그를 죽이심", "verse": "대상 10:13" }
+    "outcome": { "label": "여호와께서 그를 죽이심", "verse": "대상 10:14" }
   }
 ]

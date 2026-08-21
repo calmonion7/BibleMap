@@ -23,13 +23,13 @@
     "mode": "부르심",
     "approxYear": -1445,
     "obeyed": true,
-    "trigger": { "label": "하나님이 가나안 정탐을 명하심", "verse": "민 13:1" },
+    "trigger": { "label": "하나님이 가나안 정탐을 명하심", "verse": "민 13:2" },
     "outcome": { "label": "순종하여 열두 지파 대표를 보냄", "verse": "민 13:1" }
   },
   {
     "mode": "독단-어긋남",
     "approxYear": -1407,
-    "trigger": { "label": "모세가 명령을 어기고 반석을 두 번 침", "verse": "민 20:12" },
+    "trigger": { "label": "모세가 명령을 어기고 반석을 두 번 침", "verse": "민 20:11" },
     "outcome": { "label": "가나안 입성이 금지되어 모압 땅에서 죽음", "verse": "신 34:5" }
   },
   {
@@ -37,6 +37,6 @@
     "approxYear": -1407,
     "covenant": true,
     "trigger": { "label": "하나님이 느보산에서 가나안 온 땅을 보게 하심", "verse": "신 34:1" },
-    "outcome": { "label": "조상에게 언약하신 땅을 눈으로 보고 받아들임", "verse": "신 34:1" }
+    "outcome": { "label": "조상에게 언약하신 땅을 눈으로 보고 받아들임", "verse": "신 34:4" }
   }
 ]

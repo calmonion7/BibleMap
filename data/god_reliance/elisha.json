@@ -4,7 +4,7 @@
     "outcome": { "label": "물이 좌우로 갈라져 건너감", "verse": "왕하 2:14", "kind": "이룸" } },
   { "mode": "물음-응답", "approxYear": -845,
     "trigger": { "label": "죽은 아이 위해 문 닫고 여호와께 기도함", "verse": "왕하 4:33" },
-    "outcome": { "label": "몸이 덥혀지며 아이가 다시 살아남", "verse": "왕하 4:33", "kind": "이룸" } },
+    "outcome": { "label": "몸이 덥혀지며 아이가 다시 살아남", "verse": "왕하 4:35", "kind": "이룸" } },
   { "mode": "물음-응답", "approxYear": -844,
     "trigger": { "label": "사환의 눈을 열어달라 여호와께 기도함", "verse": "왕하 6:17" },
     "outcome": { "label": "불말과 불병거로 두르심을 보게 하심", "verse": "왕하 6:17", "kind": "이룸" } },

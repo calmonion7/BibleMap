@@ -29,8 +29,8 @@
   {
     "mode": "물음-응답",
     "approxYear": 30,
-    "trigger": { "label": "십자가에서 자기를 못박은 자들의 용서를 구하심", "verse": "눅 23:33" },
-    "outcome": { "label": "대속의 기도로 받으심", "verse": "눅 23:33", "kind": "이룸" }
+    "trigger": { "label": "십자가에서 자기를 못박은 자들의 용서를 구하심", "verse": "눅 23:34" },
+    "outcome": { "label": "대속의 기도로 받으심", "verse": "눅 23:34", "kind": "이룸" }
   },
   {
     "mode": "물음-침묵",

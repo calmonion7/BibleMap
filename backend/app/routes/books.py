@@ -99,7 +99,7 @@ def get_book_chapters(book_id: str):
             "chapters": overlays.chapter_summaries().get(book_id, []),
             "sections": overlays.chapter_sections().get(book_id, []),
         },
-        headers={"Cache-Control": "public, max-age=3600"},
+        headers={"Cache-Control": "max-age=300"},
     )
 
 
@@ -156,7 +156,7 @@ def get_book_quotations(book_id: str):
     payload = _quotations_payload(book_id)
     if payload is None:
         raise HTTPException(status_code=404, detail="unknown book")
-    return JSONResponse(payload, headers={"Cache-Control": "public, max-age=3600"})
+    return JSONResponse(payload, headers={"Cache-Control": "max-age=300"})
 
 
 @router.get("/book/{book_id}/chapter/{n}")
@@ -165,4 +165,4 @@ def get_book_chapter(book_id: str, n: int):
     payload = _chapter_payload(book_id, n)
     if payload is None:
         raise HTTPException(status_code=404, detail="unknown book")
-    return JSONResponse(payload, headers={"Cache-Control": "public, max-age=3600"})
+    return JSONResponse(payload, headers={"Cache-Control": "max-age=300"})

@@ -16,7 +16,7 @@
   {
     "mode": "물음-응답",
     "approxYear": -1200,
-    "trigger": { "label": "믿음으로 바락에게 출전을 독려함", "verse": "삿 4:15" },
+    "trigger": { "label": "믿음으로 바락에게 출전을 독려함", "verse": "삿 4:14" },
     "outcome": { "label": "여호와께서 시스라의 군대를 파하심", "verse": "삿 4:15", "kind": "이룸" }
   },
   {

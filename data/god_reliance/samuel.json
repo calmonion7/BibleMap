@@ -10,7 +10,7 @@
     "mode": "부르심",
     "approxYear": -1095,
     "obeyed": true,
-    "trigger": { "label": "여호와께서 밤에 세 번 사무엘을 부르심", "verse": "삼상 3:10" },
+    "trigger": { "label": "여호와께서 밤에 세 번 사무엘을 부르심", "verse": "삼상 3:8" },
     "outcome": { "label": "말씀하옵소서 듣겠나이다 응답하여 순종함", "verse": "삼상 3:10" }
   },
   {
@@ -28,14 +28,14 @@
   {
     "mode": "물음-응답",
     "approxYear": -1050,
-    "trigger": { "label": "왕을 구하는 백성 문제로 여호와께 기도함", "verse": "삼상 8:7" },
+    "trigger": { "label": "왕을 구하는 백성 문제로 여호와께 기도함", "verse": "삼상 8:6" },
     "outcome": { "label": "백성이 나를 버림이라 하시며 응답하심", "verse": "삼상 8:7", "kind": "다르게" }
   },
   {
     "mode": "물음-응답",
     "approxYear": -1050,
-    "trigger": { "label": "길갈서 백성과 함께 화목제 드려 예배함", "verse": "삼상 11:14-15" },
-    "outcome": { "label": "여호와 앞에서 사울 왕위를 새롭게 하심", "verse": "삼상 11:14-15", "kind": "이룸" }
+    "trigger": { "label": "길갈서 백성과 함께 화목제 드려 예배함", "verse": "삼상 11:15" },
+    "outcome": { "label": "여호와 앞에서 사울 왕위를 새롭게 하심", "verse": "삼상 11:15", "kind": "이룸" }
   },
   {
     "mode": "물음-침묵",

@@ -4,7 +4,7 @@
     "approxYear": -1191,
     "obeyed": true,
     "trigger": { "label": "여호와의 사자가 기드온을 큰 용사라 부르심", "verse": "삿 6:12" },
-    "outcome": { "label": "순종해 미디안과 싸우러 나섬", "verse": "삿 6:12" }
+    "outcome": { "label": "순종해 미디안과 싸우러 나섬", "verse": "삿 6:34" }
   },
   {
     "mode": "부르심",
@@ -17,7 +17,7 @@
     "mode": "물음-응답",
     "approxYear": -1191,
     "trigger": { "label": "양털로 두 번 표징을 구함", "verse": "삿 6:37" },
-    "outcome": { "label": "하나님이 구한 그대로 응하심", "verse": "삿 6:37", "kind": "이룸" }
+    "outcome": { "label": "하나님이 구한 그대로 응하심", "verse": "삿 6:40", "kind": "이룸" }
   },
   {
     "mode": "부르심",

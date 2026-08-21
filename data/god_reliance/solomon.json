@@ -4,20 +4,20 @@
     "approxYear": -990,
     "covenant": true,
     "trigger": { "label": "다윗과 밧세바의 아들로 태어나 여호와의 사랑을 입음", "verse": "삼하 12:24" },
-    "outcome": { "label": "나단을 통해 '여디디야(여호와께 사랑받는 자)'라 이름을 받음", "verse": "삼하 12:24" }
+    "outcome": { "label": "나단을 통해 '여디디야(여호와께 사랑받는 자)'라 이름을 받음", "verse": "삼하 12:25" }
   },
   {
     "mode": "부르심",
     "approxYear": -971,
     "covenant": true,
-    "trigger": { "label": "다윗의 명으로 사독과 나단이 기혼에서 기름을 부음", "verse": "왕상 1:38" },
-    "outcome": { "label": "온 백성이 '솔로몬 왕 만세' 외치며 왕위를 받음", "verse": "왕상 1:38" }
+    "trigger": { "label": "다윗의 명으로 사독과 나단이 기혼에서 기름을 부음", "verse": "왕상 1:39" },
+    "outcome": { "label": "온 백성이 '솔로몬 왕 만세' 외치며 왕위를 받음", "verse": "왕상 1:39" }
   },
   {
     "mode": "물음-응답",
     "approxYear": -970,
     "trigger": { "label": "기브온 꿈에 나타나신 하나님께 다스릴 지혜로운 마음을 구함", "verse": "왕상 3:5" },
-    "outcome": { "label": "지혜에 더해 구하지 않은 부와 영광까지 주심", "verse": "왕상 3:12", "kind": "더하심" }
+    "outcome": { "label": "지혜에 더해 구하지 않은 부와 영광까지 주심", "verse": "왕상 3:13", "kind": "더하심" }
   },
   {
     "mode": "물음-응답",

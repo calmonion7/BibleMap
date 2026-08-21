@@ -23,7 +23,7 @@
     "mode": "부르심",
     "approxYear": 46,
     "obeyed": true,
-    "trigger": { "label": "성령이 지시하여 선교로 따로 세우심", "verse": "행 13:1" },
+    "trigger": { "label": "성령이 지시하여 선교로 따로 세우심", "verse": "행 13:2" },
     "outcome": { "label": "순종하여 선교 여행을 떠남", "verse": "행 13:1" }
   },
   {
@@ -42,13 +42,13 @@
   {
     "mode": "물음-응답",
     "approxYear": 56,
-    "trigger": { "label": "가시 제거를 세 번 간구함", "verse": "고후 12:9" },
+    "trigger": { "label": "가시 제거를 세 번 간구함", "verse": "고후 12:8" },
     "outcome": { "label": "내 은혜가 족하다 응답받음", "verse": "고후 12:9", "kind": "다르게" }
   },
   {
     "mode": "물음-응답",
     "approxYear": 67,
     "trigger": { "label": "믿음을 지키며 달려갈 길을 마침", "verse": "딤후 4:7" },
-    "outcome": { "label": "의의 면류관이 예비됨", "verse": "딤후 4:7", "kind": "이룸" }
+    "outcome": { "label": "의의 면류관이 예비됨", "verse": "딤후 4:8", "kind": "이룸" }
   }
 ]

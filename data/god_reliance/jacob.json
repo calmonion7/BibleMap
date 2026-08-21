@@ -13,7 +13,7 @@
     "outcome": { "label": "이스라엘이라는 새 이름과 축복을 함께 받음", "verse": "창 32:28", "kind": "더하심" } },
   { "mode": "물음-응답", "approxYear": -1905,
     "trigger": { "label": "세겜에 이르러 단을 쌓아 하나님께 예배함", "verse": "창 33:18-20" },
-    "outcome": { "label": "그 단을 엘엘로헤이스라엘이라 이름하며 응답받음", "verse": "창 33:18-20", "kind": "이룸" } },
+    "outcome": { "label": "그 단을 엘엘로헤이스라엘이라 이름하며 응답받음", "verse": "창 33:20", "kind": "이룸" } },
   { "mode": "부르심", "approxYear": -1900, "obeyed": true,
     "trigger": { "label": "벧엘로 올라가 제단을 쌓으라 명하심", "verse": "창 35:1-7" },
     "outcome": { "label": "우상을 버리고 순종하여 제단을 쌓음", "verse": "창 35:1-7" } },
@@ -21,6 +21,6 @@
     "trigger": { "label": "벧엘에서 다시 나타나 이스라엘 이름을 확증하심", "verse": "창 35:10" },
     "outcome": { "label": "그 이름과 복을 받아들임", "verse": "창 35:10" } },
   { "mode": "물음-응답", "approxYear": -1700,
-    "trigger": { "label": "브엘세바에서 하나님께 제사를 드림", "verse": "창 46:3" },
+    "trigger": { "label": "브엘세바에서 하나님께 제사를 드림", "verse": "창 46:1" },
     "outcome": { "label": "밤에 나타나사 애굽행을 두려워 말라 응답하심", "verse": "창 46:3", "kind": "이룸" } }
 ]

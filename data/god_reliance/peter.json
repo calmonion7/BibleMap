@@ -11,19 +11,19 @@
     "approxYear": 28,
     "covenant": true,
     "trigger": { "label": "밤새 기도하신 예수께서 사도로 부르심", "verse": "눅 6:12" },
-    "outcome": { "label": "베드로라는 이름과 사도직을 받음", "verse": "눅 6:12" }
+    "outcome": { "label": "베드로라는 이름과 사도직을 받음", "verse": "눅 6:14" }
   },
   {
     "mode": "물음-응답",
     "approxYear": 29,
     "trigger": { "label": "물 위로 오라 하심에 나아가다 두려워 빠짐", "verse": "마 14:28" },
-    "outcome": { "label": "살려달라 외치니 손 내밀어 붙드심", "verse": "마 14:28", "kind": "이룸" }
+    "outcome": { "label": "살려달라 외치니 손 내밀어 붙드심", "verse": "마 14:31", "kind": "이룸" }
   },
   {
     "mode": "독단-어긋남",
     "approxYear": 30,
     "trigger": { "label": "두려움에 예수를 모른다 세 번 부인함", "verse": "눅 22:54" },
-    "outcome": { "label": "주께서 돌아보시니 통곡하며 나감", "verse": "눅 22:54" }
+    "outcome": { "label": "주께서 돌아보시니 통곡하며 나감", "verse": "눅 22:61" }
   },
   {
     "mode": "부르심",
@@ -35,14 +35,14 @@
   {
     "mode": "물음-응답",
     "approxYear": 30,
-    "trigger": { "label": "한 곳에 모여 성령을 기다리며 기도함", "verse": "행 2:4" },
+    "trigger": { "label": "한 곳에 모여 성령을 기다리며 기도함", "verse": "행 2:1" },
     "outcome": { "label": "성령이 충만히 임하여 방언으로 말함", "verse": "행 2:4", "kind": "이룸" }
   },
   {
     "mode": "물음-응답",
     "approxYear": 30,
     "trigger": { "label": "기도 시간에 성전 오르다 앉은뱅이 만남", "verse": "행 3:1" },
-    "outcome": { "label": "예수 이름으로 명하니 걸으며 하나님 찬송", "verse": "행 3:1", "kind": "더하심" }
+    "outcome": { "label": "예수 이름으로 명하니 걸으며 하나님 찬송", "verse": "행 3:8", "kind": "더하심" }
   },
   {
     "mode": "물음-응답",
@@ -53,8 +53,8 @@
   {
     "mode": "물음-응답",
     "approxYear": 37,
-    "trigger": { "label": "예수 이름으로 병자를 일으키라 명함", "verse": "행 9:32" },
-    "outcome": { "label": "애니아 낫고 도르가 다시 살아남", "verse": "행 9:32", "kind": "더하심" }
+    "trigger": { "label": "예수 이름으로 병자를 일으키라 명함", "verse": "행 9:34" },
+    "outcome": { "label": "애니아 낫고 도르가 다시 살아남", "verse": "행 9:40", "kind": "더하심" }
   },
   {
     "mode": "부르심",
@@ -66,7 +66,7 @@
   {
     "mode": "물음-응답",
     "approxYear": 44,
-    "trigger": { "label": "교회가 베드로를 위해 간절히 기도함", "verse": "행 12:7" },
+    "trigger": { "label": "교회가 베드로를 위해 간절히 기도함", "verse": "행 12:5" },
     "outcome": { "label": "천사가 나타나 옥에서 건져냄", "verse": "행 12:7", "kind": "이룸" }
   }
 ]
