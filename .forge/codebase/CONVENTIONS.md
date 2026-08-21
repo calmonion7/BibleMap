@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: a002881c8e935e3d0f1dccd39ebe6419090ae30b
-mapped: 2026-08-20
+last_mapped_commit: 4ad1d837a3771f69f53877b128938124b68d920b
+mapped: 2026-08-21
 ---
 
 # CONVENTIONS
@@ -41,7 +41,7 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 
 - 파일·함수·변수 snake_case. 모듈 내부 전용은 `_` 접두(`_resolve`·`_load`·`_build_list`·`_era_of`·`_book_bb`·`_fetch_totals`). 상수는 대문자(`ERA_BANDS`·`TOP_PERSONS_LIMIT`·`_ERA_ORDER` — 사설 상수는 `_` + 대문자 혼용).
 - 라우터 파일은 도메인 단수/복수 명사(`persons.py`·`places.py`·`books.py`·`events.py`·`tours.py`·`words.py`·`verses.py`·`family.py`·`journey.py`·`reliance.py`·`search.py`·`stats.py`·`nodes.py`·`timeline.py`). 각 파일은 `router = APIRouter()` 하나만 두고 **prefix 없이** 전체 경로를 데코레이터에 적는다(`@router.get("/person/{node_id}/relations")`). 등록은 `backend/app/main.py`의 `app.include_router(...)` 나열.
-- 라우터가 아닌 공용 헬퍼 모듈도 같은 디렉터리에 산다 — `backend/app/verse_search.py`(절 본문 substring 검색, `search.py`·`words.py`가 함께 씀, task#267)는 `overlays.py`·`db.py`와 같은 성격.
+- 라우터가 아닌 공용 헬퍼 모듈도 같은 디렉터리에 산다 — `backend/app/verse_search.py`(절 본문 substring 검색, `search.py`·`words.py`가 함께 씀, task#267)는 `overlays.py`·`db.py`와 같은 성격. `backend/app/curated.py`(큐레이션 35인 색인의 정본 — `CURATED` slug→{nameKo, era} 테이블·`ERA_ORDER`·`person_events()`·`curated_index()`·`id_to_slug()`/`slug_to_id()`/`seal_id_to_slug()`, task#278)도 같은 층에 산다: `overlays.py`처럼 라우트를 import하지 않아 순환 import를 차단하고, `persons.py`·`journey.py`·`places.py`·`timeline.py`·`tours.py`·`stats.py`·`reliance.py`·`family.py` 8개 라우트가 소비한다 — 큐레이션 슬러그 테이블·era 순서는 이 한 곳에만 있고 각 라우트에 복제하지 않는다(이전엔 `persons.py`의 `_ERA`/`_NAME_KO`/`_ERA_ORDER`였다).
 - 경로 파라미터는 snake_case(`{node_id}`·`{book_id}`·`{event_id}`·`{verse_id}`·`{person_id}`·`{tour_id}`), URL 세그먼트는 kebab-case(`/books-overview`·`/keypeople-cards`·`/messianic-prophecies`·`/topical-verses`·`/parables-miracles`·`/person/{id}/event-ids`).
 - **응답 JSON 키는 camelCase**(`nameKo`·`bookOrder`·`keyVerseTextKo`·`eventIds`·`startDate`) — Python 내부 snake_case와 경계에서 갈린다.
 - 모듈·함수 docstring은 **한글**이며 첫 줄에 목적, 필요하면 `(task#NNN)`·`ADR-00NN` 근거를 단다(`backend/app/routes/stats.py` 상단이 대표).
@@ -90,7 +90,7 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 - `_resolve(subpath)`/`_resolve_dir(subpath)`는 `DATA_DIR` 환경변수(기본 `/app/data`, 컨테이너 마운트) → 리포지토리 `data/` 순으로 찾고, 없으면 `logger.warning` 후 `None`을 반환한다.
 - `_load(subpath)`는 파일 없음·JSON 파싱 실패 모두 `logger.warning` 후 **빈 dict 폴백**(§3의 원칙).
 - 새 오버레이는 `overlays.py`에 `@functools.lru_cache(maxsize=1)` 로더 함수를 하나 추가하고 한글 docstring에 스키마 요약을 적는다. 커밋 `43f987c` 기준 로더 전체(선언 순): `book_events_raw()`·`event_verses()`·`bible_verses()`·`word_distribution()`·`books_ko()`·`chapter_summaries()`·`chapter_sections()`·`quotations()`·`messianic_prophecies()`·`covenants()`·`parables_miracles()`·`place_coords()`·`topical_verses()`·`verse_persons()`. 이후 추가: `place_context()`(장소 배경·핵심 구절, task#270 — `place_coords()`와 같은 `id` 키를 쓰되 별도 파일 `data/place_context/places.json`을 읽는다).
-- `overlays.py`에는 캐시 로더가 아닌 순수 헬퍼 1개가 함께 산다: `curated_person_id(events)` — `person_events/<slug>.json`의 `events[0].participants[0]`을 그 인물의 `theographic_id`로 해석하는 **큐레이션 신원 규약의 단일 지점**(소비처 `persons.py`·`places.py`·`reliance.py`·`timeline.py`; 로더 캐시가 아니라 데코레이터 없음).
+- `overlays.py`에는 캐시 로더가 아닌 순수 헬퍼 1개가 함께 산다: `curated_person_id(events)` — `person_events/<slug>.json`의 `events[0].participants[0]`을 그 인물의 `theographic_id`로 해석하는 **큐레이션 신원 규약의 단일 지점**(로더 캐시가 아니라 데코레이터 없음). 대표 소비처는 `backend/app/curated.py`의 `curated_index()`이고, `places.py`·`timeline.py`는 큐레이션 색인 밖의 개별 조회에 지금도 직접 import한다.
 - **동명이인 대비 — id로 매칭, nameKo로 매칭하지 않는다**: theographic에는 동명이인이 흔해(예: 요셉 6명) `nameKo` 문자열로 관계를 매칭하면 다른 인물의 서사가 잘못 유출된다. `backend/app/routes/family.py`의 `_family_role_pairs()`가 대표 사례(task#263) — 큐레이션 role 매칭 키를 `nameKo` 쌍에서 `person_relations`의 `slug`를 `theographic_id`로 해석한 쌍으로 바꿨다. `curated_person_id`와 같은 원칙의 다른 적용.
 
 ### 4.2 캐시 두 겹 — `lru_cache` + `Cache-Control`
@@ -101,7 +101,15 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 
 ### 4.3 중복 상수는 "공유 대신 정합 검증"
 
-- 시대 경계 `ERA_BANDS`의 전체 정의(`{name, from}`)는 **정확히 두 곳에만 선언한다**(ADR `260819-205242`): `frontend/src/eraBands.js`(`{name, from, range}`)·`backend/app/routes/stats.py:24`(`(name, from)` 튜플). 프론트 쪽은 원래 `TimelineView.jsx` 안에 있었으나 통사 연표(`CanonTimelineView.jsx`, task#271)도 같은 경계가 필요해지면서 전용 모듈로 승급했다 — 컴포넌트 파일에서 export하면 `react-refresh/only-export-components`에 걸리고, 재선언하면 **세 번째 복제**가 되기 때문. 이 밖에 이름·순서만 복제한 `backend/app/routes/persons.py:98`(`_ERA_ORDER`) + `data/covenants/covenants.json`의 각 `era` 값이 있다. 프론트/백엔드가 코드를 공유할 수단이 없어 근본 통합 대신 **드리프트 검증 게이트**를 뒀다 — `backend/scripts/validate_era_bands_consistency.py`가 `eraBands.js`·`stats.py`·`persons.py`를 정규식으로 파싱해 이름·순서·경계를 대조하고 `covenants.json`의 `era`가 유효 시대인지 단언한다. 경계를 고칠 땐 이 파일들을 함께 고치고 스크립트로 확인하며, **새 소비처가 생겨도 세 번째 전체-정의 복제를 만들지 않는다**(`eraBands.js` 파일 상단 주석이 이 계약을 명시).
+- 시대 경계 `ERA_BANDS`의 전체 정의(`{name, from}`)는 **정확히 두 곳에만 선언한다**(ADR `260819-205242`): `frontend/src/eraBands.js`(`{name, from, range}`)·`backend/app/routes/stats.py:24`(`(name, from)` 튜플). 프론트 쪽은 원래 `TimelineView.jsx` 안에 있었으나 통사 연표(`CanonTimelineView.jsx`, task#271)도 같은 경계가 필요해지면서 전용 모듈로 승급했다 — 컴포넌트 파일에서 export하면 `react-refresh/only-export-components`에 걸리고, 재선언하면 **세 번째 복제**가 되기 때문.
+- 이름·순서만 복제한 사본이 **두 곳** 더 있다 — `backend/app/curated.py`의 `ERA_ORDER`(task#278에 `routes/persons.py`의 `_ERA_ORDER`에서 이관, §4.4)와 `frontend/src/PersonHub.jsx`의 `const ERA_ORDER` 사본. 프론트/백엔드가 코드를 공유할 수단이 없어 근본 통합 대신 **드리프트 검증 게이트**를 뒀다 — `backend/scripts/validate_era_bands_consistency.py`가 이제 **7축**을 본다(task#284에서 3축 추가): ① `eraBands.js` ② `stats.py` ③ `curated.py`의 `ERA_ORDER`(이름·순서·경계 정합) ④ `data/covenants/covenants.json`의 각 `era` ⑤ `data/tours/*.json`의 각 `era`(저작자 오타 축) ⑥ `PersonHub.jsx`의 `ERA_ORDER` 사본이 `curated.py`와 이름·순서 모두 일치 ⑦ **era 축 기능 게이트 리터럴** — `TimelineView.jsx`의 `sec.era.name === '신약'`·`ExploreStage.jsx`의 `…?.era === '신약'`처럼 비유·기적 토글이 시대 이름 문자열과의 `===` 비교 하나에만 걸려 있어, 이름을 바꾸면 토글이 **에러 없이 조용히 사라진다** — 검증기가 `frontend/src/**/*.{jsx,js}` 전체에서 좌변 식별자 사슬에 `era`/`Era` 토큰이 있는 `=== '문자열'` 비교를 전부 찾아 그 리터럴이 유효 시대 이름인지 단언한다(파일 허용목록이 아니라 식별자 사슬 형태로 좁혀 `BibleOverviewView.jsx`의 `t === '신약'` 같은 **정경 구분(OT/NT) 축**은 제외 — 계획 Non-goal). 경계를 고칠 땐 관련 파일들을 함께 고치고 스크립트로 확인하며, **새 소비처가 생겨도 세 번째 전체-정의 복제를 만들지 않는다**(`eraBands.js` 파일 상단 주석이 이 계약을 명시).
+
+### 4.4 큐레이션 인물 색인 공유 모듈 — `backend/app/curated.py` (task#278)
+
+- `overlays.py`와 같은 층(라우트를 import하지 않음)에 사는 정본 모듈. `CURATED: dict[str, dict]`가 slug→`{nameKo, era}` 35항목 고정 매핑이고 `ERA_ORDER`가 표시 순서다 — 예전엔 `routes/persons.py`에 `_ERA`/`_NAME_KO`/`_ERA_ORDER` 세 딕셔너리로 흩어져 있었다.
+- 함수 4개, 전부 `@functools.lru_cache`: `person_events(slug)`(sortKey 정렬 캐시 로더, maxsize 64) · `curated_index()`(35인 목록, era 그룹 내 최초 등장 시점 순 + slug tie-break, maxsize 1) · `id_to_slug()`/`slug_to_id()`(theographic_id↔slug 양방향, maxsize 1) · `seal_id_to_slug()`(인장 조회용 — 큐레이션 35 우선 + `person_slugs/seal_slugs.json`의 비큐레이션 인장 보유 인물 합쳐 50, ADR-0025).
+- 소비처 8개 라우트(`persons.py`·`journey.py`·`places.py`·`timeline.py`·`tours.py`·`stats.py`·`reliance.py`·`family.py`)는 이 모듈에서 필요한 것만 import한다 — `CURATED`·`ERA_ORDER` 원자재만 쓰는 라우트도 있고(`places.py`가 자체 정렬을 다시 하는 경우), `curated_index()`/`id_to_slug()` 완성품만 쓰는 라우트도 있다(`persons.py`).
+- **이 승급은 "동작 보존 리팩토링"의 실측 사례다** — 겉으로 구조만 옮기는 작업으로 보였지만 `stats._compute_longest_journeys()`가 옛 딕셔너리의 **삽입 순서**를 동률 타이브레이크로 암묵 의존하고 있어 재배선 중 응답이 실제로 달라질 뻔했다. 검증 방식(리팩토링 전후 API 응답 전량 대조)은 데이터 저작 검증이 아니라 검증 방법론이라 `TESTING.md`가 소관이다.
 
 ---
 
@@ -157,6 +165,7 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 - **기계 정본 verseID**: `BBCCCVVV` 8자리 문자열(권 2 + 장 3 + 절 3, 예 `40005003` = 마 5:3). 필드명은 `verseIds`·`keyVerseIds`·`keyVerseId`·`otVerseIds`/`ntVerseIds`.
 - **불변식**: 참조를 가진 오버레이는 verseID 배열이 정본이며, 모든 verseID는 정본 절 사전 `data/bible/verses.json`(로더 `overlays.bible_verses()`)에 **실존해야** 한다. 라벨과 verseID의 자기일치(라벨 파싱 결과 = verseID 배열)는 대응 `validate_*.py`가 강제한다(`TESTING.md`).
 - 연대는 **현대 보수 연대계가 정본**(ADR-0014) — theographic 원본은 Ussher계/AD30계라 그대로 믿지 않는다. 교정은 `data/date_corrections/{events,persons}.json`에 항목으로 쌓고 `inject_date_corrections.py`가 반영한다.
+- **`rangeLabel`이 구절 범위의 유일한 직렬화다**(task#282, ADR `260821-125000`) — `backend/scripts/generate_person_event_verses.py`의 `parse_context_refs()`는 `{bookId, bookOrder, rangeLabel}`만 반환하고 `chapter`/`verseStart`/`verseEnd`/`_chapterEnd` 같은 파싱 부산물 필드는 더 이상 배관하지 않는다. 그 라벨에서 실제 절 목록으로 전개하는 오라클은 네트워크(getbible)가 아니라 저장소 안의 정본 절 사전 `data/bible/verses.json`이다 — `expand_range_label(label, book_order, keys_by_book)`(같은 파일)가 오프라인·결정적으로 전개하고, `verse_keys_by_book()`이 그 사전을 `bookOrder`별 키 집합으로 캐시한다. 존재 판정은 **키 존재**이며 본문(`textKo`) 유무가 아니다 — `textKo`가 null인 절도 정경의 절이라 본문 공백으로 판정하면 정상 데이터가 위반으로 잡힌다. 검증기(`validate_event_verses.py`, `TESTING.md` §2)는 이 함수를 그대로 `import`해 재사용한다 — 검증기가 자기 파서를 새로 선언하면 잡아내는 것이 "전개 버그"가 아니라 "두 파서의 차이"가 되기 때문(파서 2벌 금지, ADR `260819-205242`와 같은 원칙). getbible 경로(`fetch_chapter`/`fetch_verses`)는 새 참조를 처음 베이킹할 때의 흐름으로 남아 있으나 범위 전개에는 더 이상 호출되지 않는다.
 
 ### 6.3 통제 어휘는 문서·검증 스크립트 이중 관리
 
@@ -225,6 +234,13 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 - `frontend/src/tourSketches.jsx`가 9개 레지스트리를 한 `SCENES` 맵으로 스프레드 병합하고, default export `TourSketch`(viewBox `0 0 120 64`)와 named export `TourSketchPanel`(양피지 패널; `mood: 'dark'`면 `--paper-accent`만 목탄색(`#5f584c`)으로 오버라이드하고 종이 배경은 항상 크림 유지)을 제공한다. `hasSketch`는 모듈 내부 전용(un-export, task#253). **등록 없는 정차지는 아무것도 렌더하지 않는다** — §7.4와 같은 그레이스풀 부분 저작 원칙.
 - 무거운 자산이라 **지연 로드**한다: `IntroView.jsx:5` `lazy(() => import('./tourSketches'))`, `TourPlayback.jsx:5` `lazy(() => import('./tourSketches').then(m => ({ default: m.TourSketchPanel })))`, 둘 다 `<Suspense fallback={null}>`로 감싼다(task#254 — 메인 청크 640→250KB).
 - 데이터(투어 `stops`)와 코드(장면 레지스트리)가 eventId로 페어링되므로 커버리지는 **집합 대조**(stops의 id ⊆ 레지스트리 키)로 검증한다(`TESTING.md`).
+
+### 7.6 박스 모델 — 전역 `box-sizing` 리셋 없음, 지역 `border-box` 규약 (ADR `260820-232144`)
+
+- 이 코드베이스에는 `box-sizing: border-box` 전역 리셋이 **없다** — 모든 요소가 기본값 `content-box`다. `width: '100%'`(또는 명시 폭)와 좌우 패딩을 함께 쓰는 컨테이너는 그 조합만으로 박스가 뷰포트보다 패딩 2배만큼 넓어지고, 부모가 `alignItems: 'center'`면 그 초과분이 좌우 대칭으로 삐져나가 **선언된 패딩이 시각적으로 정확히 0이 된다** — 소스에는 패딩이 멀쩡히 적혀 있어 코드 리뷰로는 잡히지 않는다(task#280 실측: 375px 폭에서 `left:-22, width:419`).
+- 전역 리셋은 **도입하지 않는다** — 인라인 스타일 위주로 수십 개 화면이 `content-box` 전제로 눈으로 조정돼 왔고, 자동 테스트가 거의 없는 상태에서 전역 전환의 폭발 반경(명시 크기+패딩/보더를 함께 쓰는 모든 요소)을 회수할 수단이 없다. 대신 규약은 **국소**다: `width`(또는 명시 폭)와 좌우 패딩을 함께 쓰는 컨테이너는 **그 스타일 객체에서 `boxSizing: 'border-box'`를 명시**한다. 같은 삼종(`width`+`maxWidth`+`padding`)이 여러 곳에 복사되면 **공용 프레임 컴포넌트로 승급해 선언 지점을 하나로** 만든다 — 대표 사례가 `frontend/src/IntroView.jsx`의 비트 공용 프레임(오프닝·지도·몽타주·메뉴장면·도착지 5비트가 통과).
+- 한국어 텍스트를 담는 그 프레임은 `wordBreak: 'keep-all'`도 함께 선언한다 — 기본값(`normal`)은 어절 중간에서 줄을 넘긴다. 여백과 어절 줄바꿈은 같은 프레임이 짝으로 책임진다.
+- 이 결함 클래스는 리뷰로 잡히지 않으므로 게이트는 **소스 불변식**(`backend/scripts/validate_intro_gutter.py`)과 **실측**(`scripts/uat_intro_gutter.py`)을 함께 둔다. 상세는 `TESTING.md`.
 
 ---
 

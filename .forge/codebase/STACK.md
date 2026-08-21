@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: a002881c8e935e3d0f1dccd39ebe6419090ae30b
-mapped: 2026-08-20
+last_mapped_commit: 4ad1d837a3771f69f53877b128938124b68d920b
+mapped: 2026-08-21
 ---
 
 # STACK
@@ -11,7 +11,8 @@ BibleMap의 언어·런타임·프레임워크·의존성·빌드/설정 사실 
 
 ## 백엔드
 
-- 언어/런타임: Python. 컨테이너 베이스는 `python:3.12-slim`(`backend/Dockerfile`). 반면 `deploy.sh`가 호스트에서 직접 실행하는 주입 스크립트(`backend/scripts/inject_ko_names.py`)와 `scripts/check.sh`의 검증 스크립트들은 이 머신의 host python3(현재 `Python 3.14.5`)로 돈다 — 컨테이너 밖 실행 경로가 상시 존재한다.
+- 언어/런타임: Python. 컨테이너 베이스는 `python:3.12-slim`(`backend/Dockerfile`). 반면 `deploy.sh`가 호스트에서 직접 실행하는 주입 스크립트(`backend/scripts/inject_ko_names.py`)와 `scripts/check.sh`의 검증 스크립트들은 이 머신의 host python3(현재 `Python 3.14.5`)로 돈다 — 컨테이너 밖 실행 경로가 상시 존재한다. 레포 루트 `scripts/uat_intro_entry.py`·`scripts/uat_intro_gutter.py`(신규)도 같은 host python3로 돌지만 `scripts/check.sh` 게이트에는 배선되지 않는다(각 스크립트 docstring에 사유 명시 — `deploy.sh`가 프론트 빌드 **전**에 check.sh를 부르므로 그 시점 `:8080`은 옛 빌드를 서빙해 게이트에 넣으면 초록·빨강이 둘 다 거짓이 된다). 사람이 배포 전후로 직접 호출하는 실측 UAT다.
+- `playwright`(호스트 python에만 설치, 현재 `1.60.0`) — 위 두 UAT 스크립트가 `playwright.sync_api.sync_playwright`로 헤드리스 브라우저를 띄워 `localhost:8080`을 실측(`anthropic`과 동일하게 `backend/requirements.txt`에는 없음, API 이미지 미포함).
 - 런타임 의존성(`backend/requirements.txt`, 전부 핀 고정):
   - `fastapi==0.136.3`
   - `neo4j==6.2.0` (공식 Neo4j Python 드라이버)
@@ -25,8 +26,10 @@ BibleMap의 언어·런타임·프레임워크·의존성·빌드/설정 사실 
 - Neo4j 드라이버: `backend/app/db.py` — 모듈 전역 싱글턴 `get_driver()`. `NEO4J_URI`(기본 `bolt://localhost:7687`), `NEO4J_USER`(기본 `neo4j`), `NEO4J_PASSWORD`(필수, 없으면 `RuntimeError`).
 - 오버레이 로더: `backend/app/overlays.py` — `data/` 하위 JSON을 `functools.lru_cache(maxsize=1)`로 1회 로드. `_resolve`/`_resolve_dir`가 `DATA_DIR`(기본 `/app/data`) → 레포 `data/`(`_REPO_DATA_DIR`) 순으로 해석하고, 없으면 `[Overlays]` 경고 후 빈 데이터 폴백. 로더 15종: `book_events_raw`, `event_verses`, `bible_verses`, `word_distribution`, `books_ko`, `chapter_summaries`, `chapter_sections`, `quotations`, `messianic_prophecies`, `covenants`, `parables_miracles`, `place_coords`, `place_context`(신규, 장소 페이지용), `topical_verses`, `verse_persons`. 그 외 헬퍼 `curated_person_id(events)` 하나(큐레이션 신원 규약 단일 지점).
 - 절 검색 공용 모듈: `backend/app/verse_search.py`(신규) — 정본 절 사전(`overlays.bible_verses()`)을 substring으로 전수 스캔하는 `search_verses(term, book_id, match_en)`. `functools.lru_cache(maxsize=256)`로 질의 단위 캐시. `search.py`(통합 검색)와 `words.py`(단어별 절 목록)가 공유(이전엔 `words.py`에 중복 구현).
+- 큐레이션 인물 색인 공용 모듈: `backend/app/curated.py`(신규, task#278) — `overlays.py`와 같은 층(라우트를 import하지 않아 순환 import 차단). `CURATED`(slug → `{nameKo, era}` 35건 고정 매핑), `ERA_ORDER`(시대 표시 순서 8구간), `person_events(slug)`(`person_events/<slug>.json`을 `sortKey` 순 정렬, `lru_cache(maxsize=64)`), `curated_index()`(큐레이션 35인 목록, `lru_cache(maxsize=1)`), `id_to_slug()`/`slug_to_id()`/`seal_id_to_slug()`(전부 `lru_cache(maxsize=1)`). 소비 라우트 8개: `persons`·`journey`·`places`·`timeline`·`tours`·`stats`·`reliance`·`family`(이전엔 `persons.py`의 `_ERA`/`_NAME_KO`/`_build_list`가 여러 라우트에 중복 정의됐던 것을 이 모듈로 승격).
 - 라우트 모듈: `backend/app/routes/*.py` 15개(`__init__.py` 포함, 신규 `timeline.py` 추가). `@router.get` 기준 **32개 GET 엔드포인트**(POST/PUT/DELETE 없음, `/timeline/canon`·`/place/{place_id}` 신규). 응답은 대부분 `JSONResponse` + `Cache-Control` 헤더(`max-age=300` 또는 `public, max-age=3600`, 예외로 `books.py`의 `/books-overview`는 `no-store`). 집계형 계산은 `lru_cache`(대부분 `maxsize=1`, 일부 `maxsize=66/256/2048/None`)로 프로세스 내 캐시 → **데이터 변경 시 API 재시작 필요**.
-- 데이터/스크립트: `backend/scripts/*.py` 47개(+3). 접두사별 — `load_*` 8(Neo4j 적재), `generate_*` 11(오버레이 생성), `inject_*` 6(Neo4j 속성 주입), `validate_*` 16(검증, `validate_approx_book_verses.py`·`validate_intro_menu_parity.py`·`validate_scene_coverage.py` 신규), `build_*` 3(색인 빌드), `apply_*` 1(`apply_event_dedupe.py`). 앱 코드는 이 스크립트를 import하지 않는다(빌드타임/운영 전용 경계).
+- 데이터/스크립트: `backend/scripts/*.py` 53개(+6). 접두사별 — `load_*` 8(Neo4j 적재), `generate_*` 11(오버레이 생성), `inject_*` 6(Neo4j 속성 주입), `validate_*` 22(검증, 신규 6종 전부 이번 구간 추가: `validate_curated_persons.py`·`validate_event_verses.py`·`validate_forge_docs_tracked.py`·`validate_intro_entry_route.py`·`validate_intro_gutter.py`·`validate_sortkey_startdate.py`), `build_*` 3(색인 빌드), `apply_*` 1(`apply_event_dedupe.py`). 앱 코드는 이 스크립트를 import하지 않는다(빌드타임/운영 전용 경계) — 예외 1건: `validate_event_verses.py`가 `generate_person_event_verses.py`의 `expand_range_label`/`verse_keys_by_book`을 import해 생성기와 같은 파서·오라클을 재사용한다(스크립트 간 import, 앱 경계와는 무관).
+  - `backend/scripts/generate_person_event_verses.py`(task#282, ADR `260821-125000`) — 근거 절 범위 전개가 getbible 실시간 fetch에서 오프라인 판정으로 전환됨. `expand_range_label()`/`verses_for_label()`이 정본 절 사전(`data/bible/verses.json`)의 verseID 키 존재만으로 라벨이 가리키는 범위를 전개(네트워크 호출 0회) — 교차-장·장 단위 범위를 첫 절 1개만 베이킹하던 결함(실측 12건)을 없앤다. 기존 `fetch_chapter`/`fetch_verses`(getbible 호출부)는 새 경로에서 더는 호출되지 않는 죽은 코드로 남아 있다(수술적 범위 결정 — ADR이 명시, 걷어내지 않음). `--rebake [--dry-run]` 플래그로 기존 `event_verses/events.json` 블록을 새 오라클로 재전개하는 `rebake_range_labels()`도 이번에 추가.
 
 ## 프론트엔드
 
@@ -62,9 +65,9 @@ BibleMap의 언어·런타임·프레임워크·의존성·빌드/설정 사실 
 - 루트: `docker-compose.yml`, `deploy.sh`, `.env.example`, `.gitignore`, `README.md`, `CLAUDE.md`, `BIBLEMAP_PLAN.md`
 - 백엔드: `backend/Dockerfile`, `backend/requirements.txt`
 - 프론트: `frontend/package.json`, `frontend/package-lock.json`, `frontend/vite.config.js`, `frontend/eslint.config.js`, `frontend/index.html`, `frontend/.env.production`, `frontend/.gitignore`, `frontend/README.md`
-- 인프라/CI: `nginx/nginx.conf`, `.github/workflows/deploy.yml`, `scripts/check.sh`
+- 인프라/CI: `nginx/nginx.conf`, `.github/workflows/deploy.yml`, `scripts/check.sh`, `scripts/uat_intro_entry.py`(신규), `scripts/uat_intro_gutter.py`(신규) — 뒤 둘은 CI 게이트 미배선, 사람이 배포 전후 수동 실행하는 Playwright UAT.
 - 에이전트 도구 설정: `.claude/settings.json`(내용은 `{"worktree":{"bgIsolation":"none"}}`), `.claude/launch.json`, `.claude/agents/*.md` 5개(`data-author`, `frontend-dev`, `line-artist`, `scripture-reviewer`, `ui-verifier`)
-- gitignore 대상: `frontend/node_modules/`, `frontend/dist/`, `.env`, `__pycache__/`, `.venv/` + forge 휘발 상태(`.forge/backlog|done|executed|quick`, `plan.md`, `run.md`, `STATUS.md`, `loop.md`). `.forge/CONTEXT.md`·`adr/`·`retro/`·`codebase/`는 화이트리스트로 추적.
+- gitignore 대상: `frontend/node_modules/`, `frontend/dist/`, `.env`, `__pycache__/`, `.venv/` + forge 휘발 상태(`.forge/backlog|done|executed|quick`, `plan.md`, `run.md`, `STATUS.md`, `loop.md`, `ask.md`(신규), `reports/`(신규), `scratch/`(신규)). `.forge/CONTEXT.md`·`adr/`·`retro/`·`codebase/`는 화이트리스트로 추적.
 
 ## 환경변수 (이름만 — 값은 이 문서에 절대 기재하지 않음)
 
@@ -106,12 +109,13 @@ BibleMap의 언어·런타임·프레임워크·의존성·빌드/설정 사실 
   10. `[7/7]` 컨테이너 재시작: `docker compose -p biblemap up -d api` 후 `up -d --force-recreate nginx`(task#263 — nginx는 이미지 빌드도 바인드 마운트 스펙 변경도 없어 `nginx.conf`만 바뀌면 Compose가 재생성 필요를 못 알아채 no-op되므로 매 배포 강제 재생성).
   - 주의: `deploy.sh`는 `load_*` 적재 스크립트를 실행하지 않는다 — Neo4j 그래프 적재는 별도 수동 실행.
 - 배포 전 검증 게이트 `scripts/check.sh`(AI 불요, 단독 실행 가능, `set -u`):
-  - 파일 기반 데이터 검증 **15종**(+3, task#259/#274/#277 S1·S3)을 `python3 -m backend.scripts.validate_<name>`으로 실행: `covenants`, `messianic_prophecies`, `parables_miracles`, `topical_verses`, `pm_map_coverage`, `scene_coverage`(신규), `chapter_sections`, `chapter_summaries`, `quotations`, `person_context`, `god_reliance`, `traits`, `era_bands_consistency`, `approx_book_verses`(신규), `intro_menu_parity`(신규). 이어서 `validate_intro_menu_parity --selftest`(신규) — 고의 드리프트 주입에 검사가 실제로 FAIL하는지 확인하는 대조군(회고 `260820-003946`).
-  - 프론트 검증: `frontend/node_modules` 있으면 `npx --no-install eslint src` + `npm test --silent`(= `vitest run`, 신규) 실행, 없으면 둘 다 스킵-경고.
+  - 파일 기반 데이터 검증 **20종**(task#259/#274/#277~284)을 `python3 -m backend.scripts.validate_<name>`으로 실행: `covenants`, `messianic_prophecies`, `parables_miracles`, `topical_verses`, `pm_map_coverage`, `scene_coverage`, `chapter_sections`, `chapter_summaries`, `quotations`, `person_context`, `god_reliance`, `traits`, `era_bands_consistency`, `approx_book_verses`, `intro_menu_parity`, `curated_persons`(신규), `intro_gutter`(신규), `intro_entry_route`(신규), `event_verses`(신규), `sortkey_startdate`(신규). 이어서 대조군(자기 검사가 고의 드리프트 주입에 실제로 FAIL하는지 확인, 회고 `260820-003946`) 7종을 `--selftest`로 순회: `intro_menu_parity`, `curated_persons`(신규), `intro_gutter`(신규), `intro_entry_route`(신규), `event_verses`(신규), `sortkey_startdate`(신규), `era_bands_consistency`(신규 — 이전엔 대조군이 없었다).
+  - 영구 forge 문서 추적 가드(신규, task#279 S4): `validate_forge_docs_tracked.py`가 `.forge/adr`·`.forge/retro` 아래 미추적(untracked, gitignore 제외) 파일이 0건인지 `git ls-files --others --exclude-standard`로 확인 — 위 20종 데이터 검증 루프와 별개 섹션. git 작업트리가 아니면(`git rev-parse --is-inside-work-tree` 실패) 본검사·`--selftest` 둘 다 스킵-경고. **배포 경로에서도 살아 있는 하드 게이트다** — `.github/workflows/deploy.yml`이 개발 트리와 같은 디렉터리에서 `git reset --hard`(추적 파일만 되돌리고 미추적은 남김) 후 `deploy.sh`를 부르므로, 미추적 영구 문서가 있으면 `CHECK_STRICT=1` 경로에서 배포가 중단된다.
+  - 프론트 검증: `frontend/node_modules` 있으면 `npx --no-install eslint src` + `npm test --silent`(= `vitest run`) 실행, 없으면 둘 다 스킵-경고.
   - 연대 정합: `127.0.0.1:7687` 소켓 접속되면 `validate_event_chronology` 실행, 아니면 스킵-경고. 이때 루트 `.env` 로드 후 `NEO4J_URI`/`NEO4J_USER` 기본값을 채워 넘긴다.
-  - `CHECK_STRICT=1`(신규, task#259)이면 위 두 스킵-경고(ESLint/vitest 부재, Neo4j 미기동)가 실패로 승격된다(`skip()` 헬퍼). `deploy.sh`는 항상 이 모드로 호출하고, 단독 개발 실행(`bash scripts/check.sh`, Neo4j 없이 파일 검증만)은 기본값(스킵 허용)을 유지.
+  - `CHECK_STRICT=1`(task#259)이면 위 스킵-경고(ESLint/vitest 부재, Neo4j 미기동, git 미가용)가 실패로 승격된다(`skip()` 헬퍼). `deploy.sh`는 항상 이 모드로 호출하고, 단독 개발 실행(`bash scripts/check.sh`, Neo4j 없이 파일 검증만)은 기본값(스킵 허용)을 유지.
   - 하드 항목 하나라도 실패하면 실패 항목 tail 8줄 출력 후 `exit 1`.
-  - `backend/scripts/validate_era_bands_consistency.py`는 시대 경계가 수동 복제된 3(+1)곳 — `frontend/src/TimelineView.jsx`의 `ERA_BANDS`, `backend/app/routes/stats.py`의 `ERA_BANDS`, `backend/app/routes/persons.py`의 `_ERA_ORDER`, `data/covenants/covenants.json`의 `era` — 정합을 단언한다.
+  - `backend/scripts/validate_era_bands_consistency.py`는 시대 경계 결합점 **7축**(task#255 S1, task#284에서 3축 추가)을 정합 단언한다: ① `frontend/src/eraBands.js`의 `ERA_BANDS` ② `backend/app/routes/stats.py`의 `ERA_BANDS` ③ `backend/app/curated.py`의 `ERA_ORDER`(순서만) ④ `data/covenants/covenants.json`의 각 언약 `era` ⑤ `data/tours/*.json`의 각 투어 `era`(신규) ⑥ `frontend/src/PersonHub.jsx`의 `ERA_ORDER` 사본(신규, `curated.py`와 이름·순서 모두 대조) ⑦ `frontend/src/**/*.{jsx,js}`에서 `===` 직전 식별자 사슬에 `era`/`Era` 토큰이 있는 문자열 리터럴 비교 전부(신규 — 정규식 스크래핑, 파일 허용목록이 아니라 식별자-사슬 클래스로 오탐 경계를 좁힘). 각 축은 몇 항목을 보았는지 출력하고 0건이면 실패(공허한 통과 방지).
 - 프로덕션 도메인은 이 머신 스택의 프록시 → `localhost:8080`이 곧 prod이고 동일 Neo4j를 본다. `data/`가 볼륨 마운트이므로 데이터만 바뀐 경우 `docker compose -p biblemap restart api`로 `lru_cache`만 비우면 반영된다.
 
 ## 데이터 자산(`data/`, 전량 git 추적)

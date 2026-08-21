@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: a002881c8e935e3d0f1dccd39ebe6419090ae30b
-mapped: 2026-08-20
+last_mapped_commit: 4ad1d837a3771f69f53877b128938124b68d920b
+mapped: 2026-08-21
 ---
 
 # INTEGRATIONS
@@ -34,7 +34,7 @@ BibleMap이 의존하는 외부 데이터·서비스·데이터베이스·인프
 - 클라이언트 코드:
   - `backend/scripts/generate_bible_text.py` — `TRANSLATIONS = (("textKo","korean"), ("textEn","kjv"))`, 전체 번역본 2회 fetch로 정본 절 사전 `data/bible/verses.json`(~9.8MB, `verseID → {textKo, textEn}`) 생성.
   - `backend/scripts/generate_verse_text.py` — 생성 데이터(book_context·character_traits·place_context 등)의 인용 절 본문을 장 단위로 fetch해 빌드타임 인라인(번역/책/장당 1회, 멱등).
-  - `backend/scripts/generate_person_event_verses.py` — 장 단위 fetch(`_fetch_count` 카운터로 호출 횟수 로그).
+  - `backend/scripts/generate_person_event_verses.py` — task#282(ADR `260821-125000`)로 기본 실행 경로(`main()` → `process_event`)가 getbible 실시간 fetch에서 **오프라인 판정**으로 전환됨: `expand_range_label()`/`verses_for_label()`이 정본 절 사전(`data/bible/verses.json`)의 verseID 키 존재만으로 근거 절 범위를 전개한다(네트워크 호출 0회). getbible을 부르는 `fetch_chapter`/`fetch_verses`(`_fetch_count` 카운터 포함)는 이 경로에서 더는 호출되지 않는 죽은 코드로 남아 있다(수술적 범위 결정 — ADR이 명시, 걷어내지 않음). `--rebake [--dry-run]` 플래그로 기존 `event_verses/events.json` 블록을 새 오라클로 재전개하는 `rebake_range_labels()`도 신규.
 - 런타임 미접촉: API는 절 본문을 `overlays.bible_verses()`(= `data/bible/verses.json`)에서 합성하고, `event_verses` 등은 `verseID` 참조만 보유한다.
 
 ### 3. Anthropic API (빌드타임 콘텐츠 생성)
@@ -72,6 +72,7 @@ BibleMap이 의존하는 외부 데이터·서비스·데이터베이스·인프
 - 워크플로: `on: push` (`branches: [main]`) → `runs-on: self-hosted` → 단일 스텝이 `cd /Users/calmonion/Project/BibleMap && git fetch origin && git reset --hard origin/main && bash deploy.sh`. 체크아웃 액션도 없이 러너 머신의 작업 디렉터리(= 이 레포 클론)를 직접 리셋한다. GitHub Secrets 사용 없음(비밀은 머신 로컬 `.env`에서 온다).
 - self-hosted 러너: 이 레포 전용 디렉터리 `/Users/calmonion/actions-runner-biblemap` + 전용 launchd 서비스 `~/Library/LaunchAgents/actions.runner.calmonion7-BibleMap.calmonionui-MacBookPro-biblemap.plist`. 같은 머신에 다른 프로젝트 러너(`actions-runner-lab-taebro`, `actions-runner-portfolion`)가 공존하므로 러너 디렉터리를 재사용/재등록하면 이 레포가 무음 미배포된다.
 - 배포 실행체 `deploy.sh`(task#259/ADR `260801-195022`로 순서 재구성): 락(`/tmp/biblemap-deploy.lock`) → 임시 `DOCKER_CONFIG`(macOS 키체인 우회, `~/.docker/cli-plugins` 심링크로 compose 플러그인 인식) → `.env` 로드 → Neo4j 도달 대기 → **데이터 주입**(`inject_ko_names.py` → `inject_date_corrections.py`, 둘 다 멱등, 검증보다 앞) → `npm install` → `CHECK_STRICT=1 scripts/check.sh` 게이트(스킵-경고를 실패로 승격) → 프론트 빌드 → `docker compose -p biblemap build api` → `up -d api` + `up -d --force-recreate nginx`(task#263 — `nginx.conf`만 바뀌면 Compose가 재생성을 감지 못해 매번 강제 재생성). 로그는 `~/Library/Logs/com.biblemap.deploy.log`. `load_*` 적재는 배포가 하지 않는다.
+- `scripts/check.sh` 게이트는 이번 구간에 파일 기반 데이터 검증 20종(신규 5종: `curated_persons`·`intro_gutter`·`intro_entry_route`·`event_verses`·`sortkey_startdate`) + 대조군 `--selftest` 7종으로 확장됐고, **git 자체를 도구로 쓰는 새 하드 게이트**가 추가됐다: `backend/scripts/validate_forge_docs_tracked.py`가 `git ls-files --others --exclude-standard`로 `.forge/adr`·`.forge/retro` 아래 미추적 파일 0건을 단언한다. `.github/workflows/deploy.yml`의 `git reset --hard`는 추적 파일만 되돌리고 미추적 파일을 지우지 않으므로(`git clean`이 아님), 개발 중 커밋을 빠뜨린 영구 문서가 있으면 이 게이트가 `CHECK_STRICT=1` 배포 경로에서 배포를 중단시킨다(task#279).
 - 프로덕션 도메인은 이 머신 스택 앞단의 프록시라 `localhost:8080` == prod이며 동일 Neo4j를 본다. `data/`가 볼륨 마운트이므로 데이터만 바뀌면 `docker compose -p biblemap restart api`로 충분(lru_cache 비우기).
 - 컨테이너 레지스트리 미사용(이미지는 로컬 빌드), 클라우드 PaaS·CDN·오브젝트 스토리지 연동 없음.
 

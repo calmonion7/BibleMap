@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: a002881c8e935e3d0f1dccd39ebe6419090ae30b
-mapped: 2026-08-20
+last_mapped_commit: 4ad1d837a3771f69f53877b128938124b68d920b
+mapped: 2026-08-21
 ---
 
 # ARCHITECTURE
@@ -43,9 +43,9 @@ mapped: 2026-08-20
 - 라우터 모듈은 `backend/app/routes/` 아래 14개(`nodes`·`events`·`search`·`books`·`persons`·`journey`·`places`·`tours`·`family`·`words`·`verses`·`reliance`·`stats`·`timeline`). prefix 없이 절대 경로를 선언한다.
 - `backend/app/verse_search.py` — 절 본문 substring 검색 공용 헬퍼(`search_verses(term, book_id, match_en)`, `@lru_cache(maxsize=256)`). `overlays.bible_verses()`(31,103절)를 전수 스캔하고, `search.py`(통합 검색 `/search`)와 `words.py`(`/words/{book}/verses`)가 함께 쓴다(task#267 — 두 라우트가 각자 짜던 스캔 로직을 통합).
 - 캐싱 관행 두 층:
-  - 서버 메모리 — 사용자 입력이 없는 전역/집계 함수는 `@functools.lru_cache(maxsize=1)`(예: `events._compute_events`·`stats._compute_stats`·`tours._list_tours`·`tours._build_event_index`·`persons._build_list`). 입력이 있는 것은 유한 캐시(`books._chapter_payload` 2048, `persons._build_connections` 256, `places._place_to_persons` 256).
+  - 서버 메모리 — 사용자 입력이 없는 전역/집계 함수는 `@functools.lru_cache(maxsize=1)`(예: `events._compute_events`·`stats._compute_stats`·`tours._list_tours`·`tours._build_event_index`·`curated.curated_index`). 입력이 있는 것은 유한 캐시(`books._chapter_payload` 2048, `persons._build_connections` 256, `places._place_to_persons` 256, `curated.person_events` 64).
   - 브라우저 — `JSONResponse(..., headers={"Cache-Control": ...})`. 집계·목록류는 `max-age=300`, 절 본문처럼 사실상 불변인 것은 `public, max-age=3600`, `/books-overview`만 `no-store`.
-- 라우트 간 재사용은 헬퍼 직접 import로 한다. `persons.py`의 `_ERA`(slug→시대)·`_NAME_KO`(slug→한글명)·`_ERA_ORDER`가 사실상 큐레이션 인물 레지스트리이고(현재 35 slug), `journey.py`·`tours.py`·`stats.py`가 이를 import한다. `stats.py`는 `journey._build_id_to_slug`·`_load_events`·`_fetch_place_coords`와 `persons._build_list`·`_NAME_KO`를 재사용해 새 쿼리 없이 집계를 만든다.
+- 라우트 간 재사용은 헬퍼 직접 import로 한다. task#278부터 큐레이션 인물 레지스트리는 `backend/app/curated.py`(overlays.py와 같은 층 — 라우트를 import하지 않아 순환 import를 차단)로 승급됐다: `CURATED`(slug→`{nameKo, era}`, 35개)·`ERA_ORDER`·`person_events(slug)`(sortKey 정렬, `lru_cache(64)`)·`curated_index()`(id·slug·nameKo·era·eventCount 목록, `lru_cache(1)`, 시대순→최초등장→slug 정렬)·`id_to_slug()`/`slug_to_id()`(`curated_index()` 역매핑)·`seal_id_to_slug()`(인장 조회용 — 큐레이션 35 + `person_slugs/seal_slugs.json`의 비큐레이션 인장 보유 인물, 합쳐 50, ADR-0025). `persons.py`·`journey.py`·`tours.py`·`stats.py`·`places.py`·`reliance.py`·`family.py`·`timeline.py` 8개 라우트가 이를 import한다. 그전엔 `persons.py`가 `_ERA`/`_NAME_KO`/`_ERA_ORDER`를 소유하고 나머지가 이를 참조했는데, `family.py`처럼 라우트 간 순환을 피하려 호출 시점 지연 import(`from .persons import _build_list`)로 우회하던 지점이 이관으로 사라졌다. `stats.py`는 이제 `curated.id_to_slug`·`person_events`·`slug_to_id`와 `journey._fetch_place_coords`를 재사용해 새 쿼리 없이 집계를 만든다(예전엔 `journey._build_id_to_slug`·`_load_events`·`persons._build_list`를 썼다 — 그 헬퍼들은 curated.py로 흡수되며 `journey.py`·`persons.py`에서 제거됐다). 새 큐레이션 인물을 추가할 때는 `curated.py`의 `CURATED` dict에 slug를 더하고 `data/person_events/<slug>.json`을 저작한다 — `backend/scripts/validate_curated_persons.py`가 이 두 축(및 `god_reliance`·`seal_slugs`와의 교차)이 갈리면 배포를 막는다.
 
 ### 3. 런타임 오버레이 — 그래프에 없는 콘텐츠
 
@@ -90,6 +90,7 @@ mapped: 2026-08-20
   - 개인화 저장(task#268~269)도 같은 이유로 App 레벨 단일 인스턴스다: `frontend/src/useBookmarks.js`(북마크·최근 이어보기, `localStorage['biblemap-bookmarks'/'biblemap-recent']`, 서버 쓰기 없음)와 `frontend/src/useReadingProgress.js`(장 단위 읽음 표시 + 이어읽기 판정 `computeResume`, `localStorage['biblemap-read']`). 둘 다 스키마 버전 필드를 가진 JSON을 쓰고 파손·구버전은 마이그레이션 없이 빈 값 폴백(ADR `260819-191704`). `frontend/src/BookmarkToggle.jsx`는 두 훅과 무관한 순수 토글 컴포넌트(저장 여부·클릭 콜백만 받음).
   - 전역 헤더는 `frontend/src/SpineHeader.jsx`(책등 리본 3부 + 테마 토글 + 검색 버튼, ADR-0026, `HEADER_H`·`RIBBON_OVERHANG` export). 검색 버튼과 `/` 단축키(App.jsx의 `keydown` 리스너, 입력 요소 위에서는 가로채지 않음)가 여는 `frontend/src/SearchPanel.jsx`는 전 스테이지 위에 뜨는 전역 오버레이라 `activeStage` 조건 렌더 밖에 있다.
 - 스타일은 CSS-in-JS 없이 **인라인 style + `frontend/src/index.css`의 CSS 변수**로 한다. 토큰(`--bg-*`·`--ink-*`·`--gold*`·`--paper*`·`--type-*`·`--dur-*`·`--ease-*`)의 정본이 `index.css`이고, `frontend/src/theme.js`는 그 `var()`를 감싼 JS 상수다. 모션 클래스도 `index.css`에 모여 있다(`stage-in`·`thread-draw`·`symbol-draw`·`film-fade`·`film-in`·`beat-in`/`beat-out`·`intro-rise`·`intro-line`·`pressable`, ADR-0024).
+  - 전역 `box-sizing: border-box` 리셋이 없다(ADR 260820-232144) — 모든 요소가 기본 `content-box`다. `width:'100%'`에 좌우 패딩을 인라인으로 더하면 박스가 패딩 2배만큼 뷰포트보다 넓어지고, 부모의 `alignItems:'center'`가 그 초과분을 좌우 대칭으로 흘려 **소스에 적힌 패딩이 시각적으로 정확히 0이 되는** 함정이 있다(리뷰로 못 잡히는 결함 클래스). `frontend/src/IntroView.jsx`의 `BeatFrame`이 이 국소 규약(폭+패딩을 선언하는 자리엔 `boxSizing:'border-box'`를 동반 + `wordBreak:'keep-all'`)을 인트로 비트 5곳(오프닝·지도·몽타주·메뉴장면·도착지)의 공용 진입점 하나로 모았고, `backend/scripts/validate_intro_gutter.py`가 이 규약을 정적으로 게이트한다(task#280).
 - 지연 로드는 두 곳뿐이다 — `frontend/src/TourPlayback.jsx`와 `frontend/src/IntroView.jsx`가 `React.lazy`로 `./tourSketches`를 불러온다. 스케치 9모듈(~9.7천 줄)을 초기 번들에서 뺀 조치다. 청크 분할은 `frontend/vite.config.js`의 `manualChunks`(maplibre / vendor).
 
 ## 프론트 스테이지 상태 머신
@@ -100,7 +101,7 @@ mapped: 2026-08-20
 
 `intro` · `hub` · `overview` · `book` · `family` · `words` · `reader` · `stats` · `topics` · `canon` · `place` · `tours` · `explore`
 
-- 초기값은 lazy initializer가 정한다: 해시가 없고(`''`/`#`/`#/`) `localStorage['biblemap-intro'] !== 'off'`이면 `intro`, 그 외엔 `hub`. 해시가 있으면(딥링크) 인트로는 무조건 건너뛴다.
+- 초기값은 lazy initializer가 정한다: `urlState.isNoTarget(window.location.hash)`(해시가 없거나 `'#'`/`'#/'`인 **무타깃 진입** 판정의 단일 정본, task#281)가 참이고 `localStorage['biblemap-intro'] !== 'off'`이면 `intro`, 그 외엔 `hub`. 해시가 있으면(딥링크) 인트로는 무조건 건너뛴다. 이 초기값이 다음 프레임까지 유지되는 것은 아래 마운트 복원 effect가 **같은 `isNoTarget`**으로 무타깃 진입을 걸러내고 조기 반환하기 때문이다 — 두 지점이 서로 다른 판정을 쓰면(예: 복원 effect가 무타깃도 딥링크로 취급) 옳게 계산된 이 초기값이 곧바로 덮인다(task#281이 발견한 결함 클래스, `backend/scripts/validate_intro_entry_route.py`가 정적으로, `scripts/uat_intro_entry.py`가 실측으로 게이트).
 - **스테이지 대상 id는 `selectedNode`와 분리된 전용 state**다: `bookId`·`familyId`·`wordsBookId`·`readerBookId`/`readerChapter`·`placeId`·`explorePersonId`·`exploreTourId`. 페이지 안에서 노드를 클릭해 시트를 띄워도 페이지 대상과 URL이 흔들리지 않게 하려는 설계다. `canon`(통사 연표, task#271)과 `stats`/`topics`처럼 대상 id 없는 고정 뷰도 있다.
 - `explore` 스테이지만 내부 서브뷰 `exploreView`를 갖는다: `map` · `timeline` · `relations` · `intro` · `reliance`. 인물 모드는 `[소개, 여정, 연표, 관계, 의존, 족보]` 탭(족보는 탭이 아니라 `openFamily`로 전용 스테이지 진입), 투어 모드는 `[개요, 여정, 연표]`.
 - `explorePersonId`와 `exploreTourId`는 **상호배타** — 하나를 세팅하는 핸들러가 다른 하나를 null로 만든다.
@@ -109,7 +110,7 @@ mapped: 2026-08-20
 
 ### 해시 딥링크
 
-라우터 없이 `frontend/src/urlState.js`의 `encodeHash`/`parseHash`가 상태 ↔ 해시를 순수 매핑한다(ADR-0009).
+라우터 없이 `frontend/src/urlState.js`의 `encodeHash`/`parseHash`가 상태 ↔ 해시를 순수 매핑한다(ADR-0009). 같은 파일이 `isNoTarget(hash)`(task#281)도 export한다 — "이 원시 해시가 딥링크가 아니라 무타깃 진입(첫 진입에서 아직 아무 화면도 지정되지 않음)인가"를 판정하는 별개의 질문이고, `parseHash`의 `''`/`'/'` → `{stage:'hub'}` 계약은 건드리지 않는다(`#/`는 정상적인 허브 URL이자 저장·이어보기 카드 복원(`handleGoToHash`)과 공용이라, "딥링크인가"는 `parseHash`가 아니라 `isNoTarget`이 답한다).
 
 | 해시 | 스테이지 |
 |---|---|
@@ -135,7 +136,7 @@ mapped: 2026-08-20
 
 `useStageNavigation` 안의 세 effect가 순서대로 물린다.
 
-1. **복원 effect** — `curatedIds`(=`/persons/curated` 응답)가 준비되면 마운트 시점 해시(`initialHashRef`)를 1회 파싱해 상태를 복원하고 `setRestored(true)`. person slug만 slug↔id 맵이 필요하므로, `overview`/`tours`/`tourSlug`/`hub`는 curated 로드 실패와 무관하게 즉시 복원된다. setState는 `Promise.resolve().then(...)`으로 마이크로태스크에 미룬다(effect 본문 동기 setState 금지 관행).
+1. **복원 effect** — 가장 먼저 `isNoTarget(initialHashRef.current)`로 무타깃 진입인지 걸러낸다. 무타깃이면 `parseHash`/`applyParsedHash`를 태우지 않고 `restoredRef.current = true` + `setRestored(true)`만 하고 즉시 반환한다(task#281). 이 가드가 없던 시절엔 `parseHash('')`가 반환한 `{stage:'hub'}`가 `applyParsedHash`를 거쳐 위 lazy initializer가 계산한 `activeStage`(무타깃+인트로 켜짐이면 `'intro'`)를 곧바로 덮어써 — 초기값 계산과 이 effect가 "무타깃 진입인가"라는 같은 질문에 서로 다르게 답한 탓에 — 인트로가 켜져 있어도 무해시 첫 진입이 허브로 떨어지는 결함이 있었다. 딥링크(해시 있음)인 경우엔 `curatedIds`(=`/persons/curated` 응답)가 준비되면 마운트 시점 해시(`initialHashRef`)를 1회 파싱해 상태를 복원하고 `setRestored(true)`. person slug만 slug↔id 맵이 필요하므로, `overview`/`tours`/`tourSlug`/`hub`는 curated 로드 실패와 무관하게 즉시 복원된다. setState는 `Promise.resolve().then(...)`으로 마이크로태스크에 미룬다(effect 본문 동기 setState 금지 관행).
 2. **sync effect** — `restored` 이후에만 write한다. `encodeHash`로 해시를, `{stage, person, tour, book, family, words, reader, chapter, place, view, node}`로 `history.state`를 만든다. **push 조건**은 `navSyncRef`의 직전 값과 비교해 스테이지/인물/투어/책/가계도/단어/리더/장/장소가 바뀌었거나 시트가 false→true로 열렸을 때이고, 그 외(뷰 토글·같은 대상 재설정·베이스 write)는 `replaceState`. `explore`인데 slug도 tour도 없으면 깨진 URL을 쓰지 않고 조기 반환한다.
 3. **popstate effect** — 마운트 1회 등록. `event.state`에서 전 필드를 복원하고, `popstateGuard`를 세워 sync effect가 재-push하지 않게 한다. `state`가 없으면 허브로 리셋.
 
@@ -177,10 +178,10 @@ mapped: 2026-08-20
 - **재생 ↔ 지도 카메라**의 연결은 `App.jsx`가 한다. `playback.idx`(사건 인덱스)를 `mapGeo.journeyStopGroups`가 만든 **장소 그룹 인덱스**로 `useMemo` 파생(`playbackStopIdx`)하고, 무좌표 사건이면 직전 좌표 사건의 그룹을 유지한다. 재생 중이면 이 파생값이, 아니면 사용자가 클릭한 `activeStopIdx`가 `effectiveStopIdx`로 합쳐져 `MapView`·`JourneyList`에 함께 내려간다. 투어를 벗어나거나 `exploreView`가 `map`이 아니게 되면 effect가 `playback.exit()`.
 - **장면 스케치**는 `frontend/src/tourSketches.jsx`가 `frontend/src/sketches/*.jsx` 9개 모듈의 레지스트리를 `SCENES`로 병합해 `eventId`로 조회한다. 등록 없는 정차지는 아무것도 렌더하지 않는다. `TourSketchPanel`이 카메라 `easeTo`(400ms) 정착 후 450ms 뒤 draw를 시작해 카드 높이 점프를 막는다. `IntroView`도 같은 레지스트리를 몽타주 비트에 쓴다(ADR-0029).
 - **연표**(`TimelineView.jsx`)는 `/events`를 시대 밴드(`ERA_BANDS`)로 접는다. 그룹핑은 startDate 전체 병합이 아니라 **연속 동일 `startDate` 런(run)** 단위다 — `/events`가 `sortKey` 순이라 런 나열이 곧 병합 정렬 순서가 된다(저작 `"0030"` vs 원본 `"30"`처럼 문자열만 다른 층이 그룹을 통째로 갈라 순서를 뒤집던 문제 대응). 인물/투어 필터는 `App.jsx`가 넘기는 `Set`(`personEventIds` 또는 `tourEventIds`)으로 **멤버 단위** 필터링한다.
-- **`ERA_BANDS`는 두 곳에 수동 복제**돼 있다: `frontend/src/eraBands.js`(task#271에 `TimelineView.jsx`에서 공용 모듈로 승급 — `eraOf(y)`도 export)와 `backend/app/routes/stats.py`(이름·`from` 튜플, `_era_of(year)` 동반). 시대 **이름·순서**만은 `backend/app/routes/persons.py`의 `_ERA_ORDER`가 세 번째 참조점이다. 세 파일 모두 주석으로 서로를 가리키고, `backend/scripts/validate_era_bands_consistency.py`가 정합을 검사한다(정규식으로 리터럴을 스크래핑하므로 `eraBands.js`의 `const ERA_BANDS = [` 모양을 바꾸면 검사가 깨진다). `CanonTimelineView.jsx`(통사 연표, task#271)도 같은 `eraBands.js`를 소비한다.
+- **`ERA_BANDS`/시대 이름·순서는 네 곳에 수동 복제**돼 있다: `frontend/src/eraBands.js`(task#271에 `TimelineView.jsx`에서 공용 모듈로 승급 — `eraOf(y)`도 export)·`backend/app/routes/stats.py`(이름·`from` 튜플, `_era_of(year)` 동반)·`backend/app/curated.py`의 `ERA_ORDER`(이름·순서만, task#278에 `persons.py`에서 이관)·`frontend/src/PersonHub.jsx`의 `const ERA_ORDER` 사본. 파일들이 주석으로 서로를 가리키고, `backend/scripts/validate_era_bands_consistency.py`가 정합을 검사한다 — task#284로 3(+1)축에서 **7축**으로 확장돼 위 네 파일 외에 `data/covenants/covenants.json`의 `era`, `data/tours/*.json`의 `era`(저작 오타를 잡는 데이터 축), 그리고 프론트 전역에서 `era`/`Era` 식별자 사슬이 시대 이름 리터럴과 `===` 비교하는 지점(예: `TimelineView`의 `sec.era.name === '신약'`, `ExploreStage`의 `...?.era === '신약'` — 비유·기적 토글의 **유일한** 게이트라 이름이 갈리면 토글이 에러 없이 그냥 사라진다)까지 정적으로 스크래핑해 대조한다(`eraBands.js`의 `const ERA_BANDS = [` 리터럴 모양을 바꾸면 검사가 깨지는 정규식 스크래핑 — fail-closed로 감내하는 취약성, ADR 260819-205242). `CanonTimelineView.jsx`(통사 연표, task#271)도 같은 `eraBands.js`를 소비한다.
 - **통사 연표**(`CanonTimelineView.jsx`, task#271)는 인물/투어 탐험의 `explore/timeline`과 별개 스테이지(`canon`)다 — 창세기~계시록 전체를 8개 `ERA_BANDS` 섹션으로 세로로 쌓고, 시대 안에서만 연도 비례축을 쓴다(가로 통 축은 신약 33%가 9.5px로 무너져 폐기, ADR `260819-210927`). 데이터는 `/timeline/canon` 하나(신규 저작 0) — `stats.ERA_BANDS`·`events._compute_events()`·`person_events/<slug>.json`의 `sortKey` min/max(`backend/app/routes/timeline.py`)를 재조합한다.
 - **장소 페이지**(`PlaceView.jsx`, task#270)는 지도 마커 클릭·정차지 클릭·상세 시트 어디서든 `openPlace(id)`로 진입하는 전용 전체화면(`place` 스테이지). 데이터는 `/place/{id}` 하나(`overlays.place_context()` + `place_coords()` + `_place_to_persons` + 사건 목록 합성). `mapLayers.js`의 장소 팝업이 "이 장소 보기" 버튼(`wirePlaceLink`)을, 여정 정차지 GeoJSON(`buildJourneyStopsGeoJSON`)이 그룹 대표 `placeId`를 실어 같은 진입점을 공유한다.
-- **비유·기적**은 지도와 연표 양쪽에 얹힌다. 지도는 `pm-source`/`pm-circle` 레이어(기본 `visibility:none`)로 `MapView`가 `/parables-miracles`를 1회 fetch한 뒤 토글(`pmVisible`)·종류 필터(`pmFilter`: all|parable|miracle)로 `setLayoutProperty`/`setFilter`만 갱신한다. 연표는 `'신약'` era 섹션 머리에 목록 한 벌을 렌더한다(날짜가 없어 개별 사건 위치에 못 꽂음). 두 UI는 필터 칩 정의를 각자 `PM_FILTERS` 상수로 갖는다(별 파일이라 공유 안 함). 노출 게이트는 `App.jsx`가 계산하는 `pmEnabled = (explorePersonId ? explorePersonEra : exploreTourMeta?.era) === '신약'`이고, era의 원천은 백엔드 `persons._ERA`(`/persons/curated` 응답)다. 지도에 못 얹는 무좌표 항목 수는 `MapView`가 `pmNoLocCount`로 세어 "연표에서 확인" 안내를 띄운다.
+- **비유·기적**은 지도와 연표 양쪽에 얹힌다. 지도는 `pm-source`/`pm-circle` 레이어(기본 `visibility:none`)로 `MapView`가 `/parables-miracles`를 1회 fetch한 뒤 토글(`pmVisible`)·종류 필터(`pmFilter`: all|parable|miracle)로 `setLayoutProperty`/`setFilter`만 갱신한다. 연표는 `'신약'` era 섹션 머리에 목록 한 벌을 렌더한다(날짜가 없어 개별 사건 위치에 못 꽂음). 두 UI는 필터 칩 정의를 각자 `PM_FILTERS` 상수로 갖는다(별 파일이라 공유 안 함). 노출 게이트는 `App.jsx`가 계산하는 `pmEnabled = (explorePersonId ? explorePersonEra : exploreTourMeta?.era) === '신약'`이고, era의 원천은 백엔드 `curated.CURATED`(`/persons/curated` 응답, task#278에 `persons._ERA`에서 이관)다. 이 리터럴 비교 자체가 `validate_era_bands_consistency`의 7번째 축(era 기능 게이트) 대상이다(task#284). 지도에 못 얹는 무좌표 항목 수는 `MapView`가 `pmNoLocCount`로 세어 "연표에서 확인" 안내를 띄운다.
 - **언약**은 연표 전용이다 — `/covenants`의 `era` 값이 `ERA_BANDS`의 `name`과 그대로 일치한다는 전제로 시대 섹션에 리본으로 얹는다.
 
 ## 지도 서브시스템 내부
@@ -231,7 +232,8 @@ mapped: 2026-08-20
   6. `docker compose -p biblemap build api`.
   7. `docker compose -p biblemap up -d api` + `docker compose -p biblemap up -d --force-recreate nginx`(nginx는 이미지 빌드가 없고 바인드 마운트 스펙이 불변이라 `nginx.conf`만 바뀌면 Compose가 변경을 못 잡아 매 배포 강제 재생성한다, task#263).
 - **`deploy.sh`는 `inject_ko_names`·`inject_date_corrections` 두 가지만 자동 재적용한다** — `load_*`와 그 밖의 `inject_*`(`inject_book_context`·`inject_person_context`·`inject_person_traits`·`inject_place_context`)는 여전히 수동이다.
-- `scripts/check.sh`는 AI 없이 도는 게이트다: 파일 기반 검증 15종(`validate_covenants`·`messianic_prophecies`·`parables_miracles`·`topical_verses`·`pm_map_coverage`·`scene_coverage`·`chapter_sections`·`chapter_summaries`·`quotations`·`person_context`·`god_reliance`·`traits`·`era_bands_consistency`·`approx_book_verses`·`intro_menu_parity`)를 `python3 -m backend.scripts.validate_*`로 돌리고, `validate_intro_menu_parity --selftest`(고의 드리프트 주입으로 게이트 자체가 살아있는지 확인하는 대조군, task#277)를 뒤따라 실행한다. 그 뒤 ESLint + `npm test`(vitest, task#261)를 `frontend/node_modules` 있을 때만, Neo4j 연대 정합(`validate_event_chronology`)을 `127.0.0.1:7687` 기동 시에만 검사한다. **`CHECK_STRICT=1`이면 위 두 스킵이 실패로 승격**된다(task#259) — 배포 경로는 항상 이 모드로 부른다. 기본(비-strict) 모드는 Neo4j 없이 단독 개발 실행 시 스킵-경고로 남는다. 하드 항목이 하나라도 실패하면 종료 코드 1.
+- `scripts/check.sh`는 AI 없이 도는 게이트다: 파일 기반 검증 **20종**(기존 15종 `validate_covenants`·`messianic_prophecies`·`parables_miracles`·`topical_verses`·`pm_map_coverage`·`scene_coverage`·`chapter_sections`·`chapter_summaries`·`quotations`·`person_context`·`god_reliance`·`traits`·`era_bands_consistency`·`approx_book_verses`·`intro_menu_parity` + task#278~284로 추가된 `curated_persons`·`intro_gutter`·`intro_entry_route`·`event_verses`·`sortkey_startdate`)를 `python3 -m backend.scripts.validate_*`로 돌리고, 그중 7종(`intro_menu_parity`·`curated_persons`·`intro_gutter`·`intro_entry_route`·`event_verses`·`sortkey_startdate`·`era_bands_consistency`)은 `--selftest`(고의 드리프트를 인메모리로 주입해 게이트 자체가 실제로 FAIL하는지 확인하는 대조군, task#277 이후 관행 — 기준선 PASS만으론 게이트가 살아있음을 증명 못 한다, ADR 260820-003946)를 뒤따라 실행한다. 이어 별도 절로 `validate_forge_docs_tracked`(+ `--selftest`)를 git 작업트리일 때만 돌린다 — 데이터 검증이 아니라 `.forge/adr/`·`.forge/retro/`(영구 문서)에 미추적 파일이 있으면 FAIL하는 로컬 위생 가드다(task#279). 이 가드는 배포 경로에서도 살아 있다: `.github/workflows/deploy.yml`이 개발 트리와 같은 디렉터리에서 `git reset --hard origin/main` 후 `deploy.sh`를 부르는데 하드리셋은 추적 파일만 되돌리고 **미추적 파일은 남기므로**(`git clean`이 아님), 미추적 ADR·회고가 있으면 `CHECK_STRICT=1` 배포 경로에서 배포가 중단된다. 그 뒤 ESLint + `npm test`(vitest, task#261)를 `frontend/node_modules` 있을 때만, Neo4j 연대 정합(`validate_event_chronology`)을 `127.0.0.1:7687` 기동 시에만 검사한다. **`CHECK_STRICT=1`이면 위 두 스킵이 실패로 승격**된다(task#259) — 배포 경로는 항상 이 모드로 부른다. 기본(비-strict) 모드는 Neo4j 없이 단독 개발 실행 시 스킵-경고로 남는다. 하드 항목이 하나라도 실패하면 종료 코드 1.
+- 인트로의 두 라우팅/레이아웃 결함(task#280 비트 여백·task#281 무타깃 진입)은 **실측**(브라우저 렌더·픽셀)이 있어야만 잡히는 축이라 `scripts/uat_intro_gutter.py`·`scripts/uat_intro_entry.py`로 따로 두고 `check.sh`에는 배선하지 않는다 — `deploy.sh`는 `npm run build`보다 **먼저** `check.sh`를 부르므로 그 시점의 :8080은 옛 빌드를 서빙해, 배선하면 초록·빨강이 둘 다 거짓이 된다. 두 UAT는 URL 형태마다(`/`·`/#`·`/#/`·`#/books` 등) 새 브라우저 컨텍스트로 진입해(SPA 해시 변경은 리마운트가 아니므로 같은 컨텍스트 재사용은 결함을 재현하지 못한다) `location.hash` 수렴과 DOM 마커(`[data-intro-layer]`)를 함께 확인하고, 종료 코드로 제품 결함(1)과 측정 환경 이상(2, 예: dist가 소스보다 낡음)을 자가 구별한다.
 - `docker-compose.yml`(프로젝트명 `biblemap`) 서비스 3개: `neo4j`(볼륨 `neo4j_data`, 포트는 `127.0.0.1`에만 바인딩), `api`(`./data:/app/data` 마운트 — 오버레이가 읽는 경로, 외부 포트 미노출), `nginx`(`./frontend/dist` + `./nginx/nginx.conf` 마운트, 8080 노출).
 - `nginx/nginx.conf`: `/api/` → `http://api:8000/` 프록시, `index.html`은 `no-store` 계열, 해시 붙은 정적 자산은 `max-age=31536000, immutable`, 나머지는 `try_files $uri /index.html`(SPA 폴백). gzip 활성화(task#260, `gzip_comp_level 5`·`gzip_proxied any` — 이게 없으면 `/api/*` 프록시 응답이 통째로 압축에서 빠진다).
 - 프론트 :8080은 `frontend/dist` 마운트라 HMR이 아니다 — 로컬 검증 전에 `cd frontend && npm run build`가 필요하다.
@@ -239,10 +241,10 @@ mapped: 2026-08-20
 ## 핵심 추상화
 
 - **오버레이 로더**(`overlays._load` + `lru_cache(maxsize=1)`) — 그래프에 없는 콘텐츠를 JSON으로 관리하고, `verseID` 참조를 `bible_verses()`로 본문 합성한다.
-- **큐레이션 인물 레지스트리**(`backend/app/routes/persons.py`의 `_ERA`/`_NAME_KO`/`_ERA_ORDER`) — slug 목록·시대·한글명의 단일 출처. `journey`·`tours`·`stats`가 import한다.
-- **큐레이션 신원 규약**(`overlays.curated_person_id`) — `data/person_events/<slug>.json`의 `events[0].participants[0]`가 그 인물의 `theographic_id`. id↔slug 해석의 단일 출처.
+- **큐레이션 인물 레지스트리**(`backend/app/curated.py`의 `CURATED`/`ERA_ORDER` + `curated_index()`/`id_to_slug()`/`slug_to_id()`/`seal_id_to_slug()`) — slug 목록·시대·한글명·id 해석의 단일 출처(task#278에 `persons.py`에서 승급, overlays.py와 같은 층이라 라우트를 import하지 않는다). `persons`·`journey`·`tours`·`stats`·`places`·`reliance`·`family`·`timeline` 8개 라우트가 import한다.
+- **큐레이션 신원 규약**(`overlays.curated_person_id`) — `data/person_events/<slug>.json`의 `events[0].participants[0]`가 그 인물의 `theographic_id`. id↔slug 해석의 단일 출처(위 `curated.py`가 이 규약 위에서 색인을 만든다).
 - **스테이지 머신**(`useStageNavigation`) — 대상 id를 `selectedNode`와 분리하고, sync effect가 URL·히스토리를 미러한다.
-- **해시 코덱**(`urlState.encodeHash`/`parseHash`) — 라우터 없는 순수 문자열 매핑.
+- **해시 코덱**(`urlState.encodeHash`/`parseHash`/`isNoTarget`) — 라우터 없는 순수 문자열 매핑 + "무타깃 진입(딥링크 아님)"인지 판정하는 단일 정본(task#281).
 - **공유 stops 계약** — `/person/{id}/journey`와 `/tour/{id}`가 같은 stops 구조를 반환해 `MapView`·`JourneyList`·`TimelineView`·`TourPlayback`이 분기 없이 재사용한다.
 - **양피지 절 레이어**(`VerseLayer`) — 포털 기반 반응형 구절 모달 공통 쉘.
 - **공유 API 클라이언트**(`api.apiGet`) — 단일 베이스 URL + 빌드 ID 캐시 버스팅.
@@ -251,7 +253,8 @@ mapped: 2026-08-20
 - **훅 수명 ≠ 호출 위치**(`useExploreJourney`) — 코드는 훅으로 캡슐화해도, 그 상태가 살아남아야 하는 화면 전환(족보 탭 진입)에서 컴포넌트가 언마운트되면 훅째로 상태가 사라진다. 그래서 호출은 반드시 상위(App)에서 하고 하위(ExploreStage)는 결과만 prop으로 받는다.
 - **절 검색 공용 헬퍼**(`verse_search.search_verses`) — `/search`와 `/words/{book}/verses`가 같은 substring 스캔·`ref` 포맷팅을 재사용, 질의 단위 `lru_cache(256)`로 반복 질의를 흡수.
 - **개인화 localStorage 계층**(`useBookmarks`·`useReadingProgress`) — 서버 쓰기 경로 없이 이 기기에만 남는 저장(북마크·이어보기·읽기 진도). 스키마 버전 필드 + 파손/구버전 시 마이그레이션 없이 빈 값 폴백이 공통 관행.
-- **정적 드리프트 게이트**(`validate_era_bands_consistency`·`validate_intro_menu_parity`·`validate_scene_coverage`) — 수동 복제된 상수·UI 목록이 배포 게이트에서 정규식/AST로 소스를 직접 스크래핑해 대조하는 패턴. 앱을 실행하지 않고 소스만 읽는다("게이트는 판정자이지 작성자가 아니다").
+- **정적 드리프트 게이트**(`validate_era_bands_consistency`·`validate_intro_menu_parity`·`validate_scene_coverage`·`validate_curated_persons`·`validate_intro_gutter`·`validate_intro_entry_route`) — 수동 복제된 상수·UI 목록·판정 지점이 배포 게이트에서 정규식/AST로 소스를 직접 스크래핑해 대조하는 패턴. 앱을 실행하지 않고 소스만 읽는다("게이트는 판정자이지 작성자가 아니다"). task#280~281부터는 대상이 "값의 복제"만이 아니라 "판정 지점의 유일성"(무타깃 판정이 정본 밖에 0곳)이나 "국소 스타일 규약 준수"(비트 프레임이 `boxSizing`을 선언)로도 넓어졌다 — 불변식은 알려진 위반 목록이 아니라 결함 클래스를 진술해야 한다는 원칙(ADR 260821-000937). 각 검증기는 `--selftest`로 자기 자신에 고의 결함을 주입해 실제로 FAIL하는지 대조군을 돌린다.
+- **오라클 재사용 게이트**(`validate_event_verses`·`validate_sortkey_startdate`) — "값이 같다"가 아니라 "베이킹된 verseID 집합 == rangeLabel 범위 ∩ 정본 절 사전"처럼 **경계**로 불변식을 진술한다(ADR 260821-000937). 자체 파서를 새로 만들지 않고 생성기의 파서(`generate_person_event_verses.expand_range_label`)를 import해 재사용한다(파서 2벌 금지, ADR 260819-205242) — 오라클도 저장소 안 정본 파일(`data/bible/verses.json`, ADR 260821-125000)이라 네트워크·Neo4j 없이 항상 돈다.
 
 ## 진입점
 
