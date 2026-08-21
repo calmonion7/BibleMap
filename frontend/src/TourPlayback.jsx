@@ -15,7 +15,7 @@ const ctrlBtnStyle = {
 }
 
 // 해설 카드 — 현재 사건의 seq · 인물 · 제목 · note + 컨트롤. note null이면 제목·인물만(무해설 그레이스풀).
-export default function TourPlaybackCard({ stops, idx, playing, onToggle, onPrev, onNext, onExit, isMobile }) {
+export default function TourPlaybackCard({ stops, tourId, idx, playing, onToggle, onPrev, onNext, onExit, isMobile }) {
   const s = stops?.[idx]
   if (!s) return null
   return (
@@ -30,7 +30,7 @@ export default function TourPlaybackCard({ stops, idx, playing, onToggle, onPrev
       {/* 본문 — 사건 전환마다 key 리마운트로 stage-in 페이드(ADR-0024 토큰, reduce 자동 존중).
           장면 스케치는 카드 상단 삽화로 통합(그림·설명 한 장, task#226 5차) — key 리마운트로 draw 재생. */}
       <div key={s.eventId ?? idx} className="stage-in">
-      <Suspense fallback={null}><TourSketchPanel eventId={s.eventId} /></Suspense>
+      <Suspense fallback={null}><TourSketchPanel eventId={s.eventId} tourId={tourId} /></Suspense>
       <div style={{ padding: isMobile ? '12px 16px 4px' : '14px 18px 6px' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
           <span style={{ fontSize: 11, fontWeight: 700, color: PURPLE, fontVariantNumeric: 'tabular-nums' }}>

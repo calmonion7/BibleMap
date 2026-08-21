@@ -1,6 +1,9 @@
 // 다윗과 통일왕국 — 18개 정차지 장면 (task#226·227 저작 확정본)
 import { sw, d } from './lib'
 import { Label } from './SceneLabel'
+// 인트로 오프닝 몽타주가 쓰는 장면 — 정의는 introMontage.jsx로 옮겼다(task#287).
+// 방향이 중요하다: 무거운 투어 모듈이 소형 모듈을 참조해야 인트로가 투어 청크를 끌어오지 않는다.
+import { BethlehemAnointingScene } from './introMontage'
 
 // 골리앗 (삼상 17:49-50) — 물매 2회전 → 투석 → 휘청·쓰러짐 → 지면 진동 + 흙먼지
 function GoliathScene({ reduce }) {
@@ -9,78 +12,131 @@ function GoliathScene({ reduce }) {
       {!reduce && (
         <animateTransform attributeName="transform" type="translate"
           values="0 0; 0 1.3; 0 0; 0 0.6; 0 0" keyTimes="0;0.25;0.5;0.75;1"
-          begin="4.85s" dur="0.32s" />
+          begin="7.35s" dur="0.3s" />
       )}
-      {/* 무대 — 지면은 중간, 능선은 가늘게(원근), 시내·자갈·풀 질감 */}
+      {/* 무대 — 지면·능선 */}
       <g style={d(0, reduce)}>
         <path d="M4 54 h112" {...sw(1.6)} />
         <path d="M4 41 q13 -10 26 -2" {...sw(1.1, 0.4)} />
         <path d="M84 39 q18 -12 32 -3" {...sw(1.1, 0.4)} />
+      </g>
+      {/* 시내·자갈·풀 질감 */}
+      <g style={d(280, reduce)}>
         <path d="M50 53 q8 -2.5 16 0" {...sw(1.3, 0.55)} />
         <path d="M56 51.5 h2 M62 52 h2 M52 52.5 h1.5" {...sw(1.2, 0.55)} />
         <path d="M14 52.5 l1 -2 l1 2 M42 53 l0.8 -1.6 l0.8 1.6 M78 53 l0.9 -1.8 l0.9 1.8" {...sw(1.1, 0.45)} />
       </g>
-      {/* 골리앗 — 주역 굵기 + 갑주 세부 */}
-      <g style={d(700, reduce)} transform={reduce ? 'rotate(-80 103 54)' : undefined}>
-        <path d="M98.5 54 l1.5 -13 M108.5 54 l-1.5 -13" {...sw(2.4)} />
-        <path d="M99 47 h2.5 M106 47 h2.5 M99.6 50.5 h2 M105.6 50.5 h2" {...sw(1.3)} />
-        <path d="M96 41 l2.5 -15 M111 41 l-2.5 -15 M98.5 26 h10" {...sw(2.6)} />
-        <path d="M96 41 h15 M97.5 38.5 h12" {...sw(2)} />
-        <path d="M99 30.5 q2 2 4 0 q2 2 4 0" {...sw(1.3)} />
-        <path d="M98.5 34.5 q2 2 4 0 q2 2 4 0 q1.5 1.5 3 0" {...sw(1.3)} />
-        <path d="M100.5 28 v2 M104 28 v2.2 M107.5 28 v2" {...sw(1.1, 0.5)} />
-        <path d="M109.5 27 q4.5 3 4 8.5" {...sw(2.2)} />
-        <path d="M98 27.5 q-5 3 -5.5 7.5" {...sw(2.2)} />
-        <path d="M99.5 21 a4.6 4.6 0 0 1 9.2 0" {...sw(2.4)} />
-        <path d="M99 21.3 h10.2 M104.1 21.3 v4.2" {...sw(1.8)} />
-        <path d="M102.5 16 q2.5 -6 8.5 -5.5 q-1.5 5 -6 6" {...sw(1.4)} />
-        <path d="M105 14.5 q2 -2.5 4.5 -2.8" {...sw(1.1, 0.5)} />
-        <path d="M113.5 54 V10" {...sw(3)} />
-        <path d="M113.5 10 l-3.5 6.5 m3.5 -6.5 l3.5 6.5" {...sw(2.2)} />
-        <circle cx="90.5" cy="37" r="6" {...sw(2.4)} />
-        <circle cx="90.5" cy="37" r="4" {...sw(1.2, 0.5)} />
-        <circle cx="90.5" cy="37" r="1.7" {...sw(1.4)} />
+      {/* 골리앗 — 실루엣을 크고 단순하게(다윗의 2배 높이), 잔 디테일은 덜어낸다 */}
+      <g transform={reduce ? 'rotate(-50 103 41)' : undefined}>
+        {/* 다리·정강이받이 — 무릎을 완만하게 굽혀 마름모로 벌어지지 않게 한다(지면 돌출 없이) */}
+        <g style={d(560, reduce)}>
+          <path d="M96 37 l-1 9 l2.5 8 M111 37 l1 9 l-2.5 8" {...sw(2.6)} />
+          <path d="M94.5 41.5 h2 M110.5 41.5 h2 M95.3 50 h2 M109.3 50 h2" {...sw(1.3)} />
+          <path d="M97.5 54 h2.5 M108.5 54 h2.5" {...sw(1.6)} />
+        </g>
+        {/* 몸통 — 어깨는 완만한 호로, 갑주 단은 절반 이하 짧게(상자·가로대로 읽히지 않게) */}
+        <g style={d(840, reduce)}>
+          <path d="M96 37 q1 -7 -3 -14 M111 37 q-1 -7 3 -14" {...sw(2.8)} />
+          <path d="M93 23 q10.5 -3 21 0" {...sw(2.6)} />
+          <path d="M99.5 30 h8" {...sw(1.8)} />
+        </g>
+        {/* 팔 — 방패·창을 쥔 손까지 */}
+        <g style={d(1120, reduce)}>
+          <path d="M93 23 q-3 3 -4 3" {...sw(2.4)} />
+          <path d="M114 23 q-1 6 -2 10" {...sw(2.4)} />
+          <path d="M91 25 h2 M111.5 27 h2" {...sw(1.1, 0.5)} />
+        </g>
+        {/* 투구 — 볼가림·작은 깃(머리 지름을 어깨 폭의 0.5배로 키워 로봇처럼 보이지 않게) */}
+        <g style={d(1400, reduce)}>
+          <path d="M98 15.3 q5.5 -5 11 0" {...sw(2.6)} />
+          <path d="M98 15.3 l-0.8 7.2 M109 15.3 l0.8 7.2" {...sw(2.2)} />
+          <path d="M103.5 12 q1 -1 2.5 -0.8" {...sw(1.4)} />
+        </g>
+        {/* 얼굴 — 위협(눈썹을 아래로 모은다) */}
+        <g style={d(1680, reduce)}>
+          <path d="M100 17 l3 2.3 M107 17 l-3 2.3" {...sw(1.2)} />
+          <path d="M100.3 20 h2 M104.7 20 h2" {...sw(1.2)} />
+          <path d="M101.5 21.3 h4" {...sw(1.2)} />
+        </g>
+        {/* 창 — 쓰러진 뒤 프레임을 벗어나지 않게 x를 몸통 쪽으로 붙인다 */}
+        <g style={d(1960, reduce)}>
+          <path d="M112 54 V12" {...sw(3)} />
+          <path d="M109 18 l3 -6 l3 6" {...sw(2.2)} />
+        </g>
+        {/* 방패 — 가슴 높이에 둔다(쓰러졌을 때 바퀴처럼 보이거나 지면을 뚫지 않도록) */}
+        <g style={d(2240, reduce)}>
+          <circle cx="84" cy="27" r="5" {...sw(2.6)} />
+          <path d="M84 22 v2 M79 27 h2" {...sw(1.2, 0.5)} />
+        </g>
         {!reduce && (
           <animateTransform attributeName="transform" type="rotate"
-            values="0 103 54; 5 103 54; -80 103 54" keyTimes="0; 0.22; 1"
-            begin="3.95s" dur="0.95s" fill="freeze"
+            values="0 103 41; 5 103 41; -50 103 41" keyTimes="0; 0.22; 1"
+            begin="6.65s" dur="0.7s" fill="freeze"
             calcMode="spline" keySplines="0.4 0 0.6 1; 0.55 0 0.85 0.7" />
         )}
       </g>
-      {/* 다윗 — 주역 굵기, 튜닉 주름·발 디테일 */}
-      <g style={d(1700, reduce)}>
-        <path d="M23 54 l3.5 -9.5 M31 54 l-2.5 -9.5" {...sw(2.2)} />
-        <path d="M21.5 54 h3 M29.8 54 h3" {...sw(1.4)} />
-        <path d="M25.5 44.5 l3 -10 h3.5 l2.5 10" {...sw(2.4)} />
-        <path d="M28 42 q1 -3 0.6 -6 M31.5 42.5 q0.3 -3 -0.2 -6" {...sw(1.3, 0.6)} />
-        <path d="M27 40 h6" {...sw(1.4)} />
-        <circle cx="30.5" cy="31" r="3" {...sw(2.4)} />
-        <path d="M33.5 35.5 q3.5 -4.5 2 -9.5" {...sw(2.2)} />
-        <path d="M13.5 53.5 l8.5 -1.8" {...sw(1.3, 0.6)} />
-        <g>
-          <path d="M35 26 l6.2 -5" {...sw(1.8)} />
-          <circle cx="42" cy="20" r="1.9" {...sw(2)} />
-          {!reduce && (
-            <animateTransform attributeName="transform" type="rotate"
-              from="0 35 26" to="720 35 26" begin="2.7s" dur="0.8s"
-              calcMode="spline" keySplines="0.35 0 0.75 1" keyTimes="0;1" />
-          )}
+      {/* 다윗 — 다리(겉·안 두 선) */}
+      <g style={d(2520, reduce)}>
+        <path d="M23 54 l3 -7 M35 54 l-3 -7" {...sw(2.4)} />
+        <path d="M25 54 l1.6 -6 M33 54 l-1.6 -6" {...sw(1.6)} />
+        <path d="M22 54 h2.5 M35.5 54 h2.5" {...sw(1.4)} />
+      </g>
+      {/* 튜닉·주름·허리끈 — 어깨는 호로, 허리끈은 절반 이하 짧게(사다리로 읽히지 않게) */}
+      <g style={d(2800, reduce)}>
+        <path d="M24.5 47 l2 -7 q2.5 -1.3 5 0 l2 7" {...sw(2.6)} />
+        <path d="M28.2 44.2 h2.6" {...sw(1.4)} />
+        <path d="M28 43 q0.5 -2 0.3 -4 M31 43.3 q0.3 -2 0 -4" {...sw(1.3, 0.6)} />
+      </g>
+      {/* 팔·손 — 물매 쥔 손과 반대 손 */}
+      <g style={d(3080, reduce)}>
+        <path d="M31.5 40.5 q3 -6 5.5 -11.5" {...sw(2.2)} />
+        <path d="M26.5 40.5 q-2.5 3 -4.5 5.5" {...sw(2.2)} />
+        <path d="M36.3 28.7 q0.9 -0.6 1.7 0.2" {...sw(1.3)} />
+      </g>
+      {/* 머리 — 곱슬머리 실루엣 */}
+      <g style={d(3360, reduce)}>
+        <circle cx="29" cy="36" r="4" {...sw(2.6)} />
+        <path d="M26.5 33 q0.8 -1 1.6 0 M28.7 32.6 q0.8 -1 1.6 0 M30.8 33 q0.7 -0.9 1.4 0" {...sw(1.4)} />
+      </g>
+      {/* 얼굴 — 결의(눈썹을 살짝 모아 집중한 표정) */}
+      <g style={d(3640, reduce)}>
+        <path d="M26.9 34.1 l1.3 0.5 M29.6 34.6 l1.3 -0.5" {...sw(1.1)} />
+        <path d="M27 35.6 h1.3 M29.7 35.6 h1.3" {...sw(1.2)} />
+        <path d="M27.9 38 h2.2" {...sw(1.2)} />
+      </g>
+      {/* 물매 — 회전 */}
+      <g>
+        <g style={d(3920, reduce)}>
+          <path d="M37 29 l6 -6" {...sw(1.8)} />
         </g>
-        <path d="M27 19.5 a9.5 9.5 0 1 0 15 2.5" {...sw(1.2, 0.35)} />
+        <g style={d(4200, reduce)}>
+          <circle cx="43" cy="23" r="1.9" {...sw(2)} />
+        </g>
+        {!reduce && (
+          <animateTransform attributeName="transform" type="rotate"
+            from="0 37 29" to="720 37 29" begin="5.6s" dur="0.6s"
+            calcMode="spline" keySplines="0.35 0 0.75 1" keyTimes="0;1" />
+        )}
+      </g>
+      <g style={d(4200, reduce)}>
+        <path d="M29 22.5 a9.5 9.5 0 1 0 15 2.5" {...sw(1.2, 0.35)} />
       </g>
       {!reduce && (
-        <circle cx="42" cy="20" r="2" {...sw(2.2)} style={d(3500, false)}>
-          <animateMotion path="M0 0 q31 -17 62 -3" begin="3.5s" dur="0.55s" fill="freeze"
-            calcMode="spline" keySplines="0.3 0 0.75 1" keyTimes="0;1" />
-          <animate attributeName="opacity" to="0" begin="4.1s" dur="0.15s" fill="freeze" />
-        </circle>
+        <g style={d(4200, false)}>
+          <circle cx="43" cy="23" r="2" {...sw(2.2)}>
+            <animateMotion path="M0 0 q31 -17 62 -3" begin="6.2s" dur="0.45s" fill="freeze"
+              calcMode="spline" keySplines="0.3 0 0.75 1" keyTimes="0;1" />
+            <animate attributeName="opacity" to="0" begin="6.65s" dur="0.15s" fill="freeze" />
+          </circle>
+        </g>
       )}
-      <g style={d(reduce ? 0 : 5000, reduce)} stroke="var(--paper-accent)">
-        <path d="M62 47 q-3.5 -4 -7 -4.5 M66.5 44 q-0.5 -5 -3.5 -7.5 M72 44.5 q3 -4.5 7 -5 M76 48 q4 -2 7.5 -1.5" {...sw(1.3)} />
-        <circle cx="59" cy="42" r="0.9" {...sw(1.3)} />
-        <circle cx="70" cy="39.5" r="0.9" {...sw(1.3)} />
+      {/* 흙먼지 — 마무리 강조 */}
+      <g style={d(4480, reduce)} stroke="var(--paper-accent)">
+        <path d="M62 44 q-3.5 -4 -7 -4.5 M66.5 41 q-0.5 -5 -3.5 -7.5 M72 41.5 q3 -4.5 7 -5 M76 45 q4 -2 7.5 -1.5" {...sw(1.3)} />
+        <circle cx="59" cy="39" r="0.9" {...sw(1.3)} />
+        <circle cx="70" cy="36.5" r="0.9" {...sw(1.3)} />
       </g>
-      <Label x="20" y="12" at="2.6" reduce={reduce}>다윗</Label><Label x="100" y="7" at="1.6" reduce={reduce}>골리앗</Label>
+      <Label x="20" y="7" at="2.6" reduce={reduce}>다윗</Label><Label x="100" y="7" at="1.6" reduce={reduce}>골리앗</Label>
     </g>
   )
 }
@@ -289,51 +345,6 @@ function GilgalAmalekScene({ reduce }) {
         </path>
       </g>
       <Label x="30" y="17" at="1.5" reduce={reduce}>사무엘</Label><Label x="55" y="31" at="2.3" reduce={reduce}>사울</Label><Label x="90" y="60" at="3" reduce={reduce}>살려둔 양</Label>
-    </g>
-  )
-}
-
-// 베들레헴 기름부음 (삼상 16:12-13)
-function BethlehemAnointingScene({ reduce }) {
-  return (
-    <g>
-      <g style={d(0, reduce)}>
-        <path d="M6 54 h108" {...sw(1.6)} />
-        <path d="M82 44 q14 -8 28 -2" {...sw(1.1, 0.4)} />
-        <path d="M16 53 l1 -2 l1 2 M46 53.2 l0.8 -1.6 l0.8 1.6" {...sw(1.1, 0.45)} />
-      </g>
-      {/* 사무엘 — 보조(이 장면의 주역은 다윗과 뿔병) */}
-      <g style={d(700, reduce)}>
-        <circle cx="32" cy="27" r="3.4" {...sw(2.2)} />
-        <path d="M27 54 l2.5 -20.5 h5 l2.5 20.5 M27 54 h10" {...sw(2.2)} />
-        <path d="M30.5 38 q0.5 7.5 0 13 M33.5 38 q0.4 7.5 0 13" {...sw(1.3, 0.55)} />
-        <path d="M35.5 36 q9 -5 16 -4" {...sw(2)} />
-      </g>
-      {/* 다윗 — 주역 */}
-      <g style={d(1500, reduce)}>
-        <circle cx="58" cy="40" r="2.8" {...sw(2.5)} />
-        <path d="M58 42.8 v6.7 M55.5 54 l2.5 -4.5 l2.5 4.5" {...sw(2.5)} />
-        <path d="M56.4 45.5 q1.6 1 3.2 0" {...sw(1.3, 0.6)} />
-        <path d="M64 54 l0.5 -10 q0 -2.5 2.5 -2" {...sw(1.4)} />
-        <path d="M74 51.5 q0 -3.5 4.5 -3.5 q4.5 0 4.5 3.5 q0 2.5 -4.5 2.5 q-4.5 0 -4.5 -2.5 M83.5 49.5 h2.5" {...sw(1.4, 0.7)} />
-        <path d="M75.5 54 v-0.8 M81 54 v-0.8" {...sw(1.2, 0.6)} />
-      </g>
-      {/* 뿔병 — 핵심 */}
-      <g transform={reduce ? 'rotate(-30 52 31)' : undefined} style={d(2400, reduce)}>
-        <path d="M52 31 q4 -3.5 9 -2 l-0.5 2.5 q-4.5 -1 -8.5 1.5" {...sw(2.8)} />
-        <path d="M59.5 29.6 l1.2 0.4" {...sw(1.4)} />
-        {!reduce && (
-          <animateTransform attributeName="transform" type="rotate" from="0 52 31" to="-30 52 31"
-            begin="2.8s" dur="0.5s" fill="freeze" />
-        )}
-      </g>
-      <g style={d(reduce ? 0 : 3400, reduce)}>
-        <path d="M56.5 32 v2 M58 35 v2" {...sw(1.4)} />
-      </g>
-      <g style={d(reduce ? 0 : 4000, reduce)} stroke="var(--paper-accent)">
-        <path d="M58 20 v-4 M49 23 l-3 -3 M67 23 l3 -3 M53 21 l-1.6 -2.6 M63 21 l1.6 -2.6" {...sw(1.4)} />
-      </g>
-      <Label x="32" y="18" at="1.5" reduce={reduce}>사무엘</Label><Label x="60" y="60" at="2.3" reduce={reduce}>다윗</Label><Label x="70" y="27" at="3.5" reduce={reduce} anchor="start">기름 뿔</Label>
     </g>
   )
 }

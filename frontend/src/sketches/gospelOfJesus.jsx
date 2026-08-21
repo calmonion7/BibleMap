@@ -1,6 +1,9 @@
 // 예수의 생애 — 23개 정차지 장면 (task#231, #227 표준). 세 인물(요한·예수·마리아) 교차 서사.
 import { sw, d } from './lib'
 import { Label } from './SceneLabel'
+// 인트로 오프닝 몽타주가 쓰는 장면 — 정의는 introMontage.jsx로 옮겼다(task#287).
+// 방향이 중요하다: 무거운 투어 모듈이 소형 모듈을 참조해야 인트로가 투어 청크를 끌어오지 않는다.
+import { BethlehemBirthScene } from './introMontage'
 
 // 수태고지 (눅 1:26-38)
 function AnnunciationScene({ reduce }) {
@@ -86,39 +89,6 @@ function JohnBirthScene({ reduce }) {
       </g>
       <Label x="60" y="24" at="1.5" reduce={reduce}>그 이름은 요한</Label>
       <Label x="92" y="24" at="2.5" reduce={reduce}>사가랴</Label>
-    </g>
-  )
-}
-
-// 베들레헴 탄생 (눅 2:1-7)
-function BethlehemBirthScene({ reduce }) {
-  return (
-    <g>
-      <g style={d(0, reduce)}>
-        <path d="M6 54 h108" {...sw(1.6)} />
-        <path d="M22 54 l14 -16 l14 16 M28 54 l8 -9 l8 9" {...sw(1.8, 0.8)} />
-      </g>
-      {/* 구유 + 아기 — 핵심 */}
-      <g style={d(1000, reduce)}>
-        <path d="M52 50 l3.5 -6 h13 l3.5 6 M54 50 h16" {...sw(2.6)} />
-        <path d="M56 54 l1 -4 M68 54 l-1 -4" {...sw(2)} />
-        <circle cx="59.5" cy="41" r="1.9" {...sw(2.2)} />
-        <path d="M62 42 q3 1 5 0.5" {...sw(2.2)} />
-        <path d="M57 46.5 l3 -1.2 m2 0.8 l3 -1.2" {...sw(1.2, 0.55)} />
-      </g>
-      {/* 마리아·요셉 */}
-      <g style={d(2000, reduce)}>
-        <circle cx="42" cy="38" r="2.6" {...sw(2.2)} />
-        <path d="M39 52 l1.5 -11.5 h3 l1.5 11.5" {...sw(2.2)} />
-        <circle cx="82" cy="37" r="2.6" {...sw(2.1)} />
-        <path d="M82 39.6 v7.4 M79.5 52 l2.5 -5 l2.5 5" {...sw(2.1)} />
-      </g>
-      {/* 별 — 강조 */}
-      <g style={d(reduce ? 0 : 2900, reduce)} stroke="var(--paper-accent)">
-        <path d="M60 14 v4 m-2 -2 h4 M57 11.5 l-1.6 -1.6 M63 11.5 l1.6 -1.6 M60 20 v2 m0 3 v2" {...sw(1.7)} />
-      </g>
-      <Label x="60" y="33" at="1.6" reduce={reduce}>구유의 아기</Label>
-      <Label x="42" y="28" at="2.5" reduce={reduce}>마리아</Label>
     </g>
   )
 }
@@ -1039,32 +1009,90 @@ function PeterWaterScene({ reduce }) {
 function TransfigurationScene({ reduce }) {
   return (
     <g>
+      {/* 지면 + 원경 산 */}
       <g style={d(0, reduce)}>
-        <path d="M6 54 h108" {...sw(1.6)} />
-        <path d="M14 54 Q60 20 106 54" {...sw(2.2)} />
+        <path d="M4 54 h116" {...sw(1.6)} />
+        <path d="M4 44 Q16 38 26 37 Q36 32 44 34 Q52 22 60 20 Q64 10 68 20 Q76 24 84 33 Q94 32 104 37 Q114 40 116 44" {...sw(1.8)} />
+        <path d="M48 54 q6 -3 12 -1 q6 -2 12 1" {...sw(1.6)} />
       </g>
-      {/* 예수 — 핵심 */}
-      <g style={d(1100, reduce)}>
-        <circle cx="60" cy="27" r="3" {...sw(3)} />
-        <path d="M60 30 v9 M56 45 l4 -6 l4 6" {...sw(3)} />
+      {/* 원경 질감 */}
+      <g style={d(350, reduce)}>
+        <path d="M4 50 q9 -5 16 -2" {...sw(1.1, 0.55)} />
+        <path d="M100 52 q3 -2 6 -1" {...sw(1.3, 0.6)} />
+        <path d="M24 12 q6 -2 12 0 q5 -2 9 1" {...sw(1.1, 0.55)} />
       </g>
-      {/* 광채 — 강조 */}
-      <g style={d(reduce ? 0 : 1900, reduce)} stroke="var(--paper-accent)">
-        <path d="M52 27 h-4 M72 27 h4 M60 17 v-4 M53 20 l-3 -3 M67 20 l3 -3 M53 34 l-3 3 M67 34 l3 3" {...sw(1.5)} />
+      {/* 예수 — 머리(반지름 4.2) + 목 */}
+      <g style={d(700, reduce)}>
+        <circle cx="60" cy="25" r="4.2" {...sw(2.6)} />
+        <path d="M57.9 28.6 L55 31 M62.1 28.6 L65 31" {...sw(2.6)} />
       </g>
-      {/* 모세와 엘리야 */}
-      <g style={d(2500, reduce)}>
-        <circle cx="44" cy="32" r="2.2" {...sw(1.9, 0.85)} />
-        <path d="M41.8 42 l1.2 -7 h2 l1.2 7" {...sw(1.9, 0.85)} />
-        <circle cx="76" cy="32" r="2.2" {...sw(1.9, 0.85)} />
-        <path d="M73.8 42 l1.2 -7 h2 l1.2 7" {...sw(1.9, 0.85)} />
+      {/* 예수 — 얼굴(눈 2 + 입 1, 신성한 인물이라 최소 표현) */}
+      <g style={d(1050, reduce)}>
+        <path d="M58.5 24 h1 M61.5 24 h1" {...sw(1.1)} />
+        <path d="M59 26.5 q1 0.4 2 0" {...sw(1.1)} />
       </g>
-      {/* 세 제자 — 아래, 엎드림 */}
-      <g style={d(3100, reduce)}>
-        <path d="M24 52 q4 -1.5 7 0 M30 53 q4 -1.5 7 0 M84 53 q4 -1.5 7 0" {...sw(1.5, 0.6)} />
+      {/* 예수 — 겉옷 실루엣 + 팔 */}
+      <g style={d(1400, reduce)}>
+        <path d="M52 54 L55 31 L65 31 L68 54" {...sw(2.6)} />
+        <path d="M55 31 q-3 5 -1 9 M65 31 q3 5 1 9" {...sw(2.2)} />
       </g>
-      <Label x="60" y="17" at="1.6" reduce={reduce}>예수</Label>
-      <Label x="60" y="61" at="3.4" reduce={reduce} size="4.2">너희는 그의 말을 들으라</Label>
+      {/* 예수 — 옷주름 + 광채 방사선 1·2 */}
+      <g style={d(1750, reduce)}>
+        <path d="M60 33 v18" {...sw(1.3, 0.6)} />
+        <path d="M60.9 20.3 L61.5 17.3 M59.1 20.3 L58.5 17.3" {...sw(1.3, 0.55)} stroke="var(--paper-accent)" />
+        <path d="M62.7 21 L64.4 18.5 M57.3 21 L55.6 18.5" {...sw(1.3, 0.55)} stroke="var(--paper-accent)" />
+      </g>
+      {/* 광채 방사선 3·4 + 모세 — 머리(반지름 4) */}
+      <g style={d(2100, reduce)}>
+        <path d="M64 22.4 L66.5 20.8 M56 22.4 L53.5 20.8" {...sw(1.3, 0.55)} stroke="var(--paper-accent)" />
+        <path d="M64.7 24.2 L67.7 23.6 M55.3 24.2 L52.3 23.6" {...sw(1.3, 0.55)} stroke="var(--paper-accent)" />
+        <circle cx="34" cy="29" r="4" {...sw(2.4)} />
+      </g>
+      {/* 모세 — 목 + 얼굴(예수 쪽을 봄) */}
+      <g style={d(2450, reduce)}>
+        <path d="M32 32.46 L29 35 M36 32.46 L39 35" {...sw(2.4)} />
+        <path d="M33.1 28 h1 M35.9 28 h1" {...sw(1.1)} />
+        <path d="M33.5 30.4 q1 0.9 2 0" {...sw(1.1)} />
+      </g>
+      {/* 모세 — 겉옷 실루엣 + 옷주름 */}
+      <g style={d(2800, reduce)}>
+        <path d="M26 54 L29 35 L39 35 L42 54" {...sw(2.4)} />
+        <path d="M30 37 q0.3 8 -1 14" {...sw(1.3, 0.6)} />
+      </g>
+      {/* 모세 — 두 돌판을 안은 팔 + 돌판 */}
+      <g style={d(3150, reduce)}>
+        <path d="M29 35 Q29.7 37.5 29.5 40 M39 35 Q38.3 37.5 38.5 40" {...sw(2.4)} />
+        <path d="M29.5 47 V40 Q31.25 38 33 40 V47 Z M35 47 V40 Q36.75 38 38.5 40 V47 Z" {...sw(2.2)} />
+      </g>
+      {/* 돌판 새김선 + 엘리야 — 머리(반지름 4) */}
+      <g style={d(3500, reduce)}>
+        <path d="M30.3 44 H32.2 M35.8 44 H37.7" {...sw(1.1, 0.55)} />
+        <circle cx="86" cy="29" r="4" {...sw(2.4)} />
+      </g>
+      {/* 엘리야 — 목 + 얼굴(예수 쪽을 봄) */}
+      <g style={d(3850, reduce)}>
+        <path d="M84 32.46 L81 35 M88 32.46 L91 35" {...sw(2.4)} />
+        <path d="M84.1 28 h1 M86.9 28 h1" {...sw(1.1)} />
+        <path d="M84.5 30.4 q1 0.9 2 0" {...sw(1.1)} />
+      </g>
+      {/* 엘리야 — 겉옷 실루엣(허리 새김) + 가죽띠 + 팔 */}
+      <g style={d(4200, reduce)}>
+        <path d="M78 54 L79.4 45 L81 35 L91 35 L92.6 45 L94 54" {...sw(2.4)} />
+        <path d="M81.2 45 H87.2" {...sw(2)} />
+        <path d="M91 35 Q92 39 93 42" {...sw(2.4)} />
+      </g>
+      {/* 엘리야 — 지팡이(손에 닿음) + 옷주름 + 제자1 엎드림 */}
+      <g style={d(4550, reduce)}>
+        <path d="M93 54 L93 42 L93 37" {...sw(2)} />
+        <path d="M81 40 q-0.3 8 0.7 13" {...sw(1.3, 0.6)} />
+        <path d="M10 53.5 q3.6 -3.2 7.6 -2 q1.8 3 -1 5.2" {...sw(1.9)} />
+      </g>
+      {/* 제자2 엎드림 */}
+      <g style={d(4900, reduce)}>
+        <path d="M110 53.5 q-3.6 -3.2 -7.6 -2 q-1.8 3 1 5.2" {...sw(1.9)} />
+      </g>
+      <Label x="60" y="7" at="2.5" reduce={reduce}>예수</Label>
+      <Label x="60" y="61" at="6" reduce={reduce} size="4.2">너희는 그의 말을 들으라</Label>
     </g>
   )
 }

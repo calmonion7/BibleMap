@@ -1,40 +1,9 @@
 // 초대교회와 바울 — 19개 정차지 장면 (task#231, #227 표준)
 import { sw, d } from './lib'
 import { Label } from './SceneLabel'
-
-// 오순절 (행 2:14-41)
-function PentecostScene({ reduce }) {
-  return (
-    <g>
-      <g style={d(0, reduce)}>
-        <path d="M6 54 h108" {...sw(1.6)} />
-      </g>
-      {/* 모인 무리 */}
-      <g style={d(900, reduce)}>
-        <circle cx="36" cy="42" r="2.4" {...sw(2)} />
-        <path d="M36 44.4 v5.6 M34 54 l2 -4 l2 4" {...sw(2)} />
-        <circle cx="50" cy="40.5" r="2.5" {...sw(2.2)} />
-        <path d="M50 43 v7 M48 54 l2 -4 l2 4" {...sw(2.2)} />
-        <circle cx="64" cy="41" r="2.5" {...sw(2.2)} />
-        <path d="M64 43.5 v6.5 M62 54 l2 -4 l2 4" {...sw(2.2)} />
-        <circle cx="78" cy="42.5" r="2.4" {...sw(2)} />
-        <path d="M78 44.9 v5.1 M76 54 l2 -4 l2 4" {...sw(2)} />
-      </g>
-      {/* 불의 혀 — 각 사람 위에 */}
-      <g style={d(1900, reduce)} stroke="var(--paper-accent)">
-        <path d="M36 34 q-1.6 -3 0 -5.5 q1.6 2.5 0 5.5 M50 32 q-1.6 -3 0 -5.5 q1.6 2.5 0 5.5 M64 32.5 q-1.6 -3 0 -5.5 q1.6 2.5 0 5.5 M78 34.5 q-1.6 -3 0 -5.5 q1.6 2.5 0 5.5" {...sw(2.2)}>
-          {!reduce && <animate attributeName="opacity" values="1;0.55;1" begin="2.6s" dur="1.2s" repeatCount="2" />}
-        </path>
-      </g>
-      {/* 바람 */}
-      <g style={d(2600, reduce)}>
-        <path d="M14 18 q6 -2.5 12 0 M90 16 q6 -2.5 12 0 M20 12 q5 -2 10 0" {...sw(1.3, 0.5)} />
-      </g>
-      <Label x="57" y="16" at="2.2" reduce={reduce}>불의 혀같이</Label>
-      <Label x="60" y="61" at="3" reduce={reduce} size="4.2">오순절에 성령이 임하시다</Label>
-    </g>
-  )
-}
+// 인트로 오프닝 몽타주가 쓰는 장면 — 정의는 introMontage.jsx로 옮겼다(task#287).
+// 방향이 중요하다: 무거운 투어 모듈이 소형 모듈을 참조해야 인트로가 투어 청크를 끌어오지 않는다.
+import { PentecostScene } from './introMontage'
 
 // 미문의 앉은뱅이 (행 3:1-10)
 function LameManScene({ reduce }) {

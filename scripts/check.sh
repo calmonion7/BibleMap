@@ -1,5 +1,5 @@
 #!/bin/bash
-# 배포 전 검증 게이트 (task#255) — 데이터 검증 + ERA_BANDS 3곳 정합 + 인트로↔실제 메뉴 정합 + 인트로 비트 여백 불변식 + 무해시 진입 라우팅 불변식 + 비유↔연표·장면 커버리지 + ESLint.
+# 배포 전 검증 게이트 (task#255) — 데이터 검증 + ERA_BANDS 3곳 정합 + 인트로↔실제 메뉴 정합 + 인트로 비트 여백 불변식 + 무해시 진입 라우팅 불변식 + 비유↔연표·장면 커버리지 + 장면 저작 규약 경계 + ESLint.
 # 하나라도 하드 항목 실패 시 비0 종료. 환경 의존 항목은 미충족 시 스킵-경고(하드 게이트 유지):
 #   - Neo4j 연대 정합: 127.0.0.1:7687 미기동 시 스킵
 #   - ESLint: frontend/node_modules 부재 시 스킵
@@ -29,11 +29,12 @@ skip() {  # skip <라벨> <사유> — 엄격 모드에서는 스킵이 실패�
   fi
 }
 
-echo "=== check: 파일 기반 데이터 검증 (20종 + 정합 대조군) ==="
+echo "=== check: 파일 기반 데이터 검증 (22종 + 정합 대조군) ==="
 for s in covenants messianic_prophecies parables_miracles topical_verses pm_map_coverage \
          scene_coverage chapter_sections chapter_summaries quotations person_context \
          god_reliance traits era_bands_consistency approx_book_verses intro_menu_parity \
-         curated_persons intro_gutter intro_entry_route event_verses sortkey_startdate; do
+         curated_persons intro_gutter intro_entry_route event_verses sortkey_startdate \
+         api_cache_headers scene_sketch_detail; do
   run "validate_$s" python3 -m "backend.scripts.validate_$s"
 done
 # 정합 검사 자신의 대조군(task#277·278) — 고의 드리프트 주입에 FAIL하는지 인메모리로 순회 확인.
@@ -64,6 +65,23 @@ run "validate_sortkey_startdate --selftest" python3 -m backend.scripts.validate_
 # 결합(TimelineView·ExploreStage의 리터럴 게이트)과 투어 era·PersonHub 사본을 이 검증기가 본다.
 # 기준선 PASS만으론 살아있음을 증명하지 못한다(ADR 260820-003946) — 이 검증기엔 대조군이 없었다.
 run "validate_era_bands_consistency --selftest" python3 -m backend.scripts.validate_era_bands_consistency --selftest
+# API 응답 캐시 수명 상한(task#285 — 3차 헌트 #2) — 긴 max-age가 ETag 없이 붙으면 이 프로젝트의
+# 표준 데이터수정 경로(data/ 편집 + restart api)로 고친 내용이 재방문 브라우저에 반영되지 않는다.
+# 프론트 캐시버스터(api.js의 ?v=BUILD_ID)는 빌드타임 리터럴이라 그 경로를 원리적으로 못 덮는다.
+# 불변식은 "지금 6곳"이 아니라 경계(max-age ≤ 300)다 — 새 라우트가 같은 결함을 다시 열지 못하게(ADR 260821-000937).
+run "validate_api_cache_headers --selftest" python3 -m backend.scripts.validate_api_cache_headers --selftest
+# 장면 스케치 저작 규약 B1~B6(task#286) — 밀도가 중앙 10선에 그쳐 "그려지는" 연출이 한 박에
+# 끝나던 결함. 경계를 이 게이트가 강제한다(규약 정본은 frontend/src/sketches/lib.jsx의 주석).
+# 검증기는 --dur-draw(index.css)·패널 대기(tourSketches.jsx)·stepDuration 공식(useTourPlayback.js)을
+# **소스에서 파생**한다 — 상수를 복사해 두면 누가 타이밍을 바꿨을 때 게이트가 조용히 거짓 초록이 된다.
+# 대조군은 B1~B6 각각의 위반을 개별 주입해 6건 모두 빨강이 되는지 확인한다(ADR 260820-003946).
+run "validate_scene_sketch_detail --selftest" python3 -m backend.scripts.validate_scene_sketch_detail --selftest
+# 정차지↔스케치 커버리지(task#259 → #287 갱신) — 투어별 동적 로드로 바뀌며 판정 기준이 달라졌다.
+# 예전 병합 구조에선 "키가 어느 모듈에 있든" 렌더됐지만, 이제 키가 **그 투어의 모듈 밖**에 있으면
+# 아무것도 안 뜬다(F 오배치 — 동적 구조가 새로 만든 무음 결함 클래스). 대조군은 A~G 7개 클래스를
+# 개별 주입해 잡는지 보고, 특히 **미저작(A)과 미연결(D/E)이 다른 메시지로 갈리는지**를 단언한다 —
+# 둘은 증상이 같고(무음·무오류) 처방이 정반대다.
+run "validate_scene_coverage --selftest" python3 -m backend.scripts.validate_scene_coverage --selftest
 
 echo "=== check: 영구 forge 문서 추적 (배포 차단 가드) ==="
 # 데이터 검증이 아니므로 위 16종 루프에 넣지 않는다(task#279).

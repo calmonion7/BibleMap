@@ -1,6 +1,9 @@
 // 출애굽에서 가나안까지 — 18개 정차지 장면 (task#229, #227 표준)
 import { sw, d } from './lib'
 import { Label } from './SceneLabel'
+// 인트로 오프닝 몽타주가 쓰는 장면 — 정의는 introMontage.jsx로 옮겼다(task#287).
+// 방향이 중요하다: 무거운 투어 모듈이 소형 모듈을 참조해야 인트로가 투어 청크를 끌어오지 않는다.
+import { BurningBushScene } from './introMontage'
 
 // 아기 모세 (출 1:22-2:10)
 function BirthEgyptScene({ reduce }) {
@@ -69,36 +72,6 @@ function FleesMidianScene({ reduce }) {
       </g>
       <Label x="34" y="24" at="2.5" reduce={reduce}>도망치는 모세</Label>
       <Label x="12" y="38" at="0.9" reduce={reduce}>애굽</Label>
-    </g>
-  )
-}
-
-// 떨기나무 (출 3:1-12)
-function BurningBushScene({ reduce }) {
-  return (
-    <g>
-      <g style={d(0, reduce)}>
-        <path d="M6 54 h108" {...sw(1.6)} />
-        <path d="M74 54 L98 26 L114 40" {...sw(1.4, 0.5)} />
-      </g>
-      {/* 떨기나무 불 — 핵심: 타되 사그라지지 않음 */}
-      <g style={d(800, reduce)}>
-        <path d="M56 54 q-4 -3 -3 -8 M60 54 q0 -6 0 -9 M64 54 q4 -3 3 -8 M57 47 q3 -2 6 0" {...sw(2)} />
-        <path d="M56 45 q-3 -6 1 -10 q3 3 1 7 M60 44 q-2 -7 2 -11 q3 4 0.5 9 M64 44.5 q3 -5 0 -9" {...sw(2.8)}>
-          {!reduce && <animate attributeName="opacity" values="1;0.55;1;0.7;1" begin="2s" dur="1.6s" repeatCount="3" />}
-        </path>
-      </g>
-      {/* 모세 — 주역: 무릎, 벗은 신 */}
-      <g style={d(1800, reduce)}>
-        <circle cx="30" cy="40" r="2.9" {...sw(2.5)} />
-        <path d="M30 42.9 l-1.5 5.6 M23 54 h10.5 M28.5 48.5 q-3.8 1.8 -5.5 5.5 M29 45 q4 0.5 6.5 3" {...sw(2.5)} />
-        <path d="M17 52.5 q2 -1.6 4 0 M17.8 53.6 h2.8" {...sw(1.3, 0.6)} />
-      </g>
-      <g style={d(reduce ? 0 : 3000, reduce)} stroke="var(--paper-accent)">
-        <path d="M61 28 v-4 M53 31 l-2.6 -2.6 M69 31 l2.6 -2.6" {...sw(1.5)} />
-      </g>
-      <Label x="30" y="31" at="2.3" reduce={reduce}>모세</Label>
-      <Label x="61" y="24" at="1.3" reduce={reduce}>떨기나무 불꽃</Label>
     </g>
   )
 }

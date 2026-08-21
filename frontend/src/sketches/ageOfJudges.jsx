@@ -1069,29 +1069,112 @@ function SamuelMizpahVictoryScene({ reduce }) {
 }
 
 // 순회 재판 (삼상 7:15-17)
+// 사무엘을 크게(폭~32×높이~36, 인물 영역 약1150단위²) 그려 잉크 밀도를 낮춘다 — 세 성읍은
+// 원경으로 밀어 자리를 내준다(task#286 3차: 사람이 뭉개지는 건 선 과다가 아니라 자리 부족).
 function SamuelCircuitScene({ reduce }) {
   return (
     <g>
+      {/* 지면·원경 능선 — 배경은 최소한만 */}
       <g style={d(0, reduce)}>
-        <path d="M6 54 h108" {...sw(1.6)} />
-        {/* 순회 길 */}
-        <path d="M18 50 q20 -10 40 0 q20 -10 40 0" {...sw(1.3, 0.5)} />
+        <path d="M4 54 h114" {...sw(1.6)} />
+        <path d="M6 14 q54 -4 108 0" {...sw(1.1, 0.4)} />
       </g>
-      {/* 세 성읍 표지 */}
-      <g style={d(900, reduce)}>
-        <path d="M18 54 v-4 h4 v4 M56 54 v-5 h4 v5 M94 54 v-4 h4 v4" {...sw(1.7, 0.7)} />
+      {/* 벧엘 — 쌍탑 성벽·성문 */}
+      <g style={d(350, reduce)}>
+        <path d="M12 15 v-4 h2 v-2 h2 v2 h6 v-2 h2 v2 h2 v4" {...sw(1.3)} />
+        <path d="M17 15 v-3 h4 v3" {...sw(1.2)} />
+        <path d="M11 15 h16" {...sw(1.1, 0.5)} />
       </g>
-      {/* 사무엘 — 순회하는 재판자 */}
-      <g transform={reduce ? 'translate(88 0)' : undefined} style={d(1900, reduce)}>
-        <circle cx="20" cy="40" r="2.7" {...sw(2.4)} />
-        <path d="M20 42.7 v9.8 M16.6 54 l3.4 -6.6 l3.4 6.6" {...sw(2.4)} />
-        {!reduce && (
-          <animateTransform attributeName="transform" type="translate" from="0 0" to="90 0"
-            begin="2.8s" dur="2.4s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.7 1" keyTimes="0;1" />
-        )}
+      {/* 길갈 — 쌍탑 성벽·성문 */}
+      <g style={d(700, reduce)}>
+        <path d="M52 15 v-4 h2 v-2 h2 v2 h6 v-2 h2 v2 h2 v4" {...sw(1.3)} />
+        <path d="M57 15 v-3 h4 v3" {...sw(1.2)} />
+        <path d="M51 15 h16" {...sw(1.1, 0.5)} />
       </g>
-      <Label x="18" y="45" at="1.6" reduce={reduce}>벧엘·길갈·미스바</Label>
-      <Label x="100" y="60" at="3" reduce={reduce} size="4.2">라마로 돌아오다</Label>
+      {/* 미스바 — 쌍탑 성벽·성문 */}
+      <g style={d(1050, reduce)}>
+        <path d="M92 15 v-4 h2 v-2 h2 v2 h6 v-2 h2 v2 h2 v4" {...sw(1.3)} />
+        <path d="M97 15 v-3 h4 v3" {...sw(1.2)} />
+        <path d="M91 15 h16" {...sw(1.1, 0.5)} />
+      </g>
+      {/* 라마 — 뼈대·처마·문 */}
+      <g style={d(1400, reduce)}>
+        <path d="M103 54 v-8 l7 -5 l7 5 v8" {...sw(1.8)} />
+        <path d="M107 54 v-5 h5 v5" {...sw(1.4)} />
+        <path d="M100 50 v-3 h3" {...sw(1.3, 0.5)} />
+      </g>
+      {/* 사무엘 — 머리·두건·목(서서 재판하는 재판자, 두건으로 구별) */}
+      <g style={d(1750, reduce)}>
+        <circle cx="72" cy="22.5" r="4.7" {...sw(2.6)} />
+        <path d="M67.3 19 q4.7 -3 9.4 0" {...sw(2.2)} />
+        <path d="M70.5 27 v1.5 M73.5 27 v1.5" {...sw(2.2)} />
+      </g>
+      {/* 어깨·겉옷 — 발까지 길게 흘러 청원자의 무릎 길이 옷과 구별된다 */}
+      <g style={d(2100, reduce)}>
+        <path d="M67 29 q5 -1.6 10 0" {...sw(2.3)} />
+        <path d="M67 29 q-2 6 -3 12 q-1 6.5 -2 13" {...sw(2.4)} />
+        <path d="M77 29 q2 6 3 12 q1 6.5 2 13" {...sw(2.4)} />
+      </g>
+      {/* 옷자락 주름·수염·땅에 닿은 발 */}
+      <g style={d(2450, reduce)}>
+        <path d="M64 49 q2.5 -1 4.5 0 M75 49 q2.5 -1 4.5 0" {...sw(1.3, 0.6)} />
+        <path d="M70.5 27.3 l-0.2 2 M72 27.6 l0 2.3 M73.5 27.3 l0.2 2" {...sw(1.3)} />
+        <path d="M61 54 h3 M81 54 h3" {...sw(1.3, 0.5)} />
+      </g>
+      {/* 판결하는 팔·소매(부피)·편 손 — 청원자를 가리킨다 */}
+      <g style={d(2800, reduce)}>
+        <g transform={reduce ? 'rotate(-8 67 29)' : undefined}>
+          <path d="M67 29 q-7 3.5 -13 7" {...sw(2.3)} />
+          <path d="M67.5 30 q-6.5 4 -12.5 6.5" {...sw(2.2)} />
+          <path d="M55 36.5 l-2.3 -1.3 M55 36.5 l-2.6 0.3 M55 36.5 l-1.8 2" {...sw(1.4, 0.6)} />
+          {!reduce && (
+            <animateTransform attributeName="transform" type="rotate" from="0 67 29" to="-8 67 29"
+              begin="6.3s" dur="0.8s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.7 1" keyTimes="0;1" />
+          )}
+        </g>
+      </g>
+      {/* 두루마리 쥔 팔·두루마리(재판의 근거, 손에 닿는다) */}
+      <g style={d(3150, reduce)}>
+        <path d="M77 29 q4 4 -2 10" {...sw(2)} />
+        <path d="M73 39 h4" {...sw(2.1)} />
+        <path d="M73 38.3 v1.4 M77 38.3 v1.4" {...sw(1.3, 0.6)} />
+      </g>
+      {/* 청원자 A — 머리·목·몸통 실루엣(사무엘 쪽으로 틀어 선다) */}
+      <g style={d(3500, reduce)}>
+        <circle cx="33" cy="26.5" r="4.2" {...sw(2)} />
+        <path d="M31.4 30.7 v1.6 M34.6 30.7 v1.6" {...sw(2)} />
+        <path d="M28 45 q1 -7.5 1.5 -12.7 q3.5 -1 7 0 q1.5 7.5 2 12.7" {...sw(2)} />
+      </g>
+      {/* 다리·발·호소하는 팔(사무엘을 향해 손을 들어 올린다) */}
+      <g style={d(3850, reduce)}>
+        <path d="M29 45 v8.5 M37.5 45 v8.5" {...sw(2)} />
+        <path d="M27.8 54 h2.4 M36.3 54 h2.4" {...sw(1.3, 0.5)} />
+        <path d="M36.5 32.3 q3 -5 6.5 -9" {...sw(2)} />
+      </g>
+      {/* 편 손·얼굴(사무엘 쪽을 올려다보며 입을 열어 호소한다) */}
+      <g style={d(4200, reduce)}>
+        <path d="M43 23.3 l-1 -0.7 M43 23.3 l1.1 -0.4" {...sw(1.4, 0.6)} />
+        <path d="M31.1 26.6 l0.8 -0.4 M34.1 26.4 l0.8 -0.4 M32.1 28.8 h2" {...sw(1.25)} />
+      </g>
+      {/* 청원자 B — 머리·목·몸통 실루엣(고개 숙여 어깨가 처졌다) */}
+      <g style={d(4550, reduce)}>
+        <circle cx="46" cy="29" r="4" {...sw(2)} />
+        <path d="M44.5 33 v1.5 M47.5 33 v1.5" {...sw(2)} />
+        <path d="M42.3 47 q0.3 -7.5 0.7 -12.5 q3 0.8 6 0 q0.3 7.5 0.7 12.5" {...sw(2)} />
+      </g>
+      {/* 다리·발(사무엘 쪽으로 몸을 두고 선다) */}
+      <g style={d(4900, reduce)}>
+        <path d="M43 47 v7 M49 47 v7" {...sw(2)} />
+        <path d="M41.8 54 h2.4 M47.8 54 h2.4" {...sw(1.3, 0.5)} />
+      </g>
+      {/* 마지막 순간 — 고개 숙인 얼굴과, 그들을 보는 사무엘의 눈·입이 함께 그려진다 */}
+      <g style={d(5250, reduce)}>
+        <path d="M45.1 29.2 l0.8 -0.2 M47.9 29 l0.8 -0.2 M45.3 31.4 h2" {...sw(1.25)} />
+        <path d="M70.8 25.8 h2.4" {...sw(1.2)} />
+        <path d="M70.35 23 l-0.8 0.4 M73.65 23 l-0.8 0.4" {...sw(1.2)} />
+      </g>
+      <Label x="59" y="5" at="2.1" reduce={reduce} size="3.8">벧엘·길갈·미스바</Label>
+      <Label x="103" y="61" at="7.15" reduce={reduce} size="4.2">라마로 돌아오다</Label>
     </g>
   )
 }

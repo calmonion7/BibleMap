@@ -194,6 +194,7 @@ export default function ExploreStage({
             {exploreTourId != null && playback.active && (
               <TourPlaybackCard
                 stops={journeyStops}
+                tourId={exploreTourId}
                 idx={playback.idx}
                 playing={playback.playing}
                 onToggle={playback.toggle}

@@ -1,6 +1,9 @@
 // 창조에서 홍수까지 — 12개 정차지 장면 (task#228, #227 표준: 얇은 선 위계·이름표·상황설명·무드·SMIL 안무)
 import { sw, d } from './lib'
 import { Label } from './SceneLabel'
+// 인트로 오프닝 몽타주가 쓰는 장면 — 정의는 introMontage.jsx로 옮겼다(task#287).
+// 방향이 중요하다: 무거운 투어 모듈이 소형 모듈을 참조해야 인트로가 투어 청크를 끌어오지 않는다.
+import { AdamCreationScene } from './introMontage'
 
 // 에덴동산에 아담을 두심 (창 2:8,15)
 function AdamEdenScene({ reduce }) {
@@ -422,51 +425,6 @@ function RainbowCovenantScene({ reduce }) {
       </g>
       <Label x="52" y="29" at="2.1" reduce={reduce}>노아의 가족</Label>
       <Label x="60" y="12" at="3.4" reduce={reduce}>언약의 무지개</Label>
-    </g>
-  )
-}
-
-// 사람의 창조 (창 1:27, 2:7)
-function AdamCreationScene({ reduce }) {
-  return (
-    <g>
-      <g style={d(0, reduce)}>
-        <path d="M6 54 h108" {...sw(1.6)} />
-        <path d="M6 50 q20 -3 38 0 q22 -4 40 0 q18 -3 30 0" {...sw(1.1, 0.4)} />
-      </g>
-      {/* 흙 형체 — 아직 사람이 아닌 흙무더기 */}
-      <g style={d(700, reduce)}>
-        <path d="M48 54 q0 -8 12 -9 q12 1 12 9 q-6 3 -12 3 q-6 0 -12 -3" {...sw(2)} />
-        <path d="M52 52 q2 -1 4 0 M64 51 q2 -1 4 0 M58 47.5 q2 -1 4 0" {...sw(1.3, 0.5)} />
-      </g>
-      {/* 생기 — 핵심: 위에서 내려오는 숨 */}
-      <g style={d(1400, reduce)} stroke="var(--paper-accent)">
-        <path d="M60 8 v16 M54 13 l3 8 M66 13 l-3 8" {...sw(1.6)} />
-        {!reduce && <animate attributeName="opacity" values="0.35;1;0.6;1" begin="2.4s" dur="1s" fill="freeze" />}
-      </g>
-      {/* 사람이 되어 일어섬 — 주역 */}
-      <g style={d(2200, reduce)}>
-        <g transform={reduce ? undefined : 'translate(0 4)'}>
-          <circle cx="55" cy="36" r="3" {...sw(2.6)} />
-          <path d="M55 39 v9 M52 54 l3 -6.5 l3 6.5" {...sw(2.6)} />
-          <path d="M55 41 q-3 1 -4.5 4 M55 41 q3 1 4.5 4" {...sw(2.2)} />
-          {!reduce && (
-            <animateTransform attributeName="transform" type="translate" from="0 4" to="0 0"
-              begin="2.6s" dur="1s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.7 1" keyTimes="0;1" />
-          )}
-        </g>
-      </g>
-      {/* 하나님의 형상 — 남자와 여자에게 함께 */}
-      <g style={d(2800, reduce)}>
-        <circle cx="76" cy="38" r="2.6" {...sw(2.2)} />
-        <path d="M76 40.6 v7.8 M73.2 54 l2.8 -5.6 l2.8 5.6" {...sw(2.2)} />
-        <g stroke="var(--paper-accent)">
-          <path d="M49 32 q6 -4 12 0" {...sw(1.3)} />
-          <path d="M70.5 34.5 q5.5 -3.2 11 0" {...sw(1.3)} />
-        </g>
-      </g>
-      <Label x="55" y="27" at="2.6" reduce={reduce}>아담</Label>
-      <Label x="63" y="14" at="3.4" reduce={reduce} size="4.2">하나님의 형상</Label>
     </g>
   )
 }
