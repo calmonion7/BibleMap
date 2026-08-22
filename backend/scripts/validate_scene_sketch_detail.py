@@ -31,6 +31,7 @@ task#286이 목표 밀도(35~40선)와 붓질 단계 경계를 규약으로 확�
 B6은 B4(10,000ms)보다 느슨해 장면을 늘리는 방식으로는 단독 위반을 만들 수 없다 —
 그래서 대조군은 재생 쪽 레버(min(stepDuration))를 줄여 관계가 깨지는 것을 확인한다.
 """
+import functools
 import glob
 import json
 import math
@@ -57,11 +58,13 @@ MIN_STROKES = 35           # B1 — task#303 S5: 30→35로 소폭 래칫(바닥
                            # 90%(~172)까지 올리지 않은 이유: TARGETS는 지금 이 3장면뿐이지만
                            # 9파트 확장(.forge/backlog/scene-sketch-detail-*)이 모듈째 편입되면
                            # 이 상수는 그 모듈의 **전 장면**(단순한 2인 장면 포함)에 적용된다.
-                           # 191~198은 "상한형"(다인물 밀집 장면) 실측이지 lib.jsx가 여전히 명시한
-                           # "기본형" 목표(40~45)의 대체값이 아니다 — 그대로 172로 올리면 앞으로
+                           # 191~198은 "상한형"(다인물 밀집 장면) 실측이지 lib.jsx가 참고치로 적은
+                           # "기본형"(40~45)의 대체값이 아니다 — 그대로 172로 올리면 앞으로
                            # 추가될 단순 장면 다수가 이 바닥에 못 미쳐 게이트가 빨강이 된다.
-                           # 35는 원래 목표(40~45)에 근접한 최소 보수치로, 셀프테스트 대조군
+                           # 35는 그 참고치(40~45)에 근접한 최소 보수치로, 셀프테스트 대조군
                            # 전역이 쓰는 36선 기준선(_synthetic(36, ...))보다 낮아 무해하다.
+                           # 9파트가 적용할 목표 밀도 자체는 **task#305 미결**이다(lib.jsx B1 참조) —
+                           # 이 바닥은 그 결정과 독립적으로 유효하고, 결정 뒤 재래칫 대상이다.
 MAX_PER_STEP = 3           # B2
 MAX_DRAWIN_MS = 10000      # B4 — task#303 S1: 선 천장을 54→240 수준으로 올리며 함께 상향(구 7,000).
                            # --dur-draw-scene을 1000→500ms로 낮춘 것과 짝이다(구멍 B 대응) — 그대로
@@ -129,6 +132,16 @@ _BEGIN = re.compile(r'\bbegin\s*=\s*"([^"]+)"')
 def _read(rel):
     with open(os.path.join(_ROOT, rel), encoding="utf-8") as f:
         return f.read()
+
+
+@functools.lru_cache(maxsize=1)
+def _stroke_scale():
+    # sw(n)이 DOM에 내보내는 굵기는 n x W다 — W를 여기에 복사하지 않고 lib.jsx에서 파생한다.
+    # 상수를 복사하면 누가 W를 바꿨을 때 기하 판정(B10·B11)이 조용히 어긋난다
+    # (ADR 260820-003946 - 스크립트 가드는 게이트에서 재현된다 / 260821-000937).
+    m = re.search(r"^export const W\s*=\s*([0-9.]+)", _read("frontend/src/sketches/lib.jsx"), re.M)
+    assert m, "lib.jsx에서 export const W를 찾지 못했다 - 굵기 배율이 바뀌었다면 이 검증기도 갱신하라"
+    return float(m.group(1))
 
 
 def _dur_draw_ms():
@@ -269,9 +282,10 @@ def label_boxes(body):
 def stroke_segments(body):
     """모든 stroke의 절대 좌표 선분 [(x1,y1,x2,y2,half굵기)]."""
     segs = []
+    scale = _stroke_scale()
     for tag in re.findall(r"<(?:path|circle|ellipse|line|polyline|rect)\b[^>]*>", body, re.S):
         sw = _SW.search(tag)
-        half = (float(sw.group(1)) if sw else _DEFAULT_WEIGHT) * 0.55 / 2
+        half = (float(sw.group(1)) if sw else _DEFAULT_WEIGHT) * scale / 2
         d = re.search(r'\bd="([^"]+)"', tag)
         if d:
             pts = _path_points(d.group(1))
