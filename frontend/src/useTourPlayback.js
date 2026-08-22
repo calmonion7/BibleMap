@@ -4,12 +4,16 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 // 사건 단위로 진행(좌표 없는 정차지도 건너뛰지 않음 — 카메라 유지·카드만 교체).
 // 카메라·경로선은 App/MapView가 idx를 구독해 구동, 이 훅은 상태만.
 
-// 자동 진행 간격 — note 길이 비례(최소 5초). 수동 이전/다음은 항상 가능.
+// 자동 진행 간격 — note 길이 비례(최소 9초). 수동 이전/다음은 항상 가능.
 // 예산 상향(task#286): 장면 밀도 상향으로 드로인이 길어지므로 체류 시간이 장면 예산에 종속된다
-// (ADR 260821-174856). 하한 5,000ms · 상한 10,000ms — 450ms 패널 대기 + 드로인 총 길이가
+// (ADR 260821-174856). 하한 9,000ms · 상한 14,000ms — 450ms 패널 대기 + 드로인 총 길이가
 // 어떤 장면에서도 이 step 안에 완주해야 한다(규약 B6, sketches/lib.jsx 정본).
+// 하한 재상향(task#303 S1, 5,000→9,000): 선 천장을 240까지 올리며 드로인 상한도 10,000ms로 늘렸다.
+// 296정차지 중 가장 짧은 note(84자)가 배정된 step도 그 상한을 다 쓰는 장면을 받으면 절정 연출
+// 여유가 나와야 한다(min(stepDuration) − 450 − 10,000 ≥ 1,500ms) — 역산하면 하한이 9,000이다.
+// 투어 전체 재생시간은 이 상향으로 약 +42% 늘어난다(9투어 실측, ≤60% 제약 안).
 function stepDuration(note) {
-  return 5000 + (note ? Math.min(note.length * 40, 5000) : 0)
+  return 9000 + (note ? Math.min(note.length * 40, 5000) : 0)
 }
 
 export function useTourPlayback(stops) {

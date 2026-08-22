@@ -69,7 +69,10 @@
   --dur-fast: 150ms; /* 마이크로 피드백·칩·탭 */
   --dur-base: 250ms; /* 모달·시트·스테이지 전환 */
   --dur-slow: 400ms; /* 입장 스태거·게이지류 */
-  --dur-draw: 1000ms; /* 상징물 선화 draw-on(스케치가 그려지는 시간) */
+  --dur-draw: 1000ms; /* 상징물 선화 draw-on(스케치가 그려지는 시간) — 인물·책 인장·가계도 실·인트로 분할선 전용 */
+  --dur-draw-scene: 500ms; /* 투어 장면 스케치 전용 draw-on(task#303 S1 천장 상향). --dur-draw를 그대로
+     낮추면 인물·책 인장·가계도 실·인트로 분할선까지 전부 빨라진다(전 소비자 공용 토큰) — 장면만
+     별도 값을 쓰도록 분리했다. 근거: sketches/lib.jsx "타이밍 모델" 절, 검증기는 이 토큰에서 파생. */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1); /* 시트/드로어 */
@@ -140,6 +143,7 @@
     --dur-base: 1ms;
     --dur-slow: 1ms;
     --dur-draw: 1ms;
+    --dur-draw-scene: 1ms;
   }
   *,
   *::before,
@@ -295,6 +299,15 @@ h2 {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
   animation: symbol-draw var(--dur-draw) var(--ease-out) var(--sym-delay, 0ms) forwards;
+}
+
+/* 투어 장면 스케치 전용 draw-on(task#303 S1) — 같은 symbol-draw 키프레임을 --dur-draw-scene(500ms)로
+   재생한다. .symbol-draw와 분리한 이유는 위 --dur-draw-scene 토큰 주석 참조(tourSketches.jsx만 사용,
+   personSymbols.jsx·bookSymbols.jsx는 여전히 .symbol-draw). */
+.scene-draw :is(path, circle, ellipse, line, polyline, rect) {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: symbol-draw var(--dur-draw-scene) var(--ease-out) var(--sym-delay, 0ms) forwards;
 }
 
 /* 책 펼침 입장 — 대문(목차 면)이 왼쪽 제본에서 펼쳐지는 원근 회전(ADR-0026). 세션 첫 진입 1회. */

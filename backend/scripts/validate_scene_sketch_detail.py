@@ -7,7 +7,7 @@ task#286이 목표 밀도(35~40선)와 붓질 단계 경계를 규약으로 확�
   B1 밀도       장면당 stroke >= 30
   B2 단계 상한  어떤 붓질 단계(= 같은 지연값)도 선 3개 초과 금지
   B3 단계 하한  단계 수 >= ceil(선 수 / 3)
-  B4 시간 예산  드로인 총 길이(= max(지연) + --dur-draw) <= 7,000ms
+  B4 시간 예산  드로인 총 길이(= max(지연) + --dur-draw-scene) <= 10,000ms(task#303 S1 천장 상향)
   B5 절정 순서  그 장면의 모든 SMIL begin >= 드로인 종료 시각
   B6 종속 관계  패널 대기(450ms) + 드로인 총 길이 <= min(stepDuration)
   B7 구조 밀도  굵기 >= 2.0인 stroke >= 12개 (사람·사물의 구조)
@@ -16,7 +16,8 @@ task#286이 목표 밀도(35~40선)와 붓질 단계 경계를 규약으로 확�
   B10 배치 분리 이름표(글) 상자에 어떤 stroke도 들어오지 않고, 상자가 프레임 안에 있다
   B11 구조 연결 구조 선(굵기 >= 2.0)은 다른 구조 선과 2.0단위 안에서 만난다 — 부위가 떠 있지 않다
 
-**경계를 이 파일에 박지 않는다 — 실제 소스에서 파생한다.** `--dur-draw`는 `index.css`,
+**경계를 이 파일에 박지 않는다 — 실제 소스에서 파생한다.** `--dur-draw-scene`(장면 스케치 전용,
+인물·책 인장의 `--dur-draw`와는 분리된 토큰)은 `index.css`,
 패널 대기는 `tourSketches.jsx`, `stepDuration` 공식은 `useTourPlayback.js`, note 길이는
 `data/tours/*.json`에서 읽는다. 상수를 복사해 두면 누가 타이밍을 바꿨을 때 게이트가 조용히
 거짓 초록이 된다(불변식은 개수가 아니라 경계다 — ADR 260821-000937).
@@ -27,7 +28,7 @@ task#286이 목표 밀도(35~40선)와 붓질 단계 경계를 규약으로 확�
 --selftest는 각 경계를 **개별로** 위반하는 합성 장면을 **같은 판정 함수**에 주입해 6건 모두
 빨강이 되는지 확인한다. 기준선 PASS만으론 게이트가 살아있음을 증명하지 못한다
 (ADR 260820-003946). 실제 소스는 건드리지 않는다.
-B6은 B4(7,000ms)보다 느슨해 장면을 늘리는 방식으로는 단독 위반을 만들 수 없다 —
+B6은 B4(10,000ms)보다 느슨해 장면을 늘리는 방식으로는 단독 위반을 만들 수 없다 —
 그래서 대조군은 재생 쪽 레버(min(stepDuration))를 줄여 관계가 깨지는 것을 확인한다.
 """
 import glob
@@ -51,9 +52,20 @@ TARGETS = [
     "davidUnitedKingdom.jsx:GoliathScene",
 ]
 
-MIN_STROKES = 30           # B1
+MIN_STROKES = 35           # B1 — task#303 S5: 30→35로 소폭 래칫(바닥은 개수가 아니라 경계로 다시
+                           # 매길수록 안전하다 — ADR 260821-000937). 3장면 실측(191~198선)의
+                           # 90%(~172)까지 올리지 않은 이유: TARGETS는 지금 이 3장면뿐이지만
+                           # 9파트 확장(.forge/backlog/scene-sketch-detail-*)이 모듈째 편입되면
+                           # 이 상수는 그 모듈의 **전 장면**(단순한 2인 장면 포함)에 적용된다.
+                           # 191~198은 "상한형"(다인물 밀집 장면) 실측이지 lib.jsx가 여전히 명시한
+                           # "기본형" 목표(40~45)의 대체값이 아니다 — 그대로 172로 올리면 앞으로
+                           # 추가될 단순 장면 다수가 이 바닥에 못 미쳐 게이트가 빨강이 된다.
+                           # 35는 원래 목표(40~45)에 근접한 최소 보수치로, 셀프테스트 대조군
+                           # 전역이 쓰는 36선 기준선(_synthetic(36, ...))보다 낮아 무해하다.
 MAX_PER_STEP = 3           # B2
-MAX_DRAWIN_MS = 7000       # B4
+MAX_DRAWIN_MS = 10000      # B4 — task#303 S1: 선 천장을 54→240 수준으로 올리며 함께 상향(구 7,000).
+                           # --dur-draw-scene을 1000→500ms로 낮춘 것과 짝이다(구멍 B 대응) — 그대로
+                           # 두면 간격만 좁혀 선을 늘릴 때 동시 진행 선 수가 폭발한다(lib.jsx 참조).
 STRUCT_WEIGHT = 2.0        # B7 — 이 굵기 이상을 "구조 선"(주역·지물)으로 본다
 MIN_STRUCT = 12            # B7
 MAX_FAINT_RATIO = 0.40     # B8
@@ -120,8 +132,10 @@ def _read(rel):
 
 
 def _dur_draw_ms():
-    m = re.search(r"--dur-draw:\s*(\d+)ms", _read("frontend/src/index.css"))
-    assert m, "index.css에서 --dur-draw를 찾지 못했다 — 타이밍 모델이 바뀌었다면 이 검증기도 갱신하라"
+    # 장면 스케치는 --dur-draw-scene을 쓴다(task#303 S1) — 인물·책 인장·가계도 실이 쓰는 공용
+    # --dur-draw(1000ms 그대로)와는 별개 토큰이라 이걸 읽어야 실제 재생 속도와 일치한다.
+    m = re.search(r"--dur-draw-scene:\s*(\d+)ms", _read("frontend/src/index.css"))
+    assert m, "index.css에서 --dur-draw-scene을 찾지 못했다 — 타이밍 모델이 바뀌었다면 이 검증기도 갱신하라"
     return int(m.group(1))
 
 
@@ -443,7 +457,7 @@ def _check():
     dur_draw, panel_delay, min_step = _dur_draw_ms(), _panel_delay_ms(), _min_step_ms()
     print(
         f"검사: 장면 저작 규약 B1~B11 (대상 {len(TARGETS)}엔트리 · "
-        f"--dur-draw {dur_draw}ms · 패널 대기 {panel_delay}ms · min(stepDuration) {min_step}ms)"
+        f"--dur-draw-scene {dur_draw}ms · 패널 대기 {panel_delay}ms · min(stepDuration) {min_step}ms)"
     )
     failures = []
     for label, body in _resolve_targets():
@@ -492,17 +506,21 @@ def _selftest():
     print(f"대조군 기준선: 합성 장면 36선/12단계 통과 (min(stepDuration) {min_step}ms)")
 
     # 각 경계를 개별로 위반하는 주입 — 같은 judge()가 그 경계를 지목해야 한다.
+    # B4·B9의 gap·begin_s는 하드코딩 상수다(dur_draw·min_step처럼 소스에서 파생하지 않는다) —
+    # task#303 S1로 MAX_DRAWIN_MS(10,000)·min(stepDuration)(12,360)이 올라가면서, 옛 값(700·8.0)은
+    # 더 이상 새 경계를 넘기지 못해 대조군이 조용히 무의미해질 뻔했다. 여유를 두고 다시 골랐다:
+    # B4는 11×900+500=10,400 > 10,000(마진 400ms), B9는 450+12,000+500=12,950 > 12,360(마진 590ms).
     cases = [
         ("B1", "밀도 미달(선 12개)", _synthetic(12, 3, 450), {}),
         ("B2", "한 단계에 선 6개", _synthetic(36, 6, 450), {}),
         ("B3", "단계 수 부족(선 36 / 단계 6)", _synthetic(36, 6, 450), {}),
-        ("B4", "드로인 총 길이 초과", _synthetic(36, 3, 700), {}),
+        ("B4", "드로인 총 길이 초과", _synthetic(36, 3, 900), {}),
         ("B5", "절정이 드로인 종료 전", _synthetic(36, 3, 450, begin_s=0.5), {}),
         ("B6", "재생 step이 줄어 관계가 깨짐", ok_body, {"min_step": 1000}),
         ("B7", "전부 배경 굵기(구조 선 0개)", _synthetic(36, 3, 450, begin_s=6.0, weight=1.3), {}),
         ("B8", "반투명 획이 과반(20/36)", _synthetic(36, 3, 450, begin_s=6.0, faint_from=16), {}),
         # B5는 통과하되(절정이 드로인 뒤) B9만 위반하는 케이스 — 절정이 step을 넘겨 끝난다.
-        ("B9", "절정이 step을 넘겨 종료", _synthetic(36, 3, 450, begin_s=8.0), {}),
+        ("B9", "절정이 step을 넘겨 종료", _synthetic(36, 3, 450, begin_s=12.0), {}),
     ]
     for code, desc, body, over in cases:
         bad = judge(

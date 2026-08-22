@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
+import { Maximize2, X } from 'lucide-react'
 import INTRO_SCENES from './sketches/introMontage'
 
 // 투어 정차지 장면 스케치 — 투어별 모듈(frontend/src/sketches/)을 **투어 단위로 동적 로드**한다.
@@ -27,7 +29,9 @@ function SceneSvg({ Scene, width, reduce }) {
       viewBox="0 0 120 64"
       width={width}
       height={typeof width === 'number' ? Math.round(width * 64 / 120) : undefined}
-      className={reduce ? undefined : 'symbol-draw'}
+      // .symbol-draw가 아니라 .scene-draw(--dur-draw-scene, task#303 S1) — personSymbols/bookSymbols와
+      // draw-on 속도를 분리한 장면 전용 토큰(index.css 참조).
+      className={reduce ? undefined : 'scene-draw'}
       style={{ display: 'block' }}
       fill="none"
       stroke="currentColor"
@@ -56,6 +60,18 @@ export function TourSketchPanel({ eventId, tourId }) {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const [ready, setReady] = useState(reduce)
   const [scenes, setScenes] = useState(null) // null = 로드 중
+  const [expanded, setExpanded] = useState(false) // task#303 S2 C안 실측 — 탭하면 확대
+  const expandRef = useRef(null)
+  // 확대 오버레이는 새 <svg> 인스턴스라 열 때마다 draw-in을 처음부터 재생하면 사용자가 이미 본
+  // 연출을 몇 초씩 다시 기다려야 한다 — 열자마자 연출 종료 시점으로 고정한다(render_scene.py와
+  // 동일 기법: CSS 애니메이션은 pause+currentTime, SMIL 절정 연출은 setCurrentTime).
+  useEffect(() => {
+    if (!expanded) return
+    const svg = expandRef.current?.querySelector('svg')
+    if (!svg) return
+    for (const a of svg.getAnimations({ subtree: true })) { a.pause(); a.currentTime = 20000 }
+    if (svg.setCurrentTime) svg.setCurrentTime(20)
+  }, [expanded])
   useEffect(() => {
     if (reduce) return
     const t = setTimeout(() => setReady(true), 450)
@@ -97,9 +113,27 @@ export function TourSketchPanel({ eventId, tourId }) {
       borderBottom: '1px solid color-mix(in srgb, var(--paper-accent) 40%, transparent)',
       padding: '12px 16px 6px',
     }}>
-      {/* draw 시작 전에도 동일 비율 자리 확보 — 카드 높이 점프 방지 */}
-      <div style={{ aspectRatio: '120 / 64', width: '100%' }}>
+      {/* draw 시작 전에도 동일 비율 자리 확보 — 카드 높이 점프 방지. 완성 후에는 탭하면 확대(task#303 S2 C안 실측) */}
+      <div
+        role={ready ? 'button' : undefined} tabIndex={ready ? 0 : undefined}
+        aria-label={ready ? '그림 확대해서 보기' : undefined}
+        onClick={ready ? () => setExpanded(true) : undefined}
+        onKeyDown={ready ? e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpanded(true) } } : undefined}
+        style={{ position: 'relative', aspectRatio: '120 / 64', width: '100%', cursor: ready ? 'zoom-in' : undefined }}
+      >
         {ready && <SceneSvg Scene={entry.Scene} width="100%" reduce={reduce} />}
+        {ready && (
+          // 좌하에 둔다 — 우하는 서술형 이름표(배치 레시피의 하단 띠)가 쓰는 자리라 682개 이름표 중
+          // 78건이 이 버튼과 겹쳤다. B10(이름표 관통 금지)은 SVG 선분만 재므로 React 오버레이인
+          // 이 버튼은 잡지 못한다 — 그래서 겹치지 않는 모서리를 고르는 것이 유일한 방어다(좌하·좌상 충돌 0건).
+          <div style={{
+            position: 'absolute', left: 2, bottom: 2, display: 'flex', alignItems: 'center',
+            justifyContent: 'center', width: 22, height: 22, borderRadius: 999,
+            background: 'color-mix(in srgb, var(--paper) 70%, transparent)', color: 'var(--paper-accent)',
+          }}>
+            <Maximize2 size={12} />
+          </div>
+        )}
       </div>
       <div style={{ marginTop: 5, textAlign: 'center' }}>
         {entry.desc && (
@@ -113,6 +147,35 @@ export function TourSketchPanel({ eventId, tourId }) {
           }}>{entry.caption}</div>
         )}
       </div>
+      {expanded && createPortal(
+        // 조상(TourPlaybackCard)의 transform이 fixed의 containing block을 바꿔 버리므로 body에 포털
+        // (VerseLayer.jsx와 동일 관용구).
+        <div className="overlay-in" onClick={() => setExpanded(false)} style={{
+          position: 'fixed', inset: 0, zIndex: 50, background: 'var(--scrim)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16,
+        }}>
+          <div ref={expandRef} role="dialog" aria-modal="true" aria-label="장면 그림 확대"
+            className="modal-in" onClick={e => e.stopPropagation()} style={{
+            maxWidth: '100%', maxHeight: '100%', overflow: 'auto', borderRadius: 12,
+            // 포털은 body에 붙으므로 패널의 종이 맥락을 상속받지 못한다 — 선화가 stroke="currentColor"라
+            // color를 빠뜨리면 앱 잉크색을 물려받아 크림 종이 위에서 보이지 않는다(무드 오버라이드도 함께).
+            background: 'var(--paper)', color: 'var(--paper-ink)', boxShadow: 'var(--shadow-2)',
+            ...(dark ? { '--paper-accent': '#5f584c' } : {}),
+          }}>
+            <div style={{ width: 1100, maxWidth: 'none' }}>
+              <SceneSvg Scene={entry.Scene} width={1100} reduce={reduce} />
+            </div>
+          </div>
+          <button aria-label="닫기" onClick={() => setExpanded(false)} style={{
+            position: 'absolute', top: 16, right: 16, display: 'flex', alignItems: 'center',
+            justifyContent: 'center', width: 36, height: 36, borderRadius: 999, cursor: 'pointer',
+            background: 'var(--bg-2)', border: '1px solid var(--line)', color: 'var(--ink)',
+          }}>
+            <X size={17} />
+          </button>
+        </div>,
+        document.body,
+      )}
     </div>
   )
 }
