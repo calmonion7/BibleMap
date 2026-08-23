@@ -1453,8 +1453,8 @@ function SamuelCircuitScene({ reduce }) {
         <path d="M71.3 27.6 q1 0.4 2 0" {...sw(1.2)} />
       </g>
 
-      <Label x="59" y="5" at="1.3" reduce={reduce} size="3.8">벧엘·길갈·미스바</Label>
-      <Label x="86" y="61" at="2.6" reduce={reduce} size="4.2">라마로 돌아오다</Label>
+      <Label x="59" y="5" after={0} reduce={reduce} size="3.8">벧엘·길갈·미스바</Label>
+      <Label x="86" y="61" after={1} reduce={reduce} size="4.2">라마로 돌아오다</Label>
     </g>
   )
 }
@@ -1525,7 +1525,9 @@ const SCENES = {
   'authored-samson-sorek-delilah': { Scene: SorekDelilahScene, mood: 'dark', desc: '머리털과 함께 힘이 떠나다', caption: '소렉 골짜기 — 사사기 16장' },
   'authored-samson-gaza-death': { Scene: GazaDeathScene, mood: 'dark', desc: '기둥을 무너뜨려 마지막 승리를 거두다', caption: '가사 신전 — 사사기 16장' },
   'authored-samuel-mizpah-victory': { Scene: SamuelMizpahVictoryScene, desc: '미스바의 회개 위로 우레가 블레셋을 흩다', caption: '에벤에셀 — 사무엘상 7장' },
-  'authored-samuel-circuit-judge': { Scene: SamuelCircuitScene, desc: '사무엘이 세 성읍을 돌며 재판하다', caption: '순회 재판 — 사무엘상 7장' },
+  // color(task#306 S4 파일럿, 임시 로컬 에셋 — gitignore 대상): 채색층 아래 + 저작 잉크 위 2층
+  // 렌더를 이 1장면에서만 켠다. 자산 부재(클린 체크아웃)에도 <image>가 그냥 비어 잉크 경로만 선다.
+  'authored-samuel-circuit-judge': { Scene: SamuelCircuitScene, desc: '사무엘이 세 성읍을 돌며 재판하다', caption: '순회 재판 — 사무엘상 7장', letterLast: true, color: '/scene-color/samuel-circuit.webp' },
   'authored-samuel-ramah-school': { Scene: SamuelRamahSchoolScene, desc: '라마에서 선지자 생도들을 길러내다', caption: '나욧의 학교 — 사무엘상 19장' },
 }
 

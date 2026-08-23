@@ -30,7 +30,7 @@ export default function TourPlaybackCard({ stops, tourId, idx, playing, onToggle
       {/* 본문 — 사건 전환마다 key 리마운트로 stage-in 페이드(ADR-0024 토큰, reduce 자동 존중).
           장면 스케치는 카드 상단 삽화로 통합(그림·설명 한 장, task#226 5차) — key 리마운트로 draw 재생. */}
       <div key={s.eventId ?? idx} className="stage-in">
-      <Suspense fallback={null}><TourSketchPanel eventId={s.eventId} tourId={tourId} /></Suspense>
+      <Suspense fallback={null}><TourSketchPanel eventId={s.eventId} tourId={tourId} note={s.note} /></Suspense>
       <div style={{ padding: isMobile ? '12px 16px 4px' : '14px 18px 6px' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
           <span style={{ fontSize: 11, fontWeight: 700, color: PURPLE, fontVariantNumeric: 'tabular-nums' }}>

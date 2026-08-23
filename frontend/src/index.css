@@ -301,13 +301,51 @@ h2 {
   animation: symbol-draw var(--dur-draw) var(--ease-out) var(--sym-delay, 0ms) forwards;
 }
 
-/* 투어 장면 스케치 전용 draw-on(task#303 S1) — 같은 symbol-draw 키프레임을 --dur-draw-scene(500ms)로
+/* 투어 장면 스케치 전용 draw-on(task#303 S1) — 전용 scene-draw 키프레임을 --dur-draw-scene(500ms)로
    재생한다. .symbol-draw와 분리한 이유는 위 --dur-draw-scene 토큰 주석 참조(tourSketches.jsx만 사용,
-   personSymbols.jsx·bookSymbols.jsx는 여전히 .symbol-draw). */
+   personSymbols.jsx·bookSymbols.jsx는 여전히 .symbol-draw + 공유 symbol-draw 키프레임).
+   지연 전 획은 visibility로 가린다(task#306 S1, ADR 260823-112504 ④) — 규칙 자체의 hidden이
+   지연 구간 내내 살아 있다가(fill-mode가 backwards가 아니므로 delay 중엔 애니메이션이 관여하지
+   않는다), 애니메이션이 시작되면 from의 visible이 켜지고 forwards가 끝까지 유지한다. 이 gating을
+   공유 symbol-draw 키프레임에 넣지 않는 이유: visibility는 상속 속성이라 .thread-draw·.intro-line
+   같은 무관한 소비자의 상속 가림을 깰 수 있다. */
+@keyframes scene-draw {
+  from { stroke-dashoffset: 1; visibility: visible; }
+  to   { stroke-dashoffset: 0; visibility: visible; }
+}
 .scene-draw :is(path, circle, ellipse, line, polyline, rect) {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  animation: symbol-draw var(--dur-draw-scene) var(--ease-out) var(--sym-delay, 0ms) forwards;
+  visibility: hidden;
+  animation: scene-draw var(--dur-draw-scene) var(--ease-out) var(--sym-delay, 0ms) forwards;
+}
+
+/* 압축 색칠 붓(task#306 S4, ADR 260823-112503·260823-112504) — 펜선 완주 뒤 마스크 안에서 저작
+   붓질 순서를 압축 재생해 붓이 지나간 자리에 색을 남긴다(tourSketches.jsx의 <mask> + .scene-wash
+   래퍼). scene-draw 키프레임을 그대로 재사용한다(stroke-dashoffset 1→0, 내내 visible) — 다른 건
+   --wash-k가 --sym-delay를 압축해 붓질 "순서"만 빨리 감는 것뿐이다. stroke-width: 6(viewBox 단위)은
+   저작 잉크선(0.6~1.6)보다 4~10배 굵어야 마스크가 선이 아니라 면으로 칠해지기 때문 — render_scene.py로
+   육안 확인(task#306 S4). opacity: 1 강제는 이 스코프 안에서만: 저작 opacity="0.4" 반투명 배경획이
+   마스크에서 색을 못 칠하게 막되, .scene-wash 밖의 잉크 쪽 저작 opacity는 건드리지 않는다. */
+.scene-wash :is(path, circle, ellipse, line, polyline, rect) {
+  stroke: #fff; stroke-width: 6; fill: none; opacity: 1;
+  stroke-dasharray: 1; stroke-dashoffset: 1; visibility: hidden;
+  animation: scene-draw var(--wash-dur, 700ms) linear
+    calc(var(--sym-delay, 0ms) * var(--wash-k, 0) + var(--wash-begin, 0ms)) forwards;
+}
+/* 마스크 안의 Scene 복제는 <Label>(<text>)도 함께 그린다 — 마스크는 요소의 루미넌스로만 판정하므로
+   그 텍스트가 --reveal-end에 페이드인하는 순간 이름표 자리에 채색층이 글자 모양으로 새어 나왔다
+   (실측, task#306 S4 — render_scene.py 스크린샷에서 이름표 주위 얼룩 확인). 마스크의 목적은 붓질
+   stroke 형상뿐이므로 텍스트는 완전히 걷어낸다. */
+.scene-wash text { display: none; }
+
+/* 식자를 드로인 완료 뒤로(task#306 S2, ADR 260823-112504) — SceneSvg가 계측해 심는 --reveal-end에서
+   --dur-base(250ms) 스태거(--label-i)로 페이드인. --dur-slow(400ms) = 기존 SMIL 이름표 페이드
+   (SceneLabel.jsx)와 동일 길이 — 모션 토큰만 참조(하드코딩 금지, 위 "모션 토큰" 절). */
+@keyframes scene-label-in { to { opacity: 1; } }
+.scene-label-last {
+  animation: scene-label-in var(--dur-slow) linear
+    calc(var(--reveal-end, 0ms) + var(--label-i, 0) * var(--dur-base)) forwards;
 }
 
 /* 책 펼침 입장 — 대문(목차 면)이 왼쪽 제본에서 펼쳐지는 원근 회전(ADR-0026). 세션 첫 진입 1회. */

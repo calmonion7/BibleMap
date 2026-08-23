@@ -66,12 +66,16 @@ _FILTER_JS = """([th, tol]) => {
   if (!svg) return null;
   let total = 0, kept = 0;
   for (const el of svg.querySelectorAll('path,circle,ellipse,line,polyline,rect')) {
+    if (el.closest('.scene-wash')) continue;   // 마스크 안 복제분(task#306 S4) — 아래 주석 참조
     el.style.removeProperty('visibility');
     const cs = getComputedStyle(el);
     if (cs.stroke === 'none' || cs.stroke === 'transparent') continue;
     total++;
     const w = parseFloat(cs.strokeWidth);
-    if (w >= th - tol) { kept++; } else { el.style.visibility = 'hidden'; }
+    // !important 필수(task#306 S1) — .scene-draw가 이제 자체 CSS 애니메이션으로 visibility를
+    // 몬다(index.css). 애니메이션 값은 cascade에서 author-normal(일반 인라인 스타일 포함)보다
+    // 위이므로 !important 없는 인라인 지정은 진행 중/forwards인 애니메이션에 묻힌다.
+    if (w >= th - tol) { kept++; } else { el.style.setProperty('visibility', 'hidden', 'important'); }
   }
   return { total, kept };
 }"""
@@ -83,6 +87,29 @@ _FREEZE_JS = """(t) => {
   if (!svg) return;
   for (const a of svg.getAnimations({subtree:true})) { a.pause(); a.currentTime = t; }
   if (svg.pauseAnimations) { svg.pauseAnimations(); svg.setCurrentTime(t / 1000); }
+}"""
+
+# eco: 읽기 전용 계측 한 줄(task#306 S1) — "그려지는 중인 획만 보이는가"를 육안 대신 숫자로
+# 판정하기 위함. stroke 요소 중 getComputedStyle().visibility === 'visible' 개수를 센다.
+# 동작(필터·프리즈)은 바꾸지 않는다 — 이 함수는 아무것도 쓰지 않고 세기만 한다.
+#
+# .scene-wash 제외(task#306 S4) — 채색층 장면은 <mask> 안에서 같은 Scene을 한 번 더 그린다.
+# 그 복제분까지 세면 이 도구가 보고하는 "총선"이 실제 잉크 선 수의 2배가 되고(사무엘 197 → 394),
+# --min-stroke-width 감선 계단으로 밀도를 재는 사람이 조용히 2배를 읽는다(task#305의 D_human·
+# D_model이 이 도구로 측정된 값이다). 잉크만 센다 — 마스크는 연출 장치이고 밀도가 아니다.
+_VISIBLE_JS = """() => {
+  const panel = document.querySelector('[data-sketch-panel]');
+  const svg = panel && panel.querySelector('svg');
+  if (!svg) return null;
+  let total = 0, visible = 0;
+  for (const el of svg.querySelectorAll('path,circle,ellipse,line,polyline,rect')) {
+    if (el.closest('.scene-wash')) continue;   // 마스크 안 복제분(task#306 S4) — 아래 주석 참조
+    const cs = getComputedStyle(el);
+    if (cs.stroke === 'none' || cs.stroke === 'transparent') continue;
+    total++;
+    if (cs.visibility === 'visible') visible++;
+  }
+  return { total, visible };
 }"""
 
 
@@ -140,8 +167,10 @@ def shoot(pw, scene, out, scale, at_ms, rungs=None):
         if not el:
             sys.exit("패널이 렌더되지 않았다")
         if not rungs:
+            vis = page.evaluate(_VISIBLE_JS)
             el.screenshot(path=out)
-            print(f"저장: {out}  (배율 {scale}x, --at {at_ms}, 콘솔에러 {len(errs)}건)")
+            vis_str = f", 보이는 획 {vis['visible']}/{vis['total']}" if vis else ""
+            print(f"저장: {out}  (배율 {scale}x, --at {at_ms}, 콘솔에러 {len(errs)}건{vis_str})")
         else:
             # 감선 계단 — 한 세션에서 임계별로 한 장씩. 임계 0은 전체(무필터)와 같다.
             W = stroke_scale()
@@ -152,10 +181,12 @@ def shoot(pw, scene, out, scale, at_ms, rungs=None):
                     sys.exit("패널 svg를 찾지 못했다 — 선택자가 바뀌었는지 확인하라")
                 page.evaluate(_FREEZE_JS, at_ms)   # 안전판 — 위 _FILTER_JS 주석 참조
                 page.wait_for_timeout(120)
+                vis = page.evaluate(_VISIBLE_JS)
                 path = f"{stem}-mw{n:g}{ext}"
                 el.screenshot(path=path)
+                vis_str = f"  보이는 획 {vis['visible']}/{vis['total']}" if vis else ""
                 print(f"저장: {path}  임계 n>={n:g} (DOM {n * W:.4f}) "
-                      f"선 {got['kept']}/{got['total']}  배율 {scale}x  --at {at_ms}")
+                      f"선 {got['kept']}/{got['total']}  배율 {scale}x  --at {at_ms}{vis_str}")
         if errs:
             print("  ⚠ 콘솔에러:", errs[0][:160])
     finally:

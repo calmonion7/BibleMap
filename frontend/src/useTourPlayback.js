@@ -12,7 +12,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 // 296정차지 중 가장 짧은 note(84자)가 배정된 step도 그 상한을 다 쓰는 장면을 받으면 절정 연출
 // 여유가 나와야 한다(min(stepDuration) − 450 − 10,000 ≥ 1,500ms) — 역산하면 하한이 9,000이다.
 // 투어 전체 재생시간은 이 상향으로 약 +42% 늘어난다(9투어 실측, ≤60% 제약 안).
-function stepDuration(note) {
+export function stepDuration(note) {
   return 9000 + (note ? Math.min(note.length * 40, 5000) : 0)
 }
 

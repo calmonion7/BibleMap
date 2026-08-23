@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Maximize2, X } from 'lucide-react'
 import INTRO_SCENES from './sketches/introMontage'
+import { stepDuration } from './useTourPlayback'
 
 // 투어 정차지 장면 스케치 — 투어별 모듈(frontend/src/sketches/)을 **투어 단위로 동적 로드**한다.
 // 9모듈을 한 레지스트리로 정적 병합하던 이전 구조는 단일 대청크(425KB)를 만들었고, 밀도 상향 후엔
@@ -23,9 +24,83 @@ const TOUR_MODULES = {
   'the-early-church': () => import('./sketches/theEarlyChurch'),
 }
 
-function SceneSvg({ Scene, width, reduce }) {
+// CSS <time> 계산값 → ms. Chromium은 커스텀 프로퍼티의 계산값을 항상 원 단위(ms)로 돌려주지
+// 않는다 — "500ms"로 저작해도 getComputedStyle이 ".5s"로 정규화해 돌려주는 걸 실측으로 확인했다
+// (--sym-delay는 인라인으로 매겨져 ms를 유지하지만 --dur-draw-scene은 스타일시트 값이라 s로 바뀐다).
+// 단순 parseFloat는 단위를 무시해 0.5를 500으로 오독한다 — 단위를 반드시 함께 읽는다.
+function cssTimeMs(v) {
+  const m = /^\s*(-?[\d.]+)(ms|s)?\s*$/.exec(v || '')
+  if (!m) return 0
+  return m[2] === 's' ? parseFloat(m[1]) * 1000 : parseFloat(m[1])
+}
+
+// letterLast(옵트인, task#306 S2): 드로인 완료 시각을 계측해 --reveal-end에 심는다 — SceneLabel.jsx의
+// after= 이름표가 그 값에서 파생 지연을 계산한다(ADR 260823-112504, 수동 at= 값 대신 소스 파생).
+// useLayoutEffect(페인트 전) — useEffect로 늦추면 CSS 애니메이션이 --reveal-end 기본값(0ms)으로
+// 먼저 시작해 한 프레임 깜빡인다. color가 없으면(296장면 중 이 파일럿 1건 제외) 채색층이 없어
+// --reveal-end == 드로인 종료(inkEnd) — 기존 동작 그대로.
+//
+// color(옵트인, task#306 S4, ADR 260823-112503·260823-112504): 채색층 자산 경로. 있으면 3층
+// (채색층 아래 + 저작 잉크 위)을 렌더하고, 펜선 완주(inkEnd) 뒤 "압축 색칠 붓"을 마스크 안에서
+// 재생한다 — 같은 저작 붓질 순서(--sym-delay)를 --wash-k로 압축해 다시 그리면 붓이 지나간 자리에
+// 색이 남는다. 예산은 이 정차지의 실제 stepDuration(note)과 전역 보수 상한(GLOBAL_MIN_STEP_MS)
+// 중 **더 작은 쪽**을 쓴다(적대적 리뷰, task#306 재검증 — 원래는 note만 썼다). note가 유난히 길면
+// (이 파일럿 111자 → 12,990ms) 실제 예산이 plan.md 정본(11,910ms, 전 투어 최단 note 84자 기준)을
+// 넘겨 버리는데, 이 파일럿이 증명해야 하는 건 "296장면으로 확대해도 안전한 페이싱"이지 이 정차지
+// 하나에서 안 끊기는 페이싱이 아니다. 전역 상한이 항상 이겨 지금은 GLOBAL_MIN_STEP_MS 고정값과
+// 같지만(전역 최소는 정의상 어떤 개별 note의 stepDuration보다 크지 않다), note가 더 짧은 정차지로
+// 장면이 옮겨지면 그쪽 실측값이 더 작아져 자동으로 이겨 이중 방어가 된다 — 상수 복사 금지 규율은
+// GLOBAL_MIN_STEP_MS 정의부의 주석 참조(살아있는 대조군이 있다).
+const GLOBAL_MIN_STEP_MS = 12360 // = 9000 + min(84*40, 5000) — data/tours/*.json 전건(296정차지)
+// 실측 최단 note(84자) 기준 min(stepDuration). backend/scripts/validate_scene_sketch_detail.py의
+// _min_step_ms()가 검사마다 그 파일들을 다시 읽어 이 값과 대조한다(어긋나면 게이트가 빨강이 된다) —
+// 그냥 복사한 매직넘버가 아니라 살아있는 대조군이 있는 상수다(ADR 260820-003946).
+function SceneSvg({ Scene, width, reduce, letterLast, note, color }) {
+  const svgRef = useRef(null)
+  const maskId = useId()
+  // 그레이스풀 강등 실측(task#306 S4): SVG <image>의 href가 404면 Chromium은 "아무것도 안 그리지"
+  // 않는다 — 브라우저 기본 깨진-이미지 아이콘을 뷰박스 전체에 늘려 그리고, 이 마스크를 통과해
+  // 화면에 얼룩으로 번진다(render_scene.py로 실측 확인). onError로 그 실패를 잡아 <image> 자체를
+  // 다음 렌더에서 걷어내야 진짜로 "잉크 경로만 그대로 선다"가 된다.
+  const [colorOk, setColorOk] = useState(true)
+  const showColor = color && colorOk
+  useLayoutEffect(() => {
+    if (!letterLast || reduce) return
+    const svg = svgRef.current
+    if (!svg) return
+    let maxDelay = 0
+    svg.querySelectorAll('g[style*="--sym-delay"]').forEach(g => {
+      const delay = cssTimeMs(getComputedStyle(g).getPropertyValue('--sym-delay'))
+      if (delay > maxDelay) maxDelay = delay
+    })
+    const inkEnd = maxDelay + cssTimeMs(getComputedStyle(svg).getPropertyValue('--dur-draw-scene'))
+    if (!showColor) {
+      svg.style.setProperty('--reveal-end', `${inkEnd}ms`)
+      return
+    }
+    // 마스크 안 Scene 복제(아래 .scene-wash)도 같은 <Label>을 다시 그리므로 querySelectorAll이
+    // 실제보다 2배로 센다 — 그 복제분은 closest('.scene-wash')로 걸러낸다(index.css의
+    // .scene-wash text{display:none}과 짝인 계측 쪽 수정, task#306 S4).
+    const labelCount = [...svg.querySelectorAll('text.scene-label-last')]
+      .filter(t => !t.closest('.scene-wash')).length
+    const durBase = cssTimeMs(getComputedStyle(svg).getPropertyValue('--dur-base'))
+    const durSlow = cssTimeMs(getComputedStyle(svg).getPropertyValue('--dur-slow'))
+    const budget = Math.min(stepDuration(note || ''), GLOBAL_MIN_STEP_MS) - 450 // 450 = 패널 대기(B6 정본)
+    // index.css .scene-label-last의 실제 종료식은 revealEnd + label-i*durBase + durSlow이고
+    // label-i의 최댓값은 labelCount-1이다(0-베이스 스태거) — labelCount를 그대로 곱하면 존재하지
+    // 않는 한 스태거분(durBase)을 과다 예약해 washSpan을 그만큼 깎는다(적대적 리뷰, task#306 재검증).
+    const labelRsv = labelCount > 0 ? (labelCount - 1) * durBase + durSlow : 0
+    const washSpan = Math.max(600, budget - inkEnd - labelRsv)
+    const washDur = Math.min(700, washSpan)
+    const washK = maxDelay > 0 ? (washSpan - washDur) / maxDelay : 0
+    svg.style.setProperty('--wash-begin', `${inkEnd}ms`)
+    svg.style.setProperty('--wash-k', `${washK}`)
+    svg.style.setProperty('--wash-dur', `${washDur}ms`)
+    svg.style.setProperty('--reveal-end', `${inkEnd + washSpan}ms`)
+  }, [letterLast, reduce, note, showColor])
   return (
     <svg
+      ref={svgRef}
       viewBox="0 0 120 64"
       width={width}
       height={typeof width === 'number' ? Math.round(width * 64 / 120) : undefined}
@@ -40,6 +115,20 @@ function SceneSvg({ Scene, width, reduce }) {
       strokeLinejoin="round"
       aria-hidden="true"
     >
+      {showColor && !reduce && (
+        // 마스크 id는 useId()로 유일하게 — 카드와 확대 오버레이가 같은 장면을 동시에 렌더한다.
+        // <g className="scene-wash">가 마스크 안에서 Scene을 다시 그려 압축 색칠 붓을 재생한다
+        // (index.css의 .scene-wash 참조).
+        <defs>
+          <mask id={maskId}>
+            <g className="scene-wash"><Scene reduce={reduce} /></g>
+          </mask>
+        </defs>
+      )}
+      {showColor && (
+        <image href={color} x="0" y="0" width="120" height="64" mask={reduce ? undefined : `url(#${maskId})`}
+          onError={() => setColorOk(false)} />
+      )}
       <Scene reduce={reduce} />
     </svg>
   )
@@ -56,7 +145,9 @@ function TourSketch({ eventId, width = 280, reduce = false }) {
 // 카메라 easeTo(400ms) 정착 후 draw 시작(그 전엔 자리만 확보해 카드 높이 점프 방지).
 // 스케치 없는 정차지는 아무것도 렌더하지 않음. reduce: 딜레이 없이 최종 장면 정적 표시.
 // tourId는 어느 모듈을 내려받을지 정한다 — 정차지 하나 때문에 9투어를 다 받지 않도록(task#287).
-export function TourSketchPanel({ eventId, tourId }) {
+// note: 그 정차지의 실제 재생 예산(stepDuration) 파생 입력 — SceneSvg가 채색 구간(washSpan)을
+// 계산할 때 전역 보수 상한과 함께 쓴다(task#306 S4, 둘 중 더 작은 쪽이 예산이 된다).
+export function TourSketchPanel({ eventId, tourId, note }) {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const [ready, setReady] = useState(reduce)
   const [scenes, setScenes] = useState(null) // null = 로드 중
@@ -121,7 +212,7 @@ export function TourSketchPanel({ eventId, tourId }) {
         onKeyDown={ready ? e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpanded(true) } } : undefined}
         style={{ position: 'relative', aspectRatio: '120 / 64', width: '100%', cursor: ready ? 'zoom-in' : undefined }}
       >
-        {ready && <SceneSvg Scene={entry.Scene} width="100%" reduce={reduce} />}
+        {ready && <SceneSvg Scene={entry.Scene} width="100%" reduce={reduce} letterLast={entry.letterLast} note={note} color={entry.color} />}
         {ready && (
           // 좌하에 둔다 — 우하는 서술형 이름표(배치 레시피의 하단 띠)가 쓰는 자리라 682개 이름표 중
           // 78건이 이 버튼과 겹쳤다. B10(이름표 관통 금지)은 SVG 선분만 재므로 React 오버레이인
@@ -163,7 +254,7 @@ export function TourSketchPanel({ eventId, tourId }) {
             ...(dark ? { '--paper-accent': '#5f584c' } : {}),
           }}>
             <div style={{ width: 1100, maxWidth: 'none' }}>
-              <SceneSvg Scene={entry.Scene} width={1100} reduce={reduce} />
+              <SceneSvg Scene={entry.Scene} width={1100} reduce={reduce} letterLast={entry.letterLast} note={note} color={entry.color} />
             </div>
           </div>
           <button aria-label="닫기" onClick={() => setExpanded(false)} style={{

@@ -87,6 +87,17 @@ _SW = re.compile(r"sw\(\s*([0-9.]+)\s*(?:,\s*([0-9.]+))?\s*\)")
 # B6과 같은 보수적 형태(min(stepDuration) 기준)를 쓴다 — 그 정차지의 step으로만 재면 note가 짧은
 # 정차지로 장면이 옮겨졌을 때 조용히 깨진다. 대가는 필요보다 엄격하다는 것이고, 그게 맞는 대가다.
 # `<Label at="Ns">`는 0.4s 페이드인이다(SceneLabel.jsx) — 이름표도 연출이므로 함께 센다.
+# `<Label after={i}>`(task#306 S2, ADR 260823-112504)는 드로인 완료(drawin)에서 파생한다 —
+# 종료 시각 = drawin + i*250(스태거) + 400(페이드). at=처럼 수동값이 아니라 drawin에 종속되므로
+# scan_scene이 아니라 여기(drawin을 아는 judge)에서 계산해 ends에 합류시킨다.
+#
+# has_color(task#306 S4, 적대적 리뷰로 드러난 구멍 — 재검증에서 메움): 레지스트리에 color 필드가
+# 있는 장면은 드로인 뒤 "압축 색칠 붓"(wash)이 끼어들어 이름표가 drawin이 아니라
+# --reveal-end(= drawin + washSpan, tourSketches.jsx)에서 페이드인한다. 이 축을 모르면 게이트가
+# wash로 늘어난 실제 종료 시각을 못 보고 조용히 초록이 된다 — ADR 260823-112504가 고치려던
+# "게이트가 이 축을 보지 않는다" 결함 클래스가 색층에서 좁게 재발한 사례. _reveal_last()가
+# tourSketches.jsx의 washSpan 공식을 그대로 이식해 재현한다(GLOBAL_MIN_STEP_MS는 그 파일의
+# 상수를 여기 min_step과 대조해 어긋남을 잡는다 — _global_min_step_ms_js() 참조).
 # B10 — 사용자 지시(2026-08-21): "그림과 글이 겹치지 않게 배치".
 # 이름표는 종이색 헤일로(SceneLabel.jsx의 stroke="var(--paper)")로 그림 위에서도 읽히게 돼 있지만,
 # 그 장치는 겹침을 **견디는** 것이고 겹치지 않는 것과는 다르다. 실측 결과 세 장면 모두 이름표가
@@ -114,6 +125,10 @@ FRAME = (0, 0, 120, 64)  # viewBox
 _DUR = re.compile(r'\bdur\s*=\s*"([^"]+)"')
 _LABEL_AT = re.compile(r'<Label[^>]*\bat="([0-9.]+)"')
 _LABEL_FADE_MS = 400
+# after={i}(task#306 S2, ADR 260823-112504) — 드로인 완료(drawin)에서 파생하는 이름표. i*250ms
+# 스태거 + 400ms 페이드(index.css .scene-label-last, SceneLabel.jsx). drawin은 scan_scene 시점엔
+# 아직 모르므로(steps 집계가 끝나야 나온다) 인덱스만 여기서 모으고, 종료 시각 계산은 judge()가 한다.
+_LABEL_AFTER = re.compile(r'<Label[^>]*\bafter=\{(\d+)\}')
 _DEFAULT_WEIGHT = 1.1      # sw() 없이 {...P}만 쓴 선 — svg 루트의 strokeWidth 기본값
 
 _STROKE_TAGS = {"path", "circle", "ellipse", "line", "polyline", "rect"}
@@ -176,6 +191,15 @@ def _min_step_ms():
     return min(base + min(n * mult, cap) for n in lens)
 
 
+def _global_min_step_ms_js():
+    # tourSketches.jsx의 GLOBAL_MIN_STEP_MS(task#306 S4 재검증) — 채색 wash가 예산을 정할 때 쓰는
+    # 전역 보수 상한. _min_step_ms()가 매번 data/tours/*.json 전건을 다시 읽어 계산한 값과
+    # _check()가 대조한다 — 그 파일에 값을 그냥 복사해 둔 게 아니라는 살아있는 증거(ADR 260820-003946).
+    m = re.search(r"GLOBAL_MIN_STEP_MS\s*=\s*(\d+)", _read("frontend/src/tourSketches.jsx"))
+    assert m, "tourSketches.jsx에서 GLOBAL_MIN_STEP_MS를 찾지 못했다 — 채색 wash 예산 상수 이름이 바뀌었다면 이 검증기도 갱신하라"
+    return int(m.group(1))
+
+
 # ── JSX 스캔 ─────────────────────────────────────────────────────────────────
 def _delay_of(attrs, inherited):
     """이 태그 자신의 지연. d(...)가 없으면 상속값."""
@@ -229,7 +253,8 @@ def _begin_ms(value):
 
 
 def scan_scene(body):
-    """장면 본문 → (지연별 stroke 수, SMIL begin(ms), [(굵기, 반투명)], 연출 종료 시각(ms))."""
+    """장면 본문 → (지연별 stroke 수, SMIL begin(ms), [(굵기, 반투명)], 연출 종료 시각(ms),
+    after= 이름표 인덱스 목록)."""
     steps, begins, weights, ends, stack = {}, [], [], [], [0]
     for name, closing, self_closing, attrs in _tags(body):
         if closing:
@@ -259,7 +284,8 @@ def scan_scene(body):
                     ends.append(ms + ((_begin_ms(d.group(1)) or 0) if d else 0))
     # 이름표 페이드인도 연출이다 — <Label>은 컴포넌트라 태그 스캔에 안 걸리므로 따로 읽는다.
     ends += [float(a) * 1000 + _LABEL_FADE_MS for a in _LABEL_AT.findall(body)]
-    return steps, begins, weights, ends
+    afters = [int(a) for a in _LABEL_AFTER.findall(body)]
+    return steps, begins, weights, ends, afters
 
 
 def label_boxes(body):
@@ -344,7 +370,25 @@ def structural_polylines(body):
     return out
 
 
-def judge(steps, begins, weights, ends, dur_draw, panel_delay, min_step, body=None):
+def _reveal_last(ends, afters, drawin, min_step, panel_delay, has_color):
+    """마지막 연출(SMIL·이름표) 종료 시각(ms). has_color가 참이면 이름표는 drawin이 아니라
+    --reveal-end(= drawin + washSpan)에서 스태거된다 — tourSketches.jsx의 useLayoutEffect와
+    같은 공식을 이식한다(judge()와 _check() 출력이 이 하나를 공유한다 — 판정 함수 이중화 금지)."""
+    if has_color:
+        label_count = len(afters)
+        # index.css .scene-label-last 실제 종료식(revealEnd + label-i*250 + 400, label-i 최댓값은
+        # labelCount-1)과 같은 식 — tourSketches.jsx의 labelRsv 수정(적대적 리뷰, 재검증)과 짝이다.
+        label_rsv = ((label_count - 1) * 250 + _LABEL_FADE_MS) if label_count else 0
+        budget = min_step - panel_delay  # tourSketches.jsx: Math.min(stepDuration(note), GLOBAL_MIN_STEP_MS) - 450
+        wash_span = max(600, budget - drawin - label_rsv)
+        reveal_end = drawin + wash_span
+    else:
+        reveal_end = drawin
+    after_ends = [reveal_end + i * 250 + _LABEL_FADE_MS for i in afters]
+    return max(ends + [drawin, reveal_end] + after_ends)
+
+
+def judge(steps, begins, weights, ends, afters, dur_draw, panel_delay, min_step, body=None, has_color=False):
     """B1~B6 판정 → 위반 메시지 목록(비었으면 통과). 검사와 대조군이 공유하는 유일한 판정."""
     bad = []
     total = sum(steps.values())
@@ -406,7 +450,7 @@ def judge(steps, begins, weights, ends, dur_draw, panel_delay, min_step, body=No
                 bad.append(
                     f"B11 구조 연결: 구조 선이 {near:.1f}단위 떠 있다 (다른 부위와 {JOINT_GAP}단위 안에서 "
                     f"만나야 한다) — d=\"{src}\"")
-    last = max(ends + [drawin])
+    last = _reveal_last(ends, afters, drawin, min_step, panel_delay, has_color)
     if panel_delay + last > min_step:
         bad.append(
             f"B9 연출 완료: 패널 대기 {panel_delay}ms + 마지막 연출 종료 {last:.0f}ms "
@@ -440,50 +484,65 @@ def _all_scene_bodies():
 
 
 def _registry(mod):
-    """모듈의 레지스트리 → [(정차지 키, 장면함수명)]. 이 모듈이 무엇을 렌더하는지의 정본."""
+    """모듈의 레지스트리 → [(정차지 키, 장면함수명, color 필드 존재 여부)]. 이 모듈이 무엇을
+    렌더하는지의 정본. color(task#306 S4)가 있으면 그 장면은 드로인 뒤 wash가 끼어든다 —
+    _reveal_last()의 has_color 입력이 이걸로 정해진다."""
     src = _read(f"frontend/src/sketches/{mod}")
-    return re.findall(r"['\"](authored-[A-Za-z0-9-]+)['\"]\s*:\s*\{\s*Scene:\s*([A-Za-z0-9_]+)", src)
+    out = []
+    for m in re.finditer(r"['\"](authored-[A-Za-z0-9-]+)['\"]\s*:\s*\{([^{}]*)\}", src):
+        key, entry = m.group(1), m.group(2)
+        fn = re.search(r"\bScene:\s*([A-Za-z0-9_]+)", entry)
+        assert fn, f"{mod}: {key} 레지스트리 항목에 Scene:이 없다"
+        out.append((key, fn.group(1), "color:" in entry))
+    return out
 
 
 def _resolve_targets():
-    """TARGETS → [(표시이름, 본문)]. 모듈 통째 지정은 **레지스트리 기준**으로 열거한다 —
+    """TARGETS → [(표시이름, 본문, has_color)]. 모듈 통째 지정은 **레지스트리 기준**으로 열거한다 —
     파일 안 함수 목록으로 열거하면 다른 파일로 옮겨간 장면이 소리 없이 빠진다."""
     index = _all_scene_bodies()
     out = []
     for t in TARGETS:
         mod, _, scene = t.partition(":")
         assert os.path.exists(os.path.join(_ROOT, "frontend/src/sketches", mod)), f"대상 모듈 없음: {mod}"
+        entries = _registry(mod)
         if scene:
             assert scene in index, f"{scene}의 정의를 어떤 스케치 파일에서도 찾지 못했다"
-            out.append((t, index[scene]))
+            has_color = any(fn == scene and c for _, fn, c in entries)
+            out.append((t, index[scene], has_color))
         else:
-            entries = _registry(mod)
             assert entries, f"{mod}에 레지스트리 항목이 없다"
-            for key, fn in sorted(entries):
+            for key, fn, has_color in sorted(entries):
                 assert fn in index, (
                     f"{mod}의 레지스트리가 가리키는 {fn}의 정의를 찾지 못했다 — "
                     "다른 파일로 옮겼다면 그 파일도 sketches/ 아래에 있어야 한다")
-                out.append((f"{mod}:{fn}", index[fn]))
+                out.append((f"{mod}:{fn}", index[fn], has_color))
     return out
 
 
 def _check():
     dur_draw, panel_delay, min_step = _dur_draw_ms(), _panel_delay_ms(), _min_step_ms()
+    js_floor = _global_min_step_ms_js()
+    assert js_floor == min_step, (
+        f"tourSketches.jsx의 GLOBAL_MIN_STEP_MS({js_floor}ms)가 실측 min(stepDuration)({min_step}ms)과 "
+        "어긋났다 — data/tours/*.json의 최단 note가 바뀌었으면 그 상수도 같이 갱신하라"
+    )
     print(
         f"검사: 장면 저작 규약 B1~B11 (대상 {len(TARGETS)}엔트리 · "
         f"--dur-draw-scene {dur_draw}ms · 패널 대기 {panel_delay}ms · min(stepDuration) {min_step}ms)"
     )
     failures = []
-    for label, body in _resolve_targets():
-        steps, begins, weights, ends = scan_scene(body)
-        bad = judge(steps, begins, weights, ends, dur_draw, panel_delay, min_step, body)
+    for label, body, has_color in _resolve_targets():
+        steps, begins, weights, ends, afters = scan_scene(body)
+        bad = judge(steps, begins, weights, ends, afters, dur_draw, panel_delay, min_step, body, has_color)
         drawin = (max(steps) if steps else 0) + dur_draw
         struct = sum(1 for w, _ in weights if w >= STRUCT_WEIGHT)
         faint = sum(1 for _, f in weights if f)
         mark = "✗" if bad else "✓"
-        last = max(ends + [drawin])
+        last = _reveal_last(ends, afters, drawin, min_step, panel_delay, has_color)
+        tag = "(채색 포함)" if has_color else ""
         print(f"  {mark} {label} — {sum(steps.values())}선(구조 {struct} · 반투명 {faint}) · "
-              f"{len(steps)}단계 · 드로인 {drawin}ms · 연출 종료 {last:.0f}ms")
+              f"{len(steps)}단계 · 드로인 {drawin}ms · 연출 종료 {last:.0f}ms{tag}")
         for b in bad:
             print(f"      {b}")
         if bad:
@@ -514,6 +573,12 @@ def _synthetic(strokes, per_step, gap, begin_s=None, weight=2, faint_from=None):
 
 def _selftest():
     dur_draw, panel_delay, min_step = _dur_draw_ms(), _panel_delay_ms(), _min_step_ms()
+    js_floor = _global_min_step_ms_js()
+    assert js_floor == min_step, (
+        f"tourSketches.jsx의 GLOBAL_MIN_STEP_MS({js_floor}ms)가 실측 min(stepDuration)({min_step}ms)과 "
+        "어긋났다 — data/tours/*.json의 최단 note가 바뀌었으면 그 상수도 같이 갱신하라"
+    )
+    print(f"  ✓ GLOBAL_MIN_STEP_MS 대조 → tourSketches.jsx({js_floor}ms) == min(stepDuration)({min_step}ms)")
     ok_body = _synthetic(36, 3, 450, begin_s=(450 * 11 + dur_draw) / 1000)
     ok = judge(*scan_scene(ok_body), dur_draw, panel_delay, min_step)
     assert not ok, f"대조군 기준선이 이미 빨강이다 — 합성 장면이 규약을 어긴다: {ok}"
@@ -535,6 +600,9 @@ def _selftest():
         ("B8", "반투명 획이 과반(20/36)", _synthetic(36, 3, 450, begin_s=6.0, faint_from=16), {}),
         # B5는 통과하되(절정이 드로인 뒤) B9만 위반하는 케이스 — 절정이 step을 넘겨 끝난다.
         ("B9", "절정이 step을 넘겨 종료", _synthetic(36, 3, 450, begin_s=12.0), {}),
+        # after= 이름표(task#306 S2)가 drawin에서 파생한 종료 시각으로 B9를 위반시키는지.
+        ("B9", "after= 이름표가 절정 종료를 늘림",
+         ok_body + '<Label x="60" y="60" after={40} reduce={reduce}>연출</Label>', {}),
     ]
     for code, desc, body, over in cases:
         bad = judge(
@@ -546,6 +614,26 @@ def _selftest():
         hit = [b for b in bad if b.startswith(code)]
         assert hit, f"{code} 위반({desc})을 주입했는데 검증기가 통과시켰다 — 게이트가 죽어있다"
         print(f"  ✓ {code} 위반 주입 → 검출: {hit[0]}")
+
+    # has_color(task#306 S4, 적대적 리뷰로 드러난 구멍) — 라벨 5개로 label_rsv를 키우고 drawin을
+    # B4 상한 바로 아래로 밀어 washSpan이 600ms 바닥에 걸리게 한다. has_color=False로 재면(수정 전
+    # 게이트의 시야) 같은 body가 B9를 통과해 버려야 "이 축을 못 보고 있었다"는 게 재현된다.
+    budget = min_step - panel_delay
+    label_rsv5 = 4 * 250 + _LABEL_FADE_MS  # 라벨 5개 스태거 예약(labelCount-1=4)
+    target_drawin = min(MAX_DRAWIN_MS - 20, budget - label_rsv5 - 550)  # 바닥(600ms) 안쪽으로 50ms
+    gap = max(1, round((target_drawin - dur_draw) / 11))
+    color_body = _synthetic(36, 3, gap) + "".join(
+        f'<Label x="60" y="60" after={{{i}}} reduce={{reduce}}>연출{i}</Label>' for i in range(5)
+    )
+    color_bad = judge(*scan_scene(color_body), dur_draw, panel_delay, min_step, has_color=True)
+    hit = [b for b in color_bad if b.startswith("B9")]
+    assert hit, f"B9(색층 wash) 위반을 통과시켰다 — 게이트가 wash 축을 안 본다: {color_bad}"
+    blind_bad = judge(*scan_scene(color_body), dur_draw, panel_delay, min_step)  # has_color=False(구 시야)
+    assert not [b for b in blind_bad if b.startswith("B9")], (
+        "대조 실패 — has_color=False로도 이미 B9 위반이면 wash 축을 분리해서 본 게 아니다"
+    )
+    print(f"  ✓ B9(색층 wash) 위반 주입 → 검출: {hit[0]} (has_color=False였다면 놓쳤을 위반)")
+
     # 파서 실명 대조군 — 아래 두 형태를 놓치면 지연을 0으로 오독해 게이트가 **조용히 거짓 초록**이
     # 된다. 실제로 그렇게 됐다(davidUnitedKingdom.jsx: 정적 2,700ms vs 브라우저 실측 6,000ms).
     # 경계 위반이 아니라 자(尺)가 눈먼 결함이므로 위 6케이스와 별도로 고정한다.
@@ -556,7 +644,7 @@ def _selftest():
         '<circle cx="1" cy="1" r="1" style={d(3500, false)} />'
         '</g>'
     )
-    steps, _, _, _ = scan_scene(tricky)
+    steps, _, _, _, _ = scan_scene(tricky)
     assert sorted(steps) == [0, 3500, 5000], (
         f"파서가 지연 형태를 놓쳤다 — 기대 [0, 3500, 5000], 실제 {sorted(steps)}. "
         "삼항 d(reduce ? 0 : N, reduce)와 stroke 요소 자체의 style={d(N, false)}를 읽어야 한다"
@@ -570,8 +658,8 @@ def _selftest():
                 "gospelOfJesus.jsx", "theEarlyChurch.jsx"):
         entries = _registry(mod)
         infile = _scene_bodies("frontend/src/sketches/" + mod)
-        moved = [fn for _, fn in entries if fn not in infile]
-        assert all(fn in index for _, fn in entries), f"{mod}: 레지스트리가 가리키는 장면을 못 찾는다"
+        moved = [fn for _, fn, _ in entries if fn not in infile]
+        assert all(fn in index for _, fn, _ in entries), f"{mod}: 레지스트리가 가리키는 장면을 못 찾는다"
         if moved:
             print(f"  ✓ 열거 누락 대조군 → {mod}: 레지스트리 {len(entries)}건 중 파일 밖 정의 {moved} 를 전역 색인이 잡는다")
     # B10 — 이름표는 <Label> 컴포넌트라 합성 장면에 따로 붙인다. 세 결함을 각각 주입한다.
