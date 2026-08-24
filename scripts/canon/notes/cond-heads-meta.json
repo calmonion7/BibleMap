@@ -1,0 +1,36 @@
+{
+  "david": {
+    "target": "david",
+    "source": "frontend/src/sketches/cast/david.jsx",
+    "head_diameter": 8.0,
+    "half_width": 8.0,
+    "top_margin": 8.8,
+    "bottom_margin": 6.0,
+    "clip_box": {
+      "x": 2600,
+      "y": 1363,
+      "width": 800,
+      "height": 740
+    },
+    "text_nodes": 0,
+    "ghost_strokes": 0,
+    "path": "/Users/calmonion/Project/BibleMap/.forge/reports/canon-pilot/cond-david.png"
+  },
+  "goliath": {
+    "target": "goliath",
+    "source": "frontend/src/sketches/cast/goliath.jsx",
+    "head_diameter": 8.4,
+    "half_width": 8.4,
+    "top_margin": 9.240000000000002,
+    "bottom_margin": 6.300000000000001,
+    "clip_box": {
+      "x": 2580,
+      "y": 1341,
+      "width": 840,
+      "height": 777
+    },
+    "text_nodes": 0,
+    "ghost_strokes": 0,
+    "path": "/Users/calmonion/Project/BibleMap/.forge/reports/canon-pilot/cond-goliath.png"
+  }
+}

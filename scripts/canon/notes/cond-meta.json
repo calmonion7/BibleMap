@@ -1,0 +1,66 @@
+{
+  "david": {
+    "target": "david",
+    "source": "frontend/src/sketches/cast/david.jsx",
+    "head_diameter": 8.0,
+    "half_width": 8.0,
+    "top_margin": 8.8,
+    "bottom_margin": 6.0,
+    "clip_box": {
+      "x": 2600,
+      "y": 1363,
+      "width": 800,
+      "height": 740
+    },
+    "text_nodes": 0,
+    "ghost_strokes": 0,
+    "path": "/Users/calmonion/Project/BibleMap/.forge/reports/canon-pilot/cond-david.png",
+    "thin_stroke_width": 0.15,
+    "ctrl": "/Users/calmonion/Project/BibleMap/.forge/reports/canon-pilot/cond-david-ctrl.png",
+    "ctrl_ink_ratio": 0.03174,
+    "ctrl_size": [
+      1024,
+      1024
+    ]
+  },
+  "goliath": {
+    "target": "goliath",
+    "source": "frontend/src/sketches/cast/goliath.jsx",
+    "head_diameter": 8.4,
+    "half_width": 8.4,
+    "top_margin": 9.240000000000002,
+    "bottom_margin": 6.300000000000001,
+    "clip_box": {
+      "x": 2580,
+      "y": 1341,
+      "width": 840,
+      "height": 777
+    },
+    "text_nodes": 0,
+    "ghost_strokes": 0,
+    "path": "/Users/calmonion/Project/BibleMap/.forge/reports/canon-pilot/cond-goliath.png",
+    "thin_stroke_width": 0.15,
+    "ctrl": "/Users/calmonion/Project/BibleMap/.forge/reports/canon-pilot/cond-goliath-ctrl.png",
+    "ctrl_ink_ratio": 0.03273,
+    "ctrl_size": [
+      1024,
+      1024
+    ]
+  },
+  "scene": {
+    "target": "scene",
+    "source": "frontend/src/sketches/davidUnitedKingdom.jsx GoliathScene",
+    "at_ms": 9000,
+    "total_strokes": 219,
+    "inked_strokes": 189,
+    "ghost_strokes": 30,
+    "text_nodes": 0,
+    "path": ".forge/reports/canon-pilot/cond-scene.png",
+    "ctrl": "/Users/calmonion/Project/BibleMap/.forge/reports/canon-pilot/cond-scene-ctrl.png",
+    "ctrl_ink_ratio": 0.12028,
+    "ctrl_size": [
+      1216,
+      640
+    ]
+  }
+}

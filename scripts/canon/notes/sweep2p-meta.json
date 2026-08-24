@@ -1,0 +1,75 @@
+{
+  "person_cn": 0.3,
+  "seed": 11,
+  "size": [
+    1024,
+    1024
+  ],
+  "ages": [
+    15,
+    62
+  ],
+  "ip_scales": [
+    0.3,
+    0.5,
+    0.7
+  ],
+  "sha256": {
+    "david-ip0.3-age15-s11.png": "b0e5445b6ff276165773acceae9e32a141ac062531f7aa8de454c442c88ac181",
+    "david-ip0.3-age62-s11.png": "6f0e8f5cc7c020d3a70063ec2d6c7a2611d7e995eb7b46ed805dee0101531fed",
+    "david-ip0.5-age15-s11.png": "29464030c15ae49f9a340aae4ba80ca71f015bb42af1c16040ddf8283c2b5347",
+    "david-ip0.5-age62-s11.png": "9968a5cc4ccc9d49b16dda9b6536e020ae325ec00172318cf11b8ddefff9e018",
+    "david-ip0.7-age15-s11.png": "ab2e526939593041bddd673ef1b5505026fe5c4804b4e506ff2a632b21635e48",
+    "david-ip0.7-age62-s11.png": "af29522a2eba9595ab34d3d6c8246b88c1badb7ba11218c8f8c5afa49e68cb39"
+  },
+  "runs": [
+    {
+      "ip_adapter_scale": 0.3,
+      "age": 15,
+      "path": "/Users/calmonion/Project/BibleMap/.forge/reports/canon-pilot/sweep2p/david-ip0.3-age15-s11.png",
+      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, light shading, simple, clean background, muted palette. close-up head portrait of a boy of fifteen, lean-faced shepherd with calm steady eyes, curly hair, bare head, facing forward.",
+      "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, dark, heavy shadows, frame, border, stick figure, crude drawing, baby, toddler, infant, chibi, doll, beard, moustache, stubble, woman, girl, female",
+      "seconds": 131.6
+    },
+    {
+      "ip_adapter_scale": 0.3,
+      "age": 62,
+      "path": "/Users/calmonion/Project/BibleMap/.forge/reports/canon-pilot/sweep2p/david-ip0.3-age62-s11.png",
+      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, light shading, simple, clean background, muted palette. close-up head portrait of an old man of sixty-two, lean-faced shepherd with calm steady eyes, curly hair, bare head, facing forward.",
+      "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, dark, heavy shadows, frame, border, stick figure, crude drawing, child, youth, beard, moustache, stubble, woman, girl, female",
+      "seconds": 176.5
+    },
+    {
+      "ip_adapter_scale": 0.5,
+      "age": 15,
+      "path": "/Users/calmonion/Project/BibleMap/.forge/reports/canon-pilot/sweep2p/david-ip0.5-age15-s11.png",
+      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, light shading, simple, clean background, muted palette. close-up head portrait of a boy of fifteen, lean-faced shepherd with calm steady eyes, curly hair, bare head, facing forward.",
+      "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, dark, heavy shadows, frame, border, stick figure, crude drawing, baby, toddler, infant, chibi, doll, beard, moustache, stubble, woman, girl, female",
+      "seconds": 204.6
+    },
+    {
+      "ip_adapter_scale": 0.5,
+      "age": 62,
+      "path": "/Users/calmonion/Project/BibleMap/.forge/reports/canon-pilot/sweep2p/david-ip0.5-age62-s11.png",
+      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, light shading, simple, clean background, muted palette. close-up head portrait of an old man of sixty-two, lean-faced shepherd with calm steady eyes, curly hair, bare head, facing forward.",
+      "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, dark, heavy shadows, frame, border, stick figure, crude drawing, child, youth, beard, moustache, stubble, woman, girl, female",
+      "seconds": 197.3
+    },
+    {
+      "ip_adapter_scale": 0.7,
+      "age": 15,
+      "path": "/Users/calmonion/Project/BibleMap/.forge/reports/canon-pilot/sweep2p/david-ip0.7-age15-s11.png",
+      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, light shading, simple, clean background, muted palette. close-up head portrait of a boy of fifteen, lean-faced shepherd with calm steady eyes, curly hair, bare head, facing forward.",
+      "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, dark, heavy shadows, frame, border, stick figure, crude drawing, baby, toddler, infant, chibi, doll, beard, moustache, stubble, woman, girl, female",
+      "seconds": 203.0
+    },
+    {
+      "ip_adapter_scale": 0.7,
+      "age": 62,
+      "path": "/Users/calmonion/Project/BibleMap/.forge/reports/canon-pilot/sweep2p/david-ip0.7-age62-s11.png",
+      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, light shading, simple, clean background, muted palette. close-up head portrait of an old man of sixty-two, lean-faced shepherd with calm steady eyes, curly hair, bare head, facing forward.",
+      "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, dark, heavy shadows, frame, border, stick figure, crude drawing, child, youth, beard, moustache, stubble, woman, girl, female",
+      "seconds": 179.9
+    }
+  ]
+}

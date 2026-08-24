@@ -1,0 +1,20 @@
+{
+  "scene": "GoliathScene",
+  "at_ms": 9000,
+  "scale": 3,
+  "no_labels": true,
+  "shots": [
+    {
+      "path": ".forge/reports/canon-pilot/cond-scene.png",
+      "rung": null,
+      "kept": 219,
+      "total": 219,
+      "text_nodes": 0
+    }
+  ],
+  "post_performance": true,
+  "total_strokes": 219,
+  "inked_strokes": 189,
+  "ghost_strokes": 30,
+  "console_errors": []
+}

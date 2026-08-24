@@ -1,0 +1,85 @@
+"""[[생성 파라미터]] 정본 — 저작 파이프라인 13종이 읽는 유일한 선언처(task#316).
+
+이 파일 **밖**에서 여기 선언된 이름을 모듈 레벨로 다시 대입하면
+`backend/scripts/validate_canon_pipeline.py`가 배포를 막는다. 값을 바꾸려면 여기서만 바꾼다.
+근거는 ADR `260823-221839` — 기계로 강제하지 않는 규약 수치는 참조본에서 드리프트한다.
+실제로 이 파일이 생기기 전 `CN_MODEL`·`SDXL_BASE`는 각 6곳, `SCENE_CN`·`STEPS`·`GUIDANCE`는
+각 3곳에 리터럴로 복사돼 있었다.
+
+**조건 종류별로 갈라 둔다**(ADR `260824-191250` — 파생은 아무것도 승계하지 않는다).
+인물 두상과 장면 콘티는 조건 입력의 선 밀도가 달라 ControlNet 강도와 해상도가 함께 갈린다.
+`COND`로 묶어 두되 각 값은 아래에 최상위 이름으로도 선언한다 — 게이트가 **이름 집합**으로
+판정하기 때문에, 딕셔너리 안에만 있으면 다른 파일의 재선언을 막지 못한다.
+
+이 파이프라인은 앱과 다른 런타임에서 돈다(ADR `260825-065028`) — 앱(backend/frontend)은 이 파일을
+import하지 않는다. **재현은 아직 닫히지 않았다**: 미결 3축은 `requirements.txt` 머리 주석을 보라.
+"""
+import os
+
+# --- 위치 -------------------------------------------------------------------
+# `_HERE`는 이 파일의 내부 사정이라 사적 이름으로 둔다 — 게이트는 `_` 시작 이름을 정본 키로 보지
+# 않으므로, 다른 스크립트가 자기 `HERE`를 갖는 것은 재선언이 아니다.
+_HERE = os.path.dirname(os.path.abspath(__file__))
+CANON_DIR = _HERE
+REPO_ROOT = os.path.dirname(os.path.dirname(_HERE))   # scripts/canon → scripts → BibleMap
+NOTES = os.path.join(_HERE, "notes")                  # 판단 문서 14 + meta json 12 (추적)
+FROZEN = os.path.join(_HERE, "frozen")                # 동결 얼굴 2장 (추적) — 장면 생성의 정체성 입력
+PROMPTS_JSON = os.path.join(NOTES, "prompts.json")    # derive_prompts.py가 쓰고 생성기 4종이 읽는다
+
+# 산출물 루트. 스크립트를 추적 위치로 옮긴 뒤에도 **산출물 54MB는 따라오지 않는다**는 것이
+# 이 한 줄의 요점이다 — `.gitignore`의 `.forge/reports/`가 계속 덮는다.
+OUT_ROOT = os.path.join(REPO_ROOT, ".forge", "reports", "canon-pilot")
+
+# --- 모델 -------------------------------------------------------------------
+# 스크리블 ControlNet — 잉크 선화를 그대로 조건 입력으로 받는다(task#308이 고른 것).
+CN_MODEL = "xinsir/controlnet-scribble-sdxl-1.0"
+# 이름이 `BASE`가 **아닌** 이유: `cond_shoot_heads.py`의 `BASE`는 로컬 개발 서버 URL이라
+# 이름이 겹친다. 정본 키가 `BASE`였다면 게이트가 그 무관한 줄을 재선언으로 오탐한다.
+SDXL_BASE = "stabilityai/stable-diffusion-xl-base-1.0"
+IP_ADAPTER_REPO = "h94/IP-Adapter"
+IP_ADAPTER_SUBFOLDER = "sdxl_models"
+IP_ADAPTER_WEIGHT = "ip-adapter_sdxl.bin"
+# `judge_metrics.py`가 쓰는 CLIP 이미지 인코더(ViT-bigG). 파이프라인에서 **유일하게 리비전이
+# 박힌 자리**지만 머신 로컬 캐시의 절대경로라 다른 머신에서는 성립하지 않는다 — 재현 미결 축의
+# 하나이자, 「고정했다」로 읽으면 안 되는 자리다(ADR `260822-220823`).
+IMAGE_ENCODER = (
+    "/Users/calmonion/.cache/huggingface/hub/models--h94--IP-Adapter/"
+    "snapshots/018e402774aeeddd60609b4ecdb7e298259dc729/sdxl_models/image_encoder"
+)
+
+# --- 샘플링 (조건 종류와 무관하게 공유) --------------------------------------
+STEPS = 30        # task#308 관례 승계 — 비교 가능성 때문에 유지한다(바꾸면 앞선 실측과 못 잇는다).
+GUIDANCE = 6.5    # 같은 이유로 승계. 화풍 블록이 세서 이 이상 올리면 채도가 튄다.
+
+# --- 조건 종류별로 갈리는 값 --------------------------------------------------
+# 강도는 **조건 입력의 선 밀도에 따라 다르다** — 두상 조건은 stroke 4~8개뿐이라 0.8이면
+# "이 그림은 이 선이 전부"가 되어 모델이 얼굴 안을 비운다(사용자 UAT 2026-08-24 실패의 지배적
+# 원인, sweep_cause.py 실측: 같은 프롬프트로 cn 0.8 빈 타원 / cn 0.5 얼굴). 장면 조건은 189선이라
+# task#308이 검증한 0.8을 그대로 둔다 — 두 값을 하나로 묶으면 그 실측이 끊긴다.
+PERSON_CN = 0.3   # 얇은 조건 입력(THIN_SW) 기준 확인값 — probe_cn.py: 0.5는 아직 유아기 둥근 얼굴,
+                  # 0.3에서 곱슬·마른 얼굴의 열두 살 소년이 나온다(notes/SWEEP.md 참조).
+SCENE_CN = 0.8    # ADR `260824-191250` — 장면 콘티(189선) 조건 입력용 고정값.
+# 두상 크롭은 1024 정사각(원본 종횡비 ~1.08, 소폭 압축 허용), 장면은 task#308 관례를 그대로 잇는다.
+PERSON_SIZE = (1024, 1024)
+SCENE_SIZE = (1216, 640)
+IP_SCALE = 0.3         # S2가 정한 값(gen_sweep_scale_age.py 판정).
+IP_SCALES = [0.3, 0.5, 0.7]  # 스윕 2종이 함께 쓰는 후보 범위 — 두 곳에 복사돼 있던 값이다.
+# 조건 입력 전용 균일 선 굵기(viewBox 단위). 머리 8단위 대비 ~1.9%로, 1024px 산출에서 약 9px.
+# 원본 구조 선 2.6단위(머리의 32%)를 그대로 키우면 실루엣이 뭉개진다(회고 1of2 §3의 지배 원인).
+THIN_SW = 0.15
+# 잉크/배경 이진화 임계(0~255). 좌상단 코너를 배경으로 보고 |a-bg| > THRESHOLD를 잉크로 본다.
+# `prep_cond.py`와 `make_masks.py`가 **같은 임계·같은 극성**을 써야 마스크가 조건 입력과 어긋나지 않는다.
+THRESHOLD = 60
+
+# 조건 종류별 묶음. 위 이름들에서 조립한다 — 여기서 리터럴을 다시 적으면 그 자체가 드리프트다.
+COND = {
+    "person_head": {"cn_scale": PERSON_CN, "size": PERSON_SIZE, "ip_scale": IP_SCALE},
+    "scene_conti": {"cn_scale": SCENE_CN, "size": SCENE_SIZE, "ip_scale": IP_SCALE},
+}
+
+# --- 시드 -------------------------------------------------------------------
+# 스윕류가 축을 섞지 않으려고 고정하는 단일 시드. 다윗 동결본(gen/david-s11.png)·bg-on/bg-off와 같다.
+SEED_FIXED = 11
+BG_SEED = 11                    # 배경 후보 1장 — 위와 같은 시드를 쓴다(축을 섞지 않는다).
+PERSON_SEEDS = [11, 42, 7, 23]  # 인물 후보 4장.
+SCENE_SEEDS = [11, 42, 7]       # 장면 4조건 × 3시드 — PERSON_SEEDS 관례에서 3개.

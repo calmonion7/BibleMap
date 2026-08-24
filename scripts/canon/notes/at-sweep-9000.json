@@ -1,0 +1,20 @@
+{
+  "scene": "GoliathScene",
+  "at_ms": 9000,
+  "scale": 3,
+  "no_labels": true,
+  "shots": [
+    {
+      "path": "/tmp/goliath-9000.png",
+      "rung": null,
+      "kept": 218,
+      "total": 218,
+      "text_nodes": 0
+    }
+  ],
+  "post_performance": true,
+  "total_strokes": 218,
+  "inked_strokes": 188,
+  "ghost_strokes": 30,
+  "console_errors": []
+}

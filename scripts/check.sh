@@ -96,6 +96,20 @@ echo "=== check: GoliathScene 영역 마스크 delay 범위 연속성 (task#315 
 run "check_mask_ranges" python3 scripts/check_mask_ranges.py
 run "check_mask_ranges --selftest" python3 scripts/check_mask_ranges.py --selftest
 
+echo "=== check: 저작 파이프라인 정본 단일화 + scripts/ 추적 (배포 차단 가드) ==="
+# [[생성 파라미터]](모델 ID·스텝·guidance·강도·크기·시드)가 scripts/canon/params.py 하나에서만
+# 선언되는지, 그리고 scripts/ 아래에 미추적 파일이 없는지 본다(task#316). 둘째 축이 배포 차단인
+# 이유는 위생이 아니다 — check.sh가 부르는 check_cast_axes.py·check_mask_ranges.py가 미추적이면
+# 새 클론·CI에서 **게이트 자신이 깨진다**. 첫째 축은 소스만 읽으므로 GPU·생성 venv 없이 항상 돈다.
+# git 미가용 시 skip 계약은 아래 forge 문서 가드와 같게 맞춘다(둘째 축이 git을 쓴다).
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  run "validate_canon_pipeline (배포 차단 가드)" python3 -m backend.scripts.validate_canon_pipeline
+  run "validate_canon_pipeline --selftest (배포 차단 가드)" python3 -m backend.scripts.validate_canon_pipeline --selftest
+else
+  skip "validate_canon_pipeline (배포 차단 가드)" "git 미가용(작업트리 아님)"
+  skip "validate_canon_pipeline --selftest (배포 차단 가드)" "git 미가용(작업트리 아님)"
+fi
+
 echo "=== check: 영구 forge 문서 추적 (배포 차단 가드) ==="
 # 데이터 검증이 아니므로 위 16종 루프에 넣지 않는다(task#279).
 # 배포 경로에서도 살아있다 — task#279가 계획의 반대 사실을 실측했다. deploy.yml은 개발 트리와
