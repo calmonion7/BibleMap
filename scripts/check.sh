@@ -83,6 +83,19 @@ run "validate_scene_sketch_detail --selftest" python3 -m backend.scripts.validat
 # 둘은 증상이 같고(무음·무오류) 처방이 정반대다.
 run "validate_scene_coverage --selftest" python3 -m backend.scripts.validate_scene_coverage --selftest
 
+echo "=== check: 인물 정본 구별성 (task#314 S2) ==="
+# cast/*.jsx 5축(머리카락·수염·머리쓰개·나이대·성별) 조합이 서로 겹치지 않는지 단정한다 —
+# 겹치면 서로 다른 인물이 같은 얼굴로 그려질 수 있다(구별성 1단). 기계로 강제하지 않으면
+# 정본이 늘어날 때 드리프트한다(ADR 260823-221839와 같은 실패 유형).
+run "check_cast_axes" python3 scripts/check_cast_axes.py
+
+echo "=== check: GoliathScene 영역 마스크 delay 범위 연속성 (task#315 S3) ==="
+# 다윗·골리앗 두 인물의 delay 범위가 연속(끊김 없음)하고 서로 겹치지 않는지 소스에서 단정한다 —
+# 브라우저 없이 도는 소스 불변식이다(deploy.sh가 빌드 전에 부르므로 :8080은 옛 빌드를 서빙한다).
+# make_masks.py가 같은 모듈의 derive_ranges()를 그대로 가져다 쓴다(ADR 260823-221839 따름 정리 3).
+run "check_mask_ranges" python3 scripts/check_mask_ranges.py
+run "check_mask_ranges --selftest" python3 scripts/check_mask_ranges.py --selftest
+
 echo "=== check: 영구 forge 문서 추적 (배포 차단 가드) ==="
 # 데이터 검증이 아니므로 위 16종 루프에 넣지 않는다(task#279).
 # 배포 경로에서도 살아있다 — task#279가 계획의 반대 사실을 실측했다. deploy.yml은 개발 트리와

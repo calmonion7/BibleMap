@@ -6,9 +6,11 @@
 //   장소 페이지  #/place/<id>   통사 연표  #/timeline
 //   탐험(인물)  #/person/<slug>     탐험(인물,타임라인) #/person/<slug>/timeline
 //   탐험(투어)  #/tour/<slug>       탐험(투어,타임라인) #/tour/<slug>/timeline
+//   설정화(개발 전용) #/cast — 사용자 화면 어디서도 링크 없음, 직접 입력해야만 진입(ADR 260823-190821 4항)
 
 export function encodeHash({ stage, personSlug, exploreView, tourSlug, bookId, familyId, wordsBookId, readerBookId, readerChapter, placeId }) {
   if (stage === 'intro') return '#/intro'
+  if (stage === 'cast') return '#/cast'
   if (stage === 'overview') return '#/books'
   if (stage === 'book' && bookId) return `#/book/${encodeURIComponent(bookId)}`
   if (stage === 'reader' && readerBookId) {
@@ -52,6 +54,7 @@ export function parseHash(hash) {
   const h = (hash || '').replace(/^#/, '')
   if (h === '' || h === '/') return { stage: 'hub', personSlug: null, tourSlug: null, exploreView: 'map' }
   if (h === '/intro') return { stage: 'intro', personSlug: null, tourSlug: null, exploreView: 'map' }
+  if (h === '/cast') return { stage: 'cast', personSlug: null, tourSlug: null, exploreView: 'map' }
   if (h === '/books') return { stage: 'overview', personSlug: null, tourSlug: null, exploreView: 'map' }
   if (h === '/timeline') return { stage: 'canon', personSlug: null, tourSlug: null, exploreView: 'map' }
   if (h === '/stats') return { stage: 'stats', personSlug: null, tourSlug: null, exploreView: 'map' }

@@ -15,6 +15,16 @@ task#286이 목표 밀도(35~40선)와 붓질 단계 경계를 규약으로 확�
   B9 연출 완료  패널 대기 + 마지막 연출(SMIL·이름표) **종료** 시각 <= min(stepDuration)
   B10 배치 분리 이름표(글) 상자에 어떤 stroke도 들어오지 않고, 상자가 프레임 안에 있다
   B11 구조 연결 구조 선(굵기 >= 2.0)은 다른 구조 선과 2.0단위 안에서 만난다 — 부위가 떠 있지 않다
+  B12 정본 강제  장면에 인물 이름표가 있고 그 인물의 정본(cast/*.jsx)이 있으면 그 장면은 정본
+                컴포넌트를 써야 한다(task#307 S3, ADR 260823-190821 3항). 이름표 없이 그려진
+                인물은 기계 신호가 없어 대상에서 빠진다 — 대안 없음(미결로 남긴다).
+
+**정본 컴포넌트 인라인 전개(B12와 짝)**: `<David cx={..} .../>`는 커스텀 컴포넌트라 위 태그
+스캐너에 안 걸린다 — 그대로 두면 B1·B2·B7·B8·B10·B11이 정본 사용 장면에서 조용히 헛돈다
+(ADR 260821-000937 "초록인데 결함이 남는다"). `<Label>`을 label_boxes()로 따로 읽는 전례를 따라,
+`cast/*.jsx`(직속 파일만 — `cast/props/*.jsx`는 지물 참고 도상이라 비강제, 열거에서 자연히 빠진다)
+소스를 직접 읽어 호출부 리터럴로 치환·평가한 뒤(expand_cast) 그 결과를 장면 본문에 끼워 넣는다.
+강제 대상 명단은 상수로 박지 않고 매 호출 디렉터리 열거에서 파생한다(ADR 260822-220823).
 
 **경계를 이 파일에 박지 않는다 — 실제 소스에서 파생한다.** `--dur-draw-scene`(장면 스케치 전용,
 인물·책 인장의 `--dur-draw`와는 분리된 토큰)은 `index.css`,
@@ -51,6 +61,8 @@ TARGETS = [
     "ageOfJudges.jsx:SamuelCircuitScene",
     "gospelOfJesus.jsx:TransfigurationScene",
     "davidUnitedKingdom.jsx:GoliathScene",
+    "davidUnitedKingdom.jsx:EnGediScene",       # task#307 S4 — 다윗 정본 배선
+    "davidUnitedKingdom.jsx:GibeahHarpScene",   # task#307 S4 — 다윗 정본 배선
 ]
 
 MIN_STROKES = 35           # B1 — task#303 S5: 30→35로 소폭 래칫(바닥은 개수가 아니라 경계로 다시
@@ -121,6 +133,153 @@ LABEL_PAD = 1.0        # 이름표 상자 여백(단위)
 # 홀로 선 굵은 선(예: 외딴 기둥) 하나는 거짓 양성이 될 수 있다 — 그 경우 굵기를 낮추거나 이어 붙인다.
 JOINT_GAP = 2.0        # B11 — 구조 선끼리 이 거리 안에서 만나야 한다(단위)
 FRAME = (0, 0, 120, 64)  # viewBox
+
+# ── 정본 컴포넌트 인라인 전개 (B12, task#307 S3, ADR 260823-190821 3항) ─────────
+# 강제 대상은 `cast/*.jsx`를 **여기서 매 호출 열거**한다 — 명단을 상수로 박지 않는다
+# (ADR 260822-220823 "위임된 정본은 미결을 미결로": 박으면 재작도가 이름표를 늘릴 때마다
+# 이 파일도 고쳐야 하고, 고치는 걸 잊으면 새 정본이 강제되지 않은 채 조용히 통과한다).
+# `glob("*.jsx")`는 하위 디렉터리로 내려가지 않으므로 `cast/props/*.jsx`(지물 참고 도상,
+# 비강제)는 별도 제외 코드 없이 자연히 빠진다.
+_CAST_DIR = os.path.join(_SKETCH_DIR, "cast")
+_CAST_SIG = re.compile(r"export default function ([A-Za-z0-9_]+)\s*\(\{([^}]*)\}\)\s*\{")
+_CAST_ALIASES = re.compile(r"export const aliases\s*=\s*\[([^\]]*)\]")
+_CAST_GAP = re.compile(r"export const STEP_GAP\s*=\s*(\d+)")
+_CALL_PROPS = {"cx", "cy", "scale", "delay"}
+
+
+def _brace_body(src, open_idx):
+    """src[open_idx] == '{'의 매칭되는 '}' 안쪽 텍스트. 문자열·백틱(템플릿 리터럴)을 존중한다 —
+    백틱 안의 `${...}`는 그 자체가 데이터이므로 depth에 영향을 주지 않는다(여기서 필요한 건 함수
+    몸통의 바깥쪽 중괄호 짝뿐, 백틱 내부 문법 해석이 아니다)."""
+    assert src[open_idx] == "{"
+    depth, i, n, quote = 0, open_idx, len(src), ""
+    while i < n:
+        c = src[i]
+        if quote:
+            if c == "\\":
+                i += 2
+                continue
+            if c == quote:
+                quote = ""
+        elif c in "\"'`":
+            quote = c
+        elif c == "{":
+            depth += 1
+        elif c == "}":
+            depth -= 1
+            if depth == 0:
+                return src[open_idx + 1:i]
+        i += 1
+    raise AssertionError(f"중괄호 짝을 찾지 못했다(open_idx={open_idx})")
+
+
+@functools.lru_cache(maxsize=1)
+def _cast_components():
+    """`cast/*.jsx`(직속 파일만) → {컴포넌트명: {aliases, step_gap, body, path}}.
+    정본 컴포넌트 규약(lib.jsx "정본 컴포넌트 규약" 절 — 호출 prop 4개·transform 금지·조건 분기
+    금지)을 여기서도 검사한다: 위반이면 전개기가 파서로 남을 수 없으므로 즉시 멈춘다."""
+    out = {}
+    for path in sorted(glob.glob(os.path.join(_CAST_DIR, "*.jsx"))):
+        rel = os.path.relpath(path, _ROOT)
+        src = _read(rel)
+        m = _CAST_SIG.search(src)
+        assert m, (f"{rel}: 정본 컴포넌트 규약 위반 — "
+                    "`export default function Name({ cx, cy, scale, delay })` 형태가 아니다")
+        name = m.group(1)
+        params = {p.strip() for p in m.group(2).split(",")}
+        assert params == _CALL_PROPS, (
+            f"{rel}: 호출 규약 위반 — prop은 cx·cy·scale·delay 넷만 허용한다(실제 {sorted(params)})")
+        gap_m = _CAST_GAP.search(src)
+        assert gap_m, f"{rel}: export const STEP_GAP이 없다"
+        alias_m = _CAST_ALIASES.search(src)
+        aliases = re.findall(r"['\"]([^'\"]+)['\"]", alias_m.group(1)) if alias_m else []
+        body = _brace_body(src, m.end() - 1)
+        assert "transform" not in body, f"{rel}: 정본 컴포넌트 규약 위반 — transform 금지"
+        assert not re.search(r"&&|\?[^:]*:|\bif\s*\(", body), f"{rel}: 정본 컴포넌트 규약 위반 — 조건 분기 금지"
+        out[name] = {"aliases": aliases, "step_gap": int(gap_m.group(1)), "body": body, "path": rel}
+    return out
+
+
+def _fmt_num(v):
+    v = round(float(v), 4)
+    s = f"{v:.4f}".rstrip("0").rstrip(".")
+    return "0" if s in ("", "-0") else s
+
+
+_EVAL_SAFE = re.compile(r"^[-0-9+*/.() \s]+$")
+
+
+def _eval_arith(expr):
+    """리터럴로 치환된 산술식만 평가한다 — 다른 토큰이 남아 있으면(규약 위반) 여기서 멈춘다."""
+    expr = expr.strip()
+    assert _EVAL_SAFE.match(expr), f"정본 컴포넌트 규약 위반 — 리터럴 산술이 아닌 표현식: {expr!r}"
+    return _fmt_num(eval(expr, {"__builtins__": {}}, {}))  # noqa: S307 — 위에서 산술 문자만 걸렀다
+
+
+_D_CALL = re.compile(r"\bd\(([^,]+),\s*(\w+)\)")
+_BACKTICK_D = re.compile(r"d=\{`([^`]*)`\}")
+_DOLLAR_EXPR = re.compile(r"\$\{([^}]*)\}")
+_LITERAL_ATTR = re.compile(r"\b(cx|cy|r)=\{([^{}]*)\}")
+
+
+def _expand_component_body(comp, cx0, cy0, scale0, delay0):
+    """정본 컴포넌트 로컬 좌표 소스 → 호출부 리터럴로 아핀 변환된 JSX 조각.
+    좌표 계약(cast/david.jsx 주석 정본): (x,y) → (cx+x*scale, cy+y*scale), 델타는 *scale만,
+    지연은 delay+K*STEP_GAP. stroke-width(sw(...))는 계약 밖이라 손대지 않는다 — 정본 규약이
+    scale로 굵기를 곱하지 않기 때문이다(작을수록 상대적으로 굵어지는 쪽이 실루엣을 지킨다,
+    cast/david.jsx 주석)."""
+    subs = {
+        "cx": _fmt_num(cx0), "cy": _fmt_num(cy0), "scale": _fmt_num(scale0),
+        "delay": _fmt_num(delay0), "STEP_GAP": str(comp["step_gap"]),
+    }
+    text = comp["body"]
+    for name, val in subs.items():
+        # (?!=) — attrName= 형태(예: `cx={cx + 0*scale}`의 속성 '이름' cx)는 건드리지 않는다.
+        # 그 자리를 리터럴로 바꾸면 `cx=`가 `60=`가 되어 이후 stroke_segments/structural_polylines의
+        # cx="..." cy="..." 리터럴 매칭이 원을 통째로 놓친다(적대적 리뷰로 드러난 결함, B10·B11 재발).
+        text = re.sub(rf"\b{name}\b(?!=)", val, text)
+    text = _D_CALL.sub(lambda m: f"d({_eval_arith(m.group(1))}, {m.group(2)})", text)
+    text = _BACKTICK_D.sub(
+        lambda m: 'd="' + _DOLLAR_EXPR.sub(lambda d: _eval_arith(d.group(1)), m.group(1)) + '"', text)
+    text = _LITERAL_ATTR.sub(lambda m: f'{m.group(1)}="{_eval_arith(m.group(2))}"', text)
+    # 위 제외 때문에 속성 '이름' cx=/cy=는 위 루프에서 치환되지 않고 그대로 남는다(의도됨 —
+    # _LITERAL_ATTR가 그 뒤에 값만 리터럴 문자열로 바꿔 cx="60" 형태를 만든다). 그래서 여기 잔존
+    # 검사도 같은 (?!=) 제외를 써야 한다 — 아니면 정상 출력의 `cx="60"`까지 "남은 심볼"로 오탐한다.
+    assert not re.search(r"\b(cx|cy|scale|delay|STEP_GAP)\b(?!=)", text), (
+        f"{comp['path']}: 전개 후에도 남은 심볼 — 정본 컴포넌트 규약 위반(리터럴이 아닌 참조가 있었다)")
+    return text
+
+
+_CALL_TAG_PROPS = re.compile(r"(\w+)=\{([^{}]*)\}")
+
+
+def expand_cast(body, registry):
+    """장면 본문에서 정본 컴포넌트 호출(`<Name cx={..} cy={..} scale={..} delay={..} />`)을 찾아
+    인라인 전개한 본문으로 치환한다. 호출부 규약(숫자 리터럴 4개만, transform 금지)을 어기면
+    AssertionError. 반환: (전개된 본문, 사용된 컴포넌트명 집합) — 집합은 B12 판정 입력이다."""
+    used = set()
+    if not registry:
+        return body, used
+    call_re = re.compile(r"<(" + "|".join(re.escape(n) for n in registry) + r")\b([^>]*?)/>")
+    out, pos = [], 0
+    for m in call_re.finditer(body):
+        out.append(body[pos:m.start()])
+        name, attrs = m.group(1), m.group(2)
+        assert "transform" not in attrs, f"{name} 호출부에 transform이 있다 — 정본 호출 규약 위반"
+        props = dict(_CALL_TAG_PROPS.findall(attrs))
+        assert set(props) == _CALL_PROPS, (
+            f"{name} 호출부 prop이 규약과 다르다(cx·cy·scale·delay 넷만 허용): {sorted(props)}")
+        for k, v in props.items():
+            assert re.fullmatch(r"-?[0-9]+(\.[0-9]+)?", v.strip()), (
+                f"{name} 호출부의 {k} prop이 숫자 리터럴이 아니다(표현식·변수 금지): {v!r}")
+        out.append(_expand_component_body(
+            registry[name], float(props["cx"]), float(props["cy"]),
+            float(props["scale"]), float(props["delay"])))
+        used.add(name)
+        pos = m.end()
+    out.append(body[pos:])
+    return "".join(out), used
+
 
 _DUR = re.compile(r'\bdur\s*=\s*"([^"]+)"')
 _LABEL_AT = re.compile(r'<Label[^>]*\bat="([0-9.]+)"')
@@ -388,8 +547,11 @@ def _reveal_last(ends, afters, drawin, min_step, panel_delay, has_color):
     return max(ends + [drawin, reveal_end] + after_ends)
 
 
-def judge(steps, begins, weights, ends, afters, dur_draw, panel_delay, min_step, body=None, has_color=False):
-    """B1~B6 판정 → 위반 메시지 목록(비었으면 통과). 검사와 대조군이 공유하는 유일한 판정."""
+def judge(steps, begins, weights, ends, afters, dur_draw, panel_delay, min_step, body=None, has_color=False,
+          cast_used=None, cast_registry=None):
+    """B1~B12 판정 → 위반 메시지 목록(비었으면 통과). 검사와 대조군이 공유하는 유일한 판정.
+    cast_registry/cast_used는 B12(정본 사용 강제) 입력 — 둘 다 없으면 B12는 건너뛴다(기존 호출부
+    호환, 대부분의 selftest 대조군은 B12와 무관하다)."""
     bad = []
     total = sum(steps.values())
     if total < MIN_STROKES:
@@ -450,6 +612,17 @@ def judge(steps, begins, weights, ends, afters, dur_draw, panel_delay, min_step,
                 bad.append(
                     f"B11 구조 연결: 구조 선이 {near:.1f}단위 떠 있다 (다른 부위와 {JOINT_GAP}단위 안에서 "
                     f"만나야 한다) — d=\"{src}\"")
+    if body is not None and cast_registry:
+        # B12 — 이름표가 있고 그 인물의 정본이 cast/에 있으면 정본을 써야 한다. 별칭은 정본
+        # 파일의 aliases 선언에서 온다(아브람/아브라함처럼 이름표 여럿 → 정본 하나).
+        # 한계(미결): 이름표 없이 그려진 인물은 기계 신호가 없어 이 검사 대상 밖이다.
+        alias_to_name = {a: n for n, c in cast_registry.items() for a in c["aliases"]}
+        for txt, *_ in label_boxes(body):
+            name = alias_to_name.get(txt)
+            if name and name not in (cast_used or set()):
+                bad.append(
+                    f"B12 정본 사용 강제: 이름표 '{txt}' 정본({name})이 cast/에 있는데 "
+                    "이 장면이 정본 컴포넌트를 쓰지 않는다")
     last = _reveal_last(ends, afters, drawin, min_step, panel_delay, has_color)
     if panel_delay + last > min_step:
         bad.append(
@@ -527,22 +700,26 @@ def _check():
         f"tourSketches.jsx의 GLOBAL_MIN_STEP_MS({js_floor}ms)가 실측 min(stepDuration)({min_step}ms)과 "
         "어긋났다 — data/tours/*.json의 최단 note가 바뀌었으면 그 상수도 같이 갱신하라"
     )
+    registry = _cast_components()
     print(
-        f"검사: 장면 저작 규약 B1~B11 (대상 {len(TARGETS)}엔트리 · "
+        f"검사: 장면 저작 규약 B1~B12 (대상 {len(TARGETS)}엔트리 · 정본 {sorted(registry)} · "
         f"--dur-draw-scene {dur_draw}ms · 패널 대기 {panel_delay}ms · min(stepDuration) {min_step}ms)"
     )
     failures = []
     for label, body, has_color in _resolve_targets():
-        steps, begins, weights, ends, afters = scan_scene(body)
-        bad = judge(steps, begins, weights, ends, afters, dur_draw, panel_delay, min_step, body, has_color)
+        expanded, used = expand_cast(body, registry)
+        steps, begins, weights, ends, afters = scan_scene(expanded)
+        bad = judge(steps, begins, weights, ends, afters, dur_draw, panel_delay, min_step, expanded, has_color,
+                    cast_used=used, cast_registry=registry)
         drawin = (max(steps) if steps else 0) + dur_draw
         struct = sum(1 for w, _ in weights if w >= STRUCT_WEIGHT)
         faint = sum(1 for _, f in weights if f)
         mark = "✗" if bad else "✓"
         last = _reveal_last(ends, afters, drawin, min_step, panel_delay, has_color)
         tag = "(채색 포함)" if has_color else ""
+        cast_tag = f" · 정본 사용 {sorted(used)}" if used else ""
         print(f"  {mark} {label} — {sum(steps.values())}선(구조 {struct} · 반투명 {faint}) · "
-              f"{len(steps)}단계 · 드로인 {drawin}ms · 연출 종료 {last:.0f}ms{tag}")
+              f"{len(steps)}단계 · 드로인 {drawin}ms · 연출 종료 {last:.0f}ms{tag}{cast_tag}")
         for b in bad:
             print(f"      {b}")
         if bad:
@@ -692,7 +869,58 @@ def _selftest():
     assert not [b for b in judge(*scan_scene(bg), dur_draw, panel_delay, min_step, bg) if b.startswith("B11")], \
         "멀리 떨어진 얇은 배경 획을 B11이 잡는다 — 구조 선만 봐야 한다"
     print("  ✓ B11 거짓 양성 없음 — 붙은 부위와 멀리 떨어진 배경 획은 통과한다")
-    print(f"PASS — 경계 {len(cases) + 2}종(B1~B11) 각각의 위반 주입에서 검증기가 빨강이 된다")
+
+    # 정본 컴포넌트 인라인 전개 + B12(task#307 S3, ADR 260823-190821 3항) — 실제 cast/david.jsx를
+    # 그대로 쓴다(가짜 정본을 새로 만들면 이 컴포넌트가 아니라 대조군 자체를 검증하게 된다.
+    # "실제 소스는 건드리지 않는다"는 david.jsx를 읽기만 하고 쓰지 않는다는 뜻이다).
+    registry = _cast_components()
+    assert "David" in registry, "cast/david.jsx가 없다 — task#307 S2 산출물이 있어야 이 대조군을 돈다"
+
+    # (a) 가장 중요한 대조군 — 전개 없이는 통과하지만 전개하면 위반하는 합성 장면. David의
+    # delay=0 그룹은 실소스 그대로 stroke 3개(원 1 + 곱슬 2)다 — ok_body의 delay=0 그룹도 이미
+    # 3개라 합치면 6개가 되어 B2(단계당 3개 상한)를 넘긴다. 전개 전엔 <David .../>가 미인식
+    # 태그라 scan_scene이 무시하므로(path/circle/... 태그명만 본다) ok_body 기준선 그대로 통과한다.
+    combo_raw = ok_body + '<David cx={0} cy={0} scale={1} delay={0} />'
+    bad_before = judge(*scan_scene(combo_raw), dur_draw, panel_delay, min_step)
+    assert not bad_before, f"대조군(a) 준비 실패 — 전개 없이 이미 빨강이다: {bad_before}"
+    combo_expanded, combo_used = expand_cast(combo_raw, registry)
+    assert combo_used == {"David"}, f"전개기가 David 호출을 인식하지 못했다: {combo_used}"
+    bad_after = judge(*scan_scene(combo_expanded), dur_draw, panel_delay, min_step, combo_expanded)
+    hit = [b for b in bad_after if b.startswith("B2") or b.startswith("B11")]
+    assert hit, f"전개 후에도 위반이 검출되지 않았다 — 전개기가 stroke를 실제로 합치지 않는다: {bad_after}"
+    print(f"  ✓ 대조군(a) 전개 없이 통과 → 전개 후 위반 검출(전개기가 stroke를 합친다는 증거): {hit[0]}")
+
+    # (b) 표현식 prop — 호출부 규약(숫자 리터럴 4개만)을 어기면 전개기 자체가 실패해야 한다.
+    expr_call = '<David cx={0+1} cy={0} scale={1} delay={0} />'
+    try:
+        expand_cast(expr_call, registry)
+    except AssertionError as e:
+        print(f"  ✓ 대조군(b) 표현식 prop 거부 → {e}")
+    else:
+        raise AssertionError("표현식 prop(cx={0+1})을 실패로 잡지 못했다 — 규약 위반 검사가 죽어있다")
+
+    # (c) 정본이 있는데 안 쓴 이름표 장면 — B12.
+    unwired = ok_body + f'<Label x="60" y="6" reduce={{reduce}}>{registry["David"]["aliases"][0]}</Label>'
+    unwired_expanded, unwired_used = expand_cast(unwired, registry)
+    assert unwired_used == set()
+    bad_b12 = judge(*scan_scene(unwired_expanded), dur_draw, panel_delay, min_step, unwired_expanded,
+                     cast_used=unwired_used, cast_registry=registry)
+    hit = [b for b in bad_b12 if b.startswith("B12")]
+    assert hit, f"정본 미사용 이름표 장면을 통과시켰다 — B12가 죽어있다: {bad_b12}"
+    print(f"  ✓ 대조군(c) 정본 미사용 이름표 → B12 검출: {hit[0]}")
+
+    # B12 거짓 양성 없음 — 정본을 실제로 쓰면 같은 이름표가 통과해야 한다. 델레이 6000은
+    # ok_body(delay 0~4950)와 안 겹치게 골라 B2/B11 오염 없이 B12만 본다.
+    wired = (ok_body + '<David cx={60} cy={30} scale={1} delay={6000} />'
+             + f'<Label x="60" y="6" reduce={{reduce}}>{registry["David"]["aliases"][0]}</Label>')
+    wired_expanded, wired_used = expand_cast(wired, registry)
+    bad_wired = judge(*scan_scene(wired_expanded), dur_draw, panel_delay, min_step, wired_expanded,
+                       cast_used=wired_used, cast_registry=registry)
+    assert not [b for b in bad_wired if b.startswith("B12")], (
+        f"정본을 실제로 쓴 장면을 B12가 거짓 양성으로 잡는다: {bad_wired}")
+    print("  ✓ B12 거짓 양성 없음 — 정본을 쓴 장면은 통과한다")
+
+    print(f"PASS — 경계 {len(cases) + 2}종(B1~B11) + B12/전개기 대조군 각각의 위반 주입에서 검증기가 빨강이 된다")
 
 
 if __name__ == "__main__":

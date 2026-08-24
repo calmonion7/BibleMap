@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from 'react'
+import { useState, useEffect, useRef, useMemo, lazy, Suspense } from 'react'
 import { BookOpen, BarChart3, ScrollText, PieChart, Quote, MapPin, CalendarRange } from 'lucide-react'
 import { TYPE_COLOR } from './theme'
 import SidePanel from './SidePanel'
@@ -26,6 +26,9 @@ import { MOBILE_BREAKPOINT, SHEET_VH } from './constants'
 import { useNodeSelection } from './useNodeSelection'
 import { useStageNavigation } from './useStageNavigation'
 import { apiGet } from './api'
+// 설정화 개발 시트(#/cast, ADR 260823-190821) — 인물 정본이 늘어나면 무거워질 자산이라 지연 로드
+// (§7.5의 tourSketches 선례와 동일 이유: 사용자 화면엔 노출도 안 되는데 메인 청크에 얹지 않는다).
+const CastSheet = lazy(() => import('./CastSheet'))
 
 // 모바일(좁은 뷰포트) 분기 — 이 폭 이하에서 상세 패널을 우측 사이드패널 대신 하단 시트로 띄운다.
 const MOBILE_QUERY = `(max-width: ${MOBILE_BREAKPOINT}px)`
@@ -150,7 +153,7 @@ function App() {
 
   // 책등 헤더의 활성 부(部) — 개요·책·단어·리더는 '성경책', 투어 목록·투어 탐험은 '투어', 나머지는 '인물'(ADR-0026)
   const activeSection =
-    activeStage === 'intro' ? null // 인트로는 어느 부(部)도 아님 — 리본 전체 비활성
+    activeStage === 'intro' || activeStage === 'cast' ? null // 인트로·설정화는 어느 부(部)도 아님 — 리본 전체 비활성
       : activeStage === 'overview' || activeStage === 'book' || activeStage === 'words' || activeStage === 'reader' || activeStage === 'stats' || activeStage === 'topics' || activeStage === 'canon' ? 'books'
         : activeStage === 'tours' || (activeStage === 'explore' && exploreTourId != null) ? 'tours'
           : 'persons'
@@ -351,6 +354,21 @@ function App() {
               verseLang={verseLang}
               setVerseLang={setVerseLang}
             />
+          </div>
+        </>
+      )}
+
+      {/* 설정화 개발 시트 — #/cast(ADR 260823-190821). 직접 주소를 입력해야만 진입(어디서도 링크 없음).
+          전용 전체화면 페이지(stats·topics와 동형, 대상 id 없는 고정 뷰). */}
+      {activeStage === 'cast' && (
+        <>
+          <StageNav onBack={backToHub} backLabel="인물 허브">
+            <StageNav.Title icon={<span style={{ fontSize: 15 }}>🛠️</span>} label="설정화 (개발 전용)" />
+          </StageNav>
+          <div className="stage-in" style={{ flex: 1, overflow: 'auto', position: 'relative' }}>
+            <Suspense fallback={null}>
+              <CastSheet />
+            </Suspense>
           </div>
         </>
       )}

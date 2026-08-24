@@ -91,6 +91,7 @@ export function useStageNavigation({ selectedNode, selectNodeFresh, closePanel, 
   // 파싱된 해시 → 상태 적용. 딥링크 복원과 저장·이어보기 카드 복원(task#268)의 공용 경로.
   function applyParsedHash(parsed) {
     if (parsed.stage === 'intro') setActiveStage('intro')
+    else if (parsed.stage === 'cast') setActiveStage('cast') // 개발 전용(#/cast, ADR 260823-190821 4항) — 직접 입력해야만 도달
     else if (parsed.stage === 'overview') setActiveStage('overview')
     else if (parsed.stage === 'book' && parsed.bookId) { setBookId(parsed.bookId); setActiveStage('book') }
     else if (parsed.stage === 'family' && parsed.familyId) { setFamilyId(parsed.familyId); setActiveStage('family') }

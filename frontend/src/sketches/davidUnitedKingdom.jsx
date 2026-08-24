@@ -4,6 +4,9 @@ import { Label } from './SceneLabel'
 // 인트로 오프닝 몽타주가 쓰는 장면 — 정의는 introMontage.jsx로 옮겼다(task#287).
 // 방향이 중요하다: 무거운 투어 모듈이 소형 모듈을 참조해야 인트로가 투어 청크를 끌어오지 않는다.
 import { BethlehemAnointingScene } from './introMontage'
+// 인물 정본 — 머리(실루엣)만 그린다. 이목구비·몸은 장면이 그린다(task#307 S4, ADR 260823-190821).
+import David from './cast/david'
+import Goliath from './cast/goliath'
 
 // 골리앗 (삼상 17:49-50) — 물매 2회전 → 투석 → 휘청·쓰러짐 → 지면 진동 + 흙먼지
 function GoliathScene({ reduce }) {
@@ -146,13 +149,11 @@ function GoliathScene({ reduce }) {
           <path d="M94 48.5 l-0.8 1.8" {...sw(1.1)} />
           <path d="M95 24 q-2 8 -1 16" {...sw(1.2)} />
         </g>
-        {/* 투구 — 볼가림·작은 깃 */}
-        <g style={d(2880, reduce)}>
-          <path d="M98 15.3 q5.5 -5 11 0" {...sw(2.6)} />
-          <path d="M98 15.3 l-0.8 7.2" {...sw(2.2)} />
-          <path d="M109 15.3 l0.8 7.2" {...sw(2.2)} />
-        </g>
-        <g style={d(3000, reduce)}>
+        {/* 머리+투구 — 정본(cast/goliath.jsx) 사용(task#314 S2, ADR 260824-075708). STEPS=2·
+            STEP_GAP=120이 delay 2880/3000을 소비한다 — 뒤 체인(원래 3000부터)을 전부 +120 미리
+            이동해 이 두 번째 단계의 자리를 비워 뒀다(이하 delay는 그대로 둔다). */}
+        <Goliath cx={103.5} cy={19} scale={1} delay={2880} />
+        <g style={d(3120, reduce)}>
           <path d="M103.5 12 q1 -1 2.5 -0.8" {...sw(1.4)} />
           {/* 코 능선 — 눈썹(y17)과 겹치지 않게 이마 안에서 짧게 끊는다(task#303 UAT 결함 B) */}
           <path d="M104.5 15.5 v1.3" {...sw(1.3)} />
@@ -161,70 +162,70 @@ function GoliathScene({ reduce }) {
         {/* 얼굴 — 위협(눈썹을 아래로 모은다). 눈썹2+눈2+입1(상한 5) — 리뷰(task#303 S5)가 지적한
             여분 4선(눈썹 사이 호·눈 아래 가로선·입꼬리 소품 2)을 제거했다(9→5, 확대 렌더에서
             먹덩이로 뭉개졌었다). */}
-        <g style={d(3120, reduce)}>
+        <g style={d(3240, reduce)}>
           <path d="M100 17 l3 2.3" {...sw(1.2)} />
           <path d="M107 17 l-3 2.3" {...sw(1.2)} />
         </g>
-        <g style={d(3240, reduce)}>
+        <g style={d(3360, reduce)}>
           <path d="M100.3 20 h2" {...sw(1.2)} />
           <path d="M104.7 20 h2" {...sw(1.2)} />
         </g>
-        <g style={d(3360, reduce)}>
+        <g style={d(3480, reduce)}>
           <path d="M100.5 22 q3 2 6 0" {...sw(1.3, 0.5)} />
         </g>
         {/* 창 — "베틀 채 같은" 자루, 철 날(삼상 17:7) */}
-        <g style={d(3480, reduce)}>
+        <g style={d(3600, reduce)}>
           <path d="M112 54 V12" {...sw(3)} />
           <path d="M109 18 l3 -6 l3 6" {...sw(2.2)} />
           <path d="M111.5 33 h3" {...sw(1.3, 0.6)} />
         </g>
-        <g style={d(3600, reduce)}>
+        <g style={d(3720, reduce)}>
           <path d="M90 36 q-0.5 4 0 8" {...sw(1.1, 0.4)} />
           <path d="M116 53 l0.6 -1.2 l0.6 1.2" {...sw(1.1, 0.45)} />
           <path d="M110.5 52 h3" {...sw(1.4)} />
         </g>
         {/* 방패 — 가슴 높이에 둔다(쓰러졌을 때 바퀴처럼 보이지 않도록) */}
-        <g style={d(3720, reduce)}>
+        <g style={d(3840, reduce)}>
           <path d="M108.5 20 h5" {...sw(1.3)} />
           <circle cx="84" cy="27" r="5" {...sw(2.6)} />
           <path d="M84 22 v2" {...sw(1.2, 0.5)} />
         </g>
-        <g style={d(3840, reduce)}>
+        <g style={d(3960, reduce)}>
           <path d="M79 27 h2" {...sw(1.2, 0.5)} />
           <circle cx="84" cy="27" r="1.3" {...sw(1.6)} />
           <circle cx="81.5" cy="24.5" r="0.35" {...sw(1.1, 0.55)} />
         </g>
-        <g style={d(3960, reduce)}>
+        <g style={d(4080, reduce)}>
           <circle cx="86.5" cy="29.5" r="0.35" {...sw(1.1, 0.55)} />
           <path d="M81.5 25 l1 1" {...sw(1.1)} />
           <path d="M92 55 q11 2 22 0" {...sw(1.3, 0.4)} />
         </g>
-        <g style={d(4080, reduce)}>
+        <g style={d(4200, reduce)}>
           <path d="M95 55.5 q8 1.3 16 0" {...sw(1.1, 0.35)} />
           <path d="M90 52 q1 -2 2 -3" {...sw(1.1, 0.4)} />
           <path d="M84 32 v-2" {...sw(1.2, 0.5)} />
         </g>
-        <g style={d(4200, reduce)}>
+        <g style={d(4320, reduce)}>
           <path d="M89 24 q1 -0.6 2 0" {...sw(1.2)} />
           <path d="M111.3 50 h1.6" {...sw(1.3)} />
           <path d="M100 55.5 h6" {...sw(1.1, 0.35)} />
         </g>
-        <g style={d(4320, reduce)}>
+        <g style={d(4440, reduce)}>
           <path d="M99.5 53.5 l0.5 -0.5" {...sw(1.1)} />
           <path d="M108 53.5 l-0.5 -0.5" {...sw(1.1)} />
           <path d="M108.5 49 h1.6" {...sw(1.1)} />
         </g>
         {/* 여기 있던 입 모양 중복선 2개(d4440·d4560)는 공식 얼굴(d3360)의 입과 같은 자리를
             덮어 뭉쳤다 — task#303 UAT 결함 B에서 제거(눈썹·눈은 그대로 둠). */}
-        <g style={d(4440, reduce)}>
+        <g style={d(4560, reduce)}>
           <path d="M97.5 20 q0.8 -0.6 1.6 0" {...sw(1.1, 0.5)} />
           <path d="M109.5 20 q-0.8 -0.6 -1.6 0" {...sw(1.1, 0.5)} />
         </g>
-        <g style={d(4560, reduce)}>
+        <g style={d(4680, reduce)}>
           <circle cx="104" cy="54.5" r="0.4" {...sw(1.3, 0.5)} />
           <circle cx="112.5" cy="55" r="0.35" {...sw(1.3, 0.5)} />
         </g>
-        <g style={d(4680, reduce)}>
+        <g style={d(4800, reduce)}>
           <path d="M92 44 q-0.5 3 0 6" {...sw(1.1, 0.4)} />
           <path d="M99 48 h1" {...sw(1.1, 0.5)} />
           <path d="M107.5 48 h1" {...sw(1.1, 0.5)} />
@@ -315,121 +316,107 @@ function GoliathScene({ reduce }) {
         </g>
       </g>
       {/* 다윗 — 다리(겉·안 두 선) */}
-      <g style={d(4800, reduce)}>
+      <g style={d(4920, reduce)}>
         <path d="M23 54 l3 -7" {...sw(2.4)} />
         <path d="M35 54 l-3 -7" {...sw(2.4)} />
         <path d="M24 51 h1.2" {...sw(1.2)} />
       </g>
-      <g style={d(4920, reduce)}>
+      <g style={d(5040, reduce)}>
         <path d="M34 51 h1.2" {...sw(1.2)} />
         <path d="M25 54 l1.6 -6" {...sw(1.6)} />
         <path d="M33 54 l-1.6 -6" {...sw(1.6)} />
       </g>
-      <g style={d(5040, reduce)}>
+      <g style={d(5160, reduce)}>
         <path d="M22 54 h2.5" {...sw(1.4)} />
         <path d="M35.5 54 h2.5" {...sw(1.4)} />
         <path d="M22.6 53 l1.3 -1.3" {...sw(1.1)} />
       </g>
-      <g style={d(5160, reduce)}>
+      <g style={d(5280, reduce)}>
         <path d="M36.1 53 l-1.3 -1.3" {...sw(1.1)} />
         <path d="M23 53.3 l0.6 -0.6" {...sw(1.1)} />
         <path d="M34.8 53.3 l-0.6 -0.6" {...sw(1.1)} />
       </g>
       {/* 튜닉·주름·허리끈 — 어깨는 좁고 자락은 퍼지게(사다리로 읽히지 않게 허리끈은 짧게) */}
-      <g style={d(5280, reduce)}>
+      <g style={d(5400, reduce)}>
         <path d="M24.5 47 l2 -7 q2.5 -1.3 5 0 l2 7" {...sw(2.6)} />
         <path d="M28.2 44.2 h2.6" {...sw(1.4)} />
         <path d="M28.7 44.5 q0.6 -0.5 1.2 0" {...sw(1.2)} />
       </g>
-      <g style={d(5400, reduce)}>
+      <g style={d(5520, reduce)}>
         <path d="M28 43 q0.5 -2 0.3 -4" {...sw(1.3, 0.6)} />
         <path d="M31 43.3 q0.3 -2 0 -4" {...sw(1.3, 0.6)} />
         <path d="M29.6 43.3 q0.4 -1.6 0.2 -3.2" {...sw(1.2)} />
       </g>
-      <g style={d(5520, reduce)}>
+      <g style={d(5640, reduce)}>
         <path d="M29 44.3 v2" {...sw(1.1)} />
         <path d="M25.5 47 l-1 4" {...sw(1.2, 0.6)} />
         <path d="M32.5 47 l1 4" {...sw(1.2, 0.6)} />
       </g>
-      <g style={d(5640, reduce)}>
+      <g style={d(5760, reduce)}>
         <path d="M25.8 51.3 v1" {...sw(1.1)} />
         <path d="M29 51.5 v1" {...sw(1.1)} />
         <path d="M32.2 51.3 v1" {...sw(1.1)} />
       </g>
       {/* 목자의 주머니 — 돌을 담은 자루(삼상 17:40) */}
-      <g style={d(5760, reduce)}>
+      <g style={d(5880, reduce)}>
         <path d="M31.5 43 l3 5" {...sw(1.2)} />
         <path d="M33.5 47 q2.5 0.3 2.7 3 q-0.2 2 -2.7 1.8 q-2 -0.2 -2 -2.4 q0 -2.2 2 -2.4" {...sw(1.8)} />
         <path d="M32.8 48.5 q1 0.6 2 0" {...sw(1.2)} />
       </g>
       {/* 팔·손 — 물매 쥔 손과 지팡이 쥔 손(삼상 17:40) */}
-      <g style={d(5880, reduce)}>
+      <g style={d(6000, reduce)}>
         <path d="M31.5 40.5 q3 -6 5.5 -11.5" {...sw(2.2)} />
         <path d="M26.5 40.5 q-2.5 3 -4.5 5.5" {...sw(2.2)} />
         <path d="M36.3 28.7 q0.9 -0.6 1.7 0.2" {...sw(1.3)} />
       </g>
-      <g style={d(6000, reduce)}>
+      <g style={d(6120, reduce)}>
         <path d="M36.5 32 l1.3 -0.4" {...sw(1.1)} />
         <path d="M35.8 34 l1.3 -0.4" {...sw(1.1)} />
         <path d="M36.2 30.8 l1.2 -0.3" {...sw(1.1)} />
       </g>
-      <g style={d(6120, reduce)}>
+      <g style={d(6240, reduce)}>
         <path d="M21 45.5 q-0.9 0.6 -1.8 0.3" {...sw(1.4)} />
         <path d="M20 46 v-14" {...sw(1.8)} />
         <path d="M19 33 q1 -1 2 0" {...sw(1.3)} />
       </g>
-      <g style={d(6240, reduce)}>
+      <g style={d(6360, reduce)}>
         <path d="M37.6 29.8 l0.6 0.4" {...sw(1.2)} />
         <path d="M24.3 49 h1.6" {...sw(1.1)} />
         <path d="M35.8 49 h1.6" {...sw(1.1)} />
       </g>
-      {/* 머리 — 곱슬머리 실루엣 */}
-      <g style={d(6360, reduce)}>
-        <circle cx="29" cy="36" r="4" {...sw(2.6)} />
-        <path d="M26.5 33 q0.8 -1 1.6 0" {...sw(1.4)} />
-        <path d="M28.7 32.6 q0.8 -1 1.6 0" {...sw(1.4)} />
-      </g>
-      <g style={d(6480, reduce)}>
-        <path d="M30.8 33 q0.7 -0.9 1.4 0" {...sw(1.4)} />
-        <path d="M31.5 34 q0.8 0.6 0.3 1.6" {...sw(1.3)} />
-        <path d="M25.5 34.5 q0.5 -1.5 0 -3" {...sw(1.2, 0.6)} />
-      </g>
-      <g style={d(6600, reduce)}>
-        <path d="M25.3 33.8 q3.7 -1.6 7.4 0" {...sw(1.2, 0.5)} />
-        <path d="M26.9 34.1 l1.3 0.5" {...sw(1.1)} />
-        <path d="M29.6 34.6 l1.3 -0.5" {...sw(1.1)} />
-      </g>
+      {/* 머리 — 정본(cast/david.jsx) 사용(task#307 S4, ADR 260823-190821). STEPS=3·STEP_GAP=120이 delay 6480/6600/6720을 그대로 소비해 이하 얼굴 단계의 delay는 그대로 둔다(task#314 S2가 골리앗 정본 삽입으로 전체 체인을 +120 이동하며 이 값도 6360→6480으로 갈렸다). */}
+      <David cx={29} cy={36} scale={1} delay={6480} />
       {/* 얼굴 — 결의(눈썹을 살짝 모아 집중한 표정) */}
-      <g style={d(6720, reduce)}>
+      <g style={d(6840, reduce)}>
         <path d="M27 35.6 h1.3" {...sw(1.2)} />
         <path d="M29.7 35.6 h1.3" {...sw(1.2)} />
         <path d="M27.9 38 h2.2" {...sw(1.2)} />
       </g>
-      <g style={d(6840, reduce)}>
+      <g style={d(6960, reduce)}>
         <path d="M26.7 35.5 l0.4 -0.3" {...sw(1.1)} />
         <path d="M29.9 35.5 l0.4 -0.3" {...sw(1.1)} />
         <path d="M28 39 q1 0.4 2 0" {...sw(1.1, 0.5)} />
       </g>
-      <g style={d(6960, reduce)}>
+      <g style={d(7080, reduce)}>
         <path d="M27 45 q0.3 -1.3 0 -2.6" {...sw(1.2)} />
         <path d="M31.3 45 q-0.3 -1.3 0 -2.6" {...sw(1.2)} />
         <path d="M24.5 50 q0.8 -2 0.5 -4" {...sw(1.2)} />
       </g>
-      <g style={d(7080, reduce)}>
+      <g style={d(7200, reduce)}>
         <path d="M26.3 44.5 v-1" {...sw(1.2)} />
         <path d="M28.6 39.3 q0.7 0.3 1.4 0" {...sw(1.1)} />
         <path d="M34 47.3 v1" {...sw(1.1, 0.5)} />
       </g>
       {/* 물매 — 회전 2회 뒤 투석(삼상 17:49) */}
-      <g style={d(7200, reduce)}>
+      <g style={d(7320, reduce)}>
         <path d="M37 29 l6 -6" {...sw(1.6)} />
       </g>
       <g>
-        <g style={d(7320, reduce)}>
+        <g style={d(7440, reduce)}>
           <circle cx="43" cy="23" r="1.9" {...sw(2)} />
         </g>
         {!reduce && (
-          <g style={d(7320, false)}>
+          <g style={d(7440, false)}>
             <circle cx="43" cy="23" r="2" {...sw(2.2)}>
               <animateMotion path="M0 0 q31 -17 62 -3" begin="9.1s" dur="0.45s" fill="freeze"
                 calcMode="spline" keySplines="0.3 0 0.75 1" keyTimes="0;1" />
@@ -443,25 +430,25 @@ function GoliathScene({ reduce }) {
             calcMode="spline" keySplines="0.35 0 0.75 1" keyTimes="0;1" />
         )}
       </g>
-      <g style={d(7440, reduce)}>
+      <g style={d(7560, reduce)}>
         <path d="M37.8 29.8 l5.2 -5.2" {...sw(1.1, 0.6)} />
         <path d="M40 25 q1.5 -1 3 0" {...sw(1.1)} />
         <path d="M39 27.5 q1.5 -1 3 0" {...sw(1.1)} />
       </g>
       {/* 물맷돌이 이마에 박히다(삼상 17:49) — 충격 표시. 투구 개구부 위쪽으로 올려 눈썹(y17)과
           겹치지 않게 한다(task#303 UAT 결함 B — 원래 y14.9~16.5가 눈썹과 뭉쳤다). */}
-      <g style={d(7560, reduce)} stroke="var(--paper-accent)">
+      <g style={d(7680, reduce)} stroke="var(--paper-accent)">
         <path d="M103.5 14.7 l-1 -0.8" {...sw(1.4)} />
         <path d="M104.5 14.2 v-1.1" {...sw(1.4)} />
         <path d="M105.5 14.7 l1 -0.8" {...sw(1.4)} />
       </g>
       {/* 흙먼지 — 마무리 강조 */}
-      <g style={d(7680, reduce)} stroke="var(--paper-accent)">
+      <g style={d(7800, reduce)} stroke="var(--paper-accent)">
         <path d="M62 44 q-3.5 -4 -7 -4.5" {...sw(1.3)} />
         <path d="M66.5 41 q-0.5 -5 -3.5 -7.5" {...sw(1.3)} />
         <path d="M72 41.5 q3 -4.5 7 -5" {...sw(1.3)} />
       </g>
-      <g style={d(7800, reduce)} stroke="var(--paper-accent)">
+      <g style={d(7920, reduce)} stroke="var(--paper-accent)">
         <path d="M76 45 q4 -2 7.5 -1.5" {...sw(1.3)} />
         <circle cx="59" cy="39" r="0.9" {...sw(1.3)} />
         <circle cx="70" cy="36.5" r="0.9" {...sw(1.3)} />
@@ -729,34 +716,76 @@ function EnGediScene({ reduce }) {
     <g>
       <g style={d(0, reduce)}>
         <path d="M6 54 h108" {...sw(1.6)} />
-        <path d="M12 54 q3 -27 38 -29 q36 -2 44 29" {...sw(2.4)} />
+        <path d="M12 54 q3 -27 38 -29 q36 -2 44 29" {...sw(1.8)} />
         <path d="M30 32 l4 -3 M52 27 l4 -2 M76 30 l4 2 M22 40 l3.5 -2.5 M92 40 l-3.5 -2.5 M64 28 l4 -1" {...sw(1.2, 0.4)} />
       </g>
-      {/* 잠든 사울 — 보조 + 왕관·창 */}
+      {/* 잠든 사울 — 보조 + 왕관·창(2단계로 분리 — B2 단계당 3선 상한, 모양은 그대로다) */}
       <g style={d(1000, reduce)}>
         <circle cx="80" cy="48.5" r="2.8" {...sw(2)} />
         <path d="M77 49.5 q-10 2.5 -21 2 M55 51.5 l-8 1.2" {...sw(2)} />
         <path d="M62 50.5 q4 1.4 8 0.8" {...sw(1.3, 0.55)} />
+      </g>
+      <g style={d(1120, reduce)}>
         <path d="M86 54 l2 -13 M88 41 l-2.5 4 m2.5 -4 l2.5 4" {...sw(2.6)} />
+        {/* 쥔 손 — 창을 몸에서 따로 그려 B11이 지적한 이격을 잇는다(지물은 쥔 손에 닿게, lib.jsx) */}
+        <path d="M82.3 46.7 l3.2 -3.2" {...sw(2)} />
         <path d="M83 45.5 v-2 l1.2 0.9 l1.1 -1.4 l1.1 1.4 l1.2 -0.9 v2" {...sw(1.4)} />
       </g>
-      {/* 다윗 — 주역 */}
-      <g style={d(2000, reduce)}>
-        <circle cx="36" cy="42" r="2.6" {...sw(2.5)} />
-        <path d="M36 44.6 q-2 4 -5.5 5 M28 54 l4.5 -5 M39 46 l4.5 1.5" {...sw(2.5)} />
-        <path d="M33.5 47.5 q1.6 1 3.2 0.4" {...sw(1.3, 0.6)} />
-        <path d="M43.5 47.5 l3.5 1" {...sw(1.6)} />
+      {/* 다윗 — 주역. 머리는 정본(cast/david.jsx, scale=1 → r=4, GoliathScene과 동일 크기)을 쓴다.
+          lib.jsx "얼굴" 절 — 머리 반지름 4단위가 이목구비가 물리적으로 들어가는 하한이라 scale을
+          줄이지 않는다(1차 시도 scale=0.65는 이목구비가 뭉쳐 먹덩이가 됐다, render_scene.py 재검토).
+          몸은 이 머리 비례(GoliathScene David와 동일 어깨/엉덩이/발 폭 공식)로 다시 그린다
+          (task#307 S4 — 머리만 갈아 끼우지 않는다).
+          ⚠ 목표 밀도 확정 시(task#305/#304 미결) 이 stroke 수·굵기는 재개정 대상이다. */}
+      <David cx={36} cy={36} scale={1} delay={2000} />
+      {/* 다리 — 겉선(구조)·안선(부피) */}
+      <g style={d(2360, reduce)}>
+        <path d="M30 54 l1.5 -7" {...sw(2.5)} />
+        <path d="M42 54 l-1.5 -7" {...sw(2.5)} />
+        <path d="M30.7 51.5 h1" {...sw(1.3)} />
       </g>
-      {/* 옷자락 — 핵심 */}
-      <g style={d(2800, reduce)}>
-        <path d="M58 51 l4 -1.3 l1.2 2.6 l-4 1.3 z" {...sw(2.6)}>
+      <g style={d(2480, reduce)}>
+        <path d="M31.5 54 l1.3 -5.5" {...sw(1.7)} />
+        <path d="M40.5 54 l-1.3 -5.5" {...sw(1.7)} />
+        <path d="M40.3 51.5 h-1" {...sw(1.3)} />
+      </g>
+      {/* 튜닉 — 어깨(머리 바로 아래)에서 엉덩이로 퍼진다(상자 금지) + 허리끈 + 옷깃 */}
+      <g style={d(2600, reduce)}>
+        <path d="M31.5 47 l2 -7 q2.5 -1.3 5 0 l2 7" {...sw(2.6)} />
+        <path d="M34 44 q2 1 4 0.3" {...sw(1.3, 0.6)} />
+        <path d="M34.5 40 h3" {...sw(2)} />
+      </g>
+      {/* 팔 — 오른팔은 사울의 옷자락 쪽으로 뻗어 칼을 쥔다, 왼팔은 무릎을 짚어 자세를 낮춘다 */}
+      <g style={d(2720, reduce)}>
+        <path d="M38.5 40 q4 2 5.5 4" {...sw(2.2)} />
+        <path d="M33.5 40 q-2.5 3 -3.5 5" {...sw(2.2)} />
+        <path d="M43.7 44.3 l2 -0.8" {...sw(2)} />
+      </g>
+      {/* 얼굴 — 결의(소리 없이 옷자락만 베는 절제된 긴장) */}
+      <g style={d(2840, reduce)}>
+        <path d="M34.2 35.3 h0.8" {...sw(1.2)} />
+        <path d="M36.8 35.3 h0.8" {...sw(1.2)} />
+        <path d="M35 37.7 q1 -0.6 2 0" {...sw(1.2, 0.5)} />
+      </g>
+      <g style={d(2960, reduce)}>
+        <path d="M34 34.2 l1 -0.3" {...sw(1.1)} />
+        <path d="M37 33.9 l1 0.3" {...sw(1.1)} />
+        <path d="M32 51 q1.3 0.8 2.6 0" {...sw(1.1, 0.5)} />
+      </g>
+      <g style={d(3080, reduce)}>
+        <path d="M43.5 42 q0.8 1 0.3 2" {...sw(1.1)} />
+        <path d="M30 54 h1.3" {...sw(1.2, 0.5)} />
+      </g>
+      {/* 옷자락 — 핵심(다윗의 몸이 다 그려진 뒤에 잘려나간다) */}
+      <g style={d(3200, reduce)}>
+        <path d="M56.5 51.5 l4 -1.3 l1.2 2.6 l-4 1.3 z" {...sw(2.6)}>
           {!reduce && (
-            <animateMotion path="M0 0 q-7 -5 -13 -3" begin="3.1s" dur="0.7s" fill="freeze"
+            <animateMotion path="M0 0 q-7 -5 -13 -3" begin="3.8s" dur="0.7s" fill="freeze"
               calcMode="spline" keySplines="0.3 0 0.7 1" keyTimes="0;1" />
           )}
         </path>
       </g>
-      <Label x="36" y="34" at="2.8" reduce={reduce}>다윗</Label><Label x="79" y="42" at="1.8" reduce={reduce}>잠든 사울</Label>
+      <Label x="36" y="60" at="3.8" reduce={reduce}>다윗</Label><Label x="79" y="60" at="1.8" reduce={reduce}>잠든 사울</Label>
     </g>
   )
 }
@@ -1110,7 +1139,7 @@ function GibeahHarpScene({ reduce }) {
     <g>
       <g style={d(0, reduce)}>
         <path d="M6 54 h108" {...sw(1.6)} />
-        <path d="M78 54 h24 M96 54 V32" {...sw(2)} />
+        <path d="M78 54 h24 M96 54 V32" {...sw(1.8)} />
         <path d="M96 34 h3 M96 38 h3" {...sw(1.2, 0.5)} />
       </g>
       {/* 사울 — 괴로워하는 자, 보조 */}
@@ -1119,25 +1148,68 @@ function GibeahHarpScene({ reduce }) {
         <path d="M90 29.2 v9 M85 47 q3 -5 5 -8.8 M95 47 q-3 -5 -5 -8.8" {...sw(2.4)} />
         <path d="M87.5 24 l-2 -2 M89 22.5 q1.3 1.8 2.6 0" {...sw(1.4)} />
       </g>
-      {/* 다윗 — 수금, 주역 */}
-      <g style={d(1500, reduce)}>
-        <circle cx="26" cy="38" r="2.8" {...sw(2.5)} />
-        <path d="M26 40.8 q-1 5 -4 6.5 M19 54 l3.5 -5.5 M31 46.5 l2 6.5" {...sw(2.5)} />
-        <path d="M30 41.5 q-1 -8 3 -10 M35.5 41 q1.5 -7.5 -2 -9.5" {...sw(2.2)} />
+      {/* 다윗 — 수금, 주역. 머리는 정본(cast/david.jsx, scale=1 → r=4, GoliathScene과 동일 크기)을
+          쓴다. lib.jsx "얼굴" 절 — 머리 반지름 4단위가 이목구비 하한이라 scale을 줄이지 않는다
+          (1차 시도 scale=0.7은 이목구비가 뭉쳐 먹덩이가 됐다, render_scene.py 재검토). 몸은 이 머리
+          비례(GoliathScene David와 동일 어깨/엉덩이/발 폭 공식)로 다시 그린다(task#307 S4 — 머리만
+          갈아 끼우지 않는다).
+          ⚠ 목표 밀도 확정 시(task#305/#304 미결) 이 stroke 수·굵기는 재개정 대상이다. */}
+      <David cx={26} cy={36} scale={1} delay={1500} />
+      {/* 다리 — 겉선(구조)·안선(부피) */}
+      <g style={d(1860, reduce)}>
+        <path d="M20 54 l1.5 -7" {...sw(2.5)} />
+        <path d="M32 54 l-1.5 -7" {...sw(2.5)} />
+        <path d="M20.7 51.5 h1" {...sw(1.3)} />
       </g>
-      {/* 하프 줄 울림 — 핵심 */}
-      <g style={d(2400, reduce)} stroke="var(--paper-accent)">
+      <g style={d(1980, reduce)}>
+        <path d="M21.5 54 l1 -5.5" {...sw(1.7)} />
+        <path d="M30.5 54 l-1 -5.5" {...sw(1.7)} />
+        <path d="M31.3 51.5 h-1" {...sw(1.3)} />
+      </g>
+      {/* 튜닉 — 어깨(머리 바로 아래)에서 엉덩이로 퍼진다 + 허리끈 + 옷깃 */}
+      <g style={d(2100, reduce)}>
+        <path d="M21.5 47 l2 -7 q2.5 -1.3 5 0 l2 7" {...sw(2.6)} />
+        <path d="M24.5 44 q2 1 4 0.3" {...sw(1.3, 0.6)} />
+        <path d="M24.5 40 h3.5" {...sw(2)} />
+      </g>
+      {/* 팔 — 두 팔 모두 오른쪽 위 하프 줄로 뻗는다(뜯는 손) */}
+      <g style={d(2220, reduce)}>
+        <path d="M28.5 40 q2.5 -3 4.5 -5" {...sw(2.2)} />
+        <path d="M23.5 40 q3.5 -1 6.5 -2.5" {...sw(2)} />
+        <path d="M33 35 l1.4 -0.3" {...sw(1.4)} />
+      </g>
+      <g style={d(2340, reduce)}>
+        <path d="M30 37.5 l1.3 0.4" {...sw(1.3)} />
+        <path d="M18.5 54 h1.6" {...sw(2)} />
+        <path d="M31.9 54 h1.6" {...sw(2)} />
+      </g>
+      {/* 얼굴 — 위로(감은 듯 편안한 눈, 부드러운 입) */}
+      <g style={d(2460, reduce)}>
+        <path d="M24.2 35.3 q0.5 0.3 1 0" {...sw(1.2)} />
+        <path d="M26.8 35.3 q0.5 0.3 1 0" {...sw(1.2)} />
+        <path d="M25 37.6 q1 0.5 2 0" {...sw(1.2, 0.5)} />
+      </g>
+      <g style={d(2580, reduce)}>
+        <path d="M24.3 34.2 q0.5 -0.2 1 0" {...sw(1.1)} />
+        <path d="M26.9 34.2 q0.5 -0.2 1 0" {...sw(1.1)} />
+        <path d="M32.5 36.5 q0.7 0.7 0.2 1.5" {...sw(1.1)} />
+      </g>
+      <g style={d(2700, reduce)}>
+        <path d="M18.5 54 h1" {...sw(1.2, 0.5)} />
+      </g>
+      {/* 하프 줄 울림 — 핵심(다윗의 몸이 다 그려진 뒤에 떨린다) */}
+      <g style={d(2820, reduce)} stroke="var(--paper-accent)">
         <path d="M31.5 35 v6.2 M33.4 34.5 v6.2 M35.2 34.8 v5.8" {...sw(1.4)}>
-          {!reduce && <animate attributeName="opacity" values="1;0.4;1;0.5;1" begin="2.6s" dur="1.6s" />}
+          {!reduce && <animate attributeName="opacity" values="1;0.4;1;0.5;1" begin="3.5s" dur="1.6s" />}
         </path>
       </g>
       {/* 잦아드는 괴로움 — 핵심 */}
-      <g style={d(reduce ? 0 : 3400, reduce)}>
+      <g style={d(reduce ? 0 : 2940, reduce)}>
         <path d="M85 22 q3 -3 6.5 -1.5" stroke="var(--paper-accent)" {...sw(1.3)}>
-          {!reduce && <animate attributeName="opacity" values="0.7;0" begin="3.6s" dur="1s" fill="freeze" />}
+          {!reduce && <animate attributeName="opacity" values="0.7;0" begin="5.2s" dur="1s" fill="freeze" />}
         </path>
       </g>
-      <Label x="26" y="27" at="1.5" reduce={reduce}>다윗</Label><Label x="90" y="19" at="0.7" reduce={reduce}>사울</Label>
+      <Label x="26" y="18" at="3.5" reduce={reduce}>다윗</Label><Label x="90" y="13" at="0.7" reduce={reduce}>사울</Label>
     </g>
   )
 }
