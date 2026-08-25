@@ -103,6 +103,32 @@ def derive_ranges(src=None):
     return {"goliath": (min(goliath), max(goliath)), "david": (min(david), max(david))}
 
 
+def derive_head_ranges(src=None):
+    """**머리만**의 (LO,HI) 두 쌍을 소스에서 파생한다(task#317 S0-3).
+
+    `cast/david.jsx`·`cast/goliath.jsx`가 그리는 것은 머리뿐이므로(각 파일 머리 주석), 장면 안의
+    `<David delay={N}/>`·`<Goliath delay={M}/>` 호출이 소비하는 STEPS개 슬롯이 곧 **얼굴 영역**이다.
+    인물 전체 범위(derive_ranges)는 몸·무기까지 품어 얼굴이 bbox의 1/17로 묻힌다 — 회고
+    `260825-013953` 「다음 탐구 1」이 지목한 것이 정확히 이 자리다.
+
+    구획 안에 인물 정본 호출이 정확히 하나여야 한다 — 둘이면 어느 것이 얼굴인지 소스가 답하지
+    않으므로 지어내지 않고 실패한다. 반환: {"goliath": (lo,hi), "david": (lo,hi)}"""
+    if src is None:
+        src = open(SCENE_FILE, encoding="utf-8").read()
+    sec = slice_scene(src)
+    out = {}
+    for key, comp in (("goliath", "Goliath"), ("david", "David")):
+        calls = [m for m in _COMPONENT_CALL.finditer(sec[key]) if m.group(1) == comp]
+        if len(calls) != 1:
+            raise AssertionError(f"{key} 구획의 <{comp}> 호출이 {len(calls)}개다 — 정확히 1개여야 한다")
+        n = int(calls[0].group(2))
+        steps, gap = _cast_steps(comp)
+        out[key] = (n, n + (steps - 1) * gap)
+    if out["goliath"][1] >= out["david"][0]:
+        raise AssertionError(f"머리 범위가 겹친다: {out}")
+    return out
+
+
 # ── selftest 재료 — 실제 장면과 같은 구조를 가진 최소 합성 소스. 앵커 4개만 있으면 되므로
 # strokes는 더미다. david2의 값을 바꿔 "고의로 범위를 섞는다"(골리앗 구획과 겹치게 만든다). ──
 def _fake_src(david2):
@@ -157,4 +183,6 @@ if __name__ == "__main__":
         ranges = derive_ranges()
         for name, (lo, hi) in ranges.items():
             print(f"{name}: delay [{lo}, {hi}] — 연속 확인 PASS")
+        for name, (lo, hi) in derive_head_ranges().items():
+            print(f"{name} 머리: delay [{lo}, {hi}]")
         print("PASS — 두 인물 delay 범위 연속 + 비중첩 + 제외 구획 격리")

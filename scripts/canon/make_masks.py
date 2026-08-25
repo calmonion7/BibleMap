@@ -20,7 +20,7 @@ import params
 
 SCRIPTS = os.path.join(params.REPO_ROOT, "scripts")
 sys.path.insert(0, SCRIPTS)
-from check_mask_ranges import derive_ranges  # noqa: E402
+from check_mask_ranges import derive_head_ranges, derive_ranges  # noqa: E402
 
 # 임계는 params.THRESHOLD 하나만 읽는다 — 이전에는 prep_cond.py를 경유했지만 그 파일도
 # 이제 정본을 읽으므로 경유가 한 겹 늘 뿐이다(같은 임계·같은 극성이라는 요구는 그대로).
@@ -98,6 +98,25 @@ def main():
     print(f"겹침 픽셀 = {overlap_px} (기대 0)")
     print(f"커버리지 = 화면 전체 {coverage.size}px, 모두 정확히 1회 피복 확인")
     print(f"저장: {OUT_DIR}/david.png · goliath.png · background.png ({params.SCENE_SIZE[0]}x{params.SCENE_SIZE[1]})")
+
+    # --- 머리 마스크(task#317 S0-3) — [[정본 전이]] 판정이 크롭할 영역 -------------------
+    # 인물 bbox는 얼굴을 1/17로 묻는다(다윗 251x327 안에 얼굴 ~60px). 동결 정본은 얼굴
+    # 클로즈업이므로, 같은 것끼리 비교하려면 판정도 얼굴에서 잘라야 한다. 범위는 손으로 적지
+    # 않고 인물 정본 컴포넌트 호출에서 파생한다(derive_head_ranges).
+    head_ranges = derive_head_ranges()
+    person_bbox = {"david": david_bbox, "goliath": goliath_bbox}
+    for name in ("david", "goliath"):
+        raw = os.path.join(OUT_DIR, f"_raw_{name}_head.png")
+        _raw_capture(f"{name}_head", *head_ranges[name], raw)
+        ink = _ink_mask(raw)
+        mask, bbox = _bbox_mask(ink)
+        px, py, px1, py1 = person_bbox[name]
+        assert px <= bbox[0] and py <= bbox[1] and bbox[2] <= px1 and bbox[3] <= py1, (
+            f"{name} 머리 bbox {bbox}가 인물 bbox {person_bbox[name]} 밖으로 나간다")
+        Image.fromarray(mask, mode="L").save(os.path.join(OUT_DIR, f"{name}_head.png"))
+        area_ratio = ((bbox[2] - bbox[0]) * (bbox[3] - bbox[1])) / ((px1 - px) * (py1 - py))
+        print(f"{name} 머리 delay {head_ranges[name]}  bbox={bbox}  "
+              f"인물 bbox 대비 면적 {area_ratio:.3f}  잉크 {int(ink.sum())}px")
 
 
 if __name__ == "__main__":

@@ -24,6 +24,9 @@ CANON_DIR = _HERE
 REPO_ROOT = os.path.dirname(os.path.dirname(_HERE))   # scripts/canon → scripts → BibleMap
 NOTES = os.path.join(_HERE, "notes")                  # 판단 문서 14 + meta json 12 (추적)
 FROZEN = os.path.join(_HERE, "frozen")                # 동결 얼굴 2장 (추적) — 장면 생성의 정체성 입력
+# 정답지(추적) — [[화풍 도달]] 판정의 양성 기준 10장. 사용자가 목표로 지정한 그림이라
+# 지어내지 않으며, 축 A의 임계는 이 집합에서 파생한다(reference/REFERENCE.md).
+REFERENCE = os.path.join(_HERE, "reference")
 PROMPTS_JSON = os.path.join(NOTES, "prompts.json")    # derive_prompts.py가 쓰고 생성기 4종이 읽는다
 
 # 산출물 루트. 스크립트를 추적 위치로 옮긴 뒤에도 **산출물 54MB는 따라오지 않는다**는 것이
