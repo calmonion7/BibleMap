@@ -41,10 +41,13 @@ import derive_prompts  # noqa: E402
 import gen_sequential as seq  # noqa: E402  — figure_mask(잉크 부풀리기)를 재사용한다
 import judge_metrics as jm  # noqa: E402
 
-OUT = os.path.join(params.OUT_ROOT, "combined")
+OUT = os.path.join(params.OUT_ROOT, "combined2")
 MASKS = os.path.join(params.OUT_ROOT, "masks")
 COND_SCENE = os.path.join(params.OUT_ROOT, "cond-scene-ctrl.png")
-BG_SOURCE = os.path.join(params.OUT_ROOT, "staged", "1-bg-s11.png")
+# 배경(1단계) 산출. argv로 갈아끼울 수 있다 — 화풍 레퍼런스를 태운 배경을 쓰기 위해서다.
+BG_SOURCE = os.path.join(params.OUT_ROOT, "styleref", "sheet1.0-cn0.8-s11.png")
+STYLE_SHEET = os.path.join(params.REFERENCE, "sheet-s200.png")
+STYLE_IP = 0.7   # 인물 단계에 함께 물리는 화풍 레퍼런스 강도
 PAD = 64          # 마스크 둘레 여백(px) — 모델에게 맥락을 준다
 TARGET = 1024     # 확대한 창의 긴 변
 STRENGTH = 0.99
@@ -71,7 +74,9 @@ def main():
     derive_prompts.main()
     P = json.load(open(params.PROMPTS_JSON, encoding="utf-8"))
     cond = Image.open(COND_SCENE).convert("RGB").resize(params.SCENE_SIZE)
-    canvas = Image.open(BG_SOURCE).convert("RGB").resize(params.SCENE_SIZE)
+    bg_src = sys.argv[1] if len(sys.argv) > 1 else BG_SOURCE
+    canvas = Image.open(bg_src).convert("RGB").resize(params.SCENE_SIZE)
+    print(f"배경(1단계): {os.path.basename(bg_src)}")
     masks = {n: seq.figure_mask(n) for n in ("david", "goliath")}
 
     t = time.time()
@@ -80,9 +85,13 @@ def main():
         params.SDXL_BASE, controlnet=cn, torch_dtype=torch.float16, variant="fp16",
         use_safetensors=True).to("mps")
     pipe.set_progress_bar_config(disable=True)
+    # 레퍼런스 2장 — 동결 얼굴(정체성) + 화풍 시트(화풍). 마스크 없이 둘 다 크롭 전체에 건다:
+    # 인물 단계의 크롭은 그 인물이 화면의 대부분이라 영역을 나눌 이유가 없고, 화풍은 원래
+    # 전면에 걸려야 한다. 시트를 안 물리면 인물 자리만 배경보다 창백해진다(동결본 잉크 0.006).
     pipe.load_ip_adapter(params.IP_ADAPTER_REPO, subfolder=params.IP_ADAPTER_SUBFOLDER,
-                         weight_name=params.IP_ADAPTER_WEIGHT)
-    pipe.set_ip_adapter_scale(params.IP_SCALE)
+                         weight_name=[params.IP_ADAPTER_WEIGHT] * 2)
+    pipe.set_ip_adapter_scale([params.IP_SCALE, STYLE_IP])
+    sheet = Image.open(STYLE_SHEET).convert("RGB")
     lim = pipe.tokenizer.model_max_length
     print(f"로드 {time.time() - t:.0f}s")
 
@@ -100,7 +109,7 @@ def main():
         n = len(pipe.tokenizer(pr).input_ids)
         if n > lim:
             sys.exit(f"{name} 전신 프롬프트가 한도를 넘었다({n})")
-        ref = Image.open(os.path.join(params.FROZEN, f"{name}.png")).convert("RGB")
+        ref = [[Image.open(os.path.join(params.FROZEN, f"{name}.png")).convert("RGB")], [sheet]]
 
         # 그림·마스크·콘티를 **같은 창**으로 자르고 같은 배율로 키운다 — 셋이 어긋나면 안 된다.
         sub_img = canvas.crop(box).resize((gw, gh), Image.LANCZOS)
