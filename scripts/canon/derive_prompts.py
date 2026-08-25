@@ -120,6 +120,37 @@ def portrait_prompt(name):
     return prompt, neg, axes
 
 
+# --- 장면 프롬프트의 정체성 어휘 (task#317 S2) ---------------------------------
+# 장면은 지금까지 "a small shepherd boy"/"a huge armored giant" 한 마디였다(SCENE_PERSON).
+# 초상은 5축·BRIEF·나이에서 파생하는데 장면은 손으로 쓴 문구였고, 실제 산출에서 다윗은 5~7세
+# 유아 얼굴로 나온다. 여기서는 **초상과 같은 출처**에서 조립한다 — 다만 2인 장면이라 CLIP 77토큰이
+# 빠듯하므로, 완성된 문장이 아니라 **우선순위대로 정렬한 조각**을 넘기고 예산에 맞추는 일은
+# 실제 tokenizer를 쥔 GPU 스크립트가 한다(이 파일이 토큰을 재지 않는다는 머리 주석의 규약 그대로).
+SCENE_SLOT_ORDER = ("age", "brief", "hair", "headwear")   # portrait_prompt의 선언 순서 그대로
+
+
+def scene_person_slots(name):
+    """장면용 인물 서술 조각 — 앞일수록 CLIP에 세게 걸리므로 자를 때는 뒤에서 자른다."""
+    axes = read_axes(name)
+    en = {k: AXIS_EN[k][v] for k, v in axes.items()}
+    src = {"age": en["age"][0], "brief": read_brief(name),
+           "hair": en["hair"][0], "headwear": en["headwear"][0]}
+    return [(k, src[k]) for k in SCENE_SLOT_ORDER if src[k]]
+
+
+# 장면이 서술하는 동작·자리. NEEDS.md §2 실측(--at 9000의 콘티와 같은 순간)에서 온 것이라
+# SCENE_PERSON과 같은 출처이고, 바뀌는 것은 인물 서술뿐이다.
+SCENE_FRAME = ("a {david} swings a sling on the left, "
+               "a {goliath} stands on the right.")
+
+# 장면 네거티브에 더할 어휘. **축값의 부정어가 아니라 화풍 블록의 실패 양태**다 —
+# "young boy"가 storybook과 합쳐져 유아·인형이 된 선례(2026-08-24 사용자 UAT)라서 초상 축에
+# 달려 있었을 뿐, 두 인물 중 누구도 이것에 해당하지 않는다. 그래서 2인 장면에 그대로 실을 수 있다.
+# 나머지 축 부정어는 실을 수 없다 — 두 인물의 축값이 갈리기 때문이다: 골리앗의 "child, youth"는
+# 다윗(열다섯 소년)을 지우고, 골리앗의 "visible hair, long hair"는 다윗의 곱슬을 지운다.
+SCENE_NEG_EXTRA = AXIS_EN["age"]["소년/청년"][1]
+
+
 def main():
     david_prompt, david_neg, david_axes = portrait_prompt("david")
     goliath_prompt, goliath_neg, goliath_axes = portrait_prompt("goliath")
@@ -129,6 +160,12 @@ def main():
         "david": {"axes": david_axes, "prompt": david_prompt, "negative": david_neg},
         "goliath": {"axes": goliath_axes, "prompt": goliath_prompt, "negative": goliath_neg},
         "bg_on": {"prompt": f"{STYLE} {SCENE_PERSON} {BG_VOCAB}"},
+        # task#317 S2 — 조립은 GPU 스크립트가(토큰 예산 때문에). 여기서는 재료만 낸다.
+        "scene_identity": {
+            "style": STYLE, "frame": SCENE_FRAME,
+            "slots": {n: scene_person_slots(n) for n in ("david", "goliath")},
+            "negative_extra": SCENE_NEG_EXTRA,
+        },
         "bg_off": {"prompt": f"{STYLE} {SCENE_PERSON}"},
     }
     out = params.PROMPTS_JSON

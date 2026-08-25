@@ -26,6 +26,45 @@
   "bg_on": {
     "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, light shading, simple, clean background, muted palette. a small shepherd boy swings a sling on the left, a huge armored giant stands on the right. dry streambed, five smooth stones, near hills, far ridges, hillside bushes, birds, dry grass"
   },
+  "scene_identity": {
+    "style": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, light shading, simple, clean background, muted palette.",
+    "frame": "a {david} swings a sling on the left, a {goliath} stands on the right.",
+    "slots": {
+      "david": [
+        [
+          "age",
+          "boy of fifteen"
+        ],
+        [
+          "brief",
+          "lean-faced shepherd with calm steady eyes"
+        ],
+        [
+          "hair",
+          "curly hair"
+        ],
+        [
+          "headwear",
+          "bare head"
+        ]
+      ],
+      "goliath": [
+        [
+          "age",
+          "grown man of about forty"
+        ],
+        [
+          "brief",
+          "fierce giant warrior with heavy brow and hard jaw"
+        ],
+        [
+          "headwear",
+          "bronze helmet with cheek guards"
+        ]
+      ]
+    },
+    "negative_extra": "baby, toddler, infant, chibi, doll"
+  },
   "bg_off": {
     "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, light shading, simple, clean background, muted palette. a small shepherd boy swings a sling on the left, a huge armored giant stands on the right."
   }

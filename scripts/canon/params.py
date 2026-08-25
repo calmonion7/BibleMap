@@ -69,6 +69,12 @@ IP_SCALE = 0.3         # S2가 정한 값(gen_sweep_scale_age.py 판정).
 IP_SCALES = [0.3, 0.5, 0.7]  # 스윕 2종이 함께 쓰는 후보 범위 — 두 곳에 복사돼 있던 값이다.
 # 조건 입력 전용 균일 선 굵기(viewBox 단위). 머리 8단위 대비 ~1.9%로, 1024px 산출에서 약 9px.
 # 원본 구조 선 2.6단위(머리의 32%)를 그대로 키우면 실루엣이 뭉개진다(회고 1of2 §3의 지배 원인).
+# ControlNet을 **몇 스텝까지** 걸 것인가(0~1, 1.0 = 전 스텝). `diffusers 0.40.0`의
+# StableDiffusionXLControlNetPipeline이 `control_guidance_start/end`로 받는데 task#316까지의
+# 생성기는 넘기지 않아 줄곧 기본값 1.0으로 돌았다 — 즉 현행 값이지 고른 값이 아니었다.
+# 뒤쪽 스텝에서 CN을 놓으면 구도는 잡히고 화풍은 모델이 마무리한다는 것이 task#317 S1의 가설.
+CONTROL_END = 1.0
+CONTROL_ENDS = [0.3, 0.5, 0.7, 1.0]  # S1 스윕 후보 — 마지막이 현행(기준선)
 THIN_SW = 0.15
 # 잉크/배경 이진화 임계(0~255). 좌상단 코너를 배경으로 보고 |a-bg| > THRESHOLD를 잉크로 본다.
 # `prep_cond.py`와 `make_masks.py`가 **같은 임계·같은 극성**을 써야 마스크가 조건 입력과 어긋나지 않는다.
