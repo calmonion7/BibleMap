@@ -151,6 +151,29 @@ SCENE_FRAME = ("a {david} swings a sling on the left, "
 SCENE_NEG_EXTRA = AXIS_EN["age"]["소년/청년"][1]
 
 
+# --- 전신 프롬프트 (task#317 후속, 순차 인페인팅용) ----------------------------
+# 인물 **영역 전체**를 인페인팅할 때 초상 프롬프트를 쓰면 안 된다 — 그것은
+# "close-up head portrait of …, facing forward"라서, 전신 실루엣 안에 얼굴 클로즈업을 그리려다
+# 가면 같은 형체가 나온다(2026-08-25 실측: 골리앗 유사도 0.5345 → 0.4570으로 되레 떨어졌다).
+# 그래서 같은 조각(5축·BRIEF·나이)에서 **전신·동작** 문장을 따로 파생한다.
+#
+# 동작의 출처는 SCENE_PERSON과 같다 — NEEDS.md §2 실측(--at 9000 콘티가 그리는 그 순간).
+SCENE_ACTION = {"david": "swinging a sling", "goliath": "standing in heavy armor"}
+
+
+def figure_prompt(name):
+    """전신 한 명. 순서는 portrait_prompt와 같다(나이 → 개요 → 머리카락 → 머리쓰개) —
+    앞일수록 CLIP에 세게 걸리므로 정체성 조각을 앞에 두고 동작을 뒤에 붙인다."""
+    axes = read_axes(name)
+    en = {k: AXIS_EN[k][v] for k, v in axes.items()}
+    parts = [en["age"][0], read_brief(name), en["hair"][0], en["headwear"][0]]
+    body = ", ".join(p for p in parts if p)
+    art = "an" if body[0].lower() in "aeiou" else "a"
+    prompt = f"{STYLE} full body of {art} {body}, {SCENE_ACTION[name]}, on dry ground."
+    neg = ", ".join([NEG] + [v[1] for v in en.values() if v[1]])
+    return prompt, neg
+
+
 def main():
     david_prompt, david_neg, david_axes = portrait_prompt("david")
     goliath_prompt, goliath_neg, goliath_axes = portrait_prompt("goliath")
@@ -160,6 +183,9 @@ def main():
         "david": {"axes": david_axes, "prompt": david_prompt, "negative": david_neg},
         "goliath": {"axes": goliath_axes, "prompt": goliath_prompt, "negative": goliath_neg},
         "bg_on": {"prompt": f"{STYLE} {SCENE_PERSON} {BG_VOCAB}"},
+        # 전신 — 인물 영역 인페인팅용(초상과 목적이 다르다, figure_prompt 주석 참조)
+        "figure": {n: dict(zip(("prompt", "negative"), figure_prompt(n)))
+                   for n in ("david", "goliath")},
         # task#317 S2 — 조립은 GPU 스크립트가(토큰 예산 때문에). 여기서는 재료만 낸다.
         "scene_identity": {
             "style": STYLE, "frame": SCENE_FRAME,
