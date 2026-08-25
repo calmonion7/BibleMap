@@ -41,13 +41,17 @@ import derive_prompts  # noqa: E402
 import gen_sequential as seq  # noqa: E402  — figure_mask(잉크 부풀리기)를 재사용한다
 import judge_metrics as jm  # noqa: E402
 
-OUT = os.path.join(params.OUT_ROOT, "combined2")
+OUT = os.path.join(params.OUT_ROOT, "combined3")
 MASKS = os.path.join(params.OUT_ROOT, "masks")
 COND_SCENE = os.path.join(params.OUT_ROOT, "cond-scene-ctrl.png")
 # 배경(1단계) 산출. argv로 갈아끼울 수 있다 — 화풍 레퍼런스를 태운 배경을 쓰기 위해서다.
 BG_SOURCE = os.path.join(params.OUT_ROOT, "styleref", "sheet1.0-cn0.8-s11.png")
 STYLE_SHEET = os.path.join(params.REFERENCE, "sheet-s200.png")
-STYLE_IP = 0.7   # 인물 단계에 함께 물리는 화풍 레퍼런스 강도
+# 인물 단계에 함께 물리는 화풍 레퍼런스 강도. argv[2]로 갈아끼운다.
+# **0이 기본이다** — 0.7로 물렸더니 화풍은 올랐으나(ink .0191 → .0361) 동결 얼굴(IP_SCALE 0.3)보다
+# 세서 얼굴을 덮었다(골리앗 축 B +0.1942 → +0.0256). 배경의 화풍은 인페인팅이 맥락으로 이미
+# 나르므로 인물 단계에서 시트를 또 물릴 이유가 없다.
+STYLE_IP = 0.0
 PAD = 64          # 마스크 둘레 여백(px) — 모델에게 맥락을 준다
 TARGET = 1024     # 확대한 창의 긴 변
 STRENGTH = 0.99
@@ -75,8 +79,9 @@ def main():
     P = json.load(open(params.PROMPTS_JSON, encoding="utf-8"))
     cond = Image.open(COND_SCENE).convert("RGB").resize(params.SCENE_SIZE)
     bg_src = sys.argv[1] if len(sys.argv) > 1 else BG_SOURCE
+    style_ip = float(sys.argv[2]) if len(sys.argv) > 2 else STYLE_IP
     canvas = Image.open(bg_src).convert("RGB").resize(params.SCENE_SIZE)
-    print(f"배경(1단계): {os.path.basename(bg_src)}")
+    print(f"배경(1단계): {os.path.basename(bg_src)}  ·  인물 단계 화풍 시트 강도 {style_ip}")
     masks = {n: seq.figure_mask(n) for n in ("david", "goliath")}
 
     t = time.time()
@@ -90,7 +95,7 @@ def main():
     # 전면에 걸려야 한다. 시트를 안 물리면 인물 자리만 배경보다 창백해진다(동결본 잉크 0.006).
     pipe.load_ip_adapter(params.IP_ADAPTER_REPO, subfolder=params.IP_ADAPTER_SUBFOLDER,
                          weight_name=[params.IP_ADAPTER_WEIGHT] * 2)
-    pipe.set_ip_adapter_scale([params.IP_SCALE, STYLE_IP])
+    pipe.set_ip_adapter_scale([params.IP_SCALE, style_ip])
     sheet = Image.open(STYLE_SHEET).convert("RGB")
     lim = pipe.tokenizer.model_max_length
     print(f"로드 {time.time() - t:.0f}s")
