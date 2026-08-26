@@ -1,0 +1,323 @@
+{
+ "axis_a": {
+  "thresholds": {
+   "ink_min": 0.10240542763157895,
+   "ink_max": 0.22126007080078125,
+   "val_p05_max": 0.5598786138555883
+  },
+  "superseded": {
+   "old_ink_min": 0.0250479874285955,
+   "reason": "후보가 없어 느슨하게 둔 잠정값(s0) — 정답지 구간 자체로 조인다(사용자 지시)",
+   "ratio_new_over_old": 4.088369491700957
+  },
+  "ink_max_is_warn_only": "상한 초과는 실패가 아니라 경고다(PROMPTING.md 구멍 1 — 유화 배합 .72는 상한을 7배 넘겨도 화풍 자체는 목표일 수 있다)",
+  "reference_pass": 10,
+  "n_reference": 10,
+  "current_pass": 0,
+  "n_current": 12,
+  "regression_check_combined3": {
+   "file": "combined3/3-final-s11.png",
+   "ink": 0.03597604851973684,
+   "passes_old_threshold": true,
+   "passes_new_threshold": false,
+   "note": "구임계에선 통과했던 이 장이 신임계에선 실패한다 — 바가 실제로 높아졌다는 증거"
+  }
+ },
+ "axis_b": {
+  "formula": "전이 점수 = Δ(자기 표본) − Δ(남의 표본), Δ(X) = cos(crop, X) − cos(base_crop, X) — judge_axes.py:_transfer_score와 같은 산식, 비교 대상만 frozen head → [[전신 표본]]",
+  "pair_definition": "같은 파이프라인의 무레퍼런스 대조군 — 표본과 같은 프롬프트·캔버스로 IP-Adapter 참조 없이(`gen_sample.py --no-ref`) 돌린 결과",
+  "banned_reuse": "scene/a-none",
+  "banned_reason": "PROMPTING.md 구멍 3 — 축 B의 짝은 CN·프롬프트가 같을 때만 성립한다. `a-none`은 CN 0.8 장면 스윕에서 나왔고 표본 파이프라인과 조건 종류가 다르다.",
+  "old_s0_ladder_invalid_for_this_pairing": "s0의 axis_b.ladder·threshold는 frozen head 기준 짝(a-none)에서 나왔다 — 비교 대상과 짝 정의가 둘 다 바뀌므로 승계하지 않는다.",
+  "threshold": 0.07641786336898804,
+  "null_max": 0.07641786336898804,
+  "null": [
+   0.05877053737640381,
+   0.07641786336898804,
+   -0.05877053737640381,
+   0.01764732599258423,
+   -0.07641786336898804,
+   -0.01764732599258423,
+   -0.051283419132232666,
+   -0.03711813688278198,
+   0.051283419132232666,
+   0.014165282249450684,
+   0.03711813688278198,
+   -0.014165282249450684
+  ],
+  "n_null_pairs": 12,
+  "ladder": {
+   "0.0": {
+    "min": 0.0,
+    "max": 0.0,
+    "mean": 0.0,
+    "vals": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "0.25": {
+    "min": 0.005212128162384033,
+    "max": 0.06444835662841797,
+    "mean": 0.027216653029123943,
+    "vals": [
+     0.03708562254905701,
+     0.005212128162384033,
+     0.06444835662841797,
+     0.031016647815704346,
+     0.013438284397125244,
+     0.012098878622055054
+    ]
+   },
+   "0.5": {
+    "min": 0.008352339267730713,
+    "max": 0.08050537109375,
+    "mean": 0.04227998356024424,
+    "vals": [
+     0.041282832622528076,
+     0.08050537109375,
+     0.03540840744972229,
+     0.04212599992752075,
+     0.008352339267730713,
+     0.04600495100021362
+    ]
+   },
+   "1.0": {
+    "min": 0.12456575036048889,
+    "max": 0.22264859080314636,
+    "mean": 0.1814049780368805,
+    "vals": [
+     0.12456575036048889,
+     0.1833362877368927,
+     0.20098361372947693,
+     0.22264859080314636,
+     0.1713651716709137,
+     0.18553045392036438
+    ]
+   }
+  },
+  "ladder_monotonic": true,
+  "negative_passes": 0,
+  "positive_passes_at_alpha1": 6,
+  "n_positive": 6,
+  "margin_alpha1_mean_minus_threshold": 0.10498711466789246,
+  "null_max_by_person": {
+   "david": 0.07641786336898804,
+   "goliath": 0.051283419132232666
+  },
+  "samples": {
+   "david": "samples/david.png",
+   "goliath": "samples/goliath.png"
+  },
+  "derived_by": "part2-S5 (동결 표본 전수 + 무레퍼런스 기준선 순열)",
+  "machine_gate_ready": true,
+  "not_ready_because": null
+ },
+ "axis_c": {
+  "masks": {
+   "david": "conti/mask_david.png",
+   "goliath": "conti/mask_goliath.png",
+   "method": "볼록껍질(convex hull), make_conti_masks.py — S4"
+  },
+  "area_fraction": {
+   "union": 0.33052528782894736,
+   "david": 0.1038098787006579,
+   "goliath": 0.22671540912828947
+  },
+  "overlap_px": 0,
+  "per_person_occupancy": "current/reference 각 항목이 combined·david·goliath 세 값을 담는다 — #317 구멍 2(인물이 통째로 빠져도 통과) 대응",
+  "thresholds_by_key": {
+   "combined": {
+    "threshold": 1.4034137352346472,
+    "current_pass": 2,
+    "n_current": 12,
+    "reference_pass": 2,
+    "n_reference": 10
+   },
+   "david": {
+    "threshold": 1.2903905283644004,
+    "current_pass": 9,
+    "n_current": 12,
+    "reference_pass": 1,
+    "n_reference": 10
+   },
+   "goliath": {
+    "threshold": 1.3428717558667596,
+    "current_pass": 5,
+    "n_current": 12,
+    "reference_pass": 6,
+    "n_reference": 10
+   }
+  },
+  "current": {
+   "a-none-s11.png": {
+    "combined": 1.3334863185882568,
+    "david": 1.5700438022613525,
+    "goliath": 1.2251697778701782
+   },
+   "a-none-s42.png": {
+    "combined": 1.3313186168670654,
+    "david": 1.6183439493179321,
+    "goliath": 1.1998934745788574
+   },
+   "a-none-s7.png": {
+    "combined": 1.3381599187850952,
+    "david": 1.7341347932815552,
+    "goliath": 1.156848430633545
+   },
+   "b-nomask-s11.png": {
+    "combined": 1.3620392084121704,
+    "david": 1.372538685798645,
+    "goliath": 1.357231616973877
+   },
+   "b-nomask-s42.png": {
+    "combined": 1.3567768335342407,
+    "david": 1.4389116764068604,
+    "goliath": 1.3191684484481812
+   },
+   "b-nomask-s7.png": {
+    "combined": 1.3905401229858398,
+    "david": 1.7370710372924805,
+    "goliath": 1.2318683862686157
+   },
+   "c-mask-s11.png": {
+    "combined": 1.3800170421600342,
+    "david": 1.2057348489761353,
+    "goliath": 1.4598184823989868
+   },
+   "c-mask-s42.png": {
+    "combined": 1.3414897918701172,
+    "david": 1.201570987701416,
+    "goliath": 1.405556559562683
+   },
+   "c-mask-s7.png": {
+    "combined": 1.3661227226257324,
+    "david": 1.6178056001663208,
+    "goliath": 1.250880479812622
+   },
+   "d-mask-bg-s11.png": {
+    "combined": 1.4282995462417603,
+    "david": 1.3510198593139648,
+    "goliath": 1.4636846780776978
+   },
+   "d-mask-bg-s42.png": {
+    "combined": 1.4630656242370605,
+    "david": 1.2559236288070679,
+    "goliath": 1.5579129457473755
+   },
+   "d-mask-bg-s7.png": {
+    "combined": 1.3954681158065796,
+    "david": 1.6356006860733032,
+    "goliath": 1.2855145931243896
+   }
+  },
+  "reference": {
+   "scene-1-shepherd-ref0.4.png": {
+    "combined": 1.227614402770996,
+    "david": 0.5043043494224548,
+    "goliath": 1.5588079690933228
+   },
+   "scene-1-shepherd-ref0.7.png": {
+    "combined": 0.972186803817749,
+    "david": 0.5589893460273743,
+    "goliath": 1.161384105682373
+   },
+   "scene-2-goliath-ref0.4.png": {
+    "combined": 1.2511905431747437,
+    "david": 0.7327067255973816,
+    "goliath": 1.48859703540802
+   },
+   "scene-2-goliath-ref0.7.png": {
+    "combined": 1.0010594129562378,
+    "david": 0.730699896812439,
+    "goliath": 1.1248533725738525
+   },
+   "scene-3-enthroned-ref0.4.png": {
+    "combined": 1.403590202331543,
+    "david": 1.128979206085205,
+    "goliath": 1.529330849647522
+   },
+   "scene-3-enthroned-ref0.7.png": {
+    "combined": 1.3269685506820679,
+    "david": 0.9611923694610596,
+    "goliath": 1.4944523572921753
+   },
+   "sheet-s200.png": {
+    "combined": 1.049973964691162,
+    "david": 0.9626047015190125,
+    "goliath": 1.0899791717529297
+   },
+   "sheet-s201.png": {
+    "combined": 1.1575595140457153,
+    "david": 1.2176872491836548,
+    "goliath": 1.1300277709960938
+   },
+   "sheet-s202.png": {
+    "combined": 1.4794130325317383,
+    "david": 1.3857755661010742,
+    "goliath": 1.522288203239441
+   },
+   "sheet-s203.png": {
+    "combined": 1.379264235496521,
+    "david": 1.0418202877044678,
+    "goliath": 1.5337750911712646
+   }
+  },
+  "human_only": false,
+  "machine_gate_ready": false,
+  "revalidate_by": "part3",
+  "demoted_because": "s0(옛 bbox 마스크)는 현행 12/12 · 음성 0/10로 완전 분리했으나, S4 새 마스크로는 combined 2/12 · 음성 2/10로 샌다 — 특히 골리앗 단독 축은 5/12 대 6/10로 사실상 우연 수준이다. 근거: S4의 새 마스크는 S3가 새로 저작한 콘티(`conti/goliath_scene.png`)에서 파생됐고, `scene/*.png`(현행 코퍼스)는 옛 앱 장면(`GoliathScene`)의 ControlNet 조건으로 생성됐다 — 두 콘티의 인물 배치가 다르다(골리앗 bbox x0 793→688, -105px 이동). 이는 축 C의 산식(에지 농축비)이 깨진 것이 아니라 **이 코퍼스가 새 마스크를 검증할 자료가 아니라는 것**이다(GPU 0이라 새 콘티로 조건화한 산출물을 이 슬라이스에서 만들 수 없다). s0의 성공이 회귀한 것이 아니라 — 검증 코퍼스가 콘티 버전과 안 맞을 뿐이다. **part 3가 새 콘티로 실제 생성한 뒤 이 마스크로 재검증**해야 완전한 증명이 완성된다."
+ },
+ "axis_d": {
+  "negative_control": "combined3/3-final-s11.png (콘티가 동작을 지시했는데 팔이 내려간 그림)",
+  "positive_control": "conti/david.png (콘티 잉크 자신)",
+  "ladder": "combined3와 콘티 잉크를 alpha로 합성 — judge_axes.py LADDER (0,0.25,0.5,1.0)",
+  "mask_bbox": [
+   249,
+   140,
+   596,
+   564
+  ],
+  "candidates": {
+   "mask_ink_edge_correlation": {
+    "description": "david 마스크 내에서 콘티 잉크(고정)와 산출물 엣지의 픽셀별 피어슨 상관",
+    "by_alpha": {
+     "0.0": 0.008522898693419873,
+     "0.25": 0.276868901009926,
+     "0.5": 0.33809436546256266,
+     "1.0": 0.4390229190950703
+    },
+    "threshold": 0.2237729088942451,
+    "neg_value": 0.008522898693419873,
+    "pos_value": 0.4390229190950703,
+    "monotonic": true,
+    "neg_passes": false,
+    "pos_passes": true
+   },
+   "arm_region_edge_occupancy": {
+    "description": "팔 영역(y<280·x>398, 콘티 잉크 실측으로 정한 구간 — 마스크와 교집합)의 엣지 화소 점유율",
+    "arm_region_ink_px": 2001,
+    "by_alpha": {
+     "0.0": 0.030661460725769408,
+     "0.25": 0.07946715663757464,
+     "0.5": 0.08210840606338998,
+     "1.0": 0.08727606798346348
+    },
+    "threshold": 0.05896876435461644,
+    "neg_value": 0.030661460725769408,
+    "pos_value": 0.08727606798346348,
+    "monotonic": true,
+    "neg_passes": false,
+    "pos_passes": true
+   }
+  },
+  "chosen": "mask_ink_edge_correlation",
+  "reason": "상관 후보가 사다리 전 구간에서 단조 증가하고(음성 -0.01 → 25%:+0.25 → 50%:+0.30 → 양성 +0.43) 음성·양성을 뚜렷이 가른다. 팔 영역 점유율은 음성보다 확실히 높아지긴 하지만 25%→50%→100% 구간에서 단조성이 깨진다(사다리로 갈수록 배경이 콘티의 흰 여백으로 대체되면서 원래 있던 배경 엣지가 오히려 줄기 때문 — 팔 자체는 가는 선이라 점유율의 절대 변화폭도 작다). 못 고른 쪽의 수치도 위에 전부 남긴다.",
+  "human_only": false,
+  "machine_gate_ready": true
+ }
+}

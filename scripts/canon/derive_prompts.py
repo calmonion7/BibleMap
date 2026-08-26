@@ -63,7 +63,11 @@ _DAVID_GOLIATH_AGE = age_at("authored-david-goliath-gath")
 AXIS_EN = {
     "hair": {"곱슬머리": ("curly hair", ""), "없음": ("", "visible hair, long hair")},
     "beard": {"없음": ("", "beard, moustache, stubble")},
-    "headwear": {"없음": ("bare head", ""), "투구": ("bronze helmet with cheek guards", "")},
+    # 「투구」에 **뿔**을 넣은 것은 2026-08-26 사용자 판단이다. 삼상 17:5는 「놋투구」만 말하고 뿔은
+    # 없으므로 이것은 본문 파생이 아니라 **연출 결정**이다. ⚠ **인물 정본 2층과 어긋난다** —
+    # `cast/goliath.jsx`의 선화는 strokes=4(머리 윤곽 1 + 투구 돔 1 + 볼가림 2)로 뿔이 없고
+    # `frozen/goliath.png`도 뿔 없는 볼가림 투구다. 두 층을 맞추는 것은 저작 층 변경이라 별건이다.
+    "headwear": {"없음": ("bare head", ""), "투구": ("horned bronze helmet with cheek guards", "")},
     "age": {"소년/청년": (f"boy of {num_to_words(_DAVID_GOLIATH_AGE)}",
                        "baby, toddler, infant, chibi, doll"),
             "성인": ("grown man of about forty", "child, youth")},
@@ -174,6 +178,158 @@ def figure_prompt(name):
     return prompt, neg
 
 
+# --- 전신 표본 (task#319 part2 S1) --------------------------------------------
+# 표본은 축 A(화풍) 정답지 구간(.102~.221)에 들어야 하는데, S0 실측(s0-baseline.json)은
+# 현행 STYLE로 12/12 전부 실패했다(잉크 .0051, 정답지의 1/20~1/43). 계획이 지정한 손잡이는
+# 정답지 시트를 IP 레퍼런스로 물리는 것(생성 시 배선 — 이 슬라이스는 GPU 0이라 여기서 하지 않는다).
+#
+# 그런데 STYLE 자신이 "light shading, muted palette"로 저대비를 **명시 요구**하고, NEG가
+# "dark, heavy shadows"로 고대비를 막는다 — PROMPTING.md 4(ControlNet과 프롬프트가 같은 대비
+# 자원을 놓고 싸운다)와 같은 충돌이 IP 레퍼런스와 텍스트 사이에도 날 것으로 본다: 레퍼런스가 밀어
+# 넣으려는 대비를 텍스트가 도로 깎는다. 그래서 표본용 블록에서 그 두 조각만 뺀다.
+#
+# **매체 낱말(soft pencil and colored-pencil storybook illustration)은 그대로 둔다** — 유화로
+# 매체를 바꾸면 .72로 정답지 구간을 7배 초과했다(PROMPTING.md 3, 표본에서도 같은 초과가 예상된다).
+# 그리고 이 형용사 제거만으로 정답지 구간에 닿을 것이라 기대하지도 않는다 — 형용사는 매체의
+# 2~3배 힘밖에 없다(PROMPTING.md 3 배수표: 대비 형용사 반전 2×, +부정어 3× vs 매체 교체 140×).
+# 이 손질의 목적은 "형용사로 화풍을 세게 만드는 것"이 아니라, **IP 레퍼런스가 낼 대비를 텍스트가
+# 반대 방향으로 깎지 않게 하는 것**이다 — 실제로 임계를 넘기는 일은 여전히 레퍼런스의 몫이다.
+def _drop(style, *phrases):
+    """STYLE·NEG에서 지정한 조각만 뺀다 — 새 문장을 쓰지 않고 정본 상수에서 파생한다.
+    NEG는 마침표 없이 끝난다(그대로 concat해 negative_prompt를 잇는 원본 관례) — 뺀 뒤에도
+    원본이 가졌던 끝맺음(마침표 유무)을 그대로 보존해, portrait_prompt·figure_prompt와 같은
+    ", ".join([NEG, ...]) 이음 방식을 SAMPLE_NEG에도 그대로 쓸 수 있게 한다."""
+    tail = "." if style.endswith(".") else ""
+    kept = [p for p in style.rstrip(".").split(", ") if p not in phrases]
+    return ", ".join(kept) + tail
+
+
+SAMPLE_STYLE = _drop(STYLE, "light shading", "muted palette")
+SAMPLE_NEG = _drop(NEG, "dark", "heavy shadows")
+
+# 표본 전용 추가 부정어 — 2026-08-26 실측이 낳은 것이다. 표본은 **레퍼런스 이미지가 아니라
+# 정체성·화풍의 운반체**이므로 배경 장면과 잘림이 들어오면 part 3에서 그것까지 전이된다.
+# ① 풍경류: 텍스트만 생성이 "simple, clean background" 지시를 무시하고 언덕·풀밭 장면을 냈다.
+# ② 잘림류: 정강이에서 프레임이 끊겼다(전신 표본의 정의를 깨뜨린다).
+# ③ 측면류: "facing forward"만으로는 3/4 회전을 못 막았다.
+# 낱말 수는 77토큰 예산에 맞춰 깎았다 — 첫 시도가 83/77로 넘쳐 뒤쪽의 "woman, girl, female"이
+# 조용히 잘렸다(PROMPTING.md 1). 잘린 것이 성별 축이어서 5축 판정이 무음으로 약해진다.
+# 그래서 동의 중복(hills·grass·field ⊂ landscape·scenery, "cut off" ⊂ cropped)을 덜어냈다.
+SAMPLE_NEG_EXTRA = "landscape, scenery, cropped, close-up, profile view"
+
+# 표본 의상 — **발명하지 않고 프로젝트가 이미 문서화한 어휘를 출처로 쓴다**:
+# frontend/src/sketches/lib.jsx의 선화 규약이 「다윗의 **튜닉**」(:115) ·
+# 「겉옷/**튜닉**의 외곽선, **허리 매듭**」(:146)을 인물 의상으로 못박아 두었다.
+# 왜 필요한가: 레퍼런스 이미지를 빼자(위 --no-ref 근거) 시대 의상 신호도 함께 사라져
+# 멜빵·단추셔츠·구두(19세기 서양)가 나왔다(2026-08-26 smoke-r2 실측). 5축·BRIEF에는 의상
+# 필드가 없으므로 BG_VOCAB과 같은 「문서화된 어휘 상수」 패턴으로 둔다.
+# **인물별로 갈린다.** 2026-08-26 실측: 공통 "linen tunic"을 골리앗에게도 걸자 「튜닉 + 전사」가
+# 충돌해 모델이 **중세 유럽 판금 갑주**(면갑 투구·어깨판·망토)를 지어냈다 — 삼상 17:5의 놋투구·
+# 어린갑과 다른 시대다. 근거는 notes/PROCESS.md §3-b가 이미 표로 정리한 구절이다:
+#   다윗  — 삼상 17:40 목자(막대기·물매·주머니). 갑주는 17:39에서 **벗었다**("익숙치 못하니").
+#   골리앗 — 삼상 17:5 「머리에는 놋투구를 썼고 몸에는 어린갑(비늘갑옷)을 입었으니」
+#            17:6 「그 다리에는 놋경갑을 쳤고」
+# 투구는 AXES.headwear에서 이미 나오므로(read_axes → AXIS_EN) 여기서 되풀이하지 않는다.
+SAMPLE_COSTUME = {
+    "david": "in a plain linen tunic with a cloth belt",
+    # 2026-08-26 사용자 판단: **야만인 스타일**. 그리고 중립적 갑옷 낱말("bronze scale armor")이
+    # 모델의 「기사」 사전지식에 4회 연속 졌다(판금·면갑·망토·대검으로 수렴). barbarian은 그
+    # 사전지식을 정면으로 밀어내는 낱말이라 접근 자체가 다르다(PROMPTING.md 3 — 낱말의 세기).
+    # 갑옷을 벗기는 방향이 아니다: 삼상 17:5의 어린갑은 놋 5000세겔(약 57kg) 중무장이다.
+    # 「거칠고 투박한 청동 비늘갑옷」 = 야만인 전사이면서 본문과 어긋나지 않는 읽기다.
+    # 2026-08-26 3차: "bronze scale armor"가 계속 **천 튜닉**으로 그려졌다(IP 0.45·0.3 둘 다).
+    # 「비늘」이 재질이 아니라 장식으로 읽힌 것으로 보고 **겹침(overlapping)**을 명시해 재질을 지시한다.
+    # "and leather straps"를 뺀 자리로 토큰을 확보했다 — 그 낱말은 가죽 팔싸개만 냈고 비늘엔 무관했다.
+    # 문구를 줄였다 — 사용자가 준 비늘갑옷 레퍼런스가 **이미지 앵커**로 재질을 나르므로 어휘로
+    # 밀 필요가 없어졌고(어휘만으로는 5종 0/5였다), 그 토큰을 headwear의 「뿔」에 넘겼다.
+    # **이 문구가 실측 최선이다(`setup/goliath-horned-*`).** 비늘 재질은 어휘로 도달하지 못했다 —
+    # 6종 0/6(scale armor / overlapping scale mail / fish-scale over leather jerkin /
+    # 맨 앞 배치 / wearing 결속 / 「scale」을 버리고 "rows of overlapping round bronze plates").
+    # 마지막 것은 **갑옷을 아예 없앴다** — "armor"라는 낱말이 최소한 옷의 존재는 지키고 있었다.
+    # 남은 손잡이는 **이미지 앵커**다(사용자 제공 비늘갑옷 참고 이미지 → `gen_setup_sheet.py --ref`).
+    "goliath": "in barbaric bronze scale armor",
+}
+
+# 부정어도 인물별로 갈린다 — 표본은 **중립**이어야 하므로 각 인물이 실제로 끌어들이는 것을 막는다.
+# 다윗: 개가 함께 그려졌다(2026-08-26 smoke-r2). 골리앗: 동작 어휘가 없는데도 **대검**을 들었고
+# 망토·판금이 붙었다(smoke-r3) — 지물은 장면 단계 소관이므로(계획 Non-goal) 표본에서 뺀다.
+SAMPLE_NEG_BY_NAME = {
+    "david": "dog, animal",
+    # 77토큰 예산에 맞춰 깎았다 — "sword, weapon, cape, plate armor"는 80/77로 넘쳐 뒤쪽의
+    # 성별 부정어가 조용히 잘렸다(PROMPTING.md 1). "sword" ⊂ "weapon", "plate armor" → "plate".
+    # 판금·기사 사전지식을 이름으로 직접 막는다. 예산 때문에 "sword"⊂"weapon"으로 줄인 채 유지.
+    # **`plate, knight`를 빼지 말 것 — 2026-08-26 실측으로 확인했다.** 비늘갑옷 앵커가 있으니
+    # 사전지식 방어가 필요 없다고 보고 그 두 낱말을 지물 차단(`shield, spear`)으로 바꿨더니
+    # **갑옷이 즉시 판금으로 돌아갔다**(IP 0.18에서는 중세 면갑 투구까지). 앵커는 판금 사전지식을
+    # 이기지 못하고, 두 방어가 **함께** 있어야 비늘이 선다.
+    # 그리고 `shield, spear`를 넣어도 **창·방패는 그대로 나왔다** — 지물 제거용 부정어는 이
+    # 파이프라인에서 반복적으로 무력하다(표본 5회 · 시트 4회 · 여기 2회). 앵커 이미지가 창·방패를
+    # 들고 있어 프레이밍과 함께 전이되는 것으로 읽는다(발견 1).
+    "goliath": "plate, knight, weapon",
+}
+
+
+def sample_prompt(name):
+    """전신 표본 — 중립 정면 단독 전신, 동작 어휘 없음(part2 계획 Non-goal, SCENE_ACTION을
+    쓰지 않는다). 정체성 조각(나이·개요·머리카락·머리쓰개)은 figure_prompt와 같은 출처
+    (AXIS_EN·read_brief·read_axes)에서 같은 순서로 파생한다. "facing forward"는 새 문구가
+    아니라 portrait_prompt가 이미 쓰는 조각을 재사용한 것이고, "standing alone"이 동작 대신
+    중립·단독을 명시한다(다포즈 시트를 레퍼런스로 물렸을 때 인물이 3명으로 늘어난 오염 실측이
+    있어 "alone"으로 단독을 프롬프트 단에서도 밀어 둔다 — S2가 눈으로 재현 여부를 확인한다)."""
+    axes = read_axes(name)
+    en = {k: AXIS_EN[k][v] for k, v in axes.items()}
+    parts = [en["age"][0], read_brief(name), en["hair"][0], en["headwear"][0]]
+    body = ", ".join(p for p in parts if p)
+    art = "an" if body[0].lower() in "aeiou" else "a"
+    # 프레이밍을 프롬프트에서 강하게 밀어야 한다 — 2026-08-26 실측: 레퍼런스를 아예 빼고
+    # 텍스트만으로 뽑으면 축 A는 정답지 구간에 들지만(ink .1849) 산출물이 ①정강이에서 잘린
+    # 3/4 측면이고 ②"simple, clean background"를 지시했는데도 언덕·풀밭 장면이 나왔다.
+    # 원인은 캔버스가 가로(1216x640)였던 것과 프레이밍 어휘가 약했던 것 둘이다 —
+    # 캔버스는 params.SAMPLE_SIZE(세로)로 옮겼고, 여기서는 "head to toe"로 잘림을,
+    # "front view"로 3/4 회전을 막는다. 배경은 부정어 쪽에서 죽인다(아래 SAMPLE_NEG_EXTRA).
+    prompt = (f"{SAMPLE_STYLE} full body of {art} {body} {SAMPLE_COSTUME[name]}, "
+              f"standing alone, front view, facing forward, head to toe.")
+    neg = ", ".join([SAMPLE_NEG, SAMPLE_NEG_EXTRA, SAMPLE_NEG_BY_NAME[name]]
+                    + [v[1] for v in en.values() if v[1]])
+    return prompt, neg
+
+
+def setup_sheet_prompt(name):
+    """[[설정화]] 시트 — 인물 하나의 4패널 캐릭터 설정 시트(정답지 계열 자산, task#319 후속).
+
+    **왜 필요한가.** `reference/sheet-s200~203.png` 네 장은 **전부 다윗**이라 골리앗에는 화풍·의상의
+    이미지 근거가 없다. 그래서 텍스트만으로 뽑으면 모델의 「판타지 기사」 사전지식이 이긴다 —
+    2026-08-26에 부정어를 5회 서로 다르게 강화해도 판금·망토·무기가 남았다. `raster-pilot/FINDINGS.md`가
+    이미 「**(인물 × 생애단계) 단위 시트 필요 확정**」이라고 적어 둔 그 후속이다.
+
+    **레퍼런스로 다윗 시트를 물린다 — 그리고 그것이 여기서는 결함이 아니라 이점이다.**
+    IP-Adapter 상류의 CLIPImageProcessor가 224 center-crop을 하므로 **레퍼런스의 프레이밍이 전이된다**
+    (task#319 발견 1). 장면을 생성할 때는 이 전이가 오염이어서 FINDINGS.md가
+    「레퍼런스는 시트가 아니라 시트에서 잘라낸 **얼굴 1컷**이다」로 규칙을 세웠다. **여기는 반대 경우다** —
+    우리가 만들려는 것이 시트이므로 「4패널 설정화 레이아웃」의 전이가 곧 목표 프레이밍이다.
+    정체성은 텍스트(BRIEF·AXES)가 나르고, 레퍼런스는 화풍과 레이아웃만 나르게 한다 —
+    그래서 IP 강도를 정체성 전이용 값(FINDINGS.md의 0.7)보다 **낮게** 잡는 축을 열어 둔다.
+    """
+    axes = read_axes(name)
+    en = {k: AXIS_EN[k][v] for k, v in axes.items()}
+    parts = [en["age"][0], read_brief(name), en["hair"][0], en["headwear"][0]]
+    body = ", ".join(p for p in parts if p)
+    art = "an" if body[0].lower() in "aeiou" else "a"
+    # **이 구조가 실측 최선이다(`setup/goliath-ip03-sheet-ip0.3-s11.png`, IP 0.3).**
+    # 2026-08-26에 두 변형을 시험해 **둘 다 더 나빴다**(근거는 setup/SETUP.md 표):
+    #  ① 의상을 맨 앞으로(PROMPTING.md 2 「앞이 무겁다」) → 변화 없음. 위치는 원인이 아니었다.
+    #  ② 의상을 주어에 `wearing …`으로 결속 + 레이아웃 어휘 제거(사용자 지적 "비늘갑옷을 걸친
+    #     골리앗") → **투구가 머리에서 벗겨져 별도 패널로 밀려나고, 머리카락이 드러나 5축이 깨졌고,
+    #     엘프 귀가 생겼다.** 결속이 의상 슬롯을 키우면서 `headwear` 축을 밀어낸 것으로 읽는다.
+    # 레이아웃 어휘는 레퍼런스가 이미 4/4로 나르지만(발견 1), 빼면 위 ②의 부작용과 얽혀 나빠졌으므로
+    # 남긴다 — 토큰을 아끼는 것보다 5축을 지키는 것이 우선이다.
+    prompt = (f"{SAMPLE_STYLE} {SAMPLE_COSTUME[name]}. character design sheet of {art} {body}, "
+              f"full body front view and side view, head study.")
+    neg = ", ".join([SAMPLE_NEG, SAMPLE_NEG_BY_NAME[name]]
+                    + [v[1] for v in en.values() if v[1]])
+    return prompt, neg
+
+
 def main():
     david_prompt, david_neg, david_axes = portrait_prompt("david")
     goliath_prompt, goliath_neg, goliath_axes = portrait_prompt("goliath")
@@ -186,6 +342,13 @@ def main():
         # 전신 — 인물 영역 인페인팅용(초상과 목적이 다르다, figure_prompt 주석 참조)
         "figure": {n: dict(zip(("prompt", "negative"), figure_prompt(n)))
                    for n in ("david", "goliath")},
+        # 전신 표본(part2 S1) — 단독 중립 전신. **IP 레퍼런스를 물리지 않는다**(2026-08-26 실측:
+        # 레퍼런스는 프레이밍까지 전이시키고, 화풍은 텍스트만으로도 정답지 구간에 든다)
+        "sample": {n: dict(zip(("prompt", "negative"), sample_prompt(n)))
+                   for n in ("david", "goliath")},
+        # [[설정화]] 시트 — 정답지 계열 자산(setup_sheet_prompt 주석 참조)
+        "setup_sheet": {n: dict(zip(("prompt", "negative"), setup_sheet_prompt(n)))
+                        for n in ("david", "goliath")},
         # task#317 S2 — 조립은 GPU 스크립트가(토큰 예산 때문에). 여기서는 재료만 낸다.
         "scene_identity": {
             "style": STYLE, "frame": SCENE_FRAME,

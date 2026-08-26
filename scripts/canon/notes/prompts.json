@@ -20,7 +20,7 @@
       "age": "성인",
       "sex": "남"
     },
-    "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, light shading, simple, clean background, muted palette. close-up head portrait of a grown man of about forty, fierce giant warrior with heavy brow and hard jaw, bronze helmet with cheek guards, facing forward.",
+    "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, light shading, simple, clean background, muted palette. close-up head portrait of a grown man of about forty, fierce giant warrior with heavy brow and hard jaw, horned bronze helmet with cheek guards, facing forward.",
     "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, dark, heavy shadows, frame, border, stick figure, crude drawing, visible hair, long hair, beard, moustache, stubble, child, youth, woman, girl, female"
   },
   "bg_on": {
@@ -32,8 +32,28 @@
       "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, dark, heavy shadows, frame, border, stick figure, crude drawing, beard, moustache, stubble, baby, toddler, infant, chibi, doll, woman, girl, female"
     },
     "goliath": {
-      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, light shading, simple, clean background, muted palette. full body of a grown man of about forty, fierce giant warrior with heavy brow and hard jaw, bronze helmet with cheek guards, standing in heavy armor, on dry ground.",
+      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, light shading, simple, clean background, muted palette. full body of a grown man of about forty, fierce giant warrior with heavy brow and hard jaw, horned bronze helmet with cheek guards, standing in heavy armor, on dry ground.",
       "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, dark, heavy shadows, frame, border, stick figure, crude drawing, visible hair, long hair, beard, moustache, stubble, child, youth, woman, girl, female"
+    }
+  },
+  "sample": {
+    "david": {
+      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, simple, clean background. full body of a boy of fifteen, lean-faced shepherd with calm steady eyes, curly hair, bare head in a plain linen tunic with a cloth belt, standing alone, front view, facing forward, head to toe.",
+      "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, frame, border, stick figure, crude drawing, landscape, scenery, cropped, close-up, profile view, dog, animal, beard, moustache, stubble, baby, toddler, infant, chibi, doll, woman, girl, female"
+    },
+    "goliath": {
+      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, simple, clean background. full body of a grown man of about forty, fierce giant warrior with heavy brow and hard jaw, horned bronze helmet with cheek guards in barbaric bronze scale armor, standing alone, front view, facing forward, head to toe.",
+      "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, frame, border, stick figure, crude drawing, landscape, scenery, cropped, close-up, profile view, plate, knight, weapon, visible hair, long hair, beard, moustache, stubble, child, youth, woman, girl, female"
+    }
+  },
+  "setup_sheet": {
+    "david": {
+      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, simple, clean background. in a plain linen tunic with a cloth belt. character design sheet of a boy of fifteen, lean-faced shepherd with calm steady eyes, curly hair, bare head, full body front view and side view, head study.",
+      "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, frame, border, stick figure, crude drawing, dog, animal, beard, moustache, stubble, baby, toddler, infant, chibi, doll, woman, girl, female"
+    },
+    "goliath": {
+      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, simple, clean background. in barbaric bronze scale armor. character design sheet of a grown man of about forty, fierce giant warrior with heavy brow and hard jaw, horned bronze helmet with cheek guards, full body front view and side view, head study.",
+      "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, frame, border, stick figure, crude drawing, plate, knight, weapon, visible hair, long hair, beard, moustache, stubble, child, youth, woman, girl, female"
     }
   },
   "scene_identity": {
@@ -69,7 +89,7 @@
         ],
         [
           "headwear",
-          "bronze helmet with cheek guards"
+          "horned bronze helmet with cheek guards"
         ]
       ]
     },
