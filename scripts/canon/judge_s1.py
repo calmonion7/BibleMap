@@ -251,123 +251,188 @@ def _load_conti_mask(name):
 FINAL3 = os.path.join(params.OUT_ROOT, "final3")
 
 
-def _axis_c_corpus():
-    """축 C의 양성 코퍼스와 음성 대조군을 고른다 — `revalidate_by: part3`가 지목한 그 교체다.
+# --- 축 C 산식 (2026-08-28 교체 — 농축비 → 인물별 콘티 상관) ---------------------
+# **왜 교체했나.** 옛 산식(마스크 안 엣지 에너지 농축비)은 「콘티대로 그렸는가」가 아니라 「그 영역에
+# 무엇이든 있는가」를 쟀고, 배경으로 채워졌다(ZIMAGE.md §4-b). 그래서 인물이 통째로 빠진 그림이
+# 통과했다(#317 구멍 2). 교체 산식은 `judge_final.axis_d`가 다윗 한 명에게 쓰던 것을 **인물별로**
+# 적용한다 — 마스크 안에서 콘티 잉크와 산출물 엣지의 픽셀별 피어슨 상관. 「콘티가 선을 요구한
+# 바로 그 자리에 선이 있는가」를 직접 잰다.
+NEG_AXIS_C = os.path.join(FINAL3, "bg-ip0.0-cn0.2-s11.png")
+AXIS_C_KEYS = ("combined", "david", "goliath")
 
-    **양성**은 「새 콘티로 조건화해 실제로 생성한 최종 장면」이어야 한다. 초판이 미증명으로 남은
-    이유가 바로 이것이었다: 양성으로 쓴 `scene/*.png`는 **옛 앱 장면**의 ControlNet 조건으로
-    생성됐고 새 마스크는 새 콘티에서 파생돼, 골리앗 bbox가 105px 어긋난 채로 재던 것이다.
-    그래서 part 3의 `final3/3-final-*.png`가 있으면 그쪽을 쓰고, 없으면 옛 코퍼스로 떨어진다
-    (part 1·2를 재실행해도 같은 값이 나오게 두려면 폴백이 필요하다).
+# **음성 라벨은 육안 확인으로 정한다.** 2026-08-28 라운드 5에서 `final3/bg-*.png` 11장을 전부 눈으로
+# 보고 다시 라벨했다. 그 전까지 이 11장을 통째로 「같은 콘티인데 인물만 없는 그림」음성으로 쓴 것은
+# **틀린 라벨이었다**: IP-Adapter 시트 레이아웃 전이가 IP 0.3 이상에서 인물을 그려 넣는다.
+# 결정적 증거 — `scene_ref/goliath-scene-anchor.png`가 그중 `bg-ip0.7-cn0.6-s11.png`와 **바이트
+# 동일**이고, `SCENE_REF.md`는 그것을 「왼쪽에 물매를 든 소년, 오른쪽에 창 둘을 든 거인」이라고
+# 적는다. 인물이 둘 다 있는 그림을 「인물 없음」 음성으로 쓰고 있었다.
+AXIS_C_NEG_LABELS = {
+    "bg-ip0.0-cn0.2-s11.png": "인물 부재 — 순수 풍경(육안). 사다리의 음성 대조군이다",
+    "bg-ip0.0-cn0.4-s11.png": "머리 없는 더미 — 인물이라 부를 수 없다(육안)",
+    "bg-ip0.0-cn0.6-s11.png": "머리 없는 더미 — 인물이라 부를 수 없다(육안)",
+    "bg-ip1.0-cn0.4-s11.png": "시트 레이아웃 전이로 구도 파괴 — 옛 축 C가 세 키 전부 통과시킨 그림",
+    "bg-ip1.0-cn0.4-s42.png": "시트 레이아웃 전이 — 소품 패널이 장면을 밀어냈다",
+}
+# 옛 축 C의 임계(교체 대상). 이 파일이 덮어쓰는 s1-baseline.json에서 그대로 옮겨 적는다 —
+# 「옛 자는 아래 음성들을 통과시켰다」를 회귀 증거로 남기기 위해서다.
+AXIS_C_OLD_THRESHOLDS = {"combined": 1.4034137352346472,
+                         "david": 1.2903905283644004,
+                         "goliath": 1.3428717558667596}
 
-    **음성에 「배경만 있는 장면」을 더한다.** 정답지 10장은 ControlNet 없이 뽑혀 콘티를 안 따르지만
-    화풍·구성이 아예 다른 집합이라, 「같은 파이프라인·같은 콘티인데 인물만 없는 그림」을 거르는지는
-    증명하지 못한다 — 그것이 #317 구멍 2(인물이 통째로 빠져도 통과한다)다. `final3/bg-*.png`가
-    정확히 그 그림이다(같은 콘티로 조건화됐고 인물 마스크 자리에 인물이 없다). 음성 집합이 커지면
-    `max(음성)`이 올라가므로 임계는 **더 엄해진다** — 완화가 아니다.
-    """
-    finals = sorted(glob.glob(os.path.join(FINAL3, "3-final-*.png")))
-    bgs = sorted(glob.glob(os.path.join(FINAL3, "bg-*.png")))
-    if finals:
-        return finals, bgs, "final3/3-final-*.png (part3 — 새 콘티로 조건화한 최종 장면)"
-    return (sorted(glob.glob(os.path.join(params.OUT_ROOT, "scene", "*.png"))), bgs,
-            "scene/*.png (옛 앱 장면 조건 — part3 산출물이 없어 폴백)")
+
+def _conti_ink(name):
+    """콘티 한 장의 잉크 이진 마스크(전체 프레임) — judge_final.axis_d와 같은 이진화 규약."""
+    a = np.array(Image.open(os.path.join(CONTI, f"{name}.png")).convert("L")
+                 .resize(params.SCENE_SIZE, Image.LANCZOS)).astype(int)
+    bg = int(np.median(a[0:8, 0:8]))
+    return (np.abs(a - bg) > params.THRESHOLD).astype(np.float32)
+
+
+def _edge_bool_f(im_rgb):
+    """산출물의 엣지 이진 마스크(전체 프레임) — axis_d의 edge_bool_full과 같은 산식."""
+    a = np.asarray(im_rgb.convert("L"), dtype=np.float32)
+    e = np.zeros_like(a)
+    e[:, 1:] = np.maximum(e[:, 1:], np.abs(np.diff(a, axis=1)))
+    e[1:, :] = np.maximum(e[1:, :], np.abs(np.diff(a, axis=0)))
+    return (e > jm.EDGE_THRESHOLD).astype(np.float32)
+
+
+def axis_c_regions():
+    """축 C 세 키의 (마스크, 콘티 잉크) 짝. combined는 두 인물의 합집합이다."""
+    m = {n: _load_conti_mask(n) for n in ("david", "goliath")}
+    ink = {n: _conti_ink(n) for n in ("david", "goliath")}
+    m["combined"] = m["david"] | m["goliath"]
+    ink["combined"] = np.maximum(ink["david"], ink["goliath"])
+    return m, ink
+
+
+def axis_c_corr(im_rgb, key, masks, inks):
+    """마스크 안에서 콘티 잉크 ↔ 산출물 엣지의 픽셀별 피어슨 상관. judge_final이 같이 쓴다."""
+    m, ink = masks[key], inks[key]
+    ed = _edge_bool_f(im_rgb)
+    if ed[m].std() > 0 and ink[m].std() > 0:
+        return float(np.corrcoef(ink[m].ravel(), ed[m].ravel())[0, 1])
+    return 0.0
+
+
+def _axis_c_load(path):
+    return Image.open(path).convert("RGB").resize(params.SCENE_SIZE)
 
 
 def axis_c():
     m_d, m_g = _load_conti_mask("david"), _load_conti_mask("goliath")
-    person = m_d | m_g
     overlap = int((m_d & m_g).sum())
-    fracs = {"union": float(person.mean()), "david": float(m_d.mean()), "goliath": float(m_g.mean())}
+    fracs = {"union": float((m_d | m_g).mean()),
+             "david": float(m_d.mean()), "goliath": float(m_g.mean())}
+    masks, inks = axis_c_regions()
 
-    def enrich(path, mask, frac):
-        e = _edge_energy(path)
-        tot = e.sum()
-        return float((e[mask].sum() / tot) / frac) if tot > 0 and frac > 0 else 0.0
-
-    def score_all(path):
-        return {"combined": enrich(path, person, fracs["union"]),
-                "david": enrich(path, m_d, fracs["david"]),
-                "goliath": enrich(path, m_g, fracs["goliath"])}
-
-    cur_paths, bg_paths, corpus_note = _axis_c_corpus()
-    ref_paths = js.reference_paths()
-    current = {os.path.basename(p): score_all(p) for p in cur_paths}
-    reference = {os.path.basename(p): score_all(p) for p in ref_paths}
-    bg_only = {os.path.basename(p): score_all(p) for p in bg_paths}
+    # 양성 대조군 = 콘티 자신(축 D와 같은 상한). combined 양성은 두 콘티를 겹친 것이다.
+    pos_im = {n: _axis_c_load(os.path.join(CONTI, f"{n}.png")) for n in ("david", "goliath")}
+    pos_im["combined"] = Image.fromarray(
+        np.minimum(np.asarray(pos_im["david"]), np.asarray(pos_im["goliath"])))
+    neg_im = _axis_c_load(NEG_AXIS_C)
 
     per_key = {}
-    for key in ("combined", "david", "goliath"):
-        cur_vals = [v[key] for v in current.values()]
-        neg_vals = [v[key] for v in reference.values()] + [v[key] for v in bg_only.values()]
-        thr = js._log_mid(min(cur_vals), max(neg_vals))
-        per_key[key] = {
-            "threshold": thr,
-            "current_pass": sum(v > thr for v in cur_vals), "n_current": len(cur_vals),
-            "reference_pass": sum(v[key] > thr for v in reference.values()),
-            "n_reference": len(reference),
-            "bg_only_pass": sum(v[key] > thr for v in bg_only.values()),
-            "n_bg_only": len(bg_only),
-        }
+    for key in AXIS_C_KEYS:
+        by_alpha = {a: axis_c_corr(Image.blend(neg_im, pos_im[key], a), key, masks, inks)
+                    for a in LADDER}
+        vals = [by_alpha[a] for a in LADDER]
+        mono = all(vals[i] <= vals[i + 1] for i in range(len(vals) - 1))
+        neg_v, pos_v = by_alpha[0.0], by_alpha[1.0]
+        thr = (neg_v + pos_v) / 2   # 축 D와 같은 산술 중점 — 상관은 음수를 갖고 log-mid는 못 다룬다
+        per_key[key] = {"threshold": thr, "neg_value": neg_v, "pos_value": pos_v,
+                        "monotonic": mono, "neg_passes": bool(neg_v > thr),
+                        "pos_passes": bool(pos_v > thr), "by_alpha": by_alpha}
 
-    # --- s0에서 되던 것이 이번엔 왜 안 되는지 실측으로 밝힌다 ---------------------
-    old_bbox_d = jm.bbox_from_mask(os.path.join(params.OUT_ROOT, "masks", "david.png"))
-    old_bbox_g = jm.bbox_from_mask(os.path.join(params.OUT_ROOT, "masks", "goliath.png"))
-    new_bbox_d = jm.bbox_from_mask(os.path.join(CONTI, "mask_david.png"))
-    new_bbox_g = jm.bbox_from_mask(os.path.join(CONTI, "mask_goliath.png"))
-    shift_d = new_bbox_d[0] - old_bbox_d[0]
-    shift_g = new_bbox_g[0] - old_bbox_g[0]
+    def score(path):
+        im = _axis_c_load(path)
+        return {k: axis_c_corr(im, k, masks, inks) for k in AXIS_C_KEYS}
 
-    # **모든 키가 깨끗해야 통과다** — combined만 보면 #317 구멍 2(인물이 통째로 빠져도 통과)를
-    # 그대로 남긴다. 그리고 「배경만 있는 장면」음성이 0/N이어야 한다.
-    clean = all(pk["current_pass"] == pk["n_current"] and pk["reference_pass"] == 0
-                and pk["bg_only_pass"] == 0 for pk in per_key.values())
-    c = per_key["combined"]
-    print(f"[축 C] 코퍼스: {corpus_note}")
-    for key in ("combined", "david", "goliath"):
+    def passes(v):
+        return all(v[k] > per_key[k]["threshold"] for k in AXIS_C_KEYS)
+
+    # --- 파생과 독립인 검증 -------------------------------------------------------
+    # 임계는 위 사다리(음성 1장 + 양성 1장)에서만 파생했다. 아래 집합은 그 임계를 **검증**할 뿐
+    # 파생에 참여하지 않는다 — 결과를 보고 임계를 고르는 것이 ADR `260825-013557`이 금지한 것이다.
+    negatives, positives = {}, {}
+    for name, why in AXIS_C_NEG_LABELS.items():
+        p = os.path.join(FINAL3, name)
+        if os.path.exists(p):
+            negatives[name] = {"scores": score(p), "label": why}
+    for p in js.reference_paths():
+        negatives[os.path.basename(p)] = {"scores": score(p),
+                                          "label": "정답지 시트 — ControlNet 조건화 자체가 없다"}
+    for p in sorted(glob.glob(os.path.join(FINAL3, "3-final-*.png"))):
+        positives[os.path.basename(p)] = score(p)
+
+    neg_pass = sum(passes(v["scores"]) for v in negatives.values())
+    pos_pass = sum(passes(v) for v in positives.values())
+    ladder_ok = all(pk["monotonic"] and not pk["neg_passes"] and pk["pos_passes"]
+                    for pk in per_key.values())
+    clean = ladder_ok and neg_pass == 0 and pos_pass == len(positives) and positives
+
+    # 옛 자가 같은 음성들을 통과시켰다는 회귀 증거 — 「바가 실제로 높아졌다」를 수치로 남긴다.
+    def enrich_all(path):
+        e = _edge_energy(path)
+        tot = e.sum()
+        km = {"combined": m_d | m_g, "david": m_d, "goliath": m_g}
+        kf = {"combined": fracs["union"], "david": fracs["david"], "goliath": fracs["goliath"]}
+        return {k: float((e[km[k]].sum() / tot) / kf[k]) if tot > 0 else 0.0 for k in AXIS_C_KEYS}
+
+    old_leak = {}
+    for name in AXIS_C_NEG_LABELS:
+        p = os.path.join(FINAL3, name)
+        if not os.path.exists(p):
+            continue
+        ev = enrich_all(p)
+        old_leak[name] = {"enrichment": ev,
+                          "old_passes": bool(all(ev[k] > AXIS_C_OLD_THRESHOLDS[k]
+                                                 for k in AXIS_C_KEYS))}
+
+    print("[축 C] 산식 교체 — 인물별 콘티잉크↔산출엣지 픽셀별 피어슨 상관")
+    for key in AXIS_C_KEYS:
         pk = per_key[key]
-        print(f"  {key:8s} 임계 {pk['threshold']:.4f} — 양성 {pk['current_pass']}/{pk['n_current']} "
-              f"· 정답지(음성) {pk['reference_pass']}/{pk['n_reference']} "
-              f"· 배경만(음성) {pk['bg_only_pass']}/{pk['n_bg_only']}")
-    print(f"  bbox x0 이동 — 다윗 {old_bbox_d[0]}→{new_bbox_d[0]}({shift_d:+d}px)  "
-          f"골리앗 {old_bbox_g[0]}→{new_bbox_g[0]}({shift_g:+d}px)")
+        print(f"  {key:9s} 사다리 " + " → ".join(f"{pk['by_alpha'][a]:+.4f}" for a in LADDER)
+              + f"  임계 {pk['threshold']:+.4f}  단조 {'OK' if pk['monotonic'] else 'FAIL'}")
+    print(f"  검증: 음성 통과 {neg_pass}/{len(negatives)} (0이어야 한다) · "
+          f"양성 통과 {pos_pass}/{len(positives)} (전부여야 한다)")
+    print(f"  옛 자가 통과시킨 음성: "
+          f"{sum(v['old_passes'] for v in old_leak.values())}/{len(old_leak)}")
 
     out = {
+        "formula": "마스크 안에서 콘티 잉크(고정) ↔ 산출물 엣지의 픽셀별 피어슨 상관 — "
+                    "judge_final.axis_d가 다윗 한 명에게 쓰던 산식을 인물별로 적용한다",
         "masks": {"david": "conti/mask_david.png", "goliath": "conti/mask_goliath.png",
                   "method": "볼록껍질(convex hull), make_conti_masks.py — S4"},
         "area_fraction": fracs, "overlap_px": overlap,
-        "per_person_occupancy": "current/reference/bg_only 각 항목이 combined·david·goliath 세 값을 "
-                                 "담는다 — #317 구멍 2(인물이 통째로 빠져도 통과) 대응",
-        "corpus": corpus_note,
-        "negative_controls": "정답지 10장(ControlNet 없음) + 배경만 있는 장면(같은 콘티, 인물 없음). "
-                              "후자가 구멍 2를 직접 건다 — 임계는 두 음성의 최대에서 파생하므로 "
-                              "음성을 더한 것은 완화가 아니라 강화다.",
+        "negative_control": f"final3/{os.path.basename(NEG_AXIS_C)} — {AXIS_C_NEG_LABELS[os.path.basename(NEG_AXIS_C)]}",
+        "positive_control": "conti/{david,goliath}.png — 콘티 잉크 자신(축 D와 같은 상한)",
+        "ladder": "음성과 양성을 alpha로 합성 — judge_axes.py LADDER (0,0.25,0.5,1.0)",
+        "threshold_rule": "음성값과 양성값의 산술 중점. 세 키를 **전부** 통과해야 축 C 통과다 — "
+                           "combined만 보면 #317 구멍 2가 남는다",
         "thresholds_by_key": per_key,
-        "current": current, "reference": reference, "bg_only": bg_only,
+        "validation_negatives": negatives, "validation_positives": positives,
+        "validation": {"negative_pass": neg_pass, "n_negative": len(negatives),
+                       "positive_pass": pos_pass, "n_positive": len(positives)},
+        "superseded": {
+            "old_formula": "마스크 안 엣지 에너지 농축비 (엣지에너지 몫 ÷ 면적 몫)",
+            "old_thresholds": AXIS_C_OLD_THRESHOLDS,
+            "reason": "「콘티대로인가」가 아니라 「그 영역에 무엇이든 있는가」를 쟀고 배경으로 "
+                       "채워졌다(ZIMAGE.md §4-b·§9-1). 그 결과 인물이 없거나 구도가 파괴된 그림이 "
+                       "통과했다(#317 구멍 2).",
+            "old_ruler_on_the_same_negatives": old_leak,
+        },
+        "control_asset_limitation": "음성 대조군이 .forge/reports/(gitignore)에 있어 추적되지 않는다 — "
+                                     "축 D의 음성(combined3/3-final-s11.png)과 같은 자리이고 같은 한계다. "
+                                     "그 자산이 사라지면 파생을 재실행할 수 없다.",
+        "human_only": False,
+        "machine_gate_ready": bool(clean),
     }
-
     if not clean:
-        # `human_only`는 「기계가 영원히 못 잰다」는 뜻이므로 여기 쓰면 거짓이다 — 아래 근거가 스스로
-        # 「산식이 깨진 게 아니라 코퍼스가 안 맞을 뿐」이라고 적고 있다. 상태는 **미증명**이지 강등이
-        # 아니다: 기계가 잴 수 있으나 맞는 코퍼스(part 3의 새 콘티 산출물)가 아직 없다.
-        out["human_only"] = False
-        out["machine_gate_ready"] = False   # 분해능 미증명 — 게이트로 쓰면 안 된다
-        out["revalidate_by"] = "part3"      # 새 콘티로 생성한 코퍼스가 나오면 재파생·재증명
-        leak = {k: f"양성 {pk['current_pass']}/{pk['n_current']} · 정답지 {pk['reference_pass']}/"
-                   f"{pk['n_reference']} · 배경만 {pk['bg_only_pass']}/{pk['n_bg_only']}"
-                for k, pk in per_key.items()}
         out["demoted_because"] = (
-            f"코퍼스 = {corpus_note}. 세 키 중 하나 이상이 완전 분리에 이르지 못했다 — {leak}. "
-            f"세 키를 **전부** 요구하는 것은 #317 구멍 2(인물이 통째로 빠져도 combined는 통과할 수 "
-            f"있다) 때문이고, 「배경만 있는 장면」음성이 그 구멍을 직접 건다. "
-            f"참고로 마스크 자체는 콘티 교체로 옮겨갔다(골리앗 bbox x0 {old_bbox_g[0]}→{new_bbox_g[0]}, "
-            f"{shift_g:+d}px) — 옛 `scene/*.png` 코퍼스로 재던 초판이 미증명으로 남은 원인이 그것이다. "
-            f"축 C의 산식(에지 농축비)이 깨졌다는 뜻이 아니라, 이 코퍼스에서 그 분해능이 아직 "
-            f"증명되지 않았다는 뜻이다."
+            f"사다리 조건 {'충족' if ladder_ok else '미충족'} · 음성 통과 {neg_pass}/{len(negatives)} "
+            f"· 양성 통과 {pos_pass}/{len(positives)}. 셋 중 하나라도 어긋나면 게이트로 쓰지 않는다."
         )
-    else:
-        out["human_only"] = False
-        out["machine_gate_ready"] = True
     return out
 
 

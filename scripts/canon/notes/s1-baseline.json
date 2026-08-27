@@ -118,6 +118,7 @@
   "not_ready_because": null
  },
  "axis_c": {
+  "formula": "마스크 안에서 콘티 잉크(고정) ↔ 산출물 엣지의 픽셀별 피어슨 상관 — judge_final.axis_d가 다윗 한 명에게 쓰던 산식을 인물별로 적용한다",
   "masks": {
    "david": "conti/mask_david.png",
    "goliath": "conti/mask_goliath.png",
@@ -129,148 +130,248 @@
    "goliath": 0.22671540912828947
   },
   "overlap_px": 0,
-  "per_person_occupancy": "current/reference 각 항목이 combined·david·goliath 세 값을 담는다 — #317 구멍 2(인물이 통째로 빠져도 통과) 대응",
+  "negative_control": "final3/bg-ip0.0-cn0.2-s11.png — 인물 부재 — 순수 풍경(육안). 사다리의 음성 대조군이다",
+  "positive_control": "conti/{david,goliath}.png — 콘티 잉크 자신(축 D와 같은 상한)",
+  "ladder": "음성과 양성을 alpha로 합성 — judge_axes.py LADDER (0,0.25,0.5,1.0)",
+  "threshold_rule": "음성값과 양성값의 산술 중점. 세 키를 **전부** 통과해야 축 C 통과다 — combined만 보면 #317 구멍 2가 남는다",
   "thresholds_by_key": {
    "combined": {
-    "threshold": 1.4034137352346472,
-    "current_pass": 2,
-    "n_current": 12,
-    "reference_pass": 2,
-    "n_reference": 10
+    "threshold": 0.1943001702037525,
+    "neg_value": 0.007037915771969239,
+    "pos_value": 0.3815624246355358,
+    "monotonic": true,
+    "neg_passes": false,
+    "pos_passes": true,
+    "by_alpha": {
+     "0.0": 0.007037915771969239,
+     "0.25": 0.27857458198666757,
+     "0.5": 0.3355859474562142,
+     "1.0": 0.3815624246355358
+    }
    },
    "david": {
-    "threshold": 1.2903905283644004,
-    "current_pass": 9,
-    "n_current": 12,
-    "reference_pass": 1,
-    "n_reference": 10
+    "threshold": 0.21305633886958536,
+    "neg_value": -0.013095451698090049,
+    "pos_value": 0.4392081294372608,
+    "monotonic": true,
+    "neg_passes": false,
+    "pos_passes": true,
+    "by_alpha": {
+     "0.0": -0.013095451698090049,
+     "0.25": 0.2972579608355065,
+     "0.5": 0.36950749638765445,
+     "1.0": 0.4392081294372608
+    }
    },
    "goliath": {
-    "threshold": 1.3428717558667596,
-    "current_pass": 5,
-    "n_current": 12,
-    "reference_pass": 6,
-    "n_reference": 10
+    "threshold": 0.1872671352295648,
+    "neg_value": 0.014968295440596024,
+    "pos_value": 0.3595659750185336,
+    "monotonic": true,
+    "neg_passes": false,
+    "pos_passes": true,
+    "by_alpha": {
+     "0.0": 0.014968295440596024,
+     "0.25": 0.27297321469143865,
+     "0.5": 0.32382829556927767,
+     "1.0": 0.3595659750185336
+    }
    }
   },
-  "current": {
-   "a-none-s11.png": {
-    "combined": 1.3334863185882568,
-    "david": 1.5700438022613525,
-    "goliath": 1.2251697778701782
+  "validation_negatives": {
+   "bg-ip0.0-cn0.2-s11.png": {
+    "scores": {
+     "combined": 0.007037915771969239,
+     "david": -0.013095451698090049,
+     "goliath": 0.014968295440596024
+    },
+    "label": "인물 부재 — 순수 풍경(육안). 사다리의 음성 대조군이다"
    },
-   "a-none-s42.png": {
-    "combined": 1.3313186168670654,
-    "david": 1.6183439493179321,
-    "goliath": 1.1998934745788574
+   "bg-ip0.0-cn0.4-s11.png": {
+    "scores": {
+     "combined": 0.14689463996237995,
+     "david": 0.07038399174998919,
+     "goliath": 0.1657587298812491
+    },
+    "label": "머리 없는 더미 — 인물이라 부를 수 없다(육안)"
    },
-   "a-none-s7.png": {
-    "combined": 1.3381599187850952,
-    "david": 1.7341347932815552,
-    "goliath": 1.156848430633545
+   "bg-ip0.0-cn0.6-s11.png": {
+    "scores": {
+     "combined": 0.17436638139997782,
+     "david": 0.10063561305036359,
+     "goliath": 0.198930046435002
+    },
+    "label": "머리 없는 더미 — 인물이라 부를 수 없다(육안)"
    },
-   "b-nomask-s11.png": {
-    "combined": 1.3620392084121704,
-    "david": 1.372538685798645,
-    "goliath": 1.357231616973877
+   "bg-ip1.0-cn0.4-s11.png": {
+    "scores": {
+     "combined": 0.20811934558634515,
+     "david": 0.0826576854171862,
+     "goliath": 0.26819125597267707
+    },
+    "label": "시트 레이아웃 전이로 구도 파괴 — 옛 축 C가 세 키 전부 통과시킨 그림"
    },
-   "b-nomask-s42.png": {
-    "combined": 1.3567768335342407,
-    "david": 1.4389116764068604,
-    "goliath": 1.3191684484481812
+   "bg-ip1.0-cn0.4-s42.png": {
+    "scores": {
+     "combined": 0.18116848329679985,
+     "david": 0.17488310080772515,
+     "goliath": 0.18065314382866332
+    },
+    "label": "시트 레이아웃 전이 — 소품 패널이 장면을 밀어냈다"
    },
-   "b-nomask-s7.png": {
-    "combined": 1.3905401229858398,
-    "david": 1.7370710372924805,
-    "goliath": 1.2318683862686157
-   },
-   "c-mask-s11.png": {
-    "combined": 1.3800170421600342,
-    "david": 1.2057348489761353,
-    "goliath": 1.4598184823989868
-   },
-   "c-mask-s42.png": {
-    "combined": 1.3414897918701172,
-    "david": 1.201570987701416,
-    "goliath": 1.405556559562683
-   },
-   "c-mask-s7.png": {
-    "combined": 1.3661227226257324,
-    "david": 1.6178056001663208,
-    "goliath": 1.250880479812622
-   },
-   "d-mask-bg-s11.png": {
-    "combined": 1.4282995462417603,
-    "david": 1.3510198593139648,
-    "goliath": 1.4636846780776978
-   },
-   "d-mask-bg-s42.png": {
-    "combined": 1.4630656242370605,
-    "david": 1.2559236288070679,
-    "goliath": 1.5579129457473755
-   },
-   "d-mask-bg-s7.png": {
-    "combined": 1.3954681158065796,
-    "david": 1.6356006860733032,
-    "goliath": 1.2855145931243896
-   }
-  },
-  "reference": {
    "scene-1-shepherd-ref0.4.png": {
-    "combined": 1.227614402770996,
-    "david": 0.5043043494224548,
-    "goliath": 1.5588079690933228
+    "scores": {
+     "combined": 0.008265398481185465,
+     "david": 0.09538047328923659,
+     "goliath": -0.021086222136418496
+    },
+    "label": "정답지 시트 — ControlNet 조건화 자체가 없다"
    },
    "scene-1-shepherd-ref0.7.png": {
-    "combined": 0.972186803817749,
-    "david": 0.5589893460273743,
-    "goliath": 1.161384105682373
+    "scores": {
+     "combined": 0.013395489795312363,
+     "david": 0.08721395419029752,
+     "goliath": -0.014294681187859686
+    },
+    "label": "정답지 시트 — ControlNet 조건화 자체가 없다"
    },
    "scene-2-goliath-ref0.4.png": {
-    "combined": 1.2511905431747437,
-    "david": 0.7327067255973816,
-    "goliath": 1.48859703540802
+    "scores": {
+     "combined": 0.02061299765033124,
+     "david": 0.11008096491890107,
+     "goliath": -0.013062734957575208
+    },
+    "label": "정답지 시트 — ControlNet 조건화 자체가 없다"
    },
    "scene-2-goliath-ref0.7.png": {
-    "combined": 1.0010594129562378,
-    "david": 0.730699896812439,
-    "goliath": 1.1248533725738525
+    "scores": {
+     "combined": 0.03032967867833577,
+     "david": 0.061176245205446435,
+     "goliath": 0.015829331636750512
+    },
+    "label": "정답지 시트 — ControlNet 조건화 자체가 없다"
    },
    "scene-3-enthroned-ref0.4.png": {
-    "combined": 1.403590202331543,
-    "david": 1.128979206085205,
-    "goliath": 1.529330849647522
+    "scores": {
+     "combined": 0.0019582805037288214,
+     "david": 0.011434588748327952,
+     "goliath": -0.005285285277119468
+    },
+    "label": "정답지 시트 — ControlNet 조건화 자체가 없다"
    },
    "scene-3-enthroned-ref0.7.png": {
-    "combined": 1.3269685506820679,
-    "david": 0.9611923694610596,
-    "goliath": 1.4944523572921753
+    "scores": {
+     "combined": -0.004781531688416407,
+     "david": 0.04400029571120031,
+     "goliath": -0.025824336060837446
+    },
+    "label": "정답지 시트 — ControlNet 조건화 자체가 없다"
    },
    "sheet-s200.png": {
-    "combined": 1.049973964691162,
-    "david": 0.9626047015190125,
-    "goliath": 1.0899791717529297
+    "scores": {
+     "combined": 0.02833950437261208,
+     "david": 0.009475552149172502,
+     "goliath": 0.03489102454126991
+    },
+    "label": "정답지 시트 — ControlNet 조건화 자체가 없다"
    },
    "sheet-s201.png": {
-    "combined": 1.1575595140457153,
-    "david": 1.2176872491836548,
-    "goliath": 1.1300277709960938
+    "scores": {
+     "combined": -0.006684975969873689,
+     "david": -0.03588024049699876,
+     "goliath": 0.00671570173306018
+    },
+    "label": "정답지 시트 — ControlNet 조건화 자체가 없다"
    },
    "sheet-s202.png": {
-    "combined": 1.4794130325317383,
-    "david": 1.3857755661010742,
-    "goliath": 1.522288203239441
+    "scores": {
+     "combined": 0.0007216553568880503,
+     "david": -0.00151160969787614,
+     "goliath": 0.0007947809691297773
+    },
+    "label": "정답지 시트 — ControlNet 조건화 자체가 없다"
    },
    "sheet-s203.png": {
-    "combined": 1.379264235496521,
-    "david": 1.0418202877044678,
-    "goliath": 1.5337750911712646
+    "scores": {
+     "combined": -0.008476636136034383,
+     "david": -0.0013999327763149448,
+     "goliath": -0.015628712319420462
+    },
+    "label": "정답지 시트 — ControlNet 조건화 자체가 없다"
    }
   },
+  "validation_positives": {
+   "3-final-ip0.0-cn0.6-fcn0.6-sip0.7-s11.png": {
+    "combined": 0.30948586155799046,
+    "david": 0.3736112823576623,
+    "goliath": 0.2839841055189724
+   },
+   "3-final-ip0.7-cn0.6-fcn0.6-sip0.7-s11.png": {
+    "combined": 0.3501605571066742,
+    "david": 0.4118839060680737,
+    "goliath": 0.3254228915712507
+   }
+  },
+  "validation": {
+   "negative_pass": 0,
+   "n_negative": 15,
+   "positive_pass": 2,
+   "n_positive": 2
+  },
+  "superseded": {
+   "old_formula": "마스크 안 엣지 에너지 농축비 (엣지에너지 몫 ÷ 면적 몫)",
+   "old_thresholds": {
+    "combined": 1.4034137352346472,
+    "david": 1.2903905283644004,
+    "goliath": 1.3428717558667596
+   },
+   "reason": "「콘티대로인가」가 아니라 「그 영역에 무엇이든 있는가」를 쟀고 배경으로 채워졌다(ZIMAGE.md §4-b·§9-1). 그 결과 인물이 없거나 구도가 파괴된 그림이 통과했다(#317 구멍 2).",
+   "old_ruler_on_the_same_negatives": {
+    "bg-ip0.0-cn0.2-s11.png": {
+     "enrichment": {
+      "combined": 1.1797298192977905,
+      "david": 1.1536463499069214,
+      "goliath": 1.1916730403900146
+     },
+     "old_passes": false
+    },
+    "bg-ip0.0-cn0.4-s11.png": {
+     "enrichment": {
+      "combined": 1.1364166736602783,
+      "david": 0.9338900446891785,
+      "goliath": 1.2291507720947266
+     },
+     "old_passes": false
+    },
+    "bg-ip0.0-cn0.6-s11.png": {
+     "enrichment": {
+      "combined": 1.3044660091400146,
+      "david": 1.1914372444152832,
+      "goliath": 1.3562202453613281
+     },
+     "old_passes": false
+    },
+    "bg-ip1.0-cn0.4-s11.png": {
+     "enrichment": {
+      "combined": 1.7322192192077637,
+      "david": 2.0597035884857178,
+      "goliath": 1.582268476486206
+     },
+     "old_passes": true
+    },
+    "bg-ip1.0-cn0.4-s42.png": {
+     "enrichment": {
+      "combined": 1.8647902011871338,
+      "david": 1.5994555950164795,
+      "goliath": 1.9862831830978394
+     },
+     "old_passes": true
+    }
+   }
+  },
+  "control_asset_limitation": "음성 대조군이 .forge/reports/(gitignore)에 있어 추적되지 않는다 — 축 D의 음성(combined3/3-final-s11.png)과 같은 자리이고 같은 한계다. 그 자산이 사라지면 파생을 재실행할 수 없다.",
   "human_only": false,
-  "machine_gate_ready": false,
-  "revalidate_by": "part3",
-  "demoted_because": "s0(옛 bbox 마스크)는 현행 12/12 · 음성 0/10로 완전 분리했으나, S4 새 마스크로는 combined 2/12 · 음성 2/10로 샌다 — 특히 골리앗 단독 축은 5/12 대 6/10로 사실상 우연 수준이다. 근거: S4의 새 마스크는 S3가 새로 저작한 콘티(`conti/goliath_scene.png`)에서 파생됐고, `scene/*.png`(현행 코퍼스)는 옛 앱 장면(`GoliathScene`)의 ControlNet 조건으로 생성됐다 — 두 콘티의 인물 배치가 다르다(골리앗 bbox x0 793→688, -105px 이동). 이는 축 C의 산식(에지 농축비)이 깨진 것이 아니라 **이 코퍼스가 새 마스크를 검증할 자료가 아니라는 것**이다(GPU 0이라 새 콘티로 조건화한 산출물을 이 슬라이스에서 만들 수 없다). s0의 성공이 회귀한 것이 아니라 — 검증 코퍼스가 콘티 버전과 안 맞을 뿐이다. **part 3가 새 콘티로 실제 생성한 뒤 이 마스크로 재검증**해야 완전한 증명이 완성된다."
+  "machine_gate_ready": true
  },
  "axis_d": {
   "negative_control": "combined3/3-final-s11.png (콘티가 동작을 지시했는데 팔이 내려간 그림)",

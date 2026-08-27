@@ -40,18 +40,21 @@
    "axis_c": {
     "by_key": {
      "combined": {
-      "enrichment": 1.7936267852783203,
-      "threshold": 1.4034137352346472,
+      "corr": 0.30948586155799046,
+      "threshold": 0.1943001702037525,
+      "margin": 0.11518569135423795,
       "pass": true
      },
      "david": {
-      "enrichment": 1.5997447967529297,
-      "threshold": 1.2903905283644004,
+      "corr": 0.3736112823576623,
+      "threshold": 0.21305633886958536,
+      "margin": 0.16055494348807692,
       "pass": true
      },
      "goliath": {
-      "enrichment": 1.8824026584625244,
-      "threshold": 1.3428717558667596,
+      "corr": 0.2839841055189724,
+      "threshold": 0.1872671352295648,
+      "margin": 0.0967169702894076,
       "pass": true
      }
     },
@@ -67,6 +70,7 @@
    "gated_axes": [
     "axis_a",
     "axis_b",
+    "axis_c",
     "axis_d"
    ],
    "all_gated_pass": true,

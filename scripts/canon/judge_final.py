@@ -27,7 +27,8 @@ part 1(축 A·C·D)·part 2(축 B)가 못박은 값을 그대로 쓴다(ADR `260
   오용일 수 있다(축 A에서 실제로 그 오용이 있었다). 그래서 점수와 함께 **기준선 대비 여유**를
   같이 찍어 사람이 그 판단을 할 수 있게 남긴다 — 임계를 고치지 않는다.
 
-**축 C 구도** — 마스크 안 에지 에너지 농축비. `s1-baseline.json`의 `thresholds_by_key`를 쓰고,
+**축 C 구도** — 마스크 안에서 콘티 잉크 ↔ 산출물 엣지의 픽셀별 피어슨 상관(2026-08-28 교체,
+옛 산식은 에지 에너지 농축비였다). `s1-baseline.json`의 `thresholds_by_key`를 쓰고,
 **combined 하나로 판정하지 않는다** — 인물별(david·goliath) 값을 같이 낸다(#317 구멍 2: 인물이
 통째로 빠져도 combined는 통과할 수 있다).
 
@@ -97,18 +98,14 @@ def axis_b(emb, cn, seed, threshold, bg_ip, fig_cn, sip):
 
 
 def axis_c(path, thresholds_by_key):
-    """마스크 안 에지 농축비 — combined + 인물별. judge_s1의 산식을 그대로 재사용한다."""
-    m = {n: judge_s1._load_conti_mask(n) for n in gf.PEOPLE}
-    person = m["david"] | m["goliath"]
-    fracs = {"combined": float(person.mean()),
-             "david": float(m["david"].mean()), "goliath": float(m["goliath"].mean())}
-    e = judge_s1._edge_energy(path)
-    tot = e.sum()
+    """마스크 안 콘티잉크↔산출엣지 상관 — combined + 인물별. judge_s1의 산식을 그대로 재사용한다."""
+    masks, inks = judge_s1.axis_c_regions()
+    im = Image.open(path).convert("RGB").resize(params.SCENE_SIZE)
     out = {}
-    for key, mask in (("combined", person), ("david", m["david"]), ("goliath", m["goliath"])):
-        v = float((e[mask].sum() / tot) / fracs[key]) if tot > 0 else 0.0
+    for key in judge_s1.AXIS_C_KEYS:
+        v = judge_s1.axis_c_corr(im, key, masks, inks)
         thr = thresholds_by_key[key]["threshold"]
-        out[key] = {"enrichment": v, "threshold": thr, "pass": bool(v > thr)}
+        out[key] = {"corr": v, "threshold": thr, "margin": v - thr, "pass": bool(v > thr)}
     return {"by_key": out, "pass": all(v["pass"] for v in out.values())}
 
 
@@ -190,8 +187,8 @@ def main():
             print(f"  축 B  {who:8s} {v['score']:+.4f} (임계 {B['threshold']:+.4f}, "
                   f"여유 {v['margin']:+.4f})  {'✅' if v['pass'] else '❌'}")
         for key, v in C["by_key"].items():
-            print(f"  축 C  {key:8s} {v['enrichment']:.4f} (임계 {v['threshold']:.4f})  "
-                  f"{'✅' if v['pass'] else '❌'}")
+            print(f"  축 C  {key:8s} {v['corr']:+.4f} (임계 {v['threshold']:+.4f}, "
+                  f"여유 {v['margin']:+.4f})  {'✅' if v['pass'] else '❌'}")
         print(f"  축 D  상관 {D['corr']:+.4f} (임계 {D['threshold']:+.4f}, "
               f"여유 {D['margin']:+.4f})  {'✅' if D['pass'] else '❌'}")
         print(f"  → 게이트 축 {r['gated_axes']} 전부 통과 = {r['all_gated_pass']}  ·  "
