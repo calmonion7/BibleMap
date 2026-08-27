@@ -420,5 +420,190 @@
   "reason": "상관 후보가 사다리 전 구간에서 단조 증가하고(음성 -0.01 → 25%:+0.25 → 50%:+0.30 → 양성 +0.43) 음성·양성을 뚜렷이 가른다. 팔 영역 점유율은 음성보다 확실히 높아지긴 하지만 25%→50%→100% 구간에서 단조성이 깨진다(사다리로 갈수록 배경이 콘티의 흰 여백으로 대체되면서 원래 있던 배경 엣지가 오히려 줄기 때문 — 팔 자체는 가는 선이라 점유율의 절대 변화폭도 작다). 못 고른 쪽의 수치도 위에 전부 남긴다.",
   "human_only": false,
   "machine_gate_ready": true
+ },
+ "axis_e": {
+  "formula": "머리 밴드에 대해 축별 대립쌍 마진 = cos(밴드, 정본문구) − cos(밴드, 반대문구). 판정은 부호이므로 임계를 손으로 고를 자리가 없다",
+  "text_pairs_from": "derive_prompts.AXIS_PROBE_EN (생성용 AXIS_EN과 같은 자리에서 파생)",
+  "clip_pairing": "이미지=IP-Adapter sdxl_models/image_encoder · 텍스트=SDXL text_encoder_2 — 둘 다 laion2B ViT-bigG-14, projection_dim 1280. 새 의존성이 아니다",
+  "canon_axes": {
+   "david": {
+    "hair": "곱슬머리",
+    "beard": "없음",
+    "headwear": "없음",
+    "age": "소년/청년",
+    "sex": "남"
+   },
+   "goliath": {
+    "hair": "없음",
+    "beard": "없음",
+    "headwear": "투구",
+    "age": "성인",
+    "sex": "남"
+   }
+  },
+  "canon_source": "frontend/src/sketches/cast/{david,goliath}.jsx 의 AXES — 2026-08-28 사용자 규칙(성경 기반, 성경에 명확한 것이 없으면 성격·분위기 참고)으로 정해진 값이다. 이 축은 그 값을 읽어 대조할 뿐 바꾸지 않는다",
+  "gated_axes": [
+   "hair",
+   "beard",
+   "headwear",
+   "age"
+  ],
+  "excluded_axes": {
+   "sex": "정본 자신이 통과하지 못한다(frozen/david.png 마진 -0.0135) — 소년 얼굴이 CLIP에서 man/woman 사이에 놓인다"
+  },
+  "head_band_fraction": 0.3,
+  "head_band_plateau": [
+   0.22,
+   0.34
+  ],
+  "head_band_note": "이 구간 안에서 양성 4/4·음성 0/4·최종본 판정이 모두 같다(실측). 0.40으로 넓히면 최종본 다윗이 통과로 뒤집히는데, 그것은 밴드가 **실제 머리가 있는 아래쪽**까지 내려가기 때문이고 이 축이 재려는 것과 정합한다",
+  "positives": {
+   "frozen/goliath.png": {
+    "who": "goliath",
+    "margins": {
+     "hair": 0.09092414379119873,
+     "beard": 0.044002264738082886,
+     "headwear": 0.02086585760116577,
+     "age": 0.10316842794418335,
+     "sex": 0.09091517329216003
+    },
+    "pass": true
+   },
+   "frozen/david.png": {
+    "who": "david",
+    "margins": {
+     "hair": 0.01992085576057434,
+     "beard": 0.08202274143695831,
+     "headwear": 0.11412474513053894,
+     "age": 0.10803425312042236,
+     "sex": -0.01349988579750061
+    },
+    "pass": true
+   },
+   "samples/goliath.png": {
+    "who": "goliath",
+    "margins": {
+     "hair": 0.059903934597969055,
+     "beard": 0.01501394808292389,
+     "headwear": 0.05950281023979187,
+     "age": 0.080611452460289,
+     "sex": 0.06544668972492218
+    },
+    "pass": true
+   },
+   "samples/david.png": {
+    "who": "david",
+    "margins": {
+     "hair": 0.04340842366218567,
+     "beard": 0.10408470034599304,
+     "headwear": 0.10461857914924622,
+     "age": 0.09864073991775513,
+     "sex": 0.010448068380355835
+    },
+    "pass": true
+   }
+  },
+  "negatives": {
+   "인물없음 bg-ip0.0-cn0.2-s11.png [david]": {
+    "who": "david",
+    "margins": {
+     "hair": -0.04759719967842102,
+     "beard": 0.05302189290523529,
+     "headwear": 0.09319416433572769,
+     "age": 0.021170765161514282,
+     "sex": -0.007828831672668457
+    },
+    "pass": false
+   },
+   "인물없음 bg-ip0.0-cn0.2-s11.png [goliath]": {
+    "who": "goliath",
+    "margins": {
+     "hair": 0.04814372956752777,
+     "beard": 0.02855081856250763,
+     "headwear": -0.08411107957363129,
+     "age": -0.05262511968612671,
+     "sex": -0.03498101234436035
+    },
+    "pass": false
+   },
+   "인물없음 bg-ip0.0-cn0.4-s11.png [david]": {
+    "who": "david",
+    "margins": {
+     "hair": -0.029855668544769287,
+     "beard": 0.02953256666660309,
+     "headwear": 0.10866458714008331,
+     "age": -0.022051483392715454,
+     "sex": -0.02429962158203125
+    },
+    "pass": false
+   },
+   "인물없음 bg-ip0.0-cn0.4-s11.png [goliath]": {
+    "who": "goliath",
+    "margins": {
+     "hair": 0.06805598735809326,
+     "beard": -0.020106926560401917,
+     "headwear": -0.0432155579328537,
+     "age": -0.03905676305294037,
+     "sex": -0.05128319561481476
+    },
+    "pass": false
+   }
+  },
+  "cross_negatives": {
+   "교차: frozen/goliath에 david 축값": {
+    "who": "david",
+    "margins": {
+     "hair": -0.09092414379119873,
+     "beard": 0.044002264738082886,
+     "headwear": -0.02086585760116577,
+     "age": -0.10316842794418335,
+     "sex": 0.09091517329216003
+    },
+    "pass": false
+   },
+   "교차: frozen/david에 goliath 축값": {
+    "who": "goliath",
+    "margins": {
+     "hair": -0.01992085576057434,
+     "beard": 0.08202274143695831,
+     "headwear": -0.11412474513053894,
+     "age": -0.10803425312042236,
+     "sex": -0.01349988579750061
+    },
+    "pass": false
+   },
+   "교차: samples/goliath에 david 축값": {
+    "who": "david",
+    "margins": {
+     "hair": -0.059903934597969055,
+     "beard": 0.01501394808292389,
+     "headwear": -0.05950281023979187,
+     "age": -0.080611452460289,
+     "sex": 0.06544668972492218
+    },
+    "pass": false
+   },
+   "교차: samples/david에 goliath 축값": {
+    "who": "goliath",
+    "margins": {
+     "hair": -0.04340842366218567,
+     "beard": 0.10408470034599304,
+     "headwear": -0.10461857914924622,
+     "age": -0.09864073991775513,
+     "sex": 0.010448068380355835
+    },
+    "pass": false
+   }
+  },
+  "validation": {
+   "positive_pass": 4,
+   "n_positive": 4,
+   "negative_pass": 0,
+   "n_negative": 4,
+   "cross_pass": 0,
+   "n_cross": 4
+  },
+  "human_only": false,
+  "machine_gate_ready": true
  }
 }

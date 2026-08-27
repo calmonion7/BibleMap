@@ -19,7 +19,8 @@ import os
 import numpy as np
 import torch
 from PIL import Image
-from transformers import CLIPVisionModelWithProjection
+from transformers import (CLIPTextModelWithProjection, CLIPTokenizer,
+                          CLIPVisionModelWithProjection)
 
 import params
 
@@ -67,6 +68,30 @@ class Embedder:
         x = clip_preprocess(im).to(self.device)
         out = self.model(x).image_embeds[0]
         return (out / out.norm()).cpu().numpy()
+
+
+class TextEmbedder:
+    """CLIP bigG **텍스트** 타워. `Embedder`(이미지 타워)와 같은 CLIP 쌍이라 결합 공간이 성립한다 —
+    둘 다 `projection_dim = 1280`이고, 이미지 쪽은 IP-Adapter의 `sdxl_models/image_encoder`,
+    텍스트 쪽은 SDXL의 `text_encoder_2`로 **둘 다 laion2B ViT-bigG-14**다.
+
+    **새 의존성이 아니다** — 두 모델 다 이 파이프라인이 이미 받아 둔 캐시 안에 있다
+    (`loop.md` Authorized replan scope의 「새 의존성 도입 금지」에 걸리지 않는다).
+    """
+
+    def __init__(self):
+        self.device = "cpu"      # Embedder와 같은 이유 — 1회 로드 후 수십 회 추론뿐
+        self.tok = CLIPTokenizer.from_pretrained(params.SDXL_BASE, subfolder="tokenizer_2")
+        self.model = CLIPTextModelWithProjection.from_pretrained(
+            params.SDXL_BASE, subfolder="text_encoder_2", torch_dtype=torch.float32).to(self.device)
+        self.model.eval()
+
+    @torch.no_grad()
+    def embed(self, text):
+        t = self.tok(text, padding="max_length", max_length=self.tok.model_max_length,
+                     truncation=True, return_tensors="pt").to(self.device)
+        e = self.model(**t).text_embeds[0]
+        return (e / e.norm()).cpu().numpy()
 
 
 def cos(a, b):

@@ -67,18 +67,56 @@
     "margin": 0.1881109971738286,
     "pass": true
    },
+   "axis_e": {
+    "gated_axes": [
+     "hair",
+     "beard",
+     "headwear",
+     "age"
+    ],
+    "head_band_fraction": 0.3,
+    "by_person": {
+     "david": {
+      "margins": {
+       "hair": -0.041733160614967346,
+       "beard": 0.053470760583877563,
+       "headwear": 0.0692618191242218,
+       "age": -0.006255254149436951,
+       "sex": -0.008775770664215088
+      },
+      "failed_axes": [
+       "hair",
+       "age"
+      ],
+      "pass": false
+     },
+     "goliath": {
+      "margins": {
+       "hair": 0.047962531447410583,
+       "beard": 0.020536959171295166,
+       "headwear": 0.10039445757865906,
+       "age": 0.040997520089149475,
+       "sex": 0.04368230700492859
+      },
+      "failed_axes": [],
+      "pass": true
+     }
+    },
+    "pass": false
+   },
    "gated_axes": [
     "axis_a",
     "axis_b",
     "axis_c",
-    "axis_d"
+    "axis_d",
+    "axis_e"
    ],
-   "all_gated_pass": true,
-   "all_four_pass": true
+   "all_gated_pass": false,
+   "all_five_pass": false
   }
  },
  "n_seeds": 1,
- "n_all_gated_pass": 1,
- "n_all_four_pass": 1,
+ "n_all_gated_pass": 0,
+ "n_all_five_pass": 0,
  "reproduced": false
 }

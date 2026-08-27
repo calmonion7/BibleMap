@@ -42,6 +42,7 @@ import judge_axes as ja
 import judge_metrics as jm
 import judge_style as js
 import params
+import derive_prompts as dp
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CONTI = os.path.join(HERE, "conti")
@@ -249,6 +250,7 @@ def _load_conti_mask(name):
 
 
 FINAL3 = os.path.join(params.OUT_ROOT, "final3")
+
 
 
 # --- 축 C 산식 (2026-08-28 교체 — 농축비 → 인물별 콘티 상관) ---------------------
@@ -536,8 +538,132 @@ def axis_d():
     }
 
 
+# --- 축 E (신설 2026-08-28) — 5축 재확인 -----------------------------------------
+# **왜 세웠나.** 골리앗의 투구·뿔이 생성물에서 사라졌는데 축 A~D 중 아무것도 잡지 못했다. 5축은
+# 프롬프트 **파생(입력)** 에는 쓰이는데 **출력 검증** 에는 안 쓰인다 — 그 비대칭이 이 축이 메우는
+# 구멍이다. 산식은 CLIP 결합 공간의 **대립쌍 마진**이다:
+#     margin = cos(머리밴드, 정본문구) − cos(머리밴드, 반대문구)
+# 판정은 **부호**이므로 임계를 손으로 고를 자리가 없다(0이 자연 경계다).
+#
+# **사용자 규칙(2026-08-28)**: 축값은 「성경을 기반으로 설정하고, 성경에 명확한 것이 없으면
+# 성격·분위기 등을 참고한다」. 이 축은 그 규칙으로 정해진 정본 축값(`cast/*.jsx`의 AXES)을 읽어
+# 그대로 대조할 뿐, 축값을 **바꾸지 않는다** — 축값 변경은 동결 자산을 무효화하므로 사람의 몫이다.
+HEAD_BAND = 0.30            # 인물 영역 상단에서 머리 밴드로 삼을 비율
+HEAD_BAND_PLATEAU = (0.22, 0.34)   # 이 구간 안에서 판정이 동일하다(실측). 0.30은 그 중앙이다.
+
+
+def _band_fullbody(path, f=HEAD_BAND):
+    im = Image.open(path).convert("RGB")
+    w, h = im.size
+    return im.crop((0, 0, w, int(h * f)))
+
+
+def _band_scene(im_rgb, who, f=HEAD_BAND):
+    x0, y0, x1, y1 = jm.bbox_from_mask(os.path.join(CONTI, f"mask_{who}.png"))
+    return im_rgb.crop((x0, y0, x1, int(y0 + (y1 - y0) * f)))
+
+
+def axis_e_margins(im_rgb, who, axes, txt_vec, emb):
+    """머리 밴드 한 장에 대한 축별 마진. judge_final이 같이 쓴다."""
+    v = emb.embed(im_rgb)
+    return {ax: float(v @ txt_vec[(ax, val, 0)] - v @ txt_vec[(ax, val, 1)])
+            for ax, val in axes.items()}
+
+
+def axis_e_text_vectors():
+    """대립쌍 문구를 임베딩한다 — `derive_prompts.AXIS_PROBE_EN`에서 파생(손으로 안 쓴다)."""
+    te = jm.TextEmbedder()
+    return {(ax, val, i): te.embed(t)
+            for ax, table in dp.AXIS_PROBE_EN.items()
+            for val, pair in table.items()
+            for i, t in enumerate(pair)}
+
+
+def axis_e():
+    axes = {n: dp.read_axes(n) for n in PEOPLE}
+    tv = axis_e_text_vectors()
+    emb = jm.Embedder()
+    gated = list(dp.AXIS_PROBE_GATED)
+
+    def marg(im, who):
+        return axis_e_margins(im, who, axes[who], tv, emb)
+
+    def passes(m):
+        return all(m[a] > 0 for a in gated)
+
+    # 양성 = 정본 자산. 동결 두상은 그 자체가 머리 클로즈업이라 밴드를 안 자른다.
+    positives = {
+        "frozen/goliath.png": ("goliath", Image.open(os.path.join(params.FROZEN, "goliath.png")).convert("RGB")),
+        "frozen/david.png":   ("david",   Image.open(os.path.join(params.FROZEN, "david.png")).convert("RGB")),
+        "samples/goliath.png": ("goliath", _band_fullbody(os.path.join(SAMPLES, "goliath.png"))),
+        "samples/david.png":   ("david",   _band_fullbody(os.path.join(SAMPLES, "david.png"))),
+    }
+    # 음성 A = 그 자리에 인물이 없는 그림(구조적으로 확정된다 — 육안 확인된 순수 배경).
+    negatives = {}
+    for f in ("bg-ip0.0-cn0.2-s11.png", "bg-ip0.0-cn0.4-s11.png"):
+        p = os.path.join(FINAL3, f)
+        if not os.path.exists(p):
+            continue
+        im = Image.open(p).convert("RGB").resize(params.SCENE_SIZE)
+        for who in PEOPLE:
+            negatives[f"인물없음 {f} [{who}]"] = (who, _band_scene(im, who))
+    # 음성 B = 교차(상대 인물의 정본에 이 인물의 축값을 건다).
+    # ⚠ hair·headwear·age는 두 축값의 문구쌍이 서로 **역**이라 마진이 부호만 뒤집힌다 —
+    #   그 세 축에 대해서는 동어반복이므로 **독립 증거가 아니다**. 그래도 부호 규약이
+    #   깨지지 않았다는 자체검사로 남긴다(음성 A가 독립 증거다).
+    cross = {
+        "교차: frozen/goliath에 david 축값": ("david", positives["frozen/goliath.png"][1]),
+        "교차: frozen/david에 goliath 축값": ("goliath", positives["frozen/david.png"][1]),
+        "교차: samples/goliath에 david 축값": ("david", positives["samples/goliath.png"][1]),
+        "교차: samples/david에 goliath 축값": ("goliath", positives["samples/david.png"][1]),
+    }
+
+    def score(d):
+        return {k: {"who": w, "margins": marg(im, w), "pass": passes(marg(im, w))}
+                for k, (w, im) in d.items()}
+
+    pos_s, neg_s, cross_s = score(positives), score(negatives), score(cross)
+    n_pos_ok = sum(v["pass"] for v in pos_s.values())
+    n_neg_ok = sum(v["pass"] for v in neg_s.values())
+    n_cross_ok = sum(v["pass"] for v in cross_s.values())
+    clean = (n_pos_ok == len(pos_s) and n_neg_ok == 0 and n_cross_ok == 0 and len(neg_s) > 0)
+
+    print("[축 E] 5축 재확인 — 정본 축값 대립쌍의 CLIP 마진(부호 판정)")
+    print(f"  게이트 축 {gated} · `sex` 제외(정본 자신이 통과 못한다)")
+    print(f"  양성(정본 자산) 통과 {n_pos_ok}/{len(pos_s)} (전부여야 한다) · "
+          f"음성(인물 없음) 통과 {n_neg_ok}/{len(neg_s)} (0이어야 한다) · "
+          f"교차 통과 {n_cross_ok}/{len(cross_s)} (0이어야 한다)")
+
+    return {
+        "formula": "머리 밴드에 대해 축별 대립쌍 마진 = cos(밴드, 정본문구) − cos(밴드, 반대문구). "
+                    "판정은 부호이므로 임계를 손으로 고를 자리가 없다",
+        "text_pairs_from": "derive_prompts.AXIS_PROBE_EN (생성용 AXIS_EN과 같은 자리에서 파생)",
+        "clip_pairing": "이미지=IP-Adapter sdxl_models/image_encoder · 텍스트=SDXL text_encoder_2 — "
+                         "둘 다 laion2B ViT-bigG-14, projection_dim 1280. 새 의존성이 아니다",
+        "canon_axes": axes,
+        "canon_source": "frontend/src/sketches/cast/{david,goliath}.jsx 의 AXES — 2026-08-28 사용자 "
+                         "규칙(성경 기반, 성경에 명확한 것이 없으면 성격·분위기 참고)으로 정해진 값이다. "
+                         "이 축은 그 값을 읽어 대조할 뿐 바꾸지 않는다",
+        "gated_axes": gated,
+        "excluded_axes": {"sex": "정본 자신이 통과하지 못한다(frozen/david.png 마진 -0.0135) — "
+                                  "소년 얼굴이 CLIP에서 man/woman 사이에 놓인다"},
+        "head_band_fraction": HEAD_BAND,
+        "head_band_plateau": list(HEAD_BAND_PLATEAU),
+        "head_band_note": "이 구간 안에서 양성 4/4·음성 0/4·최종본 판정이 모두 같다(실측). "
+                           "0.40으로 넓히면 최종본 다윗이 통과로 뒤집히는데, 그것은 밴드가 "
+                           "**실제 머리가 있는 아래쪽**까지 내려가기 때문이고 이 축이 재려는 것과 정합한다",
+        "positives": pos_s, "negatives": neg_s, "cross_negatives": cross_s,
+        "validation": {"positive_pass": n_pos_ok, "n_positive": len(pos_s),
+                        "negative_pass": n_neg_ok, "n_negative": len(neg_s),
+                        "cross_pass": n_cross_ok, "n_cross": len(cross_s)},
+        "human_only": False,
+        "machine_gate_ready": bool(clean),
+    }
+
+
 def main():
-    out = {"axis_a": axis_a(), "axis_b": axis_b(), "axis_c": axis_c(), "axis_d": axis_d()}
+    out = {"axis_a": axis_a(), "axis_b": axis_b(), "axis_c": axis_c(),
+           "axis_d": axis_d(), "axis_e": axis_e()}
     out_path = sys.argv[sys.argv.index("--json") + 1] if "--json" in sys.argv else DEFAULT_OUT
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=1)
@@ -560,6 +686,11 @@ def main():
           + ("" if out['axis_c']['machine_gate_ready'] else
              " — 분해능 미증명, part3 재검증 필요 (근거: demoted_because 필드)"))
     print(f"축 D: 선택 {out['axis_d']['chosen']} — 음성 실패·양성 통과 = {d_ok}")
+    print(f"축 E: 5축 재확인 — machine_gate_ready = {out['axis_e']['machine_gate_ready']} "
+          f"(양성 {out['axis_e']['validation']['positive_pass']}/"
+          f"{out['axis_e']['validation']['n_positive']} · 음성 "
+          f"{out['axis_e']['validation']['negative_pass']}/"
+          f"{out['axis_e']['validation']['n_negative']})")
     return 0
 
 

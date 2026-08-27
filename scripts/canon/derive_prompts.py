@@ -76,6 +76,27 @@ AXIS_EN = {
     "sex": {"남": ("", "woman, girl, female")},
 }
 
+# 5축 **재확인**(판정용) 대립쌍 — 축값마다 (정본 문구, 반대 문구).
+# 생성용 `AXIS_EN`과 같은 자리에서 파생한다: 판정 문구도 손으로 쓰지 않는다는 같은 규율이고,
+# 축값이 늘면 여기서도 KeyError로 드러난다. 판정은 **마진의 부호**다 —
+# cos(그림, 정본문구) − cos(그림, 반대문구) > 0 이면 그 축이 정본과 맞는다.
+#
+# ⚠ `sex`는 대립쌍이 있어도 **기계 판정에서 뺀다** — 정본 자신이 통과하지 못한다
+# (`frozen/david.png`가 -0.0135). 소년 얼굴이 CLIP에서 man/woman 사이에 놓이기 때문이고,
+# 이는 `AXIS_EN`의 성별 주석(「나이 어휘가 이미 나르므로 긍정 토큰을 안 쓴다」)과 같은 현상이다.
+AXIS_PROBE_EN = {
+    "hair": {"곱슬머리": ("a person with curly hair", "a person with no visible hair"),
+             "없음": ("a person with no visible hair", "a person with curly hair")},
+    "beard": {"없음": ("a clean-shaven face with no beard", "a face with a full beard")},
+    "headwear": {"투구": ("wearing a bronze helmet on the head", "a bare head with no helmet"),
+                 "없음": ("a bare head with no helmet", "wearing a bronze helmet on the head")},
+    "age": {"소년/청년": ("a young boy", "a grown adult man"),
+            "성인": ("a grown adult man", "a young boy")},
+    "sex": {"남": ("a man", "a woman")},
+}
+# 기계 게이트에 쓰는 축 — `sex` 제외(위 주석).
+AXIS_PROBE_GATED = ("hair", "beard", "headwear", "age")
+
 # NEEDS.md §4 배경 좌표 목록의 직역(BACKGROUND.md §6가 "그대로 파생" 대상으로 못박은 것과 동일 어휘) —
 # CLIP 77토큰에 맞춰 항목은 그대로 두고 표현만 압축했다(축약이 아니라 표현 압축, 항목 손실 없음).
 BG_VOCAB = ("dry streambed, five smooth stones, near hills, far ridges, "
