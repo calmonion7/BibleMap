@@ -12,8 +12,35 @@ make_masks.py의 BBOX_RATIONALE이 채택했던 바운딩 박스는 회고 26082
 콘티의 모든 도형이 stroke-only(fill=none)라 몸통·머리는 닫힌 윤곽처럼 보여도 다리 사이 골반
 아래가 열려 있어(구멍 채우기로는 안 닫힌다) 단순 팽창만으로는 성긴 선 그대로 남는다 — 볼록껍질은
 이 위상 문제를 건너뛰고 사람이 보는 "실루엣"에 더 가까운 solid한 다각형을 준다.
+
+## 2026-08-28 — **볼록껍질을 폐기한다. 그것이 사용자가 지적한 두 결함의 단일 원인이었다** (라운드 9)
+
+part 3 최종본에서 사람이 지적한 두 가지 — 골리앗이 「각진 직사각형 패치로 붙었다」와 다윗의 든 팔이
+「평평한 회색 관/쐐기」 — 는 표본도 화풍도 CN·IP도 아니라 **이 마스크**가 원인이었다(`notes/ZIMAGE.md`
+§9-13). 실측: 최종본에서 배경과 달라진 화소의 **96.9%가 골리앗 마스크 안**이고, 눈에 보이는 패치의
+경계가 **마스크 경계와 정확히 일치**한다. 껍질은 정의상 볼록이라 팔·다리 사이를 직선으로 이어
+배경을 함께 품는다 — 골리앗 껍질은 bbox의 **.8500**(거의 사각형), 다윗은 **.5491**. 인페인팅은
+마스크 안을 전부 다시 그리므로 그 배경이 인물과 함께 새로 그려지고, 껍질의 직선 경계가 그대로
+「각진 패치」로 남는다.
+
+**위 위상 문제는 실재하지만 볼록껍질이 유일한 답은 아니었다.** 순서를 바꾸면 풀린다:
+**닫기(closing) → 구멍 채우기 → 팽창**. 닫기가 성긴 선의 틈을 메워 몸통·머리 윤곽을 닫고,
+구멍 채우기가 그 **닫힌 내부만** 채운다(다리 사이는 바깥 배경과 이어져 있으므로 채워지지 않는다 —
+그것이 옳은 동작이다). 결과는 볼록이 아니라 **인물 형태를 따르는** 실루엣이고, 직선 경계가 없으므로
+「각진 패치」가 생길 기하가 사라진다.
+
+값은 **저작된 콘티에서 파생한다**(손으로 고르지 않는다):
+  - 닫기 반지름 = 그 인물 획 두께(`stroke-width`) — 성긴 선의 틈은 획 두께 규모다.
+  - 팽창 반지름 = **머리 원 반지름 × 0.5**. 골격선은 팔다리의 **중심**을 지나므로 반지름의 절반만큼
+    부풀리면 팔 두께 ≈ 머리 반지름이 된다(사람 비례에 맞는 유일한 자연 척도이고, 머리 원은
+    `<circle id="head-*">`로 저작돼 있다 — `judge_s1.conti_head_box()`가 같은 자리를 읽는다).
+
+실측 결과: 겹침 0 · 잉크 포함률 1.0000/1.0000 유지 · bbox 채움률 **다윗 .5491 → .3244** ·
+**골리앗 .8500 → .6381**.
 """
+import io
 import os
+import re
 import sys
 
 import numpy as np
@@ -35,34 +62,42 @@ def _ink_mask(png_path):
     return np.abs(a - bg) > params.THRESHOLD
 
 
-def _convex_hull(points_xy):
-    """모노톤 체인(Andrew's monotone chain) — scipy 없이 numpy만으로 볼록껍질 좌표를 얻는다."""
-    pts = sorted(set(map(tuple, points_xy)))
-    if len(pts) <= 2:
-        return pts
-
-    def cross(o, a, b):
-        return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
-
-    lower = []
-    for p in pts:
-        while len(lower) >= 2 and cross(lower[-2], lower[-1], p) <= 0:
-            lower.pop()
-        lower.append(p)
-    upper = []
-    for p in reversed(pts):
-        while len(upper) >= 2 and cross(upper[-2], upper[-1], p) <= 0:
-            upper.pop()
-        upper.append(p)
-    return lower[:-1] + upper[:-1]
+def _erode(mask, r):
+    if r <= 0:
+        return mask
+    im = Image.fromarray((mask.astype(np.uint8) * 255), mode="L")
+    return np.array(im.filter(ImageFilter.MinFilter(2 * r + 1))) > 0
 
 
-def _hull_mask(ink):
-    ys, xs = np.where(ink)
-    hull_xy = _convex_hull(np.stack([xs, ys], axis=1))
-    mask_img = Image.new("L", params.SCENE_SIZE, 0)
-    ImageDraw.Draw(mask_img).polygon(hull_xy, fill=255)
-    return np.array(mask_img) > 0, hull_xy
+def _fill_holes(mask):
+    """닫힌 내부만 채운다 — 바깥 배경과 이어진 곳(다리 사이)은 그대로 둔다.
+
+    `Image.fromarray`는 **읽기전용 뷰**를 주고 그 위의 `floodfill`은 조용히 실패한다(실측) —
+    `.copy()`가 필수다.
+    """
+    img = Image.fromarray((~mask).astype(np.uint8) * 255, mode="L").copy()
+    ImageDraw.floodfill(img, (0, 0), 128)
+    return mask | (np.array(img) == 255)
+
+
+def _head_circle(who):
+    """저작된 머리 원의 (반지름, 획 두께) — 실루엣의 두 파생값이 여기서 나온다."""
+    html = io.open(os.path.join(HERE, "goliath_scene.html"), encoding="utf-8").read()
+    m = re.search(r'<circle\s+id="head-%s"([^/>]*)/?>' % re.escape(who), html)
+    if not m:
+        sys.exit(f'콘티에 머리 마커가 없다: <circle id="head-{who}">')
+    at = dict(re.findall(r'([\w-]+)="([^"]+)"', m.group(1)))
+    return float(at["r"]), float(at.get("stroke-width", 0))
+
+
+def _silhouette(ink, who):
+    """닫기 → 구멍 채우기 → 팽창. 값은 저작된 머리 원에서 파생한다(docstring 참조)."""
+    r, sw = _head_circle(who)
+    close_r = int(round(sw))
+    dilate_r = int(round(r * 0.5))
+    m = _erode(_dilate(ink, close_r), close_r)
+    m = _fill_holes(m)
+    return (_dilate(m, dilate_r) | ink), close_r, dilate_r
 
 
 def _dilate(mask, r):
@@ -81,37 +116,41 @@ def _bbox_fill_ratio(mask):
 
 def main():
     ink = {n: _ink_mask(os.path.join(HERE, f"{n}.png")) for n in NAMES}
-    hull_mask = {}
-    hull_xy = {}
+
+    # --- 실루엣 파생 (닫기 → 구멍 채우기 → 팽창; 값은 저작된 머리 원에서 나온다) ------
+    final_mask, radii = {}, {}
     for n in NAMES:
-        hull_mask[n], hull_xy[n] = _hull_mask(ink[n])
+        final_mask[n], close_r, dilate_r = _silhouette(ink[n], n)
+        radii[n] = (close_r, dilate_r)
 
-    # --- 팽창 반지름 r 탐색 (하드코딩 금지) ------------------------------------
-    # r=0(껍질 그대로)부터 올리며 "겹침 0 & 포함률 ≥0.95"를 둘 다 만족하는 최소값을 찾는다.
-    r = 0
-    while r <= 50:
-        cand = {n: _dilate(hull_mask[n], r) for n in NAMES}
-        overlap_px = int((cand["david"] & cand["goliath"]).sum())
-        containment = {n: float((ink[n] & cand[n]).sum()) / float(ink[n].sum()) for n in NAMES}
-        if overlap_px == 0 and all(c >= 0.95 for c in containment.values()):
-            break
-        r += 1
-    else:
-        sys.exit(f"r<=50 범위에서 겹침0·포함률>=0.95를 동시에 만족하는 값을 못 찾았다 (마지막 r={r})")
+    # --- 완료기준을 코드가 직접 확인한다 (통과 못하면 저장하지 않는다) ----------------
+    overlap_px = int((final_mask["david"] & final_mask["goliath"]).sum())
+    containment = {n: float((ink[n] & final_mask[n]).sum()) / float(ink[n].sum()) for n in NAMES}
+    fills = {n: _bbox_fill_ratio(final_mask[n]) for n in NAMES}
+    problems = []
+    if overlap_px != 0:
+        problems.append(f"두 마스크가 {overlap_px}px 겹친다 (0이어야 한다)")
+    for n in NAMES:
+        if containment[n] < 0.95:
+            problems.append(f"{n} 잉크 포함률 {containment[n]:.4f} < 0.95")
+        if fills[n][0] >= 0.95:
+            problems.append(f"{n} bbox 채움률 {fills[n][0]:.4f} >= 0.95 (사각형 마스크다)")
+    if problems:
+        sys.exit("완료기준 미달 — 저장하지 않는다:\n  " + "\n  ".join(problems))
 
-    final_mask = cand
     os.makedirs(HERE, exist_ok=True)
     for n in NAMES:
         Image.fromarray(final_mask[n].astype(np.uint8) * 255, mode="L").save(
             os.path.join(HERE, f"mask_{n}.png"))
 
-    print(f"탐색된 최소 팽창 반지름 r = {r}px (0 = 볼록껍질 자체로 이미 두 조건 충족)")
+    print("파생: 닫기 → 구멍 채우기 → 팽창 (볼록껍질 폐기 — docstring 2026-08-28)")
     print(f"두 마스크 AND 겹침 픽셀 = {overlap_px} (기대 0)")
     for n in NAMES:
-        fill, bbox = _bbox_fill_ratio(final_mask[n])
-        print(f"{n}: 잉크 {int(ink[n].sum())}px  껍질꼭짓점 {len(hull_xy[n])}개  "
-              f"마스크 {int(final_mask[n].sum())}px  bbox={bbox}  "
-              f"bbox 내부 채움률 {fill:.4f} (기존 bbox 마스크는 정의상 1.0000)  "
+        r, sw = _head_circle(n)
+        fill, bbox = fills[n]
+        print(f"{n}: 머리r={r:.0f} 획={sw:.0f} → 닫기 {radii[n][0]}px · 팽창 {radii[n][1]}px  "
+              f"잉크 {int(ink[n].sum())}px  마스크 {int(final_mask[n].sum())}px  bbox={bbox}  "
+              f"bbox 내부 채움률 {fill:.4f} (볼록껍질: david .5491 · goliath .8500)  "
               f"잉크 포함률 {containment[n]:.4f}")
 
     # --- 오버레이 --------------------------------------------------------------
