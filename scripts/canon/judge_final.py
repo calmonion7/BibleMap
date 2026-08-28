@@ -157,6 +157,22 @@ def axis_e(path, spec):
             "by_person": rows, "pass": all(r["pass"] for r in rows.values())}
 
 
+def axis_f(path, spec):
+    """갑주 착용 여부 — 게이트 인물의 몸통 밴드에 의상 대립쌍을 걸어 부호를 본다.
+    ⚠ 종류(비늘 vs 판금)는 재지 않는다 — `spec["does_not_measure"]` 참조."""
+    gated = spec["gated_people"]
+    tv = judge_s1.costume_text_vectors()
+    emb = jm.Embedder()
+    im = Image.open(path).convert("RGB").resize(params.SCENE_SIZE)
+    rows = {}
+    for who in gated:
+        band = im.crop(tuple(spec["torso_boxes"][who]))
+        mg = judge_s1.costume_margin(band, who, tv, emb)
+        rows[who] = {"margin": mg, "pass": bool(mg > 0)}
+    return {"gated_people": gated, "by_person": rows,
+            "pass": all(r["pass"] for r in rows.values())}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--cn", required=True)
@@ -191,19 +207,22 @@ def main():
             "axis_c": axis_c(final, s1["axis_c"]["thresholds_by_key"]),
             "axis_d": axis_d(final, s1["axis_d"]),
             "axis_e": axis_e(final, s1["axis_e"]),
+            "axis_f": axis_f(final, s1["axis_f"]),
         }
         # 축 C가 `machine_gate_ready: false`면 그 축은 게이트가 아니다 — 판정은 내되 종합에서
         # 빼고, 어느 축이 종합에 들어갔는지를 기록한다(끼워 맞추지 않는다).
         gate = {"axis_a": True, "axis_b": s1["axis_b"]["machine_gate_ready"],
                 "axis_c": s1["axis_c"]["machine_gate_ready"],
                 "axis_d": s1["axis_d"]["machine_gate_ready"],
-                "axis_e": s1["axis_e"]["machine_gate_ready"]}
+                "axis_e": s1["axis_e"]["machine_gate_ready"],
+                "axis_f": s1["axis_f"]["machine_gate_ready"]}
         r["gated_axes"] = [k for k, v in gate.items() if v]
         r["all_gated_pass"] = all(r[k]["pass"] for k in r["gated_axes"])
-        r["all_five_pass"] = all(r[f"axis_{x}"]["pass"] for x in "abcde")
+        r["all_axes_pass"] = all(r[f"axis_{x}"]["pass"] for x in "abcdef")
         verdict["seeds"][str(seed)] = r
 
-        A, B, C, D, E = (r["axis_a"], r["axis_b"], r["axis_c"], r["axis_d"], r["axis_e"])
+        A, B, C, D, E, F = (r["axis_a"], r["axis_b"], r["axis_c"], r["axis_d"],
+                            r["axis_e"], r["axis_f"])
         print(f"\n[시드 {seed}] {r['final']}")
         print(f"  축 A  ink={A['ink']:.4f} p05={A['val_p05']:.3f}  "
               f"{'✅' if A['pass'] else '❌'}{' ⚠상한초과' if A['ink_over_max_warn'] else ''}")
@@ -218,19 +237,22 @@ def main():
         for who, v in E["by_person"].items():
             print(f"  축 E  {who:8s} " + " ".join(f"{a}={v['margins'][a]:+.4f}" for a in E["gated_axes"])
                   + f"  {'✅' if v['pass'] else '❌ ' + ','.join(v['failed_axes'])}")
+        for who, v in F["by_person"].items():
+            print(f"  축 F  {who:8s} 갑주착용 {v['margin']:+.4f}  {'✅' if v['pass'] else '❌'}"
+                  f"   (⚠ 종류는 재지 않는다)")
         print(f"  → 게이트 축 {r['gated_axes']} 전부 통과 = {r['all_gated_pass']}  ·  "
-              f"5축 전부 통과 = {r['all_five_pass']}")
+              f"전 축 통과 = {r['all_axes_pass']}")
 
     n_gated = sum(v["all_gated_pass"] for v in verdict["seeds"].values())
-    n_five = sum(v["all_five_pass"] for v in verdict["seeds"].values())
+    n_all = sum(v["all_axes_pass"] for v in verdict["seeds"].values())
     verdict["n_seeds"] = len(verdict["seeds"])
     verdict["n_all_gated_pass"] = n_gated
-    verdict["n_all_five_pass"] = n_five
+    verdict["n_all_axes_pass"] = n_all
     verdict["reproduced"] = bool(n_gated >= 2)   # 계획 S4 완료기준: 3시드 중 2개 이상
     with open(a.json, "w", encoding="utf-8") as f:
         json.dump(verdict, f, ensure_ascii=False, indent=1)
     print(f"\n{'=' * 78}\n게이트 축 전부 통과 {n_gated}/{verdict['n_seeds']} 시드  ·  "
-          f"5축 전부 통과 {n_five}/{verdict['n_seeds']} 시드  ·  "
+          f"전 축 통과 {n_all}/{verdict['n_seeds']} 시드  ·  "
           f"재현(2/3 이상) = {verdict['reproduced']}")
     print(f"기록: {a.json}")
     return 0

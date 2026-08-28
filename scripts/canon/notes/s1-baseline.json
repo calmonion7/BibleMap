@@ -670,5 +670,68 @@
   },
   "human_only": false,
   "machine_gate_ready": true
+ },
+ "axis_f": {
+  "formula": "몸통 밴드에 대해 의상 대립쌍 마진 = cos(밴드, 정본문구) − cos(밴드, 반대문구). 부호가 판정이므로 임계를 손으로 고를 자리가 없다",
+  "does_not_measure": "갑주의 **종류**(비늘 vs 판금). 실측 — 비늘/판금 쌍에서 구 반사실 표본이 +0.0957로 신 표본(+0.0651)보다 높다(ZIMAGE §9-15). 통과를 「의상이 정본과 맞다」로 읽으면 안 된다",
+  "text_pairs_from": "derive_prompts.COSTUME_PROBE_EN (정본값은 COSTUME_CANON — 본문 파생)",
+  "torso_box_from": "콘티 저작 원본의 어깨·몸통 path id(`shoulder-*`·`torso-l/r-*`)",
+  "torso_boxes": {
+   "david": [
+    289,
+    322,
+    390,
+    436
+   ],
+   "goliath": [
+    785,
+    160,
+    1020,
+    354
+   ]
+  },
+  "gated_people": [
+   "goliath"
+  ],
+  "excluded_people": {
+   "david": "정본값이 **부재**(갑옷 없음)라 빈 배경이 자동으로 만족한다 — 음성 대조군이 성립하지 않는다(축 E가 `sex`를 뺀 것과 같은 이유)"
+  },
+  "positives": {
+   "samples/goliath.png": {
+    "who": "goliath",
+    "margin": 0.10277688503265381,
+    "pass": true
+   },
+   "samples/goliath-counterfactual.png": {
+    "who": "goliath",
+    "margin": 0.06978821754455566,
+    "pass": true
+   }
+  },
+  "negatives": {
+   "인물없음 bg-ip0.0-cn0.2-s11.png [goliath]": {
+    "who": "goliath",
+    "margin": -0.06784022599458694,
+    "pass": false
+   },
+   "인물없음 bg-ip0.0-cn0.4-s11.png [goliath]": {
+    "who": "goliath",
+    "margin": -0.04487612843513489,
+    "pass": false
+   },
+   "교차: 다윗 표본(튜닉)에 골리앗 의상값": {
+    "who": "goliath",
+    "margin": -0.011736184358596802,
+    "pass": false
+   }
+  },
+  "validation": {
+   "positive_pass": 2,
+   "n_positive": 2,
+   "negative_pass": 0,
+   "n_negative": 3
+  },
+  "human_only": false,
+  "machine_gate_ready": true
  }
 }

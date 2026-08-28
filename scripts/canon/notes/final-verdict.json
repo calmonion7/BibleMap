@@ -114,15 +114,28 @@
     },
     "pass": true
    },
+   "axis_f": {
+    "gated_people": [
+     "goliath"
+    ],
+    "by_person": {
+     "goliath": {
+      "margin": 0.0032716095447540283,
+      "pass": true
+     }
+    },
+    "pass": true
+   },
    "gated_axes": [
     "axis_a",
     "axis_b",
     "axis_c",
     "axis_d",
-    "axis_e"
+    "axis_e",
+    "axis_f"
    ],
    "all_gated_pass": false,
-   "all_five_pass": false
+   "all_axes_pass": false
   },
   "42": {
    "final": "3-final-ip0.0-cn0.6-fcn0.6-sip0.7-s42.png",
@@ -233,19 +246,32 @@
     },
     "pass": true
    },
+   "axis_f": {
+    "gated_people": [
+     "goliath"
+    ],
+    "by_person": {
+     "goliath": {
+      "margin": 0.014320999383926392,
+      "pass": true
+     }
+    },
+    "pass": true
+   },
    "gated_axes": [
     "axis_a",
     "axis_b",
     "axis_c",
     "axis_d",
-    "axis_e"
+    "axis_e",
+    "axis_f"
    ],
    "all_gated_pass": true,
-   "all_five_pass": true
+   "all_axes_pass": true
   }
  },
  "n_seeds": 2,
  "n_all_gated_pass": 1,
- "n_all_five_pass": 1,
+ "n_all_axes_pass": 1,
  "reproduced": false
 }

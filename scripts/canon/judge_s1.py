@@ -599,6 +599,51 @@ def conti_head_box(who):
             min(w, int(round(cx + half))), min(h, int(round(cy + half))))
 
 
+_TORSO_PARTS = ("shoulder", "torso-l", "torso-r")
+
+
+def conti_torso_box(who):
+    """몸통 밴드를 **콘티 저작 원본에서 파생한다** — `conti_head_box()`와 같은 방식이다.
+
+    어깨 1 + 몸통 2 path에 저작자가 단 id(`shoulder-*`·`torso-l-*`·`torso-r-*`)를 읽어 그
+    좌표 전부의 경계상자를 잡는다. 2차 베지에는 **제어점의 볼록껍질 안에** 있으므로 `d`의
+    좌표쌍만으로 곡선을 포함하는 상자가 나온다(곡선을 풀 필요가 없다). 획 두께의 절반을 더해
+    그려진 선의 바깥까지 담는다.
+    """
+    html = io.open(CONTI_HTML, encoding="utf-8").read()
+    xs, ys, sw = [], [], []
+    for part in _TORSO_PARTS:
+        m = re.search(r'<path id="%s-%s"([^/>]*)/?>' % (part, re.escape(who)), html)
+        if not m:
+            raise SystemExit(f'콘티에 몸통 마커가 없다: <path id="{part}-{who}"> — {CONTI_HTML}')
+        at = dict(re.findall(r'([\w-]+)="([^"]+)"', m.group(1)))
+        nums = [float(v) for v in re.findall(r'-?\d+(?:\.\d+)?', at["d"])]
+        xs += nums[0::2]
+        ys += nums[1::2]
+        sw.append(float(at.get("stroke-width", 0)))
+    h = max(sw) / 2
+    w, hh = params.SCENE_SIZE
+    return (max(0, int(min(xs) - h)), max(0, int(min(ys) - h)),
+            min(w, int(round(max(xs) + h))), min(hh, int(round(max(ys) + h))))
+
+
+def _torso_scene(im_rgb, who):
+    return im_rgb.crop(conti_torso_box(who))
+
+
+def costume_margin(im_rgb, who, txt_vec, emb):
+    """축 F 마진 = cos(밴드, 정본문구) − cos(밴드, 반대문구). 부호가 판정이다(임계 없음)."""
+    v = emb.embed(im_rgb)
+    val = dp.COSTUME_CANON[who]
+    return float(v @ txt_vec[(val, 0)] - v @ txt_vec[(val, 1)])
+
+
+def costume_text_vectors():
+    te = jm.TextEmbedder()
+    return {(val, i): te.embed(t)
+            for val, pair in dp.COSTUME_PROBE_EN.items() for i, t in enumerate(pair)}
+
+
 def _band_scene(im_rgb, who):
     return im_rgb.crop(conti_head_box(who))
 
@@ -617,6 +662,76 @@ def axis_e_text_vectors():
             for ax, table in dp.AXIS_PROBE_EN.items()
             for val, pair in table.items()
             for i, t in enumerate(pair)}
+
+
+def axis_f(embedder=None):
+    """축 F — 갑주 **착용 여부**. `notes/ZIMAGE.md` §9-15.
+
+    ⚠ **이 축은 갑주의 종류(비늘 vs 판금)를 재지 않는다.** 같은 상자·같은 기제로 실측했다:
+    있음/없음 쌍은 표본 +0.1028 ↔ 인물없음 −0.0678로 크게 갈리는데, 비늘/판금 쌍은
+    **구 반사실 표본이 +0.0957로 신 표본(+0.0651)보다 높다**. CLIP 대립쌍은 존재/부재에 강하고
+    한 종류 안의 세부에는 무력하다 — 사람이 지적한 「판금 기사」는 후자이므로 이 축으로 잡히지
+    않는다. 그 결함은 사람에게 넘겼다(통과를 「의상이 맞다」로 읽으면 안 된다).
+    """
+    gated = list(dp.COSTUME_GATED)
+    tv = costume_text_vectors()
+    emb = embedder or jm.Embedder()
+    box = {n: list(conti_torso_box(n)) for n in PEOPLE}
+
+    def m(im, who):
+        return costume_margin(im, who, tv, emb)
+
+    # 양성 = 갑주를 입은 자산 둘(신 표본 · 구 반사실 표본). 둘 다 **착용**이므로 이 축의 양성이다 —
+    # 종류가 다른데도 둘 다 양성이라는 것이 곧 「종류를 안 잰다」는 이 축의 정직한 자기 진술이다.
+    positives = {}
+    for f in ("goliath.png", "goliath-counterfactual.png"):
+        p = os.path.join(SAMPLES, f)
+        if os.path.exists(p):
+            positives[f"samples/{f}"] = ("goliath", Image.open(p).convert("RGB"))
+    # 음성 A = 그 자리에 인물이 없는 그림. 음성 B = 교차(튜닉 차림 다윗 표본에 골리앗 의상값).
+    negatives = {}
+    for f in ("bg-ip0.0-cn0.2-s11.png", "bg-ip0.0-cn0.4-s11.png"):
+        p = os.path.join(FINAL3, f)
+        if not os.path.exists(p):
+            continue
+        im = Image.open(p).convert("RGB").resize(params.SCENE_SIZE)
+        for who in gated:
+            negatives[f"인물없음 {f} [{who}]"] = (who, _torso_scene(im, who))
+    dp_path = os.path.join(SAMPLES, "david.png")
+    if os.path.exists(dp_path):
+        negatives["교차: 다윗 표본(튜닉)에 골리앗 의상값"] = ("goliath",
+                                                        Image.open(dp_path).convert("RGB"))
+
+    def score(d):
+        return {k: {"who": w, "margin": m(im, w), "pass": m(im, w) > 0} for k, (w, im) in d.items()}
+
+    pos_s, neg_s = score(positives), score(negatives)
+    n_pos_ok = sum(v["pass"] for v in pos_s.values())
+    n_neg_ok = sum(v["pass"] for v in neg_s.values())
+    ready = (n_pos_ok == len(pos_s) and n_neg_ok == 0 and len(pos_s) > 0 and len(neg_s) > 0)
+    print("[축 F] 갑주 착용 여부 — 몸통 밴드 대립쌍의 CLIP 마진(부호 판정)")
+    print(f"  게이트 인물 {gated} · 부재값(다윗)은 제외 — 빈 배경이 자동으로 만족한다")
+    print(f"  양성 통과 {n_pos_ok}/{len(pos_s)} (전부여야 한다) · "
+          f"음성 통과 {n_neg_ok}/{len(neg_s)} (0이어야 한다)")
+    return {
+        "formula": "몸통 밴드에 대해 의상 대립쌍 마진 = cos(밴드, 정본문구) − cos(밴드, 반대문구). "
+                    "부호가 판정이므로 임계를 손으로 고를 자리가 없다",
+        "does_not_measure": "갑주의 **종류**(비늘 vs 판금). 실측 — 비늘/판금 쌍에서 구 반사실 표본이 "
+                             "+0.0957로 신 표본(+0.0651)보다 높다(ZIMAGE §9-15). 통과를 「의상이 "
+                             "정본과 맞다」로 읽으면 안 된다",
+        "text_pairs_from": "derive_prompts.COSTUME_PROBE_EN (정본값은 COSTUME_CANON — 본문 파생)",
+        "torso_box_from": "콘티 저작 원본의 어깨·몸통 path id(`shoulder-*`·`torso-l/r-*`)",
+        "torso_boxes": box,
+        "gated_people": gated,
+        "excluded_people": {n: "정본값이 **부재**(갑옷 없음)라 빈 배경이 자동으로 만족한다 — "
+                                "음성 대조군이 성립하지 않는다(축 E가 `sex`를 뺀 것과 같은 이유)"
+                            for n, v in dp.COSTUME_CANON.items() if v == "없음"},
+        "positives": pos_s, "negatives": neg_s,
+        "validation": {"positive_pass": n_pos_ok, "n_positive": len(pos_s),
+                        "negative_pass": n_neg_ok, "n_negative": len(neg_s)},
+        "human_only": False,
+        "machine_gate_ready": ready,
+    }
 
 
 def axis_e():
@@ -738,7 +853,7 @@ def axis_e():
 
 def main():
     out = {"axis_a": axis_a(), "axis_b": axis_b(), "axis_c": axis_c(),
-           "axis_d": axis_d(), "axis_e": axis_e()}
+           "axis_d": axis_d(), "axis_e": axis_e(), "axis_f": axis_f()}
     out_path = sys.argv[sys.argv.index("--json") + 1] if "--json" in sys.argv else DEFAULT_OUT
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=1)
@@ -761,6 +876,11 @@ def main():
           + ("" if out['axis_c']['machine_gate_ready'] else
              " — 분해능 미증명, part3 재검증 필요 (근거: demoted_because 필드)"))
     print(f"축 D: 선택 {out['axis_d']['chosen']} — 음성 실패·양성 통과 = {d_ok}")
+    print(f"축 F: 갑주 착용 여부 — machine_gate_ready = {out['axis_f']['machine_gate_ready']} "
+          f"(양성 {out['axis_f']['validation']['positive_pass']}/"
+          f"{out['axis_f']['validation']['n_positive']} · 음성 "
+          f"{out['axis_f']['validation']['negative_pass']}/"
+          f"{out['axis_f']['validation']['n_negative']}) — ⚠ 종류(비늘/판금)는 재지 않는다")
     print(f"축 E: 5축 재확인 — machine_gate_ready = {out['axis_e']['machine_gate_ready']} "
           f"(양성 {out['axis_e']['validation']['positive_pass']}/"
           f"{out['axis_e']['validation']['n_positive']} · 음성 "

@@ -97,6 +97,25 @@ AXIS_PROBE_EN = {
 # 기계 게이트에 쓰는 축 — `sex` 제외(위 주석).
 AXIS_PROBE_GATED = ("hair", "beard", "headwear", "age")
 
+# --- 축 F: 갑주 **착용 여부** (2026-08-29 라운드 13) ------------------------------------
+# **이 축이 재지 않는 것을 먼저 적는다: 갑주의 종류(비늘 vs 판금)를 재지 않는다.**
+# 같은 몸통 상자·같은 기제로 두 대립쌍을 실측했다(ZIMAGE §9-15):
+#   있음/없음  표본(갑주) +0.1028 · 인물없음 −0.0678        → 크게 갈린다
+#   비늘/판금  표본 +0.0651 · **구 반사실 표본 +0.0957**     → 반사실이 더 높다. 못 가른다
+# CLIP 대립쌍은 **존재/부재**에는 강하고 **한 종류 안의 세부**에는 무력하다는 것이 이 실측의 뜻이고,
+# 사람이 지적한 「판금 기사」는 후자다 — 그래서 그 결함은 이 축으로 잡히지 않는다(사람에게 넘겼다).
+#
+# 정본값은 본문에서 온다: 골리앗 삼상 17:5 「놋투구를 그 머리에 쓰고 어린갑을 입었으니」 →
+# 「갑옷」. 다윗 삼상 17:38-39 사울의 갑옷을 입었다가 **벗었다** → 「없음」.
+COSTUME_CANON = {"goliath": "갑옷", "david": "없음"}
+COSTUME_PROBE_EN = {
+    "갑옷": ("wearing bronze armor on the chest", "a bare chest with no armor"),
+    "없음": ("a bare chest with no armor", "wearing bronze armor on the chest"),
+}
+# **부재값은 게이트에 넣지 않는다** — 빈 배경이 「갑옷 없음」을 자동으로 만족해 음성 대조군이
+# 무너진다(실측: 인물없음[david] +0.0872로 통과). 축 E가 `sex`를 뺀 것과 같은 이유다.
+COSTUME_GATED = tuple(n for n, v in COSTUME_CANON.items() if v != "없음")
+
 # NEEDS.md §4 배경 좌표 목록의 직역(BACKGROUND.md §6가 "그대로 파생" 대상으로 못박은 것과 동일 어휘) —
 # CLIP 77토큰에 맞춰 항목은 그대로 두고 표현만 압축했다(축약이 아니라 표현 압축, 항목 손실 없음).
 BG_VOCAB = ("dry streambed, five smooth stones, near hills, far ridges, "
