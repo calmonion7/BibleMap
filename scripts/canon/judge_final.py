@@ -143,18 +143,18 @@ def axis_e(path, spec):
     """인물별 머리 밴드에 정본 5축 대립쌍을 걸어 마진의 부호를 본다. judge_s1의 산식을 그대로 쓴다."""
     axes = spec["canon_axes"]
     gated = spec["gated_axes"]
-    f = spec["head_band_fraction"]
     tv = judge_s1.axis_e_text_vectors()
     emb = jm.Embedder()
     im = Image.open(path).convert("RGB").resize(params.SCENE_SIZE)
     rows = {}
     for who in gf.PEOPLE:
-        band = judge_s1._band_scene(im, who, f)
+        band = judge_s1._band_scene(im, who)   # 밴드 = 콘티 저작 머리 원(분율 손잡이 폐지, §9-10)
         m = judge_s1.axis_e_margins(band, who, axes[who], tv, emb)
         rows[who] = {"margins": m, "failed_axes": [a for a in gated if m[a] <= 0],
                      "pass": all(m[a] > 0 for a in gated)}
-    return {"gated_axes": gated, "head_band_fraction": f, "by_person": rows,
-            "pass": all(r["pass"] for r in rows.values())}
+    return {"gated_axes": gated,
+            "head_boxes": {w: list(judge_s1.conti_head_box(w)) for w in gf.PEOPLE},
+            "by_person": rows, "pass": all(r["pass"] for r in rows.values())}
 
 
 def main():

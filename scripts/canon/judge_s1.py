@@ -30,9 +30,11 @@ GPU 0 — 전부 PIL/numpy 픽셀 연산이고, CLIP 임베더(`judge_metrics.Em
 Usage: /Users/calmonion/.local/biblemap-imggen/.venv314/bin/python judge_s1.py [--json OUT]
 """
 import glob
+import io
 import itertools
 import json
 import os
+import re
 import sys
 
 import numpy as np
@@ -548,8 +550,8 @@ def axis_d():
 # **사용자 규칙(2026-08-28)**: 축값은 「성경을 기반으로 설정하고, 성경에 명확한 것이 없으면
 # 성격·분위기 등을 참고한다」. 이 축은 그 규칙으로 정해진 정본 축값(`cast/*.jsx`의 AXES)을 읽어
 # 그대로 대조할 뿐, 축값을 **바꾸지 않는다** — 축값 변경은 동결 자산을 무효화하므로 사람의 몫이다.
-HEAD_BAND = 0.30            # 인물 영역 상단에서 머리 밴드로 삼을 비율
-HEAD_BAND_PLATEAU = (0.22, 0.34)   # 이 구간 안에서 판정이 동일하다(실측). 0.30은 그 중앙이다.
+HEAD_BAND = 0.30            # **세로 전신 표본 전용** 머리 밴드 비율(`_band_fullbody`).
+# 장면 경로는 이 분율을 쓰지 않는다 — `conti_head_box()`가 콘티 저작 원본에서 파생한다(§9-10).
 
 
 def _band_fullbody(path, f=HEAD_BAND):
@@ -558,9 +560,39 @@ def _band_fullbody(path, f=HEAD_BAND):
     return im.crop((0, 0, w, int(h * f)))
 
 
-def _band_scene(im_rgb, who, f=HEAD_BAND):
-    x0, y0, x1, y1 = jm.bbox_from_mask(os.path.join(CONTI, f"mask_{who}.png"))
-    return im_rgb.crop((x0, y0, x1, int(y0 + (y1 - y0) * f)))
+CONTI_HTML = os.path.join(CONTI, "goliath_scene.html")
+_HEAD_RE = r'<circle\s+id="head-%s"([^/>]*)/?>'
+
+
+def conti_head_box(who):
+    """장면의 머리 밴드를 **콘티 저작 원본에서 파생한다** — 분율 손잡이를 없앤다.
+
+    **왜 분율을 버렸는가** (2026-08-28 라운드 8, `notes/ZIMAGE.md` §9-10 실측): 구 산식은 인물
+    마스크 bbox의 상단 `HEAD_BAND` 분율을 밴드로 삼았다. 그런데 인물이 지물을 **머리 위로**
+    치켜든 자세에서는 그 밴드에 머리가 **한 화소도 들지 않는다** — 다윗 정수리는 bbox 비율
+    .2995이고 밴드 0.30의 끝은 같은 행(y=267)이다. 그 위는 하늘과 **치켜든 물매**다. 즉 어떤
+    산출물로도 통과할 수 없는 게이트였고, 축 E가 최종본을 떨어뜨린 것은 검출이 아니라 우연이었다.
+    분율을 올려 통과시키는 것은 **임계 완화**이므로(그건 금지다) 손잡이 자체를 없앤다.
+
+    밴드 = 저작된 머리 원(`<circle id="head-<who>">`)의 획 포함 경계상자. 콘티 HTML의 viewBox가
+    `params.SCENE_SIZE`와 같으므로 SVG 좌표가 곧 장면 화소 좌표다(`render_conti.py` 참조).
+    「첫 원」·「가장 큰 원」 같은 휴리스틱을 쓰지 않는다 — 다윗 그룹에는 머리 원보다 **위에** 있는
+    물매 고리 원(cy=159)이 있어서 위치 휴리스틱이 곧바로 틀린다. 저작자가 id로 명시한다.
+    """
+    html = io.open(CONTI_HTML, encoding="utf-8").read()
+    m = re.search(_HEAD_RE % re.escape(who), html)
+    if not m:
+        raise SystemExit(f"콘티에 머리 마커가 없다: <circle id=\"head-{who}\"> — {CONTI_HTML}")
+    at = dict(re.findall(r'([\w-]+)="([^"]+)"', m.group(1)))
+    cx, cy, r = (float(at[k]) for k in ("cx", "cy", "r"))
+    half = r + float(at.get("stroke-width", 0)) / 2      # 획의 바깥 경계까지가 그려진 머리다
+    w, h = params.SCENE_SIZE
+    return (max(0, int(cx - half)), max(0, int(cy - half)),
+            min(w, int(round(cx + half))), min(h, int(round(cy + half))))
+
+
+def _band_scene(im_rgb, who):
+    return im_rgb.crop(conti_head_box(who))
 
 
 def axis_e_margins(im_rgb, who, axes, txt_vec, emb):
@@ -598,6 +630,23 @@ def axis_e():
         "samples/goliath.png": ("goliath", _band_fullbody(os.path.join(SAMPLES, "goliath.png"))),
         "samples/david.png":   ("david",   _band_fullbody(os.path.join(SAMPLES, "david.png"))),
     }
+    # 양성 C = **장면 정의역**의 양성(2026-08-28 라운드 8 신설, ZIMAGE §9-10).
+    # 두상·표본 양성은 정의역이 다르다 — 그 간극이 구 분율 밴드의 결함을 4/4로 통과시켰다
+    # (두상 그림은 상단 30%가 전부 머리라, 「지물을 치켜든 장면」을 한 번도 보지 않았다).
+    # 그래서 콘티가 지정한 머리 상자에 **정본 두상을 얹은 장면**을 양성으로 둔다. 음성 A가
+    # 같은 그림의 그 자리를 **비운 것**이므로 둘은 한 쌍이고, 밴드가 머리를 못 보면 양성이 깨진다.
+    for _f in ("bg-ip0.0-cn0.2-s11.png",):
+        _p = os.path.join(FINAL3, _f)
+        if not os.path.exists(_p):
+            continue
+        _base = Image.open(_p).convert("RGB").resize(params.SCENE_SIZE)
+        for who in PEOPLE:
+            bx = conti_head_box(who)
+            comp = _base.copy()
+            head = Image.open(os.path.join(params.FROZEN, f"{who}.png")).convert("RGB")
+            comp.paste(head.resize((bx[2] - bx[0], bx[3] - bx[1])), (bx[0], bx[1]))
+            positives[f"장면합성 정본머리 [{who}]"] = (who, _band_scene(comp, who))
+
     # 음성 A = 그 자리에 인물이 없는 그림(구조적으로 확정된다 — 육안 확인된 순수 배경).
     negatives = {}
     for f in ("bg-ip0.0-cn0.2-s11.png", "bg-ip0.0-cn0.4-s11.png"):
@@ -647,11 +696,22 @@ def axis_e():
         "gated_axes": gated,
         "excluded_axes": {"sex": "정본 자신이 통과하지 못한다(frozen/david.png 마진 -0.0135) — "
                                   "소년 얼굴이 CLIP에서 man/woman 사이에 놓인다"},
-        "head_band_fraction": HEAD_BAND,
-        "head_band_plateau": list(HEAD_BAND_PLATEAU),
-        "head_band_note": "이 구간 안에서 양성 4/4·음성 0/4·최종본 판정이 모두 같다(실측). "
-                           "0.40으로 넓히면 최종본 다윗이 통과로 뒤집히는데, 그것은 밴드가 "
-                           "**실제 머리가 있는 아래쪽**까지 내려가기 때문이고 이 축이 재려는 것과 정합한다",
+        "scene_band_from": "콘티 저작 원본의 머리 원 `<circle id=\"head-<who>\">`(획 포함 경계상자). "
+                            "분율 손잡이는 **폐지했다** — `conti_head_box()` 참조",
+        "scene_head_boxes": {w: list(conti_head_box(w)) for w in PEOPLE},
+        "superseded_band": {
+            "old": "마스크 bbox 상단 분율 0.30 (평탄구간 0.22~0.34)",
+            "why_wrong": "인물이 지물을 머리 위로 치켜든 자세에서 밴드에 머리가 **0화소** 든다 — "
+                          "다윗 정수리는 bbox 비율 .2995이고 밴드 0.30의 끝이 같은 행(y=267)이다. "
+                          "어떤 산출물로도 통과할 수 없는 게이트였고, 축 E가 최종본을 떨어뜨린 것은 "
+                          "검출이 아니라 **우연**이었다(ZIMAGE.md §9-10)",
+            "why_plateau_missed_it": "평탄구간 실측의 양성이 전부 `frozen/*.png` **두상**이라 "
+                                      "상단 30%가 전부 머리였다 — 「지물을 치켜든 전신 장면」 "
+                                      "정의역을 한 번도 보지 않았다. 그래서 **장면 정의역 양성**을 신설했다",
+            "why_not_widen": "0.40으로 올리면 다윗이 통과로 뒤집히지만 그것은 **임계 완화**다 — "
+                              "미달을 임계로 푸는 것은 거짓 승리(loop 금지 항목)",
+        },
+        "fullbody_band_fraction": HEAD_BAND,
         "positives": pos_s, "negatives": neg_s, "cross_negatives": cross_s,
         "validation": {"positive_pass": n_pos_ok, "n_positive": len(pos_s),
                         "negative_pass": n_neg_ok, "n_negative": len(neg_s),
