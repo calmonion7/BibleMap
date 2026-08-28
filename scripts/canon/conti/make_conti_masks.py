@@ -62,6 +62,46 @@ def _ink_mask(png_path):
     return np.abs(a - bg) > params.THRESHOLD
 
 
+def _convex_hull_mask(mask):
+    """마스크 점군의 볼록껍질. **파생 경로가 아니라 「먼 비율」 기준의 음성 대조군 전용이다** —
+    2026-08-28 라운드 9가 껍질을 폐기했으므로(docstring 참조) 여기 남는 이유는 오직
+    「고쳐진 파생이 껍질과 실제로 다르다」를 코드가 매번 재확인하기 위한 것이다.
+    모노톤 체인(Andrew's monotone chain) — scipy 없이 numpy만으로 얻는다."""
+    ys, xs = np.where(mask)
+    pts = sorted(set(zip(xs.tolist(), ys.tolist())))
+    if len(pts) <= 2:
+        return mask
+
+    def cross(o, a, b):
+        return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+
+    lower = []
+    for p in pts:
+        while len(lower) >= 2 and cross(lower[-2], lower[-1], p) <= 0:
+            lower.pop()
+        lower.append(p)
+    upper = []
+    for p in reversed(pts):
+        while len(upper) >= 2 and cross(upper[-2], upper[-1], p) <= 0:
+            upper.pop()
+        upper.append(p)
+    img = Image.new("L", params.SCENE_SIZE, 0)
+    ImageDraw.Draw(img).polygon(lower[:-1] + upper[:-1], fill=255)
+    return np.array(img) > 0
+
+
+def _far_fraction(mask, ink, r):
+    """마스크 화소 중 콘티 잉크의 **파생 팽창 반경 밖**에 있는 비율 = 「이 마스크가 그림이
+    함의하지 않는 배경을 얼마나 품는가」. 2026-08-28 라운드 10에 C2(ii)를 대체한 기준이다.
+
+    구 기준 `bbox 채움률 < 0.95`는 골리앗 볼록껍질 **.8500을 통과시켰고**, 「각진 직사각형
+    패치」 결함이 그 틈으로 들어왔다(`notes/ZIMAGE.md` §9-13). bbox 채움률은 인물의 자세에
+    따라 정상 범위가 달라서(다윗 .3260 ↔ 골리앗 .6387) 하나의 숫자로 두 인물을 가를 수 없다 —
+    반면 이 비율은 **두 인물 모두 실루엣 .01 · 껍질 .26~.42**로 한 자리에서 갈린다.
+    """
+    return float((mask & ~_dilate(ink, r)).sum()) / float(mask.sum())
+
+
 def _erode(mask, r):
     if r <= 0:
         return mask
@@ -127,6 +167,21 @@ def main():
     overlap_px = int((final_mask["david"] & final_mask["goliath"]).sum())
     containment = {n: float((ink[n] & final_mask[n]).sum()) / float(ink[n].sum()) for n in NAMES}
     fills = {n: _bbox_fill_ratio(final_mask[n]) for n in NAMES}
+
+    # 「먼 비율」 임계를 **대조군에서 파생한다**(손으로 고르지 않는다):
+    #   양성 = 팽창만 한 마스크(구멍 채우기 없음) — 정의상 먼 비율 0이므로 구조적으로 확정된다.
+    #   음성 = 그 마스크의 볼록껍질 — 폐기된 구 파생이고, 결함이 실측된 자리다.
+    #   임계 = 둘의 **산술 중점**(축 C의 `threshold_rule`과 같은 규칙 — 양성이 0이라 로그중점은
+    #          퇴화한다). 인물별로 파생해 인물마다 다른 자세를 반영한다.
+    far, far_thr, far_ctl = {}, {}, {}
+    for n in NAMES:
+        r = radii[n][1]
+        pos = _far_fraction(_dilate(ink[n], r) | ink[n], ink[n], r)          # = 0
+        neg = _far_fraction(_convex_hull_mask(final_mask[n]), ink[n], r)
+        far_ctl[n] = (pos, neg)
+        far_thr[n] = (pos + neg) / 2.0
+        far[n] = _far_fraction(final_mask[n], ink[n], r)
+
     problems = []
     if overlap_px != 0:
         problems.append(f"두 마스크가 {overlap_px}px 겹친다 (0이어야 한다)")
@@ -135,6 +190,12 @@ def main():
             problems.append(f"{n} 잉크 포함률 {containment[n]:.4f} < 0.95")
         if fills[n][0] >= 0.95:
             problems.append(f"{n} bbox 채움률 {fills[n][0]:.4f} >= 0.95 (사각형 마스크다)")
+        if far_ctl[n][1] <= far_thr[n]:
+            problems.append(f"{n} 음성 대조군(볼록껍질) 먼비율 {far_ctl[n][1]:.4f}이 "
+                            f"임계 {far_thr[n]:.4f}를 통과한다 — 기준이 갈라내지 못한다")
+        if far[n] >= far_thr[n]:
+            problems.append(f"{n} 먼비율 {far[n]:.4f} >= 임계 {far_thr[n]:.4f} "
+                            f"(그림이 함의하지 않는 배경을 품는다 — ZIMAGE §9-13)")
     if problems:
         sys.exit("완료기준 미달 — 저장하지 않는다:\n  " + "\n  ".join(problems))
 
@@ -152,6 +213,8 @@ def main():
               f"잉크 {int(ink[n].sum())}px  마스크 {int(final_mask[n].sum())}px  bbox={bbox}  "
               f"bbox 내부 채움률 {fill:.4f} (볼록껍질: david .5491 · goliath .8500)  "
               f"잉크 포함률 {containment[n]:.4f}")
+        print(f"    먼비율 {far[n]:.4f} < 임계 {far_thr[n]:.4f}  "
+              f"(대조군 — 양성 팽창만 {far_ctl[n][0]:.4f} · 음성 볼록껍질 {far_ctl[n][1]:.4f})")
 
     # --- 오버레이 --------------------------------------------------------------
     base = Image.open(os.path.join(HERE, "goliath_scene.png")).convert("RGBA")

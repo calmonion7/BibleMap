@@ -561,6 +561,7 @@ def _band_fullbody(path, f=HEAD_BAND):
 
 
 CONTI_HTML = os.path.join(CONTI, "goliath_scene.html")
+HEAD_BOX_PAD = 0.5   # 머리 상자 맥락 패딩(머리 반지름 배수) — 위 conti_head_box() 주석이 근거
 _HEAD_RE = r'<circle\s+id="head-%s"([^/>]*)/?>'
 
 
@@ -585,7 +586,14 @@ def conti_head_box(who):
         raise SystemExit(f"콘티에 머리 마커가 없다: <circle id=\"head-{who}\"> — {CONTI_HTML}")
     at = dict(re.findall(r'([\w-]+)="([^"]+)"', m.group(1)))
     cx, cy, r = (float(at[k]) for k in ("cx", "cy", "r"))
-    half = r + float(at.get("stroke-width", 0)) / 2      # 획의 바깥 경계까지가 그려진 머리다
+    # 획의 바깥 경계까지가 그려진 머리이고, 거기에 **맥락 패딩**을 더한다(2026-08-28 라운드 11).
+    # 왜: 「머리쓰개 **없음**」(다윗)은 상자만으로 읽히지만 「**투구** 있음」(골리앗)은 읽히지 않았다
+    # (정본 두상 합성 양성이 headwear −0.0006으로 깨졌다) — 투구는 목·어깨선까지 보고 읽는 것이다.
+    # 값은 쓸기로 정했고 선택은 **대조군과 충실성**으로 했다(최종본 판정으로 고르지 않았다):
+    #   ① 양성 전부 통과 + 음성·교차 전부 실패를 만족하는 것 → {0.25, 0.5, 1.0}
+    #   ② 밴드가 여전히 「머리」여야 한다(반폭 ≤ 머리 반지름 ×1.5) → 1.0 탈락
+    #   ③ 남은 둘 중 최소 대조군 여유가 큰 쪽 → 0.5 (+0.0115 > +0.0029)
+    half = r + float(at.get("stroke-width", 0)) / 2 + r * HEAD_BOX_PAD
     w, h = params.SCENE_SIZE
     return (max(0, int(cx - half)), max(0, int(cy - half)),
             min(w, int(round(cx + half))), min(h, int(round(cy + half))))
@@ -646,6 +654,13 @@ def axis_e():
             head = Image.open(os.path.join(params.FROZEN, f"{who}.png")).convert("RGB")
             comp.paste(head.resize((bx[2] - bx[0], bx[3] - bx[1])), (bx[0], bx[1]))
             positives[f"장면합성 정본머리 [{who}]"] = (who, _band_scene(comp, who))
+            # 그리고 **장면 규모에서 생성된 머리**도 양성으로 둔다 — 1024² 두상을 8.5배 축소한
+            # 위 합성본은 정의역이 어긋난 어려운 양성이고(라운드 11 실측), 이쪽이 실제 판정 대상과
+            # 같은 규모다. 둘을 함께 두면 앞의 것이 엄격한 시험으로 남는다.
+            comp_s = _base.copy()
+            sband = _band_fullbody(os.path.join(SAMPLES, f"{who}.png"))
+            comp_s.paste(sband.resize((bx[2] - bx[0], bx[3] - bx[1])), (bx[0], bx[1]))
+            positives[f"장면합성 표본머리 [{who}]"] = (who, _band_scene(comp_s, who))
 
     # 음성 A = 그 자리에 인물이 없는 그림(구조적으로 확정된다 — 육안 확인된 순수 배경).
     negatives = {}
