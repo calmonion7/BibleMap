@@ -1,15 +1,15 @@
 {
  "cn": 0.6,
  "bg_ip": 0.0,
- "fig_cn": 0.6,
+ "fig_cn": 0.8,
  "sample_ip": 0.7,
  "thresholds_from": "notes/s1-baseline.json",
  "seeds": {
   "11": {
-   "final": "3-final-ip0.0-cn0.6-fcn0.6-sip0.7-s11.png",
+   "final": "3-final-ip0.0-cn0.6-fcn0.8-sip0.7-s11.png",
    "axis_a": {
-    "ink": 0.13663522820723684,
-    "val_p05": 0.3176470696926117,
+    "ink": 0.1400904605263158,
+    "val_p05": 0.3294117748737335,
     "pass": true,
     "ink_over_max_warn": false
    },
@@ -17,22 +17,22 @@
     "threshold": 0.07287031412124634,
     "by_person": {
      "david": {
-      "score": 0.18089953064918518,
-      "d_self": 0.24731487035751343,
-      "d_cross": 0.06641533970832825,
-      "margin": 0.10802921652793884,
+      "score": 0.15213963389396667,
+      "d_self": 0.19463658332824707,
+      "d_cross": 0.042496949434280396,
+      "margin": 0.07926931977272034,
       "pass": true,
       "base": "bg-ip0.0-cn0.6-s11.png",
-      "cur": "1-david-ip0.0-cn0.6-fcn0.6-sip0.7-s11.png"
+      "cur": "1-david-ip0.0-cn0.6-fcn0.8-sip0.7-s11.png"
      },
      "goliath": {
-      "score": 0.15896174311637878,
-      "d_self": 0.2659890651702881,
-      "d_cross": 0.1070273220539093,
-      "margin": 0.08609142899513245,
+      "score": 0.11714744567871094,
+      "d_self": 0.20665830373764038,
+      "d_cross": 0.08951085805892944,
+      "margin": 0.0442771315574646,
       "pass": true,
-      "base": "1-david-ip0.0-cn0.6-fcn0.6-sip0.7-s11.png",
-      "cur": "2-goliath-ip0.0-cn0.6-fcn0.6-sip0.7-s11.png"
+      "base": "1-david-ip0.0-cn0.6-fcn0.8-sip0.7-s11.png",
+      "cur": "2-goliath-ip0.0-cn0.6-fcn0.8-sip0.7-s11.png"
      }
     },
     "pass": true
@@ -40,31 +40,31 @@
    "axis_c": {
     "by_key": {
      "combined": {
-      "corr": 0.1893279478924869,
+      "corr": 0.2419940721011728,
       "threshold": 0.18934877811847048,
-      "margin": -2.083022598359241e-05,
-      "pass": false
+      "margin": 0.05264529398270232,
+      "pass": true
      },
      "david": {
-      "corr": 0.2657208170896301,
+      "corr": 0.3511211933768209,
       "threshold": 0.20667316325102342,
-      "margin": 0.05904765383860666,
+      "margin": 0.1444480301257975,
       "pass": true
      },
      "goliath": {
-      "corr": 0.1579622325651543,
+      "corr": 0.19556661633055641,
       "threshold": 0.18284853735959944,
-      "margin": -0.024886304794445147,
-      "pass": false
+      "margin": 0.012718078970956975,
+      "pass": true
      }
     },
-    "pass": false
+    "pass": true
    },
    "axis_d": {
     "metric": "mask_ink_edge_correlation",
-    "corr": 0.2657208170896301,
+    "corr": 0.3511211933768209,
     "threshold": 0.20605740605776274,
-    "margin": 0.05966341103186734,
+    "margin": 0.14506378731905817,
     "pass": true
    },
    "axis_e": {
@@ -91,22 +91,22 @@
     "by_person": {
      "david": {
       "margins": {
-       "hair": 0.05838689208030701,
-       "beard": 0.09592384099960327,
-       "headwear": 0.08385609090328217,
-       "age": 0.1341467797756195,
-       "sex": 0.03038276731967926
+       "hair": 0.06057140231132507,
+       "beard": 0.09342867136001587,
+       "headwear": 0.06161034107208252,
+       "age": 0.1343451589345932,
+       "sex": 0.02824503183364868
       },
       "failed_axes": [],
       "pass": true
      },
      "goliath": {
       "margins": {
-       "hair": 0.10876336693763733,
-       "beard": 0.06571611762046814,
-       "headwear": 0.08868369460105896,
-       "age": 0.05045996606349945,
-       "sex": 0.06945663690567017
+       "hair": 0.07828235626220703,
+       "beard": 0.039796262979507446,
+       "headwear": 0.06448519229888916,
+       "age": 0.04473058879375458,
+       "sex": 0.016667187213897705
       },
       "failed_axes": [],
       "pass": true
@@ -120,7 +120,7 @@
     ],
     "by_person": {
      "goliath": {
-      "margin": 0.03920871019363403,
+      "margin": 0.02117741107940674,
       "pass": true
      }
     },
@@ -134,14 +134,14 @@
     "axis_e",
     "axis_f"
    ],
-   "all_gated_pass": false,
-   "all_axes_pass": false
+   "all_gated_pass": true,
+   "all_axes_pass": true
   },
   "42": {
-   "final": "3-final-ip0.0-cn0.6-fcn0.6-sip0.7-s42.png",
+   "final": "3-final-ip0.0-cn0.6-fcn0.8-sip0.7-s42.png",
    "axis_a": {
-    "ink": 0.17747866981907895,
-    "val_p05": 0.27450981736183167,
+    "ink": 0.1730250308388158,
+    "val_p05": 0.30588236451148987,
     "pass": true,
     "ink_over_max_warn": false
    },
@@ -149,22 +149,22 @@
     "threshold": 0.07287031412124634,
     "by_person": {
      "david": {
-      "score": 0.14701688289642334,
-      "d_self": 0.2531415522098541,
-      "d_cross": 0.10612466931343079,
-      "margin": 0.074146568775177,
+      "score": 0.12500998377799988,
+      "d_self": 0.22714659571647644,
+      "d_cross": 0.10213661193847656,
+      "margin": 0.05213966965675354,
       "pass": true,
       "base": "bg-ip0.0-cn0.6-s42.png",
-      "cur": "1-david-ip0.0-cn0.6-fcn0.6-sip0.7-s42.png"
+      "cur": "1-david-ip0.0-cn0.6-fcn0.8-sip0.7-s42.png"
      },
      "goliath": {
-      "score": 0.2061290144920349,
-      "d_self": 0.29240521788597107,
-      "d_cross": 0.08627620339393616,
-      "margin": 0.13325870037078857,
+      "score": 0.1862076222896576,
+      "d_self": 0.22018125653266907,
+      "d_cross": 0.033973634243011475,
+      "margin": 0.11333730816841125,
       "pass": true,
-      "base": "1-david-ip0.0-cn0.6-fcn0.6-sip0.7-s42.png",
-      "cur": "2-goliath-ip0.0-cn0.6-fcn0.6-sip0.7-s42.png"
+      "base": "1-david-ip0.0-cn0.6-fcn0.8-sip0.7-s42.png",
+      "cur": "2-goliath-ip0.0-cn0.6-fcn0.8-sip0.7-s42.png"
      }
     },
     "pass": true
@@ -172,21 +172,21 @@
    "axis_c": {
     "by_key": {
      "combined": {
-      "corr": 0.11469840511735996,
+      "corr": 0.13277330696956152,
       "threshold": 0.18934877811847048,
-      "margin": -0.07465037300111052,
+      "margin": -0.05657547114890896,
       "pass": false
      },
      "david": {
-      "corr": 0.29543168725241464,
+      "corr": 0.36281405098185276,
       "threshold": 0.20667316325102342,
-      "margin": 0.08875852400139123,
+      "margin": 0.15614088773082935,
       "pass": true
      },
      "goliath": {
-      "corr": 0.02820616576133383,
+      "corr": 0.021802010282959992,
       "threshold": 0.18284853735959944,
-      "margin": -0.1546423715982656,
+      "margin": -0.16104652707663944,
       "pass": false
      }
     },
@@ -194,9 +194,9 @@
    },
    "axis_d": {
     "metric": "mask_ink_edge_correlation",
-    "corr": 0.29543168725241464,
+    "corr": 0.36281405098185276,
     "threshold": 0.20605740605776274,
-    "margin": 0.0893742811946519,
+    "margin": 0.15675664492409003,
     "pass": true
    },
    "axis_e": {
@@ -223,22 +223,157 @@
     "by_person": {
      "david": {
       "margins": {
-       "hair": 0.053597062826156616,
-       "beard": 0.08910813927650452,
-       "headwear": 0.06340040266513824,
-       "age": 0.12374171614646912,
-       "sex": 0.03624831140041351
+       "hair": 0.030075520277023315,
+       "beard": 0.08456704020500183,
+       "headwear": 0.057078614830970764,
+       "age": 0.12816160917282104,
+       "sex": 0.028084948658943176
       },
       "failed_axes": [],
       "pass": true
      },
      "goliath": {
       "margins": {
-       "hair": 0.02990536391735077,
-       "beard": 0.026466891169548035,
-       "headwear": 0.0754656195640564,
-       "age": 0.059305086731910706,
-       "sex": 0.0551723837852478
+       "hair": 0.049069106578826904,
+       "beard": -0.03591132164001465,
+       "headwear": -0.009153246879577637,
+       "age": 0.05447158217430115,
+       "sex": -0.002084106206893921
+      },
+      "failed_axes": [
+       "beard",
+       "headwear"
+      ],
+      "pass": false
+     }
+    },
+    "pass": false
+   },
+   "axis_f": {
+    "gated_people": [
+     "goliath"
+    ],
+    "by_person": {
+     "goliath": {
+      "margin": -0.015179425477981567,
+      "pass": false
+     }
+    },
+    "pass": false
+   },
+   "gated_axes": [
+    "axis_a",
+    "axis_b",
+    "axis_c",
+    "axis_d",
+    "axis_e",
+    "axis_f"
+   ],
+   "all_gated_pass": false,
+   "all_axes_pass": false
+  },
+  "7": {
+   "final": "3-final-ip0.0-cn0.6-fcn0.8-sip0.7-s7.png",
+   "axis_a": {
+    "ink": 0.14728104440789475,
+    "val_p05": 0.3019607961177826,
+    "pass": true,
+    "ink_over_max_warn": false
+   },
+   "axis_b": {
+    "threshold": 0.07287031412124634,
+    "by_person": {
+     "david": {
+      "score": 0.06146210432052612,
+      "d_self": 0.17065998911857605,
+      "d_cross": 0.10919788479804993,
+      "margin": -0.011408209800720215,
+      "pass": false,
+      "base": "bg-ip0.0-cn0.6-s7.png",
+      "cur": "1-david-ip0.0-cn0.6-fcn0.8-sip0.7-s7.png"
+     },
+     "goliath": {
+      "score": 0.2684728503227234,
+      "d_self": 0.376170814037323,
+      "d_cross": 0.10769796371459961,
+      "margin": 0.19560253620147705,
+      "pass": true,
+      "base": "1-david-ip0.0-cn0.6-fcn0.8-sip0.7-s7.png",
+      "cur": "2-goliath-ip0.0-cn0.6-fcn0.8-sip0.7-s7.png"
+     }
+    },
+    "pass": false
+   },
+   "axis_c": {
+    "by_key": {
+     "combined": {
+      "corr": 0.2046172911330906,
+      "threshold": 0.18934877811847048,
+      "margin": 0.015268513014620122,
+      "pass": true
+     },
+     "david": {
+      "corr": 0.3714027701110498,
+      "threshold": 0.20667316325102342,
+      "margin": 0.16472960686002636,
+      "pass": true
+     },
+     "goliath": {
+      "corr": 0.13254313793065833,
+      "threshold": 0.18284853735959944,
+      "margin": -0.050305399428941105,
+      "pass": false
+     }
+    },
+    "pass": false
+   },
+   "axis_d": {
+    "metric": "mask_ink_edge_correlation",
+    "corr": 0.3714027701110498,
+    "threshold": 0.20605740605776274,
+    "margin": 0.16534536405328704,
+    "pass": true
+   },
+   "axis_e": {
+    "gated_axes": [
+     "hair",
+     "beard",
+     "headwear",
+     "age"
+    ],
+    "head_boxes": {
+     "david": [
+      290,
+      251,
+      390,
+      351
+     ],
+     "goliath": [
+      813,
+      28,
+      987,
+      202
+     ]
+    },
+    "by_person": {
+     "david": {
+      "margins": {
+       "hair": 0.0006868541240692139,
+       "beard": 0.058793291449546814,
+       "headwear": 0.024729251861572266,
+       "age": 0.12573528289794922,
+       "sex": 0.036861494183540344
+      },
+      "failed_axes": [],
+      "pass": true
+     },
+     "goliath": {
+      "margins": {
+       "hair": 0.037774085998535156,
+       "beard": 0.028858676552772522,
+       "headwear": 0.07626160979270935,
+       "age": 0.028288766741752625,
+       "sex": 0.061326563358306885
       },
       "failed_axes": [],
       "pass": true
@@ -252,7 +387,7 @@
     ],
     "by_person": {
      "goliath": {
-      "margin": 0.028137952089309692,
+      "margin": 0.036858707666397095,
       "pass": true
      }
     },
@@ -270,8 +405,8 @@
    "all_axes_pass": false
   }
  },
- "n_seeds": 2,
- "n_all_gated_pass": 0,
- "n_all_axes_pass": 0,
+ "n_seeds": 3,
+ "n_all_gated_pass": 1,
+ "n_all_axes_pass": 1,
  "reproduced": false
 }
