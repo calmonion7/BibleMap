@@ -202,7 +202,10 @@ SCENE_NEG_EXTRA = AXIS_EN["age"]["소년/청년"][1]
 # 그래서 같은 조각(5축·BRIEF·나이)에서 **전신·동작** 문장을 따로 파생한다.
 #
 # 동작의 출처는 SCENE_PERSON과 같다 — NEEDS.md §2 실측(--at 9000 콘티가 그리는 그 순간).
-SCENE_ACTION = {"david": "swinging a sling", "goliath": "standing in heavy armor"}
+# 2026-08-29: 골리앗의 동작에서 **의상을 뺐다**("standing in heavy armor" → "standing").
+# 동작 자리가 의상을 담고 있었고, 그 "heavy armor"는 (a) 아래에서 더하는 의상 서술과 중복이며
+# (b) 일반적 낱말이라 모델의 **판금** 사전지식 쪽으로 민다. 의상은 의상 자리(SAMPLE_COSTUME)에서 온다.
+SCENE_ACTION = {"david": "swinging a sling", "goliath": "standing"}
 
 
 def figure_prompt(name):
@@ -213,7 +216,13 @@ def figure_prompt(name):
     parts = [en["age"][0], read_brief(name), en["hair"][0], en["headwear"][0]]
     body = ", ".join(p for p in parts if p)
     art = "an" if body[0].lower() in "aeiou" else "a"
-    prompt = f"{STYLE} full body of {art} {body}, {SCENE_ACTION[name]}, on dry ground."
+    # 2026-08-29 **장면의 인물 단계에 의상이 없었다.** 그래서 장면은 갑주를 말로 지시받은 적이
+    # 없고 유일한 신호가 IP 레퍼런스였는데, 그것은 갑주 **구조**를 전이하지 못한다 — 표본을
+    # 어린갑으로 바꿔도 장면의 골리앗이 그대로였던 실측이 그 증거다(ZIMAGE §9-18).
+    # 의상은 `SAMPLE_COSTUME`에서 온다 — 표본과 장면이 **같은 정본 문구**를 쓰게 해 두 층이 갈리지
+    # 않게 한다. 배경 조각은 뺀다(토큰 확보 · 억제는 NEG가 진다).
+    prompt = (f"{_drop(STYLE, 'simple', 'clean background')} full body of {art} {body} "
+              f"{SAMPLE_COSTUME[name]}, {SCENE_ACTION[name]}, on dry ground.")
     neg = ", ".join([NEG] + [v[1] for v in en.values() if v[1]])
     return prompt, neg
 
