@@ -38,7 +38,7 @@ import re
 import sys
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageFilter
 
 import judge_axes as ja
 import judge_metrics as jm
@@ -301,13 +301,46 @@ def _edge_bool_f(im_rgb):
     return (e > jm.EDGE_THRESHOLD).astype(np.float32)
 
 
+def _conti_stroke(who):
+    """그 인물 머리 원의 획 두께 — 「그려진 선의 폭」을 저작 원본에서 읽는다."""
+    html = io.open(CONTI_HTML, encoding="utf-8").read()
+    m = re.search(r'<circle\s+id="head-%s"([^/>]*)/?>' % re.escape(who), html)
+    at = dict(re.findall(r'([\w-]+)="([^"]+)"', m.group(1)))
+    return int(round(float(at.get("stroke-width", 1))))
+
+
+def _band(ink, r):
+    """콘티 잉크 주변 r px 띠 — 「그려진 선 폭만큼 양옆」이 r의 뜻이다."""
+    im = Image.fromarray((ink > 0).astype(np.uint8) * 255)
+    return np.asarray(im.filter(ImageFilter.MaxFilter(2 * r + 1))) > 127
+
+
 def axis_c_regions():
-    """축 C 세 키의 (마스크, 콘티 잉크) 짝. combined는 두 인물의 합집합이다."""
+    """축 C 세 키의 (영역, 콘티 잉크) 짝. combined는 두 인물의 합집합이다.
+
+    **영역은 마스크 전체가 아니라 콘티 선 주변 「띠」다** (2026-08-29 라운드 22~23,
+    `notes/ZIMAGE.md` §9-23). 전체 마스크판은 「콘티 준수」와 「내부 질감 없음」을 **섞어 쟀다** —
+    콘티 잉크가 0인 자리에 생긴 갑주 비늘·판·음영의 엣지가 픽셀별 상관을 깎아서, **어린갑을
+    제대로 그릴수록 축 C가 떨어지는** 구조였다(영역별 실측: 골리앗 몸통 +0.05/+0.01/−0.03 —
+    갑주 질감이 가장 빽빽한 곳이 최악이다. 다윗은 같은 자리가 +0.17~0.27).
+
+    띠 반지름은 **저작된 획 두께**에서 파생한다(다윗 7 · 골리앗 9) — 마스크 닫기 반지름과 같은
+    규약이고 손으로 고르지 않는다. 콘티는 골격이지 질감 지도가 아니므로, 「선이 있어야 할 자리에
+    엣지가 있는가」는 선 주변에서 묻는 것이 축의 목적에 맞다.
+
+    ⚠ **「마스크를 덩어리로 채워 버리는」 실패를 놓치지 않는다** — 그 걱정으로 별도 기준을
+    세우려 했으나 실측이 불필요함을 보였다: 마스크를 균일 질감으로 채운 합성 음성의 띠 상관은
+    골리앗 **−0.0004** · 다윗 **+0.0032**로 임계 한참 아래다(덩어리는 콘티 선 자리에도 엣지를
+    만들지 않는다). 그 합성본을 아래 검증 집합에 **명시 음성으로 넣어** 매번 재확인한다.
+    (반대로 「띠 밖 잉여 엣지 비율」을 보전 기준으로 세우는 안은 **폐기했다** — 균일채움 음성이
+    1.02인데 실제 갑주 장면이 2.08로 더 높아, 덩어리가 아니라 질감을 다시 벌한다.)
+    """
     m = {n: _load_conti_mask(n) for n in ("david", "goliath")}
     ink = {n: _conti_ink(n) for n in ("david", "goliath")}
-    m["combined"] = m["david"] | m["goliath"]
+    band = {n: m[n] & _band(ink[n], _conti_stroke(n)) for n in ("david", "goliath")}
+    band["combined"] = band["david"] | band["goliath"]
     ink["combined"] = np.maximum(ink["david"], ink["goliath"])
-    return m, ink
+    return band, ink
 
 
 def axis_c_corr(im_rgb, key, masks, inks):
@@ -363,6 +396,20 @@ def axis_c():
         p = os.path.join(FINAL3, name)
         if os.path.exists(p):
             negatives[name] = {"scores": score(p), "label": why}
+    # 「마스크를 덩어리로 채워 버리는」 실패의 **구조적 음성** — 띠판이 그것을 놓치지 않음을
+    # 매번 재확인한다(라운드 23의 걱정을 별도 기준 대신 대조군으로 닫는다, §9-23).
+    _base_p = os.path.join(FINAL3, NEG_AXIS_C_NAME) if "NEG_AXIS_C_NAME" in globals() else NEG_AXIS_C
+    if os.path.exists(_base_p):
+        _a = np.asarray(_axis_c_load(_base_p)).copy()
+        _yy, _xx = np.mgrid[:params.SCENE_SIZE[1], :params.SCENE_SIZE[0]]
+        _tex = np.stack([(((_yy // 4 + _xx // 4) % 2) * 90 + 90).astype(np.uint8)] * 3, -1)
+        _fill = (masks["david"] | masks["goliath"]) if False else (
+            _load_conti_mask("david") | _load_conti_mask("goliath"))
+        _a[_fill] = _tex[_fill]
+        _im = Image.fromarray(_a)
+        negatives["균일채움 합성(덩어리)"] = {
+            "scores": {k: axis_c_corr(_im, k, masks, inks) for k in AXIS_C_KEYS},
+            "label": "마스크 안을 균일 질감으로 채운 합성 — 콘티 선 자리에도 엣지를 만들지 않는다"}
     for p in js.reference_paths():
         negatives[os.path.basename(p)] = {"scores": score(p),
                                           "label": "정답지 시트 — ControlNet 조건화 자체가 없다"}
@@ -373,7 +420,15 @@ def axis_c():
     pos_pass = sum(passes(v) for v in positives.values())
     ladder_ok = all(pk["monotonic"] and not pk["neg_passes"] and pk["pos_passes"]
                     for pk in per_key.values())
-    clean = ladder_ok and neg_pass == 0 and pos_pass == len(positives) and positives
+    # **2026-08-29 라운드 23 — 준비도에서 「우리 산출물이 전부 통과」 조건을 뺐다. 거꾸로였다.**
+    # 그 조건은 축이 **나쁜 산출물을 제대로 거부하면** 「축이 미숙하다」고 읽는다(실측: 축 E·F도
+    # 떨어지는 s42를 축 C가 거부하자 ready가 False가 됐다). 그러면 `judge_final`이 축 C를
+    # 게이트에서 빼므로 **콘티 검사 없이 통과하는 길이 조용히 열린다** — 거짓 승리의 전형이다.
+    # 준비도는 **분해능의 증명**이어야 한다: 사다리가 단조이고, 음성이 하나도 통과하지 못하는 것.
+    # 산출물 통과 수는 **보고**로 남긴다(아래 `validation.positive_pass`) — 판정 대상이지 대조군이 아니다.
+    # ⚠ 이것은 체크 집합 변경이고 사람에게 즉시 보고했다. 두 방향 중 **게이트를 살리는 쪽**이
+    # 보수적이라 그쪽을 택했다(그냥 두면 축이 빠지고, 이쪽은 축이 계속 잰다).
+    clean = ladder_ok and neg_pass == 0 and len(negatives) > 0
 
     # 옛 자가 같은 음성들을 통과시켰다는 회귀 증거 — 「바가 실제로 높아졌다」를 수치로 남긴다.
     def enrich_all(path):
