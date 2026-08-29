@@ -244,7 +244,10 @@ def _drop(style, *phrases):
     return ", ".join(kept) + tail
 
 
-SAMPLE_STYLE = _drop(STYLE, "light shading", "muted palette")
+# 2026-08-29: `"simple", "clean background"`도 뺀다 — 서술적 갑주 문구가 77토큰을 넘겨
+# **뒤가 조용히 잘리기** 때문이고, 배경 억제는 이미 부정 프롬프트가 진다
+# (`SAMPLE_NEG`의 "cluttered background" · `SAMPLE_NEG_EXTRA`의 "landscape, scenery").
+SAMPLE_STYLE = _drop(STYLE, "light shading", "muted palette", "simple", "clean background")
 SAMPLE_NEG = _drop(NEG, "dark", "heavy shadows")
 
 # 표본 전용 추가 부정어 — 2026-08-26 실측이 낳은 것이다. 표본은 **레퍼런스 이미지가 아니라
@@ -287,7 +290,14 @@ SAMPLE_COSTUME = {
     # 맨 앞 배치 / wearing 결속 / 「scale」을 버리고 "rows of overlapping round bronze plates").
     # 마지막 것은 **갑옷을 아예 없앴다** — "armor"라는 낱말이 최소한 옷의 존재는 지키고 있었다.
     # 남은 손잡이는 **이미지 앵커**다(사용자 제공 비늘갑옷 참고 이미지 → `gen_setup_sheet.py --ref`).
-    "goliath": "in barbaric bronze scale armor",
+    # 2026-08-29 **사용자 지적으로 뒤집힌 자리**: 지금까지의 실패는 전부 **용어 교체**였다
+    # (PROMPTING.md 8의 6종 · 라운드 14의 3종 — "scale armor"·"scale mail"·"fish-scale" 등).
+    # 모델이 그 낱말을 모른다면 낱말을 바꾸는 것은 무효다. **무엇으로 이루어졌고 어떤 모양인지**
+    # 풀어 쓰자 비늘이 실제로 나왔다(ZIMAGE §9-16 실측: 용어 0/3 ↔ 서술 2/3).
+    # ⚠ 직유는 **주어에 결속**해야 한다 — "like roof tiles"·"like a pinecone"을 뒤에 달았더니
+    #   기와와 솔방울이 **배경 풍경으로** 그려졌다(직유 대상이 장면으로 샌다).
+    "goliath": "in a coat of small overlapping bronze plates in rows, like fish scales",
+
 }
 
 # 부정어도 인물별로 갈린다 — 표본은 **중립**이어야 하므로 각 인물이 실제로 끌어들이는 것을 막는다.
@@ -328,7 +338,7 @@ def sample_prompt(name):
     # 캔버스는 params.SAMPLE_SIZE(세로)로 옮겼고, 여기서는 "head to toe"로 잘림을,
     # "front view"로 3/4 회전을 막는다. 배경은 부정어 쪽에서 죽인다(아래 SAMPLE_NEG_EXTRA).
     prompt = (f"{SAMPLE_STYLE} full body of {art} {body} {SAMPLE_COSTUME[name]}, "
-              f"standing alone, front view, facing forward, head to toe.")
+              f"standing alone, facing forward, head to toe.")   # "front view"는 "facing forward"와 중복이라 뺐다(2026-08-29, 토큰 확보)
     neg = ", ".join([SAMPLE_NEG, SAMPLE_NEG_EXTRA, SAMPLE_NEG_BY_NAME[name]]
                     + [v[1] for v in en.values() if v[1]])
     return prompt, neg
