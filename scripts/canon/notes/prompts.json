@@ -10,7 +10,7 @@
       "sex": "남"
     },
     "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, light shading, simple, clean background, muted palette. close-up head portrait of a boy of fifteen, lean-faced shepherd with calm steady eyes, curly hair, bare head, facing forward.",
-    "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, dark, heavy shadows, frame, border, stick figure, crude drawing, beard, moustache, stubble, baby, toddler, infant, chibi, doll, woman, girl, female"
+    "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, frame, border, stick figure, crude drawing, beard, moustache, stubble, baby, toddler, infant, chibi, doll, woman, girl, female"
   },
   "goliath": {
     "axes": {
@@ -21,19 +21,19 @@
       "sex": "남"
     },
     "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, light shading, simple, clean background, muted palette. close-up head portrait of a grown man of about forty, fierce giant warrior with heavy brow and hard jaw, horned bronze helmet with cheek guards, facing forward.",
-    "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, dark, heavy shadows, frame, border, stick figure, crude drawing, visible hair, long hair, beard, moustache, stubble, child, youth, woman, girl, female"
+    "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, frame, border, stick figure, crude drawing, visible hair, long hair, beard, moustache, stubble, child, youth, woman, girl, female"
   },
   "bg_on": {
     "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, light shading, simple, clean background, muted palette. a small shepherd boy swings a sling on the left, a huge armored giant stands on the right. dry streambed, five smooth stones, near hills, far ridges, hillside bushes, birds, dry grass"
   },
   "figure": {
     "david": {
-      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, light shading, muted palette. full body of a boy of fifteen, lean-faced shepherd with calm steady eyes, curly hair, bare head in a plain linen tunic with a cloth belt, swinging a sling, on dry ground.",
-      "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, dark, heavy shadows, frame, border, stick figure, crude drawing, beard, moustache, stubble, baby, toddler, infant, chibi, doll, woman, girl, female"
+      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. full body of a boy of fifteen, lean-faced shepherd with calm steady eyes, curly hair, bare head in a plain linen tunic with a cloth belt, swinging a sling, on dry ground.",
+      "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, frame, border, stick figure, crude drawing, beard, moustache, stubble, baby, toddler, infant, chibi, doll, woman, girl, female"
     },
     "goliath": {
-      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines, light shading, muted palette. full body of a grown man of about forty, fierce giant warrior with heavy brow and hard jaw, horned bronze helmet with cheek guards in a coat of small overlapping bronze plates in rows, like fish scales, standing, on dry ground.",
-      "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, dark, heavy shadows, frame, border, stick figure, crude drawing, visible hair, long hair, beard, moustache, stubble, child, youth, woman, girl, female"
+      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. full body of a grown man of about forty, fierce giant warrior with heavy brow and hard jaw, horned bronze helmet with cheek guards in a coat of small overlapping bronze plates in rows, like fish scales, standing, on dry ground.",
+      "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, frame, border, stick figure, crude drawing, visible hair, long hair, beard, moustache, stubble, child, youth, woman, girl, female"
     }
   },
   "sample": {

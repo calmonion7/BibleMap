@@ -160,7 +160,7 @@ def portrait_prompt(name):
     body = ", ".join(p for p in parts if p)
     art = "an" if body[0].lower() in "aeiou" else "a"
     prompt = f"{STYLE} close-up head portrait of {art} {body}, facing forward."
-    neg = ", ".join([NEG] + [v[1] for v in en.values() if v[1]])
+    neg = ", ".join([_drop(NEG, "dark", "heavy shadows")] + [v[1] for v in en.values() if v[1]])
     return prompt, neg, axes
 
 
@@ -221,9 +221,21 @@ def figure_prompt(name):
     # 어린갑으로 바꿔도 장면의 골리앗이 그대로였던 실측이 그 증거다(ZIMAGE §9-18).
     # 의상은 `SAMPLE_COSTUME`에서 온다 — 표본과 장면이 **같은 정본 문구**를 쓰게 해 두 층이 갈리지
     # 않게 한다. 배경 조각은 뺀다(토큰 확보 · 억제는 NEG가 진다).
-    prompt = (f"{_drop(STYLE, 'simple', 'clean background')} full body of {art} {body} "
+    # --- 인물 단계 전용 화풍/부정 (2026-08-29 라운드 20) ---------------------
+    # **인물 단계가 양쪽에서 창백함을 요구하고 있었다.** STYLE이 "light shading, muted palette"로
+    # 저대비를 **명시 요구**하고, NEG가 "dark, heavy shadows"로 어두움을 **금지**한다 — 규칙 4가
+    # 말한 「같은 대비 자원을 놓고 싸운다」의 텍스트 내부판이다. 그 대가가 실측돼 있다(§9-20):
+    # 우리 최종본은 정답지와 **같은 밀도로 그리는데**(밀도 .41~.54 ↔ 정답지 .26~.71) **그린 영역
+    # 안이 옅다**(.174~.303 ↔ .275~.638). 한쪽만 풀면 다른 쪽이 계속 당기므로 **둘 다** 푼다 —
+    # SAMPLE_STYLE이 표본용으로 이미 쓰는 방식이다. 성공 기준: **그린 영역 안 ink ≥ .275**.
+    # ⚠ 배경 단계와 표본 단계는 건드리지 않는다 — 손잡이를 하나만 돌린다.
+    # (`_drop`이 이 함수보다 아래에 정의돼 있어 호출 시점에 부른다.)
+    figure_style = _drop(STYLE, "simple", "clean background", "light shading", "muted palette")
+    prompt = (f"{figure_style} full body of {art} {body} "
               f"{SAMPLE_COSTUME[name]}, {SCENE_ACTION[name]}, on dry ground.")
-    neg = ", ".join([NEG] + [v[1] for v in en.values() if v[1]])
+    # 부정에서도 어두움 금지를 뺀다 — 긍정만 풀면 이쪽이 계속 창백함을 당긴다.
+    neg = ", ".join([_drop(NEG, "dark", "heavy shadows")]
+                    + [v[1] for v in en.values() if v[1]])
     return prompt, neg
 
 
