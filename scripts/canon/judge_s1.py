@@ -1048,7 +1048,16 @@ def arm_synthetic_fill(base_path, band):
     return Image.fromarray(a)
 
 
-ARM_APPROVED = "3-final-ip0.0-cn0.6-fcn0.8-sip0.9-s%s.png"
+# 축 G의 음성 대조군은 **task#320 승인본 그 자체**다 — 「그 파일이름에 지금 놓인 것」이 아니다.
+# 2026-08-30(task#322 S3) 실측으로 드러난 함정: `gen_final.py`의 산출물 이름은 (cn, bg_ip,
+# fig_cn, sip)만 담고 **콘티·프롬프트 판본을 담지 않는다.** 그래서 콘티를 고친 뒤 같은 조합으로
+# 다시 생성하면 승인본을 **덮어쓴다** — 그러면 판정 대상이 자기 자신의 음성 대조군이 되는
+# 순환이 생기고, `.forge/reports/`는 gitignore라 되돌릴 수도 없다.
+# 그래서 승인본 2장을 `reference/`(git 추적, 다른 대조군 자산이 이미 사는 곳)로 옮겨 **고정한다.**
+# 화소는 그대로이므로 임계는 움직이지 않는다 — 바뀐 것은 대조군의 **신원이 안정되었다**는 것뿐이다.
+# ⚠ 남은 같은 종류의 취약점: `NEG_AXIS_C`도 FINAL3 안을 가리킨다(bg-ip0.0-cn0.2-s11.png).
+#   이번 태스크의 조합(cn 0.6)과 겹치지 않아 지금은 안 깨지지만, 같은 함정 위에 있다 — 별건.
+ARM_APPROVED = os.path.join(params.REFERENCE, "approved-320-s%s.png")
 
 
 def axis_g():
@@ -1069,7 +1078,7 @@ def axis_g():
     negatives = {}
     for key, seed, why in (("neg_a_separated", "11", "승인본 s11 — 팔이 차렷으로 내려오고 물매가 허공에 떴다(분리)"),
                             ("neg_b_pierced", "7", "승인본 s7 — 물매 끈이 팔 회랑을 한 줄로 지나간다(관통)")):
-        p = os.path.join(FINAL3, ARM_APPROVED % seed)
+        p = ARM_APPROVED % seed
         if os.path.exists(p):
             negatives[key] = {"path": os.path.basename(p), "label": why,
                               "score": score(_edge_bool_f(_axis_c_load(p)))}
