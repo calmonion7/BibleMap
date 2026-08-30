@@ -906,9 +906,164 @@ def axis_e():
     }
 
 
+# --- 축 G (신설, task#321) — 팔이 사지인가 -------------------------------------
+# **왜 필요한가.** 축 C는 인물 전체 띠에서 상관을 한 값으로 내므로 팔 하나의 이탈이 몸통·다리·
+# 머리의 일치에 묻힌다. 승인본 s11(팔 차렷)과 s7(끈이 팔 회랑을 관통)이 **둘 다 여섯 축을
+# 통과했고**, 보완 ①「다윗이 물맷돌을 던지는 동작」이 승인 뒤에 나왔다.
+#
+# **왜 상관을 부위로 좁히는 것으로는 안 되는가.** 실측(`notes/arm-sweep.json`): 부위별 상관에서
+# 음성 B가 **+0.489**로 양성인 콘티 자신 **+0.226**보다 높다. 끈이 콘티 선 위에 정확히 놓이면
+# 「선 자리에 엣지가 있는가」 계열은 임계를 어디 두든 못 가른다. 후보 7개 중 6개가 이 이유로 죽었다.
+#
+# **채택한 산식.** 법선 프로파일 실측이 셋을 갈랐다:
+#     콘티(양성)  엣지 t = -3, +4          중심 매끄러움 + 경계 한 쌍  → 사지
+#     s7(관통)    엣지 t = -1, 0, 1, 2, 3  **중심 자체가 엣지**        → 사지 아님
+#     s11(분리)   엣지 없음                                            → 사지 아님
+# 즉 「그 자리에 있는 것이 **사지인가**」를 묻는다. 사지는 매끄러운 내부를 두 경계가 감싸고,
+# 끈은 중심선 위에 얹힌다.
+ARM_PART = "david-arm"
+ARM_W_MIN_INSET = 2   # 엣지가 경계 안쪽 1px씩에 놓여 저작 획 7px가 5~7로 측정된다(실측)
+
+
+def arm_geometry():
+    """축 G의 판정 기하 — 전부 콘티에서 파생한다(ADR `260830-084555`). 손으로 적은 좌표가 없다."""
+    r = _conti_stroke("david")
+    ink = _conti_ink(ARM_PART) > 0
+    return {"r": r, "ink": ink,
+            "band": _load_conti_mask("david") & _band(ink.astype(np.float32), r)}
+
+
+def arm_centerline(ink, n=25):
+    """콘티 팔 잉크의 중심선 표본과 법선. 주축(PCA)을 따라 n곳을 잡고, 주축 좌표가 가까운 잉크
+    화소의 무게중심을 중심점으로, 부축을 법선으로 쓴다 — 팔이 45도로 기울어 행/열 평균은
+    왜곡되지만 주축은 그렇지 않다."""
+    ys, xs = np.nonzero(ink)
+    pts = np.stack([xs, ys], 1).astype(np.float64)
+    c = pts.mean(0)
+    major, minor = np.linalg.svd(pts - c, full_matrices=False)[2][:2]
+    proj = (pts - c) @ major
+    out = []
+    for t in np.linspace(proj.min(), proj.max(), n):
+        sel = np.abs(proj - t) < 2.0
+        if sel.sum() >= 3:
+            out.append((pts[sel].mean(0), minor))
+    return out
+
+
+def arm_limb_score(g, samples, require_clean_center=True, w_min=None):
+    """사지 판정 — 중심이 매끄럽고 양쪽에 경계가 있으며 그 간격이 w_min 이상인 표본의 비율.
+
+    `w_min`은 **임계가 아니라 [[지표를 정의하는 상수]]**다(`judge_style.DARK_CUT`·`ARM_Y_ABS`와
+    같은 종류). 통과 임계는 아래 사다리 양끝의 산술 중점에서 파생하며 손으로 고르지 않는다.
+    `reach`도 저작 획 두께에서 파생한다."""
+    w_min = g["r"] - ARM_W_MIN_INSET if w_min is None else w_min
+    reach = 4 * g["r"]
+    h, w = g["ink"].shape
+
+    def f(ed):
+        ok = 0
+        for c, nvec in samples:
+            def at(t):
+                x, y = int(round(c[0] + t * nvec[0])), int(round(c[1] + t * nvec[1]))
+                return bool(ed[y, x]) if (0 <= x < w and 0 <= y < h) else False
+            if require_clean_center and at(0):
+                continue
+            a = next((t for t in range(1, reach + 1) if at(t)), None)
+            b = next((t for t in range(1, reach + 1) if at(-t)), None)
+            if a is not None and b is not None and a + b >= w_min:
+                ok += 1
+        return float(ok / len(samples)) if samples else 0.0
+    return f
+
+
+def arm_synthetic_fill(base_path, band):
+    """팔 띠를 균일 질감으로 덮은 합성 음성 — 축 C의 「균일채움 합성」과 같은 종류의 구조적 음성.
+    루프가 만든 실패작이 아니므로 계보가 다르다(회고 `260830-093209`: 루프가 만든 실패작만
+    음성으로 쓰면 Goodhart를 못 잡는다)."""
+    a = np.asarray(_axis_c_load(base_path)).copy()
+    yy, xx = np.mgrid[:params.SCENE_SIZE[1], :params.SCENE_SIZE[0]]
+    tex = np.stack([(((yy // 4 + xx // 4) % 2) * 90 + 90).astype(np.uint8)] * 3, -1)
+    a[band] = tex[band]
+    return Image.fromarray(a)
+
+
+ARM_APPROVED = "3-final-ip0.0-cn0.6-fcn0.8-sip0.9-s%s.png"
+
+
+def axis_g():
+    g = arm_geometry()
+    samples = arm_centerline(g["ink"])
+    score = arm_limb_score(g, samples)
+
+    pos_path = os.path.join(CONTI, "david.png")
+    pos_im, neg_im = _axis_c_load(pos_path), _axis_c_load(NEG_AXIS_C)
+    by_alpha = {a: score(_edge_bool_f(Image.blend(neg_im, pos_im, a))) for a in LADDER}
+    vals = [by_alpha[a] for a in LADDER]
+    mono = all(vals[i] <= vals[i + 1] for i in range(len(vals) - 1))
+    neg_v, pos_v = by_alpha[0.0], by_alpha[1.0]
+    thr = (neg_v + pos_v) / 2      # 축 C·D와 같은 산술 중점
+
+    # --- 파생과 독립인 검증 ------------------------------------------------------
+    # 임계는 위 사다리(음성 1장 + 양성 1장)에서만 파생했다. 아래 집합은 검증만 한다.
+    negatives = {}
+    for key, seed, why in (("neg_a_separated", "11", "승인본 s11 — 팔이 차렷으로 내려오고 물매가 허공에 떴다(분리)"),
+                            ("neg_b_pierced", "7", "승인본 s7 — 물매 끈이 팔 회랑을 한 줄로 지나간다(관통)")):
+        p = os.path.join(FINAL3, ARM_APPROVED % seed)
+        if os.path.exists(p):
+            negatives[key] = {"path": os.path.basename(p), "label": why,
+                              "score": score(_edge_bool_f(_axis_c_load(p)))}
+    negatives["neg_c_bg_only"] = {
+        "path": os.path.basename(NEG_AXIS_C), "label": "배경만 — 인물 부재. 루프 밖 계보의 음성",
+        "score": score(_edge_bool_f(_axis_c_load(NEG_AXIS_C)))}
+    negatives["neg_d_synth_fill"] = {
+        "path": "<합성> 팔 띠 균일채움", "label": "팔 띠를 덩어리로 채운 합성 — 구조적 음성",
+        "score": score(_edge_bool_f(arm_synthetic_fill(NEG_AXIS_C, g["band"])))}
+
+    positives = {os.path.basename(p): score(_edge_bool_f(_axis_c_load(p)))
+                 for p in sorted(glob.glob(os.path.join(FINAL3, "3-final-*.png")))}
+
+    neg_pass = sum(v["score"] > thr for v in negatives.values())
+    pos_pass = sum(v > thr for v in positives.values())
+    clean = mono and neg_pass == 0 and len(negatives) > 0 and pos_v > thr
+
+    print("[축 G] 팔이 사지인가 — 콘티 팔 중심선의 법선 프로파일")
+    print("  사다리 " + " → ".join(f"{by_alpha[a]:+.4f}" for a in LADDER)
+          + f"  임계 {thr:+.4f}  단조 {'OK' if mono else 'FAIL'}  정의역 {int(g['ink'].sum())}화소")
+    for k, v in negatives.items():
+        print(f"    {k:18s} {v['score']:+.4f} {'통과 ✗' if v['score'] > thr else '기각 ✓'}  {v['label']}")
+    print(f"  검증: 음성 통과 {neg_pass}/{len(negatives)} (0이어야 한다) · "
+          f"양성(콘티) {pos_v:+.4f} 통과 {pos_v > thr} · 산출물 통과 {pos_pass}/{len(positives)}")
+
+    return {
+        "formula": "콘티 팔 중심선 표본마다 법선 위에서 (중심 화소가 엣지가 아니고) 양쪽에 경계가 "
+                    "있으며 그 간격이 w_min 이상인 표본의 비율. 「선 자리에 엣지가 있는가」가 아니라 "
+                    "「그 자리에 있는 것이 사지인가」를 묻는다",
+        "why_not_correlation": "부위별 상관은 음성 B(관통) +0.489 > 양성(콘티) +0.226 — 임계를 "
+                                "어디 두든 못 가른다. 후보 7개 중 6개가 이 이유로 죽었다 "
+                                "(notes/arm-sweep.json · notes/ARM.md)",
+        "part_source": f"conti/{ARM_PART}.png — 콘티 <g id=\"{ARM_PART}\">에서 파생(ADR 260830-084555)",
+        "metric_constants": {"w_min": g["r"] - ARM_W_MIN_INSET, "reach": 4 * g["r"],
+                              "note": "임계가 아니라 [[지표를 정의하는 상수]]. w_min은 저작 획 두께에서 "
+                                      "엣지 검출의 경계 안쪽 1px씩을 뺀 값이다"},
+        "domain_px": int(g["ink"].sum()),
+        "positive_control": "conti/david.png — 콘티 잉크 자신",
+        "negative_control": f"final3/{os.path.basename(NEG_AXIS_C)} — 사다리 음성(축 C와 같은 자산)",
+        "ladder": {str(a): by_alpha[a] for a in LADDER},
+        "ladder_monotonic": bool(mono),
+        "threshold": thr,
+        "threshold_rule": "사다리 양끝(음성·양성)의 산술 중점 — 축 C·D와 같은 규약",
+        "validation_negatives": negatives, "validation_positives": positives,
+        "validation": {"negative_pass": neg_pass, "n_negative": len(negatives),
+                        "positive_pass": pos_pass, "n_positive": len(positives)},
+        "human_only": False,
+        "machine_gate_ready": bool(clean),
+    }
+
+
 def main():
     out = {"axis_a": axis_a(), "axis_b": axis_b(), "axis_c": axis_c(),
-           "axis_d": axis_d(), "axis_e": axis_e(), "axis_f": axis_f()}
+           "axis_d": axis_d(), "axis_e": axis_e(), "axis_f": axis_f(),
+           "axis_g": axis_g()}
     out_path = sys.argv[sys.argv.index("--json") + 1] if "--json" in sys.argv else DEFAULT_OUT
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=1)
@@ -941,6 +1096,10 @@ def main():
           f"{out['axis_e']['validation']['n_positive']} · 음성 "
           f"{out['axis_e']['validation']['negative_pass']}/"
           f"{out['axis_e']['validation']['n_negative']})")
+    print(f"축 G: 팔이 사지인가 — machine_gate_ready = {out['axis_g']['machine_gate_ready']} "
+          f"(음성 통과 {out['axis_g']['validation']['negative_pass']}/"
+          f"{out['axis_g']['validation']['n_negative']} · 사다리 단조 "
+          f"{out['axis_g']['ladder_monotonic']}) — 승인본 s11·s7을 떨어뜨리라고 만든 축이다")
     return 0
 
 

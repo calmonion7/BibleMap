@@ -334,6 +334,36 @@
     "david": 0.3870961279769198,
     "goliath": 0.23469966241245677
    },
+   "3-final-ip0.0-cn0.6-fcn0.8-sip0.8-s11.png": {
+    "combined": 0.27821280973859586,
+    "david": 0.3339313681938159,
+    "goliath": 0.278102408648999
+   },
+   "3-final-ip0.0-cn0.6-fcn0.8-sip0.8-s42.png": {
+    "combined": 0.1866428460907696,
+    "david": 0.3452236250740962,
+    "goliath": 0.12158203294673472
+   },
+   "3-final-ip0.0-cn0.6-fcn0.8-sip0.8-s7.png": {
+    "combined": 0.27925011125762955,
+    "david": 0.43119758855573803,
+    "goliath": 0.22488665798236165
+   },
+   "3-final-ip0.0-cn0.6-fcn0.8-sip0.9-s11.png": {
+    "combined": 0.27794827952057233,
+    "david": 0.3217985299540783,
+    "goliath": 0.2884493794783749
+   },
+   "3-final-ip0.0-cn0.6-fcn0.8-sip0.9-s42.png": {
+    "combined": 0.17865145837914337,
+    "david": 0.3287687494052464,
+    "goliath": 0.1261465129411544
+   },
+   "3-final-ip0.0-cn0.6-fcn0.8-sip0.9-s7.png": {
+    "combined": 0.26280414562235843,
+    "david": 0.4141830843602854,
+    "goliath": 0.2089145679963714
+   },
    "3-final-ip0.7-cn0.6-fcn0.6-sip0.7-s11.png": {
     "combined": 0.27331574356696997,
     "david": 0.3194694888722531,
@@ -348,8 +378,8 @@
   "validation": {
    "negative_pass": 0,
    "n_negative": 16,
-   "positive_pass": 6,
-   "n_positive": 7
+   "positive_pass": 10,
+   "n_positive": 13
   },
   "superseded": {
    "old_formula": "마스크 안 엣지 에너지 농축비 (엣지에너지 몫 ÷ 면적 몫)",
@@ -758,6 +788,73 @@
    "n_positive": 2,
    "negative_pass": 0,
    "n_negative": 3
+  },
+  "human_only": false,
+  "machine_gate_ready": true
+ },
+ "axis_g": {
+  "formula": "콘티 팔 중심선 표본마다 법선 위에서 (중심 화소가 엣지가 아니고) 양쪽에 경계가 있으며 그 간격이 w_min 이상인 표본의 비율. 「선 자리에 엣지가 있는가」가 아니라 「그 자리에 있는 것이 사지인가」를 묻는다",
+  "why_not_correlation": "부위별 상관은 음성 B(관통) +0.489 > 양성(콘티) +0.226 — 임계를 어디 두든 못 가른다. 후보 7개 중 6개가 이 이유로 죽었다 (notes/arm-sweep.json · notes/ARM.md)",
+  "part_source": "conti/david-arm.png — 콘티 <g id=\"david-arm\">에서 파생(ADR 260830-084555)",
+  "metric_constants": {
+   "w_min": 5,
+   "reach": 28,
+   "note": "임계가 아니라 [[지표를 정의하는 상수]]. w_min은 저작 획 두께에서 엣지 검출의 경계 안쪽 1px씩을 뺀 값이다"
+  },
+  "domain_px": 737,
+  "positive_control": "conti/david.png — 콘티 잉크 자신",
+  "negative_control": "final3/bg-ip0.0-cn0.2-s11.png — 사다리 음성(축 C와 같은 자산)",
+  "ladder": {
+   "0.0": 0.04,
+   "0.25": 0.68,
+   "0.5": 0.88,
+   "1.0": 0.88
+  },
+  "ladder_monotonic": true,
+  "threshold": 0.46,
+  "threshold_rule": "사다리 양끝(음성·양성)의 산술 중점 — 축 C·D와 같은 규약",
+  "validation_negatives": {
+   "neg_a_separated": {
+    "path": "3-final-ip0.0-cn0.6-fcn0.8-sip0.9-s11.png",
+    "label": "승인본 s11 — 팔이 차렷으로 내려오고 물매가 허공에 떴다(분리)",
+    "score": 0.04
+   },
+   "neg_b_pierced": {
+    "path": "3-final-ip0.0-cn0.6-fcn0.8-sip0.9-s7.png",
+    "label": "승인본 s7 — 물매 끈이 팔 회랑을 한 줄로 지나간다(관통)",
+    "score": 0.04
+   },
+   "neg_c_bg_only": {
+    "path": "bg-ip0.0-cn0.2-s11.png",
+    "label": "배경만 — 인물 부재. 루프 밖 계보의 음성",
+    "score": 0.04
+   },
+   "neg_d_synth_fill": {
+    "path": "<합성> 팔 띠 균일채움",
+    "label": "팔 띠를 덩어리로 채운 합성 — 구조적 음성",
+    "score": 0.12
+   }
+  },
+  "validation_positives": {
+   "3-final-ip0.0-cn0.6-fcn0.6-sip0.7-s11.png": 0.08,
+   "3-final-ip0.0-cn0.6-fcn0.6-sip0.7-s42.png": 0.36,
+   "3-final-ip0.0-cn0.6-fcn0.8-sip0.7-s11.png": 0.0,
+   "3-final-ip0.0-cn0.6-fcn0.8-sip0.7-s42.png": 0.28,
+   "3-final-ip0.0-cn0.6-fcn0.8-sip0.7-s7.png": 0.0,
+   "3-final-ip0.0-cn0.6-fcn0.8-sip0.8-s11.png": 0.04,
+   "3-final-ip0.0-cn0.6-fcn0.8-sip0.8-s42.png": 0.24,
+   "3-final-ip0.0-cn0.6-fcn0.8-sip0.8-s7.png": 0.08,
+   "3-final-ip0.0-cn0.6-fcn0.8-sip0.9-s11.png": 0.04,
+   "3-final-ip0.0-cn0.6-fcn0.8-sip0.9-s42.png": 0.08,
+   "3-final-ip0.0-cn0.6-fcn0.8-sip0.9-s7.png": 0.04,
+   "3-final-ip0.7-cn0.6-fcn0.6-sip0.7-s11.png": 0.08,
+   "3-final-ip0.7-cn0.6-fcn0.6-sip0.7-s42.png": 0.28
+  },
+  "validation": {
+   "negative_pass": 0,
+   "n_negative": 4,
+   "positive_pass": 0,
+   "n_positive": 13
   },
   "human_only": false,
   "machine_gate_ready": true

@@ -101,60 +101,9 @@ def _corr(ink, ed, region):
                              ed[region].ravel().astype(np.float32))[0, 1])
 
 
-def _centerline(ink, n=25):
-    """콘티 팔 잉크의 중심선 표본과 법선 — 전부 잉크에서 파생한다(손으로 적은 좌표가 없다).
-
-    주축(PCA)을 따라 n곳을 잡고, 각 곳에서 주축 좌표가 가까운 잉크 화소의 무게중심을 중심점으로,
-    부축을 법선으로 쓴다. 팔이 45도로 기울어 있어 행/열 평균은 왜곡되지만 주축은 그렇지 않다."""
-    ys, xs = np.nonzero(ink)
-    pts = np.stack([xs, ys], 1).astype(np.float64)
-    c = pts.mean(0)
-    u = np.linalg.svd(pts - c, full_matrices=False)[2]
-    major, minor = u[0], u[1]
-    proj = (pts - c) @ major
-    out = []
-    for s in np.linspace(proj.min(), proj.max(), n):
-        sel = np.abs(proj - s) < 2.0
-        if sel.sum() < 3:
-            continue
-        out.append((pts[sel].mean(0), minor))
-    return out
-
-
-def _limb(g, require_clean_center, w_min):
-    """중심선 표본마다 법선 위에서 **경계 한 쌍**을 찾아 사지인지 센다.
-
-    `require_clean_center` — 중심 화소 자체가 엣지면 그 표본을 사지로 세지 않는다. 이것이
-    관통(음성 B)을 잡는 조건이다: 끈은 **중심선 위에 얹히고**, 사지는 중심이 매끄러운 내부다.
-    실측 프로파일(2026-08-30, 표본 25개):
-
-        콘티(양성)  엣지 t = -3, +4        중심 매끄러움 · 경계 한 쌍   → 사지
-        s7(관통)    엣지 t = -1, 0, 1, 2, 3  **중심이 엣지**             → 사지 아님
-        s11(분리)   엣지 없음                                            → 사지 아님
-
-    `w_min` — 경계 사이 폭의 하한. **임계가 아니라 [[지표를 정의하는 상수]]**다
-    (`judge_style.DARK_CUT`·`judge_s1.ARM_Y_ABS`와 같은 종류). 통과 임계는 여전히 사다리
-    양끝의 산술 중점에서 파생하며 손대지 않는다.
-
-    `reach` = 4 × 저작 획 두께. 이것도 콘티에서 파생한다."""
-    samples = _centerline(g["ink"])
-    reach = 4 * g["r"]
-    h, w = g["ink"].shape
-
-    def f(ed):
-        ok = 0
-        for c, nvec in samples:
-            def at(t):
-                x, y = int(round(c[0] + t * nvec[0])), int(round(c[1] + t * nvec[1]))
-                return bool(ed[y, x]) if (0 <= x < w and 0 <= y < h) else False
-            if require_clean_center and at(0):
-                continue
-            a = next((t for t in range(1, reach + 1) if at(t)), None)
-            b = next((t for t in range(1, reach + 1) if at(-t)), None)
-            if a is not None and b is not None and a + b >= w_min:
-                ok += 1
-        return float(ok / len(samples)) if samples else 0.0
-    return f
+# 중심선·사지 판정 산식은 **judge_s1(채택된 자)에 있고 여기서 가져다 쓴다.** 훑기 표와 실제
+# 게이트가 다른 코드를 쓰면 값이 드리프트한다(회고 `260825-075324`: 산문에 적힌 값도 드리프트한다).
+_centerline = js1.arm_centerline
 
 
 def candidates(g):
@@ -186,12 +135,12 @@ def candidates(g):
             "두께 판정 1차안 — 법선 위 첫 엣지 쌍의 간격이 저작 획 두께(7) 이상인 표본의 비율. "
             "음성 4종을 다 떨어뜨렸으나 **사다리가 깨졌다**: 콘티는 획 두 개(7px·4px)가 겹쳐 "
             "내부에도 엣지가 있어서 자기 자신에게서 폭이 짧게 나온다(양성 0.56 < 알파0.5의 0.64)",
-            _limb(g, False, g["r"]), ink),
+            js1.arm_limb_score(g, _centerline(g["ink"]), False, g["r"]), ink),
         "limb_profile": (
             "두께 판정 2차안 — **중심 화소가 엣지가 아니고**(끈은 중심선 위에 얹힌다) 양쪽에 "
             "경계가 있으며 그 간격이 w_min=r−2 이상인 표본의 비율. 「선 위에 엣지가 있는가」가 "
             "아니라 「그 자리에 있는 것이 사지인가」를 묻는다",
-            _limb(g, True, g["r"] - 2), ink),
+            js1.arm_limb_score(g, _centerline(g["ink"])), ink),
         "collar_cleanliness": (
             "팔 띠 **바깥** 고리(3×획두께)의 엣지 밀도를 뒤집은 값 — 팔 자리를 벗어나 뻗은 "
             "선을 벌한다. 전역판은 §9-23이 폐기했으나(질감을 벌한다) 다윗은 갑주가 없다",
@@ -200,14 +149,8 @@ def candidates(g):
 
 
 def _synthetic_fill(base_path, g):
-    """팔 띠를 균일 질감으로 덮은 합성 음성 — 축 C의 「균일채움 합성」과 같은 종류의 구조적 음성.
-    루프가 만든 실패작이 아니므로 Goodhart 검사용으로 계보가 다르다(회고 `260830-093209`)."""
-    a = np.asarray(js1._axis_c_load(base_path)).copy()
-    yy, xx = np.mgrid[:params.SCENE_SIZE[1], :params.SCENE_SIZE[0]]
-    tex = np.stack([(((yy // 4 + xx // 4) % 2) * 90 + 90).astype(np.uint8)] * 3, -1)
-    fill = g["band"]
-    a[fill] = tex[fill]
-    return Image.fromarray(a)
+    """합성 음성도 judge_s1의 것을 쓴다 — 같은 이유(드리프트 방지)."""
+    return js1.arm_synthetic_fill(base_path, g["band"])
 
 
 def main():
