@@ -121,7 +121,38 @@ def bg_path(cn, seed, ip=1.0):
     return os.path.join(OUT, f"bg-ip{ip}-cn{cn}-s{seed}.png")
 
 
-def tag(cn, bg_ip, fig_cn, ip, ref_band=None, head_cn=None):
+def _judge():
+    """판정 모듈은 **지역에서** 부른다 — 밴드 상자만 쓰는데 CLIP 등 무거운 의존을 생성 경로에
+    상시로 끌지 않기 위해서다."""
+    import judge_s1
+    return judge_s1
+
+
+def _stage_spec(val):
+    """단계 CN 스펙. `"0.3"` → 두 인물 다 0.3 · `"david=0.0"` → 다윗만(골리앗은 그 단계를 건너뛴다)
+    · `"david=0.0,goliath=0.5"` → 인물별. None이면 그 단계를 아예 끈다.
+
+    **왜 인물별이 필요한가**(2026-08-31 실측): 머리 단계는 다윗을 돌렸지만 골리앗은 못 돌리고
+    축 C(−0.0012)·축 E 수염(−0.0055)만 깎았다 — 그에겐 순손실이라 끌 수 있어야 한다."""
+    if val is None:
+        return None
+    if "=" not in val:
+        return {n: float(val) for n in PEOPLE}
+    out = {}
+    for part in val.split(","):
+        k, _, v = part.partition("=")
+        if k not in PEOPLE:
+            sys.exit(f"모르는 인물: {k!r} — {PEOPLE} 중 하나여야 한다")
+        out[k] = float(v)
+    return out
+
+
+def _spec_tag(spec):
+    """스펙을 파일명 성분으로. 인물 첫 글자 + 값 — 순서는 PEOPLE 고정이라 결정적이다."""
+    return "" if not spec else "".join(f"{n[0]}{spec[n]}" for n in PEOPLE if n in spec)
+
+
+def tag(cn, bg_ip, fig_cn, ip, ref_band=None, head_cn=None, torso_cn=None):
     """인물 단계 산출물의 손잡이 태그. **네 손잡이를 전부 파일명에 싣는다** — 두 개(배경 CN·IP)만
     싣던 초판에서는 인물 크롭 CN을 바꾼 재시도가 앞 결과를 조용히 덮어썼다.
 
@@ -131,8 +162,45 @@ def tag(cn, bg_ip, fig_cn, ip, ref_band=None, head_cn=None):
     rb = "" if ref_band is None else f"-rb{ref_band}"
     # `head_cn`(task#322 2026-08-31)도 같은 이유로 싣는다 — 머리 단계를 켜면 **다른 그림**이다.
     # 기본은 None이라 끄면 태그가 종전 그대로다(역호환).
-    hc = "" if head_cn is None else f"-h{head_cn}"
-    return f"ip{bg_ip}-cn{cn}-fcn{fig_cn}-sip{ip}{rb}{hc}"
+    hc = "" if not head_cn else f"-h{_spec_tag(head_cn)}"
+    tc = "" if not torso_cn else f"-t{_spec_tag(torso_cn)}"
+    return f"ip{bg_ip}-cn{cn}-fcn{fig_cn}-sip{ip}{rb}{hc}{tc}"
+
+
+BAND_FEATHER = 0.12   # 밴드 마스크 깃털 = 상자 짧은 변의 이 분율(하한 MASK_BLUR).
+# **왜 분율인가**: MASK_BLUR(6)만으로는 골리앗 머리 둘레에 **상자 변이 네모로 드러났다**
+# (2026-08-31 실측). 마스크가 「밴드 상자 ∩ 인물 마스크」라 상자 변이 그대로 남기 때문이다.
+# 상자는 인물마다 크기가 다르므로(다윗 머리 100px · 골리앗 174px) 고정값이 아니라 분율로 판다.
+
+
+def _band_pass(pipe, canvas, cond, masks, refs, P, key, box, who, cn_val, seed, label):
+    """밴드 하나를 다시 그린다 — 머리 단계·몸통 단계가 **같은 코드**를 쓴다.
+
+    마스크 = 밴드 상자 ∩ 인물 마스크. 상자는 콘티 저작 원본에서 파생한 것을 받는다
+    (`judge_s1.conti_head_box` / `conti_torso_box` — ADR `260830-084555`). 배경까지 다시 그리지
+    않도록 인물 마스크로 자르고, 상자 변이 드러나지 않도록 깃털을 준다."""
+    m = Image.new("L", params.SCENE_SIZE, 0)
+    m.paste(masks[who].crop(box), (box[0], box[1]))
+    feather = max(MASK_BLUR, int(round(BAND_FEATHER * min(box[2] - box[0], box[3] - box[1]))))
+    m = m.filter(ImageFilter.GaussianBlur(feather))
+    win = window(m, PAD)
+    gw, gh = gen_size(win)
+    pr, ng = P[key][who]["prompt"], P[key][who]["negative"]
+    n, lim = _tok(pipe, pr, f"{who} {label}")
+    ts = time.time()
+    res = pipe(prompt=pr, negative_prompt=ng,
+               image=canvas.crop(win).resize((gw, gh), Image.LANCZOS),
+               mask_image=m.crop(win).resize((gw, gh), Image.LANCZOS),
+               control_image=cond.crop(win).resize((gw, gh), Image.LANCZOS),
+               width=gw, height=gh, controlnet_conditioning_scale=cn_val, strength=STRENGTH,
+               num_inference_steps=params.STEPS, guidance_scale=params.GUIDANCE,
+               ip_adapter_image=refs[who],
+               generator=torch.Generator("mps").manual_seed(seed)).images[0]
+    w, h = win[2] - win[0], win[3] - win[1]
+    canvas.paste(res.resize((w, h), Image.LANCZOS), (win[0], win[1]), m.crop(win))
+    print(f"  [{label} {who} s{seed}] {time.time() - ts:.0f}s  프롬프트 {n}/{lim}토큰  "
+          f"상자 {box} 깃털 {feather} → 창 {w}x{h} → {gw}x{gh}  CN {cn_val}", flush=True)
+    return canvas
 
 
 def _tok(pipe, prompt, label):
@@ -220,7 +288,7 @@ def run_bg(cns, seeds, ips):
 
 
 # --- 인물 단계 ---------------------------------------------------------------
-def run_figures(cn, seeds, ip, bg_ip, fig_cn, ref_band=None, head_cn=None):
+def run_figures(cn, seeds, ip, bg_ip, fig_cn, ref_band=None, head_cn=None, torso_cn=None):
     """인물 단계. `fig_cn`은 **인물 크롭 안의** ControlNet 강도다 — 배경의 `cn`과 다른 축이다.
 
     기본값을 `params.SCENE_CN`(0.8)에 두지 않고 호출자가 정하게 한 이유: `gen_combined.py`는
@@ -273,7 +341,7 @@ def run_figures(cn, seeds, ip, bg_ip, fig_cn, ref_band=None, head_cn=None):
             sys.exit(f"배경이 없다: {src} — 먼저 `gen_final.py bg`를 돌려라")
         canvas = Image.open(src).convert("RGB")
         for step, name in enumerate(PEOPLE, start=1):
-            out = os.path.join(OUT, f"{step}-{name}-{tag(cn, bg_ip, fig_cn, ip, ref_band, head_cn)}-s{seed}.png")
+            out = os.path.join(OUT, f"{step}-{name}-{tag(cn, bg_ip, fig_cn, ip, ref_band, head_cn, torso_cn)}-s{seed}.png")
             if os.path.exists(out):
                 print(f"  [스킵] {os.path.basename(out)}")
                 canvas = Image.open(out).convert("RGB")
@@ -305,44 +373,28 @@ def run_figures(cn, seeds, ip, bg_ip, fig_cn, ref_band=None, head_cn=None):
             print(f"  [{step} {name} s{seed}] {dt:.0f}s  프롬프트 {n}/{lim}토큰  "
                   f"창 {bw}x{bh} → {gw}x{gh} ({gw / bw:.1f}x) -> {os.path.basename(out)}",
                   flush=True)
-        # --- 머리 단계 (task#322, 2026-08-31 · 사용자 「인페인팅을 적극 활용하고 단계적으로」) ---
-        # **왜 같은 캔버스 위 별도 패스인가.** 팔①은 높은 인물 CN이라야 서고(§9-28), 머리③은
-        # 낮은 CN이라야 돈다(대칭 <circle> 머리가 정면을 못박는다 — fig_cn 0.3에서만 회전하고
-        # 그때는 축 C·D·G가 무너진다, §9-32). 하나의 `fig_cn`으로는 둘을 동시에 못 만족한다.
-        # 단계를 나누면 몸은 `fig_cn`, 머리는 `head_cn`을 따로 쓴다.
-        # 마스크는 **콘티에서 파생한 머리 상자 ∩ 인물 마스크**다 — `conti_head_box`는 축 E가 쓰는
-        # 바로 그 상자이고(ADR 260830-084555), 배경까지 다시 그리지 않도록 인물 마스크로 자른다.
-        # 레퍼런스는 이미 `refs[who]`(표본 상단 밴드 = 머리)라 머리 단계에 그대로 맞다.
-        if head_cn is not None:
-            import judge_s1  # 지역 임포트 — 판정 모듈의 무거운 의존을 생성 경로에 상시로 끌지 않는다
+        # --- 3·4단계: 밴드 인페인팅 (task#322, 2026-08-31 · 사용자 「인페인팅 순서 정해서」) ---
+        # 순서는 **굵은 구조 → 세부**이고, 뒤 단계의 마스크가 앞 단계 안에 포개진다:
+        #   1 배경(run_bg) → 2 전신(위 루프, fig_cn) → 3 얼굴(head_cn) → 4 몸통(torso_cn)
+        # **왜 나누나.** 팔①은 높은 CN이라야 서고 머리③은 낮은 CN이라야 돈다(§9-32) — 하나의
+        # `fig_cn`으로는 둘을 동시에 만족 못 한다. 그리고 CN 0.8은 구조를 주고 **내부 질감을
+        # 앗아가므로**(§9-33) 몸통도 따로 낮게 다시 그려야 갑주가 산다. 단계마다 CN이 따로이고,
+        # 단계마다 **77토큰이 새로 생긴다** — 전신 프롬프트가 74/77이라 방향을 두 단어밖에 못
+        # 싣던 제약이 여기서 풀린다.
+        for key, spec, boxfn, label in (
+                ("head", head_cn, lambda w: _judge().conti_head_box(w), "머리"),
+                ("torso", torso_cn, lambda w: _judge().conti_torso_box(w), "몸통")):
+            if not spec:
+                continue
             for who in PEOPLE:
-                hb = judge_s1.conti_head_box(who)
-                hm = Image.new("L", params.SCENE_SIZE, 0)
-                hm.paste(masks[who].crop(hb), (hb[0], hb[1]))
-                hm = hm.filter(ImageFilter.GaussianBlur(MASK_BLUR))
-                hbox = window(hm, PAD)
-                hgw, hgh = gen_size(hbox)
-                hpr, hng = P["head"][who]["prompt"], P["head"][who]["negative"]
-                hn, hlim = _tok(pipe, hpr, f"{who} 머리")
-                hts = time.time()
-                hres = pipe(prompt=hpr, negative_prompt=hng,
-                            image=canvas.crop(hbox).resize((hgw, hgh), Image.LANCZOS),
-                            mask_image=hm.crop(hbox).resize((hgw, hgh), Image.LANCZOS),
-                            control_image=cond.crop(hbox).resize((hgw, hgh), Image.LANCZOS),
-                            width=hgw, height=hgh,
-                            controlnet_conditioning_scale=head_cn, strength=STRENGTH,
-                            num_inference_steps=params.STEPS, guidance_scale=params.GUIDANCE,
-                            ip_adapter_image=refs[who],
-                            generator=torch.Generator("mps").manual_seed(seed)).images[0]
-                hw, hh = hbox[2] - hbox[0], hbox[3] - hbox[1]
-                canvas.paste(hres.resize((hw, hh), Image.LANCZOS), (hbox[0], hbox[1]),
-                             hm.crop(hbox))
-                hout = os.path.join(
-                    OUT, f"h-{who}-{tag(cn, bg_ip, fig_cn, ip, ref_band, head_cn)}-s{seed}.png")
-                canvas.save(hout)
-                print(f"  [머리 {who} s{seed}] {time.time() - hts:.0f}s  프롬프트 {hn}/{hlim}토큰  "
-                      f"머리상자 {hb} → 창 {hw}x{hh} → {hgw}x{hgh}  CN {head_cn}", flush=True)
-        final = os.path.join(OUT, f"3-final-{tag(cn, bg_ip, fig_cn, ip, ref_band, head_cn)}-s{seed}.png")
+                if who not in spec:
+                    continue
+                canvas = _band_pass(pipe, canvas, cond, masks, refs, P, key, boxfn(who),
+                                    who, spec[who], seed, label)
+                canvas.save(os.path.join(
+                    OUT, f"{key[0]}-{who}-{tag(cn, bg_ip, fig_cn, ip, ref_band, head_cn, torso_cn)}"
+                         f"-s{seed}.png"))
+        final = os.path.join(OUT, f"3-final-{tag(cn, bg_ip, fig_cn, ip, ref_band, head_cn, torso_cn)}-s{seed}.png")
         canvas.save(final)
         print(f"  최종: {os.path.basename(final)}")
     if times:
@@ -368,10 +420,14 @@ def main():
                     help="인물 크롭 안의 ControlNet 강도. 기본은 얇은 조건용 정본값 "
                          "params.PERSON_CN — 장면용 SCENE_CN(0.8)은 크롭 안에서 대비를 0으로 "
                          "누른다(2026-08-26 실측, run_figures docstring 참조)")
-    ap.add_argument("--head-cn", type=float, default=None,
+    ap.add_argument("--head-cn", default=None,
                     help="머리 단계를 켠다 — 인물 단계 위에 **머리 밴드만** 이 CN으로 다시 그린다. "
                          "생략하면 머리 단계를 돌리지 않는다(태그도 종전 그대로, 역호환). "
-                         "팔은 높은 fig_cn이, 머리 회전은 낮은 CN이 필요해 둘을 분리한 것이다(§9-32)")
+                         "팔은 높은 fig_cn이, 머리 회전은 낮은 CN이 필요해 둘을 분리한 것이다(§9-32). "
+                         "`0.0`은 두 인물 다, `david=0.0`은 다윗만, `david=0.0,goliath=0.5`는 인물별")
+    ap.add_argument("--torso-cn", default=None,
+                    help="몸통 단계를 켠다 — 몸통 밴드만 이 CN으로 다시 그려 갑주·의상 질감을 "
+                         "되찾는다(CN 0.8이 내부를 비운다, §9-33). 형식은 --head-cn과 같다")
     a = ap.parse_args()
     seeds = [int(s) for s in a.seeds.split(",")]
     if a.stage == "bg":
@@ -382,7 +438,7 @@ def main():
     return run_figures(float(a.cn), seeds, params.IP_SCALE if a.ip is None else a.ip,
                        float(a.bg_ip),
                        params.PERSON_CN if a.fig_cn is None else float(a.fig_cn),
-                       a.ref_band, a.head_cn)
+                       a.ref_band, _stage_spec(a.head_cn), _stage_spec(a.torso_cn))
 
 
 if __name__ == "__main__":

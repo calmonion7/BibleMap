@@ -267,6 +267,26 @@ def head_prompt(name):
     return prompt, neg
 
 
+def torso_prompt(name):
+    """몸통 밴드 전용 (task#322 2026-08-31, 4단계). 의상 문구는 **`SAMPLE_COSTUME`에서 온다** —
+    표본·전신·여기가 같은 정본 문구를 써야 층이 갈리지 않는다(figure_prompt와 같은 규약).
+
+    **왜 이 단계가 필요한가**: 소거 실험(§9-33)에서 `fig_cn 0.0`의 골리앗이 판금 어깨받이·비늘·
+    망토를 갖춰 훨씬 좋았다. `run_figures` docstring의 예언 그대로 **CN 0.8은 구조를 주고 내부
+    질감을 앗아간다**(「이 그림은 이 선이 전부」가 되어 안을 비운다). 몸통만 낮은 CN으로 다시
+    그리면 구조는 2단계가 지킨 채 질감만 되찾는다. 축 F(갑주 착용) 여유가 늘 얇았던 자리다."""
+    axes = read_axes(name)
+    en = {k: AXIS_EN[k][v] for k, v in axes.items()}
+    torso_style = _drop(STYLE, "simple", "clean background", "light shading", "muted palette")
+    art = "an" if read_brief(name)[0].lower() in "aeiou" else "a"
+    prompt = (f"{torso_style} torso and shoulders of {art} {read_brief(name)} "
+              f"{SAMPLE_COSTUME[name]}, close view of the fabric and metal, "
+              f"crisp material detail.")
+    neg = ", ".join([_drop(NEG, "dark", "heavy shadows"), "blank, featureless, flat, empty surface"]
+                    + [v[1] for v in en.values() if v[1]])
+    return prompt, neg
+
+
 def figure_prompt(name):
     """전신 한 명. 순서는 portrait_prompt와 같다(나이 → 개요 → 머리카락 → 머리쓰개) —
     앞일수록 CLIP에 세게 걸리므로 정체성 조각을 앞에 두고 동작을 뒤에 붙인다."""
@@ -475,6 +495,9 @@ def main():
         # 머리 단계 — 인물 단계 위에 머리 밴드만 다시 그린다(head_prompt 주석 참조)
         "head": {n: dict(zip(("prompt", "negative"), head_prompt(n)))
                  for n in ("david", "goliath")},
+        # 몸통 단계 — 갑주·의상 질감(torso_prompt 주석 참조)
+        "torso": {n: dict(zip(("prompt", "negative"), torso_prompt(n)))
+                  for n in ("david", "goliath")},
         # 전신 표본(part2 S1) — 단독 중립 전신. **IP 레퍼런스를 물리지 않는다**(2026-08-26 실측:
         # 레퍼런스는 프레이밍까지 전이시키고, 화풍은 텍스트만으로도 정답지 구간에 든다)
         "sample": {n: dict(zip(("prompt", "negative"), sample_prompt(n)))

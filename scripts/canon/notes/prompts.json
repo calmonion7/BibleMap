@@ -46,6 +46,16 @@
       "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, frame, border, stick figure, crude drawing, facing forward, frontal face, looking at viewer, symmetrical face, visible hair, long hair, beard, moustache, stubble, child, youth, woman, girl, female"
     }
   },
+  "torso": {
+    "david": {
+      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. torso and shoulders of a lean-faced shepherd with calm steady eyes in a plain linen tunic with a cloth belt, close view of the fabric and metal, crisp material detail.",
+      "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, frame, border, stick figure, crude drawing, blank, featureless, flat, empty surface, beard, moustache, stubble, baby, toddler, infant, chibi, doll, woman, girl, female"
+    },
+    "goliath": {
+      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. torso and shoulders of a fierce giant warrior with heavy brow and hard jaw in a coat of small overlapping bronze plates in rows, like fish scales, close view of the fabric and metal, crisp material detail.",
+      "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, frame, border, stick figure, crude drawing, blank, featureless, flat, empty surface, visible hair, long hair, beard, moustache, stubble, child, youth, woman, girl, female"
+    }
+  },
   "sample": {
     "david": {
       "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. full body of a boy of fifteen, lean-faced shepherd with calm steady eyes, curly hair, bare head in a plain linen tunic with a cloth belt, standing alone, facing forward, head to toe.",
