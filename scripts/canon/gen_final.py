@@ -121,7 +121,7 @@ def bg_path(cn, seed, ip=1.0):
     return os.path.join(OUT, f"bg-ip{ip}-cn{cn}-s{seed}.png")
 
 
-def tag(cn, bg_ip, fig_cn, ip, ref_band=None):
+def tag(cn, bg_ip, fig_cn, ip, ref_band=None, head_cn=None):
     """인물 단계 산출물의 손잡이 태그. **네 손잡이를 전부 파일명에 싣는다** — 두 개(배경 CN·IP)만
     싣던 초판에서는 인물 크롭 CN을 바꾼 재시도가 앞 결과를 조용히 덮어썼다.
 
@@ -129,7 +129,10 @@ def tag(cn, bg_ip, fig_cn, ip, ref_band=None):
     그림**인데, 이름이 같으면 아래 `[스킵]` 분기가 낡은 단계 PNG를 재사용한다(2026-08-30 실측:
     콘티 판본이 이름에 없어 뿔을 넣고 돌린 재시도가 어제 그림을 그대로 다시 합성했다)."""
     rb = "" if ref_band is None else f"-rb{ref_band}"
-    return f"ip{bg_ip}-cn{cn}-fcn{fig_cn}-sip{ip}{rb}"
+    # `head_cn`(task#322 2026-08-31)도 같은 이유로 싣는다 — 머리 단계를 켜면 **다른 그림**이다.
+    # 기본은 None이라 끄면 태그가 종전 그대로다(역호환).
+    hc = "" if head_cn is None else f"-h{head_cn}"
+    return f"ip{bg_ip}-cn{cn}-fcn{fig_cn}-sip{ip}{rb}{hc}"
 
 
 def _tok(pipe, prompt, label):
@@ -217,7 +220,7 @@ def run_bg(cns, seeds, ips):
 
 
 # --- 인물 단계 ---------------------------------------------------------------
-def run_figures(cn, seeds, ip, bg_ip, fig_cn, ref_band=None):
+def run_figures(cn, seeds, ip, bg_ip, fig_cn, ref_band=None, head_cn=None):
     """인물 단계. `fig_cn`은 **인물 크롭 안의** ControlNet 강도다 — 배경의 `cn`과 다른 축이다.
 
     기본값을 `params.SCENE_CN`(0.8)에 두지 않고 호출자가 정하게 한 이유: `gen_combined.py`는
@@ -270,7 +273,7 @@ def run_figures(cn, seeds, ip, bg_ip, fig_cn, ref_band=None):
             sys.exit(f"배경이 없다: {src} — 먼저 `gen_final.py bg`를 돌려라")
         canvas = Image.open(src).convert("RGB")
         for step, name in enumerate(PEOPLE, start=1):
-            out = os.path.join(OUT, f"{step}-{name}-{tag(cn, bg_ip, fig_cn, ip, ref_band)}-s{seed}.png")
+            out = os.path.join(OUT, f"{step}-{name}-{tag(cn, bg_ip, fig_cn, ip, ref_band, head_cn)}-s{seed}.png")
             if os.path.exists(out):
                 print(f"  [스킵] {os.path.basename(out)}")
                 canvas = Image.open(out).convert("RGB")
@@ -302,7 +305,44 @@ def run_figures(cn, seeds, ip, bg_ip, fig_cn, ref_band=None):
             print(f"  [{step} {name} s{seed}] {dt:.0f}s  프롬프트 {n}/{lim}토큰  "
                   f"창 {bw}x{bh} → {gw}x{gh} ({gw / bw:.1f}x) -> {os.path.basename(out)}",
                   flush=True)
-        final = os.path.join(OUT, f"3-final-{tag(cn, bg_ip, fig_cn, ip, ref_band)}-s{seed}.png")
+        # --- 머리 단계 (task#322, 2026-08-31 · 사용자 「인페인팅을 적극 활용하고 단계적으로」) ---
+        # **왜 같은 캔버스 위 별도 패스인가.** 팔①은 높은 인물 CN이라야 서고(§9-28), 머리③은
+        # 낮은 CN이라야 돈다(대칭 <circle> 머리가 정면을 못박는다 — fig_cn 0.3에서만 회전하고
+        # 그때는 축 C·D·G가 무너진다, §9-32). 하나의 `fig_cn`으로는 둘을 동시에 못 만족한다.
+        # 단계를 나누면 몸은 `fig_cn`, 머리는 `head_cn`을 따로 쓴다.
+        # 마스크는 **콘티에서 파생한 머리 상자 ∩ 인물 마스크**다 — `conti_head_box`는 축 E가 쓰는
+        # 바로 그 상자이고(ADR 260830-084555), 배경까지 다시 그리지 않도록 인물 마스크로 자른다.
+        # 레퍼런스는 이미 `refs[who]`(표본 상단 밴드 = 머리)라 머리 단계에 그대로 맞다.
+        if head_cn is not None:
+            import judge_s1  # 지역 임포트 — 판정 모듈의 무거운 의존을 생성 경로에 상시로 끌지 않는다
+            for who in PEOPLE:
+                hb = judge_s1.conti_head_box(who)
+                hm = Image.new("L", params.SCENE_SIZE, 0)
+                hm.paste(masks[who].crop(hb), (hb[0], hb[1]))
+                hm = hm.filter(ImageFilter.GaussianBlur(MASK_BLUR))
+                hbox = window(hm, PAD)
+                hgw, hgh = gen_size(hbox)
+                hpr, hng = P["head"][who]["prompt"], P["head"][who]["negative"]
+                hn, hlim = _tok(pipe, hpr, f"{who} 머리")
+                hts = time.time()
+                hres = pipe(prompt=hpr, negative_prompt=hng,
+                            image=canvas.crop(hbox).resize((hgw, hgh), Image.LANCZOS),
+                            mask_image=hm.crop(hbox).resize((hgw, hgh), Image.LANCZOS),
+                            control_image=cond.crop(hbox).resize((hgw, hgh), Image.LANCZOS),
+                            width=hgw, height=hgh,
+                            controlnet_conditioning_scale=head_cn, strength=STRENGTH,
+                            num_inference_steps=params.STEPS, guidance_scale=params.GUIDANCE,
+                            ip_adapter_image=refs[who],
+                            generator=torch.Generator("mps").manual_seed(seed)).images[0]
+                hw, hh = hbox[2] - hbox[0], hbox[3] - hbox[1]
+                canvas.paste(hres.resize((hw, hh), Image.LANCZOS), (hbox[0], hbox[1]),
+                             hm.crop(hbox))
+                hout = os.path.join(
+                    OUT, f"h-{who}-{tag(cn, bg_ip, fig_cn, ip, ref_band, head_cn)}-s{seed}.png")
+                canvas.save(hout)
+                print(f"  [머리 {who} s{seed}] {time.time() - hts:.0f}s  프롬프트 {hn}/{hlim}토큰  "
+                      f"머리상자 {hb} → 창 {hw}x{hh} → {hgw}x{hgh}  CN {head_cn}", flush=True)
+        final = os.path.join(OUT, f"3-final-{tag(cn, bg_ip, fig_cn, ip, ref_band, head_cn)}-s{seed}.png")
         canvas.save(final)
         print(f"  최종: {os.path.basename(final)}")
     if times:
@@ -328,6 +368,10 @@ def main():
                     help="인물 크롭 안의 ControlNet 강도. 기본은 얇은 조건용 정본값 "
                          "params.PERSON_CN — 장면용 SCENE_CN(0.8)은 크롭 안에서 대비를 0으로 "
                          "누른다(2026-08-26 실측, run_figures docstring 참조)")
+    ap.add_argument("--head-cn", type=float, default=None,
+                    help="머리 단계를 켠다 — 인물 단계 위에 **머리 밴드만** 이 CN으로 다시 그린다. "
+                         "생략하면 머리 단계를 돌리지 않는다(태그도 종전 그대로, 역호환). "
+                         "팔은 높은 fig_cn이, 머리 회전은 낮은 CN이 필요해 둘을 분리한 것이다(§9-32)")
     a = ap.parse_args()
     seeds = [int(s) for s in a.seeds.split(",")]
     if a.stage == "bg":
@@ -338,7 +382,7 @@ def main():
     return run_figures(float(a.cn), seeds, params.IP_SCALE if a.ip is None else a.ip,
                        float(a.bg_ip),
                        params.PERSON_CN if a.fig_cn is None else float(a.fig_cn),
-                       a.ref_band)
+                       a.ref_band, a.head_cn)
 
 
 if __name__ == "__main__":

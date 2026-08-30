@@ -229,6 +229,44 @@ SCENE_ACTION = {"david": "swinging a sling, facing right",
                 "goliath": "standing, facing left"}
 
 
+# --- 머리 단계 (task#322, 2026-08-31 · 사용자 「토큰이 부족하니 인페인팅을 적극 활용하고
+# 단계적으로 그림을 완성」) -------------------------------------------------------
+# **왜 단계를 나누는가 — 실측이 강제한다.** 팔①은 **높은** 인물 CN이라야 서고(콘티가 사지
+# 구조를 공급한다, §9-28), 머리③은 **낮은** CN이라야 돈다(콘티 머리가 대칭 <circle>이라
+# CN을 세게 걸면 정면까지 강제된다 — fig_cn 0.8·0.5는 정면, **0.3에서만 회전**, 그런데 0.3에서는
+# 축 C 셋·D·G가 통째로 무너진다, §9-32). 둘이 **같은 손잡이에 반대로 묶여** 있어 파라미터로는
+# 못 푼다. 단계를 나누면 각자 CN을 갖는다.
+# **덤 — 토큰.** 전신 프롬프트는 골리앗이 이미 74/77이라 방향을 두 단어(`facing left`)밖에 못
+# 실었다. 후보 D `"eyes on the giant to …"`는 **79/77로 초과돼 기각**된 기록이 위에 있다.
+# 머리 단계는 의상·자세·배경 조각이 빠지므로 **남는 예산을 방향 서술에 통째로 쓴다.**
+# **부정어도 대칭으로 건다.** 표본은 정면을 지키려고 `SAMPLE_NEG_EXTRA`에 `profile view`를
+# 넣어야 했다(아래 주석 ③ — "facing forward"만으로는 3/4 회전을 못 막았다). 그 반대를 여기 건다.
+HEAD_DIRECTION = {"david": ("right", "the giant"), "goliath": ("left", "the shepherd boy")}
+HEAD_NEG_EXTRA = "facing forward, frontal face, looking at viewer, symmetrical face"
+
+
+def head_prompt(name):
+    """머리 밴드 전용. 정체성 축은 portrait_prompt와 **같은 출처**에서 뽑아 두 층이 갈리지 않게
+    하고, 남는 예산 전부를 방향에 쓴다. 토큰은 이 파일이 재지 않는다(머리 주석의 규약) —
+    `gen_final._tok`이 한도 초과를 하드 실패로 잡는다."""
+    axes = read_axes(name)
+    en = {k: AXIS_EN[k][v] for k, v in axes.items()}
+    parts = [en["age"][0], read_brief(name), en["hair"][0], en["headwear"][0]]
+    body = ", ".join(p for p in parts if p)
+    art = "an" if body[0].lower() in "aeiou" else "a"
+    side, target = HEAD_DIRECTION[name]
+    # 화풍 조각은 figure_prompt와 **같은 이유·같은 방식**으로 덜어낸다: 머리 마스크 안만 그리므로
+    # 배경 어휘가 무의미하고, "light shading"·"muted palette"는 대비를 도로 깎는다(라운드 20).
+    # 실측으로 강제된 절감이기도 하다 — 덜기 전 골리앗이 **82/77로 초과**했다(2026-08-31).
+    head_style = _drop(STYLE, "simple", "clean background", "light shading", "muted palette")
+    prompt = (f"{head_style} head of {art} {body}, "
+              f"strict side profile facing {side}, head fully turned {side}, "
+              f"eyes on {target}, nose and chin point {side}.")
+    neg = ", ".join([_drop(NEG, "dark", "heavy shadows"), HEAD_NEG_EXTRA]
+                    + [v[1] for v in en.values() if v[1]])
+    return prompt, neg
+
+
 def figure_prompt(name):
     """전신 한 명. 순서는 portrait_prompt와 같다(나이 → 개요 → 머리카락 → 머리쓰개) —
     앞일수록 CLIP에 세게 걸리므로 정체성 조각을 앞에 두고 동작을 뒤에 붙인다."""
@@ -434,6 +472,9 @@ def main():
         # 전신 — 인물 영역 인페인팅용(초상과 목적이 다르다, figure_prompt 주석 참조)
         "figure": {n: dict(zip(("prompt", "negative"), figure_prompt(n)))
                    for n in ("david", "goliath")},
+        # 머리 단계 — 인물 단계 위에 머리 밴드만 다시 그린다(head_prompt 주석 참조)
+        "head": {n: dict(zip(("prompt", "negative"), head_prompt(n)))
+                 for n in ("david", "goliath")},
         # 전신 표본(part2 S1) — 단독 중립 전신. **IP 레퍼런스를 물리지 않는다**(2026-08-26 실측:
         # 레퍼런스는 프레이밍까지 전이시키고, 화풍은 텍스트만으로도 정답지 구간에 든다)
         "sample": {n: dict(zip(("prompt", "negative"), sample_prompt(n)))

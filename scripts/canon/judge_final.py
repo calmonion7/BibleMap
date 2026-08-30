@@ -78,7 +78,7 @@ def axis_a(path, thr):
             "ink_over_max_warn": bool(over)}
 
 
-def axis_b(emb, cn, seed, threshold, bg_ip, fig_cn, sip, ref_band=None):
+def axis_b(emb, cn, seed, threshold, bg_ip, fig_cn, sip, ref_band=None, head_cn=None):
     """전이 점수 = Δ(자기 표본) − Δ(남의 표본). 기준선은 그 인물을 그리기 직전 캔버스.
 
     **정의역 = 머리 밴드** (task#322 R4 — 2026-08-30 사람 승인 갈림길 ②). 전신 크롭은 정체성
@@ -98,7 +98,7 @@ def axis_b(emb, cn, seed, threshold, bg_ip, fig_cn, sip, ref_band=None):
     """
     samples = {n: emb.embed(judge_s1._band_fullbody(os.path.join(gf.SAMPLES, f"{n}.png")))
                for n in gf.PEOPLE}
-    t = gf.tag(cn, bg_ip, fig_cn, sip, ref_band)
+    t = gf.tag(cn, bg_ip, fig_cn, sip, ref_band, head_cn)
     david_out = os.path.join(OUT, f"1-david-{t}-s{seed}.png")
     stage = {
         "david": (gf.bg_path(cn, seed, bg_ip), david_out),
@@ -227,6 +227,9 @@ def main():
     ap.add_argument("--ref-band", type=float, default=None,
                     help="생성 때 쓴 `gen_final.py --ref-band` 값 — 산출물 이름이 그것을 담으므로 "
                          "같은 값을 줘야 그 그림을 찾는다")
+    ap.add_argument("--head-cn", type=float, default=None,
+                    help="생성 때 쓴 `gen_final.py --head-cn` 값 — 켰으면 산출물 이름이 그것도 "
+                         "담으므로 같은 값을 줘야 그 그림을 찾는다(생략하면 머리 단계 없는 이름)")
     ap.add_argument("--json", default=os.path.join(params.NOTES, "final-verdict.json"))
     a = ap.parse_args()
     cn = float(a.cn)
@@ -234,6 +237,7 @@ def main():
     fig_cn = float(a.fig_cn)
     sip = float(a.sip)
     ref_band = a.ref_band
+    head_cn = a.head_cn
     seeds = [int(s) for s in a.seeds.split(",")]
 
     s1 = _load_s1()
@@ -244,14 +248,14 @@ def main():
     verdict = {"cn": cn, "bg_ip": bg_ip, "fig_cn": fig_cn, "sample_ip": sip,
                "thresholds_from": "notes/s1-baseline.json", "seeds": {}}
     for seed in seeds:
-        final = os.path.join(OUT, f"3-final-{gf.tag(cn, bg_ip, fig_cn, sip, ref_band)}-s{seed}.png")
+        final = os.path.join(OUT, f"3-final-{gf.tag(cn, bg_ip, fig_cn, sip, ref_band, head_cn)}-s{seed}.png")
         if not os.path.exists(final):
             print(f"[s{seed}] 최종이 없다: {os.path.basename(final)} — 건너뛴다")
             continue
         r = {
             "final": os.path.basename(final),
             "axis_a": axis_a(final, s1["axis_a"]["thresholds"]),
-            "axis_b": axis_b(emb, cn, seed, s1["axis_b"]["threshold"], bg_ip, fig_cn, sip, ref_band),
+            "axis_b": axis_b(emb, cn, seed, s1["axis_b"]["threshold"], bg_ip, fig_cn, sip, ref_band, head_cn),
             "axis_c": axis_c(final, s1["axis_c"]["thresholds_by_key"]),
             "axis_d": axis_d(final, s1["axis_d"]),
             "axis_e": axis_e(final, s1["axis_e"]),
