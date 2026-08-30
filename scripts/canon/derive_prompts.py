@@ -205,7 +205,22 @@ SCENE_NEG_EXTRA = AXIS_EN["age"]["소년/청년"][1]
 # 2026-08-29: 골리앗의 동작에서 **의상을 뺐다**("standing in heavy armor" → "standing").
 # 동작 자리가 의상을 담고 있었고, 그 "heavy armor"는 (a) 아래에서 더하는 의상 서술과 중복이며
 # (b) 일반적 낱말이라 모델의 **판금** 사전지식 쪽으로 민다. 의상은 의상 자리(SAMPLE_COSTUME)에서 온다.
-SCENE_ACTION = {"david": "swinging a sling", "goliath": "standing"}
+# 2026-08-30 (task#322 S2): **방향을 지시한다** — 보완 ③(두 인물이 서로를 보는 것).
+# ③은 「표본이 정면을 실어 왔다」가 아니라 **아무도 방향을 지시하지 않아 표본만 말하고 있는 것**이다:
+# 콘티 머리는 <circle>이라 회전 정보가 0이고, 어깨 호는 좌우대칭 정면이며, 여기에도 방향 어휘가
+# 없었다. 가장 싼 손잡이인 프롬프트부터 연다(계획 S2 · 사용자 선택).
+# 다윗이 화면 왼쪽(마스크 bbox x 233~611) · 골리앗이 오른쪽(660~1085)이므로 다윗은 오른쪽을,
+# 골리앗은 왼쪽을 본다. **화면 기준**이다 — "his right"는 인물 기준이라 거울상이 된다.
+# 낱말은 토큰 실측으로 골랐다(try_prompt.py --check, GPU 0):
+#   A "facing right/left"        다윗 65 · 골리앗 74/77
+#   B "head turned to the …"     다윗 68 · 골리앗 77/77  ← 여유 0. 규칙 1은 초과분이 조용히 잘린다
+#   C "looking right/left"       다윗 65 · 골리앗 74/77  ← 채택
+#   D "eyes on the giant to …"   다윗 70 · 골리앗 79/77  ← 초과, 기각
+# A와 C는 값이 같은데 C를 고른 이유가 둘이다: ③이 묻는 것은 **시선**이고, "facing"은 몸통 회전을
+# 지시해 CN 0.8이 콘티의 **좌우대칭 정면 어깨**에 묶어 둔 것과 정면으로 다툰다(PROMPTING.md 4의
+# 「같은 자원을 놓고 싸운다」가 여기 적용되는지가 이 슬라이스의 관찰 대상이다 — 생성에서 확인한다).
+SCENE_ACTION = {"david": "swinging a sling, looking right",
+                "goliath": "standing, looking left"}
 
 
 def figure_prompt(name):
