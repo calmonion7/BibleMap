@@ -49,45 +49,57 @@
   </g>
 
   <g id="david" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round">
-    <!-- 머리 — 윤곽만, 이목구비 없음 -->
-    <circle id="head-david" cx="340" cy="301" r="31" stroke-width="7" />
-    <!-- 목 -->
-    <path d="M340 332 V342" stroke-width="5" />
-    <!-- 어깨 -->
-    <path id="shoulder-david" d="M305 340 Q340 326 375 340" stroke-width="7" />
-    <!-- 몸통 (어깨 → 허리, 좁아진다) -->
-    <path id="torso-l-david" d="M304 342 Q293 385 311 432" stroke-width="7" />
-    <path id="torso-r-david" d="M376 342 Q387 385 369 432" stroke-width="7" />
-    <!-- 골반 -->
-    <path d="M311 432 Q306 443 315 448" stroke-width="6" />
-    <path d="M369 432 Q374 443 365 448" stroke-width="6" />
-    <!-- 앞다리 (골리앗 쪽으로 내디딤) -->
-    <path d="M366 447 Q384 494 406 560" stroke-width="7" />
-    <path d="M360 449 Q374 493 388 556" stroke-width="4" />
-    <path d="M398 560 H417" stroke-width="6" />
-    <!-- 뒷다리 (뒤로 버팀) -->
-    <path d="M314 447 Q289 502 267 560" stroke-width="7" />
-    <path d="M320 449 Q304 498 282 556" stroke-width="4" />
-    <path d="M252 560 H271" stroke-width="6" />
-    <!-- 반대팔 (반동, 앞으로 낮게 뻗음) -->
-    <path d="M304 342 Q278 370 263 399" stroke-width="7" />
-    <path d="M308 347 Q289 370 276 396" stroke-width="4" />
-    <!-- 물매 든 팔 (위로 감아올린 동작) -->
-    <path d="M376 342 Q406 304 439 279" stroke-width="7" />
-    <path d="M373 347 Q395 316 425 294" stroke-width="4" />
-    <!-- 물매 — 손(439,279)에서 **긴 끈 두 가닥**이 벌어져 나가 돌주머니(요람 호)와 돌로 모인다.
-         삼상 17:40 「손에 물매를 가지고」· 17:49 「물매로 던져 … 이마를 치매」.
-         1차 콘티는 끈이 53px뿐이라 「깃대·막대」로 오독됐다. rev.2의 1차 시도는 끈 두 가닥을
-         **양 끝에서 모두 모아** 닫힌 렌즈를 만들어 「풍선·잎사귀」로 읽혔다 — 그래서 끈은 **직선으로 팽팽하게**
-         그린다 — 물매의 위상은 원래 닫힌 고리(손→끈→주머니→끈→손)가 맞지만, 두 가닥을 서로 반대로
-         볼록하게 휘면 가운데가 부풀어 「라켓·풍선」이 된다(rev.2 2차 시도 실측). 직선이면 손 쪽의
-         둘러싸인 면적이 사라져 두 가닥으로 읽히고, 팽팽함 자체가 회전을 나른다. 끈 끝은 40px 벌어져
-         그 사이를 돌주머니(요람 호)와 돌(지름 26px)이 메운다. 길이와 각도만으로 회전을
-         읽히게 하고, 궤적 호·회전 화살표는 서사 기호이므로 쓰지 않는다(S2 결함표 #2·#3). -->
-    <path d="M447 273 L558 144" stroke-width="3" />
-    <path d="M447 273 L588 174" stroke-width="3" />
-    <path d="M558 144 Q606 147 588 174" stroke-width="5" />
-    <circle cx="571" cy="159" r="16" stroke-width="6" />
+    <g id="david-head">  <!-- 머리 + 목 -->
+      <!-- 머리 — 윤곽만, 이목구비 없음 -->
+      <circle id="head-david" cx="340" cy="301" r="31" stroke-width="7" />
+      <!-- 목 -->
+      <path d="M340 332 V342" stroke-width="5" />
+    </g>
+    <g id="david-torso">  <!-- 어깨 · 몸통 · 골반 -->
+      <!-- 어깨 -->
+      <path id="shoulder-david" d="M305 340 Q340 326 375 340" stroke-width="7" />
+      <!-- 몸통 (어깨 → 허리, 좁아진다) -->
+      <path id="torso-l-david" d="M304 342 Q293 385 311 432" stroke-width="7" />
+      <path id="torso-r-david" d="M376 342 Q387 385 369 432" stroke-width="7" />
+      <!-- 골반 -->
+      <path d="M311 432 Q306 443 315 448" stroke-width="6" />
+      <path d="M369 432 Q374 443 365 448" stroke-width="6" />
+    </g>
+    <g id="david-leg">  <!-- 앞다리 + 뒷다리 -->
+      <!-- 앞다리 (골리앗 쪽으로 내디딤) -->
+      <path d="M366 447 Q384 494 406 560" stroke-width="7" />
+      <path d="M360 449 Q374 493 388 556" stroke-width="4" />
+      <path d="M398 560 H417" stroke-width="6" />
+      <!-- 뒷다리 (뒤로 버팀) -->
+      <path d="M314 447 Q289 502 267 560" stroke-width="7" />
+      <path d="M320 449 Q304 498 282 556" stroke-width="4" />
+      <path d="M252 560 H271" stroke-width="6" />
+    </g>
+    <g id="david-arm-off">  <!-- 반대팔(반동) — 지목된 결함이 아닌 쪽 -->
+      <!-- 반대팔 (반동, 앞으로 낮게 뻗음) -->
+      <path d="M304 342 Q278 370 263 399" stroke-width="7" />
+      <path d="M308 347 Q289 370 276 396" stroke-width="4" />
+    </g>
+    <g id="david-arm">  <!-- 물매 든 팔 — 보완 ①이 지목한 자리 -->
+      <!-- 물매 든 팔 (위로 감아올린 동작) -->
+      <path d="M376 342 Q406 304 439 279" stroke-width="7" />
+      <path d="M373 347 Q395 316 425 294" stroke-width="4" />
+    </g>
+    <g id="david-prop">  <!-- 물매(끈 · 돌주머니 · 돌) -->
+      <!-- 물매 — 손(439,279)에서 **긴 끈 두 가닥**이 벌어져 나가 돌주머니(요람 호)와 돌로 모인다.
+           삼상 17:40 「손에 물매를 가지고」· 17:49 「물매로 던져 … 이마를 치매」.
+           1차 콘티는 끈이 53px뿐이라 「깃대·막대」로 오독됐다. rev.2의 1차 시도는 끈 두 가닥을
+           **양 끝에서 모두 모아** 닫힌 렌즈를 만들어 「풍선·잎사귀」로 읽혔다 — 그래서 끈은 **직선으로 팽팽하게**
+           그린다 — 물매의 위상은 원래 닫힌 고리(손→끈→주머니→끈→손)가 맞지만, 두 가닥을 서로 반대로
+           볼록하게 휘면 가운데가 부풀어 「라켓·풍선」이 된다(rev.2 2차 시도 실측). 직선이면 손 쪽의
+           둘러싸인 면적이 사라져 두 가닥으로 읽히고, 팽팽함 자체가 회전을 나른다. 끈 끝은 40px 벌어져
+           그 사이를 돌주머니(요람 호)와 돌(지름 26px)이 메운다. 길이와 각도만으로 회전을
+           읽히게 하고, 궤적 호·회전 화살표는 서사 기호이므로 쓰지 않는다(S2 결함표 #2·#3). -->
+      <path d="M447 273 L558 144" stroke-width="3" />
+      <path d="M447 273 L588 174" stroke-width="3" />
+      <path d="M558 144 Q606 147 588 174" stroke-width="5" />
+      <circle cx="571" cy="159" r="16" stroke-width="6" />
+    </g>
   </g>
 
   <g id="goliath" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round">
