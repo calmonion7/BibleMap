@@ -78,13 +78,13 @@ def axis_a(path, thr):
             "ink_over_max_warn": bool(over)}
 
 
-def axis_b(emb, cn, seed, threshold, bg_ip, fig_cn, sip):
+def axis_b(emb, cn, seed, threshold, bg_ip, fig_cn, sip, ref_band=None):
     """전이 점수 = Δ(자기 표본) − Δ(남의 표본). 기준선은 그 인물을 그리기 직전 캔버스."""
     samples = {n: emb.embed(Image.open(os.path.join(gf.SAMPLES, f"{n}.png")).convert("RGB"))
                for n in gf.PEOPLE}
     masks = {n: gf.figure_mask(n) for n in gf.PEOPLE}
     boxes = {n: gf.window(masks[n], gf.PAD) for n in gf.PEOPLE}
-    t = gf.tag(cn, bg_ip, fig_cn, sip)
+    t = gf.tag(cn, bg_ip, fig_cn, sip, ref_band)
     david_out = os.path.join(OUT, f"1-david-{t}-s{seed}.png")
     stage = {
         "david": (gf.bg_path(cn, seed, bg_ip), david_out),
@@ -207,12 +207,16 @@ def main():
     ap.add_argument("--fig-cn", required=True, help="인물 크롭 안의 ControlNet 강도")
     ap.add_argument("--sip", required=True, help="인물 단계 전신 표본 IP 강도")
     ap.add_argument("--seeds", default=",".join(str(s) for s in params.SCENE_SEEDS))
+    ap.add_argument("--ref-band", type=float, default=None,
+                    help="생성 때 쓴 `gen_final.py --ref-band` 값 — 산출물 이름이 그것을 담으므로 "
+                         "같은 값을 줘야 그 그림을 찾는다")
     ap.add_argument("--json", default=os.path.join(params.NOTES, "final-verdict.json"))
     a = ap.parse_args()
     cn = float(a.cn)
     bg_ip = float(a.bg_ip)
     fig_cn = float(a.fig_cn)
     sip = float(a.sip)
+    ref_band = a.ref_band
     seeds = [int(s) for s in a.seeds.split(",")]
 
     s1 = _load_s1()
@@ -223,14 +227,14 @@ def main():
     verdict = {"cn": cn, "bg_ip": bg_ip, "fig_cn": fig_cn, "sample_ip": sip,
                "thresholds_from": "notes/s1-baseline.json", "seeds": {}}
     for seed in seeds:
-        final = os.path.join(OUT, f"3-final-{gf.tag(cn, bg_ip, fig_cn, sip)}-s{seed}.png")
+        final = os.path.join(OUT, f"3-final-{gf.tag(cn, bg_ip, fig_cn, sip, ref_band)}-s{seed}.png")
         if not os.path.exists(final):
             print(f"[s{seed}] 최종이 없다: {os.path.basename(final)} — 건너뛴다")
             continue
         r = {
             "final": os.path.basename(final),
             "axis_a": axis_a(final, s1["axis_a"]["thresholds"]),
-            "axis_b": axis_b(emb, cn, seed, s1["axis_b"]["threshold"], bg_ip, fig_cn, sip),
+            "axis_b": axis_b(emb, cn, seed, s1["axis_b"]["threshold"], bg_ip, fig_cn, sip, ref_band),
             "axis_c": axis_c(final, s1["axis_c"]["thresholds_by_key"]),
             "axis_d": axis_d(final, s1["axis_d"]),
             "axis_e": axis_e(final, s1["axis_e"]),

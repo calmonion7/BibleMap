@@ -121,10 +121,15 @@ def bg_path(cn, seed, ip=1.0):
     return os.path.join(OUT, f"bg-ip{ip}-cn{cn}-s{seed}.png")
 
 
-def tag(cn, bg_ip, fig_cn, ip):
+def tag(cn, bg_ip, fig_cn, ip, ref_band=None):
     """인물 단계 산출물의 손잡이 태그. **네 손잡이를 전부 파일명에 싣는다** — 두 개(배경 CN·IP)만
-    싣던 초판에서는 인물 크롭 CN을 바꾼 재시도가 앞 결과를 조용히 덮어썼다."""
-    return f"ip{bg_ip}-cn{cn}-fcn{fig_cn}-sip{ip}"
+    싣던 초판에서는 인물 크롭 CN을 바꾼 재시도가 앞 결과를 조용히 덮어썼다.
+
+    `ref_band`(task#322 R3)도 같은 이유로 싣는다 — 네 손잡이가 같아도 **IP 레퍼런스가 다르면 다른
+    그림**인데, 이름이 같으면 아래 `[스킵]` 분기가 낡은 단계 PNG를 재사용한다(2026-08-30 실측:
+    콘티 판본이 이름에 없어 뿔을 넣고 돌린 재시도가 어제 그림을 그대로 다시 합성했다)."""
+    rb = "" if ref_band is None else f"-rb{ref_band}"
+    return f"ip{bg_ip}-cn{cn}-fcn{fig_cn}-sip{ip}{rb}"
 
 
 def _tok(pipe, prompt, label):
@@ -212,7 +217,7 @@ def run_bg(cns, seeds, ips):
 
 
 # --- 인물 단계 ---------------------------------------------------------------
-def run_figures(cn, seeds, ip, bg_ip, fig_cn):
+def run_figures(cn, seeds, ip, bg_ip, fig_cn, ref_band=None):
     """인물 단계. `fig_cn`은 **인물 크롭 안의** ControlNet 강도다 — 배경의 `cn`과 다른 축이다.
 
     기본값을 `params.SCENE_CN`(0.8)에 두지 않고 호출자가 정하게 한 이유: `gen_combined.py`는
@@ -228,6 +233,16 @@ def run_figures(cn, seeds, ip, bg_ip, fig_cn):
     cond = scene_cond()
     masks = {n: figure_mask(n) for n in PEOPLE}
     refs = {n: Image.open(os.path.join(SAMPLES, f"{n}.png")).convert("RGB") for n in PEOPLE}
+    if ref_band is not None:
+        # task#322 R3 — `PROMPTING.md` 9: 레퍼런스가 나르는 것은 화풍만이 아니라 **의미**이고,
+        # 그 목록에 **자세**가 명시돼 있다(「무장한 영웅 figure(자세·갑주·망토·스탠스)가 CLIP
+        # 임베딩으로 개념 자체를 실어 온다」). 같은 규칙이 그에 맞선 **프롬프트 축은 전부 무효**로
+        # 실측했다(부정어·긍정전환·CFG 상향 3/3 실패). 따름 정리가 지시하는 처방이 이것이다 —
+        # 「레퍼런스는 원하는 속성만 담은 최소 패치로 준다 · 재질은 이미지로, **구도는 콘티로**」.
+        # 분율 규약은 `judge_s1._band_fullbody`(HEAD_BAND=0.30)와 같은 것을 쓴다. 규칙 9가 경계한
+        # 「크롭 편법」(자산당 손 박스 판독이라 74명으로 확장 안 됨)이 아니다 — 분율은 규칙이라
+        # 모든 표본에 같은 식으로 적용된다.
+        refs = {n: im.crop((0, 0, im.width, int(im.height * ref_band))) for n, im in refs.items()}
     for name in PEOPLE:
         box = window(masks[name], PAD)
         print(f"  마스크 {name:8s} 화면의 {(np.array(masks[name]) > 127).mean() * 100:.1f}%  "
@@ -245,7 +260,8 @@ def run_figures(cn, seeds, ip, bg_ip, fig_cn):
     pipe.set_ip_adapter_scale(ip)
     load_s = time.time() - t
     print(f"로드 {load_s:.0f}s  ·  전신 표본 IP {ip}  ·  인물 크롭 CN {fig_cn}  ·  "
-          f"배경 IP {bg_ip} · CN {cn}", flush=True)
+          f"배경 IP {bg_ip} · CN {cn}  ·  레퍼런스 "
+          f"{'전신 전체' if ref_band is None else f'상단 {ref_band} 밴드'}", flush=True)
 
     times = []
     for seed in seeds:
@@ -254,7 +270,7 @@ def run_figures(cn, seeds, ip, bg_ip, fig_cn):
             sys.exit(f"배경이 없다: {src} — 먼저 `gen_final.py bg`를 돌려라")
         canvas = Image.open(src).convert("RGB")
         for step, name in enumerate(PEOPLE, start=1):
-            out = os.path.join(OUT, f"{step}-{name}-{tag(cn, bg_ip, fig_cn, ip)}-s{seed}.png")
+            out = os.path.join(OUT, f"{step}-{name}-{tag(cn, bg_ip, fig_cn, ip, ref_band)}-s{seed}.png")
             if os.path.exists(out):
                 print(f"  [스킵] {os.path.basename(out)}")
                 canvas = Image.open(out).convert("RGB")
@@ -286,7 +302,7 @@ def run_figures(cn, seeds, ip, bg_ip, fig_cn):
             print(f"  [{step} {name} s{seed}] {dt:.0f}s  프롬프트 {n}/{lim}토큰  "
                   f"창 {bw}x{bh} → {gw}x{gh} ({gw / bw:.1f}x) -> {os.path.basename(out)}",
                   flush=True)
-        final = os.path.join(OUT, f"3-final-{tag(cn, bg_ip, fig_cn, ip)}-s{seed}.png")
+        final = os.path.join(OUT, f"3-final-{tag(cn, bg_ip, fig_cn, ip, ref_band)}-s{seed}.png")
         canvas.save(final)
         print(f"  최종: {os.path.basename(final)}")
     if times:
@@ -305,6 +321,9 @@ def main():
     ap.add_argument("--bg-ip", default=None, help="인물 단계가 물려받을 배경의 시트 IP 강도")
     ap.add_argument("--seeds", default=",".join(str(s) for s in params.SCENE_SEEDS))
     ap.add_argument("--ip", type=float, default=None, help="인물 단계 전신 표본 IP 강도")
+    ap.add_argument("--ref-band", type=float, default=None,
+                    help="인물 IP 레퍼런스를 전신 표본 **상단 이 분율**로 좁힌다(예: 0.30 — "
+                         "judge_s1._band_fullbody와 같은 규약). 생략하면 종전대로 전신 전체를 쓴다")
     ap.add_argument("--fig-cn", default=None,
                     help="인물 크롭 안의 ControlNet 강도. 기본은 얇은 조건용 정본값 "
                          "params.PERSON_CN — 장면용 SCENE_CN(0.8)은 크롭 안에서 대비를 0으로 "
@@ -318,7 +337,8 @@ def main():
         sys.exit("`figures`는 --cn 과 --bg-ip 로 어느 배경을 물려받을지 지정해야 한다")
     return run_figures(float(a.cn), seeds, params.IP_SCALE if a.ip is None else a.ip,
                        float(a.bg_ip),
-                       params.PERSON_CN if a.fig_cn is None else float(a.fig_cn))
+                       params.PERSON_CN if a.fig_cn is None else float(a.fig_cn),
+                       a.ref_band)
 
 
 if __name__ == "__main__":
