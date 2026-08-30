@@ -209,6 +209,66 @@ def axis_b(embedder=None):
     null_by = {n: [score(emb_base[(n, a)], emb_base[(n, b)], n)
                    for a, b in itertools.permutations(base[n], 2)] for n in PEOPLE}
 
+    # --- S5(task#321): 「자세를 뺀」 변형 — **보고 전용이고 게이트를 바꾸지 않는다.**
+    # 축 B는 크롭 전체의 CLIP 임베딩을 쓰므로 정체성 전이와 자세 복제가 한 값에 섞인다. 머리 밴드로
+    # **양쪽을 똑같이** 잘라 재면 자세 성분이 빠진다. 여기서는 양쪽이 다 표본 파이프라인 이미지라
+    # 대칭 크롭이 성립한다 — 장면 경로(`judge_final.axis_b`)는 표본 쪽에 콘티가 없어 같은 방식이
+    # 성립하지 않는다(표본은 콘티에서 파생되지 않는다). 그래서 이것은 **부분해**다.
+    #
+    # **왜 채택하지 않는가**: 게이트 축 B의 산식을 바꾸면 임계가 기계적으로 움직여 task#320
+    # 승인본의 축 B 통과 증거가 무효화된다. 그것은 사람이 정할 갈림길이므로 값만 남긴다
+    # (계획 S5 「단조가 깨지면 채택하지 않고 그 사실을 적는다」와 같은 처분).
+    def _head_band(im):
+        w, h = im.size
+        return im.crop((0, 0, w, int(h * HEAD_BAND)))
+
+    emb_band = {(n, q): embedder.embed(_head_band(Image.open(q).convert("RGB")))
+                for n in PEOPLE for q in base[n]}
+    samples_band = {n: embedder.embed(_head_band(Image.open(paths[n]).convert("RGB")))
+                    for n in PEOPLE}
+
+    def score_band(e, e_base, who):
+        other = "goliath" if who == "david" else "david"
+        return ((jm.cos(e, samples_band[who]) - jm.cos(e_base, samples_band[who]))
+                - (jm.cos(e, samples_band[other]) - jm.cos(e_base, samples_band[other])))
+
+    null_b = [score_band(emb_band[(n, a)], emb_band[(n, b)], n)
+              for n in PEOPLE for a, b in itertools.permutations(base[n], 2)]
+    thr_b = max(null_b)
+    means_b = []
+    pos_b = n_pos_b = 0
+    for alpha in LADDER:
+        vals = []
+        for n in PEOPLE:
+            for q in base[n]:
+                im = Image.open(q).convert("RGB")
+                bl = Image.blend(im, sample_im[n].resize(im.size, Image.LANCZOS), alpha)
+                vals.append(score_band(embedder.embed(_head_band(bl)), emb_band[(n, q)], n))
+        means_b.append(float(np.mean(vals)))
+        if alpha == 1.0:
+            pos_b, n_pos_b = sum(1 for v in vals if v > thr_b), len(vals)
+    mono_b = all(y > x for x, y in zip(means_b, means_b[1:]))
+    variant = {
+        "what": "축 B에서 자세를 뺀 변형 — 머리 밴드로 양쪽을 똑같이 크롭해 재파생",
+        "status": "보고 전용 — 게이트를 바꾸지 않는다",
+        "why_not_adopted": "게이트 축 B의 산식을 바꾸면 임계가 기계적으로 움직여 task#320 "
+                            "승인본의 축 B 통과 증거가 무효화된다. 사람이 정할 갈림길이다.",
+        "partial_only": "장면 경로(judge_final.axis_b)는 표본 쪽에 콘티가 없어 같은 대칭 크롭이 "
+                         "성립하지 않는다 — 표본은 콘티에서 파생되지 않는다. 여기서 재는 것은 "
+                         "표본 파이프라인 안의 대칭 크롭뿐이다.",
+        "band": f"세로 전신 표본 상단 {HEAD_BAND} 분율(_band_fullbody와 같은 규약)",
+        "threshold": thr_b, "null_max": thr_b, "n_null_pairs": len(null_b),
+        "negative_passes": sum(1 for v in null_b if v > thr_b),
+        "ladder_means": means_b, "ladder_monotonic": bool(mono_b),
+        "positive_passes_at_alpha1": pos_b, "n_positive": n_pos_b,
+        "margin_alpha1_mean_minus_threshold": means_b[-1] - thr_b,
+    }
+    print(f"[축 B·S5변형] 자세 제거(머리밴드 대칭크롭) — **보고 전용, 게이트 불변**")
+    print(f"       임계 {thr_b:+.4f}(귀무 최대 파생) · 귀무 통과 "
+          f"{variant['negative_passes']}/{len(null_b)} · 사다리 단조 "
+          f"{'OK' if mono_b else 'FAIL'} · 양성 {pos_b}/{n_pos_b} · 여유 "
+          f"{variant['margin_alpha1_mean_minus_threshold']:+.4f}")
+
     print(f"[축 B] 귀무 {len(null)}쌍 → 임계 = 귀무 최대 {threshold:+.4f}")
     print(f"       사다리 평균 {['%+.4f' % m for m in means]}  단조 {'OK' if monotonic else 'FAIL'}")
     print(f"       음성(귀무) 통과 {neg_pass}/{len(null)} (0이어야 한다) · "
@@ -221,6 +281,7 @@ def axis_b(embedder=None):
         "n_positive": n_pos,
         "margin_alpha1_mean_minus_threshold": margin,
         "null_max_by_person": {n: max(v) for n, v in null_by.items()},
+        "pose_removed_variant_s5": variant,
         "samples": {n: f"samples/{n}.png" for n in PEOPLE},
         "derived_by": "part2-S5 (동결 표본 전수 + 무레퍼런스 기준선 순열)",
         # **양성 통과를 과반으로 요구한다.** 단조성만으로는 부족하다 — 완전 합성(alpha 1.0)이

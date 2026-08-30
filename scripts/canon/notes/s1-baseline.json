@@ -109,6 +109,27 @@
    "david": 0.07287031412124634,
    "goliath": 0.038835346698760986
   },
+  "pose_removed_variant_s5": {
+   "what": "축 B에서 자세를 뺀 변형 — 머리 밴드로 양쪽을 똑같이 크롭해 재파생",
+   "status": "보고 전용 — 게이트를 바꾸지 않는다",
+   "why_not_adopted": "게이트 축 B의 산식을 바꾸면 임계가 기계적으로 움직여 task#320 승인본의 축 B 통과 증거가 무효화된다. 사람이 정할 갈림길이다.",
+   "partial_only": "장면 경로(judge_final.axis_b)는 표본 쪽에 콘티가 없어 같은 대칭 크롭이 성립하지 않는다 — 표본은 콘티에서 파생되지 않는다. 여기서 재는 것은 표본 파이프라인 안의 대칭 크롭뿐이다.",
+   "band": "세로 전신 표본 상단 0.3 분율(_band_fullbody와 같은 규약)",
+   "threshold": 0.04357215762138367,
+   "null_max": 0.04357215762138367,
+   "n_null_pairs": 12,
+   "negative_passes": 0,
+   "ladder_means": [
+    0.0,
+    0.01887532075246175,
+    0.027354270219802856,
+    0.15647785365581512
+   ],
+   "ladder_monotonic": true,
+   "positive_passes_at_alpha1": 6,
+   "n_positive": 6,
+   "margin_alpha1_mean_minus_threshold": 0.11290569603443146
+  },
   "samples": {
    "david": "samples/david.png",
    "goliath": "samples/goliath.png"
