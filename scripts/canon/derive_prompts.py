@@ -219,8 +219,14 @@ SCENE_NEG_EXTRA = AXIS_EN["age"]["소년/청년"][1]
 # A와 C는 값이 같은데 C를 고른 이유가 둘이다: ③이 묻는 것은 **시선**이고, "facing"은 몸통 회전을
 # 지시해 CN 0.8이 콘티의 **좌우대칭 정면 어깨**에 묶어 둔 것과 정면으로 다툰다(PROMPTING.md 4의
 # 「같은 자원을 놓고 싸운다」가 여기 적용되는지가 이 슬라이스의 관찰 대상이다 — 생성에서 확인한다).
-SCENE_ACTION = {"david": "swinging a sling, looking right",
-                "goliath": "standing, looking left"}
+# 2026-08-30 (사용자 「몸 전체 구도변경」) — **C에서 A로 바꾼다.** 위에서 C를 고른 이유가
+# 「③이 묻는 것은 시선이고, "facing"은 **몸통 회전**을 지시해 CN이 묶어 둔 좌우대칭 정면 어깨와
+# 다툰다」였는데, 사용자가 요구한 것이 바로 그 **몸통 회전**이다. 토큰은 A와 C가 같다(65·74/77).
+# 그리고 실측이 「모델은 오히려 돌려는 경향」임을 보인다 — 표본은 정면을 유지하려고 부정어에
+# **`profile view`를 명시로 넣어야 했다**(아래 SAMPLE_NEG_EXTRA 주석 ③). 장면 부정어에는 그
+# 억제가 없으므로(NEG 확인), 막고 있던 것은 억제가 아니라 **지시가 시선까지만이었던 것**이다.
+SCENE_ACTION = {"david": "swinging a sling, facing right",
+                "goliath": "standing, facing left"}
 
 
 def figure_prompt(name):
