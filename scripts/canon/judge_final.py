@@ -79,11 +79,25 @@ def axis_a(path, thr):
 
 
 def axis_b(emb, cn, seed, threshold, bg_ip, fig_cn, sip, ref_band=None):
-    """전이 점수 = Δ(자기 표본) − Δ(남의 표본). 기준선은 그 인물을 그리기 직전 캔버스."""
-    samples = {n: emb.embed(Image.open(os.path.join(gf.SAMPLES, f"{n}.png")).convert("RGB"))
+    """전이 점수 = Δ(자기 표본) − Δ(남의 표본). 기준선은 그 인물을 그리기 직전 캔버스.
+
+    **정의역 = 머리 밴드** (task#322 R4 — 2026-08-30 사람 승인 갈림길 ②). 전신 크롭은 정체성
+    전이와 **자세 복제를 한 값에 섞으므로**, 축 B를 세게 통과할수록 자세가 콘티에서 멀어진다
+    (ZIMAGE §9-27의 구조적 상충). `judge_s1.axis_b`가 임계를 **밴드 정의역에서 파생**하도록
+    바뀌었으므로 장면 쪽도 같은 정의역이어야 한다 — 임계만 밴드에서 오고 측정은 전신이면
+    정의역 불일치다.
+
+    **양쪽 밴드가 왜 서로 다른 함수인가**: 분율(`HEAD_BAND`)은 **세로 전신 표본 전용**이다
+    (judge_s1.py의 `HEAD_BAND` 주석). 장면에 그 분율을 쓰면 다윗은 물매를 머리 위로 치켜들고
+    있어 밴드에 **머리가 한 화소도 안 든다**(§9-10 실측 — 2026-08-30 R4에서 재확인: 창
+    (169,60,676,640)의 상단 0.30은 하늘과 물매뿐이었다). 그래서 장면은 콘티 저작 머리 원에서
+    파생하는 `judge_s1._band_scene`을 쓴다 — 손으로 고른 상자가 아니라 저작자가 id로 명시한
+    도형에서 나온다. 둘이 **같은 부위**라는 근거는 코드베이스 자신에 있다: `judge_s1.axis_e`의
+    양성 대조군이 `_band_fullbody(표본)`을 `conti_head_box` 상자에 그대로 붙여 넣고 8/8로
+    통과한다(judge_s1.py 「장면합성 표본머리」).
+    """
+    samples = {n: emb.embed(judge_s1._band_fullbody(os.path.join(gf.SAMPLES, f"{n}.png")))
                for n in gf.PEOPLE}
-    masks = {n: gf.figure_mask(n) for n in gf.PEOPLE}
-    boxes = {n: gf.window(masks[n], gf.PAD) for n in gf.PEOPLE}
     t = gf.tag(cn, bg_ip, fig_cn, sip, ref_band)
     david_out = os.path.join(OUT, f"1-david-{t}-s{seed}.png")
     stage = {
@@ -94,9 +108,11 @@ def axis_b(emb, cn, seed, threshold, bg_ip, fig_cn, sip, ref_band=None):
     for who in gf.PEOPLE:
         base_p, cur_p = stage[who]
         other = "goliath" if who == "david" else "david"
-        box = boxes[who]
-        e_base = emb.embed(Image.open(base_p).convert("RGB").resize(params.SCENE_SIZE).crop(box))
-        e_cur = emb.embed(Image.open(cur_p).convert("RGB").resize(params.SCENE_SIZE).crop(box))
+        def _band(p):
+            im = Image.open(p).convert("RGB").resize(params.SCENE_SIZE)
+            return judge_s1._band_scene(im, who)
+        e_base = emb.embed(_band(base_p))
+        e_cur = emb.embed(_band(cur_p))
         d_self = jm.cos(e_cur, samples[who]) - jm.cos(e_base, samples[who])
         d_cross = jm.cos(e_cur, samples[other]) - jm.cos(e_base, samples[other])
         score = d_self - d_cross
@@ -104,6 +120,7 @@ def axis_b(emb, cn, seed, threshold, bg_ip, fig_cn, sip, ref_band=None):
                      "margin": score - threshold, "pass": bool(score > threshold),
                      "base": os.path.basename(base_p), "cur": os.path.basename(cur_p)}
     return {"threshold": threshold, "by_person": rows,
+            "domain": "머리 밴드 — 표본은 _band_fullbody(상단 0.30), 장면은 _band_scene(콘티 머리 원)",
             "pass": all(r["pass"] for r in rows.values())}
 
 

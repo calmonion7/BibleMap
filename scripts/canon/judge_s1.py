@@ -209,15 +209,18 @@ def axis_b(embedder=None):
     null_by = {n: [score(emb_base[(n, a)], emb_base[(n, b)], n)
                    for a, b in itertools.permutations(base[n], 2)] for n in PEOPLE}
 
-    # --- S5(task#321): 「자세를 뺀」 변형 — **보고 전용이고 게이트를 바꾸지 않는다.**
-    # 축 B는 크롭 전체의 CLIP 임베딩을 쓰므로 정체성 전이와 자세 복제가 한 값에 섞인다. 머리 밴드로
-    # **양쪽을 똑같이** 잘라 재면 자세 성분이 빠진다. 여기서는 양쪽이 다 표본 파이프라인 이미지라
-    # 대칭 크롭이 성립한다 — 장면 경로(`judge_final.axis_b`)는 표본 쪽에 콘티가 없어 같은 방식이
-    # 성립하지 않는다(표본은 콘티에서 파생되지 않는다). 그래서 이것은 **부분해**다.
+    # --- 축 B 정의역 = 머리 밴드 (task#322 R4 — 2026-08-30 사람 승인 갈림길 ②).
+    # 축 B는 크롭 전체의 CLIP 임베딩을 쓰므로 **정체성 전이와 자세 복제가 한 값에 섞인다** — 축 B를
+    # 세게 통과할수록 자세가 콘티에서 멀어진다(ZIMAGE §9-27의 구조적 상충). 머리 밴드로 **양쪽을
+    # 똑같이** 잘라 재면 자세 성분이 빠지고 정체성만 남는다. 양쪽이 다 표본 파이프라인 이미지라
+    # 대칭 크롭이 성립한다.
     #
-    # **왜 채택하지 않는가**: 게이트 축 B의 산식을 바꾸면 임계가 기계적으로 움직여 task#320
-    # 승인본의 축 B 통과 증거가 무효화된다. 그것은 사람이 정할 갈림길이므로 값만 남긴다
-    # (계획 S5 「단조가 깨지면 채택하지 않고 그 사실을 적는다」와 같은 처분).
+    # **왜 이제 채택하는가**: 산식을 바꾸면 임계가 기계적으로 움직여 task#320 승인본의 축 B 통과
+    # 증거가 무효화된다 — 그것이 task#321에서 이 변형을 「보고 전용」으로 묶고 사람 갈림길로 남긴
+    # 이유였다. 2026-08-30 사람이 그 갈림길을 ②로 결정했다. 대가는 받아들이되 **분해능은 다시
+    # 증명한다** — 아래 네 값이 계약의 C7이다: 음성 통과 0 · 사다리 단조 · 임계는 귀무 최대에서
+    # 파생(손으로 고르지 않음) · 양성 통과가 전신 정의역보다 줄지 않음.
+    # 폐지된 전신 정의역의 값은 `superseded_fullbody_domain`에 그대로 남겨 감사 가능하게 둔다.
     def _head_band(im):
         w, h = im.size
         return im.crop((0, 0, w, int(h * HEAD_BAND)))
@@ -235,8 +238,7 @@ def axis_b(embedder=None):
     null_b = [score_band(emb_band[(n, a)], emb_band[(n, b)], n)
               for n in PEOPLE for a, b in itertools.permutations(base[n], 2)]
     thr_b = max(null_b)
-    means_b = []
-    pos_b = n_pos_b = 0
+    ladder_b = {}
     for alpha in LADDER:
         vals = []
         for n in PEOPLE:
@@ -244,55 +246,60 @@ def axis_b(embedder=None):
                 im = Image.open(q).convert("RGB")
                 bl = Image.blend(im, sample_im[n].resize(im.size, Image.LANCZOS), alpha)
                 vals.append(score_band(embedder.embed(_head_band(bl)), emb_band[(n, q)], n))
-        means_b.append(float(np.mean(vals)))
-        if alpha == 1.0:
-            pos_b, n_pos_b = sum(1 for v in vals if v > thr_b), len(vals)
+        ladder_b[str(alpha)] = {"min": min(vals), "max": max(vals),
+                                "mean": float(np.mean(vals)), "vals": vals}
+    means_b = [ladder_b[str(a)]["mean"] for a in LADDER]
     mono_b = all(y > x for x, y in zip(means_b, means_b[1:]))
-    variant = {
-        "what": "축 B에서 자세를 뺀 변형 — 머리 밴드로 양쪽을 똑같이 크롭해 재파생",
-        "status": "보고 전용 — 게이트를 바꾸지 않는다",
-        "why_not_adopted": "게이트 축 B의 산식을 바꾸면 임계가 기계적으로 움직여 task#320 "
-                            "승인본의 축 B 통과 증거가 무효화된다. 사람이 정할 갈림길이다.",
-        "partial_only": "장면 경로(judge_final.axis_b)는 표본 쪽에 콘티가 없어 같은 대칭 크롭이 "
-                         "성립하지 않는다 — 표본은 콘티에서 파생되지 않는다. 여기서 재는 것은 "
-                         "표본 파이프라인 안의 대칭 크롭뿐이다.",
-        "band": f"세로 전신 표본 상단 {HEAD_BAND} 분율(_band_fullbody와 같은 규약)",
-        "threshold": thr_b, "null_max": thr_b, "n_null_pairs": len(null_b),
-        "negative_passes": sum(1 for v in null_b if v > thr_b),
-        "ladder_means": means_b, "ladder_monotonic": bool(mono_b),
-        "positive_passes_at_alpha1": pos_b, "n_positive": n_pos_b,
-        "margin_alpha1_mean_minus_threshold": means_b[-1] - thr_b,
-    }
-    print(f"[축 B·S5변형] 자세 제거(머리밴드 대칭크롭) — **보고 전용, 게이트 불변**")
-    print(f"       임계 {thr_b:+.4f}(귀무 최대 파생) · 귀무 통과 "
-          f"{variant['negative_passes']}/{len(null_b)} · 사다리 단조 "
-          f"{'OK' if mono_b else 'FAIL'} · 양성 {pos_b}/{n_pos_b} · 여유 "
-          f"{variant['margin_alpha1_mean_minus_threshold']:+.4f}")
+    neg_pass_b = sum(1 for v in null_b if v > thr_b)
+    pos_b = sum(1 for v in ladder_b["1.0"]["vals"] if v > thr_b)
+    n_pos_b = len(ladder_b["1.0"]["vals"])
+    margin_b = means_b[-1] - thr_b
+    null_by_b = {n: [score_band(emb_band[(n, a)], emb_band[(n, b)], n)
+                     for a, b in itertools.permutations(base[n], 2)] for n in PEOPLE}
 
-    print(f"[축 B] 귀무 {len(null)}쌍 → 임계 = 귀무 최대 {threshold:+.4f}")
-    print(f"       사다리 평균 {['%+.4f' % m for m in means]}  단조 {'OK' if monotonic else 'FAIL'}")
-    print(f"       음성(귀무) 통과 {neg_pass}/{len(null)} (0이어야 한다) · "
-          f"양성(alpha 1.0) 통과 {pos}/{n_pos} · 여유 {margin:+.4f}")
-    out.update({
+    superseded = {
+        "what": "전신 정의역 — R4 전까지의 게이트. 정의역에 자세가 섞여 있어 폐지했다",
+        "status": "보고 전용 — 게이트가 아니다(감사·비교용)",
         "threshold": threshold, "null_max": threshold, "null": null,
         "n_null_pairs": len(null), "ladder": ladder, "ladder_monotonic": monotonic,
         "negative_passes": neg_pass,
-        "positive_passes_at_alpha1": pos,
-        "n_positive": n_pos,
+        "positive_passes_at_alpha1": pos, "n_positive": n_pos,
         "margin_alpha1_mean_minus_threshold": margin,
         "null_max_by_person": {n: max(v) for n, v in null_by.items()},
-        "pose_removed_variant_s5": variant,
+    }
+
+    print(f"[축 B] 정의역 = 머리 밴드 상단 {HEAD_BAND} 분율 대칭 크롭 — **R4 채택 게이트**")
+    print(f"       귀무 {len(null_b)}쌍 → 임계 = 귀무 최대 {thr_b:+.4f}")
+    print(f"       사다리 평균 {['%+.4f' % m for m in means_b]}  단조 {'OK' if mono_b else 'FAIL'}")
+    print(f"       음성(귀무) 통과 {neg_pass_b}/{len(null_b)} (0이어야 한다) · "
+          f"양성(alpha 1.0) 통과 {pos_b}/{n_pos_b} · 여유 {margin_b:+.4f}")
+    print(f"[축 B·폐지된 전신정의역] 임계 {threshold:+.4f} · 음성 {neg_pass}/{len(null)} · "
+          f"양성 {pos}/{n_pos} · 여유 {margin:+.4f} (비교용)")
+    out.update({
+        "domain": f"머리 밴드 상단 {HEAD_BAND} 분율 대칭 크롭(_band_fullbody와 같은 규약)",
+        "domain_adopted_by": "task#322 R4 — 2026-08-30 사람 승인 갈림길 ②",
+        "domain_why": "전신 크롭은 정체성 전이와 자세 복제를 한 값에 섞는다(ZIMAGE §9-27). "
+                      "밴드로 양쪽을 똑같이 잘라 자세 성분을 뺀다.",
+        "invalidates": "task#320 승인본의 축 B 통과 증거 — 임계와 정의역이 함께 움직였다. "
+                       "사람이 대가를 알고 승인했다(loop.md 「2026-08-30 사람 결정」).",
+        "threshold": thr_b, "null_max": thr_b, "null": null_b,
+        "n_null_pairs": len(null_b), "ladder": ladder_b, "ladder_monotonic": mono_b,
+        "negative_passes": neg_pass_b,
+        "positive_passes_at_alpha1": pos_b,
+        "n_positive": n_pos_b,
+        "margin_alpha1_mean_minus_threshold": margin_b,
+        "null_max_by_person": {n: max(v) for n, v in null_by_b.items()},
+        "superseded_fullbody_domain": superseded,
         "samples": {n: f"samples/{n}.png" for n in PEOPLE},
-        "derived_by": "part2-S5 (동결 표본 전수 + 무레퍼런스 기준선 순열)",
+        "derived_by": "part2-S5 (동결 표본 전수 + 무레퍼런스 기준선 순열) · 정의역 R4에서 밴드로 축소",
         # **양성 통과를 과반으로 요구한다.** 단조성만으로는 부족하다 — 완전 합성(alpha 1.0)이
         # 임계를 겨우 넘으면 실사용에서 무정보다. 2026-08-26 실측: 단조 OK · 귀무 통과 0이지만
         # 양성 3/6, 여유 +0.018 → 분해능 미증명으로 읽는다(ADR 260825-013557의 취지).
-        "machine_gate_ready": bool(monotonic and neg_pass == 0 and pos * 2 > n_pos),
-        "not_ready_because": (None if (monotonic and neg_pass == 0 and pos * 2 > n_pos) else
-                              f"양성(alpha 1.0) {pos}/{n_pos} · 여유 {margin:+.4f} — 귀무 바닥을 "
-                              f"다윗 기준선의 시드 간 차이가 밀어올렸다(인물별 귀무 최대: "
-                              f"{ {n: round(max(v), 4) for n, v in null_by.items()} }). "
-                              f"기준선을 프레이밍이 고른 것으로 다시 뽑으면 바닥이 내려간다."),
+        "machine_gate_ready": bool(mono_b and neg_pass_b == 0 and pos_b * 2 > n_pos_b),
+        "not_ready_because": (None if (mono_b and neg_pass_b == 0 and pos_b * 2 > n_pos_b) else
+                              f"양성(alpha 1.0) {pos_b}/{n_pos_b} · 여유 {margin_b:+.4f} — "
+                              f"인물별 귀무 최대: "
+                              f"{ {n: round(max(v), 4) for n, v in null_by_b.items()} }"),
     })
     return out
 
@@ -1053,11 +1060,18 @@ def arm_synthetic_fill(base_path, band):
 # fig_cn, sip)만 담고 **콘티·프롬프트 판본을 담지 않는다.** 그래서 콘티를 고친 뒤 같은 조합으로
 # 다시 생성하면 승인본을 **덮어쓴다** — 그러면 판정 대상이 자기 자신의 음성 대조군이 되는
 # 순환이 생기고, `.forge/reports/`는 gitignore라 되돌릴 수도 없다.
-# 그래서 승인본 2장을 `reference/`(git 추적, 다른 대조군 자산이 이미 사는 곳)로 옮겨 **고정한다.**
+# 그래서 승인본 2장을 git 추적 위치로 옮겨 **고정한다.**
 # 화소는 그대로이므로 임계는 움직이지 않는다 — 바뀐 것은 대조군의 **신원이 안정되었다**는 것뿐이다.
+# ⚠ **`reference/` 바로 아래가 아니라 `reference/arm-negatives/`다** — 2026-08-30(R4) 실측 정정.
+# `judge_style.reference_paths()`는 `reference/*.png` **전부**를 「정답지」로 읽으므로, 바로 아래에
+# 두면 콘티 ControlNet으로 뽑은 승인본이 「ControlNet 조건화가 아예 없는 정답지 시트」로 잘못
+# 분류돼 **축 C의 음성 풀에 들어간다.** 실제로 그렇게 됐다: 두 장이 축 C 음성으로 통과해
+# (음성 통과 0/16 → 2/18) `machine_gate_ready`가 False로 강등됐고, 그러면 `judge_final`이
+# **축 C를 게이트에서 뺀다**(judge_final.py:247) — 콘티 검사 없이 통과하는 거짓 승리 경로다.
+# glob이 비재귀이므로 하위 디렉터리에 두면 정답지 집합은 REFERENCE.md가 적은 10장 그대로 남는다.
 # ⚠ 남은 같은 종류의 취약점: `NEG_AXIS_C`도 FINAL3 안을 가리킨다(bg-ip0.0-cn0.2-s11.png).
 #   이번 태스크의 조합(cn 0.6)과 겹치지 않아 지금은 안 깨지지만, 같은 함정 위에 있다 — 별건.
-ARM_APPROVED = os.path.join(params.REFERENCE, "approved-320-s%s.png")
+ARM_APPROVED = os.path.join(params.REFERENCE, "arm-negatives", "approved-320-s%s.png")
 
 
 def axis_g():
