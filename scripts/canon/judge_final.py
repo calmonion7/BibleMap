@@ -39,6 +39,12 @@ part 1(축 A·C·D)·part 2(축 B)가 못박은 값을 그대로 쓴다(ADR `260
 본다. 5축이 프롬프트 파생(입력)에만 쓰이고 출력 검증에는 안 쓰이던 비대칭을 메운다(뿔·투구가
 사라진 것을 축 A~D 중 아무것도 잡지 못했다). `sex`는 정본 자신이 통과하지 못해 게이트에서 뺀다.
 
+**축 G 팔이 사지인가**(2026-08-30 배선, task#322 S4) — 콘티 팔 중심선의 법선 위에서 「중심이
+매끄럽고 양쪽에 경계가 있으며 그 간격이 w_min 이상인」 표본의 비율. part 1(task#321)이 후보
+7개를 대조군에 걸어 고른 자다: 부위별 상관은 음성 B(관통) +0.489 > 양성(콘티) +0.226이라
+임계를 어디 두든 못 갈랐고, 이 자만 승인본 s11(분리)·s7(관통)을 둘 다 떨어뜨렸다.
+축 A~F가 여섯 축을 다 통과시킨 그림들이 팔에서 깨져 있었다는 것이 이 축의 존재 이유다.
+
 Usage: .../python judge_final.py --cn 0.8 [--seeds 11,42,7] [--json OUT]
 """
 import argparse
@@ -173,6 +179,27 @@ def axis_f(path, spec):
             "pass": all(r["pass"] for r in rows.values())}
 
 
+def axis_g(path, spec):
+    """축 G 팔이 사지인가 — part 1(task#321)이 후보 7개를 대조군에 걸어 고른 자다.
+
+    **judge_s1의 기하·로더·엣지 산식을 그대로 재사용한다.** 임계만 물려받고 정의역이 갈리면
+    「옳은 결론을 틀린 이유로」가 된다 — 회고 `260830-093209`이 축 E에서 실측한 결함이고,
+    회고 `260830-125935`이 「양성 대조군의 정의역이 판정 대상의 정의역과 같은지 먼저 본다」로
+    승급한 습관이다. part 1의 사다리·음성 4종·양성이 전부 `_axis_c_load` + `_edge_bool_f`로
+    재어졌으므로 여기서도 그 둘을 쓴다.
+
+    이 파일은 임계를 만들지 않는다 — `s1-baseline.json`의 `axis_g.threshold`를 읽는다
+    (축 A~F와 같은 규약, ADR `260823-221839`).
+    """
+    g = judge_s1.arm_geometry()
+    samples = judge_s1.arm_centerline(g["ink"])
+    v = judge_s1.arm_limb_score(g, samples)(
+        judge_s1._edge_bool_f(judge_s1._axis_c_load(path)))
+    thr = spec["threshold"]
+    return {"score": v, "threshold": thr, "margin": v - thr,
+            "domain_px": int(g["ink"].sum()), "pass": bool(v > thr)}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--cn", required=True)
@@ -208,6 +235,7 @@ def main():
             "axis_d": axis_d(final, s1["axis_d"]),
             "axis_e": axis_e(final, s1["axis_e"]),
             "axis_f": axis_f(final, s1["axis_f"]),
+            "axis_g": axis_g(final, s1["axis_g"]),
         }
         # 축 C가 `machine_gate_ready: false`면 그 축은 게이트가 아니다 — 판정은 내되 종합에서
         # 빼고, 어느 축이 종합에 들어갔는지를 기록한다(끼워 맞추지 않는다).
@@ -215,14 +243,15 @@ def main():
                 "axis_c": s1["axis_c"]["machine_gate_ready"],
                 "axis_d": s1["axis_d"]["machine_gate_ready"],
                 "axis_e": s1["axis_e"]["machine_gate_ready"],
-                "axis_f": s1["axis_f"]["machine_gate_ready"]}
+                "axis_f": s1["axis_f"]["machine_gate_ready"],
+                "axis_g": s1["axis_g"]["machine_gate_ready"]}
         r["gated_axes"] = [k for k, v in gate.items() if v]
         r["all_gated_pass"] = all(r[k]["pass"] for k in r["gated_axes"])
-        r["all_axes_pass"] = all(r[f"axis_{x}"]["pass"] for x in "abcdef")
+        r["all_axes_pass"] = all(r[f"axis_{x}"]["pass"] for x in "abcdefg")
         verdict["seeds"][str(seed)] = r
 
-        A, B, C, D, E, F = (r["axis_a"], r["axis_b"], r["axis_c"], r["axis_d"],
-                            r["axis_e"], r["axis_f"])
+        A, B, C, D, E, F, G = (r["axis_a"], r["axis_b"], r["axis_c"], r["axis_d"],
+                               r["axis_e"], r["axis_f"], r["axis_g"])
         print(f"\n[시드 {seed}] {r['final']}")
         print(f"  축 A  ink={A['ink']:.4f} p05={A['val_p05']:.3f}  "
               f"{'✅' if A['pass'] else '❌'}{' ⚠상한초과' if A['ink_over_max_warn'] else ''}")
@@ -240,6 +269,8 @@ def main():
         for who, v in F["by_person"].items():
             print(f"  축 F  {who:8s} 갑주착용 {v['margin']:+.4f}  {'✅' if v['pass'] else '❌'}"
                   f"   (⚠ 종류는 재지 않는다)")
+        print(f"  축 G  다윗 팔  사지비율 {G['score']:+.4f} (임계 {G['threshold']:+.4f}, "
+              f"여유 {G['margin']:+.4f}, 정의역 {G['domain_px']}화소)  {'✅' if G['pass'] else '❌'}")
         print(f"  → 게이트 축 {r['gated_axes']} 전부 통과 = {r['all_gated_pass']}  ·  "
               f"전 축 통과 = {r['all_axes_pass']}")
 
