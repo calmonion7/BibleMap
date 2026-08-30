@@ -243,6 +243,9 @@ SCENE_ACTION = {"david": "swinging a sling, facing right",
 # 넣어야 했다(아래 주석 ③ — "facing forward"만으로는 3/4 회전을 못 막았다). 그 반대를 여기 건다.
 HEAD_DIRECTION = {"david": ("right", "the giant"), "goliath": ("left", "the shepherd boy")}
 HEAD_NEG_EXTRA = "facing forward, frontal face, looking at viewer, symmetrical face"
+# 부재 축을 **긍정으로** 말하는 문구(머리 단계 전용 — head_prompt 안의 근거 주석 참조).
+# 순서가 곧 우선순위다: 실측에서 수염이 세 시드 전부 실패했고 머리카락은 한 시드만 실패했다.
+HEAD_ABSENCE = {"beard": "clean-shaven", "hair": "no hair showing"}
 
 
 def head_prompt(name):
@@ -259,9 +262,26 @@ def head_prompt(name):
     # 배경 어휘가 무의미하고, "light shading"·"muted palette"는 대비를 도로 깎는다(라운드 20).
     # 실측으로 강제된 절감이기도 하다 — 덜기 전 골리앗이 **82/77로 초과**했다(2026-08-31).
     head_style = _drop(STYLE, "simple", "clean background", "light shading", "muted palette")
+    # **부재 축의 긍정 서술 — 머리 단계 전용** (2026-08-31 R3).
+    # `hair=없음`·`beard=없음`은 AXIS_EN에서 **긍정이 비어 있고 부정어로만** 표현된다. 전신
+    # 단계에서는 IP 레퍼런스(수염 없는 투구 머리)가 그 부재를 **이미지로** 지고 있어 문제가
+    # 없었다. 그런데 머리 단계에서 회전을 얻으려면 그 레퍼런스를 떼야 하고(IP 0.15는 안 돌고
+    # 0.0이라야 돈다), 그러면 부재를 주장하는 것이 부정어뿐이라 **약하다**(PROMPTING.md 3의
+    # 배수표 — 부정어는 3×, 매체 교체는 140×). 실측: IP 0.0에서 축 E 수염이 세 시드 전부
+    # 실패했다(−0.034 / −0.014 / −0.005). 그래서 **이 단계에서만** 부재를 긍정으로 말한다.
+    # AXIS_EN(정본 표)은 건드리지 않는다 — 전신·표본·초상 프롬프트가 지금 통과 중이고, 표를
+    # 바꾸면 그 층까지 함께 움직인다.
+    absent = [HEAD_ABSENCE[k] for k in ("beard", "hair") if not en.get(k, ("",))[0]
+              and k in axes and k in HEAD_ABSENCE]
+    if absent:
+        body = ", ".join([body] + absent)
+    # **방향 서술을 줄이고 그 토큰을 정체성에 넘긴다** (2026-08-31 R4). 초판은 방향을 네 구절로
+    # 중복 서술했는데(`strict … / head fully turned … / eyes on … / nose and chin point …`)
+    # 실측상 **방향은 이미 이기고 있고 지는 쪽은 정체성**이다: R3에서 골리앗이 세 시드 모두
+    # 옆얼굴로 돌았고, 떨어진 것은 축 E의 수염·머리카락이었다. 중복 두 구절을 덜어 그 자리에
+    # 부재 서술 둘을 다 싣는다 — 같은 예산 안에서 이기는 쪽을 줄이고 지는 쪽을 늘리는 것이다.
     prompt = (f"{head_style} head of {art} {body}, "
-              f"strict side profile facing {side}, head fully turned {side}, "
-              f"eyes on {target}, nose and chin point {side}.")
+              f"strict side profile facing {side}, eyes on {target}.")
     neg = ", ".join([_drop(NEG, "dark", "heavy shadows"), HEAD_NEG_EXTRA]
                     + [v[1] for v in en.values() if v[1]])
     return prompt, neg

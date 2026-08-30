@@ -152,7 +152,7 @@ def _spec_tag(spec):
     return "" if not spec else "".join(f"{n[0]}{spec[n]}" for n in PEOPLE if n in spec)
 
 
-def tag(cn, bg_ip, fig_cn, ip, ref_band=None, head_cn=None, torso_cn=None):
+def tag(cn, bg_ip, fig_cn, ip, ref_band=None, head_cn=None, torso_cn=None, head_ip=None):
     """인물 단계 산출물의 손잡이 태그. **네 손잡이를 전부 파일명에 싣는다** — 두 개(배경 CN·IP)만
     싣던 초판에서는 인물 크롭 CN을 바꾼 재시도가 앞 결과를 조용히 덮어썼다.
 
@@ -164,7 +164,8 @@ def tag(cn, bg_ip, fig_cn, ip, ref_band=None, head_cn=None, torso_cn=None):
     # 기본은 None이라 끄면 태그가 종전 그대로다(역호환).
     hc = "" if not head_cn else f"-h{_spec_tag(head_cn)}"
     tc = "" if not torso_cn else f"-t{_spec_tag(torso_cn)}"
-    return f"ip{bg_ip}-cn{cn}-fcn{fig_cn}-sip{ip}{rb}{hc}{tc}"
+    hi = "" if not head_ip else f"-hi{_spec_tag(head_ip)}"
+    return f"ip{bg_ip}-cn{cn}-fcn{fig_cn}-sip{ip}{rb}{hc}{tc}{hi}"
 
 
 BAND_FEATHER = 0.12   # 밴드 마스크 깃털 = 상자 짧은 변의 이 분율(하한 MASK_BLUR).
@@ -173,7 +174,8 @@ BAND_FEATHER = 0.12   # 밴드 마스크 깃털 = 상자 짧은 변의 이 분�
 # 상자는 인물마다 크기가 다르므로(다윗 머리 100px · 골리앗 174px) 고정값이 아니라 분율로 판다.
 
 
-def _band_pass(pipe, canvas, cond, masks, refs, P, key, box, who, cn_val, seed, label):
+def _band_pass(pipe, canvas, cond, masks, refs, P, key, box, who, cn_val, seed, label,
+               ip_val=None, ip_base=None):
     """밴드 하나를 다시 그린다 — 머리 단계·몸통 단계가 **같은 코드**를 쓴다.
 
     마스크 = 밴드 상자 ∩ 인물 마스크. 상자는 콘티 저작 원본에서 파생한 것을 받는다
@@ -187,6 +189,12 @@ def _band_pass(pipe, canvas, cond, masks, refs, P, key, box, who, cn_val, seed, 
     gw, gh = gen_size(win)
     pr, ng = P[key][who]["prompt"], P[key][who]["negative"]
     n, lim = _tok(pipe, pr, f"{who} {label}")
+    # 단계 전용 IP 강도. **왜 필요한가**(2026-08-31): 머리 단계의 레퍼런스는 표본 상단 밴드,
+    # 곧 `sample_prompt`가 `"facing forward"`로 명시 저작한 **정면 얼굴 이미지**다. 다윗은 그것을
+    # 이기고 돌았지만 골리앗의 회전대칭 투구는 훨씬 강한 앵커라 못 이겼다. 이 단계만 낮춘다 —
+    # 전신 단계의 정체성 전이(축 B)는 건드리지 않는다. 끝나면 반드시 되돌린다.
+    if ip_val is not None:
+        pipe.set_ip_adapter_scale(ip_val)
     ts = time.time()
     res = pipe(prompt=pr, negative_prompt=ng,
                image=canvas.crop(win).resize((gw, gh), Image.LANCZOS),
@@ -197,9 +205,12 @@ def _band_pass(pipe, canvas, cond, masks, refs, P, key, box, who, cn_val, seed, 
                ip_adapter_image=refs[who],
                generator=torch.Generator("mps").manual_seed(seed)).images[0]
     w, h = win[2] - win[0], win[3] - win[1]
+    if ip_val is not None:
+        pipe.set_ip_adapter_scale(ip_base)
     canvas.paste(res.resize((w, h), Image.LANCZOS), (win[0], win[1]), m.crop(win))
     print(f"  [{label} {who} s{seed}] {time.time() - ts:.0f}s  프롬프트 {n}/{lim}토큰  "
-          f"상자 {box} 깃털 {feather} → 창 {w}x{h} → {gw}x{gh}  CN {cn_val}", flush=True)
+          f"상자 {box} 깃털 {feather} → 창 {w}x{h} → {gw}x{gh}  CN {cn_val}"
+          f"{'' if ip_val is None else f'  IP {ip_val}'}", flush=True)
     return canvas
 
 
@@ -288,7 +299,8 @@ def run_bg(cns, seeds, ips):
 
 
 # --- 인물 단계 ---------------------------------------------------------------
-def run_figures(cn, seeds, ip, bg_ip, fig_cn, ref_band=None, head_cn=None, torso_cn=None):
+def run_figures(cn, seeds, ip, bg_ip, fig_cn, ref_band=None, head_cn=None, torso_cn=None,
+                head_ip=None):
     """인물 단계. `fig_cn`은 **인물 크롭 안의** ControlNet 강도다 — 배경의 `cn`과 다른 축이다.
 
     기본값을 `params.SCENE_CN`(0.8)에 두지 않고 호출자가 정하게 한 이유: `gen_combined.py`는
@@ -341,7 +353,7 @@ def run_figures(cn, seeds, ip, bg_ip, fig_cn, ref_band=None, head_cn=None, torso
             sys.exit(f"배경이 없다: {src} — 먼저 `gen_final.py bg`를 돌려라")
         canvas = Image.open(src).convert("RGB")
         for step, name in enumerate(PEOPLE, start=1):
-            out = os.path.join(OUT, f"{step}-{name}-{tag(cn, bg_ip, fig_cn, ip, ref_band, head_cn, torso_cn)}-s{seed}.png")
+            out = os.path.join(OUT, f"{step}-{name}-{tag(cn, bg_ip, fig_cn, ip, ref_band, head_cn, torso_cn, head_ip)}-s{seed}.png")
             if os.path.exists(out):
                 print(f"  [스킵] {os.path.basename(out)}")
                 canvas = Image.open(out).convert("RGB")
@@ -381,20 +393,21 @@ def run_figures(cn, seeds, ip, bg_ip, fig_cn, ref_band=None, head_cn=None, torso
         # 앗아가므로**(§9-33) 몸통도 따로 낮게 다시 그려야 갑주가 산다. 단계마다 CN이 따로이고,
         # 단계마다 **77토큰이 새로 생긴다** — 전신 프롬프트가 74/77이라 방향을 두 단어밖에 못
         # 싣던 제약이 여기서 풀린다.
-        for key, spec, boxfn, label in (
-                ("head", head_cn, lambda w: _judge().conti_head_box(w), "머리"),
-                ("torso", torso_cn, lambda w: _judge().conti_torso_box(w), "몸통")):
+        for key, spec, boxfn, label, ipspec in (
+                ("head", head_cn, lambda w: _judge().conti_head_box(w), "머리", head_ip),
+                ("torso", torso_cn, lambda w: _judge().conti_torso_box(w), "몸통", None)):
             if not spec:
                 continue
             for who in PEOPLE:
                 if who not in spec:
                     continue
                 canvas = _band_pass(pipe, canvas, cond, masks, refs, P, key, boxfn(who),
-                                    who, spec[who], seed, label)
+                                    who, spec[who], seed, label,
+                                    None if not ipspec else ipspec.get(who), ip)
                 canvas.save(os.path.join(
-                    OUT, f"{key[0]}-{who}-{tag(cn, bg_ip, fig_cn, ip, ref_band, head_cn, torso_cn)}"
+                    OUT, f"{key[0]}-{who}-{tag(cn, bg_ip, fig_cn, ip, ref_band, head_cn, torso_cn, head_ip)}"
                          f"-s{seed}.png"))
-        final = os.path.join(OUT, f"3-final-{tag(cn, bg_ip, fig_cn, ip, ref_band, head_cn, torso_cn)}-s{seed}.png")
+        final = os.path.join(OUT, f"3-final-{tag(cn, bg_ip, fig_cn, ip, ref_band, head_cn, torso_cn, head_ip)}-s{seed}.png")
         canvas.save(final)
         print(f"  최종: {os.path.basename(final)}")
     if times:
@@ -425,6 +438,10 @@ def main():
                          "생략하면 머리 단계를 돌리지 않는다(태그도 종전 그대로, 역호환). "
                          "팔은 높은 fig_cn이, 머리 회전은 낮은 CN이 필요해 둘을 분리한 것이다(§9-32). "
                          "`0.0`은 두 인물 다, `david=0.0`은 다윗만, `david=0.0,goliath=0.5`는 인물별")
+    ap.add_argument("--head-ip", default=None,
+                    help="머리 단계 전용 표본 IP 강도(형식은 --head-cn과 같다). 생략하면 전신과 "
+                         "같은 --ip를 쓴다. 머리 단계 레퍼런스는 표본 상단 밴드 = **정면 얼굴**이라 "
+                         "회전을 막는다 — 그 앵커만 이 단계에서 낮춘다")
     ap.add_argument("--torso-cn", default=None,
                     help="몸통 단계를 켠다 — 몸통 밴드만 이 CN으로 다시 그려 갑주·의상 질감을 "
                          "되찾는다(CN 0.8이 내부를 비운다, §9-33). 형식은 --head-cn과 같다")
@@ -438,7 +455,8 @@ def main():
     return run_figures(float(a.cn), seeds, params.IP_SCALE if a.ip is None else a.ip,
                        float(a.bg_ip),
                        params.PERSON_CN if a.fig_cn is None else float(a.fig_cn),
-                       a.ref_band, _stage_spec(a.head_cn), _stage_spec(a.torso_cn))
+                       a.ref_band, _stage_spec(a.head_cn), _stage_spec(a.torso_cn),
+                       _stage_spec(a.head_ip))
 
 
 if __name__ == "__main__":
