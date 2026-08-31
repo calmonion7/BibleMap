@@ -36,6 +36,7 @@ import params  # noqa: E402
 W, H = params.SCENE_SIZE
 DARK_CUT = 0.55      # judge_style와 같은 값 — 화풍(잉크) 축은 산식을 바꾸지 않는다
 SKY_MARGIN = 0.05    # 하늘 중앙값에서 이만큼 어두우면 「사물」
+SEAM_STEP = 0.02     # 이음매로 셀 한 픽셀 밝기 단차
 
 # 구역 상자 — gen_scripture_scene.REGIONS와 **같은 값이어야 한다**. 판정자가 생성자를 import하면
 # torch·diffusers가 딸려 와 GPU 없이 못 돌므로, 좌표만 여기 복제하고 --check로 대조한다.
@@ -144,14 +145,27 @@ def c2_army(lum, key, terrain_top=None):
             "runlen95": _runs95(sub) / H, "on_ridge": on_ridge}
 
 
-def c3_seam(lum):
-    """C3 — ① 전폭 얇은 가로선 행수 ② 구역 상자 세로 변의 밝기 단차 배율."""
+def c3_seam(lum, terrain_top=None):
+    """C3 — ① **하늘을 가로지르는** 얇은 가로선 행수 ② 구역 상자 세로 변의 밝기 단차.
+
+    **하늘로 한정해야 한다**(2026-09-01 실측): 지면의 지층선·능선도 화면 폭 절반을 넘게 이어지는
+    얇은 가로선이라, 한정하지 않으면 **정상 묘사를 결함으로 센다**(t323b에서 남은 6행 중 넷이
+    지층선이었다). 하늘에 가로지르는 자 같은 선은 어느 화풍에서도 결함이다."""
     d = 3
     body = lum[d:-d]
     thin = (body < lum[: -2 * d] - 0.03) & (body < lum[2 * d:] - 0.03)
-    line_rows = int((thin.mean(axis=1) > 0.5).sum())
+    if terrain_top is None:
+        terrain_top = skyline(lum)
+    yy = np.arange(d, H - d)[:, None]
+    sky = yy < terrain_top[None, :]          # 그 열에서 지형보다 위인가
+    line_rows = int(((thin & sky).mean(axis=1) > 0.40).sum())
 
-    grad = np.abs(np.diff(lum, axis=1))            # (H, W-1)
+    # **이음매는 크기가 아니라 「모든 행에 걸쳐 있는가」로 잰다**(2026-09-01 교정).
+    # 처음엔 변의 밝기 단차 절대량을 썼는데, 그 임계(0.010)를 하늘만 있던 표본 65열에서 뽑아
+    # **보통 열의 95백분위(0.0101)보다도 낮았다** — 지형이 들어오자 정상 묘사를 이음매로 셌다.
+    # 붙임 이음매는 상자 높이 **전체**를 곧게 지나고 그려진 선은 일부 행만 지난다. 그 차이를 센다:
+    # 실측 v16 0.803 · v17 0.424 · v18 0.460(이음매 있음) ↔ 붙임 없는 지형 0.164.
+    grad = np.abs(np.diff(lum, axis=1))
     worst, worst_at = 0.0, None
     for key in ("goliath", "david", "shieldman", "crest_left", "crest_right",
                 "hill_left", "hill_right"):
@@ -159,22 +173,14 @@ def c3_seam(lum):
         for xe in (bx0, bx1 - 1):
             if not (32 < xe < W - 33):
                 continue
-            # **인물 선이 없는 행만** 본다. 상자가 인물에 딱 붙어 있어 그의 윤곽선이 변 근처를
-            # 지나면 정상적인 선도 단차로 잡힌다 — 그러면 닫을 수 없는 조건이 된다. 배경 행에서
-            # 재면 「배경에 사각 잔상이 있는가」만 남는다.
-            bg = lum[by0:by1, max(0, xe - 20):xe + 21].min(axis=1) > DARK_CUT
-            if bg.sum() < 20:
-                continue
-            g = grad[by0:by1, :][bg]
-            colmean = g.mean(axis=0)
-            # 상자 변 **±20px 중 가장 센 열**을 본다 — 되붙임 마스크에 깃털(FEATHER)이 걸려
-            # 실제 단차가 변에서 몇 px 안쪽에 생긴다(v16의 눈에 띄는 사각 잔상이 변 정각에서는
-            # 1.68로 안 잡혔다, 2026-09-01 실측).
-            # **절대량으로 잰다.** 이웃 대비 배율을 쓰면 배경 행의 기준선이 0에 가까워 배율이
-            # 폭발한다(같은 v16이 1.68 → 38.6). 눈에 보이는 단차는 밝기 단위로 말할 수 있다.
-            here = float(colmean[max(0, xe - 20):xe + 21].max())
-            if here > worst:
-                worst, worst_at = here, f"{key}@x={xe}"
+            for x in range(xe - 20, xe + 21):
+                # 인물 선이 없는 행만 — 상자가 인물에 붙어 있으면 그의 윤곽이 변을 지난다.
+                bg = lum[by0:by1, max(0, x - 20):x + 21].min(axis=1) > DARK_CUT
+                if bg.sum() < 20:
+                    continue
+                f = float((grad[by0:by1, :][bg][:, x] > SEAM_STEP).mean())
+                if f > worst:
+                    worst, worst_at = f, f"{key}@x={x}"
     return {"line_rows": line_rows, "vseam": worst, "vseam_at": worst_at}
 
 
@@ -226,7 +232,7 @@ def measure(final_path, terrain_path=None):
         "c1_valley": c1_valley(terr),
         "c2_army_left": c2_army(lum, "crest_left", top),
         "c2_army_right": c2_army(lum, "crest_right", top),
-        "c3_seam": c3_seam(lum),
+        "c3_seam": c3_seam(lum, top),
         "c4_style": c4_style(lum),
         "c5_figures": c5_figures(lum),
     }
@@ -241,7 +247,7 @@ THRESHOLDS = {
     "c2_on_ridge_min": 0.50,    # 잉크의 절반 이상이 하늘선 ±8% 안 = 「산에 섰다」(17:2-3)
     "c2_runlen95_max": 0.06,    # 세로 런 95p ≤ 높이의 6%(38px) — 「큰 병사」 배제 (v17 우 0.092)
     "c3_line_rows_max": 1,      # 전폭 얇은 가로선 행 ≤ 1  (다섯 판 모두 8~10)
-    "c3_vseam_max": 0.010,      # 상자 변 배경 단차(밝기) — 보통 열은 0.002/90p 0.0045, 변은 0.069~0.101
+    "c3_vseam_max": 0.25,       # 상자 변을 곧게 지나는 행의 비율 (v16 .803 · v17 .424 ↔ 붙임 없음 .164)
     "c4_ink_min": 0.055,        # 인물이 지워지지 않을 것 (v17 다윗 0.0727 · v15 0.0434 = 실패)
     "c4_ratio_max": 2.40,       # 두 인물 잉크 비 (v17 2.14 · v15 3.34 = 실패)
     "c5_scale_min": 1.60,       # 크기 대비 17:4 (v17 2.02 · v18 1.88)

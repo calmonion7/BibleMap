@@ -38,7 +38,18 @@ import derive_prompts as dp  # noqa: E402
 
 OUT = os.path.join(params.OUT_ROOT, "scripture-scene")
 W, H = params.SCENE_SIZE
-STRENGTH = 0.99          # 새 내용을 만드는 단계 — 구역 안을 사실상 새로 그린다
+STRENGTH = 0.99          # **S1 전용** — 빈 종이색 캔버스에서 시작하므로 통째로 새로 그린다
+BLEND_STRENGTH = 0.85    # **이미 그려진 지형 위에 큰 상자를 얹는 단계**(BLEND_STAGES).
+                         # 0.99는 상자 안 배경까지 새로 칠해 변화 마스크가 상자 전체가 되고,
+                         # 그 테두리가 직사각 잔상으로 붙는다. 낮추면 모델이 아래를 보고 이어 그린다.
+                         # 실측 이음매(2026-09-01): 언덕오른쪽 .989→.204 · 거인 .542→.232 ·
+                         # 능선오른쪽 .529→.106. ⚠ 작은 상자(방패든 자·다윗)까지 낮추면 **인물이
+                         # 지워진다**(다윗 잉크 .093→.035) — 그래서 아래 집합에만 적용한다.
+BLEND_STAGES = {"S1b", "S1c", "S2a", "S2b", "S3"}
+REGION_STRENGTH = 0.99   # 그 밖의 구역 단계 — 0.99는 **상자 안 배경까지** 새로 칠해서, 변화 마스크가
+                         # 상자 전체가 되고 형태학적 닫기가 그것을 메워 **직사각 잔상**으로 붙는다
+                         # (2026-09-01 실측: 언덕 변 0.989 · 골리앗 변 0.459). 아래를 남겨 두면
+                         # 모델이 주변을 보고 이어 그리므로 변화가 인물에만 남는다.
 REFINE_STRENGTH = 0.72   # v12까지 0.55로는 고개를 못 돌렸다(다윗이 숙인 채였다).
                          # **이미 있는 것을 다듬는 단계**(얼굴). 1에 가까우면 모델이 그 자리에
                          # 새 그림을 그려 얼굴이 둘이 된다(2026-08-31 v4 실측: 다윗 얼굴이 별도의
@@ -190,8 +201,17 @@ REFINE_STAGES = {"S7"}
 # ⚠ v18 실측 — 전체 창을 주자 S2가 **아무것도 안 그렸다**(구역 창에서는 큰 병사가 나왔다).
 # 「멀리 작은 군중」은 이 두 손잡이 사이에 답이 없다. **미해결로 남긴다** — 비워 두면 구역 창이다.
 CONTEXT_FULL = set()   # 다듬는 단계 — REFINE_STRENGTH를 쓴다
-PAD = 0.10        # 구역 둘레 맥락 여백(구역 짧은 변의 분율) — 모델이 이어붙일 주변을 봐야 한다
+PAD = 0.10        # 구역 둘레 맥락 여백(구역 짧은 변의 분율) — 모델이 이어붙일 주변을 봐야 한다.
+                  # ⚠ 0.40으로 올려 봤다(2026-09-01): 이음매가 0.989 → 0.375로 줄었지만 **판당
+                  # 6분 → 11분**이 됐고, 아래 가중치 붙임이 같은 결함을 원가 없이 없앤다.
 TARGET = 1024     # 생성 해상도(긴 변) — gen_final.TARGET과 같은 값·같은 이유
+# **S1 전용 생성 크기 — 캔버스보다 덜 납작하게 그려서 가운데 띠만 잘라 쓴다.**
+# 2026-09-01 실측(같은 프롬프트·같은 시드 11, 크기만 바꿈): 1024×536(1.91:1)에서 하늘을
+# 가로지르는 자 같은 선이 **5행**, 1024×768(1.33:1)과 1024×1024에서 **0행**. 즉 이 선은
+# 프롬프트가 아니라 **극단적 종횡비의 생성 아티팩트**다(낱말·부정어로 다섯 판을 쓴 자리다).
+# 캔버스가 1216×640 = 1.9:1이므로 S1만은 덜 납작하게 그리고 캔버스 종횡비로 **잘라** 맞춘다
+# — 늘려 맞추면 지형이 눌린다.
+S1_GEN = (1024, 768)
 
 
 def _window(b):
@@ -212,12 +232,15 @@ def _change_mask(new_im, old_im):
 
     **왜 필요한가**(2026-08-31 v4·v5 실측):
     ① v4 — 구역 마스크가 사각형이라 창 안의 **배경까지** 새로 칠해 붙었고, 단계마다 그 사각형이
-       드러나 그림이 **콜라주**가 됐다(콘티 파이프라인은 마스크가 인물 볼록껍질이라 이 문제가 없었다).
+       드러나 그림이 **콜라주**가 됐다.
     ② v5 — 그래서 「종이색이 아닌 화소」를 실루엣으로 썼더니 **옅게 그려진 골리앗이 통째로
        버려졌다.** 절대 밝기 기준은 옅은 인물을 못 잡는다.
-    그래서 기준을 **변화량**으로 바꾼다. 이 단계가 그린 곳은 앞 단계와 다르고, 손대지 않은
-    배경은 (같은 프롬프트 맥락에서 다시 그려도) 거의 같다 — 밝기와 무관하게 자기 보정된다.
-    임계는 `params.THRESHOLD`를 그대로 쓴다(파이프라인 전체가 쓰는 잉크 판정 임계)."""
+    그래서 기준을 **변화량**으로 바꾼다 — 밝기와 무관하게 자기 보정된다.
+
+    ⚠ **가중치(0~255 램프)로 바꿔 봤다가 되돌렸다**(2026-09-01): 큰 이음매는 줄었지만
+    (언덕 .989→.691 · 거인 .542→.466) 인물이 부분 알파로 붙어 **다윗 잉크가 .093→.045로
+    반토막**났고 작은 상자의 이음매는 오히려 늘었다. 이음매는 붙임 방식이 아니라 **단계별
+    strength**로 잡는 것이 실측의 답이다(BLEND_STAGES 주석)."""
     a = np.asarray(new_im.convert("L")).astype(int)
     b = np.asarray(old_im.convert("L")).astype(int)
     return Image.fromarray(((np.abs(a - b) > params.THRESHOLD) * 255).astype(np.uint8), "L")
@@ -304,7 +327,7 @@ def main():
                 win = _window(drawn[src])
             else:
                 win = _window(b)
-            gw, gh = _gen_size(win)
+            gw, gh = S1_GEN if name == "S1" else _gen_size(win)
             ts = time.time()
             refine = name in REFINE_STAGES
             use_ip = name == "S3"
@@ -315,21 +338,27 @@ def main():
                        image=canvas.crop(win).resize((gw, gh), Image.LANCZOS),
                        mask_image=m.crop(win).resize((gw, gh), Image.LANCZOS),
                        width=gw, height=gh,
-                       strength=REFINE_STRENGTH if refine else STRENGTH,
+                       strength=(REFINE_STRENGTH if refine else
+                                 STRENGTH if name == "S1" else
+                                 BLEND_STRENGTH if name in BLEND_STAGES else REGION_STRENGTH),
                        num_inference_steps=params.STEPS,
                        guidance_scale=params.GUIDANCE,
                        ip_adapter_image=ARMOUR_REF if use_ip else Image.new("RGB", (8, 8)),
                        generator=torch.Generator("mps").manual_seed(seed)).images[0]
             ww, wh = win[2] - win[0], win[3] - win[1]
-            back = res.resize((ww, wh), Image.LANCZOS)
             if name == "S1":
                 # 지형은 화면 전체다. **마스크를 쓰지 않고 통째로 갈아끼운다** — 부분 마스크로
                 # 전체를 칠하면 캔버스 경계에서 가로 줄무늬 글리치가 남는다(v3~v8 실측).
-                canvas = back
-                print(f"  [{name} {region} 17:1] {time.time() - ts:.0f}s  {n}/{lim}토큰  전체 교체",
+                # 캔버스 종횡비의 **가운데 띠**만 잘라 쓴다(S1_GEN 주석 참조).
+                ch = int(round(gw * H / W))
+                oy = (gh - ch) // 2
+                canvas = res.crop((0, oy, gw, oy + ch)).resize((W, H), Image.LANCZOS)
+                print(f"  [{name} {region} 17:1] {time.time() - ts:.0f}s  {n}/{lim}토큰  "
+                      f"{gw}x{gh} → 가운데 {ch}행 잘라 전체 교체",
                       flush=True)
                 continue
             else:
+                back = res.resize((ww, wh), Image.LANCZOS)
                 # **실루엣으로 되붙인다** — 사각 상자를 붙이면 그 변이 드러나 콜라주가 된다.
                 sil = _change_mask(back, canvas.crop(win))
                 # **형태학적 닫기(팽창 → 침식)로 내부 구멍을 메운다.** v6 실측: 옅게 그려진
