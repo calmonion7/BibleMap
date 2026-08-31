@@ -290,7 +290,12 @@ def head_prompt(name):
     absent = [HEAD_ABSENCE[k] for k in ("beard", "hair") if not en.get(k, ("",))[0]
               and k in axes and k in HEAD_ABSENCE]
     if absent:
-        body = ", ".join([body] + absent)
+        # **부재를 앞으로 당긴다** (2026-08-31 마지막 조정). 이 파일이 이미 적어 둔 규칙 —
+        # 「앞일수록 CLIP에 세게 걸린다」(portrait_prompt·figure_prompt의 조립 순서 주석) — 를
+        # 그대로 쓴다. 뒤에 붙였을 때 수염 마진이 −0.003 ~ −0.007로 **간발로 미달**이었다.
+        # 토큰 비용이 0인 조정이라 먼저 시도할 값어치가 있다.
+        parts2 = body.split(", ")
+        body = ", ".join(parts2[:1] + absent + parts2[1:])
     # **방향 서술을 줄이고 그 토큰을 정체성에 넘긴다** (2026-08-31 R4). 초판은 방향을 네 구절로
     # 중복 서술했는데(`strict … / head fully turned … / eyes on … / nose and chin point …`)
     # 실측상 **방향은 이미 이기고 있고 지는 쪽은 정체성**이다: R3에서 골리앗이 세 시드 모두

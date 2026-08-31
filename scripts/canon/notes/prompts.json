@@ -38,11 +38,11 @@
   },
   "head": {
     "david": {
-      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. head of a boy of fifteen, lean-faced shepherd with calm steady eyes, curly hair, bare head, clean-shaven, strict side profile facing right, eyes on the giant.",
+      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. head of a boy of fifteen, clean-shaven, lean-faced shepherd with calm steady eyes, curly hair, bare head, strict side profile facing right, eyes on the giant.",
       "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, frame, border, stick figure, crude drawing, facing forward, frontal face, looking at viewer, symmetrical face, beard, moustache, stubble, baby, toddler, infant, chibi, doll, woman, girl, female"
     },
     "goliath": {
-      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. head of a grown man of about forty, fierce giant warrior with heavy brow and hard jaw, horned bronze helmet with cheek guards, clean-shaven, no hair showing, strict side profile facing left, eyes on the shepherd boy.",
+      "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. head of a grown man of about forty, clean-shaven, no hair showing, fierce giant warrior with heavy brow and hard jaw, horned bronze helmet with cheek guards, strict side profile facing left, eyes on the shepherd boy.",
       "negative": "text, letters, words, watermark, photorealistic, 3d render, high saturation, cluttered background, frame, border, stick figure, crude drawing, facing forward, frontal face, looking at viewer, symmetrical face, visible hair, long hair, beard, moustache, stubble, child, youth, woman, girl, female"
     }
   },
