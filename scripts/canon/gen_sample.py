@@ -72,13 +72,22 @@ def main():
     ap.add_argument("--ref", default=None,
                     help="IP 레퍼런스 경로를 직접 준다(자르지 않고 그대로 넘긴다)")
     ap.add_argument("--label", default=None)
+    ap.add_argument("--portrait", action="store_true",
+                    help="전신이 아니라 **두상 초상**으로 뽑는다 — 머리 단계 레퍼런스용. 몸·의상 "
+                         "조각이 빠져 방향·부재 서술에 토큰을 통째로 쓸 수 있다")
+    ap.add_argument("--profile", action="store_true",
+                    help="옆얼굴 판본으로 뽑는다 — 머리 단계 전용 레퍼런스(sample_prompt 주석 참조). "
+                         "정면 판본이 회전을 막던 자리를 대신한다")
     a = ap.parse_args()
 
     derive_prompts.main()
-    prompt, neg = derive_prompts.sample_prompt(a.name)
+    if a.portrait:
+        prompt, neg, _ = derive_prompts.portrait_prompt(a.name, profile=a.profile)
+    else:
+        prompt, neg = derive_prompts.sample_prompt(a.name, profile=a.profile)
 
     os.makedirs(OUT, exist_ok=True)
-    label = a.label or a.name
+    label = a.label or f"{a.name}{'-portrait' if a.portrait else ''}{'-profile' if a.profile else ''}"
     tag = 'none' if (a.no_ref and not a.ref) else a.ip
     out = os.path.join(OUT, f"{label}-ip{tag}-s{a.seed}.png")
 

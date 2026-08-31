@@ -1,0 +1,442 @@
+{
+ "cn": 0.6,
+ "bg_ip": 0.0,
+ "fig_cn": 0.8,
+ "sample_ip": 0.7,
+ "thresholds_from": "notes/s1-baseline.json",
+ "seeds": {
+  "11": {
+   "final": "3-final-ip0.0-cn0.6-fcn0.8-sip0.7-rb0.3-hd0.0g0.0-tg0.3-hid0.7g0.7-hrgprofile-s11.png",
+   "axis_a": {
+    "ink": 0.18619320518092106,
+    "val_p05": 0.3137255012989044,
+    "pass": true,
+    "ink_over_max_warn": false
+   },
+   "axis_b": {
+    "threshold": 0.04357215762138367,
+    "by_person": {
+     "david": {
+      "score": 0.42111942172050476,
+      "d_self": 0.33069756627082825,
+      "d_cross": -0.09042185544967651,
+      "margin": 0.3775472640991211,
+      "pass": true,
+      "base": "bg-ip0.0-cn0.6-s11.png",
+      "cur": "1-david-ip0.0-cn0.6-fcn0.8-sip0.7-rb0.3-hd0.0g0.0-tg0.3-hid0.7g0.7-hrgprofile-s11.png"
+     },
+     "goliath": {
+      "score": 0.3592167794704437,
+      "d_self": 0.3223985731601715,
+      "d_cross": -0.03681820631027222,
+      "margin": 0.31564462184906006,
+      "pass": true,
+      "base": "1-david-ip0.0-cn0.6-fcn0.8-sip0.7-rb0.3-hd0.0g0.0-tg0.3-hid0.7g0.7-hrgprofile-s11.png",
+      "cur": "2-goliath-ip0.0-cn0.6-fcn0.8-sip0.7-rb0.3-hd0.0g0.0-tg0.3-hid0.7g0.7-hrgprofile-s11.png"
+     }
+    },
+    "domain": "머리 밴드 — 표본은 _band_fullbody(상단 0.30), 장면은 _band_scene(콘티 머리 원)",
+    "pass": true
+   },
+   "axis_c": {
+    "by_key": {
+     "combined": {
+      "corr": 0.18518921793649912,
+      "threshold": 0.12845705350903458,
+      "margin": 0.05673216442746454,
+      "pass": true
+     },
+     "david": {
+      "corr": 0.36500464632970697,
+      "threshold": 0.14954497243075657,
+      "margin": 0.2154596738989504,
+      "pass": true
+     },
+     "goliath": {
+      "corr": 0.10258050745965727,
+      "threshold": 0.12014422862388223,
+      "margin": -0.017563721164224957,
+      "pass": false
+     }
+    },
+    "pass": false
+   },
+   "axis_d": {
+    "metric": "mask_ink_edge_correlation",
+    "corr": 0.3863089520780079,
+    "threshold": 0.18931964901129394,
+    "margin": 0.19698930306671397,
+    "pass": true
+   },
+   "axis_e": {
+    "gated_axes": [
+     "hair",
+     "beard",
+     "headwear",
+     "age"
+    ],
+    "head_boxes": {
+     "david": [
+      290,
+      251,
+      390,
+      351
+     ],
+     "goliath": [
+      813,
+      28,
+      987,
+      202
+     ]
+    },
+    "by_person": {
+     "david": {
+      "margins": {
+       "hair": 0.09529757499694824,
+       "beard": 0.08247862756252289,
+       "headwear": 0.07022953033447266,
+       "age": 0.07375219464302063,
+       "sex": 0.022183731198310852
+      },
+      "failed_axes": [],
+      "pass": true
+     },
+     "goliath": {
+      "margins": {
+       "hair": 0.020714029669761658,
+       "beard": -0.039827361702919006,
+       "headwear": 0.06967490911483765,
+       "age": 0.08708910644054413,
+       "sex": 0.033116087317466736
+      },
+      "failed_axes": [
+       "beard"
+      ],
+      "pass": false
+     }
+    },
+    "pass": false
+   },
+   "axis_f": {
+    "gated_people": [
+     "goliath"
+    ],
+    "by_person": {
+     "goliath": {
+      "margin": 0.018408507108688354,
+      "pass": true
+     }
+    },
+    "pass": true
+   },
+   "axis_g": {
+    "score": 0.56,
+    "threshold": 0.5,
+    "margin": 0.06000000000000005,
+    "domain_px": 1835,
+    "pass": true
+   },
+   "gated_axes": [
+    "axis_a",
+    "axis_b",
+    "axis_c",
+    "axis_d",
+    "axis_e",
+    "axis_f",
+    "axis_g"
+   ],
+   "all_gated_pass": false,
+   "all_axes_pass": false
+  },
+  "42": {
+   "final": "3-final-ip0.0-cn0.6-fcn0.8-sip0.7-rb0.3-hd0.0g0.0-tg0.3-hid0.7g0.7-hrgprofile-s42.png",
+   "axis_a": {
+    "ink": 0.1612060546875,
+    "val_p05": 0.32156863808631897,
+    "pass": true,
+    "ink_over_max_warn": false
+   },
+   "axis_b": {
+    "threshold": 0.04357215762138367,
+    "by_person": {
+     "david": {
+      "score": 0.36432138085365295,
+      "d_self": 0.33584415912628174,
+      "d_cross": -0.028477221727371216,
+      "margin": 0.3207492232322693,
+      "pass": true,
+      "base": "bg-ip0.0-cn0.6-s42.png",
+      "cur": "1-david-ip0.0-cn0.6-fcn0.8-sip0.7-rb0.3-hd0.0g0.0-tg0.3-hid0.7g0.7-hrgprofile-s42.png"
+     },
+     "goliath": {
+      "score": 0.29624366760253906,
+      "d_self": 0.28802579641342163,
+      "d_cross": -0.008217871189117432,
+      "margin": 0.2526715099811554,
+      "pass": true,
+      "base": "1-david-ip0.0-cn0.6-fcn0.8-sip0.7-rb0.3-hd0.0g0.0-tg0.3-hid0.7g0.7-hrgprofile-s42.png",
+      "cur": "2-goliath-ip0.0-cn0.6-fcn0.8-sip0.7-rb0.3-hd0.0g0.0-tg0.3-hid0.7g0.7-hrgprofile-s42.png"
+     }
+    },
+    "domain": "머리 밴드 — 표본은 _band_fullbody(상단 0.30), 장면은 _band_scene(콘티 머리 원)",
+    "pass": true
+   },
+   "axis_c": {
+    "by_key": {
+     "combined": {
+      "corr": 0.22366577284758268,
+      "threshold": 0.12845705350903458,
+      "margin": 0.0952087193385481,
+      "pass": true
+     },
+     "david": {
+      "corr": 0.38819019395940696,
+      "threshold": 0.14954497243075657,
+      "margin": 0.2386452215286504,
+      "pass": true
+     },
+     "goliath": {
+      "corr": 0.15339550843999378,
+      "threshold": 0.12014422862388223,
+      "margin": 0.03325127981611155,
+      "pass": true
+     }
+    },
+    "pass": true
+   },
+   "axis_d": {
+    "metric": "mask_ink_edge_correlation",
+    "corr": 0.4038597430518338,
+    "threshold": 0.18931964901129394,
+    "margin": 0.21454009404053986,
+    "pass": true
+   },
+   "axis_e": {
+    "gated_axes": [
+     "hair",
+     "beard",
+     "headwear",
+     "age"
+    ],
+    "head_boxes": {
+     "david": [
+      290,
+      251,
+      390,
+      351
+     ],
+     "goliath": [
+      813,
+      28,
+      987,
+      202
+     ]
+    },
+    "by_person": {
+     "david": {
+      "margins": {
+       "hair": 0.06496831774711609,
+       "beard": 0.054469406604766846,
+       "headwear": 0.08033975958824158,
+       "age": 0.06951308250427246,
+       "sex": 0.02296537160873413
+      },
+      "failed_axes": [],
+      "pass": true
+     },
+     "goliath": {
+      "margins": {
+       "hair": 0.022127628326416016,
+       "beard": -0.047851309180259705,
+       "headwear": 0.09893664717674255,
+       "age": 0.08338211476802826,
+       "sex": 0.05102042853832245
+      },
+      "failed_axes": [
+       "beard"
+      ],
+      "pass": false
+     }
+    },
+    "pass": false
+   },
+   "axis_f": {
+    "gated_people": [
+     "goliath"
+    ],
+    "by_person": {
+     "goliath": {
+      "margin": 0.016671687364578247,
+      "pass": true
+     }
+    },
+    "pass": true
+   },
+   "axis_g": {
+    "score": 0.6,
+    "threshold": 0.5,
+    "margin": 0.09999999999999998,
+    "domain_px": 1835,
+    "pass": true
+   },
+   "gated_axes": [
+    "axis_a",
+    "axis_b",
+    "axis_c",
+    "axis_d",
+    "axis_e",
+    "axis_f",
+    "axis_g"
+   ],
+   "all_gated_pass": false,
+   "all_axes_pass": false
+  },
+  "7": {
+   "final": "3-final-ip0.0-cn0.6-fcn0.8-sip0.7-rb0.3-hd0.0g0.0-tg0.3-hid0.7g0.7-hrgprofile-s7.png",
+   "axis_a": {
+    "ink": 0.18196443256578948,
+    "val_p05": 0.2705882489681244,
+    "pass": true,
+    "ink_over_max_warn": false
+   },
+   "axis_b": {
+    "threshold": 0.04357215762138367,
+    "by_person": {
+     "david": {
+      "score": 0.357503205537796,
+      "d_self": 0.3123435378074646,
+      "d_cross": -0.04515966773033142,
+      "margin": 0.31393104791641235,
+      "pass": true,
+      "base": "bg-ip0.0-cn0.6-s7.png",
+      "cur": "1-david-ip0.0-cn0.6-fcn0.8-sip0.7-rb0.3-hd0.0g0.0-tg0.3-hid0.7g0.7-hrgprofile-s7.png"
+     },
+     "goliath": {
+      "score": 0.4707799553871155,
+      "d_self": 0.4067547917366028,
+      "d_cross": -0.0640251636505127,
+      "margin": 0.4272077977657318,
+      "pass": true,
+      "base": "1-david-ip0.0-cn0.6-fcn0.8-sip0.7-rb0.3-hd0.0g0.0-tg0.3-hid0.7g0.7-hrgprofile-s7.png",
+      "cur": "2-goliath-ip0.0-cn0.6-fcn0.8-sip0.7-rb0.3-hd0.0g0.0-tg0.3-hid0.7g0.7-hrgprofile-s7.png"
+     }
+    },
+    "domain": "머리 밴드 — 표본은 _band_fullbody(상단 0.30), 장면은 _band_scene(콘티 머리 원)",
+    "pass": true
+   },
+   "axis_c": {
+    "by_key": {
+     "combined": {
+      "corr": 0.22504585628944934,
+      "threshold": 0.12845705350903458,
+      "margin": 0.09658880278041476,
+      "pass": true
+     },
+     "david": {
+      "corr": 0.3053344124042765,
+      "threshold": 0.14954497243075657,
+      "margin": 0.15578943997351993,
+      "pass": true
+     },
+     "goliath": {
+      "corr": 0.19708246584820435,
+      "threshold": 0.12014422862388223,
+      "margin": 0.07693823722432212,
+      "pass": true
+     }
+    },
+    "pass": true
+   },
+   "axis_d": {
+    "metric": "mask_ink_edge_correlation",
+    "corr": 0.3222288128164147,
+    "threshold": 0.18931964901129394,
+    "margin": 0.13290916380512074,
+    "pass": true
+   },
+   "axis_e": {
+    "gated_axes": [
+     "hair",
+     "beard",
+     "headwear",
+     "age"
+    ],
+    "head_boxes": {
+     "david": [
+      290,
+      251,
+      390,
+      351
+     ],
+     "goliath": [
+      813,
+      28,
+      987,
+      202
+     ]
+    },
+    "by_person": {
+     "david": {
+      "margins": {
+       "hair": 0.0733397901058197,
+       "beard": 0.1044439971446991,
+       "headwear": 0.07551351189613342,
+       "age": 0.08181184530258179,
+       "sex": 0.013374924659729004
+      },
+      "failed_axes": [],
+      "pass": true
+     },
+     "goliath": {
+      "margins": {
+       "hair": 0.019925877451896667,
+       "beard": -0.024771124124526978,
+       "headwear": 0.07698619365692139,
+       "age": 0.0863826721906662,
+       "sex": 0.02736230194568634
+      },
+      "failed_axes": [
+       "beard"
+      ],
+      "pass": false
+     }
+    },
+    "pass": false
+   },
+   "axis_f": {
+    "gated_people": [
+     "goliath"
+    ],
+    "by_person": {
+     "goliath": {
+      "margin": -0.009488403797149658,
+      "pass": false
+     }
+    },
+    "pass": false
+   },
+   "axis_g": {
+    "score": 0.56,
+    "threshold": 0.5,
+    "margin": 0.06000000000000005,
+    "domain_px": 1835,
+    "pass": true
+   },
+   "gated_axes": [
+    "axis_a",
+    "axis_b",
+    "axis_c",
+    "axis_d",
+    "axis_e",
+    "axis_f",
+    "axis_g"
+   ],
+   "all_gated_pass": false,
+   "all_axes_pass": false
+  }
+ },
+ "n_seeds": 3,
+ "n_all_gated_pass": 0,
+ "n_all_axes_pass": 0,
+ "reproduced": false
+}

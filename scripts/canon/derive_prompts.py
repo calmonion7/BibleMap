@@ -149,7 +149,7 @@ def read_brief(name):
     return m.group(1) if m else ""
 
 
-def portrait_prompt(name):
+def portrait_prompt(name, profile=False):
     axes = read_axes(name)
     try:
         en = {k: AXIS_EN[k][v] for k, v in axes.items()}
@@ -159,6 +159,22 @@ def portrait_prompt(name):
     parts = [en["age"][0], read_brief(name), en["hair"][0], en["headwear"][0]]
     body = ", ".join(p for p in parts if p)
     art = "an" if body[0].lower() in "aeiou" else "a"
+    # **옆얼굴 판본**(2026-08-31) — 머리 단계 전용 레퍼런스를 만들기 위한 것이다.
+    # 전신 표본으로 옆얼굴을 뽑으려다 실패했다: 예산이 76/77·77/77로 꽉 차 방향 어휘가 약했고,
+    # 산출물이 3/4에 그친 데다 **수염과 긴 머리카락**이 생겨 정본 축값을 어겼다(2026-08-31 실측).
+    # 초상은 몸·의상 조각이 없어 그 토큰이 통째로 비므로, **방향과 부재 서술을 둘 다 세게** 실을
+    # 수 있다. 머리 단계는 표본의 머리만 쓰므로 전신일 이유도 없다.
+    if profile:
+        side, _ = HEAD_DIRECTION[name]
+        absent = [HEAD_ABSENCE[k] for k in ("beard", "hair")
+                  if k in axes and not en[k][0] and k in HEAD_ABSENCE]
+        # 방향은 한 구절이면 된다 — 세 구절(+ 화풍 전체)로는 89/77이었다(2026-08-31 실측).
+        # 화풍 조각은 head_prompt·figure_prompt와 같은 방식·같은 이유로 덜어낸다.
+        tail = ", ".join(absent + [f"strict side profile facing {side}"])
+        p_style = _drop(STYLE, "simple", "clean background", "light shading", "muted palette")
+        return (f"{p_style} close-up head portrait of {art} {body}, {tail}.",
+                ", ".join([_drop(NEG, "dark", "heavy shadows"), HEAD_NEG_EXTRA]
+                          + [v[1] for v in en.values() if v[1]]), axes)
     prompt = f"{STYLE} close-up head portrait of {art} {body}, facing forward."
     neg = ", ".join([_drop(NEG, "dark", "heavy shadows")] + [v[1] for v in en.values() if v[1]])
     return prompt, neg, axes
@@ -439,7 +455,7 @@ SAMPLE_NEG_BY_NAME = {
 }
 
 
-def sample_prompt(name):
+def sample_prompt(name, profile=False):
     """전신 표본 — 중립 정면 단독 전신, 동작 어휘 없음(part2 계획 Non-goal, SCENE_ACTION을
     쓰지 않는다). 정체성 조각(나이·개요·머리카락·머리쓰개)은 figure_prompt와 같은 출처
     (AXIS_EN·read_brief·read_axes)에서 같은 순서로 파생한다. "facing forward"는 새 문구가
@@ -457,9 +473,23 @@ def sample_prompt(name):
     # 원인은 캔버스가 가로(1216x640)였던 것과 프레이밍 어휘가 약했던 것 둘이다 —
     # 캔버스는 params.SAMPLE_SIZE(세로)로 옮겼고, 여기서는 "head to toe"로 잘림을,
     # "front view"로 3/4 회전을 막는다. 배경은 부정어 쪽에서 죽인다(아래 SAMPLE_NEG_EXTRA).
+    # **옆얼굴 판본**(2026-08-31, 사용자가 「옆얼굴 표본」을 승인). 왜 필요한가:
+    # 머리 단계에서 골리앗을 돌리려면 정면 레퍼런스를 떼야 하는데(IP 0.15는 안 돌고 0.0이라야
+    # 돈다), 떼는 순간 **「그는 투구 쓴 사람이다」를 지고 있던 앵커도 함께** 사라져 한 시드가
+    # 짐승 머리가 됐다(§9-36·§9-37). 필요한 것은 「사람은 나르되 정면은 안 나르는」 레퍼런스다.
+    # **원가는 루프가 걱정한 그 확장이 아니다**: 얼굴 방향은 장면 속성이 아니라 **인물 속성**이고
+    # (머리 단계는 표본 상단 밴드만 쓴다), 좌우는 좌우반전으로 공짜다 — 인물당 **+1장**이지
+    # 「인물×장면」이 아니다(§9-27이 막은 것은 후자다).
+    # ⚠ 예산이 빠듯하다 — 정면 판본이 이미 75/77이라 방향 어휘에 쓸 수 있는 것이 몇 토큰뿐이다.
+    # 첫 시도 "in strict side profile, head turned to the side"는 83/77로 넘쳤다(2026-08-31 실측).
+    facing = ("in side profile" if profile else "facing forward")
     prompt = (f"{SAMPLE_STYLE} full body of {art} {body} {SAMPLE_COSTUME[name]}, "
-              f"standing alone, facing forward, head to toe.")   # "front view"는 "facing forward"와 중복이라 뺐다(2026-08-29, 토큰 확보)
-    neg = ", ".join([SAMPLE_NEG, SAMPLE_NEG_EXTRA, SAMPLE_NEG_BY_NAME[name]]
+              f"standing alone, {facing}, head to toe.")   # "front view"는 "facing forward"와 중복이라 뺐다(2026-08-29, 토큰 확보)
+    # 부정어도 뒤집는다 — 정면 판본은 회전을 막으려고 `profile view`를 넣었고(아래 주석 ③),
+    # 옆얼굴 판본은 그 반대를 막아야 한다. 나머지 조각(풍경·잘림)은 그대로 둔다.
+    extra = (SAMPLE_NEG_EXTRA if not profile else
+             SAMPLE_NEG_EXTRA.replace("profile view", "frontal face"))
+    neg = ", ".join([SAMPLE_NEG, extra, SAMPLE_NEG_BY_NAME[name]]
                     + [v[1] for v in en.values() if v[1]])
     return prompt, neg
 
