@@ -201,6 +201,20 @@ SKIP = {"S8_DROPPED", "S9"}
 # 대머리로** 만들었다. 그리고 S3만으로 이미 왼쪽을 보므로 이 단계는 순손실이다.
 REFINE_STAGES = {"S7"}
 RIDGE_STAGES = {"S2a", "S2b"}   # 마스크를 상자가 아니라 지형 하늘선에서 판다(ridge_mask)
+PLATE_STAGES = {"S3", "S4", "S5"}
+# **인물은 장면 안에서 그리지 않고 「판」으로 따로 그려 오려 붙인다**(2026-09-01 사용자 제안, 실측 확인).
+# 상자 인페인팅의 두 결함이 여기서 함께 사라진다:
+#   ① 자세가 지형에 끌려간다 — 가파른 비탈 위 상자를 채우려 골리앗이 웅크리거나 누웠다(v26·v29·v30).
+#   ② 상자 변이 잔상으로 남는다 — 모델이 상자 안 배경까지 새로 지으니 붙임 마스크가 사각형이 된다.
+# 민 종이 위에서는 모델이 지형과 싸우지 않고, 붙임 마스크가 **인물 실루엣**이라 변이 없다.
+# 캔버스는 params.SAMPLE_SIZE(832x1216) — 「가로 캔버스로 단독 전신을 뽑으면 모델이 장면을
+# 구성해 버린다」는 2026-08-26 실측이 그 주석에 이미 있다.
+PAPER = (247, 240, 226)   # 종이색 — 캔버스 바탕이자 판의 배경(오려내기 기준)
+PLATE_BG = " plain empty paper background."
+PLATE_NEG = ", landscape, hills, sky, ground, scenery, shadow"
+PLATE_STRENGTH = 0.99   # 판은 빈 종이에서 시작하므로 통째로 새로 그린다
+PLATE_CUT = 20   # 종이색과의 차이가 이보다 크면 인물. ⚠ 10에서는 **판 전체가 잡힌다**(옅은 배경
+                 # 얼룩). 반대로 너무 높이면 v5의 「옅게 그려진 골리앗을 통째로 버림」이 재현된다.
 # **창을 전체 캔버스로 주는 단계.** 규칙 ③(창 ≠ 마스크)의 또 다른 적용 — 능선 띠를 1024로 확대해
 # 생성하면 「멀리 작은 병사」를 그리라 해도 **큰 병사**가 나온다(v9~v17). 창을 화면 전체로 주면
 # 모델이 장면 배율을 보고 그 안에서 작게 그린다. 마스크는 여전히 능선 띠다.
@@ -314,6 +328,56 @@ def _change_mask(new_im, old_im):
     return Image.fromarray((ramp * 255).astype(np.uint8), "L")
 
 
+def _plate(pipe, name, prompt, neg, seed, anchor, use_ip):
+    """인물 한 명을 **민 종이 위에 단독으로** 그려 오려낸다 → (그림, 알파, 토큰수).
+
+    배경 지시는 프롬프트 뒤에 붙이므로 **토큰 한도를 넘으면 조용히 잘려** 배경이 그려진다.
+    넘으면 자세 문구를 줄여서 배경 지시를 살린다 — 배경이 그려지면 오려낼 수가 없다."""
+    pw, ph = params.SAMPLE_SIZE
+    p = prompt.rstrip() + PLATE_BG
+    lim = pipe.tokenizer.model_max_length
+    # ⚠ 문장부호에 기대지 말 것 — S3은 「…turned left.」로 **마침표**로 끝나서 앞선 규칙이
+    # 아무것도 못 줄였고 가드가 79/77로 멈췄다(2026-09-01 v31 1차). 구절 자체를 갈아끼운다.
+    for long, brief in (("seen from the side, body and face turned left", "side view facing left"),
+                        ("strict side profile facing left", "side view facing left"),
+                        ("strict side profile facing right", "side view facing right"),
+                        ("running mid-stride", "running")):
+        if len(pipe.tokenizer(p).input_ids) <= lim:
+            break
+        p = p.replace(long, brief, 1)
+    n = len(pipe.tokenizer(p).input_ids)
+    if n > lim:
+        sys.exit(f"{name} 판 프롬프트가 한도를 넘었다({n}/{lim}) — 배경 지시가 잘린다")
+    pipe.set_ip_adapter_scale(0.25 if use_ip else 0.0)
+    res = pipe(prompt=p, negative_prompt=neg + PLATE_NEG,
+               image=Image.new("RGB", (pw, ph), PAPER),
+               mask_image=Image.new("L", (pw, ph), 255),
+               width=pw, height=ph, strength=PLATE_STRENGTH,
+               num_inference_steps=params.STEPS, guidance_scale=params.GUIDANCE,
+               ip_adapter_image=anchor if use_ip else Image.new("RGB", (8, 8)),
+               generator=torch.Generator("mps").manual_seed(seed)).images[0]
+    d = np.abs(np.asarray(res.convert("RGB")).astype(int) - np.array(PAPER)).max(axis=2)
+    al = Image.fromarray(((d > PLATE_CUT) * 255).astype(np.uint8), "L")
+    al = al.filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.MinFilter(5))   # 내부 구멍 메우기
+    bb = al.getbbox()
+    if bb is None:
+        sys.exit(f"{name} 판에서 인물을 못 오렸다 — PLATE_CUT을 의심하라")
+    return res.crop(bb), al.crop(bb).filter(ImageFilter.GaussianBlur(1.5)), n, lim
+
+
+def _place(canvas, fig, alpha, b):
+    """오려낸 인물을 상자에 맞춰 얹는다 — **상자 높이에 맞추고 발이 상자 바닥에** 오게.
+    상자는 이제 「어디에 얼마나 크게 세울 것인가」만 정한다(그리는 자리가 아니다)."""
+    bx0, by0, bx1, by1 = b
+    sc = (by1 - by0) / fig.height
+    nw, nh = max(8, int(fig.width * sc)), max(8, int(fig.height * sc))
+    px = bx0 + ((bx1 - bx0) - nw) // 2
+    py = by1 - nh
+    canvas.paste(fig.resize((nw, nh), Image.LANCZOS), (px, py),
+                 alpha.resize((nw, nh), Image.LANCZOS))
+    return canvas, (max(0, px), max(0, py), min(W, px + nw), min(H, py + nh))
+
+
 def _tok(pipe, prompt, label):
     n = len(pipe.tokenizer(prompt).input_ids)
     lim = pipe.tokenizer.model_max_length
@@ -352,7 +416,7 @@ def main():
 
     for seed in seeds:
         # S1은 빈 종이색 캔버스를 전체 인페인팅한다 — text2img와 같고 파이프라인이 하나면 된다.
-        canvas = Image.new("RGB", (W, H), (247, 240, 226))
+        canvas = Image.new("RGB", (W, H), PAPER)
         drawn = {}   # 단계별 실제로 그려진 실루엣 bbox — 머리 상자를 여기서 파생한다
         for name, region, verse, prompt, neg in STAGES:
             if name in SKIP or (pick is not None and name not in pick):
@@ -360,6 +424,20 @@ def main():
             # **머리 상자는 저작하지 않고 실루엣에서 파생한다.** v8까지 골리앗 머리 상자가
             # y 0.05~0.30에 고정돼 있었는데 구역을 좁히며 그의 머리가 내려가, S8이 **빈 하늘을
             # 칠하고 있었다**(그래서 얼굴 단계가 「거의 안 먹는다」로 보였다).
+            if name in PLATE_STAGES:
+                # **판으로 그려 오려 붙인다** — 장면 안에서 그리지 않는다(PLATE_STAGES 주석).
+                ts = time.time()
+                fig, al, n, lim = _plate(pipe, name, prompt, neg, seed,
+                                         ARMOUR_REF, use_ip=(name == "S3"))
+                canvas, bb = _place(canvas, fig, al, box_px(region))
+                drawn[name] = bb
+                out = os.path.join(OUT, f"{a.label}-{name}-s{seed}.png")
+                canvas.save(out)
+                print(f"  [{name} {region} 17:{str(verse).split('.')[1]}] {time.time() - ts:.0f}s  "
+                      f"{n}/{lim}토큰  판 {fig.width}x{fig.height} → 얹음 {bb} -> "
+                      f"{os.path.basename(out)}", flush=True)
+                continue
+
             src = {"S7": "S5", "S9": "S5"}.get(name)
             if src and src in drawn:
                 x0, y0, x1, y1 = drawn[src]
