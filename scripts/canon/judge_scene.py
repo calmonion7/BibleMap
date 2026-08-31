@@ -41,8 +41,8 @@ SEAM_STEP = 0.02     # 이음매로 셀 한 픽셀 밝기 단차
 # 구역 상자 — gen_scripture_scene.REGIONS와 **같은 값이어야 한다**. 판정자가 생성자를 import하면
 # torch·diffusers가 딸려 와 GPU 없이 못 돌므로, 좌표만 여기 복제하고 --check로 대조한다.
 REGIONS = {
-    "hill_left":   (0.00, 0.30, 0.38, 0.74),
-    "hill_right":  (0.62, 0.26, 1.00, 0.72),
+    "hill_left":   (0.00, 0.12, 0.40, 0.78),
+    "hill_right":  (0.60, 0.10, 1.00, 0.76),
     "crest_left":  (0.02, 0.24, 0.44, 0.47),
     "crest_right": (0.56, 0.18, 0.99, 0.43),
     "goliath":     (0.625, 0.05, 0.855, 0.95),
@@ -120,29 +120,36 @@ def _runs95(col_mask):
     return float(np.percentile(lens, 95)) if lens else 0.0
 
 
-RIDGE_BAND = 0.08   # 「능선 위」로 인정할 하늘선 위아래 여유(캔버스 높이 분율)
+RIDGE_UP, RIDGE_DOWN = 0.09, 0.05   # 「능선 위」로 볼 하늘선 위아래 여유(생성 띠보다 넉넉하게)
 
 
-def c2_army(lum, key, terrain_top=None):
-    """C2 — 능선 띠 안의 「작은 것이 많음」. 교차수는 많고 세로 런은 짧아야 한다.
+def c2_army(lum, key, terrain_top, before=None):
+    """C2 — 능선 띠 안에서 **군대 단계가 실제로 그린 것**이 「작은 것이 여럿」인가. 17:2-3.
 
-    **`on_ridge`가 없으면 못 쓴다**: v17은 병사 둘을 **빈 하늘 한가운데**에 그렸는데(17:2-3은
-    「이편 산에 섰고 저편 산에 섰고」다) 띠 안에만 들어오면 교차수·런 길이만으로는 통과한다.
-    지형 하늘선에서 ±RIDGE_BAND 안에 있는 잉크의 비율을 함께 본다."""
-    x0, y0, x1, y1 = box(key)
-    m, _ = obj_mask(lum)
-    sub = m[y0:y1, x0:x1]
-    rows = sub.any(axis=1)
+    ⚠ **세 번 고쳐서 여기 왔다(2026-09-01). 앞의 셋이 왜 못 쓰는지 남긴다.**
+    ① 손으로 적은 가로 상자 전체의 「하늘 아닌 것」 — v17이 병사 둘을 **빈 하늘**에 그려도 통과했다.
+    ② +`on_ridge`(하늘선 근처 비율) — 뜬 병사는 걸렀지만 세로 런이 **병사가 아니라 언덕**을 쟀다
+       (상자의 30%가 지형). 띠를 얇게 해도 0.127로 되레 늘었다.
+    ③ 능선 띠 안의 잉크·엣지 — 마른 언덕의 **등고선**이 군중과 구별되지 않았다(v17 우측 엣지밀도
+       0.395 ↔ 진짜 군중 0.472, 못 가른다).
+    ④ **군대 단계 직전(S1c)과 직후(S2b)의 차이**를 잰다. 그 둘이 곧 S2a·S2b가 그린 것이고
+       지형은 정의상 빠진다. 파이프라인이 단계마다 저장하므로 새 자료가 필요 없다.
+    `before`가 없으면(단계 산출물이 없는 옛 판) 능선 띠의 잉크로 물러난다 — 비교는 못 한다."""
+    x0, _, x1, _ = box(key)
+    yy = np.arange(H)[:, None]
+    band = (yy >= (terrain_top - RIDGE_UP * H)) & (yy <= (terrain_top + RIDGE_DOWN * H))
+    band &= (terrain_top < H - 1)[None, :]
+    if before is not None:
+        drew = (np.abs(lum - before) > 0.04) & band     # 이 단계가 손댄 화소
+    else:
+        drew = (lum < DARK_CUT) & band
+    sub = drew[:, x0:x1]
+    bb = band[:, x0:x1]
+    rows = bb.any(axis=1)
     xings = float(np.abs(np.diff(sub.astype(np.int8), axis=1)).sum(axis=1)[rows].mean() / 2) \
         if rows.any() else 0.0
-    on_ridge = 0.0
-    if terrain_top is not None and sub.any():
-        yy = np.arange(y0, y1)[:, None]
-        ridge = terrain_top[x0:x1][None, :]
-        near = np.abs(yy - ridge) <= RIDGE_BAND * H
-        on_ridge = float((sub & near).sum() / sub.sum())
-    return {"cov": float(sub.mean()), "xings": xings,
-            "runlen95": _runs95(sub) / H, "on_ridge": on_ridge}
+    return {"cov": float(sub.sum() / max(1, bb.sum())), "xings": xings,
+            "runlen95": _runs95(sub) / H}
 
 
 def c3_seam(lum, terrain_top=None):
@@ -222,16 +229,20 @@ def c5_figures(lum):
             "scale_ratio": hs["goliath"] / max(hs["david"], 1e-6)}
 
 
-def measure(final_path, terrain_path=None):
+def measure(final_path, terrain_path=None, armies_path=None):
     lum = load(final_path)
     terr = load(terrain_path) if terrain_path else lum
     top = skyline(terr)
+    # 군대는 **단계 직전/직후의 차이**로 잰다 — 지형이 정의상 빠진다(c2_army 주석 ④)
+    arm = load(armies_path) if armies_path else None
     return {
         "final": os.path.basename(final_path),
         "terrain": os.path.basename(terrain_path) if terrain_path else None,
         "c1_valley": c1_valley(terr),
-        "c2_army_left": c2_army(lum, "crest_left", top),
-        "c2_army_right": c2_army(lum, "crest_right", top),
+        "c2_army_left": c2_army(arm if arm is not None else lum, "crest_left", top,
+                                terr if arm is not None else None),
+        "c2_army_right": c2_army(arm if arm is not None else lum, "crest_right", top,
+                                 terr if arm is not None else None),
         "c3_seam": c3_seam(lum, top),
         "c4_style": c4_style(lum),
         "c5_figures": c5_figures(lum),
@@ -242,10 +253,11 @@ THRESHOLDS = {
     # 실측 교정(2026-09-01, v12·v15·v16·v17·v18 다섯 판). 「통과한 예」가 없는 축(C1·C2·C3)은
     # 본문·명세에서 온 목표치이고, 「지금 통과 중인 예」가 있는 축(C4·C5)은 v17 실측에서 왔다.
     "c1_drop_min": 0.14,        # 골짜기 깊이 ≥ 높이의 14%  (실측 v17 +0.028 · v16 −0.152)
-    "c2_cov_min": 0.04,         # 능선 띠가 비어 있지 않을 것 (v18 우측 = 없음)
-    "c2_xings_min": 15.0,       # 행당 교차 ≥ 15 = 폭 511px에 34px마다 하나 (v17 좌 1.95 · 우 7.29)
-    "c2_on_ridge_min": 0.50,    # 잉크의 절반 이상이 하늘선 ±8% 안 = 「산에 섰다」(17:2-3)
-    "c2_runlen95_max": 0.06,    # 세로 런 95p ≤ 높이의 6%(38px) — 「큰 병사」 배제 (v17 우 0.092)
+    # C2는 산식을 네 번 고쳤으므로(c2_army 주석) 임계도 **새 산식의 실측**에서 다시 왔다.
+    # ⚠ 양성 표본이 t324c 한 판뿐이다 — 통과한 예가 하나라는 것을 알고 쓴다.
+    "c2_cov_min": 0.20,         # 군대 단계가 능선 띠를 채웠나 (t324c .389/.405 ↔ v17 .036/.069 ↔ v25 .000)
+    "c2_xings_min": 2.5,        # 한 덩어리 막대가 아니라 여럿 (t324c 7.19/5.41 ↔ v17 0.29/1.31)
+    "c2_runlen95_max": 0.06,    # 세로 런 95p ≤ 높이의 6%(38px) — 「큰 병사」 배제 (t324c .045 ↔ v17 .058)
     "c3_line_rows_max": 1,      # 전폭 얇은 가로선 행 ≤ 1  (다섯 판 모두 8~10)
     "c3_vseam_max": 0.25,       # 상자 변을 곧게 지나는 행의 비율 (v16 .803 · v17 .424 ↔ 붙임 없음 .164)
     "c4_ink_min": 0.055,        # 인물이 지워지지 않을 것 (v17 다윗 0.0727 · v15 0.0434 = 실패)
@@ -259,7 +271,7 @@ def verdict(m, t=THRESHOLDS):
     c["C1"] = m["c1_valley"]["drop"] >= t["c1_drop_min"]
     c["C2"] = all(
         a["cov"] >= t["c2_cov_min"] and a["xings"] >= t["c2_xings_min"]
-        and a["runlen95"] <= t["c2_runlen95_max"] and a["on_ridge"] >= t["c2_on_ridge_min"]
+        and a["runlen95"] <= t["c2_runlen95_max"]
         for a in (m["c2_army_left"], m["c2_army_right"]))
     c["C3"] = (m["c3_seam"]["line_rows"] <= t["c3_line_rows_max"]
                and m["c3_seam"]["vseam"] <= t["c3_vseam_max"])
@@ -273,7 +285,8 @@ def verdict(m, t=THRESHOLDS):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("final", nargs="?")
-    ap.add_argument("--terrain", default=None, help="지형만 있는 단계 산출물(S1c) — 없으면 final로 잰다")
+    ap.add_argument("--terrain", default=None, help="군대 **직전** 단계 산출물(S1c) — 없으면 final로 잰다")
+    ap.add_argument("--armies", default=None, help="군대 **직후** 단계 산출물(S2b) — 둘의 차이가 군대다")
     ap.add_argument("--json", default=None)
     ap.add_argument("--calibrate", nargs="+", default=None, help="라벨들(v15 v16 ...)을 한 줄씩 비교")
     a = ap.parse_args()
@@ -290,7 +303,9 @@ def main():
                 print(f"{lab:>6}  (없음)")
                 continue
             t = os.path.join(root, f"{lab}-S1c-s11.png")
-            m = measure(f, t if os.path.exists(t) else None)
+            am = os.path.join(root, f"{lab}-S2b-s11.png")
+            m = measure(f, t if os.path.exists(t) else None,
+                        am if os.path.exists(am) and os.path.exists(t) else None)
             v = verdict(m)
             print(f"{lab:>6} {m['c1_valley']['drop']:8.3f} "
                   f"{m['c2_army_left']['xings']:8.2f} {m['c2_army_left']['on_ridge']:8.2f} "
@@ -303,7 +318,7 @@ def main():
 
     if not a.final:
         sys.exit("판정할 이미지를 달라 (또는 --calibrate)")
-    m = measure(a.final, a.terrain)
+    m = measure(a.final, a.terrain, a.armies)
     v = verdict(m)
     m["verdict"] = v
     print(json.dumps(m, ensure_ascii=False, indent=2))

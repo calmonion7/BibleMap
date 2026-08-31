@@ -35,21 +35,26 @@ import params
 
 sys.path.insert(0, params.CANON_DIR)
 import derive_prompts as dp  # noqa: E402
+import judge_scene as J  # noqa: E402  — 판정자와 **같은 하늘선 산식**을 쓴다(자와 그림이 어긋나면 안 된다)
 
 OUT = os.path.join(params.OUT_ROOT, "scripture-scene")
 W, H = params.SCENE_SIZE
-STRENGTH = 0.99          # **S1 전용** — 빈 종이색 캔버스에서 시작하므로 통째로 새로 그린다
-BLEND_STRENGTH = 0.85    # **이미 그려진 지형 위에 큰 상자를 얹는 단계**(BLEND_STAGES).
-                         # 0.99는 상자 안 배경까지 새로 칠해 변화 마스크가 상자 전체가 되고,
-                         # 그 테두리가 직사각 잔상으로 붙는다. 낮추면 모델이 아래를 보고 이어 그린다.
-                         # 실측 이음매(2026-09-01): 언덕오른쪽 .989→.204 · 거인 .542→.232 ·
-                         # 능선오른쪽 .529→.106. ⚠ 작은 상자(방패든 자·다윗)까지 낮추면 **인물이
-                         # 지워진다**(다윗 잉크 .093→.035) — 그래서 아래 집합에만 적용한다.
-BLEND_STAGES = {"S1b", "S1c", "S2a", "S2b", "S3"}
-REGION_STRENGTH = 0.99   # 그 밖의 구역 단계 — 0.99는 **상자 안 배경까지** 새로 칠해서, 변화 마스크가
-                         # 상자 전체가 되고 형태학적 닫기가 그것을 메워 **직사각 잔상**으로 붙는다
-                         # (2026-09-01 실측: 언덕 변 0.989 · 골리앗 변 0.459). 아래를 남겨 두면
-                         # 모델이 주변을 보고 이어 그리므로 변화가 인물에만 남는다.
+# **단계별 strength** — 이음매와 「그린 것의 세기」가 상반된다(2026-09-01 실측, notes §12 판별표).
+# 이미 그려진 지형 위에 **큰 상자**를 얹는 단계는 0.99면 상자 안 배경까지 새로 칠해 변화 마스크가
+# 상자 전체가 되고, 그 테두리가 직사각 잔상으로 붙는다(언덕오른쪽 .989 · 거인 .542).
+# 낮추면 아래를 보고 이어 그린다. 다만 **작은 상자까지 낮추면 인물이 지워진다**(다윗 잉크 .093→.035).
+STRENGTH_BY_STAGE = {
+    "S1":  0.99,   # 빈 종이색 캔버스에서 시작 — 통째로 새로 그린다
+    "S1b": 0.95,   # 언덕은 **지형을 바꿔야** 하므로 이어붙임보다 세기가 우선(이음매 여유 .148~.204)
+    "S1c": 0.95,
+    "S2a": 0.85,   # 능선 위 군중 — 이어 그려야 배경이 안 갈라진다
+    "S2b": 0.85,
+    "S3":  0.85,   # 거인 상자가 가장 커서 이음매가 가장 잘 난다
+    "S4":  0.99,   # 작은 상자 — 0.85까지 낮추면 **사라진다**(다윗 잉크 .093→.035, v21).
+    "S5":  0.99,   # ⚠ 0.93으로 낮춰 봤다(v30): 이음매는 .342 → .403으로 **악화**했고 화풍만
+                   # 좋아졌다(비 1.27 → 1.12). 이 둘의 이음매는 strength로 안 잡힌다.
+}
+DEFAULT_STRENGTH = 0.99
 REFINE_STRENGTH = 0.72   # v12까지 0.55로는 고개를 못 돌렸다(다윗이 숙인 채였다).
                          # **이미 있는 것을 다듬는 단계**(얼굴). 1에 가까우면 모델이 그 자리에
                          # 새 그림을 그려 얼굴이 둘이 된다(2026-08-31 v4 실측: 다윗 얼굴이 별도의
@@ -64,8 +69,8 @@ REGIONS = {
     "full":         (0.00, 0.00, 1.00, 1.00),
     # 지형을 **상자로** 지시한다(규칙 다섯째). 프롬프트로 두 번 밀어 두 번 실패했다(격자·드레이프).
     # S1이 골짜기 바닥만 그리고, 좌우 산을 이 두 구역이 올린다 — 가운데가 낮게 남아 골짜기가 된다.
-    "hill_left":    (0.00, 0.30, 0.38, 0.74),
-    "hill_right":   (0.62, 0.26, 1.00, 0.72),
+    "hill_left":    (0.00, 0.12, 0.40, 0.78),
+    "hill_right":   (0.60, 0.10, 1.00, 0.76),
     "crest_left":   (0.02, 0.24, 0.44, 0.47),   # 이스라엘 쪽 산등성이 (17:2-3) — 1차에서 구역이
                                                 # 커서 「멀리 작은 인물」이 안 잡혔다. 능선 선에 얇게 붙인다.
     "crest_right":  (0.56, 0.18, 0.99, 0.43),   # 블레셋 쪽 산등성이
@@ -195,6 +200,7 @@ SKIP = {"S8_DROPPED", "S9"}
 # S8(골리앗 얼굴)도 폐기했다 — v9 실측: 다듬기 단계가 머리를 다시 그리며 **놋투구를 지워
 # 대머리로** 만들었다. 그리고 S3만으로 이미 왼쪽을 보므로 이 단계는 순손실이다.
 REFINE_STAGES = {"S7"}
+RIDGE_STAGES = {"S2a", "S2b"}   # 마스크를 상자가 아니라 지형 하늘선에서 판다(ridge_mask)
 # **창을 전체 캔버스로 주는 단계.** 규칙 ③(창 ≠ 마스크)의 또 다른 적용 — 능선 띠를 1024로 확대해
 # 생성하면 「멀리 작은 병사」를 그리라 해도 **큰 병사**가 나온다(v9~v17). 창을 화면 전체로 주면
 # 모델이 장면 배율을 보고 그 안에서 작게 그린다. 마스크는 여전히 능선 띠다.
@@ -212,13 +218,71 @@ TARGET = 1024     # 생성 해상도(긴 변) — gen_final.TARGET과 같은 값
 # 캔버스가 1216×640 = 1.9:1이므로 S1만은 덜 납작하게 그리고 캔버스 종횡비로 **잘라** 맞춘다
 # — 늘려 맞추면 지형이 눌린다.
 S1_GEN = (1024, 768)
+# 잘라낼 띠의 위치 — 0.0이면 **위쪽**, 0.5면 가운데, 1.0이면 아래쪽. 가운데를 자르면 4:3 원본이
+# 그린 **하늘과 능선을 통째로 버린다**(2026-09-01 실측: 능선이 화면 위끝에 붙어 골짜기 깊이가
+# +0.069에 머물고 군대를 세울 능선이 화면 밖으로 나갔다). 위쪽을 잘라 쓰면 하늘·능선이 남고
+# 버리는 것은 가까운 자갈밭인데, 그 자리는 어차피 인물이 덮는다.
+# ⚠ 1024x1024(1:1)는 **원형 액자**를 그린다 — 4:3이 이 모델의 자리다.
+S1_CROP_BIAS = 0.0
 
 
-def _window(b):
-    """구역 + 맥락 여백, 캔버스 안으로 클램프. gen_final.window와 같은 구실."""
-    pad = int(round(PAD * min(b[2] - b[0], b[3] - b[1])))
-    return (max(0, b[0] - pad), max(0, b[1] - pad),
-            min(W, b[2] + pad), min(H, b[3] + pad))
+ASPECT_MAX = 1.5   # 창의 긴 변 / 짧은 변 상한 — 넘으면 **가로 줄무늬 아티팩트**가 나온다
+                   # (2026-09-01 실측: 1.91:1에서 하늘 가로선 5행, 1.33:1에서 0행. notes §12 규칙 여섯째)
+
+
+PAD_BY_STAGE = {}
+# ⚠ **인물 단계만 0.35로 넓혀 봤다가 되돌렸다**(2026-09-01 v28): 이음매는 자리만 옮겼고
+# (골리앗·방패든자 → 다윗 .525) 그림이 무너졌다 — **다윗이 둘로 늘고**, 골리앗이 비탈에 눕고,
+# 왼쪽 바위가 탑이 됐다. 창이 커지면 모델이 **마스크를 어디 채울지 잃는다**(v18의 「전체 창에서
+# 아무것도 안 그렸다」와 같은 결). 창은 상자에 붙여 두고 이음매는 붙임 램프로 잡는다.
+
+
+def _window(b, name=None):
+    """구역 + 맥락 여백, 캔버스 안으로 클램프. gen_final.window와 같은 구실.
+
+    **납작한 창은 짧은 쪽을 늘려 완화한다.** 능선 띠처럼 가늘고 긴 구역을 그대로 창으로 쓰면
+    종횡비가 3:1을 넘어 모델이 자 같은 가로선을 그린다. 마스크는 그대로 두고 창만 넓히는 것이라
+    규칙 ③(창 ≠ 마스크)의 또 다른 적용이다."""
+    pad = int(round(PAD_BY_STAGE.get(name, PAD) * min(b[2] - b[0], b[3] - b[1])))
+    x0, y0 = max(0, b[0] - pad), max(0, b[1] - pad)
+    x1, y1 = min(W, b[2] + pad), min(H, b[3] + pad)
+    for _ in range(8):
+        w, h = x1 - x0, y1 - y0
+        if w > h * ASPECT_MAX:
+            need = int(round(w / ASPECT_MAX)) - h
+            y0, y1 = max(0, y0 - need // 2), min(H, y1 + (need - need // 2))
+            if y0 == 0 and y1 == H:
+                break
+        elif h > w * ASPECT_MAX:
+            need = int(round(h / ASPECT_MAX)) - w
+            x0, x1 = max(0, x0 - need // 2), min(W, x1 + (need - need // 2))
+            if x0 == 0 and x1 == W:
+                break
+        else:
+            break
+    return (x0, y0, x1, y1)
+
+
+RIDGE_UP, RIDGE_DOWN = 0.07, 0.05   # 능선 띠 = 하늘선 위 7% ~ 아래 5%
+# ⚠ **0.035/0.02로 얇게 해 봤다가 되돌렸다**(2026-09-01). 「띠 두께가 병사 키를 정한다」고 봤는데,
+# 그렇게 본 근거였던 세로 런이 사실은 **병사가 아니라 언덕**을 재고 있었다(판정자 버그, judge_scene
+# c2_army 주석 ②). 자를 고쳐 다시 재니 얇은 띠는 군중 밀도를 **0.39 → 0.065로 떨어뜨렸다** —
+# 모델이 채울 자리가 없으면 안 그린다(v18의 「마스크가 묻히면 아무것도 안 그린다」와 같은 결).
+
+
+def ridge_mask(canvas, region):
+    """**능선을 따라가는 띠** — 「이편 산에 섰고 저편 산에 섰고」(17:3)를 상자가 아니라 지형에서
+    파생한다. 손으로 적은 가로 상자는 지형이 바뀔 때마다 어긋나 병사가 **빈 하늘에** 그려졌다
+    (v17 실측: 능선 위 비율 좌 0.28 · 우 0.20)."""
+    lum = np.asarray(canvas.convert("L"), dtype=np.float32) / 255.0
+    top = J.skyline(lum)
+    x0, _, x1, _ = box_px(region)
+    yy = np.arange(H)[:, None]
+    band = (yy >= (top - RIDGE_UP * H)) & (yy <= (top + RIDGE_DOWN * H))
+    band &= (top < H - 1)[None, :]     # 지형이 없는 열(하늘선 = H)은 뺀다 — 안 그러면 화면 바닥에 띠가 생긴다
+    m = np.zeros((H, W), np.uint8)
+    m[:, x0:x1] = (band[:, x0:x1] * 255).astype(np.uint8)
+    return Image.fromarray(m, "L").filter(ImageFilter.GaussianBlur(max(4, int(0.02 * H))))
 
 
 def _gen_size(win):
@@ -237,13 +301,17 @@ def _change_mask(new_im, old_im):
        버려졌다.** 절대 밝기 기준은 옅은 인물을 못 잡는다.
     그래서 기준을 **변화량**으로 바꾼다 — 밝기와 무관하게 자기 보정된다.
 
-    ⚠ **가중치(0~255 램프)로 바꿔 봤다가 되돌렸다**(2026-09-01): 큰 이음매는 줄었지만
-    (언덕 .989→.691 · 거인 .542→.466) 인물이 부분 알파로 붙어 **다윗 잉크가 .093→.045로
-    반토막**났고 작은 상자의 이음매는 오히려 늘었다. 이음매는 붙임 방식이 아니라 **단계별
-    strength**로 잡는 것이 실측의 답이다(BLEND_STAGES 주석)."""
-    a = np.asarray(new_im.convert("L")).astype(int)
-    b = np.asarray(old_im.convert("L")).astype(int)
-    return Image.fromarray(((np.abs(a - b) > params.THRESHOLD) * 255).astype(np.uint8), "L")
+    ⚠ **경계에 램프를 둔다**(2026-09-01 v29). 이진 컷은 「많이 바뀐 곳」의 테두리를 **한 픽셀
+    단차**로 만들고 그것이 그대로 이음매가 된다(지형이 상세해지자 골리앗 .365 · 방패든자 .352).
+    임계 **이상은 그대로 꽉 차게**(=옛 동작 보존, 인물이 옅어지지 않는다) 두고, 임계의 45%부터
+    임계까지만 0→255로 올린다. 앞서 램프를 임계의 50%~200%로 걸었다가 **인물까지 부분 알파로
+    붙어 다윗 잉크가 반토막**났던 것이 v24다 — 램프는 임계 **아래에만** 있어야 한다."""
+    a = np.asarray(new_im.convert("L")).astype(np.float32)
+    b = np.asarray(old_im.convert("L")).astype(np.float32)
+    d = np.abs(a - b)
+    lo = params.THRESHOLD * 0.45
+    ramp = np.clip((d - lo) / (params.THRESHOLD - lo), 0.0, 1.0)
+    return Image.fromarray((ramp * 255).astype(np.uint8), "L")
 
 
 def _tok(pipe, prompt, label):
@@ -310,6 +378,9 @@ def main():
                 m.paste(255, b)
                 m = m.filter(ImageFilter.GaussianBlur(
                     max(4, int(round(FEATHER * min(b[2] - b[0], b[3] - b[1]))))))
+            elif name in RIDGE_STAGES:
+                m = ridge_mask(canvas, region)
+                b = m.point(lambda v: 255 if v > 40 else 0).getbbox() or box_px(region)
             else:
                 b = box_px(region)
                 m = region_mask(region)
@@ -324,9 +395,9 @@ def main():
             if name in CONTEXT_FULL:
                 win = (0, 0, W, H)
             elif src and src in drawn:
-                win = _window(drawn[src])
+                win = _window(drawn[src], name)
             else:
-                win = _window(b)
+                win = _window(b, name)
             gw, gh = S1_GEN if name == "S1" else _gen_size(win)
             ts = time.time()
             refine = name in REFINE_STAGES
@@ -339,8 +410,7 @@ def main():
                        mask_image=m.crop(win).resize((gw, gh), Image.LANCZOS),
                        width=gw, height=gh,
                        strength=(REFINE_STRENGTH if refine else
-                                 STRENGTH if name == "S1" else
-                                 BLEND_STRENGTH if name in BLEND_STAGES else REGION_STRENGTH),
+                                 STRENGTH_BY_STAGE.get(name, DEFAULT_STRENGTH)),
                        num_inference_steps=params.STEPS,
                        guidance_scale=params.GUIDANCE,
                        ip_adapter_image=ARMOUR_REF if use_ip else Image.new("RGB", (8, 8)),
@@ -351,7 +421,7 @@ def main():
                 # 전체를 칠하면 캔버스 경계에서 가로 줄무늬 글리치가 남는다(v3~v8 실측).
                 # 캔버스 종횡비의 **가운데 띠**만 잘라 쓴다(S1_GEN 주석 참조).
                 ch = int(round(gw * H / W))
-                oy = (gh - ch) // 2
+                oy = int(round((gh - ch) * S1_CROP_BIAS))
                 canvas = res.crop((0, oy, gw, oy + ch)).resize((W, H), Image.LANCZOS)
                 print(f"  [{name} {region} 17:1] {time.time() - ts:.0f}s  {n}/{lim}토큰  "
                       f"{gw}x{gh} → 가운데 {ch}행 잘라 전체 교체",
@@ -364,6 +434,10 @@ def main():
                 # **형태학적 닫기(팽창 → 침식)로 내부 구멍을 메운다.** v6 실측: 옅게 그려진
                 # 골리앗의 **내부**에서 변화량이 임계 아래라 구멍이 뚫려 그가 반투명해졌다.
                 # 반지름은 구역 짧은 변에서 판다(고정값은 큰 구역에서 부족하다).
+                # ⚠ **상한 8을 걸어 봤다가 되돌렸다**(2026-09-01 v27): 이음매는 안 줄고
+                # (0.365 → 0.402, 자리만 옮겼다) 골리앗이 **반투명해졌다**(잉크 .109 → .049).
+                # v6이 경고한 「옅은 인물 내부에 구멍」이 그대로 재현됐다 — 반지름은 구역 크기를
+                # 따라가야 한다.
                 r = max(3, int(round(0.035 * min(ww, wh))))
                 k = 2 * r + 1
                 sil = sil.filter(ImageFilter.MaxFilter(k)).filter(ImageFilter.MinFilter(k))
