@@ -112,10 +112,10 @@ STAGES = [
      # 낱말을 지우는 도구가 아니라 확률을 미는 도구여서, 없던 개념을 불러오는 쪽으로도 작동한다.
     ("S1b", "hill_left", 17.3, f"{ST} a tall steep dry rocky hillside rising up, sunbaked "
                                f"brown slope, layered rock, sparse dry grass, no people.",
-     NEG + ", people, figures, flat ground, valley"),
+     NEG + ", people, figures, flat ground, valley, pagoda, temple, tower, roof, building"),
     ("S1c", "hill_right", 17.3, f"{ST} a tall steep dry rocky hillside rising up, sunbaked "
                                 f"brown slope, layered rock, sparse dry grass, no people.",
-     NEG + ", people, figures, flat ground, valley"),
+     NEG + ", people, figures, flat ground, valley, pagoda, temple, tower, roof, building"),
     ("S2a", "crest_left", 17.2, f"{ST} hundreds of tiny distant soldiers packed shoulder to "
                                 f"shoulder in long ranks on the hillside, a dense forest of small "
                                 f"upright spears, tiny far away crowd.",
@@ -194,7 +194,10 @@ def region_mask(name):
 # S9(물매)도 폐기했다 — v10~v13 **네 판 연속 실패**: 거대한 손 → 거대한 팔 → 원뿔 → 손톱 손.
 # 작은 상자에 「지물 하나」를 그리라 하면 모델이 그 상자를 채우는 크기로 그린다. 물매는 S5의
 # 인물 프롬프트가 지게 두고, 별도 단계를 만들지 않는다.
-SKIP = {"S8_DROPPED", "S9"}
+SKIP = {"S8_DROPPED", "S9", "S7"}
+# **S7(다윗 얼굴 다듬기)도 폐기했다**(2026-09-01). 상자 인페인팅 시절에는 다윗이 고개를 숙인 채라
+# 이 단계가 고개를 들게 했다. 판 합성에서는 **판이 이미 얼굴과 방향을 준다** — 그 위에 다시
+# 그리면 되레 망친다(v32 실측: 얼굴이 지워지고 뒤통수가 됐다. v31에서는 살아남았으니 동전던지기다).
 # S6: v8까지 물매를 허공에 따로 그렸더니 **해먹·그물**로 읽혔다.
                                # 손에 쥔 것으로 S5에 합친다 — 떠 있는 지물이 오독의 원인이었다.
 # S8(골리앗 얼굴)도 폐기했다 — v9 실측: 다듬기 단계가 머리를 다시 그리며 **놋투구를 지워
@@ -378,6 +381,42 @@ def _place(canvas, fig, alpha, b):
     return canvas, (max(0, px), max(0, py), min(W, px + nw), min(H, py + nh))
 
 
+CONTACT_STRENGTH = 0.55   # 접지 다듬기 — 있는 것을 고치는 쪽이라 낮다(얼굴 다듬기 0.72보다도).
+                          # 높이면 모델이 그 자리에 새 그림을 그려 인물이 둘이 된다(v4 실측).
+CONTACT_UP, CONTACT_DOWN, CONTACT_SIDE = 0.10, 0.06, 0.15   # 인물 높이·폭 대비 접지 띠
+
+
+def _contact(pipe, canvas, bb, seed):
+    """오려 붙인 인물의 **발 주변 띠만** 다듬어 땅에 닿게 하고 그림자를 넣는다.
+
+    판 합성의 유일한 구조적 손해가 접지다 — 오려낸 인물은 배경과 **닿은 적이 없어서**
+    발이 뜨고 그림자가 없다(스티커로 읽힌다). 장면 안 인페인팅은 이걸 공짜로 얻었다.
+    인물 전체를 다시 그리면 판으로 얻은 자세를 잃으므로, 띠를 얇게 잡고 낮은 strength로 건다."""
+    px0, py0, px1, py1 = bb
+    fw, fh = px1 - px0, py1 - py0
+    b = (max(0, int(px0 - CONTACT_SIDE * fw)), max(0, int(py1 - CONTACT_UP * fh)),
+         min(W, int(px1 + CONTACT_SIDE * fw)), min(H, int(py1 + CONTACT_DOWN * fh)))
+    m = Image.new("L", (W, H), 0)
+    m.paste(255, b)
+    m = m.filter(ImageFilter.GaussianBlur(max(4, int(0.25 * (b[3] - b[1])))))
+    win = _window(b)
+    gw, gh = _gen_size(win)
+    prompt = (f"{ST} dry stony ground at the foot of a slope, feet planted on the ground, "
+              f"a soft grey contact shadow on the ground under them.")
+    neg = NEG + ", floating, gap, outline, cut-out, new person, second figure, face, portrait"
+    pipe.set_ip_adapter_scale(0.0)
+    res = pipe(prompt=prompt, negative_prompt=neg,
+               image=canvas.crop(win).resize((gw, gh), Image.LANCZOS),
+               mask_image=m.crop(win).resize((gw, gh), Image.LANCZOS),
+               width=gw, height=gh, strength=CONTACT_STRENGTH,
+               num_inference_steps=params.STEPS, guidance_scale=params.GUIDANCE,
+               ip_adapter_image=Image.new("RGB", (8, 8)),
+               generator=torch.Generator("mps").manual_seed(seed)).images[0]
+    ww, wh = win[2] - win[0], win[3] - win[1]
+    canvas.paste(res.resize((ww, wh), Image.LANCZOS), (win[0], win[1]), m.crop(win))
+    return canvas, b
+
+
 def _tok(pipe, prompt, label):
     n = len(pipe.tokenizer(prompt).input_ids)
     lim = pipe.tokenizer.model_max_length
@@ -430,11 +469,12 @@ def main():
                 fig, al, n, lim = _plate(pipe, name, prompt, neg, seed,
                                          ARMOUR_REF, use_ip=(name == "S3"))
                 canvas, bb = _place(canvas, fig, al, box_px(region))
+                canvas, cb = _contact(pipe, canvas, bb, seed)
                 drawn[name] = bb
                 out = os.path.join(OUT, f"{a.label}-{name}-s{seed}.png")
                 canvas.save(out)
                 print(f"  [{name} {region} 17:{str(verse).split('.')[1]}] {time.time() - ts:.0f}s  "
-                      f"{n}/{lim}토큰  판 {fig.width}x{fig.height} → 얹음 {bb} -> "
+                      f"{n}/{lim}토큰  판 {fig.width}x{fig.height} → 얹음 {bb} · 접지 {cb} -> "
                       f"{os.path.basename(out)}", flush=True)
                 continue
 
