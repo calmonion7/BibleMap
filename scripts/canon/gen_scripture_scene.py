@@ -26,6 +26,7 @@ import os
 import sys
 import time
 
+import numpy as np
 import torch
 from diffusers import StableDiffusionXLInpaintPipeline
 from PIL import Image, ImageFilter
@@ -37,7 +38,10 @@ import derive_prompts as dp  # noqa: E402
 
 OUT = os.path.join(params.OUT_ROOT, "scripture-scene")
 W, H = params.SCENE_SIZE
-STRENGTH = 0.99          # 구역 안을 사실상 새로 그린다(기존 파이프라인과 같은 값)
+STRENGTH = 0.99          # 새 내용을 만드는 단계 — 구역 안을 사실상 새로 그린다
+REFINE_STRENGTH = 0.55   # **이미 있는 것을 다듬는 단계**(얼굴). 1에 가까우면 모델이 그 자리에
+                         # 새 그림을 그려 얼굴이 둘이 된다(2026-08-31 v4 실측: 다윗 얼굴이 별도의
+                         # 큰 초상으로 생겼다). 낮은 strength가 「고치기」의 도구다.
 FEATHER = 0.06           # 마스크 깃털 = 구역 짧은 변의 분율. 고정 px는 큰 구역에서 상자 변을
                          # 드러낸다(머리 단계 실측: 고정 6px에서 네모 이음매가 보였다).
 
@@ -46,13 +50,17 @@ FEATHER = 0.06           # 마스크 깃털 = 구역 짧은 변의 분율. 고�
 # 대 소년(약 1.6m). 좌우 배치는 17:2-3(양쪽 산)과 17:41·48(서로 마주 나아감)에서 온다.
 REGIONS = {
     "full":         (0.00, 0.00, 1.00, 1.00),
-    "crest_left":   (0.02, 0.30, 0.40, 0.40),   # 이스라엘 쪽 산등성이 (17:2-3) — 1차에서 구역이
+    "crest_left":   (0.02, 0.26, 0.42, 0.44),   # 이스라엘 쪽 산등성이 (17:2-3) — 1차에서 구역이
                                                 # 커서 「멀리 작은 인물」이 안 잡혔다. 능선 선에 얇게 붙인다.
-    "crest_right":  (0.60, 0.26, 0.98, 0.36),   # 블레셋 쪽 산등성이
-    "goliath":      (0.58, 0.05, 0.90, 0.95),   # 거인 (17:4 신장)
-    "shieldman":    (0.46, 0.46, 0.60, 0.95),   # 방패 든 자 — 골리앗 **앞** (17:7·41)
+    "crest_right":  (0.58, 0.20, 0.98, 0.40),   # 블레셋 쪽 산등성이
+    # 종횡비를 사람 비율로 좁힌다 — 0.68은 텐트/원뿔의 prior에 가깝고, v7에서 실제로 텐트가 나왔다.
+    "goliath":      (0.625, 0.05, 0.855, 0.95),  # 거인 (17:4 신장) · 비율 0.51
+    "shieldman":    (0.44, 0.52, 0.585, 0.94),  # 방패 든 자 — 골리앗 **앞**(=더 가까이·아래) (17:7·41)
     "david":        (0.13, 0.44, 0.34, 0.92),   # 소년
-    "david_props":  (0.10, 0.22, 0.46, 0.82),   # 막대기 + 머리 위로 휘두르는 물매 (17:40)
+    # ⚠ 1차 실측: 이 구역이 0.10~0.46 × 0.22~0.82이라 **다윗 상반신을 덮어 S5의 소년을 지우고**
+    # 노인을 그렸고, 그 탓에 크기 대비까지 무너졌다. **다윗 몸에 겹치지 않는 얇은 띠**로 줄인다 —
+    # 머리 위로 휘두르는 물매 호만 담는다. 막대기는 S5 프롬프트로 옮겼다(겹침 위험 제거).
+    "sling_arc":    (0.15, 0.26, 0.42, 0.44),
     "david_head":   (0.185, 0.44, 0.29, 0.575),
     "goliath_head": (0.635, 0.05, 0.795, 0.30),
 }
@@ -78,18 +86,38 @@ STAGES = [
     ("S2b", "crest_right", 17.3, f"{ST} a long dense row of tiny distant soldiers lined up "
                                  f"shoulder to shoulder along the hill crest, a forest of small "
                                  f"spears, seen from very far away.", NEG + ", empty hill, bare ridge"),
-    ("S3", "goliath", 17.5, f"{ST} a towering giant warrior nine feet tall, plain bronze helmet, "
-                            f"coat of overlapping bronze scales, bronze greaves on his shins, "
-                            f"a short javelin between his shoulders, a huge thick spear like a "
-                            f"weaver's beam, facing left.", NEG + ", horns, horned helmet"),
-    ("S4", "shieldman", 17.7, f"{ST} a Philistine shield bearer walking ahead of the giant, "
-                              f"holding a large round bronze shield, plain tunic, facing left.", NEG),
-    ("S5", "david", 17.40, f"{ST} a ruddy shepherd boy of fifteen, no armour, plain linen tunic "
-                           f"with a cloth belt, a shepherd's bag at his side, running forward and "
-                           f"swinging a sling overhead, facing right.", NEG + ", armour, helmet, sword"),
-    ("S6", "david_props", 17.41, f"{ST} a plain wooden shepherd's staff in his left hand, a leather "
-                                 f"sling with two long cords whirling above his head, one smooth "
-                                 f"stone in the sling pouch.", NEG),
+    # ⓑ **갑주를 프롬프트로 찾는다**(2026-08-31 사용자 지시). 기록의 실패는 「중립적 갑옷 낱말이
+    # 모델의 기사 사전지식에 4회 연속 졌다 — 판금·면갑·망토·대검으로 수렴」이고, **통한 방향은
+    # `barbaric` 레지스터**였다(PROMPTING.md 8 · SAMPLE_COSTUME 주석). 1차 실행에서 내가 정본
+    # 문구를 쓰지 않고 줄여 쓴 것도 실패 요인이다. 그래서 셋을 함께 건다:
+    #   ① 의상은 **정본 문구 그대로**(dp.SAMPLE_COSTUME — 표본·전신과 같은 출처)
+    #   ② 야만인 레지스터로 기사 사전지식을 밀어낸다
+    #   ③ **수렴 대상 네 가지를 부정어로 직접 막는다**(판금·면갑·망토·대검)
+    # ⚠ v7 정정 — **부정어를 과하게 걸어 역효과가 났다.** plate·knight·cape·cloak·sword·
+    # breastplate를 한꺼번에 막으니 모델이 「갑옷 입은 사람」을 그릴 손잡이를 다 잃고 **반투명
+    # 텐트**를 그렸다(비늘 무늬가 사람이 아니라 원뿔 꼭대기에 붙었다). 기록의 교훈은 「중립 갑옷
+    # 낱말이 기사 prior에 졌고 통한 것은 barbaric 레지스터」였지 갑옷 낱말을 지우라는 것이 아니다.
+    # 그래서 ① **사람 낱말을 맨 앞에** 두어 형태 prior를 사람으로 잡고 ② 부정어는 뿔·판금·기사
+    # 셋만 남긴다.
+    ("S3", "goliath", 17.5, f"{ST} full body of a huge barbaric warrior man, nine feet tall, "
+                            f"standing on the ground, plain bronze helmet, "
+                            f"{dp.SAMPLE_COSTUME['goliath'][3:]}, bronze greaves, holding one "
+                            f"thick heavy spear, facing left.",
+     NEG + ", horns, horned helmet, plate armour, knight, tent, cone, robe"),
+    ("S4", "shieldman", 17.7, f"{ST} full body of a Philistine shield bearer walking on the "
+                              f"ground ahead of the giant, holding a large round bronze shield, "
+                              f"plain tunic, facing left.",
+     NEG + ", oval, circle, medallion, vignette, inset, floating"),
+    ("S5", "david", 17.40, f"{ST} a small ruddy shepherd boy of fifteen, no armour, plain "
+                           f"linen tunic with a cloth belt, a shepherd's bag at his side, a plain "
+                           f"wooden staff in one hand, running forward, facing right.",
+     NEG + ", armour, helmet, sword, beard, old man, grey hair, robe, tall adult"),
+    ("S6", "sling_arc", 17.40, # ⚠ 「above the boy's head」라고 쓰자 모델이 **머리를 그렸다**(v4·v6 실측: 왼쪽 위에 큰 얼굴).
+     # 이 단계는 지물만 그려야 하므로 인물 낱말을 한 개도 넣지 않는다.
+     f"{ST} a leather sling swung high in the air, two long taut thin "
+                                 f"cords, one smooth round stone in the small leather pouch, "
+                                 f"nothing else, open pale sky.",
+     NEG + ", staff, pole, club, flag, banner, rope, head, face, person, boy, figure"),
     ("S7", "david_head", 17.42, f"{ST} head of a ruddy boy of fifteen, clean-shaven, curly hair, "
                                 f"bare head, strict side profile facing right, eyes on the giant.",
      NEG + ", " + dp.HEAD_NEG_EXTRA),
@@ -114,6 +142,7 @@ def region_mask(name):
     return m.filter(ImageFilter.GaussianBlur(f))
 
 
+REFINE_STAGES = {"S7", "S8"}   # 다듬는 단계 — REFINE_STRENGTH를 쓴다
 PAD = 0.10        # 구역 둘레 맥락 여백(구역 짧은 변의 분율) — 모델이 이어붙일 주변을 봐야 한다
 TARGET = 1024     # 생성 해상도(긴 변) — gen_final.TARGET과 같은 값·같은 이유
 
@@ -129,6 +158,22 @@ def _gen_size(win):
     w, h = win[2] - win[0], win[3] - win[1]
     sc = TARGET / max(w, h)
     return max(8, round(w * sc / 8) * 8), max(8, round(h * sc / 8) * 8)
+
+
+def _change_mask(new_im, old_im):
+    """**앞 단계 대비 바뀐 화소** = 이 단계가 실제로 그린 것. 사각 상자 대신 이것으로 되붙인다.
+
+    **왜 필요한가**(2026-08-31 v4·v5 실측):
+    ① v4 — 구역 마스크가 사각형이라 창 안의 **배경까지** 새로 칠해 붙었고, 단계마다 그 사각형이
+       드러나 그림이 **콜라주**가 됐다(콘티 파이프라인은 마스크가 인물 볼록껍질이라 이 문제가 없었다).
+    ② v5 — 그래서 「종이색이 아닌 화소」를 실루엣으로 썼더니 **옅게 그려진 골리앗이 통째로
+       버려졌다.** 절대 밝기 기준은 옅은 인물을 못 잡는다.
+    그래서 기준을 **변화량**으로 바꾼다. 이 단계가 그린 곳은 앞 단계와 다르고, 손대지 않은
+    배경은 (같은 프롬프트 맥락에서 다시 그려도) 거의 같다 — 밝기와 무관하게 자기 보정된다.
+    임계는 `params.THRESHOLD`를 그대로 쓴다(파이프라인 전체가 쓰는 잉크 판정 임계)."""
+    a = np.asarray(new_im.convert("L")).astype(int)
+    b = np.asarray(old_im.convert("L")).astype(int)
+    return Image.fromarray(((np.abs(a - b) > params.THRESHOLD) * 255).astype(np.uint8), "L")
 
 
 def _tok(pipe, prompt, label):
@@ -173,15 +218,31 @@ def main():
             win = _window(b)
             gw, gh = _gen_size(win)
             ts = time.time()
+            refine = name in REFINE_STAGES
             res = pipe(prompt=prompt, negative_prompt=neg,
                        image=canvas.crop(win).resize((gw, gh), Image.LANCZOS),
                        mask_image=m.crop(win).resize((gw, gh), Image.LANCZOS),
                        width=gw, height=gh,
-                       strength=STRENGTH, num_inference_steps=params.STEPS,
+                       strength=REFINE_STRENGTH if refine else STRENGTH,
+                       num_inference_steps=params.STEPS,
                        guidance_scale=params.GUIDANCE,
                        generator=torch.Generator("mps").manual_seed(seed)).images[0]
             ww, wh = win[2] - win[0], win[3] - win[1]
-            canvas.paste(res.resize((ww, wh), Image.LANCZOS), (win[0], win[1]), m.crop(win))
+            back = res.resize((ww, wh), Image.LANCZOS)
+            if name == "S1":
+                paste_m = m.crop(win)                 # 지형은 화면 전체가 대상이다
+            else:
+                # **실루엣으로 되붙인다** — 사각 상자를 붙이면 그 변이 드러나 콜라주가 된다.
+                sil = _change_mask(back, canvas.crop(win))
+                # **형태학적 닫기(팽창 → 침식)로 내부 구멍을 메운다.** v6 실측: 옅게 그려진
+                # 골리앗의 **내부**에서 변화량이 임계 아래라 구멍이 뚫려 그가 반투명해졌다.
+                # 반지름은 구역 짧은 변에서 판다(고정값은 큰 구역에서 부족하다).
+                r = max(3, int(round(0.035 * min(ww, wh))))
+                k = 2 * r + 1
+                sil = sil.filter(ImageFilter.MaxFilter(k)).filter(ImageFilter.MinFilter(k))
+                sil = sil.filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.GaussianBlur(4))
+                paste_m = Image.composite(sil, Image.new("L", sil.size, 0), m.crop(win))
+            canvas.paste(back, (win[0], win[1]), paste_m)
             out = os.path.join(OUT, f"{a.label}-{name}-s{seed}.png")
             canvas.save(out)
             print(f"  [{name} {region} 17:{str(verse).split('.')[1]}] {time.time() - ts:.0f}s  "
