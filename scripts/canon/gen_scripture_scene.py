@@ -145,8 +145,9 @@ STAGES = [
                             f"thick heavy spear, seen from the side, body and face turned left.",
      # `barbaric`은 기사 prior를 밀어냈지만 **맨가슴**을 불러 어린갑과 상충했다(v8 실측).
      # 청동기·블레셋이라는 **시대·민족 레지스터**로 바꾼다 — 중세 판금을 배제하면서 옷은 안 벗긴다.
+     # ⚠ 판에서 창이 **두 자루의 나란한 장대**로 읽혔다(v31~v33) — 자루를 겹선으로 그린 탓이다.
      NEG + ", horns, horned helmet, plate armour, knight, medieval, tent, cone, robe, "
-            "bare chest, shirtless, naked torso"),
+            "bare chest, shirtless, naked torso, two spears, double spear, pair of poles"),
     ("S4", "shieldman", 17.7, f"{ST} full body of a Philistine shield bearer walking on the "
                               f"ground ahead of the giant, holding a large round bronze shield, "
                               f"plain tunic, facing left.",
@@ -154,9 +155,12 @@ STAGES = [
     ("S5", "david", 17.40, # ⚠ **`swinging a sling`은 쓰지 말 것** — v15에서 모델이 **그네(swing)** 로 읽어 아이가
      # 그네를 타고 있었다. `whirling`은 손을 비게 만들었다(v9·v14). 동작 낱말을 버리고
      # **쥐고 있는 물건**으로 말한다 — 손에 무엇이 있는지가 그려져야 할 것의 전부다.
-     f"{ST} a small ruddy shepherd boy of fifteen, no armour, plain "
-                           f"linen tunic with a cloth belt, a shepherd's bag at his side, "
-                           f"holding up a leather sling with two cords, running mid-stride, facing right.",
+     # 지물을 **문장 앞으로** 당긴다 — 판에서 주머니만 나오고 물매·막대기가 빠졌다(v31~v33).
+     # 17:40은 손에 물매와 막대기를 **둘 다** 들려 있다고 말한다.
+     f"{ST} a small ruddy shepherd boy of fifteen holding up a leather "
+                           f"sling with two long cords, a wooden staff in his other hand, "
+                           f"no armour, plain linen tunic, a shepherd's bag at his side, "
+                           f"running mid-stride, facing right.",
      NEG + ", armour, helmet, sword, beard, old man, grey hair, robe, tall adult"),
     ("S9", "sling_arc", 17.40, # ⚠ 「above the boy's head」라고 쓰자 모델이 **머리를 그렸다**(v4·v6 실측: 왼쪽 위에 큰 얼굴).
      # 이 단계는 지물만 그려야 하므로 인물 낱말을 한 개도 넣지 않는다.
