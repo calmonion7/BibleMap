@@ -51,6 +51,10 @@ FEATHER = 0.06           # 마스크 깃털 = 구역 짧은 변의 분율. 고�
 # 대 소년(약 1.6m). 좌우 배치는 17:2-3(양쪽 산)과 17:41·48(서로 마주 나아감)에서 온다.
 REGIONS = {
     "full":         (0.00, 0.00, 1.00, 1.00),
+    # 지형을 **상자로** 지시한다(규칙 다섯째). 프롬프트로 두 번 밀어 두 번 실패했다(격자·드레이프).
+    # S1이 골짜기 바닥만 그리고, 좌우 산을 이 두 구역이 올린다 — 가운데가 낮게 남아 골짜기가 된다.
+    "hill_left":    (0.00, 0.30, 0.38, 0.74),
+    "hill_right":   (0.62, 0.26, 1.00, 0.72),
     "crest_left":   (0.02, 0.24, 0.44, 0.47),   # 이스라엘 쪽 산등성이 (17:2-3) — 1차에서 구역이
                                                 # 커서 「멀리 작은 인물」이 안 잡혔다. 능선 선에 얇게 붙인다.
     "crest_right":  (0.56, 0.18, 0.99, 0.43),   # 블레셋 쪽 산등성이
@@ -84,12 +88,18 @@ STAGES = [
     # ⚠ 두 번 시도해 두 번 실패했다: 위치 서술어(left/right/middle)는 **격자·패널 도해**를 부르고
     # (v13), 「V자 협곡·양쪽 급사면」은 **드레이프 천 같은 형태**를 냈다(v15). 배치·지형 형태를
     # 말로 밀는 것은 이 모델에서 잘 안 먹는다 — v12 문구로 되돌리고 골짜기는 미해결로 둔다.
-    f"{ST} two facing hillsides with a deep dry valley between them, "
-                         f"a hill on the left and a hill on the right, sunbaked stony ground, "
-                         f"a dry brook with smooth stones, sparse dry grass, no people.",
+    f"{ST} a low flat dry valley floor of pale stony ground, a dry "
+                         f"brook bed with smooth round stones, sparse dry grass, empty pale sky, "
+                         f"no hills, no people.",
      NEG + ", people, figures, soldiers, flat plain, open field"),   # ⚠ v10에서 `grid·stripes·ruled paper`를
      # 부정어에 넣었더니 **화면 전체에 격자가 나타났다**(부정어 누출). 도로 뺀다 — 부정어는
      # 낱말을 지우는 도구가 아니라 확률을 미는 도구여서, 없던 개념을 불러오는 쪽으로도 작동한다.
+    ("S1b", "hill_left", 17.3, f"{ST} a tall steep dry rocky hillside rising up, sunbaked "
+                               f"brown slope, layered rock, sparse dry grass, no people.",
+     NEG + ", people, figures, flat ground, valley"),
+    ("S1c", "hill_right", 17.3, f"{ST} a tall steep dry rocky hillside rising up, sunbaked "
+                                f"brown slope, layered rock, sparse dry grass, no people.",
+     NEG + ", people, figures, flat ground, valley"),
     ("S2a", "crest_left", 17.2, f"{ST} hundreds of tiny distant soldiers packed shoulder to "
                                 f"shoulder in long ranks on the hillside, a dense forest of small "
                                 f"upright spears, tiny far away crowd.",
@@ -130,7 +140,7 @@ STAGES = [
      # **쥐고 있는 물건**으로 말한다 — 손에 무엇이 있는지가 그려져야 할 것의 전부다.
      f"{ST} a small ruddy shepherd boy of fifteen, no armour, plain "
                            f"linen tunic with a cloth belt, a shepherd's bag at his side, "
-                           f"holding up a leather sling with two cords, running, facing right.",
+                           f"holding up a leather sling with two cords, running mid-stride, facing right.",
      NEG + ", armour, helmet, sword, beard, old man, grey hair, robe, tall adult"),
     ("S9", "sling_arc", 17.40, # ⚠ 「above the boy's head」라고 쓰자 모델이 **머리를 그렸다**(v4·v6 실측: 왼쪽 위에 큰 얼굴).
      # 이 단계는 지물만 그려야 하므로 인물 낱말을 한 개도 넣지 않는다.
@@ -173,7 +183,13 @@ SKIP = {"S8_DROPPED", "S9"}
                                # 손에 쥔 것으로 S5에 합친다 — 떠 있는 지물이 오독의 원인이었다.
 # S8(골리앗 얼굴)도 폐기했다 — v9 실측: 다듬기 단계가 머리를 다시 그리며 **놋투구를 지워
 # 대머리로** 만들었다. 그리고 S3만으로 이미 왼쪽을 보므로 이 단계는 순손실이다.
-REFINE_STAGES = {"S7"}   # 다듬는 단계 — REFINE_STRENGTH를 쓴다
+REFINE_STAGES = {"S7"}
+# **창을 전체 캔버스로 주는 단계.** 규칙 ③(창 ≠ 마스크)의 또 다른 적용 — 능선 띠를 1024로 확대해
+# 생성하면 「멀리 작은 병사」를 그리라 해도 **큰 병사**가 나온다(v9~v17). 창을 화면 전체로 주면
+# 모델이 장면 배율을 보고 그 안에서 작게 그린다. 마스크는 여전히 능선 띠다.
+# ⚠ v18 실측 — 전체 창을 주자 S2가 **아무것도 안 그렸다**(구역 창에서는 큰 병사가 나왔다).
+# 「멀리 작은 군중」은 이 두 손잡이 사이에 답이 없다. **미해결로 남긴다** — 비워 두면 구역 창이다.
+CONTEXT_FULL = set()   # 다듬는 단계 — REFINE_STRENGTH를 쓴다
 PAD = 0.10        # 구역 둘레 맥락 여백(구역 짧은 변의 분율) — 모델이 이어붙일 주변을 봐야 한다
 TARGET = 1024     # 생성 해상도(긴 변) — gen_final.TARGET과 같은 값·같은 이유
 
@@ -282,7 +298,12 @@ def main():
             # **창(맥락)과 마스크(칠할 곳)를 분리한다.** v10 실측: 작은 파생 구역(158×175)을
             # 1024로 확대하니 모델이 **클로즈업**을 그려 「거대한 손」·「인형 얼굴」이 나왔다.
             # 옛 콘티 파이프라인은 창 = 인물창 + 여백, 마스크 = 인물 실루엣으로 분리돼 있었다.
-            win = _window(drawn[src]) if (src and src in drawn) else _window(b)
+            if name in CONTEXT_FULL:
+                win = (0, 0, W, H)
+            elif src and src in drawn:
+                win = _window(drawn[src])
+            else:
+                win = _window(b)
             gw, gh = _gen_size(win)
             ts = time.time()
             refine = name in REFINE_STAGES
