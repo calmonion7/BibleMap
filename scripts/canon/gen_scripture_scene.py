@@ -39,7 +39,8 @@ import derive_prompts as dp  # noqa: E402
 OUT = os.path.join(params.OUT_ROOT, "scripture-scene")
 W, H = params.SCENE_SIZE
 STRENGTH = 0.99          # 새 내용을 만드는 단계 — 구역 안을 사실상 새로 그린다
-REFINE_STRENGTH = 0.55   # **이미 있는 것을 다듬는 단계**(얼굴). 1에 가까우면 모델이 그 자리에
+REFINE_STRENGTH = 0.72   # v12까지 0.55로는 고개를 못 돌렸다(다윗이 숙인 채였다).
+                         # **이미 있는 것을 다듬는 단계**(얼굴). 1에 가까우면 모델이 그 자리에
                          # 새 그림을 그려 얼굴이 둘이 된다(2026-08-31 v4 실측: 다윗 얼굴이 별도의
                          # 큰 초상으로 생겼다). 낮은 strength가 「고치기」의 도구다.
 FEATHER = 0.06           # 마스크 깃털 = 구역 짧은 변의 분율. 고정 px는 큰 구역에서 상자 변을
@@ -77,7 +78,13 @@ NEG = dp._drop(dp.NEG, "dark", "heavy shadows") + (
 STAGES = [
     # 17:3 「블레셋 사람은 이편 산에 섰고 이스라엘은 저편 산에 섰고 사이에는 골짜기가 있었더라」
     # — 1차 실측에서 열린 평야가 나왔다. **두 산과 그 사이 골짜기**를 문장 앞으로 당겨 세게 민다.
-    ("S1", "full", 17.1, f"{ST} two facing hillsides with a deep dry valley between them, "
+    ("S1", "full", 17.1, # ⚠ v13 정정 — 「far left / far right / middle / bottom」처럼 **위치를 말로 지시하자
+    # 화면 전체가 격자·패널 도해**가 됐다. 모델은 위치 서술어를 레이아웃 지시로 읽는다.
+    # 배치는 **구역 상자가 지고** 프롬프트는 사물만 말한다. v12 문구로 되돌린다.
+    # ⚠ 두 번 시도해 두 번 실패했다: 위치 서술어(left/right/middle)는 **격자·패널 도해**를 부르고
+    # (v13), 「V자 협곡·양쪽 급사면」은 **드레이프 천 같은 형태**를 냈다(v15). 배치·지형 형태를
+    # 말로 밀는 것은 이 모델에서 잘 안 먹는다 — v12 문구로 되돌리고 골짜기는 미해결로 둔다.
+    f"{ST} two facing hillsides with a deep dry valley between them, "
                          f"a hill on the left and a hill on the right, sunbaked stony ground, "
                          f"a dry brook with smooth stones, sparse dry grass, no people.",
      NEG + ", people, figures, soldiers, flat plain, open field"),   # ⚠ v10에서 `grid·stripes·ruled paper`를
@@ -118,21 +125,24 @@ STAGES = [
                               f"ground ahead of the giant, holding a large round bronze shield, "
                               f"plain tunic, facing left.",
      NEG + ", oval, circle, medallion, vignette, inset, floating"),
-    ("S5", "david", 17.40, f"{ST} a small ruddy shepherd boy of fifteen, no armour, plain "
+    ("S5", "david", 17.40, # ⚠ **`swinging a sling`은 쓰지 말 것** — v15에서 모델이 **그네(swing)** 로 읽어 아이가
+     # 그네를 타고 있었다. `whirling`은 손을 비게 만들었다(v9·v14). 동작 낱말을 버리고
+     # **쥐고 있는 물건**으로 말한다 — 손에 무엇이 있는지가 그려져야 할 것의 전부다.
+     f"{ST} a small ruddy shepherd boy of fifteen, no armour, plain "
                            f"linen tunic with a cloth belt, a shepherd's bag at his side, "
-                           f"whirling a small leather sling on short cords in his raised hand, "
-                           f"running forward, facing right.",
+                           f"holding up a leather sling with two cords, running, facing right.",
      NEG + ", armour, helmet, sword, beard, old man, grey hair, robe, tall adult"),
     ("S9", "sling_arc", 17.40, # ⚠ 「above the boy's head」라고 쓰자 모델이 **머리를 그렸다**(v4·v6 실측: 왼쪽 위에 큰 얼굴).
      # 이 단계는 지물만 그려야 하므로 인물 낱말을 한 개도 넣지 않는다.
      # v9에서 S5 프롬프트에 합쳤더니 **손이 빈 채로** 나왔다 — 지물은 자기 단계가 있어야 한다.
      # 구역은 다윗 실루엣 상단에서 파생해 **손 근처**에 둔다(허공에 따로 그리면 해먹으로 읽혔다).
-     f"{ST} a small leather sling held up in a boy's hand, two short "
-                                 f"taut cords and a small pouch holding one round stone, "
-                                 f"close to the hand.",
+     f"{ST} two very thin taut leather cords stretched in the air, "
+                                 f"a tiny pouch with one small round stone at their far end, "
+                                 f"thin lines only, nothing thick.",
      NEG + ", staff, pole, club, flag, banner, rope, head, face, person, boy, figure"),
     ("S7", "david_head", 17.42, f"{ST} head of a ruddy boy of fifteen, clean-shaven, curly hair, "
-                                f"bare head, strict side profile facing right, eyes on the giant.",
+                                f"bare head, strict side profile facing right, chin up, "
+                                f"looking straight at the giant on the right.",
      NEG + ", " + dp.HEAD_NEG_EXTRA),
     ("S8_DROPPED", "goliath_head", 17.5, f"{ST} head of a grown man of about forty, clean-shaven, no hair "
                                  f"showing, plain bronze helmet with cheek guards, strict side "
@@ -155,7 +165,10 @@ def region_mask(name):
     return m.filter(ImageFilter.GaussianBlur(f))
 
 
-SKIP = {"S8_DROPPED"}
+# S9(물매)도 폐기했다 — v10~v13 **네 판 연속 실패**: 거대한 손 → 거대한 팔 → 원뿔 → 손톱 손.
+# 작은 상자에 「지물 하나」를 그리라 하면 모델이 그 상자를 채우는 크기로 그린다. 물매는 S5의
+# 인물 프롬프트가 지게 두고, 별도 단계를 만들지 않는다.
+SKIP = {"S8_DROPPED", "S9"}
 # S6: v8까지 물매를 허공에 따로 그렸더니 **해먹·그물**로 읽혔다.
                                # 손에 쥔 것으로 S5에 합친다 — 떠 있는 지물이 오독의 원인이었다.
 # S8(골리앗 얼굴)도 폐기했다 — v9 실측: 다듬기 단계가 머리를 다시 그리며 **놋투구를 지워
@@ -246,9 +259,11 @@ def main():
                 if name == "S9":
                     # 물매는 **든 손 크기**여야 한다. v10·v11에서 마스크가 다윗 몸통만 해서
                     # 「거대한 팔」이 나왔다 — 창을 고쳐도 **마스크가 크면 큰 것을 그린다.**
+                    # v10~v12: 상자에 「물건」을 그리라 하면 그 상자 크기의 물건이 나온다(나팔·원뿔).
+                    # 팔을 따라가는 **얇고 긴 띠**로 바꾸고, 문구도 「끈 두 가닥」으로만 말한다.
                     fw, fh = x1 - x0, y1 - y0
-                    b = (x0 + int(fw * 0.62), max(0, y0 - int(fh * 0.06)),
-                         min(W, x0 + int(fw * 1.06)), y0 + int(fh * 0.20))
+                    b = (x0 + int(fw * 0.55), max(0, y0 - int(fh * 0.16)),
+                         min(W, x0 + int(fw * 1.30)), y0 + int(fh * 0.06))
                 else:
                     hh = int(round((y1 - y0) * 0.30))      # 인물 상단 30% = 머리·어깨
                     b = (x0, y0, x1, y0 + hh)
@@ -274,7 +289,7 @@ def main():
             use_ip = name == "S3"
             # 앵커 강도 — v10의 0.55는 비늘을 살렸지만 **표본의 정면성까지** 실어 왔다.
             # 낮춰서 재질만 남기는 지점을 찾는다(레퍼런스가 자세를 나른다는 PROMPTING.md 9).
-            pipe.set_ip_adapter_scale(0.25 if use_ip else 0.0)
+            pipe.set_ip_adapter_scale(0.25 if use_ip else 0.0)   # 0.18로 낮추자 굵은 창이 사라졌다(v13)
             res = pipe(prompt=prompt, negative_prompt=neg,
                        image=canvas.crop(win).resize((gw, gh), Image.LANCZOS),
                        mask_image=m.crop(win).resize((gw, gh), Image.LANCZOS),
