@@ -18,8 +18,8 @@
 `SKY_MARGIN`만큼 어두우면 「지형/사물」로 센다.
 
 사용:
-    python3 judge_scene.py <final.png> [--terrain <S1c.png>] [--json out.json]
-    python3 judge_scene.py --calibrate v15 v16 v17 v18
+    python3 judge_scene.py v35                  # 한 판 — JSON + 종료코드(0=다섯 축 통과)
+    python3 judge_scene.py v17 v25 v33 v35      # 여러 판 — 한 줄씩 비교
 """
 
 import argparse
@@ -152,8 +152,8 @@ def c2_army(lum, key, terrain_top, before=None):
             "runlen95": _runs95(sub) / H}
 
 
-def c3_seam(lum, terrain_top=None):
-    """C3 — ① **하늘을 가로지르는** 얇은 가로선 행수 ② 구역 상자 세로 변의 밝기 단차.
+def c3_lines(lum, terrain_top=None):
+    """C3의 절반 — **하늘을 가로지르는** 얇은 가로선 행수(종횡비 아티팩트).
 
     **하늘로 한정해야 한다**(2026-09-01 실측): 지면의 지층선·능선도 화면 폭 절반을 넘게 이어지는
     얇은 가로선이라, 한정하지 않으면 **정상 묘사를 결함으로 센다**(t323b에서 남은 6행 중 넷이
@@ -167,28 +167,7 @@ def c3_seam(lum, terrain_top=None):
     sky = yy < terrain_top[None, :]          # 그 열에서 지형보다 위인가
     line_rows = int(((thin & sky).mean(axis=1) > 0.40).sum())
 
-    # **이음매는 크기가 아니라 「모든 행에 걸쳐 있는가」로 잰다**(2026-09-01 교정).
-    # 처음엔 변의 밝기 단차 절대량을 썼는데, 그 임계(0.010)를 하늘만 있던 표본 65열에서 뽑아
-    # **보통 열의 95백분위(0.0101)보다도 낮았다** — 지형이 들어오자 정상 묘사를 이음매로 셌다.
-    # 붙임 이음매는 상자 높이 **전체**를 곧게 지나고 그려진 선은 일부 행만 지난다. 그 차이를 센다:
-    # 실측 v16 0.803 · v17 0.424 · v18 0.460(이음매 있음) ↔ 붙임 없는 지형 0.164.
-    grad = np.abs(np.diff(lum, axis=1))
-    worst, worst_at = 0.0, None
-    for key in ("goliath", "david", "shieldman", "crest_left", "crest_right",
-                "hill_left", "hill_right"):
-        bx0, by0, bx1, by1 = box(key)
-        for xe in (bx0, bx1 - 1):
-            if not (32 < xe < W - 33):
-                continue
-            for x in range(xe - 20, xe + 21):
-                # 인물 선이 없는 행만 — 상자가 인물에 붙어 있으면 그의 윤곽이 변을 지난다.
-                bg = lum[by0:by1, max(0, x - 20):x + 21].min(axis=1) > DARK_CUT
-                if bg.sum() < 20:
-                    continue
-                f = float((grad[by0:by1, :][bg][:, x] > SEAM_STEP).mean())
-                if f > worst:
-                    worst, worst_at = f, f"{key}@x={x}"
-    return {"line_rows": line_rows, "vseam": worst, "vseam_at": worst_at}
+    return {"line_rows": line_rows}
 
 
 def _sil_bbox(lum, key):
@@ -201,6 +180,72 @@ def _sil_bbox(lum, key):
     if not rows.size or not cols.size:
         return None
     return (x0 + int(cols[0]), y0 + int(rows[0]), x0 + int(cols[-1]) + 1, y0 + int(rows[-1]) + 1)
+
+
+# --- C3 재정의(2026-09-01, task 325) — 「붙임이 상자 선에서 끝났는가」 -----------------
+# 앞선 세 판(절대 단차 · 상자 변 열의 행 비율 · 그 상대값)은 모두 **화면을 세로로 지나는 것**을
+# 셌다. 그래서 창자루·바위 등고선 같은 **정상 묘사**가 걸렸고(v35의 최대값 0.823이 골리앗의
+# 창자루였다), 지형이 상세해지면 보통 열의 99백분위가 임계를 넘어 판정 자체가 불가능해졌다.
+#
+# 이음매의 기전은 「세로선이 있다」가 아니라 **「이 단계가 칠한 자리가 상자 선에서 잘리고,
+# 그 선을 넘는 밝기 단차가 남았다」** 이다. 둘이 **동시에** 성립해야 한다. 단계마다 직전/직후
+# 그림이 저장돼 있으므로 「이 단계가 칠한 자리」를 정확히 알 수 있다(C2를 정직하게 만든 수법).
+# 이 정의에서는 창자루가 자동으로 빠진다 — 붙임 **안쪽**에 있지 상자 선에 걸치지 않는다.
+STAGE_ORDER = [("S1", None), ("S1b", "hill_left"), ("S1c", "hill_right"),
+               ("S2a", "crest_left"), ("S2b", "crest_right"),
+               ("S3", "goliath"), ("S4", "shieldman"), ("S5", "david")]
+PASTE_CUT = 0.04    # 이 단계가 칠했다고 볼 밝기 변화
+EDGE_IN = 3         # 상자 선 안쪽/바깥쪽을 보는 거리(px)
+
+
+def _edge_seam(cur, prev, b):
+    """상자 b의 네 변에서 「붙임이 그 선에서 끝나며 단차를 남긴」 위치의 비율(최댓값).
+
+    안/밖은 **상자 중심 기준**이다(화면 절반 기준으로 잡았다가 좌우가 뒤집혔다 — 2026-09-01)."""
+    drew = np.abs(cur - prev) > PASTE_CUT
+    x0, y0, x1, y1 = b
+    worst, at = 0.0, None
+    sides = (("left",   x0,     +1, True),  ("right",  x1 - 1, -1, True),
+             ("top",    y0,     +1, False), ("bottom", y1 - 1, -1, False))
+    for side, line, inward, vert in sides:
+        lim = W if vert else H
+        if not (EDGE_IN < line < lim - EDGE_IN - 1):
+            continue
+        i, o = line + inward * EDGE_IN, line - inward * EDGE_IN
+        if vert:
+            ins, out = drew[y0:y1, i], drew[y0:y1, o]
+            step = np.abs(cur[y0:y1, line + 1] - cur[y0:y1, line - 1]) > SEAM_STEP
+            bg = (cur[y0:y1, i] > DARK_CUT) & (cur[y0:y1, o] > DARK_CUT)
+        else:
+            ins, out = drew[i, x0:x1], drew[o, x0:x1]
+            step = np.abs(cur[line + 1, x0:x1] - cur[line - 1, x0:x1]) > SEAM_STEP
+            bg = (cur[i, x0:x1] > DARK_CUT) & (cur[o, x0:x1] > DARK_CUT)
+        # **양쪽이 다 배경일 때만 센다.** 인물이 상자 바닥에 발을 딛으면 붙임이 그 선에서 끝나고
+        # 단차도 있지만 그것은 **발**이지 이음매가 아니다(2026-09-01 실측: 이 조건 없이는 판 합성도
+        # 0.61로 걸렸다). 이음매는 **배경 안에** 생기는 사각형 자국이다.
+        n = int((ins & bg).sum())
+        if n < 20:            # 이 변에 붙임이 배경으로 거의 안 닿았으면 판정 대상이 아니다
+            continue
+        f = float((ins & ~out & step & bg).sum() / n)
+        if f > worst:
+            worst, at = f, side
+    return worst, at
+
+
+def c3_paste_seam(root, label, seed):
+    """붙임 이음매 — 단계마다 직전/직후를 비교해 상자 선에서 잘린 붙임을 찾는다."""
+    prev, worst, at = None, 0.0, None
+    for name, region in STAGE_ORDER:
+        f = os.path.join(root, f"{label}-{name}-s{seed}.png")
+        if not os.path.exists(f):
+            continue
+        cur = load(f)
+        if prev is not None and region is not None:
+            v, side = _edge_seam(cur, prev, box(region))
+            if v > worst:
+                worst, at = v, f"{name}/{region}.{side}"
+        prev = cur
+    return {"paste_seam": worst, "paste_seam_at": at}
 
 
 def c4_style(lum):
@@ -229,21 +274,23 @@ def c5_figures(lum):
             "scale_ratio": hs["goliath"] / max(hs["david"], 1e-6)}
 
 
-def measure(final_path, terrain_path=None, armies_path=None):
-    lum = load(final_path)
-    terr = load(terrain_path) if terrain_path else lum
+def measure(root, label, seed=11):
+    """한 판의 다섯 축. 단계 산출물을 **판정자가 스스로 찾는다** — C2(군대 단계 직전/직후 차이)와
+    C3(붙임이 상자 선에서 끝났는가)이 둘 다 단계 그림을 필요로 하므로, 경로를 손으로 넘기지 않는다."""
+    def path(stage):
+        return os.path.join(root, f"{label}-{stage}-s{seed}.png")
+    lum = load(path("final"))
+    terr = load(path("S1c")) if os.path.exists(path("S1c")) else lum
     top = skyline(terr)
-    # 군대는 **단계 직전/직후의 차이**로 잰다 — 지형이 정의상 빠진다(c2_army 주석 ④)
-    arm = load(armies_path) if armies_path else None
+    arm = load(path("S2b")) if os.path.exists(path("S2b")) else None
     return {
-        "final": os.path.basename(final_path),
-        "terrain": os.path.basename(terrain_path) if terrain_path else None,
+        "label": label, "seed": seed,
         "c1_valley": c1_valley(terr),
         "c2_army_left": c2_army(arm if arm is not None else lum, "crest_left", top,
                                 terr if arm is not None else None),
         "c2_army_right": c2_army(arm if arm is not None else lum, "crest_right", top,
                                  terr if arm is not None else None),
-        "c3_seam": c3_seam(lum, top),
+        "c3_seam": {**c3_lines(lum, top), **c3_paste_seam(root, label, seed)},
         "c4_style": c4_style(lum),
         "c5_figures": c5_figures(lum),
     }
@@ -258,8 +305,10 @@ THRESHOLDS = {
     "c2_cov_min": 0.20,         # 군대 단계가 능선 띠를 채웠나 (t324c .389/.405 ↔ v17 .036/.069 ↔ v25 .000)
     "c2_xings_min": 2.5,        # 한 덩어리 막대가 아니라 여럿 (t324c 7.19/5.41 ↔ v17 0.29/1.31)
     "c2_runlen95_max": 0.06,    # 세로 런 95p ≤ 높이의 6%(38px) — 「큰 병사」 배제 (t324c .045 ↔ v17 .058)
-    "c3_line_rows_max": 1,      # 전폭 얇은 가로선 행 ≤ 1  (다섯 판 모두 8~10)
-    "c3_vseam_max": 0.25,       # 상자 변을 곧게 지나는 행의 비율 (v16 .803 · v17 .424 ↔ 붙임 없음 .164)
+    "c3_line_rows_max": 1,      # 하늘 가로선 행 ≤ 1 (v17 6행 ↔ 종횡비를 고친 뒤 0행)
+    # 직사각 잔상이면 붙임이 **한 변의 대부분**에서 끊긴다 — 임계를 「대부분」에서 잡는다.
+    # 실측 분리: 상자 인페인팅 .774~.950 ↔ 판 합성 .250 (3배). task 325에서 재정의했다.
+    "c3_paste_seam_max": 0.40,
     "c4_ink_min": 0.055,        # 인물이 지워지지 않을 것 (v17 다윗 0.0727 · v15 0.0434 = 실패)
     "c4_ratio_max": 2.40,       # 두 인물 잉크 비 (v17 2.14 · v15 3.34 = 실패)
     "c5_scale_min": 1.60,       # 크기 대비 17:4 (v17 2.02 · v18 1.88)
@@ -274,7 +323,7 @@ def verdict(m, t=THRESHOLDS):
         and a["runlen95"] <= t["c2_runlen95_max"]
         for a in (m["c2_army_left"], m["c2_army_right"]))
     c["C3"] = (m["c3_seam"]["line_rows"] <= t["c3_line_rows_max"]
-               and m["c3_seam"]["vseam"] <= t["c3_vseam_max"])
+               and m["c3_seam"]["paste_seam"] <= t["c3_paste_seam_max"])
     s = m["c4_style"]
     c["C4"] = (min(s["ink_david"], s["ink_goliath"]) >= t["c4_ink_min"]
                and s["ink_ratio"] <= t["c4_ratio_max"])
@@ -284,48 +333,36 @@ def verdict(m, t=THRESHOLDS):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("final", nargs="?")
-    ap.add_argument("--terrain", default=None, help="군대 **직전** 단계 산출물(S1c) — 없으면 final로 잰다")
-    ap.add_argument("--armies", default=None, help="군대 **직후** 단계 산출물(S2b) — 둘의 차이가 군대다")
-    ap.add_argument("--json", default=None)
-    ap.add_argument("--calibrate", nargs="+", default=None, help="라벨들(v15 v16 ...)을 한 줄씩 비교")
+    ap.add_argument("labels", nargs="+", help="판 라벨 하나 이상 (예: v35). 여럿이면 표로 비교한다")
+    ap.add_argument("--seed", type=int, default=11)
+    ap.add_argument("--json", default=None, help="라벨이 하나일 때 판정을 파일로 남긴다")
     a = ap.parse_args()
+    root = os.path.join(params.OUT_ROOT, "scripture-scene")
 
-    root = os.path.join(params.OUT_ROOT, "scripture-scene") \
-        if hasattr(params, "OUT_ROOT") else None
+    if len(a.labels) == 1:
+        m = measure(root, a.labels[0], a.seed)
+        m["verdict"] = verdict(m)
+        print(json.dumps(m, ensure_ascii=False, indent=2))
+        if a.json:
+            with open(a.json, "w") as fh:
+                json.dump(m, fh, ensure_ascii=False, indent=2)
+        return 0 if all(m["verdict"].values()) else 1
 
-    if a.calibrate:
-        print(f"{'라벨':>6} {'C1 drop':>8} {'L xings':>8} {'L ridge':>8} {'R xings':>8} {'R ridge':>8} "
-              f"{'가로선':>6} {'세로단차':>9} {'ink D':>7} {'ink G':>7} {'비':>5} {'크기비':>6}")
-        for lab in a.calibrate:
-            f = os.path.join(root, f"{lab}-final-s11.png")
-            if not os.path.exists(f):
-                print(f"{lab:>6}  (없음)")
-                continue
-            t = os.path.join(root, f"{lab}-S1c-s11.png")
-            am = os.path.join(root, f"{lab}-S2b-s11.png")
-            m = measure(f, t if os.path.exists(t) else None,
-                        am if os.path.exists(am) and os.path.exists(t) else None)
-            v = verdict(m)
-            print(f"{lab:>6} {m['c1_valley']['drop']:8.3f} "
-                  f"{m['c2_army_left']['xings']:8.2f} {m['c2_army_left']['on_ridge']:8.2f} "
-                  f"{m['c2_army_right']['xings']:8.2f} {m['c2_army_right']['on_ridge']:8.2f} "
-                  f"{m['c3_seam']['line_rows']:6d} {m['c3_seam']['vseam']:9.4f} "
-                  f"{m['c4_style']['ink_david']:7.4f} {m['c4_style']['ink_goliath']:7.4f} "
-                  f"{m['c4_style']['ink_ratio']:5.2f} {m['c5_figures']['scale_ratio']:6.2f}  "
-                  + " ".join(k for k, ok in v.items() if ok))
-        return 0
-
-    if not a.final:
-        sys.exit("판정할 이미지를 달라 (또는 --calibrate)")
-    m = measure(a.final, a.terrain, a.armies)
-    v = verdict(m)
-    m["verdict"] = v
-    print(json.dumps(m, ensure_ascii=False, indent=2))
-    if a.json:
-        with open(a.json, "w") as fh:
-            json.dump(m, fh, ensure_ascii=False, indent=2)
-    return 0 if all(v.values()) else 1
+    print(f"{'라벨':>6} {'C1골짜기':>8} {'C2좌':>6} {'C2우':>6} {'가로선':>6} {'붙임이음매':>10} "
+          f"{'잉크비':>6} {'크기비':>6}  통과")
+    ok = True
+    for lab in a.labels:
+        if not os.path.exists(os.path.join(root, f"{lab}-final-s{a.seed}.png")):
+            print(f"{lab:>6}  (없음)")
+            continue
+        m = measure(root, lab, a.seed)
+        v = verdict(m)
+        ok = ok and all(v.values())
+        print(f"{lab:>6} {m['c1_valley']['drop']:8.3f} {m['c2_army_left']['cov']:6.3f} "
+              f"{m['c2_army_right']['cov']:6.3f} {m['c3_seam']['line_rows']:6d} "
+              f"{m['c3_seam']['paste_seam']:10.3f} {m['c4_style']['ink_ratio']:6.2f} "
+              f"{m['c5_figures']['scale_ratio']:6.2f}  {' '.join(k for k, y in v.items() if y)}")
+    return 0 if ok else 1
 
 
 if __name__ == "__main__":
