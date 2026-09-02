@@ -167,9 +167,12 @@ STAGES = [
      # 그네를 타고 있었다. `whirling`은 손을 비게 만들었다(v9·v14). 동작 낱말을 버리고
      # **쥐고 있는 물건**으로 말한다 — 손에 무엇이 있는지가 그려져야 할 것의 전부다.
      # 지물을 **문장 앞으로** 당긴다 — 판에서 주머니만 나오고 물매·막대기가 빠졌다(v31~v33).
-     # 17:40은 손에 물매와 막대기를 **둘 다** 들려 있다고 말한다.
+     # 막대기는 **요구에서 뺐다** — §5가 고정한 순간은 17:48-49(빨리 달리며 손을 주머니에 넣어)이고,
+     # 그 순간 다윗의 두 손은 **물매와 주머니**가 가져간다. 17:40의 막대기는 「나아갈 때」의 지물이다.
+     # 근거: ADR 260902-170558(고정한 순간이 지물 요구를 판다) · 모델은 한 손에 지물을 하나만 쥔다
+     # (task 325 실측: 다섯 문구 × 네 시드에서 막대기를 넣으면 물매가 죽거나 그 반대였다).
      f"{ST} a small ruddy shepherd boy of fifteen gripping a short leather "
-                           f"sling, a wooden staff in his other hand, no armour, "
+                           f"sling, no armour, "
                            f"plain linen tunic, a shepherd's bag at his side, "
                            f"running mid-stride, facing right.",
      NEG + ", armour, helmet, sword, beard, old man, grey hair, robe, tall adult"),
