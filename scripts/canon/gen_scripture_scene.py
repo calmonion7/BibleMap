@@ -137,17 +137,28 @@ STAGES = [
     # 낱말이 기사 prior에 졌고 통한 것은 barbaric 레지스터」였지 갑옷 낱말을 지우라는 것이 아니다.
     # 그래서 ① **사람 낱말을 맨 앞에** 두어 형태 prior를 사람으로 잡고 ② 부정어는 뿔·판금·기사
     # 셋만 남긴다.
-    ("S3", "goliath", 17.5, f"{ST} full body of a huge bronze age Philistine warrior man, "
+    # ⚠ 지물을 **문장 앞으로**(2026-09-01 task 325). d1~d5에서 얻은 규칙 — 모델은 손에 지물을
+    # **하나만** 쥐고, 문장 앞에 둔 것이 이긴다. g1에서 자루는 한 자루로 돌아왔으나 손에서 떨어져
+    # 따로 섰고 손에는 타원 주걱이 남았다. 자루를 명시해 손에 묶는다.
+    ("S3", "goliath", 17.5, f"{ST} a huge bronze age Philistine warrior man gripping "
                             # `nine feet tall`을 뺐다 — 크기는 **구역 상자가 정한다**(실측
                             # 골리앗:다윗 1.9배). 문구로 중복해 말할 토큰이 없다(78/77 초과했다).
+                            # ⚠ 방향구를 문장 앞으로 당기는 것은 **시도했다가 되돌렸다**(g4).
+                            # `strict side view ... facing left`를 앞에 두자 얼굴이 통째로
+                            # 사라지고(투구 아래 검은 덩어리) 창이 도끼가 됐다. 방향은 끝에 둔다.
+                            f"one thick heavy spear with a long straight wooden shaft, "
                             f"plain bronze helmet, "
-                            f"{dp.SAMPLE_COSTUME['goliath'][3:]}, bronze greaves, holding one "
-                            f"thick heavy spear, seen from the side, body and face turned left.",
+                            f"{dp.SAMPLE_COSTUME['goliath'][3:]}, bronze greaves, "
+                            f"seen from the side, body and face turned left.",
      # `barbaric`은 기사 prior를 밀어냈지만 **맨가슴**을 불러 어린갑과 상충했다(v8 실측).
      # 청동기·블레셋이라는 **시대·민족 레지스터**로 바꾼다 — 중세 판금을 배제하면서 옷은 안 벗긴다.
      # ⚠ 판에서 창이 **두 자루의 나란한 장대**로 읽혔다(v31~v33) — 자루를 겹선으로 그린 탓이다.
-     NEG + ", horns, horned helmet, plate armour, knight, medieval, tent, cone, robe, "
-            "bare chest, shirtless, naked torso, two spears, double spear, pair of poles"),
+     # ⚠ 동의어 중복을 뺐다(2026-09-01) — 테두리족을 필수부로 올리느라 자리가 필요했고, 개념은
+     # 하나도 안 버렸다: `horned helmet`⊂`horns` · `naked torso`⊂`bare chest, shirtless`.
+     # `pair of poles`도 뺐다 — v36에서 **장대 개념 자체가 밀려나** 창이 짧은 손잡이 타원 주걱이
+     # 됐다(과교정). 두 자루를 막되 자루는 남겨야 한다.
+     NEG + ", horns, plate armour, knight, medieval, tent, cone, robe, "
+            "bare chest, shirtless, two spears, double spear"),
     ("S4", "shieldman", 17.7, f"{ST} full body of a Philistine shield bearer walking on the "
                               f"ground ahead of the giant, holding a large round bronze shield, "
                               f"plain tunic, facing left.",
@@ -157,9 +168,9 @@ STAGES = [
      # **쥐고 있는 물건**으로 말한다 — 손에 무엇이 있는지가 그려져야 할 것의 전부다.
      # 지물을 **문장 앞으로** 당긴다 — 판에서 주머니만 나오고 물매·막대기가 빠졌다(v31~v33).
      # 17:40은 손에 물매와 막대기를 **둘 다** 들려 있다고 말한다.
-     f"{ST} a small ruddy shepherd boy of fifteen holding up a leather "
-                           f"sling with two long cords, a wooden staff in his other hand, "
-                           f"no armour, plain linen tunic, a shepherd's bag at his side, "
+     f"{ST} a small ruddy shepherd boy of fifteen gripping a short leather "
+                           f"sling, a wooden staff in his other hand, no armour, "
+                           f"plain linen tunic, a shepherd's bag at his side, "
                            f"running mid-stride, facing right.",
      NEG + ", armour, helmet, sword, beard, old man, grey hair, robe, tall adult"),
     ("S9", "sling_arc", 17.40, # ⚠ 「above the boy's head」라고 쓰자 모델이 **머리를 그렸다**(v4·v6 실측: 왼쪽 위에 큰 얼굴).
@@ -335,6 +346,41 @@ def _change_mask(new_im, old_im):
     return Image.fromarray((ramp * 255).astype(np.uint8), "L")
 
 
+# ⚠ **부정어에는 토큰 가드가 없었다**(2026-09-01 task 325 실측). 긍정만 재고 부정은 그대로
+# 넘겼다 — S3의 판 부정어가 **105/77**이라 뒤 28토큰이 조용히 잘렸고, 잘린 것이 하필
+# **창 부정어 셋(two spears·double spear·pair of poles)과 PLATE_NEG 전부**였다.
+# 그래서 「부정어로 안 잡혔다」(a591905 커밋 메시지)는 틀린 판정이다 — 부정어가 모델에
+# **도달한 적이 없다**. 잘림이 불가피하면 무엇을 버릴지는 **명시적으로** 고른다:
+#   ① PLATE_NEG — 배경을 그리면 오려낼 수가 없다(판 경로의 존재 이유)
+#   ② 단계 고유 부정어 — 그 판의 결함을 막으려고 적은 말
+#   ③ 공용 NEG — 앞에서부터 들어가는 만큼만
+def _fit_neg(tok, stage_neg, lim):
+    """판 부정어를 한도 안에 **명시적으로** 싼다 → (부정어, 버린 것). 조용히 자르지 않는다."""
+    specific_raw = stage_neg[len(NEG):] if stage_neg.startswith(NEG) else stage_neg
+    split = lambda t: [x.strip() for x in t.split(",") if x.strip()]
+    # 화풍 바닥(`stick figure, crude drawing`)도 필수부에 넣는다 — 다섯 축의 C4가 재는 값이라
+    # 공용 뒤쪽으로 밀리면 회귀 가드를 이 수선이 스스로 깨뜨린다.
+    # ⚠ **테두리족도 필수부다**(2026-09-01 v36·d1 실측). 처음엔 「판은 어차피 오려내니 액자류는
+    # 저가」로 보고 공용 뒤쪽에 뒀는데 **두 군데서 값을 치렀다**: ① v36에서 골리앗 판이 제 발밑에
+    # 회색 그림자 타원을 그렸고 그것이 알파 컷에 들어가 판 하단이 직선으로 붙었다(C3 이음매
+    # 0.250 → 0.540 실패) ② 판별 실행 d1의 시드 7에서 **테두리가 그려진 흰 종이**가 판을 통째로
+    # 채웠다. 판을 오려 붙이는 구조에서는 판이 제 테두리를 그리는 순간 그것이 곧 이음매다.
+    head = (split(PLATE_NEG) + ["stick figure", "crude drawing"]
+            + ["frame", "border", "vignette", "paper edge", "torn paper"]
+            + split(specific_raw))
+    head = list(dict.fromkeys(head))              # 단계 부정어와 겹칠 수 있다(S4의 vignette)
+    if len(tok(", ".join(head)).input_ids) > lim:
+        sys.exit(f"판 부정어의 필수부가 한도를 넘었다"
+                 f"({len(tok(', '.join(head)).input_ids)}/{lim}) — 단계 부정어를 줄여라")
+    generic = [t for t in split(NEG) if t not in head]   # 필수부와 겹치면 보고가 거짓말을 한다
+    kept = list(head)
+    for i, t in enumerate(generic):
+        if len(tok(", ".join(kept + [t])).input_ids) > lim:
+            return ", ".join(kept), generic[i:]
+        kept.append(t)
+    return ", ".join(kept), []
+
+
 def _plate(pipe, name, prompt, neg, seed, anchor, use_ip):
     """인물 한 명을 **민 종이 위에 단독으로** 그려 오려낸다 → (그림, 알파, 토큰수).
 
@@ -355,8 +401,12 @@ def _plate(pipe, name, prompt, neg, seed, anchor, use_ip):
     n = len(pipe.tokenizer(p).input_ids)
     if n > lim:
         sys.exit(f"{name} 판 프롬프트가 한도를 넘었다({n}/{lim}) — 배경 지시가 잘린다")
+    ng, dropped = _fit_neg(pipe.tokenizer, neg, lim)
+    if dropped:
+        print(f"    [{name}] 부정어 {len(dropped)}개를 예산에서 뺐다(공용 뒤쪽): "
+              f"{', '.join(dropped)}", flush=True)
     pipe.set_ip_adapter_scale(0.25 if use_ip else 0.0)
-    res = pipe(prompt=p, negative_prompt=neg + PLATE_NEG,
+    res = pipe(prompt=p, negative_prompt=ng,
                image=Image.new("RGB", (pw, ph), PAPER),
                mask_image=Image.new("L", (pw, ph), 255),
                width=pw, height=ph, strength=PLATE_STRENGTH,
@@ -369,17 +419,45 @@ def _plate(pipe, name, prompt, neg, seed, anchor, use_ip):
     bb = al.getbbox()
     if bb is None:
         sys.exit(f"{name} 판에서 인물을 못 오렸다 — PLATE_CUT을 의심하라")
+    # **크롭 전 원본 판을 남긴다.** 프롬프트·시드가 고정이면 판은 결정적이라, 이 한 장이 있으면
+    # 오려내기·배율 규칙 훑기를 **GPU 없이** 반복할 수 있다(알파는 PAPER/PLATE_CUT에서 재파생).
+    res.save(os.path.join(OUT, f"plate-{name}-s{seed}.png"))
     return res.crop(bb), al.crop(bb).filter(ImageFilter.GaussianBlur(1.5)), n, lim
 
 
+BODY_COV = 0.20   # 이 비율(행/열 최대 피복 대비) 이상이 **본체**다. 물매 끈·고리처럼 피복 2~5%인
+                  # 얇은 지물을 배율·중심의 기준에서 뺀다 — 2026-09-02 실측: 다윗 판의 위쪽 314행
+                  # (알파 bbox 848행의 **37%**)이 피복 1.8~4.7%짜리 끈이었다.
+
+
+def _body_box(alpha):
+    """판에서 **본체**(얇은 지물을 뺀 몸)의 상자. 배율과 가로 중심의 기준이다."""
+    a = np.asarray(alpha) > 127
+    cov = a.sum(axis=1)
+    rows = np.flatnonzero(cov >= BODY_COV * cov.max())
+    y0, y1 = int(rows[0]), int(rows[-1]) + 1
+    ccov = a[y0:y1].sum(axis=0)
+    cols = np.flatnonzero(ccov >= BODY_COV * ccov.max())
+    return int(cols[0]), y0, int(cols[-1]) + 1, y1
+
+
 def _place(canvas, fig, alpha, b):
-    """오려낸 인물을 상자에 맞춰 얹는다 — **상자 높이에 맞추고 발이 상자 바닥에** 오게.
-    상자는 이제 「어디에 얼마나 크게 세울 것인가」만 정한다(그리는 자리가 아니다)."""
+    """오려낸 인물을 상자에 맞춰 얹는다 — **본체를 상자 높이에 맞추고 본체의 발이 상자 바닥에** 오게.
+
+    ⚠ 기준을 판 전체 bbox에서 **본체**로 옮겼다(2026-09-02). 판 전체로 재면 얇은 지물이 두 번
+    손해를 끼친다: ① 끈이 bbox를 세로로 늘린 만큼 소년이 **축소되고**(다윗 기여 잉크 0.048 →
+    0.118) ② 끈이 bbox 중심을 끌어당겨 몸이 상자에서 **밀려난다**(같은 배율에서 0.083 → 0.118).
+    붙일 범위는 여전히 알파 전체다 — 물매는 그림에 그대로 남는다.
+
+    본체 아래의 그림자·지면은 이제 상자 선 **아래로 넘어간다**(골리앗 13px · 다윗 18px). 상자는
+    「인물이 어디에 얼마나 크게 서는가」를 말하는 것이지 판이 그린 그림자까지 그 안에 욱여넣으라는
+    뜻이 아니다."""
     bx0, by0, bx1, by1 = b
-    sc = (by1 - by0) / fig.height
+    cx0, cy0, cx1, cy1 = _body_box(alpha)
+    sc = (by1 - by0) / (cy1 - cy0)
     nw, nh = max(8, int(fig.width * sc)), max(8, int(fig.height * sc))
-    px = bx0 + ((bx1 - bx0) - nw) // 2
-    py = by1 - nh
+    px = int(round((bx0 + bx1) / 2 - (cx0 + cx1) / 2 * sc))
+    py = int(round(by1 - cy1 * sc))
     canvas.paste(fig.resize((nw, nh), Image.LANCZOS), (px, py),
                  alpha.resize((nw, nh), Image.LANCZOS))
     return canvas, (max(0, px), max(0, py), min(W, px + nw), min(H, py + nh))
