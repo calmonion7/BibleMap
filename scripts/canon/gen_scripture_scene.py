@@ -76,7 +76,9 @@ REGIONS = {
     "crest_right":  (0.56, 0.18, 0.99, 0.43),   # 블레셋 쪽 산등성이
     # 종횡비를 사람 비율로 좁힌다 — 0.68은 텐트/원뿔의 prior에 가깝고, v7에서 실제로 텐트가 나왔다.
     "goliath":      (0.625, 0.05, 0.855, 0.95),  # 거인 (17:4 신장) · 비율 0.51
-    "shieldman":    (0.44, 0.52, 0.585, 0.94),  # 방패 든 자 — 골리앗 **앞**(=더 가까이·아래) (17:7·41)
+    # 세로 0.42 → 0.53(2026-09-03, task 329): 성인 종자다 — 골리앗 2.9m : 성인 1.7m ≈ 1.7배 → 0.90/1.7.
+    # x는 그대로다 — 판 방식에서 `_place`는 상자의 **높이와 가로 중심**만 쓰고 폭은 배율에 안 쓴다.
+    "shieldman":    (0.44, 0.41, 0.585, 0.94),  # 방패 든 자 — 골리앗 **앞**(=더 가까이·아래) (17:7·41)
     "david":        (0.15, 0.52, 0.305, 0.92),  # 소년 — 세로 0.40. 골리앗 0.90 대비 2.25배로
                                                 # 잡아 실측이 1.8 근처로 떨어지게 한다(v8은 1.4였다)
     # ⚠ 1차 실측: 이 구역이 0.10~0.46 × 0.22~0.82이라 **다윗 상반신을 덮어 S5의 소년을 지우고**
@@ -384,7 +386,7 @@ def _fit_neg(tok, stage_neg, lim):
     return ", ".join(kept), []
 
 
-def _plate(pipe, name, prompt, neg, seed, anchor, use_ip):
+def _plate(pipe, name, prompt, neg, seed, label):
     """인물 한 명을 **민 종이 위에 단독으로** 그려 오려낸다 → (그림, 알파, 토큰수).
 
     배경 지시는 프롬프트 뒤에 붙이므로 **토큰 한도를 넘으면 조용히 잘려** 배경이 그려진다.
@@ -408,13 +410,11 @@ def _plate(pipe, name, prompt, neg, seed, anchor, use_ip):
     if dropped:
         print(f"    [{name}] 부정어 {len(dropped)}개를 예산에서 뺐다(공용 뒤쪽): "
               f"{', '.join(dropped)}", flush=True)
-    pipe.set_ip_adapter_scale(0.25 if use_ip else 0.0)
     res = pipe(prompt=p, negative_prompt=ng,
                image=Image.new("RGB", (pw, ph), PAPER),
                mask_image=Image.new("L", (pw, ph), 255),
                width=pw, height=ph, strength=PLATE_STRENGTH,
                num_inference_steps=params.STEPS, guidance_scale=params.GUIDANCE,
-               ip_adapter_image=anchor if use_ip else Image.new("RGB", (8, 8)),
                generator=torch.Generator("mps").manual_seed(seed)).images[0]
     d = np.abs(np.asarray(res.convert("RGB")).astype(int) - np.array(PAPER)).max(axis=2)
     al = Image.fromarray(((d > PLATE_CUT) * 255).astype(np.uint8), "L")
@@ -424,7 +424,7 @@ def _plate(pipe, name, prompt, neg, seed, anchor, use_ip):
         sys.exit(f"{name} 판에서 인물을 못 오렸다 — PLATE_CUT을 의심하라")
     # **크롭 전 원본 판을 남긴다.** 프롬프트·시드가 고정이면 판은 결정적이라, 이 한 장이 있으면
     # 오려내기·배율 규칙 훑기를 **GPU 없이** 반복할 수 있다(알파는 PAPER/PLATE_CUT에서 재파생).
-    res.save(os.path.join(OUT, f"plate-{name}-s{seed}.png"))
+    res.save(os.path.join(OUT, f"{label}-plate-{name}-s{seed}.png"))   # 라벨을 붙여 문구 판별 비교가 되게
     return res.crop(bb), al.crop(bb).filter(ImageFilter.GaussianBlur(1.5)), n, lim
 
 
@@ -489,13 +489,11 @@ def _contact(pipe, canvas, bb, seed):
     prompt = (f"{ST} dry stony ground at the foot of a slope, feet planted on the ground, "
               f"a soft grey contact shadow on the ground under them.")
     neg = NEG + ", floating, gap, outline, cut-out, new person, second figure, face, portrait"
-    pipe.set_ip_adapter_scale(0.0)
     res = pipe(prompt=prompt, negative_prompt=neg,
                image=canvas.crop(win).resize((gw, gh), Image.LANCZOS),
                mask_image=m.crop(win).resize((gw, gh), Image.LANCZOS),
                width=gw, height=gh, strength=CONTACT_STRENGTH,
                num_inference_steps=params.STEPS, guidance_scale=params.GUIDANCE,
-               ip_adapter_image=Image.new("RGB", (8, 8)),
                generator=torch.Generator("mps").manual_seed(seed)).images[0]
     ww, wh = win[2] - win[0], win[3] - win[1]
     canvas.paste(res.resize((ww, wh), Image.LANCZOS), (win[0], win[1]), m.crop(win))
@@ -515,8 +513,10 @@ def main():
     ap.add_argument("--seeds", default=",".join(str(s) for s in params.SCENE_SEEDS))
     ap.add_argument("--stages", default=None, help="쉼표로 단계 이름 일부만(기본 전부)")
     ap.add_argument("--label", default="v1")
+    ap.add_argument("--plate-seeds", default="", help="판 단계별 시드, 예 S3=42,S4=11,S5=7 (기본은 장면 시드)")
     a = ap.parse_args()
     seeds = [int(s) for s in a.seeds.split(",")]
+    plate_seeds = {k: int(v) for k, v in (kv.split("=") for kv in a.plate_seeds.split(",") if kv)}
     pick = None if a.stages is None else set(a.stages.split(","))
     os.makedirs(OUT, exist_ok=True)
 
@@ -525,16 +525,10 @@ def main():
         params.SDXL_BASE, torch_dtype=torch.float16, variant="fp16",
         use_safetensors=True).to("mps")
     pipe.set_progress_bar_config(disable=True)
-    # **갑주에만 이미지 앵커를 붙인다**(2026-08-31). 어린갑은 v3~v9까지 **일곱 번 어휘로 실패**했고
-    # (barbaric → 맨가슴 · 청동기 레지스터 → 줄무늬 튜닉 · 정본 문구도 무효), `PROMPTING.md` 8이
-    # 이미 「어휘 6종 0/6 · 이미지 앵커만 통했다」로 적어 둔 자리다. 같은 실패를 여덟 번째로
-    # 반복하지 않는다. 레퍼런스는 **동결 표본의 몸통 밴드** — 콘티가 아니라 표본이므로 「콘티를
-    # 쓰지 말자」는 지시와 어긋나지 않고, 그 밴드에 실제 비늘갑이 있다.
-    pipe.load_ip_adapter(params.IP_ADAPTER_REPO, subfolder=params.IP_ADAPTER_SUBFOLDER,
-                         weight_name=params.IP_ADAPTER_WEIGHT)
-    pipe.set_ip_adapter_scale(0.0)          # 기본 꺼짐 — 갑주 단계에서만 켠다
-    _g = Image.open(os.path.join(params.CANON_DIR, "samples", "goliath.png")).convert("RGB")
-    ARMOUR_REF = _g.crop((0, int(_g.height * 0.28), _g.width, int(_g.height * 0.62)))
+    # **IP 앵커를 뗐다**(2026-09-03, task 329 · ADR `260903-062733`). 골리앗 갑주에만 동결 표본의
+    # 몸통 밴드를 IP-Adapter 0.25로 붙여 왔는데(어휘 6종 0/6 이력), 판 방식에서 그 앵커가 표본의
+    # **단색 목각 톤과 정면성**을 함께 실어 와 골리앗이 다른 삽화가의 그림으로 읽혔다. 세 판이 한
+    # 화풍이어야 하므로 앵커 없이 어휘만으로 간다 — 갑옷이 새면 최소 패치 레퍼런스가 별건이다.
     print(f"로드 {time.time() - t:.0f}s  ·  ControlNet 없음 · IP 레퍼런스 없음 — "
           f"서술은 전부 텍스트가 진다", flush=True)
 
@@ -551,15 +545,15 @@ def main():
             if name in PLATE_STAGES:
                 # **판으로 그려 오려 붙인다** — 장면 안에서 그리지 않는다(PLATE_STAGES 주석).
                 ts = time.time()
-                fig, al, n, lim = _plate(pipe, name, prompt, neg, seed,
-                                         ARMOUR_REF, use_ip=(name == "S3"))
+                ps = plate_seeds.get(name, seed)   # 판별 시드 — 없으면 장면 시드
+                fig, al, n, lim = _plate(pipe, name, prompt, neg, ps, a.label)
                 canvas, bb = _place(canvas, fig, al, box_px(region))
                 canvas, cb = _contact(pipe, canvas, bb, seed)
                 drawn[name] = bb
                 out = os.path.join(OUT, f"{a.label}-{name}-s{seed}.png")
                 canvas.save(out)
                 print(f"  [{name} {region} 17:{str(verse).split('.')[1]}] {time.time() - ts:.0f}s  "
-                      f"{n}/{lim}토큰  판 {fig.width}x{fig.height} → 얹음 {bb} · 접지 {cb} -> "
+                      f"{n}/{lim}토큰  판 s{ps} {fig.width}x{fig.height} → 얹음 {bb} · 접지 {cb} -> "
                       f"{os.path.basename(out)}", flush=True)
                 continue
 
@@ -604,10 +598,6 @@ def main():
             gw, gh = S1_GEN if name == "S1" else _gen_size(win)
             ts = time.time()
             refine = name in REFINE_STAGES
-            use_ip = name == "S3"
-            # 앵커 강도 — v10의 0.55는 비늘을 살렸지만 **표본의 정면성까지** 실어 왔다.
-            # 낮춰서 재질만 남기는 지점을 찾는다(레퍼런스가 자세를 나른다는 PROMPTING.md 9).
-            pipe.set_ip_adapter_scale(0.25 if use_ip else 0.0)   # 0.18로 낮추자 굵은 창이 사라졌다(v13)
             res = pipe(prompt=prompt, negative_prompt=neg,
                        image=canvas.crop(win).resize((gw, gh), Image.LANCZOS),
                        mask_image=m.crop(win).resize((gw, gh), Image.LANCZOS),
@@ -616,7 +606,6 @@ def main():
                                  STRENGTH_BY_STAGE.get(name, DEFAULT_STRENGTH)),
                        num_inference_steps=params.STEPS,
                        guidance_scale=params.GUIDANCE,
-                       ip_adapter_image=ARMOUR_REF if use_ip else Image.new("RGB", (8, 8)),
                        generator=torch.Generator("mps").manual_seed(seed)).images[0]
             ww, wh = win[2] - win[0], win[3] - win[1]
             if name == "S1":
