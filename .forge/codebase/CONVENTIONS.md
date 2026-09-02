@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 4ad1d837a3771f69f53877b128938124b68d920b
-mapped: 2026-08-21
+last_mapped_commit: fbd547d83d9d6926216cfde1eae4892ced839083
+mapped: 2026-09-02
 ---
 
 # CONVENTIONS
@@ -15,8 +15,8 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 
 ### 1.1 백엔드 — 모듈 logger 통일 + `[Component]` prefix
 
-- 모듈마다 `logger = logging.getLogger(__name__)`. **`backend/app/` 안에서 `print()`·root 로거 직호출 금지**(현재 위반 0 — `grep -rn "print(" backend/app/`가 비어 있다). `print`는 `backend/scripts/`에서만 쓴다(§7.3).
-- 로거를 선언한 모듈(커밋 `43f987c` 기준): `backend/app/overlays.py`·`backend/app/main.py`·`backend/app/routes/persons.py`·`places.py`·`tours.py`·`nodes.py`·`family.py`·`verses.py`·`stats.py`. 경고할 실패 케이스가 없는 라우터(`books.py`·`events.py`·`journey.py`·`reliance.py`·`search.py`·`words.py`)는 로거를 선언하지 않는 것도 관례 허용 범위다 — 반대로 `verses.py`·`stats.py`처럼 선언만 해두고 방출 지점이 없는 형태도 허용된다.
+- 모듈마다 `logger = logging.getLogger(__name__)`. **`backend/app/` 안에서 `print()`·root 로거 직호출 금지**(현재 위반 0 — `grep -rn "print(" backend/app/`가 비어 있다). `print`는 `backend/scripts/`·`scripts/`에서만 쓴다(§2.4).
+- 로거를 선언한 모듈(커밋 `fbd547d` 기준 10개): `backend/app/overlays.py`·`backend/app/main.py`·`backend/app/curated.py`·`backend/app/routes/persons.py`·`places.py`·`tours.py`·`nodes.py`·`family.py`·`verses.py`·`stats.py`. 경고할 실패 케이스가 없는 라우터(`books.py`·`events.py`·`journey.py`·`reliance.py`·`search.py`·`words.py`)는 로거를 선언하지 않는 것도 관례 허용 범위다 — 반대로 `verses.py`·`stats.py`처럼 선언만 해두고 방출 지점이 없는 형태도 허용된다.
 - 메시지는 `[Component]` prefix로 시작한다: `[Overlays]`·`[Startup]`(`main.py` lifespan)·`[Persons]`·`[Places]`·`[Tours]`·`[Nodes]`. 새 라우터를 추가하면 파일 상단에서 prefix를 하나 정하고 그 파일 전체에서 일관되게 쓴다.
 - 빈값 폴백(오버레이 파일/디렉터리 없음, JSON 파싱 실패, `participants` 비어 있음)은 `logger.warning`, 기동 예외는 `logger.exception`, 정상 기동 완료는 `logger.info`. 포맷은 **lazy `%s` 스타일**이며 f-string을 넣지 않는다. 실측:
   - `backend/app/overlays.py:20` — `logger.warning("[Overlays] 오버레이 파일 없음 — 빈 데이터로 폴백 (%s, 시도: %s)", subpath, bases)`
@@ -49,9 +49,9 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 ### 2.2 프론트 React/JSX (`frontend/src/`)
 
 - **컴포넌트 파일 = PascalCase `.jsx`**, 파일명과 default export 컴포넌트명을 맞춘다(`MapView.jsx`·`SidePanel.jsx`·`TimelineView.jsx`·`ChapterReader.jsx`·`StatsView.jsx`·`TopicalVersesView.jsx`). 예외: `TourPlayback.jsx`가 `TourPlaybackCard`를 default export.
-- **훅 파일 = `use*.js`**, named export(`useNodeSelection.js`·`useStageNavigation.js`·`useTourPlayback.js`).
-- **순수 헬퍼/데이터 모듈 = camelCase `.js`**(`api.js`·`theme.js`·`urlState.js`·`dates.js`·`constants.js`·`mapGeo.js`·`mapLayers.js`·`mapRingController.js`·`scrollMemory.js`). SVG를 반환하는 저작 모듈만 `.jsx`(`personSymbols.jsx`·`bookSymbols.jsx`·`tourSketches.jsx`·`sketches/*.jsx`).
-- **컴포넌트 파일에서 비-컴포넌트 상수를 export하지 않는다**(`react-refresh/only-export-components`, §8). 공유 상수는 전용 모듈로 옮긴다 — `GENRE_META`는 `BibleOverviewView.jsx`에서 `theme.js`로 이동했고(주석이 이유 명시), 장면 이름표 컴포넌트 `Label`은 순수 헬퍼 `sketches/lib.jsx`에서 `sketches/SceneLabel.jsx`로 분리됐다(task#253). 불가피한 2건만 `// eslint-disable-next-line react-refresh/only-export-components`(`VerseLayer.jsx:21`·`personSymbols.jsx:488`).
+- **훅 파일 = `use*.js`**, named export(`useNodeSelection.js`·`useStageNavigation.js`·`useTourPlayback.js`). 훅이 아닌 순수 헬퍼를 같은 파일에서 함께 named export하는 것은 허용된다 — `useTourPlayback.js`의 `stepDuration(note)`(task#286에 export로 승격, 장면 스케치 시간 예산의 파생원이라 게이트·UAT가 이 공식을 소스에서 읽는다).
+- **순수 헬퍼/데이터 모듈 = camelCase `.js`**(`api.js`·`theme.js`·`urlState.js`·`dates.js`·`constants.js`·`mapGeo.js`·`mapLayers.js`·`mapRingController.js`·`scrollMemory.js`). SVG를 반환하는 저작 모듈만 `.jsx`(`personSymbols.jsx`·`bookSymbols.jsx`·`tourSketches.jsx`·`sketches/*.jsx`·`sketches/cast/*.jsx`·`sketches/cast/props/*.jsx`).
+- **컴포넌트 파일에서 비-컴포넌트 상수를 export하지 않는다**(`react-refresh/only-export-components`, §8). 공유 상수는 전용 모듈로 옮긴다 — `GENRE_META`는 `BibleOverviewView.jsx`에서 `theme.js`로 이동했고(주석이 이유 명시), 장면 이름표 컴포넌트 `Label`은 순수 헬퍼 `sketches/lib.jsx`에서 `sketches/SceneLabel.jsx`로 분리됐다(task#253). 불가피한 2건만 `// eslint-disable-next-line react-refresh/only-export-components`(`VerseLayer.jsx:21`·`personSymbols.jsx:488`), 그리고 **디렉터리 단위 예외 1건**이 `frontend/eslint.config.js`에 있다 — `src/sketches/cast/**/*.jsx`는 컴포넌트와 함께 `aliases`·`STEPS`·`STEP_GAP`·`AXES` 같은 정적 선언을 같은 파일에 두는 것이 계약이라(검증기가 그 소스 하나를 정적으로 읽는다) 그 경로에서만 규칙을 끈다(§8).
 - 주석은 한글이며 "왜"를 적는다 — 특히 과거 버그의 재발 방지 근거(`useNodeSelection.js`의 `useCallback([])` 참조 안정화 주석, `scrollMemory.js`의 전역 `Map` 섀도잉 회피 주석).
 
 ### 2.3 데이터 JSON (`data/`)
@@ -68,7 +68,21 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 - 경로는 스크립트 위치 기준 상대 해석 — `os.path.normpath(os.path.join(SCRIPT_DIR, "..", "..", "data", ...))` 또는 `Path(__file__).resolve().parents[2] / "data"`. 하드코딩 절대경로 금지.
 - Neo4j 비밀번호는 `os.environ.get("NEO4J_PASSWORD")`로 읽고 없으면 즉시 `raise RuntimeError("NEO4J_PASSWORD 환경변수가 설정되지 않았습니다")`(`backend/app/db.py`와 동일 문구). **비밀번호를 파일에 적지 않는다** — `.env`는 gitignore.
 - 실행 형태는 두 가지가 공존한다: 문서·README는 `python3 backend/scripts/<name>.py`, `scripts/check.sh`는 **모듈 실행** `python3 -m backend.scripts.validate_<name>`(리포지토리 루트 기준, `backend/__init__.py`·`backend/scripts/__init__.py`가 있어 가능). 새 검증기는 두 방식 모두로 돌아가야 한다.
-- 셸 스크립트는 리포지토리 루트 `scripts/`(현재 `scripts/check.sh` 하나)와 루트 `deploy.sh`. `check.sh`는 `ROOT="$(cd "$(dirname "$0")/.." && pwd)"`로 자기 위치에서 루트를 유도한다.
+- 셸 스크립트는 리포지토리 루트 `scripts/check.sh` 하나와 루트 `deploy.sh`. `check.sh`는 `ROOT="$(cd "$(dirname "$0")/.." && pwd)"`로 자기 위치에서 루트를 유도한다.
+- **리포지토리 루트 `scripts/`는 더 이상 그 셸 하나가 아니다** — 접두사가 역할을 가른다: `check.sh`(게이트 엔트리) · `check_*.py`(게이트가 부르는 소형 소스 불변식 — `check_cast_axes.py`·`check_mask_ranges.py`) · `uat_*.py`(사람이 부르는 브라우저 실측 — `uat_intro_gutter.py`·`uat_intro_entry.py`·`uat_scene_detail_pilot.py`·`uat_tour_chunk_split.py`) · `render_scene.py`(저작자용 렌더 도구, 게이트 아님) · `canon/`(§2.5). 판정 게이트와 저작 도구의 구분은 각 파일 docstring이 "`scripts/check.sh`에 배선하지 않는다"로 명시하는 관례다(상세는 `TESTING.md`).
+- `scripts/` 아래 **미추적 파일은 배포 차단 위반**이다(`backend/scripts/validate_canon_pipeline.py` 축2) — 위생 규칙이 아니라 `check.sh`가 부르는 `check_*.py`가 미추적이면 새 클론·CI에서 게이트 자신이 깨지기 때문이다.
+
+### 2.5 로컬 이미지 생성/판정 파이프라인 (`scripts/canon/`)
+
+앱과 **다른 런타임에서 도는** 별도 서브시스템(ADR `260825-065028`). 추적 파일 177개(파이썬 42 · `notes/` 문서 20 + meta JSON 37 · 참조/표본 PNG). 앱(`backend/`·`frontend/`)은 이 디렉터리를 import하지 않고, `backend/requirements.txt`와도 무관하다 — 런타임 핀은 `scripts/canon/requirements.txt`(레포 밖 venv의 `pip freeze` 박제)이며 그 머리 주석이 **재현 미결 3축**(모델 리비전 미고정 · MPS 결정성 미보장 · 재현 미실측)을 "미결"로 명시한다.
+
+- **접두사가 역할이다**: `gen_*`(생성 21개) · `judge_*`(판정 8개) · `make_*`(파생 산출물 조립) · `prep_*`/`probe_*`/`sweep_*`/`freeze_*`/`derive_*`(전처리·탐침·스윕·동결·파생). 파일명은 snake_case, docstring은 한글이며 첫 줄 목적 + `(task#NNN)`/ADR 근거 — `backend/scripts/`와 같은 골격이다.
+- **`scripts/canon/params.py`가 생성 파라미터의 유일한 선언처다.** 다른 파일에서 그 이름을 모듈 레벨로 다시 대입하거나 모델 ID 문자열을 리터럴로 복사하면 `backend/scripts/validate_canon_pipeline.py`가 배포를 막는다(정본 키가 이 디렉터리의 전역 예약어). 사적 이름(`_`로 시작)은 정본 키로 보지 않으므로 각 스크립트가 자기 `_HERE`를 갖는 것은 재선언이 아니다.
+- **경로는 `params.py`에서 받는다** — `CANON_DIR`·`REPO_ROOT`·`NOTES`·`FROZEN`·`REFERENCE`·`PROMPTS_JSON`·`OUT_ROOT`. 산출물은 `OUT_ROOT = .forge/reports/canon-pilot/`(gitignore 대상)로 나가고 스크립트만 추적된다.
+- **import 형태는 `backend/scripts/`와 다르다** — `scripts/canon/`에는 `__init__.py`가 없어 `python3 -m`이 성립하지 않는다. 형제 모듈은 `sys.path.insert(0, params.CANON_DIR)` 후 `import params` / `import judge_scene as J` 식으로 끌어 쓰고, 실행은 레포 밖 전용 venv의 파이썬으로 파일을 직접 지정한다(`notes/PROMPTING.md`의 `$VENV try_prompt.py` 표기).
+- **규칙은 코드가 아니라 `scripts/canon/notes/`에 산다.** 프롬프트 작성 규칙의 정본은 `notes/PROMPTING.md`(이 레포에서 실측한 것만 적는 규칙 모음 — 77토큰 하드 한계·앞이 무거움 등, 항목마다 재현 스크립트를 지목), 장면 명세의 정본은 `notes/SCENE-1SAM17.md`(요소마다 출처 절이 달린다), 생성 순서·판정 위치의 정본은 `notes/PROCESS.md`, 판정 지표의 선정 근거는 `notes/JUDGE-*.md`. `notes/*.json`은 그 문서들이 인용하는 원수치(meta·verdict·baseline)다.
+- **임계·수치를 스크립트에 리터럴로 적지 않는다** — 정답지 집합(`params.REFERENCE`)이나 이미 못박힌 baseline JSON(`notes/s0-baseline.json`)에서 파생한다. 프론트 소스와 공유해야 하는 상수도 복사하지 않고 파생한다(`render_scene.py`가 `lib.jsx`의 `W`를, `make_masks.py`가 `scripts/check_mask_ranges.py`의 `derive_ranges()`를 그대로 가져다 쓴다).
+- **생성기는 CLIP 77토큰 초과를 생성 전에 `sys.exit`으로 막는다**(초과분이 경고 없이 잘려 프롬프트 뒷부분이 소실되는 결함 클래스). 토큰 측정은 실제 파이프라인의 tokenizer로만 하고(`gen_*` 쪽), GPU 없이 문구만 다듬는 연습대는 `try_prompt.py --check`다.
 
 ---
 
@@ -80,6 +94,8 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 - 사용자에게 실패를 알려야 하는 화면은 **전용 불리언 state(`failed`)** 를 두고 인라인 안내를 렌더한다 — 공용 배너 컴포넌트는 없다. 실측: `RelianceView.jsx`·`WordDistributionView.jsx`·`StatsView.jsx`·`TopicalVersesView.jsx`·`ChapterReader.jsx`·`PlaceView.jsx`. `MapView.jsx`는 `error`/`noLocation` 두 불리언을 분리해 지도 위 배너로 각각 렌더한다.
 - 조용히 사라지면 곤란한 부트스트랩 fetch는 **유한 지수 재시도**를 붙인다 — `useStageNavigation.js`의 `/persons/curated` 로더(1s→2s→4s, 3회 후 `console.warn`).
 - **로더/빌더/inject 스크립트**는 반환값이 아니라 **프로세스 종료 코드**로 실패를 알린다: 사슬 단절·건수 불일치는 `raise SystemExit("FAIL: ...")`(`load_authored_genealogy.py:74`·`load_authored_mothers.py:46`), 통제 어휘 미분류는 `sys.exit(...)`로 산출 중단(`build_word_distribution.py:71`). 상세는 `TESTING.md`.
+- **종료 코드에 의미를 더 싣는 스크립트가 셋 있다**: `validate_forge_docs_tracked.py`·`validate_canon_pipeline.py`는 git 미가용 전용으로 `3`(`EXIT_NO_GIT`)을 내고 `check.sh`가 그 경우를 호출 전에 걸러 스킵한다. `scripts/uat_*.py`는 `0`=통과 · `1`=제품 결함 · `2`=측정 환경 이상의 3단 계층을 쓴다(상세는 `TESTING.md`).
+- **생성 파이프라인(`scripts/canon/`)의 실패도 종료 코드다** — 생성 전 프롬프트 토큰 한도 초과는 `sys.exit(f"... 한도를 넘었다({n}/{lim}) ...")`로 GPU를 태우기 전에 멈추고, `judge_*.py`는 판정 결과 JSON을 stdout에 내고 **모든 축 통과면 0, 하나라도 실패면 1**을 반환한다(§2.5).
 
 ---
 
@@ -96,7 +112,8 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 ### 4.2 캐시 두 겹 — `lru_cache` + `Cache-Control`
 
 - 사용자 입력이 없는 전역 집계는 라우트 안에서 `@functools.lru_cache(maxsize=1)` 헬퍼로 1회 계산한다(`events.py`·`books.py`·`persons.py`·`reliance.py`·`stats.py`·`tours.py`·`family.py`·`timeline.py`의 `_canon_payload()`). id별 결과는 `maxsize=256`/`2048`/`66` 등 상한을 둔다(`persons.py:221`·`books.py:53`·`books.py:105`·`places.py:21`·`places.py`의 `_place_events()`·`verse_search.py`의 `search_verses()`, 모두 `maxsize=256`).
-- 응답은 `JSONResponse(content=..., headers={"Cache-Control": ...})`로 감싼다. 현행 값: 대부분 `max-age=300`(`events.py`·`journey.py`·`places.py`·`tours.py`·`family.py`·`timeline.py`는 5분), 절 본문처럼 불변에 가까운 것은 `public, max-age=3600`(`books.py`의 장/인용/본문), 예외적으로 `no-store`(`books.py`의 `/books-overview`).
+- 응답은 `JSONResponse(content=..., headers={"Cache-Control": ...})`로 감싼다. **현행 값은 두 가지뿐이다**(커밋 `fbd547d` 실측 28건): `max-age=300` 27건과 `no-store` 1건(`books.py`의 `/books-overview`). 예전에 `books.py`의 장/인용/본문·`reliance.py`·`verses.py`가 쓰던 `public, max-age=3600`은 task#285에서 전부 `max-age=300`으로 내려갔다 — 긴 `max-age`가 ETag 없이 붙으면 이 프로젝트의 표준 데이터수정 경로(`data/` 편집 + `docker compose restart api`)로 고친 내용이 재방문 브라우저에 최대 1시간 반영되지 않고, 프론트 캐시버스터(`api.js`의 `?v=<BUILD_ID>`)는 빌드타임 리터럴이라 그 경로를 원리적으로 못 덮는다.
+- **상한 300초는 게이트가 강제한다** — `backend/scripts/validate_api_cache_headers.py`가 `backend/app/routes/*.py`의 `Cache-Control` 리터럴을 스캔해 `max-age > 300`이면 배포를 막는다(불변식은 "지금 6곳"이 아니라 경계). `no-store`는 수명 미선언이라 통과. 상한을 올리려면 먼저 조건부 GET(ETag/Last-Modified)을 붙여야 한다(스크립트 docstring이 그 조건을 명시). 정적 자산의 1년 immutable은 이 검사 대상이 아니다(`nginx/nginx.conf` 소관, 콘텐츠 해시가 무효화를 담당).
 - **결과**: `data/` JSON을 고쳐도 `docker compose restart api` 전까지 반영되지 않는다(`TESTING.md`의 footgun 절). 프론트는 `api.js`가 모든 요청에 `?v=<BUILD_ID>`를 붙여 브라우저 측 캐시만 배포마다 무효화한다.
 
 ### 4.3 중복 상수는 "공유 대신 정합 검증"
@@ -125,8 +142,10 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 
 ### 5.2 URL = 해시 문자열 매핑 (라우팅 라이브러리 없음)
 
-- `frontend/src/urlState.js`의 `encodeHash(state)`/`parseHash(hash)` 한 쌍이 정본이며 파일 상단 주석이 전체 딥링크 표를 담는다: `#/`·`#/intro`·`#/books`·`#/book/<id>`·`#/read/<id>[/<n>]`·`#/place/<id>`(task#270)·`#/timeline`(통사 연표, task#271)·`#/family/<id>`·`#/words/<id>`·`#/stats`·`#/topics`·`#/tours`·`#/tour/<slug>[/timeline]`·`#/person/<slug>[/timeline|/relations|/intro|/reliance]`.
+- `frontend/src/urlState.js`의 `encodeHash(state)`/`parseHash(hash)` 한 쌍이 정본이며 파일 상단 주석이 전체 딥링크 표를 담는다: `#/`·`#/intro`·`#/books`·`#/book/<id>`·`#/read/<id>[/<n>]`·`#/place/<id>`(task#270)·`#/timeline`(통사 연표, task#271)·`#/family/<id>`·`#/words/<id>`·`#/stats`·`#/topics`·`#/tours`·`#/tour/<slug>[/timeline]`·`#/person/<slug>[/timeline|/relations|/intro|/reliance]`·`#/cast`(설정화 개발 시트, ADR `260823-190821`).
+- **개발 전용 라우트도 같은 한 쌍을 지난다** — `#/cast`는 사용자 화면 어디서도 링크되지 않고 주소를 직접 입력해야만 도달하지만, `encodeHash`/`parseHash`/`applyParsedHash` 세 곳에 정상 스테이지로 등록돼 있다(별도 라우팅 우회 없음). `App.jsx`는 `activeStage === 'cast'`를 `stats`·`topics`와 동형인 전용 전체화면 페이지로 렌더하고 책등 리본에서는 어느 부(部)에도 넣지 않는다. 화면 자체는 `lazy(() => import('./CastSheet'))` + `<Suspense fallback={null}>`(§7.5의 지연 로드 선례와 같은 이유).
 - **알 수 없는 형태는 `null` 반환 → 호출부가 허브로 폴백**. 새 스테이지를 추가하면 `encodeHash`·`parseHash` 양쪽을 함께 고친다(왕복 대칭이 계약).
+- **`popstate`의 `state: null`을 "허브로 리셋"으로 읽지 않는다** — 그 값은 히스토리 시작점과 동일문서 프래그먼트 내비게이션(주소창에 다른 딥링크 해시를 붙여넣기)이 뭉뚱그려진 값이다. `useStageNavigation.js`의 popstate 핸들러는 state가 없을 때 **URL을 먼저 재해석**해(`isNoTarget(raw) ? null : parseHash(raw)`) 성립하면 `applyParsedHash`를 타고, 무타깃일 때만 허브 리셋으로 떨어진다. 무타깃 판정은 정본 술어 `isNoTarget` 밖에서 다시 하지 않는다(`validate_intro_entry_route.py`가 강제).
 - **저장된 해시로 프로그램적으로 복귀할 땐 `location.hash` 대입이 아니라 상태 머신을 직접 태운다** — 같은 문서 안에서 해시만 바꿔도 스테이지가 리마운트되지 않아 상태가 갱신되지 않기 때문(`TESTING.md`의 Playwright 컨텍스트 분리 규칙과 같은 근본 원인). 정본 경로는 `useStageNavigation.js`의 `applyParsedHash(parsed)` — 마운트 시 딥링크 복원과 저장·이어보기 카드 복원(`handleGoToHash`, task#268)이 이 한 함수를 공유한다.
 
 ### 5.3 effect 안의 동기 `setState` 금지 (react-hooks v7)
@@ -215,10 +234,11 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 
 ### 7.3 모션 토큰 (ADR-0024)
 
-- 모션 정본은 `index.css` `:root`의 `--dur-fast`(150ms)/`--dur-base`(250ms)/`--dur-slow`(400ms)/`--dur-draw`(1000ms) + `--ease-out`/`--ease-in-out`/`--ease-drawer`/`--ease-pop`. duration·easing을 리터럴로 하드코딩하지 않는다.
+- 모션 정본은 `index.css` `:root`의 `--dur-fast`(150ms)/`--dur-base`(250ms)/`--dur-slow`(400ms)/`--dur-draw`(1000ms)/**`--dur-draw-scene`(500ms)** + `--ease-out`/`--ease-in-out`/`--ease-drawer`/`--ease-pop`. duration·easing을 리터럴로 하드코딩하지 않는다.
+- **draw-on 토큰이 둘로 갈렸다**(task#303) — `--dur-draw`는 인물·책 인장(`.symbol-draw`)·가계도 실(`.thread-draw`)·인트로 분할선(`.intro-line`)의 공용값 그대로이고, 투어 장면 스케치만 `--dur-draw-scene`을 쓴다(`.scene-draw`). 장면 쪽만 선 천장을 크게 올리는데 공용 토큰을 낮추면 무관한 소비처까지 전부 빨라지기 때문. 두 토큰 모두 `prefers-reduced-motion` 붕괴 가드에 등록돼 있다. 검증기·UAT는 이 토큰 **값을 복사하지 않고 `index.css`에서 파싱해 파생**한다(`TESTING.md`).
 - 애니메이트 가능한 속성은 **transform·opacity**(+ 선화의 `stroke-dashoffset`)만 — 레이아웃 속성 금지. 입장(enter)만 만들고 exit는 즉시 언마운트.
 - `@media (prefers-reduced-motion: reduce)`(`index.css:137`)에서 `--dur-*` 전부와 `animation-delay`를 1ms/0ms로 붕괴시키는 **토큰 붕괴 가드**가 개별 컴포넌트의 reduce 분기를 대체한다. CSS 트랜지션이 아닌 JS 애니메이션(`RelianceView.jsx`의 `Donut`)과 SMIL/타이머 기반 연출(`tourSketches.jsx`·`IntroView.jsx`·`sketches/*`)은 이 가드로 가려지지 않아 `window.matchMedia('(prefers-reduced-motion: reduce)')`를 직접 분기한다.
-- 애니메이션 클래스 목록(`index.css`): `.cloud-in`·`.word-in`·`.stage-in`·`.overlay-in`·`.modal-in`·`.sheet-in`·`.thread-draw`·`.card-in`·`.bar-reveal`·`.stop-bar-in`·`.symbol-draw`·`.book-open`·`.intro-rise`·`.intro-line`·`.film-in`·`.film-fade`·`.beat-in`/`.beat-out`.
+- 애니메이션 클래스 목록(`index.css`): `.cloud-in`·`.word-in`·`.stage-in`·`.overlay-in`·`.modal-in`·`.sheet-in`·`.thread-draw`·`.card-in`·`.bar-reveal`·`.stop-bar-in`·`.symbol-draw`·`.book-open`·`.intro-rise`·`.intro-line`·`.film-in`·`.film-fade`·`.beat-in`/`.beat-out`, 그리고 장면 스케치 3종 `.scene-draw`(전용 `scene-draw` 키프레임 — 지연 전 획을 `visibility: hidden`으로 가린다, 이 gating을 공용 `symbol-draw` 키프레임에 넣지 않는 이유는 `visibility`가 상속 속성이라 무관한 소비처의 상속 가림을 깨기 때문)·`.scene-wash`(펜선 완주 뒤 마스크 안에서 붓질 순서를 압축 재생하는 채색층 — `--wash-k`/`--wash-dur`/`--wash-begin` 변수 구동, 스코프 안에서만 `opacity: 1` 강제, `text`는 `display: none`)·`.scene-label-last`(이름표를 드로인 완료 뒤로 미루는 페이드인 — `--reveal-end` + `--label-i` 스태거, 길이·간격은 `--dur-slow`/`--dur-base` 참조).
 - 사이트 인트로(`frontend/src/IntroView.jsx`)는 오토플레이 시네마틱 필름이다 — phase 상태 머신이 `setTimeout`으로 7비트(`BEAT_MS = [3000, 5000, 5000, 3000, 4200, 3000, 3600]`, task#277에서 6→7비트로 확장)를 순차 진행하고, 비트 전환은 **겹치지 않는 순차 디졸브**(이전 비트가 `.beat-out`으로 빠진 뒤 새 비트가 `.beat-in`으로 진입). 비트 안의 씬 요소는 `.film-fade` + 인라인 `animationDelay` 스태거, 선 그리기는 `.thread-draw`(`--thread-delay` CSS 변수). 컨텐츠 소개 비트(③~⑥)는 `SCENES` 배열 하나가 정본이며, 각 원소는 `{ nav, art, lead, sub, tabs: [[Icon, '라벨'], ...] }` — `tabs`는 **앱의 실제 하위 메뉴와 아이콘·라벨까지 동일해야 하는 계약**이고, 배포 게이트 `validate_intro_menu_parity.py`가 `App.jsx`/`ExploreStage.jsx`의 실제 탭과 양방향 대조한다(`TESTING.md` §2). 어느 부(部)에도 속하지 않는 전역 기능(검색·저장·읽기 진도)은 중립 `nav: '어디서나'` 장면으로 별도 소개하며, 이 장면은 정합 검사 대조 대상에서 제외된다(상단 하위 메뉴가 아니므로).
 - **잔존 사각(정리 대상)**: 구 스크롤 리빌 클래스 `.intro-sec`/`.intro-seen`(`index.css:328~332`)은 어느 컴포넌트도 더 이상 참조하지 않는다.
 
@@ -229,11 +249,17 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 
 ### 7.5 투어 장면 스케치 — 투어당 1개 JSX 코드 모듈 (ADR-0029)
 
-- 투어 재생 정차지의 삽화 시퀀스는 SVG/JSON 데이터가 아니라 **`frontend/src/sketches/` 아래 투어당 1개 JSX 모듈**로 저작한다: `creationToFlood.jsx`·`patriarchsCovenant.jsx`·`exodusToConquest.jsx`·`ageOfJudges.jsx`·`davidUnitedKingdom.jsx`·`elijahAndElisha.jsx`·`exileAndReturn.jsx`·`gospelOfJesus.jsx`·`theEarlyChurch.jsx`(9개, `data/tours/*.json` 9개와 1:1). 각 모듈은 eventId를 키로 하는 레지스트리 객체(`{ Scene, mood, desc, caption }`)를 default export한다.
+- 투어 재생 정차지의 삽화 시퀀스는 SVG/JSON 데이터가 아니라 **`frontend/src/sketches/` 아래 투어당 1개 JSX 모듈**로 저작한다: `creationToFlood.jsx`·`patriarchsCovenant.jsx`·`exodusToConquest.jsx`·`ageOfJudges.jsx`·`davidUnitedKingdom.jsx`·`elijahAndElisha.jsx`·`exileAndReturn.jsx`·`gospelOfJesus.jsx`·`theEarlyChurch.jsx`(9개, `data/tours/*.json` 9개와 1:1). 각 모듈은 eventId를 키로 하는 레지스트리 객체를 default export하며 항목 형태는 `{ Scene, desc, caption, mood?, letterLast?, color? }`다(`mood: 'dark'`·`letterLast`·`color`는 옵트인).
+- **코드 경계가 번들 경계로 승격됐다**(task#287) — `frontend/src/tourSketches.jsx`는 9모듈을 한 `SCENES` 맵으로 정적 병합하지 않고 `TOUR_MODULES`(투어 id → `() => import('./sketches/<모듈>')`) 표로 **투어 단위 동적 로드**한다. 그래서 판정 기준이 "키가 어디에든 있다"에서 **"그 투어의 모듈 안에 있다"**로 바뀌었다 — 키가 다른 모듈에 있으면 렌더가 조용히 비는 새 결함 클래스가 생겼고 `validate_scene_coverage.py`가 그것을 본다(`TESTING.md`). `TourSketchPanel`은 `eventId`와 함께 `tourId`·`note`를 받는다(`note`는 채색 구간 예산의 파생 입력).
+- 인트로 오프닝 몽타주는 5개 투어에 흩어진 5씬을 쓰므로 **그 5씬의 정의를 `frontend/src/sketches/introMontage.jsx`로 옮기고 각 투어 모듈이 되가져온다**. 의존 방향이 이 파일의 존재 이유다 — 반대로(소형 모듈이 투어 모듈을 재수출) 만들면 빌드가 `INEFFECTIVE_DYNAMIC_IMPORT`로 분할을 무효화하고 5모듈을 메인 청크에 병합한다. **참조는 무거운 쪽 → 가벼운 쪽**이어야 한다. 이 모듈은 `Scene`만 담고 `desc`/`caption`을 복제하지 않는다(그림의 정본 소속은 여전히 각 투어 레지스트리).
 - 공용 표준의 정본은 **순수 헬퍼 모듈** `frontend/src/sketches/lib.jsx`: 선 굵기 위계(원경 1.1 · 질감 1.3 · 지면 1.6 · 보조 1.8~2 · 주역 2.4~2.6 · 핵심 3, 전역 배율 `W = 0.55`)를 `sw(n, opacity?)`로 적용, 단계 딜레이는 `d(ms, reduce)`가 CSS 변수 `--sym-delay`로 자식 stroke에 상속, `P = { pathLength: 1 }`. 장면 이름표 컴포넌트 `Label`은 `frontend/src/sketches/SceneLabel.jsx`로 분리돼 있다(§2.2의 react-refresh 규약).
-- `frontend/src/tourSketches.jsx`가 9개 레지스트리를 한 `SCENES` 맵으로 스프레드 병합하고, default export `TourSketch`(viewBox `0 0 120 64`)와 named export `TourSketchPanel`(양피지 패널; `mood: 'dark'`면 `--paper-accent`만 목탄색(`#5f584c`)으로 오버라이드하고 종이 배경은 항상 크림 유지)을 제공한다. `hasSketch`는 모듈 내부 전용(un-export, task#253). **등록 없는 정차지는 아무것도 렌더하지 않는다** — §7.4와 같은 그레이스풀 부분 저작 원칙.
-- 무거운 자산이라 **지연 로드**한다: `IntroView.jsx:5` `lazy(() => import('./tourSketches'))`, `TourPlayback.jsx:5` `lazy(() => import('./tourSketches').then(m => ({ default: m.TourSketchPanel })))`, 둘 다 `<Suspense fallback={null}>`로 감싼다(task#254 — 메인 청크 640→250KB).
-- 데이터(투어 `stops`)와 코드(장면 레지스트리)가 eventId로 페어링되므로 커버리지는 **집합 대조**(stops의 id ⊆ 레지스트리 키)로 검증한다(`TESTING.md`).
+- **`lib.jsx`의 주석이 "장면 저작 규약" 정본이다** — 용어(장면 밀도 · 구조 선 · 붓질 단계)·타이밍 모델·경계 **B1~B12**·신체 조립 규칙·배치 레시피·저작 레시피가 그 한 절에 모여 있어 새 장면 저작에 외부 문서 왕복이 필요 없다. 경계는 `backend/scripts/validate_scene_sketch_detail.py`가 `scripts/check.sh`에서 강제하고, 기계로 못 재는 축(사람으로 읽히는가, 상자·사다리로 읽히지 않는가)은 규약 문장과 `scripts/render_scene.py` 육안 확인에 남긴다. **수치를 이 규약과 검증기 양쪽에 복사하지 않는다** — 검증기가 `index.css`·`tourSketches.jsx`·`useTourPlayback.js`·`data/tours/*.json`에서 파생한다.
+- **인물 정본 컴포넌트 — `frontend/src/sketches/cast/*.jsx`**(ADR `260823-190821`). 같은 인물이 여러 장면에 다른 얼굴로 그려지지 않게 머리(윤곽·머리카락 실루엣)를 컴포넌트로 못박고, 이목구비는 슬롯으로 비워 장면이 그린다. 호출 규약은 좁다: prop은 **`cx`·`cy`·`scale`·`delay` 숫자 리터럴 4개만**, `transform` 금지, 컴포넌트 내부에 조건 분기 금지 — 검증기가 이 소스를 정적으로 읽어 호출부 리터럴로 인라인 전개하기 때문이다(규약을 어기면 전개기가 파서로 성립하지 않아 즉시 실패). 각 파일은 `aliases`(이름표 문자열)·`STEPS`·`STEP_GAP`·`AXES`(구별 5축: 머리카락·수염·머리쓰개·나이대·성별)를 함께 export하고, `stroke-width`는 `scale`로 곱하지 않는다(`sw(<리터럴>)` 형태를 검증기 정규식이 그대로 읽어야 하고, 작을수록 상대적으로 굵어지는 쪽이 실루엣을 지킨다). `cast/props/*.jsx`는 지물 **참고 도상**으로 비강제(props 없는 자체 완결 컴포넌트, 장면이 import하지 않는다) — 검증기의 강제 대상 열거가 `cast/*.jsx` 직속 파일만 보므로 자연히 빠진다.
+- 정본·지물을 눈으로 확인하는 화면은 **`frontend/src/CastSheet.jsx`(`#/cast`, 개발 전용)** 다. 명단을 박지 않고 `import.meta.glob`로 열거하며, `cast/`와 `cast/props/`를 **별도 glob으로 분리**한다(합치면 지물이 "안 쓴 인물 정본"으로 잡혀 게이트가 거짓 빨강이 된다). default export 없는 모듈은 `console.warn`으로 남기고 조용히 건너뛴다(§1.2).
+- 이름표 타이밍은 두 관용구가 공존한다 — `<Label at="Ns">`(수동 SMIL 페이드인)와 `<Label after={i}>`(**드로인 완료에서 파생**: `SceneSvg`가 계측해 심는 `--reveal-end` + `i`번째 스태거로 CSS 페이드인, `letterLast` 옵트인 장면용). `color` 필드가 있는 장면은 드로인 뒤 채색 붓질(`.scene-wash`)이 끼어들어 `--reveal-end`가 그만큼 뒤로 밀린다 — 검증기가 이 축을 함께 계산한다.
+- 무거운 자산이라 **지연 로드**한다: `IntroView.jsx` `lazy(() => import('./tourSketches'))`, `TourPlayback.jsx` `lazy(() => import('./tourSketches').then(m => ({ default: m.TourSketchPanel })))`, 둘 다 `<Suspense fallback={null}>`로 감싼다(task#254). 여기에 투어별 청크 분할(위)이 더해져 한 정차지가 9투어 분량을 끌어오지 않는다.
+- **패널은 완성된 채로 한 번에 등장시킨다** — 모듈 로드 전에 자리만 잡아 두면 뒤늦게 글이 들어와 카드 높이가 자란다(실측 1.88px). 예약 높이를 상수로 박는 대신 로드 완료까지 패널을 내보내지 않는 것이 계약이고, `scripts/uat_tour_chunk_split.py`가 높이 점프 0을 잰다.
+- 데이터(투어 `stops`)와 코드(장면 레지스트리)가 eventId로 페어링되므로 커버리지는 **집합 대조 + 모듈 소속 대조**로 검증한다(`TESTING.md`).
 
 ### 7.6 박스 모델 — 전역 `box-sizing` 리셋 없음, 지역 `border-box` 규약 (ADR `260820-232144`)
 
@@ -248,10 +274,12 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 
 - **포매터 없음** — Prettier·Black·ruff 설정 파일이 리포지토리에 없다. 스타일은 위 규약과 기존 코드 모방으로 유지한다(들여쓰기: JS 2칸 + 세미콜론 없음, Python 4칸).
 - **ESLint(프론트 전용)** — flat config `frontend/eslint.config.js`. `globalIgnores(['dist'])` + `**/*.{js,jsx}`에 `@eslint/js` recommended · `eslint-plugin-react-hooks` flat recommended · `eslint-plugin-react-refresh` vite 프리셋. `languageOptions.globals`에 `...globals.browser`와 함께 **`__BUILD_ID__: 'readonly'`**(vite `define` 주입값)를 등록한다.
+- **경로 단위 규칙 예외 블록이 1개 추가됐다** — `files: ['src/sketches/cast/**/*.jsx']`에서 `react-refresh/only-export-components`를 끈다. 인물 정본은 컴포넌트와 `aliases`·`STEPS`·`STEP_GAP`·`AXES` 선언을 **같은 파일에** 두는 것이 계약이고(검증기가 그 소스 하나를 정적으로 읽는다), fast refresh 대상이 아닌 정적 지오메트리 정의이기 때문이다(§7.5). 규칙을 끄는 방향의 수정은 이처럼 **경로를 좁히고 이유를 config 주석에 남기는** 형태로만 한다.
 - 버전(`frontend/package.json`): `eslint ^10.3.0` · `eslint-plugin-react-hooks ^7.1.1` · `eslint-plugin-react-refresh ^0.5.2` · `@eslint/js ^10.0.1` · `globals ^17.6.0`. react-hooks v7이 `set-state-in-effect` 등 신규 규칙을 켜므로 §5.3의 관용구가 필요하다.
-- 실행: `cd frontend && npm run lint`(= `eslint .`) 또는 게이트가 쓰는 `npx --no-install eslint src`(`scripts/check.sh`). 커밋 `43f987c` 기준 **둘 다 0 error / 0 warning**이며, 규칙 비활성화가 아니라 코드 리팩터로 달성한 상태다(task#253) — 규칙을 끄는 방향의 수정은 사용자 확인 없이 하지 않는다.
+- 실행: `cd frontend && npm run lint`(= `eslint .`) 또는 게이트가 쓰는 `npx --no-install eslint src`(`scripts/check.sh`). 커밋 `fbd547d` 실측 **둘 다 0 error / 0 warning**이며, 규칙 비활성화가 아니라 코드 리팩터로 달성한 상태다(task#253) — 규칙을 끄는 방향의 수정은 사용자 확인 없이 하지 않는다.
 - `eslint-disable` 잔존은 4곳뿐: `VerseLayer.jsx:21`·`personSymbols.jsx:488`(`react-refresh/only-export-components`), `useStageNavigation.js:139`·`:192`(`react-hooks/exhaustive-deps`).
 - **빌드(Vite)** — `frontend/vite.config.js`: `@vitejs/plugin-react`, `define.__BUILD_ID__ = JSON.stringify(String(Date.now()))`(배포마다 바뀌는 캐시버스터, `api.js`가 소비), `build.rollupOptions.output.manualChunks`로 `node_modules` 중 `maplibre-gl`은 `maplibre` 청크·나머지는 `vendor` 청크로 분리. 앱 코드 추가 분할은 §7.5의 `React.lazy`로 한다.
 - **환경변수** — `frontend/.env.production`의 `VITE_API_URL=/api`(nginx `/api` 프록시). 개발 기본값은 `api.js`의 `'http://localhost:8000'` 폴백. 비밀값은 리포지토리 루트 `.env`(gitignore, 템플릿은 `.env.example`)에만 두고 `docker-compose.yml`이 `${NEO4J_PASSWORD:?...}`로 필수 주입한다.
 - **백엔드 의존성**은 핀 고정 3개뿐(`backend/requirements.txt`): `fastapi==0.136.3`·`neo4j==6.2.0`·`uvicorn==0.49.0`. 린터·포매터·테스트 러너는 포함되지 않는다.
-- 배포 전 품질 게이트는 `scripts/check.sh`(데이터 검증 12종 + ESLint + Neo4j 연대 정합)이며 `deploy.sh`가 빌드 앞단에서 호출한다 — 상세는 `TESTING.md`.
+- **gitignore 추가분** — `frontend/public/scene-color/`(장면 채색 래스터 층. 레지스트리의 `color` 필드가 `/scene-color/<이름>.webp`로 가리키지만 산출물은 추적하지 않는다, §7.5).
+- 배포 전 품질 게이트는 `scripts/check.sh`(파일 기반 검증 22종 + 대조군 10건 + 소형 소스 불변식 3건 + 배포 차단 가드 2종 + ESLint·vitest + Neo4j 연대 정합 = 42항목)이며 `deploy.sh`가 빌드 앞단에서 호출한다 — 상세는 `TESTING.md`.

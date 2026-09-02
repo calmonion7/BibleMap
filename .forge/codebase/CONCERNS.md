@@ -1,22 +1,26 @@
 ---
-last_mapped_commit: 4ad1d837a3771f69f53877b128938124b68d920b
-mapped: 2026-08-21
+last_mapped_commit: fbd547d83d9d6926216cfde1eae4892ced839083
+mapped: 2026-09-02
 ---
 
 # CONCERNS
 
-현재 코드베이스의 기술 부채·확정 결함·보안 노출·성능 병목·취약 지점·데이터 정합성 위험 목록. 최초 전면 매핑은 HEAD `43f987c` 기준이었고, 이후 task#259~284 커밋들이 실어 나른 부분 갱신 + 이번 갱신(HEAD `4ad1d83`)까지 누적 반영됐다. 이번 갱신에서 다음을 **실제로 실행해** 검증했다.
+현재 코드베이스의 기술 부채·확정 결함·보안 노출·성능 병목·취약 지점·데이터 정합성 위험 목록. 최초 전면 매핑은 HEAD `43f987c` 기준이었고, 이후 task#259~316 커밋들이 실어 나른 부분 갱신이 누적됐다. **이번 갱신은 도장 `4ad1d83` 이후 커밋 ∪ 미커밋 작업트리를 증분 반영했다(HEAD `fbd547d`)** — 변경 항목의 압도적 다수(`scripts/canon/` 아래 180건)가 신설된 **로컬 이미지 생성·판정 파이프라인**이라, 이번에 늘어난 절은 대부분 그 서브시스템의 위험이다.
 
-- `bash scripts/check.sh` 전량 실행 → **20종 파일 검증 + 정합 대조군(selftest) 7종 + forge 문서 추적 가드 2종 + ESLint + 유닛 테스트(vitest) + 라이브 Neo4j 연대 검증, 총 32항목 전부 PASS**(커밋 `4ad1d83`의 완료기준 `✓32 ✗0`와 재확인 일치)
-- `a002881..4ad1d83` 11커밋의 diff·커밋 메시지·관련 ADR·retro 대조(task#278·279·280·281·282~284)
-- `backend/app/curated.py`·`validate_curated_persons.py`·`validate_sortkey_startdate.py`·`validate_event_verses.py`·`validate_era_bands_consistency.py`(신설/대폭 확장 5종) 원문 확인
-- `git status`로 미커밋 잔존 확인(`.claude/settings.local.json.doctor-backup` 미추적)
+이번 갱신에서 다음을 **실제로 실행해** 검증했다.
 
-직전 매핑(`70f5fc6`, 2026-07-24) 이후 3커밋(`87846fb` 콘텐츠 5종, `415374f` 후속작업 5종, `43f987c` 비유·기적 era 게이트)에서 **직전 문서가 지적한 항목 다수가 실제로 해소**됐다. 아래 첫 절에서 해소/잔존을 분리한다.
+- `bash scripts/check.sh` 전량 실행 → **✓41 ✗1**. 파일 기반 데이터 검증 22종 + 정합 대조군(selftest) 10종 + 인물 정본 구별성(`check_cast_axes`) + 마스크 delay 범위(`check_mask_ranges` 본검사·대조군) + 저작 파이프라인 가드(`validate_canon_pipeline` 본검사·대조군) + ESLint + vitest(5파일 **88건**) + 라이브 Neo4j 연대 검증이 전부 PASS이고, **`validate_forge_docs_tracked`만 FAIL** — 미추적 영구 문서 8건(`.forge/adr/` 1 · `.forge/retro/` 7). 즉 **지금 이 작업트리 상태로는 배포가 차단된다**(§배포/운영 5).
+- `python3 -m backend.scripts.validate_canon_pipeline` 단독 실행 → `scripts/canon/params.py`가 선언한 31개 이름(모델 ID 3종 포함)이 나머지 45개 파일에 재선언 0건 · `scripts/` 미추적 0건
+- `scripts/canon/` 실측: **49 MB / 추적 파일 177건**(그중 PNG 62장 = 49.2 MB) · `.py` 46개(`gen_*` 21 · `judge_*` 8) · `notes/` 판단문서 20 + meta JSON 37
+- 레포 **밖** 런타임 실측: `~/.local/biblemap-imggen/` 957 MB(venv + 레포 밖 구 사본 `.py` 5개 + `prompts/`) · `~/.cache/huggingface/` 47 GB · 산출물 `.forge/reports/canon-pilot/` 679 MB(gitignored)
+- `frontend/dist/assets/` 실측(**2026-08-26 빌드 — 현 소스보다 옛것**) · `git count-objects -vH`(size-pack **60.86 MiB**) · `git ls-tree -r -l HEAD` 최대 블롭 · `git status`·`git ls-files --others`로 미추적 잔존 확인
+- 새 검증기·게이트 4종 원문 확인: `backend/scripts/validate_canon_pipeline.py`·`validate_api_cache_headers.py`·`validate_scene_sketch_detail.py`, 그리고 동적 구조로 재작성된 `validate_scene_coverage.py`
 
-이 문서는 이후에도 관련 태스크 커밋(task#259~277)에 실려 그때그때 부분 갱신됐다. `a002881` 갱신은 그 부분 갱신에서 놓친 항목을 마저 닫았다 — **Known Bugs 2건 모두 해소**(VERSE_MAP 죽은 키 · PersonMiniCard 연도 포맷터 분기), **`Book.startYear/endYear`가 교정 연대의 파생값으로 봉인**(§데이터 정합성 2), ERA_BANDS가 `frontend/src/eraBands.js`로 승급, 절 본문 전수 스캔이 `verse_search.py`로 공용화(§성능 4).
+직전 판(HEAD `4ad1d83`)까지의 이력은 이렇게 요약된다 — 최초 전면 매핑 이후 task#253~258이 ESLint 7건·번들 639 KB·`App.jsx` 1,081줄을 닫고, task#259가 배포 게이트의 무음 스킵 2경로를 `CHECK_STRICT`로 막고, task#260이 nginx gzip을, task#261이 vitest를 들였다. task#262~277이 Known Bugs 2건(VERSE_MAP 죽은 키 · `PersonMiniCard` 연도 포맷터)과 `Book.startYear/endYear` 파생값 봉인·ERA_BANDS 모듈 승급·절 전수 스캔 공용화를 처리했고, task#278·280~284가 큐레이션 35 slug 두 벌 병합(+`journey.py` 무캐시 해소)·근거 절 범위 재베이킹·`sortKey`↔`startDate` 역전·era 결합점 4→7축을 닫았다. 아래 각 절이 그 해소/잔존을 항목별로 구분한다.
 
-**이번 갱신(HEAD `4ad1d83`)은 task#278·280~284가 3개 더 닫았다** — ① 큐레이션 35 slug 두 벌 하드코딩(`_ERA`/`_NAME_KO`)이 `backend/app/curated.py`의 단일 `CURATED` 리터럴로 병합되고 `validate_curated_persons`로 게이트됨(§데이터 정합성 5), 그 부산물로 `journey.py`의 무캐시 슬러그 역매핑도 해소(§성능 3). ② 교차-장·장 단위 근거 절 범위가 대표절 1개만 베이킹되던 결함이 오프라인 절 사전 오라클 기반으로 재베이킹되고 `validate_event_verses`로 게이트됨(§데이터 정합성 9). ③ `sortKey`↔`startDate` 역전 잔존 2건(+신규 발견 1건)이 교정되고 전역·교차파일 `validate_sortkey_startdate`로 게이트됨(§데이터 정합성 1). era 결합점도 4→7축으로 검증 범위가 확장돼 시대명 변경 시 무음 실패하던 경로 대부분이 닫혔다(§데이터 정합성 4). task#280·281은 인트로 화면의 여백·무해시 라우팅 결함 2건을 고치고 각각 소스 불변식 게이트를 남겼다(둘 다 이 문서의 기존 항목이 아니었던 신규 발견·즉시 해소라 별도 절을 두지 않았다).
+**이번 갱신에서 새로 닫힌 것은 셋이다.** ① `public, max-age=3600` 6곳이 전부 `max-age=300`으로 내려가고 `validate_api_cache_headers`가 상한을 게이트한다(§Tech Debt 4). ② `enrich_place_coords.py`의 "좌표 없을 때만 SET" 가드가 **상시 거짓**이라 손으로 저작한 좌표 교정이 한 번도 반영된 적 없던 결함이 저작값 우선으로 뒤집혔다(§데이터 정합성 11). ③ `.claude/settings.local.json.doctor-backup` 미추적 잔존이 사라졌다(§Tech Debt 8). 부수적으로 투어 스케치 단일 대청크가 투어별 동적 청크 9개로 갈렸고(§Tech Debt 3), 장면 스케치 저작 규약(B1~B12)·인물 정본 구별성·마스크 delay 범위가 새 게이트 3종으로 강제된다.
+
+**새로 생긴 위험은 저작 파이프라인 쪽에 몰려 있다** — 레포 안 소스 / 레포 밖 런타임 분리가 만든 재현성 구멍(§Tech Debt 9), 커밋된 PNG 49 MB가 팩의 대부분을 차지하는 레포 무게(§Tech Debt 10), 실험 스크립트 46개가 정본과 한 디렉터리에 쌓인 부채(§Tech Debt 11), tracked 소스가 gitignored 자산을 참조하는 채색층 파일럿(§Fragile Areas 9), 그리고 투어별 동적 로드가 새로 만든 "키 오배치" 무음 결함 클래스(§Fragile Areas 10).
 
 ---
 
@@ -27,7 +31,7 @@ mapped: 2026-08-21
 | 항목 | 검증 방법 | 결과 |
 |---|---|---|
 | **ESLint 7 errors + 1 warning** | `scripts/check.sh`의 `npx --no-install eslint src` | **0건.** `frontend/src/sketches/SceneLabel.jsx` 분리·`frontend/src/useTourPlayback.js` 분리·`set-state-in-effect` 제거로 규칙 완화 없이 해소(`415374f`, task#253) |
-| **메인 번들 ≈639KB** | `frontend/dist/assets/` 실측 | **`index-CBiAjk8N.js` 250,811 B(gzip 61,426).** 투어 스케치 9모듈이 `tourSketches-Dwfi4Y4b.js` 391,399 B로 분리 — `frontend/src/IntroView.jsx:5`·`frontend/src/TourPlayback.jsx:5`의 `lazy(() => import('./tourSketches'))` |
+| **메인 번들 ≈639KB** | `frontend/dist/assets/` 실측(2026-08-26 빌드) | **`index-CEJ_CwE4.js` 273,366 B(gzip 69,662).** 투어 스케치는 한 청크(391 KB)에서 **투어별 9청크(29~78 KB)**로 재분할됐다(task#287, §Tech Debt 3) — `frontend/src/tourSketches.jsx`의 `TOUR_MODULES`가 투어 id별 `import()`를 들고 있고, `tourSketches-*.js`는 6,781 B 로더만 남았다 |
 | **Person 생몰 Ussher 드리프트 검증 위반 5건** | 라이브 `backend/scripts/validate_event_chronology.py`(Neo4j 접속) | **위반 0.** `data/date_corrections/events.json`·`persons.json` 교정 + ADR `260724-111632`로 ADR-0014 Person 조항 부분 개정. **단, "계(scale) 불일치" 자체는 미해소 — 아래 데이터 정합성 §1 참조** |
 | **모바일 지도 세계축소(아프리카) 프레이밍 버그** | 코드 확인 | `frontend/src/MapView.jsx:17-33` `clampPadding`(축별 패딩 합을 컨테이너의 60%로 클램프) + `:88` `map.on('load')` 내 `map.resize()`를 `setMapLoaded` **이전에** 호출해 프레이밍 effect보다 선행 |
 | **신규 데이터 디렉터리 4종 미커밋** | `git status` | 전부 커밋됨(`87846fb`). `data/covenants/`·`data/messianic_prophecies/`·`data/topical_verses/`·`data/jesus_parables_miracles/` 모두 추적 중 |
@@ -36,13 +40,17 @@ mapped: 2026-08-21
 | **데이터 검증 스크립트 CI 미연결** | `deploy.sh` 게이트 단계 | `scripts/check.sh`가 배포 전 하드 게이트로 배선. 실패 시 `exit 1`로 배포 중단. 무음 스킵 경로 2개는 `CHECK_STRICT=1`로 **해소**(task#259, 배포/운영 §1) |
 | **투어 정차지 장면 커버리지 자동 게이트 부재** | 스크립트 실행 | `backend/scripts/validate_scene_coverage.py` 신설 — 정차지↔스케치 키 양방향 대조(task#264~266의 출애굽~정복 21건 보강 이후 **296건**↔296건) + `tourSketches.jsx` 미병합 모듈 탐지, `scripts/check.sh` 배선(task#259) |
 | **언약 리본 `marginLeft:auto` 클리핑** | 직전 세션 수정 확인 | `frontend/src/TimelineView.jsx` 잔존 없음 |
-| **`VERSE_MAP`의 죽은 eventId 4개 — 재실행 즉시 `sys.exit(1)`** | `ast.literal_eval`로 `VERSE_MAP` 추출 후 `data/book_events/books.json`과 교차 대조 | **죽은 키 0 · 미커버 0.** task#273(`2caf509`)이 `authored-*` 신원으로 재매핑했고, task#274(`53c94a1`)가 `backend/scripts/validate_approx_book_verses.py`로 이 조건을 배포 게이트에 **재현**(생성기는 실행하지 않음, ADR `260820-003946`) — `scripts/check.sh`의 15종 검증에 배선. 같은 결함 클래스가 `persons.py`의 `_ERA`/`_NAME_KO` 35 slug에 아직 남아 있다(§데이터 정합성 5) |
+| **`VERSE_MAP`의 죽은 eventId 4개 — 재실행 즉시 `sys.exit(1)`** | `ast.literal_eval`로 `VERSE_MAP` 추출 후 `data/book_events/books.json`과 교차 대조 | **죽은 키 0 · 미커버 0.** task#273(`2caf509`)이 `authored-*` 신원으로 재매핑했고, task#274(`53c94a1`)가 `backend/scripts/validate_approx_book_verses.py`로 이 조건을 배포 게이트에 **재현**(생성기는 실행하지 않음, ADR `260820-003946`) — `scripts/check.sh`의 파일 검증 루프(현재 **22종**)에 배선. 같은 결함 클래스가 `persons.py`의 `_ERA`/`_NAME_KO` 35 slug에 아직 남아 있었으나 그쪽은 task#278로 해소됐다(§데이터 정합성 5) |
 | **`PersonMiniCard`의 연도 포맷터가 정본 헬퍼와 갈라짐** | 코드 확인 | task#262(`4353f34`)가 `PersonMiniCard.jsx`의 로컬 `fmtYear`를 지우고 `frontend/src/dates.js`의 `parseYear`를 직접 import — 제로패딩 분기가 사라져 갈라질 수 없다 |
 | **`load_books.py` 재실행이 교정 연대를 무시하고 업스트림 값을 쓴다** | `inject_date_corrections.py` diff 확인 + 라이브 실행 없이 정적 대조 | task#273(ADR `260819-233305`)이 `inject_date_corrections.py`에 `recompute_book_years()`를 추가 — 교정 주입 직후 `CONTAINS_BOOK` 사건의 교정 후 `startDate`로 `Book.startYear/endYear`를 재집계해 SET한다. `deploy.sh`가 이미 이 스크립트를 게이트 앞에서 부르므로 배포 경로에서 자동으로 닫힌다(§데이터 정합성 2) |
 
 ### 잔존 (아래 각 절에서 상세)
 
-`deploy.sh`의 `load_*` 미배선(의도된 결정 — ADR `260801-195022`) · 캐시 무효화가 재시작 의존 · CORS `*` · `words.py`·`search.py` 공용 절 전수 스캔(`verse_search.py`, task#267로 두 라우트가 공유) · 오버레이 빈 폴백 비대칭 · `api.js` 캐시·디듀프 부재 · SPA `hashchange` 미청취 · 대형 컴포넌트(`SidePanel.jsx`, `App.jsx`는 task#257~258 분해로 이탈) · 대용량 오버레이 상주 · 의존성 caret 미고정 · 백엔드 테스트 0건(의도된 결정 — ADR `260801-195023`) · `content-box`+패딩 결함 클래스가 인트로 5곳만 봉인되고 나머지 화면은 미조사(ADR `260820-232144`) · `validate_curated_persons`가 `person_events` JSON 내용은 파싱하지 않음.
+`deploy.sh`의 `load_*`·`enrich_place_coords` 미배선(의도된 결정 — ADR `260801-195022`) · 캐시 무효화가 재시작 의존 · CORS `*` · `words.py`·`search.py` 공용 절 전수 스캔(`verse_search.py`, task#267로 두 라우트가 공유) · 오버레이 빈 폴백 비대칭 · `api.js` 캐시·디듀프 부재 · SPA `hashchange` 미청취 · 대형 컴포넌트(`SidePanel.jsx`, `App.jsx`는 task#257~258 분해로 이탈) · 대용량 오버레이 상주 · 의존성 caret 미고정 · 백엔드 테스트 0건(의도된 결정 — ADR `260801-195023`) · `content-box`+패딩 결함 클래스가 인트로 5곳만 봉인되고 나머지 화면은 미조사(ADR `260820-232144`) · `validate_curated_persons`가 `person_events` JSON 내용은 파싱하지 않음.
+
+**이번 갱신에서 잔존 목록에서 빠진 것**: `Cache-Control` 3600/300 혼재(→ 전량 300 + 상한 게이트, §Tech Debt 4) · `.claude/settings.local.json.doctor-backup` 미추적(→ 파일 자체가 사라짐, §Tech Debt 8) · "앱 코드 분할이 `tourSketches` 하나뿐"(→ 투어별 9청크 + `introMontage` + `CastSheet`, §Tech Debt 3).
+
+**이번 갱신에서 잔존 목록에 새로 든 것**: 저작 파이프라인의 재현성 3축 미결(§Tech Debt 9) · 커밋된 PNG 49 MB(§Tech Debt 10) · 실험 스크립트 46개 혼재(§Tech Debt 11) · `frontend/public/scene-color/` gitignored 자산 참조(§Fragile Areas 9) · 동적 투어 청크의 키 오배치 클래스(§Fragile Areas 10) · `god_reliance` 근거 절이 진술을 뒷받침하는지 재는 기계 게이트 부재(§데이터 정합성 12).
 
 ---
 
@@ -178,6 +186,28 @@ mapped: 2026-08-21
 
 ---
 
+### 11. 저작 장소 좌표가 DB에 한 번도 반영되지 않던 결함 — 해소(task#285), 배포 미배선은 잔존
+
+**심각도: 높음(과거) · 시급도: 낮음 → 해소, 단 반영 경로는 수동**
+
+과거: `backend/scripts/enrich_place_coords.py`가 `rec*` ID(업스트림 theographic Place)에 대해 `WHERE pl.latitude IS NULL`로 "기존 값 보존"을 했다. 그런데 `load_theographic.py` 임포트가 이미 모든 Place에 좌표를 채우므로 **그 가드는 상시 거짓**이었다 — `data/place_coords/places.json`에 손으로 적은 좌표 교정이 단 한 번도 DB에 반영된 적이 없고, 재실행해도 에러·경고 없이 '스킵' 카운트만 올랐다. 실측: `rec*` 11건 전부 저작값과 DB가 불일치했고, 시내산은 저작(28.539)과 DB(29.5)가 위도 0.96°(≈107 km) 어긋난 채 서빙됐다.
+
+해소(task#285): 정본 방향이 뒤집혔다 — 이 파일은 업스트림 좌표를 고치려고 손으로 저작하는 교정 파일이므로 **충돌 시 저작값이 이긴다**. 쿼리가 `WITH pl, (pl.latitude <> $lat OR pl.longitude <> $lng) AS differs` + 무조건 `SET`으로 바뀌었고, 카운터가 `created/updated/unchanged/missing` 4종으로 갈렸다. `missing`(places.json에 있는데 DB에 없는 id)을 따로 세는 것이 핵심 — 이전 `skipped` 한 통에 "이미 같음"과 "대상 없음"이 섞여 재실행이 조용히 무의미해졌다.
+
+**잔존**: 이 스크립트는 여전히 `deploy.sh`에 배선돼 있지 않다(§Tech Debt 5의 14종 목록에 포함). 즉 **고친 로직이 좌표를 실제로 옮기려면 사람이 수동으로 돌려야 한다**. 그리고 `data/place_coords/places.json` ↔ DB 좌표의 일치를 재는 게이트는 없다 — `scripts/check.sh`의 라이브 검증은 `validate_event_chronology`(연대)뿐이라 좌표 드리프트는 검출 대상이 아니다.
+
+### 12. `god_reliance` 근거 절 오지정 — 교정됐으나 재발 방지 게이트 없음
+
+**심각도: 중간 · 시급도: 낮음**
+
+`data/god_reliance/*.json` **26파일**에서 `verse` 값을 담은 줄 83개가 81개로 교체됐다(항목 총수는 195 → 194 — 항목 1건이 함께 정리돼 수가 어긋난다). 예: `abraham.json`의 "순종하여 하란을 떠남"이 창 12:1 → 창 12:4, "바로의 집에 재앙 내려 사래를 건지심"이 창 12:10 → 창 12:17, `saul.json`의 "나하스의 위협에 하나님의 영이 임하심"이 삼상 11:1 → 11:6 / 그 `outcome`이 11:1 → 11:11. 패턴이 일관된다 — **`trigger`의 절을 `outcome`에 그대로 복사해 둔 것**이 지배적 원인이고, 결과가 실제로 기록된 뒤쪽 절을 가리키지 않았다. 즉 한 항목의 두 필드가 같은 절을 말하고 있었다.
+
+`backend/scripts/validate_god_reliance.py`는 **이 상태에서 통과하고 있었다**(직접 실행해 재확인 — 지금도 PASS). 그 검증기가 보는 축은 7개다(mode 통제어휘 5종 · `trigger.verse`·`outcome.verse`가 정본 절 사전에서 **해석되는지** · `obeyed`가 `mode=="부르심"`일 때만 불리언 · `approxYear` 정수 · label 결손 · `kind` 통제어휘 · 구 스키마 잔존). 오지정된 절도 **실재하는 절이므로 ②를 통과한다** — 즉 이 게이트는 "절이 있는가"를 보고 "그 절이 이 진술을 뒷받침하는가"는 보지 않는다. 후자는 기계 신호가 아니라 본문 판독이라 판정 범위 밖이고, 같은 오지정이 새로 저작되면 게이트는 초록이다. 검출 수단은 사람(또는 `scripture-reviewer` 역할)의 절 대조뿐이고, 이번 교정이 그렇게 잡혔다.
+
+같은 결함 클래스는 근거 절을 손으로 적는 다른 저작 데이터(`person_events`의 `context` 말미 참조 등)에도 열려 있다 — `validate_event_verses.py`(task#282)가 게이트하는 것은 **라벨 범위 ↔ 베이킹된 절 집합의 경계 일치**이지 절이 진술을 뒷받침하는지가 아니다.
+
+---
+
 ## Deployment / Ops Risks
 
 ### 1. 배포 게이트가 두 경로에서 무음으로 무력화된다 — 그중 하나는 순서 버그 (**해소 — task#259**)
@@ -218,13 +248,25 @@ mapped: 2026-08-21
 
 **정정(task#279 실측)**: `git reset --hard`는 추적 파일의 수정만 되돌리고 **미추적 파일은 지우지 않는다**(`git clean`이 아니다). task#279가 이 사실을 실측으로 확정했다 — `.forge/adr/`·`.forge/retro/`에 미추적 영구 문서가 있으면 하드리셋을 그대로 살아 넘어와 `deploy.sh`가 게이트로 부르는 `scripts/check.sh`에 노출된다. 그래서 `backend/scripts/validate_forge_docs_tracked.py`(신설)가 이 두 루트의 미추적 파일 0건을 게이트한다 — **당초 계획은 "CI 경로에서는 하드리셋 때문에 공허하게 통과한다"고 전제했으나 위 실측으로 반증됐고, 실제로는 이 미추적 상태가 배포를 중단시킨다**(`CHECK_STRICT=1`이라 스킵이 곧 실패). 이 게이트는 `.forge/adr`·`.forge/retro`만 보고 `data/`나 다른 미추적 파일은 보지 않는다 — §데이터 정합성 7의 위험은 그대로다.
 
+**현재 상태(2026-09-02 실측): 이 게이트가 빨강이다.** `.forge/adr/` 1건 + `.forge/retro/` 7건이 미추적이라 `bash scripts/check.sh`가 `✗ validate_forge_docs_tracked`로 실패한다(다른 41항목은 전부 PASS). 배포 경로는 `CHECK_STRICT=1`이므로 **이 상태로 push하면 배포가 중단된다** — 실패 메시지가 파일 목록을 지목하니 무음은 아니고, 해소는 `git add` 하나다. 아울러 `.forge/dropped/`는 `.gitignore`에도 이 게이트의 스캔 루트에도 없어(현재 미추적 3디렉터리) 어느 쪽에도 걸리지 않는다 — 배포를 막지는 않지만 `git status`를 어지럽힌다.
+
 ### 6. `deploy.sh` 단계 라벨 어긋남 (코스메틱) (**해소 — task#259**)
 
 과거 `[1/3]`·`[2/3]`·`[3/4]`·`[4/4]`로 분모가 섞였고 검증 단계엔 번호가 없었다. 재배치와 함께 `[1/7]`~`[7/7]`로 통일했다(대기 → 주입 → `npm install` → 게이트 → 빌드 → 이미지 → 기동).
 
 ### 7. 프론트 `:8080`은 `frontend/dist` 정적 마운트 (HMR 아님)
 
-`docker-compose.yml:30`. 소스만 고치고 `npm run build`를 안 하면 이전 빌드가 계속 서빙된다. `frontend/dist/`는 `.gitignore:11`로 미추적이라 배포 머신에서 매번 재빌드된다.
+`docker-compose.yml:30`. 소스만 고치고 `npm run build`를 안 하면 이전 빌드가 계속 서빙된다. `frontend/dist/`는 `.gitignore:9`로 미추적이라 배포 머신에서 매번 재빌드된다.
+
+### 8. `scripts/` 미추적이 배포 차단 사유가 됐다 — 게이트가 스스로를 지킨다
+
+**심각도: 낮음 · 시급도: 낮음(의도된 강도)**
+
+`backend/scripts/validate_canon_pipeline.py`(신설, task#316)의 둘째 축은 `git ls-files --others --exclude-standard -- scripts`가 비어 있음을 단언한다. 위생 규칙이 아니라 **게이트 자기보호**다 — `scripts/check.sh`가 부르는 `scripts/check_cast_axes.py`·`scripts/check_mask_ranges.py`가 미추적이면 새 클론·CI에서 게이트 자신이 깨진다. `validate_forge_docs_tracked.py`와 같은 스캔 형태·같은 git 미가용 skip 계약(`EXIT_NO_GIT=3`)이고, `check.sh`가 `git rev-parse --is-inside-work-tree`로 분기해 부른다.
+
+부작용: **`scripts/` 아래에 임시 스크립트를 하나 놓아 두면 배포가 막힌다.** 저작·실험 스크립트가 계속 늘어나는 디렉터리라(§Tech Debt 11) 이 결합은 앞으로도 걸릴 자리다. 약화하려면 스캔 루트를 `check.sh`가 실제로 부르는 파일 집합으로 좁히는 안이 있으나, 그러면 "새 게이트를 추가하고 커밋을 잊는" 원래 결함이 다시 열린다.
+
+첫째 축(정본 재선언 금지)이 **소스만 읽어** 판정하는 것은 GPU도 생성 venv도 없는 `check.sh` 실행 환경 때문이다. 그래서 이 게이트의 초록은 "파이프라인이 돈다"가 아니라 "이 불변식이 아는 재선언이 없다"뿐이다 — 검증기 도크스트링이 그 한계를 스스로 적어 두었다.
 
 ---
 
@@ -255,7 +297,9 @@ mapped: 2026-08-21
 
 **심각도: 중간 · 시급도: 중간**
 
-`frontend/src/MapView.jsx:2-3`이 `maplibre-gl`과 그 CSS를 정적 import하고, `frontend/src/App.jsx:4`가 `MapView`를 정적 import한다. 결과적으로 인트로·인물 허브·통계·성경 리더 등 지도를 전혀 안 쓰는 진입에도 1,027,608 B + 69,808 B CSS가 함께 내려간다. `frontend/vite.config.js:14-19`의 `manualChunks`는 별 청크로 **분리만** 할 뿐 지연 로드하지 않는다. `chunkSizeWarningLimit` 미설정이라 vite 500 kB 경고가 매 빌드 발생하고 무시되고 있다.
+`frontend/src/MapView.jsx:2-3`이 `maplibre-gl`과 그 CSS를 정적 import하고, `frontend/src/ExploreStage.jsx:7`이 `MapView`를 정적 import하며 `App.jsx:10`이 `ExploreStage`를 정적 import한다(task#257~258 분해 이후 경로가 한 단 늘었을 뿐 지연 로드는 아니다). 결과적으로 인트로·인물 허브·통계·성경 리더 등 지도를 전혀 안 쓰는 진입에도 1,027,608 B + 69,808 B CSS가 함께 내려간다. `frontend/vite.config.js:14-19`의 `manualChunks`는 `maplibre`를 별 청크로 **분리만** 할 뿐 지연 로드하지 않는다. `chunkSizeWarningLimit` 미설정이라 vite 500 kB 경고가 매 빌드 발생하고 무시되고 있다(현재 유일한 초과가 이 청크다).
+
+`frontend/dist/assets/` 실측(2026-08-26 빌드 — **현 소스보다 옛것이니 절대값은 참고치**): `maplibre-DgANBuI6.js` **1,027,608 B**(단일 최대) · `index-CEJ_CwE4.js` 273,366 · `vendor-q2EswsIf.js` 198,991 · `maplibre-B2k4QVOw.css` 69,808. 투어 스케치는 task#287로 투어별 청크 9개(29,245~78,136 B)로 갈렸고 `tourSketches-BGO6HHXr.js`는 6,781 B의 로더만 남았다(§Tech Debt 3) — 즉 **지도가 이제 두 번째로 큰 청크의 3.8배**로, 프론트 전송량의 지배 요인이 명확히 maplibre 하나다. js+css 합계 2,061,363 B.
 
 ### 3. ~~`journey.py`의 슬러그 역매핑이 유일하게 무캐시~~ (해소 — task#278)
 
@@ -297,28 +341,28 @@ mapped: 2026-08-21
 
 **심각도: 중간 · 시급도: 낮음**
 
-`data/` 총 20 MB / 117 파일. 최대 파일: `data/bible/verses.json` 10,284,836 B · `data/event_verses/events.json` 2,184,907 · `data/word_verse_index/index.json` 1,725,004 · `data/person_relations/relations.json` 1,216,657 · `data/person_context/people.json` 936,603 · `data/verse_persons/index.json` 857,251 · `data/word_distribution.json` 283,953. 전부 `lru_cache(maxsize=1)`로 한 번 접근되면 프로세스 종료까지 파이썬 객체로 상주한다(실제 RSS는 원본 바이트보다 훨씬 크다). uvicorn 단일 워커라 현재는 1벌이지만 워커를 늘리면 워커당 곱해진다.
+`data/` 총 19 MB / 117 파일. 최대 파일: `data/bible/verses.json` 10,284,836 B · `data/event_verses/events.json` **2,382,141**(task#282 재베이킹으로 +197 KB) · `data/word_verse_index/index.json` 1,725,004 · `data/person_relations/relations.json` 1,216,657 · `data/person_context/people.json` 936,603 · `data/verse_persons/index.json` 857,251 · `data/word_distribution.json` 283,953. 전부 `lru_cache(maxsize=1)`로 한 번 접근되면 프로세스 종료까지 파이썬 객체로 상주한다(실제 RSS는 원본 바이트보다 훨씬 크다). uvicorn 단일 워커라 현재는 1벌이지만 워커를 늘리면 워커당 곱해진다.
 
 ### 9. `apiGet`에 캐시·디듀프가 없어 같은 엔드포인트를 여러 컴포넌트가 각자 fetch
 
 **심각도: 낮음 · 시급도: 낮음**
 
-`frontend/src/api.js` 전체가 17줄짜리 `fetch` 래퍼다 — 인플라이트 맵도, 메모도, SWR류도 없다. 서버 `Cache-Control`(대부분 `max-age=300`, 일부 `public, max-age=3600`)과 `?v=__BUILD_ID__` 캐시버스터가 유일한 완화책이라, 콜드 로드의 동시 요청은 실제로 중복 전송된다.
+`frontend/src/api.js` 전체가 17줄짜리 `fetch` 래퍼다 — 인플라이트 맵도, 메모도, SWR류도 없다. 서버 `Cache-Control`(이제 전량 `max-age=300`, §Tech Debt 4)과 `?v=__BUILD_ID__` 캐시버스터가 유일한 완화책이라, 콜드 로드의 동시 요청은 실제로 중복 전송된다. 상한이 3600→300으로 내려간 만큼 이 중복의 재발 주기는 오히려 짧아졌다.
 
 | 엔드포인트 | fetch 하는 곳 |
 |---|---|
-| `/persons/curated` | `frontend/src/useStageNavigation.js:61` · `frontend/src/PersonHub.jsx:201` · `frontend/src/PersonIntro.jsx:69` |
-| `/books-overview` | `frontend/src/BibleOverviewView.jsx:198` · `frontend/src/WordDistributionView.jsx:72` · `frontend/src/App.jsx:166` |
-| `/event/{id}/verses` | `frontend/src/TimelineView.jsx:175` · `frontend/src/JourneyList.jsx:50` · `frontend/src/SidePanel.jsx:252` |
-| `/parables-miracles` | `frontend/src/MapView.jsx:52` · `frontend/src/TimelineView.jsx:80` (둘 다 항상 마운트 — `App.jsx:853`이 MapView를 `display:none`으로 유지) |
-| `/node/{id}/places` | `frontend/src/MapView.jsx:124` · `frontend/src/SidePanel.jsx:143` |
+| `/persons/curated` | `frontend/src/useStageNavigation.js:61` · `frontend/src/PersonHub.jsx:232` · `frontend/src/PersonIntro.jsx:69` |
+| `/books-overview` | `frontend/src/BibleOverviewView.jsx:208` · `frontend/src/WordDistributionView.jsx:72` · `frontend/src/App.jsx:64` |
+| `/event/{id}/verses` | `frontend/src/TimelineView.jsx:158` · `frontend/src/JourneyList.jsx:50` · `frontend/src/SidePanel.jsx:252` |
+| `/parables-miracles` | `frontend/src/MapView.jsx:56` · `frontend/src/TimelineView.jsx:63` (둘 다 항상 마운트 — `frontend/src/ExploreStage.jsx:135`이 MapView를 `display:none`으로 유지) |
+| `/node/{id}/places` | `frontend/src/MapView.jsx:128` · `frontend/src/SidePanel.jsx:143` |
 | `/person/{id}/relations` | `frontend/src/PersonIntro.jsx:82`(`.length`만 쓰려고 전량 수신) · `frontend/src/RelationsView.jsx:48` |
 
-`useStageNavigation.js:61`과 `PersonHub.jsx:201`은 **지수 백오프 재시도 로직까지 각자 구현**했다. `PersonIntro.jsx:69`는 `useStageNavigation`이 이미 들고 있는 `curatedEraById`/`curatedSlugById`의 한 필드를 얻으려고 전체 목록을 다시 받는다.
+`useStageNavigation.js:61`과 `PersonHub.jsx:232`는 **지수 백오프 재시도 로직까지 각자 구현**했다. `PersonIntro.jsx:69`는 `useStageNavigation`이 이미 들고 있는 `curatedEraById`/`curatedSlugById`의 한 필드를 얻으려고 전체 목록을 다시 받는다.
 
 ### 10. `MapView`의 `/parables-miracles` fetch에 취소 가드가 없다
 
-`frontend/src/MapView.jsx:52-54` — `.catch`는 있으나 `cancelled`/`AbortController` 가드가 없어 언마운트 후 `setPmItems`가 호출될 수 있다. 같은 파일의 다른 fetch(`:120`)는 `AbortController`를 쓴다.
+`frontend/src/MapView.jsx:56-58` — `.catch`는 있으나 `cancelled`/`AbortController` 가드가 없어 언마운트 후 `setPmItems`가 호출될 수 있다. 같은 파일의 다른 fetch(`:124-128`)는 `AbortController`를 쓴다.
 
 ### 11. `search.py` 전역 노드 스캔 (잔존)
 
@@ -331,9 +375,10 @@ mapped: 2026-08-21
 - **CORS `allow_origins=["*"]`** — `backend/app/main.py:46-50`. `allow_credentials=False` + `allow_methods=["GET"]` + 무인증 공개 읽기 API라 즉각 위험은 낮지만 완전 개방이다. **심각도: 낮음**
 - **Cypher 인젝션 표면 — 라우트 계층은 깨끗하다.** `backend/app/routes/*.py`의 f-string 삽입은 전부 모듈 상수뿐이다(`search.py:15-31`의 `SEARCH_LIMIT`, `stats.py:67-73`의 `TOP_PERSONS_LIMIT`, `family.py:111-116`·`:159-167`의 `MAX_GENERATIONS`, `nodes.py:176-183`의 `NODE_NEIGHBOR_LIMIT`, `main.py:34-35`의 고정 라벨 목록). 사용자 입력은 전부 `$` 파라미터 바인딩.
 - **데이터 파일이 Cypher 속성명이 되는 지점** — `backend/scripts/inject_date_corrections.py:66`·`:85`가 `data/date_corrections/persons.json`의 `field` 값을 `p.{field}`로 보간한다. Cypher가 속성명을 파라미터화할 수 없어 구조적으로 불가피하지만 **허용목록 검사가 없다**(현재 값은 `birthYear`·`deathYear` 2종뿐). 저장소 데이터라 외부 입력은 아니다. **심각도: 낮음**
-- **시크릿 취급 (양호)** — `.env`는 `.gitignore:14`, 커밋 이력 없음, `.env.example`은 플레이스홀더만. `frontend/.env.production`은 `VITE_API_URL=/api`뿐. `docker-compose.yml:10`·`:18`이 `${NEO4J_PASSWORD:?...}` fail-fast. LLM 저작 스크립트는 `ANTHROPIC_API_KEY`를 환경변수로만 읽는다(`backend/scripts/generate_book_context.py:71-73`·`generate_book_events.py:88-90`). 하드코딩 시크릿 0건.
+- **시크릿 취급 (양호)** — `.env`는 `.gitignore:13`, 커밋 이력 없음, `.env.example`은 플레이스홀더만. `frontend/.env.production`은 `VITE_API_URL=/api`뿐. `docker-compose.yml:10`·`:18`이 `${NEO4J_PASSWORD:?...}` fail-fast. LLM 저작 스크립트는 `ANTHROPIC_API_KEY`를 환경변수로만 읽는다(`backend/scripts/generate_book_context.py:71-73`·`generate_book_events.py:88-90`). 하드코딩 시크릿 0건.
 - **Neo4j 바인딩 (양호)** — `docker-compose.yml:4-6`이 `127.0.0.1`로만 노출. API `:8000`도 호스트 미노출(`docker-compose.yml`의 api 서비스에 ports 없음).
 - **레이트리밋·요청 크기 제한 없음** — `nginx/nginx.conf`에 `limit_req`/`limit_conn` 없음. §Performance 4·5의 비용 큰 엔드포인트가 그대로 열려 있다. **심각도: 낮음(공개 읽기 전용) · 시급도: 낮음**
+- **저작 파이프라인의 시크릿 표면 (양호) · 대신 머신 경로가 커밋된다** — `scripts/canon/` 46개 스크립트에 API 키·토큰 패턴 **0건**(로컬 GPU 추론만 하고 외부 서비스 호출이 없다). 대신 `/Users/<사용자>` 형태의 절대경로가 **추적 파일 26건**에 박혀 있다 — 20건은 도크스트링의 실행 예시(레포 밖 venv 인터프리터 경로), 1건은 `scripts/canon/params.py`의 `IMAGE_ENCODER`(허깅페이스 로컬 캐시 스냅샷 절대경로, 도크스트링이 아니라 **실제 코드 값**), 나머지는 `notes/*.json` meta의 산출물 경로. 자격증명은 아니지만 사용자 홈 디렉터리 구조가 공개 커밋에 남고 다른 머신에서는 성립하지 않는다(§Tech Debt 9). **심각도: 낮음**
 - **배포 로그로의 잠재 유출** — §배포/운영 4 참조.
 
 ---
@@ -346,7 +391,7 @@ mapped: 2026-08-21
 
 `frontend/src/MapView.jsx`의 `resize()` 호출은 두 곳뿐이다 — `:88`(`map.on('load')` 내부 1회)과 `:282-284`(`isVisible`/`mapLoaded` 전환 시). **`window` resize 리스너도 `ResizeObserver`도 없다.** 같은 프로젝트의 `frontend/src/FamilyTree.jsx:292`·`WordDistributionView.jsx:65`·`RelianceView.jsx:156`은 `ResizeObserver`를 쓴다 — MapView만 예외.
 
-`App.jsx:853`이 MapView를 `display:none`으로 계속 마운트해 두므로, **브라우저 리사이즈·기기 회전·모바일 URL바 접힘** 시 캔버스가 낡은 크기로 남는다. 게다가 프레이밍 패딩을 만드는 `isMobile`/`sheet` 값은 `window.innerWidth`/`innerHeight` 스냅샷(`MapView.jsx:146-147`·`:215-216`·`:257`)이라 회전 후에도 재계산되지 않는다.
+`frontend/src/ExploreStage.jsx:135`(주석이 "MapView는 언마운트하지 않고 display:none(항상 마운트 규약 유지)"으로 명시)이 MapView를 계속 마운트해 두므로, **브라우저 리사이즈·기기 회전·모바일 URL바 접힘** 시 캔버스가 낡은 크기로 남는다. 게다가 프레이밍 패딩을 만드는 `isMobile`/`sheet` 값은 `window.innerWidth`/`innerHeight` 스냅샷(`MapView.jsx:146-147`·`:215-216`·`:257`)이라 회전 후에도 재계산되지 않는다.
 
 카메라 effect가 5개(`:104`·`:200`·`:227`·`:240`·`:275`)로 흩어져 `mapLoaded` + 겹치는 deps를 공유한다. `:207` 주석이 인물 모드/투어 모드 프레이밍이 서로 카메라를 다툴 수 있어 수동 배제했음을 명시한다. `:259-261`은 `easeTo`에 `offset: undefined`를 넘기면 `Point.convert`가 던져 **React 루트가 통째로 언마운트되던** 크래시를 조건부 스프레드로 우회했음을 기록한다.
 
@@ -354,27 +399,27 @@ mapped: 2026-08-21
 
 **심각도: 중간 · 시급도: 낮음**
 
-`frontend/src/useStageNavigation.js`는 해시를 **마운트 시 1회만** 읽는다(`:41` `initialHashRef`, `:16` lazy initializer). 히스토리 리스너는 `:200`의 `popstate` 하나뿐이고 **`frontend/src/` 어디에도 `hashchange` 리스너가 없다.**
+`frontend/src/useStageNavigation.js`는 해시를 **마운트 시 1회만** 읽는다(`:41` `initialHashRef`, `:16-18` lazy initializer). 히스토리 리스너는 `:211`의 `popstate` 하나뿐이고 **`frontend/src/` 어디에도 `hashchange` 리스너가 없다.**
 
 프래그먼트만 바뀌는 동일 문서 내비게이션(`<a href="#/books">`, 주소창 해시 직접 수정, 외부 `location.hash` 대입)은 `popstate`가 아니라 `hashchange`만 발생시킨다. → **URL은 바뀌지만 앱 상태는 안 바뀌고**, 다음 상태 변화 때 `replaceState`가 낡은 상태로 사용자 URL을 덮어쓴다. 딥링크가 무시된 것처럼 보인다.
 
-복원은 `:127` `restoredRef`로 1회 게이팅되고 `:149`의 `[curatedIds]` dep이 `/persons/curated` 성공에 의존한다(`:61`의 3회 백오프 재시도로 완화되나 최종 실패 시 인물 딥링크가 미해결로 남는다).
+복원은 `:128` `restoredRef`로 1회 게이팅되고 `:153`의 `[curatedIds]` dep이 `/persons/curated` 성공에 의존한다(`:61`의 3회 백오프 재시도로 완화되나 최종 실패 시 인물 딥링크가 미해결로 남는다).
 
-**이 복원 effect 자체는 task#281로 결함 1건이 고쳐지고 게이트가 생겼다** — 무해시 첫 진입에서 이 effect가 `parseHash('')`의 `{stage:'hub'}`를 `applyParsedHash`에 넘겨 인트로 초기값을 덮던 결함(§코드마커현황 인접 참조는 없음, 이 문서 이전 판에는 없던 신규 발견·즉시 해소)이 해소됐다 — `:133`에서 `isNoTarget(initialHashRef.current)`이면 `applyParsedHash`를 부르지 않고 `setRestored(true)`만 태운다. `backend/scripts/validate_intro_entry_route.py`(신설)가 "무타깃 판정이 `urlState.isNoTarget` 정본 하나로만 일어난다"를 소스 불변식으로 게이트하지만, 이는 **이 절이 지적하는 `hashchange` 미청취 자체와는 다른 결함 클래스**이고 그 문제는 그대로 남아 있다.
+**이 복원 effect 자체는 task#281로 결함 1건이 고쳐지고 게이트가 생겼다** — 무해시 첫 진입에서 이 effect가 `parseHash('')`의 `{stage:'hub'}`를 `applyParsedHash`에 넘겨 인트로 초기값을 덮던 결함(§코드마커현황 인접 참조는 없음, 이 문서 이전 판에는 없던 신규 발견·즉시 해소)이 해소됐다 — `:134`에서 `isNoTarget(initialHashRef.current)`이면 `applyParsedHash`를 부르지 않고 `setRestored(true)`만 태운다. `backend/scripts/validate_intro_entry_route.py`(신설)가 "무타깃 판정이 `urlState.isNoTarget` 정본 하나로만 일어난다"를 소스 불변식으로 게이트하지만, 이는 **이 절이 지적하는 `hashchange` 미청취 자체와는 다른 결함 클래스**이고 그 문제는 그대로 남아 있다.
 
-`:122`·`:174`에 `eslint-disable-next-line react-hooks/exhaustive-deps` 2건(의도적, 주석으로 근거 명시).
+`:151`·`:214`에 `eslint-disable-next-line react-hooks/exhaustive-deps` 2건(의도적, 주석으로 근거 명시).
 
-**우회 사례(task#268·270, 근본 해결 아님)**: 이어보기·저장한 항목 카드(`PersonHub.jsx`의 `SavedRow`)는 `<a href="#...">`가 아니라 `useStageNavigation.js`의 신설 `handleGoToHash()`를 직접 호출해 해시 파싱→상태 적용을 상태 머신 안에서 태운다. `hashchange`에 의존하지 않고 앱이 스스로 제어하는 경로라 이 특정 상호작용은 안전하지만, **네이티브 앵커 기반 해시 이동이나 외부 `location.hash` 대입 경로는 여전히 무방비**다 — 이 문제의 일반 해법(전역 `hashchange` 리스너)이 아니라 회피다.
+**우회 사례(task#268·270, 근본 해결 아님)**: 이어보기·저장한 항목 카드(`PersonHub.jsx`의 `SavedRow`)는 `<a href="#...">`가 아니라 `useStageNavigation.js:118`의 `handleGoToHash()`를 직접 호출해 해시 파싱→상태 적용을 상태 머신 안에서 태운다. `hashchange`에 의존하지 않고 앱이 스스로 제어하는 경로라 이 특정 상호작용은 안전하지만, **네이티브 앵커 기반 해시 이동이나 외부 `location.hash` 대입 경로는 여전히 무방비**다 — 이 문제의 일반 해법(전역 `hashchange` 리스너)이 아니라 회피다.
 
-### 3. 응답 무효화 패턴이 3종으로 갈리고 27곳에 손으로 반복
+### 3. 응답 무효화 패턴이 3종으로 갈리고 30곳에 손으로 반복
 
 **심각도: 낮음 · 시급도: 낮음(프론트 최대 반복 표면)**
 
-- 수동 `let cancelled = false` — 10파일 19곳: `frontend/src/SidePanel.jsx:105,127,142,154,166` · `PersonIntro.jsx:58,68,81` · `App.jsx:85,165` · `BibleOverviewView.jsx:197,224` · `useStageNavigation.js:59,84` · `RelationsView.jsx:47` · `TopicalVersesView.jsx:14` · `StatsView.jsx:54` · `WordDistributionView.jsx:71` · `TourList.jsx:56` · `frontend/src/useExploreJourney.js:27`(신규, task#267~271)
-- `AbortController` — 11파일: `App.jsx:121` · `ChapterReader.jsx:16,27` · `FamilyTree.jsx:207` · `mapRingController.js:112` · `MapView.jsx:120` · `PersonMiniCard.jsx:23` · `RelianceView.jsx:227` · `WordDistributionView.jsx:79` · `PlaceView.jsx:13`(신규) · `SearchPanel.jsx:37`(신규) · `CanonTimelineView.jsx:29`(신규) — 신규 3파일은 전부 이 패턴만 쓴다(좋은 방향)
+- 수동 `let cancelled = false` — **11파일 18곳**: `frontend/src/SidePanel.jsx:105,127,142,154,166` · `PersonIntro.jsx:58,68,81` · `BibleOverviewView.jsx:207,234` · `useStageNavigation.js:84` · `App.jsx:63` · `RelationsView.jsx:47` · `TopicalVersesView.jsx:14` · `StatsView.jsx:54` · `WordDistributionView.jsx:71` · `TourList.jsx:56` · `useExploreJourney.js:27`
+- `AbortController` — **11파일 12곳**: `ChapterReader.jsx:19,30` · `FamilyTree.jsx:207` · `mapRingController.js:107` · `MapView.jsx:124` · `PersonMiniCard.jsx:17` · `RelianceView.jsx:227` · `WordDistributionView.jsx:79` · `PlaceView.jsx:13` · `SearchPanel.jsx:37` · `CanonTimelineView.jsx:29` · `useExploreJourney.js:39`
 - id 키잉 state 비교 — `PersonIntro.jsx:59-61` · `SidePanel.jsx`의 `forNodeId` 가드
 
-`App.jsx`·`WordDistributionView.jsx`에 이어 `useExploreJourney.js`도 **한 파일 안에서 두 패턴(`cancelled` + `AbortController`)을 섞어 쓴다**. 공유 훅이 없다.
+`App.jsx`는 이번 갱신에서 이 표면에서 거의 빠졌다(`cancelled` 1곳만 남고 `AbortController`는 0 — 여정·재생 fetch가 `useExploreJourney.js`·`ExploreStage.jsx`로 이관된 결과). 반면 `WordDistributionView.jsx`와 `useExploreJourney.js`는 여전히 **한 파일 안에서 두 패턴을 섞어 쓴다**. 공유 훅은 여전히 없다.
 
 ### 4. 지도 레이어 색상이 하드코딩 hex라 라이트 테마를 무시한다
 
@@ -404,7 +449,7 @@ mapped: 2026-08-21
 - `PM_FILTERS` — `frontend/src/MapView.jsx:12`와 `frontend/src/TimelineView.jsx:10`에 동일 배열. `TimelineView.jsx:9` 주석이 "별 파일이라 상수는 각자 보관"으로 자백
 - `PURPLE = TYPE_COLOR.Book` — `frontend/src/TourIntro.jsx:8` · `TourList.jsx:9` · `TourPlayback.jsx:8`
 - `GROUND = 'var(--bg-0)'` — `frontend/src/TourList.jsx:10` · `PersonHub.jsx:25`
-- 모바일 미디어쿼리 문자열 5곳(`frontend/src/VerseLayer.jsx:11` · `App.jsx:32` · `BibleOverviewView.jsx:16,18` · `PersonHub.jsx:33,35`) + `matchMedia` vs `window.innerWidth <= MOBILE_BREAKPOINT`(`MapView.jsx:146,215,257`) **두 가지 모바일 판정 기제 공존** — 후자는 리사이즈에 반응하지 않는다
+- 모바일 미디어쿼리 문자열 5곳(`frontend/src/VerseLayer.jsx:11` · `App.jsx:34` · `BibleOverviewView.jsx:16,18` · `PersonHub.jsx:33,35`) + `matchMedia` vs `window.innerWidth <= MOBILE_BREAKPOINT`(`MapView.jsx:146,215,257`) **두 가지 모바일 판정 기제 공존** — 후자는 리사이즈에 반응하지 않는다
 - `prefers-reduced-motion` 쿼리 4곳: `frontend/src/MapView.jsx:262` · `tourSketches.jsx:46` · `RelianceView.jsx:81` · `IntroView.jsx:13`
 - localStorage 키 `'biblemap-intro'`가 리터럴(`frontend/src/useStageNavigation.js:17`)과 상수(`frontend/src/IntroView.jsx:267` `INTRO_STORAGE_KEY`)로 이중 정의
 - `build_range_label` — `backend/scripts/generate_approx_book_verses.py:105` 주석이 `generate_event_verses.py`와 동일 로직임을 명시(복붙 자백)
@@ -419,17 +464,43 @@ task#280이 이 결함을 인트로 화면(`frontend/src/IntroView.jsx`)에서 �
 
 **전역 리셋은 의도적으로 도입하지 않았다** — 인라인 스타일 위주로 수십 개 화면이 `content-box` 전제에서 눈으로 조정돼 왔고, 자동 테스트가 희박해 전역 전환의 폭발 반경을 회수할 수단이 없다(ADR `260820-232144`). 즉 **인트로 밖의 `width:100%`+패딩 조합**(`frontend/src/` 전역에 `width: '100%'` 리터럴이 27곳 더 있다, IntroView 제외 집계)은 이번에 조사도 수정도 되지 않았다 — 같은 결함 클래스가 다른 화면에도 있는지는 미확인이다.
 
+### 9. 추적 소스가 gitignored 자산을 참조한다 — 채색층 파일럿
+
+**심각도: 낮음 · 시급도: 낮음(현재 1장면 파일럿)**
+
+`frontend/src/sketches/ageOfJudges.jsx:1530`이 정차지 `authored-samuel-circuit-judge`에 `color: '/scene-color/samuel-circuit.webp'`를 달아 놓았다. 그런데 그 자산이 사는 `frontend/public/scene-color/`는 이번 갱신에서 **`.gitignore:10`에 추가됐다** — 즉 **추적된 소스가 추적되지 않는 파일을 참조한다.** 개발 머신에는 파일이 있고(52 KB, `.webp` 1장) `git reset --hard`가 미추적 파일을 지우지 않으므로 배포 머신에서도 지금은 살아남지만, **새 클론·다른 머신에서는 없다.**
+
+폴백은 있다 — `frontend/src/tourSketches.jsx:65`의 `colorOk` state가 `<image onError>`로 404를 잡아 다음 렌더에서 `<image>` 자체를 걷어낸다. 이 처리를 굳이 넣은 이유가 주석에 실측으로 적혀 있다: 404면 Chromium이 "아무것도 안 그리는" 게 아니라 **깨진-이미지 아이콘을 뷰박스 전체에 늘려 마스크를 통과시켜 얼룩으로 번진다**. 따라서 자산이 없을 때의 결과는 크래시가 아니라 **잉크 선화만 그려지는 조용한 강등**이다.
+
+문제는 그 조용함이다 — **파일럿이 레포에서 재현되지 않고, 재현 안 됨을 알려주는 신호도 없다.** `validate_scene_coverage.py`는 정차지↔스케치 키 대응만 보고 `color` 경로의 존재는 검사하지 않으며, `validate_scene_sketch_detail.py`의 B1~B12에도 자산 존재 축이 없다. 296장면 중 1건이라 지금은 표면이 좁지만, 채색층을 확대하면 그 수만큼 늘어난다.
+
+### 10. 투어별 동적 청크가 새로 만든 "키 오배치" 무음 결함 클래스
+
+**심각도: 중간 · 시급도: 낮음(게이트 있음)**
+
+`frontend/src/tourSketches.jsx`가 9모듈을 한 레지스트리로 정적 병합하던 구조에서 **투어 id → `() => import('./sketches/<모듈>')`** 매핑(`TOUR_MODULES`)으로 바뀌었다(task#287). 부작용으로 **판정 기준이 달라졌다** — 예전엔 스케치 키가 어느 모듈에 있든 렌더됐지만, 지금은 키가 **그 정차지가 속한 투어의 모듈 밖**에 있으면 아무것도 렌더되지 않는다. 병합 구조에는 존재하지 않던 결함 클래스이고, 증상은 무음(에러도 로그도 없이 삽화 자리가 빈다)이다.
+
+`backend/scripts/validate_scene_coverage.py`가 이 클래스를 A~G 7종으로 갈라 게이트한다(A 미저작 · B 고아 키 · C 허용목록 잔존 · D 모듈 미연결 · E 투어 미연결 · **F 오배치** · G 인트로 미연결). 대조군이 특히 **A(미저작)와 D/E/F(미연결)를 다른 메시지로 구분하는지**를 단언하는데, 이유가 실무적이다 — 두 결함은 증상이 같고 처방이 정반대다(그림을 그려야 하나, 배선을 고쳐야 하나).
+
+잔존 위험 둘. ① 게이트는 **소스 정규식 스크래핑**이다(`_TOUR_MODULE` 정규식이 `'id': () => import('./sketches/Name')` 형태를 그대로 요구) — 포매팅이나 표기가 바뀌면 파싱이 깨지고, 그때 assert로 실패하므로 fail-closed 방향이지만 취약하다. ② 인트로 오프닝 몽타주는 5개 투어에 흩어진 5씬을 쓰므로 `frontend/src/sketches/introMontage.jsx`가 그것만 **재수출**한다(인트로가 투어 청크 5개를 끌어오지 않도록) — 즉 같은 씬이 두 레지스트리에 등재되는 이중 등록이 구조적으로 필요하고, 그 정합은 G축 하나에 걸려 있다.
+
+### 11. `#/cast` 개발 전용 라우트가 프로덕션 번들에 실린다
+
+**심각도: 낮음 · 시급도: 낮음**
+
+`frontend/src/urlState.js`의 `parseHash`/`encodeHash`에 `#/cast` 분기가 추가되고(`stage: 'cast'`), `frontend/src/App.jsx`가 `lazy(() => import('./CastSheet'))`로 렌더한다. 사용자 화면 어디에도 이 라우트로의 링크가 없어(ADR `260823-190821` 4항) 주소를 직접 입력해야만 들어가지만, **빌드 산출물에는 그대로 포함된다**(`CastSheet-*.js` 7,268 B + `cast/*.jsx`의 인물 정본 청크). 저작 에이전트가 자기 그림을 보기 위한 화면이므로 데이터 노출은 없고 부작용도 없지만, 프로덕션에서 접근 가능한 개발 표면이라는 점은 남는다. `frontend/eslint.config.js:21-28`이 이 디렉터리에만 `react-refresh/only-export-components`를 끄는 예외도 함께 생겼다(정본 파일이 컴포넌트와 `aliases`/`AXES` 선언을 같은 파일에 둬야 검증기가 하나만 읽으면 되기 때문).
+
 ---
 
 ## Tech Debt
 
-### 1. 대형 파일 — 스케치가 프론트 라인 수의 절반 가까이
+### 1. 대형 파일 — 스케치가 프론트 라인 수의 절반을 넘었다
 
-`frontend/src/sketches/` 11파일 합계 **504,434 B / 10,532줄**(전체 `frontend/src` 21,875줄의 약 48% — task#264~266의 `exodusToConquest.jsx` +829줄 반영). 1,000줄 초과: `sketches/davidUnitedKingdom.jsx`(1,524) · `sketches/patriarchsCovenant.jsx`(1,259) · `sketches/gospelOfJesus.jsx`(1,207) · `sketches/ageOfJudges.jsx`(1,169) · `sketches/elijahAndElisha.jsx`(1,126). 다음 티어: `sketches/theEarlyChurch.jsx`(999) · `frontend/src/SidePanel.jsx`(943 / 50,233 B).
+`frontend/src/sketches/` **15파일 합계 606,404 B / 12,241줄**(전체 `frontend/src` 23,975줄의 약 **51%** — 밀도 상향 task#286·303·305~316이 반영돼 절반을 넘어섰다). 1,000줄 초과 6개: `sketches/davidUnitedKingdom.jsx`(1,929) · `sketches/exodusToConquest.jsx`(1,630) · `sketches/ageOfJudges.jsx`(1,534) · `sketches/gospelOfJesus.jsx`(1,510) · `sketches/patriarchsCovenant.jsx`(1,259) · `sketches/elijahAndElisha.jsx`(1,126). 다음 티어: `sketches/theEarlyChurch.jsx`(968) · `frontend/src/SidePanel.jsx`(943 / 50,233 B). 신규 소형 모듈 4개는 반대 방향이다 — `sketches/introMontage.jsx`(211) · `sketches/cast/props/altar.jsx`(155) · `sketches/cast/david.jsx`(85) · `sketches/cast/goliath.jsx`(63).
 
-~~`frontend/src/App.jsx`(1,081줄 — 유일한 비스케치 1,000줄 초과)~~ → **해소(task#257~258)**: `App.jsx`가 9개 내비를 `StageNav.jsx`로, 탐험 스테이지를 `ExploreStage.jsx`로 분리해 **535줄 / 26,775 B**로 절반 넘게 줄었다. 이후(task#267~271)의 개인화·검색 기능 추가에도 다시 1,000줄대로 돌아가지 않았다.
+~~`frontend/src/App.jsx`(1,081줄 — 유일한 비스케치 1,000줄 초과)~~ → **해소(task#257~258)**: `App.jsx`가 9개 내비를 `StageNav.jsx`로, 탐험 스테이지를 `ExploreStage.jsx`로 분리해 절반 넘게 줄었고, 이후의 개인화·검색·`#/cast` 추가에도 **553줄**에 머물렀다.
 
-스케치는 ADR-0029가 "투어당 1모듈"로 의도한 구조이고 lazy 청크로 격리됐으므로 부채 성격이 다르다. **이제 `SidePanel.jsx`(943줄)만 남은 비스케치 대형 파일이다.**
+스케치는 ADR-0029가 "투어당 1모듈"로 의도한 구조이고 이제 **번들 경계까지 투어별로 갈렸으므로**(task#287, §Tech Debt 3) 부채 성격이 다르다 — 한 파일이 커져도 그 투어를 보는 사람만 내려받는다. **`SidePanel.jsx`(943줄)가 여전히 유일한 비스케치 대형 파일이다.**
 
 ### 2. ~~"큐레이션 13인" 주석 드리프트~~ (해소 — task#278)
 
@@ -439,31 +510,79 @@ task#280이 이 결함을 인트로 화면(`frontend/src/IntroView.jsx`)에서 �
 
 해소(task#278): `backend/app/curated.py` 이관과 함께 주석이 정리됐다 — `persons.py:1,23,174`·`journey.py:6,51`·`stats.py:106`이 모두 **"35인"**으로 일치한다(재확인: `grep -n '13인\|34인\|35인' backend/app/routes/*.py`가 "35인"만 반환). `data/person_events/*.json`(35파일) = `curated.py`의 `CURATED` 35키라는 대응도 여전히 유지된다.
 
-### 3. `chunkSizeWarningLimit` 미설정 + 앱 코드 분할 없음
+### 3. `chunkSizeWarningLimit` 미설정 — 앱 코드 분할은 투어별로 확대(task#287)
 
-`frontend/vite.config.js:12-21`의 `manualChunks`는 `node_modules`만 `maplibre`/`vendor`로 가른다. 앱 코드는 `tourSketches` 하나만 lazy(§Performance 2). 500 kB 경고가 매 빌드 발생한다.
+`frontend/vite.config.js:11-22`의 `manualChunks`는 여전히 `node_modules`만 `maplibre`/`vendor`로 가른다. 500 kB 경고도 그대로다(유일한 초과가 `maplibre` 1.03 MB, §Performance 2).
 
-### 4. `Cache-Control` 정책이 라우트마다 제각각
+**앱 코드 분할은 확대됐다** — 이전에 "`tourSketches` 하나만 lazy"였던 것이 지금은 `frontend/src/tourSketches.jsx`의 `TOUR_MODULES`(투어 id → 동적 `import()`)로 **투어별 청크 9개**가 되고, 여기에 `sketches/introMontage.jsx`(인트로 몽타주 전용 재수출)와 `CastSheet`(`App.jsx`의 `lazy`)가 더해졌다. 동기는 성능이었다 — 병합 레지스트리가 425 KB 단일 청크를 만들었고 밀도 상향 후엔 maplibre(1.03 MB)보다 커질 궤적이었다. ADR-0029가 정한 "투어당 1모듈"이라는 **코드 경계를 번들 경계로 승격**한 형태다. 실측 청크: `exileAndReturn` 29,245 B ~ `davidUnitedKingdom` 78,136 B, 로더 `tourSketches-*.js`는 6,781 B.
 
-`max-age=300`(대다수, `public` 없음) / `public, max-age=3600`(`backend/app/routes/books.py:101,158,167` · `verses.py:47` · `reliance.py:155,175`) / `no-store`(`backend/app/routes/books.py:33`). `frontend/src/api.js:5` 주석은 `max-age=3600`만 언급해 실제와 어긋난다.
+대가는 §Fragile Areas 10 — 키가 그 투어의 모듈 밖에 있으면 무음으로 안 뜨는 결함 클래스가 새로 생겼다.
+
+### 4. ~~`Cache-Control` 정책이 라우트마다 제각각~~ (해소 — task#285)
+
+**심각도: 중간(과거) · 시급도: 중간 → 해소, 주석 드리프트만 잔존**
+
+과거: `max-age=300`(대다수) / `public, max-age=3600`(6곳) / `no-store`(1곳)가 섞여 있었다. 3차 버그 헌트가 확정한 실제 결함은 혼재 자체가 아니라 **긴 `max-age`가 ETag 없이 붙어 이 프로젝트의 표준 데이터수정 경로(`data/` 편집 + `docker compose restart api`)로 고친 내용이 재방문 브라우저에 최대 1시간 반영되지 않던 것**이다. 프론트 캐시버스터(`api.js`의 `?v=__BUILD_ID__`)는 **빌드타임 리터럴**이라 백엔드만 재시작하는 그 경로를 원리적으로 못 덮는다.
+
+해소: 6곳이 전부 `max-age=300`으로 내려갔다(`backend/app/routes/books.py` 3곳 · `reliance.py` 2곳 · `verses.py` 1곳). 현재 분포는 `max-age=300` **27곳** · `no-store` 1곳뿐이다(직접 집계). `backend/scripts/validate_api_cache_headers.py`(신설)가 `backend/app/routes/*.py`의 `"Cache-Control"` 헤더 리터럴을 스캔해 **`max-age <= 300`이라는 경계**를 게이트한다 — "지금 6곳"을 세지 않는 것이 요점이고(알려진 위반 목록을 박으면 새 위반은 통과한다), `no-store`는 수명 미선언이라 통과시킨다. 주석에 나온 예시가 오탐되지 않게 `_COMMENT`로 먼저 주석을 공백 치환한다. `--selftest`는 인메모리 사본에 고의 위반을 주입해 같은 스캔 함수가 FAIL하는지 본다. 게이트를 푸는 조건도 도크스트링에 못 박혀 있다 — 조건부 GET(ETag/Last-Modified)을 먼저 붙이고 상한을 올려라.
+
+**잔존(코스메틱)**: 주석 2곳이 이제 반대 방향으로 어긋난다 — `frontend/src/api.js:5-7`은 "옛 응답(max-age=3600 캐시)"·"1시간 캐시 이점"이라 적고 `frontend/vite.config.js:7`은 "API 응답 캐시(max-age=3600)를 배포 시 무력화"라 적는데, 실제로 3600은 코드베이스에 더 없다.
 
 ### 5. `deploy.sh`가 재적용하지 않는 DB 쓰기 스크립트 14종
 
 `deploy.sh`가 도는 건 `inject_ko_names.py` 하나, `README.md:20-22`가 문서화한 건 3종. **나머지는 문서에도 배포에도 없다**: `backend/scripts/load_books.py` · `load_person_events.py` · `load_verse_events.py` · `load_authored_events.py` · `load_authored_persons.py` · `load_authored_genealogy.py` · `load_authored_mothers.py` · `inject_book_context.py` · `inject_person_context.py` · `inject_person_traits.py` · `inject_place_context.py` · `apply_event_dedupe.py` · `enrich_place_coords.py` · `generate_book_events.py`. 로더 재적재 후 이들이 전부 드리프트한다.
 
+**이 목록 중 `enrich_place_coords.py`는 이번 갱신으로 비용이 올랐다** — task#285가 이 스크립트의 좌표 우선순위를 뒤집어 "저작값이 정본"으로 만들었으므로(§데이터 정합성 11), 배포에 배선되지 않은 지금은 **고친 로직이 좌표를 실제로 옮기려면 사람이 수동으로 돌려야 한다.** 미배선 자체는 의도된 결정이지만(ADR `260801-195022` — 자동화하면 `load_books.py`의 `build_book_year_range()`가 매 배포마다 교정을 덮는다), 그 결정의 근거는 `load_*` 로더에 있고 `enrich_place_coords.py`는 로더가 아니라 교정 주입 계열이다. `inject_ko_names.py`·`inject_date_corrections.py`가 게이트 앞에 배선된 것과 대칭이 맞지 않는 자리다.
+
 ### 6. 캐시 무효화 수단이 사실상 `docker compose restart api` 하나
 
-`data/`는 볼륨 마운트(`docker-compose.yml:20`)라 파일 수정에 이미지 재빌드가 불필요하지만, `overlays.py`의 14개 `lru_cache(maxsize=1)` + 라우트 레벨 캐시(`events.py`의 `_load_approx_book_index`·`_compute_events`·`_book_name_map`, `stats.py:124`의 `_compute_stats` 등)가 프로세스 로컬이라 **반영은 재시작뿐**이다. TTL도 무효화 API도 없다.
+`data/`는 볼륨 마운트(`docker-compose.yml:20`)라 파일 수정에 이미지 재빌드가 불필요하지만, `overlays.py`의 **15개** `lru_cache(maxsize=1)`(§데이터 정합성 8과 같은 집계) + 라우트 레벨 캐시(`events.py`의 `_load_approx_book_index`·`_compute_events`·`_book_name_map`, `stats.py:124`의 `_compute_stats` 등)가 프로세스 로컬이라 **반영은 재시작뿐**이다. TTL도 무효화 API도 없다. 이 "편집 + `restart api`"가 표준 경로라는 사실이 §Tech Debt 4의 긴 `max-age`를 실제 결함으로 만든 원인이었다.
 
 ### 7. 배치되지 않은 행 단위 쓰기
 
 `backend/scripts/inject_ko_names.py:31-32`와 `backend/scripts/inject_date_corrections.py:31-56,62-88`이 `UNWIND` 배치 대신 파이썬 루프에서 행마다 쿼리를 낸다(events 교정 256건 × 2쿼리). `deploy.sh`의 주입 단계가 느린 이유.
 
-### 8. 저장소 위생 — `.claude/settings.local.json.doctor-backup` 미추적 잔존
+### 8. ~~저장소 위생 — `.claude/settings.local.json.doctor-backup` 미추적 잔존~~ (해소)
 
-**심각도: 낮음 · 시급도: 낮음**
+**심각도: 낮음 · 시급도: 낮음 → 해소**
 
-레포 루트에 `.claude/settings.local.json.doctor-backup`(fg-doctor류 도구가 남긴 백업 파일로 추정)이 미추적 상태로 남아 있다(`git status` 확인, `.gitignore`에 `.claude/` 관련 규칙 없음 — 무시 대상이 아니라 그냥 `git add`가 안 된 것). `backend/scripts/validate_forge_docs_tracked.py`(§배포/운영 5)는 `.forge/adr`·`.forge/retro`만 보므로 이 파일은 그 게이트에도 걸리지 않는다. 기능에 영향은 없지만 다음 커밋에서 실수로 같이 커밋되거나, 반대로 계속 미추적으로 남아 `git status`를 어지럽힐 수 있다.
+그 백업 파일은 사라졌고(`ls .claude/`로 확인), 레포 루트의 미추적 파일 중 `.forge/` 밖 항목은 **0건**이다(`git status --porcelain`로 확인). 다만 같은 부류의 위생 위험은 위치를 옮겨 남아 있다 — 미추적 영구 forge 문서 8건(§배포/운영 5, **현재 배포 차단 중**)과 어느 게이트에도 안 걸리는 `.forge/dropped/` 3디렉터리다. `scripts/` 아래는 이제 `validate_canon_pipeline`의 둘째 축이 미추적 0건을 강제한다(§배포/운영 8).
+
+### 9. 저작 파이프라인의 재현성 — 레포 안 소스 / 레포 밖 런타임, 그리고 스스로 선언한 미결 3축
+
+**심각도: 중간 · 시급도: 낮음(앱 배포 경로와 무관)**
+
+`scripts/canon/`(46개 `.py`)는 **소스만** 저장소에 있고 런타임은 전부 레포 밖이다 — 실행 인터프리터는 `~/.local/biblemap-imggen/.venv314/bin/python`(957 MB), 모델 가중치는 `~/.cache/huggingface/`(**47 GB**), 산출물은 `.forge/reports/canon-pilot/`(679 MB, gitignored). 이 분리는 의도된 결정이고(ADR `260825-065028` — 앱과 다른 런타임, `backend/requirements.txt`와 별개이며 앱 배포는 `scripts/canon/requirements.txt`를 설치하지 않는다) `scripts/canon/params.py`의 `OUT_ROOT`가 산출물을 gitignored 경로로 못 박아 54 MB급 이미지가 커밋을 따라오지 않게 한다.
+
+**재현은 닫히지 않았고, 그 사실이 문서에 명시돼 있다** — `scripts/canon/requirements.txt` 머리 주석이 미결 3축을 스스로 열거한다(ADR `260822-220823`의 "위임된 정본은 미결을 미결로 표시해야 한다"를 따른 형태).
+
+1. **모델 리비전 미고정** — `params.py`의 `CN_MODEL`·`SDXL_BASE`·`IP_ADAPTER_REPO`는 허브 **저장소 이름**일 뿐 커밋/리비전이 아니다. 업스트림이 가중치를 갱신하면 같은 코드가 다른 그림을 낸다. 유일한 예외 `IMAGE_ENCODER`는 스냅샷 해시가 박힌 대신 **이 머신의 로컬 캐시 절대경로**라 다른 머신에서는 성립하지 않는다 — 즉 "고정했다"로 읽으면 안 되는 자리다.
+2. **MPS 결정성 미보장** — Apple Silicon MPS 백엔드는 시드를 고정해도 비트 단위 재현을 보장하지 않는다. 스크립트들의 sha256 전수-상이 단정은 "서로 다르다"만 보고 "다시 돌리면 같다"는 보지 않는다.
+3. **재현 미실측** — 위 둘을 고정한 채 같은 그림이 다시 나오는지 **재본 적이 없다**.
+
+여기에 실측으로 확인된 축이 하나 더 붙는다. **레포 밖 런타임 디렉터리에 구 사본이 남아 있다** — `~/.local/biblemap-imggen/`에 `gen.py`·`cn_sweep.py`·`combo.py`·`controlnet_test.py`·`scenes.py` + `prompts/`(2026-08-22자)가 그대로 있고, 이들은 `scripts/canon/`으로 옮겨진 소스의 이전 세대다. 버전 관리 밖이고 정본과 갈라져 있으므로, 그쪽을 실행하면 게이트가 아는 정본과 다른 파라미터로 돈다.
+
+배포 게이트가 이 서브시스템에 관해 단언할 수 있는 것은 **소스뿐**이다 — `validate_canon_pipeline`은 GPU도 생성 venv도 없는 `check.sh` 환경에서 돌아야 하므로 AST·텍스트 스캔만 한다(§배포/운영 8). 파이프라인이 실제로 도는지, 같은 그림을 다시 내는지는 어떤 게이트도 보지 않는다.
+
+### 10. 커밋된 이미지 자산 49 MB — 이제 저장소 무게의 대부분
+
+**심각도: 중간 · 시급도: 낮음**
+
+`scripts/canon/` 추적 파일 177건 중 **PNG 62장이 49.2 MB**다(디렉터리 총 49 MB). `git count-objects -vH`의 size-pack이 **60.86 MiB**이므로, 클론 무게의 압도적 다수가 이 이미지들이다. 최대 블롭 순위에서도 `data/bible/verses.json`(10.3 MB) 다음이 전부 canon PNG다 — `setup/ref-scale-armor.png` 2.45 MB · `reference/candidate-322d/goliath-profile-portrait-src.png` 1.79 MB · `reference/sheet-s200.png` 1.70 MB · `frozen/david.png` 1.59 MB · `frozen/goliath.png` 1.57 MB 등. 하위 디렉터리 분포: `reference/` 26 MB · `setup/` 12 MB · `samples/` 5.3 MB · `frozen/` 3.0 MB · `scene_ref/` 800 KB · `conti/` 316 KB.
+
+**전부 의도적 추적이다.** `params.py`가 각 디렉터리의 역할을 주석으로 못 박는다 — `frozen/`은 장면 생성의 정체성 입력(동결 얼굴 2장), `reference/`는 판정 축의 양성 기준(사용자가 목표로 지정한 그림이라 지어낼 수 없고, 임계가 이 집합에서 파생된다), `notes/`는 판단 문서 20 + meta JSON 37. 즉 이 이미지들은 산출물이 아니라 **판정의 입력**이므로 gitignore 대상이 아니라는 판단이 서 있다.
+
+남는 부담은 셋이다. ① PNG는 델타 압축이 안 먹으므로 이미지를 교체·재동결할 때마다 팩이 그만큼 커진다(되돌릴 수 없다 — 히스토리에 남는다). ② `frontend/dist` 미추적·`data/` 19 MB 시절 기준으로 잡힌 클론·CI 비용 감각이 5배로 어긋난다. ③ 이미지 자산에 대한 정합 게이트가 없다 — `reference/REFERENCE.md`·`frozen/FROZEN.md`·`samples/SAMPLES.md`가 무엇이 정답지인지 글로 적지만, 그 목록과 실제 파일 집합의 대응을 재는 검증기는 없다(`validate_canon_pipeline`은 `.py`만 본다).
+
+### 11. 실험 스크립트 46개가 정본과 한 디렉터리에 쌓여 있다 + 죽은 경로 참조
+
+**심각도: 중간 · 시급도: 낮음**
+
+`scripts/canon/`의 `.py` 46개 중 `gen_*` **21개**, `judge_*` **8개**다. 이름이 실험 축을 그대로 담고 있어(`gen_cge_sweep` · `gen_cn_curve` · `gen_contrast_flip` · `gen_knee_ip` · `gen_oil_probe` · `gen_prompt_axis` · `gen_cause_probe` · `sweep_cause` · `arm_sweep` · `probe_cn` …) 어느 것이 현재 정본 경로이고 어느 것이 지나간 스윕인지 파일 목록만으로는 갈리지 않는다. 실제 정본 진입점은 `notes/PROMPTING.md`(실측 규칙)와 `try_prompt.py`(연습대), 그리고 현행 장면 생성기 `gen_scripture_scene.py`인데 이는 문서를 읽어야 알 수 있다. `notes/`에도 같은 층이 쌓였다 — `final-verdict-*.json` 22개를 포함해 meta JSON 37개가 라운드별로 누적됐다.
+
+폐기 판단이 코드에 반영되지 않은 자리도 있다. 예: `gen_scripture_scene.py`(미커밋 작업트리)의 도크스트링은 "**콘티를 쓰지 않는다**"고 사용자 지시를 명시하는데, `scripts/canon/conti/`(316 KB — `render_conti.py`·`make_conti_masks.py`·`goliath_scene.html` + PNG 10장)는 그대로 추적 중이다. 폐기가 정당한 이력 보존일 수도 있고 정리 누락일 수도 있는데, 코드만 봐서는 구별되지 않는다.
+
+**죽은 경로 참조(확인됨)**: task#316이 스크립트를 `.forge/reports/canon-pilot/`에서 `scripts/canon/`으로 옮겼는데 문서 참조가 따라오지 않았다. `scripts/check_mask_ranges.py:5`가 "`.forge/reports/canon-pilot/make_masks.py`가 `derive_ranges()`를 그대로 가져다 쓴다"고 적지만 그 경로에 파일이 없고(실제는 `scripts/canon/make_masks.py`), `:9`가 가리키는 `.forge/reports/canon-pilot/MASKS.md`도 실제로는 `scripts/canon/notes/MASKS.md`다. `notes/MASKS.md:122-125`·`notes/SCALE-INPUT.md`·`notes/SCALE.md`에도 같은 구 경로 참조가 남아 있다. 산출물 경로 참조(`try_prompt.py:26`의 `.forge/reports/canon-pilot/try/` 등)는 유효하므로, **같은 접두어의 유효 참조와 죽은 참조가 섞여 있어** 일괄 치환으로는 못 고친다.
 
 ---
 
@@ -475,6 +594,8 @@ task#280이 이 결함을 인트로 화면(`frontend/src/IntroView.jsx`)에서 �
 - **프론트 의존성 전부 caret, 고정 0건** — `frontend/package.json`: `react ^19.2.6` · `react-dom ^19.2.6` · `maplibre-gl ^5.24.0` · `lucide-react ^1.17.0` · `vite ^8.0.12` · `eslint ^10.3.0` · `eslint-plugin-react-hooks ^7.1.1` 등. `package-lock.json`이 있어 평시엔 고정되지만, 락 재생성 시 `deploy.sh:44`의 `npm install`이 그대로 프로덕션 빌드로 간다.
 - **`docker-compose.yml:3` `image: neo4j:5`** — 메이저만 고정, 마이너/패치는 부동.
 - **빌드타임 외부 API 의존** — 절 본문 프리베이크(getbible)·LLM 저작 스크립트(Anthropic API). 재현에 외부 서비스와 API 키가 필요하다.
+- **저작 파이프라인 의존성은 별 파일로 박제됐다 — 다만 락이 아니라 스냅샷이다.** `scripts/canon/requirements.txt`(신설, task#316)가 `torch==2.13.0` · `diffusers==0.40.0` · `transformers==5.15.1` · `accelerate==1.14.0` 등 **46줄 전부 `==` 고정**이다. 생성 방식이 주석에 적혀 있다 — `~/.local/biblemap-imggen/.venv314`의 `pip freeze`(2026-08-25). 즉 **선언이 아니라 사후 스냅샷**이고, `backend/requirements.txt`(3줄)와 별개이며 앱 배포는 설치하지 않는다(ADR `260825-065028`). 그래서 파이썬 버전 고정도, 이 파일로 venv를 다시 만들어 봤다는 실측도 없다. 무엇보다 **여기 고정된 것은 파이썬 패키지뿐이고 모델 가중치는 리비전이 없다**(§Tech Debt 9의 미결 1축) — 패키지가 전부 같아도 업스트림이 가중치를 갱신하면 그림이 달라진다.
+- **`anthropic`·`kiwipiepy` 미선언과 대비되는 비일관** — 저작 파이프라인은 46줄 `==` 고정을 받았는데, 같은 저장소의 LLM 저작 스크립트 5종이 쓰는 `anthropic`과 한국어 형태소 인덱스 2종이 쓰는 `kiwipiepy`는 여전히 어느 파일에도 선언이 없다(위 첫 항목). 요구사항 선언의 강도가 서브시스템마다 다르다.
 
 ---
 
@@ -482,14 +603,17 @@ task#280이 이 결함을 인트로 화면(`frontend/src/IntroView.jsx`)에서 �
 
 - ~~**자동화 테스트 0건.**~~ → **부분 해소(task#261, 이후 확대)**: 프론트 순수 함수 5모듈에 vitest **88건**(`urlState`·`mapGeo`·`mapRingController`·`dates`·`useReadingProgress`의 `computeResume`), `npm test`로 실행되고 `scripts/check.sh`의 프론트 블록에 배선됐다. `useReadingProgress.test.js`는 task#276이 잡은 회귀(완독한 책의 이어읽기가 없는 장을 가리키던 결함)의 재발 방지 테스트다. **백엔드 pytest는 여전히 0건 — 의도된 결정**(ADR `260801-195023`: Neo4j 없이 테스트 가능한 라우트가 둘뿐이라 회수가 적다). React 렌더 테스트·커버리지 도구도 의도적 미도입.
 - **ESLint·유닛 테스트는 PR에서 안 돈다.** `npm run lint`/`npm test`는 수동이거나 배포 게이트 시점. 게이트의 프론트 블록은 `frontend/node_modules` 부재 시 스킵이지만, 배포는 `CHECK_STRICT=1`로 호출하므로 **스킵이 곧 실패**다(task#259). PR 시점 CI가 없는 건 그대로(이 프로젝트는 PR을 쓰지 않는다).
-- ~~**ADR-0029가 약속한 투어 정차지 ↔ 장면 스케치 커버리지 대조 스크립트가 없다.**~~ → **해소(task#259)**: `backend/scripts/validate_scene_coverage.py`가 양방향 대조(275↔275) + `tourSketches.jsx` 미병합 모듈까지 잡고 `scripts/check.sh`에 배선됐다.
+- ~~**ADR-0029가 약속한 투어 정차지 ↔ 장면 스케치 커버리지 대조 스크립트가 없다.**~~ → **해소(task#259) · task#287로 판정 기준 재작성**: `backend/scripts/validate_scene_coverage.py`가 이제 결함 클래스 **A~G 7종**을 갈라 본다(미저작 · 고아 키 · 허용목록 잔존 · 모듈 미연결 · 투어 미연결 · **오배치** · 인트로 미연결). 동적 로드 전환으로 "키가 있다"가 더 이상 "렌더된다"를 뜻하지 않게 됐기 때문이다(§Fragile Areas 10). `EXPECTED_UNCOVERED`는 **빈 집합이 정본**이다 — 새 정차지는 스케치를 함께 저작한다.
 - ~~**시대 결합 검증이 부분 커버**~~(§데이터 정합성 4) → **대부분 해소(task#284)**: `validate_era_bands_consistency.py`가 4→7축으로 확장돼 투어 JSON `era`·`PersonHub.jsx`의 `ERA_ORDER` 사본·`'신약'` 기능 게이트 리터럴 전수를 이제 검사한다. **소스 정규식 스크래핑**이라는 취약성 자체는 그대로 남아 있다(ADR `260819-205242`가 인정하고 남긴 결정, fail-closed라 안전 방향).
 - ~~**`_ERA` ↔ `_NAME_KO` 35키 정합 검증 없음**~~(§데이터 정합성 5) → **해소(task#278)**: 두 테이블이 `curated.py`의 `CURATED` 하나로 병합됐고 `validate_curated_persons.py`가 양방향 정합을 게이트한다. **단 이 게이트는 파일명 집합만 보고 `person_events/*.json`의 내용을 파싱하지 않는다** — 손상된 JSON은 걸리지 않는다(§데이터 정합성 5의 잔존 항목, 후속 후보로 이미 지목됨).
 - **`data/authored_persons/` 전용 validate 없음** — 다른 저작 데이터 12종은 검증기가 있다.
 - ~~**하드코딩 ID 테이블 스테일 검출 게이트 없음**~~ → **VERSE_MAP 클래스는 해소(task#274)**, **`_ERA`/`_NAME_KO` 클래스도 해소(task#278)** — `validate_approx_book_verses.py`·`validate_curated_persons.py`가 각각 배포 게이트에 배선됐다. ADR `260820-003946`이 예고한 대로 같은 `ast.literal_eval` 소스 추출 형태가 그대로 재사용됐다.
 - **Person 생몰 ↔ Event 연대 계 격차 측정 게이트 없음**(§데이터 정합성 1) — 이 축은 여전히 미검증이다. **다른 두 연대 축은 이번에 새로 게이트됨**: `sortKey`↔`startDate` 전역 역전(`validate_sortkey_startdate.py`, task#283)과 근거 절 범위↔라벨 정합(`validate_event_verses.py`, task#282) — 둘 다 §데이터 정합성 1·9 참조.
 - **`/node/{id}` vs `/node/{id}/neighbors/grouped` 동작 일치 테스트 없음** — `backend/app/routes/nodes.py:120-147`의 `get_node_neighbors_grouped`는 여전히 `-[r]-(m)` 무방향 매치에 정규화·디듀프가 없다. 유일 소비처 `frontend/src/mapRingController.js:112`가 응답의 Event만 읽어 현재 UI 영향은 없다.
-- **UI 검증은 Playwright 수동 실행 의존**, CI 미연동. 증적은 `.forge/reports/`의 수동 캡처뿐.
+- **UI 검증은 Playwright 수동 실행 의존**, CI 미연동. 증적은 `.forge/reports/`의 수동 캡처뿐. 이번 갱신으로 수동 UAT 스크립트가 2종 늘었다 — `scripts/uat_scene_detail_pilot.py`(애니메이션을 `pause()`+`currentTime` / `pauseAnimations()`+`setCurrentTime()`으로 고정해 필름스트립을 찍는다, 그래야 비결정적이지 않다)와 `scripts/uat_tour_chunk_split.py`(**네트워크를 본다** — 정적 청크 목록만 보면 "쪼갰지만 어차피 전부 로드"가 통과하므로, 한 투어 재생 중 다른 투어 청크가 요청되지 않는지를 격리 축으로 잰다). **둘 다 `check.sh`에 배선되지 않는다** — `deploy.sh`가 빌드 **전에** 게이트를 부르므로 그 시점 `:8080`은 옛 빌드를 서빙해 초록·빨강이 둘 다 거짓이 된다(`uat_intro_gutter.py`·`uat_intro_entry.py`와 같은 이유).
+- **저작 파이프라인은 실행 축이 전혀 검증되지 않는다.** `scripts/canon/`의 게이트는 `validate_canon_pipeline` 하나뿐이고, 그것도 **소스만** 본다(정본 재선언 0건 · `scripts/` 미추적 0건). GPU도 생성 venv도 없는 `check.sh` 환경이라 실행형 검사가 애초에 성립하지 않는다는 것이 도크스트링의 설명이다. 판정 도구(`judge_*.py` 8개)는 파이프라인 산출물을 채점하는 저작 도구이지 게이트가 아니며 `check.sh`에 배선되지 않는다. 같은 이유로 `scripts/render_scene.py`(저작자용 시각 피드백)도 배선 밖이다 — 도크스트링이 "판정 게이트가 아니다"라고 명시한다. 즉 **이 서브시스템의 초록은 "선언이 한 곳에 있다"까지이고 "그림이 나온다"는 사람이 본다.**
+- **장면 저작 규약 게이트의 미결 축(B12)** — `backend/scripts/validate_scene_sketch_detail.py`가 B1~B12를 강제하는데, B12(인물 정본 컴포넌트 사용 강제)의 판정 신호가 **이름표(`<Label>`)의 존재**다. 이름표 없이 그려진 인물은 기계 신호가 없어 강제 대상에서 빠진다 — 도크스트링이 "대안 없음(미결로 남긴다)"이라 적었다. 또한 이 검증기는 정본 컴포넌트 호출부(`<David cx={..} .../>`)를 소스에서 읽어 리터럴로 치환·평가해 인라인 전개하므로(`expand_cast`), **호출 규약(숫자 리터럴 인자, `transform`·조건 분기 금지)을 어기면 전개가 깨진다** — 규약을 지키는 한 초록이지만 규약 자체를 강제하는 축은 이 파일 안에 없다.
+- **정본 구별성은 5축 조합 중복만 본다** — `scripts/check_cast_axes.py`가 `cast/*.jsx`의 `export const AXES` 5축(머리카락·수염·머리쓰개·나이대·성별) 조합이 파일 간 겹치지 않는지 단정한다. 조합이 같으면 서로 다른 인물이 같은 얼굴로 그려질 수 있다는 것이 근거다. 정본이 2개(david·goliath)인 현재는 표면이 좁고, **축이 5개뿐이라 인물이 늘면 조합이 고갈된다** — 그때 이 검사는 "겹쳤다"고 빨강을 낼 뿐 축을 늘려 주지는 않는다.
 - **헬스/레디니스 엔드포인트 없음** — 오버레이 로딩 실패(§데이터 정합성 8)나 Neo4j 인덱스 생성 실패(`backend/app/main.py:37-38`이 예외를 삼키고 계속 진행)를 외부에서 알 방법이 없다.
 
 ---
@@ -497,11 +621,17 @@ task#280이 이 결함을 인트로 화면(`frontend/src/IntroView.jsx`)에서 �
 ## Scaling Limits
 
 - **단일 인스턴스 스택** — neo4j 1 + api 1 + nginx 1(`docker-compose.yml`). `backend/Dockerfile:6`의 CMD에 `--workers` 없음 → uvicorn 단일 워커. 요청 처리가 한 프로세스에 직렬화된다(비용 큰 동기 엔드포인트 §Performance 4가 이벤트 루프를 점유).
-- **`lru_cache`가 프로세스 로컬** — 공유 캐시 계층이 없어 워커를 늘리면 §Tech Debt 8의 20 MB JSON 상주가 워커 수만큼 곱해지고, 무효화도 워커별로 갈린다.
+- **`lru_cache`가 프로세스 로컬** — 공유 캐시 계층이 없어 워커를 늘리면 §Performance 8의 19 MB JSON 상주가 워커 수만큼 곱해지고, 무효화도 워커별로 갈린다.
 - **정적 자산·API 모두 무압축**(§Performance 1) — 대역폭이 인스턴스 수보다 먼저 병목이 된다.
 
 ---
 
 ## 코드 마커 현황 (참고)
 
-`TODO`/`FIXME`/`HACK`/`XXX`/`나중에`/`임시` 마커는 **`backend/`·`frontend/src/`·`scripts/` 전체에 0건**이다. 이 코드베이스는 `task#NNN`·`ADR-NNNN` 참조 주석을 부채 추적 관용구로 쓴다(예: `frontend/src/MapView.jsx:15` "선재 버그, task#251", `backend/app/routes/stats.py:22-23` "공유 설정이 없어 수동 복제"). 위 항목 다수가 그런 자백 주석에서 출발했다. `eslint-disable`은 4건뿐이며 전부 한 줄 범위 + 근거 주석 동반(`frontend/src/useStageNavigation.js:150,203` · `VerseLayer.jsx:21` · `personSymbols.jsx:488`). `backend/app/`에 `print()`·root logger 직호출 0건으로 `CLAUDE.md`의 로깅 규약을 지키고 있다.
+`TODO`/`FIXME`/`HACK`/`XXX` 마커는 **`backend/`·`frontend/src/`·`scripts/` 전체에 0건**이다(재확인 — `scripts/canon/` 46개 스크립트를 포함한 집계). 이 코드베이스는 `task#NNN`·`ADR-NNNN` 참조 주석을 부채 추적 관용구로 쓴다(예: `frontend/src/MapView.jsx:15` "선재 버그, task#251", `backend/app/routes/stats.py:22-23` "공유 설정이 없어 수동 복제"). 위 항목 다수가 그런 자백 주석에서 출발했다.
+
+새 서브시스템은 그 관용구를 더 강하게 쓴다 — `scripts/canon/params.py`·`requirements.txt`·`backend/scripts/validate_canon_pipeline.py`·`validate_scene_sketch_detail.py`의 도크스트링이 **자기 게이트의 한계를 스스로 열거**한다("초록은 이 불변식이 아는 재선언이 없다는 뜻이지 드리프트가 없다는 뜻이 아니다", "재현을 닫지 않는다 — 미결 3축", "대안 없음(미결로 남긴다)"). 이 문서의 §Tech Debt 9·11과 §Test Coverage Gaps 다수가 거기서 그대로 옮겨온 것이다.
+
+`eslint-disable` 인라인은 **4건**으로 그대로이며 전부 한 줄 범위 + 근거 주석 동반(`frontend/src/useStageNavigation.js:151,214` · `VerseLayer.jsx:21` · `personSymbols.jsx:488`). 단 이번에 **설정 파일 수준의 규칙 해제가 1건 생겼다** — `frontend/eslint.config.js:21-28`이 `src/sketches/cast/**/*.jsx`에서만 `react-refresh/only-export-components`를 끈다(§Fragile Areas 11). 인라인 4건과 달리 이건 디렉터리 전체에 걸리므로, 그 디렉터리에 새 파일이 늘 때 자동으로 예외에 든다.
+
+`backend/app/`에 `print()`·root logger 직호출 0건으로 `CLAUDE.md`의 로깅 규약을 지키고 있다(재확인). 다만 `scripts/canon/`은 이 규약의 대상이 아니라 전부 `print(..., flush=True)`로 진행 상황을 찍는다 — 앱 모듈이 아닌 CLI 저작 도구라 의도된 이탈이다.

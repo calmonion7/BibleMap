@@ -1,17 +1,17 @@
 ---
-last_mapped_commit: 4ad1d837a3771f69f53877b128938124b68d920b
-mapped: 2026-08-21
+last_mapped_commit: fbd547d83d9d6926216cfde1eae4892ced839083
+mapped: 2026-09-02
 ---
 
 # TESTING
 
-BibleMap이 정확성을 검증하는 방식. 검증은 (1) 배포 전 단일 게이트 `scripts/check.sh`, (2) 데이터 기계검증 스크립트 `backend/scripts/validate_*.py`, (3) **프론트 순수 함수 vitest 유닛 테스트**, (4) 로더/빌더/inject의 자체 검증과 인라인 assert, (5) 커밋되지 않는 ephemeral 정합 감사, (6) Python Playwright 화면 검증, (7) 배포 파이프라인 게이트로 이뤄진다. 백엔드에는 여전히 테스트 러너가 없다(의도된 결정 — 아래 §0).
+BibleMap이 정확성을 검증하는 방식. 검증은 (1) 배포 전 단일 게이트 `scripts/check.sh`, (2) 데이터·소스 기계검증 스크립트 `backend/scripts/validate_*.py`(+ 루트 `scripts/check_*.py`), (3) **프론트 순수 함수 vitest 유닛 테스트**, (4) 로더/빌더/inject의 자체 검증과 인라인 assert, (5) 커밋되지 않는 ephemeral 정합 감사, (6) Python Playwright 화면 검증(일회성 + 체크인 `scripts/uat_*.py`), (7) 배포 파이프라인 게이트, (8) **로컬 이미지 생성 파이프라인의 판정자 `scripts/canon/judge_*.py`**(게이트 밖, §13)로 이뤄진다. 백엔드에는 여전히 테스트 러너가 없다(의도된 결정 — 아래 §0).
 
 ---
 
 ## 0. 테스트 러너 실태 — 프론트만 vitest, 백엔드는 의도적 부재
 
-- **프론트: vitest 도입됨(task#261).** `frontend/package.json`의 `devDependencies`에 `vitest`, 스크립트는 `npm test`(= `vitest run`). 별도 config 파일 없음 — vite 설정을 그대로 쓰고 환경은 기본값(`node`, 대상이 순수 함수라 DOM 불요). 대상 5모듈 88건(실측, `npm test`):
+- **프론트: vitest 도입됨(task#261).** `frontend/package.json`의 `devDependencies`에 `vitest`, 스크립트는 `npm test`(= `vitest run`). 별도 config 파일 없음 — vite 설정을 그대로 쓰고 환경은 기본값(`node`, 대상이 순수 함수라 DOM 불요). 대상 5모듈 88건(실측 2026-09-02, `npm test` — 이 구간에 새 테스트 파일은 추가되지 않았다):
   - `src/urlState.test.js` — `encodeHash`/`parseHash` 왕복 대칭(9필드 조합·빈/부분 상태·알 수 없는 해시 방어)
   - `src/mapGeo.test.js` — 11개 export 전수, 빌더마다 **빈 입력 → 유효한 빈 FeatureCollection** 케이스 포함
   - `src/mapRingController.test.js` — 생성 계약과 조기 반환만(순수부가 없어 나머지는 명시 제외, 파일 상단 주석)
@@ -21,7 +21,7 @@ BibleMap이 정확성을 검증하는 방식. 검증은 (1) 배포 전 단일 �
 - **React 렌더/상호작용 테스트(jsdom·testing-library)도 미도입** — §5의 Playwright 화면 검증이 이미 덮는다. Playwright는 npm이 아니라 **호스트 Python**(`/opt/homebrew/lib/python3.14/site-packages/playwright`)에 설치돼 있다.
 - **커버리지 도구(c8 등) 미도입** — 측정 대상이 다섯 모듈뿐이라 숫자가 의미 없다.
 - 프론트의 정적 게이트는 ESLint(`CONVENTIONS.md` §8) — `npm run lint`·`npx eslint src` 모두 0 error / 0 warning(테스트 파일 포함).
-- 즉 "테스트를 돌린다"의 실체는 **`bash scripts/check.sh`**(§1, vitest를 포함한다)와 §5의 Playwright 화면 검증이다.
+- 즉 "테스트를 돌린다"의 실체는 **`bash scripts/check.sh`**(§1, vitest를 포함한 42항목)와 §5의 Playwright 화면 검증이다. 생성 파이프라인의 그림 판정(`scripts/canon/judge_*.py`)은 같은 뜻의 "테스트"지만 대상이 앱 코드가 아니라 산출 이미지이고 게이트 밖에 있다(§13).
 
 ---
 
@@ -34,23 +34,27 @@ bash scripts/check.sh                 # 리포지토리 어디서 실행해도 �
 CHECK_STRICT=1 bash scripts/check.sh  # 엄격 모드 — 환경 미충족 스킵을 실패로 승격(배포 경로)
 ```
 
-- **구성 4블록**
-  1. **파일 기반 데이터 검증 20종 + 대조군(`--selftest`) 7건** — `python3 -m backend.scripts.validate_<name>` 모듈 실행으로 순서대로: `covenants` · `messianic_prophecies` · `parables_miracles` · `topical_verses` · `pm_map_coverage` · `scene_coverage` · `chapter_sections` · `chapter_summaries` · `quotations` · `person_context` · `god_reliance` · `traits` · `era_bands_consistency` · `approx_book_verses`(task#274) · `intro_menu_parity`(task#277) · `curated_persons`(task#278) · `intro_gutter`(task#280) · `intro_entry_route`(task#281) · `event_verses`(task#282) · `sortkey_startdate`(task#283). 전부 **하드 게이트**(DB·네트워크 불요). 이어서 이 중 대조군을 갖춘 7개(`intro_menu_parity`·`curated_persons`·`intro_gutter`·`intro_entry_route`·`event_verses`·`sortkey_startdate`·`era_bands_consistency`)의 `--selftest`를 각각 별도 항목으로 돌려 — 이 검사들 자신이 고의 드리프트에 실제로 FAIL하는지 인메모리로 확인한다(§9).
-  2. **영구 forge 문서 추적 가드(`validate_forge_docs_tracked`, task#279)** — 데이터 검증이 아니라 git 상태 가드라 위 20종 루프에 넣지 않고 별도 블록으로 둔다. `git rev-parse --is-inside-work-tree`가 실패하면(작업트리 아님) 이 블록 전체를 `skip()`으로 넘기고, 성립하면 기준선 검사 + `--selftest`를 각각 돌린다. `.forge/adr`·`.forge/retro` 아래 **미추적 파일이 하나라도 있으면 FAIL** — `.gitignore`가 화이트리스트 중인데도 `git add`를 빠뜨린 회귀를 재현한다. **배포 경로에서도 살아있는 하드 게이트다**(§8 참조) — `deploy.yml`의 `git reset --hard`는 추적 파일만 되돌리고 미추적 파일은 지우지 않으므로, 미추적 영구 문서가 있으면 `CHECK_STRICT=1` 배포 경로가 그대로 막힌다.
-  3. **프론트(ESLint · 유닛 테스트)** — `frontend/node_modules`가 있으면 `npx --no-install eslint src`와 `npm test`(vitest, §0)를 이어서 돌리고, 없으면 둘 다 `⊘ 스킵` 경고(엄격 모드에서는 `✗ 실패`). 두 검사가 같은 `node_modules` 가드를 공유한다.
-  4. **연대 정합(Neo4j)** — `.env`를 `set -a`로 로드한 뒤 `127.0.0.1:7687` 소켓 연결이 되면 `python3 -m backend.scripts.validate_event_chronology`, 미기동이면 `⊘ 스킵`(엄격 모드에서는 `✗ 실패`).
+- **구성 7블록**(항목 42개, 커밋 `fbd547d` 실측)
+  1. **파일 기반 데이터 검증 22종 + 대조군(`--selftest`) 10건** — `python3 -m backend.scripts.validate_<name>` 모듈 실행으로 순서대로: `covenants` · `messianic_prophecies` · `parables_miracles` · `topical_verses` · `pm_map_coverage` · `scene_coverage` · `chapter_sections` · `chapter_summaries` · `quotations` · `person_context` · `god_reliance` · `traits` · `era_bands_consistency` · `approx_book_verses`(task#274) · `intro_menu_parity`(task#277) · `curated_persons`(task#278) · `intro_gutter`(task#280) · `intro_entry_route`(task#281) · `event_verses`(task#282) · `sortkey_startdate`(task#283) · **`api_cache_headers`(task#285)** · **`scene_sketch_detail`(task#286)**. 전부 **하드 게이트**(DB·네트워크 불요). 이어서 대조군을 갖춘 10개(`intro_menu_parity`·`curated_persons`·`intro_gutter`·`intro_entry_route`·`event_verses`·`sortkey_startdate`·`era_bands_consistency`·`api_cache_headers`·`scene_sketch_detail`·`scene_coverage`)의 `--selftest`를 각각 별도 항목으로 돌려 — 이 검사들 자신이 고의 드리프트에 실제로 FAIL하는지 인메모리로 확인한다(§9).
+  2. **인물 정본 구별성(`scripts/check_cast_axes.py`, task#314)** — `frontend/src/sketches/cast/*.jsx`의 `AXES` 5축 조합이 서로 겹치지 않는지 단정한다(겹치면 서로 다른 인물이 같은 얼굴로 그려질 수 있다). `backend/scripts/`가 아니라 리포지토리 루트 `scripts/`에 사는 소형 검사이므로 모듈 실행이 아니라 `python3 scripts/check_cast_axes.py`로 부른다. 위반은 `raise SystemExit(...)`.
+  3. **장면 마스크 delay 범위 연속성(`scripts/check_mask_ranges.py`, task#315)** — `GoliathScene`의 두 인물 delay 범위가 연속하고 겹치지 않으며 제외 구획이 격리되는지 소스에서 파생해 단정한다. 기준선 + `--selftest` 2항목(겹침·불연속 주입).
+  4. **저작 파이프라인 정본 단일화 + `scripts/` 추적 가드(`validate_canon_pipeline`, task#316)** — 두 축을 본다: ① `scripts/canon/params.py`가 선언한 이름이 같은 디렉터리의 다른 `.py`에서 모듈 레벨로 재선언되지 않음(+ 모델 ID 문자열의 값 축) ② `scripts/` 아래 미추적 파일 0건. 축②가 배포 차단인 이유는 위생이 아니라 **`check.sh`가 부르는 `check_*.py`가 미추적이면 새 클론·CI에서 게이트 자신이 깨지기** 때문이다. git을 쓰므로 아래 forge 문서 가드와 **같은 skip 계약**(작업트리가 아니면 블록 전체 skip)을 공유하고, 기준선 + `--selftest` 2항목으로 돈다.
+  5. **영구 forge 문서 추적 가드(`validate_forge_docs_tracked`, task#279)** — 데이터 검증이 아니라 git 상태 가드라 위 22종 루프에 넣지 않고 별도 블록으로 둔다. `git rev-parse --is-inside-work-tree`가 실패하면(작업트리 아님) 이 블록 전체를 `skip()`으로 넘기고, 성립하면 기준선 검사 + `--selftest`를 각각 돌린다. `.forge/adr`·`.forge/retro` 아래 **미추적 파일이 하나라도 있으면 FAIL** — `.gitignore`가 화이트리스트 중인데도 `git add`를 빠뜨린 회귀를 재현한다. **배포 경로에서도 살아있는 하드 게이트다**(§8 참조) — `deploy.yml`의 `git reset --hard`는 추적 파일만 되돌리고 미추적 파일은 지우지 않으므로, 미추적 영구 문서가 있으면 `CHECK_STRICT=1` 배포 경로가 그대로 막힌다.
+  6. **프론트(ESLint · 유닛 테스트)** — `frontend/node_modules`가 있으면 `npx --no-install eslint src`와 `npm test`(vitest, §0)를 이어서 돌리고, 없으면 둘 다 `⊘ 스킵` 경고(엄격 모드에서는 `✗ 실패`). 두 검사가 같은 `node_modules` 가드를 공유한다.
+  7. **연대 정합(Neo4j)** — `.env`를 `set -a`로 로드한 뒤 `127.0.0.1:7687` 소켓 연결이 되면 `python3 -m backend.scripts.validate_event_chronology`, 미기동이면 `⊘ 스킵`(엄격 모드에서는 `✗ 실패`).
+- **게이트에 배선되는 것과 안 되는 것의 경계** — 게이트에는 **브라우저 없이 항상 도는 소스 불변식만** 둔다. `scripts/uat_*.py`(브라우저 실측)와 `scripts/render_scene.py`(저작 도구)는 의도적으로 배선하지 않으며, 이유가 각 파일 docstring에 같은 문장으로 박혀 있다: `deploy.sh`가 `npm run build` **전**에 `check.sh`를 부르므로 그 시점 `:8080`은 옛 빌드를 서빙해 초록·빨강이 둘 다 거짓이 된다(§5.6). GPU·생성 venv가 필요한 `scripts/canon/`의 생성·판정도 같은 이유로 배선 대상이 아니며, 그 서브시스템에서 게이트에 들어오는 것은 **소스만 읽는** `validate_canon_pipeline` 하나다(§13).
 - **출력 계약**: 항목마다 `  ✓ <라벨>` / `  ✗ <라벨>` + 실패 시 출력 마지막 8줄. 하나라도 실패하면 `=== check FAILED ===` 후 `exit 1`, 전부 통과면 `=== check PASS ===` 후 0.
 - **환경 의존 항목만 스킵-경고**, 파일 기반 검증은 절대 스킵하지 않는다(스크립트 상단 주석의 설계 계약). git 작업트리가 아닐 때의 `validate_forge_docs_tracked` 스킵도 같은 성격(환경 미충족, 파일 위반이 아님).
 - **`CHECK_STRICT` 계약(task#259)** — 참이면 위 스킵 분기들이 `skip()` 헬퍼를 통해 `✗ … (CHECK_STRICT: 스킵 불가)` + `fail=1`이 된다. **`check PASS`가 "전 검사를 실제로 통과했다"를 뜻하는 건 엄격 모드일 때뿐이다.** 미설정 시 스킵-경고 동작은 그대로 — Neo4j 없이 파일 검증만 돌리는 단독 개발 실행이 정당한 용법이기 때문(ADR `260801-195022`).
-- **신규 `validate_*.py`를 만들면 반드시 `scripts/check.sh`의 목록에도 등록한다** — 안 하면 게이트가 잡지 못한다(`.forge/retro/260724-111705-predeploy-validation-gate.md`). 현재 `backend/scripts/validate_*.py`는 22개다: 20개(파일 기반, 위 1번 루프) + 1개(`forge_docs_tracked`, 2번 블록·git 상태 가드) + 1개(`event_chronology`, Neo4j) — **전수가 게이트에 등록돼 있다.**
+- **신규 `validate_*.py`를 만들면 반드시 `scripts/check.sh`의 목록에도 등록한다** — 안 하면 게이트가 잡지 못한다(`.forge/retro/260724-111705-predeploy-validation-gate.md`). 현재 `backend/scripts/validate_*.py`는 25개다: 22개(파일 기반, 위 1번 루프) + 1개(`forge_docs_tracked`, 5번 블록·git 상태 가드) + 1개(`canon_pipeline`, 4번 블록·git 상태 가드 겸 소스 불변식) + 1개(`event_chronology`, Neo4j) — **전수가 게이트에 등록돼 있다.** 루트 `scripts/`의 `check_*.py` 2개도 같은 원칙으로 등록돼 있다.
 - **배포 footgun**: `deploy.sh`가 `check.sh`를 호출하므로 신규 스크립트는 **`deploy.sh` 변경과 반드시 함께 커밋**한다. 러너 체크아웃에 파일이 없으면 게이트가 파일 부재로 배포를 막는다.
-- 실측(2026-08-21, Neo4j 기동·`frontend/node_modules` 존재·git 작업트리 상태): 미설정 실행으로 32개 항목(파일 검증 20 + `--selftest` 7 + `forge_docs_tracked` 2 + eslint 1 + vitest 1 + 연대 정합 1) 전부 `✓`, `check PASS`. `frontend/node_modules`가 없거나 git 작업트리 밖인 경우의 스킵 동작은 위와 동일한 `CHECK_STRICT` 계약을 따른다.
+- 실측(2026-09-02, Neo4j 기동·`frontend/node_modules` 존재·git 작업트리 상태): 미설정 실행으로 42개 항목(파일 검증 22 + `--selftest` 10 + `check_cast_axes` 1 + `check_mask_ranges` 2 + `canon_pipeline` 2 + `forge_docs_tracked` 2 + eslint 1 + vitest 1 + 연대 정합 1) 중 **41개 `✓`, `validate_forge_docs_tracked` 1개 `✗`** — 작업트리에 미추적 ADR·회고 8건이 있었고 실패 메시지가 그 목록을 지목했다. 즉 이 가드는 문서가 아니라 실제로 발화하는 상태다(§9의 대조군과 별개로, 기준선 자체가 살아있음을 보여준 실측). `frontend/node_modules`가 없거나 git 작업트리 밖인 경우의 스킵 동작은 위와 동일한 `CHECK_STRICT` 계약을 따른다.
 
 ---
 
-## 2. 기계검증 스크립트 (`backend/scripts/validate_*.py`)
+## 2. 기계검증 스크립트 (`backend/scripts/validate_*.py` + 루트 `scripts/check_*.py`)
 
-데이터 저작이 규칙을 지키는지 확인하는 결정적 검증기. **공통 계약**: 위반이 있으면 비0 종료, 없으면 `PASS`/`OK — 위반 0` 계열 메시지. 위반 항목만 거부하고 나머지는 통과시키는 **항목 단위 게이트**가 원칙(`CONVENTIONS.md` §6). 구현은 두 스타일이 공존한다 — 초기 검증기(`validate_traits.py` 등)는 위반을 `errors` 리스트에 모아 `print` 후 명시적 `sys.exit(1)`을 부르고, task#278 이후 신규·재작성 검증기(`validate_curated_persons.py`·`validate_event_verses.py`·`validate_sortkey_startdate.py`·`validate_intro_gutter.py`·`validate_intro_entry_route.py`·`validate_era_bands_consistency.py`)는 같은 방식으로 위반을 모으되 끝에서 `assert not errs, "…" + "\n  ".join(errs)` 한 줄로 낸다 — `AssertionError`가 비0 종료를 대신하므로 계약상 동등하다.
+데이터 저작·소스 규약이 규칙을 지키는지 확인하는 결정적 검증기. **공통 계약**: 위반이 있으면 비0 종료, 없으면 `PASS`/`OK — 위반 0` 계열 메시지. 위반 항목만 거부하고 나머지는 통과시키는 **항목 단위 게이트**가 원칙(`CONVENTIONS.md` §6). 구현은 두 스타일이 공존한다 — 초기 검증기(`validate_traits.py` 등)는 위반을 `errors` 리스트에 모아 `print` 후 명시적 `sys.exit(1)`을 부르고, task#278 이후 신규·재작성 검증기(`validate_curated_persons.py`·`validate_event_verses.py`·`validate_sortkey_startdate.py`·`validate_intro_gutter.py`·`validate_intro_entry_route.py`·`validate_era_bands_consistency.py`·`validate_api_cache_headers.py`·`validate_scene_sketch_detail.py`·`validate_canon_pipeline.py`)는 같은 방식으로 위반을 모으되 끝에서 `assert not errs, "…" + "\n  ".join(errs)` 한 줄로 낸다 — `AssertionError`가 비0 종료를 대신하므로 계약상 동등하다. 진입점 관용구도 함께 굳었다: `(_selftest if "--selftest" in sys.argv else _check)()` 한 줄(`api_cache_headers`·`scene_sketch_detail`)이거나 `main()` 안의 분기(`canon_pipeline`).
 
 | 스크립트 | 대상 | 검사 요지 |
 | --- | --- | --- |
@@ -64,7 +68,7 @@ CHECK_STRICT=1 bash scripts/check.sh  # 엄격 모드 — 환경 미충족 스�
 | `validate_topical_verses.py` | `data/topical_verses/topics.json` | 주제 수 10~14 · 주제당 `verseIds` ≥3 · verseID 전수 실존 · `id` 유일 |
 | `validate_parables_miracles.py` | `data/jesus_parables_miracles/index.json` | `verseIds` 전수 실존 · `type` ∈ {`parable`,`miracle`} · `placeId`가 있으면 `place_coords`에 실존 · `id` 유일 · 비유 25~35 · 기적 25~40 |
 | `validate_pm_map_coverage.py` | 위 색인 ↔ `data/place_coords/places.json` | **지도↔연표 커버리지 간극 고정**. `/parables-miracles`(`backend/app/routes/events.py`)와 동일한 mappable 판정으로 좌표 없는 항목 집합을 계산해 `EXPECTED_UNMAPPABLE`(17건 정본)과 대조 — 예상 밖 누락(회귀)·이제 뜨는 항목·해석 안 되는 `placeId`를 각각 `assert`로 잡는다 |
-| `validate_scene_coverage.py` | `data/tours/*.json` ↔ `frontend/src/sketches/*.jsx` ↔ `tourSketches.jsx` | **투어 정차지↔장면 스케치 양방향 커버리지**. 정차지 `stops[].id` 집합과 스케치 레지스트리 키(좁은 정규식 `'authored-…':`)를 대조해 (a) 미저작 정차지(`EXPECTED_UNCOVERED` 허용목록, 현재 비어 있음) (b) 정차지에 없는 고아 키 (c) 허용목록 잔존 (d) **`tourSketches.jsx`에 import·스프레드되지 않은 모듈**을 `assert`로 잡는다. (d)가 없으면 키는 있는데 앱은 아무것도 렌더하지 않는 구멍이 통과한다 |
+| `validate_scene_coverage.py` | `data/tours/*.json` ↔ `frontend/src/sketches/*.jsx` ↔ `tourSketches.jsx`의 `TOUR_MODULES` ↔ `introMontage.jsx` ↔ `IntroView.jsx`의 `ERA_SCENES` | **투어 정차지↔장면 스케치 커버리지**(task#259 → **task#287에서 판정 기준 교체**). 투어별 동적 로드로 바뀌며 "커버됨 = 키가 있다"가 아니라 **"그 투어의 모듈 안에 있다"**가 됐다 — 병합 구조엔 없던 무음 결함이다. 7개 결함 클래스: A 미저작 · B 고아 키 · C 허용목록(`EXPECTED_UNCOVERED`, 현재 비어 있음) 잔존 · D 모듈 미연결(`TOUR_MODULES`에 없는 스케치 모듈) · E 투어 미연결 · **F 오배치**(키는 있는데 그 투어의 모듈이 아닌 곳) · G 인트로 미연결(`ERA_SCENES` 키가 `introMontage` 레지스트리에 없음). `--selftest`가 A~G를 개별 주입하고, 특히 **A(미저작)와 D/E/F(미연결)가 서로 다른 메시지로 갈리는지**를 단언한다 — 증상은 같고(무음·무오류) 처방이 정반대다 |
 | `validate_covenants.py` | `data/covenants/covenants.json` | 언약 수 5~6 · `keyVerseIds` 전수 실존 · `startDate` `int()` 파싱 가능 |
 | `validate_era_bands_consistency.py` | 소스 6곳 + `covenants.json`/`tours/*.json` (task#255 S1 · task#284에서 3축 추가) | **7축.** ① `frontend/src/eraBands.js`의 `ERA_BANDS`(task#271에 `TimelineView.jsx`에서 승급) ② `backend/app/routes/stats.py`의 `ERA_BANDS` ③ `backend/app/curated.py`의 `ERA_ORDER`(task#278에 `routes/persons.py`의 `_ERA_ORDER`에서 이관) — ①②③을 **정규식으로 파싱**해 이름·순서·경계 일치를 단언. ④ `covenants.json`의 각 `era`가 유효 시대인지 ⑤ `data/tours/*.json`의 각 `era`가 유효 시대인지(저작자 오타 축) ⑥ `frontend/src/PersonHub.jsx`의 `ERA_ORDER` 사본이 `curated.py`와 이름·순서 모두 일치 ⑦ `frontend/src/**/*.{jsx,js}` 전체에서 좌변 식별자 사슬에 `era`/`Era` 토큰이 있는 `=== '문자열'` 비교(era 축 기능 게이트 — 시대 이름을 바꾸면 비유·기적 토글이 **에러 없이** 사라지는 결합점)를 전부 찾아 리터럴이 유효 시대인지 단언. 각 축은 몇 항목을 보았는지 출력에 찍고 **0항목이면 실패**(공허 통과 방지). `-Infinity`(JS)/`float("-inf")`(Py) 정규화 주의. `--selftest`가 7축 전부 + 각 축의 공허 통과를 순회 확인(§9) |
 | `validate_curated_persons.py` | `backend/app/curated.py`의 `CURATED`/`ERA_ORDER` ↔ `data/person_events/`·`data/god_reliance/`·`person_slugs/seal_slugs.json` (task#278) | `CURATED` 35 slug ↔ `person_events/*.json` 파일 집합 **양방향**(죽은 키·미커버 파일 둘 다 위반) · `god_reliance` slug ⊆ `CURATED` · `seal_slugs.json` slug ∩ `CURATED` == ∅(인장 상위집합과 큐레이션이 겹치면 중복) · 각 `era` ∈ `ERA_ORDER`. `CURATED`/`ERA_ORDER`는 `ast.literal_eval`로 소스에서 직접 추출(import 부작용 0). `--selftest`가 4개 단언(첫 단언은 양방향)을 순회 확인 |
@@ -74,12 +78,16 @@ CHECK_STRICT=1 bash scripts/check.sh  # 엄격 모드 — 환경 미충족 스�
 | `validate_sortkey_startdate.py` | `data/person_events/*.json` 전역(전 파일 sortKey 정렬) (task#283) | **전역·교차파일**로 본다 — 파일 단위로 좁히면 `moses`→`joshua` 경계의 역전이 무음 통과한다(`CONTEXT.md`의 "통합 시간축" 규정 범위). 두 불변식: ① sortKey로 전역 정렬한 인접쌍의 `startDate` 역전 0곳(동값 쌍은 판정 제외, 제외 건수를 출력에 찍음) ② 단일연도 `yearLabel`(`BC N`/`AD N`, `경` 허용)의 연도 == `startDate`, 범위 라벨이면 `startDate`가 범위 안(시대 단위 근사 라벨은 형태로 제외) — `TimelineView`가 저작 사건에서 `startDate`가 아니라 `yearLabel`을 그대로 표시하므로 정렬만 고치고 라벨을 두면 화면은 옛 연도를 보여준다. `startDate`는 관대한 파싱 대신 "부호 있는 정수 문자열"을 단언(월/일 정밀도 유입 시 fail-closed) — 기존 연도 파서 3벌은 재사용하지 않는다(그 파서들이 `NEO4J_PASSWORD` 요구 모듈에 살아 이 검증기가 `.env` 로드 전에 도는 것과 충돌). `--selftest`가 파일 내 역전·교차파일 역전·`startDate`/`sortKey` 형식 위반·라벨 드리프트·범위 라벨 이탈·양쪽 비공허 짝 8종을 순회 확인 |
 | `validate_approx_book_verses.py` | `generate_approx_book_verses.py`의 `VERSE_MAP` ↔ `data/book_events/books.json` | **양방향 정합**(task#274). `VERSE_MAP`에 있는데 `book_events`에 없는 "죽은 키"(생성기가 `sys.exit(1)`로 죽는 원인) · `book_events`에 있는데 `VERSE_MAP`에 없는 "미커버 쌍"(구절 없는 ⚡ 연결) 둘 다 위반. 생성기를 실행하지 않고 `ast.literal_eval`로 소스만 읽는다(배포 게이트는 판정자이지 작성자가 아니다) |
 | `validate_intro_menu_parity.py` | `frontend/src/IntroView.jsx`의 `SCENES` ↔ `App.jsx`/`ExploreStage.jsx`의 실제 탭 | **인트로 소개 장면 ↔ 실제 하위 메뉴 양방향 정합**(task#277). 부(인물·성경책·투어)별로 (아이콘, 라벨) 쌍 집합을 대조 — 실제에 있고 인트로에 없으면 누락, 인트로에 있고 실제에 없으면 유령. 앱을 실행하지 않고 소스 정적 파싱만으로 판정. `--selftest` 인자로 전 탭에 고의 누락·유령을 순회 주입해 검사가 실제로 FAIL하는지 확인하는 대조군 모드를 갖는다(§9) |
+| `validate_api_cache_headers.py` | `backend/app/routes/*.py`의 `Cache-Control` 리터럴 (task#285) | **응답 캐시 수명 상한**. 긴 `max-age`가 ETag 없이 붙으면 표준 데이터수정 경로(`data/` 편집 + `restart api`)로 고친 내용이 재방문 브라우저에 반영되지 않고, 프론트 캐시버스터(`?v=<BUILD_ID>`)는 빌드타임 리터럴이라 그 경로를 원리적으로 못 덮는다. **불변식은 개수가 아니라 경계** — "지금 6곳"을 세지 않고 `max-age ≤ 300`을 단언해 새 라우트가 같은 결함을 다시 열지 못하게 한다. `no-store`는 수명 미선언이라 통과, 주석 안의 예시는 `_strip`으로 걷어내 오탐을 막는다. 비공허 짝 — 라우트 소스 0개·`Cache-Control` 선언 0건이면 실패. `--selftest`가 위반 주입 검출 + 주석 예시 오탐 없음을 확인 |
+| `validate_scene_sketch_detail.py` | `frontend/src/sketches/`의 `TARGETS` 장면 + `cast/*.jsx` (task#286~307) | **장면 저작 규약 경계 B1~B12**(밀도 ≥35 · 단계당 ≤3선 · 단계 수 하한 · 드로인 예산 ≤10,000ms · 절정 순서 · 재생 step 종속 · 구조 선 ≥12 · 반투명 ≤40% · 연출 완료 · 이름표-그림 비접촉 · 구조 선 연결 · 정본 컴포넌트 사용 강제). **경계를 파일에 박지 않고 소스에서 파생한다** — `--dur-draw-scene`은 `index.css`, 패널 대기는 `tourSketches.jsx`, `stepDuration` 공식은 `useTourPlayback.js`, note 길이는 `data/tours/*.json`에서 읽고, `tourSketches.jsx`의 `GLOBAL_MIN_STEP_MS`가 실측 `min(stepDuration)`과 어긋나면 그 자체를 실패로 본다(상수 복사가 아니라는 살아있는 증거). 단계는 `<g>` 개수가 아니라 **지연값**으로 세고(쪼개기로 게임 불가), `<David cx=… />` 같은 정본 컴포넌트 호출은 소스를 읽어 **인라인 전개한 뒤** 판정한다(전개하지 않으면 정본 사용 장면에서 B1·B2·B7·B8·B10·B11이 조용히 헛돈다). 강제 대상 명단은 상수가 아니라 `cast/*.jsx` 디렉터리 열거에서 파생. `--selftest`가 각 경계를 개별 위반하는 합성 장면 + B12·전개기 대조군을 순회 |
+| `validate_canon_pipeline.py` | `scripts/canon/params.py` ↔ `scripts/canon/**/*.py` · `scripts/` git 추적 상태 (task#316) | 축1 **재선언 금지** — 정본을 `ast`로 파싱해 이름 집합을 **파생**하고(알려진 위반 지점 열거 금지), 그 이름이 다른 파일에서 모듈 레벨로 재대입되면 FAIL. 튜플 대입(`STEPS, GUIDANCE = 30, 6.5`)을 반드시 포함한다 — `Name` 타깃만 보면 실제로 그 형태를 쓰던 3개 파일에 통째로 눈이 먼다. **이름만 바꾼 복사본**을 잡기 위해 `repo/name` 형태 문자열(모델 ID)은 **값으로도** 본다(수치는 오탐이 확실해 제외 — 이 경계가 곧 불변식이 인코딩한 결함 클래스의 한계이며, docstring이 "초록은 드리프트가 없다는 뜻이 아니다"로 그 한계를 명시). 축2 **`scripts/` 미추적 0건**. 소스·git만 읽어 GPU·생성 venv 없이 돈다. `--selftest`가 임시 스캔 루트에 두 축을 각각 주입·원복 |
 | `validate_forge_docs_tracked.py` | `.forge/adr/`·`.forge/retro/`의 git 추적 상태 (task#279) | **데이터 검증이 아니라 git 상태 가드** — `git ls-files --others --exclude-standard`로 두 루트 아래 미추적 파일이 있으면 FAIL. 영구 문서를 작성하고 `git add`를 빠뜨린 회귀(task#275)의 재발 방지이며, `deploy.yml`이 같은 디렉터리에서 `git reset --hard`만 하고 `git clean`은 안 하므로 **배포 경로에서도 실제로 배포를 막는 하드 게이트**다(§1·§8). git 작업트리가 아니면 자체적으로 exit code 3(`EXIT_NO_GIT`)을 내지만, `check.sh`는 이 경우를 스크립트 호출 전에 `git rev-parse --is-inside-work-tree`로 먼저 걸러 통째로 스킵한다. `--selftest`는 실제 `.forge/adr`·`.forge/retro`를 건드리지 않고 임시 스캔 루트(`.forge/.docs-tracked-selftest/`)에 파일을 놓고 지워 같은 스캔 함수가 검출·해소를 확인한다 |
 | `validate_event_chronology.py` | **Neo4j 직독** | (a) 인물 출생<활동<사망 서사 역전 (b) 사사 승계 순서(삿 10–12장) 역전 (c) 대표 앵커(출애굽 -1446·아브라함 소명 -2091·가뭄 선포 -870) 대비 역전 (d) 교정 창(-2200~-600) 내 `rec` 이벤트 목록화 (e) 형제군 ±150년 고립 이탈(전치 오타 후보) + Person 스캔(사망<출생·수명>1000년). 신학적 참여는 `THEOLOGICAL_WHITELIST`로 제외. `--json PATH`로 구조화 리포트 저장 |
 
-- **공통 계약의 예외 3건** — `validate_covenants.py`·`validate_pm_map_coverage.py`·`validate_scene_coverage.py`는 위반 목록을 모으지 않고 **`assert`를 여러 번 걸어 첫 위반에서 즉시 중단**한다(통과 시 `PASS` 출력). 항목 열거가 필요 없는 소규모/집합 대조 검증에 쓰는 변형. (`validate_era_bands_consistency.py`는 task#284 재작성으로 이 변형에서 벗어나 위 "위반을 모아 한 번에 `assert`" 계열로 옮겼다 — 7축 전부를 한 번에 보고하기 위해서다.)
+- **공통 계약의 예외 2건** — `validate_covenants.py`·`validate_pm_map_coverage.py`는 위반 목록을 모으지 않고 **`assert`를 여러 번 걸어 첫 위반에서 즉시 중단**한다(통과 시 `PASS` 출력). 항목 열거가 필요 없는 소규모/집합 대조 검증에 쓰는 변형. 재작성으로 이 변형에서 벗어난 것이 둘 있다 — `validate_era_bands_consistency.py`(task#284, 7축 전부를 한 번에 보고)와 `validate_scene_coverage.py`(task#287, 결함 클래스 A~G를 한 번에 열거).
 - **실행 방법 두 가지**: `python3 backend/scripts/validate_<name>.py`(문서·AUTHORING.md 표기)와 `python3 -m backend.scripts.validate_<name>`(`scripts/check.sh` 표기). 새 검증기는 둘 다 동작해야 한다.
-- **환경 요구**: `validate_event_chronology.py`만 `NEO4J_PASSWORD`(+선택 `NEO4J_URI`/`NEO4J_USER`)가 필요하다 — 나머지는 `data/` JSON과 소스 파일만 읽어 DB 접속 불요.
+- **루트 `scripts/check_*.py` 2개는 이 표 밖에 있다** — `check_cast_axes.py`(인물 정본 `AXES` 5축 조합 중복 0)·`check_mask_ranges.py`(장면 마스크 delay 범위 연속·비중첩·제외 구획 격리). `backend/scripts/`의 패키지 밖이라 `python3 -m`이 아니라 **경로 직접 지정**으로 부르고(§1 2·3번 블록), 위반은 `raise SystemExit(...)`으로 낸다. 프론트 소스에 밀착한 소형 게이트라 대상 파일의 리터럴 형태(장면 소스의 구획 주석 문구 등)에 결합돼 있으며, 그 결합은 문서화된 의도다 — 장면 소스가 문구를 바꾸면 이 검사도 함께 갱신한다.
+- **환경 요구**: `validate_event_chronology.py`만 `NEO4J_PASSWORD`(+선택 `NEO4J_URI`/`NEO4J_USER`)가 필요하다 — 나머지는 `data/` JSON과 소스 파일만 읽어 DB 접속 불요. **git이 필요한 것 둘**(`validate_forge_docs_tracked.py`·`validate_canon_pipeline.py`)은 작업트리가 아니면 자체적으로 exit code 3(`EXIT_NO_GIT`)을 내고, `check.sh`가 호출 전에 `git rev-parse --is-inside-work-tree`로 먼저 걸러 통째로 스킵한다.
 - 검증기가 참조하는 **정본 절 사전은 `data/bible/verses.json`** 하나다(verseID 실존 확인의 공통 기준, `CONVENTIONS.md` §6.2). `validate_event_verses.py`는 이 사전을 절 존재 오라클로도 쓴다(ADR `260821-125000`) — 라벨 범위를 오프라인으로 전개해 네트워크 의존 없이 판정한다.
 
 ---
@@ -96,6 +104,7 @@ CHECK_STRICT=1 bash scripts/check.sh  # 엄격 모드 — 환경 미충족 스�
 - `backend/scripts/apply_event_dedupe.py:193~194` — 삭제 후 `removed id` 잔존 0 · `after == before - deleted` 건수 등식 `assert`.
 - `backend/scripts/inject_date_corrections.py` — 에코 필드 가드(`CONVENTIONS.md` §6.4). 결과를 "적용/이미 적용/스킵" 건수로 방출한다. **건수 해석 주의**(task#238 학습): 라벨만 안 바뀐 교정(`old == newStartDate`)도 매 실행 동일값 `SET`으로 "적용"에 잡히므로 **회귀 신호는 스킵/경고 건수만 본다** — "적용 건수 증가"는 회귀 판정 근거가 아니다.
 - `inject_*.py` 공통 — 적재 후 `MATCH ... WHERE <속성> IS NOT NULL RETURN count(...)`로 반영 건수를 `print`하고, 일부는 대표 노드를 샘플 출력해 육안 확인을 돕는다.
+- `backend/scripts/enrich_place_coords.py` — **"보존 가드가 상시 거짓이라 아무 일도 하지 않았다"의 실측 사례**(task#285). `WHERE pl.latitude IS NULL`로 기존 값을 보존하려 했지만 업스트림 임포트(`load_theographic.py`)가 이미 모든 Place에 좌표를 채우므로 그 조건은 언제나 거짓이었다 — 손으로 적은 좌표 교정이 **단 한 번도 반영된 적이 없고**, 재실행해도 에러·경고 없이 '스킵' 카운트만 올랐다(실측: `rec*` 11건 전부 불일치, 시내산은 위도 0.96°≈107km 어긋난 채 서빙). 저작 좌표가 정본이므로 지금은 덮어쓰고, **집계 라벨을 `created`/`updated`/`unchanged`/`missing`으로 갈라** 재실행이 조용히 무의미해지지 않게 한다. 교훈은 §9와 같은 축이다 — 스킵/무변경 카운트가 늘어나는 것만 보고 "이미 반영됨"으로 읽으면 상시 거짓 가드와 구별되지 않는다.
 - 대량 병렬 저작의 병합·재스캔 스크립트(`.forge/scratch/task203/validate_and_merge.py`·`rescan.py`, `.forge/scratch/genealogy-authoring/merge_validate.py`·`verify_tree*.py`)도 같은 원칙 — 저작 산출 JSON을 항목 단위로 기계검증한 뒤 정본에 반영하고, 마지막에 API 레벨 전수 재스캔으로 닫는다.
 
 ---
@@ -117,7 +126,8 @@ UI 동작 검증은 **Python Playwright**(sync API, `/opt/homebrew`의 Python 3.
 ### 5.1 스크립트·산출물 배치
 
 - 일회성 검증 스크립트는 `.forge/scratch/`에 둔다(`task246_screenshots.py`·`covenant_timeline_shots.py`·`task158_screenshots.py`, 그리고 태스크별 하위 디렉터리 `.forge/scratch/task202/`~`task211/`).
-- **재사용 목적의 UAT는 리포지토리 루트 `scripts/uat_*.py`에 체크인한다**(task#280~281 — `scripts/uat_intro_gutter.py`·`scripts/uat_intro_entry.py`). `.forge/scratch/`의 일회성 조사 스크립트와 달리, 그 화면을 다시 만질 때마다 사람이 반복 호출하는 자다. 상세 관례는 §5.6.
+- **재사용 목적의 UAT는 리포지토리 루트 `scripts/uat_*.py`에 체크인한다**(현재 4개: `uat_intro_gutter.py`·`uat_intro_entry.py`(task#280~281) · `uat_scene_detail_pilot.py`(task#286) · `uat_tour_chunk_split.py`(task#287)). `.forge/scratch/`의 일회성 조사 스크립트와 달리, 그 화면을 다시 만질 때마다 사람이 반복 호출하는 자다. 상세 관례는 §5.6.
+- **`scripts/render_scene.py`는 검증기가 아니라 저작 도구다**(판정 게이트 아님, docstring이 명시). 장면 하나를 빌드→렌더→고배율 촬영해 PNG로 남겨 **선화 저작자에게 눈을 준다** — 숫자 경계(B1~B12)를 전부 통과하면서도 "재판하는 장면으로 안 읽힌다" 같은 지적이 반복됐기 때문이다. `--at <ms>`로 시각 스크럽, `--min-stroke-width`로 굵기 임계별 밀도 계단(임계는 `lib.jsx`의 `W`에서 **파생**), `--delay-range`로 붓질 단계 범위만, `--no-labels`, `--cast`로 `#/cast` 설정화 시트 촬영. **빌드와 nginx는 공유 자원이라 한 번에 하나만 돌린다**(여러 저작자가 동시에 돌리면 서로의 반쯤 쓴 파일을 빌드해 실패한다) — 계단 여러 개는 한 브라우저 세션에서 처리해 실패 확률과 벽시계가 곱해지지 않게 한다.
 - **스크린샷 산출물은 `.forge/reports/`에 저장하는 것이 현행 관례**다(`.claude/agents/ui-verifier.md`가 명시; `task246_screenshots.py`의 `OUT_DIR = '.../.forge/reports'`). 과거 태스크는 `.forge/scratch/task2NN/`에 스크린샷을 함께 뒀다 — 옛 디렉터리는 그대로 두고 신규는 `reports/`로.
 - 파일명은 `<주제>-<뷰포트>.png`(`messianic-thread-desktop.png`·`covenant-timeline-mobile.png`) 또는 `<주제>-<테마>-<장면>.png`(`intro-film-light-map.png`). 전수 UAT는 실패 시 `<site>-<viewport>-ERROR.png`를 따로 남긴다.
 
@@ -158,12 +168,24 @@ UI 동작 검증은 **Python Playwright**(sync API, `/opt/homebrew`의 Python 3.
 - 헤드리스 크로미움은 소프트웨어 GL(SwiftShader)로 렌더링해 MapLibre 캔버스 위 오버레이가 부분 페인트되는 아티팩트를 낼 수 있다 — `chromium.launch(args=["--enable-gpu", "--use-angle=metal"])`(macOS) A/B 비교를 최우선 1분 테스트로 돌려 환경 아티팩트인지 앱 회귀인지부터 가른다.
 - reduced-motion 판정은 **토큰 붕괴(1ms) 직후 최소 1프레임 뒤에 샘플링**한다 — 같은 프레임에서 즉시 읽으면 전환 종료 전 값을 관측해 오탐한다.
 - 세션 1회 재생 스태거(`card-in`·`book-open`)는 같은 컨텍스트에서 페이지에 두 번 진입시켜 두 번째엔 재생되지 않음을 확인한다.
-- **자동재생 검증 대기는 최대 stepDuration을 넘겨야 한다** — `frontend/src/useTourPlayback.js`의 `stepDuration()`은 4000ms + note 길이×35(최대 +4000) = **최대 8초**다. 6초 대기로 "미진행" 거짓경보를 낸 실사례가 있다(task#253). 재생 로직 리팩터는 자동진행·수동 next/prev·종료 개요복원까지 Playwright 전수로 확인한다.
+- **자동재생 검증 대기는 최대 stepDuration을 넘겨야 한다** — `frontend/src/useTourPlayback.js`의 `stepDuration()`은 task#286·#303에서 두 번 상향돼 지금 `9000 + min(note.length * 40, 5000)`, 즉 **9~14초**다(구 4000+최대4000 = 최대 8초). 296정차지 실측 최단 note(84자) 기준 `min(stepDuration) = 12,360ms`이며, 이 값은 장면 스케치의 시간 예산(규약 B6·B9)이 종속되는 상수라 `tourSketches.jsx`의 `GLOBAL_MIN_STEP_MS`와 검증기가 함께 대조한다(§2). 6초 대기로 "미진행" 거짓경보를 낸 실사례가 있다(task#253) — 대기 상수를 UAT에 박지 말고 이 공식에서 파생하라. 재생 로직 리팩터는 자동진행·수동 next/prev·종료 개요복원까지 Playwright 전수로 확인한다.
 - 배포 직후 검증인데 옛 화면이 남아 있으면, `api.js`의 자동 `?v=<BUILD_ID>` 캐시버스터가 실제로 최신 빌드값을 싣고 있는지 네트워크 캡처로 확인한다.
 
 ### 5.6 체크인 UAT 스크립트 — `scripts/uat_*.py` (task#280~281)
 
-`scripts/uat_intro_gutter.py`(인트로 비트 여백·금선 정렬 실측)와 `scripts/uat_intro_entry.py`(무해시 진입 라우팅 실측)가 이 형태의 정본이다. 둘 다 대응하는 `backend/scripts/validate_*.py`의 **소스 불변식**이 놓치는 축(선언이 실제로 픽셀·화면이 됐는가)을 실제 브라우저로 잰다 — 둘은 서로를 대신하지 못한다(§2의 짝 검증기 참조).
+`scripts/uat_intro_gutter.py`(인트로 비트 여백·금선 정렬 실측)와 `scripts/uat_intro_entry.py`(무해시 진입 라우팅 실측)가 이 형태의 정본이고, task#286~287이 같은 형태를 둘 더 추가했다. 넷 다 대응하는 `backend/scripts/validate_*.py`의 **소스 불변식**이 놓치는 축(선언이 실제로 픽셀·화면이 됐는가)을 실제 브라우저로 잰다 — 둘은 서로를 대신하지 못한다(§2의 짝 검증기 참조).
+
+| UAT | 짝 검증기 | 실측하는 축 |
+| --- | --- | --- |
+| `uat_intro_gutter.py` | `validate_intro_gutter.py` | 인트로 비트의 실제 잉크 여백(줄 단위 `Range.getClientRects()`) |
+| `uat_intro_entry.py` | `validate_intro_entry_route.py` | 무해시 첫 진입이 실제로 인트로 화면을 그리는가 |
+| `uat_scene_detail_pilot.py` | `validate_scene_sketch_detail.py` | 장면이 실제 브라우저에서 그려지는가 + 브라우저가 계산한 애니메이션 종료 시각이 정적 파싱과 맞는가(필름스트립) |
+| `uat_tour_chunk_split.py` | `validate_scene_coverage.py` | 9투어 첫 정차지·인트로 5씬 렌더 · **청크 격리**(다른 투어 청크가 요청되지 않는가, 네트워크 관찰) · 카드 높이 점프 0 |
+
+- **정적 목록만 보면 통과하는 결함이 있다** — `uat_tour_chunk_split.py`의 격리 축이 그 예다. 청크 목록만 대조하면 "쪼갰지만 어차피 전부 로드"가 초록이 되므로 네트워크 요청을 직접 본다(§11 ②의 Playwright 적용).
+- **애니메이션은 쫓지 않고 멈춰서 스크럽한다**(`uat_scene_detail_pilot.py`) — 흘러가는 애니메이션을 타이머로 따라가면 프레임이 어긋나 필름스트립이 비결정적이 된다. CSS(WAAPI)는 `pause()` + `currentTime`, SMIL은 `pauseAnimations()` + `setCurrentTime()`으로 같은 시각에 고정한 뒤 찍는다. 같은 기법을 앱 코드도 쓴다(`tourSketches.jsx`의 확대 오버레이가 열자마자 연출 종료 시점으로 고정).
+- 정차지는 **인덱스가 아니라 패널 캡션 문자열로 찾는다** — 정차지 순서가 바뀌어도 대상이 흔들리지 않는다(`uat_scene_detail_pilot.py`·`scripts/render_scene.py`의 `TARGETS`/`SCENES` 표).
+- 산출물은 UAT마다 전용 디렉터리로 나간다: `.forge/reports/scene-detail-pilot/`·`.forge/reports/tour-chunk-split/`.
 
 - **`scripts/check.sh`에 배선하지 않는다** — 의도적. `deploy.sh`는 `npm run build` **전**에 `check.sh`를 부르므로 그 시점 `:8080`은 옛 빌드를 서빙한다. 게이트에 넣으면 방금 고친 코드가 아니라 이전 배포본을 재서 초록·빨강이 둘 다 거짓이 된다. 게이트에는 브라우저 없이 항상 도는 소스 불변식만 두고, 이 UAT는 인트로 레이아웃·라우팅을 만질 때 **사람이 직접 부르는 자**다.
 - **실패 계층을 자가 구별한다**(회고 `260820-190352`) — 종료 코드 3단: `0`=통과 · `1`=제품 결함 · `2`=측정 환경 이상(`EnvError`: dist가 소스보다 낡음·백지 렌더·헤더 미출현·응답 비-200 등). 백지 렌더나 옛 빌드를 "라우팅/여백 결함"으로 위장해 있지도 않은 결함에 fix-forward를 태우거나, 반대로 진짜 결함을 "환경 탓"으로 덮는 것을 막는다.
@@ -202,6 +224,14 @@ UI 동작 검증은 **Python Playwright**(sync API, `/opt/homebrew`의 Python 3.
 
 단어 분포는 1 대신 `build_word_distribution.py`(자체 게이트, §3)로 정본을 재산출한 뒤 2~5를 밟는다.
 
+**장면 스케치 저작의 순서는 다르다**(데이터 저작이 아니라 코드 저작이라 `generate_*`·`restart api`가 없다):
+
+0. `frontend/src/sketches/lib.jsx`의 "장면 저작 규약" 절에서 경계 B1~B12와 배치 레시피를 확인(외부 문서 왕복 불필요).
+1. `python3 -m backend.scripts.validate_scene_sketch_detail`(등록 장면) · `validate_scene_coverage`로 **소스 경계 위반 0** 확인.
+2. `cd frontend && npm run build` + `docker compose restart nginx` — dist 마운트라 빌드 필수(§6).
+3. `python3 scripts/render_scene.py <SceneName> [--at <ms>]`로 **육안 확인** — "사람인가 물건인가"는 기계가 못 재는 축이다(§10).
+4. `python3 scripts/uat_scene_detail_pilot.py --phase after`(연출 타이밍 실측·필름스트립) · 청크 배선을 만졌으면 `scripts/uat_tour_chunk_split.py`.
+
 **그래프 초기화 후 재적재 순서**(README + 회고): `load_theographic.py` → `inject_ko_names.py` → `inject_date_corrections.py` → `load_authored_genealogy.py`·`load_authored_mothers.py` → `load_person_events.py`. **이 순서를 생략하면 무음으로 원복된다** — task#238 실사례: `load_theographic.py` 재적재 후 `inject_date_corrections.py`를 건너뛰어 교정값이 업스트림 원본으로 되돌아가 있었고, 다음 inject 실행 때서야 발견됐다. **inject 계열은 항상 로더 재실행 다음**에 온다.
 
 ---
@@ -222,8 +252,10 @@ UI 동작 검증은 **Python Playwright**(sync API, `/opt/homebrew`의 Python 3.
 
 task#276·#277에서 승급된 원칙(회고 `260820-003946`, ADR `260820-003946-script-guard-reproduced-in-gate.md`): **새로 만든 검사가 기준선에서 통과한다는 사실만으로는 그 검사가 실제로 무언가를 판정하고 있다는 근거가 안 된다.** 검사 로직 자체가 죽어 있거나(예: 파싱이 조용히 빈 결과를 내고 "위반 0"으로 오판) 대조 대상을 잘못 짚었을 수 있기 때문 — 이 경우 기준선 PASS와 "검사가 고장나 항상 PASS"는 겉으로 구별되지 않는다. 그래서 **회귀 검사·게이트는 "이 검사가 실패할 수 있다"를 스스로 증명하는 대조군을 함께 둔다**: 검사 대상에 알고 있는 결함을 고의로 주입한 사본을 만들어, 그 사본에서는 검사가 반드시 FAIL함을 확인한다.
 
-- **백엔드 검증기의 `--selftest`** — `backend/scripts/validate_intro_menu_parity.py`(§2)가 이 계약의 최초 사례였고, task#278 이후로는 **신규·재작성 검증기의 표준 관행**이 됐다: `--selftest` 인자로 인메모리 사본에 고의 드리프트를 **전 항목/전 축 순회로** 주입해 매번 FAIL하는지 확인한다. 대상을 하나로 고정하면 "그 항목에 우연히 맞춰진 검사"인지 가릴 수 없어서 전수 순회가 계약이다. 실측: `validate_curated_persons.py`(4단언 순회) · `validate_intro_gutter.py`(비트 5곳 순회) · `validate_intro_entry_route.py`(불변식 4종) · `validate_event_verses.py`(고의 드리프트 5종) · `validate_sortkey_startdate.py`(8종) · `validate_era_bands_consistency.py`(7축 + 축별 공허 통과 4종) · `validate_forge_docs_tracked.py`(임시 스캔 루트에 주입·해소). `scripts/check.sh`(§1)가 기준선 실행과 별도 항목으로 이 `--selftest`들을 호출해 배포 게이트에 상시 배선돼 있다.
-- **Playwright UAT의 `--selftest`** — 브라우저로 픽셀을 재는 §5.6의 `scripts/uat_intro_gutter.py`·`scripts/uat_intro_entry.py`도 같은 원칙을 진다. 소스를 정적으로 주입할 수 없으므로 `page.add_style_tag`로 알려진 CSS 결함을 주입하거나 `localStorage` 플래그를 뒤집어 검출기가 발화하는지 확인한다 — 백엔드 검증기의 대조군과 같은 값을 Playwright 층에서 낸다.
+- **백엔드 검증기의 `--selftest`** — `backend/scripts/validate_intro_menu_parity.py`(§2)가 이 계약의 최초 사례였고, task#278 이후로는 **신규·재작성 검증기의 표준 관행**이 됐다: `--selftest` 인자로 인메모리 사본에 고의 드리프트를 **전 항목/전 축 순회로** 주입해 매번 FAIL하는지 확인한다. 대상을 하나로 고정하면 "그 항목에 우연히 맞춰진 검사"인지 가릴 수 없어서 전수 순회가 계약이다. 실측: `validate_curated_persons.py`(4단언 순회) · `validate_intro_gutter.py`(비트 5곳 순회) · `validate_intro_entry_route.py`(불변식 4종) · `validate_event_verses.py`(고의 드리프트 5종) · `validate_sortkey_startdate.py`(8종) · `validate_era_bands_consistency.py`(7축 + 축별 공허 통과 4종) · `validate_forge_docs_tracked.py`(임시 스캔 루트에 주입·해소) · **`validate_api_cache_headers.py`**(위반 주입 검출 + 주석 예시 오탐 없음) · **`validate_scene_sketch_detail.py`**(경계 B1~B11 개별 주입 + B12·정본 전개기 대조군, 거짓 양성 없음까지 함께 단언) · **`validate_scene_coverage.py`**(결함 클래스 A~G 개별 주입 + 미저작/미연결 메시지 분기) · **`validate_canon_pipeline.py`**(축1 3형태 = 단일 이름·튜플 대입·이름 바꾼 모델 ID / 축2 미추적 1건, 주입 후 원복까지 확인). `scripts/check.sh`(§1)가 기준선 실행과 별도 항목으로 이 `--selftest`들을 호출해 배포 게이트에 상시 배선돼 있다(현재 10건).
+- **대조군 관행이 `backend/scripts/` 밖으로 나갔다** — 루트 `scripts/check_mask_ranges.py`도 `--selftest`를 갖고 게이트에 별도 항목으로 등록돼 있다(합성 소스에 겹침·불연속을 각각 주입해 정확히 실패하는지 확인). 반대로 `scripts/check_cast_axes.py`는 대조군이 없다 — 5축 조합의 중복 여부라는 단순 집합 비교라 "죽은 검사"가 되기 어려운 부류(아래 적용 기준)다.
+- **대조군이 거짓 양성까지 보는 형태로 강해졌다** — `validate_scene_sketch_detail.py`·`validate_scene_coverage.py`의 `--selftest`는 "위반을 주입하면 빨강"에 그치지 않고 **정상 입력에서 빨강이 되지 않는지**(상단 띠 이름표, 붙은 부위와 멀리 떨어진 배경 획, 정본을 쓴 장면)와 **결함 종류별 메시지가 갈리는지**를 함께 단언한다. §11이 말하는 거짓 빨강 비용을 대조군 안으로 끌어들인 형태다.
+- **Playwright UAT의 `--selftest`** — 브라우저로 픽셀을 재는 §5.6의 `scripts/uat_intro_gutter.py`·`scripts/uat_intro_entry.py`가 이 원칙을 진다(task#286~287에 추가된 `uat_scene_detail_pilot.py`·`uat_tour_chunk_split.py`에는 `--selftest`가 없다 — 이쪽은 `--phase before/after` 전후 대조와 네트워크 관찰이 그 자리를 대신한다). 소스를 정적으로 주입할 수 없으므로 `page.add_style_tag`로 알려진 CSS 결함을 주입하거나 `localStorage` 플래그를 뒤집어 검출기가 발화하는지 확인한다 — 백엔드 검증기의 대조군과 같은 값을 Playwright 층에서 낸다.
 - **vitest 회귀 테스트의 "수정 전 실패 확인"** — `frontend/src/useReadingProgress.test.js`(§0)는 파일 상단 주석에 "이 테스트는 수정 전 소스(HEAD `0bd58a7`)에서 해당 케이스가 실제로 실패함을 확인한 뒤 추가했다"를 명시한다. 결함을 고친 커밋과 그 결함을 재현하는 테스트를 함께 작성할 때, 테스트가 그 결함을 정말 잡아내는지 **고친 커밋 이전 소스에 대고 한 번 돌려 확인**하는 것이 이 원칙의 최소 실천형이다.
 - **적용 기준**: 모든 검사에 대조군을 요구하지 않는다 — 근거가 명확한 구조적 스캔(예: verseID 실존, 통제 어휘 소속)은 로직이 단순해 죽은 검사가 되기 어렵다. 대조군은 **문자열/AST 정규식 파싱으로 소스를 스크래핑하는 검사**(파싱 패턴이 코드 리팩터로 조용히 깨질 수 있음)나 **"완료 기준"처럼 절대어로 판정하는 신규 회귀 테스트**에 우선 적용한다.
 - **불변식이 무엇을 재야 하는지는 이 원칙의 범위 밖이다** — "검사가 실패할 수 있음을 증명한다"는 것과 "그 검사가 옳은 것을 재고 있다"는 것은 다른 질문이다. 후자(결함 클래스를 개수가 아니라 경계로 쓰기, 실측 자가 편의 프록시가 아니라 실제 대상을 재기)는 §11이 별도로 다룬다.
@@ -232,9 +264,9 @@ task#276·#277에서 승급된 원칙(회고 `260820-003946`, ADR `260820-003946
 
 ## 10. 커버리지 실태
 
-- **자동 회귀 안전망이 있는 영역**: 저작 데이터의 스키마·통제 어휘·verseID 실존·집합 커버리지(§2, 20종) · 투어 정차지↔장면 스케치 커버리지(§2 `validate_scene_coverage`) · 시대 결합점 7축 드리프트, 대조군 있음(§2·§9 `validate_era_bands_consistency`) · `VERSE_MAP`↔`book_events` 양방향 정합(§2 `validate_approx_book_verses`) · 인트로↔실제 하위 메뉴 정합, 대조군 있음(§2·§9 `validate_intro_menu_parity`) · 큐레이션 35인 색인 3방향 정합, 대조군 있음(§2·§9 `validate_curated_persons`) · 인트로 비트 여백 소스 불변식, 대조군 있음(§2·§9 `validate_intro_gutter`) · 무타깃 진입 라우팅 단일 선언 불변식, 대조군 있음(§2·§9 `validate_intro_entry_route`) · 근거 절↔라벨 범위 정합, 대조군 있음(§2·§9 `validate_event_verses`) · 통합 시간축 sortKey↔startDate 전역 정합, 대조군 있음(§2·§9 `validate_sortkey_startdate`) · 영구 forge 문서 git 추적, 배포 차단 가드(§2 `validate_forge_docs_tracked`) · Neo4j 연대 이상(§2 `validate_event_chronology`) · 프론트 정적 규칙(ESLint) · **프론트 순수 함수 5모듈(§0, vitest 88건)** · 적재 스크립트의 사슬/건수 자체검증 · `_parse_year` 인라인 assert.
-- **소스 불변식만 있고 실측은 사람이 부르는 영역**: 인트로 비트 여백의 실제 픽셀(`validate_intro_gutter`는 소스만 보고, 실측은 `scripts/uat_intro_gutter.py`가 하지만 `check.sh`엔 안 배선됨, §5.6) · 무타깃 진입이 실제로 인트로 화면을 그리는지(`validate_intro_entry_route`↔`scripts/uat_intro_entry.py`, 같은 이유). 둘 다 게이트가 항상 커버하는 건 소스 계약뿐이다.
-- **자동 안전망이 없는 영역**: FastAPI 라우트의 응답 계약(엔드포인트 단위 테스트 0건 — 의도된 결정, ADR `260801-195023`) · Cypher 쿼리 결과 · React 컴포넌트 렌더/상호작용 · `mapRingController.js`의 애니메이션 진행·`expandPlace` 경로(맵 인스턴스 의존이라 명시 제외). 이 영역의 회귀는 Playwright 화면 검증과 사용자 피드백에 의존한다.
+- **자동 회귀 안전망이 있는 영역**: 저작 데이터의 스키마·통제 어휘·verseID 실존·집합 커버리지(§2, 22종) · 투어 정차지↔장면 스케치 커버리지 + 투어별 모듈 소속·오배치·미연결, 대조군 있음(§2·§9 `validate_scene_coverage`) · **API 응답 캐시 수명 상한, 대조군 있음**(§2·§9 `validate_api_cache_headers`) · **장면 저작 규약 경계 B1~B12, 대조군 있음**(§2·§9 `validate_scene_sketch_detail` — 단 대상은 `TARGETS`에 등록된 장면뿐이다) · **저작 파이프라인 생성 파라미터 단일화 + `scripts/` 추적, 대조군 있음**(§2·§9 `validate_canon_pipeline`) · **인물 정본 5축 구별성**(§1 `scripts/check_cast_axes.py`) · **장면 마스크 delay 범위 연속성, 대조군 있음**(§1 `scripts/check_mask_ranges.py`) · 시대 결합점 7축 드리프트, 대조군 있음(§2·§9 `validate_era_bands_consistency`) · `VERSE_MAP`↔`book_events` 양방향 정합(§2 `validate_approx_book_verses`) · 인트로↔실제 하위 메뉴 정합, 대조군 있음(§2·§9 `validate_intro_menu_parity`) · 큐레이션 35인 색인 3방향 정합, 대조군 있음(§2·§9 `validate_curated_persons`) · 인트로 비트 여백 소스 불변식, 대조군 있음(§2·§9 `validate_intro_gutter`) · 무타깃 진입 라우팅 단일 선언 불변식, 대조군 있음(§2·§9 `validate_intro_entry_route`) · 근거 절↔라벨 범위 정합, 대조군 있음(§2·§9 `validate_event_verses`) · 통합 시간축 sortKey↔startDate 전역 정합, 대조군 있음(§2·§9 `validate_sortkey_startdate`) · 영구 forge 문서 git 추적, 배포 차단 가드(§2 `validate_forge_docs_tracked`) · Neo4j 연대 이상(§2 `validate_event_chronology`) · 프론트 정적 규칙(ESLint) · **프론트 순수 함수 5모듈(§0, vitest 88건)** · 적재 스크립트의 사슬/건수 자체검증 · `_parse_year` 인라인 assert.
+- **소스 불변식만 있고 실측은 사람이 부르는 영역**: 인트로 비트 여백의 실제 픽셀(`validate_intro_gutter`는 소스만 보고, 실측은 `scripts/uat_intro_gutter.py`가 하지만 `check.sh`엔 안 배선됨, §5.6) · 무타깃 진입이 실제로 인트로 화면을 그리는지(`validate_intro_entry_route`↔`scripts/uat_intro_entry.py`) · **장면 스케치가 실제로 그려지고 연출이 step 안에 끝나는지**(`validate_scene_sketch_detail`↔`scripts/uat_scene_detail_pilot.py`) · **투어별 청크가 실제로 격리돼 내려오고 카드 높이가 안 튀는지**(`validate_scene_coverage`↔`scripts/uat_tour_chunk_split.py`). 넷 다 이유가 같다 — `deploy.sh`가 빌드 전에 `check.sh`를 부르므로 게이트가 항상 커버하는 건 소스 계약뿐이다.
+- **자동 안전망이 없는 영역**: FastAPI 라우트의 응답 계약(엔드포인트 단위 테스트 0건 — 의도된 결정, ADR `260801-195023`) · Cypher 쿼리 결과 · React 컴포넌트 렌더/상호작용 · `mapRingController.js`의 애니메이션 진행·`expandPlace` 경로(맵 인스턴스 의존이라 명시 제외) · **`TARGETS` 밖의 장면 스케치**(규약 경계는 등록된 장면만 강제된다) · **`scripts/canon/`의 생성 재현성**(§13 — 미결 3축) · **"사람으로 읽히는가"류 회화 판정**(기계로 잴 수 없다고 `lib.jsx` 규약이 명시, `scripts/render_scene.py` 육안 확인과 사용자 판정에 의존). 이 영역의 회귀는 Playwright 화면 검증과 사용자 피드백에 의존한다.
 - **커버리지 수치는 측정되지 않는다** — coverage 도구(pytest-cov·c8 등) 설정이 없다(의도적 — 측정 대상이 다섯 모듈뿐). `scripts/check.sh`의 PASS/FAIL이 유일한 기계 판정이다.
 
 ---
@@ -243,11 +275,12 @@ task#276·#277에서 승급된 원칙(회고 `260820-003946`, ADR `260820-003946
 
 ADR `260821-000937-invariant-encodes-defect-class.md`(task#280~281)가 승급한 원칙 — §9(대조군)가 "이 검사가 실패할 수 있는가"를 다룬다면, 이 원칙은 **"그 검사가 옳은 것을 재고 있는가"**를 다룬다. 둘 다 "쉬운 쪽"으로 쓰면 **초록인데 결함이 남는** 검사가 된다.
 
+- **파생이 이 원칙의 확장형이다**(task#286·#316) — 경계를 검증기에 리터럴로 적어 두면 그 값이 앱에서 바뀔 때 게이트가 **조용히 거짓 초록**이 된다. 그래서 `validate_scene_sketch_detail.py`는 duration·패널 대기·`stepDuration` 공식·note 길이를 소스에서 파싱해 파생하고 `GLOBAL_MIN_STEP_MS`가 실측값과 어긋나면 그 자체를 실패로 보며, `validate_canon_pipeline.py`는 검사 대상 이름 목록을 `ast`로 정본에서 파생한다(목록을 손으로 유지하는 것이 곧 ①이 금지한 형태다). 같은 파생 관행이 게이트 밖 도구에도 적용된다 — `scripts/render_scene.py`가 `lib.jsx`의 `W`를, `scripts/canon/make_masks.py`가 `scripts/check_mask_ranges.py`의 `derive_ranges()`를 가져다 쓴다.
 - **① 정적 불변식은 알려진 위반 지점을 열거하지 않고 결함 클래스의 정의를 옮긴다.** 위반 지점이 4곳으로 이미 특정된 상태에서 "이 4곳이 규칙을 지키는가"를 검증기로 쓰면 기준선 PASS·수정 전 FAIL을 다 만족해 자로서 멀쩡해 보이지만, 5번째 위반 지점(새 컨테이너)에는 침묵한다 — 그 침묵이 "위반 없음"인지 "안 보고 있음"인지 구별되지 않는다. `backend/scripts/validate_intro_gutter.py`는 목록이 아니라 "명시 폭 ∧ 좌우 패딩"이라는 **조합**을 스캔해 이 함정을 피한다.
 - **② 실측 자는 편의 프록시가 아니라 실제 대상을 잰다.** `getBoundingClientRect()`로 컨테이너를 재는 것이 구현하기 쉽지만, `textAlign:center` 아래서는 프레임 패딩 경계일 뿐이라 결함이 있는 상태에서도 여백이 있다고 보고한다 — **결함이 있는데 통과하는 자**다. `scripts/uat_intro_gutter.py`는 텍스트 노드마다 `Range.getClientRects()`로 줄 단위 잉크 사각형을 재서 이 함정을 피한다(§5.6). 대가는 느리고 코드가 길다는 것 — "자가 더 복잡해지는 대가로 거짓 초록을 못 낸다"는 교환을 받아들인다.
 - **부분 개정(task#281) — 클래스를 *개수*로 쓰지 말고 *경계*로 쓴다.** 결함 클래스를 옮기더라도 그것을 "판정 지점이 정확히 1개"라는 개수 형태로 구현하면, 옳은 술어(`isNoTarget(hash)`가 `'#'`와 `'#/'`를 **함께** 비교하는 것)조차 구문상 비교 개수가 2라서 **거짓 빨강**이 된다. 대신 경계 형태로 쓴다: "정본 **밖**에 판정 지점이 0곳" + "정본이 **공허하지 않다**"(개수는 세지 않는다). `backend/scripts/validate_intro_entry_route.py`가 이 형태의 정본 사례다.
 - **거짓 빨강도 거짓 초록만큼 비싸다.** 거짓 초록은 결함을 통과시키고, 거짓 빨강은 무인 주행에서 replan을 태우거나 최악의 경우 사람이 **옳은 수정을 되돌리게** 만든다. 방어선은 "수정 **전에** 자를 먼저 돌려 그 자가 왜 그렇게 판정하는지 읽는" 순서뿐이다.
-- **비공허 짝(non-vacuous pairing)이 경계 형태의 필수 반쪽이다.** "정본 밖에 0곳"만 단언하면 `return false` 같은 공허한 술어도 통과한다. 그래서 신규 검증기들은 대상이 0건이면 그 자체를 위반으로 본다 — 실측: `validate_event_verses.py`(대상 블록 0개) · `validate_sortkey_startdate.py`(대상 사건 0건·단일연도 라벨 0건 두 축) · `validate_era_bands_consistency.py`(7축 각각 0항목).
+- **비공허 짝(non-vacuous pairing)이 경계 형태의 필수 반쪽이다.** "정본 밖에 0곳"만 단언하면 `return false` 같은 공허한 술어도 통과한다. 그래서 신규 검증기들은 대상이 0건이면 그 자체를 위반으로 본다 — 실측: `validate_event_verses.py`(대상 블록 0개) · `validate_sortkey_startdate.py`(대상 사건 0건·단일연도 라벨 0건 두 축) · `validate_era_bands_consistency.py`(7축 각각 0항목) · `validate_api_cache_headers.py`(라우트 소스 0개·`Cache-Control` 선언 0건) · `validate_canon_pipeline.py`(정본이 아무 이름도 선언하지 않으면 실패) · `validate_scene_coverage.py`(투어·레지스트리 열거 0건).
 - **한계.** 이 원칙은 불변식을 *어떻게 쓰는지*를 다루고 *무엇을 재야 하는지*는 정해주지 않는다 — 결함 클래스 정의 자체를 잘못 짚으면 그 정의를 충실히 옮긴 검증기도 엉뚱한 것을 지킨다. 클래스 정의는 여전히 사람이 실측으로 먼저 특정해야 한다.
 
 ---
@@ -264,3 +297,19 @@ ADR `260821-000937-invariant-encodes-defect-class.md`(task#280~281)가 승급한
 - **영향 범위를 빠뜨리면 그만큼 구멍이다** — task#278은 손대는 8개 모듈의 **모든** 라우트가 14개 엔드포인트로 덮이는지 먼저 대조했다. "주요 엔드포인트 몇 개"는 이 방식의 값을 대부분 버린다.
 - **이 방식으로도 못 잡는 축** — 단일 요청 대조는 **요청 간 상태 오염**(공유 `lru_cache` 반환값을 호출자가 제자리 변형)을 못 본다. 1회차는 정상이고 2회차부터 달라지기 때문이다. task#278은 같은 엔드포인트를 연속 2회 호출해 drift를 보는 검토를 별도 축으로 돌렸다. 산출 대조는 한 축일 뿐 만능이 아니다.
 - 이 검증 방식은 리포지토리에 스크립트로 커밋돼 있지 않다 — task 수행 중 즉석으로 짜서 쓰고 버리는 §4의 ephemeral 감사와 같은 성격이다. 남는 재사용 후보(시대 상수 잔여 통합, 연도 파서 3벌 소거, 프론트 응답 무효화 훅화 등)는 같은 형태를 그대로 재사용할 수 있다.
+
+---
+
+## 13. 로컬 이미지 생성 파이프라인의 판정 — `scripts/canon/judge_*.py` (게이트 밖)
+
+`scripts/canon/`(생성/판정 파이프라인, `CONVENTIONS.md` §2.5)에서 **"테스트"에 해당하는 것은 `judge_*.py` 8개**다. 앱 코드가 아니라 **생성된 그림**을 대상으로 하고, 게이트가 아니라 저작 루프 안에서 돈다.
+
+- **판정 계약**: 대상 PNG를 읽어 축별 수치와 `verdict` 불리언 맵을 만든 뒤 **JSON을 stdout에 내고, 모든 축 통과면 종료코드 0 · 하나라도 실패면 1**을 반환한다(`judge_scene.py`의 `return 0 if all(m["verdict"].values()) else 1`). 여러 판을 주면 한 줄씩 비교표를 찍고 전건 통과 여부로 종료코드를 낸다. `--json PATH`로 판정을 파일로 남기는 관례는 `validate_event_chronology.py`와 같다.
+- **`scripts/check.sh`에 배선하지 않는다** — GPU·생성 venv가 필요하고 판정 대상(산출 PNG)이 추적되지 않는다. 이 서브시스템에서 게이트에 들어오는 것은 **소스만 읽는** `validate_canon_pipeline.py` 하나다(§1 4번 블록). 판정 스크립트 중에도 게이트가 아님을 스스로 못박은 것이 있다 — `judge_coherence.py` docstring: "이 도구는 게이트가 아니다. 수치를 보고만 한다."
+- **임계를 스크립트에 적지 않는다** — 양성 기준은 정답지 집합(`params.REFERENCE`)에서 파생하거나 이미 못박힌 baseline JSON(`notes/s0-baseline.json`·`notes/s1-baseline.json`)에서 읽는다. "결과가 마음에 안 든다고 임계를 만지는 것은 결론 선취"라는 금지가 `try_prompt.py` docstring에 명시돼 있고, 자를 바꾸려면 자를 세운 슬라이스를 다시 돌려야 한다.
+- **지표는 고르기 전에 정답지와 현행 양쪽에 걸어 분리도를 잰다** — 선정 근거는 `notes/JUDGE-*.md`가 문서로 남긴다(예: 육안 소견에서 자연히 나오는 채도는 정답지와 현행 구간이 겹쳐 아무것도 갈라내지 못했고, 그래서 다른 지표를 택했다는 기록). 새 의존성 없이 PIL/numpy로 되는지도 선정 조건에 든다.
+- **기계로 재는 것과 사람이 보는 것을 문서가 갈라 둔다** — `notes/JUDGE-MACHINE.md`가 대표. 존재·좌우 배치 같은 항목은 육안 판정으로 넘기고 기계는 교차 유사도·잉크 밀도/대비만 잰다. 장면 명세(`notes/SCENE-1SAM17.md`)의 체크리스트 열 항목 중 기계로 잴 수 있는 다섯만 `judge_scene.py`가 본다(§5 체크리스트 ↔ C1~C5).
+- **판정자에게도 자가검사가 있다** — 동결 참조본을 파일에서 다시 읽어 재인코딩해 자기 유사도 ≈ 1.0, 교차 유사도가 그보다 낮음을 단정한다(지표의 최소 항등성). §9의 대조군과 같은 정신이지만 형태가 다르다: 여기서는 결함을 주입하는 대신 **지표가 항등식을 만족하는지**를 본다.
+- **생성자와 판정자는 같은 산식을 공유한다** — `gen_scripture_scene.py`가 `import judge_scene as J`로 하늘선 산식을 그대로 끌어 쓴다(자와 그림이 어긋나면 판정이 무의미하다). 반대 방향(판정자가 생성자를 import)은 하지 않는다 — `torch`·`diffusers`가 딸려 와 GPU 없이 못 돌기 때문이다. 그래서 구역 상자(`REGIONS`) 좌표는 두 파일에 **손으로 복제**돼 있다(실측 2026-09-02: 공유하는 7구역 값은 일치, 생성자에만 하위 구역 4개가 더 있다). judge 쪽 주석은 이 복제를 `--check`로 대조한다고 적었으나 **그 플래그는 구현돼 있지 않다** — 현재는 수동 동기 지점이다.
+- **판정과 저작을 다른 에이전트가 한다**(`judge_s1.py` docstring의 회고 관행) — 저작한 자가 자기 산출을 판정하지 않는다.
+- **재현은 닫혀 있지 않다** — `scripts/canon/requirements.txt` 머리 주석이 미결 3축(모델 리비전 미고정 · MPS 결정성 미보장 · 재현 미실측)을 "미결"로 명시한다. 스크립트들의 sha256 전수-상이 단정은 "산출이 서로 다르다"를 볼 뿐 **"다시 돌리면 같다"를 보지 않는다.** 이 파이프라인의 판정 통과를 회귀 안전망으로 읽으면 안 된다(§10의 "자동 안전망이 없는 영역").
