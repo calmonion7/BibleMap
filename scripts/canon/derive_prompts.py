@@ -415,7 +415,10 @@ SAMPLE_NEG_EXTRA = "landscape, scenery, cropped, close-up, profile view"
 #            17:6 「그 다리에는 놋경갑을 쳤고」
 # 투구는 AXES.headwear에서 이미 나오므로(read_axes → AXIS_EN) 여기서 되풀이하지 않는다.
 SAMPLE_COSTUME = {
-    "david": "in a plain linen tunic with a cloth belt",
+    # 2026-09-03 사용자 결정(본문 밖 · 시대상 근거, task 329): 철기 초기 이스라엘 목자 — 무릎 길이
+    # 양모/리넨 튜닉 + 띠 + 가죽 끈 샌들(「신들메」). v39 판에서 「plain linen tunic」만으로는 셔츠·
+    # 반바지·구두가 나왔다 — 시대를 못 박는 낱말이 없어 현대 소년 prior가 이겼다.
+    "david": "in a knee-length wool tunic, cloth belt, leather strap sandals",
     # 2026-08-26 사용자 판단: **야만인 스타일**. 그리고 중립적 갑옷 낱말("bronze scale armor")이
     # 모델의 「기사」 사전지식에 4회 연속 졌다(판금·면갑·망토·대검으로 수렴). barbarian은 그
     # 사전지식을 정면으로 밀어내는 낱말이라 접근 자체가 다르다(PROMPTING.md 3 — 낱말의 세기).

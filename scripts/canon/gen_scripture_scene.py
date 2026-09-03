@@ -142,15 +142,24 @@ STAGES = [
     # ⚠ 지물을 **문장 앞으로**(2026-09-01 task 325). d1~d5에서 얻은 규칙 — 모델은 손에 지물을
     # **하나만** 쥐고, 문장 앞에 둔 것이 이긴다. g1에서 자루는 한 자루로 돌아왔으나 손에서 떨어져
     # 따로 섰고 손에는 타원 주걱이 남았다. 자루를 명시해 손에 묶는다.
-    ("S3", "goliath", 17.5, f"{ST} a huge bronze age Philistine warrior man gripping "
+    # ⚠ 2026-09-03(task 329) — 앵커를 뗀 뒤 어휘만으로 간다. v39의 결함 「원뿔 모자·목각 톤·둘로
+    # 보임」에 맞춰 **볼가리개 놋투구**(`with cheek guards`)·**수염 난 위압적 얼굴**·비늘갑(가산)을
+    # 명시하고, 정본 의상 문구 대신 짧은 `overlapping bronze scale armour`로 토큰을 확보했다.
+    # 후보 실측표는 노트 §21.
+    # ⚠ v40 실측: gA s42는 육안 통과였으나 `ink_goliath 0.059`(정답지 0.102~0.221)로 C4 낙제 — 앵커를
+    # 떼자 연필 스케치 톤으로 옅어졌다(판 잉크 0.014 vs 다윗 0.172). gB「bold dark ink outlines and
+    # rich colored-pencil fill」은 **효과 0**(0.010~0.034) — 화풍 형용사는 톤을 못 바꾼다. C4는 어두운
+    # 화소 비율이라 청동·베이지 낱말만으로 채운 인물은 무엇을 해도 밝다 → **대상의 색 낱말**로 어두운
+    # 화소를 만든다(검은 수염·어두운 청동). 공용 ST는 건드리지 않는다(다윗 s42·방패병 s11 확정).
+    ("S3", "goliath", 17.5, f"{ST} a towering black-bearded Philistine warrior gripping "
                             # `nine feet tall`을 뺐다 — 크기는 **구역 상자가 정한다**(실측
                             # 골리앗:다윗 1.9배). 문구로 중복해 말할 토큰이 없다(78/77 초과했다).
                             # ⚠ 방향구를 문장 앞으로 당기는 것은 **시도했다가 되돌렸다**(g4).
                             # `strict side view ... facing left`를 앞에 두자 얼굴이 통째로
                             # 사라지고(투구 아래 검은 덩어리) 창이 도끼가 됐다. 방향은 끝에 둔다.
-                            f"one thick heavy spear with a long straight wooden shaft, "
-                            f"plain bronze helmet, "
-                            f"{dp.SAMPLE_COSTUME['goliath'][3:]}, bronze greaves, "
+                            f"one thick heavy spear with a long wooden shaft, "
+                            f"dark bronze helmet with cheek guards, "
+                            f"torso covered in dark overlapping bronze scale armour, bronze greaves, "
                             f"seen from the side, body and face turned left.",
      # `barbaric`은 기사 prior를 밀어냈지만 **맨가슴**을 불러 어린갑과 상충했다(v8 실측).
      # 청동기·블레셋이라는 **시대·민족 레지스터**로 바꾼다 — 중세 판금을 배제하면서 옷은 안 벗긴다.
@@ -161,10 +170,12 @@ STAGES = [
      # 됐다(과교정). 두 자루를 막되 자루는 남겨야 한다.
      NEG + ", horns, plate armour, knight, medieval, tent, cone, robe, "
             "bare chest, shirtless, two spears, double spear"),
-    ("S4", "shieldman", 17.7, f"{ST} full body of a Philistine shield bearer walking on the "
-                              f"ground ahead of the giant, holding a large round bronze shield, "
-                              f"plain tunic, facing left.",
-     NEG + ", oval, circle, medallion, vignette, inset, floating"),
+    # ⚠ 2026-09-03(task 329) — 사용자 결정: 방패 든 자는 **무장 없는 종자**, 성인 크기(상자 세로 0.53).
+    # 「양손으로 큰 방패를 앞에 세워 들고 걷는다」로 자세를 박고, 갑주·창·검·망토·투구를 부정어로.
+    ("S4", "shieldman", 17.7, f"{ST} full body of an unarmed Philistine servant walking, "
+                              f"carrying a large round bronze shield upright in front of him with both hands, "
+                              f"plain knee-length tunic, sandals, facing left.",
+     NEG + ", armour, spear, sword, cape, helmet, oval, circle, medallion, vignette, inset, floating"),
     ("S5", "david", 17.40, # ⚠ **`swinging a sling`은 쓰지 말 것** — v15에서 모델이 **그네(swing)** 로 읽어 아이가
      # 그네를 타고 있었다. `whirling`은 손을 비게 만들었다(v9·v14). 동작 낱말을 버리고
      # **쥐고 있는 물건**으로 말한다 — 손에 무엇이 있는지가 그려져야 할 것의 전부다.
@@ -173,11 +184,30 @@ STAGES = [
      # 그 순간 다윗의 두 손은 **물매와 주머니**가 가져간다. 17:40의 막대기는 「나아갈 때」의 지물이다.
      # 근거: ADR 260902-170558(고정한 순간이 지물 요구를 판다) · 모델은 한 손에 지물을 하나만 쥔다
      # (task 325 실측: 다섯 문구 × 네 시드에서 막대기를 넣으면 물매가 죽거나 그 반대였다).
-     f"{ST} a small ruddy shepherd boy of fifteen gripping a short leather "
-                           f"sling, no armour, "
-                           f"plain linen tunic, a shepherd's bag at his side, "
-                           f"running mid-stride, facing right.",
-     NEG + ", armour, helmet, sword, beard, old man, grey hair, robe, tall adult"),
+     # ⚠ 2026-09-03(task 329) — v39 판의 결함 중 **시대 불일치**(셔츠·반바지·구두·핸드백)를 여기서
+     # 고친다: 시대·민족 낱말을 **맨 앞**에(`ancient Israelite`), 복식은 정본 `SAMPLE_COSTUME`에서,
+     # bag → **pouch**(bag은 핸드백으로 읽혔다), 부정어에 현대 복식. **투척 자세는 요구에서 뺐다** —
+     # 문구 3종(mid-throw/arm flung/cords flying 류) × 시드 4 = 12장 0 통과(끈이 손에서 시작 0·주머니 0·
+     # 날개·바구니·종이 테두리), 순간은 17:48-49 전반 「달리며 물매를 쥔」으로 되돌렸다
+     # (ADR 260903-154254가 062732를 대체). 실측표는 노트 §21.
+     # dR(되돌림 1차) 4장: s42는 끈이 주먹에서 시작하는 통과 후보였으나 **주머니 0/4**(16장 누적 0) —
+     # 문장 끝 `a leather pouch at his side`는 힘이 없다(PROMPTING 2). 주머니를 물매 바로 뒤로.
+     # dR2(`pouch hanging at his hip`) 4장: 주머니 1/4·물매 손 0/4 — 둘이 한 그림에 함께 나온 적이
+     # 20장 중 0. 모델은 인물에 지물 하나만 붙인다(task 325 규칙 재현). 셋째 문구는 둘을 **다른 신체
+     # 부위**에 묶는다(주먹 ↔ 가슴 멜빵). 시드 7은 부정어를 살려도 종이 테두리(dR·dR2 연속) — 시드 prior.
+     # dR3(주먹 ↔ 가슴 멜빵) 4장: 손에 물매 0. 「손의 물매」와 「주머니」는 24장 중 한 그림에 함께 나온
+     # 적이 없다 → 사용자 결정(2026-09-03): **주머니를 요구에서 빼고** dR 문구·시드 42를 채택한다
+     # (주머니는 17:40의 지물, §5의 순간에는 손이 물매를 쥔다). 문구는 dR 그대로 — 시드 재현을 위해
+     # 낱말 하나도 바꾸지 않는다(`pouch at his side`가 남아 있어도 그림엔 안 나온다).
+     f"{ST} an ancient Israelite shepherd boy running mid-stride, "
+                           f"gripping a short leather sling, "
+                           f"{dp.SAMPLE_COSTUME['david'][3:]}, "
+                           f"a leather pouch at his side, facing right.",
+     # 부정어는 필수부(단계 낱말)가 공용 뒤쪽을 밀어낸다(`_fit_neg`) — 12장 실측에서 `framed,
+     # picture frame`이 잘려 시드 7이 종이 테두리를 그렸다. 중복(`sneakers`⊂shoes·`backpack`·
+     # `grey hair`⊂old man)을 빼 공용 액자족이 예산 안에 들게 한다.
+     NEG + ", armour, helmet, sword, beard, old man, robe, tall adult, "
+           "shirt, shorts, trousers, shoes, handbag"),
     ("S9", "sling_arc", 17.40, # ⚠ 「above the boy's head」라고 쓰자 모델이 **머리를 그렸다**(v4·v6 실측: 왼쪽 위에 큰 얼굴).
      # 이 단계는 지물만 그려야 하므로 인물 낱말을 한 개도 넣지 않는다.
      # v9에서 S5 프롬프트에 합쳤더니 **손이 빈 채로** 나왔다 — 지물은 자기 단계가 있어야 한다.
@@ -371,7 +401,9 @@ def _fit_neg(tok, stage_neg, lim):
     # 0.250 → 0.540 실패) ② 판별 실행 d1의 시드 7에서 **테두리가 그려진 흰 종이**가 판을 통째로
     # 채웠다. 판을 오려 붙이는 구조에서는 판이 제 테두리를 그리는 순간 그것이 곧 이음매다.
     head = (split(PLATE_NEG) + ["stick figure", "crude drawing"]
-            + ["frame", "border", "vignette", "paper edge", "torn paper"]
+            # `framed, picture frame`도 필수부(2026-09-03 task 329: 다윗 판 문구 4종 모두 시드 7이
+            # 종이 테두리 — 단계 부정어가 늘자 이 둘이 공용 뒤쪽에서 잘렸다).
+            + ["frame", "border", "framed", "picture frame", "vignette", "paper edge", "torn paper"]
             + split(specific_raw))
     head = list(dict.fromkeys(head))              # 단계 부정어와 겹칠 수 있다(S4의 vignette)
     if len(tok(", ".join(head)).input_ids) > lim:

@@ -459,6 +459,18 @@ part 3의 첫 최종본이 **4축을 동시에 통과했다**(축A ink .1063 · 
 
 ---
 
+## 14. 화풍 축(잉크)은 형용사가 아니라 **대상의 색 낱말**이 움직인다 (2026-09-03 실측, task 329)
+
+`judge_scene.py` C4(인물별 잉크·비)는 **어두운 화소 비율**(lum < 0.55)이다. 앵커를 뗀 골리앗이 연필 스케치 톤으로
+옅어져(장면 잉크 .059, 다윗 .200, 비 3.37) 낙제했을 때, 문구 앞에 `bold dark ink outlines and rich colored-pencil
+fill`을 넣은 4장은 판 잉크가 **한 장도 안 움직였다**(.010~.034 vs .014). 대신 `black-bearded` · `dark bronze
+helmet` · `dark overlapping bronze scale armour`로 **대상 자체의 색**을 어둡게 하자 3배(.043)로 올라 조립에서
+.089·비 2.25로 통과했다(SCENE-1SAM17 §21). 규칙 3(매체 낱말이 손잡이, 형용사는 아니다)의 따름이다: 톤을 바꾸려면
+그림 **속 사물의 색**을 말하라 — 청동·베이지 낱말만으로 채운 인물은 어떤 화풍 형용사를 붙여도 밝다.
+
+같은 실측에서 하나 더: **시대·민족 낱말을 문장 맨 앞에**(`an ancient Israelite shepherd boy`) 두자 24장 전부
+복식이 시대에 맞았다 — `plain linen tunic`만으로는 현대 소년 prior(셔츠·반바지·구두)가 이겼던 것(v39).
+
 ## 빠른 참조
 
     VENV=/Users/calmonion/.local/biblemap-imggen/.venv314/bin/python
