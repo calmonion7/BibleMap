@@ -2,7 +2,9 @@
 
 ## §0. 지금 상태와 이어서 할 일 (2026-09-03 task 329 갱신 — **여기부터 읽어라**)
 
-**현재 정본 경로는 이 문서 + `scripts/canon/gen_scripture_scene.py`다.** 콘티(ControlNet)는
+**현재 정본 경로는 이 문서 + 장면 명세 `scripts/canon/scenes/authored-david-goliath-gath.json` +
+`scripts/canon/gen_scripture_scene.py --scene`이다**(task 330: 구역·단계·문구는 명세로 나갔고 코드는 기전만 진다 —
+옮긴 실측 주석은 §22, 파생 규칙은 PROMPTING 15). 콘티(ControlNet)는
 사용자 지시로 **쓰지 않는다**. 최선본은 **v41**(task 329 — 인물 판 셋 재작업: 시대 복식의 다윗 ·
 앵커 뗀 검은 수염 골리앗 · 무장 없는 종자, §21)이고,
 **다섯 축(C1~C5)이 모두 통과한다 — `judge_scene.py v41` 종료코드 0이 정상이다.** 그 앞 v39까지
@@ -12,10 +14,13 @@ C3는 `.222 @ S3/goliath.bottom`이다.
 ⚠ `.forge/reports/`는 gitignored이므로 **산출물을 레포에 두지 않는다 — 재현 명령이 곧 산출물이다**
 (시드 고정이라 결정론적이다). 아래 명령의 `vNN`에 라벨을 넣어 다시 만든다.
 
-    재현 명령 (전 8단계, 시드 1개 약 5분 — **판별 시드**를 그대로 적는다, task 329):
+    재현 명령 (전 8단계, 시드 1개 약 5분 — **판별 시드**를 그대로 적는다, task 329 · `--scene` task 330):
       ~/.local/biblemap-imggen/.venv314/bin/python3 \
-        scripts/canon/gen_scripture_scene.py --seeds 11 --plate-seeds S3=42,S4=11,S5=42 --label vNN
+        scripts/canon/gen_scripture_scene.py --scene authored-david-goliath-gath \
+        --seeds 11 --plate-seeds S3=42,S4=11,S5=42 --label vNN
+      ~/.local/biblemap-imggen/.venv314/bin/python3 scripts/canon/judge_scene.py vNN --scene authored-david-goliath-gath
     산출: .forge/reports/canon-pilot/scripture-scene/vNN-final-s11.png (단계별 중간본도 같은 곳)
+    회귀: v42(task 330, 명세 경로)가 v41과 픽셀 동일 — 이 명령이 그대로 v41을 재현한다
     세 판 나란히(화풍 대조): plates-side-by-side-v41.png (판 원본 gC-plate-S3-s42 · sA-plate-S4-s11 · dR-plate-S5-s42)
     인물별 잉크 측정(화풍 일치 판정): §10의 표와 같은 방식 — 정답지 구간 0.102~0.221
 
@@ -1022,3 +1027,210 @@ C1 drop .327 · C2 좌 cov .327/우 .365 · **C3 paste_seam .286 @ S3/goliath.bo
 **하지 않은 것**: 공통 화풍 앵커·비늘갑 패치 레퍼런스·골리앗 시선(계획 Non-goals). 골리앗 판 하단의 옅은
 지면선은 C3 가드 안(.286)이라 두었다.
 
+
+
+## 22. 코드에서 옮긴 실측 주석 원문 (2026-09-04, task 330 — 장면 명세 일반화)
+
+`gen_scripture_scene.py`가 장면 명세(`scenes/authored-david-goliath-gath.json`)를 읽게 되면서
+구역표(`REGIONS`)·단계표(`STAGES`)·폐기 단계(`SKIP`)가 코드에서 빠졌다. 그 자리에 붙어 있던
+실측 주석은 **같은 실패를 반복하지 않는 것이 이 문서의 목적**이므로 여기에 원문 그대로 옮긴다
+(코드 줄도 함께 두어 어느 문구·어느 상자에 붙은 주석이었는지 맥락을 잃지 않게 했다). 값의 정본은
+이제 명세 JSON이고, 아래는 **왜 그 값인가**의 기록이다.
+
+```python
+FEATHER = 0.06           # 마스크 깃털 = 구역 짧은 변의 분율. 고정 px는 큰 구역에서 상자 변을
+                         # 드러낸다(머리 단계 실측: 고정 6px에서 네모 이음매가 보였다).
+
+# --- 구역 명세 — 캔버스 분율. **좌표가 있는 곳은 여기 한 곳뿐이다.** -----------------
+# 크기 대비의 근거: 골리앗 세로 0.90 · 다윗 0.48 = 1.87배 ↔ 17:4 「여섯 규빗 한 뼘」(약 2.9m)
+# 대 소년(약 1.6m). 좌우 배치는 17:2-3(양쪽 산)과 17:41·48(서로 마주 나아감)에서 온다.
+REGIONS = {
+    "full":         (0.00, 0.00, 1.00, 1.00),
+    # 지형을 **상자로** 지시한다(규칙 다섯째). 프롬프트로 두 번 밀어 두 번 실패했다(격자·드레이프).
+    # S1이 골짜기 바닥만 그리고, 좌우 산을 이 두 구역이 올린다 — 가운데가 낮게 남아 골짜기가 된다.
+    "hill_left":    (0.00, 0.12, 0.40, 0.78),
+    "hill_right":   (0.60, 0.10, 1.00, 0.76),
+    "crest_left":   (0.02, 0.24, 0.44, 0.47),   # 이스라엘 쪽 산등성이 (17:2-3) — 1차에서 구역이
+                                                # 커서 「멀리 작은 인물」이 안 잡혔다. 능선 선에 얇게 붙인다.
+    "crest_right":  (0.56, 0.18, 0.99, 0.43),   # 블레셋 쪽 산등성이
+    # 종횡비를 사람 비율로 좁힌다 — 0.68은 텐트/원뿔의 prior에 가깝고, v7에서 실제로 텐트가 나왔다.
+    "goliath":      (0.625, 0.05, 0.855, 0.95),  # 거인 (17:4 신장) · 비율 0.51
+    # 세로 0.42 → 0.53(2026-09-03, task 329): 성인 종자다 — 골리앗 2.9m : 성인 1.7m ≈ 1.7배 → 0.90/1.7.
+    # x는 그대로다 — 판 방식에서 `_place`는 상자의 **높이와 가로 중심**만 쓰고 폭은 배율에 안 쓴다.
+    "shieldman":    (0.44, 0.41, 0.585, 0.94),  # 방패 든 자 — 골리앗 **앞**(=더 가까이·아래) (17:7·41)
+    "david":        (0.15, 0.52, 0.305, 0.92),  # 소년 — 세로 0.40. 골리앗 0.90 대비 2.25배로
+                                                # 잡아 실측이 1.8 근처로 떨어지게 한다(v8은 1.4였다)
+    # ⚠ 1차 실측: 이 구역이 0.10~0.46 × 0.22~0.82이라 **다윗 상반신을 덮어 S5의 소년을 지우고**
+    # 노인을 그렸고, 그 탓에 크기 대비까지 무너졌다. **다윗 몸에 겹치지 않는 얇은 띠**로 줄인다 —
+    # 머리 위로 휘두르는 물매 호만 담는다. 막대기는 S5 프롬프트로 옮겼다(겹침 위험 제거).
+    "sling_arc":    (0.15, 0.26, 0.42, 0.44),
+    "david_head":   (0.185, 0.44, 0.29, 0.575),
+    "goliath_head": (0.635, 0.05, 0.795, 0.30),
+}
+
+# --- 단계 — 순서는 **먼 것 → 가까운 것, 큰 것 → 작은 것**이다. 뒤 단계가 앞을 덮으므로
+# 원근과 가림이 저절로 맞는다(방패 든 자가 골리앗 앞에 서는 것이 17:7·41이다).
+ST = dp._drop(dp.STYLE, "simple", "clean background", "light shading", "muted palette")
+NEG = dp._drop(dp.NEG, "dark", "heavy shadows") + (
+    # 2026-08-31 실측: NEG에 이미 `frame, border`가 있는데도 **액자·매트가 그려졌다**.
+    # 종이 화풍(「미색 종이」)이 「종이에 붙인 그림」으로 읽힌 것으로 보고 액자류를 늘린다.
+    ", framed, picture frame, matte, passepartout, vignette, paper edge, torn paper")
+
+STAGES = [
+    # 17:3 「블레셋 사람은 이편 산에 섰고 이스라엘은 저편 산에 섰고 사이에는 골짜기가 있었더라」
+    # — 1차 실측에서 열린 평야가 나왔다. **두 산과 그 사이 골짜기**를 문장 앞으로 당겨 세게 민다.
+    ("S1", "full", 17.1, # ⚠ v13 정정 — 「far left / far right / middle / bottom」처럼 **위치를 말로 지시하자
+    # 화면 전체가 격자·패널 도해**가 됐다. 모델은 위치 서술어를 레이아웃 지시로 읽는다.
+    # 배치는 **구역 상자가 지고** 프롬프트는 사물만 말한다. v12 문구로 되돌린다.
+    # ⚠ 두 번 시도해 두 번 실패했다: 위치 서술어(left/right/middle)는 **격자·패널 도해**를 부르고
+    # (v13), 「V자 협곡·양쪽 급사면」은 **드레이프 천 같은 형태**를 냈다(v15). 배치·지형 형태를
+    # 말로 밀는 것은 이 모델에서 잘 안 먹는다 — v12 문구로 되돌리고 골짜기는 미해결로 둔다.
+    f"{ST} a low flat dry valley floor of pale stony ground, a dry "
+                         f"brook bed with smooth round stones, sparse dry grass, empty pale sky, "
+                         f"no hills, no people.",
+     NEG + ", people, figures, soldiers, flat plain, open field"),   # ⚠ v10에서 `grid·stripes·ruled paper`를
+     # 부정어에 넣었더니 **화면 전체에 격자가 나타났다**(부정어 누출). 도로 뺀다 — 부정어는
+     # 낱말을 지우는 도구가 아니라 확률을 미는 도구여서, 없던 개념을 불러오는 쪽으로도 작동한다.
+    ("S1b", "hill_left", 17.3, f"{ST} a tall steep dry rocky hillside rising up, sunbaked "
+                               f"brown slope, layered rock, sparse dry grass, no people.",
+     NEG + ", people, figures, flat ground, valley, pagoda, temple, tower, roof, building"),
+    ("S1c", "hill_right", 17.3, f"{ST} a tall steep dry rocky hillside rising up, sunbaked "
+                                f"brown slope, layered rock, sparse dry grass, no people.",
+     NEG + ", people, figures, flat ground, valley, pagoda, temple, tower, roof, building"),
+    ("S2a", "crest_left", 17.2, f"{ST} hundreds of tiny distant soldiers packed shoulder to "
+                                f"shoulder in long ranks on the hillside, a dense forest of small "
+                                f"upright spears, tiny far away crowd.",
+     NEG + ", empty hill, bare ridge, single figure, close-up"),
+    ("S2b", "crest_right", 17.3, f"{ST} hundreds of tiny distant soldiers packed shoulder to "
+                                 f"shoulder in long ranks on the hillside, a dense forest of small "
+                                 f"upright spears, tiny far away crowd.",
+     NEG + ", empty hill, bare ridge, single figure, close-up"),
+    # ⓑ **갑주를 프롬프트로 찾는다**(2026-08-31 사용자 지시). 기록의 실패는 「중립적 갑옷 낱말이
+    # 모델의 기사 사전지식에 4회 연속 졌다 — 판금·면갑·망토·대검으로 수렴」이고, **통한 방향은
+    # `barbaric` 레지스터**였다(PROMPTING.md 8 · SAMPLE_COSTUME 주석). 1차 실행에서 내가 정본
+    # 문구를 쓰지 않고 줄여 쓴 것도 실패 요인이다. 그래서 셋을 함께 건다:
+    #   ① 의상은 **정본 문구 그대로**(dp.SAMPLE_COSTUME — 표본·전신과 같은 출처)
+    #   ② 야만인 레지스터로 기사 사전지식을 밀어낸다
+    #   ③ **수렴 대상 네 가지를 부정어로 직접 막는다**(판금·면갑·망토·대검)
+    # ⚠ v7 정정 — **부정어를 과하게 걸어 역효과가 났다.** plate·knight·cape·cloak·sword·
+    # breastplate를 한꺼번에 막으니 모델이 「갑옷 입은 사람」을 그릴 손잡이를 다 잃고 **반투명
+    # 텐트**를 그렸다(비늘 무늬가 사람이 아니라 원뿔 꼭대기에 붙었다). 기록의 교훈은 「중립 갑옷
+    # 낱말이 기사 prior에 졌고 통한 것은 barbaric 레지스터」였지 갑옷 낱말을 지우라는 것이 아니다.
+    # 그래서 ① **사람 낱말을 맨 앞에** 두어 형태 prior를 사람으로 잡고 ② 부정어는 뿔·판금·기사
+    # 셋만 남긴다.
+    # ⚠ 지물을 **문장 앞으로**(2026-09-01 task 325). d1~d5에서 얻은 규칙 — 모델은 손에 지물을
+    # **하나만** 쥐고, 문장 앞에 둔 것이 이긴다. g1에서 자루는 한 자루로 돌아왔으나 손에서 떨어져
+    # 따로 섰고 손에는 타원 주걱이 남았다. 자루를 명시해 손에 묶는다.
+    # ⚠ 2026-09-03(task 329) — 앵커를 뗀 뒤 어휘만으로 간다. v39의 결함 「원뿔 모자·목각 톤·둘로
+    # 보임」에 맞춰 **볼가리개 놋투구**(`with cheek guards`)·**수염 난 위압적 얼굴**·비늘갑(가산)을
+    # 명시하고, 정본 의상 문구 대신 짧은 `overlapping bronze scale armour`로 토큰을 확보했다.
+    # 후보 실측표는 노트 §21.
+    # ⚠ v40 실측: gA s42는 육안 통과였으나 `ink_goliath 0.059`(정답지 0.102~0.221)로 C4 낙제 — 앵커를
+    # 떼자 연필 스케치 톤으로 옅어졌다(판 잉크 0.014 vs 다윗 0.172). gB「bold dark ink outlines and
+    # rich colored-pencil fill」은 **효과 0**(0.010~0.034) — 화풍 형용사는 톤을 못 바꾼다. C4는 어두운
+    # 화소 비율이라 청동·베이지 낱말만으로 채운 인물은 무엇을 해도 밝다 → **대상의 색 낱말**로 어두운
+    # 화소를 만든다(검은 수염·어두운 청동). 공용 ST는 건드리지 않는다(다윗 s42·방패병 s11 확정).
+    ("S3", "goliath", 17.5, f"{ST} a towering black-bearded Philistine warrior gripping "
+                            # `nine feet tall`을 뺐다 — 크기는 **구역 상자가 정한다**(실측
+                            # 골리앗:다윗 1.9배). 문구로 중복해 말할 토큰이 없다(78/77 초과했다).
+                            # ⚠ 방향구를 문장 앞으로 당기는 것은 **시도했다가 되돌렸다**(g4).
+                            # `strict side view ... facing left`를 앞에 두자 얼굴이 통째로
+                            # 사라지고(투구 아래 검은 덩어리) 창이 도끼가 됐다. 방향은 끝에 둔다.
+                            f"one thick heavy spear with a long wooden shaft, "
+                            f"dark bronze helmet with cheek guards, "
+                            f"torso covered in dark overlapping bronze scale armour, bronze greaves, "
+                            f"seen from the side, body and face turned left.",
+     # `barbaric`은 기사 prior를 밀어냈지만 **맨가슴**을 불러 어린갑과 상충했다(v8 실측).
+     # 청동기·블레셋이라는 **시대·민족 레지스터**로 바꾼다 — 중세 판금을 배제하면서 옷은 안 벗긴다.
+     # ⚠ 판에서 창이 **두 자루의 나란한 장대**로 읽혔다(v31~v33) — 자루를 겹선으로 그린 탓이다.
+     # ⚠ 동의어 중복을 뺐다(2026-09-01) — 테두리족을 필수부로 올리느라 자리가 필요했고, 개념은
+     # 하나도 안 버렸다: `horned helmet`⊂`horns` · `naked torso`⊂`bare chest, shirtless`.
+     # `pair of poles`도 뺐다 — v36에서 **장대 개념 자체가 밀려나** 창이 짧은 손잡이 타원 주걱이
+     # 됐다(과교정). 두 자루를 막되 자루는 남겨야 한다.
+     NEG + ", horns, plate armour, knight, medieval, tent, cone, robe, "
+            "bare chest, shirtless, two spears, double spear"),
+    # ⚠ 2026-09-03(task 329) — 사용자 결정: 방패 든 자는 **무장 없는 종자**, 성인 크기(상자 세로 0.53).
+    # 「양손으로 큰 방패를 앞에 세워 들고 걷는다」로 자세를 박고, 갑주·창·검·망토·투구를 부정어로.
+    ("S4", "shieldman", 17.7, f"{ST} full body of an unarmed Philistine servant walking, "
+                              f"carrying a large round bronze shield upright in front of him with both hands, "
+                              f"plain knee-length tunic, sandals, facing left.",
+     NEG + ", armour, spear, sword, cape, helmet, oval, circle, medallion, vignette, inset, floating"),
+    ("S5", "david", 17.40, # ⚠ **`swinging a sling`은 쓰지 말 것** — v15에서 모델이 **그네(swing)** 로 읽어 아이가
+     # 그네를 타고 있었다. `whirling`은 손을 비게 만들었다(v9·v14). 동작 낱말을 버리고
+     # **쥐고 있는 물건**으로 말한다 — 손에 무엇이 있는지가 그려져야 할 것의 전부다.
+     # 지물을 **문장 앞으로** 당긴다 — 판에서 주머니만 나오고 물매·막대기가 빠졌다(v31~v33).
+     # 막대기는 **요구에서 뺐다** — §5가 고정한 순간은 17:48-49(빨리 달리며 손을 주머니에 넣어)이고,
+     # 그 순간 다윗의 두 손은 **물매와 주머니**가 가져간다. 17:40의 막대기는 「나아갈 때」의 지물이다.
+     # 근거: ADR 260902-170558(고정한 순간이 지물 요구를 판다) · 모델은 한 손에 지물을 하나만 쥔다
+     # (task 325 실측: 다섯 문구 × 네 시드에서 막대기를 넣으면 물매가 죽거나 그 반대였다).
+     # ⚠ 2026-09-03(task 329) — v39 판의 결함 중 **시대 불일치**(셔츠·반바지·구두·핸드백)를 여기서
+     # 고친다: 시대·민족 낱말을 **맨 앞**에(`ancient Israelite`), 복식은 정본 `SAMPLE_COSTUME`에서,
+     # bag → **pouch**(bag은 핸드백으로 읽혔다), 부정어에 현대 복식. **투척 자세는 요구에서 뺐다** —
+     # 문구 3종(mid-throw/arm flung/cords flying 류) × 시드 4 = 12장 0 통과(끈이 손에서 시작 0·주머니 0·
+     # 날개·바구니·종이 테두리), 순간은 17:48-49 전반 「달리며 물매를 쥔」으로 되돌렸다
+     # (ADR 260903-154254가 062732를 대체). 실측표는 노트 §21.
+     # dR(되돌림 1차) 4장: s42는 끈이 주먹에서 시작하는 통과 후보였으나 **주머니 0/4**(16장 누적 0) —
+     # 문장 끝 `a leather pouch at his side`는 힘이 없다(PROMPTING 2). 주머니를 물매 바로 뒤로.
+     # dR2(`pouch hanging at his hip`) 4장: 주머니 1/4·물매 손 0/4 — 둘이 한 그림에 함께 나온 적이
+     # 20장 중 0. 모델은 인물에 지물 하나만 붙인다(task 325 규칙 재현). 셋째 문구는 둘을 **다른 신체
+     # 부위**에 묶는다(주먹 ↔ 가슴 멜빵). 시드 7은 부정어를 살려도 종이 테두리(dR·dR2 연속) — 시드 prior.
+     # dR3(주먹 ↔ 가슴 멜빵) 4장: 손에 물매 0. 「손의 물매」와 「주머니」는 24장 중 한 그림에 함께 나온
+     # 적이 없다 → 사용자 결정(2026-09-03): **주머니를 요구에서 빼고** dR 문구·시드 42를 채택한다
+     # (주머니는 17:40의 지물, §5의 순간에는 손이 물매를 쥔다). 문구는 dR 그대로 — 시드 재현을 위해
+     # 낱말 하나도 바꾸지 않는다(`pouch at his side`가 남아 있어도 그림엔 안 나온다).
+     f"{ST} an ancient Israelite shepherd boy running mid-stride, "
+                           f"gripping a short leather sling, "
+                           f"{dp.SAMPLE_COSTUME['david'][3:]}, "
+                           f"a leather pouch at his side, facing right.",
+     # 부정어는 필수부(단계 낱말)가 공용 뒤쪽을 밀어낸다(`_fit_neg`) — 12장 실측에서 `framed,
+     # picture frame`이 잘려 시드 7이 종이 테두리를 그렸다. 중복(`sneakers`⊂shoes·`backpack`·
+     # `grey hair`⊂old man)을 빼 공용 액자족이 예산 안에 들게 한다.
+     NEG + ", armour, helmet, sword, beard, old man, robe, tall adult, "
+           "shirt, shorts, trousers, shoes, handbag"),
+    ("S9", "sling_arc", 17.40, # ⚠ 「above the boy's head」라고 쓰자 모델이 **머리를 그렸다**(v4·v6 실측: 왼쪽 위에 큰 얼굴).
+     # 이 단계는 지물만 그려야 하므로 인물 낱말을 한 개도 넣지 않는다.
+     # v9에서 S5 프롬프트에 합쳤더니 **손이 빈 채로** 나왔다 — 지물은 자기 단계가 있어야 한다.
+     # 구역은 다윗 실루엣 상단에서 파생해 **손 근처**에 둔다(허공에 따로 그리면 해먹으로 읽혔다).
+     f"{ST} two very thin taut leather cords stretched in the air, "
+                                 f"a tiny pouch with one small round stone at their far end, "
+                                 f"thin lines only, nothing thick.",
+     NEG + ", staff, pole, club, flag, banner, rope, head, face, person, boy, figure"),
+    ("S7", "david_head", 17.42, f"{ST} head of a ruddy boy of fifteen, clean-shaven, curly hair, "
+                                f"bare head, strict side profile facing right, chin up, "
+                                f"looking straight at the giant on the right.",
+     NEG + ", " + dp.HEAD_NEG_EXTRA),
+    ("S8_DROPPED", "goliath_head", 17.5, f"{ST} head of a grown man of about forty, clean-shaven, no hair "
+                                 f"showing, plain bronze helmet with cheek guards, strict side "
+                                 f"profile facing left, eyes on the boy.",
+     NEG + ", " + dp.HEAD_NEG_EXTRA + ", horns"),
+]
+
+    """구역 마스크 — 상자 + 깃털. 깃털은 구역 짧은 변에서 판다(고정 px는 큰 구역에서 변이 드러난다)."""
+    b = box_px(name)
+    m = Image.new("L", (W, H), 0)
+    m.paste(255, b)
+    f = max(4, int(round(FEATHER * min(b[2] - b[0], b[3] - b[1]))))
+    return m.filter(ImageFilter.GaussianBlur(f))
+
+
+# S9(물매)도 폐기했다 — v10~v13 **네 판 연속 실패**: 거대한 손 → 거대한 팔 → 원뿔 → 손톱 손.
+# 작은 상자에 「지물 하나」를 그리라 하면 모델이 그 상자를 채우는 크기로 그린다. 물매는 S5의
+# 인물 프롬프트가 지게 두고, 별도 단계를 만들지 않는다.
+SKIP = {"S8_DROPPED", "S9", "S7"}
+# **S7(다윗 얼굴 다듬기)도 폐기했다**(2026-09-01). 상자 인페인팅 시절에는 다윗이 고개를 숙인 채라
+# 이 단계가 고개를 들게 했다. 판 합성에서는 **판이 이미 얼굴과 방향을 준다** — 그 위에 다시
+# 그리면 되레 망친다(v32 실측: 얼굴이 지워지고 뒤통수가 됐다. v31에서는 살아남았으니 동전던지기다).
+# S6: v8까지 물매를 허공에 따로 그렸더니 **해먹·그물**로 읽혔다.
+                               # 손에 쥔 것으로 S5에 합친다 — 떠 있는 지물이 오독의 원인이었다.
+# S8(골리앗 얼굴)도 폐기했다 — v9 실측: 다듬기 단계가 머리를 다시 그리며 **놋투구를 지워
+# 대머리로** 만들었다. 그리고 S3만으로 이미 왼쪽을 보므로 이 단계는 순손실이다.
+REFINE_STAGES = {"S7"}
+RIDGE_STAGES = {"S2a", "S2b"}   # 마스크를 상자가 아니라 지형 하늘선에서 판다(ridge_mask)
+PLATE_STAGES = {"S3", "S4", "S5"}
+# **인물은 장면 안에서 그리지 않고 「판」으로 따로 그려 오려 붙인다**(2026-09-01 사용자 제안, 실측 확인).
+# 상자 인페인팅의 두 결함이 여기서 함께 사라진다:
+#   ① 자세가 지형에 끌려간다 — 가파른 비탈 위 상자를 채우려 골리앗이 웅크리거나 누웠다(v26·v29·v30).
+#   ② 상자 변이 잔상으로 남는다 — 모델이 상자 안 배경까지 새로 지으니 붙임 마스크가 사각형이 된다.
+# 민 종이 위에서는 모델이 지형과 싸우지 않고, 붙임 마스크가 **인물 실루엣**이라 변이 없다.
+# 캔버스는 params.SAMPLE_SIZE(832x1216) — 「가로 캔버스로 단독 전신을 뽑으면 모델이 장면을
+```

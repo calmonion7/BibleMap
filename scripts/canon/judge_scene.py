@@ -17,9 +17,13 @@
 `judge_style`의 DARK_CUT=0.55로는 지형이 안 잡힌다. 위 5% 행의 중앙값을 하늘로 보고 거기서
 `SKY_MARGIN`만큼 어두우면 「지형/사물」로 센다.
 
+**장면 명세를 읽는다**(task 330). 구역 상자·인물 목록·단계 순서는 `scenes/<id>.json`에서 오고
+축 이름은 명세의 판정 인물(`judge.figures`)에서 파생한다(`ink_<cast>`·`h_<cast>`). 임계·산식은
+장면과 무관한 공통 상수로 여기 남는다.
+
 사용:
-    python3 judge_scene.py v35                  # 한 판 — JSON + 종료코드(0=다섯 축 통과)
-    python3 judge_scene.py v17 v25 v33 v35      # 여러 판 — 한 줄씩 비교
+    python3 judge_scene.py v35 --scene <id>     # 한 판 — JSON + 종료코드(0=다섯 축 통과)
+    python3 judge_scene.py v17 v25 v33 v35      # 여러 판 — 한 줄씩 비교 (scenes/에 명세가 하나면 --scene 생략 가능)
 """
 
 import argparse
@@ -38,21 +42,39 @@ DARK_CUT = 0.55      # judge_style와 같은 값 — 화풍(잉크) 축은 산�
 SKY_MARGIN = 0.05    # 하늘 중앙값에서 이만큼 어두우면 「사물」
 SEAM_STEP = 0.02     # 이음매로 셀 한 픽셀 밝기 단차
 
-# 구역 상자 — gen_scripture_scene.REGIONS와 **같은 값이어야 한다**. 판정자가 생성자를 import하면
-# torch·diffusers가 딸려 와 GPU 없이 못 돌므로, 좌표만 여기 복제하고 --check로 대조한다.
-REGIONS = {
-    "hill_left":   (0.00, 0.12, 0.40, 0.78),
-    "hill_right":  (0.60, 0.10, 1.00, 0.76),
-    "crest_left":  (0.02, 0.24, 0.44, 0.47),
-    "crest_right": (0.56, 0.18, 0.99, 0.43),
-    "goliath":     (0.625, 0.05, 0.855, 0.95),
-    "shieldman":   (0.44, 0.52, 0.585, 0.94),
-    "david":       (0.15, 0.52, 0.305, 0.92),
-}
-# 인물이 없는 세로 띠 — 골짜기 바닥을 여기서 잰다(다윗 0.305 끝 · 방패든자 0.44 시작 · 골리앗 0.625 시작)
-GAP_BANDS = [(0.385, 0.435), (0.590, 0.620)]
-CREST_L_X = (0.02, 0.30)   # 좌 능선 높이를 재는 x 구간
-CREST_R_X = (0.70, 0.98)
+# 구역 상자 — **생성자와 같은 명세에서 읽는다**(configure). 예전엔 좌표를 여기 복제했고 실제로
+# 어긋나 있었다(shieldman y0 .52 vs 생성자 .41 — task 330에서 발견). 생성자를 import하면
+# torch·diffusers가 딸려 와 GPU 없이 못 돌므로, 명세 JSON을 공유 지점으로 삼는다.
+REGIONS = {}
+GAP_BANDS = []        # 인물이 없는 세로 띠 — 골짜기 바닥을 여기서 잰다 (명세 judge.gap_bands)
+CREST_L_X = CREST_R_X = None   # 좌·우 능선 높이를 재는 x 구간 (명세 judge.crest_x)
+STAGE_ORDER = []      # [(단계, 구역|None)] — C3 붙임 이음매가 훑는 순서 (명세 stages, skip 제외)
+FIGURES = []          # C4·C5가 재는 인물 cast (명세 judge.figures)
+
+
+def configure(spec):
+    """장면 명세에서 판정 기하를 채운다 — 생성자(`gen_scripture_scene`)도 같은 명세로 이 함수를 부른다."""
+    REGIONS.clear()
+    REGIONS.update({k: tuple(v) for k, v in spec["regions"].items()})
+    j = spec["judge"]
+    GAP_BANDS[:] = [tuple(b) for b in j["gap_bands"]]
+    global CREST_L_X, CREST_R_X
+    CREST_L_X, CREST_R_X = tuple(j["crest_x"]["left"]), tuple(j["crest_x"]["right"])
+    STAGE_ORDER[:] = [(s["id"], None if s["kind"] == "full" else s["region"])
+                      for s in spec["stages"] if not s.get("skip")]
+    FIGURES[:] = list(j["figures"])
+
+
+def load_scene(scene_id=None):
+    """`--scene`이 없고 scenes/에 명세가 하나면 그것을 쓴다 — 둘 이상이면 골라야 한다."""
+    d = os.path.join(params.CANON_DIR, "scenes")
+    if scene_id is None:
+        ids = sorted(f[:-5] for f in os.listdir(d) if f.endswith(".json"))
+        if len(ids) != 1:
+            sys.exit(f"--scene을 지정하라 — scenes/에 명세가 {len(ids)}개다: {', '.join(ids)}")
+        scene_id = ids[0]
+    with open(os.path.join(d, f"{scene_id}.json"), encoding="utf-8") as fh:
+        return json.load(fh)
 
 
 def load(path):
@@ -191,9 +213,8 @@ def _sil_bbox(lum, key):
 # 그 선을 넘는 밝기 단차가 남았다」** 이다. 둘이 **동시에** 성립해야 한다. 단계마다 직전/직후
 # 그림이 저장돼 있으므로 「이 단계가 칠한 자리」를 정확히 알 수 있다(C2를 정직하게 만든 수법).
 # 이 정의에서는 창자루가 자동으로 빠진다 — 붙임 **안쪽**에 있지 상자 선에 걸치지 않는다.
-STAGE_ORDER = [("S1", None), ("S1b", "hill_left"), ("S1c", "hill_right"),
-               ("S2a", "crest_left"), ("S2b", "crest_right"),
-               ("S3", "goliath"), ("S4", "shieldman"), ("S5", "david")]
+# STAGE_ORDER는 명세에서 온다(configure) — 예전 값: S1 · S1b/hill_left · S1c/hill_right · S2a/crest_left ·
+# S2b/crest_right · S3/goliath · S4/shieldman · S5/david.
 PASTE_CUT = 0.04    # 이 단계가 칠했다고 볼 밝기 변화
 EDGE_IN = 3         # 상자 선 안쪽/바깥쪽을 보는 거리(px)
 # 최소 표본 가드 — 임계(「한 변의 **대부분**에서 끊긴다」)와 같은 단위여야 한다. 절대치 `n<20`은
@@ -258,12 +279,12 @@ def c4_style(lum):
     """C4 — 인물별 잉크(judge_style.style_metrics의 ink와 같은 산식)와 둘의 비.
     **실루엣 bbox에서 잰다** — 노트 §10의 「다윗 0.2225 · 골리앗 0.2537」과 같은 기준."""
     out = {}
-    for key in ("david", "goliath"):
+    for key in FIGURES:
         b = _sil_bbox(lum, key)
         out[f"ink_{key}"] = 0.0 if b is None else \
             float((lum[b[1]:b[3], b[0]:b[2]] < DARK_CUT).mean())
-    lo, hi = sorted((out["ink_david"], out["ink_goliath"]))
-    out["ink_ratio"] = hi / max(lo, 1e-6)
+    inks = sorted(out.values())
+    out["ink_ratio"] = inks[-1] / max(inks[0], 1e-6)
     return out
 
 
@@ -272,12 +293,13 @@ def c5_figures(lum):
     ink = lum < DARK_CUT     # **잉크 bbox** — obj_mask(하늘 아닌 것)로 재면 상자를 채운
                              # 배경·잔상까지 잡혀 어느 판이나 상자 비(2.2)만 나온다(실측).
     hs = {}
-    for key in ("david", "goliath"):
+    for key in FIGURES:
         x0, y0, x1, y1 = box(key)
         rows = np.flatnonzero(ink[y0:y1, x0:x1].any(axis=1))
         hs[key] = float(rows[-1] - rows[0]) / H if rows.size else 0.0
-    return {"h_david": hs["david"], "h_goliath": hs["goliath"],
-            "scale_ratio": hs["goliath"] / max(hs["david"], 1e-6)}
+    # 크기 대비 = 가장 큰 인물 / 가장 작은 인물 (삼상17에서는 골리앗/다윗)
+    return {**{f"h_{k}": v for k, v in hs.items()},
+            "scale_ratio": max(hs.values()) / max(min(hs.values()), 1e-6)}
 
 
 def measure(root, label, seed=11):
@@ -332,7 +354,7 @@ def verdict(m, t=THRESHOLDS):
     c["C3"] = (m["c3_seam"]["line_rows"] <= t["c3_line_rows_max"]
                and m["c3_seam"]["paste_seam"] <= t["c3_paste_seam_max"])
     s = m["c4_style"]
-    c["C4"] = (min(s["ink_david"], s["ink_goliath"]) >= t["c4_ink_min"]
+    c["C4"] = (min(v for k, v in s.items() if k.startswith("ink_") and k != "ink_ratio") >= t["c4_ink_min"]
                and s["ink_ratio"] <= t["c4_ratio_max"])
     c["C5"] = m["c5_figures"]["scale_ratio"] >= t["c5_scale_min"]
     return c
@@ -343,7 +365,9 @@ def main():
     ap.add_argument("labels", nargs="+", help="판 라벨 하나 이상 (예: v35). 여럿이면 표로 비교한다")
     ap.add_argument("--seed", type=int, default=11)
     ap.add_argument("--json", default=None, help="라벨이 하나일 때 판정을 파일로 남긴다")
+    ap.add_argument("--scene", default=None, help="장면 명세 id (scenes/<id>.json) — 명세가 하나면 생략 가능")
     a = ap.parse_args()
+    configure(load_scene(a.scene))
     root = os.path.join(params.OUT_ROOT, "scripture-scene")
 
     if len(a.labels) == 1:

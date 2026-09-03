@@ -1,0 +1,92 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-david-goliath-gath",
+  "title": "다윗과 골리앗 — 엘라 골짜기",
+  "verses": {
+    "range": "삼상 17:1-49",
+    "quotes": {
+      "17:3": "블레셋 사람은 이편 산에 섰고 이스라엘은 저편 산에 섰고 사이에는 골짜기가 있었더라",
+      "17:4": "그 이름은 골리앗이요 가드 사람이라 그 신장은 여섯 규빗 한 뼘이요",
+      "17:5": "머리에는 놋투구를 썼고 몸에는 어린갑을 입었으니",
+      "17:6": "그 다리에는 놋경갑을 쳤고 어깨 사이에는 놋단창을 메었으니",
+      "17:7": "그 창자루는 베틀채 같고 … 방패 든 자는 앞서 행하더라",
+      "17:40": "손에 막대기를 가지고 시내에서 매끄러운 돌 다섯을 골라서 … 주머니에 넣고 손에 물매를 가지고",
+      "17:42": "그가 젊고 붉고 용모가 아름다움이라",
+      "17:48": "다윗이 블레셋 사람에게로 마주 그 항오를 향하여 빨리 달리며"
+    }
+  },
+  "moment": {
+    "verse": "17:48-49 전반",
+    "why": "다윗이 빨리 달리며 손에 물매를 쥔 순간 — 돌은 아직 이마에 닿지 않았다(유혈·쓰러짐 없음). 투척 자세·주머니·막대기는 이 순간의 요구가 아니다(ADR 260903-154254 · 260902-170558, §5·§19·§21)."
+  },
+  "background": [
+    {"what": "마른 골짜기 바닥·매끄러운 돌의 마른 시내", "verse": "17:2-3 · 17:40"},
+    {"what": "왼쪽 산(이스라엘 편)", "verse": "17:3"},
+    {"what": "오른쪽 산(블레셋 편)", "verse": "17:3"}
+  ],
+  "crowds": [
+    {"what": "이스라엘 군대 — 왼쪽 능선에 도열", "verse": "17:2-3", "region": "crest_left"},
+    {"what": "블레셋 군대 — 오른쪽 능선에 도열", "verse": "17:3 · 17:8", "region": "crest_right"}
+  ],
+  "figures": [
+    {"cast": "goliath", "role": "거인 골리앗", "pose": "창을 쥐고 옆으로 서 있다", "prop": "베틀채 같은 굵은 창 한 자루", "facing": "left", "region": "goliath", "verse": "17:4-7"},
+    {"cast": "shieldman", "role": "방패 든 자 — 무장 없는 성인 종자", "pose": "큰 둥근 놋방패를 양손으로 앞에 세워 들고 걷는다", "prop": "큰 둥근 놋방패", "facing": "left", "region": "shieldman", "verse": "17:7 · 17:41"},
+    {"cast": "david", "role": "소년 다윗", "pose": "빨리 달린다", "prop": "짧은 가죽 물매", "facing": "right", "region": "david", "verse": "17:40 · 17:42 · 17:48"}
+  ],
+  "regions": {
+    "full":         [0.00, 0.00, 1.00, 1.00],
+    "hill_left":    [0.00, 0.12, 0.40, 0.78],
+    "hill_right":   [0.60, 0.10, 1.00, 0.76],
+    "crest_left":   [0.02, 0.24, 0.44, 0.47],
+    "crest_right":  [0.56, 0.18, 0.99, 0.43],
+    "goliath":      [0.625, 0.05, 0.855, 0.95],
+    "shieldman":    [0.44, 0.41, 0.585, 0.94],
+    "david":        [0.15, 0.52, 0.305, 0.92],
+    "sling_arc":    [0.15, 0.26, 0.42, 0.44],
+    "david_head":   [0.185, 0.44, 0.29, 0.575],
+    "goliath_head": [0.635, 0.05, 0.795, 0.30]
+  },
+  "_regions_why": "골리앗 세로 0.90 · 다윗 0.40(17:4 여섯 규빗 한 뼘 ≈ 2.9m 대 소년 1.6m) · 종자 0.53(성인 1.7m). 좌우 배치는 17:2-3(양쪽 산)·17:41·48(마주 나아감). 상세는 §22.",
+  "stages": [
+    {"id": "S1",  "kind": "full",   "region": "full",        "verse": "17:1",
+     "prompt": "a low flat dry valley floor of pale stony ground, a dry brook bed with smooth round stones, sparse dry grass, empty pale sky, no hills, no people.",
+     "neg": ["people", "figures", "soldiers", "flat plain", "open field"]},
+    {"id": "S1b", "kind": "region", "region": "hill_left",   "verse": "17:3",
+     "prompt": "a tall steep dry rocky hillside rising up, sunbaked brown slope, layered rock, sparse dry grass, no people.",
+     "neg": ["people", "figures", "flat ground", "valley", "pagoda", "temple", "tower", "roof", "building"]},
+    {"id": "S1c", "kind": "region", "region": "hill_right",  "verse": "17:3",
+     "prompt": "a tall steep dry rocky hillside rising up, sunbaked brown slope, layered rock, sparse dry grass, no people.",
+     "neg": ["people", "figures", "flat ground", "valley", "pagoda", "temple", "tower", "roof", "building"]},
+    {"id": "S2a", "kind": "ridge",  "region": "crest_left",  "verse": "17:2",
+     "prompt": "hundreds of tiny distant soldiers packed shoulder to shoulder in long ranks on the hillside, a dense forest of small upright spears, tiny far away crowd.",
+     "neg": ["empty hill", "bare ridge", "single figure", "close-up"]},
+    {"id": "S2b", "kind": "ridge",  "region": "crest_right", "verse": "17:3",
+     "prompt": "hundreds of tiny distant soldiers packed shoulder to shoulder in long ranks on the hillside, a dense forest of small upright spears, tiny far away crowd.",
+     "neg": ["empty hill", "bare ridge", "single figure", "close-up"]},
+    {"id": "S3",  "kind": "plate",  "region": "goliath",     "verse": "17:5",
+     "prompt": "a towering black-bearded Philistine warrior gripping one thick heavy spear with a long wooden shaft, dark bronze helmet with cheek guards, torso covered in dark overlapping bronze scale armour, bronze greaves, seen from the side, body and face turned left.",
+     "neg": ["horns", "plate armour", "knight", "medieval", "tent", "cone", "robe", "bare chest", "shirtless", "two spears", "double spear"]},
+    {"id": "S4",  "kind": "plate",  "region": "shieldman",   "verse": "17:7",
+     "prompt": "full body of an unarmed Philistine servant walking, carrying a large round bronze shield upright in front of him with both hands, plain knee-length tunic, sandals, facing left.",
+     "neg": ["armour", "spear", "sword", "cape", "helmet", "oval", "circle", "medallion", "vignette", "inset", "floating"]},
+    {"id": "S5",  "kind": "plate",  "region": "david",       "verse": "17:40",
+     "prompt": "an ancient Israelite shepherd boy running mid-stride, gripping a short leather sling, {costume:david}, a leather pouch at his side, facing right.",
+     "neg": ["armour", "helmet", "sword", "beard", "old man", "robe", "tall adult", "shirt", "shorts", "trousers", "shoes", "handbag"]},
+    {"id": "S9",  "kind": "prop"  , "region": "sling_arc",   "verse": "17:40", "from": "S5", "skip": "물매 별도 단계는 v10~v13 네 판 연속 실패(거대한 손·팔·원뿔) — S5 인물 프롬프트가 진다(§22)",
+     "prompt": "two very thin taut leather cords stretched in the air, a tiny pouch with one small round stone at their far end, thin lines only, nothing thick.",
+     "neg": ["staff", "pole", "club", "flag", "banner", "rope", "head", "face", "person", "boy", "figure"]},
+    {"id": "S7",  "kind": "refine", "region": "david_head",  "verse": "17:42", "from": "S5", "skip": "판 합성에서는 판이 이미 얼굴과 방향을 준다 — 다시 그리면 망친다(v32, §22)",
+     "prompt": "head of a ruddy boy of fifteen, clean-shaven, curly hair, bare head, strict side profile facing right, chin up, looking straight at the giant on the right.",
+     "neg": ["{head_neg}"]},
+    {"id": "S8_DROPPED", "kind": "refine", "region": "goliath_head", "verse": "17:5", "skip": "다듬기 단계가 놋투구를 지워 대머리로 만들었다(v9) — S3만으로 이미 왼쪽을 본다(§22)",
+     "prompt": "head of a grown man of about forty, clean-shaven, no hair showing, plain bronze helmet with cheek guards, strict side profile facing left, eyes on the boy.",
+     "neg": ["{head_neg}", "horns"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["david", "goliath"],
+    "gap_bands": [[0.385, 0.435], [0.590, 0.620]],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

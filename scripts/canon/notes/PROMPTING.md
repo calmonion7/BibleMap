@@ -471,11 +471,39 @@ helmet` · `dark overlapping bronze scale armour`로 **대상 자체의 색**을
 같은 실측에서 하나 더: **시대·민족 낱말을 문장 맨 앞에**(`an ancient Israelite shepherd boy`) 두자 24장 전부
 복식이 시대에 맞았다 — `plain linen tunic`만으로는 현대 소년 prior(셔츠·반바지·구두)가 이겼던 것(v39).
 
+## 15. 장면은 데이터다 — 명세 → 파생 (2026-09-04, task 330)
+
+장면 하나를 그리는 데 필요한 것(구역 상자 · 단계 순서 · 단계별 문구 · 부정어 · 판정 인물)은 **코드가
+아니라 `scripts/canon/scenes/<id>.json`** 에 있다. 규칙 7(손으로 프롬프트를 쓰지 않는다)의 장면판이다 —
+삼상17에서 8단계 문구가 코드에 박혀 있는 동안은 장면을 하나밖에 못 그렸고, 실패가 명세 탓인지
+생성기 탓인지 귀속되지 않았다(ADR `260823-012040`).
+
+**한국어 명세가 정본이고 영문 프롬프트는 파생물이다.** `derive_scene.py`가 조립한다:
+
+    prompt = ST + " " + stage.prompt          # ST = 공용 화풍 머리(derive_prompts.STYLE에서 파생)
+    neg    = NEG + ", " + ", ".join(stage.neg) # NEG = 공용 부정어(액자족 포함) — 장면마다 바뀌지 않는다
+    {costume:<cast>} → derive_prompts.SAMPLE_COSTUME[<cast>]   # 인물 정본 읽기 인터페이스(내용은 2/7)
+    {head_neg}       → derive_prompts.HEAD_NEG_EXTRA
+
+명세 필드: `id` · `verses`(절 범위 + 개역한글 인용) · `moment`(고정한 순간) · `background[]` · `crowds[]` ·
+`figures[]`(`cast` · 자세 · **지물 1개** · 향하는 방향 · 구역) · `regions{}`(분수 좌표) · `stages[]`(`id` ·
+`kind` full/region/ridge/plate/refine/prop · `region` · `verse` · `prompt` · `neg[]` · `from`(다듬기 원천 단계) ·
+`skip`(사유)) · `negatives[]` · `judge{figures, gap_bands, crest_x}`.
+
+**기전 상수는 명세 밖이다** — `STRENGTH_BY_STAGE`·`FEATHER`·`PLATE_CUT`·`BODY_COV`·`ASPECT_MAX`와 판정
+임계는 실측으로 정해진 값이고 장면마다 바뀌지 않는다. 삼상17 명세 + 같은 시드로 v41과 **픽셀 동일**이
+이 경계의 회귀 가드다(SCENE-1SAM17 §0 재현 명령).
+
+    $VENV derive_scene.py <id> --check     # 단계별 문구를 찍고 77토큰 초과가 있으면 종료코드 1 (GPU 0)
+    $VENV gen_scripture_scene.py --scene <id> --seeds 11 --label vNN
+    $VENV judge_scene.py vNN --scene <id>  # 축 이름은 명세의 판정 인물에서 파생(ink_<cast>·h_<cast>)
+
 ## 빠른 참조
 
     VENV=/Users/calmonion/.local/biblemap-imggen/.venv314/bin/python
 
     $VENV try_prompt.py --check "..."                 # 토큰만 (1초, GPU 0)
+    $VENV derive_scene.py <scene-id> --check          # 장면 명세의 단계별 토큰 (GPU 0)
     $VENV try_prompt.py "..."                         # 1장 + 세 축 (약 2~3분)
     $VENV try_prompt.py "..." --cn 0.3 --ip 0.5       # 손잡이
     $VENV try_prompt.py "..." --seed 42 --label 실험A  # 재현 확인
