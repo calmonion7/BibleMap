@@ -1,0 +1,48 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "abner",
+  "names": [
+    "아브넬",
+    "넬의 아들 아브넬"
+  ],
+  "stops": [
+    "authored-david-gibeon-battle"
+  ],
+  "era": "an ancient Israelite",
+  "age": "middle-aged commander",
+  "sex": "male",
+  "hair": "dark hair",
+  "beard": "dark beard",
+  "headwear": "none",
+  "build": "sturdy, battle-hardened",
+  "costume": "in a leather cuirass with a short kilt",
+  "colorWords": [
+    "deep gray",
+    "bronze"
+  ],
+  "propCandidates": [],
+  "neg": [
+    "crown",
+    "modern clothes"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "standing, full body, facing right, arm extended in challenge"
+  ],
+  "_why": {
+    "age": "본문 밖 · 저작자 정함",
+    "build": "본문 밖 · 저작자 정함",
+    "hair": "본문 밖 · 저작자 정함",
+    "beard": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함",
+    "costume": "본문 밖 · 저작자 정함(시대 복식) — 삼하 2:12 「넬의 아들 아브넬」"
+  },
+  "plate": {
+    "seed": 11,
+    "anchor": true,
+    "ipScale": 0.25,
+    "approved": "승인",
+    "approvedOn": "2026-09-04",
+    "label": "a"
+  }
+}

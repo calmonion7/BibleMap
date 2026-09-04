@@ -1,0 +1,61 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "david-boy",
+  "names": [
+    "다윗(소년)"
+  ],
+  "stops": [
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-david-gibeah-harp"
+  ],
+  "era": "an ancient Israelite",
+  "age": "shepherd boy",
+  "sex": "male",
+  "hair": "curly hair",
+  "beard": "none",
+  "headwear": "none",
+  "build": "slight, youthful",
+  "costume": "in a knee-length wool tunic, cloth belt, leather strap sandals",
+  "colorWords": [
+    "warm tan",
+    "light brown"
+  ],
+  "propCandidates": [
+    {
+      "prop": "a small harp",
+      "verse": "삼상 16:23",
+      "ko": "수금"
+    },
+    {
+      "prop": "a shepherd's staff",
+      "verse": "삼상 16:11",
+      "ko": "양을 지키나이다"
+    }
+  ],
+  "neg": [
+    "armour",
+    "crown",
+    "adult beard",
+    "modern clothes"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "sitting, full body, facing right, playing a small harp"
+  ],
+  "_why": {
+    "age": "삼상 16:11 「그가 양을 지키나이다」",
+    "build": "삼상 16:12 「그의 빛이 붉고 눈이 빼어나고 얼굴이 아름답더라」",
+    "hair": "본문 밖 · 저작자 정함",
+    "beard": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함",
+    "costume": "본문 밖 · 저작자 정함(시대 복식) — 기존 v41 정본 이관"
+  },
+  "plate": {
+    "seed": 11,
+    "anchor": true,
+    "ipScale": 0.25,
+    "approved": "승인",
+    "approvedOn": "2026-09-04",
+    "label": "a"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "mother-b",
+  "names": [
+    "다른 어머니(두 여인 중 죽은 아이의 어머니)"
+  ],
+  "stops": [
+    "authored-solomon-jerusalem-two-mothers"
+  ],
+  "era": "an ancient Israelite",
+  "age": "woman",
+  "sex": "female",
+  "hair": "dark hair",
+  "beard": "none",
+  "headwear": "dark shawl over the head",
+  "build": "slender build",
+  "costume": "in a dark ochre wool robe with a cloth belt",
+  "colorWords": [
+    "dark ochre",
+    "tan"
+  ],
+  "propCandidates": [
+    {
+      "prop": "a sword",
+      "verse": "왕상 3:24",
+      "ko": "칼"
+    }
+  ],
+  "neg": [
+    "crown",
+    "fine jewelry",
+    "modern clothes"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "standing, full body, facing left, arms crossed"
+  ],
+  "_why": {
+    "age": "본문 밖 · 저작자 정함(두 인물 구분용)",
+    "build": "본문 밖 · 저작자 정함(두 인물 구분용)",
+    "hair": "본문 밖 · 저작자 정함(두 인물 구분용)",
+    "beard": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함(두 인물 구분용)",
+    "costume": "왕상 3:26 「내 것도 되게 말고 네 것도 되게 말고 나누게 하라」(세부는 본문 밖 · 저작자 정함, 두 인물 구분용)"
+  },
+  "plate": {
+    "seed": 11,
+    "anchor": true,
+    "ipScale": 0.25,
+    "approved": "승인",
+    "approvedOn": "2026-09-04",
+    "label": "a"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "jonathan",
+  "names": [
+    "요나단",
+    "사울의 아들 요나단"
+  ],
+  "stops": [
+    "authored-saul-gilboa-death"
+  ],
+  "era": "an ancient Israelite",
+  "age": "young prince",
+  "sex": "male",
+  "hair": "dark hair tied back",
+  "beard": "none",
+  "headwear": "none",
+  "build": "tall, athletic",
+  "costume": "in a deep blue tunic with a leather belt and a quiver strap",
+  "colorWords": [
+    "deep blue",
+    "dark brown"
+  ],
+  "propCandidates": [
+    {
+      "prop": "a bow",
+      "verse": "삼상 31:3",
+      "ko": "활"
+    },
+    {
+      "prop": "a bow",
+      "verse": "삼하 1:22",
+      "ko": "요나단의 활"
+    }
+  ],
+  "neg": [
+    "crown",
+    "modern clothes",
+    "beard",
+    "cuirass"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "standing, full body, facing right, holding a bow"
+  ],
+  "_why": {
+    "age": "본문 밖 · 저작자 정함",
+    "build": "본문 밖 · 저작자 정함",
+    "hair": "본문 밖 · 저작자 정함",
+    "beard": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함",
+    "costume": "본문 밖 · 저작자 정함(시대 복식) — 삼상 31:2 「사울의 아들 요나단」",
+    "note": "사용자 2026-09-04 보류: 요압과 동일 → 무수염·긴 머리·청색 튜닉으로 개정(b); 활은 삼하 1:22"
+  },
+  "plate": {
+    "seed": 11,
+    "anchor": true,
+    "ipScale": 0.25,
+    "approved": "승인",
+    "approvedOn": "2026-09-04",
+    "label": "b"
+  }
+}

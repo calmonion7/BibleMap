@@ -1,0 +1,55 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "nahash",
+  "names": [
+    "나하스",
+    "암몬 사람 나하스"
+  ],
+  "stops": [
+    "authored-saul-jabesh-rescue"
+  ],
+  "era": "an ancient Ammonite",
+  "age": "harsh warlord",
+  "sex": "male",
+  "hair": "dark hair",
+  "beard": "black beard",
+  "headwear": "none",
+  "build": "stocky, imposing",
+  "costume": "in a dark leather cuirass with a wide belt",
+  "colorWords": [
+    "dark red",
+    "black"
+  ],
+  "propCandidates": [
+    {
+      "prop": "a siege spear",
+      "verse": "삼상 11:1",
+      "ko": "진"
+    }
+  ],
+  "neg": [
+    "Israelite dress",
+    "crown",
+    "modern clothes"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "standing, full body, facing right, arm gesturing in threat"
+  ],
+  "_why": {
+    "age": "본문 밖 · 저작자 정함",
+    "build": "본문 밖 · 저작자 정함",
+    "hair": "본문 밖 · 저작자 정함",
+    "beard": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함",
+    "costume": "본문 밖 · 저작자 정함(시대 복식) — 삼상 11:1 「암몬 사람 나하스」"
+  },
+  "plate": {
+    "seed": 11,
+    "anchor": true,
+    "ipScale": 0.25,
+    "approved": "승인",
+    "approvedOn": "2026-09-04",
+    "label": "a"
+  }
+}

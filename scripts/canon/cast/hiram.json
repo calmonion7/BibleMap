@@ -1,0 +1,48 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "hiram",
+  "names": [
+    "히람"
+  ],
+  "stops": [
+    "authored-solomon-ezion-geber-fleet"
+  ],
+  "era": "an ancient Phoenician",
+  "age": "middle-aged king",
+  "sex": "male",
+  "hair": "dark hair",
+  "beard": "dark beard",
+  "headwear": "none",
+  "build": "average build",
+  "costume": "in a fringed robe with a wide sash",
+  "colorWords": [
+    "deep purple",
+    "gold"
+  ],
+  "propCandidates": [],
+  "neg": [
+    "Israelite dress",
+    "crown of Israel",
+    "modern clothes"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "standing, full body, facing right, gesturing toward ships"
+  ],
+  "_why": {
+    "age": "본문 밖 · 저작자 정함",
+    "build": "본문 밖 · 저작자 정함",
+    "hair": "본문 밖 · 저작자 정함",
+    "beard": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함",
+    "costume": "본문 밖 · 저작자 정함(시대 복식) — 왕상 9:27 「히람이 자기 종...보내매」"
+  },
+  "plate": {
+    "seed": 42,
+    "anchor": true,
+    "ipScale": 0.25,
+    "approved": "승인",
+    "approvedOn": "2026-09-04",
+    "label": "a"
+  }
+}

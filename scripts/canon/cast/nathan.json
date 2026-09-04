@@ -1,0 +1,57 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "nathan",
+  "names": [
+    "나단",
+    "선지자 나단"
+  ],
+  "stops": [
+    "authored-david-nathan-covenant",
+    "authored-solomon-jerusalem-birth",
+    "authored-solomon-gihon-anointing"
+  ],
+  "era": "an ancient Israelite",
+  "age": "middle-aged prophet",
+  "sex": "male",
+  "hair": "dark hair",
+  "beard": "dark beard",
+  "headwear": "none",
+  "build": "average build",
+  "costume": "in a long dark wool robe with a cloth belt",
+  "colorWords": [
+    "dark brown",
+    "deep gray"
+  ],
+  "propCandidates": [
+    {
+      "prop": "a horn of oil",
+      "verse": "왕상 1:39",
+      "ko": "기름 뿔"
+    }
+  ],
+  "neg": [
+    "crown",
+    "armour",
+    "modern clothes"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "standing, full body, facing right, one arm raised speaking"
+  ],
+  "_why": {
+    "age": "본문 밖 · 저작자 정함",
+    "build": "본문 밖 · 저작자 정함",
+    "hair": "본문 밖 · 저작자 정함",
+    "beard": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함",
+    "costume": "본문 밖 · 저작자 정함(시대 복식)"
+  },
+  "plate": {
+    "seed": 11,
+    "anchor": true,
+    "ipScale": 0.25,
+    "approved": "승인",
+    "approvedOn": "2026-09-04",
+    "label": "a"
+  }
+}

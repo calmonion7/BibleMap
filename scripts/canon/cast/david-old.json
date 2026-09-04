@@ -1,0 +1,49 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "david-old",
+  "names": [
+    "다윗(노년)"
+  ],
+  "stops": [
+    "authored-solomon-jerusalem-david-charge"
+  ],
+  "era": "an ancient Israelite",
+  "age": "old, dying king",
+  "sex": "male",
+  "hair": "gray hair",
+  "beard": "long gray beard",
+  "headwear": "none",
+  "build": "frail, bedridden",
+  "costume": "in a plain dark robe, lying in bed",
+  "colorWords": [
+    "ash gray",
+    "dark brown"
+  ],
+  "propCandidates": [],
+  "neg": [
+    "crown",
+    "armour",
+    "young face",
+    "modern clothes"
+  ],
+  "poses": [
+    "lying, full body, facing right, propped up on a bed",
+    "standing, full body, side view facing left"
+  ],
+  "_why": {
+    "age": "왕상 2:1 「다윗이 죽을 날이 임박하매」",
+    "build": "본문 밖 · 저작자 정함",
+    "hair": "본문 밖 · 저작자 정함",
+    "beard": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함",
+    "costume": "본문 밖 · 저작자 정함(시대 복식)"
+  },
+  "plate": {
+    "seed": 42,
+    "anchor": true,
+    "ipScale": 0.25,
+    "approved": "승인",
+    "approvedOn": "2026-09-04",
+    "label": "a"
+  }
+}

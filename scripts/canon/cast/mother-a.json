@@ -1,0 +1,54 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "mother-a",
+  "names": [
+    "참 어머니(두 여인 중 산 아이의 어머니)"
+  ],
+  "stops": [
+    "authored-solomon-jerusalem-two-mothers"
+  ],
+  "era": "an ancient Israelite",
+  "age": "young woman",
+  "sex": "female",
+  "hair": "dark braided hair",
+  "beard": "none",
+  "headwear": "none",
+  "build": "slender build",
+  "costume": "in an undyed wool robe with a dark brown cloth belt",
+  "colorWords": [
+    "dull red",
+    "tan"
+  ],
+  "propCandidates": [
+    {
+      "prop": "an infant",
+      "verse": "왕상 3:26",
+      "ko": "산 아들"
+    }
+  ],
+  "neg": [
+    "crown",
+    "fine jewelry",
+    "modern clothes"
+  ],
+  "poses": [
+    "kneeling, full body, side view facing left, pleading with arms out",
+    "kneeling, full body, facing right, reaching out with both hands"
+  ],
+  "_why": {
+    "age": "본문 밖 · 저작자 정함(두 인물 구분용)",
+    "build": "본문 밖 · 저작자 정함(두 인물 구분용)",
+    "hair": "본문 밖 · 저작자 정함(두 인물 구분용)",
+    "beard": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함(두 인물 구분용)",
+    "costume": "왕상 3:26 「산 아이를 저에게 주고 죽이지 마옵소서」(세부는 본문 밖 · 저작자 정함, 두 인물 구분용)"
+  },
+  "plate": {
+    "seed": 11,
+    "anchor": true,
+    "ipScale": 0.25,
+    "approved": "승인",
+    "approvedOn": "2026-09-04",
+    "label": "a"
+  }
+}

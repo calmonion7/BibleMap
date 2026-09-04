@@ -1,0 +1,56 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "sheba-queen",
+  "names": [
+    "스바 여왕"
+  ],
+  "stops": [
+    "authored-solomon-jerusalem-sheba"
+  ],
+  "era": "an ancient South Arabian Sabaean queen",
+  "age": "a queen",
+  "sex": "female",
+  "hair": "dark hair",
+  "beard": "none",
+  "headwear": "gold diadem with a veil",
+  "build": "regal bearing",
+  "costume": "in a crimson robe with gold fringe and necklaces",
+  "colorWords": [
+    "deep crimson",
+    "gold"
+  ],
+  "propCandidates": [
+    {
+      "prop": "spices and gold",
+      "verse": "왕상 10:2",
+      "ko": "향품과 심히 많은 금과 보석"
+    }
+  ],
+  "neg": [
+    "Israelite dress",
+    "crown",
+    "modern clothes",
+    "european gown",
+    "tiara"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "standing, full body, facing right, presenting gifts"
+  ],
+  "_why": {
+    "age": "본문 밖 · 저작자 정함",
+    "build": "본문 밖 · 저작자 정함",
+    "hair": "본문 밖 · 저작자 정함",
+    "beard": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함(기원전 10세기 남아라비아 사바 — 왕상 10:2 금·보석만 근거)",
+    "costume": "본문 밖 · 저작자 정함(기원전 10세기 남아라비아 사바 — 왕상 10:2 금·보석만 근거)"
+  },
+  "plate": {
+    "seed": 11,
+    "anchor": true,
+    "ipScale": 0.25,
+    "approved": "승인",
+    "approvedOn": "2026-09-04",
+    "label": "b"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "saul",
+  "names": [
+    "사울",
+    "기스의 아들 사울"
+  ],
+  "stops": [
+    "authored-saul-mizpah-chosen",
+    "authored-saul-jabesh-rescue",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-michmash-battle",
+    "authored-saul-gilgal-amalek",
+    "authored-david-gibeah-harp",
+    "authored-saul-gibeah-spear",
+    "authored-saul-nob-massacre",
+    "authored-david-en-gedi-saul"
+  ],
+  "era": "an ancient Israelite",
+  "age": "tall king",
+  "sex": "male",
+  "hair": "dark hair",
+  "beard": "short dark beard",
+  "headwear": "none",
+  "build": "a head taller than others",
+  "costume": "in a dark wool tunic with a leather belt",
+  "colorWords": [
+    "dark brown",
+    "deep red"
+  ],
+  "propCandidates": [
+    {
+      "prop": "a spear",
+      "verse": "삼상 18:10",
+      "ko": "창"
+    },
+    {
+      "prop": "a sacrificial altar",
+      "verse": "삼상 13:9",
+      "ko": "제단"
+    }
+  ],
+  "neg": [
+    "crown",
+    "royal robe",
+    "armour",
+    "modern clothes"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "standing, full body, facing right, arm raised holding a spear"
+  ],
+  "_why": {
+    "age": "본문 밖 · 저작자 정함(재위 중 장년)",
+    "build": "삼상 10:23 「다른 사람보다 어깨 위나 더 크더라」",
+    "hair": "본문 밖 · 저작자 정함",
+    "beard": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함",
+    "costume": "본문 밖 · 저작자 정함(시대 복식)"
+  },
+  "plate": {
+    "seed": 11,
+    "anchor": true,
+    "ipScale": 0.25,
+    "approved": "승인",
+    "approvedOn": "2026-09-04",
+    "label": "a"
+  }
+}

@@ -1,0 +1,113 @@
+# 다윗 투어 36정차지 — 등장인물 명단(S1) · 어휘 정본(S2)
+
+근거: `.forge/scratch/david-tour-verses.md`(36정차지 절 범위·개역한글 본문 전부, 유일한 진리 근거).
+
+## 명단 도출 규칙
+
+- **인물** = 고정한 순간에 판(plate)으로 단독으로 그릴 개체. 이름 있는 개인뿐 아니라, 이름 없어도 장면의 핵심 개체(엔돌의 신접한 여인, 두 여인, 스바 여왕)를 포함한다.
+- **군중은 인물이 아니다**: 백성·군대·제사장들·왕비들·창기의 배경 등은 역표의 「군중/무리」 열로 뺐다. 예: 미스바의 「모든 백성」, 놉 학살의 「남녀와 아이들」, 성전 낙성식의 「온 이스라엘 회중」.
+- **생애 단계가 크게 갈리는 인물은 id를 나눈다**: 사울(청년~장년 재위, mizpah~en-gedi)과 사울(노년, 엔돌·길보아 — 삼상28:20 「기력이 진하였으니」)을 나눴다. 다윗도 소년(david-boy, 수금·기름부음)·성인(david, 도망자~왕)·노년(david-old, 왕상2:1 임종 유언)으로 나눴다. 솔로몬은 청년 왕(solomon)과 노년(solomon-old, 왕상11:4 「나이 늙을 때에」)으로 나눴다.
+- **본문에 등장만 하고 직접 행동하지 않는 이름**(엘리압 등 이새의 아들들, 사독·브나야, 바로의 딸, 이스보셋)은 인물로 세우지 않고 군중/배경으로 처리했다 — 근거가 이름 언급 1회뿐이고 반복 등장이 없어 별도 판이 불필요하다고 판단.
+- 하나님/천사/여호와의 영은 인물로 세우지 않는다(그리지 않음). 사무엘의 영은 엔돌 정차지에서 「영으로 등장」으로 표시했다.
+- 골리앗은 36정차지 본문 범위 밖(삼상17장)이지만 사용자 지시로 명단에 포함 — 정차지 없음(v41 기존 자산 이관, 재저작 대상).
+- 두 여인은 한 인물 한 판 원칙으로 mother-a/mother-b로 나눴다(사용자 판정 2026-09-04).
+
+## 명단 표 (정차지 수 내림차순)
+
+| id | 이름(한글·별칭) | 등장 정차지(id 목록) | 정차지 수 | 비고 |
+|---|---|---|---|---|
+| david | 다윗, 이새의 아들 다윗 | gibeah-spear, ramah-samuel, nob-priests, gath-achish, adullam-cave, en-gedi-saul, ziklag-base, hebron-king-judah, jerusalem-conquest, ark-jerusalem, nathan-covenant, solomon-jerusalem-birth, mahanaim-exile, returns-jerusalem | 14 | 소년기 이후 성인(도망자~왕) 전 구간 |
+| saul | 사울, 기스의 아들 사울 | mizpah-chosen, jabesh-rescue, gilgal-coronation, michmash-battle, gilgal-amalek, gibeah-harp, gibeah-spear, nob-massacre, en-gedi-saul | 9 | 청년 선택~재위 구간 |
+| solomon | 솔로몬 | gihon-anointing, solomon-jerusalem-david-charge, gibeon-dream, mother-a, mother-b, temple-build, palace, temple-dedication, ezion-geber-fleet, sheba | 9 | 청년 왕 구간 |
+| samuel | 사무엘 | mizpah-chosen, gilgal-coronation, michmash-battle, gilgal-amalek, bethlehem-david-anointing, ramah-samuel, ramah-death, endor-medium | 8 | 엔돌은 영으로 등장 |
+| david-boy | 다윗(소년) | bethlehem-david-anointing, gibeah-harp | 2 | 기존 v41 정본 이관 출발점 |
+| ahimelech | 아히멜렉, 제사장 아히멜렉 | nob-priests, nob-massacre | 2 | 놉 학살에서 사망 |
+| doeg | 도엑, 에돔 사람 도엑 | nob-priests, nob-massacre | 2 | |
+| achish | 아기스, 가드 왕 아기스 | gath-achish, ziklag-base | 2 | |
+| saul-old | 사울(노년) | endor-medium, gilboa-death | 2 | 생애 단계 분할 |
+| nathan | 나단, 선지자 나단 | nathan-covenant, solomon-jerusalem-birth, gihon-anointing | 3 | |
+| nahash | 나하스, 암몬 사람 나하스 | jabesh-rescue | 1 | |
+| jesse | 이새 | bethlehem-david-anointing | 1 | |
+| david-old | 다윗(노년) | solomon-jerusalem-david-charge | 1 | 생애 단계 분할, 왕상2:1 임종 유언 |
+| agag | 아각, 아말렉 왕 아각 | gilgal-amalek | 1 | |
+| endor-medium | 엔돌의 신접한 여인 | endor-medium | 1 | 이름 없는 핵심 개체 |
+| saul-armor-bearer | 병기 든 자 | gilboa-death | 1 | 이름 없는 핵심 개체 |
+| jonathan | 요나단, 사울의 아들 요나단 | gilboa-death | 1 | |
+| joab | 요압, 스루야의 아들 요압 | gibeon-battle | 1 | 2026-09-04 사용자 보류 → 문구 개정(b) |
+| abner | 아브넬, 넬의 아들 아브넬 | gibeon-battle | 1 | |
+| bathsheba | 밧세바, 다윗의 처 밧세바 | solomon-jerusalem-birth | 1 | |
+| absalom | 압살롬 | mahanaim-exile | 1 | |
+| mother-a | 참 어머니(두 여인 중 산 아이의 어머니) | mother-a | 1 | 이름 없는 핵심 개체 |
+| mother-b | 다른 어머니(두 여인 중 죽은 아이의 어머니) | mother-b | 1 | 이름 없는 핵심 개체 |
+| solomon-old | 솔로몬(노년) | apostasy | 1 | 생애 단계 분할 |
+| hiram | 히람 | ezion-geber-fleet | 1 | |
+| sheba-queen | 스바 여왕 | sheba | 1 | 이름 없는 핵심 개체, 2026-09-04 사용자 보류 → 문구 개정(b) |
+| goliath | 골리앗, 블레셋 사람 골리앗 | (없음) | 0 | 삼상17 전용, v41 기존 정본 이관·재저작 대상 |
+
+## 정차지별 역표(36건 전부)
+
+| stop-id | 등장 인물 id | 군중/무리(인물 아님) |
+|---|---|---|
+| authored-saul-mizpah-chosen | samuel, saul | 이스라엘 모든 백성, 지파들 |
+| authored-saul-jabesh-rescue | saul, nahash | 야베스 사람들, 이스라엘 삼십만·유다 삼만 |
+| authored-saul-gilgal-coronation | samuel, saul | 모든 백성 |
+| authored-saul-michmash-battle | samuel, saul | 백성(흩어짐) |
+| authored-saul-gilgal-amalek | samuel, saul, agag | 아말렉 백성(진멸당함) |
+| authored-samuel-bethlehem-david-anointing | samuel, jesse, david-boy | 성읍 장로들, 이새의 다른 아들들(엘리압 등) |
+| authored-david-gibeah-harp | saul, david-boy | (없음) |
+| authored-saul-gibeah-spear | saul, david | 여인들(노래하며 춤추는 무리) |
+| authored-david-ramah-samuel | david, samuel | (없음) |
+| authored-david-nob-priests | david, ahimelech, doeg | 다윗의 소년들 |
+| authored-david-gath-achish | david, achish | 아기스의 신하들 |
+| authored-david-adullam-cave | david | 환난 당한 자·빚진 자·마음 원통한 자(약 400명) |
+| authored-saul-nob-massacre | saul, ahimelech, doeg | 놉의 제사장들(85인), 놉의 남녀와 아이들 |
+| authored-david-en-gedi-saul | david, saul | 사울의 택한 사람 삼천, 다윗의 사람들 |
+| authored-samuel-ramah-death | samuel | 온 이스라엘 무리(애곡) |
+| authored-david-ziklag-base | david, achish | (없음) |
+| authored-saul-endor-medium | saul-old, endor-medium, samuel(영으로 등장) | 사울의 두 신하 |
+| authored-saul-gilboa-death | saul-old, jonathan, saul-armor-bearer | 블레셋 사람들, 길르앗 야베스 장사들 |
+| authored-david-hebron-king-judah | david | 유다 사람들 |
+| authored-david-gibeon-battle | joab, abner | 다윗의 신복들, 이스보셋의 신복들, 소년 24인 |
+| authored-david-jerusalem-conquest | david | 여부스 사람들 |
+| authored-david-ark-jerusalem | david | 온 이스라엘 족속 |
+| authored-david-nathan-covenant | david, nathan | (없음) |
+| authored-solomon-jerusalem-birth | david, bathsheba, nathan | (없음) |
+| authored-david-mahanaim-exile | david, absalom | 모든 이스라엘 사람(압살롬 편) |
+| authored-david-returns-jerusalem | david | 유다 족속 |
+| authored-solomon-gihon-anointing | solomon, nathan | 사독, 브나야, 그렛·블렛 사람, 모든 백성 |
+| authored-solomon-jerusalem-david-charge | david-old, solomon | (없음) |
+| authored-solomon-gibeon-dream | solomon | (없음) |
+| authored-solomon-jerusalem-two-mothers | solomon, mother-a, mother-b | (없음) |
+| authored-solomon-jerusalem-temple-build | solomon | 석수·목수 등 일군들(직접 묘사 없음) |
+| authored-solomon-jerusalem-palace | solomon | 바로의 딸(언급만, 미행동) |
+| authored-solomon-jerusalem-temple-dedication | solomon | 온 이스라엘의 온 회중 |
+| authored-solomon-ezion-geber-fleet | solomon, hiram | 히람의 사공들 |
+| authored-solomon-jerusalem-sheba | solomon, sheba-queen | 스바 여왕의 신복들 |
+| authored-solomon-jerusalem-apostasy | solomon-old | 이방 여인들(왕비 700·빈장 300) |
+
+## 재현 명령
+
+    VENV=/Users/calmonion/.local/biblemap-imggen/.venv314/bin/python
+    cd scripts/canon
+    $VENV gen_cast_plate.py <id>                       # 얼굴 후보 4장(시드 11·42·23·5, 7 제외) + A/B(자세 2 × 끔/켬 IP 0.25, 얼굴 = seed 11)
+    $VENV gen_cast_plate.py <id> --face-seed 42 --ab-only   # 사용자가 다른 얼굴을 고르면 A/B 3장만 다시
+    $VENV gen_cast_plate.py <id> --label b            # 문구를 고친 뒤 재시도(라벨로 구분, 상한 문구 3종 × 시드 4)
+    python3 approve_cast.py <id> --seed 11 --anchor off --why "…"   # 사람 판정을 정본에 기록(plate·frozen·FROZEN.md) · 보류는 --hold "사유"
+
+산출물(`.forge/reports/canon-pilot/cast/`): `<id>-faces.png`(후보 4 + 우상단 머리 크롭) · `<id>-ab.png`(위 끔 / 아래 켬) ·
+`<id>/<label>-*.png`(판 원본·얼굴 크롭) · `<id>/<label>-meta.json`(문구·토큰·잉크·몸 상자·얼굴 상자).
+
+판정은 **사람 육안**(정체성은 기계가 못 잰다). 잉크(lum<0.55 비율, judge_scene C4 산식)는 참고치. 사람이 고른 결과는
+`cast/<id>.json`의 `plate`(`seed`·`anchor`·`ipScale`·`approved`·`approvedOn`)에 적고, 얼굴 크롭을 `frozen/<id>.png`로 복사하며
+`frozen/FROZEN.md`에 선택 근거 행을 남긴다. 켬/끔 차이가 없으면 앵커는 뺀다(ADR `260825-013557` — 대조군이 통과하면 무정보).
+
+실측(2026-09-04, 다윗 소년): 판 1장 54~94초(스왑 5GB 사용 상태) · 인물당 7장 ≈ 9분 · 26명 ≈ 3~4시간.
+
+## 판정 결과 (2026-09-04, 폰 판정 페이지 3회)
+
+- **승인 26 / 보류 1(골리앗)**. 승인 전원 **앵커 켬**(IP 0.25) — 사용자 결정. ADR `260904-055320` 「되돌리기 조건」(켬/끔 차이 0이면 절차 단순화)의 반대 방향이라,
+  장면 4~7/7에서 앵커가 톤·지물을 깨는 사례가 쌓이면 인물별로 끔으로 되돌린다(`plate.anchor`).
+- 문구 개정: 요압(b, 아브넬과 동일 문구였음) · 스바 여왕(b, 오타+시대 복식) · 골리앗(b·c, 중세 느낌 → 보류) · 요나단(b, 요압과 동일 얼굴). 두 여인 → `mother-a`/`mother-b`.
+- 얼굴 시드: 11이 19명, 42가 5명(다윗·다윗 노년·솔로몬·밧세바·히람), 5가 2명(아기스·아히멜렉), 23이 1명(요압).
+- 골리앗 보류 사유는 `cast/goliath.json` `plate.approved`. 삼상17 전용 인물이라 36장면 미사용.
+- 판정 페이지 결정 원본: `.forge/scratch/cast-review-pass{1,2,3}.json`.

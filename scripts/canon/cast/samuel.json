@@ -1,0 +1,67 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "samuel",
+  "names": [
+    "사무엘"
+  ],
+  "stops": [
+    "authored-saul-mizpah-chosen",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-michmash-battle",
+    "authored-saul-gilgal-amalek",
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-david-ramah-samuel",
+    "authored-samuel-ramah-death",
+    "authored-saul-endor-medium"
+  ],
+  "era": "an ancient Israelite",
+  "age": "old prophet",
+  "sex": "male",
+  "hair": "white hair",
+  "beard": "long white beard",
+  "headwear": "none",
+  "build": "thin, stooped",
+  "costume": "in a long dark wool robe with a cloth belt",
+  "colorWords": [
+    "dark brown",
+    "deep gray"
+  ],
+  "propCandidates": [
+    {
+      "prop": "a horn of oil",
+      "verse": "삼상 16:13",
+      "ko": "기름 뿔"
+    },
+    {
+      "prop": "a robe corner",
+      "verse": "삼상 15:27",
+      "ko": "겉옷자락"
+    }
+  ],
+  "neg": [
+    "crown",
+    "armour",
+    "modern clothes",
+    "weapon"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "standing, full body, facing right, one hand raised in blessing"
+  ],
+  "_why": {
+    "age": "삼상 28:14 「한 노인이 올라 오는데」(엔돌에서 묘사된 사무엘의 영)",
+    "build": "본문 밖 · 저작자 정함",
+    "hair": "본문 밖 · 저작자 정함",
+    "beard": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함",
+    "costume": "본문 밖 · 저작자 정함(시대 복식)"
+  },
+  "plate": {
+    "seed": 11,
+    "anchor": true,
+    "ipScale": 0.25,
+    "approved": "승인",
+    "approvedOn": "2026-09-04",
+    "label": "a"
+  }
+}

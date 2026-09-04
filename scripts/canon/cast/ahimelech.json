@@ -1,0 +1,56 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "ahimelech",
+  "names": [
+    "아히멜렉",
+    "제사장 아히멜렉"
+  ],
+  "stops": [
+    "authored-david-nob-priests",
+    "authored-saul-nob-massacre"
+  ],
+  "era": "an ancient Israelite",
+  "age": "middle-aged priest",
+  "sex": "male",
+  "hair": "dark hair",
+  "beard": "dark beard",
+  "headwear": "linen turban",
+  "build": "average build",
+  "costume": "in a white linen ephod over a robe",
+  "colorWords": [
+    "white",
+    "pale linen"
+  ],
+  "propCandidates": [
+    {
+      "prop": "holy bread",
+      "verse": "삼상 21:6",
+      "ko": "거룩한 떡"
+    }
+  ],
+  "neg": [
+    "crown",
+    "armour",
+    "modern clothes"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "kneeling, full body, facing right, trembling before the king"
+  ],
+  "_why": {
+    "age": "본문 밖 · 저작자 정함",
+    "build": "본문 밖 · 저작자 정함",
+    "hair": "본문 밖 · 저작자 정함",
+    "beard": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함",
+    "costume": "삼상 22:18 「세마포 에봇 입은 자」"
+  },
+  "plate": {
+    "seed": 5,
+    "anchor": true,
+    "ipScale": 0.25,
+    "approved": "승인",
+    "approvedOn": "2026-09-04",
+    "label": "a"
+  }
+}

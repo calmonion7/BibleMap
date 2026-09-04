@@ -1,0 +1,73 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "solomon",
+  "names": [
+    "솔로몬"
+  ],
+  "stops": [
+    "authored-solomon-gihon-anointing",
+    "authored-solomon-jerusalem-david-charge",
+    "authored-solomon-gibeon-dream",
+    "authored-solomon-jerusalem-two-mothers",
+    "authored-solomon-jerusalem-temple-build",
+    "authored-solomon-jerusalem-palace",
+    "authored-solomon-jerusalem-temple-dedication",
+    "authored-solomon-ezion-geber-fleet",
+    "authored-solomon-jerusalem-sheba"
+  ],
+  "era": "an ancient Israelite",
+  "age": "young king",
+  "sex": "male",
+  "hair": "dark hair",
+  "beard": "none",
+  "headwear": "none",
+  "build": "average build",
+  "costume": "in a fine long linen robe with an embroidered belt",
+  "colorWords": [
+    "deep blue",
+    "white"
+  ],
+  "propCandidates": [
+    {
+      "prop": "a horn of oil",
+      "verse": "왕상 1:39",
+      "ko": "기름 뿔"
+    },
+    {
+      "prop": "a sword",
+      "verse": "왕상 3:24",
+      "ko": "칼"
+    },
+    {
+      "prop": "a temple model",
+      "verse": "왕상 6:14",
+      "ko": "전"
+    }
+  ],
+  "neg": [
+    "gray hair",
+    "full beard",
+    "armour",
+    "modern clothes"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "sitting, full body, facing right, on a throne with one arm raised"
+  ],
+  "_why": {
+    "age": "왕상 1~3장 초기 재위 문맥",
+    "build": "본문 밖 · 저작자 정함",
+    "hair": "본문 밖 · 저작자 정함",
+    "beard": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함",
+    "costume": "본문 밖 · 저작자 정함(시대 복식)"
+  },
+  "plate": {
+    "seed": 42,
+    "anchor": true,
+    "ipScale": 0.25,
+    "approved": "승인",
+    "approvedOn": "2026-09-04",
+    "label": "a"
+  }
+}

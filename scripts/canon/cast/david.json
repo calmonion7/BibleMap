@@ -1,0 +1,79 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "david",
+  "names": [
+    "다윗",
+    "이새의 아들 다윗"
+  ],
+  "stops": [
+    "authored-saul-gibeah-spear",
+    "authored-david-ramah-samuel",
+    "authored-david-nob-priests",
+    "authored-david-gath-achish",
+    "authored-david-adullam-cave",
+    "authored-david-en-gedi-saul",
+    "authored-david-ziklag-base",
+    "authored-david-hebron-king-judah",
+    "authored-david-jerusalem-conquest",
+    "authored-david-ark-jerusalem",
+    "authored-david-nathan-covenant",
+    "authored-solomon-jerusalem-birth",
+    "authored-david-mahanaim-exile",
+    "authored-david-returns-jerusalem"
+  ],
+  "era": "an ancient Israelite",
+  "age": "lean young man",
+  "sex": "male",
+  "hair": "dark curly hair",
+  "beard": "short dark beard",
+  "headwear": "none",
+  "build": "lean, agile",
+  "costume": "in a dark wool tunic with a leather belt",
+  "colorWords": [
+    "deep red",
+    "dark brown"
+  ],
+  "propCandidates": [
+    {
+      "prop": "a sword",
+      "verse": "삼상 21:9",
+      "ko": "골리앗의 칼"
+    },
+    {
+      "prop": "a robe corner",
+      "verse": "삼상 24:4",
+      "ko": "겉옷자락"
+    },
+    {
+      "prop": "the ark of the covenant",
+      "verse": "삼하 6:12",
+      "ko": "하나님의 궤"
+    }
+  ],
+  "neg": [
+    "crown",
+    "armour",
+    "royal robe",
+    "modern clothes"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "standing, full body, facing right, one hand on a sword hilt"
+  ],
+  "_why": {
+    "age": "본문 밖 · 저작자 정함(소년기 이후 성인 전환)",
+    "build": "본문 밖 · 저작자 정함",
+    "hair": "본문 밖 · 저작자 정함",
+    "beard": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함",
+    "costume": "본문 밖 · 저작자 정함(시대 복식)"
+  },
+  "plate": {
+    "seed": 42,
+    "anchor": true,
+    "ipScale": 0.25,
+    "approved": "승인",
+    "approvedOn": "2026-09-04",
+    "label": "a"
+  }
+}

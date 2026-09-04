@@ -1,0 +1,49 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "agag",
+  "names": [
+    "아각",
+    "아말렉 왕 아각"
+  ],
+  "stops": [
+    "authored-saul-gilgal-amalek"
+  ],
+  "era": "an ancient Amalekite",
+  "age": "captured king",
+  "sex": "male",
+  "hair": "dark hair",
+  "beard": "dark beard",
+  "headwear": "none",
+  "build": "bound, delicate steps",
+  "costume": "in a torn fine robe, hands bound",
+  "colorWords": [
+    "deep red",
+    "black"
+  ],
+  "propCandidates": [],
+  "neg": [
+    "crown",
+    "armour",
+    "modern clothes"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "standing, full body, facing right, hands bound before him"
+  ],
+  "_why": {
+    "age": "본문 밖 · 저작자 정함",
+    "build": "본문 밖 · 저작자 정함",
+    "hair": "본문 밖 · 저작자 정함",
+    "beard": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함",
+    "costume": "삼상 15:8 「아말렉 사람의 왕 아각을 사로잡고」(외 세부는 본문 밖)"
+  },
+  "plate": {
+    "seed": 11,
+    "anchor": true,
+    "ipScale": 0.25,
+    "approved": "승인",
+    "approvedOn": "2026-09-04",
+    "label": "a"
+  }
+}

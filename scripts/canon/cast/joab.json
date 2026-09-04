@@ -1,0 +1,56 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "joab",
+  "names": [
+    "요압",
+    "스루야의 아들 요압"
+  ],
+  "stops": [
+    "authored-david-gibeon-battle"
+  ],
+  "era": "an ancient Israelite",
+  "age": "young commander",
+  "sex": "male",
+  "hair": "close-cropped dark hair",
+  "beard": "short dark beard",
+  "headwear": "none",
+  "build": "lean, quick",
+  "costume": "in a red wool tunic with a wide leather belt and sandals",
+  "colorWords": [
+    "deep red",
+    "dark brown"
+  ],
+  "propCandidates": [
+    {
+      "prop": "a sword",
+      "verse": "삼하 2:16",
+      "ko": "칼"
+    }
+  ],
+  "neg": [
+    "crown",
+    "modern clothes",
+    "cuirass",
+    "armour"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "standing, full body, facing right, sword drawn"
+  ],
+  "_why": {
+    "age": "아브넬과 구분 — 삼하 2:13 요압은 다윗 편 지휘관, 나이·복식은 본문 밖 · 저작자 정함",
+    "build": "아브넬과 구분 — 삼하 2:13 요압은 다윗 편 지휘관, 나이·복식은 본문 밖 · 저작자 정함",
+    "hair": "아브넬과 구분 — 삼하 2:13 요압은 다윗 편 지휘관, 나이·복식은 본문 밖 · 저작자 정함",
+    "beard": "아브넬과 구분 — 삼하 2:13 요압은 다윗 편 지휘관, 나이·복식은 본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함",
+    "costume": "아브넬과 구분 — 삼하 2:13 요압은 다윗 편 지휘관, 나이·복식은 본문 밖 · 저작자 정함"
+  },
+  "plate": {
+    "seed": 23,
+    "anchor": true,
+    "ipScale": 0.25,
+    "approved": "승인",
+    "approvedOn": "2026-09-04",
+    "label": "b"
+  }
+}

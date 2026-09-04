@@ -1,0 +1,61 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "saul-old",
+  "names": [
+    "사울(노년)"
+  ],
+  "stops": [
+    "authored-saul-endor-medium",
+    "authored-saul-gilboa-death"
+  ],
+  "era": "an ancient Israelite",
+  "age": "old, worn king",
+  "sex": "male",
+  "hair": "gray hair",
+  "beard": "long gray beard",
+  "headwear": "none",
+  "build": "gaunt, weary",
+  "costume": "in a worn dark tunic and cloak",
+  "colorWords": [
+    "ash gray",
+    "dark brown"
+  ],
+  "propCandidates": [
+    {
+      "prop": "a sword",
+      "verse": "삼상 31:4",
+      "ko": "자기 칼"
+    },
+    {
+      "prop": "a disguise cloak",
+      "verse": "삼상 28:8",
+      "ko": "다른 옷"
+    }
+  ],
+  "neg": [
+    "crown",
+    "polished armour",
+    "young face",
+    "modern clothes"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "kneeling, full body, facing right, head bowed in fear"
+  ],
+  "_why": {
+    "age": "삼상 28:20 「기력이 진하였으니」",
+    "build": "본문 밖 · 저작자 정함",
+    "hair": "본문 밖 · 저작자 정함",
+    "beard": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함",
+    "costume": "삼상 28:8 「다른 옷을 입어 변장」"
+  },
+  "plate": {
+    "seed": 11,
+    "anchor": true,
+    "ipScale": 0.25,
+    "approved": "승인",
+    "approvedOn": "2026-09-04",
+    "label": "a"
+  }
+}
