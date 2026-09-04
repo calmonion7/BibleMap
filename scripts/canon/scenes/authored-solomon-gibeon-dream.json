@@ -1,0 +1,49 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-solomon-gibeon-dream",
+  "title": "솔로몬의 꿈 — 기브온",
+  "verses": {
+    "range": "왕상 3:4-14",
+    "quotes": {
+      "3:4": "이에 왕이 제사하러 기브온으로 가니 거기는 산당이 큼이라 솔로몬이 그 단에 일천 번제를 드렸더니",
+      "3:5": "기브온에서 밤에 여호와께서 솔로몬의 꿈에 나타나시니라 하나님이 이르시되 내가 네게 무엇을 줄꼬 너는 구하라",
+      "3:9": "주의 이 많은 백성을 재판할 수 있사오리이까 지혜로운 마음을 종에게 주사 주의 백성을 재판하여 선악을 분별하게 하옵소서",
+      "3:12": "내가 네 말대로 하여 네게 지혜롭고 총명한 마음을 주노니"
+    }
+  },
+  "moment": {
+    "verse": "3:5 후반-3:9",
+    "why": "솔로몬이 잠든 채 꿈속에서 구하는 순간. 하나님은 그리지 않는다(브리프 지시) — 잠든 자세와 빈 제단만으로 「밤·꿈」을 나타낸다. 번제 드리는 동작(3:4)은 낮 장면이라 함께 그리지 않는다."
+  },
+  "background": [
+    {"what": "기브온 산당의 돌 제단 — 밤하늘", "verse": "3:4-5"}
+  ],
+  "crowds": [],
+  "figures": [
+    {"cast": "solomon", "role": "솔로몬", "pose": "제단 곁 바닥에 누워 잠들어 있다", "prop": "겉옷자락", "facing": "right", "region": "solomon", "verse": "3:5"}
+  ],
+  "regions": {
+    "full":    [0.00, 0.00, 1.00, 1.00],
+    "altar":   [0.55, 0.35, 0.90, 0.75],
+    "solomon": [0.12, 0.55, 0.52, 0.85]
+  },
+  "_regions_why": "밤 장면이라 하늘은 전체를 채우고 제단은 오른쪽 배경(3:4 산당). 솔로몬은 누운 자세라 세로 낮게(0.30) 왼쪽 바닥에 배치, 제단과 겹치지 않게.",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "3:5",
+     "prompt": "a dark night sky over a stone hilltop shrine, faint stars, quiet high place, no people.",
+     "neg": ["people", "figures", "daylight", "bright sun"]},
+    {"id": "S1b", "kind": "region", "region": "altar", "verse": "3:4",
+     "prompt": "a plain ancient stone altar on a hilltop, bare stone blocks, no fire, no people.",
+     "neg": ["people", "figures", "flames", "smoke", "throne"]},
+    {"id": "S3", "kind": "plate", "region": "solomon", "verse": "3:5",
+     "prompt": "{cast:solomon}, lying asleep on the ground, gripping the edge of his robe, facing right.",
+     "neg": ["gray hair", "full beard", "armour", "standing", "crown"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["solomon"],
+    "gap_bands": [],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

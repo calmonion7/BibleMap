@@ -1,0 +1,53 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-david-ziklag-base",
+  "title": "다윗과 아기스 — 시글락",
+  "verses": {
+    "range": "삼상 27:6-7",
+    "quotes": {
+      "27:6": "아기스가 그 날에 시글락을 그에게 주었으므로 시글락이 오늘까지 유다 왕에게 속하니라",
+      "27:7": "다윗이 블레셋 사람의 지방에 거한 날 수는 일년 넉달이었더라"
+    }
+  },
+  "moment": {
+    "verse": "27:6",
+    "why": "아기스가 손을 들어 성읍을 다윗에게 내어 주고, 다윗이 그 성읍을 마주 보고 서는 순간 — 정착 이후의 활동(습격 등, 27:8 이하)은 이 절의 요구가 아니다."
+  },
+  "background": [
+    {"what": "시글락 성읍 성벽과 성문", "verse": "27:6"},
+    {"what": "네게브 마른 벌판", "verse": "27:6 · 배경 본문 밖 · 저작자 정함"}
+  ],
+  "crowds": [],
+  "figures": [
+    {"cast": "achish", "role": "가드 왕 아기스 — 성읍을 내어 줌", "pose": "손을 들어 성읍을 가리키며 서 있다", "prop": "a fold of his robe", "facing": "left", "region": "achish", "verse": "27:6 · 지물 본문 밖 · 저작자 정함"},
+    {"cast": "david", "role": "다윗 — 성읍을 받음", "pose": "서서 성읍을 마주 본다", "prop": "a sword", "facing": "right", "region": "david", "verse": "27:6 · 지물 본문 밖 · 저작자 정함"}
+  ],
+  "regions": {
+    "full":    [0.00, 0.00, 1.00, 1.00],
+    "town":    [0.30, 0.10, 0.70, 0.55],
+    "achish":  [0.15, 0.35, 0.33, 0.90],
+    "david":   [0.62, 0.36, 0.80, 0.90]
+  },
+  "_regions_why": "성읍(town)은 두 인물 사이 배경 구조물(27:6). 아기스·다윗 모두 성인 남자 세로 0.55·0.54. 주는 자(아기스) 왼쪽, 받는 자(다윗) 오른쪽.",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "27:6",
+     "prompt": "a dry southern desert plain of pale packed earth, sparse dry scrub, distant low walled town, empty pale sky, no people.",
+     "neg": ["people", "figures", "soldiers", "green field", "modern building"]},
+    {"id": "S1b", "kind": "region", "region": "town", "verse": "27:6",
+     "prompt": "a small ancient walled town with a low stone gate, flat rooftops, dry ground before it, no people.",
+     "neg": ["people", "figures", "modern skyline", "pagoda", "tower"]},
+    {"id": "S3", "kind": "plate", "region": "achish", "verse": "27:6",
+     "prompt": "{cast:achish}, standing, one arm raised gesturing toward the town, the other hand holding a fold of his robe, facing left.",
+     "neg": ["Israelite dress", "crown of Israel", "modern clothes", "weapon"]},
+    {"id": "S4", "kind": "plate", "region": "david", "verse": "27:6",
+     "prompt": "{cast:david}, standing, facing the town, one hand gripping a sword at his side, facing right.",
+     "neg": ["crown", "royal robe", "armour", "modern clothes"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["achish", "david"],
+    "gap_bands": [[0.33, 0.62]],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

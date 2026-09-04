@@ -1,0 +1,61 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-saul-michmash-battle",
+  "title": "사울 — 길갈에서 사무엘을 기다리지 못하다",
+  "verses": {
+    "range": "삼상 13:8-14",
+    "quotes": {
+      "13:8": "사울이 사무엘의 정한 기한대로 이레를 기다리되 사무엘이 길갈로 오지 아니하매 백성이 사울에게서 흩어지는지라",
+      "13:9": "사울이 가로되 번제와 화목제물을 이리로 가져오라 하여 번제를 드렸더니",
+      "13:10": "번제 드리기를 필하자 사무엘이 온지라 사울이 나가 맞으며 문안하매",
+      "13:13": "사무엘이 사울에게 이르되 왕이 망령되이 행하였도다 왕이 왕의 하나님 여호와께서 왕에게 명하신 명령을 지키지 아니하였도다"
+    }
+  },
+  "moment": {
+    "verse": "13:10",
+    "why": "사울이 번제를 드린 직후 사무엘이 이르러 나가 맞는 순간을 고정한다 — 백성이 흩어지는 배경(13:8)이나 이후의 책망 대사(13:13)는 이 순간의 그림 요소가 아니다."
+  },
+  "background": [
+    {"what": "미리 쌓은 돌 제단과 피어오르는 번제 연기", "verse": "13:9-10"},
+    {"what": "길갈의 넓은 들", "verse": "13:8"}
+  ],
+  "crowds": [
+    {"what": "흩어지는 이스라엘 백성 — 뒤쪽에 성기게 흩어짐", "verse": "13:8", "region": "crowd_back"}
+  ],
+  "figures": [
+    {"cast": "saul", "role": "사울 — 번제를 드린 왕", "pose": "제단 곁에 서서 사무엘을 맞으러 나온다", "prop": "a plain traveling cloak", "facing": "left", "region": "saul", "verse": "13:9-10"},
+    {"cast": "samuel", "role": "사무엘 — 뒤늦게 이른 선지자", "pose": "겉옷자락을 쥔 채 다가와 사울을 마주한다", "prop": "a robe corner", "facing": "right", "region": "samuel", "verse": "13:10"}
+  ],
+  "regions": {
+    "full":       [0.00, 0.00, 1.00, 1.00],
+    "crowd_back": [0.02, 0.15, 0.98, 0.33],
+    "altar":      [0.40, 0.72, 0.55, 0.92],
+    "samuel":     [0.12, 0.37, 0.285, 0.92],
+    "saul":       [0.60, 0.34, 0.762, 0.92]
+  },
+  "_regions_why": "사무엘 세로 0.55, 사울 세로 0.58. altar는 번제 연기가 피어오르는 낮은 돌더미(높이 0.20)로 사울 곁 바닥에.",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "13:8",
+     "prompt": "a wide dry open field, sparse dry grass, hazy low hills far behind, pale sky, no people.",
+     "neg": ["people", "figures", "soldiers", "buildings", "tents"]},
+    {"id": "S2", "kind": "region", "region": "altar", "verse": "13:9",
+     "prompt": "a low pile of rough stones with thin smoke rising from a burnt offering, no people.",
+     "neg": ["people", "figures", "building", "tall structure", "large fire"]},
+    {"id": "S3", "kind": "ridge", "region": "crowd_back", "verse": "13:8",
+     "prompt": "a thin scattered crowd of tiny distant people drifting apart, loose groups, no weapons.",
+     "neg": ["dense ranks", "single figure", "close-up", "soldiers in rows"]},
+    {"id": "S4", "kind": "plate", "region": "samuel", "verse": "13:10",
+     "prompt": "{cast:samuel}, standing tall, gripping one robe corner, walking forward, facing right.",
+     "neg": ["armour", "sword", "spear", "crown", "modern clothes", "staff", "sitting"]},
+    {"id": "S5", "kind": "plate", "region": "saul", "verse": "13:10",
+     "prompt": "{cast:saul}, standing tall, holding one plain cloak folded over one arm, facing left.",
+     "neg": ["armour", "sword", "spear", "crown", "royal robe", "modern clothes", "sitting"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["samuel", "saul"],
+    "gap_bands": [[0.285, 0.40], [0.55, 0.60]],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

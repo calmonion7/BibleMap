@@ -1,0 +1,121 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-david-jerusalem-conquest",
+  "title": "다윗 — 시온 산성을 빼앗다",
+  "verses": {
+    "range": "삼하 5:6-9",
+    "quotes": {
+      "5:6": "왕과 그 종자들이 예루살렘으로 가서 그 땅 거민 여부스 사람을 치려 하매 그 사람들이 다윗에게 말하여 가로되 네가 이리로 들어오지 못하리라 소경과 절뚝발이라도 너를 물리치리라 하니 저희 생각에는 다윗이 이리로 들어오지 못하리라 함이나",
+      "5:7": "다윗이 시온 산성을 빼앗았으니 이는 다윗 성이더라",
+      "5:9": "다윗이 그 산성에 거하여 다윗 성이라 이름하고 밀로에서부터 안으로 성을 둘러 쌓으니라"
+    }
+  },
+  "moment": {
+    "verse": "5:7",
+    "why": "다윗이 시온 산성을 빼앗아 그 앞에 선 순간을 고정한다. 5:6의 여부스 사람의 조롱, 5:8의 수구 전투는 순간 밖이라 배제한다."
+  },
+  "background": [
+    {
+      "what": "시온 산성 성벽",
+      "verse": "5:7 · 5:9"
+    },
+    {
+      "what": "예루살렘을 둘러싼 산지",
+      "verse": "본문 밖 · 저작자 정함"
+    }
+  ],
+  "crowds": [],
+  "figures": [
+    {
+      "cast": "david",
+      "role": "다윗",
+      "pose": "성벽을 마주 보고 서서 칼자루를 쥔다",
+      "prop": "a sword",
+      "facing": "right",
+      "region": "david",
+      "verse": "5:7 · 지물 본문 밖 · 저작자 정함"
+    }
+  ],
+  "regions": {
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "wall": [
+      0.45,
+      0.05,
+      1.0,
+      0.65
+    ],
+    "david": [
+      0.14,
+      0.42,
+      0.3,
+      0.92
+    ]
+  },
+  "_regions_why": "다윗 세로 0.50(성인 표준). 성벽은 우측 원경 큰 배경 요소(위치 서술어 없이 상자로만 배치).",
+  "stages": [
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "본문 밖 · 저작자 정함",
+      "prompt": "a wide dry rocky hillside landscape under a pale sky, sparse dry grass, no buildings, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "soldiers",
+        "flat plain"
+      ]
+    },
+    {
+      "id": "S1b",
+      "kind": "region",
+      "region": "wall",
+      "verse": "5:7",
+      "prompt": "a massive ancient stone city wall on a steep hill, thick fortified stonework, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "modern",
+        "castle towers",
+        "flag"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "david",
+      "verse": "5:7",
+      "prompt": "an ancient Israelite lean young man standing, gripping a sword hilt at his side, facing right.",
+      "neg": [
+        "armour",
+        "crown",
+        "helmet",
+        "sword swinging",
+        "kneeling"
+      ]
+    }
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "인물 하나뿐이라 gap_bands는 없다.",
+    "figures": [
+      "david"
+    ],
+    "gap_bands": [],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
+  }
+}

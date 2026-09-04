@@ -1,0 +1,55 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-solomon-jerusalem-two-mothers",
+  "title": "두 여인의 재판 — 예루살렘",
+  "verses": {
+    "range": "왕상 3:16-28",
+    "quotes": {
+      "3:16": "때에 창기 두 계집이 왕에게 와서 그 앞에 서며",
+      "3:22": "다른 계집은 이르되 아니라 산 것은 내 아들이요 죽은 것은 네 아들이라 하고 이 계집은 이르되 아니라 죽은 것이 네 아들이요 산 것이 내 아들이라 하매 왕 앞에서 그와 같이 쟁론하는지라",
+      "3:26": "그 산 아들의 어미되는 계집이 그 아들을 위하여 마음이 불붙는 것 같아서 왕께 아뢰어 가로되 청컨대 내 주여 산 아들을 저에게 주시고 아무쪼록 죽이지 마옵소서",
+      "3:27": "왕이 대답하여 가로되 산 아들을 저 계집에게 주고 결코 죽이지 말라 저가 그 어미니라 하매"
+    }
+  },
+  "moment": {
+    "verse": "3:16-3:22",
+    "why": "두 여인이 왕 앞에 서서 다투는 순간 — 「칼을 내게로 가져오라」(3:24) 이후의 순간은 아니다(브리프 지시). 아기는 참 어머니 쪽 지물로만 그린다."
+  },
+  "background": [
+    {"what": "왕궁 알현실 — 돌바닥과 기둥", "verse": "본문 밖 · 저작자 정함"}
+  ],
+  "crowds": [],
+  "figures": [
+    {"cast": "solomon", "role": "솔로몬", "pose": "보좌에 앉아 듣는다", "prop": "왕홀", "facing": "left", "region": "solomon", "verse": "3:16"},
+    {"cast": "mother-a", "role": "참 어머니", "pose": "아기를 안고 왕 앞에 서서 애원한다", "prop": "아기", "facing": "right", "region": "mother-a", "verse": "3:26"},
+    {"cast": "mother-b", "role": "다른 어머니", "pose": "팔짱을 끼고 왕 앞에 서서 다툰다", "prop": "겉옷자락", "facing": "right", "region": "mother-b", "verse": "3:22"}
+  ],
+  "regions": {
+    "full":     [0.00, 0.00, 1.00, 1.00],
+    "solomon":  [0.68, 0.15, 0.92, 0.72],
+    "mother-a": [0.12, 0.35, 0.34, 0.85],
+    "mother-b": [0.38, 0.38, 0.58, 0.85]
+  },
+  "_regions_why": "솔로몬은 보좌에 앉아 있어 세로를 짧게(0.57) 하되 화면 오른쪽 높은 자리. 두 여인은 왕상 3:16 「그 앞에 서며」대로 서 있는 성인 상자(세로 0.47~0.50), 나란히 왼쪽에 서로 안 겹치게 배치.",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "본문 밖 · 저작자 정함",
+     "prompt": "a plain ancient stone throne hall, bare floor, tall stone columns, no people, quiet room.",
+     "neg": ["people", "figures", "outdoor", "modern room"]},
+    {"id": "S3", "kind": "plate", "region": "solomon", "verse": "3:16",
+     "prompt": "{cast:solomon}, sitting on a throne listening, holding a wooden scepter, facing left.",
+     "neg": ["gray hair", "full beard", "armour", "standing"]},
+    {"id": "S4", "kind": "plate", "region": "mother-a", "verse": "3:26",
+     "prompt": "{cast:mother-a}, standing pleading, holding an infant wrapped in cloth, facing right.",
+     "neg": ["crown", "fine jewelry", "sword", "kneeling"]},
+    {"id": "S5", "kind": "plate", "region": "mother-b", "verse": "3:22",
+     "prompt": "{cast:mother-b}, standing arguing, gripping the edge of her robe, facing right.",
+     "neg": ["crown", "fine jewelry", "sword", "kneeling", "infant"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["mother-a", "mother-b"],
+    "gap_bands": [[0.34, 0.38]],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

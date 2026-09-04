@@ -1,0 +1,178 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-solomon-gihon-anointing",
+  "title": "솔로몬 — 기혼에서 기름부음을 받다",
+  "verses": {
+    "range": "왕상 1:38-40",
+    "quotes": {
+      "1:38": "제사장 사독과 선지자 나단과 여호야다의 아들 브나야와 그렛 사람과 블렛 사람이 내려가서 솔로몬을 다윗 왕의 노새에 태우고 인도하여 기혼으로 가서",
+      "1:39": "제사장 사독이 성막 가운데서 기름 뿔을 가져다가 솔로몬에게 기름을 부으니 이에 양각을 불고 모든 백성이 솔로몬 왕 만세를 부르니라",
+      "1:40": "모든 백성이 왕을 따라 올라와서 피리를 불며 크게 즐거워하므로 땅이 저희 소리로 인하여 갈라질 듯하니"
+    }
+  },
+  "moment": {
+    "verse": "1:39",
+    "why": "기름 붓는 자는 왕상 1:39 「제사장 사독이 ... 기름을 부으니」에 따라 사독이다(나단은 1:38에서 곁에 내려간 자일 뿐 붓는 행위자가 아니다). 사독이 기름 뿔을 들어 솔로몬에게 붓는 순간으로 고정한다. 노새 행차(1:38)·나팔·환호(1:39-40)는 순간 밖이라 배제한다."
+  },
+  "background": [
+    {
+      "what": "기혼의 샘가",
+      "verse": "1:38"
+    }
+  ],
+  "crowds": [
+    {
+      "what": "모든 백성 — 뒤편에 모여 따른다",
+      "verse": "1:40",
+      "region": "crest_back"
+    }
+  ],
+  "figures": [
+    {
+      "cast": "zadok",
+      "role": "제사장 사독(기름 붓는 자)",
+      "pose": "무릎 꿇은 솔로몬 앞에 서서 기름 뿔을 기울인다",
+      "prop": "a horn of oil",
+      "facing": "left",
+      "region": "zadok",
+      "verse": "1:39"
+    },
+    {
+      "cast": "solomon",
+      "role": "솔로몬",
+      "pose": "무릎을 꿇고 로브 자락을 쥔 채 고개를 숙인다",
+      "prop": "a robe corner",
+      "facing": "right",
+      "region": "solomon",
+      "verse": "1:39"
+    }
+  ],
+  "regions": {
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "spring": [
+      0.3,
+      0.7,
+      0.7,
+      0.85
+    ],
+    "crest_back": [
+      0.1,
+      0.28,
+      0.9,
+      0.46
+    ],
+    "zadok": [
+      0.58,
+      0.4,
+      0.76,
+      0.9
+    ],
+    "solomon": [
+      0.3,
+      0.55,
+      0.46,
+      0.9
+    ]
+  },
+  "_regions_why": "사독은 선 자세 세로 0.50, 솔로몬은 무릎 꿇은 자세 세로 0.35(0.35-0.45 범위). 사독이 솔로몬을 향해 기울이도록 마주 배치.",
+  "stages": [
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "본문 밖 · 저작자 정함",
+      "prompt": "a wide open area beside a natural spring, pale stony ground, sparse dry grass, empty pale sky, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "throne room",
+        "temple",
+        "indoor"
+      ]
+    },
+    {
+      "id": "S1b",
+      "kind": "region",
+      "region": "spring",
+      "verse": "1:38",
+      "prompt": "a small natural spring with clear water pooling among pale stones, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "fountain",
+        "waterfall",
+        "boat"
+      ]
+    },
+    {
+      "id": "S2",
+      "kind": "ridge",
+      "region": "crest_back",
+      "verse": "1:40",
+      "prompt": "many tiny distant people gathered and celebrating, small silhouettes, tiny far away crowd.",
+      "neg": [
+        "empty ground",
+        "single figure",
+        "close-up",
+        "soldiers with spears"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "zadok",
+      "verse": "1:39",
+      "prompt": "an ancient Israelite middle-aged priest standing, gripping a horn tilted forward as if pouring oil, facing left.",
+      "neg": [
+        "armour",
+        "crown",
+        "helmet",
+        "staff",
+        "kneeling"
+      ]
+    },
+    {
+      "id": "S4",
+      "kind": "plate",
+      "region": "solomon",
+      "verse": "1:39",
+      "prompt": "an ancient Israelite young king kneeling, head bowed, gripping the corner of his robe with one hand, facing right.",
+      "neg": [
+        "armour",
+        "helmet",
+        "sword",
+        "standing",
+        "crown"
+      ]
+    }
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자가 이 장면에서 재는 기하 — 기름 붓는 자(사독)와 솔로몬 간격.",
+    "figures": [
+      "zadok",
+      "solomon"
+    ],
+    "gap_bands": [
+      [
+        0.46,
+        0.58
+      ]
+    ],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
+  }
+}

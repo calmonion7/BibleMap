@@ -1,0 +1,57 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-david-en-gedi-saul",
+  "title": "다윗과 사울 — 엔게디 굴",
+  "verses": {
+    "range": "삼상 24:1-22",
+    "quotes": {
+      "24:8": "그 후에 다윗도 일어나 굴에서 나가 사울의 뒤에서 외쳐 가로되 내 주 왕이여 하매 사울이 돌아보는지라 다윗이 땅에 엎드려 절하고",
+      "24:11": "나의 아버지여 보소서 내 손에 있는 왕의 옷자락을 보소서 내가 왕을 죽이지 아니하고 겉옷자락만 베었은즉"
+    }
+  },
+  "moment": {
+    "verse": "24:8 후반",
+    "why": "다윗이 땅에 엎드려 절하고 벤 옷자락을 들어 보이며, 사울이 돌아보는 순간 — 옷자락을 베는 동작 자체는 이미 지나갔고 이 순간엔 결과물만 손에 있다(ADR 260902-170558)."
+  },
+  "background": [
+    {"what": "엔게디 황무지 바위 절벽, 들염소 바위", "verse": "24:1-2"},
+    {"what": "양의 우리 곁 굴 어귀", "verse": "24:3"}
+  ],
+  "crowds": [],
+  "figures": [
+    {"cast": "david", "role": "다윗 — 엎드려 절함", "pose": "땅에 엎드려 절하며 옷자락을 손에 들어 보인다", "prop": "a robe corner", "facing": "right", "region": "david", "verse": "24:8 · 24:11"},
+    {"cast": "saul", "role": "사울 — 돌아봄", "pose": "걷다가 돌아서 뒤를 본다", "prop": "a sword", "facing": "left", "region": "saul", "verse": "24:8 · 지물 본문 밖 · 저작자 정함"}
+  ],
+  "regions": {
+    "full":  [0.00, 0.00, 1.00, 1.00],
+    "cliff": [0.00, 0.00, 0.35, 0.55],
+    "cave":  [0.40, 0.20, 0.68, 0.62],
+    "david": [0.20, 0.55, 0.38, 0.92],
+    "saul":  [0.68, 0.34, 0.86, 0.90]
+  },
+  "_regions_why": "다윗 엎드림 세로 0.37(낮게 엎드림, 24:8). 사울 세로 0.56(서서 돌아봄). 굴은 배경 구조물(24:3), 절벽은 24:2 들염소 바위.",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "24:1",
+     "prompt": "a dry rocky wilderness with pale steep cliffs, sparse scrub, a narrow path, pale sky, no people.",
+     "neg": ["people", "figures", "soldiers", "green forest", "modern building"]},
+    {"id": "S1b", "kind": "region", "region": "cliff", "verse": "24:2",
+     "prompt": "a tall pale rocky cliff face with narrow ledges, dry scrub clinging to rock, no people.",
+     "neg": ["people", "figures", "goats", "modern architecture"]},
+    {"id": "S1c", "kind": "region", "region": "cave", "verse": "24:3",
+     "prompt": "a dark cave opening beside a low stone sheepfold wall, dry ground, no people.",
+     "neg": ["people", "figures", "door", "modern architecture"]},
+    {"id": "S3", "kind": "plate", "region": "david", "verse": "24:8 · 24:11",
+     "prompt": "{cast:david}, lying prostrate bowing low to the ground, one arm extended holding up a torn robe corner, facing right.",
+     "neg": ["crown", "armour", "royal robe", "standing", "modern clothes"]},
+    {"id": "S4", "kind": "plate", "region": "saul", "verse": "24:8",
+     "prompt": "{cast:saul}, standing, body turning to look back, gripping a sword at his hip, facing left.",
+     "neg": ["crown", "royal robe", "armour", "modern clothes"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["david", "saul"],
+    "gap_bands": [[0.38, 0.68]],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

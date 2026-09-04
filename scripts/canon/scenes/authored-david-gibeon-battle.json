@@ -1,0 +1,208 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-david-gibeon-battle",
+  "title": "아브넬과 요압 — 기브온 못가",
+  "verses": {
+    "range": "삼하 2:12-17",
+    "quotes": {
+      "2:12": "넬의 아들 아브넬과 사울의 아들 이스보셋의 신복들은 마하나임에서 나와서 기브온에 이르고",
+      "2:13": "스루야의 아들 요압과 다윗의 신복들도 나와서 기브온 못가에서 저희를 만나 앉으니 이는 못 이편이요 저는 못 저편이라",
+      "2:14": "아브넬이 요압에게 이르되 청컨대 소년들로 일어나서 우리 앞에서 장난하게 하자 요압이 가로되 일어나게 하자 하매"
+    }
+  },
+  "moment": {
+    "verse": "2:13-14",
+    "why": "두 지휘관이 못가에서 마주 앉았다가 소년들의 겨루기를 제안하는 순간을 고정한다. 이후의 살상(2:16-17)은 유혈이라 그리지 않는다(ADR 260902-170558)."
+  },
+  "background": [
+    {
+      "what": "기브온의 못",
+      "verse": "2:13"
+    },
+    {
+      "what": "마른 풀밭 둔덕",
+      "verse": "본문 밖 · 저작자 정함"
+    }
+  ],
+  "crowds": [
+    {
+      "what": "이스보셋의 신복들 — 못 이편에 도열",
+      "verse": "2:12",
+      "region": "crest_left"
+    },
+    {
+      "what": "다윗의 신복들 — 못 저편에 도열",
+      "verse": "2:13",
+      "region": "crest_right"
+    }
+  ],
+  "figures": [
+    {
+      "cast": "abner",
+      "role": "아브넬",
+      "pose": "못가에 서서 팔을 뻗어 마주 선 자를 향해 말한다",
+      "prop": "a spear",
+      "facing": "right",
+      "region": "abner",
+      "verse": "2:12 · 2:14 · 지물 본문 밖 · 저작자 정함"
+    },
+    {
+      "cast": "joab",
+      "role": "요압",
+      "pose": "못가에 서서 칼자루를 쥔 채 마주 본다",
+      "prop": "a sword",
+      "facing": "left",
+      "region": "joab",
+      "verse": "2:13-14 · 지물 본문 밖 · 저작자 정함"
+    }
+  ],
+  "regions": {
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "pool": [
+      0.3,
+      0.55,
+      0.7,
+      0.75
+    ],
+    "crest_left": [
+      0.02,
+      0.2,
+      0.42,
+      0.45
+    ],
+    "crest_right": [
+      0.58,
+      0.2,
+      0.98,
+      0.45
+    ],
+    "abner": [
+      0.2,
+      0.42,
+      0.38,
+      0.9
+    ],
+    "joab": [
+      0.62,
+      0.42,
+      0.8,
+      0.9
+    ]
+  },
+  "_regions_why": "둘 다 성인 지휘관 세로 0.48(0.5-0.6에 가까운 중간). 못을 사이에 두고 좌우로 마주 서 있음(2:13 「이는 못 이편이요 저는 못 저편이라」). 신복들은 각자 편 뒤 능선.",
+  "stages": [
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "본문 밖 · 저작자 정함",
+      "prompt": "a wide dry grassy field around a still pool, low dry hills in the distance, empty pale sky, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "soldiers",
+        "buildings",
+        "city"
+      ]
+    },
+    {
+      "id": "S1b",
+      "kind": "region",
+      "region": "pool",
+      "verse": "2:13",
+      "prompt": "a still rectangular pool of water with a stone rim, calm surface, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "boat",
+        "fountain",
+        "waterfall"
+      ]
+    },
+    {
+      "id": "S2a",
+      "kind": "ridge",
+      "region": "crest_left",
+      "verse": "2:12",
+      "prompt": "many tiny distant soldiers standing in loose rows on a low ridge, small silhouettes, tiny far away crowd.",
+      "neg": [
+        "empty ground",
+        "single figure",
+        "close-up",
+        "buildings"
+      ]
+    },
+    {
+      "id": "S2b",
+      "kind": "ridge",
+      "region": "crest_right",
+      "verse": "2:13",
+      "prompt": "many tiny distant soldiers standing in loose rows on a low ridge, small silhouettes, tiny far away crowd.",
+      "neg": [
+        "empty ground",
+        "single figure",
+        "close-up",
+        "buildings"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "abner",
+      "verse": "2:14",
+      "prompt": "a sturdy battle-hardened commander standing, gripping one spear upright, one arm extended as if speaking, facing right.",
+      "neg": [
+        "armour",
+        "helmet",
+        "crown",
+        "two spears",
+        "sword",
+        "kneeling"
+      ]
+    },
+    {
+      "id": "S4",
+      "kind": "plate",
+      "region": "joab",
+      "verse": "2:13",
+      "prompt": "a lean quick commander standing, gripping a sword hilt at his side, facing left.",
+      "neg": [
+        "armour",
+        "helmet",
+        "crown",
+        "sword swinging",
+        "spear",
+        "kneeling"
+      ]
+    }
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자가 이 장면에서 재는 기하 — 못을 사이에 둔 두 지휘관 간격.",
+    "figures": [
+      "abner",
+      "joab"
+    ],
+    "gap_bands": [
+      [
+        0.38,
+        0.62
+      ]
+    ],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
+  }
+}

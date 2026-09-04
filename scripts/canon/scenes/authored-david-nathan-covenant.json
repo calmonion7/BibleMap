@@ -1,0 +1,133 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-david-nathan-covenant",
+  "title": "나단 — 다윗에게 언약을 전하다",
+  "verses": {
+    "range": "삼하 7:12-16",
+    "quotes": {
+      "7:12": "네 수한이 차서 네 조상들과 함께 잘 때에 내가 네 몸에서 날 자식을 네 뒤에 세워 그 나라를 견고케 하리라",
+      "7:13": "저는 내 이름을 위하여 집을 건축할 것이요 나는 그 나라 위를 영원히 견고케 하리라",
+      "7:16": "네 집과 네 나라가 네 앞에서 영원히 보전되고 네 위가 영원히 견고하리라 하셨다 하라"
+    }
+  },
+  "moment": {
+    "verse": "7:12-16",
+    "why": "나단이 한 팔을 들어 다윗에게 언약의 말씀을 전하는 순간을 고정한다. 다윗은 앉아 듣는 자세로만 — 앞으로의 성전 건축(7:13)은 그리지 않는다. (진리 근거 파일 david-tour-verses.md의 이 정차지 절 범위가 7:12-16까지만 제공하므로 7:17은 인용하지 않는다.)"
+  },
+  "background": [
+    {
+      "what": "다윗의 처소 앞뜰",
+      "verse": "본문 밖 · 저작자 정함"
+    }
+  ],
+  "crowds": [],
+  "figures": [
+    {
+      "cast": "nathan",
+      "role": "선지자 나단",
+      "pose": "서서 한 팔을 들어 말한다",
+      "prop": "a wooden staff",
+      "facing": "left",
+      "region": "nathan",
+      "verse": "7:12-16 · 지물 본문 밖 · 저작자 정함"
+    },
+    {
+      "cast": "david",
+      "role": "다윗",
+      "pose": "앉아서 로브 자락을 쥔 채 듣는다",
+      "prop": "a robe corner",
+      "facing": "right",
+      "region": "david",
+      "verse": "7:12 · 지물 본문 밖 · 저작자 정함"
+    }
+  ],
+  "regions": {
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "nathan": [
+      0.58,
+      0.38,
+      0.76,
+      0.9
+    ],
+    "david": [
+      0.24,
+      0.55,
+      0.42,
+      0.9
+    ]
+  },
+  "_regions_why": "나단은 선 자세 세로 0.52(성인 표준), 다윗은 앉은 자세 세로 0.35(0.35-0.45 범위). 마주 보게 좌우 배치.",
+  "stages": [
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "본문 밖 · 저작자 정함",
+      "prompt": "a wide open courtyard of pale packed earth before a plain house, dry ground, empty pale sky, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "throne room",
+        "temple",
+        "indoor"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "nathan",
+      "verse": "7:12-16",
+      "prompt": "an ancient Israelite middle-aged prophet standing, gripping a wooden staff, one arm raised as if speaking, facing left.",
+      "neg": [
+        "armour",
+        "crown",
+        "helmet",
+        "horn",
+        "kneeling"
+      ]
+    },
+    {
+      "id": "S4",
+      "kind": "plate",
+      "region": "david",
+      "verse": "7:12",
+      "prompt": "an ancient Israelite lean young man sitting, gripping the corner of his robe with one hand, facing right.",
+      "neg": [
+        "armour",
+        "crown",
+        "helmet",
+        "standing",
+        "sword drawn"
+      ]
+    }
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "두 인물 사이 빈 띠.",
+    "figures": [
+      "nathan",
+      "david"
+    ],
+    "gap_bands": [
+      [
+        0.42,
+        0.58
+      ]
+    ],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
+  }
+}

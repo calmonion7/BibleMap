@@ -1,0 +1,55 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "zadok",
+  "names": [
+    "사독",
+    "제사장 사독"
+  ],
+  "stops": [
+    "authored-solomon-gihon-anointing"
+  ],
+  "era": "an ancient Israelite",
+  "age": "elderly priest",
+  "sex": "male",
+  "hair": "grey hair",
+  "beard": "long grey beard",
+  "headwear": "white linen turban",
+  "build": "upright",
+  "costume": "in a long white linen robe with a woven sash",
+  "colorWords": [
+    "dark grey",
+    "deep blue"
+  ],
+  "propCandidates": [
+    {
+      "prop": "a horn of oil",
+      "verse": "왕상 1:39",
+      "ko": "기름 뿔"
+    }
+  ],
+  "neg": [
+    "crown",
+    "armour",
+    "sword",
+    "modern clothes"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "standing, full body, facing right, holding a horn of oil"
+  ],
+  "_why": {
+    "age": "본문 밖 · 저작자 정함(다윗 시대부터 섬긴 제사장 — 삼하 8:17)",
+    "hair": "본문 밖 · 저작자 정함",
+    "beard": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함(제사장 복식 — 출 28:40 관)",
+    "costume": "본문 밖 · 저작자 정함(제사장 세마포 — 삼상 22:18 「세마포 에봇」)"
+  },
+  "plate": {
+    "seed": 11,
+    "anchor": true,
+    "ipScale": 0.25,
+    "approved": "승인",
+    "approvedOn": "2026-09-04",
+    "label": "a"
+  }
+}

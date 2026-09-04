@@ -1,0 +1,52 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-david-gath-achish",
+  "title": "다윗의 미친 체함 — 가드",
+  "verses": {
+    "range": "삼상 21:10-15",
+    "quotes": {
+      "21:13": "그들의 앞에서 그 행동을 변하여 미친 체 하고 대문짝에 그적거리며 침을 수염에 흘리매",
+      "21:15": "내게 미치광이가 부족하여서 너희가 이 자를 데려다가 내 앞에서 미친 짓을 하게 하느냐"
+    }
+  },
+  "moment": {
+    "verse": "21:13 후반",
+    "why": "다윗이 성문 기둥에 몸을 기대고 침을 흘리는 순간 — 문짝을 손톱으로 긁는 동작은 모델 prior에 없어(ADR 260903-154254) 문에 기대선 정적 자세로 대체."
+  },
+  "background": [
+    {"what": "가드 성문과 성벽", "verse": "21:10 · 21:13"}
+  ],
+  "crowds": [],
+  "figures": [
+    {"cast": "david", "role": "다윗 — 미친 체함", "pose": "나무 성문 기둥에 기대어 서서 침을 흘린다", "prop": "a wooden gate post", "facing": "left", "region": "david", "verse": "21:13"},
+    {"cast": "achish", "role": "가드 왕 아기스", "pose": "손을 들어 물리치며 서 있다", "prop": "a fold of his robe", "facing": "right", "region": "achish", "verse": "21:14-15 · 지물 본문 밖 · 저작자 정함"}
+  ],
+  "regions": {
+    "full":    [0.00, 0.00, 1.00, 1.00],
+    "gate":    [0.30, 0.05, 0.62, 0.60],
+    "david":   [0.15, 0.36, 0.32, 0.90],
+    "achish":  [0.62, 0.35, 0.80, 0.90]
+  },
+  "_regions_why": "성문(gate)은 다윗 뒤 배경 구조물(21:13). 다윗·아기스 모두 성인 남자 세로 0.54. 21:11-15 대화 순서로 다윗 왼쪽, 아기스 오른쪽.",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "21:10",
+     "prompt": "a dusty ancient city street beside a tall stone gate wall, sunbaked ground, empty pale sky, no people.",
+     "neg": ["people", "figures", "soldiers", "modern street", "car"]},
+    {"id": "S1b", "kind": "region", "region": "gate", "verse": "21:13",
+     "prompt": "a tall heavy wooden double gate set into a thick stone city wall, iron hinges, dry ground before it, no people.",
+     "neg": ["people", "figures", "modern door", "pagoda", "temple"]},
+    {"id": "S3", "kind": "plate", "region": "david", "verse": "21:13",
+     "prompt": "{cast:david}, leaning against a wooden gate post, one hand resting on the post, drooling on his beard, facing left.",
+     "neg": ["armour", "crown", "royal robe", "sword", "modern clothes"]},
+    {"id": "S4", "kind": "plate", "region": "achish", "verse": "21:14-15",
+     "prompt": "{cast:achish}, standing, one hand raised in a dismissing gesture, the other hand holding a fold of his robe, facing right.",
+     "neg": ["Israelite dress", "crown of Israel", "modern clothes", "weapon"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["david", "achish"],
+    "gap_bands": [[0.32, 0.62]],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

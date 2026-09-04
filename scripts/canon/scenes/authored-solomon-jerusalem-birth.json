@@ -1,0 +1,97 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-solomon-jerusalem-birth",
+  "title": "밧세바 — 솔로몬을 낳다",
+  "verses": {
+    "range": "삼하 12:24-25",
+    "quotes": {
+      "12:24": "다윗이 그 처 밧세바를 위로하고 저에게 들어가 동침하였더니 저가 아들을 낳으매 그 이름을 솔로몬이라 하니라 여호와께서 그를 사랑하사",
+      "12:25": "선지자 나단을 보내사 그 이름을 여디디야라 하시니 이는 여호와께서 사랑하심을 인함이더라"
+    }
+  },
+  "moment": {
+    "verse": "12:24 후반",
+    "why": "밧세바가 갓난 아기를 품에 안은 순간을 고정한다. 아기는 지물로 삼는다. 나단의 개명 선포(12:25)는 별개 방문이라 배제한다."
+  },
+  "background": [
+    {
+      "what": "처소의 방",
+      "verse": "본문 밖 · 저작자 정함"
+    }
+  ],
+  "crowds": [],
+  "figures": [
+    {
+      "cast": "bathsheba",
+      "role": "밧세바",
+      "pose": "앉아서 갓난 아기를 품에 안는다",
+      "prop": "an infant",
+      "facing": "right",
+      "region": "bathsheba",
+      "verse": "12:24"
+    }
+  ],
+  "regions": {
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "bathsheba": [
+      0.42,
+      0.5,
+      0.58,
+      0.9
+    ]
+  },
+  "_regions_why": "밧세바 세로 0.40(앉은 자세). 단독 인물이라 중앙 배치.",
+  "stages": [
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "본문 밖 · 저작자 정함",
+      "prompt": "a plain quiet room with a pale plastered wall, a simple woven mat on the floor, soft daylight, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "throne",
+        "outdoor",
+        "temple"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "bathsheba",
+      "verse": "12:24",
+      "prompt": "an ancient Israelite young woman sitting, cradling a swaddled infant in both arms, facing right.",
+      "neg": [
+        "crown",
+        "armour",
+        "standing",
+        "veil covering face",
+        "modern clothes"
+      ]
+    }
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "인물 하나뿐이라 gap_bands는 없다.",
+    "figures": [
+      "bathsheba"
+    ],
+    "gap_bands": [],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
+  }
+}

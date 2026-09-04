@@ -1,0 +1,53 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-samuel-ramah-death",
+  "title": "사무엘의 죽음 — 라마",
+  "verses": {
+    "range": "삼상 25:1",
+    "quotes": {
+      "25:1": "사무엘이 죽으매 온 이스라엘 무리가 모여 그를 애곡하며 라마 그의 집에서 그를 장사한지라 다윗이 일어나 바란 광야로 내려가니라"
+    }
+  },
+  "moment": {
+    "verse": "25:1 후반",
+    "why": "다윗이 애곡하는 무리를 뒤로하고 바란 광야로 내려가는 순간 — 사무엘의 시신은 그리지 않고 무덤 봉분과 애곡하는 무리로 죽음과 장사를 나타낸다."
+  },
+  "background": [
+    {"what": "라마의 낮은 무덤 봉분", "verse": "25:1"},
+    {"what": "무덤 뒤 마른 언덕", "verse": "25:1 · 배경 본문 밖 · 저작자 정함"}
+  ],
+  "crowds": [
+    {"what": "온 이스라엘 무리가 모여 애곡함", "verse": "25:1", "region": "mourners"}
+  ],
+  "figures": [
+    {"cast": "david", "role": "다윗 — 떠나감", "pose": "무리를 뒤로하고 돌아서 걸어간다", "prop": "a sword", "facing": "left", "region": "david", "verse": "25:1 · 지물 본문 밖 · 저작자 정함"}
+  ],
+  "regions": {
+    "full":     [0.00, 0.00, 1.00, 1.00],
+    "grave":    [0.55, 0.45, 0.85, 0.75],
+    "mourners": [0.50, 0.30, 0.95, 0.55],
+    "david":    [0.10, 0.36, 0.28, 0.90]
+  },
+  "_regions_why": "다윗 세로 0.54(성인, 걸어 나감). 무덤(grave)은 배경 구조물, 애곡 무리(mourners)는 원경 띠 — 다윗과 겹치지 않게 오른쪽.",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "25:1",
+     "prompt": "a dry hillside town outskirts of pale packed earth, sparse dry grass, a low burial mound of piled stones, pale sky, no people.",
+     "neg": ["people", "figures", "soldiers", "modern cemetery", "gravestone"]},
+    {"id": "S1b", "kind": "region", "region": "grave", "verse": "25:1",
+     "prompt": "a low mound of piled pale stones marking a grave, dry earth around it, no people.",
+     "neg": ["people", "figures", "modern headstone", "cross", "statue"]},
+    {"id": "S2a", "kind": "ridge", "region": "mourners", "verse": "25:1",
+     "prompt": "a dense distant crowd of tiny mourning figures gathered near a grave mound, small and far away.",
+     "neg": ["empty hill", "bare ridge", "single figure", "close-up", "soldiers in rank"]},
+    {"id": "S3", "kind": "plate", "region": "david", "verse": "25:1",
+     "prompt": "{cast:david}, walking away, body turned from the crowd, gripping a sword at his side, facing left.",
+     "neg": ["crown", "armour", "royal robe", "modern clothes"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["david"],
+    "gap_bands": [],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

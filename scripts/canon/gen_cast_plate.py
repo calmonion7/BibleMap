@@ -43,12 +43,7 @@ def load_cast(cid):
         return json.load(fh)
 
 
-def describe(c):
-    """어휘 정본 → 인물 서술 한 구절. 시대·민족 낱말이 맨 앞(PROMPTING 2·14). `none` 필드는 뺀다."""
-    parts = [f"{c['era']} {c['age']}"]
-    parts += [c[k] for k in ("hair", "beard", "headwear", "build") if c.get(k) and c[k] != "none"]
-    parts.append(c["costume"])
-    return ", ".join(parts)
+describe = ds.cast_describe   # 장면 판 프롬프트 `{cast:<id>}`와 같은 문구(derive_scene) — 한 곳에서만 정의
 
 
 def prompt_for(c, pose):

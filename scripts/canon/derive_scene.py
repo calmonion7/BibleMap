@@ -8,8 +8,8 @@
 파생 규칙(현행 삼상17 코드와 문자열 동일이 회귀 가드다):
   prompt = f"{ST} {stage.prompt}"           — ST는 derive_prompts.STYLE에서 파생한 공용 화풍 머리
   neg    = NEG + ", " + ", ".join(stage.neg) — NEG는 공용 부정어(액자족 포함)
-  자리표시자: `{costume:<cast>}` → derive_prompts.SAMPLE_COSTUME[cast]의 `in ` 뒤 (인물 정본 읽기 인터페이스 —
-              내용은 2/7이 채운다) · `{head_neg}` → derive_prompts.HEAD_NEG_EXTRA
+  자리표시자: `{costume:<cast>}` → derive_prompts.SAMPLE_COSTUME[cast]의 `in ` 뒤 (삼상17 호환) ·
+              `{cast:<id>}` → cast/<id>.json 어휘 정본 전체 문구(cast_describe — 2/7 판 시트와 같은 문구) · `{head_neg}` → HEAD_NEG_EXTRA
 
 사용:
   derive_scene.py <scene-id>            # 단계별 prompt/neg를 찍는다
@@ -18,6 +18,7 @@
 import argparse
 import json
 import os
+import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -25,6 +26,21 @@ import params  # noqa: E402
 import derive_prompts as dp  # noqa: E402
 
 SCENES_DIR = os.path.join(params.CANON_DIR, "scenes")
+CAST_DIR = os.path.join(params.CANON_DIR, "cast")
+
+
+def load_cast(cid):
+    with open(os.path.join(CAST_DIR, f"{cid}.json"), encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def cast_describe(c):
+    """어휘 정본 → 인물 서술 한 구절(task 331). 시대·민족 낱말이 맨 앞(PROMPTING 2·14). `none` 필드는 뺀다.
+    장면 판 프롬프트의 `{cast:<id>}`와 판 시트(`gen_cast_plate.py`)가 **같은 문구**를 쓴다 — ADR 260904-055320 1항."""
+    parts = [f"{c['era']} {c['age']}"]
+    parts += [c[k] for k in ("hair", "beard", "headwear", "build") if c.get(k) and c[k] != "none"]
+    parts.append(c["costume"])
+    return ", ".join(parts)
 
 # 장면 공용 화풍 머리·부정어 — 장면마다 바뀌지 않는다(실측으로 정한 값, 명세 밖 공통 상수).
 ST = dp._drop(dp.STYLE, "simple", "clean background", "light shading", "muted palette")
@@ -43,6 +59,8 @@ def _fill(text):
     out = text
     for cast in dp.SAMPLE_COSTUME:
         out = out.replace(f"{{costume:{cast}}}", dp.SAMPLE_COSTUME[cast][3:])   # `in ` 뒤
+    for cid in set(re.findall(r"\{cast:([a-z0-9-]+)\}", out)):                 # 인물 정본 전체 문구(task 331 이후)
+        out = out.replace(f"{{cast:{cid}}}", cast_describe(load_cast(cid)))
     return out.replace("{head_neg}", dp.HEAD_NEG_EXTRA)
 
 

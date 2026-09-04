@@ -1,0 +1,47 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-david-gibeah-harp",
+  "title": "다윗 — 기브아에서 수금을 타다",
+  "verses": {
+    "range": "삼상 16:21-23",
+    "quotes": {
+      "16:21": "다윗이 사울에게 이르러 그 앞에 모셔 서매 사울이 그를 크게 사랑하여 자기의 병기 든 자를 삼고",
+      "16:23": "하나님의 부리신 악신이 사울에게 이를 때에 다윗이 수금을 취하여 손으로 탄즉 사울이 상쾌하여 낫고 악신은 그에게서 떠나더라"
+    }
+  },
+  "moment": {
+    "verse": "16:23",
+    "why": "다윗이 수금을 손으로 타서 사울이 상쾌해지는 순간을 고정한다 — 병기 든 자로 삼은 절차(16:21)는 이 순간의 요구가 아니다."
+  },
+  "background": [
+    {"what": "사울의 처소, 소박한 실내 자리", "verse": "16:23"}
+  ],
+  "figures": [
+    {"cast": "david-boy", "role": "소년 다윗 — 수금 타는 자", "pose": "앉아서 수금을 탄다", "prop": "a small harp", "facing": "right", "region": "david-boy", "verse": "16:23"},
+    {"cast": "saul", "role": "사울 — 귀 기울이는 왕", "pose": "앉아서 귀 기울인다", "prop": "a plain traveling cloak", "facing": "left", "region": "saul", "verse": "16:23 · 지물 본문 밖 · 저작자 정함"}
+  ],
+  "regions": {
+    "full":      [0.00, 0.00, 1.00, 1.00],
+    "david-boy": [0.15, 0.50, 0.27, 0.90],
+    "saul":      [0.55, 0.45, 0.685, 0.90]
+  },
+  "_regions_why": "다윗(소년) 앉은 세로 0.40, 사울 앉은 세로 0.45(성인 왕, 소년보다 다소 큼). 좌우는 16:23(다윗이 수금을 타고 사울이 곁에서 들음).",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "16:23",
+     "prompt": "a plain dim interior room, bare stone wall, simple floor mat, no people.",
+     "neg": ["people", "figures", "outdoor", "modern furniture"]},
+    {"id": "S2", "kind": "plate", "region": "david-boy", "verse": "16:23",
+     "prompt": "{cast:david-boy}, sitting, gripping one small harp, playing, facing right.",
+     "neg": ["armour", "helmet", "sword", "beard", "old man", "standing", "shoes"]},
+    {"id": "S3", "kind": "plate", "region": "saul", "verse": "16:23",
+     "prompt": "{cast:saul}, sitting, holding one plain cloak folded over one arm, listening, facing left.",
+     "neg": ["armour", "sword", "spear", "crown", "royal robe", "modern clothes", "standing"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["david-boy", "saul"],
+    "gap_bands": [[0.27, 0.55]],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

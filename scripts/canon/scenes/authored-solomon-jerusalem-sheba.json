@@ -1,0 +1,49 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-solomon-jerusalem-sheba",
+  "title": "스바 여왕의 방문 — 예루살렘",
+  "verses": {
+    "range": "왕상 10:1-13",
+    "quotes": {
+      "10:1": "스바 여왕이 여호와의 이름으로 말미암은 솔로몬의 명예를 듣고 와서 어려운 문제로 저를 시험코자 하여",
+      "10:2": "예루살렘에 이르니 수원이 심히 많고 향품과 심히 많은 금과 보석을 약대에 실었더라 저가 솔로몬에게 나아와 자기 마음에 있는 것을 다 말하매",
+      "10:10": "이에 저가 금 일백이십 달란트와 심히 많은 향품과 보석을 왕께 드렸으니"
+    }
+  },
+  "moment": {
+    "verse": "10:2 후반-10:10",
+    "why": "스바 여왕이 예물을 왕께 드리는 순간(10:10) — 낙타 대상(10:2 전반)과 문답 장면(10:3)은 배경으로만 남긴다."
+  },
+  "background": [
+    {"what": "왕궁 알현실 — 돌바닥과 기둥", "verse": "본문 밖 · 저작자 정함"}
+  ],
+  "crowds": [],
+  "figures": [
+    {"cast": "solomon", "role": "솔로몬", "pose": "보좌에 앉아 맞이한다", "prop": "왕홀", "facing": "left", "region": "solomon", "verse": "10:3"},
+    {"cast": "sheba-queen", "role": "스바 여왕", "pose": "예물을 들고 왕 앞에 선다", "prop": "향품 상자", "facing": "right", "region": "sheba-queen", "verse": "10:10"}
+  ],
+  "regions": {
+    "full":         [0.00, 0.00, 1.00, 1.00],
+    "solomon":      [0.68, 0.15, 0.92, 0.72],
+    "sheba-queen":  [0.20, 0.28, 0.44, 0.85]
+  },
+  "_regions_why": "솔로몬은 보좌에 앉아 오른쪽 높은 자리(세로 0.57). 스바 여왕은 왕상 10:2 「나아와」대로 왼쪽에 서서 다가서는 성인 상자(세로 0.57), 둘 사이 여백을 둔다.",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "본문 밖 · 저작자 정함",
+     "prompt": "a plain ancient stone throne hall, bare floor, tall stone columns, no people, quiet room.",
+     "neg": ["people", "figures", "outdoor", "modern room"]},
+    {"id": "S3", "kind": "plate", "region": "solomon", "verse": "10:3",
+     "prompt": "{cast:solomon}, sitting on a throne receiving a guest, holding a wooden scepter, facing left.",
+     "neg": ["gray hair", "full beard", "armour", "standing"]},
+    {"id": "S4", "kind": "plate", "region": "sheba-queen", "verse": "10:10",
+     "prompt": "{cast:sheba-queen}, standing presenting a gift, holding a small wooden spice chest, facing right.",
+     "neg": ["Israelite dress", "crown", "modern clothes", "european gown", "tiara", "kneeling"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["solomon", "sheba-queen"],
+    "gap_bands": [[0.44, 0.68]],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

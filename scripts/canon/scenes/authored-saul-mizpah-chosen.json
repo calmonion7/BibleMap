@@ -1,0 +1,56 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-saul-mizpah-chosen",
+  "title": "사울 — 미스바에서 뽑히다",
+  "verses": {
+    "range": "삼상 10:17-24",
+    "quotes": {
+      "10:17": "사무엘이 백성을 미스바로 불러 여호와 앞에 모으고",
+      "10:21": "베냐민 지파를 그 가족대로 가까이 오게 하였더니 마드리의 가족이 뽑혔고 그 중에서 기스의 아들 사울이 뽑혔으나 그를 찾아도 만나지 못한지라",
+      "10:23": "그들이 달려가서 거기서 데려오매 그가 백성 중에 서니 다른 사람보다 어깨 위나 더 크더라",
+      "10:24": "사무엘이 모든 백성에게 이르되 너희는 여호와의 택하신 자를 보느냐 모든 백성 중에 짝할 이가 없느니라 하니 모든 백성이 왕의 만세를 외쳐 부르니라"
+    }
+  },
+  "moment": {
+    "verse": "10:23-24",
+    "why": "뽑힌 사울이 백성 중에 서니 다른 사람보다 어깨 위나 더 크던 순간과 사무엘의 선포를 고정한다(10:23-24). 행구 사이에 숨었던 일(10:22)이나 왕정을 구하는 배경(10:19)은 이 순간의 요구가 아니다."
+  },
+  "background": [
+    {"what": "미스바의 넓은 야외 집회 자리, 마른 땅", "verse": "10:17"}
+  ],
+  "crowds": [
+    {"what": "이스라엘 지파 백성 — 뒤쪽에 둘러섬", "verse": "10:17 · 10:24", "region": "crowd_back"}
+  ],
+  "figures": [
+    {"cast": "samuel", "role": "사무엘 — 선포하는 선지자", "pose": "다른 손으로 겉옷자락을 쥔 채 손을 들어 사울을 가리키며 선포한다", "prop": "a robe corner", "facing": "right", "region": "samuel", "verse": "10:24"},
+    {"cast": "saul", "role": "뽑힌 사울 — 무리 중 우뚝 선 자", "pose": "백성 가운데 우뚝 서 있다", "prop": "a plain traveling cloak", "facing": "left", "region": "saul", "verse": "10:23"}
+  ],
+  "regions": {
+    "full":       [0.00, 0.00, 1.00, 1.00],
+    "crowd_back": [0.02, 0.15, 0.98, 0.35],
+    "samuel":     [0.15, 0.37, 0.315, 0.92],
+    "saul":       [0.60, 0.34, 0.762, 0.92]
+  },
+  "_regions_why": "사무엘 세로 0.55(장년 선지자), 사울 세로 0.58(10:23 「다른 사람보다 어깨 위나 더 크더라」로 조금 더 크게). crowd_back은 10:17·24의 둘러선 백성.",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "10:17",
+     "prompt": "a wide dry open assembly ground, sparse dry grass, hazy low hills far behind, empty pale sky, no people.",
+     "neg": ["people", "figures", "soldiers", "buildings", "tents"]},
+    {"id": "S2", "kind": "ridge", "region": "crowd_back", "verse": "10:17",
+     "prompt": "a loose distant crowd of tiny people standing in scattered groups, tiny far away figures, no weapons.",
+     "neg": ["empty ground", "single figure", "close-up", "soldiers in rows", "spears"]},
+    {"id": "S3", "kind": "plate", "region": "samuel", "verse": "10:24",
+     "prompt": "{cast:samuel}, standing tall, gripping one robe corner, one arm raised, facing right.",
+     "neg": ["armour", "sword", "spear", "crown", "modern clothes", "staff", "sitting"]},
+    {"id": "S4", "kind": "plate", "region": "saul", "verse": "10:23",
+     "prompt": "{cast:saul}, standing tall among a crowd, holding one plain cloak folded over one arm, facing left.",
+     "neg": ["armour", "sword", "spear", "crown", "royal robe", "modern clothes", "sitting"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["samuel", "saul"],
+    "gap_bands": [[0.315, 0.60]],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

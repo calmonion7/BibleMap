@@ -1,0 +1,55 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-solomon-jerusalem-david-charge",
+  "title": "다윗의 유언 — 예루살렘",
+  "verses": {
+    "range": "왕상 2:1-12",
+    "quotes": {
+      "2:1": "다윗이 죽을 날이 임박하매 그 아들 솔로몬에게 명하여 가로되",
+      "2:2": "내가 이제 세상 모든 사람의 가는 길로 가게 되었노니 너는 힘써 대장부가 되고",
+      "2:3": "네 하나님 여호와의 명을 지켜 그 길로 행하여 그 법률과 계명과 율례와 증거를 모세의 율법에 기록된대로 지키라",
+      "2:10": "다윗이 그 열조와 함께 누워 자서 다윗 성에 장사되니",
+      "2:12": "솔로몬이 그 아비 다윗의 위에 앉으니 그 나라가 심히 견고하니라"
+    }
+  },
+  "moment": {
+    "verse": "2:1-3",
+    "why": "다윗이 침상에 누운 채 아들에게 명하고, 솔로몬이 그 곁에 서서 듣는 순간 — 죽음(2:10)·즉위(2:12)는 아직이다. 요압·시므이 심판 지시(2:5-9)의 대상 인물은 이 순간에 없다."
+  },
+  "background": [
+    {"what": "왕궁 침소 — 소박한 침상과 돌벽", "verse": "본문 밖 · 저작자 정함"}
+  ],
+  "crowds": [],
+  "figures": [
+    {"cast": "david-old", "role": "노년의 다윗", "pose": "침상에 기대 누워 있다", "prop": "이불", "facing": "right", "region": "david-old", "verse": "2:1"},
+    {"cast": "solomon", "role": "아들 솔로몬", "pose": "침상 곁에 서서 듣는다", "prop": "허리띠", "facing": "left", "region": "solomon", "verse": "2:1-2"}
+  ],
+  "regions": {
+    "full":       [0.00, 0.00, 1.00, 1.00],
+    "bed":        [0.10, 0.45, 0.55, 0.90],
+    "david-old":  [0.14, 0.55, 0.52, 0.88],
+    "solomon":    [0.62, 0.30, 0.83, 0.90]
+  },
+  "_regions_why": "침상은 화면 왼쪽 하단에 낮게(다윗이 누운 자세이므로 세로 0.33). 솔로몬은 그 오른쪽에 서서 내려다보는 성인 상자(세로 0.60). 둘이 겹치지 않게 침상 오른쪽 끝과 솔로몬 상자 사이 여백을 둔다.",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "본문 밖 · 저작자 정함",
+     "prompt": "a plain ancient stone chamber wall, bare floor, no furniture, no people, dim quiet room.",
+     "neg": ["people", "figures", "bed", "throne", "outdoor"]},
+    {"id": "S1b", "kind": "region", "region": "bed", "verse": "2:1",
+     "prompt": "a low plain wooden bed with a dark blanket, empty, no people, simple ancient furniture.",
+     "neg": ["people", "figures", "throne", "cushions", "canopy"]},
+    {"id": "S3", "kind": "plate", "region": "david-old", "verse": "2:1",
+     "prompt": "{cast:david-old}, lying propped up on a bed, gripping a dark blanket, facing right.",
+     "neg": ["crown", "armour", "young face", "standing"]},
+    {"id": "S4", "kind": "plate", "region": "solomon", "verse": "2:1-2",
+     "prompt": "{cast:solomon}, standing listening, holding his belt, facing left.",
+     "neg": ["gray hair", "full beard", "armour", "sitting"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["david-old", "solomon"],
+    "gap_bands": [[0.55, 0.62]],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

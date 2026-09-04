@@ -1,0 +1,140 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-david-returns-jerusalem",
+  "title": "다윗 — 요단을 건너 돌아오다",
+  "verses": {
+    "range": "삼하 19:15",
+    "quotes": {
+      "19:15": "왕이 돌아와 요단에 이르매 유다 족속이 왕을 맞아 요단을 건네려 하여 길갈로 오니라"
+    }
+  },
+  "moment": {
+    "verse": "19:15",
+    "why": "다윗이 요단에 이르러 걷는 순간을 고정한다. 유다 족속이 그를 맞이하는 장면은 원경 무리로만 둔다."
+  },
+  "background": [
+    {
+      "what": "요단 강가",
+      "verse": "19:15"
+    }
+  ],
+  "crowds": [
+    {
+      "what": "유다 족속 — 왕을 맞으러 나온 무리",
+      "verse": "19:15",
+      "region": "crest_right"
+    }
+  ],
+  "figures": [
+    {
+      "cast": "david",
+      "role": "다윗",
+      "pose": "강가를 향해 걸으며 칼자루를 쥔다",
+      "prop": "a sword",
+      "facing": "right",
+      "region": "david",
+      "verse": "19:15 · 지물 본문 밖 · 저작자 정함"
+    }
+  ],
+  "regions": {
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "river": [
+      0.55,
+      0.55,
+      1.0,
+      0.8
+    ],
+    "crest_right": [
+      0.6,
+      0.3,
+      0.98,
+      0.5
+    ],
+    "david": [
+      0.16,
+      0.46,
+      0.32,
+      0.9
+    ]
+  },
+  "_regions_why": "다윗 세로 0.44(걷는 자세). 강과 맞이하는 무리는 우측(19:15 「요단에 이르매」·「맞아」).",
+  "stages": [
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "본문 밖 · 저작자 정함",
+      "prompt": "a wide dry grassy bank beside a river, low distant hills, empty pale sky, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "soldiers",
+        "city walls"
+      ]
+    },
+    {
+      "id": "S1b",
+      "kind": "region",
+      "region": "river",
+      "verse": "19:15",
+      "prompt": "a calm wide river with a muddy bank, reeds along the edge, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "boat",
+        "bridge",
+        "waterfall"
+      ]
+    },
+    {
+      "id": "S2",
+      "kind": "ridge",
+      "region": "crest_right",
+      "verse": "19:15",
+      "prompt": "many tiny distant people gathered along a riverbank, small silhouettes, tiny far away crowd.",
+      "neg": [
+        "empty ground",
+        "single figure",
+        "close-up",
+        "soldiers with spears"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "david",
+      "verse": "19:15",
+      "prompt": "an ancient Israelite lean young man walking, gripping a sword hilt at his side, facing right.",
+      "neg": [
+        "armour",
+        "crown",
+        "helmet",
+        "sword swinging",
+        "kneeling"
+      ]
+    }
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "인물 하나뿐이라 gap_bands는 없다.",
+    "figures": [
+      "david"
+    ],
+    "gap_bands": [],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
+  }
+}

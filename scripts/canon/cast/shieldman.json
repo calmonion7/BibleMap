@@ -1,0 +1,20 @@
+{
+  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "shieldman",
+  "names": ["방패 든 자(골리앗의 종자)"],
+  "stops": [],
+  "era": "an unarmed Philistine",
+  "age": "servant",
+  "sex": "male",
+  "hair": "dark hair",
+  "beard": "none",
+  "headwear": "none",
+  "build": "adult",
+  "costume": "in a plain knee-length tunic, sandals",
+  "colorWords": [],
+  "propCandidates": [{"prop": "a large round bronze shield", "verse": "삼상 17:7 · 17:41", "ko": "방패"}],
+  "neg": ["armour", "spear", "sword", "cape", "helmet"],
+  "poses": ["standing, full body, side view facing left", "walking, full body, carrying a large round bronze shield upright in front of him with both hands, facing left"],
+  "_why": {"age": "삼상 17:41 「방패 든 자를 앞세우고」 — 성인 종자(task 329 사용자 결정)", "costume": "본문 밖 · 저작자 정함 — 삼상17 v41 S4 판 문구 이관"},
+  "plate": {"seed": 11, "anchor": false, "ipScale": 0.25, "approved": "보류: 삼상17 v41 봉인본의 S4 판 문구·시드(11)를 그대로 쓰는 인물 — 다윗 투어 36장면 미등장이라 A/B 거름 생략(task 332, 2026-09-04)", "approvedOn": "2026-09-04"}
+}

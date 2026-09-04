@@ -1,0 +1,54 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-samuel-bethlehem-david-anointing",
+  "title": "사무엘 — 베들레헴에서 다윗에게 기름 붓다",
+  "verses": {
+    "range": "삼상 16:4-13",
+    "quotes": {
+      "16:7": "여호와께서 사무엘에게 이르시되 그 용모와 신장을 보지 말라 내가 이미 그를 버렸노라 나의 보는 것은 사람과 같지 아니하니 사람은 외모를 보거니와 나 여호와는 중심을 보느니라",
+      "16:11": "또 이새에게 이르되 네 아들들이 다 여기 있느냐 이새가 가로되 아직 말째가 남았는데 그가 양을 지키나이다",
+      "16:12": "이에 보내어 그를 데려오매 그의 빛이 붉고 눈이 빼어나고 얼굴이 아름답더라 여호와께서 가라사대 이가 그니 일어나 기름을 부으라",
+      "16:13": "사무엘이 기름 뿔을 취하여 그 형제 중에서 그에게 부었더니 이 날 이후로 다윗이 여호와의 신에게 크게 감동되니라"
+    }
+  },
+  "moment": {
+    "verse": "16:13",
+    "why": "사무엘이 기름 뿔로 다윗에게 기름을 붓는 순간을 고정한다 — 형들이 차례로 지나던 심사 절차(16:6-10)는 이 순간의 요구가 아니다."
+  },
+  "background": [
+    {"what": "베들레헴 마을의 소박한 제사 자리", "verse": "16:4-5"}
+  ],
+  "figures": [
+    {"cast": "samuel", "role": "사무엘 — 기름 붓는 선지자", "pose": "기름 뿔을 기울여 다윗에게 붓는다", "prop": "a horn of oil", "facing": "right", "region": "samuel", "verse": "16:13"},
+    {"cast": "david-boy", "role": "소년 다윗 — 기름 받는 자", "pose": "무릎 꿇고 기름을 받는다", "prop": "a shepherd's staff", "facing": "left", "region": "david-boy", "verse": "16:11-13"},
+    {"cast": "jesse", "role": "이새 — 지켜보는 아버지", "pose": "곁에 서서 지켜본다", "prop": "a wooden staff", "facing": "left", "region": "jesse", "verse": "16:11 · 지물 본문 밖 · 저작자 정함"}
+  ],
+  "regions": {
+    "full":      [0.00, 0.00, 1.00, 1.00],
+    "samuel":    [0.08, 0.37, 0.245, 0.92],
+    "david-boy": [0.40, 0.52, 0.52, 0.92],
+    "jesse":     [0.75, 0.37, 0.915, 0.92]
+  },
+  "_regions_why": "사무엘·이새 세로 0.55(장년~노년 성인), 다윗(소년) 무릎 꿇어 세로 0.40. 배치는 16:13(사무엘이 중앙의 다윗에게 붓고 이새는 곁에서 지켜봄).",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "16:4",
+     "prompt": "a small dry village courtyard, simple stone ground, sparse dry grass, pale sky, no people.",
+     "neg": ["people", "figures", "soldiers", "modern buildings"]},
+    {"id": "S2", "kind": "plate", "region": "samuel", "verse": "16:13",
+     "prompt": "{cast:samuel}, standing tall, tilting one horn of oil, pouring, facing right.",
+     "neg": ["armour", "sword", "spear", "crown", "modern clothes", "two horns", "sitting"]},
+    {"id": "S3", "kind": "plate", "region": "david-boy", "verse": "16:11",
+     "prompt": "{cast:david-boy}, kneeling, gripping one shepherd's staff, head bowed, facing left.",
+     "neg": ["armour", "helmet", "sword", "beard", "old man", "standing", "shoes"]},
+    {"id": "S4", "kind": "plate", "region": "jesse", "verse": "16:11",
+     "prompt": "{cast:jesse}, standing tall, gripping one wooden staff upright, watching, facing left.",
+     "neg": ["armour", "sword", "spear", "crown", "modern clothes", "two staffs", "sitting"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["samuel", "david-boy"],
+    "gap_bands": [[0.245, 0.40], [0.52, 0.75]],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

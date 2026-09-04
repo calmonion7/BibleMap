@@ -1,0 +1,50 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-solomon-jerusalem-palace",
+  "title": "왕궁 건축 — 예루살렘",
+  "verses": {
+    "range": "왕상 7:1-12",
+    "quotes": {
+      "7:1": "솔로몬이 자기의 궁을 십삼 년 동안 건축하여 그 전부를 준공하니라",
+      "7:2": "저가 레바논 나무로 궁을 지었으니 장이 일백 규빗이요 광이 오십 규빗이요 고가 삼십 규빗이라 백향목 기둥이 네 줄이요 기둥 위에 백향목 들보가 있으며",
+      "7:6": "또 기둥을 세워 낭실을 지었으니 장이 오십 규빗이요 광이 삼십 규빗이며",
+      "7:9": "이 집들은 안팎을 모두 귀하고 다듬은 돌로 지었으니 척수대로 톱으로 켠 것이라"
+    }
+  },
+  "moment": {
+    "verse": "7:1-2",
+    "why": "레바논 나무 궁, 백향목 기둥이 늘어선 건물 앞에 솔로몬이 서 있는 순간. 준공 축하나 시므온 낭실(7:6-8) 세부 동작은 그리지 않는다 — 인물 1명 + 건물이 주역."
+  },
+  "background": [
+    {"what": "레바논 나무 궁 — 백향목 기둥 네 줄과 들보", "verse": "7:2"},
+    {"what": "다듬은 돌 기초와 벽", "verse": "7:9"}
+  ],
+  "crowds": [],
+  "figures": [
+    {"cast": "solomon", "role": "솔로몬", "pose": "궁 앞에 서서 바라본다", "prop": "겉옷자락", "facing": "right", "region": "solomon", "verse": "7:1"}
+  ],
+  "regions": {
+    "full":     [0.00, 0.00, 1.00, 1.00],
+    "palace":   [0.28, 0.05, 0.98, 0.90],
+    "solomon":  [0.05, 0.38, 0.24, 0.90]
+  },
+  "_regions_why": "궁전이 화면 대부분(7:2 백향목 기둥 네 줄이 늘어선 넓은 건물)을 차지하는 큰 배경. 솔로몬은 왼쪽 앞 성인 상자(세로 0.52)로 궁을 바라보는 크기 대비.",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "본문 밖 · 저작자 정함",
+     "prompt": "a bare open courtyard in front of a building site, pale stony ground, empty pale sky, no people, no buildings.",
+     "neg": ["people", "figures", "trees", "grass", "water"]},
+    {"id": "S1b", "kind": "region", "region": "palace", "verse": "7:2",
+     "prompt": "a long ancient palace of cedar wood, four rows of tall cedar wood pillars, cedar beams, dressed stone foundation, no people.",
+     "neg": ["people", "figures", "pagoda", "modern building", "dome", "temple gold", "tower"]},
+    {"id": "S3", "kind": "plate", "region": "solomon", "verse": "7:1",
+     "prompt": "{cast:solomon}, standing looking up at a building, holding the edge of his robe, facing right.",
+     "neg": ["gray hair", "full beard", "armour", "sitting"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["solomon"],
+    "gap_bands": [],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

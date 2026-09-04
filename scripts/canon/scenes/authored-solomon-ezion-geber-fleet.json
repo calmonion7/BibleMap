@@ -1,0 +1,53 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-solomon-ezion-geber-fleet",
+  "title": "에시온게벨 함대 — 홍해",
+  "verses": {
+    "range": "왕상 9:26-28",
+    "quotes": {
+      "9:26": "솔로몬 왕이 에돔 땅 홍해 물가 엘롯 근처 에시온게벨에서 배들을 지은지라",
+      "9:27": "히람이 자기 종 곧 바다에 익숙한 사공들을 솔로몬의 종과 함께 그 배로 보내매",
+      "9:28": "저희가 오빌에 이르러 거기서 금 사백이십 달란트를 얻고 솔로몬 왕에게로 가져왔더라"
+    }
+  },
+  "moment": {
+    "verse": "9:26-27",
+    "why": "홍해 물가에 지어진 배들 앞에 솔로몬이 서 있는 순간(9:26 「솔로몬 왕이 ... 배들을 지은지라」 — 몸소 배를 지은 자는 솔로몬이고, 히람은 사공만 보낸 자라 배 곁의 인물은 솔로몬으로 삼는다). 항해(9:27-28)나 금을 옮기는 동작은 그리지 않는다. 인물 1명 + 배가 주역."
+  },
+  "background": [
+    {"what": "홍해 물가에 지어진 배들", "verse": "9:26"},
+    {"what": "물가와 바다", "verse": "9:26"}
+  ],
+  "crowds": [],
+  "figures": [
+    {"cast": "solomon", "role": "솔로몬", "pose": "배 곁에 서서 바라본다", "prop": "겉옷자락", "facing": "right", "region": "solomon", "verse": "9:26 · 지물 본문 밖 · 저작자 정함"}
+  ],
+  "regions": {
+    "full":   [0.00, 0.00, 1.00, 1.00],
+    "ships":  [0.30, 0.30, 0.98, 0.75],
+    "sea":    [0.00, 0.55, 1.00, 1.00],
+    "solomon":  [0.06, 0.35, 0.25, 0.87]
+  },
+  "_regions_why": "배들이 화면 대부분(9:26 배들을 지은지라)을 차지하는 큰 배경, 그 아래로 바다가 바닥까지. 솔로몬은 왼쪽 앞 성인 상자(세로 0.52)로 배를 바라보는 크기 대비.",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "본문 밖 · 저작자 정함",
+     "prompt": "a wide calm sea shore, pale sandy ground, empty pale sky, no people, no boats.",
+     "neg": ["people", "figures", "hills", "trees"]},
+    {"id": "S1b", "kind": "region", "region": "sea", "verse": "9:26",
+     "prompt": "a wide calm blue sea meeting a sandy shore, gentle waves, no people, no boats.",
+     "neg": ["people", "figures", "storm", "waves crashing"]},
+    {"id": "S1c", "kind": "region", "region": "ships", "verse": "9:26",
+     "prompt": "several ancient wooden sailing ships beached on a shore, tall masts, furled sails, no people.",
+     "neg": ["people", "figures", "modern ship", "steel hull", "sails full and billowing"]},
+    {"id": "S3", "kind": "plate", "region": "solomon", "verse": "9:26",
+     "prompt": "{cast:solomon}, standing looking at ships, holding the edge of his robe, facing right.",
+     "neg": ["armour", "crown", "modern clothes", "sitting"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["solomon"],
+    "gap_bands": [],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-david-hebron-king-judah",
+  "title": "다윗 — 헤브론에서 유다 왕이 되다",
+  "verses": {
+    "range": "삼하 2:4",
+    "quotes": {
+      "2:4": "유다 사람들이 와서 거기서 다윗에게 기름을 부어 유다 족속의 왕을 삼았더라 혹이 다윗에게 고하여 가로되 사울을 장사한 사람은 길르앗 야베스 사람들이니이다 하매"
+    }
+  },
+  "moment": {
+    "verse": "2:4 전반",
+    "why": "유다 사람들이 다윗에게 기름을 부어 왕을 삼는 순간 자체를 고정한다. 야베스 사람들 소식(2:4 후반)은 별개 사건이라 배제한다."
+  },
+  "background": [
+    {
+      "what": "헤브론 성문 앞 넓은 뜰, 마른 흙바닥",
+      "verse": "본문 밖 · 저작자 정함"
+    },
+    {
+      "what": "성문 구조물",
+      "verse": "본문 밖 · 저작자 정함"
+    }
+  ],
+  "crowds": [
+    {
+      "what": "유다 사람들 — 뒤편에 도열",
+      "verse": "2:4",
+      "region": "crest_back"
+    }
+  ],
+  "figures": [
+    {
+      "cast": "david",
+      "role": "다윗",
+      "pose": "무릎을 꿇고 앉아 로브 자락을 쥔 채 고개를 숙인다",
+      "prop": "a robe corner",
+      "facing": "right",
+      "region": "david",
+      "verse": "2:4 · 지물 본문 밖 · 저작자 정함"
+    }
+  ],
+  "regions": {
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "gate": [
+      0.3,
+      0.04,
+      0.7,
+      0.5
+    ],
+    "crest_back": [
+      0.12,
+      0.3,
+      0.88,
+      0.5
+    ],
+    "david": [
+      0.42,
+      0.55,
+      0.58,
+      0.92
+    ]
+  },
+  "_regions_why": "다윗은 무릎 꿇은 자세라 세로 0.37(0.35-0.45 범위). 장로들은 성문 뒤 원경 띠. 배치는 저작자 정함(본문에 위치 서술 없음).",
+  "stages": [
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "본문 밖 · 저작자 정함",
+      "prompt": "a wide dry courtyard of pale packed earth before a city gate, sparse dry grass, empty pale sky, no hills, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "soldiers",
+        "throne room",
+        "indoor"
+      ]
+    },
+    {
+      "id": "S1b",
+      "kind": "region",
+      "region": "gate",
+      "verse": "본문 밖 · 저작자 정함",
+      "prompt": "a thick ancient city gate structure of pale stone, arched entrance, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "modern",
+        "castle",
+        "tower with flag"
+      ]
+    },
+    {
+      "id": "S2",
+      "kind": "ridge",
+      "region": "crest_back",
+      "verse": "2:4",
+      "prompt": "many tiny distant robed elders standing in loose rows, tiny far away crowd, small silhouettes.",
+      "neg": [
+        "empty ground",
+        "single figure",
+        "close-up",
+        "soldiers",
+        "spears"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "david",
+      "verse": "2:4",
+      "prompt": "an ancient Israelite lean young man kneeling, head bowed, gripping the corner of his robe with one hand, facing right.",
+      "neg": [
+        "armour",
+        "crown",
+        "standing",
+        "sword drawn",
+        "helmet"
+      ]
+    }
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자가 이 장면에서 재는 기하 — 인물 하나뿐이라 gap_bands는 없다.",
+    "figures": [
+      "david"
+    ],
+    "gap_bands": [],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
+  }
+}

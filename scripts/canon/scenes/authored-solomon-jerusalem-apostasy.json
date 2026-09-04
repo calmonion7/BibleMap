@@ -1,0 +1,48 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-solomon-jerusalem-apostasy",
+  "title": "솔로몬의 배교 — 예루살렘",
+  "verses": {
+    "range": "왕상 11:1-13",
+    "quotes": {
+      "11:4": "솔로몬의 나이 늙을 때에 왕비들이 그 마음을 돌이켜 다른 신들을 좇게 하였으므로 왕의 마음이 그 부친 다윗의 마음과 같지 아니하여 그 하나님 여호와 앞에 온전치 못하였으니",
+      "11:7": "모압의 가증한 그모스를 위하여 예루살렘 앞 산에 산당을 지었고 또 암몬 자손의 가증한 몰록을 위하여 그와 같이 하였으며",
+      "11:8": "저가 또 이족 후비들을 위하여 다 그와 같이 한지라 저희가 자기의 신들에게 분향하며 제사하였더라"
+    }
+  },
+  "moment": {
+    "verse": "11:7-8",
+    "why": "늙은 솔로몬이 산당의 우상 앞에 선 순간 — 분향·제사하는 동작(11:8)은 그리지 않는다(모델 prior에 없는 동작). 후비들(11:1-3)은 이 순간에 없다."
+  },
+  "background": [
+    {"what": "예루살렘 앞 산의 이방 산당과 우상", "verse": "11:7"}
+  ],
+  "crowds": [],
+  "figures": [
+    {"cast": "solomon-old", "role": "늙은 솔로몬", "pose": "산당의 우상을 향해 서서 바라본다", "prop": "겉옷자락", "facing": "right", "region": "solomon-old", "verse": "11:7-8"}
+  ],
+  "regions": {
+    "full":        [0.00, 0.00, 1.00, 1.00],
+    "shrine":      [0.55, 0.15, 0.95, 0.85],
+    "solomon-old": [0.10, 0.35, 0.32, 0.90]
+  },
+  "_regions_why": "산당과 우상은 화면 오른쪽 배경(11:7). 늙은 솔로몬은 왼쪽 성인 상자(세로 0.55, 「나이 늙을 때」 무거운 체격)로 우상을 바라보는 자세.",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "본문 밖 · 저작자 정함",
+     "prompt": "a hill outside a city, pale stony ground, sparse dry grass, empty pale sky, no people, no buildings.",
+     "neg": ["people", "figures", "forest", "water"]},
+    {"id": "S1b", "kind": "region", "region": "shrine", "verse": "11:7",
+     "prompt": "a small ancient stone shrine with one plain carved idol statue on a pedestal, no people, no fire.",
+     "neg": ["people", "figures", "temple gold", "cross", "modern statue"]},
+    {"id": "S3", "kind": "plate", "region": "solomon-old", "verse": "11:7-8",
+     "prompt": "{cast:solomon-old}, standing looking at an idol, holding the edge of his robe, facing right.",
+     "neg": ["young face", "no beard", "modern clothes", "sitting"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["solomon-old"],
+    "gap_bands": [],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

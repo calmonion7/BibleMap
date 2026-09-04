@@ -1,0 +1,59 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-saul-gilgal-coronation",
+  "title": "사울 — 길갈에서 왕이 되다",
+  "verses": {
+    "range": "삼상 11:14-15",
+    "quotes": {
+      "11:14": "사무엘이 백성에게 이르되 오라 우리가 길갈로 가서 나라를 새롭게 하자",
+      "11:15": "모든 백성이 길갈로 가서 거기서 여호와 앞에 사울로 왕을 삼고 거기서 여호와 앞에 화목제를 드리고 사울과 이스라엘 모든 사람이 거기서 크게 기뻐하니라"
+    }
+  },
+  "moment": {
+    "verse": "11:15",
+    "why": "길갈에서 백성이 사울을 왕으로 세우고 화목제단 곁에서 크게 기뻐하는 순간을 고정한다 — 제물을 잡는 동작은 그리지 않고 이미 놓인 제단으로 대신한다."
+  },
+  "background": [
+    {"what": "화목제를 위해 쌓은 돌 제단", "verse": "11:15"},
+    {"what": "길갈의 넓은 들", "verse": "11:14"}
+  ],
+  "crowds": [
+    {"what": "크게 기뻐하는 이스라엘 백성 — 뒤쪽에 둘러섬", "verse": "11:15", "region": "crowd_back"}
+  ],
+  "figures": [
+    {"cast": "samuel", "role": "사무엘 — 제사를 인도하는 선지자", "pose": "화목제단 곁에 서서 겉옷자락을 쥔다", "prop": "a robe corner", "facing": "right", "region": "samuel", "verse": "11:14-15"},
+    {"cast": "saul", "role": "사울 — 새로 세워진 왕", "pose": "백성 앞에 서서 기뻐한다", "prop": "a plain traveling cloak", "facing": "left", "region": "saul", "verse": "11:15"}
+  ],
+  "regions": {
+    "full":       [0.00, 0.00, 1.00, 1.00],
+    "crowd_back": [0.02, 0.15, 0.98, 0.33],
+    "altar":      [0.40, 0.75, 0.55, 0.92],
+    "samuel":     [0.12, 0.37, 0.285, 0.92],
+    "saul":       [0.60, 0.34, 0.762, 0.92]
+  },
+  "_regions_why": "사무엘 세로 0.55, 사울 세로 0.58(어깨 위나 더 큼). altar는 낮은 돌더미(높이 0.17)로 두 인물 사이 바닥에.",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "11:14",
+     "prompt": "a wide dry open field, sparse dry grass, hazy low hills far behind, bright pale sky, no people.",
+     "neg": ["people", "figures", "soldiers", "buildings", "tents"]},
+    {"id": "S2", "kind": "region", "region": "altar", "verse": "11:15",
+     "prompt": "a low pile of rough stones forming a simple sacrificial altar, no people, no fire.",
+     "neg": ["people", "figures", "building", "tall structure", "fire", "smoke"]},
+    {"id": "S3", "kind": "ridge", "region": "crowd_back", "verse": "11:15",
+     "prompt": "a loose joyful crowd of tiny distant people, scattered groups standing, no weapons.",
+     "neg": ["empty ground", "single figure", "close-up", "soldiers in rows"]},
+    {"id": "S4", "kind": "plate", "region": "samuel", "verse": "11:14",
+     "prompt": "{cast:samuel}, standing tall, gripping one robe corner, facing right.",
+     "neg": ["armour", "sword", "spear", "crown", "modern clothes", "staff", "sitting"]},
+    {"id": "S5", "kind": "plate", "region": "saul", "verse": "11:15",
+     "prompt": "{cast:saul}, standing tall, holding one plain cloak folded over one arm, facing left.",
+     "neg": ["armour", "sword", "spear", "crown", "royal robe", "modern clothes", "sitting"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["samuel", "saul"],
+    "gap_bands": [[0.285, 0.40], [0.55, 0.60]],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

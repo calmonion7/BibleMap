@@ -1,0 +1,96 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-david-mahanaim-exile",
+  "title": "다윗 — 마하나임으로 피신하다",
+  "verses": {
+    "range": "삼하 17:24",
+    "quotes": {
+      "17:24": "이에 다윗은 마하나임에 이르고 압살롬은 모든 이스라엘 사람과 함께 요단을 건너니라"
+    }
+  },
+  "moment": {
+    "verse": "17:24 전반",
+    "why": "다윗이 마하나임에 이르러 걷는 순간을 고정한다. 압살롬의 요단 도하는 별개 장소·별개 순간이라 배제한다."
+  },
+  "background": [
+    {
+      "what": "마하나임 성읍으로 오르는 마른 길",
+      "verse": "17:24"
+    }
+  ],
+  "crowds": [],
+  "figures": [
+    {
+      "cast": "david",
+      "role": "다윗",
+      "pose": "지친 채 걸으며 로브 자락을 쥔다",
+      "prop": "a robe corner",
+      "facing": "right",
+      "region": "david",
+      "verse": "17:24 · 지물 본문 밖 · 저작자 정함"
+    }
+  ],
+  "regions": {
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "david": [
+      0.4,
+      0.46,
+      0.56,
+      0.92
+    ]
+  },
+  "_regions_why": "다윗 세로 0.46(성인, 지친 걸음이라 표준 하단). 단독 인물이라 중앙 배치.",
+  "stages": [
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "본문 밖 · 저작자 정함",
+      "prompt": "a wide dry rocky road climbing toward a distant hilltop town, sparse dry grass, empty pale sky, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "soldiers",
+        "river",
+        "boats"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "david",
+      "verse": "17:24",
+      "prompt": "an ancient Israelite lean young man walking wearily, gripping the corner of his robe with one hand, facing right.",
+      "neg": [
+        "armour",
+        "crown",
+        "helmet",
+        "sword drawn",
+        "running"
+      ]
+    }
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "인물 하나뿐이라 gap_bands는 없다.",
+    "figures": [
+      "david"
+    ],
+    "gap_bands": [],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
+  }
+}

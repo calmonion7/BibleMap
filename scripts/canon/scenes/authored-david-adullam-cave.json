@@ -1,0 +1,54 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-david-adullam-cave",
+  "title": "다윗과 무리 — 아둘람 굴",
+  "verses": {
+    "range": "삼상 22:1-2",
+    "quotes": {
+      "22:1": "그러므로 다윗이 그곳을 떠나 아둘람 굴로 도망하매 그 형제와 아비의 온 집이 듣고는 그리로 내려가서 그에게 이르렀고",
+      "22:2": "환난 당한 모든 자와 빚진 자와 마음이 원통한 자가 다 그에게로 모였고 그는 그 장관이 되었는데 그와 함께 한 자가 사백 명 가량이었더라"
+    }
+  },
+  "moment": {
+    "verse": "22:2 전반",
+    "why": "다윗이 굴 어귀에 서서 모여드는 무리를 손을 들어 맞아들이는 순간 — 사백 명 각자를 그리지 않고 원경 무리로 나타낸다(§21 규칙 준수, 인물은 다윗 하나)."
+  },
+  "background": [
+    {"what": "아둘람 굴 어귀 큰 바위", "verse": "22:1"},
+    {"what": "굴 위 마른 언덕 비탈", "verse": "22:1 · 배경 본문 밖 · 저작자 정함"}
+  ],
+  "crowds": [
+    {"what": "환난당한 자·빚진 자·원통한 자 사백 명 무리 — 굴 쪽으로 다가온다", "verse": "22:2", "region": "followers"}
+  ],
+  "figures": [
+    {"cast": "david", "role": "다윗 — 무리의 장관", "pose": "굴 어귀에 서서 한 손을 들어 무리를 맞아들인다", "prop": "a sword", "facing": "right", "region": "david", "verse": "22:1-2 · 지물 본문 밖 · 저작자 정함"}
+  ],
+  "regions": {
+    "full":      [0.00, 0.00, 1.00, 1.00],
+    "cave":      [0.10, 0.10, 0.50, 0.70],
+    "followers": [0.55, 0.30, 0.98, 0.55],
+    "david":     [0.18, 0.36, 0.35, 0.90]
+  },
+  "_regions_why": "다윗 세로 0.54(성인). 굴은 다윗 뒤 배경 구조물(22:1). 무리는 원경 띠(followers) — 인물 상자와 겹치지 않게 오른쪽 중단.",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "22:1",
+     "prompt": "a dry rocky hillside with a wide cave mouth in a limestone cliff, sparse dry scrub, pale sky, no people.",
+     "neg": ["people", "figures", "soldiers", "modern building", "green forest"]},
+    {"id": "S1b", "kind": "region", "region": "cave", "verse": "22:1",
+     "prompt": "a wide dark cave opening in pale limestone rock, jagged rock edges, dry ground before it, no people.",
+     "neg": ["people", "figures", "door", "modern architecture"]},
+    {"id": "S2a", "kind": "ridge", "region": "followers", "verse": "22:2",
+     "prompt": "a loose distant crowd of about a hundred tiny ragged figures walking toward a hillside, small and far away.",
+     "neg": ["empty hill", "bare ridge", "single figure", "close-up", "armour", "soldiers in rank"]},
+    {"id": "S3", "kind": "plate", "region": "david", "verse": "22:1-2",
+     "prompt": "{cast:david}, standing at a cave mouth, one arm raised in welcome, the other hand gripping a sword at his side, facing right.",
+     "neg": ["crown", "armour", "royal robe", "modern clothes"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["david"],
+    "gap_bands": [],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

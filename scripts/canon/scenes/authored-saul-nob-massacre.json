@@ -1,0 +1,53 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-saul-nob-massacre",
+  "title": "사울과 도엑 — 놉의 심판",
+  "verses": {
+    "range": "삼상 22:11-19",
+    "quotes": {
+      "22:17": "왕이 좌우의 시위자에게 이르되 돌이켜 가서 여호와의 제사장들을 죽이라 … 왕의 신하들이 손을 들어 여호와의 제사장들 죽이기를 싫어한지라",
+      "22:18": "왕이 도엑에게 이르되 너는 돌이켜 제사장들을 죽이라 하매 에돔 사람 도엑이 돌이켜 제사장들을 쳐서 그 날에 세마포 에봇 입은 자 팔십오 인을 죽였고"
+    }
+  },
+  "moment": {
+    "verse": "22:18 전반",
+    "why": "사울의 명을 받은 도엑이 칼을 뽑아 쥐고 제사장들 쪽으로 돌아서는 순간 — 실제로 치는 동작·유혈은 그리지 않는다(사용자 지시). 아히멜렉은 아직 살아 두려워 떠는 자세."
+  },
+  "background": [
+    {"what": "놉 성막 앞뜰", "verse": "22:11"}
+  ],
+  "crowds": [],
+  "figures": [
+    {"cast": "saul", "role": "사울 — 명령하는 왕", "pose": "선 채로 창을 쥐고 한 손을 들어 명령한다", "prop": "a spear", "facing": "right", "region": "saul", "verse": "22:18"},
+    {"cast": "doeg", "role": "에돔 사람 도엑", "pose": "칼을 뽑아 쥐고 돌아서 있다", "prop": "a sword", "facing": "right", "region": "doeg", "verse": "22:18"},
+    {"cast": "ahimelech", "role": "제사장 아히멜렉 — 왕 앞에서 대답함", "pose": "왕 앞에 서서 대답한다", "prop": "the hem of his ephod", "facing": "left", "region": "ahimelech", "verse": "22:12-14"}
+  ],
+  "regions": {
+    "full":      [0.00, 0.00, 1.00, 1.00],
+    "saul":      [0.06, 0.35, 0.24, 0.90],
+    "doeg":      [0.36, 0.36, 0.54, 0.90],
+    "ahimelech": [0.66, 0.35, 0.84, 0.90]
+  },
+  "_regions_why": "사울·도엑·아히멜렉 모두 선 자세 성인 세로 0.55(원본 saul 지물 정본 재사용). 왼쪽부터 명령 순서(사울→도엑→아히멜렉).",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "22:11",
+     "prompt": "a small dry courtyard of pale packed earth before a tent shrine, low stone wall, empty pale sky, no people.",
+     "neg": ["people", "figures", "soldiers", "modern building"]},
+    {"id": "S3", "kind": "plate", "region": "saul", "verse": "22:18",
+     "prompt": "{cast:saul}, standing, gripping a spear upright, one arm raised in command, facing right.",
+     "neg": ["crown", "royal robe", "armour", "modern clothes"]},
+    {"id": "S4", "kind": "plate", "region": "doeg", "verse": "22:18",
+     "prompt": "{cast:doeg}, standing, gripping a drawn sword, body turning, facing right.",
+     "neg": ["Israelite priestly dress", "crown", "modern clothes", "blood"]},
+    {"id": "S5", "kind": "plate", "region": "ahimelech", "verse": "22:12-14",
+     "prompt": "{cast:ahimelech}, standing, answering the king, both hands gripping the hem of his linen ephod, facing left.",
+     "neg": ["crown", "armour", "modern clothes", "kneeling"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["doeg", "ahimelech"],
+    "gap_bands": [[0.24, 0.36], [0.54, 0.66]],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

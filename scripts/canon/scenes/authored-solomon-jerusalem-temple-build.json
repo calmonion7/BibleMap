@@ -1,0 +1,55 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-solomon-jerusalem-temple-build",
+  "title": "성전 건축 — 예루살렘",
+  "verses": {
+    "range": "왕상 6:1-38",
+    "quotes": {
+      "6:1": "솔로몬이 이스라엘 왕이 된지 사년 시브월 곧 이월에 솔로몬이 여호와를 위하여 전 건축하기를 시작하였더라",
+      "6:2": "솔로몬 왕이 여호와를 위하여 건축한 전은 장이 육십 규빗이요 광이 이십 규빗이요 고가 삼십 규빗이며",
+      "6:7": "이 전은 건축할 때에 돌을 뜨는 곳에서 치석하고 가져다가 건축하였으므로 건축하는 동안에 전 속에서는 방망이나 도끼나 모든 철 연장 소리가 들리지 아니하였으며",
+      "6:22": "온 전을 금으로 입히기를 마치고 내소에 속한 단의 전부를 금으로 입혔더라",
+      "6:38": "제십일년 불월 곧 팔월에 그 설계와 식양대로 전이 다 필역되었으니 솔로몬이 전을 건축한 동안이 칠 년이었더라"
+    }
+  },
+  "moment": {
+    "verse": "6:2 · 6:38",
+    "why": "건축이 진행 중인 성전 건물 앞에 솔로몬이 서서 바라보는 순간 — 돌 다듬기·도끼질(6:7) 동작은 그리지 않는다(모델 prior에 없는 동작). 인물 1명 + 건물이 주역."
+  },
+  "background": [
+    {"what": "다듬은 돌과 백향목 널판으로 세워지는 성전 건물", "verse": "6:2 · 6:7 · 6:9"},
+    {"what": "건물 앞뜰의 다듬은 돌더미", "verse": "6:7"}
+  ],
+  "crowds": [],
+  "figures": [
+    {"cast": "solomon", "role": "솔로몬", "pose": "성전 앞에 서서 바라본다", "prop": "전 모형", "facing": "right", "region": "solomon", "verse": "6:2"}
+  ],
+  "regions": {
+    "full":     [0.00, 0.00, 1.00, 1.00],
+    "temple":   [0.30, 0.06, 0.98, 0.90],
+    "stones":   [0.02, 0.72, 0.28, 0.94],
+    "solomon":  [0.05, 0.38, 0.24, 0.90]
+  },
+  "_regions_why": "성전 건물이 화면 대부분을 차지하는 큰 배경(6:2 육십 규빗×이십 규빗×삼십 규빗 — 폭넓고 높은 상자). 솔로몬은 왼쪽 앞 성인 상자(세로 0.52)로 건물을 바라보는 크기 대비. 돌더미는 왼쪽 하단 낮은 상자.",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "본문 밖 · 저작자 정함",
+     "prompt": "a bare dry building yard on a hilltop, pale stony ground, empty pale sky, no people, no buildings.",
+     "neg": ["people", "figures", "trees", "grass", "water"]},
+    {"id": "S1b", "kind": "region", "region": "temple", "verse": "6:2 · 6:9",
+     "prompt": "a large ancient stone temple under construction, dressed stone walls, cedar wood beams and scaffolding, no people, no roof gold.",
+     "neg": ["people", "figures", "pagoda", "modern building", "tower", "dome", "columns of a palace"]},
+    {"id": "S1c", "kind": "region", "region": "stones", "verse": "6:7",
+     "prompt": "a small pile of finely dressed square stone blocks on the ground, no people, no tools.",
+     "neg": ["people", "figures", "hammer", "axe", "chisel"]},
+    {"id": "S3", "kind": "plate", "region": "solomon", "verse": "6:2",
+     "prompt": "{cast:solomon}, standing looking up at a building, holding a small wooden temple model, facing right.",
+     "neg": ["gray hair", "full beard", "armour", "sitting"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["solomon"],
+    "gap_bands": [],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

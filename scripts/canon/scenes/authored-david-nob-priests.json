@@ -1,0 +1,53 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-david-nob-priests",
+  "title": "다윗과 아히멜렉 — 놉",
+  "verses": {
+    "range": "삼상 21:1-9",
+    "quotes": {
+      "21:6": "제사장이 그 거룩한 떡을 주었으니 거기는 진설병 곧 여호와 앞에서 물려 낸 떡밖에 없음이라",
+      "21:9": "제사장이 가로되 네가 엘라 골짜기에서 죽인 블레셋 사람 골리앗의 칼이 보자기에 싸여 에봇 뒤에 있으니 네가 그것을 가지려거든 가지라 여기는 그 밖에 다른 것이 없느니라 다윗이 가로되 그같은 것이 또 없나니 내게 주소서"
+    }
+  },
+  "moment": {
+    "verse": "21:9 전반",
+    "why": "제사장 아히멜렉이 보자기에 싼 칼을 에봇 뒤에서 꺼내 두 손으로 내밀고, 다윗이 두 손을 뻗어 받으려는 순간 — 칼을 완전히 쥐거나 휘두르는 동작은 이 순간의 요구가 아니다(ADR 260902-170558·260903-154254)."
+  },
+  "background": [
+    {"what": "놉 성막 앞뜰, 마른 흙바닥", "verse": "21:1"},
+    {"what": "성막 휘장과 낮은 떡상 — 배경 뒤편", "verse": "21:6", "region": "shrine"}
+  ],
+  "crowds": [],
+  "figures": [
+    {"cast": "ahimelech", "role": "제사장 아히멜렉", "pose": "에봇 뒤에서 보자기에 싼 칼을 두 손으로 꺼내 내밀며 서 있다", "prop": "a cloth-wrapped sword", "facing": "right", "region": "ahimelech", "verse": "21:9"},
+    {"cast": "david", "role": "다윗", "pose": "두 손을 뻗어 칼을 받으려 선다", "prop": "a sword", "facing": "left", "region": "david", "verse": "21:9"}
+  ],
+  "regions": {
+    "full":      [0.00, 0.00, 1.00, 1.00],
+    "shrine":    [0.30, 0.05, 0.65, 0.42],
+    "ahimelech": [0.15, 0.35, 0.33, 0.90],
+    "david":     [0.60, 0.35, 0.78, 0.90]
+  },
+  "_regions_why": "두 성인 남자, 세로 0.55(21:9 마주 선 장면 — 나이 차이 크지 않음). 아히멜렉 왼쪽(에봇·떡상 뒤 인물), 다윗 오른쪽(받는 자) — 21:9 대화 순서.",
+  "stages": [
+    {"id": "S1", "kind": "full", "region": "full", "verse": "21:1",
+     "prompt": "a small dry courtyard of pale packed earth in front of a tent shrine, low stone wall, sparse dry grass, empty pale sky, no people.",
+     "neg": ["people", "figures", "soldiers", "city street", "modern building"]},
+    {"id": "S1b", "kind": "region", "region": "shrine", "verse": "21:6",
+     "prompt": "a heavy tent curtain backdrop with a low wooden table bearing stacked round flatbread loaves, dim interior shadow, no people.",
+     "neg": ["people", "figures", "church", "pagoda", "temple roof", "modern furniture"]},
+    {"id": "S3", "kind": "plate", "region": "ahimelech", "verse": "21:9",
+     "prompt": "{cast:ahimelech}, standing, holding out a cloth-wrapped long sword bundle with both hands, facing right.",
+     "neg": ["armour", "crown", "modern clothes", "two swords"]},
+    {"id": "S4", "kind": "plate", "region": "david", "verse": "21:9",
+     "prompt": "{cast:david}, standing, both arms reaching out to receive a wrapped sword, facing left.",
+     "neg": ["armour", "crown", "royal robe", "modern clothes"]}
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": ["ahimelech", "david"],
+    "gap_bands": [[0.33, 0.60]],
+    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+  }
+}

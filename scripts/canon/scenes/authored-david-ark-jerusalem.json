@@ -1,0 +1,134 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-david-ark-jerusalem",
+  "title": "다윗 — 법궤를 다윗 성으로 메어 올리다",
+  "verses": {
+    "range": "삼하 6:12-15",
+    "quotes": {
+      "6:12": "혹이 다윗 왕에게 고하여 가로되 여호와께서 하나님의 궤를 인하여 오벧에돔의 집과 그 모든 소유에 복을 주셨다 한지라 다윗이 가서 하나님의 궤를 기쁨으로 메고 오벧에돔의 집에서 다윗 성으로 올라갈새",
+      "6:14": "여호와 앞에서 힘을 다하여 춤을 추는데 때에 베 에봇을 입었더라",
+      "6:15": "다윗과 온 이스라엘 족속이 즐거이 부르며 나팔을 불고 여호와의 궤를 메어 오니라"
+    }
+  },
+  "moment": {
+    "verse": "6:15",
+    "why": "다윗이 법궤 앞에서 두 손을 들고 걷는 순간을 고정한다. 6:14의 「춤」은 모델 prior에 불안정하므로(브리프 지시) 「두 손을 들고 걷는다」로 대체한다. 법궤는 배경의 메는 자들이 나르는 것으로 두고, 다윗은 칼자루를 쥔 손 하나만 지물로 삼는다."
+  },
+  "background": [
+    {
+      "what": "법궤를 멘 자들 — 다윗 앞에서 궤를 나른다",
+      "verse": "6:12-13 · 6:15",
+      "region": "ark_bearers"
+    },
+    {
+      "what": "다윗 성으로 오르는 길",
+      "verse": "6:12"
+    }
+  ],
+  "crowds": [
+    {
+      "what": "이스라엘 족속 — 뒤에서 노래하며 따른다",
+      "verse": "6:15",
+      "region": "crest_back"
+    }
+  ],
+  "figures": [
+    {
+      "cast": "david",
+      "role": "다윗",
+      "pose": "한 손을 높이 들고 걸으며 다른 손은 칼자루를 쥔다",
+      "prop": "a sword",
+      "facing": "right",
+      "region": "david",
+      "verse": "6:14-15 · 지물 본문 밖 · 저작자 정함"
+    }
+  ],
+  "regions": {
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "ark_bearers": [
+      0.6,
+      0.48,
+      0.85,
+      0.85
+    ],
+    "crest_back": [
+      0.1,
+      0.28,
+      0.9,
+      0.46
+    ],
+    "david": [
+      0.2,
+      0.48,
+      0.36,
+      0.9
+    ]
+  },
+  "_regions_why": "다윗 세로 0.42(걷는 자세). 궤를 멘 자들은 다윗보다 앞서 우측(6:13 궤가 먼저 걸음), 족속은 뒤편 원경 띠.",
+  "stages": [
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "본문 밖 · 저작자 정함",
+      "prompt": "a wide dry sloping road up a hillside toward a distant city, pale sky, sparse dry grass, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "soldiers",
+        "indoor"
+      ]
+    },
+    {
+      "id": "S2a",
+      "kind": "ridge",
+      "region": "crest_back",
+      "verse": "6:15",
+      "prompt": "many tiny distant people singing and following along a road, small silhouettes, tiny far away crowd.",
+      "neg": [
+        "empty ground",
+        "single figure",
+        "close-up",
+        "soldiers with spears"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "david",
+      "verse": "6:14",
+      "prompt": "an ancient Israelite lean young man walking, one arm raised high, the other hand gripping a sword hilt at his side, wearing a plain linen ephod, facing right.",
+      "neg": [
+        "armour",
+        "crown",
+        "dancing pose",
+        "helmet",
+        "sword swinging",
+        "kneeling"
+      ]
+    }
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "인물 하나뿐이라 gap_bands는 없다.",
+    "figures": [
+      "david"
+    ],
+    "gap_bands": [],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
+  }
+}
