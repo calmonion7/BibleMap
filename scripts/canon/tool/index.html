@@ -297,7 +297,7 @@ function regionPicker(st, inputs, onChange) {
 
 function formCard(st) {
   const el = $(`<div class="card"><h2>다시 그리기</h2>
-    <label for="sd">시드 (쉼표)</label><input id="sd" value="${esc(S.scene.sceneSeed)}" inputmode="numeric">
+    <label for="sd">시드 (쉼표)</label><input id="sd" value="${esc(S.scene.sceneSeed || 11)}" inputmode="numeric">
     <label for="pr">문구 — 이 단계에 <b>그릴 것</b></label>
     <textarea id="pr" class="wrap">${esc(st.prompt)}</textarea>
     <div class="ko" id="ko-pr"></div>
@@ -336,6 +336,7 @@ function formCard(st) {
     ? `<span class="badge">토큰 넘침</span> <span class="wrap">${esc(S.tokens.over.join(' / ') || S.tokens.tail)}</span>`
     : S.tokens.ok ? '<span class="badge ok">토큰 한도 안</span>' : `<span class="wrap">${esc(S.tokens.tail)}</span>`;
   const seeds = () => el.querySelector('#sd').value.split(',').map(x => parseInt(x, 10)).filter(Number.isFinite);
+  const seed1 = () => { const v = seeds(); return v.length ? v[0] : (S.scene.sceneSeed || 11); };
   el.querySelector('#save').onclick = () => act(async () => {
     const r = await api(`/scenes/${S.scene.id}/stages/${st.id}`, { method: 'PATCH', body: JSON.stringify({
       prompt: el.querySelector('#pr').value,
@@ -359,7 +360,7 @@ function formCard(st) {
       region: [...el.querySelectorAll('[data-c]')].map(i => parseFloat(i.value)),
     })});
     return api(`/scenes/${S.scene.id}/attempts`, { method: 'POST',
-      body: JSON.stringify({ stage: st.id, seeds: n === 1 ? [seeds()[0] ?? S.scene.sceneSeed]
+      body: JSON.stringify({ stage: st.id, seeds: n === 1 ? [seed1()]
                                                           : (seeds().length > 1 ? seeds() : [11, 42, 7]) }) });
   });
   el.querySelector('#one').onclick = () => go(1);
@@ -378,9 +379,11 @@ function finalCard() {
     ${src ? `<a href="${img(src)}" target="_blank" rel="noopener"><img class="shot" alt="마지막 단계 승인본" src="${img(src)}"></a>` : '<div class="mut">마지막 단계가 아직 승인되지 않았다.</div>'}
     ${f.why.length ? `<ul>${f.why.map(w => `<li class="wrap">${esc(w)}</li>`).join('')}</ul>` : ''}
     <div class="row" style="margin-top:var(--s3)"><button class="p" ${last && last.approved ? '' : 'disabled'}>장면 완료</button></div></div>`).firstChild;
-  el.querySelector('button').onclick = () => act(() =>
-    api(`/scenes/${S.scene.id}/approve`, { method: 'POST',
+  el.querySelector('button').onclick = () => {
+    if (!last || !last.approved) return;    // 마지막 단계가 미승인이면 가리킬 시도가 없다
+    act(() => api(`/scenes/${S.scene.id}/approve`, { method: 'POST',
       body: JSON.stringify({ kind: 'final', attempt: last.approved.attempt, seed: last.approved.seed }) }));
+  };
   return el;
 }
 
@@ -400,9 +403,14 @@ function draw() {
 async function act(fn) {
   if (S.busy) return;
   S.busy = true;
-  document.querySelectorAll('button').forEach(b => b.disabled = true);
+  document.querySelectorAll('.card.err').forEach(e => e.remove());   // 묵은 오류가 쌓이지 않게
+  const btns = [...document.querySelectorAll('button')];
+  const was = btns.map(b => b.disabled);
+  btns.forEach(b => b.disabled = true);
   try { await fn(); await reload(); }
-  catch (e) { fail(e); document.querySelectorAll('button').forEach(b => b.disabled = false); }
+  // 실패하면 **원래 상태 그대로** 되돌린다. 전부 켜면 「장면 완료」처럼 일부러 꺼 둔 버튼까지
+  // 눌려서 두 번째 오류가 난다(폰 실측 2026-09-05).
+  catch (e) { fail(e); btns.forEach((b, i) => b.disabled = was[i]); }
   finally { S.busy = false; }
 }
 

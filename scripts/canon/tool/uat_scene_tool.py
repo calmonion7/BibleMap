@@ -22,6 +22,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 CANON = os.path.dirname(HERE)
 REPO = os.path.dirname(os.path.dirname(CANON))
 SCENE = "authored-saul-gilgal-coronation"
+FRESH = "authored-david-adullam-cave"   # 시도도 승인도 없는 장면 — 곁파일이 아예 없다
 SHOTS = os.path.join(REPO, ".forge", "reports", "canon-pilot", "scene-tool", "uat")
 
 
@@ -45,6 +46,10 @@ def wait_up(port, proc, secs=20):
     raise RuntimeError("서버가 20초 안에 뜨지 않았다")
 
 
+def open_scene(pg, title):
+    pg.locator(".card", has_text=title).get_by_role("button", name="열기").click()
+
+
 def main():
     from playwright.sync_api import sync_playwright
 
@@ -52,6 +57,7 @@ def main():
     scenes, attempts = os.path.join(tmp, "scenes"), os.path.join(tmp, "attempts")
     os.makedirs(scenes), os.makedirs(attempts)
     shutil.copy(os.path.join(CANON, "scenes", f"{SCENE}.json"), scenes)
+    shutil.copy(os.path.join(CANON, "scenes", f"{FRESH}.json"), scenes)
     side = os.path.join(CANON, "attempts", f"{SCENE}.json")
     if os.path.exists(side):
         shutil.copy(side, attempts)
@@ -78,7 +84,7 @@ def main():
                 fails.append("목록에 가로 스크롤이 생겼다")
 
             # 2) 장면 열기
-            pg.click("text=열기")
+            open_scene(pg, "사울 — 길갈에서 왕이 되다")
             pg.wait_for_selector("text=① 본문", timeout=10000)
 
             # 3) S1 시도 등록 → 완료 대기 (가짜 실행기)
@@ -94,7 +100,7 @@ def main():
                 fails.append("시도가 곁파일에 기록되지 않았다")
             pg.wait_for_timeout(1500)
             pg.reload(wait_until="networkidle")
-            pg.click("text=열기")
+            open_scene(pg, "사울 — 길갈에서 왕이 되다")
             pg.wait_for_selector("button.chip:has-text('S1')", timeout=10000)
             pg.click("button.chip:has-text('S1')")
 
@@ -138,6 +144,44 @@ def main():
             pg.screenshot(path=os.path.join(SHOTS, "3-stale.png"), full_page=True)
             if pg.evaluate("document.documentElement.scrollWidth > document.documentElement.clientWidth"):
                 fails.append("장면 화면에 가로 스크롤이 생겼다")
+
+            # 6) **시도가 하나도 없는 장면.** 곁파일이 없어 `sceneSeed`가 비어 있고, 승인이 없어
+            #    「장면 완료」가 꺼져 있다. 폰 실측에서 여기가 깨졌다(시드 null → 500 → 모든 버튼이
+            #    되살아나 완료가 눌림 → null 참조). 목록으로 돌아가 처음부터 밟는다.
+            pg.click("text=← 목록")
+            pg.wait_for_selector("text=다윗과 무리 — 아둘람 굴", timeout=10000)
+            open_scene(pg, "다윗과 무리 — 아둘람 굴")
+            pg.wait_for_selector("#sd", timeout=10000)
+            sd = pg.input_value("#sd")
+            if not sd.strip().isdigit():
+                fails.append(f"시도 없는 장면의 시드 칸이 숫자가 아니다: {sd!r}")
+            if not pg.locator("button:has-text('장면 완료')").last.is_disabled():
+                fails.append("승인이 없는데 「장면 완료」가 눌린다")
+            # 6b) **실패한 뒤에도 꺼진 버튼은 꺼져 있어야 한다.** 일부러 잘못된 구역(x0>x1)으로
+            #     저장을 시켜 400을 받은 뒤, 승인이 없는 「장면 완료」가 여전히 꺼져 있는지 본다.
+            #     폰 실측에서 이것이 뚫려 두 번째 오류(null 참조)가 났다.
+            pg.fill('[data-c="0"]', "0.9")
+            pg.fill('[data-c="2"]', "0.1")
+            pg.click("#save")
+            pg.wait_for_selector(".card.err", timeout=10000)
+            if not pg.locator("button:has-text('장면 완료')").last.is_disabled():
+                fails.append("저장 실패 뒤 「장면 완료」가 되살아났다 — 꺼진 버튼은 꺼진 채여야 한다")
+            pg.reload(wait_until="networkidle")
+            open_scene(pg, "다윗과 무리 — 아둘람 굴")
+            pg.wait_for_selector("#sd", timeout=10000)
+
+            fresh_side = os.path.join(attempts, f"{FRESH}.json")
+            pg.click("#one")
+            for _ in range(200):
+                if os.path.exists(fresh_side):
+                    break
+                time.sleep(0.1)
+            else:
+                fails.append("시도 없는 장면에서 「1장 그리기」가 시도를 남기지 못했다")
+            pg.wait_for_timeout(1500)
+            if pg.locator(".card.err").count():
+                fails.append("시도 없는 장면에서 오류 카드가 떴다: "
+                             + pg.locator(".card.err").first.inner_text()[:120])
             b.close()
     finally:
         proc.terminate()

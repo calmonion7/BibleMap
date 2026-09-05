@@ -110,7 +110,8 @@ def detail(scene):
             "background": spec.get("background", []), "crowds": spec.get("crowds", []),
             "figures": spec.get("figures", []),
             "ladder": b["ladder"], "stages": b["stages"], "final": b["final"],
-            "sceneSeed": side.get("sceneSeed", 11), "queue": queue_state()}
+            # 곁파일이 없으면 `sceneSeed` 키가 **None으로 존재**한다 — `.get(_, 11)`은 그때 기본값을 주지 않는다.
+            "sceneSeed": side.get("sceneSeed") or 11, "queue": queue_state()}
 
 
 def queue_state():
@@ -207,6 +208,10 @@ class H(BaseHTTPRequestHandler):
         raw = body if isinstance(body, bytes) else json.dumps(body, ensure_ascii=False).encode()
         self.send_response(code)
         self.send_header("Content-Type", ctype)
+        # 도구를 고치는 중이다 — 폰이 옛 화면을 들고 있으면 고친 것이 안 보인다.
+        # 그림(`/img`)은 시도마다 경로가 달라 캐시해도 안전하다.
+        if not ctype.startswith("image/"):
+            self.send_header("Cache-Control", "no-store")
         self.send_header("Content-Length", str(len(raw)))
         self.end_headers()
         self.wfile.write(raw)
@@ -283,7 +288,13 @@ class H(BaseHTTPRequestHandler):
     def enqueue(self, scene):
         b = self.body()
         stage = b.get("stage")
-        seeds = [int(s) for s in (b.get("seeds") or [11])]
+        raw = b.get("seeds") or [11]
+        try:
+            seeds = [int(x) for x in raw]
+        except (TypeError, ValueError):
+            raise ValueError(f"시드는 정수여야 한다: {raw!r}") from None
+        if not seeds:
+            raise ValueError("시드가 비어 있다")
         spec = ap.load_spec(scene)
         st = next((s for s in spec["stages"] if s["id"] == stage), None)
         if st is None:
