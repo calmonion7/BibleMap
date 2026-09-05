@@ -55,6 +55,9 @@ TOKEN = os.environ.get("SCENE_TOOL_TOKEN", "")
 # 폴더를 갈아끼운다 — 1/2의 스크립트를 고치지 않고 **부르는 쪽에서** 상수를 바꾼다.
 # eco: 실제 GPU 경로의 attempt.py는 서브프로세스라 이 패치를 못 본다. 스모크(FAKE)만 폴더를 옮기므로 충분하다.
 SCENES_DIR = os.environ.get("SCENE_TOOL_SCENES_DIR") or os.path.join(CANON, "scenes")
+# 산출 폴더도 갈아끼울 수 있어야 한다. 스모크의 가짜 실행기가 **실제 산출 트리에 써서**
+# 사람이 만든 그림을 덮은 사고가 있었다(2026-09-05, adullam-cave a001).
+OUT_DIR = os.environ.get("SCENE_TOOL_OUT_DIR") or os.path.join(params.OUT_ROOT, "scene-tool")
 ATTEMPTS_DIR = os.environ.get("SCENE_TOOL_ATTEMPTS_DIR") or os.path.join(CANON, "attempts")
 ds.SCENES_DIR = SCENES_DIR
 ap.SCENES = SCENES_DIR
@@ -138,7 +141,7 @@ def fake_attempt(scene, stage_id, seeds, job=None):
         side["sceneSeed"] = 11
     up = at.upstream_of(spec, stage_id)
     aid = at.next_id(side)
-    out_dir = os.path.join(params.OUT_ROOT, "scene-tool", scene, aid)
+    out_dir = os.path.join(OUT_DIR, scene, aid)
     os.makedirs(out_dir, exist_ok=True)
     images = {}
     for seed in seeds:

@@ -125,7 +125,8 @@ def main():
     env = {**os.environ, "SCENE_TOOL_DEV": "1", "SCENE_TOOL_FAKE_GEN": "1",
            "SCENE_TOOL_SCENES_DIR": scenes, "SCENE_TOOL_ATTEMPTS_DIR": attempts,
            "SCENE_TOOL_PORT": str(port), "SCENE_TOOL_USERS": "",
-           "SCENE_TOOL_FAKE_DELAY": "1.5"}   # 취소를 잴 수 있게 가짜 실행기를 늦춘다
+           "SCENE_TOOL_FAKE_DELAY": "1.5",   # 취소를 잴 수 있게 가짜 실행기를 늦춘다
+           "SCENE_TOOL_OUT_DIR": os.path.join(tmp, "out")}   # 실제 산출 트리를 덮지 않게
     proc = subprocess.Popen([sys.executable, os.path.join(HERE, "server.py")], env=env,
                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
     fails = []
