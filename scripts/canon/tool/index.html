@@ -84,6 +84,7 @@ const $ = (h) => { const d = document.createElement('div'); d.innerHTML = h; ret
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let S = { scene: null, stage: null, tokens: null, busy: false };
 let G = null;   // 한글 용어집 — 한 번 받아 둔다
+const autoTried = new Set();   // 자동 번역을 한 번 시도한 문구 — 실패해도 되풀이하지 않는다
 
 /* 영문 문구/부정어 → 한글 뜻. 용어집에 없으면 영문을 그대로 두고 물음표를 붙인다
    (새로 쓴 문구라는 표시다 — 조용히 감추면 번역이 있는지 없는지 알 수 없다). */
@@ -366,7 +367,9 @@ function formCard(st) {
     gen.disabled = false; gen.textContent = '문구 만들기';
   };
   const fill = el.querySelector('#fill');
-  fill.onclick = async () => {
+  const runFill = async (silent) => {
+    if (fill.disabled) return;
+    fill.hidden = false;                       // 자동으로 돌 때도 무엇이 도는지 보이게
     fill.disabled = true; fill.textContent = '번역 중…';
     try {
       const { job } = await api('/gloss', { method: 'POST', body: JSON.stringify({
@@ -374,12 +377,26 @@ function formCard(st) {
         neg: el.querySelector('#ng').value.split(',').map(x => x.trim()).filter(Boolean) }) });
       const r = await waitJob(job, (sec) => { fill.textContent = `번역 중… ${sec}초`; });
       addGloss(r.gloss);
-      ko();
-    } catch (e) { fail(e); }
+      // 번역이 도는 20~40초 사이에 사람이 다른 단계로 갔을 수 있다. 그러면 이 폼은 이미 화면에서
+      // 떨어져 나가 `ko()`가 아무 데도 안 닿는다 — 지금 떠 있는 화면을 다시 그려 뜻을 얹는다.
+      if (el.isConnected) ko(); else if (S.scene) { draw(); return; }
+    } catch (e) { if (!silent) fail(e); }      // 자동 시도의 실패는 조용히 — 버튼이 남아 다시 누를 수 있다
+    if (!el.isConnected) return;
     fill.disabled = false; fill.textContent = '모르는 낱말 번역';
+    ko();
   };
+  fill.onclick = () => runFill(false);
   const coordInputs = [...el.querySelectorAll('[data-c]')];
   el.querySelector('#pickslot').append(regionPicker(st, coordInputs, () => {}));
+
+  /* 저장된 문구에 모르는 조각이 있으면 **사람이 누르기 전에** 번역한다.
+     버튼을 눌러야 한글이 붙는 것은 도구가 할 일을 사람에게 미루는 것이다.
+     같은 문구로는 한 번만 시도한다(실패해도 되풀이하지 않게). */
+  const sig = `${S.scene.id}|${st.id}|${st.prompt}|${(st.neg || []).join(',')}`;
+  if (!autoTried.has(sig) && el.querySelectorAll('.ko .unk').length) {
+    autoTried.add(sig);
+    runFill(true);
+  }
   const tk = el.querySelector('#tk');
   if (S.tokens) tk.innerHTML = S.tokens.ok === false
     ? `<span class="badge">토큰 넘침</span> <span class="wrap">${esc(S.tokens.over.join(' / ') || S.tokens.tail)}</span>`

@@ -12,9 +12,12 @@
 import json
 import os
 import subprocess
+import time
 
 CLAUDE = os.environ.get("SCENE_TOOL_CLAUDE", "claude")
 FAKE_AI = os.environ.get("SCENE_TOOL_FAKE_AI") == "1"
+# 가짜 AI가 즉시 답하면 「도는 도중에 사람이 화면을 옮긴다」를 스모크가 재현하지 못한다.
+FAKE_AI_DELAY = float(os.environ.get("SCENE_TOOL_FAKE_AI_DELAY", "0"))
 
 RULES = """당신은 성경 장면 삽화 파이프라인의 **단계 문구 저작자**다. 아래 실측 규칙을 지킨다.
 
@@ -106,6 +109,7 @@ def _parse(text):
 
 def compose(spec, stage, ask, casts, frags, timeout=180):
     if FAKE_AI:
+        time.sleep(FAKE_AI_DELAY)
         return {"prompt": f"a test field, {ask.strip()[:20] or 'no people'}, no people.",
                 "neg": ["people", "modern"], "why": "가짜 AI — 스모크 전용",
                 "gloss": {"a test field": "시험용 들", "modern": "현대풍"}}
@@ -140,6 +144,7 @@ def translate(terms, timeout=180):
     if not terms:
         return {}
     if FAKE_AI:
+        time.sleep(FAKE_AI_DELAY)
         return {t: f"[가짜]{t}" for t in terms}
     r = subprocess.run([CLAUDE, "-p", TRANSLATE + "\n".join(f"- {t}" for t in terms)],
                        capture_output=True, text=True, timeout=timeout)

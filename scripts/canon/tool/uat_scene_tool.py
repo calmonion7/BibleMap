@@ -129,7 +129,8 @@ def main():
            "SCENE_TOOL_FAKE_DELAY": "1.5",   # 취소를 잴 수 있게 가짜 실행기를 늦춘다
            "SCENE_TOOL_OUT_DIR": os.path.join(tmp, "out"),   # 실제 산출 트리를 덮지 않게
            "SCENE_TOOL_FAKE_AI": "1",   # AI를 부르지 않는다(느리고 값이 든다) — 배선만 검사한다
-           "SCENE_TOOL_GLOSSARY": os.path.join(tmp, "glossary.json")}   # 실제 용어집을 더럽히지 않게
+           "SCENE_TOOL_GLOSSARY": os.path.join(tmp, "glossary.json"),   # 실제 용어집을 더럽히지 않게
+           "SCENE_TOOL_FAKE_AI_DELAY": "2.5"}   # 「도는 도중 화면 이동」을 실제로 재현하려면 늦어야 한다
     proc = subprocess.Popen([sys.executable, os.path.join(HERE, "server.py")], env=env,
                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
     fails = []
@@ -211,6 +212,23 @@ def main():
             pg.wait_for_function("() => document.querySelectorAll('.ko .unk').length === 0", timeout=60000)
             if pg.locator("#fill").is_visible():
                 fails.append("번역 뒤에도 번역 버튼이 남아 있다")
+
+            # 4a-4) **저장된 문구는 누르기 전에 번역된다.** 버튼을 눌러야 한글이 붙는다면
+            #       도구가 할 일을 사람에게 미루는 것이다. 단계를 열면 알아서 채워야 한다.
+            pg.fill("#pr", pg.input_value("#pr").rstrip(".") + ", yet another unseen wording.")
+            pg.click("#save")
+            # **번역이 도는 도중에 단계를 옮긴다.** 사람이 실제로 하는 일이고, 여기서 결과가
+            #  붙을 자리를 잃으면 돌아와도 물음표가 남는다(실측 2026-09-05).
+            pg.wait_for_timeout(400)
+            pg.click("button.chip:has-text('S2')")
+            pg.wait_for_timeout(400)
+            pg.click("button.chip:has-text('S1')")
+            try:
+                pg.wait_for_function(
+                    "() => document.querySelectorAll('.ko .unk').length === 0", timeout=60000)
+            except Exception:
+                fails.append("단계를 열었는데 모르는 낱말이 스스로 번역되지 않았다: "
+                             + pg.locator(".ko .unk").first.inner_text())
 
             # 4b) 구역 고르개 — 그림 위에서 끌면 좌표 넷이 채워진다
             pg.locator(".pick").scroll_into_view_if_needed()
