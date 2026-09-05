@@ -13,34 +13,127 @@
     "why": "다윗이 라마의 사무엘에게 이르러 사울이 행한 일을 고하는 순간을 고정한다 — 이후 나욧으로 함께 감은 이 순간의 요구가 아니다."
   },
   "background": [
-    {"what": "라마의 소박한 뜰", "verse": "19:18"}
+    {
+      "what": "라마의 소박한 뜰",
+      "verse": "19:18"
+    }
   ],
   "figures": [
-    {"cast": "david", "role": "다윗 — 도피하여 고하는 자", "pose": "사무엘 앞에 서서 고한다", "prop": "a sword", "facing": "right", "region": "david", "verse": "19:18 · 지물 본문 밖 · 저작자 정함"},
-    {"cast": "samuel", "role": "사무엘 — 듣는 선지자", "pose": "서서 겉옷자락을 쥔 채 다윗의 말을 듣는다", "prop": "a robe corner", "facing": "left", "region": "samuel", "verse": "19:18"}
+    {
+      "cast": "david",
+      "role": "다윗 — 도피하여 고하는 자",
+      "pose": "사무엘 앞에 서서 고한다",
+      "prop": "a sword",
+      "facing": "right",
+      "region": "david",
+      "verse": "19:18 · 지물 본문 밖 · 저작자 정함"
+    },
+    {
+      "cast": "samuel",
+      "role": "사무엘 — 듣는 선지자",
+      "pose": "서서 겉옷자락을 쥔 채 다윗의 말을 듣는다",
+      "prop": "a robe corner",
+      "facing": "left",
+      "region": "samuel",
+      "verse": "19:18"
+    }
   ],
   "regions": {
-    "full":   [0.00, 0.00, 1.00, 1.00],
-    "david":  [0.15, 0.37, 0.315, 0.92],
-    "samuel": [0.60, 0.37, 0.762, 0.92]
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "david": [
+      0.15,
+      0.37,
+      0.315,
+      0.92
+    ],
+    "samuel": [
+      0.6,
+      0.37,
+      0.762,
+      0.92
+    ]
   },
   "_regions_why": "다윗·사무엘 모두 세로 0.55(둘 다 성인). 좌우는 19:18(다윗이 사무엘 앞에서 고함).",
   "stages": [
-    {"id": "S1", "kind": "full", "region": "full", "verse": "19:18",
-     "prompt": "a small dry village courtyard, simple stone ground, sparse dry grass, pale sky, no people.",
-     "neg": ["people", "figures", "soldiers", "modern buildings"]},
-    {"id": "S2", "kind": "plate", "region": "david", "verse": "19:18",
-     "prompt": "{cast:david}, standing tall, gripping one sword, speaking, facing right.",
-     "neg": ["armour", "crown", "royal robe", "modern clothes", "two swords", "sitting"]},
-    {"id": "S3", "kind": "plate", "region": "samuel", "verse": "19:18",
-     "prompt": "{cast:samuel}, standing tall, gripping one robe corner, listening, facing left.",
-     "neg": ["armour", "sword", "spear", "crown", "modern clothes", "staff", "sitting"]}
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "19:18",
+      "prompt": "a small dry village courtyard, simple stone ground, sparse dry grass, pale sky, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "soldiers",
+        "modern buildings",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S2",
+      "kind": "plate",
+      "region": "david",
+      "verse": "19:18",
+      "prompt": "{cast:david}, standing tall, gripping one sword, speaking, facing right.",
+      "neg": [
+        "armour",
+        "crown",
+        "royal robe",
+        "modern clothes",
+        "two swords",
+        "sitting"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "samuel",
+      "verse": "19:18",
+      "prompt": "{cast:samuel}, standing tall, gripping one robe corner, listening, facing left.",
+      "neg": [
+        "armour",
+        "sword",
+        "spear",
+        "crown",
+        "modern clothes",
+        "staff",
+        "sitting"
+      ]
+    }
   ],
   "negatives": [],
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
-    "figures": ["david", "samuel"],
-    "gap_bands": [[0.315, 0.60]],
-    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+    "figures": [
+      "david",
+      "samuel"
+    ],
+    "gap_bands": [
+      [
+        0.315,
+        0.6
+      ]
+    ],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
   }
 }

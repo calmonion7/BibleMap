@@ -16,40 +16,152 @@
     "why": "두 여인이 왕 앞에 서서 다투는 순간 — 「칼을 내게로 가져오라」(3:24) 이후의 순간은 아니다(브리프 지시). 아기는 참 어머니 쪽 지물로만 그린다."
   },
   "background": [
-    {"what": "왕궁 알현실 — 돌바닥과 기둥", "verse": "본문 밖 · 저작자 정함"}
+    {
+      "what": "왕궁 알현실 — 돌바닥과 기둥",
+      "verse": "본문 밖 · 저작자 정함"
+    }
   ],
   "crowds": [],
   "figures": [
-    {"cast": "solomon", "role": "솔로몬", "pose": "보좌에 앉아 듣는다", "prop": "왕홀", "facing": "left", "region": "solomon", "verse": "3:16"},
-    {"cast": "mother-a", "role": "참 어머니", "pose": "아기를 안고 왕 앞에 서서 애원한다", "prop": "아기", "facing": "right", "region": "mother-a", "verse": "3:26"},
-    {"cast": "mother-b", "role": "다른 어머니", "pose": "팔짱을 끼고 왕 앞에 서서 다툰다", "prop": "겉옷자락", "facing": "right", "region": "mother-b", "verse": "3:22"}
+    {
+      "cast": "solomon",
+      "role": "솔로몬",
+      "pose": "보좌에 앉아 듣는다",
+      "prop": "왕홀",
+      "facing": "left",
+      "region": "solomon",
+      "verse": "3:16"
+    },
+    {
+      "cast": "mother-a",
+      "role": "참 어머니",
+      "pose": "아기를 안고 왕 앞에 서서 애원한다",
+      "prop": "아기",
+      "facing": "right",
+      "region": "mother-a",
+      "verse": "3:26"
+    },
+    {
+      "cast": "mother-b",
+      "role": "다른 어머니",
+      "pose": "팔짱을 끼고 왕 앞에 서서 다툰다",
+      "prop": "겉옷자락",
+      "facing": "right",
+      "region": "mother-b",
+      "verse": "3:22"
+    }
   ],
   "regions": {
-    "full":     [0.00, 0.00, 1.00, 1.00],
-    "solomon":  [0.68, 0.15, 0.92, 0.72],
-    "mother-a": [0.12, 0.35, 0.34, 0.85],
-    "mother-b": [0.38, 0.38, 0.58, 0.85]
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "solomon": [
+      0.68,
+      0.15,
+      0.92,
+      0.72
+    ],
+    "mother-a": [
+      0.12,
+      0.35,
+      0.34,
+      0.85
+    ],
+    "mother-b": [
+      0.38,
+      0.38,
+      0.58,
+      0.85
+    ]
   },
   "_regions_why": "솔로몬은 보좌에 앉아 있어 세로를 짧게(0.57) 하되 화면 오른쪽 높은 자리. 두 여인은 왕상 3:16 「그 앞에 서며」대로 서 있는 성인 상자(세로 0.47~0.50), 나란히 왼쪽에 서로 안 겹치게 배치.",
   "stages": [
-    {"id": "S1", "kind": "full", "region": "full", "verse": "본문 밖 · 저작자 정함",
-     "prompt": "a plain ancient stone throne hall, bare floor, tall stone columns, no people, quiet room.",
-     "neg": ["people", "figures", "outdoor", "modern room"]},
-    {"id": "S3", "kind": "plate", "region": "solomon", "verse": "3:16",
-     "prompt": "{cast:solomon}, sitting on a throne listening, holding a wooden scepter, facing left.",
-     "neg": ["gray hair", "full beard", "armour", "standing"]},
-    {"id": "S4", "kind": "plate", "region": "mother-a", "verse": "3:26",
-     "prompt": "{cast:mother-a}, standing pleading, holding an infant wrapped in cloth, facing right.",
-     "neg": ["crown", "fine jewelry", "sword", "kneeling"]},
-    {"id": "S5", "kind": "plate", "region": "mother-b", "verse": "3:22",
-     "prompt": "{cast:mother-b}, standing arguing, gripping the edge of her robe, facing right.",
-     "neg": ["crown", "fine jewelry", "sword", "kneeling", "infant"]}
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "본문 밖 · 저작자 정함",
+      "prompt": "a plain ancient stone throne hall, bare floor, tall stone columns, no people, quiet room.",
+      "neg": [
+        "people",
+        "figures",
+        "outdoor",
+        "modern room",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "solomon",
+      "verse": "3:16",
+      "prompt": "{cast:solomon}, sitting on a throne listening, holding a wooden scepter, facing left.",
+      "neg": [
+        "gray hair",
+        "full beard",
+        "armour",
+        "standing"
+      ]
+    },
+    {
+      "id": "S4",
+      "kind": "plate",
+      "region": "mother-a",
+      "verse": "3:26",
+      "prompt": "{cast:mother-a}, standing pleading, holding an infant wrapped in cloth, facing right.",
+      "neg": [
+        "crown",
+        "fine jewelry",
+        "sword",
+        "kneeling"
+      ]
+    },
+    {
+      "id": "S5",
+      "kind": "plate",
+      "region": "mother-b",
+      "verse": "3:22",
+      "prompt": "{cast:mother-b}, standing arguing, gripping the edge of her robe, facing right.",
+      "neg": [
+        "crown",
+        "fine jewelry",
+        "sword",
+        "kneeling",
+        "infant"
+      ]
+    }
   ],
   "negatives": [],
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
-    "figures": ["mother-a", "mother-b"],
-    "gap_bands": [[0.34, 0.38]],
-    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+    "figures": [
+      "mother-a",
+      "mother-b"
+    ],
+    "gap_bands": [
+      [
+        0.34,
+        0.38
+      ]
+    ],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
   }
 }

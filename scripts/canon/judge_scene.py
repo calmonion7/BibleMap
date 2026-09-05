@@ -36,6 +36,7 @@ from PIL import Image
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import params  # noqa: E402
+import derive_scene as ds  # noqa: E402  — 단계 목록을 **생성기와 같은 곳**에서 읽는다
 
 W, H = params.SCENE_SIZE
 DARK_CUT = 0.55      # judge_style와 같은 값 — 화풍(잉크) 축은 산식을 바꾸지 않는다
@@ -49,20 +50,40 @@ REGIONS = {}
 GAP_BANDS = []        # 인물이 없는 세로 띠 — 골짜기 바닥을 여기서 잰다 (명세 judge.gap_bands)
 CREST_L_X = CREST_R_X = None   # 좌·우 능선 높이를 재는 x 구간 (명세 judge.crest_x)
 STAGE_ORDER = []      # [(단계, 구역|None)] — C3 붙임 이음매가 훑는 순서 (명세 stages, skip 제외)
-FIGURES = []          # C4·C5가 재는 인물 cast (명세 judge.figures)
+FIGURES = []
+AXES = []   # 이 장면에서 판정할 축(명세에서 파생 — configure)          # C4·C5가 재는 인물 cast (명세 judge.figures)
 
 
-def configure(spec):
-    """장면 명세에서 판정 기하를 채운다 — 생성자(`gen_scripture_scene`)도 같은 명세로 이 함수를 부른다."""
+def configure(spec, figures="plate"):
+    """장면 명세에서 판정 기하를 채운다 — 생성자(`gen_scripture_scene`)도 같은 명세로 이 함수를 부른다.
+
+    `figures`는 생성기에 준 값과 **같아야 한다**(task 337). 장면 안 경로에서는 그룹이 한 단계로
+    합쳐져 산출물 파일도 하나뿐인데, 옛 목록을 보면 없는 단계를 찾고 그룹 상자를 반쪽만 잰다."""
     REGIONS.clear()
     REGIONS.update({k: tuple(v) for k, v in spec["regions"].items()})
     j = spec["judge"]
     GAP_BANDS[:] = [tuple(b) for b in j["gap_bands"]]
     global CREST_L_X, CREST_R_X
     CREST_L_X, CREST_R_X = tuple(j["crest_x"]["left"]), tuple(j["crest_x"]["right"])
-    STAGE_ORDER[:] = [(s["id"], None if s["kind"] == "full" else s["region"])
-                      for s in spec["stages"] if not s.get("skip")]
+    STAGE_ORDER[:] = [(st["id"], None if kind == "full" else tuple(regs))
+                      for st, kind, regs in ds.stage_plan(spec, figures) if not st.get("skip")]
     FIGURES[:] = list(j["figures"])
+    # **적용 축을 명세에서 파생한다**(task 333). C1(골짜기)·C2(군대 능선)·C5(크기 대비)는 삼상17 기하가
+    # 있어야 뜻이 있는 축이다 — 능선 구역이 없는 장면에서 재면 KeyError이거나 무의미한 수치가 나온다.
+    # 임계·산식은 **건드리지 않는다**(회귀 가드). 삼상17 명세는 셋을 다 만족하므로 다섯 축 그대로다.
+    AXES[:] = j.get("axes") or (
+        ["C3", "C4"]
+        + (["C1", "C2"] if {"crest_left", "crest_right"} <= set(spec["regions"]) else [])
+        # C5의 임계(1.60)는 「여섯 규빗 거인 대 소년」 대비에서 온 값이다 — 성인 둘이 나란한 장면에
+        # 걸면 반드시 낙제한다. 그래서 **명세가 그만한 대비를 의도했을 때만** 이 축을 켠다(임계는 불변).
+        + (["C5"] if len(FIGURES) >= 2 and _spec_scale(spec) >= THRESHOLDS["c5_scale_min"] else []))
+
+
+def _spec_scale(spec):
+    """명세의 판정 인물 상자 높이 비 — C5를 켤지 정하는 파생값(재는 것은 그림에서 잰다)."""
+    hs = [spec["regions"][k][3] - spec["regions"][k][1] for k in spec["judge"]["figures"]
+          if k in spec["regions"]]
+    return max(hs) / max(min(hs), 1e-6) if len(hs) >= 2 else 0.0
 
 
 def load_scene(scene_id=None):
@@ -262,15 +283,20 @@ def _edge_seam(cur, prev, b):
 def c3_paste_seam(root, label, seed):
     """붙임 이음매 — 단계마다 직전/직후를 비교해 상자 선에서 잘린 붙임을 찾는다."""
     prev, worst, at = None, 0.0, None
-    for name, region in STAGE_ORDER:
+    for name, regions in STAGE_ORDER:
         f = os.path.join(root, f"{label}-{name}-s{seed}.png")
         if not os.path.exists(f):
             continue
         cur = load(f)
-        if prev is not None and region is not None:
-            v, side = _edge_seam(cur, prev, box(region))
+        if prev is not None and regions is not None:
+            # 그룹 단계는 상자가 여럿이다 — **합집합 상자**의 변에서 잰다. 한 인물 상자만 보면
+            # 실제로 칠한 자리가 잘린 선을 놓친다.
+            bs = [box(r) for r in regions]
+            b = (min(x[0] for x in bs), min(x[1] for x in bs),
+                 max(x[2] for x in bs), max(x[3] for x in bs))
+            v, side = _edge_seam(cur, prev, b)
             if v > worst:
-                worst, at = v, f"{name}/{region}.{side}"
+                worst, at = v, f"{name}/{'+'.join(regions)}.{side}"
         prev = cur
     return {"paste_seam": worst, "paste_seam_at": at}
 
@@ -311,17 +337,21 @@ def measure(root, label, seed=11):
     terr = load(path("S1c")) if os.path.exists(path("S1c")) else lum
     top = skyline(terr)
     arm = load(path("S2b")) if os.path.exists(path("S2b")) else None
-    return {
+    m = {
         "label": label, "seed": seed,
-        "c1_valley": c1_valley(terr),
-        "c2_army_left": c2_army(arm if arm is not None else lum, "crest_left", top,
-                                terr if arm is not None else None),
-        "c2_army_right": c2_army(arm if arm is not None else lum, "crest_right", top,
-                                 terr if arm is not None else None),
         "c3_seam": {**c3_lines(lum, top), **c3_paste_seam(root, label, seed)},
         "c4_style": c4_style(lum),
-        "c5_figures": c5_figures(lum),
     }
+    if "C1" in AXES:
+        m["c1_valley"] = c1_valley(terr)
+    if "C2" in AXES:
+        m["c2_army_left"] = c2_army(arm if arm is not None else lum, "crest_left", top,
+                                    terr if arm is not None else None)
+        m["c2_army_right"] = c2_army(arm if arm is not None else lum, "crest_right", top,
+                                     terr if arm is not None else None)
+    if "C5" in AXES:
+        m["c5_figures"] = c5_figures(lum)
+    return m
 
 
 THRESHOLDS = {
@@ -346,17 +376,20 @@ THRESHOLDS = {
 
 def verdict(m, t=THRESHOLDS):
     c = {}
-    c["C1"] = m["c1_valley"]["drop"] >= t["c1_drop_min"]
-    c["C2"] = all(
-        a["cov"] >= t["c2_cov_min"] and a["xings"] >= t["c2_xings_min"]
-        and a["runlen95"] <= t["c2_runlen95_max"]
-        for a in (m["c2_army_left"], m["c2_army_right"]))
+    if "C1" in AXES:
+        c["C1"] = m["c1_valley"]["drop"] >= t["c1_drop_min"]
+    if "C2" in AXES:
+        c["C2"] = all(
+            a["cov"] >= t["c2_cov_min"] and a["xings"] >= t["c2_xings_min"]
+            and a["runlen95"] <= t["c2_runlen95_max"]
+            for a in (m["c2_army_left"], m["c2_army_right"]))
     c["C3"] = (m["c3_seam"]["line_rows"] <= t["c3_line_rows_max"]
                and m["c3_seam"]["paste_seam"] <= t["c3_paste_seam_max"])
     s = m["c4_style"]
     c["C4"] = (min(v for k, v in s.items() if k.startswith("ink_") and k != "ink_ratio") >= t["c4_ink_min"]
                and s["ink_ratio"] <= t["c4_ratio_max"])
-    c["C5"] = m["c5_figures"]["scale_ratio"] >= t["c5_scale_min"]
+    if "C5" in AXES:
+        c["C5"] = m["c5_figures"]["scale_ratio"] >= t["c5_scale_min"]
     return c
 
 
@@ -389,10 +422,13 @@ def main():
         m = measure(root, lab, a.seed)
         v = verdict(m)
         ok = ok and all(v.values())
-        print(f"{lab:>6} {m['c1_valley']['drop']:8.3f} {m['c2_army_left']['cov']:6.3f} "
-              f"{m['c2_army_right']['cov']:6.3f} {m['c3_seam']['line_rows']:6d} "
+        num = lambda x, w, p: f"{x:{w}.{p}f}" if x is not None else " " * (w - 1) + "-"   # noqa: E731
+        print(f"{lab:>6} {num(m.get('c1_valley', {}).get('drop'), 8, 3)} "
+              f"{num(m.get('c2_army_left', {}).get('cov'), 6, 3)} "
+              f"{num(m.get('c2_army_right', {}).get('cov'), 6, 3)} {m['c3_seam']['line_rows']:6d} "
               f"{m['c3_seam']['paste_seam']:10.3f} {m['c4_style']['ink_ratio']:6.2f} "
-              f"{m['c5_figures']['scale_ratio']:6.2f}  {' '.join(k for k, y in v.items() if y)}")
+              f"{num(m.get('c5_figures', {}).get('scale_ratio'), 6, 2)}  "
+              f"{' '.join(k for k, y in v.items() if y)}")
     return 0 if ok else 1
 
 

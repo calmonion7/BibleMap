@@ -34,6 +34,9 @@ def load_cast(cid):
         return json.load(fh)
 
 
+CAST_RE = re.compile(r"\{castc?:([a-z0-9-]+)\}")
+
+
 def cast_describe(c):
     """어휘 정본 → 인물 서술 한 구절(task 331). 시대·민족 낱말이 맨 앞(PROMPTING 2·14). `none` 필드는 뺀다.
     장면 판 프롬프트의 `{cast:<id>}`와 판 시트(`gen_cast_plate.py`)가 **같은 문구**를 쓴다 — ADR 260904-055320 1항."""
@@ -41,6 +44,15 @@ def cast_describe(c):
     parts += [c[k] for k in ("hair", "beard", "headwear", "build") if c.get(k) and c[k] != "none"]
     parts.append(c["costume"])
     return ", ".join(parts)
+
+
+def cast_describe_compact(c):
+    """어휘 정본 → **짧은** 인물 서술(task 337, 장면 안 경로의 그룹 단계 전용).
+
+    얼굴 앵커가 얼굴을 지므로 머리·수염·머리쓰개·체격 낱말을 뺀다. 한 프롬프트에 두 사람을
+    온전한 서술로 넣으면 77토큰을 넘기 때문이다 — 실측: 사무엘 22낱말 → 14낱말, 사울 24 → 13.
+    ⚠ 앵커가 없는 인물에게 쓰면 정체를 지탱할 것이 사라진다. 그룹 단계에서만 쓴다."""
+    return f"{c['era']} {c['age']}, {c['costume']}"
 
 # 장면 공용 화풍 머리·부정어 — 장면마다 바뀌지 않는다(실측으로 정한 값, 명세 밖 공통 상수).
 ST = dp._drop(dp.STYLE, "simple", "clean background", "light shading", "muted palette")
@@ -61,14 +73,57 @@ def _fill(text):
         out = out.replace(f"{{costume:{cast}}}", dp.SAMPLE_COSTUME[cast][3:])   # `in ` 뒤
     for cid in set(re.findall(r"\{cast:([a-z0-9-]+)\}", out)):                 # 인물 정본 전체 문구(task 331 이후)
         out = out.replace(f"{{cast:{cid}}}", cast_describe(load_cast(cid)))
+    for cid in set(re.findall(r"\{castc:([a-z0-9-]+)\}", out)):                # 짧은 문구(task 337 그룹 단계)
+        out = out.replace(f"{{castc:{cid}}}", cast_describe_compact(load_cast(cid)))
     return out.replace("{head_neg}", dp.HEAD_NEG_EXTRA)
 
 
-def stages(spec):
-    """→ [{id, kind, region, verse, prompt, neg, skip}] — prompt/neg는 완성 문자열."""
-    return [{**s, "prompt": f"{ST} {_fill(s['prompt'])}",
-             "neg": NEG + ", " + ", ".join(_fill(n) for n in s["neg"]),
-             "skip": s.get("skip")} for s in spec["stages"]]
+def _build(s, kind, regions, prompt_raw, neg_raw):
+    return {**s, "kind": kind, "regions": list(regions),
+            "prompt": f"{ST} {_fill(prompt_raw)}",
+            "neg": NEG + ", " + ", ".join(_fill(n) for n in neg_raw),
+            "skip": s.get("skip"),
+            "casts": list(dict.fromkeys(CAST_RE.findall(prompt_raw)))}
+
+
+def stage_plan(spec, figures="plate"):
+    """→ [(원본 단계 dict, kind, regions)] — **프롬프트를 채우지 않는 구조만**의 단계 목록.
+
+    판정자(`judge_scene.configure`)가 생성기와 **같은 목록**을 보게 하려고 뺐다. 그룹이 한 단계로
+    합쳐지면 산출물 파일도 하나뿐인데, 판정자가 옛 목록을 보면 없는 단계를 찾고 그룹 상자를
+    반쪽만 잰다 — 이 파일 머리말의 「자와 그림이 어긋나면 안 된다」가 그 뜻이다."""
+    if figures != "inscene":
+        return [(s, s["kind"], [s["region"]]) for s in spec["stages"]]
+    by_id = {s["id"]: s for s in spec["stages"]}
+    lead, absorbed = {}, {}
+    for g in spec.get("groups", []):
+        ids = g["stages"]
+        lead[ids[0]] = g
+        for i in ids[1:]:
+            absorbed[i] = ids[0]
+    out = []
+    for s in spec["stages"]:
+        if s["id"] in absorbed:
+            continue
+        if s["id"] in lead:
+            out.append((s, "scene", [by_id[i]["region"] for i in lead[s["id"]]["stages"]]))
+        else:
+            out.append((s, "scene" if s["kind"] == "plate" else s["kind"], [s["region"]]))
+    return out
+
+
+def stages(spec, figures="plate"):
+    """→ [{id, kind, region, regions, verse, prompt, neg, skip, casts}] — prompt/neg는 완성 문자열.
+
+    `figures="inscene"`(task 337)이면 판 단계를 **장면 안 인페인팅**(kind `scene`)으로 바꾸고,
+    명세의 `groups`에 묶인 단계들은 **한 단계로 합친다** — 두 인물이 한 마스크 안에서 함께
+    그려져야 서로 닿을 수 있다(각자 다른 상자에 따로 그리면 기하학적으로 불가능하다).
+    기본값 `"plate"`는 문자열까지 종전과 같다 — 봉인된 삼상17의 회귀 가드다."""
+    grp = {g["stages"][0]: g for g in spec.get("groups", [])} if figures == "inscene" else {}
+    return [_build(s, kind, regs,
+                   grp[s["id"]]["prompt"] if s["id"] in grp else s["prompt"],
+                   grp[s["id"]]["neg"] if s["id"] in grp else s["neg"])
+            for s, kind, regs in stage_plan(spec, figures)]
 
 
 def regions(spec):
@@ -79,6 +134,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("scene")
     ap.add_argument("--check", action="store_true", help="토큰 수만 재고 끝낸다(GPU 0)")
+    ap.add_argument("--figures", choices=("plate", "inscene"), default="plate")
     a = ap.parse_args()
     spec = load(a.scene)
     tok = None
@@ -86,7 +142,7 @@ def main():
         from transformers import CLIPTokenizer
         tok = CLIPTokenizer.from_pretrained(params.SDXL_BASE, subfolder="tokenizer")
     over = []
-    for s in stages(spec):
+    for s in stages(spec, a.figures):
         tag = f"{s['id']} {s['region']} {s['verse']}" + (" (skip)" if s["skip"] else "")
         print(f"[{tag}]\n  + {s['prompt']}\n  - {s['neg']}")
         if tok is not None:

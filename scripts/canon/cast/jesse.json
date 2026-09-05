@@ -11,13 +11,13 @@
   "age": "elderly father",
   "sex": "male",
   "hair": "gray hair",
-  "beard": "gray beard",
-  "headwear": "none",
-  "build": "average build",
+  "beard": "short gray beard",
+  "headwear": "brown cloth headwrap",
+  "build": "stocky",
   "costume": "in a long brown wool robe with a cloth belt",
   "colorWords": [
-    "warm brown",
-    "tan"
+    "dark brown",
+    "deep ochre"
   ],
   "propCandidates": [],
   "neg": [
@@ -35,7 +35,7 @@
     "build": "본문 밖 · 저작자 정함",
     "hair": "본문 밖 · 저작자 정함",
     "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함 — 사무엘과 실루엣이 겹쳐 구분되지 않아 두건 추가(실측 2026-09-04, task 333)",
     "costume": "본문 밖 · 저작자 정함(시대 복식)"
   },
   "plate": {

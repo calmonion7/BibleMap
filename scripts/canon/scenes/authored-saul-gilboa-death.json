@@ -14,42 +14,162 @@
     "why": "중상한 사울이 자기 칼을 세워 쥐고 선 채로 병기 든 자에게 명하는 순간 — 칼 위에 엎드러지는 순간(31:4 후반)은 그리지 않는다(사용자 지시). 병기 든 자는 두려워 물러서는 평범한 자세."
   },
   "background": [
-    {"what": "길보아 산 마른 비탈", "verse": "31:1"},
-    {"what": "뒤쫓는 블레셋 군대 — 능선 원경", "verse": "31:2", "region": "crest_right"}
+    {
+      "what": "길보아 산 마른 비탈",
+      "verse": "31:1"
+    },
+    {
+      "what": "뒤쫓는 블레셋 군대 — 능선 원경",
+      "verse": "31:2",
+      "region": "crest_right"
+    }
   ],
   "crowds": [
-    {"what": "블레셋 병사들이 산 위로 뒤쫓아 온다", "verse": "31:2", "region": "crest_right"}
+    {
+      "what": "블레셋 병사들이 산 위로 뒤쫓아 온다",
+      "verse": "31:2",
+      "region": "crest_right"
+    }
   ],
   "figures": [
-    {"cast": "saul-old", "role": "사울 — 중상하여 서 있음", "pose": "선 채로 칼을 세워 쥐고 있다", "prop": "a sword", "facing": "right", "region": "saul-old", "verse": "31:3-4"},
-    {"cast": "saul-armor-bearer", "role": "병기 든 자 — 두려워함", "pose": "두려워하며 뒤로 물러서 선다", "prop": "a sword", "facing": "left", "region": "saul-armor-bearer", "verse": "31:4"}
+    {
+      "cast": "saul-old",
+      "role": "사울 — 중상하여 서 있음",
+      "pose": "선 채로 칼을 세워 쥐고 있다",
+      "prop": "a sword",
+      "facing": "right",
+      "region": "saul-old",
+      "verse": "31:3-4"
+    },
+    {
+      "cast": "saul-armor-bearer",
+      "role": "병기 든 자 — 두려워함",
+      "pose": "두려워하며 뒤로 물러서 선다",
+      "prop": "a sword",
+      "facing": "left",
+      "region": "saul-armor-bearer",
+      "verse": "31:4"
+    }
   ],
   "regions": {
-    "full":               [0.00, 0.00, 1.00, 1.00],
-    "crest_right":        [0.58, 0.14, 0.98, 0.40],
-    "saul-old":            [0.18, 0.34, 0.36, 0.90],
-    "saul-armor-bearer":  [0.48, 0.40, 0.63, 0.90]
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "crest_right": [
+      0.58,
+      0.14,
+      0.98,
+      0.4
+    ],
+    "saul-old": [
+      0.18,
+      0.34,
+      0.36,
+      0.9
+    ],
+    "saul-armor-bearer": [
+      0.48,
+      0.4,
+      0.63,
+      0.9
+    ]
   },
   "_regions_why": "사울 세로 0.56(성인 왕, 중상해도 서 있음). 병기 든 자 세로 0.50, 뒤로 물러서 사울보다 오른쪽. 능선(crest_right)엔 뒤쫓는 블레셋 군대 원경 띠.",
   "stages": [
-    {"id": "S1", "kind": "full", "region": "full", "verse": "31:1",
-     "prompt": "a dry rocky mountain slope at dusk, sparse dry grass, scattered stones, pale dim sky, no people.",
-     "neg": ["people", "figures", "green forest", "modern building", "night black sky"]},
-    {"id": "S2a", "kind": "ridge", "region": "crest_right", "verse": "31:2",
-     "prompt": "a distant crowd of tiny soldiers with spears advancing up a hillside, small and far away.",
-     "neg": ["empty hill", "bare ridge", "single figure", "close-up"]},
-    {"id": "S3", "kind": "plate", "region": "saul-old", "verse": "31:3-4",
-     "prompt": "{cast:saul-old}, standing upright, gripping a sword point-down before him, wounded, facing right.",
-     "neg": ["crown", "armour", "royal robe", "kneeling", "modern clothes"]},
-    {"id": "S4", "kind": "plate", "region": "saul-armor-bearer", "verse": "31:4",
-     "prompt": "{cast:saul-armor-bearer}, standing, stepping back in fear, gripping a sheathed sword at his side, facing left.",
-     "neg": ["crown", "royal robe", "kneeling", "modern clothes"]}
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "31:1",
+      "prompt": "a dry rocky mountain slope at dusk, sparse dry grass, scattered stones, pale dim sky, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "green forest",
+        "modern building",
+        "night black sky",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S2a",
+      "kind": "ridge",
+      "region": "crest_right",
+      "verse": "31:2",
+      "prompt": "a distant crowd of tiny soldiers with spears advancing up a hillside, small and far away.",
+      "neg": [
+        "empty hill",
+        "bare ridge",
+        "single figure",
+        "close-up",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "saul-old",
+      "verse": "31:3-4",
+      "prompt": "{cast:saul-old}, standing upright, gripping a sword point-down before him, wounded, facing right.",
+      "neg": [
+        "crown",
+        "armour",
+        "royal robe",
+        "kneeling",
+        "modern clothes"
+      ]
+    },
+    {
+      "id": "S4",
+      "kind": "plate",
+      "region": "saul-armor-bearer",
+      "verse": "31:4",
+      "prompt": "{cast:saul-armor-bearer}, standing, stepping back in fear, gripping a sheathed sword at his side, facing left.",
+      "neg": [
+        "crown",
+        "royal robe",
+        "kneeling",
+        "modern clothes"
+      ]
+    }
   ],
   "negatives": [],
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
-    "figures": ["saul-old", "saul-armor-bearer"],
-    "gap_bands": [[0.36, 0.48]],
-    "crest_x": {"left": [0.02, 0.30], "right": [0.58, 0.98]}
+    "figures": [
+      "saul-old",
+      "saul-armor-bearer"
+    ],
+    "gap_bands": [
+      [
+        0.36,
+        0.48
+      ]
+    ],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.58,
+        0.98
+      ]
+    }
   }
 }

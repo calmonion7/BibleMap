@@ -15,34 +15,128 @@
     "why": "다윗이 수금을 타는 곁에서 사울의 손에 창이 들린 순간을 고정한다 — 창을 던지는 동작과 다윗이 피하는 장면(18:11)은 모델 prior에 없는 동작이라 그리지 않는다(ADR 260903-154254)."
   },
   "background": [
-    {"what": "사울의 처소 벽, 소박한 실내", "verse": "18:10"}
+    {
+      "what": "사울의 처소 벽, 소박한 실내",
+      "verse": "18:10"
+    }
   ],
   "figures": [
-    {"cast": "saul", "role": "사울 — 창을 쥔 왕", "pose": "서서 창을 쥐고 있다", "prop": "a spear", "facing": "left", "region": "saul", "verse": "18:10"},
-    {"cast": "david", "role": "다윗 — 수금 타는 병기 든 자", "pose": "곁에 앉아 수금을 탄다", "prop": "a small harp", "facing": "right", "region": "david", "verse": "18:10"}
+    {
+      "cast": "saul",
+      "role": "사울 — 창을 쥔 왕",
+      "pose": "서서 창을 쥐고 있다",
+      "prop": "a spear",
+      "facing": "left",
+      "region": "saul",
+      "verse": "18:10"
+    },
+    {
+      "cast": "david",
+      "role": "다윗 — 수금 타는 병기 든 자",
+      "pose": "곁에 앉아 수금을 탄다",
+      "prop": "a small harp",
+      "facing": "right",
+      "region": "david",
+      "verse": "18:10"
+    }
   ],
   "regions": {
-    "full":   [0.00, 0.00, 1.00, 1.00],
-    "saul":   [0.60, 0.34, 0.762, 0.92],
-    "david":  [0.15, 0.52, 0.27, 0.92]
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "saul": [
+      0.6,
+      0.34,
+      0.762,
+      0.92
+    ],
+    "david": [
+      0.15,
+      0.52,
+      0.27,
+      0.92
+    ]
   },
   "_regions_why": "사울 서서 세로 0.58(창을 든 왕), 다윗 앉아 세로 0.40. 좌우는 18:10(다윗이 곁에서 수금을 타고 사울이 창을 쥐고 서 있음).",
   "stages": [
-    {"id": "S1", "kind": "full", "region": "full", "verse": "18:10",
-     "prompt": "a plain dim interior room, bare stone wall, simple floor mat, no people.",
-     "neg": ["people", "figures", "outdoor", "modern furniture"]},
-    {"id": "S2", "kind": "plate", "region": "saul", "verse": "18:10",
-     "prompt": "{cast:saul}, standing tall, gripping one spear upright, facing left.",
-     "neg": ["armour", "crown", "royal robe", "modern clothes", "two spears", "sitting", "throwing"]},
-    {"id": "S3", "kind": "plate", "region": "david", "verse": "18:10",
-     "prompt": "{cast:david}, sitting, gripping one small harp, playing, facing right.",
-     "neg": ["armour", "helmet", "crown", "royal robe", "modern clothes", "standing", "fleeing"]}
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "18:10",
+      "prompt": "a plain dim interior room, bare stone wall, simple floor mat, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "outdoor",
+        "modern furniture",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S2",
+      "kind": "plate",
+      "region": "saul",
+      "verse": "18:10",
+      "prompt": "{cast:saul}, standing tall, gripping one spear upright, facing left.",
+      "neg": [
+        "armour",
+        "crown",
+        "royal robe",
+        "modern clothes",
+        "two spears",
+        "sitting",
+        "throwing"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "david",
+      "verse": "18:10",
+      "prompt": "{cast:david}, sitting, gripping one small harp, playing, facing right.",
+      "neg": [
+        "armour",
+        "helmet",
+        "crown",
+        "royal robe",
+        "modern clothes",
+        "standing",
+        "fleeing"
+      ]
+    }
   ],
   "negatives": [],
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
-    "figures": ["saul", "david"],
-    "gap_bands": [[0.27, 0.60]],
-    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+    "figures": [
+      "saul",
+      "david"
+    ],
+    "gap_bands": [
+      [
+        0.27,
+        0.6
+      ]
+    ],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
   }
 }

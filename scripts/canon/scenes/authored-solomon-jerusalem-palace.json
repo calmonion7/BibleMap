@@ -16,35 +16,123 @@
     "why": "레바논 나무 궁, 백향목 기둥이 늘어선 건물 앞에 솔로몬이 서 있는 순간. 준공 축하나 시므온 낭실(7:6-8) 세부 동작은 그리지 않는다 — 인물 1명 + 건물이 주역."
   },
   "background": [
-    {"what": "레바논 나무 궁 — 백향목 기둥 네 줄과 들보", "verse": "7:2"},
-    {"what": "다듬은 돌 기초와 벽", "verse": "7:9"}
+    {
+      "what": "레바논 나무 궁 — 백향목 기둥 네 줄과 들보",
+      "verse": "7:2"
+    },
+    {
+      "what": "다듬은 돌 기초와 벽",
+      "verse": "7:9"
+    }
   ],
   "crowds": [],
   "figures": [
-    {"cast": "solomon", "role": "솔로몬", "pose": "궁 앞에 서서 바라본다", "prop": "겉옷자락", "facing": "right", "region": "solomon", "verse": "7:1"}
+    {
+      "cast": "solomon",
+      "role": "솔로몬",
+      "pose": "궁 앞에 서서 바라본다",
+      "prop": "겉옷자락",
+      "facing": "right",
+      "region": "solomon",
+      "verse": "7:1"
+    }
   ],
   "regions": {
-    "full":     [0.00, 0.00, 1.00, 1.00],
-    "palace":   [0.28, 0.05, 0.98, 0.90],
-    "solomon":  [0.05, 0.38, 0.24, 0.90]
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "palace": [
+      0.28,
+      0.05,
+      0.98,
+      0.9
+    ],
+    "solomon": [
+      0.05,
+      0.38,
+      0.24,
+      0.9
+    ]
   },
   "_regions_why": "궁전이 화면 대부분(7:2 백향목 기둥 네 줄이 늘어선 넓은 건물)을 차지하는 큰 배경. 솔로몬은 왼쪽 앞 성인 상자(세로 0.52)로 궁을 바라보는 크기 대비.",
   "stages": [
-    {"id": "S1", "kind": "full", "region": "full", "verse": "본문 밖 · 저작자 정함",
-     "prompt": "a bare open courtyard in front of a building site, pale stony ground, empty pale sky, no people, no buildings.",
-     "neg": ["people", "figures", "trees", "grass", "water"]},
-    {"id": "S1b", "kind": "region", "region": "palace", "verse": "7:2",
-     "prompt": "a long ancient palace of cedar wood, four rows of tall cedar wood pillars, cedar beams, dressed stone foundation, no people.",
-     "neg": ["people", "figures", "pagoda", "modern building", "dome", "temple gold", "tower"]},
-    {"id": "S3", "kind": "plate", "region": "solomon", "verse": "7:1",
-     "prompt": "{cast:solomon}, standing looking up at a building, holding the edge of his robe, facing right.",
-     "neg": ["gray hair", "full beard", "armour", "sitting"]}
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "본문 밖 · 저작자 정함",
+      "prompt": "a bare open courtyard in front of a building site, pale stony ground, empty pale sky, no people, no buildings.",
+      "neg": [
+        "people",
+        "figures",
+        "trees",
+        "grass",
+        "water",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S1b",
+      "kind": "region",
+      "region": "palace",
+      "verse": "7:2",
+      "prompt": "a long ancient palace of cedar wood, four rows of tall cedar wood pillars, cedar beams, dressed stone foundation, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "pagoda",
+        "modern building",
+        "dome",
+        "temple gold",
+        "tower",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "solomon",
+      "verse": "7:1",
+      "prompt": "{cast:solomon}, standing looking up at a building, holding the edge of his robe, facing right.",
+      "neg": [
+        "gray hair",
+        "full beard",
+        "armour",
+        "sitting"
+      ]
+    }
   ],
   "negatives": [],
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
-    "figures": ["solomon"],
+    "figures": [
+      "solomon"
+    ],
     "gap_bands": [],
-    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
   }
 }

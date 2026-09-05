@@ -14,44 +14,181 @@
     "why": "다윗이 땅에 엎드려 절하고 벤 옷자락을 들어 보이며, 사울이 돌아보는 순간 — 옷자락을 베는 동작 자체는 이미 지나갔고 이 순간엔 결과물만 손에 있다(ADR 260902-170558)."
   },
   "background": [
-    {"what": "엔게디 황무지 바위 절벽, 들염소 바위", "verse": "24:1-2"},
-    {"what": "양의 우리 곁 굴 어귀", "verse": "24:3"}
+    {
+      "what": "엔게디 황무지 바위 절벽, 들염소 바위",
+      "verse": "24:1-2"
+    },
+    {
+      "what": "양의 우리 곁 굴 어귀",
+      "verse": "24:3"
+    }
   ],
   "crowds": [],
   "figures": [
-    {"cast": "david", "role": "다윗 — 엎드려 절함", "pose": "땅에 엎드려 절하며 옷자락을 손에 들어 보인다", "prop": "a robe corner", "facing": "right", "region": "david", "verse": "24:8 · 24:11"},
-    {"cast": "saul", "role": "사울 — 돌아봄", "pose": "걷다가 돌아서 뒤를 본다", "prop": "a sword", "facing": "left", "region": "saul", "verse": "24:8 · 지물 본문 밖 · 저작자 정함"}
+    {
+      "cast": "david",
+      "role": "다윗 — 엎드려 절함",
+      "pose": "땅에 엎드려 절하며 옷자락을 손에 들어 보인다",
+      "prop": "a robe corner",
+      "facing": "right",
+      "region": "david",
+      "verse": "24:8 · 24:11"
+    },
+    {
+      "cast": "saul",
+      "role": "사울 — 돌아봄",
+      "pose": "걷다가 돌아서 뒤를 본다",
+      "prop": "a sword",
+      "facing": "left",
+      "region": "saul",
+      "verse": "24:8 · 지물 본문 밖 · 저작자 정함"
+    }
   ],
   "regions": {
-    "full":  [0.00, 0.00, 1.00, 1.00],
-    "cliff": [0.00, 0.00, 0.35, 0.55],
-    "cave":  [0.40, 0.20, 0.68, 0.62],
-    "david": [0.20, 0.55, 0.38, 0.92],
-    "saul":  [0.68, 0.34, 0.86, 0.90]
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "cliff": [
+      0.0,
+      0.0,
+      0.35,
+      0.55
+    ],
+    "cave": [
+      0.4,
+      0.2,
+      0.68,
+      0.62
+    ],
+    "david": [
+      0.2,
+      0.55,
+      0.38,
+      0.92
+    ],
+    "saul": [
+      0.68,
+      0.34,
+      0.86,
+      0.9
+    ]
   },
   "_regions_why": "다윗 엎드림 세로 0.37(낮게 엎드림, 24:8). 사울 세로 0.56(서서 돌아봄). 굴은 배경 구조물(24:3), 절벽은 24:2 들염소 바위.",
   "stages": [
-    {"id": "S1", "kind": "full", "region": "full", "verse": "24:1",
-     "prompt": "a dry rocky wilderness with pale steep cliffs, sparse scrub, a narrow path, pale sky, no people.",
-     "neg": ["people", "figures", "soldiers", "green forest", "modern building"]},
-    {"id": "S1b", "kind": "region", "region": "cliff", "verse": "24:2",
-     "prompt": "a tall pale rocky cliff face with narrow ledges, dry scrub clinging to rock, no people.",
-     "neg": ["people", "figures", "goats", "modern architecture"]},
-    {"id": "S1c", "kind": "region", "region": "cave", "verse": "24:3",
-     "prompt": "a dark cave opening beside a low stone sheepfold wall, dry ground, no people.",
-     "neg": ["people", "figures", "door", "modern architecture"]},
-    {"id": "S3", "kind": "plate", "region": "david", "verse": "24:8 · 24:11",
-     "prompt": "{cast:david}, lying prostrate bowing low to the ground, one arm extended holding up a torn robe corner, facing right.",
-     "neg": ["crown", "armour", "royal robe", "standing", "modern clothes"]},
-    {"id": "S4", "kind": "plate", "region": "saul", "verse": "24:8",
-     "prompt": "{cast:saul}, standing, body turning to look back, gripping a sword at his hip, facing left.",
-     "neg": ["crown", "royal robe", "armour", "modern clothes"]}
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "24:1",
+      "prompt": "a dry rocky wilderness with pale steep cliffs, sparse scrub, a narrow path, pale sky, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "soldiers",
+        "green forest",
+        "modern building",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S1b",
+      "kind": "region",
+      "region": "cliff",
+      "verse": "24:2",
+      "prompt": "a tall pale rocky cliff face with narrow ledges, dry scrub clinging to rock, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "goats",
+        "modern architecture",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S1c",
+      "kind": "region",
+      "region": "cave",
+      "verse": "24:3",
+      "prompt": "a dark cave opening beside a low stone sheepfold wall, dry ground, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "door",
+        "modern architecture",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "david",
+      "verse": "24:8 · 24:11",
+      "prompt": "{cast:david}, lying prostrate bowing low to the ground, one arm extended holding up a torn robe corner, facing right.",
+      "neg": [
+        "crown",
+        "armour",
+        "royal robe",
+        "standing",
+        "modern clothes"
+      ]
+    },
+    {
+      "id": "S4",
+      "kind": "plate",
+      "region": "saul",
+      "verse": "24:8",
+      "prompt": "{cast:saul}, standing, body turning to look back, gripping a sword at his hip, facing left.",
+      "neg": [
+        "crown",
+        "royal robe",
+        "armour",
+        "modern clothes"
+      ]
+    }
   ],
   "negatives": [],
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
-    "figures": ["david", "saul"],
-    "gap_bands": [[0.38, 0.68]],
-    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+    "figures": [
+      "david",
+      "saul"
+    ],
+    "gap_bands": [
+      [
+        0.38,
+        0.68
+      ]
+    ],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
   }
 }

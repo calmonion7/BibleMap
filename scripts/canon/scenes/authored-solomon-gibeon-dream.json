@@ -16,34 +16,117 @@
     "why": "솔로몬이 잠든 채 꿈속에서 구하는 순간. 하나님은 그리지 않는다(브리프 지시) — 잠든 자세와 빈 제단만으로 「밤·꿈」을 나타낸다. 번제 드리는 동작(3:4)은 낮 장면이라 함께 그리지 않는다."
   },
   "background": [
-    {"what": "기브온 산당의 돌 제단 — 밤하늘", "verse": "3:4-5"}
+    {
+      "what": "기브온 산당의 돌 제단 — 밤하늘",
+      "verse": "3:4-5"
+    }
   ],
   "crowds": [],
   "figures": [
-    {"cast": "solomon", "role": "솔로몬", "pose": "제단 곁 바닥에 누워 잠들어 있다", "prop": "겉옷자락", "facing": "right", "region": "solomon", "verse": "3:5"}
+    {
+      "cast": "solomon",
+      "role": "솔로몬",
+      "pose": "제단 곁 바닥에 누워 잠들어 있다",
+      "prop": "겉옷자락",
+      "facing": "right",
+      "region": "solomon",
+      "verse": "3:5"
+    }
   ],
   "regions": {
-    "full":    [0.00, 0.00, 1.00, 1.00],
-    "altar":   [0.55, 0.35, 0.90, 0.75],
-    "solomon": [0.12, 0.55, 0.52, 0.85]
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "altar": [
+      0.55,
+      0.35,
+      0.9,
+      0.75
+    ],
+    "solomon": [
+      0.12,
+      0.55,
+      0.52,
+      0.85
+    ]
   },
   "_regions_why": "밤 장면이라 하늘은 전체를 채우고 제단은 오른쪽 배경(3:4 산당). 솔로몬은 누운 자세라 세로 낮게(0.30) 왼쪽 바닥에 배치, 제단과 겹치지 않게.",
   "stages": [
-    {"id": "S1", "kind": "full", "region": "full", "verse": "3:5",
-     "prompt": "a dark night sky over a stone hilltop shrine, faint stars, quiet high place, no people.",
-     "neg": ["people", "figures", "daylight", "bright sun"]},
-    {"id": "S1b", "kind": "region", "region": "altar", "verse": "3:4",
-     "prompt": "a plain ancient stone altar on a hilltop, bare stone blocks, no fire, no people.",
-     "neg": ["people", "figures", "flames", "smoke", "throne"]},
-    {"id": "S3", "kind": "plate", "region": "solomon", "verse": "3:5",
-     "prompt": "{cast:solomon}, lying asleep on the ground, gripping the edge of his robe, facing right.",
-     "neg": ["gray hair", "full beard", "armour", "standing", "crown"]}
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "3:5",
+      "prompt": "a dark night sky over a stone hilltop shrine, faint stars, quiet high place, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "daylight",
+        "bright sun",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S1b",
+      "kind": "region",
+      "region": "altar",
+      "verse": "3:4",
+      "prompt": "a plain ancient stone altar on a hilltop, bare stone blocks, no fire, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "flames",
+        "smoke",
+        "throne",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "solomon",
+      "verse": "3:5",
+      "prompt": "{cast:solomon}, lying asleep on the ground, gripping the edge of his robe, facing right.",
+      "neg": [
+        "gray hair",
+        "full beard",
+        "armour",
+        "standing",
+        "crown"
+      ]
+    }
   ],
   "negatives": [],
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
-    "figures": ["solomon"],
+    "figures": [
+      "solomon"
+    ],
     "gap_bands": [],
-    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
   }
 }

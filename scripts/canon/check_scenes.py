@@ -82,6 +82,7 @@ def check(spec, verses):
         if c.get("region") not in regs:
             errs.append(f"crowds 구역 없음: {c.get('region')}")
     ids = set()
+    by_id = {st.get('id'): st for st in spec['stages']}
     for s in spec["stages"]:
         for k in ("id", "kind", "region", "verse", "prompt", "neg"):
             if k not in s:
@@ -93,13 +94,34 @@ def check(spec, verses):
         if s.get("id") in ids:
             errs.append(f"stages id 중복: {s.get('id')}")
         ids.add(s.get("id"))
-        for cid in re.findall(r"\{cast:([a-z0-9-]+)\}", s.get("prompt", "")):
+        for cid in re.findall(r"\{castc?:([a-z0-9-]+)\}", s.get("prompt", "")):
             if not os.path.exists(os.path.join(CAST, f"{cid}.json")):
                 errs.append(f"stages[{s.get('id')}] {{cast:{cid}}} 정본 없음")
             if cid not in casts:
                 errs.append(f"stages[{s.get('id')}] {{cast:{cid}}}가 figures에 없음")
         if "from" in s and s["from"] not in ids:
             errs.append(f"stages[{s.get('id')}] from이 앞 단계가 아님: {s['from']}")
+    # groups — 장면 안 경로에서 **한 번에 그릴** 인물 단계 묶음(task 337). 없으면 검사 없음.
+    # 판 경로는 이 키를 읽지 않으므로 봉인된 장면은 영향이 없다.
+    seen = set()
+    for g in spec.get("groups", []):
+        for k in ("stages", "prompt", "neg"):
+            if k not in g:
+                errs.append(f"groups 필드 없음: {k}")
+        gs = g.get("stages") or []
+        if len(gs) < 2:
+            errs.append(f"groups.stages는 둘 이상이어야 한다(한 번에 그릴 이유가 없다): {gs}")
+        for i in gs:
+            if i not in ids:
+                errs.append(f"groups.stages에 없는 단계: {i}")
+            elif by_id[i].get("kind") != "plate":
+                errs.append(f"groups.stages는 인물(plate) 단계만: {i}={by_id[i].get('kind')}")
+            if i in seen:
+                errs.append(f"groups.stages 단계 중복: {i}")
+            seen.add(i)
+        for cid in re.findall(r"\{castc?:([a-z0-9-]+)\}", g.get("prompt", "")):
+            if cid not in casts:
+                errs.append(f"groups[{gs[:1]}] {{castc:{cid}}}가 figures에 없음")
     j = spec["judge"]
     for k in ("figures", "gap_bands", "crest_x"):
         if k not in j:

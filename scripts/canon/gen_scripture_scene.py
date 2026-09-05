@@ -30,7 +30,7 @@ import time
 import numpy as np
 import torch
 from diffusers import StableDiffusionXLInpaintPipeline
-from PIL import Image, ImageFilter
+from PIL import Image, ImageDraw, ImageFilter
 
 import params
 
@@ -90,6 +90,94 @@ def region_mask(name):
     m.paste(255, b)
     f = max(4, int(round(FEATHER * min(b[2] - b[0], b[3] - b[1]))))
     return m.filter(ImageFilter.GaussianBlur(f))
+
+
+# --- 장면 안 인물 인페인팅(task 337) — 판 합성과 **나란히 있는 선택지**다 -----------------
+# 기본값은 여전히 판 합성이다. 봉인된 삼상17 v41이 그 위에 서 있고, `--figures inscene`을
+# 주지 않으면 이 아래 것은 하나도 실행되지 않는다.
+SCENE_FIG_STRENGTH = 0.85   # 판 0.99(빈 종이)와 접지 0.55(있는 것 다듬기) 사이. --fig-strength로 훑는다.
+ELLIPSE_FEATHER = 0.06      # 타원 합집합 마스크의 깃털(구역 짧은 변의 분율)
+
+
+def union_box(names):
+    bs = [box_px(n) for n in names]
+    return (min(b[0] for b in bs), min(b[1] for b in bs),
+            max(b[2] for b in bs), max(b[3] for b in bs))
+
+
+def ellipse_mask(names):
+    """인물 구역마다 **내접 타원**을 그려 합치고 깃털을 준다.
+
+    사각 구역 마스크가 낸 결함을 겨눈다. 아래 붙임은 이미 변화 마스크(실루엣)로 하는데,
+    그 실루엣이 **상자 선에서 잘리고** 그 단차가 C3 이음매로 남았다(v25 0.232 → v26 0.365 회귀,
+    손잡이 넷 전부 실패 — ADR 260902-193724). 곡선 경계에는 잘릴 직선 변이 없다."""
+    m = Image.new("L", (W, H), 0)
+    d = ImageDraw.Draw(m)
+    boxes = sorted((box_px(n) for n in names), key=lambda b: b[0])
+    short = min(min(b[2] - b[0], b[3] - b[1]) for b in boxes)
+    for b in boxes:
+        d.ellipse(b, fill=255)
+    # **그룹이면 타원 사이를 잇는다.** 두 사람이 닿는 자리가 바로 그 틈이라, 이어 두지 않으면
+    # 손이 닿을 자리에 칠할 수가 없다 — 구멍 난 마스크는 판 합성의 결함을 그대로 재현한다.
+    # 잇는 것도 타원이다(직선 변을 새로 들이지 않는다). 높이는 인물 상자 높이의 60%,
+    # 즉 손과 팔이 오가는 중간 높이다.
+    for p, q in zip(boxes, boxes[1:]):
+        cy = (p[1] + p[3] + q[1] + q[3]) // 4
+        hh = int(round(0.30 * max(p[3] - p[1], q[3] - q[1])))
+        d.ellipse((min(p[0], q[0]), cy - hh, max(p[2], q[2]), cy + hh), fill=255)
+    return m.filter(ImageFilter.GaussianBlur(max(4, int(round(ELLIPSE_FEATHER * short)))))
+
+
+def anchor_kwargs(pipe, casts, cast_region, win, gw, gh, state):
+    """승인된 동결 얼굴을 IP-Adapter 레퍼런스로 물린다 — ADR 260904-055320 2항의 게이트는
+    2/7에서 이미 통과했고(27명 승인) 배선만 없었다.
+
+    둘 이상이면 **지역 IP 마스크**로 인물마다 자기 구역에만 건다. 한 어댑터에 이미지를 둘 주면
+    얼굴이 섞이기 때문이다. 마스크 경로가 이 diffusers에서 실패하면 앵커를 끄고 어휘로 간다
+    — 조용히 섞인 얼굴을 내놓느니 대조군 쪽으로 물러난다. → (kwargs, 로그 문구)"""
+    use = []
+    for cid in casts:
+        c = ds.load_cast(cid)
+        pl = c.get("plate", {})
+        fp = os.path.join(params.CANON_DIR, "frozen", f"{cid}.png")
+        if pl.get("anchor") and os.path.exists(fp):
+            use.append((cid, fp, float(pl.get("ipScale", 0.25))))
+    if not use:
+        if state.get("n") and hasattr(pipe, "unload_ip_adapter"):
+            pipe.unload_ip_adapter()
+            state["n"] = 0
+        return {}, "앵커 없음(보류이거나 동결 얼굴 없음)"
+    if state.get("n") != len(use):
+        if state.get("n") and hasattr(pipe, "unload_ip_adapter"):
+            pipe.unload_ip_adapter()
+        pipe.load_ip_adapter(params.IP_ADAPTER_REPO,
+                             subfolder=[params.IP_ADAPTER_SUBFOLDER] * len(use),
+                             weight_name=[params.IP_ADAPTER_WEIGHT] * len(use))
+        state["n"] = len(use)
+    pipe.set_ip_adapter_scale([sc for _, _, sc in use])
+    kw = {"ip_adapter_image": [Image.open(fp).convert("RGB") for _, fp, _ in use]}
+    note = " · ".join(f"{cid} 앵커 {sc}" for cid, _, sc in use)
+    if len(use) > 1:
+        try:
+            from diffusers.image_processor import IPAdapterMaskProcessor
+            masks = []
+            for cid, _, _ in use:
+                mm = Image.new("L", (W, H), 0)
+                ImageDraw.Draw(mm).ellipse(box_px(cast_region[cid]), fill=255)
+                masks.append(mm.crop(win))
+            # preprocess는 (N, 1, h, w)를 준다. 어댑터가 N개면 **어댑터마다 한 항목**이어야 하고
+            # 각 항목이 (그 어댑터가 받는 이미지 수, 1, h, w)다 — 하나로 뭉치면 diffusers가
+            # 「마스크 1개인데 스케일 2개」라고 거절한다(2026-09-05 실측).
+            pm = IPAdapterMaskProcessor().preprocess(masks, height=gh, width=gw)
+            kw["cross_attention_kwargs"] = {
+                "ip_adapter_masks": [pm[i:i + 1] for i in range(pm.shape[0])]}
+            note += " · 지역 마스크"
+        except Exception as e:                                   # noqa: BLE001
+            if hasattr(pipe, "unload_ip_adapter"):
+                pipe.unload_ip_adapter()
+            state["n"] = 0
+            return {}, f"앵커 끔 — 지역 마스크 실패({type(e).__name__}: {e})"
+    return kw, note
 
 
 # **인물은 장면 안에서 그리지 않고 「판」으로 따로 그려 오려 붙인다**(2026-09-01 사용자 제안, 실측 확인).
@@ -384,6 +472,14 @@ def main():
     ap.add_argument("--stages", default=None, help="쉼표로 단계 이름 일부만(기본 전부)")
     ap.add_argument("--label", default="v1")
     ap.add_argument("--plate-seeds", default="", help="판 단계별 시드, 예 S3=42,S4=11,S5=7 (기본은 장면 시드)")
+    ap.add_argument("--figures", choices=("plate", "inscene"), default="plate",
+                    help="인물을 그리는 법. plate=민 종이에 그려 오려 붙임(기본, 봉인된 삼상17이 이 위에 선다) · "
+                         "inscene=장면 캔버스 안에 인페인팅 + 승인된 얼굴 앵커 (task 337)")
+    ap.add_argument("--fig-strength", type=float, default=SCENE_FIG_STRENGTH,
+                    help=f"--figures inscene의 인물 단계 strength (기본 {SCENE_FIG_STRENGTH})")
+    ap.add_argument("--no-anchor", action="store_true",
+                    help="장면 안 경로에서 얼굴 앵커를 끈다 — 3판 대조의 **대조군**이다"
+                         "(ADR 260825-013557: 대조군 없이 판정하지 않는다)")
     a = ap.parse_args()
     seeds = [int(s) for s in a.seeds.split(",")]
     plate_seeds = {k: int(v) for k, v in (kv.split("=") for kv in a.plate_seeds.split(",") if kv)}
@@ -391,7 +487,9 @@ def main():
     spec = ds.load(a.scene)
     REGIONS.update(ds.regions(spec))
     J.configure(spec)   # 판정자도 같은 명세를 본다(자와 그림이 어긋나면 안 된다)
-    stages = ds.stages(spec)
+    stages = ds.stages(spec, a.figures)
+    cast_region = {f["cast"]: f["region"] for f in spec.get("figures", [])}
+    ip_state = {"n": 0}
     refine_src = {st["id"]: st["from"] for st in spec["stages"] if "from" in st}   # 다듬기 단계의 원천 인물 단계
     os.makedirs(OUT, exist_ok=True)
 
@@ -451,6 +549,11 @@ def main():
                 m.paste(255, b)
                 m = m.filter(ImageFilter.GaussianBlur(
                     max(4, int(round(FEATHER * min(b[2] - b[0], b[3] - b[1]))))))
+            elif st["kind"] == "scene":
+                # 인물(또는 한 그룹)을 **장면 안에서** 그린다 — 상자 합집합에 타원 마스크.
+                # 그룹이면 두 사람이 한 마스크 안에 있어 서로 닿을 수 있다.
+                b = union_box(st["regions"])
+                m = ellipse_mask(st["regions"])
             elif st["kind"] == "ridge":
                 m = ridge_mask(canvas, region)
                 b = m.point(lambda v: 255 if v > 40 else 0).getbbox() or box_px(region)
@@ -474,15 +577,25 @@ def main():
             gw, gh = S1_GEN if st["kind"] == "full" else _gen_size(win)
             ts = time.time()
             refine = st["kind"] == "refine"
+            ipkw = {}
+            if st["kind"] == "scene":
+                ipkw, ipnote = anchor_kwargs(pipe, [] if a.no_anchor else (st.get("casts") or []),
+                                             cast_region, win, gw, gh, ip_state)
+                print(f"    [{name}] {ipnote}", flush=True)
+            elif ip_state.get("n") and hasattr(pipe, "unload_ip_adapter"):
+                pipe.unload_ip_adapter()          # 앵커가 켜진 채 다른 단계로 넘어가지 않게
+                ip_state["n"] = 0
             res = pipe(prompt=prompt, negative_prompt=neg,
                        image=canvas.crop(win).resize((gw, gh), Image.LANCZOS),
                        mask_image=m.crop(win).resize((gw, gh), Image.LANCZOS),
                        width=gw, height=gh,
                        strength=(REFINE_STRENGTH if refine else
+                                 a.fig_strength if st["kind"] == "scene" else
                                  STRENGTH_BY_STAGE.get(name, DEFAULT_STRENGTH)),
                        num_inference_steps=params.STEPS,
                        guidance_scale=params.GUIDANCE,
-                       generator=torch.Generator("mps").manual_seed(seed)).images[0]
+                       generator=torch.Generator("mps").manual_seed(seed),
+                       **ipkw).images[0]
             ww, wh = win[2] - win[0], win[3] - win[1]
             if st["kind"] == "full":
                 # 지형은 화면 전체다. **마스크를 쓰지 않고 통째로 갈아끼운다** — 부분 마스크로

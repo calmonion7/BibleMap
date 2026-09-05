@@ -16,41 +16,163 @@
     "why": "뽑힌 사울이 백성 중에 서니 다른 사람보다 어깨 위나 더 크던 순간과 사무엘의 선포를 고정한다(10:23-24). 행구 사이에 숨었던 일(10:22)이나 왕정을 구하는 배경(10:19)은 이 순간의 요구가 아니다."
   },
   "background": [
-    {"what": "미스바의 넓은 야외 집회 자리, 마른 땅", "verse": "10:17"}
+    {
+      "what": "미스바의 넓은 야외 집회 자리, 마른 땅",
+      "verse": "10:17"
+    }
   ],
   "crowds": [
-    {"what": "이스라엘 지파 백성 — 뒤쪽에 둘러섬", "verse": "10:17 · 10:24", "region": "crowd_back"}
+    {
+      "what": "이스라엘 지파 백성 — 뒤쪽에 둘러섬",
+      "verse": "10:17 · 10:24",
+      "region": "crowd_back"
+    }
   ],
   "figures": [
-    {"cast": "samuel", "role": "사무엘 — 선포하는 선지자", "pose": "다른 손으로 겉옷자락을 쥔 채 손을 들어 사울을 가리키며 선포한다", "prop": "a robe corner", "facing": "right", "region": "samuel", "verse": "10:24"},
-    {"cast": "saul", "role": "뽑힌 사울 — 무리 중 우뚝 선 자", "pose": "백성 가운데 우뚝 서 있다", "prop": "a plain traveling cloak", "facing": "left", "region": "saul", "verse": "10:23"}
+    {
+      "cast": "samuel",
+      "role": "사무엘 — 선포하는 선지자",
+      "pose": "다른 손으로 겉옷자락을 쥔 채 손을 들어 사울을 가리키며 선포한다",
+      "prop": "a robe corner",
+      "facing": "right",
+      "region": "samuel",
+      "verse": "10:24"
+    },
+    {
+      "cast": "saul",
+      "role": "뽑힌 사울 — 무리 중 우뚝 선 자",
+      "pose": "백성 가운데 우뚝 서 있다",
+      "prop": "a plain traveling cloak",
+      "facing": "left",
+      "region": "saul",
+      "verse": "10:23"
+    }
   ],
   "regions": {
-    "full":       [0.00, 0.00, 1.00, 1.00],
-    "crowd_back": [0.02, 0.15, 0.98, 0.35],
-    "samuel":     [0.15, 0.37, 0.315, 0.92],
-    "saul":       [0.60, 0.34, 0.762, 0.92]
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "crowd_back": [
+      0.02,
+      0.15,
+      0.98,
+      0.35
+    ],
+    "samuel": [
+      0.15,
+      0.37,
+      0.315,
+      0.92
+    ],
+    "saul": [
+      0.6,
+      0.34,
+      0.762,
+      0.92
+    ]
   },
   "_regions_why": "사무엘 세로 0.55(장년 선지자), 사울 세로 0.58(10:23 「다른 사람보다 어깨 위나 더 크더라」로 조금 더 크게). crowd_back은 10:17·24의 둘러선 백성.",
   "stages": [
-    {"id": "S1", "kind": "full", "region": "full", "verse": "10:17",
-     "prompt": "a wide dry open assembly ground, sparse dry grass, hazy low hills far behind, empty pale sky, no people.",
-     "neg": ["people", "figures", "soldiers", "buildings", "tents"]},
-    {"id": "S2", "kind": "ridge", "region": "crowd_back", "verse": "10:17",
-     "prompt": "a loose distant crowd of tiny people standing in scattered groups, tiny far away figures, no weapons.",
-     "neg": ["empty ground", "single figure", "close-up", "soldiers in rows", "spears"]},
-    {"id": "S3", "kind": "plate", "region": "samuel", "verse": "10:24",
-     "prompt": "{cast:samuel}, standing tall, gripping one robe corner, one arm raised, facing right.",
-     "neg": ["armour", "sword", "spear", "crown", "modern clothes", "staff", "sitting"]},
-    {"id": "S4", "kind": "plate", "region": "saul", "verse": "10:23",
-     "prompt": "{cast:saul}, standing tall among a crowd, holding one plain cloak folded over one arm, facing left.",
-     "neg": ["armour", "sword", "spear", "crown", "royal robe", "modern clothes", "sitting"]}
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "10:17",
+      "prompt": "a wide dry open assembly ground, sparse dry grass, hazy low hills far behind, empty pale sky, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "soldiers",
+        "buildings",
+        "tents",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S2",
+      "kind": "ridge",
+      "region": "crowd_back",
+      "verse": "10:17",
+      "prompt": "a loose distant crowd of tiny people standing in scattered groups, tiny far away figures, no weapons.",
+      "neg": [
+        "empty ground",
+        "single figure",
+        "close-up",
+        "soldiers in rows",
+        "spears",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "samuel",
+      "verse": "10:24",
+      "prompt": "{cast:samuel}, standing tall, gripping one robe corner, one arm raised, facing right.",
+      "neg": [
+        "armour",
+        "sword",
+        "spear",
+        "crown",
+        "modern clothes",
+        "staff",
+        "sitting"
+      ]
+    },
+    {
+      "id": "S4",
+      "kind": "plate",
+      "region": "saul",
+      "verse": "10:23",
+      "prompt": "{cast:saul}, standing tall among a crowd, holding one plain cloak folded over one arm, facing left.",
+      "neg": [
+        "armour",
+        "sword",
+        "spear",
+        "crown",
+        "royal robe",
+        "modern clothes",
+        "sitting"
+      ]
+    }
   ],
   "negatives": [],
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
-    "figures": ["samuel", "saul"],
-    "gap_bands": [[0.315, 0.60]],
-    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+    "figures": [
+      "samuel",
+      "saul"
+    ],
+    "gap_bands": [
+      [
+        0.315,
+        0.6
+      ]
+    ],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
   }
 }

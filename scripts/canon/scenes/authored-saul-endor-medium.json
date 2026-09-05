@@ -14,41 +14,158 @@
     "why": "사울이 사무엘의 영을 알아보고 얼굴을 땅에 대고 절하는 순간. 사무엘은 영으로 등장하므로 어두운 배경 속에 서 있는 모습으로만 나타내고(28:14 「겉옷을 입었나이다」), 신접한 여인은 곁에서 지켜본다."
   },
   "background": [
-    {"what": "엔돌의 어두운 방, 밤", "verse": "28:8"},
-    {"what": "희미한 등불 하나", "verse": "본문 밖 · 저작자 정함"}
+    {
+      "what": "엔돌의 어두운 방, 밤",
+      "verse": "28:8"
+    },
+    {
+      "what": "희미한 등불 하나",
+      "verse": "본문 밖 · 저작자 정함"
+    }
   ],
   "crowds": [],
   "figures": [
-    {"cast": "saul-old", "role": "사울(변장) — 엎드려 절함", "pose": "얼굴을 땅에 대고 엎드려 절한다", "prop": "a disguise cloak", "facing": "right", "region": "saul-old", "verse": "28:8 · 28:14"},
-    {"cast": "samuel", "role": "사무엘의 영 — 어둠 속에 나타남", "pose": "어둠 속에 서서 겉옷을 입고 있다", "prop": "a robe corner", "facing": "left", "region": "samuel", "verse": "28:14"},
-    {"cast": "endor-medium", "role": "엔돌의 신접한 여인 — 지켜봄", "pose": "곁에 서서 두려워하며 지켜본다", "prop": "a shawl fold", "facing": "right", "region": "endor-medium", "verse": "28:12-13 · 지물 본문 밖 · 저작자 정함"}
+    {
+      "cast": "saul-old",
+      "role": "사울(변장) — 엎드려 절함",
+      "pose": "얼굴을 땅에 대고 엎드려 절한다",
+      "prop": "a disguise cloak",
+      "facing": "right",
+      "region": "saul-old",
+      "verse": "28:8 · 28:14"
+    },
+    {
+      "cast": "samuel",
+      "role": "사무엘의 영 — 어둠 속에 나타남",
+      "pose": "어둠 속에 서서 겉옷을 입고 있다",
+      "prop": "a robe corner",
+      "facing": "left",
+      "region": "samuel",
+      "verse": "28:14"
+    },
+    {
+      "cast": "endor-medium",
+      "role": "엔돌의 신접한 여인 — 지켜봄",
+      "pose": "곁에 서서 두려워하며 지켜본다",
+      "prop": "a shawl fold",
+      "facing": "right",
+      "region": "endor-medium",
+      "verse": "28:12-13 · 지물 본문 밖 · 저작자 정함"
+    }
   ],
   "regions": {
-    "full":          [0.00, 0.00, 1.00, 1.00],
-    "saul-old":      [0.12, 0.55, 0.30, 0.92],
-    "endor-medium":  [0.34, 0.42, 0.50, 0.90],
-    "samuel":        [0.62, 0.06, 0.82, 0.85]
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "saul-old": [
+      0.12,
+      0.55,
+      0.3,
+      0.92
+    ],
+    "endor-medium": [
+      0.34,
+      0.42,
+      0.5,
+      0.9
+    ],
+    "samuel": [
+      0.62,
+      0.06,
+      0.82,
+      0.85
+    ]
   },
   "_regions_why": "사울은 엎드려 절해 세로 0.37. 여인은 서서 세로 0.48. 사무엘의 영은 어둠 위쪽에서 나타나 세로 0.79로 크게 — 신적 두려움의 대상(28:13 「신이 땅에서 올라오는 것」).",
   "stages": [
-    {"id": "S1", "kind": "full", "region": "full", "verse": "28:8",
-     "prompt": "a small dim room at night, bare packed earth floor, plain dark walls, one dim oil lamp glow, no windows, no people.",
-     "neg": ["people", "figures", "daylight", "modern room", "furniture"]},
-    {"id": "S3", "kind": "plate", "region": "saul-old", "verse": "28:14",
-     "prompt": "{cast:saul-old}, lying prostrate bowing low with face to the ground, wearing a dark disguise cloak, facing right.",
-     "neg": ["crown", "royal robe", "armour", "standing", "modern clothes"]},
-    {"id": "S4", "kind": "plate", "region": "samuel", "verse": "28:14",
-     "prompt": "{cast:samuel}, standing amid darkness, an old man gripping a corner of his long robe, one hand raised, facing left.",
-     "neg": ["armour", "crown", "modern clothes", "young face", "weapon"]},
-    {"id": "S5", "kind": "plate", "region": "endor-medium", "verse": "28:12-13",
-     "prompt": "{cast:endor-medium}, standing, one hand gripping a fold of her shawl near her chest, fearful, facing right.",
-     "neg": ["crown", "armour", "modern clothes", "young face"]}
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "28:8",
+      "prompt": "a small dim room at night, bare packed earth floor, plain dark walls, one dim oil lamp glow, no windows, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "daylight",
+        "modern room",
+        "furniture",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "saul-old",
+      "verse": "28:14",
+      "prompt": "{cast:saul-old}, lying prostrate bowing low with face to the ground, wearing a dark disguise cloak, facing right.",
+      "neg": [
+        "crown",
+        "royal robe",
+        "armour",
+        "standing",
+        "modern clothes"
+      ]
+    },
+    {
+      "id": "S4",
+      "kind": "plate",
+      "region": "samuel",
+      "verse": "28:14",
+      "prompt": "{cast:samuel}, standing amid darkness, an old man gripping a corner of his long robe, one hand raised, facing left.",
+      "neg": [
+        "armour",
+        "crown",
+        "modern clothes",
+        "young face",
+        "weapon"
+      ]
+    },
+    {
+      "id": "S5",
+      "kind": "plate",
+      "region": "endor-medium",
+      "verse": "28:12-13",
+      "prompt": "{cast:endor-medium}, standing, one hand gripping a fold of her shawl near her chest, fearful, facing right.",
+      "neg": [
+        "crown",
+        "armour",
+        "modern clothes",
+        "young face"
+      ]
+    }
   ],
   "negatives": [],
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
-    "figures": ["saul-old", "samuel"],
-    "gap_bands": [[0.30, 0.62]],
-    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+    "figures": [
+      "saul-old",
+      "samuel"
+    ],
+    "gap_bands": [
+      [
+        0.3,
+        0.62
+      ]
+    ],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
   }
 }

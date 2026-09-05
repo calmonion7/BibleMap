@@ -58,7 +58,14 @@
         "figures",
         "throne",
         "outdoor",
-        "temple"
+        "temple",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
       ]
     },
     {

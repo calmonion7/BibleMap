@@ -16,41 +16,159 @@
     "why": "새벽에 사울이 삼 대로 나눈 백성을 이끌고 암몬 진영으로 들어서니 나하스의 무리가 무너져 흩어지는 순간을 고정한다 — 눈을 빼는 위협(11:2)이나 소를 각 뜨는 소집 절차(11:6-7)는 이 순간의 요구가 아니다."
   },
   "background": [
-    {"what": "새벽 여명의 들판, 무너지는 진영 천막", "verse": "11:1 · 11:11"}
+    {
+      "what": "새벽 여명의 들판, 무너지는 진영 천막",
+      "verse": "11:1 · 11:11"
+    }
   ],
   "crowds": [
-    {"what": "흩어져 도망하는 암몬 병사 — 오른쪽 능선", "verse": "11:11", "region": "crest_right"}
+    {
+      "what": "흩어져 도망하는 암몬 병사 — 오른쪽 능선",
+      "verse": "11:11",
+      "region": "crest_right"
+    }
   ],
   "figures": [
-    {"cast": "saul", "role": "사울 — 진영으로 들어서는 왕", "pose": "칼을 쥐고 진영으로 걸어 들어간다", "prop": "a sword", "facing": "right", "region": "saul", "verse": "11:11"},
-    {"cast": "nahash", "role": "나하스 — 무너지는 암몬 진영의 우두머리", "pose": "무너지는 진영 앞에서 물러선다", "prop": "a siege spear", "facing": "left", "region": "nahash", "verse": "11:1 · 11:11"}
+    {
+      "cast": "saul",
+      "role": "사울 — 진영으로 들어서는 왕",
+      "pose": "칼을 쥐고 진영으로 걸어 들어간다",
+      "prop": "a sword",
+      "facing": "right",
+      "region": "saul",
+      "verse": "11:11"
+    },
+    {
+      "cast": "nahash",
+      "role": "나하스 — 무너지는 암몬 진영의 우두머리",
+      "pose": "무너지는 진영 앞에서 물러선다",
+      "prop": "a siege spear",
+      "facing": "left",
+      "region": "nahash",
+      "verse": "11:1 · 11:11"
+    }
   ],
   "regions": {
-    "full":        [0.00, 0.00, 1.00, 1.00],
-    "crest_right": [0.55, 0.15, 0.98, 0.33],
-    "saul":        [0.12, 0.37, 0.285, 0.92],
-    "nahash":      [0.65, 0.40, 0.816, 0.92]
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "crest_right": [
+      0.55,
+      0.15,
+      0.98,
+      0.33
+    ],
+    "saul": [
+      0.12,
+      0.37,
+      0.285,
+      0.92
+    ],
+    "nahash": [
+      0.65,
+      0.4,
+      0.816,
+      0.92
+    ]
   },
   "_regions_why": "사울 세로 0.55(장년 왕), 나하스 세로 0.52(다부진 체구). 좌우 배치는 11:11(사울이 적진으로 들어감)·오른쪽 능선은 무너져 흩어지는 암몬 병사(11:11).",
   "stages": [
-    {"id": "S1", "kind": "full", "region": "full", "verse": "11:1",
-     "prompt": "a low open field at dawn, pale gray light, scattered collapsing tents, dry ground, no people.",
-     "neg": ["people", "figures", "soldiers", "buildings", "bright noon sun"]},
-    {"id": "S2", "kind": "ridge", "region": "crest_right", "verse": "11:11",
-     "prompt": "tiny distant soldiers scattering and fleeing on the hillside, a broken loose crowd, tiny far away figures.",
-     "neg": ["orderly ranks", "empty hill", "single figure", "close-up"]},
-    {"id": "S3", "kind": "plate", "region": "saul", "verse": "11:11",
-     "prompt": "{cast:saul}, standing tall, gripping one sword, walking forward, facing right.",
-     "neg": ["armour", "crown", "royal robe", "modern clothes", "two swords", "sitting"]},
-    {"id": "S4", "kind": "plate", "region": "nahash", "verse": "11:1",
-     "prompt": "{cast:nahash}, standing, gripping one long siege spear lowered, stepping back, facing left.",
-     "neg": ["Israelite dress", "crown", "modern clothes", "two spears", "sitting"]}
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "11:1",
+      "prompt": "a low open field at dawn, pale gray light, scattered collapsing tents, dry ground, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "soldiers",
+        "buildings",
+        "bright noon sun",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S2",
+      "kind": "ridge",
+      "region": "crest_right",
+      "verse": "11:11",
+      "prompt": "tiny distant soldiers scattering and fleeing on the hillside, a broken loose crowd, tiny far away figures.",
+      "neg": [
+        "orderly ranks",
+        "empty hill",
+        "single figure",
+        "close-up",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "saul",
+      "verse": "11:11",
+      "prompt": "{cast:saul}, standing tall, gripping one sword, walking forward, facing right.",
+      "neg": [
+        "armour",
+        "crown",
+        "royal robe",
+        "modern clothes",
+        "two swords",
+        "sitting"
+      ]
+    },
+    {
+      "id": "S4",
+      "kind": "plate",
+      "region": "nahash",
+      "verse": "11:1",
+      "prompt": "{cast:nahash}, standing, gripping one long siege spear lowered, stepping back, facing left.",
+      "neg": [
+        "Israelite dress",
+        "crown",
+        "modern clothes",
+        "two spears",
+        "sitting"
+      ]
+    }
   ],
   "negatives": [],
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
-    "figures": ["saul", "nahash"],
-    "gap_bands": [[0.285, 0.65]],
-    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+    "figures": [
+      "saul",
+      "nahash"
+    ],
+    "gap_bands": [
+      [
+        0.285,
+        0.65
+      ]
+    ],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
   }
 }

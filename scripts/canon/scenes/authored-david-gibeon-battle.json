@@ -107,7 +107,14 @@
         "figures",
         "soldiers",
         "buildings",
-        "city"
+        "city",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
       ]
     },
     {
@@ -121,7 +128,14 @@
         "figures",
         "boat",
         "fountain",
-        "waterfall"
+        "waterfall",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
       ]
     },
     {
@@ -134,7 +148,14 @@
         "empty ground",
         "single figure",
         "close-up",
-        "buildings"
+        "buildings",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
       ]
     },
     {
@@ -147,7 +168,14 @@
         "empty ground",
         "single figure",
         "close-up",
-        "buildings"
+        "buildings",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
       ]
     },
     {

@@ -81,7 +81,14 @@
         "people",
         "figures",
         "soldiers",
-        "indoor"
+        "indoor",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
       ]
     },
     {
@@ -94,7 +101,14 @@
         "empty ground",
         "single figure",
         "close-up",
-        "soldiers with spears"
+        "soldiers with spears",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
       ]
     },
     {

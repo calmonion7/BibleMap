@@ -92,7 +92,14 @@
         "figures",
         "throne room",
         "temple",
-        "indoor"
+        "indoor",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
       ]
     },
     {
@@ -106,7 +113,14 @@
         "figures",
         "fountain",
         "waterfall",
-        "boat"
+        "boat",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
       ]
     },
     {
@@ -119,7 +133,14 @@
         "empty ground",
         "single figure",
         "close-up",
-        "soldiers with spears"
+        "soldiers with spears",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
       ]
     },
     {

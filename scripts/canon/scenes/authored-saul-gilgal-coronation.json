@@ -14,46 +14,198 @@
     "why": "길갈에서 백성이 사울을 왕으로 세우고 화목제단 곁에서 크게 기뻐하는 순간을 고정한다 — 제물을 잡는 동작은 그리지 않고 이미 놓인 제단으로 대신한다."
   },
   "background": [
-    {"what": "화목제를 위해 쌓은 돌 제단", "verse": "11:15"},
-    {"what": "길갈의 넓은 들", "verse": "11:14"}
+    {
+      "what": "화목제를 위해 쌓은 돌 제단",
+      "verse": "11:15"
+    },
+    {
+      "what": "길갈의 넓은 들",
+      "verse": "11:14"
+    }
   ],
   "crowds": [
-    {"what": "크게 기뻐하는 이스라엘 백성 — 뒤쪽에 둘러섬", "verse": "11:15", "region": "crowd_back"}
+    {
+      "what": "크게 기뻐하는 이스라엘 백성 — 뒤쪽에 둘러섬",
+      "verse": "11:15",
+      "region": "crowd_back"
+    }
   ],
   "figures": [
-    {"cast": "samuel", "role": "사무엘 — 제사를 인도하는 선지자", "pose": "화목제단 곁에 서서 겉옷자락을 쥔다", "prop": "a robe corner", "facing": "right", "region": "samuel", "verse": "11:14-15"},
-    {"cast": "saul", "role": "사울 — 새로 세워진 왕", "pose": "백성 앞에 서서 기뻐한다", "prop": "a plain traveling cloak", "facing": "left", "region": "saul", "verse": "11:15"}
+    {
+      "cast": "samuel",
+      "role": "사무엘 — 제사를 인도하는 선지자",
+      "pose": "화목제단 곁에 서서 겉옷자락을 쥔다",
+      "prop": "a robe corner",
+      "facing": "right",
+      "region": "samuel",
+      "verse": "11:14-15"
+    },
+    {
+      "cast": "saul",
+      "role": "사울 — 새로 세워진 왕",
+      "pose": "백성 앞에 서서 기뻐한다",
+      "prop": "a plain traveling cloak",
+      "facing": "left",
+      "region": "saul",
+      "verse": "11:15"
+    }
   ],
   "regions": {
-    "full":       [0.00, 0.00, 1.00, 1.00],
-    "crowd_back": [0.02, 0.15, 0.98, 0.33],
-    "altar":      [0.40, 0.75, 0.55, 0.92],
-    "samuel":     [0.12, 0.37, 0.285, 0.92],
-    "saul":       [0.60, 0.34, 0.762, 0.92]
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "crowd_back": [
+      0.02,
+      0.15,
+      0.98,
+      0.33
+    ],
+    "altar": [
+      0.4,
+      0.75,
+      0.55,
+      0.92
+    ],
+    "samuel": [
+      0.12,
+      0.37,
+      0.285,
+      0.92
+    ],
+    "saul": [
+      0.6,
+      0.34,
+      0.762,
+      0.92
+    ]
   },
   "_regions_why": "사무엘 세로 0.55, 사울 세로 0.58(어깨 위나 더 큼). altar는 낮은 돌더미(높이 0.17)로 두 인물 사이 바닥에.",
   "stages": [
-    {"id": "S1", "kind": "full", "region": "full", "verse": "11:14",
-     "prompt": "a wide dry open field, sparse dry grass, hazy low hills far behind, bright pale sky, no people.",
-     "neg": ["people", "figures", "soldiers", "buildings", "tents"]},
-    {"id": "S2", "kind": "region", "region": "altar", "verse": "11:15",
-     "prompt": "a low pile of rough stones forming a simple sacrificial altar, no people, no fire.",
-     "neg": ["people", "figures", "building", "tall structure", "fire", "smoke"]},
-    {"id": "S3", "kind": "ridge", "region": "crowd_back", "verse": "11:15",
-     "prompt": "a loose joyful crowd of tiny distant people, scattered groups standing, no weapons.",
-     "neg": ["empty ground", "single figure", "close-up", "soldiers in rows"]},
-    {"id": "S4", "kind": "plate", "region": "samuel", "verse": "11:14",
-     "prompt": "{cast:samuel}, standing tall, gripping one robe corner, facing right.",
-     "neg": ["armour", "sword", "spear", "crown", "modern clothes", "staff", "sitting"]},
-    {"id": "S5", "kind": "plate", "region": "saul", "verse": "11:15",
-     "prompt": "{cast:saul}, standing tall, holding one plain cloak folded over one arm, facing left.",
-     "neg": ["armour", "sword", "spear", "crown", "royal robe", "modern clothes", "sitting"]}
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "11:14",
+      "prompt": "a wide dry open field, sparse dry grass, hazy low hills far behind, bright pale sky, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "soldiers",
+        "buildings",
+        "tents",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S2",
+      "kind": "region",
+      "region": "altar",
+      "verse": "11:15",
+      "prompt": "a low pile of rough stones forming a simple sacrificial altar, no people, no fire.",
+      "neg": [
+        "people",
+        "figures",
+        "building",
+        "tall structure",
+        "fire",
+        "smoke",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "ridge",
+      "region": "crowd_back",
+      "verse": "11:15",
+      "prompt": "a loose joyful crowd of tiny distant people, scattered groups standing, no weapons.",
+      "neg": [
+        "empty ground",
+        "single figure",
+        "close-up",
+        "soldiers in rows",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S4",
+      "kind": "plate",
+      "region": "samuel",
+      "verse": "11:14",
+      "prompt": "{cast:samuel}, standing tall, gripping one robe corner, facing right.",
+      "neg": [
+        "armour",
+        "sword",
+        "spear",
+        "crown",
+        "modern clothes",
+        "staff",
+        "sitting"
+      ]
+    },
+    {
+      "id": "S5",
+      "kind": "plate",
+      "region": "saul",
+      "verse": "11:15",
+      "prompt": "{cast:saul}, standing tall, holding one plain cloak folded over one arm, facing left.",
+      "neg": [
+        "armour",
+        "sword",
+        "spear",
+        "crown",
+        "royal robe",
+        "modern clothes",
+        "sitting"
+      ]
+    }
   ],
   "negatives": [],
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
-    "figures": ["samuel", "saul"],
-    "gap_bands": [[0.285, 0.40], [0.55, 0.60]],
-    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+    "figures": [
+      "samuel",
+      "saul"
+    ],
+    "gap_bands": [
+      [
+        0.285,
+        0.4
+      ],
+      [
+        0.55,
+        0.6
+      ]
+    ],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
   }
 }

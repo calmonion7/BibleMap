@@ -74,7 +74,14 @@
         "figures",
         "throne room",
         "temple",
-        "indoor"
+        "indoor",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
       ]
     },
     {

@@ -15,35 +15,125 @@
     "why": "스바 여왕이 예물을 왕께 드리는 순간(10:10) — 낙타 대상(10:2 전반)과 문답 장면(10:3)은 배경으로만 남긴다."
   },
   "background": [
-    {"what": "왕궁 알현실 — 돌바닥과 기둥", "verse": "본문 밖 · 저작자 정함"}
+    {
+      "what": "왕궁 알현실 — 돌바닥과 기둥",
+      "verse": "본문 밖 · 저작자 정함"
+    }
   ],
   "crowds": [],
   "figures": [
-    {"cast": "solomon", "role": "솔로몬", "pose": "보좌에 앉아 맞이한다", "prop": "왕홀", "facing": "left", "region": "solomon", "verse": "10:3"},
-    {"cast": "sheba-queen", "role": "스바 여왕", "pose": "예물을 들고 왕 앞에 선다", "prop": "향품 상자", "facing": "right", "region": "sheba-queen", "verse": "10:10"}
+    {
+      "cast": "solomon",
+      "role": "솔로몬",
+      "pose": "보좌에 앉아 맞이한다",
+      "prop": "왕홀",
+      "facing": "left",
+      "region": "solomon",
+      "verse": "10:3"
+    },
+    {
+      "cast": "sheba-queen",
+      "role": "스바 여왕",
+      "pose": "예물을 들고 왕 앞에 선다",
+      "prop": "향품 상자",
+      "facing": "right",
+      "region": "sheba-queen",
+      "verse": "10:10"
+    }
   ],
   "regions": {
-    "full":         [0.00, 0.00, 1.00, 1.00],
-    "solomon":      [0.68, 0.15, 0.92, 0.72],
-    "sheba-queen":  [0.20, 0.28, 0.44, 0.85]
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "solomon": [
+      0.68,
+      0.15,
+      0.92,
+      0.72
+    ],
+    "sheba-queen": [
+      0.2,
+      0.28,
+      0.44,
+      0.85
+    ]
   },
   "_regions_why": "솔로몬은 보좌에 앉아 오른쪽 높은 자리(세로 0.57). 스바 여왕은 왕상 10:2 「나아와」대로 왼쪽에 서서 다가서는 성인 상자(세로 0.57), 둘 사이 여백을 둔다.",
   "stages": [
-    {"id": "S1", "kind": "full", "region": "full", "verse": "본문 밖 · 저작자 정함",
-     "prompt": "a plain ancient stone throne hall, bare floor, tall stone columns, no people, quiet room.",
-     "neg": ["people", "figures", "outdoor", "modern room"]},
-    {"id": "S3", "kind": "plate", "region": "solomon", "verse": "10:3",
-     "prompt": "{cast:solomon}, sitting on a throne receiving a guest, holding a wooden scepter, facing left.",
-     "neg": ["gray hair", "full beard", "armour", "standing"]},
-    {"id": "S4", "kind": "plate", "region": "sheba-queen", "verse": "10:10",
-     "prompt": "{cast:sheba-queen}, standing presenting a gift, holding a small wooden spice chest, facing right.",
-     "neg": ["Israelite dress", "crown", "modern clothes", "european gown", "tiara", "kneeling"]}
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "본문 밖 · 저작자 정함",
+      "prompt": "a plain ancient stone throne hall, bare floor, tall stone columns, no people, quiet room.",
+      "neg": [
+        "people",
+        "figures",
+        "outdoor",
+        "modern room",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "solomon",
+      "verse": "10:3",
+      "prompt": "{cast:solomon}, sitting on a throne receiving a guest, holding a wooden scepter, facing left.",
+      "neg": [
+        "gray hair",
+        "full beard",
+        "armour",
+        "standing"
+      ]
+    },
+    {
+      "id": "S4",
+      "kind": "plate",
+      "region": "sheba-queen",
+      "verse": "10:10",
+      "prompt": "{cast:sheba-queen}, standing presenting a gift, holding a small wooden spice chest, facing right.",
+      "neg": [
+        "Israelite dress",
+        "crown",
+        "modern clothes",
+        "european gown",
+        "tiara",
+        "kneeling"
+      ]
+    }
   ],
   "negatives": [],
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
-    "figures": ["solomon", "sheba-queen"],
-    "gap_bands": [[0.44, 0.68]],
-    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+    "figures": [
+      "solomon",
+      "sheba-queen"
+    ],
+    "gap_bands": [
+      [
+        0.44,
+        0.68
+      ]
+    ],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
   }
 }

@@ -68,7 +68,14 @@
         "people",
         "figures",
         "soldiers",
-        "flat plain"
+        "flat plain",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
       ]
     },
     {
@@ -82,7 +89,14 @@
         "figures",
         "modern",
         "castle towers",
-        "flag"
+        "flag",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
       ]
     },
     {

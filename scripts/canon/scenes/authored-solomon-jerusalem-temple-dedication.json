@@ -16,40 +16,146 @@
     "why": "솔로몬이 단 앞에서 무릎 꿇고 하늘을 향해 손을 편 순간(기도를 마치고 일어나기 직전) — 회중(8:22)은 원경 군중으로, 제물 도살(8:63) 동작은 그리지 않는다."
   },
   "background": [
-    {"what": "성전 앞뜰의 놋단", "verse": "8:22 · 8:64"}
+    {
+      "what": "성전 앞뜰의 놋단",
+      "verse": "8:22 · 8:64"
+    }
   ],
   "crowds": [
-    {"what": "이스라엘 온 회중 — 원경에 도열", "verse": "8:22 · 8:65", "region": "crowd_ridge"}
+    {
+      "what": "이스라엘 온 회중 — 원경에 도열",
+      "verse": "8:22 · 8:65",
+      "region": "crowd_ridge"
+    }
   ],
   "figures": [
-    {"cast": "solomon", "role": "솔로몬", "pose": "단 앞에 무릎 꿇고 손을 편다", "prop": "겉옷자락", "facing": "right", "region": "solomon", "verse": "8:54"}
+    {
+      "cast": "solomon",
+      "role": "솔로몬",
+      "pose": "단 앞에 무릎 꿇고 손을 편다",
+      "prop": "겉옷자락",
+      "facing": "right",
+      "region": "solomon",
+      "verse": "8:54"
+    }
   ],
   "regions": {
-    "full":        [0.00, 0.00, 1.00, 1.00],
-    "altar":       [0.55, 0.55, 0.85, 0.90],
-    "crowd_ridge": [0.02, 0.08, 0.98, 0.28],
-    "solomon":     [0.18, 0.50, 0.40, 0.90]
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "altar": [
+      0.55,
+      0.55,
+      0.85,
+      0.9
+    ],
+    "crowd_ridge": [
+      0.02,
+      0.08,
+      0.98,
+      0.28
+    ],
+    "solomon": [
+      0.18,
+      0.5,
+      0.4,
+      0.9
+    ]
   },
   "_regions_why": "회중은 화면 상단 먼 띠(8:22 온 회중, 8:65 큰 회중). 놋단은 오른쪽 배경(8:64). 솔로몬은 무릎 꿇은 자세라 세로 낮게(0.40) 왼쪽 앞.",
   "stages": [
-    {"id": "S1", "kind": "full", "region": "full", "verse": "본문 밖 · 저작자 정함",
-     "prompt": "an open temple courtyard, pale stone paving, empty pale sky, no people, no buildings.",
-     "neg": ["people", "figures", "trees", "grass"]},
-    {"id": "S1b", "kind": "region", "region": "altar", "verse": "8:64",
-     "prompt": "a large plain bronze altar block in a courtyard, no fire, no people.",
-     "neg": ["people", "figures", "flames", "smoke"]},
-    {"id": "S2a", "kind": "ridge", "region": "crowd_ridge", "verse": "8:22 · 8:65",
-     "prompt": "hundreds of tiny distant people standing packed together in a wide courtyard, tiny far away crowd.",
-     "neg": ["empty courtyard", "single figure", "close-up"]},
-    {"id": "S3", "kind": "plate", "region": "solomon", "verse": "8:54",
-     "prompt": "{cast:solomon}, kneeling with both hands spread upward, holding the edge of his robe, facing right.",
-     "neg": ["gray hair", "full beard", "armour", "standing"]}
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "본문 밖 · 저작자 정함",
+      "prompt": "an open temple courtyard, pale stone paving, empty pale sky, no people, no buildings.",
+      "neg": [
+        "people",
+        "figures",
+        "trees",
+        "grass",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S1b",
+      "kind": "region",
+      "region": "altar",
+      "verse": "8:64",
+      "prompt": "a large plain bronze altar block in a courtyard, no fire, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "flames",
+        "smoke",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S2a",
+      "kind": "ridge",
+      "region": "crowd_ridge",
+      "verse": "8:22 · 8:65",
+      "prompt": "hundreds of tiny distant people standing packed together in a wide courtyard, tiny far away crowd.",
+      "neg": [
+        "empty courtyard",
+        "single figure",
+        "close-up",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "solomon",
+      "verse": "8:54",
+      "prompt": "{cast:solomon}, kneeling with both hands spread upward, holding the edge of his robe, facing right.",
+      "neg": [
+        "gray hair",
+        "full beard",
+        "armour",
+        "standing"
+      ]
+    }
   ],
   "negatives": [],
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
-    "figures": ["solomon"],
+    "figures": [
+      "solomon"
+    ],
     "gap_bands": [],
-    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
   }
 }

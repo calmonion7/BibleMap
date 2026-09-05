@@ -16,34 +16,150 @@
     "why": "사무엘이 돌이켜 떠나려 할 때 사울이 그의 겉옷자락을 붙잡아 찢어진 순간을 고정한다 — 아각 포로 처분(15:8-9)이나 이후의 심판 선언(15:28)은 이 순간의 그림 요소가 아니다."
   },
   "background": [
-    {"what": "길갈의 넓은 들", "verse": "15:21"}
+    {
+      "what": "길갈의 넓은 들",
+      "verse": "15:21"
+    }
   ],
   "figures": [
-    {"cast": "saul", "role": "사울 — 겉옷자락을 붙잡는 왕", "pose": "손을 뻗어 사무엘의 겉옷자락을 붙잡는다", "prop": "a torn robe corner", "facing": "right", "region": "saul", "verse": "15:27"},
-    {"cast": "samuel", "role": "사무엘 — 돌이켜 떠나는 선지자", "pose": "돌아서서 걸어간다", "prop": "a wooden staff", "facing": "right", "region": "samuel", "verse": "15:26-27 · 지물 본문 밖 · 저작자 정함"}
+    {
+      "cast": "saul",
+      "role": "사울 — 겉옷자락을 붙잡는 왕",
+      "pose": "손을 뻗어 사무엘의 겉옷자락을 붙잡는다",
+      "prop": "a torn robe corner",
+      "facing": "right",
+      "region": "saul",
+      "verse": "15:27"
+    },
+    {
+      "cast": "samuel",
+      "role": "사무엘 — 돌이켜 떠나는 선지자",
+      "pose": "돌아서서 걸어간다",
+      "prop": "a wooden staff",
+      "facing": "right",
+      "region": "samuel",
+      "verse": "15:26-27 · 지물 본문 밖 · 저작자 정함"
+    }
   ],
   "regions": {
-    "full":   [0.00, 0.00, 1.00, 1.00],
-    "saul":   [0.15, 0.37, 0.315, 0.92],
-    "samuel": [0.55, 0.37, 0.715, 0.92]
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "saul": [
+      0.15,
+      0.37,
+      0.315,
+      0.92
+    ],
+    "samuel": [
+      0.55,
+      0.37,
+      0.715,
+      0.92
+    ]
   },
   "_regions_why": "사울·사무엘 모두 세로 0.55(둘 다 장년~노년 성인). 좌우 배치는 15:27(돌이켜 떠나는 사무엘을 사울이 뒤에서 붙잡음) — 둘 다 오른쪽을 향해 같은 방향으로 움직인다.",
   "stages": [
-    {"id": "S1", "kind": "full", "region": "full", "verse": "15:21",
-     "prompt": "a wide dry open field, sparse dry grass, hazy low hills far behind, pale sky, no people.",
-     "neg": ["people", "figures", "soldiers", "buildings", "tents"]},
-    {"id": "S2", "kind": "plate", "region": "saul", "verse": "15:27",
-     "prompt": "{cast:saul}, standing tall, reaching one hand forward, gripping one torn strip of cloth, facing right.",
-     "neg": ["armour", "sword", "spear", "crown", "royal robe", "modern clothes", "sitting"]},
-    {"id": "S3", "kind": "plate", "region": "samuel", "verse": "15:26",
-     "prompt": "{cast:samuel}, standing tall, gripping one wooden staff upright, walking away, facing right.",
-     "neg": ["armour", "sword", "spear", "crown", "modern clothes", "two staffs", "sitting"]}
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "15:21",
+      "prompt": "a wide dry open field, sparse dry grass, hazy low hills far behind, pale sky, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "soldiers",
+        "buildings",
+        "tents",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S2",
+      "kind": "plate",
+      "region": "saul",
+      "verse": "15:27",
+      "prompt": "{cast:saul}, standing tall, reaching one hand forward, gripping one torn strip of cloth, facing right.",
+      "neg": [
+        "armour",
+        "sword",
+        "spear",
+        "crown",
+        "royal robe",
+        "modern clothes",
+        "sitting"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "samuel",
+      "verse": "15:26",
+      "prompt": "{cast:samuel}, standing tall, gripping one wooden staff upright, walking away, facing right.",
+      "neg": [
+        "armour",
+        "sword",
+        "spear",
+        "crown",
+        "modern clothes",
+        "two staffs",
+        "sitting"
+      ]
+    }
   ],
   "negatives": [],
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
-    "figures": ["saul", "samuel"],
-    "gap_bands": [[0.315, 0.55]],
-    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
-  }
+    "figures": [
+      "saul",
+      "samuel"
+    ],
+    "gap_bands": [
+      [
+        0.315,
+        0.55
+      ]
+    ],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
+  },
+  "groups": [
+    {
+      "stages": [
+        "S2",
+        "S3"
+      ],
+      "prompt": "{castc:saul} reaching out, gripping the torn robe corner of {castc:samuel}, who turns away with one wooden staff.",
+      "neg": [
+        "armour",
+        "sword",
+        "spear",
+        "crown",
+        "royal robe",
+        "modern clothes",
+        "sitting",
+        "two staffs",
+        "third person"
+      ],
+      "_why": "사울이 사무엘의 겉옷자락을 붙잡는 순간(15:27)은 두 사람이 닿아야 성립한다. 판 경로는 둘을 다른 종이에 따로 그려 떨어진 상자에 얹으므로 이 순간이 그려질 수 없었다 — 묶음 A A1에서 기계 판정은 통과했는데 정작 찢는 장면이 없었다. 짧은 인물 서술을 쓰는 것은 두 사람을 한 프롬프트에 넣으면 77토큰을 넘기 때문이고, 얼굴은 앵커가 진다."
+    }
+  ]
 }

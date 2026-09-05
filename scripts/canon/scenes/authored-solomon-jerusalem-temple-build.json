@@ -17,39 +17,150 @@
     "why": "건축이 진행 중인 성전 건물 앞에 솔로몬이 서서 바라보는 순간 — 돌 다듬기·도끼질(6:7) 동작은 그리지 않는다(모델 prior에 없는 동작). 인물 1명 + 건물이 주역."
   },
   "background": [
-    {"what": "다듬은 돌과 백향목 널판으로 세워지는 성전 건물", "verse": "6:2 · 6:7 · 6:9"},
-    {"what": "건물 앞뜰의 다듬은 돌더미", "verse": "6:7"}
+    {
+      "what": "다듬은 돌과 백향목 널판으로 세워지는 성전 건물",
+      "verse": "6:2 · 6:7 · 6:9"
+    },
+    {
+      "what": "건물 앞뜰의 다듬은 돌더미",
+      "verse": "6:7"
+    }
   ],
   "crowds": [],
   "figures": [
-    {"cast": "solomon", "role": "솔로몬", "pose": "성전 앞에 서서 바라본다", "prop": "전 모형", "facing": "right", "region": "solomon", "verse": "6:2"}
+    {
+      "cast": "solomon",
+      "role": "솔로몬",
+      "pose": "성전 앞에 서서 바라본다",
+      "prop": "전 모형",
+      "facing": "right",
+      "region": "solomon",
+      "verse": "6:2"
+    }
   ],
   "regions": {
-    "full":     [0.00, 0.00, 1.00, 1.00],
-    "temple":   [0.30, 0.06, 0.98, 0.90],
-    "stones":   [0.02, 0.72, 0.28, 0.94],
-    "solomon":  [0.05, 0.38, 0.24, 0.90]
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "temple": [
+      0.3,
+      0.06,
+      0.98,
+      0.9
+    ],
+    "stones": [
+      0.02,
+      0.72,
+      0.28,
+      0.94
+    ],
+    "solomon": [
+      0.05,
+      0.38,
+      0.24,
+      0.9
+    ]
   },
   "_regions_why": "성전 건물이 화면 대부분을 차지하는 큰 배경(6:2 육십 규빗×이십 규빗×삼십 규빗 — 폭넓고 높은 상자). 솔로몬은 왼쪽 앞 성인 상자(세로 0.52)로 건물을 바라보는 크기 대비. 돌더미는 왼쪽 하단 낮은 상자.",
   "stages": [
-    {"id": "S1", "kind": "full", "region": "full", "verse": "본문 밖 · 저작자 정함",
-     "prompt": "a bare dry building yard on a hilltop, pale stony ground, empty pale sky, no people, no buildings.",
-     "neg": ["people", "figures", "trees", "grass", "water"]},
-    {"id": "S1b", "kind": "region", "region": "temple", "verse": "6:2 · 6:9",
-     "prompt": "a large ancient stone temple under construction, dressed stone walls, cedar wood beams and scaffolding, no people, no roof gold.",
-     "neg": ["people", "figures", "pagoda", "modern building", "tower", "dome", "columns of a palace"]},
-    {"id": "S1c", "kind": "region", "region": "stones", "verse": "6:7",
-     "prompt": "a small pile of finely dressed square stone blocks on the ground, no people, no tools.",
-     "neg": ["people", "figures", "hammer", "axe", "chisel"]},
-    {"id": "S3", "kind": "plate", "region": "solomon", "verse": "6:2",
-     "prompt": "{cast:solomon}, standing looking up at a building, holding a small wooden temple model, facing right.",
-     "neg": ["gray hair", "full beard", "armour", "sitting"]}
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "본문 밖 · 저작자 정함",
+      "prompt": "a bare dry building yard on a hilltop, pale stony ground, empty pale sky, no people, no buildings.",
+      "neg": [
+        "people",
+        "figures",
+        "trees",
+        "grass",
+        "water",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S1b",
+      "kind": "region",
+      "region": "temple",
+      "verse": "6:2 · 6:9",
+      "prompt": "a large ancient stone temple under construction, dressed stone walls, cedar wood beams and scaffolding, no people, no roof gold.",
+      "neg": [
+        "people",
+        "figures",
+        "pagoda",
+        "modern building",
+        "tower",
+        "dome",
+        "columns of a palace",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S1c",
+      "kind": "region",
+      "region": "stones",
+      "verse": "6:7",
+      "prompt": "a small pile of finely dressed square stone blocks on the ground, no people, no tools.",
+      "neg": [
+        "people",
+        "figures",
+        "hammer",
+        "axe",
+        "chisel",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "solomon",
+      "verse": "6:2",
+      "prompt": "{cast:solomon}, standing looking up at a building, holding a small wooden temple model, facing right.",
+      "neg": [
+        "gray hair",
+        "full beard",
+        "armour",
+        "sitting"
+      ]
+    }
   ],
   "negatives": [],
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
-    "figures": ["solomon"],
+    "figures": [
+      "solomon"
+    ],
     "gap_bands": [],
-    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
   }
 }

@@ -79,7 +79,14 @@
         "figures",
         "soldiers",
         "throne room",
-        "indoor"
+        "indoor",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
       ]
     },
     {
@@ -93,7 +100,14 @@
         "figures",
         "modern",
         "castle",
-        "tower with flag"
+        "tower with flag",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
       ]
     },
     {
@@ -107,7 +121,14 @@
         "single figure",
         "close-up",
         "soldiers",
-        "spears"
+        "spears",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
       ]
     },
     {

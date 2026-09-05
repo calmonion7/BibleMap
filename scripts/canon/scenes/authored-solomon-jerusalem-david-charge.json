@@ -17,39 +17,151 @@
     "why": "다윗이 침상에 누운 채 아들에게 명하고, 솔로몬이 그 곁에 서서 듣는 순간 — 죽음(2:10)·즉위(2:12)는 아직이다. 요압·시므이 심판 지시(2:5-9)의 대상 인물은 이 순간에 없다."
   },
   "background": [
-    {"what": "왕궁 침소 — 소박한 침상과 돌벽", "verse": "본문 밖 · 저작자 정함"}
+    {
+      "what": "왕궁 침소 — 소박한 침상과 돌벽",
+      "verse": "본문 밖 · 저작자 정함"
+    }
   ],
   "crowds": [],
   "figures": [
-    {"cast": "david-old", "role": "노년의 다윗", "pose": "침상에 기대 누워 있다", "prop": "이불", "facing": "right", "region": "david-old", "verse": "2:1"},
-    {"cast": "solomon", "role": "아들 솔로몬", "pose": "침상 곁에 서서 듣는다", "prop": "허리띠", "facing": "left", "region": "solomon", "verse": "2:1-2"}
+    {
+      "cast": "david-old",
+      "role": "노년의 다윗",
+      "pose": "침상에 기대 누워 있다",
+      "prop": "이불",
+      "facing": "right",
+      "region": "david-old",
+      "verse": "2:1"
+    },
+    {
+      "cast": "solomon",
+      "role": "아들 솔로몬",
+      "pose": "침상 곁에 서서 듣는다",
+      "prop": "허리띠",
+      "facing": "left",
+      "region": "solomon",
+      "verse": "2:1-2"
+    }
   ],
   "regions": {
-    "full":       [0.00, 0.00, 1.00, 1.00],
-    "bed":        [0.10, 0.45, 0.55, 0.90],
-    "david-old":  [0.14, 0.55, 0.52, 0.88],
-    "solomon":    [0.62, 0.30, 0.83, 0.90]
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "bed": [
+      0.1,
+      0.45,
+      0.55,
+      0.9
+    ],
+    "david-old": [
+      0.14,
+      0.55,
+      0.52,
+      0.88
+    ],
+    "solomon": [
+      0.62,
+      0.3,
+      0.83,
+      0.9
+    ]
   },
   "_regions_why": "침상은 화면 왼쪽 하단에 낮게(다윗이 누운 자세이므로 세로 0.33). 솔로몬은 그 오른쪽에 서서 내려다보는 성인 상자(세로 0.60). 둘이 겹치지 않게 침상 오른쪽 끝과 솔로몬 상자 사이 여백을 둔다.",
   "stages": [
-    {"id": "S1", "kind": "full", "region": "full", "verse": "본문 밖 · 저작자 정함",
-     "prompt": "a plain ancient stone chamber wall, bare floor, no furniture, no people, dim quiet room.",
-     "neg": ["people", "figures", "bed", "throne", "outdoor"]},
-    {"id": "S1b", "kind": "region", "region": "bed", "verse": "2:1",
-     "prompt": "a low plain wooden bed with a dark blanket, empty, no people, simple ancient furniture.",
-     "neg": ["people", "figures", "throne", "cushions", "canopy"]},
-    {"id": "S3", "kind": "plate", "region": "david-old", "verse": "2:1",
-     "prompt": "{cast:david-old}, lying propped up on a bed, gripping a dark blanket, facing right.",
-     "neg": ["crown", "armour", "young face", "standing"]},
-    {"id": "S4", "kind": "plate", "region": "solomon", "verse": "2:1-2",
-     "prompt": "{cast:solomon}, standing listening, holding his belt, facing left.",
-     "neg": ["gray hair", "full beard", "armour", "sitting"]}
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "본문 밖 · 저작자 정함",
+      "prompt": "a plain ancient stone chamber wall, bare floor, no furniture, no people, dim quiet room.",
+      "neg": [
+        "people",
+        "figures",
+        "bed",
+        "throne",
+        "outdoor",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S1b",
+      "kind": "region",
+      "region": "bed",
+      "verse": "2:1",
+      "prompt": "a low plain wooden bed with a dark blanket, empty, no people, simple ancient furniture.",
+      "neg": [
+        "people",
+        "figures",
+        "throne",
+        "cushions",
+        "canopy",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "david-old",
+      "verse": "2:1",
+      "prompt": "{cast:david-old}, lying propped up on a bed, gripping a dark blanket, facing right.",
+      "neg": [
+        "crown",
+        "armour",
+        "young face",
+        "standing"
+      ]
+    },
+    {
+      "id": "S4",
+      "kind": "plate",
+      "region": "solomon",
+      "verse": "2:1-2",
+      "prompt": "{cast:solomon}, standing listening, holding his belt, facing left.",
+      "neg": [
+        "gray hair",
+        "full beard",
+        "armour",
+        "sitting"
+      ]
+    }
   ],
   "negatives": [],
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
-    "figures": ["david-old", "solomon"],
-    "gap_bands": [[0.55, 0.62]],
-    "crest_x": {"left": [0.02, 0.30], "right": [0.70, 0.98]}
+    "figures": [
+      "david-old",
+      "solomon"
+    ],
+    "gap_bands": [
+      [
+        0.55,
+        0.62
+      ]
+    ],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
   }
 }
