@@ -250,20 +250,18 @@ def main():
             if pg.locator("#fill").is_visible():
                 fails.append("모르는 낱말이 없는데 번역 버튼이 보인다")
 
-            # 4a-3) **손으로 고친 표현**은 아무도 뜻을 모른다 — 그때 번역 버튼이 나타나 채운다.
-            pg.fill("#pr", pg.input_value("#pr").rstrip(".") + ", a strange new phrase here.")
-            pg.wait_for_selector("#ko-pr .unk", timeout=10000)
-            if pg.locator("#fill").is_hidden():
-                fails.append("손으로 넣은 모르는 낱말에 번역 버튼이 안 나온다")
-            pg.click("#fill")
-            pg.wait_for_function("() => document.querySelectorAll('.ko .unk').length === 0", timeout=60000)
-            if pg.locator("#fill").is_visible():
-                fails.append("번역 뒤에도 번역 버튼이 남아 있다")
-
-            # 4a-4) **저장된 문구는 누르기 전에 번역된다.** 버튼을 눌러야 한글이 붙는다면
-            #       도구가 할 일을 사람에게 미루는 것이다. 단계를 열면 알아서 채워야 한다.
-            pg.fill("#pr", pg.input_value("#pr").rstrip(".") + ", yet another unseen wording.")
-            pg.click("#save")
+            # 4a-3) **저장된 문구는 누르기 전에 번역된다.** 버튼을 눌러야 한글이 붙는다면
+            #       도구가 할 일을 사람에게 미루는 것이다. 문구 칸은 읽기전용이라 손으로 낯선 표현을
+            #       넣을 길이 없으니, 명세 파일에 직접 적어(CLI나 다른 손이 고친 상황) 다시 열어 본다.
+            sp = os.path.join(scenes, f"{SCENE}.json")
+            spec = json.load(open(sp))
+            s1 = next(s for s in spec["stages"] if s["id"] == "S1")
+            s1["prompt"] = s1["prompt"].rstrip(".") + ", yet another unseen wording."
+            with open(sp, "w", encoding="utf-8") as fh:
+                json.dump(spec, fh, ensure_ascii=False, indent=2)
+            pg.reload(wait_until="networkidle")
+            open_scene(pg, "사울 — 길갈에서 왕이 되다")
+            pg.click("button.chip:has-text('S1')")
             # **번역이 도는 도중에 단계를 옮긴다.** 사람이 실제로 하는 일이고, 여기서 결과가
             #  붙을 자리를 잃으면 돌아와도 물음표가 남는다(실측 2026-09-05).
             pg.wait_for_timeout(400)
@@ -293,9 +291,20 @@ def main():
             if pg.locator(".pick .box").is_hidden():
                 fails.append("고른 구역 상자가 그림 위에 안 보인다")
 
-            # 5) S1 문구 저장 → S1과 아래가 「재검토」
+            # 5) S1 문구 저장 → S1과 아래가 「재검토」. 문구 칸은 읽기전용이라(손으로 고치지 않는다)
+            #    AI에게 시켜 바꾼 뒤 저장한다 — 사람이 실제로 하는 길 그대로.
             pg.click("button.chip:has-text('S1')")
-            pg.fill("#pr", "a wide dry open field, sparse dry grass, CHANGED BY UAT.")
+            if pg.locator("#pr[readonly]").count() != 1 or pg.locator("#ng[readonly]").count() != 1:
+                fails.append("문구·부정어 칸이 읽기전용이 아니다")
+            saved_pr = pg.input_value("#pr")
+            pg.fill("#ask", "들을 더 넓게")
+            pg.click("#gen")
+            pg.wait_for_function(
+                "() => document.querySelector('#why') && document.querySelector('#why').textContent.trim().length > 0",
+                timeout=30000)
+            pg.wait_for_timeout(300)
+            if pg.input_value("#pr") == saved_pr:
+                fails.append("AI 생성이 저장된 문구와 같은 것을 내놓아 재검토를 시험할 수 없다")
             pg.click("#save")
             pg.wait_for_selector("button.chip.s-재검토:has-text('S1')", timeout=20000)
             stale = pg.eval_on_selector_all(
