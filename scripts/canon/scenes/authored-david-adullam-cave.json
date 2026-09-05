@@ -74,20 +74,16 @@
       "kind": "full",
       "region": "full",
       "verse": "22:1",
-      "prompt": "a dry rocky hillside with a wide cave mouth in a limestone cliff, sparse dry scrub, pale sky, no people.",
+      "prompt": "a dry rocky hillside with a wide cave mouth in a limestone cliff, black darkness deep inside the opening, one large boulder to one side, sparse dry scrub, pale sky, no people.",
       "neg": [
-        "people",
-        "figures",
-        "soldiers",
+        "solid unbroken rock face",
+        "flat cliff wall",
+        "shallow rock niche",
+        "built stone archway",
+        "boulders filling the cave mouth",
         "modern building",
         "green forest",
-        "church",
-        "steeple",
-        "cathedral",
-        "chapel",
-        "cross",
-        "bell tower",
-        "spire"
+        "people"
       ]
     },
     {

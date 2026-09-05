@@ -312,6 +312,8 @@ function formCard(st) {
     <label for="ng">부정어 (쉼표) — 이 단계에 <b>그리지 말 것</b></label>
     <textarea id="ng" class="wrap">${esc((st.neg || []).join(', '))}</textarea>
     <div class="ko" id="ko-ng"></div>
+    <div class="row" style="margin-top:var(--s2)">
+      <button id="fill" hidden>모르는 낱말 번역</button></div>
     <label>구역 — 그림 위에서 <b>사각형을 끌어</b> 고른다 <span class="mut">(${esc(st.region)})</span></label>
     <div id="pickslot"></div>
     <div class="mut" style="margin-top:var(--s1)">칠할 자리를 손가락이나 마우스로 끈다. 살짝 누르면 없던 일이 된다.
@@ -333,6 +335,8 @@ function formCard(st) {
     const kp = el.querySelector('#ko-pr'), kn = el.querySelector('#ko-ng');
     if (kp) kp.innerHTML = glossPrompt(el.querySelector('#pr').value);
     if (kn) kn.innerHTML = glossNeg(el.querySelector('#ng').value);
+    const fill = el.querySelector('#fill');
+    if (fill) fill.hidden = !el.querySelectorAll('.ko .unk').length;   // 모르는 것이 있을 때만 보인다
   };
   ko();
   el.querySelector('#pr').addEventListener('input', ko);
@@ -348,17 +352,11 @@ function formCard(st) {
       // 번호만 받고 결과를 물어본다.
       const { job } = await api(`/scenes/${S.scene.id}/stages/${st.id}/compose`, {
         method: 'POST', body: JSON.stringify({ ask: el.querySelector('#ask').value }) });
-      let r = null;
-      for (let i = 0; i < 200; i++) {                 // 최대 5분
-        await new Promise(s => setTimeout(s, 1500));
-        const got = await api(`/compose/${job}`);
-        if (got.status === 'failed') throw new Error(got.error || 'AI가 실패했다');
-        if (got.status === 'done') { r = got; break; }
-        gen.textContent = `만드는 중… ${Math.round(i * 1.5) + 2}초`;
-      }
-      if (!r) throw new Error('AI가 5분 안에 답하지 않았다');
+      const r = await waitJob(job, (sec) => { gen.textContent = `만드는 중… ${sec}초`; });
       el.querySelector('#pr').value = r.prompt;
       el.querySelector('#ng').value = (r.neg || []).join(', ');
+      // 지어낸 표현의 뜻이 함께 왔다 — 용어집에 바로 얹어 물음표가 남지 않게 한다.
+      addGloss(r.gloss);
       ko();
       const t = r.tokens || {};
       why.innerHTML = `${esc(r.why || '')}`
@@ -366,6 +364,19 @@ function formCard(st) {
            : t.ok ? ` <span class="sep">·</span> 토큰 ${t.n}/${t.lim}` : '');
     } catch (e) { fail(e); }
     gen.disabled = false; gen.textContent = '문구 만들기';
+  };
+  const fill = el.querySelector('#fill');
+  fill.onclick = async () => {
+    fill.disabled = true; fill.textContent = '번역 중…';
+    try {
+      const { job } = await api('/gloss', { method: 'POST', body: JSON.stringify({
+        prompt: el.querySelector('#pr').value,
+        neg: el.querySelector('#ng').value.split(',').map(x => x.trim()).filter(Boolean) }) });
+      const r = await waitJob(job, (sec) => { fill.textContent = `번역 중… ${sec}초`; });
+      addGloss(r.gloss);
+      ko();
+    } catch (e) { fail(e); }
+    fill.disabled = false; fill.textContent = '모르는 낱말 번역';
   };
   const coordInputs = [...el.querySelectorAll('[data-c]')];
   el.querySelector('#pickslot').append(regionPicker(st, coordInputs, () => {}));
@@ -436,6 +447,28 @@ function draw() {
   const st = S.scene.stages.find(x => x.id === S.stage);
   if (st) app.append(triesCard(st), formCard(st));
   app.append(finalCard());
+}
+
+/* 새로 받은 뜻을 얹되 **이미 있는 것은 덮지 않는다** — 서버의 축적 규칙과 같게 해야
+   화면에 보이는 한글과 용어집에 저장된 한글이 어긋나지 않는다. */
+function addGloss(gloss) {
+  if (!G || !gloss) return;
+  for (const [k, v] of Object.entries(gloss)) {
+    if (!(k in G.frag)) G.frag[k] = v;
+    if (!(k in G.neg)) G.neg[k] = v;
+  }
+}
+
+/* 번호를 받아 결과가 나올 때까지 물어본다. 문구 짓기와 낱말 번역이 함께 쓴다. */
+async function waitJob(job, tick) {
+  for (let i = 0; i < 200; i++) {                     // 최대 5분
+    await new Promise(s => setTimeout(s, 1500));
+    const got = await api(`/compose/${job}`);
+    if (got.status === 'failed') throw new Error(got.error || 'AI가 실패했다');
+    if (got.status === 'done') return got;
+    if (tick) tick(Math.round(i * 1.5) + 2);
+  }
+  throw new Error('AI가 5분 안에 답하지 않았다');
 }
 
 /* 모든 쓰기는 이 하나를 지난다 — 중복 탭을 막고, 끝나면 다시 읽는다. */

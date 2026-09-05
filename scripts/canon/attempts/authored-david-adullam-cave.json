@@ -42,6 +42,124 @@
           "canvas": ".forge/reports/canon-pilot/scene-tool/authored-david-adullam-cave/a001/t11-S1-s11.png"
         }
       }
+    },
+    {
+      "id": "a002",
+      "stage": "S1",
+      "seeds": [
+        11
+      ],
+      "prompt": "a wide dark cave opening in pale limestone rock, deep black shadow inside, a large boulder at the entrance, dry hillside slope above, sparse dry scrub, pale sky, no people.",
+      "neg": [
+        "solid unbroken rock face",
+        "flat cliff wall",
+        "built stone archway",
+        "people",
+        "figures",
+        "soldiers",
+        "modern building",
+        "green forest",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ],
+      "region": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "upstream": null,
+      "tokens": {
+        "n": 60,
+        "lim": 77
+      },
+      "startedAt": "2026-09-05T17:18:46+09:00",
+      "seconds": 48.5,
+      "by": "cli",
+      "images": {
+        "11": {
+          "canvas": ".forge/reports/canon-pilot/scene-tool/authored-david-adullam-cave/a002/t11-S1-s11.png"
+        }
+      }
+    },
+    {
+      "id": "a003",
+      "stage": "S1",
+      "seeds": [
+        11
+      ],
+      "prompt": "a dry rocky hillside with a wide cave mouth in a limestone cliff, black darkness deep inside the opening, one large boulder to one side, sparse dry scrub, pale sky, no people.",
+      "neg": [
+        "solid unbroken rock face",
+        "flat cliff wall",
+        "shallow rock niche",
+        "built stone archway",
+        "boulders filling the cave mouth",
+        "modern building",
+        "green forest",
+        "people"
+      ],
+      "region": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "upstream": null,
+      "tokens": {
+        "n": 61,
+        "lim": 77
+      },
+      "startedAt": "2026-09-05T17:21:31+09:00",
+      "seconds": 78.1,
+      "by": "cli",
+      "images": {
+        "11": {
+          "canvas": ".forge/reports/canon-pilot/scene-tool/authored-david-adullam-cave/a003/t11-S1-s11.png"
+        }
+      }
+    },
+    {
+      "id": "a004",
+      "stage": "S1",
+      "seeds": [
+        11
+      ],
+      "prompt": "a dry rocky hillside with a wide cave mouth in a limestone cliff, black darkness deep inside the opening, one large boulder to one side, sparse dry scrub, pale sky, no people.",
+      "neg": [
+        "solid unbroken rock face",
+        "flat cliff wall",
+        "shallow rock niche",
+        "built stone archway",
+        "boulders filling the cave mouth",
+        "modern building",
+        "green forest",
+        "people"
+      ],
+      "region": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "upstream": null,
+      "tokens": {
+        "n": 61,
+        "lim": 77
+      },
+      "startedAt": "2026-09-05T17:37:18+09:00",
+      "seconds": 47.7,
+      "by": "cli",
+      "images": {
+        "11": {
+          "canvas": ".forge/reports/canon-pilot/scene-tool/authored-david-adullam-cave/a004/t11-S1-s11.png"
+        }
+      }
     }
   ]
 }

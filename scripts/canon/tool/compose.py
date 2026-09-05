@@ -32,7 +32,16 @@ RULES = """당신은 성경 장면 삽화 파이프라인의 **단계 문구 저
 7. 가능하면 아래 「이미 쓰는 조각」의 표현을 **그대로 재사용**한다. 그래야 화면에 한글 뜻이 붙는다.
 
 **출력은 JSON 하나뿐이다.** 설명도 코드펜스도 붙이지 않는다.
-{"prompt": "<영문 단계 문구, 마침표로 끝냄>", "neg": ["<영문 부정어>", ...], "why": "<무엇을 왜 이렇게 했는지 한국어 한 줄>"}"""
+
+{"prompt": "<영문 단계 문구, 마침표로 끝냄>",
+ "neg": ["<영문 부정어>", ...],
+ "why": "<무엇을 왜 이렇게 했는지 한국어 한 줄>",
+ "gloss": {"<영문 조각 또는 부정어>": "<한글 뜻>", ...}}
+
+**`gloss`는 빠뜨리지 마라.** 당신이 쓴 문구를 쉼표로 끊은 **모든 조각**과 **모든 부정어**를 열쇠로 넣고,
+한글 뜻을 값으로 준다(`{cast:...}` 자리표시자는 뺀다). 화면이 영문 옆에 이 한글을 붙여 주므로,
+빠진 것은 사람에게 물음표로 보인다. 뜻은 **명사구는 명사구로, 분사구는 분사구로** 옮긴다 —
+「a wide dry open field」는 「넓고 마른 열린 들」, 「facing right」는 「오른쪽을 향함」처럼."""
 
 
 def briefing(spec, stage, ask, casts, frags):
@@ -98,7 +107,8 @@ def _parse(text):
 def compose(spec, stage, ask, casts, frags, timeout=180):
     if FAKE_AI:
         return {"prompt": f"a test field, {ask.strip()[:20] or 'no people'}, no people.",
-                "neg": ["people", "modern"], "why": "가짜 AI — 스모크 전용"}
+                "neg": ["people", "modern"], "why": "가짜 AI — 스모크 전용",
+                "gloss": {"a test field": "시험용 들", "modern": "현대풍"}}
     text = briefing(spec, stage, ask, casts, frags)
     r = subprocess.run([CLAUDE, "-p", text], capture_output=True, text=True, timeout=timeout)
     if r.returncode != 0:
@@ -106,4 +116,37 @@ def compose(spec, stage, ask, casts, frags, timeout=180):
     out = _parse(r.stdout)
     out["neg"] = [str(n) for n in (out.get("neg") or [])]
     out["prompt"] = str(out["prompt"]).strip()
+    out["gloss"] = {str(k): str(v) for k, v in (out.get("gloss") or {}).items()}
     return out
+
+
+TRANSLATE = """아래는 성경 장면 삽화 프롬프트에 쓰인 영문 조각들이다. 각각의 **한글 뜻**을 준다.
+
+- 명사구는 명사구로, 분사구는 분사구로 옮긴다. 문장으로 풀지 않는다.
+  「a wide dry open field」→「넓고 마른 열린 들」 · 「facing right」→「오른쪽을 향함」
+  「gripping one sword」→「칼 하나를 쥔」 · 「no people」→「사람 없음」
+- 그림을 그리라는 지시가 아니라 **낱말의 뜻**만 옮긴다.
+
+출력은 JSON 하나뿐이다. 설명도 코드펜스도 붙이지 않는다.
+{"<영문 조각>": "<한글 뜻>", ...}
+
+## 옮길 조각
+"""
+
+
+def translate(terms, timeout=180):
+    """용어집에 없는 조각들의 한글 뜻만 받아 온다 — 사람이 손으로 고쳐 넣은 표현을 위한 길."""
+    terms = [t for t in terms if t.strip()]
+    if not terms:
+        return {}
+    if FAKE_AI:
+        return {t: f"[가짜]{t}" for t in terms}
+    r = subprocess.run([CLAUDE, "-p", TRANSLATE + "\n".join(f"- {t}" for t in terms)],
+                       capture_output=True, text=True, timeout=timeout)
+    if r.returncode != 0:
+        raise RuntimeError(f"claude 호출이 실패했다({r.returncode}): {(r.stderr or r.stdout)[-400:]}")
+    start = r.stdout.rfind("{")
+    if start == -1:
+        raise RuntimeError(f"응답에서 JSON을 못 찾았다: {r.stdout[-300:]}")
+    got = json.loads(r.stdout[start:r.stdout.rindex("}") + 1])
+    return {str(k): str(v) for k, v in got.items()}

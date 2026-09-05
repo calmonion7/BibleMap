@@ -116,6 +116,7 @@ def main():
     os.makedirs(scenes), os.makedirs(attempts)
     shutil.copy(os.path.join(CANON, "scenes", f"{SCENE}.json"), scenes)
     shutil.copy(os.path.join(CANON, "scenes", f"{FRESH}.json"), scenes)
+    shutil.copy(os.path.join(CANON, "tool", "glossary.json"), os.path.join(tmp, "glossary.json"))
     side = os.path.join(CANON, "attempts", f"{SCENE}.json")
     if os.path.exists(side):
         shutil.copy(side, attempts)
@@ -127,7 +128,8 @@ def main():
            "SCENE_TOOL_PORT": str(port), "SCENE_TOOL_USERS": "",
            "SCENE_TOOL_FAKE_DELAY": "1.5",   # 취소를 잴 수 있게 가짜 실행기를 늦춘다
            "SCENE_TOOL_OUT_DIR": os.path.join(tmp, "out"),   # 실제 산출 트리를 덮지 않게
-           "SCENE_TOOL_FAKE_AI": "1"}   # AI를 부르지 않는다(느리고 값이 든다) — 배선만 검사한다
+           "SCENE_TOOL_FAKE_AI": "1",   # AI를 부르지 않는다(느리고 값이 든다) — 배선만 검사한다
+           "SCENE_TOOL_GLOSSARY": os.path.join(tmp, "glossary.json")}   # 실제 용어집을 더럽히지 않게
     proc = subprocess.Popen([sys.executable, os.path.join(HERE, "server.py")], env=env,
                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
     fails = []
@@ -191,6 +193,24 @@ def main():
                 fails.append("AI 생성이 설명 줄을 남기지 않았다")
             if not pg.inner_text("#ko-pr").strip():
                 fails.append("AI 생성 뒤 한글 뜻이 다시 붙지 않았다")
+
+            # 4a-2) **AI가 지은 문구에는 물음표가 남지 않아야 한다.** 용어집은 손으로 채운 것이라
+            #       새 표현은 뜻이 없다 — 지은 쪽이 뜻도 함께 내놓고 서버가 용어집에 쌓는다.
+            if pg.locator("#ko-pr .unk, #ko-ng .unk").count():
+                fails.append("AI 생성 뒤에도 모르는 낱말이 남았다: "
+                             + pg.locator("#ko-pr .unk, #ko-ng .unk").first.inner_text())
+            if pg.locator("#fill").is_visible():
+                fails.append("모르는 낱말이 없는데 번역 버튼이 보인다")
+
+            # 4a-3) **손으로 고친 표현**은 아무도 뜻을 모른다 — 그때 번역 버튼이 나타나 채운다.
+            pg.fill("#pr", pg.input_value("#pr").rstrip(".") + ", a strange new phrase here.")
+            pg.wait_for_selector("#ko-pr .unk", timeout=10000)
+            if pg.locator("#fill").is_hidden():
+                fails.append("손으로 넣은 모르는 낱말에 번역 버튼이 안 나온다")
+            pg.click("#fill")
+            pg.wait_for_function("() => document.querySelectorAll('.ko .unk').length === 0", timeout=60000)
+            if pg.locator("#fill").is_visible():
+                fails.append("번역 뒤에도 번역 버튼이 남아 있다")
 
             # 4b) 구역 고르개 — 그림 위에서 끌면 좌표 넷이 채워진다
             pg.locator(".pick").scroll_into_view_if_needed()

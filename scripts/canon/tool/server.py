@@ -294,12 +294,13 @@ class H(BaseHTTPRequestHandler):
             return self.send(200, queue_state())
         if method == "POST" and p == ["queue", "cancel"]:
             return self.cancel()
+        if method == "POST" and p == ["gloss"]:
+            return self.gloss()
         if method == "GET" and len(p) == 2 and p[0] == "compose":
             return self.compose_result(p[1])
         if method == "GET" and p == ["glossary"]:
             # 영문 문구·부정어의 한글 뜻. 화면이 한 번 받아 두고 입력할 때마다 옆에 채운다.
-            with open(os.path.join(HERE, "glossary.json"), encoding="utf-8") as fh:
-                return self.send(200, json.load(fh))
+            return self.send(200, load_gloss())
         if len(p) >= 2 and p[0] == "scenes":
             scene = p[1]
             if scene not in scene_ids():
@@ -425,7 +426,19 @@ class H(BaseHTTPRequestHandler):
             COMPOSE[jid] = {"status": "running"}
             for old_id in list(COMPOSE)[:-20]:      # 오래된 것은 버린다
                 COMPOSE.pop(old_id, None)
-        threading.Thread(target=run_compose, args=(jid, scene, stage_id, ask), daemon=True).start()
+        threading.Thread(target=run_compose,
+                         args=(jid, compose_now, scene, stage_id, ask), daemon=True).start()
+        self.send(200, {"job": jid})
+
+    def gloss(self):
+        """손으로 고친 문구의 모르는 조각을 번역한다 — 문구 짓기와 같은 번호 방식."""
+        b = self.body()
+        jid = f"c{int(time.time() * 1000)}"
+        with COMPOSE_LOCK:
+            COMPOSE[jid] = {"status": "running"}
+        threading.Thread(target=run_compose,
+                         args=(jid, gloss_now, b.get("prompt", ""), b.get("neg") or []),
+                         daemon=True).start()
         self.send(200, {"job": jid})
 
     def compose_result(self, jid):
@@ -465,6 +478,70 @@ class H(BaseHTTPRequestHandler):
         self.route("PATCH")
 
 
+# 용어집도 갈아끼울 수 있어야 한다 — 스모크가 가짜 뜻을 실제 용어집에 쌓으면 안 된다
+# (같은 종류의 사고를 산출 경로에서 이미 한 번 냈다, ad8815c).
+GLOSS_PATH = os.environ.get("SCENE_TOOL_GLOSSARY") or os.path.join(HERE, "glossary.json")
+GLOSS_LOCK = threading.Lock()
+CAST_RE = __import__("re").compile(r"^\{cast[c]?:[a-z0-9-]+\}$")
+
+
+def load_gloss():
+    with open(GLOSS_PATH, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def frags_of(prompt):
+    """문구를 화면과 **같은 규칙**으로 쪼갠다 — 다르게 쪼개면 물음표가 안 사라진다."""
+    return [f.strip() for f in str(prompt).strip().rstrip(".").split(",") if f.strip()]
+
+
+def unknown_terms(prompt, neg):
+    g = load_gloss()
+    out = [f for f in frags_of(prompt) if f not in g["frag"] and not CAST_RE.match(f)]
+    out += [n.strip() for n in neg if n.strip() and n.strip() not in g["neg"]
+            and n.strip() != "{head_neg}"]
+    return list(dict.fromkeys(out))
+
+
+def merge_gloss(prompt, neg, gloss):
+    """새로 지어낸 표현의 한글 뜻을 용어집에 쌓는다 — 다음 번에는 물음표가 안 뜬다."""
+    if not gloss:
+        return 0
+    frag_keys, neg_keys = set(frags_of(prompt)), {n.strip() for n in neg}
+    with GLOSS_LOCK:
+        g = load_gloss()
+        added = 0
+        for k, v in gloss.items():
+            k = k.strip()
+            if not k or CAST_RE.match(k):
+                continue
+            if k in frag_keys and k not in g["frag"]:
+                g["frag"][k] = v
+                added += 1
+            if k in neg_keys and k not in g["neg"]:
+                g["neg"][k] = v
+                added += 1
+        if added:
+            g["frag"] = dict(sorted(g["frag"].items()))
+            g["neg"] = dict(sorted(g["neg"].items()))
+            tmp = GLOSS_PATH + ".tmp"
+            with open(tmp, "w", encoding="utf-8") as fh:
+                json.dump(g, fh, ensure_ascii=False, indent=1)
+                fh.write("\n")
+            os.replace(tmp, GLOSS_PATH)     # 반쯤 쓰인 파일이 남지 않게
+    return added
+
+
+def gloss_now(prompt, neg):
+    """손으로 고친 문구에 남은 **모르는 조각만** 번역해 용어집에 넣는다."""
+    terms = unknown_terms(prompt, neg)
+    if not terms:
+        return {"gloss": {}, "added": 0, "note": "모르는 낱말이 없다"}
+    got = cp.translate(terms)
+    added = merge_gloss(prompt, neg, got)
+    return {"gloss": got, "added": added}
+
+
 def compose_now(scene, stage_id, ask):
     """한국어 지시 + 명세의 근거 → AI가 지은 영문 문구. **명세에 쓰지 않는다.**"""
     spec = ap.load_spec(scene)
@@ -479,17 +556,27 @@ def compose_now(scene, stage_id, ask):
                 casts[cid] = ds.cast_describe(ds.load_cast(cid))
             except FileNotFoundError:
                 pass
-    with open(os.path.join(HERE, "glossary.json"), encoding="utf-8") as fh:
-        frags = list(json.load(fh)["frag"])
+    frags = list(load_gloss()["frag"])
     out = cp.compose(spec, st, ask, casts, frags)
     out["tokens"] = measure(scene, out["prompt"], out["neg"])
+    # 지어낸 표현의 한글 뜻을 곧바로 용어집에 쌓는다. AI 호출을 한 번 더 하지 않는다 —
+    # 지은 쪽이 뜻도 함께 내놓게 계약에 넣어 뒀다.
+    out["added"] = merge_gloss(out["prompt"], out["neg"], out.get("gloss"))
+    left = unknown_terms(out["prompt"], out["neg"])
+    if left:                                # 그래도 빠진 것이 있으면 그것만 따로 번역한다
+        try:
+            more = cp.translate(left)
+            out["added"] += merge_gloss(out["prompt"], out["neg"], more)
+            out["gloss"] = {**(out.get("gloss") or {}), **more}
+        except Exception as e:              # noqa: BLE001 — 번역 실패가 문구 짓기를 무르지 않는다
+            out["glossNote"] = f"남은 낱말 번역 실패: {e}"
     return out
 
 
-def run_compose(jid, scene, stage_id, ask):
+def run_compose(jid, fn, *args):
     """배경에서 AI를 부르고 결과만 남긴다. 화면은 번호로 물어본다."""
     try:
-        out = compose_now(scene, stage_id, ask)
+        out = fn(*args)
         out["status"] = "done"
     except Exception as e:                            # noqa: BLE001 — 실패도 조회로 알려야 한다
         out = {"status": "failed", "error": f"{type(e).__name__}: {e}"}
