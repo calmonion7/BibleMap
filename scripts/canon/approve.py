@@ -1,0 +1,129 @@
+#!/usr/bin/env python3
+"""승인 기록기 — 사람이 고른 시도를 [[장면 명세]] 안에 적는다 (2026-09-05, task 338).
+
+승인은 **명세 안에** 산다(ADR 260905-104910). 곁파일(`attempts/<id>.json`)은 무엇을 시도했는지의 이력이고,
+「이것이 정본이다」는 명세가 진다 — 명세만 보면 무엇이 승인됐는지 알 수 있어야 하기 때문이다.
+
+  approve.py --scene <id> --stage S4 --attempt a003 --seed 11        # 단계 승인
+  approve.py --scene <id> --ladder verses                            # 사다리 ①②③ 확인(지금 해시를 적는다)
+  approve.py --scene <id> --final --attempt a005 --seed 11           # [[장면 완료]]
+
+앞 단계 승인이 이 시도가 얹힌 것과 다르면 **경고만 하고 적는다** — 그 어긋남은 곧 `scene_state.stale`이
+재검토로 계산해 보여 준다. 승인 시점에 막으면 사람이 순서를 되짚어 고칠 길이 막힌다.
+
+host python3로 돈다(torch 없음). 명세는 indent 2로 되쓰므로 승인 줄만 diff에 남는다.
+"""
+import argparse
+import datetime
+import json
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import params  # noqa: E402
+import scene_state as ss  # noqa: E402
+
+SCENES = os.path.join(params.CANON_DIR, "scenes")
+
+
+def spec_path(scene):
+    return os.path.join(SCENES, f"{scene}.json")
+
+
+def load_spec(scene):
+    with open(spec_path(scene), encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def save_spec(spec):
+    with open(spec_path(spec["id"]), "w", encoding="utf-8") as fh:
+        json.dump(spec, fh, ensure_ascii=False, indent=2)
+        fh.write("\n")
+
+
+def load_side(scene):
+    p = os.path.join(params.CANON_DIR, "attempts", f"{scene}.json")
+    try:
+        with open(p, encoding="utf-8") as fh:
+            return json.load(fh)
+    except FileNotFoundError:
+        return {"scene": scene, "attempts": []}
+
+
+def stamp(by):
+    return {"by": by, "on": datetime.date.today().isoformat()}
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--scene", required=True)
+    ap.add_argument("--stage")
+    ap.add_argument("--attempt")
+    ap.add_argument("--seed", type=int)
+    ap.add_argument("--ladder", choices=ss.LADDER)
+    ap.add_argument("--final", action="store_true")
+    ap.add_argument("--by", default="cli")
+    a = ap.parse_args()
+    if sum(bool(x) for x in (a.stage, a.ladder, a.final)) != 1:
+        sys.exit("--stage · --ladder · --final 중 정확히 하나를 준다")
+
+    spec = load_spec(a.scene)
+    side = load_side(a.scene)
+    spec.setdefault("approved", {})
+
+    if a.ladder:
+        h = ss.ladder_hashes(spec)[a.ladder]
+        spec["approved"][a.ladder] = {"hash": h, **stamp(a.by)}
+        save_spec(spec)
+        print(f"사다리 {a.ladder} 확인 · 해시 {h}")
+        return 0
+
+    if not a.attempt or a.seed is None:
+        sys.exit("--attempt와 --seed가 필요하다")
+    by_id = {x["id"]: x for x in side["attempts"]}
+    at = by_id.get(a.attempt)
+    if at is None:
+        sys.exit(f"시도 {a.attempt}가 곁파일에 없다")
+    if str(a.seed) not in (at.get("images") or {}):
+        sys.exit(f"시도 {a.attempt}에 시드 {a.seed}의 그림이 없다 (있는 시드: "
+                 f"{', '.join(at.get('images') or {}) or '없음'})")
+
+    if a.final:
+        live = ss.live_stages(spec)
+        last = live[-1]["id"] if live else None
+        if at["stage"] != last:
+            print(f"⚠ 완료가 가리키는 시도는 {at['stage']} 단계인데 마지막 단계는 {last}다", file=sys.stderr)
+        spec["approved"]["final"] = {"attempt": a.attempt, "seed": a.seed, **stamp(a.by)}
+        save_spec(spec)
+        print(f"장면 완료 기록 · {a.attempt} 시드 {a.seed}")
+        return 0
+
+    st = next((s for s in spec["stages"] if s["id"] == a.stage), None)
+    if st is None:
+        sys.exit(f"단계 {a.stage}가 명세에 없다")
+    if at["stage"] != a.stage:
+        sys.exit(f"시도 {a.attempt}는 {at['stage']} 단계의 것이다")
+
+    # 앞 단계 승인과 어긋나면 **경고만** — 재검토로 계산돼 화면에 뜬다.
+    prev, want = None, None
+    for s in ss.live_stages(spec):
+        if s["id"] == a.stage:
+            want = None if prev is None else ({"stage": prev["id"], **{k: prev["approved"][k]
+                                                                      for k in ("attempt", "seed")}}
+                                              if prev.get("approved") else None)
+            break
+        prev = s
+    if ss._up(at.get("upstream")) != ss._up(want):
+        print(f"⚠ 이 시도는 {at.get('upstream')} 위에 그려졌는데 앞 단계의 지금 승인은 {want}다 "
+              f"— 적기는 하지만 재검토로 뜬다", file=sys.stderr)
+
+    st["approved"] = {"attempt": a.attempt, "seed": a.seed, **stamp(a.by)}
+    save_spec(spec)
+    bad = ss.stale(spec, side)
+    print(f"{a.stage} 승인 · {a.attempt} 시드 {a.seed}"
+          + (f" · 재검토: {', '.join(bad)}" if bad else " · 재검토 없음"))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

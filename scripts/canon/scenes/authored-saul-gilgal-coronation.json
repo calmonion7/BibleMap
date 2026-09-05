@@ -103,7 +103,13 @@
         "cross",
         "bell tower",
         "spire"
-      ]
+      ],
+      "approved": {
+        "attempt": "a001",
+        "seed": 11,
+        "by": "cli",
+        "on": "2026-09-05"
+      }
     },
     {
       "id": "S2",
@@ -125,7 +131,13 @@
         "cross",
         "bell tower",
         "spire"
-      ]
+      ],
+      "approved": {
+        "attempt": "a002",
+        "seed": 11,
+        "by": "cli",
+        "on": "2026-09-05"
+      }
     },
     {
       "id": "S3",
@@ -145,7 +157,13 @@
         "cross",
         "bell tower",
         "spire"
-      ]
+      ],
+      "approved": {
+        "attempt": "a003",
+        "seed": 11,
+        "by": "cli",
+        "on": "2026-09-05"
+      }
     },
     {
       "id": "S4",
@@ -161,7 +179,13 @@
         "modern clothes",
         "staff",
         "sitting"
-      ]
+      ],
+      "approved": {
+        "attempt": "a004",
+        "seed": 11,
+        "by": "cli",
+        "on": "2026-09-05"
+      }
     },
     {
       "id": "S5",
@@ -177,7 +201,13 @@
         "royal robe",
         "modern clothes",
         "sitting"
-      ]
+      ],
+      "approved": {
+        "attempt": "a005",
+        "seed": 11,
+        "by": "cli",
+        "on": "2026-09-05"
+      }
     }
   ],
   "negatives": [],
@@ -206,6 +236,29 @@
         0.7,
         0.98
       ]
+    }
+  },
+  "approved": {
+    "verses": {
+      "hash": "ec3c2c7de2e3",
+      "by": "cli",
+      "on": "2026-09-05"
+    },
+    "description": {
+      "hash": "66963bd4fbf9",
+      "by": "cli",
+      "on": "2026-09-05"
+    },
+    "split": {
+      "hash": "b623f904c795",
+      "by": "cli",
+      "on": "2026-09-05"
+    },
+    "final": {
+      "attempt": "a005",
+      "seed": 11,
+      "by": "cli",
+      "on": "2026-09-05"
     }
   }
 }

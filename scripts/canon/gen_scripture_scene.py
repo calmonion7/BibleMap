@@ -477,10 +477,17 @@ def main():
                          "inscene=장면 캔버스 안에 인페인팅 + 승인된 얼굴 앵커 (task 337)")
     ap.add_argument("--fig-strength", type=float, default=SCENE_FIG_STRENGTH,
                     help=f"--figures inscene의 인물 단계 strength (기본 {SCENE_FIG_STRENGTH})")
+    ap.add_argument("--canvas", default=None,
+                    help="시작 캔버스 PNG — 승인된 앞 단계 그림 위에서 이어 그린다(기본은 빈 종이)")
+    ap.add_argument("--out", default=None,
+                    help="산출 폴더 — 기본은 .forge/reports/canon-pilot/scripture-scene")
     ap.add_argument("--no-anchor", action="store_true",
                     help="장면 안 경로에서 얼굴 앵커를 끈다 — 3판 대조의 **대조군**이다"
                          "(ADR 260825-013557: 대조군 없이 판정하지 않는다)")
     a = ap.parse_args()
+    if a.out:
+        global OUT           # eco: 모듈 전역 하나를 갈아끼운다 — _plate도 같은 이름을 읽는다
+        OUT = a.out
     seeds = [int(s) for s in a.seeds.split(",")]
     plate_seeds = {k: int(v) for k, v in (kv.split("=") for kv in a.plate_seeds.split(",") if kv)}
     pick = None if a.stages is None else set(a.stages.split(","))
@@ -508,6 +515,11 @@ def main():
     for seed in seeds:
         # S1은 빈 종이색 캔버스를 전체 인페인팅한다 — text2img와 같고 파이프라인이 하나면 된다.
         canvas = Image.new("RGB", (W, H), PAPER)
+        if a.canvas:
+            # **재개의 시작점.** 앞 단계 승인본 위에 이어 그린다 — 크기가 다르면 좌표가 전부 어긋나므로 거절한다.
+            canvas = Image.open(a.canvas).convert("RGB")
+            if canvas.size != (W, H):
+                sys.exit(f"--canvas 크기가 {canvas.size}다 — 캔버스는 {(W, H)}여야 좌표가 맞는다")
         drawn = {}   # 단계별 실제로 그려진 실루엣 bbox — 머리 상자를 여기서 파생한다
         for st in stages:
             name, region, verse, prompt, neg = st["id"], st["region"], st["verse"], st["prompt"], st["neg"]
@@ -604,8 +616,12 @@ def main():
                 ch = int(round(gw * H / W))
                 oy = int(round((gh - ch) * S1_CROP_BIAS))
                 canvas = res.crop((0, oy, gw, oy + ch)).resize((W, H), Image.LANCZOS)
+                # **full 단계도 저장한다**(task 338). 저장하지 않으면 재개의 첫 입력이 파일로 없다.
+                # 픽셀은 바꾸지 않는다 — 파일이 하나 늘 뿐이다.
+                out = os.path.join(OUT, f"{a.label}-{name}-s{seed}.png")
+                canvas.save(out)
                 print(f"  [{name} {region} {verse}] {time.time() - ts:.0f}s  {n}/{lim}토큰  "
-                      f"{gw}x{gh} → 가운데 {ch}행 잘라 전체 교체",
+                      f"{gw}x{gh} → 가운데 {ch}행 잘라 전체 교체 -> {os.path.basename(out)}",
                       flush=True)
                 continue
             else:

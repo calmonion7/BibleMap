@@ -498,6 +498,9 @@ helmet` · `dark overlapping bronze scale armour`로 **대상 자체의 색**을
     $VENV gen_scripture_scene.py --scene <id> --seeds 11 --label vNN
     $VENV judge_scene.py vNN --scene <id>  # 축 이름은 명세의 판정 인물에서 파생(ink_<cast>·h_<cast>)
 
+단계마다 사람이 보고 승인하며 이어 그리는 길은 별도 노트다 — `notes/SCENE-TOOL.md`(사다리 · 곁파일 ·
+재검토 규칙 · `--canvas`/`--out` · 판 시드와 접지 시드).
+
 ## 빠른 참조
 
     VENV=/Users/calmonion/.local/biblemap-imggen/.venv314/bin/python

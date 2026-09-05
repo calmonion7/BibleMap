@@ -1,0 +1,219 @@
+{
+  "scene": "authored-saul-gilgal-coronation",
+  "sceneSeed": 11,
+  "attempts": [
+    {
+      "id": "a001",
+      "stage": "S1",
+      "seeds": [
+        11
+      ],
+      "prompt": "a wide dry open field, sparse dry grass, hazy low hills far behind, bright pale sky, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "soldiers",
+        "buildings",
+        "tents",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ],
+      "region": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "upstream": null,
+      "tokens": {
+        "n": 46,
+        "lim": 77
+      },
+      "startedAt": "2026-09-05T11:22:24+09:00",
+      "seconds": 47.3,
+      "by": "cli",
+      "images": {
+        "11": {
+          "canvas": ".forge/reports/canon-pilot/scene-tool/authored-saul-gilgal-coronation/a001/t11-S1-s11.png"
+        }
+      }
+    },
+    {
+      "id": "a002",
+      "stage": "S2",
+      "seeds": [
+        11
+      ],
+      "prompt": "a low pile of rough stones forming a simple sacrificial altar, no people, no fire.",
+      "neg": [
+        "people",
+        "figures",
+        "building",
+        "tall structure",
+        "fire",
+        "smoke",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ],
+      "region": [
+        0.4,
+        0.75,
+        0.55,
+        0.92
+      ],
+      "upstream": {
+        "stage": "S1",
+        "attempt": "a001",
+        "seed": 11
+      },
+      "tokens": {
+        "n": 41,
+        "lim": 77
+      },
+      "startedAt": "2026-09-05T11:23:18+09:00",
+      "seconds": 40.3,
+      "by": "cli",
+      "images": {
+        "11": {
+          "canvas": ".forge/reports/canon-pilot/scene-tool/authored-saul-gilgal-coronation/a002/t11-S2-s11.png"
+        }
+      }
+    },
+    {
+      "id": "a003",
+      "stage": "S3",
+      "seeds": [
+        11
+      ],
+      "prompt": "a loose joyful crowd of tiny distant people, scattered groups standing, no weapons.",
+      "neg": [
+        "empty ground",
+        "single figure",
+        "close-up",
+        "soldiers in rows",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ],
+      "region": [
+        0.02,
+        0.15,
+        0.98,
+        0.33
+      ],
+      "upstream": {
+        "stage": "S2",
+        "attempt": "a002",
+        "seed": 11
+      },
+      "tokens": {
+        "n": 38,
+        "lim": 77
+      },
+      "startedAt": "2026-09-05T11:24:09+09:00",
+      "seconds": 32.1,
+      "by": "cli",
+      "images": {
+        "11": {
+          "canvas": ".forge/reports/canon-pilot/scene-tool/authored-saul-gilgal-coronation/a003/t11-S3-s11.png"
+        }
+      }
+    },
+    {
+      "id": "a004",
+      "stage": "S4",
+      "seeds": [
+        11
+      ],
+      "prompt": "{cast:samuel}, standing tall, gripping one robe corner, facing right.",
+      "neg": [
+        "armour",
+        "sword",
+        "spear",
+        "crown",
+        "modern clothes",
+        "staff",
+        "sitting"
+      ],
+      "region": [
+        0.12,
+        0.37,
+        0.285,
+        0.92
+      ],
+      "upstream": {
+        "stage": "S3",
+        "attempt": "a003",
+        "seed": 11
+      },
+      "tokens": {
+        "n": 63,
+        "lim": 77
+      },
+      "startedAt": "2026-09-05T11:25:57+09:00",
+      "seconds": 86.3,
+      "by": "cli",
+      "images": {
+        "11": {
+          "canvas": ".forge/reports/canon-pilot/scene-tool/authored-saul-gilgal-coronation/a004/t11-S4-s11.png",
+          "plate": ".forge/reports/canon-pilot/scene-tool/authored-saul-gilgal-coronation/a004/t11-plate-S4-s11.png"
+        }
+      }
+    },
+    {
+      "id": "a005",
+      "stage": "S5",
+      "seeds": [
+        11
+      ],
+      "prompt": "{cast:saul}, standing tall, holding one plain cloak folded over one arm, facing left.",
+      "neg": [
+        "armour",
+        "sword",
+        "spear",
+        "crown",
+        "royal robe",
+        "modern clothes",
+        "sitting"
+      ],
+      "region": [
+        0.6,
+        0.34,
+        0.762,
+        0.92
+      ],
+      "upstream": {
+        "stage": "S4",
+        "attempt": "a004",
+        "seed": 11
+      },
+      "tokens": {
+        "n": 67,
+        "lim": 77
+      },
+      "startedAt": "2026-09-05T11:27:52+09:00",
+      "seconds": 86.1,
+      "by": "cli",
+      "images": {
+        "11": {
+          "canvas": ".forge/reports/canon-pilot/scene-tool/authored-saul-gilgal-coronation/a005/t11-S5-s11.png",
+          "plate": ".forge/reports/canon-pilot/scene-tool/authored-saul-gilgal-coronation/a005/t11-plate-S5-s11.png"
+        }
+      }
+    }
+  ]
+}
