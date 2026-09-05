@@ -52,12 +52,23 @@
 <div class="queue" id="q"></div>
 
 <script>
+/* 토큰: 처음 열 때 ?t=... 로 받아 저장한다. 그 뒤로는 주소에 없어도 된다.
+   fetch는 헤더로 보내지만 <img src>는 헤더를 못 실으므로 이미지 주소엔 ?t=를 붙인다. */
+const TK = (() => {
+  const q = new URLSearchParams(location.search).get('t');
+  try { if (q) localStorage.setItem('sceneToken', q); return q || localStorage.getItem('sceneToken') || ''; }
+  catch (e) { return q || ''; }
+})();
+if (new URLSearchParams(location.search).get('t')) history.replaceState({}, '', location.pathname);
+const img = (rel) => `/img/${encodeURI(rel)}` + (TK ? `?t=${encodeURIComponent(TK)}` : '');
 const $ = (h) => { const d = document.createElement('div'); d.innerHTML = h; return d; };
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let S = { scene: null, stage: null, tokens: null, busy: false };
 
 async function api(path, opt) {
-  const r = await fetch('/api' + path, { headers: { 'Content-Type': 'application/json' }, ...opt });
+  const h = { 'Content-Type': 'application/json' };
+  if (TK) h['X-Scene-Token'] = TK;
+  const r = await fetch('/api' + path, { ...opt, headers: h });
   const t = await r.text();
   let j = null; try { j = JSON.parse(t); } catch (e) { /* 빈 응답 */ }
   if (!r.ok) throw new Error((j && j.error) || `${r.status} ${t.slice(0, 200)}`);
@@ -148,8 +159,8 @@ function triesCard(st) {
     for (const [seed, im] of Object.entries(t.images)) {
       const cur = st.approved && st.approved.attempt === t.id && String(st.approved.seed) === seed;
       const row = $(`<div style="margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--line)">
-        <a href="/img/${encodeURI(im.canvas)}" target="_blank" rel="noopener">
-          <img class="shot" loading="lazy" alt="${esc(t.id)} 시드 ${esc(seed)}" src="/img/${encodeURI(im.canvas)}"></a>
+        <a href="${img(im.canvas)}" target="_blank" rel="noopener">
+          <img class="shot" loading="lazy" alt="${esc(t.id)} 시드 ${esc(seed)}" src="${img(im.canvas)}"></a>
         <div class="row" style="margin-top:var(--s2);justify-content:space-between">
           <span class="mut">${esc(t.id)} · 시드 ${esc(seed)}${t.tokens ? ` · ${t.tokens.n}/${t.tokens.lim}토큰` : ''}${t.seconds ? ` · ${Math.round(t.seconds)}s` : ''}</span>
           ${cur ? '<span class="badge ok">승인됨</span>' : ''}
@@ -221,7 +232,7 @@ function finalCard() {
   const src = shot && shot[String(last.approved.seed)] && shot[String(last.approved.seed)].canvas;
   const el = $(`<div class="card"><div class="row" style="justify-content:space-between"><h2>장면 완료</h2>
       ${f.stale ? '<span class="badge">재검토</span>' : f.approved ? '<span class="badge ok">완료</span>' : ''}</div>
-    ${src ? `<a href="/img/${encodeURI(src)}" target="_blank" rel="noopener"><img class="shot" alt="마지막 단계 승인본" src="/img/${encodeURI(src)}"></a>` : '<div class="mut">마지막 단계가 아직 승인되지 않았다.</div>'}
+    ${src ? `<a href="${img(src)}" target="_blank" rel="noopener"><img class="shot" alt="마지막 단계 승인본" src="${img(src)}"></a>` : '<div class="mut">마지막 단계가 아직 승인되지 않았다.</div>'}
     ${f.why.length ? `<ul>${f.why.map(w => `<li class="wrap">${esc(w)}</li>`).join('')}</ul>` : ''}
     <div class="row" style="margin-top:var(--s3)"><button class="p" ${last && last.approved ? '' : 'disabled'}>장면 완료</button></div></div>`).firstChild;
   el.querySelector('button').onclick = () => act(() =>

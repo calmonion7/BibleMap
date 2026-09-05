@@ -130,7 +130,7 @@ SCENE_TOOL_USERS=thkim@anchors-biz.com python3 scripts/canon/tool/server.py
 # → http://127.0.0.1:8100
 ```
 
-`127.0.0.1`에만 붙는다. 표준 라이브러리만 쓰고(백엔드 requirements 불변), GPU 작업은 `attempt.py`를
+기본은 `127.0.0.1`에만 붙는다. 표준 라이브러리만 쓰고(백엔드 requirements 불변), GPU 작업은 `attempt.py`를
 venv 파이썬 서브프로세스로 부른다. **워커 스레드 하나·큐 하나** — 「재시도」를 연달아 눌러도 줄을 선다
 (생성 프로세스가 겹치면 처리량이 20배 떨어진다).
 
@@ -142,11 +142,37 @@ venv 파이썬 서브프로세스로 부른다. **워커 스레드 하나·큐 �
 | `SCENE_TOOL_DEV=1` | 헤더 없이 통과, `by=dev` (로컬 전용) |
 | `SCENE_TOOL_FAKE_GEN=1` | GPU 대신 자리표시 PNG (스모크 전용) |
 | `SCENE_TOOL_SCENES_DIR` · `SCENE_TOOL_ATTEMPTS_DIR` | 명세·곁파일 폴더 교체 (스모크가 실제 명세를 안 건드리게) |
+| `SCENE_TOOL_TOKEN` | 토큰 자물쇠. `?t=<토큰>` 또는 `X-Scene-Token` 헤더가 맞으면 통과 (같은 망의 폰) |
+| `SCENE_TOOL_BIND` | 기본 `127.0.0.1`. 같은 망에 내놓으려면 `0.0.0.0` |
 | `SCENE_TOOL_PORT` | 기본 8100 |
+
+**자물쇠 없이는 망에 안 나간다.** `SCENE_TOOL_BIND`가 루프백 밖인데 토큰도 허용목록도 없으면 서버가
+기동을 거부한다. `SCENE_TOOL_DEV=1`은 루프백에서만 받는다 — 망에 내놓은 채로 켜면 아무나 들어온다.
+
+**껍데기 한 장(`GET /`)만 자물쇠 밖이다.** 데이터가 한 줄도 없고, 화면이 저장해 둔 토큰을 실어 보내려면
+먼저 화면이 떠야 한다. `/api`와 `/img`는 전부 자물쇠 안이다(토큰 없으면 403).
 
 **헤더 안전핀이 왜 있나**: 터널 뒤의 유일한 입구가 Cloudflare Access이므로, 서버는 Access가 넣어 주는
 이메일 헤더가 허용 목록에 있는지만 본다. JWT 서명 검증은 하지 않는다 — 첫 판의 안전핀으로 충분하고,
 검증을 넣으면 표준 라이브러리 밖으로 나가야 한다.
+
+## 같은 와이파이에서 폰으로 보기 (터널 없이, 지금 바로)
+
+터널·DNS·Access를 건드리지 않는 길이다. 맥과 폰이 **같은 망**에 있어야 한다.
+
+```
+TOK=$(cat ~/.biblemap-scene-tool-token)
+cd /Users/calmonion/Project/BibleMap
+SCENE_TOOL_BIND=0.0.0.0 SCENE_TOOL_TOKEN="$TOK" python3 scripts/canon/tool/server.py
+echo "http://$(ipconfig getifaddr en0):8100/?t=$TOK"      # 이 주소를 폰에서 연다
+```
+
+토큰은 `~/.biblemap-scene-tool-token`에 있다(레포 밖 · `chmod 600`). 폰에서 `?t=`가 붙은 주소를 **한 번만**
+열면 브라우저가 토큰을 저장하고 주소창에서 지운다 — 그 뒤로는 `http://<맥 주소>:8100/`만으로 들어간다.
+홈 화면에 추가해 두면 편하다.
+
+⚠ 맥의 LAN 주소는 공유기가 바꿀 수 있다. 안 열리면 `ipconfig getifaddr en0`으로 다시 확인한다.
+⚠ 맥이 잠들면 끊긴다. 오래 쓸 것이면 「바깥에서 열기」의 터널 쪽이 낫다.
 
 ## 바깥에서 열기 (폰에서 보기 — **사람 손**)
 
