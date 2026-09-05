@@ -302,6 +302,10 @@ function regionPicker(st, inputs, onChange) {
 function formCard(st) {
   const el = $(`<div class="card"><h2>다시 그리기</h2>
     <label for="sd">시드 (쉼표)</label><input id="sd" value="${esc(S.scene.sceneSeed || 11)}" inputmode="numeric">
+    <label for="ask">AI에게 시키기 — <b>한국어로</b> 말하면 영문 문구를 지어 준다</label>
+    <textarea id="ask" class="wrap" placeholder="예) 사무엘이 기름 뿔을 들어 올리게 · 배경을 새벽빛으로 · 사람 빼고 제단만"></textarea>
+    <div class="row" style="margin-top:var(--s2)"><button id="gen">문구 만들기</button></div>
+    <div class="ko" id="why"></div>
     <label for="pr">문구 — 이 단계에 <b>그릴 것</b></label>
     <textarea id="pr" class="wrap">${esc(st.prompt)}</textarea>
     <div class="ko" id="ko-pr"></div>
@@ -333,6 +337,25 @@ function formCard(st) {
   ko();
   el.querySelector('#pr').addEventListener('input', ko);
   el.querySelector('#ng').addEventListener('input', ko);
+  /* AI 생성은 `act()`를 지나지 않는다 — act는 끝나면 화면을 다시 그려서 방금 받은 문구가 날아간다. */
+  const gen = el.querySelector('#gen'), why = el.querySelector('#why');
+  gen.onclick = async () => {
+    if (gen.disabled) return;
+    gen.disabled = true; gen.textContent = '만드는 중… (20초쯤)';
+    why.innerHTML = '';
+    try {
+      const r = await api(`/scenes/${S.scene.id}/stages/${st.id}/compose`, {
+        method: 'POST', body: JSON.stringify({ ask: el.querySelector('#ask').value }) });
+      el.querySelector('#pr').value = r.prompt;
+      el.querySelector('#ng').value = (r.neg || []).join(', ');
+      ko();
+      const t = r.tokens || {};
+      why.innerHTML = `${esc(r.why || '')}`
+        + (t.ok === false ? ` <span class="unk">토큰 ${t.n}/${t.lim} — 넘친다, 줄여야 한다</span>`
+           : t.ok ? ` <span class="sep">·</span> 토큰 ${t.n}/${t.lim}` : '');
+    } catch (e) { fail(e); }
+    gen.disabled = false; gen.textContent = '문구 만들기';
+  };
   const coordInputs = [...el.querySelectorAll('[data-c]')];
   el.querySelector('#pickslot').append(regionPicker(st, coordInputs, () => {}));
   const tk = el.querySelector('#tk');

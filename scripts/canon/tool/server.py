@@ -41,6 +41,7 @@ import derive_scene as ds  # noqa: E402
 import scene_state as ss  # noqa: E402
 import approve as ap  # noqa: E402
 import attempt as at  # noqa: E402
+import compose as cp  # noqa: E402
 
 REPO = params.REPO_ROOT
 PORT = int(os.environ.get("SCENE_TOOL_PORT", "8100"))
@@ -302,6 +303,8 @@ class H(BaseHTTPRequestHandler):
                 return self.approve(scene)
             if method == "PATCH" and len(p) == 4 and p[2] == "stages":
                 return self.patch_stage(scene, p[3])
+            if method == "POST" and len(p) == 5 and p[2] == "stages" and p[4] == "compose":
+                return self.compose(scene, p[3])
         return self.send(404, {"error": "없는 경로"})
 
     # -- 처리 --
@@ -398,6 +401,26 @@ class H(BaseHTTPRequestHandler):
         ap.save_spec(spec)
         self.send(200, detail(scene))
 
+    def compose(self, scene, stage_id):
+        """사람의 한국어 지시 → AI가 영문 단계 문구를 짓는다. 명세에 쓰지 않는다 — 폼에만 채운다."""
+        spec = ap.load_spec(scene)
+        st = next((x for x in spec["stages"] if x["id"] == stage_id), None)
+        if st is None:
+            raise ValueError(f"단계 {stage_id}가 명세에 없다")
+        casts = {}
+        for f in spec.get("figures", []):
+            cid = f.get("cast")
+            if cid and cid not in casts:
+                try:
+                    casts[cid] = ds.cast_describe(ds.load_cast(cid))
+                except FileNotFoundError:
+                    pass
+        with open(os.path.join(HERE, "glossary.json"), encoding="utf-8") as fh:
+            frags = list(json.load(fh)["frag"])
+        out = cp.compose(spec, st, self.body().get("ask", ""), casts, frags)
+        out["tokens"] = measure(scene, out["prompt"], out["neg"])
+        self.send(200, out)
+
     def patch_stage(self, scene, stage_id):
         b = self.body()
         spec = ap.load_spec(scene)
@@ -426,6 +449,18 @@ class H(BaseHTTPRequestHandler):
 
     def do_PATCH(self):
         self.route("PATCH")
+
+
+def measure(scene, prompt, neg):
+    """제안된 문구를 **저장하기 전에** 잰다. venv 쪽에서 `{cast:...}` 확장까지 포함해 센다."""
+    try:
+        r = subprocess.run([VENV, os.path.join(HERE, "count_tokens.py")],
+                           input=json.dumps({"scene": scene, "prompt": prompt, "neg": neg}),
+                           capture_output=True, text=True, timeout=180,
+                           env={**os.environ, "SCENE_TOOL_SCENES_DIR": SCENES_DIR})
+        return json.loads(r.stdout.strip().splitlines()[-1])
+    except Exception as e:                            # noqa: BLE001 — eco: 재기 실패가 짓기를 막지 않는다
+        return {"ok": None, "tail": f"토큰을 재지 못했다: {e}"}
 
 
 def token_check(scene):

@@ -126,7 +126,8 @@ def main():
            "SCENE_TOOL_SCENES_DIR": scenes, "SCENE_TOOL_ATTEMPTS_DIR": attempts,
            "SCENE_TOOL_PORT": str(port), "SCENE_TOOL_USERS": "",
            "SCENE_TOOL_FAKE_DELAY": "1.5",   # 취소를 잴 수 있게 가짜 실행기를 늦춘다
-           "SCENE_TOOL_OUT_DIR": os.path.join(tmp, "out")}   # 실제 산출 트리를 덮지 않게
+           "SCENE_TOOL_OUT_DIR": os.path.join(tmp, "out"),   # 실제 산출 트리를 덮지 않게
+           "SCENE_TOOL_FAKE_AI": "1"}   # AI를 부르지 않는다(느리고 값이 든다) — 배선만 검사한다
     proc = subprocess.Popen([sys.executable, os.path.join(HERE, "server.py")], env=env,
                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
     fails = []
@@ -174,6 +175,18 @@ def main():
                 fails.append(f"S1 승인이 기록되지 않았다: {s1.get('approved')}")
             pg.wait_for_selector("button.chip.s-승인:has-text('S1')", timeout=10000)
             pg.screenshot(path=os.path.join(SHOTS, "2-approved.png"), full_page=True)
+
+            # 4a) AI 문구 생성 — 지시를 넣고 누르면 문구·부정어가 폼에 채워진다(가짜 AI)
+            pg.fill("#ask", "제단만 남기고 사람은 빼라")
+            before_pr = pg.input_value("#pr")
+            pg.click("#gen")
+            pg.wait_for_timeout(2500)
+            if pg.input_value("#pr") == before_pr:
+                fails.append("AI 생성이 문구를 바꾸지 못했다")
+            if not pg.inner_text("#why").strip():
+                fails.append("AI 생성이 설명 줄을 남기지 않았다")
+            if not pg.inner_text("#ko-pr").strip():
+                fails.append("AI 생성 뒤 한글 뜻이 다시 붙지 않았다")
 
             # 4b) 구역 고르개 — 그림 위에서 끌면 좌표 넷이 채워진다
             pg.locator(".pick").scroll_into_view_if_needed()
