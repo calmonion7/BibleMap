@@ -221,6 +221,7 @@ function triesCard(st) {
         <div class="row" style="margin-top:var(--s2)">
           <button class="p" ${cur ? 'disabled' : ''}>이 장으로 승인</button>
           ${st.why.length && st.kind === 'plate' ? '<button data-again="1">같은 시드로 다시</button>' : ''}
+          <button data-del="1" ${cur ? 'disabled' : ''}>지우기</button>
         </div></div>`).firstChild;
       row.querySelector('button.p').onclick = () => act(() =>
         api(`/scenes/${S.scene.id}/approve`, { method: 'POST',
@@ -229,6 +230,11 @@ function triesCard(st) {
       if (again) again.onclick = () => act(() =>
         api(`/scenes/${S.scene.id}/attempts`, { method: 'POST',
           body: JSON.stringify({ stage: st.id, seeds: [+seed] }) }));
+      // 승인된 장은 버튼이 꺼져 있다(서버도 거절한다). 파일과 기록이 함께 지워져 되돌릴 수 없으니 한 번 묻는다.
+      row.querySelector('[data-del]').onclick = () => {
+        if (!confirm(`${t.id} 시드 ${seed} 그림을 지울까? 되돌릴 수 없다.`)) return;
+        act(() => api(`/scenes/${S.scene.id}/attempts/${t.id}/${seed}`, { method: 'DELETE' }));
+      };
       box.append(row);
     }
   }

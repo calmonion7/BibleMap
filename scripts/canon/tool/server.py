@@ -318,6 +318,8 @@ class H(BaseHTTPRequestHandler):
                 return self.patch_stage(scene, p[3])
             if method == "POST" and len(p) == 5 and p[2] == "stages" and p[4] == "compose":
                 return self.compose(scene, p[3])
+            if method == "DELETE" and len(p) == 5 and p[2] == "attempts":
+                return self.delete_image(scene, p[3], p[4])
         return self.send(404, {"error": "없는 경로"})
 
     # -- 처리 --
@@ -469,6 +471,40 @@ class H(BaseHTTPRequestHandler):
         # 화면이 저장 직후 `/tokens`를 따로 부른다(계획의 「저장 **전** 토큰 검사」는 그 호출이 진다).
         self.send(200, detail(scene))
 
+    def delete_image(self, scene, aid, seed):
+        """시도 한 장(시도 id + 시드)을 지운다 — 파일과 곁파일 기록을 함께. 시드가 다 빠지면 시도도 빠진다.
+        승인이 가리키는 장은 지울 수 없다(아래 단계 캔버스가 그 위에 얹혀 있다). 생성 중인 장은 곁파일에
+        아직 없으니(끝나고 적는다) 여기 온 것은 다 끝난 장이다."""
+        spec = ap.load_spec(scene)
+        side = at.load_side(scene)
+        a = next((x for x in side["attempts"] if x["id"] == aid), None)
+        if a is None:
+            raise ValueError(f"시도 {aid}가 곁파일에 없다")
+        if seed not in (a.get("images") or {}):
+            raise ValueError(f"시도 {aid}에 시드 {seed}의 그림이 없다")
+        refs = [s.get("approved") for s in spec["stages"]] + [(spec.get("approved") or {}).get("final")]
+        if any(r and r.get("attempt") == aid and str(r.get("seed")) == seed for r in refs):
+            raise ValueError(f"{aid} 시드 {seed}는 승인이 가리키는 장이다 — 다른 장을 먼저 승인하라")
+        files = [v for v in a["images"][seed].values() if isinstance(v, str)]
+        root = os.path.realpath(OUT_DIR) + os.sep
+        for rel in files:                            # 도구 산출 폴더 밖은 지우지 않는다 — 곁파일이 어긋나도 안전하게
+            if not os.path.realpath(os.path.join(REPO, rel)).startswith(root):
+                raise ValueError(f"{rel}은 도구 산출 폴더 밖이라 지우지 않는다")
+        for rel in files:
+            try:
+                os.remove(os.path.join(REPO, rel))
+            except FileNotFoundError:
+                pass
+        del a["images"][seed]
+        a["seeds"] = [x for x in a["seeds"] if str(x) != seed]
+        if not a["images"]:
+            side["attempts"] = [x for x in side["attempts"] if x["id"] != aid]
+            d = os.path.join(OUT_DIR, scene, aid)
+            if os.path.isdir(d) and not os.listdir(d):   # 빈 폴더만 — 다른 파일이 있으면 그대로 둔다
+                os.rmdir(d)
+        at.save_side(side)
+        self.send(200, detail(scene))
+
     def do_GET(self):
         self.route("GET")
 
@@ -477,6 +513,9 @@ class H(BaseHTTPRequestHandler):
 
     def do_PATCH(self):
         self.route("PATCH")
+
+    def do_DELETE(self):
+        self.route("DELETE")
 
 
 # 용어집도 갈아끼울 수 있어야 한다 — 스모크가 가짜 뜻을 실제 용어집에 쌓으면 안 된다

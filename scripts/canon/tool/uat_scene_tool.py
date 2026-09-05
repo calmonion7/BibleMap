@@ -57,6 +57,16 @@ def call(port, path, body=None):
         return json.load(e), e.code
 
 
+def delete(port, path):
+    import urllib.error, urllib.request
+    r = urllib.request.Request(f"http://127.0.0.1:{port}/api{path}", method="DELETE")
+    try:
+        urllib.request.urlopen(r)
+        return 200
+    except urllib.error.HTTPError as e:
+        return e.code
+
+
 def check_queue(port):
     """같은 시드는 같은 그림이다 — 두 번째 요청은 막히고, 줄에 선 것은 뺄 수 있어야 한다."""
     bad = []
@@ -178,6 +188,43 @@ def main():
                 fails.append(f"S1 승인이 기록되지 않았다: {s1.get('approved')}")
             pg.wait_for_selector("button.chip.s-승인:has-text('S1')", timeout=10000)
             pg.screenshot(path=os.path.join(SHOTS, "2-approved.png"), full_page=True)
+
+            # 4-del) 그림 지우기 — 승인된 장은 못 지우고(버튼 꺼짐·서버도 거절), 다른 장은 지우면
+            #        줄·파일·곁파일 기록이 함께 사라진다. 지울 장은 가짜 실행기로 하나 더 만든다.
+            side_path = os.path.join(attempts, f"{SCENE}.json")
+            before = len(json.load(open(side_path))["attempts"])
+            pg.click("#one")
+            for _ in range(200):
+                if len(json.load(open(side_path))["attempts"]) > before:
+                    break
+                time.sleep(0.1)
+            else:
+                fails.append("지울 장을 만들지 못했다 — 두 번째 시도가 곁파일에 없다")
+            pg.wait_for_timeout(1500)
+            pg.reload(wait_until="networkidle")
+            open_scene(pg, "사울 — 길갈에서 왕이 되다")
+            pg.click("button.chip:has-text('S1')")
+            pg.wait_for_selector("button[data-del]", timeout=10000)
+            victim = json.load(open(side_path))["attempts"][-1]      # 방금 만든 것 — 승인되지 않았다
+            vimg = os.path.join(REPO, victim["images"]["11"]["canvas"])
+            if not os.path.exists(vimg):
+                fails.append(f"지울 장의 파일이 없다 — 시험 전제가 깨졌다: {vimg}")
+            if not pg.locator("button[data-del][disabled]").count():
+                fails.append("승인된 장의 「지우기」가 꺼져 있지 않다")
+            ap1 = next(s for s in json.load(open(os.path.join(scenes, f"{SCENE}.json")))["stages"]
+                       if s["id"] == "S1")["approved"]
+            code = delete(port, f"/scenes/{SCENE}/attempts/{ap1['attempt']}/{ap1['seed']}")
+            if code != 400:
+                fails.append(f"승인된 장 삭제를 서버가 거절하지 않았다 (HTTP {code})")
+            pg.once("dialog", lambda d: d.accept())
+            pg.locator("button[data-del]:not([disabled])").last.click()
+            pg.wait_for_timeout(1500)
+            if any(a["id"] == victim["id"] for a in json.load(open(side_path))["attempts"]):
+                fails.append(f"지운 시도 {victim['id']}가 곁파일에 남아 있다")
+            if os.path.exists(vimg):
+                fails.append(f"지운 장의 파일이 남아 있다: {vimg}")
+            if pg.get_by_text(f"{victim['id']} · 시드 11").count():
+                fails.append("지운 장이 화면에 남아 있다")
 
             # 4a) AI 문구 생성 — 지시를 넣고 누르면 문구·부정어가 폼에 채워진다(가짜 AI)
             pg.fill("#ask", "제단만 남기고 사람은 빼라")

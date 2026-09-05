@@ -42,6 +42,9 @@
 경로는 레포 뿌리 기준. `prompt`는 **파생 전** 명세 문구다 — 재검토 계산이 지금 명세와 직접 견줘야 하기 때문이다.
 `upstream`이 `null`이면 빈 종이에서 시작했다는 뜻(첫 비건너뜀 단계).
 
+화면의 「지우기」(`DELETE /api/scenes/<id>/attempts/<aid>/<seed>`)는 그 시드의 파일과 `images` 기록을 함께 지우고,
+시드가 다 빠진 시도는 목록에서 빠진다. 승인이 가리키는 장과 도구 산출 폴더 밖 경로는 거절한다.
+
 승인은 **명세 안에** 산다: 단계마다 `stages[i].approved = {attempt, seed, by, on}`,
 장면 위에 `approved = {verses|description|split: {hash, by, on}, final: {attempt, seed, by, on}}`.
 
