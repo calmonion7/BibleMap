@@ -180,7 +180,11 @@ def main():
             pg.fill("#ask", "제단만 남기고 사람은 빼라")
             before_pr = pg.input_value("#pr")
             pg.click("#gen")
-            pg.wait_for_timeout(2500)
+            # 이제 번호를 받고 물어보는 방식이라 첫 조회(1.5초) 뒤에야 채워진다.
+            pg.wait_for_function(
+                "() => document.querySelector('#why') && document.querySelector('#why').textContent.trim().length > 0",
+                timeout=30000)
+            pg.wait_for_timeout(300)
             if pg.input_value("#pr") == before_pr:
                 fails.append("AI 생성이 문구를 바꾸지 못했다")
             if not pg.inner_text("#why").strip():

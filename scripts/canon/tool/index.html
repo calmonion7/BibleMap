@@ -341,11 +341,22 @@ function formCard(st) {
   const gen = el.querySelector('#gen'), why = el.querySelector('#why');
   gen.onclick = async () => {
     if (gen.disabled) return;
-    gen.disabled = true; gen.textContent = '만드는 중… (20초쯤)';
+    gen.disabled = true; gen.textContent = '만드는 중…';
     why.innerHTML = '';
     try {
-      const r = await api(`/scenes/${S.scene.id}/stages/${st.id}/compose`, {
+      // 요청을 붙잡고 기다리지 않는다 — AI가 20~60초라 폰이 먼저 끊는다(`Failed to fetch`).
+      // 번호만 받고 결과를 물어본다.
+      const { job } = await api(`/scenes/${S.scene.id}/stages/${st.id}/compose`, {
         method: 'POST', body: JSON.stringify({ ask: el.querySelector('#ask').value }) });
+      let r = null;
+      for (let i = 0; i < 200; i++) {                 // 최대 5분
+        await new Promise(s => setTimeout(s, 1500));
+        const got = await api(`/compose/${job}`);
+        if (got.status === 'failed') throw new Error(got.error || 'AI가 실패했다');
+        if (got.status === 'done') { r = got; break; }
+        gen.textContent = `만드는 중… ${Math.round(i * 1.5) + 2}초`;
+      }
+      if (!r) throw new Error('AI가 5분 안에 답하지 않았다');
       el.querySelector('#pr').value = r.prompt;
       el.querySelector('#ng').value = (r.neg || []).join(', ');
       ko();

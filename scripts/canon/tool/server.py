@@ -69,6 +69,8 @@ Q = queue.Queue()
 JOBS = []               # 최근 것이 앞. {id, scene, stage, seeds, status, log, at}
 JOBS_LOCK = threading.Lock()
 CUR = {"proc": None}    # 진행 중 생성 프로세스 — 취소하려면 이것을 잡고 있어야 한다
+COMPOSE = {}            # 문구 짓기 결과 — 번호 → {status, ...}. GPU 큐와 별개다(GPU를 쓰지 않는다)
+COMPOSE_LOCK = threading.Lock()
 CUR_LOCK = threading.Lock()
 LIVE = ("queued", "running")
 
@@ -233,6 +235,13 @@ class H(BaseHTTPRequestHandler):
 
     def send(self, code, body, ctype="application/json; charset=utf-8"):
         raw = body if isinstance(body, bytes) else json.dumps(body, ensure_ascii=False).encode()
+        try:
+            self._send(code, raw, ctype)
+        except (BrokenPipeError, ConnectionResetError):
+            # 폰이 먼저 끊었다. 일은 이미 끝났으니 알릴 곳이 없을 뿐이다.
+            self.log_message("클라이언트가 먼저 끊었다 — 응답을 버린다")
+
+    def _send(self, code, raw, ctype):
         self.send_response(code)
         self.send_header("Content-Type", ctype)
         # 도구를 고치는 중이다 — 폰이 옛 화면을 들고 있으면 고친 것이 안 보인다.
@@ -285,6 +294,8 @@ class H(BaseHTTPRequestHandler):
             return self.send(200, queue_state())
         if method == "POST" and p == ["queue", "cancel"]:
             return self.cancel()
+        if method == "GET" and len(p) == 2 and p[0] == "compose":
+            return self.compose_result(p[1])
         if method == "GET" and p == ["glossary"]:
             # 영문 문구·부정어의 한글 뜻. 화면이 한 번 받아 두고 입력할 때마다 옆에 채운다.
             with open(os.path.join(HERE, "glossary.json"), encoding="utf-8") as fh:
@@ -402,24 +413,27 @@ class H(BaseHTTPRequestHandler):
         self.send(200, detail(scene))
 
     def compose(self, scene, stage_id):
-        """사람의 한국어 지시 → AI가 영문 단계 문구를 짓는다. 명세에 쓰지 않는다 — 폼에만 채운다."""
-        spec = ap.load_spec(scene)
-        st = next((x for x in spec["stages"] if x["id"] == stage_id), None)
-        if st is None:
-            raise ValueError(f"단계 {stage_id}가 명세에 없다")
-        casts = {}
-        for f in spec.get("figures", []):
-            cid = f.get("cast")
-            if cid and cid not in casts:
-                try:
-                    casts[cid] = ds.cast_describe(ds.load_cast(cid))
-                except FileNotFoundError:
-                    pass
-        with open(os.path.join(HERE, "glossary.json"), encoding="utf-8") as fh:
-            frags = list(json.load(fh)["frag"])
-        out = cp.compose(spec, st, self.body().get("ask", ""), casts, frags)
-        out["tokens"] = measure(scene, out["prompt"], out["neg"])
-        self.send(200, out)
+        """한국어 지시를 받아 **일만 띄우고 곧바로 답한다.**
+
+        AI 호출이 20~60초라 요청을 붙잡고 있으면 폰 브라우저가 먼저 끊는다(실측 2026-09-05:
+        서버는 두 번 다 다 만들었는데 화면에는 `Failed to fetch`만 떴다). GPU 큐와 같은 방식으로
+        일감 번호를 주고, 화면이 `/api/compose/<번호>`를 물어본다.
+        """
+        ask = self.body().get("ask", "")
+        jid = f"c{int(time.time() * 1000)}"
+        with COMPOSE_LOCK:
+            COMPOSE[jid] = {"status": "running"}
+            for old_id in list(COMPOSE)[:-20]:      # 오래된 것은 버린다
+                COMPOSE.pop(old_id, None)
+        threading.Thread(target=run_compose, args=(jid, scene, stage_id, ask), daemon=True).start()
+        self.send(200, {"job": jid})
+
+    def compose_result(self, jid):
+        with COMPOSE_LOCK:
+            got = COMPOSE.get(jid)
+        if got is None:
+            raise FileNotFoundError(f"문구 작업 {jid}를 모른다")
+        self.send(200, got)
 
     def patch_stage(self, scene, stage_id):
         b = self.body()
@@ -449,6 +463,38 @@ class H(BaseHTTPRequestHandler):
 
     def do_PATCH(self):
         self.route("PATCH")
+
+
+def compose_now(scene, stage_id, ask):
+    """한국어 지시 + 명세의 근거 → AI가 지은 영문 문구. **명세에 쓰지 않는다.**"""
+    spec = ap.load_spec(scene)
+    st = next((x for x in spec["stages"] if x["id"] == stage_id), None)
+    if st is None:
+        raise ValueError(f"단계 {stage_id}가 명세에 없다")
+    casts = {}
+    for f in spec.get("figures", []):
+        cid = f.get("cast")
+        if cid and cid not in casts:
+            try:
+                casts[cid] = ds.cast_describe(ds.load_cast(cid))
+            except FileNotFoundError:
+                pass
+    with open(os.path.join(HERE, "glossary.json"), encoding="utf-8") as fh:
+        frags = list(json.load(fh)["frag"])
+    out = cp.compose(spec, st, ask, casts, frags)
+    out["tokens"] = measure(scene, out["prompt"], out["neg"])
+    return out
+
+
+def run_compose(jid, scene, stage_id, ask):
+    """배경에서 AI를 부르고 결과만 남긴다. 화면은 번호로 물어본다."""
+    try:
+        out = compose_now(scene, stage_id, ask)
+        out["status"] = "done"
+    except Exception as e:                            # noqa: BLE001 — 실패도 조회로 알려야 한다
+        out = {"status": "failed", "error": f"{type(e).__name__}: {e}"}
+    with COMPOSE_LOCK:
+        COMPOSE[jid] = out
 
 
 def measure(scene, prompt, neg):
