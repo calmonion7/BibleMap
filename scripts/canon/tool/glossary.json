@@ -1,5 +1,5 @@
 {
- "_format": "장면 문구·부정어의 한글 용어집 (task 339 후속). 영문 프롬프트는 파생물이라 한글 뜻을 손으로 적어 둔다. 새 문구를 쓰면 여기 없을 수 있고, 화면은 그때 영문을 그대로 두고 물음표를 붙인다.",
+ "_format": "장면 문구·부정어의 한글 용어집 (task 339 후속). 영문 프롬프트는 파생물이라 한글 뜻을 손으로 적어 둔다. 새 문구를 쓰면 여기 없을 수 있고, 화면은 그때 영문을 그대로 두고 물음표를 붙인다. `region`은 구역 이름의 한글 — 인물 구역은 `cast`로 푼다.",
  "frag": {
   "a bare dry building yard on a hilltop": "언덕 위 헐벗고 메마른 공사 마당",
   "a bare open courtyard in front of a building site": "공사터 앞의 텅 빈 열린 뜰",
@@ -16,6 +16,8 @@
   "a dry rocky hillside with a wide cave mouth in a limestone cliff": "석회암 절벽에 넓은 굴 입구가 난 마르고 바위 많은 산비탈",
   "a dry rocky hillside with a wide dark cave opening in pale limestone rock": "옅은 석회암에 넓고 어두운 굴 입구가 난 마르고 바위 많은 산비탈",
   "a dry rocky mountain slope at dusk": "해질녘의 마르고 바위 많은 산비탈",
+  "a dry rocky mountain slope with a wide dark cave opening in pale limestone rock": "옅은 석회암 바위에 넓고 어두운 굴 입구가 난 마르고 바위투성이 산비탈",
+  "a dry rocky slope above": "위쪽의 마른 바위 비탈",
   "a dry rocky wilderness with pale steep cliffs": "옅은 색 가파른 절벽이 있는 마른 바위 광야",
   "a dry southern desert plain of pale packed earth": "옅은 다진 흙의 마른 남방 사막 평지",
   "a dusty ancient city street beside a tall stone gate wall": "높은 돌 성문 벽 옆의 먼지 이는 고대 성읍 거리",
@@ -273,6 +275,7 @@
   "strict side profile facing right": "오른쪽을 향한 엄격한 옆모습",
   "sunbaked brown slope": "볕에 그을린 갈색 비탈",
   "sunbaked ground": "볕에 그을린 땅",
+  "tall arched entrance": "높다란 아치형 어귀",
   "tall masts": "높은 돛대",
   "tall stone columns": "높은 돌기둥",
   "the other hand gripping a sword at his side": "다른 손으로는 옆구리의 칼을 쥔",
@@ -504,5 +507,38 @@
  },
  "placeholder": {
   "head_neg": "머리·얼굴 공용 부정어 묶음(derive_prompts.HEAD_NEG_EXTRA)"
+ },
+ "region": {
+  "altar": "제단",
+  "ark_bearers": "궤 멘 자들",
+  "bed": "침상",
+  "cave": "굴",
+  "cliff": "벼랑",
+  "crest_back": "뒤쪽 능선",
+  "crest_left": "왼쪽 능선",
+  "crest_right": "오른쪽 능선",
+  "crowd_back": "뒤쪽 무리",
+  "crowd_ridge": "뜰의 무리",
+  "david_head": "다윗 머리",
+  "followers": "따르는 무리",
+  "full": "전체",
+  "gate": "성문",
+  "goliath_head": "골리앗 머리",
+  "grave": "무덤",
+  "hill_left": "왼쪽 언덕",
+  "hill_right": "오른쪽 언덕",
+  "mourners": "조문하는 무리",
+  "palace": "궁",
+  "pool": "못",
+  "river": "강",
+  "sea": "바다",
+  "ships": "배들",
+  "shrine": "성소",
+  "sling_arc": "물매 줄",
+  "spring": "샘",
+  "stones": "다듬은 돌",
+  "temple": "성전",
+  "town": "성읍",
+  "wall": "성벽"
  }
 }

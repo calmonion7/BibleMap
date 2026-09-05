@@ -91,6 +91,8 @@ const autoTried = new Set();   // 자동 번역을 한 번 시도한 문구 — 
 /* 단계 종류(kind)의 뜻 — gen_scripture_scene.py 머리 주석과 같은 말 */
 const KIND_KO = { full: '캔버스 통째', region: '구역 상자 안', ridge: '하늘선 띠', plate: '판에 그려 오려 붙임',
                   refine: '있는 것을 다듬음', prop: '손 근처 지물 띠' };
+/* 구역 이름의 한글 — 용어집 `region`, 인물 구역은 `cast`. 둘 다 없으면 영문 그대로. */
+const regionKo = (r) => (G && ((G.region || {})[r] || (G.cast || {})[r])) || r;
 
 /* 영문 문구/부정어 → 한글 뜻. 용어집에 없으면 영문을 그대로 두고 물음표를 붙인다
    (새로 쓴 문구라는 표시다 — 조용히 감추면 번역이 있는지 없는지 알 수 없다). */
@@ -187,7 +189,7 @@ function ladderCard() {
 /* 단계 칩 — ③이 확인하는 나눔(id·kind·region)과 지금 상태를 한 자리에 보인다. 누르면 그 단계의 시도로 간다. */
 function stageChips() {
   return S.scene.stages.filter(s => s.status !== '건너뜀').map(s => {
-    const c = $(`<button class="chip s-${s.status}" aria-pressed="${s.id === S.stage}"><span>${esc(s.id)} · ${esc(s.status)}</span><small>${esc(s.kind)}·${esc(s.region)}</small></button>`).firstChild;
+    const c = $(`<button class="chip s-${s.status}" aria-pressed="${s.id === S.stage}"><span>${esc(s.id)} · ${esc(s.status)}</span><small>${esc(KIND_KO[s.kind] || s.kind)} · ${esc(regionKo(s.region))}</small></button>`).firstChild;
     c.onclick = () => { S.stage = s.id; S.tokens = null; draw(); };
     return c;
   });
@@ -196,7 +198,7 @@ function stageChips() {
 function triesCard(st) {
   const book = (S.scene.verses?.range || '').split(' ')[0];
   const el = $(`<div class="card"><h2>${esc(st.id)} 시도</h2>
-    <div class="mut wrap">${[st.verse ? `${book} ${st.verse}` : '', KIND_KO[st.kind] || st.kind, `구역 ${st.region}`]
+    <div class="mut wrap">${[st.verse ? `${book} ${st.verse}` : '', KIND_KO[st.kind] || st.kind, `구역 ${regionKo(st.region)}`]
       .filter(Boolean).map(esc).join(' · ')}</div>
     <div class="ko" id="ko-stage">${glossPrompt(st.prompt || '')}</div>
     ${st.why.length ? `<div class="badge">재검토</div><ul>${st.why.map(w => `<li class="wrap">${esc(w)}</li>`).join('')}</ul>` : ''}
