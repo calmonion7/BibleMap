@@ -122,3 +122,71 @@ done
 for L in verses description split; do python3 approve.py --scene authored-saul-gilgal-coronation --ladder $L; done
 python3 approve.py --scene authored-saul-gilgal-coronation --final --attempt a005 --seed 11
 ```
+
+## 서버 띄우기
+
+```
+SCENE_TOOL_USERS=thkim@anchors-biz.com python3 scripts/canon/tool/server.py
+# → http://127.0.0.1:8100
+```
+
+`127.0.0.1`에만 붙는다. 표준 라이브러리만 쓰고(백엔드 requirements 불변), GPU 작업은 `attempt.py`를
+venv 파이썬 서브프로세스로 부른다. **워커 스레드 하나·큐 하나** — 「재시도」를 연달아 눌러도 줄을 선다
+(생성 프로세스가 겹치면 처리량이 20배 떨어진다).
+
+로컬에서 브라우저로 그냥 볼 때는 헤더가 없으므로 `SCENE_TOOL_DEV=1`을 함께 준다(승인의 `by`가 `dev`).
+
+| 환경변수 | 뜻 |
+|---|---|
+| `SCENE_TOOL_USERS` | 쉼표로 허용 이메일. `Cf-Access-Authenticated-User-Email`이 목록에 없으면 **403** |
+| `SCENE_TOOL_DEV=1` | 헤더 없이 통과, `by=dev` (로컬 전용) |
+| `SCENE_TOOL_FAKE_GEN=1` | GPU 대신 자리표시 PNG (스모크 전용) |
+| `SCENE_TOOL_SCENES_DIR` · `SCENE_TOOL_ATTEMPTS_DIR` | 명세·곁파일 폴더 교체 (스모크가 실제 명세를 안 건드리게) |
+| `SCENE_TOOL_PORT` | 기본 8100 |
+
+**헤더 안전핀이 왜 있나**: 터널 뒤의 유일한 입구가 Cloudflare Access이므로, 서버는 Access가 넣어 주는
+이메일 헤더가 허용 목록에 있는지만 본다. JWT 서명 검증은 하지 않는다 — 첫 판의 안전핀으로 충분하고,
+검증을 넣으면 표준 라이브러리 밖으로 나가야 한다.
+
+## 바깥에서 열기 (폰에서 보기 — **사람 손**)
+
+터널 설정은 여러 프로젝트가 함께 쓰는 자원이라 **실행하지 않는다.** 아래는 사람이 직접 하는 다섯 단계다.
+
+**① `~/.cloudflared/config.yml`에 두 줄을 넣는다** — 맨 끝 `- service: http_status:404` **앞**에.
+`# >>> fitcheck-managed` ~ `# <<< fitcheck-managed` 구간은 다른 레포가 생성하므로 **그 밖에** 넣는다.
+
+```yaml
+  - hostname: scene.taebro.com
+    service: http://localhost:8100
+```
+
+**② DNS 라우트를 만든다**
+
+```
+cloudflared tunnel route dns portfolion scene.taebro.com
+```
+
+**③ 터널을 재시작한다.** plist가 둘 보이는데 **실제로 `tunnel run portfolion`을 띄우는 쪽**만 재시작한다.
+2026-09-05 실측: `com.cloudflare.cloudflared`가 PID를 물고 있고 `homebrew.mxcl.cloudflared`는 놀고 있었다.
+매번 확인하고 고른다.
+
+```
+launchctl list | grep cloudflared          # PID가 붙은 라벨이 실제로 도는 쪽이다
+ps aux | grep 'cloudflared tunnel'         # 교차 확인
+launchctl kickstart -k gui/$(id -u)/com.cloudflare.cloudflared
+```
+
+⚠ **재시작하는 동안 이 터널을 지나는 사이트가 전부 잠깐 끊긴다** — 2026-09-05 기준
+`biblemap` · `portfolion` · `lab` · `fitcheck` · `dev-fitcheck` **다섯**이다.
+
+**④ Cloudflare Zero Trust에서 Access 앱을 만든다**: Access → Applications → Add an application →
+Self-hosted · 도메인 `scene.taebro.com` · 정책 Allow · Emails = 본인 이메일.
+이 정책이 `SCENE_TOOL_USERS`와 **같은 이메일**이어야 통과한다.
+
+**⑤ 확인한다**
+
+```
+curl -sI https://scene.taebro.com | head -1     # → HTTP/2 302 (Access 로그인으로 보낸다)
+```
+
+폰 브라우저로 `https://scene.taebro.com`을 열어 이메일 코드로 로그인하면 장면 목록이 나온다.

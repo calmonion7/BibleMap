@@ -1,0 +1,273 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>장면 승인</title>
+<style>
+  /* 폰 우선 · 세로 한 줄 · 가로 스크롤 없음. 간격은 4/8 한 스케일, 글자 크기는 3단. */
+  :root{
+    --s1:4px; --s2:8px; --s3:16px; --s4:24px;
+    --t-s:13px; --t-b:15px; --t-l:19px;
+    --bg:#faf8f4; --card:#fff; --ink:#1e1b16; --mut:#635c51; --line:#e3ded4;
+    --ok:#1f5c3d; --ok-bg:#e6f1ea; --warn:#8a4413; --warn-bg:#fbeee2; --idle-bg:#eeeae2;
+    --tap:44px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:var(--t-b)/1.55 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+       padding:var(--s3) var(--s3) 96px;max-width:720px;margin-inline:auto;overflow-x:hidden}
+  h1{font-size:var(--t-l);margin:0 0 var(--s3)}
+  h2{font-size:var(--t-b);font-weight:700;margin:0 0 var(--s2)}
+  a{color:var(--ok)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:var(--s3);margin-bottom:var(--s3)}
+  .row{display:flex;gap:var(--s2);align-items:center;flex-wrap:wrap}
+  .mut{color:var(--mut);font-size:var(--t-s)}
+  .wrap{overflow-wrap:anywhere}                      /* 긴 문구·부정어가 폭을 밀지 않게 */
+  button{min-height:var(--tap);padding:0 var(--s3);border:1px solid var(--line);border-radius:8px;
+         background:var(--card);color:var(--ink);font:inherit;cursor:pointer}
+  button.p{background:var(--ok);border-color:var(--ok);color:#fff;font-weight:600}
+  button:disabled{opacity:.45;cursor:default}
+  button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--ok);outline-offset:2px}
+  input,textarea{width:100%;min-height:var(--tap);padding:var(--s2);border:1px solid var(--line);
+                 border-radius:8px;font:inherit;background:var(--card);color:var(--ink)}
+  textarea{min-height:88px;resize:vertical}
+  label{display:block;font-size:var(--t-s);color:var(--mut);margin:var(--s3) 0 var(--s1)}
+  .chip{display:inline-flex;align-items:center;min-height:var(--tap);padding:0 var(--s3);border-radius:999px;
+        border:1px solid var(--line);background:var(--idle-bg);font-size:var(--t-s);font-weight:600;cursor:pointer}
+  .chip[aria-pressed="true"]{outline:2px solid var(--ink);outline-offset:1px}
+  .s-승인{background:var(--ok-bg);color:var(--ok)}
+  .s-재검토{background:var(--warn-bg);color:var(--warn)}
+  .badge{display:inline-block;padding:2px var(--s2);border-radius:999px;font-size:var(--t-s);font-weight:700;
+         background:var(--warn-bg);color:var(--warn)}
+  .badge.ok{background:var(--ok-bg);color:var(--ok)}
+  img.shot{width:100%;max-width:100%;border:1px solid var(--line);border-radius:8px;display:block;background:#fff}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s2)}
+  .queue{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:#f6f2ea;padding:var(--s2) var(--s3);
+         font-size:var(--t-s);max-height:38vh;overflow:auto}
+  .queue pre{margin:var(--s1) 0 0;white-space:pre-wrap;overflow-wrap:anywhere;color:#d8d1c4}
+  .err{border-color:var(--warn);background:var(--warn-bg);color:var(--warn)}
+  ul{padding-left:1.1em;margin:var(--s1) 0}
+</style>
+
+<h1 id="head">장면 승인</h1>
+<div id="app" aria-live="polite">불러오는 중…</div>
+<div class="queue" id="q"></div>
+
+<script>
+const $ = (h) => { const d = document.createElement('div'); d.innerHTML = h; return d; };
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let S = { scene: null, stage: null, tokens: null, busy: false };
+
+async function api(path, opt) {
+  const r = await fetch('/api' + path, { headers: { 'Content-Type': 'application/json' }, ...opt });
+  const t = await r.text();
+  let j = null; try { j = JSON.parse(t); } catch (e) { /* 빈 응답 */ }
+  if (!r.ok) throw new Error((j && j.error) || `${r.status} ${t.slice(0, 200)}`);
+  return j;
+}
+function fail(e) {
+  document.getElementById('app').prepend($(`<div class="card err">문제가 생겼다 — ${esc(e.message)}</div>`).firstChild);
+}
+
+/* ---------- 목록 ---------- */
+async function list() {
+  S.scene = S.stage = null;
+  document.getElementById('head').textContent = '장면 승인';
+  const rows = await api('/scenes');
+  const app = document.getElementById('app');
+  app.innerHTML = rows.length ? '' : '<div class="card">장면이 없다.</div>';
+  for (const s of rows) {
+    const el = $(`<div class="card"><div class="row" style="justify-content:space-between">
+        <strong class="wrap">${esc(s.title)}</strong>
+        ${s.done ? '<span class="badge ok">완료</span>' : ''}
+      </div>
+      <div class="mut">승인 ${s.approved}/${s.stages}${s.stale ? ` · 재검토 ${s.stale}` : ''}</div>
+      <div class="row" style="margin-top:var(--s3)"><button data-id="${esc(s.id)}">열기</button></div>
+    </div>`).firstChild;
+    el.querySelector('button').onclick = () => open(s.id).catch(fail);
+    app.append(el);
+  }
+}
+
+/* ---------- 장면 ---------- */
+async function open(id) {
+  S.scene = await api('/scenes/' + id);
+  if (!S.stage || !S.scene.stages.some(x => x.id === S.stage)) {
+    S.stage = (S.scene.stages.find(x => x.status !== '건너뜀') || {}).id || null;
+  }
+  draw();
+}
+async function reload() { await open(S.scene.id); }
+
+function ladderCard() {
+  const d = S.scene, L = d.ladder;
+  const names = { verses: '① 본문', description: '② 무엇을 그릴까', split: '③ 어떻게 나눌까' };
+  const body = {
+    verses: `${esc(d.verses?.range || '')}<ul>${Object.entries(d.verses?.quotes || {})
+      .map(([k, v]) => `<li class="wrap"><b>${esc(k)}</b> ${esc(v)}</li>`).join('')}</ul>`,
+    description: `<div class="wrap">${esc(d.moment?.why || '')}</div>
+      <ul>${[...(d.background || []).map(b => b.what), ...(d.crowds || []).map(c => c.what),
+             ...(d.figures || []).map(f => f.role)].map(x => `<li class="wrap">${esc(x)}</li>`).join('')}</ul>`,
+    split: `<div class="wrap">${d.stages.filter(s => s.status !== '건너뜀')
+      .map(s => `${esc(s.id)}(${esc(s.kind)}·${esc(s.region)})`).join(' → ')}</div>`,
+  };
+  return Object.keys(names).map(k => {
+    const el = $(`<div class="card">
+      <div class="row" style="justify-content:space-between">
+        <h2>${names[k]}</h2>
+        ${L[k].stale ? '<span class="badge">재검토</span>'
+          : L[k].approved ? '<span class="badge ok">확인함</span>' : '<span class="mut">미확인</span>'}
+      </div>
+      ${body[k]}
+      <div class="row" style="margin-top:var(--s3)"><button>확인</button></div>
+    </div>`).firstChild;
+    el.querySelector('button').onclick = () => act(() =>
+      api(`/scenes/${S.scene.id}/approve`, { method: 'POST', body: JSON.stringify({ kind: 'ladder', ladder: k }) }));
+    return el;
+  });
+}
+
+function boardCard() {
+  const el = $(`<div class="card"><h2>단계</h2><div class="row" id="chips"></div></div>`).firstChild;
+  const box = el.querySelector('#chips');
+  for (const s of S.scene.stages) {
+    if (s.status === '건너뜀') continue;
+    const c = $(`<button class="chip s-${s.status}" aria-pressed="${s.id === S.stage}">${esc(s.id)} · ${esc(s.status)}</button>`).firstChild;
+    c.onclick = () => { S.stage = s.id; S.tokens = null; draw(); };
+    box.append(c);
+  }
+  return el;
+}
+
+function triesCard(st) {
+  const el = $(`<div class="card"><h2>${esc(st.id)} 시도</h2>
+    ${st.why.length ? `<div class="badge">재검토</div><ul>${st.why.map(w => `<li class="wrap">${esc(w)}</li>`).join('')}</ul>` : ''}
+    ${st.from ? `<div class="mut wrap">이 단계는 <code>from: ${esc(st.from)}</code>라 재개로 그릴 수 없다.</div>` : ''}
+    <div id="tries"></div></div>`).firstChild;
+  const box = el.querySelector('#tries');
+  if (!st.tries.length) { box.innerHTML = '<div class="mut">아직 시도가 없다. 아래에서 한 장 걸어 보라.</div>'; return el; }
+  for (const t of st.tries) {
+    for (const [seed, im] of Object.entries(t.images)) {
+      const cur = st.approved && st.approved.attempt === t.id && String(st.approved.seed) === seed;
+      const row = $(`<div style="margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--line)">
+        <a href="/img/${encodeURI(im.canvas)}" target="_blank" rel="noopener">
+          <img class="shot" loading="lazy" alt="${esc(t.id)} 시드 ${esc(seed)}" src="/img/${encodeURI(im.canvas)}"></a>
+        <div class="row" style="margin-top:var(--s2);justify-content:space-between">
+          <span class="mut">${esc(t.id)} · 시드 ${esc(seed)}${t.tokens ? ` · ${t.tokens.n}/${t.tokens.lim}토큰` : ''}${t.seconds ? ` · ${Math.round(t.seconds)}s` : ''}</span>
+          ${cur ? '<span class="badge ok">승인됨</span>' : ''}
+        </div>
+        <details><summary class="mut" style="min-height:var(--tap);display:flex;align-items:center">이때의 문구</summary>
+          <div class="wrap mut">+ ${esc(t.prompt)}</div>
+          <div class="wrap mut">− ${esc((t.neg || []).join(', '))}</div></details>
+        <div class="row" style="margin-top:var(--s2)">
+          <button class="p" ${cur ? 'disabled' : ''}>이 장으로 승인</button>
+          ${st.why.length && st.kind === 'plate' ? '<button data-again="1">같은 시드로 다시</button>' : ''}
+        </div></div>`).firstChild;
+      row.querySelector('button.p').onclick = () => act(() =>
+        api(`/scenes/${S.scene.id}/approve`, { method: 'POST',
+          body: JSON.stringify({ kind: 'stage', stage: st.id, attempt: t.id, seed: +seed }) }));
+      const again = row.querySelector('[data-again]');
+      if (again) again.onclick = () => act(() =>
+        api(`/scenes/${S.scene.id}/attempts`, { method: 'POST',
+          body: JSON.stringify({ stage: st.id, seeds: [+seed] }) }));
+      box.append(row);
+    }
+  }
+  return el;
+}
+
+function formCard(st) {
+  const el = $(`<div class="card"><h2>다시 그리기</h2>
+    <label for="sd">시드 (쉼표)</label><input id="sd" value="${esc(S.scene.sceneSeed)}" inputmode="numeric">
+    <label for="pr">문구</label><textarea id="pr" class="wrap">${esc(st.prompt)}</textarea>
+    <label for="ng">부정어 (쉼표)</label><textarea id="ng" class="wrap">${esc((st.neg || []).join(', '))}</textarea>
+    <label>구역 x0 · y0 · x1 · y1</label>
+    <div class="grid4">${st.coords.map((c, i) => `<input data-c="${i}" value="${c}" inputmode="decimal">`).join('')}</div>
+    <div id="tk" class="mut" style="margin-top:var(--s2)"></div>
+    <div class="row" style="margin-top:var(--s3)">
+      <button id="save">명세에 저장</button>
+      <button id="one" class="p" ${st.from ? 'disabled' : ''}>1장</button>
+      <button id="three" ${st.from ? 'disabled' : ''}>3장</button>
+    </div></div>`).firstChild;
+  const tk = el.querySelector('#tk');
+  if (S.tokens) tk.innerHTML = S.tokens.ok === false
+    ? `<span class="badge">토큰 넘침</span> <span class="wrap">${esc(S.tokens.over.join(' / ') || S.tokens.tail)}</span>`
+    : S.tokens.ok ? '<span class="badge ok">토큰 한도 안</span>' : `<span class="wrap">${esc(S.tokens.tail)}</span>`;
+  const seeds = () => el.querySelector('#sd').value.split(',').map(x => parseInt(x, 10)).filter(Number.isFinite);
+  el.querySelector('#save').onclick = () => act(async () => {
+    const r = await api(`/scenes/${S.scene.id}/stages/${st.id}`, { method: 'PATCH', body: JSON.stringify({
+      prompt: el.querySelector('#pr').value,
+      neg: el.querySelector('#ng').value.split(',').map(s => s.trim()).filter(Boolean),
+      region: [...el.querySelectorAll('[data-c]')].map(i => parseFloat(i.value)),
+    })});
+    // 토큰 검사는 토크나이저 로드가 십수 초다 — 저장을 붙잡지 않고 따로 받아 폼 옆에 채운다.
+    api(`/scenes/${S.scene.id}/tokens`).then(t => { S.tokens = t; const b = document.getElementById('tk');
+      if (b) b.innerHTML = t.ok === false
+        ? `<span class="badge">토큰 넘침</span> <span class="wrap">${esc(t.over.join(' / ') || t.tail)}</span>`
+        : t.ok ? '<span class="badge ok">토큰 한도 안</span>' : `<span class="wrap">${esc(t.tail)}</span>`;
+    }).catch(() => {});
+    return r;
+  });
+  const go = (n) => act(() => api(`/scenes/${S.scene.id}/attempts`, { method: 'POST',
+    body: JSON.stringify({ stage: st.id, seeds: n === 1 ? [seeds()[0] ?? S.scene.sceneSeed] : (seeds().length > 1 ? seeds() : [11, 42, 7]) }) }));
+  el.querySelector('#one').onclick = () => go(1);
+  el.querySelector('#three').onclick = () => go(3);
+  return el;
+}
+
+function finalCard() {
+  const live = S.scene.stages.filter(s => s.status !== '건너뜀');
+  const last = live[live.length - 1];
+  const f = S.scene.final;
+  const shot = last && last.approved && (last.tries.find(t => t.id === last.approved.attempt) || {}).images;
+  const src = shot && shot[String(last.approved.seed)] && shot[String(last.approved.seed)].canvas;
+  const el = $(`<div class="card"><div class="row" style="justify-content:space-between"><h2>장면 완료</h2>
+      ${f.stale ? '<span class="badge">재검토</span>' : f.approved ? '<span class="badge ok">완료</span>' : ''}</div>
+    ${src ? `<a href="/img/${encodeURI(src)}" target="_blank" rel="noopener"><img class="shot" alt="마지막 단계 승인본" src="/img/${encodeURI(src)}"></a>` : '<div class="mut">마지막 단계가 아직 승인되지 않았다.</div>'}
+    ${f.why.length ? `<ul>${f.why.map(w => `<li class="wrap">${esc(w)}</li>`).join('')}</ul>` : ''}
+    <div class="row" style="margin-top:var(--s3)"><button class="p" ${last && last.approved ? '' : 'disabled'}>장면 완료</button></div></div>`).firstChild;
+  el.querySelector('button').onclick = () => act(() =>
+    api(`/scenes/${S.scene.id}/approve`, { method: 'POST',
+      body: JSON.stringify({ kind: 'final', attempt: last.approved.attempt, seed: last.approved.seed }) }));
+  return el;
+}
+
+function draw() {
+  const app = document.getElementById('app');
+  document.getElementById('head').textContent = S.scene.title;
+  app.innerHTML = '';
+  const back = $('<div class="row" style="margin-bottom:var(--s3)"><button>← 목록</button></div>').firstChild;
+  back.querySelector('button').onclick = () => list().catch(fail);
+  app.append(back, ...ladderCard(), boardCard());
+  const st = S.scene.stages.find(x => x.id === S.stage);
+  if (st) app.append(triesCard(st), formCard(st));
+  app.append(finalCard());
+}
+
+/* 모든 쓰기는 이 하나를 지난다 — 중복 탭을 막고, 끝나면 다시 읽는다. */
+async function act(fn) {
+  if (S.busy) return;
+  S.busy = true;
+  document.querySelectorAll('button').forEach(b => b.disabled = true);
+  try { await fn(); await reload(); }
+  catch (e) { fail(e); document.querySelectorAll('button').forEach(b => b.disabled = false); }
+  finally { S.busy = false; }
+}
+
+/* ---------- 큐 띠 (3초 폴링) ---------- */
+async function poll() {
+  try {
+    const q = await api('/queue');
+    const r = q.running, box = document.getElementById('q');
+    box.innerHTML = r
+      ? `<b>그리는 중</b> ${esc(r.scene.replace('authored-', ''))} · ${esc(r.stage)} · 시드 ${esc(r.seeds.join(','))}`
+        + (q.pending.length ? ` · 대기 ${q.pending.length}` : '')
+      : q.pending.length ? `대기 ${q.pending.length}줄`
+      : (q.recent[0] ? `${q.recent[0].status === 'failed' ? '실패' : '끝남'} ${esc(q.recent[0].stage)}<pre>${esc((q.recent[0].log || '').slice(-400))}</pre>` : '큐 비어 있음');
+    if (r && S.scene && !S.busy) { /* 그리는 동안은 다시 읽지 않는다 — 폼 입력이 날아간다 */ }
+    if (!r && S.scene && !S.busy && window.__wasRunning) { window.__wasRunning = false; reload().catch(() => {}); }
+    if (r) window.__wasRunning = true;
+  } catch (e) { /* 폴링 실패는 조용히 넘긴다 */ }
+}
+setInterval(poll, 3000);
+poll();
+list().catch(fail);
+</script>
