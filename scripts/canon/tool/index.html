@@ -30,8 +30,10 @@
                  border-radius:8px;font:inherit;background:var(--card);color:var(--ink)}
   textarea{min-height:88px;resize:vertical}
   label{display:block;font-size:var(--t-s);color:var(--mut);margin:var(--s3) 0 var(--s1)}
-  .chip{display:inline-flex;align-items:center;min-height:var(--tap);padding:0 var(--s3);border-radius:999px;
+  .chip{display:inline-flex;flex-direction:column;align-items:flex-start;justify-content:center;min-height:var(--tap);
+        padding:var(--s1) var(--s3);border-radius:999px;line-height:1.3;text-align:left;
         border:1px solid var(--line);background:var(--idle-bg);font-size:var(--t-s);font-weight:600;cursor:pointer}
+  .chip small{font-size:inherit;font-weight:400;color:var(--mut)}   /* kind·region — ③이 확인하는 나눔 그 자체 */
   .chip[aria-pressed="true"]{outline:2px solid var(--ink);outline-offset:1px}
   .s-승인{background:var(--ok-bg);color:var(--ok)}
   .s-재검토{background:var(--warn-bg);color:var(--warn)}
@@ -159,8 +161,7 @@ function ladderCard() {
     description: `<div class="wrap">${esc(d.moment?.why || '')}</div>
       <ul>${[...(d.background || []).map(b => b.what), ...(d.crowds || []).map(c => c.what),
              ...(d.figures || []).map(f => f.role)].map(x => `<li class="wrap">${esc(x)}</li>`).join('')}</ul>`,
-    split: `<div class="wrap">${d.stages.filter(s => s.status !== '건너뜀')
-      .map(s => `${esc(s.id)}(${esc(s.kind)}·${esc(s.region)})`).join(' → ')}</div>`,
+    split: '<div class="row" id="chips"></div>',   // 단계 칩 — 아래서 채운다
   };
   return Object.keys(names).map(k => {
     const el = $(`<div class="card">
@@ -174,20 +175,18 @@ function ladderCard() {
     </div>`).firstChild;
     el.querySelector('button').onclick = () => act(() =>
       api(`/scenes/${S.scene.id}/approve`, { method: 'POST', body: JSON.stringify({ kind: 'ladder', ladder: k }) }));
+    if (k === 'split') el.querySelector('#chips').append(...stageChips());   // 칩도 button — 확인 핸들러를 묶은 뒤에 넣는다
     return el;
   });
 }
 
-function boardCard() {
-  const el = $(`<div class="card"><h2>단계</h2><div class="row" id="chips"></div></div>`).firstChild;
-  const box = el.querySelector('#chips');
-  for (const s of S.scene.stages) {
-    if (s.status === '건너뜀') continue;
-    const c = $(`<button class="chip s-${s.status}" aria-pressed="${s.id === S.stage}">${esc(s.id)} · ${esc(s.status)}</button>`).firstChild;
+/* 단계 칩 — ③이 확인하는 나눔(id·kind·region)과 지금 상태를 한 자리에 보인다. 누르면 그 단계의 시도로 간다. */
+function stageChips() {
+  return S.scene.stages.filter(s => s.status !== '건너뜀').map(s => {
+    const c = $(`<button class="chip s-${s.status}" aria-pressed="${s.id === S.stage}"><span>${esc(s.id)} · ${esc(s.status)}</span><small>${esc(s.kind)}·${esc(s.region)}</small></button>`).firstChild;
     c.onclick = () => { S.stage = s.id; S.tokens = null; draw(); };
-    box.append(c);
-  }
-  return el;
+    return c;
+  });
 }
 
 function triesCard(st) {
@@ -460,7 +459,7 @@ function draw() {
   app.innerHTML = '';
   const back = $('<div class="row" style="margin-bottom:var(--s3)"><button>← 목록</button></div>').firstChild;
   back.querySelector('button').onclick = () => list().catch(fail);
-  app.append(back, ...ladderCard(), boardCard());
+  app.append(back, ...ladderCard());
   const st = S.scene.stages.find(x => x.id === S.stage);
   if (st) app.append(triesCard(st), formCard(st));
   app.append(finalCard());
