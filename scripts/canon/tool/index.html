@@ -44,6 +44,11 @@
          font-size:var(--t-s);max-height:38vh;overflow:auto}
   .queue pre{margin:var(--s1) 0 0;white-space:pre-wrap;overflow-wrap:anywhere;color:#d8d1c4}
   .err{border-color:var(--warn);background:var(--warn-bg);color:var(--warn)}
+  .ko{margin-top:var(--s1);padding:var(--s2);border-radius:8px;background:var(--idle-bg);
+      color:var(--ink);font-size:var(--t-s);line-height:1.6;overflow-wrap:anywhere}
+  .ko:empty{display:none}
+  .ko .sep{color:var(--mut)}
+  .ko .unk{color:var(--warn);font-weight:600}
   ul{padding-left:1.1em;margin:var(--s1) 0}
 </style>
 
@@ -64,6 +69,28 @@ const img = (rel) => `/img/${encodeURI(rel)}` + (TK ? `?t=${encodeURIComponent(T
 const $ = (h) => { const d = document.createElement('div'); d.innerHTML = h; return d; };
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let S = { scene: null, stage: null, tokens: null, busy: false };
+let G = null;   // 한글 용어집 — 한 번 받아 둔다
+
+/* 영문 문구/부정어 → 한글 뜻. 용어집에 없으면 영문을 그대로 두고 물음표를 붙인다
+   (새로 쓴 문구라는 표시다 — 조용히 감추면 번역이 있는지 없는지 알 수 없다). */
+function glossOne(k, map) {
+  const cast = k.match(/^\{cast:([a-z0-9-]+)\}$/);
+  if (cast) return [`${(G.cast || {})[cast[1]] || cast[1]} — 인물 정본 어휘`, true];
+  const cos = k.match(/^\{costume:([a-z0-9-]+)\}$/);
+  if (cos) return [`${(G.cast || {})[cos[1]] || cos[1]}의 복식 표본`, true];
+  if (k === '{head_neg}') return [(G.placeholder || {}).head_neg || k, true];
+  return map[k] ? [map[k], true] : [k, false];
+}
+function glossHTML(parts, map) {
+  if (!G) return '';
+  const out = parts.map(p => p.trim()).filter(Boolean).map(k => {
+    const [txt, known] = glossOne(k, map);
+    return known ? esc(txt) : `<span class="unk">${esc(txt)} ?</span>`;
+  });
+  return out.length ? out.join(' <span class="sep">·</span> ') : '';
+}
+const glossPrompt = (t) => glossHTML(String(t).trim().replace(/\.$/, '').split(','), (G && G.frag) || {});
+const glossNeg = (t) => glossHTML(String(t).split(','), (G && G.neg) || {});
 
 async function api(path, opt) {
   const h = { 'Content-Type': 'application/json' };
@@ -167,7 +194,9 @@ function triesCard(st) {
         </div>
         <details><summary class="mut" style="min-height:var(--tap);display:flex;align-items:center">이때의 문구</summary>
           <div class="wrap mut">+ ${esc(t.prompt)}</div>
-          <div class="wrap mut">− ${esc((t.neg || []).join(', '))}</div></details>
+          <div class="ko">${glossPrompt(t.prompt || '')}</div>
+          <div class="wrap mut">− ${esc((t.neg || []).join(', '))}</div>
+          <div class="ko">${glossNeg((t.neg || []).join(', '))}</div></details>
         <div class="row" style="margin-top:var(--s2)">
           <button class="p" ${cur ? 'disabled' : ''}>이 장으로 승인</button>
           ${st.why.length && st.kind === 'plate' ? '<button data-again="1">같은 시드로 다시</button>' : ''}
@@ -188,16 +217,34 @@ function triesCard(st) {
 function formCard(st) {
   const el = $(`<div class="card"><h2>다시 그리기</h2>
     <label for="sd">시드 (쉼표)</label><input id="sd" value="${esc(S.scene.sceneSeed)}" inputmode="numeric">
-    <label for="pr">문구</label><textarea id="pr" class="wrap">${esc(st.prompt)}</textarea>
-    <label for="ng">부정어 (쉼표)</label><textarea id="ng" class="wrap">${esc((st.neg || []).join(', '))}</textarea>
-    <label>구역 x0 · y0 · x1 · y1</label>
+    <label for="pr">문구 — 이 단계에 <b>그릴 것</b></label>
+    <textarea id="pr" class="wrap">${esc(st.prompt)}</textarea>
+    <div class="ko" id="ko-pr"></div>
+    <label for="ng">부정어 (쉼표) — 이 단계에 <b>그리지 말 것</b></label>
+    <textarea id="ng" class="wrap">${esc((st.neg || []).join(', '))}</textarea>
+    <div class="ko" id="ko-ng"></div>
+    <label>구역 x0 · y0 · x1 · y1 — 캔버스 비율(0~1)로 <b>칠할 상자</b></label>
     <div class="grid4">${st.coords.map((c, i) => `<input data-c="${i}" value="${c}" inputmode="decimal">`).join('')}</div>
+    <div class="mut" style="margin-top:var(--s1)">왼쪽 위가 0·0, 오른쪽 아래가 1·1이다. x0&lt;x1 · y0&lt;y1이어야 저장된다.</div>
     <div id="tk" class="mut" style="margin-top:var(--s2)"></div>
     <div class="row" style="margin-top:var(--s3)">
       <button id="save">명세에 저장</button>
-      <button id="one" class="p" ${st.from ? 'disabled' : ''}>1장</button>
-      <button id="three" ${st.from ? 'disabled' : ''}>3장</button>
+      <button id="one" class="p" ${st.from ? 'disabled' : ''}>1장 그리기</button>
+      <button id="three" ${st.from ? 'disabled' : ''}>3장 그리기</button>
+    </div>
+    <div class="mut" style="margin-top:var(--s2)">
+      <b>명세에 저장</b>은 위 셋을 장면 명세에 적기만 한다(그리지 않는다).
+      <b>그리기</b>는 먼저 저장한 뒤 GPU에 한 장 건다 — <b>3장</b>은 시드를 여러 개 써서 고를 수 있게 한다.
+      시드가 하나면 3장은 11·42·7을 쓴다.
     </div></div>`).firstChild;
+  const ko = () => {
+    const kp = el.querySelector('#ko-pr'), kn = el.querySelector('#ko-ng');
+    if (kp) kp.innerHTML = glossPrompt(el.querySelector('#pr').value);
+    if (kn) kn.innerHTML = glossNeg(el.querySelector('#ng').value);
+  };
+  ko();
+  el.querySelector('#pr').addEventListener('input', ko);
+  el.querySelector('#ng').addEventListener('input', ko);
   const tk = el.querySelector('#tk');
   if (S.tokens) tk.innerHTML = S.tokens.ok === false
     ? `<span class="badge">토큰 넘침</span> <span class="wrap">${esc(S.tokens.over.join(' / ') || S.tokens.tail)}</span>`
@@ -217,8 +264,18 @@ function formCard(st) {
     }).catch(() => {});
     return r;
   });
-  const go = (n) => act(() => api(`/scenes/${S.scene.id}/attempts`, { method: 'POST',
-    body: JSON.stringify({ stage: st.id, seeds: n === 1 ? [seeds()[0] ?? S.scene.sceneSeed] : (seeds().length > 1 ? seeds() : [11, 42, 7]) }) }));
+  /* 그리기 전에 반드시 저장한다. 생성기는 **명세 파일**을 읽으므로, 폼만 고치고 그리면
+     화면에 보이는 문구가 아니라 옛 문구로 그려진다. */
+  const go = (n) => act(async () => {
+    await api(`/scenes/${S.scene.id}/stages/${st.id}`, { method: 'PATCH', body: JSON.stringify({
+      prompt: el.querySelector('#pr').value,
+      neg: el.querySelector('#ng').value.split(',').map(s => s.trim()).filter(Boolean),
+      region: [...el.querySelectorAll('[data-c]')].map(i => parseFloat(i.value)),
+    })});
+    return api(`/scenes/${S.scene.id}/attempts`, { method: 'POST',
+      body: JSON.stringify({ stage: st.id, seeds: n === 1 ? [seeds()[0] ?? S.scene.sceneSeed]
+                                                          : (seeds().length > 1 ? seeds() : [11, 42, 7]) }) });
+  });
   el.querySelector('#one').onclick = () => go(1);
   el.querySelector('#three').onclick = () => go(3);
   return el;
@@ -280,5 +337,6 @@ async function poll() {
 }
 setInterval(poll, 3000);
 poll();
+api('/glossary').then(g => { G = g; if (S.scene) draw(); }).catch(() => { G = { frag: {}, neg: {} }; });
 list().catch(fail);
 </script>

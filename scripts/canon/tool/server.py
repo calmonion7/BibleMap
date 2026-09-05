@@ -250,6 +250,10 @@ class H(BaseHTTPRequestHandler):
             return self.send(200, [summary(s) for s in scene_ids()])
         if method == "GET" and p == ["queue"]:
             return self.send(200, queue_state())
+        if method == "GET" and p == ["glossary"]:
+            # 영문 문구·부정어의 한글 뜻. 화면이 한 번 받아 두고 입력할 때마다 옆에 채운다.
+            with open(os.path.join(HERE, "glossary.json"), encoding="utf-8") as fh:
+                return self.send(200, json.load(fh))
         if len(p) >= 2 and p[0] == "scenes":
             scene = p[1]
             if scene not in scene_ids():
