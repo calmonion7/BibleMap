@@ -43,6 +43,10 @@
   .queue{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:#f6f2ea;padding:var(--s2) var(--s3);
          font-size:var(--t-s);max-height:38vh;overflow:auto}
   .queue pre{margin:var(--s1) 0 0;white-space:pre-wrap;overflow-wrap:anywhere;color:#d8d1c4}
+  .queue .row{gap:var(--s2)}
+  .queue button{min-height:36px;padding:0 var(--s3);border:1px solid #6b6459;border-radius:8px;
+                background:transparent;color:#f6f2ea;font:inherit;font-size:var(--t-s)}
+  .queue button:disabled{opacity:.4}
   .err{border-color:var(--warn);background:var(--warn-bg);color:var(--warn)}
   .ko{margin-top:var(--s1);padding:var(--s2);border-radius:8px;background:var(--idle-bg);
       color:var(--ink);font-size:var(--t-s);line-height:1.6;overflow-wrap:anywhere}
@@ -354,6 +358,7 @@ function formCard(st) {
   /* 그리기 전에 반드시 저장한다. 생성기는 **명세 파일**을 읽으므로, 폼만 고치고 그리면
      화면에 보이는 문구가 아니라 옛 문구로 그려진다. */
   const go = (n) => act(async () => {
+    document.getElementById('q').innerHTML = '<div>줄에 넣는 중…</div>';
     await api(`/scenes/${S.scene.id}/stages/${st.id}`, { method: 'PATCH', body: JSON.stringify({
       prompt: el.querySelector('#pr').value,
       neg: el.querySelector('#ng').value.split(',').map(s => s.trim()).filter(Boolean),
@@ -407,7 +412,7 @@ async function act(fn) {
   const btns = [...document.querySelectorAll('button')];
   const was = btns.map(b => b.disabled);
   btns.forEach(b => b.disabled = true);
-  try { await fn(); await reload(); }
+  try { await fn(); await reload(); poll(); }
   // 실패하면 **원래 상태 그대로** 되돌린다. 전부 켜면 「장면 완료」처럼 일부러 꺼 둔 버튼까지
   // 눌려서 두 번째 오류가 난다(폰 실측 2026-09-05).
   catch (e) { fail(e); btns.forEach((b, i) => b.disabled = was[i]); }
@@ -415,18 +420,56 @@ async function act(fn) {
 }
 
 /* ---------- 큐 띠 (3초 폴링) ---------- */
+const WORD = { done: '끝남', failed: '실패', cancelled: '멈춤' };
+
+function drawQueue(q) {
+  const r = q.running, box = document.getElementById('q');
+  box.innerHTML = '';
+  if (r) {
+    const line = $(`<div class="row" style="justify-content:space-between">
+      <span><b>그리는 중</b> ${esc(r.scene.replace('authored-', ''))} · ${esc(r.stage)}
+        · 시드 ${esc(r.seeds.join(','))}</span>
+      <button data-stop="${esc(r.id)}">멈추기</button></div>`).firstChild;
+    line.querySelector('button').onclick = (ev) => cancelJob(ev.currentTarget, { job: r.id });
+    box.append(line);
+  }
+  if (q.pending.length) {
+    const line = $(`<div class="row" style="justify-content:space-between;margin-top:var(--s1)">
+      <span>대기 ${q.pending.length}줄 — 앞의 것이 끝나면 하나씩 돈다</span>
+      <button>대기 비우기</button></div>`).firstChild;
+    line.querySelector('button').onclick = (ev) =>
+      cancelJob(ev.currentTarget, { jobs: q.pending.map(j => j.id) });
+    box.append(line);
+  }
+  if (!r && !q.pending.length) {
+    const last = q.recent[0];
+    box.append($(last
+      ? `<div>${WORD[last.status] || last.status} ${esc(last.stage)}${
+          last.status === 'done' ? '' : `<pre>${esc((last.log || '').slice(-400))}</pre>`}</div>`
+      : '<div>큐 비어 있음</div>').firstChild);
+  }
+}
+
+/* 대기 비우기는 작업마다 한 번씩 부른다 — 서버는 한 건씩 받는다. */
+async function cancelJob(btn, what) {
+  btn.disabled = true;
+  btn.textContent = '멈추는 중…';
+  try {
+    for (const id of (what.jobs || [what.job])) await api('/queue/cancel', {
+      method: 'POST', body: JSON.stringify({ job: id }) });
+  } catch (e) { fail(e); }
+  await poll();
+}
+
 async function poll() {
   try {
     const q = await api('/queue');
-    const r = q.running, box = document.getElementById('q');
-    box.innerHTML = r
-      ? `<b>그리는 중</b> ${esc(r.scene.replace('authored-', ''))} · ${esc(r.stage)} · 시드 ${esc(r.seeds.join(','))}`
-        + (q.pending.length ? ` · 대기 ${q.pending.length}` : '')
-      : q.pending.length ? `대기 ${q.pending.length}줄`
-      : (q.recent[0] ? `${q.recent[0].status === 'failed' ? '실패' : '끝남'} ${esc(q.recent[0].stage)}<pre>${esc((q.recent[0].log || '').slice(-400))}</pre>` : '큐 비어 있음');
-    if (r && S.scene && !S.busy) { /* 그리는 동안은 다시 읽지 않는다 — 폼 입력이 날아간다 */ }
-    if (!r && S.scene && !S.busy && window.__wasRunning) { window.__wasRunning = false; reload().catch(() => {}); }
-    if (r) window.__wasRunning = true;
+    drawQueue(q);
+    if (!q.running && S.scene && !S.busy && window.__wasRunning) {
+      window.__wasRunning = false;
+      reload().catch(() => {});
+    }
+    if (q.running) window.__wasRunning = true;
   } catch (e) { /* 폴링 실패는 조용히 넘긴다 */ }
 }
 setInterval(poll, 3000);

@@ -46,6 +46,64 @@ def wait_up(port, proc, secs=20):
     raise RuntimeError("서버가 20초 안에 뜨지 않았다")
 
 
+def call(port, path, body=None):
+    import urllib.error, urllib.request
+    r = urllib.request.Request(f"http://127.0.0.1:{port}/api{path}", method="POST" if body else "GET",
+                               data=json.dumps(body).encode() if body else None,
+                               headers={"Content-Type": "application/json"})
+    try:
+        return json.load(urllib.request.urlopen(r)), 200
+    except urllib.error.HTTPError as e:
+        return json.load(e), e.code
+
+
+def check_queue(port):
+    """같은 시드는 같은 그림이다 — 두 번째 요청은 막히고, 줄에 선 것은 뺄 수 있어야 한다."""
+    bad = []
+    _, c1 = call(port, f"/scenes/{SCENE}/attempts", {"stage": "S2", "seeds": [11]})
+    if c1 != 200:
+        bad.append(f"첫 시도 등록이 실패했다({c1})")
+    dup, c2 = call(port, f"/scenes/{SCENE}/attempts", {"stage": "S2", "seeds": [11]})
+    if c2 == 200:
+        bad.append("같은 단계·같은 시드가 두 번 줄에 섰다 — 중복 차단이 안 먹는다")
+    elif "같은 시드는 같은 그림" not in (dup.get("error") or ""):
+        bad.append(f"중복 차단 문구가 다르다: {dup.get('error')!r}")
+
+    # 다른 시드는 줄을 서고, 그것을 뺄 수 있어야 한다
+    q2, _ = call(port, f"/scenes/{SCENE}/attempts", {"stage": "S2", "seeds": [42]})
+    q, _ = call(port, "/queue")
+    pend = [j["id"] for j in q["pending"]]
+    if not pend:
+        bad.append("두 번째 시드가 줄에 서지 않았다")
+    else:
+        call(port, "/queue/cancel", {"job": pend[0]})
+        q, _ = call(port, "/queue")
+        if any(j["id"] == pend[0] for j in q["pending"]):
+            bad.append("대기 취소가 먹지 않았다")
+
+    # 도는 것 멈추기
+    q, _ = call(port, "/queue")
+    if q["running"]:
+        rid = q["running"]["id"]
+        t0 = time.time()
+        call(port, "/queue/cancel", {"job": rid})
+        for _ in range(80):
+            q, _ = call(port, "/queue")
+            if not q["running"]:
+                break
+            time.sleep(0.1)
+        else:
+            bad.append("도는 작업이 멈추지 않았다")
+        # **끝난 것과 멈춘 것을 구별한다.** 그냥 기다렸다가 끝난 것을 「멈췄다」로 세면
+        # 취소가 없어도 이 검사는 통과한다.
+        done = next((j for j in q["recent"] if j["id"] == rid), None)
+        if not done or done["status"] != "cancelled":
+            bad.append(f"도는 작업이 취소로 기록되지 않았다: {done and done['status']}")
+        if time.time() - t0 > 1.2:
+            bad.append(f"취소가 곧바로 듣지 않았다({time.time() - t0:.1f}s)")
+    return bad
+
+
 def open_scene(pg, title):
     pg.locator(".card", has_text=title).get_by_role("button", name="열기").click()
 
@@ -66,7 +124,8 @@ def main():
     port = free_port()
     env = {**os.environ, "SCENE_TOOL_DEV": "1", "SCENE_TOOL_FAKE_GEN": "1",
            "SCENE_TOOL_SCENES_DIR": scenes, "SCENE_TOOL_ATTEMPTS_DIR": attempts,
-           "SCENE_TOOL_PORT": str(port), "SCENE_TOOL_USERS": ""}
+           "SCENE_TOOL_PORT": str(port), "SCENE_TOOL_USERS": "",
+           "SCENE_TOOL_FAKE_DELAY": "1.5"}   # 취소를 잴 수 있게 가짜 실행기를 늦춘다
     proc = subprocess.Popen([sys.executable, os.path.join(HERE, "server.py")], env=env,
                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
     fails = []
@@ -183,6 +242,9 @@ def main():
                 fails.append("시도 없는 장면에서 오류 카드가 떴다: "
                              + pg.locator(".card.err").first.inner_text()[:120])
             b.close()
+
+        # 7) 큐 — 같은 시드 중복 차단 · 대기 취소 · 도는 것 멈추기 (브라우저 없이 API로)
+        fails += check_queue(port)
     finally:
         proc.terminate()
         try:

@@ -47,6 +47,7 @@ PORT = int(os.environ.get("SCENE_TOOL_PORT", "8100"))
 USERS = [e.strip() for e in os.environ.get("SCENE_TOOL_USERS", "").split(",") if e.strip()]
 DEV = os.environ.get("SCENE_TOOL_DEV") == "1"
 FAKE = os.environ.get("SCENE_TOOL_FAKE_GEN") == "1"
+FAKE_DELAY = float(os.environ.get("SCENE_TOOL_FAKE_DELAY", "0"))   # 스모크가 취소를 재려고 쓴다
 VENV = os.environ.get("SCENE_TOOL_VENV", "/Users/calmonion/.local/biblemap-imggen/.venv314/bin/python")
 BIND = os.environ.get("SCENE_TOOL_BIND", "127.0.0.1")
 TOKEN = os.environ.get("SCENE_TOOL_TOKEN", "")
@@ -63,6 +64,9 @@ IMG_ROOT = os.path.join(REPO, ".forge", "reports")
 Q = queue.Queue()
 JOBS = []               # 최근 것이 앞. {id, scene, stage, seeds, status, log, at}
 JOBS_LOCK = threading.Lock()
+CUR = {"proc": None}    # 진행 중 생성 프로세스 — 취소하려면 이것을 잡고 있어야 한다
+CUR_LOCK = threading.Lock()
+LIVE = ("queued", "running")
 
 
 # ---------- 데이터 ----------
@@ -119,12 +123,12 @@ def queue_state():
         jobs = [dict(j) for j in JOBS[:12]]
     return {"running": next((j for j in jobs if j["status"] == "running"), None),
             "pending": [j for j in jobs if j["status"] == "queued"],
-            "recent": [j for j in jobs if j["status"] in ("done", "failed")][:5]}
+            "recent": [j for j in jobs if j["status"] in ("done", "failed", "cancelled")][:5]}
 
 
 # ---------- 워커 (한 번에 하나) ----------
 
-def fake_attempt(scene, stage_id, seeds):
+def fake_attempt(scene, stage_id, seeds, job=None):
     """GPU 없이 곁파일 규약대로 자리표시 PNG를 남긴다 — 1/2 스키마 그대로."""
     from PIL import Image, ImageDraw
     spec = ap.load_spec(scene)
@@ -138,6 +142,12 @@ def fake_attempt(scene, stage_id, seeds):
     os.makedirs(out_dir, exist_ok=True)
     images = {}
     for seed in seeds:
+        waited = 0.0
+        while waited < FAKE_DELAY:                  # 잠자는 동안에도 취소를 받는다(실제 경로는 프로세스를 죽인다)
+            if job and job.get("killed"):
+                raise RuntimeError("사람이 멈췄다")
+            time.sleep(0.05)
+            waited += 0.05
         img = Image.new("RGB", (640, 360), (238, 232, 220))
         ImageDraw.Draw(img).text((14, 14), f"{scene}\n{stage_id} · {aid} · s{seed}", fill=(40, 40, 40))
         p = os.path.join(out_dir, f"t{seed}-{stage_id}-s{seed}.png")
@@ -154,13 +164,22 @@ def fake_attempt(scene, stage_id, seeds):
     return f"가짜 실행기 · {aid} · {len(seeds)}장"
 
 
-def real_attempt(scene, stage_id, seeds):
+def real_attempt(scene, stage_id, seeds, job=None):   # job은 취소 표시용 — 실제로는 프로세스를 죽인다
     cmd = [VENV, "attempt.py", "--scene", scene, "--stage", stage_id,
            "--seeds", ",".join(str(s) for s in seeds)]
-    r = subprocess.run(cmd, cwd=CANON, capture_output=True, text=True)
-    tail = "\n".join((r.stdout + r.stderr).strip().splitlines()[-12:])
-    if r.returncode != 0:
-        raise RuntimeError(tail or f"종료코드 {r.returncode}")
+    # `subprocess.run`이 아니라 Popen이다 — 취소하려면 도는 동안 손잡이를 들고 있어야 한다.
+    proc = subprocess.Popen(cmd, cwd=CANON, stdout=subprocess.PIPE,
+                            stderr=subprocess.STDOUT, text=True)
+    with CUR_LOCK:
+        CUR["proc"] = proc
+    try:
+        out, _ = proc.communicate()
+    finally:
+        with CUR_LOCK:
+            CUR["proc"] = None
+    tail = "\n".join((out or "").strip().splitlines()[-12:])
+    if proc.returncode != 0:
+        raise RuntimeError(tail or f"종료코드 {proc.returncode}")
     return tail
 
 
@@ -168,15 +187,19 @@ def worker():
     while True:
         job = Q.get()
         with JOBS_LOCK:
+            if job["status"] == "cancelled":        # 줄에서 기다리다 취소된 것 — 그리지 않는다
+                Q.task_done()
+                continue
             job["status"] = "running"
         try:
-            job["log"] = (fake_attempt if FAKE else real_attempt)(job["scene"], job["stage"], job["seeds"])
+            job["log"] = (fake_attempt if FAKE else real_attempt)(
+                job["scene"], job["stage"], job["seeds"], job)
             with JOBS_LOCK:
-                job["status"] = "done"
+                job["status"] = "cancelled" if job.get("killed") else "done"
         except Exception as e:                      # noqa: BLE001 — 어떤 실패든 큐는 계속 돈다
             with JOBS_LOCK:
-                job["status"] = "failed"
-                job["log"] = str(e)[-2000:]
+                job["status"] = "cancelled" if job.get("killed") else "failed"
+                job["log"] = "사람이 멈췄다" if job.get("killed") else str(e)[-2000:]
         Q.task_done()
 
 
@@ -256,6 +279,8 @@ class H(BaseHTTPRequestHandler):
             return self.send(200, [summary(s) for s in scene_ids()])
         if method == "GET" and p == ["queue"]:
             return self.send(200, queue_state())
+        if method == "POST" and p == ["queue", "cancel"]:
+            return self.cancel()
         if method == "GET" and p == ["glossary"]:
             # 영문 문구·부정어의 한글 뜻. 화면이 한 번 받아 두고 입력할 때마다 옆에 채운다.
             with open(os.path.join(HERE, "glossary.json"), encoding="utf-8") as fh:
@@ -285,6 +310,27 @@ class H(BaseHTTPRequestHandler):
             raise FileNotFoundError(rel)
         self.send(200, open(full, "rb").read(), mimetypes.guess_type(full)[0] or "application/octet-stream")
 
+    def cancel(self):
+        """줄에서 기다리는 작업은 표시만 하고, 도는 작업은 프로세스를 멈춘다."""
+        b = self.body()
+        want, killed = b.get("job"), []
+        with JOBS_LOCK:
+            targets = [j for j in JOBS if j["status"] in LIVE
+                       and (b.get("all") or j["id"] == want)]
+            for j in targets:
+                if j["status"] == "queued":
+                    j["status"] = "cancelled"
+                    j["log"] = "줄에서 뺐다"
+                else:
+                    j["killed"] = True              # 워커가 이 표시를 보고 실패가 아니라 취소로 적는다
+                killed.append(j["id"])
+            running = any(j["status"] == "running" for j in targets)
+        if running:
+            with CUR_LOCK:
+                if CUR["proc"] and CUR["proc"].poll() is None:
+                    CUR["proc"].terminate()
+        self.send(200, {"cancelled": killed, "queue": queue_state()})
+
     def enqueue(self, scene):
         b = self.body()
         stage = b.get("stage")
@@ -301,6 +347,14 @@ class H(BaseHTTPRequestHandler):
             raise ValueError(f"단계 {stage}가 명세에 없다")
         if "from" in st:
             raise ValueError(f"단계 {stage}는 `from: {st['from']}`이라 재개로 그릴 수 없다")
+        # 같은 캔버스에 같은 시드는 **같은 그림**이다(결정적). 연달아 눌러 같은 것을 여러 장
+        # 그리는 일을 여기서 막는다 — 실측 2026-09-05: 1초 안에 넉 장이 줄을 섰고 전부 픽셀 동일이었다.
+        with JOBS_LOCK:
+            dup = next((j for j in JOBS if j["status"] in LIVE and j["scene"] == scene
+                        and j["stage"] == stage and j["seeds"] == seeds), None)
+        if dup:
+            raise ValueError(f"같은 단계·같은 시드가 이미 {'도는 중' if dup['status'] == 'running' else '줄에'} 있다 "
+                             f"— 같은 시드는 같은 그림이다. 다른 그림을 보려면 시드를 바꿔라")
         job = {"id": f"j{int(time.time() * 1000)}", "scene": scene, "stage": stage,
                "seeds": seeds, "status": "queued", "log": "",
                "at": datetime.datetime.now().astimezone().isoformat(timespec="seconds")}
