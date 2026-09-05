@@ -105,6 +105,7 @@ def detail(scene):
                        "upstream": a.get("upstream")}
                       for a in by_stage.get(r["id"], [])]
     return {"id": scene, "title": spec.get("title", scene),
+            "canvas": {"w": params.SCENE_SIZE[0], "h": params.SCENE_SIZE[1]},
             "verses": spec.get("verses"), "moment": spec.get("moment"),
             "background": spec.get("background", []), "crowds": spec.get("crowds", []),
             "figures": spec.get("figures", []),

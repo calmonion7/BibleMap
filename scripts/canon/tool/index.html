@@ -49,6 +49,16 @@
   .ko:empty{display:none}
   .ko .sep{color:var(--mut)}
   .ko .unk{color:var(--warn);font-weight:600}
+  /* 구역 고르개 — 손가락으로 끌어 상자를 그린다. touch-action:none 이라야 끌 때 화면이 안 밀린다. */
+  .pick{position:relative;width:100%;border:1px solid var(--line);border-radius:8px;overflow:hidden;
+        background:#f7f0e2;touch-action:none;cursor:crosshair;user-select:none;-webkit-user-select:none}
+  .pick img{display:block;width:100%;height:auto;pointer-events:none}
+  .pick .blank{width:100%;height:100%}
+  .pick .box{position:absolute;border:2px solid var(--ok);background:rgba(31,92,61,.16);
+             box-shadow:0 0 0 9999px rgba(30,27,22,.28);pointer-events:none}
+  .pick .hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;
+              background:rgba(30,27,22,.72);color:#f6f2ea;font-size:var(--t-s);padding:var(--s1) var(--s2);
+              border-radius:6px}
   ul{padding-left:1.1em;margin:var(--s1) 0}
 </style>
 
@@ -214,6 +224,77 @@ function triesCard(st) {
   return el;
 }
 
+/* 같은 구역 이름을 쓰는 다른 단계 — 좌표를 고치면 함께 움직인다. */
+function shared(st) {
+  const o = S.scene.stages.filter(x => x.id !== st.id && x.region === st.region && x.status !== '건너뜀');
+  return o.length ? o.map(x => x.id).join('·') : null;
+}
+
+/* 이 단계가 **얹힐** 캔버스 — 직전 비건너뜀 단계의 승인본. 없으면 빈 종이(첫 단계)다. */
+function backdropFor(st) {
+  const live = S.scene.stages.filter(x => x.status !== '건너뜀');
+  for (let j = live.findIndex(x => x.id === st.id) - 1; j >= 0; j--) {
+    const ap = live[j].approved;
+    if (!ap) continue;
+    const t = live[j].tries.find(x => x.id === ap.attempt);
+    const im = t && t.images[String(ap.seed)];
+    if (im && im.canvas) return im.canvas;
+  }
+  return null;
+}
+
+/* 그림 위에서 사각형을 끌면 구역 좌표가 채워진다. 숫자 칸은 미세 조정용으로 남긴다. */
+function regionPicker(st, inputs, onChange) {
+  const bg = backdropFor(st);
+  const ar = `${S.scene.canvas.w} / ${S.scene.canvas.h}`;
+  const el = $(`<div class="pick" style="aspect-ratio:${ar}">
+      ${bg ? `<img alt="이 단계가 얹힐 캔버스" src="${img(bg)}">` : '<div class="blank"></div>'}
+      <div class="box" hidden></div>
+      ${bg ? '' : '<div class="hint">앞 단계 승인본이 없다 — 빈 종이 기준으로 고른다</div>'}
+    </div>`).firstChild;
+  const box = el.querySelector('.box');
+  const read = () => inputs.map(i => parseFloat(i.value));
+  const paint = () => {
+    const [x0, y0, x1, y1] = read();
+    if (![x0, y0, x1, y1].every(Number.isFinite) || x1 <= x0 || y1 <= y0) { box.hidden = true; return; }
+    box.hidden = false;
+    box.style.left = `${x0 * 100}%`; box.style.top = `${y0 * 100}%`;
+    box.style.width = `${(x1 - x0) * 100}%`; box.style.height = `${(y1 - y0) * 100}%`;
+  };
+  const at = (ev) => {
+    const r = el.getBoundingClientRect();
+    return [Math.min(1, Math.max(0, (ev.clientX - r.left) / r.width)),
+            Math.min(1, Math.max(0, (ev.clientY - r.top) / r.height))];
+  };
+  let start = null;
+  el.addEventListener('pointerdown', (ev) => {
+    start = at(ev); el.setPointerCapture(ev.pointerId); ev.preventDefault();
+  });
+  el.addEventListener('pointermove', (ev) => {
+    if (!start) return;
+    const [x, y] = at(ev);
+    const v = [Math.min(start[0], x), Math.min(start[1], y), Math.max(start[0], x), Math.max(start[1], y)];
+    v.forEach((n, i) => inputs[i].value = n.toFixed(3));
+    paint();
+  });
+  const end = (ev) => {
+    if (!start) return;
+    const [x, y] = at(ev);
+    // 살짝 누른 것은 상자를 그리려던 게 아니다 — 원래 값으로 되돌린다(실수로 구역이 사라지지 않게).
+    if (Math.abs(x - start[0]) < 0.02 || Math.abs(y - start[1]) < 0.02) {
+      st.coords.forEach((c, i) => inputs[i].value = c);
+      paint();
+    }
+    start = null;
+    onChange();
+  };
+  el.addEventListener('pointerup', end);
+  el.addEventListener('pointercancel', end);
+  inputs.forEach(i => i.addEventListener('input', paint));
+  paint();
+  return el;
+}
+
 function formCard(st) {
   const el = $(`<div class="card"><h2>다시 그리기</h2>
     <label for="sd">시드 (쉼표)</label><input id="sd" value="${esc(S.scene.sceneSeed)}" inputmode="numeric">
@@ -223,9 +304,12 @@ function formCard(st) {
     <label for="ng">부정어 (쉼표) — 이 단계에 <b>그리지 말 것</b></label>
     <textarea id="ng" class="wrap">${esc((st.neg || []).join(', '))}</textarea>
     <div class="ko" id="ko-ng"></div>
-    <label>구역 x0 · y0 · x1 · y1 — 캔버스 비율(0~1)로 <b>칠할 상자</b></label>
+    <label>구역 — 그림 위에서 <b>사각형을 끌어</b> 고른다 <span class="mut">(${esc(st.region)})</span></label>
+    <div id="pickslot"></div>
+    <div class="mut" style="margin-top:var(--s1)">칠할 자리를 손가락이나 마우스로 끈다. 살짝 누르면 없던 일이 된다.
+      ${shared(st) ? `<b>이 구역 이름을 ${esc(shared(st))}도 같이 쓴다 — 고치면 함께 움직인다.</b>` : ''}</div>
+    <label>미세 조정 — x0 · y0 · x1 · y1 (0~1)</label>
     <div class="grid4">${st.coords.map((c, i) => `<input data-c="${i}" value="${c}" inputmode="decimal">`).join('')}</div>
-    <div class="mut" style="margin-top:var(--s1)">왼쪽 위가 0·0, 오른쪽 아래가 1·1이다. x0&lt;x1 · y0&lt;y1이어야 저장된다.</div>
     <div id="tk" class="mut" style="margin-top:var(--s2)"></div>
     <div class="row" style="margin-top:var(--s3)">
       <button id="save">명세에 저장</button>
@@ -245,6 +329,8 @@ function formCard(st) {
   ko();
   el.querySelector('#pr').addEventListener('input', ko);
   el.querySelector('#ng').addEventListener('input', ko);
+  const coordInputs = [...el.querySelectorAll('[data-c]')];
+  el.querySelector('#pickslot').append(regionPicker(st, coordInputs, () => {}));
   const tk = el.querySelector('#tk');
   if (S.tokens) tk.innerHTML = S.tokens.ok === false
     ? `<span class="badge">토큰 넘침</span> <span class="wrap">${esc(S.tokens.over.join(' / ') || S.tokens.tail)}</span>`

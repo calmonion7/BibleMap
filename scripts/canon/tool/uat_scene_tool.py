@@ -109,6 +109,22 @@ def main():
             pg.wait_for_selector("button.chip.s-승인:has-text('S1')", timeout=10000)
             pg.screenshot(path=os.path.join(SHOTS, "2-approved.png"), full_page=True)
 
+            # 4b) 구역 고르개 — 그림 위에서 끌면 좌표 넷이 채워진다
+            pg.locator(".pick").scroll_into_view_if_needed()
+            pg.wait_for_timeout(300)
+            r = pg.locator(".pick").bounding_box()
+            pg.mouse.move(r["x"] + r["width"] * 0.25, r["y"] + r["height"] * 0.20)
+            pg.mouse.down()
+            pg.mouse.move(r["x"] + r["width"] * 0.60, r["y"] + r["height"] * 0.75, steps=8)
+            pg.mouse.up()
+            pg.wait_for_timeout(300)
+            got = [float(pg.input_value(f'[data-c="{i}"]')) for i in range(4)]
+            want = [0.25, 0.20, 0.60, 0.75]
+            if any(abs(g - w) > 0.03 for g, w in zip(got, want)):
+                fails.append(f"구역 고르개가 끌기를 좌표로 옮기지 못했다: {got} (기대 {want})")
+            if pg.locator(".pick .box").is_hidden():
+                fails.append("고른 구역 상자가 그림 위에 안 보인다")
+
             # 5) S1 문구 저장 → S1과 아래가 「재검토」
             pg.click("button.chip:has-text('S1')")
             pg.fill("#pr", "a wide dry open field, sparse dry grass, CHANGED BY UAT.")
