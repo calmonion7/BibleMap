@@ -108,6 +108,7 @@ def detail(scene):
         r["neg"] = st.get("neg", [])
         r["coords"] = spec["regions"][st["region"]]
         r["from"] = st.get("from")
+        r["verse"] = st.get("verse")
         r["tries"] = [{"id": a["id"], "seeds": a["seeds"], "prompt": a["prompt"],
                        "neg": a.get("neg", []), "region": a.get("region"),
                        "tokens": a.get("tokens"), "seconds": a.get("seconds"),

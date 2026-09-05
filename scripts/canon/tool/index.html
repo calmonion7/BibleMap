@@ -87,6 +87,9 @@ const esc = (s) => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&l
 let S = { scene: null, stage: null, tokens: null, busy: false };
 let G = null;   // 한글 용어집 — 한 번 받아 둔다
 const autoTried = new Set();   // 자동 번역을 한 번 시도한 문구 — 실패해도 되풀이하지 않는다
+/* 단계 종류(kind)의 뜻 — gen_scripture_scene.py 머리 주석과 같은 말 */
+const KIND_KO = { full: '캔버스 통째', region: '구역 상자 안', ridge: '하늘선 띠', plate: '판에 그려 오려 붙임',
+                  refine: '있는 것을 다듬음', prop: '손 근처 지물 띠' };
 
 /* 영문 문구/부정어 → 한글 뜻. 용어집에 없으면 영문을 그대로 두고 물음표를 붙인다
    (새로 쓴 문구라는 표시다 — 조용히 감추면 번역이 있는지 없는지 알 수 없다). */
@@ -190,7 +193,11 @@ function stageChips() {
 }
 
 function triesCard(st) {
+  const book = (S.scene.verses?.range || '').split(' ')[0];
   const el = $(`<div class="card"><h2>${esc(st.id)} 시도</h2>
+    <div class="mut wrap">${[st.verse ? `${book} ${st.verse}` : '', KIND_KO[st.kind] || st.kind, `구역 ${st.region}`]
+      .filter(Boolean).map(esc).join(' · ')}</div>
+    <div class="ko" id="ko-stage">${glossPrompt(st.prompt || '')}</div>
     ${st.why.length ? `<div class="badge">재검토</div><ul>${st.why.map(w => `<li class="wrap">${esc(w)}</li>`).join('')}</ul>` : ''}
     ${st.from ? `<div class="mut wrap">이 단계는 <code>from: ${esc(st.from)}</code>라 재개로 그릴 수 없다.</div>` : ''}
     <div id="tries"></div></div>`).firstChild;
@@ -335,6 +342,8 @@ function formCard(st) {
     const kp = el.querySelector('#ko-pr'), kn = el.querySelector('#ko-ng');
     if (kp) kp.innerHTML = glossPrompt(el.querySelector('#pr').value);
     if (kn) kn.innerHTML = glossNeg(el.querySelector('#ng').value);
+    const ks = document.querySelector('#ko-stage');   // 시도 카드 머리의 「그리는 것」 — 같은 낱말이라 함께 풀린다
+    if (ks) ks.innerHTML = glossPrompt(st.prompt || '');
     const fill = el.querySelector('#fill');
     if (fill) fill.hidden = !el.querySelectorAll('.ko .unk').length;   // 모르는 것이 있을 때만 보인다
   };
