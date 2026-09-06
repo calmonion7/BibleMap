@@ -92,7 +92,7 @@ class Stale(unittest.TestCase):
         sp["stages"][3]["prompt"] = "고친 문구"
         bad = ss.stale(sp, at)
         self.assertEqual([k for k in bad if k.startswith("S")], ["S4", "S5"])
-        self.assertIn("문구가 승인 시점과 다르다", bad["S4"])
+        self.assertIn("이 그림을 그린 문구가 지금 명세와 다르다", bad["S4"])
         self.assertIn("final", bad)
 
     def test_s1_region_edit_cascades(self):
@@ -100,7 +100,7 @@ class Stale(unittest.TestCase):
         sp["regions"]["full"] = [0.0, 0.05, 1.0, 1.0]
         bad = ss.stale(sp, at)
         self.assertEqual([k for k in bad if k.startswith("S")], ["S1", "S2", "S3", "S4", "S5"])
-        self.assertIn("구역 좌표가 승인 시점과 다르다", bad["S1"])
+        self.assertIn("이 그림을 그린 구역 좌표가 지금 명세와 다르다", bad["S1"])
 
     def test_description_edit_stales_everything(self):
         sp, at = approved(spec())

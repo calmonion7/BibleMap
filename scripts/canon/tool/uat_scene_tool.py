@@ -316,6 +316,18 @@ def main():
             if pg.evaluate("document.documentElement.scrollWidth > document.documentElement.clientWidth"):
                 fails.append("장면 화면에 가로 스크롤이 생겼다")
 
+            # 5b) 되돌리기 — 승인한 그림이 기준이다. 그 그림이 그려진 문구·부정어·좌표로 명세를 되돌리면
+            #     S1의 재검토가 풀린다(아래 단계는 얹힌 승인이 달라 그대로 재검토일 수 있다).
+            ap1 = next(s for s in json.load(open(os.path.join(scenes, f"{SCENE}.json")))["stages"]
+                       if s["id"] == "S1")["approved"]
+            restore = pg.locator(f'button[data-restore="{ap1["attempt"]}-{ap1["seed"]}"]')
+            if restore.is_disabled():
+                fails.append("명세가 바뀌었는데 승인된 장의 「이 문구로 되돌리기」가 꺼져 있다")
+            restore.click()
+            pg.wait_for_selector("button.chip.s-승인:has-text('S1')", timeout=20000)
+            if not pg.locator(f'button[data-restore="{ap1["attempt"]}-{ap1["seed"]}"]').is_disabled():
+                fails.append("되돌린 뒤에도 승인된 장의 「이 문구로 되돌리기」가 켜져 있다")
+
             # 6) **시도가 하나도 없는 장면.** 곁파일이 없어 `sceneSeed`가 비어 있고, 승인이 없어
             #    「장면 완료」가 꺼져 있다. 폰 실측에서 여기가 깨졌다(시드 null → 500 → 모든 버튼이
             #    되살아나 완료가 눌림 → null 참조). 목록으로 돌아가 처음부터 밟는다.

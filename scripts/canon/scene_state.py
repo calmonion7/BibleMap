@@ -84,11 +84,11 @@ def stale(spec, attempts):
             why.append(f"승인이 가리키는 시도 {ap['attempt']}가 곁파일에 없다")
         else:
             if a.get("prompt") != st.get("prompt"):
-                why.append("문구가 승인 시점과 다르다")
+                why.append("이 그림을 그린 문구가 지금 명세와 다르다")
             if list(a.get("neg") or []) != list(st.get("neg") or []):
-                why.append("부정어가 승인 시점과 다르다")
+                why.append("이 그림을 그린 부정어가 지금 명세와 다르다")
             if _coords(a.get("region")) != _coords(spec["regions"][st["region"]]):
-                why.append("구역 좌표가 승인 시점과 다르다")
+                why.append("이 그림을 그린 구역 좌표가 지금 명세와 다르다")
             if _up(a.get("upstream")) != prev:
                 why.append("앞 단계의 지금 승인이 이 시도가 얹힌 것과 다르다")
         why += [f"사다리 {k}가 승인 시점과 다르다" for k in bad_ladder]
