@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: fbd547d83d9d6926216cfde1eae4892ced839083
-mapped: 2026-09-02
+last_mapped_commit: 924f501dc41ba3f6602b5cb0ebeb3831834400a1
+mapped: 2026-10-10
 ---
 
 # ARCHITECTURE
@@ -236,9 +236,9 @@ mapped: 2026-09-02
 
 단계 구조는 다섯이고, 각 단계의 정본이 다른 파일에 산다.
 
-1. **장면 명세** — `scripts/canon/notes/*.md`(대문자 판단 문서 20개). 현행 정본은 `notes/SCENE-1SAM17.md`(요소마다 출처 절을 단 사무엘상 17장 명세 + 요구 항목 10개 체크리스트)이고, 프롬프트 작성 규칙 실측은 `notes/PROMPTING.md`다.
+1. **장면 명세** — `scripts/canon/notes/*.md`(대문자 판단 문서 22개). 현행 정본은 `notes/SCENE-1SAM17.md`(요소마다 출처 절을 단 사무엘상 17장 명세 + 요구 항목 10개 체크리스트)이고, 프롬프트 작성 규칙 실측은 `notes/PROMPTING.md`다.
 2. **프롬프트 파생** — `derive_prompts.py`가 손으로 쓰지 않고 파생한다: `frontend/src/sketches/cast/*.jsx`의 `export const AXES`를 정규식으로 읽어 영문 어휘로 매핑하고, 나이는 `data/person_events/<slug>.json`의 `sortKey`(출생 대비)에서 계산한다. 산출은 `notes/prompts.json`(생성기들이 읽는다).
-3. **생성** — `gen_*.py`(21개). 현행 정본 경로는 `gen_scripture_scene.py`: **콘티(ControlNet) 없이** 본문 파생 서술을 여덟 단계(`S1`·`S1b`·`S1c`·`S2a`·`S2b`·`S3`·`S4`·`S5`)로 인페인팅한다. 단계화의 이유가 기계적이다 — CLIP 창이 77토큰이고 **단계마다 예산이 새로 생기므로** 74 → 합계 444가 된다. 마스크 원천은 이 파일의 `REGIONS`(canvas 분율 상자) 한 곳이고, 인물 단계(`PLATE_STAGES` = `S3`·`S4`·`S5`)는 장면 안에서 그리지 않고 **민 종이 위에 단독으로 그려 종이색 기준으로 오려 붙인다**(판 합성 — 그 대가인 접지는 발 주변 띠만 다듬어 갚는다).
+3. **생성** — `gen_*.py`(22개). 현행 정본 경로는 `gen_scripture_scene.py`: **콘티(ControlNet) 없이** 본문 파생 서술을 여덟 단계(`S1`·`S1b`·`S1c`·`S2a`·`S2b`·`S3`·`S4`·`S5`)로 인페인팅한다. 단계화의 이유가 기계적이다 — CLIP 창이 77토큰이고 **단계마다 예산이 새로 생기므로** 74 → 합계 444가 된다. 마스크 원천은 이 파일의 `REGIONS`(canvas 분율 상자) 한 곳이고, 인물 단계(`PLATE_STAGES` = `S3`·`S4`·`S5`)는 장면 안에서 그리지 않고 **민 종이 위에 단독으로 그려 종이색 기준으로 오려 붙인다**(판 합성 — 그 대가인 접지는 발 주변 띠만 다듬어 갚는다).
 4. **판정** — `judge_*.py`(8개). 현행 정본은 `judge_scene.py`(축 C1 골짜기·C2 군대·C3 이음매·C4 화풍·C5 인물, 다섯 축 통과 시 종료코드 0). **판정자는 생성자를 import하지 않는다** — 하면 `torch`·`diffusers`가 딸려 와 GPU 없이 못 돌기 때문에 `REGIONS` 좌표만 복제하고 `--check`로 대조한다. 콘티를 버리며 파생원을 잃은 축 C·D·G(`judge_s1.py`·`judge_final.py`)는 이 새 판정자로 대체됐고, 화풍 축만 `judge_style.style_metrics`로 살아남았다.
 5. **노트 갱신** — 판정 결과가 `notes/s0-baseline.json`·`notes/s1-baseline.json`·`notes/final-verdict-*.json`(37개 meta json)으로 못박히고, 교훈은 다시 1의 `.md`로 돌아간다.
 
@@ -251,6 +251,21 @@ mapped: 2026-09-02
 **재현은 아직 닫히지 않았다** — `scripts/canon/requirements.txt` 머리 주석이 미결 3축을 미결로 적어 둔다: 모델 리비전 미고정(허브 저장소 이름일 뿐), MPS 결정성 미보장, 재현 미실측. `params.IMAGE_ENCODER`만 스냅샷 해시가 박혀 있는데 그건 이 머신 로컬 캐시의 절대경로라 다른 머신에서 성립하지 않는다.
 
 프롬프트를 손볼 때의 연습대는 `try_prompt.py`다 — `--check`는 GPU·모델 로드 없이 토큰만 재고(77토큰을 넘으면 **에러 없이 잘려** 뒤의 화풍 블록이 통째로 사라지는 것이 이 도구의 존재 이유), 인자 없이 부르면 한 장을 뽑아 세 축 수치를 함께 낸다. 임계는 이 도구가 정하지 않고 `notes/s0-baseline.json`에서 읽는다.
+
+### 장면 명세 파이프라인과 승인 도구 (ADR `260905-104910`)
+
+명세 정본이 `notes/*.md`에서 기계 판독 가능한 `scripts/canon/scenes/<id>.json`(37개, 다윗 투어 장면 등)으로 옮겨 왔다. 인물 어휘 정본은 `scripts/canon/cast/<id>.json`(CAST.md 포함 30개), 동결 얼굴은 `frozen/`. 흐름은 다음과 같다.
+
+- **명세 → 프롬프트**: `derive_scene.py`가 한국어 명세에서 단계별 영문 프롬프트·구역 상자·단계 순서·인물 목록을 파생한다. **생성기(`gen_scripture_scene.py`)와 판정자(`judge_scene.py`)가 둘 다 여기서 읽는다**(ADR `260904-070504` — 자와 그림이 한 파일에서 갈린다). `check_scenes.py`가 `scenes/*.json`을 GPU 0으로 기계 검사한다(필수 필드·인용 절 존재·`figures[].prop` 1개·`figures[].cast` 존재).
+- **인물 판**: `gen_cast_plate.py`가 빈 종이 위 단독 판 시트(얼굴 동결 후보 + 앵커 끔/켬 몽타주)를 뽑고, `approve_cast.py`가 사람의 선택을 `cast/<id>.json`에 옮겨 적는다(ADR `260904-055320`).
+- **검토 산출물(GPU 0)**: `make_scene_table.py`(`notes/SCENES-DAVID-TOUR.md`의 검토 표 재생성), `make_scene_montage.py`·`make_inscene_montage.py`(판 합성 대 장면 안 인페인팅 몽타주 + 기계 판정 표).
+- **승인 상태 기계**: `scene_state.py`(순수 함수, torch·파일 접근 없음, `test_scene_state.py`가 단위 테스트). 사다리 ①`verses` ②`description` ③`split`의 해시(`sha256` 앞 12자)와 단계별 승인을 비교해 [[재검토]]를 계산하며 앞 단계가 재검토면 아래로 전파한다.
+- **시도 실행기·승인 기록기**: `attempt.py`가 승인된 앞 단계 캔버스 위에서 한 단계를 그리고 곁파일 `scripts/canon/attempts/<scene-id>.json`에 입력 스냅샷(문구·부정어·구역·`upstream`·이미지 경로)을 적는다(`scenes/`에 두면 `check_scenes.py`가 명세로 오독하므로 분리). `approve.py`가 선택을 **명세 안**에 적는다 — 승인은 명세가, 이력은 곁파일이 진다.
+- **로컬 웹 도구**: `scripts/canon/tool/server.py`(표준 라이브러리 HTTP 서버, `127.0.0.1:8100`, 단일 페이지 `tool/index.html`). 외부 접근은 Cloudflare Access 헤더(`SCENE_TOOL_USERS`)로 인증, `SCENE_TOOL_DEV`·`SCENE_TOOL_FAKE_GEN`·`SCENE_TOOL_SCENES_DIR`·`SCENE_TOOL_ATTEMPTS_DIR` 환경변수로 스모크 격리. GPU 작업은 `attempt.py`를 venv 파이썬 서브프로세스로 부른다. 보조 모듈: `tool/compose.py`(한국어 지시 → `claude -p`로 단계 문구 작성), `tool/count_tokens.py`(저장 전 77토큰 검사, `{cast:...}` 확장 포함), `tool/glossary.json`(구역 이름 한글 용어집). 화면 스모크는 `tool/uat_scene_tool.py`(390x844, GPU 0). 운용 노트 `notes/SCENE-TOOL.md`.
+
+### 그래프 DB 호환성 점검 (`scripts/age_compat/`)
+
+Apache AGE로 Neo4j를 대체할 수 있는지 재는 일회성 하네스(ADR `261010-110220`). `run_check.py`가 백엔드의 Cypher 호출 지점 94개를 neo4j와 AGE(`docker-compose.yml`, `age_adapter.py`)에 모두 돌려 대조하고 `REPORT.md`에 판정(막힘 4건)을 쓴다. 앱 런타임은 이를 import하지 않으며 결론은 neo4j 유지다.
 
 ## 데이터 흐름 (엔드투엔드)
 
@@ -315,5 +330,7 @@ mapped: 2026-09-02
 - 개발 전용 화면: `#/cast`(설정화 시트 — `frontend/src/CastSheet.jsx`, 사용자 화면 어디에도 링크가 없다).
 - 검증 게이트: `scripts/check.sh`(단독 실행 가능).
 - 저작 파이프라인(레포 밖 venv `~/.local/biblemap-imggen/.venv314/bin/python3`으로 실행): 생성 `scripts/canon/gen_scripture_scene.py --seeds 11 --label vNN` → 판정 `scripts/canon/judge_scene.py vNN`(다섯 축 통과 시 0). 프롬프트 연습대는 `scripts/canon/try_prompt.py`(`--check`는 GPU 0), 파라미터 정본은 `scripts/canon/params.py`, 시작점 문서는 `scripts/canon/notes/PROMPTING.md`·`notes/SCENE-1SAM17.md`.
+- 장면 승인 도구: `SCENE_TOOL_USERS=<이메일> python3 scripts/canon/tool/server.py`(:8100).
+- AGE 호환성 점검: `python3 scripts/age_compat/run_check.py`.
 - 저작자용 시각 피드백: `python3 scripts/render_scene.py <SceneName> [--at ms] [--cast]`(빌드→렌더→촬영).
 - 배포: `deploy.sh`(러너가 호출), `.github/workflows/deploy.yml`.

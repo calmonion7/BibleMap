@@ -1,11 +1,11 @@
 ---
-last_mapped_commit: fbd547d83d9d6926216cfde1eae4892ced839083
-mapped: 2026-09-02
+last_mapped_commit: 924f501dc41ba3f6602b5cb0ebeb3831834400a1
+mapped: 2026-10-10
 ---
 
 # CONCERNS
 
-현재 코드베이스의 기술 부채·확정 결함·보안 노출·성능 병목·취약 지점·데이터 정합성 위험 목록. 최초 전면 매핑은 HEAD `43f987c` 기준이었고, 이후 task#259~316 커밋들이 실어 나른 부분 갱신이 누적됐다. **이번 갱신은 도장 `4ad1d83` 이후 커밋 ∪ 미커밋 작업트리를 증분 반영했다(HEAD `fbd547d`)** — 변경 항목의 압도적 다수(`scripts/canon/` 아래 180건)가 신설된 **로컬 이미지 생성·판정 파이프라인**이라, 이번에 늘어난 절은 대부분 그 서브시스템의 위험이다.
+현재 코드베이스의 기술 부채·확정 결함·보안 노출·성능 병목·취약 지점·데이터 정합성 위험 목록. 최초 전면 매핑은 HEAD `43f987c` 기준이었고, 이후 task#259~316 커밋들이 실어 나른 부분 갱신이 누적됐다. **2026-10-10 증분(HEAD `924f501`): 장면 승인 도구 서버·장면 상태 기계·AGE 호환성 판정(막힘)·작업트리 미커밋 편집을 Tech Debt 12~15로 추가했다(그 외 절은 미재검증).** 이전 갱신은 도장 `4ad1d83` 이후 커밋 ∪ 미커밋 작업트리를 증분 반영했다(HEAD `fbd547d`)** — 변경 항목의 압도적 다수(`scripts/canon/` 아래 180건)가 신설된 **로컬 이미지 생성·판정 파이프라인**이라, 이번에 늘어난 절은 대부분 그 서브시스템의 위험이다.
 
 이번 갱신에서 다음을 **실제로 실행해** 검증했다.
 
@@ -583,6 +583,27 @@ task#280이 이 결함을 인트로 화면(`frontend/src/IntroView.jsx`)에서 �
 폐기 판단이 코드에 반영되지 않은 자리도 있다. 예: `gen_scripture_scene.py`(미커밋 작업트리)의 도크스트링은 "**콘티를 쓰지 않는다**"고 사용자 지시를 명시하는데, `scripts/canon/conti/`(316 KB — `render_conti.py`·`make_conti_masks.py`·`goliath_scene.html` + PNG 10장)는 그대로 추적 중이다. 폐기가 정당한 이력 보존일 수도 있고 정리 누락일 수도 있는데, 코드만 봐서는 구별되지 않는다.
 
 **죽은 경로 참조(확인됨)**: task#316이 스크립트를 `.forge/reports/canon-pilot/`에서 `scripts/canon/`으로 옮겼는데 문서 참조가 따라오지 않았다. `scripts/check_mask_ranges.py:5`가 "`.forge/reports/canon-pilot/make_masks.py`가 `derive_ranges()`를 그대로 가져다 쓴다"고 적지만 그 경로에 파일이 없고(실제는 `scripts/canon/make_masks.py`), `:9`가 가리키는 `.forge/reports/canon-pilot/MASKS.md`도 실제로는 `scripts/canon/notes/MASKS.md`다. `notes/MASKS.md:122-125`·`notes/SCALE-INPUT.md`·`notes/SCALE.md`에도 같은 구 경로 참조가 남아 있다. 산출물 경로 참조(`try_prompt.py:26`의 `.forge/reports/canon-pilot/try/` 등)는 유효하므로, **같은 접두어의 유효 참조와 죽은 참조가 섞여 있어** 일괄 치환으로는 못 고친다.
+
+### 12. 장면 승인 도구 로컬 HTTP 서버 — 바인딩·경로·인증 (2026-10 증분)
+
+`scripts/canon/tool/server.py`(ThreadingHTTPServer, 기본 `127.0.0.1:8100`)는 GPU 생성을 돌리고 `scripts/canon/scenes/*.json` 명세를 고친다. 바깥 접근은 레포 밖 Cloudflare Tunnel + Access에 의존한다(소스에 없는 외부 전제).
+- **바인딩**: `SCENE_TOOL_BIND`가 루프백 밖이면 `SCENE_TOOL_TOKEN` 또는 `SCENE_TOOL_USERS`가 없을 때 `main()`이 종료하고, `SCENE_TOOL_DEV=1`도 루프백 밖이면 종료한다. 시작 가드는 있으나 토큰/허용목록이 비어 있지 않다는 것만 보며 강도는 보지 않는다. 시크릿 값은 환경변수에만 있고 소스에 없다.
+- **경로**: 이미지 서빙은 `IMG_ROOT`(`.forge/reports`) 접두 검사(`server.py:328`)로 탈출을 403 처리한다. `startswith(IMG_ROOT + os.sep)` 비교라 정규화(realpath) 선행 여부와 심볼릭 링크 처리는 이 가드가 보장하지 않는다 — 수정 시 재확인 자리.
+- **상태가 프로세스 메모리**: `JOBS`·`COMPOSE`·`CUR`(진행 중 서브프로세스)가 전역 딕셔너리/큐라 재시작 시 큐·진행 중 생성이 사라진다. 단일 GPU 워커 스레드 전제.
+- **환경 하드코딩**: `SCENE_TOOL_VENV` 기본값이 `/Users/calmonion/.local/biblemap-imggen/.venv314/bin/python`(레포 밖 런타임 — §Tech Debt 9와 같은 재현성 구멍). 스모크용 `SCENE_TOOL_FAKE_GEN`·`*_DIR` 환경 오버라이드가 실제 산출 트리를 덮은 사고(2026-09-05 adullam-cave a001)가 주석으로 남아 있다.
+- 검증은 `scripts/canon/tool/uat_scene_tool.py`(UAT)와 `scripts/canon/test_scene_state.py`뿐이며 `scripts/check.sh`에는 배선되지 않았다.
+
+### 13. 장면 상태 기계 `scripts/canon/scene_state.py` — 취약 지점
+
+`ladder_hashes`·`live_stages`·`stale`·`board`가 명세 해시로 "어느 단계 승인이 낡았는지"를 계산한다. 낡음 판정은 `_h`가 해시에 넣는 필드 집합에 전적으로 의존하므로 명세에 새 필드를 추가하고 해시 대상에 넣지 않으면 승인이 낡지 않은 채 남는다(무음). 승인·시도 기록은 `scripts/canon/attempts/*.json`·`scenes/*.json`에 파일로 쌓여 동시 쓰기 잠금이 없다(도구는 단일 사용자 전제). 코드 마커(TODO/FIXME)는 없다.
+
+### 14. 작업트리 미커밋 편집 (2026-10-10 실측)
+
+`git status`상 `scripts/canon/attempts/authored-david-adullam-cave.json`·`scripts/canon/scenes/authored-david-adullam-cave.json`·`scripts/canon/tool/glossary.json`이 수정 상태, `.forge/dropped/` 5디렉터리(`david-tour-scenes-loop`·`scene-eye-defects`·`scene-figures-inscene-anchor`·`scene-followup-2of2-task322`·`scene-style-transfer-pilot`)가 미추적. 앞 셋은 사람 관문(길갈 대관식 장면 진행) 중의 도구 산출물이라 커밋 전 push는 `deploy.yml`의 `git reset --hard`로 소실될 수 있다(§Deploy 5). `.forge/dropped/`는 `validate_forge_docs_tracked` 스캔 루트 밖이라 배포는 막지 않는다.
+
+### 15. Apache AGE 호환성 점검 판정 "막힘" — neo4j 유지
+
+`scripts/age_compat/REPORT.md`(task#340, 하네스 `run_check.py`·`age_adapter.py`·`docker-compose.yml`): 호출 지점 94 중 막힘 4·기계적 치환 7. 막힘은 `backend/app/routes/family.py:97`(`all(n IN nodes(p)[1..] ...)` 리스트 술어 미지원), `backend/app/routes/nodes.py:175`(agtype 컨테이너 내부 오류), `backend/app/routes/search.py:23`(문자열 정렬 순서가 neo4j와 다름), `backend/scripts/apply_event_dedupe.py:45`(`CALL (r,k) {}` 서브쿼리 미지원). 지연도 9/45 엔드포인트가 10배 이상 느리고 최악 `/person/{jesus}/family` 24.4s(neo4j 48ms). ADR `261010-110220-keep-neo4j-as-standard-db-exception`이 neo4j를 표준 DB 예외로 확정했다. 위험: 하네스가 레포에 남아 있어 neo4j 쿼리가 바뀌면 보고서가 낡는다(재실행 `python3 scripts/age_compat/run_check.py`), 하네스는 `check.sh`에 배선되지 않았다.
 
 ---
 

@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: fbd547d83d9d6926216cfde1eae4892ced839083
-mapped: 2026-09-02
+last_mapped_commit: 924f501dc41ba3f6602b5cb0ebeb3831834400a1
+mapped: 2026-10-10
 ---
 
 # INTEGRATIONS
@@ -147,3 +147,7 @@ BibleMap이 의존하는 외부 데이터·서비스·데이터베이스·인프
 
 - `data/names_ko/*`(people·places·events·groups)는 오버레이가 아니라 `backend/scripts/inject_ko_names.py`가 배포 시 Neo4j 노드 속성(`nameKo`/`aliasesKo`)으로 주입한다.
 - 지도 표출 커버리지는 `backend/scripts/validate_pm_map_coverage.py`가 고정한다 — `/parables-miracles`와 동일한 해석 규칙(항목의 `lat`/`lng` 또는 `placeId`의 `place_coords` 해석)으로 좌표 없는 항목 집합을 정본화해 회귀를 막는다.
+
+## 일회용 점검 스택: Apache AGE (`scripts/age_compat/`)
+- `scripts/age_compat/docker-compose.yml`: 프로젝트 `biblemap-agecheck`, `neo4j:5`(루프백 17687)와 `apache/age:release_PG16_1.6.0`(PostgreSQL 16, 루프백 15432), 이름 붙은 볼륨 없음. prod(`biblemap`) 스택과 격리되며 점검용 더미 자격증명만 쓴다(운영 비밀 미사용).
+- 접속은 `psycopg`(AGE) + `neo4j` 드라이버 병행(`age_adapter.py`, `run_check.py`). 런타임·배포 경로에는 연결되지 않으며, 판정 '막힘'으로 운영 그래프 DB는 Neo4j 유지(`scripts/age_compat/REPORT.md`).

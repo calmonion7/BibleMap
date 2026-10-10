@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: fbd547d83d9d6926216cfde1eae4892ced839083
-mapped: 2026-09-02
+last_mapped_commit: 924f501dc41ba3f6602b5cb0ebeb3831834400a1
+mapped: 2026-10-10
 ---
 
 # CONVENTIONS
@@ -74,7 +74,7 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 
 ### 2.5 로컬 이미지 생성/판정 파이프라인 (`scripts/canon/`)
 
-앱과 **다른 런타임에서 도는** 별도 서브시스템(ADR `260825-065028`). 추적 파일 177개(파이썬 42 · `notes/` 문서 20 + meta JSON 37 · 참조/표본 PNG). 앱(`backend/`·`frontend/`)은 이 디렉터리를 import하지 않고, `backend/requirements.txt`와도 무관하다 — 런타임 핀은 `scripts/canon/requirements.txt`(레포 밖 venv의 `pip freeze` 박제)이며 그 머리 주석이 **재현 미결 3축**(모델 리비전 미고정 · MPS 결정성 미보장 · 재현 미실측)을 "미결"로 명시한다.
+앱과 **다른 런타임에서 도는** 별도 서브시스템(ADR `260825-065028`). 추적 파이썬 53개(2026-10-10 실측, `gen_*` 22 · `judge_*` 8 · `notes/` 문서 20 + meta JSON 37 · 참조/표본 PNG). 앱(`backend/`·`frontend/`)은 이 디렉터리를 import하지 않고, `backend/requirements.txt`와도 무관하다 — 런타임 핀은 `scripts/canon/requirements.txt`(레포 밖 venv의 `pip freeze` 박제)이며 그 머리 주석이 **재현 미결 3축**(모델 리비전 미고정 · MPS 결정성 미보장 · 재현 미실측)을 "미결"로 명시한다.
 
 - **접두사가 역할이다**: `gen_*`(생성 21개) · `judge_*`(판정 8개) · `make_*`(파생 산출물 조립) · `prep_*`/`probe_*`/`sweep_*`/`freeze_*`/`derive_*`(전처리·탐침·스윕·동결·파생). 파일명은 snake_case, docstring은 한글이며 첫 줄 목적 + `(task#NNN)`/ADR 근거 — `backend/scripts/`와 같은 골격이다.
 - **`scripts/canon/params.py`가 생성 파라미터의 유일한 선언처다.** 다른 파일에서 그 이름을 모듈 레벨로 다시 대입하거나 모델 ID 문자열을 리터럴로 복사하면 `backend/scripts/validate_canon_pipeline.py`가 배포를 막는다(정본 키가 이 디렉터리의 전역 예약어). 사적 이름(`_`로 시작)은 정본 키로 보지 않으므로 각 스크립트가 자기 `_HERE`를 갖는 것은 재선언이 아니다.
@@ -83,6 +83,8 @@ BibleMap의 코드 스타일·규약 정본. 라우팅/데이터 흐름의 **구
 - **규칙은 코드가 아니라 `scripts/canon/notes/`에 산다.** 프롬프트 작성 규칙의 정본은 `notes/PROMPTING.md`(이 레포에서 실측한 것만 적는 규칙 모음 — 77토큰 하드 한계·앞이 무거움 등, 항목마다 재현 스크립트를 지목), 장면 명세의 정본은 `notes/SCENE-1SAM17.md`(요소마다 출처 절이 달린다), 생성 순서·판정 위치의 정본은 `notes/PROCESS.md`, 판정 지표의 선정 근거는 `notes/JUDGE-*.md`. `notes/*.json`은 그 문서들이 인용하는 원수치(meta·verdict·baseline)다.
 - **임계·수치를 스크립트에 리터럴로 적지 않는다** — 정답지 집합(`params.REFERENCE`)이나 이미 못박힌 baseline JSON(`notes/s0-baseline.json`)에서 파생한다. 프론트 소스와 공유해야 하는 상수도 복사하지 않고 파생한다(`render_scene.py`가 `lib.jsx`의 `W`를, `make_masks.py`가 `scripts/check_mask_ranges.py`의 `derive_ranges()`를 그대로 가져다 쓴다).
 - **생성기는 CLIP 77토큰 초과를 생성 전에 `sys.exit`으로 막는다**(초과분이 경고 없이 잘려 프롬프트 뒷부분이 소실되는 결함 클래스). 토큰 측정은 실제 파이프라인의 tokenizer로만 하고(`gen_*` 쪽), GPU 없이 문구만 다듬는 연습대는 `try_prompt.py --check`다.
+- **장면 승인 도구(task 338·339) 관용**: 규칙 로직은 순수 모듈 `scene_state.py`(명세·곁파일 dict만 받음, 파일·GPU 무접촉)에 두고 `tool/server.py`(stdlib 서버)가 얇게 감싼다. 서버 설정은 전부 `SCENE_TOOL_*` 환경변수(`USERS`·`DEV`·`FAKE_GEN`·`SCENES_DIR`·`ATTEMPTS_DIR`·`VENV`·`BIND`·`PORT`)이고 로깅은 기동 배너 `print` 한 줄뿐이다(`backend/app/` 로깅 규약 밖 서브시스템). 인증은 `Cf-Access-Authenticated-User-Email` ∈ `SCENE_TOOL_USERS`, 아니면 403. 장면 명세 기계 검사는 `check_scenes.py`(낙제 시 exit 1).
+- **`scripts/age_compat/`** 는 일회용 점검 하네스(task#340, 판정 막힘)다: `run_check.py`가 `--selftest`(비교기 자가검사)·`--coverage`(보고서 행↔호출 지점 대조)를 갖고, 일회용 compose 프로젝트 `biblemap-agecheck`만 기동·`down -v`하며 prod 스택은 읽지도 않는다. 결과는 `REPORT.md`로 쓰고 앱은 이를 import하지 않는다.
 
 ---
 

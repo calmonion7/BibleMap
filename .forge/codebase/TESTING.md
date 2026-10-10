@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: fbd547d83d9d6926216cfde1eae4892ced839083
-mapped: 2026-09-02
+last_mapped_commit: 924f501dc41ba3f6602b5cb0ebeb3831834400a1
+mapped: 2026-10-10
 ---
 
 # TESTING
@@ -313,3 +313,10 @@ ADR `260821-000937-invariant-encodes-defect-class.md`(task#280~281)가 승급한
 - **생성자와 판정자는 같은 산식을 공유한다** — `gen_scripture_scene.py`가 `import judge_scene as J`로 하늘선 산식을 그대로 끌어 쓴다(자와 그림이 어긋나면 판정이 무의미하다). 반대 방향(판정자가 생성자를 import)은 하지 않는다 — `torch`·`diffusers`가 딸려 와 GPU 없이 못 돌기 때문이다. 그래서 구역 상자(`REGIONS`) 좌표는 두 파일에 **손으로 복제**돼 있다(실측 2026-09-02: 공유하는 7구역 값은 일치, 생성자에만 하위 구역 4개가 더 있다). judge 쪽 주석은 이 복제를 `--check`로 대조한다고 적었으나 **그 플래그는 구현돼 있지 않다** — 현재는 수동 동기 지점이다.
 - **판정과 저작을 다른 에이전트가 한다**(`judge_s1.py` docstring의 회고 관행) — 저작한 자가 자기 산출을 판정하지 않는다.
 - **재현은 닫혀 있지 않다** — `scripts/canon/requirements.txt` 머리 주석이 미결 3축(모델 리비전 미고정 · MPS 결정성 미보장 · 재현 미실측)을 "미결"로 명시한다. 스크립트들의 sha256 전수-상이 단정은 "산출이 서로 다르다"를 볼 뿐 **"다시 돌리면 같다"를 보지 않는다.** 이 파이프라인의 판정 통과를 회귀 안전망으로 읽으면 안 된다(§10의 "자동 안전망이 없는 영역").
+
+### 13.1 장면 승인 도구의 테스트 — 게이트 밖, host python3 (task 338·339)
+
+- **`scripts/canon/test_scene_state.py`**: 표준 `unittest`만(16개 단언 지점), GPU·파일 없이 명세·곁파일을 dict로 지어 `scene_state`의 재검토 규칙(DoD 3의 일곱 경우)을 검증한다. 실행: `cd scripts/canon && python3 test_scene_state.py`. `scripts/check.sh`에는 배선돼 있지 않다 — 이 레포에서 백엔드 쪽 Python 단위 테스트에 가장 가까운 것이나 앱이 아니라 canon 도구 대상이다(§0의 "백엔드 러너 부재"는 `backend/`에 한한다).
+- **`scripts/canon/tool/uat_scene_tool.py`**: 폰 뷰포트 390×844 Playwright 스모크. 실제 명세를 건드리지 않도록 명세·곁파일을 임시 폴더에 복사해 `SCENE_TOOL_SCENES_DIR`·`SCENE_TOOL_ATTEMPTS_DIR`로 서버를 띄우고 `SCENE_TOOL_FAKE_GEN=1`로 GPU를 대체한다. 목록→시도 등록→승인→문구 저장→「재검토」 전파를 보고 스크린샷 3장(`.forge/reports/canon-pilot/scene-tool/uat/`)을 남기며 exit 0/1.
+- **`scripts/canon/check_scenes.py`**: 장면 명세 기계검증(필수 필드·인용 절 존재·구역 상자 [0,1]·참조 정합). 게이트 밖이나 GPU 0이라 상시 실행 가능.
+- **`scripts/age_compat/run_check.py --selftest`**: 비교기가 차이를 실제로 잡는지 보는 자가검사(§9 대조군과 같은 정신). 전체 점검은 docker가 필요한 일회성 하네스로 게이트와 무관.

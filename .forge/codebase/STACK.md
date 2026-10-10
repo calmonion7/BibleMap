@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: fbd547d83d9d6926216cfde1eae4892ced839083
-mapped: 2026-09-02
+last_mapped_commit: 924f501dc41ba3f6602b5cb0ebeb3831834400a1
+mapped: 2026-10-10
 ---
 
 # STACK
@@ -144,3 +144,7 @@ BibleMap의 언어·런타임·프레임워크·의존성·빌드/설정 사실 
 ## 데이터 자산(`data/`, 전량 git 추적)
 
 런타임이 읽는 정본 JSON은 전부 레포에 커밋된다. 디렉터리 31개 + 루트 파일 2개(`data/word_distribution.json` ~284KB, `data/word_sentiment.json` ~22KB). 큰 자산: `data/bible/verses.json` ~9.8MB(정본 절 사전), `data/word_verse_index/index.json` ~1.6MB, `data/verse_persons/index.json` ~837KB. 다건 디렉터리: `data/person_events/`(35), `data/god_reliance/`(33), `data/tours/`(9), `data/names_ko/`(5). 이전 매핑 시점에 미커밋이던 `data/covenants/`·`data/messianic_prophecies/`·`data/jesus_parables_miracles/`·`data/topical_verses/`는 현재 모두 커밋 완료.
+
+## AGE 호환성 점검 하네스 (`scripts/age_compat/`) — 앱 스택 밖 일회용
+- 의존성은 `scripts/age_compat/requirements.txt`(`neo4j==6.2.0`·`fastapi==0.136.3`·`httpx`·`psycopg[binary]==3.3.6`)로 별도 고정. 앱 `backend/requirements.txt`에는 `psycopg`가 들어가지 않는다.
+- 진입점 `run_check.py`가 `scripts/age_compat/docker-compose.yml`을 올려(`-p biblemap-agecheck`) 점검 후 `down -v`까지 소유. Apache AGE 어댑터는 `age_adapter.py`, 결과는 `REPORT.md`(판정: 막힘). 판정에 따라 그래프 DB는 neo4j 유지(`.forge/adr/261010-110220-keep-neo4j-as-standard-db-exception.md`).

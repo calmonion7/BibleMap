@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: fbd547d83d9d6926216cfde1eae4892ced839083
-mapped: 2026-09-02
+last_mapped_commit: 924f501dc41ba3f6602b5cb0ebeb3831834400a1
+mapped: 2026-10-10
 ---
 
 # STRUCTURE
@@ -190,21 +190,29 @@ BibleMap/
 | `render_scene.py` | 장면 하나를 빌드→렌더→고배율 촬영(playwright). `--at`(시각 스크럽)·`--min-stroke-width`(굵기 계단)·`--delay-range`·`--cast`(설정화 시트 촬영). 굵기 임계는 `lib.jsx`의 `W`에서 파생 |
 | `uat_*.py` | 브라우저 실측 UAT 4종 — `uat_intro_gutter`·`uat_intro_entry`·`uat_scene_detail_pilot`(task#286)·`uat_tour_chunk_split`(task#287). 종료코드 0/1/2로 통과·제품 결함·측정 환경 이상을 자가 구별한다. `check.sh` 미배선 |
 | `canon/` | 오프라인 이미지 저작 파이프라인(아래) |
+| `age_compat/` | Cypher × Apache AGE 호환성 점검 하네스 — `run_check.py`·`age_adapter.py`·`docker-compose.yml`·`requirements.txt`·`REPORT.md`(판정 막힘, ADR `261010-110220`) |
 
 ### 저작 파이프라인 (`scripts/canon/`)
 
-앱과 다른 런타임에서 돈다 — 소스만 레포 안에 있고, venv·모델 캐시는 레포 밖(`~/.local/biblemap-imggen/`)이며 산출 이미지는 gitignored인 `.forge/reports/canon-pilot/`에 쌓인다(`params.OUT_ROOT`). 추적 파일 177개.
+앱과 다른 런타임에서 돈다 — 소스만 레포 안에 있고, venv·모델 캐시는 레포 밖(`~/.local/biblemap-imggen/`)이며 산출 이미지는 gitignored인 `.forge/reports/canon-pilot/`에 쌓인다(`params.OUT_ROOT`). 추적 파일 291개.
 
 ```
 scripts/canon/
 ├── params.py            [[생성 파라미터]] 정본 — 모델 ID·STEPS·GUIDANCE·CN/IP 강도·캔버스·시드
 ├── derive_prompts.py    프롬프트 파생(cast/*.jsx의 AXES + person_events의 sortKey) → notes/prompts.json
-├── gen_*.py             생성 21개 — 현행 정본은 gen_scripture_scene.py(8단계 인페인팅 + 판 합성)
+├── gen_*.py             생성 22개 — 현행 정본은 gen_scripture_scene.py(8단계 인페인팅 + 판 합성)
 ├── judge_*.py           판정 8개 — 현행 정본은 judge_scene.py(축 C1~C5, GPU 0)
+├── derive_scene.py · check_scenes.py  명세 → 단계 프롬프트 파생(생성기·판정자 공용) · 명세 기계 검사
+├── attempt.py · approve.py · scene_state.py(+test_scene_state.py)  단계 시도 실행기 · 승인 기록기 · 재검토 계산(순수 함수)
+├── gen_cast_plate.py · approve_cast.py · make_scene_table.py · make_scene_montage.py · make_inscene_montage.py  인물 판 · 검토 표·몽타주
+├── scenes/              장면 명세 `<id>.json` 37개(정본)
+├── attempts/            시도 곁파일 `<scene-id>.json`(scenes/ 밖 — check_scenes가 명세로 읽으므로)
+├── cast/                인물 어휘 정본 `<id>.json` + CAST.md
+├── tool/                장면 승인 로컬 웹 도구 — server.py·index.html·compose.py·count_tokens.py·glossary.json·uat_scene_tool.py
 ├── try_prompt.py        프롬프트 연습대(--check는 토큰만, GPU 0)
 ├── freeze_*.py · prep_cond.py · make_masks.py · make_montage.py · probe_cn.py · arm_sweep.py · sweep_cause.py · long_prompt.py · cond_shoot_heads.py
 ├── requirements.txt     런타임 박제 + **재현 미결 3축**을 미결로 적은 머리 주석
-├── notes/               판단 문서 20(.md, 대문자) + 판정 결과 37(.json)
+├── notes/               판단 문서 22(.md, 대문자 — `SCENE-TOOL.md`·`SCENES-DAVID-TOUR.md` 포함) + 판정 결과 37(.json)
 ├── reference/           정답지 10장 — 축 A(화풍) 임계의 양성 기준(직속 *.png가 전부 읽힌다 = 여기 넣는 것이 곧 임계 변경). 후보·승인 이력은 task 번호 서브디렉터리로
 ├── setup/               설정화 시트(그래서 reference/ 밖) — SETUP.md가 그 경계를 적어 둔다
 ├── samples/             [[전신 표본]] — 인물 레퍼런스(SAMPLES.md)
