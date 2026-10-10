@@ -1,0 +1,18 @@
+# 일회용 호환성 점검 스택 — prod(biblemap) 와 격리: 프로젝트명 biblemap-agecheck, 포트 17687·15432, 이름 붙은 볼륨 없음.
+# run_check.py 가 up → 점검 → down -v 까지 소유한다. 손으로 띄울 때도 -p biblemap-agecheck 를 붙일 것.
+services:
+  neo4j:
+    image: neo4j:5
+    ports:
+      - "127.0.0.1:17687:7687"
+    environment:
+      - NEO4J_AUTH=neo4j/agecheck-pass
+
+  age:
+    image: apache/age:release_PG16_1.6.0
+    ports:
+      - "127.0.0.1:15432:5432"
+    environment:
+      - POSTGRES_USER=agecheck
+      - POSTGRES_PASSWORD=agecheck-pass
+      - POSTGRES_DB=agecheck
