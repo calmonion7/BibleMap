@@ -1,16 +1,17 @@
-name: Deploy to Production
-
+name: Deploy
 on:
   push:
-    branches: [main]
-
+    branches: [main, dev]
+    # 문서·forge 상태만 바뀐 push는 배포하지 않는다.
+    paths-ignore: ['.forge/**', '**/*.md']
+  workflow_dispatch:
+# PR 계열 트리거 금지 — 공개 레포에서 포크 PR이 호스트 러너에서 코드를 실행하는 구멍이 된다.
+concurrency: deploy-${{ github.ref_name }}
 jobs:
   deploy:
-    runs-on: self-hosted
+    # 자동 라벨만 — 없는 라벨을 요구하면 잡이 queued 로 머물다 24h 뒤 취소된다(무음 미배포).
+    runs-on: [self-hosted, ARM64]
     steps:
-      - name: Pull & Deploy
-        run: |
-          cd /Users/calmonion/Project/BibleMap
-          git fetch origin
-          git reset --hard origin/main
-          bash deploy.sh
+      - uses: actions/checkout@v4
+      - run: deploy/pre-deploy.sh ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
+      - run: ~/runtime/taebro-infra/bin/deploy biblemap ${{ github.ref_name == 'main' && 'prod' || 'dev' }}

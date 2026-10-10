@@ -1,11 +1,11 @@
 #!/bin/bash
 # 배포 전 검증 게이트 (task#255) — 데이터 검증 + ERA_BANDS 3곳 정합 + 인트로↔실제 메뉴 정합 + 인트로 비트 여백 불변식 + 무해시 진입 라우팅 불변식 + 비유↔연표·장면 커버리지 + 장면 저작 규약 경계 + ESLint.
 # 하나라도 하드 항목 실패 시 비0 종료. 환경 의존 항목은 미충족 시 스킵-경고(하드 게이트 유지):
-#   - Neo4j 연대 정합: 127.0.0.1:7687 미기동 시 스킵
+#   - Neo4j 연대 정합: 127.0.0.1:${NEO4J_BOLT_PORT:-7687} 미기동 시 스킵(배포는 deploy/pre-deploy.sh 가 env별 포트를 준다)
 #   - ESLint: frontend/node_modules 부재 시 스킵
 # CHECK_STRICT=1이면 위 두 스킵이 실패로 승격된다(task#259) — 배포 경로는 반드시 이 모드로 부른다.
 # 스킵-경고 계약은 단독 개발 실행용으로 유지(Neo4j 없이 파일 검증만 돌리는 정당한 용법).
-# deploy.sh가 빌드 전 호출하며, 단독 실행도 가능(AI 불요 CI 게이트).
+# deploy/pre-deploy.sh가 빌드 전 호출하며, 단독 실행도 가능(AI 불요 CI 게이트).
 set -u
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
@@ -112,12 +112,8 @@ fi
 
 echo "=== check: 영구 forge 문서 추적 (배포 차단 가드) ==="
 # 데이터 검증이 아니므로 위 16종 루프에 넣지 않는다(task#279).
-# 배포 경로에서도 살아있다 — task#279가 계획의 반대 사실을 실측했다. deploy.yml은 개발 트리와
-# 같은 디렉터리에서 `git reset --hard origin/main` 후 deploy.sh를 부르는데, 하드리셋은 추적
-# 파일만 되돌리고 미추적 파일은 남긴다(`git clean`이 아니다). 따라서 미추적 ADR·회고는 이
-# 게이트에 노출되고, CHECK_STRICT=1인 배포 경로에서 **배포를 중단시킨다**(실패 메시지가
-# 미추적 파일 목록을 지목하므로 무음 실패는 아니다). 이 강도가 맞는지는 사람이 정할 몫 —
-# 약화하려면 이 절을 CHECK_STRICT 분기 밖으로 뺀다.
+# 표준 배포 전환(task#341) 뒤 배포는 러너의 깨끗한 체크아웃에서 돌므로 미추적 파일이 없어 배포
+# 경로에서는 늘 통과한다 — 이 가드가 실제로 잡는 곳은 작업 폴더에서의 단독 실행(push 전)이다.
 if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   run "validate_forge_docs_tracked (배포 차단 가드)" python3 -m backend.scripts.validate_forge_docs_tracked
   run "validate_forge_docs_tracked --selftest (배포 차단 가드)" python3 -m backend.scripts.validate_forge_docs_tracked --selftest
@@ -137,11 +133,11 @@ fi
 
 echo "=== check: 연대 정합 (Neo4j) ==="
 if [ -f "$ROOT/.env" ]; then set -a; . "$ROOT/.env"; set +a; fi
-if python3 -c "import socket; s=socket.socket(); s.settimeout(1); s.connect(('127.0.0.1',7687)); s.close()" 2>/dev/null; then
-  NEO4J_URI="${NEO4J_URI:-bolt://localhost:7687}" NEO4J_USER="${NEO4J_USER:-neo4j}" \
+if python3 -c "import socket; s=socket.socket(); s.settimeout(1); s.connect(('127.0.0.1',${NEO4J_BOLT_PORT:-7687})); s.close()" 2>/dev/null; then
+  NEO4J_URI="${NEO4J_URI:-bolt://localhost:${NEO4J_BOLT_PORT:-7687}}" NEO4J_USER="${NEO4J_USER:-neo4j}" \
     run "validate_event_chronology" python3 -m backend.scripts.validate_event_chronology
 else
-  skip "validate_event_chronology" "Neo4j(127.0.0.1:7687) 미기동"
+  skip "validate_event_chronology" "Neo4j(127.0.0.1:${NEO4J_BOLT_PORT:-7687}) 미기동"
 fi
 
 rm -f "$OUT"

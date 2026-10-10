@@ -63,3 +63,16 @@ app.include_router(verses.router)
 app.include_router(reliance.router)
 app.include_router(stats.router)
 app.include_router(timeline.router)
+
+
+@app.get("/health")
+def health():
+    """배포 헬스(taebro-infra 계약 HEALTH_PATH·HEALTH_EXPECT) — 본문의 "biblemap"이 엉뚱한 앱의 200을 가른다."""
+    from fastapi.responses import JSONResponse
+    from .db import get_driver
+    try:
+        get_driver().verify_connectivity()
+    except Exception:
+        logger.exception("[Health] Neo4j 연결 실패")
+        return JSONResponse({"app": "biblemap", "neo4j": "fail"}, status_code=503)
+    return {"app": "biblemap", "neo4j": "ok"}
