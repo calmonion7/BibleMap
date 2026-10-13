@@ -10,7 +10,23 @@ def build(scene, spec_id=None):
     spec = json.load(open(os.path.join(CANON, "scenes", (spec_id or scene) + ".json")))
     reg, figs = spec["regions"], spec["figures"]
     lay = os.path.join(R, scene, "layers")
-    files = {os.path.splitext(f)[0]: f for f in os.listdir(lay) if f.lower().endswith((".png", ".webp"))}
+    files = {os.path.splitext(f)[0].removeprefix("fig-"): f for f in os.listdir(lay) if f.lower().endswith((".png", ".webp"))}
+    bg = Image.open(os.path.join(lay, files["bg"]))
+    # 단독 인물 판(run_scene.py 산출)은 배경과 크기가 다르다 → 알파 경계로 잘라 명세 상자 안에 바닥 중앙으로 앉힌 전체 화면 층으로 합성
+    for f in figs:
+        src = files.get(f["cast"])
+        im = src and Image.open(os.path.join(lay, src)).convert("RGBA")
+        if not im or im.size == bg.size: continue
+        im = im.crop(im.getchannel("A").getbbox())
+        b = reg[f["region"]]; bx, by = b[0] * bg.width, b[1] * bg.height
+        bw_, bh_ = (b[2] - b[0]) * bg.width, (b[3] - b[1]) * bg.height
+        k = min(bw_ / im.width, bh_ / im.height)
+        im = im.resize((round(im.width * k), round(im.height * k)), Image.LANCZOS)
+        canvas = Image.new("RGBA", bg.size)
+        canvas.alpha_composite(im, (round(bx + (bw_ - im.width) / 2), round(by + bh_ - im.height)))
+        os.makedirs(os.path.join(R, scene, "anim"), exist_ok=True)
+        files[f["cast"]] = os.path.join("..", "anim", f["cast"] + ".webp")
+        canvas.save(os.path.join(R, scene, "anim", f["cast"] + ".webp"), quality=90)
     # 주인공 = 다윗이 있으면 다윗, 없으면 명세 첫 인물. 상대 = 나머지 중 상자가 가장 큰 인물.
     pro = next((f for f in figs if f["cast"] == "david"), figs[0])
     foe = max((f for f in figs if f is not pro), key=lambda f: area(reg[f["region"]]))
