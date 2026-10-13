@@ -1,0 +1,65 @@
+[
+  {
+    "image": ".forge/reports/canon-pilot/scripture-scene/v41-final-s11.png",
+    "scene": "authored-david-goliath-gath",
+    "layer": "full",
+    "label": "good",
+    "source": "scripts/canon/notes/SCENE-1SAM17.md:5-12 (v41 최선본·다섯 축 통과, 봉인 task 329) · §21:982-1025",
+    "axes4": null,
+    "note": "삼상17 v41 최종본(봉인) — 비교 기준"
+  },
+  {
+    "image": ".forge/reports/canon-pilot/scripture-scene/A1-saul-gilgal-coronation-final-s11.png",
+    "scene": "authored-saul-gilgal-coronation",
+    "layer": "full",
+    "label": "good",
+    "source": "scripts/canon/scenes/authored-saul-gilgal-coronation.json:approved.final(a005·s11·2026-09-05) · scripts/canon/notes/SCENE-TOOL.md:120-131",
+    "axes4": null,
+    "note": "길갈 대관식 A1 최종 — 장면 승인 도구로 승인된 최종본"
+  },
+  {
+    "image": ".forge/reports/canon-pilot/final3/3-final-ip0.0-cn0.6-fcn0.6-sip0.7-s11.png",
+    "scene": "authored-david-goliath-gath",
+    "layer": "full",
+    "label": "bad",
+    "source": "scripts/canon/notes/PROCESS.md:§7 근거 1 · scripts/canon/notes/PROMPTING.md:393-415(구멍 4)",
+    "axes4": "pass",
+    "note": "part3-first-final: 4축 통과·사용 불가 — 골리앗이 각진 패치, 뿔 소실·팔짱, 다윗 팔이 회색 관"
+  },
+  {
+    "image": ".forge/reports/canon-pilot/final3/bg-ip1.0-cn0.4-s11.png",
+    "scene": "authored-david-goliath-gath",
+    "layer": "bg",
+    "label": "bad",
+    "source": "scripts/canon/notes/PROMPTING.md:417-421(구멍 4, 축 C 구멍 2)",
+    "axes4": null,
+    "note": "배경인데 같은 소년 3명 + 소품 삽화 — 구도 파괴; 축 C만 세 키 통과"
+  },
+  {
+    "image": ".forge/reports/canon-pilot/final3/3-final-ip0.0-cn0.6-fcn0.8-sip0.9-s11.png",
+    "scene": "authored-david-goliath-gath",
+    "layer": "full",
+    "label": "bad",
+    "source": "scripts/canon/notes/ARM.md:11-24,29(음성 A)",
+    "axes4": null,
+    "note": "승인본이었으나 물매가 몸에서 떨어져 허공에 뜨고 팔이 차렷 — 축 C(david) +0.3218 통과"
+  },
+  {
+    "image": ".forge/reports/canon-pilot/final3/3-final-ip0.0-cn0.6-fcn0.8-sip0.9-s7.png",
+    "scene": "authored-david-goliath-gath",
+    "layer": "full",
+    "label": "bad",
+    "source": "scripts/canon/notes/ARM.md:11-24,30(음성 B)",
+    "axes4": null,
+    "note": "승인본이었으나 물매 막대가 어깨에서 자라나는 관통 — 축 C(david) +0.4142 통과"
+  },
+  {
+    "image": ".forge/reports/canon-pilot/final3/bg-ip0.0-cn0.2-s11.png",
+    "scene": "authored-david-goliath-gath",
+    "layer": "full",
+    "label": "bad",
+    "source": "scripts/canon/notes/ARM.md:31(음성 C) · PROMPTING.md:421-423",
+    "axes4": null,
+    "note": "인물이 없는 순수 풍경 — 장면 전체로는 불가(인물 부재)"
+  }
+]
