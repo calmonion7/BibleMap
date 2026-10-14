@@ -490,6 +490,21 @@ helmet` · `dark overlapping bronze scale armour`로 **대상 자체의 색**을
 `kind` full/region/ridge/plate/refine/prop · `region` · `verse` · `prompt` · `neg[]` · `from`(다듬기 원천 단계) ·
 `skip`(사유)) · `negatives[]` · `judge{figures, gap_bands, crest_x}`.
 
+**장면은 단락 전체를 읽고 정한다(2026-10-14, task 345 사람 판정).** 순간·관계·인물 필드를 한두 절에 기대어 쓰면
+장면의 맥락이 빠진다 — 길갈은 11:14-15 두 절만 보고 「첫 즉위식」처럼 그렸지만 11:1-13(암몬 전쟁 승리) 뒤의 「나라를
+새롭게 함」이었고, 사무엘의 「가리킴」은 미스바(10:24)에서 빌려 온 동작이었다. 골리앗은 17:48만 보고 17:3·8-10의
+「두 군대가 마주 선 일기토」를 놓쳤고, 엔게디는 24:8(굴 밖)만 보고 사건의 핵심인 24:3-4(굴 안)를 놓쳤다.
+그래서: `verses.range`는 **그 사건의 단락 전체**(앞뒤 맥락 포함)로 잡고, 저작자는 범위를 통째로 읽은 뒤 순간을 고른다.
+다른 단락의 동작을 빌리면 「본문 밖 · <출처> 참고」로 밝힌다. 검토는 「인용 절이 진술을 받치는가」에 더해
+「장면이 단락 흐름에 맞는가」(장소·때·누가 어느 편인가)를 본다.
+
+**비대칭 관계(한쪽이 상대를 모름)는 사람 관계어가 아니라 화면 기준 방향을 공유시켜 쓴다 — 실측 0/12 → 4/4(2026-10-14).**
+엔게디 24:4를 behind him·unaware 같은 관계어로만 쓰면 0/12였고, 「두 사람 모두 화면 오른쪽(굴 어귀)을 향한다」로 쓰자
+4/4(뜻 .75~.9, 화풍 유지). 사용법: 인물에 `screen_facing`("right"|"left"|"viewer"|"away") — 그 인물 절 끝에 「facing toward
+the right edge of the picture」가 붙고, 모든 인물이 같은 값이면 장면 문장 「Both/All figures face toward the right edge of the
+picture.」이 배경 뒤에 한 번 들어간다. 장면 최상위 `screen_light`{ko,en,verse}는 화면 기준 빛 방향 문장(관계 뒤)이다.
+둘 다 선택이며 없으면 파생 출력은 바이트 동일. `--figures whole --check`가 값을 검증한다.
+
 **기전 상수는 명세 밖이다** — `STRENGTH_BY_STAGE`·`FEATHER`·`PLATE_CUT`·`BODY_COV`·`ASPECT_MAX`와 판정
 임계는 실측으로 정해진 값이고 장면마다 바뀌지 않는다. 삼상17 명세 + 같은 시드로 v41과 **픽셀 동일**이
 이 경계의 회귀 가드다(SCENE-1SAM17 §0 재현 명령).

@@ -4,7 +4,7 @@
   judge_vlm.py <image> --scene <id> --layer bg|figure:<인물키>|full   # stdout JSON
   judge_vlm.py --calibrate                                            # calibration.json 전건, `일치: N/M`
 """
-import argparse, json, os, re, subprocess, sys
+import argparse, json, os, re, subprocess, sys, tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CANON = os.path.dirname(HERE)
@@ -44,9 +44,17 @@ def rubric(scene, layer):
                 f"기대 인물(정본): {_cast_lines(key)}\n기대 자세: {f['pose']}; 지물: {f['prop']}; 방향: {f['facing']}을 향함.\n"
                 f"점검: 인물 수, 방향, 지물 유무와 몸과의 접속, 머리쓰개/수염 정본 일치, {ARTIFACTS}, {STYLE}")
     cast = "\n".join(_cast_lines(f["cast"]) for f in figs)
-    fl = "\n".join(f"- {f['cast']}: {f['pose']}; 지물 {f['prop']}; {f['facing']}을 향함" for f in figs)
+    ko = lambda v: v.get("ko", "") if isinstance(v, dict) else (v or "")
+
+    def _expect(f):   # 한 장 모드: gesture가 있으면 명세의 한 장 서술(gesture·expression·costume·gaze)이 기대값
+        if not f.get("gesture"):
+            return f"{f['pose']}; 지물 {f['prop']}; {f['facing']}을 향함"
+        gz = f"; 시선 {f['gaze']}" if f.get("gaze") else ""
+        return f"{ko(f['gesture'])}; 표정 {ko(f.get('expression'))}; 복장 {ko(f.get('costume'))}; {f['facing']}을 향함{gz}"
+    fl = "\n".join(f"- {f['cast']}: {_expect(f)}" for f in figs)
+    cr = "".join(f"\n명세에 있는 배경 인물(인물 수 위반이 아님): {c['what']} — 위치 {c.get('region', '')}" for c in s.get("crowds", []))
     return (f"층: 장면 전체. 규칙: 명세의 인물 {len(figs)}명이 전부 있고 각자 정본 외형·방향·지물이 맞아야 한다. "
-            f"장면: {s['moment']}\n배경: {s['background']}\n인물 정본:\n{cast}\n인물별 기대:\n{fl}\n"
+            f"장면: {s['moment']}\n배경: {s['background']}\n인물 정본:\n{cast}\n인물별 기대:\n{fl}{cr}\n"
             f"점검: 인물 수 일치(부족·복제 모두 불통과), 방향, 지물, 머리쓰개/수염 정본 일치, {ARTIFACTS}, {STYLE}")
 
 
@@ -62,23 +70,83 @@ reasons는 한국어 짧은 문장 배열(결함 구체 서술). 설명 없이 J
 {{"pass": true|false, "scores": {{"count":0.0,"pose":0.0,"canon":0.0,"style":0.0,"artifact":0.0}}, "reasons": ["..."]}}"""
 
 
-def judge(image, scene, layer):
+BLIND = """Read 도구로 이미지 파일 {img} 를 직접 보라. 이 그림에서 무슨 일이 일어나고 있는가? 누가(어떤 사람·옷차림·표정) 누구에게 무엇을 하는지, 장소와 순간이 무엇인지 3~4문장 한국어로 서술하라. 성경 지식으로 추측해 이름을 붙이지 말고 눈에 보이는 것만 적어라. 서술만 출력."""
+
+MEANING = """너는 성경 장면 삽화 판정자다. 한 사람이 이 그림을 처음 보고 쓴 서술(blind)이 장면의 의도된 뜻을 읽어냈는지 대조하라. 그림은 보지 말고 글만 비교한다.
+의도된 뜻: {meaning}
+의도된 관계: {relation}
+서술(blind): {blind}
+
+채점 0~1: 서술이 (1) 뜻의 핵심 사건·행위를, (2) 관계(누가 누구를 향해 무엇을 하는가)를 담아야 높다. 인물이 있다는 말, 배경·옷차림 묘사만 있고 사건·관계가 없으면 0.4 이하. 사건은 맞으나 관계가 흐리면 0.5~0.7. 핵심 사건과 관계가 모두 읽히면 0.8 이상. 관대하게 보지 말라.
+설명 없이 JSON 한 개만: {{"meaning": 0.0, "reason": "한국어 한 문장"}}"""
+
+MEANING_PASS = 0.7
+
+
+def _claude(prompt, img=None):
+    cmd = ["claude", "-p", prompt, "--output-format", "text"]
+    if img:
+        cmd += ["--allowedTools", "Read", "--add-dir", os.path.dirname(img)]
+    return subprocess.run(cmd, capture_output=True, text=True, cwd=tempfile.gettempdir(), timeout=300).stdout
+
+
+def _json(txt):
+    m = re.search(r"\{.*\}", txt, re.S)
+    if m:
+        try:
+            return json.loads(m.group(0))
+        except json.JSONDecodeError:
+            pass
+    return None
+
+
+def _spec_meaning(scene):
+    """명세 meaning·relation({ko,...} 또는 문자열), 없으면 moment.why·figures로 대체."""
+    s = _load("scenes", f"{scene}.json")
+    t = lambda v: v.get("ko", "") if isinstance(v, dict) else (v or "")
+    meaning = t(s.get("meaning")) or s["moment"]["why"]
+    relation = t(s.get("relation")) or "; ".join(f"{f['cast']}: {f['pose']} (지물 {f['prop']}, {f['facing']}을 향함)" for f in s["figures"])
+    return meaning, relation
+
+
+def blind_read(image):
+    return _claude(BLIND.format(img=os.path.abspath(image)), os.path.abspath(image)).strip()
+
+
+def judge_meaning(blind, scene):
+    meaning, relation = _spec_meaning(scene)
+    for _ in range(2):
+        d = _json(_claude(MEANING.format(meaning=meaning, relation=relation, blind=blind)))
+        if d and "meaning" in d:
+            return float(d["meaning"]), d.get("reason", "")
+    return 0.0, "뜻 판정 파싱 실패"
+
+
+def judge_defects(image, scene, layer):
     img = os.path.abspath(image)
     prompt = PROMPT.format(img=img, rubric=rubric(scene, layer))
     last = ""
     for _ in range(2):
-        r = subprocess.run(["claude", "-p", prompt, "--allowedTools", "Read", "--add-dir", os.path.dirname(img),
-                            "--output-format", "text"], capture_output=True, text=True, cwd=ROOT, timeout=300)
-        last = r.stdout
-        m = re.search(r"\{.*\}", last, re.S)
-        if m:
-            try:
-                d = json.loads(m.group(0))
-                if "pass" in d:
-                    return {"pass": bool(d["pass"]), "scores": d.get("scores", {}), "reasons": d.get("reasons", [])}
-            except json.JSONDecodeError:
-                pass
+        last = _claude(prompt, img)
+        d = _json(last)
+        if d and "pass" in d:
+            return {"pass": bool(d["pass"]), "scores": d.get("scores", {}), "reasons": d.get("reasons", [])}
     return {"pass": False, "scores": {}, "reasons": ["판정 출력 파싱 실패: " + last[:200]]}
+
+
+def judge(image, scene, layer):
+    """v2: 맹목 읽기 → 뜻 판정(full 층만) + 결함 채점. pass = 둘 다 통과."""
+    r = judge_defects(image, scene, layer)
+    if layer != "full":
+        return r
+    blind = blind_read(image)
+    ms, why = judge_meaning(blind, scene)
+    r["scores"]["meaning"] = ms
+    r["blind"] = blind
+    if ms < MEANING_PASS:
+        r["pass"] = False
+        r["reasons"].append(f"뜻 미판독({ms:.2f}): {why}")
+    return r
 
 
 def calibrate():
@@ -91,7 +159,7 @@ def calibrate():
         ok = r["pass"] == want
         n += ok
         name = os.path.basename(it["image"])
-        print(f"{'일치' if ok else '불일치'} | {name} | 기대 {'통과' if want else '탈락'} / 판정 {'통과' if r['pass'] else '탈락'} | {'; '.join(r['reasons'])[:200]}")
+        print(f"{'일치' if ok else '불일치'} | {name} | 기대 {'통과' if want else '탈락'} / 판정 {'통과' if r['pass'] else '탈락'} | meaning {r['scores'].get('meaning', '-')} | {'; '.join(r['reasons'])[:200]}")
         if it.get("axes4") == "pass" and not want:  # 4축이 거꾸로 판정한 사례
             rev += 1
             revhit += ok

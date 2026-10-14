@@ -25,7 +25,7 @@ PLATE_TAIL = ", full body from head to feet, single figure, plain white backgrou
 PLATE_NEG = ("landscape, hills, sky, ground, scenery, shadow, frame, border, framed, picture frame, vignette, "
              "paper edge, multiple people, cropped, cut off")
 SDXL_BG, SDXL_FIG = (1216, 640), (832, 1216)   # params.SCENE_SIZE / SAMPLE_SIZE
-ZI_BG = (2432, 1280)   # S4: 폰 세로 1688px에서 흐릿하지 않게 배경판을 직접 크게 생성(피크 13.6GiB, 장당 ~350초). 1216×640은 2.6배 확대라 흐렸다
+ZI_BG = (1216, 640)   # r1: 2432x1280은 후보 ~2/3에서 가로줄무늬·패치 질감 붕괴(시드 42·7·11 대조, CANVAS.md) — 1216x640은 같은 시드에서 깨끗
 ZI_GGUF = "leejet/Z-Image-Turbo-GGUF"
 ZI_BASE = "Tongyi-MAI/Z-Image-Turbo"
 
@@ -163,12 +163,60 @@ def finish(root, key, fname, best):
     return float(r.stdout.strip().splitlines()[-1])
 
 
+# --- 한 장 모드 (task 345) ---------------------------------------------------------
+def whole_main(a):
+    """장면 한 장 후보 N → judge v2(layer full) → 통과 중 최고 → final.png + judge.json. 층 분리 없음."""
+    sys.path.insert(0, CANON)
+    sys.path.insert(0, HERE)
+    import derive_scene as ds
+    import judge_vlm
+    spec = ds.load(a.scene)
+    prompt, neg = ds.whole_prompt(spec), ds.WHOLE_NEG
+    w, h = map(int, a.size.split("x"))
+    root = os.path.join(a.out, a.scene)
+    cand = os.path.join(root, "cand")
+    os.makedirs(cand, exist_ok=True)
+    jp = os.path.join(root, "judge.json")
+    jd = json.load(open(jp)) if os.path.exists(jp) else {"scene": a.scene, "mode": "whole", "attempts": [], "gen_sec": 0.0, "wall_sec": 0.0}
+    jd["size"] = [w, h]
+    t0 = time.time()
+    for att in range(RETRIES + 1):
+        seeds = [s + att * 1000 for s in SEEDS[:a.n]]
+        fn = lambda s: os.path.join(cand, f"whole-{w}x{h}-s{s}.png")
+        todo = [s for s in seeds if not os.path.exists(fn(s))]
+        if todo:
+            jobs = [{"prompt": prompt, "neg": neg, "seed": s, "w": w, "h": h, "out": fn(s)} for s in todo]
+            jd["gen_sec"] = round(jd["gen_sec"] + sum(gen_zimage(jobs, cand)), 1)
+        cs = [c for c in jd["attempts"] if c["attempt"] == att]
+        new = [s for s in seeds if s not in {c["seed"] for c in cs}]
+        if new:
+            with ThreadPoolExecutor(4) as ex:
+                res = list(ex.map(lambda s: judge_vlm.judge(fn(s), a.scene, "full"), new))
+            for s, r in zip(new, res):
+                c = {"attempt": att, "seed": s, "file": os.path.relpath(fn(s), root), **r}
+                jd["attempts"].append(c)
+                cs.append(c)
+            json.dump(jd, open(jp, "w"), ensure_ascii=False, indent=1)
+        ok = [c for c in cs if c["pass"]]
+        if ok or att == RETRIES:
+            best = max(ok or cs, key=lambda c: mean(c["scores"]))
+            jd["selected"], jd["regen"], jd["pass"] = best["file"], att, bool(ok)
+            subprocess.run(["cp", os.path.join(root, best["file"]), os.path.join(root, "final.png")], check=True)
+            break
+        print(f"  전부 탈락 → 시드 바꿔 재생성 {att + 1}/{RETRIES}", flush=True)
+    jd["wall_sec"] = round(jd["wall_sec"] + time.time() - t0, 1)
+    json.dump(jd, open(jp, "w"), ensure_ascii=False, indent=1)
+    print(f"완료 pass={jd['pass']} 선택={jd['selected']} 재생성={jd['regen']} 벽시계={jd['wall_sec']}s -> {root}")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("scene", nargs="?")
     ap.add_argument("--engine", choices=("sdxl", "zimage"), default="zimage")
     ap.add_argument("--n", type=int, default=4)
     ap.add_argument("--out", default=OUT_DEFAULT)
+    ap.add_argument("--mode", choices=("layers", "whole"), default="layers")
+    ap.add_argument("--size", default="1216x640", help="whole 모드 캔버스 WxH")
     ap.add_argument("--smoke", action="store_true", help="배경판 후보 1장만 만들고(판정 없이) 끝낸다")
     ap.add_argument("--worker", nargs=2, metavar=("MODE", "JOBS"))
     a = ap.parse_args()
@@ -180,6 +228,18 @@ def main():
             if any(k in l for k in ("gen_", "run_scene", "try_prompt")) and l.split()[0] != str(os.getpid())]
     if busy:
         sys.exit("다른 생성 프로세스가 돌고 있다 — 중첩하면 20배 느려진다:\n" + "\n".join(busy))
+    if a.mode == "whole":
+        if a.smoke:  # 캔버스 시험: 한 장만, 판정 없이
+            sys.path.insert(0, CANON)
+            import derive_scene as ds
+            w, h = map(int, a.size.split("x"))
+            o = os.path.join(a.out, a.scene)
+            os.makedirs(o, exist_ok=True)
+            sec = gen_zimage([{"prompt": ds.whole_prompt(ds.load(a.scene)), "seed": SEEDS[0], "w": w, "h": h,
+                               "out": os.path.join(o, f"canvas-test-{w}x{h}.png")}], o)
+            print(f"캔버스 시험 {w}x{h} {sec[0]}s -> {o}")
+            return
+        return whole_main(a)
     specs = layer_specs(a.scene, a.engine)
     if a.smoke:
         _, _, _, prompt, neg, (w, h) = specs[0]

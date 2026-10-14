@@ -19,7 +19,7 @@ function draw(e, now) {
   D.layers.forEach((l, k) => {
     const sk = 1 + (s - 1) * l.p;                                  // 가까운 층일수록 더 크게 확대 = 패럴랙스
     const cx = clamp(lerp(a.c, b.c, e), W / 2 / (bw * sk), 1 - W / 2 / (bw * sk));
-    const cy = clamp(lerp(a.y, b.y, e) + sway, 0.5 / sk, 1 - 0.5 / sk);
+    const cy = sk < 1 ? 0.5 : clamp(lerp(a.y, b.y, e) + sway, 0.5 / sk, 1 - 0.5 / sk);   // sk<1: 인물이 커서 줄임 → 위아래 여백, 가운데 맞춤
     imgs[k].style.transform = `translate(${-cx * bw * sk}px,${-cy * H * sk}px) scale(${sk})`;
   });
 }

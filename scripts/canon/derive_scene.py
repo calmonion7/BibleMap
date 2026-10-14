@@ -14,6 +14,7 @@
 사용:
   derive_scene.py <scene-id>            # 단계별 prompt/neg를 찍는다
   derive_scene.py <scene-id> --check    # 토큰 수를 재고 77 초과가 하나라도 있으면 종료코드 1 (GPU 0)
+  derive_scene.py <scene-id> --figures whole [--check]   # 장면 한 장 프롬프트 하나(task 345) — --check는 필드·gaze·문구 포함 검사
 """
 import argparse
 import json
@@ -40,7 +41,7 @@ CAST_RE = re.compile(r"\{castc?:([a-z0-9-]+)\}")
 def cast_describe(c):
     """어휘 정본 → 인물 서술 한 구절(task 331). 시대·민족 낱말이 맨 앞(PROMPTING 2·14). `none` 필드는 뺀다.
     장면 판 프롬프트의 `{cast:<id>}`와 판 시트(`gen_cast_plate.py`)가 **같은 문구**를 쓴다 — ADR 260904-055320 1항."""
-    parts = [f"{c['era']} {c['age']}"]
+    parts = [f"{c['era']} {c['age']}".strip()]
     parts += [c[k] for k in ("hair", "beard", "headwear", "build") if c.get(k) and c[k] != "none"]
     parts.append(c["costume"])
     return ", ".join(parts)
@@ -126,6 +127,106 @@ def stages(spec, figures="plate"):
             for s, kind, regs in stage_plan(spec, figures)]
 
 
+WHOLE_NEG = NEG + ", crown, modern clothes, duplicated figures, extra people, cropped, cut off"
+# 「royal robe」는 일부러 뺐다 — cast/saul.json neg에 있어 344가 엔게디 사울(겉옷 자락이 베인 겉옷, 삼상 24:4·11)을 지웠다.
+VIEWER = "viewer"  # gaze 예약값: 인물이 아니라 관람자(백성) 쪽
+DOWN = "down"  # gaze 예약값: 아래를 보며 모름(엔게디 사울 24:4)
+AHEAD = "ahead"  # gaze 예약값: 화면 오른쪽 어귀를 똑바로 바라봄(엔게디 사울, r4)
+# 화면 기준 방향(r4, 실측 0/12 → 4/4): 인물별 선택 필드 screen_facing → (인물 절 문구, 전원 같을 때 장면 문장 동사구)
+SCREEN_FACING = {
+    "right": ("facing toward the right edge of the picture", "face toward the right edge of the picture"),
+    "left": ("facing toward the left edge of the picture", "face toward the left edge of the picture"),
+    "viewer": ("facing the viewer", "face the viewer"),
+    "away": ("turned away from the viewer, back to the viewer", "are turned away from the viewer"),
+}
+PHRASE_KEYS = ("expression", "gesture", "costume")
+OUT_OF_TEXT = "본문 밖 · 저작자 정함"
+
+
+def _side(fig, spec):
+    r = spec["regions"][fig["region"]]
+    cx = (r[0] + r[2]) / 2
+    return "on the left" if cx < 0.4 else "on the right" if cx > 0.6 else "in the center"
+
+
+def _cast_in_scene(f):
+    """cast 정본 + 이 장면 한정 덮어쓰기(`cast_override`, 근거 `cast_override_why` 필수).
+    정본 낱말이 장면 자세와 부딪힐 때 쓴다 — 엔게디 24:3-4 사울의 'tall king·a head taller'가 웅크림을 세웠다(r4 실측)."""
+    return {**load_cast(f["cast"]), **f.get("cast_override", {})}
+
+
+def whole_prompt(spec):
+    """장면 한 장 프롬프트 하나(task 345). 화풍 머리 + 배경 + 인물마다(위치·cast 정본·표정·몸짓·복식·시선) + 관계.
+    필드의 en 문구를 **그대로** 잇는다 — 손으로 쓴 영문은 없다(PROMPTING 7)."""
+    figs = sorted(spec["figures"], key=lambda f: spec["regions"][f["region"]][0])
+    by_cast = {f["cast"]: f for f in figs}
+    parts = [spec["whole_background"]["en"] + "."]
+    sf = {f.get("screen_facing") for f in figs}
+    if len(sf) == 1 and None not in sf and len(figs) > 1:  # 전원 같은 방향이면 장면 문장 한 번
+        parts.append(f"{'Both' if len(figs) == 2 else 'All'} figures {SCREEN_FACING[sf.pop()][1]}.")
+    for f in figs:
+        if f["gaze"] == VIEWER:  # eco: 백성=관람자 쪽 시선은 cast 대상이 아니라 예약어 하나로
+            looks = "looking straight out toward the crowd and the viewer"
+        elif f["gaze"] == AHEAD:
+            looks = "looking straight ahead toward the right edge of the picture"
+        elif f["gaze"] == DOWN:
+            looks = "eyes lowered, looking at the ground, unaware"
+        else:
+            tgt = by_cast[f["gaze"]]
+            looks = f"looking toward the {_cast_in_scene(tgt)['age']} {_side(tgt, spec)}"
+        c, cost = _cast_in_scene(f), [f["costume"]["en"]]
+        if "beardless" in cost[0]:  # costume이 cast의 수염·복식을 덮어쓴다 — 모순·중복 방지
+            c, cost = {**c, "beard": "none", "costume": cost[0]}, []
+            if c["costume"].startswith("a Philistine"):  # cast의 era·age('unarmed … servant')가 투구 문구와 충돌 — 함께 대체
+                c = {**c, "era": "a Philistine", "age": ""}
+        facing = [SCREEN_FACING[f["screen_facing"]][0]] if f.get("screen_facing") else []
+        parts.append(", ".join([f"{_side(f, spec).capitalize()}: {cast_describe(c)}", f["expression"]["en"],
+                                f["gesture"]["en"], *cost, looks, *facing]) + ".")
+    parts.append(spec["relation"]["en"] + ".")
+    if spec.get("screen_light"):  # 선택: 화면 기준 빛 방향 {ko,en,verse}
+        parts.append(spec["screen_light"]["en"] + ".")
+    return f"{ST} " + " ".join(parts)
+
+
+def check_whole(spec):
+    """→ 위반 문자열 목록(빈 목록이면 통과). 토큰 한도 대신 필드 존재·gaze 실존·파생 프롬프트 포함을 본다."""
+    bad = []
+
+    def field(obj, name, where):
+        v = obj.get(name)
+        ok = isinstance(v, dict) and all(isinstance(v.get(k), str) and v[k].strip() for k in ("ko", "en", "verse"))
+        if not ok:
+            bad.append(f"{where}.{name}: ko/en/verse 가 비어 있거나 없다")
+        return v if ok else None
+
+    for name in ("meaning", "relation", "whole_background"):
+        field(spec, name, "장면")
+    if "screen_light" in spec:
+        field(spec, "screen_light", "장면")
+    casts = {f["cast"] for f in spec["figures"]}
+    for f in spec["figures"]:
+        if f.get("screen_facing", "right") not in SCREEN_FACING:
+            bad.append(f"{f['cast']}.screen_facing: {f['screen_facing']!r} 는 {sorted(SCREEN_FACING)} 중 하나여야 한다")
+        for k in PHRASE_KEYS:
+            field(f, k, f["cast"])
+        if "cast_override" in f:
+            unknown = set(f["cast_override"]) - set(load_cast(f["cast"]))
+            if unknown or not str(f.get("cast_override_why", "")).strip():
+                bad.append(f"{f['cast']}.cast_override: cast에 없는 키 {sorted(unknown)} 또는 cast_override_why 없음")
+        g = f.get("gaze")
+        if g not in (VIEWER, DOWN, AHEAD) and (g not in casts or g == f["cast"]):
+            bad.append(f"{f['cast']}.gaze: 대상 인물 {g!r}이 이 장면에 없다")
+    if bad:
+        return bad
+    prompt = whole_prompt(spec)
+    need = [("relation", spec["relation"]["en"]), ("whole_background", spec["whole_background"]["en"])]
+    need += [(f"{f['cast']}.{k}", f[k]["en"]) for f in spec["figures"] for k in PHRASE_KEYS]
+    if spec.get("screen_light"):
+        need.append(("screen_light", spec["screen_light"]["en"]))
+    bad += [f"{n}: 파생 프롬프트에 문구가 없다" for n, s in need if s not in prompt]
+    return bad
+
+
 def regions(spec):
     return {k: tuple(v) for k, v in spec["regions"].items()}
 
@@ -134,9 +235,18 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("scene")
     ap.add_argument("--check", action="store_true", help="토큰 수만 재고 끝낸다(GPU 0)")
-    ap.add_argument("--figures", choices=("plate", "inscene"), default="plate")
+    ap.add_argument("--figures", choices=("plate", "inscene", "whole"), default="plate")
     a = ap.parse_args()
     spec = load(a.scene)
+    if a.figures == "whole":
+        if a.check:
+            bad = check_whole(spec)
+            for b in bad:
+                print(f"[Derive] {a.scene} {b}", file=sys.stderr)
+            print(f"{a.scene} whole {'통과' if not bad else f'위반 {len(bad)}건'}")
+            return 1 if bad else 0
+        print(f"[whole {a.scene}]\n  + {whole_prompt(spec)}\n  - {WHOLE_NEG}")
+        return 0
     tok = None
     if a.check:
         from transformers import CLIPTokenizer

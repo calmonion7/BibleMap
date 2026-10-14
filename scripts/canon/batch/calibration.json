@@ -61,5 +61,35 @@
     "source": "scripts/canon/notes/ARM.md:31(음성 C) · PROMPTING.md:421-423",
     "axes4": null,
     "note": "인물이 없는 순수 풍경 — 장면 전체로는 불가(인물 부재)"
+  },
+  {
+    "image": ".forge/reports/scene-batch-pilot/authored-david-goliath-gath/calib-first-frame.png",
+    "scene": "authored-david-goliath-gath",
+    "layer": "full",
+    "label": "bad",
+    "defect": "meaning",
+    "source": "344 사용자 no-go — 결함 없이 뜻이 안 읽힘 (.forge/reports/scene-batch-pilot/REPORT.md)",
+    "axes4": null,
+    "note": "344 층 우선 산출 녹화 1.0초 프레임(로딩 직후 흰 화면 다음 첫 구도) 합성본 — 인물 결함은 없으나 장면 뜻이 읽히지 않음"
+  },
+  {
+    "image": ".forge/reports/scene-batch-pilot/authored-saul-gilgal-coronation/calib-first-frame.png",
+    "scene": "authored-saul-gilgal-coronation",
+    "layer": "full",
+    "label": "bad",
+    "defect": "meaning",
+    "source": "344 사용자 no-go — 결함 없이 뜻이 안 읽힘 (.forge/reports/scene-batch-pilot/REPORT.md)",
+    "axes4": null,
+    "note": "344 층 우선 산출 녹화 1.0초 프레임(로딩 직후 흰 화면 다음 첫 구도) 합성본 — 인물 결함은 없으나 장면 뜻이 읽히지 않음"
+  },
+  {
+    "image": ".forge/reports/scene-batch-pilot/authored-david-en-gedi-saul/calib-first-frame.png",
+    "scene": "authored-david-en-gedi-saul",
+    "layer": "full",
+    "label": "bad",
+    "defect": "meaning",
+    "source": "344 사용자 no-go — 결함 없이 뜻이 안 읽힘 (.forge/reports/scene-batch-pilot/REPORT.md)",
+    "axes4": null,
+    "note": "344 층 우선 산출 녹화 1.0초 프레임(로딩 직후 흰 화면 다음 첫 구도) 합성본 — 인물 결함은 없으나 장면 뜻이 읽히지 않음"
   }
 ]

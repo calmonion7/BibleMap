@@ -3,20 +3,37 @@
   "id": "authored-saul-gilgal-coronation",
   "title": "사울 — 길갈에서 왕이 되다",
   "verses": {
-    "range": "삼상 11:14-15",
+    "range": "삼상 11:1-15",
     "quotes": {
+      "11:11": "이튿날에 사울이 백성을 삼 대에 나누고 새벽에 적진 중에 들어가서 날이 더울 때까지 암몬 사람을 치매",
+      "11:13": "사울이 가로되 이 날에는 사람을 죽이지 못하리니 여호와께서 오늘날 이스라엘 중에 구원을 베푸셨음이니라",
       "11:14": "사무엘이 백성에게 이르되 오라 우리가 길갈로 가서 나라를 새롭게 하자",
       "11:15": "모든 백성이 길갈로 가서 거기서 여호와 앞에 사울로 왕을 삼고 거기서 여호와 앞에 화목제를 드리고 사울과 이스라엘 모든 사람이 거기서 크게 기뻐하니라"
     }
   },
   "moment": {
     "verse": "11:15",
-    "why": "길갈에서 백성이 사울을 왕으로 세우고 화목제단 곁에서 크게 기뻐하는 순간을 고정한다 — 제물을 잡는 동작은 그리지 않고 이미 놓인 제단으로 대신한다."
+    "why": "암몬을 이기고(11:11) 사울을 반대하던 자들까지 살려 준(11:12-13) 뒤, 사무엘의 부름(11:14)으로 길갈에 모인 백성이 여호와 앞에서 사울로 나라를 새롭게 하고 화목제를 드리며 크게 기뻐하는 순간을 고정한다 — 제물을 잡는 동작은 그리지 않고 이미 놓여 연기가 오르는 제단으로 대신한다."
+  },
+  "meaning": {
+    "ko": "전쟁에서 돌아온 백성 가운데 사울이 서서 함께 기뻐하고, 뒤쪽 백성은 손을 들어 크게 기뻐하며, 앞 땅의 제단에서 화목제 연기가 오른다",
+    "en": "Saul stands rejoicing among the people returned from the war, the crowd behind him raising their hands in great joy, with peace-offering smoke rising from the altar on the ground in front",
+    "verse": "삼상 11:15(왕을 삼음·화목제·크게 기뻐함) · 11:11·13(암몬에게 이김 — 전쟁에서 돌아온 백성) · 11:14(길갈로 불러 나라를 새롭게 함) · 사무엘의 위치·동작은 본문에 없음 · 본문 밖 · 저작자 정함(구도·손 든 모습)"
+  },
+  "relation": {
+    "ko": "사울은 기뻐하는 백성 가운데 서고, 사무엘은 그 곁에 조용히 서서 사울을 본다(본문 밖). 백성은 두 사람 뒤 중경에 넓게 모여 손을 들어 기뻐하며 일부는 무기를 들었고, 앞 땅의 화목제 돌 제단에서 연기가 오른다",
+    "en": "Saul stands among the rejoicing people with Samuel quietly beside him looking at him, a wide crowd of war-returned people behind them in the middle ground with raised hands and some carrying weapons, and a low stone altar with thin rising smoke on the ground in front",
+    "verse": "삼상 11:15(백성의 기쁨·화목제·사울 왕 삼음) · 11:11(전쟁 후 — 일부 무장) · 11:14(사무엘이 백성을 부름) · 사무엘의 자리·시선은 본문에 없음 · 본문 밖 · 저작자 정함(구도·연기·시선)"
+  },
+  "whole_background": {
+    "ko": "길갈의 넓은 마른 들, 전쟁에서 돌아와 손을 들어 기뻐하는 백성 무리(일부 무장), 앞 땅에 화목제 연기가 오르는 낮은 돌 제단",
+    "en": "a wide dry open field at Gilgal with sparse dry grass, a joyful crowd of people returned from war in the middle ground with raised hands and a few carrying spears, a low pile of rough stones forming an altar with thin smoke rising on the ground in front, hazy low hills, bright pale sky",
+    "verse": "삼상 11:14-15(장소 길갈 · 백성의 기쁨 · 화목제) · 11:11(전쟁 후) · 들·언덕·하늘 배경과 제단 형상·연기·손 든 모습·일부 무장은 본문 밖 · 저작자 정함"
   },
   "background": [
     {
       "what": "화목제를 위해 쌓은 돌 제단",
-      "verse": "11:15"
+      "verse": "11:15(화목제) · 돌 제단 형상은 본문 밖 — 출 20:25 참고 · 저작자 정함"
     },
     {
       "what": "길갈의 넓은 들",
@@ -25,29 +42,61 @@
   ],
   "crowds": [
     {
-      "what": "크게 기뻐하는 이스라엘 백성 — 뒤쪽에 둘러섬",
-      "verse": "11:15",
+      "what": "암몬을 이기고 돌아와 크게 기뻐하는 이스라엘 백성 — 뒤쪽에 둘러섬, 일부 무장",
+      "verse": "11:11·15",
       "region": "crowd_back"
     }
   ],
   "figures": [
     {
       "cast": "samuel",
-      "role": "사무엘 — 제사를 인도하는 선지자",
-      "pose": "화목제단 곁에 서서 겉옷자락을 쥔다",
-      "prop": "a robe corner",
+      "role": "사무엘 — 백성을 길갈로 부른 선지자",
+      "pose": "사울 곁에 조용히 서서 사울을 본다",
+      "prop": "a plain dark robe",
       "facing": "right",
       "region": "samuel",
-      "verse": "11:14-15"
+      "verse": "11:14",
+      "expression": {
+        "ko": "엄숙하고 온화한 노선지자의 얼굴",
+        "en": "a solemn, gentle old face",
+        "verse": "삼상 8:1(사무엘이 늙으매) · 12:2(늙어 머리가 희었다) · 표정은 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "사울 곁에 서서 두 손을 내리고 선다",
+        "en": "standing beside Saul with both hands lowered",
+        "verse": "사무엘의 위치·동작은 본문에 없음 · 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "긴 어두운 양모 겉옷과 천 띠, 관·지팡이 없음",
+        "en": "a long dark wool robe with a cloth belt, no crown, no staff",
+        "verse": "본문 밖 · 저작자 정함"
+      },
+      "gaze": "saul"
     },
     {
       "cast": "saul",
-      "role": "사울 — 새로 세워진 왕",
-      "pose": "백성 앞에 서서 기뻐한다",
+      "role": "사울 — 기뻐하는 백성 가운데 왕으로 세워진 사람",
+      "pose": "백성 가운데 서서 기뻐한다",
       "prop": "a plain traveling cloak",
       "facing": "left",
       "region": "saul",
-      "verse": "11:15"
+      "verse": "11:15",
+      "expression": {
+        "ko": "크게 기뻐하는 환한 얼굴",
+        "en": "a broad, joyful, deeply glad face",
+        "verse": "삼상 11:15"
+      },
+      "gesture": {
+        "ko": "백성 가운데 서서 한 손을 들어 기뻐하고 다른 팔에 소박한 겉옷을 접어 걸친다",
+        "en": "standing among the rejoicing people, one hand raised in gladness, a plain cloak folded over the other arm",
+        "verse": "삼상 11:15(사울과 모든 사람이 크게 기뻐함) · 손을 든 모습·겉옷·몸 방향은 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "관·갑옷 없는 소박한 차림 — 어두운 양모 튜닉, 가죽 띠, 접어 든 여행용 겉옷",
+        "en": "a plain dark wool tunic with a leather belt and a plain traveling cloak, no crown, no armor",
+        "verse": "본문 밖 · 저작자 정함"
+      },
+      "gaze": "viewer"
     }
   ],
   "regions": {

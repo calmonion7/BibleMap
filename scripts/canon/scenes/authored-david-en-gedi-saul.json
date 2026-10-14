@@ -5,43 +5,105 @@
   "verses": {
     "range": "삼상 24:1-22",
     "quotes": {
-      "24:8": "그 후에 다윗도 일어나 굴에서 나가 사울의 뒤에서 외쳐 가로되 내 주 왕이여 하매 사울이 돌아보는지라 다윗이 땅에 엎드려 절하고",
-      "24:11": "나의 아버지여 보소서 내 손에 있는 왕의 옷자락을 보소서 내가 왕을 죽이지 아니하고 겉옷자락만 베었은즉"
+      "24:3": "길 가 양의 우리에 이른즉 굴이 있는지라 사울이 그 발을 가리우러 들어가니라 다윗과 그의 사람들이 그 굴 깊은 곳에 있더니",
+      "24:4": "다윗의 사람들이 가로되 보소서 여호와께서 당신에게 이르시기를 내가 원수를 네 손에 붙이리니 네 소견에 선한 대로 그에게 행하라 하시더니 이것이 그 날이니이다 다윗이 일어나서 사울의 겉옷자락을 가만히 베니라",
+      "24:10": "오늘 여호와께서 굴에서 왕을 내 손에 붙이신 것을 왕이 아셨을 것이니이다",
+      "24:11": "내 손에 있는 왕의 옷자락을 보소서 내가 왕을 죽이지 아니하고 겉옷자락만 베었은즉"
     }
   },
   "moment": {
-    "verse": "24:8 후반",
-    "why": "다윗이 땅에 엎드려 절하고 벤 옷자락을 들어 보이며, 사울이 돌아보는 순간 — 옷자락을 베는 동작 자체는 이미 지나갔고 이 순간엔 결과물만 손에 있다(ADR 260902-170558)."
+    "verse": "24:4",
+    "why": "2026-10-14 사용자 결정: 24:8 굴 밖 → 24:4 굴 안. 사건의 핵심은 굴 안(24:3 사울이 들어감 · 24:4 다윗이 겉옷자락을 가만히 벰 · 24:10 「굴에서 왕을 내 손에 붙이신」)이다. 다윗이 굴 깊은 곳에서 나와 사울 쪽으로 다가가 겉옷자락을 가만히 벤다. 사울이 모름은 24:4 「가만히」에서 읽은 추론이고, 두 사람의 위치·방향은 본문 밖 · 저작자 정함"
+  },
+  "meaning": {
+    "ko": "깊은 굴 안, 사울이 어귀 쪽 어스름 빛 속에 웅크려 앉은 때, 다윗이 굴 깊은 어둠에서 나와 무릎 꿇고 사울의 땅에 끌린 겉옷자락을 가만히 벤다",
+    "en": "Deep inside a vast dark cave, Saul crouches in the dim light a little way in from the far cave mouth; David comes out of the deep darkness on his knees and quietly cuts off a corner of the cloak trailing on the ground",
+    "verse": "삼상 24:3 · 24:4 · 사울이 어귀 쪽 어스름 빛 속에 있음 본문 밖 · 웅크린 자세 본문 밖(24:3 「발을 가리우러」 해석) · 다윗의 무릎 자세 본문 밖 · 땅에 끌린 자락 본문 밖 · 저작자 정함"
+  },
+  "relation": {
+    "ko": "두 사람 모두 화면 오른쪽, 멀리 작고 밝은 굴 어귀를 향한다 — 사울은 어귀 쪽을 바라보며 웅크려 있고 뒤를 돌아보지 않으며, 다윗은 왼쪽 어둠에서 무릎으로 다가가 같은 쪽을 향한 채 땅에 끌린 겉옷자락을 벤다. 둘의 시선은 마주치지 않는다",
+    "en": "Both men face toward the right edge of the picture, where the small bright cave mouth is far away. Saul crouches looking toward the cave mouth and does not look back; David creeps up on his knees from the left darkness, also facing right, and cuts the corner of the cloak trailing on the ground; their eyes do not meet",
+    "verse": "삼상 24:3 · 24:4 · 방향·사울의 위치·다윗의 접근 방식 본문 밖 · 저작자 정함(2026-10-14 사용자 결정)"
+  },
+  "whole_background": {
+    "ko": "크고 깊고 어두운 굴 내부가 화면 대부분을 차지하고, 굴 어귀는 화면 오른쪽 멀리 작고 밝은 구멍이다. 어귀에서 들어오는 빛이 두 사람만 비추고 나머지 굴은 깊은 어둠이며, 왼쪽 깊은 어둠 속에 다윗의 사람들의 희미한 그림자. 화면 대부분은 짙은 갈흑색 그늘 — 둘레와 뒤쪽 굴 속은 아주 어둡고, 먼 어귀의 부드러운 빛만 두 사람에게 떨어진다",
+    "en": "the inside of a huge, deep, dark cave of pale limestone filling most of the picture, with the cave mouth only a small bright opening far away at the right edge; the light from it lights only the two men while the rest of the cave stays in deep darkness, dry rocky floor, and the faint dim silhouettes of David's men barely visible far back in the deep darkness on the left. Most of the picture is deep brown-black shadow: the cave interior around and behind them is very dark, and only a soft pool of light from the distant cave mouth falls on the two men",
+    "verse": "삼상 24:3 「굴 깊은 곳」 · 24:4 · 굴의 크기·어귀 위치·빛·석회암·다윗의 사람들의 위치와 희미한 그림자 본문 밖 · 저작자 정함(2026-10-14 사용자 결정)"
   },
   "background": [
     {
-      "what": "엔게디 황무지 바위 절벽, 들염소 바위",
-      "verse": "24:1-2"
+      "what": "굴 안 — 어귀의 빛이 두 사람만 비춤",
+      "verse": "24:3-4 · 빛 본문 밖 · 저작자 정함"
     },
     {
-      "what": "양의 우리 곁 굴 어귀",
-      "verse": "24:3"
+      "what": "엔게디 들염소 바위 지대의 양 우리 곁 굴",
+      "verse": "24:1-3"
     }
   ],
-  "crowds": [],
+  "crowds": [
+    {
+      "what": "다윗의 사람들 — 화면 왼쪽 굴 깊은 어둠 속 희미한 그림자 — 24:4 「다윗의 사람들이 가로되」 직후 · 숨죽여 지켜봄·낮게 속삭이는 모습·희미한 그림자는 본문 밖 · 저작자 정함",
+      "verse": "24:3 · 24:4",
+      "region": "david"
+    }
+  ],
   "figures": [
     {
       "cast": "david",
-      "role": "다윗 — 엎드려 절함",
-      "pose": "땅에 엎드려 절하며 옷자락을 손에 들어 보인다",
-      "prop": "a robe corner",
+      "role": "다윗 — 굴 깊은 곳에서 나와 겉옷자락을 벰",
+      "pose": "왼쪽 깊은 어둠에서 나와 무릎 꿇고 사울의 땅에 끌린 겉옷자락을 벤다",
+      "prop": "a small knife",
       "facing": "right",
       "region": "david",
-      "verse": "24:8 · 24:11"
+      "verse": "24:4 「일어나서 … 가만히 베니라」 · 무릎 걸음 자세·자락을 잡는 손·칼 본문 밖 · 저작자 정함(「일어나서」는 행동에 나섬의 뜻으로 읽고, 굴 안 접근은 무릎 걸음으로 저작자가 정함)",
+      "expression": {
+        "ko": "숨죽인 긴장한 얼굴 — 조심스럽고 집중한 눈",
+        "en": "a tense, hushed face with careful, intent eyes",
+        "verse": "삼상 24:4 · 본문 밖 · 저작자 정함(표정)"
+      },
+      "gesture": {
+        "ko": "무릎으로 다가가 한 손으로 땅에 끌린 사울의 겉옷자락을 잡고 다른 손의 작은 칼로 가만히 벤다",
+        "en": "creeping forward on his knees, one hand holding the hem of the king's cloak that lies on the ground, the other hand cutting it with a small knife",
+        "verse": "삼상 24:4 · 칼·무릎 자세·잡는 손 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "어두운 양모 튜닉과 가죽 띠",
+        "en": "a dark wool tunic with a leather belt",
+        "verse": "본문 밖 · 저작자 정함(튜닉)"
+      },
+      "gaze": "saul",
+      "screen_facing": "right"
     },
     {
       "cast": "saul",
-      "role": "사울 — 돌아봄",
-      "pose": "걷다가 돌아서 뒤를 본다",
-      "prop": "a sword",
-      "facing": "left",
+      "role": "사울 — 굴 안쪽으로 들어와 어귀 쪽을 향해 웅크려 앉음",
+      "pose": "어스름 빛 속에서 웅크려 앉아 굴 어귀 쪽을 향한다",
+      "prop": "none",
+      "facing": "right",
       "region": "saul",
-      "verse": "24:8 · 지물 본문 밖 · 저작자 정함"
+      "verse": "24:3 · 24:4 · 자세 본문 밖 · 저작자 정함",
+      "expression": {
+        "ko": "아무것도 모르는 무방비한 옆얼굴 — 어귀 쪽을 바라봄",
+        "en": "an unsuspecting, unguarded face in profile, looking toward the cave mouth",
+        "verse": "삼상 24:4 「가만히」(사울이 모름은 추론) · 표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "굴 안에서 웅크려 앉아 어귀 쪽을 바라보고 뒤를 돌아보지 않는다",
+        "en": "hunched down on the cave floor, facing toward the cave mouth, not looking back, his long cloak trailing on the ground behind him",
+        "verse": "삼상 24:3 · 자세·뒤로 끌린 겉옷 본문 밖 · 저작자 정함(「발을 가리우러」 해석·노골적이지 않게)"
+      },
+      "costume": {
+        "ko": "아직 온전한 어두운 양모 겉옷(왕의 겉옷, 24:4) — 자락이 땅에 끌려 다윗이 베는 중 — 관 없음(본문 밖)",
+        "en": "a dark wool cloak, the king's robe, its hem trailing on the ground still whole and being cut at one corner by the man to the left, no crown",
+        "verse": "삼상 24:4 「사울의 겉옷자락」 · 자락이 땅에 끌린 모습·색·양모·관 없음 본문 밖 · 저작자 정함"
+      },
+      "gaze": "ahead",
+      "screen_facing": "right",
+      "cast_override": {
+        "age": "king",
+        "build": "none"
+      },
+      "cast_override_why": "24:3-4 웅크린 순간 — 정본의 키 낱말(tall king · a head taller than others)이 웅크림을 서게 만든다(2026-10-14 실측: 낱말 포함 웅크림 0/4 → 제외 8/8). 정본 파일은 그대로, 이 장면만"
     }
   ],
   "regions": {
@@ -76,7 +138,7 @@
       0.9
     ]
   },
-  "_regions_why": "다윗 엎드림 세로 0.37(낮게 엎드림, 24:8). 사울 세로 0.56(서서 돌아봄). 굴은 배경 구조물(24:3), 절벽은 24:2 들염소 바위.",
+  "_regions_why": "다윗 세로 0.37(무릎 걸음으로 낮게 다가감, 24:4). 사울 세로 0.56(웅크려 앉음, 24:3 「발을 가리우러」 해석). 굴은 배경 구조물(24:3), 절벽은 24:2 들염소 바위. 구역 상자는 stages 경로용이고 한 장(whole) 모드는 쓰지 않는다.",
   "stages": [
     {
       "id": "S1",
@@ -148,7 +210,6 @@
       "neg": [
         "crown",
         "armour",
-        "royal robe",
         "standing",
         "modern clothes"
       ]
@@ -161,7 +222,6 @@
       "prompt": "{cast:saul}, standing, body turning to look back, gripping a sword at his hip, facing left.",
       "neg": [
         "crown",
-        "royal robe",
         "armour",
         "modern clothes"
       ]
@@ -190,5 +250,10 @@
         0.98
       ]
     }
+  },
+  "screen_light": {
+    "ko": "오른쪽 멀리 굴 어귀에서 들어오는 빛이 두 사람만 비춘다",
+    "en": "Daylight from the small cave mouth far on the right lights only these two men",
+    "verse": "삼상 24:3 · 빛 본문 밖 · 저작자 정함"
   }
 }
