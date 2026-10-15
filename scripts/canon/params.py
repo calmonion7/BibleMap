@@ -123,3 +123,13 @@ FACE_AB_CROP_SCALE = 2.6         # A 인페인트: 머리 상자 한 변의 이 
 FACE_AB_INPAINT_STRENGTH = 0.85  # A 인페인트 강도(1.0이면 원본 무시, 낮을수록 원래 얼굴 구조가 남는다)
 FACE_AB_MASK_GROW = 1.15         # A 마스크(머리 상자 타원)의 확장 배율
 FACE_AB_MASK_FEATHER = 0.12      # A 마스크 가장자리 번짐(마스크 한 변 대비)
+
+# --- task#347 — B-e 얼굴을 지키며 화풍 되찾기(R1 머리 되붙이기 · R2 저강도 img2img). 실행 전 고정 ---
+FACE_STYLE_SETTINGS = {"R1": [1.3, 1.6], "R2": [0.25, 0.4]}   # R1 = 머리 상자 타원 확장 배율, R2 = img2img 강도
+FACE_STYLE_R1_FEATHER = 0.12     # R1 타원 마스크 번짐(마스크 한 변 대비 — A와 같은 값)
+FACE_STYLE_REGION_SCALE = 2.0    # 화풍 측정 영역 ①: 머리 상자 중심, 한 변 2배 상자(머리 포함). ② 그림 전체
+FACE_STYLE_METRICS = ("sat_p95", "val_p05", "ink")   # judge_style.style_metrics — 화풍 거리 = 두 영역 × 세 지표 절대차 평균
+FACE_STYLE_UNIT = "head"         # 집계 단위: 그림이 아니라 머리 하나(장면·시드·인물)
+FACE_STYLE_DIST_MAX_RATIO = 0.5  # 통과 ①: 화풍 거리가 같은 장면·시드·인물 B-e 원본 거리의 이 배 이하
+FACE_STYLE_FACE_MIN_RATIO = 0.8  # 통과 ②: 얼굴 마진 점수(346 S2 자)가 B-e 원본 점수의 이 배 이상
+FACE_STYLE_REQUIRE_SAME = True   # 통과 ③: VLM(check_face_judge.same_person)이 정본과 같은 사람이라 한다
