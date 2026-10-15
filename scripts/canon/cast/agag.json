@@ -11,6 +11,7 @@
   "era": "an ancient Amalekite",
   "age": "captured king",
   "sex": "male",
+  "role": "king",
   "hair": "dark hair",
   "beard": "dark beard",
   "headwear": "none",
@@ -37,16 +38,16 @@
       "text": "in his 40s, soft face"
     },
     "beardVolume": {
-      "class": "full",
-      "text": "full dark beard, curled and oiled"
+      "class": "long",
+      "text": "long braided black beard reaching the chest"
     },
     "silhouette": {
       "class": "average",
       "text": "average build, soft rounded shoulders"
     },
     "headOutline": {
-      "class": "bare",
-      "text": "bare head, oiled dark hair"
+      "class": "turban",
+      "text": "dark wound desert turban, nomad style"
     },
     "costumeColor": {
       "class": "red",
@@ -63,25 +64,26 @@
     "marks": "none"
   },
   "_why": {
-    "age": "본문 밖 · 저작자 정함",
-    "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "costume": "삼상 15:8 「아말렉 사람의 왕 아각을 사로잡고」(외 세부는 본문 밖)",
-    "card.heightRel": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.ageBand": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "face.faceShape": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)"
+    "age": "[저작](나이 기록 없어 직책·경력에서 본 연령대 대표값)",
+    "build": "[저작](체격 기록 없어 직책 이미지의 대표값)",
+    "hair": "[저작](머리 기록 없어 고대 근동 남성 짙은 머리 대표값)",
+    "beard": "[저작](수염 기록 없어 고대 근동 성인 남성 수염 관습 대표값)",
+    "headwear": "[저작](쓰개 기록 없어 맨머리 기본값)",
+    "costume": "[추론] 삼상 15:8 「아말렉 사람의 왕 아각을 사로잡고」 — 사로잡힌 왕이라 찢긴 고운 옷·묶인 손",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[저작](역표 동석 인물과 구분용)",
+    "card.beardVolume": "[저작](29명 전체 구별 — 같은 turban인 아히멜렉과 갈림)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](29명 전체 구별 — 아기스·히람·나단과 갈림. 아말렉 유목민 머리 감기는 시대 고증)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "face.faceShape": "[저작](얼굴 구분용)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[직접] 삼상 15:8 「아말렉 사람의 왕 아각」"
   },
   "plate": {
     "seed": 11,

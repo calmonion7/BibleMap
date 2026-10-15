@@ -151,9 +151,17 @@ vocab-2는 두 층을 **더한다**. 값은 프롬프트에 바로 쓰는 영문
 | `brows` | 눈썹 |
 | `marks` | 흉터·주름·표식 — 없으면 `none` |
 
-### 근거 규칙
+### 근거 규칙 (task 353에서 단계 표시로 바꿈)
 
-- 위 13필드와 기존 외모 필드(`age`·`hair`·`beard`·`headwear`·`build`·`costume`)는 모두 `_why`를 갖는다.
-- `_why`는 구절 표기(`삼상 16:12 「…」`, 책 약칭 + 장:절)를 담거나 「본문 밖 · 저작자 정함」을 담는다. 구절 표기는 `data/bible/verses.json`에 있는 절로 풀려야 한다.
+- 위 13필드, 기존 외모 필드(`age`·`hair`·`beard`·`headwear`·`build`·`costume`), 신분 `role`은 모두 `_why`를 갖는다.
+- **`_why`는 근거 단계 표시로 시작한다(사용자 2026-10-15).** 표시는 *그 값을 무엇이 받치느냐*로 정한다.
+  - `[직접] 구절 「인용」` — 본문이 그 인물의 그 외모·신분을 직접 말한다.
+  - `[추론] 구절 「인용」 — 추론 한 줄` — 본문의 다른 사실(즉위 나이·재위 연수 → 나이, 신분·민족·직업 → 복식·체격)에서 끌어낸다.
+  - `[저작](이유)` — 위 둘이 없을 때 시대·지역 고증이나 구분 목적으로 정한다. 괄호 안 이유는 4자 이상이고 「본문 밖」「저작자 정함」만으로 쓰지 않는다. 구절이 일부만 받치면(「아름답다」만 말하고 얼굴형은 정함) `[저작]`이다.
+- 구절 표기(`삼상 16:12 「…」`)는 `data/bible/verses.json`에 있는 절로 풀려야 하고, 인용은 그 절 원문에서 **글자 그대로 복사**한다(c2).
+- **성품 낱말은 정의에 넣지 않는다.** 행적·성품에서 유추한 인상은 장면 `figures[].expression`이 그 순간에만 맡는다 — 삼상 16:7 「사람은 외모를 보거니와 나 여호와는 중심을 보느니라」. 얼굴 층 값과 카드 층 `text`에 금지: `cold` `cruel` `hard` `harsh` `wicked` `evil` `sly` `cunning` `menacing` `sinister` `kind` `gentle` `wise` `noble` `arrogant` `proud` `haughty` `shifty` `pleading` `trembling` `tense` `anxious` `fierce` `stern` `serene` `innocent`.
+- **신분 `role`**: 영어 신분 명사 하나(`king` `queen` `prince` `priest` `prophet` `commander` `soldier` `warrior` `shepherd` `servant` `medium` `mother` 등). 성별은 넣지 않는다 — 장면 문구 파생(`derive_scene.cast_describe`)이 `sex`와 카드 `ageBand`로 성별 명사(man·woman·boy·girl)를 맨 앞에 붙인다.
+- **전체 구별 규칙**: 동석 인물끼리(위 구별 규칙)뿐 아니라 **29명 전체 쌍**에서 카드 층 `class`가 2개 이상 다르다. 같은 사람의 생애 단계 쌍(david-boy·david·david-old, saul·saul-old, solomon·solomon-old)은 일부러 닮게 하므로 뺀다. 가를 때는 `[저작]` 필드만 바꾸고 `[직접]`·`[추론]` 값은 근거가 있으므로 그대로 둔다.
+- 얼굴 층의 의미 유사(글자는 달라도 같은 얼굴로 그려질 쌍)는 기계로 못 잰다 — 검토 에이전트가 29명을 나란히 놓고 판정한다(353: 1회차 2쌍 → 3회차 0쌍).
 - 구절 수집 원천은 `cast/APPEARANCE-VERSES.md`(인물 · 구절 · 개역한글 원문 · 말하는 특징).
-- 검사: `cd scripts/canon && python3 check_cast_v2.py` (정의를 고칠 때마다 돌린다).
+- 검사: `cd scripts/canon && python3 check_cast_v2.py` (정의를 고칠 때마다 돌린다). (f) 단계 표시·`role` · (g) 성품 낱말 · (h) 전체 구별이 353에서 더해졌다.

@@ -24,6 +24,7 @@
   "era": "an ancient Israelite",
   "age": "lean young man",
   "sex": "male",
+  "role": "commander",
   "hair": "dark curly hair",
   "beard": "short dark beard",
   "headwear": "none",
@@ -63,8 +64,8 @@
   "card": {
     "heightRel": "average",
     "ageBand": {
-      "class": "prime",
-      "text": "in his 30s, lean angular face"
+      "class": "young",
+      "text": "in his 20s, lean angular face"
     },
     "beardVolume": {
       "class": "trimmed",
@@ -93,25 +94,26 @@
     "marks": "none"
   },
   "_why": {
-    "age": "본문 밖 · 저작자 정함(소년기 이후 성인 전환)",
-    "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함(소년기 이후 성인 전환). 삼하 12:30 「다윗이 머리에 쓰니라」(보석 면류관)와 충돌, 삼하 15:30 「머리를 가리우고 맨발로 울며 행하고」·19:4 「얼굴을 가리우고」로 마하나임은 머리 가림이라 bare와도 갈림 — 정차지 분기(마하나임=머리 가림, 랍바 이후=면류관 가능)는 2/2로 미룸. 용모는 삼상 16:12 「얼굴이 아름답더라」·17:42 「용모가 아름다움이라」(david-boy 줄 교차참조)",
-    "costume": "본문 밖 · 저작자 정함(시대 복식)",
-    "card.heightRel": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.ageBand": "삼하 5:4 「다윗이 삼십 세에 위에 나아가서」 — 즉위 나이만 받침, 30대는 헤브론·예루살렘 정복·궤 이송의 대표 연령. 즉위 전 정차지(기브아·라마·놉·가드·아둘람·엔게디·시글락)는 20대, 나단 언약 이후·마하나임은 40-50대로 갈림 — 정차지 분기는 2/2로 미룸",
-    "card.beardVolume": "삼상 21:13 「침을 수염에 흘리매」 — 수염이 있음, 길이는 저작자 정함",
-    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "face.faceShape": "삼상 16:12 「얼굴이 아름답더라」",
-    "face.eyes": "삼상 16:12 「눈이 빼어나고」",
-    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.skin": "삼상 16:12 「그의 빛이 붉고」",
-    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)"
+    "age": "[저작](소년기 이후 성인 전환)",
+    "build": "[저작](체격 기록 없어 직책 이미지의 대표값)",
+    "hair": "[저작](머리 기록 없어 고대 근동 남성 짙은 머리 대표값)",
+    "beard": "[저작](수염 기록 없어 고대 근동 성인 남성 수염 관습 대표값)",
+    "headwear": "[저작](맨머리 기본값 — 삼하 12:30 「다윗이 머리에 쓰니라」(면류관)·삼하 15:30 「머리를 가리우고」와 갈림, 정차지 분기는 #355)",
+    "costume": "[저작](시대 복식)",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[추론] 삼하 5:4 「다윗이 삼십 세에 위에 나아가서」 — 즉위 전 도망자 정차지(기브아 창~시글락)는 20대. 「david」는 도망자 정차지 id, 헤브론 이후는 #355에서 id 분할",
+    "card.beardVolume": "[추론] 삼상 21:13 「침을 수염에 흘리매」 — 수염이 있음, 길이는 정한 값",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "face.faceShape": "[저작](달걀형은 정한 값; 삼상 16:12 「얼굴이 아름답더라」는 아름다움만 말함)",
+    "face.eyes": "[저작](크기·색은 정함; 삼상 16:12 「눈이 빼어나고」는 눈이 빼어남만 말함)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[직접] 삼상 16:12 「그의 빛이 붉고」",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[직접] 삼상 22:2 「그는 그 장관이 되었는데 그와 함께 한 자가 사백 명 가량이었더라」 — 「david」는 도망자 정차지 id라 즉위 전 신분(삼상 18:13 천부장)"
   },
   "plate": {
     "seed": 42,
@@ -124,9 +126,16 @@
   "canon_face": {
     "engine": "z-image-turbo",
     "seed": 11,
+    "views": [
+      "front",
+      "34"
+    ],
     "file": "frozen/david.png",
     "script": "scripts/canon/gen_face_canon.py",
+    "prompt": "gen_face_canon.prompt(id, view) — cast-vocab-2 카드·얼굴 층에서 파생",
     "size": "768x768",
-    "task": 346
+    "task": 353,
+    "retired": "frozen/retired-v1/david.png",
+    "approved": "2026-10-16 사용자 「별차이 없어보인다」(후보 8개 구별 안 됨) → 기본값 첫 시드"
   }
 }

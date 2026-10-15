@@ -9,6 +9,7 @@
   "era": "an ancient Near Eastern Philistine giant",
   "age": "warrior",
   "sex": "male",
+  "role": "warrior",
   "hair": "none",
   "beard": "black beard",
   "headwear": "smooth bronze helmet, no crest",
@@ -38,7 +39,7 @@
     "heightRel": "towering",
     "ageBand": {
       "class": "prime",
-      "text": "in his 30s, hard scarred face"
+      "text": "in his 30s, weathered scarred face"
     },
     "beardVolume": {
       "class": "full",
@@ -59,7 +60,7 @@
   },
   "face": {
     "faceShape": "huge square face, jutting brow ridge",
-    "eyes": "small cold black eyes",
+    "eyes": "small black eyes",
     "nose": "broad crooked nose",
     "mouth": "scowling heavy mouth",
     "skin": "swarthy tanned skin",
@@ -67,26 +68,27 @@
     "marks": "old scar across the cheek"
   },
   "_why": {
-    "age": "본문 밖 · 저작자 정함(삼상 17장 v41 정본 이관, 연령 묘사 없음)",
-    "build": "삼상 17:4 「그 신장은 여섯 규빗 한 뼘이요」",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함(삼상 17장 v41 정본 이관)",
-    "headwear": "삼상 17:5 「머리에는 놋투구를 썼고」",
-    "costume": "삼상 17:5 「몸에는 어린갑을 입었으니」는 받침. short kilt·bare arms는 본문 밖 · 저작자 정함. barefoot은 삼상 17:6 「그 다리에는 놋경갑을 쳤고」와 직접 모순 — 사용자 3차 결정(「중세 이전 느낌으로」)이라 값은 두고 bronze shin guards 교체를 사용자 재확인 뒤 2/2로 미룸",
+    "age": "[저작](삼상 17장 v41 정본 이관, 연령 묘사 없음)",
+    "build": "[직접] 삼상 17:4 「그 신장은 여섯 규빗 한 뼘이요」",
+    "hair": "[저작](투구 아래 머리털 표현을 줄인 값, 구절은 머리털을 말하지 않음)",
+    "beard": "[저작](삼상 17장 v41 정본 이관)",
+    "headwear": "[직접] 삼상 17:5 「머리에는 놋투구를 썼고」",
+    "costume": "[저작](삼상 17:5 「몸에는 어린갑을 입었으니」는 놋 비늘 갑옷만 받침. short kilt·bare arms는 시대 복식 고증값. barefoot은 삼상 17:6 「그 다리에는 놋경갑을 쳤고」와 직접 모순 — 사용자 3차 결정(「중세 이전 느낌으로」)이라 값은 두고 bronze shin guards 교체를 사용자 재확인 뒤 #355로 미룸)",
     "note": "사용자 2026-09-04 보류: 중세 느낌 → 청동기 낱말·맨팔·킬트로 개정(b); 근거 삼상 17:5-7",
-    "card.heightRel": "삼상 17:4 「그 신장은 여섯 규빗 한 뼘이요」",
-    "card.ageBand": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.headOutline": "삼상 17:5 「머리에는 놋투구를 썼고」",
-    "card.costumeColor": "삼상 17:5 「몸에는 어린갑을 입었으니 그 갑옷의 중수가 놋 오천 세겔이며」",
-    "face.faceShape": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)"
+    "card.heightRel": "[직접] 삼상 17:4 「그 신장은 여섯 규빗 한 뼘이요」",
+    "card.ageBand": "[저작](역표 동석 인물과 구분용)",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[추론] 삼상 17:5 「그 갑옷의 중수가 놋 오천 세겔이며」 · 17:7 「창날은 철 육백 세겔이며」 — 이 무게를 지는 몸 → 거대한 어깨·가슴",
+    "card.headOutline": "[직접] 삼상 17:5 「머리에는 놋투구를 썼고」",
+    "card.costumeColor": "[저작](삼상 17:5 「몸에는 어린갑을 입었으니 그 갑옷의 중수가 놋 오천 세겔이며」는 놋 갑옷만 받침. short kilt·bare arms는 시대 복식 고증값)",
+    "face.faceShape": "[저작](얼굴 구분용)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[직접] 삼상 17:33 「그는 어려서부터 용사임이니라」"
   },
   "plate": {
     "seed": null,

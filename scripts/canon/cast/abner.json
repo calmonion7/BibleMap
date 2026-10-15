@@ -11,6 +11,7 @@
   "era": "an ancient Israelite",
   "age": "middle-aged commander",
   "sex": "male",
+  "role": "commander",
   "hair": "dark hair",
   "beard": "dark beard",
   "headwear": "none",
@@ -32,8 +33,8 @@
   "card": {
     "heightRel": "average",
     "ageBand": {
-      "class": "middle",
-      "text": "in his 50s, lined weathered face"
+      "class": "prime",
+      "text": "in his 30s, weathered face, firm jaw line"
     },
     "beardVolume": {
       "class": "full",
@@ -62,25 +63,26 @@
     "marks": "none"
   },
   "_why": {
-    "age": "본문 밖 · 저작자 정함",
-    "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식) — 삼하 2:12 「넬의 아들 아브넬」",
-    "card.heightRel": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.ageBand": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "face.faceShape": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)"
+    "age": "[저작](나이 기록 없어 직책·경력에서 본 연령대 대표값)",
+    "build": "[저작](체격 기록 없어 직책 이미지의 대표값)",
+    "hair": "[저작](머리 기록 없어 고대 근동 남성 짙은 머리 대표값)",
+    "beard": "[저작](수염 기록 없어 고대 근동 성인 남성 수염 관습 대표값)",
+    "headwear": "[저작](쓰개 기록 없어 맨머리 기본값)",
+    "costume": "[추론] 삼상 17:55 「군장 아브넬」 — 군 지휘관이라 가죽 흉갑·짧은 치마 군복",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[저작](29명 전체 구별 — 도엑·나단과 갈림. 사울 군대 장관으로 이스보셋을 세운 나이(삼하 2:8)는 본문 밖, 30대로 정함)",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "face.faceShape": "[저작](얼굴 구분용)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[직접] 삼상 17:55 「군장 아브넬」"
   },
   "plate": {
     "seed": 11,

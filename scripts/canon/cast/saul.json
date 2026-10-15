@@ -19,6 +19,7 @@
   "era": "an ancient Israelite",
   "age": "tall king",
   "sex": "male",
+  "role": "king",
   "hair": "dark hair",
   "beard": "short dark beard",
   "headwear": "none",
@@ -83,25 +84,26 @@
     "marks": "none"
   },
   "_why": {
-    "age": "본문 밖 · 저작자 정함(재위 중 장년)",
-    "build": "삼상 10:23 「다른 사람보다 어깨 위나 더 크더라」",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식)",
-    "card.heightRel": "삼상 10:23 「다른 사람보다 어깨 위나 더 크더라」",
-    "card.ageBand": "삼상 13:1 「사울이 왕이 될 때에 사십 세라」 — 왕위 때 40세, 재위 중 40대로 고정(역표 동석 인물과 구분)",
-    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "face.faceShape": "삼상 9:2 「준수한 소년이라 이스라엘 자손 중에 그보다 더 준수한 자가 없고」 — 용모가 빼어남만 말함, 얼굴형 세부는 저작자 정함",
-    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)"
+    "age": "[저작](재위 중 장년)",
+    "build": "[직접] 삼상 10:23 「다른 사람보다 어깨 위나 더 크더라」",
+    "hair": "[저작](시대 인물 대표값 — 본문에 머리색 없음)",
+    "beard": "[저작](재위 중 장년 — 본문에 수염 언급 없음)",
+    "headwear": "[저작](재위 중 맨머리 — 본문에 머리쓰개 언급 없음)",
+    "costume": "[저작](시대 복식)",
+    "card.heightRel": "[직접] 삼상 10:23 「다른 사람보다 어깨 위나 더 크더라」",
+    "card.ageBand": "[추론] 삼상 13:1 「사울이 왕이 될 때에 사십 세라」 — 왕위 때 40세, 재위 중 40대로 고정(역표 동석 인물과 구분)",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "face.faceShape": "[저작](삼상 9:2 「준수한 소년이라」는 용모가 빼어남만 말함, 얼굴형 세부는 저작자 정함)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[직접] 삼상 11:15 「여호와 앞에 사울로 왕을 삼고」"
   },
   "plate": {
     "seed": 11,
@@ -113,10 +115,17 @@
   },
   "canon_face": {
     "engine": "z-image-turbo",
-    "seed": 7,
+    "seed": 11,
+    "views": [
+      "front",
+      "34"
+    ],
     "file": "frozen/saul.png",
     "script": "scripts/canon/gen_face_canon.py",
+    "prompt": "gen_face_canon.prompt(id, view) — cast-vocab-2 카드·얼굴 층에서 파생",
     "size": "768x768",
-    "task": 346
+    "task": 353,
+    "retired": "frozen/retired-v1/saul.png",
+    "approved": "2026-10-16 사용자 「별차이 없어보인다」(후보 8개 구별 안 됨) → 기본값 첫 시드"
   }
 }

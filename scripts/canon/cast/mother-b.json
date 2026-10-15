@@ -10,6 +10,7 @@
   "era": "an ancient Israelite",
   "age": "woman",
   "sex": "female",
+  "role": "mother",
   "hair": "dark hair",
   "beard": "none",
   "headwear": "dark shawl over the head",
@@ -39,7 +40,7 @@
     "heightRel": "average",
     "ageBand": {
       "class": "prime",
-      "text": "in her 30s, hard tired face"
+      "text": "in her 30s, weathered tired face"
     },
     "beardVolume": {
       "class": "none",
@@ -60,7 +61,7 @@
   },
   "face": {
     "faceShape": "long thin face, sharp chin",
-    "eyes": "narrow cold dark eyes",
+    "eyes": "narrow dark eyes",
     "nose": "long thin nose",
     "mouth": "tight thin lips",
     "skin": "sallow skin",
@@ -68,26 +69,27 @@
     "marks": "none"
   },
   "_why": {
-    "age": "본문 밖 · 저작자 정함(두 인물 구분용)",
-    "build": "본문 밖 · 저작자 정함(두 인물 구분용)",
-    "hair": "본문 밖 · 저작자 정함(두 인물 구분용)",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함(두 인물 구분용)",
-    "costume": "본문 밖 · 저작자 정함(두 인물 구분용) — 왕상 3:26은 이 인물이 거짓 어미임만 말하고 복식을 받치지 않음",
-    "card.heightRel": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.ageBand": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "face.faceShape": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "propCandidates[0]": "왕상 3:24 「칼을 내게로 가져오라 하니 칼을 왕의 앞으로 가져온지라」는 솔로몬이 명해 왕 앞에 가져온 칼이지 이 여인의 소지품이 아님(오인용). 제거를 2/2로 미룸"
+    "age": "[저작](두 여인 구분용 30대 여인, 구절은 나이를 말하지 않음)",
+    "build": "[저작](두 여인 구분용 가는 체격, 구절은 체격을 말하지 않음)",
+    "hair": "[저작](두 여인 구분용 검은 머리, 구절은 머리털을 말하지 않음)",
+    "beard": "[저작](여성 인물이라 수염 없음)",
+    "headwear": "[저작](두 여인 구분용 어두운 숄, 구절은 쓴 것을 말하지 않음)",
+    "costume": "[저작](두 여인 구분용 시대 복식 고증 — 어두운 황토색 모직 겉옷; 왕상 3:26은 이 인물이 거짓 어미임만 말하고 복식은 받치지 않음)",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[저작](역표 동석 인물과 구분용)",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "face.faceShape": "[저작](얼굴 구분용)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "propCandidates[0]": "왕상 3:24 「칼을 내게로 가져오라 하니 칼을 왕의 앞으로 가져온지라」는 솔로몬이 명해 왕 앞에 가져온 칼이지 이 여인의 소지품이 아님(오인용). 제거를 2/2로 미룸",
+    "role": "[추론] 왕상 3:22 「산 것은 내 아들이요 죽은 것은 네 아들이라」 — 아이를 두고 다투는 두 어미 중 한 사람"
   },
   "plate": {
     "seed": 11,

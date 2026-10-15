@@ -53,7 +53,7 @@ if __name__ == "__main__":
     res = {"cands": {}, "pair": None}
     for cid in a.who:
         for p in sorted(glob.glob(os.path.join(a.dir, cid, "s*.png"))):
-            d = ask(PROMPT.format(img=p, rubric=RUBRIC.format(cid=cid, vocab=vocab(cid), look=g.LOOK[cid])), [p])
+            d = ask(PROMPT.format(img=p, rubric=RUBRIC.format(cid=cid, vocab=vocab(cid), look=g.look(cid))), [p])
             if d:
                 d["score"] = round(sum(d[k] for k in ("vocab", "style", "clean", "head")) / 4, 2)
             res["cands"][p] = d

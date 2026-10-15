@@ -35,7 +35,7 @@ def plan(cid):
 def prompt(cid, phrase, angle):
     c = json.load(open(os.path.join(HERE, "cast", f"{cid}.json"), encoding="utf-8"))
     return (f"{g.STYLE}, {phrase}, {angle}, plain cream background. "
-            f"{c['era']} {g.LOOK[cid]}, {c['hair']}, {c['beard']}, hair covering the whole head down to the forehead, no hat, dark wool tunic.")
+            f"{g.look(cid)}.")
 
 
 if __name__ == "__main__":

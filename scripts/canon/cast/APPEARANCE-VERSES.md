@@ -92,19 +92,19 @@
 
 ## 2/2로 미룰 값
 
-- saul-old · headwear(·card.headOutline) · none(bare) → 길보아 정차지에서 머리에 면류관 · 삼하 1:10 「그 머리에 있는 면류관과 팔에 있는 고리를 벗겨서」 (현재 neg에 crown이 있어 충돌 — 엔돌 정차지는 면류관 없음이라 정차지별 분기 필요)
-- saul-old · costume·headwear(·card.headOutline) · 엔돌 변장 외투·none → 정차지 분기: 엔돌=변장 외투·none, 길보아=갑옷 차림 시체·면류관·팔고리 · 삼상 28:8 / 삼상 31:9 / 삼하 1:10
-- jonathan · age · young prince → warrior prince (card.ageBand는 이미 40대로 교정) · 삼상 13:2-3 / 삼하 4:4 / 삼하 2:10
-- david · age · lean young man → 30대 장년(마하나임·귀환은 50대 후반 분기) · 삼하 5:4
-- david · headwear(·card.headOutline) · none(bare) → 랍바 정복 이후 정차지는 보석 면류관 가능 · 삼하 12:30 (neg crown 충돌)
-- goliath · costume · barefoot → bronze shin guards(중세 판금 아님은 neg로 유지), 사용자 3차 보류 결정이라 장면에서 재검토 · 삼상 17:6
-- solomon · card.ageBand · in his 20s → 후반 정차지(궁전·에시온게벨·스바)는 prime 30대~40대 초 · 왕상 6:1 / 9:10 / 11:42
-- solomon · propCandidates · a temple model → a plan of the temple(손에 든 모형은 본문에 없음) · 대상 28:11-12 (왕상 6:14는 건축 완료만)
-- nathan · propCandidates · a horn of oil(왕상 1:39) → 뿔은 사독의 것이라 제거, 또는 verse를 왕상 1:34 「제사장 사독과 선지자 나단은 저에게 기름을 부어」로 · 왕상 1:34 / 1:45
-- mother-b · propCandidates · a sword → 제거(칼은 솔로몬이 가져오게 한 것, solomon 소품), 필요하면 죽은 아이 · 왕상 3:24 / 3:20
-- samuel · card.headOutline · bare head, thin white hair → 머리를 자르지 않은 긴 머리 가능성 · 삼상 1:11
-- jonathan · propCandidates[a bow](삼상 31:3) → 삭제(블레셋 궁수가 사울을 쏜 장면, 요나단 활 아님. 삼하 1:22 항목과 중복) · 삼상 31:3 / 삼하 1:22
-- saul-old · costume(길보아) · worn dark tunic and cloak → 갑옷 차림 시체, 엔돌 변장 외투는 색 불특정 · 삼상 28:8 / 삼상 31:9
-- david · card.ageBand · in his 30s → 정차지 분기(즉위 전 20대 후반 / 헤브론·예루살렘 30대 / 마하나임 50대 후반) · 삼하 5:4
-- david · headwear · none(bare) → 마하나임=머리 가림 · 삼하 15:30 / 19:4, 랍바 이후=면류관 가능 · 삼하 12:30
-- solomon · propCandidates · a horn of oil(왕상 1:39) → 제거(뿔은 사독의 것) · 왕상 1:39
+- saul-old · headwear(·card.headOutline) · none(bare) → 길보아 정차지에서 머리에 면류관 · 삼하 1:10 「그 머리에 있는 면류관과 팔에 있는 고리를 벗겨서」 (현재 neg에 crown이 있어 충돌 — 엔돌 정차지는 면류관 없음이라 정차지별 분기 필요) — **353 처리: 장면 몫(길보아 장면 명세 `costume`)**
+- saul-old · costume·headwear(·card.headOutline) · 엔돌 변장 외투·none → 정차지 분기: 엔돌=변장 외투·none, 길보아=갑옷 차림 시체·면류관·팔고리 · 삼상 28:8 / 삼상 31:9 / 삼하 1:10 — **353 처리: 장면 몫(정차지별 차림은 장면 명세 `figures[].costume`이 덮어씀 — id 하나 유지)**
+- jonathan · age · young prince → warrior prince (card.ageBand는 이미 40대로 교정) · 삼상 13:2-3 / 삼하 4:4 / 삼하 2:10 — **353 처리: #355(기존 값 교정)**
+- david · age · lean young man → 30대 장년(마하나임·귀환은 50대 후반 분기) · 삼하 5:4 — **353 처리: 이번 처리 — 「david」는 도망자 정차지 id(20대)로 고정, 30대 이후는 #355 id 분할**
+- david · headwear(·card.headOutline) · none(bare) → 랍바 정복 이후 정차지는 보석 면류관 가능 · 삼하 12:30 (neg crown 충돌) — **353 처리: 장면 몫(랍바 이후 면류관은 해당 장면 명세)**
+- goliath · costume · barefoot → bronze shin guards(중세 판금 아님은 neg로 유지), 사용자 3차 보류 결정이라 장면에서 재검토 · 삼상 17:6 — **353 처리: #355(기존 값 교정, 장면에서 재확인)**
+- solomon · card.ageBand · in his 20s → 후반 정차지(궁전·에시온게벨·스바)는 prime 30대~40대 초 · 왕상 6:1 / 9:10 / 11:42 — **353 처리: #355(생애 단계 분할 여부)**
+- solomon · propCandidates · a temple model → a plan of the temple(손에 든 모형은 본문에 없음) · 대상 28:11-12 (왕상 6:14는 건축 완료만) — **353 처리: #355(오인용 소품)**
+- nathan · propCandidates · a horn of oil(왕상 1:39) → 뿔은 사독의 것이라 제거, 또는 verse를 왕상 1:34 「제사장 사독과 선지자 나단은 저에게 기름을 부어」로 · 왕상 1:34 / 1:45 — **353 처리: #355(오인용 소품)**
+- mother-b · propCandidates · a sword → 제거(칼은 솔로몬이 가져오게 한 것, solomon 소품), 필요하면 죽은 아이 · 왕상 3:24 / 3:20 — **353 처리: #355(오인용 소품)**
+- samuel · card.headOutline · bare head, thin white hair → 머리를 자르지 않은 긴 머리 가능성 · 삼상 1:11 — **353 처리: 이번 처리 — 긴 흰 머리 `[추론]` 삼상 1:11 + 12:2 (`hair`도 같이)**
+- jonathan · propCandidates[a bow](삼상 31:3) → 삭제(블레셋 궁수가 사울을 쏜 장면, 요나단 활 아님. 삼하 1:22 항목과 중복) · 삼상 31:3 / 삼하 1:22 — **353 처리: #355(오인용 소품)**
+- saul-old · costume(길보아) · worn dark tunic and cloak → 갑옷 차림 시체, 엔돌 변장 외투는 색 불특정 · 삼상 28:8 / 삼상 31:9 — **353 처리: 장면 몫(길보아 장면 명세)**
+- david · card.ageBand · in his 30s → 정차지 분기(즉위 전 20대 후반 / 헤브론·예루살렘 30대 / 마하나임 50대 후반) · 삼하 5:4 — **353 처리: 이번 처리 — young(20대, 도망자 정차지), 정차지 분기 대신 #355 id 분할**
+- david · headwear · none(bare) → 마하나임=머리 가림 · 삼하 15:30 / 19:4, 랍바 이후=면류관 가능 · 삼하 12:30 — **353 처리: 장면 몫(마하나임 머리 가림·랍바 이후 면류관은 해당 장면 명세)**
+- solomon · propCandidates · a horn of oil(왕상 1:39) → 제거(뿔은 사독의 것) · 왕상 1:39 — **353 처리: #355(오인용 소품)**

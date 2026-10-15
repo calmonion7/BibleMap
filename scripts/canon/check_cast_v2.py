@@ -7,6 +7,8 @@
 (a2) ageBand·beardVolume·silhouette의 text가 정도 낱말만으로 끝나지 않음 (b) 외모 필드 전부 `_why`
 (c) `_why`의 구절 표기가 verses.json 절로 풀림 (c2) 구절 바로 뒤 「인용」이 그 절 원문에 글자 그대로 있음(「…」 생략 허용) (d) 역표 정차지마다 함께 나오는 인물 쌍이 카드 층 2필드 이상 다름
 (e) 모든 인물이 `cast/APPEARANCE-VERSES.md` 표에 줄을 가짐. 필드 표 정본은 `cast/CAST.md` 「cast-vocab-2 필드 표」.
+task 353에서 더함: (f) `_why`가 근거 단계 `[직접]`·`[추론]`·`[저작](이유 4자 이상)`로 시작 · `role` 필드와 근거
+(g) 얼굴·카드 층에 성품 낱말 없음(삼상 16:7 — 표정은 장면 `expression` 몫) (h) 생애 단계 쌍을 뺀 **모든** 쌍이 카드 층 2필드 이상 다름.
 """
 import glob
 import itertools
@@ -37,6 +39,13 @@ DEGREE = {"short", "tall", "long", "big", "small", "large", "little", "old", "yo
           "quite", "average", "normal", "medium", "some", "slightly", "rather", "fairly"}
 STOP = {"a", "an", "the", "of", "with", "and", "to", "in", "at", "on", "his", "her", "its", "by", "for", "over",
         "under", "from", "is"}
+TIERS = ("[직접]", "[추론]", "[저작]")
+# 성품·인상 낱말 — 고정 정의에 두지 않는다(CAST.md 「근거 단계」). task 353 DoD 4 목록과 같다.
+TRAIT = re.compile(r"\b(cold|cruel|hard|harsh|wicked|evil|sly|cunning|menacing|sinister|kind|gentle|wise|noble|arrogant|proud"
+                   r"|haughty|shifty|pleading|trembling|tense|anxious|fierce|stern|serene|innocent)\b")
+# 같은 사람의 생애 단계 — 일부러 닮게 하므로 (h)에서 뺀다.
+STAGES = {frozenset(p) for p in [("david-boy", "david"), ("david", "david-old"), ("david-boy", "david-old"),
+                                 ("saul", "saul-old"), ("solomon", "solomon-old")]}
 REF = re.compile(r"(" + "|".join(sorted(BOOK, key=len, reverse=True)) + r")\s*(\d+):(\d+)(?:\s*[-–~]\s*(\d+))?")
 QUOTE = re.compile(REF.pattern + r"\s*(?:\([^)]*\)\s*)?「([^」]+)」")
 
@@ -75,13 +84,26 @@ def check(c, verses):
         words = [w for w in re.findall(r"[a-z']+", text.lower()) if w not in DEGREE and w not in STOP]
         if len(words) < 2:
             errs.append(f"(a2) card.{k}.text 정도 낱말뿐: {text!r}")
-    keys = list(V1) + [f"card.{k}" for k in CARD] + [f"face.{k}" for k in FACE]
+    if not c.get("role"):
+        errs.append("(f) role 비어 있음")
+    keys = list(V1) + [f"card.{k}" for k in CARD] + [f"face.{k}" for k in FACE] + ["role"]
     for k in keys:
         w = why.get(k, "")
         if not w:
             errs.append(f"(b) _why[{k}] 없음")
-        elif "본문 밖" not in w and not REF.search(w):
-            errs.append(f"(b) _why[{k}] 구절도 「본문 밖」도 없음: {w[:40]!r}")
+        elif not w.startswith(TIERS):
+            errs.append(f"(f) _why[{k}] 근거 단계 표시 없음: {w[:40]!r}")
+        elif w.startswith("[저작]"):
+            m = re.match(r"\[저작\]\(([^)]*)\)", w)
+            r = (m.group(1) if m else "").replace(" ", "")
+            if len(r) < 4 or r in ("본문밖", "저작자정함", "본문밖·저작자정함"):
+                errs.append(f"(f) _why[{k}] [저작] 이유 없음: {w[:40]!r}")
+        elif not REF.search(w):
+            errs.append(f"(b) _why[{k}] [직접]·[추론]인데 구절 없음: {w[:40]!r}")
+    for k, v in list(face.items()) + [(k, v.get("text", "")) for k, v in card.items() if isinstance(v, dict)]:
+        m = TRAIT.search(v.lower())
+        if m:
+            errs.append(f"(g) {k} 성품 낱말 「{m.group(1)}」: {v!r}")
     for k, w in why.items():
         for m in REF.finditer(w):
             ch, a, b = int(m.group(2)), int(m.group(3)), int(m.group(4) or m.group(3))
@@ -128,6 +150,15 @@ def main():
                 pair_errs.append(f"{stop}: {x}·{y} 카드 층 차이 {len(diff)}개 {diff}")
     print(("✅" if not pair_errs else "✗") + " (d) 함께 나오는 쌍 카드 층 2필드 이상 다름"
           + "".join(f"\n    - {e}" for e in pair_errs))
+    all_errs = []
+    for x, y in itertools.combinations(sorted(cast), 2):
+        if frozenset((x, y)) in STAGES:
+            continue
+        a, b = card_classes(cast[x]), card_classes(cast[y])
+        if sum(a[k] != b[k] for k in CARD) < 2:
+            all_errs.append(f"{x}·{y} 카드 층 차이 {sum(a[k] != b[k] for k in CARD)}개")
+    print(("✅" if not all_errs else "✗") + " (h) 모든 쌍(생애 단계 쌍 제외) 카드 층 2필드 이상 다름"
+          + "".join(f"\n    - {e}" for e in all_errs))
     av = os.path.join(CAST, "APPEARANCE-VERSES.md")
     rows = set()
     if os.path.exists(av):
@@ -136,7 +167,7 @@ def main():
     missing = sorted(set(cast) - rows)
     print(("✅" if not missing else "✗") + f" (e) APPEARANCE-VERSES.md 인물 줄" + (f" — 빠짐 {missing}" if missing else ""))
     print(f"{len(cast) - bad}/{len(cast)} 인물 통과")
-    return 1 if bad or pair_errs or missing else 0
+    return 1 if bad or pair_errs or all_errs or missing else 0
 
 
 if __name__ == "__main__":

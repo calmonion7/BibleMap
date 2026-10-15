@@ -38,11 +38,48 @@ def load_cast(cid):
 CAST_RE = re.compile(r"\{castc?:([a-z0-9-]+)\}")
 
 
+NOUN = {("male", False): "man", ("male", True): "boy", ("female", False): "woman", ("female", True): "girl"}
+HEIGHT = {"short": "short of stature", "tall": "tall of stature", "towering": "towering in height"}
+
+
+def _who(c):
+    """시대·민족 + 성별 명사 + 신분(task 353). 성별을 `age` 낱말에 묻지 않고 `sex`에서 고정한다
+    — 골리앗 「warrior」·병기 든 자 「young soldier」에는 남성 명사가 없었다."""
+    young = c.get("card", {}).get("ageBand", {}).get("class") in ("child", "youth")
+    who = f"{c['era']} {NOUN[(c['sex'], young)]}"
+    if c.get("role"):
+        who += f", {'an' if c['role'][0] in 'aeiou' else 'a'} {c['role']}"
+    return who
+
+
+def head_text(card):
+    """카드 층 머리 윤곽 → 프롬프트 문구. class `bare`는 「머리쓰개 없음」이라는 뜻인데, 문구의 `bare head`를
+    Z-Image가 **민머리**로 그린다(353 실측: 사울 정본 16/16 대머리, 346도 같은 함정) — 그 낱말을 빼고 머리털을 덮게 한다."""
+    t = card["headOutline"]["text"]
+    if card["headOutline"]["class"] == "bare":
+        t = re.sub(r"^bare head,\s*", "", t) + ", hair covering the whole head, no headwear"
+    return t
+
+
 def cast_describe(c):
-    """어휘 정본 → 인물 서술 한 구절(task 331). 시대·민족 낱말이 맨 앞(PROMPTING 2·14). `none` 필드는 뺀다.
-    장면 판 프롬프트의 `{cast:<id>}`와 판 시트(`gen_cast_plate.py`)가 **같은 문구**를 쓴다 — ADR 260904-055320 1항."""
-    parts = [f"{c['era']} {c['age']}".strip()]
-    parts += [c[k] for k in ("hair", "beard", "headwear", "build") if c.get(k) and c[k] != "none"]
+    """어휘 정본 → 인물 서술 한 구절(task 331 → 353). 시대·민족 낱말이 맨 앞(PROMPTING 2·14). `none` 필드는 뺀다.
+    장면 판 프롬프트의 `{cast:<id>}`와 판 시트(`gen_cast_plate.py`)가 **같은 문구**를 쓴다 — ADR 260904-055320 1항.
+    task 353: 맨 앞은 「era + 성별 명사 + role + 카드 층 ageBand」, 이어서 카드 층 text(수염·체형·머리 윤곽).
+    v1의 정도 낱말(`age`·`beard`·`build`·`headwear`)은 카드 층과 겹치므로 빼고 카드 쪽을 남긴다.
+    `build: none`(장면 `cast_override`)이면 키 낱말도 뺀다 — 엔게디 사울 웅크림(r4 실측)."""
+    card = c.get("card")
+    if not card:  # eco: cast-vocab-1 파일 호환 — 지금은 29명 전부 v2
+        parts = [f"{_who(c)}, {c['age']}"]
+        parts += [c[k] for k in ("hair", "beard", "headwear", "build") if c.get(k) and c[k] != "none"]
+        return ", ".join(parts + [c["costume"]])
+    parts = [_who(c), card["ageBand"]["text"]]
+    if c.get("build") != "none" and card.get("heightRel") in HEIGHT:
+        parts.append(HEIGHT[card["heightRel"]])
+    if card["beardVolume"]["class"] != "none":
+        parts.append(card["beardVolume"]["text"])
+    parts += [card["silhouette"]["text"], head_text(card)]
+    if c.get("hair") and c["hair"] != "none" and card["headOutline"]["class"] != "bare":  # bare면 윤곽 text가 머리털을 말함
+        parts.append(c["hair"])
     parts.append(c["costume"])
     return ", ".join(parts)
 
@@ -52,8 +89,9 @@ def cast_describe_compact(c):
 
     얼굴 앵커가 얼굴을 지므로 머리·수염·머리쓰개·체격 낱말을 뺀다. 한 프롬프트에 두 사람을
     온전한 서술로 넣으면 77토큰을 넘기 때문이다 — 실측: 사무엘 22낱말 → 14낱말, 사울 24 → 13.
-    ⚠ 앵커가 없는 인물에게 쓰면 정체를 지탱할 것이 사라진다. 그룹 단계에서만 쓴다."""
-    return f"{c['era']} {c['age']}, {c['costume']}"
+    ⚠ 앵커가 없는 인물에게 쓰면 정체를 지탱할 것이 사라진다. 그룹 단계에서만 쓴다.
+    task 353: 성별 명사를 넣는다(`_who`)."""
+    return f"{_who(c)}, {c['age']}, {c['costume']}"
 
 # 장면 공용 화풍 머리·부정어 — 장면마다 바뀌지 않는다(실측으로 정한 값, 명세 밖 공통 상수).
 ST = dp._drop(dp.STYLE, "simple", "clean background", "light shading", "muted palette")

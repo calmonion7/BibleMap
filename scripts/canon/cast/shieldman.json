@@ -8,6 +8,7 @@
   "era": "an unarmed Philistine",
   "age": "servant",
   "sex": "male",
+  "role": "servant",
   "hair": "dark hair",
   "beard": "none",
   "headwear": "none",
@@ -47,8 +48,8 @@
       "text": "average build, narrow hips, plain tunic"
     },
     "headOutline": {
-      "class": "bare",
-      "text": "bare head, short dark hair"
+      "class": "helmet",
+      "text": "plain round leather cap over short dark hair"
     },
     "costumeColor": {
       "class": "undyed",
@@ -65,25 +66,26 @@
     "marks": "none"
   },
   "_why": {
-    "age": "본문 밖 · 사용자 결정(task 329, 성인 종자) — 삼상 17:41 「방패 든 자가 앞섰더라」는 역할만 말하고 나이는 말하지 않음",
-    "costume": "본문 밖 · 저작자 정함 — 삼상17 v41 S4 판 문구 이관",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "build": "본문 밖 · 저작자 정함",
-    "card.heightRel": "삼상 17:41 「방패 든 자가 앞섰더라」 — 앞서 행함만 말함, 체격·키는 저작자 정함",
-    "card.ageBand": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "face.faceShape": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)"
+    "age": "[저작](사용자 결정 task 329, 성인 종자; 삼상 17:41 「방패 든 자가 앞섰더라」는 역할만 말하고 나이는 말하지 않음)",
+    "costume": "[저작](시대 복식 고증 — 블레셋 비무장 종자 평직 튜닉, 삼상17 v41 S4 판 문구 이관)",
+    "hair": "[저작](시대 인물 대표값 — 본문에 머리색 없음)",
+    "beard": "[저작](성인 종자 수염 없음 — 본문에 없음)",
+    "headwear": "[저작](비무장 종자 맨머리 — 투구 언급 없음)",
+    "build": "[저작](성인 종자 평균 체격 — 본문에 체격 없음)",
+    "card.heightRel": "[저작](삼상 17:41 「방패 든 자가 앞섰더라」는 앞서 행함만 말함, 체격·키는 저작자 정함)",
+    "card.ageBand": "[저작](역표 동석 인물과 구분용)",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](29명 전체 구별 — 압살롬·솔로몬과 갈림. 블레셋 병졸 가죽 모자는 시대 고증)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "face.faceShape": "[저작](얼굴 구분용)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[추론] 삼상 17:41 「방패 든 자가 앞섰더라」 — 방패를 든 종자"
   },
   "plate": {
     "seed": 11,

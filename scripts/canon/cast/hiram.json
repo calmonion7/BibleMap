@@ -10,6 +10,7 @@
   "era": "an ancient Phoenician",
   "age": "middle-aged king",
   "sex": "male",
+  "role": "king",
   "hair": "dark hair",
   "beard": "dark beard",
   "headwear": "none",
@@ -36,8 +37,8 @@
       "text": "in his 50s, lined weathered face"
     },
     "beardVolume": {
-      "class": "full",
-      "text": "full dark beard, curled"
+      "class": "trimmed",
+      "text": "neatly trimmed curled dark beard, jawline visible"
     },
     "silhouette": {
       "class": "average",
@@ -62,25 +63,26 @@
     "marks": "none"
   },
   "_why": {
-    "age": "본문 밖 · 저작자 정함",
-    "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식) — 왕상 9:27 「히람이 자기 종...보내매」",
-    "card.heightRel": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.ageBand": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
-    "face.faceShape": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
-    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)"
+    "age": "[저작](다윗 때부터 교류한 왕 대표값; 왕상 5:1 「히람이 평일에 다윗을 사랑하였음이라」는 교제만 말하고 나이는 말하지 않음)",
+    "build": "[저작](역표 동석 인물과 구분용 평균 체격, 구절은 체격을 말하지 않음)",
+    "hair": "[저작](페니키아 남성 고증 — 짙은 곱슬머리, 구절은 머리털을 말하지 않음)",
+    "beard": "[저작](페니키아 남성 고증 — 짙은 수염, 구절은 수염을 말하지 않음)",
+    "headwear": "[저작](왕이나 관 대신 맨머리로 이스라엘 왕과 구분, 구절은 쓴 것을 말하지 않음)",
+    "costume": "[저작](시대 복식 고증 — 두로 왕의 술 달린 겉옷과 넓은 띠; 왕상 5:1 「두로 왕 히람」은 신분만 말함)",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[저작](역표 동석 인물과 구분용)",
+    "card.beardVolume": "[저작](29명 전체 구별 — 나단·아각과 갈림. 페니키아 왕의 다듬은 곱슬 수염은 시대 고증)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "face.faceShape": "[저작](얼굴 구분용)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[직접] 왕상 5:1 「두로 왕 히람」"
   },
   "plate": {
     "seed": 42,
