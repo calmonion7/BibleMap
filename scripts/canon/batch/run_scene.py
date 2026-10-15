@@ -33,6 +33,7 @@ ZI_BASE = "Tongyi-MAI/Z-Image-Turbo"
 # --- Z-Image 워커 (별도 프로세스) ------------------------------------------------
 def worker(mode, jobs_path):
     import torch
+    torch.set_grad_enabled(False)   # 인코딩에 그래프가 쌓여 MPS 천장(42GiB)을 넘은 적이 있다(task#346)
     from diffusers import ZImagePipeline
     jobs = json.load(open(jobs_path))
     emb_path = jobs_path + ".emb.pt"

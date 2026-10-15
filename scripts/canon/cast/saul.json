@@ -65,5 +65,13 @@
     "approved": "승인",
     "approvedOn": "2026-09-04",
     "label": "a"
+  },
+  "canon_face": {
+    "engine": "z-image-turbo",
+    "seed": 7,
+    "file": "frozen/saul.png",
+    "script": "scripts/canon/gen_face_canon.py",
+    "size": "768x768",
+    "task": 346
   }
 }

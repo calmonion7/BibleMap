@@ -872,7 +872,7 @@ def axis_e():
     # 양성 = 정본 자산. 동결 두상은 그 자체가 머리 클로즈업이라 밴드를 안 자른다.
     positives = {
         "frozen/goliath.png": ("goliath", Image.open(os.path.join(params.FROZEN, "goliath.png")).convert("RGB")),
-        "frozen/david.png":   ("david",   Image.open(os.path.join(params.FROZEN, "david.png")).convert("RGB")),
+        "frozen/david.png":   ("david",   Image.open(os.path.join(params.FROZEN, "retired-sdxl", "david.png")).convert("RGB")),
         "samples/goliath.png": ("goliath", _band_fullbody(os.path.join(SAMPLES, "goliath.png"))),
         "samples/david.png":   ("david",   _band_fullbody(os.path.join(SAMPLES, "david.png"))),
     }

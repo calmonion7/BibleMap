@@ -177,3 +177,14 @@
 
 - 출처 `cast/zadok/a-P1-s11.png` 머리 크롭(몸 bbox 위 20%) → `frozen/zadok.png`
 - 선택 근거(사람 육안): 사용자 육안 판정(장면 검토 페이지, 2026-09-04)
+
+### saul seed 7 · Z-Image-Turbo Q8 · 정면 머리 초상 768×768 (2026-10-14, task#346 S1 — SDXL 정본 폐기, 옛 판은 `retired-sdxl/saul.png`)
+
+- 출처 `gen_face_canon.py` 후보 8장(시드 11·42·7·23·5·101·202·303, 레포 밖 `~/.local/biblemap-imggen/face-canon/saul/`) → `frozen/saul.png`
+- 선택 근거(VLM `claude -p`, `judge_face_canon.py`): 어휘 부합·화풍·깨끗함·머리 4항목 평균 9.0(후보 8장 중 최고, 범위 8.25~9.0). 풍성한 직모 검은 머리·짧은 검은 수염·각진 턱의 장년으로 정본(`dark hair`·`short dark beard`)과 맞고, 상위 3×3 쌍 판정에서 다윗 s11과 구별 9/10(직모 vs 곱슬·수염 밀도·나이대).
+- 프롬프트 교훈: 「bare head」·「graying temples」는 정수리 대머리를 만들었다(v1·v2 각 8장 전부) — 「hair covering the whole head」로 바꾸자 전부 풍성한 머리.
+
+### david seed 11 · Z-Image-Turbo Q8 · 정면 머리 초상 768×768 (2026-10-14, task#346 S1 — SDXL 정본 폐기, 옛 판은 `retired-sdxl/david.png`)
+
+- 출처 `gen_face_canon.py` 후보 8장(같은 시드, `~/.local/biblemap-imggen/face-canon/david/`) → `frozen/david.png`
+- 선택 근거(VLM): 4항목 평균 9.25(후보 8장 중 단독 최고, 나머지 9.0). 조밀한 검은 곱슬머리·성긴 짧은 수염·갸름한 청년 얼굴로 정본(`dark curly hair`·`short dark beard`·`lean young man`)과 맞고, 사울 s7과 구별 9/10.

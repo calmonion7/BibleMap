@@ -123,7 +123,7 @@ def ink_style_vector(im):
 
 
 def main():
-    frozen_d_path = os.path.join(params.FROZEN, "david.png")
+    frozen_d_path = os.path.join(params.FROZEN, "retired-sdxl", "david.png")
     frozen_g_path = os.path.join(params.FROZEN, "goliath.png")
     bbox_d = bbox_from_mask(os.path.join(MASKS, "david.png"))
     bbox_g = bbox_from_mask(os.path.join(MASKS, "goliath.png"))

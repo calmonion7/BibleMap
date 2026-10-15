@@ -98,3 +98,28 @@ SEED_FIXED = 11
 BG_SEED = 11                    # 배경 후보 1장 — 위와 같은 시드를 쓴다(축을 섞지 않는다).
 PERSON_SEEDS = [11, 42, 7, 23]  # 인물 후보 4장.
 SCENE_SEEDS = [11, 42, 7]       # 장면 4조건 × 3시드 — PERSON_SEEDS 관례에서 3개.
+FACE_CANON_SIZE = (768, 768)    # task#346 S1 — Z-Image 얼굴 정본 후보(정사각 정면 머리, 옛 frozen과 같은 비율).
+FACE_CANON_SEEDS = [11, 42, 7, 23, 5, 101, 202, 303]   # 인물당 후보 8장.
+
+# --- 얼굴 닮음 자(check_face_scale.py)·판정자 교정(check_face_judge.py) — task#346 S2, 실행 전 고정 ---
+FACE_SCALE_SIZES = [256, 128, 64]       # 같은 그림의 머리 크롭을 이 한 변(px)으로 줄여 넣는 척도 검사(a) — 32는 CLIP이 무너지는 영역이라 제외(실측 풀 얼굴 최소 139px)
+FACE_SCALE_DEGRADE_MAX_PX = 128         # 열화 해상도 상한: 이보다 큰 얼굴은 정본·후보 모두 128로 맞춰 큰 얼굴 우대를 없앤다
+FACE_SCALE_SPREAD_MAX = 0.05            # (a) 크기를 바꿨을 때 점수 최대-최소 허용 폭
+FACE_SCALE_CORR_MAX = 0.5               # (b) 후보 풀에서 log(얼굴 크기)–점수 상관 |r| 허용 상한
+FACE_SCALE_POOL_MIN = 8                 # (b) 검출 성공 후보가 이보다 적으면 검사 불성립(실패)
+FACE_SCALE_HEAD_MARGIN = 0.15           # 머리 상자 사방 여유 비율(정본·후보 같은 비율)
+FACE_JUDGE_REJECT_MIN = 0.9             # 다른 인물 쌍 중 기각돼야 하는 비율 하한
+FACE_JUDGE_ACCEPT_MIN = 0.9             # 정본 변형 쌍 중 통과해야 하는 비율 하한
+
+# --- A 갈래 다각도 시트(gen_face_sheet.py·select_face_sheet.py) — task#346 S3 ---
+FACE_SHEET_SEED0 = 1000         # 시트 시드 시작값(정본 시드와 겹치지 않게)
+FACE_SHEET_SIZES = {"close": (768, 768), "half": (768, 768), "full": (640, 896)}   # 구도별 생성 크기
+FACE_SHEET_STAGE1 = 20          # 1차(CLIP 마진) 통과 장수
+FACE_SHEET_STAGE2 = 12          # 2차(VLM 같은 사람) 최종 장수 상한(10~15)
+
+# --- task#346 S5 — A/B 얼굴 유지 비교
+FACE_AB_SEEDS = [42, 23]         # 비교 시드(345 시드 [11,42,7,23] 중 승인 시드 11·7을 뺀 둘 — 승인 그림과 같은 그림이 (f)에서 재생성되지 않게)
+FACE_AB_CROP_SCALE = 2.6         # A 인페인트: 머리 상자 한 변의 이 배수를 정사각 크롭해 768로 올려 그린다
+FACE_AB_INPAINT_STRENGTH = 0.85  # A 인페인트 강도(1.0이면 원본 무시, 낮을수록 원래 얼굴 구조가 남는다)
+FACE_AB_MASK_GROW = 1.15         # A 마스크(머리 상자 타원)의 확장 배율
+FACE_AB_MASK_FEATHER = 0.12      # A 마스크 가장자리 번짐(마스크 한 변 대비)
