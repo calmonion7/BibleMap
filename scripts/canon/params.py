@@ -168,3 +168,17 @@ LORA_SHEET_PASTE_GROW = 1.0                     # 머리 상자(얼굴 상자 ×
 LORA_SHEET_R2_PROP = ""
 LORA_SHEET_R2_SEEDS = {"saul": [404, 505, 606, 707, 808, 909, 1001, 1102],
                        "david": [404, 505, 606, 707, 808, 909, 1001, 1102] + [1200 + 7 * i for i in range(24)]}
+
+# task#357 — 인물 LoRA 2/2: 356 시트로 LoRA 학습 → 353 세 장면을 LoRA 걸고 다시 그려 카드 크기 같은 인물 판정. 학습·생성 전 고정.
+LORA_SCENE_WHO = ("saul", "david", "samuel")
+LORA_SCENE_SCALE = 1.0          # 추론 세기 한 값(ADR 260904-055320 「한 값으로 시험」)
+LORA_SCENE_TRAIN_STEP = 300     # 346 설정의 300스텝 — 학습 설정(25에폭)은 그대로라 13~14장이면 300을 넘겨 돌고, 300 체크포인트 어댑터를 쓴다
+LORA_SCENE_SEEDS = [11, 42, 7, 23, 5, 101, 202, 303]   # = FACE_CANON_SEEDS
+LORA_SCENE_SCENES = {"gilgal": ("authored-saul-gilgal-coronation", ["saul", "samuel"]),
+                     "engedi": ("authored-david-en-gedi-saul", ["david", "saul"]),
+                     "ramah": ("authored-david-ramah-samuel", ["david", "samuel"])}   # 장면 → (명세 id, 정본 인물 2)
+LORA_SCENE_PAIRS = {"saul": ("gilgal", "engedi"), "david": ("engedi", "ramah"), "samuel": ("gilgal", "ramah")}   # 353과 같은 짝
+LORA_SCENE_CONTROL_SEEDS = [11, 42, 7]   # 음성 대조 = 353 cast-v2-pilot/scene/<장면>/s<시드>.png 같은 시드끼리 쌍(인물마다 3, 합 9)
+LORA_SCENE_SHUFFLE_SEED = 357            # 화면 A 쌍 순서 섞기(대조 위치를 숨김)
+LORA_SCENE_ADOPT_MIN = 5                 # 채택: L1 인물마다 「읽힌다」 ≥ 5/8, 3명 모두
+LORA_SCENE_CONTROL_MAX = 3               # 분해능: 음성 대조 「읽힌다」 합 ≤ 3/9 (넘으면 보류)
