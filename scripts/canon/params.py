@@ -140,3 +140,10 @@ FACE_WIDEN_SCENES = {"goliath": ("authored-david-goliath-gath", ["david"]),
 FACE_WIDEN_SEEDS = [42, 23]       # klein 시드 — 347과 같은 둘
 FACE_WIDEN_R1_GROW = 1.6          # R1 확장 배율(347 채택값). 깃털·LAB 맞춤은 FACE_STYLE_R1_FEATHER·gen_face_style 그대로
 # 기계 자(화풍 거리·얼굴 마진·VLM 같은 사람)는 347 FACE_STYLE_* 정의 그대로 재고, 통과 판정은 「참고」로만 적는다 — 머리 판정은 사람.
+
+# task#349 — klein 얼굴 적중률(참조 1명 대 2명, 머리당 시드 8) + 화질(결) 측정. 실행 전 고정. 347·348 FACE_STYLE_*·FACE_WIDEN_*는 건드리지 않는다.
+FACE_HITRATE_SCENES = {"gilgal": ["saul", "samuel"], "engedi": ["david", "saul"]}   # 장면 → 머리(나이 문제 없는 두 승인본, 골리앗 다윗 제외)
+FACE_HITRATE_SEEDS = [42, 23, 5, 101, 202, 303, 404, 505]   # 머리당 klein 시드 8
+FACE_HITRATE_CONDS = ("K1", "K2")   # K1 = 그 인물 정본 하나만 참조·그 얼굴만 / K2 = 두 정본 다 참조·두 얼굴 다(348 방식). 같은 장면·같은 시드
+FACE_HITRATE_LAP_RATIO_MAX = 1.5    # 화질 자: 머리 상자 회색조 라플라시안 분산 「대상 ÷ 승인본 같은 머리」 > 이 값이면 「거칠다」고 예측
+FACE_HITRATE_R1_SEEDS = [42, 23]    # 화질 표본: K2 이 시드들의 R1 되붙이기(확장 FACE_WIDEN_R1_GROW, 깃털·LAB 347 그대로) 4장 = 머리 8
