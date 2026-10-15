@@ -5,7 +5,7 @@
 
 검사 항목(352 DoD 1): (a) `_format`이 cast-vocab-2 · card/face 층 필드 전부 · class 허용값
 (a2) ageBand·beardVolume·silhouette의 text가 정도 낱말만으로 끝나지 않음 (b) 외모 필드 전부 `_why`
-(c) `_why`의 구절 표기가 verses.json 절로 풀림 (d) 역표 정차지마다 함께 나오는 인물 쌍이 카드 층 2필드 이상 다름
+(c) `_why`의 구절 표기가 verses.json 절로 풀림 (c2) 구절 바로 뒤 「인용」이 그 절 원문에 글자 그대로 있음(「…」 생략 허용) (d) 역표 정차지마다 함께 나오는 인물 쌍이 카드 층 2필드 이상 다름
 (e) 모든 인물이 `cast/APPEARANCE-VERSES.md` 표에 줄을 가짐. 필드 표 정본은 `cast/CAST.md` 「cast-vocab-2 필드 표」.
 """
 import glob
@@ -38,6 +38,7 @@ DEGREE = {"short", "tall", "long", "big", "small", "large", "little", "old", "yo
 STOP = {"a", "an", "the", "of", "with", "and", "to", "in", "at", "on", "his", "her", "its", "by", "for", "over",
         "under", "from", "is"}
 REF = re.compile(r"(" + "|".join(sorted(BOOK, key=len, reverse=True)) + r")\s*(\d+):(\d+)(?:\s*[-–~]\s*(\d+))?")
+QUOTE = re.compile(REF.pattern + r"\s*(?:\([^)]*\)\s*)?「([^」]+)」")
 
 
 def stop_cast():
@@ -87,6 +88,13 @@ def check(c, verses):
             miss = [v for v in range(a, b + 1) if f"{BOOK[m.group(1)]:02d}{ch:03d}{v:03d}" not in verses]
             if miss:
                 errs.append(f"(c) _why[{k}] {m.group(0)} — 없는 절 {miss}")
+        for m in QUOTE.finditer(w):  # 352 회고: 기억으로 쓴 인용이 원문과 갈림(도엑 21:7)
+            ch, a, b = int(m.group(2)), int(m.group(3)), int(m.group(4) or m.group(3))
+            src = re.sub(r"\s+", "", "".join(verses.get(f"{BOOK[m.group(1)]:02d}{ch:03d}{v:03d}", {}).get("textKo", "")
+                                              for v in range(a, b + 1)))
+            for frag in re.split(r"…|\.\.\.", m.group(5)):
+                if re.sub(r"\s+", "", frag) not in src:
+                    errs.append(f"(c2) _why[{k}] {m.group(1)} {ch}:{a} 인용이 원문에 없음: 「{frag.strip()[:30]}」")
     return errs
 
 
