@@ -147,3 +147,13 @@ FACE_HITRATE_SEEDS = [42, 23, 5, 101, 202, 303, 404, 505]   # 머리당 klein �
 FACE_HITRATE_CONDS = ("K1", "K2")   # K1 = 그 인물 정본 하나만 참조·그 얼굴만 / K2 = 두 정본 다 참조·두 얼굴 다(348 방식). 같은 장면·같은 시드
 FACE_HITRATE_LAP_RATIO_MAX = 1.5    # 화질 자: 머리 상자 회색조 라플라시안 분산 「대상 ÷ 승인본 같은 머리」 > 이 값이면 「거칠다」고 예측
 FACE_HITRATE_R1_SEEDS = [42, 23]    # 화질 표본: K2 이 시드들의 R1 되붙이기(확장 FACE_WIDEN_R1_GROW, 깃털·LAB 347 그대로) 4장 = 머리 8
+
+# task#356 — 인물 LoRA 학습 시트(정본 초상 + 전신 단독). 생성 전 고정. 353 FACE_CANON_*·cast-v2-pilot 산출은 건드리지 않는다.
+LORA_SHEET_WHO = ("saul", "david", "samuel")
+LORA_SHEET_TRIGGER = {"saul": "saul_bm", "david": "david_bm", "samuel": "samuel_bm"}   # 캡션 첫 낱말(정체성은 이 낱말에 묶는다)
+LORA_SHEET_PORTRAIT_SEEDS = [11, 42, 7]     # 353 cast-v2-pilot/face/<id>/s<시드>-<front|34>.png 재사용(시드 11이 정본) → 인물당 6장
+LORA_SHEET_BODY_SEEDS = [11, 42, 7, 23, 5, 101, 202, 303]   # 전신 시드 8(= FACE_CANON_SEEDS 값)
+LORA_SHEET_POSES = {"stand": "standing still, full front view", "walk": "walking, three-quarter side view"}   # 자세 2묶음 × 시드 8 = 전신 16
+LORA_SHEET_BODY_SIZE = (768, 1152)          # 전신 세로 캔버스(Z-Image-Turbo Q8)
+LORA_SHEET_BODY_MIN = 8                     # 사람 거르기 뒤 남은 전신이 이보다 적으면 기록(이번엔 다시 그리지 않음)
+LORA_SHEET_BODY_MAX = 10                    # 남은 전신 중 시드 순으로 이 장수까지 시트에 쓴다
