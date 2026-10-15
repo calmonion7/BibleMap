@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "nahash",
   "names": [
     "나하스",
@@ -36,13 +36,58 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, arm gesturing in threat"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "middle",
+      "text": "in his 40s, hard heavy face"
+    },
+    "beardVolume": {
+      "class": "full",
+      "text": "full coarse black beard"
+    },
+    "silhouette": {
+      "class": "heavy",
+      "text": "heavy thick torso, bull neck"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, close-cropped black hair"
+    },
+    "costumeColor": {
+      "class": "black",
+      "text": "black leather cuirass, wide dark belt"
+    }
+  },
+  "face": {
+    "faceShape": "wide heavy face, thick jaw",
+    "eyes": "small hard black eyes",
+    "nose": "wide flat nose",
+    "mouth": "cruel downturned mouth",
+    "skin": "dark tanned skin",
+    "brows": "thick black brows meeting",
+    "marks": "scar across the brow"
+  },
   "_why": {
     "age": "본문 밖 · 저작자 정함",
     "build": "본문 밖 · 저작자 정함",
     "hair": "본문 밖 · 저작자 정함",
     "beard": "본문 밖 · 저작자 정함",
     "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식) — 삼상 11:1 「암몬 사람 나하스」"
+    "costume": "본문 밖 · 저작자 정함(시대 복식) — 삼상 11:1 「암몬 사람 나하스」",
+    "card.heightRel": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.ageBand": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "face.faceShape": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)"
   },
   "plate": {
     "seed": 11,

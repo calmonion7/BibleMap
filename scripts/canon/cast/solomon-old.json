@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "solomon-old",
   "names": [
     "솔로몬(노년)"
@@ -29,13 +29,58 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, head turned toward an idol"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "elder",
+      "text": "in his 60s, deep wrinkles and heavy jowls"
+    },
+    "beardVolume": {
+      "class": "full",
+      "text": "full gray beard, trimmed rounded"
+    },
+    "silhouette": {
+      "class": "heavy",
+      "text": "heavy thick torso, soft heavy belly"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, thin gray hair"
+    },
+    "costumeColor": {
+      "class": "purple",
+      "text": "deep purple rich robe, jeweled belt"
+    }
+  },
+  "face": {
+    "faceShape": "oval face gone heavy, jowls, wide brow",
+    "eyes": "dark heavy-lidded eyes, weary",
+    "nose": "straight nose",
+    "mouth": "slack mouth",
+    "skin": "warm olive skin, faded",
+    "brows": "gray level brows",
+    "marks": "deep creases from nose to mouth"
+  },
   "_why": {
     "age": "왕상 11:4 「솔로몬의 나이 늙을 때에」",
     "build": "본문 밖 · 저작자 정함",
     "hair": "본문 밖 · 저작자 정함",
     "beard": "본문 밖 · 저작자 정함",
     "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식)"
+    "costume": "본문 밖 · 저작자 정함(시대 복식)",
+    "card.heightRel": "본문 밖 · 저작자 정함(같은 사람 연속)",
+    "card.ageBand": "왕상 11:4 「솔로몬의 나이 늙을 때에」",
+    "card.beardVolume": "본문 밖 · 저작자 정함(같은 사람 연속)",
+    "card.silhouette": "본문 밖 · 저작자 정함(같은 사람 연속)",
+    "card.headOutline": "본문 밖 · 저작자 정함(같은 사람 연속)",
+    "card.costumeColor": "본문 밖 · 저작자 정함(같은 사람 연속)",
+    "face.faceShape": "solomon과 같은 얼굴(연속) · 왕상 11:4 「나이 늙을 때에」로 늘어짐",
+    "face.eyes": "본문 밖 · 저작자 정함(solomon과 같은 얼굴 연속)",
+    "face.nose": "본문 밖 · 저작자 정함(solomon과 같은 얼굴 연속)",
+    "face.mouth": "본문 밖 · 저작자 정함(solomon과 같은 얼굴 연속)",
+    "face.skin": "본문 밖 · 저작자 정함(solomon과 같은 얼굴 연속)",
+    "face.brows": "본문 밖 · 저작자 정함(solomon과 같은 얼굴 연속)",
+    "face.marks": "본문 밖 · 저작자 정함(solomon과 같은 얼굴 연속)"
   },
   "plate": {
     "seed": 11,

@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "endor-medium",
   "names": [
     "엔돌의 신접한 여인"
@@ -30,13 +30,58 @@
     "standing, full body, side view facing left",
     "kneeling, full body, facing right, arms raised in incantation"
   ],
+  "card": {
+    "heightRel": "short",
+    "ageBand": {
+      "class": "elder",
+      "text": "in her 60s, deep wrinkles"
+    },
+    "beardVolume": {
+      "class": "none",
+      "text": "없음"
+    },
+    "silhouette": {
+      "class": "slight",
+      "text": "slight bent thin shoulders"
+    },
+    "headOutline": {
+      "class": "shawl",
+      "text": "dark shawl pulled over the head"
+    },
+    "costumeColor": {
+      "class": "black",
+      "text": "long black wool robe, plain dark shawl"
+    }
+  },
+  "face": {
+    "faceShape": "narrow pinched face, sunken cheeks",
+    "eyes": "dark wary eyes",
+    "nose": "sharp thin nose",
+    "mouth": "thin cracked lips",
+    "skin": "gray-brown weathered skin",
+    "brows": "sparse gray brows",
+    "marks": "deep wrinkles around the eyes and mouth"
+  },
   "_why": {
     "age": "본문 밖 · 저작자 정함",
     "build": "본문 밖 · 저작자 정함",
     "hair": "본문 밖 · 저작자 정함",
     "beard": "본문 밖 · 저작자 정함",
     "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식) — 삼상 28:7 「엔돌에 신접한 여인이 있나이다」"
+    "costume": "본문 밖 · 저작자 정함(시대 복식) — 삼상 28:7 「엔돌에 신접한 여인이 있나이다」",
+    "card.heightRel": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.ageBand": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "face.faceShape": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)"
   },
   "plate": {
     "seed": 11,

@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "jesse",
   "names": [
     "이새"
@@ -30,13 +30,58 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, gesturing toward his sons"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "elder",
+      "text": "in his 60s, deeply lined forehead"
+    },
+    "beardVolume": {
+      "class": "trimmed",
+      "text": "close-trimmed gray beard, jawline visible"
+    },
+    "silhouette": {
+      "class": "broad",
+      "text": "broad stocky shoulders, thick short torso"
+    },
+    "headOutline": {
+      "class": "headwrap",
+      "text": "brown cloth headwrap tied at the nape"
+    },
+    "costumeColor": {
+      "class": "brown",
+      "text": "long brown wool robe, cloth belt"
+    }
+  },
+  "face": {
+    "faceShape": "square weathered face, heavy jaw",
+    "eyes": "small dark eyes under heavy lids",
+    "nose": "broad flat nose",
+    "mouth": "thin lips",
+    "skin": "tanned leathery skin",
+    "brows": "thick gray brows",
+    "marks": "deep crow's feet"
+  },
   "_why": {
     "age": "본문 밖 · 저작자 정함(다윗의 부친 세대)",
     "build": "본문 밖 · 저작자 정함",
     "hair": "본문 밖 · 저작자 정함",
     "beard": "본문 밖 · 저작자 정함",
     "headwear": "본문 밖 · 저작자 정함 — 사무엘과 실루엣이 겹쳐 구분되지 않아 두건 추가(실측 2026-09-04, task 333)",
-    "costume": "본문 밖 · 저작자 정함(시대 복식)"
+    "costume": "본문 밖 · 저작자 정함(시대 복식)",
+    "card.heightRel": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.ageBand": "삼상 17:12 「나이 많아 늙은 자로서」",
+    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "face.faceShape": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)"
   },
   "plate": {
     "seed": 11,

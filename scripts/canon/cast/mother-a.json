@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "mother-a",
   "names": [
     "참 어머니(두 여인 중 산 아이의 어머니)"
@@ -35,13 +35,58 @@
     "kneeling, full body, side view facing left, pleading with arms out",
     "kneeling, full body, facing right, reaching out with both hands"
   ],
+  "card": {
+    "heightRel": "short",
+    "ageBand": {
+      "class": "young",
+      "text": "in her 20s, tired face"
+    },
+    "beardVolume": {
+      "class": "none",
+      "text": "없음"
+    },
+    "silhouette": {
+      "class": "slight",
+      "text": "slight narrow shoulders, thin arms"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, dark hair in a braid"
+    },
+    "costumeColor": {
+      "class": "undyed",
+      "text": "undyed plain wool robe, brown cloth belt"
+    }
+  },
+  "face": {
+    "faceShape": "round soft face",
+    "eyes": "wide dark eyes, pleading",
+    "nose": "small nose",
+    "mouth": "trembling full lips",
+    "skin": "tanned skin",
+    "brows": "thin dark brows",
+    "marks": "none"
+  },
   "_why": {
     "age": "본문 밖 · 저작자 정함(두 인물 구분용)",
     "build": "본문 밖 · 저작자 정함(두 인물 구분용)",
     "hair": "본문 밖 · 저작자 정함(두 인물 구분용)",
     "beard": "본문 밖 · 저작자 정함",
     "headwear": "본문 밖 · 저작자 정함(두 인물 구분용)",
-    "costume": "왕상 3:26 「산 아이를 저에게 주고 죽이지 마옵소서」(세부는 본문 밖 · 저작자 정함, 두 인물 구분용)"
+    "costume": "본문 밖 · 저작자 정함(두 인물 구분용) — 왕상 3:26 「산 아들을 저에게 주시고 아무쪼록 죽이지 마옵소서」는 참 어머니 식별만 말하고 복식은 말하지 않음",
+    "card.heightRel": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.ageBand": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "face.faceShape": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)"
   },
   "plate": {
     "seed": 11,

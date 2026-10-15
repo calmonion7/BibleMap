@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "jonathan",
   "names": [
     "요나단",
@@ -42,14 +42,60 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, holding a bow"
   ],
+  "card": {
+    "heightRel": "tall",
+    "ageBand": {
+      "class": "middle",
+      "text": "in his 40s, clear open face weathered by campaigns"
+    },
+    "beardVolume": {
+      "class": "none",
+      "text": "없음"
+    },
+    "silhouette": {
+      "class": "lean",
+      "text": "lean athletic build, long limbs, narrow waist"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, dark hair tied back"
+    },
+    "costumeColor": {
+      "class": "blue",
+      "text": "deep blue tunic, dark leather belt, quiver strap"
+    }
+  },
+  "face": {
+    "faceShape": "oval face, straight clean jaw",
+    "eyes": "bright open dark eyes",
+    "nose": "straight fine nose",
+    "mouth": "gentle slightly smiling mouth",
+    "skin": "warm olive skin",
+    "brows": "clean arched dark brows",
+    "marks": "none"
+  },
   "_why": {
-    "age": "본문 밖 · 저작자 정함",
+    "age": "삼상 13:2-3 「일천은 요나단과 함께 베냐민 기브아에 있게 하고」 · 삼하 4:4 「그 나이 다섯 살」 · 삼하 2:10 「나이 사십 세며」 — 값 young prince는 본문과 모순(성인 지휘관), 값은 두고 warrior prince로 바꿀 것을 2/2로 미룸",
     "build": "본문 밖 · 저작자 정함",
     "hair": "본문 밖 · 저작자 정함",
     "beard": "본문 밖 · 저작자 정함",
     "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식) — 삼상 31:2 「사울의 아들 요나단」",
-    "note": "사용자 2026-09-04 보류: 요압과 동일 → 무수염·긴 머리·청색 튜닉으로 개정(b); 활은 삼하 1:22"
+    "costume": "삼상 18:4 「그 군복과 칼과 활과 띠」 — 군복·활·띠. 색과 화살통 끈(quiver strap)은 본문 밖 · 저작자 정함",
+    "note": "사용자 2026-09-04 보류: 요압과 동일 → 무수염·긴 머리·청색 튜닉으로 개정(b); 활은 삼하 1:22",
+    "card.heightRel": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.ageBand": "삼상 13:2-3 「일천은 요나단과 함께 베냐민 기브아에 있게 하고」(사울 재위 2년에 이미 천 명을 거느림) · 삼하 4:4 「그 나이 다섯 살」(므비보셋의 아버지) · 삼하 2:10 「이스보셋이…나이 사십 세며」 — 길보아의 요나단은 20대일 수 없어 40대로 고정",
+    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.silhouette": "삼하 1:23 「독수리보다 빠르고 사자보다 강하였도다」 — 빠르고 강함, 체격 세부는 저작자 정함",
+    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "face.faceShape": "삼하 1:23 「사랑스럽고 아름다운 자러니」 — 용모가 아름다움만 말함",
+    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "propCandidates[0]": "삼상 31:3 「사울이 패전하매 활 쏘는 자가 따라 미치니」는 블레셋 궁수가 사울을 쏜 장면이며 요나단·그의 활은 나오지 않음(오인용) — 근거 아님, 삼하 1:22 항목과 중복이라 제거를 2/2로 미룸"
   },
   "plate": {
     "seed": 11,

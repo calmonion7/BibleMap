@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "doeg",
   "names": [
     "도엑",
@@ -37,13 +37,58 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, sword raised"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "middle",
+      "text": "in his 40s, hard weathered face"
+    },
+    "beardVolume": {
+      "class": "full",
+      "text": "full coarse black beard"
+    },
+    "silhouette": {
+      "class": "broad",
+      "text": "broad heavy shoulders, thick neck"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, rough cropped dark hair"
+    },
+    "costumeColor": {
+      "class": "black",
+      "text": "rough dark black wool herdsman tunic"
+    }
+  },
+  "face": {
+    "faceShape": "square heavy face, wide jaw",
+    "eyes": "narrow cold dark eyes",
+    "nose": "broken flat nose",
+    "mouth": "thin hard mouth",
+    "skin": "sun-darkened coarse skin",
+    "brows": "low heavy brows",
+    "marks": "none"
+  },
   "_why": {
     "age": "본문 밖 · 저작자 정함",
     "build": "본문 밖 · 저작자 정함",
     "hair": "본문 밖 · 저작자 정함",
     "beard": "본문 밖 · 저작자 정함",
     "headwear": "본문 밖 · 저작자 정함",
-    "costume": "삼상 21:7 「에돔 사람 도엑이요 사울의 목자장이었더라」"
+    "costume": "삼상 21:7 「에돔 사람 도엑이요 사울의 목자장이었더라」",
+    "card.heightRel": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.ageBand": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "face.faceShape": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)"
   },
   "plate": {
     "seed": 11,

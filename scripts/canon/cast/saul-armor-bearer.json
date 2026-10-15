@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "saul-armor-bearer",
   "names": [
     "병기 든 자"
@@ -35,13 +35,58 @@
     "standing, full body, side view facing left",
     "kneeling, full body, facing right, falling on his own sword"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "young",
+      "text": "in his 20s, smooth earnest face"
+    },
+    "beardVolume": {
+      "class": "none",
+      "text": "없음"
+    },
+    "silhouette": {
+      "class": "broad",
+      "text": "broad sturdy shoulders, thick arms"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, short dark hair"
+    },
+    "costumeColor": {
+      "class": "brown",
+      "text": "brown leather cuirass, short kilt"
+    }
+  },
+  "face": {
+    "faceShape": "round open face",
+    "eyes": "wide dark eyes, anxious",
+    "nose": "short blunt nose",
+    "mouth": "full lips",
+    "skin": "tanned skin",
+    "brows": "thick short brows",
+    "marks": "none"
+  },
   "_why": {
     "age": "본문 밖 · 저작자 정함",
     "build": "본문 밖 · 저작자 정함",
     "hair": "본문 밖 · 저작자 정함",
     "beard": "본문 밖 · 저작자 정함",
     "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식) — 삼상 31:4 「병기 든 자」"
+    "costume": "본문 밖 · 저작자 정함(시대 복식) — 삼상 31:4 「병기 든 자」",
+    "card.heightRel": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.ageBand": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "face.faceShape": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)"
   },
   "plate": {
     "seed": 11,

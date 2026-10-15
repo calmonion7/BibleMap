@@ -116,3 +116,44 @@
 - 얼굴 시드: 11이 19명, 42가 5명(다윗·다윗 노년·솔로몬·밧세바·히람), 5가 2명(아기스·아히멜렉), 23이 1명(요압).
 - 골리앗 보류 사유는 `cast/goliath.json` `plate.approved`. 삼상17 전용 인물이라 36장면 미사용.
 - 판정 페이지 결정 원본: `.forge/scratch/cast-review-pass{1,2,3}.json`.
+
+## cast-vocab-2 필드 표 (task 352, 2026-10-15)
+
+cast-vocab-1 필드(`age`·`hair`·`beard`·`headwear`·`build`·`costume` 등)는 **값을 그대로 둔다** — 장면 파생이 읽는 필드라서다.
+vocab-2는 두 층을 **더한다**. 값은 프롬프트에 바로 쓰는 영문, 근거는 `_why`의 한국어(정본). 근거 키는 `card.<필드>`·`face.<필드>`.
+기존 필드와 **모순되는 값은 넣지 않는다**(더 구체화만). 기존 값 자체를 바꿔야 하면 `cast/APPEARANCE-VERSES.md` 「2/2로 미룰 값」 절에 적는다.
+
+### 카드 층 `card` — 투어 카드(머리 ≈ 30px)에서도 보이는 특징
+
+| 필드 | 모양 | `class` 허용값 | `text` 예 |
+|---|---|---|---|
+| `heightRel` | 문자열(허용값 중 하나) | `child` · `short` · `average` · `tall` · `towering` | — |
+| `ageBand` | `{class, text}` | `child` · `youth`(10대) · `young`(20대) · `prime`(30대) · `middle`(40~50대) · `elder`(60대~) | `in his 40s, deep forehead lines` |
+| `beardVolume` | `{class, text}` | `none` · `stubble` · `trimmed` · `full` · `long` | `close-trimmed dark beard, jawline visible` / `thick beard reaching the chest` |
+| `silhouette` | `{class, text}` | `slight` · `lean` · `average` · `broad` · `heavy` · `giant` | `broad shoulders, thick barrel torso` |
+| `headOutline` | `{class, text}` | `bare` · `headwrap` · `turban` · `veil` · `shawl` · `diadem` · `helmet` | `bare head, tight dark curls close to the skull` |
+| `costumeColor` | `{class, text}` | `red` · `brown` · `white` · `blue` · `purple` · `black` · `gold` · `undyed` | `deep red wool tunic, dark brown belt` |
+
+- **구별 규칙**: `cast/CAST.md` 역표의 한 정차지에 함께 나오는 두 인물은 위 6필드 중 **2개 이상에서 `class`가 다르다**(`heightRel`은 값 자체).
+- **값 규칙(정도만 말하는 낱말 금지)**: `ageBand`·`beardVolume`·`silhouette`의 `text`는 그림을 강제하는 모양을 말한다. 아래 금지 낱말과 관사·전치사만으로 된 `text`는 받지 않으며, 금지 낱말을 빼고도 내용어가 **2개 이상** 남아야 한다.
+  금지 낱말: `short` `tall` `long` `big` `small` `large` `little` `old` `young` `thick` `thin` `very` `quite` `average` `normal` `medium` `some` `slightly` `rather` `fairly`
+- 수염이 없는 인물(여성·소년·수염 없는 청년)은 `beardVolume` = `{"class": "none", "text": "없음"}`. 이때만 `text` 「없음」을 허용한다.
+
+### 얼굴 층 `face` — 정본 초상·확대 장면용
+
+| 필드 | 내용 |
+|---|---|
+| `faceShape` | 얼굴형(긴·네모·둥근·달걀, 광대·턱선) |
+| `eyes` | 눈 모양·크기·색·눈매 |
+| `nose` | 코 모양 |
+| `mouth` | 입·입술 |
+| `skin` | 피부 빛·결(본문 「붉다」 등 근거가 있으면 근거로) |
+| `brows` | 눈썹 |
+| `marks` | 흉터·주름·표식 — 없으면 `none` |
+
+### 근거 규칙
+
+- 위 13필드와 기존 외모 필드(`age`·`hair`·`beard`·`headwear`·`build`·`costume`)는 모두 `_why`를 갖는다.
+- `_why`는 구절 표기(`삼상 16:12 「…」`, 책 약칭 + 장:절)를 담거나 「본문 밖 · 저작자 정함」을 담는다. 구절 표기는 `data/bible/verses.json`에 있는 절로 풀려야 한다.
+- 구절 수집 원천은 `cast/APPEARANCE-VERSES.md`(인물 · 구절 · 개역한글 원문 · 말하는 특징).
+- 검사: `cd scripts/canon && python3 check_cast_v2.py` (정의를 고칠 때마다 돌린다).

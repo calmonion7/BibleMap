@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "absalom",
   "names": [
     "압살롬"
@@ -28,13 +28,58 @@
     "standing, full body, side view facing left",
     "riding, full body, facing right, crossing a river ford"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "young",
+      "text": "in his 20s, flawless face"
+    },
+    "beardVolume": {
+      "class": "none",
+      "text": "없음"
+    },
+    "silhouette": {
+      "class": "average",
+      "text": "average athletic build, straight shoulders"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, very heavy long dark hair to the shoulders"
+    },
+    "costumeColor": {
+      "class": "gold",
+      "text": "gold-trimmed fine robe, embroidered belt"
+    }
+  },
+  "face": {
+    "faceShape": "perfect oval face, clean jaw",
+    "eyes": "bright dark eyes",
+    "nose": "straight fine nose",
+    "mouth": "full red lips",
+    "skin": "clear fair skin",
+    "brows": "even arched dark brows",
+    "marks": "none"
+  },
   "_why": {
     "age": "본문 밖 · 저작자 정함",
     "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함(전승상 긴 머리, 본 절 범위 밖)",
+    "hair": "삼하 14:26 「그 머리털이 무거우므로 년말마다 깎았으며」",
     "beard": "본문 밖 · 저작자 정함",
     "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식) — 삼하 17:24 「압살롬」"
+    "costume": "본문 밖 · 저작자 정함(시대 복식) — 삼하 17:24 「압살롬」",
+    "card.heightRel": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.ageBand": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.headOutline": "삼하 14:26 「그 머리털이 무거우므로 년말마다 깎았으며」",
+    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "face.faceShape": "삼하 14:25 「압살롬 같이 아름다움으로 크게 칭찬 받는 자가 없었으니」",
+    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.marks": "삼하 14:25 「발바닥부터 정수리까지 흠이 없음이라」"
   },
   "plate": {
     "seed": 11,

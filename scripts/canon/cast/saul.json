@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "saul",
   "names": [
     "사울",
@@ -50,13 +50,58 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, arm raised holding a spear"
   ],
+  "card": {
+    "heightRel": "tall",
+    "ageBand": {
+      "class": "middle",
+      "text": "in his 40s, deep forehead lines"
+    },
+    "beardVolume": {
+      "class": "trimmed",
+      "text": "close-trimmed dark beard, jawline visible"
+    },
+    "silhouette": {
+      "class": "broad",
+      "text": "broad shoulders, thick barrel torso"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, short dark hair cut close"
+    },
+    "costumeColor": {
+      "class": "brown",
+      "text": "dark brown wool tunic, plain leather belt"
+    }
+  },
+  "face": {
+    "faceShape": "long squared face, high cheekbones, strong jaw",
+    "eyes": "wide-set dark brown eyes, steady gaze",
+    "nose": "straight high-bridged nose",
+    "mouth": "firm full lips",
+    "skin": "olive tanned skin",
+    "brows": "straight dark thick brows",
+    "marks": "none"
+  },
   "_why": {
     "age": "본문 밖 · 저작자 정함(재위 중 장년)",
     "build": "삼상 10:23 「다른 사람보다 어깨 위나 더 크더라」",
     "hair": "본문 밖 · 저작자 정함",
     "beard": "본문 밖 · 저작자 정함",
     "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식)"
+    "costume": "본문 밖 · 저작자 정함(시대 복식)",
+    "card.heightRel": "삼상 10:23 「다른 사람보다 어깨 위나 더 크더라」",
+    "card.ageBand": "삼상 13:1 「사울이 왕이 될 때에 사십 세라」 — 왕위 때 40세, 재위 중 40대로 고정(역표 동석 인물과 구분)",
+    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "face.faceShape": "삼상 9:2 「준수한 소년이라 이스라엘 자손 중에 그보다 더 준수한 자가 없고」 — 용모가 빼어남만 말함, 얼굴형 세부는 저작자 정함",
+    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)"
   },
   "plate": {
     "seed": 11,

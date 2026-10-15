@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "samuel",
   "names": [
     "사무엘"
@@ -48,13 +48,58 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, one hand raised in blessing"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "elder",
+      "text": "in his 70s, deep wrinkles"
+    },
+    "beardVolume": {
+      "class": "long",
+      "text": "long white beard to the chest"
+    },
+    "silhouette": {
+      "class": "slight",
+      "text": "slight stooped narrow shoulders"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, thin white hair"
+    },
+    "costumeColor": {
+      "class": "brown",
+      "text": "long dark brown wool robe, cloth belt"
+    }
+  },
+  "face": {
+    "faceShape": "long narrow face, high forehead",
+    "eyes": "deep-set pale-brown eyes, solemn",
+    "nose": "long straight nose",
+    "mouth": "thin tight lips",
+    "skin": "pale weathered skin",
+    "brows": "bushy white brows",
+    "marks": "deep wrinkles on forehead"
+  },
   "_why": {
     "age": "삼상 28:14 「한 노인이 올라 오는데」(엔돌에서 묘사된 사무엘의 영)",
     "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함",
+    "hair": "삼상 12:2 「나는 늙어 머리가 희었고」",
     "beard": "본문 밖 · 저작자 정함",
     "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식)"
+    "costume": "본문 밖 · 저작자 정함(시대 복식)",
+    "card.heightRel": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.ageBand": "삼상 12:2 「나는 늙어 머리가 희었고」",
+    "card.beardVolume": "본문 밖 · 저작자 정함(노년이라 긴 수염; 삼상 12:2 「머리가 희었고」는 머리털만 말함)",
+    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.headOutline": "본문 밖 · 저작자 정함(같은 사람 연속). 삼상 1:11 「삭도를 그 머리에 대지 아니하겠나이다」(한나의 서원)와 머리털 길이가 어긋날 여지 — 2/2 검토",
+    "card.costumeColor": "삼상 28:14 「그가 겉옷을 입었나이다」 — 겉옷 차림, 색은 저작자 정함",
+    "face.faceShape": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)"
   },
   "plate": {
     "seed": 11,

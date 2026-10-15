@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "sheba-queen",
   "names": [
     "스바 여왕"
@@ -37,13 +37,58 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, presenting gifts"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "prime",
+      "text": "in her 30s, poised smooth face"
+    },
+    "beardVolume": {
+      "class": "none",
+      "text": "없음"
+    },
+    "silhouette": {
+      "class": "slight",
+      "text": "slight elegant narrow shoulders, long neck"
+    },
+    "headOutline": {
+      "class": "diadem",
+      "text": "gold diadem over a fine veil"
+    },
+    "costumeColor": {
+      "class": "red",
+      "text": "crimson robe, gold fringe, necklaces"
+    }
+  },
+  "face": {
+    "faceShape": "long elegant oval face",
+    "eyes": "large dark kohl-lined eyes",
+    "nose": "fine straight nose",
+    "mouth": "full composed lips",
+    "skin": "dark glowing skin",
+    "brows": "long arched black brows",
+    "marks": "none"
+  },
   "_why": {
     "age": "본문 밖 · 저작자 정함",
     "build": "본문 밖 · 저작자 정함",
     "hair": "본문 밖 · 저작자 정함",
     "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함(기원전 10세기 남아라비아 사바 — 왕상 10:2 금·보석만 근거)",
-    "costume": "본문 밖 · 저작자 정함(기원전 10세기 남아라비아 사바 — 왕상 10:2 금·보석만 근거)"
+    "headwear": "본문 밖 · 저작자 정함(기원전 10세기 남아라비아 사바 — 왕상 10:2의 금·보석은 낙타에 실은 선물이라 머리 장식의 근거 아님)",
+    "costume": "본문 밖 · 저작자 정함(기원전 10세기 남아라비아 사바 — 몸에 두른 금·목걸이는 본문에 없음)",
+    "card.heightRel": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.ageBand": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "face.faceShape": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)"
   },
   "plate": {
     "seed": 11,

@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "nathan",
   "names": [
     "나단",
@@ -38,13 +38,59 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, one arm raised speaking"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "middle",
+      "text": "in his 50s, stern brow lines"
+    },
+    "beardVolume": {
+      "class": "full",
+      "text": "full dark beard, squared"
+    },
+    "silhouette": {
+      "class": "average",
+      "text": "average build, straight bearing"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, dark hair streaked with gray"
+    },
+    "costumeColor": {
+      "class": "brown",
+      "text": "long dark brown wool robe, cloth belt"
+    }
+  },
+  "face": {
+    "faceShape": "long angular face, hollow cheeks",
+    "eyes": "deep-set dark eyes, direct stare",
+    "nose": "hooked nose",
+    "mouth": "thin tight lips",
+    "skin": "olive skin",
+    "brows": "straight heavy dark brows",
+    "marks": "two deep lines between the brows"
+  },
   "_why": {
     "age": "본문 밖 · 저작자 정함",
     "build": "본문 밖 · 저작자 정함",
     "hair": "본문 밖 · 저작자 정함",
     "beard": "본문 밖 · 저작자 정함",
     "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식)"
+    "costume": "본문 밖 · 저작자 정함(시대 복식)",
+    "card.heightRel": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.ageBand": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "face.faceShape": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "propCandidates[0]": "왕상 1:39 「제사장 사독이 성막 가운데서 기름 뿔을 가져다가」 — 뿔은 사독의 것이라 나단과 잇는 절 아님(오인용). 왕상 1:34 「제사장 사독과 선지자 나단은 저에게 기름을 부어」는 함께 부음만 말함 — 제거 또는 근거 교체를 2/2로 미룸"
   },
   "plate": {
     "seed": 11,

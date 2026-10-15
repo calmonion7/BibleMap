@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "david-old",
   "names": [
     "다윗(노년)"
@@ -30,13 +30,58 @@
     "lying, full body, facing right, propped up on a bed",
     "standing, full body, side view facing left"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "elder",
+      "text": "in his 70s, deep wrinkles and sunken cheeks"
+    },
+    "beardVolume": {
+      "class": "long",
+      "text": "long white-gray beard, thin"
+    },
+    "silhouette": {
+      "class": "slight",
+      "text": "slight shrunken frame, hunched narrow shoulders"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, thin gray curls"
+    },
+    "costumeColor": {
+      "class": "brown",
+      "text": "plain dark brown wool robe, blanket over the knees"
+    }
+  },
+  "face": {
+    "faceShape": "oval face gone gaunt, soft jaw, sunken cheeks",
+    "eyes": "large dark eyes, clouded and heavy-lidded",
+    "nose": "straight narrow nose",
+    "mouth": "wide mouth, thin dry lips",
+    "skin": "faded ruddy skin, pale and weathered",
+    "brows": "arched gray brows",
+    "marks": "fine age wrinkles across forehead and cheeks"
+  },
   "_why": {
     "age": "왕상 2:1 「다윗이 죽을 날이 임박하매」",
     "build": "본문 밖 · 저작자 정함",
     "hair": "본문 밖 · 저작자 정함",
     "beard": "본문 밖 · 저작자 정함",
     "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식)"
+    "costume": "본문 밖 · 저작자 정함(시대 복식)",
+    "card.heightRel": "본문 밖 · 저작자 정함(david와 같은 사람 연속)",
+    "card.ageBand": "왕상 1:1 「다윗 왕이 나이 많아 늙으니」",
+    "card.beardVolume": "본문 밖 · 저작자 정함(같은 사람 연속)",
+    "card.silhouette": "본문 밖 · 저작자 정함(같은 사람 연속)",
+    "card.headOutline": "본문 밖 · 저작자 정함(같은 사람 연속)",
+    "card.costumeColor": "본문 밖 · 저작자 정함(같은 사람 연속)",
+    "face.faceShape": "david와 같은 얼굴(연속) · 왕상 1:1 「나이 많아 늙으니」로 야윔",
+    "face.eyes": "본문 밖 · 저작자 정함(david과 같은 얼굴 연속)",
+    "face.nose": "본문 밖 · 저작자 정함(david과 같은 얼굴 연속)",
+    "face.mouth": "본문 밖 · 저작자 정함(david과 같은 얼굴 연속)",
+    "face.skin": "본문 밖 · 저작자 정함(david과 같은 얼굴 연속)",
+    "face.brows": "본문 밖 · 저작자 정함(david과 같은 얼굴 연속)",
+    "face.marks": "왕상 1:15 「왕이 심히 늙었으므로」 — 주름, 세부는 저작자 정함"
   },
   "plate": {
     "seed": 42,

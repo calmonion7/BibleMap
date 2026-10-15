@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "zadok",
   "names": [
     "사독",
@@ -37,12 +37,58 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, holding a horn of oil"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "elder",
+      "text": "in his 60s, calm lined face"
+    },
+    "beardVolume": {
+      "class": "long",
+      "text": "long gray beard to the chest"
+    },
+    "silhouette": {
+      "class": "lean",
+      "text": "lean upright narrow shoulders"
+    },
+    "headOutline": {
+      "class": "turban",
+      "text": "white linen turban wound high"
+    },
+    "costumeColor": {
+      "class": "white",
+      "text": "long white linen robe, woven sash"
+    }
+  },
+  "face": {
+    "faceShape": "narrow oval face, high cheekbones",
+    "eyes": "calm deep-set gray-brown eyes",
+    "nose": "straight long nose",
+    "mouth": "gentle level mouth",
+    "skin": "pale weathered skin",
+    "brows": "thin gray brows",
+    "marks": "none"
+  },
   "_why": {
     "age": "본문 밖 · 저작자 정함(다윗 시대부터 섬긴 제사장 — 삼하 8:17)",
     "hair": "본문 밖 · 저작자 정함",
     "beard": "본문 밖 · 저작자 정함",
     "headwear": "본문 밖 · 저작자 정함(제사장 복식 — 출 28:40 관)",
-    "costume": "본문 밖 · 저작자 정함(제사장 세마포 — 삼상 22:18 「세마포 에봇」)"
+    "costume": "본문 밖 · 저작자 정함(제사장 세마포 — 삼상 22:18 「세마포 에봇」)",
+    "build": "본문 밖 · 저작자 정함",
+    "card.heightRel": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.ageBand": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "face.faceShape": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)"
   },
   "plate": {
     "seed": 11,

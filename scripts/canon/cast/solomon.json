@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "solomon",
   "names": [
     "솔로몬"
@@ -54,13 +54,60 @@
     "standing, full body, side view facing left",
     "sitting, full body, facing right, on a throne with one arm raised"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "young",
+      "text": "in his 20s, smooth clear face"
+    },
+    "beardVolume": {
+      "class": "none",
+      "text": "없음"
+    },
+    "silhouette": {
+      "class": "average",
+      "text": "average build, straight shoulders, narrow waist"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, short dark hair"
+    },
+    "costumeColor": {
+      "class": "blue",
+      "text": "deep blue fine linen robe, embroidered belt"
+    }
+  },
+  "face": {
+    "faceShape": "oval face, wide clear brow",
+    "eyes": "dark wise eyes, steady",
+    "nose": "straight nose",
+    "mouth": "calm slight smile",
+    "skin": "warm olive skin",
+    "brows": "level dark brows",
+    "marks": "none"
+  },
   "_why": {
-    "age": "왕상 1~3장 초기 재위 문맥",
+    "age": "대상 29:1 「오히려 어리고 연약하고」 — 즉위 때 어림, 왕상 1~3장 초기 재위 문맥",
     "build": "본문 밖 · 저작자 정함",
     "hair": "본문 밖 · 저작자 정함",
     "beard": "본문 밖 · 저작자 정함",
     "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식)"
+    "costume": "본문 밖 · 저작자 정함(시대 복식)",
+    "card.heightRel": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.ageBand": "대상 29:1 「오히려 어리고 연약하고」 — 즉위·기브온·두 어미·착공(왕상 6:1 「왕이 된지 사년」) 정차지에만 20대. 왕상 9:10 「이십 년 만에」·11:42 「사십 년」 후반 정차지(궁전·에시온게벨·스바)는 맞지 않음 — 2/2로 미룸",
+    "card.beardVolume": "본문 밖 · 저작자 정함(20대, 수염 없는 얼굴)",
+    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "face.faceShape": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "propCandidates[2]": "왕상 6:14 「솔로몬이 전 건축하기를 마치고」는 건축 완료만 말하고 모형은 없음(오인용) — 근거 아님. 손에 든 식양은 대상 28:11 「전의 낭실과…속죄소의 식양을 그 아들 솔로몬에게 주고」, 교체를 2/2로 미룸",
+    "propCandidates[0]": "왕상 1:39 「제사장 사독이 성막 가운데서 기름 뿔을 가져다가 솔로몬에게 기름을 부으니」 — 뿔은 사독의 것, 솔로몬 소지품 아님(오인용). 제거를 2/2로 미룸"
   },
   "plate": {
     "seed": 42,

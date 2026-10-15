@@ -1,7 +1,9 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "shieldman",
-  "names": ["방패 든 자(골리앗의 종자)"],
+  "names": [
+    "방패 든 자(골리앗의 종자)"
+  ],
   "stops": [],
   "era": "an unarmed Philistine",
   "age": "servant",
@@ -12,9 +14,82 @@
   "build": "adult",
   "costume": "in a plain knee-length tunic, sandals",
   "colorWords": [],
-  "propCandidates": [{"prop": "a large round bronze shield", "verse": "삼상 17:7 · 17:41", "ko": "방패"}],
-  "neg": ["armour", "spear", "sword", "cape", "helmet"],
-  "poses": ["standing, full body, side view facing left", "walking, full body, carrying a large round bronze shield upright in front of him with both hands, facing left"],
-  "_why": {"age": "삼상 17:41 「방패 든 자를 앞세우고」 — 성인 종자(task 329 사용자 결정)", "costume": "본문 밖 · 저작자 정함 — 삼상17 v41 S4 판 문구 이관"},
-  "plate": {"seed": 11, "anchor": false, "ipScale": 0.25, "approved": "보류: 삼상17 v41 봉인본의 S4 판 문구·시드(11)를 그대로 쓰는 인물 — 다윗 투어 36장면 미등장이라 A/B 거름 생략(task 332, 2026-09-04)", "approvedOn": "2026-09-04"}
+  "propCandidates": [
+    {
+      "prop": "a large round bronze shield",
+      "verse": "삼상 17:7 · 17:41",
+      "ko": "방패"
+    }
+  ],
+  "neg": [
+    "armour",
+    "spear",
+    "sword",
+    "cape",
+    "helmet"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "walking, full body, carrying a large round bronze shield upright in front of him with both hands, facing left"
+  ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "young",
+      "text": "in his 20s, smooth beardless face"
+    },
+    "beardVolume": {
+      "class": "none",
+      "text": "없음"
+    },
+    "silhouette": {
+      "class": "average",
+      "text": "average build, narrow hips, plain tunic"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, short dark hair"
+    },
+    "costumeColor": {
+      "class": "undyed",
+      "text": "undyed plain linen tunic, rope belt"
+    }
+  },
+  "face": {
+    "faceShape": "narrow oval face",
+    "eyes": "small dark eyes",
+    "nose": "short snub nose",
+    "mouth": "thin lips",
+    "skin": "tanned skin",
+    "brows": "thin straight brows",
+    "marks": "none"
+  },
+  "_why": {
+    "age": "본문 밖 · 사용자 결정(task 329, 성인 종자) — 삼상 17:41 「방패 든 자가 앞섰더라」는 역할만 말하고 나이는 말하지 않음",
+    "costume": "본문 밖 · 저작자 정함 — 삼상17 v41 S4 판 문구 이관",
+    "hair": "본문 밖 · 저작자 정함",
+    "beard": "본문 밖 · 저작자 정함",
+    "headwear": "본문 밖 · 저작자 정함",
+    "build": "본문 밖 · 저작자 정함",
+    "card.heightRel": "삼상 17:41 「방패 든 자가 앞섰더라」 — 앞서 행함만 말함, 체격·키는 저작자 정함",
+    "card.ageBand": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.beardVolume": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.silhouette": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.headOutline": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "card.costumeColor": "본문 밖 · 저작자 정함(역표 동석 인물과 구분용)",
+    "face.faceShape": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.eyes": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.nose": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.mouth": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.skin": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.brows": "본문 밖 · 저작자 정함(얼굴 구분용)",
+    "face.marks": "본문 밖 · 저작자 정함(얼굴 구분용)"
+  },
+  "plate": {
+    "seed": 11,
+    "anchor": false,
+    "ipScale": 0.25,
+    "approved": "보류: 삼상17 v41 봉인본의 S4 판 문구·시드(11)를 그대로 쓰는 인물 — 다윗 투어 36장면 미등장이라 A/B 거름 생략(task 332, 2026-09-04)",
+    "approvedOn": "2026-09-04"
+  }
 }
