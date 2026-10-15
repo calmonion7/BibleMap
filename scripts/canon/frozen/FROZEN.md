@@ -188,3 +188,9 @@
 
 - 출처 `gen_face_canon.py` 후보 8장(같은 시드, `~/.local/biblemap-imggen/face-canon/david/`) → `frozen/david.png`
 - 선택 근거(VLM): 4항목 평균 9.25(후보 8장 중 단독 최고, 나머지 9.0). 조밀한 검은 곱슬머리·성긴 짧은 수염·갸름한 청년 얼굴로 정본(`dark curly hair`·`short dark beard`·`lean young man`)과 맞고, 사울 s7과 구별 9/10.
+
+### samuel seed 11 · Z-Image-Turbo Q8 · 정면 머리 초상 768×768 (2026-10-15, task#348 S1 — SDXL 정본 폐기, 옛 판은 `retired-sdxl/samuel.png`)
+
+- 출처 `gen_face_canon.py --who samuel` 후보 8장(같은 시드, `~/.local/biblemap-imggen/face-canon/samuel/`) → `frozen/samuel.png`
+- 선택 근거(VLM, `judge_face_canon.py --who samuel`): 4항목 평균 9.38(후보 8장 중 단독 최고, 범위 8.75~9.38). 흰 장발이 머리를 덮고 가슴까지 오는 흰 수염, 깊은 주름의 야윈 노인으로 정본(`old prophet`·`white hair`·`long white beard`·`thin`)과 맞다. 상위 3장 중 확정된 사울 정본과 가장 구별되는 1장으로도 뽑혔다(나이·머리·수염 색).
+- 사람 확인은 task#348 판정 페이지 문항 ⓪에서 한다(중간 사람 관문 없음).

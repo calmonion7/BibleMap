@@ -133,3 +133,10 @@ FACE_STYLE_UNIT = "head"         # 집계 단위: 그림이 아니라 머리 하
 FACE_STYLE_DIST_MAX_RATIO = 0.5  # 통과 ①: 화풍 거리가 같은 장면·시드·인물 B-e 원본 거리의 이 배 이하
 FACE_STYLE_FACE_MIN_RATIO = 0.8  # 통과 ②: 얼굴 마진 점수(346 S2 자)가 B-e 원본 점수의 이 배 이상
 FACE_STYLE_REQUIRE_SAME = True   # 통과 ③: VLM(check_face_judge.same_person)이 정본과 같은 사람이라 한다
+
+# task#348 — 조건부 R1(머리 되붙이기)을 새 장면(골리앗)·새 인물(사무엘)로 넓히기. 실행 전 고정. 347 FACE_STYLE_*는 건드리지 않는다.
+FACE_WIDEN_SCENES = {"goliath": ("authored-david-goliath-gath", ["david"]),
+                     "gilgal": ("authored-saul-gilgal-coronation", ["saul", "samuel"])}   # 장면 → (승인 장면 id, 되붙일 인물)
+FACE_WIDEN_SEEDS = [42, 23]       # klein 시드 — 347과 같은 둘
+FACE_WIDEN_R1_GROW = 1.6          # R1 확장 배율(347 채택값). 깃털·LAB 맞춤은 FACE_STYLE_R1_FEATHER·gen_face_style 그대로
+# 기계 자(화풍 거리·얼굴 마진·VLM 같은 사람)는 347 FACE_STYLE_* 정의 그대로 재고, 통과 판정은 「참고」로만 적는다 — 머리 판정은 사람.

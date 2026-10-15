@@ -21,6 +21,10 @@ PAIR = ("너는 성경 삽화 판정자다. Read 도구로 이미지들을 직�
         "사울 1장+다윗 1장 쌍 중, 서로 나이·얼굴형·수염·머리 모양이 가장 확연히 구별되면서 각자 정본 어휘(사울: 장년·검은 머리·짧은 검은 수염 / "
         "다윗: 청년·검은 곱슬머리·짧은 수염)에 잘 맞는 쌍을 하나 고르라. "
         '설명 없이 JSON 한 개만: {{"saul":"<파일명>","david":"<파일명>","distinct":0,"reason":"한국어 두 문장"}}')
+# task#348 — 사울·다윗 정본은 이미 확정. 새 인물은 상위 3장 중 확정된 사울 정본과 가장 확연히 구별되는 1장을 고른다.
+VS = ("너는 성경 삽화 판정자다. Read 도구로 이미지들을 직접 보라. 확정된 사울 정본(장년 왕): {ref}. {cid} 후보 3장: {c}.\n"
+      "후보 중 사울 정본과 나이·얼굴형·수염·머리 모양이 가장 확연히 구별되면서 정본 어휘({vocab})에 잘 맞는 1장을 고르라. "
+      '설명 없이 JSON 한 개만: {{"pick":"<파일명>","distinct":0,"reason":"한국어 두 문장"}}')
 
 
 def ask(prompt, imgs):
@@ -43,10 +47,11 @@ def vocab(cid):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--dir", default=os.path.expanduser("~/.local/biblemap-imggen/face-canon"))
+    ap.add_argument("--who", nargs="+", default=["saul", "david"])
     a = ap.parse_args()
     import gen_face_canon as g
     res = {"cands": {}, "pair": None}
-    for cid in ("saul", "david"):
+    for cid in a.who:
         for p in sorted(glob.glob(os.path.join(a.dir, cid, "s*.png"))):
             d = ask(PROMPT.format(img=p, rubric=RUBRIC.format(cid=cid, vocab=vocab(cid), look=g.LOOK[cid])), [p])
             if d:
@@ -54,10 +59,16 @@ if __name__ == "__main__":
             res["cands"][p] = d
             print(cid, os.path.basename(p), d, flush=True)
     top = {}
-    for cid in ("saul", "david"):
+    for cid in a.who:
         ok = [(p, d) for p, d in res["cands"].items() if f"/{cid}/" in p and d]
         top[cid] = [p for p, _ in sorted(ok, key=lambda x: -x[1]["score"])[:TOP]]
     res["top"] = top
-    res["pair"] = ask(PAIR.format(s=", ".join(top["saul"]), d=", ".join(top["david"])), top["saul"] + top["david"])
-    json.dump(res, open(os.path.join(a.dir, "judge.json"), "w"), ensure_ascii=False, indent=1)
+    if a.who == ["saul", "david"]:
+        res["pair"] = ask(PAIR.format(s=", ".join(top["saul"]), d=", ".join(top["david"])), top["saul"] + top["david"])
+        out = "judge.json"
+    else:
+        ref = os.path.join(HERE, "frozen", "saul.png")
+        res["pair"] = {cid: ask(VS.format(ref=ref, cid=cid, c=", ".join(top[cid]), vocab=vocab(cid)), [ref] + top[cid]) for cid in a.who}
+        out = f"judge-{'-'.join(a.who)}.json"
+    json.dump(res, open(os.path.join(a.dir, out), "w"), ensure_ascii=False, indent=1)
     print("PAIR", json.dumps(res["pair"], ensure_ascii=False))

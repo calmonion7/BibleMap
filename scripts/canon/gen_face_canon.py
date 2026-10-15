@@ -21,6 +21,9 @@ STYLE = "warm cream paper, soft pencil and colored-pencil storybook illustration
 LOOK = {
     "saul": "a man in his fifties with a broad square face, heavy brow and strong jaw, thick full head of dark hair, short trimmed beard",
     "david": "a lean young man in his twenties with a narrow oval face, high cheekbones, gentle eyes, short light stubble beard",
+    # task#348 — 사울(장년·검은 머리·넓은 턱)과 갈리게: 아주 늙고 마른 얼굴, 머리를 덮는 백발, 가슴까지 오는 흰 수염(대머리 금지 — 346)
+    "samuel": "a very old thin man in his eighties with a gaunt narrow face, hollow cheeks, deep wrinkles and sunken wise eyes, "
+              "thick long white hair, very long flowing white beard down to the chest",
 }
 
 
@@ -34,9 +37,10 @@ def prompt(cid):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=os.path.expanduser("~/.local/biblemap-imggen/face-canon"))
+    ap.add_argument("--who", nargs="+", default=["saul", "david"])
     a = ap.parse_args()
     w, h = params.FACE_CANON_SIZE
-    for cid in ("saul", "david"):
+    for cid in a.who:
         d = os.path.join(a.out, cid)
         os.makedirs(d, exist_ok=True)
         jobs = [{"prompt": prompt(cid), "seed": s, "w": w, "h": h, "out": os.path.join(d, f"s{s}.png")}

@@ -9,7 +9,8 @@ from PIL import Image
 
 MODEL = "google/owlv2-base-patch16-ensemble"
 # 장면별 인물 → 얼굴이 놓이는 가로 구간(화면 폭 비율). 명세의 배치(길갈: 사무엘 왼쪽·사울 오른쪽, 엔게디: 다윗 왼쪽·사울 오른쪽).
-SIDE = {"gilgal": {"samuel": (0, 0.35), "saul": (0.6, 1)}, "engedi": {"david": (0, 0.5), "saul": (0.5, 1)}}
+SIDE = {"gilgal": {"samuel": (0, 0.35), "saul": (0.6, 1)}, "engedi": {"david": (0, 0.5), "saul": (0.5, 1)},
+        "goliath": {"david": (0.18, 0.4)}}   # task#348 — 소년 다윗만(왼쪽 0.18 앞은 이스라엘 병사 무리)
 GROW = 2.0      # 얼굴 상자 → 머리(머리카락·수염 포함) 배율
 LIFT = 0.12     # 머리 중심을 얼굴 높이의 이만큼 위로 — 머리카락이 위쪽에 더 있다
 _M = {}

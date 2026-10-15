@@ -48,6 +48,28 @@ def from_lab(lab):
     return np.clip(c * 255, 0, 255).astype(np.uint8)
 
 
+def paste_heads(base, be, hb, whos, grow, tag=""):
+    """승인본 base 위에 be의 머리 타원(머리 상자 × grow)을 LAB 평균·분산 맞춤 후 번진 마스크로 붙인다."""
+    im = base.copy()
+    for who in whos:
+        if who not in hb:
+            print("머리 못 찾음", tag, who, flush=True)
+            continue
+        x0, y0, x1, y1 = hb[who]
+        cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+        rw, rh = (x1 - x0) / 2 * grow, (y1 - y0) / 2 * grow
+        m = Image.new("L", im.size, 0)
+        ImageDraw.Draw(m).ellipse([cx - rw, cy - rh, cx + rw, cy + rh], fill=255)
+        hard = np.asarray(m) > 127                    # LAB 통계는 타원 안쪽 화소로 잰다
+        m = m.filter(ImageFilter.GaussianBlur(2 * rw * params.FACE_STYLE_R1_FEATHER * 0.25))
+        a, b = to_lab(np.asarray(im, np.float64)), to_lab(np.asarray(be, np.float64))
+        mu_a, sd_a = a[hard].mean(0), a[hard].std(0) + 1e-6
+        mu_b, sd_b = b[hard].mean(0), b[hard].std(0) + 1e-6
+        head = Image.fromarray(from_lab((b - mu_b) / sd_b * sd_a + mu_a))
+        im = Image.composite(head, im, m)
+    return im
+
+
 def r1():
     from face_ab_heads import heads
     approved = {s: Image.open(os.path.join(AB, f"approved-{s}.png")).convert("RGB") for s in SCENE}
@@ -57,23 +79,7 @@ def r1():
             be = Image.open(src(scene, seed)).convert("RGB")
             hb = heads(scene, src(scene, seed))
             for grow in params.FACE_STYLE_SETTINGS["R1"]:
-                im = approved[scene].copy()
-                for who in WHO[scene]:
-                    if who not in hb:
-                        print("머리 못 찾음", scene, seed, who, flush=True)
-                        continue
-                    x0, y0, x1, y1 = hb[who]
-                    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
-                    rw, rh = (x1 - x0) / 2 * grow, (y1 - y0) / 2 * grow
-                    m = Image.new("L", im.size, 0)
-                    ImageDraw.Draw(m).ellipse([cx - rw, cy - rh, cx + rw, cy + rh], fill=255)
-                    hard = np.asarray(m) > 127                    # LAB 통계는 타원 안쪽 화소로 잰다
-                    m = m.filter(ImageFilter.GaussianBlur(2 * rw * params.FACE_STYLE_R1_FEATHER * 0.25))
-                    a, b = to_lab(np.asarray(im, np.float64)), to_lab(np.asarray(be, np.float64))
-                    mu_a, sd_a = a[hard].mean(0), a[hard].std(0) + 1e-6
-                    mu_b, sd_b = b[hard].mean(0), b[hard].std(0) + 1e-6
-                    head = Image.fromarray(from_lab((b - mu_b) / sd_b * sd_a + mu_a))
-                    im = Image.composite(head, im, m)
+                im = paste_heads(approved[scene], be, hb, WHO[scene], grow, f"{scene} {seed}")
                 out = os.path.join(OUT, f"R1-g{grow}-{scene}-s{seed}.png")
                 im.save(out)
                 print("저장", out, flush=True)
