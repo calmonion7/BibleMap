@@ -157,3 +157,14 @@ LORA_SHEET_POSES = {"stand": "standing still, full front view", "walk": "walking
 LORA_SHEET_BODY_SIZE = (768, 1152)          # 전신 세로 캔버스(Z-Image-Turbo Q8)
 LORA_SHEET_BODY_MIN = 8                     # 사람 거르기 뒤 남은 전신이 이보다 적으면 기록(이번엔 다시 그리지 않음)
 LORA_SHEET_BODY_MAX = 10                    # 남은 전신 중 시드 순으로 이 장수까지 시트에 쓴다
+# task#356 수리 r1(사용자 결정 「2」) — 문구 전신의 만화체 얼굴 위에 정본 초상 머리를 되붙인다(347 R1 기법). 결과는 사람이 다시 거른다.
+LORA_SHEET_PASTE_WHO = ("saul", "david")
+LORA_SHEET_PASTE_POSE = "stand"                 # 정면 서기만(정본 정면 머리와 방향이 같다). 걷기는 고개 방향이 갈려 뺀다
+LORA_SHEET_PASTE_CANON_SEEDS = [11, 42, 7]      # 붙일 정본 정면 머리 — 전신 시드 순서대로 돌려 쓴다
+LORA_SHEET_PASTE_GROW = 1.0                     # 머리 상자(얼굴 상자 × face_ab_heads.GROW) 배율 — 1.6이면 정본 어깨까지 덮는다
+# task#356 수리 r2 — r1에서 남은 것은 바탕 전신의 머리가 작은 것뿐이었다 → 바탕부터 사실 비율로 다시 그려 같은 방식으로 되붙인다.
+# 시험 1장(인물당 s404)에서 비율 낱말 「realistic adult proportions, small head, head about one eighth of body height」은
+# 머리를 줄이지 못했다(사울 배율 0.455 — 더 큼, 다윗 0.394) → 낱말은 빼고 기존 문구 그대로 시드를 늘린다(r1 남음률 사울 3/8·다윗 1/8).
+LORA_SHEET_R2_PROP = ""
+LORA_SHEET_R2_SEEDS = {"saul": [404, 505, 606, 707, 808, 909, 1001, 1102],
+                       "david": [404, 505, 606, 707, 808, 909, 1001, 1102] + [1200 + 7 * i for i in range(24)]}
