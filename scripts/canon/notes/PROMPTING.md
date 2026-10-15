@@ -368,6 +368,17 @@ Claude Code Bash 도구의 `timeout` 상한이 **10분**이라, `run_in_backgrou
 
 ---
 
+## 14. 「bare head」는 민머리를 그린다 — 「머리쓰개 없음」은 낱말로 말하지 않는다 (2026-10-16 실측, task 353)
+
+Z-Image는 `bare head`를 **머리털 없는 머리**로 읽는다. 346에서 `bare head`·`graying temples`가 정본 v1·v2 8장씩을 전부 대머리로 만들었고,
+353에서 카드 층 머리 윤곽 text(`bare head, short dark hair cut close`)를 그대로 넣자 사울 정본 **16/16이 대머리**였다.
+뒤에 `full head of hair, no hat`을 붙여도 앞의 `bare head`를 이기지 못했다(§2 앞이 무겁다).
+
+- 머리쓰개가 없다는 뜻은 낱말을 빼서 전한다: 머리털 서술 + `hair covering the whole head, no headwear`.
+- 정의(cast `card.headOutline` class `bare`)는 「쓰개 없음」이 맞으니 그대로 두고, **파생에서 막는다** — `derive_scene.head_text`(장면·정본 공통).
+- 지속 검사: `check_cast_v2.py` (i) — 29명 파생 문구에 `bare head`가 있으면 낙제.
+- 교훈의 교훈: 346 때 이 규칙은 `FROZEN.md` 한 항목과 `gen_face_canon.LOOK` 상수 문구로만 막혀 있었다. 353이 그 상수를 지우자 방어도 함께 사라졌다. **실측 규칙은 상수 속 문구가 아니라 이 파일과 검사에 둔다.**
+
 ## 세 축 읽는 법 — 그리고 자의 구멍
 
 임계는 전부 `notes/s0-baseline.json`에 못박혀 있다(task#317 S0가 정답지 10장에서 파생).

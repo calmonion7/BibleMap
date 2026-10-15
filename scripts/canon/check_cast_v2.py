@@ -8,7 +8,8 @@
 (c) `_why`의 구절 표기가 verses.json 절로 풀림 (c2) 구절 바로 뒤 「인용」이 그 절 원문에 글자 그대로 있음(「…」 생략 허용) (d) 역표 정차지마다 함께 나오는 인물 쌍이 카드 층 2필드 이상 다름
 (e) 모든 인물이 `cast/APPEARANCE-VERSES.md` 표에 줄을 가짐. 필드 표 정본은 `cast/CAST.md` 「cast-vocab-2 필드 표」.
 task 353에서 더함: (f) `_why`가 근거 단계 `[직접]`·`[추론]`·`[저작](이유 4자 이상)`로 시작 · `role` 필드와 근거
-(g) 얼굴·카드 층에 성품 낱말 없음(삼상 16:7 — 표정은 장면 `expression` 몫) (h) 생애 단계 쌍을 뺀 **모든** 쌍이 카드 층 2필드 이상 다름.
+(g) 얼굴·카드 층에 성품 낱말 없음(삼상 16:7 — 표정은 장면 `expression` 몫) (h) 생애 단계 쌍을 뺀 **모든** 쌍이 카드 층 2필드 이상 다름
+(i) 파생 문구(장면 `cast_describe`·정본 `gen_face_canon.look`)에 `bare head` 없음 — Z-Image가 민머리로 그린다(346·353 두 번 밟음, notes/PROMPTING.md 14).
 """
 import glob
 import itertools
@@ -159,6 +160,10 @@ def main():
             all_errs.append(f"{x}·{y} 카드 층 차이 {sum(a[k] != b[k] for k in CARD)}개")
     print(("✅" if not all_errs else "✗") + " (h) 모든 쌍(생애 단계 쌍 제외) 카드 층 2필드 이상 다름"
           + "".join(f"\n    - {e}" for e in all_errs))
+    import derive_scene as ds
+    import gen_face_canon as gfc
+    bald = [cid for cid, c in cast.items() if "bare head" in (ds.cast_describe(c) + gfc.look(cid)).lower()]
+    print(("✅" if not bald else "✗") + " (i) 파생 문구에 `bare head` 없음(대머리 함정)" + (f" — {bald}" if bald else ""))
     av = os.path.join(CAST, "APPEARANCE-VERSES.md")
     rows = set()
     if os.path.exists(av):
@@ -167,7 +172,7 @@ def main():
     missing = sorted(set(cast) - rows)
     print(("✅" if not missing else "✗") + f" (e) APPEARANCE-VERSES.md 인물 줄" + (f" — 빠짐 {missing}" if missing else ""))
     print(f"{len(cast) - bad}/{len(cast)} 인물 통과")
-    return 1 if bad or pair_errs or all_errs or missing else 0
+    return 1 if bad or pair_errs or all_errs or bald or missing else 0
 
 
 if __name__ == "__main__":
