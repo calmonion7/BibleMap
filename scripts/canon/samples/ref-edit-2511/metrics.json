@@ -152,5 +152,116 @@
    "steps_done": 7
   }
  ],
- "stop": "실행 불가 — 양자화 사다리 q8·q6·q4 모두 첫 1장이 장당 10분 초과(20분 제한에서 6~7/20스텝, 스텝당 약 145~180초 → 장당 약 48~60분). 디노이징 중 스왑 출입은 적어 원인은 메모리가 아니라 계산량: 20B급 모델(2.1은 7B)에 스텝마다 트랜스포머 2회(guidance 2.5 CFG) + 조건 그림 3장."
+ "stop": "실행 불가 — 양자화 사다리 q8·q6·q4 모두 첫 1장이 장당 10분 초과(20분 제한에서 6~7/20스텝, 스텝당 약 145~180초 → 장당 약 48~60분). 디노이징 중 스왑 출입은 적어 원인은 메모리가 아니라 계산량: 20B급 모델(2.1은 7B)에 스텝마다 트랜스포머 2회(guidance 2.5 CFG) + 조건 그림 3장.",
+ "lightning": [
+  {
+   "mode": "plain",
+   "quantize": 8,
+   "scene": "gilgal",
+   "who": "saul",
+   "seed": 11,
+   "steps": 4,
+   "guidance": 1.0,
+   "sec": 870.6,
+   "peak_gb": 58.52,
+   "s_per_it": [
+    292.96,
+    219.2,
+    200.83,
+    192.25,
+    204.65
+   ],
+   "status": "ok",
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/mask/gilgal/saul-s11.png",
+   "mask_box": [
+    795,
+    0,
+    1163,
+    629
+   ],
+   "head": [
+    908,
+    88,
+    1046,
+    202
+   ],
+   "mask_src": "owl",
+   "raw": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/lightning/raw/plain-q8-gilgal-s11-saul.png",
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/lightning/plain-q8-gilgal-s11.png",
+   "mask_diff": 12.23
+  },
+  {
+   "mode": "cfg1",
+   "quantize": 8,
+   "scene": "gilgal",
+   "who": "saul",
+   "seed": 11,
+   "steps": 4,
+   "guidance": 1.0,
+   "sec": 498.1,
+   "peak_gb": 58.52,
+   "s_per_it": [
+    162.61,
+    132.97,
+    111.09,
+    101.1,
+    111.42
+   ],
+   "status": "ok",
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/mask/gilgal/saul-s11.png",
+   "mask_box": [
+    795,
+    0,
+    1163,
+    629
+   ],
+   "head": [
+    908,
+    88,
+    1046,
+    202
+   ],
+   "mask_src": "owl",
+   "raw": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/lightning/raw/cfg1-q8-gilgal-s11-saul.png",
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/lightning/cfg1-q8-gilgal-s11.png",
+   "mask_diff": 12.23
+  },
+  {
+   "prompt": "env",
+   "mode": "cfg1",
+   "quantize": 8,
+   "scene": "gilgal",
+   "who": "saul",
+   "seed": 11,
+   "steps": 4,
+   "guidance": 1.0,
+   "sec": 483.6,
+   "peak_gb": 58.51,
+   "s_per_it": [
+    160.27,
+    127.87,
+    107.88,
+    98.33,
+    108.31
+   ],
+   "status": "ok",
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/mask/gilgal/saul-s11.png",
+   "mask_box": [
+    795,
+    0,
+    1163,
+    629
+   ],
+   "head": [
+    908,
+    88,
+    1046,
+    202
+   ],
+   "mask_src": "owl",
+   "raw": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/lightning/raw/cfg1-p2-q8-gilgal-s11-saul.png",
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/lightning/cfg1-p2-q8-gilgal-s11.png",
+   "mask_diff": 49.11
+  }
+ ]
 }
