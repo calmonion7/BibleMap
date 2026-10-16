@@ -5,18 +5,25 @@
 화면 A 6(인물 3 × L1/L2, 같은 시드 8쌍 + 353 음성 대조 3쌍을 고정 시드로 섞음) · B 3(L2 섞임) · C 3(화풍·뜻).
 카드 폭 356 CSS px(DPR 3 화소), 확대·크롭 없음, 대상 머리 위 ▼. 그림은 한 번만 싣고 ▼는 CSS로 겹친다(16MB 한도).
 머리 상자는 samples/lora-scene/metrics.json(S3)에서 읽는다. 쌍의 정체(시드·대조 여부)는 metrics의 `screens`에 적고 페이지에는 번호만."""
-import argparse, json, os, random
+import argparse, base64, io, json, os, random
 
 from PIL import Image
 
 import params
-from make_face_widen_page import uri
 
 CARD, DPR = 356, 3
 HERE = os.path.dirname(os.path.abspath(__file__))
 METRICS = os.path.join(HERE, "samples", "lora-scene", "metrics.json")
 NAME = {"saul": "사울", "david": "다윗", "samuel": "사무엘"}
 SC_NAME = {"gilgal": "길갈", "engedi": "엔게디", "ramah": "라마"}
+
+
+def uri(im, w):
+    """make_face_widen_page.uri와 같되 JPEG 품질 80 — 그림 83장(카드 1068px)이 16MB 한도에 들게(86이면 16.3MB)."""
+    im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
+    b = io.BytesIO()
+    im.save(b, "JPEG", quality=80)
+    return "data:image/jpeg;base64," + base64.b64encode(b.getvalue()).decode()
 
 
 def screens(m):
