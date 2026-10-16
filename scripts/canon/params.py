@@ -182,3 +182,20 @@ LORA_SCENE_CONTROL_SEEDS = [11, 42, 7]   # 음성 대조 = 353 cast-v2-pilot/sce
 LORA_SCENE_SHUFFLE_SEED = 357            # 화면 A 쌍 순서 섞기(대조 위치를 숨김)
 LORA_SCENE_ADOPT_MIN = 5                 # 채택: L1 인물마다 「읽힌다」 ≥ 5/8, 3명 모두
 LORA_SCENE_CONTROL_MAX = 3               # 분해능: 음성 대조 「읽힌다」 합 ≤ 3/9 (넘으면 보류)
+
+# task#358 — 정본 참조 편집: 353 바탕 위에서 처치 인물의 몸 상자를 마스크로 잡고 정본 참조 2장으로 편집(mflux Qwen edit). 편집 전 고정.
+REF_EDIT_WHO = ("saul", "david")
+REF_EDIT_SCENES = {"gilgal": ["saul"], "engedi": ["saul", "david"], "ramah": ["david"]}   # 장면 → 처치 인물(엔게디는 사울 → 다윗 차례)
+REF_EDIT_SEEDS = LORA_SCENE_SEEDS                 # 판정 시드 8 — 11·42·7은 353 바탕 그대로, 나머지 5는 같은 설정으로 새로
+REF_EDIT_PREVIEW_SEEDS = [404, 505]               # 세기 미리보기 시드(판정 시드와 안 겹침) — 길갈 사울만
+REF_EDIT_MODELS = [("qwen-image-2.1", "mflux-generate-qwen-2.1-edit", 8),     # 1순위(q8, --low-ram)
+                   ("qwen-image-edit-2511", "mflux-generate-qwen-edit", 4)]   # 2순위(낮은 양자화) — 1순위가 「안 돔」일 때만
+REF_EDIT_REF_FULL = {"saul": "07", "david": "07"}  # 356 시트 lora-sheet-v2/<id>/<번호>.png — 캡션 「standing still, full front view」의 첫 장(정본 머리 되붙임)
+REF_EDIT_AXIS = "strength"                         # 편집 세기 축 — mask 안에서 바탕을 얼마나 남기나(얼굴 ↔ 화풍 균형). guidance는 2.1이 「guidance 없이」 학습돼 축으로 안 씀
+REF_EDIT_AXIS_VALUES = [0.7, 0.85, 1.0]            # 1.0 = 문서 기본값
+REF_EDIT_STEPS = 25                                # 공식 ComfyUI 편집 워크플로 값(mflux README 예시)
+REF_EDIT_MASK_PAD = 0.06                           # 몸 상자를 각 변으로 폭·높이의 이만큼 넓혀 마스크(옷자락·머리카락 포함)
+REF_EDIT_SHUFFLE_SEED = 358                        # 화면 A·C 순서 섞기(대조 위치를 숨김)
+REF_EDIT_ADOPT_MIN = 5                             # 채택: 사울·다윗 각각 「읽힌다」 ≥ 5/8
+REF_EDIT_CONTROL_MAX = 2                           # 분해능: 대조 「읽힌다」 합 ≤ 2/6 (넘으면 보류)
+REF_EDIT_STYLE_PENALTY = 0.5                       # 처치 무너짐 비율 − 대조 무너짐 비율 > 이 값이면 채택 → 조건부
