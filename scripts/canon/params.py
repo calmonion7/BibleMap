@@ -199,3 +199,16 @@ REF_EDIT_SHUFFLE_SEED = 358                        # 화면 A·C 순서 섞기(�
 REF_EDIT_ADOPT_MIN = 5                             # 채택: 사울·다윗 각각 「읽힌다」 ≥ 5/8
 REF_EDIT_CONTROL_MAX = 2                           # 분해능: 대조 「읽힌다」 합 ≤ 2/6 (넘으면 보류)
 REF_EDIT_STYLE_PENALTY = 0.5                       # 처치 무너짐 비율 − 대조 무너짐 비율 > 이 값이면 채택 → 조건부
+
+# task#359 — 같은 참조 편집을 Qwen-Image-Edit-2511로: 전체 편집 → 358 몸 상자만 바탕에 되붙임. 장면·시드·참조·마스크·판정 규칙은 REF_EDIT_* 그대로. 편집 전 고정.
+REF_EDIT_2511_MODEL = ("qwen-image-edit-2511", "mflux-generate-qwen-edit")
+REF_EDIT_2511_QUANTS = [8, 6, 4]                   # 양자화 사다리(q8 --low-ram → q6 → q4) — 단계마다 첫 1장까지만 「안 돔」 확인
+REF_EDIT_2511_STEPS = 20                           # mflux 기본(cli/defaults/defaults.py)
+REF_EDIT_2511_GUIDANCE = 2.5                       # models/qwen README 기본
+REF_EDIT_2511_FEATHER = 8                          # 되붙임 경계 가우시안 반경 px(마스크 상자 경계만 부드럽게)
+REF_EDIT_2511_MIN_DIFF = 10.0                      # 조작 확인 하한: 몸 상자 안 평균 픽셀 차(0~255) — 358 세기 1.0 변화 29.9의 1/3
+REF_EDIT_2511_MAX_SEC = 600                        # 「안 돔」: 장당 10분 초과(스왑)
+REF_EDIT_2511_SHUFFLE_SEED = 359                   # 화면 A·C 순서 섞기
+REF_EDIT_2511_PROMPT = ("Replace the man on the {side} in image 1 with the man shown in image 2 and image 3 — same face, hair, "
+                        "beard, body build and clothing. Keep his pose and position, and keep the pencil and watercolor drawing style, "
+                        "lighting and everything else of image 1 unchanged.")   # 358 틀에서 「the person in the masked area」만 위치로

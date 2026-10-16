@@ -3,6 +3,7 @@
   VENV=~/.local/biblemap-imggen/.venv314/bin/python
   $VENV make_ref_edit_page.py preview <353 페이지 HTML> <출력 HTML>   # 세기 미리보기 한 화면(사용자가 하나 고름)
   $VENV make_ref_edit_page.py judge <353 페이지 HTML> <출력 HTML>     # 판정: A 2(같은 인물) · B 1(섞임) · C 3(화풍·뜻)
+  $VENV make_ref_edit_page.py judge2511 <353 페이지 HTML> <출력 HTML> # task#359 — 같은 판정, metrics·산출 경로·섞기 시드만 2511 것
 카드 폭 356 CSS px(DPR 3), 확대·크롭 없음, 대상 머리 위 ▼(OWLv2, 못 찾으면 명세 구역 위). 그림은 한 번만 싣고 ▼는 CSS.
 쌍·그림의 정체(처치/대조·시드)는 게시 전에 samples/ref-edit/metrics.json `screens`에 적고 페이지에는 번호만."""
 import json, os, random, sys
@@ -27,7 +28,7 @@ def ratio_heads(m, path, scene):
     return m["heads"][path]
 
 
-def build(m, mode):
+def build(m, mode, out=G.OUT, shuffle=params.REF_EDIT_SHUFFLE_SEED):
     imgs, ident, sc = {}, {}, []
     m.setdefault("heads", {})
 
@@ -62,8 +63,8 @@ def build(m, mode):
                    "ref": ref, "items": items, "mark": "✓ 고름"})
         return sc, imgs, ident
 
-    E = lambda k, s: os.path.join(G.OUT, "edit", k, f"s{s}.png")
-    rnd = random.Random(params.REF_EDIT_SHUFFLE_SEED)
+    E = lambda k, s: os.path.join(out, "edit", k, f"s{s}.png")
+    rnd = random.Random(shuffle)
     for who, (a, b) in PAIRS.items():
         pairs = [{"kind": "edit", "seed": s, "a": E(a, s), "b": E(b, s)} for s in params.REF_EDIT_SEEDS]
         pairs += [{"kind": "control", "seed": s, "a": G.base_path(a, s), "b": G.base_path(b, s)} for s in params.LORA_SCENE_CONTROL_SEEDS]
@@ -98,23 +99,31 @@ def build(m, mode):
 
 def main():
     mode, src, dst = sys.argv[1:4]
-    m = json.load(open(G.METRICS))
+    v2511 = mode == "judge2511"
+    if v2511:
+        import gen_ref_edit_2511 as R
+    metrics = R.METRICS if v2511 else G.METRICS
+    m = json.load(open(metrics))
     html = open(src, encoding="utf-8").read()
     title = "편집 세기 고르기" if mode == "preview" else "정본 참조 편집 판정"
     hd = html[html.index("<title>"):html.index("<script>")].replace("<title>인물 정의 판정</title>", f"<title>{title}</title>")
     hd = hd.replace("</style>", L.CSS + "</style>")
-    sc, imgs, ident = build(m, mode)
+    sc, imgs, ident = build(m, mode, R.OUT, params.REF_EDIT_2511_SHUFFLE_SEED) if v2511 else build(m, mode)
     data = {k: L.uri(Image.open(p).convert("RGB"), L.CARD * L.DPR) for k, p in imgs.items()}
-    model = params.REF_EDIT_MODELS[m["model_i"]][0]
-    picked = (f"{model} 참조 편집 · {params.REF_EDIT_AXIS} " + (f"{params.REF_EDIT_AXIS_VALUES}" if mode == "preview" else f"{m['preview_choice']}")
-              + f" · 시드 {params.REF_EDIT_PREVIEW_SEEDS if mode == 'preview' else params.REF_EDIT_SEEDS} · 카드 폭 356px · 기계 거르기 없음")
-    js = L.JS.replace("lora-scene-357", f"ref-edit-358-{mode}").replace("task 357 사람 판정", f"task 358 {'세기 고르기' if mode == 'preview' else '사람 판정'}")
+    if v2511:
+        picked = f"{R.NAME} 참조 편집 · q{m['quantize']} · 전체 편집 → 몸 상자 되붙임 · 시드 {params.REF_EDIT_SEEDS} · 카드 폭 356px · 기계 거르기 없음"
+        js = L.JS.replace("lora-scene-357", "ref-edit-359-judge").replace("task 357 사람 판정", "task 359 사람 판정")
+    else:
+        model = params.REF_EDIT_MODELS[m["model_i"]][0]
+        picked = (f"{model} 참조 편집 · {params.REF_EDIT_AXIS} " + (f"{params.REF_EDIT_AXIS_VALUES}" if mode == "preview" else f"{m['preview_choice']}")
+                  + f" · 시드 {params.REF_EDIT_PREVIEW_SEEDS if mode == 'preview' else params.REF_EDIT_SEEDS} · 카드 폭 356px · 기계 거르기 없음")
+        js = L.JS.replace("lora-scene-357", f"ref-edit-358-{mode}").replace("task 357 사람 판정", f"task 358 {'세기 고르기' if mode == 'preview' else '사람 판정'}")
     page = (hd + "<script>\nconst SCREENS = " + json.dumps(sc, ensure_ascii=False) + ";\nconst IMGS = " + json.dumps(data)
             + ";\nconst PICKED = " + json.dumps(picked, ensure_ascii=False) + ";\n" + js + "\n</body></html>\n")
     open(dst, "w", encoding="utf-8").write(page)
-    if mode == "judge":
+    if mode != "preview":
         m["screens"] = ident
-    json.dump(m, open(G.METRICS, "w"), ensure_ascii=False, indent=1)
+    json.dump(m, open(metrics, "w"), ensure_ascii=False, indent=1)
     print(dst, f"{len(page) / 1e6:.2f}MB, 화면 {len(sc)}, 그림 {len(imgs)}")
 
 
