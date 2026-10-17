@@ -49,7 +49,7 @@ def rubric(scene, layer):
     def _expect(f):   # 한 장 모드: gesture가 있으면 명세의 한 장 서술(gesture·expression·costume·gaze)이 기대값
         if not f.get("gesture"):
             return f"{f['pose']}; 지물 {f['prop']}; {f['facing']}을 향함"
-        gz = f"; 시선 {f['gaze']}" if f.get("gaze") else ""
+        gz = f"; 시선 {ko(f['gaze'])}" if f.get("gaze") else ""  # 문자열 예약값·인물 id, 또는 문구 객체면 ko(task 365)
         return f"{ko(f['gesture'])}; 표정 {ko(f.get('expression'))}; 복장 {ko(f.get('costume'))}; {f['facing']}을 향함{gz}"
     fl = "\n".join(f"- {f['cast']}: {_expect(f)}" for f in figs)
     cr = "".join(f"\n명세에 있는 배경 인물(인물 수 위반이 아님): {c['what']} — 위치 {c.get('region', '')}" for c in s.get("crowds", []))

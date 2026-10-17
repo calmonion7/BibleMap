@@ -248,3 +248,5 @@ PROMPT_512_SHUFFLE_SEED = 363
 PROMPT_512_SHUFFLE_SEED_R2 = 3632   # r2(차림 자리·인물별 방향 복원) — r1 그림 위치를 기억하지 않게
 # task#364(2026-10-18): 엔게디 굴 어둠·빛 판정 — 화면 순서 섞기(기준 + r2 8 + A 8 + B 8)
 ENGEDI_DARK_SHUFFLE_SEED = 364
+# task#365(2026-10-18): 엔게디 시선 축 판정 — 그림 순서 섞기(기준 + r2 8 + A 8 + B 8, 네 화면 같은 순서)
+ENGEDI_GAZE_SHUFFLE_SEED = 365

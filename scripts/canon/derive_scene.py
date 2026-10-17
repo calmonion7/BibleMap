@@ -202,7 +202,9 @@ def whole_prompt(spec):
     parts = [spec["whole_background"]["en"] + "."]
     # 전원 같은 방향의 장면 문장(「Both figures face …」)은 두지 않는다 — 인물마다 방향 구절이 지고(task 363 r2: 빼면 사울이 돌아섬)
     for f in figs:
-        if f["gaze"] == VIEWER:  # eco: 백성=관람자 쪽 시선은 cast 대상이 아니라 예약어 하나로
+        if isinstance(f["gaze"], dict):  # 문구 객체 {ko,en,verse} — en을 그대로 시선 구절로(task 365, PROMPTING 7)
+            looks = f["gaze"]["en"]
+        elif f["gaze"] == VIEWER:  # eco: 백성=관람자 쪽 시선은 cast 대상이 아니라 예약어 하나로
             looks = "looking straight out toward the crowd and the viewer"
         elif f["gaze"] == AHEAD:
             looks = "looking straight ahead toward the right edge of the picture"
@@ -254,7 +256,9 @@ def check_whole(spec):
             if unknown or not str(f.get("cast_override_why", "")).strip():
                 bad.append(f"{f['cast']}.cast_override: cast에 없는 키 {sorted(unknown)} 또는 cast_override_why 없음")
         g = f.get("gaze")
-        if g not in (VIEWER, DOWN, AHEAD) and (g not in casts or g == f["cast"]):
+        if isinstance(g, dict):  # 문구 객체 — ko/en/verse 모두 있어야 한다(task 365)
+            field(f, "gaze", f["cast"])
+        elif g not in (VIEWER, DOWN, AHEAD) and (g not in casts or g == f["cast"]):
             bad.append(f"{f['cast']}.gaze: 대상 인물 {g!r}이 이 장면에 없다")
     if bad:
         return bad

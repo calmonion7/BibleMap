@@ -60,5 +60,30 @@ class WholePromptOrder(unittest.TestCase):
                         self.assertNotIn(cast_cost, figure_sentence(p, spec, f))
 
 
+ENGEDI = "authored-david-en-gedi-saul"
+
+
+def engedi():
+    return json.load(open(os.path.join(HERE, "scenes", ENGEDI + ".json"), encoding="utf-8"))
+
+
+class GazeObject(unittest.TestCase):
+    """task 365 — gaze가 문구 객체 {ko,en,verse}여도 파생된다. 기존 파생은 한 글자도 바뀌지 않는다."""
+
+    def test_engedi_unchanged_vs_r2(self):  # 명세를 고치기 전까지만 — 채택되면 새 명세 ↔ engedi-gaze 프롬프트 비교로 바꾼다
+        r2 = json.load(open(os.path.join(HERE, "samples", "prompt-512", "metrics.json"), encoding="utf-8"))["prompts"]["engedi"]
+        self.assertEqual(ds.whole_prompt(engedi()), r2)
+
+    def test_object_gaze_en_in_figure_sentence(self):
+        spec = engedi()
+        d = next(f for f in spec["figures"] if f["cast"] == "david")
+        d["gaze"] = {"ko": "자르는 옷자락을 내려다봄", "en": "looking down at the hem he is cutting", "verse": "삼상 24:4"}
+        p = ds.whole_prompt(spec)
+        self.assertIn(d["gaze"]["en"], figure_sentence(p, spec, d))
+        self.assertEqual(ds.check_whole(spec), [])
+        d["gaze"] = {**d["gaze"], "verse": ""}
+        self.assertTrue(ds.check_whole(spec))
+
+
 if __name__ == "__main__":
     unittest.main()

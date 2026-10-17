@@ -1,0 +1,62 @@
+# 엔게디 시선 축 — 다윗 시선 아래(A)와 사울 등 돌림(B) (task 365)
+
+task 364 판정과 함께 받은 사용자 말(`ENGEDI-DARK.md` 「사용자 말」) 중 시선 축 둘을 다룬다.
+- 1순위: 「사울과 다윗이 마주 보는 것이 제일 문제」. r2(현행 명세) 자세 4/8(364 페이지).
+- 「다윗이 옷자락 자를 때 시선 처리가 아래를 향해야」. 현행 다윗 시선 구절은 `looking toward the king on the right`이고, r2 8장 모두 다윗이 눈높이로 사울을 본다(그릴링 실측).
+- 가설 A: 다윗이 사울을 보라는 구절을 모델이 맞보기로 그린다. 가설 B: 부정문(`not looking back`·`does not look back`·`their eyes do not meet`)이 부른 낱말이 그려진다(PROMPTING 14).
+
+## 고정 절(결과를 보기 전에 적음 — 실행 중 바꾸지 않는다)
+- 파생 확장: 인물 `gaze`는 문자열(인물 id·`viewer`·`down`·`ahead`)이거나 문구 객체 `{ko, en, verse}`다. 객체면 `en`을 그대로 시선 구절로 쓴다. 기존 파생은 한 글자도 바뀌지 않는다(`test_whole_prompt.py` `GazeObject`).
+- 문구 diff(영문). 처치는 `gen_engedi_gaze.py`가 메모리 명세에만 적용한다. 명세 파일은 채택 뒤에만 고친다.
+  ```
+  처치 A
+  figures[david].gaze:
+  - "saul"                                   (파생: looking toward the king on the right)
+  + {"ko": "자르는 옷자락을 내려다봄",
+  +  "en": "looking down at the hem he is cutting",
+  +  "verse": "삼상 24:4 「가만히 베니라」 · 시선 본문 밖 · 저작자 정함(2026-10-18 사용자 기준)"}
+
+  처치 B (= A 위에)
+  figures[saul].gesture.en:
+  - facing toward the cave mouth, not looking back, his long cloak
+  + facing toward the cave mouth, his back to the man on the left, his long cloak
+  relation.en:
+  - Saul crouches looking toward the cave mouth and does not look back;
+  + Saul crouches looking toward the cave mouth with his back to David;
+  - … cuts the corner of the cloak trailing on the ground; their eyes do not meet
+  + … cuts the corner of the cloak trailing on the ground
+  ```
+  - 나머지 글자·순서는 그대로다. 「옮김」은 없다(PROMPTING 19). `screen_light`는 건드리지 않는다(PROMPTING 20).
+  - 부정문 근거 구절 셋을 모두 바꾼다(364 회고 — 근거에 적은 구절은 모두 diff에). 사울의 `expression`(`… looking toward the cave mouth`)·`gaze: ahead`·`screen_facing`은 부정문이 아니어서 남긴다.
+- 채택 시 한국어 정본:
+  - A: 다윗 `gaze` = 위 객체. 다윗 `figures[].verse`는 그대로.
+  - B: 사울 `gesture.ko` 「… 어귀 쪽을 바라보고 뒤를 돌아보지 않는다」 → 「… 어귀 쪽을 바라보며 등을 왼쪽 사람 쪽으로 둔다」. `relation.ko` 「사울은 어귀 쪽을 바라보며 웅크려 있고 뒤를 돌아보지 않으며,」 → 「사울은 어귀 쪽을 바라보며 다윗에게 등을 둔 채 웅크려 있고,」. 끝 절 「둘의 시선은 마주치지 않는다」는 지운다.
+- 토큰(채팅 틀 포함, `check_scenes.zimage_tokens`): r2 510 · A 511 · B 510(실측 2026-10-18).
+- 생성: A·B × `params.REF_EDIT_SEEDS`(11·42·7·23·5·101·202·303), 1216×640, Z-Image-Turbo, 364와 같은 경로. 산출 `~/.local/biblemap-imggen/engedi-gaze/<A|B>/s<시드>.png`. 대조 r2(`prompt-512/engedi/s<시드>.png`)는 다시 그리지 않는다.
+- 판정 페이지: 한 화면에 축 하나, 4문항, 모두 「문제 있는 그림을 누르세요」 한 방향.
+  - 그림: 기준(승인본) + r2 8 + A 8 + B 8 = 25장, 섞기 시드 365. 네 화면 모두 같은 순서.
+  - `G-face`: 「사울과 다윗이 마주 보는 그림을 누르세요 (사울이 다윗 쪽으로 고개나 몸을 돌림)」 — 그림 전체.
+  - `G-look`: 「다윗이 자르는 옷자락(아래)이 아니라 사울이나 앞쪽을 보는 그림을 누르세요」 — 그림 전체 + 다윗 쪽 확대(왼쪽 0~0.55 폭).
+  - `G-hand`: 「다윗의 두 손·칼 위치가 옷자락을 자르는 동작에 맞지 않는 그림을 누르세요」 — `G-look`과 같은 확대.
+  - `G-guard`: 「연필 화풍이 무너지거나, 인물·칼·겉옷자락이 사라지거나 엉뚱해진 그림을 누르세요 (굴 어둠은 이번에 보지 않습니다)」 — 그림 전체.
+  - 그림 번호 ↔ 기준/r2/A/B·시드 대응은 게시 전에 `samples/engedi-gaze/metrics.json` `screens`에 적는다. 폰용 비공개 Artifact, 카드 폭 356px, 기계 거르기 없음.
+- 판정 규칙. 쪽마다 8장 중 눌린 수: 마주 봄 F, 다윗 시선 G, 손·칼 H, 가드 X.
+  - 처치 **통과** = F ≤ F_r2 − 2 **그리고** X ≤ X_r2 + 1.
+  - 채택 순서:
+    1. 통과한 처치가 있으면 F가 적은 쪽. F가 같으면 G가 적은 쪽, 그것도 같으면 A.
+    2. 통과한 처치가 없어도 A가 G ≤ G_r2 − 2 · F_A ≤ F_r2 · X_A ≤ X_r2 + 1이면 A 채택.
+    3. 그 밖에는 미채택.
+  - 기준 그림이 `G-face`·`G-hand`·`G-guard`에서 눌리면 보기 설명이 기준과 어긋난다는 신호다. 결론은 그대로 계산하고 「읽은 것」에 적는다.
+  - H는 채택에 쓰지 않고 기록만 한다(다음 과제 입력).
+  - 결론 줄: `결론: B 채택|A 채택|미채택 · 마주 봄 r2 n·A n·B n · 다윗 시선 r2 n·A n·B n · 손·칼 r2 n·A n·B n · 가드 r2 n·A n·B n`.
+- 결과 처리: 채택된 처치를 명세(ko·en)에 반영한다. 미채택이면 명세를 그대로 두고 기록만 남긴다. 파생 확장(`gaze` 객체 허용)은 미채택이어도 남긴다.
+
+## S0 (시드 202, r2 ↔ A ↔ B — 판정 전, 생성 사고만 거름)
+- r2: 사울이 몸·고개를 왼쪽 다윗 쪽으로 돌렸고, 둘이 눈높이로 마주 본다(364 「자세」 표본 그대로).
+- A: 다윗 시선이 아래 옷자락으로 내려갔다. 사울은 여전히 다윗 쪽으로 몸을 돌려 그를 본다.
+- B: 사울이 등을 돌려 오른쪽 어귀를 본다. 다윗은 아래를 보며 칼을 자락에 댄다.
+- 셋 다 인물 둘·칼·겉옷자락이 있다. 한 장이라 효과로 읽지 않는다.
+
+## S3 생성 · 눈 확인 (판정 전 — 생성 사고만 거름)
+- A·B × 8시드 16장(14장 합 962s, 장당 약 69s). r2 8 · A 8 · B 8 몽타주로 봤다.
+- 24장 모두 인물 둘·칼·겉옷자락이 있다. 검은 화면·인물 실종 같은 생성 사고는 없다. 효과는 사람 판정으로만 정한다.
