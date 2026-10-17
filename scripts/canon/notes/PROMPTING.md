@@ -409,6 +409,16 @@ diffusers `ZImagePipeline.encode_prompt`는 채팅 틀(`<|im_start|>user … <|i
 - `try_prompt.py --check`의 토큰 보고는 SDXL CLIP 77 기준이라 이 상한을 보여 주지 않는다.
 - 기록 `notes/ENGEDI-TEXT.md` 「S2」, `notes/PROMPT-512.md`.
 
+## 19. 줄일 때는 **빼기만** 한다 — 같은 낱말도 자리를 옮기면 그림이 바뀐다 (2026-10-17 실측, task 363)
+
+512 안에 넣으려고 파생을 고친 1차(r1)는 낱말을 거의 그대로 두고 자리만 옮겼다.
+- 장면 차림 구절을 몸짓 **앞**으로 → 길갈 사울의 「a plain cloak folded over the other arm」이 흰 천이 되어 판정 **8/8 무너짐**(이전 2/8).
+- 인물마다 붙던 `facing toward the right edge`를 장면 앞 「Both figures face …」 한 문장으로 합침 → 엔게디 사울이 돌아서 다윗을 마주 봄(자세 3→7).
+- 차림 구절을 몸짓 뒤로 되돌리고 인물별 방향을 살린 2차(r2)는 길갈 0/8 · 라마 0/8 · 엔게디 같음.
+
+- 규칙: **문구를 줄일 때는 중복을 지우기만 하고, 남는 구절의 순서는 그대로 둔다.** 인물의 방향은 그 인물 문장 안에 둔다.
+- `test_whole_prompt.py`(host python3, GPU 0)가 한 장 파생의 순서(몸짓 → 차림)·인물별 방향·정본 차림 중복 없음을 지킨다.
+
 ## 세 축 읽는 법 — 그리고 자의 구멍
 
 임계는 전부 `notes/s0-baseline.json`에 못박혀 있다(task#317 S0가 정답지 10장에서 파생).
