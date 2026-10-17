@@ -71,7 +71,11 @@
         "en": "a dark wool tunic with a leather belt",
         "verse": "본문 밖 · 저작자 정함(튜닉)"
       },
-      "gaze": "saul",
+      "gaze": {
+        "ko": "자르는 옷자락을 내려다봄",
+        "en": "looking down at the hem he is cutting",
+        "verse": "삼상 24:4 「가만히 베니라」 · 시선 본문 밖 · 저작자 정함(2026-10-18 사용자 기준)"
+      },
       "screen_facing": "right"
     },
     {
