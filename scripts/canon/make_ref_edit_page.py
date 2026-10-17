@@ -5,6 +5,7 @@
   $VENV make_ref_edit_page.py judge <353 페이지 HTML> <출력 HTML>     # 판정: A 2(같은 인물) · B 1(섞임) · C 3(화풍·뜻)
   $VENV make_ref_edit_page.py judge2511 <353 페이지 HTML> <출력 HTML> # task#359 — 같은 판정, metrics·산출 경로·섞기 시드만 2511 것
   $VENV make_ref_edit_page.py judge-lightning <353 페이지 HTML> <출력 HTML> # task#360 — 같은 판정, 2511 + Lightning 4스텝 것
+  $VENV make_ref_edit_page.py judge-costume <353 페이지 HTML> <출력 HTML>   # task#361 — 엔게디 차림 편집: C(+누른 그림마다 이유) · A 2 · B 1
 카드 폭 356 CSS px(DPR 3), 확대·크롭 없음, 대상 머리 위 ▼(OWLv2, 못 찾으면 명세 구역 위). 그림은 한 번만 싣고 ▼는 CSS.
 쌍·그림의 정체(처치/대조·시드)는 게시 전에 samples/ref-edit/metrics.json `screens`에 적고 페이지에는 번호만."""
 import json, os, random, sys
@@ -102,8 +103,108 @@ def build(m, mode, out=G.OUT, shuffle=params.REF_EDIT_SHUFFLE_SEED):
     return sc, imgs, ident
 
 
+# task#361 고정 절(notes/REF-EDIT-COSTUME.md) — C 무너짐 이유 보기
+REASONS = [("style", "화풍(연필·수채 결)"), ("dark", "굴 어둠·빛"), ("cloak", "겉옷자락 베기(다윗이 사울 몸에 붙은 겉옷을 벰)"),
+           ("pose", "인물 자세·위치"), ("etc", "기타")]
+SAME_LOOK = ("▼ 표시된 {name}만 보고, 같은 사람으로 읽히는 쌍을 모두 누르세요. 얼굴·머리·수염·몸집(나이대)만 보고, 옷은 빼고 봅니다. "
+             "카드에 실제로 보이는 크기 그대로입니다(확대하지 마세요). 없으면 그대로 「표시 끝」.")
+
+
+def build_costume(m):
+    """task#361 — C-engedi(기준 + 처치 8 + 대조 8) → C-이유(C에서 누른 그림만 보임) → A-saul·A-david(옛 360 처치 ↔ 새 엔게디 처치) → B-engedi."""
+    import gen_ref_edit_lightning as N
+    assert N.COSTUME, "params.REF_EDIT_LIGHTNING_LOOK_SRC가 image+scene이 아님"
+    old = os.path.join(G.ROOT, "ref-edit-lightning")
+    NEW = lambda s: os.path.join(N.OUT, "edit", "engedi", f"s{s}.png")
+    OLD = lambda k, s: os.path.join(old, "edit", k, f"s{s}.png")
+    imgs, ident, sc = {}, {}, []
+    m.setdefault("heads", {})
+
+    def img(path):
+        assert os.path.exists(path), path
+        for k, v in imgs.items():
+            if v == path:
+                return k
+        k = f"i{len(imgs)}"
+        imgs[k] = path
+        return k
+
+    def card(path, scene, who, cap):
+        h = ratio_heads(m, path, scene) if who else {}
+        ws = [who] if isinstance(who, str) else (who or [])
+        return {"img": img(path), "marks": [h[w] for w in ws if w in h], "cap": cap}
+
+    rnd = random.Random(params.REF_EDIT_COSTUME_SHUFFLE_SEED)
+    its = [{"kind": "edit", "seed": s, "path": NEW(s)} for s in params.REF_EDIT_SEEDS]
+    its += [{"kind": "control", "seed": s, "path": G.base_path("engedi", s)} for s in params.REF_EDIT_SEEDS]
+    rnd.shuffle(its)
+    ident["C-engedi"] = [{"n": n + 1, "kind": t["kind"], "seed": t["seed"]} for n, t in enumerate(its)]
+    sc.append({"id": "C-engedi", "q": f"{SC_NAME['engedi']} · 연필 화풍이나 장면 뜻이 기준보다 크게 무너진 그림을 누르세요",
+               "look": "맨 위가 기준 그림입니다. 연필·수채 화풍이 크게 달라졌거나, 장면이 말하는 일이 안 보이게 된 그림을 누르세요. 얼굴은 보지 않아도 됩니다.",
+               "ref": {"img": img(REFS["engedi"]), "marks": [], "cap": "기준"},
+               "items": [{"key": str(n + 1), "label": f"그림 {n + 1}", "cards": [card(t["path"], "engedi", None, "")]} for n, t in enumerate(its)],
+               "mark": "✗ 무너짐"})
+    for n, t in enumerate(its):
+        sc.append({"id": f"C-why-{n + 1}", "if": ["C-engedi", str(n + 1)], "q": f"그림 {n + 1} · 무엇이 무너졌나요? (여러 개)",
+                   "look": "앞 화면에서 무너졌다고 누른 그림입니다. 해당하는 것을 모두 누르세요.",
+                   "ref": {"img": img(t["path"]), "marks": [], "cap": f"그림 {n + 1}"},
+                   "items": [{"key": k, "label": lab, "cards": []} for k, lab in REASONS], "mark": "✓"})
+    ident["C-why"] = {"screen_of": "C-engedi", "keys": [k for k, _ in REASONS]}
+    for who, (a, b) in PAIRS.items():
+        side = lambda k, s: NEW(s) if k == "engedi" else OLD(k, s)
+        pairs = [{"kind": "edit", "seed": s, "a": side(a, s), "b": side(b, s)} for s in params.REF_EDIT_SEEDS]
+        pairs += [{"kind": "control", "seed": s, "a": G.base_path(a, s), "b": G.base_path(b, s)} for s in params.LORA_SCENE_CONTROL_SEEDS]
+        rnd.shuffle(pairs)
+        sid = f"A-{who}"
+        ident[sid] = [{"n": n + 1, "kind": p["kind"], "seed": p["seed"]} for n, p in enumerate(pairs)]
+        sc.append({"id": sid, "q": f"{NAME[who]} · 두 ▼가 같은 사람으로 읽히는 쌍을 누르세요",
+                   "look": f"쌍마다 위는 {SC_NAME[a]}, 아래는 {SC_NAME[b]}입니다. " + SAME_LOOK.format(name=NAME[who]),
+                   "items": [{"key": str(n + 1), "label": f"쌍 {n + 1}",
+                              "cards": [card(p["a"], a, who, SC_NAME[a]), card(p["b"], b, who, SC_NAME[b])]} for n, p in enumerate(pairs)],
+                   "mark": "✓ 같은 사람"})
+    whos = params.LORA_SCENE_SCENES["engedi"][1]
+    sc.append({"id": "B-engedi", "q": "엔게디 · 두 ▼ 인물이 서로 닮아 구별이 안 되는 그림을 누르세요",
+               "look": "다윗·사울이 모두 나오는 그림입니다. 둘이 서로 닮아서 누가 누구인지 구별이 안 되면 누르세요.",
+               "items": [{"key": f"s{s}", "label": f"그림 {n + 1}", "cards": [card(NEW(s), "engedi", whos, "엔게디")]}
+                         for n, s in enumerate(params.REF_EDIT_SEEDS)], "mark": "✓ 구별 안 됨"})
+    ident["B-engedi"] = [{"key": f"s{s}", "kind": "edit", "seed": s} for s in params.REF_EDIT_SEEDS]
+    return sc, imgs, ident
+
+
+# 조건부 화면(`if`: [화면 id, 그 화면에서 눌린 키])은 건너뛰고, 판정 문장에도 넣지 않는다 — 358~360 페이지의 L.JS는 그대로.
+COND_JS = [("function step(d) { i = Math.max(0, Math.min(SCREENS.length, i + d)); render() }",
+            "function shown(s) { return !s.if || (ans[s.if[0]] || []).includes(s.if[1]) }\n"
+            "function step(d) { do { i = Math.max(0, Math.min(SCREENS.length, i + d)) } while (i > 0 && i < SCREENS.length && !shown(SCREENS[i])); render() }"),
+           ("SCREENS.map(s =>", "SCREENS.filter(shown).map(s =>"),
+           ("<span>${i + 1}/${n}</span></div><h1>${s.q}", "<span>${SCREENS.slice(0, i + 1).filter(shown).length}/${SCREENS.filter(shown).length}</span></div><h1>${s.q}")]
+
+
+def main_costume(src, dst):
+    import gen_ref_edit_lightning as N
+    m = json.load(open(N.METRICS))
+    html = open(src, encoding="utf-8").read()
+    hd = html[html.index("<title>"):html.index("<script>")].replace("<title>인물 정의 판정</title>", "<title>차림 편집 판정</title>")
+    hd = hd.replace("</style>", L.CSS + "</style>")
+    sc, imgs, ident = build_costume(m)
+    data = {k: L.uri(Image.open(p).convert("RGB"), L.CARD * L.DPR) for k, p in imgs.items()}
+    picked = (f"{N.NAME} + Lightning 4스텝 참조 편집 · q{m['quantize']} · 정체성은 정본 그림, 차림은 장면 명세 · 전체 편집 → 몸 상자 되붙임"
+              f" · 시드 {params.REF_EDIT_SEEDS} · 카드 폭 356px · 기계 거르기 없음")
+    js = L.JS.replace("lora-scene-357", "ref-edit-361-judge").replace("task 357 사람 판정", "task 361 사람 판정")
+    for a, b in COND_JS:
+        assert a in js, a
+        js = js.replace(a, b)
+    page = (hd + "<script>\nconst SCREENS = " + json.dumps(sc, ensure_ascii=False) + ";\nconst IMGS = " + json.dumps(data)
+            + ";\nconst PICKED = " + json.dumps(picked, ensure_ascii=False) + ";\n" + js + "\n</body></html>\n")
+    open(dst, "w", encoding="utf-8").write(page)
+    m["screens"] = ident
+    json.dump(m, open(N.METRICS, "w"), ensure_ascii=False, indent=1)
+    print(dst, f"{len(page) / 1e6:.2f}MB, 화면 {len(sc)}, 그림 {len(imgs)}")
+
+
 def main():
     mode, src, dst = sys.argv[1:4]
+    if mode == "judge-costume":
+        return main_costume(src, dst)
     v2511 = mode in VARIANTS
     if v2511:
         mod, shuffle, task, desc = VARIANTS[mode]

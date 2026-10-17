@@ -226,10 +226,18 @@ REF_EDIT_LIGHTNING_PROMPT = ("Change the man on the {side} in image 1 into the m
                              "and everything else in image 1 unchanged.")   # {look} = derive_scene.cast_describe(장면 안 정본 — cast_override 포함), 손으로 쓰지 않음
 # task#360 S0 뒤 개정(2026-10-17, 사용자 「권장진행」): 카드 층 {look}은 바탕과 같은 문구라 다윗이 무처치(targeted −1.49·8.27)였고 정본 그림(붉은 튜닉)에서 멀어졌다
 # → {look}을 정본 그림(frozen 초상 + lora-sheet-v2 전신 07) 쪽 서술로. 그림을 보고 손으로 썼다(사람 결정). 나머지 고정 절은 그대로.
-REF_EDIT_LIGHTNING_LOOK_SRC = "image"              # "card" = cast_describe(S0 첫 시도) · "image" = 아래 서술
+REF_EDIT_LIGHTNING_LOOK_SRC = "image+scene"        # "card" = cast_describe(S0 첫 시도) · "image" = 아래 서술(360 재현은 이 값으로) · "image+scene" = task#361
 REF_EDIT_LIGHTNING_LOOK_IMAGE = {
     "saul": "an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, "
             "in a plain brown short-sleeved tunic reaching the shins with a brown leather belt",
     "david": "an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build, "
              "in a plain red short-sleeved knee-length tunic with a brown leather belt",
 }
+# task#361(2026-10-17): 360 엔게디 처치 8/8 「무너짐」 — 정본 튜닉 절이 사울 겉옷을 지웠다(용어집 「카드 층 / 얼굴 층」: 차림은 장면 명세가 덮어씀).
+# → "image+scene" = 정체성(얼굴·머리·수염·체격·나이대)은 아래(LOOK_IMAGE에서 차림 절만 뗌) + ", wearing " + 장면 명세 figures[].costume.en. 편집 대상은 엔게디만.
+REF_EDIT_LIGHTNING_LOOK_IDENTITY = {
+    "saul": "an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build",
+    "david": "an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build",
+}
+REF_EDIT_COSTUME_SCENES = {"engedi": ["saul", "david"]}   # "image+scene" 모드의 편집 장면 → 처치 인물(사울 → 다윗 차례)
+REF_EDIT_COSTUME_SHUFFLE_SEED = 361                # 판정 화면 순서 섞기

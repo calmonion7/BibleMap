@@ -7,7 +7,9 @@
   $VENV gen_ref_edit_lightning.py stop "<사유>"               # 고정 절 정지 조건일 때만 — metrics `stop`
 
 마스크·좌우·되붙임·mask_diff는 gen_ref_edit_2511 그대로. 조작 확인 `targeted` = 전체 편집 원본 대 입력 그림의 몸 상자 안 평균 차 − 밖 평균 차.
-산출은 레포 밖 ~/.local/biblemap-imggen/ref-edit-lightning/, 목록은 samples/ref-edit-lightning/metrics.json(params.REF_EDIT_LIGHTNING_*, notes/REF-EDIT-LIGHTNING.md 고정 절)."""
+산출은 레포 밖 ~/.local/biblemap-imggen/ref-edit-lightning/, 목록은 samples/ref-edit-lightning/metrics.json(params.REF_EDIT_LIGHTNING_*, notes/REF-EDIT-LIGHTNING.md 고정 절).
+task#361: params.REF_EDIT_LIGHTNING_LOOK_SRC = "image+scene"이면 {look} = 정체성 + 장면 명세 차림, 엔게디만, 산출 ref-edit-costume/(notes/REF-EDIT-COSTUME.md).
+360 재현은 LOOK_SRC를 "image"로 되돌린다."""
 import json, os, re, signal, subprocess, sys, time
 
 import numpy as np
@@ -18,8 +20,11 @@ import derive_scene as D
 import gen_ref_edit as G
 import gen_ref_edit_2511 as R
 
-OUT = os.path.join(G.ROOT, "ref-edit-lightning")
-METRICS = os.path.join(G.HERE, "samples", "ref-edit-lightning", "metrics.json")
+COSTUME = params.REF_EDIT_LIGHTNING_LOOK_SRC == "image+scene"   # task#361 — 360 산출을 덮지 않게 루트·목록 분리, 엔게디만
+SET = "ref-edit-costume" if COSTUME else "ref-edit-lightning"
+OUT = os.path.join(G.ROOT, SET)
+METRICS = os.path.join(G.HERE, "samples", SET, "metrics.json")
+SCENES = params.REF_EDIT_COSTUME_SCENES if COSTUME else params.REF_EDIT_SCENES
 NAME = R.NAME
 TRY = "try" if params.REF_EDIT_LIGHTNING_LOOK_SRC == "card" else f"try-{params.REF_EDIT_LIGHTNING_LOOK_SRC}"   # S0 첫 시도(card) 산출을 덮지 않게
 
@@ -34,11 +39,14 @@ def lora_path():
 
 
 def look(scene, who):
-    """"image"(S0 뒤 개정) = 정본 그림 쪽 서술 · "card" = 장면 문구와 같은 낱말(정본 카드 층 + 그 장면 cast_override)."""
+    """"image"(S0 뒤 개정) = 정본 그림 쪽 서술 · "card" = 장면 문구와 같은 낱말(정본 카드 층 + 그 장면 cast_override)
+    · "image+scene"(task#361) = 정본 그림 쪽 정체성 + 장면 명세 차림."""
     if params.REF_EDIT_LIGHTNING_LOOK_SRC == "image":
         return params.REF_EDIT_LIGHTNING_LOOK_IMAGE[who]
     spec = D.load(params.LORA_SCENE_SCENES[scene][0])
     f = next(f for f in spec["figures"] if f.get("cast") == who)
+    if params.REF_EDIT_LIGHTNING_LOOK_SRC == "image+scene":
+        return params.REF_EDIT_LIGHTNING_LOOK_IDENTITY[who] + ", wearing " + f["costume"]["en"]
     return D.cast_describe(D._cast_in_scene(f))
 
 
@@ -111,8 +119,8 @@ def save_m(m):
 def one(q, scene, sd):
     m = load_m()
     base0 = src = G.base_path(scene, sd)
-    for i, who in enumerate(params.REF_EDIT_SCENES[scene]):
-        last = i == len(params.REF_EDIT_SCENES[scene]) - 1
+    for i, who in enumerate(SCENES[scene]):
+        last = i == len(SCENES[scene]) - 1
         out = os.path.join(OUT, TRY, scene, f"q{q}-s{sd}.png" if last else f"q{q}-s{sd}-{who}.png")
         e = edit_one(q, scene, who, sd, base0, src, out, "try")
         m.setdefault("try", []).append(e)
@@ -127,7 +135,7 @@ def edit(q):
     m["quantize"] = q
     old = {(e["scene"], e["who"], e["seed"]): e for e in m.get("edits", []) if e.get("status") == "ok" and e.get("quantize") == q}
     edits = []
-    for sc, whos in params.REF_EDIT_SCENES.items():
+    for sc, whos in SCENES.items():
         for s in params.REF_EDIT_SEEDS:
             base0 = src = G.base_path(sc, s)
             for i, who in enumerate(whos):
@@ -148,7 +156,7 @@ def edit(q):
         for k in ("targeted", "mask_diff"):
             m[f"{k}_mean"] = round(float(np.mean([e[k] for e in ok])), 2)
             m[f"{k}_by_scene"] = {sc: round(float(np.mean([e[k] for e in ok if e["scene"] == sc])), 2)
-                                  for sc in params.REF_EDIT_SCENES if any(e["scene"] == sc for e in ok)}
+                                  for sc in SCENES if any(e["scene"] == sc for e in ok)}
         m["sec_mean"] = round(float(np.mean([e["sec"] for e in ok])), 1)
     m["edits"] = edits
     save_m(m)
