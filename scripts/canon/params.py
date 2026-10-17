@@ -212,3 +212,24 @@ REF_EDIT_2511_SHUFFLE_SEED = 359                   # 화면 A·C 순서 섞기
 REF_EDIT_2511_PROMPT = ("Replace the man on the {side} in image 1 with the man shown in image 2 and image 3 — same face, hair, "
                         "beard, body build and clothing. Keep his pose and position, and keep the pencil and watercolor drawing style, "
                         "lighting and everything else of image 1 unchanged.")   # 358 틀에서 「the person in the masked area」만 위치로
+
+# task#360 — 같은 참조 편집을 2511 + Lightning 4스텝 LoRA로(guidance 1 래퍼 mflux_qwen_edit_cfg1.py). 장면·시드·참조·마스크·되붙임·판정 규칙은 REF_EDIT_*·REF_EDIT_2511_* 그대로. 편집 전 고정.
+REF_EDIT_LIGHTNING_LORA = ("lightx2v/Qwen-Image-Edit-2511-Lightning", "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors", 1.0)   # (HF 레포, 파일, 세기)
+REF_EDIT_LIGHTNING_QUANTS = [8, 6]                 # q8 --low-ram → 「안 돔」이면 q6 한 번만, 그래도 안 되면 stop
+REF_EDIT_LIGHTNING_STEPS = 4
+REF_EDIT_LIGHTNING_GUIDANCE = 1.0                  # 래퍼가 부정 계산을 건너뜀(결과 동일, 후속 시험 평균 차 0.053/255)
+REF_EDIT_LIGHTNING_MAX_SEC = 600                   # 「안 돔」: 첫 1장 장당 10분 초과 또는 오류
+REF_EDIT_LIGHTNING_MIN_TARGETED = 10.0             # 조작 확인 하한: 전체 편집 원본 대 입력 그림의 몸 상자 안 평균 차 − 상자 밖 평균 차(0~255) — 후속 시험 외형 명시 33.4, 무처치 −2.7
+REF_EDIT_LIGHTNING_SHUFFLE_SEED = 360              # 화면 A·C 순서 섞기
+REF_EDIT_LIGHTNING_PROMPT = ("Change the man on the {side} in image 1 into the man shown in image 2 and image 3: {look}. "
+                             "Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style "
+                             "and everything else in image 1 unchanged.")   # {look} = derive_scene.cast_describe(장면 안 정본 — cast_override 포함), 손으로 쓰지 않음
+# task#360 S0 뒤 개정(2026-10-17, 사용자 「권장진행」): 카드 층 {look}은 바탕과 같은 문구라 다윗이 무처치(targeted −1.49·8.27)였고 정본 그림(붉은 튜닉)에서 멀어졌다
+# → {look}을 정본 그림(frozen 초상 + lora-sheet-v2 전신 07) 쪽 서술로. 그림을 보고 손으로 썼다(사람 결정). 나머지 고정 절은 그대로.
+REF_EDIT_LIGHTNING_LOOK_SRC = "image"              # "card" = cast_describe(S0 첫 시도) · "image" = 아래 서술
+REF_EDIT_LIGHTNING_LOOK_IMAGE = {
+    "saul": "an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, "
+            "in a plain brown short-sleeved tunic reaching the shins with a brown leather belt",
+    "david": "an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build, "
+             "in a plain red short-sleeved knee-length tunic with a brown leather belt",
+}
