@@ -6,6 +6,7 @@
   $VENV make_ref_edit_page.py judge2511 <353 페이지 HTML> <출력 HTML> # task#359 — 같은 판정, metrics·산출 경로·섞기 시드만 2511 것
   $VENV make_ref_edit_page.py judge-lightning <353 페이지 HTML> <출력 HTML> # task#360 — 같은 판정, 2511 + Lightning 4스텝 것
   $VENV make_ref_edit_page.py judge-costume <353 페이지 HTML> <출력 HTML>   # task#361 — 엔게디 차림 편집: C(+누른 그림마다 이유) · A 2 · B 1
+  $VENV make_ref_edit_page.py judge-text <353 페이지 HTML> <출력 HTML>      # task#362 — 엔게디 문구 수리: C(새 문구 바탕 8 + 353 바탕 8, +이유)만
 카드 폭 356 CSS px(DPR 3), 확대·크롭 없음, 대상 머리 위 ▼(OWLv2, 못 찾으면 명세 구역 위). 그림은 한 번만 싣고 ▼는 CSS.
 쌍·그림의 정체(처치/대조·시드)는 게시 전에 samples/ref-edit/metrics.json `screens`에 적고 페이지에는 번호만."""
 import json, os, random, sys
@@ -201,10 +202,63 @@ def main_costume(src, dst):
     print(dst, f"{len(page) / 1e6:.2f}MB, 화면 {len(sc)}, 그림 {len(imgs)}")
 
 
+# task#362 고정 절(notes/ENGEDI-TEXT.md) — 361 보기 그대로, 「굴 어둠·빛」에만 설명을 붙인다
+REASONS_TEXT = [(k, lab + " — 굴 안이 기준처럼 어둡지 않다(벽 전체가 밝거나 어귀가 크고 가까워 바깥처럼 보임)" if k == "dark" else lab)
+                for k, lab in REASONS]
+
+
+def main_text(src, dst):
+    """task#362 — C-engedi(기준 + 새 문구 바탕 8 + 353 바탕 8) → C-why(누른 그림만). 361 C 화면과 같은 문구."""
+    import gen_engedi_text as T
+    m = json.load(open(T.METRICS))
+    NEW = lambda s: os.path.join(T.OUT, m["chosen"], f"s{s}.png")
+    imgs = {}
+
+    def img(path):
+        assert os.path.exists(path), path
+        k = f"i{len(imgs)}"
+        imgs[k] = path
+        return k
+
+    rnd = random.Random(params.ENGEDI_TEXT_SHUFFLE_SEED)
+    its = [{"kind": "new", "seed": s, "path": NEW(s)} for s in params.REF_EDIT_SEEDS]
+    its += [{"kind": "353", "seed": s, "path": G.base_path("engedi", s)} for s in params.REF_EDIT_SEEDS]
+    rnd.shuffle(its)
+    keys = [img(t["path"]) for t in its]
+    sc = [{"id": "C-engedi", "q": f"{SC_NAME['engedi']} · 연필 화풍이나 장면 뜻이 기준보다 크게 무너진 그림을 누르세요",
+           "look": "맨 위가 기준 그림입니다. 연필·수채 화풍이 크게 달라졌거나, 장면이 말하는 일이 안 보이게 된 그림을 누르세요. 얼굴은 보지 않아도 됩니다.",
+           "ref": {"img": img(REFS["engedi"]), "marks": [], "cap": "기준"},
+           "items": [{"key": str(n + 1), "label": f"그림 {n + 1}", "cards": [{"img": keys[n], "marks": [], "cap": ""}]} for n in range(len(its))],
+           "mark": "✗ 무너짐"}]
+    for n in range(len(its)):
+        sc.append({"id": f"C-why-{n + 1}", "if": ["C-engedi", str(n + 1)], "q": f"그림 {n + 1} · 무엇이 무너졌나요? (여러 개)",
+                   "look": "앞 화면에서 무너졌다고 누른 그림입니다. 해당하는 것을 모두 누르세요.",
+                   "ref": {"img": keys[n], "marks": [], "cap": f"그림 {n + 1}"},
+                   "items": [{"key": k, "label": lab, "cards": []} for k, lab in REASONS_TEXT], "mark": "✓"})
+    html = open(src, encoding="utf-8").read()
+    hd = html[html.index("<title>"):html.index("<script>")].replace("<title>인물 정의 판정</title>", "<title>엔게디 문구 판정</title>")
+    hd = hd.replace("</style>", L.CSS + "</style>")
+    data = {k: L.uri(Image.open(p).convert("RGB"), L.CARD * L.DPR) for k, p in imgs.items()}
+    picked = f"엔게디 장면 문구 수리 · 문구 {m['chosen']} · 시드 {params.REF_EDIT_SEEDS} · 카드 폭 356px · 기계 거르기 없음"
+    js = L.JS.replace("lora-scene-357", "engedi-text-362-judge").replace("task 357 사람 판정", "task 362 사람 판정")
+    for a, b in COND_JS:
+        assert a in js, a
+        js = js.replace(a, b)
+    page = (hd + "<script>\nconst SCREENS = " + json.dumps(sc, ensure_ascii=False) + ";\nconst IMGS = " + json.dumps(data)
+            + ";\nconst PICKED = " + json.dumps(picked, ensure_ascii=False) + ";\n" + js + "\n</body></html>\n")
+    open(dst, "w", encoding="utf-8").write(page)
+    m["screens"] = {"C-engedi": [{"n": n + 1, "kind": t["kind"], "seed": t["seed"]} for n, t in enumerate(its)],
+                    "C-why": {"screen_of": "C-engedi", "keys": [k for k, _ in REASONS_TEXT]}}
+    json.dump(m, open(T.METRICS, "w"), ensure_ascii=False, indent=1)
+    print(dst, f"{len(page) / 1e6:.2f}MB, 화면 {len(sc)}, 그림 {len(imgs)}")
+
+
 def main():
     mode, src, dst = sys.argv[1:4]
     if mode == "judge-costume":
         return main_costume(src, dst)
+    if mode == "judge-text":
+        return main_text(src, dst)
     v2511 = mode in VARIANTS
     if v2511:
         mod, shuffle, task, desc = VARIANTS[mode]

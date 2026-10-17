@@ -241,3 +241,5 @@ REF_EDIT_LIGHTNING_LOOK_IDENTITY = {
 }
 REF_EDIT_COSTUME_SCENES = {"engedi": ["saul", "david"]}   # "image+scene" 모드의 편집 장면 → 처치 인물(사울 → 다윗 차례)
 REF_EDIT_COSTUME_SHUFFLE_SEED = 361                # 판정 화면 순서 섞기
+# task#362(2026-10-17): 엔게디 장면 문구 수리(굴 벽 색 낱말) — 판정 화면 순서 섞기(기준 + 새 바탕 8 + 353 바탕 8)
+ENGEDI_TEXT_SHUFFLE_SEED = 362
