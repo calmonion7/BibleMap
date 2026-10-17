@@ -80,7 +80,8 @@ def cast_describe(c):
     parts += [card["silhouette"]["text"], head_text(card)]
     if c.get("hair") and c["hair"] != "none" and card["headOutline"]["class"] != "bare":  # bare면 윤곽 text가 머리털을 말함
         parts.append(c["hair"])
-    parts.append(c["costume"])
+    if c.get("costume"):  # 한 장 모드는 장면 차림을 따로 잇는다(task 363) — 빈 차림은 넣지 않는다
+        parts.append(c["costume"])
     return ", ".join(parts)
 
 
@@ -199,9 +200,7 @@ def whole_prompt(spec):
     figs = sorted(spec["figures"], key=lambda f: spec["regions"][f["region"]][0])
     by_cast = {f["cast"]: f for f in figs}
     parts = [spec["whole_background"]["en"] + "."]
-    sf = {f.get("screen_facing") for f in figs}
-    if len(sf) == 1 and None not in sf and len(figs) > 1:  # 전원 같은 방향이면 장면 문장 한 번
-        parts.append(f"{'Both' if len(figs) == 2 else 'All'} figures {SCREEN_FACING[sf.pop()][1]}.")
+    # 전원 같은 방향의 장면 문장(「Both figures face …」)은 두지 않는다 — 인물마다 방향 구절이 지고(task 363 r2: 빼면 사울이 돌아섬)
     for f in figs:
         if f["gaze"] == VIEWER:  # eco: 백성=관람자 쪽 시선은 cast 대상이 아니라 예약어 하나로
             looks = "looking straight out toward the crowd and the viewer"
@@ -212,9 +211,12 @@ def whole_prompt(spec):
         else:
             tgt = by_cast[f["gaze"]]
             looks = f"looking toward the {_cast_in_scene(tgt)['age']} {_side(tgt, spec)}"
-        c, cost = _cast_in_scene(f), [f["costume"]["en"]]
-        if "beardless" in cost[0]:  # costume이 cast의 수염·복식을 덮어쓴다 — 모순·중복 방지
+        # 차림은 장면 명세가 덮어쓴다(용어집 「카드 층 / 얼굴 층」) — 정본 costume은 빼고 장면 costume을 몸짓 뒤에 한 번(task 363)
+        c, cost = {**_cast_in_scene(f), "costume": ""}, [f["costume"]["en"]]
+        if "beardless" in cost[0]:  # costume이 cast의 수염·복식을 덮어쓴다 — 모순·중복 방지, v2 카드 층 수염도 끈다(task 363)
             c, cost = {**c, "beard": "none", "costume": cost[0]}, []
+            if c.get("card"):
+                c["card"] = {**c["card"], "beardVolume": {"class": "none", "text": ""}}
             if c["costume"].startswith("a Philistine"):  # cast의 era·age('unarmed … servant')가 투구 문구와 충돌 — 함께 대체
                 c = {**c, "era": "a Philistine", "age": ""}
         facing = [SCREEN_FACING[f["screen_facing"]][0]] if f.get("screen_facing") else []

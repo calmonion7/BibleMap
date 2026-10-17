@@ -243,3 +243,6 @@ REF_EDIT_COSTUME_SCENES = {"engedi": ["saul", "david"]}   # "image+scene" 모드
 REF_EDIT_COSTUME_SHUFFLE_SEED = 361                # 판정 화면 순서 섞기
 # task#362(2026-10-17): 엔게디 장면 문구 수리(굴 벽 색 낱말) — 판정 화면 순서 섞기(기준 + 새 바탕 8 + 353 바탕 8)
 ENGEDI_TEXT_SHUFFLE_SEED = 362
+# task#363(2026-10-17): 512토큰 수리 판정 — 화면 순서 섞기(장면마다 기준 + 새 8 + 이전 8)
+PROMPT_512_SHUFFLE_SEED = 363
+PROMPT_512_SHUFFLE_SEED_R2 = 3632   # r2(차림 자리·인물별 방향 복원) — r1 그림 위치를 기억하지 않게

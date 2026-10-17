@@ -402,6 +402,13 @@ Qwen-Image-Edit-2511 + Lightning 4스텝으로 장면 속 인물을 정본(초�
 - 정본 그림과 정의(cast)가 어긋나면 편집은 그림을 따라야 같은 인물이 된다. 어긋남 자체는 정의 쪽 과제로 따로 남긴다.
 - 기록 `notes/REF-EDIT-LIGHTNING.md`(S0 · 개정 절), ADR `261017-152627`.
 
+## 18. Z-Image 한 장 프롬프트는 **512토큰**에서 잘린다 — 넘는 뒤쪽 문장은 무처치 (2026-10-17 실측, task 362)
+
+diffusers `ZImagePipeline.encode_prompt`는 채팅 틀(`<|im_start|>user … <|im_start|>assistant`, 8토큰)을 씌운 뒤 `max_sequence_length=512, truncation=True`로 자른다. 엔게디 한 장 프롬프트가 564토큰이라 관계 문장 뒷부분과 빛 문장(`screen_light`)이 345 이후 내내 빠져 있었다. 빛 문장만 바꾼 문구 B는 A와 **화소까지 같았다**.
+- 규칙: **문구를 바꾸기 전에 바꾸는 낱말이 512 안에 있는지 잰다.** `check_scenes.py`가 한 장 모드 장면을 512로 막는다(venv314로 실행 — 토크나이저가 필요하다).
+- `try_prompt.py --check`의 토큰 보고는 SDXL CLIP 77 기준이라 이 상한을 보여 주지 않는다.
+- 기록 `notes/ENGEDI-TEXT.md` 「S2」, `notes/PROMPT-512.md`.
+
 ## 세 축 읽는 법 — 그리고 자의 구멍
 
 임계는 전부 `notes/s0-baseline.json`에 못박혀 있다(task#317 S0가 정답지 10장에서 파생).

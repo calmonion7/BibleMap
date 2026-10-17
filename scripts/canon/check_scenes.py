@@ -5,6 +5,8 @@
 
 검사 항목(3/7 DoD 2): 필수 필드 · 인용 절이 verses.json에 존재 · figures[].prop 1개 · figures[].cast가 cast/<id>.json에 존재 ·
 구역 상자 [0,1] 안(x0<x1, y0<y1) · stages/figures/crowds/judge가 가리키는 구역이 regions에 있음 · judge.figures ⊆ figures.cast.
+task 363: 한 장 프롬프트(`derive_scene.whole_prompt`)가 Z-Image 인코더 상한 512토큰(채팅 틀 포함) 안 — 넘는 뒤쪽은 잘려 무처치다.
+  토크나이저(HF 캐시, 오프라인)가 필요하므로 venv314로 실행한다. 못 불러오면 실패로 보고한다.
 """
 import glob
 import json
@@ -20,6 +22,9 @@ VERSES = os.path.join(params.REPO_ROOT, "data", "bible", "verses.json")
 BOOK = {"삼상": 9, "삼하": 10, "왕상": 11, "왕하": 12, "대상": 13, "대하": 14, "시": 19}
 REQUIRED = ("id", "title", "verses", "moment", "background", "figures", "regions", "stages", "judge")
 KINDS = {"full", "region", "ridge", "plate", "refine", "prop"}
+WHOLE_MAX = 512   # diffusers ZImagePipeline.encode_prompt max_sequence_length(truncation=True) — task 362 실측
+# 넘어도 되는 장면 → 이유. 512 안에 들어오면 검사가 「예외 지울 것」으로 실패한다(낡은 예외 방지).
+WHOLE_OVER_OK = {"authored-david-goliath-gath": "task 355 — 카드 층 머리쓰개·신분과 장면 차림 충돌, 소년 다윗 id"}
 
 
 def verse_ids(book, ref):
@@ -136,15 +141,47 @@ def check(spec, verses):
     return errs
 
 
+def zimage_tokens():
+    """→ 프롬프트 → 채팅 틀 포함 토큰 수. ZImagePipeline.encode_prompt와 같은 틀(enable_thinking=True)."""
+    from huggingface_hub import snapshot_download
+    from transformers import AutoTokenizer
+    tok = AutoTokenizer.from_pretrained(os.path.join(snapshot_download("Tongyi-MAI/Z-Image-Turbo", local_files_only=True), "tokenizer"))
+    return lambda p: len(tok(tok.apply_chat_template([{"role": "user", "content": p}], tokenize=False,
+                                                     add_generation_prompt=True, enable_thinking=True)).input_ids)
+
+
+def whole_prompt_overflow(ids=None):
+    """→ {장면: 오류} — 한 장 모드 장면(whole_background 있음)의 토큰 상한 검사. 토크나이저를 못 불러오면 예외."""
+    import derive_scene as ds
+    n = zimage_tokens()
+    ids = ids or sorted(os.path.basename(f)[:-5] for f in glob.glob(os.path.join(SCENES, "*.json")))
+    bad = {}
+    for sid in ids:
+        spec = ds.load(sid)
+        if "whole_background" not in spec:
+            continue
+        k = n(ds.whole_prompt(spec))
+        if k > WHOLE_MAX and sid not in WHOLE_OVER_OK:
+            bad[sid] = f"한 장 프롬프트 {k}토큰 > {WHOLE_MAX} — 뒤쪽이 잘려 무처치"
+        elif k <= WHOLE_MAX and sid in WHOLE_OVER_OK:
+            bad[sid] = f"한 장 프롬프트 {k}토큰 ≤ {WHOLE_MAX} — WHOLE_OVER_OK 예외 지울 것"
+    return bad
+
+
 def main():
     with open(VERSES, encoding="utf-8") as fh:
         verses = json.load(fh)
     ids = sys.argv[1:] or sorted(os.path.basename(f)[:-5] for f in glob.glob(os.path.join(SCENES, "*.json")))
+    try:
+        over = whole_prompt_overflow(ids)
+    except Exception as e:  # 토크나이저 없음(시스템 python3·캐시 없음) — 검사를 건너뛰지 않고 실패로
+        print(f"✗ 토큰 검사 불가 — venv314로 실행할 것: {type(e).__name__}: {e}")
+        return 1
     bad = 0
     for sid in ids:
         with open(os.path.join(SCENES, f"{sid}.json"), encoding="utf-8") as fh:
             spec = json.load(fh)
-        errs = check(spec, verses)
+        errs = check(spec, verses) + ([over[sid]] if sid in over else [])
         print(f"{'✅' if not errs else '✗'} {sid}" + ("" if not errs else "\n    - " + "\n    - ".join(errs)))
         bad += bool(errs)
     print(f"{len(ids) - bad}/{len(ids)} 통과")
