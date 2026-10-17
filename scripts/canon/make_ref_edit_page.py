@@ -8,6 +8,7 @@
   $VENV make_ref_edit_page.py judge-costume <353 페이지 HTML> <출력 HTML>   # task#361 — 엔게디 차림 편집: C(+누른 그림마다 이유) · A 2 · B 1
   $VENV make_ref_edit_page.py judge-text <353 페이지 HTML> <출력 HTML>      # task#362 — 엔게디 문구 수리: C(새 문구 바탕 8 + 353 바탕 8, +이유)만
   $VENV make_ref_edit_page.py judge-512 <353 페이지 HTML> <출력 HTML>       # task#363 — 512토큰 수리: 엔게디·길갈·라마 C(새 8 + 이전 8, +이유)
+  $VENV make_ref_edit_page.py judge-dark <353 페이지 HTML> <출력 HTML>      # task#364 — 엔게디 굴 어둠·빛: C(r2 8 + A 8 + B 8, +이유)
 카드 폭 356 CSS px(DPR 3), 확대·크롭 없음, 대상 머리 위 ▼(OWLv2, 못 찾으면 명세 구역 위). 그림은 한 번만 싣고 ▼는 CSS.
 쌍·그림의 정체(처치/대조·시드)는 게시 전에 samples/ref-edit/metrics.json `screens`에 적고 페이지에는 번호만."""
 import json, os, random, sys
@@ -308,8 +309,59 @@ def main_512(src, dst):
     print(dst, f"{len(page) / 1e6:.2f}MB, 화면 {len(sc)}, 그림 {len(imgs)}")
 
 
+# task#364 고정 절(notes/ENGEDI-DARK.md) — 「굴 어둠·빛」을 밝음·입구 둘로 나눔
+REASONS_DARK = [("style", "화풍(연필·수채 결)"), ("bright", "굴 안이 기준보다 밝다"), ("mouth", "굴 입구가 가깝거나 크게 보인다"),
+                ("cloak", REASONS[2][1]), ("pose", "인물 자세·위치"), ("etc", "기타")]
+
+
+def main_dark(src, dst):
+    """task#364 — C-engedi(기준 + r2 8 + A 8 + B 8) → C-why(누른 그림만). 질문은 363과 같다."""
+    import gen_engedi_dark as E
+    m = json.load(open(E.METRICS))
+    imgs = {}
+
+    def img(path):
+        assert os.path.exists(path), path
+        k = f"i{len(imgs)}"
+        imgs[k] = path
+        return k
+
+    its = [{"kind": "r2", "seed": s, "path": E.r2_path(s)} for s in params.REF_EDIT_SEEDS]
+    its += [{"kind": t, "seed": s, "path": E.out_path(t, s)} for t in ("A", "B") for s in params.REF_EDIT_SEEDS]
+    random.Random(params.ENGEDI_DARK_SHUFFLE_SEED).shuffle(its)
+    keys = [img(t["path"]) for t in its]
+    sc = [{"id": "C-engedi", "q": f"{SC_NAME['engedi']} · 연필 화풍이나 장면 뜻이 기준보다 크게 무너진 그림을 누르세요",
+           "look": "맨 위가 기준 그림입니다. 연필·수채 화풍이 크게 달라졌거나, 장면이 말하는 일이 안 보이게 된 그림을 누르세요. 얼굴은 보지 않아도 됩니다.",
+           "ref": {"img": img(REFS["engedi"]), "marks": [], "cap": "기준"},
+           "items": [{"key": str(n + 1), "label": f"그림 {n + 1}", "cards": [{"img": keys[n], "marks": [], "cap": ""}]} for n in range(len(its))],
+           "mark": "✗ 무너짐"}]
+    for n in range(len(its)):
+        sc.append({"id": f"C-why-engedi-{n + 1}", "if": ["C-engedi", str(n + 1)], "q": f"{SC_NAME['engedi']} 그림 {n + 1} · 무엇이 무너졌나요? (여러 개)",
+                   "look": "앞 화면에서 무너졌다고 누른 그림입니다. 해당하는 것을 모두 누르세요.",
+                   "ref": {"img": keys[n], "marks": [], "cap": f"그림 {n + 1}"},
+                   "items": [{"key": k, "label": lab, "cards": []} for k, lab in REASONS_DARK], "mark": "✓"})
+    html = open(src, encoding="utf-8").read()
+    hd = html[html.index("<title>"):html.index("<script>")].replace("<title>인물 정의 판정</title>", "<title>엔게디 굴 어둠 판정</title>")
+    hd = hd.replace("</style>", L.CSS + "</style>")
+    data = {k: L.uri(Image.open(p).convert("RGB"), L.CARD * L.DPR) for k, p in imgs.items()}
+    picked = f"엔게디 굴 어둠·빛 · 처치 A·B + 대조 r2 · 시드 {params.REF_EDIT_SEEDS} · 카드 폭 356px · 기계 거르기 없음"
+    js = L.JS.replace("lora-scene-357", "engedi-dark-364-judge").replace("task 357 사람 판정", "task 364 사람 판정")
+    for a, b in COND_JS:
+        assert a in js, a
+        js = js.replace(a, b)
+    page = (hd + "<script>\nconst SCREENS = " + json.dumps(sc, ensure_ascii=False) + ";\nconst IMGS = " + json.dumps(data)
+            + ";\nconst PICKED = " + json.dumps(picked, ensure_ascii=False) + ";\n" + js + "\n</body></html>\n")
+    open(dst, "w", encoding="utf-8").write(page)
+    m["screens"] = {"C-engedi": [{"n": n + 1, "kind": t["kind"], "seed": t["seed"]} for n, t in enumerate(its)],
+                    "C-why-engedi": {"screen_of": "C-engedi", "keys": [k for k, _ in REASONS_DARK]}}
+    json.dump(m, open(E.METRICS, "w"), ensure_ascii=False, indent=1)
+    print(dst, f"{len(page) / 1e6:.2f}MB, 화면 {len(sc)}, 그림 {len(imgs)}")
+
+
 def main():
     mode, src, dst = sys.argv[1:4]
+    if mode == "judge-dark":
+        return main_dark(src, dst)
     if mode == "judge-costume":
         return main_costume(src, dst)
     if mode == "judge-text":

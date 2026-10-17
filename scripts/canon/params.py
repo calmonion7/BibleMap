@@ -246,3 +246,5 @@ ENGEDI_TEXT_SHUFFLE_SEED = 362
 # task#363(2026-10-17): 512토큰 수리 판정 — 화면 순서 섞기(장면마다 기준 + 새 8 + 이전 8)
 PROMPT_512_SHUFFLE_SEED = 363
 PROMPT_512_SHUFFLE_SEED_R2 = 3632   # r2(차림 자리·인물별 방향 복원) — r1 그림 위치를 기억하지 않게
+# task#364(2026-10-18): 엔게디 굴 어둠·빛 판정 — 화면 순서 섞기(기준 + r2 8 + A 8 + B 8)
+ENGEDI_DARK_SHUFFLE_SEED = 364
