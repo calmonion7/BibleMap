@@ -13,6 +13,7 @@
   $VENV make_ref_edit_page.py judge-away <353 페이지 HTML> <출력 HTML>      # task#366 — 엔게디 마주 봄 B1·B2: 4화면(가드는 칼 뺌), 기준+A+B1+B2+B 33장
   $VENV make_ref_edit_page.py judge-backhand <353 페이지 HTML> <출력 HTML>  # task#367 — 엔게디 B′·Bh: 4화면(366 문항 그대로), 기준+A+B+B′+Bh 33장
   $VENV make_ref_edit_page.py pick-handfix <353 페이지 HTML> <출력 HTML>    # 엔게디 손 국소 수정 r2 4장 중 장면 그림 하나 고르기(한 화면)
+  $VENV make_ref_edit_page.py pick-aftercut <353 페이지 HTML> <출력 HTML>   # 엔게디 「막 자른 뒤」 C 4장 중 장면 그림 하나 고르기(한 화면)
 카드 폭 356 CSS px(DPR 3), 확대·크롭 없음, 대상 머리 위 ▼(OWLv2, 못 찾으면 명세 구역 위). 그림은 한 번만 싣고 ▼는 CSS.
 쌍·그림의 정체(처치/대조·시드)는 게시 전에 samples/ref-edit/metrics.json `screens`에 적고 페이지에는 번호만."""
 import json, os, random, sys
@@ -522,22 +523,38 @@ HANDFIX_PICKS = [(7, 0.75, 2), (11, 0.75, 2), (101, 0.75, 2), (202, 0.85, 2)]
 
 def main_handfix(src, dst):
     import gen_engedi_handfix as H
-    import gen_prompt_512 as P
     paths = [f"{H.OUT}/r2/B{s}-st{st}-i{i}.png" for s, st, i in HANDFIX_PICKS]
+    picked = "엔게디 손 국소 수정 r2 · " + " · ".join(f"그림 {n + 1} = B s{s} st{st} i{i}" for n, (s, st, i) in enumerate(HANDFIX_PICKS))
+    main_pick(src, dst, paths, "엔게디 손 고르기", "사울이 등을 돌린 그림(마주 봄 없음)에서 다윗 손·칼만 다시 그렸습니다. 각 그림 아래에 다윗 쪽 확대가 있습니다. 마음에 드는 것 하나를 누르세요(없으면 누르지 말고 넘어가세요).", picked, "engedi-handfix-pick")
+
+
+# 엔게디 「막 자른 뒤」(gen_engedi_aftercut.py) — 8장 중 눈으로 고른 4장(자락을 든 손과 칼이 한 동작으로 이어진 것)
+AFTERCUT_PICKS = [42, 101, 23, 303]
+
+
+def main_aftercut(src, dst):
+    import gen_engedi_aftercut as C
+    paths = [C.out_path(s) for s in AFTERCUT_PICKS]
+    picked = "엔게디 막 자른 뒤 C · " + " · ".join(f"그림 {n + 1} = C s{s}" for n, s in enumerate(AFTERCUT_PICKS))
+    main_pick(src, dst, paths, "엔게디 자른 뒤 고르기", "사울은 등을 돌렸고(마주 봄 없음), 다윗이 자락을 들어 칼을 댄 장면을 새로 그렸습니다. 각 그림 아래에 다윗 쪽 확대가 있습니다. 마음에 드는 것 하나를 누르세요(없으면 누르지 말고 넘어가세요).", picked, "engedi-aftercut-pick")
+
+
+def main_pick(src, dst, paths, title, look, picked, store):
+    """한 화면 「쓸 그림 하나 고르기」 — 그림마다 전체 + 다윗 쪽 확대."""
+    import gen_prompt_512 as P
     imgs = {f"i{n}": p for n, p in enumerate(paths)}
     ar = P.SIZE[1] / P.SIZE[0]
     sc = [{"id": "pick", "q": f"{SC_NAME['engedi']} · 장면 그림으로 쓸 것 하나를 누르세요",
-           "look": "사울이 등을 돌린 그림(마주 봄 없음)에서 다윗 손·칼만 다시 그렸습니다. 각 그림 아래에 다윗 쪽 확대가 있습니다. 마음에 드는 것 하나를 누르세요(없으면 누르지 말고 넘어가세요).",
+           "look": look,
            "items": [{"key": str(n + 1), "label": f"그림 {n + 1}",
                       "cards": [{"img": f"i{n}", "marks": [], "cap": ""},
                                 {"img": f"i{n}", "marks": [], "cap": "다윗 쪽 확대", "zoom": list(ZOOM), "ar": ar}]} for n in range(len(paths))],
            "mark": "✓ 이것"}]
     html = open(src, encoding="utf-8").read()
-    hd = html[html.index("<title>"):html.index("<script>")].replace("<title>인물 정의 판정</title>", "<title>엔게디 손 고르기</title>")
+    hd = html[html.index("<title>"):html.index("<script>")].replace("<title>인물 정의 판정</title>", f"<title>{title}</title>")
     hd = hd.replace("</style>", L.CSS + "</style>")
     data = {k: L.uri(Image.open(p).convert("RGB"), L.CARD * L.DPR) for k, p in imgs.items()}
-    picked = "엔게디 손 국소 수정 r2 · " + " · ".join(f"그림 {n + 1} = B s{s} st{st} i{i}" for n, (s, st, i) in enumerate(HANDFIX_PICKS))
-    js = L.JS.replace("lora-scene-357", "engedi-handfix-pick").replace("task 357 사람 판정", "엔게디 손 고르기")
+    js = L.JS.replace("lora-scene-357", store).replace("task 357 사람 판정", title)
     assert ZOOM_JS[0] in js
     js = js.replace(*ZOOM_JS)
     page = (hd + "<script>\nconst SCREENS = " + json.dumps(sc, ensure_ascii=False) + ";\nconst IMGS = " + json.dumps(data)
@@ -548,6 +565,8 @@ def main_handfix(src, dst):
 
 def main():
     mode, src, dst = sys.argv[1:4]
+    if mode == "pick-aftercut":
+        return main_aftercut(src, dst)
     if mode == "pick-handfix":
         return main_handfix(src, dst)
     if mode == "judge-backhand":
