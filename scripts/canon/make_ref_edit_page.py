@@ -11,6 +11,7 @@
   $VENV make_ref_edit_page.py judge-dark <353 페이지 HTML> <출력 HTML>      # task#364 — 엔게디 굴 어둠·빛: C(r2 8 + A 8 + B 8, +이유)
   $VENV make_ref_edit_page.py judge-gaze <353 페이지 HTML> <출력 HTML>      # task#365 — 엔게디 시선 축: 4화면(마주 봄·다윗 시선·손·칼·가드), 기준+r2+A+B 25장
   $VENV make_ref_edit_page.py judge-away <353 페이지 HTML> <출력 HTML>      # task#366 — 엔게디 마주 봄 B1·B2: 4화면(가드는 칼 뺌), 기준+A+B1+B2+B 33장
+  $VENV make_ref_edit_page.py judge-backhand <353 페이지 HTML> <출력 HTML>  # task#367 — 엔게디 B′·Bh: 4화면(366 문항 그대로), 기준+A+B+B′+Bh 33장
 카드 폭 356 CSS px(DPR 3), 확대·크롭 없음, 대상 머리 위 ▼(OWLv2, 못 찾으면 명세 구역 위). 그림은 한 번만 싣고 ▼는 CSS.
 쌍·그림의 정체(처치/대조·시드)는 게시 전에 samples/ref-edit/metrics.json `screens`에 적고 페이지에는 번호만."""
 import json, os, random, sys
@@ -471,8 +472,52 @@ def main_away(src, dst):
     print(dst, f"{len(page) / 1e6:.2f}MB, 화면 {len(sc)}, 그림 {len(imgs)}")
 
 
+def main_backhand(src, dst):
+    """task#367 — 366 화면 4개 그대로(AWAY_SCREENS), 기준 + A 8 + B 8 + B′ 8 + Bh 8 = 33장을 한 번 섞어 네 화면 같은 순서."""
+    import gen_engedi_backhand as W
+    import gen_prompt_512 as P
+    m = json.load(open(W.METRICS))
+    imgs = {}
+
+    def img(path):
+        assert os.path.exists(path), path
+        k = f"i{len(imgs)}"
+        imgs[k] = path
+        return k
+
+    its = [{"kind": "ref", "seed": None, "path": REFS["engedi"]}]
+    its += [{"kind": t, "seed": s, "path": W.out_path(t, s)} for t in W.ARMS for s in params.REF_EDIT_SEEDS]
+    random.Random(params.ENGEDI_BACKHAND_SHUFFLE_SEED).shuffle(its)
+    keys = [img(t["path"]) for t in its]
+    ar = P.SIZE[1] / P.SIZE[0]
+    sc = []
+    for sid, q, look, zoom in AWAY_SCREENS:
+        cards = lambda n: [{"img": keys[n], "marks": [], "cap": ""}] + (
+            [{"img": keys[n], "marks": [], "cap": "다윗 쪽 확대", "zoom": list(ZOOM), "ar": ar}] if zoom else [])
+        sc.append({"id": sid, "q": f"{SC_NAME['engedi']} · {q}", "look": look,
+                   "items": [{"key": str(n + 1), "label": f"그림 {n + 1}", "cards": cards(n)} for n in range(len(its))],
+                   "mark": "✗"})
+    html = open(src, encoding="utf-8").read()
+    hd = html[html.index("<title>"):html.index("<script>")].replace("<title>인물 정의 판정</title>", "<title>엔게디 등·손 판정</title>")
+    hd = hd.replace("</style>", L.CSS + "</style>")
+    data = {k: L.uri(Image.open(p).convert("RGB"), L.CARD * L.DPR) for k, p in imgs.items()}
+    picked = f"엔게디 마주 봄 귀속·손 · 처치 Bh + 귀속 B′ + 대조 A + 참고 B + 기준 · 시드 {params.REF_EDIT_SEEDS} · 카드 폭 356px · 기계 거르기 없음"
+    js = L.JS.replace("lora-scene-357", "engedi-backhand-367-judge").replace("task 357 사람 판정", "task 367 사람 판정")
+    assert ZOOM_JS[0] in js
+    js = js.replace(*ZOOM_JS)
+    page = (hd + "<script>\nconst SCREENS = " + json.dumps(sc, ensure_ascii=False) + ";\nconst IMGS = " + json.dumps(data)
+            + ";\nconst PICKED = " + json.dumps(picked, ensure_ascii=False) + ";\n" + js + "\n</body></html>\n")
+    open(dst, "w", encoding="utf-8").write(page)
+    order = [{"n": n + 1, "kind": t["kind"], "seed": t["seed"]} for n, t in enumerate(its)]
+    m["screens"] = {sid: order for sid, *_ in AWAY_SCREENS}
+    json.dump(m, open(W.METRICS, "w"), ensure_ascii=False, indent=1)
+    print(dst, f"{len(page) / 1e6:.2f}MB, 화면 {len(sc)}, 그림 {len(imgs)}")
+
+
 def main():
     mode, src, dst = sys.argv[1:4]
+    if mode == "judge-backhand":
+        return main_backhand(src, dst)
     if mode == "judge-away":
         return main_away(src, dst)
     if mode == "judge-gaze":

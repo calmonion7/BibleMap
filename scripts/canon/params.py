@@ -252,3 +252,5 @@ ENGEDI_DARK_SHUFFLE_SEED = 364
 ENGEDI_GAZE_SHUFFLE_SEED = 365
 # task#366(2026-10-18): 엔게디 마주 봄 B1·B2 판정 — 그림 순서 섞기(기준 + A 8 + B1 8 + B2 8 + B 8, 네 화면 같은 순서)
 ENGEDI_AWAY_SHUFFLE_SEED = 366
+# task#367(2026-10-18): 엔게디 마주 봄 귀속·손 B′·Bh 판정 — 그림 순서 섞기(기준 + A 8 + B 8 + B′ 8 + Bh 8, 네 화면 같은 순서)
+ENGEDI_BACKHAND_SHUFFLE_SEED = 367
