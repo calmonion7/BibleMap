@@ -70,9 +70,9 @@ def engedi():
 class GazeObject(unittest.TestCase):
     """task 365 — gaze가 문구 객체 {ko,en,verse}여도 파생된다. 기존 파생은 한 글자도 바뀌지 않는다."""
 
-    def test_engedi_matches_adopted_A(self):  # 판정 결론 A 채택(notes/ENGEDI-GAZE.md) — 명세 파생 = 판정에 쓴 A 프롬프트
-        a = json.load(open(os.path.join(HERE, "samples", "engedi-gaze", "metrics.json"), encoding="utf-8"))["prompts"]["A"]
-        self.assertEqual(ds.whole_prompt(engedi()), a)
+    def test_engedi_matches_adopted_C(self):  # 사용자 채택 C s23(notes/ENGEDI-HANDFIX.md 「막 자른 뒤」) — 명세 파생 = C 프롬프트
+        c = json.load(open(os.path.join(HERE, "samples", "engedi-aftercut", "metrics.json"), encoding="utf-8"))["prompt"]
+        self.assertEqual(ds.whole_prompt(engedi()), c)
 
     def test_object_gaze_en_in_figure_sentence(self):
         spec = engedi()

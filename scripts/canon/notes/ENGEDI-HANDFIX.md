@@ -37,3 +37,13 @@
 - C diff(메모리 명세만): 다윗 몸짓 「잘라 낸 조각을 한 손에 들고 다른 손에 작은 칼」 · 다윗 시선 「손에 든 잘린 조각을 내려다봄」 · 사울 겉옷 「귀퉁이 하나가 막 잘려 나감」 · 관계 「막 베어 냈다」.
 - 8시드(장당 약 67s). 8장 모두 사울 등 돌림(마주 봄 없음). **떨어져 나온 조각은 한 장도 없다** — 다윗은 아직 붙은 자락을 들어 올린다.
 - 대신 든 손과 칼이 한 동작으로 이어져, 지금까지 중 가장 「베는 동작」으로 읽힌다: s42(들린 자락 위를 칼날이 가로지름) · s101 · s23 · s303. 이 4장을 고르기 페이지로 올림(https://claude.ai/artifact/4yaR7AQEtQL1oeUnT5uGo9).
+
+## 사용자 고르기 C → 그림 3 = C s23 채택 (「칼이 정확히 표현안되」 덧붙임)
+- 명세 반영: `authored-david-en-gedi-saul.json`에 365 B diff + C diff(다윗 몸짓·시선, 사울 겉옷, 관계)를 ko·en 함께 적용. 파생 = `samples/engedi-aftercut/metrics.json` `prompt`(토큰 506). `test_whole_prompt.py`는 `test_engedi_matches_adopted_C`로 바꿈. check_scenes 37/37 · 토큰 상한 exit 0 · test 5 OK.
+- s23의 칼: 손보다 긴 검은 단검이 들린 자락 앞을 가로지를 뿐 천에 들어가지 않는다.
+
+## 칼만 고치기 (`gen_engedi_knife.py` — klein 지시 편집, 칼 부위 280 크롭 → 1024 → 타원 마스크 되붙임, 문구 K1·K2 × 시드 3)
+- 처음으로 칼날이 천 속에 들어가 베인 자리가 보였다: K2 s2(칼날 따라 천이 벌어짐, 가장자리가 희게 들쭉날쭉) · K1 s2(칼날 아래 베인 틈) · K2 s1(작은 칼 끝이 천에 들어감). K1 s1·s3은 칼이 천 앞.
+- 크롭이 작고(280) 지시가 「칼 하나」로 좁아서 된 것으로 읽는다(r5는 손·자락까지 함께 고치게 함).
+- klein 편집이 천을 푸르게 띄워, 되붙이기 전에 채널별 평균·표준편차를 원본 크롭에 맞춤(`color_match`). 맞추기 전 합성은 `engedi-knife/nomatch/`.
+- 3장 + 원본 s23 고르기 페이지: https://claude.ai/artifact/CQLJJRB96fZku3uZZKgcgv

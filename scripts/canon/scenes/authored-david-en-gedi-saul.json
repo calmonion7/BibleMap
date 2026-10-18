@@ -21,8 +21,8 @@
     "verse": "삼상 24:3 · 24:4 · 사울이 어귀 쪽 어스름 빛 속에 있음 본문 밖 · 웅크린 자세 본문 밖(24:3 「발을 가리우러」 해석) · 다윗의 무릎 자세 본문 밖 · 땅에 끌린 자락 본문 밖 · 저작자 정함"
   },
   "relation": {
-    "ko": "사울은 어귀 쪽을 바라보며 웅크려 있고 뒤를 돌아보지 않으며, 다윗은 왼쪽 어둠에서 무릎으로 다가가 같은 쪽을 향한 채 땅에 끌린 겉옷자락을 벤다. 둘의 시선은 마주치지 않는다",
-    "en": "Saul crouches looking toward the cave mouth and does not look back; David creeps up on his knees from the left darkness, also facing right, and cuts the corner of the cloak trailing on the ground; their eyes do not meet",
+    "ko": "사울은 어귀 쪽을 바라보며 다윗에게 등을 둔 채 웅크려 있고, 다윗은 왼쪽 어둠에서 무릎으로 다가가 같은 쪽을 향한 채 땅에 끌린 겉옷자락 귀퉁이를 막 베어 냈다",
+    "en": "Saul crouches looking toward the cave mouth with his back to David; David creeps up on his knees from the left darkness, also facing right, and has just cut off a corner of the cloak trailing on the ground",
     "verse": "삼상 24:3 · 24:4 · 방향·사울의 위치·다윗의 접근 방식 본문 밖 · 저작자 정함(2026-10-14 사용자 결정)"
   },
   "whole_background": {
@@ -62,8 +62,8 @@
         "verse": "삼상 24:4 · 본문 밖 · 저작자 정함(표정)"
       },
       "gesture": {
-        "ko": "무릎으로 다가가 한 손으로 땅에 끌린 사울의 겉옷자락을 잡고 다른 손의 작은 칼로 가만히 벤다",
-        "en": "creeping forward on his knees, one hand holding the hem of the king's cloak that lies on the ground, the other hand cutting it with a small knife",
+        "ko": "무릎으로 다가가 방금 벤 사울의 겉옷자락 조각을 한 손에 들고 다른 손에 작은 칼을 쥐었다",
+        "en": "creeping forward on his knees, one hand holding up the corner piece he has just cut off the king's cloak, the other hand holding a small knife",
         "verse": "삼상 24:4 · 칼·무릎 자세·잡는 손 본문 밖 · 저작자 정함"
       },
       "costume": {
@@ -72,8 +72,8 @@
         "verse": "본문 밖 · 저작자 정함(튜닉)"
       },
       "gaze": {
-        "ko": "자르는 옷자락을 내려다봄",
-        "en": "looking down at the hem he is cutting",
+        "ko": "손에 든 잘린 옷자락 조각을 내려다봄",
+        "en": "looking down at the cut-off piece in his hand",
         "verse": "삼상 24:4 「가만히 베니라」 · 시선 본문 밖 · 저작자 정함(2026-10-18 사용자 기준)"
       },
       "screen_facing": "right"
@@ -92,13 +92,13 @@
         "verse": "삼상 24:4 「가만히」(사울이 모름은 추론) · 표정 본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "굴 안에서 웅크려 앉아 어귀 쪽을 바라보고 뒤를 돌아보지 않는다",
-        "en": "hunched down on the cave floor, facing toward the cave mouth, not looking back, his long cloak trailing on the ground behind him",
+        "ko": "굴 안에서 웅크려 앉아 어귀 쪽을 바라보며 등을 왼쪽 사람 쪽으로 둔다",
+        "en": "hunched down on the cave floor, facing toward the cave mouth, his back to the man on the left, his long cloak trailing on the ground behind him",
         "verse": "삼상 24:3 · 자세·뒤로 끌린 겉옷 본문 밖 · 저작자 정함(「발을 가리우러」 해석·노골적이지 않게)"
       },
       "costume": {
-        "ko": "아직 온전한 어두운 양모 겉옷(왕의 겉옷, 24:4) — 자락이 땅에 끌려 다윗이 베는 중 — 관 없음(본문 밖)",
-        "en": "a dark wool cloak, the king's robe, its hem trailing on the ground still whole and being cut at one corner by the man to the left, no crown",
+        "ko": "어두운 양모 겉옷(왕의 겉옷, 24:4) — 땅에 끌린 자락의 귀퉁이 하나가 막 잘려 나감 — 관 없음(본문 밖)",
+        "en": "a dark wool cloak, the king's robe, its hem trailing on the ground with one corner freshly cut off, no crown",
         "verse": "삼상 24:4 「사울의 겉옷자락」 · 자락이 땅에 끌린 모습·색·양모·관 없음 본문 밖 · 저작자 정함"
       },
       "gaze": "ahead",

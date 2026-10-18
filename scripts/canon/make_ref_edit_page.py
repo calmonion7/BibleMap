@@ -14,6 +14,7 @@
   $VENV make_ref_edit_page.py judge-backhand <353 페이지 HTML> <출력 HTML>  # task#367 — 엔게디 B′·Bh: 4화면(366 문항 그대로), 기준+A+B+B′+Bh 33장
   $VENV make_ref_edit_page.py pick-handfix <353 페이지 HTML> <출력 HTML>    # 엔게디 손 국소 수정 r2 4장 중 장면 그림 하나 고르기(한 화면)
   $VENV make_ref_edit_page.py pick-aftercut <353 페이지 HTML> <출력 HTML>   # 엔게디 「막 자른 뒤」 C 4장 중 장면 그림 하나 고르기(한 화면)
+  $VENV make_ref_edit_page.py pick-knife <353 페이지 HTML> <출력 HTML>      # 채택 C s23의 칼만 고친 3장 + 원본 s23 중 하나 고르기(한 화면)
 카드 폭 356 CSS px(DPR 3), 확대·크롭 없음, 대상 머리 위 ▼(OWLv2, 못 찾으면 명세 구역 위). 그림은 한 번만 싣고 ▼는 CSS.
 쌍·그림의 정체(처치/대조·시드)는 게시 전에 samples/ref-edit/metrics.json `screens`에 적고 페이지에는 번호만."""
 import json, os, random, sys
@@ -539,6 +540,17 @@ def main_aftercut(src, dst):
     main_pick(src, dst, paths, "엔게디 자른 뒤 고르기", "사울은 등을 돌렸고(마주 봄 없음), 다윗이 자락을 들어 칼을 댄 장면을 새로 그렸습니다. 각 그림 아래에 다윗 쪽 확대가 있습니다. 마음에 드는 것 하나를 누르세요(없으면 누르지 말고 넘어가세요).", picked, "engedi-aftercut-pick")
 
 
+# C s23 칼만 고치기(gen_engedi_knife.py) — 칼이 천에 들어간 3장 + 비교용 원본 s23
+KNIFE_PICKS = ["K2-s2", "K1-s2", "K2-s1"]
+
+
+def main_knife(src, dst):
+    import gen_engedi_knife as K
+    paths = [f"{K.OUT}/{n}.png" for n in KNIFE_PICKS] + [K.SRC]
+    picked = "엔게디 C s23 칼 고침 · " + " · ".join(f"그림 {n + 1} = {k}" for n, k in enumerate(KNIFE_PICKS)) + f" · 그림 {len(KNIFE_PICKS) + 1} = 원본 s23"
+    main_pick(src, dst, paths, "엔게디 칼 고르기", "고르신 그림(s23)에서 칼만 고쳤습니다. 그림 1~3은 고친 것, 그림 4는 원래 s23입니다. 각 그림 아래에 다윗 쪽 확대가 있습니다. 쓸 것 하나를 누르세요.", picked, "engedi-knife-pick")
+
+
 def main_pick(src, dst, paths, title, look, picked, store):
     """한 화면 「쓸 그림 하나 고르기」 — 그림마다 전체 + 다윗 쪽 확대."""
     import gen_prompt_512 as P
@@ -565,6 +577,8 @@ def main_pick(src, dst, paths, title, look, picked, store):
 
 def main():
     mode, src, dst = sys.argv[1:4]
+    if mode == "pick-knife":
+        return main_knife(src, dst)
     if mode == "pick-aftercut":
         return main_aftercut(src, dst)
     if mode == "pick-handfix":
