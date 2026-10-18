@@ -47,3 +47,8 @@
 - 크롭이 작고(280) 지시가 「칼 하나」로 좁아서 된 것으로 읽는다(r5는 손·자락까지 함께 고치게 함).
 - klein 편집이 천을 푸르게 띄워, 되붙이기 전에 채널별 평균·표준편차를 원본 크롭에 맞춤(`color_match`). 맞추기 전 합성은 `engedi-knife/nomatch/`.
 - 3장 + 원본 s23 고르기 페이지: https://claude.ai/artifact/CQLJJRB96fZku3uZZKgcgv
+
+## 승인 (2026-10-18, 칼 고르기 페이지 → 그림 2)
+- **엔게디 장면 승인본 = C s23 + 칼 K1 s2** → `samples/engedi-final/approved-engedi-c.png`(레포 추적). 재현: 명세 파생(C 프롬프트, 시드 23, `gen_engedi_aftercut.py`) → `gen_engedi_knife.py` K1 시드 2(klein 편집 + 색 맞춤 되붙임).
+- 이전 기준 그림 `samples/face-ab/approved-engedi.png`(345 s11)와 `.forge/reports/scene-whole-pilot/authored-david-en-gedi-saul/final.png`는 과거 판정 기록이라 그대로 둔다. 앞으로 엔게디 판정의 기준 그림은 새 승인본이다.
+- 앱 반영은 아직이다. 앱의 컬러 장면은 「저작 선화 아래 채색층」(ADR 260823-112503) 구조이고 `frontend/public/scene-color/`는 gitignore(파일럿)라, 통그림을 투어 카드에 넣는 길은 따로 정해야 한다.
