@@ -27,5 +27,22 @@ class NightPick(unittest.TestCase):
             approve.night_pick(spec(), 11, "both", "/x.png", "user")
 
 
+
+class ConfirmPick(unittest.TestCase):
+    """task 369 — 편집은 고른 장에만, 확인 답이 승인본을 정한다."""
+
+    def test_edit_answer_takes_edit_image(self):
+        f = approve.confirm_pick(spec(), 5, "편집본", "/x/base/s5.png", "/x/edit/s5.png", "user")["approved"]["final"]
+        self.assertEqual((f["path"], f["seed"], f["kind"], f["image"]), ("night-pick", 5, "edit", "/x/edit/s5.png"))
+
+    def test_base_answer_takes_base_image(self):
+        f = approve.confirm_pick(spec(), 5, "바탕", "/x/base/s5.png", "/x/edit/s5.png", "user")["approved"]["final"]
+        self.assertEqual((f["kind"], f["image"]), ("base", "/x/base/s5.png"))
+
+    def test_bad_answer(self):
+        with self.assertRaises(ValueError):
+            approve.confirm_pick(spec(), 5, "둘 다", "/b.png", "/e.png", "user")
+
+
 if __name__ == "__main__":
     unittest.main()

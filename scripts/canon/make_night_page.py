@@ -2,6 +2,7 @@
 """task#368 S2 — 밤샘 후보 검증 페이지: 장면마다 명세 칸별 문항(한 화면 한 문항, 「이 항목이 틀린 시드를 누르세요」) → 마지막 고르기.
 
   python3 make_night_page.py     # samples/night-pilot/metrics.json → ~/.local/biblemap-imggen/pages/night-pick.html
+  (task 369: run_night.py page --set whole-fix → main(metrics, 장면, 369) — 후보 편집이 없으면 바탕만 싣고 「바탕으로 고르기」만)
 
 문항 id = 명세 칸 경로(moment · background[i] · crowds · figures[i].identity|pose|prop|facing · guard, notes/NIGHT-PILOT.md 고정 절).
 그림은 시드마다 편집본·바탕을 한 번씩만 싣고 크롭은 CSS로 자른다(16MB 안). 「판정 문장 복사」는 JSON 한 덩이."""
@@ -14,7 +15,8 @@ import derive_scene as D
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 METRICS = os.path.join(HERE, "samples", "night-pilot", "metrics.json")
-DST = os.path.expanduser("~/.local/biblemap-imggen/pages/night-pick.html")
+PAGES = os.path.expanduser("~/.local/biblemap-imggen/pages")
+DST = {368: "night-pick.html", 369: "whole-fix-pick.html"}
 LIMIT = 15.5e6
 PROP_KO = {"a spear": "창", "a small harp": "작은 수금", "a robe corner": "겉옷자락", "a plain traveling cloak": "수수한 나그네 겉옷",
            "a torn robe corner": "찢어진 겉옷자락", "a wooden staff": "나무 지팡이", "a sword": "칼"}
@@ -68,21 +70,22 @@ def questions(spec, sc):
     return qs
 
 
-def build(m, q):
+def build(m, q, sids):
     data, scenes = {}, []
-    for sid in params.NIGHT_SCENES:
+    for sid in sids:
         sc = m["scenes"].get(sid)
         if not sc or not sc["seeds"]:
             continue
         spec = D.load(sid)
-        seeds = [x for x in sc["seeds"] if len(x["edits"]) == len(sc["who"])]
+        edited = any(x["edits"] for x in sc["seeds"])   # task 369: 후보 편집 없음 → 바탕을 「:e」 자리에 싣는다
+        seeds = [x for x in sc["seeds"] if not edited or len(x["edits"]) == len(sc["who"])]
         for x in seeds:
             k = f"{sid}:{x['seed']}"
-            final = x["edits"][sc["who"][-1]]
-            data[k + ":e"] = uri(Image.open(final), 1216, q)
-            data[k + ":b"] = uri(Image.open(x["base"]), 800, q - 6)
+            data[k + ":e"] = uri(Image.open(x["edits"][sc["who"][-1]] if edited else x["base"]), 1216, q)
+            if edited:
+                data[k + ":b"] = uri(Image.open(x["base"]), 800, q - 6)
         scenes.append({"id": sid, "title": spec["title"], "range": spec["verses"]["range"],
-                       "edited": [NAME[w] for w in sc["who"]], "seeds": [x["seed"] for x in seeds],
+                       "edited": [NAME[w] for w in sc["who"]] if edited else [], "seeds": [x["seed"] for x in seeds],
                        "qs": questions(spec, {**sc, "seeds": seeds})})
     for who in NAME:
         p = os.path.join(HERE, "frozen", f"{who}.png")
@@ -91,17 +94,21 @@ def build(m, q):
     return scenes, data
 
 
-def main():
-    m = json.load(open(METRICS))
+def main(metrics=METRICS, sids=None, task=368):
+    m = json.load(open(metrics))
+    sids = sids or list(params.NIGHT_SCENES)
+    title = "밤샘 장면 고르기" if task == 368 else f"장면 고르기 {task}"
     for q in (84, 78, 72, 66, 60):
-        scenes, data = build(m, q)
-        page = PAGE.replace("/*SCENES*/[]", json.dumps(scenes, ensure_ascii=False)).replace("/*IMGS*/{}", json.dumps(data))
+        scenes, data = build(m, q, sids)
+        page = (PAGE.replace("/*SCENES*/[]", json.dumps(scenes, ensure_ascii=False)).replace("/*IMGS*/{}", json.dumps(data))
+                .replace("/*TASK*/368", str(task)).replace("<title>밤샘 장면 고르기</title>", f"<title>{title}</title>"))
         if len(page) <= LIMIT:
             break
-    os.makedirs(os.path.dirname(DST), exist_ok=True)
-    open(DST, "w", encoding="utf-8").write(page)
+    dst = os.path.join(PAGES, DST[task])
+    os.makedirs(PAGES, exist_ok=True)
+    open(dst, "w", encoding="utf-8").write(page)
     n = sum(len(s["qs"]) + 1 for s in scenes)
-    print(f"[NightPage] {DST} {len(page) / 1e6:.2f}MB · JPEG q{q} · 장면 {len(scenes)} · 화면 {n}", flush=True)
+    print(f"[NightPage] {dst} {len(page) / 1e6:.2f}MB · JPEG q{q} · 장면 {len(scenes)} · 화면 {n}", flush=True)
 
 
 PAGE = r"""<title>밤샘 장면 고르기</title>
@@ -178,7 +185,8 @@ footer .row { max-width: 720px; margin: 0 auto; justify-content: space-between; 
 <script>
 const SCENES = /*SCENES*/[];
 const IMGS = /*IMGS*/{};
-const KEY = "night-pick-368";
+const TASK = /*TASK*/368;
+const KEY = "night-pick-" + TASK;
 let st = { i: 0, ans: {}, t0: null, sceneT: {}, done: null };
 try { const s = JSON.parse(localStorage.getItem(KEY) || "null"); if (s && s.ans) st = s; } catch (e) { console.warn("[NightPick] 저장본 읽기 실패", e); }
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) { console.warn("[NightPick] 저장 실패", e); } };
@@ -219,7 +227,7 @@ function render() {
   app.innerHTML = "";
   app.append($(`${head}<h2>${esc(q.q)}을 누르세요</h2>
     <div class="what"><p>${esc(q.what)}</p><span class="src">${esc(q.field)}${q.verse ? " · " + esc(q.verse) : ""}</span></div>
-    ${canon}<p class="hint">이 항목이 틀린 시드만 누르세요. 기본은 모두 맞음이고, 편집본을 보여 줍니다.</p>
+    ${canon}<p class="hint">이 항목이 틀린 시드만 누르세요. 기본은 모두 맞음이고, ${sc.s.edited.length ? "편집본" : "바탕"}을 보여 줍니다.</p>
     <div class="grid${q.kind === "full" ? " full" : ""}">${cards}</div>
     <label class="row"><input type="checkbox" id="unsure" ${it.unsure ? "checked" : ""}> 모르겠음</label>
     <input type="text" id="memo" placeholder="한 줄 메모(선택)" value="${esc(it.memo)}">`));
@@ -235,14 +243,14 @@ function render() {
 }
 function wrongCount(sid, s) { return Object.values(A(sid).items).filter((v) => v.wrong.includes(s)).length; }
 function renderPick(app, sc, head) {
-  const sid = sc.s.id, seeds = [...sc.s.seeds].sort((a, b) => wrongCount(sid, a) - wrongCount(sid, b));
+  const sid = sc.s.id, ed = sc.s.edited.length > 0, seeds = [...sc.s.seeds].sort((a, b) => wrongCount(sid, a) - wrongCount(sid, b));
   const cur = A(sid).pick;
   app.innerHTML = "";
   app.append($(`${head}<h2>이 장면에 쓸 그림 하나를 고르세요</h2>
-    <p class="hint">틀림 표시가 적은 순서입니다. 그림을 누르면 편집본(${esc(sc.s.edited.join("·"))} 정본 편집)과 바탕이 바뀝니다.</p>
-    ${seeds.map((s) => `<div class="pick"><div class="meta"><b>s${s}</b><span>틀림 표시 ${wrongCount(sid, s)}개</span><span id="lab${s}">편집본</span></div>
-      <button type="button" class="card" data-flip="${s}">${img(`${sid}:${s}:e`)}</button>
-      <div class="row"><button class="b${cur && cur.seed === s && cur.kind === "edit" ? " main" : ""}" data-p="${s}" data-k="edit" type="button">편집본으로 고르기</button>
+    <p class="hint">틀림 표시가 적은 순서입니다. ${ed ? `그림을 누르면 편집본(${esc(sc.s.edited.join("·"))} 정본 편집)과 바탕이 바뀝니다.` : "바탕 그림입니다. 고른 장에만 정본 편집을 건 뒤 따로 확인합니다."}</p>
+    ${seeds.map((s) => `<div class="pick"><div class="meta"><b>s${s}</b><span>틀림 표시 ${wrongCount(sid, s)}개</span><span id="lab${s}">${ed ? "편집본" : "바탕"}</span></div>
+      <button type="button" class="card" ${ed ? `data-flip="${s}"` : ""}>${img(`${sid}:${s}:e`)}</button>
+      <div class="row">${ed ? `<button class="b${cur && cur.seed === s && cur.kind === "edit" ? " main" : ""}" data-p="${s}" data-k="edit" type="button">편집본으로 고르기</button>` : ""}
       <button class="b${cur && cur.seed === s && cur.kind === "base" ? " main" : ""}" data-p="${s}" data-k="base" type="button">바탕으로 고르기</button></div></div>`).join("")}
     <div class="pick"><p class="hint">쓸 그림이 없으면 이유를 적고 「없음」을 누르세요.</p>
       <input type="text" id="why" placeholder="없음 이유 한 줄" value="${esc(cur && cur.answer === "없음" ? cur.memo : "")}">
@@ -260,7 +268,7 @@ function renderPick(app, sc, head) {
   save(); window.scrollTo(0, 0);
 }
 function verdict() {
-  const now = st.done || Date.now(), out = { task: 368, human_minutes: +((now - st.t0) / 60000).toFixed(2), scenes: {} };
+  const now = st.done || Date.now(), out = { task: TASK, human_minutes: +((now - st.t0) / 60000).toFixed(2), scenes: {} };
   SCENES.forEach((s) => {
     const a = A(s.id), t = st.sceneT[s.id] || {};
     const items = {};
@@ -278,11 +286,11 @@ function renderEnd(app) {
     <div class="row"><button class="b main" id="copy" type="button">판정 문장 복사</button><span class="hint" id="ok"></span></div>
     <textarea id="out" readonly></textarea>`));
   const ta = document.getElementById("out");
-  ta.value = "판정 task 368\n" + JSON.stringify(verdict());
+  ta.value = `판정 task ${TASK}\n` + JSON.stringify(verdict());
   document.getElementById("copy").onclick = () => {
     if (!st.done) st.done = Date.now();
     save(); tick();
-    ta.value = "판정 task 368\n" + JSON.stringify(verdict());
+    ta.value = `판정 task ${TASK}\n` + JSON.stringify(verdict());
     navigator.clipboard.writeText(ta.value).then(() => { document.getElementById("ok").textContent = "복사됨"; })
       .catch(() => { ta.focus(); ta.select(); document.getElementById("ok").textContent = "자동 복사가 막혀 글을 선택해 두었습니다. 직접 복사하세요."; });
   };
@@ -290,11 +298,12 @@ function renderEnd(app) {
 function zoom(sid, s) {
   const ov = document.getElementById("ov");
   let base = false;
+  const ed = !!IMGS[`${sid}:${s}:b`];   // 후보 편집이 없으면(task 369) 「:e」 자리가 바탕이고 전환이 없다
   const draw = () => {
-    ov.innerHTML = `<div class="row" style="justify-content:space-between"><b>s${s} · ${base ? "바탕" : "편집본"}</b>
-      <span class="row"><button class="b" id="flip" type="button">${base ? "편집본 보기" : "바탕 보기"}</button><button class="b main" id="close" type="button">닫기</button></span></div>
+    ov.innerHTML = `<div class="row" style="justify-content:space-between"><b>s${s} · ${base || !ed ? "바탕" : "편집본"}</b>
+      <span class="row">${ed ? `<button class="b" id="flip" type="button">${base ? "편집본 보기" : "바탕 보기"}</button>` : ""}<button class="b main" id="close" type="button">닫기</button></span></div>
       <img src="${IMGS[`${sid}:${s}:${base ? "b" : "e"}`]}" alt="s${s}">`;
-    document.getElementById("flip").onclick = () => { base = !base; draw(); };
+    if (ed) document.getElementById("flip").onclick = () => { base = !base; draw(); };
     document.getElementById("close").onclick = () => { ov.hidden = true; };
   };
   draw(); ov.hidden = false;

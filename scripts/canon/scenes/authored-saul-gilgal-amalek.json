@@ -15,6 +15,21 @@
     "verse": "15:27",
     "why": "사무엘이 돌이켜 떠나려 할 때 사울이 그의 겉옷자락을 붙잡아 찢어진 순간을 고정한다 — 아각 포로 처분(15:8-9)이나 이후의 심판 선언(15:28)은 이 순간의 그림 요소가 아니다."
   },
+  "meaning": {
+    "ko": "길갈 넓은 들에서 사무엘이 돌이켜 떠나려 할 때 사울이 뒤에서 그의 겉옷자락을 붙잡아 자락이 찢어진다",
+    "en": "On the wide open field at Gilgal, as Samuel turns to walk away, Saul seizes the hem of his robe from behind and it tears",
+    "verse": "삼상 15:27"
+  },
+  "relation": {
+    "ko": "사울의 손이 뒤에서 사무엘 겉옷 뒷자락을 움켜쥐어 두 사람이 닿아 있고, 사무엘이 떠나며 둘 사이에서 자락이 찢어진다",
+    "en": "Saul's hand clutches the back hem of Samuel's robe from behind, so the two men are joined by the cloth, and the robe is tearing between them as Samuel walks away",
+    "verse": "삼상 15:27 · 뒤에서·손 위치 본문 밖 · 저작자 정함(2026-10-19 그릴링)"
+  },
+  "whole_background": {
+    "ko": "길갈의 넓은 마른 들 — 성긴 마른 풀, 멀리 흐린 낮은 언덕, 옅은 하늘, 건물 없음",
+    "en": "a wide dry open field at Gilgal, sparse dry grass, hazy low hills far behind, pale sky, with no buildings anywhere",
+    "verse": "삼상 15:21 「길갈」 · 들의 모습 본문 밖 · 저작자 정함"
+  },
   "background": [
     {
       "what": "길갈의 넓은 들",
@@ -29,7 +44,24 @@
       "prop": "a torn robe corner",
       "facing": "right",
       "region": "saul",
-      "verse": "15:27"
+      "verse": "15:27",
+      "expression": {
+        "ko": "절박하게 매달리는 얼굴",
+        "en": "a desperate, pleading face",
+        "verse": "삼상 15:25·27 · 표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "몸을 앞으로 기울여 한 손을 뻗어 노선지자 겉옷 뒷자락을 움켜쥐었고, 그 손안에서 천이 찢어진다",
+        "en": "leaning forward, one hand stretched out and clutching the back hem of the old prophet's robe, the cloth tearing in his grip",
+        "verse": "삼상 15:27 「겉옷자락을 붙잡으매 찢어진지라」 · 몸 기울임 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "어두운 양모 튜닉과 가죽 띠, 관 없음",
+        "en": "a dark wool tunic with a leather belt, no crown",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+      },
+      "gaze": "samuel",
+      "screen_facing": "right"
     },
     {
       "cast": "samuel",
@@ -38,7 +70,24 @@
       "prop": "a wooden staff",
       "facing": "right",
       "region": "samuel",
-      "verse": "15:26-27 · 지물 본문 밖 · 저작자 정함"
+      "verse": "15:26-27 · 지물 본문 밖 · 저작자 정함",
+      "expression": {
+        "ko": "엄하고 슬픈 얼굴",
+        "en": "a stern, sorrowful face",
+        "verse": "삼상 15:26·28 · 표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "뒤의 사람에게서 몸을 반쯤 돌리고 나무 지팡이를 짚은 채 화면 오른쪽 끝으로 걸어 떠난다",
+        "en": "half turned away from the man behind him, leaning on one wooden staff, striding off toward the right edge",
+        "verse": "삼상 15:27 「가려고 돌이킬 때에」 · 지팡이 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "어두운 양모 긴 겉옷과 천 띠 — 뒷자락이 찢어짐",
+        "en": "a long dark wool robe with a cloth belt, its back hem torn",
+        "verse": "삼상 15:27 「겉옷자락」 · 색·양모 본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+      },
+      "gaze": "ahead",
+      "screen_facing": "right"
     }
   ],
   "regions": {
@@ -161,5 +210,15 @@
       ],
       "_why": "사울이 사무엘의 겉옷자락을 붙잡는 순간(15:27)은 두 사람이 닿아야 성립한다. 판 경로는 둘을 다른 종이에 따로 그려 떨어진 상자에 얹으므로 이 순간이 그려질 수 없었다 — 묶음 A A1에서 기계 판정은 통과했는데 정작 찢는 장면이 없었다. 짧은 인물 서술을 쓰는 것은 두 사람을 한 프롬프트에 넣으면 77토큰을 넘기 때문이고, 얼굴은 앵커가 진다."
     }
-  ]
+  ],
+  "approved": {
+    "final": {
+      "path": "night-pick",
+      "seed": 11,
+      "kind": "base",
+      "image": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-saul-gilgal-amalek/base/s11.png",
+      "by": "user",
+      "on": "2026-10-19"
+    }
+  }
 }

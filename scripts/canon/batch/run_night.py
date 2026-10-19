@@ -6,6 +6,13 @@
   nohup caffeinate -i $VENV batch/run_night.py all > batch/night.log 2>&1 &   # S2 본 실행(이미 있으면 건너뜀) → 끝에 검증 페이지
   $VENV batch/run_night.py page     # 검증 페이지만 다시(make_night_page)
 
+task#369 — `--set whole-fix`: 장면 집합 WHOLE_FIX_SCENES, 바탕 문구 derive_scene.whole_prompt(한 장 모드 칸), 후보 편집 끔,
+산출 ~/.local/biblemap-imggen/whole-fix/·samples/whole-fix/metrics.json. 인자 없으면 368(`night`) 그대로.
+  $VENV batch/run_night.py all --set whole-fix          # 바탕 2장면 × 8시드 → 끝에 고르기 페이지
+  python3 batch/run_night.py record --set whole-fix <판정.txt>   # 고르기 페이지 「판정 문장」 → metrics items·pick
+  $VENV batch/run_night.py edit-pick <장면> --set whole-fix     # 고른 바탕 한 장에만 편집 → 끝에 편집 확인 페이지
+  python3 batch/run_night.py record --set whole-fix <확인.txt>   # 확인 페이지 「판정 문장」 → metrics confirm + 명세 approved.final
+
 편집 실행·되붙임·조작 확인은 gen_ref_edit_lightning·gen_ref_edit_2511 그대로(360·361 재현값 무변경), 몸·머리 상자만 장면 명세에서 일반화.
 생성 프로세스는 한 번에 하나(시작 전 pgrep). 산출은 레포 밖 ~/.local/biblemap-imggen/night-pilot/<장면>/{base,edit}/,
 목록은 samples/night-pilot/metrics.json(params.NIGHT_*, notes/NIGHT-PILOT.md 고정 절)."""
@@ -23,8 +30,15 @@ import gen_ref_edit_2511 as R
 import gen_ref_edit_lightning as L
 import run_scene
 
-OUT = os.path.join(G.ROOT, "night-pilot")
-METRICS = os.path.join(HERE, "samples", "night-pilot", "metrics.json")
+SETS = {"night": {"scenes": params.NIGHT_SCENES, "seeds": params.NIGHT_SEEDS, "dir": "night-pilot", "task": 368,
+                  "prompt": D.plate_whole_prompt, "edit": True},
+        "whole-fix": {"scenes": params.WHOLE_FIX_SCENES, "seeds": params.WHOLE_FIX_SEEDS, "dir": "whole-fix", "task": 369,
+                      "prompt": D.whole_prompt, "edit": False}}
+SET = "--set" in sys.argv and sys.argv[sys.argv.index("--set") + 1] or "night"
+ARGV = [a for i, a in enumerate(sys.argv) if a != "--set" and sys.argv[i - 1] != "--set"]   # 위치 인자(--set 값 뺌)
+CFG = SETS[SET]
+OUT = os.path.join(G.ROOT, CFG["dir"])
+METRICS = os.path.join(HERE, "samples", CFG["dir"], "metrics.json")
 FACE_MIN = 0.015   # 얼굴 상자 최소 폭(화면 폭 비율) — 먼 무리의 작은 얼굴을 인물 머리로 잡지 않게
 Q = params.REF_EDIT_LIGHTNING_QUANTS[0]   # 360·361과 같은 q8 --low-ram
 LIVE = {}
@@ -142,9 +156,9 @@ def save_m(m):
 
 def night_scene(m, sid, seeds):
     spec = D.load(sid)
-    whos = params.NIGHT_SCENES[sid]
+    whos = CFG["scenes"][sid]
     sc = m["scenes"].setdefault(sid, {"who": whos, "seeds": [], "sec": {"base": 0.0, "edit": 0.0}})
-    sc["prompt"] = D.plate_whole_prompt(spec)
+    sc["prompt"] = CFG["prompt"](spec)
     todo = [{"prompt": sc["prompt"], "seed": s, "w": G.W, "h": G.H, "out": base_path(sid, s)}
             for s in seeds if not os.path.exists(base_path(sid, s))]
     print(f"[Night] {sid} 바탕 {len(seeds)}장 중 {len(todo)}장 생성", flush=True)
@@ -162,7 +176,7 @@ def night_scene(m, sid, seeds):
             x["boxes"] = boxes(spec, x["base"])
             save_m(m)
         src = x["base"]
-        for i, who in enumerate(whos):
+        for i, who in enumerate(whos if CFG["edit"] else []):
             out = edit_path(sid, s, who, i == len(whos) - 1)
             if x["edits"].get(who) == out and os.path.exists(out):
                 src = out
@@ -177,7 +191,7 @@ def night_scene(m, sid, seeds):
             x["edits"][who] = out
             src = out
             save_m(m)
-    order = {s: i for i, s in enumerate(params.NIGHT_SEEDS)}
+    order = {s: i for i, s in enumerate(CFG["seeds"])}
     sc["seeds"].sort(key=lambda x: order.get(x["seed"], 99))
     save_m(m)
 
@@ -185,19 +199,61 @@ def night_scene(m, sid, seeds):
 def page():
     sys.path.insert(0, HERE)
     import make_night_page
-    make_night_page.main()
+    make_night_page.main(METRICS, list(CFG["scenes"]), CFG["task"])
+
+
+def edit_pick(m, sid):
+    """task#369 — 사람이 고른 바탕 한 장에만 편집(편집 인물 차례대로). 결과는 sc["pick_edit"]."""
+    sc = m["scenes"][sid]
+    seed = sc["pick"]["seed"]
+    if seed is None:
+        sys.exit(f"[Night] {sid}는 「없음」 — 편집하지 않는다")
+    spec, x = D.load(sid), next(x for x in sc["seeds"] if x["seed"] == seed)
+    pe = sc.setdefault("pick_edit", {"seed": seed, "log": []})
+    src = x["base"]
+    for i, who in enumerate(sc["who"]):
+        out = edit_path(sid, seed, who, i == len(sc["who"]) - 1)
+        e = edit_one(sid, spec, who, seed, x["boxes"], src, out)
+        sc["sec"]["edit"] = round(sc["sec"]["edit"] + e["sec"], 1)
+        pe["log"].append({k: v for k, v in e.items() if k not in ("prompt", "error")} | ({"error": e["error"][-400:]} if "error" in e else {}))
+        if e["status"] != "ok":
+            save_m(m)
+            sys.exit(f"[Night] {sid} s{seed} {who} 편집 실패: {e['status']}")
+        src = pe["out"] = out
+        save_m(m)
+
+
+def record(m, path):
+    """판정 문장(「판정 task N」 + JSON 한 줄) → metrics. 고르기면 items·pick, 확인이면 confirm + 명세 approved.final."""
+    v = json.loads(open(path, encoding="utf-8").read().split("\n", 1)[1])
+    if v.get("kind") != "confirm":
+        m["human_minutes"] = v.get("human_minutes")
+    for sid, a in v["scenes"].items():
+        sc = m["scenes"][sid]
+        if "confirm" in a:
+            import approve
+            sc["confirm"] = {**a["confirm"], "minutes": a.get("minutes")}
+            spec = approve.load_spec(sid)
+            approve.save_spec(approve.confirm_pick(spec, sc["pick"]["seed"], a["confirm"]["answer"],
+                                                   sc["pick"]["image"], sc["pick_edit"]["out"], "user"))
+            continue
+        p = a["pick"]
+        if p["seed"] is not None:
+            p["image"] = base_path(sid, p["seed"]) if p["kind"] == "base" else edit_path(sid, p["seed"], sc["who"][-1], True)
+        sc.update(items=a["items"], pick=p, human_minutes=a.get("minutes"))
+    save_m(m)
 
 
 if __name__ == "__main__":
-    cmd = sys.argv[1]
-    if cmd in ("one", "all") and busy():
+    cmd = ARGV[1]
+    if cmd in ("one", "all", "edit-pick") and busy():
         sys.exit(f"[Night] 다른 생성 프로세스가 돈다 — 겹치지 않게 멈춤:\n{busy()}")
     m = load_m()
     if cmd == "one":
-        sid = next(iter(params.NIGHT_SCENES))
+        sid = next(iter(CFG["scenes"]))
         t = time.time()
-        night_scene(m, sid, params.NIGHT_SEEDS[:1])
-        m["trial"] = {"scene": sid, "seed": params.NIGHT_SEEDS[0], "sec": round(time.time() - t, 1)}
+        night_scene(m, sid, CFG["seeds"][:1])
+        m["trial"] = {"scene": sid, "seed": CFG["seeds"][0], "sec": round(time.time() - t, 1)}
         save_m(m)
     elif cmd == "all":
         m["runs"].append({"start": time.time()})
@@ -205,11 +261,11 @@ if __name__ == "__main__":
         m["unattended"] = m["restarts"] == 0
         LIVE["on"] = True
         save_m(m)
-        for sid in params.NIGHT_SCENES:
-            night_scene(m, sid, params.NIGHT_SEEDS)
+        for sid in CFG["scenes"]:
+            night_scene(m, sid, CFG["seeds"])
         m["runs"][-1]["end"] = time.time()
         save_m(m)
-        miss = [(sid, x["seed"]) for sid, sc in m["scenes"].items() for x in sc["seeds"] if len(x["edits"]) != len(sc["who"])]
+        miss = [(sid, x["seed"]) for sid, sc in m["scenes"].items() for x in sc["seeds"] if CFG["edit"] and len(x["edits"]) != len(sc["who"])]
         print(f"[Night] 끝 — wall {m['wall_seconds']}s · 편집 빠짐 {miss or '없음'}", flush=True)
         try:
             page()
@@ -217,3 +273,12 @@ if __name__ == "__main__":
             print(f"[Night] 검증 페이지 실패(배치 결과는 저장됨): {ex!r}", flush=True)
     elif cmd == "page":
         page()
+    elif cmd == "edit-pick":
+        edit_pick(m, ARGV[2])
+        import make_confirm_page
+        make_confirm_page.main(METRICS, CFG["task"])
+    elif cmd == "confirm-page":
+        import make_confirm_page
+        make_confirm_page.main(METRICS, CFG["task"])
+    elif cmd == "record":
+        record(m, ARGV[2])

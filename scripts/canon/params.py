@@ -264,3 +264,7 @@ NIGHT_SCENES = {"authored-saul-gibeah-spear": ["saul", "david"],   # 순서 = �
 NIGHT_SEEDS = REF_EDIT_SEEDS
 NIGHT_ADOPT_MIN = 4          # 채택: 5장면 중 고른 장면 ≥ 4 · 부분: 2~3 · 다른 길: ≤ 1
 NIGHT_HUMAN_MINUTES = 15     # 참고 문턱(사람 소요 분) — 결론 규칙에는 넣지 않는다
+# task#369(2026-10-19): 368 「없음」 두 장면에 한 장 모드 칸 저작 → 같은 8시드 바탕(derive_scene.whole_prompt), 편집은 후보에서 빼고 고른 한 장에만(ADR 261017-152627 개정).
+WHOLE_FIX_SCENES = {"authored-saul-gilgal-amalek": ["saul"],      # 값 = 고른 장 편집 인물(368 NIGHT_SCENES와 같음)
+                    "authored-samuel-ramah-death": ["david"]}
+WHOLE_FIX_SEEDS = REF_EDIT_SEEDS
