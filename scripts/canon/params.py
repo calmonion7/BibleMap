@@ -277,3 +277,9 @@ WHOLE_WIDE_SCENES = {"authored-david-gibeah-harp": ["saul"],
                      "authored-saul-nob-massacre": ["saul"]}
 WHOLE_WIDE_SEEDS = REF_EDIT_SEEDS
 WHOLE_WIDE_SHUFFLE_SEED = 370   # 장면마다 판 묶음이 「가」인지 「나」인지 섞기(대응은 metrics plate.label)
+# task#371(2026-10-20): 370 칸 묶음에서 처치 칸 밖이 깨끗한 바탕 두 장씩에 klein 국소 편집(엔게디 칼 조리법 — gen_local_edit.py).
+# 값 = 바탕 시드(370 whole-wide base/). 새 바탕은 그리지 않는다. 실행 전 고정(notes/LOCAL-EDIT.md).
+LOCAL_EDIT_BASES = {"authored-david-nob-priests": [7, 202],
+                    "authored-david-gath-achish": [5, 7]}
+LOCAL_EDIT_SEEDS = (1, 2, 3)          # klein 편집 시드(엔게디 칼과 같음)
+LOCAL_EDIT_SHUFFLE_SEED = 371         # 판정 페이지 후보 번호 섞기(대응은 metrics candidates[].label)

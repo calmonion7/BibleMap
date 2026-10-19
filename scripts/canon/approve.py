@@ -76,6 +76,14 @@ def confirm_pick(spec, seed, answer, base, edit, by):
     return night_pick(spec, seed, kind, edit if kind == "edit" else base, by)
 
 
+def local_edit(spec, seed, image, steps, by):
+    """국소 편집 경로의 [[장면 완료]](task 371) — 고른 바탕 위 klein 부위 편집 중 사람이 고른 한 장. steps = 편집 차례(부위·지시·시드)."""
+    if not steps:
+        raise ValueError("local-edit 완료에는 편집 차례가 하나 이상 있어야 한다")
+    spec.setdefault("approved", {})["final"] = {"path": "local-edit", "seed": seed, "image": image, "steps": steps, **stamp(by)}
+    return spec
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--scene", required=True)

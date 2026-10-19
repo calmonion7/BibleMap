@@ -45,6 +45,24 @@ class ConfirmPick(unittest.TestCase):
 
 
 
+class LocalEdit(unittest.TestCase):
+    """task 371 — 국소 편집 완료는 한 장 경로처럼 단계 사다리 밖이다."""
+
+    STEPS = [{"id": "N1-b7-k2", "arm": "N1", "seed": 2, "crop": [440, 250, 380], "box": [445, 355, 810, 500], "prompt": "p"}]
+
+    def test_writes_final(self):
+        f = approve.local_edit(spec(), 7, "/x/N1-b7-k2.png", self.STEPS, "user")["approved"]["final"]
+        self.assertEqual((f["path"], f["seed"], f["image"], f["by"], len(f["steps"])), ("local-edit", 7, "/x/N1-b7-k2.png", "user", 1))
+
+    def test_not_stale_without_stage_approvals(self):
+        s = approve.local_edit(spec(), 7, "/x/a.png", self.STEPS, "user")
+        self.assertNotIn("final", ss.stale(s, {"attempts": []}))
+
+    def test_needs_steps(self):
+        with self.assertRaises(ValueError):
+            approve.local_edit(spec(), 7, "/x/a.png", [], "user")
+
+
 class PageNames(unittest.TestCase):
     """task 370 회고 eval — 집합(과제)마다 고르기·확인 페이지 파일 이름이 겹치지 않는다(이전 과제 페이지 덮어쓰기 방지)."""
 
@@ -55,6 +73,13 @@ class PageNames(unittest.TestCase):
         names = list(P.DST.values()) + list(C.CONFIRM_DST.values())
         self.assertEqual(len(names), len(set(names)))
         self.assertEqual(C.CONFIRM_DST[369], "whole-fix-confirm.html")   # 369 재현 이름 그대로
+
+    def test_local_edit_names_unique(self):
+        import make_confirm_page as C
+        import make_local_edit_page as E
+        import make_night_page as P
+        names = list(P.DST.values()) + list(C.CONFIRM_DST.values()) + list(E.DST.values())
+        self.assertEqual(len(names), len(set(names)))
 
 
 if __name__ == "__main__":
