@@ -13,6 +13,21 @@
     "verse": "16:23",
     "why": "다윗이 수금을 손으로 타서 사울이 상쾌해지는 순간을 고정한다 — 병기 든 자로 삼은 절차(16:21)는 이 순간의 요구가 아니다."
   },
+  "meaning": {
+    "ko": "왕의 집 어둑한 방에서 소년 다윗이 수금을 손으로 타니 사울이 상쾌하여 낫는다",
+    "en": "In a dim room of the king's house the shepherd boy plays the harp with his hand, and the troubled king is refreshed",
+    "verse": "삼상 16:23"
+  },
+  "relation": {
+    "ko": "소년이 왕을 향해 수금을 타고, 왕은 소년 쪽으로 몸을 기울여 그 소리를 듣는다 — 둘은 닿지 않는다",
+    "en": "the boy plays the harp toward the king, and the king leans toward the boy, listening to the music, the two not touching",
+    "verse": "삼상 16:23 「수금을 취하여 손으로 탄즉」 · 몸 기울임 본문 밖 · 저작자 정함"
+  },
+  "whole_background": {
+    "ko": "왕의 집 안 어둑한 방 — 맨 돌벽, 바닥 깔개",
+    "en": "a dim room inside the king's house, bare stone walls, a simple floor mat",
+    "verse": "삼상 16:21-23 · 방 모습 본문 밖 · 저작자 정함(판 문구와 같은 장소)"
+  },
   "background": [
     {
       "what": "사울의 처소, 소박한 실내 자리",
@@ -27,7 +42,24 @@
       "prop": "a small harp",
       "facing": "right",
       "region": "david-boy",
-      "verse": "16:23"
+      "verse": "16:23",
+      "expression": {
+        "ko": "차분하게 몰두한 얼굴",
+        "en": "a calm, absorbed face",
+        "verse": "본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "앉아 무릎 위 작은 수금을 손가락으로 탄다",
+        "en": "sitting with one small harp on his knees, plucking its strings with his fingers",
+        "verse": "삼상 16:23 「손으로 탄즉」 · 앉음 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "물들이지 않은 황갈색 양모 튜닉과 새끼줄 띠",
+        "en": "an undyed tan wool tunic with a rope belt",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+      },
+      "gaze": "saul",
+      "screen_facing": "right"
     },
     {
       "cast": "saul",
@@ -36,7 +68,24 @@
       "prop": "a plain traveling cloak",
       "facing": "left",
       "region": "saul",
-      "verse": "16:23 · 지물 본문 밖 · 저작자 정함"
+      "verse": "16:23 · 지물 본문 밖 · 저작자 정함",
+      "expression": {
+        "ko": "눈을 반쯤 감고 풀린 얼굴",
+        "en": "eyes half closed, a relieved, eased face",
+        "verse": "삼상 16:23 「상쾌하여 낫고」 · 표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "앉아 소년 쪽으로 몸을 기울여 듣는다, 접은 겉옷을 한 팔에 걸침",
+        "en": "sitting and leaning toward the boy to listen, one plain cloak folded over one arm",
+        "verse": "삼상 16:23 · 기울임·겉옷 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "짙은 갈색 양모 튜닉과 수수한 가죽 띠, 관 없음",
+        "en": "a dark brown wool tunic with a plain leather belt, no crown",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+      },
+      "gaze": "david-boy",
+      "screen_facing": "left"
     }
   ],
   "regions": {
@@ -136,6 +185,16 @@
         0.7,
         0.98
       ]
+    }
+  },
+  "approved": {
+    "final": {
+      "path": "night-pick",
+      "seed": 11,
+      "kind": "edit",
+      "image": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/edit/s11.png",
+      "by": "user",
+      "on": "2026-10-19"
     }
   }
 }

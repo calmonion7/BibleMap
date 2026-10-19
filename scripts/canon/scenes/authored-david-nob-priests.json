@@ -13,6 +13,21 @@
     "verse": "21:9 전반",
     "why": "제사장 아히멜렉이 보자기에 싼 칼을 에봇 뒤에서 꺼내 두 손으로 내밀고, 다윗이 두 손을 뻗어 받으려는 순간 — 칼을 완전히 쥐거나 휘두르는 동작은 이 순간의 요구가 아니다(ADR 260902-170558·260903-154254)."
   },
+  "meaning": {
+    "ko": "놉 성막 앞에서 제사장 아히멜렉이 보자기에 싼 골리앗의 칼을 두 손으로 내밀어 다윗에게 건넨다",
+    "en": "Before the tent shrine at Nob the priest holds out the cloth-wrapped sword with both hands and hands it over to the young man",
+    "verse": "삼상 21:9"
+  },
+  "relation": {
+    "ko": "아히멜렉의 두 손과 다윗의 두 손이 둘 사이의 보자기 싼 칼 한 자루를 함께 잡고 있어, 칼이 제사장에게서 다윗에게 건네지는 중이다",
+    "en": "the priest's two hands and the young man's two hands hold the same single cloth-wrapped sword between them, so the sword is passing from the priest to the young man",
+    "verse": "삼상 21:9 「내게 주소서」 · 손 위치 본문 밖 · 저작자 정함"
+  },
+  "whole_background": {
+    "ko": "놉 성막 앞 마른 뜰 — 낮은 돌담, 장막 휘장 앞 진설병 쌓인 낮은 상",
+    "en": "a small dry courtyard before a tent shrine at Nob, a low stone wall, a heavy tent curtain with a low wooden table of stacked round loaves",
+    "verse": "삼상 21:1·6 「놉」「진설병」 · 뜰 모습 본문 밖 · 저작자 정함"
+  },
   "background": [
     {
       "what": "놉 성막 앞뜰, 마른 흙바닥",
@@ -33,7 +48,24 @@
       "prop": "a cloth-wrapped sword",
       "facing": "right",
       "region": "ahimelech",
-      "verse": "21:9"
+      "verse": "21:9",
+      "expression": {
+        "ko": "조심스럽고 근심 어린 얼굴",
+        "en": "a careful, worried face",
+        "verse": "삼상 21:1 「떨며」 · 표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "보자기에 싼 칼을 두 손으로 앞으로 내민다",
+        "en": "holding the cloth-wrapped sword out in front with both hands",
+        "verse": "삼상 21:9 「보자기에 싸여」 · 손 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "옅은 겉옷 위에 흰 세마포 에봇",
+        "en": "a white linen ephod over a pale robe",
+        "verse": "삼상 22:18 「세마포 에봇 입은 자」 · 겉옷 색 본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+      },
+      "gaze": "david",
+      "screen_facing": "right"
     },
     {
       "cast": "david",
@@ -42,7 +74,24 @@
       "prop": "a sword",
       "facing": "left",
       "region": "david",
-      "verse": "21:9"
+      "verse": "21:9",
+      "expression": {
+        "ko": "급하고 지친 얼굴",
+        "en": "an urgent, weary face",
+        "verse": "삼상 21:8 「급하므로」 · 표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "두 손을 뻗어 칼 꾸러미 끝을 받쳐 잡는다",
+        "en": "both hands reaching out and gripping the far end of the wrapped sword",
+        "verse": "삼상 21:9 「내게 주소서」 · 손 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "짙은 붉은 양모 튜닉과 짙은 갈색 가죽 띠",
+        "en": "a deep red wool tunic with a dark brown leather belt",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+      },
+      "gaze": "ahimelech",
+      "screen_facing": "left"
     }
   ],
   "regions": {

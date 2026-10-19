@@ -1,0 +1,4304 @@
+{
+ "scenes": {
+  "authored-david-gibeah-harp": {
+   "who": [
+    "saul"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/base/s11.png",
+     "edits": {},
+     "boxes": {
+      "david-boy": {
+       "head": [
+        135,
+        115,
+        390,
+        356
+       ],
+       "head_src": "owl",
+       "body": [
+        142,
+        0,
+        422,
+        611
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        747,
+        36,
+        985,
+        244
+       ],
+       "head_src": "owl",
+       "body": [
+        611,
+        0,
+        1207,
+        613
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/base/s42.png",
+     "edits": {},
+     "boxes": {
+      "david-boy": {
+       "head": [
+        278,
+        251,
+        330,
+        306
+       ],
+       "head_src": "owl",
+       "body": [
+        153,
+        130,
+        448,
+        599
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        771,
+        68,
+        966,
+        229
+       ],
+       "head_src": "owl",
+       "body": [
+        644,
+        0,
+        1189,
+        600
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/base/s7.png",
+     "edits": {},
+     "boxes": {
+      "david-boy": {
+       "head": [
+        183,
+        124,
+        423,
+        353
+       ],
+       "head_src": "owl",
+       "body": [
+        173,
+        0,
+        465,
+        598
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        768,
+        59,
+        966,
+        233
+       ],
+       "head_src": "owl",
+       "body": [
+        624,
+        0,
+        1198,
+        605
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/base/s23.png",
+     "edits": {},
+     "boxes": {
+      "david-boy": {
+       "head": [
+        264,
+        192,
+        378,
+        341
+       ],
+       "head_src": "owl",
+       "body": [
+        168,
+        43,
+        464,
+        604
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        759,
+        67,
+        966,
+        235
+       ],
+       "head_src": "owl",
+       "body": [
+        617,
+        0,
+        1198,
+        615
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/base/s5.png",
+     "edits": {},
+     "boxes": {
+      "david-boy": {
+       "head": [
+        174,
+        125,
+        415,
+        351
+       ],
+       "head_src": "owl",
+       "body": [
+        158,
+        0,
+        462,
+        604
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        760,
+        71,
+        964,
+        238
+       ],
+       "head_src": "owl",
+       "body": [
+        642,
+        0,
+        1208,
+        608
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/base/s101.png",
+     "edits": {},
+     "boxes": {
+      "david-boy": {
+       "head": [
+        193,
+        149,
+        409,
+        367
+       ],
+       "head_src": "owl",
+       "body": [
+        185,
+        0,
+        474,
+        607
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        733,
+        63,
+        946,
+        238
+       ],
+       "head_src": "owl",
+       "body": [
+        618,
+        0,
+        1191,
+        610
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/base/s202.png",
+     "edits": {},
+     "boxes": {
+      "david-boy": {
+       "head": [
+        269,
+        207,
+        378,
+        318
+       ],
+       "head_src": "owl",
+       "body": [
+        150,
+        67,
+        460,
+        594
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        773,
+        60,
+        985,
+        232
+       ],
+       "head_src": "owl",
+       "body": [
+        631,
+        0,
+        1198,
+        608
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/base/s303.png",
+     "edits": {},
+     "boxes": {
+      "david-boy": {
+       "head": [
+        263,
+        220,
+        371,
+        345
+       ],
+       "head_src": "owl",
+       "body": [
+        179,
+        79,
+        460,
+        600
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        759,
+        62,
+        965,
+        228
+       ],
+       "head_src": "owl",
+       "body": [
+        632,
+        0,
+        1216,
+        611
+       ],
+       "body_src": "owl"
+      }
+     }
+    }
+   ],
+   "sec": {
+    "base": 513.0,
+    "edit": 516.4
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a dim room inside the king's house, bare stone walls, a simple floor mat. On the left: an ancient Israelite boy, a shepherd, about 14, smooth round cheeks, no lines, short of stature, slight narrow shoulders, thin boyish torso, tight dark curls close to the skull, hair covering the whole head, no headwear, a calm, absorbed face, sitting with one small harp on his knees, plucking its strings with his fingers, an undyed tan wool tunic with a rope belt, looking toward the tall king on the right, facing toward the right edge of the picture. On the right: an ancient Israelite man, a king, in his 40s, deep forehead lines, tall of stature, close-trimmed dark beard, jawline visible, broad shoulders, thick barrel torso, short dark hair cut close, hair covering the whole head, no headwear, eyes half closed, a relieved, eased face, sitting and leaning toward the boy to listen, one plain cloak folded over one arm, a dark brown wool tunic with a plain leather belt, no crown, looking toward the shepherd boy on the left, facing toward the left edge of the picture. the boy plays the harp toward the king, and the king leans toward the boy, listening to the music, the two not touching.",
+   "plate": {
+    "seeds": [
+     {
+      "seed": 11,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/plate/s11.png",
+      "edits": {},
+      "boxes": {
+       "david-boy": {
+        "head": [
+         258,
+         252,
+         311,
+         303
+        ],
+        "head_src": "owl",
+        "body": [
+         173,
+         130,
+         510,
+         610
+        ],
+        "body_src": "owl"
+       },
+       "saul": {
+        "head": [
+         817,
+         79,
+         990,
+         235
+        ],
+        "head_src": "owl",
+        "body": [
+         649,
+         0,
+         1213,
+         605
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 42,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/plate/s42.png",
+      "edits": {},
+      "boxes": {
+       "david-boy": {
+        "head": [
+         239,
+         167,
+         359,
+         316
+        ],
+        "head_src": "owl",
+        "body": [
+         142,
+         18,
+         454,
+         590
+        ],
+        "body_src": "owl"
+       },
+       "saul": {
+        "head": [
+         784,
+         78,
+         971,
+         238
+        ],
+        "head_src": "owl",
+        "body": [
+         632,
+         0,
+         1193,
+         588
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 7,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/plate/s7.png",
+      "edits": {},
+      "boxes": {
+       "david-boy": {
+        "head": [
+         130,
+         106,
+         385,
+         342
+        ],
+        "head_src": "owl",
+        "body": [
+         174,
+         0,
+         482,
+         606
+        ],
+        "body_src": "owl"
+       },
+       "saul": {
+        "head": [
+         803,
+         81,
+         985,
+         243
+        ],
+        "head_src": "owl",
+        "body": [
+         657,
+         0,
+         1206,
+         597
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 23,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/plate/s23.png",
+      "edits": {},
+      "boxes": {
+       "david-boy": {
+        "head": [
+         262,
+         179,
+         383,
+         346
+        ],
+        "head_src": "owl",
+        "body": [
+         195,
+         12,
+         517,
+         607
+        ],
+        "body_src": "owl"
+       },
+       "saul": {
+        "head": [
+         777,
+         83,
+         954,
+         248
+        ],
+        "head_src": "owl",
+        "body": [
+         641,
+         0,
+         1204,
+         605
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 5,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/plate/s5.png",
+      "edits": {},
+      "boxes": {
+       "david-boy": {
+        "head": [
+         136,
+         101,
+         383,
+         333
+        ],
+        "head_src": "owl",
+        "body": [
+         175,
+         0,
+         494,
+         608
+        ],
+        "body_src": "owl"
+       },
+       "saul": {
+        "head": [
+         781,
+         72,
+         965,
+         237
+        ],
+        "head_src": "owl",
+        "body": [
+         642,
+         0,
+         1204,
+         595
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 101,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/plate/s101.png",
+      "edits": {},
+      "boxes": {
+       "david-boy": {
+        "head": [
+         128,
+         93,
+         392,
+         330
+        ],
+        "head_src": "owl",
+        "body": [
+         114,
+         0,
+         516,
+         609
+        ],
+        "body_src": "owl"
+       },
+       "saul": {
+        "head": [
+         758,
+         47,
+         961,
+         243
+        ],
+        "head_src": "owl",
+        "body": [
+         637,
+         0,
+         1200,
+         605
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 202,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/plate/s202.png",
+      "edits": {},
+      "boxes": {
+       "david-boy": {
+        "head": [
+         251,
+         174,
+         367,
+         319
+        ],
+        "head_src": "owl",
+        "body": [
+         128,
+         19,
+         452,
+         597
+        ],
+        "body_src": "owl"
+       },
+       "saul": {
+        "head": [
+         799,
+         68,
+         979,
+         238
+        ],
+        "head_src": "owl",
+        "body": [
+         679,
+         0,
+         1225,
+         609
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 303,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/plate/s303.png",
+      "edits": {},
+      "boxes": {
+       "david-boy": {
+        "head": [
+         214,
+         173,
+         338,
+         325
+        ],
+        "head_src": "owl",
+        "body": [
+         127,
+         20,
+         431,
+         598
+        ],
+        "body_src": "owl"
+       },
+       "saul": {
+        "head": [
+         800,
+         53,
+         984,
+         235
+        ],
+        "head_src": "owl",
+        "body": [
+         639,
+         0,
+         1218,
+         602
+        ],
+        "body_src": "owl"
+       }
+      }
+     }
+    ],
+    "sec": 493.8,
+    "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a plain dim interior room, bare stone wall, simple floor mat. On the left: an ancient Israelite boy, a shepherd, about 14, smooth round cheeks, no lines, short of stature, slight narrow shoulders, thin boyish torso, tight dark curls close to the skull, hair covering the whole head, no headwear, in a knee-length wool tunic, cloth belt, leather strap sandals, sitting, gripping one small harp, playing, facing right. On the right: an ancient Israelite man, a king, in his 40s, deep forehead lines, tall of stature, close-trimmed dark beard, jawline visible, broad shoulders, thick barrel torso, short dark hair cut close, hair covering the whole head, no headwear, in a dark wool tunic with a leather belt, sitting, holding one plain cloak folded over one arm, listening, facing left.",
+    "label": "가",
+    "items": {
+     "moment": {
+      "wrong": [],
+      "unsure": false,
+      "memo": ""
+     },
+     "figures[0].pose": {
+      "wrong": [
+       5,
+       7
+      ],
+      "unsure": false,
+      "memo": ""
+     },
+     "figures[0].facing": {
+      "wrong": [],
+      "unsure": false,
+      "memo": ""
+     },
+     "figures[1].pose": {
+      "wrong": [],
+      "unsure": false,
+      "memo": ""
+     },
+     "figures[1].facing": {
+      "wrong": [],
+      "unsure": false,
+      "memo": ""
+     }
+    }
+   },
+   "items": {
+    "moment": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "background[0]": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].identity": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].prop": {
+     "wrong": [
+      202
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].facing": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].identity": {
+     "wrong": [
+      7
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].pose": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].prop": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].facing": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "guard": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "s11 바탕",
+    "seed": 11,
+    "kind": "base",
+    "image": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/base/s11.png"
+   },
+   "human_minutes": 5.67,
+   "pick_edit": {
+    "seed": 11,
+    "log": [
+     {
+      "raw": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/raw/s11-saul.png",
+      "who": "saul",
+      "seed": 11,
+      "quantize": 8,
+      "model": "qwen-image-edit-2511",
+      "status": "ok",
+      "sec": 516.4,
+      "peak_gb": 58.51,
+      "scene": "authored-david-gibeah-harp",
+      "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/base/s11.png",
+      "side": "right",
+      "mask_box": [
+       575,
+       0,
+       1216,
+       640
+      ],
+      "resized": false,
+      "out": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/edit/s11.png",
+      "targeted": 7.99,
+      "diff_in": 25.5,
+      "diff_out": 17.52
+     }
+    ],
+    "out": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/edit/s11.png"
+   },
+   "confirm": {
+    "answer": "편집본",
+    "seed": 11,
+    "minutes": 0.21
+   }
+  },
+  "authored-david-nob-priests": {
+   "who": [
+    "david"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s11.png",
+     "edits": {},
+     "boxes": {
+      "ahimelech": {
+       "head": [
+        258,
+        95,
+        446,
+        271
+       ],
+       "head_src": "owl",
+       "body": [
+        108,
+        0,
+        545,
+        642
+       ],
+       "body_src": "owl"
+      },
+      "david": {
+       "head": [
+        847,
+        129,
+        990,
+        254
+       ],
+       "head_src": "owl",
+       "body": [
+        834,
+        3,
+        1111,
+        642
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s42.png",
+     "edits": {},
+     "boxes": {
+      "ahimelech": {
+       "head": [
+        236,
+        97,
+        417,
+        275
+       ],
+       "head_src": "owl",
+       "body": [
+        74,
+        0,
+        487,
+        642
+       ],
+       "body_src": "owl"
+      },
+      "david": {
+       "head": [
+        826,
+        156,
+        965,
+        285
+       ],
+       "head_src": "owl",
+       "body": [
+        874,
+        28,
+        1134,
+        642
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s7.png",
+     "edits": {},
+     "boxes": {
+      "ahimelech": {
+       "head": [
+        237,
+        116,
+        435,
+        288
+       ],
+       "head_src": "owl",
+       "body": [
+        114,
+        0,
+        536,
+        641
+       ],
+       "body_src": "owl"
+      },
+      "david": {
+       "head": [
+        895,
+        128,
+        1045,
+        268
+       ],
+       "head_src": "owl",
+       "body": [
+        914,
+        0,
+        1168,
+        640
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s23.png",
+     "edits": {},
+     "boxes": {
+      "ahimelech": {
+       "head": [
+        286,
+        156,
+        477,
+        315
+       ],
+       "head_src": "owl",
+       "body": [
+        189,
+        0,
+        550,
+        643
+       ],
+       "body_src": "owl"
+      },
+      "david": {
+       "head": [
+        880,
+        177,
+        1009,
+        292
+       ],
+       "head_src": "owl",
+       "body": [
+        871,
+        61,
+        1116,
+        640
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s5.png",
+     "edits": {},
+     "boxes": {
+      "ahimelech": {
+       "head": [
+        259,
+        117,
+        430,
+        285
+       ],
+       "head_src": "owl",
+       "body": [
+        104,
+        0,
+        515,
+        640
+       ],
+       "body_src": "owl"
+      },
+      "david": {
+       "head": [
+        883,
+        141,
+        1015,
+        263
+       ],
+       "head_src": "owl",
+       "body": [
+        890,
+        20,
+        1150,
+        643
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s101.png",
+     "edits": {},
+     "boxes": {
+      "ahimelech": {
+       "head": [
+        240,
+        112,
+        442,
+        289
+       ],
+       "head_src": "owl",
+       "body": [
+        108,
+        0,
+        531,
+        639
+       ],
+       "body_src": "owl"
+      },
+      "david": {
+       "head": [
+        825,
+        132,
+        973,
+        276
+       ],
+       "head_src": "owl",
+       "body": [
+        859,
+        0,
+        1103,
+        642
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s202.png",
+     "edits": {},
+     "boxes": {
+      "ahimelech": {
+       "head": [
+        241,
+        99,
+        438,
+        281
+       ],
+       "head_src": "owl",
+       "body": [
+        102,
+        0,
+        508,
+        643
+       ],
+       "body_src": "owl"
+      },
+      "david": {
+       "head": [
+        845,
+        125,
+        993,
+        265
+       ],
+       "head_src": "owl",
+       "body": [
+        869,
+        0,
+        1105,
+        644
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s303.png",
+     "edits": {},
+     "boxes": {
+      "ahimelech": {
+       "head": [
+        200,
+        130,
+        372,
+        296
+       ],
+       "head_src": "owl",
+       "body": [
+        40,
+        0,
+        444,
+        639
+       ],
+       "body_src": "owl"
+      },
+      "david": {
+       "head": [
+        871,
+        156,
+        1003,
+        278
+       ],
+       "head_src": "owl",
+       "body": [
+        858,
+        34,
+        1126,
+        643
+       ],
+       "body_src": "owl"
+      }
+     }
+    }
+   ],
+   "sec": {
+    "base": 513.4,
+    "edit": 0.0
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a small dry courtyard before a tent shrine at Nob, a low stone wall, a heavy tent curtain with a low wooden table of stacked round loaves. On the left: an ancient Israelite man, a priest, in his 50s, lined brow, full dark beard, rounded, average build, upright, narrow chest, white linen turban wound high, dark hair, a careful, worried face, holding the cloth-wrapped sword out in front with both hands, a white linen ephod over a pale robe, looking toward the lean young man on the right, facing toward the right edge of the picture. On the right: an ancient Israelite man, a commander, in his 20s, lean angular face, close-trimmed dark beard, jawline visible, lean wiry shoulders, narrow waist, dark curls close to the skull, hair covering the whole head, no headwear, an urgent, weary face, both hands reaching out and gripping the far end of the wrapped sword, a deep red wool tunic with a dark brown leather belt, looking toward the middle-aged priest on the left, facing toward the left edge of the picture. the priest's two hands and the young man's two hands hold the same single cloth-wrapped sword between them, so the sword is passing from the priest to the young man.",
+   "plate": {
+    "seeds": [
+     {
+      "seed": 11,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/plate/s11.png",
+      "edits": {},
+      "boxes": {
+       "ahimelech": {
+        "head": [
+         310,
+         123,
+         421,
+         232
+        ],
+        "head_src": "owl",
+        "body": [
+         259,
+         13,
+         456,
+         600
+        ],
+        "body_src": "owl"
+       },
+       "david": {
+        "head": [
+         833,
+         119,
+         917,
+         192
+        ],
+        "head_src": "owl",
+        "body": [
+         733,
+         14,
+         985,
+         624
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 42,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/plate/s42.png",
+      "edits": {},
+      "boxes": {
+       "ahimelech": {
+        "head": [
+         332,
+         156,
+         419,
+         242
+        ],
+        "head_src": "owl",
+        "body": [
+         222,
+         69,
+         470,
+         608
+        ],
+        "body_src": "owl"
+       },
+       "david": {
+        "head": [
+         829,
+         146,
+         904,
+         214
+        ],
+        "head_src": "owl",
+        "body": [
+         705,
+         51,
+         954,
+         634
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 7,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/plate/s7.png",
+      "edits": {},
+      "boxes": {
+       "ahimelech": {
+        "head": [
+         380,
+         137,
+         466,
+         229
+        ],
+        "head_src": "owl",
+        "body": [
+         317,
+         45,
+         510,
+         599
+        ],
+        "body_src": "owl"
+       },
+       "david": {
+        "head": [
+         789,
+         125,
+         868,
+         205
+        ],
+        "head_src": "owl",
+        "body": [
+         699,
+         23,
+         954,
+         615
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 23,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/plate/s23.png",
+      "edits": {},
+      "boxes": {
+       "ahimelech": {
+        "head": [
+         359,
+         167,
+         458,
+         255
+        ],
+        "head_src": "owl",
+        "body": [
+         322,
+         79,
+         493,
+         598
+        ],
+        "body_src": "owl"
+       },
+       "david": {
+        "head": [
+         789,
+         150,
+         863,
+         215
+        ],
+        "head_src": "owl",
+        "body": [
+         683,
+         60,
+         907,
+         624
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 5,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/plate/s5.png",
+      "edits": {},
+      "boxes": {
+       "ahimelech": {
+        "head": [
+         310,
+         143,
+         409,
+         252
+        ],
+        "head_src": "owl",
+        "body": [
+         260,
+         35,
+         444,
+         617
+        ],
+        "body_src": "owl"
+       },
+       "david": {
+        "head": [
+         889,
+         141,
+         973,
+         213
+        ],
+        "head_src": "owl",
+        "body": [
+         764,
+         42,
+         1030,
+         628
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 101,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/plate/s101.png",
+      "edits": {},
+      "boxes": {
+       "ahimelech": {
+        "head": [
+         327,
+         114,
+         441,
+         235
+        ],
+        "head_src": "owl",
+        "body": [
+         221,
+         0,
+         486,
+         640
+        ],
+        "body_src": "owl"
+       },
+       "david": {
+        "head": [
+         857,
+         116,
+         954,
+         204
+        ],
+        "head_src": "owl",
+        "body": [
+         846,
+         28,
+         1028,
+         579
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 202,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/plate/s202.png",
+      "edits": {},
+      "boxes": {
+       "ahimelech": {
+        "head": [
+         277,
+         126,
+         405,
+         241
+        ],
+        "head_src": "owl",
+        "body": [
+         137,
+         10,
+         463,
+         641
+        ],
+        "body_src": "owl"
+       },
+       "david": {
+        "head": [
+         834,
+         101,
+         946,
+         199
+        ],
+        "head_src": "owl",
+        "body": [
+         667,
+         0,
+         1025,
+         642
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 303,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/plate/s303.png",
+      "edits": {},
+      "boxes": {
+       "ahimelech": {
+        "head": [
+         375,
+         139,
+         500,
+         256
+        ],
+        "head_src": "owl",
+        "body": [
+         283,
+         21,
+         506,
+         640
+        ],
+        "body_src": "owl"
+       },
+       "david": {
+        "head": [
+         843,
+         138,
+         939,
+         233
+        ],
+        "head_src": "owl",
+        "body": [
+         833,
+         43,
+         1012,
+         609
+        ],
+        "body_src": "owl"
+       }
+      }
+     }
+    ],
+    "sec": 490.9,
+    "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a small dry courtyard of pale packed earth in front of a tent shrine, low stone wall, sparse dry grass, empty pale sky. a heavy tent curtain backdrop with a low wooden table bearing stacked round flatbread loaves, dim interior shadow. On the left: an ancient Israelite man, a priest, in his 50s, lined brow, full dark beard, rounded, average build, upright, narrow chest, white linen turban wound high, dark hair, in a white linen ephod over a robe, standing, holding out a cloth-wrapped long sword bundle with both hands, facing right. On the right: an ancient Israelite man, a commander, in his 20s, lean angular face, close-trimmed dark beard, jawline visible, lean wiry shoulders, narrow waist, dark curls close to the skull, hair covering the whole head, no headwear, in a dark wool tunic with a leather belt, standing, both arms reaching out to receive a wrapped sword, facing left.",
+    "label": "가",
+    "items": {
+     "moment": {
+      "wrong": [
+       5,
+       7,
+       11,
+       23,
+       42,
+       101,
+       202,
+       303
+      ],
+      "unsure": false,
+      "memo": "칼대부분이 보자기에 쌓여야하고 손잡이부분만 보이면서 아히멜렉이 다윗에게 전달하는 모습 다윗은 받으려는 모습이여야함"
+     },
+     "figures[0].pose": {
+      "wrong": [
+       202
+      ],
+      "unsure": false,
+      "memo": ""
+     },
+     "figures[0].facing": {
+      "wrong": [],
+      "unsure": false,
+      "memo": ""
+     },
+     "figures[1].pose": {
+      "wrong": [
+       5,
+       11,
+       23,
+       42,
+       101,
+       202,
+       303
+      ],
+      "unsure": false,
+      "memo": ""
+     },
+     "figures[1].facing": {
+      "wrong": [],
+      "unsure": false,
+      "memo": ""
+     }
+    }
+   },
+   "items": {
+    "moment": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "background[0]": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "background[1]": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].identity": {
+     "wrong": [
+      5,
+      23,
+      303
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [
+      42,
+      101
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].prop": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "자루만 보이고 칼전체가  보자기에 쌓여야하"
+    },
+    "figures[0].facing": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].identity": {
+     "wrong": [
+      11,
+      23,
+      101
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].pose": {
+     "wrong": [
+      5,
+      11,
+      23
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].prop": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].facing": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "guard": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "없음",
+    "seed": null,
+    "kind": null,
+    "memo": "칼이 문제임"
+   },
+   "human_minutes": 9.64
+  },
+  "authored-david-gath-achish": {
+   "who": [
+    "david"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s11.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        172,
+        138,
+        309,
+        245
+       ],
+       "head_src": "owl",
+       "body": [
+        106,
+        30,
+        359,
+        643
+       ],
+       "body_src": "owl"
+      },
+      "achish": {
+       "head": [
+        835,
+        94,
+        1055,
+        268
+       ],
+       "head_src": "owl",
+       "body": [
+        701,
+        0,
+        1174,
+        640
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s42.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        204,
+        138,
+        345,
+        252
+       ],
+       "head_src": "owl",
+       "body": [
+        127,
+        25,
+        404,
+        641
+       ],
+       "body_src": "owl"
+      },
+      "achish": {
+       "head": [
+        837,
+        115,
+        1040,
+        280
+       ],
+       "head_src": "owl",
+       "body": [
+        719,
+        0,
+        1169,
+        641
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s7.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        185,
+        151,
+        325,
+        262
+       ],
+       "head_src": "owl",
+       "body": [
+        120,
+        40,
+        377,
+        642
+       ],
+       "body_src": "owl"
+      },
+      "achish": {
+       "head": [
+        863,
+        123,
+        1064,
+        292
+       ],
+       "head_src": "owl",
+       "body": [
+        739,
+        0,
+        1187,
+        639
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s23.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        199,
+        145,
+        328,
+        243
+       ],
+       "head_src": "owl",
+       "body": [
+        129,
+        46,
+        395,
+        640
+       ],
+       "body_src": "owl"
+      },
+      "achish": {
+       "head": [
+        856,
+        107,
+        1051,
+        266
+       ],
+       "head_src": "owl",
+       "body": [
+        725,
+        0,
+        1172,
+        639
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s5.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        192,
+        155,
+        336,
+        262
+       ],
+       "head_src": "owl",
+       "body": [
+        121,
+        47,
+        378,
+        641
+       ],
+       "body_src": "owl"
+      },
+      "achish": {
+       "head": [
+        848,
+        107,
+        1047,
+        272
+       ],
+       "head_src": "owl",
+       "body": [
+        716,
+        0,
+        1163,
+        640
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s101.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        203,
+        184,
+        317,
+        271
+       ],
+       "head_src": "owl",
+       "body": [
+        145,
+        97,
+        380,
+        641
+       ],
+       "body_src": "owl"
+      },
+      "achish": {
+       "head": [
+        855,
+        108,
+        1042,
+        262
+       ],
+       "head_src": "owl",
+       "body": [
+        724,
+        0,
+        1155,
+        636
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s202.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        243,
+        161,
+        362,
+        247
+       ],
+       "head_src": "owl",
+       "body": [
+        185,
+        74,
+        414,
+        642
+       ],
+       "body_src": "owl"
+      },
+      "achish": {
+       "head": [
+        843,
+        72,
+        1051,
+        267
+       ],
+       "head_src": "owl",
+       "body": [
+        760,
+        0,
+        1169,
+        632
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s303.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        192,
+        159,
+        336,
+        264
+       ],
+       "head_src": "owl",
+       "body": [
+        145,
+        53,
+        415,
+        642
+       ],
+       "body_src": "owl"
+      },
+      "achish": {
+       "head": [
+        835,
+        98,
+        1021,
+        255
+       ],
+       "head_src": "owl",
+       "body": [
+        707,
+        0,
+        1149,
+        640
+       ],
+       "body_src": "owl"
+      }
+     }
+    }
+   ],
+   "sec": {
+    "base": 507.8,
+    "edit": 0.0
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a dusty street of Gath, a tall heavy wooden double gate set into a thick stone city wall, dry ground. On the left: an ancient Israelite man, a commander, in his 20s, lean angular face, close-trimmed dark beard, jawline visible, lean wiry shoulders, narrow waist, dark curls close to the skull, hair covering the whole head, no headwear, a vacant, dazed face, leaning one shoulder against a wooden gate post, drool running down his beard, a deep red wool tunic with a dark brown leather belt, staring blankly into empty air, not looking at anyone, facing the viewer. On the right: an ancient Philistine man, a king, in his 40s, creased brow, full dark beard, oiled and rounded, average build, soft belly, rounded shoulders, striped cloth headwrap tied at the nape, Philistine style, dark hair, a disgusted face, one hand raised, palm out in a dismissing push, the other hand holding a fold of his robe, a black and deep red fringed wool robe with a wide belt, looking toward the lean young man on the left, facing toward the left edge of the picture. the king stands apart and pushes his raised palm toward the young man to drive him off, while the young man leans on the gate post without looking at him, the two not touching.",
+   "plate": {
+    "seeds": [
+     {
+      "seed": 11,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/plate/s11.png",
+      "edits": {},
+      "boxes": {
+       "david": {
+        "head": [
+         173,
+         142,
+         303,
+         260
+        ],
+        "head_src": "owl",
+        "body": [
+         100,
+         23,
+         330,
+         642
+        ],
+        "body_src": "owl"
+       },
+       "achish": {
+        "head": [
+         822,
+         117,
+         1034,
+         282
+        ],
+        "head_src": "owl",
+        "body": [
+         722,
+         0,
+         1156,
+         642
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 42,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/plate/s42.png",
+      "edits": {},
+      "boxes": {
+       "david": {
+        "head": [
+         196,
+         148,
+         318,
+         251
+        ],
+        "head_src": "owl",
+        "body": [
+         126,
+         44,
+         343,
+         633
+        ],
+        "body_src": "owl"
+       },
+       "achish": {
+        "head": [
+         817,
+         109,
+         1020,
+         279
+        ],
+        "head_src": "owl",
+        "body": [
+         733,
+         0,
+         1119,
+         641
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 7,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/plate/s7.png",
+      "edits": {},
+      "boxes": {
+       "david": {
+        "head": [
+         165,
+         152,
+         288,
+         254
+        ],
+        "head_src": "owl",
+        "body": [
+         98,
+         51,
+         327,
+         642
+        ],
+        "body_src": "owl"
+       },
+       "achish": {
+        "head": [
+         864,
+         124,
+         1055,
+         277
+        ],
+        "head_src": "owl",
+        "body": [
+         767,
+         0,
+         1169,
+         640
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 23,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/plate/s23.png",
+      "edits": {},
+      "boxes": {
+       "david": {
+        "head": [
+         204,
+         157,
+         312,
+         254
+        ],
+        "head_src": "owl",
+        "body": [
+         139,
+         60,
+         337,
+         621
+        ],
+        "body_src": "owl"
+       },
+       "achish": {
+        "head": [
+         842,
+         126,
+         1019,
+         276
+        ],
+        "head_src": "owl",
+        "body": [
+         766,
+         0,
+         1126,
+         639
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 5,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/plate/s5.png",
+      "edits": {},
+      "boxes": {
+       "david": {
+        "head": [
+         187,
+         162,
+         310,
+         265
+        ],
+        "head_src": "owl",
+        "body": [
+         107,
+         59,
+         357,
+         641
+        ],
+        "body_src": "owl"
+       },
+       "achish": {
+        "head": [
+         801,
+         121,
+         1021,
+         302
+        ],
+        "head_src": "owl",
+        "body": [
+         717,
+         0,
+         1138,
+         641
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 101,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/plate/s101.png",
+      "edits": {},
+      "boxes": {
+       "david": {
+        "head": [
+         185,
+         167,
+         298,
+         256
+        ],
+        "head_src": "owl",
+        "body": [
+         127,
+         77,
+         335,
+         612
+        ],
+        "body_src": "owl"
+       },
+       "achish": {
+        "head": [
+         876,
+         132,
+         1036,
+         276
+        ],
+        "head_src": "owl",
+        "body": [
+         798,
+         0,
+         1129,
+         642
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 202,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/plate/s202.png",
+      "edits": {},
+      "boxes": {
+       "david": {
+        "head": [
+         189,
+         175,
+         265,
+         241
+        ],
+        "head_src": "owl",
+        "body": [
+         159,
+         109,
+         299,
+         458
+        ],
+        "body_src": "owl"
+       },
+       "achish": {
+        "head": [
+         830,
+         101,
+         1023,
+         237
+        ],
+        "head_src": "owl",
+        "body": [
+         782,
+         0,
+         1089,
+         559
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 303,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/plate/s303.png",
+      "edits": {},
+      "boxes": {
+       "david": {
+        "head": [
+         182,
+         152,
+         294,
+         250
+        ],
+        "head_src": "owl",
+        "body": [
+         118,
+         53,
+         330,
+         634
+        ],
+        "body_src": "owl"
+       },
+       "achish": {
+        "head": [
+         846,
+         107,
+         1029,
+         267
+        ],
+        "head_src": "owl",
+        "body": [
+         783,
+         0,
+         1137,
+         631
+        ],
+        "body_src": "owl"
+       }
+      }
+     }
+    ],
+    "sec": 494.0,
+    "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a dusty ancient city street beside a tall stone gate wall, sunbaked ground, empty pale sky. a tall heavy wooden double gate set into a thick stone city wall, iron hinges, dry ground before it. On the left: an ancient Israelite man, a commander, in his 20s, lean angular face, close-trimmed dark beard, jawline visible, lean wiry shoulders, narrow waist, dark curls close to the skull, hair covering the whole head, no headwear, in a dark wool tunic with a leather belt, leaning against a wooden gate post, one hand resting on the post, drooling on his beard, facing left. On the right: an ancient Philistine man, a king, in his 40s, creased brow, full dark beard, oiled and rounded, average build, soft belly, rounded shoulders, striped cloth headwrap tied at the nape, Philistine style, dark hair, in a fringed woolen robe with a wide belt, standing, one hand raised in a dismissing gesture, the other hand holding a fold of his robe, facing right.",
+    "label": "나",
+    "items": {
+     "moment": {
+      "wrong": [
+       5,
+       7,
+       11,
+       23,
+       42,
+       101,
+       202,
+       303
+      ],
+      "unsure": false,
+      "memo": "다윗이 미친체 하는 모습이 안보임"
+     },
+     "figures[0].pose": {
+      "wrong": [
+       5,
+       7,
+       11,
+       23,
+       42,
+       101,
+       202,
+       303
+      ],
+      "unsure": false,
+      "memo": "미친체 하던가 침을 흘리든가"
+     },
+     "figures[0].facing": {
+      "wrong": [
+       5,
+       7,
+       11,
+       23,
+       42,
+       101,
+       202,
+       303
+      ],
+      "unsure": false,
+      "memo": "앞을 보는것 같음"
+     },
+     "figures[1].pose": {
+      "wrong": [],
+      "unsure": false,
+      "memo": ""
+     },
+     "figures[1].facing": {
+      "wrong": [],
+      "unsure": false,
+      "memo": ""
+     }
+    }
+   },
+   "items": {
+    "moment": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "가윗이 미친체하는 모습이 안보임"
+    },
+    "background[0]": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].identity": {
+     "wrong": [
+      11,
+      42,
+      101,
+      202
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "미친체 하던가 침을 흘리돈가"
+    },
+    "figures[0].prop": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "나무 기둥이 아님"
+    },
+    "figures[0].facing": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "나무 기둥이 아님"
+    },
+    "figures[1].identity": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].pose": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].prop": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].facing": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "guard": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "없음",
+    "seed": null,
+    "kind": null,
+    "memo": "다윗의 행동이 미친척하고나 침을 흘려야함"
+   },
+   "human_minutes": 6.51
+  },
+  "authored-saul-jabesh-rescue": {
+   "who": [
+    "saul"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-jabesh-rescue/base/s11.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        387,
+        75,
+        475,
+        162
+       ],
+       "head_src": "owl",
+       "body": [
+        224,
+        0,
+        537,
+        617
+       ],
+       "body_src": "owl"
+      },
+      "nahash": {
+       "head": [
+        835,
+        156,
+        978,
+        267
+       ],
+       "head_src": "owl",
+       "body": [
+        780,
+        42,
+        1120,
+        616
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-jabesh-rescue/base/s42.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        332,
+        79,
+        430,
+        174
+       ],
+       "head_src": "owl",
+       "body": [
+        195,
+        0,
+        482,
+        615
+       ],
+       "body_src": "owl"
+      },
+      "nahash": {
+       "head": [
+        792,
+        155,
+        938,
+        280
+       ],
+       "head_src": "owl",
+       "body": [
+        747,
+        26,
+        1060,
+        605
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-jabesh-rescue/base/s7.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        350,
+        100,
+        438,
+        186
+       ],
+       "head_src": "owl",
+       "body": [
+        214,
+        14,
+        436,
+        484
+       ],
+       "body_src": "owl"
+      },
+      "nahash": {
+       "head": [
+        832,
+        170,
+        977,
+        283
+       ],
+       "head_src": "owl",
+       "body": [
+        779,
+        51,
+        1068,
+        611
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-jabesh-rescue/base/s23.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        367,
+        99,
+        453,
+        187
+       ],
+       "head_src": "owl",
+       "body": [
+        202,
+        0,
+        503,
+        619
+       ],
+       "body_src": "owl"
+      },
+      "nahash": {
+       "head": [
+        767,
+        183,
+        906,
+        295
+       ],
+       "head_src": "owl",
+       "body": [
+        749,
+        71,
+        1039,
+        610
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-jabesh-rescue/base/s5.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        405,
+        99,
+        495,
+        187
+       ],
+       "head_src": "owl",
+       "body": [
+        262,
+        12,
+        478,
+        471
+       ],
+       "body_src": "owl"
+      },
+      "nahash": {
+       "head": [
+        846,
+        163,
+        978,
+        278
+       ],
+       "head_src": "owl",
+       "body": [
+        788,
+        45,
+        1109,
+        609
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-jabesh-rescue/base/s101.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        336,
+        74,
+        435,
+        165
+       ],
+       "head_src": "owl",
+       "body": [
+        169,
+        0,
+        478,
+        607
+       ],
+       "body_src": "owl"
+      },
+      "nahash": {
+       "head": [
+        833,
+        167,
+        964,
+        284
+       ],
+       "head_src": "owl",
+       "body": [
+        798,
+        45,
+        1112,
+        603
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-jabesh-rescue/base/s202.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        331,
+        77,
+        423,
+        169
+       ],
+       "head_src": "owl",
+       "body": [
+        181,
+        0,
+        463,
+        608
+       ],
+       "body_src": "owl"
+      },
+      "nahash": {
+       "head": [
+        804,
+        190,
+        927,
+        295
+       ],
+       "head_src": "owl",
+       "body": [
+        759,
+        81,
+        1054,
+        609
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-jabesh-rescue/base/s303.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        378,
+        78,
+        470,
+        177
+       ],
+       "head_src": "owl",
+       "body": [
+        234,
+        0,
+        466,
+        480
+       ],
+       "body_src": "owl"
+      },
+      "nahash": {
+       "head": [
+        792,
+        154,
+        945,
+        283
+       ],
+       "head_src": "owl",
+       "body": [
+        766,
+        24,
+        1085,
+        602
+       ],
+       "body_src": "owl"
+      }
+     }
+    }
+   ],
+   "sec": {
+    "base": 507.9,
+    "edit": 0.0
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a low open field at dawn in pale gray light, collapsing tents, and on the hillside to the right tiny distant soldiers scattering and fleeing. On the left: an ancient Israelite man, a king, in his 40s, deep forehead lines, tall of stature, close-trimmed dark beard, jawline visible, broad shoulders, thick barrel torso, short dark hair cut close, hair covering the whole head, no headwear, a resolute, fierce face, gripping one sword and striding forward, a dark brown wool tunic with a plain leather belt, no crown, looking toward the Ammonite warlord on the right, facing toward the right edge of the picture. On the right: an ancient Ammonite man, a king, in his 40s, weathered heavy face, full coarse black beard, heavy thick torso, bull neck, close-cropped black hair, hair covering the whole head, no headwear, a startled face, stepping backward, one long siege spear lowered, a black leather cuirass with a wide dark belt, looking toward the tall king on the left, facing toward the left edge of the picture. the king advances on the warlord with his sword, and the warlord steps backward away from the king, the two not touching.",
+   "plate": {
+    "seeds": [
+     {
+      "seed": 11,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-jabesh-rescue/plate/s11.png",
+      "edits": {},
+      "boxes": {
+       "saul": {
+        "head": [
+         353,
+         88,
+         437,
+         161
+        ],
+        "head_src": "owl",
+        "body": [
+         260,
+         15,
+         467,
+         513
+        ],
+        "body_src": "owl"
+       },
+       "nahash": {
+        "head": [
+         839,
+         142,
+         970,
+         246
+        ],
+        "head_src": "owl",
+        "body": [
+         750,
+         33,
+         1062,
+         612
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 42,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-jabesh-rescue/plate/s42.png",
+      "edits": {},
+      "boxes": {
+       "saul": {
+        "head": [
+         285,
+         83,
+         374,
+         167
+        ],
+        "head_src": "owl",
+        "body": [
+         183,
+         0,
+         399,
+         500
+        ],
+        "body_src": "owl"
+       },
+       "nahash": {
+        "head": [
+         807,
+         149,
+         951,
+         261
+        ],
+        "head_src": "owl",
+        "body": [
+         736,
+         32,
+         1023,
+         607
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 7,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-jabesh-rescue/plate/s7.png",
+      "edits": {},
+      "boxes": {
+       "saul": {
+        "head": [
+         304,
+         103,
+         385,
+         179
+        ],
+        "head_src": "owl",
+        "body": [
+         201,
+         27,
+         412,
+         528
+        ],
+        "body_src": "owl"
+       },
+       "nahash": {
+        "head": [
+         842,
+         162,
+         954,
+         255
+        ],
+        "head_src": "owl",
+        "body": [
+         766,
+         61,
+         1031,
+         612
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 23,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-jabesh-rescue/plate/s23.png",
+      "edits": {},
+      "boxes": {
+       "saul": {
+        "head": [
+         347,
+         104,
+         428,
+         176
+        ],
+        "head_src": "owl",
+        "body": [
+         255,
+         32,
+         454,
+         499
+        ],
+        "body_src": "owl"
+       },
+       "nahash": {
+        "head": [
+         799,
+         157,
+         919,
+         260
+        ],
+        "head_src": "owl",
+        "body": [
+         720,
+         50,
+         990,
+         610
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 5,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-jabesh-rescue/plate/s5.png",
+      "edits": {},
+      "boxes": {
+       "saul": {
+        "head": [
+         313,
+         102,
+         395,
+         175
+        ],
+        "head_src": "owl",
+        "body": [
+         214,
+         29,
+         424,
+         514
+        ],
+        "body_src": "owl"
+       },
+       "nahash": {
+        "head": [
+         867,
+         146,
+         971,
+         235
+        ],
+        "head_src": "owl",
+        "body": [
+         790,
+         46,
+         1064,
+         613
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 101,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-jabesh-rescue/plate/s101.png",
+      "edits": {},
+      "boxes": {
+       "saul": {
+        "head": [
+         310,
+         85,
+         407,
+         172
+        ],
+        "head_src": "owl",
+        "body": [
+         221,
+         0,
+         425,
+         496
+        ],
+        "body_src": "owl"
+       },
+       "nahash": {
+        "head": [
+         870,
+         175,
+         980,
+         264
+        ],
+        "head_src": "owl",
+        "body": [
+         804,
+         70,
+         1064,
+         612
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 202,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-jabesh-rescue/plate/s202.png",
+      "edits": {},
+      "boxes": {
+       "saul": {
+        "head": [
+         299,
+         85,
+         381,
+         159
+        ],
+        "head_src": "owl",
+        "body": [
+         205,
+         11,
+         409,
+         523
+        ],
+        "body_src": "owl"
+       },
+       "nahash": {
+        "head": [
+         832,
+         145,
+         926,
+         227
+        ],
+        "head_src": "owl",
+        "body": [
+         779,
+         48,
+         1025,
+         609
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 303,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-jabesh-rescue/plate/s303.png",
+      "edits": {},
+      "boxes": {
+       "saul": {
+        "head": [
+         318,
+         90,
+         412,
+         168
+        ],
+        "head_src": "owl",
+        "body": [
+         232,
+         12,
+         442,
+         514
+        ],
+        "body_src": "owl"
+       },
+       "nahash": {
+        "head": [
+         807,
+         146,
+         938,
+         256
+        ],
+        "head_src": "owl",
+        "body": [
+         737,
+         30,
+         1015,
+         609
+        ],
+        "body_src": "owl"
+       }
+      }
+     }
+    ],
+    "sec": 491.4,
+    "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a low open field at dawn, pale gray light, scattered collapsing tents, dry ground. tiny distant soldiers scattering and fleeing on the hillside, a broken loose crowd, tiny far away figures. On the left: an ancient Israelite man, a king, in his 40s, deep forehead lines, tall of stature, close-trimmed dark beard, jawline visible, broad shoulders, thick barrel torso, short dark hair cut close, hair covering the whole head, no headwear, in a dark wool tunic with a leather belt, standing tall, gripping one sword, walking forward, facing right. On the right: an ancient Ammonite man, a king, in his 40s, weathered heavy face, full coarse black beard, heavy thick torso, bull neck, close-cropped black hair, hair covering the whole head, no headwear, in a dark leather cuirass with a wide belt, standing, gripping one long siege spear lowered, stepping back, facing left.",
+    "label": "가",
+    "items": {
+     "moment": {
+      "wrong": [
+       5,
+       7,
+       11,
+       23,
+       42,
+       101,
+       202,
+       303
+      ],
+      "unsure": false,
+      "memo": "새벽도 아니고 적이 등을보이고 흩어지는 무리가 필요 사눌쪽도 3대로 나뉜 무리가 쫓는 모습이여야함"
+     },
+     "figures[0].pose": {
+      "wrong": [
+       5,
+       7,
+       11,
+       23,
+       42,
+       101,
+       202,
+       303
+      ],
+      "unsure": false,
+      "memo": "쫓아가는 모습이 아님"
+     },
+     "figures[0].facing": {
+      "wrong": [],
+      "unsure": false,
+      "memo": ""
+     },
+     "figures[1].pose": {
+      "wrong": [
+       5,
+       7,
+       11,
+       23,
+       42,
+       101,
+       202,
+       303
+      ],
+      "unsure": false,
+      "memo": "도망가는 모습 필요"
+     },
+     "figures[1].facing": {
+      "wrong": [],
+      "unsure": false,
+      "memo": ""
+     }
+    }
+   },
+   "items": {
+    "moment": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "새벽도 아니고 적이 등을보이고 흩어지는 무리가 필요 사눌쪽도 3대로 나뉜 무리가 쫓는 모습이여야함"
+    },
+    "background[0]": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "새벽도 아니고 무너지는 천막도 아님"
+    },
+    "crowds": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "마주보는 병사가 등을 보이고 도망가야함 근데 무리가 무리 인데 1:1 이네..."
+    },
+    "figures[0].identity": {
+     "wrong": [
+      5,
+      11,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].prop": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].facing": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].identity": {
+     "wrong": [
+      7,
+      11,
+      23,
+      42,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].pose": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "도망가는 모습이 필요"
+    },
+    "figures[1].prop": {
+     "wrong": [
+      5,
+      7,
+      23,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].facing": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "guard": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "없음",
+    "seed": null,
+    "kind": null,
+    "memo": "사울 무리는 쫓고 상대편은 도망가는 모습의 무리가 있어야함"
+   },
+   "human_minutes": 8.36
+  },
+  "authored-saul-nob-massacre": {
+   "who": [
+    "saul"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/base/s11.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        169,
+        142,
+        332,
+        270
+       ],
+       "head_src": "owl",
+       "body": [
+        92,
+        13,
+        372,
+        641
+       ],
+       "body_src": "owl"
+      },
+      "doeg": {
+       "head": [
+        491,
+        175,
+        663,
+        318
+       ],
+       "head_src": "owl",
+       "body": [
+        433,
+        33,
+        684,
+        644
+       ],
+       "body_src": "owl"
+      },
+      "ahimelech": {
+       "head": [
+        873,
+        156,
+        1031,
+        317
+       ],
+       "head_src": "owl",
+       "body": [
+        870,
+        0,
+        1144,
+        646
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/base/s42.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        197,
+        128,
+        353,
+        260
+       ],
+       "head_src": "owl",
+       "body": [
+        90,
+        0,
+        385,
+        640
+       ],
+       "body_src": "owl"
+      },
+      "doeg": {
+       "head": [
+        538,
+        177,
+        697,
+        310
+       ],
+       "head_src": "owl",
+       "body": [
+        494,
+        43,
+        712,
+        645
+       ],
+       "body_src": "owl"
+      },
+      "ahimelech": {
+       "head": [
+        882,
+        150,
+        1068,
+        296
+       ],
+       "head_src": "owl",
+       "body": [
+        828,
+        4,
+        1164,
+        643
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/base/s7.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        183,
+        113,
+        329,
+        233
+       ],
+       "head_src": "owl",
+       "body": [
+        99,
+        0,
+        383,
+        640
+       ],
+       "body_src": "owl"
+      },
+      "doeg": {
+       "head": [
+        528,
+        157,
+        694,
+        279
+       ],
+       "head_src": "owl",
+       "body": [
+        459,
+        35,
+        695,
+        643
+       ],
+       "body_src": "owl"
+      },
+      "ahimelech": {
+       "head": [
+        899,
+        133,
+        1053,
+        274
+       ],
+       "head_src": "owl",
+       "body": [
+        854,
+        0,
+        1143,
+        642
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/base/s23.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        203,
+        131,
+        352,
+        254
+       ],
+       "head_src": "owl",
+       "body": [
+        95,
+        8,
+        408,
+        639
+       ],
+       "body_src": "owl"
+      },
+      "doeg": {
+       "head": [
+        552,
+        163,
+        714,
+        300
+       ],
+       "head_src": "owl",
+       "body": [
+        483,
+        27,
+        697,
+        641
+       ],
+       "body_src": "owl"
+      },
+      "ahimelech": {
+       "head": [
+        900,
+        151,
+        1049,
+        292
+       ],
+       "head_src": "owl",
+       "body": [
+        844,
+        10,
+        1156,
+        642
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/base/s5.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        210,
+        113,
+        364,
+        246
+       ],
+       "head_src": "owl",
+       "body": [
+        101,
+        0,
+        403,
+        641
+       ],
+       "body_src": "owl"
+      },
+      "doeg": {
+       "head": [
+        546,
+        150,
+        724,
+        301
+       ],
+       "head_src": "owl",
+       "body": [
+        503,
+        0,
+        729,
+        647
+       ],
+       "body_src": "owl"
+      },
+      "ahimelech": {
+       "head": [
+        879,
+        145,
+        1056,
+        296
+       ],
+       "head_src": "owl",
+       "body": [
+        836,
+        0,
+        1157,
+        643
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/base/s101.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        179,
+        117,
+        320,
+        231
+       ],
+       "head_src": "owl",
+       "body": [
+        90,
+        3,
+        362,
+        640
+       ],
+       "body_src": "owl"
+      },
+      "doeg": {
+       "head": [
+        554,
+        144,
+        716,
+        282
+       ],
+       "head_src": "owl",
+       "body": [
+        476,
+        6,
+        718,
+        642
+       ],
+       "body_src": "owl"
+      },
+      "ahimelech": {
+       "head": [
+        908,
+        127,
+        1059,
+        269
+       ],
+       "head_src": "owl",
+       "body": [
+        872,
+        0,
+        1161,
+        643
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/base/s202.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        222,
+        122,
+        371,
+        243
+       ],
+       "head_src": "owl",
+       "body": [
+        125,
+        0,
+        406,
+        644
+       ],
+       "body_src": "owl"
+      },
+      "doeg": {
+       "head": [
+        572,
+        142,
+        739,
+        281
+       ],
+       "head_src": "owl",
+       "body": [
+        504,
+        4,
+        723,
+        643
+       ],
+       "body_src": "owl"
+      },
+      "ahimelech": {
+       "head": [
+        897,
+        126,
+        1062,
+        275
+       ],
+       "head_src": "owl",
+       "body": [
+        871,
+        0,
+        1153,
+        642
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/base/s303.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        188,
+        151,
+        340,
+        267
+       ],
+       "head_src": "owl",
+       "body": [
+        98,
+        34,
+        376,
+        641
+       ],
+       "body_src": "owl"
+      },
+      "doeg": {
+       "head": [
+        557,
+        165,
+        721,
+        301
+       ],
+       "head_src": "owl",
+       "body": [
+        487,
+        29,
+        706,
+        643
+       ],
+       "body_src": "owl"
+      },
+      "ahimelech": {
+       "head": [
+        901,
+        150,
+        1049,
+        296
+       ],
+       "head_src": "owl",
+       "body": [
+        877,
+        5,
+        1149,
+        644
+       ],
+       "body_src": "owl"
+      }
+     }
+    }
+   ],
+   "sec": {
+    "base": 516.1,
+    "edit": 531.9
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a small dry courtyard before a tent shrine, a low stone wall. On the left: an ancient Israelite man, a king, in his 40s, deep forehead lines, tall of stature, close-trimmed dark beard, jawline visible, broad shoulders, thick barrel torso, short dark hair cut close, hair covering the whole head, no headwear, an angry face, gripping a spear upright, one arm raised in command, a dark brown wool tunic with a plain leather belt, no crown, looking toward the middle-aged herdsman in the center, facing toward the right edge of the picture. In the center: an ancient Edomite man, a shepherd, in his 40s, weathered sun-lined face, full coarse black beard, broad heavy shoulders, thick neck, rough cropped dark hair, hair covering the whole head, no headwear, a blank, cold face, gripping a drawn sword, turning from the king toward the priest, an undyed rough gray-brown wool herdsman's tunic, looking toward the middle-aged priest on the right, facing toward the right edge of the picture. On the right: an ancient Israelite man, a priest, in his 50s, lined brow, full dark beard, rounded, average build, upright, narrow chest, white linen turban wound high, dark hair, a frightened face, standing, both hands gripping the hem of his ephod, a white linen ephod over a pale robe, looking toward the middle-aged herdsman in the center, facing toward the left edge of the picture. the king's raised hand commands the herdsman, who turns toward the priest with his drawn sword, no one struck, no blood.",
+   "plate": {
+    "seeds": [
+     {
+      "seed": 11,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/plate/s11.png",
+      "edits": {},
+      "boxes": {
+       "saul": {
+        "head": [
+         183,
+         142,
+         280,
+         219
+        ],
+        "head_src": "owl",
+        "body": [
+         115,
+         66,
+         324,
+         556
+        ],
+        "body_src": "owl"
+       },
+       "doeg": {
+        "head": [
+         586,
+         166,
+         704,
+         254
+        ],
+        "head_src": "owl",
+        "body": [
+         539,
+         55,
+         722,
+         608
+        ],
+        "body_src": "owl"
+       },
+       "ahimelech": {
+        "head": [
+         890,
+         137,
+         1017,
+         243
+        ],
+        "head_src": "owl",
+        "body": [
+         866,
+         31,
+         1067,
+         617
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 42,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/plate/s42.png",
+      "edits": {},
+      "boxes": {
+       "saul": {
+        "head": [
+         215,
+         112,
+         311,
+         189
+        ],
+        "head_src": "owl",
+        "body": [
+         141,
+         35,
+         354,
+         566
+        ],
+        "body_src": "owl"
+       },
+       "doeg": {
+        "head": [
+         557,
+         133,
+         668,
+         219
+        ],
+        "head_src": "owl",
+        "body": [
+         504,
+         27,
+         674,
+         605
+        ],
+        "body_src": "owl"
+       },
+       "ahimelech": {
+        "head": [
+         867,
+         119,
+         975,
+         214
+        ],
+        "head_src": "owl",
+        "body": [
+         836,
+         23,
+         1026,
+         607
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 7,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/plate/s7.png",
+      "edits": {},
+      "boxes": {
+       "saul": {
+        "head": [
+         207,
+         117,
+         316,
+         200
+        ],
+        "head_src": "owl",
+        "body": [
+         139,
+         34,
+         353,
+         571
+        ],
+        "body_src": "owl"
+       },
+       "doeg": {
+        "head": [
+         614,
+         128,
+         747,
+         222
+        ],
+        "head_src": "owl",
+        "body": [
+         560,
+         8,
+         728,
+         611
+        ],
+        "body_src": "owl"
+       },
+       "ahimelech": {
+        "head": [
+         901,
+         116,
+         1005,
+         214
+        ],
+        "head_src": "owl",
+        "body": [
+         871,
+         17,
+         1069,
+         604
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 23,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/plate/s23.png",
+      "edits": {},
+      "boxes": {
+       "saul": {
+        "head": [
+         232,
+         133,
+         330,
+         209
+        ],
+        "head_src": "owl",
+        "body": [
+         156,
+         57,
+         360,
+         555
+        ],
+        "body_src": "owl"
+       },
+       "doeg": {
+        "head": [
+         582,
+         138,
+         712,
+         234
+        ],
+        "head_src": "owl",
+        "body": [
+         522,
+         21,
+         698,
+         627
+        ],
+        "body_src": "owl"
+       },
+       "ahimelech": {
+        "head": [
+         883,
+         140,
+         985,
+         231
+        ],
+        "head_src": "owl",
+        "body": [
+         858,
+         48,
+         1053,
+         601
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 5,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/plate/s5.png",
+      "edits": {},
+      "boxes": {
+       "saul": {
+        "head": [
+         208,
+         126,
+         316,
+         212
+        ],
+        "head_src": "owl",
+        "body": [
+         129,
+         39,
+         363,
+         576
+        ],
+        "body_src": "owl"
+       },
+       "doeg": {
+        "head": [
+         569,
+         137,
+         703,
+         232
+        ],
+        "head_src": "owl",
+        "body": [
+         504,
+         19,
+         701,
+         624
+        ],
+        "body_src": "owl"
+       },
+       "ahimelech": {
+        "head": [
+         877,
+         123,
+         994,
+         234
+        ],
+        "head_src": "owl",
+        "body": [
+         860,
+         13,
+         1049,
+         614
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 101,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/plate/s101.png",
+      "edits": {},
+      "boxes": {
+       "saul": {
+        "head": [
+         189,
+         116,
+         289,
+         193
+        ],
+        "head_src": "owl",
+        "body": [
+         130,
+         38,
+         333,
+         530
+        ],
+        "body_src": "owl"
+       },
+       "doeg": {
+        "head": [
+         630,
+         126,
+         750,
+         221
+        ],
+        "head_src": "owl",
+        "body": [
+         591,
+         11,
+         768,
+         618
+        ],
+        "body_src": "owl"
+       },
+       "ahimelech": {
+        "head": [
+         902,
+         116,
+         1018,
+         208
+        ],
+        "head_src": "owl",
+        "body": [
+         873,
+         24,
+         1076,
+         598
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 202,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/plate/s202.png",
+      "edits": {},
+      "boxes": {
+       "saul": {
+        "head": [
+         232,
+         117,
+         336,
+         202
+        ],
+        "head_src": "owl",
+        "body": [
+         170,
+         32,
+         370,
+         544
+        ],
+        "body_src": "owl"
+       },
+       "doeg": {
+        "head": [
+         605,
+         124,
+         734,
+         220
+        ],
+        "head_src": "owl",
+        "body": [
+         538,
+         5,
+         729,
+         613
+        ],
+        "body_src": "owl"
+       },
+       "ahimelech": {
+        "head": [
+         859,
+         109,
+         981,
+         223
+        ],
+        "head_src": "owl",
+        "body": [
+         840,
+         0,
+         1040,
+         607
+        ],
+        "body_src": "owl"
+       }
+      }
+     },
+     {
+      "seed": 303,
+      "base": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/plate/s303.png",
+      "edits": {},
+      "boxes": {
+       "saul": {
+        "head": [
+         205,
+         130,
+         297,
+         201
+        ],
+        "head_src": "owl",
+        "body": [
+         140,
+         60,
+         340,
+         567
+        ],
+        "body_src": "owl"
+       },
+       "doeg": {
+        "head": [
+         596,
+         134,
+         710,
+         231
+        ],
+        "head_src": "owl",
+        "body": [
+         532,
+         18,
+         718,
+         619
+        ],
+        "body_src": "owl"
+       },
+       "ahimelech": {
+        "head": [
+         902,
+         122,
+         1017,
+         223
+        ],
+        "head_src": "owl",
+        "body": [
+         866,
+         22,
+         1078,
+         606
+        ],
+        "body_src": "owl"
+       }
+      }
+     }
+    ],
+    "sec": 508.2,
+    "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a small dry courtyard of pale packed earth before a tent shrine, low stone wall, empty pale sky. On the left: an ancient Israelite man, a king, in his 40s, deep forehead lines, tall of stature, close-trimmed dark beard, jawline visible, broad shoulders, thick barrel torso, short dark hair cut close, hair covering the whole head, no headwear, in a dark wool tunic with a leather belt, standing, gripping a spear upright, one arm raised in command, facing right. In the center: an ancient Edomite man, a shepherd, in his 40s, weathered sun-lined face, full coarse black beard, broad heavy shoulders, thick neck, rough cropped dark hair, hair covering the whole head, no headwear, in a rough dark herdsman's tunic, standing, gripping a drawn sword, body turning, facing right. On the right: an ancient Israelite man, a priest, in his 50s, lined brow, full dark beard, rounded, average build, upright, narrow chest, white linen turban wound high, dark hair, in a white linen ephod over a robe, standing, answering the king, both hands gripping the hem of his linen ephod, facing left.",
+    "label": "나",
+    "items": {
+     "moment": {
+      "wrong": [],
+      "unsure": false,
+      "memo": ""
+     },
+     "figures[0].pose": {
+      "wrong": [
+       23,
+       202
+      ],
+      "unsure": false,
+      "memo": ""
+     },
+     "figures[0].facing": {
+      "wrong": [],
+      "unsure": false,
+      "memo": ""
+     },
+     "figures[1].pose": {
+      "wrong": [],
+      "unsure": false,
+      "memo": ""
+     },
+     "figures[1].facing": {
+      "wrong": [],
+      "unsure": false,
+      "memo": ""
+     },
+     "figures[2].pose": {
+      "wrong": [],
+      "unsure": false,
+      "memo": ""
+     },
+     "figures[2].facing": {
+      "wrong": [],
+      "unsure": false,
+      "memo": ""
+     }
+    }
+   },
+   "items": {
+    "moment": {
+     "wrong": [
+      23,
+      42,
+      101,
+      202
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "background[0]": {
+     "wrong": [
+      5,
+      11,
+      101,
+      202
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].identity": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [
+      5,
+      11,
+      42,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].prop": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].facing": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].identity": {
+     "wrong": [
+      7,
+      23,
+      101
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].pose": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].prop": {
+     "wrong": [
+      5
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].facing": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[2].identity": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[2].pose": {
+     "wrong": [
+      23,
+      42,
+      202
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[2].prop": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[2].facing": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "guard": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "s303 바탕",
+    "seed": 303,
+    "kind": "base",
+    "image": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/base/s303.png"
+   },
+   "human_minutes": 6.85,
+   "pick_edit": {
+    "seed": 303,
+    "log": [
+     {
+      "raw": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/raw/s303-saul.png",
+      "who": "saul",
+      "seed": 303,
+      "quantize": 8,
+      "model": "qwen-image-edit-2511",
+      "status": "ok",
+      "sec": 531.9,
+      "peak_gb": 58.51,
+      "scene": "authored-saul-nob-massacre",
+      "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/base/s303.png",
+      "side": "left",
+      "mask_box": [
+       81,
+       0,
+       393,
+       640
+      ],
+      "resized": false,
+      "out": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/edit/s303.png",
+      "targeted": -2.79,
+      "diff_in": 18.17,
+      "diff_out": 20.96
+     }
+    ],
+    "out": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/edit/s303.png"
+   },
+   "confirm": {
+    "answer": "바탕",
+    "seed": 303,
+    "minutes": 0.55
+   }
+  }
+ },
+ "runs": [
+  {
+   "start": 1792401670.945792,
+   "last": 1792406911.847519,
+   "end": 1792406911.847518
+  }
+ ],
+ "restarts": 0,
+ "trial": {
+  "scene": "authored-david-gibeah-harp",
+  "seed": 11,
+  "sec": 168.0
+ },
+ "unattended": true,
+ "wall_seconds": 5240.9,
+ "human_minutes": 37.09
+}

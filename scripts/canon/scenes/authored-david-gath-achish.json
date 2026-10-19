@@ -13,6 +13,21 @@
     "verse": "21:13 후반",
     "why": "다윗이 성문 기둥에 몸을 기대고 침을 흘리는 순간 — 문짝을 손톱으로 긁는 동작은 모델 prior에 없어(ADR 260903-154254) 문에 기대선 정적 자세로 대체."
   },
+  "meaning": {
+    "ko": "가드 성문 앞에서 다윗이 미친 체하며 성문 기둥에 기대 침을 흘리고, 아기스가 역겨워하며 물리친다",
+    "en": "At the gate of Gath the young man feigns madness, leaning on the gate post and drooling, while the Philistine king waves him away in disgust",
+    "verse": "삼상 21:13-15"
+  },
+  "relation": {
+    "ko": "아기스가 떨어져 서서 든 손바닥을 다윗 쪽으로 밀어 내쫓고, 다윗은 그를 보지 않고 성문 기둥에 기대 있다 — 둘은 닿지 않는다",
+    "en": "the king stands apart and pushes his raised palm toward the young man to drive him off, while the young man leans on the gate post without looking at him, the two not touching",
+    "verse": "삼상 21:14-15 「내 앞에서 미친 짓을」 · 손바닥·떨어짐 본문 밖 · 저작자 정함"
+  },
+  "whole_background": {
+    "ko": "가드 성읍 거리 — 두꺼운 돌 성벽에 박힌 높은 나무 겹문, 마른 땅",
+    "en": "a dusty street of Gath, a tall heavy wooden double gate set into a thick stone city wall, dry ground",
+    "verse": "삼상 21:10·13 「가드」「대문짝」 · 거리 모습 본문 밖 · 저작자 정함"
+  },
   "background": [
     {
       "what": "가드 성문과 성벽",
@@ -28,7 +43,28 @@
       "prop": "a wooden gate post",
       "facing": "left",
       "region": "david",
-      "verse": "21:13"
+      "verse": "21:13",
+      "expression": {
+        "ko": "넋 나간 얼굴",
+        "en": "a vacant, dazed face",
+        "verse": "삼상 21:13 「미친 체 하고」 · 표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "나무 성문 기둥에 어깨를 기대 서서 수염에 침을 흘린다",
+        "en": "leaning one shoulder against a wooden gate post, drool running down his beard",
+        "verse": "삼상 21:13 「침을 수염에 흘리매」 · 기댐 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "짙은 붉은 양모 튜닉과 짙은 갈색 가죽 띠",
+        "en": "a deep red wool tunic with a dark brown leather belt",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+      },
+      "gaze": {
+        "ko": "초점 없이 허공을 봄 — 아무와도 마주 보지 않음",
+        "en": "staring blankly into empty air, not looking at anyone",
+        "verse": "삼상 21:13 「미친 체 하고」 · 시선 본문 밖 · 저작자 정함"
+      },
+      "screen_facing": "viewer"
     },
     {
       "cast": "achish",
@@ -37,7 +73,24 @@
       "prop": "a fold of his robe",
       "facing": "right",
       "region": "achish",
-      "verse": "21:14-15 · 지물 본문 밖 · 저작자 정함"
+      "verse": "21:14-15 · 지물 본문 밖 · 저작자 정함",
+      "expression": {
+        "ko": "역겨워하는 얼굴",
+        "en": "a disgusted face",
+        "verse": "삼상 21:14-15 · 표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "한 손을 들어 손바닥으로 물리치고, 다른 손은 겉옷 자락을 쥔다",
+        "en": "one hand raised, palm out in a dismissing push, the other hand holding a fold of his robe",
+        "verse": "삼상 21:14-15 · 손 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "검고 짙은 붉은 술 달린 양모 겉옷과 넓은 띠",
+        "en": "a black and deep red fringed wool robe with a wide belt",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+      },
+      "gaze": "david",
+      "screen_facing": "left"
     }
   ],
   "regions": {

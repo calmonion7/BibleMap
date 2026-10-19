@@ -6,7 +6,7 @@
 
 문항 id = 명세 칸 경로(moment · background[i] · crowds · figures[i].identity|pose|prop|facing · guard, notes/NIGHT-PILOT.md 고정 절).
 그림은 시드마다 편집본·바탕을 한 번씩만 싣고 크롭은 CSS로 자른다(16MB 안). 「판정 문장 복사」는 JSON 한 덩이."""
-import base64, io, json, os
+import base64, io, json, os, random
 
 from PIL import Image
 
@@ -16,12 +16,18 @@ import derive_scene as D
 HERE = os.path.dirname(os.path.abspath(__file__))
 METRICS = os.path.join(HERE, "samples", "night-pilot", "metrics.json")
 PAGES = os.path.expanduser("~/.local/biblemap-imggen/pages")
-DST = {368: "night-pick.html", 369: "whole-fix-pick.html"}
+DST = {368: "night-pick.html", 369: "whole-fix-pick.html", 370: "whole-wide-pick.html"}
 LIMIT = 15.5e6
 PROP_KO = {"a spear": "창", "a small harp": "작은 수금", "a robe corner": "겉옷자락", "a plain traveling cloak": "수수한 나그네 겉옷",
-           "a torn robe corner": "찢어진 겉옷자락", "a wooden staff": "나무 지팡이", "a sword": "칼"}
+           "a torn robe corner": "찢어진 겉옷자락", "a wooden staff": "나무 지팡이", "a sword": "칼",
+           "a cloth-wrapped sword": "보자기에 싼 칼", "a wooden gate post": "나무 성문 기둥", "a fold of his robe": "겉옷 자락",
+           "a siege spear": "공성 창", "the hem of his ephod": "에봇 자락"}
 FACING_KO = {"left": "화면 왼쪽을 향한다", "right": "화면 오른쪽을 향한다"}
-NAME = {"saul": "사울", "david": "다윗", "samuel": "사무엘"}
+NAME = {"saul": "사울", "david": "다윗", "samuel": "사무엘", "david-boy": "소년 다윗", "ahimelech": "아히멜렉", "achish": "아기스",
+        "nahash": "나하스", "doeg": "도엑"}
+# task 370(whole-wide): 방향 문항은 사람이 본 축 「누구와 마주 보는가(얼굴·상체)」로, 설명은 한 장 모드 gaze에서(계획 결정 4)
+SCREEN_KO = {"right": "화면 오른쪽을 향함", "left": "화면 왼쪽을 향함", "viewer": "화면 앞을 향함", "away": "등을 보임"}
+TREAT = ("moment", ".pose", ".facing")   # 처치 칸 — 판 묶음(대조)은 이 문항만 묻는다
 GUARD = "위에서 묻지 않은 결함 — 손가락 수, 두 겹·덧붙은 인물, 종이 테두리·액자, 글자"
 
 
@@ -44,7 +50,43 @@ def fit(box, ar, W, H, pad):
     return [round(x / W, 4), round(y / H, 4), round(w / W, 4), round(h / H, 4)]
 
 
-def questions(spec, sc):
+def josa(word, pair):
+    """받침 유무로 조사 고르기 — pair = ("이", "가") · ("과", "와")."""
+    c = ord(word[-1]) - 0xAC00
+    return word + (pair[0] if 0 <= c < 11172 and c % 28 else pair[1])
+
+
+def treat(qid):
+    return qid == "moment" or qid.endswith(TREAT[1:])
+
+
+def plate_label(sid):
+    """장면마다 판 묶음이 「묶음 가」인지 「묶음 나」인지 — WHOLE_WIDE_SHUFFLE_SEED와 장면 id로 정해진다(metrics plate.label)."""
+    return random.Random(f"{params.WHOLE_WIDE_SHUFFLE_SEED}:{sid}").choice(["가", "나"])
+
+
+def facing_q(f):
+    """→ (질문, 설명) — 한 장 모드 gaze가 대상 인물이면 「{대상}과 마주 봄 · 화면 방향」, 문구 객체면 그 ko."""
+    nm, g = NAME.get(f["cast"], f["cast"]), f["gaze"]
+    what = g["ko"] if isinstance(g, dict) else f"{josa(NAME.get(g, g), ('과', '와'))} 마주 봄 · {SCREEN_KO[f['screen_facing']]}"
+    return f"{josa(nm, ('이', '가'))} 누구와 마주 보는가(얼굴·상체)가 틀린 그림", what
+
+
+def pair_plate(qs, pqs, label):
+    """칸 묶음 문항 qs + 판 묶음 문항 pqs → 처치 칸 문항마다 두 묶음을 잇달아(판이 label 쪽). 나머지 문항은 칸 묶음만."""
+    by = {q["id"]: q for q in pqs}
+    other = "나" if label == "가" else "가"
+    out = []
+    for q in qs:
+        if not treat(q["id"]):
+            out.append(q)
+            continue
+        pair = [{**q, "grp": "whole", "lab": f"묶음 {other}"}, {**by[q["id"]], "grp": "plate", "lab": f"묶음 {label}"}]
+        out += pair[::-1] if label == "가" else pair
+    return out
+
+
+def questions(spec, sc, wide=False):
     W, H = Image.open(sc["seeds"][0]["base"]).size
     full = lambda: {"kind": "full"}
     qs = [{"id": "moment", "field": "moment", "q": "장면 뜻이 틀린 그림", "what": spec["moment"]["why"], "verse": spec["moment"]["verse"], **full()}]
@@ -58,14 +100,15 @@ def questions(spec, sc):
         body = {str(x["seed"]): fit(x["boxes"][who]["body"], 0.75, W, H, 0.15) for x in sc["seeds"]}
         crop = {"kind": "crop", "crop": body, "ar": 0.75}
         if os.path.exists(os.path.join(HERE, "frozen", f"{who}.png")):
-            qs.append({"id": f"figures[{i}].identity", "field": f"figures[{i}] 정본", "who": who, "q": f"{nm}가 정본과 다른 사람으로 보이는 그림",
+            qs.append({"id": f"figures[{i}].identity", "field": f"figures[{i}] 정본", "who": who, "q": f"{josa(nm, ('이', '가')) if wide else nm + '가'} 정본과 다른 사람으로 보이는 그림",
                        "what": "얼굴·머리·수염·나이대만 봅니다(옷은 빼고).", "verse": f["role"], "kind": "crop", "crop": head, "ar": 1, "canon": who})
         qs.append({"id": f"figures[{i}].pose", "field": f"figures[{i}].pose", "who": who, "q": f"{nm}의 자세가 틀린 그림",
                    "what": f["pose"], "verse": f["verse"], **crop})
         qs.append({"id": f"figures[{i}].prop", "field": f"figures[{i}].prop", "who": who, "q": f"{nm}의 지물이 틀린 그림",
                    "what": f"{PROP_KO[f['prop']]} ({f['prop']})", "verse": f["verse"], **crop})
-        qs.append({"id": f"figures[{i}].facing", "field": f"figures[{i}].facing", "who": who, "q": f"{nm}의 방향이 틀린 그림",
-                   "what": f"{FACING_KO[f['facing']]} ({f['facing']})", "verse": f["verse"], **crop})
+        fq, fw = facing_q(f) if wide else (f"{nm}의 방향이 틀린 그림", f"{FACING_KO[f['facing']]} ({f['facing']})")
+        qs.append({"id": f"figures[{i}].facing", "field": f"figures[{i}].facing", "who": who, "q": fq,
+                   "what": fw, "verse": f["verse"], **crop})
     qs.append({"id": "guard", "field": "가드", "q": "그 밖에 깨진 곳이 있는 그림", "what": GUARD, "verse": "", **full()})
     return qs
 
@@ -84,9 +127,15 @@ def build(m, q, sids):
             data[k + ":e"] = uri(Image.open(x["edits"][sc["who"][-1]] if edited else x["base"]), 1216, q)
             if edited:
                 data[k + ":b"] = uri(Image.open(x["base"]), 800, q - 6)
+        wide = "plate" in sc   # task 370: 판 묶음(대조) — 처치 칸 문항만 같은 문구로 잇달아
+        qs = questions(spec, {**sc, "seeds": seeds}, wide)
+        if wide:
+            for x in sc["plate"]["seeds"]:
+                data[f"{sid}:{x['seed']}:p"] = uri(Image.open(x["base"]), 1216, q)
+            qs = pair_plate(qs, [p for p in questions(spec, {**sc, "seeds": sc["plate"]["seeds"]}, wide) if treat(p["id"])],
+                            sc["plate"]["label"])
         scenes.append({"id": sid, "title": spec["title"], "range": spec["verses"]["range"],
-                       "edited": [NAME[w] for w in sc["who"]] if edited else [], "seeds": [x["seed"] for x in seeds],
-                       "qs": questions(spec, {**sc, "seeds": seeds})})
+                       "edited": [NAME[w] for w in sc["who"]] if edited else [], "seeds": [x["seed"] for x in seeds], "qs": qs})
     for who in NAME:
         p = os.path.join(HERE, "frozen", f"{who}.png")
         if os.path.exists(p):
@@ -197,6 +246,8 @@ const $ = (h) => { const d = document.createElement("div"); d.innerHTML = h; ret
 const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const A = (sid) => (st.ans[sid] = st.ans[sid] || { items: {}, pick: null });
 const item = (sid, id) => (A(sid).items[id] = A(sid).items[id] || { wrong: [], unsure: false, memo: "" });
+const ik = (q) => (q.grp === "plate" ? "plate:" : "") + q.id;   // task 370: 판 묶음 답은 따로(고르기 틀림 수에 안 섞음)
+const ims = (q) => (q && q.grp === "plate" ? "p" : "e");
 
 function img(key, crop, ar) {
   if (!crop) return `<div class="frame" style="aspect-ratio:1216/640"><img src="${IMGS[key]}" alt="" style="width:100%;left:0;top:0"></div>`;
@@ -215,25 +266,25 @@ function render() {
   document.getElementById("next").hidden = !!(sc.end || sc.pick);
   if (sc.end) return renderEnd(app);
   enterScene(sc.s.id);
-  const head = `<div class="bar"><span>장면 ${sc.k + 1}/${SCENES.length}</span><span>${sc.pick ? "고르기" : `문항 ${sc.j + 1}/${sc.s.qs.length}`}</span></div>
+  const head = `<div class="bar"><span>장면 ${sc.k + 1}/${SCENES.length}</span><span>${sc.pick ? "고르기" : `문항 ${sc.j + 1}/${sc.s.qs.length}${sc.q.lab ? " · " + sc.q.lab : ""}`}</span></div>
     <h1>${esc(sc.s.title)} · ${esc(sc.s.range)}</h1>`;
   if (sc.pick) return renderPick(app, sc, head);
-  const q = sc.q, it = item(sc.s.id, q.id);
+  const q = sc.q, it = item(sc.s.id, ik(q));
   const canon = q.canon ? `<div class="canon"><img src="${IMGS["canon:" + q.canon]}" alt="정본 초상"><p class="hint">왼쪽이 정본 초상입니다. 같은 사람으로 안 보이는 시드를 누르세요.</p></div>` : "";
   const cards = sc.s.seeds.map((s) => {
-    const k = `${sc.s.id}:${s}:e`;
+    const k = `${sc.s.id}:${s}:${ims(q)}`;
     return `<button type="button" class="card${it.wrong.includes(s) ? " on" : ""}" data-s="${s}">${img(k, q.crop && q.crop[s], q.ar)}<span class="tag">s${s}</span><span class="zoom" data-z="${s}" role="button" tabindex="0">크게</span></button>`;
   }).join("");
   app.innerHTML = "";
   app.append($(`${head}<h2>${esc(q.q)}을 누르세요</h2>
     <div class="what"><p>${esc(q.what)}</p><span class="src">${esc(q.field)}${q.verse ? " · " + esc(q.verse) : ""}</span></div>
-    ${canon}<p class="hint">이 항목이 틀린 시드만 누르세요. 기본은 모두 맞음이고, ${sc.s.edited.length ? "편집본" : "바탕"}을 보여 줍니다.</p>
+    ${q.lab ? `<p class="hint"><b>${esc(q.lab)}</b> — 같은 질문을 다른 묶음 그림 8장으로 한 번 더 묻습니다.</p>` : ""}${canon}<p class="hint">이 항목이 틀린 시드만 누르세요. 기본은 모두 맞음이고, ${sc.s.edited.length ? "편집본" : "바탕"}을 보여 줍니다.</p>
     <div class="grid${q.kind === "full" ? " full" : ""}">${cards}</div>
     <label class="row"><input type="checkbox" id="unsure" ${it.unsure ? "checked" : ""}> 모르겠음</label>
     <input type="text" id="memo" placeholder="한 줄 메모(선택)" value="${esc(it.memo)}">`));
   app.querySelectorAll(".card").forEach((c) => c.addEventListener("click", (ev) => {
     const s = +c.dataset.s;
-    if (ev.target.dataset.z) return zoom(sc.s.id, s);
+    if (ev.target.dataset.z) return zoom(sc.s.id, s, ims(q));
     it.wrong = it.wrong.includes(s) ? it.wrong.filter((x) => x !== s) : [...it.wrong, s].sort((a, b) => a - b);
     c.classList.toggle("on"); save();
   }));
@@ -241,7 +292,7 @@ function render() {
   document.getElementById("memo").oninput = (e) => { it.memo = e.target.value; save(); };
   save(); window.scrollTo(0, 0);
 }
-function wrongCount(sid, s) { return Object.values(A(sid).items).filter((v) => v.wrong.includes(s)).length; }
+function wrongCount(sid, s) { return Object.entries(A(sid).items).filter(([k, v]) => !k.startsWith("plate:") && v.wrong.includes(s)).length; }
 function renderPick(app, sc, head) {
   const sid = sc.s.id, ed = sc.s.edited.length > 0, seeds = [...sc.s.seeds].sort((a, b) => wrongCount(sid, a) - wrongCount(sid, b));
   const cur = A(sid).pick;
@@ -272,8 +323,10 @@ function verdict() {
   SCENES.forEach((s) => {
     const a = A(s.id), t = st.sceneT[s.id] || {};
     const items = {};
-    s.qs.forEach((q) => { items[q.id] = item(s.id, q.id); });
+    const plate = {};
+    s.qs.forEach((q) => { (q.grp === "plate" ? plate : items)[q.id] = item(s.id, ik(q)); });
     out.scenes[s.id] = { minutes: t.start && t.end ? +((t.end - t.start) / 60000).toFixed(2) : null, items, pick: a.pick };
+    if (Object.keys(plate).length) out.scenes[s.id].plate_items = plate;
   });
   return out;
 }
@@ -295,14 +348,14 @@ function renderEnd(app) {
       .catch(() => { ta.focus(); ta.select(); document.getElementById("ok").textContent = "자동 복사가 막혀 글을 선택해 두었습니다. 직접 복사하세요."; });
   };
 }
-function zoom(sid, s) {
+function zoom(sid, s, g) {
   const ov = document.getElementById("ov");
   let base = false;
-  const ed = !!IMGS[`${sid}:${s}:b`];   // 후보 편집이 없으면(task 369) 「:e」 자리가 바탕이고 전환이 없다
+  const ed = g !== "p" && !!IMGS[`${sid}:${s}:b`];   // 후보 편집이 없으면(task 369) 「:e」 자리가 바탕이고 전환이 없다
   const draw = () => {
     ov.innerHTML = `<div class="row" style="justify-content:space-between"><b>s${s} · ${base || !ed ? "바탕" : "편집본"}</b>
       <span class="row">${ed ? `<button class="b" id="flip" type="button">${base ? "편집본 보기" : "바탕 보기"}</button>` : ""}<button class="b main" id="close" type="button">닫기</button></span></div>
-      <img src="${IMGS[`${sid}:${s}:${base ? "b" : "e"}`]}" alt="s${s}">`;
+      <img src="${IMGS[`${sid}:${s}:${base ? "b" : g || "e"}`]}" alt="s${s}">`;
     if (ed) document.getElementById("flip").onclick = () => { base = !base; draw(); };
     document.getElementById("close").onclick = () => { ov.hidden = true; };
   };

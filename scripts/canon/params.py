@@ -268,3 +268,12 @@ NIGHT_HUMAN_MINUTES = 15     # 참고 문턱(사람 소요 분) — 결론 규�
 WHOLE_FIX_SCENES = {"authored-saul-gilgal-amalek": ["saul"],      # 값 = 고른 장 편집 인물(368 NIGHT_SCENES와 같음)
                     "authored-samuel-ramah-death": ["david"]}
 WHOLE_FIX_SEEDS = REF_EDIT_SEEDS
+# task#370(2026-10-19): 판 경로 5장면에 한 장 모드 칸 저작 → 칸 묶음(whole_prompt) + 판 묶음(plate_whole_prompt, 대조) 같은 8시드.
+# 값 = 고른 장 편집 인물(편집 정체성 서술 REF_EDIT_LIGHTNING_LOOK_IDENTITY가 있는 사울·다윗만, 계획 결정 5). 실행 전 고정(notes/WHOLE-WIDE.md).
+WHOLE_WIDE_SCENES = {"authored-david-gibeah-harp": ["saul"],
+                     "authored-david-nob-priests": ["david"],
+                     "authored-david-gath-achish": ["david"],
+                     "authored-saul-jabesh-rescue": ["saul"],
+                     "authored-saul-nob-massacre": ["saul"]}
+WHOLE_WIDE_SEEDS = REF_EDIT_SEEDS
+WHOLE_WIDE_SHUFFLE_SEED = 370   # 장면마다 판 묶음이 「가」인지 「나」인지 섞기(대응은 metrics plate.label)

@@ -13,6 +13,9 @@ task#369 — `--set whole-fix`: 장면 집합 WHOLE_FIX_SCENES, 바탕 문구 de
   $VENV batch/run_night.py edit-pick <장면> --set whole-fix     # 고른 바탕 한 장에만 편집 → 끝에 편집 확인 페이지
   python3 batch/run_night.py record --set whole-fix <확인.txt>   # 확인 페이지 「판정 문장」 → metrics confirm + 명세 approved.final
 
+task#370 — `--set whole-wide`: 장면 WHOLE_WIDE_SCENES, 칸 묶음 whole_prompt(base/) + 판 묶음 plate_whole_prompt(plate/, 같은 시드, 대조),
+후보 편집 끔, 산출 ~/.local/biblemap-imggen/whole-wide/·samples/whole-wide/metrics.json(판 묶음은 장면마다 `plate`). 명령은 위와 같다.
+
 편집 실행·되붙임·조작 확인은 gen_ref_edit_lightning·gen_ref_edit_2511 그대로(360·361 재현값 무변경), 몸·머리 상자만 장면 명세에서 일반화.
 생성 프로세스는 한 번에 하나(시작 전 pgrep). 산출은 레포 밖 ~/.local/biblemap-imggen/night-pilot/<장면>/{base,edit}/,
 목록은 samples/night-pilot/metrics.json(params.NIGHT_*, notes/NIGHT-PILOT.md 고정 절)."""
@@ -33,7 +36,9 @@ import run_scene
 SETS = {"night": {"scenes": params.NIGHT_SCENES, "seeds": params.NIGHT_SEEDS, "dir": "night-pilot", "task": 368,
                   "prompt": D.plate_whole_prompt, "edit": True},
         "whole-fix": {"scenes": params.WHOLE_FIX_SCENES, "seeds": params.WHOLE_FIX_SEEDS, "dir": "whole-fix", "task": 369,
-                      "prompt": D.whole_prompt, "edit": False}}
+                      "prompt": D.whole_prompt, "edit": False},
+        "whole-wide": {"scenes": params.WHOLE_WIDE_SCENES, "seeds": params.WHOLE_WIDE_SEEDS, "dir": "whole-wide", "task": 370,
+                       "prompt": D.whole_prompt, "edit": False, "plate": D.plate_whole_prompt}}
 SET = "--set" in sys.argv and sys.argv[sys.argv.index("--set") + 1] or "night"
 ARGV = [a for i, a in enumerate(sys.argv) if a != "--set" and sys.argv[i - 1] != "--set"]   # 위치 인자(--set 값 뺌)
 CFG = SETS[SET]
@@ -46,6 +51,10 @@ LIVE = {}
 
 def base_path(sid, s):
     return os.path.join(OUT, sid, "base", f"s{s}.png")
+
+
+def plate_path(sid, s):
+    return os.path.join(OUT, sid, "plate", f"s{s}.png")
 
 
 def edit_path(sid, s, who, last):
@@ -193,7 +202,29 @@ def night_scene(m, sid, seeds):
             save_m(m)
     order = {s: i for i, s in enumerate(CFG["seeds"])}
     sc["seeds"].sort(key=lambda x: order.get(x["seed"], 99))
+    if CFG.get("plate"):
+        plate_scene(m, sc, sid, spec, seeds)
+        sc["plate"]["seeds"].sort(key=lambda x: order.get(x["seed"], 99))
     save_m(m)
+
+
+def plate_scene(m, sc, sid, spec, seeds):
+    """task#370 — 판 묶음(대조): 같은 시드로 판 문구 바탕만. 편집·고르기 없음, 처치 칸 문항에만 쓰인다."""
+    import make_night_page
+    pl = sc.setdefault("plate", {"seeds": [], "sec": 0.0})
+    pl["prompt"], pl["label"] = CFG["plate"](spec), make_night_page.plate_label(sid)
+    todo = [{"prompt": pl["prompt"], "seed": s, "w": G.W, "h": G.H, "out": plate_path(sid, s)}
+            for s in seeds if not os.path.exists(plate_path(sid, s))]
+    print(f"[Night] {sid} 판 묶음 {len(seeds)}장 중 {len(todo)}장 생성", flush=True)
+    if todo:
+        os.makedirs(os.path.join(OUT, sid, "plate"), exist_ok=True)
+        pl["sec"] = round(pl["sec"] + sum(run_scene.gen_zimage(todo, os.path.join(OUT, sid, "plate"))), 1)
+        save_m(m)
+    have = {x["seed"] for x in pl["seeds"]}
+    for s in seeds:
+        if s not in have:
+            pl["seeds"].append({"seed": s, "base": plate_path(sid, s), "edits": {}, "boxes": boxes(spec, plate_path(sid, s))})
+            save_m(m)
 
 
 def page():
@@ -241,6 +272,8 @@ def record(m, path):
         if p["seed"] is not None:
             p["image"] = base_path(sid, p["seed"]) if p["kind"] == "base" else edit_path(sid, p["seed"], sc["who"][-1], True)
         sc.update(items=a["items"], pick=p, human_minutes=a.get("minutes"))
+        if "plate_items" in a:   # task 370: 판 묶음(대조) 처치 칸 답
+            sc["plate"]["items"] = a["plate_items"]
     save_m(m)
 
 

@@ -39,7 +39,7 @@ def main(metrics, task):
     m = json.load(open(metrics))
     scenes, data = build(m)
     page = PAGE.replace("/*SCENES*/[]", json.dumps(scenes, ensure_ascii=False)).replace("/*IMGS*/{}", json.dumps(data)).replace("/*TASK*/0", str(task))
-    dst = os.path.join(PAGES, "whole-fix-confirm.html")
+    dst = os.path.join(PAGES, {370: "whole-wide-confirm.html"}.get(task, "whole-fix-confirm.html"))   # 369 이름 그대로
     os.makedirs(PAGES, exist_ok=True)
     open(dst, "w", encoding="utf-8").write(page)
     print(f"[ConfirmPage] {dst} {len(page) / 1e6:.2f}MB · 장면 {len(scenes)}", flush=True)

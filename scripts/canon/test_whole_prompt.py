@@ -85,5 +85,40 @@ class GazeObject(unittest.TestCase):
         self.assertTrue(ds.check_whole(spec))
 
 
+
+class WideQuestions(unittest.TestCase):
+    """task 370 — 방향 문항은 「누구와 마주 보는가(얼굴·상체)」, 판 묶음(대조)은 처치 칸 문항만 같은 문구로 잇달아."""
+
+    def test_facing_from_gaze(self):
+        import make_night_page as P
+        spec = ds.load("authored-david-gath-achish")
+        david, achish = spec["figures"]
+        self.assertEqual(P.facing_q(achish), ("아기스가 누구와 마주 보는가(얼굴·상체)가 틀린 그림", "다윗과 마주 봄 · 화면 왼쪽을 향함"))
+        self.assertEqual(P.facing_q(david)[1], david["gaze"]["ko"])   # 문구 객체면 그 ko
+        self.assertEqual(P.josa("나하스", ("과", "와")), "나하스와")
+
+    def test_pair_plate_only_treatment_and_label(self):
+        import make_night_page as P
+        ids = ["moment", "background[0]", "figures[0].identity", "figures[0].pose", "figures[0].prop", "figures[0].facing", "guard"]
+        qs, pqs = [{"id": i} for i in ids], [{"id": i, "p": 1} for i in ids if P.treat(i)]
+        for label in ("가", "나"):
+            out = P.pair_plate(qs, pqs, label)
+            self.assertEqual(len(out), len(ids) + 3)
+            plate = [i for i, q in enumerate(out) if q.get("grp") == "plate"]
+            self.assertEqual([out[i]["id"] for i in plate], ["moment", "figures[0].pose", "figures[0].facing"])
+            for i in plate:   # 같은 문항의 칸 묶음 화면과 바로 붙고, 「가」가 먼저
+                j = i + 1 if label == "가" else i - 1
+                self.assertEqual((out[j]["id"], out[j]["grp"]), (out[i]["id"], "whole"))
+                self.assertEqual(out[i]["lab"], f"묶음 {label}")
+                self.assertEqual(out[min(i, j)]["lab"], "묶음 가")
+
+    def test_plate_label_fixed_per_scene(self):
+        import make_night_page as P
+        import params
+        labels = {s: P.plate_label(s) for s in params.WHOLE_WIDE_SCENES}
+        self.assertEqual(labels, {s: P.plate_label(s) for s in params.WHOLE_WIDE_SCENES})
+        self.assertLessEqual(set(labels.values()), {"가", "나"})
+
+
 if __name__ == "__main__":
     unittest.main()

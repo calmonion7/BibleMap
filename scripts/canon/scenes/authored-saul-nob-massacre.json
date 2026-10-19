@@ -13,6 +13,21 @@
     "verse": "22:18 전반",
     "why": "사울의 명을 받은 도엑이 칼을 뽑아 쥐고 제사장들 쪽으로 돌아서는 순간 — 실제로 치는 동작·유혈은 그리지 않는다(사용자 지시). 아히멜렉은 아직 살아 두려워 떠는 자세."
   },
+  "meaning": {
+    "ko": "사울이 명하자 도엑이 칼을 뽑아 들고 제사장 쪽으로 돌아선다 — 치는 동작·피는 없다",
+    "en": "The king commands, and the herdsman turns toward the priest with a drawn sword, with no blow struck and no blood",
+    "verse": "삼상 22:18 전반"
+  },
+  "relation": {
+    "ko": "사울의 든 손이 도엑에게 명하고, 도엑은 칼을 뽑아 든 채 제사장 쪽으로 돌아선다 — 아무도 치지 않고 피도 없다",
+    "en": "the king's raised hand commands the herdsman, who turns toward the priest with his drawn sword, no one struck, no blood",
+    "verse": "삼상 22:18 「너는 돌이켜 제사장들을 죽이라」 · 치지 않음은 사용자 지시"
+  },
+  "whole_background": {
+    "ko": "놉 성막 앞 마른 뜰 — 낮은 돌담",
+    "en": "a small dry courtyard before a tent shrine, a low stone wall",
+    "verse": "삼상 22:11·19 「놉」 · 뜰 모습 본문 밖 · 저작자 정함"
+  },
   "background": [
     {
       "what": "놉 성막 앞뜰",
@@ -28,7 +43,24 @@
       "prop": "a spear",
       "facing": "right",
       "region": "saul",
-      "verse": "22:18"
+      "verse": "22:18",
+      "expression": {
+        "ko": "노한 얼굴",
+        "en": "an angry face",
+        "verse": "삼상 22:17-18 · 표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "창을 곧게 쥐고 한 팔을 들어 명령한다",
+        "en": "gripping a spear upright, one arm raised in command",
+        "verse": "삼상 22:18 「왕이 도엑에게 이르되」 · 팔 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "짙은 갈색 양모 튜닉과 수수한 가죽 띠, 관 없음",
+        "en": "a dark brown wool tunic with a plain leather belt, no crown",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+      },
+      "gaze": "doeg",
+      "screen_facing": "right"
     },
     {
       "cast": "doeg",
@@ -37,7 +69,24 @@
       "prop": "a sword",
       "facing": "right",
       "region": "doeg",
-      "verse": "22:18"
+      "verse": "22:18",
+      "expression": {
+        "ko": "무표정한 얼굴",
+        "en": "a blank, cold face",
+        "verse": "삼상 22:18 · 표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "뽑은 칼을 쥐고 왕에게서 제사장 쪽으로 돌아선다",
+        "en": "gripping a drawn sword, turning from the king toward the priest",
+        "verse": "삼상 22:18 「도엑이 돌이켜」 · 칼 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "물들이지 않은 거친 회갈색 양모 목자 튜닉",
+        "en": "an undyed rough gray-brown wool herdsman's tunic",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+      },
+      "gaze": "ahimelech",
+      "screen_facing": "right"
     },
     {
       "cast": "ahimelech",
@@ -46,7 +95,24 @@
       "prop": "the hem of his ephod",
       "facing": "left",
       "region": "ahimelech",
-      "verse": "22:12-14"
+      "verse": "22:12-14",
+      "expression": {
+        "ko": "두려운 얼굴",
+        "en": "a frightened face",
+        "verse": "삼상 22:12-14 · 표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "두 손으로 에봇 자락을 움켜쥐고 선다",
+        "en": "standing, both hands gripping the hem of his ephod",
+        "verse": "삼상 22:18 「에봇」 · 손 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "옅은 겉옷 위에 흰 세마포 에봇",
+        "en": "a white linen ephod over a pale robe",
+        "verse": "삼상 22:18 「세마포 에봇 입은 자」 · 겉옷 색 본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+      },
+      "gaze": "doeg",
+      "screen_facing": "left"
     }
   ],
   "regions": {
@@ -163,6 +229,16 @@
         0.7,
         0.98
       ]
+    }
+  },
+  "approved": {
+    "final": {
+      "path": "night-pick",
+      "seed": 303,
+      "kind": "base",
+      "image": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/base/s303.png",
+      "by": "user",
+      "on": "2026-10-19"
     }
   }
 }
