@@ -44,5 +44,18 @@ class ConfirmPick(unittest.TestCase):
             approve.confirm_pick(spec(), 5, "둘 다", "/b.png", "/e.png", "user")
 
 
+
+class PageNames(unittest.TestCase):
+    """task 370 회고 eval — 집합(과제)마다 고르기·확인 페이지 파일 이름이 겹치지 않는다(이전 과제 페이지 덮어쓰기 방지)."""
+
+    def test_confirm_and_pick_names_unique(self):
+        import make_confirm_page as C
+        import make_night_page as P
+        self.assertLessEqual(set(C.CONFIRM_DST), set(P.DST))   # 확인 페이지가 있는 과제는 고르기 페이지도 있다
+        names = list(P.DST.values()) + list(C.CONFIRM_DST.values())
+        self.assertEqual(len(names), len(set(names)))
+        self.assertEqual(C.CONFIRM_DST[369], "whole-fix-confirm.html")   # 369 재현 이름 그대로
+
+
 if __name__ == "__main__":
     unittest.main()

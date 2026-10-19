@@ -13,6 +13,8 @@ from make_night_page import NAME, fit, uri
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PAGES = os.path.expanduser("~/.local/biblemap-imggen/pages")
+# 과제마다 확인 페이지 파일 이름(task 370 회고 eval: 고정 이름이 369 페이지를 덮어쓸 뻔했다)
+CONFIRM_DST = {369: "whole-fix-confirm.html", 370: "whole-wide-confirm.html"}
 
 
 def build(m):
@@ -39,7 +41,7 @@ def main(metrics, task):
     m = json.load(open(metrics))
     scenes, data = build(m)
     page = PAGE.replace("/*SCENES*/[]", json.dumps(scenes, ensure_ascii=False)).replace("/*IMGS*/{}", json.dumps(data)).replace("/*TASK*/0", str(task))
-    dst = os.path.join(PAGES, {370: "whole-wide-confirm.html"}.get(task, "whole-fix-confirm.html"))   # 369 이름 그대로
+    dst = os.path.join(PAGES, CONFIRM_DST[task])   # 등록 안 된 과제는 KeyError — 이전 과제 페이지를 조용히 덮어쓰지 않게
     os.makedirs(PAGES, exist_ok=True)
     open(dst, "w", encoding="utf-8").write(page)
     print(f"[ConfirmPage] {dst} {len(page) / 1e6:.2f}MB · 장면 {len(scenes)}", flush=True)
