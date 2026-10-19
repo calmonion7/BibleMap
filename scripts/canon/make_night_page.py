@@ -16,17 +16,20 @@ import derive_scene as D
 HERE = os.path.dirname(os.path.abspath(__file__))
 METRICS = os.path.join(HERE, "samples", "night-pilot", "metrics.json")
 PAGES = os.path.expanduser("~/.local/biblemap-imggen/pages")
-DST = {368: "night-pick.html", 369: "whole-fix-pick.html", 370: "whole-wide-pick.html", 372: "jabesh-crowd-pick.html"}
+DST = {368: "night-pick.html", 369: "whole-fix-pick.html", 370: "whole-wide-pick.html", 372: "jabesh-crowd-pick.html", 373: "plate-rest-pick.html"}
 # 고르기 화면 덧말(과제별) — task 372: 암몬 무리는 다음 단계 편집 대상이라 「무리 말고 다 맞는 바탕」을 고른다(계획 결정 6)
 PICK_NOTE = {372: "암몬 무리(crowds[1])는 다음 단계에서 고른 장에만 편집합니다. 암몬 무리 말고 다 맞는 바탕을 고르세요."}
 LIMIT = 15.5e6
 PROP_KO = {"a spear": "창", "a small harp": "작은 수금", "a robe corner": "겉옷자락", "a plain traveling cloak": "수수한 나그네 겉옷",
            "a torn robe corner": "찢어진 겉옷자락", "a wooden staff": "나무 지팡이", "a sword": "칼",
            "a cloth-wrapped sword": "보자기에 싼 칼", "a wooden gate post": "나무 성문 기둥", "a fold of his robe": "겉옷 자락",
-           "a siege spear": "공성 창", "the hem of his ephod": "에봇 자락"}
+           "a siege spear": "공성 창", "the hem of his ephod": "에봇 자락",
+           "a horn of oil": "기름 뿔", "a shepherd's staff": "목자 지팡이", "a disguise cloak": "변장 겉옷", "a shawl fold": "숄 자락"}
 FACING_KO = {"left": "화면 왼쪽을 향한다", "right": "화면 오른쪽을 향한다"}
 NAME = {"saul": "사울", "david": "다윗", "samuel": "사무엘", "david-boy": "소년 다윗", "ahimelech": "아히멜렉", "achish": "아기스",
-        "nahash": "나하스", "doeg": "도엑"}
+        "nahash": "나하스", "doeg": "도엑", "abner": "아브넬", "joab": "요압", "nathan": "나단", "jesse": "이새",
+        "saul-old": "노년 사울", "endor-medium": "엔돌 여인", "saul-armor-bearer": "무기 든 자"}
+FACING370 = {370, 373}   # 방향 문항을 「누구와 마주 보는가」로 묻는 과제(373: 한 장 모드 칸이 없어 설명은 판 facing과 앞쪽 인물에서)
 # task 370(whole-wide): 방향 문항은 사람이 본 축 「누구와 마주 보는가(얼굴·상체)」로, 설명은 한 장 모드 gaze에서(계획 결정 4)
 SCREEN_KO = {"right": "화면 오른쪽을 향함", "left": "화면 왼쪽을 향함", "viewer": "화면 앞을 향함", "away": "등을 보임"}
 TREAT = ("moment", ".pose", ".facing")   # 처치 칸 — 판 묶음(대조)은 이 문항만 묻는다
@@ -67,9 +70,15 @@ def plate_label(sid):
     return random.Random(f"{params.WHOLE_WIDE_SHUFFLE_SEED}:{sid}").choice(["가", "나"])
 
 
-def facing_q(f):
-    """→ (질문, 설명) — 한 장 모드 gaze가 대상 인물이면 「{대상}과 마주 봄 · 화면 방향」, 문구 객체면 그 ko."""
-    nm, g = NAME.get(f["cast"], f["cast"]), f["gaze"]
+def facing_q(f, spec=None):
+    """→ (질문, 설명) — 한 장 모드 gaze가 대상 인물이면 「{대상}과 마주 봄 · 화면 방향」, 문구 객체면 그 ko.
+    gaze가 없는 판 경로 장면(task 373)은 판 facing + 그 방향 앞쪽에 선 인물."""
+    nm, g = NAME.get(f["cast"], f["cast"]), f.get("gaze")
+    if g is None:
+        cx = lambda h: sum(spec["regions"][h["region"]][0::2]) / 2
+        ahead = [NAME.get(h["cast"], h["cast"]) for h in spec["figures"] if h is not f and (cx(h) > cx(f)) == (f["facing"] == "right")]
+        return (f"{josa(nm, ('이', '가'))} 누구와 마주 보는가(얼굴·상체)가 틀린 그림",
+                FACING_KO[f["facing"]] + (f" — {'·'.join(ahead)} 쪽" if ahead else ""))
     what = g["ko"] if isinstance(g, dict) else f"{josa(NAME.get(g, g), ('과', '와'))} 마주 봄 · {SCREEN_KO[f['screen_facing']]}"
     return f"{josa(nm, ('이', '가'))} 누구와 마주 보는가(얼굴·상체)가 틀린 그림", what
 
@@ -110,7 +119,7 @@ def questions(spec, sc, wide=False):
                    "what": f["pose"], "verse": f["verse"], **crop})
         qs.append({"id": f"figures[{i}].prop", "field": f"figures[{i}].prop", "who": who, "q": f"{nm}의 지물이 틀린 그림",
                    "what": f"{PROP_KO[f['prop']]} ({f['prop']})", "verse": f["verse"], **crop})
-        fq, fw = facing_q(f) if wide else (f"{nm}의 방향이 틀린 그림", f"{FACING_KO[f['facing']]} ({f['facing']})")
+        fq, fw = facing_q(f, spec) if wide else (f"{nm}의 방향이 틀린 그림", f"{FACING_KO[f['facing']]} ({f['facing']})")
         qs.append({"id": f"figures[{i}].facing", "field": f"figures[{i}].facing", "who": who, "q": fq,
                    "what": fw, "verse": f["verse"], **crop})
     qs.append({"id": "guard", "field": "가드", "q": "그 밖에 깨진 곳이 있는 그림", "what": GUARD, "verse": "", **full()})
@@ -132,7 +141,7 @@ def build(m, q, sids, task=None):
             if edited:
                 data[k + ":b"] = uri(Image.open(x["base"]), 800, q - 6)
         wide = "plate" in sc   # task 370: 판 묶음(대조) — 처치 칸 문항만 같은 문구로 잇달아
-        qs = questions(spec, {**sc, "seeds": seeds}, wide)
+        qs = questions(spec, {**sc, "seeds": seeds}, wide or task in FACING370)
         if wide:
             for x in sc["plate"]["seeds"]:
                 data[f"{sid}:{x['seed']}:p"] = uri(Image.open(x["base"]), 1216, q)

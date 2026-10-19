@@ -287,3 +287,17 @@ LOCAL_EDIT_SHUFFLE_SEED = 371         # 판정 페이지 후보 번호 섞기(�
 # 고른 바탕에만 무리 국소 편집(gen_local_edit 조리법) · 사울 정본 편집(같은 사람 틀릴 때만). 실행 전 고정(notes/JABESH-CROWD.md).
 JABESH_CROWD_SCENES = {"authored-saul-jabesh-rescue": ["saul"]}
 JABESH_CROWD_SEEDS = REF_EDIT_SEEDS
+# task#373(2026-10-20): 남은 판 경로 11장면(사울·다윗·사무엘, 칸 없음·세트 밖·미승인) → 판 문구(plate_whole_prompt) 바탕 8장씩, 후보 편집 끔, 대조 없음.
+# 값 = 고른 장 편집 인물(편집 정체성 서술 REF_EDIT_LIGHTNING_LOOK_IDENTITY가 있는 saul·david만 — 노년 사울·소년 다윗은 빈 목록). 실행 전 고정(notes/PLATE-REST.md).
+PLATE_REST_SCENES = {"authored-david-ark-jerusalem": ["david"],
+                     "authored-david-gibeon-battle": [],
+                     "authored-david-hebron-king-judah": ["david"],
+                     "authored-david-jerusalem-conquest": ["david"],
+                     "authored-david-mahanaim-exile": ["david"],
+                     "authored-david-nathan-covenant": ["david"],
+                     "authored-david-returns-jerusalem": ["david"],
+                     "authored-david-ziklag-base": ["david"],
+                     "authored-samuel-bethlehem-david-anointing": [],
+                     "authored-saul-endor-medium": [],
+                     "authored-saul-gilboa-death": []}
+PLATE_REST_SEEDS = REF_EDIT_SEEDS

@@ -97,6 +97,13 @@ class WideQuestions(unittest.TestCase):
         self.assertEqual(P.facing_q(david)[1], david["gaze"]["ko"])   # 문구 객체면 그 ko
         self.assertEqual(P.josa("나하스", ("과", "와")), "나하스와")
 
+    def test_facing_without_gaze(self):   # task 373 — 한 장 모드 칸이 없는 판 경로 장면: 판 facing + 그 방향 앞쪽 인물
+        import make_night_page as P
+        spec = ds.load("authored-david-nathan-covenant")
+        nathan, david = spec["figures"]
+        self.assertNotIn("gaze", nathan)
+        self.assertEqual(P.facing_q(nathan, spec), ("나단이 누구와 마주 보는가(얼굴·상체)가 틀린 그림", "화면 왼쪽을 향한다 — 다윗 쪽"))
+
     def test_pair_plate_only_treatment_and_label(self):
         import make_night_page as P
         ids = ["moment", "background[0]", "figures[0].identity", "figures[0].pose", "figures[0].prop", "figures[0].facing", "guard"]

@@ -18,6 +18,8 @@ task#370 — `--set whole-wide`: 장면 WHOLE_WIDE_SCENES, 칸 묶음 whole_prom
 
 task#372 — `--set jabesh-crowd`: 야베스 구원 한 장면(무리 구도로 다시 쓴 명세), whole_prompt 바탕 8장, 후보 편집 끔. 고른 장의 무리 편집은 gen_local_edit 조리법(고른 장의 crowds[1]이 맞으면 건너뜀).
 
+task#373 — `--set plate-rest`: 남은 판 경로 11장면, 판 문구(plate_whole_prompt) 바탕 8장씩, 후보 편집 끔, 대조 없음. 고른 장 편집은 다윗 장면만.
+
 편집 실행·되붙임·조작 확인은 gen_ref_edit_lightning·gen_ref_edit_2511 그대로(360·361 재현값 무변경), 몸·머리 상자만 장면 명세에서 일반화.
 생성 프로세스는 한 번에 하나(시작 전 pgrep). 산출은 레포 밖 ~/.local/biblemap-imggen/night-pilot/<장면>/{base,edit}/,
 목록은 samples/night-pilot/metrics.json(params.NIGHT_*, notes/NIGHT-PILOT.md 고정 절)."""
@@ -42,7 +44,9 @@ SETS = {"night": {"scenes": params.NIGHT_SCENES, "seeds": params.NIGHT_SEEDS, "d
         "whole-wide": {"scenes": params.WHOLE_WIDE_SCENES, "seeds": params.WHOLE_WIDE_SEEDS, "dir": "whole-wide", "task": 370,
                        "prompt": D.whole_prompt, "edit": False, "plate": D.plate_whole_prompt},
         "jabesh-crowd": {"scenes": params.JABESH_CROWD_SCENES, "seeds": params.JABESH_CROWD_SEEDS, "dir": "jabesh-crowd", "task": 372,
-                         "prompt": D.whole_prompt, "edit": False}}
+                         "prompt": D.whole_prompt, "edit": False},
+        "plate-rest": {"scenes": params.PLATE_REST_SCENES, "seeds": params.PLATE_REST_SEEDS, "dir": "plate-rest", "task": 373,
+                       "prompt": D.plate_whole_prompt, "edit": False}}
 SET = "--set" in sys.argv and sys.argv[sys.argv.index("--set") + 1] or "night"
 ARGV = [a for i, a in enumerate(sys.argv) if a != "--set" and sys.argv[i - 1] != "--set"]   # 위치 인자(--set 값 뺌)
 CFG = SETS[SET]

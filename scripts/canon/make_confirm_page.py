@@ -14,7 +14,7 @@ from make_night_page import NAME, fit, uri
 HERE = os.path.dirname(os.path.abspath(__file__))
 PAGES = os.path.expanduser("~/.local/biblemap-imggen/pages")
 # 과제마다 확인 페이지 파일 이름(task 370 회고 eval: 고정 이름이 369 페이지를 덮어쓸 뻔했다)
-CONFIRM_DST = {369: "whole-fix-confirm.html", 370: "whole-wide-confirm.html"}
+CONFIRM_DST = {369: "whole-fix-confirm.html", 370: "whole-wide-confirm.html", 373: "plate-rest-confirm.html"}
 
 
 def build(m):

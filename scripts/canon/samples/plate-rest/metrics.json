@@ -1,0 +1,3186 @@
+{
+ "scenes": {
+  "authored-david-ark-jerusalem": {
+   "who": [
+    "david"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-ark-jerusalem/base/s11.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        259,
+        206,
+        315,
+        259
+       ],
+       "head_src": "owl",
+       "body": [
+        205,
+        153,
+        340,
+        488
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-ark-jerusalem/base/s42.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        231,
+        136,
+        300,
+        193
+       ],
+       "head_src": "owl",
+       "body": [
+        150,
+        80,
+        320,
+        495
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-ark-jerusalem/base/s7.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        280,
+        231,
+        328,
+        280
+       ],
+       "head_src": "owl",
+       "body": [
+        226,
+        183,
+        349,
+        497
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-ark-jerusalem/base/s23.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        282,
+        232,
+        342,
+        274
+       ],
+       "head_src": "owl",
+       "body": [
+        233,
+        190,
+        357,
+        485
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-ark-jerusalem/base/s5.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        327,
+        219,
+        370,
+        269
+       ],
+       "head_src": "owl",
+       "body": [
+        258,
+        170,
+        384,
+        492
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-ark-jerusalem/base/s101.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        238,
+        269,
+        279,
+        311
+       ],
+       "head_src": "owl",
+       "body": [
+        188,
+        228,
+        302,
+        516
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-ark-jerusalem/base/s202.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        289,
+        180,
+        348,
+        233
+       ],
+       "head_src": "owl",
+       "body": [
+        230,
+        127,
+        366,
+        466
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-ark-jerusalem/base/s303.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        245,
+        258,
+        282,
+        298
+       ],
+       "head_src": "owl",
+       "body": [
+        204,
+        218,
+        301,
+        487
+       ],
+       "body_src": "owl"
+      }
+     }
+    }
+   ],
+   "sec": {
+    "base": 483.5,
+    "edit": 0.0
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry sloping road up a hillside toward a distant city, pale sky, sparse dry grass. many tiny distant people singing and following along a road, small silhouettes, tiny far away crowd. On the left: an ancient Israelite lean young man walking, one arm raised high, the other hand gripping a sword hilt at his side, wearing a plain linen ephod, facing right."
+  },
+  "authored-david-gibeon-battle": {
+   "who": [],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-gibeon-battle/base/s11.png",
+     "edits": {},
+     "boxes": {
+      "abner": {
+       "head": [
+        161,
+        217,
+        203,
+        261
+       ],
+       "head_src": "owl",
+       "body": [
+        96,
+        150,
+        276,
+        576
+       ],
+       "body_src": "owl"
+      },
+      "joab": {
+       "head": [
+        843,
+        269,
+        883,
+        309
+       ],
+       "head_src": "region",
+       "body": [
+        813,
+        269,
+        913,
+        509
+       ],
+       "body_src": "fallback"
+      }
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-gibeon-battle/base/s42.png",
+     "edits": {},
+     "boxes": {
+      "abner": {
+       "head": [
+        175,
+        231,
+        217,
+        290
+       ],
+       "head_src": "owl",
+       "body": [
+        112,
+        163,
+        303,
+        601
+       ],
+       "body_src": "owl"
+      },
+      "joab": {
+       "head": [
+        1017,
+        227,
+        1055,
+        281
+       ],
+       "head_src": "owl",
+       "body": [
+        995,
+        157,
+        1099,
+        593
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-gibeon-battle/base/s7.png",
+     "edits": {},
+     "boxes": {
+      "abner": {
+       "head": [
+        159,
+        204,
+        196,
+        240
+       ],
+       "head_src": "owl",
+       "body": [
+        119,
+        148,
+        303,
+        561
+       ],
+       "body_src": "owl"
+      },
+      "joab": {
+       "head": [
+        1014,
+        184,
+        1088,
+        254
+       ],
+       "head_src": "owl",
+       "body": [
+        991,
+        110,
+        1098,
+        561
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-gibeon-battle/base/s23.png",
+     "edits": {},
+     "boxes": {
+      "abner": {
+       "head": [
+        185,
+        255,
+        223,
+        300
+       ],
+       "head_src": "owl",
+       "body": [
+        124,
+        192,
+        295,
+        607
+       ],
+       "body_src": "owl"
+      },
+      "joab": {
+       "head": [
+        1008,
+        256,
+        1049,
+        289
+       ],
+       "head_src": "owl",
+       "body": [
+        982,
+        198,
+        1085,
+        600
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-gibeon-battle/base/s5.png",
+     "edits": {},
+     "boxes": {
+      "abner": {
+       "head": [
+        333,
+        269,
+        373,
+        309
+       ],
+       "head_src": "region",
+       "body": [
+        303,
+        269,
+        403,
+        509
+       ],
+       "body_src": "fallback"
+      },
+      "joab": {
+       "head": [
+        843,
+        269,
+        883,
+        309
+       ],
+       "head_src": "region",
+       "body": [
+        861,
+        229,
+        870,
+        320
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-gibeon-battle/base/s101.png",
+     "edits": {},
+     "boxes": {
+      "abner": {
+       "head": [
+        202,
+        236,
+        242,
+        277
+       ],
+       "head_src": "owl",
+       "body": [
+        125,
+        172,
+        361,
+        588
+       ],
+       "body_src": "owl"
+      },
+      "joab": {
+       "head": [
+        995,
+        214,
+        1033,
+        262
+       ],
+       "head_src": "owl",
+       "body": [
+        977,
+        156,
+        1087,
+        583
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-gibeon-battle/base/s202.png",
+     "edits": {},
+     "boxes": {
+      "abner": {
+       "head": [
+        333,
+        269,
+        373,
+        309
+       ],
+       "head_src": "region",
+       "body": [
+        303,
+        269,
+        403,
+        509
+       ],
+       "body_src": "fallback"
+      },
+      "joab": {
+       "head": [
+        1013,
+        218,
+        1050,
+        272
+       ],
+       "head_src": "owl",
+       "body": [
+        997,
+        156,
+        1090,
+        574
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-gibeon-battle/base/s303.png",
+     "edits": {},
+     "boxes": {
+      "abner": {
+       "head": [
+        164,
+        199,
+        211,
+        246
+       ],
+       "head_src": "owl",
+       "body": [
+        99,
+        120,
+        294,
+        586
+       ],
+       "body_src": "owl"
+      },
+      "joab": {
+       "head": [
+        1021,
+        178,
+        1062,
+        235
+       ],
+       "head_src": "owl",
+       "body": [
+        1005,
+        103,
+        1105,
+        585
+       ],
+       "body_src": "owl"
+      }
+     }
+    }
+   ],
+   "sec": {
+    "base": 487.1,
+    "edit": 0.0
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry grassy field around a still pool, low dry hills in the distance, empty pale sky. a still rectangular pool of water with a stone rim, calm surface. many tiny distant soldiers standing in loose rows on a low ridge, small silhouettes, tiny far away crowd. many tiny distant soldiers standing in loose rows on a low ridge, small silhouettes, tiny far away crowd. On the left: a sturdy battle-hardened commander standing, gripping one spear upright, one arm extended as if speaking, facing right. On the right: a lean quick commander standing, gripping a sword hilt at his side, facing left."
+  },
+  "authored-david-hebron-king-judah": {
+   "who": [
+    "david"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-hebron-king-judah/base/s11.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        623,
+        381,
+        716,
+        464
+       ],
+       "head_src": "owl",
+       "body": [
+        511,
+        298,
+        681,
+        577
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-hebron-king-judah/base/s42.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        666,
+        403,
+        703,
+        439
+       ],
+       "head_src": "owl",
+       "body": [
+        587,
+        356,
+        740,
+        547
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-hebron-king-judah/base/s7.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        654,
+        397,
+        692,
+        433
+       ],
+       "head_src": "owl",
+       "body": [
+        625,
+        397,
+        721,
+        611
+       ],
+       "body_src": "fallback"
+      }
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-hebron-king-judah/base/s23.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        612,
+        374,
+        694,
+        443
+       ],
+       "head_src": "owl",
+       "body": [
+        518,
+        305,
+        664,
+        553
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-hebron-king-judah/base/s5.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        610,
+        398,
+        662,
+        442
+       ],
+       "head_src": "owl",
+       "body": [
+        522,
+        354,
+        642,
+        559
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-hebron-king-judah/base/s101.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        657,
+        392,
+        706,
+        443
+       ],
+       "head_src": "owl",
+       "body": [
+        564,
+        340,
+        710,
+        567
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-hebron-king-judah/base/s202.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        641,
+        396,
+        685,
+        445
+       ],
+       "head_src": "owl",
+       "body": [
+        535,
+        341,
+        706,
+        569
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-hebron-king-judah/base/s303.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        605,
+        364,
+        686,
+        447
+       ],
+       "head_src": "owl",
+       "body": [
+        501,
+        281,
+        658,
+        574
+       ],
+       "body_src": "owl"
+      }
+     }
+    }
+   ],
+   "sec": {
+    "base": 483.3,
+    "edit": 0.0
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry courtyard of pale packed earth before a city gate, sparse dry grass, empty pale sky, no hills. a thick ancient city gate structure of pale stone, arched entrance. many tiny distant robed elders standing in loose rows, tiny far away crowd, small silhouettes. In the center: an ancient Israelite lean young man kneeling, head bowed, gripping the corner of his robe with one hand, facing right."
+  },
+  "authored-david-jerusalem-conquest": {
+   "who": [
+    "david"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-jerusalem-conquest/base/s11.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        163,
+        276,
+        246,
+        353
+       ],
+       "head_src": "owl",
+       "body": [
+        164,
+        200,
+        243,
+        508
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-jerusalem-conquest/base/s42.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        197,
+        319,
+        242,
+        357
+       ],
+       "head_src": "owl",
+       "body": [
+        178,
+        281,
+        245,
+        478
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-jerusalem-conquest/base/s7.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        178,
+        267,
+        262,
+        342
+       ],
+       "head_src": "owl",
+       "body": [
+        177,
+        193,
+        271,
+        547
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-jerusalem-conquest/base/s23.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        168,
+        323,
+        243,
+        378
+       ],
+       "head_src": "owl",
+       "body": [
+        169,
+        267,
+        258,
+        571
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-jerusalem-conquest/base/s5.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        167,
+        265,
+        253,
+        339
+       ],
+       "head_src": "owl",
+       "body": [
+        170,
+        191,
+        249,
+        485
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-jerusalem-conquest/base/s101.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        164,
+        232,
+        259,
+        324
+       ],
+       "head_src": "owl",
+       "body": [
+        169,
+        140,
+        259,
+        458
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-jerusalem-conquest/base/s202.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        156,
+        275,
+        242,
+        353
+       ],
+       "head_src": "owl",
+       "body": [
+        161,
+        198,
+        239,
+        476
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-jerusalem-conquest/base/s303.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        177,
+        283,
+        254,
+        361
+       ],
+       "head_src": "owl",
+       "body": [
+        181,
+        205,
+        249,
+        474
+       ],
+       "body_src": "owl"
+      }
+     }
+    }
+   ],
+   "sec": {
+    "base": 477.5,
+    "edit": 0.0
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry rocky hillside landscape under a pale sky, sparse dry grass, no buildings. a massive ancient stone city wall on a steep hill, thick fortified stonework. On the left: an ancient Israelite lean young man standing, gripping a sword hilt at his side, facing right."
+  },
+  "authored-david-mahanaim-exile": {
+   "who": [
+    "david"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-mahanaim-exile/base/s11.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        619,
+        252,
+        672,
+        296
+       ],
+       "head_src": "owl",
+       "body": [
+        571,
+        207,
+        688,
+        521
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-mahanaim-exile/base/s42.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        626,
+        247,
+        675,
+        292
+       ],
+       "head_src": "owl",
+       "body": [
+        577,
+        201,
+        685,
+        508
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-mahanaim-exile/base/s7.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        667,
+        219,
+        737,
+        278
+       ],
+       "head_src": "owl",
+       "body": [
+        609,
+        159,
+        739,
+        530
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-mahanaim-exile/base/s23.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        638,
+        240,
+        687,
+        277
+       ],
+       "head_src": "owl",
+       "body": [
+        598,
+        203,
+        700,
+        494
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-mahanaim-exile/base/s5.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        604,
+        197,
+        702,
+        278
+       ],
+       "head_src": "owl",
+       "body": [
+        577,
+        115,
+        692,
+        508
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-mahanaim-exile/base/s101.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        639,
+        215,
+        743,
+        299
+       ],
+       "head_src": "owl",
+       "body": [
+        601,
+        132,
+        722,
+        522
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-mahanaim-exile/base/s202.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        628,
+        203,
+        687,
+        251
+       ],
+       "head_src": "owl",
+       "body": [
+        549,
+        156,
+        705,
+        520
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-mahanaim-exile/base/s303.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        632,
+        244,
+        681,
+        284
+       ],
+       "head_src": "owl",
+       "body": [
+        572,
+        205,
+        696,
+        497
+       ],
+       "body_src": "owl"
+      }
+     }
+    }
+   ],
+   "sec": {
+    "base": 477.2,
+    "edit": 0.0
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry rocky road climbing toward a distant hilltop town, sparse dry grass, empty pale sky. In the center: an ancient Israelite lean young man walking wearily, gripping the corner of his robe with one hand, facing right."
+  },
+  "authored-david-nathan-covenant": {
+   "who": [
+    "david"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-nathan-covenant/base/s11.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        204,
+        307,
+        293,
+        383
+       ],
+       "head_src": "owl",
+       "body": [
+        144,
+        232,
+        378,
+        598
+       ],
+       "body_src": "owl"
+      },
+      "nathan": {
+       "head": [
+        884,
+        110,
+        986,
+        195
+       ],
+       "head_src": "owl",
+       "body": [
+        811,
+        25,
+        1046,
+        581
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-nathan-covenant/base/s42.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        217,
+        287,
+        297,
+        357
+       ],
+       "head_src": "owl",
+       "body": [
+        154,
+        217,
+        381,
+        578
+       ],
+       "body_src": "owl"
+      },
+      "nathan": {
+       "head": [
+        863,
+        130,
+        954,
+        208
+       ],
+       "head_src": "owl",
+       "body": [
+        808,
+        52,
+        1015,
+        557
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-nathan-covenant/base/s7.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        189,
+        305,
+        269,
+        365
+       ],
+       "head_src": "owl",
+       "body": [
+        131,
+        245,
+        373,
+        582
+       ],
+       "body_src": "owl"
+      },
+      "nathan": {
+       "head": [
+        900,
+        141,
+        988,
+        215
+       ],
+       "head_src": "owl",
+       "body": [
+        826,
+        67,
+        1050,
+        573
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-nathan-covenant/base/s23.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        215,
+        315,
+        302,
+        377
+       ],
+       "head_src": "owl",
+       "body": [
+        147,
+        253,
+        388,
+        591
+       ],
+       "body_src": "owl"
+      },
+      "nathan": {
+       "head": [
+        906,
+        142,
+        996,
+        216
+       ],
+       "head_src": "owl",
+       "body": [
+        841,
+        67,
+        1053,
+        565
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-nathan-covenant/base/s5.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        190,
+        308,
+        268,
+        377
+       ],
+       "head_src": "owl",
+       "body": [
+        127,
+        238,
+        377,
+        595
+       ],
+       "body_src": "owl"
+      },
+      "nathan": {
+       "head": [
+        910,
+        140,
+        988,
+        215
+       ],
+       "head_src": "owl",
+       "body": [
+        893,
+        64,
+        1036,
+        581
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-nathan-covenant/base/s101.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        194,
+        305,
+        281,
+        383
+       ],
+       "head_src": "owl",
+       "body": [
+        127,
+        228,
+        419,
+        599
+       ],
+       "body_src": "owl"
+      },
+      "nathan": {
+       "head": [
+        901,
+        134,
+        1012,
+        212
+       ],
+       "head_src": "owl",
+       "body": [
+        836,
+        57,
+        1053,
+        576
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-nathan-covenant/base/s202.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        191,
+        314,
+        284,
+        383
+       ],
+       "head_src": "owl",
+       "body": [
+        134,
+        245,
+        362,
+        588
+       ],
+       "body_src": "owl"
+      },
+      "nathan": {
+       "head": [
+        854,
+        113,
+        958,
+        189
+       ],
+       "head_src": "owl",
+       "body": [
+        813,
+        36,
+        1014,
+        564
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-nathan-covenant/base/s303.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        199,
+        319,
+        288,
+        391
+       ],
+       "head_src": "owl",
+       "body": [
+        129,
+        246,
+        385,
+        599
+       ],
+       "body_src": "owl"
+      },
+      "nathan": {
+       "head": [
+        921,
+        132,
+        1026,
+        224
+       ],
+       "head_src": "owl",
+       "body": [
+        862,
+        40,
+        1088,
+        581
+       ],
+       "body_src": "owl"
+      }
+     }
+    }
+   ],
+   "sec": {
+    "base": 479.5,
+    "edit": 0.0
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide open courtyard of pale packed earth before a plain house, dry ground, empty pale sky. On the left: an ancient Israelite lean young man sitting, gripping the corner of his robe with one hand, facing right. On the right: an ancient Israelite middle-aged prophet standing, gripping a wooden staff, one arm raised as if speaking, facing left."
+  },
+  "authored-david-returns-jerusalem": {
+   "who": [
+    "david"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-returns-jerusalem/base/s11.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        216,
+        302,
+        280,
+        363
+       ],
+       "head_src": "owl",
+       "body": [
+        210,
+        241,
+        276,
+        484
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-returns-jerusalem/base/s42.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        190,
+        345,
+        253,
+        397
+       ],
+       "head_src": "owl",
+       "body": [
+        190,
+        293,
+        243,
+        502
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-returns-jerusalem/base/s7.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        177,
+        256,
+        264,
+        337
+       ],
+       "head_src": "owl",
+       "body": [
+        180,
+        175,
+        256,
+        472
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-returns-jerusalem/base/s23.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        165,
+        298,
+        242,
+        382
+       ],
+       "head_src": "owl",
+       "body": [
+        171,
+        213,
+        237,
+        496
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-returns-jerusalem/base/s5.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        201,
+        308,
+        259,
+        364
+       ],
+       "head_src": "owl",
+       "body": [
+        200,
+        253,
+        257,
+        464
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-returns-jerusalem/base/s101.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        204,
+        286,
+        277,
+        342
+       ],
+       "head_src": "owl",
+       "body": [
+        200,
+        230,
+        266,
+        458
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-returns-jerusalem/base/s202.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        178,
+        275,
+        255,
+        338
+       ],
+       "head_src": "owl",
+       "body": [
+        173,
+        211,
+        241,
+        460
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-returns-jerusalem/base/s303.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        213,
+        263,
+        295,
+        333
+       ],
+       "head_src": "owl",
+       "body": [
+        211,
+        193,
+        285,
+        461
+       ],
+       "body_src": "owl"
+      }
+     }
+    }
+   ],
+   "sec": {
+    "base": 479.7,
+    "edit": 0.0
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry grassy bank beside a river, low distant hills, empty pale sky. a calm wide river with a muddy bank, reeds along the edge. many tiny distant people gathered along a riverbank, small silhouettes, tiny far away crowd. On the left: an ancient Israelite lean young man walking, gripping a sword hilt at his side, facing right."
+  },
+  "authored-david-ziklag-base": {
+   "who": [
+    "david"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-ziklag-base/base/s11.png",
+     "edits": {},
+     "boxes": {
+      "achish": {
+       "head": [
+        187,
+        121,
+        337,
+        246
+       ],
+       "head_src": "owl",
+       "body": [
+        63,
+        0,
+        424,
+        641
+       ],
+       "body_src": "owl"
+      },
+      "david": {
+       "head": [
+        926,
+        95,
+        1026,
+        205
+       ],
+       "head_src": "owl",
+       "body": [
+        857,
+        0,
+        1149,
+        642
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-ziklag-base/base/s42.png",
+     "edits": {},
+     "boxes": {
+      "achish": {
+       "head": [
+        237,
+        110,
+        387,
+        238
+       ],
+       "head_src": "owl",
+       "body": [
+        122,
+        0,
+        437,
+        639
+       ],
+       "body_src": "owl"
+      },
+      "david": {
+       "head": [
+        854,
+        114,
+        943,
+        212
+       ],
+       "head_src": "owl",
+       "body": [
+        835,
+        16,
+        1036,
+        631
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-ziklag-base/base/s7.png",
+     "edits": {},
+     "boxes": {
+      "achish": {
+       "head": [
+        177,
+        116,
+        344,
+        260
+       ],
+       "head_src": "owl",
+       "body": [
+        65,
+        0,
+        380,
+        643
+       ],
+       "body_src": "owl"
+      },
+      "david": {
+       "head": [
+        930,
+        123,
+        1050,
+        237
+       ],
+       "head_src": "owl",
+       "body": [
+        922,
+        10,
+        1142,
+        642
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-ziklag-base/base/s23.png",
+     "edits": {},
+     "boxes": {
+      "achish": {
+       "head": [
+        238,
+        164,
+        383,
+        279
+       ],
+       "head_src": "owl",
+       "body": [
+        121,
+        49,
+        399,
+        638
+       ],
+       "body_src": "owl"
+      },
+      "david": {
+       "head": [
+        914,
+        147,
+        992,
+        246
+       ],
+       "head_src": "owl",
+       "body": [
+        901,
+        48,
+        1076,
+        629
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-ziklag-base/base/s5.png",
+     "edits": {},
+     "boxes": {
+      "achish": {
+       "head": [
+        191,
+        112,
+        350,
+        260
+       ],
+       "head_src": "owl",
+       "body": [
+        84,
+        0,
+        443,
+        641
+       ],
+       "body_src": "owl"
+      },
+      "david": {
+       "head": [
+        942,
+        117,
+        1058,
+        227
+       ],
+       "head_src": "owl",
+       "body": [
+        933,
+        7,
+        1150,
+        639
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-ziklag-base/base/s101.png",
+     "edits": {},
+     "boxes": {
+      "achish": {
+       "head": [
+        174,
+        151,
+        310,
+        274
+       ],
+       "head_src": "owl",
+       "body": [
+        74,
+        29,
+        396,
+        639
+       ],
+       "body_src": "owl"
+      },
+      "david": {
+       "head": [
+        902,
+        113,
+        998,
+        227
+       ],
+       "head_src": "owl",
+       "body": [
+        845,
+        0,
+        1125,
+        643
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-ziklag-base/base/s202.png",
+     "edits": {},
+     "boxes": {
+      "achish": {
+       "head": [
+        230,
+        111,
+        389,
+        254
+       ],
+       "head_src": "owl",
+       "body": [
+        129,
+        0,
+        457,
+        642
+       ],
+       "body_src": "owl"
+      },
+      "david": {
+       "head": [
+        848,
+        92,
+        973,
+        210
+       ],
+       "head_src": "owl",
+       "body": [
+        854,
+        0,
+        1066,
+        624
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-david-ziklag-base/base/s303.png",
+     "edits": {},
+     "boxes": {
+      "achish": {
+       "head": [
+        186,
+        136,
+        345,
+        268
+       ],
+       "head_src": "owl",
+       "body": [
+        83,
+        3,
+        420,
+        637
+       ],
+       "body_src": "owl"
+      },
+      "david": {
+       "head": [
+        912,
+        111,
+        1015,
+        218
+       ],
+       "head_src": "owl",
+       "body": [
+        888,
+        3,
+        1131,
+        642
+       ],
+       "body_src": "owl"
+      }
+     }
+    }
+   ],
+   "sec": {
+    "base": 496.0,
+    "edit": 0.0
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a dry southern desert plain of pale packed earth, sparse dry scrub, distant low walled town, empty pale sky. a small ancient walled town with a low stone gate, flat rooftops, dry ground before it. On the left: an ancient Philistine man, a king, in his 40s, creased brow, full dark beard, oiled and rounded, average build, soft belly, rounded shoulders, striped cloth headwrap tied at the nape, Philistine style, dark hair, in a fringed woolen robe with a wide belt, standing, one arm raised gesturing toward the town, the other hand holding a fold of his robe, facing left. On the right: an ancient Israelite man, a commander, in his 20s, lean angular face, close-trimmed dark beard, jawline visible, lean wiry shoulders, narrow waist, dark curls close to the skull, hair covering the whole head, no headwear, in a dark wool tunic with a leather belt, standing, facing the town, one hand gripping a sword at his side, facing right."
+  },
+  "authored-samuel-bethlehem-david-anointing": {
+   "who": [],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-samuel-bethlehem-david-anointing/base/s11.png",
+     "edits": {},
+     "boxes": {
+      "samuel": {
+       "head": [
+        199,
+        74,
+        324,
+        227
+       ],
+       "head_src": "owl",
+       "body": [
+        69,
+        0,
+        336,
+        583
+       ],
+       "body_src": "owl"
+      },
+      "david-boy": {
+       "head": [
+        452,
+        170,
+        622,
+        301
+       ],
+       "head_src": "owl",
+       "body": [
+        498,
+        39,
+        660,
+        619
+       ],
+       "body_src": "owl"
+      },
+      "jesse": {
+       "head": [
+        951,
+        67,
+        1069,
+        179
+       ],
+       "head_src": "owl",
+       "body": [
+        877,
+        0,
+        1152,
+        572
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-samuel-bethlehem-david-anointing/base/s42.png",
+     "edits": {},
+     "boxes": {
+      "samuel": {
+       "head": [
+        249,
+        67,
+        360,
+        206
+       ],
+       "head_src": "owl",
+       "body": [
+        127,
+        0,
+        402,
+        614
+       ],
+       "body_src": "owl"
+      },
+      "david-boy": {
+       "head": [
+        512,
+        262,
+        595,
+        341
+       ],
+       "head_src": "owl",
+       "body": [
+        521,
+        159,
+        689,
+        625
+       ],
+       "body_src": "owl"
+      },
+      "jesse": {
+       "head": [
+        958,
+        79,
+        1061,
+        189
+       ],
+       "head_src": "owl",
+       "body": [
+        942,
+        0,
+        1125,
+        578
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-samuel-bethlehem-david-anointing/base/s7.png",
+     "edits": {},
+     "boxes": {
+      "samuel": {
+       "head": [
+        216,
+        79,
+        337,
+        226
+       ],
+       "head_src": "owl",
+       "body": [
+        86,
+        0,
+        376,
+        598
+       ],
+       "body_src": "owl"
+      },
+      "david-boy": {
+       "head": [
+        478,
+        147,
+        655,
+        294
+       ],
+       "head_src": "owl",
+       "body": [
+        533,
+        0,
+        708,
+        618
+       ],
+       "body_src": "owl"
+      },
+      "jesse": {
+       "head": [
+        924,
+        71,
+        1055,
+        188
+       ],
+       "head_src": "owl",
+       "body": [
+        858,
+        0,
+        1141,
+        580
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-samuel-bethlehem-david-anointing/base/s23.png",
+     "edits": {},
+     "boxes": {
+      "samuel": {
+       "head": [
+        255,
+        76,
+        386,
+        239
+       ],
+       "head_src": "owl",
+       "body": [
+        129,
+        0,
+        442,
+        600
+       ],
+       "body_src": "owl"
+      },
+      "david-boy": {
+       "head": [
+        501,
+        161,
+        658,
+        289
+       ],
+       "head_src": "owl",
+       "body": [
+        523,
+        34,
+        699,
+        624
+       ],
+       "body_src": "owl"
+      },
+      "jesse": {
+       "head": [
+        919,
+        58,
+        1041,
+        174
+       ],
+       "head_src": "owl",
+       "body": [
+        829,
+        0,
+        1121,
+        567
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-samuel-bethlehem-david-anointing/base/s5.png",
+     "edits": {},
+     "boxes": {
+      "samuel": {
+       "head": [
+        225,
+        67,
+        338,
+        226
+       ],
+       "head_src": "owl",
+       "body": [
+        98,
+        0,
+        372,
+        594
+       ],
+       "body_src": "owl"
+      },
+      "david-boy": {
+       "head": [
+        428,
+        169,
+        593,
+        300
+       ],
+       "head_src": "owl",
+       "body": [
+        453,
+        38,
+        633,
+        621
+       ],
+       "body_src": "owl"
+      },
+      "jesse": {
+       "head": [
+        949,
+        74,
+        1058,
+        172
+       ],
+       "head_src": "owl",
+       "body": [
+        865,
+        0,
+        1141,
+        581
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-samuel-bethlehem-david-anointing/base/s101.png",
+     "edits": {},
+     "boxes": {
+      "samuel": {
+       "head": [
+        219,
+        90,
+        335,
+        237
+       ],
+       "head_src": "owl",
+       "body": [
+        103,
+        0,
+        371,
+        609
+       ],
+       "body_src": "owl"
+      },
+      "david-boy": {
+       "head": [
+        437,
+        166,
+        610,
+        302
+       ],
+       "head_src": "owl",
+       "body": [
+        488,
+        30,
+        678,
+        628
+       ],
+       "body_src": "owl"
+      },
+      "jesse": {
+       "head": [
+        918,
+        66,
+        1028,
+        189
+       ],
+       "head_src": "owl",
+       "body": [
+        837,
+        0,
+        1115,
+        599
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-samuel-bethlehem-david-anointing/base/s202.png",
+     "edits": {},
+     "boxes": {
+      "samuel": {
+       "head": [
+        250,
+        66,
+        375,
+        208
+       ],
+       "head_src": "owl",
+       "body": [
+        148,
+        0,
+        417,
+        597
+       ],
+       "body_src": "owl"
+      },
+      "david-boy": {
+       "head": [
+        543,
+        151,
+        701,
+        276
+       ],
+       "head_src": "owl",
+       "body": [
+        543,
+        26,
+        703,
+        623
+       ],
+       "body_src": "owl"
+      },
+      "jesse": {
+       "head": [
+        866,
+        60,
+        992,
+        174
+       ],
+       "head_src": "owl",
+       "body": [
+        807,
+        0,
+        1078,
+        583
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-samuel-bethlehem-david-anointing/base/s303.png",
+     "edits": {},
+     "boxes": {
+      "samuel": {
+       "head": [
+        231,
+        66,
+        353,
+        238
+       ],
+       "head_src": "owl",
+       "body": [
+        98,
+        0,
+        378,
+        608
+       ],
+       "body_src": "owl"
+      },
+      "david-boy": {
+       "head": [
+        503,
+        210,
+        596,
+        309
+       ],
+       "head_src": "owl",
+       "body": [
+        485,
+        93,
+        662,
+        623
+       ],
+       "body_src": "owl"
+      },
+      "jesse": {
+       "head": [
+        921,
+        65,
+        1055,
+        193
+       ],
+       "head_src": "owl",
+       "body": [
+        851,
+        0,
+        1131,
+        587
+       ],
+       "body_src": "owl"
+      }
+     }
+    }
+   ],
+   "sec": {
+    "base": 515.5,
+    "edit": 0.0
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a small dry village courtyard, simple stone ground, sparse dry grass, pale sky. On the left: an ancient Israelite man, a prophet, in his 70s, deep wrinkles, long white beard to the chest, slight stooped narrow shoulders, long white hair falling to the shoulders, hair covering the whole head, no headwear, in a long dark wool robe with a cloth belt, standing, holding up one small horn of oil, facing right. In the center: an ancient Israelite boy, a shepherd, about 14, smooth round cheeks, no lines, short of stature, slight narrow shoulders, thin boyish torso, tight dark curls close to the skull, hair covering the whole head, no headwear, in a knee-length wool tunic, cloth belt, leather strap sandals, standing still, head bowed, gripping one shepherd's staff, facing left. On the right: an ancient Israelite man, a shepherd, in his 60s, deeply lined forehead, close-trimmed gray beard, jawline visible, broad stocky shoulders, thick short torso, brown cloth headwrap tied at the nape, gray hair, in a long brown wool robe with a cloth belt, standing tall, gripping one wooden staff upright, watching, facing left. an ancient Israelite man, a prophet, old prophet, in a long dark wool robe with a cloth belt tilting one horn of oil over the bowed head of an ancient Israelite boy, a shepherd, shepherd boy, in a knee-length wool tunic, cloth belt, leather strap sandals beside him."
+  },
+  "authored-saul-endor-medium": {
+   "who": [],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-saul-endor-medium/base/s11.png",
+     "edits": {},
+     "boxes": {
+      "saul-old": {
+       "head": [
+        178,
+        73,
+        298,
+        214
+       ],
+       "head_src": "owl",
+       "body": [
+        68,
+        0,
+        282,
+        517
+       ],
+       "body_src": "owl"
+      },
+      "endor-medium": {
+       "head": [
+        557,
+        89,
+        663,
+        232
+       ],
+       "head_src": "owl",
+       "body": [
+        594,
+        0,
+        760,
+        552
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        874,
+        59,
+        999,
+        227
+       ],
+       "head_src": "owl",
+       "body": [
+        859,
+        0,
+        1113,
+        595
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-saul-endor-medium/base/s42.png",
+     "edits": {},
+     "boxes": {
+      "saul-old": {
+       "head": [
+        185,
+        76,
+        314,
+        242
+       ],
+       "head_src": "owl",
+       "body": [
+        107,
+        0,
+        267,
+        505
+       ],
+       "body_src": "owl"
+      },
+      "endor-medium": {
+       "head": [
+        414,
+        523,
+        498,
+        590
+       ],
+       "head_src": "owl",
+       "body": [
+        -2,
+        371,
+        481,
+        633
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        835,
+        66,
+        956,
+        230
+       ],
+       "head_src": "owl",
+       "body": [
+        836,
+        0,
+        1113,
+        613
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-saul-endor-medium/base/s7.png",
+     "edits": {},
+     "boxes": {
+      "saul-old": {
+       "head": [
+        190,
+        70,
+        326,
+        222
+       ],
+       "head_src": "owl",
+       "body": [
+        83,
+        0,
+        308,
+        515
+       ],
+       "body_src": "owl"
+      },
+      "endor-medium": {
+       "head": [
+        574,
+        91,
+        677,
+        229
+       ],
+       "head_src": "owl",
+       "body": [
+        556,
+        0,
+        736,
+        566
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        893,
+        58,
+        1018,
+        233
+       ],
+       "head_src": "owl",
+       "body": [
+        862,
+        0,
+        1114,
+        599
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-saul-endor-medium/base/s23.png",
+     "edits": {},
+     "boxes": {
+      "saul-old": {
+       "head": [
+        181,
+        46,
+        307,
+        206
+       ],
+       "head_src": "owl",
+       "body": [
+        95,
+        0,
+        283,
+        516
+       ],
+       "body_src": "owl"
+      },
+      "endor-medium": {
+       "head": [
+        565,
+        87,
+        652,
+        207
+       ],
+       "head_src": "owl",
+       "body": [
+        562,
+        0,
+        718,
+        553
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        862,
+        71,
+        963,
+        232
+       ],
+       "head_src": "owl",
+       "body": [
+        834,
+        0,
+        1082,
+        611
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-saul-endor-medium/base/s5.png",
+     "edits": {},
+     "boxes": {
+      "saul-old": {
+       "head": [
+        167,
+        68,
+        300,
+        232
+       ],
+       "head_src": "owl",
+       "body": [
+        88,
+        0,
+        271,
+        509
+       ],
+       "body_src": "owl"
+      },
+      "endor-medium": {
+       "head": [
+        568,
+        70,
+        662,
+        199
+       ],
+       "head_src": "owl",
+       "body": [
+        582,
+        0,
+        757,
+        562
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        869,
+        52,
+        988,
+        244
+       ],
+       "head_src": "owl",
+       "body": [
+        860,
+        0,
+        1113,
+        613
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-saul-endor-medium/base/s101.png",
+     "edits": {},
+     "boxes": {
+      "saul-old": {
+       "head": [
+        166,
+        56,
+        281,
+        219
+       ],
+       "head_src": "owl",
+       "body": [
+        96,
+        0,
+        269,
+        500
+       ],
+       "body_src": "owl"
+      },
+      "endor-medium": {
+       "head": [
+        573,
+        90,
+        670,
+        220
+       ],
+       "head_src": "owl",
+       "body": [
+        566,
+        0,
+        754,
+        584
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        879,
+        54,
+        1001,
+        233
+       ],
+       "head_src": "owl",
+       "body": [
+        848,
+        0,
+        1100,
+        622
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-saul-endor-medium/base/s202.png",
+     "edits": {},
+     "boxes": {
+      "saul-old": {
+       "head": [
+        211,
+        76,
+        320,
+        198
+       ],
+       "head_src": "owl",
+       "body": [
+        56,
+        0,
+        316,
+        527
+       ],
+       "body_src": "owl"
+      },
+      "endor-medium": {
+       "head": [
+        383,
+        511,
+        468,
+        594
+       ],
+       "head_src": "owl",
+       "body": [
+        40,
+        372,
+        468,
+        602
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        850,
+        65,
+        975,
+        250
+       ],
+       "head_src": "owl",
+       "body": [
+        831,
+        0,
+        1124,
+        610
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-saul-endor-medium/base/s303.png",
+     "edits": {},
+     "boxes": {
+      "saul-old": {
+       "head": [
+        188,
+        89,
+        298,
+        237
+       ],
+       "head_src": "owl",
+       "body": [
+        76,
+        0,
+        255,
+        507
+       ],
+       "body_src": "owl"
+      },
+      "endor-medium": {
+       "head": [
+        560,
+        107,
+        653,
+        228
+       ],
+       "head_src": "owl",
+       "body": [
+        567,
+        0,
+        734,
+        569
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        858,
+        71,
+        968,
+        235
+       ],
+       "head_src": "owl",
+       "body": [
+        842,
+        0,
+        1115,
+        603
+       ],
+       "body_src": "owl"
+      }
+     }
+    }
+   ],
+   "sec": {
+    "base": 513.1,
+    "edit": 0.0
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a small dim room at night, bare packed earth floor, plain dark walls, one dim oil lamp glow, no windows. On the left: an ancient Israelite man, a king, in his 60s, deep furrows and sunken cheeks, tall of stature, long gray beard to the chest, unkempt, frame slumped, broad shoulders sagging, drawn hollow torso, thin gray hair, hair covering the whole head, no headwear, in a worn dark tunic and cloak, lying prostrate bowing low with face to the ground, wearing a dark disguise cloak, facing right. In the center: an ancient Israelite woman, a medium, in her 60s, deep wrinkles, short of stature, slight bent thin shoulders, dark shawl pulled over the head, gray hair, in a long dark robe with a plain shawl, standing, one hand gripping a fold of her shawl near her chest, fearful, facing right. On the right: an ancient Israelite man, a prophet, in his 70s, deep wrinkles, long white beard to the chest, slight stooped narrow shoulders, long white hair falling to the shoulders, hair covering the whole head, no headwear, in a long dark wool robe with a cloth belt, standing amid darkness, an old man gripping a corner of his long robe, one hand raised, facing left."
+  },
+  "authored-saul-gilboa-death": {
+   "who": [],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-saul-gilboa-death/base/s11.png",
+     "edits": {},
+     "boxes": {
+      "saul-old": {
+       "head": [
+        239,
+        69,
+        334,
+        204
+       ],
+       "head_src": "owl",
+       "body": [
+        29,
+        0,
+        331,
+        573
+       ],
+       "body_src": "owl"
+      },
+      "saul-armor-bearer": {
+       "head": [
+        617,
+        235,
+        676,
+        277
+       ],
+       "head_src": "owl",
+       "body": [
+        503,
+        162,
+        709,
+        619
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-saul-gilboa-death/base/s42.png",
+     "edits": {},
+     "boxes": {
+      "saul-old": {
+       "head": [
+        289,
+        69,
+        365,
+        174
+       ],
+       "head_src": "owl",
+       "body": [
+        53,
+        0,
+        335,
+        553
+       ],
+       "body_src": "owl"
+      },
+      "saul-armor-bearer": {
+       "head": [
+        585,
+        162,
+        675,
+        273
+       ],
+       "head_src": "owl",
+       "body": [
+        464,
+        50,
+        685,
+        624
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-saul-gilboa-death/base/s7.png",
+     "edits": {},
+     "boxes": {
+      "saul-old": {
+       "head": [
+        253,
+        75,
+        356,
+        203
+       ],
+       "head_src": "owl",
+       "body": [
+        37,
+        0,
+        347,
+        566
+       ],
+       "body_src": "owl"
+      },
+      "saul-armor-bearer": {
+       "head": [
+        567,
+        121,
+        667,
+        230
+       ],
+       "head_src": "owl",
+       "body": [
+        438,
+        11,
+        680,
+        609
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-saul-gilboa-death/base/s23.png",
+     "edits": {},
+     "boxes": {
+      "saul-old": {
+       "head": [
+        278,
+        80,
+        374,
+        203
+       ],
+       "head_src": "owl",
+       "body": [
+        98,
+        0,
+        353,
+        552
+       ],
+       "body_src": "owl"
+      },
+      "saul-armor-bearer": {
+       "head": [
+        602,
+        127,
+        701,
+        244
+       ],
+       "head_src": "owl",
+       "body": [
+        505,
+        9,
+        712,
+        608
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-saul-gilboa-death/base/s5.png",
+     "edits": {},
+     "boxes": {
+      "saul-old": {
+       "head": [
+        241,
+        66,
+        336,
+        195
+       ],
+       "head_src": "owl",
+       "body": [
+        51,
+        0,
+        320,
+        538
+       ],
+       "body_src": "owl"
+      },
+      "saul-armor-bearer": {
+       "head": [
+        575,
+        186,
+        664,
+        291
+       ],
+       "head_src": "owl",
+       "body": [
+        464,
+        80,
+        686,
+        617
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-saul-gilboa-death/base/s101.png",
+     "edits": {},
+     "boxes": {
+      "saul-old": {
+       "head": [
+        264,
+        80,
+        347,
+        198
+       ],
+       "head_src": "owl",
+       "body": [
+        62,
+        0,
+        316,
+        532
+       ],
+       "body_src": "owl"
+      },
+      "saul-armor-bearer": {
+       "head": [
+        647,
+        179,
+        721,
+        236
+       ],
+       "head_src": "owl",
+       "body": [
+        517,
+        97,
+        738,
+        619
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-saul-gilboa-death/base/s202.png",
+     "edits": {},
+     "boxes": {
+      "saul-old": {
+       "head": [
+        279,
+        52,
+        372,
+        174
+       ],
+       "head_src": "owl",
+       "body": [
+        68,
+        0,
+        357,
+        526
+       ],
+       "body_src": "owl"
+      },
+      "saul-armor-bearer": {
+       "head": [
+        632,
+        187,
+        705,
+        240
+       ],
+       "head_src": "owl",
+       "body": [
+        512,
+        106,
+        730,
+        619
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/plate-rest/authored-saul-gilboa-death/base/s303.png",
+     "edits": {},
+     "boxes": {
+      "saul-old": {
+       "head": [
+        230,
+        83,
+        328,
+        208
+       ],
+       "head_src": "owl",
+       "body": [
+        58,
+        0,
+        309,
+        534
+       ],
+       "body_src": "owl"
+      },
+      "saul-armor-bearer": {
+       "head": [
+        603,
+        245,
+        679,
+        354
+       ],
+       "head_src": "owl",
+       "body": [
+        488,
+        106,
+        698,
+        616
+       ],
+       "body_src": "owl"
+      }
+     }
+    }
+   ],
+   "sec": {
+    "base": 496.7,
+    "edit": 0.0
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a dry rocky mountain slope at dusk, sparse dry grass, scattered stones, pale dim sky. a distant crowd of tiny soldiers with spears advancing up a hillside, small and far away. On the left: an ancient Israelite man, a king, in his 60s, deep furrows and sunken cheeks, tall of stature, long gray beard to the chest, unkempt, frame slumped, broad shoulders sagging, drawn hollow torso, thin gray hair, hair covering the whole head, no headwear, in a worn dark tunic and cloak, standing upright, gripping a sword point-down before him, wounded, facing right. In the center: an ancient Israelite man, a soldier, in his 20s, smooth earnest face, broad sturdy shoulders, thick arms, short dark hair, hair covering the whole head, no headwear, in a leather cuirass with a short kilt, standing, stepping back in fear, gripping a sheathed sword at his side, facing left."
+  }
+ },
+ "runs": [
+  {
+   "start": 1792445739.134409,
+   "last": 1792451523.69665,
+   "end": 1792451523.696649
+  }
+ ],
+ "restarts": 0,
+ "unattended": true,
+ "wall_seconds": 5784.6
+}
