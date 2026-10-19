@@ -16,7 +16,9 @@ import derive_scene as D
 HERE = os.path.dirname(os.path.abspath(__file__))
 METRICS = os.path.join(HERE, "samples", "night-pilot", "metrics.json")
 PAGES = os.path.expanduser("~/.local/biblemap-imggen/pages")
-DST = {368: "night-pick.html", 369: "whole-fix-pick.html", 370: "whole-wide-pick.html"}
+DST = {368: "night-pick.html", 369: "whole-fix-pick.html", 370: "whole-wide-pick.html", 372: "jabesh-crowd-pick.html"}
+# 고르기 화면 덧말(과제별) — task 372: 암몬 무리는 다음 단계 편집 대상이라 「무리 말고 다 맞는 바탕」을 고른다(계획 결정 6)
+PICK_NOTE = {372: "암몬 무리(crowds[1])는 다음 단계에서 고른 장에만 편집합니다. 암몬 무리 말고 다 맞는 바탕을 고르세요."}
 LIMIT = 15.5e6
 PROP_KO = {"a spear": "창", "a small harp": "작은 수금", "a robe corner": "겉옷자락", "a plain traveling cloak": "수수한 나그네 겉옷",
            "a torn robe corner": "찢어진 겉옷자락", "a wooden staff": "나무 지팡이", "a sword": "칼",
@@ -92,8 +94,10 @@ def questions(spec, sc, wide=False):
     qs = [{"id": "moment", "field": "moment", "q": "장면 뜻이 틀린 그림", "what": spec["moment"]["why"], "verse": spec["moment"]["verse"], **full()}]
     for i, b in enumerate(spec.get("background") or []):
         qs.append({"id": f"background[{i}]", "field": f"background[{i}]", "q": "배경이 틀린 그림", "what": b["what"], "verse": b["verse"], **full()})
-    for c in spec.get("crowds") or []:
-        qs.append({"id": "crowds", "field": "crowds", "q": "무리가 틀린 그림", "what": c["what"], "verse": c["verse"], **full()})
+    cs = spec.get("crowds") or []
+    for i, c in enumerate(cs):   # 무리가 둘 이상이면 문항 id도 칸 경로 crowds[i](task 372) — 하나면 368~370 그대로 「crowds」
+        cid = f"crowds[{i}]" if len(cs) > 1 else "crowds"
+        qs.append({"id": cid, "field": cid, "q": "무리가 틀린 그림", "what": c["what"], "verse": c["verse"], **full()})
     for i, f in enumerate(spec["figures"]):
         who, nm = f["cast"], NAME.get(f["cast"], f["cast"])
         head = {str(x["seed"]): fit(x["boxes"][who]["head"], 1, W, H, 0.5) for x in sc["seeds"]}
@@ -113,7 +117,7 @@ def questions(spec, sc, wide=False):
     return qs
 
 
-def build(m, q, sids):
+def build(m, q, sids, task=None):
     data, scenes = {}, []
     for sid in sids:
         sc = m["scenes"].get(sid)
@@ -134,7 +138,7 @@ def build(m, q, sids):
                 data[f"{sid}:{x['seed']}:p"] = uri(Image.open(x["base"]), 1216, q)
             qs = pair_plate(qs, [p for p in questions(spec, {**sc, "seeds": sc["plate"]["seeds"]}, wide) if treat(p["id"])],
                             sc["plate"]["label"])
-        scenes.append({"id": sid, "title": spec["title"], "range": spec["verses"]["range"],
+        scenes.append({"id": sid, "title": spec["title"], "range": spec["verses"]["range"], "note": PICK_NOTE.get(task, ""),
                        "edited": [NAME[w] for w in sc["who"]] if edited else [], "seeds": [x["seed"] for x in seeds], "qs": qs})
     for who in NAME:
         p = os.path.join(HERE, "frozen", f"{who}.png")
@@ -148,7 +152,7 @@ def main(metrics=METRICS, sids=None, task=368):
     sids = sids or list(params.NIGHT_SCENES)
     title = "밤샘 장면 고르기" if task == 368 else f"장면 고르기 {task}"
     for q in (84, 78, 72, 66, 60):
-        scenes, data = build(m, q, sids)
+        scenes, data = build(m, q, sids, task)
         page = (PAGE.replace("/*SCENES*/[]", json.dumps(scenes, ensure_ascii=False)).replace("/*IMGS*/{}", json.dumps(data))
                 .replace("/*TASK*/368", str(task)).replace("<title>밤샘 장면 고르기</title>", f"<title>{title}</title>"))
         if len(page) <= LIMIT:
@@ -298,7 +302,7 @@ function renderPick(app, sc, head) {
   const cur = A(sid).pick;
   app.innerHTML = "";
   app.append($(`${head}<h2>이 장면에 쓸 그림 하나를 고르세요</h2>
-    <p class="hint">틀림 표시가 적은 순서입니다. ${ed ? `그림을 누르면 편집본(${esc(sc.s.edited.join("·"))} 정본 편집)과 바탕이 바뀝니다.` : "바탕 그림입니다. 고른 장에만 정본 편집을 건 뒤 따로 확인합니다."}</p>
+    ${sc.s.note ? `<p class="hint"><b>${esc(sc.s.note)}</b></p>` : ""}<p class="hint">틀림 표시가 적은 순서입니다. ${ed ? `그림을 누르면 편집본(${esc(sc.s.edited.join("·"))} 정본 편집)과 바탕이 바뀝니다.` : "바탕 그림입니다. 고른 장에만 정본 편집을 건 뒤 따로 확인합니다."}</p>
     ${seeds.map((s) => `<div class="pick"><div class="meta"><b>s${s}</b><span>틀림 표시 ${wrongCount(sid, s)}개</span><span id="lab${s}">${ed ? "편집본" : "바탕"}</span></div>
       <button type="button" class="card" ${ed ? `data-flip="${s}"` : ""}>${img(`${sid}:${s}:e`)}</button>
       <div class="row">${ed ? `<button class="b${cur && cur.seed === s && cur.kind === "edit" ? " main" : ""}" data-p="${s}" data-k="edit" type="button">편집본으로 고르기</button>` : ""}

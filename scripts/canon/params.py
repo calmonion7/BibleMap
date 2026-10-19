@@ -283,3 +283,7 @@ LOCAL_EDIT_BASES = {"authored-david-nob-priests": [7, 202],
                     "authored-david-gath-achish": [5, 7]}
 LOCAL_EDIT_SEEDS = (1, 2, 3)          # klein 편집 시드(엔게디 칼과 같음)
 LOCAL_EDIT_SHUFFLE_SEED = 371         # 판정 페이지 후보 번호 섞기(대응은 metrics candidates[].label)
+# task#372(2026-10-20): 야베스 구원 명세를 무리 구도로 다시 씀(나하스 뺌, crowds 2) → 한 장 모드 바탕 8장(whole_prompt), 후보 편집 끔.
+# 고른 바탕에만 무리 국소 편집(gen_local_edit 조리법) · 사울 정본 편집(같은 사람 틀릴 때만). 실행 전 고정(notes/JABESH-CROWD.md).
+JABESH_CROWD_SCENES = {"authored-saul-jabesh-rescue": ["saul"]}
+JABESH_CROWD_SEEDS = REF_EDIT_SEEDS
