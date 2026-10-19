@@ -230,6 +230,21 @@ def whole_prompt(spec):
     return f"{ST} " + " ".join(parts)
 
 
+def plate_whole_prompt(spec):
+    """한 장 모드 칸이 없는 판 단계 명세 → 한 장 프롬프트(task 368, 사용자 결정 — 명세 수정 없음).
+    판 단계 문구를 **그대로** 잇는다: 화풍 머리 + 배경(full) + 구역·무리 단계 + 인물마다 「위치: 판 문구」 + `groups` 묶음 문구.
+    판 단계의 「no people」은 인물을 따로 얹던 경로의 말이라 뗀다."""
+    bare = lambda t: re.sub(r",?\s*no people\.?\s*$", "", _fill(t).strip()).rstrip(". ") + "."
+    st = spec["stages"]
+    parts = [bare(s["prompt"]) for s in st if s["kind"] == "full"]
+    parts += [bare(s["prompt"]) for s in st if s["kind"] not in ("full", "plate")]
+    for f in sorted(spec["figures"], key=lambda f: spec["regions"][f["region"]][0]):
+        s = next(x for x in st if x["kind"] == "plate" and x["region"] == f["region"])
+        parts.append(f"{_side(f, spec).capitalize()}: {bare(s['prompt'])}")
+    parts += [bare(g["prompt"]) for g in spec.get("groups", [])]
+    return f"{ST} " + " ".join(parts)
+
+
 def check_whole(spec):
     """→ 위반 문자열 목록(빈 목록이면 통과). 토큰 한도 대신 필드 존재·gaze 실존·파생 프롬프트 포함을 본다."""
     bad = []

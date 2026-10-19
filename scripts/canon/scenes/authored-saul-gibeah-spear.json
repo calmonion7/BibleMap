@@ -138,5 +138,15 @@
         0.98
       ]
     }
+  },
+  "approved": {
+    "final": {
+      "path": "night-pick",
+      "seed": 5,
+      "kind": "base",
+      "image": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s5.png",
+      "by": "user",
+      "on": "2026-10-19"
+    }
   }
 }

@@ -7,6 +7,7 @@
   approve.py --scene <id> --stage S4 --attempt a003 --seed 11        # 단계 승인
   approve.py --scene <id> --ladder verses                            # 사다리 ①②③ 확인(지금 해시를 적는다)
   approve.py --scene <id> --final --attempt a005 --seed 11           # [[장면 완료]]
+  approve.py --scene <id> --night-pick --seed 11 --kind edit --image <그림>   # 한 장 경로 [[장면 완료]](task 368 [[장면 고르기]])
 
 앞 단계 승인이 이 시도가 얹힌 것과 다르면 **경고만 하고 적는다** — 그 어긋남은 곧 `scene_state.stale`이
 재검토로 계산해 보여 준다. 승인 시점에 막으면 사람이 순서를 되짚어 고칠 길이 막힌다.
@@ -54,6 +55,15 @@ def stamp(by):
     return {"by": by, "on": datetime.date.today().isoformat()}
 
 
+def night_pick(spec, seed, kind, image, by):
+    """한 장 경로의 [[장면 완료]](task 368) — 밤샘 후보 중 사람이 고른 한 장. 단계 사다리 밖이라 시도 id 대신
+    경로·시드·바탕/편집·그림 경로를 적는다(생성기가 명세만으로 재현 대상을 알 수 있게)."""
+    if kind not in ("edit", "base"):
+        raise ValueError(f"kind는 edit|base다: {kind}")
+    spec.setdefault("approved", {})["final"] = {"path": "night-pick", "seed": seed, "kind": kind, "image": image, **stamp(by)}
+    return spec
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--scene", required=True)
@@ -62,12 +72,21 @@ def main():
     ap.add_argument("--seed", type=int)
     ap.add_argument("--ladder", choices=ss.LADDER)
     ap.add_argument("--final", action="store_true")
+    ap.add_argument("--night-pick", action="store_true")
+    ap.add_argument("--kind", choices=("edit", "base"))
+    ap.add_argument("--image")
     ap.add_argument("--by", default="cli")
     a = ap.parse_args()
-    if sum(bool(x) for x in (a.stage, a.ladder, a.final)) != 1:
-        sys.exit("--stage · --ladder · --final 중 정확히 하나를 준다")
+    if sum(bool(x) for x in (a.stage, a.ladder, a.final, a.night_pick)) != 1:
+        sys.exit("--stage · --ladder · --final · --night-pick 중 정확히 하나를 준다")
 
     spec = load_spec(a.scene)
+    if a.night_pick:
+        if a.seed is None or not a.kind or not a.image:
+            sys.exit("--night-pick에는 --seed·--kind·--image가 필요하다")
+        save_spec(night_pick(spec, a.seed, a.kind, a.image, a.by))
+        print(f"장면 완료 기록(night-pick) · 시드 {a.seed} {a.kind}")
+        return 0
     side = load_side(a.scene)
     spec.setdefault("approved", {})
 

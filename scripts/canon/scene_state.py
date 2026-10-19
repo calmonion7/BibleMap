@@ -98,7 +98,7 @@ def stale(spec, attempts):
         prev = (st["id"], ap["attempt"], ap["seed"])
 
     fin = appr.get("final")
-    if fin:
+    if fin and fin.get("path") != "night-pick":   # 한 장 경로 완료(task 368)는 단계 사다리 밖 — 대조할 단계 승인이 없다
         why = []
         last = live[-1] if live else None
         last_ap = (last or {}).get("approved")

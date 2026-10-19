@@ -208,5 +208,15 @@
         0.98
       ]
     }
+  },
+  "approved": {
+    "final": {
+      "path": "night-pick",
+      "seed": 202,
+      "kind": "base",
+      "image": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s202.png",
+      "by": "user",
+      "on": "2026-10-19"
+    }
   }
 }

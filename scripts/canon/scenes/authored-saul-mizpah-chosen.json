@@ -174,5 +174,15 @@
         0.98
       ]
     }
+  },
+  "approved": {
+    "final": {
+      "path": "night-pick",
+      "seed": 7,
+      "kind": "base",
+      "image": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s7.png",
+      "by": "user",
+      "on": "2026-10-19"
+    }
   }
 }

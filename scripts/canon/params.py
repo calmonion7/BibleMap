@@ -254,3 +254,13 @@ ENGEDI_GAZE_SHUFFLE_SEED = 365
 ENGEDI_AWAY_SHUFFLE_SEED = 366
 # task#367(2026-10-18): 엔게디 마주 봄 귀속·손 B′·Bh 판정 — 그림 순서 섞기(기준 + A 8 + B 8 + B′ 8 + Bh 8, 네 화면 같은 순서)
 ENGEDI_BACKHAND_SHUFFLE_SEED = 367
+# task#368(2026-10-18): 밤샘 5장면 × 8시드(바탕 + 정본 참조 편집) → 아침 한 번 요소 문항 + 고르기. 실행 전 고정(notes/NIGHT-PILOT.md).
+# 바탕 = derive_scene.plate_whole_prompt(판 단계 문구 이어 붙이기 — 다섯 장면에 한 장 모드 칸이 없음, 사용자 결정), 편집 = gen_ref_edit_lightning 그대로(장면 id 인자).
+NIGHT_SCENES = {"authored-saul-gibeah-spear": ["saul", "david"],   # 순서 = 실행 순서(편집 두 번인 기브아 창 먼저), 값 = 편집 인물 차례
+                "authored-saul-mizpah-chosen": ["saul"],
+                "authored-saul-michmash-battle": ["saul"],
+                "authored-saul-gilgal-amalek": ["saul"],
+                "authored-samuel-ramah-death": ["david"]}
+NIGHT_SEEDS = REF_EDIT_SEEDS
+NIGHT_ADOPT_MIN = 4          # 채택: 5장면 중 고른 장면 ≥ 4 · 부분: 2~3 · 다른 길: ≤ 1
+NIGHT_HUMAN_MINUTES = 15     # 참고 문턱(사람 소요 분) — 결론 규칙에는 넣지 않는다
