@@ -169,6 +169,8 @@ def prepare(it, set_name, zoom=1.0):
         if not who or who in files:
             continue
         x, y, w, h = q["crop"][str(it["seed"])]
+        if max(x, y, w, h) > 1.0 or min(x, y, w, h) < 0:   # task 386: 픽셀 값을 넘기면 crop이 수백억 화소가 되어 엉뚱하게 죽는다
+            raise ValueError(f"[JudgeItems] crop은 그림 크기 비율(0~1)이어야 한다: {who} {(x, y, w, h)}")
         p = os.path.join(d, f"{who}.jpg" if zoom == 1 else f"{who}-z{zoom:g}.jpg")
         if not os.path.exists(p):
             W, H = im.size
