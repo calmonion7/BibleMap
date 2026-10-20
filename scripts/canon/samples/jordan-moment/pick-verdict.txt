@@ -1,0 +1,2 @@
+판정 task 385
+{"task": 385, "kind": "ab", "source": "conversation (2026-10-21 — 화면의 판정 문장 대신 대화로 받은 사람 답, 고르지 않음 = 둘 다 아님)", "human_minutes": null, "active_minutes": null, "idle_ms": 120000, "screens": 1, "scenes": {"authored-david-returns-jerusalem": {"answer": "none", "chose": "none", "left": "r2:authored-david-returns-jerusalem:5", "right": "r2:authored-david-returns-jerusalem:101", "memo": "한구절만 하니 상황묘사가 정확히 안되네 \n해당장면에 필요한 구절 모두를 파악하여 장면묘사가 우선\n그리고 특정인물 의 어떤물건이면 다른 성경구절에서 찾아서 상세히 묘사 (예를들어 골리앗의 검 -> 대검인지 어떤검인지 찾아보는거지)", "minutes": null, "active_minutes": null}}}

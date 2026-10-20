@@ -202,6 +202,7 @@
         "level": "L2",
         "status": "조건부",
         "with": [
+          "bow-down",
           "jordan"
         ]
       }
@@ -258,6 +259,7 @@
         "level": "L1",
         "status": "조건부",
         "with": [
+          "bow-down",
           "ferry-boat"
         ]
       }
