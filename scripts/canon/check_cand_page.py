@@ -5,7 +5,7 @@
   /opt/homebrew/bin/python3 check_cand_page.py 376 --build            # 376 그림으로 검사용 사본을 새로 만들어 검사(게시본은 그대로)
 
 검사: ① 16MB 이하 ② 화면 수 ≤ 2 × (장면 − 되돌림) + 되돌림 ③ 360px·1280px에서 화면마다 가로 넘침 0(끝까지 답하며 넘김)
-④ 쉼 뺀 타이머 — 가짜 시계로 입력 → 60초 뒤 입력(쌓임) → 3분 멈춤 뒤 입력(빠짐) → active_minutes = 1.0, 벽시계 human_minutes ≥ 4.
+④ 화면마다 성경 원문 상자에 순간 절 · 메모칸은 textarea(task 380) ⑤ 쉼 뺀 타이머 — 가짜 시계로 입력 → 60초 뒤 입력(쌓임) → 3분 멈춤 뒤 입력(빠짐) → active_minutes = 1.0, 벽시계 human_minutes ≥ 4.
 하나라도 어기면 exit 1."""
 import json, os, sys, tempfile
 
@@ -23,20 +23,25 @@ def screens(page):
 
 def walk(pg):
     """끝 화면까지 답하며 넘긴다 — 화면마다 가로 넘침을 잰다."""
-    over, n = [], 0
+    over, n, no_verse, memo_tags = [], 0, [], set()
     for _ in range(200):
         n += 1
         w = pg.evaluate("[document.documentElement.scrollWidth, document.documentElement.clientWidth]")
         if w[0] > w[1] + 1:
             over.append((n, w))
+        s = pg.evaluate("[!!document.querySelector('#copy'), document.querySelectorAll('.verse li.now').length, (document.getElementById('memo') || {}).tagName || null]")
+        if not s[0] and s[1] < 1:   # 끝 화면(판정 문장 복사) 말고는 원문 상자에 순간 절이 있어야
+            no_verse.append(n)
+        if s[2]:
+            memo_tags.add(s[2])
         for sel in ("#ok", "#agree", "#next:not([hidden])"):
             b = pg.query_selector(sel)
             if b and b.is_visible():
                 b.click()
                 break
         else:
-            return over, n   # 끝 화면(답 단추 없음)
-    return over, n
+            return over, n, no_verse, memo_tags   # 끝 화면(답 단추 없음)
+    return over, n, no_verse, memo_tags
 
 
 def main():
@@ -62,7 +67,11 @@ def main():
             ctx = b.new_context(viewport={"width": vw, "height": 800})
             pg = ctx.new_page()
             pg.goto("file://" + page)
-            over, n = walk(pg)
+            over, n, no_verse, memo_tags = walk(pg)
+            if no_verse:   # task 380 사용자 요청: 판정 화면마다 성경 원문(순간 절 굵게)
+                bad.append(f"{vw}px 원문 상자(순간 절) 없는 화면 {no_verse}")
+            if memo_tags - {"TEXTAREA"}:   # task 380 사용자 지적: 한 줄 input은 폰 키보드에 글이 가림
+                bad.append(f"{vw}px 메모칸이 여러 줄 입력칸이 아님 {memo_tags}")
             if n - 1 != n_screens:
                 bad.append(f"{vw}px 넘긴 화면 {n - 1} ≠ {n_screens}")
             if over:

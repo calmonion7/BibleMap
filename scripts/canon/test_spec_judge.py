@@ -119,6 +119,24 @@ class Mutants(unittest.TestCase):
             S.mutate(s, "m1")
 
 
+class Update(unittest.TestCase):
+    """task 378 회고 eval: 도는 중인 run의 답을 score가 옛 사본으로 덮지 않는다(update가 디스크를 다시 읽어 합침)."""
+
+    def test_update_merges_concurrent_writes(self):
+        import tempfile
+        d = tempfile.mkdtemp()
+        old = (S.OUT, S.METRICS)
+        S.OUT, S.METRICS = d, os.path.join(d, "metrics.json")
+        try:
+            S.update(lambda m: m.setdefault("runs", {}).setdefault("blind", {"answers": {}})["answers"].__setitem__("a", 1))
+            stale = S.load()                                                   # score가 읽어 둔 사본
+            S.update(lambda m: m["runs"]["blind"]["answers"].__setitem__("b", 2))   # 그 사이 run이 쓴 답
+            S.update(lambda m: m.__setitem__("summary", {"n": len(stale["runs"]["blind"]["answers"])}))
+            self.assertEqual(sorted(S.load()["runs"]["blind"]["answers"]), ["a", "b"])
+        finally:
+            S.OUT, S.METRICS = old
+
+
 OK, NO = "맞음", "틀림"
 
 

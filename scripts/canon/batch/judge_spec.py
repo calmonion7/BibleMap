@@ -9,7 +9,7 @@
 
 규칙·정답·변이·이상한 점 라벨은 notes/SPEC-JUDGE.md 고정 절의 ```json fixed 블록(fixed()가 읽는다 — 손으로 옮기지 않음).
 이상한 점 판정자의 답은 judge_items.py(머리말 o1, 문항 oddity)가 samples/judge-items/metrics.json에 쓴다 — 여기서는 채점만."""
-import argparse, copy, json, os, re, subprocess, sys, tempfile
+import argparse, copy, fcntl, json, os, re, subprocess, sys, tempfile
 from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -273,6 +273,18 @@ def load():
     return json.load(open(METRICS, encoding="utf-8")) if os.path.exists(METRICS) else {}
 
 
+def update(fn):
+    """여러 run·score가 동시에 돌아도 서로의 답을 지우지 않게 — 파일 잠금 아래 디스크의 최신 metrics를 다시 읽어 fn(m)만 합쳐 쓴다
+    (task 378: 도는 중 score가 읽어 둔 옛 사본을 통째로 저장해 답이 지워질 뻔함 — judge_items.update와 같은 꼴)."""
+    os.makedirs(OUT, exist_ok=True)
+    with open(os.path.join(OUT, "metrics.lock"), "w") as lk:
+        fcntl.flock(lk, fcntl.LOCK_EX)
+        m = load()
+        fn(m)
+        save(m)
+        return m
+
+
 def save(m):
     os.makedirs(OUT, exist_ok=True)
     tmp = f"{METRICS}.{os.getpid()}.tmp"
@@ -286,8 +298,6 @@ def judged(findings, win):
 
 
 def run(a):
-    import threading
-    lock = threading.Lock()
     with open(CS.VERSES, encoding="utf-8") as fh:
         verses = json.load(fh)
     if a.mutants:
@@ -317,10 +327,7 @@ def run(a):
                 break
         rec = {"tries": tries, "findings": judged(got, win) if got is not None else None,
                "raw": None if got is not None else str(o.get("result"))[:400]}
-        with lock:
-            mm = load()
-            mm.setdefault("runs", {}).setdefault(a.key, {"model": a.model, "answers": {}})["answers"][k] = rec
-            save(mm)
+        update(lambda mm: mm.setdefault("runs", {}).setdefault(a.key, {"model": a.model, "answers": {}})["answers"].__setitem__(k, rec))
         fs = rec["findings"]
         res = "답 없음" if fs is None else f"지적 {len(fs)} · 버림 {sum(1 for f in fs if not f['ok'])}"
         print(f"[JudgeSpec] {k} {res} · {sum(t['seconds'] for t in tries):.0f}초", flush=True)
@@ -432,8 +439,7 @@ def score(a):
             bad.append("notes 결과 절")
         print(f"[JudgeSpec] score --check {'불일치: ' + ', '.join(bad) if bad else '일치'}", flush=True)
         sys.exit(1 if bad else 0)
-    m["summary"] = {"spec": sm, "oddity": om}
-    save(m)
+    update(lambda mm: mm.__setitem__("summary", {"spec": sm, "oddity": om}))   # 그 사이 run이 쓴 답을 지우지 않게 요약만 합쳐 씀
     body = f"{BEGIN}\n{block}\n{END}"
     notes = re.sub(re.escape(BEGIN) + r".*?" + re.escape(END), lambda _: body, notes, flags=re.S) if BEGIN in notes else notes.rstrip() + "\n\n## 결과\n\n" + body + "\n"
     open(NOTES, "w", encoding="utf-8").write(notes)
