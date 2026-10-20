@@ -1,0 +1,563 @@
+{
+  "version": 1,
+  "words": [
+    {
+      "id": "oil-horn",
+      "word": "기름 뿔",
+      "forms": [
+        "기름 뿔을",
+        "기름을 뿔에"
+      ],
+      "kjv": "horn of oil",
+      "refs": [
+        "삼상 16:13",
+        "삼상 16:1",
+        "왕상 1:39"
+      ],
+      "meaning": {
+        "ko": "기름을 담아 두는 짐승의 뿔이에요. 왕을 세울 때 그 머리에 기름을 부었어요.",
+        "grounds": "[직접] 삼상 16:1 「기름을 뿔에 채워」 · 삼상 16:13 「기름 뿔을 취하여 … 부었더니」 · [추론] 삼상 10:1 「사울의 머리에 붓고」 — 왕 될 사람의 머리에 기름을 부은 용례(기름병이라 뿔 용례는 아님)"
+      },
+      "look": {
+        "L1": {
+          "ko": "기름 뿔",
+          "en": "an animal horn full of oil"
+        },
+        "L2": {
+          "ko": "소나 양의 굽은 뿔 속에 기름을 가득 담았어요.",
+          "en": "A curved horn from a cow or ram, filled with oil, with the wide end open."
+        },
+        "L3": {
+          "ko": "속이 빈 짐승 뿔로, 한 손으로 쥘 만큼 팔뚝보다 짧아요. 굵은 쪽 입구로 머리에 기름을 부어요.",
+          "en": "A real hollow animal horn, shorter than a forearm, held in one hand. The wide open end is tipped to pour oil onto a head."
+        },
+        "grounds": "[추론] 삼상 16:1 「뿔에 채워」는 속이 빈 그릇임을, 16:13 「부었더니」는 쏟는 쓰임을 말한다. 본문이 뿔이라 적었으므로 병·장대가 아닌 짐승 뿔로 본다. [저작](본문에 없음) 소·양의 뿔, 굽은 모양, 팔뚝보다 짧은 크기는 양각을 부는 용례(왕상 1:39)와 짐승 뿔의 일반 모양에서 정한 그림 사정이다."
+      },
+      "criteria": {
+        "ko": "짐승의 뿔 그 자체다. 굵은 밑동은 열려 있고 끝으로 갈수록 가늘게 굽는다. 병·항아리·원뿔 깔때기·장대가 아니다. 사무엘이 한 손에 들고 기울여 다윗 머리에 붓는다.",
+        "features": [
+          {
+            "q": "뿔이 한쪽으로 굽고 끝이 뾰족한가?",
+            "grounds": "[추론] 짐승 뿔의 자연 모양(삼상 16:1 「뿔」)."
+          },
+          {
+            "q": "굵은 쪽 입구가 열려 있나?",
+            "grounds": "[추론] 삼상 16:1 「뿔에 채워」 — 기름이 들어가는 입구가 있어야 한다."
+          },
+          {
+            "q": "병이나 항아리가 아니라 짐승 뿔로 보이나?",
+            "grounds": "[직접] 삼상 16:13 「기름 뿔」 — 본문이 뿔이라 적었다."
+          },
+          {
+            "q": "한 손으로 쥘 만한 크기인가?",
+            "grounds": "[저작](본문에 크기 없음, 사람이 들고 붓는 동작에서 정한 그림 사정)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "horn",
+      "word": "뿔",
+      "forms": [
+        "뿔에"
+      ],
+      "kjv": "horn",
+      "refs": [
+        "삼상 16:1",
+        "왕상 1:39"
+      ],
+      "meaning": {
+        "ko": "소나 양의 머리에 난 단단하고 굽은 것이에요. 속이 비어서 그릇으로도 썼어요.",
+        "grounds": "[추론] 삼상 16:1 「기름을 뿔에 채워」 — 속이 비어 담는 그릇으로 쓴 용례. [저작](본문에 없음) 소·양의 머리에 난 단단하고 굽은 모양은 짐승 뿔의 일반 모양이다."
+      },
+      "look": {
+        "L1": {
+          "ko": "뿔",
+          "en": "an animal horn"
+        },
+        "L2": {
+          "ko": "소나 양의 머리에 난 단단하고 굽은 것이에요.",
+          "en": "A hard curved horn like the one on a cow's or ram's head."
+        },
+        "L3": {
+          "ko": "굵은 밑동에서 끝으로 가늘어지며 굽고, 속이 비어 있어요. 팔뚝보다 짧은 것을 한 손으로 쥐어요.",
+          "en": "Thick at the base, thinning to a curved tip, hollow inside. A short one, shorter than a forearm, fits in one hand."
+        },
+        "grounds": "[추론] 삼상 16:1 「뿔에 채워」 — 속이 비어야 채울 수 있다. [저작](본문에 없음) 소·양의 뿔(왕상 1:39 「양각」과 연결), 굽은 모양, 팔뚝보다 짧은 크기는 짐승 뿔의 일반 모양에서 정한 그림 사정이다."
+      },
+      "criteria": {
+        "ko": "소·양 같은 짐승의 머리에서 난 뿔이다. 밑동이 굵고 끝이 가늘며 굽었고 속이 비었다. 장식 나팔이나 병이 아니다.",
+        "features": [
+          {
+            "q": "끝으로 갈수록 가늘어지나?",
+            "grounds": "[추론] 짐승 뿔의 자연 모양."
+          },
+          {
+            "q": "끝이 굽었나?",
+            "grounds": "[추론] 짐승 뿔의 자연 모양."
+          },
+          {
+            "q": "속이 빈 짐승 뿔로 보이나?",
+            "grounds": "[추론] 삼상 16:1 「뿔에 채워」."
+          }
+        ]
+      }
+    },
+    {
+      "id": "oil",
+      "word": "기름",
+      "forms": [
+        "기름을",
+        "기름"
+      ],
+      "kjv": "oil",
+      "refs": [
+        "삼상 16:1",
+        "삼상 16:13"
+      ],
+      "meaning": {
+        "ko": "올리브 열매에서 짜낸 노르스름한 물질이에요. 왕이 될 사람의 머리에 부었어요.",
+        "grounds": "[추론] 삼상 16:13 「기름 … 부었더니」 · 삼상 10:1 「사울의 머리에 붓고」 — 머리에 붓는 액체. [저작](본문에 재료 없음) 올리브 열매에서 짠 것과 노르스름한 색은 이스라엘 고증이다."
+      },
+      "look": {
+        "L1": {
+          "ko": "기름",
+          "en": "golden oil"
+        },
+        "L2": {
+          "ko": "노르스름하고 미끈한 물 같은 것이에요.",
+          "en": "A smooth, yellow-gold liquid that is thicker than water."
+        },
+        "L3": {
+          "ko": "물보다 걸쭉하고 노르스름하게 빛나요. 뿔 입구에서 가늘게 흘러 머리카락을 적셔요.",
+          "en": "Gold, a little thicker than water, shining. It runs in a thin stream from the mouth of a horn and wets the hair."
+        },
+        "grounds": "[저작](본문에 색·걸쭉함 없음, 올리브 기름 고증) 삼상 16:13 「부었더니」는 쏟는 액체임을, 삼상 10:1 「머리에 붓고」는 머리를 적시는 쓰임을 보인다."
+      },
+      "criteria": {
+        "ko": "노르스름하고 윤이 나는 액체다. 뿔 입구에서 가늘게 쏟아져 머리를 적신다. 가루나 불꽃이 아니다.",
+        "features": [
+          {
+            "q": "노르스름하고 윤이 나는 액체인가?",
+            "grounds": "[저작](본문에 색 없음, 올리브 기름 고증)"
+          },
+          {
+            "q": "흘러내리는 모양인가?",
+            "grounds": "[직접] 삼상 16:13 「부었더니」."
+          },
+          {
+            "q": "머리나 뿔 입구에서 쏟아지나?",
+            "grounds": "[추론] 삼상 10:1 「사울의 머리에 붓고」 · 삼상 16:13 「기름 뿔을 취하여 … 부었더니」"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ferry-boat",
+      "word": "나룻배",
+      "forms": [
+        "나룻배가"
+      ],
+      "kjv": "ferry boat",
+      "refs": [
+        "삼하 19:18"
+      ],
+      "meaning": {
+        "ko": "강을 건너게 해 주는 배예요. 왕의 가족을 건네는 데 썼어요.",
+        "grounds": "[직접] 삼하 19:18 「왕의 가족을 건네려 하며 … 나룻배가 건너가니」"
+      },
+      "look": {
+        "L1": {
+          "ko": "나룻배",
+          "en": "a small river ferry boat"
+        },
+        "L2": {
+          "ko": "강 이쪽에서 저쪽으로 사람을 태워 나르는 작은 배예요.",
+          "en": "A small flat boat that carries people across a river."
+        },
+        "L3": {
+          "ko": "납작하고 폭이 좁은 나무배로, 사람 몇이 탈 만해요. 사공이 긴 막대로 밀어 강을 건너요.",
+          "en": "A narrow, flat wooden boat holding a few people. A boatman pushes it across the river with a long pole."
+        },
+        "grounds": "[추론] 삼하 19:18 — 가족을 건네는 쓰임. [저작](본문에 없음) 작은 배, 납작하고 좁은 나무배, 사람 몇이 탐, 사공이 긴 막대로 밂은 요단 나루 고증이다."
+      },
+      "criteria": {
+        "ko": "나무로 만든 납작한 작은 배다. 사람 몇 명이 탄다. 돛 달린 큰 배가 아니다. 요단 강 위에서 건너편으로 간다.",
+        "features": [
+          {
+            "q": "작고 납작한 나무배인가?",
+            "grounds": "[저작](본문에 모양·재료 없음, 나루 고증)"
+          },
+          {
+            "q": "강 위에 떠 있나?",
+            "grounds": "[직접] 삼하 19:18 「나룻배가 건너가니」."
+          },
+          {
+            "q": "돛 달린 큰 배가 아닌가?",
+            "grounds": "[저작](본문에 크기 없음, 나룻배 쓰임에서 정한 그림 사정)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "jordan",
+      "word": "요단",
+      "forms": [
+        "요단을",
+        "요단"
+      ],
+      "kjv": "Jordan",
+      "refs": [
+        "삼하 19:15",
+        "삼하 19:18"
+      ],
+      "meaning": {
+        "ko": "이스라엘 땅 동쪽을 남북으로 흐르는 큰 강 이름이에요.",
+        "grounds": "[직접] 삼하 19:15 「왕이 돌아와 요단에 이르매」 · 19:17 「요단 강을 밟고 건너」 · [저작](지리 고증) 이스라엘 땅 동쪽을 남북으로 흐르는 큰 강이다."
+      },
+      "look": {
+        "L1": {
+          "ko": "요단 강",
+          "en": "the Jordan river"
+        },
+        "L2": {
+          "ko": "들판 사이를 구불구불 흐르는 넓은 강이에요.",
+          "en": "A wide river winding between flat banks."
+        },
+        "L3": {
+          "ko": "두 둑 사이를 구불구불 흐르는 강이에요. 여럿이 걸어 건너기도 하고 왕의 가족은 배로 건너요. 물빛은 흐려요.",
+          "en": "A winding river between two banks; many people wade across it, and a boat carries the king's family. The water is muddy."
+        },
+        "grounds": "[추론] 삼하 19:17 「요단 강을 밟고 건너」 · 19:18 「나룻배가 건너가니」 — 사람들이 건너는 강. [저작](본문에 없음) 구불구불한 모양과 흐린 물빛은 요단 고증이다. 들판 사이·넓음도 [저작](요단 골짜기 고증)이다."
+      },
+      "criteria": {
+        "ko": "양쪽에 둑이 있는 구불구불한 강이다. 사람들이 걸어 건너고 왕의 가족은 배로 건너는 강이다. 바다나 작은 개울이 아니다.",
+        "features": [
+          {
+            "q": "양쪽에 둑이 있는 강인가?",
+            "grounds": "[저작](본문에 모양 없음, 강의 일반 모양)"
+          },
+          {
+            "q": "사람들이 건너는 강인가?",
+            "grounds": "[직접] 삼하 19:17 「요단 강을 밟고 건너」."
+          },
+          {
+            "q": "흐르는 강물이 보이나?",
+            "grounds": "[저작](본문에 물의 흐름 없음, 강의 일반 모양)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bow-down",
+      "word": "엎드리다",
+      "forms": [
+        "엎드려"
+      ],
+      "kjv": "fell down",
+      "refs": [
+        "삼하 19:18",
+        "창 42:6"
+      ],
+      "meaning": {
+        "ko": "몸을 땅 가까이 깊이 숙여 절하는 거예요.",
+        "grounds": "[직접] 삼하 19:18 「시므이가 왕의 앞에 엎드려」 · [직접] 창 42:6 「땅에 엎드려 절하매」"
+      },
+      "look": {
+        "L1": {
+          "ko": "엎드린 사람",
+          "en": "a person bowed face down"
+        },
+        "L2": {
+          "ko": "얼굴을 땅 쪽으로 숙이고 무릎과 몸을 낮춰요.",
+          "en": "A person kneeling low with the face toward the ground."
+        },
+        "L3": {
+          "ko": "무릎을 꿇고 허리를 굽혀 이마가 땅에 닿을 만큼 낮춰요. 두 손은 앞 땅에 짚어요.",
+          "en": "Kneeling with the back bent so the forehead nearly touches the ground. Both hands rest on the ground in front."
+        },
+        "grounds": "[직접] 창 42:6 「땅에 엎드려 절하매」 · [추론] 삼하 19:18 — 왕의 앞에서 하는 절. [저작](본문에 없음) 무릎을 꿇고 허리를 굽혀 이마가 땅 가까이 닿는 자세와 두 손 짚음은 절하는 자세의 일반 모양이다."
+      },
+      "criteria": {
+        "ko": "왕 앞에서 무릎을 꿇고 몸을 땅 가까이 낮춘 자세다. 서 있거나 앉은 자세가 아니다.",
+        "features": [
+          {
+            "q": "무릎을 꿇고 있나?",
+            "grounds": "[저작](본문에 자세 없음, 엎드림의 일반 모양)"
+          },
+          {
+            "q": "이마가 땅 가까이 있나?",
+            "grounds": "[저작](본문에 자세 없음, 엎드림의 일반 모양)"
+          },
+          {
+            "q": "왕 앞에서 낮춘 모양인가?",
+            "grounds": "[직접] 삼하 19:18 「왕의 앞에 엎드려」."
+          }
+        ]
+      }
+    },
+    {
+      "id": "wrapped-in-cloth",
+      "word": "보자기에 싸이다",
+      "forms": [
+        "보자기에 싸여",
+        "보자기에 싸서"
+      ],
+      "kjv": "wrapped in a cloth",
+      "refs": [
+        "삼상 21:9",
+        "민 4:12"
+      ],
+      "meaning": {
+        "ko": "천으로 감싸서 속이 보이지 않게 되었다는 뜻이에요.",
+        "grounds": "[직접] 삼상 21:9 「골리앗의 칼이 보자기에 싸여 에봇 뒤에 있으니」 · 민 4:12 「청색 보자기에 싸서」"
+      },
+      "look": {
+        "L1": {
+          "ko": "천에 싸인 칼",
+          "en": "a sword wrapped in cloth"
+        },
+        "L2": {
+          "ko": "칼이 천으로 둘둘 감겨 있어서 칼날이 보이지 않아요.",
+          "en": "A sword wrapped round and round in cloth so the blade cannot be seen."
+        },
+        "L3": {
+          "ko": "긴 칼을 천으로 칭칭 감아 기다란 꾸러미로 만들었어요. 칼날도 자루도 천에 가려요. 두 팔로 안아 들 만큼 길어요.",
+          "en": "A long sword wound in cloth into a long bundle; blade and handle are both hidden. It is long enough to carry in both arms."
+        },
+        "grounds": "[직접] 삼상 21:9 — 칼이 보자기에 싸여 있음. [저작](본문에 없음) 칭칭 감은 모양, 기다란 꾸러미, 두 팔로 안아 들 만한 길이는 천 꾸러미의 일반 모양이다. 민 4:12는 기물을 청색 천으로 싼 용례."
+      },
+      "criteria": {
+        "ko": "칼이 천으로 완전히 덮여 날이 드러나지 않는 긴 꾸러미다. 칼집 없이 날이 드러난 칼이 아니다.",
+        "features": [
+          {
+            "q": "칼날이 천에 가려 보이지 않나?",
+            "grounds": "[직접] 삼상 21:9 「보자기에 싸여」."
+          },
+          {
+            "q": "긴 꾸러미 모양인가?",
+            "grounds": "[추론] 삼상 21:9 — 칼을 싼 것이므로 칼 길이의 꾸러미."
+          },
+          {
+            "q": "천이 칼을 감싼 것이 보이나?",
+            "grounds": "[직접] 삼상 21:9 「보자기에 싸여」."
+          },
+          {
+            "q": "날이 드러난 칼이 없나?",
+            "grounds": "[추론] 삼상 21:9 — 싸여 있으므로 날이 드러나지 않는다고 본다."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ephod",
+      "word": "에봇",
+      "forms": [
+        "에봇"
+      ],
+      "kjv": "ephod",
+      "refs": [
+        "삼상 21:9",
+        "출 28:6"
+      ],
+      "meaning": {
+        "ko": "제사장이 입는 조끼 같은 옷이에요. 어깨에 걸치고 허리를 매요.",
+        "grounds": "[추론] 출 28:4 「그들의 지을 옷은 … 흉패와 에봇과 겉옷…」 · 28:7 「견대 둘을 달아」 · 28:8 「에봇 위에 매는 띠」 — 제사장 옷, 어깨끈과 띠. 삼상 21:9 「에봇 뒤에 있으니」"
+      },
+      "look": {
+        "L1": {
+          "ko": "제사장의 조끼 옷",
+          "en": "a priest's vest-like garment"
+        },
+        "L2": {
+          "ko": "어깨에서 허리까지 내려오는 짧은 조끼 같은 옷이에요.",
+          "en": "A short vest-like garment from the shoulders to the waist."
+        },
+        "L3": {
+          "ko": "어깨끈이 있고 허리띠로 매는 앞뒤 두 쪽 천옷이에요. 걸어 두면 사람이 선 모양으로 천이 늘어져요.",
+          "en": "A two-piece cloth garment with shoulder straps and a waist belt. Hung up, the cloth hangs down as if a person were standing."
+        },
+        "grounds": "[추론] 출 28:7-8 어깨끈과 띠. [저작](본문에 없음) 걸려 있음, 입은 사람 없음, 천이 늘어진 모양은 삼상 21:9 「에봇 뒤에 있으니」를 그림으로 옮기는 사정이다."
+      },
+      "criteria": {
+        "ko": "제사장이 입는 천옷으로, 어깨끈과 허리띠가 있다. 여기서는 입은 사람 없이 걸려 있고 그 뒤에 칼 꾸러미가 있다.",
+        "features": [
+          {
+            "q": "어깨끈이 있는 조끼 모양 천옷인가?",
+            "grounds": "[저작](본문에 모양 없음, 출 28장 에봇 고증)"
+          },
+          {
+            "q": "입은 사람 없이 걸려 있나?",
+            "grounds": "[저작](본문에 없음, 삼상 21:9 「에봇 뒤에 있으니」를 그림으로 옮기는 사정)"
+          },
+          {
+            "q": "그 뒤에 물건이 놓여 있나?",
+            "grounds": "[직접] 삼상 21:9 「에봇 뒤에 있으니」."
+          }
+        ]
+      }
+    },
+    {
+      "id": "showbread",
+      "word": "진설병",
+      "forms": [
+        "진설병"
+      ],
+      "kjv": "shewbread",
+      "refs": [
+        "삼상 21:6",
+        "출 25:30"
+      ],
+      "meaning": {
+        "ko": "여호와 앞 상 위에 늘 차려 두던 떡이에요. 새 떡으로 바꾸면 물려 냈어요.",
+        "grounds": "[직접] 삼상 21:6 「진설병 곧 여호와 앞에서 물려 낸 떡」 · 출 25:30 「상 위에 진설병을 두어」"
+      },
+      "look": {
+        "L1": {
+          "ko": "상에서 물려 낸 떡",
+          "en": "loaves taken from the table"
+        },
+        "L2": {
+          "ko": "상에서 내려 온 납작하고 둥근 떡 덩이들이에요.",
+          "en": "Flat round loaves of bread that were taken from the table."
+        },
+        "L3": {
+          "ko": "손바닥보다 큰 납작한 떡 덩이를 여럿 겹쳐 쌓았어요. 새 떡으로 바꿀 때 내린 것이라 제사장이 건네요.",
+          "en": "Several flat loaves bigger than a palm, stacked up. They were taken down when fresh ones were set out, and a priest hands them over with both hands."
+        },
+        "grounds": "[직접] 삼상 21:6 「여호와 앞에서 물려 낸 떡」. [저작](본문에 없음) 손바닥보다 큰 납작한 덩이, 둥근 모양, 겹쳐 쌓음은 떡 고증이다."
+      },
+      "criteria": {
+        "ko": "납작한 둥근 떡 덩이 여럿이다. 상에서 물려 낸 것을 제사장이 건네준다. 과자나 케이크가 아니다.",
+        "features": [
+          {
+            "q": "납작한 떡 덩이인가?",
+            "grounds": "[저작](본문에 모양 없음, 떡 고증)"
+          },
+          {
+            "q": "여러 덩이가 함께 있나?",
+            "grounds": "[추론] 삼상 21:3 「떡 다섯 덩이」 — 떡이 여러 덩이로 셈해지는 것으로 본다."
+          },
+          {
+            "q": "제사장이 건네는 떡인가?",
+            "grounds": "[직접] 삼상 21:6 「제사장이 그 거룩한 떡을 주었으니」."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scrawl-door",
+      "word": "대문짝에 그적거리다",
+      "forms": [
+        "대문짝에 그적거리며"
+      ],
+      "kjv": "scribbled on the doors of the gate",
+      "refs": [
+        "삼상 21:13"
+      ],
+      "meaning": {
+        "ko": "성문의 큰 문짝에 마구 선을 긋는 거예요.",
+        "grounds": "[직접] 삼상 21:13 「대문짝에 그적거리며」"
+      },
+      "look": {
+        "L1": {
+          "ko": "문에 낙서",
+          "en": "scribbling on gate doors"
+        },
+        "L2": {
+          "ko": "성문의 큰 나무 문짝에 손으로 마구 선을 그어요.",
+          "en": "Drawing wild lines by hand on the big wooden doors of a gate."
+        },
+        "L3": {
+          "ko": "두 쪽 큰 나무 문짝에 사람이 손을 뻗어 삐뚤빼뚤한 줄을 마구 그어요. 줄이 문짝 위에 어지러워요.",
+          "en": "A man reaches out to the two big wooden doors and draws crooked lines across them. The lines are messy."
+        },
+        "grounds": "[직접] 삼상 21:13 — 대문짝에 그적거림. 도구는 [저작](본문에 없음, 손이나 막대로 그린 그림 사정)."
+      },
+      "criteria": {
+        "ko": "성문의 큰 나무 문짝 위에 삐뚤빼뚤하고 어지러운 줄이 그어져 있고, 사람이 손을 뻗어 긋는 모습이다.",
+        "features": [
+          {
+            "q": "큰 나무 문짝이 보이나?",
+            "grounds": "[직접] 삼상 21:13 「대문짝」. [저작](본문에 없음) 나무라는 재료는 성문 문짝 고증이다."
+          },
+          {
+            "q": "문짝 위에 삐뚤빼뚤한 줄이 있나?",
+            "grounds": "[직접] 삼상 21:13 「그적거리며」."
+          },
+          {
+            "q": "사람이 손을 뻗어 긋고 있나?",
+            "grounds": "[추론] 삼상 21:13 — 그적거리는 동작."
+          }
+        ]
+      }
+    },
+    {
+      "id": "drool-beard",
+      "word": "침을 수염에 흘리다",
+      "forms": [
+        "침을 수염에 흘리매"
+      ],
+      "kjv": "let his spittle fall down upon his beard",
+      "refs": [
+        "삼상 21:13"
+      ],
+      "meaning": {
+        "ko": "입에서 침이 흘러 수염을 적시는 거예요.",
+        "grounds": "[직접] 삼상 21:13 「침을 수염에 흘리매」"
+      },
+      "look": {
+        "L1": {
+          "ko": "수염에 침",
+          "en": "drool in the beard"
+        },
+        "L2": {
+          "ko": "입가에서 침이 줄줄 흘러 수염이 젖어요.",
+          "en": "Spit runs from the mouth and wets the beard."
+        },
+        "L3": {
+          "ko": "입가에서 흘러내린 침이 턱수염 끝까지 길게 이어지고 수염이 번들번들 젖어요.",
+          "en": "Spit runs from the corner of the mouth down the chin beard in a long strand, and the beard is wet and shiny."
+        },
+        "grounds": "[직접] 삼상 21:13 — 침을 수염에 흘림. [저작](본문에 없음) 턱수염 끝까지 긴 가닥, 수염이 번들거림은 그림 사정이다."
+      },
+      "criteria": {
+        "ko": "입가에서 침이 길게 흘러 턱수염을 적신 모습이다. 수염이 젖어 번들거린다.",
+        "features": [
+          {
+            "q": "입가에서 침이 흘러내리나?",
+            "grounds": "[직접] 삼상 21:13 「침을 … 흘리매」."
+          },
+          {
+            "q": "수염이 젖어 보이나?",
+            "grounds": "[직접] 삼상 21:13 「수염에」."
+          },
+          {
+            "q": "수염이 있는 얼굴인가?",
+            "grounds": "[직접] 삼상 21:13 「수염」."
+          }
+        ]
+      }
+    },
+    {
+      "id": "feigned-madness",
+      "word": "미친 체",
+      "forms": [
+        "미친 체"
+      ],
+      "kjv": "feigned himself mad",
+      "refs": [
+        "삼상 21:13"
+      ],
+      "drawable": false,
+      "signs": [
+        "scrawl-door",
+        "drool-beard"
+      ],
+      "meaning": {
+        "ko": "미친 사람처럼 꾸몄다는 뜻이에요. 정말 미친 것이 아니에요.",
+        "grounds": "[직접] 삼상 21:13 「행동을 변하여 미친 체 하고」 · [추론] 삼상 21:12 「다윗이 … 아기스를 심히 두려워하여」 — 두려워서 꾸민 것."
+      }
+    }
+  ]
+}
