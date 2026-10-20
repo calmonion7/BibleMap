@@ -33005,5 +33005,4626 @@
     }
    }
   }
+ },
+ "t379": {
+  "O1": {
+   "model": "sonnet",
+   "header": "o1",
+   "answers": {
+    "379:authored-david-gibeon-battle:23": {
+     "tries": [
+      {
+       "seconds": 7.151,
+       "input": 4,
+       "output": 649,
+       "cache_read": 44430,
+       "cache_create": 11542,
+       "cost_usd": 0.057109,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "명세의 핵심 순간이 없다. 소년 열둘씩 스물네 명이 지휘관 앞 땅에서 짝지어 맞서 서로의 머리를 잡아야 하는데, 그림에는 앉은 무리 둘만 있다. 그들은 못 건너편에 멀리 줄지어 앉아 있고 맞붙는 모습은 전혀 없다. 요압은 칼을 뽑아 들고 있다(명세는 칼자루만 쥠). 요압은 갑옷을 입었으나 아브넬은 갑옷 없이 튜닉만 입었다(명세는 둘 다 비늘 갑옷). 아브넬 뒤에 앉은 무리가 보이지 않는다. 양편 무리가 못 건너편 한 줄에 있어 지휘관 뒤가 아니다. 아브넬이 대머리라 명세의 맨머리와 다를 수 있다."
+     }
+    },
+    "379:authored-david-gibeon-battle:7": {
+     "tries": [
+      {
+       "seconds": 6.972,
+       "input": 4,
+       "output": 574,
+       "cache_read": 44430,
+       "cache_create": 11465,
+       "cost_usd": 0.056051000000000004,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "소년 24명이 짝지어 맞서 적수의 머리를 잡는 장면이 없다. 모두 못 건너편에 두 줄로 앉아 있고, 싸우려는 몸짓이 전혀 없다. 소년들이 지휘관 앞 가까운 땅이 아니라 먼 원경에 있다. 아브넬은 갑옷 없이 튜닉만 입었고 대머리에 가깝다. 요압은 칼자루를 쥐지 않고 칼날을 뽑아 세웠다(명세는 칼자루를 쥔 상태). 오른쪽 아래에 정체불명의 금색 물건이 있고, 모서리에 서명 같은 표시가 있다."
+     }
+    },
+    "379:authored-david-gibeon-battle:11": {
+     "tries": [
+      {
+       "seconds": 10.992,
+       "input": 4,
+       "output": 493,
+       "cache_read": 44430,
+       "cache_create": 11601,
+       "cost_usd": 0.055785,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "명세의 핵심 순간이 없다. 소년 열둘씩 짝지어 적수의 머리를 잡고 맞서는 장면이 없고, 양편 모두 못 건너 멀리 앉아만 있다. 아브넬은 갑옷이 없고 맨 튜닉 차림이라 명세(가죽 비늘 갑옷)와 다르다. 요압은 칼자루를 쥔 것이 아니라 칼을 뽑아 들고 있다."
+     }
+    },
+    "379:authored-david-gibeon-battle:42": {
+     "tries": [
+      {
+       "seconds": 11.494,
+       "input": 4,
+       "output": 605,
+       "cache_read": 44430,
+       "cache_create": 11396,
+       "cost_usd": 0.056084999999999996,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "명세의 핵심 순간이 없다. 소년 열둘씩이 못가 빈 땅에서 짝지어 맞서 서로 적수의 머리를 잡아야 하는데, 그림에는 짝지어 맞서는 소년이 없다. 양편 24명이 모두 못 건너편 멀리 줄지어 앉아 있을 뿐이다. 신복도 지휘관 뒤가 아니라 못 건너편에 앉아 있다. 요압은 칼을 뽑아 들었는데, 명세는 칼자루를 쥔 상태다. 아브넬은 대머리로 그려졌고 허리에 칼도 두 자루 차고 있다. 못 둘레의 돌 두름은 인공물처럼 보이고, 수면에 비친 상이 어색하다."
+     }
+    },
+    "379:authored-david-gibeon-battle:101": {
+     "tries": [
+      {
+       "seconds": 8.605,
+       "input": 4,
+       "output": 530,
+       "cache_read": 45276,
+       "cache_create": 10710,
+       "cost_usd": 0.0526756,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "소년 24명이 짝지어 맞서 적수의 머리를 잡는 장면이 없다. 전부 못 건너편에 두 줄로 앉아 있을 뿐이다. 요압은 칼을 뽑아 세워 들고 있어서, 칼자루만 쥔 명세의 상태와 다르다. 요압은 비늘 갑옷과 더 짙은 차림이고 아브넬은 갑옷 없이 대머리라서 명세의 차림과 어긋난다. 신복들은 지휘관 뒤가 아니라 못 맞은편에 있다."
+     }
+    },
+    "379:authored-david-gibeon-battle:5": {
+     "tries": [
+      {
+       "seconds": 8.845,
+       "input": 4,
+       "output": 557,
+       "cache_read": 45276,
+       "cache_create": 10856,
+       "cost_usd": 0.0535296,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "소년 스물넷이 맞붙어 적수의 머리를 잡는 장면이 없다. 두 줄로 앉아만 있고 지휘관 앞 빈 땅에서의 겨루기가 보이지 않는다. 요압의 갑옷은 가죽 비늘이 아니라 금속 흉갑이라 명세와 다르고(시대에 맞지 않는 이물), 칼자루를 쥐지 않고 무릎에 팔을 얹었다. 일부 소년은 손에 막대나 칼 같은 것을 쥐고 있다. 그림 가장자리는 종이가 드러난 테두리처럼 처리되어 있다."
+     }
+    },
+    "379:authored-david-gibeon-battle:303": {
+     "tries": [
+      {
+       "seconds": 6.509,
+       "input": 4,
+       "output": 589,
+       "cache_read": 45276,
+       "cache_create": 10952,
+       "cost_usd": 0.0542336,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "명세의 핵심 순간이 빠졌다. 소년 24명이 짝지어 맞서 적수의 머리를 잡아야 하는데, 모두 못 건너편에 앉아 있을 뿐 맞붙는 사람이 없다. 요압은 앉은 자세가 아니라 서서 칼을 비스듬히 들고 있고, 칼자루를 쥔 모습과 다르다. 아브넬은 대머리로 그려졌고 명세에 없는 자세다. 소년들이 양편 지휘관 뒤가 아니라 못 건너편 한 줄에 몰려 있어 진영 구분이 안 된다. 아브넬 뒤에 있어야 할 이스보셋 편 신복도 보이지 않는다."
+     }
+    },
+    "379:authored-david-gibeon-battle:202": {
+     "tries": [
+      {
+       "seconds": 6.939,
+       "input": 4,
+       "output": 534,
+       "cache_read": 45276,
+       "cache_create": 10681,
+       "cost_usd": 0.052599599999999996,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "소년 24명이 짝지어 맞서 적수의 머리를 잡는 장면이 없다. 모두 못 건너편에 두 줄로 앉아 있을 뿐이다. 아브넬은 대머리로 그려졌고 명세의 갑옷(가죽 비늘 갑옷)도 입지 않았다. 요압은 칼을 뽑아 세워 들고 있어서 '칼자루를 쥔' 상태와 다르다. 요압은 금속 판갑을 입었다. 양편 신복이 지휘관 뒤가 아니라 못 건너편에 있다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:11": {
+     "tries": [
+      {
+       "seconds": 5.133,
+       "input": 4,
+       "output": 369,
+       "cache_read": 44824,
+       "cache_create": 9887,
+       "cost_usd": 0.047728400000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 명세와 달리 로브 자락을 쥐고 있지 않다(두 팔을 늘어뜨림). 또 다윗 오른쪽에 짐을 진 두 사람이 있어서, 다윗이 백성 앞에서 이끄는 모습이 아니라 무리 한가운데 있는 것처럼 보인다. 다윗이 누구인지도 모호하다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:42": {
+     "tries": [
+      {
+       "seconds": 7.671,
+       "input": 4,
+       "output": 589,
+       "cache_read": 44824,
+       "cache_create": 9837,
+       "cost_usd": 0.0497284,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "신원 모호: 크롭이 가리키는 다윗(흰 튜닉 남자)은 백성 속에서 걷고 있고, 그보다 앞서 이끄는 사람은 두건 쓴 갈색 로브 인물이다. 그래서 누가 이끄는 다윗인지 구별되지 않고, 다윗이 로브 자락을 쥔 모습도 없다. 또 멀리 보이는 성읍의 종탑 같은 탑이 시대에 맞지 않는다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:7": {
+     "tries": [
+      {
+       "seconds": 6.758,
+       "input": 4,
+       "output": 549,
+       "cache_read": 44824,
+       "cache_create": 9845,
+       "cost_usd": 0.0493604,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 누구인지 모호하다. 앞서 걷는 흰 옷의 젊은 남자가 다윗일 수 있으나 다른 무리와 구별되는 표지가 없다. david 크롭은 이 사람이 아니라 중간 대열의 노란 옷 남자와 파란 옷 사람을 잘라 낸 것이다. 명세의 '로브 자락을 쥔' 자세도 뚜렷하지 않다. 앞의 두 사람은 짐을 지고 있어서 누가 이끄는 다윗인지 불분명하다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:23": {
+     "tries": [
+      {
+       "seconds": 9.77,
+       "input": 4,
+       "output": 653,
+       "cache_read": 44824,
+       "cache_create": 9856,
+       "cost_usd": 0.0504444,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "마을 건물이 붉은 기와지붕에 첨탑 달린 교회식이라 시대에 맞지 않는다. 다윗이 누구인지 모호하다. 선두의 흰 옷 청년은 무리와 구별되는 표지가 없고, 다윗 크롭의 가운데는 짐 진 다른 남자다. 명세의 지물인 로브 자락을 쥐고 있지 않고 두 팔을 늘어뜨렸다. 무리가 큰 자루 짐을 지고 있어 음식을 가져온 일(순간 밖)처럼 보일 수 있다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:5": {
+     "tries": [
+      {
+       "seconds": 6.745,
+       "input": 4,
+       "output": 503,
+       "cache_read": 44824,
+       "cache_create": 9827,
+       "cost_usd": 0.0488284,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 누구인지 모호하다. 앞서 걷는 맨 젊은이(곱슬머리, 흰 옷)는 짐이 없고 로브 자락도 쥐지 않았는데, 다윗 크롭은 짐을 진 두건 쓴 사람의 모습이다. 크롭이 가리킨 인물이 무리 속 한 명이라 다윗이 앞에서 이끄는 구도와 맞지 않는다. 또 언덕 위 건물이 붉은 지붕에 종탑이 있는 서양식 성당·마을처럼 보여 시대에 맞지 않는다. 오른쪽 앞의 두 인물이 뒤에서 다윗을 앞질러 오는 듯 보여 이끄는 방향도 불분명하다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:202": {
+     "tries": [
+      {
+       "seconds": 6.587,
+       "input": 4,
+       "output": 499,
+       "cache_read": 44824,
+       "cache_create": 9856,
+       "cost_usd": 0.0489044,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "언덕 위 건물에 기독교식 종탑(첨탑)이 있어 시대에 맞지 않는다. 다윗이 백성 앞에서 이끄는지 모호하다. 다른 인물 셋이 다윗 앞쪽(그림 오른쪽)에서 같은 방향으로 걷고 있다. 로브 자락을 쥔 모습도 없고 손은 늘어져 있다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:101": {
+     "tries": [
+      {
+       "seconds": 7.949,
+       "input": 4,
+       "output": 624,
+       "cache_read": 44824,
+       "cache_create": 9911,
+       "cost_usd": 0.0503744,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗 크롭에는 다윗이 아니라 짐을 진 백성 한 명이 가운데에 있어, 그림에서 다윗이 누구인지 모호하다. 전체 그림에서는 마하나임 성읍이 왼쪽 위 뒤편에 있고 무리가 그 반대인 오른쪽 아래로 걸어 나오는 것처럼 보여, '성읍으로 오르는 길에 도착한다'는 명세와 어긋난다. 다윗은 로브 자락을 쥐고 있지 않고 지친 기색도 없이 젊고 가볍게 걷는다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:11": {
+     "tries": [
+      {
+       "seconds": 5.991,
+       "input": 4,
+       "output": 454,
+       "cache_read": 44897,
+       "cache_create": 10082,
+       "cost_usd": 0.0493657,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 칼을 두 자루 든 것처럼 보임(손에 쥔 칼과 허리춤 칼이 겹쳐 지물이 중복됨). 칼을 뽑아 든 상태로 보여 차고 있는 칼자루를 쥔다는 명세와 다름. 또 유다 사람들이 등을 보이고 서 있어 왕을 맞는 모습이 모호함"
+     }
+    },
+    "379:authored-david-mahanaim-exile:303": {
+     "tries": [
+      {
+       "seconds": 9.311,
+       "input": 4,
+       "output": 625,
+       "cache_read": 44824,
+       "cache_create": 9887,
+       "cost_usd": 0.0502884,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "마하나임 성읍 맨 위에 교회 종탑 같은 뾰족탑이 있어 그 시대에 없는 건물이다. 다윗은 앞머리가 짧은 젊은이로 그려져 있고, 다른 사람과 구별되는 표지가 없어 누가 다윗인지 모호하다. 명세의 지물인 로브 자락도 쥐고 있지 않다. 무리가 성읍에서 내려오는 방향으로 보여서, 도착하는 순간인지도 모호하다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:42": {
+     "tries": [
+      {
+       "seconds": 5.861,
+       "input": 4,
+       "output": 392,
+       "cache_read": 44897,
+       "cache_create": 9970,
+       "cost_usd": 0.0482977,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 칼을 뽑아 손에 든 채 걷고 있다. 명세는 칼자루를 쥐는 자세이고 차고 있는 상태여야 하는데, 칼날이 완전히 드러나 있다. 또 유다 사람들이 배를 붙잡고 돕는 모습이 아니라 강가에 일렬로 서서 등을 보이고 있다. 일부는 두 겹으로 겹쳐 보이기도 한다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:7": {
+     "tries": [
+      {
+       "seconds": 6.65,
+       "input": 4,
+       "output": 537,
+       "cache_read": 44897,
+       "cache_create": 9970,
+       "cost_usd": 0.0497477,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 칼집에 찬 칼이 아니라 칼날이 드러난 칼을 뽑아 들고 있다(상태 어긋남). 오른쪽 아래 구석에 글자 같은 서명이 있다. 다윗은 왕이 아니라 젊은이처럼 보여 신원이 모호하다. 유다 사람들은 한 줄로 늘어서 있을 뿐 배를 붙잡아 돕지 않는다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:23": {
+     "tries": [
+      {
+       "seconds": 6.238,
+       "input": 4,
+       "output": 461,
+       "cache_read": 44897,
+       "cache_create": 9910,
+       "cost_usd": 0.048747700000000005,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 칼을 뽑아 손에 든 채 걷고 있다. 명세는 칼자루를 쥐는 자세이고 칼은 차고 있어야 한다. 또 다윗이 무리와 같은 줄에서 같은 방향으로 걷고 있어서 누가 왕인지 구별되지 않고, 맞으러 나온 사람들에게 다가가는 모습도 아니다. 유다 사람들은 한 줄로 길게 늘어선 행렬이고, 배를 붙잡는 사람이 없다. 나룻배는 강 한가운데 멀리 떠 있고 사람들이 빽빽이 타고 있다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:5": {
+     "tries": [
+      {
+       "seconds": 5.515,
+       "input": 4,
+       "output": 419,
+       "cache_read": 44897,
+       "cache_create": 9900,
+       "cost_usd": 0.0482877,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 왕 같지 않게 평범한 젊은 농부 차림으로 그려져 신원이 모호하다. 칼은 자루를 쥐지 않고 손에 늘어뜨려 든 것처럼 보인다. 유다 사람들은 다윗 쪽을 향하지 않고 한 줄로 서서 강을 보고 있다. 아무도 배를 붙잡지 않고 배는 멀리 떠 있다. 배 탄 사람 중 누가 왕의 가족인지도 구별되지 않는다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:101": {
+     "tries": [
+      {
+       "seconds": 6.225,
+       "input": 4,
+       "output": 439,
+       "cache_read": 44897,
+       "cache_create": 9960,
+       "cost_usd": 0.0487277,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "종이 책 펼침면 형태(가운데 접힌 선, 페이지 테두리와 검은 바깥 테두리)가 그림에 들어가 있다. 다윗은 칼을 뽑아 손에 든 모습인데, 명세는 칼자루를 쥐는 자세다. 다윗은 왕처럼 보이지 않고 젊은 평민처럼 보여 신원이 모호하다. 유다 사람들이 강을 바라보며 한 줄로 늘어서 있어서 왕을 맞는 모습이 아니다. 배를 붙잡는 사람도 없다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:202": {
+     "tries": [
+      {
+       "seconds": 6.425,
+       "input": 4,
+       "output": 475,
+       "cache_read": 44897,
+       "cache_create": 10022,
+       "cost_usd": 0.049335699999999996,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 칼을 뽑아 손에 늘어뜨려 듦(칼자루를 쥐고 차고 있는 상태와 다름). 유다 사람들이 다윗을 등지고 강 쪽을 보며 일렬로 서 있어 왕을 맞는 모습이 아님. 왼쪽 아래 풀밭에 서명 같은 낙서 표시가 있음."
+     }
+    },
+    "379:authored-david-returns-jerusalem:303": {
+     "tries": [
+      {
+       "seconds": 6.285,
+       "input": 4,
+       "output": 560,
+       "cache_read": 44897,
+       "cache_create": 9893,
+       "cost_usd": 0.0496697,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 칼을 뽑아 날을 드러낸 채 들고 있어, 칼자루를 쥐는 명세와 어긋남(상태). 또 다윗이 왕으로 구별되지 않고 젊은 평민처럼 보여 신원이 모호함. 유다 사람들은 강가에 한 줄로 서 있을 뿐 배를 붙잡아 돕는 이가 없음."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:42": {
+     "tries": [
+      {
+       "seconds": 8.28,
+       "input": 4,
+       "output": 801,
+       "cache_read": 45090,
+       "cache_create": 11569,
+       "cost_usd": 0.05880300000000001,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "이새의 지팡이 윗끝이 나팔·뿔처럼 나팔꽃 모양으로 벌어져 있어, 이새가 기름 뿔을 든 것처럼 보일 소지가 있다. 사무엘이 든 기름 그릇도 병과 뿔이 합쳐진 모양이라 '기름 뿔'이 분명하지 않다. 형제 줄의 네 번째는 수염 난 어른에 가슴을 드러내 이새와 구별이 모호하다. 형제는 일곱이어야 하는데 네 명만 보인다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:11": {
+     "tries": [
+      {
+       "seconds": 10.309,
+       "input": 4,
+       "output": 998,
+       "cache_read": 45090,
+       "cache_create": 11430,
+       "cost_usd": 0.06021700000000001,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "사무엘이 든 기름 그릇이 뿔이 아니라 손잡이와 주둥이가 달린 금속 주전자(ewer)처럼 보인다. 명세는 기름 뿔(horn of oil)이라고 했으니 지물이 어긋난다. 그 밖에는 이물이나 손가락 이상이 없고, 이새를 포함해 기름 뿔을 든 사람은 사무엘뿐이다. 형제는 셋만 보이고 다윗 바로 뒤가 아니라 떨어져 서 있다. 이 점은 무리 항목에서 따로 검수할 사항이다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:7": {
+     "tries": [
+      {
+       "seconds": 8.305,
+       "input": 4,
+       "output": 800,
+       "cache_read": 45090,
+       "cache_create": 11421,
+       "cost_usd": 0.058201,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "이새의 지팡이 윗부분이 나팔이나 기름 뿔처럼 넓게 벌어져 있어서, 이새가 뿔 달린 물건을 쥔 것으로 읽힐 수 있다. 명세는 이새가 기름 뿔 없이 나무 지팡이만 쥔다고 했다. 또 오른쪽 아래 구석에 서명이나 글자 같은 표식이 있다. 이 밖에 이새를 뺀 형제가 네 명뿐이라 일곱이 아니고, 이새 외에는 누가 누구인지 구별되지 않는다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:23": {
+     "tries": [
+      {
+       "seconds": 9.412,
+       "input": 4,
+       "output": 907,
+       "cache_read": 45090,
+       "cache_create": 11514,
+       "cost_usd": 0.059643,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "이새의 신원이 모호하다. 줄 오른쪽 끝의 지팡이 든 턱수염 남자가 이새로 보이지만, 그 옆의 흰 두건 쓴 노인과 회색 턱수염 남자도 비슷한 나이대라 누가 아버지이고 누가 형제인지 구별이 안 된다. 바닥 오른쪽 아래에 정체 모를 작은 고리 모양 물체가 흩어져 있다. 기름 뿔은 금빛 깔때기 같은 모양이라 뿔로 보기에 모호하다. 형제들은 다윗 바로 뒤가 아니라 간격을 두고 서 있다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:101": {
+     "tries": [
+      {
+       "seconds": 6.614,
+       "input": 4,
+       "output": 645,
+       "cache_read": 45090,
+       "cache_create": 11421,
+       "cost_usd": 0.05665100000000001,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "이새의 지팡이 윗끝이 나팔(뿔피리)처럼 나팔 모양으로 벌어져 있어, 기름 뿔 없이 지팡이만 쥔다는 명세와 어긋난다. 이새가 뿔 같은 물건을 든 것으로 보여 기름 붓는 이가 사무엘뿐이라는 조건이 모호해진다. 또 이새와 형제들이 다윗 곁에 가깝게 서 있어 누가 이새인지 구별이 약하다(형제는 넷만 보임)."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:5": {
+     "tries": [
+      {
+       "seconds": 8.527,
+       "input": 4,
+       "output": 868,
+       "cache_read": 45090,
+       "cache_create": 11421,
+       "cost_usd": 0.058881,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "맞음"
+     },
+     "reasons": {
+      "oddity": "없음 — 사무엘만 기름 뿔을 들고 고개 숙인 다윗에게 붓고, 이새로 보이는 노인은 지팡이만 쥐고 있다. 이물, 역할 뒤바뀜, 손가락 이상, 테두리나 글자는 보이지 않는다. 형제는 4명만 보이지만 이는 무리 문항에서 볼 부분이라 여기서는 감점하지 않았다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:202": {
+     "tries": [
+      {
+       "seconds": 8.855,
+       "input": 4,
+       "output": 808,
+       "cache_read": 45090,
+       "cache_create": 11307,
+       "cost_usd": 0.057825,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "이새로 보이는 오른쪽 노인의 지팡이 끝이 나팔·뿔처럼 벌어진 금빛이라 기름 뿔을 든 것처럼 보일 수 있고, 명세의 '나무 지팡이'와 다르다. 이새 크롭은 이새가 아니라 형제 넷을 잘라 냈다. 이새가 아버지로 구별되지 않고 형제와 한 줄에 섞여 서 있다(이새가 누구인지 모호). 형제도 일곱이 아니라 넷만 보인다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:303": {
+     "tries": [
+      {
+       "seconds": 8.921,
+       "input": 4,
+       "output": 869,
+       "cache_read": 45090,
+       "cache_create": 11421,
+       "cost_usd": 0.058891000000000006,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "신원이 모호하다. 형제 줄에 회색 수염의 노인이 서 있어서, 오른쪽 끝에서 지팡이를 쥔 터번 쓴 사람과 이 노인 중 누가 이새인지 구별되지 않는다. 형제로 그려진 인물 중 둘은 나이가 지긋해 보여 '이새의 아들 일곱'으로 읽기도 어렵다. 이 점이 이상한 점이다. 기름 붓는 사람이 사무엘 한 명뿐이고 기름 뿔을 든 사람이 그 한 명뿐인 점, 현대 물건과 손가락 결함이 없는 점은 이상하지 않다."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:11": {
+     "tries": [
+      {
+       "seconds": 7.357,
+       "input": 4,
+       "output": 578,
+       "cache_read": 44818,
+       "cache_create": 9907,
+       "cost_usd": 0.04989779999999999,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "종자들이 다윗 바로 뒤 같은 언덕에 있지 않고, 성벽 아래에 따로 줄지어 선 먼 무리로 그려졌다. 명세는 이 배치를 명시적으로 배제한다. 다윗은 성벽이 아니라 그 무리를 보고 서 있어 마주 보는 대상도 어긋난다. 칼은 허리에 늘어져 있고 손이 칼자루를 쥔 모습이 분명하지 않다. 오른손 쪽에 든 물건이 칼집 끝인지 칼인지도 모호하다."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:7": {
+     "tries": [
+      {
+       "seconds": 5.412,
+       "input": 4,
+       "output": 461,
+       "cache_read": 44818,
+       "cache_create": 9974,
+       "cost_usd": 0.04899579999999999,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 칼을 뽑아 칼날을 드러내고 있다(칼자루를 쥐는 상태와 다를 수 있음). 종자들이 다윗 뒤가 아니라 성벽 앞 먼 쪽에 줄지어 서 있다. 오른쪽 아래 구석에 글자나 서명 같은 표시가 있다."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:42": {
+     "tries": [
+      {
+       "seconds": 7.768,
+       "input": 4,
+       "output": 565,
+       "cache_read": 44818,
+       "cache_create": 9861,
+       "cost_usd": 0.0495838,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 칼자루를 쥔 것이 아니라 칼이 뽑혀 아래로 향했거나 칼집 상태가 모호하고 손이 뒤로 감춰짐. 종자들이 다윗 바로 뒤가 아니라 멀리 오른쪽에 일렬로 서 있음. 다윗이 종자들과 구별되는 특징이 약해 신원 모호."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:23": {
+     "tries": [
+      {
+       "seconds": 5.75,
+       "input": 4,
+       "output": 452,
+       "cache_read": 44818,
+       "cache_create": 9918,
+       "cost_usd": 0.0486818,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "종자들이 다윗 바로 뒤가 아니라 성벽 아래 멀리 따로 줄지어 서 있음(명세의 종자 배치와 어긋남). 다윗은 칼을 뽑아 땅으로 늘어뜨렸고 시선도 성벽이 아닌 옆을 향함."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:5": {
+     "tries": [
+      {
+       "seconds": 5.771,
+       "input": 4,
+       "output": 455,
+       "cache_read": 44818,
+       "cache_create": 9974,
+       "cost_usd": 0.048935799999999995,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "종자들이 다윗 뒤가 아니라 성벽 아래 먼 오른쪽에 따로 줄지어 서 있어 명세의 '바로 뒤 같은 언덕'과 어긋남. 다윗도 칼을 뽑아 땅에 짚고 있어 칼자루를 쥔 상태가 모호함."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:101": {
+     "tries": [
+      {
+       "seconds": 5.236,
+       "input": 4,
+       "output": 398,
+       "cache_read": 44818,
+       "cache_create": 9918,
+       "cost_usd": 0.0481418,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "종자들이 다윗 바로 뒤가 아니라 성벽 아래 먼 곳에 줄지어 서 있다. 명세는 성벽 쪽 먼 무리가 아니라고 못 박았다. 또 다윗은 성벽이 아니라 옆·먼 쪽을 보고 있고, 칼은 뽑지 않은 채 손에 든 짧은 막대처럼 보여 칼자루를 쥔 모습이 분명하지 않다."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:202": {
+     "tries": [
+      {
+       "seconds": 5.053,
+       "input": 4,
+       "output": 409,
+       "cache_read": 44818,
+       "cache_create": 9974,
+       "cost_usd": 0.0484758,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "종자들이 다윗 바로 뒤가 아니라 성벽 아래에 줄지어 서 있다. 다윗과 멀리 떨어져 있고 성벽 쪽 먼 무리처럼 보인다. 이는 명세가 금지한 배치다. 다윗은 칼을 뽑아 아래로 늘어뜨려 쥐고 있어 칼자루를 쥔 자세와 다르다. 몸은 성벽 쪽이 아니라 옆을 향하고 있다."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:303": {
+     "tries": [
+      {
+       "seconds": 7.199,
+       "input": 4,
+       "output": 391,
+       "cache_read": 44818,
+       "cache_create": 9870,
+       "cost_usd": 0.0478798,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "종자들이 다윗 바로 뒤가 아니라 성벽 아래 멀리 오른쪽에 따로 줄지어 서 있어 명세의 배치(다윗 뒤 같은 언덕)와 다르다. 다윗의 칼도 칼집과 손에 쥔 모양이 어색하고 모호하다. 칼자루를 쥔 건지, 칼이 반쯤 뽑힌 건지 구별되지 않는다."
+     }
+    },
+    "379:authored-saul-endor-medium:11": {
+     "tries": [
+      {
+       "seconds": 6.656,
+       "input": 4,
+       "output": 613,
+       "cache_read": 45152,
+       "cache_create": 11487,
+       "cost_usd": 0.056601200000000004,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "사무엘이 땅에서 허리 위만 올라온 모습이 아니라, 맨발로 바닥에 선 전신 노인으로 그려졌다. 문 가의 두 사람 중 한 명은 수염 난 늙은이(가슴을 드러냄)라서 수염 없는 젊은 종 둘이라는 명세와 다르다. 이 노인이 엎드린 사울과 겹쳐 보여 신원도 모호하다. 바닥에는 정체불명의 작은 물체(막대 조각)가 있다."
+     }
+    },
+    "379:authored-saul-endor-medium:42": {
+     "tries": [
+      {
+       "seconds": 6.04,
+       "input": 4,
+       "output": 594,
+       "cache_read": 45152,
+       "cache_create": 11596,
+       "cost_usd": 0.0568472,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "사무엘이 땅에서 허리 위만 올라온 모습이 아니라, 방 바닥에 전신이 서 있다. 문 가의 두 사람 중 하나는 긴 흰 수염의 노인이라 '수염 없는 젊은 종 둘'과 다르고, 엎드린 사울과 노인이 둘 더 있어 신원이 모호하다. 여인은 두려워 떠는 모습이 약하고 사무엘과 떨어져 서 있다."
+     }
+    },
+    "379:authored-saul-endor-medium:7": {
+     "tries": [
+      {
+       "seconds": 9.691,
+       "input": 4,
+       "output": 663,
+       "cache_read": 45152,
+       "cache_create": 11527,
+       "cost_usd": 0.0572612,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "여러 군데가 명세와 다르다. ① 문 가의 두 종이 수염 난 노인이라서, 명세의 '수염 없는 젊은 종'과 다르고 사울·사무엘과도 구별되지 않는다. ② 사무엘이 땅에서 허리 위만 올라오지 않고 방바닥에 전신으로 서 있다. ③ 사울이 엎드려 있으나 사무엘 쪽이 아닌 왼쪽을 향하고 있다. ④ 여인이 두려워 떨기보다 담담하고, 사무엘을 바라보지 않고 정면을 본다. ⑤ 그림에 종이 테두리가 있다."
+     }
+    },
+    "379:authored-saul-endor-medium:101": {
+     "tries": [
+      {
+       "seconds": 6.689,
+       "input": 4,
+       "output": 604,
+       "cache_read": 45152,
+       "cache_create": 11451,
+       "cost_usd": 0.0563672,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "문 가에 선 두 종 중 하나가 긴 흰 수염의 노인이라 '수염 없는 젊은 종 둘' 명세와 어긋나고, 엎드린 사울과 혼동될 수 있다. 사무엘은 땅에서 허리 위만 올라온 모습이 아니라 전신으로 서서 땅 위를 걷고 있다. 엎드린 사울은 대머리에 변장 외투가 불분명하다. 램프는 현대식 석유등처럼 보인다."
+     }
+    },
+    "379:authored-saul-endor-medium:23": {
+     "tries": [
+      {
+       "seconds": 7.723,
+       "input": 4,
+       "output": 651,
+       "cache_read": 45152,
+       "cache_create": 11520,
+       "cost_usd": 0.0571132,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "사무엘이 땅에서 허리 위만 올라온 모습이 아니라 전신으로 서 있다. 구덩이에 발을 딛고 서 있을 뿐이다. 문 가의 두 사람 중 하나는 수염 난 반라의 노인이라 수염 없는 젊은 종이 아니며, 사울이나 사무엘과 혼동된다. 그래서 노인이 셋으로 보여 신원이 모호하다. 젊은 종은 한 명뿐이다. 또 방 안이 아니라 야외 흙바닥처럼 보이고, 배경이 밤의 어두운 방이 아니라 밝다."
+     }
+    },
+    "379:authored-saul-endor-medium:5": {
+     "tries": [
+      {
+       "seconds": 8.344,
+       "input": 4,
+       "output": 602,
+       "cache_read": 45152,
+       "cache_create": 11520,
+       "cost_usd": 0.0566232,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "사무엘이 땅에서 허리 위만 올라온 모습이 아니라 맨발로 땅 위에 온전히 서 있다. 문 가의 종은 수염 난 노인이고 가슴이 드러나 있어서 수염 없는 젊은 종이 아니다. 종이 한 명뿐이라 명세의 둘이 아니다. 사무엘과 종의 얼굴·수염이 비슷해 신원이 모호하다. 등불은 현대식 석유등처럼 보인다."
+     }
+    },
+    "379:authored-saul-endor-medium:202": {
+     "tries": [
+      {
+       "seconds": 8.849,
+       "input": 4,
+       "output": 715,
+       "cache_read": 45152,
+       "cache_create": 11596,
+       "cost_usd": 0.0580572,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "명세와 어긋난 점이 여럿 있다. (1) 사무엘이 땅에서 허리 위만 올라온 모습이 아니다. 전신으로 땅 위에 서서 걷는 듯한 자세다. (2) 문 가의 두 종 가운데 하나가 긴 회색 수염의 노인이다. 명세는 수염 없는 젊은 종 둘이라고 했다. 나머지 한 명도 수염이 있다. (3) 그 수염 난 노인이 엎드린 사울과 구별되지 않고, 사울의 신원이 모호하다. (4) 방 안이 어둡지 않고, 밝은 베이지색 벽과 바깥 같은 배경이 보인다. (5) 등불이 벽에 걸려 있는데 밤의 어둠이 느껴지지 않는다."
+     }
+    },
+    "379:authored-saul-gilboa-death:11": {
+     "tries": [
+      {
+       "seconds": 6.056,
+       "input": 4,
+       "output": 493,
+       "cache_read": 44970,
+       "cache_create": 10788,
+       "cost_usd": 0.052587,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "사울은 칼을 이미 뽑아 아래로 늘어뜨리고 있고, 병기 든 자도 뽑은 칼을 오른손에 들고 있다. 허리에는 칼집이 따로 달려 있다. 명세는 두 사람 모두 칼이 칼집에 든 채라고 했으므로 어긋난다. 병기 든 자는 두려워 굳은 모습이 아니라 침착하게 선 모습이다."
+     }
+    },
+    "379:authored-saul-endor-medium:303": {
+     "tries": [
+      {
+       "seconds": 6.966,
+       "input": 4,
+       "output": 622,
+       "cache_read": 45152,
+       "cache_create": 11504,
+       "cost_usd": 0.0567592,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "함께 온 두 사람 중 문 가의 한 명이 수염 난 노인이다. 명세는 수염 없는 젊은 종 둘이라고 했다. 이 노인이 엎드린 백발의 사울이나 사무엘과 헷갈린다. 사무엘은 땅에서 허리 위만 올라온 모습이 아니다. 온몸이 보이는 채 바닥에 서 있어서 명세와 다르다. 서 있는 인물이 사무엘 외에 노인 둘이라 사무엘이 누구인지도 모호하다."
+     }
+    },
+    "379:authored-saul-gilboa-death:42": {
+     "tries": [
+      {
+       "seconds": 5.935,
+       "input": 4,
+       "output": 523,
+       "cache_read": 44970,
+       "cache_create": 10748,
+       "cost_usd": 0.052727,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "병기 든 자가 칼을 완전히 뽑아 아래로 든 채 서 있다. 명세는 칼이 칼집에 든 채여야 한다고 했고, 허리에도 칼집이 따로 보여 칼이 두 자루처럼 보인다. 사울은 칼집에 든 칼을 쥐고 있어 이 점은 맞다. 활 쏘는 자들은 능선 위에 일렬로 서 있어, 막대 같은 선 하나가 그들을 가로지르는 것처럼 보인다."
+     }
+    },
+    "379:authored-saul-gilboa-death:7": {
+     "tries": [
+      {
+       "seconds": 6.016,
+       "input": 4,
+       "output": 501,
+       "cache_read": 44970,
+       "cache_create": 10866,
+       "cost_usd": 0.052979000000000005,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "두 사람 모두 칼을 칼집에서 뽑아 손에 들고 있다. 사울은 뽑은 칼을 아래로 늘어뜨렸고, 병기 든 자도 뽑은 칼을 쥐고 있다. 명세는 두 칼 모두 칼집에 든 채라고 했으므로 상태가 어긋난다. 병기 든 자는 두려워 굳은 모습이 아니라 침착하게 서 있다."
+     }
+    },
+    "379:authored-saul-gilboa-death:23": {
+     "tries": [
+      {
+       "seconds": 5.948,
+       "input": 4,
+       "output": 486,
+       "cache_read": 44970,
+       "cache_create": 10786,
+       "cost_usd": 0.052509,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "병기 든 자가 칼을 완전히 뽑아 들고 있다. 명세는 칼집에 든 칼자루만 쥐고 빼지 않는다고 했다. 또 사울의 칼은 칼집에서 반쯤 빠져 보여 상태가 모호하다. 병기 든 자는 두려워 굳은 모습이 아니라 위쪽을 멀뚱히 쳐다보는 표정이다."
+     }
+    },
+    "379:authored-saul-gilboa-death:5": {
+     "tries": [
+      {
+       "seconds": 5.836,
+       "input": 4,
+       "output": 477,
+       "cache_read": 44970,
+       "cache_create": 10781,
+       "cost_usd": 0.052399,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "병기 든 자의 칼이 칼집에서 뽑혀 칼날이 드러나 있다. 명세는 두 사람 모두 칼이 칼집에 든 채라고 한다. 또 병기 든 자가 두려워 굳은 모습이 아니라 침착하게 서서 먼 곳을 본다. 사울의 칼은 칼집에 들어 있어 이 점은 맞다."
+     }
+    },
+    "379:authored-saul-gilboa-death:101": {
+     "tries": [
+      {
+       "seconds": 6.184,
+       "input": 4,
+       "output": 478,
+       "cache_read": 44970,
+       "cache_create": 10764,
+       "cost_usd": 0.052341,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "병기 든 자가 칼을 이미 뽑아 손에 들고 있고 칼날이 드러나 있다. 명세는 칼집에 든 칼자루만 쥐고 칼을 빼지 않는다고 했다. 사울은 칼집에 든 칼을 차고 있어 이 부분은 맞다. 병기 든 자의 허리춤에 빈 칼집이 따로 보인다."
+     }
+    },
+    "379:authored-saul-gilboa-death:202": {
+     "tries": [
+      {
+       "seconds": 5.625,
+       "input": 4,
+       "output": 489,
+       "cache_read": 44970,
+       "cache_create": 10748,
+       "cost_usd": 0.052387,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "병기 든 자가 칼을 뽑아 손에 들고 있다. 명세는 칼이 칼집에 든 채 칼자루만 쥐고 칼을 빼지 않는다고 했으니 상태가 어긋난다. 그의 허리에는 칼집 또는 단검 손잡이도 따로 보여 칼이 두 자루처럼 보인다. 사울의 칼은 칼집에 들어 있어 맞다."
+     }
+    },
+    "379:authored-saul-gilboa-death:303": {
+     "tries": [
+      {
+       "seconds": 4.876,
+       "input": 4,
+       "output": 484,
+       "cache_read": 44970,
+       "cache_create": 10935,
+       "cost_usd": 0.05308500000000001,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "병기 든 자가 칼을 뽑아 들고 있다. 명세는 칼집에 든 칼자루만 쥐고 칼을 빼지 않는 것이다. 칼날 두 개가 보이는데, 한 칼이 양손에 걸쳐 있거나 칼이 두 자루로 겹친 이물로 보인다. 사울의 칼은 칼집에 들어 있어 맞다."
+     }
+    }
+   }
+  },
+  "J1": {
+   "model": "sonnet",
+   "header": "v2",
+   "answers": {
+    "379:authored-david-gibeon-battle:11": {
+     "tries": [
+      {
+       "seconds": 12.937,
+       "input": 4,
+       "output": 1335,
+       "cache_read": 45400,
+       "cache_create": 12571,
+       "cost_usd": 0.06818199999999999,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "틀림",
+      "figures[1].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "소년들이 전부 앉아만 있고 짝지어 맞서 적수의 머리를 잡는 장면이 없다.",
+      "crowds[0]": "신복들이 아브넬 뒤가 아니라 못 건너편에 앉아 있다.",
+      "crowds[1]": "신복들이 요압 뒤가 아니라 못 건너편에 앉아 있다.",
+      "crowds[2]": "소년 열둘씩이 짝지어 맞서지 않고, 멀리 줄지어 앉아 있다.",
+      "figures[1].pose": "칼자루를 쥔 게 아니라 뽑은 칼을 무릎 위에 들고 있다.",
+      "figures[1].prop": "칼은 있으나 칼집에서 뽑아 든 모양이라 차고 있어야 할 방식과 다르다."
+     }
+    },
+    "379:authored-david-gibeon-battle:42": {
+     "tries": [
+      {
+       "seconds": 13.101,
+       "input": 4,
+       "output": 1561,
+       "cache_read": 45400,
+       "cache_create": 12366,
+       "cost_usd": 0.06962199999999999,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "틀림",
+      "figures[1].facing": "맞음",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "소년들이 못 건너편에 한 줄씩 앉아 있을 뿐, 짝지어 맞서 적수의 머리를 잡은 모습이 없다.",
+      "background[0]": "돌로 둘러싼 못이 보인다.",
+      "background[1]": "마른 풀밭과 둔덕이 보인다.",
+      "crowds[0]": "왼쪽 무리가 아브넬 뒤가 아니라 못 건너편 먼 둑에 줄지어 앉아 있다.",
+      "crowds[1]": "오른쪽 무리가 요압 뒤가 아니라 못 건너편 먼 둑에 줄지어 앉아 있다.",
+      "crowds[2]": "지휘관들 앞 가까운 땅에서 짝지어 맞서는 소년이 없다.",
+      "figures[0].pose": "앉아 창을 세워 쥐고 못 쪽을 바라본다.",
+      "figures[0].prop": "창을 들고 있다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향한다.",
+      "figures[1].pose": "칼자루만 쥔 것이 아니라 뽑은 칼날을 세워 들고 있다.",
+      "figures[1].prop": "칼이 칼집에서 뽑혀 있다. 허리에도 칼자루와 칼집이 따로 보여 칼이 두 자루처럼 보인다.",
+      "figures[1].facing": "화면 왼쪽을 향한다.",
+      "guard": "요압에게 칼이 두 자루인 듯 보인다. 뽑아 든 칼과 허리의 칼자루·칼집이 겹쳐 보인다."
+     }
+    },
+    "379:authored-david-gibeon-battle:23": {
+     "tries": [
+      {
+       "seconds": 13.544,
+       "input": 4,
+       "output": 1419,
+       "cache_read": 45400,
+       "cache_create": 12512,
+       "cost_usd": 0.068786,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds[0]": "맞음",
+      "crowds[1]": "맞음",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "맞음",
+      "figures[1].prop": "틀림",
+      "figures[1].facing": "맞음",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "소년 스물넷이 모두 못 건너편에 앉아 있을 뿐, 짝지어 맞서 적수의 머리를 잡은 모습이 없다.",
+      "crowds[2]": "지휘관들 앞 빈 땅에서 짝지어 맞서는 소년들이 없다.",
+      "figures[1].prop": "요압의 칼이 칼집에서 뽑혀 무릎 위에 걸쳐 있다. 찬 채로 자루만 쥔 모습이 아니다.",
+      "guard": "오른쪽 아래 모서리에 작은 글자나 서명처럼 보이는 표시가 있다."
+     }
+    },
+    "379:authored-david-gibeon-battle:7": {
+     "tries": [
+      {
+       "seconds": 20.04,
+       "input": 4,
+       "output": 1638,
+       "cache_read": 45400,
+       "cache_create": 12435,
+       "cost_usd": 0.070668,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "틀림",
+      "figures[1].facing": "맞음",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "소년들이 못 건너편에 줄지어 앉아만 있다. 지휘관 앞 가까운 땅에서 짝지어 맞서 적수의 머리를 잡는 모습이 없다.",
+      "background[0]": "갈대와 돌로 둘린 못이 보인다.",
+      "background[1]": "마른 풀밭 둔덕이 보인다.",
+      "crowds[0]": "아브넬 쪽 무리가 지휘관 뒤 못가에 있지 않고 못 건너편에 줄지어 앉아 있으며, 수가 열둘이 아니라 열 명쯤이다.",
+      "crowds[1]": "요압 쪽 무리가 요압 뒤가 아니라 못 건너편에 있고, 수가 열둘이 아니라 여덟 명쯤이다.",
+      "crowds[2]": "소년들이 짝지어 맞서지 않고 머리를 잡는 동작도 없다. 원경에 앉아만 있다.",
+      "figures[0].pose": "앉아서 창을 세워 쥐고 못 쪽을 바라본다.",
+      "figures[0].prop": "창을 지니고 있다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향한다.",
+      "figures[1].pose": "칼을 칼집에서 뽑아 칼날을 위로 세워 들었다. 칼자루를 쥐고 지켜보는 자세가 아니다.",
+      "figures[1].prop": "칼을 뽑아 들었다. 허리에는 빈 칼집이 있다. 기대는 찬 칼에 손을 얹은 모양이다.",
+      "figures[1].facing": "화면 왼쪽을 향한다.",
+      "guard": "왼쪽 소년 줄 옆 풀밭에 가는 칼날 같은 물체가 따로 떨어져 있다. 오른쪽 아래 구석에는 글자나 서명 같은 표식이 있다."
+     }
+    },
+    "379:authored-david-gibeon-battle:101": {
+     "tries": [
+      {
+       "seconds": 11.557,
+       "input": 4,
+       "output": 1273,
+       "cache_read": 47833,
+       "cache_create": 10093,
+       "cost_usd": 0.0578933,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds[0]": "맞음",
+      "crowds[1]": "맞음",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "맞음",
+      "figures[1].prop": "틀림",
+      "figures[1].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "양편 소년 열두 쌍이 모두 못 건너편에 줄지어 앉아 있고, 지휘관들 앞 빈 땅에서 짝지어 맞서 적수의 머리를 잡는 순간이 없다.",
+      "crowds[2]": "짝지어 맞서 적수의 머리를 잡은 소년들이 없다. 소년들은 그냥 앉아 있다.",
+      "figures[1].prop": "요압이 칼을 뽑아 세워 쥐고 있다. 칼은 차고 칼자루를 쥔 모습이어야 하는데 어긋나며, 허리에는 칼집도 따로 보인다."
+     }
+    },
+    "379:authored-david-gibeon-battle:5": {
+     "tries": [
+      {
+       "seconds": 13.119,
+       "input": 4,
+       "output": 1297,
+       "cache_read": 47833,
+       "cache_create": 10239,
+       "cost_usd": 0.0587173,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "맞음",
+      "figures[1].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "소년 스물넷이 모두 못 건너편에 앉아 있을 뿐, 짝지어 맞서 적수의 머리를 잡는 장면이 없다.",
+      "crowds[0]": "신복들이 아브넬 뒤가 아니라 못 건너편 줄에 앉아 있다.",
+      "crowds[1]": "신복들이 요압 뒤가 아니라 못 건너편 줄에 앉아 있고, 아브넬 쪽 무리와 한 줄로 이어져 있다.",
+      "crowds[2]": "소년들이 짝지어 맞붙지 않고 줄지어 앉아 있다. 머리를 잡는 동작도 없다.",
+      "figures[1].pose": "요압은 손목을 무릎 위에 올려놓았을 뿐 칼자루를 쥐지 않았다. 칼은 칼집에 꽂혀 있다."
+     }
+    },
+    "379:authored-david-gibeon-battle:202": {
+     "tries": [
+      {
+       "seconds": 16.078,
+       "input": 6,
+       "output": 1596,
+       "cache_read": 77667,
+       "cache_create": 10892,
+       "cost_usd": 0.0673067,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds[0]": "맞음",
+      "crowds[1]": "맞음",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "맞음",
+      "figures[1].prop": "맞음",
+      "figures[1].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "양편 소년이 못 건너편에 줄지어 앉아 있을 뿐, 짝지어 맞서 적수의 머리를 잡는 순간이 없다.",
+      "crowds[2]": "열둘씩 짝지어 맞서 머리를 잡는 소년이 없고, 모두 앉아 있다.",
+      "figures[1].prop": "칼을 뽑아 세워 쥐었지만 칼자루를 쥔 것으로 보고 맞음으로 판정했다. 뽑아 든 점은 애매하다.",
+      "crowds[0]": "신복들이 아브넬 바로 뒤가 아니라 못 건너편에 앉았지만, 같은 쪽 위치로 보고 맞음으로 판정했다.",
+      "crowds[1]": "신복들이 요압 바로 뒤가 아니라 못 건너편에 앉았지만, 같은 쪽 위치로 보고 맞음으로 판정했다."
+     }
+    },
+    "379:authored-david-gibeon-battle:303": {
+     "tries": [
+      {
+       "seconds": 13.506,
+       "input": 4,
+       "output": 1446,
+       "cache_read": 47833,
+       "cache_create": 10335,
+       "cost_usd": 0.0605913,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "틀림",
+      "figures[1].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "소년들이 짝지어 맞서 적수의 머리를 잡지 않았다. 양편 모두 못 건너편에 줄지어 앉아 있을 뿐이고, 싸우려는 동작이 없다.",
+      "crowds[0]": "아브넬 뒤가 아니라 못 건너편 먼 둑에 앉아 있고, 수도 열둘이 아닌 열 명쯤이다.",
+      "crowds[1]": "요압 뒤가 아니라 못 건너편 먼 둑에 앉아 있고, 수도 열둘이 아닌 일곱 명쯤이다.",
+      "crowds[2]": "소년들이 짝지어 맞서지 않았고, 적수의 머리를 잡은 이도 없다. 지휘관들 앞 가까운 땅이 아니라 원경에 줄지어 앉아 있다.",
+      "figures[0].pose": "못가에 앉아 창을 세워 쥐고 못 쪽을 바라본다.",
+      "figures[1].pose": "앉지 않고 서 있다.",
+      "figures[1].prop": "칼날이 드러난 칼을 쥐고 있어 뽑아 든 모양이다. 기대는 칼자루를 쥐는 것이다.",
+      "guard": "손가락 이상, 겹친 인물, 테두리, 글자 등 다른 결함은 보이지 않는다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:11": {
+     "tries": [
+      {
+       "seconds": 10.673,
+       "input": 4,
+       "output": 1151,
+       "cache_read": 47099,
+       "cache_create": 8986,
+       "cost_usd": 0.05217190000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "틀림",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "짐 진 두 사람이 다윗보다 화면 오른쪽, 곧 진행 방향 앞에 있다. 백성이 다윗 바로 뒤를 따르는 모습이 아니다.",
+      "background[0]": "언덕 위 성읍으로 오르는 마른 길과 마른 풀, 바위가 그려져 있다.",
+      "crowds": "일부 짐꾼이 다윗보다 앞서 간다. 짐 진 여자도 보이지 않아서 기대한 무리와 다르다.",
+      "figures[0].pose": "다윗이 백성 앞에서 이끌지 않고 앞선 짐꾼들 뒤에서 걷는다. 로브 자락을 쥐지도 않고 두 팔을 늘어뜨리고 있다.",
+      "figures[0].prop": "다윗의 손에 겉옷자락이 없다. 두 손이 비어 있다.",
+      "figures[0].facing": "몸은 정면에 가깝고 오른쪽으로 비스듬히 틀었을 뿐이라 오른쪽을 향한다고 분명히 확인되지 않는다.",
+      "guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자 같은 결함은 보이지 않는다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:42": {
+     "tries": [
+      {
+       "seconds": 12.072,
+       "input": 4,
+       "output": 1136,
+       "cache_read": 47099,
+       "cache_create": 8936,
+       "cost_usd": 0.051821900000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "틀림",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "다윗이 백성 앞에서 이끌지 않고 행렬 중간에 있다. 맨 앞에는 두건 쓴 다른 인물이 있고, 다윗은 그 사람을 뒤따르는 모양이다.",
+      "background[0]": "마른 풀 언덕길이 위쪽 성읍으로 이어져 기대와 맞다.",
+      "crowds": "짐 진 사람들이 다윗 뒤에만 있지 않고 다윗 앞에도 있다. 대부분 남자이고 지친 기색도 약하다.",
+      "figures[0].pose": "다윗이 앞에서 이끌지 않고 행렬 중간에서 걷는다. 로브 자락도 쥐고 있지 않다.",
+      "figures[0].prop": "다윗은 흰 튜닉 차림이고, 쥔 것은 허리춤의 작은 주머니뿐이다. 겉옷자락은 없다.",
+      "figures[0].facing": "다윗의 얼굴과 몸이 화면 왼쪽 또는 정면 쪽을 향한다. 기대한 오른쪽이 아니다.",
+      "guard": "손가락, 겹친 인물, 테두리, 글자에서 뚜렷한 결함이 보이지 않는다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:7": {
+     "tries": [
+      {
+       "seconds": 13.526,
+       "input": 4,
+       "output": 1260,
+       "cache_read": 47099,
+       "cache_create": 8944,
+       "cost_usd": 0.0530939,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "틀림",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "무리가 마하나임 성읍에서 멀어지는 오른쪽으로 걷고 있고, 다윗이 앞에서 이끄는 구도도 아니다. 이른 순간으로 읽히지 않는다.",
+      "background[0]": "언덕 위 성읍으로 오르는 마른 흙길이 보여 기대와 맞다.",
+      "crowds": "짐 진 남녀가 다윗 앞뒤에 섞여 있다. 특히 크롭의 다윗보다 앞서 가는 사람들이 있어서 모두가 다윗 바로 뒤를 따른다고 할 수 없다.",
+      "figures[0].pose": "다윗이 행렬 중간에서 짐 진 사람들 사이에 섞여 걷는다. 앞에서 이끌지 않고, 두 손은 아래로 늘어뜨려 로브 자락을 쥐지도 않았다.",
+      "figures[0].prop": "겉옷자락을 쥔 손이 없고 등에 짐 자루만 보인다.",
+      "figures[0].facing": "몸과 얼굴이 정면에 가까운 앞쪽을 향해 있어 화면 오른쪽을 분명히 향한다고 확인되지 않는다.",
+      "guard": "손가락, 겹친 인물, 테두리, 글자에서 뚜렷한 결함은 보이지 않는다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:23": {
+     "tries": [
+      {
+       "seconds": 10.138,
+       "input": 4,
+       "output": 978,
+       "cache_read": 47099,
+       "cache_create": 8955,
+       "cost_usd": 0.050317900000000006,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds": "맞음",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "무리와 다윗이 언덕 위 마하나임 성읍에서 멀어져 화면 오른쪽 아래로 내려오고 있다. 성읍에 이르는 순간이 아니라 떠나는 모습이다.",
+      "background[0]": "언덕 위 성읍으로 이어지는 마른 길이 있고, 바위와 마른 풀이 보인다.",
+      "crowds": "짐을 진 남녀가 지친 걸음으로 다윗 뒤에 길게 줄지어 따른다.",
+      "figures[0].pose": "다윗은 두 팔을 내려뜨리고 걷는다. 로브 자락을 쥐고 있지 않고 지친 기색도 약하다.",
+      "figures[0].prop": "손에 겉옷자락이 없다. 두 손은 비어 있고 허리끈만 보인다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽 앞을 향한다.",
+      "guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자가 보이지 않는다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:5": {
+     "tries": [
+      {
+       "seconds": 12.381,
+       "input": 4,
+       "output": 1187,
+       "cache_read": 47099,
+       "cache_create": 8926,
+       "cost_usd": 0.0522919,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "무리가 성읍을 등지고 멀어져 가는 듯 보이고, 흰 옷 인물 앞에도 짐 진 사람 둘이 있어 이끄는 다윗 뒤를 따르는 모양이 아니다.",
+      "background[0]": "언덕 위 성읍으로 이어지는 마른 길이 그려져 있다.",
+      "crowds": "짐 진 무리는 맞지만 일부가 흰 옷 인물보다 앞서 걷고, 다윗 바로 뒤를 따르는 구도가 아니다.",
+      "figures[0].pose": "크롭 속 인물은 후드를 쓰고 짐을 진 채 허리끈 근처 어깨끈을 쥐고 있을 뿐, 로브 자락을 쥐고 무리를 이끄는 모습이 아니다.",
+      "figures[0].prop": "겉옷자락을 쥐고 있지 않고 어깨끈과 짐 보따리, 가죽 주머니만 보인다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향한다.",
+      "guard": "손가락 수, 겹친 인물, 테두리, 글자 등 눈에 띄는 결함이 없다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:101": {
+     "tries": [
+      {
+       "seconds": 11.644,
+       "input": 4,
+       "output": 1072,
+       "cache_read": 47099,
+       "cache_create": 9010,
+       "cost_usd": 0.05147790000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "맞음",
+      "background[0]": "맞음",
+      "crowds": "맞음",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "다윗이 앞서 걷고 짐 진 백성이 줄지어 그 뒤를 따른다. 다윗과 맨 앞 무리 사이가 조금 벌어져 있지만 이야기 뜻은 맞다.",
+      "background[0]": "마른 길이 언덕 위 붉은 지붕 성읍으로 이어진다.",
+      "crowds": "짐 보따리를 진 남녀가 다윗 뒤로 길게 따라온다.",
+      "figures[0].pose": "다윗이 가벼운 걸음으로 성큼성큼 걷고 두 손은 늘어져 있다. 지친 기색도, 로브 자락을 쥔 모습도 없다.",
+      "figures[0].prop": "겉옷자락을 쥐고 있지 않다. 허리띠와 목걸이만 보인다.",
+      "figures[0].facing": "얼굴과 몸이 화면 오른쪽으로 향한다.",
+      "guard": "손가락 수 이상, 겹친 인물, 테두리, 글자가 보이지 않는다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:202": {
+     "tries": [
+      {
+       "seconds": 9.41,
+       "input": 4,
+       "output": 845,
+       "cache_read": 47099,
+       "cache_create": 8955,
+       "cost_usd": 0.0489879,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "틀림",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "백성이 다윗 앞쪽(성읍 쪽)에도 길게 늘어서 있어 다윗이 앞에서 이끌지 않고 무리 가운데에 섞여 있음",
+      "background[0]": "언덕 위 성읍으로 오르는 마른 길이 보임",
+      "crowds": "무리가 다윗 앞뒤 양쪽에 있고 다윗 바로 뒤만 따르는 모습이 아님",
+      "figures[0].pose": "앞에서 이끌지 않고 무리 가운데서 걷고, 로브 자락도 쥐지 않음",
+      "figures[0].prop": "손이 늘어져 있어 겉옷자락을 쥐지 않음",
+      "figures[0].facing": "화면 왼쪽(성읍 쪽)으로 걷고 있어 기대한 오른쪽이 아님"
+     }
+    },
+    "379:authored-david-mahanaim-exile:303": {
+     "tries": [
+      {
+       "seconds": 11.568,
+       "input": 4,
+       "output": 1092,
+       "cache_read": 47099,
+       "cache_create": 8986,
+       "cost_usd": 0.0515819,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "다윗 앞쪽(화면 오른쪽)에 짐 진 사람 넷이 먼저 걷고 있어서, 백성이 다윗 바로 뒤를 따르는 장면이 아니다.",
+      "background[0]": "언덕 위 성읍으로 오르는 마른 흙길이 보인다.",
+      "crowds": "백성 일부가 다윗보다 앞서 걷는다. 보이는 사람이 거의 다 남자여서 짐 진 남녀 무리로 보기도 어렵다.",
+      "figures[0].pose": "다윗이 백성 앞에서 이끌지 않고 무리 가운데에 있다. 두 손은 늘어뜨렸고 로브 자락은 쥐지 않았으며 걸음도 지친 기색이 약하다.",
+      "figures[0].prop": "로브 자락을 쥐고 있지 않다. 어깨끈 가방만 있다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽으로 향해 있다.",
+      "guard": "손가락, 두 겹 인물, 테두리, 글자 중 눈에 띄는 결함이 없다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:11": {
+     "tries": [
+      {
+       "seconds": 11.127,
+       "input": 4,
+       "output": 1073,
+       "cache_read": 47088,
+       "cache_create": 9097,
+       "cost_usd": 0.0518348,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "유다 사람들은 대부분 등을 보이고 강과 배 쪽을 향해 서 있고, 다윗을 맞으러 내려와 가까이 서지 않았다. 배도 강 한가운데 떠 있어서 건너오는 순간이 아니다.",
+      "background[0]": "요단 강가가 맞다. 강, 풀밭, 언덕이 보인다.",
+      "crowds": "무리가 다윗에게서 멀리 오른쪽에 모여 있고 배를 붙잡은 사람이 없다. 왕 가까이 선 것도 아니다.",
+      "figures[0].pose": "다윗은 걷고 있지만 칼 한 자루는 손에 늘어뜨려 쥐었고 다른 한 자루는 허리에 있다. 칼자루를 쥐고 무리에게 다가가는 자세가 아니다.",
+      "figures[0].prop": "칼이 두 자루이고 둘 다 칼집 없이 날이 드러나 있다. 기대한 칼 한 자루가 아니다.",
+      "figures[0].facing": "얼굴과 몸이 화면 오른쪽을 향한다.",
+      "guard": "다윗에게 칼이 두 자루 겹쳐 그려져 있어 덧붙은 지물 결함으로 본다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:42": {
+     "tries": [
+      {
+       "seconds": 11.008,
+       "input": 4,
+       "output": 1127,
+       "cache_read": 47088,
+       "cache_create": 8985,
+       "cost_usd": 0.0519268,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "유다 사람들이 등을 보인 채 강을 향해 길게 한 줄로 서 있다. 왕을 맞이하지도, 가까이 서지도, 배를 붙잡아 건너기를 돕지도 않는다. 다윗과 무리가 서로 향하지 않아 맞이하는 순간으로 읽히지 않는다.",
+      "background[0]": "요단 강가가 보이고, 강과 풀밭 둑이 있다.",
+      "crowds": "무리가 왕 가까이 서지 않고 강둑을 따라 줄지어 서 있을 뿐이다. 배를 붙잡는 사람도 없다. 몇 명은 멀리 작게 보인다.",
+      "figures[0].pose": "다윗은 강가를 따라 걷지만 무리를 향해 다가가는 모습이 아니다. 칼은 칼집 없이 날을 드러낸 채 손에 들려 있어, 칼자루를 쥔 모습이 차고 있는 칼이 아니라 뽑아 든 칼로 보인다.",
+      "figures[0].prop": "칼은 날이 그대로 드러나 있고 칼집이 없다. 허리에 찬 칼이 아니라 뽑아 든 칼이다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향한다.",
+      "guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자는 보이지 않는다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:7": {
+     "tries": [
+      {
+       "seconds": 9.703,
+       "input": 4,
+       "output": 970,
+       "cache_read": 47088,
+       "cache_create": 8985,
+       "cost_usd": 0.05035680000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "유다 사람들이 강만 보고 줄지어 서 있어 왕을 맞지 않고, 배를 돕는 손도 없다",
+      "background[0]": "요단 강가가 맞다",
+      "crowds": "그냥 줄지어 섰을 뿐 왕 가까이 서지도, 배를 붙잡지도 않는다",
+      "figures[0].pose": "칼을 뽑아 아래로 늘어뜨려 들었고 칼자루를 쥔 자세로 보기 어렵다",
+      "figures[0].prop": "칼을 찬 것이 아니라 뽑아 들었다",
+      "figures[0].facing": "화면 오른쪽을 향한다",
+      "guard": "오른쪽 아래 구석에 서명 같은 글자가 있다"
+     }
+    },
+    "379:authored-david-returns-jerusalem:23": {
+     "tries": [
+      {
+       "seconds": 12.078,
+       "input": 6,
+       "output": 986,
+       "cache_read": 75784,
+       "cache_create": 9175,
+       "cost_usd": 0.0541504,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "유다 사람들이 왕을 맞으러 나온 모습이 아니라 다윗 뒤에서 같은 방향으로 줄지어 걷는다. 배는 강 한가운데에 사람들을 가득 태운 채 떠 있고, 왕 앞 강가에서 건너기를 돕는 장면이 없다.",
+      "background[0]": "풀이 자란 요단 강가가 그려져 있다.",
+      "crowds": "무리가 왕을 맞으려 가까이 서 있지 않고 긴 줄로 늘어서 걷는다. 배를 붙잡는 사람도 없다.",
+      "figures[0].pose": "맞으러 나온 사람들에게 다가가는 자세가 아니라, 줄지어 걷는 무리의 앞에서 같은 방향으로 걷고 있다. 칼은 뽑아 들었고 칼집에 꽂혀 있지 않다.",
+      "figures[0].prop": "칼은 있으나 칼집에서 뽑아 아래로 늘어뜨려 쥐었다. 찬 칼의 자루를 쥔 모양이 아니다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향한다.",
+      "guard": "손가락 수 이상, 두 겹으로 덧붙은 인물, 테두리나 글자는 보이지 않는다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:101": {
+     "tries": [
+      {
+       "seconds": 8.706,
+       "input": 6,
+       "output": 900,
+       "cache_read": 75834,
+       "cache_create": 9267,
+       "cost_usd": 0.0536634,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "유다 사람들이 왕을 맞는 모습이 아니라 강을 향해 줄지어 서 있고, 다윗과 마주하거나 어울리지 않는다. 배를 돕는 손도 없다.",
+      "background[0]": "요단 강가의 강과 둑이 맞다.",
+      "crowds": "무리가 강을 바라보며 한 줄로 서 있을 뿐이다. 왕 가까이 서거나 배를 붙잡아 돕는 모습이 없다.",
+      "figures[0].pose": "다윗이 강가를 걸어 무리 쪽으로 다가가며 손으로 칼자루를 쥐고 있다.",
+      "figures[0].prop": "시대에 맞는 짧은 칼이다.",
+      "figures[0].facing": "얼굴과 몸이 화면 오른쪽을 향한다.",
+      "guard": "그림이 책을 펼친 모양이고 가운데 접힌 자국과 종이 테두리·검은 가장자리가 보인다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:5": {
+     "tries": [
+      {
+       "seconds": 11.968,
+       "input": 6,
+       "output": 942,
+       "cache_read": 75774,
+       "cache_create": 9179,
+       "cost_usd": 0.0537254,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "유다 사람들이 왕 앞에서 맞는 모습이 아니라 한 줄로 늘어서 있고, 나룻배는 멀리 강 한가운데에 있어 건너기를 돕는 장면으로 읽히지 않음",
+      "background[0]": "요단 강가의 강과 풀밭이 분명함",
+      "crowds": "무리가 그냥 줄지어 서 있을 뿐 왕을 가까이 맞지 않고, 배를 붙잡는 사람도 없음",
+      "figures[0].pose": "다윗이 걷고는 있지만 칼은 손에 느슨히 들고 내려뜨렸을 뿐 자루를 쥐었다고 하기 어렵고, 맞으러 나온 사람들에게 다가가는 관계도 약함",
+      "figures[0].prop": "고대풍 칼을 지니고 있음",
+      "figures[0].facing": "얼굴과 몸이 화면 오른쪽을 향함",
+      "guard": "무리 맨 뒤쪽 얼굴이 뭉개지고 겹쳐 있어 덧붙은 인물처럼 보이며, 분명히 깨끗하다고 확인되지 않음"
+     }
+    },
+    "379:authored-david-returns-jerusalem:202": {
+     "tries": [
+      {
+       "seconds": 11.931,
+       "input": 6,
+       "output": 907,
+       "cache_read": 75896,
+       "cache_create": 9234,
+       "cost_usd": 0.053607600000000005,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "유다 사람들이 왕을 맞지 않고 강만 보며 길게 줄지어 서 있다. 다윗도 그들을 향해 다가가는 모습이 아니다. 나룻배는 멀리 있고 이미 사람들이 타고 있다.",
+      "background[0]": "요단 강가의 풀밭과 강이 분명히 보인다.",
+      "crowds": "무리가 왕 가까이 서지 않고 강변에 일렬로 서서 강만 바라본다. 나룻배를 붙잡는 사람도 없다.",
+      "figures[0].pose": "다윗이 칼을 뽑아 아래로 늘어뜨려 들고 걷는다. 칼자루를 쥐고 무리에게 다가가는 자세가 아니다. 무리도 그를 맞이하지 않는다.",
+      "figures[0].prop": "칼은 있으나 허리에 찬 것이 아니라 뽑아 든 모양이다. 지닌 방식이 어긋난다.",
+      "figures[0].facing": "얼굴과 몸이 화면 오른쪽을 향한다.",
+      "guard": "왼쪽 아래 풀밭에 글자처럼 보이는 낙서 표시가 있다. 무리가 서로 손을 잡은 듯 붙어 있어 어색하다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:303": {
+     "tries": [
+      {
+       "seconds": 11.574,
+       "input": 6,
+       "output": 925,
+       "cache_read": 75767,
+       "cache_create": 9100,
+       "cost_usd": 0.0532387,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "유다 사람들이 강가에 일렬로 서서 배만 바라본다. 왕을 맞으러 내려와 왕 가까이에서 맞는 모습이 아니고, 배를 붙잡아 건너기를 돕는 사람도 없다. 다윗과 무리가 서로 마주하지 않는다.",
+      "background[0]": "요단 강가의 풀 덮인 둑과 강이 보인다.",
+      "crowds": "무리가 둑을 따라 줄지어 서서 배를 향해 있다. 왕에게 다가가 가까이 서지 않았고 배를 붙잡는 사람도 없다.",
+      "figures[0].pose": "다윗은 칼자루를 쥐고 걷고 있지만 무리에게 다가가지 않는다. 무리 줄 옆을 지나 걷고 있고 무리는 다윗을 보지 않는다.",
+      "figures[0].prop": "허리춤에 칼을 쥔 고대풍 칼이 그려져 있다. 뽑아 든 모양이지만 기대 문장은 칼자루를 쥔다고만 했으므로 맞는 것으로 본다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향한다.",
+      "guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자가 보이지 않는다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:11": {
+     "tries": [
+      {
+       "seconds": 12.778,
+       "input": 4,
+       "output": 1497,
+       "cache_read": 47627,
+       "cache_create": 10781,
+       "cost_usd": 0.0628647,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "맞음",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "맞음",
+      "figures[1].prop": "맞음",
+      "figures[1].facing": "맞음",
+      "figures[2].pose": "맞음",
+      "figures[2].prop": "맞음",
+      "figures[2].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "crowds": "다윗 뒤에 선 형제가 셋뿐이고 이새까지 줄에 섞여 있어 '일곱 형제'가 아니다.",
+      "figures[0].prop": "사무엘이 든 것은 주둥이가 달린 금속 주전자(물병) 모양이고 기름 뿔이 아니다.",
+      "moment": "사무엘 한 사람만 기름을 붓고 다윗은 고개를 숙여 받으며 나머지는 빈손으로 지켜본다.",
+      "figures[0].pose": "그릇을 기울여 다윗의 머리에 붓고 있다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향한다.",
+      "figures[1].pose": "서서 고개를 깊이 숙이고 있다.",
+      "figures[1].prop": "긴 나무 목자 지팡이를 짚고 있다.",
+      "figures[1].facing": "화면 왼쪽의 사무엘 쪽을 향한다.",
+      "figures[2].pose": "지팡이만 쥐고 기름 뿔 없이 서서 지켜본다.",
+      "figures[2].prop": "긴 나무 지팡이를 들고 있다.",
+      "figures[2].facing": "얼굴과 몸이 화면 왼쪽을 향한다.",
+      "background[0]": "작은 흙집과 돌담이 있는 소박한 마을 야외다.",
+      "guard": "손가락, 인물 겹침, 테두리, 글자에서 이상이 보이지 않는다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:42": {
+     "tries": [
+      {
+       "seconds": 17.714,
+       "input": 4,
+       "output": 2059,
+       "cache_read": 47627,
+       "cache_create": 10920,
+       "cost_usd": 0.06904070000000001,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "맞음",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "맞음",
+      "figures[1].prop": "맞음",
+      "figures[1].facing": "맞음",
+      "figures[2].pose": "맞음",
+      "figures[2].prop": "틀림",
+      "figures[2].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "사무엘만 기름을 붓고 다윗은 고개를 숙이며, 다른 사람들은 기름 뿔 없이 지켜본다.",
+      "background[0]": "황량하고 소박한 야외 자리로 베들레헴 마을의 제사 자리에 어긋나지 않는다.",
+      "crowds": "다윗 뒤에 선 형제는 네 명뿐이고 그중 한 명은 어른이라, 일곱 아들이 한 줄로 선 모습이 아니다.",
+      "figures[0].pose": "몸을 숙여 기름을 다윗의 머리 위로 기울여 붓고 있다.",
+      "figures[0].prop": "뿔이 아니라 유리병에 나팔 모양 황동 주둥이가 붙은 물건이라 기름 뿔로 보기 어렵다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽의 다윗을 향한다.",
+      "figures[1].pose": "서서 고개를 깊이 숙이고 있다.",
+      "figures[1].prop": "나무 목자 지팡이를 쥐고 있다.",
+      "figures[1].facing": "고개와 시선이 화면 왼쪽 아래의 사무엘 쪽을 향한다.",
+      "figures[2].pose": "기름 뿔 없이 지팡이만 쥔 채 줄 끝에 서서 지켜본다. 형제들과 바싹 붙어 있어 '떨어져 선' 느낌은 약하지만 크게 어긋나지는 않는다.",
+      "figures[2].prop": "지팡이 윗부분이 나팔처럼 넓게 벌어져 평범한 나무 지팡이가 아니라 뿔·나팔처럼 보인다.",
+      "figures[2].facing": "얼굴과 몸이 화면 왼쪽을 향한다.",
+      "guard": "손가락 이상, 겹친 인물, 테두리, 글자는 보이지 않는다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:7": {
+     "tries": [
+      {
+       "seconds": 14.441,
+       "input": 4,
+       "output": 1739,
+       "cache_read": 47627,
+       "cache_create": 10772,
+       "cost_usd": 0.06524869999999999,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "맞음",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "맞음",
+      "figures[1].prop": "맞음",
+      "figures[1].facing": "틀림",
+      "figures[2].pose": "틀림",
+      "figures[2].prop": "틀림",
+      "figures[2].facing": "맞음",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "사무엘만 기름 뿔로 고개 숙인 다윗에게 붓고, 다른 이들은 뿔 없이 지켜봄",
+      "background[0]": "돌담과 마른 들판, 소박한 야외",
+      "crowds": "형제가 네 명뿐(일곱 아님)이고 다윗 바로 뒤가 아니라 간격을 두고 서 있음",
+      "figures[0].pose": "뿔을 기울여 다윗 머리에 기름을 붓고 있음",
+      "figures[0].prop": "금빛 기름 뿔을 쥐고 있음",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향함",
+      "figures[1].pose": "서서 고개를 숙이고 있음",
+      "figures[1].prop": "끝에 공이 달린 긴 지팡이를 쥠. 목자 지팡이로 볼 수 있음",
+      "figures[1].facing": "얼굴이 화면 오른쪽을 향함(기대는 왼쪽)",
+      "figures[2].pose": "지팡이를 쥐고 있으나 윗부분이 나팔·뿔처럼 벌어져 있어 뿔을 들지 않았다고 확신할 수 없음",
+      "figures[2].prop": "지팡이 윗머리가 뿔 모양으로 벌어져 평범한 나무 지팡이가 아님",
+      "figures[2].facing": "화면 왼쪽을 향함",
+      "guard": "오른쪽 아래 구석에 글자 같은 서명 표시가 있음"
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:23": {
+     "tries": [
+      {
+       "seconds": 15.67,
+       "input": 4,
+       "output": 1900,
+       "cache_read": 47627,
+       "cache_create": 10865,
+       "cost_usd": 0.0672307,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "맞음",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "맞음",
+      "figures[1].prop": "맞음",
+      "figures[1].facing": "맞음",
+      "figures[2].pose": "틀림",
+      "figures[2].prop": "맞음",
+      "figures[2].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "사무엘 혼자 기름을 붓고, 다윗은 고개를 숙이고 있으며, 다른 사람들은 기름 뿔 없이 지켜본다.",
+      "background[0]": "돌담이 있는 소박한 마른 들판이다. 제단은 없지만 큰 어긋남은 아니다.",
+      "crowds": "형제가 네 명뿐이라 일곱이 아니다. 다윗 바로 뒤가 아니라 떨어진 자리에 서 있다.",
+      "figures[0].pose": "기름 담긴 그릇을 다윗의 머리 위에서 기울여 붓고 있다.",
+      "figures[0].prop": "금빛 깔때기 모양에 둥근 방울이 매달린 물건이다. 짐승 뿔로 분명히 읽히지 않는다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향한다.",
+      "figures[1].pose": "서서 고개를 숙이고 있다.",
+      "figures[1].prop": "긴 나무 지팡이를 쥐고 있다.",
+      "figures[1].facing": "화면 왼쪽의 사무엘을 향한다.",
+      "figures[2].pose": "지팡이만 쥐고 기름 뿔은 들지 않았지만, 형제들 바로 옆 같은 줄에 붙어 있어 떨어져 서 있지 않다.",
+      "figures[2].prop": "긴 나무 지팡이를 쥐고 있다.",
+      "figures[2].facing": "얼굴과 몸이 화면 왼쪽을 향한다.",
+      "guard": "손가락 수 이상, 두 겹 인물, 테두리, 글자는 보이지 않는다. 바닥의 작은 고리들은 잔해로 보인다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:5": {
+     "tries": [
+      {
+       "seconds": 12.789,
+       "input": 4,
+       "output": 1373,
+       "cache_read": 47627,
+       "cache_create": 10772,
+       "cost_usd": 0.061588699999999996,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "맞음",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "맞음",
+      "figures[1].prop": "맞음",
+      "figures[1].facing": "맞음",
+      "figures[2].pose": "맞음",
+      "figures[2].prop": "맞음",
+      "figures[2].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "crowds": "기대는 이새의 아들 일곱이 다윗 바로 뒤에 한 줄로 서는 것인데, 형제는 네 명뿐이다. 이새까지 합해도 다섯 명이다. 또 이들은 다윗 바로 뒤가 아니라 오른쪽으로 떨어져 서 있다.",
+      "moment": "사무엘이 뿔 모양 그릇으로 고개 숙인 다윗에게 기름을 붓고 있다. 다른 사람은 기름 그릇 없이 지켜본다.",
+      "figures[1].pose": "david-boy 크롭 가운데 인물은 다윗이 아니라 형제들이다. 전체 그림의 다윗으로 판정했고, 그는 서서 고개를 숙이고 있다.",
+      "figures[2].pose": "이새는 형제 줄 끝에 붙어 서 있어서 '떨어져 선다'는 점이 약하다. 그래도 지팡이만 쥐고 기름 뿔은 들지 않았다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:202": {
+     "tries": [
+      {
+       "seconds": 13.967,
+       "input": 4,
+       "output": 1511,
+       "cache_read": 47627,
+       "cache_create": 10658,
+       "cost_usd": 0.0625127,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "맞음",
+      "figures[1].prop": "맞음",
+      "figures[1].facing": "맞음",
+      "figures[2].pose": "틀림",
+      "figures[2].prop": "틀림",
+      "figures[2].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "사무엘이 붓고 다윗이 고개를 숙이는 순간은 맞다. 그러나 이새로 보이는 인물의 장대 끝이 나팔 모양 기름 뿔처럼 생겼다. 기름 뿔 없이 지켜본다는 조건이 어긋난다.",
+      "crowds": "다윗 뒤에 선 사람은 형제 4명과 이새 1명이다. 아들 일곱이 아니다.",
+      "figures[2].pose": "이새는 형제 줄 맨 끝에 붙어 서 있어 떨어져 있지 않다. 그리고 쥔 장대 끝이 뿔처럼 보인다.",
+      "figures[2].prop": "이새의 장대는 끝이 금빛 나팔 모양으로 벌어져 있어 평범한 나무 지팡이가 아니다. 이새 크롭 파일은 가운데에 이새가 아니라 형제를 담고 있어, 이새는 전체 그림에서 판단했다."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:11": {
+     "tries": [
+      {
+       "seconds": 8.207,
+       "input": 4,
+       "output": 836,
+       "cache_read": 47006,
+       "cache_create": 8917,
+       "cost_usd": 0.048736600000000005,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "종자들이 다윗 뒤가 아니라 성벽 아래 멀리 줄지어 서 있고 다윗은 홀로 떨어져 있음",
+      "background[0]": "시온 산성 성벽과 탑이 분명함",
+      "background[1]": "멀리 산지 능선이 보임",
+      "crowds": "무장한 무리가 다윗 바로 뒤가 아닌 성벽 쪽 먼 곳에 줄지어 서 있음",
+      "figures[0].pose": "칼자루를 쥐지 않고 칼이 허리에 매달려 있으며 다른 손에는 막대 같은 것을 쥠",
+      "figures[0].prop": "허리띠에 칼이 있음",
+      "figures[0].facing": "화면 오른쪽을 향함",
+      "guard": "손가락·덧붙은 인물·테두리·글자 결함 없음"
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:101": {
+     "tries": [
+      {
+       "seconds": 16.401,
+       "input": 4,
+       "output": 1687,
+       "cache_read": 47627,
+       "cache_create": 10772,
+       "cost_usd": 0.0647287,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "맞음",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "맞음",
+      "figures[1].prop": "맞음",
+      "figures[1].facing": "맞음",
+      "figures[2].pose": "틀림",
+      "figures[2].prop": "틀림",
+      "figures[2].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "사무엘만 기름 뿔을 기울여 고개 숙인 다윗에게 붓고, 나머지는 지켜본다.",
+      "crowds": "다윗 뒤에 선 사람은 형제 넷과 이새 하나로 다섯뿐이다. 일곱이 아니다.",
+      "figures[0].prop": "금빛 뿔 모양 그릇에서 기름이 떨어진다. 완전히 확신하지는 못하지만 맞다고 본다.",
+      "figures[2].pose": "이새가 쥔 막대 끝이 나팔이나 뿔처럼 벌어져 있다. 지팡이만 쥔 모습이라고 분명히 말할 수 없다.",
+      "figures[2].prop": "막대 위쪽이 뿔 나팔처럼 벌어져 있어 평범한 나무 지팡이가 아니다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:303": {
+     "tries": [
+      {
+       "seconds": 14.778,
+       "input": 4,
+       "output": 1870,
+       "cache_read": 47627,
+       "cache_create": 10772,
+       "cost_usd": 0.0665587,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "맞음",
+      "background[0]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "맞음",
+      "figures[1].prop": "맞음",
+      "figures[1].facing": "맞음",
+      "figures[2].pose": "틀림",
+      "figures[2].prop": "맞음",
+      "figures[2].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "사무엘만 뿔 모양 그릇을 들고 다윗에게 붓고, 다윗은 고개를 숙이며, 나머지는 빈손으로 지켜본다.",
+      "background[0]": "돌담과 마른 풀이 있는 소박한 야외 마당이다.",
+      "crowds": "다윗 뒤에 선 사람은 형제 넷과 이새 하나뿐이라 일곱 아들이 아니다.",
+      "figures[0].pose": "그릇을 기울여 다윗의 머리에 기름이 흘러내린다.",
+      "figures[0].prop": "쥔 것이 뿔이 아니라 종 모양 금속 깔때기에 유리 구근이 달린 그릇이라 기름 뿔로 보기 어렵다.",
+      "figures[0].facing": "사무엘이 화면 오른쪽의 다윗을 향한다.",
+      "figures[1].pose": "서서 고개를 깊이 숙이고 있다.",
+      "figures[1].prop": "나무 지팡이를 쥐고 있다.",
+      "figures[1].facing": "얼굴이 화면 왼쪽 사무엘 쪽을 향한다.",
+      "figures[2].pose": "지팡이만 쥐고 뿔은 없지만 형제들과 같은 줄 끝에 붙어 서 있어 떨어져 선 모습이 아니다.",
+      "figures[2].prop": "긴 나무 지팡이를 쥐고 있다.",
+      "figures[2].facing": "얼굴이 화면 왼쪽을 향한다.",
+      "guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자는 보이지 않는다."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:23": {
+     "tries": [
+      {
+       "seconds": 8.23,
+       "input": 4,
+       "output": 762,
+       "cache_read": 47006,
+       "cache_create": 8928,
+       "cost_usd": 0.0480406,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "틀림",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "종자들이 다윗 뒤가 아니라 성벽 쪽 먼 곳에 줄지어 서 있고, 다윗은 성벽을 마주 보지 않는다",
+      "background[0]": "시온 산성의 성벽과 망루가 뚜렷하다",
+      "background[1]": "성벽 오른쪽 끝에 먼 산지가 보인다",
+      "crowds": "무장한 무리가 다윗 바로 뒤 언덕이 아니라 성벽 아래 먼 곳에 줄지어 서 있다",
+      "figures[0].pose": "성벽이 아니라 화면 왼쪽을 향하고, 칼자루를 쥐고 서 있지 않고 뽑은 칼을 아래로 늘어뜨리고 있다",
+      "figures[0].prop": "칼을 차지 않고 뽑아 들고 있다. 이 장면에서 지닐 방식과 다르다",
+      "figures[0].facing": "화면 왼쪽을 향한다",
+      "guard": "오른쪽 아래 구석에 서명 같은 글자 표시가 있다"
+     }
+    },
+    "379:authored-david-jerusalem-conquest:42": {
+     "tries": [
+      {
+       "seconds": 10.623,
+       "input": 4,
+       "output": 1024,
+       "cache_read": 47006,
+       "cache_create": 8871,
+       "cost_usd": 0.0504326,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "틀림",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "종자들이 다윗 바로 뒤가 아니라 오른쪽 멀리 떨어진 줄로 서 있고, 다윗은 성벽이 아니라 그들 쪽을 봄",
+      "background[0]": "탑과 흉벽이 있는 석조 성벽이 뚜렷함",
+      "background[1]": "둘러싼 산지가 없고 비탈과 빈 하늘뿐",
+      "crowds": "창을 든 무리지만 다윗 바로 뒤가 아니라 멀리 떨어져 서 있음",
+      "figures[0].pose": "성벽을 마주 보지 않고 칼자루도 쥐지 않음. 팔은 늘어뜨리고 칼은 허리에 참",
+      "figures[0].prop": "허리에 찬 칼이 보임",
+      "figures[0].facing": "얼굴과 몸이 화면 오른쪽을 향함",
+      "guard": "손가락·덧붙은 인물·테두리·글자 결함이 보이지 않음"
+     }
+    },
+    "379:authored-david-jerusalem-conquest:7": {
+     "tries": [
+      {
+       "seconds": 11.984,
+       "input": 4,
+       "output": 1247,
+       "cache_read": 47006,
+       "cache_create": 8984,
+       "cost_usd": 0.053114600000000005,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "종자들이 다윗 바로 뒤가 아니라 멀리 성벽 아래에 줄지어 서 있다. 요구한 배치(다윗 바로 뒤 같은 언덕)와 다르다.",
+      "crowds": "무장한 무리가 모여 선 것이 아니라 성벽 쪽 먼 곳에 일렬로 서 있다. 다윗 바로 뒤가 아니다.",
+      "figures[0].prop": "칼날이 땅에 닿을 만큼 길고 가늘어서 레이피어처럼 보이고, 그 시대 칼 같지 않다. 칼을 차야 할 장면인데 뽑아서 지팡이처럼 짚고 있다.",
+      "figures[0].pose": "성벽 쪽을 보며 서서 칼자루를 쥐고 있다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향한다.",
+      "background[0]": "시온 산성의 석조 성벽과 망루가 뚜렷하다.",
+      "background[1]": "성벽 너머로 산자락이 보인다.",
+      "guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자는 보이지 않는다. 오른쪽 아래 구석의 작은 서명 같은 표시만 있다."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:5": {
+     "tries": [
+      {
+       "seconds": 11.036,
+       "input": 4,
+       "output": 1114,
+       "cache_read": 47006,
+       "cache_create": 8984,
+       "cost_usd": 0.0517846,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "종자들이 다윗 바로 뒤 같은 언덕에 있지 않고, 다윗과 멀리 떨어진 성벽 쪽 오른편에 따로 줄지어 서 있다.",
+      "background[0]": "돌로 쌓은 성벽과 탑이 보여 시온 산성으로 맞다.",
+      "background[1]": "주변에 산지와 구릉이 보인다.",
+      "crowds": "무장한 사람들이 다윗 뒤가 아니라 성벽 쪽 먼 무리로 서 있고, 서 있는 위치가 기대와 어긋난다.",
+      "figures[0].pose": "성벽 쪽을 보고 서서 손으로 칼자루를 쥐고 있다.",
+      "figures[0].prop": "칼집 없이 칼날을 뽑아 아래로 늘어뜨리고 있다. 차고 있어야 할 칼을 뽑아 든 모양이라 틀리다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽 성벽을 향한다.",
+      "guard": "손가락, 겹친 인물, 테두리, 글자에서 뚜렷한 결함이 보이지 않는다."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:202": {
+     "tries": [
+      {
+       "seconds": 6.771,
+       "input": 4,
+       "output": 775,
+       "cache_read": 47006,
+       "cache_create": 8984,
+       "cost_usd": 0.0483946,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "종자들이 다윗 바로 뒤가 아니라 성벽 쪽 먼 곳에 줄지어 서 있고, 다윗은 멀리 떨어져 혼자 서 있다",
+      "background[0]": "시온 산성 성벽이 분명히 보인다",
+      "background[1]": "주변 산지와 언덕이 보인다",
+      "crowds": "무리가 다윗 뒤 같은 언덕이 아니라 성벽 위쪽에 따로 서 있고 줄지어 선 모양이다",
+      "figures[0].pose": "칼자루를 쥔 것이 아니라 칼을 뽑아 아래로 늘어뜨려 들고 있으며, 성벽을 마주 보는 자세도 분명하지 않다",
+      "figures[0].prop": "칼을 뽑아 든 모습이다. 차고 있어야 할 장면과 어긋난다",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향한다",
+      "guard": "손가락 수 이상, 두 겹 인물, 테두리, 글자가 보이지 않는다"
+     }
+    },
+    "379:authored-david-jerusalem-conquest:101": {
+     "tries": [
+      {
+       "seconds": 7.566,
+       "input": 4,
+       "output": 738,
+       "cache_read": 47006,
+       "cache_create": 8928,
+       "cost_usd": 0.0478006,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "종자들이 다윗 바로 뒤가 아니라 성벽 앞 먼 곳에 줄지어 서 있음",
+      "background[0]": "시온 산성 성벽과 탑이 뚜렷함",
+      "background[1]": "주변이 메마른 언덕과 산지임",
+      "crowds": "무리가 다윗 뒤 같은 언덕이 아니라 성벽 쪽에 멀리 서 있고 그냥 줄지어 서 있음",
+      "figures[0].pose": "몸이 뒤돌아 옆을 향하고 칼자루가 아니라 짧은 막대를 아래로 늘어뜨려 쥠. 성벽을 마주 보고 칼자루를 쥔 자세가 아님",
+      "figures[0].prop": "칼날이 없는 검은 막대/자루로 보여 칼로 확인되지 않음",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽(성벽 쪽)을 향함",
+      "guard": "손가락 수나 인물 겹침, 테두리, 글자 같은 결함이 보이지 않음"
+     }
+    },
+    "379:authored-david-jerusalem-conquest:303": {
+     "tries": [
+      {
+       "seconds": 8.339,
+       "input": 4,
+       "output": 803,
+       "cache_read": 47006,
+       "cache_create": 8880,
+       "cost_usd": 0.0482586,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "종자들이 다윗 바로 뒤가 아니라 성벽 아래 먼 곳에 따로 서 있고 다윗과 떨어져 있음",
+      "background[0]": "돌 성벽과 탑이 뚜렷함",
+      "background[1]": "왼쪽에 먼 산지가 보임",
+      "crowds": "무리가 다윗 뒤 같은 언덕이 아닌 성벽 쪽 먼 곳에 줄지어 서 있음",
+      "figures[0].pose": "성벽을 마주 보지 않고 칼을 뽑아 손에 늘어뜨림. 칼자루를 쥔 자세로 보기 어려움",
+      "figures[0].prop": "칼이 칼집에서 뽑혀 날이 아래로 늘어진 채 들려 있음. 차고 있는 모양이 아님",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향함",
+      "guard": "눈에 띄는 손가락 이상, 겹친 인물, 테두리, 글자 없음"
+     }
+    },
+    "379:authored-saul-endor-medium:11": {
+     "tries": [
+      {
+       "seconds": 12.159,
+       "input": 4,
+       "output": 1302,
+       "cache_read": 47751,
+       "cache_create": 10914,
+       "cost_usd": 0.0614591,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "맞음",
+      "figures[1].facing": "맞음",
+      "figures[2].pose": "맞음",
+      "figures[2].prop": "맞음",
+      "figures[2].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "사무엘이 땅에서 허리 위만 올라온 모습이 아니라 바닥에 선 전신 인물이다. 문 가의 두 사람 중 하나는 수염 난 노인이라 사울과 구별되는 젊은 종 둘이 아니다.",
+      "crowds": "문 가의 두 사람 중 왼쪽은 회색 수염의 노인이고 윗몸이 드러나 있다. 수염 없는 젊은 종 둘이 아니다.",
+      "figures[1].pose": "사무엘이 땅에서 올라온 허리 위 모습이 아니라 맨발로 바닥에 선 전신상이다."
+     }
+    },
+    "379:authored-saul-endor-medium:42": {
+     "tries": [
+      {
+       "seconds": 14.384,
+       "input": 4,
+       "output": 1809,
+       "cache_read": 47751,
+       "cache_create": 11023,
+       "cost_usd": 0.0669651,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "틀림",
+      "background[1]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "맞음",
+      "figures[1].facing": "맞음",
+      "figures[2].pose": "틀림",
+      "figures[2].prop": "틀림",
+      "figures[2].facing": "틀림",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "사무엘이 땅에서 허리 위만 올라오지 않고 온몸으로 땅 위에 서 있다. 문 가의 두 사람 중 한 명은 수염 있는 노인이라 사울과 구별되는 젊은 종 둘이 아니다.",
+      "background[0]": "오른쪽 벽이 밝은 크림색이고 빛이 환해서 어두운 방의 밤으로 보이지 않는다.",
+      "background[1]": "벽에 걸린 등불이 하나이고 빛이 희미하다.",
+      "crowds": "문 가에 선 두 사람 중 한 명이 흰 수염의 노인이라 수염 없는 젊은 종 둘이 아니다.",
+      "figures[0].pose": "사울이 얼굴을 땅에 대고 엎드려 있다.",
+      "figures[0].prop": "사울이 어두운 겉옷을 입고 있다.",
+      "figures[0].facing": "사울의 머리가 화면 오른쪽에 있고 얼굴도 오른쪽으로 향한다.",
+      "figures[1].pose": "사무엘이 허리 위만 올라온 모습이 아니라 발까지 다 보이는 전신으로 땅 위에 서 있다.",
+      "figures[1].prop": "사무엘이 긴 겉옷을 입고 있다.",
+      "figures[1].facing": "사무엘의 얼굴과 상체가 화면 왼쪽을 향한다.",
+      "figures[2].pose": "여인이 가슴에 손을 얹고 곧게 서 있어서 두려워 떠는 모습이 분명하지 않고, 시선도 사무엘 쪽이 아니라 정면 쪽이다.",
+      "figures[2].prop": "여인의 지물은 두건 달린 긴 겉옷이라 숄 자락이라고 분명히 말하기 어렵다.",
+      "figures[2].facing": "여인의 얼굴과 몸이 정면을 보고 있어 화면 오른쪽을 향한다고 보기 어렵다.",
+      "guard": "손가락 수 이상, 덧붙은 인물, 테두리나 글자 같은 다른 결함은 보이지 않는다."
+     }
+    },
+    "379:authored-saul-endor-medium:7": {
+     "tries": [
+      {
+       "seconds": 15.494,
+       "input": 4,
+       "output": 1820,
+       "cache_read": 47751,
+       "cache_create": 10954,
+       "cost_usd": 0.0667991,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "맞음",
+      "figures[1].facing": "맞음",
+      "figures[2].pose": "맞음",
+      "figures[2].prop": "맞음",
+      "figures[2].facing": "맞음",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "사무엘이 땅에서 허리 위만 올라온 모습이 아니라 온몸으로 선 노인이다. 문 가의 두 종도 수염 난 노인이라 사울과 구별되지 않는다.",
+      "background[0]": "어두운 방 안이고 밤 분위기가 맞다.",
+      "background[1]": "벽에 걸린 등불이 하나이고 빛이 희미하다.",
+      "crowds": "문 가에 선 두 사람이 수염 난 노인이다. 수염 없는 젊은 종이 아니다.",
+      "figures[0].pose": "사울로 보이는 인물이 바닥에 얼굴을 대고 엎드려 있다.",
+      "figures[0].prop": "어두운 겉옷을 걸쳤다.",
+      "figures[0].facing": "머리가 화면 오른쪽에 있고 그쪽으로 엎드려 있다.",
+      "figures[1].pose": "사무엘이 땅에서 올라온 모습이 아니라 바닥에 선 전신상이다. 허리 위만 올라와야 한다는 기대와 다르다.",
+      "figures[1].prop": "긴 겉옷을 입었다.",
+      "figures[1].facing": "얼굴과 상체가 화면 왼쪽을 향한다.",
+      "figures[2].pose": "사울 곁에 서서 손을 가슴에 얹고 놀란 듯 바라본다.",
+      "figures[2].prop": "머리와 어깨에 두른 숄이 있다.",
+      "figures[2].facing": "얼굴이 화면 오른쪽의 사무엘을 향한다.",
+      "guard": "그림 둘레에 종이 여백과 손으로 그린 테두리가 보인다. 크롭 파일도 지정한 인물(사울·여인)과 다른 인물이 가운데에 있어 어긋난다."
+     }
+    },
+    "379:authored-saul-endor-medium:23": {
+     "tries": [
+      {
+       "seconds": 17.64,
+       "input": 4,
+       "output": 2057,
+       "cache_read": 47751,
+       "cache_create": 10947,
+       "cost_usd": 0.06914110000000001,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "틀림",
+      "background[1]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "맞음",
+      "figures[1].facing": "맞음",
+      "figures[2].pose": "맞음",
+      "figures[2].prop": "틀림",
+      "figures[2].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "사무엘이 땅에서 허리 위만 올라온 게 아니라 전신으로 서 있다. 문 가에는 윗옷을 벗은 낯선 노인이 서 있어서 엎드린 사울과 노인이 둘로 겹친다. 젊은 종도 한 명뿐이다.",
+      "background[0]": "벽이 밝고 환한 낮 같은 분위기다. 어두운 방과 밤이 아니다.",
+      "background[1]": "벽에 켜진 등불이 하나 걸려 있다.",
+      "crowds": "젊은 종이 한 명뿐이다. 문 가에는 수염 난 반라의 노인이 서 있어 수염 없는 젊은 종 둘이라는 기대와 다르다.",
+      "figures[0].pose": "saul-old 크롭의 인물은 엎드리지 않고 똑바로 서 있다.",
+      "figures[0].prop": "saul-old 크롭의 인물은 윗옷을 벗었고 변장 겉옷이 없다.",
+      "figures[0].facing": "얼굴이 화면 오른쪽을 향한다.",
+      "figures[1].pose": "사무엘이 땅에서 올라오는 모습이 아니라 구덩이 옆에 전신으로 서 있다. 허리 위만 올라온다는 기대와 다르다.",
+      "figures[1].prop": "긴 겉옷을 입고 있다.",
+      "figures[1].facing": "얼굴이 화면 왼쪽을 향한다.",
+      "figures[2].pose": "곁에 서서 손을 가슴에 얹고 불안하게 바라보는 모습이다.",
+      "figures[2].prop": "두건 달린 겉옷을 두르고 있을 뿐 쥐고 있는 숄 자락은 뚜렷이 보이지 않아, 분명히 맞다고 확인되지 않는다.",
+      "figures[2].facing": "얼굴이 화면 오른쪽을 향한다.",
+      "guard": "손가락, 글자, 테두리에서 다른 결함은 보이지 않는다."
+     }
+    },
+    "379:authored-saul-endor-medium:5": {
+     "tries": [
+      {
+       "seconds": 19.622,
+       "input": 4,
+       "output": 1970,
+       "cache_read": 47751,
+       "cache_create": 10947,
+       "cost_usd": 0.0682711,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "틀림",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "틀림",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "맞음",
+      "figures[1].facing": "맞음",
+      "figures[2].pose": "틀림",
+      "figures[2].prop": "맞음",
+      "figures[2].facing": "틀림",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "사무엘이 땅에서 허리 위만 올라온 모습이 아니라 맨발로 바닥에 선 전신상이다. 문 가의 종은 수염 난 노인 한 명뿐이다.",
+      "background[0]": "어두운 흙벽 방이고 분위기가 밤이다.",
+      "background[1]": "등불은 하나지만 유리 갓이 달린 근대식 등잔 모양이라 그 시대 물건이 아니다.",
+      "crowds": "문 가에 선 사람은 한 명뿐이고 수염 난 노인이다. 수염 없는 젊은 종 둘이 아니다.",
+      "figures[0].pose": "크롭 가운데 인물은 문 가에 서 있고, 엎드려 절하지 않는다.",
+      "figures[0].prop": "어두운 겉옷을 걸치고 있다.",
+      "figures[0].facing": "크롭 인물은 정면에 가깝게 서 있어서 화면 오른쪽을 향한다고 분명히 말하기 어렵다.",
+      "figures[1].pose": "땅에서 올라온 허리 위만이 아니라 발까지 보이는 전신으로 서 있다.",
+      "figures[1].prop": "긴 겉옷을 입고 있다.",
+      "figures[1].facing": "얼굴과 상체가 화면 왼쪽을 향한다.",
+      "figures[2].pose": "손을 모으고 서 있으나 시선이 사무엘(오른쪽)이 아니라 정면이나 왼쪽을 향하는 듯하다. 두려워 떨며 영을 바라보는 모습으로 보기 어렵다.",
+      "figures[2].prop": "두건과 겉옷을 걸쳤고 숄 자락으로 볼 수 있다.",
+      "figures[2].facing": "얼굴이 화면 왼쪽이나 정면을 향하고 오른쪽이 아니다.",
+      "guard": "손가락 수 이상, 겹친 인물, 테두리, 글자 같은 다른 결함은 보이지 않는다."
+     }
+    },
+    "379:authored-saul-endor-medium:101": {
+     "tries": [
+      {
+       "seconds": 17.666,
+       "input": 4,
+       "output": 1909,
+       "cache_read": 47751,
+       "cache_create": 10878,
+       "cost_usd": 0.0673851,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "틀림",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "맞음",
+      "figures[1].facing": "맞음",
+      "figures[2].pose": "맞음",
+      "figures[2].prop": "틀림",
+      "figures[2].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "사무엘이 땅에서 허리 위만 올라오지 않고 발까지 온전히 선 채 서 있다. 문 가의 두 사람 중 하나는 수염 난 노인이라 젊은 종 둘이 아니고, 엎드린 사울과 구별이 모호하다.",
+      "background[0]": "어둡고 흙바닥인 방 안이며 밤 분위기가 맞다.",
+      "background[1]": "희미한 등불 하나가 걸려 있다.",
+      "crowds": "문 가의 두 사람 중 하나가 긴 흰 수염의 노인이라 수염 없는 젊은 종 둘이 아니다.",
+      "figures[0].pose": "saul-old 크롭의 중심 인물은 문 가에 선 수염 노인이다. 얼굴을 땅에 대고 엎드린 자세가 아니다.",
+      "figures[0].prop": "크롭의 인물은 평범한 허리띠 두른 겉옷 차림이다. 변장 겉옷으로 분명히 읽히지 않는다.",
+      "figures[0].facing": "크롭의 인물은 정면에서 약간 틀어 서 있어 화면 오른쪽을 분명히 향한다고 보기 어렵다.",
+      "figures[1].pose": "사무엘이 땅에서 허리 위만 올라온 모습이 아니라 발까지 보이게 완전히 서 있다.",
+      "figures[1].prop": "긴 겉옷을 입고 있다.",
+      "figures[1].facing": "얼굴과 상체가 화면 왼쪽을 향한다.",
+      "figures[2].pose": "사울 곁에 서서 두 손을 가슴에 모으고 두려운 얼굴로 사무엘 쪽을 본다.",
+      "figures[2].prop": "머리를 덮은 두건 겸 망토를 걸치고 있다. 손에 쥔 숄 자락은 뚜렷하지 않다. 분명히 맞다고 확인되지 않아 틀림으로 처리했다.",
+      "figures[2].facing": "얼굴과 시선이 화면 오른쪽의 사무엘 쪽으로 향한다.",
+      "guard": "손가락, 겹친 인물, 테두리, 글자 같은 결함이 보이지 않는다."
+     }
+    },
+    "379:authored-saul-endor-medium:202": {
+     "tries": [
+      {
+       "seconds": 16.427,
+       "input": 4,
+       "output": 1860,
+       "cache_read": 47751,
+       "cache_create": 11023,
+       "cost_usd": 0.0674751,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "틀림",
+      "background[1]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "틀림",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "틀림",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "맞음",
+      "figures[1].facing": "맞음",
+      "figures[2].pose": "틀림",
+      "figures[2].prop": "틀림",
+      "figures[2].facing": "틀림",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "사무엘이 땅에서 허리 위만 올라온 모습이 아니라 전신으로 서 있다. 함께 온 두 사람도 수염 없는 젊은 종이 아니라 흰 수염 노인과 수염 난 남자다.",
+      "background[0]": "밝은 베이지색 벽과 하늘이 있는 야외 낮 풍경이다. 어두운 밤의 방이 아니다.",
+      "background[1]": "벽에 희미한 등불이 하나 걸려 있어 기대와 맞다.",
+      "crowds": "문 가에 선 두 사람이 수염 없는 젊은 종 둘이 아니다. 한 명은 흰 수염 노인이고 다른 한 명은 수염이 있다.",
+      "figures[0].pose": "사울 크롭의 가운데 인물은 문 가에 서 있는 노인이다. 엎드린 사람은 이 크롭의 인물이 아니다.",
+      "figures[0].prop": "크롭의 인물은 변장 겉옷이 아니라 평범한 튜닉을 입었다.",
+      "figures[0].facing": "크롭의 인물은 사울이 아니고, 방향도 확실하게 맞다고 볼 수 없다.",
+      "figures[1].pose": "사무엘이 허리 위만 올라온 모습이 아니라 땅 위에 전신으로 서 있다.",
+      "figures[1].prop": "긴 겉옷을 입고 있어 맞다.",
+      "figures[1].facing": "얼굴과 상체가 화면 왼쪽을 향한다.",
+      "figures[2].pose": "여인은 서 있고 손을 가슴에 얹었지만, 떨며 사무엘을 바라보는 모습이 분명하지 않다. 시선이 정면에 가깝다.",
+      "figures[2].prop": "머리를 덮은 두건 달린 망토를 입었다. 숄 자락이라고 분명하게 확인되지 않는다.",
+      "figures[2].facing": "정면에 가까워 화면 오른쪽을 향한다고 분명하게 확인되지 않는다.",
+      "guard": "엎드린 사람이 사울이라는 점이 모호하고, 사무엘이 땅에서 올라오는 모습도 아니다. 구도가 어긋난 결함이 있다."
+     }
+    },
+    "379:authored-saul-endor-medium:303": {
+     "tries": [
+      {
+       "seconds": 15.841,
+       "input": 4,
+       "output": 1924,
+       "cache_read": 47751,
+       "cache_create": 10931,
+       "cost_usd": 0.0677471,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "맞음",
+      "figures[1].facing": "맞음",
+      "figures[2].pose": "맞음",
+      "figures[2].prop": "맞음",
+      "figures[2].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "사무엘이 땅에서 허리 위만 올라온 모습이 아니라 맨발로 서 있다. 문 가의 두 사람도 한 명은 수염 난 노인이라 사울과 구별되지 않는다.",
+      "background[0]": "어두운 방 안이고 문 안쪽이 어둡다.",
+      "background[1]": "등불이 하나 걸려 있다.",
+      "crowds": "문 가의 두 사람 중 하나가 수염 난 노인이다. 수염 없는 젊은 종 둘이어야 한다.",
+      "figures[0].pose": "전체 그림에서 엎드린 사울이 얼굴을 땅에 대고 있다. 다만 이 크롭은 사울이 아니라 문 가의 두 사람을 보여 준다.",
+      "figures[0].prop": "사울이 어두운 겉옷을 두르고 있다.",
+      "figures[0].facing": "전체 그림에서 사울의 머리가 화면 오른쪽에 있다. 다만 얼굴이 아래로 향해 있어 확신이 약하다.",
+      "figures[1].pose": "사무엘이 땅에서 올라온 허리 위만이 아니라 전신으로 서 있다.",
+      "figures[1].prop": "사무엘이 긴 겉옷을 입고 있다.",
+      "figures[1].facing": "사무엘이 화면 왼쪽을 향한다.",
+      "figures[2].pose": "여인이 가슴에 손을 얹고 두려운 표정으로 사무엘 쪽을 올려다본다.",
+      "figures[2].prop": "여인이 숄처럼 두른 겉옷 자락을 지녔다.",
+      "figures[2].facing": "여인의 얼굴이 화면 오른쪽의 사무엘 쪽으로 향한다. 몸은 정면에 가깝다.",
+      "guard": "손가락 수 이상, 테두리, 글자는 보이지 않는다. 덧붙은 인물도 없다."
+     }
+    },
+    "379:authored-saul-gilboa-death:11": {
+     "tries": [
+      {
+       "seconds": 8.676,
+       "input": 4,
+       "output": 1048,
+       "cache_read": 47323,
+       "cache_create": 9967,
+       "cost_usd": 0.0550883,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds": "맞음",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "틀림",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "틀림",
+      "figures[1].facing": "맞음",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "사울과 병기 든 자 모두 칼을 뽑아 들고 있음. 둘 다 칼집에 든 채여야 함",
+      "background[0]": "마른 비탈 맞음",
+      "background[1]": "능선 위 활 쏘는 무리 원경 맞음",
+      "crowds": "능선 위로 활 든 무리가 줄지어 옴",
+      "figures[0].pose": "서서 한 손을 내밀어 명하는 모습",
+      "figures[0].prop": "칼을 뽑아 쥐고 있고, 칼집에 든 칼이 아님. 칼집은 따로 비스듬히 걸려 있음",
+      "figures[0].facing": "사울은 화면 오른쪽이 아니라 왼쪽에서 서서 오른쪽 병기 든 자를 향하지만 얼굴은 오른쪽을 향함. 판정이 애매해 틀림으로 답함",
+      "figures[1].pose": "칼을 뽑아 든 채 한 손엔 칼집을 쥠. 칼을 빼지 않은 자세가 아님",
+      "figures[1].prop": "칼이 뽑혀 있고 칼집은 따로 쥐고 있음",
+      "figures[1].facing": "얼굴과 상체가 화면 왼쪽의 사울을 향함",
+      "guard": "병기 든 자가 칼과 칼집을 양손에 따로 쥔 모습이고 사울도 칼과 칼집이 따로 있어 지물이 덧붙은 듯 보임"
+     }
+    },
+    "379:authored-saul-gilboa-death:42": {
+     "tries": [
+      {
+       "seconds": 8.254,
+       "input": 4,
+       "output": 906,
+       "cache_read": 47323,
+       "cache_create": 9927,
+       "cost_usd": 0.053508299999999995,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds": "맞음",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "틀림",
+      "figures[1].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "병기 든 자가 칼을 이미 뽑아 쥐고 있다. 기대는 칼집에 든 채 굳어 있는 모습이다.",
+      "figures[1].pose": "칼집의 칼자루만 쥔 것이 아니라 뽑은 칼을 손에 들고 칼끝을 아래로 늘어뜨렸다.",
+      "figures[1].prop": "칼이 칼집에서 뽑혀 있다. 허리에 빈 칼집이 따로 달려 있다."
+     }
+    },
+    "379:authored-saul-gilboa-death:7": {
+     "tries": [
+      {
+       "seconds": 9.394,
+       "input": 4,
+       "output": 1136,
+       "cache_read": 47323,
+       "cache_create": 10045,
+       "cost_usd": 0.0562803,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds": "맞음",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "틀림",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "틀림",
+      "figures[1].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "두 사람 모두 칼을 뽑아 들었음(칼집에 든 채여야 함)",
+      "background[0]": "마른 비탈 맞음",
+      "background[1]": "능선 원경에 활 쏘는 자들",
+      "crowds": "블레셋 궁수들이 산 위 능선에 있음",
+      "figures[0].pose": "선 채 한 팔을 내밂",
+      "figures[0].prop": "칼을 뽑아 손에 쥠, 칼집에 든 칼 아님",
+      "figures[0].facing": "오른쪽을 향함",
+      "figures[1].pose": "칼을 뽑아 들고 있음, 칼자루만 쥔 게 아님",
+      "figures[1].prop": "칼날이 드러난 뽑은 칼",
+      "figures[1].facing": "왼쪽을 향함",
+      "guard": "다른 결함 보이지 않음"
+     }
+    },
+    "379:authored-saul-gilboa-death:5": {
+     "tries": [
+      {
+       "seconds": 9.782,
+       "input": 4,
+       "output": 1176,
+       "cache_read": 47323,
+       "cache_create": 9960,
+       "cost_usd": 0.056340299999999996,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds": "맞음",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "틀림",
+      "figures[1].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "병기 든 자가 칼을 이미 뽑아 들고 있다. 기대는 두 사람 모두 칼집에 든 칼이고 병기 든 자는 칼을 빼지 않는 순간이다.",
+      "background[0]": "길보아의 마른 풀 비탈과 바위가 보인다.",
+      "background[1]": "먼 능선 위에 활 쏘는 자들이 보인다.",
+      "crowds": "블레셋 활 쏘는 자들이 비탈 위쪽 능선을 따라 다가온다.",
+      "figures[0].pose": "사울이 선 채로 한 손을 내밀어 명하는 모습이다.",
+      "figures[0].prop": "허리춤에 칼집에 든 칼이 있고 칼자루가 보인다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향한다.",
+      "figures[1].pose": "칼날을 드러낸 칼을 손에 쥐고 있다. 기대는 칼집에 든 칼자루만 쥐고 빼지 않는 자세다.",
+      "figures[1].prop": "칼이 칼집에서 뽑혀 있다. 기대는 칼집에 든 칼이다.",
+      "figures[1].facing": "얼굴이 화면 왼쪽, 사울 쪽을 향한다.",
+      "guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자 같은 결함이 보이지 않는다."
+     }
+    },
+    "379:authored-saul-gilboa-death:23": {
+     "tries": [
+      {
+       "seconds": 13.439,
+       "input": 4,
+       "output": 1488,
+       "cache_read": 47323,
+       "cache_create": 9965,
+       "cost_usd": 0.0594803,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "틀림",
+      "figures[1].facing": "맞음",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "병기 든 자가 칼을 이미 뽑아 아래로 늘어뜨리고 있다. 칼집에 든 채 굳어 있어야 하는 장면과 다르다.",
+      "background[0]": "길보아의 마른 풀 비탈과 바위가 보인다.",
+      "background[1]": "먼 능선 위에 활 든 자들이 보인다.",
+      "crowds": "활 쏘는 자들이 산 위로 뒤쫓아 오는 모습이 아니다. 능선 위에 한 줄로 서 있고, 그 줄을 가로지르는 막대 같은 선이 있다.",
+      "figures[0].pose": "사울이 선 채로 오른손을 내밀어 명하고 있다.",
+      "figures[0].prop": "사울의 칼은 칼집에 든 채 허리에 매여 있다.",
+      "figures[0].facing": "사울은 화면 오른쪽을 향한다.",
+      "figures[1].pose": "병기 든 자가 칼을 뽑아 들고 있다. 칼집에 든 칼자루만 쥐고 있어야 하는데 어긋난다.",
+      "figures[1].prop": "병기 든 자의 칼이 칼집 없이 뽑혀 있다.",
+      "figures[1].facing": "병기 든 자는 화면 왼쪽의 사울을 향한다.",
+      "guard": "원경 활 쏘는 자들 사이를 가로지르는 선이 덧붙은 결함으로 보인다. 분명히 맞다고 확인되지 않아 틀림으로 답한다."
+     }
+    },
+    "379:authored-saul-gilboa-death:202": {
+     "tries": [
+      {
+       "seconds": 8.975,
+       "input": 4,
+       "output": 1119,
+       "cache_read": 47323,
+       "cache_create": 9927,
+       "cost_usd": 0.0556383,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds": "맞음",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "틀림",
+      "figures[1].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "병기 든 자가 칼을 이미 뽑아 칼끝을 아래로 쥐고 있다. 칼은 칼집에 든 채여야 한다.",
+      "figures[1].pose": "칼집에 든 칼자루만 쥐어야 하는데 뽑은 칼을 손에 쥐고 있다.",
+      "figures[1].prop": "칼이 칼집 밖으로 뽑힌 맨 칼이다. 칼집에 든 칼이어야 한다.",
+      "figures[1].facing": "얼굴과 시선이 화면 왼쪽의 사울 쪽을 향한다.",
+      "figures[0].facing": "얼굴과 몸이 화면 오른쪽을 향한다.",
+      "figures[0].prop": "허리에 칼집에 든 칼을 차고 있다.",
+      "figures[0].pose": "선 채로 오른쪽으로 손을 내밀고 있다.",
+      "background[0]": "마른 풀과 바위가 있는 비탈이다.",
+      "background[1]": "능선 위에 활 쏘는 자들이 원경으로 보인다.",
+      "crowds": "활 쏘는 자들이 비탈 위쪽에서 따라오는 모습이다.",
+      "guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자 같은 결함은 보이지 않는다."
+     }
+    },
+    "379:authored-saul-gilboa-death:101": {
+     "tries": [
+      {
+       "seconds": 13.839,
+       "input": 4,
+       "output": 1191,
+       "cache_read": 47323,
+       "cache_create": 9943,
+       "cost_usd": 0.0564223,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds": "맞음",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "틀림",
+      "figures[1].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "병기 든 자가 칼을 이미 뽑아 아래로 늘어뜨리고 있어서, 두려워 칼을 빼지 않는 순간과 다르다.",
+      "background[0]": "길보아의 마른 풀과 바위 비탈이 보인다.",
+      "background[1]": "능선 위에 활 쏘는 자들이 멀리 줄지어 있다.",
+      "crowds": "블레셋 활 쏘는 자들이 산 위 능선에 있다.",
+      "figures[0].pose": "선 채로 한 손을 앞으로 내밀어 명하고 있다.",
+      "figures[0].prop": "칼은 칼집에 든 채로 허리에 있고 손이 칼자루 쪽에 닿아 있다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향한다.",
+      "figures[1].pose": "칼을 뽑아 든 자세이고, 칼자루만 쥔 채 굳은 모습이 아니다.",
+      "figures[1].prop": "칼날이 완전히 드러난 뽑은 칼이어서 칼집에 든 칼이 아니다.",
+      "figures[1].facing": "얼굴과 몸이 화면 왼쪽의 사울을 향한다.",
+      "guard": "손가락 수, 겹친 인물, 테두리, 글자 모두 눈에 띄는 결함이 없다."
+     }
+    },
+    "379:authored-saul-gilboa-death:303": {
+     "tries": [
+      {
+       "seconds": 11.142,
+       "input": 4,
+       "output": 1221,
+       "cache_read": 47323,
+       "cache_create": 10114,
+       "cost_usd": 0.0574063,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "background[1]": "맞음",
+      "crowds": "맞음",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "figures[1].pose": "틀림",
+      "figures[1].prop": "틀림",
+      "figures[1].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "병기 든 자가 칼을 이미 뽑아 두 손에 쥐고 있다. 두려워 굳은 채 칼집의 칼을 빼지 않는 순간이어야 한다.",
+      "background[0]": "길보아의 마른 풀 비탈이다.",
+      "background[1]": "능선 위 먼 곳에 활 쏘는 자들이 있다.",
+      "crowds": "블레셋 활 쏘는 자들이 산 위 능선에서 뒤쫓아 온다.",
+      "figures[0].pose": "사울이 선 채로 한 손을 내밀어 명하고 있다.",
+      "figures[0].prop": "사울의 칼은 칼집에 든 채 허리에 매여 있다.",
+      "figures[0].facing": "사울의 얼굴과 상체가 화면 오른쪽을 향한다.",
+      "figures[1].pose": "칼집에 든 칼자루만 쥔 모습이 아니다. 뽑은 칼을 두 자루 들고 있다.",
+      "figures[1].prop": "칼집이 보이지 않고 뽑은 칼 두 자루를 들고 있다.",
+      "figures[1].facing": "얼굴이 화면 왼쪽, 곧 사울 쪽을 향한다.",
+      "guard": "위에서 묻지 않은 결함은 보이지 않는다. 칼 두 자루는 지물과 자세 문항에서 이미 다뤘다."
+     }
+    }
+   }
+  },
+  "J1-prop": {
+   "model": "sonnet",
+   "header": "p2",
+   "answers": {
+    "379:authored-david-gibeon-battle:11": {
+     "tries": [
+      {
+       "seconds": 10.464,
+       "input": 4,
+       "output": 920,
+       "cache_read": 43632,
+       "cache_create": 12867,
+       "cost_usd": 0.0650392,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음",
+      "figures[1].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "전체 그림에서 아브넬이 손으로 긴 창을 세워 쥐고 있다. 몸 크롭에는 창이 거의 잘려 나가 손끝만 보인다. 허리에는 칼집에 든 칼도 차고 있지만 창이 있다는 점은 달라지지 않는다.",
+      "figures[1].prop": "요압이 손잡이를 쥔 곧은 칼을 들고 있고, 날이 길게 보인다. 허리에는 칼집도 보인다. 고대 근동에 맞는 모양이다."
+     }
+    },
+    "379:authored-david-gibeon-battle:42": {
+     "tries": [
+      {
+       "seconds": 12.218,
+       "input": 4,
+       "output": 1097,
+       "cache_read": 43632,
+       "cache_create": 11650,
+       "cost_usd": 0.0619412,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음",
+      "figures[1].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "아브넬 몸 크롭은 앉은 병사들만 보여서 아브넬이 없다. 그래서 전체 그림으로 판정했다. 전체 그림에서는 아브넬이 키보다 긴 곧은 창을 똑바로 세워 쥐고 있고, 창날도 분명히 보인다.",
+      "figures[1].prop": "요압이 칼을 뽑아 손에 쥐고 있는데, 허리에도 칼집에 든 칼이 따로 있고 등 뒤로는 막대 같은 칼집 끝이 삐져나와 있다. 칼이 중복되고 모양이 어색하다. 앉아 지켜보는 장면에서는 칼을 찬 모습이어야 하므로 기대와 어긋난다."
+     }
+    },
+    "379:authored-david-gibeon-battle:7": {
+     "tries": [
+      {
+       "seconds": 18.071,
+       "input": 4,
+       "output": 947,
+       "cache_read": 43632,
+       "cache_create": 12051,
+       "cost_usd": 0.0620452,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음",
+      "figures[1].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "아브넬은 긴 나무 자루에 잎 모양 촉이 달린 창을 한 손으로 세워 쥐고 있다. 시대에 맞는 모양이고 크기도 자연스럽다.",
+      "figures[1].prop": "요압이 든 칼은 황동 십자 날밑이 달린 긴 서양식 직검이라 중세풍으로 보인다. 같은 인물의 허리에도 칼집과 손잡이가 따로 있어 칼이 두 자루처럼 보인다. 기대한 칼 한 자루와 어긋난다."
+     }
+    },
+    "379:authored-david-gibeon-battle:101": {
+     "tries": [
+      {
+       "seconds": 8.356,
+       "input": 4,
+       "output": 783,
+       "cache_read": 46065,
+       "cache_create": 10141,
+       "cost_usd": 0.0530085,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음",
+      "figures[1].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "아브넬은 나뭇잎 모양 날이 달린 긴 창의 자루를 한 손으로 쥐고 세워 들었다. 시대에 맞는 창이다.",
+      "figures[1].prop": "요압은 십자 날밑이 달린 중세식 장검을 뽑아 세워 들었다. 시대에 맞지 않고, 지켜보는 장면에서 칼을 뽑아 든 것도 어긋난다. 허리에도 칼이나 칼집이 하나 더 있어 칼이 두 자루로 보인다."
+     }
+    },
+    "379:authored-david-gibeon-battle:5": {
+     "tries": [
+      {
+       "seconds": 10.242,
+       "input": 4,
+       "output": 968,
+       "cache_read": 46065,
+       "cache_create": 11162,
+       "cost_usd": 0.058942499999999995,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음",
+      "figures[1].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "아브넬이 나뭇자루에 잎 모양 철제 촉이 달린 창을 오른손으로 세워 쥐고 있다. 창의 모양과 크기가 시대에 맞는다.",
+      "figures[1].prop": "요압의 허리띠에 칼이 칼집째 매여 있고, 십자 날밑이 달린 칼자루가 보인다. 칼 모양이 읽히고 차는 방식도 장면에 어울린다. 다만 날밑 모양이 다소 서양식이고 칼집이 나무판처럼 보인다."
+     }
+    },
+    "379:authored-david-gibeon-battle:23": {
+     "tries": [
+      {
+       "seconds": 24.331,
+       "input": 4,
+       "output": 945,
+       "cache_read": 43632,
+       "cache_create": 12489,
+       "cost_usd": 0.0637772,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음",
+      "figures[1].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "아브넬은 긴 나무 자루에 잎 모양 창날이 달린 창을 오른손으로 세워 쥐고 있다. 전체 그림에서 창날이 보이고, 시대에 맞는 모양이다.",
+      "figures[1].prop": "요압은 곧은 칼의 자루를 손으로 쥐고 있고 칼날이 무릎 위로 뻗어 있으며 허리에 칼집이 보인다. 칼 모양이 분명하고, 날밑이 조금 후대풍이지만 어긋날 정도는 아니다."
+     }
+    },
+    "379:authored-david-gibeon-battle:202": {
+     "tries": [
+      {
+       "seconds": 7.805,
+       "input": 4,
+       "output": 659,
+       "cache_read": 46065,
+       "cache_create": 10001,
+       "cost_usd": 0.0512085,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음",
+      "figures[1].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "아브넬은 긴 나무 자루를 쥐고 있고, 전체 그림에서 끝에 뾰족한 청동 창날이 보인다. 시대에 맞는 보병 창이다.",
+      "figures[1].prop": "요압은 칼자루를 쥐고 있고 곧은 칼날과 가로 날밑이 보인다. 시대에 맞는 곧은 칼이다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:11": {
+     "tries": [
+      {
+       "seconds": 6.301,
+       "input": 4,
+       "output": 384,
+       "cache_read": 45886,
+       "cache_create": 8473,
+       "cost_usd": 0.0423286,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "손이 겉옷자락을 쥐고 있지 않다. 한 손은 허리띠 끝자락을 쥐고 다른 손은 비어 있다. 로브 자락을 쥔 모습이 없다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:42": {
+     "tries": [
+      {
+       "seconds": 5.337,
+       "input": 4,
+       "output": 351,
+       "cache_read": 45886,
+       "cache_create": 8123,
+       "cost_usd": 0.0405986,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗(크롭 속 인물)은 두 손이 비어 있다. 로브 자락을 쥐고 있지 않다. 겉옷은 몸에 그냥 걸쳐져 있다. 허리춤에 작은 주머니 같은 것이 보이지만 겉옷자락이 아니다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:7": {
+     "tries": [
+      {
+       "seconds": 6.71,
+       "input": 4,
+       "output": 467,
+       "cache_read": 45886,
+       "cache_create": 8142,
+       "cost_usd": 0.0418346,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "크롭의 인물은 두 손을 그냥 늘어뜨리고 있고 겉옷자락을 쥐고 있지 않다. 등에는 기대에 없는 큰 짐보따리를 졌다. 로브 자락 쥠이 분명히 확인되지 않는다."
+     }
+    },
+    "379:authored-david-gibeon-battle:303": {
+     "tries": [
+      {
+       "seconds": 13.475,
+       "input": 4,
+       "output": 1200,
+       "cache_read": 46065,
+       "cache_create": 11750,
+       "cost_usd": 0.06361449999999999,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음",
+      "figures[1].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "아브넬은 앉아서 곧은 나무 자루 끝에 뾰족한 창날이 달린 창을 오른손으로 세워 쥐고 있다. 창 모양과 쥐는 방식이 시대와 장면에 맞는다.",
+      "figures[1].prop": "요압의 칼은 길고 곧은 날에 십자 날밑과 둥근 자루머리가 달려 중세 장검처럼 보인다. 날 길이가 다리만큼 길어 철기시대 이스라엘 칼보다 길고 시대에 어긋난다. 칼집은 비어 있고 칼은 뽑혀 손에 들려 있다. 이 시대 칼로 분명히 맞다고 확인되지 않아 틀림으로 답한다. 이 판정은 시대 고증 쪽 판단이라 확신이 약하다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:5": {
+     "tries": [
+      {
+       "seconds": 4.809,
+       "input": 4,
+       "output": 447,
+       "cache_read": 45886,
+       "cache_create": 8080,
+       "cost_usd": 0.041386599999999996,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "크롭의 인물은 한 손으로 등짐 끈을 잡고 어깨에 큰 자루를 졌고, 허리 옆에는 가죽 주머니가 있다. 다른 손은 아래로 늘어져 있다. 로브 자락을 쥔 모습은 없어서 「겉옷자락」이 맞지 않는다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:23": {
+     "tries": [
+      {
+       "seconds": 6.776,
+       "input": 4,
+       "output": 494,
+       "cache_read": 45886,
+       "cache_create": 8236,
+       "cost_usd": 0.0424806,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "앞선 인물(다윗)은 두 팔을 그냥 늘어뜨리고 걷는다. 겉옷자락을 쥔 모습이 없다. 크롭도 다윗이 아니라 자루를 진 수염 난 사람 쪽으로 잡혀 있어서, 자락을 쥐었다고 확인되지 않는다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:101": {
+     "tries": [
+      {
+       "seconds": 5.715,
+       "input": 4,
+       "output": 459,
+       "cache_read": 45886,
+       "cache_create": 8558,
+       "cost_usd": 0.0434186,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗은 두 팔을 늘어뜨리고 걷고 있고 로브 자락을 쥔 손이 없다. 허리에 작은 주머니 같은 것만 보인다. 몸 크롭에는 다윗이 아니라 짐을 진 뒷사람들이 담겼고, 다윗은 오른쪽 가장자리에 잘려 보인다. 겉옷자락을 쥔 모습은 확인되지 않는다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:202": {
+     "tries": [
+      {
+       "seconds": 4.953,
+       "input": 4,
+       "output": 344,
+       "cache_read": 45886,
+       "cache_create": 8236,
+       "cost_usd": 0.0409806,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗은 두 팔을 늘어뜨리고 걷고 있다. 왼손은 허리띠 늘어진 끝자락 근처에 있지만 로브 자락을 쥐고 있지는 않다. 겉옷자락을 쥔 모습이 분명하지 않다."
+     }
+    },
+    "379:authored-david-mahanaim-exile:303": {
+     "tries": [
+      {
+       "seconds": 5.631,
+       "input": 4,
+       "output": 387,
+       "cache_read": 45886,
+       "cache_create": 8416,
+       "cost_usd": 0.042130600000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗은 두 손을 늘어뜨리고 걷고 있고, 쥐고 있는 겉옷자락이 없다. 오른손은 어깨에서 내려온 가죽 가방 끈 옆에 있다. 그림에 보이는 지물은 어깨에 멘 가죽 가방과 허리띠뿐이라 기대한 '로브 자락 쥠'과 맞지 않는다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:11": {
+     "tries": [
+      {
+       "seconds": 5.803,
+       "input": 4,
+       "output": 403,
+       "cache_read": 45862,
+       "cache_create": 9154,
+       "cost_usd": 0.0452402,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "칼이 두 자루 보인다. 한 자루는 오른손에 뽑혀 있고, 다른 한 자루는 허리 쪽에서 왼손 근처로 늘어져 있다. 기대는 칼 한 자루를 쥐는 것이다. 이 장면에서는 칼을 찬 채 걷는 모습이 자연스러운데, 그림은 칼을 뽑아 들었다. 한 자루가 아니므로 틀림."
+     }
+    },
+    "379:authored-david-returns-jerusalem:7": {
+     "tries": [
+      {
+       "seconds": 6.282,
+       "input": 4,
+       "output": 351,
+       "cache_read": 45862,
+       "cache_create": 8474,
+       "cost_usd": 0.0420002,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗이 칼을 오른손으로 자루를 쥐고 칼날을 아래로 늘어뜨린 채 걷는다. 칼 모양이 분명하고 크기도 적당하며 시대에 맞다. 기대한 '칼자루 쥠'과 어긋나는 점이 없다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:42": {
+     "tries": [
+      {
+       "seconds": 9.228,
+       "input": 4,
+       "output": 685,
+       "cache_read": 45862,
+       "cache_create": 8449,
+       "cost_usd": 0.045240199999999994,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "칼은 있고 손으로 칼자루를 쥐고 있어 기대와 일부 맞는다. 하지만 칼집 없이 긴 칼날을 뽑아 아래로 늘어뜨린 채 걷는다. 허리띠에도 칼집이 없다. 백성이 맞이하는 귀환 장면에서 왕이 지닐 방식이 아니다. 칼은 찬 채 칼자루에 손을 얹은 모습이어야 한다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:23": {
+     "tries": [
+      {
+       "seconds": 7.653,
+       "input": 4,
+       "output": 658,
+       "cache_read": 45862,
+       "cache_create": 8099,
+       "cost_usd": 0.0435702,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "칼은 보이지만 칼집에서 뽑은 맨 칼날을 손에 늘어뜨리고 걷는다. 평화로운 귀환 행렬에서는 허리에 찬 칼의 자루를 쥐는 모습이어야 한다. 칼날이 가늘고 길며 십자 날밑이 있어 후대 검처럼 보이기도 한다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:5": {
+     "tries": [
+      {
+       "seconds": 9.452,
+       "input": 4,
+       "output": 842,
+       "cache_read": 45862,
+       "cache_create": 8015,
+       "cost_usd": 0.045074199999999995,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗이 오른손으로 칼자루를 쥐고 있고 곧은 칼날이 아래로 뻗어 있다. 칼 모양이 분명하고, 근거가 말하는 '칼자루 쥠'과도 맞는다. 칼날이 조금 길고 가늘다는 점만 걸린다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:101": {
+     "tries": [
+      {
+       "seconds": 7.773,
+       "input": 4,
+       "output": 605,
+       "cache_read": 45862,
+       "cache_create": 8392,
+       "cost_usd": 0.0442122,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗이 걸어 다가가며 오른손으로 칼자루를 쥐고 있다. 곧은 양날 칼이 크기와 모양 모두 고대 칼로 자연스럽다. 기대 문장의 '다가감·칼자루 쥠'과 일치한다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:303": {
+     "tries": [
+      {
+       "seconds": 6.624,
+       "input": 4,
+       "output": 549,
+       "cache_read": 45862,
+       "cache_create": 7998,
+       "cost_usd": 0.0420762,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "칼은 보이고 손으로 자루를 쥐고 있다. 그러나 평화로운 귀환 장면에서 칼을 허리에 차지 않고 뽑아 든 채 아래로 늘어뜨렸다. 십자 날밑이 달린 긴 중세풍 직검이라 시대에도 맞지 않는다."
+     }
+    },
+    "379:authored-david-returns-jerusalem:202": {
+     "tries": [
+      {
+       "seconds": 8.439,
+       "input": 4,
+       "output": 794,
+       "cache_read": 45862,
+       "cache_create": 8824,
+       "cost_usd": 0.0478302,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗이 칼집에서 뽑은 긴 직선 검을 아래로 늘어뜨려 쥐고 있다. 허리에는 칼집이 없고 장식 술이나 주머니 같은 것만 달려 있다. 백성이 줄지어 맞이하는 귀환 장면에서 칼을 뽑아 든 모습은 어긋난다. 칼날도 길고 가늘어 중세 장검이나 레이피어처럼 보여, 그 시대의 칼 모양으로 분명히 맞다고 확인되지 않는다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:11": {
+     "tries": [
+      {
+       "seconds": 10.327,
+       "input": 4,
+       "output": 1070,
+       "cache_read": 46223,
+       "cache_create": 15054,
+       "cost_usd": 0.0755463,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림",
+      "figures[1].prop": "틀림",
+      "figures[2].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "사무엘이 든 것은 나팔처럼 벌어진 주둥이가 달린 금속 주전자(ewer)다. 구부러진 짐승 뿔 모양이 아니라서 기름 뿔로 보기 어렵다.",
+      "figures[1].prop": "david-boy 크롭에는 지팡이 없이 빈손으로 선 소년과 남자들이 담겼다. 전체 그림에서 기름 부음을 받는 소년은 지팡이를 짚고 있지만, 이 크롭에서는 목자 지팡이를 확인할 수 없다.",
+      "figures[2].prop": "이새는 거칠게 다듬은 긴 나무 지팡이를 한 손으로 세워 쥐고 서 있다. 시대와 장면에 어울리는 모양이다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:42": {
+     "tries": [
+      {
+       "seconds": 10.17,
+       "input": 4,
+       "output": 935,
+       "cache_read": 46223,
+       "cache_create": 16038,
+       "cost_usd": 0.0781323,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림",
+      "figures[1].prop": "맞음",
+      "figures[2].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "사무엘이 든 것은 유리 플라스크에 나팔 모양 금속 주둥이가 붙은 물건이다. 짐승 뿔로 만든 기름 뿔로 보이지 않고, 시대에도 맞지 않는다.",
+      "figures[1].prop": "소년 다윗이 짚은 것은 소박한 나무 막대다. 손에 쥔 방식과 길이가 목자 지팡이로 자연스럽다.",
+      "figures[2].prop": "이새의 지팡이는 윗부분이 나팔처럼 넓게 벌어져 있고 키보다 훨씬 길다. 평범한 나무 지팡이가 아니라 이상한 모양이다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:7": {
+     "tries": [
+      {
+       "seconds": 11.896,
+       "input": 4,
+       "output": 1137,
+       "cache_read": 46223,
+       "cache_create": 15189,
+       "cost_usd": 0.0767563,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림",
+      "figures[1].prop": "틀림",
+      "figures[2].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "기름을 붓는 그릇이 짐승 뿔이 아니라 손잡이 달린 황동 나팔·주전자처럼 보인다. 나팔처럼 벌어진 금속 그릇이라 '기름 뿔'이 분명히 맞다고 할 수 없다.",
+      "figures[1].prop": "지팡이 끝에 금빛 공 장식이 달린 곧은 막대다. 목자 지팡이의 갈고리 모양이 아니고 장식 막대를 짚은 지팡이처럼 보인다.",
+      "figures[2].prop": "지팡이 윗부분이 나팔처럼 벌어진 뿔 모양이고 그 주위에 덩굴 같은 것이 감겨 있다. 평범한 나무 지팡이가 아니다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:5": {
+     "tries": [
+      {
+       "seconds": 10.269,
+       "input": 4,
+       "output": 990,
+       "cache_read": 46223,
+       "cache_create": 15247,
+       "cost_usd": 0.0755183,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림",
+      "figures[1].prop": "틀림",
+      "figures[2].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "사무엘이 든 것은 입구가 벌어진 놋쇠 주전자(물병)이고 뿔 모양이 아니다. 기름 뿔이라고 할 수 없다.",
+      "figures[1].prop": "david-boy 크롭에는 다윗이 없고 형제 세 명만 나와 있어 지팡이를 확인할 수 없다. 전체 그림에서는 다윗이 곧은 막대를 쥐고 있지만, 확인되지 않으므로 틀림으로 판정한다.",
+      "figures[2].prop": "이새가 손으로 쥐고 선 나무 지팡이가 분명히 보인다. 키보다 길고 윗부분이 벌어진 모양이며 시대에 맞는다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:101": {
+     "tries": [
+      {
+       "seconds": 11.233,
+       "input": 4,
+       "output": 1202,
+       "cache_read": 46223,
+       "cache_create": 15212,
+       "cost_usd": 0.07749829999999999,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림",
+      "figures[1].prop": "맞음",
+      "figures[2].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "사무엘이 든 것은 목이 나팔처럼 벌어진 금빛 주전자나 항아리 모양이다. 짐승 뿔처럼 휘어 길게 뻗은 모양이 아니라서 기름 뿔로 보기 어렵다.",
+      "figures[1].prop": "david-boy 크롭 파일에는 다윗이 없고 형들만 찍혀 있어 크롭으로는 확인할 수 없었다. 전체 그림에서는 다윗이 손잡이에 둥근 마디가 있는 긴 나무 막대를 한 손으로 짚고 있어, 목자 지팡이로 맞다고 판단했다.",
+      "figures[2].prop": "이새가 든 것은 윗끝이 금빛 나팔처럼 크게 벌어진 긴 막대다. 평범한 나무 지팡이가 아니라 나팔이나 뿔을 얹은 장대로 보이며, 시대에 맞지 않고 어색하다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:202": {
+     "tries": [
+      {
+       "seconds": 10.362,
+       "input": 4,
+       "output": 1069,
+       "cache_read": 46223,
+       "cache_create": 14429,
+       "cost_usd": 0.0730363,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림",
+      "figures[1].prop": "맞음",
+      "figures[2].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "사무엘이 든 것은 나팔처럼 끝이 활짝 벌어진 금속 종 모양 그릇이다. 휘어진 짐승 뿔 모양이 아니라서 기름 뿔로 확실히 보기 어렵다.",
+      "figures[1].prop": "다윗이 손에 쥔 것은 윗머리에 마디가 있는 곧은 나무 막대로, 목자 지팡이로 자연스럽다.",
+      "figures[2].prop": "이새가 든 것은 윗끝이 나팔 주둥이처럼 벌어진 금빛 긴 막대다. 소박한 나무 지팡이가 아니라 금속 나팔을 얹은 모양이고 키보다 훨씬 길다. 또 이새의 몸 크롭에는 이새가 아니라 아들들 쪽이 찍혀 있어 지팡이를 든 사람은 전체 그림에서 확인했다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:23": {
+     "tries": [
+      {
+       "seconds": 12.289,
+       "input": 4,
+       "output": 1350,
+       "cache_read": 46223,
+       "cache_create": 15746,
+       "cost_usd": 0.0811143,
+       "turns": 5,
+       "error": false
+      },
+      {
+       "seconds": 9.8,
+       "input": 4,
+       "output": 1076,
+       "cache_read": 61969,
+       "cache_create": 0,
+       "cost_usd": 0.0169649,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림",
+      "figures[1].prop": "맞음",
+      "figures[2].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "사무엘이 든 것은 나팔꽃·깔때기처럼 나팔 모양으로 벌어진 금색 물건에 물방울 모양 꼭지가 달린 것이다. 휘어진 짐승 뿔 모양이 아니라서 기름 뿔로 보기 어렵다.",
+      "figures[1].prop": "다윗은 소년 키에 맞는 곧은 나무 막대를 손에 쥐고 땅에 짚고 있다. 전체 그림에서 확인되고, 목자 지팡이로 볼 수 있다. 다만 david-boy 몸 크롭은 형들 쪽으로 어긋나 있어 다윗 자체는 거의 안 보인다.",
+      "figures[2].prop": "이새는 자기 키보다 큰 나무 지팡이를 한 손으로 세워 쥐고 있다. 시대에 맞는 모양이다."
+     }
+    },
+    "379:authored-samuel-bethlehem-david-anointing:303": {
+     "tries": [
+      {
+       "seconds": 11.405,
+       "input": 4,
+       "output": 1202,
+       "cache_read": 46223,
+       "cache_create": 15131,
+       "cost_usd": 0.0771743,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림",
+      "figures[1].prop": "맞음",
+      "figures[2].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "사무엘이 든 것은 금빛 종 모양 입구에 잘록한 허리가 있는 모래시계형 병이다. 휘어진 짐승 뿔 모양이 아니라서 '기름 뿔'과 다르다.",
+      "figures[1].prop": "전체 그림에서 소년 다윗은 고개를 숙인 채 손잡이가 둥근 나무 막대를 짚고 있다. 시대에 맞는 목자 지팡이다. 다만 david-boy 크롭은 다윗이 아닌 형들을 비추고 있어 크롭만으로는 확인되지 않는다. 전체 그림을 기준으로 판정했다.",
+      "figures[2].prop": "터번을 쓴 이새가 자기 키보다 큰 거친 나무 지팡이를 한 손으로 쥐고 서 있다. 윗머리가 옹이진 소박한 나무 지팡이라 기대와 맞다."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:11": {
+     "tries": [
+      {
+       "seconds": 6.759,
+       "input": 4,
+       "output": 552,
+       "cache_read": 45855,
+       "cache_create": 8501,
+       "cost_usd": 0.0441175,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "허리띠에서 드러난 날이 아래로 늘어져 있는데 칼집이 안 보이고, 날은 칼이라기보다 짧은 단검 같다. 왼쪽 뒤로는 칼이 아닌 곤봉 또는 자루 같은 물건이 따로 튀어나와 있다. 칼 한 자루를 찼다고 분명히 확인되지 않는다."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:7": {
+     "tries": [
+      {
+       "seconds": 8.11,
+       "input": 4,
+       "output": 611,
+       "cache_read": 45855,
+       "cache_create": 8961,
+       "cost_usd": 0.0465475,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "칼은 있고 오른손에 뽑아 들었다. 그런데 날이 가늘고 길게 곧은 데다 곡선 날밑과 장식 손잡이가 달려 레이피어나 유럽식 장검처럼 보인다. 고대 이스라엘의 짧고 넓은 청동 칼과 다르다. 분명히 맞다고 확인할 수 없어 틀림으로 답한다."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:42": {
+     "tries": [
+      {
+       "seconds": 12.819,
+       "input": 4,
+       "output": 710,
+       "cache_read": 45855,
+       "cache_create": 8255,
+       "cost_usd": 0.044713499999999996,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗이 허리띠에 칼 한 자루를 차고 있다. 둥근 자루머리와 곧은 날이 보이고, 뽑아 들지 않고 찬 모습이라 장면에 어울린다. 날이 다소 길고 자루 모양이 중세풍 같아 약간 걸리지만, 현대식 물건은 아니고 기대 문장인 '칼'에 어긋나지 않는다."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:5": {
+     "tries": [
+      {
+       "seconds": 8.457,
+       "input": 4,
+       "output": 831,
+       "cache_read": 45855,
+       "cache_create": 8888,
+       "cost_usd": 0.0484555,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗이 칼을 뽑아 오른손에 늘어뜨려 들었다. 날이 다리만큼 길고 가늘어 레이피어처럼 보여서, 고대 이스라엘의 짧은 곧은 칼로는 확신하기 어렵다. 허리띠에는 칼집이 따로 달려 있어 칼이 두 군데에 있는 셈이다. 맞다고 분명히 확인되지 않아 틀림으로 판정한다."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:23": {
+     "tries": [
+      {
+       "seconds": 9.081,
+       "input": 4,
+       "output": 783,
+       "cache_read": 45855,
+       "cache_create": 8589,
+       "cost_usd": 0.0467795,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "칼은 있지만 날이 곧고 아주 길어서 거의 다리 길이만 합니다. 철기시대 이스라엘의 짧은 칼보다 중세식 장검처럼 보입니다. 허리춤에 칼집이 보이는데도 칼을 뽑아 땅으로 늘어뜨린 채 쥐고 있어서, 시대와 장면에 맞는 지닌 방식이라고 분명히 확인되지 않습니다."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:101": {
+     "tries": [
+      {
+       "seconds": 6.382,
+       "input": 4,
+       "output": 335,
+       "cache_read": 45855,
+       "cache_create": 8589,
+       "cost_usd": 0.0422995,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗이 쥔 것은 검은 막대나 손잡이처럼 보이고, 칼날이 없습니다. 칼집에 든 칼로도 보이지 않습니다. 칼로 확인되지 않아 틀림으로 판정합니다."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:202": {
+     "tries": [
+      {
+       "seconds": 7.218,
+       "input": 4,
+       "output": 655,
+       "cache_read": 45855,
+       "cache_create": 8888,
+       "cost_usd": 0.0466955,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "칼은 보이지만 뽑아 들고 칼끝을 땅으로 늘어뜨린 모양이다. 칼날이 몸 앞을 가로질러 반대쪽 손 뒤로 자루 끝이 삐져나와, 어느 손이 칼자루를 쥐었는지 불분명하다. 몸에 찬 칼이 아니라서 분명히 맞다고 확인되지 않는다."
+     }
+    },
+    "379:authored-david-jerusalem-conquest:303": {
+     "tries": [
+      {
+       "seconds": 6.6,
+       "input": 4,
+       "output": 383,
+       "cache_read": 45855,
+       "cache_create": 8330,
+       "cost_usd": 0.041743499999999996,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "칼이 허리띠 칼집에 차인 모양이 아니다. 손으로 쥔 칼날은 짧고 가늘며 단검이나 칼집에서 반쯤 뽑은 칼처럼 보인다. 반대편으로는 막대 같은 손잡이가 튀어나와 있어 형태가 모호하다. 칼이 분명하다고 확인되지 않는다."
+     }
+    },
+    "379:authored-saul-endor-medium:11": {
+     "tries": [
+      {
+       "seconds": 14.901,
+       "input": 4,
+       "output": 1469,
+       "cache_read": 46182,
+       "cache_create": 15256,
+       "cost_usd": 0.0803402,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음",
+      "figures[1].prop": "맞음",
+      "figures[2].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "노년 사울은 평상복 위에 어두운 겉옷을 두르고 있어 변장 겉옷으로 볼 수 있다. 다만 크롭에 사울로 보이는 인물이 둘(문간의 노인, 바닥에 엎드린 인물)이라 어느 쪽이 사울인지는 불확실하다. 어느 쪽이든 겉옷은 있다.",
+      "figures[1].prop": "사무엘은 허리띠 맨 긴 옷 위에 발목까지 내려오는 검은 두건 달린 긴 겉옷을 걸쳤다. 시대에 맞는 모양이다.",
+      "figures[2].prop": "엔돌 여인은 머리부터 어깨와 팔로 흘러내리는 두건 겸용 숄 자락을 두르고 가슴 앞에서 여몄다. 현대식 물건은 없다."
+     }
+    },
+    "379:authored-saul-endor-medium:42": {
+     "tries": [
+      {
+       "seconds": 14.672,
+       "input": 4,
+       "output": 1507,
+       "cache_read": 46182,
+       "cache_create": 16022,
+       "cost_usd": 0.0837842,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음",
+      "figures[1].prop": "맞음",
+      "figures[2].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "전체 그림에서 엎드린 노년 사울이 몸을 덮는 큰 검은 겉옷을 걸쳤다. 변장 겉옷으로 어긋나지 않는다. 다만 saul-old 크롭에는 문간의 두 사람이 찍혀 있어 사울이 아니다. 판정은 전체 그림을 기준으로 했다.",
+      "figures[1].prop": "전체 그림의 사무엘은 흰 수염 노인이다. 발목까지 닿는 검은 후드 겉옷을 어깨에서 늘어뜨려 걸쳤다. 긴 겉옷에 맞는다. 현대식 물건은 없다. 다만 허리 위만 올라온 모습은 아니고 전신이 서 있다.",
+      "figures[2].prop": "전체 그림의 엔돌 여인은 머리에서 어깨로 두른 숄 같은 천이 한쪽 자락으로 늘어져 있다. 숄 자락에 맞는다. 다만 endor-medium 크롭에는 이 여인이 없어 전체 그림을 기준으로 했다."
+     }
+    },
+    "379:authored-saul-endor-medium:23": {
+     "tries": [
+      {
+       "seconds": 12.032,
+       "input": 4,
+       "output": 1193,
+       "cache_read": 46182,
+       "cache_create": 15510,
+       "cost_usd": 0.0785962,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림",
+      "figures[1].prop": "맞음",
+      "figures[2].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "노년 사울은 상체를 드러낸 채 허리에 치마 같은 천만 둘렀다. 변장 겉옷을 입은 모습이 아니다.",
+      "figures[1].prop": "사무엘은 튜닉 위에 발끝까지 내려오는 긴 어두운 겉옷을 걸쳤고, 허리띠도 맸다. 시대에 맞는 긴 겉옷이다.",
+      "figures[2].prop": "여인은 머리 모양이 잡힌 후드 달린 외투를 걸쳤고 브로치로 여몄다. 숄 자락이라기보다 후드 외투에 가까워 분명히 맞다고 확인되지 않는다."
+     }
+    },
+    "379:authored-saul-endor-medium:7": {
+     "tries": [
+      {
+       "seconds": 13.235,
+       "input": 4,
+       "output": 1554,
+       "cache_read": 46182,
+       "cache_create": 15487,
+       "cost_usd": 0.0821142,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음",
+      "figures[1].prop": "맞음",
+      "figures[2].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "saul-old 크롭에는 사울이 안 나오고 문 앞의 두 남자만 보여서, 전체 그림의 엎드린 사울로 판정했다. 그는 몸을 덮은 어두운 겉옷 차림이라 변장 겉옷으로 볼 수 있다. 크롭이 엉뚱한 인물이라 확신은 약하다.",
+      "figures[1].prop": "samuel 크롭의 흰 수염 노인은 발목까지 내려오는 후드 달린 어두운 긴 겉옷을 입었다. 허리 위만 올라온 자세는 아니고 전신이 서 있지만, 문항이 묻는 지물인 긴 겉옷은 맞다.",
+      "figures[2].prop": "endor-medium 크롭에는 여인이 안 나오고 문 앞 두 남자와 엎드린 사울이 보여서, 전체 그림의 여인으로 판정했다. 여인은 머리와 어깨에 두른 어두운 숄을 가슴께에서 여미고 있어 숄 자락이 맞다. 크롭이 엉뚱한 인물이라 확신은 약하다."
+     }
+    },
+    "379:authored-saul-endor-medium:5": {
+     "tries": [
+      {
+       "seconds": 11.243,
+       "input": 4,
+       "output": 1004,
+       "cache_read": 46182,
+       "cache_create": 15509,
+       "cost_usd": 0.0767022,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음",
+      "figures[1].prop": "맞음",
+      "figures[2].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "사울은 어깨에 두건 달린 어두운 겉옷을 걸쳤다. 변장 겉옷으로 자연스럽다. 가슴이 드러난 것은 지물 문제가 아니다.",
+      "figures[1].prop": "사무엘은 발까지 내려오는 길고 주름진 어두운 겉옷을 걸쳤고, 시대에 맞는 모양이다.",
+      "figures[2].prop": "엔돌 여인은 머리와 어깨를 덮고 앞으로 접혀 내려오는 숄형 두건 겉옷을 둘렀다. 숄 자락으로 읽힌다."
+     }
+    },
+    "379:authored-saul-endor-medium:101": {
+     "tries": [
+      {
+       "seconds": 13.289,
+       "input": 4,
+       "output": 1344,
+       "cache_read": 46182,
+       "cache_create": 14881,
+       "cost_usd": 0.0775902,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림",
+      "figures[1].prop": "맞음",
+      "figures[2].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "saul-old 크롭에는 문간의 수염 노인과 대머리 인물이 나온다. 수염 노인은 허리띠를 맨 평범한 튜닉뿐이고 변장용 겉옷으로 읽히는 것이 없다. 전체 그림에서 사울로 보이는 엎드린 인물은 검은 옷을 덮고 있지만 이 크롭에는 없다. 분명히 맞다고 확인되지 않아 틀림으로 답한다.",
+      "figures[1].prop": "흰 수염 인물이 후드 달린 검은 긴 겉옷을 발끝까지 걸치고 있다. 시대에 맞는 모양이라 '긴 겉옷' 기대에 맞는다. 다만 허리 위만 올라온 모습이 아니라 전신으로 서 있다. 이 문항은 지물만 판정했다.",
+      "figures[2].prop": "여인이 후드 겸 어깨를 감싸는 숄을 늘어뜨려 가슴께에서 접힌 자락을 쥐고 있다. 시대에 맞고 '숄 자락' 기대에 부합한다."
+     }
+    },
+    "379:authored-saul-endor-medium:303": {
+     "tries": [
+      {
+       "seconds": 11.017,
+       "input": 4,
+       "output": 1086,
+       "cache_read": 46182,
+       "cache_create": 15229,
+       "cost_usd": 0.0764022,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음",
+      "figures[1].prop": "맞음",
+      "figures[2].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "사울 크롭의 노인은 튜닉 위에 어두운 큰 겉옷을 걸쳤다. 변장 겉옷으로 자연스럽고 시대에도 맞다.",
+      "figures[1].prop": "사무엘 크롭의 흰 수염 노인은 발목까지 내려오는 긴 어두운 겉옷을 입었다. 가장자리 장식도 있어 긴 겉옷에 맞다.",
+      "figures[2].prop": "여인이 입은 것은 브로치로 여미고 후드가 달린 망토형 겉옷이다. 어깨에 두르거나 접은 숄 자락으로는 분명히 확인되지 않는다."
+     }
+    },
+    "379:authored-saul-gilboa-death:11": {
+     "tries": [
+      {
+       "seconds": 6.376,
+       "input": 4,
+       "output": 620,
+       "cache_read": 46033,
+       "cache_create": 12517,
+       "cost_usd": 0.0608793,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림",
+      "figures[1].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "칼이 칼집에서 뽑혀 손에 쥐어져 있고, 칼집은 따로 비어 있다. 칼집에 든 칼이 아니다.",
+      "figures[1].prop": "한 손에 뽑은 칼날을 들고 있고, 다른 손은 빈 칼집 곁의 자루를 쥐었다. 칼집에 든 칼이 아니다."
+     }
+    },
+    "379:authored-saul-endor-medium:202": {
+     "tries": [
+      {
+       "seconds": 16.26,
+       "input": 4,
+       "output": 1501,
+       "cache_read": 46182,
+       "cache_create": 16041,
+       "cost_usd": 0.0838002,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림",
+      "figures[1].prop": "맞음",
+      "figures[2].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "사울 크롭에 보이는 노인은 허리띠 맨 평범한 튜닉 차림이고 변장 겉옷이 없다. 겉옷을 걸친 인물은 바닥에 엎드린 사람인데, 이 크롭에는 일부만 보인다.",
+      "figures[1].prop": "백발 노인이 후드 달린 길고 어두운 겉옷을 튜닉 위에 걸치고 있다. 겉옷이 발목까지 내려와 '긴 겉옷'에 맞는다.",
+      "figures[2].prop": "엔돌 여인 크롭에는 문간의 두 남자와 등불만 보이고 숄 자락이 확인되지 않는다. 전체 그림의 여인은 후드 달린 어두운 천을 두르고 있지만, 크롭만으로는 숄 자락이라고 분명히 확인되지 않는다."
+     }
+    },
+    "379:authored-saul-gilboa-death:7": {
+     "tries": [
+      {
+       "seconds": 6.741,
+       "input": 4,
+       "output": 542,
+       "cache_read": 46033,
+       "cache_create": 13015,
+       "cost_usd": 0.062091299999999995,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림",
+      "figures[1].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "사울이 칼을 칼집에서 뽑아 손에 쥐고 있고 칼날이 다 드러나 있다. 빈 칼집은 허리 옆에 따로 걸려 있다. 「칼집에 든 칼」이 아니다.",
+      "figures[1].prop": "무기 든 자가 칼날이 드러난 칼을 손에 쥐고 있다. 허리에는 칼집이나 자루가 따로 달려 있다. 「칼집에 든 칼」이 아니다."
+     }
+    },
+    "379:authored-saul-gilboa-death:42": {
+     "tries": [
+      {
+       "seconds": 8.599,
+       "input": 4,
+       "output": 871,
+       "cache_read": 46033,
+       "cache_create": 12275,
+       "cost_usd": 0.06242129999999999,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림",
+      "figures[1].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "칼자루와 십자 날밑이 허리띠 앞으로 나와 있고, 그 밑으로 칼집이 아닌 뾰족한 검은 칼날이 드러나 있다. 손은 날밑 근처를 쥐고 있어 칼집에 든 채 차고 있는 모습이 아니다. 칼집에 들었다고 분명히 확인되지 않는다.",
+      "figures[1].prop": "오른손에 칼집에서 뽑은 긴 칼을 맨몸으로 쥐고 있다. 왼쪽 허리에 칼집이 따로 있어 칼집에 든 칼 기대와 어긋난다."
+     }
+    },
+    "379:authored-saul-gilboa-death:23": {
+     "tries": [
+      {
+       "seconds": 6.483,
+       "input": 4,
+       "output": 578,
+       "cache_read": 46033,
+       "cache_create": 12447,
+       "cost_usd": 0.0601793,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "틀림",
+      "figures[1].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "사울이 허리띠에 찬 것이 아니라 손으로 칼자루/칼집을 쥐고 있고, 칼집에 든 모양이 불분명함(칼날이 드러나 보임)",
+      "figures[1].prop": "병기 든 자가 칼을 칼집에서 뽑아 칼날을 드러낸 채 쥐고 있음 — 칼집에 든 칼이 아님"
+     }
+    },
+    "379:authored-saul-gilboa-death:5": {
+     "tries": [
+      {
+       "seconds": 8.989,
+       "input": 4,
+       "output": 585,
+       "cache_read": 46033,
+       "cache_create": 12449,
+       "cost_usd": 0.0602573,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음",
+      "figures[1].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "사울이 허리띠에 찬 칼의 자루와 어두운 칼집이 보인다. 칼은 뽑히지 않았고 칼집에 들어 있다.",
+      "figures[1].prop": "무기 든 자가 칼날이 다 드러난 칼을 손에 뽑아 들고 있다. 칼집에 든 칼이 아니다."
+     }
+    },
+    "379:authored-saul-gilboa-death:202": {
+     "tries": [
+      {
+       "seconds": 5.158,
+       "input": 4,
+       "output": 529,
+       "cache_read": 46033,
+       "cache_create": 12271,
+       "cost_usd": 0.0589853,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음",
+      "figures[1].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "노년 사울은 허리띠에 칼집에 든 칼을 차고 있다. 칼자루와 칼집이 보이고 뽑지 않았다.",
+      "figures[1].prop": "무기 든 자는 칼을 칼집에서 뽑아 손에 쥐고 있다. 기대는 칼집에 든 칼인데 칼날이 다 드러났다. 허리춤에는 빈 칼집이나 다른 칼집이 따로 보인다."
+     }
+    },
+    "379:authored-saul-gilboa-death:101": {
+     "tries": [
+      {
+       "seconds": 8.115,
+       "input": 4,
+       "output": 722,
+       "cache_read": 46033,
+       "cache_create": 12312,
+       "cost_usd": 0.061079299999999996,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음",
+      "figures[1].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "사울의 허리띠에 칼이 꽂혀 있고 칼집이 허벅지 쪽으로 길게 내려온다. 칼날은 보이지 않고 손은 칼집 위쪽을 쥐고 있다. 시대에 맞는 칼이다.",
+      "figures[1].prop": "무기 든 자가 칼날이 드러난 칼을 뽑아 오른손에 쥐고 있다. 칼집은 허리에 빈 채 걸려 있어 '칼집에 든 칼'이 아니다."
+     }
+    },
+    "379:authored-saul-gilboa-death:303": {
+     "tries": [
+      {
+       "seconds": 9.651,
+       "input": 4,
+       "output": 890,
+       "cache_read": 46033,
+       "cache_create": 13505,
+       "cost_usd": 0.06753129999999999,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음",
+      "figures[1].prop": "틀림"
+     },
+     "reasons": {
+      "figures[0].prop": "사울이 갈색 칼집에 든 칼을 몸 옆에 지니고 있고, 칼자루와 칼집이 모두 보인다. 칼을 뽑지 않은 상태라 기대와 맞다. 칼집 중간을 손으로 쥔 모양과 십자 날밑이 다소 어색하지만 결함으로 보기는 어렵다.",
+      "figures[1].prop": "무기병이 뽑은 칼을 두 자루 들고 있다. 한 자루는 오른손 앞쪽, 다른 한 자루는 왼손 뒤쪽이다. 칼집이 보이지 않고 칼이 하나도 아니므로 기대인 칼집에 든 칼과 어긋난다."
+     }
+    }
+   },
+   "only": [
+    "prop"
+   ],
+   "zoom": 2.5
+  }
  }
 }
