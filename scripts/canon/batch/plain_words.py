@@ -165,10 +165,10 @@ def generate(m, rnd, specs, seeds=None, base=None, raised=None):
             os.makedirs(os.path.dirname(img_path(rnd, sid, seeds[0])), exist_ok=True)
             sc["sec"] = round(sc["sec"] + sum(run_scene.gen_zimage(todo, os.path.dirname(img_path(rnd, sid, seeds[0])))), 1)
         have = {x["seed"] for x in sc["seeds"]}
-        canon = canon(sid)
+        cn = canon(sid)
         for s in seeds:
             if s not in have:
-                sc["seeds"].append({"seed": s, "base": img_path(rnd, sid, s), "boxes": RN.boxes(canon, img_path(rnd, sid, s))})
+                sc["seeds"].append({"seed": s, "base": img_path(rnd, sid, s), "boxes": RN.boxes(cn, img_path(rnd, sid, s))})
         save_m(m)
 
 
