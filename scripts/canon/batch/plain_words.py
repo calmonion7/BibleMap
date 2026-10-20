@@ -11,7 +11,12 @@
   (run_night.py <cmd> --set plain-words 도 같다.)
 
 규칙·단위·자리는 notes/PLAIN-WORDS.md 고정 절(```json fixed). 사본은 samples/plain-words/specs/<회차>/<장면>.json, 그림은 레포 밖
-~/.local/biblemap-imggen/plain-words/<회차>/<장면>/s<시드>.png, 목록·답·사다리는 samples/plain-words/metrics.json."""
+~/.local/biblemap-imggen/plain-words/<회차>/<장면>/s<시드>.png, 목록·답·사다리는 samples/plain-words/metrics.json.
+
+task#385 — `--set jordan-moment`: 같은 사다리를 요단 귀환 새 순간(19:18 전체)에 — 고정 절 notes/JORDAN-MOMENT.md,
+그림 ~/.local/biblemap-imggen/jordan-moment/, metrics samples/jordan-moment/metrics.json. A(기존 그림) 없음 → J1 문항은 정본 명세에서 바로,
+후보 화면은 최종 회차 기계 1위·2위 블라인드 1화면(+ 접힌 8장). `--set` 없으면 382 묶음(plain-words) 그대로.
+  $VENV batch/plain_words.py one --set jordan-moment   ·   ladder · cand · check · record <판정.txt> · verdict · lexicon"""
 import copy, hashlib, json, os, re, subprocess, sys, threading, time
 from concurrent.futures import ThreadPoolExecutor
 
@@ -24,13 +29,30 @@ import derive_scene as D
 import judge_items as J
 import make_night_page as P
 
-NOTES = os.path.join(HERE, "notes", "PLAIN-WORDS.md")
+# 묶음 → 고정 절·과제 번호·정본 명세 읽는 자리. canon_rev: 382 묶음은 그 회차를 만든 정본(385가 요단 정본을 고치기 전 커밋)으로 읽어
+# 사본 검사(render 대조)가 옛 회차 그대로 통과한다.
+SETS = {"plain-words": {"notes": "PLAIN-WORDS.md", "task": 382, "canon_rev": "03b0b07"},
+        "jordan-moment": {"notes": "JORDAN-MOMENT.md", "task": 385, "canon_rev": None}}
+SET = sys.argv[sys.argv.index("--set") + 1] if "--set" in sys.argv else "plain-words"
+TASK = SETS[SET]["task"]
+NOTES = os.path.join(HERE, "notes", SETS[SET]["notes"])
 WORDS = os.path.join(HERE, "..", "..", "data", "scripture_words", "words.json")
-SAMPLES = os.path.join(HERE, "samples", "plain-words")
+SAMPLES = os.path.join(HERE, "samples", SET)
 SPECS = os.path.join(SAMPLES, "specs")
 METRICS = os.path.join(SAMPLES, "metrics.json")
-OUT = os.path.expanduser("~/.local/biblemap-imggen/plain-words")
-SET = "plain-words"
+OUT = os.path.expanduser(f"~/.local/biblemap-imggen/{SET}")
+_CANON = {}
+
+
+def canon(sid):
+    """정본 명세 — canon_rev가 있으면 그 커밋의 파일(git show), 없으면 지금 파일."""
+    rev = SETS[SET]["canon_rev"]
+    if not rev:
+        return D.load(sid)
+    if sid not in _CANON:
+        _CANON[sid] = json.loads(subprocess.run(["git", "show", f"{rev}:scripts/canon/scenes/{sid}.json"], cwd=HERE,
+                                                capture_output=True, text=True, check=True).stdout)
+    return copy.deepcopy(_CANON[sid])
 KINDS = {"J1": ("v2", 1.0), "J1-prop": ("p2", 2.5), "O1": ("o1", 1.0), "W": ("v2", 1.0), "W-prop": ("p2", 2.5)}
 LOCK = threading.Lock()
 _TOK = []
@@ -42,7 +64,10 @@ def fixed():
 
 
 FX = fixed()
-LEX = {e["id"]: e for e in json.load(open(WORDS, encoding="utf-8"))["words"]}
+# 382 묶음은 사전도 그 회차 때 것(canon_rev)으로 — 384가 진설병 L3를 고친 뒤에도 옛 사본 대조가 그대로 통과한다
+LEX = {e["id"]: e for e in (json.loads(subprocess.run(["git", "show", f"{SETS[SET]['canon_rev']}:data/scripture_words/words.json"], cwd=HERE,
+                                                      capture_output=True, text=True, check=True).stdout)
+                             if SETS[SET]["canon_rev"] else json.load(open(WORDS, encoding="utf-8")))["words"]}
 
 
 def load_m():
@@ -89,7 +114,7 @@ def units(sid):
 
 def render(sid, levels):
     """정본 명세 → 단위마다 자리를 그 단계 삽입꼴로, 그릴 수 없는 낱말은 이름 문구를 뺀 사본(결정적)."""
-    spec = copy.deepcopy(D.load(sid))
+    spec = copy.deepcopy(canon(sid))
     for u in units(sid):
         o, k = _walk(spec, u["slot"]["path"])
         assert o[k].count(u["slot"]["old"]) == 1, (sid, u["id"], o[k])
@@ -102,7 +127,8 @@ def render(sid, levels):
 
 
 def start_levels(sid):
-    return {u["id"]: "L2" if u["role"] == "core" else "L1" for u in units(sid)}
+    """핵심 L2 · 배경 L1 — 단위에 start가 있으면 그 단계(385: 그림 증거가 있는 단계에서 시작)."""
+    return {u["id"]: u.get("start") or ("L2" if u["role"] == "core" else "L1") for u in units(sid)}
 
 
 def spec_path(rnd, sid):
@@ -139,7 +165,7 @@ def generate(m, rnd, specs, seeds=None, base=None, raised=None):
             os.makedirs(os.path.dirname(img_path(rnd, sid, seeds[0])), exist_ok=True)
             sc["sec"] = round(sc["sec"] + sum(run_scene.gen_zimage(todo, os.path.dirname(img_path(rnd, sid, seeds[0])))), 1)
         have = {x["seed"] for x in sc["seeds"]}
-        canon = D.load(sid)
+        canon = canon(sid)
         for s in seeds:
             if s not in have:
                 sc["seeds"].append({"seed": s, "base": img_path(rnd, sid, s), "boxes": RN.boxes(canon, img_path(rnd, sid, s))})
@@ -154,8 +180,11 @@ def _seeds(m, rnd, sid):
 def j1_qs(m, rnd, sid):
     """A와 같은 J1 문항(정본 명세 → make_night_page.questions, A 과제와 같은 wide) — 크롭만 이 그림들 상자로."""
     seeds = _seeds(m, rnd, sid)
-    task = FX["scenes"][sid]["a"]["task"]
-    qs = P.questions(D.load(sid), {"seeds": seeds}, task in P.FACING370)
+    a = FX["scenes"][sid].get("a")
+    if not a:   # A 없는 묶음(385) — 정본 명세 문항 그대로
+        return [q for q in P.questions(canon(sid), {"seeds": seeds}, FX["scenes"][sid].get("wide", False)) if not q["id"].endswith(".identity")]
+    task = a["task"]
+    qs = P.questions(canon(sid), {"seeds": seeds}, task in P.FACING370)
     # 문항 글은 A 페이지 그대로 — A 뒤에 정본 명세의 한국어 칸이 바뀐 장면(가드 자세 설명)도 A와 같은 말로 묻는다
     page = {q["id"]: q for s in J.page_scenes(J.TASKS[task][1]) if s["id"] == sid for q in s["qs"]}
     return [{**q, **{k: page[q["id"]][k] for k in ("q", "what", "verse") if k in page[q["id"]]}} for q in qs if not q["id"].endswith(".identity")]
@@ -180,7 +209,7 @@ def word_qs(m, rnd, sid, prop):
 def items(m, rnd, kind, sids=None):
     out = []
     for sid in sids or m["rounds"][rnd]["scenes"]:
-        spec = D.load(sid)
+        spec = canon(sid)
         qs = {"J1": lambda: j1_qs(m, rnd, sid), "J1-prop": lambda: [q for q in j1_qs(m, rnd, sid) if J.cls(q["id"]) == "prop"],
               "O1": lambda: j1_qs(m, rnd, sid), "W": lambda: word_qs(m, rnd, sid, False), "W-prop": lambda: word_qs(m, rnd, sid, True)}[kind]()
         if not qs:
@@ -282,6 +311,16 @@ def top(m, rnd, sid):
     return min(pool, key=lambda s: (all_wrong(m, rnd, sid, s), order.index(s)))
 
 
+def ranked(m, rnd, sid):
+    """385 — 1위·2위(1위 규칙을 남은 시드에 한 번 더): 단위 다 맞음 먼저 · 맞은 특징 문항 많은 순 · J1 틀림 적은 순 · 시드 순서."""
+    order = FX["seeds"]
+    ok = lambda s: all(unit_ok(m, rnd, sid, s, u["id"]) for u in units(sid))
+    right = lambda s: sum(v == "맞음" for v in feats(m, rnd, sid, s).values())
+    out = sorted(seeds_of(m, rnd, sid), key=lambda s: (not ok(s), 0 if ok(s) else -right(s), all_wrong(m, rnd, sid, s), order.index(s)))
+    assert out[0] == top(m, rnd, sid)
+    return out
+
+
 # --- A ------------------------------------------------------------------------
 def predict_a(m):
     jm = J.load()
@@ -290,7 +329,7 @@ def predict_a(m):
         src = json.load(open(os.path.join(HERE, "samples", c["a"]["dir"], "metrics.json")))["scenes"][sid]
         R["scenes"][sid] = {"src": c["a"], "prompt": src["prompt"], "tokens": tokens(src["prompt"]),
                             "seeds": [{"seed": x["seed"], "base": x["base"], "boxes": x["boxes"]} for x in src["seeds"]]}
-        assert src["prompt"] == D.route_prompt(D.load(sid)), f"{sid}: A 프롬프트가 지금 정본 명세와 다름"
+        assert src["prompt"] == D.route_prompt(canon(sid)), f"{sid}: A 프롬프트가 지금 정본 명세와 다름"
         # 같은 문항인지 — A 사람 페이지(J1이 읽은 문항)와 대조
         page = next(s for s in J.page_scenes(J.TASKS[c["a"]["task"]][1]) if s["id"] == sid)
         mine = [(q["id"], q["what"], q.get("crop")) for q in j1_qs(m, "A", sid)]
@@ -317,11 +356,11 @@ def report(m, rnd):
 
 # --- 사다리 --------------------------------------------------------------------
 def a_wrong(m, sid, uid):
-    return 8 - unit_hits(m, "A", sid, uid)
+    return 8 - unit_hits(m, "A", sid, uid) if "A" in m["rounds"] else 0   # A 없는 묶음은 같은 등급 안에서 단위 순서대로
 
 
 def ladder(m):
-    if not m["answers"].get("A", {}).get("W-prop"):
+    if any(c.get("a") for c in FX["scenes"].values()) and not m["answers"].get("A", {}).get("W-prop"):
         predict_a(m)
     L = m["ladder"]
     if "r1" not in L.get("_done", []):
@@ -445,7 +484,7 @@ def check(m):
             if FX["scenes"][sid].get("signs") and any(x in p.lower() for x in names):
                 bad.append(f"{rnd} {sid} 그릴 수 없는 낱말 이름 문구가 남음")
             if rnd == "b2":
-                if canon_verse(spec) != canon_verse(D.load(sid)):
+                if canon_verse(spec) != canon_verse(canon(sid)):
                     bad.append(f"b2 {sid} 근거 verse 칸이 바뀜")
                 if set(re.findall(r"[a-z]+", p.lower())) & set(FX["forbidden"]):
                     bad.append(f"b2 {sid} 금지어")
@@ -501,7 +540,7 @@ def cand(m, out=None):
             sides = (a, f) if left_is_a(sid) else (f, a)
             for r, s in sides:
                 data[f"{r}:{sid}:{s}"] = P.uri(Image.open(next(x["base"] for x in _seeds(m, r, sid) if x["seed"] == s)), w, q)
-            spec = D.load(sid)
+            spec = canon(sid)
             scenes.append({"id": sid, "title": spec["title"], "range": spec["verses"]["range"], "ab": True, "reject": False,
                            "left": f"{sides[0][0]}:{sid}:{sides[0][1]}", "right": f"{sides[1][0]}:{sid}:{sides[1][1]}",
                            "left_is": "A" if sides[0][0] == "A" else "final", "final_round": fr, "verses": C.scripture(sid)})
@@ -638,6 +677,59 @@ render(); setInterval(tick, 5000); tick();
 """
 
 
+PAGE_M = (PAGE.replace("<title>낱말 사전 그림 비교 382</title>", "<title>요단 순간 그림 비교 385</title>")
+          .replace("const TASK = 382;", "const TASK = 385;")
+          .replace("<h2>굵은 절에 더 맞게 그린 쪽은?</h2>", "<h2>굵은 절에 맞게 그린 쪽은?</h2>")
+          .replace('((a.answer === "left") === (s.left_is === "A") ? "A" : "final")', '(a.answer === "left" ? s.left_is : s.right_is)')
+          .replace('<div class="pair">${pic(s.left, "왼쪽")}${pic(s.right, "오른쪽")}</div>',
+                   '<div class="pair">${pic(s.left, "왼쪽")}${pic(s.right, "오른쪽")}</div>${all8(s)}')
+          .replace("function next() {", """function all8(s) {
+  return `<details class="more"><summary>최종 회차 ${s.all.length}장 전부(기계 불통과 포함 · 누르면 크게)</summary><div class="grid8">${s.all.map((k) =>
+    `<button type="button" class="card" data-k="${k}"><img src="${IMGS[k]}" alt="" style="width:100%;display:block"><span class="tag">s${k.split(":")[2]}</span></button>`).join("")}</div></details>`;
+}
+function next() {""")
+          .replace(".answer3 {", ".grid8 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 8px 0; }\n.more summary { cursor: pointer; padding: 6px 0; }\n.answer3 {"))
+assert PAGE_M.count("${all8(s)}") == 1 and "const TASK = 385;" in PAGE_M and "s.right_is" in PAGE_M
+
+
+def cand_moment(m, out=None):
+    """385 — 장면마다 1화면: 최종(사다리 끝) 회차 기계 1위·2위를 블라인드 좌우(장면 id 해시로 고정) + 접힌 칸에 그 회차 8장 전부."""
+    import make_cand_page as C
+    for w, q in C.SIZES:
+        scenes, data = [], {}
+        for sid in FX["scenes"]:
+            fr = m["ladder"][sid]["end"]
+            r = ranked(m, fr, sid)
+            one, two = f"{fr}:{sid}:{r[0]}", f"{fr}:{sid}:{r[1]}"
+            left, right = (one, two) if left_is_a(sid) else (two, one)
+            for s in FX["seeds"]:
+                data[f"{fr}:{sid}:{s}"] = P.uri(Image.open(img_path(fr, sid, s)), w, q)
+            spec = canon(sid)
+            scenes.append({"id": sid, "title": spec["title"], "range": spec["verses"]["range"], "ab": True, "reject": False,
+                           "left": left, "right": right, "left_is": "1위" if left == one else "2위", "right_is": "1위" if right == one else "2위",
+                           "final_round": fr, "all": [f"{fr}:{sid}:{s}" for s in FX["seeds"]], "verses": C.scripture(sid)})
+        page = (PAGE_M.replace("/*STYLE*/", C.STYLE + C.VERSE_STYLE).replace("/*SCENES*/[]", json.dumps(scenes, ensure_ascii=False))
+                .replace("/*IMGS*/{}", json.dumps(data)))
+        if len(page) <= P.LIMIT:
+            break
+    out = out or os.path.join(J.PAGES, f"{SET}-cand.html")
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    open(out, "w", encoding="utf-8").write(page)
+    m["cand"] = {s["id"]: {k: s[k] for k in ("final_round", "left", "right", "left_is", "right_is")} for s in scenes}
+    save_m(m)
+    print(f"[PlainWords] 후보 화면 {out} {len(page) / 1e6:.2f}MB · {w}px q{q} · 화면 {len(scenes)}", flush=True)
+    return out
+
+
+def verdict_moment(m):
+    """385 고정 절 — 사람이 후보 하나를 고르면 순간 채택, 「둘 다 아님」이면 보류."""
+    picked = {sid: a["chose"] for sid, a in m["human"]["scenes"].items()}
+    line = "판정: 순간 채택" if any(c in ("1위", "2위") for c in picked.values()) else "판정: 보류"
+    print(" · ".join(f"{sid.split('-', 2)[2]} {c}" for sid, c in picked.items()))
+    print(line)
+    return line
+
+
 def b2(m):
     """specs/b2/의 손으로 쓴 사본을 검사(삽입꼴·verse·금지어·512)한 뒤 생성·예측."""
     specs = {sid: json.load(open(spec_path("b2", sid), encoding="utf-8")) for sid in FX["scenes"]}
@@ -653,9 +745,9 @@ def b2(m):
 
 
 def record(m, path):
-    """task 383 — 후보 화면 「판정 문장」(첫 줄 `판정 task 382` + JSON 한 줄) → metrics human."""
+    """task 383·385 — 후보 화면 「판정 문장」(첫 줄 `판정 task <과제>` + JSON 한 줄) → metrics human."""
     v = json.loads(open(path, encoding="utf-8").read().split("\n", 1)[1])
-    assert v["task"] == 382 and v["kind"] == "ab", v.get("task")
+    assert v["task"] == TASK and v["kind"] == "ab", v.get("task")
     for sid, a in v["scenes"].items():   # 좌우 출처가 화면을 만든 그대로인지 — 다른 화면의 답이 섞이지 않게
         assert (a["left"], a["right"]) == (m["cand"][sid]["left"], m["cand"][sid]["right"]), sid
     m["human"] = {"human_minutes": v["human_minutes"], "active_minutes": v["active_minutes"], "screens": v["screens"],
@@ -687,7 +779,10 @@ def lexicon(m):
     """사다리가 맞힌 단위 → 사전 verified_level(그림 증거만 — 문구 한계·상한·밀어냄은 적지 않음)."""
     d = json.load(open(WORDS, encoding="utf-8"))
     hit = {uid: u for sid, st in m["ladder"].items() if not sid.startswith("_") for uid, u in st["units"].items() if u["stop"] == "맞음"}
+    mine = {u["id"] for sid in FX["scenes"] for u in units(sid)}
     for e in d["words"]:
+        if e["id"] not in mine:   # 385: 이 묶음 단위만 고친다 — 다른 묶음이 적은 그림 증거는 그대로
+            continue
         e.pop("verified_level", None)
         if e["id"] in hit:
             u = hit[e["id"]]
@@ -698,6 +793,9 @@ def lexicon(m):
 
 
 def main(argv):
+    if "--set" in argv:
+        i = argv.index("--set")
+        argv = argv[:i] + argv[i + 2:]
     cmd = argv[0]
     m = load_m()
     if cmd == "predict-a":
@@ -714,13 +812,13 @@ def main(argv):
     elif cmd == "b2":
         b2(m)
     elif cmd == "cand":
-        cand(m, argv[1] if len(argv) > 1 else None)
+        (cand_moment if TASK == 385 else cand)(m, argv[1] if len(argv) > 1 else None)
     elif cmd == "check":
         sys.exit(0 if check(m) else 1)
     elif cmd == "record":
         record(m, argv[1])
     elif cmd == "verdict":
-        verdict(m)
+        (verdict_moment if TASK == 385 else verdict)(m)
     elif cmd == "lexicon":
         lexicon(m)
     elif cmd == "report":

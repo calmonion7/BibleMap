@@ -3,8 +3,9 @@
   "id": "authored-david-returns-jerusalem",
   "title": "다윗 — 요단을 건너 돌아오다",
   "verses": {
-    "range": "삼하 19:15-18",
+    "range": "삼하 19:14-18",
     "quotes": {
+      "19:14": "모든 유다 사람들로 마음을 일제히 돌리게 하매 저희가 왕께 보내어 가로되 왕은 모든 신복으로 더불어 돌아오소서 한지라",
       "19:15": "왕이 돌아와 요단에 이르매 유다 족속이 왕을 맞아 요단을 건네려 하여 길갈로 오니라",
       "19:16": "바후림에 있는 베냐민 사람 게라의 아들 시므이가 급히 유다 사람과 함께 다윗 왕을 맞으려 내려올 때에",
       "19:17": "베냐민 사람 일천 명이 저와 함께 하고 사울의 사환 시바도 그 아들 열다섯과 종 스무 명으로 더불어 저와 함께 하여 요단 강을 밟고 건너 왕의 앞으로 나아오니라",
@@ -12,8 +13,8 @@
     }
   },
   "moment": {
-    "verse": "19:15 · 19:18 전반",
-    "why": "왕 다윗이 돌아와 요단에 이르고, 유다 사람들이 왕을 맞아 요단을 건네려 길갈에 모였다가(19:15) 왕을 맞으러 강가로 내려와(19:16) 왕을 가까이 맞으며, 왕의 가족을 건네려고 나룻배가 건너오는 순간(19:18 전반)을 고정한다. 유다 사람들은 원경 무리가 아니라 왕 앞 강가에서 왕을 맞고 건너기를 돕는다(배를 붙잡는 손은 본문 밖 · 저작자 정함 — 376 사람 메모 「나룻배를 준비하거나 안내」). 시므이가 왕 앞에 엎드림(19:18 후반)은 그다음 순간이라 순간 밖이다. (task 378 — 376 사람 메모 「유다 사람들이 배나 나룻배를 준비하거나 안내하는 등 건너기를 도우려 길갈에서 만난 것」)"
+    "verse": "19:18",
+    "why": "왕의 가족을 건네려 나룻배가 건너가고, 왕이 요단을 건너려 할 때 게라의 아들 시므이가 왕의 앞에 엎드리는 순간(19:18 전체)을 고정한다. 그 자리에는 시므이와 함께 요단을 밟고 건너온 베냐민 사람 일천 명·시바와 아들·종(19:16-17 「저와 함께」), 왕을 맞아 건너기를 돕는 유다 사람들(19:15), 강가에서 나룻배를 타려고 기다리는 왕의 가족·신복(19:14 「모든 신복으로 더불어」 · 19:18)이 있다. 시므이의 말(19:19-20)은 그리지 않는다. (task 385 — 383 사람 메모 「다윗의 가족들, 신하들이 강가에서 나룻배를 타려고 대기중인데 시므이가 와서 엎드리는 장면」)"
   },
   "verse_elements": [
     {
@@ -21,7 +22,7 @@
       "quote": "왕이 돌아와",
       "kind": "인물",
       "ko": "돌아온 왕 다윗",
-      "en": "an ancient Israelite lean young man walking",
+      "en": "an ancient Israelite lean young man",
       "field": "stages[S3].prompt"
     },
     {
@@ -53,15 +54,14 @@
       "quote": "길갈로 오니라",
       "kind": "장소",
       "ko": "유다 사람들이 길갈에 모였다가 강가로 내려옴",
-      "en": "who gathered at Gilgal and came down to the river",
-      "field": "stages[S2].prompt"
+      "out": "길갈에 모인 것은 19:18 순간보다 앞선 걸음 — 이 순간엔 이미 강가에 있다"
     },
     {
       "verse": "19:18",
       "quote": "나룻배가 건너가니",
       "kind": "지물",
-      "ko": "나룻배가 강을 건너옴",
-      "en": "a wooden ferry boat crossing the river toward the bank",
+      "ko": "나룻배가 강을 건너감",
+      "en": "a small flat boat that carries people across a river, crossing the river toward the bank",
       "field": "stages[S1b].prompt"
     },
     {
@@ -77,7 +77,8 @@
       "quote": "시므이가 왕의 앞에 엎드려",
       "kind": "행동",
       "ko": "시므이가 왕 앞에 엎드림",
-      "out": "나룻배가 건너온 뒤 왕이 건너려 할 때의 다음 순간(19:18 후반)"
+      "en": "a person kneeling low with the face toward the ground",
+      "field": "stages[S4].prompt"
     },
     {
       "verse": "19:16",
@@ -91,8 +92,49 @@
       "verse": "19:17",
       "quote": "베냐민 사람 일천 명이 저와 함께 하고",
       "kind": "무리",
-      "ko": "베냐민 일천 명·시바가 요단을 건너 왕 앞에 나아옴",
-      "out": "나룻배가 건너가기 앞선 걸음(19:17) — 이 장면은 유다 사람들과 나룻배가 왕을 맞는 19:18 전반"
+      "ko": "베냐민 사람 일천 명이 시므이와 함께 옴",
+      "en": "a thousand men of Benjamin",
+      "field": "stages[S2c].prompt"
+    },
+    {
+      "verse": "19:14",
+      "quote": "모든 신복으로 더불어",
+      "kind": "무리",
+      "ko": "왕의 모든 신복(가족은 19:18 항목)",
+      "en": "the king's household and all his servants",
+      "field": "stages[S2b].prompt"
+    },
+    {
+      "verse": "19:17",
+      "quote": "시바도 그 아들 열다섯과 종 스무 명으로 더불어",
+      "kind": "무리",
+      "ko": "사울의 사환 시바와 아들 열다섯·종 스무 명",
+      "en": "with Ziba and his fifteen sons and twenty servants",
+      "field": "stages[S2c].prompt"
+    },
+    {
+      "verse": "19:17",
+      "quote": "요단 강을 밟고 건너",
+      "kind": "행동",
+      "ko": "베냐민 무리가 요단을 걸어 건너옴",
+      "en": "who have just waded across the Jordan",
+      "field": "stages[S2c].prompt"
+    },
+    {
+      "verse": "19:18",
+      "quote": "왕이 요단을 건너려 할 때에",
+      "kind": "행동",
+      "ko": "왕이 강가에 서서 요단을 건너려 함",
+      "en": "about to cross the Jordan",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "19:18",
+      "quote": "게라의 아들 시므이가",
+      "kind": "인물",
+      "ko": "게라의 아들 시므이",
+      "en": "Shimei the son of Gera",
+      "field": "stages[S4].prompt"
     }
   ],
   "background": [
@@ -103,20 +145,30 @@
   ],
   "crowds": [
     {
-      "what": "유다 사람들 — 길갈에 모였다가 왕을 맞으러 강가로 내려와 왕 가까이 서고, 몇은 나룻배를 붙잡아 건너기를 도움",
-      "verse": "19:15-16 · 19:18 · 배를 붙잡음·왕 가까이 섬 · 본문 밖 · 저작자 정함(376 사람 메모)",
+      "what": "유다 사람들 — 왕을 맞아 강가로 와 왕 가까이 서고, 몇은 물가로 나가 나룻배를 둑으로 이끌어 건너기를 도움",
+      "verse": "19:15-16 · 19:18 · 왕 쪽 둑에 섬·배를 이끎·왕 가까이 섬 · 본문 밖 · 저작자 정함(376 사람 메모)",
       "region": "judah"
+    },
+    {
+      "what": "왕의 가족과 신복들 — 강가에서 나룻배를 타려고 기다림",
+      "verse": "19:14 · 19:18 · 기다림·신복이 배를 타려 함 · 본문 밖 · 저작자 정함(383 사람 메모)",
+      "region": "household"
+    },
+    {
+      "what": "베냐민 사람 일천 명과 사울의 사환 시바·아들 열다섯·종 스무 명 — 시므이와 함께 요단을 밟고 건너 왕 앞으로 나아옴",
+      "verse": "19:16-17 · 시므이 뒤 위치는 본문 밖 · 저작자 정함",
+      "region": "benjamin"
     }
   ],
   "figures": [
     {
       "cast": "david",
       "role": "다윗",
-      "pose": "강가로 걸어와 맞으러 나온 유다 사람들에게 다가가며 칼자루를 쥔다",
+      "pose": "강가에 서서 요단을 건너려 하며 칼자루를 쥔다",
       "prop": "a sword",
       "facing": "right",
       "region": "david",
-      "verse": "19:15 · 다가감·칼자루 쥠 · 본문 밖 · 저작자 정함"
+      "verse": "19:18 · 서 있음·강가·칼자루 쥠 · 본문 밖 · 저작자 정함"
     }
   ],
   "regions": {
@@ -149,16 +201,34 @@
       0.38,
       0.72,
       0.88
+    ],
+    "shimei": [
+      0.3,
+      0.62,
+      0.46,
+      0.92
+    ],
+    "household": [
+      0.7,
+      0.4,
+      0.96,
+      0.66
+    ],
+    "benjamin": [
+      0.44,
+      0.34,
+      0.66,
+      0.66
     ]
   },
-  "_regions_why": "다윗 세로 0.44(걷는 자세). 강과 맞이하는 무리는 우측(19:15 「요단에 이르매」·「맞아」).",
+  "_regions_why": "다윗 세로 0.44(서서 건너려 함). 시므이는 다윗 바로 앞(오른쪽) 아래 — 엎드린 몸(19:18 「왕의 앞에」). 베냐민 무리는 시므이 뒤 강 쪽, 가족·신복은 오른쪽 나룻배 곁 강가, 유다 무리는 그 사이 강가(19:15 「맞아」).",
   "stages": [
     {
       "id": "S1",
       "kind": "full",
       "region": "full",
-      "verse": "본문 밖 · 저작자 정함",
-      "prompt": "a wide dry grassy bank beside a river, low distant hills, empty pale sky, no people.",
+      "verse": "19:15 · 둑·언덕·하늘은 본문 밖 · 저작자 정함",
+      "prompt": "a wide dry grassy bank beside the Jordan river, low distant hills, empty pale sky, no people.",
       "neg": [
         "people",
         "figures",
@@ -177,12 +247,11 @@
       "id": "S1b",
       "kind": "region",
       "region": "river",
-      "verse": "19:15",
-      "prompt": "a calm wide river with a muddy bank, reeds along the edge, a wooden ferry boat crossing the river toward the bank to carry the king's household across.",
+      "verse": "19:15 · 19:18",
+      "prompt": "a calm wide river with a muddy bank, reeds along the edge, a small flat boat that carries people across a river, crossing the river toward the bank to carry the king's household across.",
       "neg": [
         "people",
         "figures",
-        "boat",
         "bridge",
         "waterfall",
         "church",
@@ -199,7 +268,7 @@
       "kind": "region",
       "region": "judah",
       "verse": "19:15 · 19:18",
-      "prompt": "a crowd of men of Judah who gathered at Gilgal and came down to the river, coming close to meet the king at the river's edge and help him across, some of them holding the ferry boat steady at the bank.",
+      "prompt": "a crowd of men of Judah coming close to meet the king at the river's edge and help him across, some of them stepping to the water's edge to guide the ferry boat in to the bank.",
       "neg": [
         "empty ground",
         "single figure",
@@ -215,11 +284,46 @@
       ]
     },
     {
+      "id": "S2b",
+      "kind": "region",
+      "region": "household",
+      "verse": "19:14 · 19:18",
+      "prompt": "on the near bank at the water's edge, the king's household and all his servants standing together, waiting for the boat to come to carry them across.",
+      "neg": [
+        "empty ground",
+        "single figure",
+        "close-up"
+      ]
+    },
+    {
+      "id": "S2c",
+      "kind": "region",
+      "region": "benjamin",
+      "verse": "19:16-17 · 시므이 뒤 위치는 본문 밖 · 저작자 정함",
+      "prompt": "a thousand men of Benjamin, with Ziba and his fifteen sons and twenty servants, who have just waded across the Jordan, coming up behind the bowing man toward the king.",
+      "neg": [
+        "empty ground",
+        "single figure",
+        "close-up"
+      ]
+    },
+    {
+      "id": "S4",
+      "kind": "region",
+      "region": "shimei",
+      "verse": "19:18",
+      "prompt": "close in front of the king, Shimei the son of Gera, a person kneeling low with the face toward the ground, before the king.",
+      "neg": [
+        "standing",
+        "sitting"
+      ]
+    },
+    {
       "id": "S3",
       "kind": "plate",
       "region": "david",
-      "verse": "19:15",
-      "prompt": "an ancient Israelite lean young man walking toward the men waiting at the river's edge, gripping a sword hilt at his side, facing right.",
+      "verse": "19:18",
+      "prompt": "an ancient Israelite lean young man standing at the river's edge, about to cross the Jordan, gripping a sword hilt at his side, facing right.",
       "neg": [
         "armour",
         "crown",
