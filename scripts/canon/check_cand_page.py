@@ -34,7 +34,7 @@ def walk(pg):
             no_verse.append(n)
         if s[2]:
             memo_tags.add(s[2])
-        for sel in ("#ok", "#agree", "#next:not([hidden])"):
+        for sel in ("#ok", "#agree", "#pickL", "#next:not([hidden])"):
             b = pg.query_selector(sel)
             if b and b.is_visible():
                 b.click()
@@ -59,7 +59,8 @@ def main():
     bad = []
     if size > 16 * 1024 * 1024:
         bad.append(f"크기 {size / 1e6:.2f}MB > 16MB")
-    n_screens = 2 * (len(sc) - rej) + rej
+    # task 382: 블라인드 좌우 비교(ab) 화면은 장면마다 1화면
+    n_screens = len(sc) if all(s.get("ab") for s in sc) else 2 * (len(sc) - rej) + rej
     print(f"[CandCheck] {page} {size / 1e6:.2f}MB · 장면 {len(sc)} · 되돌림 {rej} · 화면 {n_screens}", flush=True)
     with sync_playwright() as p:
         b = p.chromium.launch()

@@ -56,7 +56,10 @@ SETS = {"night": {"scenes": params.NIGHT_SCENES, "seeds": params.NIGHT_SEEDS, "d
         "verse-regen": {"scenes": params.VERSE_REGEN_SCENES, "seeds": params.VERSE_REGEN_SEEDS, "dir": "verse-regen", "task": 376,
                         "prompt": D.route_prompt, "edit": False, "cand": True},
         "spec-regen": {"scenes": params.SPEC_REGEN_SCENES, "seeds": params.SPEC_REGEN_SEEDS, "dir": "spec-regen", "task": 379,
-                       "prompt": D.route_prompt, "edit": False, "cand": True}}
+                       "prompt": D.route_prompt, "edit": False, "cand": True},
+        # task#382 — 낱말 사전 회차(사본 폴더 samples/plain-words/specs/<회차>/) · 명령은 batch/plain_words.py가 맡는다(predict-a·one·ladder·b2·cand·check)
+        "plain-words": {"scenes": {}, "seeds": params.SPEC_REGEN_SEEDS, "dir": "plain-words", "task": 382, "prompt": D.route_prompt, "edit": False,
+                        "specs": os.path.join(HERE, "samples", "plain-words", "specs")}}
 SET = "--set" in sys.argv and sys.argv[sys.argv.index("--set") + 1] or "night"
 ARGV = [a for i, a in enumerate(sys.argv) if a != "--set" and sys.argv[i - 1] != "--set"]   # 위치 인자(--set 값 뺌)
 CFG = SETS[SET]
@@ -314,6 +317,10 @@ def record(m, path):
 
 if __name__ == "__main__":
     cmd = ARGV[1]
+    if SET == "plain-words":   # task#382 — 회차·사다리·후보 화면은 plain_words가 맡는다
+        import plain_words
+        plain_words.main(ARGV[1:])
+        sys.exit(0)
     if cmd in ("one", "all", "edit-pick") and busy():
         sys.exit(f"[Night] 다른 생성 프로세스가 돈다 — 겹치지 않게 멈춤:\n{busy()}")
     m = load_m()
