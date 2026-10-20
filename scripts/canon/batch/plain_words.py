@@ -652,6 +652,51 @@ def b2(m):
     report(m, "b2")
 
 
+def record(m, path):
+    """task 383 — 후보 화면 「판정 문장」(첫 줄 `판정 task 382` + JSON 한 줄) → metrics human."""
+    v = json.loads(open(path, encoding="utf-8").read().split("\n", 1)[1])
+    assert v["task"] == 382 and v["kind"] == "ab", v.get("task")
+    for sid, a in v["scenes"].items():   # 좌우 출처가 화면을 만든 그대로인지 — 다른 화면의 답이 섞이지 않게
+        assert (a["left"], a["right"]) == (m["cand"][sid]["left"], m["cand"][sid]["right"]), sid
+    m["human"] = {"human_minutes": v["human_minutes"], "active_minutes": v["active_minutes"], "screens": v["screens"],
+                  "scenes": {sid: {k: a[k] for k in ("answer", "chose", "memo", "minutes", "active_minutes")} for sid, a in v["scenes"].items()}}
+    save_m(m)
+    print(f"[PlainWords] 사람 답 기록 — 화면 {v['screens']} · 쉼 뺀 {v['active_minutes']}분 · " +
+          " · ".join(f"{sid.split('-', 2)[2]} {a['chose']}" for sid, a in v["scenes"].items()), flush=True)
+
+
+def verdict(m):
+    """고정 절 「판정:」 규칙 셋 → 판정 한 줄(줄마다 셈을 함께)."""
+    sids = list(FX["scenes"])
+    gain = {sid: scene_hits(m, final(m, sid), sid) - scene_hits(m, "A", sid) for sid in sids}
+    r1 = sum(g >= 3 for g in gain.values())
+    a_sum, f_sum = sum(other_sum(m, "A", s) for s in sids), sum(other_sum(m, final(m, s), s) for s in sids)
+    r3 = sum(m["human"]["scenes"][s]["chose"] == "final" for s in sids)
+    rules = [(1, r1 >= 2, f"낱말 맞힘 +3 이상 장면 {r1} ≥ 2 ({' · '.join(f'{s.split(chr(45), 2)[2]} {g:+d}' for s, g in gain.items())})"),
+             (2, f_sum <= a_sum + FX["revert_plus"], f"다른 칸 틀림 합 최종 {f_sum} ≤ A {a_sum} + {FX['revert_plus']}"),
+             (3, r3 >= 3, f"사람이 최종을 고른 화면 {r3} ≥ 3")]
+    for n, ok, why in rules:
+        print(f"규칙 {n} {'지킴' if ok else '어김'} — {why}")
+    bad = [n for n, ok, _ in rules if not ok]
+    line = "판정: 낱말 사전 채택" if not bad else f"판정: 보류 (어긴 규칙 {', '.join(map(str, bad))})"
+    print(line)
+    return line
+
+
+def lexicon(m):
+    """사다리가 맞힌 단위 → 사전 verified_level(그림 증거만 — 문구 한계·상한·밀어냄은 적지 않음)."""
+    d = json.load(open(WORDS, encoding="utf-8"))
+    hit = {uid: u for sid, st in m["ladder"].items() if not sid.startswith("_") for uid, u in st["units"].items() if u["stop"] == "맞음"}
+    for e in d["words"]:
+        e.pop("verified_level", None)
+        if e["id"] in hit:
+            u = hit[e["id"]]
+            e["verified_level"] = {"level": u["level"], "status": u["status"], "with": u["with"]}
+    json.dump(d, open(WORDS, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+    open(WORDS, "a").write("\n")
+    print(f"[PlainWords] 사전 verified_level {len(hit)}항목: " + " · ".join(f"{k} {u['level']} {u['status']}" for k, u in hit.items()), flush=True)
+
+
 def main(argv):
     cmd = argv[0]
     m = load_m()
@@ -672,6 +717,12 @@ def main(argv):
         cand(m, argv[1] if len(argv) > 1 else None)
     elif cmd == "check":
         sys.exit(0 if check(m) else 1)
+    elif cmd == "record":
+        record(m, argv[1])
+    elif cmd == "verdict":
+        verdict(m)
+    elif cmd == "lexicon":
+        lexicon(m)
     elif cmd == "report":
         for rnd in m["rounds"]:
             report(m, rnd)

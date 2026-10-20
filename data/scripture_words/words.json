@@ -197,6 +197,13 @@
             "grounds": "[저작](본문에 크기 없음, 나룻배 쓰임에서 정한 그림 사정)"
           }
         ]
+      },
+      "verified_level": {
+        "level": "L2",
+        "status": "조건부",
+        "with": [
+          "jordan"
+        ]
       }
     },
     {
@@ -245,6 +252,13 @@
             "q": "흐르는 강물이 보이나?",
             "grounds": "[저작](본문에 물의 흐름 없음, 강의 일반 모양)"
           }
+        ]
+      },
+      "verified_level": {
+        "level": "L1",
+        "status": "조건부",
+        "with": [
+          "ferry-boat"
         ]
       }
     },
@@ -489,6 +503,13 @@
             "q": "사람이 손을 뻗어 긋고 있나?",
             "grounds": "[추론] 삼상 21:13 — 그적거리는 동작."
           }
+        ]
+      },
+      "verified_level": {
+        "level": "L2",
+        "status": "조건부",
+        "with": [
+          "drool-beard"
         ]
       }
     },
