@@ -1,0 +1,3756 @@
+{
+ "runs": {
+  "blind": {
+   "model": "opus",
+   "answers": {
+    "authored-david-gath-achish": {
+     "tries": [
+      {
+       "seconds": 14.391,
+       "input": 2,
+       "output": 1321,
+       "cache_read": 16828,
+       "cache_create": 14126,
+       "cost_usd": 0.1428016,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "어긋남",
+       "verse": "21:14",
+       "quote": "",
+       "field": [
+        "figures[1].facing",
+        "figures[1].screen_facing"
+       ],
+       "제안": "아기스의 facing은 'right'인데 screen_facing은 'left'이고, 영문 문구도 'facing toward the left edge'라 서로 다르다. 아기스는 오른쪽에 서서 왼쪽의 다윗을 보므로 facing을 'left'로 맞춘다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "21:13",
+       "quote": "",
+       "field": [
+        "figures[0].facing",
+        "figures[0].screen_facing"
+       ],
+       "제안": "다윗의 facing은 'left'인데 screen_facing과 영문 문구는 'viewer'다. 문짝에 그적거리며 허공을 보는 자세에 맞춰 둘 중 하나로 통일한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "21:13",
+       "quote": "그들의 앞에서 그 행동을 변하여",
+       "field": "relation",
+       "제안": "다윗은 아기스와 신하들이 보는 앞에서 미친 체한다. 그러니 relation에 신하들도 다윗을 지켜보고 있다고 적는다. 지금 영문에는 신하들이 아기스 뒤에 서 있다는 말만 있다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "21:14",
+       "quote": "너희도 보거니와 이 사람이 미치광이로다",
+       "field": "figures[1].gesture",
+       "제안": "아기스는 신하들에게 다윗을 '보라'며 가리킨다. 그래서 손바닥을 젓는 손짓보다 다윗을 가리키는 손짓이 본문에 더 가깝다. 아기스가 신하들 쪽으로 고개를 반쯤 돌리고 말한다는 점도 더한다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-ark-jerusalem": {
+     "tries": [
+      {
+       "seconds": 13.44,
+       "input": 2,
+       "output": 1175,
+       "cache_read": 17674,
+       "cache_create": 12223,
+       "cost_usd": 0.1248268,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "6:2",
+       "quote": "그룹들 사이에 좌정하신 만군의 여호와의 이름으로 이름하는 것이라",
+       "field": "background[0].what",
+       "제안": "궤 묘사에 덮개 위의 금 그룹 둘(날개를 마주 편 두 그룹)을 더하고, 영문에도 'two golden cherubim with outstretched wings on its lid'를 넣는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "6:16",
+       "quote": "다윗 왕이 여호와 앞에서 뛰놀며 춤추는 것을",
+       "field": "figures[0].pose",
+       "제안": "같은 순간의 춤을 6:16은 「뛰놀며」라고 한다. 자세에 '뛰어오르며'를 더하고, 영문에도 'leaping and'를 넣는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "6:15",
+       "quote": "다윗과 온 이스라엘 족속이 즐거이 부르며",
+       "field": "figures[0].pose",
+       "제안": "환호하는 주어에는 다윗도 들어간다. 다윗의 자세에 '입을 열어 즐거이 외친다'를 더한다(영문 'shouting with joy').",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "6:12",
+       "quote": "다윗 왕에게 고하여",
+       "field": [
+        "figures[0].role",
+        "영문 파생 문구"
+       ],
+       "제안": "본문은 이때 다윗을 '왕'이라 부르는데, 영문은 'lean young man'이라 하고 명세에는 왕이라는 표지가 없다. 'young'을 빼고 장년의 왕으로 적는다. 왕복 대신 베 에봇만 입은 차림은 그대로 둔다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-hebron-king-judah": {
+     "tries": [
+      {
+       "seconds": 13.517,
+       "input": 2,
+       "output": 1013,
+       "cache_read": 17674,
+       "cache_create": 12060,
+       "cost_usd": 0.1202828,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "2:2",
+       "quote": "그 두 아내 이스르엘 여인 아히노암과 갈멜 사람 나발의 아내 되었던 아비가일을 데리고",
+       "field": "figures",
+       "제안": "다윗과 함께 헤브론에 올라온 두 아내 아히노암과 아비가일을 다윗 곁 가까운 뒤쪽에 서서 지켜보는 인물로 figures에 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "2:3",
+       "quote": "자기와 함께한 종자들과 그들의 권속들을 다 데리고 올라가서",
+       "field": "crowds",
+       "제안": "다윗을 따라온 종자들과 그 권속들(여인·아이 포함)을 유다 사람들 무리와 구분되는 별도 무리로 crowds에 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "2:4",
+       "field": [
+        "figures",
+        "stages[S3].prompt"
+       ],
+       "제안": "영문 문구에는 'men of Judah pouring oil over his head'가 있는데 figures에는 다윗만 있고 crowds의 유다 사람들은 'tiny distant'로 멀리 있다. 다윗 곁에서 기름을 붓는 유다 사람(장로) 인물을 figures에 넣어 자세와 위치를 정한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "2:4",
+       "quote": "기름을 부어",
+       "field": "figures[0].prop",
+       "제안": "기름을 부으려면 그릇이 있어야 하니, 붓는 사람의 지물로 기름 뿔이나 기름병을 적고(저작자 정함으로 표시), 기름이 머리 위로 흘러내리는 모습을 명시한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "2:4",
+       "quote": "유다 족속의 왕을 삼았더라",
+       "field": "verse_elements",
+       "제안": "기름 부음이 왕으로 세우는 일임을 보여 줄 시각 요소(예: 무리가 새 왕에게 경의를 표하는 몸짓)를 verse_elements와 crowds에 더한다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-gibeon-battle": {
+     "tries": [
+      {
+       "seconds": 17.767,
+       "input": 2,
+       "output": 1565,
+       "cache_read": 17674,
+       "cache_create": 13709,
+       "cost_usd": 0.1445148,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "축약",
+       "verse": "2:13",
+       "quote": "이는 못 이편이요 저는 못 저편이라",
+       "field": "crowds",
+       "제안": "본문은 요압과 다윗의 신복들, 아브넬과 이스보셋의 신복들이 함께 못 이편과 저편에 앉았다고 말한다. 무리도 각 지휘관 뒤 못가에 앉혀 못을 사이에 두고 두 진영이 마주 보게 하라. 영문 문구에도 'on the near side of the pool behind the left commander' / 'on the far side of the pool behind the right commander'처럼 쪽을 밝혀라. 지금처럼 이름 모를 능선 두 곳에 같은 문장을 되풀이하면 어느 쪽인지 알 수 없다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "2:13",
+       "field": [
+        "figures[0].region",
+        "verse_elements[8].en"
+       ],
+       "제안": "아브넬은 화면 왼쪽(On the left)에 오른쪽을 보고 있는데, 영문은 near side·far side라는 앞뒤 축으로 적었다. 그러면 못이 두 사람 사이에 놓이지 않을 수 있다. 축을 하나로 맞춰라. 예: 'on the left bank of the pool' / 'on the right bank of the pool, across the water'.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "2:13",
+       "field": [
+        "moment.why",
+        "crowds[0].region"
+       ],
+       "제안": "why와 crowds는 무리를 '능선(crest)'에 두었지만 본문은 못가에서 만나 앉았다고 한다. 영문 배경도 'wide dry grassy field around a still pool'이라 능선과 맞지 않는다. 무리의 자리를 못가 양편으로 고쳐 why·crowds·영문을 서로 맞춰라.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "2:14",
+       "quote": "청컨대 소년들로 일어나서 우리 앞에서 장난하게 하자",
+       "field": "crowds",
+       "제안": "제안의 대상인 소년들이 why에만 있고 무리나 영문에는 없다. 양편 무리 맨 앞, 지휘관 가까이에 젊은 병사(youths) 몇 명이 앉아 일어날 채비를 하는 모습으로 넣어라. '우리 앞에서'에 맞게 두 지휘관 사이의 못가 빈 땅이 보이게 하라.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "2:13",
+       "quote": "기브온 못가에서 저희를 만나",
+       "field": "background",
+       "제안": "기브온이라는 장소가 영문 배경에 드러나지 않는다. 못 너머 먼 언덕에 작은 성읍(기브온)을 넣는 것을 고려하라.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-mahanaim-exile": {
+     "tries": [
+      {
+       "seconds": 11.563,
+       "input": 2,
+       "output": 1003,
+       "cache_read": 17674,
+       "cache_create": 11866,
+       "cost_usd": 0.1185308,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "17:22",
+       "quote": "다윗이 일어나 모든 백성과 함께 요단을 건널새",
+       "field": "crowds",
+       "제안": "다윗과 함께 요단을 건너 마하나임에 이른 백성 무리를 crowds에 넣는다. 지친 피난민 행렬이 다윗 뒤를 따르는 모습으로 그리고, 영문 문구에도 같은 내용을 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "17:29",
+       "quote": "다윗과 그 함께 한 백성으로 먹게 하였으니",
+       "field": "crowds",
+       "제안": "마하나임에 다윗 혼자 이른 것이 아니라 '그 함께 한 백성'이 있었다는 점을 명세에 적는다. 다윗이 무리를 이끄는 구도로 고친다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "17:29",
+       "quote": "백성이 들에서 시장하고 곤하고 목마르겠다",
+       "field": "figures[0].pose",
+       "제안": "피곤한 상태를 저작자가 정한 것으로 두지 말고 17:29를 근거로 적는다. 다윗만이 아니라 백성 전체가 굶주리고 지치고 목마른 모습으로 그린다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "17:24",
+       "quote": "",
+       "field": [
+        "figures[0].role",
+        "stages[S3].prompt"
+       ],
+       "제안": "압살롬이 장성한 아들이므로 이때 다윗은 '젊은이(young man)'가 아니라 나이 든 왕이다. 영문 문구를 'an aging Israelite king'처럼 고친다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "순간",
+       "verse": "17:27",
+       "quote": "다윗이 마하나임에 이르렀을 때에",
+       "field": "moment",
+       "제안": "다윗이 마하나임에 이르렀을 때 소비·마길·바실래가 침상, 대야, 질그릇, 밀, 보리, 꿀, 뻐더, 양, 치스 등을 가져와 맞이한다(17:27-29). 이 환대 장면을 함께 담으면 도착하는 순간이 더 그 장면다워진다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-jerusalem-conquest": {
+     "tries": [
+      {
+       "seconds": 12.35,
+       "input": 2,
+       "output": 801,
+       "cache_read": 17674,
+       "cache_create": 11622,
+       "cost_usd": 0.11253880000000001,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "어긋남",
+       "verse": "5:6",
+       "field": [
+        "crowds[0].what",
+        "영문 파생 문구(many of his armed men ... far away)"
+       ],
+       "제안": "한국어 칸은 종자들이 「다윗 뒤에」 섰다고 하는데, 영문은 다윗보다 먼저 나와 「his」가 가리킬 사람이 없고 「far away」 때문에 다윗과 떨어진 먼 무리로 읽힙니다. 영문을 다윗 다음에 두고 'many armed followers of David standing close behind him'처럼 고치십시오.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "5:7",
+       "field": [
+        "background[1].what",
+        "background[0].what"
+       ],
+       "제안": "산지 배경 영문의 'no buildings'는 같은 그림에 그릴 시온 산성 성벽과 맞지 않습니다. 'no buildings'를 빼거나 'no other buildings besides the fortress'로 고치십시오.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "5:7",
+       "quote": "다윗이 시온 산성을 빼앗았으니",
+       "field": "moment.why",
+       "제안": "명세에는 성벽 앞에 서 있는 모습만 있어서, 「빼앗았다」는 정복 상태가 그림에 드러나지 않습니다. 성문이 열려 있고 다윗과 종자들이 성을 차지한 정황(성벽 위나 성문 앞에 선 이스라엘 사람들 등)을 더하십시오.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "순간",
+       "verse": "5:8",
+       "quote": "수구로 올라가서",
+       "field": "moment",
+       "제안": "참고용입니다. 그 날 다윗의 사람들이 수구로 올라가 성을 친 순간이 이 정복 장면을 더 잘 보여 줄 수 있습니다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-nathan-covenant": {
+     "tries": [
+      {
+       "seconds": 12.196,
+       "input": 2,
+       "output": 897,
+       "cache_read": 17674,
+       "cache_create": 12455,
+       "cost_usd": 0.1211228,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "축약",
+       "verse": "7:2",
+       "quote": "왕이 선지자 나단에게 이르되",
+       "field": "figures[1].role",
+       "제안": "다윗은 이 순간 '왕'이다. role을 '왕 다윗'으로 고치고, 영문 문구에도 왕의 표지(왕의 옷이나 관 등)를 넣어 그냥 젊은이가 아니라 왕으로 보이게 한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "7:2",
+       "field": [
+        "verse_elements[1].en",
+        "figures[1].role"
+       ],
+       "제안": "verse_elements의 ko는 '왕 다윗'인데 en은 'an ancient Israelite lean young man'으로 왕이라는 뜻이 빠졌다. en을 'an ancient Israelite king'처럼 고쳐 두 칸을 맞춘다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "7:1",
+       "quote": "왕으로 궁에 평안히 거하게 하신 때에",
+       "field": "stages[S4].prompt",
+       "제안": "대적을 다 물리친 뒤 궁에 평안히 사는 왕이다. 'lean young man'은 목동 시절의 다윗처럼 읽히니, 왕위에 오른 성숙한 남자로 그린다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "순간",
+       "verse": "7:17",
+       "quote": "나단이 이 모든 말씀과 이 모든 묵시대로 다윗에게 고하니라",
+       "field": "moment.verse",
+       "제안": "나단이 실제로 다윗에게 말씀을 전하는 행동은 7:17에 있다. 진리 근거 파일의 절 범위가 허락하면 moment를 7:17로 잡거나 7:17을 근거 절에 더한다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-returns-jerusalem": {
+     "tries": [
+      {
+       "seconds": 14.155,
+       "input": 2,
+       "output": 1099,
+       "cache_read": 17674,
+       "cache_create": 13288,
+       "cost_usd": 0.1318268,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "어긋남",
+       "verse": "19:7",
+       "quote": "왕이 젊었을 때부터 지금까지",
+       "field": [
+        "figures[0].role",
+        "stages[S3].prompt"
+       ],
+       "제안": "본문은 이때의 다윗을 젊은 시절이 지난 왕으로 말하는데, 영문 문구는 'lean young man'이다. 'an aging Israelite king with a graying beard'로 고치고, 명세에 다윗의 나이가 든 모습을 적는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "19:15",
+       "quote": "왕이 돌아와",
+       "field": "figures[0]",
+       "제안": "본문은 그를 '왕'이라 부르는데, 명세와 영문 문구에는 왕임을 알릴 표지가 없다. 왕의 겉옷이나 띠 같은 왕다운 차림을 저작자가 정해 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "19:14",
+       "quote": "왕은 모든 신복으로 더불어 돌아오소서",
+       "field": "crowds",
+       "제안": "다윗은 신복들과 함께 돌아온다. 19:41도 '왕과 왕의 권속과 왕을 좇는 모든 사람'이라 한다. 다윗 뒤에 따라오는 신복과 권속의 무리를 crowds에 더하고 영문 문구에도 넣는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "순간",
+       "verse": "19:18",
+       "quote": "왕의 가족을 건네려 하며 왕의 선히 여기는 대로 쓰게 하려하여 나룻배가 건너가니",
+       "field": "moment",
+       "제안": "요단 앞에서 맞이하는 장면으로는 나룻배가 건너오고 유다 사람들이 맞는 19:18 무렵이 더 극적이다. 19:39~40처럼 백성이 다 건넌 뒤 왕도 건너는 순간도 후보가 된다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-samuel-bethlehem-david-anointing": {
+     "tries": [
+      {
+       "seconds": 10.979,
+       "input": 2,
+       "output": 914,
+       "cache_read": 17674,
+       "cache_create": 12727,
+       "cost_usd": 0.12363880000000001,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "어긋남",
+       "verse": "16:13",
+       "field": [
+        "figures[0].pose",
+        "영문 파생 문구(On the left: ... holding up one small horn of oil)"
+       ],
+       "제안": "사무엘 인물 줄의 'standing, holding up one small horn of oil'을 'tilting one small horn of oil over the boy's bowed head'로 바꿔라. 그래야 pose 칸·groups[0] 문구와 한 동작이 된다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "16:13",
+       "quote": "그에게 부었더니",
+       "field": "groups[0].prompt",
+       "제안": "영문 문구는 뿔을 기울이는 데서 멈춘다. 'oil pouring from the horn onto his hair'처럼 기름이 실제로 머리에 흘러내리는 모습을 더하라.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "16:5",
+       "quote": "나와 함께 제사하자 하고 이새와 그 아들들을 성결케 하고 제사에 청하니라",
+       "field": "background[0]",
+       "제안": "background는 '제사 자리'라고 적었는데 영문 문구는 'a small dry village courtyard'뿐이다. 제사 자리임이 보이도록 돌 제단과 제물(16:2 암송아지)을 영문 배경에 더하라.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-ziklag-base": {
+     "tries": [
+      {
+       "seconds": 17.898,
+       "input": 2,
+       "output": 889,
+       "cache_read": 17674,
+       "cache_create": 11107,
+       "cost_usd": 0.11017880000000001,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "어긋남",
+       "verse": "27:6",
+       "field": [
+        "moment.why",
+        "figures[0].facing"
+       ],
+       "제안": "아기스는 왼쪽에 서서 성읍과 다윗 쪽을 가리켜야 하므로 facing을 right로 고치세요. 영문 문구의 'facing left'도 'facing right, toward David and the town'으로 바꾸세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "27:6",
+       "field": [
+        "figures[0].facing",
+        "figures[1].facing"
+       ],
+       "제안": "지금은 두 인물이 서로 반대쪽을 봅니다. 그러면 성읍을 주고받는 장면이 되지 않습니다. 성읍의 위치를 화면 가운데 뒤쪽 등으로 정하고, 두 인물의 시선을 성읍(또는 서로)으로 모으세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "27:2",
+       "quote": "함께 있는 육백 인으로 더불어",
+       "field": "crowds",
+       "제안": "다윗과 함께 아기스에게 간 육백 명의 사람들과 그들의 가족(27:3)을 다윗 뒤편 무리로 crowds에 더하세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "27:3",
+       "quote": "그 두 아내 이스르엘 여자 아히노암과 나발의 아내 되었던 갈멜 여자 아비가일과 함께 하였더니",
+       "field": "figures",
+       "제안": "다윗과 함께 있던 두 아내 아히노암과 아비가일을 다윗 곁의 인물로 더하세요. 적어도 일행 무리 속에 넣으세요.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-saul-endor-medium": {
+     "tries": [
+      {
+       "seconds": 12.784,
+       "input": 2,
+       "output": 1136,
+       "cache_read": 17674,
+       "cache_create": 12926,
+       "cost_usd": 0.1296708,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "어긋남",
+       "verse": "28:8",
+       "field": [
+        "crowds[0].what",
+        "stages[S2].prompt"
+       ],
+       "제안": "명세의 군중 칸은 두 사람이 「왼쪽 가장자리에 선다」고 하지만, 영문 문구에는 위치 없이 \"two men in plain dark cloaks standing close together, watching\"만 있다. 영문에 \"at the far left edge, behind the prostrate king\"을 넣어 위치를 맞춘다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "28:8",
+       "quote": "다른 옷을 입어 변장하고",
+       "field": "stages[S3].prompt",
+       "제안": "영문은 사울을 \"a king\"이라 부르고 \"worn dark tunic and cloak\"과 \"dark disguise cloak\"를 함께 적어, 왕다운 차림을 숨긴 변장이 흐려진다. \"a king disguised in a commoner's plain clothes, no royal garments\"처럼 평민 옷으로 바꿔 입었음을 분명히 적는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "28:14",
+       "field": [
+        "verse_elements[8].ko",
+        "stages[S3].prompt"
+       ],
+       "제안": "본문 28:14는 「얼굴을 땅에 대고 절하니라」이고 온몸이 땅에 엎드러지는 것은 뒤의 28:20이다. 영문의 \"lying prostrate\"를 \"kneeling and bowing with face to the ground\"로 고쳐 28:20의 쓰러짐과 섞이지 않게 한다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-saul-gilboa-death": {
+     "tries": [
+      {
+       "seconds": 14.99,
+       "input": 2,
+       "output": 1408,
+       "cache_read": 17674,
+       "cache_create": 11417,
+       "cost_usd": 0.1230388,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "31:9",
+       "quote": "그 갑옷을 벗기고",
+       "field": "figures[0].prop",
+       "제안": "사울은 죽을 때 갑옷을 입고 있었으므로 「in a worn dark tunic and cloak」를 갑옷(armour over his tunic) 차림으로 고치고, 명세의 사울 칸에도 갑옷을 적는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "31:1",
+       "quote": "길보아 산에서 엎드러져 죽으니라",
+       "field": "background",
+       "제안": "길보아 산 비탈 곳곳에 엎드러져 죽은 이스라엘 사람들을 배경 요소로 더한다(31:1 근거). 영문 문구에도 'fallen Israelite soldiers lying dead on the slope'처럼 넣는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "31:6",
+       "quote": "그의 모든 사람이 다 그 날에 함께 죽었더라",
+       "field": "crowds",
+       "제안": "그 순간 사울 곁에서 쓰러지고 있는 사울의 사람들을 무리 요소로 더해, 사울이 홀로 남은 패전 상황이 드러나게 한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "31:3",
+       "quote": "활 쏘는 자가 따라 미치니",
+       "field": "stages[S2a].prompt",
+       "제안": "「따라 미치니」는 활 쏘는 자들이 사울을 쫓아와 화살이 닿는 거리까지 따라붙었다는 뜻이다. 영문 문구의 'small and far away'를 고쳐 활 쏘는 자들이 사울에게 바짝 다가온 모습으로 둔다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "31:3",
+       "quote": "사울이 그 활 쏘는 자를 인하여 중상한지라",
+       "field": "stages[S3].prompt",
+       "제안": "'wounded by arrows'를 몸에 화살이 박히고 피를 흘리는 중상으로 구체화한다. 'standing upright'도 중상에 맞게 비틀거리며 겨우 선 자세로 고친다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-nob-priests": {
+     "tries": [
+      {
+       "seconds": 12.248,
+       "input": 2,
+       "output": 1073,
+       "cache_read": 17674,
+       "cache_create": 14250,
+       "cost_usd": 0.1390028,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "축약",
+       "verse": "21:7",
+       "quote": "그는 도엑이라 이름하는 에돔 사람이요 사울의 목자장이었더라",
+       "field": "whole_background",
+       "제안": "뜰 가장자리의 사내를 그냥 「사내 하나 / a lone man」로 두지 말고, 사울의 신하인 에돔 사람 목자장 도엑으로 적는다. 목자장다운 차림(목자 지팡이, 거친 겉옷)과 이방인다운 모습을 국문과 영문에 함께 넣어, 엿보는 왕의 신하임이 그림에서 드러나게 한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "21:6",
+       "quote": "제사장이 그 거룩한 떡을 주었으니",
+       "field": "figures[1].costume",
+       "제안": "같은 날 이미 받은 거룩한 떡이 다윗에게 있도록 적는다. 예를 들어 허리띠에 맨 천 꾸러미나 어깨에 멘 자루에 둥근 떡 몇 덩이를 담아 국문과 영문에 넣는다. 두 손은 칼을 받고 있으므로 손에 들리지는 않는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "field": [
+        "figures[1].pose",
+        "figures[1].gesture"
+       ],
+       "제안": "자세 칸은 「받으려 선다」로 아직 잡지 않았는데, 몸짓 칸과 relation 칸은 칼 끝을 이미 함께 잡고 있다(gripping, hold the same sword). 이 둘이 서로 맞지 않는다. 자세 칸을 「두 손을 뻗어 칼 끝을 받아 잡으며 선다」로 고쳐 몸짓 칸·relation 칸과 맞춘다. moment.why의 「받으려는 순간」도 같은 뜻으로 고친다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-ramah-samuel": {
+     "tries": [
+      {
+       "seconds": 5.67,
+       "input": 2,
+       "output": 421,
+       "cache_read": 17674,
+       "cache_create": 13316,
+       "cost_usd": 0.1184908,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "축약",
+       "verse": "19:18",
+       "quote": "사울이 자기에게 행한 일을 다 고하였고",
+       "field": "figures[0].gesture",
+       "제안": "영문 gesture의 \"tells him everything that happened\"는 무엇을 고하는지가 흐려져 있습니다. 한국어 칸과 meaning.en에 맞춰 \"tells him everything Saul has done to him\"으로 고치세요.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    }
+   }
+  },
+  "mutants": {
+   "model": "opus",
+   "answers": {
+    "m2:authored-david-hebron-king-judah": {
+     "tries": [
+      {
+       "seconds": 12.121,
+       "input": 2,
+       "output": 1102,
+       "cache_read": 17674,
+       "cache_create": 11814,
+       "cost_usd": 0.1200948,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "2:4",
+       "quote": "다윗에게 기름을 부어",
+       "field": "figures",
+       "제안": "고정한 순간의 핵심 행동인 기름 부음이 명세에 없습니다. 유다 사람(장로) 한 사람을 figures에 더해 무릎 꿇은 다윗 머리 위로 기름 뿔(또는 기름병)을 기울여 붓는 모습으로 두고, 영문 문구에 'an elder of Judah pouring oil from a horn onto David's bowed head'를 넣으세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "2:4",
+       "quote": "기름을 부어",
+       "field": "verse_elements",
+       "제안": "verse_elements에 kind 「행동」·「지물」로 기름 부음과 기름 뿔(기름)을 더하고, 각각 담을 stages 칸을 정하세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "2:4",
+       "quote": "기름을 부어 유다 족속의 왕을 삼았더라",
+       "field": "moment.why",
+       "제안": "「다윗을 유다 족속의 왕으로 맞는 순간」은 기름 부음을 흐리게 만듭니다. 「유다 사람들이 다윗에게 기름을 부어 왕으로 삼는 순간」으로 고치세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "2:4",
+       "quote": "유다 사람들이 와서",
+       "field": "crowds[0]",
+       "제안": "무리가 멀리 뒤편에 도열한 작은 실루엣으로만 있어 다윗을 왕으로 삼는 주체로 보이지 않습니다. 앞줄 몇 사람을 다윗 가까이 두고 기름 부음을 지켜보며 함께하는 모습으로 그리세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "2:3",
+       "quote": "자기와 함께한 종자들과 그들의 권속들을 다 데리고 올라가서 헤브론 각 성에 거하게 하니라",
+       "field": "crowds",
+       "제안": "다윗과 함께 헤브론에 올라온 종자들과 그 권속도 그 자리에 있었을 것입니다. 다윗 곁에 무리를 하나 더 두세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "2:2",
+       "quote": "그 두 아내 이스르엘 여인 아히노암과 갈멜 사람 나발의 아내 되었던 아비가일을 데리고",
+       "field": "figures",
+       "제안": "헤브론에 함께 올라온 두 아내 아히노암과 아비가일을 다윗 뒤편 가까이에 지켜보는 여인 둘로 더하세요.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "m3:authored-david-nathan-covenant": {
+     "tries": [
+      {
+       "seconds": 12.077,
+       "input": 2,
+       "output": 1069,
+       "cache_read": 17674,
+       "cache_create": 12309,
+       "cost_usd": 0.12339480000000001,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "순간",
+       "verse": "7:17",
+       "quote": "나단이 이 모든 말씀과 이 모든 묵시대로 다윗에게 고하니라",
+       "field": "moment",
+       "제안": "7:12-16은 그 밤에 여호와께서 나단에게 하신 말씀(7:4-5)이라 나단이 다윗 앞에 선 장면이 아니다. 나단이 다윗에게 고하는 순간은 7:17이니 moment.verse를 7:17로 옮기고 7:17을 인용하라. 7:12-16은 고하는 내용으로만 두라.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "",
+       "quote": "",
+       "field": [
+        "moment.verse",
+        "moment.why"
+       ],
+       "제안": "why는 「나단이 다윗 앞에 서 있는 순간」이라 하는데 moment.verse 7:12-16은 나단이 밤에 말씀을 받는 장면이다. 둘을 7:17 기준으로 맞추라.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "7:2",
+       "quote": "왕이",
+       "field": "figures[1].role",
+       "제안": "role을 「다윗 왕」으로 하고, 영문에 왕의 옷차림(예: royal robe, simple gold circlet)을 넣어 왕임이 보이게 하라. 지금 영문은 「lean young man」뿐이다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "",
+       "quote": "",
+       "field": [
+        "verse_elements[1].en",
+        "figures[1].role"
+       ],
+       "제안": "영문 「lean young man」은 7:1의 사방 대적을 다 파하고 궁에 평안히 거하는 왕과 맞지 않는다. 장성한 왕으로 고치라. 7:8의 「양을 따르는」 목자 시절은 이미 지난 일이다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "7:1",
+       "quote": "왕으로 궁에 평안히 거하게 하신 때에",
+       "field": "background",
+       "제안": "대적이 없는 평안한 때임이 드러나도록 궁을 고요하고 안정된 모습으로 그리라.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "m1:authored-david-ark-jerusalem": {
+     "tries": [
+      {
+       "seconds": 12.62,
+       "input": 2,
+       "output": 1137,
+       "cache_read": 17674,
+       "cache_create": 12105,
+       "cost_usd": 0.1231228,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "6:15",
+       "quote": "나팔을 불고",
+       "field": "crowds[0].what",
+       "제안": "무리 칸과 영문 문구에 '나팔(양각 나팔)을 부는 사람들'을 더한다. 예: some men blowing ram's-horn trumpets.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "6:15",
+       "field": [
+        "crowds[0].what",
+        "verse_elements[4].ko"
+       ],
+       "제안": "무리 칸에는 '노래하며', verse_elements에는 '환호의 외침'으로 적혀 서로 다르다. 본문은 '즐거이 부르며'이므로 둘 중 하나로 맞추고, 영문 문구도 그 뜻에 맞게 고친다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "6:2",
+       "quote": "그룹들 사이에 좌정하신 만군의 여호와",
+       "field": "stages[S2b].prompt",
+       "제안": "영문 문구의 궤를 'a gold-covered wooden chest'로만 적지 말고, 뚜껑 위에 날개를 편 두 그룹(cherubim)이 있다고 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "6:12",
+       "quote": "하나님의 궤를 기쁨으로 메고",
+       "field": "background[0].what",
+       "제안": "궤를 멘 사람들도 기쁜 모습으로 올라간다는 점을 명세와 영문 문구에 더한다(예: joyful bearers).",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "순간",
+       "verse": "6:16",
+       "quote": "다윗 왕이 여호와 앞에서 뛰놀며 춤추는 것을 보고",
+       "field": "moment.verse",
+       "제안": "참고: 궤가 다윗 성에 들어갈 때 미갈이 창으로 내다보는 순간도 이 장면을 대표할 만하다. 지금 순간을 그대로 둔다면 바꿀 필요는 없다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "m5:authored-david-ramah-samuel": {
+     "tries": [
+      {
+       "seconds": 9.195,
+       "input": 2,
+       "output": 762,
+       "cache_read": 17674,
+       "cache_create": 12950,
+       "cost_usd": 0.1223828,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "19:18",
+       "quote": "사울이 자기에게 행한 일을 다 고하였고",
+       "field": "figures[0].gesture",
+       "제안": "다윗이 그냥 서 있는 것이 아니라 사울이 자기에게 한 일을 사무엘에게 다 털어놓는 중임을 넣는다. 예: 「사무엘 앞에 서서 펼친 손으로 사울이 한 일을 낱낱이 고한다」 / \"standing before Samuel, speaking earnestly, recounting all that Saul had done to him, one open hand raised\".",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "19:18",
+       "field": [
+        "figures[0].prop",
+        "figures[0].gesture"
+       ],
+       "제안": "prop 칸의 'an open hand'가 gesture 칸 한국어·영문과 영문 파생 문구 어디에도 없다. gesture 칸에 펼친 손을 넣거나 prop 칸을 비워 두 칸을 맞춘다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "19:18",
+       "quote": "사무엘에게로 나아가서 사울이 자기에게 행한 일을 다 고하였고",
+       "field": "moment.why",
+       "제안": "고정한 순간을 「나아가 선 순간」이 아니라 「나아가서 사울이 한 일을 다 고하는 순간」으로 적어, 사무엘이 듣는 표정·몸짓과 이어지게 한다. meaning 칸 한국어·영문에도 '고한다/recounting'을 더한다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "m4:authored-david-ziklag-base": {
+     "tries": [
+      {
+       "seconds": 12.262,
+       "input": 2,
+       "output": 1130,
+       "cache_read": 17674,
+       "cache_create": 10953,
+       "cost_usd": 0.1137668,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "27:2",
+       "quote": "함께 있는 육백 인으로 더불어",
+       "field": "crowds",
+       "제안": "crowds에 다윗을 따르는 육백 인 무리를 더한다. 다윗 뒤편에 무장한 이스라엘 남자들의 무리로 두고, 영문 문구에도 'his band of armed men gathered behind him'처럼 넣는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "27:3",
+       "quote": "다윗과 그의 사람들이 각기 가족을 거느리고",
+       "field": "crowds",
+       "제안": "시글락으로 옮겨 가는 사람들이므로, 무리 속에 여자·아이 같은 가족과 짐을 함께 둔다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "27:3",
+       "quote": "두 아내 이스르엘 여자 아히노암과 나발의 아내 되었던 갈멜 여자 아비가일과 함께 하였더니",
+       "field": "figures",
+       "제안": "다윗 가까이에 두 아내 아히노암과 아비가일을 부인물로 더하거나, 적어도 crowds에 따로 적는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "27:6",
+       "quote": "아기스가 그 날에 시글락을 그에게 주었으므로",
+       "field": "figures[0].pose",
+       "제안": "아기스의 자세가 겉옷 자락을 쥐고 서 있는 것뿐이라 '준다'는 행위가 보이지 않는다. 한 손을 펴서 성읍 쪽을 가리켜 다윗에게 내어 주는 몸짓으로 고치고, 영문도 'gesturing toward the town, granting it to David'로 바꾼다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "field": [
+        "moment.why",
+        "figures[0].facing"
+       ],
+       "제안": "moment.why는 아기스와 다윗이 함께 서 있다고 하는데, 왼쪽에 선 아기스가 'facing left'로 되어 있어 오른쪽의 다윗과 성읍을 등진다. 아기스의 방향을 오른쪽(다윗·성읍 쪽)으로 고친다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    }
+   }
+  },
+  "rest": {
+   "model": "opus",
+   "answers": {
+    "authored-david-adullam-cave": {
+     "tries": [
+      {
+       "seconds": 10.342,
+       "input": 2,
+       "output": 1022,
+       "cache_read": 17674,
+       "cache_create": 11387,
+       "cost_usd": 0.1150788,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "22:1",
+       "quote": "그 형제와 아비의 온 집이 듣고는 그리로 내려가서 그에게 이르렀고",
+       "field": "crowds",
+       "제안": "다윗의 형제와 아비의 온 집이 이미 굴에 와 다윗 곁에 있다는 점을 넣는다. 다윗 가까이에 가족 무리를 하나 두고, 영문에도 'his brothers and father's household gathered near him at the cave'를 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "22:2",
+       "quote": "",
+       "field": [
+        "crowds[0].what",
+        "영문 파생 문구"
+       ],
+       "제안": "한국어 칸은 「사백 명 무리」인데 영문은 'about a hundred tiny ragged figures'라 수가 맞지 않는다. 영문을 'about four hundred'로 고친다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "22:2",
+       "quote": "",
+       "field": [
+        "crowds[0].what",
+        "영문 파생 문구"
+       ],
+       "제안": "한국어 칸은 무리가 「굴 쪽으로」 다가온다고 하는데 영문은 'walking toward a hillside'다. 영문을 'toward the cave mouth and David'로 맞춘다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "22:2",
+       "quote": "환난 당한 모든 자와 빚진 자와 마음이 원통한 자가",
+       "field": "영문 파생 문구",
+       "제안": "영문은 'ragged figures' 하나로 뭉뚱그렸다. 환난당한 자·빚진 자·원통한 자라는 세 부류의 처지가 드러나게 'distressed, indebted, and bitter-hearted men'처럼 풀어 쓴다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "22:2",
+       "quote": "다 그에게로 모였고",
+       "field": "영문 파생 문구",
+       "제안": "영문은 무리를 'small and far away'로 멀리 떨어뜨려 두었다. 본문은 무리가 모두 다윗에게 모였다고 하니, 앞쪽 무리는 다윗에게 가까이 이르러 모여드는 모습으로 고친다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-en-gedi-saul": {
+     "tries": [
+      {
+       "seconds": 15.353,
+       "input": 2,
+       "output": 1321,
+       "cache_read": 17674,
+       "cache_create": 14635,
+       "cost_usd": 0.1470428,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "어긋남",
+       "verse": "24:4",
+       "field": [
+        "meaning.ko",
+        "figures[0].gesture"
+       ],
+       "제안": "meaning.ko와 figures[0].pose는 「겉옷자락을 벤다」(베는 중)라고 쓰고, relation과 gesture, gaze는 「방금 벤 조각을 들고 내려다봄」(벤 뒤)이라고 쓴다. 한 순간으로 맞춰야 한다. 벤 뒤로 정한다면 meaning.ko와 pose를 「막 베어 낸 자락 조각을 들고」로 고친다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "24:4",
+       "field": [
+        "crowds[0].what",
+        "whole_background.en"
+       ],
+       "제안": "한국어 crowds 칸에는 「숨죽여 지켜봄·낮게 속삭이는 모습」이 있는데 영문 문구에는 「faint dim silhouettes」만 있다. 영문에 'watching breathlessly, whispering to one another'를 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "24:4",
+       "quote": "다윗의 사람들이 가로되 보소서 여호와께서 당신에게 이르시기를 내가 원수를 네 손에 붙이리니",
+       "field": "crowds[0]",
+       "제안": "다윗의 사람들은 바로 앞에서 다윗을 부추긴 사람들인데, 영문에서는 「barely visible」한 먼 그림자로만 흐려졌다. 손으로 사울 쪽을 가리키거나 다윗 쪽으로 몸을 기울인 모습을 더해, 이들이 방금 다윗을 부추겼음이 드러나게 한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "24:3",
+       "quote": "길 가 양의 우리에 이른즉 굴이 있는지라",
+       "field": "background[1] / whole_background.en",
+       "제안": "background 칸의 「양 우리 곁 굴」과 엔게디 들염소 바위가 영문 파생 문구에 없다. 오른쪽 밝은 어귀 너머로 길가의 돌담 양 우리와 바위 비탈이 작게 보이게 영문에 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "24:3",
+       "quote": "다윗과 그의 사람들이 그 굴 깊은 곳에 있더니",
+       "field": "figures[0].pose / whole_background.en",
+       "제안": "영문 문구에 다윗이 굴 깊은 곳에서 나왔다는 말이 없다. David 묘사에 'having crept out from the deep back of the cave'를 더한다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-gibeah-harp": {
+     "tries": [
+      {
+       "seconds": 15.587,
+       "input": 2,
+       "output": 1365,
+       "cache_read": 17674,
+       "cache_create": 12472,
+       "cost_usd": 0.1306188,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "16:12",
+       "quote": "그의 빛이 붉고 눈이 빼어나고 얼굴이 아름답더라",
+       "field": "figures[0]",
+       "제안": "본문이 다윗의 생김새를 직접 말하므로 소년 다윗에 붉은 빛 얼굴, 빼어난 눈, 아름다운 얼굴을 더한다. 영문 파생 문구에도 ruddy complexion, beautiful eyes, handsome face를 넣는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "16:23",
+       "quote": "악신은 그에게서 떠나더라",
+       "field": "moment.why",
+       "제안": "고정한 순간의 결말인 악신이 사울에게서 떠나는 일이 명세에 빠져 있다. moment.why와 meaning에 이를 적고, 사울이 번뇌에서 놓여나는 상태를 relation이나 사울의 표정에 함께 드러낸다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "16:23",
+       "quote": "하나님의 부리신 악신이 사울에게 이를 때에",
+       "field": "figures[1].expression",
+       "제안": "이 순간은 악신에게 번뇌하던 사울이 낫는 때다. 그러니 사울의 표정을 막 풀리는 중으로 적는다. 예: 아직 이마에 괴로움이 남아 있으나 풀려 가는 얼굴.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "16:22",
+       "quote": "청컨대 다윗으로 내 앞에 모셔 서게 하라",
+       "field": [
+        "figures[0].pose",
+        "verses.quotes.16:21"
+       ],
+       "제안": "명세가 인용한 16:21과 16:22는 다윗이 사울 앞에 '모셔 서는' 신하라고 말하는데, 앉은 자세는 저작자가 정한 것이다. 본문과 맞추려면 왕 앞에 서서 타는 자세를 쓰거나, 왕보다 낮은 자리에 앉아 모시는 모습으로 고친다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "16:21",
+       "quote": "자기의 병기 든 자를 삼고",
+       "field": "figures[0].prop",
+       "제안": "다윗은 이미 병기 든 자가 된 뒤이므로, 그를 목동이 아니라 왕의 시종으로 나타낼 수 있다. 예를 들어 영문 문구의 'a shepherd'를 왕의 시종 소년으로 고치는 것을 생각해 본다. (선택 사항)",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-samuel-ramah-death": {
+     "tries": [
+      {
+       "seconds": 11.547,
+       "input": 2,
+       "output": 1045,
+       "cache_read": 17674,
+       "cache_create": 13975,
+       "cost_usd": 0.1362428,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "25:1",
+       "quote": "라마 그의 집에서 그를 장사한지라",
+       "field": "whole_background",
+       "제안": "본문은 사무엘을 '그의 집에서' 장사했다고 말한다. 마을 언저리 언덕의 봉분을 그대로 두지 말고, 봉분을 사무엘의 집(옅은 흙벽 집과 그 마당) 곁이나 그 안에 두고 ko·en 두 칸에 모두 적는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "25:1",
+       "quote": "다윗이 일어나 바란 광야로 내려가니라",
+       "field": "whole_background",
+       "제안": "다윗이 가는 곳인 광야가 그림에 없다. 영문 파생 문구에도 wilderness가 없다. 오른쪽 아래로 이어지는 메마른 광야 풍경과 그쪽으로 내려가는 길을 배경에 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "25:1",
+       "quote": "바란 광야로 내려가니라",
+       "field": "meaning.en",
+       "제안": "'walks away toward the wilderness'를 'goes down toward the wilderness of Paran'으로 고쳐 지명 바란과 내려감을 살린다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "25:1",
+       "quote": "내려가니라",
+       "field": "figures[0].gesture",
+       "제안": "'성큼성큼 걸어 나가고'를 '언덕 비탈을 따라 아래로 내려간다'로 바꿔 내려가는 움직임이 드러나게 한다. 영문도 'striding down the slope'처럼 맞춘다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "25:1",
+       "quote": "온 이스라엘 무리가 모여 그를 애곡하며",
+       "field": "whole_background",
+       "제안": "'작은 애곡 무리'는 '온 이스라엘'의 큰 규모가 줄어든 표현이다. 봉분 둘레를 메운 큰 무리가 곡하며 슬퍼하는 몸짓(머리를 숙이고 손을 든 모습)을 하도록 ko·en 두 칸에 모두 적는다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-goliath-gath": {
+     "tries": [
+      {
+       "seconds": 20.592,
+       "input": 2,
+       "output": 2178,
+       "cache_read": 17674,
+       "cache_create": 17812,
+       "cost_usd": 0.1895988,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "어긋남",
+       "verse": "17:33",
+       "quote": "",
+       "field": [
+        "figures[2].costume.en",
+        "영문 파생 문구(다윗 인물 앞머리)"
+       ],
+       "제안": "다윗을 묘사한 영문 앞머리 \"an ancient Israelite man, a commander, in his 20s\"와 \"the lean young man\"은 명세의 \"a beardless clean-shaven boy of about fifteen\"(17:33 「너는 소년이요」)과 맞지 않는다. 지휘관·20대 대신 갑옷 없는 목동 소년으로 고치고, 시선 문구도 \"the boy on the left\"로 바꾼다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "17:41",
+       "quote": "",
+       "field": [
+        "figures[1].costume.en",
+        "영문 파생 문구(방패 든 자 인물 앞머리)"
+       ],
+       "제안": "방패 든 자의 영문 앞머리에 있는 \"plain tunic, plain round leather cap\"은 costume 칸의 붉은 말총 볏 놋투구·적갈색 튜닉과 부딪힌다. 가죽 모자와 plain tunic 문구를 지워 하나로 맞춘다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "17:6",
+       "quote": "어깨 사이에는 놋단창을 메었으니",
+       "field": "figures[0].costume",
+       "제안": "생성 한계를 이유로 뺀 것을 되살려 어깨 사이에 멘 놋단창을 costume의 ko와 en에 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "17:45",
+       "quote": "너는 칼과 창과 단창으로 내게 오거니와",
+       "field": "figures[0].costume",
+       "제안": "17:51 「그의 칼을 그 집에서 빼어」에 따라 골리앗 허리의 칼집에 든 칼을 costume에 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "17:40",
+       "quote": "손에 막대기를 가지고",
+       "field": "figures[2].prop",
+       "제안": "17:43 「막대기를 가지고 내게 나아왔느냐」로 보아 다윗은 달려가는 순간에도 막대기를 쥐고 있다. 물매를 쥔 손과 다른 손에 목자의 막대기를 쥐게 prop·gesture에 더한다. 지금 why 칸은 막대기를 이 순간의 요구가 아니라고 하는데, 이 판단을 다시 검토한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "17:55",
+       "quote": "다윗이 블레셋 사람을 향하여 나감을 사울이 보고",
+       "field": "crowds[0]",
+       "제안": "이스라엘 편이 지켜보는 것은 본문에 근거가 있다. '본문 밖 · 저작자 정함' 표기를 17:55로 바꾸고, 이스라엘 진 앞에 사울과 군장 아브넬이 서서 지켜보는 모습을 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "17:4",
+       "quote": "그 신장은 여섯 규빗 한 뼘이요",
+       "field": "figures[0].pose",
+       "제안": "한국어 칸에는 키가 적혀 있지 않다. 여섯 규빗 한 뼘(약 3m)이라 방패 든 자나 다윗보다 거의 두 배 크다는 점을 pose나 costume의 ko·en에 적는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "17:48",
+       "quote": "블레셋 사람이 일어나 다윗에게로 마주 가까이 올 때에",
+       "field": "figures[0].pose",
+       "제안": "골리앗이 '일어나' 마주 가까이 오는 움직임, 곧 다가오는 발걸음을 pose·gesture에 분명히 적는다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-saul-gibeah-spear": {
+     "tries": [
+      {
+       "seconds": 16.035,
+       "input": 2,
+       "output": 1347,
+       "cache_read": 17674,
+       "cache_create": 11543,
+       "cost_usd": 0.1228268,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "18:10",
+       "quote": "하나님의 부리신 악신이 사울에게 힘있게 내리매 그가 집 가운데서 야료하는고로",
+       "field": "figures[0].pose",
+       "제안": "사울의 자세 칸에 악신이 내려 집 가운데서 야료하는(날뛰며 헛소리하는) 상태를 넣는다. 예: 「서서 창을 쥔 채 흐트러진 얼굴로 몸을 들썩이며 날뛴다」. 영문 문구의 「standing tall, gripping one spear upright」도 같은 뜻으로, 평온하지 않은 모습으로 고친다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "18:9",
+       "quote": "그 날 후로 사울이 다윗을 주목하였더라",
+       "field": "figures[0].pose",
+       "제안": "사울이 다윗을 노려본다는 시선을 자세 칸과 영문 문구에 적는다. 예: 「glaring at the harpist」. 지금은 방향(facing left)만 있어 눈길이 다윗에게 가는지 알 수 없다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "18:10",
+       "quote": "그가 집 가운데서 야료하는고로",
+       "field": "background[0].what",
+       "제안": "배경을 「사울의 집 한가운데 방」으로 적어 장소가 사울의 집임을 밝힌다. 영문 「a plain dim interior room」에는 왕의 집이라는 표지가 없다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "18:10",
+       "quote": "다윗이 평일과 같이 손으로 수금을 타는데",
+       "field": "figures[1].pose",
+       "제안": "다윗은 평소처럼 손으로 수금을 탄다고 적는다. 사울의 소동과 대비되도록 평온하게 연주하는 모습(예: 「calmly plucking the strings with his hand as usual」)을 자세 칸과 영문 문구에 넣는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "18:5",
+       "quote": "",
+       "field": [
+        "figures[1].role",
+        "영문 파생 문구(David: a commander)"
+       ],
+       "제안": "한국어 역할 칸은 「병기 든 자」인데 영문 문구는 「a commander」이다. 본문 18:5 「사울이 그로 군대의 장을 삼았더니」를 따라 한국어 칸을 「군대의 장」으로 맞추거나, 두 칸 중 하나로 통일한다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-saul-gilgal-amalek": {
+     "tries": [
+      {
+       "seconds": 13.705,
+       "input": 2,
+       "output": 1235,
+       "cache_read": 17674,
+       "cache_create": 14283,
+       "cost_usd": 0.14250680000000002,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "15:14",
+       "quote": "내 귀에 들어오는 이 양의 소리와 내게 들리는 소의 소리는 어찜이니이까",
+       "field": "background",
+       "제안": "본문에 따르면 사울이 아말렉에게서 끌어와 남긴 양과 소가 길갈에 함께 있다(15:15·21). 배경 칸과 whole_background 영문에 '먼 뒤쪽 들에 모여 있는 양 떼와 소 떼'를 더하고, 근거 절로 15:14·15:21을 적는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "15:21",
+       "quote": "백성이 그 마땅히 멸할 것 중에서 가장 좋은 것으로 길갈에서 당신의 하나님 여호와께 제사하려고 양과 소를 취하였나이다",
+       "field": "groups[0].neg",
+       "제안": "길갈에는 제사하려고 가축을 끌어온 백성이 있고, 15:30은 장로들과 이스라엘 앞을 말한다. 그런데 neg의 'third person'은 이들을 모두 막는다. 멀리 작게 그린 백성 무리를 배경에 허용하고, neg는 '두 사람 사이에 끼어드는 제3자'처럼 범위를 좁힌다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "15:27",
+       "quote": "",
+       "field": [
+        "figures[0].prop",
+        "figures[0].gesture"
+       ],
+       "제안": "지물 칸 'a torn robe corner'는 이미 찢겨 떨어진 조각처럼 읽힌다. 몸짓 칸은 아직 사무엘의 겉옷에 붙은 채 손안에서 찢어지는 자락이다. 지물을 'the back hem of Samuel's robe, tearing in his grip'으로 맞춘다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-saul-jabesh-rescue": {
+     "tries": [
+      {
+       "seconds": 13.183,
+       "input": 2,
+       "output": 922,
+       "cache_read": 17674,
+       "cache_create": 12047,
+       "cost_usd": 0.1183588,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "축약",
+       "verse": "11:11",
+       "quote": "날이 더울 때까지 암몬 사람을 치매",
+       "field": "relation",
+       "제안": "본문은 새벽부터 날이 더울 때까지 암몬 사람을 '쳤다'고 말한다. relation의 「아무도 닿지 않는다 / no one touching」은 치는 행위를 지운다. 이스라엘 병사들이 무기를 들고 치며 쫓는 모습을 명시하고, '남은 자'라는 말에 맞게 쓰러진 암몬 병사 몇을 더하는 것을 검토하라.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "11:11",
+       "field": [
+        "figures[0].pose",
+        "relation"
+       ],
+       "제안": "pose는 「진영으로 걸어 들어간다」인데 relation은 「오른쪽으로 쫓고」, gesture는 「성큼 나아간다」, crowds는 「달려 들어온다」로 되어 있다. 사울의 걸음을 '칼을 들고 앞장서 달려 들어간다' 하나로 맞춰라.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "11:6",
+       "field": [
+        "figures[0].expression.ko",
+        "figures[0].expression.en"
+       ],
+       "제안": "한국어는 「결연한 얼굴」뿐인데 영문은 'resolute, fierce'라서 '사나움(fierce)'이 더해졌다. 11:6 「노가 크게 일어나서」에 맞춰 한국어를 「노기 어린 결연한 얼굴」로 고치거나 두 칸을 같게 하라.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "11:11",
+       "field": [
+        "figures[0].gesture.ko",
+        "figures[0].gesture.en"
+       ],
+       "제안": "한국어 「칼을 쥐고 오른쪽으로 성큼 나아간다」의 '오른쪽으로'가 영문에서 빠졌다. 영문을 'striding forward toward the right'로 맞춰라.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-saul-gilgal-coronation": {
+     "tries": [
+      {
+       "seconds": 14.541,
+       "input": 2,
+       "output": 1342,
+       "cache_read": 17674,
+       "cache_create": 12998,
+       "cost_usd": 0.1343668,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "11:15",
+       "quote": "거기서 여호와 앞에 사울로 왕을 삼고",
+       "field": "meaning",
+       "제안": "본문은 '여호와 앞에서' 사울을 왕으로 삼았다고 말한다. 그런데 명세 어디에도 이 일이 여호와 앞에서 이루어졌다는 말이 없다. 제단 앞, 곧 여호와 앞에 백성이 모여 사울을 왕으로 세우는 자리임을 meaning·relation·whole_background에 적어 넣는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "11:15",
+       "quote": "사울로 왕을 삼고",
+       "field": "figures[1].pose",
+       "제안": "지금은 사울이 '백성 가운데 서서 기뻐한다'로만 적혀 있어, 백성이 그를 왕으로 삼는 순간이 흐려졌다. 백성이 사울을 향해 환호하며 왕으로 받드는 모습을 relation과 crowds에 덧붙인다. 관이 없는 소박한 차림은 그대로 둔다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "11:15",
+       "quote": "사울과 이스라엘 모든 사람이 거기서 크게 기뻐하니라",
+       "field": "crowds[0].what",
+       "제안": "명세의 '뒤쪽에 둘러섬'은 '이스라엘 모든 사람'보다 규모가 작게 읽힌다. 들판 끝까지 이어지는 온 이스라엘의 큰 무리라고 고쳐 적는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "11:15",
+       "quote": "",
+       "field": [
+        "relation.ko",
+        "figures[1].gaze"
+       ],
+       "제안": "relation은 백성이 두 사람 '뒤' 중경에 있다고 하는데, 영문 문구는 사울이 'looking straight out toward the crowd and the viewer'(무리와 보는 이를 바라본다)라고 해서 방향이 맞지 않는다. 사울의 시선을 보는 이 쪽으로만 적거나, 무리의 위치를 사울 앞쪽 양옆으로 고친다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "11:15",
+       "quote": "",
+       "field": [
+        "meaning.ko",
+        "relation.ko"
+       ],
+       "제안": "meaning은 사울이 백성 '가운데' 선다고 하고, relation은 백성이 두 사람 '뒤' 중경에 따로 모인다고 해서 위치가 다르다. 둘 중 하나로 통일한다. 예: 무리가 사울을 둘러싸고, 일부는 앞쪽 양옆까지 이른다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-saul-michmash-battle": {
+     "tries": [
+      {
+       "seconds": 12.072,
+       "input": 2,
+       "output": 1005,
+       "cache_read": 17674,
+       "cache_create": 11358,
+       "cost_usd": 0.1145068,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "축약",
+       "verse": "13:10",
+       "quote": "사울이 나가 맞으며 문안하매",
+       "field": "figures[0].pose",
+       "제안": "사울 자세에 '문안한다'를 넣어, 앞으로 나서며 사무엘에게 인사하는 몸짓(손을 들거나 몸을 숙임)으로 적는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "field": [
+        "figures[0].pose",
+        "영문 파생 문구(king)"
+       ],
+       "제안": "한국어 자세 칸은 '사무엘을 맞으러 나온다'인데, 영문은 'standing tall, holding one plain cloak'으로 제자리에 서 있기만 한다. 영문에 'stepping forward from the altar to meet and greet the prophet'을 넣는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "field": [
+        "figures[0].pose",
+        "영문 파생 문구(king)"
+       ],
+       "제안": "한국어 자세 칸은 '제단 곁에 서서'인데, 영문은 사울과 돌 제단의 위치 관계를 말하지 않는다. 영문에 'beside the stone altar'를 넣어 사울을 제단 곁에 둔다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "13:9",
+       "quote": "번제와 화목제물을 이리로 가져오라",
+       "field": "background",
+       "제안": "번제를 막 마친 제단 곁에 가져다 놓은 화목제물(제물 짐승 등)을 배경에 더할지 검토한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "13:7",
+       "quote": "그를 좇은 모든 백성은 떨더라",
+       "field": "crowds[0].what",
+       "제안": "흩어지는 백성을 '두려워 떨며 흩어지는' 모습으로 적고, 영문에도 'fearful, anxious'를 넣는다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-saul-mizpah-chosen": {
+     "tries": [
+      {
+       "seconds": 13.162,
+       "input": 2,
+       "output": 1190,
+       "cache_read": 17674,
+       "cache_create": 11803,
+       "cost_usd": 0.1217668,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "축약",
+       "verse": "10:23",
+       "quote": "그가 백성 중에 서니 다른 사람보다 어깨 위나 더 크더라",
+       "field": "figures[1].pose",
+       "제안": "자세 칸을 '백성 가운데 서서 둘레 사람들보다 어깨 위만큼 더 크다'로 고쳐 키 차이를 적으세요. 영문에도 'standing among the people, taller than everyone around him by head and shoulders'를 넣으세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "10:23",
+       "field": [
+        "figures[1].pose",
+        "crowds[0].region"
+       ],
+       "제안": "사울은 '백성 가운데' 섰는데, 무리는 뒤쪽에 있고 영문은 'a loose distant crowd of tiny people'입니다. 이러면 사울 둘레에 견줄 사람이 없습니다. 사울 바로 곁에 실물 크기 백성 몇 명을 두어 그가 그들 사이에 서게 하세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "10:24",
+       "quote": "모든 백성이 왕의 만세를 외쳐 부르니라",
+       "field": "crowds[0].what",
+       "제안": "무리 칸에 '왕의 만세를 외치며 손을 들고 환호한다'를 더하세요. 영문의 'standing in scattered groups'는 'crowd raising arms and shouting'으로 바꾸세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "10:23",
+       "quote": "그들이 달려가서 거기서 데려오매",
+       "field": "crowds",
+       "제안": "사울을 행구 사이에서 데려온 사람 몇을 사울 곁에 두세요. 그들이 사울을 무리 가운데로 이끌어 낸 모습으로 그리면 됩니다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "10:20",
+       "quote": "이스라엘 모든 지파를 가까이 오게 하였더니",
+       "field": "crowds[0].what",
+       "제안": "'흩어진 작은 무리'가 아니라 지파별로 가까이 모여 선 큰 회중으로 고치세요. 영문의 'loose distant ... scattered'도 그에 맞게 바꾸세요.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-saul-nob-massacre": {
+     "tries": [
+      {
+       "seconds": 12.987,
+       "input": 2,
+       "output": 1196,
+       "cache_read": 17674,
+       "cache_create": 13181,
+       "cost_usd": 0.1329108,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "22:11",
+       "quote": "그 아비의 온 집 곧 놉에 있는 제사장들을 부르매 그들이 다 왕께 이른지라",
+       "field": "crowds",
+       "제안": "아히멜렉 혼자가 아니라 세마포 에봇을 입은 놉의 제사장 무리(22:18 「세마포 에봇 입은 자 팔십오 인」)를 아히멜렉 뒤에 군중으로 더하고, 영문 문구에도 넣는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "22:17",
+       "quote": "왕의 신하들이 손을 들어 여호와의 제사장들 죽이기를 싫어한지라",
+       "field": "crowds",
+       "제안": "왕의 명을 거부하고 물러서 있는 좌우의 시위자·신하들을 사울 곁에 무리로 더해, 도엑만 홀로 명을 따르는 대비가 드러나게 한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "22:6",
+       "quote": "사울이 기브아 높은 곳에서 손에 단창을 들고 에셀나무 아래 앉았고 모든 신하들은 그 곁에 섰더니",
+       "field": [
+        "whole_background",
+        "background"
+       ],
+       "제안": "제사장들이 왕에게 불려 왔으므로(22:11) 장소를 놉 성막 앞이 아니라 기브아 높은 곳의 에셀나무 아래로 고치고, 영문 배경 문구도 같이 바꾼다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "22:6",
+       "quote": "에셀나무 아래 앉았고",
+       "field": "figures[0].pose",
+       "제안": "본문에서 사울은 단창을 들고 앉아 있다. 「선 채로」를 「에셀나무 아래 앉아 단창을 쥐고 한 손을 든다」로 고치거나, 일어선 것은 저작자가 정했다고 밝힌다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "22:18",
+       "quote": "너는 돌이켜 제사장들을 죽이라",
+       "field": [
+        "meaning",
+        "relation"
+       ],
+       "제안": "명령의 대상은 제사장 한 명이 아니라 여러 명이다. 「제사장 쪽」·「the priest」를 「제사장들 쪽」·「the priests」로 고친다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-solomon-ezion-geber-fleet": {
+     "tries": [
+      {
+       "seconds": 12.141,
+       "input": 2,
+       "output": 1055,
+       "cache_read": 17674,
+       "cache_create": 11213,
+       "cost_usd": 0.11434680000000001,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "9:27",
+       "quote": "히람이 자기 종 곧 바다에 익숙한 사공들을 솔로몬의 종과 함께 그 배로 보내매",
+       "field": "crowds",
+       "제안": "moment가 9:27까지 덮는데 9:27의 사람들이 빠져 있다. 히람이 보낸, 바다에 익숙한 두로 사공들과 솔로몬의 종들이 배 곁에 함께 있는 무리를 crowds에 넣는다. 또는 moment.verse를 9:26으로 좁힌다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "9:26-27",
+       "field": [
+        "moment.verse",
+        "moment.why"
+       ],
+       "제안": "moment.verse는 9:26-27인데 why는 9:27의 항해 장면을 그리지 않는다며 인물을 1명으로 한정한다. verse를 9:26으로 고치거나, why에 9:27의 사공과 종들을 넣는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "9:26",
+       "quote": "에돔 땅 홍해 물가 엘롯 근처 에시온게벨에서",
+       "field": "background",
+       "제안": "장소가 '물가와 바다'로만 남아 있다. 에돔 땅의 메마른 산과 광야가 둘러싼 홍해 만, 엘롯 근처의 항구 에시온게벨이라는 장소를 background와 영문 문구에 적는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "9:26",
+       "quote": "배들을 지은지라",
+       "field": "background[0]",
+       "제안": "배를 '지은' 것이 핵심이다. 영문의 'beached on a shore'(모래에 끌어올린 배)를 막 지어 물가에 띄우려는 새 배로 고치고, 조선 흔적(목재, 받침대)을 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "9:26",
+       "field": [
+        "background[1]",
+        "background[0]"
+       ],
+       "제안": "영문 배경 두 겹은 'no boats'라고 쓰는데 다른 겹은 배를 그린다. 배경 문구에서 'no boats'를 빼서 배 겹과 충돌하지 않게 한다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-solomon-gibeon-dream": {
+     "tries": [
+      {
+       "seconds": 9.656,
+       "input": 2,
+       "output": 645,
+       "cache_read": 17674,
+       "cache_create": 11274,
+       "cost_usd": 0.10663479999999999,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "3:4",
+       "quote": "솔로몬이 그 단에 일천 번제를 드렸더니",
+       "field": "background[0].what",
+       "제안": "이 제단은 꿈꾸기 직전까지 일천 번제를 드린 큰 산당의 단이다. 「빈 제단」·영문 「bare stone blocks, no fire」 대신, 제사를 마친 뒤 남은 재와 사그라드는 잔불이 있는 제단으로 고쳐 3:4와 이어지게 한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "3:4",
+       "quote": "거기는 산당이 큼이라",
+       "field": "background[0].what",
+       "제안": "본문은 기브온 산당이 크다는 점을 이유로 든다. 그러니 영문 「quiet high place」 앞에 크고 이름난(great) 산당임을 나타내는 말을 더한다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-solomon-gihon-anointing": {
+     "tries": [
+      {
+       "seconds": 11.903,
+       "input": 2,
+       "output": 1187,
+       "cache_read": 17674,
+       "cache_create": 13313,
+       "cost_usd": 0.1337868,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "1:38",
+       "quote": "선지자 나단과 여호야다의 아들 브나야와 그렛 사람과 블렛 사람이 내려가서",
+       "field": "figures",
+       "제안": "기름을 부을 때 곁에 있는 선지자 나단과 브나야를 figures에 더하세요. 그렛 사람과 블렛 사람 호위대는 crowds에 넣고, 영문 문구에도 같은 인물을 반영하세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "1:45",
+       "quote": "제사장 사독과 선지자 나단이 기혼에서 기름을 부어 왕을 삼고",
+       "field": [
+        "moment.why",
+        "figures"
+       ],
+       "제안": "1:34과 1:45는 나단도 기름 붓는 자로 함께 말합니다. moment.why의 「나단은 붓는 행위자가 아니다」를 고치세요. 사독이 붓고 나단이 바로 곁에서 함께 서 있는 모습으로 적으세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "1:38",
+       "quote": "솔로몬을 다윗 왕의 노새에 태우고 인도하여 기혼으로 가서",
+       "field": "background",
+       "제안": "솔로몬이 타고 온 다윗 왕의 노새를 곁에 서 있는 지물로 background에 더하세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "1:39",
+       "quote": "제사장 사독이 성막 가운데서 기름 뿔을 가져다가 솔로몬에게 기름을 부으니",
+       "field": "figures[0].pose",
+       "제안": "기름이 실제로 뿔에서 흘러 솔로몬의 머리에 떨어지는 모습을 명시하세요. 영문의 'as if pouring oil'을 'pouring oil from the horn onto Solomon's head'로 바꾸세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "1:40",
+       "quote": "모든 백성이 왕을 따라 올라와서 피리를 불며 크게 즐거워하므로",
+       "field": [
+        "moment.why",
+        "crowds[0]"
+       ],
+       "제안": "moment.why는 1:39-40의 환호를 순간 밖으로 뺐습니다. 그런데 crowds는 1:40을 근거로 들고, 영문은 'celebrating'이라 씁니다. 군중을 「기름부음을 지켜보는 백성」(1:39)으로 고쳐 근거와 묘사를 맞추세요.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-solomon-jerusalem-birth": {
+     "tries": [
+      {
+       "seconds": 5.476,
+       "input": 2,
+       "output": 345,
+       "cache_read": 17674,
+       "cache_create": 11362,
+       "cost_usd": 0.1013388,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "축약",
+       "verse": "12:24",
+       "quote": "저가 아들을 낳으매",
+       "field": "figures[0].prop",
+       "제안": "지물 칸과 영문 문구에서 성별이 없는 「an infant」을 「a newborn baby boy (her son Solomon)」처럼 갓난 아들로 밝혀 적는다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-solomon-jerusalem-apostasy": {
+     "tries": [
+      {
+       "seconds": 14.122,
+       "input": 2,
+       "output": 1231,
+       "cache_read": 17674,
+       "cache_create": 12529,
+       "cost_usd": 0.1283948,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "축약",
+       "verse": "11:7",
+       "quote": "모압의 가증한 그모스를 위하여 예루살렘 앞 산에 산당을 지었고 또 암몬 자손의 가증한 몰록을 위하여 그와 같이 하였으며",
+       "field": "background[0]",
+       "제안": "그모스의 산당과 몰록의 산당은 서로 다른 두 신을 위해 따로 지은 것이니, background에 이 둘을 나눠 적는다. 영문의 'one plain carved idol'도 각자 다른 우상을 모신 산당 둘 이상으로 고친다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "11:8",
+       "quote": "저가 또 이족 후비들을 위하여 다 그와 같이 한지라",
+       "field": "background[0]",
+       "제안": "후비들 모두를 위해 산당을 지었으니, 산 위에 이방 산당과 우상이 여럿 늘어선 모습으로 적는다. 'a small ancient stone shrine' 하나만 두지 않는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "11:7",
+       "quote": "예루살렘 앞 산에",
+       "field": "background[0]",
+       "제안": "영문 'a hill outside a city'로는 그 성이 예루살렘이고 산이 그 앞에 있다는 것이 드러나지 않는다. 산 맞은편 멀리 예루살렘 성벽이 보이도록 적고, 'no buildings'는 산 위에만 해당하도록 고친다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "11:8",
+       "quote": "저희가 자기의 신들에게 분향하며 제사하였더라",
+       "field": "moment.why",
+       "제안": "고정한 순간이 11:8을 포함하는데, 본문은 이방 후비들이 그 산당에서 분향하고 제사했다고 말한다. 후비들이 '이 순간에 없다'는 판단을 다시 보고, 이방 옷차림의 후비들이 우상 앞에 분향하는 모습을 crowds에 넣는다. 그리기 어려운 동작이라는 이유로 빼지 않는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "",
+       "quote": "",
+       "field": [
+        "moment.why",
+        "background[0]"
+       ],
+       "제안": "moment.why는 11:8의 분향·제사가 있는 순간을 고정하면서 그 장면을 그리지 않는다고 적었고, 영문은 'no fire'로 제사의 흔적까지 지웠다. 11:8을 순간에 넣을 것이면 제단의 향연기를 그리고, 그리지 않을 것이면 moment.verse를 11:7로 좁혀 둘을 맞춘다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-solomon-jerusalem-david-charge": {
+     "tries": [
+      {
+       "seconds": 10.433,
+       "input": 2,
+       "output": 953,
+       "cache_read": 17674,
+       "cache_create": 13257,
+       "cost_usd": 0.1286588,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "축약",
+       "verse": "2:1",
+       "quote": "그 아들 솔로몬에게 명하여 가로되",
+       "field": "figures[0].pose",
+       "제안": "다윗의 자세가 '기대 누워 있다'에서 그친다. 아들에게 말로 명하는 행동이 빠졌으니 '침상에 기대 누운 채 솔로몬을 향해 입을 열어 명한다'로 고치고, 영문에도 'speaking, giving a charge to his son'을 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "2:1",
+       "quote": "다윗이 죽을 날이 임박하매",
+       "field": "figures[0].role",
+       "제안": "역할이 '노년의 다윗'뿐이라 죽음이 가까운 상태가 흐려졌다. '죽을 날이 임박한 노년의 다윗'으로 적어 기력이 다한 임종 직전의 모습을 분명히 한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "field": [
+        "background[0].what",
+        "figures[0].pose"
+       ],
+       "제안": "영문 배경 문구는 침상을 'empty, no people'로 적었는데, 인물 칸에서는 다윗이 그 침상에 누워 있다. 배경 영문에서 'empty'를 빼고 인물 칸의 침상과 같은 침상임이 드러나게 맞춘다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-solomon-jerusalem-palace": {
+     "tries": [
+      {
+       "seconds": 16.839,
+       "input": 2,
+       "output": 1790,
+       "cache_read": 17674,
+       "cache_create": 12717,
+       "cost_usd": 0.1410788,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "어긋남",
+       "verse": "7:2",
+       "field": [
+        "background[0].what",
+        "영문 파생 문구"
+       ],
+       "제안": "영문 배경 문구의 「no buildings」가 바로 뒤의 「a long ancient palace of cedar wood」와 충돌하고, 명세 background의 궁과도 어긋난다. 「no buildings」를 지운다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "7:1",
+       "field": [
+        "moment.why",
+        "영문 파생 문구"
+       ],
+       "제안": "본문은 「그 전부를 준공하니라」이고 순간도 완성된 궁 앞인데, 영문은 「in front of a building site」(공사 현장)이다. 「in front of the finished palace, a wide courtyard」로 고친다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "7:6",
+       "field": [
+        "moment.why",
+        "verses.quotes"
+       ],
+       "제안": "moment.why의 「시므온 낭실(7:6-8)」은 본문에 없는 이름이다. 본문 7:6-7에 맞춰 「기둥 낭실·재판하는 보좌 낭실」로 고친다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "7:2",
+       "quote": "장이 일백 규빗이요 광이 오십 규빗이요 고가 삼십 규빗이라",
+       "field": "background[0].what",
+       "제안": "궁의 비율(길이 100·너비 50·높이 30규빗), 곧 길고 낮은 직사각형의 큰 건물이라는 점을 명세와 영문에 적는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "7:3",
+       "quote": "기둥 위에 있는 사십오 개 들보를 백향목으로 덮었는데 들보는 한 줄에 열다섯이요",
+       "field": "background[0].what",
+       "제안": "기둥 위에 들보가 한 줄에 열다섯씩 놓이고 그 위를 백향목으로 덮은 지붕 구조를 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "7:4",
+       "quote": "창틀이 세 줄로 있는데 창과 창이 세 층으로 서로 대하였고",
+       "field": "background",
+       "제안": "벽면에 세 층으로 서로 마주 보며 늘어선 창틀을 배경 요소로 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "7:5",
+       "quote": "모든 문과 문설주를 다 큰 나무로 네모지게 만들었는데",
+       "field": "background",
+       "제안": "큰 나무로 네모지게 짠 문과 문설주를 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "7:9",
+       "quote": "척수대로 톱으로 켠 것이라 그 기초석에서 처마까지",
+       "field": "background[1].what",
+       "제안": "「다듬은 돌 기초와 벽」을 「치수대로 톱으로 켠 귀한 다듬은 돌이 기초석부터 처마까지」로 구체화하고, 영문도 「dressed stone foundation」에서 「sawn dressed stone from foundation to eaves」로 넓힌다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "7:10",
+       "quote": "그 기초석은 귀하고 큰 돌 곧 십 규빗 되는 돌과 여덟 규빗 되는 돌이라",
+       "field": "background[1].what",
+       "제안": "기초에 10규빗·8규빗짜리 거대한 돌덩이가 드러나 있음을 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "7:12",
+       "quote": "큰 뜰 주위에는 다듬은 돌 세 켜와 백향목 두꺼운 판자 한 켜를 놓았으니",
+       "field": "background",
+       "제안": "영문의 「bare open courtyard」를 큰 뜰로 바꾸고, 뜰 둘레에 다듬은 돌 세 켜와 백향목 판자 한 켜로 쌓은 담을 더한다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-solomon-jerusalem-sheba": {
+     "tries": [
+      {
+       "seconds": 12.417,
+       "input": 2,
+       "output": 1058,
+       "cache_read": 17674,
+       "cache_create": 11257,
+       "cost_usd": 0.1147588,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "어긋남",
+       "verse": "10:10",
+       "field": [
+        "figures[0].facing",
+        "영문 파생 문구"
+       ],
+       "제안": "명세에서는 솔로몬이 facing left이고 여왕이 facing right이므로 여왕은 왼쪽, 솔로몬은 오른쪽에 와야 하고, 영문 문구도 그렇게 배치돼 있다. 다만 명세에 좌우 배치 칸이 따로 없다. 이 배치를 의도한 것이라면 명세에 명시하라.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "10:10",
+       "quote": "금 일백이십 달란트와 심히 많은 향품과 보석을 왕께 드렸으니",
+       "field": "figures[1].prop",
+       "제안": "예물은 작은 향품 상자 하나로 줄어 있다. 금 120달란트, 심히 많은 향품, 보석이 바쳐지는 모습이 보이도록 바닥에 쌓인 금과 보석, 여러 향품 상자를 더하라. 영문 문구의 'a small wooden spice chest'도 그에 맞게 고쳐라.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "10:2",
+       "quote": "수원이 심히 많고",
+       "field": "crowds",
+       "제안": "여왕의 수행원 무리가 예물을 들고 뒤따르는 모습을 crowds에 더하라. 10:13 「그 신복들로 더불어」도 근거가 된다. 영문 문구의 'no people'은 빼라.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "10:5",
+       "quote": "그 신복들의 좌석과 그 신하들의 시립한 것과 그들의 공복과 술 관원들과",
+       "field": "crowds",
+       "제안": "공복을 입고 왕 곁에 늘어선 솔로몬의 신하들과 술 관원들을 crowds에 더하라. 10:8 「항상 당신의 앞에 서서」도 같은 장면을 말한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "10:5",
+       "field": [
+        "background[0].what",
+        "영문 파생 문구"
+       ],
+       "제안": "영문 문구의 'no people, quiet room'은 수원과 신하들이 함께 있다는 본문과 어긋난다. 이 부분을 빼라.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "10:4",
+       "quote": "그 건축한 궁과",
+       "field": "background",
+       "제안": "배경을 '맨바닥의 수수한 돌 홀(plain, bare)'로 두지 말고, 여왕이 보고 정신이 현황해진 화려한 궁으로 바꿔라. 상의 식물이나 금 그릇(10:21)을 더해도 된다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "10:5",
+       "quote": "보고 정신이 현황하여",
+       "field": "figures[1].pose",
+       "제안": "여왕이 예물을 드리며 경탄하고 감동한 표정을 pose에 더하라. 이 장면은 10:6-9의 찬사 직후다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-solomon-jerusalem-temple-build": {
+     "tries": [
+      {
+       "seconds": 16.425,
+       "input": 2,
+       "output": 1687,
+       "cache_read": 17674,
+       "cache_create": 11565,
+       "cost_usd": 0.1298028,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "어긋남",
+       "verse": "6:38",
+       "field": [
+        "moment.verse",
+        "moment.why"
+       ],
+       "제안": "moment.verse에 6:38(전이 다 필역됨)이 들어 있는데, why와 영문은 '건축 진행 중'이다. moment.verse를 6:1 · 6:2 · 6:7로 바꾸거나, 완공 순간으로 통일한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "6:2",
+       "field": [
+        "figures[0].prop",
+        "moment.why"
+       ],
+       "제안": "'전 모형'은 본문에 없는데도 「본문 밖 · 저작자 정함」 표시가 없다. 그 표시를 달거나, 지물을 빼고 빈손으로 바라보는 자세로 고친다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "6:3",
+       "quote": "전의 성소 앞 낭실의 장은 전의 광과 같이 이십 규빗이요",
+       "field": "background",
+       "제안": "성전 정면에 붙은 낭실(현관, 폭 20규빗·깊이 10규빗)을 배경 건물 묘사와 영문에 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "6:4",
+       "quote": "전을 위하여 붙박이 교창을 내고",
+       "field": "background",
+       "제안": "벽 위쪽에 낸 붙박이 창(교창)을 건물 묘사에 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "6:5",
+       "quote": "돌아가며 다락들을 건축하되 다락마다 돌아가며 골방들을 만들었으니",
+       "field": "background",
+       "제안": "본채 벽을 둘러싼 3층 곁방 구조를 더한다. 6:6에 따라 층이 오를수록 넓어지고 벽에 턱이 있다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "6:36",
+       "quote": "다듬은 돌 세 켜와 백향목 두꺼운 판자 한 켜로 둘러 안뜰을 만들었더라",
+       "field": "background",
+       "제안": "다듬은 돌 세 켜 위에 백향목 판자 한 켜를 얹은 안뜰 담장을 배경에 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "6:2",
+       "quote": "장이 육십 규빗이요 광이 이십 규빗이요 고가 삼십 규빗이며",
+       "field": "background[0].what",
+       "제안": "'large'에 그치지 말고, 길고 좁으며 높은 직사각형 건물이라는 비례를 적는다(길이 60·폭 20·높이 30규빗).",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "6:9",
+       "quote": "그 전은 백향목 서까래와 널판으로 덮었고",
+       "field": "background[0].what",
+       "제안": "백향목이 지붕의 서까래와 널판이라는 점을 밝힌다. 영문의 'cedar beams and scaffolding'은 본문에 없는 비계를 더하고 지붕 이야기는 흐린다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "순간",
+       "verse": "6:37",
+       "quote": "제사년 시브월에 여호와의 전 기초를 쌓았고",
+       "field": "moment",
+       "제안": "참고: '진행 중'을 그리려면 6:1·6:37의 기초 쌓는 때가 근거가 분명하다. 다른 길로, 6:11-13의 여호와 말씀이 임하는 순간도 솔로몬과 건물을 함께 그릴 근거가 된다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-solomon-jerusalem-temple-dedication": {
+     "tries": [
+      {
+       "seconds": 13.594,
+       "input": 2,
+       "output": 1142,
+       "cache_read": 17674,
+       "cache_create": 14640,
+       "cost_usd": 0.1435028,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "어긋남",
+       "verse": "8:54",
+       "field": [
+        "figures[0].pose",
+        "figures[0].prop"
+       ],
+       "제안": "본문은 「손을 펴서 하늘을 향하여」라고 하니 두 손은 비어 있어야 합니다. 지물 칸의 「겉옷자락」과 영문 「holding the edge of his robe」를 빼고, 지물을 「없음(빈 두 손)」으로 고치세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "8:54",
+       "quote": "무릎을 꿇고 손을 펴서 하늘을 향하여",
+       "field": "figures[0].pose",
+       "제안": "자세 칸을 「단 앞에 무릎 꿇고 두 손을 펴서 하늘을 향해 든다」로 고쳐 「하늘을 향하여」를 한국어 칸에도 명시하세요. 영문은 이미 upward로 되어 있습니다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "8:64",
+       "field": [
+        "background[0].what",
+        "영문 파생 문구(no buildings)"
+       ],
+       "제안": "명세는 「성전 앞뜰」인데 영문은 「no buildings」라서 성전이 빠집니다. 「여호와의 전 앞뜰」이므로 뜰 뒤로 성전 건물을 배경에 넣고, 영문의 no buildings를 지우세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "8:22",
+       "quote": "이스라엘의 온 회중을 마주서서",
+       "field": "crowds[0]",
+       "제안": "회중이 솔로몬과 마주 보고 서 있다는 배치를 군중 칸에 적고, 영문에도 넣으세요(예: crowd facing the king, standing). 「서다」는 8:14 「온 회중이 섰더라」에도 근거가 있습니다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "순간",
+       "verse": "8:22",
+       "quote": "하늘을 향하여 손을 펴고",
+       "field": "moment",
+       "제안": "참고용입니다. 지금 순간도 타당합니다. 다만 단 앞에 서서 회중을 마주하고 손을 든 8:22나, 일어나 큰 소리로 축복하는 8:55도 봉헌 장면을 대표할 만한 순간입니다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-solomon-jerusalem-two-mothers": {
+     "tries": [
+      {
+       "seconds": 13.974,
+       "input": 2,
+       "output": 1275,
+       "cache_read": 17674,
+       "cache_create": 11698,
+       "cost_usd": 0.12262680000000001,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "어긋남",
+       "verse": "3:20",
+       "quote": "내 아들을 내 곁에서 가져다가 자기의 품에 누이고",
+       "field": [
+        "moment.why",
+        "figures[1].prop"
+       ],
+       "제안": "3:16-22 순간에는 산 아이가 다른 어머니의 품에 있다. 아기를 다른 어머니(mother-b) 쪽 지물로 옮기거나, 누가 안았는지 정하지 않은 채 두 여인 사이에 두도록 고친다. 「참 어머니 쪽 지물로만 그린다」는 본문과 어긋난다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "field": [
+        "moment.verse",
+        "figures[1].pose"
+       ],
+       "제안": "고정한 순간은 3:16-22의 쟁론이다. 그런데 참 어머니의 자세와 근거는 3:26의 「애원」이다. 자세를 「왕 앞에 서서 다툰다/호소한다」로 고치고 근거 절을 3:17-22로 바꾼다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "3:22",
+       "quote": "왕 앞에서 그와 같이 쟁론하는지라",
+       "field": "figures[1].pose",
+       "제안": "두 여인이 함께 맞서 쟁론한다. 참 어머니도 일방적으로 애원하는 모습이 아니라 상대 여인을 향해 다투는 모습으로 적는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "3:16",
+       "quote": "창기 두 계집이 왕에게 와서 그 앞에 서며",
+       "field": "figures[1].role, figures[2].role",
+       "제안": "두 여인의 신분이 창기라는 점을 role에 더한다. 예: 「창기, 참 어머니」.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "field": [
+        "figures[2].pose",
+        "영문 파생 문구(center woman)"
+       ],
+       "제안": "한국어 자세 칸은 「팔짱을 끼고」인데, 영문에는 팔짱이 없고 'gripping the edge of her robe'만 있다. 손 동작을 한쪽으로 통일한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "순간",
+       "verse": "3:26",
+       "quote": "그 산 아들의 어미되는 계집이 그 아들을 위하여 마음이 불붙는 것 같아서",
+       "field": "moment",
+       "제안": "이 장면의 핵심은 칼 앞에서 참 어머니가 드러나는 3:24-27이다. 다만 브리프가 이 순간을 제외했으므로 참고로만 적는다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    }
+   }
+  },
+  "after1": {
+   "model": "opus",
+   "answers": {
+    "authored-david-mahanaim-exile": {
+     "tries": [
+      {
+       "seconds": 10.218,
+       "input": 2,
+       "output": 906,
+       "cache_read": 17674,
+       "cache_create": 12726,
+       "cost_usd": 0.12347079999999999,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "순간",
+       "verse": "17:27",
+       "quote": "다윗이 마하나임에 이르렀을 때에",
+       "field": "moment.verse",
+       "제안": "17:27-29는 같은 「이르렀을 때」를 다시 짚고, 소비·마길·바실래가 침상·대야·질그릇·곡식·꿀·뻐더·양·치스를 가져와 지친 백성을 먹이는 일을 말한다. 이 대목이 마하나임 장면을 더 잘 드러내니, 그 순간으로 옮기는 것을 참고로 검토하라.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "17:29",
+       "quote": "백성이 들에서 시장하고 곤하고 목마르겠다",
+       "field": "crowds[0].what",
+       "제안": "본문에서 「들에서」 시장하고 곤하고 목마르다고 했으니 광야(들)를 지나 왔다는 맥락을 살려라. crowds와 background에 '들(광야)에서 지쳐 온' 같은 문구를 넣고, 영문도 'weary from the wilderness'처럼 맞춰라.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-gibeon-battle": {
+     "tries": [
+      {
+       "seconds": 13.198,
+       "input": 2,
+       "output": 1231,
+       "cache_read": 17674,
+       "cache_create": 15051,
+       "cost_usd": 0.1485708,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "2:18",
+       "quote": "그곳에 스루야의 세 아들 요압과 아비새와 아사헬이 있었는데",
+       "field": "figures",
+       "제안": "요압 곁, 못 저편에 앉은 아우 아비새와 아사헬을 더한다. 아사헬은 발이 빠른 날랜 젊은이로 그린다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "2:13",
+       "quote": "기브온 못가에서 저희를 만나 앉으니",
+       "field": "crowds",
+       "제안": "양편 신복들은 지휘관과 함께 못가에서 만나 앉은 것이다. 먼 능선 위 작은 실루엣(\"tiny distant ... on a low ridge\")이 아니라 못 이편·저편 가에 지휘관 뒤로 앉은 무리로 고친다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "2:15-16",
+       "field": [
+        "moment.why",
+        "stages[S5].prompt"
+       ],
+       "제안": "순간은 이미 맞붙어 머리를 잡은 때인데, 영문은 \"stepping forward in matched pairs\"와 \"gripping his opponent by the head\"를 함께 적어 두 동작이 섞인다. 영문을 \"standing locked in twelve matched pairs, each gripping his opponent by the head\"로 고친다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "2:15",
+       "quote": "베냐민과 사울의 아들 이스보셋의 편에 열둘이요 다윗의 신복 중에 열둘이라",
+       "field": "stages[S5].prompt",
+       "제안": "영문 \"twenty-four young men in plain knee-length wool tunics\"로는 두 편이 구분되지 않는다. 짝마다 한쪽은 아브넬 쪽(이편), 다른 쪽은 요압 쪽(저편)에서 나온 것이 드러나도록, 각 편이 자기 지휘관 쪽에서 나와 맞선 배치를 적는다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-returns-jerusalem": {
+     "tries": [
+      {
+       "seconds": 20.886,
+       "input": 2,
+       "output": 1889,
+       "cache_read": 17674,
+       "cache_create": 14125,
+       "cost_usd": 0.1543228,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "19:17",
+       "quote": "베냐민 사람 일천 명이 저와 함께 하고 사울의 사환 시바도 그 아들 열다섯과 종 스무 명으로 더불어 저와 함께 하여 요단 강을 밟고 건너 왕의 앞으로 나아오니라",
+       "field": "crowds",
+       "제안": "19:17은 나룻배가 건너오기(19:18 전반) 전에 이미 요단을 밟고 건너 왕 앞에 와 있는 무리를 말합니다. 베냐민 사람 일천 명과, 아들 열다섯·종 스무 명을 거느린 시바를 crowds와 영문 문구에 더하십시오. 이들은 강물을 밟고 건너와 왕 앞에 서 있는 모습으로 그립니다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "19:16",
+       "quote": "게라의 아들 시므이가 급히 유다 사람과 함께 다윗 왕을 맞으려 내려올 때에",
+       "field": "figures",
+       "제안": "왕 앞에 엎드리는 동작(19:18 후반)만 순간 밖입니다. 시므이 자신은 이 순간 유다 사람·베냐민 사람과 함께 급히 내려와 무리 속에 있습니다. 시므이를 엎드리지 않은 채 서둘러 다가오는 인물로 더하십시오.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "19:18",
+       "quote": "왕의 가족을 건네려 하며",
+       "field": "figures",
+       "제안": "나룻배가 건너오는 까닭인 왕의 가족(여인·아이 등)이 화면에 없습니다. 강가에서 배를 기다리는 왕의 가족 무리를 crowds에 더하십시오.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "19:14",
+       "quote": "왕은 모든 신복으로 더불어 돌아오소서",
+       "field": "figures",
+       "제안": "다윗이 홀로 걸어오는 것으로 되어 있습니다. 왕과 함께 돌아오는 신복·백성 무리를 왕 뒤에 더하십시오. 19:39 「백성이 다 요단을 건너매」도 이 무리가 있음을 받쳐 줍니다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "19:15",
+       "quote": "왕이 돌아와",
+       "field": "verse_elements[0].en",
+       "제안": "영문 문구 'lean young man walking'은 인물이 왕이라는 점을 지웁니다. 또 19:7 「왕이 젊었을 때부터 지금까지」로 보아 이때 다윗은 젊은이가 아닙니다. 나이 든 왕으로, 왕의 차림을 갖춘 모습으로 고치십시오.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "field": [
+        "verse_elements[4].ko",
+        "verse_elements[4].en"
+       ],
+       "제안": "한국어 칸은 「유다 무리가 길갈에 모임」인데 영문 칸은 'who have come from Gilgal'이고, moment.why도 「길갈에서 와」라고 적었습니다. 한국어 칸을 「길갈에 와 있던 유다 무리가 강가로 나옴」처럼 고쳐 세 칸을 하나로 맞추십시오.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-samuel-bethlehem-david-anointing": {
+     "tries": [
+      {
+       "seconds": 15.487,
+       "input": 2,
+       "output": 1469,
+       "cache_read": 17674,
+       "cache_create": 13114,
+       "cost_usd": 0.1378348,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "어긋남",
+       "verse": "16:13",
+       "field": [
+        "figures[2].pose",
+        "figures[2].prop"
+       ],
+       "제안": "이새의 자세 칸은 「빈손으로 지켜본다」인데 지물 칸과 영문은 「gripping one wooden staff upright ... empty-handed」입니다. 지팡이와 빈손이 한 문장에 같이 있습니다. moment.why에 맞춰 prop을 비우고 영문에서 staff 구절을 지우세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "16:11",
+       "field": [
+        "verse_elements[5].en",
+        "moment.why"
+       ],
+       "제안": "verse_elements의 이새 영문 「gripping one wooden staff upright」는 「이새와 형제들은 빈손으로 지켜본다」와 맞지 않습니다. 「standing apart, empty-handed, watching」으로 고치세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "16:13",
+       "field": [
+        "figures[0].pose",
+        "영문 파생 문구(사무엘 인물 문장)"
+       ],
+       "제안": "사무엘의 자세 칸은 「기름 뿔을 기울여 다윗에게 붓는다」인데 영문 인물 문장은 「holding up one small horn of oil」입니다. 「tilting one small horn of oil over the boy's bowed head」로 맞추세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "16:13",
+       "quote": "그 형제 중에서 그에게 부었더니",
+       "field": "crowds[0]",
+       "제안": "본문은 형제들 「중에서」 부었다고 합니다. 「just behind the boy」 한 줄은 이보다 흐립니다. 형제들이 다윗을 양옆과 뒤에서 둘러싸고 그 가운데서 기름을 받는 배치로 고치세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "16:5",
+       "quote": "나와 함께 제사하자 하고 이새와 그 아들들을 성결케 하고 제사에 청하니라",
+       "field": "background[0]",
+       "제안": "명세에는 「제사 자리」가 있지만 영문은 「a small dry village courtyard」뿐이어서 제사 자리라는 점이 빠졌습니다. 소박한 돌 제단과 제물(16:2 「암송아지」)을 배경에 더하세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "16:4",
+       "quote": "성읍 장로들이 떨며 그를 영접하여",
+       "field": "crowds",
+       "제안": "사무엘은 성읍 장로들을 제사에 함께 청했습니다(16:5 「나와 함께 제사하자」). 장로 몇 사람이 멀찍이 서서 지켜보는 무리를 더하는 것을 검토하세요.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-gath-achish": {
+     "tries": [
+      {
+       "seconds": 15.456,
+       "input": 2,
+       "output": 1311,
+       "cache_read": 17674,
+       "cache_create": 13284,
+       "cost_usd": 0.1360348,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "21:14",
+       "quote": "너희도 보거니와",
+       "field": "relation",
+       "제안": "아기스의 말대로 신하들도 다윗의 미친 짓을 보고 있어야 한다. relation과 영문 문구에 아기스 뒤의 신하 둘이 다윗을 바라본다는 시선을 넣는다(예: \"the two servants staring at the young man\").",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "21:13",
+       "quote": "그들의 앞에서",
+       "field": "relation",
+       "제안": "다윗은 아기스 한 사람이 아니라 아기스와 신하들 모두의 앞에서 미친 체한다. 다윗과 아기스·신하 무리 사이의 거리와 배치를 relation에 적어, 다윗이 그들 눈앞에 있음이 드러나게 한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "21:12",
+       "quote": "가드 왕 아기스를 심히 두려워하여",
+       "field": "figures[0].expression",
+       "제안": "미친 체하는 동기는 아기스를 심히 두려워함이다. 넋 나간 겉얼굴 뒤로 긴장이 비치는 기색을 expression의 근거로 더할지 검토한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "21:15",
+       "quote": "이 자가 어찌 내 집에 들어오겠느냐",
+       "field": "figures[1].expression",
+       "제안": "아기스는 다윗을 자기 집에 들이지 않겠다고 거부한다. 표정·몸짓에 역겨움뿐 아니라 내치는 거부(몸을 뒤로 물림 등)를 더한다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-nob-priests": {
+     "tries": [
+      {
+       "seconds": 14.114,
+       "input": 2,
+       "output": 1106,
+       "cache_read": 17674,
+       "cache_create": 14252,
+       "cost_usd": 0.13967880000000002,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "축약",
+       "verse": "21:7",
+       "quote": "사울의 신하 한 사람이 여호와 앞에 머물러 있었는데 그는 도엑이라 이름하는 에돔 사람이요 사울의 목자장이었더라",
+       "field": "whole_background",
+       "제안": "뜰 가장자리 인물을 「a lone man」이 아니라 사울의 신하, 곧 에돔 사람 목자장 도엑으로 적는다. 목자의 막대기와 겉옷 같은 차림, 성막(여호와 앞) 가까이 머문 자리, 둘을 몰래 지켜보는 눈길을 영문 문구에 넣는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "21:6",
+       "quote": "제사장이 그 거룩한 떡을 주었으니",
+       "field": "figures[1].costume",
+       "제안": "같은 날 이미 받은 거룩한 떡이 21:9 순간에도 다윗에게 있다. 떡을 싼 꾸러미를 허리에 메거나 발치에 둔 모습으로 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "21:6",
+       "field": [
+        "whole_background",
+        "verse_elements[3]"
+       ],
+       "제안": "진설병은 이미 다윗에게 건네졌는데(21:6, 「그 떡밖에 없음이라」) 배경의 상에는 떡이 쌓여 있다. 상을 비우거나 떡이 몇 덩이만 남은 상으로 고친다. 그러면 위의 다윗 떡 꾸러미와도 맞는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "21:9",
+       "quote": "엘라 골짜기에서 죽인 블레셋 사람 골리앗의 칼",
+       "field": "meaning.en",
+       "제안": "영문 「sword of a giant」를 블레셋 사람 골리앗의 칼로 밝힌다. 거인이 쓰던 칼이라 보통 칼보다 훨씬 크고 무겁다는 점도 덧붙인다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-jerusalem-conquest": {
+     "tries": [
+      {
+       "seconds": 12.646,
+       "input": 2,
+       "output": 1023,
+       "cache_read": 17674,
+       "cache_create": 11742,
+       "cost_usd": 0.11793880000000001,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "어긋남",
+       "verse": "5:4",
+       "quote": "다윗이 삼십 세에 위에 나아가서",
+       "field": [
+        "verse_elements[0].en",
+        "figures[0].role"
+       ],
+       "제안": "5:5 「헤브론에서 칠 년 육 개월」을 다스린 뒤의 일이므로 이때 다윗은 서른일곱 살쯤이다. 영문 「lean young man」을 「a bearded Israelite man in his late thirties」처럼 장년으로 고친다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "5:6",
+       "quote": "왕과 그 종자들이",
+       "field": "figures[0]",
+       "제안": "본문은 다윗을 「왕」으로 부르는데, 명세와 영문 문구에는 왕다운 표지가 없어 그냥 사내로 보인다. figures[0]과 영문 문구에 왕의 신분이 드러나는 옷차림이나 표지(예: 군장 위에 두른 겉옷, 머리띠 관)를 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "5:8",
+       "quote": "그 날에 다윗이 이르기를 누구든지 여부스 사람을 치거든 수구로 올라가서",
+       "field": "verse_elements",
+       "제안": "5:8은 「그 날에」라고 해서 산성을 빼앗은 날과 같은 날이라고 말하는데, verse_elements와 verses.quotes에 들어 있지 않다. 수구로 올라가는 일을 순간 안에 넣을지(성벽의 수구) out으로 뺄지 근거를 들어 적는다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-saul-endor-medium": {
+     "tries": [
+      {
+       "seconds": 14.794,
+       "input": 2,
+       "output": 902,
+       "cache_read": 17674,
+       "cache_create": 13120,
+       "cost_usd": 0.1265428,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "어긋남",
+       "verse": "28:8",
+       "field": [
+        "crowds[0].what",
+        "영문 파생 문구(two beardless young servants ... by the doorway)"
+       ],
+       "제안": "crowds 칸은 두 종이 「왼쪽 문 가」에 선다고 적었지만, 영문 문구에는 「by the doorway」만 있고 왼쪽이라는 위치가 없습니다. 영문을 「standing close together by the doorway on the far left, behind the prostrate king」처럼 고쳐 두 칸의 위치를 맞추십시오.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "28:13",
+       "quote": "왕이 그에게 이르되 두려워 말라",
+       "field": "figures[2].pose",
+       "제안": "여인의 자세에 사울이 「두려워 말라」고 달랜 직후라는 점이 드러나지 않습니다. 여인이 엎드린 사울과 올라오는 노인 사이에서, 달램을 들은 뒤에도 여전히 떨며 몸을 움츠린 모습으로 적어 주십시오(예: 「trembling, shrinking back slightly」).",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-saul-gilboa-death": {
+     "tries": [
+      {
+       "seconds": 13.067,
+       "input": 2,
+       "output": 1066,
+       "cache_read": 17674,
+       "cache_create": 11521,
+       "cost_usd": 0.1170308,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "31:9",
+       "quote": "그 갑옷을 벗기고",
+       "field": "figures[0].prop",
+       "제안": "이튿날 블레셋 사람이 사울의 갑옷을 벗겼다고 하니, 이 순간 사울은 갑옷을 입고 있다. 사울 인물 묘사의 'worn dark tunic and cloak'에 갑옷을 더한다(예: 'wearing a king's armour over his tunic'). 한국어 칸에도 「갑옷 입음」을 적는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "31:1",
+       "quote": "이스라엘 사람들이 블레셋 사람 앞에서 도망하여 길보아 산에서 엎드러져 죽으니라",
+       "field": "background",
+       "제안": "패전한 길보아 산 비탈에 엎드러져 죽은 이스라엘 사람들을 background에 원경으로 더한다. 영문 문구에도 'fallen Israelite soldiers lying on the slope'처럼 넣는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "31:3",
+       "quote": "활 쏘는 자가 따라 미치니",
+       "field": "verse_elements[0].en",
+       "제안": "명세는 「블레셋 활 쏘는 자들」이라 했는데 영문은 'tiny archers'뿐이라 누구인지와 '따라 미친다'는 뜻이 흐려졌다. 'Philistine archers pursuing and closing in up the hillside'로 고친다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "field": [
+        "figures[0].role",
+        "영문 사울 인물 묘사 'frame slumped, broad shoulders sagging' / 'standing upright'"
+       ],
+       "제안": "한 문장 안에 'frame slumped'와 'standing upright'가 함께 있어 서로 부딪친다. 중상한 몸이니 'standing but wounded, leaning slightly'처럼 하나로 맞춘다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    }
+   }
+  },
+  "after2": {
+   "model": "opus",
+   "answers": {
+    "authored-david-mahanaim-exile": {
+     "tries": [
+      {
+       "seconds": 10.985,
+       "input": 2,
+       "output": 691,
+       "cache_read": 17674,
+       "cache_create": 12724,
+       "cost_usd": 0.11915479999999999,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "순간",
+       "verse": "17:27",
+       "quote": "다윗이 마하나임에 이르렀을 때에",
+       "field": "moment",
+       "제안": "본문은 다윗이 마하나임에 이른 때를 소비·마길·바실래가 침상·대야·질그릇과 먹을 것(17:28-29)을 가져온 일과 바로 잇는다. 그래서 그 영접 순간이 이 장면다운 순간일 수 있다. 참고로 적어 두며, 지금의 '이르는 순간'을 유지한다면 바꾸지 않아도 된다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-gibeon-battle": {
+     "tries": [
+      {
+       "seconds": 17.237,
+       "input": 2,
+       "output": 1693,
+       "cache_read": 17674,
+       "cache_create": 15101,
+       "cost_usd": 0.15821079999999998,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "2:18",
+       "quote": "그곳에 스루야의 세 아들 요압과 아비새와 아사헬이 있었는데",
+       "field": "figures / crowds[1]",
+       "제안": "요압 곁 다윗의 신복들 맨 앞에 요압의 형제 아비새와 아사헬이 함께 앉아 있다고 적어 주세요. 아사헬은 젊고 날랜 사람으로 그립니다. 영문 문구에도 \"his two brothers seated beside him\"을 넣어 주세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "2:13",
+       "field": [
+        "verse_elements[1].ko",
+        "crowds[0].what"
+       ],
+       "제안": "verse_elements의 「못 이편 능선」·「못 저편 능선」은 crowds의 「못 이편 가, 아브넬 뒤에 앉음」, 그리고 본문 「못가에서 … 앉으니」와 맞지 않습니다. 「못 이편 가」·「못 저편 가」로 고쳐 주세요. region 이름 crest_left·crest_right도 능선 배치로 읽히지 않게 바꾸는 편이 좋습니다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "2:13",
+       "field": [
+        "verse_elements[4].ko",
+        "crowds[1].what"
+       ],
+       "제안": "다윗의 신복들도 「못 저편 능선」이 아니라 「못 저편 가, 요압 뒤」로 맞춰 주세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "2:15",
+       "quote": "베냐민과 사울의 아들 이스보셋의 편에 열둘이요",
+       "field": "verse_elements[14].en",
+       "제안": "영문 \"twelve young men of Benjamin\"에는 이스보셋 편이라는 뜻이 빠졌습니다. \"twelve young men of Benjamin, of Ish-bosheth's side\"로 늘려 주세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "2:12",
+       "quote": "넬의 아들 아브넬과 사울의 아들 이스보셋의 신복들은",
+       "field": "stages[S2a].prompt / stages[S2b].prompt",
+       "제안": "두 무리의 영문 문구가 글자까지 똑같아서 어느 편인지 구별되지 않습니다. 각각 \"Ish-bosheth's men behind Abner on the near side\"와 \"David's men behind Joab on the far side\"처럼 편과 자리를 밝혀 주세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "2:16",
+       "field": [
+        "moment.why",
+        "stages[S5].prompt"
+       ],
+       "제안": "순간은 머리를 잡고 아직 찌르지 않은 때입니다. 그런데 영문 \"fighting close\"는 찌르는 동작까지 읽힐 수 있습니다. \"locked in pairs, not yet striking\"처럼 칼이 아직 찌르지 않았다는 말을 넣어 주세요.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-returns-jerusalem": {
+     "tries": [
+      {
+       "seconds": 19.935,
+       "input": 2,
+       "output": 1678,
+       "cache_read": 17674,
+       "cache_create": 14132,
+       "cost_usd": 0.1501588,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "어긋남",
+       "verse": "19:15",
+       "field": [
+        "verse_elements[0].ko",
+        "stages[S3].prompt"
+       ],
+       "제안": "한국어 칸은 「돌아온 왕 다윗」인데 영문은 'lean young man'이라 왕인 줄도 알 수 없고 나이도 맞지 않습니다(19:7 「왕이 젊었을 때부터 지금까지」로 보아 이때 다윗은 젊지 않습니다). 영문을 'an aging bearded Israelite king'처럼 고쳐 나이 든 왕임이 드러나게 하세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "19:15",
+       "quote": "길갈로 오니라",
+       "field": "stages[S2].prompt",
+       "제안": "본문은 유다 족속이 길갈'로' 왔다고 합니다. 'who have come from Gilgal'을 'who have come to Gilgal by the Jordan'으로 고치고, 장면 장소가 길갈 쪽 강가임을 배경 칸에 적으세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "19:14",
+       "quote": "왕은 모든 신복으로 더불어 돌아오소서",
+       "field": "crowds",
+       "제안": "왕과 함께 돌아오는 신복들을 왕 뒤의 무리로 더하세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "19:18",
+       "quote": "왕의 가족을 건네려 하며",
+       "field": "figures",
+       "제안": "나룻배는 있는데 건널 사람인 왕의 가족이 없습니다. 왕 곁에서 배를 기다리는 가족(여인·아이들)을 더하세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "19:17",
+       "quote": "베냐민 사람 일천 명이 저와 함께 하고 사울의 사환 시바도 그 아들 열다섯과 종 스무 명으로 더불어 저와 함께 하여 요단 강을 밟고 건너 왕의 앞으로 나아오니라",
+       "field": "crowds",
+       "제안": "19:17은 19:18 전반보다 앞서 이들이 이미 왕 앞에 와 있다고 말합니다. 베냐민 사람 천 명, 그리고 아들 열다섯·종 스무 명과 함께 온 시바를 무리로 더하세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "19:16",
+       "quote": "시므이가 급히 유다 사람과 함께 다윗 왕을 맞으려 내려올 때에",
+       "field": "crowds",
+       "제안": "시므이는 엎드리기 전에도 유다 사람들 사이에 와 있습니다. 서 있는 모습으로 무리 안에 넣거나, 이 시점의 위치를 적으세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "19:18",
+       "quote": "왕의 선히 여기는 대로 쓰게 하려하여",
+       "field": "verse_elements[6]",
+       "제안": "나룻배를 띄운 목적에 '왕이 좋게 여기는 대로 쓰게 하려고'도 있습니다. 가족을 건네는 것과 함께 이 목적도 행동 칸에 적으세요.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-samuel-bethlehem-david-anointing": {
+     "tries": [
+      {
+       "seconds": 16.485,
+       "input": 2,
+       "output": 1590,
+       "cache_read": 17674,
+       "cache_create": 13151,
+       "cost_usd": 0.1405508,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "어긋남",
+       "verse": "16:5",
+       "quote": "",
+       "field": [
+        "background[0].what",
+        "영문 파생 문구 배경(a small dry village courtyard)"
+       ],
+       "제안": "배경 칸에는 「베들레헴 마을의 소박한 제사 자리」라고 되어 있지만, 영문 문구에는 그냥 마을 마당만 있고 제사 자리가 빠졌다. 영문에 간소한 돌 제단과 제사의 흔적(예: a simple stone altar with a thin rising smoke)을 더해 두 칸을 맞춘다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "16:2",
+       "quote": "너는 암송아지를 끌고 가서",
+       "field": "background",
+       "제안": "16:2-5에 따르면 사무엘은 암송아지를 끌고 와서 제사를 드리고, 이새와 아들들을 그 제사에 청했다. 제단 곁에 제물 암송아지(또는 제사의 흔적)를 배경 요소로 더한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "16:4",
+       "quote": "성읍 장로들이 떨며 그를 영접하여",
+       "field": "crowds",
+       "제안": "16:5에서 사무엘은 장로들에게 「나와 함께 제사하자」고 했으므로, 같은 제사 자리에 성읍 장로들도 있을 수 있다. 장로 몇 명이 멀찍이 두려워하며 지켜보는 무리를 넣을지 정하고, 빼려면 verse_elements에 out으로 적는다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "16:13",
+       "quote": "그 형제 중에서 그에게 부었더니",
+       "field": "crowds[0].what",
+       "제안": "명세에서는 형제들이 다윗 「바로 뒤에 한 줄로」 서 있고, 영문에서도 다윗은 사무엘과 이새 사이에 놓인다. 그래서 다윗이 「형제 중에서」 기름을 받는다는 점이 흐려졌다. 형제들이 다윗 양옆과 뒤를 둘러싸도록(surrounding the boy on both sides and behind) 고친다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "16:11",
+       "quote": "",
+       "field": [
+        "verse_elements[5].ko",
+        "figures[2].pose"
+       ],
+       "제안": "verse_elements에서는 이새가 「곁에 서서」 지켜보는데, figures 칸에서는 「떨어져 서서」 지켜본다. 둘 중 하나로 통일한다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "16:11",
+       "quote": "그가 여기 오기까지는 우리가 식사 자리에 앉지 아니하겠노라",
+       "field": "background",
+       "제안": "16:11에 따르면 기름 붓는 순간에는 아직 아무도 식사 자리에 앉지 않았다. 차려 두었지만 아무도 앉지 않은 제사 식사 자리를 배경에 넣을지 정하고, 넣지 않으려면 verse_elements에 out으로 적는다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-nob-priests": {
+     "tries": [
+      {
+       "seconds": 14.115,
+       "input": 2,
+       "output": 1224,
+       "cache_read": 17674,
+       "cache_create": 14248,
+       "cost_usd": 0.14200680000000002,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "축약",
+       "verse": "21:7",
+       "quote": "그는 도엑이라 이름하는 에돔 사람이요 사울의 목자장이었더라",
+       "field": "whole_background",
+       "제안": "명세에는 '뜰 가장자리에 머물러 지켜보는 사내 하나'로만 적혀 있어, 이 사람이 사울의 신하 도엑이라는 점이 드러나지 않습니다. 사울의 목자장인 에돔 사람임을 보이는 차림을 더해 주세요. 예를 들어 목자장의 지팡이를 들고 제사장이 아닌 차림을 한 외국 사내로 그리고, 칼을 건네는 장면을 몰래 지켜보는 기색을 영문에도 넣습니다(an Edomite herdsman with a staff, watching the handover).",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "21:6",
+       "quote": "제사장이 그 거룩한 떡을 주었으니",
+       "field": "figures[1].costume",
+       "제안": "같은 방문에서 다윗은 이미 거룩한 떡을 받았습니다. 그런데 명세에는 떡이 상 위에만 놓여 있습니다. 다윗의 허리나 어깨에 받은 진설병을 싼 꾸러미를 더해서, 떡을 받은 뒤 칼을 받는 순서가 보이게 해 주세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "21:6",
+       "quote": "이 떡은 더운 떡을 드리는 날에 물려낸 것이더라",
+       "field": "whole_background",
+       "제안": "그날은 묵은 떡을 물려 내고 더운 떡을 새로 올리는 날입니다. 상 위에 새로 올린 떡이 있고, 물려 낸 떡은 따로 덜어 낸 모습으로 적어 주세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "21:9",
+       "quote": "블레셋 사람 골리앗의 칼",
+       "field": "figures[0].prop",
+       "제안": "영문 문구에는 'huge cloth-wrapped sword'만 있어서 이 칼이 거인의 칼이라는 점이 약합니다. 보자기 밖으로 드러난 큰 칼자루를 더해 다윗의 몸집에 비해 지나치게 큰 칼임을 보여 주세요. 예: an oversized giant's sword, its great hilt showing from the cloth.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-gath-achish": {
+     "tries": [
+      {
+       "seconds": 18.075,
+       "input": 2,
+       "output": 1414,
+       "cache_read": 17674,
+       "cache_create": 13284,
+       "cost_usd": 0.13809480000000002,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "21:13",
+       "quote": "그들의 앞에서 그 행동을 변하여",
+       "field": "crowds",
+       "제안": "다윗이 미친 체하는 것을 보는 아기스의 신하들을 figures나 crowds에 따로 넣으세요. 지금은 relation 칸의 「신하 둘」이라는 말로만 있습니다. 신하들의 역할(다윗을 데려온 자들), 자리, 다윗을 바라보는 시선도 적으세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "21:14",
+       "quote": "어찌하여 그를 내게로 데려왔느냐",
+       "field": "relation",
+       "제안": "다윗을 아기스 앞에 데려온 사람은 신하들입니다. 신하 가운데 적어도 한 명은 다윗 가까이 서 있게 하거나, 신하들이 아기스의 책망을 듣는 모습을 relation 칸에 더하세요. 지금은 신하들이 아기스 뒤에 붙어 있다고만 적혀 있습니다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "21:15",
+       "quote": "이 자가 어찌 내 집에 들어오겠느냐",
+       "field": [
+        "whole_background",
+        "verse_elements[4]"
+       ],
+       "제안": "본문의 「대문짝」은 아기스의 「집」(왕궁) 대문으로 읽을 수 있습니다. 그런데 명세는 성벽의 성문으로 정해 두었습니다. 왕궁 대문으로 고치거나, 성문으로 둔 것이 저작자의 해석임을 밝히세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "verse": "21:13",
+       "field": [
+        "figures[0].facing",
+        "figures[0].screen_facing"
+       ],
+       "제안": "다윗의 facing은 left인데 screen_facing은 viewer입니다. 그적거리는 문짝 쪽을 향하는지 감상자 쪽을 향하는지 하나로 맞추세요.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-saul-endor-medium": {
+     "tries": [
+      {
+       "seconds": 11.689,
+       "input": 2,
+       "output": 935,
+       "cache_read": 17674,
+       "cache_create": 13127,
+       "cost_usd": 0.1272588,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "어긋남",
+       "verse": "28:14",
+       "quote": "",
+       "field": [
+        "figures[0].pose",
+        "verse_elements[28:14 그 얼굴을 땅에 대고 절하니라].en"
+       ],
+       "제안": "28:14는 얼굴을 땅에 대고 절하는 순간이다. 몸을 땅에 완전히 뻗고 눕는 것은 28:20 「땅에 온전히 엎드러지니」에서 일어나는 앞으로의 일이다. 그런데 영문 「lying prostrate」는 이 두 순간을 하나로 섞는다. 영문을 「kneeling, bowed low with his face touching the ground」처럼 무릎 꿇고 이마를 땅에 댄 절로 고쳐 한국어 자세 칸과 맞춘다.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-david-jerusalem-conquest": {
+     "tries": [
+      {
+       "seconds": 18.579,
+       "input": 2,
+       "output": 1591,
+       "cache_read": 17674,
+       "cache_create": 11738,
+       "cost_usd": 0.12926680000000002,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "축약",
+       "verse": "5:7",
+       "quote": "다윗이 시온 산성을 빼앗았으니",
+       "field": "verse_elements[0].ko",
+       "제안": "본문은 성을 이미 빼앗은 상태인데, 명세는 「다윗이 거기 섬」, 영문은 성벽 앞에 서 있는 사람뿐이라 공격하기 전으로 읽힙니다. 함락이 끝났음을 보여 주는 표지를 더하세요. 예를 들어 성문이 열려 있거나 종자들 일부가 성벽 위에 올라가 있는 모습이고, 이를 영문에도 옮기세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "5:6",
+       "quote": "왕과 그 종자들이",
+       "field": "figures[0]",
+       "제안": "다윗은 이미 이스라엘의 왕(5:3)인데, 명세와 영문 어디에도 왕의 표지가 없습니다. 지휘자다운 차림이나 표지를 더하세요. 이는 저작자가 정할 몫입니다.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "field": [
+        "figures[0].pose",
+        "영문 파생 문구"
+       ],
+       "제안": "자세 칸에는 「성벽을 마주 보고」라고 되어 있는데, 영문은 「facing right」뿐이고 성벽의 위치를 적지 않아 마주 보는 관계가 보장되지 않습니다. 영문에 성벽을 오른쪽에 둔다고 적거나 「facing the fortress wall」을 넣으세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "field": [
+        "verse_elements[0].en",
+        "verses (5:4-5)"
+       ],
+       "제안": "5:4-5에 따르면 다윗은 삼십 세에 왕이 되어 헤브론에서 칠 년 육 개월을 다스린 뒤 예루살렘으로 왔으니 이때 서른일곱 살 무렵입니다. 그런데 영문은 「lean young man」입니다. 「a mature man in his late thirties」처럼 고치세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "어긋남",
+       "field": [
+        "background[1]",
+        "영문 파생 문구"
+       ],
+       "제안": "배경 문구에 「no buildings」가 있는데, 같은 글에 거대한 산성 성벽이 함께 들어 있어 서로 충돌합니다. 「no other buildings besides the fortress」로 고치세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "순간",
+       "verse": "5:8",
+       "quote": "수구로 올라가서",
+       "field": "moment",
+       "제안": "참고용입니다. 같은 날 다윗이 수구로 올라가 치라고 명령한 일이 이 장면에서 가장 특징적인 순간일 수 있습니다. 지금 순간을 그대로 둔다면, 5:8을 verse_elements에 out(순간 밖)으로 적어 두세요.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    },
+    "authored-saul-gilboa-death": {
+     "tries": [
+      {
+       "seconds": 15.129,
+       "input": 2,
+       "output": 1391,
+       "cache_read": 17674,
+       "cache_create": 11523,
+       "cost_usd": 0.12354680000000001,
+       "turns": 1,
+       "error": false
+      }
+     ],
+     "findings": [
+      {
+       "kind": "빠짐",
+       "verse": "31:9",
+       "quote": "그 갑옷을 벗기고",
+       "field": "figures[0]",
+       "제안": "본문을 보면 사울은 죽을 때 갑옷을 입고 있었습니다. 사울의 옷차림(영문 'worn dark tunic and cloak')에 갑옷을 더하세요(예: 'wearing a king's armour over his tunic').",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "31:1",
+       "quote": "길보아 산에서 엎드러져 죽으니라",
+       "field": "background",
+       "제안": "이 순간 길보아 산에는 이미 도망하다 엎드러져 죽은 이스라엘 사람들이 있습니다. 비탈 중경에 쓰러진 이스라엘 병사들을 배경으로 더하세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "31:2",
+       "quote": "사울의 아들 요나단과 아비나답과 말기수아를 죽이니라",
+       "field": "background",
+       "제안": "세 아들은 이 순간보다 먼저 죽었습니다. 근처에 쓰러진 아들들을 원경에 두는 방안을 검토하고, 넣지 않을 경우 verse_elements에 out으로 그 이유를 적으세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "31:4",
+       "quote": "네 칼을 빼어 나를 찌르라",
+       "field": "verse_elements[2].ko",
+       "제안": "명령의 내용은 칼을 빼는 데서 그치지 않고 '나를 찌르라'까지입니다. ko를 '칼을 빼어 자기를 찌르라 명한다'로 고치세요. en에도 'commanding him to draw and run him through'처럼 찌르라는 뜻을 담으세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "빠짐",
+       "verse": "31:4",
+       "quote": "할례없는 자들이 와서 나를 찌르고 모욕할까 두려워하노라",
+       "field": "figures[0].pose",
+       "제안": "사울이 명령하는 까닭은 다가오는 블레셋 사람에게 모욕당할까 하는 두려움입니다. 사울이 능선의 활 쏘는 자들 쪽을 의식하는 기색(시선이나 표정)을 자세 칸에 더하세요.",
+       "ok": true,
+       "why": ""
+      },
+      {
+       "kind": "축약",
+       "verse": "31:3",
+       "quote": "그 활 쏘는 자를 인하여 중상한지라",
+       "field": "figures[0].role",
+       "제안": "role 칸은 '중상하여 서 있음'만 적고 화살로 다친 사실을 뺐습니다. '활 쏘는 자의 화살에 중상하여'로 고쳐 영문 'wounded by arrows'와 맞추세요.",
+       "ok": true,
+       "why": ""
+      }
+     ],
+     "raw": null
+    }
+   }
+  }
+ },
+ "summary": {
+  "spec": {
+   "truth": {
+    "a": false,
+    "c": true,
+    "d": false,
+    "e": false,
+    "f": false
+   },
+   "measure": {
+    "g": false,
+    "n": false
+   },
+   "mutants": {
+    "m1": true,
+    "m2": true,
+    "m3": true,
+    "m4": true,
+    "m5": true
+   },
+   "mutant_orig_hit": {
+    "m1": false,
+    "m2": true,
+    "m3": true,
+    "m4": false,
+    "m5": true
+   },
+   "truth_hit": 1,
+   "mutant_hit": 5,
+   "findings": 78,
+   "fabricated": 0,
+   "fabricated_rate": 0.0,
+   "by_kind": {
+    "빠짐": 28,
+    "축약": 22,
+    "어긋남": 22,
+    "순간": 6
+   },
+   "failed": [],
+   "missing": [],
+   "verdict": "미채택"
+  },
+  "oddity": {
+   "catch": "12/12",
+   "pass": "11/33",
+   "catch_rate": 1.0,
+   "pass_rate": 0.3333,
+   "must": {
+    "authored-samuel-bethlehem-david-anointing": 2,
+    "authored-david-nob-priests": 2
+   },
+   "missed": [],
+   "false": [
+    "369:authored-saul-gilgal-amalek:7",
+    "369:authored-saul-gilgal-amalek:5",
+    "369:authored-saul-gilgal-amalek:101",
+    "370:authored-david-gibeah-harp:11",
+    "370:authored-david-gibeah-harp:42",
+    "370:authored-david-gibeah-harp:23",
+    "370:authored-david-gibeah-harp:5",
+    "370:authored-david-gibeah-harp:101",
+    "370:authored-david-gibeah-harp:202",
+    "370:authored-david-gibeah-harp:303",
+    "370:authored-saul-nob-massacre:11",
+    "370:authored-saul-nob-massacre:42",
+    "370:authored-saul-nob-massacre:7",
+    "370:authored-saul-nob-massacre:23",
+    "370:authored-saul-nob-massacre:101",
+    "370:authored-saul-nob-massacre:202",
+    "370:authored-saul-nob-massacre:303",
+    "376:authored-david-ark-jerusalem:5",
+    "376:authored-david-ark-jerusalem:303",
+    "376:authored-david-nathan-covenant:303",
+    "376:authored-david-ziklag-base:11",
+    "376:authored-david-ramah-samuel:11"
+   ],
+   "j1_guard": {
+    "catch": "9/12",
+    "pass": "27/33"
+   },
+   "missing": [],
+   "verdict": "미채택"
+  }
+ }
+}

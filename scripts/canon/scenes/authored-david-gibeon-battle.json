@@ -13,8 +13,8 @@
     }
   },
   "moment": {
-    "verse": "2:13-14",
-    "why": "두 지휘관이 기브온 못가에서 만나 못 이편과 저편에 마주 앉아(2:13 「이는 못 이편이요 저는 못 저편이라」) 아브넬이 소년들의 겨루기를 청하고 요압이 응하는 순간을 고정한다(2:14). 소년들은 아직 능선에 앉아 있다. 2:15-17의 겨루기·살상은 그 뒤의 순간이라 순간 밖이다."
+    "verse": "2:15-16 전반",
+    "why": "양편 소년들이 일어나 그 수효대로 나아가 베냐민·이스보셋 편 열둘과 다윗의 신복 열둘이 못가 빈 땅에서 짝지어 맞서고, 각기 적수의 머리를 잡은 순간(2:15-16 전반)을 고정한다. 아브넬과 요압은 못 이편과 저편에 앉은 채 「우리 앞에서」(2:14) 벌어지는 겨루기를 지켜본다. 양편 신복들은 각 지휘관 뒤 못가에 앉아 있고(2:13 「못가에서 … 앉으니」), 소년 스물넷은 원경 무리가 아니라 지휘관들 앞 가까운 땅에서 맞붙는다. 칼로 옆구리를 찔러 일제히 쓰러지는 것(2:16 중반 이후)은 바로 뒤의 순간이라 순간 밖이다. (task 378 — 376 사람 메모 「12 vs 12인데 너무 멀리 무리가 보임, 싸우려는 제스처가 안 보임」으로 순간을 2:13-14에서 옮김)"
   },
   "verse_elements": [
     {
@@ -30,7 +30,7 @@
       "quote": "이스보셋의 신복들",
       "kind": "무리",
       "ko": "이스보셋의 신복들 — 못 이편 능선",
-      "en": "many tiny distant soldiers just arrived and sitting in loose rows on a low ridge",
+      "en": "soldiers just arrived and sitting in loose rows on the ground behind their commander at the pool's edge",
       "field": "stages[S2a].prompt"
     },
     {
@@ -54,7 +54,7 @@
       "quote": "다윗의 신복들",
       "kind": "무리",
       "ko": "다윗의 신복들 — 못 저편 능선",
-      "en": "many tiny distant soldiers just arrived and sitting in loose rows on a low ridge",
+      "en": "soldiers just arrived and sitting in loose rows on the ground behind their commander at the pool's edge",
       "field": "stages[S2b].prompt"
     },
     {
@@ -101,31 +101,78 @@
       "verse": "2:14",
       "quote": "청컨대 소년들로 일어나서",
       "kind": "행동",
-      "ko": "아브넬이 소년들의 겨루기를 제안함 — 팔 뻗음 몸짓은 본문 밖 · 저작자 정함",
-      "en": "one arm extended as if speaking",
+      "ko": "아브넬이 겨루기를 제안함",
+      "out": "겨루기가 시작되기 전의 제안(2:14) — 이 장면은 소년들이 맞붙은 2:15-16 전반"
+    },
+    {
+      "verse": "2:14",
+      "quote": "우리 앞에서",
+      "kind": "행동",
+      "ko": "아브넬이 앞에서 벌어지는 겨루기를 지켜봄(2:14 「우리 앞에서」) — 지켜보는 몸짓 · 본문 밖 · 저작자 정함",
+      "en": "watching the contest before him",
       "field": "stages[S3].prompt"
     },
     {
       "verse": "2:14",
       "quote": "요압이 가로되 일어나게 하자",
       "kind": "행동",
-      "ko": "요압이 응함 — 끄덕임 몸짓은 본문 밖 · 저작자 정함",
-      "en": "giving a nod of assent",
+      "ko": "요압이 겨루기에 응함",
+      "out": "겨루기가 시작되기 전의 응답(2:14) — 이 장면은 소년들이 맞붙은 2:15-16 전반"
+    },
+    {
+      "verse": "2:14",
+      "quote": "우리 앞에서",
+      "kind": "행동",
+      "ko": "요압이 앞에서 벌어지는 겨루기를 지켜봄(2:14 「우리 앞에서」) — 지켜보는 몸짓 · 본문 밖 · 저작자 정함",
+      "en": "watching the contest before him",
       "field": "stages[S4].prompt"
+    },
+    {
+      "verse": "2:15",
+      "quote": "저희가 일어나 그 수효대로 나아가니",
+      "kind": "행동",
+      "ko": "양편 소년들이 짝지어 맞섬",
+      "en": "facing each other in matched pairs",
+      "field": "stages[S5].prompt"
     },
     {
       "verse": "2:15",
       "quote": "베냐민과 사울의 아들 이스보셋의 편에 열둘이요",
       "kind": "무리",
-      "ko": "양편 열두 명씩 나아감",
-      "out": "겨루기가 시작된 뒤의 순간(2:15) — 이 장면은 마주 앉아 제안과 응답을 주고받는 2:13-14까지"
+      "ko": "베냐민·이스보셋 편 소년 열둘",
+      "en": "twelve young men of Benjamin",
+      "field": "stages[S5].prompt"
+    },
+    {
+      "verse": "2:15",
+      "quote": "다윗의 신복 중에 열둘이라",
+      "kind": "무리",
+      "ko": "다윗의 신복 중 소년 열둘",
+      "en": "twelve young men of David's servants",
+      "field": "stages[S5].prompt"
     },
     {
       "verse": "2:16",
-      "quote": "칼로 적수의 옆구리를 찌르매",
+      "quote": "각기 적수의 머리를 잡고",
       "kind": "행동",
-      "ko": "적수의 옆구리를 찌름",
-      "out": "겨루기가 시작된 뒤의 순간(2:16) — 이 장면은 마주 앉아 제안과 응답을 주고받는 2:13-14까지"
+      "ko": "각기 적수의 머리를 잡음",
+      "en": "each gripping his opponent by the head",
+      "field": "stages[S5].prompt"
+    },
+    {
+      "verse": "2:16",
+      "quote": "칼로",
+      "kind": "지물",
+      "ko": "칼로 찌르려 쥔 칼 — 쥔 손은 본문 밖 · 저작자 정함",
+      "en": "a short sword in the other hand",
+      "field": "stages[S5].prompt"
+    },
+    {
+      "verse": "2:16",
+      "quote": "적수의 옆구리를 찌르매 일제히 쓰러진지라",
+      "kind": "행동",
+      "ko": "옆구리를 찔러 일제히 쓰러짐",
+      "out": "머리를 잡은 바로 뒤의 순간(2:16 중반 이후) — 이 장면은 맞붙어 머리를 잡은 때"
     }
   ],
   "background": [
@@ -140,34 +187,49 @@
   ],
   "crowds": [
     {
-      "what": "이스보셋의 신복들 — 마하나임에서 와 못 이편 능선에 앉음",
+      "what": "이스보셋의 신복들 — 마하나임에서 와 못 이편 가, 아브넬 뒤에 앉음",
       "verse": "2:12",
       "region": "crest_left"
     },
     {
-      "what": "다윗의 신복들 — 못 저편 능선에 앉음",
+      "what": "다윗의 신복들 — 못 저편 가, 요압 뒤에 앉음",
       "verse": "2:13",
       "region": "crest_right"
+    },
+    {
+      "what": "양편 소년 열둘씩 — 지휘관들 앞 못가 빈 땅에서 짝지어 맞서 각기 적수의 머리를 잡음",
+      "verse": "2:15-16 · 지휘관들 앞 가까운 땅 · 본문 밖 · 저작자 정함",
+      "region": "youths"
     }
   ],
   "figures": [
     {
       "cast": "abner",
       "role": "아브넬",
-      "pose": "못 이편에 앉아 팔을 뻗어 마주 앉은 자를 향해 말한다",
+      "pose": "못 이편에 앉아 창을 세워 쥔 채 앞에서 벌어지는 겨루기를 지켜본다",
       "prop": "a spear",
       "facing": "right",
       "region": "abner",
-      "verse": "2:12-14 · 팔 뻗음 몸짓·지물 본문 밖 · 저작자 정함"
+      "verse": "2:13-14 · 창 본문 밖 · 저작자 정함 · 지켜봄은 2:14 「우리 앞에서」에서 저작자 정함",
+      "costume": {
+        "ko": "무릎길이 생양모 튜닉, 짧은 가죽 비늘 갑옷, 넓은 가죽 띠, 맨머리",
+        "en": "in a knee-length undyed wool tunic, a short leather-scale corselet and a wide leather belt, bareheaded",
+        "verse": "본문 밖 · 저작자 정함(철기 시대 초 이스라엘 무장 고증 — 376 사람 메모 「두 지휘관 옷이 시대를 반영하지 못함」)"
+      }
     },
     {
       "cast": "joab",
       "role": "요압",
-      "pose": "못 저편에 앉아 칼자루를 쥔 채 고개를 끄덕여 응한다",
+      "pose": "못 저편에 앉아 칼자루를 쥔 채 앞에서 벌어지는 겨루기를 지켜본다",
       "prop": "a sword",
       "facing": "left",
       "region": "joab",
-      "verse": "2:13-14 · 끄덕임 몸짓·지물 본문 밖 · 저작자 정함"
+      "verse": "2:13-14 · 칼자루 쥠 본문 밖 · 저작자 정함 · 지켜봄은 2:14 「우리 앞에서」에서 저작자 정함",
+      "costume": {
+        "ko": "무릎길이 생양모 튜닉, 짧은 가죽 비늘 갑옷, 넓은 가죽 띠, 맨머리",
+        "en": "in a knee-length undyed wool tunic, a short leather-scale corselet and a wide leather belt, bareheaded",
+        "verse": "본문 밖 · 저작자 정함(철기 시대 초 이스라엘 무장 고증 — 376 사람 메모 「두 지휘관 옷이 시대를 반영하지 못함」)"
+      }
     }
   ],
   "regions": {
@@ -206,6 +268,12 @@
       0.55,
       0.8,
       0.9
+    ],
+    "youths": [
+      0.28,
+      0.36,
+      0.72,
+      0.64
     ]
   },
   "_regions_why": "둘 다 앉은 성인 지휘관 세로 0.35(앉은 자세 0.35-0.45 범위). 못을 사이에 두고 좌우로 마주 앉음(2:13 「이는 못 이편이요 저는 못 저편이라」). 신복들은 각자 편 뒤 능선.",
@@ -257,7 +325,7 @@
       "kind": "ridge",
       "region": "crest_left",
       "verse": "2:12",
-      "prompt": "many tiny distant soldiers just arrived and sitting in loose rows on a low ridge, small silhouettes, tiny far away crowd.",
+      "prompt": "soldiers just arrived and sitting in loose rows on the ground behind their commander at the pool's edge, watching.",
       "neg": [
         "empty ground",
         "single figure",
@@ -277,7 +345,7 @@
       "kind": "ridge",
       "region": "crest_right",
       "verse": "2:13-14",
-      "prompt": "many tiny distant soldiers just arrived and sitting in loose rows on a low ridge, small silhouettes, tiny far away crowd.",
+      "prompt": "soldiers just arrived and sitting in loose rows on the ground behind their commander at the pool's edge, watching.",
       "neg": [
         "empty ground",
         "single figure",
@@ -293,11 +361,25 @@
       ]
     },
     {
+      "id": "S5",
+      "kind": "region",
+      "region": "youths",
+      "verse": "2:15-16",
+      "prompt": "twenty-four young men in plain knee-length wool tunics fighting close in the open ground before the pool, twelve young men of Benjamin and twelve young men of David's servants facing each other in matched pairs, each gripping his opponent by the head, a short sword in the other hand.",
+      "neg": [
+        "modern clothes",
+        "plate armour",
+        "helmet",
+        "horses",
+        "dead bodies"
+      ]
+    },
+    {
       "id": "S3",
       "kind": "plate",
       "region": "abner",
       "verse": "2:13-14",
-      "prompt": "a sturdy battle-hardened commander sitting on the ground on the near side of the pool, gripping one spear upright, one arm extended as if speaking, facing right.",
+      "prompt": "a sturdy battle-hardened commander in a knee-length undyed wool tunic, a short leather-scale corselet and a wide leather belt, bareheaded, sitting on the ground on the near side of the pool, gripping one spear upright, watching the contest before him, facing right.",
       "neg": [
         "armour",
         "helmet",
@@ -305,7 +387,11 @@
         "two spears",
         "sword",
         "kneeling",
-        "standing"
+        "standing",
+        "plate armour",
+        "medieval armour",
+        "Roman armour",
+        "plumed helmet"
       ]
     },
     {
@@ -313,7 +399,7 @@
       "kind": "plate",
       "region": "joab",
       "verse": "2:13-14",
-      "prompt": "a lean quick commander sitting on the ground on the far side of the pool, gripping a sword hilt at his side, giving a nod of assent, facing left.",
+      "prompt": "a lean quick commander in a knee-length undyed wool tunic, a short leather-scale corselet and a wide leather belt, bareheaded, sitting on the ground on the far side of the pool, gripping a sword hilt at his side, watching the contest before him, facing left.",
       "neg": [
         "armour",
         "helmet",
@@ -321,7 +407,11 @@
         "sword swinging",
         "spear",
         "kneeling",
-        "standing"
+        "standing",
+        "plate armour",
+        "medieval armour",
+        "Roman armour",
+        "plumed helmet"
       ]
     }
   ],

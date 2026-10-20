@@ -35,7 +35,7 @@ def build(task, w, q):
             data[f"{s['id']}:{x['seed']}"] = P.uri(Image.open(x["base"]), w, q)
         scenes.append({"id": s["id"], "title": s["title"], "range": s["range"], "seeds": s["seeds"],
                        "qs": [x for x in s["qs"] if not x["id"].endswith(".identity") and x.get("grp") != "plate"],   # J1과 같은 문항
-                       "cand": c["cand"], "sample": c["sample"], "reject": c["reject"],
+                       "cand": c["cand"], "sample": c["sample"], "reject": c["reject"], **({"reason": c["reason"]} if "reason" in c else {}),
                        "order": JL.sample_order(s["id"], s["seeds"])})
     return scenes, data
 
@@ -118,6 +118,7 @@ function bindQ(app, a, seed) {
   });
 }
 function bigImg(s, seed) { return `<button type="button" class="card big" data-z="${seed}">${img(`${s.id}:${seed}`)}<span class="tag">s${seed}</span><span class="zoom">크게</span></button>`; }
+function odd(s) { return s.reason === "이상한 점"; }   // 되돌림 사유(task 378 — 이상한 점 결합 켬일 때만 있음)
 function head(sc, what) {
   return `<div class="bar"><span>장면 ${sc.k + 1}/${SCENES.length}</span><span>${what}</span></div><h1>${esc(sc.s.title)} · ${esc(sc.s.range)}</h1>`;
 }
@@ -174,7 +175,7 @@ function renderSample(app, sc, a) {
 function renderReject(app, sc, a) {
   const s = sc.s;
   app.append($(`${head(sc, "되돌림")}
-    <div class="machine"><p><b>기계: 8장 모두 장면 뜻이 틀렸다고 봤습니다 → 명세로 돌려보냄.</b></p>
+    <div class="machine"><p><b>${odd(sc.s) ? "기계: 장면 뜻이 맞은 장도 모두 이상한 점(신원·역할·이물·상태)이 있다고 봤습니다 → 명세로 돌려보냄." : "기계: 8장 모두 장면 뜻이 틀렸다고 봤습니다 → 명세로 돌려보냄."}</b></p>
     <p class="hint">동의하면 「동의」. 쓸 만한 그림이 있으면 그 그림을 누르세요 — 그 그림으로 후보 화면을 엽니다.</p></div>
     <div class="alts eight">${s.seeds.map((x) => `<button type="button" class="card" data-rev="${x}">${img(`${s.id}:${x}`)}<span class="tag">s${x}</span></button>`).join("")}</div>
     <div class="row"><button class="b main" id="agree" type="button">동의</button></div>`));
@@ -193,7 +194,7 @@ function verdict() {
         : { wrong: shown.filter((x) => marks(a, x).includes(q.id)), seeds: shown, blind: true, machine: null, unsure: false, memo: "" };
     });
     const pick = a.answer === "쓸 만함" ? { answer: `s${a.cand} 바탕`, seed: a.cand, kind: "base" }
-      : { answer: "없음", seed: null, kind: null, memo: agree ? "기계 되돌림에 동의 — 장면 뜻 8장 모두 틀림" : a.memo, ...(agree ? { machine_reject: true } : {}) };
+      : { answer: "없음", seed: null, kind: null, memo: agree ? (odd(s) ? "기계 되돌림에 동의 — 장면 뜻 맞은 장 모두 이상한 점" : "기계 되돌림에 동의 — 장면 뜻 8장 모두 틀림") : a.memo, ...(agree ? { machine_reject: true } : {}) };
     out.scenes[s.id] = { minutes: a.start && a.end ? +((a.end - a.start) / 60000).toFixed(2) : null, machine_cand: s.cand, reject: s.reject,
       revived: a.revived, cand: agree ? null : a.cand, sample: a.sampleDone ? a.sampleShown : null, answer: a.answer,
       switched: a.switched, memo: a.memo, items, pick, ...(agree ? { skipped: true } : {}) };

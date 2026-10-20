@@ -12,7 +12,7 @@
   },
   "moment": {
     "verse": "5:7",
-    "why": "다윗이 시온 산성을 빼앗아 그 성벽 앞에 선 순간을 고정한다(5:7). 5:6 「왕과 그 종자들이」는 대상 11:4 「온 이스라엘로 더불어」 평행으로 다윗 뒤에 선 종자들로 싣는다. 5:6의 여부스 사람의 조롱, 5:9의 거함과 성 쌓기는 앞뒤 다른 시점이라 순간 밖이다."
+    "why": "다윗이 시온 산성을 빼앗아 그 성벽 앞에 선 순간을 고정한다(5:7). 5:6 「왕과 그 종자들이」는 대상 11:4 「온 이스라엘로 더불어」 평행으로 다윗 뒤에 선 종자들로 싣는다. 5:6의 여부스 사람의 조롱, 5:9의 거함과 성 쌓기는 앞뒤 다른 시점이라 순간 밖이다. 종자들은 다윗 바로 뒤 같은 언덕에 모여 서 있고, 성벽 쪽 먼 무리가 아니다. (task 378 — 376 되돌림 원인: 종자 배치)"
   },
   "verse_elements": [
     {
@@ -36,7 +36,7 @@
       "quote": "왕과 그 종자들이",
       "kind": "무리",
       "ko": "다윗의 종자들(온 이스라엘 — 대상 11:4)이 그 뒤에 많이 섬",
-      "en": "many of his armed men behind him",
+      "en": "a band of armed Israelite men standing close together just behind the man at the front",
       "field": "stages[S2].prompt"
     },
     {
@@ -66,8 +66,8 @@
   ],
   "crowds": [
     {
-      "what": "다윗의 종자들 — 다윗 뒤에 선 무장한 많은 사람(대상 11:4 「온 이스라엘로 더불어」 평행)",
-      "verse": "5:6",
+      "what": "다윗의 종자들 — 다윗 바로 뒤 같은 언덕에 모여 선 무장한 많은 사람(대상 11:4 「온 이스라엘로 더불어」 평행)",
+      "verse": "5:6 · 대상 11:4 · 배치(다윗 바로 뒤)·창 쥠 · 본문 밖 · 저작자 정함",
       "region": "retinue"
     }
   ],
@@ -102,13 +102,13 @@
       0.92
     ],
     "retinue": [
-      0.05,
-      0.3,
-      0.4,
-      0.5
+      0.0,
+      0.38,
+      0.22,
+      0.9
     ]
   },
-  "_regions_why": "다윗 세로 0.50(성인 표준). 성벽은 우측 원경 큰 배경 요소(위치 서술어 없이 상자로만 배치). 종자들은 다윗 뒤 좌측 원경 띠(저작자 정한 배치).",
+  "_regions_why": "다윗 세로 0.50(성인 표준). 성벽은 우측 원경 큰 배경 요소(위치 서술어 없이 상자로만 배치). 종자들은 다윗 뒤 좌측 원경 띠(저작자 정한 배치). (task 378: retinue를 다윗 바로 뒤 [0.0,0.38,0.22,0.9]로 옮김 — 376 되돌림 원인 「종자들이 멀리 성벽 쪽」)",
   "stages": [
     {
       "id": "S1",
@@ -153,10 +153,10 @@
     },
     {
       "id": "S2",
-      "kind": "ridge",
+      "kind": "region",
       "region": "retinue",
       "verse": "5:6",
-      "prompt": "many of his armed men behind him, small silhouettes standing in a large group, far away.",
+      "prompt": "a band of armed Israelite men standing close together just behind the man at the front, spears in hand, on the same hillside, not near the wall.",
       "neg": [
         "empty ground",
         "single figure",

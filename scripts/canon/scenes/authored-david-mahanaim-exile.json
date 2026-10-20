@@ -3,14 +3,16 @@
   "id": "authored-david-mahanaim-exile",
   "title": "다윗 — 마하나임으로 피신하다",
   "verses": {
-    "range": "삼하 17:24",
+    "range": "삼하 17:22-29",
     "quotes": {
-      "17:24": "이에 다윗은 마하나임에 이르고 압살롬은 모든 이스라엘 사람과 함께 요단을 건너니라"
+      "17:22": "다윗이 일어나 모든 백성과 함께 요단을 건널새 새벽에 미쳐서 한 사람도 요단을 건너지 못한 자가 없었더라",
+      "17:24": "이에 다윗은 마하나임에 이르고 압살롬은 모든 이스라엘 사람과 함께 요단을 건너니라",
+      "17:29": "꿀과 뻐더와 양과 치스를 가져다가 다윗과 그 함께 한 백성으로 먹게 하였으니 이는 저희 생각에 백성이 들에서 시장하고 곤하고 목마르겠다 함이더라"
     }
   },
   "moment": {
     "verse": "17:24 전반",
-    "why": "다윗이 마하나임에 이르러 걷는 순간을 고정한다. 압살롬의 요단 도하는 별개 장소·별개 순간이라 배제한다."
+    "why": "다윗이 함께한 모든 백성과 함께 마하나임에 이르는 순간을 고정한다(17:24 · 17:22 「모든 백성과 함께」). 백성은 마하나임 사람들이 헤아린 대로(17:29 「저희 생각에」) 들에서 시장하고 곤하고 목마를 지친 걸음으로 다윗 바로 뒤를 따라 걷는다. 압살롬의 요단 도하는 별개 장소·별개 순간이라 배제하고, 소비·마길·바실래가 먹을 것을 가져온 일(17:27-29)은 이른 뒤라 순간 밖이다. (task 378 — 376 사람 메모 「다윗 혼자 간 건 아니잖아 무리랑 같이」)"
   },
   "verse_elements": [
     {
@@ -57,6 +59,29 @@
       "kind": "행동",
       "ko": "압살롬이 요단을 건넘",
       "out": "요단 도하는 다윗이 이른 순간과 별개의 순간"
+    },
+    {
+      "verse": "17:22",
+      "quote": "모든 백성과 함께",
+      "kind": "무리",
+      "ko": "다윗과 함께한 모든 백성이 뒤를 따름",
+      "en": "a long column of weary Israelite people walking up the road close behind the man leading them",
+      "field": "stages[S2].prompt"
+    },
+    {
+      "verse": "17:29",
+      "quote": "시장하고 곤하고 목마르겠다",
+      "kind": "행동",
+      "ko": "백성이 시장하고 곤하고 목마름",
+      "en": "hungry, tired and thirsty",
+      "field": "stages[S2].prompt"
+    },
+    {
+      "verse": "17:29",
+      "quote": "다윗과 그 함께 한 백성으로 먹게 하였으니",
+      "kind": "행동",
+      "ko": "마하나임 사람들이 먹을 것을 가져옴",
+      "out": "다윗과 백성이 이른 뒤의 순간(17:27-29) — 이 장면은 이르는 때"
     }
   ],
   "background": [
@@ -65,16 +90,22 @@
       "verse": "17:24 · 지형(언덕 위 성읍으로 오르는 길) 본문 밖 · 저작자 정함"
     }
   ],
-  "crowds": [],
+  "crowds": [
+    {
+      "what": "다윗과 함께한 모든 백성 — 마하나임 사람들이 헤아린 대로 시장하고 곤하고 목마를 지친 걸음으로 다윗 뒤를 따름",
+      "verse": "17:22 · 17:29 · 짐 진 남녀·다윗 바로 뒤 · 본문 밖 · 저작자 정함",
+      "region": "people"
+    }
+  ],
   "figures": [
     {
       "cast": "david",
       "role": "다윗",
-      "pose": "지친 걸음으로 도착해 로브 자락을 쥔다",
+      "pose": "지친 걸음으로 백성 앞에서 이끌며 도착해 로브 자락을 쥔다",
       "prop": "a robe corner",
       "facing": "right",
       "region": "david",
-      "verse": "17:24 · 자세(걸음) 본문 밖 · 저작자 정함 · 지물 본문 밖 · 저작자 정함"
+      "verse": "17:22 · 17:24 · 지친 걸음·앞에서 이끎·로브 자락 쥠 · 본문 밖 · 저작자 정함"
     }
   ],
   "regions": {
@@ -89,6 +120,12 @@
       0.46,
       0.56,
       0.92
+    ],
+    "people": [
+      0.02,
+      0.42,
+      0.42,
+      0.9
     ]
   },
   "_regions_why": "다윗 세로 0.46(성인, 지친 걸음이라 표준 하단). 단독 인물이라 중앙 배치.",
@@ -115,11 +152,24 @@
       ]
     },
     {
+      "id": "S2",
+      "kind": "region",
+      "region": "people",
+      "verse": "17:22 · 17:29",
+      "prompt": "a long column of weary Israelite people walking up the road close behind the man leading them, men and women with bundles on their shoulders, hungry, tired and thirsty.",
+      "neg": [
+        "modern clothes",
+        "soldiers in armour",
+        "horses",
+        "carts"
+      ]
+    },
+    {
       "id": "S3",
       "kind": "plate",
       "region": "david",
       "verse": "17:24",
-      "prompt": "an ancient Israelite lean young man arriving on foot, walking wearily, gripping the corner of his robe with one hand, facing right.",
+      "prompt": "an ancient Israelite lean young man arriving on foot, walking wearily at the head of his people, gripping the corner of his robe with one hand, facing right.",
       "neg": [
         "armour",
         "crown",

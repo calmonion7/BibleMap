@@ -3,6 +3,7 @@
 
   python3 batch/judge_items.py run --set dev --key r1 --header v1 --model sonnet [--limit 1] [--workers 4]
   python3 batch/judge_items.py run --set holdout --key sonnet --header v2 --model sonnet
+  python3 batch/judge_items.py run --set oddity --key O1 --header o1 --model sonnet   # 이상한 점(task 378) 라벨 칸
   python3 batch/judge_items.py score            # 원 답 → metrics 요약 + notes/JUDGE-ITEMS.md 결과 절
   python3 batch/judge_items.py score --check    # 다시 계산해 metrics·notes와 대조(손 집계 방지) — 다르면 exit 1
 
@@ -63,6 +64,16 @@ HEADERS = {
 - 적은 무리가 기대와 **다른 점**(무리가 없음, 행동이 다름, 자리가 다름, 방향이 반대)이 있을 때만 「틀림」.
 - 작고 멀어 세부가 흐릿한 것은 틀림이 아니다. 기대와 어긋나는 것이 보일 때만 틀림으로 한다.
 - 출력은 JSON 하나만: {"answers": {"<문항 id>": "맞음" 또는 "틀림", ...}, "reasons": {"<문항 id>": "실제로 본 무리 — 판정 이유", ...}}""",
+    # task 378 이상한 점(두 겹 판정 2층): J1 요소 문항과 따로 부르는 문항 하나 — 명세 글 전체에 비춘 신원·역할·이물·상태 어긋남 + 가드 결함
+    "o1": """너는 성경 장면 그림을 깐깐하게 검수하는 미술 감독이다. 아래 장면 명세 글을 먼저 읽고, Read 도구로 그림 파일을 모두 연 뒤, 이 그림에 명세에 비추어 **이상한 점**이 있는지 판정하라. 장면 뜻·배경·무리·자세·지물·방향은 다른 검수자가 요소마다 따로 묻는다. 너는 그 요소 목록이 놓치는 어긋남을 본다:
+- 신원: 명세의 인물이 그림에서 누구인지 모호하다(누가 그 사람인지 구별되지 않음), 또는 명세에 없는 사람이 행동의 주체로 보인다.
+- 역할: 행동을 하는 사람과 받는 사람이 명세와 바뀌었거나, 명세에 없는 사람이 그 행동을 한다.
+- 이물: 그 시대에 없는 물건·건물·옷(현대식 건물·철모 등), 덧붙거나 몸이 겹친 사람.
+- 상태: 명세가 말한 상태와 다르다(예: 싸여야 할 것이 드러남, 차야 할 칼을 뽑아 듦).
+- 가드 결함: 손가락 수 이상, 두 겹 인물, 종이 테두리·액자, 글자.
+- 하나라도 있거나, 있는지 없는지 모호하면 「틀림」(이상한 점 있음). 분명히 없을 때만 「맞음」.
+- 인물 몸 크롭은 그 인물을 잘라 낸 그림이다(크롭 가운데 인물이 그 사람이다).
+- 출력은 JSON 하나만: {"answers": {"oddity": "맞음" 또는 "틀림"}, "reasons": {"oddity": "본 이상한 점(없으면 없음) — 짧게"}}""",
 }
 
 
@@ -108,6 +119,41 @@ def items(set_name, only=None, tasks=None):
                             "premarked": {q for q in labels if rec[q].get("machine") is not None and not rec[q].get("blind")},
                             "unsure": sum(1 for q in qs if rec.get(q["id"], {}).get("unsure"))})
     return out
+
+
+def oddity_spec(sid):
+    """이상한 점 문항에 줄 명세 한국어 — 순간·뜻·관계·배경·무리·인물(역할·자세·지물·몸짓·표정·차림)."""
+    s = json.load(open(os.path.join(HERE, "scenes", f"{sid}.json"), encoding="utf-8"))
+    ko = lambda v: v.get("ko") if isinstance(v, dict) else v
+    lines = [f"순간: {s['moment']['why']}"]
+    lines += [f"{n}: {ko(s[k])}" for k, n in (("meaning", "장면 뜻"), ("relation", "관계")) if s.get(k)]
+    lines.append(f"배경: {ko(s.get('whole_background')) or ' · '.join(b['what'] for b in s.get('background', []))}")
+    lines += [f"무리: {c.get('what')}" for c in s.get("crowds", [])]
+    for f in s["figures"]:
+        parts = [f"자세 {f.get('pose')}", f"지물 {f.get('prop')}"] + [f"{n} {ko(f[k])}" for k, n in (("gesture", "몸짓"), ("expression", "표정"), ("costume", "차림")) if f.get(k)]
+        lines.append(f"인물 {f['cast']} — {f.get('role')}: " + " · ".join(parts))
+    return "\n".join(lines)
+
+
+def oddity_items(set_name):
+    """이상한 점 판정 그림 — 「oddity」 = notes/SPEC-JUDGE.md 고정 절의 라벨 칸, 그 밖은 items(set_name) 그대로(예: t376 112장).
+    문항은 oddity 하나(「틀림」 = 이상한 점 있음). 인물 크롭은 원래 문항의 크롭 상자를 그대로 쓴다."""
+    if set_name == "oddity":
+        import judge_spec
+        od = judge_spec.fixed()["oddity"]
+        keys = set(od["pos"] + od["neg"])
+        its = [it for t in sorted({int(k.split(":")[0]) for k in keys}) for it in items(None, tasks=[t]) if it["key"] in keys]
+    else:
+        its = items(set_name)
+    return [{**it, "qids": ["oddity"], "labels": {}, "spec": oddity_spec(it["scene"])} for it in its]
+
+
+def oddity_prompt(it, files, header):
+    lines = [header, "", f"장면: {it['title']} ({it['range']})", "", "장면 명세(그림이 따라야 할 글):", it["spec"], "",
+             f"전체 그림: {files['full']}"]
+    lines += [f"{w} 몸 크롭: {p}" for w, p in files.items() if w != "full"]
+    lines += ["", "문항:", "- oddity: 이 그림에 명세에 비추어 이상한 점이 있는가 — 「맞음」 = 없음, 「틀림」 = 있음"]
+    return "\n".join(lines)
 
 
 def prepare(it, set_name, zoom=1.0):
@@ -215,7 +261,8 @@ def run(a):
         m.setdefault("headers", {})[a.header] = HEADERS[a.header]
     done = update(start)[a.set][a.key]["answers"]
     tasks = [int(x) for x in a.tasks.split(",")] if a.tasks else None
-    todo = [it for it in items(a.set, only, tasks) if it["key"] not in done][: a.limit or None]
+    odd = a.header == "o1"   # 이상한 점(task 378) — 문항 oddity 하나, 명세 글을 함께
+    todo = [it for it in (oddity_items(a.set) if odd else items(a.set, only, tasks)) if it["key"] not in done][: a.limit or None]
     books = {}
     if a.learn:   # 판정 학습: 그림마다 그 과제보다 앞선 과제에서 배운 규칙집을 머리말 뒤에(batch/judge_learn.py)
         import judge_learn as L
@@ -225,7 +272,7 @@ def run(a):
     def one(it):
         d, files = prepare(it, a.set, a.zoom)
         rules = L.rules_for(it, set(only or J_CLASSES_OF(it)), books[it["task"]], other=0 if a.learn == "same" else L.OTHER_SCENE_CAP) if a.learn else ""
-        text, tries, got = prompt(it, files, HEADERS[a.header] + rules), [], None
+        text, tries, got = (oddity_prompt(it, files, HEADERS[a.header]) if odd else prompt(it, files, HEADERS[a.header] + rules)), [], None
         for _ in range(2):   # JSON이 깨지면 한 번만 다시
             o = call(text, d, a.model)
             tries.append(use(o) | {"error": bool(o.get("is_error"))})
@@ -390,7 +437,7 @@ def main():
     r.add_argument("--tasks", default="", help="이 과제 그림만(쉼표) — 예: 369")
     r.add_argument("--learn", nargs="?", const="all", default="", choices=["all", "same"],
                    help="그 과제 앞까지 배운 규칙집을 머리말 뒤에 붙임(judge_learn) — same이면 같은 장면 규칙만")
-    pr = sub.add_parser("predict", help="새 묶음에 J1(v2 전 문항 + p2 지물만)을 동시에 — 함께 판정 화면 전에")
+    pr = sub.add_parser("predict", help="새 묶음에 J1(v2 전 문항 + p2 지물만)과 이상한 점(o1)을 동시에 — 후보 화면 전에")
     pr.add_argument("--task", type=int, required=True)
     s = sub.add_parser("score")
     s.add_argument("--check", action="store_true")
@@ -398,7 +445,8 @@ def main():
     if a.cmd == "predict":   # J1 두 호출을 동시에(답마다 update로 합쳐 씀)
         me = [sys.executable, os.path.abspath(__file__), "run", "--set", f"t{a.task}", "--model", "sonnet"]
         ps = [subprocess.Popen(me + ["--key", "J1", "--header", "v2"]),
-              subprocess.Popen(me + ["--key", "J1-prop", "--header", "p2", "--only", "prop", "--zoom", "2.5"])]
+              subprocess.Popen(me + ["--key", "J1-prop", "--header", "p2", "--only", "prop", "--zoom", "2.5"]),
+              subprocess.Popen(me + ["--key", "O1", "--header", "o1"])]   # 이상한 점 — 결합 켬/끔과 무관하게 기록(task 378)
         sys.exit(max(p.wait() for p in ps))
     run(a) if a.cmd == "run" else score(a)
 

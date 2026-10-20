@@ -6,6 +6,7 @@
     "range": "삼상 16:4-13",
     "quotes": {
       "16:7": "여호와께서 사무엘에게 이르시되 그 용모와 신장을 보지 말라 내가 이미 그를 버렸노라 나의 보는 것은 사람과 같지 아니하니 사람은 외모를 보거니와 나 여호와는 중심을 보느니라",
+      "16:10": "이새가 그 아들 일곱으로 다 사무엘 앞을 지나게 하나 사무엘이 이새에게 이르되 여호와께서 이들을 택하지 아니하셨느니라 하고",
       "16:11": "또 이새에게 이르되 네 아들들이 다 여기 있느냐 이새가 가로되 아직 말째가 남았는데 그가 양을 지키나이다",
       "16:12": "이에 보내어 그를 데려오매 그의 빛이 붉고 눈이 빼어나고 얼굴이 아름답더라 여호와께서 가라사대 이가 그니 일어나 기름을 부으라",
       "16:13": "사무엘이 기름 뿔을 취하여 그 형제 중에서 그에게 부었더니 이 날 이후로 다윗이 여호와의 신에게 크게 감동되니라"
@@ -13,7 +14,7 @@
   },
   "moment": {
     "verse": "16:13",
-    "why": "사무엘이 기름 뿔로 다윗에게 기름을 붓는 순간을 고정한다(16:13) — 형들이 차례로 지나던 심사 절차(16:6-10)는 이 순간 밖이다. 다윗은 형제들 가운데 서서 고개를 숙이고 기름을 받는다."
+    "why": "사무엘이 기름 뿔로 다윗에게 기름을 붓는 순간을 고정한다(16:13) — 형들이 차례로 지나던 심사 절차(16:6-10)는 이 순간 밖이다. 다윗은 형제들 가운데 서서 고개를 숙이고 기름을 받는다. 기름 뿔을 쥐고 붓는 이는 사무엘 한 사람뿐이고, 이새와 형제들은 기름 뿔 없이 지켜본다. (task 378 — 376 사람 메모 「사무엘 옆에 있는 사람은 누구며? 사람이 기름을 붓고 있음」)"
   },
   "verse_elements": [
     {
@@ -36,8 +37,8 @@
       "verse": "16:13",
       "quote": "그 형제 중에서",
       "kind": "무리",
-      "ko": "다윗의 일곱 형제가 곁에 둘러서 있다(16:10)",
-      "en": "seven grown brothers standing close around him",
+      "ko": "형제들이 다윗 바로 뒤에 한 줄로 섬 — 배치 · 본문 밖 · 저작자 정함",
+      "en": "seven grown brothers standing in a row just behind the boy",
       "field": "stages[S5].prompt"
     },
     {
@@ -60,7 +61,7 @@
       "verse": "16:11",
       "quote": "이새가 가로되",
       "kind": "인물",
-      "ko": "이새가 곁에 서서 지켜본다",
+      "ko": "이새가 떨어져 서서 지켜봄 — 배치 · 본문 밖 · 저작자 정함",
       "en": "standing tall, gripping one wooden staff upright, watching",
       "field": "stages[S4].prompt"
     }
@@ -93,11 +94,11 @@
     {
       "cast": "jesse",
       "role": "이새 — 지켜보는 아버지",
-      "pose": "곁에 서서 지켜본다",
+      "pose": "떨어져 서서 지팡이만 쥔 채 지켜본다 — 기름 뿔은 들지 않음",
       "prop": "a wooden staff",
       "facing": "left",
       "region": "jesse",
-      "verse": "16:11 · 지물 본문 밖 · 저작자 정함"
+      "verse": "16:11 · 떨어져 섬·지물 · 본문 밖 · 저작자 정함"
     }
   ],
   "regions": {
@@ -127,12 +128,12 @@
     ],
     "brothers": [
       0.27,
-      0.48,
+      0.34,
       0.74,
-      0.9
+      0.7
     ]
   },
-  "_regions_why": "사무엘·이새 세로 0.55(장년~노년 성인), 다윗(소년) 서서 세로 0.40. 배치는 16:13(사무엘이 중앙의 다윗에게 붓고, 형제들과 이새가 곁에서 지켜봄). 형제 일곱(16:10)은 다윗 양옆·뒤를 둘러싸도록 brothers 구역을 다윗 왼쪽까지 넓혔다.",
+  "_regions_why": "사무엘·이새 세로 0.55(장년~노년 성인), 다윗(소년) 서서 세로 0.40. 배치는 16:13(사무엘이 중앙의 다윗에게 붓고, 형제들과 이새가 곁에서 지켜봄). 형제 일곱(16:10)은 다윗 양옆·뒤를 둘러싸도록 brothers 구역을 다윗 왼쪽까지 넓혔다. (task 378: 형제 구역을 다윗 바로 뒤 한 줄 [0.27,0.34,0.74,0.7]로 옮김 — 둘러선 형제가 기름 붓는 이로 읽히던 376 메모 대응)",
   "stages": [
     {
       "id": "S1",
@@ -159,7 +160,7 @@
       "kind": "plate",
       "region": "samuel",
       "verse": "16:13",
-      "prompt": "{cast:samuel}, standing, holding up one small horn of oil, facing right.",
+      "prompt": "{cast:samuel}, standing, tilting one small horn of oil over the boy's bowed head, facing right.",
       "neg": [
         "armour",
         "sword",
@@ -191,15 +192,17 @@
       "kind": "plate",
       "region": "jesse",
       "verse": "16:11",
-      "prompt": "{cast:jesse}, standing tall, gripping one wooden staff upright, watching, facing left.",
+      "prompt": "{cast:jesse}, standing tall, gripping one wooden staff upright, watching, standing apart, holding no horn, facing left.",
       "neg": [
         "armour",
-        "sword",
-        "spear",
         "crown",
+        "horn",
         "modern clothes",
-        "two staffs",
-        "sitting"
+        "oil",
+        "sitting",
+        "spear",
+        "sword",
+        "two staffs"
       ]
     },
     {
@@ -207,14 +210,17 @@
       "kind": "region",
       "region": "brothers",
       "verse": "16:13",
-      "prompt": "seven grown brothers standing close around him, watching in silence, hands at their sides.",
+      "prompt": "seven grown brothers standing in a row just behind the boy, empty-handed, watching in silence, hands at their sides.",
       "neg": [
         "armour",
-        "sword",
-        "spear",
         "crown",
+        "horn",
+        "jar",
+        "kneeling",
         "modern clothes",
-        "kneeling"
+        "oil",
+        "spear",
+        "sword"
       ]
     }
   ],
@@ -252,7 +258,7 @@
         "S2",
         "S3"
       ],
-      "prompt": "{castc:samuel} tilting one horn of oil over the bowed head of {castc:david-boy} beside him.",
+      "prompt": "{castc:samuel} alone tilting one horn of oil over the bowed head of {castc:david-boy} beside him, oil running onto the boy's hair, no one else holding a horn.",
       "neg": [
         "armour",
         "sword",
@@ -265,6 +271,13 @@
         "beard on the boy"
       ],
       "_why": "기름을 붓는 순간(16:13)은 뿔이 다윗의 머리 위에 와야 성립한다. 두 사람 상자 사이가 화면 폭의 15.5%라 판 경로에서는 각자 따로 서 있었다. 이새(S4)는 곁에서 지켜볼 뿐이라 묶지 않는다 — 닿아야 하는 둘만 한 단계로 그린다."
+    }
+  ],
+  "crowds": [
+    {
+      "what": "이새의 아들 일곱 — 형제들이 다윗 바로 뒤에 한 줄로 서서 기름 뿔 없이 지켜봄",
+      "verse": "16:10 · 16:13 「그 형제 중에서」 · 다윗 뒤 한 줄 배치 · 본문 밖 · 저작자 정함",
+      "region": "brothers"
     }
   ]
 }

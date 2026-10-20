@@ -3,14 +3,17 @@
   "id": "authored-david-returns-jerusalem",
   "title": "다윗 — 요단을 건너 돌아오다",
   "verses": {
-    "range": "삼하 19:15",
+    "range": "삼하 19:15-18",
     "quotes": {
-      "19:15": "왕이 돌아와 요단에 이르매 유다 족속이 왕을 맞아 요단을 건네려 하여 길갈로 오니라"
+      "19:15": "왕이 돌아와 요단에 이르매 유다 족속이 왕을 맞아 요단을 건네려 하여 길갈로 오니라",
+      "19:16": "바후림에 있는 베냐민 사람 게라의 아들 시므이가 급히 유다 사람과 함께 다윗 왕을 맞으려 내려올 때에",
+      "19:17": "베냐민 사람 일천 명이 저와 함께 하고 사울의 사환 시바도 그 아들 열다섯과 종 스무 명으로 더불어 저와 함께 하여 요단 강을 밟고 건너 왕의 앞으로 나아오니라",
+      "19:18": "왕의 가족을 건네려 하며 왕의 선히 여기는 대로 쓰게 하려하여 나룻배가 건너가니 왕이 요단을 건너려 할 때에 게라의 아들 시므이가 왕의 앞에 엎드려"
     }
   },
   "moment": {
-    "verse": "19:15",
-    "why": "왕 다윗이 돌아와 요단에 이르러 걷는 순간을 고정한다(19:15). 유다 족속이 왕을 맞아 요단을 건네려 모여 있는 무리를 원경에 둔다(길갈에 모임). 왕이 이른 요단은 강가 단계로 둔다."
+    "verse": "19:15 · 19:18 전반",
+    "why": "왕 다윗이 돌아와 요단에 이르고, 유다 사람들이 왕을 맞아 요단을 건네려 길갈에 모였다가(19:15) 왕을 맞으러 강가로 내려와(19:16) 왕을 가까이 맞으며, 왕의 가족을 건네려고 나룻배가 건너오는 순간(19:18 전반)을 고정한다. 유다 사람들은 원경 무리가 아니라 왕 앞 강가에서 왕을 맞고 건너기를 돕는다(배를 붙잡는 손은 본문 밖 · 저작자 정함 — 376 사람 메모 「나룻배를 준비하거나 안내」). 시므이가 왕 앞에 엎드림(19:18 후반)은 그다음 순간이라 순간 밖이다. (task 378 — 376 사람 메모 「유다 사람들이 배나 나룻배를 준비하거나 안내하는 등 건너기를 도우려 길갈에서 만난 것」)"
   },
   "verse_elements": [
     {
@@ -34,24 +37,62 @@
       "quote": "유다 족속이",
       "kind": "무리",
       "ko": "유다 족속의 무리",
-      "en": "many tiny distant people gathered at Gilgal",
+      "en": "a crowd of men of Judah",
       "field": "stages[S2].prompt"
     },
     {
       "verse": "19:15",
       "quote": "왕을 맞아 요단을 건네려",
       "kind": "행동",
-      "ko": "왕을 맞아 요단을 건네려 함",
-      "en": "waiting to meet the king and conduct him across the river",
+      "ko": "유다 사람들이 강가에서 왕을 가까이 맞아 건너기를 도움",
+      "en": "coming close to meet the king at the river's edge and help him across",
       "field": "stages[S2].prompt"
     },
     {
       "verse": "19:15",
       "quote": "길갈로 오니라",
       "kind": "장소",
-      "ko": "유다 무리가 길갈에 모임",
-      "en": "gathered at Gilgal",
+      "ko": "유다 사람들이 길갈에 모였다가 강가로 내려옴",
+      "en": "who gathered at Gilgal and came down to the river",
       "field": "stages[S2].prompt"
+    },
+    {
+      "verse": "19:18",
+      "quote": "나룻배가 건너가니",
+      "kind": "지물",
+      "ko": "나룻배가 강을 건너옴",
+      "en": "a wooden ferry boat crossing the river toward the bank",
+      "field": "stages[S1b].prompt"
+    },
+    {
+      "verse": "19:18",
+      "quote": "왕의 가족을 건네려 하며",
+      "kind": "행동",
+      "ko": "왕의 가족을 건네려 함",
+      "en": "to carry the king's household across",
+      "field": "stages[S1b].prompt"
+    },
+    {
+      "verse": "19:18",
+      "quote": "시므이가 왕의 앞에 엎드려",
+      "kind": "행동",
+      "ko": "시므이가 왕 앞에 엎드림",
+      "out": "나룻배가 건너온 뒤 왕이 건너려 할 때의 다음 순간(19:18 후반)"
+    },
+    {
+      "verse": "19:16",
+      "quote": "유다 사람과 함께 다윗 왕을 맞으려 내려올 때에",
+      "kind": "무리",
+      "ko": "유다 사람들이 왕을 맞으러 강가로 내려옴",
+      "en": "coming close to meet the king at the river's edge",
+      "field": "stages[S2].prompt"
+    },
+    {
+      "verse": "19:17",
+      "quote": "베냐민 사람 일천 명이 저와 함께 하고",
+      "kind": "무리",
+      "ko": "베냐민 일천 명·시바가 요단을 건너 왕 앞에 나아옴",
+      "out": "나룻배가 건너가기 앞선 걸음(19:17) — 이 장면은 유다 사람들과 나룻배가 왕을 맞는 19:18 전반"
     }
   ],
   "background": [
@@ -62,20 +103,20 @@
   ],
   "crowds": [
     {
-      "what": "유다 족속 — 왕을 맞아 요단을 건네려 모인 무리",
-      "verse": "19:15",
-      "region": "crest_right"
+      "what": "유다 사람들 — 길갈에 모였다가 왕을 맞으러 강가로 내려와 왕 가까이 서고, 몇은 나룻배를 붙잡아 건너기를 도움",
+      "verse": "19:15-16 · 19:18 · 배를 붙잡음·왕 가까이 섬 · 본문 밖 · 저작자 정함(376 사람 메모)",
+      "region": "judah"
     }
   ],
   "figures": [
     {
       "cast": "david",
       "role": "다윗",
-      "pose": "강가를 향해 걸으며 칼자루를 쥔다",
+      "pose": "강가로 걸어와 맞으러 나온 유다 사람들에게 다가가며 칼자루를 쥔다",
       "prop": "a sword",
       "facing": "right",
       "region": "david",
-      "verse": "19:15 · 지물 본문 밖 · 저작자 정함"
+      "verse": "19:15 · 다가감·칼자루 쥠 · 본문 밖 · 저작자 정함"
     }
   ],
   "regions": {
@@ -102,6 +143,12 @@
       0.46,
       0.32,
       0.9
+    ],
+    "judah": [
+      0.34,
+      0.38,
+      0.72,
+      0.88
     ]
   },
   "_regions_why": "다윗 세로 0.44(걷는 자세). 강과 맞이하는 무리는 우측(19:15 「요단에 이르매」·「맞아」).",
@@ -131,7 +178,7 @@
       "kind": "region",
       "region": "river",
       "verse": "19:15",
-      "prompt": "a calm wide river with a muddy bank, reeds along the edge, no people.",
+      "prompt": "a calm wide river with a muddy bank, reeds along the edge, a wooden ferry boat crossing the river toward the bank to carry the king's household across.",
       "neg": [
         "people",
         "figures",
@@ -149,10 +196,10 @@
     },
     {
       "id": "S2",
-      "kind": "ridge",
-      "region": "crest_right",
-      "verse": "19:15",
-      "prompt": "many tiny distant people gathered at Gilgal, waiting to meet the king and conduct him across the river, small silhouettes, tiny far away crowd.",
+      "kind": "region",
+      "region": "judah",
+      "verse": "19:15 · 19:18",
+      "prompt": "a crowd of men of Judah who gathered at Gilgal and came down to the river, coming close to meet the king at the river's edge and help him across, some of them holding the ferry boat steady at the bank.",
       "neg": [
         "empty ground",
         "single figure",
@@ -172,7 +219,7 @@
       "kind": "plate",
       "region": "david",
       "verse": "19:15",
-      "prompt": "an ancient Israelite lean young man walking, gripping a sword hilt at his side, facing right.",
+      "prompt": "an ancient Israelite lean young man walking toward the men waiting at the river's edge, gripping a sword hilt at his side, facing right.",
       "neg": [
         "armour",
         "crown",

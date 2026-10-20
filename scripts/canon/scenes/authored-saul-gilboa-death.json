@@ -11,7 +11,7 @@
   },
   "moment": {
     "verse": "31:4 전반~중반",
-    "why": "중상한 사울이 선 채로 병기 든 자에게 「네 칼을 빼어 나를 찌르라」 명하고, 병기 든 자가 심히 두려워 즐겨 행치 않는 순간(31:4 전반~중반) — 사울이 자기 칼을 취해 그 위에 엎드러지는 일(31:4 후반)은 이 순간 뒤다. 병기 든 자는 두려워 굳은 채 칼을 빼지 않는다."
+    "why": "중상한 사울이 선 채로 병기 든 자에게 「네 칼을 빼어 나를 찌르라」 명하고, 병기 든 자가 심히 두려워 즐겨 행치 않는 순간(31:4 전반~중반) — 사울이 자기 칼을 취해 그 위에 엎드러지는 일(31:4 후반)은 이 순간 뒤다. 병기 든 자는 두려워 굳은 채 칼을 빼지 않는다. 두 사람 모두 칼은 칼집에 든 채다. (task 378 — 376 되돌림 원인: 지물 칸 `a sword`가 자세 칸과 어긋나 8장 모두 칼을 뽑음)"
   },
   "verse_elements": [
     {
@@ -59,7 +59,7 @@
       "quote": "심히 두려워하여 즐겨 행치 아니하는지라",
       "kind": "행동",
       "ko": "병기 든 자가 심히 두려워 칼을 빼지 않음",
-      "en": "standing frozen in fear, not drawing it",
+      "en": "standing frozen in fear",
       "field": "stages[S4].prompt"
     },
     {
@@ -101,8 +101,8 @@
     {
       "cast": "saul-armor-bearer",
       "role": "병기 든 자 — 두려워함",
-      "pose": "심히 두려워 굳은 채 칼을 빼지 않는다 — 칼자루를 쥔 채",
-      "prop": "a sword",
+      "pose": "심히 두려워 굳은 채 칼집에 든 칼자루만 쥐고 칼을 빼지 않는다",
+      "prop": "a sheathed sword",
       "facing": "left",
       "region": "saul-armor-bearer",
       "verse": "31:4 · 칼자루 쥠 본문 밖 · 저작자 정함"
@@ -182,13 +182,15 @@
       "kind": "plate",
       "region": "saul-old",
       "verse": "31:3-4",
-      "prompt": "{cast:saul-old}, standing upright, wounded by arrows, one hand stretched out toward the armour-bearer in command, a sheathed sword at his hip, facing right.",
+      "prompt": "{cast:saul-old}, standing upright, wounded by arrows, one hand stretched out toward the armour-bearer in command, a sheathed sword at his hip, his own blade not drawn, facing right.",
       "neg": [
-        "crown",
         "armour",
-        "royal robe",
+        "bare blade",
+        "crown",
+        "drawn sword",
         "kneeling",
-        "modern clothes"
+        "modern clothes",
+        "royal robe"
       ]
     },
     {
@@ -196,12 +198,14 @@
       "kind": "plate",
       "region": "saul-armor-bearer",
       "verse": "31:4",
-      "prompt": "{cast:saul-armor-bearer}, standing frozen in fear, not drawing it, gripping the hilt of a sheathed sword at his side, facing left.",
+      "prompt": "{cast:saul-armor-bearer}, standing frozen in fear, gripping the hilt of a sheathed sword at his side, the blade still in its scabbard, not drawing it, facing left.",
       "neg": [
+        "bare blade",
         "crown",
-        "royal robe",
+        "drawn sword",
         "kneeling",
-        "modern clothes"
+        "modern clothes",
+        "royal robe"
       ]
     }
   ],

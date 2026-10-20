@@ -169,18 +169,44 @@ def sample_order(sid, seeds):
     return sorted(seeds, key=lambda s: zlib.crc32(f"{sid}:{s}".encode()))
 
 
-def pick_candidates(answers):
+def pick_candidates(answers, oddity=None):
     """후보 화면 규칙(notes/VERSE-REGEN.md 고정 절). answers = {장면: {시드: {문항: "맞음"|"틀림"|None}}} (시드는 시드 목록 순서)
     → {장면: {cand, sample, reject, wrong}} — 답 없음(None)은 틀림으로 센다.
-    후보 = 장면 뜻(moment) 맞음인 시드 중 틀림 칸이 가장 적은 시드(동률이면 앞쪽) · 되돌림 = moment가 시드 전부 틀림 · 표본 = 표본 순서에서 후보 아닌 첫 시드."""
+    후보 = 장면 뜻(moment) 맞음인 시드 중 틀림 칸이 가장 적은 시드(동률이면 앞쪽) · 되돌림 = moment가 시드 전부 틀림 · 표본 = 표본 순서에서 후보 아닌 첫 시드.
+    oddity = {장면: {시드: "맞음"|"틀림"|None}}(이상한 점 판정자, 「틀림」 = 있음 · 답 없음은 있음으로) — 주면 후보는 「장면 뜻 맞음 그리고
+    이상한 점 없음」 시드에서만 고르고, 되돌림 사유(reason: 장면 뜻 | 이상한 점)를 붙인다(task 378 S6). 안 주면 376 규칙 그대로."""
     out = {}
     for sid, by in answers.items():
         wrong = {s: sum(a != "맞음" for a in qa.values()) for s, qa in by.items()}
         ok = [s for s, qa in by.items() if qa.get("moment") == "맞음"]
-        cand = min(ok, key=lambda s: wrong[s]) if ok else None   # min은 동률에서 앞쪽 시드
+        pool = ok if oddity is None else [s for s in ok if (oddity.get(sid) or {}).get(s) == "맞음"]
+        cand = min(pool, key=lambda s: wrong[s]) if pool else None   # min은 동률에서 앞쪽 시드
         sample = None if cand is None else next(s for s in sample_order(sid, list(by)) if s != cand)
         out[sid] = {"cand": cand, "sample": sample, "reject": cand is None, "wrong": wrong}
+        if oddity is not None:
+            out[sid]["reason"] = None if cand is not None else ("장면 뜻" if not ok else "이상한 점")
     return out
+
+
+SPEC_JUDGE = os.path.join(J.HERE, "samples", "spec-judge", "metrics.json")
+
+
+def oddity_on():
+    """후보 규칙 결합 기본값 — task 378 `판정(이상한 점):`이 「채택」이면 켬(samples/spec-judge/metrics.json 요약)."""
+    try:
+        return json.load(open(SPEC_JUDGE))["summary"]["oddity"]["verdict"] == "채택"
+    except (OSError, KeyError, json.JSONDecodeError):
+        return False
+
+
+def oddity_answers(task, m=None):
+    """과제의 이상한 점 답(t<과제>/O1) → {장면: {시드: "맞음"|"틀림"|None}}."""
+    m = m or J.load()
+    got = m.get(f"t{task}", {}).get("O1", {}).get("answers", {})
+    out = defaultdict(dict)
+    for it in J.items(None, tasks=[task]):
+        out[it["scene"]][it["seed"]] = ((got.get(it["key"]) or {}).get("answers") or {}).get("oddity")
+    return dict(out)
 
 
 def screens(scenes):
@@ -221,13 +247,15 @@ def cand_judgment(task, m=None):
     return cand_rules(scenes, hits)
 
 
-def candidates(task, m=None):
-    """과제의 J1 답 → pick_candidates. 지물 문항은 J1-prop, 나머지는 J1(j1_answer)."""
+def candidates(task, m=None, oddity=None):
+    """과제의 J1 답 → pick_candidates. 지물 문항은 J1-prop, 나머지는 J1(j1_answer).
+    oddity = 이상한 점 결합 켬/끔(None이면 oddity_on() — task 378 판정을 따름)."""
     m = m or J.load()
     answers = defaultdict(dict)
     for it in J.items(None, tasks=[task]):
         answers[it["scene"]][it["seed"]] = {q: j1_answer(m, task, it["key"], q)[0] for q in it["qids"]}
-    return pick_candidates(answers)
+    on = oddity_on() if oddity is None else oddity
+    return pick_candidates(answers, oddity_answers(task, m) if on else None)
 
 
 def main():
@@ -262,8 +290,10 @@ def main():
             print(f"[JudgeLearn] {C.dst(task)} 장면 {len(sc)} · 되돌림 {sum(s['reject'] for s in sc)}")
             print(f"screens {screens(sc)} (≤{2 * len(sc)})")
             return
-        for sid, c in candidates(task).items():
-            print(f"{sid}: " + ("되돌림(장면 뜻 전부 틀림)" if c["reject"] else f"후보 s{c['cand']} · 표본 s{c['sample']}")
+        on = {"--oddity": True, "--no-oddity": False}.get(next((x for x in sys.argv if x in ("--oddity", "--no-oddity")), ""))
+        for sid, c in candidates(task, oddity=on).items():
+            why = "장면 뜻 전부 틀림" if c.get("reason", "장면 뜻") == "장면 뜻" else "장면 뜻 맞은 장 모두 이상한 점"
+            print(f"{sid}: " + (f"되돌림({why})" if c["reject"] else f"후보 s{c['cand']} · 표본 s{c['sample']}")
                   + " · 틀림 칸 " + " ".join(f"s{s}:{n}" for s, n in c["wrong"].items()))
     elif cmd == "candjudge":
         line, rules = cand_judgment(int(sys.argv[2]))

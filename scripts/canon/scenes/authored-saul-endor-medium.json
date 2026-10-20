@@ -13,7 +13,7 @@
   },
   "moment": {
     "verse": "28:14 후반",
-    "why": "사울이 사무엘의 영을 알아보고 얼굴을 땅에 대고 절하는 순간(28:14). 사무엘은 겉옷 입은 노인으로 땅에서 올라오고, 신접한 여인은 28:13 「두려워 말라」 직후 곁에서 두려워 떨며 지켜보고(28:12 큰 소리 외침은 앞선 순간), 사울은 변장한 채 두 사람과 함께 와 있다(28:8)."
+    "why": "사울이 사무엘의 영을 알아보고 얼굴을 땅에 대고 절하는 순간(28:14). 사무엘은 겉옷 입은 노인으로 땅에서 올라오고, 신접한 여인은 28:13 「두려워 말라」 직후 곁에서 두려워 떨며 지켜보고(28:12 큰 소리 외침은 앞선 순간), 사울은 변장한 채 두 사람과 함께 와 있다(28:8). 방 안에서 엎드린 사람은 사울 하나이고, 노인은 땅에서 허리 위만 올라오는 사무엘뿐이다(허리 위만은 본문 밖 · 저작자 정함). 함께 온 두 사람은 수염 없는 젊은 종으로 문 가에 서서 사울과 구별된다(젊은 종은 본문 밖 · 저작자 정함 — 376 되돌림 원인: 사울 신원 모호)."
   },
   "verse_elements": [
     {
@@ -29,7 +29,7 @@
       "quote": "두 사람과 함께",
       "kind": "인물",
       "ko": "사울과 함께 온 두 사람",
-      "en": "two men in plain dark cloaks standing close together",
+      "en": "two beardless young servants in plain dark cloaks standing close together",
       "field": "stages[S2].prompt"
     },
     {
@@ -100,8 +100,8 @@
   ],
   "crowds": [
     {
-      "what": "사울과 함께 온 두 사람이 왼쪽 가장자리에 선다",
-      "verse": "28:8",
+      "what": "사울과 함께 온 두 사람 — 수염 없는 젊은 종 둘이 왼쪽 문 가에 선다",
+      "verse": "28:8 · 수염 없는 젊은 종·문 가 · 본문 밖 · 저작자 정함",
       "region": "companions"
     }
   ],
@@ -118,11 +118,11 @@
     {
       "cast": "samuel",
       "role": "사무엘의 영 — 어둠 속에 나타남",
-      "pose": "땅에서 올라오는 노인이 겉옷을 입고 서 있다",
+      "pose": "땅에서 허리 위만 올라온 노인이 겉옷을 입고 있다",
       "prop": "a long mantle",
       "facing": "left",
       "region": "samuel",
-      "verse": "28:14"
+      "verse": "28:13-14 · 허리 위만 올라옴·흙바닥 · 본문 밖 · 저작자 정함"
     },
     {
       "cast": "endor-medium",
@@ -194,7 +194,7 @@
       "kind": "region",
       "region": "companions",
       "verse": "28:8",
-      "prompt": "two men in plain dark cloaks standing close together, watching.",
+      "prompt": "two beardless young servants in plain dark cloaks standing close together by the doorway at the left edge, watching.",
       "neg": [
         "crown",
         "armour",
@@ -222,7 +222,7 @@
       "kind": "plate",
       "region": "samuel",
       "verse": "28:14",
-      "prompt": "{cast:samuel}, an old man rising up out of the earth amid darkness, wearing a long mantle, facing left.",
+      "prompt": "{cast:samuel}, an old man rising up out of the earth amid darkness, visible from the waist up above the earthen floor, wearing a long mantle, facing left.",
       "neg": [
         "armour",
         "crown",
