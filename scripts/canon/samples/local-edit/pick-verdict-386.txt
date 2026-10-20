@@ -1,0 +1,2 @@
+판정 task 386
+{"task":386,"kind":"ab","human_minutes":1.48,"active_minutes":1.48,"idle_ms":120000,"screens":2,"scenes":{"authored-samuel-bethlehem-david-anointing":{"answer":"right","chose":"edit","left":"authored-samuel-bethlehem-david-anointing:orig","right":"authored-samuel-bethlehem-david-anointing:O3-k2","memo":"기름을 부으는 위치가 이상함","minutes":0.98,"active_minutes":0.97},"authored-david-gath-achish":{"answer":"right","chose":"edit","left":"authored-david-gath-achish:orig","right":"authored-david-gath-achish:D1-k1","memo":"","minutes":0.48,"active_minutes":0.48}}}

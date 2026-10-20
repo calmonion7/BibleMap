@@ -282,5 +282,34 @@
         0.98
       ]
     }
+  },
+  "approved": {
+    "final": {
+      "path": "local-edit",
+      "seed": 5,
+      "image": "samples/local-edit/approved-authored-david-gath-achish.png",
+      "steps": [
+        {
+          "id": "D1-k1",
+          "arm": "D1",
+          "seed": 1,
+          "crop": [
+            250,
+            110,
+            240
+          ],
+          "box": [
+            315,
+            200,
+            395,
+            300
+          ],
+          "prompt": "Spit runs from the corner of the mouth down the chin beard in a long strand, and the beard is wet and shiny. Keep his face shape, hair, beard, the lighting and the same soft pencil and colored-pencil illustration style.",
+          "base_src": "plain-words r2 s5"
+        }
+      ],
+      "by": "user",
+      "on": "2026-10-21"
+    }
   }
 }

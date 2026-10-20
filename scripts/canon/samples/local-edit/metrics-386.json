@@ -2150,5 +2150,26 @@
    "right_is": "edit",
    "top": "D1-k1"
   }
+ },
+ "human": {
+  "human_minutes": 1.48,
+  "active_minutes": 1.48,
+  "screens": 2,
+  "scenes": {
+   "authored-samuel-bethlehem-david-anointing": {
+    "answer": "right",
+    "chose": "edit",
+    "memo": "기름을 부으는 위치가 이상함",
+    "minutes": 0.98,
+    "active_minutes": 0.97
+   },
+   "authored-david-gath-achish": {
+    "answer": "right",
+    "chose": "edit",
+    "memo": "",
+    "minutes": 0.48,
+    "active_minutes": 0.48
+   }
+  }
  }
 }

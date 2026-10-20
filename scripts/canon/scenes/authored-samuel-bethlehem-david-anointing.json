@@ -279,5 +279,34 @@
       "verse": "16:10 · 16:13 「그 형제 중에서」 · 다윗 뒤 한 줄 배치 · 본문 밖 · 저작자 정함",
       "region": "brothers"
     }
-  ]
+  ],
+  "approved": {
+    "final": {
+      "path": "local-edit",
+      "seed": 42,
+      "image": "samples/local-edit/approved-authored-samuel-bethlehem-david-anointing.png",
+      "steps": [
+        {
+          "id": "O3-k2",
+          "arm": "O3",
+          "seed": 2,
+          "crop": [
+            310,
+            160,
+            240
+          ],
+          "box": [
+            365,
+            210,
+            470,
+            330
+          ],
+          "prompt": "Golden oil pours out of the dark open hole of the horn's wide mouth and falls from that opening straight down onto the boy's curly hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
+          "base_src": "plain-words r2 s42"
+        }
+      ],
+      "by": "user",
+      "on": "2026-10-21"
+    }
+  }
 }

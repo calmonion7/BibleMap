@@ -203,3 +203,18 @@
 - 후보 화면 2화면 `check_cand_page.py` 통과(360·1280px 가로 넘침 0 · 순간 절 굵게 · textarea · 타이머), 5.08MB.
   - 비공개 Artifact: https://claude.ai/artifact/6V2RGRLy22qwh4PvUBcEWc
 - 사람 답 대기 — 「판정 문장」을 `samples/local-edit/pick-verdict-386.txt`에 두고 `record386` → `verdict386`.
+
+## 386 판정 — 사람 답·기록 (2026-10-21, S5)
+
+- 사람 판정 문장 원문: `samples/local-edit/pick-verdict-386.txt` → `gen_local_edit.py record386`(좌우 출처가 화면을 만든 그대로인지 단언). 화면 2 · 쉼 뺀 1.48분.
+
+| 장면 | 사람 답 | 메모 |
+|---|---|---|
+| 베들레헴 | **편집**(O3-k2) | 기름을 부으는 위치가 이상함 |
+| 가드 | **편집**(D1-k1) | — |
+
+판정: 둘 다 고침
+
+- 두 명세 `approved.final` = `{path: local-edit, seed: 42 / 5, image: samples/local-edit/approved-<장면>.png, steps: [O3-k2 / D1-k1 · 바탕 plain-words r2 s<시드>], by: user}`.
+- 측정: 기계 1위와 사람 고름 일치 2/2 · 갈래별 특징 맞힘 O3 11 > O1 10 > OG 9 > O2 7 / D1 9 > D2 8 · 가이드(OG) 효과 없음.
+- 남은 것(다음 과제): 베들레헴 메모 「기름을 부으는 위치가 이상함」 — 뿔 입구가 옆을 향해 있고 기름이 정수리가 아닌 앞머리 쪽으로 떨어진다. 지시 편집이 아니라 뿔 기울기(입구가 머리 위를 향함)부터 — 사무엘 손·뿔을 함께 다시 그리는 국소 편집이나 가이드 그림. 사전 `oil` 특징 3 「머리나 뿔 입구에서 쏟아지나?」를 「뿔 입구(구멍)에서 정수리로」로 손질.
