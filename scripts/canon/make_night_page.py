@@ -6,7 +6,7 @@
 
 문항 id = 명세 칸 경로(moment · background[i] · crowds · figures[i].identity|pose|prop|facing · guard, notes/NIGHT-PILOT.md 고정 절).
 그림은 시드마다 편집본·바탕을 한 번씩만 싣고 크롭은 CSS로 자른다(16MB 안). 「판정 문장 복사」는 JSON 한 덩이."""
-import base64, io, json, os, random
+import base64, io, json, os, random, zlib
 
 from PIL import Image
 
@@ -24,7 +24,10 @@ PROP_KO = {"a spear": "창", "a small harp": "작은 수금", "a robe corner": "
            "a torn robe corner": "찢어진 겉옷자락", "a wooden staff": "나무 지팡이", "a sword": "칼",
            "a cloth-wrapped sword": "보자기에 싼 칼", "a wooden gate post": "나무 성문 기둥", "a fold of his robe": "겉옷 자락",
            "a siege spear": "공성 창", "the hem of his ephod": "에봇 자락",
-           "a horn of oil": "기름 뿔", "a shepherd's staff": "목자 지팡이", "a disguise cloak": "변장 겉옷", "a shawl fold": "숄 자락"}
+           "a horn of oil": "기름 뿔", "a shepherd's staff": "목자 지팡이", "a disguise cloak": "변장 겉옷", "a shawl fold": "숄 자락",
+           # task 375(구절 시각 요소)로 바뀐 지물
+           "a huge cloth-wrapped sword": "보자기에 싼 큰 칼", "the huge cloth-wrapped sword": "보자기에 싼 큰 칼", "a linen ephod": "베 에봇",
+           "a long mantle": "긴 겉옷", "a sheathed sword": "칼집에 든 칼", "an open hand": "빈손", "the wooden doors of the gate": "성문 나무 문짝"}
 FACING_KO = {"left": "화면 왼쪽을 향한다", "right": "화면 오른쪽을 향한다"}
 NAME = {"saul": "사울", "david": "다윗", "samuel": "사무엘", "david-boy": "소년 다윗", "ahimelech": "아히멜렉", "achish": "아기스",
         "nahash": "나하스", "doeg": "도엑", "abner": "아브넬", "joab": "요압", "nathan": "나단", "jesse": "이새",
@@ -118,7 +121,7 @@ def questions(spec, sc, wide=False):
         qs.append({"id": f"figures[{i}].pose", "field": f"figures[{i}].pose", "who": who, "q": f"{nm}의 자세가 틀린 그림",
                    "what": f["pose"], "verse": f["verse"], **crop})
         qs.append({"id": f"figures[{i}].prop", "field": f"figures[{i}].prop", "who": who, "q": f"{nm}의 지물이 틀린 그림",
-                   "what": f"{PROP_KO[f['prop']]} ({f['prop']})", "verse": f["verse"], **crop})
+                   "what": f"{PROP_KO[f['prop']]} ({f['prop']})" if f["prop"] in PROP_KO else f["prop"], "verse": f["verse"], **crop})
         fq, fw = facing_q(f, spec) if wide else (f"{nm}의 방향이 틀린 그림", f"{FACING_KO[f['facing']]} ({f['facing']})")
         qs.append({"id": f"figures[{i}].facing", "field": f"figures[{i}].facing", "who": who, "q": fq,
                    "what": fw, "verse": f["verse"], **crop})
@@ -126,7 +129,32 @@ def questions(spec, sc, wide=False):
     return qs
 
 
-def build(m, q, sids, task=None):
+def cls(qid):
+    return qid.split(".")[-1] if "." in qid else qid.split("[")[0]
+
+
+def blind(sid, qid):
+    """함께 판정: 문항 넷 중 하나는 기계 표시 없이 묻는다 — 사람 답이 기계 쪽으로 끌리지 않은 라벨로 판정자를 계속 잰다."""
+    return zlib.crc32(f"{sid}:{qid}".encode()) % 4 == 0
+
+
+def co_judge(sid, qs, machine, reject, trusted):
+    """기계 답(judge_learn.machine_marks)을 문항에 붙인다: mach = 미리 표시할 시드(블라인드면 None).
+    믿음 관문을 넘은 종류(trusted)는 블라인드 표본만 남기고 화면에서 뺀다 → auto(기계 결정)."""
+    out, auto = [], {}
+    for q in qs:
+        if q.get("grp") == "plate" or q["id"].endswith(".identity"):
+            out.append(q)
+            continue
+        b, mk = blind(sid, q["id"]), machine.get(sid, {}).get(q["id"], [])
+        if cls(q["id"]) in trusted and not b:
+            auto[q["id"]] = mk
+            continue
+        out.append({**q, "mach": None if b else mk, "blind": b})
+    return out, auto, bool(reject.get(sid))
+
+
+def build(m, q, sids, task=None, machine=None, reject=None, trusted=()):
     data, scenes = {}, []
     for sid in sids:
         sc = m["scenes"].get(sid)
@@ -147,8 +175,12 @@ def build(m, q, sids, task=None):
                 data[f"{sid}:{x['seed']}:p"] = uri(Image.open(x["base"]), 1216, q)
             qs = pair_plate(qs, [p for p in questions(spec, {**sc, "seeds": sc["plate"]["seeds"]}, wide) if treat(p["id"])],
                             sc["plate"]["label"])
+        auto, rej = {}, False
+        if machine is not None:   # 함께 판정 화면(judge_learn.machine_marks)
+            qs, auto, rej = co_judge(sid, qs, machine, reject or {}, set(trusted))
         scenes.append({"id": sid, "title": spec["title"], "range": spec["verses"]["range"], "note": PICK_NOTE.get(task, ""),
-                       "edited": [NAME[w] for w in sc["who"]] if edited else [], "seeds": [x["seed"] for x in seeds], "qs": qs})
+                       "edited": [NAME[w] for w in sc["who"]] if edited else [], "seeds": [x["seed"] for x in seeds], "qs": qs,
+                       **({"auto": auto, "reject": rej} if machine is not None else {})})
     for who in NAME:
         p = os.path.join(HERE, "frozen", f"{who}.png")
         if os.path.exists(p):
@@ -156,17 +188,19 @@ def build(m, q, sids, task=None):
     return scenes, data
 
 
-def main(metrics=METRICS, sids=None, task=368):
+def main(metrics=METRICS, sids=None, task=368, machine=None, reject=None, trusted=(), dst=None):
+    """machine이 있으면 함께 판정 화면(기계 답 미리 표시 · 블라인드 문항 · 되돌림 후보 · 믿음 종류 자동) — 원래 화면은 덮지 않게 dst를 따로."""
     m = json.load(open(metrics))
     sids = sids or list(params.NIGHT_SCENES)
-    title = "밤샘 장면 고르기" if task == 368 else f"장면 고르기 {task}"
+    title = ("밤샘 장면 고르기" if task == 368 else f"장면 고르기 {task}") + (" · 함께 판정" if machine is not None else "")
     for q in (84, 78, 72, 66, 60):
-        scenes, data = build(m, q, sids, task)
+        scenes, data = build(m, q, sids, task, machine, reject, trusted)
         page = (PAGE.replace("/*SCENES*/[]", json.dumps(scenes, ensure_ascii=False)).replace("/*IMGS*/{}", json.dumps(data))
-                .replace("/*TASK*/368", str(task)).replace("<title>밤샘 장면 고르기</title>", f"<title>{title}</title>"))
+                .replace("/*TASK*/368", str(task)).replace("/*CO*/false", json.dumps(machine is not None))
+                .replace("<title>밤샘 장면 고르기</title>", f"<title>{title}</title>"))
         if len(page) <= LIMIT:
             break
-    dst = os.path.join(PAGES, DST[task])
+    dst = os.path.join(PAGES, dst or DST[task])
     os.makedirs(PAGES, exist_ok=True)
     open(dst, "w", encoding="utf-8").write(page)
     n = sum(len(s["qs"]) + 1 for s in scenes)
@@ -215,6 +249,10 @@ h2 { font-size: 21px; line-height: 1.3; margin: 0; text-wrap: balance; }
 .card.on .tag { background: var(--wrong); color: var(--panel); }
 .card.on::after { content: "틀림"; position: absolute; right: 6px; top: 6px; font-size: 12px; font-weight: 600; color: var(--wrong);
   background: var(--wrong-bg); padding: 3px 6px; border-radius: 4px; }
+.mk { position: absolute; left: 6px; bottom: 6px; font: 600 12px/1 var(--sans); color: var(--wrong); background: var(--wrong-bg);
+  border: 1px solid var(--wrong); padding: 3px 6px; border-radius: 4px; }
+.machine { border: 1px solid var(--wrong); background: var(--wrong-bg); border-radius: 8px; padding: 10px 12px; display: grid; gap: 8px; }
+.machine p { margin: 0; }
 .zoom { position: absolute; right: 6px; bottom: 6px; font-size: 12px; border: 1px solid var(--line); background: var(--panel);
   color: var(--fg); border-radius: 4px; padding: 3px 8px; cursor: pointer; }
 .canon { display: flex; gap: 12px; align-items: center; }
@@ -248,7 +286,8 @@ footer .row { max-width: 720px; margin: 0 auto; justify-content: space-between; 
 const SCENES = /*SCENES*/[];
 const IMGS = /*IMGS*/{};
 const TASK = /*TASK*/368;
-const KEY = "night-pick-" + TASK;
+const CO = /*CO*/false;   // 함께 판정 화면: 기계 답 미리 표시
+const KEY = "night-pick-" + TASK + (CO ? "-co" : "");
 let st = { i: 0, ans: {}, t0: null, sceneT: {}, done: null };
 try { const s = JSON.parse(localStorage.getItem(KEY) || "null"); if (s && s.ans) st = s; } catch (e) { console.warn("[NightPick] 저장본 읽기 실패", e); }
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) { console.warn("[NightPick] 저장 실패", e); } };
@@ -283,15 +322,25 @@ function render() {
     <h1>${esc(sc.s.title)} · ${esc(sc.s.range)}</h1>`;
   if (sc.pick) return renderPick(app, sc, head);
   const q = sc.q, it = item(sc.s.id, ik(q));
+  if ("mach" in q && it.machine === undefined) {   // 처음 연 문항: 기계 답을 미리 표시(블라인드는 표시 없음)
+    it.machine = q.mach; it.blind = !!q.blind;
+    if (q.mach) it.wrong = [...q.mach];
+  }
+  const mach = q.mach || [];
+  const reject = sc.j === 0 && sc.s.reject ? `<div class="machine"><p><b>기계: 이 장면은 8장 모두 장면 뜻이 틀렸다고 봤습니다.</b> 쓸 그림이 없다고 보면 장면째 「없음」으로 넘기세요 — 명세로 되돌립니다.</p>
+    <div class="row"><button class="b no" id="skipScene" type="button">장면 전체 없음으로 넘기기</button></div></div>` : "";
+  const how = q.mach ? "기계가 틀렸다고 본 시드에 「기계」 표시와 틀림을 미리 해 두었습니다. 맞으면 그대로 「다음」, 다르면 눌러 고치세요."
+    : q.blind ? "이 문항은 기계 표시 없이 묻습니다(기계 성적을 재는 문항). 틀린 시드만 누르세요."
+    : `이 항목이 틀린 시드만 누르세요. 기본은 모두 맞음이고, ${sc.s.edited.length ? "편집본" : "바탕"}을 보여 줍니다.`;
   const canon = q.canon ? `<div class="canon"><img src="${IMGS["canon:" + q.canon]}" alt="정본 초상"><p class="hint">왼쪽이 정본 초상입니다. 같은 사람으로 안 보이는 시드를 누르세요.</p></div>` : "";
   const cards = sc.s.seeds.map((s) => {
     const k = `${sc.s.id}:${s}:${ims(q)}`;
-    return `<button type="button" class="card${it.wrong.includes(s) ? " on" : ""}" data-s="${s}">${img(k, q.crop && q.crop[s], q.ar)}<span class="tag">s${s}</span><span class="zoom" data-z="${s}" role="button" tabindex="0">크게</span></button>`;
+    return `<button type="button" class="card${it.wrong.includes(s) ? " on" : ""}" data-s="${s}">${img(k, q.crop && q.crop[s], q.ar)}<span class="tag">s${s}</span>${mach.includes(s) ? '<span class="mk">기계</span>' : ""}<span class="zoom" data-z="${s}" role="button" tabindex="0">크게</span></button>`;
   }).join("");
   app.innerHTML = "";
   app.append($(`${head}<h2>${esc(q.q)}을 누르세요</h2>
     <div class="what"><p>${esc(q.what)}</p><span class="src">${esc(q.field)}${q.verse ? " · " + esc(q.verse) : ""}</span></div>
-    ${q.lab ? `<p class="hint"><b>${esc(q.lab)}</b> — 같은 질문을 다른 묶음 그림 8장으로 한 번 더 묻습니다.</p>` : ""}${canon}<p class="hint">이 항목이 틀린 시드만 누르세요. 기본은 모두 맞음이고, ${sc.s.edited.length ? "편집본" : "바탕"}을 보여 줍니다.</p>
+    ${q.lab ? `<p class="hint"><b>${esc(q.lab)}</b> — 같은 질문을 다른 묶음 그림 8장으로 한 번 더 묻습니다.</p>` : ""}${reject}${canon}<p class="hint">${how}</p>
     <div class="grid${q.kind === "full" ? " full" : ""}">${cards}</div>
     <label class="row"><input type="checkbox" id="unsure" ${it.unsure ? "checked" : ""}> 모르겠음</label>
     <input type="text" id="memo" placeholder="한 줄 메모(선택)" value="${esc(it.memo)}">`));
@@ -299,8 +348,16 @@ function render() {
     const s = +c.dataset.s;
     if (ev.target.dataset.z) return zoom(sc.s.id, s, ims(q));
     it.wrong = it.wrong.includes(s) ? it.wrong.filter((x) => x !== s) : [...it.wrong, s].sort((a, b) => a - b);
+    delete it.skipped;
     c.classList.toggle("on"); save();
   }));
+  const sk = document.getElementById("skipScene");
+  if (sk) sk.onclick = () => {   // 되돌림 후보에 동의: 장면의 문항은 라벨에서 빠지고(skipped) 고르기는 「없음」
+    sc.s.qs.forEach((x) => { item(sc.s.id, ik(x)).skipped = true; });
+    A(sc.s.id).pick = { answer: "없음", seed: null, kind: null, memo: "기계 되돌림 후보에 동의 — 장면 뜻 8장 모두 틀림", machine_reject: true };
+    st.sceneT[sc.s.id].end = Date.now();
+    st.i = SCREENS.findIndex((x, n) => n > st.i && (x.end || x.k > sc.k)); save(); render();
+  };
   document.getElementById("unsure").onchange = (e) => { it.unsure = e.target.checked; save(); };
   document.getElementById("memo").oninput = (e) => { it.memo = e.target.value; save(); };
   save(); window.scrollTo(0, 0);
@@ -338,6 +395,7 @@ function verdict() {
     const items = {};
     const plate = {};
     s.qs.forEach((q) => { (q.grp === "plate" ? plate : items)[q.id] = item(s.id, ik(q)); });
+    Object.entries(s.auto || {}).forEach(([id, w]) => { items[id] = { wrong: w, unsure: false, memo: "", machine: w, auto: true }; });
     out.scenes[s.id] = { minutes: t.start && t.end ? +((t.end - t.start) / 60000).toFixed(2) : null, items, pick: a.pick };
     if (Object.keys(plate).length) out.scenes[s.id].plate_items = plate;
   });

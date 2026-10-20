@@ -75,11 +75,13 @@ def cls(qid):
     return qid.split(".")[-1] if "." in qid else re.sub(r"\[\d+\]$", "", qid)
 
 
-def items(set_name, only=None):
+def items(set_name, only=None, tasks=None):
     """→ 그림 목록 [{key, task, scene, title, range, seed, src, qs, labels}] — 문항·라벨은 사람 페이지·metrics 그대로.
     only = 문항 종류 목록(J1 종류별 호출) — 그 종류 문항만 남기고, 남는 문항이 없는 그림은 뺀다."""
     out = []
-    for task in SETS[set_name]:
+    if not tasks and set_name not in SETS:   # 「t<과제>」 — 과제 하나(라벨 전 예측 · 함께 판정 화면)
+        tasks = [int(set_name[1:])]
+    for task in tasks or SETS[set_name]:
         d, fn, edited = TASKS[task]
         m = json.load(open(os.path.join(HERE, "samples", d, "metrics.json")))
         for s in page_scenes(fn):
@@ -88,13 +90,18 @@ def items(set_name, only=None):
             if not qs:
                 continue
             by = {x["seed"]: x for x in sc["seeds"]}
+            rec = sc.get("items") or {}   # 사람 판정 전이면 비어 있다 → 라벨 없이 예측만
+            # 라벨에서 뺄 칸: 모르겠음 · 장면째 넘김(skipped) · 믿음 관문 자동 결정(auto)
+            drop = lambda q: rec.get(q["id"], {}).get("unsure") or rec.get(q["id"], {}).get("skipped") or rec.get(q["id"], {}).get("auto")
             for seed in s["seeds"]:
                 x = by[seed]
-                labels = {q["id"]: ("틀림" if seed in sc["items"][q["id"]]["wrong"] else "맞음")
-                          for q in qs if not sc["items"][q["id"]].get("unsure")}
+                labels = {q["id"]: ("틀림" if seed in rec[q["id"]]["wrong"] else "맞음") for q in qs if q["id"] in rec and not drop(q)}
                 out.append({"key": f"{task}:{s['id']}:{seed}", "task": task, "scene": s["id"], "title": s["title"], "range": s["range"],
                             "seed": seed, "src": x["edits"][sc["who"][-1]] if edited else x["base"], "qs": qs, "labels": labels,
-                            "unsure": sum(1 for q in qs if sc["items"][q["id"]].get("unsure"))})
+                            "qids": list(labels) if rec else [q["id"] for q in qs],
+                            # 기계 표시를 보고 판정한 칸 — 판정자 평가에서는 뺀다(닻 효과), 학습에는 쓴다
+                            "premarked": {q for q in labels if rec[q].get("machine") is not None and not rec[q].get("blind")},
+                            "unsure": sum(1 for q in qs if rec.get(q["id"], {}).get("unsure"))})
     return out
 
 
@@ -127,7 +134,7 @@ def prompt(it, files, header):
     lines += [f"{w} 몸 크롭: {files[w]}" for w in dict.fromkeys(q["who"] for q in it["qs"] if q.get("who"))]
     lines += ["", "문항:"]
     for q in it["qs"]:
-        if q["id"] not in it["labels"]:
+        if q["id"] not in it["qids"]:
             continue
         who = f" · 크롭 {q['who']}" if q.get("who") else ""
         verse = f" · 근거 {q['verse']}" if q.get("verse") else ""
@@ -170,44 +177,70 @@ def load():
 
 def save(m):
     os.makedirs(os.path.dirname(METRICS), exist_ok=True)
-    tmp = METRICS + ".tmp"
+    tmp = f"{METRICS}.{os.getpid()}.tmp"
     json.dump(m, open(tmp, "w"), ensure_ascii=False, indent=1)
     os.replace(tmp, METRICS)
 
 
-def run(a):
-    # metrics를 통째로 다시 쓰므로 두 실행이 겹치면 서로의 답을 지운다(2026-10-20 실제로 겪음) — 한 번에 하나만
+def update(fn):
+    """여러 run이 동시에 돌아도 서로의 답을 지우지 않게 — 짧게 잠그고 디스크의 최신 metrics를 다시 읽어 fn(m)만 합쳐 쓴다."""
     os.makedirs(WORK, exist_ok=True)
-    held = open(os.path.join(WORK, "run.lock"), "w")
+    with open(os.path.join(WORK, "metrics.lock"), "w") as lk:
+        fcntl.flock(lk, fcntl.LOCK_EX)
+        m = load()
+        fn(m)
+        save(m)
+        return m
+
+
+def run(a):
+    # 다른 run과는 동시에 돌 수 있다(답마다 update로 합쳐 씀). 같은 묶음·같은 키 run이 겹치면 같은 그림을 두 번 부르니 그것만 막는다.
+    os.makedirs(WORK, exist_ok=True)
+    held = open(os.path.join(WORK, f"run-{a.set}-{a.key}.lock"), "w")
     try:
         fcntl.flock(held, fcntl.LOCK_EX | fcntl.LOCK_NB)
     except BlockingIOError:
-        sys.exit("[JudgeItems] 다른 run이 metrics를 쓰는 중 — 끝난 뒤 다시")
-    m, lock = load(), threading.Lock()
+        sys.exit(f"[JudgeItems] {a.set}/{a.key} run이 이미 도는 중")
     only = a.only.split(",") if a.only else None
-    r = m.setdefault(a.set, {}).setdefault(a.key, {"model": a.model, "header": a.header, "answers": {}, **({"only": only, "zoom": a.zoom} if only else {})})
-    assert (r["model"], r["header"], r.get("only")) == (a.model, a.header, only), f"{a.set}/{a.key}는 {r['model']}·{r['header']}·{r.get('only')}로 이미 시작함"
-    m.setdefault("headers", {})[a.header] = HEADERS[a.header]
-    todo = [it for it in items(a.set, only) if it["key"] not in r["answers"]][: a.limit or None]
+    meta = {"model": a.model, "header": a.header, "answers": {}, **({"only": only, "zoom": a.zoom} if only else {}), **({"learn": a.learn} if a.learn else {})}
+
+    def start(m):
+        r = m.setdefault(a.set, {}).setdefault(a.key, meta)
+        assert (r["model"], r["header"], r.get("only")) == (a.model, a.header, only), f"{a.set}/{a.key}는 {r['model']}·{r['header']}·{r.get('only')}로 이미 시작함"
+        m.setdefault("headers", {})[a.header] = HEADERS[a.header]
+    done = update(start)[a.set][a.key]["answers"]
+    tasks = [int(x) for x in a.tasks.split(",")] if a.tasks else None
+    todo = [it for it in items(a.set, only, tasks) if it["key"] not in done][: a.limit or None]
+    books = {}
+    if a.learn:   # 판정 학습: 그림마다 그 과제보다 앞선 과제에서 배운 규칙집을 머리말 뒤에(batch/judge_learn.py)
+        import judge_learn as L
+        books = {t: L.rulebook(t) for t in {it["task"] for it in todo}}
     print(f"[JudgeItems] {a.set}/{a.key} {a.model}·{a.header} — 남은 그림 {len(todo)}", flush=True)
 
     def one(it):
         d, files = prepare(it, a.set, a.zoom)
-        text, tries, got = prompt(it, files, HEADERS[a.header]), [], None
+        rules = L.rules_for(it, set(only or J_CLASSES_OF(it)), books[it["task"]], other=0 if a.learn == "same" else L.OTHER_SCENE_CAP) if a.learn else ""
+        text, tries, got = prompt(it, files, HEADERS[a.header] + rules), [], None
         for _ in range(2):   # JSON이 깨지면 한 번만 다시
             o = call(text, d, a.model)
             tries.append(use(o) | {"error": bool(o.get("is_error"))})
-            got = None if o.get("is_error") else parse(o.get("result"), list(it["labels"]))
+            got = None if o.get("is_error") else parse(o.get("result"), it["qids"])
             if got:
                 break
         rec = {"tries": tries, "raw": None if got else str(o.get("result"))[:400], **(got or {"answers": None})}
-        with lock:
-            r["answers"][it["key"]] = rec
-            save(m)
+        update(lambda m: m[a.set][a.key]["answers"].__setitem__(it["key"], rec))
         print(f"[JudgeItems] {it['key']} {'ok' if got else '답 없음'} · 시도 {len(tries)} · {sum(t['seconds'] for t in tries):.0f}초", flush=True)
 
     with ThreadPoolExecutor(a.workers) as ex:
         list(ex.map(one, todo))
+
+
+def ratio(h):
+    return round(h[0] / h[1], 4) if h[1] else None
+
+
+def J_CLASSES_OF(it):
+    return {cls(q) for q in it["qids"]}
 
 
 def summarize(set_name, r):
@@ -236,7 +269,7 @@ def summarize(set_name, r):
     n = hits["틀림"][1] + hits["맞음"][1]
     return {"n": n, "unsure_skipped": sum(it["unsure"] for it in its), "images": len(its), "calls": len(rec),
             "retries": len(tries) - len(rec), "failed": sum(1 for x in rec if x["answers"] is None),
-            "catch": round(hits["틀림"][0] / hits["틀림"][1], 4), "pass": round(hits["맞음"][0] / hits["맞음"][1], 4),
+            "catch": ratio(hits["틀림"]), "pass": ratio(hits["맞음"]),
             "machine_wrong_rate": round(machine_wrong / n, 4),
             "by_class": {c: {"catch": f"{v['틀림'][0]}/{v['틀림'][1]}", "pass": f"{v['맞음'][0]}/{v['맞음'][1]}"}
                          for c, v in by.items() if v["틀림"][1] + v["맞음"][1]},
@@ -281,7 +314,7 @@ def verdict(m):
 
 
 def pct(x):
-    return f"{x * 100:.1f}%"
+    return "—" if x is None else f"{x * 100:.1f}%"
 
 
 def table(m):
@@ -324,10 +357,12 @@ def score(a):
             bad.append("notes 결과 표")
         print(f"[JudgeItems] score --check {'불일치: ' + ', '.join(bad) if bad else '일치'}", flush=True)
         sys.exit(1 if bad else 0)
-    for s in fresh:
-        for k, x in fresh[s].items():
-            m[s][k]["summary"] = x
-    save(m)
+    def put(m):   # 그 사이 다른 run이 쓴 답을 지우지 않게 요약만 합쳐 쓴다
+        for s in fresh:
+            for k, x in fresh[s].items():
+                m[s][k]["summary"] = x
+    m = update(put)
+    m = {**m, **{s: {k: {**r, "summary": fresh[s][k]} if k in fresh[s] else r for k, r in m[s].items()} for s in fresh}}
     notes = open(NOTES, encoding="utf-8").read()
     block = f"{BEGIN}\n{table(m)}\n{END}"
     notes = re.sub(re.escape(BEGIN) + r".*?" + re.escape(END), lambda _: block, notes, flags=re.S) if BEGIN in notes else notes.rstrip() + "\n\n## 결과\n\n" + block + "\n"
@@ -339,7 +374,7 @@ def main():
     p = argparse.ArgumentParser()
     sub = p.add_subparsers(dest="cmd", required=True)
     r = sub.add_parser("run")
-    r.add_argument("--set", choices=SETS, required=True)
+    r.add_argument("--set", required=True, help="dev · holdout · t<과제>(라벨 전 예측, 예: t372)")
     r.add_argument("--key", required=True)
     r.add_argument("--header", choices=HEADERS, required=True)
     r.add_argument("--model", required=True)
@@ -347,9 +382,19 @@ def main():
     r.add_argument("--workers", type=int, default=4)
     r.add_argument("--only", default="", help="문항 종류만(쉼표) — 예: prop · crowds")
     r.add_argument("--zoom", type=float, default=1.0, help="인물 몸 크롭 확대 배율")
+    r.add_argument("--tasks", default="", help="이 과제 그림만(쉼표) — 예: 369")
+    r.add_argument("--learn", nargs="?", const="all", default="", choices=["all", "same"],
+                   help="그 과제 앞까지 배운 규칙집을 머리말 뒤에 붙임(judge_learn) — same이면 같은 장면 규칙만")
+    pr = sub.add_parser("predict", help="새 묶음에 J1(v2 전 문항 + p2 지물만)을 동시에 — 함께 판정 화면 전에")
+    pr.add_argument("--task", type=int, required=True)
     s = sub.add_parser("score")
     s.add_argument("--check", action="store_true")
     a = p.parse_args()
+    if a.cmd == "predict":   # J1 두 호출을 동시에(답마다 update로 합쳐 씀)
+        me = [sys.executable, os.path.abspath(__file__), "run", "--set", f"t{a.task}", "--model", "sonnet"]
+        ps = [subprocess.Popen(me + ["--key", "J1", "--header", "v2"]),
+              subprocess.Popen(me + ["--key", "J1-prop", "--header", "p2", "--only", "prop", "--zoom", "2.5"])]
+        sys.exit(max(p.wait() for p in ps))
     run(a) if a.cmd == "run" else score(a)
 
 
