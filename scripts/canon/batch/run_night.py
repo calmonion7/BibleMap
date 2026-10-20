@@ -282,6 +282,8 @@ def record(m, path):
     v = json.loads(open(path, encoding="utf-8").read().split("\n", 1)[1])
     if v.get("kind") != "confirm":
         m["human_minutes"] = v.get("human_minutes")
+    if v.get("kind") == "cand":
+        m["cand_screens"] = v.get("screens")
     for sid, a in v["scenes"].items():
         sc = m["scenes"][sid]
         if "confirm" in a:
@@ -295,6 +297,10 @@ def record(m, path):
         if p["seed"] is not None:
             p["image"] = base_path(sid, p["seed"]) if p["kind"] == "base" else edit_path(sid, p["seed"], sc["who"][-1], True)
         sc.update(items=a["items"], pick=p, human_minutes=a.get("minutes"))
+        if v.get("kind") == "cand":   # task 376 후보 화면: 칸은 본 시드만(blind) — 기계 후보·바꾼 후보·되돌림 동의(skipped)를 함께
+            sc["cand"] = {k: a.get(k) for k in ("machine_cand", "cand", "sample", "revived", "answer", "switched", "memo")}
+            if a.get("skipped"):
+                sc["skipped"] = True
         if "plate_items" in a:   # task 370: 판 묶음(대조) 처치 칸 답
             sc["plate"]["items"] = a["plate_items"]
     save_m(m)

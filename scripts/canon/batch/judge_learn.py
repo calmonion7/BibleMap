@@ -5,6 +5,7 @@
   python3 batch/judge_learn.py curve             # 시간 순서 평가: 과제마다 J1 기본 vs 규칙집(그 과제 앞까지만 배움)
   python3 batch/judge_learn.py trust             # 문항 종류별 믿음 관문(Wilson 95% 하한) — 사람에게서 덜어 낼 종류
   python3 batch/judge_learn.py cand <과제> [--count]   # 후보 화면 규칙(장면마다 후보·되돌림·표본) — --count는 만든 화면 수
+  python3 batch/judge_learn.py candjudge <과제>        # 사람 답 기록 뒤: 후보 화면 `판정:` 줄(세 규칙)
 
 원장 = 사람이 판정한 과제의 라벨(TASK_ORDER 순서, judge_items.TASKS의 페이지·metrics) + 그 과제에 대한 J1 답.
 규칙집은 **그 과제보다 앞선 과제**의 사람 메모와 「기계·사람이 2장 이상 엇갈린 칸」으로만 만든다(처음 보는 라벨로 재기 —
@@ -187,6 +188,39 @@ def screens(scenes):
     return sum(1 if s["reject"] else 2 for s in scenes)
 
 
+CAND_SWITCH_MAX = 0.25   # 사람이 기계 후보를 바꾼 장면 ≤ 되돌림 아닌 장면의 1/4
+CAND_HIT_MIN = 0.75      # 블라인드 칸 J1 잡기·통과 하한
+
+
+def cand_rules(scenes, hits):
+    """후보 화면 `판정:` 세 규칙(notes/VERSE-REGEN.md 고정 절). scenes = [{reject, machine_cand, cand, revived}] (사람 답 기록 뒤),
+    hits = {"틀림": [맞힘, 수], "맞음": [맞힘, 수]} (블라인드 칸 J1) → (판정 줄, 규칙별 [통과?, 설명])."""
+    rej = [s for s in scenes if s["reject"]]
+    rest = [s for s in scenes if not s["reject"]]
+    revived = sum(1 for s in rej if s.get("revived") is not None)
+    switched = sum(1 for s in rest if s.get("cand") is not None and s["cand"] != s["machine_cand"])
+    catch, pss = (hits[k][0] / hits[k][1] if hits[k][1] else 0.0 for k in ("틀림", "맞음"))
+    r = [(revived == 0, f"되돌림 장면에서 살린 수 {revived}" + ("" if rej else " (되돌림 장면 없음 — 해당 없음)")),
+         (switched <= CAND_SWITCH_MAX * len(rest), f"기계 후보를 바꾼 장면 {switched} ≤ {CAND_SWITCH_MAX * len(rest):g}"),
+         (catch >= CAND_HIT_MIN and pss >= CAND_HIT_MIN,
+          f"블라인드 칸 J1 잡기 {hits['틀림'][0]}/{hits['틀림'][1]} {catch:.3f} · 통과 {hits['맞음'][0]}/{hits['맞음'][1]} {pss:.3f} (≥ {CAND_HIT_MIN})")]
+    bad = [str(i + 1) for i, (ok, _) in enumerate(r) if not ok]
+    return ("판정: 후보 화면 채택" if not bad else f"판정: 보류 (어긴 규칙 {', '.join(bad)})"), r
+
+
+def cand_judgment(task, m=None):
+    """과제의 기록된 사람 답(samples metrics의 cand) + 블라인드 칸 J1 → cand_rules."""
+    m = m or J.load()
+    met = json.load(open(os.path.join(J.HERE, "samples", J.TASKS[task][0], "metrics.json")))
+    scenes = [{"reject": bool(sc["cand"]["machine_cand"] is None), **sc["cand"]} for sc in met["scenes"].values()]
+    hits = {"틀림": [0, 0], "맞음": [0, 0]}
+    for it in J.items(None, tasks=[task]):
+        for qid, lab in it["labels"].items():
+            hits[lab][0] += j1_answer(m, task, it["key"], qid)[0] == lab
+            hits[lab][1] += 1
+    return cand_rules(scenes, hits)
+
+
 def candidates(task, m=None):
     """과제의 J1 답 → pick_candidates. 지물 문항은 J1-prop, 나머지는 J1(j1_answer)."""
     m = m or J.load()
@@ -231,6 +265,11 @@ def main():
         for sid, c in candidates(task).items():
             print(f"{sid}: " + ("되돌림(장면 뜻 전부 틀림)" if c["reject"] else f"후보 s{c['cand']} · 표본 s{c['sample']}")
                   + " · 틀림 칸 " + " ".join(f"s{s}:{n}" for s, n in c["wrong"].items()))
+    elif cmd == "candjudge":
+        line, rules = cand_judgment(int(sys.argv[2]))
+        for i, (ok, why) in enumerate(rules):
+            print(f"규칙 {i + 1} {'통과' if ok else '어김'} — {why}")
+        print(line)
     elif cmd == "trust":
         for c, x in trust().items():
             print(f"{c:10s} 잡기 {x['catch']:>7s} 통과 {x['pass']:>7s} 하한 {x['lb']} {'믿음 — 사람에게서 덜어 냄' if x['trusted'] else '사람 확인'}")

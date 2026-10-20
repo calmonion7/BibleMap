@@ -54,6 +54,21 @@ class CandidateRule(unittest.TestCase):
         self.assertEqual(JL.screens([{"reject": False}] * 14), 28)
 
 
+class CandJudgment(unittest.TestCase):
+    H = {"틀림": [8, 10], "맞음": [30, 40]}   # 잡기 0.8 · 통과 0.75
+
+    def test_adopt(self):
+        sc = [{"reject": False, "machine_cand": 5, "cand": 5}] * 8 + [{"reject": False, "machine_cand": 5, "cand": 7}] * 2
+        self.assertEqual(JL.cand_rules(sc, self.H)[0], "판정: 후보 화면 채택")
+
+    def test_hold_on_switch_revive_and_hits(self):
+        sc = [{"reject": False, "machine_cand": 5, "cand": 7}] * 3 + [{"reject": False, "machine_cand": 5, "cand": 5}] * 5 \
+            + [{"reject": True, "machine_cand": None, "cand": 11, "revived": 11}]
+        line, r = JL.cand_rules(sc, {"틀림": [7, 10], "맞음": [30, 40]})
+        self.assertEqual(line, "판정: 보류 (어긴 규칙 1, 2, 3)")
+        self.assertEqual([ok for ok, _ in r], [False, False, False])
+
+
 class PromptRoute(unittest.TestCase):
     def test_route_by_whole_background(self):
         nob, ark = D.load("authored-david-nob-priests"), D.load("authored-david-ark-jerusalem")
