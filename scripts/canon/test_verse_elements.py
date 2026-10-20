@@ -92,6 +92,15 @@ class VerseElements(unittest.TestCase):
             prompt = ds.whole_prompt(ds.load(s["id"])) if "whole_background" in s else ds.plate_whole_prompt(ds.load(s["id"]))
             self.assertEqual(cs.verse_element_errors(s, prompt, VERSES), [], s["id"])
 
+    def test_no_compromise_sentences(self):
+        """대상 장면의 순간·구역 설명에 「prior에 없어/불안정해 … 대체」류 타협 문장이 다시 들어오지 않는다(task 375 회고 eval).
+        생성이 막힐 때마다 명세에 써 넣던 문장이라(가드 문짝 긁기 · 법궤 춤 · 베들레헴 무릎 · 엔돌 사무엘) 상시로 막는다."""
+        for sid in params.VERSE_ELEMENT_SCENES:
+            s = json.load(open(os.path.join(HERE, "scenes", f"{sid}.json"), encoding="utf-8"))
+            text = s["moment"]["why"] + " " + s.get("_regions_why", "")
+            for w in ("prior", "대체", "도달하지 않"):
+                self.assertNotIn(w, text, f"{sid}: {w!r}")
+
     def test_targets(self):
         self.assertEqual(len(params.VERSE_ELEMENT_SCENES), 14)
         for sid in params.VERSE_ELEMENT_SCENES:
