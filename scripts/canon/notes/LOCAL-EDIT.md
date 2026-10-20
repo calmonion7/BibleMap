@@ -100,7 +100,7 @@
 ### 사람 화면 (장면마다 1화면, 모두 2화면 — 폰 360px 비공개 Artifact)
 - 원본과 1위 편집을 블라인드 좌우(장면 id 해시로 고정). 카드마다 편집 부위 크롭을 함께(「크게」는 전체 + 크롭).
 - 질문 하나: 「굵은 절의 모습이 보이고 이음 자국이 없는 쪽은?」(왼쪽 / 오른쪽 / 둘 다 아님). 성경 원문 상자(베들레헴 16:13 · 가드 21:13 굵게), 여러 줄 메모칸, 쉼 뺀 타이머, 접힌 칸에 그 장면 편집 6장 전부(기계 불통과 포함 — 갈래·시드만 표시).
-- 사람 답(「판정 문장」)은 `samples/local-edit/pick-verdict-386.txt`에 원문 그대로.
+- 사람 답(「판정 문장」)은 `samples/local-edit/pick-386-verdict.txt`에 원문 그대로.
 
 ### `판정:` 규칙
 - 장면 **고침** = 사람이 편집 쪽을 골랐다. `판정: 둘 다 고침` / `하나 고침` / `못 고침`.
@@ -202,11 +202,11 @@
 - 갈래별 특징 맞힘(편집 3장 합): O1 10 · O2 7 · O3 11 · OG 9 / D1 9 · D2 8.
 - 후보 화면 2화면 `check_cand_page.py` 통과(360·1280px 가로 넘침 0 · 순간 절 굵게 · textarea · 타이머), 5.08MB.
   - 비공개 Artifact: https://claude.ai/artifact/6V2RGRLy22qwh4PvUBcEWc
-- 사람 답 대기 — 「판정 문장」을 `samples/local-edit/pick-verdict-386.txt`에 두고 `record386` → `verdict386`.
+- 사람 답 대기 — 「판정 문장」을 `samples/local-edit/pick-386-verdict.txt`에 두고 `record386` → `verdict386`.
 
 ## 386 판정 — 사람 답·기록 (2026-10-21, S5)
 
-- 사람 판정 문장 원문: `samples/local-edit/pick-verdict-386.txt` → `gen_local_edit.py record386`(좌우 출처가 화면을 만든 그대로인지 단언). 화면 2 · 쉼 뺀 1.48분.
+- 사람 판정 문장 원문: `samples/local-edit/pick-386-verdict.txt` → `gen_local_edit.py record386`(좌우 출처가 화면을 만든 그대로인지 단언). 화면 2 · 쉼 뺀 1.48분.
 
 | 장면 | 사람 답 | 메모 |
 |---|---|---|
