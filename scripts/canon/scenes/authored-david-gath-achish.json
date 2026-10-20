@@ -5,23 +5,91 @@
   "verses": {
     "range": "삼상 21:10-15",
     "quotes": {
+      "21:10": "그 날에 다윗이 사울을 두려워하여 일어나 도망하여 가드 왕 아기스에게로 가니",
+      "21:11": "아기스의 신하들이 아기스에게 고하되 이는 그 땅의 왕 다윗이 아니니이까 무리가 춤추며 이 사람의 일을 창화하여 가로되 사울의 죽인 자는 천천이요 다윗은 만만이로다 하지 아니하였나이까 한지라",
       "21:13": "그들의 앞에서 그 행동을 변하여 미친 체 하고 대문짝에 그적거리며 침을 수염에 흘리매",
+      "21:14": "아기스가 그 신하에게 이르되 너희도 보거니와 이 사람이 미치광이로다 어찌하여 그를 내게로 데려왔느냐",
       "21:15": "내게 미치광이가 부족하여서 너희가 이 자를 데려다가 내 앞에서 미친 짓을 하게 하느냐"
     }
   },
   "moment": {
     "verse": "21:13 후반",
-    "why": "다윗이 성문 기둥에 몸을 기대고 침을 흘리는 순간 — 문짝을 손톱으로 긁는 동작은 모델 prior에 없어(ADR 260903-154254) 문에 기대선 정적 자세로 대체."
+    "why": "다윗이 아기스와 신하들 앞에서 미친 체하며 성문 문짝에 그적거리고 침을 수염에 흘리는 순간(21:13 후반)을 고정한다 — 아기스가 신하들에게 다윗을 가리켜 책망하는 21:14-15가 같은 장면에 겹친다."
   },
+  "verse_elements": [
+    {
+      "verse": "21:10",
+      "quote": "가드 왕 아기스에게로 가니",
+      "kind": "장소",
+      "ko": "가드 성읍 — 두꺼운 돌 성벽의 겹문 앞 거리",
+      "en": "a dusty street of Gath",
+      "field": "whole_background"
+    },
+    {
+      "verse": "21:13",
+      "quote": "미친 체 하고",
+      "kind": "행동",
+      "ko": "다윗이 미친 체함",
+      "en": "feigning madness",
+      "field": "figures[0].expression"
+    },
+    {
+      "verse": "21:13",
+      "quote": "대문짝에 그적거리며",
+      "kind": "행동",
+      "ko": "다윗이 성문 문짝에 그적거림",
+      "en": "scratching marks on the doors of the gate",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "21:13",
+      "quote": "침을 수염에 흘리매",
+      "kind": "행동",
+      "ko": "다윗이 침을 수염에 흘림",
+      "en": "drool running down his beard",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "21:13",
+      "quote": "대문짝",
+      "kind": "지물",
+      "ko": "높은 나무 겹문(대문짝)",
+      "en": "a tall heavy wooden double gate",
+      "field": "whole_background"
+    },
+    {
+      "verse": "21:14",
+      "quote": "그 신하에게 이르되",
+      "kind": "무리",
+      "ko": "아기스의 신하들이 곁에 섬",
+      "en": "two of his servants close behind him",
+      "field": "relation"
+    },
+    {
+      "verse": "21:15",
+      "quote": "내 앞에서 미친 짓을 하게 하느냐",
+      "kind": "행동",
+      "ko": "아기스가 다윗을 가리키며 신하들을 꾸짖음(21:14-15) — 손짓은 본문 밖 · 저작자 정함",
+      "en": "waves his raised palm toward the young man as he scolds his servants",
+      "field": "relation"
+    },
+    {
+      "verse": "21:11",
+      "quote": "춤추며 이 사람의 일을 창화하여",
+      "kind": "무리",
+      "ko": "신하들이 다윗을 두고 춤추며 창화한 말",
+      "out": "다윗이 미친 체하기 전 신하들이 아기스에게 고한 앞선 시점의 말(순간 밖)"
+    }
+  ],
   "meaning": {
-    "ko": "가드 성문 앞에서 다윗이 미친 체하며 성문 기둥에 기대 침을 흘리고, 아기스가 역겨워하며 물리친다",
-    "en": "At the gate of Gath the young man feigns madness, leaning on the gate post and drooling, while the Philistine king waves him away in disgust",
+    "ko": "가드 성문 앞에서 다윗이 미친 체하며 성문 문짝에 그적거리고 침을 수염에 흘리고, 아기스가 신하들 앞에서 역겨워하며 신하들에게 책망한다",
+    "en": "At the gate of Gath the young man feigns madness, scratching at the doors of the gate and drooling, while the Philistine king, disgusted, scolds his servants for bringing the madman",
     "verse": "삼상 21:13-15"
   },
   "relation": {
-    "ko": "아기스가 떨어져 서서 든 손바닥을 다윗 쪽으로 밀어 내쫓고, 다윗은 그를 보지 않고 성문 기둥에 기대 있다 — 둘은 닿지 않는다",
-    "en": "the king stands apart and pushes his raised palm toward the young man to drive him off, while the young man leans on the gate post without looking at him, the two not touching",
-    "verse": "삼상 21:14-15 「내 앞에서 미친 짓을」 · 손바닥·떨어짐 본문 밖 · 저작자 정함"
+    "ko": "아기스가 신하 둘을 뒤에 두고 떨어져 서서 든 손바닥을 다윗 쪽으로 저으며 신하들을 꾸짖고, 다윗은 그를 보지 않고 성문 문짝에 그적거린다 — 둘은 닿지 않는다",
+    "en": "the king stands apart with two of his servants close behind him and waves his raised palm toward the young man as he scolds his servants, while the young man scratches at the gate doors without looking at him, the two not touching",
+    "verse": "삼상 21:14-15 「그 신하에게 이르되」「내 앞에서 미친 짓을」 · 책망하는 손짓·떨어짐·신하 수는 본문 밖 · 저작자 정함"
   },
   "whole_background": {
     "ko": "가드 성읍 거리 — 두꺼운 돌 성벽에 박힌 높은 나무 겹문, 마른 땅",
@@ -39,20 +107,20 @@
     {
       "cast": "david",
       "role": "다윗 — 미친 체함",
-      "pose": "나무 성문 기둥에 기대어 서서 침을 흘린다",
-      "prop": "a wooden gate post",
+      "pose": "성문 문짝에 기대어 그적거리며 침을 흘린다",
+      "prop": "the wooden doors of the gate",
       "facing": "left",
       "region": "david",
       "verse": "21:13",
       "expression": {
-        "ko": "넋 나간 얼굴",
-        "en": "a vacant, dazed face",
-        "verse": "삼상 21:13 「미친 체 하고」 · 표정 본문 밖 · 저작자 정함"
+        "ko": "미친 체하는 넋 나간 얼굴",
+        "en": "feigning madness with a vacant, dazed face",
+        "verse": "삼상 21:13 「미친 체 하고」"
       },
       "gesture": {
-        "ko": "나무 성문 기둥에 어깨를 기대 서서 수염에 침을 흘린다",
-        "en": "leaning one shoulder against a wooden gate post, drool running down his beard",
-        "verse": "삼상 21:13 「침을 수염에 흘리매」 · 기댐 본문 밖 · 저작자 정함"
+        "ko": "성문 문짝에 어깨를 기대 서서 문짝에 그적거리고 수염에 침을 흘린다",
+        "en": "leaning one shoulder against the gate, scratching marks on the doors of the gate, drool running down his beard",
+        "verse": "삼상 21:13 「대문짝에 그적거리며 침을 수염에 흘리매」 · 기댐은 본문 밖 · 저작자 정함"
       },
       "costume": {
         "ko": "짙은 붉은 양모 튜닉과 짙은 갈색 가죽 띠",
@@ -69,7 +137,7 @@
     {
       "cast": "achish",
       "role": "가드 왕 아기스",
-      "pose": "손을 들어 물리치며 서 있다",
+      "pose": "손을 들어 책망하며 서 있다",
       "prop": "a fold of his robe",
       "facing": "right",
       "region": "achish",
@@ -80,8 +148,8 @@
         "verse": "삼상 21:14-15 · 표정 본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "한 손을 들어 손바닥으로 물리치고, 다른 손은 겉옷 자락을 쥔다",
-        "en": "one hand raised, palm out in a dismissing push, the other hand holding a fold of his robe",
+        "ko": "한 손을 들어 손바닥을 저어 책망하고, 다른 손은 겉옷 자락을 쥔다",
+        "en": "one hand raised, palm out in a rebuking wave, the other hand holding a fold of his robe",
         "verse": "삼상 21:14-15 · 손 본문 밖 · 저작자 정함"
       },
       "costume": {
@@ -119,7 +187,7 @@
       0.9
     ]
   },
-  "_regions_why": "성문(gate)은 다윗 뒤 배경 구조물(21:13). 다윗·아기스 모두 성인 남자 세로 0.54. 21:11-15 대화 순서로 다윗 왼쪽, 아기스 오른쪽.",
+  "_regions_why": "성문(gate)은 다윗 앞 구조물(21:13 대문짝). 다윗·아기스 모두 성인 남자 세로 0.54. 21:11-15 대화 순서로 다윗 왼쪽, 아기스 오른쪽.",
   "stages": [
     {
       "id": "S1",
@@ -168,7 +236,7 @@
       "kind": "plate",
       "region": "david",
       "verse": "21:13",
-      "prompt": "{cast:david}, leaning against a wooden gate post, one hand resting on the post, drooling on his beard, facing left.",
+      "prompt": "{cast:david}, feigning madness, leaning against a wooden gate door, scratching marks on the doors of the gate, drooling on his beard, facing left.",
       "neg": [
         "armour",
         "crown",
@@ -182,7 +250,7 @@
       "kind": "plate",
       "region": "achish",
       "verse": "21:14-15",
-      "prompt": "{cast:achish}, standing, one hand raised in a dismissing gesture, the other hand holding a fold of his robe, facing right.",
+      "prompt": "{cast:achish}, standing, one hand raised in a rebuking wave, the other hand holding a fold of his robe, facing right.",
       "neg": [
         "Israelite dress",
         "crown of Israel",

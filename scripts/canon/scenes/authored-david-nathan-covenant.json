@@ -7,17 +7,89 @@
     "quotes": {
       "7:12": "네 수한이 차서 네 조상들과 함께 잘 때에 내가 네 몸에서 날 자식을 네 뒤에 세워 그 나라를 견고케 하리라",
       "7:13": "저는 내 이름을 위하여 집을 건축할 것이요 나는 그 나라 위를 영원히 견고케 하리라",
-      "7:16": "네 집과 네 나라가 네 앞에서 영원히 보전되고 네 위가 영원히 견고하리라 하셨다 하라"
+      "7:16": "네 집과 네 나라가 네 앞에서 영원히 보전되고 네 위가 영원히 견고하리라 하셨다 하라",
+      "7:2": "왕이 선지자 나단에게 이르되 볼지어다 나는 백향목 궁에 거하거늘 하나님의 궤는 휘장 가운데 있도다",
+      "7:4": "그 밤에 여호와의 말씀이 나단에게 임하여 가라사대",
+      "7:5": "가서 내 종 다윗에게 말하기를 여호와의 말씀이 네가 나를 위하여 나의 거할 집을 건축하겠느냐"
     }
   },
   "moment": {
     "verse": "7:12-16",
     "why": "나단이 한 팔을 들어 다윗에게 언약의 말씀을 전하는 순간을 고정한다. 다윗은 앉아 듣는 자세로만 — 앞으로의 성전 건축(7:13)은 그리지 않는다. (진리 근거 파일 david-tour-verses.md의 이 정차지 절 범위가 7:12-16까지만 제공하므로 7:17은 인용하지 않는다.)"
   },
+  "verse_elements": [
+    {
+      "verse": "7:2",
+      "quote": "선지자 나단",
+      "kind": "인물",
+      "ko": "선지자 나단",
+      "en": "an ancient Israelite middle-aged prophet",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "7:2",
+      "quote": "왕이",
+      "kind": "인물",
+      "ko": "왕 다윗",
+      "en": "an ancient Israelite lean young man",
+      "field": "stages[S4].prompt"
+    },
+    {
+      "verse": "7:2",
+      "quote": "백향목 궁",
+      "kind": "장소",
+      "ko": "다윗의 백향목 궁",
+      "en": "a stately house of cedar wood",
+      "field": "stages[S1].prompt"
+    },
+    {
+      "verse": "7:5",
+      "quote": "내 종 다윗에게 말하기를",
+      "kind": "행동",
+      "ko": "나단이 다윗에게 말씀을 전함",
+      "en": "one arm raised as if speaking",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "7:2",
+      "quote": "하나님의 궤는 휘장 가운데 있도다",
+      "kind": "지물",
+      "ko": "휘장 가운데의 하나님의 궤",
+      "out": "다윗이 말한 다른 장소의 궤 — 이 장면은 궁 앞뜰"
+    },
+    {
+      "verse": "7:4",
+      "quote": "그 밤에",
+      "kind": "때",
+      "ko": "말씀이 나단에게 임한 밤",
+      "out": "나단이 말씀을 받은 순간 — 다윗에게 전하러 가기 전의 다른 순간"
+    },
+    {
+      "verse": "7:12",
+      "quote": "네 몸에서 날 자식을 네 뒤에 세워",
+      "kind": "인물",
+      "ko": "다윗의 몸에서 날 자식",
+      "out": "말씀 속 미래의 일"
+    },
+    {
+      "verse": "7:13",
+      "quote": "집을 건축할 것이요",
+      "kind": "행동",
+      "ko": "그 자식이 집을 건축함",
+      "out": "말씀 속 미래의 일"
+    },
+    {
+      "verse": "7:16",
+      "quote": "네 집과 네 나라가 네 앞에서 영원히 보전되고",
+      "kind": "행동",
+      "ko": "다윗의 집과 나라가 보전됨",
+      "out": "말씀 속 미래의 일"
+    }
+  ],
   "background": [
     {
-      "what": "다윗의 처소 앞뜰",
-      "verse": "본문 밖 · 저작자 정함"
+      "what": "다윗의 백향목 궁 앞뜰(앞뜰은 저작자 정함)",
+      "verse": "7:2 · 앞뜰 본문 밖 · 저작자 정함"
     }
   ],
   "crowds": [],
@@ -38,7 +110,7 @@
       "prop": "a robe corner",
       "facing": "right",
       "region": "david",
-      "verse": "7:12 · 지물 본문 밖 · 저작자 정함"
+      "verse": "7:12 · 앉은 자세·지물 본문 밖 · 저작자 정함"
     }
   ],
   "regions": {
@@ -67,8 +139,8 @@
       "id": "S1",
       "kind": "full",
       "region": "full",
-      "verse": "본문 밖 · 저작자 정함",
-      "prompt": "a wide open courtyard of pale packed earth before a plain house, dry ground, empty pale sky, no people.",
+      "verse": "7:2",
+      "prompt": "a wide open courtyard of pale packed earth before a stately house of cedar wood, dry ground, empty pale sky, no people.",
       "neg": [
         "people",
         "figures",
@@ -81,7 +153,8 @@
         "chapel",
         "cross",
         "bell tower",
-        "spire"
+        "spire",
+        "plain house"
       ]
     },
     {

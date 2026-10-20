@@ -6,28 +6,85 @@
     "range": "삼상 31:1-13",
     "quotes": {
       "31:3": "사울이 패전하매 활 쏘는 자가 따라 미치니 사울이 그 활 쏘는 자를 인하여 중상한지라",
-      "31:4": "그가 병기 든 자에게 이르되 네 칼을 빼어 나를 찌르라 할례없는 자들이 와서 나를 찌르고 모욕할까 두려워하노라 하나 병기 든 자가 심히 두려워하여 즐겨 행치 아니하는지라"
+      "31:4": "그가 병기 든 자에게 이르되 네 칼을 빼어 나를 찌르라 할례없는 자들이 와서 나를 찌르고 모욕할까 두려워하노라 하나 병기 든 자가 심히 두려워하여 즐겨 행치 아니하는지라 이에 사울이 자기 칼을 취하고 그 위에 엎드러지매"
     }
   },
   "moment": {
-    "verse": "31:4 전반",
-    "why": "중상한 사울이 자기 칼을 세워 쥐고 선 채로 병기 든 자에게 명하는 순간 — 칼 위에 엎드러지는 순간(31:4 후반)은 그리지 않는다(사용자 지시). 병기 든 자는 두려워 물러서는 평범한 자세."
+    "verse": "31:4 전반~중반",
+    "why": "중상한 사울이 선 채로 병기 든 자에게 「네 칼을 빼어 나를 찌르라」 명하고, 병기 든 자가 심히 두려워 즐겨 행치 않는 순간(31:4 전반~중반) — 사울이 자기 칼을 취해 그 위에 엎드러지는 일(31:4 후반)은 이 순간 뒤다. 병기 든 자는 두려워 굳은 채 칼을 빼지 않는다."
   },
+  "verse_elements": [
+    {
+      "verse": "31:3",
+      "quote": "활 쏘는 자가 따라 미치니",
+      "kind": "무리",
+      "ko": "뒤쫓는 활 쏘는 자들",
+      "en": "a distant crowd of tiny archers drawing bows",
+      "field": "stages[S2a].prompt"
+    },
+    {
+      "verse": "31:3",
+      "quote": "중상한지라",
+      "kind": "행동",
+      "ko": "사울이 화살에 중상하였다",
+      "en": "wounded by arrows",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "31:4",
+      "quote": "네 칼을 빼어 나를 찌르라",
+      "kind": "행동",
+      "ko": "사울이 병기 든 자에게 칼을 빼라 명한다",
+      "en": "one hand stretched out toward the armour-bearer in command",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "31:4",
+      "quote": "자기 칼을",
+      "kind": "지물",
+      "ko": "사울이 허리에 찬 자기 칼",
+      "en": "a sheathed sword at his hip",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "31:4",
+      "quote": "네 칼을 빼어",
+      "kind": "지물",
+      "ko": "병기 든 자의 칼 — 칼자루 쥠은 본문 밖 · 저작자 정함",
+      "en": "gripping the hilt of a sheathed sword at his side",
+      "field": "stages[S4].prompt"
+    },
+    {
+      "verse": "31:4",
+      "quote": "심히 두려워하여 즐겨 행치 아니하는지라",
+      "kind": "행동",
+      "ko": "병기 든 자가 심히 두려워 칼을 빼지 않음",
+      "en": "standing frozen in fear, not drawing it",
+      "field": "stages[S4].prompt"
+    },
+    {
+      "verse": "31:4",
+      "quote": "자기 칼을 취하고 그 위에 엎드러지매",
+      "kind": "행동",
+      "ko": "사울이 자기 칼 위에 엎드러진다",
+      "out": "31:4 후반, 병기 든 자가 행치 않은 뒤 사울이 스스로 칼을 취하는 다음 순간 — 이 장면은 명령과 거절까지"
+    }
+  ],
   "background": [
     {
       "what": "길보아 산 마른 비탈",
-      "verse": "31:1"
+      "verse": "31:1 · 때(해질녘)는 본문 밖 · 저작자 정함"
     },
     {
-      "what": "뒤쫓는 블레셋 군대 — 능선 원경",
-      "verse": "31:2",
+      "what": "뒤쫓는 블레셋 활 쏘는 자들 — 능선 원경",
+      "verse": "31:3",
       "region": "crest_right"
     }
   ],
   "crowds": [
     {
-      "what": "블레셋 병사들이 산 위로 뒤쫓아 온다",
-      "verse": "31:2",
+      "what": "블레셋 활 쏘는 자들이 산 위로 뒤쫓아 온다",
+      "verse": "31:3",
       "region": "crest_right"
     }
   ],
@@ -35,8 +92,8 @@
     {
       "cast": "saul-old",
       "role": "사울 — 중상하여 서 있음",
-      "pose": "선 채로 칼을 세워 쥐고 있다",
-      "prop": "a sword",
+      "pose": "선 채로 한 손을 내밀어 병기 든 자에게 칼을 빼라 명한다",
+      "prop": "a sheathed sword",
       "facing": "right",
       "region": "saul-old",
       "verse": "31:3-4"
@@ -44,11 +101,11 @@
     {
       "cast": "saul-armor-bearer",
       "role": "병기 든 자 — 두려워함",
-      "pose": "두려워하며 뒤로 물러서 선다",
+      "pose": "심히 두려워 굳은 채 칼을 빼지 않는다 — 칼자루를 쥔 채",
       "prop": "a sword",
       "facing": "left",
       "region": "saul-armor-bearer",
-      "verse": "31:4"
+      "verse": "31:4 · 칼자루 쥠 본문 밖 · 저작자 정함"
     }
   ],
   "regions": {
@@ -77,13 +134,13 @@
       0.9
     ]
   },
-  "_regions_why": "사울 세로 0.56(성인 왕, 중상해도 서 있음). 병기 든 자 세로 0.50, 뒤로 물러서 사울보다 오른쪽. 능선(crest_right)엔 뒤쫓는 블레셋 군대 원경 띠.",
+  "_regions_why": "사울 세로 0.56(성인 왕, 중상해도 서 있음). 병기 든 자 세로 0.50, 두려워 굳은 채 사울보다 오른쪽(자리는 저작자 정함). 능선(crest_right)엔 뒤쫓는 블레셋 군대 원경 띠.",
   "stages": [
     {
       "id": "S1",
       "kind": "full",
       "region": "full",
-      "verse": "31:1",
+      "verse": "31:1 · 때(해질녘)는 본문 밖 · 저작자 정함",
       "prompt": "a dry rocky mountain slope at dusk, sparse dry grass, scattered stones, pale dim sky, no people.",
       "neg": [
         "people",
@@ -104,8 +161,8 @@
       "id": "S2a",
       "kind": "ridge",
       "region": "crest_right",
-      "verse": "31:2",
-      "prompt": "a distant crowd of tiny soldiers with spears advancing up a hillside, small and far away.",
+      "verse": "31:3",
+      "prompt": "a distant crowd of tiny archers drawing bows, advancing up a hillside, small and far away.",
       "neg": [
         "empty hill",
         "bare ridge",
@@ -125,7 +182,7 @@
       "kind": "plate",
       "region": "saul-old",
       "verse": "31:3-4",
-      "prompt": "{cast:saul-old}, standing upright, gripping a sword point-down before him, wounded, facing right.",
+      "prompt": "{cast:saul-old}, standing upright, wounded by arrows, one hand stretched out toward the armour-bearer in command, a sheathed sword at his hip, facing right.",
       "neg": [
         "crown",
         "armour",
@@ -139,7 +196,7 @@
       "kind": "plate",
       "region": "saul-armor-bearer",
       "verse": "31:4",
-      "prompt": "{cast:saul-armor-bearer}, standing, stepping back in fear, gripping a sheathed sword at his side, facing left.",
+      "prompt": "{cast:saul-armor-bearer}, standing frozen in fear, not drawing it, gripping the hilt of a sheathed sword at his side, facing left.",
       "neg": [
         "crown",
         "royal robe",

@@ -10,8 +10,50 @@
   },
   "moment": {
     "verse": "19:15",
-    "why": "다윗이 요단에 이르러 걷는 순간을 고정한다. 유다 족속이 그를 맞이하는 장면은 원경 무리로만 둔다."
+    "why": "왕 다윗이 돌아와 요단에 이르러 걷는 순간을 고정한다(19:15). 유다 족속이 왕을 맞아 요단을 건네려 모여 있는 무리를 원경에 둔다(길갈에 모임). 왕이 이른 요단은 강가 단계로 둔다."
   },
+  "verse_elements": [
+    {
+      "verse": "19:15",
+      "quote": "왕이 돌아와",
+      "kind": "인물",
+      "ko": "돌아온 왕 다윗",
+      "en": "an ancient Israelite lean young man walking",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "19:15",
+      "quote": "요단에 이르매",
+      "kind": "장소",
+      "ko": "요단 강가",
+      "en": "a calm wide river with a muddy bank",
+      "field": "stages[S1b].prompt"
+    },
+    {
+      "verse": "19:15",
+      "quote": "유다 족속이",
+      "kind": "무리",
+      "ko": "유다 족속의 무리",
+      "en": "many tiny distant people gathered at Gilgal",
+      "field": "stages[S2].prompt"
+    },
+    {
+      "verse": "19:15",
+      "quote": "왕을 맞아 요단을 건네려",
+      "kind": "행동",
+      "ko": "왕을 맞아 요단을 건네려 함",
+      "en": "waiting to meet the king and conduct him across the river",
+      "field": "stages[S2].prompt"
+    },
+    {
+      "verse": "19:15",
+      "quote": "길갈로 오니라",
+      "kind": "장소",
+      "ko": "유다 무리가 길갈에 모임",
+      "en": "gathered at Gilgal",
+      "field": "stages[S2].prompt"
+    }
+  ],
   "background": [
     {
       "what": "요단 강가",
@@ -20,7 +62,7 @@
   ],
   "crowds": [
     {
-      "what": "유다 족속 — 왕을 맞으러 나온 무리",
+      "what": "유다 족속 — 왕을 맞아 요단을 건네려 모인 무리",
       "verse": "19:15",
       "region": "crest_right"
     }
@@ -110,7 +152,7 @@
       "kind": "ridge",
       "region": "crest_right",
       "verse": "19:15",
-      "prompt": "many tiny distant people gathered along a riverbank, small silhouettes, tiny far away crowd.",
+      "prompt": "many tiny distant people gathered at Gilgal, waiting to meet the king and conduct him across the river, small silhouettes, tiny far away crowd.",
       "neg": [
         "empty ground",
         "single figure",

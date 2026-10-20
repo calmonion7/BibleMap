@@ -6,13 +6,88 @@
     "range": "삼상 28:7-20",
     "quotes": {
       "28:8": "사울이 다른 옷을 입어 변장하고 두 사람과 함께 갈새 그들이 밤에 그 여인에게 이르러는 사울이 가로되 청하노니 나를 위하여 신접한 술법으로 내가 네게 말하는 사람을 불러올리라",
+      "28:12": "여인이 사무엘을 보고 큰 소리로 외치며 사울에게 말하여 가로되 당신이 어찌하여 나를 속이셨나이까 당신이 사울이시니이다",
+      "28:13": "왕이 그에게 이르되 두려워 말라 네가 무엇을 보았느냐 여인이 사울에게 이르되 내가 신이 땅에서 올라오는 것을 보았나이다",
       "28:14": "사울이 그에게 이르되 그 모양이 어떠하냐 그가 가로되 한 노인이 올라 오는데 그가 겉옷을 입었나이다 사울이 그가 사무엘인줄 알고 그 얼굴을 땅에 대고 절하니라"
     }
   },
   "moment": {
     "verse": "28:14 후반",
-    "why": "사울이 사무엘의 영을 알아보고 얼굴을 땅에 대고 절하는 순간. 사무엘은 영으로 등장하므로 어두운 배경 속에 서 있는 모습으로만 나타내고(28:14 「겉옷을 입었나이다」), 신접한 여인은 곁에서 지켜본다."
+    "why": "사울이 사무엘의 영을 알아보고 얼굴을 땅에 대고 절하는 순간(28:14). 사무엘은 겉옷 입은 노인으로 땅에서 올라오고, 신접한 여인은 28:13 「두려워 말라」 직후 곁에서 두려워 떨며 지켜보고(28:12 큰 소리 외침은 앞선 순간), 사울은 변장한 채 두 사람과 함께 와 있다(28:8)."
   },
+  "verse_elements": [
+    {
+      "verse": "28:8",
+      "quote": "다른 옷을 입어 변장하고",
+      "kind": "지물",
+      "ko": "사울의 변장 겉옷",
+      "en": "wearing a dark disguise cloak",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "28:8",
+      "quote": "두 사람과 함께",
+      "kind": "인물",
+      "ko": "사울과 함께 온 두 사람",
+      "en": "two men in plain dark cloaks standing close together",
+      "field": "stages[S2].prompt"
+    },
+    {
+      "verse": "28:8",
+      "quote": "밤에",
+      "kind": "때",
+      "ko": "밤",
+      "en": "a small dim room at night",
+      "field": "stages[S1].prompt"
+    },
+    {
+      "verse": "28:12",
+      "quote": "큰 소리로 외치며",
+      "kind": "행동",
+      "ko": "여인이 사무엘을 보고 큰 소리로 외친다",
+      "out": "사무엘을 처음 본 앞선 순간의 외침 — 이 장면은 28:13 「두려워 말라」 뒤"
+    },
+    {
+      "verse": "28:13",
+      "quote": "두려워 말라",
+      "kind": "행동",
+      "ko": "여인이 두려워 떪",
+      "en": "fearful, staring at the apparition, one hand at her chest",
+      "field": "stages[S5].prompt"
+    },
+    {
+      "verse": "28:13",
+      "quote": "땅에서 올라오는 것",
+      "kind": "행동",
+      "ko": "땅에서 올라온다",
+      "en": "rising up out of the earth",
+      "field": "stages[S4].prompt"
+    },
+    {
+      "verse": "28:14",
+      "quote": "한 노인이",
+      "kind": "인물",
+      "ko": "노인",
+      "en": "an old man",
+      "field": "stages[S4].prompt"
+    },
+    {
+      "verse": "28:14",
+      "quote": "겉옷을 입었나이다",
+      "kind": "지물",
+      "ko": "사무엘의 겉옷",
+      "en": "wearing a long mantle",
+      "field": "stages[S4].prompt"
+    },
+    {
+      "verse": "28:14",
+      "quote": "그 얼굴을 땅에 대고 절하니라",
+      "kind": "행동",
+      "ko": "사울이 얼굴을 땅에 대고 절한다",
+      "en": "lying prostrate bowing low with face to the ground",
+      "field": "stages[S3].prompt"
+    }
+  ],
   "background": [
     {
       "what": "엔돌의 어두운 방, 밤",
@@ -23,7 +98,13 @@
       "verse": "본문 밖 · 저작자 정함"
     }
   ],
-  "crowds": [],
+  "crowds": [
+    {
+      "what": "사울과 함께 온 두 사람이 왼쪽 가장자리에 선다",
+      "verse": "28:8",
+      "region": "companions"
+    }
+  ],
   "figures": [
     {
       "cast": "saul-old",
@@ -37,8 +118,8 @@
     {
       "cast": "samuel",
       "role": "사무엘의 영 — 어둠 속에 나타남",
-      "pose": "어둠 속에 서서 겉옷을 입고 있다",
-      "prop": "a robe corner",
+      "pose": "땅에서 올라오는 노인이 겉옷을 입고 서 있다",
+      "prop": "a long mantle",
       "facing": "left",
       "region": "samuel",
       "verse": "28:14"
@@ -46,11 +127,11 @@
     {
       "cast": "endor-medium",
       "role": "엔돌의 신접한 여인 — 지켜봄",
-      "pose": "곁에 서서 두려워하며 지켜본다",
+      "pose": "곁에 서서 두려워 떨며 사무엘의 영을 바라본다",
       "prop": "a shawl fold",
       "facing": "right",
       "region": "endor-medium",
-      "verse": "28:12-13 · 지물 본문 밖 · 저작자 정함"
+      "verse": "28:13 · 지물 본문 밖 · 저작자 정함"
     }
   ],
   "regions": {
@@ -77,9 +158,15 @@
       0.06,
       0.82,
       0.85
+    ],
+    "companions": [
+      0.0,
+      0.4,
+      0.12,
+      0.88
     ]
   },
-  "_regions_why": "사울은 엎드려 절해 세로 0.37. 여인은 서서 세로 0.48. 사무엘의 영은 어둠 위쪽에서 나타나 세로 0.79로 크게 — 신적 두려움의 대상(28:13 「신이 땅에서 올라오는 것」).",
+  "_regions_why": "사울은 엎드려 절해 세로 0.37. 여인은 서서 세로 0.48. 사무엘은 어둠 위쪽에서 땅에서 올라오는 노인으로 세로 0.79로 크게 — 28:13 「신이 땅에서 올라오는 것」. 사울과 함께 온 두 사람은 왼쪽 가장자리에 선다(28:8).",
   "stages": [
     {
       "id": "S1",
@@ -103,6 +190,20 @@
       ]
     },
     {
+      "id": "S2",
+      "kind": "region",
+      "region": "companions",
+      "verse": "28:8",
+      "prompt": "two men in plain dark cloaks standing close together, watching.",
+      "neg": [
+        "crown",
+        "armour",
+        "sword",
+        "modern clothes",
+        "kneeling"
+      ]
+    },
+    {
       "id": "S3",
       "kind": "plate",
       "region": "saul-old",
@@ -121,7 +222,7 @@
       "kind": "plate",
       "region": "samuel",
       "verse": "28:14",
-      "prompt": "{cast:samuel}, standing amid darkness, an old man gripping a corner of his long robe, one hand raised, facing left.",
+      "prompt": "{cast:samuel}, an old man rising up out of the earth amid darkness, wearing a long mantle, facing left.",
       "neg": [
         "armour",
         "crown",
@@ -134,8 +235,8 @@
       "id": "S5",
       "kind": "plate",
       "region": "endor-medium",
-      "verse": "28:12-13",
-      "prompt": "{cast:endor-medium}, standing, one hand gripping a fold of her shawl near her chest, fearful, facing right.",
+      "verse": "28:13",
+      "prompt": "{cast:endor-medium}, standing, fearful, staring at the apparition, one hand at her chest, facing right.",
       "neg": [
         "crown",
         "armour",

@@ -301,3 +301,8 @@ PLATE_REST_SCENES = {"authored-david-ark-jerusalem": ["david"],
                      "authored-saul-endor-medium": [],
                      "authored-saul-gilboa-death": []}
 PLATE_REST_SEEDS = REF_EDIT_SEEDS
+# task#375(2026-10-20): 구절 시각 요소 목록(verse_elements) — 순간을 고정한 구절의 인물·행동·지물·때·장소·무리를 명세 칸·파생 프롬프트 문구와 짝짓는다.
+# 대상 = 미승인 사울·다윗 14장면(판 경로 11 + 한 장 모드 칸 3). 제외(out)는 「순간 밖」만, 사유에 금지 낱말이 있으면 실패. 실행 전 고정(notes/VERSE-ELEMENTS.md).
+VERSE_ELEMENT_SCENES = tuple(PLATE_REST_SCENES) + ("authored-david-gath-achish", "authored-david-nob-priests", "authored-david-ramah-samuel")
+VERSE_ELEMENT_KINDS = ("인물", "행동", "지물", "때", "장소", "무리")
+VERSE_ELEMENT_BANNED = ("prior", "모델", "못 그", "대체", "어렵")

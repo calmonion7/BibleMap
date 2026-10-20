@@ -7,6 +7,8 @@
 구역 상자 [0,1] 안(x0<x1, y0<y1) · stages/figures/crowds/judge가 가리키는 구역이 regions에 있음 · judge.figures ⊆ figures.cast.
 task 363: 한 장 프롬프트(`derive_scene.whole_prompt`)가 Z-Image 인코더 상한 512토큰(채팅 틀 포함) 안 — 넘는 뒤쪽은 잘려 무처치다.
   토크나이저(HF 캐시, 오프라인)가 필요하므로 venv314로 실행한다. 못 불러오면 실패로 보고한다.
+task 375: 구절 시각 요소(`verse_elements`)가 있는 장면은 요소마다 인용·칸·파생 프롬프트 문구를 짝짓고, 「못 그림」류 제외 사유는 실패.
+  대상 14장면(params.VERSE_ELEMENT_SCENES)에 목록이 없으면 「미작성」 경고, 끝에 「구절 요소: N/14 장면」(notes/VERSE-ELEMENTS.md).
 """
 import glob
 import json
@@ -141,6 +143,58 @@ def check(spec, verses):
     return errs
 
 
+def _path(spec, path):
+    """'figures[1].gesture' · 'stages[S3].prompt' → 값(없으면 KeyError). 대괄호 숫자 = 목록 자리, 그 밖 = id가 같은 항목."""
+    v = spec
+    for name, idx in re.findall(r"([A-Za-z_]+)(?:\[([^\]]+)\])?", path):
+        v = v[name]
+        if idx:
+            v = v[int(idx)] if idx.isdigit() else next(x for x in v if x.get("id") == idx)
+    return v
+
+
+def _strings(v):
+    return [v] if isinstance(v, str) else [s for x in (v.values() if isinstance(v, dict) else v if isinstance(v, list) else []) for s in _strings(x)]
+
+
+def verse_element_errors(spec, prompt, verses=None):
+    """구절 시각 요소 검사(task 375) → 오류 목록. prompt = 그 장면의 파생 프롬프트(whole_prompt 또는 plate_whole_prompt).
+    verses(verses.json)를 주면 quote가 실제 본문(textKo, 띄어쓰기 무시)에도 있는지 본다."""
+    errs, quotes = [], spec["verses"].get("quotes", {})
+    m = re.match(r"(삼상|삼하|왕상|왕하|대상|대하|시)\s*\d+:", spec["verses"].get("range", ""))
+    squash = lambda s: re.sub(r"\s+", "", s)
+    for i, e in enumerate(spec.get("verse_elements") or []):
+        at = f"verse_elements[{i}] {e.get('ko', '')!r}"
+        if e.get("quote", "") == "" or e["quote"] not in quotes.get(e.get("verse"), ""):
+            errs.append(f"{at}: quote가 verses.quotes[{e.get('verse')!r}] 안에 없음")
+        elif verses is not None and m:
+            text = "".join(verses.get(v, {}).get("textKo", "") for v in verse_ids(BOOK[m.group(1)], e["verse"]))
+            if squash(e["quote"]) not in squash(text):
+                errs.append(f"{at}: quote가 본문({e['verse']} 개역한글)에 없음")
+        if e.get("kind") not in params.VERSE_ELEMENT_KINDS:
+            errs.append(f"{at}: kind는 {'·'.join(params.VERSE_ELEMENT_KINDS)} 중 하나: {e.get('kind')!r}")
+        carried, out = "field" in e or "en" in e, "out" in e
+        if carried == out:
+            errs.append(f"{at}: 실음(field+en)과 제외(out) 중 하나만")
+            continue
+        if out:
+            bad = [w for w in params.VERSE_ELEMENT_BANNED if w in e["out"]]
+            if not e["out"].strip() or bad:
+                errs.append(f"{at}: 제외는 순간 밖만 — 사유 금지 낱말 {bad}")
+            continue
+        try:
+            val = _path(spec, e.get("field", ""))
+        except (KeyError, IndexError, StopIteration, TypeError, ValueError):
+            errs.append(f"{at}: field 경로 없음: {e.get('field')!r}")
+            continue
+        en = (e.get("en") or "").strip()
+        if not en or not any(en.lower() in s.lower() for s in _strings(val)):
+            errs.append(f"{at}: en이 {e['field']} 칸 안에 없음: {en!r}")
+        elif en.lower() not in prompt.lower():
+            errs.append(f"{at}: en이 파생 프롬프트에 없음: {en!r}")
+    return errs
+
+
 def zimage_tokens():
     """→ 프롬프트 → 채팅 틀 포함 토큰 수. ZImagePipeline.encode_prompt와 같은 틀(enable_thinking=True)."""
     from huggingface_hub import snapshot_download
@@ -168,23 +222,46 @@ def whole_prompt_overflow(ids=None):
     return bad
 
 
+def element_check(sid, n, verses=None):
+    """→ (오류 목록, 목록 있음) — 구절 시각 요소 + 판 경로 장면도 파생 프롬프트 512토큰 안(task 375)."""
+    import derive_scene as ds
+    spec = ds.load(sid)
+    if "verse_elements" not in spec:
+        return [], False
+    prompt = ds.whole_prompt(spec) if "whole_background" in spec else ds.plate_whole_prompt(spec)
+    errs = verse_element_errors(spec, prompt, verses)
+    if "whole_background" not in spec and n(prompt) > WHOLE_MAX:
+        errs.append(f"판 경로 한 장 프롬프트 {n(prompt)}토큰 > {WHOLE_MAX} — 뒤쪽이 잘려 구절 요소가 빠진다")
+    return errs, True
+
+
 def main():
     with open(VERSES, encoding="utf-8") as fh:
         verses = json.load(fh)
     ids = sys.argv[1:] or sorted(os.path.basename(f)[:-5] for f in glob.glob(os.path.join(SCENES, "*.json")))
     try:
         over = whole_prompt_overflow(ids)
+        n = zimage_tokens()
     except Exception as e:  # 토크나이저 없음(시스템 python3·캐시 없음) — 검사를 건너뛰지 않고 실패로
         print(f"✗ 토큰 검사 불가 — venv314로 실행할 것: {type(e).__name__}: {e}")
         return 1
-    bad = 0
+    bad, done, missing = 0, 0, []
     for sid in ids:
         with open(os.path.join(SCENES, f"{sid}.json"), encoding="utf-8") as fh:
             spec = json.load(fh)
-        errs = check(spec, verses) + ([over[sid]] if sid in over else [])
+        el_errs, has = element_check(sid, n, verses)
+        errs = check(spec, verses) + ([over[sid]] if sid in over else []) + el_errs
         print(f"{'✅' if not errs else '✗'} {sid}" + ("" if not errs else "\n    - " + "\n    - ".join(errs)))
         bad += bool(errs)
+        if sid in params.VERSE_ELEMENT_SCENES:
+            done += has and not errs
+            if not has:
+                missing.append(sid)
     print(f"{len(ids) - bad}/{len(ids)} 통과")
+    targets = [s for s in params.VERSE_ELEMENT_SCENES if s in ids]
+    if missing:
+        print(f"⚠ 구절 요소 미작성: {', '.join(missing)}")
+    print(f"구절 요소: {done}/{len(targets)} 장면")
     return 1 if bad else 0
 
 

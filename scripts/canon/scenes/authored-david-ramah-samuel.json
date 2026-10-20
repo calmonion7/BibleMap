@@ -10,8 +10,57 @@
   },
   "moment": {
     "verse": "19:18",
-    "why": "다윗이 라마의 사무엘에게 이르러 사울이 행한 일을 고하는 순간을 고정한다 — 이후 나욧으로 함께 감은 이 순간의 요구가 아니다."
+    "why": "다윗이 도피하여 라마의 사무엘 앞에 나아가 사울이 자기에게 행한 일을 다 고하는 순간(19:18 전반)을 고정한다 — 두 사람이 나욧으로 가서 거함은 그 뒤의 다른 시점이다."
   },
+  "verse_elements": [
+    {
+      "verse": "19:18",
+      "quote": "라마로 가서",
+      "kind": "장소",
+      "ko": "라마의 소박한 마른 뜰",
+      "en": "a small quiet dry courtyard at Ramah",
+      "field": "whole_background"
+    },
+    {
+      "verse": "19:18",
+      "quote": "다윗이 도피하여",
+      "kind": "행동",
+      "ko": "다윗이 사울을 피해 도망쳐 옴",
+      "en": "a man who has just fled",
+      "field": "figures[0].expression"
+    },
+    {
+      "verse": "19:18",
+      "quote": "사무엘에게로 나아가서",
+      "kind": "행동",
+      "ko": "다윗이 사무엘 앞에 나아가 섬",
+      "en": "standing before Samuel",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "19:18",
+      "quote": "사무엘에게로 나아가서",
+      "kind": "인물",
+      "ko": "사무엘이 다윗을 마주 보고 들음",
+      "en": "standing facing David",
+      "field": "figures[1].gesture"
+    },
+    {
+      "verse": "19:18",
+      "quote": "사울이 자기에게 행한 일을 다 고하였고",
+      "kind": "행동",
+      "ko": "다윗이 사울이 행한 모든 일을 고함",
+      "en": "tells him everything that happened",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "19:18",
+      "quote": "다윗과 사무엘이 나욧으로 가서 거하였더라",
+      "kind": "행동",
+      "ko": "두 사람이 나욧으로 옮겨 거함",
+      "out": "고한 뒤 이어지는 다른 시점의 사건(순간 밖)"
+    }
+  ],
   "background": [
     {
       "what": "라마의 소박한 뜰",
@@ -22,20 +71,20 @@
     {
       "cast": "david",
       "role": "다윗 — 도피하여 고하는 자",
-      "pose": "사무엘 앞에 서서 고한다",
-      "prop": "a sword",
+      "pose": "사무엘 앞에 서서 한 손을 펴 고한다",
+      "prop": "an open hand",
       "facing": "right",
       "region": "david",
-      "verse": "19:18 · 지물 본문 밖 · 저작자 정함",
+      "verse": "19:18",
       "expression": {
         "ko": "지치고 다급한 얼굴 — 도망쳐 온 사람",
         "en": "a weary, urgent face of a man who has just fled",
         "verse": "삼상 19:18 「도피하여」(도망쳐 옴) · 표정 본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "사무엘 앞에 서서 한 손을 펴 들고 사울이 한 일을 고한다, 칼은 허리에 찼다",
-        "en": "standing before Samuel, one open hand raised as he tells what happened, a sword hanging at his belt",
-        "verse": "삼상 19:18 「다 고하였고」 · 손짓·칼은 본문 밖 · 저작자 정함(삼상 21:9 이전이라 칼 지님은 정함)"
+        "ko": "사무엘 앞에 서서 한 손을 펴 들고 사울이 한 일을 다 고한다",
+        "en": "standing before Samuel, one open hand raised as he tells him everything that happened",
+        "verse": "삼상 19:18 「사무엘에게로 나아가서 … 다 고하였고」 · 손짓은 본문 밖 · 저작자 정함"
       },
       "costume": {
         "ko": "먼지 묻은 어두운 붉은 양모 튜닉과 가죽 띠",
@@ -119,14 +168,14 @@
       "kind": "plate",
       "region": "david",
       "verse": "19:18",
-      "prompt": "{cast:david}, standing tall, gripping one sword, speaking, facing right.",
+      "prompt": "{cast:david}, standing tall, one open hand raised, telling everything, facing right.",
       "neg": [
         "armour",
         "crown",
         "royal robe",
         "modern clothes",
-        "two swords",
-        "sitting"
+        "sitting",
+        "sword"
       ]
     },
     {

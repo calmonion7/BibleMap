@@ -13,8 +13,58 @@
   },
   "moment": {
     "verse": "16:13",
-    "why": "사무엘이 기름 뿔로 다윗에게 기름을 붓는 순간을 고정한다 — 형들이 차례로 지나던 심사 절차(16:6-10)는 이 순간의 요구가 아니다. 자세는 서서 고개 숙임 — 판 경로에서 무릎 꿇기는 도달하지 않는다(문구 2종 × 시드 11 실측 0/2, task 333 규칙 실측)."
+    "why": "사무엘이 기름 뿔로 다윗에게 기름을 붓는 순간을 고정한다(16:13) — 형들이 차례로 지나던 심사 절차(16:6-10)는 이 순간 밖이다. 다윗은 형제들 가운데 서서 고개를 숙이고 기름을 받는다."
   },
+  "verse_elements": [
+    {
+      "verse": "16:13",
+      "quote": "기름 뿔을 취하여",
+      "kind": "지물",
+      "ko": "사무엘의 기름 뿔",
+      "en": "one small horn of oil",
+      "field": "stages[S2].prompt"
+    },
+    {
+      "verse": "16:13",
+      "quote": "그에게 부었더니",
+      "kind": "행동",
+      "ko": "뿔을 다윗의 머리 위에 기울여 붓는다",
+      "en": "tilting one horn of oil over the bowed head",
+      "field": "groups[0].prompt"
+    },
+    {
+      "verse": "16:13",
+      "quote": "그 형제 중에서",
+      "kind": "무리",
+      "ko": "다윗의 일곱 형제가 곁에 둘러서 있다(16:10)",
+      "en": "seven grown brothers standing close around him",
+      "field": "stages[S5].prompt"
+    },
+    {
+      "verse": "16:12",
+      "quote": "그의 빛이 붉고 눈이 빼어나고 얼굴이 아름답더라",
+      "kind": "인물",
+      "ko": "다윗의 붉은 낯빛·빼어난 눈·아름다운 얼굴",
+      "en": "ruddy fair face and bright eyes",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "16:11",
+      "quote": "그가 양을 지키나이다",
+      "kind": "지물",
+      "ko": "양치기(16:11) — 지팡이는 저작자 정함",
+      "en": "gripping one shepherd's staff",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "16:11",
+      "quote": "이새가 가로되",
+      "kind": "인물",
+      "ko": "이새가 곁에 서서 지켜본다",
+      "en": "standing tall, gripping one wooden staff upright, watching",
+      "field": "stages[S4].prompt"
+    }
+  ],
   "background": [
     {
       "what": "베들레헴 마을의 소박한 제사 자리",
@@ -38,7 +88,7 @@
       "prop": "a shepherd's staff",
       "facing": "left",
       "region": "david-boy",
-      "verse": "16:11-13"
+      "verse": "16:11-13 · 지물 본문 밖 · 저작자 정함"
     },
     {
       "cast": "jesse",
@@ -74,9 +124,15 @@
       0.37,
       0.915,
       0.92
+    ],
+    "brothers": [
+      0.27,
+      0.48,
+      0.74,
+      0.9
     ]
   },
-  "_regions_why": "사무엘·이새 세로 0.55(장년~노년 성인), 다윗(소년) 무릎 꿇어 세로 0.40. 배치는 16:13(사무엘이 중앙의 다윗에게 붓고 이새는 곁에서 지켜봄).",
+  "_regions_why": "사무엘·이새 세로 0.55(장년~노년 성인), 다윗(소년) 서서 세로 0.40. 배치는 16:13(사무엘이 중앙의 다윗에게 붓고, 형제들과 이새가 곁에서 지켜봄). 형제 일곱(16:10)은 다윗 양옆·뒤를 둘러싸도록 brothers 구역을 다윗 왼쪽까지 넓혔다.",
   "stages": [
     {
       "id": "S1",
@@ -119,7 +175,7 @@
       "kind": "plate",
       "region": "david-boy",
       "verse": "16:11",
-      "prompt": "{cast:david-boy}, standing still, head bowed, gripping one shepherd's staff, facing left.",
+      "prompt": "{cast:david-boy}, ruddy fair face and bright eyes, standing still, head bowed, gripping one shepherd's staff, facing left.",
       "neg": [
         "armour",
         "helmet",
@@ -144,6 +200,21 @@
         "modern clothes",
         "two staffs",
         "sitting"
+      ]
+    },
+    {
+      "id": "S5",
+      "kind": "region",
+      "region": "brothers",
+      "verse": "16:13",
+      "prompt": "seven grown brothers standing close around him, watching in silence, hands at their sides.",
+      "neg": [
+        "armour",
+        "sword",
+        "spear",
+        "crown",
+        "modern clothes",
+        "kneeling"
       ]
     }
   ],

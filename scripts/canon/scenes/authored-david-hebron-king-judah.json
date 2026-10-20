@@ -10,11 +10,52 @@
   },
   "moment": {
     "verse": "2:4 전반",
-    "why": "유다 사람들이 다윗에게 기름을 부어 왕을 삼는 순간 자체를 고정한다. 야베스 사람들 소식(2:4 후반)은 별개 사건이라 배제한다."
+    "why": "유다 사람들이 와서 다윗에게 기름을 부어 유다 족속의 왕을 삼는 순간을 고정한다(2:4 전반). 야베스 사람들 소식(2:4 후반)은 별개 사건이라 순간 밖이다."
   },
+  "verse_elements": [
+    {
+      "verse": "2:4",
+      "quote": "거기서",
+      "kind": "장소",
+      "ko": "헤브론",
+      "en": "a wide dry courtyard of pale packed earth before a city gate",
+      "field": "stages[S1].prompt"
+    },
+    {
+      "verse": "2:4",
+      "quote": "유다 사람들이 와서",
+      "kind": "무리",
+      "ko": "유다 사람들의 무리",
+      "en": "many tiny distant robed men of Judah standing in loose rows",
+      "field": "stages[S2].prompt"
+    },
+    {
+      "verse": "2:4",
+      "quote": "다윗에게 기름을 부어",
+      "kind": "인물",
+      "ko": "다윗이 기름 부음을 받음",
+      "en": "an ancient Israelite lean young man",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "2:4",
+      "quote": "기름을 부어",
+      "kind": "행동",
+      "ko": "유다 사람들이 다윗의 머리에 기름을 부음",
+      "en": "men of Judah pouring oil over his head",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "2:4",
+      "quote": "사울을 장사한 사람은 길르앗 야베스 사람들이니이다",
+      "kind": "행동",
+      "ko": "야베스 사람들의 소식",
+      "out": "기름 부음 뒤에 전해진 별개 사건"
+    }
+  ],
   "background": [
     {
-      "what": "헤브론 성문 앞 넓은 뜰, 마른 흙바닥",
+      "what": "헤브론 — 성문 앞 넓은 뜰, 마른 흙바닥(성문 앞 뜰은 저작자 정함)",
       "verse": "본문 밖 · 저작자 정함"
     },
     {
@@ -24,7 +65,7 @@
   ],
   "crowds": [
     {
-      "what": "유다 사람들 — 뒤편에 도열",
+      "what": "유다 사람들 — 뒤편에 로브 입고 도열",
       "verse": "2:4",
       "region": "crest_back"
     }
@@ -33,11 +74,11 @@
     {
       "cast": "david",
       "role": "다윗",
-      "pose": "무릎을 꿇고 앉아 로브 자락을 쥔 채 고개를 숙인다",
+      "pose": "무릎을 꿇고 고개를 숙인 채 머리에 기름 부음을 받으며 로브 자락을 쥔다",
       "prop": "a robe corner",
       "facing": "right",
       "region": "david",
-      "verse": "2:4 · 지물 본문 밖 · 저작자 정함"
+      "verse": "2:4 · 자세(무릎 꿇음·고개 숙임) 본문 밖 · 저작자 정함 · 지물 본문 밖 · 저작자 정함"
     }
   ],
   "regions": {
@@ -66,7 +107,7 @@
       0.92
     ]
   },
-  "_regions_why": "다윗은 무릎 꿇은 자세라 세로 0.37(0.35-0.45 범위). 장로들은 성문 뒤 원경 띠. 배치는 저작자 정함(본문에 위치 서술 없음).",
+  "_regions_why": "다윗은 무릎 꿇은 자세라 세로 0.37(0.35-0.45 범위). 유다 사람들은 성문 뒤 원경 띠. 배치는 저작자 정함(본문에 위치 서술 없음).",
   "stages": [
     {
       "id": "S1",
@@ -115,7 +156,7 @@
       "kind": "ridge",
       "region": "crest_back",
       "verse": "2:4",
-      "prompt": "many tiny distant robed elders standing in loose rows, tiny far away crowd, small silhouettes.",
+      "prompt": "many tiny distant robed men of Judah standing in loose rows, tiny far away crowd, small silhouettes.",
       "neg": [
         "empty ground",
         "single figure",
@@ -136,7 +177,7 @@
       "kind": "plate",
       "region": "david",
       "verse": "2:4",
-      "prompt": "an ancient Israelite lean young man kneeling, head bowed, gripping the corner of his robe with one hand, facing right.",
+      "prompt": "an ancient Israelite lean young man kneeling, head bowed, gripping the corner of his robe with one hand, men of Judah pouring oil over his head, facing right.",
       "neg": [
         "armour",
         "crown",
