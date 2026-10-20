@@ -304,5 +304,10 @@ PLATE_REST_SEEDS = REF_EDIT_SEEDS
 # task#375(2026-10-20): 구절 시각 요소 목록(verse_elements) — 순간을 고정한 구절의 인물·행동·지물·때·장소·무리를 명세 칸·파생 프롬프트 문구와 짝짓는다.
 # 대상 = 미승인 사울·다윗 14장면(판 경로 11 + 한 장 모드 칸 3). 제외(out)는 「순간 밖」만, 사유에 금지 낱말이 있으면 실패. 실행 전 고정(notes/VERSE-ELEMENTS.md).
 VERSE_ELEMENT_SCENES = tuple(PLATE_REST_SCENES) + ("authored-david-gath-achish", "authored-david-nob-priests", "authored-david-ramah-samuel")
+# task#376(2026-10-20): 구절 요소 14장면을 375 명세로 다시 생성(시글락 포함 — 한 조건) → J1 예측 → 후보 화면. 경로 = 한 장 모드 칸이 있으면 whole_prompt,
+# 없으면 plate_whole_prompt. 값 = 고른 장 편집 인물(PLATE_REST와 같은 규칙 — 칸 장면 셋은 다윗). 후보 편집 끔. 실행 전 고정(notes/VERSE-REGEN.md).
+VERSE_REGEN_SCENES = {**PLATE_REST_SCENES, "authored-david-gath-achish": ["david"], "authored-david-nob-priests": ["david"],
+                      "authored-david-ramah-samuel": ["david"]}
+VERSE_REGEN_SEEDS = REF_EDIT_SEEDS
 VERSE_ELEMENT_KINDS = ("인물", "행동", "지물", "때", "장소", "무리")
 VERSE_ELEMENT_BANNED = ("prior", "모델", "못 그", "대체", "어렵")

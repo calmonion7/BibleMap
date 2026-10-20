@@ -230,6 +230,11 @@ def whole_prompt(spec):
     return f"{ST} " + " ".join(parts)
 
 
+def route_prompt(spec):
+    """task 375·376 경로 규칙: 한 장 모드 칸(whole_background)이 있으면 whole_prompt, 없으면 plate_whole_prompt."""
+    return (whole_prompt if "whole_background" in spec else plate_whole_prompt)(spec)
+
+
 def plate_whole_prompt(spec):
     """한 장 모드 칸이 없는 판 단계 명세 → 한 장 프롬프트(task 368, 사용자 결정 — 명세 수정 없음).
     판 단계 문구를 **그대로** 잇는다: 화풍 머리 + 배경(full) + 구역·무리 단계 + 인물마다 「위치: 판 문구」 + `groups` 묶음 문구.

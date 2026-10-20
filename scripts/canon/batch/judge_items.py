@@ -21,7 +21,8 @@ METRICS = os.path.join(HERE, "samples", "judge-items", "metrics.json")
 NOTES = os.path.join(HERE, "notes", "JUDGE-ITEMS.md")
 # 과제 → (samples 폴더, 사람 페이지, 그림 = 편집본?)
 TASKS = {368: ("night-pilot", "night-pick.html", True), 369: ("whole-fix", "whole-fix-pick.html", False),
-         370: ("whole-wide", "whole-wide-pick.html", False), 372: ("jabesh-crowd", "jabesh-crowd-pick.html", False)}
+         370: ("whole-wide", "whole-wide-pick.html", False), 372: ("jabesh-crowd", "jabesh-crowd-pick.html", False),
+         376: ("verse-regen", "verse-regen-pick.html", False)}   # 376: 문항 페이지는 J1용, 사람은 후보 화면(make_cand_page)
 SETS = {"dev": (368, 369), "holdout": (370, 372)}
 CLASSES = ("moment", "background", "crowds", "pose", "prop", "facing", "guard")
 PASS_LINE = 0.8
@@ -83,6 +84,8 @@ def items(set_name, only=None, tasks=None):
         tasks = [int(set_name[1:])]
     for task in tasks or SETS[set_name]:
         d, fn, edited = TASKS[task]
+        if not os.path.exists(os.path.join(PAGES, fn)):   # 생성 중인 과제(문항 페이지 전) — 원장에서 건너뜀
+            continue
         m = json.load(open(os.path.join(HERE, "samples", d, "metrics.json")))
         for s in page_scenes(fn):
             sc = m["scenes"][s["id"]]
@@ -95,7 +98,9 @@ def items(set_name, only=None, tasks=None):
             drop = lambda q: rec.get(q["id"], {}).get("unsure") or rec.get(q["id"], {}).get("skipped") or rec.get(q["id"], {}).get("auto")
             for seed in s["seeds"]:
                 x = by[seed]
-                labels = {q["id"]: ("틀림" if seed in rec[q["id"]]["wrong"] else "맞음") for q in qs if q["id"] in rec and not drop(q)}
+                # 후보 화면(task 376)은 칸마다 사람이 본 시드(seeds)만 라벨 — 없으면 8시드 전부(368~372)
+                labels = {q["id"]: ("틀림" if seed in rec[q["id"]]["wrong"] else "맞음") for q in qs
+                          if q["id"] in rec and not drop(q) and seed in rec[q["id"]].get("seeds", s["seeds"])}
                 out.append({"key": f"{task}:{s['id']}:{seed}", "task": task, "scene": s["id"], "title": s["title"], "range": s["range"],
                             "seed": seed, "src": x["edits"][sc["who"][-1]] if edited else x["base"], "qs": qs, "labels": labels,
                             "qids": list(labels) if rec else [q["id"] for q in qs],

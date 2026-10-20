@@ -20,6 +20,10 @@ task#372 — `--set jabesh-crowd`: 야베스 구원 한 장면(무리 구도로 
 
 task#373 — `--set plate-rest`: 남은 판 경로 11장면, 판 문구(plate_whole_prompt) 바탕 8장씩, 후보 편집 끔, 대조 없음. 고른 장 편집은 다윗 장면만.
 
+task#376 — `--set verse-regen`: 구절 요소 14장면, 경로 derive_scene.route_prompt(칸 있으면 whole, 없으면 plate), 후보 편집 끔.
+`all` 끝에 문항 페이지(J1이 읽음) → `judge_items.py predict --task 376` → 후보 화면(make_cand_page)까지 사람 없이 잇는다.
+  $VENV batch/run_night.py cand --set verse-regen       # 예측 → 후보 화면만 다시(예측은 이미 답한 그림을 건너뜀)
+
 편집 실행·되붙임·조작 확인은 gen_ref_edit_lightning·gen_ref_edit_2511 그대로(360·361 재현값 무변경), 몸·머리 상자만 장면 명세에서 일반화.
 생성 프로세스는 한 번에 하나(시작 전 pgrep). 산출은 레포 밖 ~/.local/biblemap-imggen/night-pilot/<장면>/{base,edit}/,
 목록은 samples/night-pilot/metrics.json(params.NIGHT_*, notes/NIGHT-PILOT.md 고정 절)."""
@@ -46,7 +50,9 @@ SETS = {"night": {"scenes": params.NIGHT_SCENES, "seeds": params.NIGHT_SEEDS, "d
         "jabesh-crowd": {"scenes": params.JABESH_CROWD_SCENES, "seeds": params.JABESH_CROWD_SEEDS, "dir": "jabesh-crowd", "task": 372,
                          "prompt": D.whole_prompt, "edit": False},
         "plate-rest": {"scenes": params.PLATE_REST_SCENES, "seeds": params.PLATE_REST_SEEDS, "dir": "plate-rest", "task": 373,
-                       "prompt": D.plate_whole_prompt, "edit": False}}
+                       "prompt": D.plate_whole_prompt, "edit": False},
+        "verse-regen": {"scenes": params.VERSE_REGEN_SCENES, "seeds": params.VERSE_REGEN_SEEDS, "dir": "verse-regen", "task": 376,
+                        "prompt": D.route_prompt, "edit": False, "cand": True}}
 SET = "--set" in sys.argv and sys.argv[sys.argv.index("--set") + 1] or "night"
 ARGV = [a for i, a in enumerate(sys.argv) if a != "--set" and sys.argv[i - 1] != "--set"]   # 위치 인자(--set 값 뺌)
 CFG = SETS[SET]
@@ -241,6 +247,15 @@ def page():
     make_night_page.main(METRICS, list(CFG["scenes"]), CFG["task"])
 
 
+def cand():
+    """task#376 — 문항 페이지가 있으면 J1 예측(이미 답한 그림은 건너뜀) → 후보 화면. 사람 없이 이어진다."""
+    t = time.time()
+    r = subprocess.run([sys.executable, os.path.join(HERE, "batch", "judge_items.py"), "predict", "--task", str(CFG["task"])])
+    print(f"[Night] J1 예측 끝 exit {r.returncode} · {time.time() - t:.0f}초", flush=True)
+    import make_cand_page
+    make_cand_page.main(CFG["task"])
+
+
 def edit_pick(m, sid):
     """task#369 — 사람이 고른 바탕 한 장에만 편집(편집 인물 차례대로). 결과는 sc["pick_edit"]."""
     sc = m["scenes"][sid]
@@ -312,6 +327,10 @@ if __name__ == "__main__":
             page()
         except Exception as ex:   # 페이지는 따로 다시 만들 수 있다 — 생성 결과는 이미 저장됨
             print(f"[Night] 검증 페이지 실패(배치 결과는 저장됨): {ex!r}", flush=True)
+        if CFG.get("cand"):
+            cand()
+    elif cmd == "cand":
+        cand()
     elif cmd == "page":
         page()
     elif cmd == "edit-pick":

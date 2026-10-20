@@ -4,11 +4,12 @@
   python3 batch/judge_learn.py rules <과제>      # 그 과제 앞까지 배운 규칙집 보기
   python3 batch/judge_learn.py curve             # 시간 순서 평가: 과제마다 J1 기본 vs 규칙집(그 과제 앞까지만 배움)
   python3 batch/judge_learn.py trust             # 문항 종류별 믿음 관문(Wilson 95% 하한) — 사람에게서 덜어 낼 종류
+  python3 batch/judge_learn.py cand <과제> [--count]   # 후보 화면 규칙(장면마다 후보·되돌림·표본) — --count는 만든 화면 수
 
 원장 = 사람이 판정한 과제의 라벨(TASK_ORDER 순서, judge_items.TASKS의 페이지·metrics) + 그 과제에 대한 J1 답.
 규칙집은 **그 과제보다 앞선 과제**의 사람 메모와 「기계·사람이 2장 이상 엇갈린 칸」으로만 만든다(처음 보는 라벨로 재기 —
 notes/JUDGE-ITEMS.md 「판정 학습」 고정 절). 새 과제는 TASKS·TASK_ORDER·J1_RUNS에 한 줄씩 더하면 원장에 들어온다."""
-import json, math, os, sys
+import json, math, os, sys, zlib
 from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -162,6 +163,39 @@ def machine_marks(task, m=None):
     return {sid: dict(q) for sid, q in marks.items()}, reject
 
 
+def sample_order(sid, seeds):
+    """블라인드 표본 순서 — 장면 id와 시드로만 정해진다(J1 답과 무관, 재현됨)."""
+    return sorted(seeds, key=lambda s: zlib.crc32(f"{sid}:{s}".encode()))
+
+
+def pick_candidates(answers):
+    """후보 화면 규칙(notes/VERSE-REGEN.md 고정 절). answers = {장면: {시드: {문항: "맞음"|"틀림"|None}}} (시드는 시드 목록 순서)
+    → {장면: {cand, sample, reject, wrong}} — 답 없음(None)은 틀림으로 센다.
+    후보 = 장면 뜻(moment) 맞음인 시드 중 틀림 칸이 가장 적은 시드(동률이면 앞쪽) · 되돌림 = moment가 시드 전부 틀림 · 표본 = 표본 순서에서 후보 아닌 첫 시드."""
+    out = {}
+    for sid, by in answers.items():
+        wrong = {s: sum(a != "맞음" for a in qa.values()) for s, qa in by.items()}
+        ok = [s for s, qa in by.items() if qa.get("moment") == "맞음"]
+        cand = min(ok, key=lambda s: wrong[s]) if ok else None   # min은 동률에서 앞쪽 시드
+        sample = None if cand is None else next(s for s in sample_order(sid, list(by)) if s != cand)
+        out[sid] = {"cand": cand, "sample": sample, "reject": cand is None, "wrong": wrong}
+    return out
+
+
+def screens(scenes):
+    """후보 화면 수 — 되돌림 장면은 한 화면, 나머지는 후보·표본 두 화면."""
+    return sum(1 if s["reject"] else 2 for s in scenes)
+
+
+def candidates(task, m=None):
+    """과제의 J1 답 → pick_candidates. 지물 문항은 J1-prop, 나머지는 J1(j1_answer)."""
+    m = m or J.load()
+    answers = defaultdict(dict)
+    for it in J.items(None, tasks=[task]):
+        answers[it["scene"]][it["seed"]] = {q: j1_answer(m, task, it["key"], q)[0] for q in it["qids"]}
+    return pick_candidates(answers)
+
+
 def main():
     cmd = sys.argv[1] if len(sys.argv) > 1 else "curve"
     if cmd == "rules":
@@ -185,6 +219,18 @@ def main():
         P.main(os.path.join(J.HERE, "samples", d, "metrics.json"), sids or [s["id"] for s in J.page_scenes(fn)], task,
                machine=marks, reject=reject, trusted=trusted, dst=fn.replace("-pick.html", "-cojudge.html"))
         print(f"[JudgeLearn] 되돌림 후보 {[s for s, v in reject.items() if v]} · 믿음 종류(자동) {trusted or '없음'}")
+    elif cmd == "cand":   # 후보 화면 규칙 보기 · --count = 만든 후보 화면 HTML의 화면 수
+        task = int(sys.argv[2])
+        if "--count" in sys.argv:
+            sys.path.insert(0, J.HERE)
+            import make_cand_page as C
+            sc = J.page_scenes(C.dst(task))
+            print(f"[JudgeLearn] {C.dst(task)} 장면 {len(sc)} · 되돌림 {sum(s['reject'] for s in sc)}")
+            print(f"screens {screens(sc)} (≤{2 * len(sc)})")
+            return
+        for sid, c in candidates(task).items():
+            print(f"{sid}: " + ("되돌림(장면 뜻 전부 틀림)" if c["reject"] else f"후보 s{c['cand']} · 표본 s{c['sample']}")
+                  + " · 틀림 칸 " + " ".join(f"s{s}:{n}" for s, n in c["wrong"].items()))
     elif cmd == "trust":
         for c, x in trust().items():
             print(f"{c:10s} 잡기 {x['catch']:>7s} 통과 {x['pass']:>7s} 하한 {x['lb']} {'믿음 — 사람에게서 덜어 냄' if x['trusted'] else '사람 확인'}")
