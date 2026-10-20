@@ -9,7 +9,7 @@
 규칙은 notes/JUDGE-ITEMS.md 고정 절. 문항은 사람이 본 페이지 HTML의 SCENES JSON에서(.identity·판 묶음 제외),
 그림은 368 편집본·나머지 바탕, 인물 문항은 페이지 크롭 상자로 자른 몸 크롭을 함께. 그림·크롭은 레포 밖
 ~/.local/biblemap-imggen/judge-items/<묶음>/<과제>-<장면>-s<시드>/, 답·사용량은 samples/judge-items/metrics.json에 그림마다 바로."""
-import argparse, json, os, re, subprocess, sys, threading
+import argparse, fcntl, json, os, re, subprocess, sys, threading
 from concurrent.futures import ThreadPoolExecutor
 
 from PIL import Image
@@ -43,6 +43,25 @@ HEADERS = {
 - 가드 문항은 다른 문항에서 묻지 않은 결함(손가락 수 이상, 두 겹·덧붙은 인물, 종이 테두리·액자, 글자)이 하나라도 보이면 「틀림」.
 - 분명히 맞다고 확인되지 않으면 「틀림」으로 답한다.
 - 출력은 JSON 하나만: {"answers": {"<문항 id>": "맞음" 또는 "틀림", ...}, "reasons": {"<문항 id>": "짧은 이유", ...}}""",
+    # J1(후속 시험): 지물 문항만 묻는 호출 — 몸 크롭을 키워 넘기고, 판정 전에 지물을 먼저 적게 한다
+    "p1": """너는 성경 장면 그림의 지물(손에 든 것·몸에 지닌 것)을 검수하는 미술 감독이다. Read 도구로 아래 그림 파일을 모두 연다. 몸 크롭은 그 인물을 크게 키운 그림이다.
+문항마다 먼저 그 인물이 실제로 들거나 지닌 물건을 적는다 — 무엇인지, 크기(몸과 견주어), 모양, 쥔 방식(손에 쥠·허리에 참·어깨에 멤), 싸였는지. 그다음 「기대」와 견준다.
+- 기대한 물건이 그 모양·크기·쥔 방식으로 분명히 보이면 「맞음」.
+- 물건이 없거나, 다른 물건이거나, 크기·모양·쥔 방식·싸임이 기대와 다르면 「틀림」(예: 「작은 수금」인데 몸통만 한 하프, 「보자기에 싼 큰 칼」인데 칼 모양이 안 보이는 작은 꾸러미, 차야 할 칼을 뽑아 듦).
+- 출력은 JSON 하나만: {"answers": {"<문항 id>": "맞음" 또는 "틀림", ...}, "reasons": {"<문항 id>": "실제로 본 물건 — 판정 이유", ...}}""",
+    # J1 p1(지물 잡기 41~52%)이 너그러워짐 → v2의 엄격함 + 키운 크롭 + 지물만
+    "p2": """너는 성경 장면 그림을 깐깐하게 검수하는 미술 감독이다. 같은 장면을 여러 장 뽑아 결함 있는 장을 골라내는 중이다. Read 도구로 아래 그림 파일을 모두 연다. 몸 크롭은 그 인물을 크게 키운 그림이다.
+문항마다 그 인물의 지물(손에 든 것·몸에 지닌 것)이 이 그림에서 틀렸는지 판정하라.
+- 「기대」 문장의 **모든** 낱말이 그림에 맞아야 「맞음」이다. 물건이 있어도 크기, 모양, 쥐거나 지닌 방식, 싸임 여부 중 하나라도 어긋나면 「틀림」. 예: 「작은 수금」인데 몸통만 한 하프 → 틀림. 「보자기에 싼 칼」인데 칼 모양이 안 보이는 꾸러미 → 틀림.
+- 지물은 그 시대 사람이 그 장면에서 지닐 모양과 방식인지까지 본다(칼을 차야 할 장면에서 뽑아 들었거나, 현대식 물건이면 틀림).
+- 분명히 맞다고 확인되지 않으면 「틀림」으로 답한다.
+- 출력은 JSON 하나만: {"answers": {"<문항 id>": "맞음" 또는 "틀림", ...}, "reasons": {"<문항 id>": "짧은 이유", ...}}""",
+    # J1: 무리 문항만 묻는 호출 — 무리가 하는 일을 먼저 적고, 기대와 다른 점이 있을 때만 틀림(엄격 문구가 맞는 무리를 무너뜨렸다)
+    "c1": """너는 성경 장면 그림의 무리(배경의 여러 사람)를 검수하는 미술 감독이다. Read 도구로 전체 그림을 연다.
+문항마다 먼저 그림 속 무리를 적는다 — 어디에 있는지, 대략 몇 명인지, 무엇을 하고 있는지(서 있음·앉음·걸음·달아남·둘러섬 등), 어느 쪽을 향하는지. 그다음 「기대」와 견준다.
+- 적은 무리가 기대와 **다른 점**(무리가 없음, 행동이 다름, 자리가 다름, 방향이 반대)이 있을 때만 「틀림」.
+- 작고 멀어 세부가 흐릿한 것은 틀림이 아니다. 기대와 어긋나는 것이 보일 때만 틀림으로 한다.
+- 출력은 JSON 하나만: {"answers": {"<문항 id>": "맞음" 또는 "틀림", ...}, "reasons": {"<문항 id>": "실제로 본 무리 — 판정 이유", ...}}""",
 }
 
 
@@ -56,15 +75,18 @@ def cls(qid):
     return qid.split(".")[-1] if "." in qid else re.sub(r"\[\d+\]$", "", qid)
 
 
-def items(set_name):
-    """→ 그림 목록 [{key, task, scene, title, range, seed, src, qs, labels}] — 문항·라벨은 사람 페이지·metrics 그대로."""
+def items(set_name, only=None):
+    """→ 그림 목록 [{key, task, scene, title, range, seed, src, qs, labels}] — 문항·라벨은 사람 페이지·metrics 그대로.
+    only = 문항 종류 목록(J1 종류별 호출) — 그 종류 문항만 남기고, 남는 문항이 없는 그림은 뺀다."""
     out = []
     for task in SETS[set_name]:
         d, fn, edited = TASKS[task]
         m = json.load(open(os.path.join(HERE, "samples", d, "metrics.json")))
         for s in page_scenes(fn):
             sc = m["scenes"][s["id"]]
-            qs = [q for q in s["qs"] if not q["id"].endswith(".identity") and q.get("grp") != "plate"]
+            qs = [q for q in s["qs"] if not q["id"].endswith(".identity") and q.get("grp") != "plate" and (not only or cls(q["id"]) in only)]
+            if not qs:
+                continue
             by = {x["seed"]: x for x in sc["seeds"]}
             for seed in s["seeds"]:
                 x = by[seed]
@@ -76,8 +98,8 @@ def items(set_name):
     return out
 
 
-def prepare(it, set_name):
-    """그림 폴더에 full.jpg + 인물마다 몸 크롭 <who>.jpg → (폴더, 파일 목록)."""
+def prepare(it, set_name, zoom=1.0):
+    """그림 폴더에 full.jpg + 인물마다 몸 크롭 <who>.jpg(zoom ≠ 1이면 키운 <who>-z<zoom>.jpg) → (폴더, 파일 목록)."""
     d = os.path.join(WORK, set_name, f"{it['task']}-{it['scene']}-s{it['seed']}")
     os.makedirs(d, exist_ok=True)
     im = Image.open(it["src"]).convert("RGB")
@@ -89,17 +111,20 @@ def prepare(it, set_name):
         if not who or who in files:
             continue
         x, y, w, h = q["crop"][str(it["seed"])]
-        p = os.path.join(d, f"{who}.jpg")
+        p = os.path.join(d, f"{who}.jpg" if zoom == 1 else f"{who}-z{zoom:g}.jpg")
         if not os.path.exists(p):
             W, H = im.size
-            im.crop((round(x * W), round(y * H), round((x + w) * W), round((y + h) * H))).save(p, quality=92)
+            c = im.crop((round(x * W), round(y * H), round((x + w) * W), round((y + h) * H)))
+            if zoom != 1:
+                c = c.resize((round(c.width * zoom), round(c.height * zoom)), Image.LANCZOS)
+            c.save(p, quality=92)
         files[who] = p
     return d, files
 
 
 def prompt(it, files, header):
     lines = [header, "", f"장면: {it['title']} ({it['range']})", f"전체 그림: {files['full']}"]
-    lines += [f"{q['who']} 몸 크롭: {files[q['who']]}" for q in it["qs"] if q.get("who") and q["id"].endswith(".pose")]
+    lines += [f"{w} 몸 크롭: {files[w]}" for w in dict.fromkeys(q["who"] for q in it["qs"] if q.get("who"))]
     lines += ["", "문항:"]
     for q in it["qs"]:
         if q["id"] not in it["labels"]:
@@ -151,15 +176,23 @@ def save(m):
 
 
 def run(a):
+    # metrics를 통째로 다시 쓰므로 두 실행이 겹치면 서로의 답을 지운다(2026-10-20 실제로 겪음) — 한 번에 하나만
+    os.makedirs(WORK, exist_ok=True)
+    held = open(os.path.join(WORK, "run.lock"), "w")
+    try:
+        fcntl.flock(held, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        sys.exit("[JudgeItems] 다른 run이 metrics를 쓰는 중 — 끝난 뒤 다시")
     m, lock = load(), threading.Lock()
-    r = m.setdefault(a.set, {}).setdefault(a.key, {"model": a.model, "header": a.header, "answers": {}})
-    assert (r["model"], r["header"]) == (a.model, a.header), f"{a.set}/{a.key}는 {r['model']}·{r['header']}로 이미 시작함"
+    only = a.only.split(",") if a.only else None
+    r = m.setdefault(a.set, {}).setdefault(a.key, {"model": a.model, "header": a.header, "answers": {}, **({"only": only, "zoom": a.zoom} if only else {})})
+    assert (r["model"], r["header"], r.get("only")) == (a.model, a.header, only), f"{a.set}/{a.key}는 {r['model']}·{r['header']}·{r.get('only')}로 이미 시작함"
     m.setdefault("headers", {})[a.header] = HEADERS[a.header]
-    todo = [it for it in items(a.set) if it["key"] not in r["answers"]][: a.limit or None]
+    todo = [it for it in items(a.set, only) if it["key"] not in r["answers"]][: a.limit or None]
     print(f"[JudgeItems] {a.set}/{a.key} {a.model}·{a.header} — 남은 그림 {len(todo)}", flush=True)
 
     def one(it):
-        d, files = prepare(it, a.set)
+        d, files = prepare(it, a.set, a.zoom)
         text, tries, got = prompt(it, files, HEADERS[a.header]), [], None
         for _ in range(2):   # JSON이 깨지면 한 번만 다시
             o = call(text, d, a.model)
@@ -179,7 +212,7 @@ def run(a):
 
 def summarize(set_name, r):
     """원 답 → 요약(잡기·통과·부류별·8/8 칸·쏠림·사용량). 호출한 그림만 세고, 답 없음(실패 호출)은 라벨 반대로 셈."""
-    its = [it for it in items(set_name) if it["key"] in r["answers"]]
+    its = [it for it in items(set_name, r.get("only")) if it["key"] in r["answers"]]
     hits = {"틀림": [0, 0], "맞음": [0, 0]}
     by = {c: {"틀림": [0, 0], "맞음": [0, 0]} for c in CLASSES}
     machine_wrong, cells = 0, {}
@@ -212,6 +245,31 @@ def summarize(set_name, r):
             "usage": {k: round(sum(t[k] for t in tries), 4) for k in ("seconds", "input", "output", "cache_read", "cache_create", "cost_usd")}}
 
 
+# 판정자 = 종류별 호출 묶음 {set: {"base": 전 문항 run, 종류: run}} — notes 「후속 시험 — 판정자 J1」 고정 절
+SYSTEMS = {"J1": {"dev": {"base": "r2", "prop": "p2-sonnet"}, "holdout": {"base": "sonnet", "prop": "p2-sonnet"}}}
+
+
+def system_summary(m, set_name, route):
+    """종류별 run 답을 묶어 채점 — 종류 run에 답이 없으면(실패 호출) 라벨 반대로 셈."""
+    hits = {"틀림": [0, 0], "맞음": [0, 0]}
+    by = {c: {"틀림": [0, 0], "맞음": [0, 0]} for c in CLASSES}
+    for it in items(set_name):
+        for qid, lab in it["labels"].items():
+            ans = (m[set_name][route.get(cls(qid), route["base"])]["answers"].get(it["key"]) or {}).get("answers")
+            ok = (ans[qid] if ans else ("맞음" if lab == "틀림" else "틀림")) == lab
+            for h in (hits[lab], by[cls(qid)][lab]):
+                h[0] += ok
+                h[1] += 1
+    return {"route": route, "catch": round(hits["틀림"][0] / hits["틀림"][1], 4), "pass": round(hits["맞음"][0] / hits["맞음"][1], 4),
+            "n": hits["틀림"][1] + hits["맞음"][1], "by_class": {c: {"catch": f"{v['틀림'][0]}/{v['틀림'][1]}", "pass": f"{v['맞음'][0]}/{v['맞음'][1]}"}
+                                                               for c, v in by.items() if v["틀림"][1] + v["맞음"][1]}}
+
+
+def systems(m):
+    return {name: {s: system_summary(m, s, r) for s, r in sets.items() if all(k in m.get(s, {}) for k in r.values())}
+            for name, sets in SYSTEMS.items()}
+
+
 def verdict(m):
     h = m.get("holdout", {})
     ok = lambda k: k in h and h[k]["summary"]["catch"] >= PASS_LINE and h[k]["summary"]["pass"] >= PASS_LINE
@@ -240,7 +298,18 @@ def table(m):
                                                     for c in CLASSES) + " |")
     v = verdict(m)
     head = [f"판정: {v}" if v else "판정 보류: 검증 묶음 미완(Sonnet 불합격이면 Opus 대기)", ""]
-    return "\n".join(head + rows + ["", "문항 부류별(맞힌 수/라벨 수):", ""] + cls_rows)
+    sys_rows = []
+    for name, per in systems(m).items():
+        for s, x in per.items():
+            ok = x["catch"] >= PASS_LINE and x["pass"] >= PASS_LINE
+            sys_rows.append(f"| {name} {s} | {x['n']} | {pct(x['catch'])} | {pct(x['pass'])} | {'합격' if ok else '불합격'} | "
+                            + " · ".join(f"{c} 잡기 {v['catch']} 통과 {v['pass']}" for c, v in x["by_class"].items()) + " |")
+        if "holdout" in per:
+            x = per["holdout"]
+            head.append(f"{name} 판정: {'합격' if x['catch'] >= PASS_LINE and x['pass'] >= PASS_LINE else '불합격'}")
+    if sys_rows:
+        sys_rows = ["", "판정자(종류별 호출 묶음):", "", "| 판정자·묶음 | 라벨 | 잡기 | 통과 | 기준 | 종류별 |", "|---|---|---|---|---|---|"] + sys_rows
+    return "\n".join(head + rows + ["", "문항 부류별(맞힌 수/라벨 수):", ""] + cls_rows + sys_rows)
 
 
 def score(a):
@@ -276,6 +345,8 @@ def main():
     r.add_argument("--model", required=True)
     r.add_argument("--limit", type=int, default=0)
     r.add_argument("--workers", type=int, default=4)
+    r.add_argument("--only", default="", help="문항 종류만(쉼표) — 예: prop · crowds")
+    r.add_argument("--zoom", type=float, default=1.0, help="인물 몸 크롭 확대 배율")
     s = sub.add_parser("score")
     s.add_argument("--check", action="store_true")
     a = p.parse_args()
