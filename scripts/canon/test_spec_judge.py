@@ -149,5 +149,35 @@ class Oddity(unittest.TestCase):
         self.assertEqual((mom["reject"], mom["reason"]), (True, "장면 뜻"))
 
 
+def scene(answer, cand=None, revived=None, memo="", wrong=None):
+    return {"cand": {"answer": answer, "cand": cand, "revived": revived, "memo": memo}, "items": {q: {"wrong": w} for q, w in (wrong or {}).items()}}
+
+
+class RegenRules(unittest.TestCase):
+    fx = {"recur": [{"id": "a", "scene": "x", "qids": ["crowds"], "words": "혼자|무리"},
+                    {"id": "b", "scene": "y", "qids": ["moment"], "words": "형제"},
+                    {"id": "c", "scene": "z", "qids": [], "words": "칼"}],
+          "rules": {"recur_max": 1, "usable_min": 2, "revive_max": 0}}
+
+    def test_adopt(self):
+        sc = {"x": scene("쓸 만함", 5), "y": scene("쓸 만함", 7), "z": scene("없음", 3, memo="좋음")}
+        line, r, recur = JL.regen_rules(sc, self.fx)
+        self.assertEqual((line, recur), ("판정: 두 겹 판정 채택", []))
+
+    def test_recur_by_mark_memo_and_agree(self):
+        sc = {"x": scene("쓸 만함", 5, wrong={"crowds": [5]}), "y": scene("없음", 7, memo="형제가 없다"), "z": scene("동의")}
+        line, r, recur = JL.regen_rules(sc, self.fx)
+        self.assertEqual(recur, ["a", "b", "c"])
+        self.assertEqual(line, "판정: 보류 (어긴 규칙 1, 2)")
+
+    def test_mark_on_sample_seed_is_not_recur(self):
+        sc = {"x": scene("쓸 만함", 5, wrong={"crowds": [23]}), "y": scene("쓸 만함", 7), "z": scene("쓸 만함", 1)}
+        self.assertEqual(JL.regen_rules(sc, self.fx)[2], [])
+
+    def test_revived_counts_even_if_none(self):   # 376 cand_rules와 같은 정의
+        sc = {"x": scene("쓸 만함", 5), "y": scene("쓸 만함", 7), "z": scene("없음", 3, revived=11)}
+        self.assertEqual(JL.regen_rules(sc, self.fx)[0], "판정: 보류 (어긴 규칙 3)")
+
+
 if __name__ == "__main__":
     unittest.main()

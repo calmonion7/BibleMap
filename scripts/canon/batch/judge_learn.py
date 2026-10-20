@@ -247,6 +247,32 @@ def cand_judgment(task, m=None):
     return cand_rules(scenes, hits)
 
 
+def regen_rules(scenes, fx):
+    """두 겹 판정 3/3 `판정:` 세 규칙(notes/SPEC-REGEN.md 고정 절 — task 380). scenes = 사람 답 기록 뒤 metrics의 scenes,
+    fx = 고정 절 ```json fixed {recur, rules} → (판정 줄, 규칙별 [통과?, 설명], 재발 항목 id 목록).
+    재발 = 되돌림 동의 장면이면 그 장면 항목 전부 · 「없음」이고 메모가 words에 맞음 · 최종 후보 시드에서 qids 중 하나를 틀림으로 표시.
+    살림 = 되돌림 장면에서 사람이 시드를 누른 수(376 cand_rules와 같은 정의 — revived가 있으면 셈)."""
+    import re
+    recur = []
+    for it in fx["recur"]:
+        sc = scenes[it["scene"]]
+        c, memo = sc["cand"], (sc["cand"].get("memo") or "")
+        agreed = c.get("answer") == "동의"
+        by_memo = c.get("answer") == "없음" and bool(memo) and bool(re.search(it["words"], memo))
+        seed = c.get("cand")
+        by_mark = seed is not None and any(seed in sc["items"].get(q, {}).get("wrong", []) for q in it["qids"])
+        if agreed or by_memo or by_mark:
+            recur.append(it["id"])
+    usable = sum(1 for sc in scenes.values() if sc["cand"].get("answer") == "쓸 만함")
+    revived = sum(1 for sc in scenes.values() if sc["cand"].get("revived") is not None)
+    rl = fx["rules"]
+    r = [(len(recur) <= rl["recur_max"], f"사람 메모 재발 {len(recur)} ≤ {rl['recur_max']} ({', '.join(recur) or '없음'})"),
+         (usable >= rl["usable_min"], f"「쓸 만함」 {usable} ≥ {rl['usable_min']}"),
+         (revived <= rl["revive_max"], f"되돌림 살림 {revived} ≤ {rl['revive_max']}")]
+    bad = [str(i + 1) for i, (ok, _) in enumerate(r) if not ok]
+    return ("판정: 두 겹 판정 채택" if not bad else f"판정: 보류 (어긴 규칙 {', '.join(bad)})"), r, recur
+
+
 def candidates(task, m=None, oddity=None):
     """과제의 J1 답 → pick_candidates. 지물 문항은 J1-prop, 나머지는 J1(j1_answer).
     oddity = 이상한 점 결합 켬/끔(None이면 oddity_on() — task 378 판정을 따름)."""
@@ -297,6 +323,14 @@ def main():
                   + " · 틀림 칸 " + " ".join(f"s{s}:{n}" for s, n in c["wrong"].items()))
     elif cmd == "candjudge":
         line, rules = cand_judgment(int(sys.argv[2]))
+        for i, (ok, why) in enumerate(rules):
+            print(f"규칙 {i + 1} {'통과' if ok else '어김'} — {why}")
+        print(line)
+    elif cmd == "regenjudge":   # 두 겹 판정 3/3: python3 batch/judge_learn.py regenjudge — notes/SPEC-REGEN.md 고정 절 규칙
+        import judge_spec
+        fx = judge_spec.fixed(os.path.join(J.HERE, "notes", "SPEC-REGEN.md"))
+        met = json.load(open(os.path.join(J.HERE, "samples", "spec-regen", "metrics.json")))
+        line, rules, _ = regen_rules(met["scenes"], fx)
         for i, (ok, why) in enumerate(rules):
             print(f"규칙 {i + 1} {'통과' if ok else '어김'} — {why}")
         print(line)

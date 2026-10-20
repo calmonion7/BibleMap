@@ -320,7 +320,297 @@
     "base": 513.6,
     "edit": 0.0
    },
-   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry grassy field around a still pool, low dry hills in the distance, empty pale sky. a still rectangular pool of water with a stone rim, calm surface. soldiers just arrived and sitting in loose rows on the ground behind their commander at the pool's edge, watching. soldiers just arrived and sitting in loose rows on the ground behind their commander at the pool's edge, watching. twenty-four young men in plain knee-length wool tunics fighting close in the open ground before the pool, twelve young men of Benjamin and twelve young men of David's servants facing each other in matched pairs, each gripping his opponent by the head, a short sword in the other hand. On the left: a sturdy battle-hardened commander in a knee-length undyed wool tunic, a short leather-scale corselet and a wide leather belt, bareheaded, sitting on the ground on the near side of the pool, gripping one spear upright, watching the contest before him, facing right. On the right: a lean quick commander in a knee-length undyed wool tunic, a short leather-scale corselet and a wide leather belt, bareheaded, sitting on the ground on the far side of the pool, gripping a sword hilt at his side, watching the contest before him, facing left."
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry grassy field around a still pool, low dry hills in the distance, empty pale sky. a still rectangular pool of water with a stone rim, calm surface. soldiers just arrived and sitting in loose rows on the ground behind their commander at the pool's edge, watching. soldiers just arrived and sitting in loose rows on the ground behind their commander at the pool's edge, watching. twenty-four young men in plain knee-length wool tunics fighting close in the open ground before the pool, twelve young men of Benjamin and twelve young men of David's servants facing each other in matched pairs, each gripping his opponent by the head, a short sword in the other hand. On the left: a sturdy battle-hardened commander in a knee-length undyed wool tunic, a short leather-scale corselet and a wide leather belt, bareheaded, sitting on the ground on the near side of the pool, gripping one spear upright, watching the contest before him, facing right. On the right: a lean quick commander in a knee-length undyed wool tunic, a short leather-scale corselet and a wide leather belt, bareheaded, sitting on the ground on the far side of the pool, gripping a sword hilt at his side, watching the contest before him, facing left.",
+   "items": {
+    "moment": {
+     "wrong": [],
+     "seeds": [
+      5
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "background[0]": {
+     "wrong": [],
+     "seeds": [
+      5
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "background[1]": {
+     "wrong": [],
+     "seeds": [
+      5
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "crowds[0]": {
+     "wrong": [],
+     "seeds": [
+      5
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "crowds[1]": {
+     "wrong": [],
+     "seeds": [
+      5
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "crowds[2]": {
+     "wrong": [],
+     "seeds": [
+      5
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [],
+     "seeds": [
+      5
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].prop": {
+     "wrong": [],
+     "seeds": [
+      5
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].facing": {
+     "wrong": [],
+     "seeds": [
+      5
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].pose": {
+     "wrong": [],
+     "seeds": [
+      5
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].prop": {
+     "wrong": [],
+     "seeds": [
+      5
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].facing": {
+     "wrong": [],
+     "seeds": [
+      5
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "guard": {
+     "wrong": [],
+     "seeds": [
+      5
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "없음",
+    "seed": null,
+    "kind": null,
+    "memo": ""
+   },
+   "human_minutes": 4.35,
+   "active_minutes": 4.06,
+   "cand": {
+    "machine_cand": null,
+    "cand": 5,
+    "sample": null,
+    "revived": 11,
+    "answer": "없음",
+    "switched": [
+     {
+      "seed": 11,
+      "wrong": []
+     },
+     {
+      "seed": 42,
+      "wrong": []
+     },
+     {
+      "seed": 7,
+      "wrong": []
+     },
+     {
+      "seed": 23,
+      "wrong": []
+     },
+     {
+      "seed": 5,
+      "wrong": []
+     },
+     {
+      "seed": 7,
+      "wrong": []
+     },
+     {
+      "seed": 5,
+      "wrong": []
+     },
+     {
+      "seed": 101,
+      "wrong": []
+     },
+     {
+      "seed": 202,
+      "wrong": []
+     },
+     {
+      "seed": 303,
+      "wrong": []
+     },
+     {
+      "seed": 11,
+      "wrong": []
+     },
+     {
+      "seed": 7,
+      "wrong": []
+     },
+     {
+      "seed": 23,
+      "wrong": []
+     },
+     {
+      "seed": 5,
+      "wrong": []
+     },
+     {
+      "seed": 101,
+      "wrong": []
+     },
+     {
+      "seed": 202,
+      "wrong": []
+     },
+     {
+      "seed": 23,
+      "wrong": []
+     },
+     {
+      "seed": 303,
+      "wrong": []
+     },
+     {
+      "seed": 5,
+      "wrong": []
+     },
+     {
+      "seed": 202,
+      "wrong": []
+     },
+     {
+      "seed": 23,
+      "wrong": []
+     },
+     {
+      "seed": 11,
+      "wrong": []
+     },
+     {
+      "seed": 7,
+      "wrong": []
+     },
+     {
+      "seed": 23,
+      "wrong": []
+     },
+     {
+      "seed": 11,
+      "wrong": []
+     },
+     {
+      "seed": 7,
+      "wrong": []
+     },
+     {
+      "seed": 42,
+      "wrong": []
+     },
+     {
+      "seed": 23,
+      "wrong": []
+     },
+     {
+      "seed": 5,
+      "wrong": []
+     },
+     {
+      "seed": 101,
+      "wrong": []
+     },
+     {
+      "seed": 202,
+      "wrong": []
+     },
+     {
+      "seed": 303,
+      "wrong": []
+     },
+     {
+      "seed": 11,
+      "wrong": []
+     },
+     {
+      "seed": 7,
+      "wrong": []
+     },
+     {
+      "seed": 23,
+      "wrong": []
+     }
+    ],
+    "memo": ""
+   }
   },
   "authored-david-mahanaim-exile": {
    "who": [
@@ -516,7 +806,144 @@
     "base": 481.0,
     "edit": 0.0
    },
-   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry rocky road climbing toward a distant hilltop town, sparse dry grass, empty pale sky. a long column of weary Israelite people walking up the road close behind the man leading them, men and women with bundles on their shoulders, hungry, tired and thirsty. In the center: an ancient Israelite lean young man arriving on foot, walking wearily at the head of his people, gripping the corner of his robe with one hand, facing right."
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry rocky road climbing toward a distant hilltop town, sparse dry grass, empty pale sky. a long column of weary Israelite people walking up the road close behind the man leading them, men and women with bundles on their shoulders, hungry, tired and thirsty. In the center: an ancient Israelite lean young man arriving on foot, walking wearily at the head of his people, gripping the corner of his robe with one hand, facing right.",
+   "items": {
+    "moment": {
+     "wrong": [],
+     "seeds": [
+      101,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "background[0]": {
+     "wrong": [
+      101
+     ],
+     "seeds": [
+      101,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "crowds": {
+     "wrong": [],
+     "seeds": [
+      101,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [],
+     "seeds": [
+      101,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].prop": {
+     "wrong": [],
+     "seeds": [
+      101,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].facing": {
+     "wrong": [],
+     "seeds": [
+      101,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "guard": {
+     "wrong": [
+      23
+     ],
+     "seeds": [
+      101,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "s101 바탕",
+    "seed": 101,
+    "kind": "base",
+    "image": "/Users/calmonion/.local/biblemap-imggen/spec-regen/authored-david-mahanaim-exile/base/s101.png"
+   },
+   "human_minutes": 3.19,
+   "active_minutes": 4.37,
+   "cand": {
+    "machine_cand": 101,
+    "cand": 101,
+    "sample": 23,
+    "revived": null,
+    "answer": "쓸 만함",
+    "switched": [
+     {
+      "seed": 101,
+      "wrong": []
+     },
+     {
+      "seed": 11,
+      "wrong": []
+     },
+     {
+      "seed": 7,
+      "wrong": []
+     },
+     {
+      "seed": 23,
+      "wrong": []
+     },
+     {
+      "seed": 5,
+      "wrong": []
+     },
+     {
+      "seed": 101,
+      "wrong": []
+     },
+     {
+      "seed": 202,
+      "wrong": []
+     },
+     {
+      "seed": 303,
+      "wrong": []
+     },
+     {
+      "seed": 11,
+      "wrong": []
+     }
+    ],
+    "memo": "마르하임을 향해서 걸오야함 근데 떠나는 행렬처럼 보임 다윗이 잘보여야 하니 유념하고 오른쪽에 성읍이 있어야 하지 않을까?"
+   }
   },
   "authored-david-returns-jerusalem": {
    "who": [
@@ -712,7 +1139,77 @@
     "base": 482.6,
     "edit": 0.0
    },
-   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry grassy bank beside a river, low distant hills, empty pale sky. a calm wide river with a muddy bank, reeds along the edge, a wooden ferry boat crossing the river toward the bank to carry the king's household across. a crowd of men of Judah who gathered at Gilgal and came down to the river, coming close to meet the king at the river's edge and help him across, some of them holding the ferry boat steady at the bank. On the left: an ancient Israelite lean young man walking toward the men waiting at the river's edge, gripping a sword hilt at his side, facing right."
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry grassy bank beside a river, low distant hills, empty pale sky. a calm wide river with a muddy bank, reeds along the edge, a wooden ferry boat crossing the river toward the bank to carry the king's household across. a crowd of men of Judah who gathered at Gilgal and came down to the river, coming close to meet the king at the river's edge and help him across, some of them holding the ferry boat steady at the bank. On the left: an ancient Israelite lean young man walking toward the men waiting at the river's edge, gripping a sword hilt at his side, facing right.",
+   "items": {
+    "moment": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "background[0]": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "crowds": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].prop": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].facing": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "guard": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "없음",
+    "seed": null,
+    "kind": null,
+    "memo": "기계 되돌림에 동의 — 장면 뜻 8장 모두 틀림",
+    "machine_reject": true
+   },
+   "human_minutes": 0.18,
+   "active_minutes": 0.18,
+   "cand": {
+    "machine_cand": null,
+    "cand": null,
+    "sample": null,
+    "revived": null,
+    "answer": "동의",
+    "switched": [],
+    "memo": ""
+   },
+   "skipped": true
   },
   "authored-samuel-bethlehem-david-anointing": {
    "who": [],
@@ -1162,7 +1659,174 @@
     "base": 524.9,
     "edit": 0.0
    },
-   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a small dry village courtyard, simple stone ground, sparse dry grass, pale sky. seven grown brothers standing in a row just behind the boy, empty-handed, watching in silence, hands at their sides. On the left: an ancient Israelite man, a prophet, in his 70s, deep wrinkles, long white beard to the chest, slight stooped narrow shoulders, long white hair falling to the shoulders, hair covering the whole head, no headwear, in a long dark wool robe with a cloth belt, standing, tilting one small horn of oil over the boy's bowed head, facing right. In the center: an ancient Israelite boy, a shepherd, about 14, smooth round cheeks, no lines, short of stature, slight narrow shoulders, thin boyish torso, tight dark curls close to the skull, hair covering the whole head, no headwear, in a knee-length wool tunic, cloth belt, leather strap sandals, ruddy fair face and bright eyes, standing still, head bowed, gripping one shepherd's staff, facing left. On the right: an ancient Israelite man, a shepherd, in his 60s, deeply lined forehead, close-trimmed gray beard, jawline visible, broad stocky shoulders, thick short torso, brown cloth headwrap tied at the nape, gray hair, in a long brown wool robe with a cloth belt, standing tall, gripping one wooden staff upright, watching, standing apart, holding no horn, facing left. an ancient Israelite man, a prophet, old prophet, in a long dark wool robe with a cloth belt alone tilting one horn of oil over the bowed head of an ancient Israelite boy, a shepherd, shepherd boy, in a knee-length wool tunic, cloth belt, leather strap sandals beside him, oil running onto the boy's hair, no one else holding a horn."
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a small dry village courtyard, simple stone ground, sparse dry grass, pale sky. seven grown brothers standing in a row just behind the boy, empty-handed, watching in silence, hands at their sides. On the left: an ancient Israelite man, a prophet, in his 70s, deep wrinkles, long white beard to the chest, slight stooped narrow shoulders, long white hair falling to the shoulders, hair covering the whole head, no headwear, in a long dark wool robe with a cloth belt, standing, tilting one small horn of oil over the boy's bowed head, facing right. In the center: an ancient Israelite boy, a shepherd, about 14, smooth round cheeks, no lines, short of stature, slight narrow shoulders, thin boyish torso, tight dark curls close to the skull, hair covering the whole head, no headwear, in a knee-length wool tunic, cloth belt, leather strap sandals, ruddy fair face and bright eyes, standing still, head bowed, gripping one shepherd's staff, facing left. On the right: an ancient Israelite man, a shepherd, in his 60s, deeply lined forehead, close-trimmed gray beard, jawline visible, broad stocky shoulders, thick short torso, brown cloth headwrap tied at the nape, gray hair, in a long brown wool robe with a cloth belt, standing tall, gripping one wooden staff upright, watching, standing apart, holding no horn, facing left. an ancient Israelite man, a prophet, old prophet, in a long dark wool robe with a cloth belt alone tilting one horn of oil over the bowed head of an ancient Israelite boy, a shepherd, shepherd boy, in a knee-length wool tunic, cloth belt, leather strap sandals beside him, oil running onto the boy's hair, no one else holding a horn.",
+   "items": {
+    "moment": {
+     "wrong": [],
+     "seeds": [
+      11,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "background[0]": {
+     "wrong": [],
+     "seeds": [
+      11,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "crowds": {
+     "wrong": [
+      23
+     ],
+     "seeds": [
+      11,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [],
+     "seeds": [
+      11,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].prop": {
+     "wrong": [
+      11,
+      23
+     ],
+     "seeds": [
+      11,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].facing": {
+     "wrong": [],
+     "seeds": [
+      11,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].pose": {
+     "wrong": [],
+     "seeds": [
+      11,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].prop": {
+     "wrong": [],
+     "seeds": [
+      11,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].facing": {
+     "wrong": [],
+     "seeds": [
+      11,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[2].pose": {
+     "wrong": [],
+     "seeds": [
+      11,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[2].prop": {
+     "wrong": [],
+     "seeds": [
+      11,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[2].facing": {
+     "wrong": [],
+     "seeds": [
+      11,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    },
+    "guard": {
+     "wrong": [],
+     "seeds": [
+      11,
+      23
+     ],
+     "blind": true,
+     "machine": null,
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "s11 바탕",
+    "seed": 11,
+    "kind": "base",
+    "image": "/Users/calmonion/.local/biblemap-imggen/spec-regen/authored-samuel-bethlehem-david-anointing/base/s11.png"
+   },
+   "human_minutes": 0.78,
+   "active_minutes": 1.56,
+   "cand": {
+    "machine_cand": 11,
+    "cand": 11,
+    "sample": 23,
+    "revived": null,
+    "answer": "쓸 만함",
+    "switched": [],
+    "memo": "기름뿔은 동물의 뿔이야 원뿔형태 "
+   }
   },
   "authored-david-jerusalem-conquest": {
    "who": [
@@ -1358,7 +2022,84 @@
     "base": 478.4,
     "edit": 0.0
    },
-   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry rocky hillside landscape under a pale sky, sparse dry grass, no buildings. a massive ancient stone fortress wall on a steep hill, thick fortified stonework. a band of armed Israelite men standing close together just behind the man at the front, spears in hand, on the same hillside, not near the wall. On the left: an ancient Israelite lean young man standing, gripping a sword hilt at his side, facing right."
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry rocky hillside landscape under a pale sky, sparse dry grass, no buildings. a massive ancient stone fortress wall on a steep hill, thick fortified stonework. a band of armed Israelite men standing close together just behind the man at the front, spears in hand, on the same hillside, not near the wall. On the left: an ancient Israelite lean young man standing, gripping a sword hilt at his side, facing right.",
+   "items": {
+    "moment": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "background[0]": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "background[1]": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "crowds": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].prop": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].facing": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "guard": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "없음",
+    "seed": null,
+    "kind": null,
+    "memo": "기계 되돌림에 동의 — 장면 뜻 8장 모두 틀림",
+    "machine_reject": true
+   },
+   "human_minutes": 0.23,
+   "active_minutes": 0.23,
+   "cand": {
+    "machine_cand": null,
+    "cand": null,
+    "sample": null,
+    "revived": null,
+    "answer": "동의",
+    "switched": [],
+    "memo": ""
+   },
+   "skipped": true
   },
   "authored-saul-endor-medium": {
    "who": [],
@@ -1808,7 +2549,126 @@
     "base": 513.4,
     "edit": 0.0
    },
-   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a small dim room at night, bare packed earth floor, plain dark walls, one dim oil lamp glow, no windows. two beardless young servants in plain dark cloaks standing close together by the doorway at the left edge, watching. On the left: an ancient Israelite man, a king, in his 60s, deep furrows and sunken cheeks, tall of stature, long gray beard to the chest, unkempt, frame slumped, broad shoulders sagging, drawn hollow torso, thin gray hair, hair covering the whole head, no headwear, in a worn dark tunic and cloak, lying prostrate bowing low with face to the ground, wearing a dark disguise cloak, facing right. In the center: an ancient Israelite woman, a medium, in her 60s, deep wrinkles, short of stature, slight bent thin shoulders, dark shawl pulled over the head, gray hair, in a long dark robe with a plain shawl, standing, fearful, staring at the apparition, one hand at her chest, facing right. On the right: an ancient Israelite man, a prophet, in his 70s, deep wrinkles, long white beard to the chest, slight stooped narrow shoulders, long white hair falling to the shoulders, hair covering the whole head, no headwear, in a long dark wool robe with a cloth belt, an old man rising up out of the earth amid darkness, visible from the waist up above the earthen floor, wearing a long mantle, facing left."
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a small dim room at night, bare packed earth floor, plain dark walls, one dim oil lamp glow, no windows. two beardless young servants in plain dark cloaks standing close together by the doorway at the left edge, watching. On the left: an ancient Israelite man, a king, in his 60s, deep furrows and sunken cheeks, tall of stature, long gray beard to the chest, unkempt, frame slumped, broad shoulders sagging, drawn hollow torso, thin gray hair, hair covering the whole head, no headwear, in a worn dark tunic and cloak, lying prostrate bowing low with face to the ground, wearing a dark disguise cloak, facing right. In the center: an ancient Israelite woman, a medium, in her 60s, deep wrinkles, short of stature, slight bent thin shoulders, dark shawl pulled over the head, gray hair, in a long dark robe with a plain shawl, standing, fearful, staring at the apparition, one hand at her chest, facing right. On the right: an ancient Israelite man, a prophet, in his 70s, deep wrinkles, long white beard to the chest, slight stooped narrow shoulders, long white hair falling to the shoulders, hair covering the whole head, no headwear, in a long dark wool robe with a cloth belt, an old man rising up out of the earth amid darkness, visible from the waist up above the earthen floor, wearing a long mantle, facing left.",
+   "items": {
+    "moment": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "background[0]": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "background[1]": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "crowds": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].prop": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].facing": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].pose": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].prop": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].facing": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[2].pose": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[2].prop": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[2].facing": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "guard": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "없음",
+    "seed": null,
+    "kind": null,
+    "memo": "기계 되돌림에 동의 — 장면 뜻 8장 모두 틀림",
+    "machine_reject": true
+   },
+   "human_minutes": 0.15,
+   "active_minutes": 0.15,
+   "cand": {
+    "machine_cand": null,
+    "cand": null,
+    "sample": null,
+    "revived": null,
+    "answer": "동의",
+    "switched": [],
+    "memo": ""
+   },
+   "skipped": true
   },
   "authored-saul-gilboa-death": {
    "who": [],
@@ -2130,7 +2990,105 @@
     "base": 495.9,
     "edit": 0.0
    },
-   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a dry rocky mountain slope at dusk, sparse dry grass, scattered stones, pale dim sky. a distant crowd of tiny archers drawing bows, advancing up a hillside, small and far away. On the left: an ancient Israelite man, a king, in his 60s, deep furrows and sunken cheeks, tall of stature, long gray beard to the chest, unkempt, frame slumped, broad shoulders sagging, drawn hollow torso, thin gray hair, hair covering the whole head, no headwear, in a worn dark tunic and cloak, standing upright, wounded by arrows, one hand stretched out toward the armour-bearer in command, a sheathed sword at his hip, his own blade not drawn, facing right. In the center: an ancient Israelite man, a soldier, in his 20s, smooth earnest face, broad sturdy shoulders, thick arms, short dark hair, hair covering the whole head, no headwear, in a leather cuirass with a short kilt, standing frozen in fear, gripping the hilt of a sheathed sword at his side, the blade still in its scabbard, not drawing it, facing left."
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a dry rocky mountain slope at dusk, sparse dry grass, scattered stones, pale dim sky. a distant crowd of tiny archers drawing bows, advancing up a hillside, small and far away. On the left: an ancient Israelite man, a king, in his 60s, deep furrows and sunken cheeks, tall of stature, long gray beard to the chest, unkempt, frame slumped, broad shoulders sagging, drawn hollow torso, thin gray hair, hair covering the whole head, no headwear, in a worn dark tunic and cloak, standing upright, wounded by arrows, one hand stretched out toward the armour-bearer in command, a sheathed sword at his hip, his own blade not drawn, facing right. In the center: an ancient Israelite man, a soldier, in his 20s, smooth earnest face, broad sturdy shoulders, thick arms, short dark hair, hair covering the whole head, no headwear, in a leather cuirass with a short kilt, standing frozen in fear, gripping the hilt of a sheathed sword at his side, the blade still in its scabbard, not drawing it, facing left.",
+   "items": {
+    "moment": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "background[0]": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "background[1]": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "crowds": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].prop": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].facing": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].pose": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].prop": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].facing": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    },
+    "guard": {
+     "wrong": [],
+     "seeds": [],
+     "skipped": true,
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "없음",
+    "seed": null,
+    "kind": null,
+    "memo": "기계 되돌림에 동의 — 장면 뜻 8장 모두 틀림",
+    "machine_reject": true
+   },
+   "human_minutes": 0.14,
+   "active_minutes": 0.14,
+   "cand": {
+    "machine_cand": null,
+    "cand": null,
+    "sample": null,
+    "revived": null,
+    "answer": "동의",
+    "switched": [],
+    "memo": ""
+   },
+   "skipped": true
   }
  },
  "runs": [
@@ -2147,5 +3105,8 @@
   "sec": 92.5
  },
  "unattended": true,
- "wall_seconds": 3683.6
+ "wall_seconds": 3683.6,
+ "human_minutes": 13.53,
+ "cand_screens": 9,
+ "active_minutes": 10.71
 }

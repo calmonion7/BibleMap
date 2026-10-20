@@ -15,6 +15,25 @@ sys.path.insert(0, os.path.join(HERE, "batch"))
 import judge_items as J
 import judge_learn as JL
 import make_night_page as P
+import check_scenes as CS
+import derive_scene as D
+from judge_spec import refs
+
+VERSES = {}
+
+
+def scripture(sid):
+    """장면 구절 범위의 개역한글 원문 [[장:절, 본문, 고정한 순간인가]] — 사람이 판정할 때 함께 본다(task 380 사용자 요청)."""
+    if not VERSES:
+        VERSES.update(json.load(open(CS.VERSES, encoding="utf-8")))
+    spec = D.load(sid)
+    book = CS.BOOK[spec["verses"]["range"].split()[0]]
+    now = set(refs(spec["moment"]["verse"]))
+    out = []
+    for vid in CS.verse_ids(book, spec["verses"]["range"].split(None, 1)[1]):
+        ref = f"{int(vid[2:5])}:{int(vid[5:])}"
+        out.append([ref, VERSES[vid]["textKo"].strip(), ref in now])
+    return out
 
 STYLE = P.PAGE[P.PAGE.index("<style>"):P.PAGE.index("</style>")]   # 판정 페이지와 같은 토큰·카드·단추
 SIZES = ((1216, 84), (1216, 72), (1216, 62), (1024, 66), (1024, 58), (880, 56))
@@ -36,14 +55,14 @@ def build(task, w, q):
         scenes.append({"id": s["id"], "title": s["title"], "range": s["range"], "seeds": s["seeds"],
                        "qs": [x for x in s["qs"] if not x["id"].endswith(".identity") and x.get("grp") != "plate"],   # J1과 같은 문항
                        "cand": c["cand"], "sample": c["sample"], "reject": c["reject"], **({"reason": c["reason"]} if "reason" in c else {}),
-                       "order": JL.sample_order(s["id"], s["seeds"])})
+                       "order": JL.sample_order(s["id"], s["seeds"]), "verses": scripture(s["id"])})
     return scenes, data
 
 
 def main(task=376, out=None):
     for w, q in SIZES:
         scenes, data = build(task, w, q)
-        page = (PAGE.replace("/*STYLE*/", STYLE).replace("/*SCENES*/[]", json.dumps(scenes, ensure_ascii=False))
+        page = (PAGE.replace("/*STYLE*/", STYLE + VERSE_STYLE).replace("/*SCENES*/[]", json.dumps(scenes, ensure_ascii=False))
                 .replace("/*IMGS*/{}", json.dumps(data)).replace("/*TASK*/0", str(task)))
         if len(page) <= P.LIMIT:
             break
@@ -53,6 +72,19 @@ def main(task=376, out=None):
     rej = [s["id"] for s in scenes if s["reject"]]
     print(f"[CandPage] {out} {len(page) / 1e6:.2f}MB · {w}px q{q} · 장면 {len(scenes)} · 되돌림 {len(rej)} {rej or ''} · 화면 {JL.screens(scenes)}", flush=True)
 
+
+VERSE_STYLE = """
+.verse { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; }
+.verse summary { cursor: pointer; font-size: 13px; color: var(--muted); }
+.verse ol { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 4px; max-height: 13em; overflow-y: auto; font-size: 14px; line-height: 1.55; }
+.verse li { min-width: 0; }
+#memo { width: 100%; box-sizing: border-box; min-height: 4.6em; font: inherit; line-height: 1.5; padding: 8px 10px; resize: vertical;
+  background: var(--panel); color: var(--fg); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+body.typing footer { display: none; }
+body.typing main { padding-block-end: 40vh; }
+.verse li.now { font-weight: 600; }
+.verse .ref { font: 12px var(--mono); color: var(--muted); margin-right: 6px; font-variant-numeric: tabular-nums; }
+"""
 
 PAGE = r"""<title>장면 후보 고르기 /*TASK*/0</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -133,7 +165,13 @@ function bindQ(app, a, seed) {
 function bigImg(s, seed) { return `<button type="button" class="card big" data-z="${seed}">${img(`${s.id}:${seed}`)}<span class="tag">s${seed}</span><span class="zoom">크게</span></button>`; }
 function odd(s) { return s.reason === "이상한 점"; }   // 되돌림 사유(task 378 — 이상한 점 결합 켬일 때만 있음)
 function head(sc, what) {
-  return `<div class="bar"><span>장면 ${sc.k + 1}/${SCENES.length}</span><span>${what}</span></div><h1>${esc(sc.s.title)} · ${esc(sc.s.range)}</h1>`;
+  return `<div class="bar"><span>장면 ${sc.k + 1}/${SCENES.length}</span><span>${what}</span></div><h1>${esc(sc.s.title)} · ${esc(sc.s.range)}</h1>${bible(sc.s)}`;
+}
+// 성경 원문(개역한글) — 고정한 순간의 절은 굵게. 판정하며 본문과 견주어 보게(task 380)
+function bible(s) {
+  if (!s.verses || !s.verses.length) return "";
+  return `<details class="verse" open><summary>성경 원문 · ${esc(s.range)} (개역한글) — 굵은 절이 이 그림의 순간</summary>
+    <ol>${s.verses.map(([r, x, now]) => `<li${now ? ' class="now"' : ""}><span class="ref">${esc(r)}</span>${esc(x)}</li>`).join("")}</ol></details>`;
 }
 function next() { st.i = Math.min(SCREENS.length - 1, st.i + 1); save(); render(); }
 function render() {
@@ -157,7 +195,7 @@ function renderCand(app, sc, a) {
     <p class="hint">${sc.t === "reject" ? "기계가 되돌리려던 장면에서 살린 그림입니다." : "기계가 8장 중 고른 후보입니다."} 틀린 항목만 누르세요(기본은 모두 맞음).</p>
     ${bigImg(s, seed)}
     <div class="qs">${qrows(s, a, seed)}</div>
-    <input type="text" id="memo" placeholder="한 줄 메모(선택)" value="${esc(a.memo)}">
+    <textarea id="memo" rows="3" placeholder="메모(선택) — 무엇이 틀렸는지">${esc(a.memo)}</textarea>
     <div class="answer"><button class="b main" id="ok" type="button">쓸 만함</button><button class="b no" id="none" type="button">없음</button></div>
     ${sc.t === "reject" ? `<div class="row"><button class="b" id="back" type="button">되돌림 화면으로(살리지 않음)</button></div>` : ""}
     <p class="hint">다른 그림이 더 낫다면 눌러 후보를 바꾸세요 — 그 그림으로 다시 묻습니다.</p>
@@ -167,7 +205,9 @@ function renderCand(app, sc, a) {
   app.querySelectorAll("[data-alt]").forEach((b) => b.onclick = () => {
     a.switched.push({ seed, wrong: [...marks(a, seed)] }); a.cand = +b.dataset.alt; a.answer = null; save(); render();
   });
-  document.getElementById("memo").oninput = (e) => { a.memo = e.target.value; save(); };
+  const memo = document.getElementById("memo");
+  memo.oninput = (e) => { a.memo = e.target.value; grow(memo); save(); };
+  grow(memo);
   const back = document.getElementById("back");
   if (back) back.onclick = () => { a.revived = null; a.cand = s.cand; a.answer = null; save(); render(); };
   const done = (ans) => { a.answer = ans; a.end = Date.now(); next(); };
@@ -237,6 +277,18 @@ function zoom(sid, s) {
   document.getElementById("close").onclick = () => { ov.hidden = true; };
   ov.hidden = false;
 }
+// 메모 입력: 폰 키보드가 고정 단추 줄과 함께 입력칸을 덮지 않게 — 입력 중엔 단추 줄을 숨기고 칸을 가운데로(task 380 사용자 지적)
+function grow(el) { el.style.height = "auto"; el.style.height = el.scrollHeight + 2 + "px"; }
+function keepVisible(el) { setTimeout(() => el.scrollIntoView({ block: "center", behavior: "smooth" }), 250); }
+document.addEventListener("focusin", (e) => { if (e.target.id === "memo") { document.body.classList.add("typing"); keepVisible(e.target); } });
+document.addEventListener("focusout", (e) => { if (e.target.id === "memo") document.body.classList.remove("typing"); });
+if (window.visualViewport) visualViewport.addEventListener("resize", () => { const el = document.activeElement; if (el && el.id === "memo") keepVisible(el); });
+// 원문 상자를 고정한 순간의 절로 스크롤(페이지는 움직이지 않음)
+const renderBase = render;
+render = function () {
+  renderBase();
+  document.querySelectorAll(".verse ol").forEach((ol) => { const li = ol.querySelector("li.now"); if (li) ol.scrollTop = li.offsetTop - ol.offsetTop; });
+};
 document.getElementById("prev").onclick = () => { st.i = Math.max(0, st.i - 1); save(); render(); };
 document.getElementById("next").onclick = next;
 if (st.i >= SCREENS.length) st.i = 0;
