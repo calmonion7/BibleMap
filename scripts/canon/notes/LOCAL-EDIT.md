@@ -111,17 +111,68 @@
 ```json fixed386
 {
   "src": "~/.local/biblemap-imggen/plain-words/r2/{scene}/s{seed}.png",
-  "seeds": [1, 2, 3],
+  "seeds": [
+    1,
+    2,
+    3
+  ],
   "scenes": {
     "authored-samuel-bethlehem-david-anointing": {
-      "base": 42, "word": "oil", "crop": [310, 160, 240], "box": [365, 210, 470, 330],
+      "base": 42,
+      "word": "oil",
+      "crop": [
+        310,
+        160,
+        240
+      ],
+      "box": [
+        365,
+        210,
+        470,
+        330
+      ],
       "arms": {
         "O1": "Gold, a little thicker than water, shining. It runs in a thin stream from the mouth of a horn and wets the hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
-        "O2": "Golden oil pours in a thin stream from the open end of the horn and runs down over the boy's curly hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style."
-      }
+        "O2": "Golden oil pours in a thin stream from the open end of the horn and runs down over the boy's curly hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
+        "O3": "Golden oil pours out of the dark open hole of the horn's wide mouth and falls from that opening straight down onto the boy's curly hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
+        "OG": "Redraw the golden vertical band as golden oil pouring out of the horn's open mouth hole and falling onto the boy's curly hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style."
+      },
+      "guide": {
+        "OG": {
+          "rect": [
+            431,
+            238,
+            439,
+            264
+          ],
+          "rgb": [
+            214,
+            168,
+            48
+          ]
+        }
+      },
+      "extra_features": [
+        {
+          "q": "기름이 뿔의 열린 입구(구멍) 안에서 나오나?",
+          "grounds": "사용자 지시(2026-10-21 편집 뒤) 「기름이 원뿔 구멍에서 나와야지」 · [추론] 삼상 16:13 「기름 뿔을 취하여 … 부었더니」 — 뿔에 담긴 기름을 붓는다."
+        }
+      ]
     },
     "authored-david-gath-achish": {
-      "base": 5, "word": "drool-beard", "crop": [250, 110, 240], "box": [315, 200, 395, 300],
+      "base": 5,
+      "word": "drool-beard",
+      "crop": [
+        250,
+        110,
+        240
+      ],
+      "box": [
+        315,
+        200,
+        395,
+        300
+      ],
       "arms": {
         "D1": "Spit runs from the corner of the mouth down the chin beard in a long strand, and the beard is wet and shiny. Keep his face shape, hair, beard, the lighting and the same soft pencil and colored-pencil illustration style.",
         "D2": "Saliva drips from his mouth down into his beard. Keep his face shape, hair, beard, the lighting and the same soft pencil and colored-pencil illustration style."
@@ -130,3 +181,9 @@
   }
 }
 ```
+### 사용자 지시 추가 (2026-10-21, O1·O2 편집 12장 뒤 — 기계 거름 전)
+- 사람(편집 시험 그림을 보고): 「기름이 원뿔 구멍에서 나와야지..」. 베들레헴 O1·O2 6장 모두 기름이 뿔 **바깥 몸통·테두리를 타고** 흘렀다 — 뿔 입구가 옆(오른쪽)을 향해 있어 지시만으로는 「구멍에서 나옴」이 안 잡혔다.
+- **갈래 둘 더함(베들레헴만, 시드 1·2·3 → 6장, 베들레헴 모두 12장)**: **O3** = 「뿔 넓은 입구의 어두운 구멍에서 나와 그 구멍에서 곧장 머리로 떨어짐」 지시 · **OG** = 가이드(구멍 안쪽 아래 → 머리, 원본 x 431~439 · y 238~264 금빛 띠를 크롭에 칠함) + 「이 금빛 띠를 뿔 구멍에서 쏟아지는 기름으로 다시 그림」(371 가드 G와 같은 수단, PROMPTING 24). 갈래 순서 O1·O2·O3·OG.
+- **특징 문항 하나 더함(베들레헴)**: 「기름이 뿔의 열린 입구(구멍) 안에서 나오나?」 — 사전 `oil` 문항 3개와 함께 「특징 다 맞음」에 든다. 사전 항목은 이번에 고치지 않는다(사전 손질은 다음 과제 — `oil` 특징 3 「머리나 뿔 입구에서 쏟아지나?」가 구멍과 바깥 몸통을 가르지 못함).
+- 접힌 칸은 베들레헴 12장 · 가드 6장. 나머지 규칙(1위·화면·판정)은 그대로.
+
