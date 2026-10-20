@@ -68,3 +68,65 @@
 - 팔 I 대 G: I가 이음새·시선에서 낫고 같은 사람에서 나쁨(4 대 2). 문구 N1 대 N2: 차이 없음(둘 다 0).
 - 사람 소요 8.16분(놉 5.89 · 가드 4.94, 어림 11화면).
 - 생성: klein 24장 964초(장당 약 40초, 어림 1분).
+
+---
+
+# task 386 — 고른 그림 국소 편집: 베들레헴 r2 s42에 기름 흘러내림 · 가드 r2 s5에 침
+
+## 고정 절 (편집 전, 2026-10-21)
+
+383에서 사람이 고른 두 그림(`~/.local/biblemap-imggen/plain-words/r2/<장면>/s<시드>.png`)에 남은 낱말 하나씩을 371 조리법 그대로(작은 크롭 → 1024 klein 지시 편집(지시 하나) → 원본 크롭 색 맞춤 → 타원 마스크 안쪽만 되붙임) 더한다. 둘 다 L3 문구로도 안 움직인 작은 동작·지물이라(PROMPTING 24·26) 문구 A/B가 아니라 국소 편집 차례다.
+
+- 베들레헴 r2 s42: 사람 메모 「기름뿔에서 기름이 흘러내리는 모습이 없음」 — 지금은 뿔 끝 방울 몇 개(삼상 16:13 「기름 뿔을 취하여 … 부었더니」).
+- 가드 r2 s5: 턱 밑 가는 줄 하나 — 침으로 읽히지 않음(삼상 21:13 「침을 수염에 흘리매」).
+- 편집: FLUX.2-klein-4B(mflux q8, 4스텝, 1024), 시드 1·2·3(`params.LOCAL_EDIT_SEEDS`). **갈래 2 × 시드 3 = 장면마다 6장, 모두 12장.** 지시 끝에 371의 「Keep …」 문장(가드는 371 `KEEP_FACE` 그대로, 베들레헴은 같은 꼴로 손·뿔·소년 얼굴·배경·화풍).
+- 크롭·마스크(원본 1216×640 좌표, 실행자가 그림을 보고 잡음):
+
+  | 장면 · 바탕 | 크롭 (L, T, 변) | 마스크 상자 | 편집 부위 |
+  |---|---|---|---|
+  | 베들레헴 r2 s42 | 310, 160, 240 | 365, 210, 470, 330 | 뿔 입구 ~ 소년 정수리·곱슬머리(사무엘 얼굴은 크롭 밖) |
+  | 가드 r2 s5 | 250, 110, 240 | 315, 200, 395, 300 | 입가 ~ 수염 끝·턱 아래(눈 y≈175는 마스크 밖) |
+
+- 갈래(지시 글은 아래 json이 정본 — `gen_local_edit.py`가 그대로 읽고, `check386`이 기록과 글자까지 대조):
+  - 베들레헴 **O1** = 사전 `oil` L3 `en` 그대로 + Keep · **O2** = 짧은 직접 지시(뿔의 열린 끝에서 금빛 기름이 가는 줄기로 소년의 곱슬머리 위로 흘러내림) + Keep.
+  - 가드 **D1** = 사전 `drool-beard` L3 `en` 그대로 + Keep · **D2** = 371 F에서 눈 부분을 뺀 「입에서 침이 수염으로 흘러내림」 + Keep.
+
+### 기계 거름 (사람 화면 전)
+- 대상 = 편집 12장 + 원본 2장. 판정자 Sonnet(`claude -p`), 판정자 J1 = v2 전 문항 + 지물 칸만 p2(크롭 2.5배).
+- **특징 문항**: 사전 `criteria.features` 전부 — 베들레헴 `oil` · 가드 `drool-beard`. J1-prop 머리말(p2), 크롭 = 편집 크롭 상자(2.5배).
+- **장면 J1 문항**: 382 r2에서 이 두 그림에 물은 J1 문항 글 그대로(`plain_words.j1_qs` — 376·379 A 페이지 문항, 크롭은 바탕 시드 상자. 편집은 마스크 안만 바뀌므로 상자를 그대로 쓴다).
+- **1위** = 특징을 다 맞은 편집 중 J1 틀림 칸(지물 칸은 J1-prop 답)이 가장 적은 장 — 같으면 갈래 순서(O1·O2 / D1·D2) → 시드 순서(1·2·3). 특징을 다 맞은 편집이 없으면 특징 맞힘이 가장 많은 장을 1위로 두고 화면 머리에 그 사실을 적는다.
+
+### 사람 화면 (장면마다 1화면, 모두 2화면 — 폰 360px 비공개 Artifact)
+- 원본과 1위 편집을 블라인드 좌우(장면 id 해시로 고정). 카드마다 편집 부위 크롭을 함께(「크게」는 전체 + 크롭).
+- 질문 하나: 「굵은 절의 모습이 보이고 이음 자국이 없는 쪽은?」(왼쪽 / 오른쪽 / 둘 다 아님). 성경 원문 상자(베들레헴 16:13 · 가드 21:13 굵게), 여러 줄 메모칸, 쉼 뺀 타이머, 접힌 칸에 그 장면 편집 6장 전부(기계 불통과 포함 — 갈래·시드만 표시).
+- 사람 답(「판정 문장」)은 `samples/local-edit/pick-verdict-386.txt`에 원문 그대로.
+
+### `판정:` 규칙
+- 장면 **고침** = 사람이 편집 쪽을 골랐다. `판정: 둘 다 고침` / `하나 고침` / `못 고침`.
+- 고침이면 그 장면 명세 `approved.final` = `{path: local-edit, seed: 바탕 시드, image, steps: [{바탕 출처 plain-words r2 s<시드>·갈래·편집 시드·크롭·상자·지시}], by: user}`(371 `record`와 같은 꼴), 승인 그림은 `samples/local-edit/approved-<장면>.png`로 레포에. 못 고침이면 다음 수단을 적는다.
+- 측정만: 갈래·시드별 특징 맞힘, 기계 1위와 사람 고름의 일치, 쉼 뺀 사람 시간. 편집 결과는 사전 `verified_level`에 적지 않는다(규칙 7은 문구 단계의 그림 증거).
+- 결과는 371 metrics와 섞지 않게 `samples/local-edit/metrics-386.json`.
+
+```json fixed386
+{
+  "src": "~/.local/biblemap-imggen/plain-words/r2/{scene}/s{seed}.png",
+  "seeds": [1, 2, 3],
+  "scenes": {
+    "authored-samuel-bethlehem-david-anointing": {
+      "base": 42, "word": "oil", "crop": [310, 160, 240], "box": [365, 210, 470, 330],
+      "arms": {
+        "O1": "Gold, a little thicker than water, shining. It runs in a thin stream from the mouth of a horn and wets the hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
+        "O2": "Golden oil pours in a thin stream from the open end of the horn and runs down over the boy's curly hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style."
+      }
+    },
+    "authored-david-gath-achish": {
+      "base": 5, "word": "drool-beard", "crop": [250, 110, 240], "box": [315, 200, 395, 300],
+      "arms": {
+        "D1": "Spit runs from the corner of the mouth down the chin beard in a long strand, and the beard is wet and shiny. Keep his face shape, hair, beard, the lighting and the same soft pencil and colored-pencil illustration style.",
+        "D2": "Saliva drips from his mouth down into his beard. Keep his face shape, hair, beard, the lighting and the same soft pencil and colored-pencil illustration style."
+      }
+    }
+  }
+}
+```
