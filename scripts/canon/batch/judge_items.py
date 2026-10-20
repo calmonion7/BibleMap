@@ -23,7 +23,7 @@ NOTES = os.path.join(HERE, "notes", "JUDGE-ITEMS.md")
 # 과제 → (samples 폴더, 사람 페이지, 그림 = 편집본?)
 TASKS = {368: ("night-pilot", "night-pick.html", True), 369: ("whole-fix", "whole-fix-pick.html", False),
          370: ("whole-wide", "whole-wide-pick.html", False), 372: ("jabesh-crowd", "jabesh-crowd-pick.html", False),
-         376: ("verse-regen", "verse-regen-pick.html", False)}   # 376: 문항 페이지는 J1용, 사람은 후보 화면(make_cand_page)
+         376: ("verse-regen", "verse-regen-pick.html", False), 379: ("spec-regen", "spec-regen-pick.html", False)}   # 376: 문항 페이지는 J1용, 사람은 후보 화면(make_cand_page)
 SETS = {"dev": (368, 369), "holdout": (370, 372)}
 CLASSES = ("moment", "background", "crowds", "pose", "prop", "facing", "guard")
 PASS_LINE = 0.8

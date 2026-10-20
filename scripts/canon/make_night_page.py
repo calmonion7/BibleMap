@@ -17,7 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 METRICS = os.path.join(HERE, "samples", "night-pilot", "metrics.json")
 PAGES = os.path.expanduser("~/.local/biblemap-imggen/pages")
 DST = {368: "night-pick.html", 369: "whole-fix-pick.html", 370: "whole-wide-pick.html", 372: "jabesh-crowd-pick.html", 373: "plate-rest-pick.html",
-       376: "verse-regen-pick.html"}
+       376: "verse-regen-pick.html", 379: "spec-regen-pick.html"}
 # 고르기 화면 덧말(과제별) — task 372: 암몬 무리는 다음 단계 편집 대상이라 「무리 말고 다 맞는 바탕」을 고른다(계획 결정 6)
 PICK_NOTE = {372: "암몬 무리(crowds[1])는 다음 단계에서 고른 장에만 편집합니다. 암몬 무리 말고 다 맞는 바탕을 고르세요."}
 LIMIT = 15.5e6

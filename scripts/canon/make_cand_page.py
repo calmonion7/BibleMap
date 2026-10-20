@@ -40,15 +40,15 @@ def build(task, w, q):
     return scenes, data
 
 
-def main(task=376):
+def main(task=376, out=None):
     for w, q in SIZES:
         scenes, data = build(task, w, q)
         page = (PAGE.replace("/*STYLE*/", STYLE).replace("/*SCENES*/[]", json.dumps(scenes, ensure_ascii=False))
                 .replace("/*IMGS*/{}", json.dumps(data)).replace("/*TASK*/0", str(task)))
         if len(page) <= P.LIMIT:
             break
-    out = os.path.join(P.PAGES, dst(task))
-    os.makedirs(P.PAGES, exist_ok=True)
+    out = out or os.path.join(P.PAGES, dst(task))   # out = 검사용 사본 자리(check_cand_page) — 없으면 게시본 자리
+    os.makedirs(os.path.dirname(out), exist_ok=True)
     open(out, "w", encoding="utf-8").write(page)
     rej = [s["id"] for s in scenes if s["reject"]]
     print(f"[CandPage] {out} {len(page) / 1e6:.2f}MB · {w}px q{q} · 장면 {len(scenes)} · 되돌림 {len(rej)} {rej or ''} · 화면 {JL.screens(scenes)}", flush=True)
@@ -84,7 +84,8 @@ const SCENES = /*SCENES*/[];
 const IMGS = /*IMGS*/{};
 const TASK = /*TASK*/0;
 const KEY = "cand-page-" + TASK;
-let st = { i: 0, t0: null, done: null, sc: {} };
+let st = { i: 0, t0: null, done: null, sc: {}, act: 0, last: null };
+const IDLE = 120000;   // task 379: 입력 없이 2분 넘은 간격은 쉼으로 보고 「쉼 뺀 시간」에서 뺀다(376 234분 중 209분이 두 장면 — 연 채 쉼)
 try { const s = JSON.parse(localStorage.getItem(KEY) || "null"); if (s && s.sc) st = s; } catch (e) { console.warn("[CandPage] 저장본 읽기 실패", e); }
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) { console.warn("[CandPage] 저장 실패", e); } };
 const SCREENS = [];
@@ -103,7 +104,19 @@ function img(key, crop, ar) {
   const [x, y, w, h] = crop;
   return `<div class="frame" style="aspect-ratio:${ar}"><img src="${IMGS[key]}" alt="" style="width:${100 / w}%;left:${-x / w * 100}%;top:${-y / h * 100}%"></div>`;
 }
-function tick() { const m = st.t0 ? ((st.done || Date.now()) - st.t0) / 60000 : 0; document.getElementById("clock").textContent = `${m.toFixed(1)}분`; }
+function tick() { document.getElementById("clock").textContent = `${((st.act || 0) / 60000).toFixed(1)}분`; }
+// 입력 하나마다 앞 입력과의 간격을 지금 화면의 장면에 더한다 — 간격이 IDLE을 넘으면 더하지 않는다(쉼)
+function act() {
+  const now = Date.now();
+  if (st.last != null && !st.done && now - st.last <= IDLE) {
+    const d = now - st.last, sc = SCREENS[st.i];
+    st.act = (st.act || 0) + d;
+    if (sc && sc.s) { const a = S(sc.s); a.act = (a.act || 0) + d; }
+  }
+  st.last = now;
+}
+["pointerdown", "keydown"].forEach((e) => document.addEventListener(e, act, true));
+document.addEventListener("scroll", act, { capture: true, passive: true });
 function qrows(s, a, seed) {
   const on = marks(a, seed);
   return s.qs.map((q) => `<button type="button" class="q${on.includes(q.id) ? " on" : ""}" data-q="${esc(q.id)}">
@@ -184,7 +197,7 @@ function renderReject(app, sc, a) {
   save(); window.scrollTo(0, 0);
 }
 function verdict() {
-  const now = st.done || Date.now(), out = { task: TASK, kind: "cand", human_minutes: +((now - st.t0) / 60000).toFixed(2), screens: SCREENS.length - 1, scenes: {} };
+  const now = st.done || Date.now(), out = { task: TASK, kind: "cand", human_minutes: +((now - st.t0) / 60000).toFixed(2), active_minutes: +((st.act || 0) / 60000).toFixed(2), idle_ms: IDLE, screens: SCREENS.length - 1, scenes: {} };
   SCENES.forEach((s) => {
     const a = S(s), agree = a.answer === "동의";
     const shown = agree ? [] : [a.answer ? a.cand : null, a.sampleDone ? a.sampleShown : null].filter((x) => x != null);
@@ -195,7 +208,7 @@ function verdict() {
     });
     const pick = a.answer === "쓸 만함" ? { answer: `s${a.cand} 바탕`, seed: a.cand, kind: "base" }
       : { answer: "없음", seed: null, kind: null, memo: agree ? (odd(s) ? "기계 되돌림에 동의 — 장면 뜻 맞은 장 모두 이상한 점" : "기계 되돌림에 동의 — 장면 뜻 8장 모두 틀림") : a.memo, ...(agree ? { machine_reject: true } : {}) };
-    out.scenes[s.id] = { minutes: a.start && a.end ? +((a.end - a.start) / 60000).toFixed(2) : null, machine_cand: s.cand, reject: s.reject,
+    out.scenes[s.id] = { minutes: a.start && a.end ? +((a.end - a.start) / 60000).toFixed(2) : null, active_minutes: +((a.act || 0) / 60000).toFixed(2), machine_cand: s.cand, reject: s.reject,
       revived: a.revived, cand: agree ? null : a.cand, sample: a.sampleDone ? a.sampleShown : null, answer: a.answer,
       switched: a.switched, memo: a.memo, items, pick, ...(agree ? { skipped: true } : {}) };
   });

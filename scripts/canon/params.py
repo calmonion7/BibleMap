@@ -309,5 +309,11 @@ VERSE_ELEMENT_SCENES = tuple(PLATE_REST_SCENES) + ("authored-david-gath-achish",
 VERSE_REGEN_SCENES = {**PLATE_REST_SCENES, "authored-david-gath-achish": ["david"], "authored-david-nob-priests": ["david"],
                       "authored-david-ramah-samuel": ["david"]}
 VERSE_REGEN_SEEDS = REF_EDIT_SEEDS
+# task#379(2026-10-20): 두 겹 판정 2/3 — 378에서 명세를 고친 장면 중 파생 프롬프트가 바뀐 7장면(notes/SPEC-JUDGE.md ```json regen, 가드는 같은 글이라 뺌)을
+# 376과 같은 경로·시드로 다시 생성 → J1·이상한 점 예측 → 후보 화면. 값 = 고른 장 편집 인물(376 그대로). 실행 전 고정(notes/SPEC-REGEN.md).
+SPEC_REGEN_SCENES = {sid: VERSE_REGEN_SCENES[sid] for sid in (
+    "authored-david-gibeon-battle", "authored-david-mahanaim-exile", "authored-david-returns-jerusalem",
+    "authored-samuel-bethlehem-david-anointing", "authored-david-jerusalem-conquest", "authored-saul-endor-medium", "authored-saul-gilboa-death")}
+SPEC_REGEN_SEEDS = REF_EDIT_SEEDS
 VERSE_ELEMENT_KINDS = ("인물", "행동", "지물", "때", "장소", "무리")
 VERSE_ELEMENT_BANNED = ("prior", "모델", "못 그", "대체", "어렵")

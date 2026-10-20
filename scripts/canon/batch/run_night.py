@@ -24,6 +24,8 @@ task#376 — `--set verse-regen`: 구절 요소 14장면, 경로 derive_scene.ro
 `all` 끝에 문항 페이지(J1이 읽음) → `judge_items.py predict --task 376` → 후보 화면(make_cand_page)까지 사람 없이 잇는다.
   $VENV batch/run_night.py cand --set verse-regen       # 예측 → 후보 화면만 다시(예측은 이미 답한 그림을 건너뜀)
 
+task#379 — `--set spec-regen`: 378에서 명세를 고친 7장면(params.SPEC_REGEN_SCENES), 376과 같은 경로·시드·후보 편집 끔. 예측은 J1·J1-prop·이상한 점(O1).
+
 편집 실행·되붙임·조작 확인은 gen_ref_edit_lightning·gen_ref_edit_2511 그대로(360·361 재현값 무변경), 몸·머리 상자만 장면 명세에서 일반화.
 생성 프로세스는 한 번에 하나(시작 전 pgrep). 산출은 레포 밖 ~/.local/biblemap-imggen/night-pilot/<장면>/{base,edit}/,
 목록은 samples/night-pilot/metrics.json(params.NIGHT_*, notes/NIGHT-PILOT.md 고정 절)."""
@@ -52,7 +54,9 @@ SETS = {"night": {"scenes": params.NIGHT_SCENES, "seeds": params.NIGHT_SEEDS, "d
         "plate-rest": {"scenes": params.PLATE_REST_SCENES, "seeds": params.PLATE_REST_SEEDS, "dir": "plate-rest", "task": 373,
                        "prompt": D.plate_whole_prompt, "edit": False},
         "verse-regen": {"scenes": params.VERSE_REGEN_SCENES, "seeds": params.VERSE_REGEN_SEEDS, "dir": "verse-regen", "task": 376,
-                        "prompt": D.route_prompt, "edit": False, "cand": True}}
+                        "prompt": D.route_prompt, "edit": False, "cand": True},
+        "spec-regen": {"scenes": params.SPEC_REGEN_SCENES, "seeds": params.SPEC_REGEN_SEEDS, "dir": "spec-regen", "task": 379,
+                       "prompt": D.route_prompt, "edit": False, "cand": True}}
 SET = "--set" in sys.argv and sys.argv[sys.argv.index("--set") + 1] or "night"
 ARGV = [a for i, a in enumerate(sys.argv) if a != "--set" and sys.argv[i - 1] != "--set"]   # 위치 인자(--set 값 뺌)
 CFG = SETS[SET]
@@ -284,6 +288,8 @@ def record(m, path):
         m["human_minutes"] = v.get("human_minutes")
     if v.get("kind") == "cand":
         m["cand_screens"] = v.get("screens")
+        if "active_minutes" in v:   # task 379: 쉼(입력 없이 2분 넘는 간격) 뺀 시간
+            m["active_minutes"] = v["active_minutes"]
     for sid, a in v["scenes"].items():
         sc = m["scenes"][sid]
         if "confirm" in a:
@@ -296,7 +302,7 @@ def record(m, path):
         p = a["pick"]
         if p["seed"] is not None:
             p["image"] = base_path(sid, p["seed"]) if p["kind"] == "base" else edit_path(sid, p["seed"], sc["who"][-1], True)
-        sc.update(items=a["items"], pick=p, human_minutes=a.get("minutes"))
+        sc.update(items=a["items"], pick=p, human_minutes=a.get("minutes"), **({"active_minutes": a["active_minutes"]} if "active_minutes" in a else {}))
         if v.get("kind") == "cand":   # task 376 후보 화면: 칸은 본 시드만(blind) — 기계 후보·바꾼 후보·되돌림 동의(skipped)를 함께
             sc["cand"] = {k: a.get(k) for k in ("machine_cand", "cand", "sample", "revived", "answer", "switched", "memo")}
             if a.get("skipped"):
