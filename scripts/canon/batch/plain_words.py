@@ -764,6 +764,8 @@ def record(m, path):
     """task 383·385 — 후보 화면 「판정 문장」(첫 줄 `판정 task <과제>` + JSON 한 줄) → metrics human."""
     v = json.loads(open(path, encoding="utf-8").read().split("\n", 1)[1])
     assert v["task"] == TASK and v["kind"] == "ab", v.get("task")
+    # 387 회고: 사람 답 파일은 루프 검사 꼴 *<과제>*verdict*(과제 번호가 verdict 앞) — 386·387 두 번 어긋남
+    assert TASK < 387 or re.search(rf"{TASK}.*verdict", os.path.basename(path)), f"사람 답 파일 이름은 *{TASK}*verdict* 꼴: {path}"
     for sid, a in v["scenes"].items():   # 좌우 출처가 화면을 만든 그대로인지 — 다른 화면의 답이 섞이지 않게
         assert (a["left"], a["right"]) == (m["cand"][sid]["left"], m["cand"][sid]["right"]), sid
     m["human"] = {"human_minutes": v["human_minutes"], "active_minutes": v["active_minutes"], "screens": v["screens"],
