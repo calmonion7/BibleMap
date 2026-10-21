@@ -1,0 +1,1680 @@
+{
+ "answers": {
+  "cn:42": {
+   "S": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.619,
+       "input": 4,
+       "output": 262,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.044717,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필로 칠한 질감의 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴과 옷이 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.988,
+       "input": 4,
+       "output": 292,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.045017,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "모든 인물과 물건에 얼굴, 옷, 세부 묘사가 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다. 먼 배경의 작은 인물들도 옷 색이 구분된다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.428,
+       "input": 4,
+       "output": 289,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.0082997,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "눈에 띄는 사람과 물건 모두 얼굴과 옷이 있다. 먼 곳의 작은 인물들도 윤곽과 옷 색이 있고, 평평한 회색 덩어리는 보이지 않는다."
+     }
+    }
+   },
+   "E": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 15.449,
+       "input": 4,
+       "output": 1632,
+       "cache_read": 47036,
+       "cache_create": 8789,
+       "cost_usd": 0.056187600000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "틀림",
+      "e.david-king": "맞음",
+      "e.face-each": "틀림",
+      "e.look-down": "틀림",
+      "e.one-crown": "틀림",
+      "e.gap": "틀림",
+      "e.kneel": "맞음",
+      "e.boarding": "맞음"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 상체를 숙여 머리를 땅 가까이 댐",
+      "e.before-david": "엎드린 사람이 다윗에게서 멀리 떨어져 있어 발 앞이 아님",
+      "e.old-man": "흰 수염 노인은 있으나 다윗 곁이 아니라 강가 무리 속에 서 있음",
+      "e.no-sword": "다윗 손에 칼이 보이지 않음",
+      "e.ziba-front": "앞쪽에 수십 명 무리가 없고 몇 명만 서 있음",
+      "e.benjamin-far": "먼 뒤쪽 언덕에 작은 큰 무리가 보임",
+      "e.boat-landed": "배가 가까운 둑에 닿지 않고 물 위에 떠 있으며 널빤지·말뚝 모양이 어색함",
+      "e.david-king": "희끗한 수염, 긴 붉은 겉옷, 금관이 있음",
+      "e.face-each": "엎드린 사람의 머리가 오른쪽(다윗 반대쪽)을 향함",
+      "e.look-down": "다윗이 오른쪽 앞을 보며 엎드린 사람을 내려다보는지 분명치 않음",
+      "e.one-crown": "다른 인물 머리에도 금색 띠(관)가 보여 다윗 한 사람뿐이라고 확실히 말할 수 없음",
+      "e.gap": "한 걸음쯤이 아니라 여러 걸음 떨어져 있음",
+      "e.kneel": "눕지 않고 무릎을 꿇어 상체를 숙임",
+      "e.boarding": "배 안에 사람들이 타 있고 세 사람이 널빤지로 오르는 중"
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 17.222,
+       "input": 4,
+       "output": 1839,
+       "cache_read": 47036,
+       "cache_create": 8789,
+       "cost_usd": 0.05825760000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "틀림",
+      "e.david-king": "맞음",
+      "e.face-each": "틀림",
+      "e.look-down": "틀림",
+      "e.one-crown": "틀림",
+      "e.gap": "틀림",
+      "e.kneel": "맞음",
+      "e.boarding": "맞음"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 상체를 숙여 두 손을 땅에 짚었고 머리가 땅 가까이 내려가 있다.",
+      "e.before-david": "엎드린 사람이 다윗 발에서 화면 오른쪽 아래로 한참 떨어져 있어 바로 앞이 아니다.",
+      "e.old-man": "흰 수염 노인은 무리 속 물가 쪽에 서 있고, 다윗 곁 인물은 그렇게 늙어 보이지 않는다.",
+      "e.no-sword": "다윗의 두 손은 아래로 내려와 있고 칼이 없다.",
+      "e.ziba-front": "앞쪽에 서 있는 사람은 대여섯 명뿐이라 수십 명의 큰 무리가 아니다.",
+      "e.benjamin-far": "먼 뒤쪽 언덕에 아주 작은 사람들이 길게 줄지은 큰 무리가 있다.",
+      "e.boat-landed": "배는 둑이 아니라 물 위의 말뚝과 널빤지에 걸쳐 있고 가까운 둑에 닿지 않았다.",
+      "e.david-king": "희끗한 수염, 긴 붉은 겉옷, 머리의 금관이 보여 노년의 왕으로 맞다.",
+      "e.face-each": "엎드린 사람의 머리가 화면 오른쪽, 다윗의 반대쪽을 향한다. 다윗도 그를 마주 내려다보지 않는다.",
+      "e.look-down": "다윗의 시선이 엎드린 사람이 아니라 앞쪽을 향한다.",
+      "e.one-crown": "머리에 금빛 띠를 두른 다른 인물이 있어 금관이 다윗 하나뿐이라고 확신할 수 없다.",
+      "e.gap": "엎드린 사람이 다윗에게서 한 걸음보다 훨씬 멀리 떨어져 있다.",
+      "e.kneel": "누워 있지 않고 무릎을 꿇고 허리를 굽혀 머리를 땅 쪽으로 숙였다.",
+      "e.boarding": "배 안에 사람들이 앉아 있고 세 사람이 널빤지를 딛고 오르는 중이다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 22.437,
+       "input": 4,
+       "output": 1824,
+       "cache_read": 48347,
+       "cache_create": 7478,
+       "cost_usd": 0.052994700000000006,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "틀림",
+      "e.david-king": "맞음",
+      "e.face-each": "틀림",
+      "e.look-down": "틀림",
+      "e.one-crown": "틀림",
+      "e.gap": "틀림",
+      "e.kneel": "맞음",
+      "e.boarding": "맞음"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 상체를 숙여 이마를 땅 가까이 댄 모양이다.",
+      "e.before-david": "엎드린 사람이 다윗에게서 꽤 멀고, 발 앞이 아니라 화면 가운데 아래쪽에 있다.",
+      "e.old-man": "흰 수염 노인은 있지만 다윗 곁이 아니라 먼 무리 속에 서 있고, 몸이 아주 늙어 보이지 않는다.",
+      "e.no-sword": "다윗 손에 칼이 보이지 않는다.",
+      "e.ziba-front": "앞쪽에 선 사람은 열 명 안팎이라 수십 명의 큰 무리가 아니다.",
+      "e.benjamin-far": "먼 뒤쪽 언덕 위에 아주 작은 큰 행렬이 있다.",
+      "e.boat-landed": "배가 둑에서 물을 사이에 두고 떨어져 있고 말뚝과 널빤지로만 이어져 있어, 둑에 닿았다고 하기 어렵다.",
+      "e.david-king": "희끗한 수염, 긴 붉은 겉옷, 머리의 금테가 모두 보인다.",
+      "e.face-each": "엎드린 사람의 머리가 오른쪽(배 쪽)을 향하고, 다윗은 그를 내려다보지 않는다.",
+      "e.look-down": "다윗이 엎드린 사람을 내려다보지 않고 앞쪽을 보고 있다.",
+      "e.one-crown": "검은 옷을 입은 다른 인물의 머리에도 금빛 띠가 보여 관이 둘로 보인다.",
+      "e.gap": "엎드린 사람이 다윗에게서 한 걸음보다 훨씬 멀리 떨어져 있다.",
+      "e.kneel": "엉덩이가 들린 채 무릎을 꿇고 이마를 땅에 댄 모양이다.",
+      "e.boarding": "세 사람이 널빤지에 올라 있고 나머지는 배 안에 앉아 있다."
+     }
+    }
+   }
+  },
+  "cn:11": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.452,
+       "input": 4,
+       "output": 265,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.044747,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필로 칠한 듯한 질감의 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴과 옷이 그려져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 5.122,
+       "input": 4,
+       "output": 294,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.045037,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 연필 윤곽과 색연필로 칠한 질감이 나는 동화풍 그림이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴과 옷이 갖춰져 있다. 멀리 선 무리도 색 있는 옷을 입은 인물로 그려져 있고, 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 7.026,
+       "input": 4,
+       "output": 342,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.045517,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "전체가 수채/구아슈풍의 매끈한 채색 삽화다. 연필 선과 색연필 질감이 뚜렷하지 않고, 종이 결도 보이지 않는다. 연필로 그리고 색연필로 칠한 동화 그림 화풍이라고 분명히 확인되지 않는다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다. 멀리 있는 무리도 작지만 옷 색이 구분된다."
+     }
+    }
+   },
+   "E": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 9.545,
+       "input": 4,
+       "output": 1023,
+       "cache_read": 46751,
+       "cache_create": 9074,
+       "cost_usd": 0.05120910000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "맞음",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "틀림",
+      "e.david-king": "틀림",
+      "e.face-each": "틀림",
+      "e.look-down": "틀림",
+      "e.one-crown": "맞음",
+      "e.gap": "틀림",
+      "e.kneel": "맞음",
+      "e.boarding": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 몸을 숙여 머리를 땅 가까이 댐",
+      "e.before-david": "엎드린 사람이 다윗에게서 멀리 오른쪽 아래에 있어 발 앞이 아님",
+      "e.old-man": "흰 수염 노인이 다윗 곁에 서 있음",
+      "e.no-sword": "다윗 손이 비어 있음",
+      "e.ziba-front": "엎드린 사람 뒤 앞쪽 무리는 몇 명뿐이고 크게 선 수십 명 무리가 아님",
+      "e.benjamin-far": "먼 강 건너편과 언덕에 작은 큰 무리가 있음",
+      "e.boat-landed": "배가 강 가운데쯤에 떠 있고 사람들은 물가에 서 있어 오르는 모습이 분명치 않음",
+      "e.david-king": "다윗이 희끗한 수염에 금관·긴 붉은 겉옷이지만 화면 왼쪽에서 오른쪽을 보는 게 아니라 아래를 향한 옆모습이라 확신 못 함",
+      "e.face-each": "엎드린 사람이 오른쪽 아래에서 왼쪽을 향하지만 다윗은 그를 내려다보지 않고 멀리 보아 마주함이 약함",
+      "e.look-down": "다윗이 앞쪽을 보고 엎드린 사람을 내려다보지 않음",
+      "e.one-crown": "금관은 다윗만 씀",
+      "e.gap": "엎드린 사람이 한 걸음보다 훨씬 멀리 떨어져 있음",
+      "e.kneel": "무릎을 꿇고 엉덩이가 들려 이마를 땅 가까이 댐",
+      "e.boarding": "일부는 강가에 줄지어 서 있고 오르는 동작이 없음"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 14.374,
+       "input": 4,
+       "output": 1640,
+       "cache_read": 45440,
+       "cache_create": 10385,
+       "cost_usd": 0.062492000000000006,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "맞음",
+      "e.old-man": "맞음",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "틀림",
+      "e.david-king": "맞음",
+      "e.face-each": "틀림",
+      "e.look-down": "틀림",
+      "e.one-crown": "맞음",
+      "e.gap": "맞음",
+      "e.kneel": "맞음",
+      "e.boarding": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 허리를 굽혀 이마를 땅 가까이 댐",
+      "e.before-david": "다윗 발 앞 오른쪽 앞에 가까이 있음",
+      "e.old-man": "흰 수염의 노인이 다윗 곁에 서 있음",
+      "e.no-sword": "다윗의 두 손이 비어 있고 칼이 보이지 않음",
+      "e.ziba-front": "엎드린 사람 뒤 앞쪽에는 대여섯 명뿐이고 수십 명의 큰 무리는 없음",
+      "e.benjamin-far": "먼 둑과 먼 언덕에 아주 작은 큰 무리가 줄지어 있음",
+      "e.boat-landed": "배에 탄 사람들은 앉아 있고 오르는 모습이 아니며, 강가 사람들은 따로 서 있음",
+      "e.david-king": "희끗한 수염, 긴 붉은 겉옷, 금관이 보임",
+      "e.face-each": "엎드린 사람의 머리는 다윗 쪽을 향하지만 다윗은 정면 또는 먼 곳을 보고 그를 내려다보지 않음",
+      "e.look-down": "다윗은 고개를 숙이지 않고 앞을 봄",
+      "e.one-crown": "금관은 다윗만 씀",
+      "e.gap": "엎드린 사람이 다윗 발에서 한 걸음쯤 떨어져 있음",
+      "e.kneel": "엉덩이가 들리고 머리를 땅에 댄 꿇어 엎드린 자세",
+      "e.boarding": "강가 세 사람은 줄지어 서 있고 배 안 사람들은 앉아 있을 뿐 오르는 동작이 없음"
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 16.172,
+       "input": 4,
+       "output": 1725,
+       "cache_read": 46751,
+       "cache_create": 9074,
+       "cost_usd": 0.058229100000000006,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "맞음",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "맞음",
+      "e.david-king": "맞음",
+      "e.face-each": "틀림",
+      "e.look-down": "틀림",
+      "e.one-crown": "맞음",
+      "e.gap": "맞음",
+      "e.kneel": "맞음",
+      "e.boarding": "맞음"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 몸을 숙여 머리를 땅 가까이 댐",
+      "e.before-david": "엎드린 사람이 다윗에게서 꽤 떨어져 있고 바르실래가 사이에 서 있어 발 앞이 아님",
+      "e.old-man": "흰 수염의 노인이 다윗 곁에 서 있음",
+      "e.no-sword": "다윗 손에 칼이 보이지 않음",
+      "e.ziba-front": "앞쪽에 보이는 사람은 대여섯 명과 아이 둘뿐이라 수십 명 무리가 아님",
+      "e.benjamin-far": "먼 둑에 아주 작은 큰 무리가 줄지어 있음",
+      "e.boat-landed": "배가 가까운 둑에 닿아 있고 사람들이 오르거나 타 있음",
+      "e.david-king": "금관, 희끗한 수염, 긴 붉은 겉옷",
+      "e.one-crown": "금관은 다윗 한 명만 씀",
+      "e.gap": "엎드린 사람이 다윗 발에 붙지 않고 떨어져 있음",
+      "e.kneel": "무릎 꿇고 엉덩이가 들렸으며 이마를 숙임",
+      "e.boarding": "배 안에 사람들이 타 있고 일부는 배 옆에서 오르려 함",
+      "e.face-each": "다윗의 얼굴이 엎드린 사람을 향하지 않고 오른쪽 앞을 봄",
+      "e.look-down": "다윗이 고개를 숙여 아래를 보지 않고 옆·앞을 봄"
+     }
+    }
+   }
+  },
+  "cn:7": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.374,
+       "input": 4,
+       "output": 291,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.045007000000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴과 옷이 있다. 멀리 있는 무리도 색깔 있는 옷을 입은 작은 사람으로 그려져 있어, 평평한 회색 덩어리는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.212,
+       "input": 4,
+       "output": 262,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.0080297,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴과 옷이 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.601,
+       "input": 4,
+       "output": 254,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.0079497,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필로 칠한 듯한 동화풍이다.",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있고, 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    }
+   },
+   "E": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 12.817,
+       "input": 4,
+       "output": 1517,
+       "cache_read": 55825,
+       "cache_create": 0,
+       "cost_usd": 0.0207605,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "맞음",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "틀림",
+      "e.david-king": "틀림",
+      "e.face-each": "틀림",
+      "e.look-down": "맞음",
+      "e.one-crown": "맞음",
+      "e.gap": "틀림",
+      "e.kneel": "맞음",
+      "e.boarding": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 이마를 땅 가까이 댄 모양이 맞음",
+      "e.before-david": "엎드린 사람이 다윗 발에서 멀리 오른쪽 아래에 있고 바르실래 앞쪽임",
+      "e.old-man": "흰 수염의 노인이 다윗 옆에 서 있음",
+      "e.no-sword": "다윗은 빈손임",
+      "e.ziba-front": "엎드린 사람 뒤 앞쪽 무리는 열 명 안팎의 줄이고 수십 명이 아님",
+      "e.benjamin-far": "뒤쪽 먼 곳에 작은 사람들의 긴 줄이 있음",
+      "e.boat-landed": "배는 강가에 닿았지만 사람들은 이미 앉아 있고 오르는 사람이 없음",
+      "e.david-king": "관이 가는 화관 같고 수염이 희끗하지 않아 60세쯤 된 왕으로 분명하지 않음",
+      "e.face-each": "엎드린 사람의 머리가 오른쪽, 다윗 반대쪽을 향함",
+      "e.look-down": "다윗이 고개를 숙여 아래를 봄",
+      "e.one-crown": "관을 쓴 사람은 다윗뿐임",
+      "e.gap": "엎드린 사람이 다윗에게서 한 걸음보다 훨씬 멀리 떨어져 있음",
+      "e.kneel": "엉덩이를 들고 무릎 꿇어 이마를 땅에 댐",
+      "e.boarding": "강가 사람들은 줄지어 서 있고 배에 오르는 모습이 없음"
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 15.428,
+       "input": 4,
+       "output": 1682,
+       "cache_read": 47036,
+       "cache_create": 8789,
+       "cost_usd": 0.056687600000000005,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "맞음",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "틀림",
+      "e.david-king": "틀림",
+      "e.face-each": "틀림",
+      "e.look-down": "틀림",
+      "e.one-crown": "맞음",
+      "e.gap": "틀림",
+      "e.kneel": "맞음",
+      "e.boarding": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 이마를 땅에 댄 모양이다.",
+      "e.before-david": "엎드린 사람이 다윗 발에서 멀리 떨어져 오른쪽 앞에 있고, 그 사이에 노인이 서 있다.",
+      "e.old-man": "흰 수염의 노인이 다윗 곁에 서 있다.",
+      "e.no-sword": "다윗은 빈손이다.",
+      "e.ziba-front": "앞쪽에는 열 명 안팎만 줄지어 서 있고, 수십 명이 크게 보이는 무리가 아니다.",
+      "e.benjamin-far": "먼 뒤쪽 강둑에 아주 작은 큰 무리가 있다.",
+      "e.boat-landed": "배는 둑에 닿아 있지만 사람들이 강가에 줄지어 서 있고, 배에 오르는 모습이 아니다.",
+      "e.david-king": "수염이 짙은 회색이고 금관은 가는 띠뿐이며, 두건 달린 평범한 붉은 옷이라 60세 왕다운 모습이 약하다.",
+      "e.face-each": "엎드린 사람의 머리가 화면 오른쪽을 향해 다윗 쪽이 아니고, 다윗도 그를 바로 내려다보지 않는다.",
+      "e.look-down": "다윗이 고개를 숙였지만 시선이 엎드린 사람이 아니라 앞쪽 땅을 향한다.",
+      "e.one-crown": "금관을 쓴 사람은 다윗뿐이다.",
+      "e.gap": "간격이 한 걸음보다 훨씬 멀다.",
+      "e.kneel": "엉덩이가 들린 채 무릎을 꿇고 이마를 땅 가까이 댔다.",
+      "e.boarding": "배 옆 강가에 사람들이 줄지어 서 있다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 15.685,
+       "input": 4,
+       "output": 1663,
+       "cache_read": 55825,
+       "cache_create": 0,
+       "cost_usd": 0.0222205,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "맞음",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "틀림",
+      "e.david-king": "맞음",
+      "e.face-each": "틀림",
+      "e.look-down": "맞음",
+      "e.one-crown": "맞음",
+      "e.gap": "틀림",
+      "e.kneel": "맞음",
+      "e.boarding": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 이마를 땅 가까이 숙였다.",
+      "e.before-david": "다윗에게서 한참 떨어진 화면 아래쪽 가운데에 있어 발 앞 가까이가 아니다.",
+      "e.old-man": "흰 수염의 늙은 노인이 다윗 곁에 서 있다.",
+      "e.no-sword": "다윗의 두 손은 비어 있다.",
+      "e.ziba-front": "엎드린 사람 뒤의 무리는 열 명 안팎이 일렬로 선 중경이라 수십 명이 크게 보이지 않는다.",
+      "e.benjamin-far": "먼 뒤쪽 둑에 아주 작은 사람들이 길게 늘어선 큰 무리가 있다.",
+      "e.boat-landed": "배는 둑에 닿았지만 사람들이 배에 오르는 모습이 아니라 이미 앉아 있거나 강가에 서 있다.",
+      "e.david-king": "희끗한 수염, 긴 붉은 겉옷, 머리의 금관이 보인다.",
+      "e.face-each": "엎드린 사람의 머리는 화면 오른쪽, 다윗 반대쪽을 향한다.",
+      "e.look-down": "다윗이 고개를 숙여 아래를 본다.",
+      "e.one-crown": "금관은 다윗 한 사람만 썼다.",
+      "e.gap": "엎드린 사람이 다윗과 한 걸음보다 훨씬 멀리 떨어져 있다.",
+      "e.kneel": "무릎을 꿇고 엉덩이를 들어 이마를 땅 가까이 댔다.",
+      "e.boarding": "배 쪽 사람들 다수가 강가에 줄지어 서 있다."
+     }
+    }
+   }
+  },
+  "cn:23": {
+   "S": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.469,
+       "input": 4,
+       "output": 292,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.045017,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "모든 인물과 물건에 얼굴과 옷이 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다. 멀리 선 무리도 색이 다른 옷을 입은 사람들로 그려져 있다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 7.569,
+       "input": 4,
+       "output": 260,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.044697,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "멀리 늘어선 무리도 옷 색과 형체가 구분되고, 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 5.336,
+       "input": 4,
+       "output": 265,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.0080597,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "멀리 있는 인물들도 옷 색과 형태가 구분된다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    }
+   },
+   "E": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 10.323,
+       "input": 4,
+       "output": 1161,
+       "cache_read": 55825,
+       "cache_create": 0,
+       "cost_usd": 0.0172005,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "틀림",
+      "e.before-david": "틀림",
+      "e.old-man": "맞음",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "틀림",
+      "e.david-king": "틀림",
+      "e.face-each": "틀림",
+      "e.look-down": "맞음",
+      "e.one-crown": "맞음",
+      "e.gap": "맞음",
+      "e.kneel": "틀림",
+      "e.boarding": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "남자가 앉아 한 손으로 땅을 짚고 있고 머리는 들려 있음. 이마를 땅 가까이 대고 비는 모양이 아님",
+      "e.before-david": "엎드린 사람이 다윗 오른쪽 아래로 꽤 떨어져 있어 발 앞 가까이가 아님",
+      "e.old-man": "흰 수염의 늙은 노인이 다윗 바로 옆에 서 있음",
+      "e.no-sword": "다윗 손이 비어 있고 칼이 없음",
+      "e.ziba-front": "엎드린 사람 뒤에 있는 무리는 중간 거리에 선 몇 사람뿐이고 수십 명이 크게 보이지 않음",
+      "e.benjamin-far": "먼 뒤쪽 강 건너에 아주 작은 큰 무리가 줄지어 있음",
+      "e.boat-landed": "배가 강가 가까이 있으나 둑에 완전히 닿았는지 불분명하고, 사람들은 이미 배에 앉아 있거나 물가에 서 있음",
+      "e.david-king": "머리에 금관(월계관 모양)과 붉은 긴 겉옷은 있으나 수염이 짙은 회색이고 60세 왕이라 확신하기 어려움",
+      "e.face-each": "엎드린 사람의 몸과 얼굴이 정면·아래를 향하고 다윗 쪽으로 마주하지 않음. 다윗은 내려다보지만 상대가 마주하지 않음",
+      "e.look-down": "다윗이 고개를 숙여 아래의 사람을 내려다봄",
+      "e.one-crown": "금관을 쓴 사람은 다윗뿐",
+      "e.gap": "엎드린 사람이 다윗 발에서 떨어져 있음",
+      "e.kneel": "엉덩이를 땅에 대고 앉아 있어 이마를 땅에 댄 꿇어 엎드림이 아님",
+      "e.boarding": "배 안에 사람들이 타 있고 일부는 물가에서 오르려 하는 모습"
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 16.344,
+       "input": 4,
+       "output": 1681,
+       "cache_read": 47036,
+       "cache_create": 8789,
+       "cost_usd": 0.05667760000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "틀림",
+      "e.before-david": "틀림",
+      "e.old-man": "맞음",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "맞음",
+      "e.david-king": "맞음",
+      "e.face-each": "맞음",
+      "e.look-down": "맞음",
+      "e.one-crown": "맞음",
+      "e.gap": "맞음",
+      "e.kneel": "틀림",
+      "e.boarding": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "뒤로 앉아 한 손으로 땅을 짚었고 머리를 든 모습이라 이마를 땅 가까이 댄 엎드림이 아님",
+      "e.before-david": "다윗 발 앞이 아니라 오른쪽 아래로 꽤 떨어져 있고 정면이 아님",
+      "e.old-man": "흰 수염의 늙은 노인이 다윗 곁에 서 있음",
+      "e.no-sword": "두 손 모두 비어 있고 칼이 없음",
+      "e.ziba-front": "엎드린 사람 뒤 앞쪽 사람은 대여섯 명뿐이고 수십 명의 큰 무리가 아님",
+      "e.benjamin-far": "먼 뒤쪽에 아주 작은 큰 무리가 있음",
+      "e.boat-landed": "배가 가까운 둑에 닿아 있고 아이들이 강가에서 오르려는 모습",
+      "e.david-king": "희끗한 수염, 긴 붉은 겉옷, 금관을 갖춘 왕",
+      "e.face-each": "엎드린 사람이 다윗 쪽(왼쪽)을 향하고 다윗이 내려다봄",
+      "e.look-down": "다윗이 고개를 숙여 아래를 봄",
+      "e.one-crown": "금관을 쓴 사람은 다윗뿐",
+      "e.gap": "다윗 발에서 한 걸음쯤 떨어져 있음",
+      "e.kneel": "이마를 땅에 댄 꿇어 엎드림이 아니라 주저앉아 몸을 일으킨 자세",
+      "e.boarding": "배 옆 강가에 사람 다섯 명이 줄지어 서 있어 배에 타거나 오르는 모습이 아님"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 17.104,
+       "input": 4,
+       "output": 1865,
+       "cache_read": 55825,
+       "cache_create": 0,
+       "cost_usd": 0.024240499999999998,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "틀림",
+      "e.before-david": "틀림",
+      "e.old-man": "맞음",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "틀림",
+      "e.david-king": "맞음",
+      "e.face-each": "맞음",
+      "e.look-down": "맞음",
+      "e.one-crown": "맞음",
+      "e.gap": "맞음",
+      "e.kneel": "틀림",
+      "e.boarding": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "앉아서 한 손으로 땅을 짚고 고개를 든 모습이라 이마를 땅 가까이 댄 엎드림이 아니다.",
+      "e.before-david": "다윗 발 앞에 엎드려 비는 사람이 아니다. 비스듬히 떨어져 앉아 있고 몸을 숙인 모양도 아니라 확실히 맞다고 볼 수 없다.",
+      "e.old-man": "흰 수염의 늙은 남자가 다윗 바로 옆에 서 있다.",
+      "e.no-sword": "다윗은 빈손이고 칼이 보이지 않는다.",
+      "e.ziba-front": "엎드린 사람 뒤 앞쪽에는 대여섯 명만 서 있다. 수십 명의 큰 무리는 화면 앞쪽이 아니라 먼 곳에 있다.",
+      "e.benjamin-far": "먼 뒤쪽 강둑에 아주 작은 사람들이 길게 늘어선 큰 무리가 있다.",
+      "e.boat-landed": "배는 물 위에 떠 있고 사람들은 대부분 앉아 있다. 가까운 둑에 닿아 사람들이 오르는 모습이 분명하지 않다.",
+      "e.david-king": "희끗한 수염, 긴 붉은 겉옷, 머리의 금관이 모두 보여 60세쯤 된 왕으로 읽힌다.",
+      "e.face-each": "엎드린 사람이 왼쪽 다윗 쪽을 향하고 다윗도 그를 내려다본다.",
+      "e.look-down": "다윗이 고개를 숙여 아래를 본다.",
+      "e.one-crown": "금관을 쓴 사람은 다윗 한 명뿐이다.",
+      "e.gap": "엎드린 사람이 다윗 발에서 한 걸음쯤 떨어져 있다.",
+      "e.kneel": "엉덩이를 깔고 앉아 한 손으로 땅을 짚은 모양이다. 이마를 땅에 댄 꿇어 엎드림이 아니다.",
+      "e.boarding": "사람 여럿이 배 옆 강가에 줄지어 서 있고 배에 오르는 동작이 거의 없다."
+     }
+    }
+   }
+  },
+  "cn:5": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.412,
+       "input": 4,
+       "output": 272,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.044817,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필로 칠한 질감의 동화풍 그림이다.",
+      "s.no-blob": "눈에 띄는 인물과 물건 모두 얼굴과 옷이 있다. 멀리 있는 작은 무리도 실루엣이 아니라 옷 색이 구분된다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.635,
+       "input": 4,
+       "output": 296,
+       "cache_read": 52854,
+       "cache_create": 1163,
+       "cost_usd": 0.012905400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필로 칠한 듯한 동화 그림 화풍이다.",
+      "s.no-blob": "눈에 띄는 사람과 물건은 모두 얼굴과 옷이 그려져 있다. 멀리 있는 작은 무리도 윤곽만 남은 회색 덩어리가 아니라 옷 색이 구분되는 인물이다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 5.373,
+       "input": 4,
+       "output": 292,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.0083297,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색의 동화 그림 화풍이다.",
+      "s.no-blob": "모든 인물과 물건에 얼굴, 옷, 세부 묘사가 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다. 먼 언덕의 작은 무리도 형태가 갖춰져 있다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 15.112,
+       "input": 4,
+       "output": 1666,
+       "cache_read": 47036,
+       "cache_create": 8788,
+       "cost_usd": 0.0565236,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "맞음",
+      "e.old-man": "맞음",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "틀림",
+      "e.david-king": "맞음",
+      "e.face-each": "맞음",
+      "e.look-down": "맞음",
+      "e.one-crown": "맞음",
+      "e.gap": "맞음",
+      "e.kneel": "맞음",
+      "e.boarding": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 이마를 땅에 댄 채 엎드려 있음",
+      "e.before-david": "다윗 발 앞 한두 걸음 거리에 엎드림",
+      "e.old-man": "다윗 곁에 흰 수염의 노인이 서 있음. 다만 몸은 꼿꼿해서 아주 늙어 보이지는 않음",
+      "e.no-sword": "다윗 손에 칼이 보이지 않음",
+      "e.ziba-front": "엎드린 사람 뒤 무리는 약 9명이라 수십 명이 아님",
+      "e.benjamin-far": "먼 언덕과 둑 위에 작은 인물이 길게 줄지어 많이 보임",
+      "e.boat-landed": "사람들은 이미 배 안에 앉아 있고 오르는 사람은 없음. 강가 사람들은 줄지어 서 있음",
+      "e.david-king": "금관, 긴 붉은 겉옷, 희끗한 수염이 보임",
+      "e.face-each": "엎드린 사람의 머리가 왼쪽 다윗을 향하고 다윗이 내려다봄",
+      "e.look-down": "다윗이 고개를 숙여 아래를 봄",
+      "e.one-crown": "금관을 쓴 사람은 다윗뿐임",
+      "e.gap": "엎드린 사람이 다윗 발에서 한 걸음쯤 떨어져 있음",
+      "e.kneel": "엉덩이를 들고 이마를 땅에 댄 꿇어 엎드린 자세",
+      "e.boarding": "강가 사람들이 배에 오르지 않고 줄지어 서 있음"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 14.728,
+       "input": 4,
+       "output": 1699,
+       "cache_read": 54514,
+       "cache_create": 1311,
+       "cost_usd": 0.027693400000000003,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "맞음",
+      "e.old-man": "맞음",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "틀림",
+      "e.david-king": "맞음",
+      "e.face-each": "맞음",
+      "e.look-down": "맞음",
+      "e.one-crown": "맞음",
+      "e.gap": "맞음",
+      "e.kneel": "맞음",
+      "e.boarding": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 이마를 땅에 댄 모양이다.",
+      "e.before-david": "다윗 발 앞 가까이에 있다.",
+      "e.old-man": "흰 수염의 노인이 다윗 곁에 서 있다.",
+      "e.no-sword": "다윗의 손이 비어 있고 칼이 안 보인다.",
+      "e.ziba-front": "엎드린 사람 뒤 무리가 10명 안팎이라 수십 명으로 보이지 않는다.",
+      "e.benjamin-far": "먼 언덕과 둑에 작은 사람들이 줄지어 있다.",
+      "e.boat-landed": "배가 둑에서 약간 떠 있고 오르는 동작이 분명하지 않다. 닿아 있다고 확인되지 않는다.",
+      "e.david-king": "금관, 긴 붉은 겉옷, 희끗한 수염이 보인다.",
+      "e.face-each": "엎드린 사람 머리가 왼쪽 다윗 쪽을 향하고 다윗도 그쪽을 본다.",
+      "e.look-down": "다윗이 고개를 숙여 아래를 본다.",
+      "e.one-crown": "금관을 쓴 사람은 다윗뿐이다.",
+      "e.gap": "한 걸음쯤 떨어져 있다.",
+      "e.kneel": "엉덩이가 들리고 이마가 땅에 닿아 있다.",
+      "e.boarding": "강가에 세 사람이 줄지어 서 있고 배에 오르는 동작이 없다. 배 안 사람들은 앉아 있다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 15.832,
+       "input": 4,
+       "output": 1581,
+       "cache_read": 55825,
+       "cache_create": 0,
+       "cost_usd": 0.0214005,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "맞음",
+      "e.old-man": "맞음",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "틀림",
+      "e.david-king": "맞음",
+      "e.face-each": "맞음",
+      "e.look-down": "맞음",
+      "e.one-crown": "맞음",
+      "e.gap": "맞음",
+      "e.kneel": "맞음",
+      "e.boarding": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 이마를 땅에 댄 모양",
+      "e.before-david": "다윗 발 앞 한 걸음쯤 앞에 있음",
+      "e.old-man": "흰 수염의 노인이 다윗 곁에 서 있음",
+      "e.no-sword": "손에 칼이 보이지 않음",
+      "e.ziba-front": "앞쪽 무리는 열 명 남짓이라 수십 명으로 보이지 않음",
+      "e.benjamin-far": "먼 언덕에 작은 사람들이 길게 늘어선 큰 무리가 있음",
+      "e.boat-landed": "배가 둑에 확실히 닿아 있지 않고, 물에 떠서 둑과 떨어져 있어 사람들이 오르는 모습도 아님",
+      "e.david-king": "금관, 긴 붉은 겉옷, 희끗한 수염이 보임",
+      "e.face-each": "엎드린 사람 머리가 왼쪽(다윗 쪽)을 향하고 다윗이 내려다봄",
+      "e.look-down": "다윗이 고개를 숙여 아래를 봄",
+      "e.one-crown": "금관은 다윗만 씀",
+      "e.gap": "발에서 한 걸음쯤 떨어져 있음",
+      "e.kneel": "엉덩이가 들리고 이마를 땅에 댐",
+      "e.boarding": "배 옆 강가에 세 사람이 줄지어 서 있어 오르는 동작이 아님"
+     }
+    }
+   }
+  },
+  "cn:101": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.766,
+       "input": 4,
+       "output": 574,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.047837000000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 연필 윤곽선과 풀밭의 색연필 같은 결이 보이는 동화 삽화 화풍이다. 다만 채색이 수채화나 구아슈처럼 보이기도 해서 확신은 다소 낮다.",
+      "s.no-blob": "가까운 인물과 배, 먼 곳의 무리까지 모두 옷 색과 형태가 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.487,
+       "input": 4,
+       "output": 387,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.009279700000000002,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 가는 연필 선과 색연필 질감으로 칠한 동화 그림 느낌이다. 종이 테두리나 글자는 없다.",
+      "s.no-blob": "가까운 인물도 먼 인물도 모두 옷 색과 얼굴·형태가 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.878,
+       "input": 4,
+       "output": 552,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.0109297,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 윤곽선은 있지만, 채색이 매끈한 수채·구아슈 회화처럼 보입니다. 연필 선과 색연필 결이 분명히 확인되지 않습니다.",
+      "s.no-blob": "가까운 인물과 멀리 줄지어 선 인물 모두 옷 색과 얼굴 표현이 있습니다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않습니다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 15.809,
+       "input": 4,
+       "output": 1514,
+       "cache_read": 47036,
+       "cache_create": 8789,
+       "cost_usd": 0.055007600000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "맞음",
+      "e.old-man": "맞음",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "틀림",
+      "e.david-king": "맞음",
+      "e.face-each": "맞음",
+      "e.look-down": "맞음",
+      "e.one-crown": "맞음",
+      "e.gap": "맞음",
+      "e.kneel": "맞음",
+      "e.boarding": "틀림"
+     },
+     "reasons": {
+      "e.ziba-front": "앞쪽 무리는 열두어 명이 줄지어 선 정도라 수십 명이 크게 보이는 무리가 아님",
+      "e.boat-landed": "배는 강가에 있지만 사람들이 이미 배 안에 앉아 있고 오르는 동작이 분명하지 않음",
+      "e.boarding": "강가에 열 명 남짓이 줄지어 서 있고, 오르는 동작이 분명하지 않음",
+      "e.old-man": "다윗 곁에 흰 수염이 센 두건 쓴 노인이 서 있음(애매하지만 맞다고 봄)"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 17.674,
+       "input": 4,
+       "output": 1864,
+       "cache_read": 55825,
+       "cache_create": 0,
+       "cost_usd": 0.0242305,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "맞음",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "틀림",
+      "e.david-king": "틀림",
+      "e.face-each": "맞음",
+      "e.look-down": "맞음",
+      "e.one-crown": "맞음",
+      "e.gap": "맞음",
+      "e.kneel": "맞음",
+      "e.boarding": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 이마를 땅에 댐",
+      "e.before-david": "다윗 발 앞 오른쪽 아래에 가까이 엎드림",
+      "e.old-man": "다윗 곁 인물은 회색 두건에 수염이 옅어 아주 늙은 노인이 아님. 흰 수염 노인은 다윗에게서 멀리 떨어져 있음",
+      "e.no-sword": "두 손이 비어 있음",
+      "e.ziba-front": "앞쪽 무리는 열 명 안팎이라 수십 명이 아님",
+      "e.benjamin-far": "먼 뒤쪽에 작은 사람들의 긴 줄이 여럿 보임",
+      "e.boat-landed": "배는 닿아 있으나 사람들은 이미 앉아 있거나 강가에 서 있어 오르는 모습이 분명하지 않음",
+      "e.david-king": "수염이 희끗하다고 분명히 보이지 않음",
+      "e.face-each": "엎드린 사람의 머리가 왼쪽 다윗 쪽을 향하고 다윗은 고개를 숙임",
+      "e.look-down": "다윗이 고개를 숙여 아래를 봄",
+      "e.one-crown": "금관은 다윗만 씀",
+      "e.gap": "한 걸음 이상 떨어져 있음",
+      "e.kneel": "엉덩이가 들리고 이마가 땅에 닿음",
+      "e.boarding": "강가 사람들이 줄지어 서 있고 배에 오르는 모습이 아님"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 19.112,
+       "input": 4,
+       "output": 1849,
+       "cache_read": 55825,
+       "cache_create": 0,
+       "cost_usd": 0.024080499999999998,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "맞음",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "맞음",
+      "e.david-king": "틀림",
+      "e.face-each": "맞음",
+      "e.look-down": "맞음",
+      "e.one-crown": "맞음",
+      "e.gap": "맞음",
+      "e.kneel": "맞음",
+      "e.boarding": "맞음"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 엉덩이를 들고 이마를 땅에 댄 모양이다.",
+      "e.before-david": "다윗 발 앞 오른쪽 아래에 가까이 있다.",
+      "e.old-man": "흰 수염 노인은 줄 가운데에 서 있고 다윗 곁이 아니다. 다윗 곁의 회색 수염 인물은 아주 늙어 보이지 않는다.",
+      "e.no-sword": "다윗의 손은 빈손이다.",
+      "e.ziba-front": "앞쪽 무리는 열두 명 안팎이라 수십 명이 아니다.",
+      "e.benjamin-far": "먼 뒤쪽에 아주 작은 사람들이 길게 늘어선 큰 무리가 있다.",
+      "e.boat-landed": "배가 가까운 둑에 닿아 있고 사람들이 타 있거나 오르는 중이다.",
+      "e.david-king": "수염이 거의 검고 40~50대로 보이며, 관은 가는 화관 모양이라 60세쯤 된 왕으로 보이지 않는다.",
+      "e.face-each": "엎드린 사람의 머리가 다윗 쪽을 향하고 다윗이 그를 내려다본다.",
+      "e.look-down": "다윗이 고개를 숙여 아래를 본다.",
+      "e.one-crown": "관을 쓴 사람은 다윗뿐이다.",
+      "e.gap": "다윗 발에 붙지 않고 한 걸음쯤 떨어져 있다.",
+      "e.kneel": "누워 있지 않고 꿇어 엎드린 자세이다.",
+      "e.boarding": "배 쪽 사람들은 배에 타 있거나 뱃전에서 오르는 중이다. 다만 강가에 줄지어 선 사람들이 있어 완전히 확실하지는 않다."
+     }
+    }
+   }
+  },
+  "cn:202": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.888,
+       "input": 4,
+       "output": 486,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.046957,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 연필 윤곽선과 부드러운 색칠이 보이는 동화풍 그림이다. 종이 테두리나 글자는 없다.",
+      "s.no-blob": "사람과 물건 모두 얼굴과 옷이 있다. 배는 회색이지만 배 안 사람들의 얼굴과 옷이 구분되고, 멀리 선 무리도 색 옷을 입은 모습이다. 평평한 회색 덩어리로 남은 것은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.451,
+       "input": 4,
+       "output": 382,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.0092297,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화풍 그림이고, 테두리나 글자는 없다.",
+      "s.no-blob": "모든 인물에 얼굴과 색 있는 옷이 있다. 멀리 선 인물도 작지만 색과 형태가 있고, 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 7.12,
+       "input": 4,
+       "output": 417,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.0095797,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 윤곽선을 그리고 색연필 느낌으로 칠한 동화풍이다. 종이 테두리나 글자는 없다.",
+      "s.no-blob": "사람은 모두 옷 색과 얼굴·머리 표현이 있다. 회색 덩어리로 남은 것은 없다. 회색 배는 널빤지와 사람이 보이는 배다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 16.81,
+       "input": 4,
+       "output": 1737,
+       "cache_read": 47036,
+       "cache_create": 8789,
+       "cost_usd": 0.057237600000000007,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "맞음",
+      "e.old-man": "맞음",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "틀림",
+      "e.david-king": "맞음",
+      "e.face-each": "틀림",
+      "e.look-down": "틀림",
+      "e.one-crown": "맞음",
+      "e.gap": "맞음",
+      "e.kneel": "맞음",
+      "e.boarding": "맞음"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 이마를 땅에 댄 자세",
+      "e.before-david": "다윗 발 앞 오른쪽 아래, 가까운 거리에 있음",
+      "e.old-man": "흰 수염의 노인이 다윗 곁에 서 있음",
+      "e.no-sword": "다윗의 손이 비어 있음",
+      "e.ziba-front": "앞쪽 인물은 어른 4명과 아이 3명뿐이라 수십 명의 무리가 아님",
+      "e.benjamin-far": "먼 둑 위에 작게 보이는 긴 사람 행렬이 있음",
+      "e.boat-landed": "배와 둑 사이에 물이 있어 닿아 있다고 확인되지 않음",
+      "e.david-king": "금관, 긴 붉은 겉옷, 회색빛 수염이 보임",
+      "e.face-each": "엎드린 사람의 머리가 오른쪽(다윗 반대쪽)을 향함",
+      "e.look-down": "다윗은 고개를 숙이지 않고 오른쪽 앞을 봄",
+      "e.one-crown": "금관을 쓴 사람은 다윗뿐임",
+      "e.gap": "엎드린 사람이 다윗 발에서 한 걸음쯤 떨어져 있음",
+      "e.kneel": "엉덩이가 들리고 이마를 땅에 댄 꿇어 엎드린 모양",
+      "e.boarding": "사람들이 배 안에 타 있고 일부는 가장자리에서 오르는 중임"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 17.329,
+       "input": 4,
+       "output": 1776,
+       "cache_read": 55825,
+       "cache_create": 0,
+       "cost_usd": 0.0233505,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "맞음",
+      "e.old-man": "맞음",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "틀림",
+      "e.david-king": "맞음",
+      "e.face-each": "틀림",
+      "e.look-down": "틀림",
+      "e.one-crown": "맞음",
+      "e.gap": "맞음",
+      "e.kneel": "맞음",
+      "e.boarding": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 이마를 땅에 댄 모양이다.",
+      "e.before-david": "다윗 발 앞 오른쪽 아래에 가까이 엎드려 있다.",
+      "e.old-man": "흰 수염의 노인이 다윗 곁에 서 있다.",
+      "e.no-sword": "다윗 손은 비어 있다.",
+      "e.ziba-front": "엎드린 사람 뒤 앞쪽 무리는 어른과 아이 여덟 명쯤이라 수십 명이 아니다.",
+      "e.benjamin-far": "먼 둑 위에 작은 사람들이 길게 늘어선 큰 무리가 있다.",
+      "e.boat-landed": "배는 물 위에 떠 있고 둑에 닿아 있지 않다. 사람들은 이미 배 안에 앉아 있고 오르는 모습이 아니다.",
+      "e.david-king": "희끗한 수염, 긴 붉은 겉옷, 금관이 보인다.",
+      "e.face-each": "엎드린 사람의 머리가 오른쪽(다윗 반대쪽)을 향해 있어 마주 보지 않는다.",
+      "e.look-down": "다윗의 얼굴은 오른쪽 앞을 향해 있어 엎드린 사람을 내려다본다고 확인되지 않는다.",
+      "e.one-crown": "금관은 다윗만 쓰고 있다.",
+      "e.gap": "엎드린 사람이 다윗 발에서 한 걸음 이상 떨어져 있다.",
+      "e.kneel": "엉덩이를 들고 무릎 꿇어 이마를 땅에 댔다.",
+      "e.boarding": "배 안 사람들은 앉아 있지만 배 옆 둑가에는 서 있는 사람들이 있고, 배에 오르는 동작이 분명하지 않다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 14.662,
+       "input": 4,
+       "output": 1675,
+       "cache_read": 55825,
+       "cache_create": 0,
+       "cost_usd": 0.022340500000000003,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "맞음",
+      "e.old-man": "맞음",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "틀림",
+      "e.david-king": "맞음",
+      "e.face-each": "틀림",
+      "e.look-down": "틀림",
+      "e.one-crown": "맞음",
+      "e.gap": "맞음",
+      "e.kneel": "맞음",
+      "e.boarding": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 엉덩이를 들고 이마를 땅에 댄 모양",
+      "e.before-david": "다윗 발 오른쪽 앞 한 걸음쯤 거리에 있음",
+      "e.old-man": "흰 수염의 노인이 다윗 곁에 서 있음",
+      "e.no-sword": "다윗 두 손이 비어 있고 칼이 없음",
+      "e.ziba-front": "엎드린 사람 뒤 앞쪽 무리는 여덟 명 안팎이라 수십 명이 아님",
+      "e.benjamin-far": "먼 둑에 작은 사람들이 길게 줄지어 큰 무리를 이룸",
+      "e.boat-landed": "배가 물 위에 떠 있고 이쪽 둑에 닿아 있지 않음",
+      "e.david-king": "희끗한 수염, 긴 붉은 겉옷, 금관을 갖춘 왕",
+      "e.face-each": "엎드린 사람의 머리가 화면 오른쪽, 다윗 반대쪽을 향함",
+      "e.look-down": "다윗은 오른쪽 앞을 보고 있어 엎드린 사람을 내려다보지 않음",
+      "e.one-crown": "금관을 쓴 사람은 다윗뿐",
+      "e.gap": "다윗 발에서 한 걸음쯤 떨어져 있음",
+      "e.kneel": "눕지 않고 엉덩이를 들어 이마를 땅에 댐",
+      "e.boarding": "물가의 세 사람은 서 있을 뿐 배에 오르지 않고, 배도 둑에서 떨어져 있음"
+     }
+    }
+   }
+  },
+  "cn:303": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 6.971,
+       "input": 4,
+       "output": 536,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.047457,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "매끈한 구아슈·수채 느낌의 회화체로 보인다. 연필 선과 색연필 질감이 분명하지 않아, 분명히 맞다고 확인되지 않는다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다. 인물들 모두 얼굴과 옷이 갖춰져 있다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 7.088,
+       "input": 4,
+       "output": 519,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.0105997,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "틀림"
+     },
+     "reasons": {
+      "s.style": "연필 선과 색연필 질감이 보이지 않는다. 불투명 수채·구아슈로 칠한 듯한 사실적인 회화 화풍이다.",
+      "s.no-blob": "배 옆 인물 아래에 걸린 평평한 회색 타원형 물체가 있다. 문양이나 질감이 없어 방패인지 미완성 덩어리인지 분명하지 않다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.626,
+       "input": 4,
+       "output": 529,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.0106997,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "틀림"
+     },
+     "reasons": {
+      "s.style": "불투명 수채·과슈로 칠한 사실적인 역사화 느낌이다. 연필선과 색연필 결이 보이지 않아 동화 그림 화풍으로 확인되지 않는다.",
+      "s.no-blob": "배 앞머리 옆에 얼굴·무늬 없이 평평한 회색 타원이 매달려 있다. 정체가 불분명한 덩어리로 보여 맞다고 확인되지 않는다."
+     }
+    }
+   },
+   "E": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 9.544,
+       "input": 4,
+       "output": 985,
+       "cache_read": 54514,
+       "cache_create": 1310,
+       "cost_usd": 0.020549400000000002,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "틀림",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "틀림",
+      "e.david-king": "틀림",
+      "e.face-each": "틀림",
+      "e.look-down": "틀림",
+      "e.one-crown": "맞음",
+      "e.gap": "틀림",
+      "e.kneel": "틀림",
+      "e.boarding": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "엎드린 사람 위에 다른 인물이 겹쳐 있어 한 사람이 비는 모양이 아님",
+      "e.before-david": "엎드린 사람이 다윗에게서 멀고 오른쪽 아래에 있음",
+      "e.old-man": "다윗 곁의 인물은 갈색 옷에 수염이 있으나 아주 늙은 노인이 분명하지 않음",
+      "e.no-sword": "다윗은 빈손",
+      "e.ziba-front": "앞쪽에 수십 명의 무리가 없음",
+      "e.benjamin-far": "먼 뒤쪽에 작은 큰 무리가 있음",
+      "e.boat-landed": "배는 물 위에 떠 있고 사람들이 오르는 모습이 분명하지 않음",
+      "e.david-king": "다윗은 60세쯤으로 보이나 희끗한 수염인지 불분명하고 정면을 향함",
+      "e.face-each": "엎드린 사람이 다윗을 향하지 않고 다윗도 내려다보지 않음",
+      "e.look-down": "다윗은 앞이나 아래쪽 먼 곳을 봄",
+      "e.one-crown": "금관을 쓴 인물은 다윗뿐",
+      "e.gap": "엎드린 사람이 다윗과 한 걸음쯤이 아니라 훨씬 멀리 떨어져 있음",
+      "e.kneel": "무릎 꿇은 자세이나 겹친 인물 때문에 이마를 땅에 댄 모양이 분명하지 않음",
+      "e.boarding": "사람들이 배 안에 타 있어 줄지어 선 것은 아니나 배 근처 강가에 선 인물이 있고 오르는 모습이 불분명함"
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 17.005,
+       "input": 4,
+       "output": 1852,
+       "cache_read": 47036,
+       "cache_create": 8789,
+       "cost_usd": 0.058387600000000005,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "틀림",
+      "e.before-david": "틀림",
+      "e.old-man": "맞음",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "맞음",
+      "e.david-king": "맞음",
+      "e.face-each": "틀림",
+      "e.look-down": "틀림",
+      "e.one-crown": "맞음",
+      "e.gap": "틀림",
+      "e.kneel": "맞음",
+      "e.boarding": "맞음"
+     },
+     "reasons": {
+      "e.shimei-bow": "엎드린 사람 뒤에 망토 쓴 다른 인물이 겹쳐 두 겹으로 보여 한 사람이 아님",
+      "e.before-david": "엎드린 사람이 다윗 발 앞이 아니라 오른쪽 아래로 멀리 떨어져 있음",
+      "e.old-man": "다윗 곁에 흰 수염의 늙은 인물이 서 있음",
+      "e.no-sword": "다윗 손은 빈손",
+      "e.ziba-front": "앞쪽에 수십 명 무리가 없고 몇 사람만 있음",
+      "e.benjamin-far": "먼 뒤쪽에 작은 사람들의 긴 줄이 많이 보임",
+      "e.boat-landed": "배가 가까운 둑에 닿아 있고 사람들이 타고 있음",
+      "e.david-king": "왼쪽에 금관과 긴 붉은 겉옷을 입은 수염 난 왕",
+      "e.face-each": "엎드린 사람은 아래를 향하고 다윗도 그를 바로 보지 않아 마주한다고 보기 어려움",
+      "e.look-down": "다윗 시선이 아래를 향하지만 엎드린 사람을 내려다보는지는 분명하지 않음",
+      "e.one-crown": "금관은 다윗만 씀",
+      "e.gap": "한 걸음이 아니라 훨씬 멀리 떨어져 있음",
+      "e.kneel": "무릎을 꿇고 이마를 땅 가까이 숙인 모양",
+      "e.boarding": "사람들이 배 안에 타 있고 뱃머리 쪽은 오르는 중"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 15.861,
+       "input": 4,
+       "output": 1745,
+       "cache_read": 55825,
+       "cache_create": 0,
+       "cost_usd": 0.023040500000000002,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "맞음",
+      "e.no-sword": "맞음",
+      "e.ziba-front": "틀림",
+      "e.benjamin-far": "맞음",
+      "e.boat-landed": "맞음",
+      "e.david-king": "틀림",
+      "e.face-each": "틀림",
+      "e.look-down": "틀림",
+      "e.one-crown": "맞음",
+      "e.gap": "틀림",
+      "e.kneel": "맞음",
+      "e.boarding": "맞음"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 몸을 숙여 손을 땅에 짚음",
+      "e.before-david": "엎드린 사람이 다윗에게서 멀리 오른쪽 아래에 있어 발 앞이 아님",
+      "e.old-man": "갈색 겉옷에 흰 수염의 노인이 다윗 곁에 섬",
+      "e.no-sword": "다윗 손은 비어 있음",
+      "e.ziba-front": "앞쪽에 수십 명의 큰 무리가 없음. 몇 사람만 있음",
+      "e.benjamin-far": "먼 뒤쪽 강둑과 언덕에 작은 사람들이 길게 늘어섬",
+      "e.boat-landed": "배가 가까운 둑에 닿아 있고 사람들이 타 있음",
+      "e.david-king": "머리와 수염이 짙고 곱슬해 60세쯤의 희끗한 왕으로 보이지 않음",
+      "e.face-each": "엎드린 사람의 머리가 오른쪽을 향해 다윗 반대쪽이고 다윗도 그를 보지 않음",
+      "e.look-down": "다윗은 앞쪽 아래를 보고 엎드린 사람을 내려다보지 않음",
+      "e.one-crown": "금관을 쓴 사람은 다윗뿐",
+      "e.gap": "간격이 한 걸음보다 훨씬 멀고 사이에 다른 인물이 있음",
+      "e.kneel": "무릎 꿇고 엉덩이를 들고 몸을 숙인 자세",
+      "e.boarding": "사람들이 배 안에 타 있거나 배 곁에 서서 오르는 모습"
+     }
+    }
+   }
+  }
+ },
+ "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry grassy bank beside the Jordan river, the far bank across the water with low distant hills, empty pale sky. a calm wide river with a muddy bank, a small flat boat that carries people across a river, which has come across from the far bank and now rests against the near bank. at the water's edge on the near bank, a few men of Judah who came down to meet the king, holding the landed ferry boat steady to help the king across. on the near bank, the king's household and all his servants climbing into the landed boat to be carried across. far back along the same near bank, small in the distance, a thousand men of Benjamin who have just waded across the Jordan. just behind the bowing man, a close group of men facing the king, Ziba and his fifteen sons and twenty servants. across the river on the far western bank, a small distant crowd of the men of Judah waiting. beside the king at the river, Barzillai the Gileadite, a very old man of eighty, a wealthy man, with a long white beard, who has come to see the king across the Jordan. On the left: an ancient Israelite man, a king, in his early 60s, a lined face, full greying dark beard, upright lean shoulders, a thin gold circlet over greying dark curls, a grave face, standing at the river's edge about to cross the Jordan, his chin lowered toward Shimei, his hands empty, in a long deep red royal robe, the only one crowned, looking down at Shimei bowed on the ground before him, facing toward the right edge of the picture. In the center: an ancient Israelite man, a tribesman, in his 50s, creased forehead, unkempt grey-streaked beard, spare bony frame, rough brown wool head-cloth, his face to the ground, Shimei the son of Gera, kneeling with his forehead to the ground, his head toward the left edge of the picture, toward the king, pleading with the king for mercy, an earth-brown wool tunic and cloak, eyes down, facing toward the left edge of the picture. The king looks down at Shimei, who lies bowed toward him a short step away.",
+ "cand": {
+  "best": "cn",
+  "left": "cn:101",
+  "right": "cn:5"
+ }
+}

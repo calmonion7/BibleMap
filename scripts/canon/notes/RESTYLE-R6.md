@@ -34,3 +34,14 @@ r5 `판정: 보류` — 다윗 시선은 풀렸고(가이드 머리 숙임 · �
 
 ## 명령
 - `$VENV batch/restyle_try.py gen --round r6` → `python3 batch/restyle_try.py judge --round r6` → `report --round r6` → `cand --round r6` → `check --round r6`(→ `ok`)
+
+## 결과 (2026-10-21)
+
+- 생성 8장 · 73~78초/장 · 판정 48건 답 빠짐 0.
+- 다수결 맞음(8장 중, r5 → r6): 화풍 4 → 7 · **꿇어 엎드림 — → 7** · 엎드림 8 → 7 · 내려다봄 5 → 4 · 마주 봄 6 → 3 · 다윗 왕 8 → 6 · 금관 하나 5 → 7 · 간격 8 → 5 · **배에 탐 — → 2**.
+
+후보: 통과 0/8 (후보 s5, s101)
+
+- 실행자 눈: s5 · s101 모두 배가 물에 떠 이쪽 강가에 닿고 **왕의 가족이 배 안에 앉아 있다**(seated 꼴이 옮겨짐), 시므이는 무릎 꿇고 이마를 땅에 댐(s101 분명), 다윗은 고개 숙여 시므이를 봄. 기계 「배에 탐」 틀림은 배 곁에 선 유다 사람 몇(명세상 배를 붙듦)을 줄서기로 본 것으로 보인다 — 상식 규칙집 v2 「문턱 차이」와 반대 방향(여기선 엄격).
+- 고정 절대로 후보 2장(불통과 — s5 배에 탐 · s101 다윗 왕·배에 탐)을 사람 1화면에 올린다.
+- 후보 화면(비공개 Artifact, 폰): https://claude.ai/artifact/TgzNJHhJNoMWneBRWG9Bvy — `check_cand_page.py` 통과. 사람 답은 `samples/restyle-r6/pick-verdict.txt`.
