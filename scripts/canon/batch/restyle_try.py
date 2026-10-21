@@ -184,6 +184,39 @@ def report():
     print(f"{LINE}: {conclude(m)}")
 
 
+def cand():
+    """r2 후보 사람 1화면 — 고른 방법 후보 2장 블라인드 좌우(388 화면 틀 PAGE_G) + 접힌 칸에 1단계·세 갈래 32장(기계 불통과 포함)."""
+    from PIL import Image
+    sys.argv += ["--set", "jordan-guide"]   # plain_words는 import 때 묶음을 읽는다 — 화면 틀·원문만 빌린다
+    import plain_words as PW
+    import make_cand_page as C
+    m = load()
+    best, cands, ok = pick_r2(m)
+    assert best and len(cands) == 2, f"후보 2장 아님: {best} {cands}"
+    one, two = f"{best}:{cands[0]}", f"{best}:{cands[1]}"
+    keys = [(f"{a}:{s}", f"{'1단계 CN' if a == 'base' else a} s{s}{'' if a == 'base' or s in ok[a] else ' (기계 불통과)'}")
+            for a in arms() for s in FX["seeds"]]
+    tpl = (PW.PAGE_G.replace("<title>요단 구도 그림 비교 388</title>", "<title>요단 화풍 되살리기 비교</title>")
+           .replace("const TASK = 388;", 'const TASK = "restyle-r2";')
+           .replace("가이드·본 실행·격자·387 참고 ${s.all.length}장", "1단계·세 방법 전부 ${s.all.length}장"))
+    for w, q in C.SIZES:
+        data = {k: PW.P.uri(Image.open(img(*k.split(":")[:1], int(k.split(":")[1]))), w, q) for k, _ in keys}
+        left, right = (one, two) if PW.left_is_a(SID) else (two, one)
+        spec = D.load(SID)
+        scenes = [{"id": SID, "title": spec["title"], "range": spec["verses"]["range"], "ab": True, "reject": False,
+                   "left": left, "right": right, "left_is": "1위" if left == one else "2위", "right_is": "1위" if right == one else "2위",
+                   "all": [list(x) for x in keys], "verses": C.scripture(SID)}]
+        page = (tpl.replace("/*STYLE*/", C.STYLE + C.VERSE_STYLE).replace("/*SCENES*/[]", json.dumps(scenes, ensure_ascii=False))
+                .replace("/*IMGS*/{}", json.dumps(data)))
+        if len(page) <= PW.P.LIMIT:
+            break
+    out = os.path.join(J.PAGES, f"{NAME}-cand.html")
+    open(out, "w", encoding="utf-8").write(page)
+    m["cand"] = {"best": best, "left": left, "right": right}
+    save(m)
+    print(f"[RestyleTry] 후보 화면 {out} {len(page) / 1e6:.2f}MB · {w}px q{q} · {best} {cands}", flush=True)
+
+
 def check():
     m, err = load(), []
     for a in arms():
@@ -203,7 +236,7 @@ def check():
 
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else ""
-    fn = {"gen": gen, "judge": judge, "report": report, "check": check}.get(cmd)
+    fn = {"gen": gen, "judge": judge, "report": report, "check": check, "cand": cand}.get(cmd)
     if not fn:
         sys.exit(__doc__)
     r = fn()
