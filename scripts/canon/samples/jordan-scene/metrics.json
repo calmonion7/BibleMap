@@ -3051,5 +3051,27 @@
   "sec": 490.5,
   "top": null,
   "top_reason": "「다윗 바로 앞」·「엎드려 빎」·「한 사람뿐」을 모두 맞은 편집본 없음"
+ },
+ "cand": {
+  "authored-david-returns-jerusalem": {
+   "left": "r1:authored-david-returns-jerusalem:42",
+   "right": "r1:authored-david-returns-jerusalem:101",
+   "left_is": "문구 2위",
+   "right_is": "문구 1위"
+  }
+ },
+ "human": {
+  "human_minutes": 7.66,
+  "active_minutes": 7.65,
+  "screens": 1,
+  "scenes": {
+   "authored-david-returns-jerusalem": {
+    "answer": "none",
+    "chose": "none",
+    "memo": "다윗, 시므이 무리 (15+20) 포커스 하고 베냐민 사람 1천명은 조금멀리 원근감으로 구도잡기\n그리고 배는 강어귀에 다다르고 가족들이 배에 오르려는 장면이 아닌가?",
+    "minutes": 7.63,
+    "active_minutes": 7.63
+   }
+  }
  }
 }

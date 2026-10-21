@@ -1,0 +1,2 @@
+판정 task 387
+{"task":387,"kind":"ab","human_minutes":7.66,"active_minutes":7.65,"idle_ms":120000,"screens":1,"scenes":{"authored-david-returns-jerusalem":{"answer":"none","chose":"none","left":"r1:authored-david-returns-jerusalem:42","right":"r1:authored-david-returns-jerusalem:101","memo":"다윗, 시므이 무리 (15+20) 포커스 하고 베냐민 사람 1천명은 조금멀리 원근감으로 구도잡기\n그리고 배는 강어귀에 다다르고 가족들이 배에 오르려는 장면이 아닌가?","minutes":7.63,"active_minutes":7.63}}}
