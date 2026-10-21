@@ -32,3 +32,15 @@ r4e `판정: 보류`(사람 「잘라붙이기는 품질이 안좋네」). 다�
 
 ## 명령
 - `$VENV batch/restyle_try.py gen --round r5` → `python3 batch/restyle_try.py judge --round r5` → `report --round r5` → `cand --round r5` → `check --round r5`(→ `ok`)
+
+## 결과 (2026-10-21)
+
+- 생성 8장 · 73~74초/장 · 판정 48건 답 빠짐 0.
+- 다수결 맞음(8장 중, r4 → r5): **내려다봄 0 → 5** · **마주 봄 0 → 6** · 다윗 왕 6 → 8 · 금관 하나 4 → 5 · 화풍 5 → 4 · 간격 6 → 8 · 노인 5 → 4 · 엎드림 8 → 8.
+
+후보: 통과 2/8 (후보 s23, s202)
+
+- **처음으로 거르기 8문항을 모두 넘은 그림이 나왔다**(s23 · s202). 실행자 눈도 같다 — 두 장 모두 노년 왕 다윗이 고개를 숙여 한 걸음 앞에 엎드린 시므이를 내려다보고, s23은 곁의 바르실래도 시므이를 본다.
+- **PROMPTING 28 검증**: 선 사람의 고개·시선은 문구(0/16)·잘라붙이기(사람 거절)로 안 되고 **가이드 머리 자리(person_bow)로 된다**(내려다봄 0 → 5/8). 28에 반영.
+- 고정 절대로 후보 2장을 사람 1화면에 올린다(접힌 칸 8장 + 승인본 r4 s11).
+- 후보 화면(비공개 Artifact, 폰): https://claude.ai/artifact/4HcrrBqrJeqpueYv9MBX9R — `check_cand_page.py` 통과. 사람 답은 `samples/restyle-r5/pick-verdict.txt`.
