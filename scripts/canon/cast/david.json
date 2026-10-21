@@ -12,14 +12,7 @@
     "authored-david-gath-achish",
     "authored-david-adullam-cave",
     "authored-david-en-gedi-saul",
-    "authored-david-ziklag-base",
-    "authored-david-hebron-king-judah",
-    "authored-david-jerusalem-conquest",
-    "authored-david-ark-jerusalem",
-    "authored-david-nathan-covenant",
-    "authored-solomon-jerusalem-birth",
-    "authored-david-mahanaim-exile",
-    "authored-david-returns-jerusalem"
+    "authored-david-ziklag-base"
   ],
   "era": "an ancient Israelite",
   "age": "lean young man",
@@ -44,11 +37,6 @@
       "prop": "a robe corner",
       "verse": "삼상 24:4",
       "ko": "겉옷자락"
-    },
-    {
-      "prop": "the ark of the covenant",
-      "verse": "삼하 6:12",
-      "ko": "하나님의 궤"
     }
   ],
   "neg": [
@@ -98,10 +86,10 @@
     "build": "[저작](체격 기록 없어 직책 이미지의 대표값)",
     "hair": "[저작](머리 기록 없어 고대 근동 남성 짙은 머리 대표값)",
     "beard": "[저작](수염 기록 없어 고대 근동 성인 남성 수염 관습 대표값)",
-    "headwear": "[저작](맨머리 기본값 — 삼하 12:30 「다윗이 머리에 쓰니라」(면류관)·삼하 15:30 「머리를 가리우고」와 갈림, 정차지 분기는 #355)",
+    "headwear": "[저작](맨머리 기본값 — 즉위 전 도망자 정차지라 왕 표지 없음. 면류관(삼하 12:30)·머리 가림(삼하 15:30)은 david-prime·david-elder 장면 몫)",
     "costume": "[저작](시대 복식)",
     "card.heightRel": "[저작](역표 동석 인물과 구분용)",
-    "card.ageBand": "[추론] 삼하 5:4 「다윗이 삼십 세에 위에 나아가서」 — 즉위 전 도망자 정차지(기브아 창~시글락)는 20대. 「david」는 도망자 정차지 id, 헤브론 이후는 #355에서 id 분할",
+    "card.ageBand": "[추론] 삼하 5:4 「다윗이 삼십 세에 위에 나아가서」 — 즉위 전 도망자 정차지(기브아 창~시글락)는 20대. 헤브론 이후는 david-prime(30~40대)·david-elder(60세 전후)로 나눔(task 355)",
     "card.beardVolume": "[추론] 삼상 21:13 「침을 수염에 흘리매」 — 수염이 있음, 길이는 정한 값",
     "card.silhouette": "[저작](역표 동석 인물과 구분용)",
     "card.headOutline": "[저작](역표 동석 인물과 구분용)",

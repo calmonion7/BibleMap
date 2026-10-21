@@ -295,12 +295,12 @@
   ],
   "figures": [
     {
-      "cast": "david",
+      "cast": "david-elder",
       "role": "다윗",
       "pose": "강가에 서서 요단을 건너려 하며, 발 앞에 엎드린 시므이를 내려다본다",
       "prop": "none",
       "facing": "right",
-      "region": "david",
+      "region": "david-elder",
       "verse": "19:18 · 서 있음·강가 · 본문 밖 · 저작자 정함 · 칼은 장면 구절에 없어 뺌(엔게디 사울 선례) · 60세 전후·왕 표지·시므이를 내려다봄은 본문 밖 · 저작자 정함(restyle r2 사람 메모·지적)",
       "cast_override": {
         "role": "king",
@@ -471,7 +471,7 @@
       0.34,
       0.8
     ],
-    "david": [
+    "david-elder": [
       0.16,
       0.3,
       0.27,
@@ -619,7 +619,7 @@
     {
       "id": "S3",
       "kind": "plate",
-      "region": "david",
+      "region": "david-elder",
       "verse": "19:18",
       "prompt": "the king, an Israelite man of about sixty with a greying dark beard, in a long royal robe with a thin gold circlet on his head, standing at the river's edge, about to cross the Jordan, his hands empty, facing right, looking down at Shimei bowed at his feet.",
       "neg": [
@@ -636,7 +636,7 @@
   "judge": {
     "_why": "인물 하나뿐이라 gap_bands는 없다.",
     "figures": [
-      "david"
+      "david-elder"
     ],
     "gap_bands": [],
     "crest_x": {
@@ -659,7 +659,7 @@
       "judah": 0.58,
       "ziba": 0.72,
       "barzillai": 0.75,
-      "david": 1.0,
+      "david-elder": 1.0,
       "shimei": 1.0,
       "gilgal": 0.1
     },
@@ -671,7 +671,7 @@
       "judah": "crowd",
       "ziba": "crowd",
       "barzillai": "person",
-      "david": "person_bow",
+      "david-elder": "person_bow",
       "shimei": "kneel_bow",
       "gilgal": "crowd"
     },

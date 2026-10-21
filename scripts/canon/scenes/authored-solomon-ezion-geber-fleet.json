@@ -27,12 +27,12 @@
   "crowds": [],
   "figures": [
     {
-      "cast": "solomon",
+      "cast": "solomon-prime",
       "role": "솔로몬",
       "pose": "배 곁에 서서 바라본다",
       "prop": "겉옷자락",
       "facing": "right",
-      "region": "solomon",
+      "region": "solomon-prime",
       "verse": "9:26 · 지물 본문 밖 · 저작자 정함"
     }
   ],
@@ -55,7 +55,7 @@
       1.0,
       1.0
     ],
-    "solomon": [
+    "solomon-prime": [
       0.06,
       0.35,
       0.25,
@@ -128,9 +128,9 @@
     {
       "id": "S3",
       "kind": "plate",
-      "region": "solomon",
+      "region": "solomon-prime",
       "verse": "9:26",
-      "prompt": "{cast:solomon}, standing looking at ships, holding the edge of his robe, facing right.",
+      "prompt": "{cast:solomon-prime}, standing looking at ships, holding the edge of his robe, facing right.",
       "neg": [
         "armour",
         "crown",
@@ -143,7 +143,7 @@
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
     "figures": [
-      "solomon"
+      "solomon-prime"
     ],
     "gap_bands": [],
     "crest_x": {

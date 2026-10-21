@@ -20,13 +20,7 @@
     "dark ochre",
     "tan"
   ],
-  "propCandidates": [
-    {
-      "prop": "a sword",
-      "verse": "왕상 3:24",
-      "ko": "칼"
-    }
-  ],
+  "propCandidates": [],
   "neg": [
     "crown",
     "fine jewelry",
@@ -88,7 +82,6 @@
     "face.skin": "[저작](얼굴 구분용)",
     "face.brows": "[저작](얼굴 구분용)",
     "face.marks": "[저작](얼굴 구분용)",
-    "propCandidates[0]": "왕상 3:24 「칼을 내게로 가져오라 하니 칼을 왕의 앞으로 가져온지라」는 솔로몬이 명해 왕 앞에 가져온 칼이지 이 여인의 소지품이 아님(오인용). 제거를 2/2로 미룸",
     "role": "[추론] 왕상 3:22 「산 것은 내 아들이요 죽은 것은 네 아들이라」 — 아이를 두고 다투는 두 어미 중 한 사람"
   },
   "plate": {

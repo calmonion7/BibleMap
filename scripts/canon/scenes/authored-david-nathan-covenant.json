@@ -104,12 +104,12 @@
       "verse": "7:12-16 · 지물 본문 밖 · 저작자 정함"
     },
     {
-      "cast": "david",
+      "cast": "david-prime",
       "role": "다윗",
       "pose": "앉아서 로브 자락을 쥔 채 듣는다",
       "prop": "a robe corner",
       "facing": "right",
-      "region": "david",
+      "region": "david-prime",
       "verse": "7:12 · 앉은 자세·지물 본문 밖 · 저작자 정함"
     }
   ],
@@ -126,7 +126,7 @@
       0.76,
       0.9
     ],
-    "david": [
+    "david-prime": [
       0.24,
       0.55,
       0.42,
@@ -174,7 +174,7 @@
     {
       "id": "S4",
       "kind": "plate",
-      "region": "david",
+      "region": "david-prime",
       "verse": "7:12",
       "prompt": "an ancient Israelite lean young man sitting, gripping the corner of his robe with one hand, facing right.",
       "neg": [
@@ -191,7 +191,7 @@
     "_why": "두 인물 사이 빈 띠.",
     "figures": [
       "nathan",
-      "david"
+      "david-prime"
     ],
     "gap_bands": [
       [

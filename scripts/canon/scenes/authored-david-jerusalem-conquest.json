@@ -73,12 +73,12 @@
   ],
   "figures": [
     {
-      "cast": "david",
+      "cast": "david-prime",
       "role": "다윗",
       "pose": "성벽을 마주 보고 서서 칼자루를 쥔다",
       "prop": "a sword",
       "facing": "right",
-      "region": "david",
+      "region": "david-prime",
       "verse": "5:7 · 지물 본문 밖 · 저작자 정함"
     }
   ],
@@ -95,7 +95,7 @@
       1.0,
       0.65
     ],
-    "david": [
+    "david-prime": [
       0.14,
       0.42,
       0.3,
@@ -173,7 +173,7 @@
     {
       "id": "S3",
       "kind": "plate",
-      "region": "david",
+      "region": "david-prime",
       "verse": "5:7",
       "prompt": "an ancient Israelite lean young man standing, gripping a sword hilt at his side, facing right.",
       "neg": [
@@ -189,7 +189,7 @@
   "judge": {
     "_why": "인물 하나뿐이라 gap_bands는 없다.",
     "figures": [
-      "david"
+      "david-prime"
     ],
     "gap_bands": [],
     "crest_x": {

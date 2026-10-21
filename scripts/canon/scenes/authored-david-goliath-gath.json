@@ -75,7 +75,7 @@
         "en": "a bronze helmet, a coat of small overlapping bronze scales, bronze greaves on his legs, the spear shaft thick like a weaver's beam",
         "verse": "삼상 17:5-7 · 17:6 놋단창 — 본문에 있으나 그림 생략(생성 한계)"
       },
-      "gaze": "david",
+      "gaze": "david-boy",
       "screen_facing": "left"
     },
     {
@@ -101,16 +101,16 @@
         "en": "a Philistine warrior in a bronze helmet with a tall red horsehair crest, a short dark reddish-brown tunic with a leather belt, sandals, a beardless adult man",
         "verse": "17:7 · 17:41 블레셋 편 · 본문 밖 · 저작자 정함(투구·튜닉·샌들)"
       },
-      "gaze": "david",
+      "gaze": "david-boy",
       "screen_facing": "left"
     },
     {
-      "cast": "david",
+      "cast": "david-boy",
       "role": "소년 다윗",
       "pose": "빨리 달린다",
       "prop": "물매 — 끈 두 가닥 사이에 돌을 담는 넓은 가죽 받침",
       "facing": "right",
-      "region": "david",
+      "region": "david-boy",
       "verse": "17:40 · 17:42 · 17:48",
       "expression": {
         "ko": "굳게 결의한, 붉고 용모가 아름다운 소년의 얼굴",
@@ -124,8 +124,8 @@
       },
       "costume": {
         "ko": "갑옷 없는 목동 차림 — 어두운 양모 튜닉, 가죽 띠, 허리춤의 가죽 주머니",
-        "en": "a plain shepherd's dark wool tunic with a leather belt and a small leather pouch at his side, no armor, bare head, a beardless clean-shaven boy of about fifteen",
-        "verse": "삼상 17:39-40 · 본문 밖 · 저작자 정함(튜닉) · 17:33 소년(나이·수염 없음은 본문 밖 · 저작자 정함)"
+        "en": "a plain shepherd's dark wool tunic with a leather belt and a small leather pouch at his side, no armor",
+        "verse": "삼상 17:39-40 · 본문 밖 · 저작자 정함(튜닉) — 나이·수염은 david-boy 정본(17:33 소년)"
       },
       "gaze": "goliath",
       "screen_facing": "right"
@@ -189,7 +189,7 @@
       0.585,
       0.94
     ],
-    "david": [
+    "david-boy": [
       0.15,
       0.52,
       0.305,
@@ -335,7 +335,7 @@
     {
       "id": "S5",
       "kind": "plate",
-      "region": "david",
+      "region": "david-boy",
       "verse": "17:40",
       "prompt": "an ancient Israelite shepherd boy running mid-stride, gripping a short leather sling, {costume:david}, a leather pouch at his side, facing right.",
       "neg": [
@@ -404,7 +404,7 @@
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
     "figures": [
-      "david",
+      "david-boy",
       "goliath"
     ],
     "gap_bands": [

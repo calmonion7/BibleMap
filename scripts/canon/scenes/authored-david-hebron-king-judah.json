@@ -72,12 +72,12 @@
   ],
   "figures": [
     {
-      "cast": "david",
+      "cast": "david-prime",
       "role": "다윗",
       "pose": "무릎을 꿇고 고개를 숙인 채 머리에 기름 부음을 받으며 로브 자락을 쥔다",
       "prop": "a robe corner",
       "facing": "right",
-      "region": "david",
+      "region": "david-prime",
       "verse": "2:4 · 자세(무릎 꿇음·고개 숙임) 본문 밖 · 저작자 정함 · 지물 본문 밖 · 저작자 정함"
     }
   ],
@@ -100,7 +100,7 @@
       0.88,
       0.5
     ],
-    "david": [
+    "david-prime": [
       0.42,
       0.55,
       0.58,
@@ -175,7 +175,7 @@
     {
       "id": "S3",
       "kind": "plate",
-      "region": "david",
+      "region": "david-prime",
       "verse": "2:4",
       "prompt": "an ancient Israelite lean young man kneeling, head bowed, gripping the corner of his robe with one hand, men of Judah pouring oil over his head, facing right.",
       "neg": [
@@ -191,7 +191,7 @@
   "judge": {
     "_why": "판정자가 이 장면에서 재는 기하 — 인물 하나뿐이라 gap_bands는 없다.",
     "figures": [
-      "david"
+      "david-prime"
     ],
     "gap_bands": [],
     "crest_x": {

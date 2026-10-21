@@ -1,0 +1,89 @@
+{
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "david-elder",
+  "names": [
+    "다윗",
+    "다윗 왕",
+    "왕"
+  ],
+  "stops": [
+    "authored-david-mahanaim-exile",
+    "authored-david-returns-jerusalem"
+  ],
+  "era": "an ancient Israelite",
+  "age": "aging king",
+  "sex": "male",
+  "role": "king",
+  "hair": "graying dark curly hair",
+  "beard": "full beard streaked with gray",
+  "headwear": "none",
+  "build": "settled, a little heavier",
+  "costume": "in a long deep red royal robe with a gold-edged sash",
+  "colorWords": [
+    "deep red",
+    "gold"
+  ],
+  "propCandidates": [],
+  "neg": [
+    "armour",
+    "modern clothes"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "standing, full body, facing right, one hand on a sword hilt"
+  ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "elder",
+      "text": "around 60, lined face, gray streaks at the temples"
+    },
+    "beardVolume": {
+      "class": "full",
+      "text": "full beard streaked with gray"
+    },
+    "silhouette": {
+      "class": "average",
+      "text": "settled shoulders, thickened waist"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, dark curls close to the skull"
+    },
+    "costumeColor": {
+      "class": "red",
+      "text": "deep red long royal robe, gold-edged sash"
+    }
+  },
+  "face": {
+    "faceShape": "oval face, soft jaw, fine cheekbones",
+    "eyes": "large bright dark eyes",
+    "nose": "straight narrow nose",
+    "mouth": "wide mouth with a quick smile",
+    "skin": "ruddy, sun-warmed skin",
+    "brows": "arched dark brows",
+    "marks": "none"
+  },
+  "_why": {
+    "age": "[추론] 삼하 3:3 「셋째는 압살롬이라」 — 압살롬은 헤브론 재위(다윗 30대) 중 출생, 반란 때 성인. 그 뒤 삼하 13:23 「이 주년 후에」·13:38 「삼 년」·14:28 「이 년」·15:7 「사 년만에」로 약 11년 → 반란·귀환은 60세 안팎",
+    "build": "[저작](노년 직전 체격 대표값 — 본문에 체격 없음)",
+    "hair": "[저작](60세 전후 희끗한 머리 — 본문에 머리색 없음, 요단 승인본 r6 s101과 같은 값)",
+    "beard": "[저작](60세 전후 희끗한 수염 — 요단 승인본 r6 s101과 같은 값)",
+    "headwear": "[저작](맨머리 기본값 — 감람산 머리 가림(삼하 15:30)·면류관은 장면 몫)",
+    "costume": "[저작](즉위 뒤 왕의 차림 시대 고증값 — 본문은 궤 앞 베 에봇(삼하 6:14)·세마포 겉옷(대상 15:27)만 말해 그 차림은 장면 몫)",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[추론] 삼하 5:4 「사십 년을 다스렸으되」 + 15:7 「사 년만에」 — 반란·귀환은 재위 말 60세 전후. 임종(왕상 1:1 침상, 70대)은 david-old",
+    "card.beardVolume": "[저작](60세 전후 — 희끗한 풍성한 수염)",
+    "card.silhouette": "[저작](노년 직전 — 허리가 굵어짐)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[저작](같은 사람 연속 — david-prime과 같은 왕의 겉옷)",
+    "face.faceShape": "[저작](달걀형은 정한 값; 삼상 16:12 「얼굴이 아름답더라」는 아름다움만 말함)",
+    "face.eyes": "[저작](크기·색은 정함; 삼상 16:12 「눈이 빼어나고」는 눈이 빼어남만 말함)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[직접] 삼상 16:12 「그의 빛이 붉고」",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[직접] 삼하 19:15 「왕이 돌아와 요단에 이르매」"
+  }
+}

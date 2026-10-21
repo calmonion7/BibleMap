@@ -23,13 +23,7 @@
     "dark brown",
     "deep gray"
   ],
-  "propCandidates": [
-    {
-      "prop": "a horn of oil",
-      "verse": "왕상 1:39",
-      "ko": "기름 뿔"
-    }
-  ],
+  "propCandidates": [],
   "neg": [
     "crown",
     "armour",
@@ -91,7 +85,6 @@
     "face.skin": "[저작](얼굴 구분용)",
     "face.brows": "[저작](얼굴 구분용)",
     "face.marks": "[저작](얼굴 구분용)",
-    "propCandidates[0]": "왕상 1:39 「제사장 사독이 성막 가운데서 기름 뿔을 가져다가」 — 뿔은 사독의 것이라 나단과 잇는 절 아님(오인용). 왕상 1:34 「제사장 사독과 선지자 나단은 저에게 기름을 부어」는 함께 부음만 말함 — 제거 또는 근거 교체를 2/2로 미룸",
     "role": "[직접] 삼하 7:2 「왕이 선지자 나단에게 이르되」"
   },
   "plate": {

@@ -99,12 +99,12 @@
   ],
   "figures": [
     {
-      "cast": "david",
+      "cast": "david-elder",
       "role": "다윗",
       "pose": "지친 걸음으로 백성 앞에서 이끌며 도착해 로브 자락을 쥔다",
       "prop": "a robe corner",
       "facing": "right",
-      "region": "david",
+      "region": "david-elder",
       "verse": "17:22 · 17:24 · 지친 걸음·앞에서 이끎·로브 자락 쥠 · 본문 밖 · 저작자 정함"
     }
   ],
@@ -115,7 +115,7 @@
       1.0,
       1.0
     ],
-    "david": [
+    "david-elder": [
       0.4,
       0.46,
       0.56,
@@ -167,7 +167,7 @@
     {
       "id": "S3",
       "kind": "plate",
-      "region": "david",
+      "region": "david-elder",
       "verse": "17:24",
       "prompt": "an ancient Israelite lean young man arriving on foot, walking wearily at the head of his people, gripping the corner of his robe with one hand, facing right.",
       "neg": [
@@ -183,7 +183,7 @@
   "judge": {
     "_why": "인물 하나뿐이라 gap_bands는 없다.",
     "figures": [
-      "david"
+      "david-elder"
     ],
     "gap_bands": [],
     "crest_x": {

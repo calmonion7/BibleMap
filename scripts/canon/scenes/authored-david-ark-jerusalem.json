@@ -115,12 +115,12 @@
   ],
   "figures": [
     {
-      "cast": "david",
+      "cast": "david-prime",
       "role": "다윗",
       "pose": "두 팔을 벌리고 힘을 다해 춤추며 베 에봇을 입는다",
       "prop": "a linen ephod",
       "facing": "right",
-      "region": "david",
+      "region": "david-prime",
       "verse": "6:14-15"
     }
   ],
@@ -143,7 +143,7 @@
       0.9,
       0.46
     ],
-    "david": [
+    "david-prime": [
       0.2,
       0.48,
       0.36,
@@ -213,7 +213,7 @@
     {
       "id": "S3",
       "kind": "plate",
-      "region": "david",
+      "region": "david-prime",
       "verse": "6:14",
       "prompt": "an ancient Israelite lean young man dancing with all his might, before the ark of the covenant, both arms flung wide, wearing a linen ephod, facing right.",
       "neg": [
@@ -229,7 +229,7 @@
   "judge": {
     "_why": "인물 하나뿐이라 gap_bands는 없다.",
     "figures": [
-      "david"
+      "david-prime"
     ],
     "gap_bands": [],
     "crest_x": {
