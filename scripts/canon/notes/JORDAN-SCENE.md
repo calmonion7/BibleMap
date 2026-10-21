@@ -46,7 +46,7 @@
 - 좌우 블라인드(장면 id 해시): **문구 1위 / 편집 1위**. 편집을 건너뛰었거나 편집 1위가 없으면 **문구 1위 / 문구 2위**.
 - 질문 하나 「장면 구절에 맞게 그린 쪽은?」(왼쪽 / 오른쪽 / 둘 다 아님).
 - 성경 원문 상자(장면 구절 8절 전부, 19:18 굵게, 스크롤) · 여러 줄 메모칸 · 쉼 뺀 타이머 · 접힌 칸에 r1 8장과 편집 12장 전부(기계 불통과 포함 — 시드·갈래만 표시).
-- 사람 답(「판정 문장」)은 `samples/jordan-scene/pick-verdict-387.txt`에 원문 그대로 둔다(루프 검사 꼴 `*387*verdict*`). 화면 대신 대화로 오면 원문을 그 파일 메모에 두고 `source: conversation`으로 적는다.
+- 사람 답(「판정 문장」)은 `samples/jordan-scene/pick-387-verdict.txt`에 원문 그대로 둔다(루프 검사 꼴 `*387*verdict*`). 화면 대신 대화로 오면 원문을 그 파일 메모에 두고 `source: conversation`으로 적는다.
 
 ### `판정:` 규칙
 - 사람이 후보 하나(왼쪽/오른쪽)를 고르면 `판정: 장면 채택`, 「둘 다 아님」이면 `판정: 보류`.
@@ -130,11 +130,11 @@ r1 결과: 문구 1위 **s101** · 2위 **s42**(틀림 칸 4 · 6). s101의 「�
 - 회차·답 검사 `plain_words.py check --set jordan-scene` → `ok` · 382 `ok` · 385 `ok`.
 - **후보 화면 1화면**: 편집 1위가 없어 **문구 1위 s101 / 문구 2위 s42**(좌 s42 · 우 s101 — 장면 id 해시) · 접힌 칸 r1 8장 + 편집 12장. `check_cand_page.py 387` 통과(360·1280px 가로 넘침 0 · 19:18 굵게 · textarea · 타이머).
   - 비공개 Artifact: https://claude.ai/artifact/BzBvaM3XoLgJ1oPRBEdZmc
-- 사람 답 대기 — 「판정 문장」을 `samples/jordan-scene/pick-verdict-387.txt`에 두고 `record` → `verdict` → (채택이면 `approve`).
+- 사람 답 대기 — 「판정 문장」을 `samples/jordan-scene/pick-387-verdict.txt`에 두고 `record` → `verdict` → (채택이면 `approve`).
 
 ## 판정 — 사람 답·기록 (2026-10-21, task 387 S6)
 
-- 사람 답(화면 「판정 문장」, 쉼 뺀 7.65분): **둘 다 아님**(좌 s42 · 우 s101 모두 고르지 않음). 원문 `samples/jordan-scene/pick-verdict-387.txt`, 메모:
+- 사람 답(화면 「판정 문장」, 쉼 뺀 7.65분): **둘 다 아님**(좌 s42 · 우 s101 모두 고르지 않음). 원문 `samples/jordan-scene/pick-387-verdict.txt`, 메모:
   > 다윗, 시므이 무리 (15+20) 포커스 하고 베냐민 사람 1천명은 조금멀리 원근감으로 구도잡기
   > 그리고 배는 강어귀에 다다르고 가족들이 배에 오르려는 장면이 아닌가?
 - 고정 절 규칙 그대로(`plain_words.py verdict --set jordan-scene`):
