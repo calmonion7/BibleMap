@@ -21,16 +21,16 @@ import derive_scene as D
 import judge_items as J
 
 ROUND = sys.argv[sys.argv.index("--round") + 1] if "--round" in sys.argv else "r1"
-NAME = {"r1": "restyle-try", "r2": "restyle-r2", "r3": "restyle-r3", "r4": "restyle-r4", "r4e": "restyle-r4e", "r5": "restyle-r5"}[ROUND]
+NAME = {"r1": "restyle-try", "r2": "restyle-r2", "r3": "restyle-r3", "r4": "restyle-r4", "r4e": "restyle-r4e", "r5": "restyle-r5", "r6": "restyle-r6"}[ROUND]
 NOTES = os.path.join(HERE, "notes", {"r1": "RESTYLE-TRY.md", "r2": "RESTYLE-R2.md", "r3": "RESTYLE-R3.md", "r4": "RESTYLE-R4.md",
-                                     "r4e": "RESTYLE-R4E.md", "r5": "RESTYLE-R5.md"}[ROUND])
+                                     "r4e": "RESTYLE-R4E.md", "r5": "RESTYLE-R5.md", "r6": "RESTYLE-R6.md"}[ROUND])
 METRICS = os.path.join(HERE, "samples", NAME, "metrics.json")
 IMG = os.path.expanduser("~/.local/biblemap-imggen")
 OUT = f"{IMG}/{NAME}"
 SID = "authored-david-returns-jerusalem"
 BASE = f"{IMG}/jordan-guide/g-1.0-4/{SID}"
 LOCK = threading.Lock()
-LINE = {"r1": "시험", "r2": "선택", "r3": "후보", "r4": "후보", "r4e": "후보", "r5": "후보"}[ROUND]
+LINE = {"r1": "시험", "r2": "선택", "r3": "후보", "r4": "후보", "r4e": "후보", "r5": "후보", "r6": "후보"}[ROUND]
 
 
 def fixed(path):
@@ -46,7 +46,7 @@ def arms():
     """갈래 이름 → (방법, 값). r1: ① i2i-<강도> · ② cn-<스텝> · 바탕 base(388 1.0·4, 생성 안 함). r2: 고정 절 arms + base(1단계)."""
     if ROUND == "r4e":   # 국소 편집 — 바탕(채택본) + 지시 갈래
         return {"base": ("base", None), **{a: ("edit", v) for a, v in FX["arms"].items()}}
-    if ROUND in ("r3", "r4", "r5"):
+    if ROUND in ("r3", "r4", "r5", "r6"):
         return {"cn": ("gencn", FX["stage1"])}
     if ROUND == "r2":
         return {"base": ("base", None), **{a: ("i2icn" if v.get("cn") else "i2i", v) for a, v in FX["arms"].items()}}
@@ -79,7 +79,7 @@ def gen():
                 print(f"[RestyleTry] r4e {a} s{s} {r}", flush=True)
         save(m)
         return
-    if ROUND in ("r3", "r4", "r5"):   # 문구는 고친 정본에서 바로(388 문구 = 그때 정본의 route_prompt — 같음을 확인함)
+    if ROUND in ("r3", "r4", "r5", "r6"):   # 문구는 고친 정본에서 바로(388 문구 = 그때 정본의 route_prompt — 같음을 확인함)
         prompt = D.route_prompt(D.load(SID))
         jobs = [{"prompt": prompt, "seed": s, "w": 1216, "h": 640, "out": img("cn", s), "control": os.path.join(HERE, FX["guide"]) if "guide" in FX else src[11]["control"],
                  "scale": FX["stage1"]["scale"], "cn_steps": FX["stage1"]["cn_steps"]} for s in FX["seeds"] if not os.path.exists(img("cn", s))]
@@ -217,7 +217,7 @@ def conclude(m):
     if ROUND == "r4e":
         ok, cands, _ = pick_r4e(m)
         return f"통과 {len(ok)}/{len(FX['arms']) * len(FX['seeds'])} (후보 {', '.join(f'{a} s{s}' for a, s in cands)})"
-    if ROUND in ("r3", "r4", "r5"):
+    if ROUND in ("r3", "r4", "r5", "r6"):
         ok, cands, _ = pick_r3(m)
         return f"통과 {len(ok)}/{len(FX['seeds'])} (후보 {', '.join(f's{s}' for s in cands)})"
     if ROUND == "r2":
@@ -234,7 +234,7 @@ def report():
     for a in arms():
         for s in seeds_of(a):
             print(f"{a:9} s{s:<3} " + " ".join("".join(x[0] if x else "-" for x in votes(m, a, s, q)) for q in qs))
-    if ROUND in ("r3", "r4", "r5"):
+    if ROUND in ("r3", "r4", "r5", "r6"):
         print(f"[cn] 거르기 문항 틀림 {pick_r3(m)[2]}")
     if ROUND == "r2":
         best, cands, ok = pick_r2(m)
@@ -253,7 +253,7 @@ def cand():
     if ROUND == "r4e":
         oks, cands, _ = pick_r4e(m)
         best, ok = "edit", {a: [s for b, s in oks if b == a] for a in arms()}
-    elif ROUND in ("r3", "r4", "r5"):
+    elif ROUND in ("r3", "r4", "r5", "r6"):
         oks, cands, _ = pick_r3(m)
         best, ok = "cn", {"cn": oks}
     else:
@@ -262,7 +262,7 @@ def cand():
     one, two = (f"{cands[0][0]}:{cands[0][1]}", f"{cands[1][0]}:{cands[1][1]}") if ROUND == "r4e" else (f"{best}:{cands[0]}", f"{best}:{cands[1]}")
     keys = [(f"{a}:{s}", f"{'편집 전 채택본' if ROUND == 'r4e' and a == 'base' else '1단계 CN' if a in ('base', 'cn') else a} {'' if ROUND == 'r4e' and a == 'base' else f's{s}'}{'' if a == 'base' or s in ok[a] else ' (기계 불통과)'}")
             for a in arms() for s in seeds_of(a)] + [(f"ref:{s}", f"{FX.get('ref_label', 'r3 승인본')} s{s} (참고)") for s in FX.get("ref_seeds", [])]
-    tpl = (PW.PAGE_G.replace("<title>요단 구도 그림 비교 388</title>", "<title>요단 화풍 되살리기 비교</title>" if ROUND == "r2" else "<title>요단 다윗과 시므이</title>" if ROUND == "r3" else "<title>요단 다윗과 시므이 r4</title>" if ROUND == "r4" else "<title>요단 다윗 시선 편집</title>" if ROUND == "r4e" else "<title>요단 숙인 다윗</title>")
+    tpl = (PW.PAGE_G.replace("<title>요단 구도 그림 비교 388</title>", "<title>요단 화풍 되살리기 비교</title>" if ROUND == "r2" else "<title>요단 다윗과 시므이</title>" if ROUND == "r3" else "<title>요단 다윗과 시므이 r4</title>" if ROUND == "r4" else "<title>요단 다윗 시선 편집</title>" if ROUND == "r4e" else "<title>요단 숙인 다윗</title>" if ROUND == "r5" else "<title>요단 엎드린 시므이</title>")
            .replace("const TASK = 388;", f'const TASK = "{NAME}";')
            .replace("가이드·본 실행·격자·387 참고 ${s.all.length}장", "1단계·세 방법 전부 ${s.all.length}장"))
     for w, q in C.SIZES:

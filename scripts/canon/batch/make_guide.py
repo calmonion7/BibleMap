@@ -4,7 +4,7 @@
   python3 batch/make_guide.py [--scene <장면 id>] [--out <png>]     # 기본: 요단 귀환 → samples/jordan-guide/guide.png
 
 깊이 그림 = 가까움 밝게 · 멂 어둡게. 선을 주지 않고(ZIMAGE §2 「콘티 되그림」) 자리·크기·멀고 가까움만 준다.
-꼴(guide.shape): person(서 있는 한 사람) · person_bow(고개를 앞·아래로 숙인 서 있는 사람, restyle r5) · prostrate(엎드린 낮은 몸, 머리는 왼쪽 — 다윗 쪽) · crowd(작은 실루엣 두 줄) · boat(선체) · bank(강 너머 둑).
+꼴(guide.shape): person(서 있는 한 사람) · person_bow(고개를 앞·아래로 숙인 서 있는 사람, restyle r5) · kneel_bow(무릎 꿇고 엉덩이 들고 머리를 왼쪽 땅에, r6) · seated(배 안에 앉은 머리·어깨 한 줄, r6) · prostrate(엎드린 낮은 몸, 머리는 왼쪽 — 다윗 쪽) · crowd(작은 실루엣 두 줄) · boat(선체) · bank(강 너머 둑).
 바탕: 하늘 0 · 땅은 지평선(0.26)에서 아래로 0.12 → 0.5. 그리는 순서는 먼 것부터(깊이 오름차순)."""
 import argparse, json, os
 
@@ -43,6 +43,27 @@ def prostrate(d, x0, y0, x1, y1, v):
     d.ellipse([x0, y1 - 2 * r, x0 + 2 * r, y1], fill=v)                          # 땅에 댄 머리(왼쪽)
 
 
+def kneel_bow(d, x0, y0, x1, y1, v):
+    """restyle r6 — 무릎 꿇고 엎드려 절함(누움 아님): 엉덩이가 가장 높고(오른쪽), 등이 왼쪽 아래로 기울어 머리가 땅에 닿고, 정강이는 엉덩이 밑 땅에."""
+    h, w = y1 - y0, x1 - x0
+    d.polygon([(x0 + w * 0.2, y1 - h * 0.08), (x0 + w * 0.3, y1 - h * 0.5), (x0 + w * 0.58, y0), (x0 + w * 0.8, y0 + h * 0.08),
+               (x0 + w * 0.84, y1 - h * 0.1), (x0 + w * 0.55, y1)], fill=v)                     # 등·엉덩이·허벅지
+    d.polygon([(x0 + w * 0.55, y1 - h * 0.12), (x1, y1 - h * 0.1), (x1, y1), (x0 + w * 0.55, y1)], fill=v)  # 땅에 댄 정강이·발(오른쪽)
+    r = h * 0.17
+    d.ellipse([x0, y1 - 2 * r, x0 + 2 * r, y1], fill=v)                                         # 땅에 댄 머리(왼쪽)
+
+
+def seated(d, x0, y0, x1, y1, v):
+    """restyle r6 — 배 안에 앉은 사람들: 머리·어깨만 한 줄(뱃전 위로 보이는 몫). 상자 아래 끝 = 뱃전."""
+    h = y1 - y0
+    r, step = h * 0.22, h * 0.62
+    n = max(1, int((x1 - x0) / step))
+    for i in range(n):
+        cx = x0 + step * (i + 0.5)
+        d.ellipse([cx - r, y0, cx + r, y0 + 2 * r], fill=v)
+        d.polygon([(cx - r * 1.3, y0 + 2 * r), (cx + r * 1.3, y0 + 2 * r), (cx + r * 1.6, y1), (cx - r * 1.6, y1)], fill=v)
+
+
 def crowd(d, x0, y0, x1, y1, v):
     h = y1 - y0
     for row, (ph, top, val) in enumerate(((h * 0.62 * 0.9, y0, round(v * 0.92)), (h * 0.62, y1 - h * 0.62, v))):
@@ -65,7 +86,7 @@ def bank(d, x0, y0, x1, y1, v):
     d.polygon([(x0, y1), (x0 + w * 0.2, y0 + h * 0.4), (x0 + w * 0.5, y0), (x0 + w * 0.8, y0 + h * 0.3), (x1, y0 + h * 0.5), (x1, y1)], fill=v)
 
 
-SHAPES = {"person": person, "person_bow": person_bow, "prostrate": prostrate, "crowd": crowd, "boat": boat, "bank": bank}
+SHAPES = {"person": person, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "seated": seated, "crowd": crowd, "boat": boat, "bank": bank}
 
 
 def make(spec):
