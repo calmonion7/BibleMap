@@ -317,3 +317,12 @@ SPEC_REGEN_SCENES = {sid: VERSE_REGEN_SCENES[sid] for sid in (
 SPEC_REGEN_SEEDS = REF_EDIT_SEEDS
 VERSE_ELEMENT_KINDS = ("인물", "행동", "지물", "때", "장소", "무리")
 VERSE_ELEMENT_BANNED = ("prior", "모델", "못 그", "대체", "어렵")
+# task#350(2026-10-22): 얼굴 인식 판정자(ArcFace)를 한 장 생성 그림의 `.identity` 사람 라벨로 교정 — J1이 빼 둔 문항을 기계가 맡을 수 있는가.
+# 묶음은 J1과 같음(다듬기 368·369 / 검증 370·372, 판 묶음 제외), 라벨·머리 크롭은 사람 페이지 identity 문항 그대로. 실행 전 고정(notes/FACE-ID-JUDGE.md).
+FACE_ID_SETS = {"dev": (368, 369), "holdout": (370, 372)}
+# 음성 대조에서 뺄 같은 인물 나이 변형 묶음
+FACE_ID_SAME_PERSON = (("saul", "saul-old"), ("david", "david-boy", "david-old"), ("solomon", "solomon-old"))
+# 양성 대조 = 정본 대 자기 변형(좌우 반전 · 밝기 ±20% · 장면 머리 크기로 줄였다가 다시 키움)
+FACE_ID_POS_VARIANTS = ("flip", "bright+20", "bright-20", "down48")
+FACE_ID_SCENE_HEAD_PX = 48
+FACE_ID_PASS_LINE = 0.8
