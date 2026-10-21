@@ -326,3 +326,11 @@ FACE_ID_SAME_PERSON = (("saul", "saul-old"), ("david", "david-boy", "david-old")
 FACE_ID_POS_VARIANTS = ("flip", "bright+20", "bright-20", "down48")
 FACE_ID_SCENE_HEAD_PX = 48
 FACE_ID_PASS_LINE = 0.8
+# 2026-10-22 얼굴 각도 정본 시험(task 350 회고 (가)·(나)): klein 4B로 정면 정본 → 3/4·옆얼굴(가), 기브아 창 바탕 8시드에 얼굴만 다시 그림 —
+# A = 정면 정본 참조(349와 같은 방식) / B = 3/4 각도 정본 참조. 참조 장 수·지시문은 같고 참조 그림의 각도만 다르다. 실행 전 고정(notes/FACE-ANGLES.md).
+FACE_ANGLE_PEOPLE = {"saul": "left", "david": "right"}   # 인물 → 장면에서 보는 쪽(명세 facing)
+FACE_ANGLE_VIEWS = ("three-quarter", "profile")
+FACE_ANGLE_VIEW_SEEDS = (11, 42, 7)
+FACE_ANGLE_SCENE = "authored-saul-gibeah-spear"
+FACE_ANGLE_SCENE_SET = "night-pilot"
+FACE_ANGLE_REDRAW_SEEDS = REF_EDIT_SEEDS
