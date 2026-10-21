@@ -9,6 +9,7 @@ task 363: 한 장 프롬프트(`derive_scene.whole_prompt`)가 Z-Image 인코더
   토크나이저(HF 캐시, 오프라인)가 필요하므로 venv314로 실행한다. 못 불러오면 실패로 보고한다.
 task 375: 구절 시각 요소(`verse_elements`)가 있는 장면은 요소마다 인용·칸·파생 프롬프트 문구를 짝짓고, 「못 그림」류 제외 사유는 실패.
   대상 14장면(params.VERSE_ELEMENT_SCENES)에 목록이 없으면 「미작성」 경고, 끝에 「구절 요소: N/14 장면」(notes/VERSE-ELEMENTS.md).
+task 387: 장면 구절 상황 칸(`situation`)이 있는 명세는 text가 비지 않고 same_time 키가 quotes 키와 같아야 한다(없는 명세는 그대로).
 """
 import glob
 import json
@@ -63,6 +64,13 @@ def check(spec, verses):
                     errs.append(f"절 없음: {ref} ({vid})")
             if not text.strip():
                 errs.append(f"인용 비어 있음: {ref}")
+    # 장면 구절 상황 칸(task 387) — 있는 명세만: 같은 때 이유가 인용 절마다 하나씩
+    if "situation" in spec:
+        sit = spec["situation"]
+        if not str(sit.get("text", "")).strip():
+            errs.append("situation.text 비어 있음")
+        if set(sit.get("same_time") or {}) != set(spec["verses"].get("quotes", {})):
+            errs.append(f"situation.same_time 키 ≠ quotes 키: {sorted(sit.get('same_time') or {})}")
     regs = spec["regions"]
     if "full" not in regs:
         errs.append("regions.full 없음")

@@ -3,18 +3,34 @@
   "id": "authored-david-returns-jerusalem",
   "title": "다윗 — 요단을 건너 돌아오다",
   "verses": {
-    "range": "삼하 19:14-18",
+    "range": "삼하 19:15-20 · 19:31-32",
     "quotes": {
-      "19:14": "모든 유다 사람들로 마음을 일제히 돌리게 하매 저희가 왕께 보내어 가로되 왕은 모든 신복으로 더불어 돌아오소서 한지라",
       "19:15": "왕이 돌아와 요단에 이르매 유다 족속이 왕을 맞아 요단을 건네려 하여 길갈로 오니라",
       "19:16": "바후림에 있는 베냐민 사람 게라의 아들 시므이가 급히 유다 사람과 함께 다윗 왕을 맞으려 내려올 때에",
       "19:17": "베냐민 사람 일천 명이 저와 함께 하고 사울의 사환 시바도 그 아들 열다섯과 종 스무 명으로 더불어 저와 함께 하여 요단 강을 밟고 건너 왕의 앞으로 나아오니라",
-      "19:18": "왕의 가족을 건네려 하며 왕의 선히 여기는 대로 쓰게 하려하여 나룻배가 건너가니 왕이 요단을 건너려 할 때에 게라의 아들 시므이가 왕의 앞에 엎드려"
+      "19:18": "왕의 가족을 건네려 하며 왕의 선히 여기는 대로 쓰게 하려하여 나룻배가 건너가니 왕이 요단을 건너려 할 때에 게라의 아들 시므이가 왕의 앞에 엎드려",
+      "19:19": "왕께 고하되 내 주여 원컨대 내게 죄 주지 마옵소서 내 주 왕께서 예루살렘에서 나오시던 날에 종의 패역한 일을 기억하지 마옵시며 마음에 두지 마옵소서",
+      "19:20": "왕의 종 내가 범죄한 줄 아옵는고로 오늘 요셉의 온 족속 중 내가 먼저 내려와서 내 주 왕을 영접하나이다",
+      "19:31": "길르앗 사람 바르실래가 왕을 보내어 요단을 건네려고 로글림에서 내려와서 함께 요단에 이르니",
+      "19:32": "바르실래는 매우 늙어 나이 팔십 세라 저는 거부인고로 왕이 마하나임에 유할 때에 왕을 공궤하였더라"
+    }
+  },
+  "situation": {
+    "text": "왕이 돌아와 요단에 이르렀고, 유다 족속은 왕을 맞아 요단을 건네려고 길갈로 왔다(19:15). 바후림의 베냐민 사람 게라의 아들 시므이가 급히 유다 사람과 함께 왕을 맞으러 내려와, 유다 사람들이 왕 쪽 강가에 함께 있다(19:16 · 왕 쪽 강가 자리는 본문 밖 · 저작자 정함). 베냐민 사람 일천 명과 사울의 사환 시바, 그 아들 열다섯과 종 스무 명이 시므이와 함께 요단을 밟고 건너 왕 앞으로 나아와 있다(19:17). 왕의 가족을 건네고 왕의 선히 여기는 대로 쓰게 하려고 나룻배가 건너가고, 왕이 요단을 건너려 할 때 시므이가 왕 앞에 엎드려(19:18) 「내 주여 원컨대 내게 죄 주지 마옵소서 … 왕의 종 내가 범죄한 줄 아옵는고로 …」라고 빈다(19:19-20). 길르앗 사람 바르실래도 왕을 요단 건너로 보내려고 내려와 왕과 함께 요단에 이르러 있다 — 나이 팔십 세의 매우 늙은 사람이고 큰 부자다(19:31-32).",
+    "same_time": {
+      "19:15": "왕이 요단에 이른 그때 — 유다 족속은 맞으러 길갈로 왔고, 강가에 함께 있음은 19:16 「유다 사람과 함께」",
+      "19:16": "시므이가 유다 사람과 함께 내려와 지금 이 자리에 있음",
+      "19:17": "베냐민 일천 명·시바 일행이 요단을 건너 왕 앞에 와 있음",
+      "19:18": "고정한 순간 — 나룻배가 건너가고 왕이 건너려 할 때 시므이가 엎드림",
+      "19:19": "19:18과 한 문장 — 엎드린 채 하는 말(죄 주지 말라고 빎)",
+      "19:20": "같은 말의 끝 — 엎드린 채 이어 말함",
+      "19:31": "바르실래가 왕과 「함께 요단에 이르니」 — 같은 강가에 있음",
+      "19:32": "같은 때 거기 있는 바르실래의 나이·모습(매우 늙어 팔십 세 · 큰 부자)"
     }
   },
   "moment": {
     "verse": "19:18",
-    "why": "왕의 가족을 건네려 나룻배가 건너가고, 왕이 요단을 건너려 할 때 게라의 아들 시므이가 왕의 앞에 엎드리는 순간(19:18 전체)을 고정한다. 그 자리에는 시므이와 함께 요단을 밟고 건너온 베냐민 사람 일천 명·시바와 아들·종(19:16-17 「저와 함께」), 왕을 맞아 건너기를 돕는 유다 사람들(19:15), 강가에서 나룻배를 타려고 기다리는 왕의 가족·신복(19:14 「모든 신복으로 더불어」 · 19:18)이 있다. 시므이의 말(19:19-20)은 그리지 않는다. (task 385 — 383 사람 메모 「다윗의 가족들, 신하들이 강가에서 나룻배를 타려고 대기중인데 시므이가 와서 엎드리는 장면」)"
+    "why": "상황 안에서 19:18을 고른다 — 나룻배가 건너가고 왕이 요단을 건너려 할 때 시므이가 왕 앞에 엎드려 비는(19:19) 때로, 장면 구절의 무리와 인물(유다·베냐민 일천·시바 일행·왕의 가족·바르실래)이 모두 강가에 함께 있는 때다. 시므이의 저주(16:5-13)는 원인이라, 아비새의 말(19:21)은 다음 일이라 그리지 않는다. (task 387 — 장면 구절)"
   },
   "verse_elements": [
     {
@@ -22,7 +38,7 @@
       "quote": "왕이 돌아와",
       "kind": "인물",
       "ko": "돌아온 왕 다윗",
-      "en": "an ancient Israelite lean young man",
+      "en": "the king, an ancient Israelite lean young man",
       "field": "stages[S3].prompt"
     },
     {
@@ -54,7 +70,7 @@
       "quote": "길갈로 오니라",
       "kind": "장소",
       "ko": "유다 사람들이 길갈에 모였다가 강가로 내려옴",
-      "out": "길갈에 모인 것은 19:18 순간보다 앞선 걸음 — 이 순간엔 이미 강가에 있다"
+      "out": "길갈은 왕 건너편으로 유다가 온 곳 — 이 그림의 강가가 아님. 강가에 함께 있음은 19:16 「유다 사람과 함께」로 실음"
     },
     {
       "verse": "19:18",
@@ -76,7 +92,7 @@
       "verse": "19:18",
       "quote": "시므이가 왕의 앞에 엎드려",
       "kind": "행동",
-      "ko": "시므이가 왕 앞에 엎드림",
+      "ko": "시므이가 왕 바로 앞에 엎드림",
       "en": "a person kneeling low with the face toward the ground",
       "field": "stages[S4].prompt"
     },
@@ -84,7 +100,7 @@
       "verse": "19:16",
       "quote": "유다 사람과 함께 다윗 왕을 맞으려 내려올 때에",
       "kind": "무리",
-      "ko": "유다 사람들이 왕을 맞으러 강가로 내려옴",
+      "ko": "시므이가 유다 사람과 함께 왕을 맞으러 내려옴 — 유다 사람들도 함께 있음",
       "en": "coming close to meet the king at the river's edge",
       "field": "stages[S2].prompt"
     },
@@ -95,14 +111,6 @@
       "ko": "베냐민 사람 일천 명이 시므이와 함께 옴",
       "en": "a thousand men of Benjamin",
       "field": "stages[S2c].prompt"
-    },
-    {
-      "verse": "19:14",
-      "quote": "모든 신복으로 더불어",
-      "kind": "무리",
-      "ko": "왕의 모든 신복(가족은 19:18 항목)",
-      "en": "the king's household and all his servants",
-      "field": "stages[S2b].prompt"
     },
     {
       "verse": "19:17",
@@ -135,6 +143,104 @@
       "ko": "게라의 아들 시므이",
       "en": "Shimei the son of Gera",
       "field": "stages[S4].prompt"
+    },
+    {
+      "verse": "19:18",
+      "quote": "왕의 가족을",
+      "kind": "무리",
+      "ko": "왕의 가족(신복은 본문 밖 · 383 사람 메모)",
+      "en": "the king's household and all his servants",
+      "field": "stages[S2b].prompt"
+    },
+    {
+      "verse": "19:19",
+      "quote": "내게 죄 주지 마옵소서",
+      "kind": "행동",
+      "ko": "시므이가 엎드린 채 죄 주지 말라고 빎",
+      "en": "pleading with the king for mercy",
+      "field": "stages[S4].prompt"
+    },
+    {
+      "verse": "19:19",
+      "quote": "종의 패역한 일을 기억하지 마옵시며",
+      "kind": "행동",
+      "ko": "지난 날 저주한 일(말 속 내용)",
+      "out": "말 속의 지난 일(16:5-13 저주) — 이 순간 강가에서 일어나는 모습이 아니다"
+    },
+    {
+      "verse": "19:20",
+      "quote": "내가 먼저 내려와서 내 주 왕을 영접하나이다",
+      "kind": "행동",
+      "ko": "먼저 내려와 영접함(말 속 내용)",
+      "out": "말 속에서 앞선 걸음을 말함 — 내려온 일은 19:16에 실음"
+    },
+    {
+      "verse": "19:31",
+      "quote": "길르앗 사람 바르실래가",
+      "kind": "인물",
+      "ko": "길르앗 사람 바르실래",
+      "en": "Barzillai the Gileadite",
+      "field": "stages[S5].prompt"
+    },
+    {
+      "verse": "19:31",
+      "quote": "왕을 보내어 요단을 건네려고",
+      "kind": "행동",
+      "ko": "바르실래가 왕을 요단 건너로 보내려 함",
+      "en": "who has come to see the king across the Jordan",
+      "field": "stages[S5].prompt"
+    },
+    {
+      "verse": "19:31",
+      "quote": "함께 요단에 이르니",
+      "kind": "장소",
+      "ko": "바르실래가 왕과 함께 요단 강가에 있음",
+      "en": "beside the king at the river",
+      "field": "stages[S5].prompt"
+    },
+    {
+      "verse": "19:31",
+      "quote": "로글림에서 내려와서",
+      "kind": "장소",
+      "ko": "로글림에서 내려옴",
+      "out": "로글림에서 내려온 것은 이 순간보다 앞선 걸음 — 이 순간엔 이미 강가에 있다"
+    },
+    {
+      "verse": "19:32",
+      "quote": "바르실래는 매우 늙어 나이 팔십 세라",
+      "kind": "인물",
+      "ko": "아주 늙은 팔십 세 노인",
+      "en": "a very old man of eighty",
+      "field": "stages[S5].prompt"
+    },
+    {
+      "verse": "19:32",
+      "quote": "왕이 마하나임에 유할 때에 왕을 공궤하였더라",
+      "kind": "행동",
+      "ko": "마하나임에서 왕을 먹여 살림",
+      "out": "마하나임에서 앞선 때에 한 일 — 이 순간 강가의 모습이 아니다"
+    },
+    {
+      "verse": "19:16",
+      "quote": "급히",
+      "kind": "행동",
+      "ko": "시므이가 서둘러 내려옴",
+      "out": "서둘러 내려온 걸음은 앞선 움직임 — 이 순간 시므이는 이미 엎드려 있다"
+    },
+    {
+      "verse": "19:18",
+      "quote": "왕의 선히 여기는 대로 쓰게 하려하여",
+      "kind": "행동",
+      "ko": "왕이 뜻대로 쓰게 하려는 배의 쓰임",
+      "out": "배의 쓰임새(왕의 뜻) — 강가에서 보이는 모습이 아님. 그림에 드러나는 쓰임은 「왕의 가족을 건네려」로 실음"
+    },
+    {
+      "verse": "19:32",
+      "quote": "저는 거부인고로",
+      "kind": "인물",
+      "ko": "큰 부자",
+      "en": "a wealthy man",
+      "field": "stages[S5].prompt"
     }
   ],
   "background": [
@@ -151,7 +257,7 @@
     },
     {
       "what": "왕의 가족과 신복들 — 강가에서 나룻배를 타려고 기다림",
-      "verse": "19:14 · 19:18 · 기다림·신복이 배를 타려 함 · 본문 밖 · 저작자 정함(383 사람 메모)",
+      "verse": "19:18 「왕의 가족」 · 신복은 본문 밖 · 383 사람 메모 · 기다림·배를 타려 함 · 저작자 정함",
       "region": "household"
     },
     {
@@ -164,11 +270,11 @@
     {
       "cast": "david",
       "role": "다윗",
-      "pose": "강가에 서서 요단을 건너려 하며 칼자루를 쥔다",
-      "prop": "a sword",
+      "pose": "강가에 서서 요단을 건너려 한다",
+      "prop": "none",
       "facing": "right",
       "region": "david",
-      "verse": "19:18 · 서 있음·강가·칼자루 쥠 · 본문 밖 · 저작자 정함"
+      "verse": "19:18 · 서 있음·강가 · 본문 밖 · 저작자 정함 · 칼은 장면 구절에 없어 뺌(엔게디 사울 선례)"
     }
   ],
   "regions": {
@@ -219,9 +325,15 @@
       0.34,
       0.66,
       0.66
+    ],
+    "barzillai": [
+      0.03,
+      0.46,
+      0.16,
+      0.9
     ]
   },
-  "_regions_why": "다윗 세로 0.44(서서 건너려 함). 시므이는 다윗 바로 앞(오른쪽) 아래 — 엎드린 몸(19:18 「왕의 앞에」). 베냐민 무리는 시므이 뒤 강 쪽, 가족·신복은 오른쪽 나룻배 곁 강가, 유다 무리는 그 사이 강가(19:15 「맞아」).",
+  "_regions_why": "다윗 세로 0.44(서서 건너려 함). 시므이는 다윗 바로 앞(오른쪽) 아래 — 엎드린 몸(19:18 「왕의 앞에」). 바르실래는 다윗 곁 왼쪽(19:31 「함께 요단에 이르니」 — 곁 자리는 본문 밖 · 저작자 정함). 베냐민 무리는 시므이 뒤 강 쪽, 가족·신복은 오른쪽 나룻배 곁 강가, 유다 무리는 그 사이 강가(19:16 「유다 사람과 함께」 · 강가 자리는 본문 밖).",
   "stages": [
     {
       "id": "S1",
@@ -247,7 +359,7 @@
       "id": "S1b",
       "kind": "region",
       "region": "river",
-      "verse": "19:15 · 19:18",
+      "verse": "19:15 · 19:18 · 잔잔함·진흙 둑·갈대는 본문 밖 · 저작자 정함",
       "prompt": "a calm wide river with a muddy bank, reeds along the edge, a small flat boat that carries people across a river, crossing the river toward the bank to carry the king's household across.",
       "neg": [
         "people",
@@ -267,7 +379,7 @@
       "id": "S2",
       "kind": "region",
       "region": "judah",
-      "verse": "19:15 · 19:18",
+      "verse": "19:15-16 · 19:18 · 왕 쪽 둑에 섬·배를 이끎은 본문 밖 · 저작자 정함(376 사람 메모)",
       "prompt": "a crowd of men of Judah coming close to meet the king at the river's edge and help him across, some of them stepping to the water's edge to guide the ferry boat in to the bank.",
       "neg": [
         "empty ground",
@@ -287,7 +399,7 @@
       "id": "S2b",
       "kind": "region",
       "region": "household",
-      "verse": "19:14 · 19:18",
+      "verse": "19:18 · 신복은 본문 밖 · 383 사람 메모",
       "prompt": "on the near bank at the water's edge, the king's household and all his servants standing together, waiting for the boat to come to carry them across.",
       "neg": [
         "empty ground",
@@ -311,11 +423,23 @@
       "id": "S4",
       "kind": "region",
       "region": "shimei",
-      "verse": "19:18",
-      "prompt": "close in front of the king, Shimei the son of Gera, a person kneeling low with the face toward the ground, before the king.",
+      "verse": "19:18 · 19:19",
+      "prompt": "close in front of the king, Shimei the son of Gera, a person kneeling low with the face toward the ground, pleading with the king for mercy.",
       "neg": [
         "standing",
         "sitting"
+      ]
+    },
+    {
+      "id": "S5",
+      "kind": "region",
+      "region": "barzillai",
+      "verse": "19:31-32 · 흰 수염·곁 자리는 본문 밖 · 저작자 정함",
+      "prompt": "beside the king at the river, Barzillai the Gileadite, a very old man of eighty, a wealthy man, with a long white beard, who has come to see the king across the Jordan.",
+      "neg": [
+        "young",
+        "child",
+        "close-up"
       ]
     },
     {
@@ -323,12 +447,13 @@
       "kind": "plate",
       "region": "david",
       "verse": "19:18",
-      "prompt": "an ancient Israelite lean young man standing at the river's edge, about to cross the Jordan, gripping a sword hilt at his side, facing right.",
+      "prompt": "the king, an ancient Israelite lean young man standing at the river's edge, about to cross the Jordan, his hands empty, facing right.",
       "neg": [
         "armour",
         "crown",
         "helmet",
-        "sword swinging",
+        "sword",
+        "weapon",
         "kneeling"
       ]
     }

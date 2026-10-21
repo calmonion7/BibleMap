@@ -16,7 +16,11 @@
 task#385 — `--set jordan-moment`: 같은 사다리를 요단 귀환 새 순간(19:18 전체)에 — 고정 절 notes/JORDAN-MOMENT.md,
 그림 ~/.local/biblemap-imggen/jordan-moment/, metrics samples/jordan-moment/metrics.json. A(기존 그림) 없음 → J1 문항은 정본 명세에서 바로,
 후보 화면은 최종 회차 기계 1위·2위 블라인드 1화면(+ 접힌 8장). `--set` 없으면 382 묶음(plain-words) 그대로.
-  $VENV batch/plain_words.py one --set jordan-moment   ·   ladder · cand · check · record <판정.txt> · verdict · lexicon"""
+  $VENV batch/plain_words.py one --set jordan-moment   ·   ladder · cand · check · record <판정.txt> · verdict · lexicon
+
+task#387 — `--set jordan-scene`: 장면 구절로 다시 쓴 요단 정본 그대로 r1 한 회차(사다리 없음) + 장면 요소 문항(E) → 문구 1위의 「다윗 바로 앞」이
+틀리면 국소 편집 12장 → 후보 화면 1화면. 고정 절 notes/JORDAN-SCENE.md.
+  $VENV batch/plain_words.py one|scene|check|edit|cand|record <판정.txt>|verdict|report --set jordan-scene"""
 import copy, hashlib, json, os, re, subprocess, sys, threading, time
 from concurrent.futures import ThreadPoolExecutor
 
@@ -32,7 +36,8 @@ import make_night_page as P
 # 묶음 → 고정 절·과제 번호·정본 명세 읽는 자리. canon_rev: 382 묶음은 그 회차를 만든 정본(385가 요단 정본을 고치기 전 커밋)으로 읽어
 # 사본 검사(render 대조)가 옛 회차 그대로 통과한다.
 SETS = {"plain-words": {"notes": "PLAIN-WORDS.md", "task": 382, "canon_rev": "03b0b07"},
-        "jordan-moment": {"notes": "JORDAN-MOMENT.md", "task": 385, "canon_rev": None}}
+        "jordan-moment": {"notes": "JORDAN-MOMENT.md", "task": 385, "canon_rev": "1ce6720"},   # 387이 요단 정본을 장면 구절로 고치기 전
+        "jordan-scene": {"notes": "JORDAN-SCENE.md", "task": 387, "canon_rev": None}}
 SET = sys.argv[sys.argv.index("--set") + 1] if "--set" in sys.argv else "plain-words"
 TASK = SETS[SET]["task"]
 NOTES = os.path.join(HERE, "notes", SETS[SET]["notes"])
@@ -53,7 +58,8 @@ def canon(sid):
         _CANON[sid] = json.loads(subprocess.run(["git", "show", f"{rev}:scripts/canon/scenes/{sid}.json"], cwd=HERE,
                                                 capture_output=True, text=True, check=True).stdout)
     return copy.deepcopy(_CANON[sid])
-KINDS = {"J1": ("v2", 1.0), "J1-prop": ("p2", 2.5), "O1": ("o1", 1.0), "W": ("v2", 1.0), "W-prop": ("p2", 2.5)}
+KINDS = {"J1": ("v2", 1.0), "J1-prop": ("p2", 2.5), "O1": ("o1", 1.0), "W": ("v2", 1.0), "W-prop": ("p2", 2.5),
+         "E": ("v2", 1.0)}   # E = 387 장면 요소 문항(전체 그림)
 LOCK = threading.Lock()
 _TOK = []
 
@@ -206,12 +212,19 @@ def word_qs(m, rnd, sid, prop):
     return qs
 
 
+def elem_qs(sid, extra=False):
+    """387 장면 요소 문항(고정 절 elements, 편집본이면 edit_extra까지) — 전체 그림."""
+    c = FX["scenes"][sid]
+    return [dict(e) for e in c.get("elements", []) + (c.get("edit_extra", []) if extra else [])]
+
+
 def items(m, rnd, kind, sids=None):
     out = []
     for sid in sids or m["rounds"][rnd]["scenes"]:
         spec = canon(sid)
         qs = {"J1": lambda: j1_qs(m, rnd, sid), "J1-prop": lambda: [q for q in j1_qs(m, rnd, sid) if J.cls(q["id"]) == "prop"],
-              "O1": lambda: j1_qs(m, rnd, sid), "W": lambda: word_qs(m, rnd, sid, False), "W-prop": lambda: word_qs(m, rnd, sid, True)}[kind]()
+              "O1": lambda: j1_qs(m, rnd, sid), "W": lambda: word_qs(m, rnd, sid, False), "W-prop": lambda: word_qs(m, rnd, sid, True),
+              "E": lambda: elem_qs(sid)}[kind]()
         if not qs:
             continue
         for x in _seeds(m, rnd, sid):
@@ -223,6 +236,25 @@ def items(m, rnd, kind, sids=None):
     return out
 
 
+def ask(m, rnd, kind, it):
+    """claude -p 한 건 → m["answers"][rnd][kind][key] (바로 저장)."""
+    header, zoom = KINDS[kind]
+    d, files = J.prepare(it, SET, zoom)
+    text = J.oddity_prompt(it, files, J.HEADERS[header]) if kind == "O1" else J.prompt(it, files, J.HEADERS[header])
+    tries, got = [], None
+    for _ in range(2):   # JSON이 깨지면 한 번만 다시(judge_items.run과 같음)
+        o = J.call(text, d, "sonnet")
+        tries.append(J.use(o) | {"error": bool(o.get("is_error"))})
+        got = None if o.get("is_error") else J.parse(o.get("result"), it["qids"])
+        if got:
+            break
+    with LOCK:
+        m["answers"].setdefault(rnd, {}).setdefault(kind, {})[it["key"]] = {"tries": tries, "raw": None if got else str(o.get("result"))[:400], **(got or {"answers": None})}
+        save_m(m)
+    if not got:
+        print(f"[PlainWords] {kind} {it['key']} 답 없음", flush=True)
+
+
 def judge(m, rnd, kinds=tuple(KINDS), sids=None, workers=8):
     """claude -p 판정(J1·J1-prop·O1·특징 문항) — 이미 답한 그림은 건너뛴다. 답마다 바로 저장."""
     todo = []
@@ -232,26 +264,8 @@ def judge(m, rnd, kinds=tuple(KINDS), sids=None, workers=8):
     print(f"[PlainWords] {rnd} 판정 {len(todo)}건 {sorted({k for k, _ in todo})}", flush=True)
     t = time.time()
 
-    def one(job):
-        kind, it = job
-        header, zoom = KINDS[kind]
-        d, files = J.prepare(it, SET, zoom)
-        text = J.oddity_prompt(it, files, J.HEADERS[header]) if kind == "O1" else J.prompt(it, files, J.HEADERS[header])
-        tries, got = [], None
-        for _ in range(2):   # JSON이 깨지면 한 번만 다시(judge_items.run과 같음)
-            o = J.call(text, d, "sonnet")
-            tries.append(J.use(o) | {"error": bool(o.get("is_error"))})
-            got = None if o.get("is_error") else J.parse(o.get("result"), it["qids"])
-            if got:
-                break
-        with LOCK:
-            m["answers"][rnd][kind][it["key"]] = {"tries": tries, "raw": None if got else str(o.get("result"))[:400], **(got or {"answers": None})}
-            save_m(m)
-        if not got:
-            print(f"[PlainWords] {kind} {it['key']} 답 없음", flush=True)
-
     with ThreadPoolExecutor(workers) as ex:
-        list(ex.map(one, todo))
+        list(ex.map(lambda job: ask(m, rnd, *job), todo))
     miss = [(k, it["key"]) for k, it in todo if not m["answers"][rnd][k][it["key"]].get("answers")]
     print(f"[PlainWords] {rnd} 판정 끝 {time.time() - t:.0f}초 · 답 없음 {len(miss)}", flush=True)
     return miss
@@ -489,7 +503,7 @@ def check(m):
                 if set(re.findall(r"[a-z]+", p.lower())) & set(FX["forbidden"]):
                     bad.append(f"b2 {sid} 금지어")
                 continue
-            if spec != render(sid, lv):
+            if spec != render(sid, lv) and {**spec, "approved": None} != {**render(sid, lv), "approved": None}:   # 387: 채택 뒤 정본에 승인 기록이 붙어도
                 bad.append(f"{rnd} {sid} 사본이 render(단계)와 다름")
             if rnd != "r1":
                 base = m["rounds"][sc["base"]]["scenes"][sid]["levels"]
@@ -502,6 +516,8 @@ def check(m):
         for uid, u in st["units"].items():
             if not u["stop"]:
                 bad.append(f"ladder {sid} {uid} 멈춘 사유 없음")
+    if TASK == 387:
+        bad += check387(m)
     print("ok" if not bad else "불통:\n" + "\n".join(bad))
     return not bad
 
@@ -792,6 +808,228 @@ def lexicon(m):
     print(f"[PlainWords] 사전 verified_level {len(hit)}항목: " + " · ".join(f"{k} {u['level']} {u['status']}" for k, u in hit.items()), flush=True)
 
 
+# --- task#387 장면 구절(요단) — 사다리 없이 r1 한 회차 · 장면 요소 문항 · 편집 갈래 ------------------------
+K387 = ("J1", "J1-prop", "O1", "E", "W")      # r1 그림마다 물을 종류(고정 절)
+KE387 = ("J1", "J1-prop", "E", "W")            # 편집본마다(이상한 점은 기록용이라 뺌)
+
+
+def wrong387(m, rnd, sid, s, key=None):
+    """틀림 칸(고정 절) = J1(지물 칸은 J1-prop) + E + W의 「틀림」 수 — 「다윗 바로 앞」은 뺀다. key = 편집본 답 키."""
+    if key:
+        a = lambda k: (m["answers"].get(rnd, {}).get(k, {}).get(key) or {}).get("answers") or {}
+        j, p = a("J1"), a("J1-prop")
+        ans = {**{q: (p.get(q) if J.cls(q) == "prop" and q in p else v) for q, v in j.items()}, **a("E"), **a("W")}
+    else:
+        ans = {**j1(m, rnd, sid, s), **_a(m, rnd, "E", sid, s), **feats(m, rnd, sid, s)}
+    return sum(1 for q, v in ans.items() if v == "틀림" and q != FX["scenes"][sid]["before_qid"])
+
+
+def ranked387(m, sid):
+    order = FX["seeds"]
+    return sorted(seeds_of(m, "r1", sid), key=lambda s: (wrong387(m, "r1", sid, s), order.index(s)))
+
+
+def scene387(m):
+    """r1 = 고친 정본 그대로 8장 → 기계 판정(J1·J1-prop·O1·E·W) → 문구 1위·2위."""
+    lv = {sid: start_levels(sid) for sid in FX["scenes"]}
+    generate(m, "r1", {sid: render(sid, lv[sid]) for sid in FX["scenes"]},
+             base={sid: (lv[sid], "canon") for sid in FX["scenes"]}, raised={sid: [] for sid in FX["scenes"]})
+    miss = judge(m, "r1", K387)
+    for sid in FX["scenes"]:
+        st = m["ladder"].setdefault(sid, {"levels": lv[sid], "end": "r1", "rounds": ["r1"], "units": {}})
+        for u in units(sid):
+            st["units"][u["id"]] = {"level": lv[sid][u["id"]], "stop": "사다리 없음(387 — r1 한 회차)", "status": None, "with": [], "hist": []}
+        r = ranked387(m, sid)
+        m.setdefault("phrase", {})[sid] = {"ranked": r, "top": r[0], "second": r[1]}
+    save_m(m)
+    report387(m)
+    return miss
+
+
+def report387(m):
+    for sid in FX["scenes"]:
+        ss = seeds_of(m, "r1", sid)
+        hit = lambda q, kind="E": sum(_a(m, "r1", kind, sid, s).get(q) == "맞음" for s in ss)
+        jq = {q for s in ss for q in j1(m, "r1", sid, s)}
+        print(f"[JordanScene] {sid} r1 {len(ss)}장 · " + " · ".join(f"{e['id']} {hit(e['id'])}/{len(ss)}" for e in elem_qs(sid)), flush=True)
+        print("[JordanScene] J1 맞음 " + " · ".join(f"{q} {sum(j1(m, 'r1', sid, s).get(q) == '맞음' for s in ss)}" for q in sorted(jq)), flush=True)
+        print(f"[JordanScene] 낱말 " + " · ".join(f"{u['id']} {unit_hits(m, 'r1', sid, u['id'])}/{len(ss)}" for u in units(sid)) +
+              " · 틀림 칸 " + " · ".join(f"s{s} {wrong387(m, 'r1', sid, s)}" for s in ss), flush=True)
+        if sid in m.get("phrase", {}):
+            print(f"[JordanScene] 문구 1위 s{m['phrase'][sid]['top']} · 2위 s{m['phrase'][sid]['second']}", flush=True)
+
+
+def edit_boxes():
+    """고정 절 추가분(```json edit-boxes) — 바탕 시드마다 크롭(L, T, 변)·마스크 상자(원본 좌표). 편집 전에 커밋."""
+    t = open(NOTES, encoding="utf-8").read()
+    g = re.search(r"```json edit-boxes\n(.*?)\n```", t, re.S)
+    return json.loads(g.group(1)) if g else None
+
+
+def edit_img(sid, cid):
+    return os.path.join(OUT, "edit", sid, f"{cid}.png")
+
+
+def edit387(m):
+    """문구 1위의 「다윗 바로 앞」이 틀림이면 문구 1위·2위 바탕 × 지시 둘 × klein 시드 셋 = 12장 → 기계 거름 → 편집 1위."""
+    import gen_local_edit as LE
+    for sid, c in FX["scenes"].items():
+        ph = m["phrase"][sid]
+        top = ph["top"]
+        if _a(m, "r1", "E", sid, top).get(c["before_qid"]) == "맞음":
+            m["edit"] = {"status": "건너뜀", "reason": f"문구 1위 s{top}의 「다윗 바로 앞」이 이미 맞음"}
+            save_m(m)
+            print(f"[JordanScene] 편집 건너뜀 — {m['edit']['reason']}", flush=True)
+            continue
+        bx = edit_boxes()
+        if not bx:
+            sys.exit("[JordanScene] 편집 상자 없음 — 고정 절 추가분(```json edit-boxes)을 먼저 쓰고 커밋")
+        bases = [ph["top"], ph["second"]]
+        E = m.setdefault("edit", {"status": "편집", "bases": bases, "candidates": [], "sec": 0.0})
+        assert E["bases"] == bases and set(map(int, bx["bases"])) == set(bases), (E["bases"], bx)
+        for b in bases:
+            crop, box = tuple(bx["bases"][str(b)]["crop"]), tuple(bx["bases"][str(b)]["box"])
+            for arm, prompt in FX["edit"]["arms"].items():
+                for k in FX["edit"]["klein_seeds"]:
+                    cid = f"{arm}-b{b}-k{k}"
+                    if any(x["id"] == cid for x in E["candidates"]):
+                        continue
+                    if busy():
+                        sys.exit(f"[JordanScene] 다른 생성 프로세스가 돈다 — 겹치지 않게 멈춤:\n{busy()}")
+                    out = edit_img(sid, cid)
+                    os.makedirs(os.path.dirname(out), exist_ok=True)
+                    r = LE.edit(img_path("r1", sid, b), crop, box, arm, k, out, prompt=prompt)
+                    E["sec"] = round(E["sec"] + r["sec"], 1)
+                    if r["status"] != "ok":
+                        print(f"[JordanScene] 편집 {cid} 실패", flush=True)
+                        continue
+                    E["candidates"].append({"id": cid, "arm": arm, "base": b, "seed": k, "image": out, "crop": list(crop), "box": list(box),
+                                            "prompt": prompt, "sec": r["sec"]})
+                    save_m(m)
+                    print(f"[JordanScene] 편집 {cid} {r['sec']}s", flush=True)
+        judge_edit(m, sid)
+
+
+def edit_items(m, sid, kind):
+    """편집본 → 판정 항목: 바탕 시드의 r1 문항·크롭 그대로(E는 「한 사람뿐」 추가)."""
+    base = {it["seed"]: it for it in items(m, "r1", "E" if kind == "E" else kind, [sid])}
+    out = []
+    for x in m["edit"]["candidates"]:
+        it = dict(base[x["base"]])
+        qs = elem_qs(sid, extra=True) if kind == "E" else it["qs"]
+        out.append({**it, "key": f"edit:{sid}:{x['id']}", "task": f"edit-{x['id']}", "src": x["image"], "qs": qs, "qids": [q["id"] for q in qs]})
+    return out
+
+
+def judge_edit(m, sid, workers=8):
+    done = lambda k, key: (m["answers"].get("edit", {}).get(k, {}).get(key) or {}).get("answers")
+    todo = [(k, it) for k in KE387 for it in edit_items(m, sid, k) if not done(k, it["key"])]
+    print(f"[JordanScene] 편집본 판정 {len(todo)}건", flush=True)
+    with ThreadPoolExecutor(workers) as ex:
+        list(ex.map(lambda job: ask(m, "edit", *job), todo))
+    c = FX["scenes"][sid]
+    E = m["edit"]
+    ea = lambda x: (m["answers"]["edit"].get("E", {}).get(f"edit:{sid}:{x['id']}") or {}).get("answers") or {}
+    arms, ks = list(FX["edit"]["arms"]), FX["edit"]["klein_seeds"]
+    for x in E["candidates"]:
+        x["required_ok"] = all(ea(x).get(q) == "맞음" for q in c["edit_required"])
+        x["wrong"] = wrong387(m, "edit", sid, x["base"], key=f"edit:{sid}:{x['id']}")
+    ok = sorted((x for x in E["candidates"] if x["required_ok"]),
+                key=lambda x: (x["wrong"], E["bases"].index(x["base"]), arms.index(x["arm"]), ks.index(x["seed"])))
+    E["top"] = ok[0]["id"] if ok else None
+    E["top_reason"] = (f"{len(ok)}장이 「다윗 바로 앞」·「엎드려 빎」·「한 사람뿐」을 모두 맞음 — 그중 틀림 칸 최소" if ok
+                       else "「다윗 바로 앞」·「엎드려 빎」·「한 사람뿐」을 모두 맞은 편집본 없음")
+    save_m(m)
+    for x in E["candidates"]:
+        a = ea(x)
+        print(f"[JordanScene] {x['id']} " + " ".join(f"{q.split('.')[-1]}={a.get(q, '-')}" for q in c["edit_required"]) + f" · 틀림 {x['wrong']}", flush=True)
+    print(f"[JordanScene] 편집 1위 {E['top']} — {E['top_reason']}", flush=True)
+
+
+PAGE_S = (PAGE_M.replace("<title>요단 순간 그림 비교 385</title>", "<title>요단 장면 그림 비교 387</title>")
+          .replace("const TASK = 385;", "const TASK = 387;")
+          .replace("<h2>굵은 절에 맞게 그린 쪽은?</h2>", "<h2>장면 구절에 맞게 그린 쪽은?</h2>")
+          .replace("— 굵은 절이 이 그림의 순간</summary>", "— 장면 구절 전부, 굵은 절이 이 그림의 순간</summary>")
+          .replace("<summary>최종 회차 ${s.all.length}장 전부(기계 불통과 포함 · 누르면 크게)</summary>",
+                   "<summary>문구 8장·편집본 전부 ${s.all.length}장(기계 불통과 포함 · 누르면 크게)</summary>")
+          .replace("${s.all.map((k) =>", "${s.all.map(([k, t]) =>")
+          .replace('<span class="tag">s${k.split(":")[2]}</span>', '<span class="tag">${esc(t)}</span>'))
+assert "const TASK = 387;" in PAGE_S and "장면 구절에 맞게" in PAGE_S and "([k, t]) =>" in PAGE_S and "${esc(t)}</span></button>`).join" in PAGE_S
+
+
+def cand387(m, out=None):
+    """1화면: 문구 1위 / 편집 1위(없거나 건너뜀이면 문구 2위) 블라인드 좌우 + 접힌 칸에 r1 8장·편집 12장."""
+    import make_cand_page as C
+    for w, q in C.SIZES:
+        scenes, data = [], {}
+        for sid in FX["scenes"]:
+            ph, E = m["phrase"][sid], m.get("edit", {})
+            one = f"r1:{sid}:{ph['top']}"
+            two, two_is = (f"edit:{sid}:{E['top']}", "편집 1위") if E.get("top") else (f"r1:{sid}:{ph['second']}", "문구 2위")
+            for s in FX["seeds"]:
+                data[f"r1:{sid}:{s}"] = P.uri(Image.open(img_path("r1", sid, s)), w, q)
+            for x in E.get("candidates", []):
+                data[f"edit:{sid}:{x['id']}"] = P.uri(Image.open(x["image"]), w, q)
+            left, right = (one, two) if left_is_a(sid) else (two, one)
+            spec = canon(sid)
+            scenes.append({"id": sid, "title": spec["title"], "range": spec["verses"]["range"], "ab": True, "reject": False,
+                           "left": left, "right": right, "left_is": "문구 1위" if left == one else two_is, "right_is": "문구 1위" if right == one else two_is,
+                           "all": [[f"r1:{sid}:{s}", f"문구 s{s}"] for s in FX["seeds"]] +
+                                  [[f"edit:{sid}:{x['id']}", f"편집 {x['arm']} 바탕 s{x['base']} k{x['seed']}"] for x in E.get("candidates", [])],
+                           "verses": C.scripture(sid)})
+        page = (PAGE_S.replace("/*STYLE*/", C.STYLE + C.VERSE_STYLE).replace("/*SCENES*/[]", json.dumps(scenes, ensure_ascii=False))
+                .replace("/*IMGS*/{}", json.dumps(data)))
+        if len(page) <= P.LIMIT:
+            break
+    out = out or os.path.join(J.PAGES, f"{SET}-cand.html")
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    open(out, "w", encoding="utf-8").write(page)
+    m["cand"] = {s["id"]: {k: s[k] for k in ("left", "right", "left_is", "right_is")} for s in scenes}
+    save_m(m)
+    print(f"[JordanScene] 후보 화면 {out} {len(page) / 1e6:.2f}MB · {w}px q{q} · 화면 {len(scenes)}", flush=True)
+    return out
+
+
+def verdict387(m):
+    """고정 절 — 사람이 후보 하나를 고르면 장면 채택, 「둘 다 아님」이면 보류."""
+    picked = {sid: a["chose"] for sid, a in m["human"]["scenes"].items()}
+    line = "판정: 장면 채택" if any(c not in (None, "none") for c in picked.values()) else "판정: 보류"
+    print(" · ".join(f"{sid.split('-', 2)[2]} {c}" for sid, c in picked.items()))
+    print(line)
+    return line
+
+
+def check387(m):
+    """r1 8장 · 그림마다 다섯 종류 답(빈 답 0, 문항 빠짐 0) · 편집이 있으면 12장 답과 1위/사유."""
+    bad = []
+    for sid in FX["scenes"]:
+        ss = seeds_of(m, "r1", sid) if "r1" in m["rounds"] else []
+        if sorted(ss) != sorted(FX["seeds"]):
+            bad.append(f"r1 {sid} 시드 {ss}")
+        for kind in K387:
+            for it in items(m, "r1", kind, [sid]) if ss else []:
+                a = (m["answers"].get("r1", {}).get(kind, {}).get(it["key"]) or {}).get("answers")
+                if not a or set(it["qids"]) - set(a):
+                    bad.append(f"r1 {kind} {it['key']} 답 빠짐")
+        if sid not in m.get("phrase", {}):
+            bad.append(f"{sid} 문구 1위 없음")
+        E = m.get("edit")
+        if E and E["status"] == "편집":
+            n = len(E["bases"]) * len(FX["edit"]["arms"]) * len(FX["edit"]["klein_seeds"])
+            if len(E["candidates"]) != n:
+                bad.append(f"편집 {len(E['candidates'])} ≠ {n}")
+            for kind in KE387:
+                for it in edit_items(m, sid, kind):
+                    a = (m["answers"].get("edit", {}).get(kind, {}).get(it["key"]) or {}).get("answers")
+                    if not a or set(it["qids"]) - set(a):
+                        bad.append(f"edit {kind} {it['key']} 답 빠짐")
+            if "top" not in E or not E.get("top_reason"):
+                bad.append("편집 1위·사유 없음")
+        elif E and not E.get("reason"):
+            bad.append("편집 건너뜀 사유 없음")
+    return bad
+
+
 def main(argv):
     if "--set" in argv:
         i = argv.index("--set")
@@ -804,24 +1042,30 @@ def main(argv):
         sid = next(iter(FX["scenes"]))
         lv = start_levels(sid)
         generate(m, "r1", {sid: render(sid, lv)}, seeds=FX["seeds"][:1], base={sid: (lv, "A")}, raised={sid: list(lv)})
-        judge(m, "r1", ("W", "W-prop"), sids=[sid])
+        judge(m, "r1", ("W", "W-prop", "E"), sids=[sid])
         s = FX["seeds"][0]
-        print(f"[PlainWords] 시험 {sid} s{s} 특징 {feats(m, 'r1', sid, s)}", flush=True)
+        print(f"[PlainWords] 시험 {sid} s{s} 특징 {feats(m, 'r1', sid, s)} · 장면 요소 {_a(m, 'r1', 'E', sid, s)}", flush=True)
     elif cmd == "ladder":
         ladder(m)
+    elif cmd == "scene":   # 387 — 사다리 없이 r1 한 회차
+        sys.exit(1 if scene387(m) else 0)
+    elif cmd == "edit":
+        edit387(m)
     elif cmd == "b2":
         b2(m)
     elif cmd == "cand":
-        (cand_moment if TASK == 385 else cand)(m, argv[1] if len(argv) > 1 else None)
+        {385: cand_moment, 387: cand387}.get(TASK, cand)(m, argv[1] if len(argv) > 1 else None)
     elif cmd == "check":
         sys.exit(0 if check(m) else 1)
     elif cmd == "record":
         record(m, argv[1])
     elif cmd == "verdict":
-        (verdict_moment if TASK == 385 else verdict)(m)
+        {385: verdict_moment, 387: verdict387}.get(TASK, verdict)(m)
     elif cmd == "lexicon":
         lexicon(m)
     elif cmd == "report":
+        if TASK == 387:
+            return report387(m)
         for rnd in m["rounds"]:
             report(m, rnd)
     else:
