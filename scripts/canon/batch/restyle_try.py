@@ -21,15 +21,16 @@ import derive_scene as D
 import judge_items as J
 
 ROUND = sys.argv[sys.argv.index("--round") + 1] if "--round" in sys.argv else "r1"
-NAME = {"r1": "restyle-try", "r2": "restyle-r2", "r3": "restyle-r3", "r4": "restyle-r4"}[ROUND]
-NOTES = os.path.join(HERE, "notes", {"r1": "RESTYLE-TRY.md", "r2": "RESTYLE-R2.md", "r3": "RESTYLE-R3.md", "r4": "RESTYLE-R4.md"}[ROUND])
+NAME = {"r1": "restyle-try", "r2": "restyle-r2", "r3": "restyle-r3", "r4": "restyle-r4", "r4e": "restyle-r4e"}[ROUND]
+NOTES = os.path.join(HERE, "notes", {"r1": "RESTYLE-TRY.md", "r2": "RESTYLE-R2.md", "r3": "RESTYLE-R3.md", "r4": "RESTYLE-R4.md",
+                                     "r4e": "RESTYLE-R4E.md"}[ROUND])
 METRICS = os.path.join(HERE, "samples", NAME, "metrics.json")
 IMG = os.path.expanduser("~/.local/biblemap-imggen")
 OUT = f"{IMG}/{NAME}"
 SID = "authored-david-returns-jerusalem"
 BASE = f"{IMG}/jordan-guide/g-1.0-4/{SID}"
 LOCK = threading.Lock()
-LINE = {"r1": "시험", "r2": "선택", "r3": "후보", "r4": "후보"}[ROUND]
+LINE = {"r1": "시험", "r2": "선택", "r3": "후보", "r4": "후보", "r4e": "후보"}[ROUND]
 
 
 def fixed(path):
@@ -38,11 +39,13 @@ def fixed(path):
 
 FX = fixed(NOTES)
 G = fixed(os.path.join(HERE, "notes", "JORDAN-GUIDE.md"))["scenes"][SID]
-QS = {"S": G["style"], "E": G["elements"] + FX.get("extra_elements", [])}
+QS = {"S": G["style"], "E": FX["elements"] if "elements" in FX else G["elements"] + FX.get("extra_elements", [])}
 
 
 def arms():
     """갈래 이름 → (방법, 값). r1: ① i2i-<강도> · ② cn-<스텝> · 바탕 base(388 1.0·4, 생성 안 함). r2: 고정 절 arms + base(1단계)."""
+    if ROUND == "r4e":   # 국소 편집 — 바탕(채택본) + 지시 갈래
+        return {"base": ("base", None), **{a: ("edit", v) for a, v in FX["arms"].items()}}
     if ROUND in ("r3", "r4"):
         return {"cn": ("gencn", FX["stage1"])}
     if ROUND == "r2":
@@ -52,6 +55,8 @@ def arms():
 
 
 def img(arm, s):
+    if ROUND == "r4e":
+        return os.path.join(HERE, FX["base"]) if arm == "base" else f"{OUT}/{arm}/s{s}.png"
     if arm == "ref":   # r4 접힌 칸 참고 — r3 승인본
         return f"{IMG}/restyle-r3/cn/s{s}.png"
     if arm == "base" and ROUND == "r2" and s not in (11, 42):
@@ -63,6 +68,17 @@ def gen():
     sys.path.insert(0, os.path.join(HERE, "batch"))
     import run_scene
     src = {j["seed"]: j for j in json.load(open(f"{BASE}/_zjobs.json"))}
+    if ROUND == "r4e":   # task 371·386 조리법: 작은 크롭 → 1024 klein 지시 하나 → color_match → 타원 마스크 되붙임
+        import gen_local_edit as LE
+        m = load()
+        for a, prompt in FX["arms"].items():
+            for s in FX["seeds"]:
+                os.makedirs(f"{OUT}/{a}", exist_ok=True)
+                r = LE.edit(img("base", 0), tuple(FX["crop"]), tuple(FX["box"]), a, s, img(a, s), prompt=prompt)
+                m.setdefault("edits", {})[f"{a}:{s}"] = r
+                print(f"[RestyleTry] r4e {a} s{s} {r}", flush=True)
+        save(m)
+        return
     if ROUND in ("r3", "r4"):   # 문구는 고친 정본에서 바로(388 문구 = 그때 정본의 route_prompt — 같음을 확인함)
         prompt = D.route_prompt(D.load(SID))
         jobs = [{"prompt": prompt, "seed": s, "w": 1216, "h": 640, "out": img("cn", s), "control": os.path.join(HERE, FX["guide"]) if "guide" in FX else src[11]["control"],
@@ -145,7 +161,7 @@ def ask(m, arm, s, kind, rep):
 
 def judge(workers=8):
     m = load()
-    todo = [(a, s, k, r) for a in arms() for s in FX["seeds"] for k in QS for r in range(1, FX["reps"] + 1)
+    todo = [(a, s, k, r) for a in arms() for s in seeds_of(a) for k in QS for r in range(1, FX["reps"] + 1)
             if not ((m["answers"].get(f"{a}:{s}") or {}).get(k, {}).get(str(r)) or {}).get("answers")]
     print(f"[RestyleTry] 판정 {len(todo)}건", flush=True)
     with ThreadPoolExecutor(workers) as ex:
@@ -185,7 +201,22 @@ def pick_r3(m):
     return [s for s in FX["seeds"] if fails[s] == 0], order[:2], fails
 
 
+def seeds_of(a):
+    return [0] if ROUND == "r4e" and a == "base" else FX["seeds"]
+
+
+def pick_r4e(m):
+    """후보 2장 = 편집 갈래 전체에서 거르기 틀림 최소 → 전체 틀림 최소 → 갈래·시드 순서(바탕은 대조라 뺀다)."""
+    keys = [(a, s) for a in FX["arms"] for s in FX["seeds"]]
+    fails = {k: sum(maj(votes(m, *k, q)) == "틀림" for q in FX["filter_qs"]) for k in keys}
+    order = sorted(keys, key=lambda k: (fails[k], wrongs(m, *k), keys.index(k)))
+    return [k for k in keys if fails[k] == 0], order[:2], fails
+
+
 def conclude(m):
+    if ROUND == "r4e":
+        ok, cands, _ = pick_r4e(m)
+        return f"통과 {len(ok)}/{len(FX['arms']) * len(FX['seeds'])} (후보 {', '.join(f'{a} s{s}' for a, s in cands)})"
     if ROUND in ("r3", "r4"):
         ok, cands, _ = pick_r3(m)
         return f"통과 {len(ok)}/{len(FX['seeds'])} (후보 {', '.join(f's{s}' for s in cands)})"
@@ -201,7 +232,7 @@ def report():
     qs = [q["id"] for q in QS["S"] + QS["E"]]
     print("갈래      시드 " + " ".join(q.split(".")[1][:10] for q in qs))
     for a in arms():
-        for s in FX["seeds"]:
+        for s in seeds_of(a):
             print(f"{a:9} s{s:<3} " + " ".join("".join(x[0] if x else "-" for x in votes(m, a, s, q)) for q in qs))
     if ROUND in ("r3", "r4"):
         print(f"[cn] 거르기 문항 틀림 {pick_r3(m)[2]}")
@@ -219,16 +250,19 @@ def cand():
     import plain_words as PW
     import make_cand_page as C
     m = load()
-    if ROUND in ("r3", "r4"):
+    if ROUND == "r4e":
+        oks, cands, _ = pick_r4e(m)
+        best, ok = "edit", {a: [s for b, s in oks if b == a] for a in arms()}
+    elif ROUND in ("r3", "r4"):
         oks, cands, _ = pick_r3(m)
         best, ok = "cn", {"cn": oks}
     else:
         best, cands, ok = pick_r2(m)
     assert best and len(cands) == 2, f"후보 2장 아님: {best} {cands}"
-    one, two = f"{best}:{cands[0]}", f"{best}:{cands[1]}"
-    keys = [(f"{a}:{s}", f"{'1단계 CN' if a in ('base', 'cn') else a} s{s}{'' if a == 'base' or s in ok[a] else ' (기계 불통과)'}")
-            for a in arms() for s in FX["seeds"]] + [(f"ref:{s}", f"r3 승인본 s{s} (참고)") for s in FX.get("ref_seeds", [])]
-    tpl = (PW.PAGE_G.replace("<title>요단 구도 그림 비교 388</title>", "<title>요단 화풍 되살리기 비교</title>" if ROUND == "r2" else "<title>요단 다윗과 시므이</title>" if ROUND == "r3" else "<title>요단 다윗과 시므이 r4</title>")
+    one, two = (f"{cands[0][0]}:{cands[0][1]}", f"{cands[1][0]}:{cands[1][1]}") if ROUND == "r4e" else (f"{best}:{cands[0]}", f"{best}:{cands[1]}")
+    keys = [(f"{a}:{s}", f"{'편집 전 채택본' if ROUND == 'r4e' and a == 'base' else '1단계 CN' if a in ('base', 'cn') else a} {'' if ROUND == 'r4e' and a == 'base' else f's{s}'}{'' if a == 'base' or s in ok[a] else ' (기계 불통과)'}")
+            for a in arms() for s in seeds_of(a)] + [(f"ref:{s}", f"r3 승인본 s{s} (참고)") for s in FX.get("ref_seeds", [])]
+    tpl = (PW.PAGE_G.replace("<title>요단 구도 그림 비교 388</title>", "<title>요단 화풍 되살리기 비교</title>" if ROUND == "r2" else "<title>요단 다윗과 시므이</title>" if ROUND == "r3" else "<title>요단 다윗과 시므이 r4</title>" if ROUND == "r4" else "<title>요단 다윗 시선 편집</title>")
            .replace("const TASK = 388;", f'const TASK = "{NAME}";')
            .replace("가이드·본 실행·격자·387 참고 ${s.all.length}장", "1단계·세 방법 전부 ${s.all.length}장"))
     for w, q in C.SIZES:
@@ -252,7 +286,7 @@ def cand():
 def check():
     m, err = load(), []
     for a in arms():
-        for s in FX["seeds"]:
+        for s in seeds_of(a):
             if not os.path.exists(img(a, s)):
                 err.append(f"그림 없음 {a} s{s}")
             for q in QS["S"] + QS["E"]:
