@@ -45,3 +45,13 @@ r5 `판정: 보류` — 다윗 시선은 풀렸고(가이드 머리 숙임 · �
 - 실행자 눈: s5 · s101 모두 배가 물에 떠 이쪽 강가에 닿고 **왕의 가족이 배 안에 앉아 있다**(seated 꼴이 옮겨짐), 시므이는 무릎 꿇고 이마를 땅에 댐(s101 분명), 다윗은 고개 숙여 시므이를 봄. 기계 「배에 탐」 틀림은 배 곁에 선 유다 사람 몇(명세상 배를 붙듦)을 줄서기로 본 것으로 보인다 — 상식 규칙집 v2 「문턱 차이」와 반대 방향(여기선 엄격).
 - 고정 절대로 후보 2장(불통과 — s5 배에 탐 · s101 다윗 왕·배에 탐)을 사람 1화면에 올린다.
 - 후보 화면(비공개 Artifact, 폰): https://claude.ai/artifact/TgzNJHhJNoMWneBRWG9Bvy — `check_cand_page.py` 통과. 사람 답은 `samples/restyle-r6/pick-verdict.txt`.
+
+## 사람 판정 (2026-10-21, 대화로 받음 — `samples/restyle-r6/pick-verdict.txt`)
+
+- 답: 왼쪽 = **cn s101**(2위) · 쉼 뺀 1.0분(벽시계 8.4분 — 새 확대 보기로 봄) · 메모 「다윗목이 조금 길어보임」
+
+판정: 장면 채택
+
+- 정본 `approved.final` = night-pick 바탕 s101(가이드 `samples/restyle-r6/guide.png` · CN 2602 lite 1.0·앞 4 · round restyle-r6) · 레포 사본 `samples/restyle-r6/approved-authored-david-returns-jerusalem.png` — 승인본 r4 s11을 바꿈(r3·r4 사본은 그대로).
+- 남은 결함: 다윗 목이 조금 길다 — 가설: `person_bow` 꼴의 앞으로 기운 목 다각형(어깨에서 머리까지 r의 약 1.3배)이 목을 늘렸다. 다음에 이 꼴을 쓸 때 목을 줄인다(머리 원을 어깨에 더 붙임).
+- 상식 규칙집 라벨 후보(`notes/PLAUSIBILITY.md` 「라벨은 계속 모은다」): r6 s101 「목이 김」 → 몸 비례. 고정 절 검증 묶음은 그대로 두고 다음 검증 판에 더한다.
