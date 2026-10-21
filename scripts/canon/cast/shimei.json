@@ -1,0 +1,101 @@
+{
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "shimei",
+  "names": [
+    "시므이",
+    "게라의 아들 시므이",
+    "바후림의 베냐민 사람 시므이"
+  ],
+  "stops": [
+    "authored-david-returns-jerusalem"
+  ],
+  "era": "an ancient Israelite",
+  "age": "middle-aged man in his 50s, graying",
+  "sex": "male",
+  "role": "tribesman",
+  "hair": "dark hair streaked with gray",
+  "beard": "dark beard streaked with gray",
+  "headwear": "brown wool head-cloth",
+  "build": "spare build",
+  "costume": "in a plain earth-brown wool tunic and cloak, rope belt",
+  "colorWords": [
+    "earth brown",
+    "ash gray"
+  ],
+  "propCandidates": [
+    {
+      "prop": "stones",
+      "verse": "삼하 16:6",
+      "ko": "돌"
+    },
+    {
+      "prop": "dust thrown in the air",
+      "verse": "삼하 16:13",
+      "ko": "티끌"
+    }
+  ],
+  "neg": [
+    "crown",
+    "royal robe",
+    "armour",
+    "modern clothes"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "prostrate, full body, facing left, forehead pressed to the ground, hands flat before him"
+  ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "middle",
+      "text": "in his 50s, creased forehead, gray-streaked temples"
+    },
+    "beardVolume": {
+      "class": "full",
+      "text": "full unkempt beard, dark shot with gray"
+    },
+    "silhouette": {
+      "class": "lean",
+      "text": "spare bony frame, narrow sloping shoulders"
+    },
+    "headOutline": {
+      "class": "headwrap",
+      "text": "rough brown wool head-cloth knotted at the nape over graying hair"
+    },
+    "costumeColor": {
+      "class": "brown",
+      "text": "plain earth-brown wool tunic and cloak, rope belt"
+    }
+  },
+  "face": {
+    "faceShape": "long hollow-cheeked face, pointed chin",
+    "eyes": "small dark eyes set close together",
+    "nose": "thin beaked nose with a high bridge",
+    "mouth": "narrow thin-lipped mouth",
+    "skin": "sun-browned leathery skin",
+    "brows": "bushy gray-flecked brows nearly meeting over the nose",
+    "marks": "deep creases at the corners of the eyes"
+  },
+  "_why": {
+    "age": "[추론] 왕상 2:9 「그 백발의 피를 흘려」 — 다윗 임종(BC 970) 때 백발 → 8년쯤 앞인 귀환(978경) 때는 희끗함 · 50대는 다윗 60대·바르실래 80세와 가르려고 저작자 정함(본문은 60대도 배제하지 않음)",
+    "build": "[저작](체격 기록 없어 시골 사람 대표값 — 동석 인물과 구분용)",
+    "hair": "[추론] 왕상 2:9 「그 백발의 피를 흘려」 — 귀환 때는 백발이 되어 가는 희끗한 머리",
+    "beard": "[추론] 왕상 2:9 「그 백발의 피를 흘려」 — 머리와 같이 희끗한 수염(수염 자체는 고대 근동 성인 남성 관습 대표값)",
+    "headwear": "[저작](쓰개 기록 없어 시골 사람 양모 머리천 대표값 — 왕의 금관과 갈리게)",
+    "costume": "[저작](복식 기록 없어 바후림 시골 집주인 차림으로 정함 — 왕상 2:39-40 종과 나귀를 둔 사람이라 누더기는 아님)",
+    "card.heightRel": "[저작](키 기록 없어 기본값 — 엎드린 장면이라 키로 가르지 않음)",
+    "card.ageBand": "[추론] 왕상 2:9 「그 백발의 피를 흘려」 — 임종 8년쯤 앞 귀환 때 희끗함 · 50대는 다윗 60대·바르실래 80세와 가르려고 저작자 정함",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용 — 다윗의 다듬은 수염과 갈림)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용 — 전체 쌍 구별)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용 — 왕의 금관과 갈리는 머리천)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용 — 다윗의 붉은 옷과 갈리는 물들인 흙빛 갈색 양모)",
+    "face.faceShape": "[저작](얼굴 구분용 — 다윗·바르실래와 다른 길고 볼이 팬 얼굴)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용 — 나단·히람의 매부리코 낱말과 갈림)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용 — 볕에 그은 시골 사람 피부)",
+    "face.brows": "[저작](얼굴 구분용 — 희끗한 머리와 맞춤)",
+    "face.marks": "[저작](얼굴 구분용 — 50대 눈가 주름)",
+    "role": "[직접] 삼하 16:11 「하물며 이 베냐민 사람이랴」 · 삼하 16:5 「사울의 집 족속 하나가 나오니 게라의 아들이요 이름은 시므이라」"
+  }
+}

@@ -42,6 +42,7 @@
 | solomon-old | 솔로몬(노년) | apostasy | 1 | 생애 단계 분할 |
 | hiram | 히람 | ezion-geber-fleet | 1 | |
 | sheba-queen | 스바 여왕 | sheba | 1 | 이름 없는 핵심 개체, 2026-09-04 사용자 보류 → 문구 개정(b) |
+| shimei | 시므이, 게라의 아들 시므이, 바후림의 베냐민 사람 | returns-jerusalem | 1 | 2026-10-21 추가 — 삼하 19:18 왕 앞에 엎드림(사울의 집 족속, 삼하 16:5) |
 | goliath | 골리앗, 블레셋 사람 골리앗 | (없음) | 0 | 삼상17 전용, v41 기존 정본 이관·재저작 대상 |
 
 ## 정차지별 역표(36건 전부)
@@ -73,7 +74,7 @@
 | authored-david-nathan-covenant | david, nathan | (없음) |
 | authored-solomon-jerusalem-birth | david, bathsheba, nathan | (없음) |
 | authored-david-mahanaim-exile | david, absalom | 모든 이스라엘 사람(압살롬 편) |
-| authored-david-returns-jerusalem | david | 유다 족속 |
+| authored-david-returns-jerusalem | david, shimei | 유다 족속 |
 | authored-solomon-gihon-anointing | solomon, nathan | 사독, 브나야, 그렛·블렛 사람, 모든 백성 |
 | authored-solomon-jerusalem-david-charge | david-old, solomon | (없음) |
 | authored-solomon-gibeon-dream | solomon | (없음) |

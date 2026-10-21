@@ -38,24 +38,24 @@
       "quote": "왕이 돌아와",
       "kind": "인물",
       "ko": "돌아온 왕 다윗 — 60세 전후, 희끗한 수염(귀환 BC 978경 · 출생 1040 = 62세경 · 삼하 5:4 + 13:23·13:38·14:28·15:7 「사 년만에」 · 나이·수염은 본문 밖 · 저작자 정함 · restyle r2 사람 메모 「다윗이 누구인가?」)",
-      "en": "the king, an Israelite man of about sixty with a greying dark beard",
-      "field": "stages[S3].prompt"
+      "en": "in his early 60s",
+      "field": "figures[0].cast_override"
     },
     {
       "verse": "19:15",
       "quote": "왕이",
       "kind": "인물",
       "ko": "왕 표지 — 긴 왕의 겉옷·머리에 얇은 금관(본문 밖 · 저작자 정함 · 이 순간 관을 썼다는 본문은 없음 · 왕관 근거 삼하 1:10 사울의 면류관, 띠 모양 · 겉옷 근거 대상 15:27 · 15:30 머리 가림은 떠날 때, 19:8부터 왕으로 돌아옴 · restyle r2 사람 메모 「다윗이 누구인가?」)",
-      "en": "in a long royal robe with a thin gold circlet on his head",
-      "field": "stages[S3].prompt"
+      "en": "a thin gold circlet",
+      "field": "figures[0].cast_override"
     },
     {
       "verse": "19:18",
       "quote": "왕의 앞에",
       "kind": "행동",
-      "ko": "다윗이 발 앞에 엎드린 시므이를 내려다봄 — 둘이 서로를 향함(시므이는 이마를 땅에 대어 눈은 맞추지 않음 · 19:19 「왕께 고하되」 · 19:22-23 · 본문 밖 · 저작자 정함 · 사람 지적 「시므이와 다윗왕이 마주봐야」)",
-      "en": "looking down at Shimei bowed at his feet",
-      "field": "stages[S3].prompt"
+      "ko": "다윗이 앞 한 걸음쯤에 엎드린 시므이를 내려다봄 — 둘이 서로를 향함(시므이는 이마를 땅에 대어 눈은 맞추지 않음 · 19:19 「왕께 고하되」 · 19:22-23 · 본문 밖 · 저작자 정함 · 사람 지적 「시므이와 다윗왕이 마주봐야」)",
+      "en": "looking down at Shimei bowed on the ground before him",
+      "field": "figures[0].gaze"
     },
     {
       "verse": "19:15",
@@ -109,9 +109,9 @@
       "verse": "19:18",
       "quote": "시므이가 왕의 앞에 엎드려",
       "kind": "행동",
-      "ko": "시므이가 왕 발 바로 앞에 왕 쪽(화면 왼쪽)으로 머리를 두고 엎드림(머리 방향은 「왕의 앞에」에서 · 화면 기준 말은 PROMPTING 화면 기준 방향)",
+      "ko": "시므이가 왕 앞 한 걸음쯤에 왕 쪽(화면 왼쪽)으로 머리를 두고 엎드림(머리 방향은 「왕의 앞에」에서 · 화면 기준 말은 PROMPTING 화면 기준 방향)",
       "en": "kneeling with his forehead to the ground, his head toward the left edge of the picture, toward the king",
-      "field": "stages[S4].prompt"
+      "field": "figures[1].gesture"
     },
     {
       "verse": "19:16",
@@ -151,7 +151,7 @@
       "kind": "행동",
       "ko": "왕이 강가에 서서 요단을 건너려 함",
       "en": "about to cross the Jordan",
-      "field": "stages[S3].prompt"
+      "field": "figures[0].gesture"
     },
     {
       "verse": "19:18",
@@ -159,7 +159,7 @@
       "kind": "인물",
       "ko": "게라의 아들 시므이",
       "en": "Shimei the son of Gera",
-      "field": "stages[S4].prompt"
+      "field": "figures[1].gesture"
     },
     {
       "verse": "19:18",
@@ -175,7 +175,7 @@
       "kind": "행동",
       "ko": "시므이가 엎드린 채 죄 주지 말라고 빎",
       "en": "pleading with the king for mercy",
-      "field": "stages[S4].prompt"
+      "field": "figures[1].gesture"
     },
     {
       "verse": "19:19",
@@ -301,7 +301,113 @@
       "prop": "none",
       "facing": "right",
       "region": "david",
-      "verse": "19:18 · 서 있음·강가 · 본문 밖 · 저작자 정함 · 칼은 장면 구절에 없어 뺌(엔게디 사울 선례) · 60세 전후·왕 표지·시므이를 내려다봄은 본문 밖 · 저작자 정함(restyle r2 사람 메모·지적)"
+      "verse": "19:18 · 서 있음·강가 · 본문 밖 · 저작자 정함 · 칼은 장면 구절에 없어 뺌(엔게디 사울 선례) · 60세 전후·왕 표지·시므이를 내려다봄은 본문 밖 · 저작자 정함(restyle r2 사람 메모·지적)",
+      "cast_override": {
+        "role": "king",
+        "card": {
+          "heightRel": "average",
+          "ageBand": {
+            "class": "elder",
+            "text": "in his early 60s, a lined face"
+          },
+          "beardVolume": {
+            "class": "full",
+            "text": "full greying dark beard"
+          },
+          "silhouette": {
+            "class": "lean",
+            "text": "upright lean shoulders"
+          },
+          "headOutline": {
+            "class": "crown",
+            "text": "a thin gold circlet over greying dark curls"
+          },
+          "costumeColor": {
+            "class": "red",
+            "text": "long deep red royal robe"
+          }
+        },
+        "hair": "none"
+      },
+      "cast_override_why": "귀환 때 다윗은 62세경(삼하 5:4 + 13:23·13:38·14:28·15:7 「사 년만에」 · 보수 연대 BC 978경) — 정본 david는 20대 도망자 카드라 이 장면만 덮어씀. 왕 표지(얇은 금관·왕의 겉옷)는 본문 밖 · 저작자 정함 — 근거 삼하 1:10 사울의 면류관(띠 모양) · 대상 15:27 겉옷 · restyle r2 사람 메모 「다윗이 누구인가?」",
+      "screen_facing": "right",
+      "expression": {
+        "ko": "엄숙하고 생각에 잠긴 얼굴 — 노여움도 용서도 아직 드러내지 않음",
+        "en": "a grave face",
+        "verse": "삼하 19:18-19 · 표정 본문 밖 · 저작자 정함(용서의 판결은 19:23 다음 일 — 1층 판정 r3)"
+      },
+      "gesture": {
+        "ko": "강가에 서서 요단을 건너려 하며 턱을 내려 시므이 쪽을 향함, 빈손",
+        "en": "standing at the river's edge about to cross the Jordan, his chin lowered toward Shimei, his hands empty",
+        "verse": "19:18 「건너려 할 때에」 · 고개 숙임·몸 돌림 본문 밖 · 저작자 정함(restyle r3 사람 메모 「상호작용이 없네」) · 칼은 장면 구절에 없어 뺌"
+      },
+      "costume": {
+        "ko": "긴 진홍 왕의 겉옷 — 금관은 다윗 하나만(PROMPTING 28 ⑤ · r3 금관 둘)",
+        "en": "in a long deep red royal robe, the only one crowned",
+        "verse": "왕의 겉옷 본문 밖 · 저작자 정함 · 근거 대상 15:27 · 금관 하나 r3 실측 · 진홍 색은 본문 밖 · 저작자 정함(정본 david costumeColor red를 이음) · 대상 15:27은 「겉옷」 낱말만"
+      },
+      "gaze": {
+        "ko": "발 앞 조금 떨어져 엎드린 시므이를 내려다봄(구체 대상 — PROMPTING 28 ②)",
+        "en": "looking down at Shimei bowed on the ground before him",
+        "verse": "19:18 「왕의 앞에」 · 19:22-23 시므이를 상대함 · 내려다봄 본문 밖 · 저작자 정함(restyle r3 사람 메모)"
+      }
+    },
+    {
+      "cast": "shimei",
+      "role": "게라의 아들 시므이 — 왕 앞에 엎드려 빎",
+      "pose": "왕 쪽(화면 왼쪽)으로 머리를 두고 이마를 땅에 대고 엎드림",
+      "prop": "none",
+      "facing": "left",
+      "screen_facing": "left",
+      "region": "shimei",
+      "verse": "19:18 「시므이가 왕의 앞에 엎드려」 · 19:19 · 머리 방향은 「앞에」에서 · 한 걸음쯤 간격은 본문 밖 · 저작자 정함(restyle r3 사람 메모)",
+      "expression": {
+        "ko": "얼굴을 땅에 묻어 보이지 않음",
+        "en": "his face to the ground",
+        "verse": "19:18 엎드림 · 얼굴 가림 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "게라의 아들 시므이가 머리를 화면 왼쪽(왕 쪽)으로 두고 이마를 땅에 대고 엎드려 죄 주지 말라고 빎",
+        "en": "Shimei the son of Gera, kneeling with his forehead to the ground, his head toward the left edge of the picture, toward the king, pleading with the king for mercy",
+        "verse": "19:18 「게라의 아들 시므이가 … 왕의 앞에 엎드려」 · 19:19 「내게 죄 주지 마옵소서」"
+      },
+      "costume": {
+        "ko": "흙빛 양모 튜닉과 겉옷, 새끼 띠(정본 shimei)",
+        "en": "an earth-brown wool tunic and cloak",
+        "verse": "본문 밖 · 저작자 정함(정본 cast/shimei.json costume)"
+      },
+      "gaze": {
+        "ko": "눈은 땅을 봄",
+        "en": "eyes down",
+        "verse": "19:18 엎드림 · 본문 밖 · 저작자 정함"
+      },
+      "cast_override": {
+        "hair": "none",
+        "card": {
+          "heightRel": "average",
+          "ageBand": {
+            "class": "middle",
+            "text": "in his 50s, creased forehead"
+          },
+          "beardVolume": {
+            "class": "full",
+            "text": "unkempt grey-streaked beard"
+          },
+          "silhouette": {
+            "class": "lean",
+            "text": "spare bony frame"
+          },
+          "headOutline": {
+            "class": "headwrap",
+            "text": "rough brown wool head-cloth"
+          },
+          "costumeColor": {
+            "class": "brown",
+            "text": "plain earth-brown wool tunic and cloak, rope belt"
+          }
+        }
+      },
+      "cast_override_why": "512토큰 때문에 이 장면에서만 카드 층 문구를 줄임(class는 정본 그대로) · 머리털은 머리천과 겹쳐 뺌 — 정본 cast/shimei.json은 그대로"
     }
   ],
   "regions": {
@@ -360,10 +466,10 @@
       0.82
     ],
     "barzillai": [
-      0.28,
+      0.27,
+      0.4,
       0.34,
-      0.38,
-      0.86
+      0.8
     ],
     "david": [
       0.16,
@@ -372,13 +478,13 @@
       0.92
     ],
     "shimei": [
-      0.27,
-      0.77,
-      0.45,
-      0.96
+      0.33,
+      0.8,
+      0.51,
+      0.97
     ]
   },
-  "_regions_why": "앞(가까움, 387 사람 메모): 다윗 세로 0.62(서서 건너려 함, 오른쪽을 봄) · 시므이는 다윗 발 바로 앞 오른쪽 아래의 낮은 몸(19:18 「왕의 앞에」) · 바르실래는 다윗 곁 오른쪽 조금 뒤(19:31 「함께 요단에 이르니」 — 곁 자리는 본문 밖 · 388 시험 1장: 다윗보다 왼쪽에 두면 「On the left: the king」이 왕을 맨 왼쪽 칸에 그려 시므이가 노인 앞에 엎드림). 가까운 중경: 시므이 바로 뒤 시바 일행 35명(19:17 · 15+20). 강가(오른쪽): 서편에서 건너와 왕 쪽 강가에 닿은 나룻배와 오르는 가족·신복, 배를 붙드는 유다 사람 몇(19:18 · 본문 밖 자리). 멀리: 같은 동편 강가 먼 뒤쪽(왼쪽 위 — 강·서편 둑과 겹치지 않게)에 베냐민 일천 명이 작게(원근). 강 너머 오른쪽 위: 서편 둑(길갈 쪽 — 19:40 지리 근거)에 유다 족속이 아주 작게. 배는 강 칸 아래 가장자리(왕 쪽 둑)에 닿고, 가족은 그 배 앞 둑 쪽에서 오르며(배보다 가까움), 유다 몇은 배 곁 둑에서 붙든다(388 1층 판정 표기 반영).",
+  "_regions_why": "앞(가까움, 387 사람 메모): 다윗 세로 0.62(서서 건너려 함, 오른쪽을 봄) · 시므이는 다윗 앞 한 걸음쯤 오른쪽 아래의 낮은 몸(restyle r4 — 처음엔 발 바로 앞)(19:18 「왕의 앞에」) · 바르실래는 다윗 곁 오른쪽 조금 뒤(19:31 「함께 요단에 이르니」 — 곁 자리는 본문 밖 · 388 시험 1장: 다윗보다 왼쪽에 두면 「On the left: the king」이 왕을 맨 왼쪽 칸에 그려 시므이가 노인 앞에 엎드림). 가까운 중경: 시므이 바로 뒤 시바 일행 35명(19:17 · 15+20). 강가(오른쪽): 서편에서 건너와 왕 쪽 강가에 닿은 나룻배와 오르는 가족·신복, 배를 붙드는 유다 사람 몇(19:18 · 본문 밖 자리). 멀리: 같은 동편 강가 먼 뒤쪽(왼쪽 위 — 강·서편 둑과 겹치지 않게)에 베냐민 일천 명이 작게(원근). 강 너머 오른쪽 위: 서편 둑(길갈 쪽 — 19:40 지리 근거)에 유다 족속이 아주 작게. 배는 강 칸 아래 가장자리(왕 쪽 둑)에 닿고, 가족은 그 배 앞 둑 쪽에서 오르며(배보다 가까움), 유다 몇은 배 곁 둑에서 붙든다(388 1층 판정 표기 반영). · restyle r4(PROMPTING 28 ④ · 사람 메모 「다윗과 약간 떨어져야」): 시므이 칸을 다윗 발에서 오른쪽으로 떼고(x 0.27→0.33), 바르실래는 시므이 칸과 겹치지 않게 조금 뒤로(아래 끝 0.86→0.80 · 깊이 0.85→0.75).",
   "stages": [
     {
       "id": "S1",
@@ -492,7 +598,7 @@
       "kind": "region",
       "region": "shimei",
       "verse": "19:18 · 19:19",
-      "prompt": "at the king's feet, directly in front of him, Shimei the son of Gera, kneeling with his forehead to the ground, his head toward the left edge of the picture, toward the king, pleading with the king for mercy.",
+      "prompt": "in front of the king, a short step away, Shimei the son of Gera, kneeling with his forehead to the ground, his head toward the left edge of the picture, toward the king, pleading with the king for mercy.",
       "neg": [
         "standing",
         "sitting"
@@ -552,7 +658,7 @@
       "boat": 0.52,
       "judah": 0.58,
       "ziba": 0.72,
-      "barzillai": 0.85,
+      "barzillai": 0.75,
       "david": 1.0,
       "shimei": 1.0,
       "gilgal": 0.1
@@ -585,5 +691,20 @@
       "cn_steps": 4,
       "round": "restyle-r3"
     }
+  },
+  "meaning": {
+    "ko": "요단 동편 강가에서 왕이 건너려 할 때 게라의 아들 시므이가 왕 앞에 엎드려 죄를 용서해 달라고 빌고, 다윗은 그를 내려다본다",
+    "en": "On the east bank of the Jordan, as King David is about to cross, Shimei son of Gera lies bowed before him begging forgiveness, and David looks down at him",
+    "verse": "삼하 19:18-19 · 다윗이 내려다봄은 본문 밖 · 저작자 정함(restyle r3 사람 메모)"
+  },
+  "whole_background": {
+    "ko": "판 단계 S1·S1b·S2·S2b·S2c·S2d·S2e·S5(배경·강·유다 몇·왕의 가족·베냐민 일천·시바 일행·서편 유다 족속·바르실래) 문구를 그대로 이음 — 단계마다 근거는 stages[].verse — 구절 요소를 싣지 않는 꾸밈말(갈대·물가 자리 반복·「작은 사람들 큰 무리」)만 512토큰 때문에 뺌(PROMPTING 19 빼기만) · S1 `no people`(단계 전용 부정)도 뺌",
+    "en": "a wide dry grassy bank beside the Jordan river, the far bank across the water with low distant hills, empty pale sky. a calm wide river with a muddy bank, a small flat boat that carries people across a river, which has come across from the far bank and now rests against the near bank. at the water's edge on the near bank, a few men of Judah who came down to meet the king, holding the landed ferry boat steady to help the king across. on the near bank, the king's household and all his servants climbing into the landed boat to be carried across. far back along the same near bank, small in the distance, a thousand men of Benjamin who have just waded across the Jordan. just behind the bowing man, a close group of men facing the king, Ziba and his fifteen sons and twenty servants. across the river on the far western bank, a small distant crowd of the men of Judah waiting. beside the king at the river, Barzillai the Gileadite, a very old man of eighty, a wealthy man, with a long white beard, who has come to see the king across the Jordan",
+    "verse": "삼하 19:15-18 · 19:31-32 · 단계별 근거와 본문 밖 표기는 stages[].verse 그대로"
+  },
+  "relation": {
+    "ko": "다윗은 앞 한 걸음쯤 떨어져 엎드린 시므이를 고개 숙여 내려다보고, 시므이는 왕을 향해 엎드려 빈다",
+    "en": "The king looks down at Shimei, who lies bowed toward him a short step away",
+    "verse": "삼하 19:18-19 「왕의 앞에 엎드려 … 왕께 고하되」 · 한 걸음쯤 거리·내려다봄은 본문 밖 · 저작자 정함(restyle r3 사람 메모 「다윗과 약간 떨어져야 · 다윗이 바라봐야지 아래로」)"
   }
 }
