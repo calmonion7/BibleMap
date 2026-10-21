@@ -334,3 +334,14 @@ FACE_ANGLE_VIEW_SEEDS = (11, 42, 7)
 FACE_ANGLE_SCENE = "authored-saul-gibeah-spear"
 FACE_ANGLE_SCENE_SET = "night-pilot"
 FACE_ANGLE_REDRAW_SEEDS = REF_EDIT_SEEDS
+# 2026-10-22 인물 LoRA v3(FACE-ANGLES 다음): 승인된 각도 정본(3/4·옆얼굴)으로 다각도·원경 시트 → v2와 같은 학습 설정(300스텝)으로 다시 학습.
+# v2와 다른 것은 시트뿐. 장면 비교 = 기브아 창 8시드 × C(LoRA 없음)·V2·V3. 실행 전 고정(notes/FACE-LORA-V3.md).
+LORA_V3_WHO = ("saul", "david")
+LORA_V3_BODY = {"waist": ("waist-up, three-quarter view, standing in a stone palace room", (768, 1152)),
+                "kneel": ("full body, kneeling on the floor, side profile view, plain light background", (768, 1152)),
+                "walk": ("full body, walking, three-quarter side view, on a dirt road outdoors", (768, 1152)),
+                "stand": ("full body, standing, side view, plain light background", (768, 1152))}
+LORA_V3_BODY_SEEDS = (11, 42)
+LORA_V3_FAR = {"stand": 0.38, "kneel": 0.30}   # 원경(빈 바탕 전신만 — 걷기는 풍경 사각형이 액자처럼 붙어 뺌) = 전신을 화면 높이의 이 비율로 줄여 1216×640 빈 바탕에 놓음(두 시드씩 → 4장)
+LORA_V3_STEPS = 300
+LORA_V3_SCENE_SEEDS = REF_EDIT_SEEDS

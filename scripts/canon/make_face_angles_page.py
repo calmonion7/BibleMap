@@ -72,7 +72,7 @@ h2 { font-size: 18px; margin: 0; text-wrap: balance }
 .refs figure { margin: 0; flex: 1; min-width: 0 }
 .refs img, .main img { width: 100%; border-radius: 6px; border: 1px solid var(--line); display: block }
 figcaption { font-size: 12px; color: var(--muted); text-align: center }
-.main { max-width: 320px; width: 100%; margin: 0 auto }
+.main { max-width: 320px; width: 100%; margin: 0 auto } .main.wide { max-width: 100% }
 .btns { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px }
 button { font: inherit; padding: 12px 8px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); color: var(--fg); cursor: pointer }
 button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
@@ -93,12 +93,12 @@ function render() {
   if (i >= QS.length) return done();
   const q = QS[i];
   const cap = q.refs.length > 1 ? ["정본 정면", "정본 3/4 측면"] : ["정본"];
-  app.append(el(`<div class="bar"><span>${i + 1} / ${QS.length}</span><span>${q.id.startsWith("view") ? "각도 정본 승인" : "다시 그린 머리"}</span></div>
+  app.append(el(`<div class="bar"><span>${i + 1} / ${QS.length}</span><span>${q.tag || (q.id.startsWith("view") ? "각도 정본 승인" : "다시 그린 머리")}</span></div>
     <h2>${q.q}</h2><p class="hint">${q.hint}</p>
     <div class="refs">${q.refs.map((r, k) => `<figure><img src="${r}" alt="${cap[k]}"><figcaption>${cap[k]}</figcaption></figure>`).join("")}
     ${q.id.startsWith("view") ? `<figure><img src="${q.img}" alt="다시 그린 정본"><figcaption>다시 그린 정본</figcaption></figure>` : ""}</div>
-    ${q.id.startsWith("view") ? "" : `<div class="main"><img src="${q.img}" alt="판정할 머리"></div>`}
-    <div class="btns"><button class="yes" id="y" type="button">같은 사람</button><button class="no" id="n" type="button">다른 사람</button><button id="u" type="button">모르겠음</button></div>
+    ${q.id.startsWith("view") ? "" : `<div class="main${q.wide ? " wide" : ""}"><img src="${q.img}" alt="판정할 그림"></div>`}
+    <div class="btns"><button class="yes" id="y" type="button">${q.yes || "같은 사람"}</button><button class="no" id="n" type="button">${q.no || "다른 사람"}</button><button id="u" type="button">모르겠음</button></div>
     <div class="nav"><button id="back" type="button" ${i ? "" : "disabled"}>이전</button><button id="end" type="button">끝으로</button></div>`));
   const pick = a => { ans[q.id] = a; i++; render(); };
   document.getElementById("y").onclick = () => pick("yes");
