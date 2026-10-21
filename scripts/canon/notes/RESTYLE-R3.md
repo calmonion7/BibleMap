@@ -46,3 +46,12 @@ r2 `판정: 보류`: 사람 「둘 다 아님」, 메모 「다윗이 누구인�
 - 새 결함(실행자 눈): s42·s202 모두 **금관 쓴 사람이 둘**(맨 왼쪽 다윗 + 곁 칸 사람) — 시므이는 두 번째 사람 발 앞. 바르실래(흰 수염)는 오른쪽 따로. 왕 표지가 곁 칸으로 번졌다.
 - 고정 절대로 후보 2장(둘 다 기계 불통과 — 마주 봄)을 사람 1화면에 올린다.
 - 후보 화면(비공개 Artifact, 폰): https://claude.ai/artifact/RZVhT6sikad8gbE1F48uyH — `check_cand_page.py` 통과. 사람 답은 `samples/restyle-r3/pick-verdict.txt`.
+
+## 사람 판정 (2026-10-21, 대화로 받음 — `samples/restyle-r3/pick-verdict.txt`)
+
+- 답: 왼쪽 = **cn s202**(2위) · 쉼 뺀 2.1분 · 메모 「마주 봤는데 너무 다윗이 외면하는거 아녀 다윗과 약간 떨어져야 할것 같고 다윗이 바라봐야지 아래로 먼가 상호작용이 없네 이론장면을 규칙으로 세울부분은 없나?」
+
+판정: 장면 채택
+
+- 정본 `approved.final` = night-pick 바탕 s202(가이드·CN 2602 lite 1.0·앞 4·round restyle-r3) · 레포 사본 `samples/restyle-r3/approved-authored-david-returns-jerusalem.png`. 고정 절 규칙대로 채택했지만 사람 메모의 결함(다윗 외면 · 간격 · 상호작용)은 남았다 → 다음 회차에서 고쳐 승인본을 바꿀 수 있다.
+- 메모의 「규칙」 물음 → `notes/PROMPTING.md` 28(주고받는 장면: 두 사람 다 인물 칸 · 받는 쪽 시선은 구체 대상 · relation 한 문장 · 간격은 가이드 칸 · 고유 표지 번짐 · 상호작용 문항). 검증 대기.

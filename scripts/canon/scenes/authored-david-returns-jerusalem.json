@@ -570,5 +570,20 @@
       "gilgal": "crowd"
     },
     "why": "387 사람 메모 구도 — 다윗·발 앞의 시므이·곁의 바르실래·시바 일행(15+20)이 앞 초점, 베냐민 일천은 먼 뒤쪽 작게(원근), 배는 왕 쪽 강가에 닿아 가족이 오름. 구역마다 가까움(1 = 가장 가까움)과 꼴만 주고 모양·화풍은 문구에 맡긴다."
+  },
+  "approved": {
+    "final": {
+      "path": "night-pick",
+      "seed": 202,
+      "kind": "base",
+      "image": "samples/restyle-r3/approved-authored-david-returns-jerusalem.png",
+      "by": "user",
+      "on": "2026-10-21",
+      "guide": "samples/jordan-guide/guide.png",
+      "cn": "2602 lite",
+      "scale": 1.0,
+      "cn_steps": 4,
+      "round": "restyle-r3"
+    }
   }
 }

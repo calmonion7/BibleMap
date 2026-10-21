@@ -1,0 +1,3 @@
+판정 task restyle-r3
+{"task":"restyle-r3","kind":"ab","human_minutes":2.17,"active_minutes":2.16,"idle_ms":120000,"screens":1,"scenes":{"authored-david-returns-jerusalem":{"answer":"left","chose":"2위","left":"cn:202","right":"cn:42","memo":"마주 봤는데 너무 다윗이 외면하는거 아녀 다윗과 약간 떨어져야 할것 같고 다윗이 바라봐야지 아래로 먼가 상호작용이 없네 이론장면을 규칙으로 세울부분은 없나?","minutes":2.15,"active_minutes":2.14}}}
+source: conversation
