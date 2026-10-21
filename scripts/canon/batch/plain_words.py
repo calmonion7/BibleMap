@@ -20,7 +20,11 @@ task#385 — `--set jordan-moment`: 같은 사다리를 요단 귀환 새 순간
 
 task#387 — `--set jordan-scene`: 장면 구절로 다시 쓴 요단 정본 그대로 r1 한 회차(사다리 없음) + 장면 요소 문항(E) → 문구 1위의 「다윗 바로 앞」이
 틀리면 국소 편집 12장 → 후보 화면 1화면. 고정 절 notes/JORDAN-SCENE.md.
-  $VENV batch/plain_words.py one|scene|check|edit|cand|record <판정.txt>|verdict|report --set jordan-scene"""
+  $VENV batch/plain_words.py one|scene|check|edit|cand|record <판정.txt>|verdict|report --set jordan-scene
+
+task#388 — `--set jordan-guide`: 지리·새 구도로 고친 요단 정본 + 구도 가이드(깊이, batch/make_guide.py) · CN 2602 lite.
+시험 1장 → 격자(강도 × CN 스텝 × 시드) → 고른 설정 8시드 → 후보 1화면. 고정 절 notes/JORDAN-GUIDE.md.
+  $VENV batch/plain_words.py one|grid|scene|check|cand|record <판정.txt>|verdict|approve|report --set jordan-guide"""
 import copy, hashlib, json, os, re, subprocess, sys, threading, time
 from concurrent.futures import ThreadPoolExecutor
 
@@ -37,7 +41,8 @@ import make_night_page as P
 # 사본 검사(render 대조)가 옛 회차 그대로 통과한다.
 SETS = {"plain-words": {"notes": "PLAIN-WORDS.md", "task": 382, "canon_rev": "03b0b07"},
         "jordan-moment": {"notes": "JORDAN-MOMENT.md", "task": 385, "canon_rev": "1ce6720"},   # 387이 요단 정본을 장면 구절로 고치기 전
-        "jordan-scene": {"notes": "JORDAN-SCENE.md", "task": 387, "canon_rev": None}}
+        "jordan-scene": {"notes": "JORDAN-SCENE.md", "task": 387, "canon_rev": "15fc2de"},   # 388이 요단 정본에 지리·새 구도를 넣기 전
+        "jordan-guide": {"notes": "JORDAN-GUIDE.md", "task": 388, "canon_rev": None}}
 SET = sys.argv[sys.argv.index("--set") + 1] if "--set" in sys.argv else "plain-words"
 TASK = SETS[SET]["task"]
 NOTES = os.path.join(HERE, "notes", SETS[SET]["notes"])
@@ -59,7 +64,7 @@ def canon(sid):
                                                 capture_output=True, text=True, check=True).stdout)
     return copy.deepcopy(_CANON[sid])
 KINDS = {"J1": ("v2", 1.0), "J1-prop": ("p2", 2.5), "O1": ("o1", 1.0), "W": ("v2", 1.0), "W-prop": ("p2", 2.5),
-         "E": ("v2", 1.0)}   # E = 387 장면 요소 문항(전체 그림)
+         "E": ("v2", 1.0), "S": ("v2", 1.0)}   # E = 387 장면 요소 문항 · S = 388 화풍·가이드 복제 문항(전체 그림)
 LOCK = threading.Lock()
 _TOK = []
 
@@ -151,8 +156,9 @@ def busy():
     return r.stdout.strip()
 
 
-def generate(m, rnd, specs, seeds=None, base=None, raised=None):
-    """specs = {장면: 사본 명세} → 사본 저장 · 바탕 생성(없는 것만) · 상자 → metrics rounds[rnd]."""
+def generate(m, rnd, specs, seeds=None, base=None, raised=None, cn=None):
+    """specs = {장면: 사본 명세} → 사본 저장 · 바탕 생성(없는 것만) · 상자 → metrics rounds[rnd].
+    cn = {scale, cn_steps}이면 구도 가이드(GUIDE)를 CN lite로 건다(388)."""
     import run_scene
     import run_night as RN
     seeds = seeds or FX["seeds"]
@@ -162,14 +168,19 @@ def generate(m, rnd, specs, seeds=None, base=None, raised=None):
         json.dump(spec, open(spec_path(rnd, sid), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         p = D.route_prompt(spec)
         sc = R["scenes"].setdefault(sid, {"seeds": [], "sec": 0.0})
-        sc.update(prompt=p, tokens=tokens(p), **({"levels": base[sid][0], "base": base[sid][1], "raised": raised[sid]} if base else {}))
-        todo = [{"prompt": p, "seed": s, "w": 1216, "h": 640, "out": img_path(rnd, sid, s)} for s in seeds if not os.path.exists(img_path(rnd, sid, s))]
+        sc.update(prompt=p, tokens=tokens(p), **({"levels": base[sid][0], "base": base[sid][1], "raised": raised[sid]} if base else {}),
+                  **({"cn": cn} if cn else {}))
+        todo = [{"prompt": p, "seed": s, "w": 1216, "h": 640, "out": img_path(rnd, sid, s), **({"control": GUIDE, **cn} if cn else {})}
+                for s in seeds if not os.path.exists(img_path(rnd, sid, s))]
         print(f"[PlainWords] {rnd} {sid} {sc['tokens']}토큰 · {len(seeds)}장 중 {len(todo)}장 생성", flush=True)
         if todo:
             if busy():
                 sys.exit(f"[PlainWords] 다른 생성 프로세스가 돈다 — 겹치지 않게 멈춤:\n{busy()}")
             os.makedirs(os.path.dirname(img_path(rnd, sid, seeds[0])), exist_ok=True)
-            sc["sec"] = round(sc["sec"] + sum(run_scene.gen_zimage(todo, os.path.dirname(img_path(rnd, sid, seeds[0])))), 1)
+            d = os.path.dirname(img_path(rnd, sid, seeds[0]))
+            sc["sec"] = round(sc["sec"] + sum(run_scene.gen_zimage(todo, d, "gencn" if cn else "gen")), 1)
+            if cn:
+                sc["peak_gib"] = max(sc.get("peak_gib", 0), json.load(open(os.path.join(d, "_zjobs.json.peak.json"))))
         have = {x["seed"] for x in sc["seeds"]}
         cn = canon(sid)
         for s in seeds:
@@ -224,7 +235,7 @@ def items(m, rnd, kind, sids=None):
         spec = canon(sid)
         qs = {"J1": lambda: j1_qs(m, rnd, sid), "J1-prop": lambda: [q for q in j1_qs(m, rnd, sid) if J.cls(q["id"]) == "prop"],
               "O1": lambda: j1_qs(m, rnd, sid), "W": lambda: word_qs(m, rnd, sid, False), "W-prop": lambda: word_qs(m, rnd, sid, True),
-              "E": lambda: elem_qs(sid)}[kind]()
+              "E": lambda: elem_qs(sid), "S": lambda: [dict(q) for q in FX["scenes"][sid].get("style", [])]}[kind]()
         if not qs:
             continue
         for x in _seeds(m, rnd, sid):
@@ -505,7 +516,7 @@ def check(m):
                 continue
             if spec != render(sid, lv) and {**spec, "approved": None} != {**render(sid, lv), "approved": None}:   # 387: 채택 뒤 정본에 승인 기록이 붙어도
                 bad.append(f"{rnd} {sid} 사본이 render(단계)와 다름")
-            if rnd != "r1":
+            if rnd != "r1" and TASK != 388:   # 388은 회차마다 정본 그대로(시험·격자·본 실행) — 직전 회차 대비가 없다
                 base = m["rounds"][sc["base"]]["scenes"][sid]["levels"]
                 diff = sorted(u for u in lv if lv[u] != base[u])
                 if diff != sorted(sc["raised"]):
@@ -518,6 +529,8 @@ def check(m):
                 bad.append(f"ladder {sid} {uid} 멈춘 사유 없음")
     if TASK == 387:
         bad += check387(m)
+    if TASK == 388:
+        bad += check388(m)
     print("ok" if not bad else "불통:\n" + "\n".join(bad))
     return not bad
 
@@ -1055,6 +1068,203 @@ def check387(m):
             bad.append("편집 건너뜀 사유 없음")
     return bad
 
+# --- task#388 구도 가이드(요단) — CN lite + 깊이 가이드: 시험 1장 → 격자 → 고른 설정 8시드 → 후보 1화면 ----------------
+GUIDE = os.path.join(SAMPLES, "guide.png")
+K388 = ("J1", "J1-prop", "O1", "E", "W", "S")   # 본 실행 그림마다
+KG388 = ("J1", "J1-prop", "E", "W", "S")         # 격자 그림마다(이상한 점은 기록용이라 뺌)
+REF387 = os.path.expanduser("~/.local/biblemap-imggen/jordan-scene/r1/authored-david-returns-jerusalem/s101.png")   # 387 문구 1위(참고)
+
+
+def grid_rnd(scale, k):
+    return f"g-{scale}-{k}"
+
+
+def one388(m):
+    """시험 1장 — 경로·장당 시간·피크 메모리 + 화풍·장면 요소 문항."""
+    c, sid = FX["one"], next(iter(FX["scenes"]))
+    lv = start_levels(sid)
+    generate(m, "one", {sid: render(sid, lv)}, seeds=[c["seed"]], base={sid: (lv, "canon")}, raised={sid: []},
+             cn={"scale": c["scale"], "cn_steps": c["cn_steps"]})
+    judge(m, "one", ("S", "E"), sids=[sid])
+    sc = m["rounds"]["one"]["scenes"][sid]
+    print(f"[JordanGuide] 시험 s{c['seed']} {sc['sec']}s · 피크 {sc.get('peak_gib')}GiB · 화풍 {_a(m, 'one', 'S', sid, c['seed'])} · "
+          f"장면 요소 {_a(m, 'one', 'E', sid, c['seed'])}", flush=True)
+
+
+def wrong388(m, rnd, sid, s):
+    """틀림 칸(고정 절) = J1(지물 칸은 J1-prop) + E + W + S의 「틀림」 수 — 「다윗 바로 앞」도 넣는다(목표가 배치)."""
+    ans = {**j1(m, rnd, sid, s), **_a(m, rnd, "E", sid, s), **feats(m, rnd, sid, s), **_a(m, rnd, "S", sid, s)}
+    return sum(1 for v in ans.values() if v == "틀림")
+
+
+def grid388(m):
+    """격자 = 강도 × CN 스텝 × 시드 → 기계 판정 → 통과 설정(화풍·복제 두 문항을 두 시드 모두 맞음) 중 배치 문항 맞힘 최대."""
+    G, sid = FX["grid"], next(iter(FX["scenes"]))
+    lv = start_levels(sid)
+    cfgs = [(sc, k) for sc in G["scales"] for k in G["cn_steps"]]
+    for sc, k in cfgs:
+        generate(m, grid_rnd(sc, k), {sid: render(sid, lv)}, seeds=G["seeds"], base={sid: (lv, "canon")}, raised={sid: []},
+                 cn={"scale": sc, "cn_steps": k})
+    miss = sum(len(judge(m, grid_rnd(sc, k), KG388)) for sc, k in cfgs)
+    place = FX["scenes"][sid]["placement"]
+    m["grid"] = [{"scale": sc, "cn_steps": k, "seed": s, "image": img_path(grid_rnd(sc, k), sid, s),
+                  "sec": m["rounds"][grid_rnd(sc, k)]["scenes"][sid]["sec"], "peak_gib": m["rounds"][grid_rnd(sc, k)]["scenes"][sid].get("peak_gib"),
+                  **{kind: _a(m, grid_rnd(sc, k), kind, sid, s) for kind in ("S", "E", "W")}, "J1": j1(m, grid_rnd(sc, k), sid, s),
+                  "wrong": wrong388(m, grid_rnd(sc, k), sid, s)} for sc, k in cfgs for s in G["seeds"]]
+    rows = lambda sc, k: [g for g in m["grid"] if (g["scale"], g["cn_steps"]) == (sc, k)]
+    ok = [(sc, k) for sc, k in cfgs if all(v == "맞음" for g in rows(sc, k) for v in g["S"].values()) and all(g["S"] for g in rows(sc, k))]
+    hits = {c: sum(g["E"].get(q) == "맞음" for g in rows(*c) for q in place) for c in cfgs}
+    if ok:
+        sc, k = min(ok, key=lambda c: (-hits[c], c[0], c[1]))
+        m["grid_pick"] = {"scale": sc, "cn_steps": k, "placement_hits": hits[(sc, k)], "passed": [list(c) for c in ok],
+                          "why": f"통과 {len(ok)}설정 중 배치 문항 맞힘 최대({hits[(sc, k)]}/{len(place) * len(G['seeds'])}) — 같으면 낮은 강도 → 적은 스텝"}
+    else:
+        m["grid_pick"] = {"none": "화풍·가이드 복제 두 문항을 두 시드 모두 맞힌 설정 없음"}
+    save_m(m)
+    report388(m)
+    return miss
+
+
+def scene388(m):
+    """고른 설정 × 8시드 → 기계 판정(J1·J1-prop·O1·E·W·S) → 1위·2위(틀림 칸 최소, 같으면 시드 순서)."""
+    pk = m.get("grid_pick") or {}
+    if "none" in pk or not pk:
+        sys.exit(f"[JordanGuide] 격자 통과 설정 없음 — 본 실행 안 함: {pk}")
+    lv = {sid: start_levels(sid) for sid in FX["scenes"]}
+    generate(m, "r1", {sid: render(sid, lv[sid]) for sid in FX["scenes"]}, base={sid: (lv[sid], "canon") for sid in FX["scenes"]},
+             raised={sid: [] for sid in FX["scenes"]}, cn={"scale": pk["scale"], "cn_steps": pk["cn_steps"]})
+    miss = judge(m, "r1", K388)
+    for sid in FX["scenes"]:
+        st = m["ladder"].setdefault(sid, {"levels": lv[sid], "end": "r1", "rounds": ["r1"], "units": {}})
+        for u in units(sid):
+            st["units"][u["id"]] = {"level": lv[sid][u["id"]], "stop": "사다리 없음(388 — 구도 가이드 한 회차)", "status": None, "with": [], "hist": []}
+        r = sorted(seeds_of(m, "r1", sid), key=lambda s: (wrong388(m, "r1", sid, s), FX["seeds"].index(s)))
+        m.setdefault("phrase", {})[sid] = {"ranked": r, "top": r[0], "second": r[1]}
+    save_m(m)
+    report388(m)
+    return miss
+
+
+def report388(m):
+    for sid, c in FX["scenes"].items():
+        qs = [e["id"] for e in c["elements"]] + [q["id"] for q in c["style"]]
+        for g in m.get("grid", []):
+            print(f"[JordanGuide] 격자 {g['scale']}·{g['cn_steps']}스텝 s{g['seed']} 틀림 {g['wrong']} · " +
+                  " ".join(f"{q.split('.', 1)[1]}={({**g['E'], **g['S']}).get(q, '-')}" for q in qs), flush=True)
+        if m.get("grid_pick"):
+            print(f"[JordanGuide] 격자 고름 {m['grid_pick']}", flush=True)
+        if "r1" in m["rounds"]:
+            ss = seeds_of(m, "r1", sid)
+            print("[JordanGuide] 본 실행 " + " · ".join(f"{q} {sum(({**_a(m, 'r1', 'E', sid, s), **_a(m, 'r1', 'S', sid, s)}).get(q) == '맞음' for s in ss)}/{len(ss)}" for q in qs), flush=True)
+            jq = sorted({q for s in ss for q in j1(m, "r1", sid, s)})
+            print("[JordanGuide] J1 맞음 " + " · ".join(f"{q} {sum(j1(m, 'r1', sid, s).get(q) == '맞음' for s in ss)}" for q in jq), flush=True)
+            print("[JordanGuide] 낱말 " + " · ".join(f"{u['id']} {unit_hits(m, 'r1', sid, u['id'])}/{len(ss)}" for u in units(sid)) +
+                  " · 틀림 칸 " + " · ".join(f"s{s} {wrong388(m, 'r1', sid, s)}" for s in ss), flush=True)
+            if sid in m.get("phrase", {}):
+                print(f"[JordanGuide] 1위 s{m['phrase'][sid]['top']} · 2위 s{m['phrase'][sid]['second']}", flush=True)
+
+
+PAGE_G = (PAGE_S.replace("<title>요단 장면 그림 비교 387</title>", "<title>요단 구도 그림 비교 388</title>")
+          .replace("const TASK = 387;", "const TASK = 388;")
+          .replace("<summary>문구 8장·편집본 전부 ${s.all.length}장(기계 불통과 포함 · 누르면 크게)</summary>",
+                   "<summary>가이드·본 실행·격자·387 참고 ${s.all.length}장(기계 불통과 포함 · 누르면 크게)</summary>"))
+assert "const TASK = 388;" in PAGE_G and "387 참고" in PAGE_G
+
+
+def cand388(m, out=None):
+    """1화면: 1위 / 2위 블라인드 좌우 + 접힌 칸에 가이드 그림·본 실행 8장·격자 전부·387 문구 1위 s101(참고)."""
+    import make_cand_page as C
+    for w, q in C.SIZES:
+        scenes, data = [], {}
+        for sid in FX["scenes"]:
+            ph = m["phrase"][sid]
+            one, two = f"r1:{sid}:{ph['top']}", f"r1:{sid}:{ph['second']}"
+            data["guide"] = P.uri(Image.open(GUIDE), w, q)
+            data["ref387"] = P.uri(Image.open(REF387), w, q)
+            for s in FX["seeds"]:
+                data[f"r1:{sid}:{s}"] = P.uri(Image.open(img_path("r1", sid, s)), w, q)
+            for g in m["grid"]:
+                data[f"{grid_rnd(g['scale'], g['cn_steps'])}:{sid}:{g['seed']}"] = P.uri(Image.open(g["image"]), w, q)
+            left, right = (one, two) if left_is_a(sid) else (two, one)
+            spec = canon(sid)
+            scenes.append({"id": sid, "title": spec["title"], "range": spec["verses"]["range"], "ab": True, "reject": False,
+                           "left": left, "right": right, "left_is": "1위" if left == one else "2위", "right_is": "1위" if right == one else "2위",
+                           "all": [["guide", "구도 가이드(깊이)"]] + [[f"r1:{sid}:{s}", f"본 실행 s{s}"] for s in FX["seeds"]] +
+                                  [[f"{grid_rnd(g['scale'], g['cn_steps'])}:{sid}:{g['seed']}", f"격자 {g['scale']}·{g['cn_steps']}스텝 s{g['seed']}"] for g in m["grid"]] +
+                                  [["ref387", "387 문구 1위 s101(참고)"]],
+                           "verses": C.scripture(sid)})
+        page = (PAGE_G.replace("/*STYLE*/", C.STYLE + C.VERSE_STYLE).replace("/*SCENES*/[]", json.dumps(scenes, ensure_ascii=False))
+                .replace("/*IMGS*/{}", json.dumps(data)))
+        if len(page) <= P.LIMIT:
+            break
+    out = out or os.path.join(J.PAGES, f"{SET}-cand.html")
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    open(out, "w", encoding="utf-8").write(page)
+    m["cand"] = {s["id"]: {k: s[k] for k in ("left", "right", "left_is", "right_is")} for s in scenes}
+    save_m(m)
+    print(f"[JordanGuide] 후보 화면 {out} {len(page) / 1e6:.2f}MB · {w}px q{q} · 화면 {len(scenes)}", flush=True)
+    return out
+
+
+def verdict388(m):
+    """고정 절 — 격자 통과 없음이면 보류, 사람이 후보 하나를 고르면 장면 채택, 「둘 다 아님」이면 보류."""
+    if "none" in (m.get("grid_pick") or {}):
+        line = "판정: 보류"
+        print(f"격자 통과 없음 — {m['grid_pick']['none']}")
+    else:
+        picked = {sid: a["chose"] for sid, a in m["human"]["scenes"].items()}
+        line = "판정: 장면 채택" if any(c not in (None, "none") for c in picked.values()) else "판정: 보류"
+        print(" · ".join(f"{sid.split('-', 2)[2]} {c}" for sid, c in picked.items()))
+    print(line)
+    return line
+
+
+def approve388(m):
+    """채택이면 고른 본 실행 그림을 정본 approved.final로(night-pick 바탕 꼴 + 가이드·설정) + 레포 사본."""
+    import shutil
+    import approve
+    for sid, a in m["human"]["scenes"].items():
+        if a["chose"] in (None, "none"):
+            continue
+        s = int(m["cand"][sid]["left" if a["answer"] == "left" else "right"].split(":")[2])
+        keep = os.path.join(SAMPLES, f"approved-{sid}.png")
+        rel = os.path.relpath(keep, HERE)
+        shutil.copyfile(img_path("r1", sid, s), keep)
+        spec = approve.night_pick(approve.load_spec(sid), s, "base", rel, "user")
+        spec["approved"]["final"].update(guide=os.path.relpath(GUIDE, HERE), cn="2602 lite", **m["grid_pick"] and
+                                         {k: m["grid_pick"][k] for k in ("scale", "cn_steps")})
+        approve.save_spec(spec)
+        print(f"[JordanGuide] 승인 {sid} ← s{s} ({a['chose']}) · 사본 {rel}", flush=True)
+
+
+def check388(m):
+    """격자 12장(장마다 S·E·J1 답 빈 답 0) · grid_pick · 설정이 있으면 본 실행 8장 · 종류마다 답 · 1위/2위."""
+    bad, G = [], FX["grid"]
+    n = len(G["scales"]) * len(G["cn_steps"]) * len(G["seeds"])
+    if len(m.get("grid", [])) != n:
+        bad.append(f"격자 {len(m.get('grid', []))} ≠ {n}")
+    for g in m.get("grid", []):
+        for kind in ("S", "E", "J1"):
+            if not g.get(kind) or any(v not in ("맞음", "틀림") for v in g[kind].values()):
+                bad.append(f"격자 {g['scale']}·{g['cn_steps']} s{g['seed']} {kind} 답 빠짐")
+    pk = m.get("grid_pick")
+    if not pk:
+        bad.append("grid_pick 없음")
+    elif "none" not in pk:
+        for sid in FX["scenes"]:
+            ss = seeds_of(m, "r1", sid) if "r1" in m["rounds"] else []
+            if sorted(ss) != sorted(FX["seeds"]):
+                bad.append(f"r1 {sid} 시드 {ss}")
+            for kind in K388:
+                for it in items(m, "r1", kind, [sid]) if ss else []:
+                    a = (m["answers"].get("r1", {}).get(kind, {}).get(it["key"]) or {}).get("answers")
+                    if not a or set(it["qids"]) - set(a):
+                        bad.append(f"r1 {kind} {it['key']} 답 빠짐")
+            if sid not in m.get("phrase", {}):
+                bad.append(f"{sid} 1위 없음")
+    return bad
+
+
 
 def main(argv):
     if "--set" in argv:
@@ -1064,6 +1274,10 @@ def main(argv):
     m = load_m()
     if cmd == "predict-a":
         predict_a(m)
+    elif cmd == "one" and TASK == 388:
+        one388(m)
+    elif cmd == "grid":
+        sys.exit(1 if grid388(m) else 0)
     elif cmd == "one":   # 시험 1장 — 경로 확인 + 고친 낱말이 보이는가(이 장의 특징 문항)
         sid = next(iter(FX["scenes"]))
         lv = start_levels(sid)
@@ -1073,27 +1287,27 @@ def main(argv):
         print(f"[PlainWords] 시험 {sid} s{s} 특징 {feats(m, 'r1', sid, s)} · 장면 요소 {_a(m, 'r1', 'E', sid, s)}", flush=True)
     elif cmd == "ladder":
         ladder(m)
-    elif cmd == "scene":   # 387 — 사다리 없이 r1 한 회차
-        sys.exit(1 if scene387(m) else 0)
+    elif cmd == "scene":   # 387·388 — 사다리 없이 r1 한 회차
+        sys.exit(1 if {387: scene387, 388: scene388}[TASK](m) else 0)
     elif cmd == "edit":
         edit387(m)
     elif cmd == "approve":
-        approve387(m)
+        {387: approve387, 388: approve388}[TASK](m)
     elif cmd == "b2":
         b2(m)
     elif cmd == "cand":
-        {385: cand_moment, 387: cand387}.get(TASK, cand)(m, argv[1] if len(argv) > 1 else None)
+        {385: cand_moment, 387: cand387, 388: cand388}.get(TASK, cand)(m, argv[1] if len(argv) > 1 else None)
     elif cmd == "check":
         sys.exit(0 if check(m) else 1)
     elif cmd == "record":
         record(m, argv[1])
     elif cmd == "verdict":
-        {385: verdict_moment, 387: verdict387}.get(TASK, verdict)(m)
+        {385: verdict_moment, 387: verdict387, 388: verdict388}.get(TASK, verdict)(m)
     elif cmd == "lexicon":
         lexicon(m)
     elif cmd == "report":
-        if TASK == 387:
-            return report387(m)
+        if TASK in (387, 388):
+            return {387: report387, 388: report388}[TASK](m)
         for rnd in m["rounds"]:
             report(m, rnd)
     else:

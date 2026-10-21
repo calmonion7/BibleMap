@@ -28,6 +28,8 @@ SDXL_BG, SDXL_FIG = (1216, 640), (832, 1216)   # params.SCENE_SIZE / SAMPLE_SIZE
 ZI_BG = (1216, 640)   # r1: 2432x1280은 후보 ~2/3에서 가로줄무늬·패치 질감 붕괴(시드 42·7·11 대조, CANVAS.md) — 1216x640은 같은 시드에서 깨끗
 ZI_GGUF = "leejet/Z-Image-Turbo-GGUF"
 ZI_BASE = "Tongyi-MAI/Z-Image-Turbo"
+ZI_CN = "alibaba-pai/Z-Image-Turbo-Fun-Controlnet-Union-2.1"
+ZI_CN_LITE = "Z-Image-Turbo-Fun-Controlnet-Union-2.1-lite-2602-8steps.safetensors"
 
 
 # --- Z-Image 워커 (별도 프로세스) ------------------------------------------------
@@ -51,20 +53,44 @@ def worker(mode, jobs_path):
     tr = ZImageTransformer2DModel.from_single_file(
         sd, quantization_config=GGUFQuantizationConfig(compute_dtype=torch.bfloat16),
         config=ZI_BASE, subfolder="transformer", torch_dtype=torch.bfloat16)
-    pipe = ZImagePipeline.from_pretrained(ZI_BASE, transformer=tr, text_encoder=None, tokenizer=None,
-                                          torch_dtype=torch.bfloat16).to("mps")
+    if mode == "gencn":   # task#388 — CN 2602 lite + 구도 가이드, 앞 cn_steps 스텝만 CN(그 뒤는 CN 출력 없음)
+        from diffusers import ZImageControlNetModel, ZImageControlNetPipeline
+        from safetensors.torch import load_file
+        cn = ZImageControlNetModel(control_layers_places=[0, 10, 20], control_refiner_layers_places=[0, 1], control_in_dim=33,
+                                   add_control_noise_refiner="control_noise_refiner")   # VideoX-Fun lite yaml(ZIMAGE §2 정정)
+        miss, extra = cn.load_state_dict(load_file(hf_hub_download(ZI_CN, ZI_CN_LITE)), strict=False)
+        assert not miss and not extra, (miss, extra)
+        cn = ZImageControlNetModel.from_transformer(cn.to(torch.bfloat16), tr)
+        pipe = ZImageControlNetPipeline.from_pretrained(ZI_BASE, transformer=tr, controlnet=cn, text_encoder=None, tokenizer=None,
+                                                        torch_dtype=torch.bfloat16).to("mps")
+        fwd, calls, cur = pipe.controlnet.forward, [0], [0]
+
+        def first_k(*a, **k):   # 파이프라인에 control_guidance_end가 없다 — 앞 cur 스텝 뒤엔 None(트랜스포머가 CN 없이 돈다)
+            calls[0] += 1
+            return fwd(*a, **k) if calls[0] <= cur[0] else None
+        pipe.controlnet.forward = first_k
+    else:
+        pipe = ZImagePipeline.from_pretrained(ZI_BASE, transformer=tr, text_encoder=None, tokenizer=None,
+                                              torch_dtype=torch.bfloat16).to("mps")
     pipe.set_progress_bar_config(disable=True)
     embs = torch.load(emb_path)
-    secs = []
+    secs, peak = [], 0.0
     for j, e in zip(jobs, embs):
         t = time.time()
+        kw = {}
+        if mode == "gencn":
+            from PIL import Image
+            calls[0], cur[0] = 0, j["cn_steps"]
+            kw = {"control_image": Image.open(j["control"]).convert("RGB"), "controlnet_conditioning_scale": j["scale"]}
         img = pipe(prompt_embeds=[x.to("mps", torch.bfloat16) for x in e], width=j["w"], height=j["h"],
                    num_inference_steps=9, guidance_scale=0.0,
-                   generator=torch.Generator("mps").manual_seed(j["seed"])).images[0]
+                   generator=torch.Generator("mps").manual_seed(j["seed"]), **kw).images[0]
         img.save(j["out"])
         secs.append(round(time.time() - t, 1))
+        peak = max(peak, torch.mps.driver_allocated_memory() / 2 ** 30)
         print(f"  [zimage] {os.path.basename(j['out'])} {secs[-1]}s", flush=True)
     json.dump(secs, open(jobs_path + ".secs.json", "w"))
+    json.dump(round(peak, 2), open(jobs_path + ".peak.json", "w"))
 
 
 _SDXL = {}
@@ -91,10 +117,11 @@ def gen_sdxl(jobs):
     return secs
 
 
-def gen_zimage(jobs, tmp):
+def gen_zimage(jobs, tmp, gen="gen"):
+    """gen="gencn"이면 job마다 control(가이드 png)·scale·cn_steps가 있어야 한다(task#388)."""
     jp = os.path.join(tmp, "_zjobs.json")
     json.dump(jobs, open(jp, "w"))
-    for mode in ("enc", "gen"):   # 인코더와 트랜스포머를 같은 프로세스에 올리면 천장(~17GiB)을 넘는다
+    for mode in ("enc", gen):   # 인코더와 트랜스포머를 같은 프로세스에 올리면 천장(~17GiB)을 넘는다
         subprocess.run([sys.executable, os.path.abspath(__file__), "--worker", mode, jp], check=True)
     return json.load(open(jp + ".secs.json"))
 
