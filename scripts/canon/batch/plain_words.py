@@ -999,6 +999,30 @@ def verdict387(m):
     return line
 
 
+def approve387(m):
+    """채택이면 고른 그림을 정본 approved.final로 — 문구 그림은 night-pick(바탕), 편집본은 local-edit(386과 같은 꼴) + 레포 사본."""
+    import shutil
+    import approve
+    for sid, a in m["human"]["scenes"].items():
+        if a["chose"] in (None, "none"):
+            continue
+        key = m["cand"][sid]["left" if a["answer"] == "left" else "right"]
+        keep = os.path.join(SAMPLES, f"approved-{sid}.png")
+        rel = os.path.relpath(keep, HERE)
+        spec = approve.load_spec(sid)
+        if key.startswith("edit:"):
+            x = next(c for c in m["edit"]["candidates"] if c["id"] == key.split(":", 2)[2])
+            shutil.copyfile(x["image"], keep)
+            steps = [{k: x[k] for k in ("id", "arm", "seed", "crop", "box", "prompt")} | {"base_src": f"jordan-scene r1 s{x['base']}"}]
+            spec = approve.local_edit(spec, x["base"], rel, steps, "user")
+        else:
+            s = int(key.split(":")[2])
+            shutil.copyfile(img_path("r1", sid, s), keep)
+            spec = approve.night_pick(spec, s, "base", rel, "user")
+        approve.save_spec(spec)
+        print(f"[JordanScene] 승인 {sid} ← {key} ({a['chose']}) · 사본 {rel}", flush=True)
+
+
 def check387(m):
     """r1 8장 · 그림마다 다섯 종류 답(빈 답 0, 문항 빠짐 0) · 편집이 있으면 12장 답과 1위/사유."""
     bad = []
@@ -1051,6 +1075,8 @@ def main(argv):
         sys.exit(1 if scene387(m) else 0)
     elif cmd == "edit":
         edit387(m)
+    elif cmd == "approve":
+        approve387(m)
     elif cmd == "b2":
         b2(m)
     elif cmd == "cand":
