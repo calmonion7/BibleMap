@@ -62,7 +62,10 @@ SETS = {"night": {"scenes": params.NIGHT_SCENES, "seeds": params.NIGHT_SEEDS, "d
                         "specs": os.path.join(HERE, "samples", "plain-words", "specs")},
         # task#385 — 같은 사다리를 요단 귀환 새 순간에(plain_words.py --set jordan-moment)
         "jordan-moment": {"scenes": {}, "seeds": params.SPEC_REGEN_SEEDS, "dir": "jordan-moment", "task": 385, "prompt": D.route_prompt, "edit": False,
-                          "specs": os.path.join(HERE, "samples", "jordan-moment", "specs")}}
+                          "specs": os.path.join(HERE, "samples", "jordan-moment", "specs")},
+        # task#387 — 장면 구절로 다시 쓴 요단 정본 r1 한 회차(plain_words.py --set jordan-scene)
+        "jordan-scene": {"scenes": {}, "seeds": params.SPEC_REGEN_SEEDS, "dir": "jordan-scene", "task": 387, "prompt": D.route_prompt, "edit": False,
+                         "specs": os.path.join(HERE, "samples", "jordan-scene", "specs")}}
 SET = "--set" in sys.argv and sys.argv[sys.argv.index("--set") + 1] or "night"
 ARGV = [a for i, a in enumerate(sys.argv) if a != "--set" and sys.argv[i - 1] != "--set"]   # 위치 인자(--set 값 뺌)
 CFG = SETS[SET]
