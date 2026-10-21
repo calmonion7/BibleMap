@@ -1,0 +1,1127 @@
+{
+ "answers": {
+  "H1:1": {
+   "S": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.536,
+       "input": 4,
+       "output": 369,
+       "cache_read": 44616,
+       "cache_create": 9415,
+       "cost_usd": 0.0458196,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "연필+색연필 질감이 분명하지 않고 매끈한 디지털/수채 느낌이 강함",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있고 회색 덩어리나 미완성 실루엣은 없음"
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.25,
+       "input": 4,
+       "output": 343,
+       "cache_read": 44616,
+       "cache_create": 9415,
+       "cost_usd": 0.045559600000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "연필 선과 색연필 질감이 아니라 매끈한 디지털 수채·구아슈풍이라 지정 화풍과 다름",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있고 회색 덩어리나 미완성 실루엣은 없음"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.971,
+       "input": 4,
+       "output": 536,
+       "cache_read": 54031,
+       "cache_create": 0,
+       "cost_usd": 0.0107711,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 가는 선과 색연필 같은 결로 칠한 동화풍 그림이다. 다만 질감이 다소 매끈해서 확신은 약하다.",
+      "s.no-blob": "앞쪽 인물은 모두 얼굴과 옷이 있다. 멀리 선 무리는 작지만 옷 색이 구분되어 회색 덩어리로 남은 것은 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 8.903,
+       "input": 4,
+       "output": 718,
+       "cache_read": 46468,
+       "cache_create": 8221,
+       "cost_usd": 0.0447188,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "틀림",
+      "e.david-king": "틀림",
+      "e.face-each": "틀림",
+      "e.edit-clean": "틀림",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗의 시선이 엎드린 사람이 아니라 앞쪽·아래 오른쪽으로 향해 엎드린 사람을 내려다본다고 확인되지 않음",
+      "e.david-king": "수염이 희끗하기보다 짙은 회색이고 머리 관이 금관이 아니라 초록 잎 화환처럼 보임",
+      "e.face-each": "엎드린 사람의 머리는 왼쪽을 향하나 다윗이 그를 내려다보지 않아 마주함이 성립하지 않음",
+      "e.edit-clean": "머리카락과 수염이 초록빛으로 얼룩져 보이고 어깨 왼쪽에 붉은 번짐이 있음",
+      "e.shimei-bow": "한 사람이 무릎 꿇고 이마를 땅에 대고 엎드려 비는 모양이 분명함"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 10.735,
+       "input": 6,
+       "output": 914,
+       "cache_read": 74470,
+       "cache_create": 8614,
+       "cost_usd": 0.051055,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "맞음",
+      "e.david-king": "틀림",
+      "e.face-each": "맞음",
+      "e.edit-clean": "틀림",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗이 고개를 숙여 아래의 엎드린 사람 쪽을 내려다봄",
+      "e.david-king": "머리 장식이 금관이 아니라 초록빛 곱슬 화환처럼 보이고 수염도 희끗하기보다 초록회색",
+      "e.face-each": "엎드린 사람의 머리가 왼쪽(다윗 쪽)을 향하고 다윗이 내려다봄",
+      "e.edit-clean": "다윗의 왼쪽 어깨 가장자리에 붉은 번짐 얼룩이 보이고 머리카락 질감이 어색함",
+      "e.shimei-bow": "무릎 꿇고 이마를 땅에 대고 엎드려 비는 모양"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 11.099,
+       "input": 6,
+       "output": 1002,
+       "cache_read": 73294,
+       "cache_create": 8210,
+       "cost_usd": 0.05020139999999999,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "틀림",
+      "e.david-king": "틀림",
+      "e.face-each": "틀림",
+      "e.edit-clean": "틀림",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗의 고개가 살짝 숙었지만 시선은 오른쪽 앞을 향한다. 엎드린 사람을 분명히 내려다보지는 않는다.",
+      "e.david-king": "긴 붉은 겉옷과 회색 수염은 맞다. 그러나 머리카락이 초록빛 곱슬이고 관이 금관보다 화관처럼 보여, 희끗한 머리와 금관이라는 기대와 어긋난다.",
+      "e.face-each": "엎드린 사람의 머리는 화면 왼쪽, 다윗 쪽을 향한다. 다윗의 시선이 그를 향하지 않아 마주한다고 확신할 수 없다.",
+      "e.edit-clean": "머리카락이 초록색으로 이질적이고, 다윗의 왼쪽 어깨와 몸 가장자리에 붉은 번짐이 있다. 이음새나 얼룩 가능성이 있다.",
+      "e.shimei-bow": "한 사람이 무릎 꿇고 이마를 땅 가까이 대고 엎드려 비는 모양이다."
+     }
+    }
+   }
+  },
+  "base:0": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.861,
+       "input": 4,
+       "output": 305,
+       "cache_read": 44613,
+       "cache_create": 9411,
+       "cost_usd": 0.0451633,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "배경이 미색 종이가 아니라 하늘·풍경을 가득 채운 수채·구아슈풍 그림이다. 연필선과 색연필 질감이 분명하지 않아 동화 색연필 화풍이라고 확인되지 않는다.",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있고, 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 5.239,
+       "input": 4,
+       "output": 310,
+       "cache_read": 44613,
+       "cache_create": 9411,
+       "cost_usd": 0.045213300000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "배경이 미색 종이가 아니라 하늘과 풍경으로 꽉 찬 수채·디지털 일러스트 느낌이다. 연필 선과 색연필 질감이 뚜렷하지 않아 분명히 맞다고 확인되지 않는다.",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있고, 평평한 회색 덩어리로 남은 형체는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.781,
+       "input": 4,
+       "output": 373,
+       "cache_read": 44613,
+       "cache_create": 9411,
+       "cost_usd": 0.045843300000000003,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필로 그리고 색연필로 칠한 동화풍이 아니다. 매끈한 디지털 수채·구아슈풍 삽화로 보이고, 연필선이나 색연필의 결이 뚜렷하지 않다. 분명히 맞다고 확인되지 않아 틀림으로 답한다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다. 인물은 모두 옷과 색이 칠해져 있고, 멀리 있는 무리도 작지만 옷 색이 구분된다."
+     }
+    }
+   },
+   "E": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 6.966,
+       "input": 4,
+       "output": 652,
+       "cache_read": 44867,
+       "cache_create": 9813,
+       "cost_usd": 0.0502667,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "틀림",
+      "e.david-king": "틀림",
+      "e.face-each": "틀림",
+      "e.edit-clean": "맞음",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗이 손을 턱에 대고 옆쪽 먼 곳을 보고 있어 엎드린 사람을 내려다보지 않음",
+      "e.david-king": "수염과 머리가 짙은 색이라 60세쯤 된 모습이 아니고, 머리의 관도 가는 띠 정도임. 희끗한 수염의 인물은 옆에 선 다른 사람임",
+      "e.face-each": "엎드린 사람의 머리는 왼쪽을 향하지만 다윗이 그를 내려다보지 않아 마주함이 성립하지 않음",
+      "e.edit-clean": "다윗의 머리·얼굴·손에 이음새나 뒤틀림이 보이지 않음",
+      "e.shimei-bow": "무릎 꿇고 이마를 땅에 대고 엎드려 비는 모양임"
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 7.234,
+       "input": 4,
+       "output": 647,
+       "cache_read": 44867,
+       "cache_create": 9814,
+       "cost_usd": 0.0502207,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "틀림",
+      "e.david-king": "틀림",
+      "e.face-each": "틀림",
+      "e.edit-clean": "틀림",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗은 손을 턱에 대고 먼 오른쪽/앞을 봄. 엎드린 사람을 내려다보지 않음",
+      "e.david-king": "수염이 짙은 회색이라 60세쯤으로 보이지 않고, 금관도 가는 띠 정도임. 흰 수염 노인은 다른 인물",
+      "e.face-each": "엎드린 사람의 머리는 왼쪽을 향하지만 다윗은 내려다보지 않아 마주하지 않음",
+      "e.edit-clean": "확실히 깨끗하다고 확인되지 않음. 손과 얼굴이 작아 이음새 여부를 확인할 수 없음",
+      "e.shimei-bow": "무릎 꿇고 이마를 땅에 대고 엎드려 빌고 있음"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 7.487,
+       "input": 4,
+       "output": 616,
+       "cache_read": 44867,
+       "cache_create": 9813,
+       "cost_usd": 0.0499067,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "틀림",
+      "e.david-king": "틀림",
+      "e.face-each": "틀림",
+      "e.edit-clean": "맞음",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗은 손을 턱에 대고 옆/먼 곳을 보며 엎드린 사람을 내려다보지 않음",
+      "e.david-king": "머리가 짙은 곱슬이고 수염만 희끗하며 금관이 가는 띠라 60세 왕으로 분명하지 않음",
+      "e.face-each": "엎드린 사람 머리는 왼쪽을 향하지만 다윗이 그를 내려다보지 않아 마주하지 않음",
+      "e.edit-clean": "다윗의 머리·얼굴·손에 눈에 띄는 이음새나 뒤틀림 없음",
+      "e.shimei-bow": "무릎 꿇고 이마를 땅에 대고 엎드린 모양이 분명함"
+     }
+    }
+   }
+  },
+  "H1:2": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.634,
+       "input": 4,
+       "output": 331,
+       "cache_read": 44616,
+       "cache_create": 9415,
+       "cost_usd": 0.045439600000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필로 칠한 느낌이 아니다. 매끈한 디지털 수채·일러스트 질감에 가깝고 색이 균일하게 채워져 있다. 분명히 맞다고 확인되지 않아 틀림으로 답한다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다. 멀리 있는 무리도 옷 색이 구분된다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.442,
+       "input": 4,
+       "output": 352,
+       "cache_read": 52866,
+       "cache_create": 1165,
+       "cost_usd": 0.013474600000000002,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필로 그리고 색연필로 칠한 동화 그림 느낌이 약하다. 매끈한 디지털 수채화·삽화풍에 가깝고, 연필선과 색연필 질감이 뚜렷하지 않다. 분명히 맞다고 확인되지 않아 틀림으로 답한다.",
+      "s.no-blob": "얼굴과 옷 없이 평평한 회색 덩어리로 남은 인물이나 물건은 보이지 않는다. 멀리 선 무리도 옷 색이 구분된다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.6,
+       "input": 4,
+       "output": 467,
+       "cache_read": 52866,
+       "cache_create": 1165,
+       "cost_usd": 0.0146246,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 연한 윤곽선과 질감 있는 채색이 보여 동화 그림 화풍에 가깝다. 다만 연필·색연필 느낌이 아주 뚜렷하지는 않다.",
+      "s.no-blob": "멀리 있는 인물까지 모두 옷 색과 형태가 있고, 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 7.702,
+       "input": 4,
+       "output": 685,
+       "cache_read": 46468,
+       "cache_create": 8221,
+       "cost_usd": 0.044388800000000006,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "맞음",
+      "e.david-king": "맞음",
+      "e.face-each": "맞음",
+      "e.edit-clean": "맞음",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗이 고개를 숙여 아래쪽 엎드린 사람 방향을 내려다봄",
+      "e.david-king": "흰 수염, 긴 붉은 겉옷, 금 머리띠 관",
+      "e.face-each": "엎드린 사람 머리가 왼쪽(다윗 쪽)을 향하고 다윗이 내려다봄",
+      "e.edit-clean": "머리·얼굴·손 이음새나 두 겹 없이 자연스러움",
+      "e.shimei-bow": "무릎 꿇고 이마를 땅에 대고 엎드림"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 7.844,
+       "input": 4,
+       "output": 752,
+       "cache_read": 53374,
+       "cache_create": 1315,
+       "cost_usd": 0.0181254,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "틀림",
+      "e.david-king": "틀림",
+      "e.face-each": "틀림",
+      "e.edit-clean": "틀림",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗의 고개가 아래로 살짝 숙었지만 시선이 엎드린 사람보다 오른쪽 먼 곳을 향한다. 내려다본다고 분명히 말하기 어렵다.",
+      "e.david-king": "수염은 희끗하고 겉옷은 길지만 머리의 장식이 가는 금띠여서 금관으로 보이지 않는다. 60세쯤의 왕이라고 분명히 확인되지 않는다.",
+      "e.face-each": "엎드린 사람의 머리는 왼쪽을 향하지만 다윗이 그를 내려다보지 않고 오른쪽을 향한다. 두 사람이 마주한다고 볼 수 없다.",
+      "e.edit-clean": "손과 얼굴에 이음새나 뒤틀림이 없다고 분명히 확인되지 않는다. 머리 윤곽과 목 주변이 어색해 보인다.",
+      "e.shimei-bow": "한 사람이 무릎을 꿇고 이마를 땅에 대고 엎드려 있어 비는 모양이 맞다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 8.833,
+       "input": 4,
+       "output": 786,
+       "cache_read": 53374,
+       "cache_create": 1314,
+       "cost_usd": 0.0184614,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "맞음",
+      "e.david-king": "틀림",
+      "e.face-each": "맞음",
+      "e.edit-clean": "맞음",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗이 고개를 숙여 아래 엎드린 사람을 내려다봄",
+      "e.david-king": "머리에 금관이 아니라 가는 띠뿐이고 60세 왕으로는 다소 젊어 보여 분명하지 않음",
+      "e.face-each": "엎드린 사람 머리가 왼쪽 다윗 쪽을 향하고 다윗이 내려다봄",
+      "e.edit-clean": "머리·얼굴·손이 목과 몸에 자연스럽게 이어지고 눈에 띄는 이음새 없음",
+      "e.shimei-bow": "무릎 꿇고 이마를 땅에 대고 엎드린 모양"
+     }
+    }
+   }
+  },
+  "H1:3": {
+   "S": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.482,
+       "input": 4,
+       "output": 328,
+       "cache_read": 54031,
+       "cache_create": 0,
+       "cost_usd": 0.0086911,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "전체 바탕이 미색 종이가 아니라 채색된 하늘과 풍경으로 꽉 차 있다. 연필 선과 색연필 질감보다 수채나 디지털 일러스트에 가까워 동화 그림 화풍이라고 분명히 확인되지 않는다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다. 모든 인물과 배에 색과 옷이 있다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 6.795,
+       "input": 4,
+       "output": 551,
+       "cache_read": 44616,
+       "cache_create": 9415,
+       "cost_usd": 0.047639600000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "윤곽선은 있지만 채색이 매끈한 구아슈나 디지털 페인팅처럼 보인다. 연필 선과 색연필의 결이 분명하지 않아서 동화풍 색연필 그림이라고 확인되지 않는다.",
+      "s.no-blob": "멀리 있는 인물까지 모두 옷 색과 형태가 있다. 얼굴이나 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 5.843,
+       "input": 4,
+       "output": 409,
+       "cache_read": 54031,
+       "cache_create": 0,
+       "cost_usd": 0.0095011,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "연필 선과 색연필 질감이 분명하지 않다. 매끈한 구아슈나 수채 일러스트에 가깝고, 하늘은 종이가 아니라 그라데이션으로 칠해져 있다.",
+      "s.no-blob": "사람과 배에 모두 옷 색과 얼굴 또는 형태가 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 11.079,
+       "input": 4,
+       "output": 735,
+       "cache_read": 46468,
+       "cache_create": 8221,
+       "cost_usd": 0.044888800000000006,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "틀림",
+      "e.david-king": "틀림",
+      "e.face-each": "틀림",
+      "e.edit-clean": "틀림",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗의 고개는 숙였지만 시선이 오른쪽 아래 땅 쪽이고, 엎드린 사람은 몸 아래쪽 멀리 있어 내려다본다고 분명히 확인되지 않음",
+      "e.david-king": "머리 장식이 금관이라기보다 푸른 머리 위의 화관 같고 수염도 희끗하다기보다 회청색이라 60세 왕으로 분명히 확인되지 않음",
+      "e.face-each": "엎드린 사람의 머리는 왼쪽을 향하지만 다윗의 시선이 그를 향한다고 분명히 확인되지 않음",
+      "e.edit-clean": "다윗의 머리카락이 푸르스름하고 머리와 목 부분이 어색해 이음새 없이 자연스럽다고 확인되지 않음",
+      "e.shimei-bow": "한 사람이 무릎 꿇고 이마를 땅에 대고 엎드려 있음"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 11.243,
+       "input": 4,
+       "output": 737,
+       "cache_read": 46468,
+       "cache_create": 8220,
+       "cost_usd": 0.0449048,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "맞음",
+      "e.david-king": "맞음",
+      "e.face-each": "맞음",
+      "e.edit-clean": "틀림",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗이 고개를 숙여 아래 엎드린 사람 쪽을 내려다봄",
+      "e.david-king": "회색 수염, 긴 붉은 겉옷, 머리에 금빛 관을 쓴 나이 든 왕으로 보임",
+      "e.face-each": "엎드린 사람의 머리가 왼쪽 다윗 쪽을 향하고 다윗이 내려다봄",
+      "e.edit-clean": "머리카락이 청록빛 회색으로 어색하고 얼굴·목 이음이 부자연스러워 분명히 깨끗하다고 확인되지 않음",
+      "e.shimei-bow": "무릎 꿇고 이마를 땅에 대고 엎드려 비는 모양"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 14.98,
+       "input": 6,
+       "output": 918,
+       "cache_read": 74469,
+       "cache_create": 8409,
+       "cost_usd": 0.0502749,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "맞음",
+      "e.david-king": "틀림",
+      "e.face-each": "틀림",
+      "e.edit-clean": "틀림",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗이 고개를 숙여 아래쪽의 엎드린 사람 쪽을 내려다본다.",
+      "e.david-king": "수염이 희끗하다기보다 회청색이고 머리에 얹은 것은 금관이 아니라 가는 화관 같은 띠다. 60세쯤 된 왕으로 보기에는 약하다. 옆의 흰 수염 노인이 오히려 연장자로 보인다.",
+      "e.face-each": "엎드린 사람의 머리는 화면 왼쪽을 향하지만 다윗은 그를 곧게 내려다보지 않고 비스듬히 아래쪽을 본다. 두 사람이 마주한다고 분명히 확인되지 않는다. 사이에 아이들과 다른 인물도 서 있다.",
+      "e.edit-clean": "크롭 파일을 열어 보지 못했고 전체 그림만 봤다. 머리 윗부분 곱슬머리와 관 주변이 덩어리진 듯 어색하고 얼굴이 약간 뒤틀려 보인다. 이음새가 없다고 분명히 확인되지 않아 틀림으로 답한다.",
+      "e.shimei-bow": "한 사람이 무릎 꿇고 이마를 땅에 거의 닿게 숙여 엎드려 빈다."
+     }
+    }
+   }
+  },
+  "H2:1": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.465,
+       "input": 4,
+       "output": 325,
+       "cache_read": 44616,
+       "cache_create": 9415,
+       "cost_usd": 0.045379600000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 배경과 색연필 느낌은 있지만, 선이 매끈한 디지털 수채·일러스트 질감이라 연필로 그리고 색연필로 칠한 동화 그림이라고 분명히 확인되지 않는다.",
+      "s.no-blob": "얼굴과 옷이 없이 평평한 회색 덩어리로 남은 사람이나 물건은 보이지 않는다. 먼 곳의 작은 인물들도 옷 색이 구분된다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.161,
+       "input": 4,
+       "output": 352,
+       "cache_read": 52914,
+       "cache_create": 1117,
+       "cost_usd": 0.0132874,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필로 그리고 색연필로 칠한 느낌이 아니다. 질감이 매끈한 수채·디지털 일러스트에 가깝고 윤곽선도 연필선으로 보이지 않는다. 그래서 분명히 맞다고 확인되지 않아 틀림으로 답한다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다. 먼 곳의 작은 인물들도 색 있는 옷을 입고 있다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 7.492,
+       "input": 4,
+       "output": 579,
+       "cache_read": 44616,
+       "cache_create": 9415,
+       "cost_usd": 0.04791960000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 하늘과 배경 위에 연필 윤곽선이 보이고 풀밭 질감이 색연필처럼 보여서 동화 그림 화풍으로 읽힌다. 다만 채색이 다소 매끈해서 판단이 완전히 분명하지는 않다.",
+      "s.no-blob": "앞쪽 인물은 모두 얼굴과 옷이 갖춰져 있고 멀리 있는 무리도 색이 있는 옷을 입은 모습이다. 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 6.412,
+       "input": 4,
+       "output": 601,
+       "cache_read": 46468,
+       "cache_create": 8221,
+       "cost_usd": 0.0435488,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "틀림",
+      "e.david-king": "맞음",
+      "e.face-each": "틀림",
+      "e.edit-clean": "틀림",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗은 고개를 약간 숙였지만 시선이 오른쪽 앞을 향하고, 아래에 엎드린 사람을 내려다보지 않음",
+      "e.david-king": "희끗한 수염, 긴 붉은 겉옷, 금관이 모두 보임",
+      "e.face-each": "엎드린 사람의 머리는 왼쪽을 향하지만 다윗은 그를 내려다보지 않고 다른 곳을 봄",
+      "e.edit-clean": "다윗 머리와 어깨 주변에 흐린 얼룩과 번진 이음새가 보임",
+      "e.shimei-bow": "한 사람이 무릎 꿇고 이마를 땅에 대고 엎드려 있음"
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 7.947,
+       "input": 4,
+       "output": 659,
+       "cache_read": 46468,
+       "cache_create": 8220,
+       "cost_usd": 0.0441248,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "틀림",
+      "e.david-king": "맞음",
+      "e.face-each": "틀림",
+      "e.edit-clean": "틀림",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗은 오른쪽 강 쪽으로 시선을 두고 있어 엎드린 사람을 내려다본다고 분명히 확인되지 않는다.",
+      "e.david-king": "흰 수염, 긴 붉은 왕의 겉옷, 머리의 금관이 보이고 60세쯤으로 보인다.",
+      "e.face-each": "엎드린 사람의 머리는 왼쪽(다윗 쪽)을 향하지만, 다윗이 그를 내려다보지 않아 마주함이 성립하지 않는다.",
+      "e.edit-clean": "다윗의 어깨와 등 왼쪽에 흐릿한 얼룩과 이음새 같은 번짐이 있다.",
+      "e.shimei-bow": "한 사람이 무릎을 꿇고 이마를 땅에 대고 엎드려 있다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 7.454,
+       "input": 4,
+       "output": 645,
+       "cache_read": 54688,
+       "cache_create": 0,
+       "cost_usd": 0.011926800000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "틀림",
+      "e.david-king": "맞음",
+      "e.face-each": "틀림",
+      "e.edit-clean": "틀림",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗은 오른쪽 앞을 보며 약간 숙인 정도이고, 아래 엎드린 사람을 뚜렷이 내려다보지 않음",
+      "e.david-king": "희끗한 수염, 긴 붉은 겉옷, 금관이 모두 있어 60세쯤 된 왕으로 보임",
+      "e.face-each": "엎드린 사람의 머리는 왼쪽을 향하지만, 다윗은 시선을 오른쪽 앞으로 두어 서로 마주하지 않음",
+      "e.edit-clean": "다윗의 어깨와 등 쪽에 흐릿한 잔상과 이음새가 보임",
+      "e.shimei-bow": "한 사람이 무릎 꿇고 이마를 땅에 대고 엎드려 빎"
+     }
+    }
+   }
+  },
+  "H2:2": {
+   "S": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.63,
+       "input": 4,
+       "output": 313,
+       "cache_read": 52866,
+       "cache_create": 1165,
+       "cost_usd": 0.0130846,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필과 색연필로 그린 동화 그림이라기보다 매끈한 수채·디지털 삽화처럼 보인다. 색연필 결이 분명하지 않아 확실히 맞다고 할 수 없다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다. 멀리 있는 무리도 색과 옷이 구분된다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 6.047,
+       "input": 4,
+       "output": 436,
+       "cache_read": 44616,
+       "cache_create": 9415,
+       "cost_usd": 0.046489600000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "하늘과 땅을 꽉 채운 수채·과슈풍 삽화다. 미색 종이 위에 연필로 그리고 색연필로 칠한 질감이 분명하지 않다.",
+      "s.no-blob": "모든 인물에 옷과 얼굴, 몸 표현이 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 6.995,
+       "input": 4,
+       "output": 539,
+       "cache_read": 44616,
+       "cache_create": 9415,
+       "cost_usd": 0.04751960000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "선이 가늘고 종이색 하늘은 맞지만, 색칠이 매끈한 수채·구아슈나 디지털 일러스트처럼 보입니다. 색연필 결이 분명하지 않아 확실히 맞다고 할 수 없습니다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣이 없습니다. 먼 곳의 무리도 색 옷을 입은 사람으로 그려졌습니다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 7.904,
+       "input": 4,
+       "output": 637,
+       "cache_read": 46468,
+       "cache_create": 8221,
+       "cost_usd": 0.0439088,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "틀림",
+      "e.david-king": "틀림",
+      "e.face-each": "틀림",
+      "e.edit-clean": "틀림",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗은 옆(오른쪽)을 향해 서 있고 엎드린 사람을 내려다보지 않음",
+      "e.david-king": "회색 수염·긴 붉은 겉옷은 맞으나 머리 장식이 금관이라기보다 얇은 띠로 보여 분명히 맞다고 확인 안 됨",
+      "e.face-each": "엎드린 사람 머리는 왼쪽을 향하나 다윗이 그를 내려다보지 않아 마주함이 성립하지 않음",
+      "e.edit-clean": "다윗 어깨·팔 주변에 흐릿한 얼룩/이음새 흔적이 있어 깨끗하다고 확인 안 됨",
+      "e.shimei-bow": "한 사람이 무릎 꿇고 이마를 땅에 대고 엎드려 있음"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.517,
+       "input": 4,
+       "output": 668,
+       "cache_read": 53374,
+       "cache_create": 1315,
+       "cost_usd": 0.0172854,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "틀림",
+      "e.david-king": "맞음",
+      "e.face-each": "틀림",
+      "e.edit-clean": "맞음",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗의 얼굴은 오른쪽 앞을 향하고, 아래 엎드린 사람을 내려다보는 것이 분명하지 않다.",
+      "e.david-king": "희끗한 수염, 긴 붉은 겉옷, 머리의 금관이 모두 보인다.",
+      "e.face-each": "엎드린 사람의 머리는 왼쪽을 향하지만, 다윗은 그를 내려다보지 않고 오른쪽 옆을 보고 있어 마주함이 분명하지 않다.",
+      "e.edit-clean": "머리·얼굴·손에 이음새나 두 겹이 보이지 않고 목과 몸이 자연스럽게 이어진다.",
+      "e.shimei-bow": "무릎 꿇고 이마를 땅에 대고 엎드려 비는 모양이다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 7.36,
+       "input": 4,
+       "output": 666,
+       "cache_read": 46468,
+       "cache_create": 8221,
+       "cost_usd": 0.0441988,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "틀림",
+      "e.david-king": "맞음",
+      "e.face-each": "틀림",
+      "e.edit-clean": "틀림",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗은 고개를 숙이지 않고 오른쪽 앞을 바라봄. 엎드린 사람을 내려다보지 않음.",
+      "e.david-king": "희끗한 수염, 긴 붉은 겉옷, 머리의 금관이 보여 60세쯤 된 왕으로 맞음.",
+      "e.face-each": "엎드린 사람의 머리는 화면 왼쪽을 향하지만, 다윗이 그를 내려다보지 않아 마주 보는 모양이 아님.",
+      "e.edit-clean": "다윗의 옷 어깨와 목 부근 윤곽이 흐릿하고 뒤틀려 있어, 이음새가 없다고 분명히 확인되지 않음.",
+      "e.shimei-bow": "한 사람이 무릎 꿇고 이마를 땅에 대고 엎드려 비는 모양이 분명함."
+     }
+    }
+   }
+  },
+  "H2:3": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.021,
+       "input": 4,
+       "output": 307,
+       "cache_read": 44616,
+       "cache_create": 9415,
+       "cost_usd": 0.045199600000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "그림이 연필 스케치에 색연필로 칠한 느낌이 아니다. 매끈한 수채·디지털 일러스트에 가깝고 하늘과 배경도 미색 종이 질감이 아니다.",
+      "s.no-blob": "얼굴과 옷이 없이 회색 덩어리로 남은 인물이나 물건은 보이지 않는다. 먼 곳의 군중도 색과 옷이 구분된다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.887,
+       "input": 4,
+       "output": 299,
+       "cache_read": 52866,
+       "cache_create": 1165,
+       "cost_usd": 0.012944600000000002,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "색연필이 아니라 수채화나 디지털 페인팅에 가까운 매끈한 질감이다. 연필 선과 미색 종이 결도 뚜렷하지 않다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다. 먼 곳의 작은 인물들도 옷 색이 구분된다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 6.113,
+       "input": 4,
+       "output": 452,
+       "cache_read": 52866,
+       "cache_create": 1165,
+       "cost_usd": 0.014474600000000002,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "종이 질감과 연필 선, 색연필 결이 분명하지 않다. 매끈한 디지털 구아슈·수채 느낌이라 연필과 색연필 동화 그림이라고 확신할 수 없다.",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 8.032,
+       "input": 4,
+       "output": 713,
+       "cache_read": 46468,
+       "cache_create": 8221,
+       "cost_usd": 0.0446688,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "틀림",
+      "e.david-king": "틀림",
+      "e.face-each": "틀림",
+      "e.edit-clean": "틀림",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗의 얼굴은 오른쪽 앞을 향하고 있고, 아래의 엎드린 사람을 내려다보지 않는다.",
+      "e.david-king": "수염은 희끗하고 겉옷은 길지만, 머리에 얹은 것은 금관이라기보다 녹색 화관 같은 띠다. 또 머리카락이 청록색이라 60세쯤 된 왕으로 분명히 보이지 않는다.",
+      "e.face-each": "엎드린 사람의 머리는 화면 왼쪽, 다윗 쪽을 향한다. 그러나 다윗이 그를 내려다보지 않아 서로 마주하지 않는다.",
+      "e.edit-clean": "다윗의 왼쪽 어깨와 소매 가장자리가 번져 얼룩이 있고, 머리카락 색도 부자연스럽다.",
+      "e.shimei-bow": "한 사람이 무릎을 꿇고 이마를 땅에 대고 엎드려 빌고 있다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 7.84,
+       "input": 4,
+       "output": 686,
+       "cache_read": 53374,
+       "cache_create": 1315,
+       "cost_usd": 0.0174654,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "틀림",
+      "e.david-king": "틀림",
+      "e.face-each": "틀림",
+      "e.edit-clean": "틀림",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗은 고개를 숙이지 않고 화면 오른쪽 앞쪽을 봄. 엎드린 사람을 내려다보지 않음.",
+      "e.david-king": "수염은 희끗하고 겉옷은 길지만 머리의 관이 금관이라기보다 푸른 머리카락에 두른 화관처럼 보임. 60세 왕으로 확실하지 않음.",
+      "e.face-each": "엎드린 사람의 머리는 왼쪽을 향하지만 다윗이 그를 내려다보지 않아 마주 봄이 성립하지 않음.",
+      "e.edit-clean": "다윗 머리와 어깨 왼쪽 가장자리에 번진 얼룩이 보임.",
+      "e.shimei-bow": "무릎을 꿇고 이마를 땅에 대고 엎드린 모양이 분명함."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 7.708,
+       "input": 4,
+       "output": 664,
+       "cache_read": 53374,
+       "cache_create": 1315,
+       "cost_usd": 0.0172454,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.look-down": "틀림",
+      "e.david-king": "틀림",
+      "e.face-each": "틀림",
+      "e.edit-clean": "틀림",
+      "e.shimei-bow": "맞음"
+     },
+     "reasons": {
+      "e.look-down": "다윗의 시선이 정면/오른쪽 먼 곳을 향하고 엎드린 사람을 내려다보지 않음",
+      "e.david-king": "수염은 희끗하나 머리가 청회색 곱슬이고 금관이 얇은 화관 같아 60세 왕으로 분명하지 않음",
+      "e.face-each": "엎드린 사람의 머리는 왼쪽을 향하지만 다윗이 그를 내려다보지 않아 마주함이 아님",
+      "e.edit-clean": "다윗 어깨·옷깃 부근에 번진 얼룩 같은 흔적이 있어 깨끗하다고 확인되지 않음",
+      "e.shimei-bow": "한 사람이 무릎 꿇고 이마를 땅에 대고 엎드려 있음"
+     }
+    }
+   }
+  }
+ },
+ "edits": {
+  "H1:1": {
+   "status": "ok",
+   "sec": 40.6
+  },
+  "H1:2": {
+   "status": "ok",
+   "sec": 40.4
+  },
+  "H1:3": {
+   "status": "ok",
+   "sec": 41.2
+  },
+  "H2:1": {
+   "status": "ok",
+   "sec": 40.9
+  },
+  "H2:2": {
+   "status": "ok",
+   "sec": 40.7
+  },
+  "H2:3": {
+   "status": "ok",
+   "sec": 40.5
+  }
+ },
+ "cand": {
+  "best": "edit",
+  "left": "H1:3",
+  "right": "H1:2"
+ }
+}
