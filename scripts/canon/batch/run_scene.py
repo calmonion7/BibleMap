@@ -53,7 +53,7 @@ def worker(mode, jobs_path):
     tr = ZImageTransformer2DModel.from_single_file(
         sd, quantization_config=GGUFQuantizationConfig(compute_dtype=torch.bfloat16),
         config=ZI_BASE, subfolder="transformer", torch_dtype=torch.bfloat16)
-    if mode == "gencn":   # task#388 — CN 2602 lite + 구도 가이드, 앞 cn_steps 스텝만 CN(그 뒤는 CN 출력 없음)
+    if mode in ("gencn", "i2icn"):   # task#388 — CN 2602 lite + 구도 가이드, 앞 cn_steps 스텝만 CN(그 뒤는 CN 출력 없음)
         from diffusers import ZImageControlNetModel, ZImageControlNetPipeline
         from safetensors.torch import load_file
         cn = ZImageControlNetModel(control_layers_places=[0, 10, 20], control_refiner_layers_places=[0, 1], control_in_dim=33,
@@ -69,6 +69,26 @@ def worker(mode, jobs_path):
             calls[0] += 1
             return fwd(*a, **k) if calls[0] <= cur[0] else None
         pipe.controlnet.forward = first_k
+        if mode == "i2icn":   # restyle-try r2 — 두 번째 단계 img2img에도 약한 CN: CN 파이프라인에 잘린 일정 + 잡음 섞은 시작 latent
+            import diffusers.pipelines.z_image.pipeline_z_image_controlnet as zc
+            from diffusers import ZImageImg2ImgPipeline
+            i2i = ZImageImg2ImgPipeline(scheduler=pipe.scheduler, vae=pipe.vae, text_encoder=None, tokenizer=None, transformer=tr)
+            orig, strength = zc.retrieve_timesteps, [None]
+
+            def cut(scheduler, n, device, sigmas=None, **kw):   # ZImageImg2ImgPipeline.get_timesteps와 같은 자름
+                ts, n = orig(scheduler, n, device, sigmas=sigmas, **kw)
+                t0 = int(max(n - min(n * strength[0], n), 0))
+                scheduler.set_begin_index(t0)
+                return ts[t0:], n - t0
+            zc.retrieve_timesteps = cut
+
+            def start_latents(src, j, gen):
+                h, w = 2 * (j["h"] // 16), 2 * (j["w"] // 16)
+                mu = zc.calculate_shift((h // 2) * (w // 2), *(pipe.scheduler.config.get(k, d) for k, d in
+                                        (("base_image_seq_len", 256), ("max_image_seq_len", 4096), ("base_shift", 0.5), ("max_shift", 1.15))))
+                ts, _ = cut(pipe.scheduler, 9, "mps", sigmas=zc.get_default_z_image_sigmas(9), mu=mu)
+                im = i2i.image_processor.preprocess(src, height=j["h"], width=j["w"])
+                return i2i.prepare_latents(im, ts[:1], 1, tr.config.in_channels, j["h"], j["w"], torch.bfloat16, "mps", gen)
     elif mode == "i2i":   # restyle-try — CN 그림(src)을 CN 없이 strength만큼 다시 그림(두 단계)
         from diffusers import ZImageImg2ImgPipeline
         pipe = ZImageImg2ImgPipeline.from_pretrained(ZI_BASE, transformer=tr, text_encoder=None, tokenizer=None,
@@ -82,16 +102,20 @@ def worker(mode, jobs_path):
     for j, e in zip(jobs, embs):
         t = time.time()
         kw = {}
-        if mode == "gencn":
+        gen = torch.Generator("mps").manual_seed(j["seed"])
+        if mode in ("gencn", "i2icn"):
             from PIL import Image
             calls[0], cur[0] = 0, j["cn_steps"]
             kw = {"control_image": Image.open(j["control"]).convert("RGB"), "controlnet_conditioning_scale": j["scale"]}
+            if mode == "i2icn":
+                strength[0] = j["strength"]
+                kw["latents"] = start_latents(Image.open(j["src"]).convert("RGB"), j, gen)
         elif mode == "i2i":
             from PIL import Image
             kw = {"image": Image.open(j["src"]).convert("RGB"), "strength": j["strength"]}
         img = pipe(prompt_embeds=[x.to("mps", torch.bfloat16) for x in e], width=j["w"], height=j["h"],
                    num_inference_steps=9, guidance_scale=0.0,
-                   generator=torch.Generator("mps").manual_seed(j["seed"]), **kw).images[0]
+                   generator=gen, **kw).images[0]
         img.save(j["out"])
         secs.append(round(time.time() - t, 1))
         peak = max(peak, torch.mps.driver_allocated_memory() / 2 ** 30)
