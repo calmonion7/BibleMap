@@ -72,7 +72,7 @@ def gen():
         save(m)
         if jobs:
             os.makedirs(os.path.join(OUT, "cn"), exist_ok=True)
-            print(f"[RestyleTry] r3 gencn {len(jobs)}장 {run_scene.gen_zimage(jobs, os.path.join(OUT, 'cn'), 'gencn')}", flush=True)
+            print(f"[RestyleTry] {ROUND} gencn {len(jobs)}장 {run_scene.gen_zimage(jobs, os.path.join(OUT, 'cn'), 'gencn')}", flush=True)
         return
     if ROUND == "r2":
         return gen_r2(run_scene, src[11])
