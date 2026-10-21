@@ -217,10 +217,6 @@ def whole_prompt(spec):
             looks = f"looking toward the {_cast_in_scene(tgt)['age']} {_side(tgt, spec)}"
         # 차림은 장면 명세가 덮어쓴다(용어집 「카드 층 / 얼굴 층」) — 정본 costume은 빼고 장면 costume을 몸짓 뒤에 한 번(task 363)
         c, cost = {**_cast_in_scene(f), "costume": ""}, [f["costume"]["en"]]
-        if "beardless" in cost[0]:  # costume이 cast의 수염·복식을 덮어쓴다 — 모순·중복 방지, v2 카드 층 수염도 끈다(task 363)
-            c, cost = {**c, "beard": "none", "costume": cost[0]}, []
-            if c.get("card"):
-                c["card"] = {**c["card"], "beardVolume": {"class": "none", "text": ""}}
         facing = [SCREEN_FACING[f["screen_facing"]][0]] if f.get("screen_facing") else []
         parts.append(", ".join([f"{_side(f, spec).capitalize()}: {cast_describe(c)}", f["expression"]["en"],
                                 f["gesture"]["en"], *cost, looks, *facing]) + ".")

@@ -17,7 +17,7 @@
   "colorWords": [],
   "propCandidates": [
     {
-      "prop": "a large round bronze shield",
+      "prop": "a large shield",
       "verse": "삼상 17:7 · 17:41",
       "ko": "방패"
     }
@@ -31,7 +31,7 @@
   ],
   "poses": [
     "standing, full body, side view facing left",
-    "walking, full body, carrying a large round bronze shield upright in front of him with both hands, facing left"
+    "walking, full body, carrying a large shield upright in front of him with both hands, facing left"
   ],
   "card": {
     "heightRel": "average",

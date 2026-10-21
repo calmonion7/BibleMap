@@ -81,8 +81,8 @@
     {
       "cast": "shieldman",
       "role": "방패 든 자 — 골리앗 편 블레셋 종자",
-      "pose": "큰 둥근 놋방패를 양손으로 앞에 세워 들고 골리앗 바로 앞에 붙어 다윗 쪽으로 걷는다",
-      "prop": "큰 둥근 놋방패",
+      "pose": "큰 방패를 양손으로 앞에 세워 들고 골리앗 바로 앞에 붙어 다윗 쪽으로 걷는다",
+      "prop": "큰 방패",
       "facing": "left",
       "region": "shieldman",
       "verse": "17:7 · 17:41",
@@ -92,9 +92,9 @@
         "verse": "본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "큰 둥근 놋방패를 양손으로 앞에 세워 들고 골리앗 바로 앞에 붙어 다윗 쪽(왼쪽)으로 방패를 앞세워 걷는다",
-        "en": "holding a large round bronze shield upright in front of him with both hands, walking close in front of the giant, shield thrust forward toward the boy on the left",
-        "verse": "삼상 17:7 · 17:41(방패 든 자가 앞섬 — 블레셋 편) · 본문 밖 · 저작자 정함(둥근 놋·양손·골리앗에 바짝 붙음·화면 방향)"
+        "ko": "큰 방패를 양손으로 앞에 세워 들고 골리앗 바로 앞에 붙어 다윗 쪽(왼쪽)으로 방패를 앞세워 걷는다",
+        "en": "holding a large shield upright in front of him with both hands, walking close in front of the giant, shield thrust forward toward the boy on the left",
+        "verse": "삼상 17:7 · 17:41(방패 든 자가 앞섬 — 블레셋 편) · 큰 — [추론] 따로 든 자가 앞섬 · 본문 밖 · 저작자 정함(양손·골리앗에 바짝 붙음·화면 방향)"
       },
       "costume": {
         "ko": "샌들 — 맨 종자 차림(가죽 모자·평직 튜닉·수염 없음)은 shieldman 정본 카드 층",
@@ -317,7 +317,7 @@
       "kind": "plate",
       "region": "shieldman",
       "verse": "17:7",
-      "prompt": "full body of an unarmed Philistine shield-bearer walking, carrying a large round bronze shield upright in front of him with both hands, plain knee-length tunic, sandals, facing left.",
+      "prompt": "full body of an unarmed Philistine shield-bearer walking, carrying a large shield upright in front of him with both hands, plain knee-length tunic, sandals, facing left.",
       "neg": [
         "armour",
         "spear",

@@ -33,8 +33,6 @@ class WholePromptOrder(unittest.TestCase):
         for sid, spec in whole_scenes():
             p = ds.whole_prompt(spec)
             for f in spec["figures"]:
-                if "beardless" in f["costume"]["en"]:  # 덮어쓰기 경로 — 차림이 cast 자리에 든다
-                    continue
                 s = figure_sentence(p, spec, f)
                 with self.subTest(scene=sid, cast=f["cast"]):
                     self.assertLess(s.index(f["gesture"]["en"]), s.index(f["costume"]["en"]))
@@ -118,6 +116,11 @@ class WideQuestions(unittest.TestCase):
                 self.assertEqual((out[j]["id"], out[j]["grp"]), (out[i]["id"], "whole"))
                 self.assertEqual(out[i]["lab"], f"묶음 {label}")
                 self.assertEqual(out[min(i, j)]["lab"], "묶음 가")
+
+    def test_every_cast_named(self):   # task 391 — 판정 화면에 영어 id가 나오지 않게, cast 정본 전부가 이름표에
+        import make_night_page as P
+        ids = {os.path.basename(p)[:-5] for p in glob.glob(os.path.join(HERE, "cast", "*.json"))}
+        self.assertEqual(sorted(ids - set(P.NAME)), [])
 
     def test_plate_label_fixed_per_scene(self):
         import make_night_page as P
