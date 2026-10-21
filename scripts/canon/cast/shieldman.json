@@ -8,7 +8,7 @@
   "era": "an unarmed Philistine",
   "age": "servant",
   "sex": "male",
-  "role": "servant",
+  "role": "shield-bearer",
   "hair": "dark hair",
   "beard": "none",
   "headwear": "none",
@@ -85,7 +85,7 @@
     "face.skin": "[저작](얼굴 구분용)",
     "face.brows": "[저작](얼굴 구분용)",
     "face.marks": "[저작](얼굴 구분용)",
-    "role": "[추론] 삼상 17:41 「방패 든 자가 앞섰더라」 — 방패를 든 종자"
+    "role": "[직접] 삼상 17:41 「방패 든 자가 앞섰더라」"
   },
   "plate": {
     "seed": 11,

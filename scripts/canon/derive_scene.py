@@ -111,6 +111,8 @@ def _fill(text):
     out = text
     for cast in dp.SAMPLE_COSTUME:
         out = out.replace(f"{{costume:{cast}}}", dp.SAMPLE_COSTUME[cast][3:])   # `in ` 뒤
+    for cid in set(re.findall(r"\{costume:([a-z0-9-]+)\}", out)):              # 그 밖의 id는 정본 costume의 `in ` 뒤(task 390)
+        out = out.replace(f"{{costume:{cid}}}", load_cast(cid)["costume"][3:])
     for cid in set(re.findall(r"\{cast:([a-z0-9-]+)\}", out)):                 # 인물 정본 전체 문구(task 331 이후)
         out = out.replace(f"{{cast:{cid}}}", cast_describe(load_cast(cid)))
     for cid in set(re.findall(r"\{castc:([a-z0-9-]+)\}", out)):                # 짧은 문구(task 337 그룹 단계)
@@ -219,8 +221,6 @@ def whole_prompt(spec):
             c, cost = {**c, "beard": "none", "costume": cost[0]}, []
             if c.get("card"):
                 c["card"] = {**c["card"], "beardVolume": {"class": "none", "text": ""}}
-            if c["costume"].startswith("a Philistine"):  # cast의 era·age('unarmed … servant')가 투구 문구와 충돌 — 함께 대체
-                c = {**c, "era": "a Philistine", "age": ""}
         facing = [SCREEN_FACING[f["screen_facing"]][0]] if f.get("screen_facing") else []
         parts.append(", ".join([f"{_side(f, spec).capitalize()}: {cast_describe(c)}", f["expression"]["en"],
                                 f["gesture"]["en"], *cost, looks, *facing]) + ".")

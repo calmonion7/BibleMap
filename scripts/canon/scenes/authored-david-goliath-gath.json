@@ -71,8 +71,8 @@
         "verse": "삼상 17:7 · 17:42 · 본문 밖 · 저작자 정함(몸 숙임·내려다봄)"
       },
       "costume": {
-        "ko": "놋투구, 어린갑, 놋경갑, 베틀채 같은 창자루",
-        "en": "a bronze helmet, a coat of small overlapping bronze scales, bronze greaves on his legs, the spear shaft thick like a weaver's beam",
+        "ko": "어린갑, 놋경갑, 베틀채 같은 창자루 — 놋투구는 goliath 정본 카드 층",
+        "en": "a coat of small overlapping bronze scales, bronze greaves on his legs, the spear shaft thick like a weaver's beam",
         "verse": "삼상 17:5-7 · 17:6 놋단창 — 본문에 있으나 그림 생략(생성 한계)"
       },
       "gaze": "david-boy",
@@ -87,19 +87,19 @@
       "region": "shieldman",
       "verse": "17:7 · 17:41",
       "expression": {
-        "ko": "앞을 응시하는 굳은 블레셋 방패 든 자의 얼굴",
-        "en": "a stern Philistine shield-bearer's face looking ahead toward the boy",
+        "ko": "굳은 블레셋 방패 든 자의 얼굴",
+        "en": "a stern Philistine shield-bearer's face",
         "verse": "본문 밖 · 저작자 정함"
       },
       "gesture": {
         "ko": "큰 둥근 놋방패를 양손으로 앞에 세워 들고 골리앗 바로 앞에 붙어 다윗 쪽(왼쪽)으로 방패를 앞세워 걷는다",
-        "en": "holding a large round bronze shield upright in front of him with both hands, walking close in front of the giant, pressed right up against him, shield thrust forward toward the boy on the left",
+        "en": "holding a large round bronze shield upright in front of him with both hands, walking close in front of the giant, shield thrust forward toward the boy on the left",
         "verse": "삼상 17:7 · 17:41(방패 든 자가 앞섬 — 블레셋 편) · 본문 밖 · 저작자 정함(둥근 놋·양손·골리앗에 바짝 붙음·화면 방향)"
       },
       "costume": {
-        "ko": "블레셋 방패 든 자 차림 — 붉은 말총 볏이 높이 솟은 놋투구, 어두운 적갈색 짧은 튜닉, 가죽 띠, 샌들, 수염 없는 성인",
-        "en": "a Philistine warrior in a bronze helmet with a tall red horsehair crest, a short dark reddish-brown tunic with a leather belt, sandals, a beardless adult man",
-        "verse": "17:7 · 17:41 블레셋 편 · 본문 밖 · 저작자 정함(투구·튜닉·샌들)"
+        "ko": "샌들 — 맨 종자 차림(가죽 모자·평직 튜닉·수염 없음)은 shieldman 정본 카드 층",
+        "en": "sandals",
+        "verse": "삼상 17:7 · 17:41(방패 든 자 — 차림은 본문에 없음) · 본문 밖 · 저작자 정함(샌들) · 볏 투구는 본문이 말한 유일한 투구인 골리앗 놋투구(17:5)를 흐려 뺌(근거 우선순위 — 본문 > 사람 판단, task 390)"
       },
       "gaze": "david-boy",
       "screen_facing": "left"
@@ -317,7 +317,7 @@
       "kind": "plate",
       "region": "shieldman",
       "verse": "17:7",
-      "prompt": "full body of an unarmed Philistine servant walking, carrying a large round bronze shield upright in front of him with both hands, plain knee-length tunic, sandals, facing left.",
+      "prompt": "full body of an unarmed Philistine shield-bearer walking, carrying a large round bronze shield upright in front of him with both hands, plain knee-length tunic, sandals, facing left.",
       "neg": [
         "armour",
         "spear",
@@ -337,7 +337,7 @@
       "kind": "plate",
       "region": "david-boy",
       "verse": "17:40",
-      "prompt": "an ancient Israelite shepherd boy running mid-stride, gripping a short leather sling, {costume:david}, a leather pouch at his side, facing right.",
+      "prompt": "an ancient Israelite shepherd boy running mid-stride, gripping a short leather sling, {costume:david-boy}, a leather pouch at his side, facing right.",
       "neg": [
         "armour",
         "helmet",
@@ -382,7 +382,7 @@
       "verse": "17:42",
       "from": "S5",
       "skip": "판 합성에서는 판이 이미 얼굴과 방향을 준다 — 다시 그리면 망친다(v32, §22)",
-      "prompt": "head of a ruddy boy of fifteen, clean-shaven, curly hair, bare head, strict side profile facing right, chin up, looking straight at the giant on the right.",
+      "prompt": "head of a ruddy boy about 14, clean-shaven, curly hair, bare head, strict side profile facing right, chin up, looking straight at the giant on the right.",
       "neg": [
         "{head_neg}"
       ]
@@ -393,7 +393,7 @@
       "region": "goliath_head",
       "verse": "17:5",
       "skip": "다듬기 단계가 놋투구를 지워 대머리로 만들었다(v9) — S3만으로 이미 왼쪽을 본다(§22)",
-      "prompt": "head of a grown man of about forty, clean-shaven, no hair showing, plain bronze helmet with cheek guards, strict side profile facing left, eyes on the boy.",
+      "prompt": "head of a grown man in his 30s, full coarse black beard, no hair showing, smooth bronze helmet with no crest, strict side profile facing left, eyes on the boy.",
       "neg": [
         "{head_neg}",
         "horns"

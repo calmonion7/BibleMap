@@ -33,7 +33,8 @@ PROP_KO = {"a spear": "창", "a small harp": "작은 수금", "a robe corner": "
 FACING_KO = {"left": "화면 왼쪽을 향한다", "right": "화면 오른쪽을 향한다"}
 NAME = {"saul": "사울", "david": "다윗", "samuel": "사무엘", "david-boy": "소년 다윗", "ahimelech": "아히멜렉", "achish": "아기스",
         "nahash": "나하스", "doeg": "도엑", "abner": "아브넬", "joab": "요압", "nathan": "나단", "jesse": "이새",
-        "saul-old": "노년 사울", "endor-medium": "엔돌 여인", "saul-armor-bearer": "무기 든 자"}
+        "saul-old": "노년 사울", "endor-medium": "엔돌 여인", "saul-armor-bearer": "무기 든 자",
+        "david-prime": "다윗", "david-elder": "늙어가는 다윗", "solomon-prime": "솔로몬"}
 FACING370 = {370, 373, 376}   # 방향 문항을 「누구와 마주 보는가」로 묻는 과제(373: 한 장 모드 칸이 없어 설명은 판 facing과 앞쪽 인물에서)
 # task 370(whole-wide): 방향 문항은 사람이 본 축 「누구와 마주 보는가(얼굴·상체)」로, 설명은 한 장 모드 gaze에서(계획 결정 4)
 SCREEN_KO = {"right": "화면 오른쪽을 향함", "left": "화면 왼쪽을 향함", "viewer": "화면 앞을 향함", "away": "등을 보임"}

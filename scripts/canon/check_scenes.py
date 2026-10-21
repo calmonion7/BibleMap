@@ -27,7 +27,7 @@ REQUIRED = ("id", "title", "verses", "moment", "background", "figures", "regions
 KINDS = {"full", "region", "ridge", "plate", "refine", "prop"}
 WHOLE_MAX = 512   # diffusers ZImagePipeline.encode_prompt max_sequence_length(truncation=True) — task 362 실측
 # 넘어도 되는 장면 → 이유. 512 안에 들어오면 검사가 「예외 지울 것」으로 실패한다(낡은 예외 방지).
-WHOLE_OVER_OK = {"authored-david-goliath-gath": "task 355 뒤 557토큰 — 소년 다윗 id(david-boy) 배정으로 566→557, 남은 넘침은 방패병·골리앗 카드 층 머리쓰개·신분과 장면 차림(투구·볏·전사) 충돌"}
+WHOLE_OVER_OK = {}
 
 
 def verse_ids(book, ref):

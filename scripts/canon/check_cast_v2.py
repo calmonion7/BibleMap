@@ -43,7 +43,7 @@ STOP = {"a", "an", "the", "of", "with", "and", "to", "in", "at", "on", "his", "h
 TIERS = ("[직접]", "[추론]", "[저작]")
 # 성품·인상 낱말 — 고정 정의에 두지 않는다(CAST.md 「근거 단계」). task 353 DoD 4 목록과 같다.
 TRAIT = re.compile(r"\b(cold|cruel|hard|harsh|wicked|evil|sly|cunning|menacing|sinister|kind|gentle|wise|noble|arrogant|proud"
-                   r"|haughty|shifty|pleading|trembling|tense|anxious|fierce|stern|serene|innocent)\b")
+                   r"|haughty|shifty|pleading|trembling|tense|anxious|fierce|stern|serene|innocent|calm|steady|composed)\b")
 # 같은 사람의 생애 단계 — 일부러 닮게 하므로 (h)에서 뺀다.
 STAGES = {frozenset(p) for fam in [("david-boy", "david", "david-prime", "david-elder", "david-old"),
                                    ("saul", "saul-old"), ("solomon", "solomon-prime", "solomon-old")]

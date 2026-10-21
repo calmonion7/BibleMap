@@ -42,7 +42,7 @@
     "heightRel": "average",
     "ageBand": {
       "class": "elder",
-      "text": "in his 60s, calm lined face"
+      "text": "in his 60s, lined face"
     },
     "beardVolume": {
       "class": "long",
@@ -63,7 +63,7 @@
   },
   "face": {
     "faceShape": "narrow oval face, high cheekbones",
-    "eyes": "calm deep-set gray-brown eyes",
+    "eyes": "deep-set gray-brown eyes",
     "nose": "straight long nose",
     "mouth": "level mouth, soft lips",
     "skin": "pale weathered skin",
