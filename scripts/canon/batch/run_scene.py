@@ -69,6 +69,10 @@ def worker(mode, jobs_path):
             calls[0] += 1
             return fwd(*a, **k) if calls[0] <= cur[0] else None
         pipe.controlnet.forward = first_k
+    elif mode == "i2i":   # restyle-try — CN 그림(src)을 CN 없이 strength만큼 다시 그림(두 단계)
+        from diffusers import ZImageImg2ImgPipeline
+        pipe = ZImageImg2ImgPipeline.from_pretrained(ZI_BASE, transformer=tr, text_encoder=None, tokenizer=None,
+                                                     torch_dtype=torch.bfloat16).to("mps")
     else:
         pipe = ZImagePipeline.from_pretrained(ZI_BASE, transformer=tr, text_encoder=None, tokenizer=None,
                                               torch_dtype=torch.bfloat16).to("mps")
@@ -82,6 +86,9 @@ def worker(mode, jobs_path):
             from PIL import Image
             calls[0], cur[0] = 0, j["cn_steps"]
             kw = {"control_image": Image.open(j["control"]).convert("RGB"), "controlnet_conditioning_scale": j["scale"]}
+        elif mode == "i2i":
+            from PIL import Image
+            kw = {"image": Image.open(j["src"]).convert("RGB"), "strength": j["strength"]}
         img = pipe(prompt_embeds=[x.to("mps", torch.bfloat16) for x in e], width=j["w"], height=j["h"],
                    num_inference_steps=9, guidance_scale=0.0,
                    generator=torch.Generator("mps").manual_seed(j["seed"]), **kw).images[0]
