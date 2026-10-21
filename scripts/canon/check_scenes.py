@@ -109,11 +109,12 @@ def check(spec, verses):
         if s.get("id") in ids:
             errs.append(f"stages id 중복: {s.get('id')}")
         ids.add(s.get("id"))
-        for cid in re.findall(r"\{castc?:([a-z0-9-]+)\}", s.get("prompt", "")):
+        # {costume:<id>}도 같은 규칙 — 옛 id(`{costume:david}`)가 나뉜 id(david-boy) 장면에 남는 것을 막음(task 390)
+        for ph, cid in re.findall(r"\{(castc?|costume):([a-z0-9-]+)\}", s.get("prompt", "")):
             if not os.path.exists(os.path.join(CAST, f"{cid}.json")):
-                errs.append(f"stages[{s.get('id')}] {{cast:{cid}}} 정본 없음")
+                errs.append(f"stages[{s.get('id')}] {{{ph}:{cid}}} 정본 없음")
             if cid not in casts:
-                errs.append(f"stages[{s.get('id')}] {{cast:{cid}}}가 figures에 없음")
+                errs.append(f"stages[{s.get('id')}] {{{ph}:{cid}}}가 figures에 없음")
         if "from" in s and s["from"] not in ids:
             errs.append(f"stages[{s.get('id')}] from이 앞 단계가 아님: {s['from']}")
     # groups — 장면 안 경로에서 **한 번에 그릴** 인물 단계 묶음(task 337). 없으면 검사 없음.
