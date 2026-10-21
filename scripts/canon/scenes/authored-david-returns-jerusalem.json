@@ -680,16 +680,16 @@
   "approved": {
     "final": {
       "path": "night-pick",
-      "seed": 202,
+      "seed": 11,
       "kind": "base",
-      "image": "samples/restyle-r3/approved-authored-david-returns-jerusalem.png",
+      "image": "samples/restyle-r4/approved-authored-david-returns-jerusalem.png",
       "by": "user",
       "on": "2026-10-21",
-      "guide": "samples/jordan-guide/guide.png",
+      "guide": "samples/restyle-r4/guide.png",
       "cn": "2602 lite",
       "scale": 1.0,
       "cn_steps": 4,
-      "round": "restyle-r3"
+      "round": "restyle-r4"
     }
   },
   "meaning": {

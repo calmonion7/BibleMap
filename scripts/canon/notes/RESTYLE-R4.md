@@ -61,3 +61,12 @@ r3까지 요단은 판 문구 이어 붙이기 경로(`plate_whole_prompt`)라 `
 - 가이드의 다윗 실루엣은 곧게 선 머리(원)라 고개 숙임을 막고 있을 수 있다(가설).
 - 고정 절대로 후보 2장(둘 다 불통과 — 마주 봄·내려다봄)을 사람 1화면에 올린다(접힌 칸 8장 + r3 승인본 s202).
 - 후보 화면(비공개 Artifact, 폰): https://claude.ai/artifact/ButyTJ9cEsHuYPHdeo6rjg — `check_cand_page.py` 통과. 사람 답은 `samples/restyle-r4/pick-verdict.txt`.
+
+## 사람 판정 (2026-10-21, 대화로 받음 — `samples/restyle-r4/pick-verdict.txt`)
+
+- 답: 왼쪽 = **cn s11**(2위) · 쉼 뺀 0.4분 · 메모 없음
+
+판정: 장면 채택
+
+- 정본 `approved.final` = night-pick 바탕 s11(가이드 `samples/restyle-r4/guide.png` · CN 2602 lite 1.0·앞 4 · round restyle-r4) · 레포 사본 `samples/restyle-r4/approved-authored-david-returns-jerusalem.png` — r3 승인본 s202를 바꿈(r3 사본은 그대로 남김).
+- 남은 결함: 다윗이 내려다보지 않음(기계 0/8 · s11은 턱에 손을 대고 앞을 봄). 다음 수단(사람 결정, 미정): 가이드 머리 숙임 · 다윗 머리 국소 편집.
