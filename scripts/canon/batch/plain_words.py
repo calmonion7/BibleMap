@@ -42,7 +42,7 @@ import make_night_page as P
 SETS = {"plain-words": {"notes": "PLAIN-WORDS.md", "task": 382, "canon_rev": "03b0b07"},
         "jordan-moment": {"notes": "JORDAN-MOMENT.md", "task": 385, "canon_rev": "1ce6720"},   # 387이 요단 정본을 장면 구절로 고치기 전
         "jordan-scene": {"notes": "JORDAN-SCENE.md", "task": 387, "canon_rev": "15fc2de"},   # 388이 요단 정본에 지리·새 구도를 넣기 전
-        "jordan-guide": {"notes": "JORDAN-GUIDE.md", "task": 388, "canon_rev": None}}
+        "jordan-guide": {"notes": "JORDAN-GUIDE.md", "task": 388, "canon_rev": "a680048"}}   # restyle r3가 요단 정본에 다윗 왕·시므이 방향을 넣기 전
 SET = sys.argv[sys.argv.index("--set") + 1] if "--set" in sys.argv else "plain-words"
 TASK = SETS[SET]["task"]
 NOTES = os.path.join(HERE, "notes", SETS[SET]["notes"])

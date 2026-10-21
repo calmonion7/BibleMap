@@ -37,8 +37,24 @@
       "verse": "19:15",
       "quote": "왕이 돌아와",
       "kind": "인물",
-      "ko": "돌아온 왕 다윗",
-      "en": "the king, an ancient Israelite lean young man",
+      "ko": "돌아온 왕 다윗 — 60세 전후, 희끗한 수염(귀환 BC 978경 · 출생 1040 = 62세경 · 삼하 5:4 + 13:23·13:38·14:28·15:7 「사 년만에」 · 나이·수염은 본문 밖 · 저작자 정함 · restyle r2 사람 메모 「다윗이 누구인가?」)",
+      "en": "the king, an Israelite man of about sixty with a greying dark beard",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "19:15",
+      "quote": "왕이",
+      "kind": "인물",
+      "ko": "왕 표지 — 긴 왕의 겉옷·머리에 얇은 금관(본문 밖 · 저작자 정함 · 이 순간 관을 썼다는 본문은 없음 · 왕관 근거 삼하 1:10 사울의 면류관, 띠 모양 · 겉옷 근거 대상 15:27 · 15:30 머리 가림은 떠날 때, 19:8부터 왕으로 돌아옴 · restyle r2 사람 메모 「다윗이 누구인가?」)",
+      "en": "in a long royal robe with a thin gold circlet on his head",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "19:18",
+      "quote": "왕의 앞에",
+      "kind": "행동",
+      "ko": "다윗이 발 앞에 엎드린 시므이를 내려다봄 — 둘이 서로를 향함(시므이는 이마를 땅에 대어 눈은 맞추지 않음 · 19:19 「왕께 고하되」 · 19:22-23 · 본문 밖 · 저작자 정함 · 사람 지적 「시므이와 다윗왕이 마주봐야」)",
+      "en": "looking down at Shimei bowed at his feet",
       "field": "stages[S3].prompt"
     },
     {
@@ -93,8 +109,8 @@
       "verse": "19:18",
       "quote": "시므이가 왕의 앞에 엎드려",
       "kind": "행동",
-      "ko": "시므이가 왕 발 바로 앞에 엎드림",
-      "en": "a person kneeling low with the face toward the ground",
+      "ko": "시므이가 왕 발 바로 앞에 왕 쪽(화면 왼쪽)으로 머리를 두고 엎드림(머리 방향은 「왕의 앞에」에서 · 화면 기준 말은 PROMPTING 화면 기준 방향)",
+      "en": "kneeling with his forehead to the ground, his head toward the left edge of the picture, toward the king",
       "field": "stages[S4].prompt"
     },
     {
@@ -281,11 +297,11 @@
     {
       "cast": "david",
       "role": "다윗",
-      "pose": "강가에 서서 요단을 건너려 한다",
+      "pose": "강가에 서서 요단을 건너려 하며, 발 앞에 엎드린 시므이를 내려다본다",
       "prop": "none",
       "facing": "right",
       "region": "david",
-      "verse": "19:18 · 서 있음·강가 · 본문 밖 · 저작자 정함 · 칼은 장면 구절에 없어 뺌(엔게디 사울 선례)"
+      "verse": "19:18 · 서 있음·강가 · 본문 밖 · 저작자 정함 · 칼은 장면 구절에 없어 뺌(엔게디 사울 선례) · 60세 전후·왕 표지·시므이를 내려다봄은 본문 밖 · 저작자 정함(restyle r2 사람 메모·지적)"
     }
   ],
   "regions": {
@@ -476,7 +492,7 @@
       "kind": "region",
       "region": "shimei",
       "verse": "19:18 · 19:19",
-      "prompt": "at the king's feet, directly in front of him, Shimei the son of Gera, a person kneeling low with the face toward the ground, pleading with the king for mercy.",
+      "prompt": "at the king's feet, directly in front of him, Shimei the son of Gera, kneeling with his forehead to the ground, his head toward the left edge of the picture, toward the king, pleading with the king for mercy.",
       "neg": [
         "standing",
         "sitting"
@@ -499,10 +515,10 @@
       "kind": "plate",
       "region": "david",
       "verse": "19:18",
-      "prompt": "the king, an ancient Israelite lean young man standing at the river's edge, about to cross the Jordan, his hands empty, facing right.",
+      "prompt": "the king, an Israelite man of about sixty with a greying dark beard, in a long royal robe with a thin gold circlet on his head, standing at the river's edge, about to cross the Jordan, his hands empty, facing right, looking down at Shimei bowed at his feet.",
       "neg": [
         "armour",
-        "crown",
+        "young",
         "helmet",
         "sword",
         "weapon",
