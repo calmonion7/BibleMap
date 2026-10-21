@@ -683,10 +683,30 @@ function renderEnd(app) {
   };
 }
 function zoom(k) {
+  // 사람 요청(2026-10-21 「그림을 확대해서 볼수는 없나?」): 배율 단추 + 손가락으로 밀어 움직이기 + 두 번 누르면 그 자리 3배
   const ov = document.getElementById("ov");
-  ov.innerHTML = `<div class="row" style="justify-content:space-between"><b>크게 보기</b><button class="b main" id="close" type="button">닫기</button></div><img src="${IMGS[k]}" alt="">`;
+  ov.innerHTML = `<div class="row" style="justify-content:space-between;flex-wrap:wrap;gap:8px"><b>크게 보기</b><span class="row" style="gap:6px;flex-wrap:wrap">${[1, 2, 3, 4].map((z) =>
+    `<button class="b" type="button" data-z="${z}">${z}×</button>`).join("")}<button class="b main" id="close" type="button">닫기</button></span></div>
+    <p class="hint">배율을 고른 뒤 손가락으로 밀어 움직입니다. 그림을 두 번 누르면 그 자리를 3배로 봅니다.</p>
+    <div id="zw" style="overflow:auto;max-width:100%;max-height:72vh;border-radius:6px;-webkit-overflow-scrolling:touch"><img id="zi" src="${IMGS[k]}" alt="" style="width:100%;max-width:none;display:block;border-radius:0"></div>`;
+  const zw = document.getElementById("zw"), zi = document.getElementById("zi");
+  let cur = 1, last = 0;
+  const set = (z, fx, fy) => {
+    if (fx === undefined) { fx = (zw.scrollLeft + zw.clientWidth / 2) / zi.offsetWidth; fy = (zw.scrollTop + zw.clientHeight / 2) / zi.offsetHeight; }
+    zi.style.width = z * 100 + "%";
+    cur = z;
+    requestAnimationFrame(() => { zw.scrollLeft = zi.offsetWidth * fx - zw.clientWidth / 2; zw.scrollTop = zi.offsetHeight * fy - zw.clientHeight / 2; });
+    ov.querySelectorAll("[data-z]").forEach((b) => b.classList.toggle("main", +b.dataset.z === z));
+  };
+  ov.querySelectorAll("[data-z]").forEach((b) => b.onclick = () => set(+b.dataset.z));
+  zi.addEventListener("click", (e) => {
+    const now = Date.now();
+    if (now - last < 350) set(cur === 1 ? 3 : 1, e.offsetX / zi.offsetWidth, e.offsetY / zi.offsetHeight);
+    last = now;
+  });
   document.getElementById("close").onclick = () => { ov.hidden = true; };
   ov.hidden = false;
+  set(1, 0.5, 0.5);
 }
 function grow(el) { el.style.height = "auto"; el.style.height = el.scrollHeight + 2 + "px"; }
 function keepVisible(el) { setTimeout(() => el.scrollIntoView({ block: "center", behavior: "smooth" }), 250); }
