@@ -218,7 +218,11 @@
       "kind": "base",
       "image": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-saul-gilgal-amalek/base/s11.png",
       "by": "user",
-      "on": "2026-10-19"
+      "on": "2026-10-19",
+      "spec_hash": "3005474076f6",
+      "rules_version": "14fb4150e572",
+      "prompt_hash": "74d675a3f290",
+      "prompt_matches_spec": true
     }
   }
 }

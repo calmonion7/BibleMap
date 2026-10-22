@@ -182,7 +182,11 @@
       "kind": "base",
       "image": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s7.png",
       "by": "user",
-      "on": "2026-10-19"
+      "on": "2026-10-19",
+      "spec_hash": "60d008f13554",
+      "rules_version": "14fb4150e572",
+      "prompt_hash": "85e337efded3",
+      "prompt_matches_spec": true
     }
   }
 }

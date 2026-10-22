@@ -238,7 +238,11 @@
       "kind": "base",
       "image": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/base/s303.png",
       "by": "user",
-      "on": "2026-10-19"
+      "on": "2026-10-19",
+      "spec_hash": "9f50724bf04a",
+      "rules_version": "14fb4150e572",
+      "prompt_hash": "b243f4de4c52",
+      "prompt_matches_spec": true
     }
   }
 }

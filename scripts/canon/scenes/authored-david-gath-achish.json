@@ -309,7 +309,12 @@
         }
       ],
       "by": "user",
-      "on": "2026-10-21"
+      "on": "2026-10-21",
+      "spec_hash": "380a918b4e7b",
+      "rules_version": "14fb4150e572",
+      "prompt_hash": "c434b086ef4d",
+      "prompt_matches_spec": false,
+      "spec_hash_why": "생성 때 프롬프트(plain-words r2 s5 + 국소 편집)가 지금 명세의 파생과 다름 — 생성 때 명세 기록 없음, 지금 명세의 해시"
     }
   }
 }

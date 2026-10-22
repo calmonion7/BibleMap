@@ -56,31 +56,44 @@ def stamp(by):
     return {"by": by, "on": datetime.date.today().isoformat()}
 
 
-def night_pick(spec, seed, kind, image, by):
+def rules_version():
+    with open(os.path.join(params.CANON_DIR, "rules.json"), encoding="utf-8") as fh:
+        return json.load(fh)["version"]
+
+
+def provenance(spec, prompt):
+    """승인 그림의 출처(task 392) — 지금 명세 해시 · 생성 프롬프트 해시 · 규칙 원장 판. 규칙·명세가 바뀌면 recheck가 낡은 그림을 가린다."""
+    p = {"spec_hash": ss.spec_hash(spec), "prompt_hash": ss.prompt_hash(prompt) if prompt else None, "rules_version": rules_version()}
+    return p if prompt else {**p, "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"}
+
+
+def night_pick(spec, seed, kind, image, by, prompt=None):
     """한 장 경로의 [[장면 완료]](task 368) — 밤샘 후보 중 사람이 고른 한 장. 단계 사다리 밖이라 시도 id 대신
     경로·시드·바탕/편집·그림 경로를 적는다(생성기가 명세만으로 재현 대상을 알 수 있게)."""
     if kind not in ("edit", "base"):
         raise ValueError(f"kind는 edit|base다: {kind}")
-    spec.setdefault("approved", {})["final"] = {"path": "night-pick", "seed": seed, "kind": kind, "image": image, **stamp(by)}
+    spec.setdefault("approved", {})["final"] = {"path": "night-pick", "seed": seed, "kind": kind, "image": image, **stamp(by),
+                                              **provenance(spec, prompt)}
     return spec
 
 
 CONFIRM_KIND = {"편집본": "edit", "바탕": "base"}
 
 
-def confirm_pick(spec, seed, answer, base, edit, by):
+def confirm_pick(spec, seed, answer, base, edit, by, prompt=None):
     """편집 확인 답(task 369 — 편집은 고른 장에만) → [[장면 완료]]. 「편집본」이면 편집 그림, 「바탕」이면 고른 바탕을 승인본으로."""
     if answer not in CONFIRM_KIND:
         raise ValueError(f"확인 답은 {sorted(CONFIRM_KIND)} 중 하나다: {answer}")
     kind = CONFIRM_KIND[answer]
-    return night_pick(spec, seed, kind, edit if kind == "edit" else base, by)
+    return night_pick(spec, seed, kind, edit if kind == "edit" else base, by, prompt)
 
 
-def local_edit(spec, seed, image, steps, by):
+def local_edit(spec, seed, image, steps, by, prompt=None):
     """국소 편집 경로의 [[장면 완료]](task 371) — 고른 바탕 위 klein 부위 편집 중 사람이 고른 한 장. steps = 편집 차례(부위·지시·시드)."""
     if not steps:
         raise ValueError("local-edit 완료에는 편집 차례가 하나 이상 있어야 한다")
-    spec.setdefault("approved", {})["final"] = {"path": "local-edit", "seed": seed, "image": image, "steps": steps, **stamp(by)}
+    spec.setdefault("approved", {})["final"] = {"path": "local-edit", "seed": seed, "image": image, "steps": steps, **stamp(by),
+                                              **provenance(spec, prompt)}
     return spec
 
 

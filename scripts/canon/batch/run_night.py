@@ -309,7 +309,7 @@ def record(m, path):
             sc["confirm"] = {**a["confirm"], "minutes": a.get("minutes")}
             spec = approve.load_spec(sid)
             approve.save_spec(approve.confirm_pick(spec, sc["pick"]["seed"], a["confirm"]["answer"],
-                                                   sc["pick"]["image"], sc["pick_edit"]["out"], "user"))
+                                                   sc["pick"]["image"], sc["pick_edit"]["out"], "user", sc.get("prompt")))
             continue
         p = a["pick"]
         if p["seed"] is not None:

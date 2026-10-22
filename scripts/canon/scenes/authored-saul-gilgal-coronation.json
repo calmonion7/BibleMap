@@ -307,7 +307,12 @@
       "attempt": "a005",
       "seed": 11,
       "by": "cli",
-      "on": "2026-09-05"
+      "on": "2026-09-05",
+      "spec_hash": "054872e6245e",
+      "rules_version": "14fb4150e572",
+      "prompt_hash": null,
+      "prompt_hash_why": "단계 사다리 경로 — 단계별 판 문구로 그려 한 장 프롬프트가 없다",
+      "spec_hash_why": "생성 때 명세 기록 없음 — 2026-09-05 승인 뒤 지금 명세의 해시"
     }
   }
 }

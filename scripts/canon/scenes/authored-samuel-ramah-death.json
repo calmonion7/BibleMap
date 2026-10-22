@@ -205,7 +205,11 @@
       "kind": "base",
       "image": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base/s42.png",
       "by": "user",
-      "on": "2026-10-19"
+      "on": "2026-10-19",
+      "spec_hash": "128b9ac52d11",
+      "rules_version": "14fb4150e572",
+      "prompt_hash": "dce977ff4845",
+      "prompt_matches_spec": true
     }
   }
 }

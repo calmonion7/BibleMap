@@ -215,7 +215,11 @@
       "kind": "base",
       "image": "/Users/calmonion/.local/biblemap-imggen/jabesh-crowd/authored-saul-jabesh-rescue/base/s42.png",
       "by": "user",
-      "on": "2026-10-20"
+      "on": "2026-10-20",
+      "spec_hash": "8879ca9b5a81",
+      "rules_version": "14fb4150e572",
+      "prompt_hash": "2bce1d16c2cb",
+      "prompt_matches_spec": true
     }
   }
 }

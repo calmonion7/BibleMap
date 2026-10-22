@@ -146,7 +146,11 @@
       "kind": "base",
       "image": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s5.png",
       "by": "user",
-      "on": "2026-10-19"
+      "on": "2026-10-19",
+      "spec_hash": "bf8cfbbb51fe",
+      "rules_version": "14fb4150e572",
+      "prompt_hash": "0706af3dbe75",
+      "prompt_matches_spec": true
     }
   }
 }

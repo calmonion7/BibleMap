@@ -194,7 +194,11 @@
       "kind": "edit",
       "image": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/edit/s11.png",
       "by": "user",
-      "on": "2026-10-19"
+      "on": "2026-10-19",
+      "spec_hash": "43aff0d893b1",
+      "rules_version": "14fb4150e572",
+      "prompt_hash": "4667aa7c6277",
+      "prompt_matches_spec": true
     }
   }
 }

@@ -689,7 +689,11 @@
       "cn": "2602 lite",
       "scale": 1.0,
       "cn_steps": 4,
-      "round": "restyle-r6"
+      "round": "restyle-r6",
+      "spec_hash": "2bb0b5a70f76",
+      "rules_version": "14fb4150e572",
+      "prompt_hash": "a23819cb655d",
+      "prompt_matches_spec": true
     }
   },
   "meaning": {

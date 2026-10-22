@@ -216,7 +216,11 @@
       "kind": "base",
       "image": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s202.png",
       "by": "user",
-      "on": "2026-10-19"
+      "on": "2026-10-19",
+      "spec_hash": "5fb5b4f46593",
+      "rules_version": "14fb4150e572",
+      "prompt_hash": "6098fe06c337",
+      "prompt_matches_spec": true
     }
   }
 }
