@@ -29,9 +29,10 @@ def body(d, top_l, top_r, cx, y0, y1, bw, v):
         d.polygon([top_l, top_r, (cx + bw / 2, y1), (cx - bw / 2, y1)], fill=v)
         return
     ky = y0 + h * KNEE
-    kw = bw * 0.5 * (ky - sh) / (y1 - sh) + abs(top_r[0] - top_l[0]) / 2 * (y1 - ky) / (y1 - sh)   # 무릎 높이에서 사다리꼴 반폭
-    d.polygon([top_l, top_r, (cx + kw, ky), (cx - kw, ky)], fill=v)
-    lw = bw * 0.28
+    tw = abs(top_r[0] - top_l[0]) / 2                     # 어깨 반폭
+    kw = tw * 1.2                                         # b5: 무릎 반폭 ≈ 어깨 — 아래로 넓어지는 사다리꼴은 판초·망토로 그려짐(b4 사울 「판초 같은 긴 겉옷」)
+    d.polygon([(top_l[0] - tw * 0.25, top_l[1]), (top_r[0] + tw * 0.25, top_r[1]), (cx + kw, ky), (cx - kw, ky)], fill=v)   # 어깨·소매 조금 넓게
+    lw = bw * 0.34   # b5: 곧은 몸통으로 줄어든 덩어리를 다리로 메움(몸 덩어리 규칙)
     for s in (-1, 1):
         d.polygon([(cx + s * kw * 0.15 - lw / 2, ky), (cx + s * kw * 0.15 + lw / 2, ky), (cx + s * bw * 0.5 + lw / 2, y1), (cx + s * bw * 0.5 - lw / 2, y1)], fill=v)
 

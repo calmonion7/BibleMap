@@ -125,7 +125,7 @@
       0.98
     ],
     "spear": [
-      0.09,
+      0.105,
       0.42,
       0.34,
       0.445
@@ -137,7 +137,7 @@
       1.0
     ]
   },
-  "_regions_why": "b1 구도(task 401 사람 「구도」 — 텅 빈 방에 인물이 작고 멂): 사울 서서 세로 0.86(창을 던진 왕), 청년 다윗 숙여 세로 0.52(벽 쪽으로 머리를 낮추고 위몸을 굽혀 무릎을 꺾어 피함 — 삼상 9:2 「키는 모든 백성보다 어깨 위는 더하더라」라 사울이 더 큼). 좌우는 18:11 — 사울이 오른쪽에서 왼쪽 다윗에게 창을 던지고 다윗 등 뒤가 옆벽(wall 0~0.09, 다윗 0.06~0.25로 벽에 닿음), 창(spear x 0.09~0.34 · y 0.42~0.445 — 촉이 벽에 거의 닿게 숙인 머리 바로 위)은 사울 손(약 0.45)과 떨어진 허공에서 숙인 다윗 머리 위를 지남. 구역 이름은 cast id(david-youth)를 따름(task 355).",
+  "_regions_why": "b1 구도(task 401 사람 “구도” — 텅 빈 방에 인물이 작고 멂): 사울 서서 세로 0.86(창을 던진 왕), 청년 다윗 숙여 세로 0.52(벽 쪽으로 머리를 낮추고 위몸을 굽혀 무릎을 꺾어 피함 — 삼상 9:2 「키는 모든 백성보다 어깨 위는 더하더라」라 사울이 더 큼). 좌우는 18:11 — 사울이 오른쪽에서 왼쪽 다윗에게 창을 던지고 다윗 등 뒤가 옆벽(wall 0~0.09, 다윗 0.06~0.25로 벽에 닿음), 창(spear x 0.105~0.34 · y 0.42~0.445 — 벽에서 조금 떨어져 촉부터 숙인 머리 바로 위 벽 쪽으로)은 사울 손(약 0.45)과 떨어진 허공에서 숙인 다윗 머리 위를 지남. 구역 이름은 cast id(david-youth)를 따름(task 355).",
   "stages": [
     {
       "id": "S1",
@@ -200,7 +200,7 @@
     ],
     "gap_bands": [
       [
-        0.235,
+        0.25,
         0.56
       ]
     ],
@@ -246,9 +246,9 @@
     "verse": "삼상 18:10-11 · 기브아 지리 근거 15:34"
   },
   "relation": {
-    "ko": "사울이 방을 가로질러 다윗에게 창을 던졌고, 쇠 촉을 벽 쪽으로 한 창이 둘 사이 허공을 날아 다윗과 그 뒤 벽 쪽으로 가는데, 다윗이 머리를 숙이고 몸을 비틀어 피해 창 촉이 숙인 머리 바로 위 벽을 막 칠 듯하다",
-    "en": "A spear flies through the air across the room from Saul toward David and the wall behind him, a straight wooden shaft with one large leaf-shaped iron point at the front and a short pointed iron butt-spike at the back, no crossguard, its point toward the wall, and David ducks and twists aside out of its path so that its point is about to strike the wall just above his ducked head",
-    "verse": "18:11 「다윗을 벽에 박으리라 하고 그 창을 던졌으나 다윗이 그 앞에서 두 번 피하였더라」 · 날아가는 창의 자리·숙인 머리 바로 위 벽을 막 칠 듯함은 본문 밖 · 저작자 정함(「벽에 박으리라」의 겨냥 · 박힌 모습은 19:10 다른 날이라 그리지 않음) · 창 모양은 낱말 사전 spear L2(삼상 17:7 「창날은 철」 · 삼하 2:23 「창 뒤 끝으로 그 배를 찌르니 창이 그 등을 꿰뚫고 나간지라」)(창이 벽에 박힘은 19:10 다른 날이라 그리지 않음)"
+    "ko": "사울이 방을 가로질러 다윗에게 창을 던졌고, 쇠 촉을 벽 쪽으로 한 창이 둘 사이 허공을 날아 다윗과 그 뒤 벽 쪽으로 가는데, 다윗이 머리를 숙이고 몸을 비틀어 피해 창이 촉부터 숙인 머리 바로 위 벽 쪽으로 날아간다",
+    "en": "A spear flies through the air across the room from Saul toward David and the wall behind him, a straight wooden shaft with one large leaf-shaped iron point at the front and a short pointed iron butt-spike at the back, no crossguard, its point toward the wall, and David ducks and twists aside out of its path so that it flies point-first toward the wall just above his ducked head",
+    "verse": "18:11 「다윗을 벽에 박으리라 하고 그 창을 던졌으나 다윗이 그 앞에서 두 번 피하였더라」 · 날아가는 창의 자리·촉부터 숙인 머리 바로 위 벽 쪽으로 날아감은 본문 밖 · 저작자 정함(18:11 「벽에 박으리라」의 겨냥) · 창 모양은 낱말 사전 spear L2(삼상 17:7 「창날은 철」 · 삼하 2:23 「창 뒤 끝으로 그 배를 찌르니 창이 그 등을 꿰뚫고 나간지라」)(창이 벽에 박힘은 19:10 다른 날이라 그리지 않음)"
   },
   "whole_background": {
     "ko": "기브아 사울의 본집 안 소박한 방 — 사방이 거친 돌벽, 다윗 뒤로 맨 벽, 바닥에 놓인 나무 걸상 하나",
@@ -378,7 +378,7 @@
       "saul": "person_throw",
       "david-youth": "person_duck"
     },
-    "why": "task 400 시도 a1·397 — 문구(‘having just hurled his spear’·‘A spear flies through the air’·‘his empty throwing hand’)로는 16/16 창이 사울 손에 남아 찌르는 자세가 됨 → 가이드로 준다(PROMPTING 24·25·28 배치·상태는 가이드). 사울 = 빈 팔을 왼쪽으로 뻗은 꼴(손끝 앞 빈칸), 창 = 사울 손과 떨어진 허공의 막대(촉은 다윗 쪽), 다윗 = 등 뒤 옆벽 판에 붙음(18:11 「벽에 박으리라」, 다윗은 오른쪽 사울을 보니 등이 왼쪽 벽). · a3: 실내 바탕(backdrop room — a2 위쪽 빈 검은 띠에 캡션 글자 4/8) · 옆벽 원근 사다리꼴(a2 끝 띠가 지면 여백·붉은 선으로) · 사울 몸 앞으로 기울임·다윗 벽 쪽으로 젖혀 피함(a2 곧게 선 꼴이 그대로 — 던진 자세 0·순간 0) · 창 촉 키움(a2 촉 뒤집힘·양쪽 촉). · a5: 몸 너비는 카드 체격(body card — 사울 broad, 다윗 lean; a3·a4 넓은 체격 문구가 화면 끝 셋째 인물로) · 기울기 0.18(a4 0.1은 곧게 펴져 순간·던진 자세 0). · a6: 창길을 숙인 다윗 머리 바로 위로(a5 창이 머리 높이로 곧장 → 판정 ‘움츠릴 뿐 창길에서 비키지 않음’ 40/40) · 다윗 구역 위끝 0.45(숙임). · b1: 인물 크게(사람 「구도」) · 창 사전 L2 · 다윗 낮게 숙임. · b2: 무릎 길이 차림이면 가이드 꼴에 무릎 아래 두 다리(legs costume — b1 바닥까지 넓어지는 사다리꼴이 곧 긴 로브 실루엣이라 사울 긴 망토 8/8) · 다윗 기울기 0.3(b1 피함이 보임 0). · b3: 다윗 숙인 꼴(person_duck — 머리를 벽 쪽으로 낮추고 위몸을 굽혀 무릎을 꺾음, b2 기울인 꼴은 ‘벽에 기대 섬’으로 옮겨져 순간 0·피함이 보임 0) · 창은 낮춘 머리 바로 위. · b4: 창 촉이 벽에 거의 닿게 숙인 머리 바로 위로(b3 창이 한참 위로 지나 ‘겨누지도 않음’ · a5 머리 높이면 ‘맞기 직전’ — 아슬아슬한 빗나감만 피함으로 읽힘).",
+    "why": "task 400 시도 a1·397 — 문구(‘having just hurled his spear’·‘A spear flies through the air’·‘his empty throwing hand’)로는 16/16 창이 사울 손에 남아 찌르는 자세가 됨 → 가이드로 준다(PROMPTING 24·25·28 배치·상태는 가이드). 사울 = 빈 팔을 왼쪽으로 뻗은 꼴(손끝 앞 빈칸), 창 = 사울 손과 떨어진 허공의 막대(촉은 다윗 쪽), 다윗 = 등 뒤 옆벽 판에 붙음(18:11 「벽에 박으리라」, 다윗은 오른쪽 사울을 보니 등이 왼쪽 벽). · a3: 실내 바탕(backdrop room — a2 위쪽 빈 검은 띠에 캡션 글자 4/8) · 옆벽 원근 사다리꼴(a2 끝 띠가 지면 여백·붉은 선으로) · 사울 몸 앞으로 기울임·다윗 벽 쪽으로 젖혀 피함(a2 곧게 선 꼴이 그대로 — 던진 자세 0·순간 0) · 창 촉 키움(a2 촉 뒤집힘·양쪽 촉). · a5: 몸 너비는 카드 체격(body card — 사울 broad, 다윗 lean; a3·a4 넓은 체격 문구가 화면 끝 셋째 인물로) · 기울기 0.18(a4 0.1은 곧게 펴져 순간·던진 자세 0). · a6: 창길을 숙인 다윗 머리 바로 위로(a5 창이 머리 높이로 곧장 → 판정 ‘움츠릴 뿐 창길에서 비키지 않음’ 40/40) · 다윗 구역 위끝 0.45(숙임). · b1: 인물 크게(사람 “구도”) · 창 사전 L2 · 다윗 낮게 숙임. · b2: 무릎 길이 차림이면 가이드 꼴에 무릎 아래 두 다리(legs costume — b1 바닥까지 넓어지는 사다리꼴이 곧 긴 로브 실루엣이라 사울 긴 망토 8/8) · 다윗 기울기 0.3(b1 피함이 보임 0). · b3: 다윗 숙인 꼴(person_duck — 머리를 벽 쪽으로 낮추고 위몸을 굽혀 무릎을 꺾음, b2 기울인 꼴은 ‘벽에 기대 섬’으로 옮겨져 순간 0·피함이 보임 0) · 창은 낮춘 머리 바로 위. · b4: 창 촉이 벽에 거의 닿게 숙인 머리 바로 위로(b3 창이 한참 위로 지나 ‘겨누지도 않음’ · a5 머리 높이면 ‘맞기 직전’ — 아슬아슬한 빗나감만 피함으로 읽힘). · b5: 창을 벽에서 띄움(b4 창이 벽에 닿아 촉이 사울 쪽으로 뒤집힘 — 검토 10차 주의) · relation ‘strike’ → ‘flies point-first’ · 무릎 길이 몸통을 곧게(사울 판초).",
     "backdrop": "room",
     "body": "card",
     "legs": "costume"
