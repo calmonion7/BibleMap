@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "14fb4150e572",
+  "version": "71e7e88b3d1d",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -82,7 +82,7 @@
      "note": "한 화면 한 질문 · 장면 구절 원문(자동 — make_cand_page.scripture) · 대조 섞기 · 같은 판정 반복 금지(문서)"},
     {"id": "human.face-matched-quality", "layer": "human", "scope": "doc", "check": "todo",
      "source": "notes/FACE-LORA-V3.md · task 393", "since": "2026-10-22",
-     "note": "얼굴 문항은 정본을 크롭 화질에 맞추거나 장면 대 장면으로 — 이 규칙 전의 얼굴 답(LoRA v3)은 다시 받는다(task 393)"},
+     "note": "얼굴 문항은 정본과 판정할 머리의 선명도(실측)와 화면에 보이는 크기를 같게, 또는 장면 대 장면으로 — v1(화질·크기 다름) V3 1/8 → v2 6/8·8/8로 답이 뒤집힘(task 393). 머리가 작으면(약 120px) 화면 손질 대신 얼굴 보정(gen_face_detail)"},
     {"id": "judge.spec-judge", "layer": "judge", "scope": "rejected", "check": "batch.judge_spec",
      "source": "notes/SPEC-JUDGE.md · task 378", "since": "2026-10-20 task 378",
      "note": "명세 판정자·이상한 점 판정자 미채택 — 원장에 기록만"},

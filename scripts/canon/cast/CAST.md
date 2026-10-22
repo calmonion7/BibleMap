@@ -16,10 +16,10 @@
 
 | id | 이름(한글·별칭) | 등장 정차지(id 목록) | 정차지 수 | 비고 |
 |---|---|---|---|---|
-| david | 다윗, 이새의 아들 다윗 | ramah-samuel, nob-priests, gath-achish, adullam-cave, en-gedi-saul, ziklag-base | 6 | 즉위 전 도망자(20대) 구간 |
+| david | 다윗, 이새의 아들 다윗 | ramah-samuel, ramah-death, nob-priests, gath-achish, adullam-cave, en-gedi-saul, ziklag-base | 7 | 즉위 전 도망자(20대) 구간 |
 | saul | 사울, 기스의 아들 사울 | mizpah-chosen, jabesh-rescue, gilgal-coronation, michmash-battle, gilgal-amalek, gibeah-harp, gibeah-spear, nob-massacre, en-gedi-saul | 9 | 청년 선택~재위 구간 |
 | solomon | 솔로몬 | gihon-anointing, solomon-jerusalem-david-charge, gibeon-dream, two-mothers, temple-build, temple-dedication | 6 | 청년 왕 구간(왕상9:10 「이십 년」 이전) |
-| samuel | 사무엘 | mizpah-chosen, gilgal-coronation, michmash-battle, gilgal-amalek, bethlehem-david-anointing, ramah-samuel, ramah-death, endor-medium | 8 | 엔돌은 영으로 등장 |
+| samuel | 사무엘 | mizpah-chosen, gilgal-coronation, michmash-battle, gilgal-amalek, bethlehem-david-anointing, ramah-samuel, endor-medium | 7 | 엔돌은 영으로 등장 |
 | david-boy | 다윗(소년) | bethlehem-david-anointing, gibeah-harp, gibeah-spear | 3 | 기존 v41 정본 이관 출발점 · 골리앗 장면(정차지 아님)도 이 id(삼상17:33·42 「소년」) |
 | ahimelech | 아히멜렉, 제사장 아히멜렉 | nob-priests, nob-massacre | 2 | 놉 학살에서 사망 |
 | doeg | 도엑, 에돔 사람 도엑 | nob-priests, nob-massacre | 2 | |
@@ -31,6 +31,7 @@
 | david-old | 다윗(노년) | solomon-jerusalem-david-charge | 1 | 생애 단계 분할, 왕상2:1 임종 유언 |
 | david-prime | 다윗(장년 왕) | hebron-king-judah, jerusalem-conquest, ark-jerusalem, nathan-covenant, solomon-jerusalem-birth | 5 | 생애 단계 분할(task 355), 삼하5:4-5 재위 전반 30~40대 · 정본 그림 없음 |
 | david-elder | 다윗(노년 직전 왕) | mahanaim-exile, returns-jerusalem | 2 | 생애 단계 분할(task 355), 압살롬 반란 60세 전후 · 정본 그림 없음 |
+| zadok | 제사장 사독 | gihon-anointing | 1 | 왕상1:39 기름 뿔로 솔로몬에게 기름 부음 |
 | agag | 아각, 아말렉 왕 아각 | gilgal-amalek | 1 | |
 | endor-medium | 엔돌의 신접한 여인 | endor-medium | 1 | 이름 없는 핵심 개체 |
 | saul-armor-bearer | 병기 든 자 | gilboa-death | 1 | 이름 없는 핵심 개체 |
@@ -66,7 +67,7 @@
 | authored-david-adullam-cave | david | 환난 당한 자·빚진 자·마음 원통한 자(약 400명) |
 | authored-saul-nob-massacre | saul, ahimelech, doeg | 놉의 제사장들(85인), 놉의 남녀와 아이들 |
 | authored-david-en-gedi-saul | david, saul | 사울의 택한 사람 삼천, 다윗의 사람들 |
-| authored-samuel-ramah-death | samuel | 온 이스라엘 무리(애곡) |
+| authored-samuel-ramah-death | david | 온 이스라엘 무리(애곡) · 사무엘은 죽어 장사됨(25:1) — 장면 인물은 바란 광야로 떠나는 다윗(명세 figures) |
 | authored-david-ziklag-base | david, achish | (없음) |
 | authored-saul-endor-medium | saul-old, endor-medium, samuel(영으로 등장) | 사울의 두 신하 |
 | authored-saul-gilboa-death | saul-old, jonathan, saul-armor-bearer | 블레셋 사람들, 길르앗 야베스 장사들 |
@@ -78,7 +79,7 @@
 | authored-solomon-jerusalem-birth | david-prime, bathsheba, nathan | (없음) |
 | authored-david-mahanaim-exile | david-elder, absalom | 모든 이스라엘 사람(압살롬 편) |
 | authored-david-returns-jerusalem | david-elder, shimei | 유다 족속 |
-| authored-solomon-gihon-anointing | solomon, nathan | 사독, 브나야, 그렛·블렛 사람, 모든 백성 |
+| authored-solomon-gihon-anointing | solomon, nathan, zadok | 브나야, 그렛·블렛 사람, 모든 백성 |
 | authored-solomon-jerusalem-david-charge | david-old, solomon | (없음) |
 | authored-solomon-gibeon-dream | solomon | (없음) |
 | authored-solomon-jerusalem-two-mothers | solomon, mother-a, mother-b | (없음) |
