@@ -17,17 +17,17 @@
 | 규칙 | 층 | 원래 범위 | 통과 | 실패 | 못 잼 | 통과율 |
 |---|---|---|---|---|---|---|
 | `spec.required-fields` | spec | all | 37 | 0 | 0 | 100% |
-| `spec.whole-fields` | spec | list | 12 | 25 | 0 | 32% |
+| `spec.whole-fields` | spec | list | 15 | 22 | 0 | 41% |
 | `spec.verse-elements` | spec | list | 14 | 23 | 0 | 38% |
-| `spec.no-compromise-words` | spec | list | 34 | 3 | 0 | 92% |
-| `spec.scene-all-verses` | spec | one | 1 | 36 | 0 | 3% |
+| `spec.no-compromise-words` | spec | list | 37 | 0 | 0 | 100% |
+| `spec.scene-all-verses` | spec | one | 4 | 33 | 0 | 11% |
 | `spec.cast-card-v2` | spec | all | 37 | 0 | 0 | 100% |
 | `derive.no-hand-prompt` | derive | all | 37 | 0 | 0 | 100% |
 | `derive.no-bare-head` | derive | all | 37 | 0 | 0 | 100% |
 | `derive.clip-77-tokens` | derive | all | 8 | 29 | 0 | 22% |
 | `derive.512-tokens` | derive | list | 37 | 0 | 0 | 100% |
 
-**전 규칙 통과 명세 0/37** · 칸 통과 254/370 (69%)
+**전 규칙 통과 명세 0/37** · 칸 통과 263/370 (71%)
 
 | 명세 | required-fields | whole-fields | verse-elements | no-compromise-words | scene-all-verses | cast-card-v2 | no-hand-prompt | no-bare-head | clip-77-tokens | 512-tokens |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -49,7 +49,7 @@
 | samuel-bethlehem-david-anointing | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✗ | ✅ |
 | samuel-ramah-death | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✗ | ✅ |
 | saul-endor-medium | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✗ | ✅ |
-| saul-gibeah-spear | ✅ | ✗ | ✗ | ✗ | ✗ | ✅ | ✅ | ✅ | ✗ | ✅ |
+| saul-gibeah-spear | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ |
 | saul-gilboa-death | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✗ | ✅ |
 | saul-gilgal-amalek | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✗ | ✅ |
 | saul-gilgal-coronation | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✗ | ✅ |
@@ -60,12 +60,12 @@
 | solomon-ezion-geber-fleet | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✗ | ✅ |
 | solomon-gibeon-dream | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✗ | ✅ |
 | solomon-gihon-anointing | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| solomon-jerusalem-apostasy | ✅ | ✗ | ✗ | ✗ | ✗ | ✅ | ✅ | ✅ | ✗ | ✅ |
+| solomon-jerusalem-apostasy | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ |
 | solomon-jerusalem-birth | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | solomon-jerusalem-david-charge | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✗ | ✅ |
 | solomon-jerusalem-palace | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✗ | ✅ |
 | solomon-jerusalem-sheba | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✗ | ✅ |
-| solomon-jerusalem-temple-build | ✅ | ✗ | ✗ | ✗ | ✗ | ✅ | ✅ | ✅ | ✗ | ✅ |
+| solomon-jerusalem-temple-build | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ |
 | solomon-jerusalem-temple-dedication | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✗ | ✅ |
 | solomon-jerusalem-two-mothers | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✗ | ✅ |
 <!-- recheck:specs:end -->
@@ -77,17 +77,17 @@
 
 | 규칙 | 통과 | 실패 | 낡음 | 못 잼 |
 |---|---|---|---|---|
-| `spec.required-fields` | 12 | 0 | 0 | 0 |
+| `spec.required-fields` | 11 | 0 | 1 | 0 |
 | `spec.whole-fields` | 8 | 0 | 4 | 0 |
 | `spec.verse-elements` | 3 | 0 | 9 | 0 |
 | `spec.no-compromise-words` | 11 | 0 | 1 | 0 |
 | `spec.scene-all-verses` | 1 | 0 | 11 | 0 |
-| `spec.cast-card-v2` | 12 | 0 | 0 | 0 |
-| `derive.no-hand-prompt` | 10 | 0 | 2 | 0 |
-| `derive.no-bare-head` | 12 | 0 | 0 | 0 |
+| `spec.cast-card-v2` | 11 | 0 | 1 | 0 |
+| `derive.no-hand-prompt` | 9 | 0 | 3 | 0 |
+| `derive.no-bare-head` | 11 | 0 | 1 | 0 |
 | `derive.clip-77-tokens` | 0 | 0 | 12 | 0 |
-| `derive.512-tokens` | 12 | 0 | 0 | 0 |
-| `judge.j1-items` | 1 | 9 | 0 | 2 |
+| `derive.512-tokens` | 11 | 0 | 1 | 0 |
+| `judge.j1-items` | 1 | 8 | 0 | 3 |
 | `judge.style` | 0 | 0 | 0 | 12 |
 | `judge.plausibility-adopted` | 11 | 1 | 0 | 0 |
 | `human.face-matched-quality` | 0 | 0 | 0 | 12 |
@@ -101,7 +101,7 @@
 | david-returns-jerusalem | night-pick s101 | – restyle-r6 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이번 | ✗ 틀림 p.boarding | clip-77-tokens |
 | samuel-bethlehem-david-anointing | local-edit s42 | ✗ 틀림 background[0], crowds | ✅ 걸린 채택 문항 0 | whole-fields, scene-all-verses, no-hand-prompt, clip-77-tokens |
 | samuel-ramah-death | night-pick s42 | ✗ 틀림 crowds, figures[0].prop | ✅ 걸린 채택 문항 0 | verse-elements, scene-all-verses, clip-77-tokens |
-| saul-gibeah-spear | night-pick s5 | ✗ 틀림 figures[1].prop | ✅ 걸린 채택 문항 0 | whole-fields, verse-elements, no-compromise-words, scene-all-verses, clip-77-tokens |
+| saul-gibeah-spear | night-pick s5 | – 몸 크롭 상자 없음: ['david-boy'] | ✅ 걸린 채택 문항 0 | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, no-hand-prompt, no-bare-head, clip-77-tokens, 512-tokens |
 | saul-gilgal-amalek | night-pick s11 | ✅ 9문항 맞음 | ✅ 걸린 채택 문항 0 | verse-elements, scene-all-verses, clip-77-tokens |
 | saul-gilgal-coronation | attempt a005 s11 | – 단계 사다리 그림에 몸 크롭 상자 기록이 없다 — OWLv2 상자는 GPU 단계라 이번 범위 밖 | ✅ 걸린 채택 문항 0 | verse-elements, scene-all-verses, clip-77-tokens |
 | saul-jabesh-rescue | night-pick s42 | ✗ 틀림 background[0], crowds[0] | ✅ 걸린 채택 문항 0 | verse-elements, scene-all-verses, clip-77-tokens |

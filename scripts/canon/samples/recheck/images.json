@@ -490,93 +490,41 @@
    "seed": 5,
    "path": "night-pick",
    "from": "night-pilot",
-   "spec_changed": false,
+   "spec_changed": true,
    "prompt_matches_spec": true,
    "rules": {
-    "judge.j1-items": "fail",
+    "judge.j1-items": "none",
     "judge.plausibility-adopted": "pass",
     "judge.style": "none",
     "human.face-matched-quality": "none",
-    "spec.required-fields": "pass",
+    "spec.required-fields": "stale",
     "spec.whole-fields": "stale",
     "spec.verse-elements": "stale",
     "spec.no-compromise-words": "stale",
     "spec.scene-all-verses": "stale",
-    "spec.cast-card-v2": "pass",
-    "derive.no-hand-prompt": "pass",
-    "derive.no-bare-head": "pass",
+    "spec.cast-card-v2": "stale",
+    "derive.no-hand-prompt": "stale",
+    "derive.no-bare-head": "stale",
     "derive.clip-77-tokens": "stale",
-    "derive.512-tokens": "pass"
+    "derive.512-tokens": "stale"
    },
    "why": {
-    "judge.j1-items": "틀림 figures[1].prop",
+    "judge.j1-items": "몸 크롭 상자 없음: ['david-boy']",
     "judge.plausibility-adopted": "걸린 채택 문항 0",
     "judge.style": "화풍 판정자 조건부(판정자 재현성) — 승인 그림 재검에 아직 안 씀",
     "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
-    "spec.whole-fields": "명세가 지금 규칙을 어김: 장면.meaning: ko/en/verse 가 비어 있거나 없다; 장면.relation: ko/en/verse 가 비어 있거나 없다; 장면.whole_background: ko/en/verse 가 비어 있거나 없다; saul.expression: ko/en/verse 가 비어 있거나 없다; saul.gesture: ko/en/verse 가 비어 있거나 없다",
-    "spec.verse-elements": "명세가 지금 규칙을 어김: verse_elements 없음 — 구절 시각 요소 목록 미작성",
-    "spec.no-compromise-words": "명세가 지금 규칙을 어김: moment.why: prior; moment.why: 모델",
-    "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다",
-    "derive.clip-77-tokens": "명세가 지금 규칙을 어김: S2: CLIP 77토큰 넘침; S3: CLIP 77토큰 넘침"
+    "spec.required-fields": "그림 뒤 명세가 바뀜",
+    "spec.whole-fields": "그림 뒤 명세가 바뀜",
+    "spec.verse-elements": "그림 뒤 명세가 바뀜",
+    "spec.no-compromise-words": "그림 뒤 명세가 바뀜",
+    "spec.scene-all-verses": "그림 뒤 명세가 바뀜",
+    "spec.cast-card-v2": "그림 뒤 명세가 바뀜",
+    "derive.no-hand-prompt": "그림 뒤 명세가 바뀜",
+    "derive.no-bare-head": "그림 뒤 명세가 바뀜",
+    "derive.clip-77-tokens": "그림 뒤 명세가 바뀜",
+    "derive.512-tokens": "그림 뒤 명세가 바뀜"
    },
-   "j1": {
-    "v2": {
-     "ask": "f2914cea6447",
-     "tries": [
-      {
-       "seconds": 7.895,
-       "input": 4,
-       "output": 948,
-       "cache_read": 44322,
-       "cache_create": 11729,
-       "cost_usd": 0.0608362,
-       "turns": 4,
-       "error": false
-      }
-     ],
-     "answers": {
-      "moment": "맞음",
-      "background[0]": "맞음",
-      "figures[0].pose": "맞음",
-      "figures[0].facing": "맞음",
-      "figures[1].pose": "맞음",
-      "figures[1].facing": "맞음",
-      "guard": "맞음"
-     },
-     "reasons": {
-      "moment": "다윗은 수금을 타고, 사울은 창을 쥐고 서 있다. 던지는 동작도 피하는 동작도 없다.",
-      "background[0]": "왼쪽에 석벽이 있고 나머지는 빈 바닥과 벽뿐인 소박한 실내다.",
-      "figures[0].pose": "사울이 서서 오른손으로 창대를 쥐고 있다.",
-      "figures[0].facing": "사울의 얼굴과 상체가 화면 왼쪽, 다윗 쪽을 향한다.",
-      "figures[1].pose": "다윗이 바닥에 무릎 꿇고 앉아 두 손으로 수금 줄을 탄다.",
-      "figures[1].facing": "다윗의 얼굴과 상체가 화면 오른쪽, 사울 쪽을 향한다.",
-      "guard": "손가락 수 이상, 겹친 인물, 테두리, 글자가 보이지 않는다."
-     }
-    },
-    "p2": {
-     "ask": "b08aea826150",
-     "tries": [
-      {
-       "seconds": 6.759,
-       "input": 4,
-       "output": 588,
-       "cache_read": 45969,
-       "cache_create": 11928,
-       "cost_usd": 0.0581969,
-       "turns": 4,
-       "error": false
-      }
-     ],
-     "answers": {
-      "figures[0].prop": "맞음",
-      "figures[1].prop": "틀림"
-     },
-     "reasons": {
-      "figures[0].prop": "사울이 잎사귀 모양 촉이 달린 긴 창을 한 손으로 세워 쥐고 있어 기대와 일치한다.",
-      "figures[1].prop": "다윗의 악기는 바닥에 세워 두는 큰 하프다. 앉은 몸통보다 크고 줄이 많아서 작은 수금이 아니다."
-     }
-    }
-   },
+   "j1": null,
    "plausibility": null
   },
   "authored-saul-gilgal-amalek": {
@@ -1099,7 +1047,6 @@
     "authored-david-returns-jerusalem",
     "authored-samuel-bethlehem-david-anointing",
     "authored-samuel-ramah-death",
-    "authored-saul-gibeah-spear",
     "authored-saul-gilgal-amalek",
     "authored-saul-gilgal-coronation",
     "authored-saul-jabesh-rescue",
@@ -1108,9 +1055,11 @@
     "authored-saul-nob-massacre"
    ],
    "fail": [],
-   "stale": [],
+   "stale": [
+    "authored-saul-gibeah-spear"
+   ],
    "none": [],
-   "rate": 1.0
+   "rate": 0.9167
   },
   {
    "id": "spec.whole-fields",
@@ -1223,7 +1172,6 @@
     "authored-david-returns-jerusalem",
     "authored-samuel-bethlehem-david-anointing",
     "authored-samuel-ramah-death",
-    "authored-saul-gibeah-spear",
     "authored-saul-gilgal-amalek",
     "authored-saul-gilgal-coronation",
     "authored-saul-jabesh-rescue",
@@ -1232,9 +1180,11 @@
     "authored-saul-nob-massacre"
    ],
    "fail": [],
-   "stale": [],
+   "stale": [
+    "authored-saul-gibeah-spear"
+   ],
    "none": [],
-   "rate": 1.0
+   "rate": 0.9167
   },
   {
    "id": "derive.no-hand-prompt",
@@ -1245,7 +1195,6 @@
     "authored-david-gibeah-harp",
     "authored-david-returns-jerusalem",
     "authored-samuel-ramah-death",
-    "authored-saul-gibeah-spear",
     "authored-saul-gilgal-amalek",
     "authored-saul-gilgal-coronation",
     "authored-saul-jabesh-rescue",
@@ -1256,10 +1205,11 @@
    "fail": [],
    "stale": [
     "authored-david-gath-achish",
-    "authored-samuel-bethlehem-david-anointing"
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-saul-gibeah-spear"
    ],
    "none": [],
-   "rate": 0.8333
+   "rate": 0.75
   },
   {
    "id": "derive.no-bare-head",
@@ -1272,7 +1222,6 @@
     "authored-david-returns-jerusalem",
     "authored-samuel-bethlehem-david-anointing",
     "authored-samuel-ramah-death",
-    "authored-saul-gibeah-spear",
     "authored-saul-gilgal-amalek",
     "authored-saul-gilgal-coronation",
     "authored-saul-jabesh-rescue",
@@ -1281,9 +1230,11 @@
     "authored-saul-nob-massacre"
    ],
    "fail": [],
-   "stale": [],
+   "stale": [
+    "authored-saul-gibeah-spear"
+   ],
    "none": [],
-   "rate": 1.0
+   "rate": 0.9167
   },
   {
    "id": "derive.clip-77-tokens",
@@ -1320,7 +1271,6 @@
     "authored-david-returns-jerusalem",
     "authored-samuel-bethlehem-david-anointing",
     "authored-samuel-ramah-death",
-    "authored-saul-gibeah-spear",
     "authored-saul-gilgal-amalek",
     "authored-saul-gilgal-coronation",
     "authored-saul-jabesh-rescue",
@@ -1329,9 +1279,11 @@
     "authored-saul-nob-massacre"
    ],
    "fail": [],
-   "stale": [],
+   "stale": [
+    "authored-saul-gibeah-spear"
+   ],
    "none": [],
-   "rate": 1.0
+   "rate": 0.9167
   },
   {
    "id": "judge.j1-items",
@@ -1346,7 +1298,6 @@
     "authored-david-gibeah-harp",
     "authored-samuel-bethlehem-david-anointing",
     "authored-samuel-ramah-death",
-    "authored-saul-gibeah-spear",
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
@@ -1355,9 +1306,10 @@
    "stale": [],
    "none": [
     "authored-david-returns-jerusalem",
+    "authored-saul-gibeah-spear",
     "authored-saul-gilgal-coronation"
    ],
-   "rate": 0.1
+   "rate": 0.1111
   },
   {
    "id": "judge.style",

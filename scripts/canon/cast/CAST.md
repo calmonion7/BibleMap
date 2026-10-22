@@ -16,11 +16,11 @@
 
 | id | 이름(한글·별칭) | 등장 정차지(id 목록) | 정차지 수 | 비고 |
 |---|---|---|---|---|
-| david | 다윗, 이새의 아들 다윗 | gibeah-spear, ramah-samuel, nob-priests, gath-achish, adullam-cave, en-gedi-saul, ziklag-base | 7 | 즉위 전 도망자(20대) 구간 |
+| david | 다윗, 이새의 아들 다윗 | ramah-samuel, nob-priests, gath-achish, adullam-cave, en-gedi-saul, ziklag-base | 6 | 즉위 전 도망자(20대) 구간 |
 | saul | 사울, 기스의 아들 사울 | mizpah-chosen, jabesh-rescue, gilgal-coronation, michmash-battle, gilgal-amalek, gibeah-harp, gibeah-spear, nob-massacre, en-gedi-saul | 9 | 청년 선택~재위 구간 |
 | solomon | 솔로몬 | gihon-anointing, solomon-jerusalem-david-charge, gibeon-dream, two-mothers, temple-build, temple-dedication | 6 | 청년 왕 구간(왕상9:10 「이십 년」 이전) |
 | samuel | 사무엘 | mizpah-chosen, gilgal-coronation, michmash-battle, gilgal-amalek, bethlehem-david-anointing, ramah-samuel, ramah-death, endor-medium | 8 | 엔돌은 영으로 등장 |
-| david-boy | 다윗(소년) | bethlehem-david-anointing, gibeah-harp | 2 | 기존 v41 정본 이관 출발점 · 골리앗 장면(정차지 아님)도 이 id(삼상17:33·42 「소년」) |
+| david-boy | 다윗(소년) | bethlehem-david-anointing, gibeah-harp, gibeah-spear | 3 | 기존 v41 정본 이관 출발점 · 골리앗 장면(정차지 아님)도 이 id(삼상17:33·42 「소년」) |
 | ahimelech | 아히멜렉, 제사장 아히멜렉 | nob-priests, nob-massacre | 2 | 놉 학살에서 사망 |
 | doeg | 도엑, 에돔 사람 도엑 | nob-priests, nob-massacre | 2 | |
 | achish | 아기스, 가드 왕 아기스 | gath-achish, ziklag-base | 2 | |
@@ -59,7 +59,7 @@
 | authored-saul-gilgal-amalek | samuel, saul, agag | 아말렉 백성(진멸당함) |
 | authored-samuel-bethlehem-david-anointing | samuel, jesse, david-boy | 성읍 장로들, 이새의 다른 아들들(엘리압 등) |
 | authored-david-gibeah-harp | saul, david-boy | (없음) |
-| authored-saul-gibeah-spear | saul, david | 여인들(노래하며 춤추는 무리) |
+| authored-saul-gibeah-spear | saul, david-boy | (없음 — 18:6-7 여인들은 전날 일, task 394) |
 | authored-david-ramah-samuel | david, samuel | (없음) |
 | authored-david-nob-priests | david, ahimelech, doeg | 다윗의 소년들 |
 | authored-david-gath-achish | david, achish | 아기스의 신하들 |

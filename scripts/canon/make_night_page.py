@@ -21,7 +21,7 @@ DST = {368: "night-pick.html", 369: "whole-fix-pick.html", 370: "whole-wide-pick
 # 고르기 화면 덧말(과제별) — task 372: 암몬 무리는 다음 단계 편집 대상이라 「무리 말고 다 맞는 바탕」을 고른다(계획 결정 6)
 PICK_NOTE = {372: "암몬 무리(crowds[1])는 다음 단계에서 고른 장에만 편집합니다. 암몬 무리 말고 다 맞는 바탕을 고르세요."}
 LIMIT = 15.5e6
-PROP_KO = {"a spear": "창", "a small harp": "작은 수금", "a robe corner": "겉옷자락", "a plain traveling cloak": "수수한 나그네 겉옷",
+PROP_KO = {"a spear": "창", "a small harp": "작은 수금", "a small wooden lyre": "작은 나무 수금","a robe corner": "겉옷자락", "a plain traveling cloak": "수수한 나그네 겉옷",
            "a torn robe corner": "찢어진 겉옷자락", "a wooden staff": "나무 지팡이", "a sword": "칼",
            "a cloth-wrapped sword": "보자기에 싼 칼", "a wooden gate post": "나무 성문 기둥", "a fold of his robe": "겉옷 자락",
            "a siege spear": "공성 창", "the hem of his ephod": "에봇 자락",
