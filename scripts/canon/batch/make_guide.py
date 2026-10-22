@@ -150,6 +150,41 @@ def person_throw(d, x0, y0, x1, y1, v):
     d.ellipse([cx - arm - r * 0.5, ay - r * 0.5, cx - arm + r * 0.5, ay + r * 0.5], fill=v)   # 편 손
 
 
+def limb(d, p, q, w, v, w2=None):
+    """팔다리 한 마디(p→q) — 굵기 w에서 w2(없으면 w)로 가늘어짐, 양끝 둥근 마디."""
+    w2 = w if w2 is None else w2
+    dx, dy = q[0] - p[0], q[1] - p[1]
+    n = max(1e-6, (dx * dx + dy * dy) ** 0.5)
+    ux, uy = -dy / n / 2, dx / n / 2
+    d.polygon([(p[0] + ux * w, p[1] + uy * w), (q[0] + ux * w2, q[1] + uy * w2), (q[0] - ux * w2, q[1] - uy * w2), (p[0] - ux * w, p[1] - uy * w)], fill=v)
+    for c, cw in ((p, w), (q, w2)):
+        d.ellipse([c[0] - cw / 2, c[1] - cw / 2, c[0] + cw / 2, c[1] + cw / 2], fill=v)
+
+
+def person_follow(d, x0, y0, x1, y1, v):
+    """task 403 — 막 던진 뒤 몸이 따라 나간 사람(화면 왼쪽으로 던짐): 몸통이 앞으로 기울고, 체중이 굽힌 앞무릎에, 뒷다리는 뒤로 뻗고,
+    던진 팔은 앞·아래로 휘둘러 내려오고, 다른 팔은 뒤로. b7 person_throw(큰 직사각 몸통 + 무릎에서 컴퍼스처럼 벌린 다리 + 어깨 높이로 곧게 뻗은
+    막대 팔·편 손)가 그대로 그려져 사람 「사울 몸 비율·자세가 어색함」(가는 긴 다리 · 「멈춰」 손짓)."""
+    h, cx = y1 - y0, (x0 + x1) / 2
+    sw, lw, aw, r = h * BODY["w"] * 0.66, h * BODY["w"] * 0.44, h * BODY["w"] * 0.22, h * 0.065
+    hip = (cx + h * 0.05, y0 + h * 0.55)
+    sh = (hip[0] - h * 0.17, y0 + h * 0.2)                                                # 약 27° 앞으로(c3 42° 구부정 · c4 15° 서서 가리킴)
+    hem = y0 + h * 0.7                                                                    # 무릎 길이 옷자락
+    hd = (sh[0] - h * 0.06, y0 + h * 0.02 + r)
+    d.ellipse([hd[0] - r, hd[1] - r, hd[0] + r, hd[1] + r], fill=v)                                     # 앞으로 내민 머리
+    limb(d, hd, (sh[0], sh[1] + h * 0.02), aw, v)                                                        # 목
+    knee = (hip[0] - h * 0.19, y0 + h * 0.75)
+    limb(d, (hip[0] - h * 0.04, y0 + h * 0.6), knee, lw, v, lw * 0.7)                                    # 앞 넓적다리
+    limb(d, knee, (hip[0] - h * 0.13, y1 - lw * 0.2), lw * 0.66, v, lw * 0.5)                            # 앞 정강이(무릎이 발보다 앞 — 체중 실린 굽힘)
+    limb(d, (hip[0] + h * 0.04, y0 + h * 0.6), (hip[0] + h * 0.2, y1 - h * 0.05), lw, v, lw * 0.5)       # 뒷다리 곧게 뻗어 뒤꿈치 듦
+    d.polygon([(sh[0] + sw * 0.5, sh[1] - h * 0.01), (sh[0] - sw * 0.5, sh[1] + h * 0.01),
+               (hip[0] - sw * 0.55, hem), (hip[0] + sw * 0.5, hem)], fill=v)                           # 몸통·옷
+    hand = (sh[0] - h * 0.25, sh[1] + h * 0.24)
+    limb(d, (sh[0] - sw * 0.25, sh[1] + h * 0.02), hand, aw, v, aw * 0.8)                                # 던진 팔: 앞·아래로 휘둘러 내림(c3 s23 던진 몸짓 맞음 · c4 수평 = 가리킴)
+    d.ellipse([hand[0] - aw * 0.6, hand[1] - aw * 0.6, hand[0] + aw * 0.6, hand[1] + aw * 0.6], fill=v)
+    limb(d, (sh[0] + sw * 0.4, sh[1] + h * 0.02), (sh[0] + h * 0.24, sh[1] + h * 0.26), aw, v, aw * 0.8)   # 뒤 팔: 몸 뒤 아래로(균형)
+
+
 def spear(d, x0, y0, x1, y1, v):
     """task 400 — 허공을 나는 창: 구역 세로 가운데 가는 자루 + 왼쪽 끝 뾰족한 촉 하나(날아가는 쪽)."""
     cy, t = (y0 + y1) / 2, max(2.0, (y1 - y0) * 0.18)
@@ -169,7 +204,7 @@ def wall(d, x0, y0, x1, y1, v):
     d.polygon([(x0, y0), (x1, y0 + h * 0.18), (x1, y1 - h * 0.06), (x0, y1)], fill=v)
 
 
-SHAPES = {"person": person, "person_throw": person_throw, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "seated": seated, "crowd": crowd, "boat": boat, "bank": bank}
+SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "seated": seated, "crowd": crowd, "boat": boat, "bank": bank}
 
 
 def make(spec):

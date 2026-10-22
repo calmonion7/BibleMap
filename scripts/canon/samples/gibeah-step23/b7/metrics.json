@@ -1735,5 +1735,14 @@
    5,
    303
   ]
+ },
+ "verdict": {
+  "answer": "none",
+  "chose": "none",
+  "left": "g:5",
+  "right": "g:303",
+  "memo": "사울 모습이이상함",
+  "minutes": 1.85,
+  "active_minutes": 0.05
  }
 }
