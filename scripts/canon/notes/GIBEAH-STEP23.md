@@ -753,3 +753,8 @@ a5 + 창길을 다윗 머리 위로(`guide-a6.png`) + 숙여 비킴 문구. 문�
 - 단계 ① 유지: `spec_failures` `[]` · 성경 검토 4~7차(바뀐 칸) 틀림 0.
 - 다음 단계 ④ 재료: s42·s7 사람 후보 · 눈에 띈 작은 결함(창 양끝 · 칼자루 손잡이 · 튜닉 길이 들쭉날쭉).
 - 기록만: 셋째 인물(s11 큰 얼굴)이 a4~a6에 1장씩 남음 — 카드 체격 문구가 몸 덩어리보다 큰 경우의 잔여.
+
+## 단계 ④ 사람 승인 (task 401)
+
+- 후보 화면(비공개 Artifact, 폰): https://claude.ai/artifact/CPxYxta7rSzz8ryWNDu5RM — 블라인드 좌우 s42·s7(a6 기계 통과 둘) · 접힌 칸에 a6 8장(불통과 6 표시)·옛 승인 s5(참고) · 원문 삼상 18:6-11, 18:10-11 굵게 · `check_cand_page.py` 통과.
+- 사람 답 → `samples/gibeah-step23/pick-verdict.txt` → `python3 batch/gibeah_redraw.py record samples/gibeah-step23/pick-verdict.txt --try a6`(고르면 approved.final = night-pick 바탕, 출처 자동) · 「둘 다 아님」이면 메모를 단계(①명세 · ②③문구·가이드)로 나눠 규칙 후보로.
