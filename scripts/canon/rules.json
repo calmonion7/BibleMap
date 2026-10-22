@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "85339c2f05bd",
+  "version": "243641e5f7c3",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -95,6 +95,15 @@
      "note": "승인은 사람만 — 재검은 표시만 하고 승인을 취소하지 않는다"},
     {"id": "human.cast-named", "layer": "human", "scope": "all", "check": "test:test_whole_prompt",
      "source": "task 391 · test_every_cast_named", "since": "2026-10-21 task 391",
-     "note": "판정 화면에 영어 cast id 없이 이름표(15명 전부)"}
+     "note": "판정 화면에 영어 cast id 없이 이름표(15명 전부)"},
+    {"id": "generate.spec-gate", "layer": "generate", "scope": "all", "check": "recheck.require_pass",
+     "source": "notes/GIBEAH-STEP1.md · task 399 (397 기브아 창이 verse-elements ✗ 명세로 그려짐)", "since": "2026-10-22 task 399",
+     "note": "새 그림을 만드는 정본 생성 명령(gibeah_redraw·run_night one|all|edit-pick·restyle_try gen)이 첫 GPU 호출 전에 spec_failures(sid)를 부르고 걸리면 멈춤 — 못 잼도 통과 아님, 우회 없음. plain_words 사다리는 명세 사본 실험이라 뺌(정본이 되면 관문을 지남)"},
+    {"id": "spec.stage-from-scripture", "layer": "spec", "scope": "all", "check": "recheck.stage_why_errors",
+     "source": "notes/GIBEAH-STEP1.md · 397 사람 메모 ④ 「다윗의 나이가 청소년기 — 15~20 정도, 유추 가능」", "since": "2026-10-22 task 399",
+     "note": "인물마다 stage_why = [직접]|[추론] + 「인용」 + 장:절 — 호칭 하나(「소년」)가 아니라 직무·연대·앞뒤 문맥으로 이 장면 때 생애 단계를 고름. 근거가 비어 있는 단계면 cast 카드 신설(david-youth)"},
+    {"id": "spec.action-place-on-figure", "layer": "spec", "scope": "all", "check": "check_scenes.place_on_figure_errors",
+     "source": "notes/GIBEAH-STEP1.md · 397 사람 메모 ③ 「다윗은 벽에 붙어서 창을 피하는 모습이어야함」", "since": "2026-10-22 task 399",
+     "note": "verse_elements 종류 「자리」(행동이 겨누는 곳·인물이 있어야 할 곳, 예 18:11 「벽에 박으리라」)는 인물 칸(figures[i].*)이 나름 — 배경 칸만이면 실패. 요소 목록 없으면 못 잼"}
   ]
 }

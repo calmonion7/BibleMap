@@ -45,7 +45,7 @@ TIERS = ("[직접]", "[추론]", "[저작]")
 TRAIT = re.compile(r"\b(cold|cruel|hard|harsh|wicked|evil|sly|cunning|menacing|sinister|kind|gentle|wise|noble|arrogant|proud"
                    r"|haughty|shifty|pleading|trembling|tense|anxious|fierce|stern|serene|innocent|calm|steady|composed)\b")
 # 같은 사람의 생애 단계 — 일부러 닮게 하므로 (h)에서 뺀다.
-STAGES = {frozenset(p) for fam in [("david-boy", "david", "david-prime", "david-elder", "david-old"),
+STAGES = {frozenset(p) for fam in [("david-boy", "david-youth", "david", "david-prime", "david-elder", "david-old"),
                                    ("saul", "saul-old"), ("solomon", "solomon-prime", "solomon-old")]
           for p in itertools.combinations(fam, 2)}
 REF = re.compile(r"(" + "|".join(sorted(BOOK, key=len, reverse=True)) + r")\s*(\d+):(\d+)(?:\s*[-–~]\s*(\d+))?")

@@ -31,7 +31,7 @@ PROP_KO = {"a spear": "창", "a small harp": "작은 수금", "a small wooden ly
            "a long mantle": "긴 겉옷", "a sheathed sword": "칼집에 든 칼", "an open hand": "빈손", "the wooden doors of the gate": "성문 나무 문짝",
            "none": "지물 없음 — 손에 든 것 없이 빈손"}   # task 387 요단 다윗(칼 뺌)
 FACING_KO = {"left": "화면 왼쪽을 향한다", "right": "화면 오른쪽을 향한다"}
-NAME = {"saul": "사울", "david": "다윗", "samuel": "사무엘", "david-boy": "소년 다윗", "ahimelech": "아히멜렉", "achish": "아기스",
+NAME = {"saul": "사울", "david": "다윗", "samuel": "사무엘", "david-boy": "소년 다윗", "david-youth": "청년 다윗", "ahimelech": "아히멜렉", "achish": "아기스",
         "nahash": "나하스", "doeg": "도엑", "abner": "아브넬", "joab": "요압", "nathan": "나단", "jesse": "이새",
         "saul-old": "노년 사울", "endor-medium": "엔돌 여인", "saul-armor-bearer": "무기 든 자",
         "david-prime": "다윗", "david-elder": "늙어가는 다윗", "solomon-prime": "솔로몬",

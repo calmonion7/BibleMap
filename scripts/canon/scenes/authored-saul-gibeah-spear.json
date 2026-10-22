@@ -1,7 +1,7 @@
 {
   "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
   "id": "authored-saul-gibeah-spear",
-  "title": "사울 — 기브아에서 창을 들다",
+  "title": "사울 — 기브아에서 창을 던지다",
   "verses": {
     "range": "삼상 18:6-11",
     "quotes": {
@@ -27,8 +27,8 @@
     {
       "cast": "saul",
       "role": "사울 — 악신이 내려 야료하며 창을 던진 왕",
-      "pose": "집 가운데 서서 다윗을 향해 창을 막 던져 던진 팔이 앞으로 뻗어 있다",
-      "prop": "a spear",
+      "pose": "집 가운데 서서 다윗을 향해 창을 막 던져, 빈손이 된 던진 팔이 앞으로 뻗어 있다",
+      "prop": "none",
       "facing": "left",
       "region": "saul",
       "verse": "18:10-11",
@@ -39,25 +39,52 @@
         "verse": "18:10 「악신이 사울에게 힘있게 내리매 … 야료하는고로」 · 18:9 「다윗을 주목하였더라」 · 눈 모습은 본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "다윗을 향해 창을 막 던져, 던진 오른팔이 앞으로 뻗은 채 몸이 앞으로 쏠림",
-        "en": "his throwing arm stretched out toward David, having just hurled his spear, his body lunging forward",
-        "verse": "18:11 「그 창을 던졌으나」 · 18:10 「사울의 손에 창이 있는지라」 · 팔·몸의 모습은 본문 밖 · 저작자 정함"
+        "ko": "다윗을 향해 창을 막 던져, 빈손이 된 던진 오른팔이 앞으로 뻗은 채 몸이 앞으로 쏠림",
+        "en": "his empty throwing hand stretched out toward David, having just hurled his spear, his body lunging forward",
+        "verse": "18:11 「그 창을 던졌으나」(던졌으니 손은 비었음) · 18:10 「사울의 손에 창이 있는지라」(던지기 전) · 팔·몸의 모습은 본문 밖 · 저작자 정함"
       },
       "costume": {
         "ko": "어두운 갈색 모직 튜닉과 수수한 가죽 띠 — 집 안의 평상 차림",
         "en": "in a dark brown wool tunic with a plain leather belt",
         "verse": "본문 밖 · 저작자 정함(정본 saul 카드 차림 — 집 가운데 평상)"
       },
-      "gaze": "david-boy"
+      "gaze": "david-youth",
+      "stage_why": "[추론] 삼상 13:1 「사울이 왕이 될 때에 사십 세라」 + 프로젝트 연대(사울 선출 BC 1050경 · 이 사건 BC 1020경, data/person_events/saul.json) → 이 장면 때 약 70세. 성경만으로 낮게 잡으면 삼하 2:10 「사울의 아들 이스보셋이 비로소 이스라엘 왕이 될 때에 나이 사십 세며」 — 이스보셋이 사울이 죽은 직후 즉위했다고 가정할 때 사울은 죽을 때 60세 안팎 이상(‘비로소’·두 해와 일곱 해 여섯 달의 차이로 그 가정은 느슨함), 이 사건(죽기 약 10년 전)엔 50세 안팎 이상. id는 기력으로 고름 — 창을 던질 기력이 있으니 삼상 28:20 「그 기력이 진하였으니」 이전의 saul(saul-old 아님), 나이는 cast_override로 이 장면만 덮어씀",
+      "cast_override": {
+        "card": {
+          "heightRel": "tall",
+          "ageBand": {
+            "class": "elder",
+            "text": "about 70, deep-lined face"
+          },
+          "beardVolume": {
+            "class": "trimmed",
+            "text": "close-trimmed grey-streaked beard, jawline visible"
+          },
+          "silhouette": {
+            "class": "broad",
+            "text": "broad shoulders, thick barrel torso"
+          },
+          "headOutline": {
+            "class": "bare",
+            "text": "bare head, short greying hair cut close"
+          },
+          "costumeColor": {
+            "class": "brown",
+            "text": "dark brown wool tunic, plain leather belt"
+          }
+        }
+      },
+      "cast_override_why": "이 장면 사울은 약 70세(stage_why — 13:1 사십 세 즉위 + 연대 BC 1050→1020, 삼하 2:10으로는 사망 직후 즉위를 가정할 때 50세 안팎 이상 — 가정은 느슨) — 정본 saul 카드 ‘in his 40s’(재위 중 40대로 고정, 역표 구분용)는 이 장면과 맞지 않아 나이·수염·머리만 덮어씀. 체격(broad)·차림은 정본 그대로(아직 창을 던질 기력 — 28:20 이전). saul·saul-old 카드 나이와 연대의 어긋남은 그 장면 차례에(task 399 노트)"
     },
     {
-      "cast": "david-boy",
-      "role": "다윗(소년) — 골리앗을 죽이고 돌아온 이튿날, 수금을 타다가 날아오는 창을 피하는 사울의 병기 든 자",
-      "pose": "수금을 든 채 몸을 옆으로 비틀어 날아오는 창을 피한다",
+      "cast": "david-youth",
+      "role": "다윗(청년) — 골리앗을 죽이고 돌아와 군대의 장이 된 청년(18:5), 수금을 타다가 사울이 던진 창을 벽 앞에서 피함",
+      "pose": "벽을 등지고 선 채 수금을 든 손을 놓지 않고 몸을 옆으로 비틀어 날아오는 창을 피한다",
       "prop": "a small wooden lyre",
       "facing": "right",
-      "region": "david-boy",
-      "verse": "18:10-11 · 16:21 · 생애 단계는 18:6 「다윗이 블레셋 사람을 죽이고 돌아올 때」 + 18:10 「그 이튿날」 — 골리앗 장면(17:33 「소년」)과 같은 david-boy",
+      "region": "david-youth",
+      "verse": "18:10-11 · 생애 단계 근거는 stage_why",
       "screen_facing": "right",
       "expression": {
         "ko": "놀라 창을 보는 얼굴",
@@ -65,16 +92,17 @@
         "verse": "18:11 「그 앞에서 두 번 피하였더라」 · 표정은 본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "손에 든 작은 나무 수금을 놓지 않은 채 몸을 옆으로 비틀어 날아오는 창의 길에서 비킴",
-        "en": "twisting his body aside out of the path of the flying spear, a small wooden lyre still held in his hands",
-        "verse": "18:10 「손으로 수금을 타는데」 · 18:11 「그 앞에서 두 번 피하였더라」 · 수금의 크기(작은)·재질(나무)은 본문 밖 · 저작자 정함(재검 J1 「큰 켈트식 하프」 지적) · 비튼 몸은 본문 밖 · 저작자 정함"
+        "ko": "벽을 등지고 선 채, 손에 든 작은 나무 수금을 놓지 않고 몸을 옆으로 비틀어 날아오는 창의 길에서 비킴",
+        "en": "standing with his back against the stone wall, twisting his body aside out of the path of the flying spear, a small wooden lyre still held in his hands",
+        "verse": "18:11 「내가 다윗을 벽에 박으리라」(다윗이 창이 날아가는 길 끝 벽 앞에 있음 — 벽을 등지고 선 자세는 이 말에서 추론, 벽에 붙은 정도는 본문 밖 · 저작자 정함) · 18:11 「그 앞에서 두 번 피하였더라」 · 18:10 「손으로 수금을 타는데」 · 수금의 크기(작은)·재질(나무)은 본문 밖 · 저작자 정함 · 비튼 몸은 본문 밖 · 저작자 정함"
       },
       "costume": {
-        "ko": "물들이지 않은 황갈색 모직 튜닉과 밧줄 띠",
-        "en": "in an undyed tan wool tunic with a rope belt",
-        "verse": "본문 밖 · 저작자 정함(정본 david-boy 카드 차림)"
+        "ko": "물들이지 않은 황갈색 모직 튜닉과 가죽 띠",
+        "en": "in an undyed tan wool tunic with a leather belt",
+        "verse": "본문 밖 · 저작자 정함(정본 david-youth 카드 차림)"
       },
-      "gaze": "saul"
+      "gaze": "saul",
+      "stage_why": "[추론] 삼상 18:5 「사울이 그로 군대의 장을 삼았더니」 · 삼상 17:56 「이 청년이 누구의 아들인가」 · 삼하 5:4 「다윗이 삼십 세에 위에 나아가서」 — 골리앗 뒤 군대를 맡은 청년이고 즉위(30세)는 한참 뒤 → 15~20세 david-youth. 삼상 17:33 「너는 소년이요」 한 낱말로 david-boy를 고르지 않음(사용자 2026-10-22 “청소년기 15~20 · 유추 가능” · 프로젝트 연대로 다윗 출생 BC 1040경 → 이 사건 약 20세)"
     }
   ],
   "regions": {
@@ -90,14 +118,14 @@
       0.762,
       0.92
     ],
-    "david-boy": [
+    "david-youth": [
       0.15,
-      0.52,
+      0.42,
       0.27,
       0.92
     ]
   },
-  "_regions_why": "사울 서서 세로 0.58(창을 던진 왕), 소년 다윗 세로 0.40(수금을 들고 몸을 비튼 자세). 좌우는 18:11 — 사울이 오른쪽에서 왼쪽 다윗에게 창을 던지고 다윗 뒤가 벽. 구역 이름은 cast id(david-boy)를 따름(task 355).",
+  "_regions_why": "사울 서서 세로 0.58(창을 던진 왕), 청년 다윗 서서 세로 0.50(벽을 등지고 몸을 비튼 자세 — 삼상 9:2 「키는 모든 백성보다 어깨 위는 더하더라」라 사울이 조금 더 큼). 좌우는 18:11 — 사울이 오른쪽에서 왼쪽 다윗에게 창을 던지고 다윗 뒤가 벽. 구역 이름은 cast id(david-youth)를 따름(task 355).",
   "stages": [
     {
       "id": "S1",
@@ -123,8 +151,8 @@
       "id": "S2",
       "kind": "plate",
       "region": "saul",
-      "verse": "18:10",
-      "prompt": "{cast:saul}, standing tall, gripping one spear upright, facing left.",
+      "verse": "18:11",
+      "prompt": "{cast:saul}, standing, his empty throwing hand stretched out toward David, having just hurled his spear, facing left.",
       "neg": [
         "armour",
         "crown",
@@ -132,23 +160,22 @@
         "modern clothes",
         "two spears",
         "sitting",
-        "throwing"
+        "spear in hand"
       ]
     },
     {
       "id": "S3",
       "kind": "plate",
-      "region": "david-boy",
-      "verse": "18:10",
-      "prompt": "{cast:david-boy}, sitting, gripping one small harp, playing, facing right.",
+      "region": "david-youth",
+      "verse": "18:11",
+      "prompt": "{cast:david-youth}, standing with his back against the stone wall, twisting aside, a small wooden lyre held in his hands, facing right.",
       "neg": [
         "armour",
         "helmet",
         "crown",
         "royal robe",
         "modern clothes",
-        "standing",
-        "fleeing"
+        "sitting"
       ]
     }
   ],
@@ -157,7 +184,7 @@
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
     "figures": [
       "saul",
-      "david-boy"
+      "david-youth"
     ],
     "gap_bands": [
       [
@@ -207,13 +234,123 @@
     "verse": "삼상 18:10-11 · 기브아 지리 근거 15:34"
   },
   "relation": {
-    "ko": "사울이 방을 가로질러 다윗에게 창을 던졌고, 창이 둘 사이 허공을 날아가는 동안 다윗이 몸을 비켜 피한다",
-    "en": "A spear flies through the air across the room from Saul toward David, and David twists aside out of its path",
-    "verse": "18:11 「그 창을 던졌으나 다윗이 그 앞에서 두 번 피하였더라」 · 날아가는 창의 자리는 본문 밖 · 저작자 정함"
+    "ko": "사울이 방을 가로질러 다윗에게 창을 던졌고, 창이 둘 사이 허공을 날아 다윗과 그 뒤 벽 쪽으로 가는 동안 다윗이 몸을 비켜 피한다",
+    "en": "A spear flies through the air across the room from Saul toward David and the wall behind him, and David twists aside out of its path",
+    "verse": "18:11 「다윗을 벽에 박으리라 하고 그 창을 던졌으나 다윗이 그 앞에서 두 번 피하였더라」 · 날아가는 창의 자리는 본문 밖 · 저작자 정함"
   },
   "whole_background": {
     "ko": "기브아 사울의 본집 안 소박한 방 — 거친 돌벽, 다윗 뒤로 맨 벽, 바닥에 놓인 나무 걸상 하나",
     "en": "the inside of a plain room in Saul's house at Gibeah, rough stone walls, a bare wall behind David, a simple wooden stool on the floor",
     "verse": "18:10 「집 가운데서」 · 18:11 「벽」 · 기브아는 지리 근거 15:34 · 돌벽·걸상은 본문 밖 · 저작자 정함"
-  }
+  },
+  "verse_elements": [
+    {
+      "verse": "18:6",
+      "quote": "여인들이 이스라엘 모든 성에서 나와서",
+      "kind": "무리",
+      "ko": "개선 때 노래하며 춤추며 맞은 여인들",
+      "out": "전날 개선 때 일 — 고정한 순간(이튿날 18:11) 밖"
+    },
+    {
+      "verse": "18:7",
+      "quote": "사울의 죽인 자는 천천이요 다윗은 만만이로다",
+      "kind": "무리",
+      "ko": "여인들의 창화",
+      "out": "전날 일 — 고정한 순간 밖, 지금 사울이 노한 까닭"
+    },
+    {
+      "verse": "18:8",
+      "quote": "심히 노하여",
+      "kind": "행동",
+      "ko": "사울이 여인들의 노래를 듣고 심히 노함",
+      "out": "전날 노래를 들은 때의 일 — 고정한 순간(이튿날 18:11) 밖. 지금 얼굴은 18:10 야료와 18:9 주목으로 실음"
+    },
+    {
+      "verse": "18:9",
+      "quote": "다윗을 주목하였더라",
+      "kind": "행동",
+      "ko": "사울이 다윗을 노려봄",
+      "en": "eyes wide and fixed on David",
+      "field": "figures[0].expression"
+    },
+    {
+      "verse": "18:10",
+      "quote": "사울의 손에",
+      "kind": "인물",
+      "ko": "창을 던지는 사울",
+      "en": "from Saul",
+      "field": "relation"
+    },
+    {
+      "verse": "18:10",
+      "quote": "다윗이 평일과 같이",
+      "kind": "인물",
+      "ko": "평소처럼 사울 곁에서 수금을 타던 다윗",
+      "en": "toward David and the wall behind him",
+      "field": "relation"
+    },
+    {
+      "verse": "18:10",
+      "quote": "집 가운데서",
+      "kind": "장소",
+      "ko": "기브아 사울의 본집 안 방",
+      "en": "the inside of a plain room in Saul's house at Gibeah",
+      "field": "whole_background"
+    },
+    {
+      "verse": "18:10",
+      "quote": "악신이 사울에게 힘있게 내리매",
+      "kind": "행동",
+      "ko": "악신이 내려 야료하는 사울",
+      "en": "a wild, raving face",
+      "field": "figures[0].expression"
+    },
+    {
+      "verse": "18:10",
+      "quote": "손으로 수금을 타는데",
+      "kind": "지물",
+      "ko": "다윗 손의 수금 — 타다가 든 채",
+      "en": "a small wooden lyre still held in his hands",
+      "field": "figures[1].gesture"
+    },
+    {
+      "verse": "18:10",
+      "quote": "사울의 손에 창이 있는지라",
+      "kind": "지물",
+      "ko": "사울의 창 — 이 순간 던져져 허공을 남",
+      "en": "A spear flies through the air",
+      "field": "relation"
+    },
+    {
+      "verse": "18:11",
+      "quote": "그 창을 던졌으나",
+      "kind": "행동",
+      "ko": "창을 막 던진 사울 — 빈손으로 팔을 뻗음",
+      "en": "having just hurled his spear",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "18:11",
+      "quote": "내가 다윗을 벽에 박으리라",
+      "kind": "자리",
+      "ko": "다윗이 벽을 등지고 섬 — 사울이 다윗을 벽에 박으려 함",
+      "en": "standing with his back against the stone wall",
+      "field": "figures[1].gesture"
+    },
+    {
+      "verse": "18:11",
+      "quote": "다윗이 그 앞에서 두 번 피하였더라",
+      "kind": "행동",
+      "ko": "다윗이 몸을 비틀어 창을 피함",
+      "en": "twisting his body aside out of the path of the flying spear",
+      "field": "figures[1].gesture"
+    },
+    {
+      "verse": "18:11",
+      "quote": "두 번",
+      "kind": "행동",
+      "ko": "두 번 피함 중 다른 한 번",
+      "out": "고정한 순간은 두 번 중 한 번 — 다른 한 번은 앞뒤 시점이라 순간 밖"
+    }
+  ]
 }

@@ -330,6 +330,10 @@ if __name__ == "__main__":
         import plain_words
         plain_words.main(ARGV[1:])
         sys.exit(0)
+    if cmd in ("one", "all", "edit-pick"):   # task 399 generate.spec-gate — 이 묶음 명세가 규칙에 걸리면 그리지 않는다
+        import recheck
+        for sid in ([ARGV[2]] if cmd == "edit-pick" else list(CFG["scenes"])[:1] if cmd == "one" else CFG["scenes"]):
+            recheck.require_pass(sid)
     if cmd in ("one", "all", "edit-pick") and busy():
         sys.exit(f"[Night] 다른 생성 프로세스가 돈다 — 겹치지 않게 멈춤:\n{busy()}")
     m = load_m()

@@ -1,5 +1,5 @@
 {
- "rules_version": "e09949ef99e7",
+ "rules_version": "243641e5f7c3",
  "tokens": "venv314",
  "specs": {
   "authored-david-adullam-cave": {
@@ -12,7 +12,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-david-ark-jerusalem": {
    "spec.required-fields": "pass",
@@ -24,7 +26,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "pass"
   },
   "authored-david-en-gedi-saul": {
    "spec.required-fields": "pass",
@@ -36,7 +40,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-david-gath-achish": {
    "spec.required-fields": "pass",
@@ -48,7 +54,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "pass"
   },
   "authored-david-gibeah-harp": {
    "spec.required-fields": "pass",
@@ -60,7 +68,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-david-gibeon-battle": {
    "spec.required-fields": "pass",
@@ -72,7 +82,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "pass"
   },
   "authored-david-goliath-gath": {
    "spec.required-fields": "pass",
@@ -84,7 +96,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "fail",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-david-hebron-king-judah": {
    "spec.required-fields": "pass",
@@ -96,7 +110,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "pass"
   },
   "authored-david-jerusalem-conquest": {
    "spec.required-fields": "pass",
@@ -108,7 +124,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "pass"
   },
   "authored-david-mahanaim-exile": {
    "spec.required-fields": "pass",
@@ -120,7 +138,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "pass"
   },
   "authored-david-nathan-covenant": {
    "spec.required-fields": "pass",
@@ -132,7 +152,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "pass"
   },
   "authored-david-nob-priests": {
    "spec.required-fields": "pass",
@@ -144,7 +166,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "pass"
   },
   "authored-david-ramah-samuel": {
    "spec.required-fields": "pass",
@@ -156,7 +180,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "pass"
   },
   "authored-david-returns-jerusalem": {
    "spec.required-fields": "pass",
@@ -168,7 +194,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "pass"
   },
   "authored-david-ziklag-base": {
    "spec.required-fields": "pass",
@@ -180,7 +208,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "pass"
   },
   "authored-samuel-bethlehem-david-anointing": {
    "spec.required-fields": "pass",
@@ -192,7 +222,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "pass"
   },
   "authored-samuel-ramah-death": {
    "spec.required-fields": "pass",
@@ -204,7 +236,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-saul-endor-medium": {
    "spec.required-fields": "pass",
@@ -216,19 +250,23 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "pass"
   },
   "authored-saul-gibeah-spear": {
    "spec.required-fields": "pass",
    "spec.whole-fields": "pass",
-   "spec.verse-elements": "fail",
+   "spec.verse-elements": "pass",
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "pass",
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "pass",
+   "spec.action-place-on-figure": "pass"
   },
   "authored-saul-gilboa-death": {
    "spec.required-fields": "pass",
@@ -240,7 +278,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "pass"
   },
   "authored-saul-gilgal-amalek": {
    "spec.required-fields": "pass",
@@ -252,7 +292,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-saul-gilgal-coronation": {
    "spec.required-fields": "pass",
@@ -264,7 +306,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-saul-jabesh-rescue": {
    "spec.required-fields": "pass",
@@ -276,7 +320,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-saul-michmash-battle": {
    "spec.required-fields": "pass",
@@ -288,7 +334,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-saul-mizpah-chosen": {
    "spec.required-fields": "pass",
@@ -300,7 +348,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-saul-nob-massacre": {
    "spec.required-fields": "pass",
@@ -312,7 +362,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-solomon-ezion-geber-fleet": {
    "spec.required-fields": "pass",
@@ -324,7 +376,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "fail",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-solomon-gibeon-dream": {
    "spec.required-fields": "pass",
@@ -336,7 +390,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "fail",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-solomon-gihon-anointing": {
    "spec.required-fields": "pass",
@@ -348,7 +404,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-solomon-jerusalem-apostasy": {
    "spec.required-fields": "pass",
@@ -360,7 +418,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-solomon-jerusalem-birth": {
    "spec.required-fields": "pass",
@@ -372,7 +432,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-solomon-jerusalem-david-charge": {
    "spec.required-fields": "pass",
@@ -384,7 +446,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "fail",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-solomon-jerusalem-palace": {
    "spec.required-fields": "pass",
@@ -396,7 +460,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "fail",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-solomon-jerusalem-sheba": {
    "spec.required-fields": "pass",
@@ -408,7 +474,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "fail",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-solomon-jerusalem-temple-build": {
    "spec.required-fields": "pass",
@@ -420,7 +488,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-solomon-jerusalem-temple-dedication": {
    "spec.required-fields": "pass",
@@ -432,7 +502,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "fail",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   },
   "authored-solomon-jerusalem-two-mothers": {
    "spec.required-fields": "pass",
@@ -444,7 +516,9 @@
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "fail",
-   "derive.512-tokens": "pass"
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "fail",
+   "spec.action-place-on-figure": "none"
   }
  },
  "details": {
@@ -462,6 +536,9 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "david: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-david-ark-jerusalem": {
@@ -475,6 +552,9 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "david-prime: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-david-en-gedi-saul": {
@@ -483,11 +563,19 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "david: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "saul: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-david-gath-achish": {
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "david: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "achish: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-david-gibeah-harp": {
@@ -496,6 +584,10 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "david-boy: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "saul: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-david-gibeon-battle": {
@@ -509,6 +601,10 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "abner: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "joab: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-david-goliath-gath": {
@@ -522,6 +618,11 @@
     "goliath prop '베틀채 같은 굵은 창 한 자루(손)': 영문 없음",
     "shieldman prop '큰 방패': 영문 없음",
     "david-boy prop '물매 — 끈 두 가닥 사이에 돌을 담는 넓은 가죽 받침': 영문 없음"
+   ],
+   "spec.stage-from-scripture": [
+    "goliath: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "shieldman: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "david-boy: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-david-hebron-king-judah": {
@@ -535,6 +636,9 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "david-prime: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-david-jerusalem-conquest": {
@@ -548,6 +652,9 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "david-prime: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-david-mahanaim-exile": {
@@ -561,6 +668,9 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "david-elder: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-david-nathan-covenant": {
@@ -574,19 +684,36 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "nathan: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "david-prime: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-david-nob-priests": {
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "ahimelech: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "david: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-david-ramah-samuel": {
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "david: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "samuel: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
-  "authored-david-returns-jerusalem": {},
+  "authored-david-returns-jerusalem": {
+   "spec.stage-from-scripture": [
+    "david-elder: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "shimei: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
+   ]
+  },
   "authored-david-ziklag-base": {
    "spec.whole-fields": [
     "장면.meaning: ko/en/verse 가 비어 있거나 없다",
@@ -598,6 +725,10 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "achish: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "david: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-samuel-bethlehem-david-anointing": {
@@ -611,6 +742,11 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "samuel: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "david-boy: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "jesse: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-samuel-ramah-death": {
@@ -619,6 +755,9 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "david: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-saul-endor-medium": {
@@ -632,13 +771,14 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "saul-old: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "samuel: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "endor-medium: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
-  "authored-saul-gibeah-spear": {
-   "spec.verse-elements": [
-    "verse_elements 없음 — 구절 시각 요소 목록 미작성"
-   ]
-  },
+  "authored-saul-gibeah-spear": {},
   "authored-saul-gilboa-death": {
    "spec.whole-fields": [
     "장면.meaning: ko/en/verse 가 비어 있거나 없다",
@@ -650,6 +790,10 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "saul-old: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "saul-armor-bearer: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-saul-gilgal-amalek": {
@@ -658,6 +802,10 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "saul: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "samuel: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-saul-gilgal-coronation": {
@@ -666,6 +814,10 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "samuel: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "saul: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-saul-jabesh-rescue": {
@@ -674,6 +826,9 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "saul: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-saul-michmash-battle": {
@@ -690,6 +845,10 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "saul: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "samuel: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-saul-mizpah-chosen": {
@@ -706,6 +865,10 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "samuel: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "saul: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-saul-nob-massacre": {
@@ -714,6 +877,11 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "saul: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "doeg: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "ahimelech: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-solomon-ezion-geber-fleet": {
@@ -733,6 +901,9 @@
    ],
    "derive.prop-in-prompt": [
     "solomon-prime prop '겉옷자락': 영문 없음"
+   ],
+   "spec.stage-from-scripture": [
+    "solomon-prime: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-solomon-gibeon-dream": {
@@ -752,6 +923,9 @@
    ],
    "derive.prop-in-prompt": [
     "solomon prop '겉옷자락': 영문 없음"
+   ],
+   "spec.stage-from-scripture": [
+    "solomon: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-solomon-gihon-anointing": {
@@ -768,11 +942,18 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "zadok: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "solomon: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-solomon-jerusalem-apostasy": {
    "spec.verse-elements": [
     "verse_elements 없음 — 구절 시각 요소 목록 미작성"
+   ],
+   "spec.stage-from-scripture": [
+    "solomon-old: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-solomon-jerusalem-birth": {
@@ -789,6 +970,9 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.stage-from-scripture": [
+    "bathsheba: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-solomon-jerusalem-david-charge": {
@@ -809,6 +993,10 @@
    "derive.prop-in-prompt": [
     "david-old prop '이불': 영문 없음",
     "solomon prop '허리띠': 영문 없음"
+   ],
+   "spec.stage-from-scripture": [
+    "david-old: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "solomon: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-solomon-jerusalem-palace": {
@@ -828,6 +1016,9 @@
    ],
    "derive.prop-in-prompt": [
     "solomon-prime prop '겉옷자락': 영문 없음"
+   ],
+   "spec.stage-from-scripture": [
+    "solomon-prime: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-solomon-jerusalem-sheba": {
@@ -848,11 +1039,18 @@
    "derive.prop-in-prompt": [
     "solomon-prime prop '왕홀': 영문 없음",
     "sheba-queen prop '향품 상자': 영문 없음"
+   ],
+   "spec.stage-from-scripture": [
+    "solomon-prime: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "sheba-queen: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-solomon-jerusalem-temple-build": {
    "spec.verse-elements": [
     "verse_elements 없음 — 구절 시각 요소 목록 미작성"
+   ],
+   "spec.stage-from-scripture": [
+    "solomon: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-solomon-jerusalem-temple-dedication": {
@@ -872,6 +1070,9 @@
    ],
    "derive.prop-in-prompt": [
     "solomon prop '겉옷자락': 영문 없음"
+   ],
+   "spec.stage-from-scripture": [
+    "solomon: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-solomon-jerusalem-two-mothers": {
@@ -893,6 +1094,11 @@
     "solomon prop '왕홀': 영문 없음",
     "mother-a prop '아기': 영문 없음",
     "mother-b prop '겉옷자락': 영문 없음"
+   ],
+   "spec.stage-from-scripture": [
+    "solomon: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "mother-a: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
+    "mother-b: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   }
  },
@@ -1015,6 +1221,7 @@
     "authored-david-ziklag-base",
     "authored-samuel-bethlehem-david-anointing",
     "authored-saul-endor-medium",
+    "authored-saul-gibeah-spear",
     "authored-saul-gilboa-death"
    ],
    "fail": [
@@ -1023,7 +1230,6 @@
     "authored-david-gibeah-harp",
     "authored-david-goliath-gath",
     "authored-samuel-ramah-death",
-    "authored-saul-gibeah-spear",
     "authored-saul-gilgal-amalek",
     "authored-saul-gilgal-coronation",
     "authored-saul-jabesh-rescue",
@@ -1044,7 +1250,7 @@
    ],
    "stale": [],
    "none": [],
-   "rate": 0.3784
+   "rate": 0.4054
   },
   {
    "id": "spec.no-compromise-words",
@@ -1389,6 +1595,106 @@
    "fail": [],
    "stale": [],
    "none": [],
+   "rate": 1.0
+  },
+  {
+   "id": "spec.stage-from-scripture",
+   "layer": "spec",
+   "scope": "all",
+   "check": "recheck.stage_why_errors",
+   "pass": [
+    "authored-saul-gibeah-spear"
+   ],
+   "fail": [
+    "authored-david-adullam-cave",
+    "authored-david-ark-jerusalem",
+    "authored-david-en-gedi-saul",
+    "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
+    "authored-david-gibeon-battle",
+    "authored-david-goliath-gath",
+    "authored-david-hebron-king-judah",
+    "authored-david-jerusalem-conquest",
+    "authored-david-mahanaim-exile",
+    "authored-david-nathan-covenant",
+    "authored-david-nob-priests",
+    "authored-david-ramah-samuel",
+    "authored-david-returns-jerusalem",
+    "authored-david-ziklag-base",
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-samuel-ramah-death",
+    "authored-saul-endor-medium",
+    "authored-saul-gilboa-death",
+    "authored-saul-gilgal-amalek",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-jabesh-rescue",
+    "authored-saul-michmash-battle",
+    "authored-saul-mizpah-chosen",
+    "authored-saul-nob-massacre",
+    "authored-solomon-ezion-geber-fleet",
+    "authored-solomon-gibeon-dream",
+    "authored-solomon-gihon-anointing",
+    "authored-solomon-jerusalem-apostasy",
+    "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-david-charge",
+    "authored-solomon-jerusalem-palace",
+    "authored-solomon-jerusalem-sheba",
+    "authored-solomon-jerusalem-temple-build",
+    "authored-solomon-jerusalem-temple-dedication",
+    "authored-solomon-jerusalem-two-mothers"
+   ],
+   "stale": [],
+   "none": [],
+   "rate": 0.027
+  },
+  {
+   "id": "spec.action-place-on-figure",
+   "layer": "spec",
+   "scope": "all",
+   "check": "check_scenes.place_on_figure_errors",
+   "pass": [
+    "authored-david-ark-jerusalem",
+    "authored-david-gath-achish",
+    "authored-david-gibeon-battle",
+    "authored-david-hebron-king-judah",
+    "authored-david-jerusalem-conquest",
+    "authored-david-mahanaim-exile",
+    "authored-david-nathan-covenant",
+    "authored-david-nob-priests",
+    "authored-david-ramah-samuel",
+    "authored-david-returns-jerusalem",
+    "authored-david-ziklag-base",
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-saul-endor-medium",
+    "authored-saul-gibeah-spear",
+    "authored-saul-gilboa-death"
+   ],
+   "fail": [],
+   "stale": [],
+   "none": [
+    "authored-david-adullam-cave",
+    "authored-david-en-gedi-saul",
+    "authored-david-gibeah-harp",
+    "authored-david-goliath-gath",
+    "authored-samuel-ramah-death",
+    "authored-saul-gilgal-amalek",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-jabesh-rescue",
+    "authored-saul-michmash-battle",
+    "authored-saul-mizpah-chosen",
+    "authored-saul-nob-massacre",
+    "authored-solomon-ezion-geber-fleet",
+    "authored-solomon-gibeon-dream",
+    "authored-solomon-gihon-anointing",
+    "authored-solomon-jerusalem-apostasy",
+    "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-david-charge",
+    "authored-solomon-jerusalem-palace",
+    "authored-solomon-jerusalem-sheba",
+    "authored-solomon-jerusalem-temple-build",
+    "authored-solomon-jerusalem-temple-dedication",
+    "authored-solomon-jerusalem-two-mothers"
+   ],
    "rate": 1.0
   }
  ]

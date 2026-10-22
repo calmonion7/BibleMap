@@ -6,7 +6,7 @@
 
 - **인물** = 고정한 순간에 판(plate)으로 단독으로 그릴 개체. 이름 있는 개인뿐 아니라, 이름 없어도 장면의 핵심 개체(엔돌의 신접한 여인, 두 여인, 스바 여왕)를 포함한다.
 - **군중은 인물이 아니다**: 백성·군대·제사장들·왕비들·창기의 배경 등은 역표의 「군중/무리」 열로 뺐다. 예: 미스바의 「모든 백성」, 놉 학살의 「남녀와 아이들」, 성전 낙성식의 「온 이스라엘 회중」.
-- **생애 단계가 크게 갈리는 인물은 id를 나눈다**: 사울(청년~장년 재위, mizpah~en-gedi)과 사울(노년, 엔돌·길보아 — 삼상28:20 「기력이 진하였으니」)을 나눴다. 다윗도 소년(david-boy, 수금·기름부음·골리앗)·도망자(david, 즉위 전 20대)·장년 왕(david-prime, 헤브론~솔로몬 출생 — 삼하5:4-5)·노년 직전 왕(david-elder, 압살롬 반란·귀환 60세 전후)·노년(david-old, 왕상2:1 임종 유언)으로 나눴다. 솔로몬은 청년 왕(solomon, 왕상9:10 「이십 년」 이전)·장년 왕(solomon-prime, 궁전·에시온게벨·스바)·노년(solomon-old, 왕상11:4 「나이 늙을 때에」)으로 나눴다(task 355). id 이름은 카드 층 `ageBand` 사다리(youth < young < prime < elder)를 따른다. 새로 나눈 id는 얼굴 층을 원래 id와 같게 둔다(같은 사람).
+- **생애 단계가 크게 갈리는 인물은 id를 나눈다**: 사울(청년~장년 재위, mizpah~en-gedi)과 사울(노년, 엔돌·길보아 — 삼상28:20 「기력이 진하였으니」)을 나눴다. 다윗도 소년(david-boy, 수금·기름부음·골리앗)·청년(david-youth, 골리앗 뒤 군대의 장 — 삼상18:5·13·27, 15~20세, task 399)·도망자(david, 즉위 전 20대)·장년 왕(david-prime, 헤브론~솔로몬 출생 — 삼하5:4-5)·노년 직전 왕(david-elder, 압살롬 반란·귀환 60세 전후)·노년(david-old, 왕상2:1 임종 유언)으로 나눴다. 솔로몬은 청년 왕(solomon, 왕상9:10 「이십 년」 이전)·장년 왕(solomon-prime, 궁전·에시온게벨·스바)·노년(solomon-old, 왕상11:4 「나이 늙을 때에」)으로 나눴다(task 355). id 이름은 카드 층 `ageBand` 사다리(youth < young < prime < elder)를 따른다. 새로 나눈 id는 얼굴 층을 원래 id와 같게 둔다(같은 사람).
 - **본문에 등장만 하고 직접 행동하지 않는 이름**(엘리압 등 이새의 아들들, 사독·브나야, 바로의 딸, 이스보셋)은 인물로 세우지 않고 군중/배경으로 처리했다 — 근거가 이름 언급 1회뿐이고 반복 등장이 없어 별도 판이 불필요하다고 판단.
 - 하나님/천사/여호와의 영은 인물로 세우지 않는다(그리지 않음). 사무엘의 영은 엔돌 정차지에서 「영으로 등장」으로 표시했다.
 - 골리앗은 36정차지 본문 범위 밖(삼상17장)이지만 사용자 지시로 명단에 포함 — 정차지 없음(v41 기존 자산 이관, 재저작 대상).
@@ -20,7 +20,8 @@
 | saul | 사울, 기스의 아들 사울 | mizpah-chosen, jabesh-rescue, gilgal-coronation, michmash-battle, gilgal-amalek, gibeah-harp, gibeah-spear, nob-massacre, en-gedi-saul | 9 | 청년 선택~재위 구간 |
 | solomon | 솔로몬 | gihon-anointing, solomon-jerusalem-david-charge, gibeon-dream, two-mothers, temple-build, temple-dedication | 6 | 청년 왕 구간(왕상9:10 「이십 년」 이전) |
 | samuel | 사무엘 | mizpah-chosen, gilgal-coronation, michmash-battle, gilgal-amalek, bethlehem-david-anointing, ramah-samuel, endor-medium | 7 | 엔돌은 영으로 등장 |
-| david-boy | 다윗(소년) | bethlehem-david-anointing, gibeah-harp, gibeah-spear | 3 | 기존 v41 정본 이관 출발점 · 골리앗 장면(정차지 아님)도 이 id(삼상17:33·42 「소년」) |
+| david-boy | 다윗(소년) | bethlehem-david-anointing, gibeah-harp | 2 | 기존 v41 정본 이관 출발점 · 골리앗 장면(정차지 아님)도 이 id(삼상17:33·42 「소년」) |
+| david-youth | 다윗(청년) | gibeah-spear | 1 | 생애 단계 분할(task 399, 사용자 「청소년기 15~20 · 유추 가능」), 삼상18:5 군대의 장·18:13 천부장·18:27 혼인 · 정본 그림 없음 |
 | ahimelech | 아히멜렉, 제사장 아히멜렉 | nob-priests, nob-massacre | 2 | 놉 학살에서 사망 |
 | doeg | 도엑, 에돔 사람 도엑 | nob-priests, nob-massacre | 2 | |
 | achish | 아기스, 가드 왕 아기스 | gath-achish, ziklag-base | 2 | |
@@ -60,7 +61,7 @@
 | authored-saul-gilgal-amalek | samuel, saul, agag | 아말렉 백성(진멸당함) |
 | authored-samuel-bethlehem-david-anointing | samuel, jesse, david-boy | 성읍 장로들, 이새의 다른 아들들(엘리압 등) |
 | authored-david-gibeah-harp | saul, david-boy | (없음) |
-| authored-saul-gibeah-spear | saul, david-boy | (없음 — 18:6-7 여인들은 전날 일, task 394) |
+| authored-saul-gibeah-spear | saul, david-youth | (없음 — 18:6-7 여인들은 전날 일, task 394) |
 | authored-david-ramah-samuel | david, samuel | (없음) |
 | authored-david-nob-priests | david, ahimelech, doeg | 다윗의 소년들 |
 | authored-david-gath-achish | david, achish | 아기스의 신하들 |

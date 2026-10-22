@@ -204,6 +204,16 @@ def verse_element_errors(spec, prompt, verses=None):
     return errs
 
 
+def place_on_figure_errors(spec):
+    """행동의 자리(task 399, 규칙 spec.action-place-on-figure) → 오류 목록, 요소 목록이 없으면 None(잴 수 없음).
+    `자리` 요소(예: 18:11 「다윗을 벽에 박으리라」 — 다윗이 벽 앞에 있어야 함)는 배경이 아니라 인물 칸(figures[i].*)이 날라야 한다."""
+    els = spec.get("verse_elements")
+    if not els:
+        return None
+    return [f"verse_elements[{i}] {e.get('ko', '')!r}: 자리는 인물 칸(figures[i].*)에 — 지금 {e.get('field')!r}"
+            for i, e in enumerate(els) if e.get("kind") == "자리" and "out" not in e and not str(e.get("field", "")).startswith("figures[")]
+
+
 PROP_TAIL = ("of", "in", "on", "with", "at", "for", "from", "to", "under", "over", "across", "held", "slung", "hanging")
 PROP_PART = ("corner", "fold", "edge", "hem", "end", "tip")   # 「robe corner」 — 부분 낱말이면 앞 명사(옷)가 핵심
 

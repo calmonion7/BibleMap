@@ -65,6 +65,8 @@ def img(arm, s):
 
 
 def gen():
+    import recheck
+    recheck.require_pass(SID)   # task 399 generate.spec-gate
     sys.path.insert(0, os.path.join(HERE, "batch"))
     import run_scene
     src = {j["seed"]: j for j in json.load(open(f"{BASE}/_zjobs.json"))}

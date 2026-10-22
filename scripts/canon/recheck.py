@@ -70,6 +70,35 @@ def banned_words(spec):
     return out
 
 
+STAGE_MARK = re.compile(r"^\[(직접|추론)\]")
+VERSE_REF = re.compile(r"\d+:\d+")
+
+
+def stage_why_errors(spec, verses=None):
+    """생애 단계 근거(task 399, 규칙 spec.stage-from-scripture) — 인물마다 `stage_why`가 [직접]|[추론]으로 시작하고
+    구절 인용(「…」)과 장·절을 담아야 한다. 호칭 낱말 하나가 아니라 직무·연대·앞뒤 문맥으로 이 장면 때 나이를 유추한다.
+    verses를 주면 「인용」마다 앞에 책 이름·장:절이 붙었는지, 본문 글자 그대로인지(띄어쓰기 무시, … 로 끊음) 본다
+    — 2차 검토에서 삼하 2:10 「비로소」가 빠진 인용이 추론의 하한을 흔들었다(check_cast_v2 (c2)와 같은 대조)."""
+    out = []
+    for f in spec["figures"]:
+        w = str(f.get("stage_why", ""))
+        if not STAGE_MARK.match(w) or "「" not in w or not VERSE_REF.search(w):
+            out.append(f"{f['cast']}: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐")
+            continue
+        if verses is None:
+            continue
+        found = list(check_cast_v2.QUOTE.finditer(w))
+        if len(found) != w.count("「"):
+            out.append(f"{f['cast']}: stage_why 인용 {w.count('「')}개 중 {w.count('「') - len(found)}개에 책 이름·장:절이 없어 본문과 대조 못 함")
+        for m in found:
+            ch, a, b = int(m.group(2)), int(m.group(3)), int(m.group(4) or m.group(3))
+            src = re.sub(r"\s+", "", "".join(verses.get(f"{check_cast_v2.BOOK[m.group(1)]:02d}{ch:03d}{v:03d}", {}).get("textKo", "")
+                                              for v in range(a, b + 1)))
+            out += [f"{f['cast']}: stage_why {m.group(1)} {ch}:{a} 인용이 본문에 없음 「{frag.strip()[:30]}」"
+                    for frag in re.split(r"…|\.\.\.", m.group(5)) if re.sub(r"\s+", "", frag) not in src]
+    return out
+
+
 def has_situation(spec):
     s = spec.get("situation")
     return [] if isinstance(s, dict) and str(s.get("text", "")).strip() else ["situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"]
@@ -114,6 +143,8 @@ SPEC_CHECKS = {
     "derive_scene.stages": _tok("clip_over"),
     "check_scenes.whole_prompt_overflow": _tok("z"),
     "check_scenes.prop_in_prompt_errors": lambda spec, ctx: check_scenes.prop_in_prompt_errors(spec, ds.route_prompt(spec)),
+    "check_scenes.place_on_figure_errors": lambda spec, ctx: check_scenes.place_on_figure_errors(spec),
+    "recheck.stage_why_errors": lambda spec, ctx: stage_why_errors(spec, ctx["verses"]),
 }
 
 
@@ -162,9 +193,8 @@ def tokens(ids):
     return json.loads(r.stdout.strip().splitlines()[-1]), "venv314"
 
 
-def specs():
-    L = ledger()
-    rules, ids = spec_rules(L), scene_ids()
+def _context(ids):
+    """명세 규칙 실행 재료 — 구절·cast 검사 결과·토큰 수(못 재면 None)."""
     with open(check_scenes.VERSES, encoding="utf-8") as fh:
         verses = json.load(fh)
     casts = {}
@@ -173,19 +203,45 @@ def specs():
             c = json.load(fh)
         casts[c["id"]] = check_cast_v2.check(c, verses)
     tok, tok_src = tokens(ids)
-    ctx = {"verses": verses, "casts": casts, "tokens": tok}
+    return {"verses": verses, "casts": casts, "tokens": tok}, tok_src
+
+
+def _eval(spec, rules, ctx):
+    """→ ({규칙: pass|fail|none}, {규칙: 오류 앞 6개})."""
+    row, det = {}, {}
+    for r in rules:
+        try:
+            errs = SPEC_CHECKS[r["check"]](spec, ctx)
+        except Exception as e:  # noqa: BLE001 — 검사기가 이 명세에서 죽으면 실패로 센다(이유를 남긴다)
+            errs = [f"검사 중 오류 {type(e).__name__}: {e}"]
+        row[r["id"]] = "none" if errs is None else ("fail" if errs else "pass")
+        if errs:
+            det[r["id"]] = errs[:6]
+    return row, det
+
+
+def spec_failures(sid, details=False):
+    """task 399 생성 관문 — 이 명세에 걸리는 명세·파생 함수 규칙 id 목록(못 잼도 통과가 아니다). details면 (목록, 오류)."""
+    ctx, _ = _context([sid])
+    row, det = _eval(ds.load(sid), spec_rules(ledger()), ctx)
+    bad = [k for k, v in row.items() if v != "pass"]
+    return (bad, {k: det.get(k, ["못 잼"]) for k in bad}) if details else bad
+
+
+def require_pass(sid):
+    """새 그림을 만드는 정본 생성 명령이 첫 GPU 호출 전에 부른다(규칙 generate.spec-gate) — 걸리면 멈춘다, 우회 없음."""
+    bad, det = spec_failures(sid, details=True)
+    if bad:
+        sys.exit(f"[Recheck] 명세 규칙 불통과: {sid} — " + " · ".join(f"{k} ({det[k][0]})" for k in bad))
+
+
+def specs():
+    L = ledger()
+    rules, ids = spec_rules(L), scene_ids()
+    ctx, tok_src = _context(ids)
     table, details = {}, {}
     for sid in ids:
-        spec = ds.load(sid)
-        table[sid], details[sid] = {}, {}
-        for r in rules:
-            try:
-                errs = SPEC_CHECKS[r["check"]](spec, ctx)
-            except Exception as e:  # noqa: BLE001 — 검사기가 이 명세에서 죽으면 실패로 센다(이유를 남긴다)
-                errs = [f"검사 중 오류 {type(e).__name__}: {e}"]
-            table[sid][r["id"]] = "none" if errs is None else ("fail" if errs else "pass")
-            if errs:
-                details[sid][r["id"]] = errs[:6]
+        table[sid], details[sid] = _eval(ds.load(sid), rules, ctx)
     out = {"rules_version": L["version"], "tokens": tok_src, "specs": table, "details": details,
            "rules": [summary(r, {sid: table[sid][r["id"]] for sid in ids}) for r in rules]}
     _write("specs.json", out)

@@ -1,0 +1,99 @@
+{
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "david-youth",
+  "names": [
+    "다윗(청년)"
+  ],
+  "stops": [
+    "authored-saul-gibeah-spear"
+  ],
+  "era": "an ancient Israelite",
+  "age": "youth",
+  "sex": "male",
+  "role": "commander",
+  "hair": "curly hair",
+  "beard": "none",
+  "headwear": "none",
+  "build": "lean, youthful",
+  "costume": "in a knee-length wool tunic, leather belt, leather strap sandals",
+  "colorWords": [
+    "warm tan",
+    "light brown"
+  ],
+  "propCandidates": [
+    {
+      "prop": "a small harp",
+      "verse": "삼상 18:10",
+      "ko": "수금"
+    },
+    {
+      "prop": "a sword",
+      "verse": "삼상 18:4",
+      "ko": "칼"
+    }
+  ],
+  "neg": [
+    "armour",
+    "crown",
+    "adult beard",
+    "modern clothes"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "standing, full body, facing right, holding a small harp"
+  ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "youth",
+      "text": "about 18, smooth youthful face, no lines"
+    },
+    "beardVolume": {
+      "class": "none",
+      "text": "없음"
+    },
+    "silhouette": {
+      "class": "lean",
+      "text": "lean youthful shoulders, slim straight torso"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, tight dark curls close to the skull"
+    },
+    "costumeColor": {
+      "class": "undyed",
+      "text": "undyed tan wool tunic, brown leather belt"
+    }
+  },
+  "face": {
+    "faceShape": "oval face, soft jaw, fine cheekbones",
+    "eyes": "large bright dark eyes",
+    "nose": "straight narrow nose",
+    "mouth": "wide mouth with a quick smile",
+    "skin": "ruddy, sun-warmed skin",
+    "brows": "arched dark brows",
+    "marks": "none"
+  },
+  "_why": {
+    "age": "[추론] 삼상 17:56 「너는 이 청년이 누구의 아들인가 물어보라」 · 18:5 「사울이 그로 군대의 장을 삼았더니」 — 골리앗 뒤 군대를 맡은 청년(소년 david-boy와 20대 도망자 david 사이)",
+    "build": "[저작](청년 체구 정함 — 소년보다 크고 20대보다 가늚; 본문은 체구를 말하지 않음)",
+    "hair": "[저작](머리 기록 없어 고대 근동 남성 짙은 머리 대표값)",
+    "beard": "[저작](수염 기록 없어 고대 근동 성인 남성 수염 관습 대표값)",
+    "headwear": "[저작](쓰개 기록 없어 맨머리 기본값)",
+    "costume": "[저작](시대 복식 — 양모 튜닉·가죽 띠. 18:4 요나단이 준 겉옷·군복은 장면 명세 차림 몫)",
+    "card.heightRel": "[저작](청년이라 어른 키에 가깝게; 본문은 키를 말하지 않음)",
+    "card.ageBand": "[추론] 삼상 18:5 「군대의 장을 삼았더니」 · 18:13 「천부장을 삼으매」 · 18:27 「미갈을 다윗에게 아내로 주었더라」 · 삼하 5:4 「다윗이 삼십 세에 위에 나아가서」 — 군대를 맡고 혼인할 나이이되 즉위(30세) 훨씬 전 → 15~20세. 「about 18」 숫자는 [저작](생애 단계 대표값, 사용자 2026-10-22 「청소년기 15~20」)",
+    "card.beardVolume": "[저작](같은 사람 연속)",
+    "card.silhouette": "[저작](같은 사람 연속 — 소년보다 자란 몸)",
+    "card.headOutline": "[저작](같은 사람 연속)",
+    "card.costumeColor": "[저작](같은 사람 연속 — 목자 때 물들이지 않은 양모, 띠만 가죽)",
+    "face.faceShape": "[저작](둥근 달걀형은 정한 값; 삼상 16:12 「얼굴이 아름답더라」는 아름다움만 말함)",
+    "face.eyes": "[저작](크기·색은 정함; 삼상 16:12 「눈이 빼어나고」는 눈이 빼어남만 말함)",
+    "face.nose": "[저작](david과 같은 얼굴 연속)",
+    "face.mouth": "[저작](david과 같은 얼굴 연속)",
+    "face.skin": "[직접] 삼상 16:12 「그의 빛이 붉고」",
+    "face.brows": "[저작](david과 같은 얼굴 연속)",
+    "face.marks": "[저작](david과 같은 얼굴 연속)",
+    "role": "[직접] 삼상 18:5 「사울이 그로 군대의 장을 삼았더니」"
+  }
+}

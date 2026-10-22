@@ -315,7 +315,7 @@ SPEC_REGEN_SCENES = {sid: VERSE_REGEN_SCENES[sid] for sid in (
     "authored-david-gibeon-battle", "authored-david-mahanaim-exile", "authored-david-returns-jerusalem",
     "authored-samuel-bethlehem-david-anointing", "authored-david-jerusalem-conquest", "authored-saul-endor-medium", "authored-saul-gilboa-death")}
 SPEC_REGEN_SEEDS = REF_EDIT_SEEDS
-VERSE_ELEMENT_KINDS = ("인물", "행동", "지물", "때", "장소", "무리")
+VERSE_ELEMENT_KINDS = ("인물", "행동", "지물", "때", "장소", "무리", "자리")   # 자리(task 399) = 행동이 겨누는 곳·인물이 있어야 할 곳 → 인물 칸
 VERSE_ELEMENT_BANNED = ("prior", "모델", "못 그", "대체", "어렵")
 # task#350(2026-10-22): 얼굴 인식 판정자(ArcFace)를 한 장 생성 그림의 `.identity` 사람 라벨로 교정 — J1이 빼 둔 문항을 기계가 맡을 수 있는가.
 # 묶음은 J1과 같음(다듬기 368·369 / 검증 370·372, 판 묶음 제외), 라벨·머리 크롭은 사람 페이지 identity 문항 그대로. 실행 전 고정(notes/FACE-ID-JUDGE.md).

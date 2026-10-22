@@ -26,7 +26,8 @@ METRICS = os.path.join(HERE, "samples", NAME, "metrics.json")
 OUT = os.path.expanduser(f"~/.local/biblemap-imggen/{NAME}")
 APPROVED = os.path.join("samples", NAME, "approved-authored-saul-gibeah-spear.png")   # 레포 사본(CANON_DIR 기준 상대 경로)
 LOCK = threading.Lock()
-FX = json.loads(re.search(r"```json fixed\n(.*?)\n```", open(NOTES, encoding="utf-8").read(), re.S).group(1))
+with open(NOTES, encoding="utf-8") as _fh:
+    FX = json.loads(re.search(r"```json fixed\n(.*?)\n```", _fh.read(), re.S).group(1))
 SID = FX["scene"]
 QS = {"S": FX["style"], "E": FX["elements"]}
 
@@ -46,6 +47,8 @@ def save(m):
 
 
 def gen():
+    import recheck
+    recheck.require_pass(SID)   # task 399 generate.spec-gate — 명세 규칙에 걸리면 그리지 않는다
     busy = subprocess.run(["pgrep", "-fl", "mflux|run_scene.py --worker|gen_video_pilot|mlx_video"], capture_output=True, text=True).stdout.strip()
     if busy:
         sys.exit(f"[GibeahRedraw] 다른 생성 프로세스가 돈다 — 겹치지 않게 멈춤:\n{busy}")
