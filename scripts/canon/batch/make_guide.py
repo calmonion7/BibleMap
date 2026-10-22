@@ -153,9 +153,10 @@ def person_throw(d, x0, y0, x1, y1, v):
 def spear(d, x0, y0, x1, y1, v):
     """task 400 — 허공을 나는 창: 구역 세로 가운데 가는 자루 + 왼쪽 끝 뾰족한 촉 하나(날아가는 쪽)."""
     cy, t = (y0 + y1) / 2, max(2.0, (y1 - y0) * 0.18)
-    tip = (x1 - x0) * 0.18   # a3: 촉을 키움(a2 촉 방향이 뒤집히거나 양쪽 촉)
+    tip = (x1 - x0) * (0.3 if BODY.get("big_tip") else 0.18)   # a3: 촉을 키움 · b6: big_tip이면 더 크게(b5 촉이 사울 쪽으로 뒤집힘 8장 거의 전부)
     d.rectangle([x0 + tip, cy - t, x1, cy + t], fill=v)
-    d.polygon([(x0, cy), (x0 + tip, cy - t * 3), (x0 + tip, cy + t * 3)], fill=v)
+    k = 5 if BODY.get("big_tip") else 3
+    d.polygon([(x0, cy), (x0 + tip, cy - t * k), (x0 + tip, cy + t * k)], fill=v)
 
 
 def wall(d, x0, y0, x1, y1, v):
@@ -178,6 +179,8 @@ def make(spec):
     for y in range(hy, H):
         t = (y - hy) / (H - 1 - hy)
         d.line([(0, y), (W, y)], fill=round(255 * (GROUND[0] + t * (GROUND[1] - GROUND[0]))))
+    if g.get("tip") == "big":
+        BODY["big_tip"] = True
     build, knee = {}, set()
     if g.get("legs") == "costume":   # b2: 차림 문구가 무릎 길이면 그 인물 꼴에 무릎 아래 다리
         knee = {f["region"] for f in spec["figures"] if "knee-length" in (f.get("costume") or {}).get("en", "")}
@@ -192,7 +195,8 @@ def make(spec):
         BODY["knee"] = k in knee
         SHAPES[g["shape"][k]](d, x0 * W, y0 * H, x1 * W, y1 * H, round(255 * g["depth"][k]))
     BODY["w"], BODY["knee"] = 0.3, False
-    return img.filter(ImageFilter.GaussianBlur(3)).convert("RGB")
+    BODY.pop("big_tip", None)
+    return img.filter(ImageFilter.GaussianBlur(g.get("blur", 3))).convert("RGB")   # b6: blur 키우면 각진 몸이 누그러짐(b5 사울 상자 튜닉)
 
 
 def main():
