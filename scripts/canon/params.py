@@ -351,3 +351,6 @@ FACE_DETAIL_MARGIN = 2.4
 FACE_DETAIL_SIZE = 768
 FACE_DETAIL_STRENGTH = 0.3   # 시험(0.3·0.45 × 3머리): 0.45는 옷·머리털 결까지 바뀜 → 0.3
 FACE_DETAIL_TRIAL = (0.3, 0.45)
+# task 395 — C 장면 머리에 V3 얼굴 보정 → 되붙임(notes/FACE-DETAIL-V3.md 고정 절). 보정 방식은 FACE_DETAIL_* 그대로.
+FACE_DETAIL_V3_PASTE_GROW = 1.3      # 되붙임 타원 = 머리 상자 가로·세로 × 이 값(정사각 전체가 아니라 머리만)
+FACE_DETAIL_V3_PASTE_FEATHER = 0.12  # 타원 가장자리 가우스 흐림 반지름 = 머리 상자 긴 변 × 이 값

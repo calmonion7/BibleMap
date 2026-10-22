@@ -1,0 +1,298 @@
+[
+ {
+  "kind": "head",
+  "cast": "david",
+  "seed": 11,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/heads/C-s11-david.png",
+  "secs": 17.1,
+  "active": [
+   "david-v3"
+  ]
+ },
+ {
+  "kind": "head",
+  "cast": "saul",
+  "seed": 11,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/heads/C-s11-saul.png",
+  "secs": 16.8,
+  "active": [
+   "saul-v3"
+  ]
+ },
+ {
+  "kind": "head",
+  "cast": "david",
+  "seed": 42,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/heads/C-s42-david.png",
+  "secs": 16.9,
+  "active": [
+   "david-v3"
+  ]
+ },
+ {
+  "kind": "head",
+  "cast": "saul",
+  "seed": 42,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/heads/C-s42-saul.png",
+  "secs": 16.8,
+  "active": [
+   "saul-v3"
+  ]
+ },
+ {
+  "kind": "head",
+  "cast": "david",
+  "seed": 7,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/heads/C-s7-david.png",
+  "secs": 16.8,
+  "active": [
+   "david-v3"
+  ]
+ },
+ {
+  "kind": "head",
+  "cast": "saul",
+  "seed": 7,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/heads/C-s7-saul.png",
+  "secs": 16.8,
+  "active": [
+   "saul-v3"
+  ]
+ },
+ {
+  "kind": "head",
+  "cast": "david",
+  "seed": 23,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/heads/C-s23-david.png",
+  "secs": 16.8,
+  "active": [
+   "david-v3"
+  ]
+ },
+ {
+  "kind": "head",
+  "cast": "saul",
+  "seed": 23,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/heads/C-s23-saul.png",
+  "secs": 16.8,
+  "active": [
+   "saul-v3"
+  ]
+ },
+ {
+  "kind": "head",
+  "cast": "david",
+  "seed": 5,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/heads/C-s5-david.png",
+  "secs": 16.8,
+  "active": [
+   "david-v3"
+  ]
+ },
+ {
+  "kind": "head",
+  "cast": "saul",
+  "seed": 5,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/heads/C-s5-saul.png",
+  "secs": 16.8,
+  "active": [
+   "saul-v3"
+  ]
+ },
+ {
+  "kind": "head",
+  "cast": "david",
+  "seed": 101,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/heads/C-s101-david.png",
+  "secs": 16.9,
+  "active": [
+   "david-v3"
+  ]
+ },
+ {
+  "kind": "head",
+  "cast": "saul",
+  "seed": 101,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/heads/C-s101-saul.png",
+  "secs": 17.0,
+  "active": [
+   "saul-v3"
+  ]
+ },
+ {
+  "kind": "head",
+  "cast": "david",
+  "seed": 202,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/heads/C-s202-david.png",
+  "secs": 17.0,
+  "active": [
+   "david-v3"
+  ]
+ },
+ {
+  "kind": "head",
+  "cast": "saul",
+  "seed": 202,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/heads/C-s202-saul.png",
+  "secs": 17.0,
+  "active": [
+   "saul-v3"
+  ]
+ },
+ {
+  "kind": "head",
+  "cast": "david",
+  "seed": 303,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/heads/C-s303-david.png",
+  "secs": 17.1,
+  "active": [
+   "david-v3"
+  ]
+ },
+ {
+  "kind": "head",
+  "cast": "saul",
+  "seed": 303,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/heads/C-s303-saul.png",
+  "secs": 17.1,
+  "active": [
+   "saul-v3"
+  ]
+ },
+ {
+  "kind": "paste",
+  "seed": 11,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/paste/C-s11.png",
+  "color_diff": {
+   "david": [
+    -1.0,
+    -1.1,
+    1.0
+   ],
+   "saul": [
+    -0.8,
+    -0.9,
+    0.6
+   ]
+  }
+ },
+ {
+  "kind": "paste",
+  "seed": 42,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/paste/C-s42.png",
+  "color_diff": {
+   "david": [
+    0.0,
+    -0.6,
+    0.6
+   ],
+   "saul": [
+    -0.7,
+    -1.2,
+    0.6
+   ]
+  }
+ },
+ {
+  "kind": "paste",
+  "seed": 7,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/paste/C-s7.png",
+  "color_diff": {
+   "david": [
+    -0.2,
+    -0.6,
+    0.6
+   ],
+   "saul": [
+    0.1,
+    -0.4,
+    0.9
+   ]
+  }
+ },
+ {
+  "kind": "paste",
+  "seed": 23,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/paste/C-s23.png",
+  "color_diff": {
+   "david": [
+    -1.4,
+    -1.1,
+    0.5
+   ],
+   "saul": [
+    -2.2,
+    -1.7,
+    0.2
+   ]
+  }
+ },
+ {
+  "kind": "paste",
+  "seed": 5,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/paste/C-s5.png",
+  "color_diff": {
+   "david": [
+    -0.6,
+    -0.2,
+    1.0
+   ],
+   "saul": [
+    -0.8,
+    -0.2,
+    1.6
+   ]
+  }
+ },
+ {
+  "kind": "paste",
+  "seed": 101,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/paste/C-s101.png",
+  "color_diff": {
+   "david": [
+    0.0,
+    -0.1,
+    0.8
+   ],
+   "saul": [
+    -0.5,
+    -1.0,
+    0.2
+   ]
+  }
+ },
+ {
+  "kind": "paste",
+  "seed": 202,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/paste/C-s202.png",
+  "color_diff": {
+   "david": [
+    -0.2,
+    -0.3,
+    1.6
+   ],
+   "saul": [
+    -0.6,
+    -1.7,
+    0.2
+   ]
+  }
+ },
+ {
+  "kind": "paste",
+  "seed": 303,
+  "out": "/Users/calmonion/.local/biblemap-imggen/face-detail-v3/paste/C-s303.png",
+  "color_diff": {
+   "david": [
+    -1.7,
+    -1.4,
+    1.2
+   ],
+   "saul": [
+    -1.1,
+    -1.2,
+    1.2
+   ]
+  }
+ }
+]

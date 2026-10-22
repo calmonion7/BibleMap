@@ -53,10 +53,10 @@ def crop(im, box):
     return c, max(c.size)
 
 
-def detail_crop(key, scene_img, box):
+def detail_crop(key, scene_img, box, d=DETAIL):
     """얼굴 보정본(gen_face_detail — 머리 둘레 정사각을 FACE_DETAIL_SIZE로 다시 그림)에서 v1과 같은 머리 영역을 잘라낸다
     → (크롭, 보정본에서의 변 길이 px). 보정본이 없으면 원본 장면에서(보정 전 화면과 같음)."""
-    p = os.path.join(DETAIL, f"{key}.png")
+    p = os.path.join(d, f"{key}.png")
     if not os.path.exists(p):
         return crop(scene_img, box)
     import gen_face_detail as G
