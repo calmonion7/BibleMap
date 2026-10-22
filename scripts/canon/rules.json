@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "243641e5f7c3",
+  "version": "eba27c007000",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -32,9 +32,9 @@
     {"id": "spec.placement-by-guide", "layer": "spec", "scope": "doc", "check": "todo",
      "source": "notes/PROMPTING.md 24·25", "since": "2026-10-20 task 378~380",
      "note": "배치·상태는 문구로 안 옮겨짐 → 가이드 그림으로 — 효과 순위 2(구도 가이드)"},
-    {"id": "spec.lexicon-link", "layer": "spec", "scope": "doc", "check": "todo",
-     "source": "메모리 project_scripture_word_lexicon · task 381~383", "since": "2026-10-20",
-     "note": "명세 낱말 ↔ 성경 낱말 사전 연결(지금 0/37) — 효과 순위 3"},
+    {"id": "spec.lexicon-link", "layer": "spec", "scope": "all", "check": "check_scenes.lexicon_look_errors",
+     "source": "메모리 project_scripture_word_lexicon · task 381~383 · task 400(397 사람 메모 ② 「다웃의 악기가 하프가 아님」)", "since": "2026-10-20 · 검사화 2026-10-22 task 400",
+     "note": "실은 지물 요소 quote에 사전 표제어·꼴이 있으면 파생 프롬프트에 그 항목 look L1|L2|L3 en 하나가 실려야 함(단계는 장면 증거로 — 기브아 수금은 L1 16장 중 1장 → L2). 요소 목록 없으면 못 잼"},
     {"id": "derive.no-hand-prompt", "layer": "derive", "scope": "all", "check": "derive_scene.route_prompt",
      "source": "notes/PROMPTING.md 7·15 · task 330·376", "since": "2026-09-04 task 330",
      "note": "프롬프트는 명세에서 파생만 — 한 장 모드 칸이 있으면 whole_prompt, 없으면 plate_whole_prompt"},
@@ -104,6 +104,9 @@
      "note": "인물마다 stage_why = [직접]|[추론] + 「인용」 + 장:절 — 호칭 하나(「소년」)가 아니라 직무·연대·앞뒤 문맥으로 이 장면 때 생애 단계를 고름. 근거가 비어 있는 단계면 cast 카드 신설(david-youth)"},
     {"id": "spec.action-place-on-figure", "layer": "spec", "scope": "all", "check": "check_scenes.place_on_figure_errors",
      "source": "notes/GIBEAH-STEP1.md · 397 사람 메모 ③ 「다윗은 벽에 붙어서 창을 피하는 모습이어야함」", "since": "2026-10-22 task 399",
-     "note": "verse_elements 종류 「자리」(행동이 겨누는 곳·인물이 있어야 할 곳, 예 18:11 「벽에 박으리라」)는 인물 칸(figures[i].*)이 나름 — 배경 칸만이면 실패. 요소 목록 없으면 못 잼"}
+     "note": "verse_elements 종류 「자리」(행동이 겨누는 곳·인물이 있어야 할 곳, 예 18:11 「벽에 박으리라」)는 인물 칸(figures[i].*)이 나름 — 배경 칸만이면 실패. 요소 목록 없으면 못 잼"},
+    {"id": "generate.thrown-guide", "layer": "generate", "scope": "all", "check": "recheck.thrown_guide_errors",
+     "source": "notes/GIBEAH-STEP23.md · 397 사람 메모 ① 「창을던져야 하는데 찌르는 행동」 · task 400 시도 a1", "since": "2026-10-22 task 400",
+     "note": "순간 절 본문에 던지·쏘·떨어뜨 동사가 있으면 명세 guide에 허공 물체 꼴(spear 등)이 있어야 함 — 문구만으로는 16/16 창이 손에 남음(397·a1). 생성기는 명세에 guide가 있으면 반드시 그 가이드로 그림"}
   ]
 }

@@ -22,7 +22,7 @@
   ],
   "propCandidates": [
     {
-      "prop": "a small harp",
+      "prop": "a small wooden lyre",
       "verse": "삼상 18:10",
       "ko": "수금"
     },
@@ -40,7 +40,7 @@
   ],
   "poses": [
     "standing, full body, side view facing left",
-    "standing, full body, facing right, holding a small harp"
+    "standing, full body, facing right, holding a small wooden lyre"
   ],
   "card": {
     "heightRel": "average",

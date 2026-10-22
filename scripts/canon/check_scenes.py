@@ -214,6 +214,29 @@ def place_on_figure_errors(spec):
             for i, e in enumerate(els) if e.get("kind") == "자리" and "out" not in e and not str(e.get("field", "")).startswith("figures[")]
 
 
+WORDS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "data", "scripture_words", "words.json")
+
+
+def lexicon_look_errors(spec, prompt):
+    """지물 모양은 낱말 사전에서(task 400, 규칙 spec.lexicon-link) → 오류 목록, 요소 목록이 없으면 None.
+    실은 지물 요소의 quote에 사전 표제어·꼴이 있으면 파생 프롬프트에 그 항목의 look L1|L2|L3 en 하나가 실려야 한다
+    (397·400 a1: 「a small wooden lyre」만으로 16장 중 15장이 류트 — 단계는 장면 증거로 고르고, 사전 문구를 쓰는 것은 규칙)."""
+    els = spec.get("verse_elements")
+    if not els:
+        return None
+    with open(WORDS, encoding="utf-8") as fh:
+        words = [w for w in json.load(fh)["words"] if w.get("drawable", True)]
+    squash, low, errs = lambda t: re.sub(r"\s+", "", t), prompt.lower(), []
+    for i, e in enumerate(els):
+        if e.get("kind") != "지물" or "out" in e:
+            continue
+        for w in words:
+            if any(squash(f) in squash(e["quote"]) for f in [w["word"], *w["forms"]]) and \
+                    not any(w["look"][k]["en"].lower().rstrip(".") in low for k in ("L1", "L2", "L3")):
+                errs.append(f"verse_elements[{i}] {e['quote']!r}: 사전 {w['id']} look 문구가 파생 프롬프트에 없음")
+    return errs
+
+
 PROP_TAIL = ("of", "in", "on", "with", "at", "for", "from", "to", "under", "over", "across", "held", "slung", "hanging")
 PROP_PART = ("corner", "fold", "edge", "hem", "end", "tip")   # 「robe corner」 — 부분 낱말이면 앞 명사(옷)가 핵심
 

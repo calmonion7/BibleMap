@@ -48,9 +48,25 @@ def save(m):
         json.dump(m, fh, ensure_ascii=False, indent=1)
 
 
+def guide_ok(spec):
+    """명세에 guide가 있으면 고정 절 guide 파일이 그 명세에서 다시 그린 가이드와 바이트까지 같아야 한다(빠뜨림·낡은 가이드 방지)."""
+    if "guide" not in spec:
+        return
+    import io
+    import make_guide
+    if not FX.get("guide"):
+        sys.exit("[GibeahRedraw] 명세에 guide가 있는데 고정 절 guide가 없다 — 가이드 없이 그리지 않는다")
+    buf = io.BytesIO()
+    make_guide.make(spec).save(buf, format="PNG")
+    with open(os.path.join(HERE, FX["guide"]), "rb") as fh:
+        if fh.read() != buf.getvalue():
+            sys.exit(f"[GibeahRedraw] 고정 절 guide {FX['guide']}가 지금 명세의 가이드와 다르다 — make_guide로 다시 그릴 것")
+
+
 def gen():
     import recheck
     recheck.require_pass(SID)   # task 399 generate.spec-gate — 명세 규칙에 걸리면 그리지 않는다
+    guide_ok(D.load(SID))       # task 400 generate.thrown-guide — 명세에 가이드가 있으면 그 가이드로만
     busy = subprocess.run(["pgrep", "-fl", "mflux|run_scene.py --worker|gen_video_pilot|mlx_video"], capture_output=True, text=True).stdout.strip()
     if busy:
         sys.exit(f"[GibeahRedraw] 다른 생성 프로세스가 돈다 — 겹치지 않게 멈춤:\n{busy}")

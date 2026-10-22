@@ -55,7 +55,7 @@
           "heightRel": "tall",
           "ageBand": {
             "class": "elder",
-            "text": "about 70, deep-lined face"
+            "text": "about 70, a deeply wrinkled old face, lined forehead and cheeks"
           },
           "beardVolume": {
             "class": "trimmed",
@@ -92,14 +92,14 @@
         "verse": "18:11 「그 앞에서 두 번 피하였더라」 · 표정은 본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "벽을 등지고 선 채, 손에 든 작은 나무 수금을 놓지 않고 몸을 옆으로 비틀어 날아오는 창의 길에서 비킴",
-        "en": "standing with his back against the stone wall, twisting his body aside out of the path of the flying spear, a small wooden lyre still held in his hands",
-        "verse": "18:11 「내가 다윗을 벽에 박으리라」(다윗이 창이 날아가는 길 끝 벽 앞에 있음 — 벽을 등지고 선 자세는 이 말에서 추론, 벽에 붙은 정도는 본문 밖 · 저작자 정함) · 18:11 「그 앞에서 두 번 피하였더라」 · 18:10 「손으로 수금을 타는데」 · 수금의 크기(작은)·재질(나무)은 본문 밖 · 저작자 정함 · 비튼 몸은 본문 밖 · 저작자 정함"
+        "ko": "벽을 등지고 선 채, 손에 든 작은 나무 수금(울림통에 두 팔과 가로대, 목·지판 없음)을 놓지 않고 몸을 옆으로 비틀어 날아오는 창의 길에서 비킴",
+        "en": "standing with his back against the stone wall, twisting his body aside out of the path of the flying spear, still holding a small wooden lyre in his hands, a hollow wooden sound box with two curved arms joined by a crossbar at the top, strings running up from the box to the crossbar, no neck and no fingerboard",
+        "verse": "18:11 「내가 다윗을 벽에 박으리라」(다윗이 창이 날아가는 길 끝 벽 앞에 있음 — 벽을 등지고 선 자세는 이 말에서 추론, 벽에 붙은 정도는 본문 밖 · 저작자 정함) · 18:11 「그 앞에서 두 번 피하였더라」 · 18:10 「손으로 수금을 타는데」 · 수금 모양은 낱말 사전 kinnor-lyre L2(삼하 6:5 「잣나무로 만든」 · 틀 모양은 [저작]) · 비튼 몸은 본문 밖 · 저작자 정함"
       },
       "costume": {
-        "ko": "물들이지 않은 황갈색 모직 튜닉과 가죽 띠",
-        "en": "in an undyed tan wool tunic with a leather belt",
-        "verse": "본문 밖 · 저작자 정함(정본 david-youth 카드 차림)"
+        "ko": "물들이지 않은 황갈색 모직 반소매 무릎 길이 튜닉(가슴·어깨를 덮음)과 가죽 띠",
+        "en": "in a short-sleeved knee-length undyed tan wool tunic covering his chest and shoulders, with a leather belt",
+        "verse": "본문 밖 · 저작자 정함(정본 david-youth 카드 차림 · 덮는 곳은 시도 a1에서 웃통 벗은 그림 7/8이라 문구로 밝힘)"
       },
       "gaze": "saul",
       "stage_why": "[추론] 삼상 18:5 「사울이 그로 군대의 장을 삼았더니」 · 삼상 17:56 「이 청년이 누구의 아들인가」 · 삼하 5:4 「다윗이 삼십 세에 위에 나아가서」 — 골리앗 뒤 군대를 맡은 청년이고 즉위(30세)는 한참 뒤 → 15~20세 david-youth. 삼상 17:33 「너는 소년이요」 한 낱말로 david-boy를 고르지 않음(사용자 2026-10-22 “청소년기 15~20 · 유추 가능” · 프로젝트 연대로 다윗 출생 BC 1040경 → 이 사건 약 20세)"
@@ -119,10 +119,22 @@
       0.92
     ],
     "david-youth": [
-      0.15,
+      0.125,
       0.42,
-      0.27,
+      0.245,
       0.92
+    ],
+    "spear": [
+      0.29,
+      0.445,
+      0.5,
+      0.475
+    ],
+    "wall": [
+      0.0,
+      0.0,
+      0.145,
+      1.0
     ]
   },
   "_regions_why": "사울 서서 세로 0.58(창을 던진 왕), 청년 다윗 서서 세로 0.50(벽을 등지고 몸을 비튼 자세 — 삼상 9:2 「키는 모든 백성보다 어깨 위는 더하더라」라 사울이 조금 더 큼). 좌우는 18:11 — 사울이 오른쪽에서 왼쪽 다윗에게 창을 던지고 다윗 뒤가 벽. 구역 이름은 cast id(david-youth)를 따름(task 355).",
@@ -309,8 +321,8 @@
       "verse": "18:10",
       "quote": "손으로 수금을 타는데",
       "kind": "지물",
-      "ko": "다윗 손의 수금 — 타다가 든 채",
-      "en": "a small wooden lyre still held in his hands",
+      "ko": "다윗 손의 수금 — 타다가 든 채(낱말 사전 수금 L2 모양)",
+      "en": "a small wooden lyre in his hands",
       "field": "figures[1].gesture"
     },
     {
@@ -352,5 +364,20 @@
       "ko": "두 번 피함 중 다른 한 번",
       "out": "고정한 순간은 두 번 중 한 번 — 다른 한 번은 앞뒤 시점이라 순간 밖"
     }
-  ]
+  ],
+  "guide": {
+    "depth": {
+      "wall": 0.8,
+      "spear": 0.95,
+      "saul": 1.0,
+      "david-youth": 1.0
+    },
+    "shape": {
+      "wall": "wall",
+      "spear": "spear",
+      "saul": "person_throw",
+      "david-youth": "person"
+    },
+    "why": "task 400 시도 a1·397 — 문구(「having just hurled his spear」·「A spear flies through the air」·「his empty throwing hand」)로는 16/16 창이 사울 손에 남아 찌르는 자세가 됨 → 가이드로 준다(PROMPTING 24·25·28 배치·상태는 가이드). 사울 = 빈 팔을 왼쪽으로 뻗은 꼴(손끝 앞 빈칸), 창 = 사울 손과 떨어진 허공의 막대(촉은 다윗 쪽), 다윗 = 등 뒤 옆벽 판에 붙음(18:11 「벽에 박으리라」, 다윗은 오른쪽 사울을 보니 등이 왼쪽 벽)."
+  }
 }

@@ -99,6 +99,20 @@ def stage_why_errors(spec, verses=None):
     return out
 
 
+THROWN = re.compile(r"던지|던져|던졌|쏘|쏜|떨어뜨")
+AIR_SHAPES = {"spear"}   # 허공을 나는 물체 가이드 꼴(make_guide) — 새 물체가 나오면 꼴과 함께 더한다
+
+
+def thrown_guide_errors(spec):
+    """던짐은 가이드(task 400, 규칙 generate.thrown-guide) — 순간 절 본문에 손을 떠나 나는 물체 동사가 있으면
+    명세 `guide`에 허공 물체 꼴(AIR_SHAPES)이 있어야 한다. 397·400 a1: 문구만으로는 16/16 창이 사울 손에 남아 찌르기가 됨."""
+    v = spec.get("moment", {}).get("verse", "")
+    if not THROWN.search(spec["verses"].get("quotes", {}).get(v, "")):
+        return []
+    shapes = set((spec.get("guide") or {}).get("shape", {}).values())
+    return [] if shapes & AIR_SHAPES else [f"순간 {v}에 던짐·쏨 동사 — 명세 guide에 허공 물체 꼴({'·'.join(sorted(AIR_SHAPES))})이 없다"]
+
+
 def has_situation(spec):
     s = spec.get("situation")
     return [] if isinstance(s, dict) and str(s.get("text", "")).strip() else ["situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"]
@@ -145,13 +159,16 @@ SPEC_CHECKS = {
     "check_scenes.prop_in_prompt_errors": lambda spec, ctx: check_scenes.prop_in_prompt_errors(spec, ds.route_prompt(spec)),
     "check_scenes.place_on_figure_errors": lambda spec, ctx: check_scenes.place_on_figure_errors(spec),
     "recheck.stage_why_errors": lambda spec, ctx: stage_why_errors(spec, ctx["verses"]),
+    "recheck.thrown_guide_errors": lambda spec, ctx: thrown_guide_errors(spec),
+    "check_scenes.lexicon_look_errors": lambda spec, ctx: check_scenes.lexicon_look_errors(spec, ds.route_prompt(spec)),
 }
 
 
 def spec_rules(L):
     """원장에서 명세에 돌릴 규칙 — layer spec|derive이고 check가 함수 경로. 폐기(retired) 규칙은 뺀다(통과율에서도)."""
-    rs = [r for r in L["rules"] if r["layer"] in ("spec", "derive") and r["check"] not in ("human", "todo")
+    rs = [r for r in L["rules"] if r["layer"] in ("spec", "derive", "generate") and r["check"] not in ("human", "todo")
           and not r["check"].startswith("test:") and not r.get("retired")]
+    rs = [r for r in rs if r["layer"] != "generate" or r["check"] in SPEC_CHECKS]   # 생성 층은 명세로 재는 것만(관문 자체는 뺌)
     unknown = [r["id"] for r in rs if r["check"] not in SPEC_CHECKS]
     if unknown:
         raise SystemExit(f"[Recheck] 원장 함수 규칙에 실행기가 없다: {unknown}")

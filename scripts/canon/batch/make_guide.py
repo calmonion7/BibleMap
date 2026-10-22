@@ -86,7 +86,29 @@ def bank(d, x0, y0, x1, y1, v):
     d.polygon([(x0, y1), (x0 + w * 0.2, y0 + h * 0.4), (x0 + w * 0.5, y0), (x0 + w * 0.8, y0 + h * 0.3), (x1, y0 + h * 0.5), (x1, y1)], fill=v)
 
 
-SHAPES = {"person": person, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "seated": seated, "crowd": crowd, "boat": boat, "bank": bank}
+def person_throw(d, x0, y0, x1, y1, v):
+    """task 400 — 막 던진 사람: person 몸 + 어깨에서 화면 왼쪽으로 곧게 뻗은 빈 팔(키의 0.35). 손끝 앞에 아무것도 없다(창은 따로 spear 꼴)."""
+    person(d, x0, y0, x1, y1, v)
+    h, cx = y1 - y0, (x0 + x1) / 2
+    r, ay = h * 0.065, y0 + h * 0.2
+    d.polygon([(cx, ay - r * 0.45), (cx - h * 0.35, ay - r * 0.35), (cx - h * 0.35, ay + r * 0.35), (cx, ay + r * 0.6)], fill=v)
+    d.ellipse([cx - h * 0.35 - r * 0.5, ay - r * 0.5, cx - h * 0.35 + r * 0.5, ay + r * 0.5], fill=v)   # 편 손
+
+
+def spear(d, x0, y0, x1, y1, v):
+    """task 400 — 허공을 나는 창: 구역 세로 가운데 가는 자루 + 왼쪽 끝 뾰족한 촉 하나(날아가는 쪽)."""
+    cy, t = (y0 + y1) / 2, max(2.0, (y1 - y0) * 0.18)
+    tip = (x1 - x0) * 0.12
+    d.rectangle([x0 + tip, cy - t, x1, cy + t], fill=v)
+    d.polygon([(x0, cy), (x0 + tip, cy - t * 3), (x0 + tip, cy + t * 3)], fill=v)
+
+
+def wall(d, x0, y0, x1, y1, v):
+    """task 400 — 인물 등 뒤에 붙은 벽 판(옆벽): 구역 그대로 채운 사각."""
+    d.rectangle([x0, y0, x1, y1], fill=v)
+
+
+SHAPES = {"person": person, "person_throw": person_throw, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "seated": seated, "crowd": crowd, "boat": boat, "bank": bank}
 
 
 def make(spec):

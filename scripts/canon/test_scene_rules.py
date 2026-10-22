@@ -109,5 +109,55 @@ class ActionPlaceOnFigure(unittest.TestCase):
         self.assertEqual([e for e in check_scenes.verse_element_errors(s, recheck.ds.route_prompt(s)) if "kind" in e], [])
 
 
+class ThrownGuide(unittest.TestCase):
+    """generate.thrown-guide — 던짐 순간은 허공 물체 꼴이 있는 가이드로."""
+
+    def test_throw_without_guide_fails(self):
+        s = gibeah()
+        del s["guide"]
+        self.assertEqual(len(recheck.thrown_guide_errors(s)), 1)
+
+    def test_guide_without_air_object_fails(self):
+        s = gibeah()
+        s["guide"]["shape"]["spear"] = "person"
+        self.assertEqual(len(recheck.thrown_guide_errors(s)), 1)
+
+    def test_no_throw_verb_needs_nothing(self):
+        s = gibeah()
+        del s["guide"]
+        s["moment"]["verse"] = "18:9"
+        self.assertEqual(recheck.thrown_guide_errors(s), [])
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.thrown_guide_errors(gibeah()), [])
+
+    def test_generator_refuses_stale_guide(self):
+        import batch.gibeah_redraw as G
+        s = gibeah()
+        s["regions"]["spear"] = [0.2, 0.3, 0.4, 0.33]   # 명세가 바뀌었는데 가이드 파일은 그대로
+        with mock.patch.dict(G.FX, {"guide": "samples/gibeah-step23/guide.png"}):
+            with self.assertRaises(SystemExit):
+                G.guide_ok(s)
+
+    def test_generator_refuses_missing_guide(self):
+        import batch.gibeah_redraw as G
+        with mock.patch.dict(G.FX, {"guide": None}):
+            with self.assertRaises(SystemExit):
+                G.guide_ok(gibeah())
+
+
+class LexiconLink(unittest.TestCase):
+    """spec.lexicon-link — 사전 낱말이 걸린 지물은 사전 look 문구로."""
+
+    def test_lyre_without_lexicon_text_fails(self):
+        s = gibeah()
+        s["figures"][1]["gesture"]["en"] = "twisting aside, holding a lute"
+        self.assertTrue(check_scenes.lexicon_look_errors(s, recheck.ds.route_prompt(s)))
+
+    def test_gibeah_passes(self):
+        s = gibeah()
+        self.assertEqual(check_scenes.lexicon_look_errors(s, recheck.ds.route_prompt(s)), [])
+
+
 if __name__ == "__main__":
     unittest.main()
