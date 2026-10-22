@@ -218,5 +218,17 @@ class GuideBodyBuild(unittest.TestCase):
         self.assertEqual(recheck.guide_body_errors(gibeah()), [])
 
 
+class DodgeClear(unittest.TestCase):
+    """generate.dodge-clear — 피하는 사람의 머리 높이로 곧장 날아가는 물체 금지."""
+
+    def test_object_at_head_height_fails(self):
+        s = gibeah()
+        s["regions"]["spear"] = [0.27, 0.46, 0.50, 0.49]
+        self.assertEqual(len(recheck.dodge_clear_errors(s)), 1)
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.dodge_clear_errors(gibeah()), [])
+
+
 if __name__ == "__main__":
     unittest.main()

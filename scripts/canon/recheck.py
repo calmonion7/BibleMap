@@ -136,6 +136,27 @@ def guide_body_errors(spec):
     return [] if g.get("body") == "card" else ["guide에 사람 꼴이 있는데 body가 card가 아니다 — 몸 너비가 카드 체격을 따르지 않는다"]
 
 
+HEAD_BAND = 0.13   # make_guide 사람 꼴 머리 원 지름 = 키 × 0.13
+
+
+def dodge_clear_errors(spec):
+    """피함은 길 밖으로(task 400 a5→a6, 규칙 generate.dodge-clear) — guide에 피하는 사람 꼴(person_dodge)과 허공 물체 꼴이 함께 있으면
+    물체 구역의 세로 띠가 피하는 사람의 머리 띠(구역 위끝 ~ 키×0.13)와 겹치면 안 된다. a5: 창이 머리 높이로 곧장 → 「움츠릴 뿐 창길에서 비키지 않음」 40/40."""
+    g, R = spec.get("guide") or {}, spec.get("regions", {})
+    sh = g.get("shape", {})
+    dodgers = [k for k, v in sh.items() if v == "person_dodge"]
+    objs = [k for k, v in sh.items() if v in AIR_SHAPES]
+    out = []
+    for d in dodgers:
+        x0, y0, x1, y1 = R[d]
+        top, bot = y0, y0 + (y1 - y0) * HEAD_BAND
+        for o in objs:
+            oy0, oy1 = R[o][1], R[o][3]
+            if oy0 < bot and oy1 > top:
+                out.append(f"{o} 세로 {oy0}~{oy1}이 {d} 머리 띠 {top:.3f}~{bot:.3f}와 겹침 — 피한 사람에게 곧장 날아가는 꼴")
+    return out
+
+
 def has_situation(spec):
     s = spec.get("situation")
     return [] if isinstance(s, dict) and str(s.get("text", "")).strip() else ["situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"]
@@ -185,6 +206,7 @@ SPEC_CHECKS = {
     "recheck.thrown_guide_errors": lambda spec, ctx: thrown_guide_errors(spec),
     "recheck.guide_backdrop_errors": lambda spec, ctx: guide_backdrop_errors(spec),
     "recheck.guide_body_errors": lambda spec, ctx: guide_body_errors(spec),
+    "recheck.dodge_clear_errors": lambda spec, ctx: dodge_clear_errors(spec),
     "check_scenes.lexicon_look_errors": lambda spec, ctx: check_scenes.lexicon_look_errors(spec, ds.route_prompt(spec)),
 }
 
