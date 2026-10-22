@@ -1,0 +1,3 @@
+판정 task gibeah-redraw
+{"task":"gibeah-redraw","kind":"ab","human_minutes":1.4,"active_minutes":1.4,"idle_ms":120000,"screens":1,"scenes":{"authored-saul-gibeah-spear":{"answer":"none","chose":"none","left":"g:11","right":"g:42","memo":"창을던져야 하는데 찌르는 행동 \n다웃의 악기가 하프가 아님 \n다윗은 벽에 붙어서 창을 피하는 모습이어야함","minutes":1.38,"active_minutes":1.38}}}
+source: conversation
