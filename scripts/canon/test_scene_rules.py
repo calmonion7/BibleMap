@@ -192,9 +192,14 @@ class GuideBodyMass(unittest.TestCase):
             fn(ImageDraw.Draw(im), 100, 100, 300, 700, 255)
             return sum(im.histogram()[1:])
         base = area(M.person)
-        for k, fn in M.SHAPES.items():
-            if k.startswith("person"):
-                self.assertGreaterEqual(area(fn) / base, 0.9, k)
+        for knee in (False, True):   # b2: 무릎 아래 다리 꼴도 몸 덩어리 유지
+            M.BODY["knee"] = knee
+            try:
+                for k, fn in M.SHAPES.items():
+                    if k.startswith("person"):
+                        self.assertGreaterEqual(area(fn) / base, 0.9 if not knee else 0.85, (k, knee))
+            finally:
+                M.BODY["knee"] = False
 
 
 class GuideBodyBuild(unittest.TestCase):
@@ -229,6 +234,25 @@ class DodgeClear(unittest.TestCase):
 
     def test_gibeah_passes(self):
         self.assertEqual(recheck.dodge_clear_errors(gibeah()), [])
+
+
+class GuideCostumeLegs(unittest.TestCase):
+    """generate.guide-costume-legs — 무릎 길이 차림이면 가이드 꼴에 무릎 아래 다리."""
+
+    def test_knee_costume_without_legs_fails(self):
+        s = gibeah()
+        s["guide"].pop("legs")
+        self.assertEqual(len(recheck.guide_legs_errors(s)), 1)
+
+    def test_long_costume_needs_nothing(self):
+        s = gibeah()
+        s["guide"].pop("legs")
+        for f in s["figures"]:
+            f["costume"]["en"] = f["costume"]["en"].replace("knee-length", "ankle-length")
+        self.assertEqual(recheck.guide_legs_errors(s), [])
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.guide_legs_errors(gibeah()), [])
 
 
 if __name__ == "__main__":

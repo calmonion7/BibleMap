@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "c740b14021a3",
+  "version": "100a4f585dde",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -122,6 +122,9 @@
      "note": "guide에 person_dodge와 허공 물체 꼴이 함께 있으면 물체 구역 세로 띠가 피하는 사람 머리 띠(위끝 ~ 키×0.13)와 겹치지 않아야 함 — 겹치면 피함이 아니라 맞기 직전으로 그려짐"},
     {"id": "judge.human-reject-to-question", "layer": "judge", "scope": "all", "check": "human",
      "source": "notes/GIBEAH-STEP23.md 시도 b0 · task 401 사람 「둘 다 아님」(사유: 구도·인물 모습·동작·창 모양·수금)", "since": "2026-10-23 task 402",
-     "note": "기계 통과 그림을 사람이 거절하면 그 사유를 다음 시도 전에 기계 문항으로 옮기고, 거절된 그림에 먼저 물어 그 문항이 잡는지 검증(b0: 새 문항 5개가 거절된 s42·s7을 모두 잡음). 문항 묶음 크기가 바뀌면 옛 문항 답도 흔들리니 같은 묶음끼리만 비교"}
+     "note": "기계 통과 그림을 사람이 거절하면 그 사유를 다음 시도 전에 기계 문항으로 옮기고, 거절된 그림에 먼저 물어 그 문항이 잡는지 검증(b0: 새 문항 5개가 거절된 s42·s7을 모두 잡음). 문항 묶음 크기가 바뀌면 옛 문항 답도 흔들리니 같은 묶음끼리만 비교"},
+    {"id": "generate.guide-costume-legs", "layer": "generate", "scope": "all", "check": "recheck.guide_legs_errors",
+     "source": "notes/GIBEAH-STEP23.md · task 402 시도 b1(사울 긴 망토 8/8 — 사람 401 「인물 모습」)", "since": "2026-10-23 task 402",
+     "note": "차림 문구가 무릎 길이인 인물의 가이드 사람 꼴은 legs costume(무릎까지 사다리꼴 + 무릎 아래 두 다리) — 바닥까지 넓어지는 사다리꼴은 긴 로브 실루엣이라 깊이 가이드가 차림 문구를 이김"}
   ]
 }

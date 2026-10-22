@@ -17,7 +17,23 @@ ROOM_WALL = 0.12   # 실내 뒷벽 깊이(바닥 시작값과 같음 — 벽과 
 # task 400 a5 — 몸 너비(키 비율)를 카드 체격(card.silhouette)에서: guide.body = "card"일 때만(옛 가이드 바이트 유지).
 # a3·a4: 카드는 넓은 어깨·통 몸통인데 가이드 몸이 기본 너비면 체격 문구가 화면 끝 셋째 인물로 그려짐.
 BUILD_WIDTH = {"slight": 0.26, "lean": 0.28, "average": 0.3, "broad": 0.4, "heavy": 0.44, "giant": 0.44}
-BODY = {"w": 0.3}   # make()가 인물마다 바꾸는 몸 너비 — 꼴 함수 서명(d, 상자, v)을 그대로 두려고 모듈 상태로 둠
+BODY = {"w": 0.3, "knee": False}   # make()가 인물마다 바꾸는 몸 너비·무릎 아래 다리 — 꼴 함수 서명(d, 상자, v)을 그대로 두려고 모듈 상태로 둠
+KNEE = 0.72   # 무릎 높이(키 비율, 머리 위끝부터)
+
+
+def body(d, top_l, top_r, cx, y0, y1, bw, v):
+    """몸통: 어깨(top_l~top_r)에서 발까지 넓어지는 사다리꼴. BODY["knee"]면(task 402 b2) 무릎까지만 사다리꼴, 무릎 아래는 벌린 두 다리
+    — b1: 바닥까지 넓어지는 사다리꼴 실루엣이 곧 긴 로브라 「무릎 길이 튜닉」 문구를 이겼다(사울 긴 망토 8/8). 다리를 굵게 해 몸 덩어리 유지."""
+    h, sh = y1 - y0, top_l[1]
+    if not BODY["knee"]:
+        d.polygon([top_l, top_r, (cx + bw / 2, y1), (cx - bw / 2, y1)], fill=v)
+        return
+    ky = y0 + h * KNEE
+    kw = bw * 0.5 * (ky - sh) / (y1 - sh) + abs(top_r[0] - top_l[0]) / 2 * (y1 - ky) / (y1 - sh)   # 무릎 높이에서 사다리꼴 반폭
+    d.polygon([top_l, top_r, (cx + kw, ky), (cx - kw, ky)], fill=v)
+    lw = bw * 0.28
+    for s in (-1, 1):
+        d.polygon([(cx + s * kw * 0.15 - lw / 2, ky), (cx + s * kw * 0.15 + lw / 2, ky), (cx + s * bw * 0.5 + lw / 2, y1), (cx + s * bw * 0.5 - lw / 2, y1)], fill=v)
 
 
 def person(d, x0, y0, x1, y1, v):
@@ -26,7 +42,7 @@ def person(d, x0, y0, x1, y1, v):
     r = h * 0.065
     d.ellipse([cx - r, y0, cx + r, y0 + 2 * r], fill=v)
     sh = y0 + 2 * r
-    d.polygon([(cx - bw * 0.3, sh), (cx + bw * 0.3, sh), (cx + bw / 2, y1), (cx - bw / 2, y1)], fill=v)
+    body(d, (cx - bw * 0.3, sh), (cx + bw * 0.3, sh), cx, y0, y1, bw, v)
 
 
 def person_bow(d, x0, y0, x1, y1, v):
@@ -100,13 +116,13 @@ def leaning(d, x0, y0, x1, y1, v, lean):
     sh = y0 + 2 * r
     # a4: person과 같은 넓은 사다리꼴 몸을 위쪽만 옮겨 통째로 기울임 — a3 가는 몸통·막대 다리는 「가는 사람」으로 읽혀
     #     카드 체격 문구(넓은 어깨·통 몸통)가 화면 끝에 셋째 인물로 그려졌다(8/8). 발치는 person보다 조금 넓게(벌린 발).
-    d.polygon([(hx - bw * 0.3, sh), (hx + bw * 0.3, sh), (cx + bw * 0.6, y1), (cx - bw * 0.6, y1)], fill=v)
+    body(d, (hx - bw * 0.3, sh), (hx + bw * 0.3, sh), cx, y0, y1, bw * 1.2, v)
     return hx, r
 
 
 def person_dodge(d, x0, y0, x1, y1, v):
     """task 400 a3 — 날아오는 것을 피하는 사람: 위몸을 화면 왼쪽(벽 쪽)으로 젖히고 두 발을 벌림."""
-    leaning(d, x0, y0, x1, y1, v, -0.18)   # a5: 0.1은 약한 CN에서 곧게 펴짐(a4 순간 0)
+    leaning(d, x0, y0, x1, y1, v, -0.3)   # a5: 0.1은 곧게 펴짐(a4 순간 0) · b2: 0.18도 곧게 선 꼴(b1 피함이 보임 0) → 0.3
 
 
 def person_throw(d, x0, y0, x1, y1, v):
@@ -146,7 +162,9 @@ def make(spec):
     for y in range(hy, H):
         t = (y - hy) / (H - 1 - hy)
         d.line([(0, y), (W, y)], fill=round(255 * (GROUND[0] + t * (GROUND[1] - GROUND[0]))))
-    build = {}
+    build, knee = {}, set()
+    if g.get("legs") == "costume":   # b2: 차림 문구가 무릎 길이면 그 인물 꼴에 무릎 아래 다리
+        knee = {f["region"] for f in spec["figures"] if "knee-length" in (f.get("costume") or {}).get("en", "")}
     if g.get("body") == "card":
         import sys
         sys.path.insert(0, HERE)
@@ -155,8 +173,9 @@ def make(spec):
     for k in sorted(g["depth"], key=lambda k: (g["depth"][k], k)):
         x0, y0, x1, y1 = R[k]
         BODY["w"] = BUILD_WIDTH.get(build.get(k), 0.3)
+        BODY["knee"] = k in knee
         SHAPES[g["shape"][k]](d, x0 * W, y0 * H, x1 * W, y1 * H, round(255 * g["depth"][k]))
-    BODY["w"] = 0.3
+    BODY["w"], BODY["knee"] = 0.3, False
     return img.filter(ImageFilter.GaussianBlur(3)).convert("RGB")
 
 

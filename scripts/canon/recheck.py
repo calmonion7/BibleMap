@@ -157,6 +157,17 @@ def dodge_clear_errors(spec):
     return out
 
 
+def guide_legs_errors(spec):
+    """가이드 실루엣은 차림 길이를 따른다(task 402 b1→b2, 규칙 generate.guide-costume-legs) — 차림 문구가 무릎 길이인 인물이
+    가이드에 사람 꼴로 있으면 guide.legs "costume"(무릎 아래 두 다리)이어야 한다. b1: 바닥까지 넓어지는 사다리꼴이 긴 로브 실루엣이라
+    「knee-length … bare shins」 문구를 이겨 사울 긴 망토 8/8."""
+    g = spec.get("guide") or {}
+    sh = g.get("shape", {})
+    knee = [f["region"] for f in spec["figures"] if "knee-length" in (f.get("costume") or {}).get("en", "")
+            and str(sh.get(f["region"], "")).startswith("person")]
+    return [f"{', '.join(knee)}: 무릎 길이 차림인데 guide.legs가 costume이 아니다 — 가이드 실루엣이 긴 옷으로 그려진다"] if knee and g.get("legs") != "costume" else []
+
+
 def has_situation(spec):
     s = spec.get("situation")
     return [] if isinstance(s, dict) and str(s.get("text", "")).strip() else ["situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"]
@@ -207,6 +218,7 @@ SPEC_CHECKS = {
     "recheck.guide_backdrop_errors": lambda spec, ctx: guide_backdrop_errors(spec),
     "recheck.guide_body_errors": lambda spec, ctx: guide_body_errors(spec),
     "recheck.dodge_clear_errors": lambda spec, ctx: dodge_clear_errors(spec),
+    "recheck.guide_legs_errors": lambda spec, ctx: guide_legs_errors(spec),
     "check_scenes.lexicon_look_errors": lambda spec, ctx: check_scenes.lexicon_look_errors(spec, ds.route_prompt(spec)),
 }
 
