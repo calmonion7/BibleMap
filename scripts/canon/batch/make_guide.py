@@ -125,6 +125,21 @@ def person_dodge(d, x0, y0, x1, y1, v):
     leaning(d, x0, y0, x1, y1, v, -0.3)   # a5: 0.1은 곧게 펴짐(a4 순간 0) · b2: 0.18도 곧게 선 꼴(b1 피함이 보임 0) → 0.3
 
 
+def person_duck(d, x0, y0, x1, y1, v):
+    """task 402 b3 — 날아오는 것 아래로 몸을 숙여 피하는 사람: 머리를 낮게 화면 왼쪽(벽 쪽)으로, 위몸을 앞으로 굽히고 무릎을 꺾음.
+    b2: 기울인 꼴(person_dodge)은 「벽에 기대 섬」으로 옮겨져 피함이 안 보임(순간 0 · 피함이 보임 0). 몸 덩어리는 person만큼."""
+    h, w = y1 - y0, x1 - x0
+    bw, r = min(w, h * BODY["w"] * 1.55), h * 0.09
+    hx = x0 + r * 1.1
+    d.ellipse([hx - r, y0, hx + r, y0 + 2 * r], fill=v)                                  # 낮춘 머리(벽 쪽)
+    hip_x, hip_y = x0 + w * 0.6, y0 + h * 0.55
+    d.polygon([(hx - r * 0.2, y0 + r * 1.6), (hx + r * 1.4, y0 + r * 1.2), (hip_x + bw * 0.35, hip_y), (hip_x - bw * 0.35, hip_y + h * 0.08)], fill=v)   # 굽힌 위몸
+    kx, ky = x0 + w * 0.95, y0 + h * 0.75
+    d.polygon([(hip_x - bw * 0.3, hip_y), (hip_x + bw * 0.3, hip_y - h * 0.04), (kx, ky - h * 0.06), (kx - bw * 0.15, ky + h * 0.06)], fill=v)            # 앞 넓적다리
+    d.polygon([(kx - bw * 0.4, ky - h * 0.02), (kx, ky - h * 0.04), (kx - w * 0.05, y1), (kx - w * 0.05 - bw * 0.4, y1)], fill=v)                    # 앞 정강이
+    d.polygon([(hip_x - bw * 0.4, hip_y + h * 0.05), (hip_x, hip_y), (x0 + w * 0.32, y1), (x0 + w * 0.32 - bw * 0.4, y1)], fill=v)       # 뒤 다리
+
+
 def person_throw(d, x0, y0, x1, y1, v):
     """task 400 — 막 던진 사람: 위몸을 화면 왼쪽(던진 쪽)으로 기울이고(a3) 어깨에서 왼쪽으로 곧게 뻗은 빈 팔(키의 0.30). 손끝 앞에 아무것도 없다(창은 따로 spear 꼴)."""
     hx, r = leaning(d, x0, y0, x1, y1, v, -0.18)   # a5: 0.1은 곧게 펴짐(a4 던진 자세 0)
@@ -149,7 +164,7 @@ def wall(d, x0, y0, x1, y1, v):
     d.polygon([(x0, y0), (x1, y0 + h * 0.18), (x1, y1 - h * 0.06), (x0, y1)], fill=v)
 
 
-SHAPES = {"person": person, "person_throw": person_throw, "person_dodge": person_dodge, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "seated": seated, "crowd": crowd, "boat": boat, "bank": bank}
+SHAPES = {"person": person, "person_throw": person_throw, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "seated": seated, "crowd": crowd, "boat": boat, "bank": bank}
 
 
 def make(spec):

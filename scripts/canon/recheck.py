@@ -136,20 +136,20 @@ def guide_body_errors(spec):
     return [] if g.get("body") == "card" else ["guide에 사람 꼴이 있는데 body가 card가 아니다 — 몸 너비가 카드 체격을 따르지 않는다"]
 
 
-HEAD_BAND = 0.13   # make_guide 사람 꼴 머리 원 지름 = 키 × 0.13
+HEAD_BAND = {"person_dodge": 0.13, "person_duck": 0.18}   # make_guide 피하는 꼴 머리 원 지름 = 키 × 이 값
 
 
 def dodge_clear_errors(spec):
-    """피함은 길 밖으로(task 400 a5→a6, 규칙 generate.dodge-clear) — guide에 피하는 사람 꼴(person_dodge)과 허공 물체 꼴이 함께 있으면
+    """피함은 길 밖으로(task 400 a5→a6, 규칙 generate.dodge-clear) — guide에 피하는 사람 꼴(person_dodge·person_duck)과 허공 물체 꼴이 함께 있으면
     물체 구역의 세로 띠가 피하는 사람의 머리 띠(구역 위끝 ~ 키×0.13)와 겹치면 안 된다. a5: 창이 머리 높이로 곧장 → 「움츠릴 뿐 창길에서 비키지 않음」 40/40."""
     g, R = spec.get("guide") or {}, spec.get("regions", {})
     sh = g.get("shape", {})
-    dodgers = [k for k, v in sh.items() if v == "person_dodge"]
+    dodgers = [k for k, v in sh.items() if v in HEAD_BAND]
     objs = [k for k, v in sh.items() if v in AIR_SHAPES]
     out = []
     for d in dodgers:
         x0, y0, x1, y1 = R[d]
-        top, bot = y0, y0 + (y1 - y0) * HEAD_BAND
+        top, bot = y0, y0 + (y1 - y0) * HEAD_BAND[sh[d]]
         for o in objs:
             oy0, oy1 = R[o][1], R[o][3]
             if oy0 < bot and oy1 > top:
