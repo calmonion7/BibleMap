@@ -130,5 +130,25 @@ class WideQuestions(unittest.TestCase):
         self.assertLessEqual(set(labels.values()), {"가", "나"})
 
 
+class GuideSide(unittest.TestCase):
+    """task 388 회고(일괄 승급 2026-10-22): `_side`는 구역 중심으로 「on the left/right」를 붙이는데, 가이드에 인물 칸이
+    아닌 한 사람 꼴(바르실래)이 더 바깥에 있자 모델이 「왼쪽의 왕」을 맨 왼쪽 실루엣에 그렸다(notes/JORDAN-GUIDE.md)."""
+    ONE = {"person", "person_bow", "kneel_bow", "seated"}
+
+    def test_side_word_matches_outermost_person(self):
+        cx = lambda r: (r[0] + r[2]) / 2
+        for p in sorted(glob.glob(os.path.join(HERE, "scenes", "*.json"))):
+            spec = json.load(open(p, encoding="utf-8"))
+            if "guide" not in spec:
+                continue
+            others = [cx(spec["regions"][k]) for k, v in spec["guide"]["shape"].items() if v in self.ONE]
+            for f in spec["figures"]:
+                side, x = ds._side(f, spec), cx(spec["regions"][f["region"]])
+                if side == "on the left":
+                    self.assertFalse([o for o in others if o < x], f"{p}: {f['cast']} 왼쪽에 한 사람 꼴 칸")
+                elif side == "on the right":
+                    self.assertFalse([o for o in others if o > x], f"{p}: {f['cast']} 오른쪽에 한 사람 꼴 칸")
+
+
 if __name__ == "__main__":
     unittest.main()

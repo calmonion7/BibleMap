@@ -15,7 +15,7 @@ tools: Read, Grep, Glob, Bash
 
 - **모바일 뷰포트를 반드시 포함한다**(예: 390×844) — 레이아웃 지적은 대개 실폰 기준이고, maxWidth 중앙정렬류 수정은 데스크톱만 먹는다. 데스크톱(예: 1280×800)과 병행.
 - SPA 해시 내비게이션 특성: 같은 문서 내 해시 이동은 스테이지가 리마운트되지 않는다 — **URL마다 새 브라우저 컨텍스트/페이지로 진입**한다.
-- 네트워크 캡처(콘솔 에러·실패 요청)와 스크린샷을 함께 뜬다. 스크린샷은 `.forge/reports/`에 저장한다.
+- 네트워크 캡처(콘솔 에러·실패 요청)와 스크린샷을 함께 뜬다. 스크린샷은 `.forge/reports/`에 저장한다. 실패 요청을 셀 때 외부 배경지도 타일(`server.arcgisonline.com`)의 `ERR_ABORTED`·4xx는 따로 적고 앱 결함으로 세지 않는다 — 뷰 전환 중 타일 취소·헤드리스 CDN 잡음이다(run.md 5곳에서 매번 새로 판정함).
 - 딥링크 정본: `#/`(허브) `#/intro` `#/books` `#/book/<id>` `#/read/<id>[/<n>]` `#/words/<id>` `#/family/<id>` `#/tours` `#/tour/<slug>[/timeline]` `#/person/<slug>[/timeline|/relations|/intro|/reliance]`.
 - 애니메이션이 있는 화면은 draw-on/입장 모션이 끝날 시간을 기다린 뒤 캡처한다(인장 draw 1초, 카메라 정착 400ms 등).
 
