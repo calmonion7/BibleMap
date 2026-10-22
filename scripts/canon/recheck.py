@@ -31,7 +31,7 @@ import scene_state as ss  # noqa: E402
 
 LEDGER = os.path.join(HERE, "rules.json")
 OUT = os.path.join(HERE, "samples", "recheck")
-NOTES = os.path.join(HERE, "notes", "RECHECK.md")
+RECHECK_MD = os.path.join(HERE, "notes", "RECHECK.md")
 SCENES = os.path.join(HERE, "scenes")
 IMG = os.path.expanduser("~/.local/biblemap-imggen")
 VENV = os.path.join(IMG, ".venv314", "bin", "python")
@@ -437,9 +437,9 @@ def images_md(out):
 
 def notes_section(name, body):
     b, e = f"<!-- recheck:{name}:begin -->", f"<!-- recheck:{name}:end -->"
-    t = open(NOTES, encoding="utf-8").read()
+    t = open(RECHECK_MD, encoding="utf-8").read()
     t = t[:t.index(b) + len(b)] + "\n" + body + "\n" + t[t.index(e):]
-    with open(NOTES, "w", encoding="utf-8") as fh:
+    with open(RECHECK_MD, "w", encoding="utf-8") as fh:
         fh.write(t)
 
 
