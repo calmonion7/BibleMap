@@ -177,5 +177,25 @@ class GuideBackdrop(unittest.TestCase):
         self.assertEqual(recheck.guide_backdrop_errors(gibeah()), [])
 
 
+class GuideBodyMass(unittest.TestCase):
+    """generate.guide-body-mass — 가이드 사람 꼴은 기본 꼴(person)만큼 몸 덩어리가 있어야 한다.
+    a3: 가는 몸통·막대 다리 꼴이면 카드 체격 문구(넓은 어깨·통 몸통)가 화면 끝에 셋째 인물로 그려졌다(8/8)."""
+
+    def test_person_like_shapes_keep_mass(self):
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as M
+        from PIL import Image, ImageDraw
+
+        def area(fn):
+            im = Image.new("L", (400, 800), 0)
+            fn(ImageDraw.Draw(im), 100, 100, 300, 700, 255)
+            return sum(im.histogram()[1:])
+        base = area(M.person)
+        for k, fn in M.SHAPES.items():
+            if k.startswith("person"):
+                self.assertGreaterEqual(area(fn) / base, 0.9, k)
+
+
 if __name__ == "__main__":
     unittest.main()

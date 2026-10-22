@@ -94,15 +94,15 @@ def leaning(d, x0, y0, x1, y1, v, lean):
     hx = cx + dx
     d.ellipse([hx - r, y0, hx + r, y0 + 2 * r], fill=v)
     sh = y0 + 2 * r
-    d.polygon([(hx - bw * 0.3, sh), (hx + bw * 0.3, sh), (cx + bw * 0.15, y0 + h * 0.6), (cx - bw * 0.15, y0 + h * 0.6)], fill=v)   # 몸통
-    for s in (-1, 1):   # 벌린 두 다리
-        d.polygon([(cx - bw * 0.15, y0 + h * 0.58), (cx + bw * 0.15, y0 + h * 0.58), (cx + s * bw * 0.55 + bw * 0.1, y1), (cx + s * bw * 0.55 - bw * 0.1, y1)], fill=v)
+    # a4: person과 같은 넓은 사다리꼴 몸을 위쪽만 옮겨 통째로 기울임 — a3 가는 몸통·막대 다리는 「가는 사람」으로 읽혀
+    #     카드 체격 문구(넓은 어깨·통 몸통)가 화면 끝에 셋째 인물로 그려졌다(8/8). 발치는 person보다 조금 넓게(벌린 발).
+    d.polygon([(hx - bw * 0.3, sh), (hx + bw * 0.3, sh), (cx + bw * 0.6, y1), (cx - bw * 0.6, y1)], fill=v)
     return hx, r
 
 
 def person_dodge(d, x0, y0, x1, y1, v):
     """task 400 a3 — 날아오는 것을 피하는 사람: 위몸을 화면 왼쪽(벽 쪽)으로 젖히고 두 발을 벌림."""
-    leaning(d, x0, y0, x1, y1, v, -0.12)
+    leaning(d, x0, y0, x1, y1, v, -0.1)
 
 
 def person_throw(d, x0, y0, x1, y1, v):

@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "ec5d0b3ae90b",
+  "version": "8848c131a250",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -110,6 +110,9 @@
      "note": "순간 절 본문에 던지·쏘·떨어뜨 동사가 있으면 명세 guide에 허공 물체 꼴(spear 등)이 있어야 함 — 문구만으로는 16/16 창이 손에 남음(397·a1). 생성기는 명세에 guide가 있으면 반드시 그 가이드로 그림"},
     {"id": "generate.guide-backdrop", "layer": "generate", "scope": "all", "check": "recheck.guide_backdrop_errors",
      "source": "notes/GIBEAH-STEP23.md · task 400 시도 a2(가이드 위쪽 빈 검은 띠 → 캡션 글자 4/8·붉은 여백 선)", "since": "2026-10-22 task 400",
-     "note": "실내 장면(배경 문구 inside·room·interior)의 guide는 backdrop room(바닥선 위를 먼 뒷벽 깊이로 채움) — 빈 띠는 글자·지면으로 그려짐. 옆벽은 원근 사다리꼴(꽉 찬 끝 띠는 여백 선)"}
+     "note": "실내 장면(배경 문구 inside·room·interior)의 guide는 backdrop room(바닥선 위를 먼 뒷벽 깊이로 채움) — 빈 띠는 글자·지면으로 그려짐. 옆벽은 원근 사다리꼴(꽉 찬 끝 띠는 여백 선)"},
+    {"id": "generate.guide-body-mass", "layer": "generate", "scope": "all", "check": "test:test_scene_rules",
+     "source": "notes/GIBEAH-STEP23.md · task 400 시도 a3(가는 기운 꼴 → 셋째 인물 8/8)", "since": "2026-10-22 task 400",
+     "note": "가이드 사람 꼴(person*)은 기본 person 꼴 몸 덩어리의 0.9배 이상 — 가는 몸통·막대 다리면 카드 체격 문구가 남는 자리(화면 끝)에 다른 사람으로 그려짐. 자세는 넓은 몸을 통째로 기울여 줌"}
   ]
 }
