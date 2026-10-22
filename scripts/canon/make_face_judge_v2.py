@@ -7,13 +7,13 @@ v1(face-lora-v3)의 편향: 정본(768px 선명) 대 장면 머리(100px 남짓�
   문항 B(48) 장면 대 장면: 같은 갈래 기브아 머리 대 다른 장면 승인 그림의 같은 인물 머리, 둘 다 같은 방식으로 320px.
   화풍(24): 그림 한 장 + 기준(368 승인 바탕 s5) — 「같은 화풍인가」만, 장면 뜻은 묻지 않음.
 모든 화면 위에 장면 구절 원문(삼상 18:6-11 개역한글, 순간 절 굵게). 갈래 이름은 숨기고 고정 시드로 섞는다."""
-import json, os, random
+import base64, io, json, os, random
 
 from PIL import Image, ImageFilter, ImageStat
 
 import check_scenes as CS
 import params
-from make_face_angles_page import TEMPLATE, uri
+from make_face_angles_page import TEMPLATE
 from make_night_page import fit
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -23,12 +23,25 @@ HEADS = os.path.join(HERE, "samples", "face-lora-v3", "heads.json")   # v1 화�
 SCENE = os.path.join(IMG, "lora-v3-scene")
 ARMS = ("C", "V2", "V3")
 NAME = {"saul": "사울", "david": "다윗"}
-SIDE = 320
+SIDE = 640   # 폰(3배 화면)에서 320 CSS px로 보일 때 계단이 지지 않게 2배로 담는다 — 크롭·정본 모두 같은 방식
 RANGE, MOMENT = "18:6-11", {"18:10"}   # 기브아 창 장면 구절 · 지금 명세 moment.verse
 # 문항 B 기준 머리: 다른 장면 승인 그림(고정 절) — 몸 상자는 그 묶음 metrics의 같은 시드 기록
 OTHER = {"saul": ("whole-fix", "authored-saul-gilgal-amalek", 11, "saul", "base/s11.png", "길갈 아말렉 승인 그림의 사울"),
          "david": ("whole-wide", "authored-david-gibeah-harp", 11, "david-boy", "edit/s11.png", "기브아 수금 승인 그림의 다윗")}
 STYLE_REF = os.path.join(IMG, "night-pilot", "authored-saul-gibeah-spear", "base", "s5.png")
+
+
+IMGS = {}   # 그림 한 번만 싣기(같은 머리가 A·B에, 기준 그림이 24문항에 반복) — 문항은 키만 든다
+
+
+def uri(im, side=SIDE):
+    im = im.convert("RGB")
+    im.thumbnail((side, side), Image.LANCZOS)
+    b = io.BytesIO()
+    im.save(b, "WEBP", quality=90)
+    key = f"i{len(IMGS)}"
+    IMGS[key] = "data:image/webp;base64," + base64.b64encode(b.getvalue()).decode()
+    return key
 
 
 def crop(im, box):
@@ -40,12 +53,12 @@ def crop(im, box):
 
 
 def up(im):
-    """크롭과 같은 방식으로 320px."""
+    """크롭과 같은 방식으로 SIDE px."""
     return im.resize((SIDE, round(SIDE * im.height / im.width)), Image.LANCZOS)
 
 
 def matched(canon, side):
-    """정본을 크롭의 원래 화소 크기(긴 변 side px)로 줄였다가 크롭과 같은 방식으로 320px — 화질 맞춤."""
+    """정본을 크롭의 원래 화소 크기(긴 변 side px)로 줄였다가 크롭과 같은 방식으로 SIDE px — 화질 맞춤."""
     im = canon.convert("RGB")
     k = side / max(im.size)
     return up(im.resize((max(1, round(im.width * k)), max(1, round(im.height * k))), Image.LANCZOS))
@@ -74,8 +87,8 @@ def questions():
     boxes = json.load(open(HEADS))
     canon = {w: (Image.open(os.path.join(HERE, "frozen", f"{w}.png")), Image.open(os.path.join(IMG, "face-angles", "views", f"pick-{w}.png")))
              for w in params.LORA_V3_WHO}
-    other = {w: other_head(w) for w in params.LORA_V3_WHO}
-    style_ref = uri(Image.open(STYLE_REF), 900)
+    other = {w: (uri(o), cap) for w, (o, cap) in ((w, other_head(w)) for w in params.LORA_V3_WHO)}
+    style_ref = uri(Image.open(STYLE_REF), 1216)
     a, b, st = [], [], []
     for arm in ARMS:
         for s in params.LORA_V3_SCENE_SEEDS:
@@ -86,17 +99,18 @@ def questions():
                 c, side = crop(im, boxes[f"{arm}-s{s}"][w])
                 head = up(c)
                 front, three = (matched(x, side) for x in canon[w])
+                head_key = uri(head)
                 a.append({"id": f"A:{arm}:{s}:{w}", "tag": "정본과 같은 사람인가", "q": f"가운데 머리가 {NAME[w]} 정본과 같은 사람인가요?",
                           "hint": f"정본 두 장을 이 머리와 같은 화질({side}px)로 줄였다 키웠습니다. 얼굴·머리·수염·나이대만 봅니다(옷은 빼고).",
-                          "refs": [uri(front), uri(three)], "caps": ["정본 정면(화질 맞춤)", "정본 3/4 측면(화질 맞춤)"], "img": uri(head),
+                          "refs": [uri(front), uri(three)], "caps": ["정본 정면(화질 맞춤)", "정본 3/4 측면(화질 맞춤)"], "img": head_key,
                           "hf": [round(hf(head), 2), round(hf(front), 2), round(hf(three), 2)]})
                 b.append({"id": f"B:{arm}:{s}:{w}", "tag": "두 장면의 같은 사람인가", "q": f"두 머리가 같은 사람({NAME[w]})인가요?",
                           "hint": "위는 다른 장면의 승인 그림, 아래는 판정할 그림입니다. 둘 다 같은 방식으로 키웠습니다. "
                                   + ("위 다윗은 소년 때라 나이·수염은 빼고 얼굴 생김새·머리털로 봅니다." if w == "david" else "얼굴·머리·수염·나이대만 봅니다."),
-                          "refs": [uri(other[w][0])], "caps": [other[w][1]], "img": uri(head)})
+                          "refs": [other[w][0]], "caps": [other[w][1]], "img": head_key})
             st.append({"id": f"style:{arm}:{s}", "tag": "화풍", "wide": True, "q": "이 그림이 기준 그림과 같은 화풍인가요?",
                        "hint": "연필·색연필 동화 그림체만 봅니다. 장면 뜻·인물은 묻지 않습니다.", "yes": "같은 화풍", "no": "크게 다름",
-                       "refs": [style_ref], "caps": ["기준(승인된 기브아 창 그림)"], "img": uri(im, 900)})
+                       "refs": [style_ref], "caps": ["기준(승인된 기브아 창 그림)"], "img": uri(im, 1216)})
     random.Random(1022).shuffle(a)
     random.Random(1024).shuffle(b)
     random.Random(1023).shuffle(st)
@@ -111,10 +125,12 @@ def page(qs, verses):
     t = t.replace('const cap = q.refs.length > 1 ? ["정본 정면", "정본 3/4 측면"] : ["정본"];', "const cap = q.caps;")
     t = t.replace("<h2>${q.q}</h2>", "<div class=\"verse\" aria-label=\"장면 구절 삼상 18:6-11\">${VERSE}</div>\n    <h2>${q.q}</h2>")
     t = t.replace('`<figure><img src="${r}"', '`<figure${q.refs.length === 1 ? \' class="one"\' : ""}><img src="${r}"')
-    t = t.replace("const ans = {};", "const VERSE = __VERSE__;\nconst ans = {};")
+    t = t.replace("const ans = {};", "const VERSE = __VERSE__;\nconst IMGS = __IMGS__;\n"
+                  "for (const q of QS) { q.img = IMGS[q.img] || q.img; q.refs = q.refs.map(r => IMGS[r] || r); }\nconst ans = {};")
     html = "<p class=\"r\">삼상 18:6-11 (개역한글)</p>" + "".join(
         f"<p>{'<b>' if now else ''}<span class=\"r\">{ref}</span>{txt}{'</b>' if now else ''}</p>" for ref, txt, now in verses)
-    return t.replace("__VERSE__", json.dumps(html, ensure_ascii=False)).replace("__QS__", json.dumps(qs, ensure_ascii=False))
+    return (t.replace("__VERSE__", json.dumps(html, ensure_ascii=False)).replace("__IMGS__", json.dumps(IMGS))
+            .replace("__QS__", json.dumps(qs, ensure_ascii=False)))
 
 
 if __name__ == "__main__":
