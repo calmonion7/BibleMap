@@ -13,6 +13,7 @@ from PIL import Image, ImageDraw, ImageFilter
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 W, H = 1216, 640
 HORIZON, GROUND = 0.26, (0.12, 0.5)
+ROOM_WALL = 0.12   # 실내 뒷벽 깊이(바닥 시작값과 같음 — 벽과 바닥이 이어짐)
 
 
 def person(d, x0, y0, x1, y1, v):
@@ -86,29 +87,49 @@ def bank(d, x0, y0, x1, y1, v):
     d.polygon([(x0, y1), (x0 + w * 0.2, y0 + h * 0.4), (x0 + w * 0.5, y0), (x0 + w * 0.8, y0 + h * 0.3), (x1, y0 + h * 0.5), (x1, y1)], fill=v)
 
 
-def person_throw(d, x0, y0, x1, y1, v):
-    """task 400 — 막 던진 사람: person 몸 + 어깨에서 화면 왼쪽으로 곧게 뻗은 빈 팔(키의 0.35). 손끝 앞에 아무것도 없다(창은 따로 spear 꼴)."""
-    person(d, x0, y0, x1, y1, v)
+def leaning(d, x0, y0, x1, y1, v, lean):
+    """몸통을 lean(키 비율, 음수 = 화면 왼쪽)만큼 위쪽을 기울인 사람 — 머리·어깨가 옮겨지고 두 발은 벌림. → (어깨 가운데 x, 머리 반지름)."""
     h, cx = y1 - y0, (x0 + x1) / 2
-    r, ay = h * 0.065, y0 + h * 0.2
-    d.polygon([(cx, ay - r * 0.45), (cx - h * 0.35, ay - r * 0.35), (cx - h * 0.35, ay + r * 0.35), (cx, ay + r * 0.6)], fill=v)
-    d.ellipse([cx - h * 0.35 - r * 0.5, ay - r * 0.5, cx - h * 0.35 + r * 0.5, ay + r * 0.5], fill=v)   # 편 손
+    bw, r, dx = min(x1 - x0, h * 0.3), h * 0.065, h * lean
+    hx = cx + dx
+    d.ellipse([hx - r, y0, hx + r, y0 + 2 * r], fill=v)
+    sh = y0 + 2 * r
+    d.polygon([(hx - bw * 0.3, sh), (hx + bw * 0.3, sh), (cx + bw * 0.15, y0 + h * 0.6), (cx - bw * 0.15, y0 + h * 0.6)], fill=v)   # 몸통
+    for s in (-1, 1):   # 벌린 두 다리
+        d.polygon([(cx - bw * 0.15, y0 + h * 0.58), (cx + bw * 0.15, y0 + h * 0.58), (cx + s * bw * 0.55 + bw * 0.1, y1), (cx + s * bw * 0.55 - bw * 0.1, y1)], fill=v)
+    return hx, r
+
+
+def person_dodge(d, x0, y0, x1, y1, v):
+    """task 400 a3 — 날아오는 것을 피하는 사람: 위몸을 화면 왼쪽(벽 쪽)으로 젖히고 두 발을 벌림."""
+    leaning(d, x0, y0, x1, y1, v, -0.12)
+
+
+def person_throw(d, x0, y0, x1, y1, v):
+    """task 400 — 막 던진 사람: 위몸을 화면 왼쪽(던진 쪽)으로 기울이고(a3) 어깨에서 왼쪽으로 곧게 뻗은 빈 팔(키의 0.30). 손끝 앞에 아무것도 없다(창은 따로 spear 꼴)."""
+    hx, r = leaning(d, x0, y0, x1, y1, v, -0.1)
+    h, cx = y1 - y0, hx
+    ay, arm = y0 + h * 0.2, h * 0.3   # 기운 몸만큼 팔을 줄여 손끝과 창 사이 틈을 지킴
+    d.polygon([(cx, ay - r * 0.45), (cx - arm, ay - r * 0.35), (cx - arm, ay + r * 0.35), (cx, ay + r * 0.6)], fill=v)
+    d.ellipse([cx - arm - r * 0.5, ay - r * 0.5, cx - arm + r * 0.5, ay + r * 0.5], fill=v)   # 편 손
 
 
 def spear(d, x0, y0, x1, y1, v):
     """task 400 — 허공을 나는 창: 구역 세로 가운데 가는 자루 + 왼쪽 끝 뾰족한 촉 하나(날아가는 쪽)."""
     cy, t = (y0 + y1) / 2, max(2.0, (y1 - y0) * 0.18)
-    tip = (x1 - x0) * 0.12
+    tip = (x1 - x0) * 0.18   # a3: 촉을 키움(a2 촉 방향이 뒤집히거나 양쪽 촉)
     d.rectangle([x0 + tip, cy - t, x1, cy + t], fill=v)
     d.polygon([(x0, cy), (x0 + tip, cy - t * 3), (x0 + tip, cy + t * 3)], fill=v)
 
 
 def wall(d, x0, y0, x1, y1, v):
-    """task 400 — 인물 등 뒤에 붙은 벽 판(옆벽): 구역 그대로 채운 사각."""
-    d.rectangle([x0, y0, x1, y1], fill=v)
+    """task 400 — 인물 등 뒤에 붙은 옆벽: a3부터 원근 사다리꼴(가까운 왼쪽 가장자리가 위아래 끝까지, 먼 쪽은 짧게)
+    — a2 화면 끝 꽉 찬 사각이 책 지면 여백·붉은 선으로 읽혔다."""
+    h = y1 - y0
+    d.polygon([(x0, y0), (x1, y0 + h * 0.18), (x1, y1 - h * 0.06), (x0, y1)], fill=v)
 
 
-SHAPES = {"person": person, "person_throw": person_throw, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "seated": seated, "crowd": crowd, "boat": boat, "bank": bank}
+SHAPES = {"person": person, "person_throw": person_throw, "person_dodge": person_dodge, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "seated": seated, "crowd": crowd, "boat": boat, "bank": bank}
 
 
 def make(spec):
@@ -116,6 +137,8 @@ def make(spec):
     img = Image.new("L", (W, H), 0)
     d = ImageDraw.Draw(img)
     hy = int(HORIZON * H)
+    if g.get("backdrop") == "room":   # a3 실내 바탕: 바닥선 위를 먼 뒷벽(중간 깊이)으로 — 빈 검은 띠가 캡션 자리로 읽혔다(a2 4/8 글자)
+        d.rectangle([0, 0, W, hy], fill=round(255 * ROOM_WALL))
     for y in range(hy, H):
         t = (y - hy) / (H - 1 - hy)
         d.line([(0, y), (W, y)], fill=round(255 * (GROUND[0] + t * (GROUND[1] - GROUND[0]))))

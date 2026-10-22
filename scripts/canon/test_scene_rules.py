@@ -159,5 +159,23 @@ class LexiconLink(unittest.TestCase):
         self.assertEqual(check_scenes.lexicon_look_errors(s, recheck.ds.route_prompt(s)), [])
 
 
+class GuideBackdrop(unittest.TestCase):
+    """generate.guide-backdrop — 실내 장면 가이드는 방 바탕."""
+
+    def test_indoor_without_room_backdrop_fails(self):
+        s = gibeah()
+        s["guide"].pop("backdrop")
+        self.assertEqual(len(recheck.guide_backdrop_errors(s)), 1)
+
+    def test_outdoor_needs_nothing(self):
+        s = gibeah()
+        s["guide"].pop("backdrop")
+        s["whole_background"]["en"] = "a dry riverbank under an open sky"
+        self.assertEqual(recheck.guide_backdrop_errors(s), [])
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.guide_backdrop_errors(gibeah()), [])
+
+
 if __name__ == "__main__":
     unittest.main()

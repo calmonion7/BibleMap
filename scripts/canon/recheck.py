@@ -113,6 +113,20 @@ def thrown_guide_errors(spec):
     return [] if shapes & AIR_SHAPES else [f"순간 {v}에 던짐·쏨 동사 — 명세 guide에 허공 물체 꼴({'·'.join(sorted(AIR_SHAPES))})이 없다"]
 
 
+INDOOR = re.compile(r"\b(inside|interior|room|indoors)\b", re.I)
+
+
+def guide_backdrop_errors(spec):
+    """실내 가이드는 방 바탕(task 400 a2→a3, 규칙 generate.guide-backdrop) — 실내 장면(배경 문구에 inside·room …)의 guide는
+    backdrop "room"이어야 한다. 실외용 바탕의 위쪽 빈 검은 띠가 캡션 자리·책 지면으로 읽혀 a2 8장 중 4장에 글자가 생겼다."""
+    if "guide" not in spec:
+        return []
+    bg = (spec.get("whole_background") or {}).get("en", "") or " ".join(s.get("prompt", "") for s in spec.get("stages", []) if s.get("kind") == "full")
+    if INDOOR.search(bg) and spec["guide"].get("backdrop") != "room":
+        return ["실내 장면인데 guide.backdrop이 room이 아니다 — 위쪽 빈 띠가 글자·지면으로 그려진다"]
+    return []
+
+
 def has_situation(spec):
     s = spec.get("situation")
     return [] if isinstance(s, dict) and str(s.get("text", "")).strip() else ["situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"]
@@ -160,6 +174,7 @@ SPEC_CHECKS = {
     "check_scenes.place_on_figure_errors": lambda spec, ctx: check_scenes.place_on_figure_errors(spec),
     "recheck.stage_why_errors": lambda spec, ctx: stage_why_errors(spec, ctx["verses"]),
     "recheck.thrown_guide_errors": lambda spec, ctx: thrown_guide_errors(spec),
+    "recheck.guide_backdrop_errors": lambda spec, ctx: guide_backdrop_errors(spec),
     "check_scenes.lexicon_look_errors": lambda spec, ctx: check_scenes.lexicon_look_errors(spec, ds.route_prompt(spec)),
 }
 

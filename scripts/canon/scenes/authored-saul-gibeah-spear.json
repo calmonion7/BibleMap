@@ -94,7 +94,7 @@
       "gesture": {
         "ko": "벽을 등지고 선 채, 손에 든 작은 나무 수금(울림통에 두 팔과 가로대, 목·지판 없음)을 놓지 않고 몸을 옆으로 비틀어 날아오는 창의 길에서 비킴",
         "en": "standing with his back against the stone wall, twisting his body aside out of the path of the flying spear, still holding a small wooden lyre in his hands, a hollow wooden sound box with two curved arms joined by a crossbar at the top, strings running up from the box to the crossbar, no neck and no fingerboard",
-        "verse": "18:11 「내가 다윗을 벽에 박으리라」(다윗이 창이 날아가는 길 끝 벽 앞에 있음 — 벽을 등지고 선 자세는 이 말에서 추론, 벽에 붙은 정도는 본문 밖 · 저작자 정함) · 18:11 「그 앞에서 두 번 피하였더라」 · 18:10 「손으로 수금을 타는데」 · 수금 모양은 낱말 사전 kinnor-lyre L2(삼하 6:5 「잣나무로 만든」 · 틀 모양은 [저작]) · 비튼 몸은 본문 밖 · 저작자 정함"
+        "verse": "18:11 「내가 다윗을 벽에 박으리라」(다윗이 창이 날아가는 길 끝 벽 앞에 있음 — 벽을 등지고 선 자세는 이 말에서 추론, 벽에 붙은 정도는 본문 밖 · 저작자 정함) · 18:11 「그 앞에서 두 번 피하였더라」 · 18:10 「손으로 수금을 타는데」 · 수금 모양은 낱말 사전 kinnor-lyre L2(나무 = 왕상 10:12 「백단목으로 … 수금과 비파를 만들었으니」 · 틀 모양은 [저작]) · 비튼 몸은 본문 밖 · 저작자 정함"
       },
       "costume": {
         "ko": "물들이지 않은 황갈색 모직 반소매 무릎 길이 튜닉(가슴·어깨를 덮음)과 가죽 띠",
@@ -137,7 +137,7 @@
       1.0
     ]
   },
-  "_regions_why": "사울 서서 세로 0.58(창을 던진 왕), 청년 다윗 서서 세로 0.50(벽을 등지고 몸을 비튼 자세 — 삼상 9:2 「키는 모든 백성보다 어깨 위는 더하더라」라 사울이 조금 더 큼). 좌우는 18:11 — 사울이 오른쪽에서 왼쪽 다윗에게 창을 던지고 다윗 뒤가 벽. 구역 이름은 cast id(david-youth)를 따름(task 355).",
+  "_regions_why": "사울 서서 세로 0.58(창을 던진 왕), 청년 다윗 서서 세로 0.50(벽을 등지고 몸을 비튼 자세 — 삼상 9:2 「키는 모든 백성보다 어깨 위는 더하더라」라 사울이 조금 더 큼). 좌우는 18:11 — 사울이 오른쪽에서 왼쪽 다윗에게 창을 던지고 다윗 등 뒤가 옆벽(wall 0~0.145, 다윗 0.125~0.245로 벽에 닿음), 창(spear 0.29~0.50)은 사울 손(약 0.57)과 떨어진 허공. 구역 이름은 cast id(david-youth)를 따름(task 355).",
   "stages": [
     {
       "id": "S1",
@@ -200,7 +200,7 @@
     ],
     "gap_bands": [
       [
-        0.27,
+        0.245,
         0.6
       ]
     ],
@@ -246,13 +246,13 @@
     "verse": "삼상 18:10-11 · 기브아 지리 근거 15:34"
   },
   "relation": {
-    "ko": "사울이 방을 가로질러 다윗에게 창을 던졌고, 창이 둘 사이 허공을 날아 다윗과 그 뒤 벽 쪽으로 가는 동안 다윗이 몸을 비켜 피한다",
-    "en": "A spear flies through the air across the room from Saul toward David and the wall behind him, and David twists aside out of its path",
-    "verse": "18:11 「다윗을 벽에 박으리라 하고 그 창을 던졌으나 다윗이 그 앞에서 두 번 피하였더라」 · 날아가는 창의 자리는 본문 밖 · 저작자 정함"
+    "ko": "사울이 방을 가로질러 다윗에게 창을 던졌고, 창이 촉을 다윗에게 겨눈 채 둘 사이 허공을 날아 다윗과 그 뒤 벽 쪽으로 가는 동안 다윗이 몸을 비켜 피한다",
+    "en": "A spear flies through the air across the room from Saul toward David and the wall behind him, its iron point aimed at David, and David twists aside out of its path",
+    "verse": "18:11 「다윗을 벽에 박으리라 하고 그 창을 던졌으나 다윗이 그 앞에서 두 번 피하였더라」 · 날아가는 창의 자리·쇠 촉은 본문 밖 · 저작자 정함"
   },
   "whole_background": {
-    "ko": "기브아 사울의 본집 안 소박한 방 — 거친 돌벽, 다윗 뒤로 맨 벽, 바닥에 놓인 나무 걸상 하나",
-    "en": "the inside of a plain room in Saul's house at Gibeah, rough stone walls, a bare wall behind David, a simple wooden stool on the floor",
+    "ko": "기브아 사울의 본집 안 소박한 방 — 사방이 거친 돌벽, 다윗 뒤로 맨 벽, 바닥에 놓인 나무 걸상 하나",
+    "en": "the inside of a plain room in Saul's house at Gibeah, walls of rough uneven stone blocks all around, a bare wall behind David, a simple wooden stool on the floor",
     "verse": "18:10 「집 가운데서」 · 18:11 「벽」 · 기브아는 지리 근거 15:34 · 돌벽·걸상은 본문 밖 · 저작자 정함"
   },
   "verse_elements": [
@@ -376,8 +376,9 @@
       "wall": "wall",
       "spear": "spear",
       "saul": "person_throw",
-      "david-youth": "person"
+      "david-youth": "person_dodge"
     },
-    "why": "task 400 시도 a1·397 — 문구(「having just hurled his spear」·「A spear flies through the air」·「his empty throwing hand」)로는 16/16 창이 사울 손에 남아 찌르는 자세가 됨 → 가이드로 준다(PROMPTING 24·25·28 배치·상태는 가이드). 사울 = 빈 팔을 왼쪽으로 뻗은 꼴(손끝 앞 빈칸), 창 = 사울 손과 떨어진 허공의 막대(촉은 다윗 쪽), 다윗 = 등 뒤 옆벽 판에 붙음(18:11 「벽에 박으리라」, 다윗은 오른쪽 사울을 보니 등이 왼쪽 벽)."
+    "why": "task 400 시도 a1·397 — 문구(「having just hurled his spear」·「A spear flies through the air」·「his empty throwing hand」)로는 16/16 창이 사울 손에 남아 찌르는 자세가 됨 → 가이드로 준다(PROMPTING 24·25·28 배치·상태는 가이드). 사울 = 빈 팔을 왼쪽으로 뻗은 꼴(손끝 앞 빈칸), 창 = 사울 손과 떨어진 허공의 막대(촉은 다윗 쪽), 다윗 = 등 뒤 옆벽 판에 붙음(18:11 「벽에 박으리라」, 다윗은 오른쪽 사울을 보니 등이 왼쪽 벽). · a3: 실내 바탕(backdrop room — a2 위쪽 빈 검은 띠에 캡션 글자 4/8) · 옆벽 원근 사다리꼴(a2 끝 띠가 지면 여백·붉은 선으로) · 사울 몸 앞으로 기울임·다윗 벽 쪽으로 젖혀 피함(a2 곧게 선 꼴이 그대로 — 던진 자세 0·순간 0) · 창 촉 키움(a2 촉 뒤집힘·양쪽 촉).",
+    "backdrop": "room"
   }
 }
