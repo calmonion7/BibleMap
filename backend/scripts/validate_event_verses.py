@@ -20,14 +20,26 @@
 존재 판정은 본문이 아니라 **키**다. `textKo`가 null인 절이 19개 있어 "본문 비어있지 않음"으로
 판정하면 정상 데이터를 위반으로 지목한다(거짓 빨강).
 
+**두 번째 불변식 — context 구간 ⊆ books 라벨**(task 398): `data/person_events/*.json` 사건의 context가
+같은 책을 두 구간 이상 적으면(「1Sam 18:6–11; 19:9–10」) 생성기가 두 번째부터 버렸다. 위 경계 대조는
+라벨과 절이 서로 맞기만 하면 통과하므로 이 누락을 못 잡는다. 그래서 context를 생성기의
+`parse_context_refs`로 읽어(파서 2벌 금지) 구간마다 그 책 `books[].rangeLabel`의 쉼표 조각에 있는지 본다.
+
 --selftest는 인메모리 사본에 고의 드리프트를 주입해 이 검사가 실제로 FAIL하는지 확인한다.
 기준선 PASS만으론 게이트가 살아있음을 증명하지 못한다(ADR 260820-003946).
 """
+import glob
 import json
 import os
 import sys
 
-from backend.scripts.generate_person_event_verses import expand_range_label, verse_keys_by_book
+from backend.scripts.generate_person_event_verses import (
+    _make_abbr_pattern,
+    build_lookups,
+    expand_range_label,
+    parse_context_refs,
+    verse_keys_by_book,
+)
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 EVENT_VERSES_REL = "data/event_verses/events.json"
@@ -72,6 +84,31 @@ def _errors(event_verses, keys_by_book):
     # 비공허 짝(ADR 260821-000937) — 0블록을 보고 통과하는 공허한 단언을 막는다.
     if blocks == 0:
         errs.append(f"검사 대상 블록이 0개 — {EVENT_VERSES_REL}가 비었거나 구조가 바뀌었다(공허 통과 방지)")
+    return errs
+
+
+def _load_person_events():
+    """person_events 전 파일의 사건을 한 목록으로."""
+    out = []
+    for f in sorted(glob.glob(os.path.join(_ROOT, "data", "person_events", "*.json"))):
+        with open(f, encoding="utf-8") as fh:
+            d = json.load(fh)
+        out.extend(d if isinstance(d, list) else d.get("events", []))
+    return out
+
+
+def _context_errors(events, abbr_to_info, abbr_pat):
+    """context 구간마다 그 책 books[].rangeLabel 쉼표 조각에 있는지. 빈 리스트 == 성립."""
+    errs = []
+    for ev in events:
+        labels = {b.get("bookId"): [x.strip() for x in (b.get("rangeLabel") or "").split(",")]
+                  for b in ev.get("books", [])}
+        for ref in parse_context_refs(ev.get("context") or "", abbr_to_info, abbr_pat):
+            if ref["rangeLabel"] not in labels.get(ref["bookId"], []):
+                errs.append(f"{ev.get('id')} context 구간 '{ref['rangeLabel']}'이 books 라벨에 없음 — "
+                            f"{labels.get(ref['bookId'])}")
+    if not events:
+        errs.append("person_events 사건이 0개 — 공허 통과 방지")
     return errs
 
 
@@ -140,7 +177,20 @@ def _selftest():
     assert _errors({}, keys), "블록 0개에도 검사가 통과했다(공허 통과)"
     n += 1
 
-    print(f"대조군: 고의 드리프트 {n}종(절 삭제·범위 밖 삽입·라벨 변조·파싱 불가·0블록) 전부 FAIL 확인")
+    # ⑥ 같은 책 두 구간 누락(task 398) — 옛 생성기처럼 첫 구간만 남기면 걸려야 한다
+    abbr = build_lookups()
+    pat = _make_abbr_pattern(abbr)
+    events = _load_person_events()
+    assert not _context_errors(events, abbr, pat), "기준선이 이미 FAIL이라 대조군을 돌릴 수 없다"
+    victim = next(e for e in events if any("," in (b.get("rangeLabel") or "") for b in e.get("books", [])))
+    hurt_ev = {**victim, "books": [{**b, "rangeLabel": b["rangeLabel"].split(",")[0].strip()}
+                                   for b in victim["books"]]}
+    assert _context_errors([hurt_ev], abbr, pat), "같은 책 두 번째 구간 누락에도 검사가 통과했다"
+    assert _context_errors([], abbr, pat), "사건 0개에도 검사가 통과했다(공허 통과)"
+    n += 1
+
+    print(f"대조군: 고의 드리프트 {n}종(절 삭제·범위 밖 삽입·라벨 변조·파싱 불가·0블록·"
+          f"같은 책 두 구간 누락 — {victim.get('id')}) 전부 FAIL 확인")
     print("PASS")
 
 
@@ -152,9 +202,14 @@ def main():
     event_verses = _load_event_verses()
     errs = _errors(event_verses, keys)
     assert not errs, f"근거 절이 라벨 범위를 덮지 않음 ({len(errs)}건):\n  " + "\n  ".join(errs)
+    abbr = build_lookups()
+    events = _load_person_events()
+    cerrs = _context_errors(events, abbr, _make_abbr_pattern(abbr))
+    assert not cerrs, f"context 구간이 books 라벨에 없음 ({len(cerrs)}건):\n  " + "\n  ".join(cerrs)
     blocks, verses = _counts(event_verses)
     print(f"검사: 사건 {len(event_verses)}건의 권 블록 {blocks}개, 베이킹된 절 {verses}개 — "
-          f"전부 baked verseID 집합 == rangeLabel 범위 ∩ 정본 절 사전")
+          f"전부 baked verseID 집합 == rangeLabel 범위 ∩ 정본 절 사전, "
+          f"사건 {len(events)}건의 context 구간 전부 books 라벨에 있음")
     print("PASS")
 
 

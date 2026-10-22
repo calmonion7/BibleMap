@@ -15,7 +15,7 @@
     "books": [
       {
         "bookId": "recIFusdNl6d8dj3L",
-        "rangeLabel": "1:27"
+        "rangeLabel": "1:27, 2:7"
       }
     ]
   },
@@ -37,7 +37,7 @@
     "books": [
       {
         "bookId": "recIFusdNl6d8dj3L",
-        "rangeLabel": "2:8"
+        "rangeLabel": "2:8, 2:15, 2:19"
       }
     ]
   },
@@ -81,7 +81,7 @@
     "books": [
       {
         "bookId": "recIFusdNl6d8dj3L",
-        "rangeLabel": "3:6"
+        "rangeLabel": "3:6, 3:7"
       }
     ]
   },
