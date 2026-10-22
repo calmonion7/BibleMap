@@ -40,3 +40,15 @@
 
 ## 명령
 - `$VENV batch/gibeah_redraw.py gen` → `python3 batch/gibeah_redraw.py judge` → `report` → `cand` → `/opt/homebrew/bin/python3 check_cand_page.py 397 <page>` → 게시 → 사람 답 `samples/gibeah-redraw/pick-verdict.txt` → `python3 batch/gibeah_redraw.py record samples/gibeah-redraw/pick-verdict.txt` → `check`(→ `ok`)
+
+## 결과 (2026-10-22)
+
+- 생성 8장 · 64~65초/장 · 문구 = 고정 절(326토큰) · 판정 48건 답 빠짐 0.
+- 다수결 맞음(8장 중): 화풍 8 · 덩어리 8 · **순간 0** · 창 8 · 소년 다윗 8 · **수금 0** · 사울 8 · **던진 자세 0** · 마주함 8 · 방 안 8 · 가드 7(s7 오른쪽 아래 서명 같은 표식).
+
+후보: 통과 0/8 (후보 s11, s42)
+
+- 실행자 눈(축소 몽타주 + s7 원래 화소 확대): 연필·색연필 결은 장면 화풍대로. 그러나 **8장 모두 창이 아직 사울 손에 쥐어져 있다**(18:11 「그 창을 던졌으나」 — 창이 허공을 나는 순간이 안 그려짐, 다윗도 피하지 않고 쳐다봄) · **수금이 지판·줄감개 달린 류트**(그 시대 악기 아님) · 다윗 다수가 튜닉 대신 웃통 벗은 치마 차림(명세 `undyed tan wool tunic`) — 세 문항 3회 모두 틀림이라 시드 운이 아니라 문구·모델 쪽 공통 결함.
+- 문항 결함(기록만): `e.spear`의 괄호 부정문이 모호해 판정자가 「사울 손에 쥠 = 허용」으로 읽어 8/8 맞음 — 같은 결함은 `e.moment`·`e.saul-throw`가 잡아 결론에는 영향 없음. 다음에 쓸 때는 「창이 사울 손을 떠나 허공에 있나?」처럼 긍정문 하나로.
+- 고정 절대로 후보 2장(둘 다 기계 불통과)을 사람 1화면에 올린다.
+- 후보 화면(비공개 Artifact, 폰): https://claude.ai/artifact/ABLYCtaxEkft4KBzzoPibR — `check_cand_page.py 397` 통과. 사람 답은 `samples/gibeah-redraw/pick-verdict.txt`.
