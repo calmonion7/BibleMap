@@ -20,14 +20,16 @@ sys.path.insert(0, os.path.join(HERE, "batch"))
 import derive_scene as D
 import judge_items as J
 
-NAME = "gibeah-redraw"
-NOTES = os.path.join(HERE, "notes", "GIBEAH-REDRAW.md")
+TRY = sys.argv[sys.argv.index("--try") + 1] if "--try" in sys.argv else None   # task 400 단계 ②③ 시도(a1, a2 …)
+NAME = f"gibeah-step23/{TRY}" if TRY else "gibeah-redraw"
+NOTES = os.path.join(HERE, "notes", "GIBEAH-STEP23.md" if TRY else "GIBEAH-REDRAW.md")
 METRICS = os.path.join(HERE, "samples", NAME, "metrics.json")
 OUT = os.path.expanduser(f"~/.local/biblemap-imggen/{NAME}")
 APPROVED = os.path.join("samples", NAME, "approved-authored-saul-gibeah-spear.png")   # 레포 사본(CANON_DIR 기준 상대 경로)
 LOCK = threading.Lock()
 with open(NOTES, encoding="utf-8") as _fh:
-    FX = json.loads(re.search(r"```json fixed\n(.*?)\n```", _fh.read(), re.S).group(1))
+    FX = json.loads(re.search(rf"```json fixed{' ' + TRY if TRY else ''}\n(.*?)\n```", _fh.read(), re.S).group(1))
+LINE = "통과" if TRY else "후보"   # 노트 결론 줄 머리 — task 400 DoD는 「통과: N/8」
 SID = FX["scene"]
 QS = {"S": FX["style"], "E": FX["elements"]}
 
@@ -55,14 +57,15 @@ def gen():
     import run_scene
     prompt = D.route_prompt(D.load(SID))
     w, h = FX["size"]
-    jobs = [{"prompt": prompt, "seed": s, "w": w, "h": h, "out": img(s)} for s in FX["seeds"] if not os.path.exists(img(s))]
+    cn = {"control": os.path.join(HERE, FX["guide"]), "scale": FX["cn"]["scale"], "cn_steps": FX["cn"]["cn_steps"]} if FX.get("guide") else {}
+    jobs = [{"prompt": prompt, "seed": s, "w": w, "h": h, "out": img(s), **cn} for s in FX["seeds"] if not os.path.exists(img(s))]
     m = load()
     m["prompt"] = prompt
     save(m)
     print(f"[GibeahRedraw] {len(FX['seeds'])}장 중 {len(jobs)}장 생성", flush=True)
     if jobs:
         os.makedirs(OUT, exist_ok=True)
-        secs = run_scene.gen_zimage(jobs, OUT)
+        secs = run_scene.gen_zimage(jobs, OUT, "gencn" if cn else "gen")
         m["secs"] = m.get("secs", []) + list(secs)
         save(m)
         print(f"[GibeahRedraw] 생성 끝 {secs}", flush=True)
@@ -117,7 +120,8 @@ def pick(m):
 
 def conclude(m):
     ok, cands, _ = pick(m)
-    return f"통과 {len(ok)}/{len(FX['seeds'])} (후보 {', '.join(f's{s}' for s in cands)})"
+    head = "" if TRY else "통과 "
+    return f"{head}{len(ok)}/{len(FX['seeds'])} (후보 {', '.join(f's{s}' for s in cands)})"
 
 
 def report():
@@ -128,7 +132,7 @@ def report():
         print(f"s{s:<3} " + " ".join("".join(x[0] if x else "-" for x in votes(m, s, q)) for q in qs))
     print("다수결 맞음(8장 중): " + " · ".join(f"{q['q']} {sum(maj(votes(m, s, q['id'])) == '맞음' for s in FX['seeds'])}" for q in QS["S"] + QS["E"]))
     print(f"[GibeahRedraw] 거르기 틀림 {pick(m)[2]}")
-    print(f"후보: {conclude(m)}")
+    print(f"{LINE}: {conclude(m)}")
 
 
 def cand():
@@ -195,9 +199,13 @@ def check():
             v = votes(m, s, q["id"])
             if len(v) != FX["reps"] or None in v:
                 err.append(f"s{s} {q['id']} 답 {v}")
-    line = re.findall(r"^후보: (.+)$", open(NOTES, encoding="utf-8").read(), re.M)
+    with open(NOTES, encoding="utf-8") as fh:
+        text = fh.read()
+    if TRY:   # 시도 절(「## 시도 a1」 ~ 다음 「## 」) 안의 결론 줄만
+        text = re.search(rf"^## 시도 {TRY}\b(.*?)(?=^## |\Z)", text, re.S | re.M).group(1)
+    line = re.findall(rf"^{LINE}: (.+)$", text, re.M)
     if not err and line != [conclude(m)]:
-        err.append(f"노트 후보 줄 {line} ≠ 다시 셈 {conclude(m)}")
+        err.append(f"노트 {LINE} 줄 {line} ≠ 다시 셈 {conclude(m)}")
     print("ok" if not err else "\n".join(err[:20]))
     return not err
 
