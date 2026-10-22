@@ -127,6 +127,15 @@ def guide_backdrop_errors(spec):
     return []
 
 
+def guide_body_errors(spec):
+    """가이드 몸 너비는 카드 체격에서(task 400 a5, 규칙 generate.guide-body-build) — 사람 꼴(person*)이 있는 guide는 body "card".
+    a3·a4: 카드는 넓은 어깨·통 몸통인데 기본 너비 꼴이면 체격 문구가 화면 끝 셋째 인물로 그려짐(8/8 → 3/8)."""
+    g = spec.get("guide")
+    if not g or not any(str(v).startswith("person") for v in g.get("shape", {}).values()):
+        return []
+    return [] if g.get("body") == "card" else ["guide에 사람 꼴이 있는데 body가 card가 아니다 — 몸 너비가 카드 체격을 따르지 않는다"]
+
+
 def has_situation(spec):
     s = spec.get("situation")
     return [] if isinstance(s, dict) and str(s.get("text", "")).strip() else ["situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"]
@@ -175,6 +184,7 @@ SPEC_CHECKS = {
     "recheck.stage_why_errors": lambda spec, ctx: stage_why_errors(spec, ctx["verses"]),
     "recheck.thrown_guide_errors": lambda spec, ctx: thrown_guide_errors(spec),
     "recheck.guide_backdrop_errors": lambda spec, ctx: guide_backdrop_errors(spec),
+    "recheck.guide_body_errors": lambda spec, ctx: guide_body_errors(spec),
     "check_scenes.lexicon_look_errors": lambda spec, ctx: check_scenes.lexicon_look_errors(spec, ds.route_prompt(spec)),
 }
 

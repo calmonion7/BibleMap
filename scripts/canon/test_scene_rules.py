@@ -197,5 +197,26 @@ class GuideBodyMass(unittest.TestCase):
                 self.assertGreaterEqual(area(fn) / base, 0.9, k)
 
 
+class GuideBodyBuild(unittest.TestCase):
+    """generate.guide-body-build — 사람 꼴이 있는 가이드는 몸 너비를 카드 체격에서."""
+
+    def test_person_guide_without_card_body_fails(self):
+        s = gibeah()
+        s["guide"].pop("body")
+        self.assertEqual(len(recheck.guide_body_errors(s)), 1)
+
+    def test_broad_card_draws_wider_body(self):
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as M
+        s = gibeah()
+        wide = sum(M.make(s).convert("L").histogram()[200:])
+        s["guide"].pop("body")
+        self.assertGreater(wide, sum(M.make(s).convert("L").histogram()[200:]))
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.guide_body_errors(gibeah()), [])
+
+
 if __name__ == "__main__":
     unittest.main()

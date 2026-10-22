@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "8848c131a250",
+  "version": "c3e3bc12d1a3",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -113,6 +113,9 @@
      "note": "실내 장면(배경 문구 inside·room·interior)의 guide는 backdrop room(바닥선 위를 먼 뒷벽 깊이로 채움) — 빈 띠는 글자·지면으로 그려짐. 옆벽은 원근 사다리꼴(꽉 찬 끝 띠는 여백 선)"},
     {"id": "generate.guide-body-mass", "layer": "generate", "scope": "all", "check": "test:test_scene_rules",
      "source": "notes/GIBEAH-STEP23.md · task 400 시도 a3(가는 기운 꼴 → 셋째 인물 8/8)", "since": "2026-10-22 task 400",
-     "note": "가이드 사람 꼴(person*)은 기본 person 꼴 몸 덩어리의 0.9배 이상 — 가는 몸통·막대 다리면 카드 체격 문구가 남는 자리(화면 끝)에 다른 사람으로 그려짐. 자세는 넓은 몸을 통째로 기울여 줌"}
+     "note": "가이드 사람 꼴(person*)은 기본 person 꼴 몸 덩어리의 0.9배 이상 — 가는 몸통·막대 다리면 카드 체격 문구가 남는 자리(화면 끝)에 다른 사람으로 그려짐. 자세는 넓은 몸을 통째로 기울여 줌"},
+    {"id": "generate.guide-body-build", "layer": "generate", "scope": "all", "check": "recheck.guide_body_errors",
+     "source": "notes/GIBEAH-STEP23.md · task 400 시도 a3·a4(셋째 인물 8/8 → 3/8)", "since": "2026-10-22 task 400",
+     "note": "사람 꼴이 있는 guide는 body card — 몸 너비를 카드 silhouette에서(slight 0.26 · lean 0.28 · average 0.3 · broad 0.4 · heavy·giant 0.44, 키 비율). 기본 너비면 넓은 체격 문구가 화면 끝 다른 사람으로 그려짐"}
   ]
 }

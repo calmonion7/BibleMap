@@ -14,11 +14,15 @@ HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 W, H = 1216, 640
 HORIZON, GROUND = 0.26, (0.12, 0.5)
 ROOM_WALL = 0.12   # 실내 뒷벽 깊이(바닥 시작값과 같음 — 벽과 바닥이 이어짐)
+# task 400 a5 — 몸 너비(키 비율)를 카드 체격(card.silhouette)에서: guide.body = "card"일 때만(옛 가이드 바이트 유지).
+# a3·a4: 카드는 넓은 어깨·통 몸통인데 가이드 몸이 기본 너비면 체격 문구가 화면 끝 셋째 인물로 그려짐.
+BUILD_WIDTH = {"slight": 0.26, "lean": 0.28, "average": 0.3, "broad": 0.4, "heavy": 0.44, "giant": 0.44}
+BODY = {"w": 0.3}   # make()가 인물마다 바꾸는 몸 너비 — 꼴 함수 서명(d, 상자, v)을 그대로 두려고 모듈 상태로 둠
 
 
 def person(d, x0, y0, x1, y1, v):
     h, cx = y1 - y0, (x0 + x1) / 2
-    bw = min(x1 - x0, h * 0.3)
+    bw = min(x1 - x0, h * BODY["w"])
     r = h * 0.065
     d.ellipse([cx - r, y0, cx + r, y0 + 2 * r], fill=v)
     sh = y0 + 2 * r
@@ -28,7 +32,7 @@ def person(d, x0, y0, x1, y1, v):
 def person_bow(d, x0, y0, x1, y1, v):
     """restyle r5 — 고개를 앞(화면 오른쪽)·아래로 숙인 서 있는 사람: 몸은 person과 같고 머리 원이 어깨선 앞·아래, 목이 앞으로 기욺."""
     h, cx = y1 - y0, (x0 + x1) / 2
-    bw = min(x1 - x0, h * 0.3)
+    bw = min(x1 - x0, h * BODY["w"])
     r = h * 0.065
     sh = y0 + 2 * r
     d.polygon([(cx - bw * 0.3, sh), (cx + bw * 0.3, sh), (cx + bw / 2, y1), (cx - bw / 2, y1)], fill=v)
@@ -90,7 +94,7 @@ def bank(d, x0, y0, x1, y1, v):
 def leaning(d, x0, y0, x1, y1, v, lean):
     """몸통을 lean(키 비율, 음수 = 화면 왼쪽)만큼 위쪽을 기울인 사람 — 머리·어깨가 옮겨지고 두 발은 벌림. → (어깨 가운데 x, 머리 반지름)."""
     h, cx = y1 - y0, (x0 + x1) / 2
-    bw, r, dx = min(x1 - x0, h * 0.3), h * 0.065, h * lean
+    bw, r, dx = min(x1 - x0, h * BODY["w"]), h * 0.065, h * lean
     hx = cx + dx
     d.ellipse([hx - r, y0, hx + r, y0 + 2 * r], fill=v)
     sh = y0 + 2 * r
@@ -102,12 +106,12 @@ def leaning(d, x0, y0, x1, y1, v, lean):
 
 def person_dodge(d, x0, y0, x1, y1, v):
     """task 400 a3 — 날아오는 것을 피하는 사람: 위몸을 화면 왼쪽(벽 쪽)으로 젖히고 두 발을 벌림."""
-    leaning(d, x0, y0, x1, y1, v, -0.1)
+    leaning(d, x0, y0, x1, y1, v, -0.18)   # a5: 0.1은 약한 CN에서 곧게 펴짐(a4 순간 0)
 
 
 def person_throw(d, x0, y0, x1, y1, v):
     """task 400 — 막 던진 사람: 위몸을 화면 왼쪽(던진 쪽)으로 기울이고(a3) 어깨에서 왼쪽으로 곧게 뻗은 빈 팔(키의 0.30). 손끝 앞에 아무것도 없다(창은 따로 spear 꼴)."""
-    hx, r = leaning(d, x0, y0, x1, y1, v, -0.1)
+    hx, r = leaning(d, x0, y0, x1, y1, v, -0.18)   # a5: 0.1은 곧게 펴짐(a4 던진 자세 0)
     h, cx = y1 - y0, hx
     ay, arm = y0 + h * 0.2, h * 0.3   # 기운 몸만큼 팔을 줄여 손끝과 창 사이 틈을 지킴
     d.polygon([(cx, ay - r * 0.45), (cx - arm, ay - r * 0.35), (cx - arm, ay + r * 0.35), (cx, ay + r * 0.6)], fill=v)
@@ -142,9 +146,17 @@ def make(spec):
     for y in range(hy, H):
         t = (y - hy) / (H - 1 - hy)
         d.line([(0, y), (W, y)], fill=round(255 * (GROUND[0] + t * (GROUND[1] - GROUND[0]))))
+    build = {}
+    if g.get("body") == "card":
+        import sys
+        sys.path.insert(0, HERE)
+        import derive_scene as ds
+        build = {f["region"]: ds._cast_in_scene(f).get("card", {}).get("silhouette", {}).get("class") for f in spec["figures"]}
     for k in sorted(g["depth"], key=lambda k: (g["depth"][k], k)):
         x0, y0, x1, y1 = R[k]
+        BODY["w"] = BUILD_WIDTH.get(build.get(k), 0.3)
         SHAPES[g["shape"][k]](d, x0 * W, y0 * H, x1 * W, y1 * H, round(255 * g["depth"][k]))
+    BODY["w"] = 0.3
     return img.filter(ImageFilter.GaussianBlur(3)).convert("RGB")
 
 
