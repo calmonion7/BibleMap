@@ -1,5 +1,5 @@
 {
- "rules_version": "243641e5f7c3",
+ "rules_version": "fc3854809714",
  "tokens": "venv314",
  "specs": {
   "authored-david-adullam-cave": {
@@ -9,12 +9,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-david-ark-jerusalem": {
    "spec.required-fields": "pass",
@@ -23,12 +28,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "fail",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "pass"
+   "spec.action-place-on-figure": "pass",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-david-en-gedi-saul": {
    "spec.required-fields": "pass",
@@ -37,12 +47,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-david-gath-achish": {
    "spec.required-fields": "pass",
@@ -51,12 +66,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "pass"
+   "spec.action-place-on-figure": "pass",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-david-gibeah-harp": {
    "spec.required-fields": "pass",
@@ -65,12 +85,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-david-gibeon-battle": {
    "spec.required-fields": "pass",
@@ -79,12 +104,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "pass"
+   "spec.action-place-on-figure": "pass",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-david-goliath-gath": {
    "spec.required-fields": "pass",
@@ -93,12 +123,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "fail",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-david-hebron-king-judah": {
    "spec.required-fields": "pass",
@@ -107,12 +142,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "pass"
+   "spec.action-place-on-figure": "pass",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-david-jerusalem-conquest": {
    "spec.required-fields": "pass",
@@ -121,12 +161,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "pass"
+   "spec.action-place-on-figure": "pass",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-david-mahanaim-exile": {
    "spec.required-fields": "pass",
@@ -135,12 +180,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "pass"
+   "spec.action-place-on-figure": "pass",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-david-nathan-covenant": {
    "spec.required-fields": "pass",
@@ -149,12 +199,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "pass"
+   "spec.action-place-on-figure": "pass",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-david-nob-priests": {
    "spec.required-fields": "pass",
@@ -163,12 +218,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "fail",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "pass"
+   "spec.action-place-on-figure": "pass",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-david-ramah-samuel": {
    "spec.required-fields": "pass",
@@ -177,12 +237,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "pass"
+   "spec.action-place-on-figure": "pass",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-david-returns-jerusalem": {
    "spec.required-fields": "pass",
@@ -191,12 +256,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "pass",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "pass"
+   "spec.action-place-on-figure": "pass",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "fail",
+   "generate.dodge-clear": "pass"
   },
   "authored-david-ziklag-base": {
    "spec.required-fields": "pass",
@@ -205,12 +275,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "pass"
+   "spec.action-place-on-figure": "pass",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-samuel-bethlehem-david-anointing": {
    "spec.required-fields": "pass",
@@ -219,12 +294,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "fail",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "pass"
+   "spec.action-place-on-figure": "pass",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-samuel-ramah-death": {
    "spec.required-fields": "pass",
@@ -233,12 +313,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-saul-endor-medium": {
    "spec.required-fields": "pass",
@@ -247,12 +332,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "pass"
+   "spec.action-place-on-figure": "pass",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-saul-gibeah-spear": {
    "spec.required-fields": "pass",
@@ -261,12 +351,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "pass",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "pass",
-   "spec.action-place-on-figure": "pass"
+   "spec.action-place-on-figure": "pass",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-saul-gilboa-death": {
    "spec.required-fields": "pass",
@@ -275,12 +370,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "pass"
+   "spec.action-place-on-figure": "pass",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-saul-gilgal-amalek": {
    "spec.required-fields": "pass",
@@ -289,12 +389,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-saul-gilgal-coronation": {
    "spec.required-fields": "pass",
@@ -303,12 +408,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-saul-jabesh-rescue": {
    "spec.required-fields": "pass",
@@ -317,12 +427,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-saul-michmash-battle": {
    "spec.required-fields": "pass",
@@ -331,12 +446,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-saul-mizpah-chosen": {
    "spec.required-fields": "pass",
@@ -345,12 +465,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-saul-nob-massacre": {
    "spec.required-fields": "pass",
@@ -359,12 +484,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-solomon-ezion-geber-fleet": {
    "spec.required-fields": "pass",
@@ -373,12 +503,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "fail",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-solomon-gibeon-dream": {
    "spec.required-fields": "pass",
@@ -387,12 +522,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "fail",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-solomon-gihon-anointing": {
    "spec.required-fields": "pass",
@@ -401,12 +541,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-solomon-jerusalem-apostasy": {
    "spec.required-fields": "pass",
@@ -415,12 +560,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "pass",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-solomon-jerusalem-birth": {
    "spec.required-fields": "pass",
@@ -429,12 +579,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-solomon-jerusalem-david-charge": {
    "spec.required-fields": "pass",
@@ -443,12 +598,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "fail",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-solomon-jerusalem-palace": {
    "spec.required-fields": "pass",
@@ -457,12 +617,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "fail",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-solomon-jerusalem-sheba": {
    "spec.required-fields": "pass",
@@ -471,12 +636,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "fail",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-solomon-jerusalem-temple-build": {
    "spec.required-fields": "pass",
@@ -485,12 +655,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "pass",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-solomon-jerusalem-temple-dedication": {
    "spec.required-fields": "pass",
@@ -499,12 +674,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "fail",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   },
   "authored-solomon-jerusalem-two-mothers": {
    "spec.required-fields": "pass",
@@ -513,12 +693,17 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "fail",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none"
+   "spec.action-place-on-figure": "none",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass"
   }
  },
  "details": {
@@ -552,6 +737,9 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.lexicon-link": [
+    "verse_elements[2] '베 에봇을 입었더라': 사전 ephod look 문구가 파생 프롬프트에 없음"
    ],
    "spec.stage-from-scripture": [
     "david-prime: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
@@ -694,6 +882,13 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
+   "spec.lexicon-link": [
+    "verse_elements[3] '진설병': 사전 showbread look 문구가 파생 프롬프트에 없음",
+    "verse_elements[6] '골리앗의 칼이 보자기에 싸여': 사전 wrapped-in-cloth look 문구가 파생 프롬프트에 없음",
+    "verse_elements[6] '골리앗의 칼이 보자기에 싸여': 사전 goliath-sword look 문구가 파생 프롬프트에 없음",
+    "verse_elements[7] '에봇 뒤에 있으니': 사전 ephod look 문구가 파생 프롬프트에 없음",
+    "verse_elements[8] '에봇 뒤에 있으니': 사전 ephod look 문구가 파생 프롬프트에 없음"
+   ],
    "spec.stage-from-scripture": [
     "ahimelech: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "david: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
@@ -712,6 +907,9 @@
    "spec.stage-from-scripture": [
     "david-elder: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "shimei: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
+   ],
+   "generate.guide-body-build": [
+    "guide에 사람 꼴이 있는데 body가 card가 아니다 — 몸 너비가 카드 체격을 따르지 않는다"
    ]
   },
   "authored-david-ziklag-base": {
@@ -742,6 +940,11 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.lexicon-link": [
+    "verse_elements[0] '기름 뿔을 취하여': 사전 oil-horn look 문구가 파생 프롬프트에 없음",
+    "verse_elements[0] '기름 뿔을 취하여': 사전 horn look 문구가 파생 프롬프트에 없음",
+    "verse_elements[0] '기름 뿔을 취하여': 사전 oil look 문구가 파생 프롬프트에 없음"
    ],
    "spec.stage-from-scripture": [
     "samuel: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
@@ -1401,6 +1604,57 @@
    "rate": 1.0
   },
   {
+   "id": "spec.lexicon-link",
+   "layer": "spec",
+   "scope": "all",
+   "check": "check_scenes.lexicon_look_errors",
+   "pass": [
+    "authored-david-gath-achish",
+    "authored-david-gibeon-battle",
+    "authored-david-hebron-king-judah",
+    "authored-david-jerusalem-conquest",
+    "authored-david-mahanaim-exile",
+    "authored-david-nathan-covenant",
+    "authored-david-ramah-samuel",
+    "authored-david-returns-jerusalem",
+    "authored-david-ziklag-base",
+    "authored-saul-endor-medium",
+    "authored-saul-gibeah-spear",
+    "authored-saul-gilboa-death"
+   ],
+   "fail": [
+    "authored-david-ark-jerusalem",
+    "authored-david-nob-priests",
+    "authored-samuel-bethlehem-david-anointing"
+   ],
+   "stale": [],
+   "none": [
+    "authored-david-adullam-cave",
+    "authored-david-en-gedi-saul",
+    "authored-david-gibeah-harp",
+    "authored-david-goliath-gath",
+    "authored-samuel-ramah-death",
+    "authored-saul-gilgal-amalek",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-jabesh-rescue",
+    "authored-saul-michmash-battle",
+    "authored-saul-mizpah-chosen",
+    "authored-saul-nob-massacre",
+    "authored-solomon-ezion-geber-fleet",
+    "authored-solomon-gibeon-dream",
+    "authored-solomon-gihon-anointing",
+    "authored-solomon-jerusalem-apostasy",
+    "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-david-charge",
+    "authored-solomon-jerusalem-palace",
+    "authored-solomon-jerusalem-sheba",
+    "authored-solomon-jerusalem-temple-build",
+    "authored-solomon-jerusalem-temple-dedication",
+    "authored-solomon-jerusalem-two-mothers"
+   ],
+   "rate": 0.8
+  },
+  {
    "id": "derive.no-hand-prompt",
    "layer": "derive",
    "scope": "all",
@@ -1695,6 +1949,203 @@
     "authored-solomon-jerusalem-temple-dedication",
     "authored-solomon-jerusalem-two-mothers"
    ],
+   "rate": 1.0
+  },
+  {
+   "id": "generate.thrown-guide",
+   "layer": "generate",
+   "scope": "all",
+   "check": "recheck.thrown_guide_errors",
+   "pass": [
+    "authored-david-adullam-cave",
+    "authored-david-ark-jerusalem",
+    "authored-david-en-gedi-saul",
+    "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
+    "authored-david-gibeon-battle",
+    "authored-david-goliath-gath",
+    "authored-david-hebron-king-judah",
+    "authored-david-jerusalem-conquest",
+    "authored-david-mahanaim-exile",
+    "authored-david-nathan-covenant",
+    "authored-david-nob-priests",
+    "authored-david-ramah-samuel",
+    "authored-david-returns-jerusalem",
+    "authored-david-ziklag-base",
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-samuel-ramah-death",
+    "authored-saul-endor-medium",
+    "authored-saul-gibeah-spear",
+    "authored-saul-gilboa-death",
+    "authored-saul-gilgal-amalek",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-jabesh-rescue",
+    "authored-saul-michmash-battle",
+    "authored-saul-mizpah-chosen",
+    "authored-saul-nob-massacre",
+    "authored-solomon-ezion-geber-fleet",
+    "authored-solomon-gibeon-dream",
+    "authored-solomon-gihon-anointing",
+    "authored-solomon-jerusalem-apostasy",
+    "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-david-charge",
+    "authored-solomon-jerusalem-palace",
+    "authored-solomon-jerusalem-sheba",
+    "authored-solomon-jerusalem-temple-build",
+    "authored-solomon-jerusalem-temple-dedication",
+    "authored-solomon-jerusalem-two-mothers"
+   ],
+   "fail": [],
+   "stale": [],
+   "none": [],
+   "rate": 1.0
+  },
+  {
+   "id": "generate.guide-backdrop",
+   "layer": "generate",
+   "scope": "all",
+   "check": "recheck.guide_backdrop_errors",
+   "pass": [
+    "authored-david-adullam-cave",
+    "authored-david-ark-jerusalem",
+    "authored-david-en-gedi-saul",
+    "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
+    "authored-david-gibeon-battle",
+    "authored-david-goliath-gath",
+    "authored-david-hebron-king-judah",
+    "authored-david-jerusalem-conquest",
+    "authored-david-mahanaim-exile",
+    "authored-david-nathan-covenant",
+    "authored-david-nob-priests",
+    "authored-david-ramah-samuel",
+    "authored-david-returns-jerusalem",
+    "authored-david-ziklag-base",
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-samuel-ramah-death",
+    "authored-saul-endor-medium",
+    "authored-saul-gibeah-spear",
+    "authored-saul-gilboa-death",
+    "authored-saul-gilgal-amalek",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-jabesh-rescue",
+    "authored-saul-michmash-battle",
+    "authored-saul-mizpah-chosen",
+    "authored-saul-nob-massacre",
+    "authored-solomon-ezion-geber-fleet",
+    "authored-solomon-gibeon-dream",
+    "authored-solomon-gihon-anointing",
+    "authored-solomon-jerusalem-apostasy",
+    "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-david-charge",
+    "authored-solomon-jerusalem-palace",
+    "authored-solomon-jerusalem-sheba",
+    "authored-solomon-jerusalem-temple-build",
+    "authored-solomon-jerusalem-temple-dedication",
+    "authored-solomon-jerusalem-two-mothers"
+   ],
+   "fail": [],
+   "stale": [],
+   "none": [],
+   "rate": 1.0
+  },
+  {
+   "id": "generate.guide-body-build",
+   "layer": "generate",
+   "scope": "all",
+   "check": "recheck.guide_body_errors",
+   "pass": [
+    "authored-david-adullam-cave",
+    "authored-david-ark-jerusalem",
+    "authored-david-en-gedi-saul",
+    "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
+    "authored-david-gibeon-battle",
+    "authored-david-goliath-gath",
+    "authored-david-hebron-king-judah",
+    "authored-david-jerusalem-conquest",
+    "authored-david-mahanaim-exile",
+    "authored-david-nathan-covenant",
+    "authored-david-nob-priests",
+    "authored-david-ramah-samuel",
+    "authored-david-ziklag-base",
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-samuel-ramah-death",
+    "authored-saul-endor-medium",
+    "authored-saul-gibeah-spear",
+    "authored-saul-gilboa-death",
+    "authored-saul-gilgal-amalek",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-jabesh-rescue",
+    "authored-saul-michmash-battle",
+    "authored-saul-mizpah-chosen",
+    "authored-saul-nob-massacre",
+    "authored-solomon-ezion-geber-fleet",
+    "authored-solomon-gibeon-dream",
+    "authored-solomon-gihon-anointing",
+    "authored-solomon-jerusalem-apostasy",
+    "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-david-charge",
+    "authored-solomon-jerusalem-palace",
+    "authored-solomon-jerusalem-sheba",
+    "authored-solomon-jerusalem-temple-build",
+    "authored-solomon-jerusalem-temple-dedication",
+    "authored-solomon-jerusalem-two-mothers"
+   ],
+   "fail": [
+    "authored-david-returns-jerusalem"
+   ],
+   "stale": [],
+   "none": [],
+   "rate": 0.973
+  },
+  {
+   "id": "generate.dodge-clear",
+   "layer": "generate",
+   "scope": "all",
+   "check": "recheck.dodge_clear_errors",
+   "pass": [
+    "authored-david-adullam-cave",
+    "authored-david-ark-jerusalem",
+    "authored-david-en-gedi-saul",
+    "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
+    "authored-david-gibeon-battle",
+    "authored-david-goliath-gath",
+    "authored-david-hebron-king-judah",
+    "authored-david-jerusalem-conquest",
+    "authored-david-mahanaim-exile",
+    "authored-david-nathan-covenant",
+    "authored-david-nob-priests",
+    "authored-david-ramah-samuel",
+    "authored-david-returns-jerusalem",
+    "authored-david-ziklag-base",
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-samuel-ramah-death",
+    "authored-saul-endor-medium",
+    "authored-saul-gibeah-spear",
+    "authored-saul-gilboa-death",
+    "authored-saul-gilgal-amalek",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-jabesh-rescue",
+    "authored-saul-michmash-battle",
+    "authored-saul-mizpah-chosen",
+    "authored-saul-nob-massacre",
+    "authored-solomon-ezion-geber-fleet",
+    "authored-solomon-gibeon-dream",
+    "authored-solomon-gihon-anointing",
+    "authored-solomon-jerusalem-apostasy",
+    "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-david-charge",
+    "authored-solomon-jerusalem-palace",
+    "authored-solomon-jerusalem-sheba",
+    "authored-solomon-jerusalem-temple-build",
+    "authored-solomon-jerusalem-temple-dedication",
+    "authored-solomon-jerusalem-two-mothers"
+   ],
+   "fail": [],
+   "stale": [],
+   "none": [],
    "rate": 1.0
   }
  ]
