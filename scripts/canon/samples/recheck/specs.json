@@ -1,5 +1,5 @@
 {
- "rules_version": "71e7e88b3d1d",
+ "rules_version": "e09949ef99e7",
  "tokens": "venv314",
  "specs": {
   "authored-david-adullam-cave": {
@@ -11,7 +11,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-david-ark-jerusalem": {
@@ -23,7 +23,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "pass",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-david-en-gedi-saul": {
@@ -35,7 +35,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-david-gath-achish": {
@@ -47,7 +47,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-david-gibeah-harp": {
@@ -59,7 +59,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-david-gibeon-battle": {
@@ -71,7 +71,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-david-goliath-gath": {
@@ -83,7 +83,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "pass",
+   "derive.prop-in-prompt": "fail",
    "derive.512-tokens": "pass"
   },
   "authored-david-hebron-king-judah": {
@@ -95,7 +95,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "pass",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-david-jerusalem-conquest": {
@@ -107,7 +107,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "pass",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-david-mahanaim-exile": {
@@ -119,7 +119,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "pass",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-david-nathan-covenant": {
@@ -131,7 +131,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "pass",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-david-nob-priests": {
@@ -143,7 +143,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-david-ramah-samuel": {
@@ -155,7 +155,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-david-returns-jerusalem": {
@@ -167,7 +167,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-david-ziklag-base": {
@@ -179,7 +179,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-samuel-bethlehem-david-anointing": {
@@ -191,7 +191,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-samuel-ramah-death": {
@@ -203,7 +203,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-saul-endor-medium": {
@@ -215,7 +215,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-saul-gibeah-spear": {
@@ -227,7 +227,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-saul-gilboa-death": {
@@ -239,7 +239,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-saul-gilgal-amalek": {
@@ -251,7 +251,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-saul-gilgal-coronation": {
@@ -263,7 +263,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-saul-jabesh-rescue": {
@@ -275,7 +275,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-saul-michmash-battle": {
@@ -287,7 +287,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-saul-mizpah-chosen": {
@@ -299,7 +299,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-saul-nob-massacre": {
@@ -311,7 +311,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-solomon-ezion-geber-fleet": {
@@ -323,7 +323,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "fail",
    "derive.512-tokens": "pass"
   },
   "authored-solomon-gibeon-dream": {
@@ -335,7 +335,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "fail",
    "derive.512-tokens": "pass"
   },
   "authored-solomon-gihon-anointing": {
@@ -347,7 +347,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "pass",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-solomon-jerusalem-apostasy": {
@@ -359,7 +359,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-solomon-jerusalem-birth": {
@@ -371,7 +371,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "pass",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-solomon-jerusalem-david-charge": {
@@ -383,7 +383,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "fail",
    "derive.512-tokens": "pass"
   },
   "authored-solomon-jerusalem-palace": {
@@ -395,7 +395,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "fail",
    "derive.512-tokens": "pass"
   },
   "authored-solomon-jerusalem-sheba": {
@@ -407,7 +407,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "fail",
    "derive.512-tokens": "pass"
   },
   "authored-solomon-jerusalem-temple-build": {
@@ -419,7 +419,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass"
   },
   "authored-solomon-jerusalem-temple-dedication": {
@@ -431,7 +431,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "fail",
    "derive.512-tokens": "pass"
   },
   "authored-solomon-jerusalem-two-mothers": {
@@ -443,7 +443,7 @@
    "spec.cast-card-v2": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
-   "derive.clip-77-tokens": "fail",
+   "derive.prop-in-prompt": "fail",
    "derive.512-tokens": "pass"
   }
  },
@@ -462,9 +462,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침"
    ]
   },
   "authored-david-ark-jerusalem": {
@@ -486,19 +483,11 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침",
-    "S4: CLIP 77토큰 넘침"
    ]
   },
   "authored-david-gath-achish": {
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침",
-    "S4: CLIP 77토큰 넘침"
    ]
   },
   "authored-david-gibeah-harp": {
@@ -507,10 +496,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "derive.clip-77-tokens": [
-    "S2: CLIP 77토큰 넘침",
-    "S3: CLIP 77토큰 넘침"
    ]
   },
   "authored-david-gibeon-battle": {
@@ -524,11 +509,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "derive.clip-77-tokens": [
-    "S5: CLIP 77토큰 넘침",
-    "S3: CLIP 77토큰 넘침",
-    "S4: CLIP 77토큰 넘침"
    ]
   },
   "authored-david-goliath-gath": {
@@ -537,6 +517,11 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "derive.prop-in-prompt": [
+    "goliath prop '베틀채 같은 굵은 창 한 자루(손)': 영문 없음",
+    "shieldman prop '큰 방패': 영문 없음",
+    "david-boy prop '물매 — 끈 두 가닥 사이에 돌을 담는 넓은 가죽 받침': 영문 없음"
    ]
   },
   "authored-david-hebron-king-judah": {
@@ -594,26 +579,14 @@
   "authored-david-nob-priests": {
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침",
-    "S4: CLIP 77토큰 넘침"
    ]
   },
   "authored-david-ramah-samuel": {
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "derive.clip-77-tokens": [
-    "S2: CLIP 77토큰 넘침",
-    "S3: CLIP 77토큰 넘침"
    ]
   },
-  "authored-david-returns-jerusalem": {
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침"
-   ]
-  },
+  "authored-david-returns-jerusalem": {},
   "authored-david-ziklag-base": {
    "spec.whole-fields": [
     "장면.meaning: ko/en/verse 가 비어 있거나 없다",
@@ -625,10 +598,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침",
-    "S4: CLIP 77토큰 넘침"
    ]
   },
   "authored-samuel-bethlehem-david-anointing": {
@@ -642,11 +611,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "derive.clip-77-tokens": [
-    "S2: CLIP 77토큰 넘침",
-    "S3: CLIP 77토큰 넘침",
-    "S4: CLIP 77토큰 넘침"
    ]
   },
   "authored-samuel-ramah-death": {
@@ -655,9 +619,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침"
    ]
   },
   "authored-saul-endor-medium": {
@@ -671,20 +632,11 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침",
-    "S4: CLIP 77토큰 넘침",
-    "S5: CLIP 77토큰 넘침"
    ]
   },
   "authored-saul-gibeah-spear": {
    "spec.verse-elements": [
     "verse_elements 없음 — 구절 시각 요소 목록 미작성"
-   ],
-   "derive.clip-77-tokens": [
-    "S2: CLIP 77토큰 넘침",
-    "S3: CLIP 77토큰 넘침"
    ]
   },
   "authored-saul-gilboa-death": {
@@ -698,10 +650,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침",
-    "S4: CLIP 77토큰 넘침"
    ]
   },
   "authored-saul-gilgal-amalek": {
@@ -710,10 +658,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "derive.clip-77-tokens": [
-    "S2: CLIP 77토큰 넘침",
-    "S3: CLIP 77토큰 넘침"
    ]
   },
   "authored-saul-gilgal-coronation": {
@@ -722,10 +666,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "derive.clip-77-tokens": [
-    "S4: CLIP 77토큰 넘침",
-    "S5: CLIP 77토큰 넘침"
    ]
   },
   "authored-saul-jabesh-rescue": {
@@ -734,9 +674,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "derive.clip-77-tokens": [
-    "S4: CLIP 77토큰 넘침"
    ]
   },
   "authored-saul-michmash-battle": {
@@ -753,10 +690,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "derive.clip-77-tokens": [
-    "S4: CLIP 77토큰 넘침",
-    "S5: CLIP 77토큰 넘침"
    ]
   },
   "authored-saul-mizpah-chosen": {
@@ -773,10 +706,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침",
-    "S4: CLIP 77토큰 넘침"
    ]
   },
   "authored-saul-nob-massacre": {
@@ -785,11 +714,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침",
-    "S4: CLIP 77토큰 넘침",
-    "S5: CLIP 77토큰 넘침"
    ]
   },
   "authored-solomon-ezion-geber-fleet": {
@@ -807,8 +731,8 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침"
+   "derive.prop-in-prompt": [
+    "solomon-prime prop '겉옷자락': 영문 없음"
    ]
   },
   "authored-solomon-gibeon-dream": {
@@ -826,8 +750,8 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침"
+   "derive.prop-in-prompt": [
+    "solomon prop '겉옷자락': 영문 없음"
    ]
   },
   "authored-solomon-gihon-anointing": {
@@ -849,9 +773,6 @@
   "authored-solomon-jerusalem-apostasy": {
    "spec.verse-elements": [
     "verse_elements 없음 — 구절 시각 요소 목록 미작성"
-   ],
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침"
    ]
   },
   "authored-solomon-jerusalem-birth": {
@@ -885,9 +806,9 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침",
-    "S4: CLIP 77토큰 넘침"
+   "derive.prop-in-prompt": [
+    "david-old prop '이불': 영문 없음",
+    "solomon prop '허리띠': 영문 없음"
    ]
   },
   "authored-solomon-jerusalem-palace": {
@@ -905,8 +826,8 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침"
+   "derive.prop-in-prompt": [
+    "solomon-prime prop '겉옷자락': 영문 없음"
    ]
   },
   "authored-solomon-jerusalem-sheba": {
@@ -924,17 +845,14 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침",
-    "S4: CLIP 77토큰 넘침"
+   "derive.prop-in-prompt": [
+    "solomon-prime prop '왕홀': 영문 없음",
+    "sheba-queen prop '향품 상자': 영문 없음"
    ]
   },
   "authored-solomon-jerusalem-temple-build": {
    "spec.verse-elements": [
     "verse_elements 없음 — 구절 시각 요소 목록 미작성"
-   ],
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침"
    ]
   },
   "authored-solomon-jerusalem-temple-dedication": {
@@ -952,8 +870,8 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침"
+   "derive.prop-in-prompt": [
+    "solomon prop '겉옷자락': 영문 없음"
    ]
   },
   "authored-solomon-jerusalem-two-mothers": {
@@ -971,10 +889,10 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "derive.clip-77-tokens": [
-    "S3: CLIP 77토큰 넘침",
-    "S4: CLIP 77토큰 넘침",
-    "S5: CLIP 77토큰 넘침"
+   "derive.prop-in-prompt": [
+    "solomon prop '왕홀': 영문 없음",
+    "mother-a prop '아기': 영문 없음",
+    "mother-b prop '겉옷자락': 영문 없음"
    ]
   }
  },
@@ -1375,26 +1293,21 @@
    "rate": 1.0
   },
   {
-   "id": "derive.clip-77-tokens",
+   "id": "derive.prop-in-prompt",
    "layer": "derive",
    "scope": "all",
-   "check": "derive_scene.stages",
+   "check": "check_scenes.prop_in_prompt_errors",
    "pass": [
-    "authored-david-ark-jerusalem",
-    "authored-david-goliath-gath",
-    "authored-david-hebron-king-judah",
-    "authored-david-jerusalem-conquest",
-    "authored-david-mahanaim-exile",
-    "authored-david-nathan-covenant",
-    "authored-solomon-gihon-anointing",
-    "authored-solomon-jerusalem-birth"
-   ],
-   "fail": [
     "authored-david-adullam-cave",
+    "authored-david-ark-jerusalem",
     "authored-david-en-gedi-saul",
     "authored-david-gath-achish",
     "authored-david-gibeah-harp",
     "authored-david-gibeon-battle",
+    "authored-david-hebron-king-judah",
+    "authored-david-jerusalem-conquest",
+    "authored-david-mahanaim-exile",
+    "authored-david-nathan-covenant",
     "authored-david-nob-priests",
     "authored-david-ramah-samuel",
     "authored-david-returns-jerusalem",
@@ -1410,19 +1323,24 @@
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
     "authored-saul-nob-massacre",
+    "authored-solomon-gihon-anointing",
+    "authored-solomon-jerusalem-apostasy",
+    "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-temple-build"
+   ],
+   "fail": [
+    "authored-david-goliath-gath",
     "authored-solomon-ezion-geber-fleet",
     "authored-solomon-gibeon-dream",
-    "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
-    "authored-solomon-jerusalem-temple-build",
     "authored-solomon-jerusalem-temple-dedication",
     "authored-solomon-jerusalem-two-mothers"
    ],
    "stale": [],
    "none": [],
-   "rate": 0.2162
+   "rate": 0.7838
   },
   {
    "id": "derive.512-tokens",

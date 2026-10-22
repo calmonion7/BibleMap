@@ -113,12 +113,14 @@ SPEC_CHECKS = {
     "derive_scene.head_text": lambda spec, ctx: ["파생 프롬프트에 「bare head」"] if "bare head" in ds.route_prompt(spec).lower() else [],
     "derive_scene.stages": _tok("clip_over"),
     "check_scenes.whole_prompt_overflow": _tok("z"),
+    "check_scenes.prop_in_prompt_errors": lambda spec, ctx: check_scenes.prop_in_prompt_errors(spec, ds.route_prompt(spec)),
 }
 
 
 def spec_rules(L):
-    """원장에서 명세에 돌릴 규칙 — layer spec|derive이고 check가 함수 경로."""
-    rs = [r for r in L["rules"] if r["layer"] in ("spec", "derive") and r["check"] not in ("human", "todo") and not r["check"].startswith("test:")]
+    """원장에서 명세에 돌릴 규칙 — layer spec|derive이고 check가 함수 경로. 폐기(retired) 규칙은 뺀다(통과율에서도)."""
+    rs = [r for r in L["rules"] if r["layer"] in ("spec", "derive") and r["check"] not in ("human", "todo")
+          and not r["check"].startswith("test:") and not r.get("retired")]
     unknown = [r["id"] for r in rs if r["check"] not in SPEC_CHECKS]
     if unknown:
         raise SystemExit(f"[Recheck] 원장 함수 규칙에 실행기가 없다: {unknown}")
@@ -408,6 +410,9 @@ def specs_md(out, rules):
         lines.append(f"| `{r['id']}` | {r['layer']} | {r['scope']} | {len(r['pass'])} | {len(r['fail'])} | {len(r['none'])} | {rate} |")
     full = [s for s in ids if all(v != "fail" for v in out["specs"][s].values())]
     cells = [v for t in out["specs"].values() for v in t.values() if v != "none"]
+    retired = [r for r in ledger()["rules"] if r.get("retired")]
+    if retired:
+        lines += ["", "폐기 규칙(재검·통과율에서 뺌): " + " · ".join(f"`{r['id']}` — {r['retired']}" for r in retired)]
     lines += ["", f"**전 규칙 통과 명세 {len(full)}/{len(ids)}** · 칸 통과 {sum(v == 'pass' for v in cells)}/{len(cells)}"
               f" ({sum(v == 'pass' for v in cells) / len(cells) * 100:.0f}%)", ""]
     head = [r["id"].split(".", 1)[1] for r in rules]

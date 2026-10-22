@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "71e7e88b3d1d",
+  "version": "e09949ef99e7",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -43,7 +43,11 @@
      "note": "「bare head」는 민머리를 그린다 — 파생 프롬프트에 그 낱말이 없어야 한다"},
     {"id": "derive.clip-77-tokens", "layer": "derive", "scope": "all", "check": "derive_scene.stages",
      "source": "notes/PROMPTING.md 1 · derive_scene --check", "since": "2026-09-04 task 330",
-     "note": "판 단계 긍정 프롬프트 CLIP 77토큰 안(건너뜀 단계 제외) — 토크나이저가 없으면 none. 단계별(SDXL 판) 생성 경로 전용: 지금 생성 경로(Z-Image 한 장 · route_prompt)는 derive.512-tokens가 잰다 — 이 규칙을 계속 둘지(폐기·범위 축소)는 사람 결정"},
+     "note": "판 단계 긍정 프롬프트 CLIP 77토큰 안(건너뜀 단계 제외) — 토크나이저가 없으면 none. 단계별(SDXL 판) 생성 경로 전용: 지금 생성 경로(Z-Image 한 장 · route_prompt)는 derive.512-tokens가 잰다 — 이 규칙을 계속 둘지(폐기·범위 축소)는 사람 결정",
+     "retired": "2026-10-22 사람 결정 — SDXL 단계별 경로 전용, 지금 생성 경로는 derive.512-tokens가 잼"},
+    {"id": "derive.prop-in-prompt", "layer": "derive", "scope": "all", "check": "check_scenes.prop_in_prompt_errors",
+     "source": "회고 .forge/retro/261022-183913-spec-no-compromise-rewrite.md · task 396", "since": "2026-10-22 task 396",
+     "note": "인물 prop 칸의 지물이 파생 프롬프트(route_prompt)에 실림 — 한 장 모드 파생은 prop 칸을 잇지 않아 지물은 몸짓·관계 문구에 써야 그려진다. 핵심 낱말 = 영문 머리 명사, 영문 없는(한국어뿐) prop은 실패"},
     {"id": "generate.params-one-place", "layer": "generate", "scope": "all", "check": "test:backend.scripts.validate_canon_pipeline",
      "source": "ADR 260823-221839 · scripts/check.sh", "since": "2026-08-23",
      "note": "생성 상수는 params.py 한 곳 — 배포 게이트가 돌림(명세 단위 아님)"},

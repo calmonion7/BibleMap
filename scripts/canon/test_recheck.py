@@ -49,6 +49,34 @@ class BannedWords(unittest.TestCase):
         self.assertEqual(recheck.banned_words(s), [])
 
 
+class PropInPrompt(unittest.TestCase):
+    def test_korean_only_prop_fails_english_prop_carried_passes(self):
+        """한국어뿐인 prop은 영문이 없어 실패, 영문 지물이 파생 프롬프트에 있으면 통과 — 「none」은 지물 없음."""
+        import check_scenes
+        s = spec()
+        s["figures"] = [{"cast": "goliath", "prop": "큰 방패"}, {"cast": "saul", "prop": "a spear"},
+                        {"cast": "samuel", "prop": "a torn robe corner"}, {"cast": "david", "prop": "none"}]
+        errs = check_scenes.prop_in_prompt_errors(s, "saul holding a spear, the hem of samuel's robe")
+        self.assertEqual(len(errs), 1)
+        self.assertIn("goliath", errs[0])
+        self.assertIn("영문 없음", errs[0])
+        self.assertTrue(check_scenes.prop_in_prompt_errors(s | {"figures": s["figures"][1:2]}, "saul standing"))
+
+    def test_rule_wired_for_all_specs(self):
+        r = next(x for x in recheck.ledger()["rules"] if x["id"] == "derive.prop-in-prompt")
+        self.assertEqual(r["scope"], "all")
+        self.assertIn(r, recheck.spec_rules(recheck.ledger()))
+
+
+class Retired(unittest.TestCase):
+    def test_retired_rule_left_out_of_recheck(self):
+        L = copy.deepcopy(recheck.ledger())
+        ids = {r["id"] for r in recheck.spec_rules(L)}
+        self.assertNotIn("derive.clip-77-tokens", ids)
+        L["rules"][0]["retired"] = "시험"
+        self.assertNotIn(L["rules"][0]["id"], {r["id"] for r in recheck.spec_rules(L)})
+
+
 class Hashes(unittest.TestCase):
     def test_one_char_changes_spec_hash(self):
         a = spec()

@@ -204,6 +204,31 @@ def verse_element_errors(spec, prompt, verses=None):
     return errs
 
 
+PROP_TAIL = ("of", "in", "on", "with", "at", "for", "from", "to", "under", "over", "across", "held", "slung", "hanging")
+PROP_PART = ("corner", "fold", "edge", "hem", "end", "tip")   # 「robe corner」 — 부분 낱말이면 앞 명사(옷)가 핵심
+
+
+def prop_in_prompt_errors(spec, prompt):
+    """지물이 파생 프롬프트에 실렸나(task 396) → 오류 목록. prompt = route_prompt.
+    한 장 모드 파생은 prop 칸을 잇지 않아 지물은 다른 칸 문구에 있어야 그려진다(394 회고).
+    핵심 낱말 = 영문 명사구의 머리 명사(전치사·분사 앞 마지막 낱말, 복수 s 허용). 영문이 없으면 실패."""
+    errs, low = [], prompt.lower()
+    for f in spec["figures"]:
+        p = f.get("prop")
+        if not p or p == "none":
+            continue
+        en = p.get("en", "") if isinstance(p, dict) else p
+        words = re.findall(r"[a-z]+", en.lower())
+        if not words:
+            errs.append(f"{f['cast']} prop {en!r}: 영문 없음")
+            continue
+        cut = next((i for i, w in enumerate(words) if i and w in PROP_TAIL), len(words))
+        head = words[cut - 2] if cut >= 2 and words[cut - 1] in PROP_PART else words[cut - 1]
+        if not re.search(rf"\b{head}(e?s)?\b", low):
+            errs.append(f"{f['cast']} prop {en!r}: 「{head}」가 프롬프트에 없음")
+    return errs
+
+
 def zimage_tokens():
     """→ 프롬프트 → 채팅 틀 포함 토큰 수. ZImagePipeline.encode_prompt와 같은 틀(enable_thinking=True)."""
     from huggingface_hub import snapshot_download

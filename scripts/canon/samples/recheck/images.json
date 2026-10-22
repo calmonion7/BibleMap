@@ -1,5 +1,5 @@
 {
- "rules_version": "71e7e88b3d1d",
+ "rules_version": "e09949ef99e7",
  "images": {
   "authored-david-gath-achish": {
    "image": "/Users/calmonion/Project/BibleMap/scripts/canon/samples/local-edit/approved-authored-david-gath-achish.png",
@@ -21,7 +21,7 @@
     "spec.cast-card-v2": "pass",
     "derive.no-hand-prompt": "stale",
     "derive.no-bare-head": "pass",
-    "derive.clip-77-tokens": "stale",
+    "derive.prop-in-prompt": "pass",
     "derive.512-tokens": "pass"
    },
    "why": {
@@ -30,7 +30,6 @@
     "judge.style": "화풍 판정자 조건부(판정자 재현성) — 승인 그림 재검에 아직 안 씀",
     "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
     "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다",
-    "derive.clip-77-tokens": "명세가 지금 규칙을 어김: S3: CLIP 77토큰 넘침; S4: CLIP 77토큰 넘침",
     "derive.no-hand-prompt": "생성 때 프롬프트(plain-words r2 s5 + 국소 편집)가 지금 명세의 파생과 다름 — 생성 때 명세 기록 없음, 지금 명세의 해시"
    },
    "j1": {
@@ -113,7 +112,7 @@
     "spec.cast-card-v2": "pass",
     "derive.no-hand-prompt": "pass",
     "derive.no-bare-head": "pass",
-    "derive.clip-77-tokens": "stale",
+    "derive.prop-in-prompt": "pass",
     "derive.512-tokens": "pass"
    },
    "why": {
@@ -122,8 +121,7 @@
     "judge.style": "화풍 판정자 조건부(판정자 재현성) — 승인 그림 재검에 아직 안 씀",
     "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
     "spec.verse-elements": "명세가 지금 규칙을 어김: verse_elements 없음 — 구절 시각 요소 목록 미작성",
-    "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다",
-    "derive.clip-77-tokens": "명세가 지금 규칙을 어김: S2: CLIP 77토큰 넘침; S3: CLIP 77토큰 넘침"
+    "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    },
    "j1": {
     "v2": {
@@ -205,15 +203,14 @@
     "spec.cast-card-v2": "pass",
     "derive.no-hand-prompt": "pass",
     "derive.no-bare-head": "pass",
-    "derive.clip-77-tokens": "stale",
+    "derive.prop-in-prompt": "pass",
     "derive.512-tokens": "pass"
    },
    "why": {
     "judge.j1-items": "restyle-r6 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이번 범위 밖",
     "judge.plausibility-adopted": "틀림 p.boarding",
     "judge.style": "화풍 판정자 조건부(판정자 재현성) — 승인 그림 재검에 아직 안 씀",
-    "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
-    "derive.clip-77-tokens": "명세가 지금 규칙을 어김: S3: CLIP 77토큰 넘침"
+    "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전"
    },
    "j1": null,
    "plausibility": {
@@ -314,7 +311,7 @@
     "spec.cast-card-v2": "pass",
     "derive.no-hand-prompt": "stale",
     "derive.no-bare-head": "pass",
-    "derive.clip-77-tokens": "stale",
+    "derive.prop-in-prompt": "pass",
     "derive.512-tokens": "pass"
    },
    "why": {
@@ -324,7 +321,6 @@
     "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
     "spec.whole-fields": "명세가 지금 규칙을 어김: 장면.meaning: ko/en/verse 가 비어 있거나 없다; 장면.relation: ko/en/verse 가 비어 있거나 없다; 장면.whole_background: ko/en/verse 가 비어 있거나 없다; samuel.expression: ko/en/verse 가 비어 있거나 없다; samuel.gesture: ko/en/verse 가 비어 있거",
     "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다",
-    "derive.clip-77-tokens": "명세가 지금 규칙을 어김: S2: CLIP 77토큰 넘침; S3: CLIP 77토큰 넘침; S4: CLIP 77토큰 넘침",
     "derive.no-hand-prompt": "생성 때 프롬프트(plain-words r2 s42 + 국소 편집)가 지금 명세의 파생과 다름 — 생성 때 명세 기록 없음, 지금 명세의 해시"
    },
    "j1": {
@@ -415,7 +411,7 @@
     "spec.cast-card-v2": "pass",
     "derive.no-hand-prompt": "pass",
     "derive.no-bare-head": "pass",
-    "derive.clip-77-tokens": "stale",
+    "derive.prop-in-prompt": "pass",
     "derive.512-tokens": "pass"
    },
    "why": {
@@ -424,8 +420,7 @@
     "judge.style": "화풍 판정자 조건부(판정자 재현성) — 승인 그림 재검에 아직 안 씀",
     "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
     "spec.verse-elements": "명세가 지금 규칙을 어김: verse_elements 없음 — 구절 시각 요소 목록 미작성",
-    "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다",
-    "derive.clip-77-tokens": "명세가 지금 규칙을 어김: S3: CLIP 77토큰 넘침"
+    "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    },
    "j1": {
     "v2": {
@@ -505,7 +500,7 @@
     "spec.cast-card-v2": "stale",
     "derive.no-hand-prompt": "stale",
     "derive.no-bare-head": "stale",
-    "derive.clip-77-tokens": "stale",
+    "derive.prop-in-prompt": "stale",
     "derive.512-tokens": "stale"
    },
    "why": {
@@ -521,7 +516,7 @@
     "spec.cast-card-v2": "그림 뒤 명세가 바뀜",
     "derive.no-hand-prompt": "그림 뒤 명세가 바뀜",
     "derive.no-bare-head": "그림 뒤 명세가 바뀜",
-    "derive.clip-77-tokens": "그림 뒤 명세가 바뀜",
+    "derive.prop-in-prompt": "그림 뒤 명세가 바뀜",
     "derive.512-tokens": "그림 뒤 명세가 바뀜"
    },
    "j1": null,
@@ -547,7 +542,7 @@
     "spec.cast-card-v2": "pass",
     "derive.no-hand-prompt": "pass",
     "derive.no-bare-head": "pass",
-    "derive.clip-77-tokens": "stale",
+    "derive.prop-in-prompt": "pass",
     "derive.512-tokens": "pass"
    },
    "why": {
@@ -556,8 +551,7 @@
     "judge.style": "화풍 판정자 조건부(판정자 재현성) — 승인 그림 재검에 아직 안 씀",
     "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
     "spec.verse-elements": "명세가 지금 규칙을 어김: verse_elements 없음 — 구절 시각 요소 목록 미작성",
-    "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다",
-    "derive.clip-77-tokens": "명세가 지금 규칙을 어김: S2: CLIP 77토큰 넘침; S3: CLIP 77토큰 넘침"
+    "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    },
    "j1": {
     "v2": {
@@ -639,7 +633,7 @@
     "spec.cast-card-v2": "pass",
     "derive.no-hand-prompt": "pass",
     "derive.no-bare-head": "pass",
-    "derive.clip-77-tokens": "stale",
+    "derive.prop-in-prompt": "pass",
     "derive.512-tokens": "pass"
    },
    "why": {
@@ -648,8 +642,7 @@
     "judge.style": "화풍 판정자 조건부(판정자 재현성) — 승인 그림 재검에 아직 안 씀",
     "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
     "spec.verse-elements": "명세가 지금 규칙을 어김: verse_elements 없음 — 구절 시각 요소 목록 미작성",
-    "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다",
-    "derive.clip-77-tokens": "명세가 지금 규칙을 어김: S4: CLIP 77토큰 넘침; S5: CLIP 77토큰 넘침"
+    "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    },
    "j1": null,
    "plausibility": null
@@ -674,7 +667,7 @@
     "spec.cast-card-v2": "pass",
     "derive.no-hand-prompt": "pass",
     "derive.no-bare-head": "pass",
-    "derive.clip-77-tokens": "stale",
+    "derive.prop-in-prompt": "pass",
     "derive.512-tokens": "pass"
    },
    "why": {
@@ -683,8 +676,7 @@
     "judge.style": "화풍 판정자 조건부(판정자 재현성) — 승인 그림 재검에 아직 안 씀",
     "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
     "spec.verse-elements": "명세가 지금 규칙을 어김: verse_elements 없음 — 구절 시각 요소 목록 미작성",
-    "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다",
-    "derive.clip-77-tokens": "명세가 지금 규칙을 어김: S4: CLIP 77토큰 넘침"
+    "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    },
    "j1": {
     "v2": {
@@ -764,7 +756,7 @@
     "spec.cast-card-v2": "pass",
     "derive.no-hand-prompt": "pass",
     "derive.no-bare-head": "pass",
-    "derive.clip-77-tokens": "stale",
+    "derive.prop-in-prompt": "pass",
     "derive.512-tokens": "pass"
    },
    "why": {
@@ -774,8 +766,7 @@
     "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
     "spec.whole-fields": "명세가 지금 규칙을 어김: 장면.meaning: ko/en/verse 가 비어 있거나 없다; 장면.relation: ko/en/verse 가 비어 있거나 없다; 장면.whole_background: ko/en/verse 가 비어 있거나 없다; saul.expression: ko/en/verse 가 비어 있거나 없다; saul.gesture: ko/en/verse 가 비어 있거나 없다",
     "spec.verse-elements": "명세가 지금 규칙을 어김: verse_elements 없음 — 구절 시각 요소 목록 미작성",
-    "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다",
-    "derive.clip-77-tokens": "명세가 지금 규칙을 어김: S4: CLIP 77토큰 넘침; S5: CLIP 77토큰 넘침"
+    "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    },
    "j1": {
     "v2": {
@@ -861,7 +852,7 @@
     "spec.cast-card-v2": "pass",
     "derive.no-hand-prompt": "pass",
     "derive.no-bare-head": "pass",
-    "derive.clip-77-tokens": "stale",
+    "derive.prop-in-prompt": "pass",
     "derive.512-tokens": "pass"
    },
    "why": {
@@ -871,8 +862,7 @@
     "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
     "spec.whole-fields": "명세가 지금 규칙을 어김: 장면.meaning: ko/en/verse 가 비어 있거나 없다; 장면.relation: ko/en/verse 가 비어 있거나 없다; 장면.whole_background: ko/en/verse 가 비어 있거나 없다; samuel.expression: ko/en/verse 가 비어 있거나 없다; samuel.gesture: ko/en/verse 가 비어 있거",
     "spec.verse-elements": "명세가 지금 규칙을 어김: verse_elements 없음 — 구절 시각 요소 목록 미작성",
-    "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다",
-    "derive.clip-77-tokens": "명세가 지금 규칙을 어김: S3: CLIP 77토큰 넘침; S4: CLIP 77토큰 넘침"
+    "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    },
    "j1": {
     "v2": {
@@ -956,7 +946,7 @@
     "spec.cast-card-v2": "pass",
     "derive.no-hand-prompt": "pass",
     "derive.no-bare-head": "pass",
-    "derive.clip-77-tokens": "stale",
+    "derive.prop-in-prompt": "pass",
     "derive.512-tokens": "pass"
    },
    "why": {
@@ -965,8 +955,7 @@
     "judge.style": "화풍 판정자 조건부(판정자 재현성) — 승인 그림 재검에 아직 안 씀",
     "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
     "spec.verse-elements": "명세가 지금 규칙을 어김: verse_elements 없음 — 구절 시각 요소 목록 미작성",
-    "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다",
-    "derive.clip-77-tokens": "명세가 지금 규칙을 어김: S3: CLIP 77토큰 넘침; S4: CLIP 77토큰 넘침; S5: CLIP 77토큰 넘침"
+    "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    },
    "j1": {
     "v2": {
@@ -1237,19 +1226,16 @@
    "rate": 0.9167
   },
   {
-   "id": "derive.clip-77-tokens",
+   "id": "derive.prop-in-prompt",
    "layer": "derive",
    "scope": "all",
-   "check": "derive_scene.stages",
-   "pass": [],
-   "fail": [],
-   "stale": [
+   "check": "check_scenes.prop_in_prompt_errors",
+   "pass": [
     "authored-david-gath-achish",
     "authored-david-gibeah-harp",
     "authored-david-returns-jerusalem",
     "authored-samuel-bethlehem-david-anointing",
     "authored-samuel-ramah-death",
-    "authored-saul-gibeah-spear",
     "authored-saul-gilgal-amalek",
     "authored-saul-gilgal-coronation",
     "authored-saul-jabesh-rescue",
@@ -1257,8 +1243,12 @@
     "authored-saul-mizpah-chosen",
     "authored-saul-nob-massacre"
    ],
+   "fail": [],
+   "stale": [
+    "authored-saul-gibeah-spear"
+   ],
    "none": [],
-   "rate": 0.0
+   "rate": 0.9167
   },
   {
    "id": "derive.512-tokens",
