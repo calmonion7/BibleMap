@@ -35,7 +35,9 @@ QS = {"S": FX["style"], "E": FX["elements"]}
 
 
 def img(s):
-    return os.path.join(OUT, f"s{s}.png")
+    """그림 자리 — 고정 절 images_from(다른 시도 이름)이 있으면 그 시도 그림을 다시 묻는다(task 402 b0: 새 문항이 사람 거절 그림을 잡는가)."""
+    src = os.path.join(os.path.dirname(OUT), FX["images_from"]) if FX.get("images_from") else OUT
+    return os.path.join(src, f"s{s}.png")
 
 
 def load():
