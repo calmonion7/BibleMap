@@ -345,3 +345,9 @@ LORA_V3_BODY_SEEDS = (11, 42)
 LORA_V3_FAR = {"stand": 0.38, "kneel": 0.30}   # 원경(빈 바탕 전신만 — 걷기는 풍경 사각형이 액자처럼 붙어 뺌) = 전신을 화면 높이의 이 비율로 줄여 1216×640 빈 바탕에 놓음(두 시드씩 → 4장)
 LORA_V3_STEPS = 300
 LORA_V3_SCENE_SEEDS = REF_EDIT_SEEDS
+# task 393 얼굴 보정(사람 메모 「화질이 안좋음」 두 번 — 장면 머리 95~139px): 머리 둘레 정사각(머리 상자 긴 변 × MARGIN)을 SIZE로 키워
+# 그 갈래의 생성 방식(LoRA 판)으로 img2img STRENGTH — 갈래마다 같은 처리, 비교 기준 머리도 C 방식으로
+FACE_DETAIL_MARGIN = 2.4
+FACE_DETAIL_SIZE = 768
+FACE_DETAIL_STRENGTH = 0.3   # 시험(0.3·0.45 × 3머리): 0.45는 옷·머리털 결까지 바뀜 → 0.3
+FACE_DETAIL_TRIAL = (0.3, 0.45)

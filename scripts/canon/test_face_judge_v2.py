@@ -15,7 +15,7 @@ HAVE = os.path.exists(V.SCENE) and os.path.exists(V.HEADS)
 
 @unittest.skipUnless(HAVE, "기브아 LoRA v3 그림 없음")
 class MatchedQuality(unittest.TestCase):
-    """정본을 크롭 화소로 줄였다 키우면 흐림이 크롭과 같은 단계여야 한다 — v1 편향(선명한 정본 대 흐린 크롭)을 없애는 것이 이 화면의 뜻."""
+    """화질 맞춤 정본은 흐림이 판정할 머리와 같은 단계여야 한다 — v1 편향(선명한 정본 대 흐린 크롭)을 없애는 것이 이 화면의 뜻."""
 
     @classmethod
     def setUpClass(cls):
@@ -26,9 +26,9 @@ class MatchedQuality(unittest.TestCase):
             for s in params.LORA_V3_SCENE_SEEDS:
                 im = Image.open(os.path.join(V.SCENE, f"{arm}-s{s}.png"))
                 for w, b in boxes[f"{arm}-s{s}"].items():
-                    c, side = V.crop(im, b)
+                    c, side = V.detail_crop(f"{arm}-s{s}-{w}", im, b)
                     h = V.hf(V.up(c))
-                    m = V.matched(canon[w], side)
+                    m = V.matched_to(canon[w], h)[0]
                     cls.matched.append(V.hf(m) / h)
                     cls.raw.append(V.hf(V.up(canon[w].convert("RGB").resize((V.SIDE, V.SIDE), Image.LANCZOS))) / h)
                     assert m.width == V.up(c).width == V.SIDE
