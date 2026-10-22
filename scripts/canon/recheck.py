@@ -137,6 +137,7 @@ def guide_body_errors(spec):
 
 
 HEAD_BAND = {"person_dodge": 0.13, "person_duck": 0.18}   # make_guide 피하는 꼴 머리 원 지름 = 키 × 이 값
+NEAR_MISS = 0.05   # b3: 물체 아래끝이 머리 띠 위끝에서 이만큼(화면 높이 비율) 안 — 아슬아슬한 빗나감
 
 
 def dodge_clear_errors(spec):
@@ -151,9 +152,11 @@ def dodge_clear_errors(spec):
         x0, y0, x1, y1 = R[d]
         top, bot = y0, y0 + (y1 - y0) * HEAD_BAND[sh[d]]
         for o in objs:
-            oy0, oy1 = R[o][1], R[o][3]
+            ox0, oy0, ox1, oy1 = R[o]
             if oy0 < bot and oy1 > top:
                 out.append(f"{o} 세로 {oy0}~{oy1}이 {d} 머리 띠 {top:.3f}~{bot:.3f}와 겹침 — 피한 사람에게 곧장 날아가는 꼴")
+            elif top - oy1 > NEAR_MISS or ox0 > x1:   # b3: 한참 위로 지나거나 그 사람 앞에서 끝나면 「겨누지도 않음」
+                out.append(f"{o}이 {d} 머리 바로 위(띠 위쪽 {NEAR_MISS} 안)를 지나 그 위까지 오지 않음 — 빗나감이 아니라 겨누지 않은 꼴")
     return out
 
 

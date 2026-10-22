@@ -235,6 +235,13 @@ class DodgeClear(unittest.TestCase):
     def test_gibeah_passes(self):
         self.assertEqual(recheck.dodge_clear_errors(gibeah()), [])
 
+    def test_object_far_above_fails(self):
+        """b3: 창이 한참 위로 지나면 「겨누지도 않음」 — 피함은 아슬아슬한 빗나감이어야."""
+        s = gibeah()
+        y0 = s["regions"]["david-youth"][1]
+        s["regions"]["spear"] = [0.09, y0 - 0.2, 0.34, y0 - 0.17]
+        self.assertEqual(len(recheck.dodge_clear_errors(s)), 1)
+
 
 class GuideCostumeLegs(unittest.TestCase):
     """generate.guide-costume-legs — 무릎 길이 차림이면 가이드 꼴에 무릎 아래 다리."""
