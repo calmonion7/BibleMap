@@ -92,10 +92,22 @@ ARMS = {"C": None, "V2": "v2", "V3": "v3"}
 JOBS = os.path.join(SCENE_OUT, "_jobs.json")
 
 
+def scene_prompt(loras):
+    """경로 문구(route_prompt — 기브아는 판 경로라 plate_whole_prompt, 368 바탕과 같은 문구)에서 LoRA 인물의 cast 서술 앞에만 트리거 낱말."""
+    import derive_scene as ds
+    spec = ds.load(SCENE)
+    p = ds.route_prompt(spec)
+    for f in spec["figures"]:
+        if f["cast"] in loras:
+            d = ds.cast_describe(ds._cast_in_scene(f))
+            assert p.count(d) == 1, (f["cast"], p.count(d))
+            p = p.replace(d, f"{params.LORA_SHEET_TRIGGER[f['cast']]}, {d}")
+    return p
+
+
 def scene_plan():
-    import gen_lora_scene as gls
     whos = list(params.LORA_V3_WHO)
-    js = [{"arm": arm, "ver": ver, "seed": s, "prompt": gls.prompt(SCENE, whos if ver else []),
+    js = [{"arm": arm, "ver": ver, "seed": s, "prompt": scene_prompt(whos if ver else []),
            "out": os.path.join(SCENE_OUT, f"{arm}-s{s}.png")} for arm, ver in ARMS.items() for s in params.LORA_V3_SCENE_SEEDS]
     js = [j for j in js if not os.path.exists(j["out"])]
     os.makedirs(SCENE_OUT, exist_ok=True)
