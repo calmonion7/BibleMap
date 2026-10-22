@@ -55,6 +55,14 @@ class Scripture(unittest.TestCase):
         self.assertIn("<b>", t)
         self.assertIn("판정 face-judge-v2", t)
 
+    def test_a_screen_same_size(self):
+        """문항 A는 정본 두 장과 판정할 머리를 같은 칸 크기로 — 큰 칸(.main)에 머리만 띄우지 않는다."""
+        t = V.page([], V.scripture())
+        render = t[t.index("function render()"):t.index("function done()")]
+        self.assertIn('figure class="judge"', render)
+        self.assertIn('q.id.startsWith("view") || q.id.startsWith("A:") ? ""', render)
+        self.assertIn("width: calc(50% - 4px)", t)
+
 
 if __name__ == "__main__":
     unittest.main()

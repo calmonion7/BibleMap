@@ -153,6 +153,15 @@ def page(qs, verses):
     t = t.replace('const cap = q.refs.length > 1 ? ["정본 정면", "정본 3/4 측면"] : ["정본"];', "const cap = q.caps;")
     t = t.replace("<h2>${q.q}</h2>", "<div class=\"verse\" aria-label=\"장면 구절 삼상 18:6-11\">${VERSE}</div>\n    <h2>${q.q}</h2>")
     t = t.replace('`<figure><img src="${r}"', '`<figure${q.refs.length === 1 ? \' class="one"\' : ""}><img src="${r}"')
+    # 문항 A: 정본 두 장과 판정할 머리를 같은 크기로(사람 메모 「그림을 크게 해서 그런가」 — 머리만 2배로 띄우면 같은 선명도도 흐려 보인다)
+    t = t.replace('<div class="refs">', '<div class="refs${q.id.startsWith("A:") ? " a" : ""}">')
+    t = t.replace('    ${q.id.startsWith("view") ? `<figure><img src="${q.img}"',
+                  '    ${q.id.startsWith("A:") ? `<figure class="judge"><img src="${q.img}" alt="판정할 머리"><figcaption>판정할 머리</figcaption></figure>` : ""}\n'
+                  '    ${q.id.startsWith("view") ? `<figure><img src="${q.img}"')
+    t = t.replace('${q.id.startsWith("view") ? "" : `<div class="main', '${q.id.startsWith("view") || q.id.startsWith("A:") ? "" : `<div class="main')
+    t = t.replace(".refs figure.one {", ".refs.a { display: grid; grid-template-columns: 1fr 1fr }\n"
+                  ".refs.a figure.judge { grid-column: 1 / -1; justify-self: center; width: calc(50% - 4px) }\n"
+                  ".refs.a figure.judge img { border: 2px solid var(--accent) }\n.refs figure.one {")
     t = t.replace("const ans = {};", "const VERSE = __VERSE__;\nconst IMGS = __IMGS__;\n"
                   "for (const q of QS) { q.img = IMGS[q.img] || q.img; q.refs = q.refs.map(r => IMGS[r] || r); }\nconst ans = {};")
     html = "<p class=\"r\">삼상 18:6-11 (개역한글)</p>" + "".join(
