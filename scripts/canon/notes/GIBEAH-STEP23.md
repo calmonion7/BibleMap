@@ -758,3 +758,12 @@ a5 + 창길을 다윗 머리 위로(`guide-a6.png`) + 숙여 비킴 문구. 문�
 
 - 후보 화면(비공개 Artifact, 폰): https://claude.ai/artifact/CPxYxta7rSzz8ryWNDu5RM — 블라인드 좌우 s42·s7(a6 기계 통과 둘) · 접힌 칸에 a6 8장(불통과 6 표시)·옛 승인 s5(참고) · 원문 삼상 18:6-11, 18:10-11 굵게 · `check_cand_page.py` 통과.
 - 사람 답 → `samples/gibeah-step23/pick-verdict.txt` → `python3 batch/gibeah_redraw.py record samples/gibeah-step23/pick-verdict.txt --try a6`(고르면 approved.final = night-pick 바탕, 출처 자동) · 「둘 다 아님」이면 메모를 단계(①명세 · ②③문구·가이드)로 나눠 규칙 후보로.
+
+### 사람 판정 (2026-10-23, 대화로 받음 — `samples/gibeah-step23/pick-verdict.txt`)
+
+- 답: **둘 다 아님** · 메모 없음 · 쉼 뺀 0.08분(벽시계 2.7분).
+
+판정: 보류
+
+- 옛 승인(night-pick s5, 옛 명세) 그대로 — 재검 「낡음」 유지. 기계 통과 두 장(s42·s7)이 사람 기준을 못 넘음 = **기계 거르기 문항 밖의 결함**이 있다는 뜻(단계 ③ 문항 보완 대상). 메모가 없어 단계 분류 보류 — 사유를 물어 받음.
+- 실행자가 본 후보 결함(사람 확인 전): 창 양끝 뾰족(s42) · 창 손잡이 칼자루 모양(s7) · 사울이 카드 튜닉이 아니라 발목까지 오는 수도복 같은 긴 옷 · 방이 텅 빈 상자 같은 무대 구도(인물이 작고 멀다) · 다윗 웅크림·기댐이 「피함」으로 덜 읽힘 · 수금을 벽에 대고 있음.

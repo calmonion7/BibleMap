@@ -1588,5 +1588,22 @@
   74.3,
   74.0,
   73.2
- ]
+ ],
+ "cand": {
+  "left": "g:42",
+  "right": "g:7",
+  "cands": [
+   42,
+   7
+  ]
+ },
+ "verdict": {
+  "answer": "none",
+  "chose": "none",
+  "left": "g:42",
+  "right": "g:7",
+  "memo": "",
+  "minutes": 2.63,
+  "active_minutes": 0.05
+ }
 }
