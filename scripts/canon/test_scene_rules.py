@@ -223,7 +223,8 @@ class DodgeClear(unittest.TestCase):
 
     def test_object_at_head_height_fails(self):
         s = gibeah()
-        s["regions"]["spear"] = [0.27, 0.46, 0.50, 0.49]
+        y0 = s["regions"]["david-youth"][1]   # 지금 다윗 구역의 머리 높이에 창을 놓는다(구역이 바뀌어도 같은 사례)
+        s["regions"]["spear"] = [0.27, y0 + 0.01, 0.50, y0 + 0.04]
         self.assertEqual(len(recheck.dodge_clear_errors(s)), 1)
 
     def test_gibeah_passes(self):
