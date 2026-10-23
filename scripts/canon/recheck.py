@@ -171,6 +171,24 @@ def guide_legs_errors(spec):
     return [f"{', '.join(knee)}: 무릎 길이 차림인데 guide.legs가 costume이 아니다 — 가이드 실루엣이 긴 옷으로 그려진다"] if knee and g.get("legs") != "costume" else []
 
 
+def youth_noun_errors(spec):
+    """youth는 청년 명사로(task 403 r4, 규칙 derive.youth-noun) — 카드 ageBand class youth(15~20)인 인물이 있고 child가 없는데
+    파생 프롬프트에 boy·girl이 있으면 걸림. c11 s101: 「boy」로 옮겨진 20세 다윗이 열두 살 아이로 그려짐(21/22 중 유일한 틀림)."""
+    classes = {ds._cast_in_scene(f).get("card", {}).get("ageBand", {}).get("class") for f in spec["figures"]}
+    if "youth" not in classes or "child" in classes:
+        return []
+    hit = re.findall(r"\b(boy|girl)s?\b", ds.route_prompt(spec), re.I)
+    return [f"youth 인물인데 파생 프롬프트에 「{'·'.join(sorted(set(hit)))}」 — 청년이 아이로 그려진다"] if hit else []
+
+
+def pose_skeleton_errors(spec):
+    """던진 몸짓은 포즈 뼈대로(task 403 c7~c13, 규칙 generate.pose-skeleton) — 몸짓 칸(gesture.ko)에 던짐 동사가 있는 인물은
+    guide.pose에 뼈대가 있어야 함. c1~c6: 깊이 꼴은 실루엣 덩어리만 주어 사울 몸·던진 몸짓 함께 맞음 0장 → 뼈대 c7~c13 4장."""
+    pose = (spec.get("guide") or {}).get("pose", {})
+    miss = [f["region"] for f in spec["figures"] if THROWN.search((f.get("gesture") or {}).get("ko", "")) and f["region"] not in pose]
+    return [f"{', '.join(miss)}: 몸짓에 던짐 동사가 있는데 guide.pose 뼈대가 없다 — 깊이 꼴은 던진 몸짓의 관절을 못 준다"] if miss else []
+
+
 def has_situation(spec):
     s = spec.get("situation")
     return [] if isinstance(s, dict) and str(s.get("text", "")).strip() else ["situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"]
@@ -222,6 +240,8 @@ SPEC_CHECKS = {
     "recheck.guide_body_errors": lambda spec, ctx: guide_body_errors(spec),
     "recheck.dodge_clear_errors": lambda spec, ctx: dodge_clear_errors(spec),
     "recheck.guide_legs_errors": lambda spec, ctx: guide_legs_errors(spec),
+    "recheck.youth_noun_errors": lambda spec, ctx: youth_noun_errors(spec),
+    "recheck.pose_skeleton_errors": lambda spec, ctx: pose_skeleton_errors(spec),
     "check_scenes.lexicon_look_errors": lambda spec, ctx: check_scenes.lexicon_look_errors(spec, ds.route_prompt(spec)),
 }
 

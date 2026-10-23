@@ -39,14 +39,15 @@ CAST_RE = re.compile(r"\{castc?:([a-z0-9-]+)\}")
 
 
 NOUN = {("male", False): "man", ("male", True): "boy", ("female", False): "woman", ("female", True): "girl"}
+YOUTH = {"male": "young man", "female": "young woman"}   # task 403 r4 — youth(15~20)를 「boy」로 옮기면 열두 살 아이로 그려짐(c11 s101)
 HEIGHT = {"short": "short of stature", "tall": "tall of stature", "towering": "towering in height"}
 
 
 def _who(c):
     """시대·민족 + 성별 명사 + 신분(task 353). 성별을 `age` 낱말에 묻지 않고 `sex`에서 고정한다
     — 골리앗 「warrior」·병기 든 자 「young soldier」에는 남성 명사가 없었다."""
-    young = c.get("card", {}).get("ageBand", {}).get("class") in ("child", "youth")
-    who = f"{c['era']} {NOUN[(c['sex'], young)]}"
+    cls = c.get("card", {}).get("ageBand", {}).get("class")
+    who = f"{c['era']} {YOUTH[c['sex']] if cls == 'youth' else NOUN[(c['sex'], cls == 'child')]}"
     if c.get("role"):
         who += f", {'an' if c['role'][0] in 'aeiou' else 'a'} {c['role']}"
     return who

@@ -102,33 +102,7 @@
         "verse": "본문 밖 · 저작자 정함(정본 david-youth 카드 차림 · 덮는 곳은 시도 a1에서 웃통 벗은 그림 7/8이라 문구로 밝힘)"
       },
       "gaze": "saul",
-      "stage_why": "[추론] 삼상 18:5 「사울이 그로 군대의 장을 삼았더니」 · 삼상 17:56 「이 청년이 누구의 아들인가」 · 삼하 5:4 「다윗이 삼십 세에 위에 나아가서」 — 골리앗 뒤 군대를 맡은 청년이고 즉위(30세)는 한참 뒤 → 15~20세 david-youth. 삼상 17:33 「너는 소년이요」 한 낱말로 david-boy를 고르지 않음(사용자 2026-10-22 “청소년기 15~20 · 유추 가능” · 프로젝트 연대로 다윗 출생 BC 1040경 → 이 사건 약 20세)",
-      "cast_override": {
-        "card": {
-          "heightRel": "average",
-          "ageBand": {
-            "class": "young",
-            "text": "about 19, smooth youthful face, no lines"
-          },
-          "beardVolume": {
-            "class": "none",
-            "text": "없음"
-          },
-          "silhouette": {
-            "class": "lean",
-            "text": "lean youthful shoulders, slim straight torso"
-          },
-          "headOutline": {
-            "class": "bare",
-            "text": "bare head, tight dark curls close to the skull"
-          },
-          "costumeColor": {
-            "class": "undyed",
-            "text": "undyed tan wool tunic, brown leather belt"
-          }
-        }
-      },
-      "cast_override_why": "이 장면 다윗은 약 20세(stage_why — 프로젝트 연대 다윗 출생 BC 1040경 · 18:5 군대의 장) — 정본 david-youth 카드 class youth가 파생에서 「boy」로 옮겨져(derive_scene._who) 그림이 열두 살쯤 아이로 나옴(task 403 c11 s101 청년 다윗 「열두 살쯤 어린아이처럼 작고 어려 보임」 — 21/22 중 유일한 틀림) → 이 장면만 class young(「man」)·「about 19」로 덮어씀(15~20 범위 유지). 정본 카드·다른 장면은 그대로."
+      "stage_why": "[추론] 삼상 18:5 「사울이 그로 군대의 장을 삼았더니」 · 삼상 17:56 「이 청년이 누구의 아들인가」 · 삼하 5:4 「다윗이 삼십 세에 위에 나아가서」 — 골리앗 뒤 군대를 맡은 청년이고 즉위(30세)는 한참 뒤 → 15~20세 david-youth. 삼상 17:33 「너는 소년이요」 한 낱말로 david-boy를 고르지 않음(사용자 2026-10-22 “청소년기 15~20 · 유추 가능” · 프로젝트 연대로 다윗 출생 BC 1040경 → 이 사건 약 20세)"
     }
   ],
   "regions": {

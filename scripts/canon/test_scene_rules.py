@@ -283,5 +283,45 @@ class GuideCostumeLegs(unittest.TestCase):
         self.assertEqual(recheck.guide_legs_errors(gibeah()), [])
 
 
+class YouthNoun(unittest.TestCase):
+    """derive.youth-noun — youth(15~20) 인물은 파생 명사가 young man, child만 boy(task 403 r4)."""
+
+    def test_who_by_age_class(self):
+        import derive_scene as ds
+        c = {"era": "an ancient Israelite", "sex": "male", "card": {"ageBand": {"class": "youth"}}}
+        self.assertEqual(ds._who(c), "an ancient Israelite young man")
+        c["card"]["ageBand"]["class"] = "child"
+        self.assertEqual(ds._who(c), "an ancient Israelite boy")
+        c["sex"], c["card"]["ageBand"]["class"] = "female", "youth"
+        self.assertEqual(ds._who(c), "an ancient Israelite young woman")
+
+    def test_boy_in_prompt_with_youth_fails(self):
+        import derive_scene as ds
+        with mock.patch.object(ds, "route_prompt", return_value="an ancient Israelite boy, a commander"):
+            self.assertEqual(len(recheck.youth_noun_errors(gibeah())), 1)
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.youth_noun_errors(gibeah()), [])
+
+
+class PoseSkeleton(unittest.TestCase):
+    """generate.pose-skeleton — 몸짓에 던짐 동사가 있는 인물은 guide.pose 뼈대(task 403 c7)."""
+
+    def test_thrower_without_pose_fails(self):
+        s = gibeah()
+        s["guide"].pop("pose")
+        self.assertEqual(len(recheck.pose_skeleton_errors(s)), 1)
+
+    def test_no_throw_needs_nothing(self):
+        s = gibeah()
+        s["guide"].pop("pose")
+        for f in s["figures"]:
+            f["gesture"]["ko"] = "벽 앞에 서서 수금을 탐"
+        self.assertEqual(recheck.pose_skeleton_errors(s), [])
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.pose_skeleton_errors(gibeah()), [])
+
+
 if __name__ == "__main__":
     unittest.main()
