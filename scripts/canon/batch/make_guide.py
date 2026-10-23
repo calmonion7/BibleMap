@@ -220,9 +220,15 @@ POSES = {
     # · d1·d2 뼈대(손목 더 아래 · 팔다리 곧게)는 한 장 근거(c14 s5)로 만든 규칙이라 「달리는 자세」(d1)·「늘어진 팔」(d2)을 낳음 → c10 꼴로 되돌림
     #   (묶음 기록: c10 가이드 던진 몸짓 c10 3/8 · c11 2/8 · c13 3/8 — d 시도 전 가장 좋음).
     # · f3: 반대 팔을 몸 뒤 아래로(f1e·f2e 뒤 위로 든 팔 + 몸 덩어리 = 「던지기 전 와인드업」) · 든 뒷발을 앞발 쪽으로 당겨 보폭 줄임(「컴퍼스 다리」 4~5/5)
+    # · g2 던진 팔 앞무릎 쪽으로 내림은 되돌림(g2e 「아래로 늘어진 팔」 5/5 — d2와 같음): 팔을 내리면 늘어짐, 앞으로 두면 가리킴
     "throw_follow": {0: (-0.23, 0.11), 1: (-0.15, 0.18), 2: (-0.14, 0.21), 3: (-0.28, 0.3), 4: (-0.41, 0.41), 5: (-0.17, 0.21), 6: (-0.08, 0.33),
                      7: (0.0, 0.44), 8: (-0.01, 0.52), 9: (0.1, 0.67), 10: (0.2, 0.74), 11: (0.01, 0.52), 12: (-0.17, 0.72), 13: (-0.14, 0.96),
                      14: (-0.24, 0.095), 16: (-0.17, 0.1)},
+    # task 404 g2 — 벽을 등지고 허리를 깊이 숙여(약 45°) 머리를 낮추고 무릎 굽힘 · 두 손목이 가슴 앞(화면 오른쪽을 봄) — 뼈대만 가이드용
+    # (g1e: 가이드 없는 다윗은 문구대로 숙였으나 벽에서 떨어져 방 가운데·수금이 류트).
+    "duck_low": {0: (0.27, 0.32), 1: (0.17, 0.33), 2: (0.19, 0.35), 3: (0.2, 0.47), 4: (0.25, 0.42), 5: (0.14, 0.33), 6: (0.12, 0.46),
+                 7: (0.22, 0.43), 8: (0.03, 0.55), 9: (0.12, 0.74), 10: (0.05, 0.97), 11: (-0.03, 0.55), 12: (0.06, 0.75), 13: (-0.04, 0.97),
+                 14: (0.26, 0.29), 16: (0.2, 0.29)},
     # task 404 f4 — 벽 앞에서 머리를 숙여 날아오는 것을 피하며 두 손으로 지물을 가슴에 쥠(화면 오른쪽을 봄): 무릎 굽힘 · 머리 앞·아래 ·
     # 두 손목이 가슴 가운데(규칙 generate.pose-hold — 깊이 꼴 숙인 다윗은 손 자리를 못 줘 f1e~f3e 「수금이 벽에 기대 있음」 5/5).
     "duck_clutch": {0: (0.08, 0.15), 1: (0.0, 0.21), 2: (0.06, 0.23), 3: (0.13, 0.34), 4: (0.07, 0.31), 5: (-0.06, 0.23), 6: (-0.01, 0.36),
@@ -297,8 +303,32 @@ AIR_SHAPES = {"spear"}   # 허공을 나는 물체 꼴(recheck.AIR_SHAPES와 같
 SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "seated": seated, "crowd": crowd, "boat": boat, "bank": bank}
 
 
+def make_pose_only(spec):
+    """task 404 g1 — 뼈대만 가이드(규칙 generate.pose-only-control): 검은 바탕에 허공 물체 꼴(또렷하게) + 뼈대만, 깊이 그림을 섞지 않는다.
+    진단(gibeah-pose-diag P1·P2): 깊이+뼈대 한 장은 깊이 실루엣이 선 사람으로 그려지고 뼈대가 약함 — 뼈대만이면 사울 몸통이 기울고
+    가이드 없는 다윗은 문구대로 숙임. 뼈대 없는 인물·벽·바탕은 문구에 맡긴다."""
+    g, R = spec["guide"], spec["regions"]
+    layer = Image.new("L", (W, H), 0)
+    d = ImageDraw.Draw(layer)
+    if g.get("tip") in ("big", "leaf"):
+        BODY["big_tip"], BODY["leaf_tip"] = True, g["tip"] == "leaf"
+    for k in g["shape"]:
+        if g["shape"][k] in AIR_SHAPES:
+            x0, y0, x1, y1 = R[k]
+            SHAPES[g["shape"][k]](d, x0 * W, y0 * H, x1 * W, y1 * H, 255)
+    BODY.pop("big_tip", None)
+    BODY.pop("leaf_tip", None)
+    out = layer.convert("RGB")
+    for k, name in sorted(g.get("pose", {}).items()):
+        x0, y0, x1, y1 = R[k]
+        draw_pose(out, (x0 * W, y0 * H, x1 * W, y1 * H), name)
+    return out
+
+
 def make(spec):
     g, R = spec["guide"], spec["regions"]
+    if g.get("control") == "pose":
+        return make_pose_only(spec)
     img = Image.new("L", (W, H), 0)
     d = ImageDraw.Draw(img)
     hy = int(HORIZON * H)

@@ -218,6 +218,7 @@ class GuideBodyBuild(unittest.TestCase):
         sys.path.insert(0, os.path.join(HERE, "batch"))
         import make_guide as M
         s = gibeah()
+        s["guide"].pop("control", None)   # 깊이 모드 규칙(g1부터 기브아는 뼈대만 — 다른 장면은 깊이)
         s["guide"].pop("pose", None)   # c7부터 넓은 체격 사울은 뼈대 — 깊이 몸 너비를 재려고 깊이 꼴로
         wide = sum(M.make(s).convert("L").histogram()[200:])
         s["guide"].pop("body")
@@ -236,6 +237,7 @@ class GuidePose(unittest.TestCase):
         sys.path.insert(0, os.path.join(HERE, "batch"))
         import make_guide as M
         s = gibeah()
+        s["guide"].pop("control", None)   # 깊이 모드 규칙(g1부터 기브아는 뼈대만 — 다른 장면은 깊이)
         x0, y0, x1, y1 = (round(v * d) for v, d in zip(s["regions"]["saul"], (M.W, M.H, M.W, M.H)))
         crop = M.make(s).crop((x0, y0, x1, y1))
         px = list(crop.getdata())
@@ -256,6 +258,7 @@ class PoseBodyMass(unittest.TestCase):
         sys.path.insert(0, os.path.join(HERE, "batch"))
         import make_guide as M
         s = gibeah()
+        s["guide"].pop("control", None)   # 깊이 모드 규칙(g1부터 기브아는 뼈대만 — 다른 장면은 깊이)
         x0, y0, x1, y1 = (round(v * d) for v, d in zip(s["regions"]["saul"], (M.W, M.H, M.W, M.H)))
         def body(spec):
             return sum(1 for r, g, b in M.make(spec).crop((x0, y0, x1, y1)).getdata() if min(r, g, b) > 230)
@@ -401,6 +404,7 @@ class ObjectCrisp(unittest.TestCase):
         sys.path.insert(0, os.path.join(HERE, "batch"))
         import make_guide as M
         s = gibeah()
+        s["guide"].pop("control", None)   # 깊이 모드 규칙(g1부터 기브아는 뼈대만 — 다른 장면은 깊이)
         v = round(255 * s["guide"]["depth"]["spear"])
         x0, y0, x1, y1 = (round(a * d) for a, d in zip(s["regions"]["spear"], (M.W, M.H, M.W, M.H)))
         tip = M.make(s).crop((x0, y0 - 20, x0 + (x1 - x0) // 3, y1 + 20)).convert("L")
@@ -527,6 +531,21 @@ class DodgeClearPose(unittest.TestCase):
         s = gibeah()
         s["guide"]["pose"]["david-youth"] = "duck_clutch"   # 숙인 뼈대 머리는 구역 위끝보다 아래
         self.assertEqual(len(recheck.dodge_clear_errors(s)), 1)
+
+class PoseOnlyControl(unittest.TestCase):
+    """generate.pose-only-control(폐기 2026-10-23 g2e) — make_pose_only만 남김: control pose면 깊이 회색 없이 뼈대 + 허공 물체."""
+
+    def test_pose_only_guide_has_no_depth_grey(self):
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as M
+        s = gibeah()
+        s["guide"]["control"] = "pose"
+        px = list(M.make(s).getdata())
+        grey = sum(1 for r, g, b in px if r == g == b and 20 < r < 235)
+        color = sum(1 for r, g, b in px if max(r, g, b) - min(r, g, b) > 60)
+        self.assertLess(grey, 0.002 * len(px))
+        self.assertGreater(color, 500)
 
 if __name__ == "__main__":
     unittest.main()

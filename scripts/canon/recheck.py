@@ -285,6 +285,13 @@ def pose_hold_errors(spec):
     return [f"{', '.join(miss)}: 몸짓이 두 손 자리를 말하는데 guide.pose 뼈대가 없다 — 깊이 꼴은 손 자리를 못 준다"] if miss else []
 
 
+def pose_only_errors(spec):
+    """뼈대 가이드는 뼈대만(task 404 g1, 규칙 generate.pose-only-control) — guide.pose가 있으면 guide.control이 "pose"여야 함(깊이 그림을 섞지 않음).
+    진단 P1·P2(gibeah-pose-diag): 깊이+뼈대 한 장은 깊이 실루엣을 선 사람으로 그려 뼈대(기운 몸통·든 뒷발)가 약하고, 숙인 다윗 깊이 꼴도 선 채로."""
+    g = spec.get("guide") or {}
+    return ["guide.pose가 있는데 guide.control이 pose가 아니다 — 깊이 그림과 섞이면 뼈대가 약하게 읽힌다"] if g.get("pose") and g.get("control") != "pose" else []
+
+
 def has_situation(spec):
     s = spec.get("situation")
     return [] if isinstance(s, dict) and str(s.get("text", "")).strip() else ["situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"]
@@ -343,6 +350,7 @@ SPEC_CHECKS = {
     "recheck.youth_height_errors": lambda spec, ctx: youth_height_errors(spec),
     "recheck.height_ratio_errors": lambda spec, ctx: height_ratio_errors(spec),
     "recheck.pose_hold_errors": lambda spec, ctx: pose_hold_errors(spec),
+    "recheck.pose_only_errors": lambda spec, ctx: pose_only_errors(spec),
     "check_scenes.lexicon_look_errors": lambda spec, ctx: check_scenes.lexicon_look_errors(spec, ds.route_prompt(spec)),
 }
 
