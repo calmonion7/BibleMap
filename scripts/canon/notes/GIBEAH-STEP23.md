@@ -12008,3 +12008,357 @@ c10 가이드 · c11 시드(s101 21/22) · 22문항. 이 장면 다윗 cast_over
 - 남은 결함(h1e·h2e 두 장 공통): ① 던진 몸짓 5/5 — 반대 팔이 몸 뒤로 뻗어 「양팔 벌린 멈춤 손짓」(뼈대를 바꿔도 그대로) ② 수금이 류트 — 쥔 지물 편집도 못 고침 ③ 창 뒤끝 잎 잔상 — 스텝별 바탕은 큰 촉이 사울 쪽에 생겨 지운 자리가 남음.
 - 사울 「던진 몸짓」 문항은 c1~h2 약 50장 모두(통과 d5e 1장, 2/3) 틀림 — 가이드 방식을 세 가지(섞기·뼈대만·스텝별) 다 바꿔도 「앞으로 뻗은 팔」·「늘어진 팔」·「벌린 팔」 중 하나로 읽힘.
 - 재계획 상한 8/8 소진. 명세는 h2 설정(스텝별 가이드). 가장 적게 틀린 f6e3(틀림 2)은 섞은 가이드 설정이라 지금 명세로는 다시 안 그려짐(그림은 남음).
+
+## 던진 몸짓 문항 기준 바꿈 — 사람 「1」 (2026-10-23)
+
+- 옛 문항 e.saul-throw-pose(투창 마무리: 던진 팔이 휘둘러 내려오고 몸통이 앞으로 기울어 체중이 굽힌 앞발에)는 약 50장 내내 틀림 — 가이드 세 방식(섞기·뼈대만·스텝별) 모두 「앞으로 뻗은 팔·늘어진 팔·벌린 팔」로 읽힘. 본문 18:11 「창을 던졌으나」는 팔 꼴을 말하지 않음 → 투창 마무리 조건(저작자 정함)을 빼고 본문 순간(막 던진 직후·몸이 다윗 쪽)으로.
+- 새 문항 **e.saul-throw-release**: 사울이 창을 막 던진 직후로 보이나(빈손이 된 던진 팔이 다윗 쪽으로 뻗었거나 막 내려오는 중이고, 몸이 다윗 쪽으로 쏠려 있음 — 두 팔을 넓게 벌려 막아서는 꼴, 손바닥을 세운 「멈춰」 손짓, 주먹을 내지르는 꼴은 아님)?
+- 제외 조건(벌린 두 팔·멈춤 손바닥·주먹)은 남김 — 사람 거절 b7(「사울 모습이 이상함」, 실행자 눈 「손바닥 편 멈춤·가리킴 손짓」)을 계속 잡아야 함 → k0a로 검증.
+
+## 시도 k0a — 사람 거절 b7 s5·s303 — 잡혀야 함에 새 던진 몸짓 문항만
+
+```json fixed k0a
+{
+  "scene": "authored-saul-gibeah-spear",
+  "seeds": [
+    5,
+    303
+  ],
+  "size": [
+    1216,
+    640
+  ],
+  "reps": 5,
+  "guide": "samples/gibeah-step23/guide-h2-1.png",
+  "ref": {
+    "label": "옛 승인 s5 (참고 — 옛 명세)",
+    "image": "~/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s5.png"
+  },
+  "bold": [
+    "18:10",
+    "18:11"
+  ],
+  "style": [
+    {
+      "id": "s.style",
+      "q": "화풍",
+      "what": "미색 종이에 연필로 그리고 색연필로 칠한 동화 그림 화풍인가?"
+    },
+    {
+      "id": "s.no-blob",
+      "q": "덩어리",
+      "what": "얼굴·옷 없이 평평한 회색 덩어리나 미완성 실루엣으로 남은 사람·물건이 없나?"
+    }
+  ],
+  "elements": [
+    {
+      "id": "e.saul-throw-release",
+      "q": "던진 몸짓",
+      "what": "사울이 창을 막 던진 직후로 보이나(빈손이 된 던진 팔이 다윗 쪽으로 뻗었거나 막 내려오는 중이고, 몸이 다윗 쪽으로 쏠려 있음 — 두 팔을 넓게 벌려 막아서는 꼴, 손바닥을 세운 「멈춰」 손짓, 주먹을 내지르는 꼴은 아님)?"
+    }
+  ],
+  "filter_qs": [
+    "e.saul-throw-release"
+  ],
+  "cn": {
+    "scale": 1.0,
+    "cn_steps": 2,
+    "cn_steps2": 2
+  },
+  "guide2": "samples/gibeah-step23/guide-h2-2.png",
+  "images_from": "b7"
+}
+```
+
+## 시도 k0b — d5e(사람 거절 — 사유는 비율)에 새 던진 몸짓 문항만
+
+```json fixed k0b
+{
+  "scene": "authored-saul-gibeah-spear",
+  "seeds": [
+    5
+  ],
+  "size": [
+    1216,
+    640
+  ],
+  "reps": 5,
+  "guide": "samples/gibeah-step23/guide-h2-1.png",
+  "ref": {
+    "label": "옛 승인 s5 (참고 — 옛 명세)",
+    "image": "~/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s5.png"
+  },
+  "bold": [
+    "18:10",
+    "18:11"
+  ],
+  "style": [
+    {
+      "id": "s.style",
+      "q": "화풍",
+      "what": "미색 종이에 연필로 그리고 색연필로 칠한 동화 그림 화풍인가?"
+    },
+    {
+      "id": "s.no-blob",
+      "q": "덩어리",
+      "what": "얼굴·옷 없이 평평한 회색 덩어리나 미완성 실루엣으로 남은 사람·물건이 없나?"
+    }
+  ],
+  "elements": [
+    {
+      "id": "e.saul-throw-release",
+      "q": "던진 몸짓",
+      "what": "사울이 창을 막 던진 직후로 보이나(빈손이 된 던진 팔이 다윗 쪽으로 뻗었거나 막 내려오는 중이고, 몸이 다윗 쪽으로 쏠려 있음 — 두 팔을 넓게 벌려 막아서는 꼴, 손바닥을 세운 「멈춰」 손짓, 주먹을 내지르는 꼴은 아님)?"
+    }
+  ],
+  "filter_qs": [
+    "e.saul-throw-release"
+  ],
+  "cn": {
+    "scale": 1.0,
+    "cn_steps": 2,
+    "cn_steps2": 2
+  },
+  "guide2": "samples/gibeah-step23/guide-h2-2.png",
+  "images_from": "d5e"
+}
+```
+
+## 시도 k0c — f6e3(틀림 2)에 새 던진 몸짓 문항만
+
+```json fixed k0c
+{
+  "scene": "authored-saul-gibeah-spear",
+  "seeds": [
+    5
+  ],
+  "size": [
+    1216,
+    640
+  ],
+  "reps": 5,
+  "guide": "samples/gibeah-step23/guide-h2-1.png",
+  "ref": {
+    "label": "옛 승인 s5 (참고 — 옛 명세)",
+    "image": "~/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s5.png"
+  },
+  "bold": [
+    "18:10",
+    "18:11"
+  ],
+  "style": [
+    {
+      "id": "s.style",
+      "q": "화풍",
+      "what": "미색 종이에 연필로 그리고 색연필로 칠한 동화 그림 화풍인가?"
+    },
+    {
+      "id": "s.no-blob",
+      "q": "덩어리",
+      "what": "얼굴·옷 없이 평평한 회색 덩어리나 미완성 실루엣으로 남은 사람·물건이 없나?"
+    }
+  ],
+  "elements": [
+    {
+      "id": "e.saul-throw-release",
+      "q": "던진 몸짓",
+      "what": "사울이 창을 막 던진 직후로 보이나(빈손이 된 던진 팔이 다윗 쪽으로 뻗었거나 막 내려오는 중이고, 몸이 다윗 쪽으로 쏠려 있음 — 두 팔을 넓게 벌려 막아서는 꼴, 손바닥을 세운 「멈춰」 손짓, 주먹을 내지르는 꼴은 아님)?"
+    }
+  ],
+  "filter_qs": [
+    "e.saul-throw-release"
+  ],
+  "cn": {
+    "scale": 1.0,
+    "cn_steps": 2,
+    "cn_steps2": 2
+  },
+  "guide2": "samples/gibeah-step23/guide-h2-2.png",
+  "images_from": "f6e3"
+}
+```
+
+## 시도 k0d — h1e(스텝별)에 새 던진 몸짓 문항만
+
+```json fixed k0d
+{
+  "scene": "authored-saul-gibeah-spear",
+  "seeds": [
+    5
+  ],
+  "size": [
+    1216,
+    640
+  ],
+  "reps": 5,
+  "guide": "samples/gibeah-step23/guide-h2-1.png",
+  "ref": {
+    "label": "옛 승인 s5 (참고 — 옛 명세)",
+    "image": "~/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s5.png"
+  },
+  "bold": [
+    "18:10",
+    "18:11"
+  ],
+  "style": [
+    {
+      "id": "s.style",
+      "q": "화풍",
+      "what": "미색 종이에 연필로 그리고 색연필로 칠한 동화 그림 화풍인가?"
+    },
+    {
+      "id": "s.no-blob",
+      "q": "덩어리",
+      "what": "얼굴·옷 없이 평평한 회색 덩어리나 미완성 실루엣으로 남은 사람·물건이 없나?"
+    }
+  ],
+  "elements": [
+    {
+      "id": "e.saul-throw-release",
+      "q": "던진 몸짓",
+      "what": "사울이 창을 막 던진 직후로 보이나(빈손이 된 던진 팔이 다윗 쪽으로 뻗었거나 막 내려오는 중이고, 몸이 다윗 쪽으로 쏠려 있음 — 두 팔을 넓게 벌려 막아서는 꼴, 손바닥을 세운 「멈춰」 손짓, 주먹을 내지르는 꼴은 아님)?"
+    }
+  ],
+  "filter_qs": [
+    "e.saul-throw-release"
+  ],
+  "cn": {
+    "scale": 1.0,
+    "cn_steps": 2,
+    "cn_steps2": 2
+  },
+  "guide2": "samples/gibeah-step23/guide-h2-2.png",
+  "images_from": "h1e"
+}
+```
+
+## 시도 k0e — h2e(스텝별)에 새 던진 몸짓 문항만
+
+```json fixed k0e
+{
+  "scene": "authored-saul-gibeah-spear",
+  "seeds": [
+    5
+  ],
+  "size": [
+    1216,
+    640
+  ],
+  "reps": 5,
+  "guide": "samples/gibeah-step23/guide-h2-1.png",
+  "ref": {
+    "label": "옛 승인 s5 (참고 — 옛 명세)",
+    "image": "~/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s5.png"
+  },
+  "bold": [
+    "18:10",
+    "18:11"
+  ],
+  "style": [
+    {
+      "id": "s.style",
+      "q": "화풍",
+      "what": "미색 종이에 연필로 그리고 색연필로 칠한 동화 그림 화풍인가?"
+    },
+    {
+      "id": "s.no-blob",
+      "q": "덩어리",
+      "what": "얼굴·옷 없이 평평한 회색 덩어리나 미완성 실루엣으로 남은 사람·물건이 없나?"
+    }
+  ],
+  "elements": [
+    {
+      "id": "e.saul-throw-release",
+      "q": "던진 몸짓",
+      "what": "사울이 창을 막 던진 직후로 보이나(빈손이 된 던진 팔이 다윗 쪽으로 뻗었거나 막 내려오는 중이고, 몸이 다윗 쪽으로 쏠려 있음 — 두 팔을 넓게 벌려 막아서는 꼴, 손바닥을 세운 「멈춰」 손짓, 주먹을 내지르는 꼴은 아님)?"
+    }
+  ],
+  "filter_qs": [
+    "e.saul-throw-release"
+  ],
+  "cn": {
+    "scale": 1.0,
+    "cn_steps": 2,
+    "cn_steps2": 2
+  },
+  "guide2": "samples/gibeah-step23/guide-h2-2.png",
+  "images_from": "h2e"
+}
+```
+
+## 시도 k0f — 사람 거절 b7 s5·s303에 비율 문항(5표) — 묶음 전체가 b7을 거절하는지
+
+```json fixed k0f
+{
+  "scene": "authored-saul-gibeah-spear",
+  "seeds": [
+    5,
+    303
+  ],
+  "size": [
+    1216,
+    640
+  ],
+  "reps": 5,
+  "guide": "samples/gibeah-step23/guide-d5.png",
+  "ref": {
+    "label": "옛 승인 s5 (참고 — 옛 명세)",
+    "image": "~/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s5.png"
+  },
+  "bold": [
+    "18:10",
+    "18:11"
+  ],
+  "style": [
+    {
+      "id": "s.style",
+      "q": "화풍",
+      "what": "미색 종이에 연필로 그리고 색연필로 칠한 동화 그림 화풍인가?"
+    },
+    {
+      "id": "s.no-blob",
+      "q": "덩어리",
+      "what": "얼굴·옷 없이 평평한 회색 덩어리나 미완성 실루엣으로 남은 사람·물건이 없나?"
+    }
+  ],
+  "elements": [
+    {
+      "id": "e.proportion-saul",
+      "q": "사울 비율",
+      "what": "사울의 몸 비율이 자연스러운 어른 남자인가(몸통이 술통처럼 지나치게 크거나 불룩하지 않고, 머리가 몸통에 비해 작아 보이지 않으며, 다리가 몸통보다 짧고 굵어 보이지 않음)?"
+    },
+    {
+      "id": "e.proportion-david",
+      "q": "다윗 비율",
+      "what": "다윗의 몸 비율이 자연스러운 청년인가(머리가 몸에 비해 크지 않고, 다리가 몸통에 비해 지나치게 길고 가늘지 않으며, 팔다리와 몸통이 서로 어울림)?"
+    },
+    {
+      "id": "e.proportion-pair",
+      "q": "두 사람 크기",
+      "what": "두 사람의 크기 차이가 자연스러운가(사울이 다윗보다 머리 하나쯤 큰 정도이고, 사울 몸집이 다윗의 두세 배로 부풀어 거인과 아이처럼 보이지 않음)?"
+    }
+  ],
+  "filter_qs": [
+    "e.proportion-saul",
+    "e.proportion-david",
+    "e.proportion-pair"
+  ],
+  "cn": {
+    "scale": 1.0,
+    "cn_steps": 4
+  },
+  "images_from": "b7"
+}
+```
+
+### 결과 k0a~k0f — 새 던진 몸짓 문항 검증 (2026-10-23, 5표)
+
+| 그림 | e.saul-throw-release 틀림 | 비고 |
+|---|---|---|
+| b7 s5 · s303(사람 거절) | 0/5 · 0/5 | 묶음 전체로는 여전히 거절 — e.saul-body 3/3 · 두 사람 크기 5/5(k0f) |
+| d5e s5(사람 거절, 비율) | 3/5 | 주먹 |
+| f6e3 s5 | 0/5 | |
+| h1e s5 · h2e s5 | 0/5 · 0/5 | |
+
+- 채택: 묶음에서 e.saul-throw-pose → **e.saul-throw-release**(사람 「1」). 사람 거절 b7의 사유(몸 비율·자세)는 사울 몸·비율 문항이 계속 잡음.
+- 새 묶음 다수결 틀림: **f6e3 1(사울 몸 4/5 — 컴퍼스 다리)** · h2e 3(수금·가드·창 모양 — 지물 편집) · h1e 4. 통과 그림 없음 → 그림 수리는 재계획 9 필요(상한 8).

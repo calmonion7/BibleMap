@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "70bc76580d84",
+  "version": "6819b12c4058",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -170,6 +170,9 @@
      "note": "guide.pose가 있으면 guide.control = pose — Union ControlNet 한 장에 깊이 그림을 섞지 않고 검은 바탕에 뼈대 + 허공 물체 꼴만(make_pose_only). 깊이를 섞으면 깊이 실루엣이 선 사람으로 그려지고 뼈대(기운 몸통·든 뒷발)가 약하게 읽힘. 뼈대 없는 인물·벽·바탕은 문구에 맡김", "retired": "2026-10-23 g2e — 진단은 맞음(뼈대만이면 몸짓이 살아 다윗 숙임·사울 기욺)이나 맞바꿈: 몸 덩어리·벽 자리·수금 모양을 잃고 액자(g1e 다수결 틀림 6 · g2e 15 vs 섞은 f6e3 2). 깊이+뼈대 섞기 유지, make_pose_only·duck_low는 남김"},
     {"id": "generate.split-control", "layer": "generate", "scope": "all", "check": "recheck.split_control_errors",
      "source": "notes/GIBEAH-STEP23.md · task 404 repair-r7 진단(섞은 f6: 몸짓 죽음 · 뼈대만 g1e·g2e: 몸·벽·수금 잃음) · 사람 「1」", "since": "2026-10-23 task 404",
-     "note": "guide.pose가 있으면 guide.split — Union ControlNet에 스텝별로 가이드를 나눠 줌: 앞 cn_steps는 뼈대만(make stage 1 — 자세), 다음 cn_steps2는 깊이(make stage 2 — 뼈대를 따른 몸 덩어리·무릎 치마·벽·바탕·창, 뼈대 선 없음). run_scene gencn control2 · 편집 마스크는 뼈대 인물 머리 위에서 끝남"}
+     "note": "guide.pose가 있으면 guide.split — Union ControlNet에 스텝별로 가이드를 나눠 줌: 앞 cn_steps는 뼈대만(make stage 1 — 자세), 다음 cn_steps2는 깊이(make stage 2 — 뼈대를 따른 몸 덩어리·무릎 치마·벽·바탕·창, 뼈대 선 없음). run_scene gencn control2 · 편집 마스크는 뼈대 인물 머리 위에서 끝남"},
+    {"id": "judge.throw-release-criterion", "layer": "judge", "scope": "one", "scope_list": "authored-saul-gibeah-spear", "check": "human",
+     "source": "notes/GIBEAH-STEP23.md · 사람 「1」 2026-10-23 · 검증 k0a~k0f", "since": "2026-10-23 task 404",
+     "note": "던진 몸짓 문항은 본문 순간(18:11 「창을 던졌으나」 — 막 던진 직후·몸이 다윗 쪽)으로, 투창 마무리(휘둘러 내림 + 앞발 체중 — 저작자 정함)는 뺌. 제외 조건(벌린 두 팔·멈춤 손바닥·주먹)은 유지 · 사람 거절 사유는 다른 문항(사울 몸·비율)이 계속 잡는지 검증하고 바꿈"}
   ]
 }
