@@ -115,8 +115,20 @@ def held_box(wrists, w, h):
     return (L, T, side), box
 
 
-def held_prompt(look_en):
-    """지시 하나 — 쥔 악기를 사전 L2 꼴로(h1e 「지판과 긴 목이 달린 류트」 5/5)."""
+def strip_held(prompt, l1_en, l2_en, hands_en):
+    """task 405 r17(규칙 edit.held-prop-add) — 바탕 문구에서 쥔 지물 구절(「~ing {L1} … {L2}」)을 손 모양 문구로 바꿈.
+    m6·m7: 문구를 바꿔도 바탕이 수금을 류트로 그림(약 6/8) → 편집이 몸통만 바꾸고 상자 밖 목·줄감개가 남아 가드 「덧붙은 촉」."""
+    out, n = re.subn(r"\b\w+ing " + re.escape(l1_en) + r"\b.*?" + re.escape(l2_en), hands_en, prompt, count=1, flags=re.S)
+    if not n:
+        raise SystemExit(f"[LocalEdit] 바탕 문구에 쥔 지물 구절이 없다: {l1_en!r}")
+    return out
+
+
+def held_prompt(look_en, mode="reshape"):
+    """지시 하나 — 쥔 악기를 사전 L2 꼴로(h1e 「지판과 긴 목이 달린 류트」 5/5). mode add = 빈손에 넣기(r17 edit.held-prop-add)."""
+    if mode == "add":
+        return (f"Place a small wooden lyre in his hands, held against his chest: {look_en}, the two curved arms rising on the left and "
+                f"right of the sound box both clearly visible, forming a U-shaped frame. {KEEP_HELD}")
     return (f"Remove the long neck, fingerboard, tuning pegs and any hanging cord from the instrument he is holding, turning it into "
             f"a small wooden lyre: {look_en}, the two curved arms rising on the left and right of the sound box both clearly visible, "
             f"forming a U-shaped frame. {KEEP_HELD}")   # n1: 팔 하나·T자로 그려짐(m1e s42 사람 「다윗 악기가 맞나?」 · e.lyre-frame)   # h2e2: 「Replace … with a lyre」는 류트 목을 남기고 가로대만 덧붙임

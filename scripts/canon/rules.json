@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "c64d7e1cde74",
+  "version": "37c5dc208fa6",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -182,6 +182,15 @@
      "note": "장면 구절 요소(지물)가 잇는 사전 항목은 look.size(사람 키 등에 견준 비·문구 · 부위 크기 parts)를 갖고, 그리는 문구 L2에 그 크기 문구를 담음 — 사람 크기를 바꾸면 지물도 같은 비로 따라감(사전 AUTHORING 「크기」)"},
     {"id": "generate.flight-position", "layer": "generate", "scope": "all", "check": "recheck.flight_errors",
      "source": "사람 m1e 「창은 3분의2쯤 날아가게」 → 일반화 · task 405 m2e~m4e(뒤끝이 손에)", "since": "2026-10-23 task 405",
-     "note": "허공 물체 + 던지는·피하는 뼈대가 있으면 명세 guide.flight{object, word, from, to, at} — 촉 = from 손목 → to 머리의 at 지점 ± 0.03, 그려질 뒤끝 = 촉 + 사전 size.ratio × from 키가 손목 − 0.07 앞. 자리는 장면마다 명세 칸, 길이는 사전 크기"}
+     "note": "허공 물체 + 던지는·피하는 뼈대가 있으면 명세 guide.flight{object, word, from, to, at} — 촉 = from 손목 → to 머리의 at 지점 ± 0.03, 그려질 뒤끝 = 촉 + 사전 size.ratio × from 키가 손목 − 0.07 앞. 자리는 장면마다 명세 칸, 길이는 사전 크기"},
+    {"id": "derive.empty-hand-open", "layer": "derive", "scope": "all", "check": "recheck.empty_hand_fist_errors",
+     "source": "notes/GIBEAH-STEP23.md m5e · task 405 m2e~m5e 던진 몸짓 틀림 52표 중 47 「주먹을 내지르는 꼴」 · 사람 「일회성으로 쓰지말고 규칙화」", "since": "2026-10-23 task 405 r15",
+     "note": "몸짓 칸에 「빈손」인 인물이 있으면 파생 문구에 주먹 낱말(curled·clenched·balled·closed hand·fist) 금지 — 「hand loosely curled」가 주먹으로 그려짐. 빈손은 펴진 손가락으로"},
+    {"id": "derive.wall-material", "layer": "derive", "scope": "all", "check": "recheck.wall_material_errors",
+     "source": "notes/GIBEAH-STEP23.md m5e 벽 앞 4/8 「다윗 뒤는 매끈한 회벽」", "since": "2026-10-23 task 405 r15",
+     "note": "벽 문구는 재질 낱말로 — 재질 없는 bare·plain·blank·empty wall은 매끈한 회벽으로 그려짐(돌벽 방인데 인물 뒤 벽만 회벽)"},
+    {"id": "edit.held-prop-add", "layer": "edit", "scope": "all", "check": "test:test_scene_rules",
+     "source": "notes/GIBEAH-STEP23.md m6e·m7 · task 405 r16 「no neck」 긍정문으로도 바탕 류트 약 6/8 그대로", "since": "2026-10-24 task 405 r17",
+     "note": "그림이 사전 꼴로 못 그리는 쥔 지물(수금 → 류트)은 바탕 문구에서 그 구절을 손 모양으로 바꾸고(gen_local_edit.strip_held) 편집 지시 「Place …」(held mode add)로만 넣음 — 몸통만 바꾸는 편집은 상자 밖 류트 목·줄감개를 남겨 가드 「덧붙은 촉」. 명세·관문은 그대로(지물은 명세 문구에 있음)"}
   ]
 }

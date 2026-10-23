@@ -676,5 +676,61 @@ class EditBoxClearOfBody(unittest.TestCase):
         self.assertGreater(box[2], round(0.70 * 1216))           # 자르지 않으면 넘어감(m2e)
 
 
+class EmptyHandOpen(unittest.TestCase):
+    """derive.empty-hand-open — 빈손 몸짓 인물의 파생 문구에 주먹 낱말이 없음(task 405 m2e~m5e 던진 몸짓 틀림 52표 중 「주먹」 47)."""
+
+    def test_curled_hand_fails(self):
+        import derive_scene as ds
+        with mock.patch.object(ds, "route_prompt", return_value="his empty throwing arm swinging down, his hand loosely curled"):
+            self.assertEqual(len(recheck.empty_hand_fist_errors(gibeah())), 1)
+
+    def test_no_empty_hand_needs_nothing(self):
+        import derive_scene as ds
+        g = gibeah()
+        for f in g["figures"]:
+            f["gesture"]["ko"] = f["gesture"]["ko"].replace("빈손", "")
+        with mock.patch.object(ds, "route_prompt", return_value="a clenched fist"):
+            self.assertEqual(recheck.empty_hand_fist_errors(g), [])
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.empty_hand_fist_errors(gibeah()), [])
+
+
+class HeldPropAdd(unittest.TestCase):
+    """edit.held-prop-add — 쥔 지물은 바탕 문구에서 빼고 편집으로 넣음(task 405 m6·m7 바탕 류트 약 6/8 → 목·줄감개가 편집 밖에 남음)."""
+
+    def test_strip_held_removes_lyre_clause(self):
+        import derive_scene as ds
+        import gen_local_edit as GL
+        words = recheck._lexicon()
+        look = words["kinnor-lyre"]["look"]
+        p = GL.strip_held(ds.route_prompt(gibeah()), look["L1"]["en"], look["L2"]["en"], "his empty hands clasped in front of his chest")
+        self.assertNotIn("lyre", p.lower())
+        self.assertIn("his empty hands clasped in front of his chest", p)
+        self.assertIn("standing with his back against the stone wall", p)
+
+    def test_add_mode_places_instrument(self):
+        import gen_local_edit as GL
+        self.assertTrue(GL.held_prompt("x", "add").startswith("Place a small wooden lyre"))
+        self.assertTrue(GL.held_prompt("x").startswith("Remove the long neck"))
+
+
+class WallMaterial(unittest.TestCase):
+    """derive.wall-material — 벽 문구는 재질 낱말로(task 405 m5e 벽 앞 틀림 「다윗 뒤는 매끈한 회벽」 ← 「a bare wall behind David」)."""
+
+    def test_bare_wall_fails(self):
+        import derive_scene as ds
+        with mock.patch.object(ds, "route_prompt", return_value="walls of rough stone blocks, a bare wall behind David"):
+            self.assertEqual(len(recheck.wall_material_errors(gibeah())), 1)
+
+    def test_material_wall_passes(self):
+        import derive_scene as ds
+        with mock.patch.object(ds, "route_prompt", return_value="a bare stone wall, the rough stone wall right behind David"):
+            self.assertEqual(recheck.wall_material_errors(gibeah()), [])
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.wall_material_errors(gibeah()), [])
+
+
 if __name__ == "__main__":
     unittest.main()

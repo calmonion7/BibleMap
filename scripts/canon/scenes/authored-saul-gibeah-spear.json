@@ -19,7 +19,7 @@
   },
   "background": [
     {
-      "what": "기브아 사울의 본집 안 — 집 가운데 소박한 방, 다윗 뒤로 맨 벽",
+      "what": "기브아 사울의 본집 안 — 집 가운데 소박한 방, 다윗 바로 뒤도 같은 거친 돌벽",
       "verse": "18:10 「집 가운데서」 · 18:11 「벽에 박으리라」 · 기브아는 지리 근거 15:34 · 방의 모습은 본문 밖 · 저작자 정함"
     }
   ],
@@ -40,8 +40,8 @@
       },
       "gesture": {
         "ko": "다윗을 향해 창을 막 던져, 빈손이 된 던진 오른팔이 앞·아래로 휘둘러 내려오고 몸이 굽힌 앞발 쪽으로 쏠림",
-        "en": "having just hurled his spear, his empty throwing arm swinging forward and down across his body, his hand loosely curled, his weight thrown onto his bent front leg",
-        "verse": "18:11 「그 창을 던졌으나」(던졌으니 손은 비었음) · 18:10 「사울의 손에 창이 있는지라」(던지기 전) · 팔·몸의 모습은 본문 밖 · 저작자 정함 · task 403 c3: 「hand stretched out toward David」는 손바닥 편 「멈춰」 손짓으로 그려짐(c1·c2 판정 이유) → 휘둘러 내려오는 팔"
+        "en": "having just hurled his spear, his empty throwing arm swinging forward and down across his body, his fingers open and spread where the spear just left them, his weight thrown onto his bent front leg",
+        "verse": "18:11 「그 창을 던졌으나」(던졌으니 손은 비었음) · 18:10 「사울의 손에 창이 있는지라」(던지기 전) · 팔·몸의 모습은 본문 밖 · 저작자 정함 · task 403 c3: 「hand stretched out toward David」는 손바닥 편 「멈춰」 손짓으로 그려짐(c1·c2 판정 이유) → 휘둘러 내려오는 팔 · task 405 r15: 「his hand loosely curled」는 주먹으로 그려짐(m2e~m5e 던진 몸짓 틀림 52표 중 47 「주먹」, 규칙 derive.empty-hand-open) → 펴진 손가락"
       },
       "costume": {
         "ko": "무릎 길이 반소매 어두운 갈색 모직 튜닉과 수수한 가죽 띠, 정강이가 드러남 — 집 안의 평상 차림",
@@ -93,7 +93,7 @@
       },
       "gesture": {
         "ko": "벽을 등진 채 낮게 몸을 굽혀 머리를 숙이고 몸을 옆으로 비틀어 날아오는 창의 길에서 비킴 — 작은 나무 수금(울림통에 두 팔과 가로대, 목·지판 없음)을 두 손으로 가슴에 붙여 쥠",
-        "en": "standing with his back against the stone wall, bending low and ducking his head, twisting his body aside out of the path of the flying spear, clutching a small wooden lyre against his chest with both hands, a small hollow wooden sound box, smaller than a man's torso, with two curved arms joined by a top crossbar, strings from box to crossbar, no neck",
+        "en": "standing with his back against the stone wall, bending low and ducking his head, twisting his body aside out of the path of the flying spear, clutching a small wooden lyre against his chest with both hands, a small hollow wooden sound box, smaller than a man's torso, with two curved arms rising from the box, joined by a top crossbar, strings from box to crossbar",
         "verse": "18:11 「내가 다윗을 벽에 박으리라」(다윗이 창이 날아가는 길 끝 벽 앞에 있음 — 벽을 등지고 선 자세는 이 말에서 추론, 벽에 붙은 정도는 본문 밖 · 저작자 정함) · 18:11 「그 앞에서 두 번 피하였더라」 · 18:10 「손으로 수금을 타는데」 · 수금 모양은 낱말 사전 kinnor-lyre L2(나무 = 왕상 10:12 「백단목으로 … 수금과 비파를 만들었으니」 · 틀 모양은 [저작]) · 숙인 머리·비튼 몸은 본문 밖 · 저작자 정함(18:11 「피하였더라」를 창이 머리 위로 스쳐 지나는 모습으로) · 두 손으로 가슴에 붙여 쥠은 본문 밖 · 저작자 정함(18:10 「손으로 수금을 타는데」를 이어 받음)"
       },
       "costume": {
@@ -164,7 +164,7 @@
       "kind": "plate",
       "region": "saul",
       "verse": "18:11",
-      "prompt": "{cast:saul}, standing, having just hurled his spear, his empty throwing arm swinging forward and down across his body, his hand loosely curled, facing left.",
+      "prompt": "{cast:saul}, standing, having just hurled his spear, his empty throwing arm swinging forward and down across his body, his fingers open and spread where the spear just left them, facing left.",
       "neg": [
         "armour",
         "crown",
@@ -251,8 +251,8 @@
     "verse": "18:11 「다윗을 벽에 박으리라 하고 그 창을 던졌으나 다윗이 그 앞에서 두 번 피하였더라」 · 날아가는 창의 자리·촉부터 숙인 머리 바로 위 벽 쪽으로 날아감은 본문 밖 · 저작자 정함(18:11 「벽에 박으리라」의 겨냥) · 창 모양은 낱말 사전 spear L2(삼상 17:7 「창날은 철」 · 삼하 2:23 「창 뒤 끝으로 그 배를 찌르니 창이 그 등을 꿰뚫고 나간지라」)(창이 벽에 박힘은 19:10 다른 날이라 그리지 않음)"
   },
   "whole_background": {
-    "ko": "기브아 사울의 본집 안 소박한 방 — 사방이 거친 돌벽, 다윗 뒤로 맨 벽, 바닥에 놓인 나무 걸상 하나",
-    "en": "the inside of a plain room in Saul's house at Gibeah, walls of rough uneven stone blocks all around, a bare wall behind David, a simple wooden stool on the floor",
+    "ko": "기브아 사울의 본집 안 소박한 방 — 사방이 거친 돌벽, 다윗 바로 뒤도 같은 거친 돌벽, 바닥에 놓인 나무 걸상 하나",
+    "en": "the inside of a plain room in Saul's house at Gibeah, walls of rough uneven stone blocks all around, the same rough stone blocks in the wall right behind David, a simple wooden stool on the floor",
     "verse": "18:10 「집 가운데서」 · 18:11 「벽」 · 기브아는 지리 근거 15:34 · 돌벽·걸상은 본문 밖 · 저작자 정함"
   },
   "verse_elements": [

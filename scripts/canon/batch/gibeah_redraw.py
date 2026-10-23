@@ -131,7 +131,7 @@ def edit_prop():
             pts, _ = MG.pose_points((a0 * MG.W, b0 * MG.H, a1 * MG.W, b1 * MG.H), spec["guide"]["pose"][hd["figure"]])
             crop, box = GL.held_box([(pts[i][0] / MG.W, pts[i][1] / MG.H) for i in (4, 7)], w, h)
             hlook = next(x for x in words if x["id"] == hd["word"])["look"]["L2"]["en"]
-            prompt = GL.held_prompt(hlook)
+            prompt = GL.held_prompt(hlook, hd.get("mode", "reshape"))
             src0, out = img(s), os.path.join(OUT, f"s{s}-held.png")
             shutil.copyfile(src0, os.path.join(OUT, f"s{s}-tips.png"))
             r = GL.edit(os.path.join(OUT, f"s{s}-tips.png"), crop, box, None, e["seed"], out, prompt=prompt)
@@ -153,6 +153,12 @@ def gen():
         sys.exit(f"[GibeahRedraw] 다른 생성 프로세스가 돈다 — 겹치지 않게 멈춤:\n{busy}")
     import run_scene
     prompt = D.route_prompt(D.load(SID))
+    hb = FX.get("held_by_edit")   # r17 edit.held-prop-add: 쥔 지물은 바탕에서 빼고 편집(edit.held mode add)으로만 넣음
+    if hb:
+        import gen_local_edit as GL
+        words = json.load(open(os.path.join(HERE, "..", "..", "data", "scripture_words", "words.json"), encoding="utf-8"))["words"]
+        look = next(w for w in words if w["id"] == hb["word"])["look"]
+        prompt = GL.strip_held(prompt, look["L1"]["en"], look["L2"]["en"], hb["hands"])
     w, h = FX["size"]
     cn = {"control": os.path.join(HERE, FX["guide"]), "scale": FX["cn"]["scale"], "cn_steps": FX["cn"]["cn_steps"]} if FX.get("guide") else {}
     if FX.get("guide2"):   # h1 스텝별 가이드: 앞 cn_steps는 guide(뼈대), 다음 cn_steps2는 guide2(깊이)

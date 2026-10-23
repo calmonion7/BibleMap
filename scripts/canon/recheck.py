@@ -188,6 +188,28 @@ def youth_noun_errors(spec):
     return [f"youth 인물인데 파생 프롬프트에 「{'·'.join(sorted(set(hit)))}」 — 청년이 아이로 그려진다"] if hit else []
 
 
+FIST_WORDS = re.compile(r"\b(curled|clenched|balled|closed hand|fists?)\b", re.I)
+
+
+def empty_hand_fist_errors(spec):
+    """빈손은 편 손으로(task 405 r15, 규칙 derive.empty-hand-open) — 몸짓 칸(gesture.ko)에 「빈손」인 인물이 있는데
+    파생 프롬프트에 주먹 낱말이 있으면 걸림. m2e~m5e: 「his hand loosely curled」 → 던진 몸짓 틀림 52표 중 47표가 「주먹을 내지르는 꼴」."""
+    if not any("빈손" in (f.get("gesture") or {}).get("ko", "") for f in spec["figures"]):
+        return []
+    hit = FIST_WORDS.findall(ds.route_prompt(spec))
+    return [f"빈손 몸짓인데 파생 프롬프트에 「{'·'.join(sorted(set(h.lower() for h in hit)))}」 — 빈손이 주먹으로 그려진다"] if hit else []
+
+
+BARE_WALL = re.compile(r"\b(?:bare|plain|blank|empty)\s+walls?\b", re.I)
+
+
+def wall_material_errors(spec):
+    """벽은 재질 낱말로(task 405 r15, 규칙 derive.wall-material) — 파생 프롬프트에 재질 없는 「bare·plain·blank·empty wall」이 있으면 걸림.
+    m5e: 「a bare wall behind David」 → 벽 앞 틀림 「다윗 뒤는 매끈한 회벽」(s23·s42) — 돌벽 방인데 그 벽만 회벽으로 그려짐."""
+    hit = BARE_WALL.findall(ds.route_prompt(spec))
+    return [f"재질 없는 벽 문구 「{'·'.join(sorted(set(h.lower() for h in hit)))}」 — 매끈한 회벽으로 그려진다"] if hit else []
+
+
 def pose_skeleton_errors(spec):
     """던진 몸짓은 포즈 뼈대로(task 403 c7~c13, 규칙 generate.pose-skeleton) — 몸짓 칸(gesture.ko)에 던짐 동사가 있는 인물은
     guide.pose에 뼈대가 있어야 함. c1~c6: 깊이 꼴은 실루엣 덩어리만 주어 사울 몸·던진 몸짓 함께 맞음 0장 → 뼈대 c7~c13 4장."""
@@ -436,6 +458,8 @@ SPEC_CHECKS = {
     "recheck.guide_legs_errors": lambda spec, ctx: guide_legs_errors(spec),
     "recheck.youth_noun_errors": lambda spec, ctx: youth_noun_errors(spec),
     "recheck.pose_skeleton_errors": lambda spec, ctx: pose_skeleton_errors(spec),
+    "recheck.empty_hand_fist_errors": lambda spec, ctx: empty_hand_fist_errors(spec),
+    "recheck.wall_material_errors": lambda spec, ctx: wall_material_errors(spec),
     "recheck.figure_scale_errors": lambda spec, ctx: figure_scale_errors(spec),
     "recheck.second_point_errors": lambda spec, ctx: second_point_errors(spec),
     "recheck.youth_height_errors": lambda spec, ctx: youth_height_errors(spec),
