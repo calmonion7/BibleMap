@@ -219,17 +219,63 @@ POSES = {
     # 옆얼굴이라 가까운 오른 눈·귀만.
     # · d1·d2 뼈대(손목 더 아래 · 팔다리 곧게)는 한 장 근거(c14 s5)로 만든 규칙이라 「달리는 자세」(d1)·「늘어진 팔」(d2)을 낳음 → c10 꼴로 되돌림
     #   (묶음 기록: c10 가이드 던진 몸짓 c10 3/8 · c11 2/8 · c13 3/8 — d 시도 전 가장 좋음).
-    "throw_follow": {0: (-0.23, 0.11), 1: (-0.15, 0.18), 2: (-0.14, 0.21), 3: (-0.28, 0.3), 4: (-0.41, 0.41), 5: (-0.17, 0.21), 6: (-0.05, 0.22),
-                     7: (0.06, 0.15), 8: (-0.01, 0.52), 9: (0.13, 0.68), 10: (0.27, 0.77), 11: (0.01, 0.52), 12: (-0.17, 0.72), 13: (-0.14, 0.96),
+    # · f3: 반대 팔을 몸 뒤 아래로(f1e·f2e 뒤 위로 든 팔 + 몸 덩어리 = 「던지기 전 와인드업」) · 든 뒷발을 앞발 쪽으로 당겨 보폭 줄임(「컴퍼스 다리」 4~5/5)
+    "throw_follow": {0: (-0.23, 0.11), 1: (-0.15, 0.18), 2: (-0.14, 0.21), 3: (-0.28, 0.3), 4: (-0.41, 0.41), 5: (-0.17, 0.21), 6: (-0.08, 0.33),
+                     7: (0.0, 0.44), 8: (-0.01, 0.52), 9: (0.1, 0.67), 10: (0.2, 0.74), 11: (0.01, 0.52), 12: (-0.17, 0.72), 13: (-0.14, 0.96),
                      14: (-0.24, 0.095), 16: (-0.17, 0.1)},
+    # task 404 f4 — 벽 앞에서 머리를 숙여 날아오는 것을 피하며 두 손으로 지물을 가슴에 쥠(화면 오른쪽을 봄): 무릎 굽힘 · 머리 앞·아래 ·
+    # 두 손목이 가슴 가운데(규칙 generate.pose-hold — 깊이 꼴 숙인 다윗은 손 자리를 못 줘 f1e~f3e 「수금이 벽에 기대 있음」 5/5).
+    "duck_clutch": {0: (0.08, 0.15), 1: (0.0, 0.21), 2: (0.06, 0.23), 3: (0.13, 0.34), 4: (0.07, 0.31), 5: (-0.06, 0.23), 6: (-0.01, 0.36),
+                    7: (0.04, 0.32), 8: (0.04, 0.52), 9: (0.1, 0.73), 10: (0.05, 0.96), 11: (-0.04, 0.52), 12: (-0.01, 0.74), 13: (-0.1, 0.96),
+                    14: (0.1, 0.13), 16: (0.03, 0.13)},
 }
+
+
+def pose_points(box, name, hip_dx=0.06):
+    """뼈대 관절 화소 자리 — 키 = 상자 높이, 엉덩이 가운데 x = 상자 가운데 + hip_dx·키."""
+    x0, y0, x1, y1 = box
+    h, cx = y1 - y0, (x0 + x1) / 2 + hip_dx * (y1 - y0)
+    return {k: (cx + x * h, y0 + y * h) for k, (x, y) in POSES[name].items()}, h
+
+
+# task 404 f1 — 뼈대 인물의 몸 덩어리(규칙 generate.pose-body-mass): 뼈대만 주면 몸 너비 제한이 없어 카드 체형 낱말(「thick barrel torso」)이
+# 부풀려짐(비율 문항 사울: 깊이 꼴 c5 5/8 · 뼈대 c11 1/8). 뼈대를 따라 깊이 몸(몸통 = 카드 너비, 팔다리 = 키 비율)을 함께 그린다.
+LIMB_W = {(2, 3): 0.065, (3, 4): 0.05, (5, 6): 0.065, (6, 7): 0.05, (8, 9): 0.09, (9, 10): 0.065, (11, 12): 0.09, (12, 13): 0.065}
+
+
+def pose_body(d, box, name, v, bw, knee=False):
+    """뼈대 관절을 따라 깊이 몸: 몸통 사각(어깨 반폭 0.3·bw·키, 엉덩이 0.25) · 머리 원(HEAD_R person) · 팔다리 굵은 선(LIMB_W·키)
+    · knee(무릎 길이 차림)면 엉덩이 ~ 무릎 치마 덩어리(f4 — 몸이 엉덩이에서 끝나면 튜닉이 짧게 그려져 「다리가 길고 가늚」 f1e~f3e, generate.guide-costume-legs)."""
+    pts, h = pose_points(box, name)
+    if knee:
+        hx0 = (pts[8][0] + pts[11][0]) / 2
+        hy0 = (pts[8][1] + pts[11][1]) / 2
+        ky = (pts[9][1] + pts[12][1]) / 2
+        hw0, kw = bw * h * 0.25, bw * h * 0.32   # 엉덩이 아래로 곧게(f4 가이드: 든 뒷무릎까지 퍼지면 망토 꼴)
+        d.polygon([(hx0 - hw0, hy0), (hx0 + hw0, hy0), (hx0 + kw, ky), (hx0 - kw, ky)], fill=v)
+    nx, ny = pts[1]
+    hx, hy = ((pts[8][0] + pts[11][0]) / 2, (pts[8][1] + pts[11][1]) / 2)
+    ax, ay = hx - nx, hy - ny
+    n = max(1e-6, (ax * ax + ay * ay) ** 0.5)
+    px, py = -ay / n, ax / n
+    sw, hw = bw * h * 0.3, bw * h * 0.25   # 어깨·엉덩이 반폭 — person 꼴(body 어깨 ±0.3·bw)과 같은 기준
+    d.polygon([(nx + px * sw, ny + py * sw), (hx + px * hw, hy + py * hw), (hx - px * hw, hy - py * hw), (nx - px * sw, ny - py * sw)], fill=v)
+    r = h * HEAD_R["person"]
+    cxh, cyh = (pts[0][0] + pts[16][0]) / 2, (pts[0][1] + pts[16][1]) / 2
+    d.ellipse([cxh - r, cyh - r, cxh + r, cyh + r], fill=v)
+    for (a, b), w in LIMB_W.items():   # f2 팔다리 × 카드 너비는 되돌림 — 굵은 팔 덩어리가 뒤로 든 팔을 「던지기 전」으로 보이게 함(f2e 5표 던진 몸짓 5/5 틀림)
+        if a in pts and b in pts:
+            d.line([pts[a], pts[b]], fill=v, width=max(2, round(w * h)))
+            for q in (pts[a], pts[b]):
+                rr = w * h / 2
+                d.ellipse([q[0] - rr, q[1] - rr, q[0] + rr, q[1] + rr], fill=v)
+    for a in (2, 5):   # 어깨에서 팔 시작까지
+        d.line([pts[1], pts[a]], fill=v, width=max(2, round(0.065 * h)))
 
 
 def draw_pose(img, box, name, hip_dx=0.06):
     """상자(x0, y0, x1, y1 화소) 안에 뼈대: 키 = 상자 높이, 엉덩이 가운데 x = 상자 가운데 + hip_dx·키. 굵기는 키에 비례(512px 사람 ≈ 4px)."""
-    x0, y0, x1, y1 = box
-    h, cx = y1 - y0, (x0 + x1) / 2 + hip_dx * (y1 - y0)
-    pts = {k: (cx + x * h, y0 + y * h) for k, (x, y) in POSES[name].items()}
+    pts, h = pose_points(box, name, hip_dx)
     sw = max(2.0, h / 512 * 4 * 1.6)
     layer = Image.new("RGB", img.size, (0, 0, 0))
     d = ImageDraw.Draw(layer)
@@ -275,7 +321,11 @@ def make(spec):
     pose = g.get("pose", {})   # task 403 c7 — 뼈대로 줄 인물은 깊이 꼴을 그리지 않는다(흐림 뒤 draw_pose)
     air = [k for k in g["depth"] if g["shape"][k] in AIR_SHAPES]   # d2 — 허공 물체는 흐림 뒤에 또렷하게(d1 흐린 촉 → 창 방향 뒤집힘·화살촉)
     for k in sorted(g["depth"], key=lambda k: (g["depth"][k], k)):
-        if k in pose or k in air:
+        if k in air:
+            continue
+        if k in pose:   # f1: 뼈대 인물도 뼈대를 따른 깊이 몸(카드 너비) — 뼈대는 흐림 뒤에 위에 그림
+            x0, y0, x1, y1 = R[k]
+            pose_body(d, (x0 * W, y0 * H, x1 * W, y1 * H), pose[k], round(255 * g["depth"][k]), BUILD_WIDTH.get(build.get(k), 0.3), k in knee)
             continue
         x0, y0, x1, y1 = R[k]
         BODY["w"] = BUILD_WIDTH.get(build.get(k), 0.3)

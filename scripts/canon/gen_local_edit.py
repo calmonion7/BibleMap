@@ -89,8 +89,9 @@ def prop_prompt(look_en, end="back"):
                 f"much thinner than a spearhead. {KEEP_PROP}")
     m = re.search(r"one (large [a-z-]+ iron point)", look_en)
     head = m.group(1) if m else "large iron point"
-    return (f"Enlarge the iron spearhead at the left end of the wooden spear shaft into one {head}, a broad blade much wider than the shaft. "
-            f"Do not add any crossguard, wings or second blade. {KEEP_PROP}")   # d4e: 「nothing sticking out beyond it」 → 벽에 날개·코등이 장식
+    return (f"Enlarge the iron spearhead at the left end of the wooden spear shaft into one {head}: a flat grey iron blade (metal, not a plant leaf) shaped like a long willow leaf, "
+            f"widest in the middle and tapering smoothly to the tip and back to the shaft, with smooth curved edges and no barbs or hooks. "
+            f"Do not add any crossguard, wings or second blade. {KEEP_PROP}")   # d4e: 「nothing sticking out beyond it」 → 벽에 날개·코등이 장식 · f6e: 「leaf-shaped」만으로는 미늘 화살촉(창 모양 4/5) · f6e2: 「willow leaf」만이면 푸른 진짜 잎(잎맥) — 쇠·회색을 말함
 
 def busy():
     r = subprocess.run(["pgrep", "-fl", "mflux|run_scene.py --worker|gen_video_pilot|mlx_video"], capture_output=True, text=True)

@@ -1,5 +1,5 @@
 {
- "rules_version": "9eafa400597b",
+ "rules_version": "9d5c2bcb8882",
  "tokens": "venv314",
  "specs": {
   "authored-david-adullam-cave": {
@@ -25,7 +25,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-david-ark-jerusalem": {
    "spec.required-fields": "pass",
@@ -50,7 +51,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-david-en-gedi-saul": {
    "spec.required-fields": "pass",
@@ -75,7 +77,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-david-gath-achish": {
    "spec.required-fields": "pass",
@@ -100,7 +103,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-david-gibeah-harp": {
    "spec.required-fields": "pass",
@@ -125,7 +129,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-david-gibeon-battle": {
    "spec.required-fields": "pass",
@@ -150,7 +155,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-david-goliath-gath": {
    "spec.required-fields": "pass",
@@ -175,7 +181,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-david-hebron-king-judah": {
    "spec.required-fields": "pass",
@@ -200,7 +207,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-david-jerusalem-conquest": {
    "spec.required-fields": "pass",
@@ -225,7 +233,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-david-mahanaim-exile": {
    "spec.required-fields": "pass",
@@ -250,7 +259,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-david-nathan-covenant": {
    "spec.required-fields": "pass",
@@ -275,7 +285,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-david-nob-priests": {
    "spec.required-fields": "pass",
@@ -300,7 +311,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-david-ramah-samuel": {
    "spec.required-fields": "pass",
@@ -325,7 +337,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-david-returns-jerusalem": {
    "spec.required-fields": "pass",
@@ -350,7 +363,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-david-ziklag-base": {
    "spec.required-fields": "pass",
@@ -375,7 +389,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-samuel-bethlehem-david-anointing": {
    "spec.required-fields": "pass",
@@ -400,7 +415,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-samuel-ramah-death": {
    "spec.required-fields": "pass",
@@ -425,7 +441,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-saul-endor-medium": {
    "spec.required-fields": "pass",
@@ -450,7 +467,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-saul-gibeah-spear": {
    "spec.required-fields": "pass",
@@ -475,7 +493,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-saul-gilboa-death": {
    "spec.required-fields": "pass",
@@ -500,7 +519,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-saul-gilgal-amalek": {
    "spec.required-fields": "pass",
@@ -525,7 +545,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-saul-gilgal-coronation": {
    "spec.required-fields": "pass",
@@ -550,7 +571,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-saul-jabesh-rescue": {
    "spec.required-fields": "pass",
@@ -575,7 +597,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-saul-michmash-battle": {
    "spec.required-fields": "pass",
@@ -600,7 +623,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-saul-mizpah-chosen": {
    "spec.required-fields": "pass",
@@ -625,7 +649,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-saul-nob-massacre": {
    "spec.required-fields": "pass",
@@ -650,7 +675,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-solomon-ezion-geber-fleet": {
    "spec.required-fields": "pass",
@@ -675,7 +701,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-solomon-gibeon-dream": {
    "spec.required-fields": "pass",
@@ -700,7 +727,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-solomon-gihon-anointing": {
    "spec.required-fields": "pass",
@@ -725,7 +753,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-solomon-jerusalem-apostasy": {
    "spec.required-fields": "pass",
@@ -750,7 +779,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-solomon-jerusalem-birth": {
    "spec.required-fields": "pass",
@@ -775,7 +805,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-solomon-jerusalem-david-charge": {
    "spec.required-fields": "pass",
@@ -800,7 +831,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-solomon-jerusalem-palace": {
    "spec.required-fields": "pass",
@@ -825,7 +857,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-solomon-jerusalem-sheba": {
    "spec.required-fields": "pass",
@@ -850,7 +883,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-solomon-jerusalem-temple-build": {
    "spec.required-fields": "pass",
@@ -875,7 +909,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-solomon-jerusalem-temple-dedication": {
    "spec.required-fields": "pass",
@@ -900,7 +935,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   },
   "authored-solomon-jerusalem-two-mothers": {
    "spec.required-fields": "pass",
@@ -925,7 +961,8 @@
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "pass"
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass"
   }
  },
  "details": {
@@ -2630,6 +2667,55 @@
    "layer": "generate",
    "scope": "all",
    "check": "recheck.youth_height_errors",
+   "pass": [
+    "authored-david-adullam-cave",
+    "authored-david-ark-jerusalem",
+    "authored-david-en-gedi-saul",
+    "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
+    "authored-david-gibeon-battle",
+    "authored-david-goliath-gath",
+    "authored-david-hebron-king-judah",
+    "authored-david-jerusalem-conquest",
+    "authored-david-mahanaim-exile",
+    "authored-david-nathan-covenant",
+    "authored-david-nob-priests",
+    "authored-david-ramah-samuel",
+    "authored-david-returns-jerusalem",
+    "authored-david-ziklag-base",
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-samuel-ramah-death",
+    "authored-saul-endor-medium",
+    "authored-saul-gibeah-spear",
+    "authored-saul-gilboa-death",
+    "authored-saul-gilgal-amalek",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-jabesh-rescue",
+    "authored-saul-michmash-battle",
+    "authored-saul-mizpah-chosen",
+    "authored-saul-nob-massacre",
+    "authored-solomon-ezion-geber-fleet",
+    "authored-solomon-gibeon-dream",
+    "authored-solomon-gihon-anointing",
+    "authored-solomon-jerusalem-apostasy",
+    "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-david-charge",
+    "authored-solomon-jerusalem-palace",
+    "authored-solomon-jerusalem-sheba",
+    "authored-solomon-jerusalem-temple-build",
+    "authored-solomon-jerusalem-temple-dedication",
+    "authored-solomon-jerusalem-two-mothers"
+   ],
+   "fail": [],
+   "stale": [],
+   "none": [],
+   "rate": 1.0
+  },
+  {
+   "id": "generate.height-ratio",
+   "layer": "generate",
+   "scope": "all",
+   "check": "recheck.height_ratio_errors",
    "pass": [
     "authored-david-adullam-cave",
     "authored-david-ark-jerusalem",

@@ -148,9 +148,16 @@ def dodge_clear_errors(spec):
     dodgers = [k for k, v in sh.items() if v in HEAD_BAND]
     objs = [k for k, v in sh.items() if v in AIR_SHAPES]
     out = []
+    pose = g.get("pose", {})
     for d in dodgers:
         x0, y0, x1, y1 = R[d]
         top, bot = y0, y0 + (y1 - y0) * HEAD_BAND[sh[d]]
+        if d in pose:   # f4: 뼈대 인물은 뼈대의 실제 머리 자리(숙인 머리는 구역 위끝보다 아래)
+            sys.path.insert(0, os.path.join(HERE, "batch"))
+            import make_guide as M
+            hy = min(y for k, (x, y) in M.POSES[pose[d]].items() if k in (0, 14, 15, 16, 17))
+            r = M.HEAD_R["person"]
+            top, bot = y0 + (y1 - y0) * (hy - r), y0 + (y1 - y0) * (hy + r)
         for o in objs:
             ox0, oy0, ox1, oy1 = R[o]
             if oy0 < bot and oy1 > top:
@@ -221,6 +228,31 @@ def youth_height_errors(spec):
             for k, c in people.items() if c == "youth" and R[k][3] - R[k][1] < YOUTH_MIN_RATIO * max(adult)]
 
 
+HEIGHT_RANK = {"child": 0, "short": 1, "average": 2, "tall": 3, "towering": 4}
+HEAD_STEP, HEAD_TOL = 0.87, 0.04   # f1: 키 등급 한 칸 = 머리 하나(키의 약 1/7.5) — 삼상 9:2 「모든 백성보다 어깨 위만큼 더 컸더라」
+
+
+def height_ratio_errors(spec):
+    """같은 깊이에 선 인물의 키 비는 카드 키 등급에서(task 404 f1, 규칙 generate.height-ratio) — guide 사람 꼴·뼈대 인물 중 depth 값이 같은
+    두 인물의 구역 높이 비가 HEAD_STEP ** (등급 차) ± HEAD_TOL 밖이면 걸림. d5e·d4e2: 다윗 0.69 / 사울 0.86 = 0.80(tall vs average 한 칸) →
+    「거인과 아이」(두 사람 크기 3/3 틀림, 기록 c5 2/8 · c11 0/8)."""
+    g, R = spec.get("guide") or {}, spec.get("regions", {})
+    sh, pose, dep = g.get("shape", {}), g.get("pose", {}), g.get("depth", {})
+    people = [(f["region"], ds._cast_in_scene(f).get("card", {}).get("heightRel")) for f in spec["figures"]
+              if str(sh.get(f["region"], "")).startswith("person") or f["region"] in pose]
+    out = []
+    for i, (a, ra) in enumerate(people):
+        for b, rb in people[i + 1:]:
+            if dep.get(a) != dep.get(b) or ra not in HEIGHT_RANK or rb not in HEIGHT_RANK:
+                continue
+            (hi, rh), (lo, rl) = sorted([(a, ra), (b, rb)], key=lambda x: -HEIGHT_RANK[x[1]])
+            want = HEAD_STEP ** (HEIGHT_RANK[rh] - HEIGHT_RANK[rl])
+            got = (R[lo][3] - R[lo][1]) / (R[hi][3] - R[hi][1])
+            if abs(got - want) > HEAD_TOL:
+                out.append(f"{lo}/{hi} 구역 높이 비 {got:.2f} ≠ {want:.2f}±{HEAD_TOL}(키 등급 {rl}·{rh}) — 두 사람 크기가 어긋나 그려진다")
+    return out
+
+
 SECOND_POINT = re.compile(r"\b(pointed|spikes?|barbs?)\b", re.I)
 
 
@@ -238,6 +270,19 @@ def second_point_errors(spec):
             if t and t.lower().rstrip(".") in low and SECOND_POINT.search(t):
                 out.append(f"사전 {w['id']} {k} 문구에 「{SECOND_POINT.search(t).group(0)}」 — 부수 부위가 둘째 촉으로 그려진다")
     return out
+
+
+HOLD = re.compile(r"두 손으로[^,—·]*(가슴|품)")
+
+
+def pose_hold_errors(spec):
+    """손 자리는 뼈대로(task 404 f4, 규칙 generate.pose-hold) — 몸짓 칸(gesture.ko)이 「두 손으로 … 가슴(품)에」처럼 손 자리를 말하는 인물은
+    guide.pose 뼈대가 있어야 함. f1e~f3e: 깊이 꼴 숙인 다윗은 손 자리를 못 줘 「수금이 벽에 기대 있음」 5/5(사울 던진 몸짓 c1~c6과 같은 벽)."""
+    pose = (spec.get("guide") or {}).get("pose", {})
+    if "guide" not in spec:
+        return []
+    miss = [f["region"] for f in spec["figures"] if HOLD.search((f.get("gesture") or {}).get("ko", "")) and f["region"] not in pose]
+    return [f"{', '.join(miss)}: 몸짓이 두 손 자리를 말하는데 guide.pose 뼈대가 없다 — 깊이 꼴은 손 자리를 못 준다"] if miss else []
 
 
 def has_situation(spec):
@@ -296,6 +341,8 @@ SPEC_CHECKS = {
     "recheck.figure_scale_errors": lambda spec, ctx: figure_scale_errors(spec),
     "recheck.second_point_errors": lambda spec, ctx: second_point_errors(spec),
     "recheck.youth_height_errors": lambda spec, ctx: youth_height_errors(spec),
+    "recheck.height_ratio_errors": lambda spec, ctx: height_ratio_errors(spec),
+    "recheck.pose_hold_errors": lambda spec, ctx: pose_hold_errors(spec),
     "check_scenes.lexicon_look_errors": lambda spec, ctx: check_scenes.lexicon_look_errors(spec, ds.route_prompt(spec)),
 }
 

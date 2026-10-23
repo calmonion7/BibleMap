@@ -228,9 +228,10 @@ class GuideBodyBuild(unittest.TestCase):
 
 
 class GuidePose(unittest.TestCase):
-    """task 403 c7 — guide.pose 인물은 깊이 꼴 대신 OpenPose 뼈대(색 있는 팔다리) — 깊이 꼴은 관절 각도·다리 길이를 못 줌(c1~c6)."""
+    """task 403 c7 — guide.pose 인물은 깊이 꼴(person_follow) 대신 OpenPose 뼈대(색 있는 팔다리) — 깊이 꼴은 관절 각도·다리 길이를 못 줌(c1~c6).
+    task 404 f1 — 뼈대 아래 깊이 몸은 뼈대 관절을 따른다(generate.pose-body-mass): 옛 깊이 꼴 실루엣과 겹침이 작아야 함."""
 
-    def test_pose_region_has_skeleton_not_silhouette(self):
+    def test_pose_region_has_skeleton_and_skeleton_body(self):
         import sys
         sys.path.insert(0, os.path.join(HERE, "batch"))
         import make_guide as M
@@ -239,12 +240,47 @@ class GuidePose(unittest.TestCase):
         crop = M.make(s).crop((x0, y0, x1, y1))
         px = list(crop.getdata())
         color = sum(1 for r, g, b in px if max(r, g, b) - min(r, g, b) > 60)   # 뼈대 색
-        white = sum(1 for r, g, b in px if min(r, g, b) > 230)                  # 깊이 1.0 몸 덩어리
         self.assertGreater(color, 500)
-        self.assertLess(white, 0.05 * len(px))
+        body = {i for i, (r, g, b) in enumerate(px) if min(r, g, b) > 230}
         s["guide"].pop("pose")
-        crop = M.make(s).crop((x0, y0, x1, y1))
-        self.assertGreater(sum(1 for r, g, b in crop.getdata() if min(r, g, b) > 230), 0.15 * len(px))
+        old = {i for i, (r, g, b) in enumerate(M.make(s).crop((x0, y0, x1, y1)).getdata()) if min(r, g, b) > 230}
+        self.assertGreater(len(old), 0.15 * len(px))                            # 뼈대 없으면 옛 깊이 꼴
+        self.assertLess(len(body & old) / len(body | old), 0.6)                  # 뼈대 몸은 옛 꼴과 다른 모양(관절을 따름)
+
+
+class PoseBodyMass(unittest.TestCase):
+    """generate.pose-body-mass — 뼈대 인물도 카드 너비 깊이 몸(task 404 f1 — 뼈대만이면 「barrel torso」 부풀림, 사울 비율 c11 1/8 vs c5 5/8)."""
+
+    def test_body_present_and_card_width(self):
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as M
+        s = gibeah()
+        x0, y0, x1, y1 = (round(v * d) for v, d in zip(s["regions"]["saul"], (M.W, M.H, M.W, M.H)))
+        def body(spec):
+            return sum(1 for r, g, b in M.make(spec).crop((x0, y0, x1, y1)).getdata() if min(r, g, b) > 230)
+        broad = body(s)
+        self.assertGreater(broad, 0.05 * (x1 - x0) * (y1 - y0))                   # 몸 덩어리가 있다
+        s["figures"][0].setdefault("cast_override", {}).setdefault("card", {})["silhouette"] = {"class": "slight", "text": "slight"}
+        self.assertLess(body(s), broad)                                          # 카드 너비를 따른다
+
+
+class HeightRatio(unittest.TestCase):
+    """generate.height-ratio — 같은 깊이 두 인물 키 비 = 0.87 ** 등급 차 ± 0.04(task 404 f1)."""
+
+    def test_youth_too_small_fails(self):
+        s = gibeah()
+        s["regions"]["david-youth"][1] = s["regions"]["david-youth"][3] - 0.78 * (s["regions"]["saul"][3] - s["regions"]["saul"][1])   # 0.87 − 0.09
+        self.assertEqual(len(recheck.height_ratio_errors(s)), 1)
+
+    def test_other_depth_needs_nothing(self):
+        s = gibeah()
+        s["regions"]["david-youth"][1] = s["regions"]["david-youth"][3] - 0.78 * (s["regions"]["saul"][3] - s["regions"]["saul"][1])
+        s["guide"]["depth"]["david-youth"] = 0.7
+        self.assertEqual(recheck.height_ratio_errors(s), [])
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.height_ratio_errors(gibeah()), [])
 
 
 class DodgeClear(unittest.TestCase):
@@ -404,6 +440,9 @@ class SmallPropEdit(unittest.TestCase):
         self.assertNotIn("right end", p)
         self.assertIn("no", p.lower())
         self.assertIn("crossguard", p)                       # d4e: 날개·코등이 금지를 말함
+        self.assertIn("no barbs", p)                         # f6e: 잎 모양을 꼴로 풀어 말함(미늘 화살촉 방지)
+        self.assertIn("widest in the middle", p)
+        self.assertIn("grey iron blade", p)                  # f6e2: 재질을 말하지 않으면 푸른 진짜 잎
 
     def test_prompt_one_instruction_no_boy(self):
         import gen_local_edit as GL
@@ -430,12 +469,64 @@ class YouthHeight(unittest.TestCase):
 
     def test_small_youth_fails(self):
         s = gibeah()
-        s["regions"]["david-youth"][1] = 0.36
+        s["regions"]["david-youth"][1] = s["regions"]["david-youth"][3] - 0.7 * (s["regions"]["saul"][3] - s["regions"]["saul"][1])   # 어른의 0.7
         self.assertEqual(len(recheck.youth_height_errors(s)), 1)
 
     def test_gibeah_passes(self):
         self.assertEqual(recheck.youth_height_errors(gibeah()), [])
 
+
+class SingleImageReps(unittest.TestCase):
+    """judge.single-image-reps — 한 장 시도(시드 하나, 새 그림)는 5표(task 404 f1e·f2e: 거의 같은 그림이 3표로 수금·던진 몸짓 뒤집힘)."""
+
+    def test_f_attempts_ask_five(self):
+        import re
+        t = open(os.path.join(HERE, "notes", "GIBEAH-STEP23.md"), encoding="utf-8").read()
+        for k, j in re.findall(r"```json fixed (f\d+e?\d*)\n(.*?)\n```", t, re.S):
+            fx = json.loads(j)
+            if len(fx["seeds"]) == 1 and not fx.get("images_from"):
+                self.assertGreaterEqual(fx["reps"], 5, k)
+
+
+class PoseHold(unittest.TestCase):
+    """generate.pose-hold(폐기 2026-10-23 f5) — 뼈대 꼴 duck_clutch만 남김: 두 손목이 가슴에 모임(다시 쓸 때를 위해)."""
+
+    def test_duck_clutch_wrists_at_chest(self):
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as M
+        p = M.POSES["duck_clutch"]
+        for w in (4, 7):
+            self.assertTrue(p[1][1] < p[w][1] < p[8][1])
+        self.assertLess(abs(p[4][0] - p[7][0]), 0.06)
+
+
+class PoseSkirt(unittest.TestCase):
+    """generate.guide-costume-legs(뼈대 인물에도, task 404 f4) — 무릎 길이 차림이면 뼈대 몸에 엉덩이 ~ 무릎 치마 덩어리."""
+
+    def test_knee_skirt_adds_mass_between_legs(self):
+        import sys
+        from PIL import Image, ImageDraw
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as M
+        def between_legs(knee):   # 엉덩이 가운데 바로 아래(두 넓적다리 사이)가 차는가
+            img = Image.new("L", (400, 600), 0)
+            M.pose_body(ImageDraw.Draw(img), (50, 0, 350, 600), "throw_follow", 255, 0.4, knee)
+            pts, h = M.pose_points((50, 0, 350, 600), "throw_follow")
+            hx, hy = (pts[8][0] + pts[11][0]) / 2, (pts[8][1] + pts[11][1]) / 2
+            ky = (pts[9][1] + pts[12][1]) / 2
+            return img.getpixel((round(hx), round(hy + (ky - hy) * 0.7)))
+        self.assertTrue(between_legs(True))
+        self.assertFalse(between_legs(False))
+
+
+class DodgeClearPose(unittest.TestCase):
+    """generate.dodge-clear — 뼈대 인물은 뼈대의 실제 머리 자리로 잼(task 404 f4)."""
+
+    def test_spear_far_above_skeleton_head_fails(self):
+        s = gibeah()
+        s["guide"]["pose"]["david-youth"] = "duck_clutch"   # 숙인 뼈대 머리는 구역 위끝보다 아래
+        self.assertEqual(len(recheck.dodge_clear_errors(s)), 1)
 
 if __name__ == "__main__":
     unittest.main()
