@@ -105,7 +105,7 @@ def edit_prop():
             out = img(s) if i == len(ends) - 1 else os.path.join(OUT, f"s{s}-{end}.png")
             crop, box = GL.prop_box(spec["regions"][e["region"]], w, h, end, head_top(spec, e["region"]))
             prompt = GL.prop_prompt(look, end)
-            r = GL.edit(src, crop, box, None, e["seed"], out, prompt=prompt)
+            r = GL.edit(src, crop, box, None, e["seed"], out, prompt=prompt, mask_shape="rect")   # h2e2: 긴 지물은 둥근 사각 마스크
             steps.append({"end": end, "src": os.path.relpath(src, os.path.dirname(OUT)), "crop": crop, "box": box, "prompt": prompt, **r})
             print(f"[GibeahRedraw] 편집 s{s} {end} {r}", flush=True)
             src = out

@@ -586,6 +586,27 @@ class HeldPropEdit(unittest.TestCase):
         p = GL.held_prompt("a hollow wooden sound box with two curved arms joined by a crossbar")
         self.assertIn("crossbar", p)
         self.assertIn("Keep his hands", p)
+        self.assertIn("Remove the long neck", p)              # h2e2: 목을 없애는 것이 지시의 머리
+
+    def test_rect_mask_covers_spear_end(self):
+        """h2e2: 둥근 사각 마스크는 상자 끝(창 촉 자리)까지 덮음 — 타원은 끝이 좁아 원본 촉이 남음."""
+        import gen_local_edit as GL
+        crop, box = (0, 0, 400), (50, 180, 350, 220)
+        for shape, full in (("rect", True), ("ellipse", False)):
+            m = GL.mask(crop, box, shape)
+            self.assertEqual(m.getpixel((345, 214)) > 200, full, shape)   # 오른끝 아래 모서리 가까이
+
+
+class FigureScalePose(unittest.TestCase):
+    """generate.figure-scale(뼈대 보강, task 404 h4) — 뼈대 인물은 보이는 키(머리 꼭대기 ~ 발) ≥ 0.55."""
+
+    def test_small_crouch_fails(self):
+        s = gibeah()
+        s["regions"]["david-youth"][1] = s["regions"]["david-youth"][3] - 0.69   # h3 크기 — 보이는 키 0.53
+        self.assertTrue(any("david-youth" in e for e in recheck.figure_scale_errors(s)))
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.figure_scale_errors(gibeah()), [])
 
 
 if __name__ == "__main__":

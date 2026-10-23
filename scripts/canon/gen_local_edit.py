@@ -97,6 +97,7 @@ def prop_prompt(look_en, end="back"):
 
 # task 404 h2 — 쥔 지물 편집(edit.small-prop-orient 넓힘): 뼈대 인물의 두 손목 자리에서 상자를 뽑고, 사전 L2로 그 지물만 바꿈.
 HELD_HALF = (0.07, 0.11)   # 두 손목 가운데 ± (가로, 세로) 화면 비율 — 가슴에 붙여 쥔 작은 수금(키보다 훨씬 작음, 사전 L3)
+HELD_DOWN = 0.2            # h2e2: 아래로는 더 — 악기에서 늘어진 끈이 의자까지(h1e·h2e 가드 「늘어진 줄」)
 KEEP_HELD = ("Keep his hands holding it against his chest, his arms, face, hair and clothes exactly the same, "
              "the lighting and the same soft pencil and colored-pencil illustration style.")
 
@@ -105,7 +106,7 @@ def held_box(wrists, w, h):
     """두 손목(화면 비율 점) → (크롭, 마스크 상자) 원본 화소 — 손목 가운데 ± HELD_HALF."""
     cx, cy = sum(x for x, _ in wrists) / len(wrists), sum(y for _, y in wrists) / len(wrists)
     box = (max(0, round((cx - HELD_HALF[0]) * w)), max(0, round((cy - HELD_HALF[1]) * h)),
-           min(w, round((cx + HELD_HALF[0]) * w)), min(h, round((cy + HELD_HALF[1]) * h)))
+           min(w, round((cx + HELD_HALF[0]) * w)), min(h, round((cy + HELD_DOWN) * h)))
     side = min(min(w, h), max(box[2] - box[0], box[3] - box[1]) + 60)
     L = int(min(max(0, (box[0] + box[2]) / 2 - side / 2), w - side))
     T = int(min(max(0, (box[1] + box[3]) / 2 - side / 2), h - side))
@@ -114,7 +115,8 @@ def held_box(wrists, w, h):
 
 def held_prompt(look_en):
     """지시 하나 — 쥔 악기를 사전 L2 꼴로(h1e 「지판과 긴 목이 달린 류트」 5/5)."""
-    return f"Replace the stringed instrument he is holding with a small wooden lyre: {look_en}. {KEEP_HELD}"
+    return (f"Remove the long neck, fingerboard, tuning pegs and any hanging cord from the instrument he is holding, turning it into "
+            f"a small wooden lyre: {look_en}. {KEEP_HELD}")   # h2e2: 「Replace … with a lyre」는 류트 목을 남기고 가로대만 덧붙임
 
 
 def busy():
@@ -134,17 +136,21 @@ def save_m(m):
     json.dump(m, open(METRICS, "w"), ensure_ascii=False, indent=1)
 
 
-def mask(crop, box):
-    """크롭 크기 타원 마스크 — 상자 둘레 +20, 크롭 가장자리 안쪽 12px로 자르고 흐림 8(되붙임 경계가 크롭 모서리에 걸리지 않게)."""
+def mask(crop, box, shape="ellipse"):
+    """크롭 크기 마스크 — 상자 둘레 +20, 크롭 가장자리 안쪽 12px로 자르고 흐림 8(되붙임 경계가 크롭 모서리에 걸리지 않게).
+    shape rect(task 404 h2e2) = 둥근 사각 — 가늘고 긴 지물(창)은 타원 끝이 좁아져 원본 촉 끝이 잔상으로 남음(h1e·h2e 창 뒤끝)."""
     L, T, side = crop
     x0, y0, x1, y1 = box
     m = Image.new("L", (side, side), 0)
     e = [max(12, x0 - L - 20), max(12, y0 - T - 20), min(side - 12, x1 - L + 20), min(side - 12, y1 - T + 20)]
-    ImageDraw.Draw(m).ellipse(e, fill=255)
+    if shape == "rect":
+        ImageDraw.Draw(m).rounded_rectangle(e, radius=14, fill=255)
+    else:
+        ImageDraw.Draw(m).ellipse(e, fill=255)
     return m.filter(ImageFilter.GaussianBlur(8))
 
 
-def edit(src, crop, box, arm, seed, out, guide=False, prompt=None):
+def edit(src, crop, box, arm, seed, out, guide=False, prompt=None, mask_shape="ellipse"):
     """바탕 src의 crop 부위를 klein으로 고쳐 out에 되붙인다 → 기록(dict). 이미 있으면 다시 그리지 않는다. prompt 없으면 PROMPTS[arm]."""
     L, T, side = crop
     base = Image.open(src).convert("RGB")
@@ -167,7 +173,7 @@ def edit(src, crop, box, arm, seed, out, guide=False, prompt=None):
     layer, mm = Image.new("RGB", base.size), Image.new("L", base.size, 0)
     e = Image.open(raw).convert("RGB").resize((side, side), Image.LANCZOS)
     layer.paste(color_match(e, base.crop((L, T, L + side, T + side))), (L, T))
-    mm.paste(mask(crop, box), (L, T))
+    mm.paste(mask(crop, box, mask_shape), (L, T))
     Image.composite(layer, base, mm).save(out)
     return {"status": "ok", "sec": sec}
 

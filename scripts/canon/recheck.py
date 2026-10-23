@@ -196,6 +196,7 @@ def pose_skeleton_errors(spec):
     return [f"{', '.join(miss)}: 몸짓에 던짐 동사가 있는데 guide.pose 뼈대가 없다 — 깊이 꼴은 던진 몸짓의 관절을 못 준다"] if miss else []
 
 
+FIGURE_MIN_SEEN = 0.55   # h4: 뼈대 인물의 보이는 키(머리 꼭대기 ~ 발) 하한 — 판정 「사람 키가 화면 높이 절반을 넘음」에 여유
 FIGURE_MIN_H = 0.6   # d1: 사람 키가 화면 높이 절반을 넘게 그리려면 구역은 그보다 넉넉히(c14 s5 다윗 구역 0.52 → 「절반에 못 미침」)
 
 
@@ -206,9 +207,19 @@ def figure_scale_errors(spec):
     sh = g.get("shape", {})
     if not g or "crowd" in sh.values():
         return []
-    small = [k for k in dict.fromkeys(list(sh) + list(g.get("pose", {})))
-             if (str(sh.get(k, "")).startswith("person") or k in g.get("pose", {})) and R[k][3] - R[k][1] < FIGURE_MIN_H]
-    return [f"{k}: 구역 높이 {R[k][3] - R[k][1]:.2f} < {FIGURE_MIN_H} — 인물이 화면 절반보다 작게 그려진다" for k in small]
+    pose = g.get("pose", {})
+
+    def seen(k):   # h4: 뼈대 인물은 보이는 키(뼈대 머리 꼭대기 ~ 발) — 숙인 뼈대는 구역보다 작게 그려짐(h3e 숙인 다윗 「화면 절반」 5/5)
+        h = R[k][3] - R[k][1]
+        if k not in pose:
+            return h
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as M
+        top = min(y for i, (x, y) in M.POSES[pose[k]].items() if i in (0, 14, 15, 16, 17)) - M.HEAD_R["person"]
+        return h * (1 - max(0.0, top))
+    small = [k for k in dict.fromkeys(list(sh) + list(pose))
+             if (str(sh.get(k, "")).startswith("person") or k in pose) and seen(k) < (FIGURE_MIN_SEEN if k in pose else FIGURE_MIN_H)]
+    return [f"{k}: 보이는 키 {seen(k):.2f} < {FIGURE_MIN_SEEN if k in pose else FIGURE_MIN_H} — 인물이 화면 절반보다 작게 그려진다" for k in small]
 
 
 YOUTH_MIN_RATIO = 0.8   # d5: 청년 구역 높이 / 같은 장면 어른 구역 높이(d4e2 다윗 0.62/0.86 = 0.72 → 「몸이 작아 12~14세」)
