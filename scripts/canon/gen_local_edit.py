@@ -56,6 +56,42 @@ ARMS = {NOB: ("N1", "N2"), GATH: ("I", "G")}
 STAGES = {NOB: 1, GATH: 2}           # 장면마다 판정 단계 수(가드는 몸 → 얼굴)
 
 
+
+# task 403 d3e — 무인 규칙 edit.small-prop-orient: 작은 허공 지물(창)의 방향·모양은 생성 뒤 국소 편집으로.
+# 크롭·마스크를 사람 눈 대신 명세 구역에서 뽑는다(구역 ± 가로 PROP_PAD_X · 세로 PROP_PAD_Y — 생성은 구역보다 길게 그리기도 함, d3 창 x 110~515 vs 구역 128~413).
+PROP_PAD_X, PROP_PAD_Y, PROP_PAD_FRONT = 0.1, 0.04, 0.015   # front: 벽 구역(0~0.09) 밖 — 구역 왼끝 0.105
+KEEP_PROP = ("Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. "
+             "Keep the lighting and the same soft pencil and colored-pencil illustration style.")   # d3e2: 「Keep … the people」이 빈 벽 크롭에 창 쥔 사람을 불러옴
+
+
+def prop_box(region, w, h, end="back"):
+    """명세 구역(0~1)의 한 끝 → (크롭 (L, T, 변), 마스크 상자) 원본 화소. 가이드 꼴 spear는 촉이 늘 왼쪽 끝(make_guide.spear) —
+    end back = 가운데~오른끝 + PROP_PAD_X, front = 왼끝 - PROP_PAD_X ~ 가운데. 세로는 ± PROP_PAD_Y.
+    d3e: 창 전체 크롭 + 지시 둘(왼쪽 촉·오른쪽 물미)은 klein이 양끝에 촉을 그림 → 끝마다 작은 크롭·지시 하나로 차례로.
+    생성은 구역보다 길게 그리기도 함(d3 창 x 110~515 vs 구역 128~413)."""
+    x0, y0, x1, y1 = region
+    mid = (x0 + x1) / 2
+    bx0, bx1 = (mid, x1 + PROP_PAD_X) if end == "back" else (x0 - PROP_PAD_FRONT, mid)   # d4e: 앞끝 여유 0.1은 벽 안까지 → 벽에 날개 장식
+    box = (max(0, round(bx0 * w)), max(0, round((y0 - PROP_PAD_Y) * h)), min(w, round(bx1 * w)), min(h, round((y1 + PROP_PAD_Y) * h)))
+    side = min(min(w, h), max(box[2] - box[0], box[3] - box[1]) + 40)
+    cx, cy = (box[0] + box[2]) / 2, (box[1] + box[3]) / 2
+    L = int(min(max(0, cx - side / 2), w - side))
+    T = int(min(max(0, cy - side / 2), h - side))
+    return (L, T, side), box
+
+
+def prop_prompt(look_en, end="back"):
+    """편집 지시 하나. back = 뒤끝 촉 지우기(d3e) · front = 앞끝을 사전 촉 모양으로(d3e3 앞 촉이 작은 화살촉·뒤에 나무 혹).
+    look_en(사전 L2)에서 끝 모양 낱말을 빌린다."""
+    if end == "back":
+        cap = "a small iron cap" if "small iron cap" in look_en else "a plain wooden end"
+        return (f"Remove the large metal spearhead from the right end of the wooden spear shaft, so the right end is only {cap}, "
+                f"much thinner than a spearhead. {KEEP_PROP}")
+    m = re.search(r"one (large [a-z-]+ iron point)", look_en)
+    head = m.group(1) if m else "large iron point"
+    return (f"Enlarge the iron spearhead at the left end of the wooden spear shaft into one {head}, a broad blade much wider than the shaft. "
+            f"Do not add any crossguard, wings or second blade. {KEEP_PROP}")   # d4e: 「nothing sticking out beyond it」 → 벽에 날개·코등이 장식
+
 def busy():
     r = subprocess.run(["pgrep", "-fl", "mflux|run_scene.py --worker|gen_video_pilot|mlx_video"], capture_output=True, text=True)
     return r.stdout.strip()

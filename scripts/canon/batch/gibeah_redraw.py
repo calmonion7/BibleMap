@@ -65,7 +65,36 @@ def guide_ok(spec):
             sys.exit(f"[GibeahRedraw] 고정 절 guide {FX['guide']}가 지금 명세의 가이드와 다르다 — make_guide로 다시 그릴 것")
 
 
+def edit_prop():
+    """task 403 d3e — 고정 절 edit(from 시도 · 지물 구역 키 · 사전 id · klein 시드) → 그 시도 그림의 지물만 국소 편집(규칙 edit.small-prop-orient)."""
+    import gen_local_edit as GL
+    from PIL import Image
+    e = FX["edit"]
+    spec = D.load(SID)
+    words = json.load(open(os.path.join(HERE, "..", "..", "data", "scripture_words", "words.json"), encoding="utf-8"))["words"]
+    look = next(w for w in words if w["id"] == e["word"])["look"]["L2"]["en"]
+    os.makedirs(OUT, exist_ok=True)
+    m = load()
+    ends = e.get("ends", ["back"])   # d4: 끝마다 지시 하나씩 차례로(뒤끝 촉 지움 → 앞 촉 모양)
+    for s in FX["seeds"]:
+        src = os.path.join(os.path.dirname(OUT), e["from"], f"s{s}.png")
+        w, h = Image.open(src).size
+        steps = []
+        for i, end in enumerate(ends):
+            out = img(s) if i == len(ends) - 1 else os.path.join(OUT, f"s{s}-{end}.png")
+            crop, box = GL.prop_box(spec["regions"][e["region"]], w, h, end)
+            prompt = GL.prop_prompt(look, end)
+            r = GL.edit(src, crop, box, None, e["seed"], out, prompt=prompt)
+            steps.append({"end": end, "src": os.path.relpath(src, os.path.dirname(OUT)), "crop": crop, "box": box, "prompt": prompt, **r})
+            print(f"[GibeahRedraw] 편집 s{s} {end} {r}", flush=True)
+            src = out
+        m.setdefault("edit", {})[str(s)] = steps
+    save(m)
+
+
 def gen():
+    if FX.get("edit"):
+        return edit_prop()
     import recheck
     recheck.require_pass(SID)   # task 399 generate.spec-gate — 명세 규칙에 걸리면 그리지 않는다
     guide_ok(D.load(SID))       # task 400 generate.thrown-guide — 명세에 가이드가 있으면 그 가이드로만
@@ -153,17 +182,28 @@ def report():
     print(f"{LINE}: {conclude(m)}")
 
 
+def key_img(k):
+    """후보 키 「g:<시드>」(이 시도) | 「<시도>:<시드>」(다른 시도, task 403 d) → 그림 경로."""
+    t, s = k.split(":")
+    return img(int(s)) if t == "g" else os.path.join(os.path.dirname(OUT), t, f"s{s}.png")
+
+
 def cand():
     from PIL import Image
     sys.argv += ["--set", "jordan-guide"]   # plain_words는 import 때 묶음을 읽는다 — 화면 틀·원문만 빌린다
     import plain_words as PW
     import make_cand_page as C
     m = load()
-    ok, cands, _ = pick(m)
-    assert len(cands) == 2, f"후보 2장 아님: {cands}"
-    one, two = f"g:{cands[0]}", f"g:{cands[1]}"
-    keys = [(f"g:{s}", f"새 명세 s{s}{'' if s in ok else ' (기계 불통과)'}") for s in FX["seeds"]] + [("ref:0", FX["ref"]["label"])]
-    src = lambda k: os.path.expanduser(FX["ref"]["image"]) if k.startswith("ref:") else img(int(k.split(":")[1]))
+    if FX.get("cand"):   # task 403 d 시도(한 장 반복): 후보는 서로 다른 시도의 그림 — 고정 절 cand = [{try, seed, label}] 1위 먼저
+        cands = [c["seed"] for c in FX["cand"]]
+        one, two = (f"{c['try']}:{c['seed']}" for c in FX["cand"][:2])
+        keys = [(f"{c['try']}:{c['seed']}", c["label"]) for c in FX["cand"]] + [("ref:0", FX["ref"]["label"])]
+    else:
+        ok, cands, _ = pick(m)
+        assert len(cands) == 2, f"후보 2장 아님: {cands}"
+        one, two = f"g:{cands[0]}", f"g:{cands[1]}"
+        keys = [(f"g:{s}", f"새 명세 s{s}{'' if s in ok else ' (기계 불통과)'}") for s in FX["seeds"]] + [("ref:0", FX["ref"]["label"])]
+    src = lambda k: os.path.expanduser(FX["ref"]["image"]) if k.startswith("ref:") else key_img(k)
     tpl = (PW.PAGE_G.replace("<title>요단 구도 그림 비교 388</title>", "<title>기브아 창 다시 그리기</title>")
            .replace("const TASK = 388;", f'const TASK = "{NAME}";')
            .replace("가이드·본 실행·격자·387 참고 ${s.all.length}장", "새 명세 8장·옛 승인 참고 ${s.all.length}장"))
@@ -199,10 +239,19 @@ def record(path):
     if a["answer"] not in ("left", "right"):
         print("[GibeahRedraw] 둘 다 아님 — 옛 승인 그대로(판정: 보류)", flush=True)
         return
-    s = int(a[a["answer"]].split(":")[1])
-    shutil.copyfile(img(s), os.path.join(HERE, APPROVED))
+    k = a[a["answer"]]
+    t, s = k.split(":")[0], int(k.split(":")[1])
+    shutil.copyfile(key_img(k), os.path.join(HERE, APPROVED))
     spec = approve.load_spec(SID)
-    spec = approve.night_pick(spec, s, "base", APPROVED, "user", m["prompt"])
+    em = {}
+    if t != "g":
+        em = json.load(open(METRICS.replace(f"/{TRY}/", f"/{t}/"), encoding="utf-8"))
+    if em.get("edit"):   # d 시도: 생성 뒤 국소 편집(edit.small-prop-orient)이면 편집 차례를 함께
+        base_try = next(c for c in FX["cand"] if c["try"] == t).get("base", t)
+        bm = json.load(open(METRICS.replace(f"/{TRY}/", f"/{base_try}/"), encoding="utf-8"))
+        spec = approve.local_edit(spec, s, APPROVED, em["edit"][str(s)], "user", bm["prompt"])
+    else:
+        spec = approve.night_pick(spec, s, "base", APPROVED, "user", (em or m)["prompt"])
     spec["approved"]["final"]["round"] = NAME
     approve.save_spec(spec)
     print(f"[GibeahRedraw] 장면 채택 — s{s} · {APPROVED}", flush=True)

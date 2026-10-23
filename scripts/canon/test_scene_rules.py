@@ -19,6 +19,9 @@ def gibeah():
         return json.load(fh)
 
 
+gibeah_cached = gibeah()
+
+
 def verses():
     with open(check_scenes.VERSES, encoding="utf-8") as fh:
         return json.load(fh)
@@ -321,6 +324,117 @@ class PoseSkeleton(unittest.TestCase):
 
     def test_gibeah_passes(self):
         self.assertEqual(recheck.pose_skeleton_errors(gibeah()), [])
+
+
+class FigureScale(unittest.TestCase):
+    """generate.figure-scale — 무리 없는 가까운 장면의 인물 구역은 화면 높이 0.6 이상(task 403 d1)."""
+
+    def test_small_figure_fails(self):
+        s = gibeah()
+        s["regions"]["david-youth"][1] = 0.46
+        self.assertEqual(len(recheck.figure_scale_errors(s)), 1)
+
+    def test_crowd_scene_needs_nothing(self):
+        s = gibeah()
+        s["regions"]["david-youth"][1] = 0.46
+        s["guide"]["shape"]["wall"] = "crowd"
+        self.assertEqual(recheck.figure_scale_errors(s), [])
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.figure_scale_errors(gibeah()), [])
+
+
+class SecondPoint(unittest.TestCase):
+    """derive.no-second-point — 그리는 사전 문구에 pointed·spike 없음(task 403 d1, c14 s5 뒤끝 화살촉)."""
+
+    def test_pointed_butt_fails(self):
+        words = {"words": [{"id": "spear", "look": {"L2": {"en": "one large point at the front and a short pointed iron butt-spike"}}}]}
+        with mock.patch.object(recheck.ds, "route_prompt", return_value="x, one large point at the front and a short pointed iron butt-spike, y"), \
+                mock.patch("builtins.open", mock.mock_open(read_data=json.dumps(words))):
+            self.assertEqual(len(recheck.second_point_errors(gibeah_cached)), 1)
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.second_point_errors(gibeah()), [])
+
+
+class ObjectCrisp(unittest.TestCase):
+    """generate.object-crisp — 허공 물체 꼴은 흐림 뒤에 또렷하게(task 403 d2 — d1 흐린 촉 → 창 방향 뒤집힘·화살촉)."""
+
+    def test_spear_tip_not_blurred(self):
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as M
+        s = gibeah()
+        v = round(255 * s["guide"]["depth"]["spear"])
+        x0, y0, x1, y1 = (round(a * d) for a, d in zip(s["regions"]["spear"], (M.W, M.H, M.W, M.H)))
+        tip = M.make(s).crop((x0, y0 - 20, x0 + (x1 - x0) // 3, y1 + 20)).convert("L")
+        self.assertGreater(sum(1 for px in tip.getdata() if px == v), 100)   # 흐리면 같은 값 화소가 거의 없음
+
+    def test_air_shapes_agree(self):
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as M
+        self.assertEqual(M.AIR_SHAPES, recheck.AIR_SHAPES)
+
+
+class SmallPropEdit(unittest.TestCase):
+    """edit.small-prop-orient — 작은 허공 지물 편집 상자는 명세 구역에서(사람 눈 아님), 지시는 사전 문구 + 왼쪽 촉(task 403 d3e)."""
+
+    def test_box_is_back_end_of_region(self):
+        import gen_local_edit as GL
+        x0, y0, x1, y1 = gibeah()["regions"]["spear"]
+        (L, T, side), box = GL.prop_box([x0, y0, x1, y1], 1216, 640)
+        self.assertGreaterEqual(box[0], (x0 + x1) / 2 * 1216 - 1)                 # 뒤끝(오른쪽 반)만
+        self.assertGreaterEqual(box[2], (x1 + 0.08) * 1216)                       # 생성은 구역보다 길게(d3 창 오른끝 515 vs 구역 413)
+        self.assertTrue(box[1] <= y0 * 640 - 15 and box[3] >= y1 * 640 + 15)      # 세로 여유
+        self.assertTrue(L <= box[0] and T <= box[1] and L + side >= box[2] and T + side >= box[3] and L + side <= 1216 and T + side <= 640)
+        self.assertLess(side, 400)                                                             # 작은 크롭
+
+    def test_front_box_is_front_end(self):
+        import gen_local_edit as GL
+        (L, T, side), box = GL.prop_box(gibeah()["regions"]["spear"], 1216, 640, "front")
+        self.assertTrue(box[0] <= 110 and box[2] <= 300)   # d3 창 왼끝 110 ~ 가운데
+        self.assertGreaterEqual(box[0], round(0.09 * 1216))   # d4e: 벽 구역(0~0.09) 안으로 들어가지 않음
+
+    def test_front_prompt_uses_lexicon_head(self):
+        import gen_local_edit as GL
+        p = GL.prop_prompt("a straight wooden shaft with one large leaf-shaped iron point at the front and a small iron cap", "front")
+        self.assertIn("large leaf-shaped iron point", p)
+        self.assertIn("left end", p)
+        self.assertNotIn("right end", p)
+        self.assertIn("no", p.lower())
+        self.assertIn("crossguard", p)                       # d4e: 날개·코등이 금지를 말함
+
+    def test_prompt_one_instruction_no_boy(self):
+        import gen_local_edit as GL
+        p = GL.prop_prompt("one large leaf-shaped iron point at the front and a small iron cap on the back end")
+        self.assertIn("right end", p)
+        self.assertNotIn("left", p)              # 지시 하나(뒤끝만)
+        self.assertNotRegex(p, r"\bboy\b")
+        self.assertNotIn("the people", p)        # d3e2: 크롭 밖 사람을 말하면 창 쥔 사람을 그림
+        self.assertIn("no person", p)
+
+class GuideHeadRatio(unittest.TestCase):
+    """generate.guide-head-ratio — 가이드 사람 꼴 머리 지름 ≤ 구역 높이 × 0.14(task 403 d4 — 숙인 꼴 0.18은 선 꼴로 옮겨져 아이 비율)."""
+
+    def test_head_diameter(self):
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as M
+        self.assertEqual(set(M.HEAD_R), {"person", "person_duck"})
+        for name, r in M.HEAD_R.items():
+            self.assertLessEqual(2 * r, 0.14, name)
+
+class YouthHeight(unittest.TestCase):
+    """generate.youth-height — 청년 구역 높이 ≥ 같은 장면 어른 × 0.8(task 403 d5)."""
+
+    def test_small_youth_fails(self):
+        s = gibeah()
+        s["regions"]["david-youth"][1] = 0.36
+        self.assertEqual(len(recheck.youth_height_errors(s)), 1)
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.youth_height_errors(gibeah()), [])
 
 
 if __name__ == "__main__":

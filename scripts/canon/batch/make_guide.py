@@ -37,10 +37,13 @@ def body(d, top_l, top_r, cx, y0, y1, bw, v):
         d.polygon([(cx + s * kw * 0.15 - lw / 2, ky), (cx + s * kw * 0.15 + lw / 2, ky), (cx + s * bw * 0.5 + lw / 2, y1), (cx + s * bw * 0.5 - lw / 2, y1)], fill=v)
 
 
+HEAD_R = {"person": 0.065, "person_duck": 0.07}   # 머리 반지름 = 구역 높이 × 이 값 — 지름 ≤ 0.14(규칙 generate.guide-head-ratio, d4)
+
+
 def person(d, x0, y0, x1, y1, v):
     h, cx = y1 - y0, (x0 + x1) / 2
     bw = min(x1 - x0, h * BODY["w"])
-    r = h * 0.065
+    r = h * HEAD_R["person"]
     d.ellipse([cx - r, y0, cx + r, y0 + 2 * r], fill=v)
     sh = y0 + 2 * r
     body(d, (cx - bw * 0.3, sh), (cx + bw * 0.3, sh), cx, y0, y1, bw, v)
@@ -130,7 +133,7 @@ def person_duck(d, x0, y0, x1, y1, v):
     """task 402 b3 — 날아오는 것 아래로 몸을 숙여 피하는 사람: 머리를 낮게 화면 왼쪽(벽 쪽)으로, 위몸을 앞으로 굽히고 무릎을 꺾음.
     b2: 기울인 꼴(person_dodge)은 「벽에 기대 섬」으로 옮겨져 피함이 안 보임(순간 0 · 피함이 보임 0). 몸 덩어리는 person만큼."""
     h, w = y1 - y0, x1 - x0
-    bw, r = min(w, h * BODY["w"] * 1.55), h * 0.09
+    bw, r = min(w, h * BODY["w"] * 1.55), h * HEAD_R["person_duck"]   # d4: 0.09(지름 0.18)는 그림이 선 꼴로 옮기면 머리 큰 아이 비율(d2·d3 「10세 안팎」) — 규칙 generate.guide-head-ratio
     hx = x0 + r * 1.1
     d.ellipse([hx - r, y0, hx + r, y0 + 2 * r], fill=v)                                  # 낮춘 머리(벽 쪽)
     hip_x, hip_y = x0 + w * 0.6, y0 + h * 0.55
@@ -214,6 +217,8 @@ POSES = {
     # 막 던진 뒤 몸이 따라 나감(화면 왼쪽으로 던짐 — 투창 마무리): 몸통 약 30° · 던진 오른팔 앞·아래로 길게 뻗음 · 왼팔 뒤 위로(균형) · 굽힌 왼 앞다리 한 발로 섬
     # · 오른 뒷다리를 땅에서 들어 뒤로 올림(c8 25° 곧게 펴짐 · c9 35°+팔 내림 = 구부정히 걷는 사람 — 기울기 대신 든 뒷발로 체중을 보임) · 왼발 앞으로 내디딤(무릎 굽힘)
     # 옆얼굴이라 가까운 오른 눈·귀만.
+    # · d1·d2 뼈대(손목 더 아래 · 팔다리 곧게)는 한 장 근거(c14 s5)로 만든 규칙이라 「달리는 자세」(d1)·「늘어진 팔」(d2)을 낳음 → c10 꼴로 되돌림
+    #   (묶음 기록: c10 가이드 던진 몸짓 c10 3/8 · c11 2/8 · c13 3/8 — d 시도 전 가장 좋음).
     "throw_follow": {0: (-0.23, 0.11), 1: (-0.15, 0.18), 2: (-0.14, 0.21), 3: (-0.28, 0.3), 4: (-0.41, 0.41), 5: (-0.17, 0.21), 6: (-0.05, 0.22),
                      7: (0.06, 0.15), 8: (-0.01, 0.52), 9: (0.13, 0.68), 10: (0.27, 0.77), 11: (0.01, 0.52), 12: (-0.17, 0.72), 13: (-0.14, 0.96),
                      14: (-0.24, 0.095), 16: (-0.17, 0.1)},
@@ -242,6 +247,7 @@ def draw_pose(img, box, name, hip_dx=0.06):
     return img
 
 
+AIR_SHAPES = {"spear"}   # 허공을 나는 물체 꼴(recheck.AIR_SHAPES와 같음)
 SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "seated": seated, "crowd": crowd, "boat": boat, "bank": bank}
 
 
@@ -267,17 +273,23 @@ def make(spec):
         import derive_scene as ds
         build = {f["region"]: ds._cast_in_scene(f).get("card", {}).get("silhouette", {}).get("class") for f in spec["figures"]}
     pose = g.get("pose", {})   # task 403 c7 — 뼈대로 줄 인물은 깊이 꼴을 그리지 않는다(흐림 뒤 draw_pose)
+    air = [k for k in g["depth"] if g["shape"][k] in AIR_SHAPES]   # d2 — 허공 물체는 흐림 뒤에 또렷하게(d1 흐린 촉 → 창 방향 뒤집힘·화살촉)
     for k in sorted(g["depth"], key=lambda k: (g["depth"][k], k)):
-        if k in pose:
+        if k in pose or k in air:
             continue
         x0, y0, x1, y1 = R[k]
         BODY["w"] = BUILD_WIDTH.get(build.get(k), 0.3)
         BODY["knee"] = k in knee
         SHAPES[g["shape"][k]](d, x0 * W, y0 * H, x1 * W, y1 * H, round(255 * g["depth"][k]))
     BODY["w"], BODY["knee"] = 0.3, False
+    img = img.filter(ImageFilter.GaussianBlur(g.get("blur", 3)))   # b6: blur 키우면 각진 몸이 누그러짐(b5 사울 상자 튜닉)
+    d = ImageDraw.Draw(img)
+    for k in air:
+        x0, y0, x1, y1 = R[k]
+        SHAPES[g["shape"][k]](d, x0 * W, y0 * H, x1 * W, y1 * H, round(255 * g["depth"][k]))
     BODY.pop("big_tip", None)
     BODY.pop("leaf_tip", None)
-    out = img.filter(ImageFilter.GaussianBlur(g.get("blur", 3))).convert("RGB")   # b6: blur 키우면 각진 몸이 누그러짐(b5 사울 상자 튜닉)
+    out = img.convert("RGB")
     for k, name in sorted(pose.items()):
         x0, y0, x1, y1 = R[k]
         draw_pose(out, (x0 * W, y0 * H, x1 * W, y1 * H), name)

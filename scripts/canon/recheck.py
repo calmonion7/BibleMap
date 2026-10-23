@@ -136,7 +136,7 @@ def guide_body_errors(spec):
     return [] if g.get("body") == "card" else ["guide에 사람 꼴이 있는데 body가 card가 아니다 — 몸 너비가 카드 체격을 따르지 않는다"]
 
 
-HEAD_BAND = {"person_dodge": 0.13, "person_duck": 0.18}   # make_guide 피하는 꼴 머리 원 지름 = 키 × 이 값
+HEAD_BAND = {"person_dodge": 0.13, "person_duck": 0.14}   # make_guide 피하는 꼴 머리 원 지름 = 키 × 이 값
 NEAR_MISS = 0.05   # b3: 물체 아래끝이 머리 띠 위끝에서 이만큼(화면 높이 비율) 안 — 아슬아슬한 빗나감
 
 
@@ -187,6 +187,57 @@ def pose_skeleton_errors(spec):
     pose = (spec.get("guide") or {}).get("pose", {})
     miss = [f["region"] for f in spec["figures"] if THROWN.search((f.get("gesture") or {}).get("ko", "")) and f["region"] not in pose]
     return [f"{', '.join(miss)}: 몸짓에 던짐 동사가 있는데 guide.pose 뼈대가 없다 — 깊이 꼴은 던진 몸짓의 관절을 못 준다"] if miss else []
+
+
+FIGURE_MIN_H = 0.6   # d1: 사람 키가 화면 높이 절반을 넘게 그리려면 구역은 그보다 넉넉히(c14 s5 다윗 구역 0.52 → 「절반에 못 미침」)
+
+
+def figure_scale_errors(spec):
+    """가까운 장면 인물은 크게(task 403 d1, 규칙 generate.figure-scale) — 무리 꼴(crowd)이 없는 guide에서 인물 구역(사람 꼴 person*·뼈대)의
+    높이가 화면 FIGURE_MIN_H 미만이면 걸림. c14 s5: 다윗 구역 0.52(숙인 꼴) → 「다윗 키가 화면 절반에 못 미치고 빈 벽이 화면 대부분」 3/3."""
+    g, R = spec.get("guide") or {}, spec.get("regions", {})
+    sh = g.get("shape", {})
+    if not g or "crowd" in sh.values():
+        return []
+    small = [k for k in dict.fromkeys(list(sh) + list(g.get("pose", {})))
+             if (str(sh.get(k, "")).startswith("person") or k in g.get("pose", {})) and R[k][3] - R[k][1] < FIGURE_MIN_H]
+    return [f"{k}: 구역 높이 {R[k][3] - R[k][1]:.2f} < {FIGURE_MIN_H} — 인물이 화면 절반보다 작게 그려진다" for k in small]
+
+
+YOUTH_MIN_RATIO = 0.8   # d5: 청년 구역 높이 / 같은 장면 어른 구역 높이(d4e2 다윗 0.62/0.86 = 0.72 → 「몸이 작아 12~14세」)
+
+
+def youth_height_errors(spec):
+    """청년은 어른 키에 가깝게(task 403 d5, 규칙 generate.youth-height) — guide 사람 꼴 인물 중 카드 ageBand youth의 구역 높이가
+    같은 장면 어른(young 이상) 인물 구역 높이의 YOUTH_MIN_RATIO 미만이면 걸림. 숙인 꼴도 그림은 선 꼴로 옮겨 작은 아이가 됨(d2~d4e2)."""
+    g, R = spec.get("guide") or {}, spec.get("regions", {})
+    sh, pose = g.get("shape", {}), g.get("pose", {})
+    people = {f["region"]: ds._cast_in_scene(f).get("card", {}).get("ageBand", {}).get("class") for f in spec["figures"]
+              if str(sh.get(f["region"], "")).startswith("person") or f["region"] in pose}
+    adult = [R[k][3] - R[k][1] for k, c in people.items() if c not in ("child", "youth")]
+    if not adult:
+        return []
+    return [f"{k}: 청년 구역 높이 {R[k][3] - R[k][1]:.2f} < 어른 {max(adult):.2f} × {YOUTH_MIN_RATIO} — 아이처럼 작게 그려진다"
+            for k, c in people.items() if c == "youth" and R[k][3] - R[k][1] < YOUTH_MIN_RATIO * max(adult)]
+
+
+SECOND_POINT = re.compile(r"\b(pointed|spikes?|barbs?)\b", re.I)
+
+
+def second_point_errors(spec):
+    """부수 부위는 촉 낱말 없이(task 403 d1, 규칙 derive.no-second-point) — 파생 프롬프트에 실린 낱말 사전 look 문구(L1~L3 en)에
+    pointed·spike·barb가 있으면 걸림. c14 s5: 「a short pointed iron butt-spike at the back」 → 뒤끝에 앞 촉만 한 화살촉(창 모양 3/3 틀림).
+    뒤끝이 뾰족하다는 본문 근거(삼하 2:23)는 뜻·근거 칸에 두고, 그리는 문구는 크기 대비로만 쓴다."""
+    with open(check_scenes.WORDS, encoding="utf-8") as fh:
+        words = json.load(fh)["words"]
+    low = ds.route_prompt(spec).lower()
+    out = []
+    for w in words:
+        for k in ("L1", "L2", "L3"):
+            t = w.get("look", {}).get(k, {}).get("en", "")
+            if t and t.lower().rstrip(".") in low and SECOND_POINT.search(t):
+                out.append(f"사전 {w['id']} {k} 문구에 「{SECOND_POINT.search(t).group(0)}」 — 부수 부위가 둘째 촉으로 그려진다")
+    return out
 
 
 def has_situation(spec):
@@ -242,6 +293,9 @@ SPEC_CHECKS = {
     "recheck.guide_legs_errors": lambda spec, ctx: guide_legs_errors(spec),
     "recheck.youth_noun_errors": lambda spec, ctx: youth_noun_errors(spec),
     "recheck.pose_skeleton_errors": lambda spec, ctx: pose_skeleton_errors(spec),
+    "recheck.figure_scale_errors": lambda spec, ctx: figure_scale_errors(spec),
+    "recheck.second_point_errors": lambda spec, ctx: second_point_errors(spec),
+    "recheck.youth_height_errors": lambda spec, ctx: youth_height_errors(spec),
     "check_scenes.lexicon_look_errors": lambda spec, ctx: check_scenes.lexicon_look_errors(spec, ds.route_prompt(spec)),
 }
 

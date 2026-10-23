@@ -1,0 +1,22 @@
+{
+ "answers": {},
+ "edit": {
+  "5": {
+   "src": "d3/s5.png",
+   "crop": [
+    0,
+    0,
+    569
+   ],
+   "box": [
+    6,
+    173,
+    535,
+    240
+   ],
+   "prompt": "Fix only the flying spear. Make it a straight wooden shaft with one large leaf-shaped iron point at the front and a small iron cap on the back end, much smaller than the point, no crossguard, with the large point on its left end and the small cap on its right end, flying point-first to the left. Keep everything else exactly the same: the people, their faces, hands and clothes, the instrument, the wall, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
+   "status": "ok",
+   "sec": 40.3
+  }
+ }
+}

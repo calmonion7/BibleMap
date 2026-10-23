@@ -1,0 +1,22 @@
+{
+ "answers": {},
+ "edit": {
+  "5": {
+   "src": "d3/s5.png",
+   "crop": [
+    251,
+    54,
+    304
+   ],
+   "box": [
+    271,
+    173,
+    535,
+    240
+   ],
+   "prompt": "Remove the large metal spearhead from the right end of the wooden spear shaft, so the right end is only a small iron cap, much thinner than a spearhead. Keep everything else exactly the same: the people, their faces, hands and clothes, the instrument, the wall, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
+   "status": "ok",
+   "sec": 39.7
+  }
+ }
+}

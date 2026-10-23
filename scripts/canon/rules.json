@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "c14eeaa34f07",
+  "version": "9eafa400597b",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -131,6 +131,27 @@
      "note": "카드 ageBand class youth(15~20)는 파생 성별 명사가 young man·young woman(derive_scene._who) — child만 boy·girl. youth 인물이 있고 child가 없는 명세의 파생 프롬프트에 boy·girl이 있으면 걸림"},
     {"id": "generate.pose-skeleton", "layer": "generate", "scope": "all", "check": "recheck.pose_skeleton_errors",
      "source": "notes/GIBEAH-STEP23.md · task 403 c1~c6(깊이 꼴 — 사울 몸·던진 몸짓 함께 맞음 0) → c7~c13(뼈대 — 4장) · 사람 결정 「1 포즈 뼈대」", "since": "2026-10-23 task 403",
-     "note": "몸짓 칸(gesture.ko)에 던짐 동사(던지·쏘·떨어뜨)가 있는 인물은 guide.pose에 OpenPose 뼈대 — 깊이 꼴은 실루엣 덩어리만 주어 관절 각도·다리 길이가 그림마다 넓은 보폭으로 되돌아감"}
+     "note": "몸짓 칸(gesture.ko)에 던짐 동사(던지·쏘·떨어뜨)가 있는 인물은 guide.pose에 OpenPose 뼈대 — 깊이 꼴은 실루엣 덩어리만 주어 관절 각도·다리 길이가 그림마다 넓은 보폭으로 되돌아감"},
+    {"id": "generate.figure-scale", "layer": "generate", "scope": "all", "check": "recheck.figure_scale_errors",
+     "source": "notes/GIBEAH-STEP23.md · task 403 c14 s5(다윗 구역 0.52 — 「키가 화면 절반에 못 미치고 빈 벽이 대부분」 3/3) · 사람 2026-10-23 「한 장 → 규칙 수정 → 반복」", "since": "2026-10-23 task 403",
+     "note": "무리 꼴(crowd)이 없는 가까운 장면의 guide 인물 구역(사람 꼴 person*·뼈대)은 높이가 화면 0.6 이상 — 숙인 꼴은 구역 위끝이 머리라 구역 높이가 곧 그려지는 키"},
+    {"id": "derive.no-second-point", "layer": "derive", "scope": "all", "check": "recheck.second_point_errors",
+     "source": "notes/GIBEAH-STEP23.md · task 403 c14 s5(「a short pointed iron butt-spike」 → 뒤끝 화살촉, 창 모양 3/3 틀림)", "since": "2026-10-23 task 403",
+     "note": "파생 프롬프트에 실린 낱말 사전 look 문구에 pointed·spike·barb 금지 — 부수 부위가 둘째 촉으로 그려짐. 뾰족하다는 본문 근거는 뜻·근거·L3 ko에 두고 그리는 문구는 크기 대비(much smaller)로"},
+    {"id": "generate.pose-throw-geometry", "layer": "generate", "scope": "all", "check": "test:test_scene_rules",
+     "source": "notes/GIBEAH-STEP23.md · task 403 c14 s5(뼈대 손목이 어깨보다 0.2 아래 → 「주먹을 앞으로 곧게 뻗음」 3/3, 든 뒷발이 바닥에)", "since": "2026-10-23 task 403",
+     "note": "투창 마무리 뼈대(make_guide POSES throw_follow): 던진 손목이 어깨보다 키×0.28 이상 아래·앞 · 앞무릎이 앞발목보다 앞 · 뒷발목이 앞발목보다 키×0.2 이상 위 · d2 보강: 던진 팔·든 뒷다리 곧게(관절 각 ≥ 160°)·반대 손목 어깨 아래 — 굽은 팔다리·위로 든 반대 팔은 「달리는 자세」(d1 3/3)", "retired": "2026-10-23 d3 — 한 장(c14 s5) 근거로 만든 규칙: d1 「달리는 자세」·d2 「늘어진 팔」로 반증, c10 뼈대가 묶음 기록상 가장 좋음(던진 몸짓 3/8). 결함을 규칙으로 옮기기 전에 같은 조건에서 맞게 나온 적이 있는지 기록부터 볼 것"},
+    {"id": "generate.object-crisp", "layer": "generate", "scope": "all", "check": "test:test_scene_rules",
+     "source": "notes/GIBEAH-STEP23.md · task 403 d1 s5(흐림 8 아래 촉이 뭉개져 창 방향 뒤집힘·미늘 화살촉 — 촉 방향·창 모양·순간 3/3 틀림)", "since": "2026-10-23 task 403",
+     "note": "가이드의 허공 물체 꼴(AIR_SHAPES — 창)은 몸 덩어리 흐림 뒤에 또렷하게 그림(뼈대처럼) — 흐린 촉은 방향·모양을 못 줌"},
+    {"id": "edit.small-prop-orient", "layer": "edit", "scope": "all", "check": "test:test_scene_rules",
+     "source": "notes/GIBEAH-STEP23.md · task 403 d1~d3(창 방향 3장 연속 틀림 — 가이드 촉을 또렷하게 해도) · 묶음 기록 c7~c14 창 방향 1~4/8 · LOCAL-EDIT 371·386(작은 지물 국소 편집 선례)", "since": "2026-10-23 task 403",
+     "note": "작은 허공 지물(창)의 방향·모양은 생성으로 못 줌 → 생성 뒤 klein 국소 편집(gen_local_edit.edit). 상자는 명세 구역의 뒤끝(가운데~오른끝 + 가로 0.1, 세로 ± 0.04 — prop_box, 사람 눈 아님), 지시 하나 = 뒤끝 촉 지우기(사전 L2의 뒤끝 낱말) + 「아무것도 더하지 않음(no person …)」 — 크롭 밖 사람을 말하면 빈 벽에 창 쥔 사람을 그림(d3e2) · d4: 끝마다 지시 하나씩 차례로 — 뒤끝 촉 지움(back) → 앞끝을 사전 L2 촉 모양으로 키움(front, d3e3 앞 촉이 작은 화살촉·뒤에 나무 혹 — 바깥 여유 0.015(벽 구역 밖)·「no crossguard, wings or second blade」, d4e 여유 0.1은 벽에 날개 장식) · d3e: 창 전체 크롭 + 지시 둘은 klein이 양끝에 촉. 큰 부위(머리·몸)에는 쓰지 않음"},
+    {"id": "generate.guide-head-ratio", "layer": "generate", "scope": "all", "check": "test:test_scene_rules",
+     "source": "notes/GIBEAH-STEP23.md · task 403 d2·d3·d3e3(청년 다윗 「10세 안팎 아이」 3/3 — 숙인 꼴 머리 지름 0.18을 그림이 선 다윗으로 옮김)", "since": "2026-10-23 task 403",
+     "note": "가이드 사람 꼴(person*)의 머리 원 지름은 구역 높이 × 0.14 이하(어른·청년 비율, person 0.13) — 숙인 꼴이라도 그림은 선 꼴로 옮기기도 해서 큰 머리가 아이 비율이 됨"},
+    {"id": "generate.youth-height", "layer": "generate", "scope": "all", "check": "recheck.youth_height_errors",
+     "source": "notes/GIBEAH-STEP23.md · task 403 d4e2(다윗 구역 0.62 = 사울 0.86의 0.72 — 「몸이 작아 12~14세 소년」, 21/22 중 유일한 틀림)", "since": "2026-10-23 task 403",
+     "note": "guide 인물 중 카드 ageBand youth의 구역 높이는 같은 장면 어른(child·youth 아님) 구역 높이 × 0.8 이상 — 숙인 꼴이라도 그림은 선 꼴로 옮겨 작은 아이가 됨"}
   ]
 }
