@@ -82,3 +82,17 @@
 ## 4. 역할
 
 저작은 data-author, 검토는 scripture-reviewer(판정표 `.forge/reports/scripture-words-review.md`, 항목마다 맞음/약함/틀림)가 맡는다. 사람 검토 화면은 만들지 않는다.
+
+## 크기 — `look.size` (2026-10-23, task 405)
+
+그림에 들어가는 지물은 **사람 몸에 견준 크기**를 적는다. 사람 「창 앞촉이 큰것 같음 사람을 줄였으면 창도 줄여야하지 않아?」 — 그림은 지물을 장면 구역과 상관없이 제 크기로 그리므로(task 405 m4 실측), 크기를 사람에 묶어 두어야 사람 크기를 바꿀 때 지물도 같은 비로 따라간다.
+
+```json
+"size": { "ref": "man-height", "ratio": 0.67, "en": "two thirds of a man's height", "ko": "사람 키의 3분의 2쯤",
+          "parts": { "point": { "en": "hand-sized", "ko": "손바닥만 함" } },
+          "grounds": "[저작](본문에 길이 없음 — 그림 사정) …" }
+```
+
+- `ref`는 지금 `man-height`(사람 키)만. `ratio`는 그 비 — 생성 규칙(`generate.flight-position`)이 그릴 길이를 셀 때 쓴다.
+- `en`과 `parts.*.en`은 **L2 en에 그대로** 들어 있어야 한다(검사기·규칙 `derive.prop-size-relative`). L2 30낱말 한도 안에 짧은 꼴로.
+- 본문에 크기가 없으면 `[저작]`으로 그림 사정임을 밝힌다(사람 판단이 바꿀 수 있는 칸).

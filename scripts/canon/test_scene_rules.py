@@ -625,23 +625,45 @@ class FigureScalePose(unittest.TestCase):
         self.assertTrue(any("saul" in e and "가깝게" in e for e in recheck.figure_scale_errors(s)))
 
 
-class SpearTwoThirds(unittest.TestCase):
-    """generate.spear-two-thirds — 창 촉은 던진 손목 → 피하는 사람 머리의 2/3 지점, 뒤끝은 손보다 앞(task 405 n1)."""
+class FlightPosition(unittest.TestCase):
+    """generate.flight-position — 촉은 guide.flight 지점, 그려질 뒤끝(사전 크기 × 던지는 사람 키)은 손목 앞(task 405 — 사람 「창은 3분의2쯤」 일반화)."""
 
     def test_spear_at_head_fails(self):
         s = gibeah()
         s["regions"]["spear"] = [0.105, 0.478, 0.34, 0.503]   # m1e처럼 머리 위까지 날아옴
-        self.assertTrue(recheck.spear_two_thirds_errors(s))
+        self.assertTrue(recheck.flight_errors(s))
 
-    def test_butt_at_hand_fails(self):
+    def test_missing_flight_fails(self):
         s = gibeah()
-        x0 = s["regions"]["spear"][0]
-        s["regions"]["spear"][2] = x0 + 0.33   # 긴 창 — 뒤끝이 사울 손에
-        self.assertTrue(any("손목" in e for e in recheck.spear_two_thirds_errors(s)))
+        s["guide"].pop("flight")
+        self.assertEqual(len(recheck.flight_errors(s)), 1)
+
+    def test_people_too_close_fails(self):
+        s = gibeah()
+        s["regions"]["saul"] = [0.56, 0.12, 0.78, 0.98]   # 크고 가까운 사울(m1e) — 사전 크기 창이 손에 남음
+        self.assertTrue(any("손목" in e or "지점" in e for e in recheck.flight_errors(s)))
 
     def test_gibeah_passes(self):
-        self.assertEqual(recheck.spear_two_thirds_errors(gibeah()), [])
+        self.assertEqual(recheck.flight_errors(gibeah()), [])
 
+
+class PropSizeRelative(unittest.TestCase):
+    """derive.prop-size-relative — 장면이 잇는 사전 지물은 look.size가 있고 L2에 크기 문구(task 405 — 사람 「사람을 줄였으면 창도 줄여야」)."""
+
+    def test_missing_size_fails(self):
+        words = recheck._lexicon()
+        words["spear"]["look"].pop("size")
+        with mock.patch.object(recheck, "_lexicon", return_value=words):
+            self.assertTrue(any("spear" in e for e in recheck.prop_size_errors(gibeah())))
+
+    def test_size_phrase_not_in_l2_fails(self):
+        words = recheck._lexicon()
+        words["spear"]["look"]["size"]["parts"]["point"]["en"] = "as big as a head"
+        with mock.patch.object(recheck, "_lexicon", return_value=words):
+            self.assertTrue(any("as big as a head" in e for e in recheck.prop_size_errors(gibeah())))
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.prop_size_errors(gibeah()), [])
 
 class EditBoxClearOfBody(unittest.TestCase):
     """edit.small-prop-orient(m3) — 편집 상자는 오른쪽 뼈대 인물 몸 앞에서 끝남(m2e 창 뒤끝 편집이 사울 팔을 흐림)."""

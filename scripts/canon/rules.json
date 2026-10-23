@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "2860e4b7cb3c",
+  "version": "c64d7e1cde74",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -176,6 +176,12 @@
      "note": "던진 몸짓 문항은 본문 순간(18:11 「창을 던졌으나」 — 막 던진 직후·몸이 다윗 쪽)으로, 투창 마무리(휘둘러 내림 + 앞발 체중 — 저작자 정함)는 뺌. 제외 조건(벌린 두 팔·멈춤 손바닥·주먹)은 유지 · 사람 거절 사유는 다른 문항(사울 몸·비율)이 계속 잡는지 검증하고 바꿈"},
     {"id": "generate.spear-two-thirds", "layer": "generate", "scope": "all", "check": "recheck.spear_two_thirds_errors",
      "source": "notes/GIBEAH-STEP23.md · 사람 m1e 「창은 3분의2쯤 날아가게」 · task 405 n0a(창 3분의 2 문항 s42·s23 5/5 틀림)", "since": "2026-10-23 task 405",
-     "note": "(m4: 손 간격 0.02 → 0.07 — 그림 팔이 뼈대보다 약 0.05 더 뻗음, m3e s11) (m3: 뒤끝은 그릴 길이 = 촉 + 구역 길이 × 1.45로 셈 — 그림 창이 구역보다 길어 m2e 「뒤끝이 사울 손 옆」 6/8) 허공 물체(창) 촉은 던진 뼈대 인물 손목 → 피하는 뼈대 인물 머리의 2/3 지점 ± 0.03, 창 뒤끝은 손목보다 0.02 앞 — 두 사람 거리가 창 길이의 1.5배를 넘어야 하므로 사람을 줄이고 떨어뜨림(figure-scale 위 한도와 짝)"}
+     "note": "(m4: 손 간격 0.02 → 0.07 — 그림 팔이 뼈대보다 약 0.05 더 뻗음, m3e s11) (m3: 뒤끝은 그릴 길이 = 촉 + 구역 길이 × 1.45로 셈 — 그림 창이 구역보다 길어 m2e 「뒤끝이 사울 손 옆」 6/8) 허공 물체(창) 촉은 던진 뼈대 인물 손목 → 피하는 뼈대 인물 머리의 2/3 지점 ± 0.03, 창 뒤끝은 손목보다 0.02 앞 — 두 사람 거리가 창 길이의 1.5배를 넘어야 하므로 사람을 줄이고 떨어뜨림(figure-scale 위 한도와 짝)", "retired": "2026-10-23 m5 — generate.flight-position(명세 칸 guide.flight + 사전 크기)로 일반화(사람 「지적한거 그대로 일회성으로 쓰지말고 규칙화」)"},
+    {"id": "derive.prop-size-relative", "layer": "derive", "scope": "all", "check": "recheck.prop_size_errors",
+     "source": "사람 2026-10-23 「창 앞촉이 큰것 같음 사람을 줄였으면 창도 줄여야하지 않아?」·「일회성으로 쓰지말고 규칙화」 · m4 실측(그림은 지물을 구역과 상관없이 제 크기로 그림)", "since": "2026-10-23 task 405",
+     "note": "장면 구절 요소(지물)가 잇는 사전 항목은 look.size(사람 키 등에 견준 비·문구 · 부위 크기 parts)를 갖고, 그리는 문구 L2에 그 크기 문구를 담음 — 사람 크기를 바꾸면 지물도 같은 비로 따라감(사전 AUTHORING 「크기」)"},
+    {"id": "generate.flight-position", "layer": "generate", "scope": "all", "check": "recheck.flight_errors",
+     "source": "사람 m1e 「창은 3분의2쯤 날아가게」 → 일반화 · task 405 m2e~m4e(뒤끝이 손에)", "since": "2026-10-23 task 405",
+     "note": "허공 물체 + 던지는·피하는 뼈대가 있으면 명세 guide.flight{object, word, from, to, at} — 촉 = from 손목 → to 머리의 at 지점 ± 0.03, 그려질 뒤끝 = 촉 + 사전 size.ratio × from 키가 손목 − 0.07 앞. 자리는 장면마다 명세 칸, 길이는 사전 크기"}
   ]
 }

@@ -91,11 +91,11 @@ def prop_prompt(look_en, end="back"):
         cap = "a small iron cap" if "small iron cap" in look_en else "a plain wooden end"
         return (f"Remove the large metal spearhead from the right end of the wooden spear shaft, so the right end is only {cap}, "
                 f"much thinner than a spearhead. {KEEP_PROP}")
-    m = re.search(r"one (large [a-z-]+ iron point)", look_en)
-    head = m.group(1) if m else "large iron point"
-    return (f"Enlarge the iron spearhead at the left end of the wooden spear shaft into one {head}: a flat grey iron blade (metal, not a plant leaf) shaped like a long willow leaf, "
-            f"widest in the middle and tapering smoothly to the tip and back to the shaft, with smooth curved edges and no barbs or hooks. "
-            f"Do not add any crossguard, wings or second blade. {KEEP_PROP}")   # d4e: 「nothing sticking out beyond it」 → 벽에 날개·코등이 장식 · f6e: 「leaf-shaped」만으로는 미늘 화살촉(창 모양 4/5) · f6e2: 「willow leaf」만이면 푸른 진짜 잎(잎맥) — 쇠·회색을 말함
+    m = re.search(r"one ([a-z-]+(?: [a-z-]+)*? iron point)", look_en)   # 사전 L2의 촉 낱말(크기 포함 — derive.prop-size-relative)
+    head = m.group(1) if m else "leaf-shaped iron point"
+    return (f"Reshape the iron spearhead at the left end of the wooden spear shaft into one {head}: a flat grey iron blade (metal, not a plant leaf) shaped like a small willow leaf, "
+            f"widest in the middle and tapering smoothly to the tip and back to the shaft, with smooth curved edges and no barbs or hooks, not much wider than a hand. "
+            f"Do not add any crossguard, wings or second blade. {KEEP_PROP}")   # d4e: 「nothing sticking out beyond it」 → 벽에 날개·코등이 장식 · f6e: 「leaf-shaped」만으로는 미늘 화살촉(창 모양 4/5) · f6e2: 「willow leaf」만이면 푸른 진짜 잎(잎맥) — 쇠·회색을 말함 · m5: 「Enlarge … broad blade much wider than the shaft」 → 손바닥만 하게(사람 「창 앞촉이 큰것 같음」)
 
 # task 404 h2 — 쥔 지물 편집(edit.small-prop-orient 넓힘): 뼈대 인물의 두 손목 자리에서 상자를 뽑고, 사전 L2로 그 지물만 바꿈.
 HELD_HALF = (0.07, 0.11)   # 두 손목 가운데 ± (가로, 세로) 화면 비율 — 가슴에 붙여 쥔 작은 수금(키보다 훨씬 작음, 사전 L3)

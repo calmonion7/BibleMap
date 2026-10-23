@@ -313,14 +313,42 @@ def split_control_errors(spec):
     return ["guide.pose가 있는데 guide.split이 없다 — 깊이와 뼈대를 한 장에 섞거나 하나만 주면 맞바꿈"] if g.get("pose") and not g.get("split") else []
 
 
-TWO_THIRDS, TWO_THIRDS_TOL, HAND_GAP = 2 / 3, 0.03, 0.07   # m4: HAND_GAP 0.02 → 0.07 — 그림 팔이 뼈대보다 약 0.05 더 뻗음(m3e s11 손 0.67 vs 뼈대 0.72)
-DRAWN_LEN = 1.45   # m3: 그림은 창을 구역보다 길게 그림(d3 실측 0.235 → 0.33) — 뒤끝은 촉 + 구역 길이 × 이 값으로 셈(m2e 「뒤끝이 사울 손 옆」 6/8)
+FLIGHT_TOL, HAND_GAP = 0.03, 0.07   # HAND_GAP m4: 그림 팔이 뼈대보다 약 0.05 더 뻗음(m3e s11 손 0.67 vs 뼈대 0.72)
 
 
-def spear_two_thirds_errors(spec):
-    """창은 3분의 2쯤 날아간 자리(task 405 n1, 규칙 generate.spear-two-thirds — 사람 m1e 「창은 3분의2쯤 날아가게」) — guide에 허공 물체 꼴과
-    던지는 뼈대 인물(throw_follow)·피하는 뼈대 인물이 있으면: 촉(구역 왼끝, make_guide.spear 관례)이 던진 손목 → 피하는 사람 머리의 2/3 지점 ± 0.03,
-    창 뒤끝(구역 오른끝)은 던진 손목보다 0.02 앞(손에 남은 창으로 안 읽히게). 화면 비율."""
+def _lexicon():
+    with open(check_scenes.WORDS, encoding="utf-8") as fh:
+        return {w["id"]: w for w in json.load(fh)["words"]}
+
+
+def prop_size_errors(spec):
+    """지물 크기는 사람 몸에 견줌(task 405 m5, 규칙 derive.prop-size-relative — 사람 「사람을 줄였으면 창도 줄여야」·「창 앞촉이 큰것 같음」) —
+    장면 구절 요소(kind 지물)가 잇는 사전 항목은 look.size(사람 키 등에 견준 비·문구, 부위 크기 parts)가 있어야 하고,
+    그리는 문구(L2 en)에 그 크기·부위 크기 문구가 들어 있어야 함. 사람 크기를 바꿔도 지물이 같은 비로 따라가게."""
+    els = spec.get("verse_elements") or []
+    words, out = _lexicon(), []
+    squash = lambda s: re.sub(r"\s+", "", s)
+    for e in els:
+        if e.get("kind") != "지물" or "out" in e:
+            continue
+        for w in words.values():
+            if w.get("drawable", True) is False or not any(squash(f) in squash(e["quote"]) for f in [w["word"], *w["forms"]]):
+                continue
+            size, l2 = w["look"].get("size"), w["look"]["L2"]["en"]
+            if not size:
+                out.append(f"사전 {w['id']}: look.size(사람에 견준 크기) 없음")
+                continue
+            for ph in [size["en"]] + [p["en"] for p in size.get("parts", {}).values()]:
+                if ph not in l2:
+                    out.append(f"사전 {w['id']}: L2 그리는 문구에 크기 「{ph}」 없음")
+    return sorted(set(out))
+
+
+def flight_errors(spec):
+    """나는 물체의 자리는 명세 칸으로(task 405, 규칙 generate.flight-position — 사람 m1e 「창은 3분의2쯤 날아가게」를 일반화) —
+    guide에 허공 물체 꼴과 던지는 뼈대(throw_follow)·피하는 뼈대가 있으면 guide.flight{object, word, from, to, at}가 있어야 하고:
+    촉(구역 왼끝, make_guide.spear 관례)이 from 손목 → to 머리의 at 지점 ± 0.03, 그려질 뒤끝(촉 + 사전 size.ratio × from 키)이 손목 − 0.07 앞.
+    (m4 실측: 그림은 구역 길이와 상관없이 지물을 제 크기로 그림 — 길이는 사전 크기로 셈)."""
     g, R = spec.get("guide") or {}, spec.get("regions", {})
     sh, pose = g.get("shape", {}), g.get("pose", {})
     objs = [k for k, v in sh.items() if v in AIR_SHAPES]
@@ -328,6 +356,9 @@ def spear_two_thirds_errors(spec):
     dodger = [k for k, n in pose.items() if k not in thrower and sh.get(k) in HEAD_BAND]
     if not (objs and thrower and dodger):
         return []
+    fl = g.get("flight")
+    if not fl:
+        return ["guide.flight(나는 물체 자리 — 누구에게서 누구에게 몇 분의 몇) 칸 없음"]
     sys.path.insert(0, os.path.join(HERE, "batch"))
     import make_guide as M
 
@@ -336,16 +367,19 @@ def spear_two_thirds_errors(spec):
         pts, _ = M.pose_points((a0 * M.W, b0 * M.H, a1 * M.W, b1 * M.H), pose[k])
         xs = [pts[i][0] / M.W for i in idx if i in pts]
         return sum(xs) / len(xs)
-    hand, head = pt(thrower[0], (4,)), pt(dodger[0], (0, 14, 16))
-    want = hand + TWO_THIRDS * (head - hand)
+    hand, head = pt(fl["from"], (4,)), pt(fl["to"], (0, 14, 16))
+    want = hand + fl["at"] * (head - hand)
+    x0, _, x1, _ = R[fl["object"]]
+    size = _lexicon().get(fl.get("word"), {}).get("look", {}).get("size")
     out = []
-    for o in objs:
-        x0, _, x1, _ = R[o]
-        if abs(x0 - want) > TWO_THIRDS_TOL:
-            out.append(f"{o} 촉 x {x0:.3f} ≠ 2/3 지점 {want:.3f}±{TWO_THIRDS_TOL} — 창이 3분의 2쯤 날아간 자리가 아니다")
-        butt = x0 + DRAWN_LEN * (x1 - x0)
-        if butt > hand - HAND_GAP:
-            out.append(f"{o} 그려질 뒤끝 x {butt:.3f}(구역 × {DRAWN_LEN})가 던진 손목 {hand:.3f}에 닿음 — 창이 손에 남은 꼴(창 구역을 줄이거나 두 사람을 떨어뜨릴 것)")
+    if not size:
+        return [f"guide.flight.word {fl.get('word')} — 사전 look.size 없음(그릴 길이를 못 셈)"]
+    if abs(x0 - want) > FLIGHT_TOL:
+        out.append(f"{fl['object']} 촉 x {x0:.3f} ≠ {fl['at']:.2f} 지점 {want:.3f}±{FLIGHT_TOL} — 명세 자리(guide.flight)가 아니다")
+    tb = R[fl["from"]]
+    butt = x0 + max(x1 - x0, size["ratio"] * (tb[3] - tb[1]) * M.H / M.W)
+    if butt > hand - HAND_GAP:
+        out.append(f"{fl['object']} 그려질 뒤끝 x {butt:.3f}(사전 크기 {size['ratio']} × 던지는 사람 키)가 던진 손목 {hand:.3f}에 닿음 — 손에 남은 꼴")
     return out
 
 
@@ -409,7 +443,8 @@ SPEC_CHECKS = {
     "recheck.pose_hold_errors": lambda spec, ctx: pose_hold_errors(spec),
     "recheck.pose_only_errors": lambda spec, ctx: pose_only_errors(spec),
     "recheck.split_control_errors": lambda spec, ctx: split_control_errors(spec),
-    "recheck.spear_two_thirds_errors": lambda spec, ctx: spear_two_thirds_errors(spec),
+    "recheck.prop_size_errors": lambda spec, ctx: prop_size_errors(spec),
+    "recheck.flight_errors": lambda spec, ctx: flight_errors(spec),
     "check_scenes.lexicon_look_errors": lambda spec, ctx: check_scenes.lexicon_look_errors(spec, ds.route_prompt(spec)),
 }
 

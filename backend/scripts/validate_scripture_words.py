@@ -20,6 +20,7 @@ WORDS_PATH = DATA / "scripture_words" / "words.json"
 # AUTHORING.md §3 규칙 3과 이중 관리
 FORBIDDEN = {"pretend", "feign", "feigning", "sacred", "holy", "ceremonial", "symbolic", "ritual", "divine"}
 LEVEL_MAX = {"L1": 8, "L2": 30, "L3": 60}
+SIZE_REFS = {"man-height"}   # look.size.ref — 사람 키에 견줌(task 405)
 MEANING_MAX_CHARS = 80
 MEANING_MAX_SENTENCES = 2
 MIN_FEATURES = 3
@@ -168,6 +169,15 @@ def check(data, resolve):
                     errors.append(f"{tag}: look.{lv}.en 금지어 {bad}")
             if not GROUNDS_RE.match(look.get("grounds") or ""):
                 errors.append(f"{tag}: look.grounds 근거 단계 머리말 없음")
+            size = look.get("size")   # 크기(사람 몸에 견줌, task 405 — 규칙 derive.prop-size-relative): 있으면 꼴과 L2 문구를 잰다
+            if size is not None:
+                if size.get("ref") not in SIZE_REFS or not isinstance(size.get("ratio"), (int, float)) or not 0 < size["ratio"] <= 3:
+                    errors.append(f"{tag}: look.size ref({'·'.join(sorted(SIZE_REFS))})·ratio(0~3) 결손")
+                if not (size.get("ko") and size.get("en")) or not GROUNDS_RE.match(size.get("grounds") or ""):
+                    errors.append(f"{tag}: look.size ko·en·근거 머리말 결손")
+                for ph in [size.get("en", "")] + [pp.get("en", "") for pp in (size.get("parts") or {}).values()]:
+                    if ph and ph not in (look.get("L2") or {}).get("en", ""):
+                        errors.append(f"{tag}: look.size 문구 「{ph}」가 L2 en에 없음")
 
         # ②⑤ 판정 기준
         crit = e.get("criteria")

@@ -658,14 +658,21 @@
           "en": "a small wooden lyre"
         },
         "L2": {
-          "ko": "속이 빈 나무 울림통에 굽은 두 팔이 솟고 위에서 가로대로 이어지며, 줄이 울림통에서 가로대까지 걸려 있어요. 목도 지판도 없어요.",
-          "en": "a hollow wooden sound box with two curved arms joined by a crossbar at the top, strings running up from the box to the crossbar, no neck and no fingerboard"
+          "ko": "사람 몸통보다 작은 속 빈 나무 울림통에 굽은 두 팔이 솟아 위 가로대로 이어지고, 줄이 울림통에서 가로대로 걸림, 목 없음.",
+          "en": "a small hollow wooden sound box, smaller than a man's torso, with two curved arms joined by a top crossbar, strings from box to crossbar, no neck"
         },
         "L3": {
           "ko": "품에 안거나 한 팔에 끼고 손가락으로 줄을 뜯어요. 몸통보다 훨씬 작고, 류트·기타처럼 긴 목이 달린 악기나 땅에 세우는 큰 하프가 아니에요.",
           "en": "Small enough to hold against the chest or in one arm and pluck with the fingers; much smaller than the torso, not a long-necked lute or guitar, and not a tall floor harp."
         },
-        "grounds": "[추론] 삼상 16:23 「손으로 탄즉」 — 손가락으로 뜯는 현악기 · 왕상 10:12 「백단목으로 … 수금과 비파를 만들었으니」 — 나무(삼하 6:5 「잣나무로 만든 여러 가지 악기와 수금과」는 「잣나무로 만든」이 「여러 가지 악기」를 꾸며 수금이 나무라고 바로 말하지 않음) · 삼상 10:5 「앞세우고 … 내려오는」 — 들고 다니는 크기. [저작](본문에 모양 없음) 울림통·두 팔·가로대의 틀 모양은 고대 근동 수금 그림에서 정한 그림 사정 — 긴 목·지판(류트)은 이 시대 수금 모양이 아니다(task 397 그림이 류트로 끌림, 사람 “하프가 아님”)."
+        "grounds": "[추론] 삼상 16:23 「손으로 탄즉」 — 손가락으로 뜯는 현악기 · 왕상 10:12 「백단목으로 … 수금과 비파를 만들었으니」 — 나무(삼하 6:5 「잣나무로 만든 여러 가지 악기와 수금과」는 「잣나무로 만든」이 「여러 가지 악기」를 꾸며 수금이 나무라고 바로 말하지 않음) · 삼상 10:5 「앞세우고 … 내려오는」 — 들고 다니는 크기. [저작](본문에 모양 없음) 울림통·두 팔·가로대의 틀 모양은 고대 근동 수금 그림에서 정한 그림 사정 — 긴 목·지판(류트)은 이 시대 수금 모양이 아니다(task 397 그림이 류트로 끌림, 사람 “하프가 아님”).",
+        "size": {
+          "ref": "man-height",
+          "ratio": 0.25,
+          "en": "smaller than a man's torso",
+          "ko": "사람 몸통보다 작음",
+          "grounds": "[추론] 삼상 10:5 「앞세우고 … 내려오는」 — 들고 다니는 크기 · L3 「몸통보다 훨씬 작고」 · 2026-10-23 크기 규칙(derive.prop-size-relative)으로 그리는 문구에 넣음"
+        }
       },
       "criteria": {
         "ko": "나무 울림통 위로 두 팔이 솟고 가로대로 이어진 틀 모양이다. 줄은 울림통에서 가로대로 간다. 목·지판·줄감개 머리가 없다. 사람 몸통보다 훨씬 작아 손에 들거나 품에 안는다.",
@@ -720,20 +727,33 @@
           "en": "a long wooden spear"
         },
         "L2": {
-          "ko": "곧은 나무 자루 앞끝에 잎 모양의 큰 쇠 촉이 하나 있고, 뒤끝에는 앞 촉보다 훨씬 작은 쇠 물미가 있어요(그림 문구는 크기만 — 뾰족함은 L3·근거). 칼자루나 코등이는 없어요.",
-          "en": "a straight wooden shaft with one large leaf-shaped iron point at the front and a small iron cap on the back end, much smaller than the point, no crossguard"
+          "ko": "사람 키의 3분의 2쯤 되는 곧은 나무 자루, 앞끝에 손바닥만 한 잎 모양 쇠 촉 하나, 뒤끝에 작은 쇠 물미, 코등이 없음(그림 문구는 크기만 — 물미의 뾰족함은 L3·근거).",
+          "en": "a straight wooden shaft two thirds of a man's height, one hand-sized leaf-shaped iron point at the front, a small iron cap at the back, no crossguard"
         },
         "L3": {
-          "ko": "사람 키보다 조금 길고 한 손으로 쥐어 던질 수 있어요. 큰 잎 모양 촉은 앞에만 있고, 뒤끝 물미는 짧고 뾰족하지만 앞 촉보다 훨씬 작아요.",
-          "en": "A little longer than a man is tall and light enough to hurl with one hand. The large leaf-shaped point is only at the front; the back end has a short pointed iron spike, much smaller than the front point, and the shaft has no handle or hilt."
+          "ko": "사람 키의 3분의 2쯤이고 한 손으로 쥐어 던질 수 있어요. 손바닥만 한 잎 모양 촉은 앞에만 있고, 뒤끝 물미는 짧고 뾰족하지만 앞 촉보다 훨씬 작아요.",
+          "en": "About two thirds as long as a man is tall and light enough to hurl with one hand. The leaf-shaped point, about the size of a hand, is only at the front; the back end has a short pointed iron spike, much smaller than the front point, and the shaft has no handle or hilt."
         },
-        "grounds": "[추론] 삼상 17:7 「그 창자루는 베틀채 같고 창날은 철」 — 쇠 날, 자루는 베틀채(나무)에 견준 데서 나무 · 삼하 2:23 「아브넬이 창 뒤 끝으로 그 배를 찌르니 창이 그 등을 꿰뚫고 나간지라」 · 삼상 26:7 「창은 머리 곁 땅에 꽂혔고」 — 뒤끝도 찌르고 땅에 꽂는 뾰족한 쇠 물미 · 삼상 18:11 「그 창을 던졌으나」 — 한 손으로 던질 무게. [저작](본문에 모양 없음) 잎 모양 촉·물미가 앞 촉보다 훨씬 작음·사람 키보다 조금 긴 길이는 그림 사정 — 앞 촉만 한 잎 모양 촉을 뒤에 달거나 칼자루를 붙이지 않는다(task 401 사람 “창 모양” 거절)."
+        "grounds": "[추론] 삼상 17:7 「그 창자루는 베틀채 같고 창날은 철」 — 쇠 날, 자루는 베틀채(나무)에 견준 데서 나무 · 삼하 2:23 「아브넬이 창 뒤 끝으로 그 배를 찌르니 창이 그 등을 꿰뚫고 나간지라」 · 삼상 26:7 「창은 머리 곁 땅에 꽂혔고」 — 뒤끝도 찌르고 땅에 꽂는 뾰족한 쇠 물미 · 삼상 18:11 「그 창을 던졌으나」 — 한 손으로 던질 무게. [저작](본문에 모양 없음) 잎 모양 촉·물미가 앞 촉보다 훨씬 작음·길이(사람 키의 3분의 2쯤)·촉 크기(손바닥만 함)는 그림 사정 — 2026-10-23 사람 「창 앞촉이 큰것 같음 사람을 줄였으면 창도 줄여야」로 「사람 키보다 조금 긺·큰 촉」에서 바꿈 — 앞 촉만 한 잎 모양 촉을 뒤에 달거나 칼자루를 붙이지 않는다(task 401 사람 “창 모양” 거절).",
+        "size": {
+          "ref": "man-height",
+          "ratio": 0.67,
+          "en": "two thirds of a man's height",
+          "ko": "사람 키의 3분의 2쯤",
+          "parts": {
+            "point": {
+              "en": "hand-sized",
+              "ko": "손바닥만 함"
+            }
+          },
+          "grounds": "[저작](본문에 길이·촉 크기 없음 — 그림 사정) 2026-10-23 사람 「창 앞촉이 큰것 같음 사람을 줄였으면 창도 줄여야하지 않아?」 — 사람 크기를 바꾸면 지물도 같은 비로 따라가게 사람 키에 견줌"
+        }
       },
       "criteria": {
-        "ko": "곧은 나무 자루 앞끝에 큰 잎 모양 쇠 촉이 하나 있다. 뒤끝은 짧고 뾰족한 쇠 물미이며 앞 촉보다 훨씬 작고 잎 모양 날이 아니다. 칼자루·코등이·손잡이 장식이 없다.",
+        "ko": "곧은 나무 자루(사람 키의 3분의 2쯤) 앞끝에 손바닥만 한 잎 모양 쇠 촉이 하나 있다. 뒤끝은 짧고 뾰족한 쇠 물미이며 앞 촉보다 훨씬 작고 잎 모양 날이 아니다. 칼자루·코등이·손잡이 장식이 없다.",
         "features": [
           {
-            "q": "앞끝에 큰 쇠 촉이 하나 분명히 있나?",
+            "q": "앞끝에 손바닥만 한 쇠 촉이 하나 분명히 있나(창 길이에 비해 지나치게 크지 않음)?",
             "grounds": "[직접] 삼상 17:7 「창날은 철 육백 세겔이며」"
           },
           {
