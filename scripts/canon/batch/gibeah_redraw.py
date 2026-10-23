@@ -280,11 +280,9 @@ def record(path):
     t, s = k.split(":")[0], int(k.split(":")[1])
     shutil.copyfile(key_img(k), os.path.join(HERE, APPROVED))
     spec = approve.load_spec(SID)
-    em = {}
-    if t != "g":
-        em = json.load(open(METRICS.replace(f"/{TRY}/", f"/{t}/"), encoding="utf-8"))
+    em = m if t == "g" else json.load(open(METRICS.replace(f"/{TRY}/", f"/{t}/"), encoding="utf-8"))
     if em.get("edit"):   # d 시도: 생성 뒤 국소 편집(edit.small-prop-orient)이면 편집 차례를 함께
-        base_try = next(c for c in FX["cand"] if c["try"] == t).get("base", t)
+        base_try = FX["edit"]["from"] if t == "g" else next(c for c in FX["cand"] if c["try"] == t).get("base", t)
         bm = json.load(open(METRICS.replace(f"/{TRY}/", f"/{base_try}/"), encoding="utf-8"))
         spec = approve.local_edit(spec, s, APPROVED, em["edit"][str(s)], "user", bm["prompt"])
     else:
