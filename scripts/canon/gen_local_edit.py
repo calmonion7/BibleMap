@@ -116,7 +116,8 @@ def held_box(wrists, w, h):
 def held_prompt(look_en):
     """지시 하나 — 쥔 악기를 사전 L2 꼴로(h1e 「지판과 긴 목이 달린 류트」 5/5)."""
     return (f"Remove the long neck, fingerboard, tuning pegs and any hanging cord from the instrument he is holding, turning it into "
-            f"a small wooden lyre: {look_en}. {KEEP_HELD}")   # h2e2: 「Replace … with a lyre」는 류트 목을 남기고 가로대만 덧붙임
+            f"a small wooden lyre: {look_en}, the two curved arms rising on the left and right of the sound box both clearly visible, "
+            f"forming a U-shaped frame. {KEEP_HELD}")   # n1: 팔 하나·T자로 그려짐(m1e s42 사람 「다윗 악기가 맞나?」 · e.lyre-frame)   # h2e2: 「Replace … with a lyre」는 류트 목을 남기고 가로대만 덧붙임
 
 
 def busy():

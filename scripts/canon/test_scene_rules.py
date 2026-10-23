@@ -432,9 +432,13 @@ class SmallPropEdit(unittest.TestCase):
 
     def test_front_box_is_front_end(self):
         import gen_local_edit as GL
-        (L, T, side), box = GL.prop_box(gibeah()["regions"]["spear"], 1216, 640, "front")
-        self.assertTrue(box[0] <= 110 and box[2] <= 300)   # d3 창 왼끝 110 ~ 가운데
-        self.assertGreaterEqual(box[0], round(0.09 * 1216))   # d4e: 벽 구역(0~0.09) 안으로 들어가지 않음
+        s = gibeah()
+        x0, _, x1, _ = s["regions"]["spear"]
+        (L, T, side), box = GL.prop_box([x0, 0.5, x1, 0.52], 1216, 640, "front")
+        self.assertTrue(box[0] <= x0 * 1216 and box[2] <= (x0 + x1) / 2 * 1216 + 1)   # 창 왼끝 ~ 가운데
+        self.assertGreaterEqual(box[0], round((x0 - GL.PROP_PAD_FRONT) * 1216) - 1)  # d4e: 바깥 여유는 PROP_PAD_FRONT만(벽 안으로 안 들어감)
+        (L, T, side), box = GL.prop_box([0.105, 0.5, 0.34, 0.52], 1216, 640, "front")
+        self.assertGreaterEqual(box[0], round(0.09 * 1216))                          # 벽 옆 창(d4e 자리)도 벽 구역(0~0.09) 밖
 
     def test_front_prompt_uses_lexicon_head(self):
         import gen_local_edit as GL
@@ -587,6 +591,7 @@ class HeldPropEdit(unittest.TestCase):
         self.assertIn("crossbar", p)
         self.assertIn("Keep his hands", p)
         self.assertIn("Remove the long neck", p)              # h2e2: 목을 없애는 것이 지시의 머리
+        self.assertIn("U-shaped frame", p)                    # n1: 두 팔이 다 보이는 틀(m1e 「다윗 악기가 맞나?」)
 
     def test_rect_mask_covers_spear_end(self):
         """h2e2: 둥근 사각 마스크는 상자 끝(창 촉 자리)까지 덮음 — 타원은 끝이 좁아 원본 촉이 남음."""
@@ -602,11 +607,36 @@ class FigureScalePose(unittest.TestCase):
 
     def test_small_crouch_fails(self):
         s = gibeah()
-        s["regions"]["david-youth"][1] = s["regions"]["david-youth"][3] - 0.69   # h3 크기 — 보이는 키 0.53
+        s["regions"]["david-youth"][1] = s["regions"]["david-youth"][3] - 0.55   # 보이는 키 0.43 < 0.45
         self.assertTrue(any("david-youth" in e for e in recheck.figure_scale_errors(s)))
 
     def test_gibeah_passes(self):
         self.assertEqual(recheck.figure_scale_errors(gibeah()), [])
+
+
+    def test_too_big_fails(self):
+        """n1(사람 m1e 「사람사이즈를 조금 줄여야」) — 구역 높이 0.70 위 한도."""
+        s = gibeah()
+        s["regions"]["saul"][1] = s["regions"]["saul"][3] - 0.84   # m1e 크기
+        self.assertTrue(any("saul" in e and "가깝게" in e for e in recheck.figure_scale_errors(s)))
+
+
+class SpearTwoThirds(unittest.TestCase):
+    """generate.spear-two-thirds — 창 촉은 던진 손목 → 피하는 사람 머리의 2/3 지점, 뒤끝은 손보다 앞(task 405 n1)."""
+
+    def test_spear_at_head_fails(self):
+        s = gibeah()
+        s["regions"]["spear"] = [0.105, 0.478, 0.34, 0.503]   # m1e처럼 머리 위까지 날아옴
+        self.assertTrue(recheck.spear_two_thirds_errors(s))
+
+    def test_butt_at_hand_fails(self):
+        s = gibeah()
+        x0 = s["regions"]["spear"][0]
+        s["regions"]["spear"][2] = x0 + 0.33   # 긴 창 — 뒤끝이 사울 손에
+        self.assertTrue(any("손목" in e for e in recheck.spear_two_thirds_errors(s)))
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.spear_two_thirds_errors(gibeah()), [])
 
 
 if __name__ == "__main__":

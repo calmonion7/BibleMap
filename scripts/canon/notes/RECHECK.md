@@ -12,7 +12,7 @@
 ## 명세 재검 — 전 명세 × 명세·파생 함수 규칙
 
 <!-- recheck:specs:begin -->
-원장 판 `9f714d292797` · 토큰 검사 venv314 · 명세 37
+원장 판 `da45b5f2db0d` · 토큰 검사 venv314 · 명세 37
 
 | 규칙 | 층 | 원래 범위 | 통과 | 실패 | 못 잼 | 통과율 |
 |---|---|---|---|---|---|---|
@@ -41,50 +41,51 @@
 | `generate.youth-height` | generate | all | 37 | 0 | 0 | 100% |
 | `generate.height-ratio` | generate | all | 37 | 0 | 0 | 100% |
 | `generate.split-control` | generate | all | 37 | 0 | 0 | 100% |
+| `generate.spear-two-thirds` | generate | all | 37 | 0 | 0 | 100% |
 
 폐기 규칙(재검·통과율에서 뺌): `derive.clip-77-tokens` — 2026-10-22 사람 결정 — SDXL 단계별 경로 전용, 지금 생성 경로는 derive.512-tokens가 잼 · `generate.pose-throw-geometry` — 2026-10-23 d3 — 한 장(c14 s5) 근거로 만든 규칙: d1 「달리는 자세」·d2 「늘어진 팔」로 반증, c10 뼈대가 묶음 기록상 가장 좋음(던진 몸짓 3/8). 결함을 규칙으로 옮기기 전에 같은 조건에서 맞게 나온 적이 있는지 기록부터 볼 것 · `generate.pose-hold` — 2026-10-23 f5 — f4e 5표: 수금 쥠 5→1로 고쳤으나 벽 앞·피함·순간 0→5/5로 무너짐(다윗이 벽에서 떨어져 선 채) · 다윗 깊이 꼴 유지, 손 자리는 다른 수단 · `generate.pose-only-control` — 2026-10-23 g2e — 진단은 맞음(뼈대만이면 몸짓이 살아 다윗 숙임·사울 기욺)이나 맞바꿈: 몸 덩어리·벽 자리·수금 모양을 잃고 액자(g1e 다수결 틀림 6 · g2e 15 vs 섞은 f6e3 2). 깊이+뼈대 섞기 유지, make_pose_only·duck_low는 남김
 
-**전 규칙 통과 명세 1/37** · 칸 통과 753/881 (85%)
+**전 규칙 통과 명세 1/37** · 칸 통과 790/918 (86%)
 
-| 명세 | required-fields | whole-fields | verse-elements | no-compromise-words | scene-all-verses | cast-card-v2 | lexicon-link | no-hand-prompt | no-bare-head | prop-in-prompt | 512-tokens | stage-from-scripture | action-place-on-figure | thrown-guide | guide-backdrop | guide-body-build | dodge-clear | guide-costume-legs | youth-noun | pose-skeleton | figure-scale | no-second-point | youth-height | height-ratio | split-control |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| david-adullam-cave | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| david-ark-jerusalem | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| david-en-gedi-saul | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| david-gath-achish | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| david-gibeah-harp | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| david-gibeon-battle | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| david-goliath-gath | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| david-hebron-king-judah | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| david-jerusalem-conquest | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| david-mahanaim-exile | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| david-nathan-covenant | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| david-nob-priests | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| david-ramah-samuel | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| david-returns-jerusalem | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| david-ziklag-base | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| samuel-bethlehem-david-anointing | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| samuel-ramah-death | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| saul-endor-medium | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| saul-gibeah-spear | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| saul-gilboa-death | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| saul-gilgal-amalek | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| saul-gilgal-coronation | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| saul-jabesh-rescue | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| saul-michmash-battle | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| saul-mizpah-chosen | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| saul-nob-massacre | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| solomon-ezion-geber-fleet | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| solomon-gibeon-dream | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| solomon-gihon-anointing | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| solomon-jerusalem-apostasy | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| solomon-jerusalem-birth | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| solomon-jerusalem-david-charge | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| solomon-jerusalem-palace | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| solomon-jerusalem-sheba | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| solomon-jerusalem-temple-build | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| solomon-jerusalem-temple-dedication | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| solomon-jerusalem-two-mothers | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 명세 | required-fields | whole-fields | verse-elements | no-compromise-words | scene-all-verses | cast-card-v2 | lexicon-link | no-hand-prompt | no-bare-head | prop-in-prompt | 512-tokens | stage-from-scripture | action-place-on-figure | thrown-guide | guide-backdrop | guide-body-build | dodge-clear | guide-costume-legs | youth-noun | pose-skeleton | figure-scale | no-second-point | youth-height | height-ratio | split-control | spear-two-thirds |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| david-adullam-cave | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| david-ark-jerusalem | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| david-en-gedi-saul | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| david-gath-achish | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| david-gibeah-harp | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| david-gibeon-battle | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| david-goliath-gath | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| david-hebron-king-judah | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| david-jerusalem-conquest | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| david-mahanaim-exile | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| david-nathan-covenant | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| david-nob-priests | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| david-ramah-samuel | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| david-returns-jerusalem | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| david-ziklag-base | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| samuel-bethlehem-david-anointing | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| samuel-ramah-death | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| saul-endor-medium | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| saul-gibeah-spear | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| saul-gilboa-death | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| saul-gilgal-amalek | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| saul-gilgal-coronation | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| saul-jabesh-rescue | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| saul-michmash-battle | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| saul-mizpah-chosen | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| saul-nob-massacre | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| solomon-ezion-geber-fleet | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| solomon-gibeon-dream | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| solomon-gihon-anointing | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| solomon-jerusalem-apostasy | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| solomon-jerusalem-birth | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| solomon-jerusalem-david-charge | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| solomon-jerusalem-palace | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| solomon-jerusalem-sheba | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| solomon-jerusalem-temple-build | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| solomon-jerusalem-temple-dedication | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| solomon-jerusalem-two-mothers | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 <!-- recheck:specs:end -->
 
 ## 승인 그림 재검 — 승인 그림 × 그림 규칙

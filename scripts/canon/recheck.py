@@ -162,7 +162,7 @@ def dodge_clear_errors(spec):
             ox0, oy0, ox1, oy1 = R[o]
             if oy0 < bot and oy1 > top:
                 out.append(f"{o} 세로 {oy0}~{oy1}이 {d} 머리 띠 {top:.3f}~{bot:.3f}와 겹침 — 피한 사람에게 곧장 날아가는 꼴")
-            elif top - oy1 > NEAR_MISS or ox0 > x1:   # b3: 한참 위로 지나거나 그 사람 앞에서 끝나면 「겨누지도 않음」
+            elif top - oy1 > NEAR_MISS:   # b3: 한참 위로 지나면 「겨누지도 않음」 · n1: 「그 사람 앞에서 끝남」 조건은 뺌 — 사람 m1e 「창은 3분의2쯤 날아가게」(가로 자리는 spear-two-thirds)
                 out.append(f"{o}이 {d} 머리 바로 위(띠 위쪽 {NEAR_MISS} 안)를 지나 그 위까지 오지 않음 — 빗나감이 아니라 겨누지 않은 꼴")
     return out
 
@@ -196,7 +196,8 @@ def pose_skeleton_errors(spec):
     return [f"{', '.join(miss)}: 몸짓에 던짐 동사가 있는데 guide.pose 뼈대가 없다 — 깊이 꼴은 던진 몸짓의 관절을 못 준다"] if miss else []
 
 
-FIGURE_MIN_SEEN = 0.55   # h4: 뼈대 인물의 보이는 키(머리 꼭대기 ~ 발) 하한 — 판정 「사람 키가 화면 높이 절반을 넘음」에 여유
+FIGURE_MIN_SEEN = 0.45   # 뼈대 인물의 보이는 키(머리 꼭대기 ~ 발) 하한 — h4 0.55 → n1 0.45(사람 m1e 「사람사이즈를 조금 줄여야」)
+FIGURE_MAX_H = 0.70      # n1: 인물 구역 높이 위 한도 — m1e s42 사울 0.84가 화면 90%(「너무 가까이」)
 FIGURE_MIN_H = 0.6   # d1: 사람 키가 화면 높이 절반을 넘게 그리려면 구역은 그보다 넉넉히(c14 s5 다윗 구역 0.52 → 「절반에 못 미침」)
 
 
@@ -217,9 +218,11 @@ def figure_scale_errors(spec):
         import make_guide as M
         top = min(y for i, (x, y) in M.POSES[pose[k]].items() if i in (0, 14, 15, 16, 17)) - M.HEAD_R["person"]
         return h * (1 - max(0.0, top))
-    small = [k for k in dict.fromkeys(list(sh) + list(pose))
-             if (str(sh.get(k, "")).startswith("person") or k in pose) and seen(k) < (FIGURE_MIN_SEEN if k in pose else FIGURE_MIN_H)]
-    return [f"{k}: 보이는 키 {seen(k):.2f} < {FIGURE_MIN_SEEN if k in pose else FIGURE_MIN_H} — 인물이 화면 절반보다 작게 그려진다" for k in small]
+    people = [k for k in dict.fromkeys(list(sh) + list(pose)) if str(sh.get(k, "")).startswith("person") or k in pose]
+    small = [k for k in people if seen(k) < (FIGURE_MIN_SEEN if k in pose else FIGURE_MIN_H)]
+    big = [k for k in people if R[k][3] - R[k][1] > FIGURE_MAX_H]
+    return ([f"{k}: 보이는 키 {seen(k):.2f} < {FIGURE_MIN_SEEN if k in pose else FIGURE_MIN_H} — 인물이 화면 절반보다 작게 그려진다" for k in small]
+            + [f"{k}: 구역 높이 {R[k][3] - R[k][1]:.2f} > {FIGURE_MAX_H} — 화면을 가득 채워 너무 가깝게 그려진다" for k in big])
 
 
 YOUTH_MIN_RATIO = 0.8   # d5: 청년 구역 높이 / 같은 장면 어른 구역 높이(d4e2 다윗 0.62/0.86 = 0.72 → 「몸이 작아 12~14세」)
@@ -310,6 +313,40 @@ def split_control_errors(spec):
     return ["guide.pose가 있는데 guide.split이 없다 — 깊이와 뼈대를 한 장에 섞거나 하나만 주면 맞바꿈"] if g.get("pose") and not g.get("split") else []
 
 
+TWO_THIRDS, TWO_THIRDS_TOL, HAND_GAP = 2 / 3, 0.03, 0.02
+
+
+def spear_two_thirds_errors(spec):
+    """창은 3분의 2쯤 날아간 자리(task 405 n1, 규칙 generate.spear-two-thirds — 사람 m1e 「창은 3분의2쯤 날아가게」) — guide에 허공 물체 꼴과
+    던지는 뼈대 인물(throw_follow)·피하는 뼈대 인물이 있으면: 촉(구역 왼끝, make_guide.spear 관례)이 던진 손목 → 피하는 사람 머리의 2/3 지점 ± 0.03,
+    창 뒤끝(구역 오른끝)은 던진 손목보다 0.02 앞(손에 남은 창으로 안 읽히게). 화면 비율."""
+    g, R = spec.get("guide") or {}, spec.get("regions", {})
+    sh, pose = g.get("shape", {}), g.get("pose", {})
+    objs = [k for k, v in sh.items() if v in AIR_SHAPES]
+    thrower = [k for k, n in pose.items() if n == "throw_follow"]
+    dodger = [k for k, n in pose.items() if k not in thrower and sh.get(k) in HEAD_BAND]
+    if not (objs and thrower and dodger):
+        return []
+    sys.path.insert(0, os.path.join(HERE, "batch"))
+    import make_guide as M
+
+    def pt(k, idx):
+        a0, b0, a1, b1 = R[k]
+        pts, _ = M.pose_points((a0 * M.W, b0 * M.H, a1 * M.W, b1 * M.H), pose[k])
+        xs = [pts[i][0] / M.W for i in idx if i in pts]
+        return sum(xs) / len(xs)
+    hand, head = pt(thrower[0], (4,)), pt(dodger[0], (0, 14, 16))
+    want = hand + TWO_THIRDS * (head - hand)
+    out = []
+    for o in objs:
+        x0, _, x1, _ = R[o]
+        if abs(x0 - want) > TWO_THIRDS_TOL:
+            out.append(f"{o} 촉 x {x0:.3f} ≠ 2/3 지점 {want:.3f}±{TWO_THIRDS_TOL} — 창이 3분의 2쯤 날아간 자리가 아니다")
+        if x1 > hand - HAND_GAP:
+            out.append(f"{o} 뒤끝 x {x1:.3f}가 던진 손목 {hand:.3f}에 닿음 — 창이 손에 남은 꼴(두 사람을 더 떨어뜨릴 것)")
+    return out
+
+
 def has_situation(spec):
     s = spec.get("situation")
     return [] if isinstance(s, dict) and str(s.get("text", "")).strip() else ["situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"]
@@ -370,6 +407,7 @@ SPEC_CHECKS = {
     "recheck.pose_hold_errors": lambda spec, ctx: pose_hold_errors(spec),
     "recheck.pose_only_errors": lambda spec, ctx: pose_only_errors(spec),
     "recheck.split_control_errors": lambda spec, ctx: split_control_errors(spec),
+    "recheck.spear_two_thirds_errors": lambda spec, ctx: spear_two_thirds_errors(spec),
     "check_scenes.lexicon_look_errors": lambda spec, ctx: check_scenes.lexicon_look_errors(spec, ds.route_prompt(spec)),
 }
 

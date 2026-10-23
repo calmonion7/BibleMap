@@ -3311,5 +3311,14 @@
    42,
    23
   ]
+ },
+ "verdict": {
+  "answer": "none",
+  "chose": "none",
+  "left": "g:42",
+  "right": "g:23",
+  "memo": "너무 가까이 있는것 같음 사람사이즈를 조금 줄여야 하지 않을까?\n다윗 악기가 맞나?\n창은 3분의2쯤 날아가게",
+  "minutes": 2.06,
+  "active_minutes": 2.05
  }
 }
