@@ -215,12 +215,33 @@ class GuideBodyBuild(unittest.TestCase):
         sys.path.insert(0, os.path.join(HERE, "batch"))
         import make_guide as M
         s = gibeah()
+        s["guide"].pop("pose", None)   # c7부터 넓은 체격 사울은 뼈대 — 깊이 몸 너비를 재려고 깊이 꼴로
         wide = sum(M.make(s).convert("L").histogram()[200:])
         s["guide"].pop("body")
         self.assertGreater(wide, sum(M.make(s).convert("L").histogram()[200:]))
 
     def test_gibeah_passes(self):
         self.assertEqual(recheck.guide_body_errors(gibeah()), [])
+
+
+class GuidePose(unittest.TestCase):
+    """task 403 c7 — guide.pose 인물은 깊이 꼴 대신 OpenPose 뼈대(색 있는 팔다리) — 깊이 꼴은 관절 각도·다리 길이를 못 줌(c1~c6)."""
+
+    def test_pose_region_has_skeleton_not_silhouette(self):
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as M
+        s = gibeah()
+        x0, y0, x1, y1 = (round(v * d) for v, d in zip(s["regions"]["saul"], (M.W, M.H, M.W, M.H)))
+        crop = M.make(s).crop((x0, y0, x1, y1))
+        px = list(crop.getdata())
+        color = sum(1 for r, g, b in px if max(r, g, b) - min(r, g, b) > 60)   # 뼈대 색
+        white = sum(1 for r, g, b in px if min(r, g, b) > 230)                  # 깊이 1.0 몸 덩어리
+        self.assertGreater(color, 500)
+        self.assertLess(white, 0.05 * len(px))
+        s["guide"].pop("pose")
+        crop = M.make(s).crop((x0, y0, x1, y1))
+        self.assertGreater(sum(1 for r, g, b in crop.getdata() if min(r, g, b) > 230), 0.15 * len(px))
 
 
 class DodgeClear(unittest.TestCase):

@@ -204,6 +204,44 @@ def wall(d, x0, y0, x1, y1, v):
     d.polygon([(x0, y0), (x1, y0 + h * 0.18), (x1, y1 - h * 0.06), (x0, y1)], fill=v)
 
 
+# task 403 c7 — 포즈(뼈대) 제어: OpenPose 18점 규약(controlnet_aux draw_bodypose와 같은 관절 순서·팔다리 짝·색).
+# 깊이 꼴은 실루엣 덩어리만 주고 관절 각도·다리 길이는 모델이 시드마다 넓은 보폭으로 되돌렸다(c1~c6).
+LIMBS = [(1, 2), (1, 5), (2, 3), (3, 4), (5, 6), (6, 7), (1, 8), (8, 9), (9, 10), (1, 11), (11, 12), (12, 13), (1, 0), (0, 14), (14, 16), (0, 15), (15, 17)]
+POSE_COLORS = [(255, 0, 0), (255, 85, 0), (255, 170, 0), (255, 255, 0), (170, 255, 0), (85, 255, 0), (0, 255, 0), (0, 255, 85), (0, 255, 170),
+               (0, 255, 255), (0, 170, 255), (0, 85, 255), (0, 0, 255), (85, 0, 255), (170, 0, 255), (255, 0, 255), (255, 0, 170), (255, 0, 85)]
+# 관절(키 비율 — x: 엉덩이 가운데 기준, 음수 = 화면 왼쪽 · y: 머리 위끝 0 ~ 발 1). 어른 비율(엉덩이 0.52 · 무릎 0.73 · 발목 0.95).
+POSES = {
+    # 막 던진 뒤 몸이 따라 나감(화면 왼쪽으로 던짐 — 투창 마무리): 몸통 약 30° · 던진 오른팔 앞·아래로 길게 뻗음 · 왼팔 뒤 위로(균형) · 굽힌 왼 앞다리 한 발로 섬
+    # · 오른 뒷다리를 땅에서 들어 뒤로 올림(c8 25° 곧게 펴짐 · c9 35°+팔 내림 = 구부정히 걷는 사람 — 기울기 대신 든 뒷발로 체중을 보임) · 왼발 앞으로 내디딤(무릎 굽힘)
+    # 옆얼굴이라 가까운 오른 눈·귀만.
+    "throw_follow": {0: (-0.23, 0.11), 1: (-0.15, 0.18), 2: (-0.14, 0.21), 3: (-0.28, 0.3), 4: (-0.41, 0.41), 5: (-0.17, 0.21), 6: (-0.05, 0.22),
+                     7: (0.06, 0.15), 8: (-0.01, 0.52), 9: (0.13, 0.68), 10: (0.27, 0.77), 11: (0.01, 0.52), 12: (-0.17, 0.72), 13: (-0.14, 0.96),
+                     14: (-0.24, 0.095), 16: (-0.17, 0.1)},
+}
+
+
+def draw_pose(img, box, name, hip_dx=0.06):
+    """상자(x0, y0, x1, y1 화소) 안에 뼈대: 키 = 상자 높이, 엉덩이 가운데 x = 상자 가운데 + hip_dx·키. 굵기는 키에 비례(512px 사람 ≈ 4px)."""
+    x0, y0, x1, y1 = box
+    h, cx = y1 - y0, (x0 + x1) / 2 + hip_dx * (y1 - y0)
+    pts = {k: (cx + x * h, y0 + y * h) for k, (x, y) in POSES[name].items()}
+    sw = max(2.0, h / 512 * 4 * 1.6)
+    layer = Image.new("RGB", img.size, (0, 0, 0))
+    d = ImageDraw.Draw(layer)
+    for i, (a, b) in enumerate(LIMBS):
+        if a in pts and b in pts:
+            (xa, ya), (xb, yb) = pts[a], pts[b]
+            dx, dy = xb - xa, yb - ya
+            n = max(1e-6, (dx * dx + dy * dy) ** 0.5)
+            ox, oy = -dy / n * sw, dx / n * sw
+            d.polygon([(xa + ox, ya + oy), (xb + ox, yb + oy), (xb - ox, yb - oy), (xa - ox, ya - oy)], fill=tuple(int(c * 0.6) for c in POSE_COLORS[i]))
+    for k, (x, y) in pts.items():
+        d.ellipse([x - sw, y - sw, x + sw, y + sw], fill=POSE_COLORS[k])
+    mask = layer.convert("L").point(lambda p: 255 if p else 0)
+    img.paste(layer, (0, 0), mask)
+    return img
+
+
 SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "seated": seated, "crowd": crowd, "boat": boat, "bank": bank}
 
 
@@ -228,7 +266,10 @@ def make(spec):
         sys.path.insert(0, HERE)
         import derive_scene as ds
         build = {f["region"]: ds._cast_in_scene(f).get("card", {}).get("silhouette", {}).get("class") for f in spec["figures"]}
+    pose = g.get("pose", {})   # task 403 c7 — 뼈대로 줄 인물은 깊이 꼴을 그리지 않는다(흐림 뒤 draw_pose)
     for k in sorted(g["depth"], key=lambda k: (g["depth"][k], k)):
+        if k in pose:
+            continue
         x0, y0, x1, y1 = R[k]
         BODY["w"] = BUILD_WIDTH.get(build.get(k), 0.3)
         BODY["knee"] = k in knee
@@ -236,7 +277,11 @@ def make(spec):
     BODY["w"], BODY["knee"] = 0.3, False
     BODY.pop("big_tip", None)
     BODY.pop("leaf_tip", None)
-    return img.filter(ImageFilter.GaussianBlur(g.get("blur", 3))).convert("RGB")   # b6: blur 키우면 각진 몸이 누그러짐(b5 사울 상자 튜닉)
+    out = img.filter(ImageFilter.GaussianBlur(g.get("blur", 3))).convert("RGB")   # b6: blur 키우면 각진 몸이 누그러짐(b5 사울 상자 튜닉)
+    for k, name in sorted(pose.items()):
+        x0, y0, x1, y1 = R[k]
+        draw_pose(out, (x0 * W, y0 * H, x1 * W, y1 * H), name)
+    return out
 
 
 def main():
