@@ -1,0 +1,2 @@
+판정 task gibeah-step23/m10e
+{"task":"gibeah-step23/m10e","kind":"ab","human_minutes":1.54,"active_minutes":1.11,"idle_ms":120000,"screens":1,"scenes":{"authored-saul-gibeah-spear":{"answer":"none","chose":"none","left":"g:7","right":"g:5","memo":"청이.. 이상함 \n왼쪽사울은 비율이 문제고 오른쪽사울은 지팡이인가? 먼가 막대기가 몸에 붙어있음","minutes":1.52,"active_minutes":1.09}}}

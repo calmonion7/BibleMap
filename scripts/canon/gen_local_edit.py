@@ -91,51 +91,111 @@ TIP_PAINT = (128, 130, 136)
 
 
 def measure_prop(src, region, w, h, xmax=None):
-    """바탕에서 허공 막대(창)를 잼 → (왼끝 x, 오른끝 x, 자루 가운데 y, 자루 굵기, 옛 촉 위아래 반폭) 화소. 띠 = 구역 세로 ± 0.03 · 가로 ± 0.12(xmax 앞까지).
-    벽보다 어두운 화소(열마다 띠 중앙값 − 35)를 막대로 봄."""
+    """바탕에서 허공 막대(창)를 잼 → (왼끝 x, 오른끝 x, 자루 가운데 y, 자루 굵기, 옛 촉 위아래 반폭, 덧정보) 화소.
+    띠 = 구역 세로 ± 0.03 · 가로 구역 왼끝 − 0.12 ~ 0.80. 벽보다 어두운 화소(열마다 띠 위아래 가장자리 평균 − 35)를 막대로 봄.
+    덧정보 ext = 열마다 어두운 화소 수(bx0부터) · sep = 창이 오른쪽 인물과 떨어져 끝남(r20 — 이어지면 뒤끝을 못 잼)."""
     import numpy as np
     x0, y0, x1, y1 = region
-    bx0, bx1 = max(0, round((x0 - 0.12) * w)), min(w, round((min(x1 + 0.12, xmax if xmax else 1.0)) * w) - 10)
+    bx0, bx1 = max(0, round((x0 - 0.12) * w)), min(w, round(0.80 * w))
     by0, by1 = max(0, round((y0 - 0.03) * h)), min(h, round((y1 + 0.03) * h))
     a = np.asarray(Image.open(src).convert("L"), dtype=float)[by0:by1, bx0:bx1]
-    dark = (np.median(a, axis=0) - a) > 35
-    cols = np.where(dark.sum(axis=0) > 0)[0]
+    bg = np.concatenate([a[:5], a[-5:]]).mean(axis=0)   # 띠 위아래 가장자리 = 벽(큰 촉이 띠 절반을 덮으면 열 중앙값이 어두워짐)
+    dark = (bg - a) > 35
+    ext = dark.sum(axis=0)
+    cols = np.where(ext > 0)[0]
     if len(cols) < 20:
         return None
-    xl, xr = bx0 + int(cols[0]), bx0 + int(cols[-1])
+    run = np.split(cols, np.where(np.diff(cols) > 3)[0] + 1)[0]   # 왼끝에서 이어진 첫 덩어리 = 창
+    lim = round((xmax if xmax else 1.0) * w) - 10
+    xl, xr = bx0 + int(run[0]), min(bx0 + int(run[-1]), lim)
+    sep = bx0 + int(run[-1]) < lim
     col = dark[:, round((xl + 0.4 * (xr - xl)) - bx0)]
     rows = np.where(col)[0]
     if not len(rows):
         return None
     cy = by0 + float(rows.mean())
-    head = np.where(dark[:, cols[0]:cols[0] + max(1, round(0.28 * (xr - xl)))].any(axis=1))[0]   # 옛 촉(왼끝 ~ 0.28)의 위아래 범위
+    head = np.where(dark[:, run[0]:run[0] + max(1, round(0.28 * (xr - xl)))].any(axis=1))[0]   # 옛 촉(왼끝 ~ 0.28)의 위아래 범위
     reach = max(abs(by0 + head[0] - cy), abs(by0 + head[-1] - cy)) if len(head) else 0
-    return xl, xr, cy, max(2, int(rows[-1] - rows[0] + 1)), reach
+    return xl, xr, cy, max(2, int(rows[-1] - rows[0] + 1)), reach, {"ext": ext, "bx0": bx0, "sep": bool(sep)}
+
+
+def _end_extent(m, side):
+    """끝 쇠붙이(촉·물미·고리)가 차지하는 마지막 열 — 끝에서 창 길이 0.35 안쪽으로, 두께가 자루 + 2를 넘는 가장 안쪽 열(+4).
+    side front = 왼끝에서 오른쪽으로, back = 오른끝에서 왼쪽으로(r20 — 고리까지 지워야 마디가 안 남음)."""
+    xl, xr, cy, t, reach, info = m
+    ext, bx0 = info["ext"], info["bx0"]
+    n = max(2, round(0.35 * (xr - xl)))
+    xs = range(xl - bx0, xl - bx0 + n) if side == "front" else range(xr - bx0, xr - bx0 - n, -1)
+    hit = [x for x in xs if 0 <= x < len(ext) and ext[x] > t + 2]
+    if not hit:
+        return xl + 2 if side == "front" else xr - 2
+    return bx0 + (max(hit) + 4 if side == "front" else min(hit) - 4)
+
+
+def _clean(a, x0, x1, cy, half, h):
+    """[x0, x1) 열을 위아래 벽 띠 색 보간으로 지움 → 세로 범위."""
+    y0, y1 = max(0, round(cy - half)), min(h, round(cy + half))
+    above = a[max(0, y0 - 6):y0, x0:x1].mean(axis=0)
+    below = a[y1:min(h, y1 + 6), x0:x1].mean(axis=0)
+    for y in range(y0, y1):
+        k = (y - y0) / max(1, y1 - y0)
+        a[y, x0:x1] = ((1 - k) * above + k * below).astype(a.dtype)
+    return y0, y1
+
+
+def _shaft(a, m, x0, x1):
+    """[x0, x1) 자루 띠를 창 가운데(0.4 지점)의 진짜 자루 화소로 이어 메움(r20 — 칠한 자루가 이음매로 보임 · 끝 옆 자루는 고리가 섞임)."""
+    xl, xr, cy, t, reach, info = m
+    s0, s1 = round(cy - t / 2), round(cy + t / 2) + 1
+    c = round(xl + 0.4 * (xr - xl))
+    seg = a[s0:s1, c:c + max(12, t * 3)].copy()
+    for x in range(x0, x1):
+        a[s0:s1, x] = seg[:, (x - x0) % seg.shape[1]]
 
 
 def paint_tip(src, out, m, ratio, width, w, h):
-    """measure_prop 결과 m으로 src에 작은 촉을 칠해 out에 → 마스크 상자. 옛 촉 자리(왼끝 ~ 창 길이 0.28)는 위아래 벽 띠 색으로 지우고
-    자루를 다시 이은 뒤 잎꼴 촉(길이 = 창 길이 × ratio · 폭 = 자루 굵기 × width)을 칠함."""
+    """m(measure_prop)으로 src에 작은 앞 촉을 칠해 out에 → 마스크 상자. 옛 촉·고리 자리(왼끝 ~ _end_extent)만 지우고 촉 뒤 자루는
+    창 가운데 자루 화소로 메운 뒤 잎꼴 촉(길이 = 창 길이 × ratio · 폭 = 자루 굵기 × width)을 칠함(r19 edit.size-in-crop · r20 이음매 없앰)."""
     import numpy as np
-    xl, xr, cy, t, reach = m
+    xl, xr, cy, t, reach, info = m
     L = xr - xl
-    ex1, half = round(xl + 0.28 * L), round(max(0.04 * h, width * t, reach + 6))   # 옛 큰 촉 위아래까지 지움
-    box = (max(0, xl - 8), max(0, round(cy - half)), ex1, min(h, round(cy + half)))
-    im = Image.open(src).convert("RGB")
-    a = np.asarray(im).copy()
-    above = a[max(0, box[1] - 6):box[1], box[0]:box[2]].mean(axis=0)
-    below = a[box[3]:min(h, box[3] + 6), box[0]:box[2]].mean(axis=0)
-    for y in range(box[1], box[3]):
-        k = (y - box[1]) / max(1, box[3] - box[1])
-        a[y, box[0]:box[2]] = ((1 - k) * above + k * below).astype(a.dtype)
-    im = Image.fromarray(a)
-    d = ImageDraw.Draw(im)
-    shaft_rgb = tuple(int(v) for v in np.asarray(Image.open(src).convert("RGB"))[round(cy), min(w - 1, ex1 + 4)])
     tl, tw = ratio * L, width * t / 2
-    d.line([(xl + tl * 0.9, cy), (ex1 + 2, cy)], fill=shaft_rgb, width=max(3, t - 2))   # 잰 굵기는 테두리 포함
-    d.polygon([(xl, cy), (xl + tl * 0.45, cy - tw), (xl + tl, cy), (xl + tl * 0.45, cy + tw)], fill=TIP_PAINT)
+    te = max(_end_extent(m, "front"), round(xl + tl))
+    half = round(max(0.04 * h, width * t, reach + 6))
+    a = np.asarray(Image.open(src).convert("RGB")).copy()
+    y0, y1 = _clean(a, max(0, xl - 8), te + 2, cy, half, h)
+    _shaft(a, m, round(xl + tl * 0.9), te + 2)
+    im = Image.fromarray(a)
+    ImageDraw.Draw(im).polygon([(xl, cy), (xl + tl * 0.45, cy - tw), (xl + tl, cy), (xl + tl * 0.45, cy + tw)], fill=TIP_PAINT)
     im.save(out)
-    return box
+    return (max(0, xl - 8), y0, te + 4, y1)
+
+
+def paint_cap(src, out, m, ratio, width, w, h):
+    """뒤끝 물미(r20 edit.size-in-crop): 창이 오른쪽 인물과 떨어져 끝날 때만(sep) — 옛 뒤끝 쇠붙이(_end_extent ~ 오른끝)를 지우고
+    자루를 메운 뒤 짧고 뭉툭한 쇠 덮개(길이 = 창 길이 × ratio · 높이 = 자루 굵기 × width)를 칠함 → 마스크 상자. 떨어져 있지 않으면 None(옛 편집)."""
+    import numpy as np
+    xl, xr, cy, t, reach, info = m
+    if not info["sep"]:
+        return None
+    L = xr - xl
+    e0 = _end_extent(m, "back")
+    cl, ch = ratio * L, width * t / 2
+    half = round(max(0.03 * h, t + 4))
+    a = np.asarray(Image.open(src).convert("RGB")).copy()
+    y0, y1 = _clean(a, e0 - 2, min(w, xr + 6), cy, half, h)
+    end = e0 + max(cl * 2, 8)   # 창 끝을 옛 쇠붙이 시작 바로 뒤로 — 덮개가 짧게
+    _shaft(a, m, e0 - 2, round(end - cl))
+    im = Image.fromarray(a)
+    ImageDraw.Draw(im).rounded_rectangle([end - cl, cy - ch, end, cy + ch], radius=max(1, round(ch * 0.6)), fill=TIP_PAINT)
+    im.save(out)
+    return (e0 - 6, y0, min(w, xr + 8), y1)
+
+
+def cap_prompt():
+    """칠한 뒤끝 덮개를 그 크기 그대로 쇠 물미로 다듬는 지시 하나(r20)."""
+    return ("Turn the small grey band at the right end of the wooden spear shaft into a short blunt iron cap, exactly the same small size and "
+            f"place as the grey band — rounded and flat at the end, not pointed, no blade. {KEEP_PROP}")
 
 
 def crop_for(box, w, h, pad=40):

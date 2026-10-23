@@ -1,0 +1,3836 @@
+{
+ "answers": {
+  "g:11": {
+   "S": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.723,
+       "input": 4,
+       "output": 279,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.0450424,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 3.828,
+       "input": 4,
+       "output": 279,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.0450424,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 3.952,
+       "input": 4,
+       "output": 280,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.045052400000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·질감이 갖춰져 있고 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.412,
+       "input": 4,
+       "output": 339,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.04564240000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "얼굴·옷 없는 회색 덩어리는 없다. 다만 사울 뒤쪽 벽에 사람 모양의 회색 그림자가 여러 개 겹쳐 보여 미완성 실루엣으로 읽힐 수 있고, 확실히 깨끗하다고 확인되지 않아 틀림으로 답한다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.758,
+       "input": 4,
+       "output": 445,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.046702400000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 칠 질감이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "얼굴과 옷이 있는 두 인물, 의자, 수금, 창이 모두 완성돼 있다. 벽에 보이는 회색 형체는 그림자로 읽혀서 덩어리로 남은 물건은 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 10.003,
+       "input": 4,
+       "output": 1126,
+       "cache_read": 48266,
+       "cache_create": 13020,
+       "cost_usd": 0.0681746,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "틀림",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "틀림",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "틀림",
+      "e.spear-length": "틀림",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.moment": "다윗은 창 높이 아래에서 숙였지만 창길에서 비켜 피하는 모습이 분명하지 않고 창이 다윗과 멀다",
+      "e.wall": "다윗이 벽에서 떨어져 방 한가운데 바닥에 서 있다",
+      "e.guard": "사울 뒤 그림자가 이중 인물처럼 보이고 다윗 뒤에도 그림자 형체가 겹쳐 보인다",
+      "e.dodge-read": "창이 다윗 머리 높이보다 훨씬 위 멀리 있어 피하는 동작이 분명히 읽히지 않는다",
+      "e.spear-shape": "뒤끝이 뾰족한 촉처럼 보이고 앞 촉도 작은 구형에 가까워 창 모양이 어긋난다",
+      "e.spear-two-thirds": "창이 두 사람 사이 중앙쯤에 있어 다윗 쪽 3분의 2 지점이 아니다",
+      "e.spear-length": "창이 사울 키만큼 길게 그려져 짧지 않다",
+      "e.spear-tip-attached": "촉이 납작하고 자루에 끼워진 두께감이 약하다",
+      "e.spear-back-cap": "뒤끝이 가늘고 뾰족한 촉처럼 보여 뭉툭한 물미가 아니다"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 15.788,
+       "input": 4,
+       "output": 1653,
+       "cache_read": 49599,
+       "cache_create": 11688,
+       "cost_usd": 0.0682499,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.guard": "사울 오른쪽 벽에 유령 같은 두 번째 인물 형태의 그림자가 덧붙어 보임",
+      "e.spear-back-cap": "창 뒤끝이 뭉툭한 덮개가 아니라 가늘고 뾰족한 침 모양이라 촉처럼 보임"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 17.686,
+       "input": 4,
+       "output": 2030,
+       "cache_read": 48266,
+       "cache_create": 13021,
+       "cost_usd": 0.0772186,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "틀림",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "틀림",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.moment": "창이 다윗 머리 높이로 곧게 향하는데 다윗은 숙이기만 해 비켜 나는 동작이 분명하지 않음",
+      "e.wall": "다윗이 바닥 앞쪽에 서 있어 벽 바로 앞이 아님",
+      "e.dodge-read": "창이 다윗 머리 높이 일직선이고 몸을 비튼 모습이 분명치 않아 피함이 한눈에 읽히지 않음",
+      "e.spear-back-cap": "창 뒤끝이 뭉툭한 물미가 아니라 가늘고 뾰족한 촉처럼 보임"
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 15.45,
+       "input": 4,
+       "output": 1735,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.0234867,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.spear-back-cap": "창 뒤끝이 뭉툭한 덮개가 아니라 가늘고 뾰족한 침처럼 보임",
+      "e.dodge-read": "다윗이 몸을 숙였고 창이 머리 바로 위로 지나가는 높이라 비켜감이 읽힘(아슬아슬함)"
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 17.133,
+       "input": 4,
+       "output": 1968,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.025816700000000005,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "틀림",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.wall": "다윗이 방 앞쪽 바닥에 서 있고 벽은 멀리 뒤에 있어 벽 바로 앞이 아님",
+      "e.spear-tip-small": "촉의 가장 넓은 폭이 자루 굵기의 약 3배라 두 배쯤보다 넓적함",
+      "e.spear-tip-attached": "촉이 납작한 회색 덩어리로 보여 끼워진 쇠 촉이 아니라 오려 붙인 것처럼 보임",
+      "e.spear-back-cap": "뒤끝이 뭉툭한 덮개가 아니라 가늘고 뾰족한 촉처럼 보임"
+     }
+    }
+   }
+  },
+  "g:42": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.51,
+       "input": 4,
+       "output": 268,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.044932400000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "인물, 창, 의자, 벽이 모두 얼굴·옷·형태를 갖췄고 평평한 회색 덩어리는 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.57,
+       "input": 4,
+       "output": 269,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.04494240000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴, 옷, 세부 묘사가 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.243,
+       "input": 4,
+       "output": 279,
+       "cache_read": 53110,
+       "cache_create": 1174,
+       "cost_usd": 0.012805,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 윤곽선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "인물, 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 4.236,
+       "input": 4,
+       "output": 284,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0082764,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자, 벽이 모두 얼굴·옷·디테일을 갖췄다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 4.157,
+       "input": 4,
+       "output": 280,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0082364,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·형태가 갖춰져 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 15.895,
+       "input": 4,
+       "output": 2071,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.0268467,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "틀림",
+      "e.saul-empty": "틀림",
+      "e.saul-throw": "틀림",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "틀림",
+      "e.lyre": "틀림",
+      "e.tunic": "틀림",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "틀림",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "틀림",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "틀림",
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "틀림",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "틀림",
+      "e.spear-length": "틀림",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "틀림",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "틀림"
+     },
+     "reasons": {
+      "e.moment": "창이 사울 손/팔에서 이어져 있어 던져 날아가는 순간이 아니고, 다윗도 창길 밖에서 웅크려 있을 뿐임",
+      "e.spear-air": "창 뒤끝이 사울 팔 쪽에 닿아 있어 손을 떠나 떠 있는 모습이 아님",
+      "e.saul-empty": "사울 오른손이 허리 쪽에서 막대 같은 것을 쥐고 있음",
+      "e.saul-throw": "던진 팔이 뻗은 자세가 아니라 손바닥 편 채 벌린 모양이고 다른 손은 물건을 쥠",
+      "e.saul-age": "회색 머리와 수염, 주름, 큰 체구, 머리쓰개 없음",
+      "e.david-youth": "수염 없는 곱슬머리 청년, 머리쓰개 없음",
+      "e.wall": "다윗이 벽에서 떨어져 방 가운데쯤에 서 있음",
+      "e.lyre": "수금이 너무 작고 손에 가려 분명하지 않음",
+      "e.tunic": "한쪽 어깨가 드러나고 어깨 쪽이 헐렁해 분명히 맞다고 보기 어려움",
+      "e.face-each": "다윗은 오른쪽 사울 쪽, 사울은 왼쪽 다윗 쪽을 향함",
+      "e.room": "돌벽이 있는 소박한 실내",
+      "e.guard": "사울 허리의 정체불명 막대와 창이 사울 몸에서 이어져 보이는 결함 있음",
+      "e.saul-costume": "무릎 길이 갈색 튜닉, 가죽 띠, 맨다리",
+      "e.dodge-read": "창이 다윗 머리 높이를 향해 곧게 날아오는데 비켜 피하는 것이 분명하지 않음",
+      "e.spear-shape": "촉은 작은 잎 모양이나 자루 중간에 쇠 마디가 있어 기대와 다름",
+      "e.lyre-held": "두 손으로 몸에 붙여 쥔 모습이 분명하지 않음",
+      "e.spear-direction": "촉이 화면 왼쪽 다윗 쪽, 뒤끝이 사울 쪽",
+      "e.saul-body": "다리를 크게 벌려 컴퍼스처럼 서 있음",
+      "e.proportion-saul": "다리를 벌린 자세에 비율이 어색함",
+      "e.proportion-david": "청년 비율이 대체로 자연스러움",
+      "e.proportion-pair": "사울이 더 크지만 거인과 아이 수준은 아님",
+      "e.saul-throw-release": "팔을 편 손짓이고 창이 아직 몸에 닿아 있어 던진 직후 몸짓이 아님",
+      "e.figure-size": "두 사람이 작게 그려지고 방이 넉넉히 보임",
+      "e.lyre-frame": "수금 틀이 작고 가려져 U자 틀과 두 팔이 분명하지 않음",
+      "e.spear-two-thirds": "촉이 다윗 쪽으로 3분의 2쯤 가긴 했으나 뒤끝이 사울 손 가까이에 있어 분명히 맞다고 못 함",
+      "e.spear-length": "창이 사울 키보다 훨씬 길어 보임",
+      "e.spear-tip-small": "촉이 작고 자루 폭의 두 배쯤임",
+      "e.saul-proportion-measure": "다리를 벌려 길이 비가 분명히 맞다고 확인되지 않음",
+      "e.spear-uniform": "자루 중간에 은색 이음매가 있음",
+      "e.spear-tip-attached": "촉이 납작한 마름모처럼 보임",
+      "e.spear-back-cap": "뒤끝이 사울 몸에 붙어 있어 물미로 확인되지 않음",
+      "e.saul-no-stick": "사울 허리 옆에 막대 같은 것이 붙어 있음"
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 20.398,
+       "input": 4,
+       "output": 2477,
+       "cache_read": 49873,
+       "cache_create": 11413,
+       "cost_usd": 0.07541729999999999,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "틀림",
+      "e.saul-empty": "틀림",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "틀림",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "틀림",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "틀림",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "틀림"
+     },
+     "reasons": {
+      "e.moment": "창 뒤끝이 사울 어깨·몸에 닿아 있어 손을 떠나 날아가는 순간으로 읽히지 않고, 다윗은 움츠려 두 손을 든 모습이다.",
+      "e.spear-air": "창 뒤끝이 사울의 몸에 붙어 있어 허공에 떠 있는 것으로 보이지 않는다.",
+      "e.saul-empty": "사울 오른손이 허리 쪽 칼집이나 단검 같은 물건을 쥐고 있다.",
+      "e.dodge-read": "다윗은 몸을 숙였지만 창이 머리 바로 위를 스치듯 지나가고 손을 든 채 웅크린 모습이라 피함이 분명하지 않다.",
+      "e.lyre-held": "수금을 한 팔에 끼고 있고 다른 손은 손뼉 치듯 올라가 있어 두 손으로 몸에 붙여 쥔 모습이 아니다.",
+      "e.spear-length": "창 길이가 서 있는 사울의 키보다 길다.",
+      "e.spear-uniform": "자루 중간(약 x=805)에 은빛 고리와 색 변화가 있는 이음매가 보인다.",
+      "e.spear-tip-attached": "촉이 납작한 마름모 모양이라 오려 붙인 것처럼 보인다.",
+      "e.spear-back-cap": "창 뒤끝이 사울의 몸에 가려 물미가 확인되지 않는다.",
+      "e.saul-no-stick": "사울 허리 뒤로 막대처럼 튀어나온 물건이 보인다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 21.867,
+       "input": 4,
+       "output": 2632,
+       "cache_read": 59954,
+       "cache_create": 1333,
+       "cost_usd": 0.037655400000000006,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "틀림",
+      "e.saul-empty": "틀림",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "틀림",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "틀림",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "틀림",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "틀림",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "틀림",
+      "e.spear-length": "틀림",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "틀림"
+     },
+     "reasons": {
+      "e.moment": "창이 사울 몸에서 바로 이어져 손을 떠난 모습이 아니고, 다윗은 창길 밖에서 웅크려 있을 뿐이다.",
+      "e.spear-air": "창 뒤끝이 사울의 어깨와 몸통에 닿아 있어 허공에 떠 있지 않다.",
+      "e.saul-empty": "사울의 한 손이 허리춤의 어두운 막대(칼집이나 몽둥이)를 쥐고 있다.",
+      "e.wall": "다윗이 벽에서 떨어져 방 한가운데 서 있다.",
+      "e.guard": "창이 사울 몸에서 솟은 듯 보이고 허리춤에 막대가 덧붙어 있다.",
+      "e.dodge-read": "창이 아직 다윗에게서 멀고 창길 한가운데도 아니어서, 비켜 지나가는 모습이 분명하지 않다.",
+      "e.spear-shape": "자루 중간에 은색 이음 고리가 있고 뒤끝 물미도 분명하지 않다.",
+      "e.lyre-held": "한 손은 합장하듯 올라가 있고 수금은 팔에 걸친 정도라 두 손으로 쥔 모습이 분명하지 않다.",
+      "e.saul-throw-release": "던진 직후의 빈손으로 보이지 않고, 다른 손은 막대를 쥐고 있으며 창이 몸에 붙어 있다.",
+      "e.lyre-frame": "수금이 작고 가려져 U자 틀의 팔 두 개가 분명히 보이지 않는다.",
+      "e.spear-two-thirds": "창이 사울 몸에 붙어 있어 3분의 2쯤 날아간 자리에 있다고 볼 수 없다.",
+      "e.spear-length": "창 길이가 사울의 키보다 길다.",
+      "e.spear-uniform": "자루 중간에 은색 고리 이음매가 있다.",
+      "e.spear-tip-attached": "촉이 납작한 마름모 스티커처럼 보인다.",
+      "e.spear-back-cap": "뒤끝이 사울 몸에 가려져 뭉툭한 물미가 보이지 않는다.",
+      "e.saul-no-stick": "사울 허리춤에 아무도 쥐지 않은 듯한 어두운 막대가 붙어 있다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 23.664,
+       "input": 4,
+       "output": 2957,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.0357067,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "틀림",
+      "e.saul-empty": "틀림",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "틀림",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "틀림",
+      "e.spear-length": "틀림",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "틀림"
+     },
+     "reasons": {
+      "e.moment": "창이 다윗 머리 위로 지나가고 다윗은 몸을 숙임",
+      "e.spear-air": "창 뒤끝이 사울 어깨 뒤까지 이어져 사울에게서 떨어져 떠 있지 않음",
+      "e.saul-empty": "오른손에 어두운 막대 모양 물건을 쥐고 있음",
+      "e.saul-throw": "던진 팔을 뻗고 앞으로 기운 자세",
+      "e.saul-age": "회색 머리, 회색 수염, 주름, 관 없음",
+      "e.david-youth": "수염 없고 검은 곱슬머리, 청년 체형",
+      "e.wall": "돌벽 앞에 서 있음",
+      "e.lyre": "작은 나무 수금이 보임",
+      "e.tunic": "무릎 길이 튜닉에 맨다리",
+      "e.face-each": "서로 마주 봄",
+      "e.room": "돌벽 실내, 아치창 밖은 일부만 보임",
+      "e.guard": "사울 손에 쥔 막대, 창이 몸에 붙어 보이는 결함",
+      "e.saul-costume": "무릎 길이 갈색 튜닉에 가죽 띠, 맨다리",
+      "e.dodge-read": "몸을 숙여 창이 머리 위로 지나감",
+      "e.spear-shape": "자루 중간에 이음매 고리가 있어 한 가지 자루가 아님",
+      "e.lyre-held": "한 손은 수금 가까이 있으나 다른 손은 들어 올린 손짓이라 두 손으로 쥔 것이 분명치 않음",
+      "e.spear-direction": "촉이 왼쪽 다윗 쪽을 향함",
+      "e.saul-body": "튼튼한 체형이고 자연스러움",
+      "e.proportion-saul": "비율 자연스러움",
+      "e.proportion-david": "비율 자연스러움",
+      "e.proportion-pair": "크기 차이 적절",
+      "e.saul-throw-release": "빈 손바닥을 편 팔이 다윗 쪽으로 뻗음",
+      "e.figure-size": "사울 키가 화면 높이의 4분의 3 미만, 방이 넉넉히 보임",
+      "e.lyre-frame": "팔에 가려 U자 틀 두 팔과 가로대가 분명히 보이지 않음",
+      "e.spear-two-thirds": "창이 사울 몸에 걸쳐 있어 3분의 2 지점에서 떨어진 것이 아님",
+      "e.spear-length": "창이 사울 키보다 길어 보임",
+      "e.spear-tip-small": "촉이 작고 자루 폭의 두 배쯤임",
+      "e.saul-proportion-measure": "머리와 다리 비가 자연스러움",
+      "e.spear-uniform": "자루 중간에 회색 이음매가 있고 색이 바뀜",
+      "e.spear-tip-attached": "촉이 납작한 마름모 스티커처럼 보임",
+      "e.spear-back-cap": "뒤끝이 사울 몸에 가려 물미가 보이지 않음",
+      "e.saul-no-stick": "사울 손과 허리춤에 막대가 붙어 있음"
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 23.501,
+       "input": 4,
+       "output": 2744,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.0335767,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "틀림",
+      "e.saul-empty": "틀림",
+      "e.saul-throw": "틀림",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "틀림",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "틀림",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "틀림",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "틀림",
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "틀림",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "틀림",
+      "e.spear-length": "틀림",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "틀림",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.moment": "창 뒤끝이 사울 팔·어깨에 이어져 손을 떠난 모습이 아니고, 다윗의 피함도 분명하지 않음",
+      "e.spear-air": "창이 사울 몸에 닿아 있어 두 사람 사이 허공에 뜬 것으로 안 보임",
+      "e.saul-empty": "사울의 오른손이 허리춤의 막대·단검 같은 물건을 쥐고 있음",
+      "e.saul-throw": "뻗은 팔은 빈 손이지만 창이 몸에서 이어져 있어 방금 던진 자세로 확신할 수 없음",
+      "e.lyre": "수금이 작고 팔 밑에 가려 보이며 종류를 확신할 수 없음",
+      "e.guard": "사울의 허리춤에 정체불명의 막대 같은 것이 있고 창 이음매도 어색함",
+      "e.dodge-read": "다윗은 웅크렸지만 창은 머리 위 한참 먼 곳에 있어 피하는 장면으로 읽히지 않음",
+      "e.spear-shape": "자루 중간에 쇠 이음이 있고 뒤끝이 사울 몸에 가려져 있음",
+      "e.lyre-held": "다윗이 두 손을 박수치듯 모았고 수금은 팔 밑에 끼워져 있어 두 손으로 쥔 것이 아님",
+      "e.saul-body": "다리가 짧고 굵으며 넓게 벌려 서 있음",
+      "e.proportion-saul": "다리가 몸통보다 짧아 보임",
+      "e.saul-throw-release": "창이 아직 사울과 연결돼 보여 던진 직후로 읽히지 않음",
+      "e.lyre-frame": "U자 틀의 두 팔을 확인할 수 없음",
+      "e.spear-two-thirds": "창이 사울 손에서 떨어진 것으로 보이지 않아 3분의 2 지점에 날아간 것으로 확신할 수 없음",
+      "e.spear-length": "창 길이(약 445px)가 사울 키(약 420px)보다 긺",
+      "e.saul-proportion-measure": "머리가 키의 5분의 1쯤으로 크고 다리는 키의 절반보다 짧음",
+      "e.spear-uniform": "자루 중간에 쇠 이음 고리와 색 변화가 있음",
+      "e.spear-tip-attached": "촉이 납작한 마름모처럼 보임",
+      "e.spear-back-cap": "뒤끝이 사울 몸에 가려져 물미가 보이지 않음"
+     }
+    }
+   }
+  },
+  "g:7": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.888,
+       "input": 4,
+       "output": 267,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.0449224,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 그린 동화 그림 화풍이다.",
+      "s.no-blob": "인물 둘과 창, 의자 모두 얼굴·옷·형태가 완성돼 있고 평평한 회색 덩어리는 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.136,
+       "input": 4,
+       "output": 278,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0082164,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "인물 둘과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.88,
+       "input": 4,
+       "output": 274,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0081764,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 칠이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물, 창, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 3.69,
+       "input": 4,
+       "output": 277,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0082064,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자, 수금 모두 얼굴·옷·형태가 갖춰져 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 4.444,
+       "input": 4,
+       "output": 278,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0082164,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "사람 둘과 의자, 창, 수금 모두 얼굴·옷·질감이 완성돼 있고 회색 덩어리나 미완성 실루엣이 없다."
+     }
+    }
+   },
+   "E": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 13.797,
+       "input": 4,
+       "output": 1701,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.0231467,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.spear-tip-attached": "앞 촉이 얇고 납작한 마름모라 종이를 오려 붙인 스티커처럼 보임",
+      "e.spear-back-cap": "뒤끝도 앞 촉처럼 뾰족한 작은 촉 모양이고 짧고 뭉툭한 물미가 아님"
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 15.252,
+       "input": 4,
+       "output": 1769,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.023826700000000006,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "틀림",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "틀림",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.moment": "창이 다윗 머리 높이로 수평인데 다윗은 아직 창에서 멀고, 비켜 피하는 동작이 분명하지 않음",
+      "e.dodge-read": "다윗은 웅크려 악기를 타는 모습이고 창이 비켜 지나간다는 게 한눈에 안 보임",
+      "e.spear-shape": "뒤끝도 뾰족한 촉처럼 그려져 앞 촉과 구분이 약하고, 촉이 납작한 마름모꼴임",
+      "e.spear-two-thirds": "창 중심이 두 사람 사이에서 사울 쪽에 더 가까움",
+      "e.spear-tip-attached": "앞 촉이 납작한 마름모 스티커처럼 보임",
+      "e.spear-back-cap": "뒤끝이 뭉툭한 덮개가 아니라 뾰족한 촉 모양임"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 17.833,
+       "input": 4,
+       "output": 2014,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.026276700000000007,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "뒤끝에도 앞 촉과 비슷한 뾰족한 촉이 달려 있어 양쪽이 모두 촉처럼 보임",
+      "e.spear-tip-attached": "앞 촉이 얇고 납작한 마름모라 오려 붙인 스티커처럼 보임",
+      "e.spear-back-cap": "뒤끝이 뭉툭한 덮개가 아니라 뾰족한 촉 모양임"
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 20.05,
+       "input": 4,
+       "output": 2251,
+       "cache_read": 49873,
+       "cache_create": 11414,
+       "cost_usd": 0.0731613,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "틀림",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.proportion-saul": "튜닉 아래 다리가 몸통보다 짧아 보임",
+      "e.saul-proportion-measure": "엉덩이에서 발까지 다리가 키의 절반에 못 미침",
+      "e.spear-tip-attached": "앞 촉이 납작한 마름모 스티커처럼 보임",
+      "e.spear-back-cap": "뒤끝도 뾰족한 촉 모양이고 뭉툭한 물미가 아님"
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 15.753,
+       "input": 4,
+       "output": 1804,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.024176700000000002,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "뒤끝이 물미가 아니라 작은 뾰족 촉처럼 보이고 앞 촉도 납작함",
+      "e.spear-tip-attached": "앞 촉이 납작한 마름모 스티커처럼 보임",
+      "e.spear-back-cap": "뒤끝이 뭉툭한 덮개가 아니라 뾰족한 작은 촉으로 보임"
+     }
+    }
+   }
+  },
+  "g:23": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.366,
+       "input": 4,
+       "output": 278,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.0450324,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.183,
+       "input": 4,
+       "output": 278,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0082164,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색으로 그린 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.584,
+       "input": 4,
+       "output": 279,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0082264,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있다. 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 3.998,
+       "input": 4,
+       "output": 289,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.008326400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감이 보이는 동화풍 그림이다.",
+      "s.no-blob": "사울 오른쪽 뒤에 얼굴과 옷 없이 평평한 회색 그림자 덩어리가 남아 있다. 확실히 아니라고 할 수 없어 틀림으로 답한다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 3.889,
+       "input": 4,
+       "output": 283,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0082664,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "두 사람과 창, 의자, 수금 모두 얼굴·옷·디테일이 갖춰져 있고 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 14.553,
+       "input": 4,
+       "output": 1791,
+       "cache_read": 49873,
+       "cache_create": 11413,
+       "cost_usd": 0.0685573,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.spear-uniform": "자루 중간 두 곳에서 색·결이 바뀌는 이음매가 보임",
+      "e.spear-tip-attached": "촉이 납작한 마름모 스티커처럼 보여 끼워진 쇠 촉으로 확인되지 않음",
+      "e.spear-back-cap": "뒤끝이 작은 뾰족한 촉처럼 보여 뭉툭한 덮개로 확인되지 않음"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 16.14,
+       "input": 4,
+       "output": 1828,
+       "cache_read": 59954,
+       "cache_create": 1333,
+       "cost_usd": 0.0296154,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.guard": "사울 뒤 벽에 겹친 그림자 같은 두 번째 윤곽이 보임",
+      "e.lyre-frame": "수금이 작고 입 앞에 가려져 U자 틀 두 팔과 가로대가 분명히 확인되지 않음",
+      "e.spear-uniform": "자루 중간에 색과 결이 바뀌는 이음매와 고리가 보임",
+      "e.spear-tip-attached": "촉이 납작한 마름모 스티커처럼 보여 끼워진 쇠 촉으로 확신하기 어려움",
+      "e.spear-back-cap": "뒤끝이 뭉툭한 덮개가 아니라 작고 뾰족한 촉처럼 보임"
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 16.072,
+       "input": 4,
+       "output": 1806,
+       "cache_read": 61286,
+       "cache_create": 0,
+       "cost_usd": 0.0241966,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "틀림",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "틀림",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.lyre-frame": "악기가 너무 작아 두 팔·가로대의 U자 틀이 분명히 보이지 않음",
+      "e.spear-two-thirds": "창이 두 사람 사이 거의 한가운데(약간 사울 쪽)에 있어 3분의 2 지점이 아님",
+      "e.saul-proportion-measure": "튜닉 아래 다리가 키의 절반에 못 미쳐 짧아 보임",
+      "e.spear-uniform": "자루 중간에 색·마디 이음매가 보임",
+      "e.spear-tip-attached": "앞 촉이 납작한 마름모 스티커처럼 보임",
+      "e.spear-back-cap": "뒤끝이 앞 촉과 비슷하게 뾰족한 촉처럼 보임"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 17.147,
+       "input": 4,
+       "output": 1963,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.025766700000000003,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "틀림",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.lyre-frame": "악기가 작고 입 앞에 가려 U자 틀의 두 팔과 가로대가 분명히 확인되지 않음",
+      "e.saul-proportion-measure": "엉덩이에서 발까지 다리가 키의 절반에 못 미치고 머리가 키의 5분의 1쯤으로 큼",
+      "e.spear-uniform": "자루 중간 두 곳에 색이 바뀌는 이음매가 보임",
+      "e.spear-tip-attached": "촉이 얇고 납작한 마름모처럼 보여 끼워진 쇠 촉 같지 않음",
+      "e.spear-back-cap": "뒤끝이 뭉툭한 덮개가 아니라 작은 뾰족 촉처럼 보임"
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 18.746,
+       "input": 4,
+       "output": 2204,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.0281767,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "틀림",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.guard": "사울 뒤 벽에 유령 같은 넓은 그림자가 두 겹 인물처럼 보임",
+      "e.lyre-frame": "악기가 너무 작고 U자 틀과 양쪽 팔이 분명하게 보이지 않음",
+      "e.saul-proportion-measure": "튜닉 아래 다리가 키의 절반에 못 미쳐 짧아 보임",
+      "e.spear-uniform": "자루 중간에 색과 결이 달라지는 이음매가 보임",
+      "e.spear-tip-attached": "촉이 얇고 납작해 오려 붙인 마름모처럼 보임",
+      "e.spear-back-cap": "뒤끝이 뭉툭한 덮개가 아니라 작은 뾰족한 촉처럼 보임"
+     }
+    }
+   }
+  },
+  "g:5": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.741,
+       "input": 4,
+       "output": 284,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.045092400000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 뚜렷한 동화 그림 화풍이다.",
+      "s.no-blob": "사람, 창, 수금, 의자 모두 얼굴·옷·질감이 갖춰져 있고 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.856,
+       "input": 4,
+       "output": 275,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0081864,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자 모두 얼굴·옷·형태가 갖춰져 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.511,
+       "input": 4,
+       "output": 281,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.008246400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "다윗, 사울, 창, 수금, 의자가 모두 얼굴·옷·디테일을 갖췄고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 4.474,
+       "input": 4,
+       "output": 267,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0081064,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필로 칠한 동화풍 그림이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴, 옷, 형태가 갖춰져 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 3.534,
+       "input": 4,
+       "output": 269,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0081264,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴·옷·디테일이 있고 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 18.106,
+       "input": 4,
+       "output": 2049,
+       "cache_read": 49873,
+       "cache_create": 11414,
+       "cost_usd": 0.07114129999999999,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "틀림",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "틀림",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "틀림"
+     },
+     "reasons": {
+      "e.spear-shape": "뒤끝도 뾰족한 촉처럼 보여 앞 촉과 구분이 약함",
+      "e.spear-direction": "양끝이 모두 촉 모양이라 어느 쪽이 큰 앞 촉인지 분명치 않음",
+      "e.spear-two-thirds": "창이 두 사람 사이 한가운데보다 오히려 사울 쪽에 있음",
+      "e.spear-tip-attached": "촉이 납작한 마름모 스티커처럼 보임",
+      "e.spear-back-cap": "뒤끝이 뭉툭한 물미가 아니라 뾰족한 촉 모양",
+      "e.saul-no-stick": "사울 다리 곁에 아무도 쥐지 않은 막대가 서 있음"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 17.052,
+       "input": 4,
+       "output": 2009,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.026226700000000006,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "틀림"
+     },
+     "reasons": {
+      "e.guard": "사울 다리 곁에 아무도 쥐지 않은 막대가 서 있음",
+      "e.spear-shape": "뒤끝에도 앞 촉처럼 뾰족한 쇠 촉이 달려 있음",
+      "e.spear-back-cap": "뒤끝이 뭉툭한 물미가 아니라 뾰족한 촉 모양",
+      "e.saul-no-stick": "사울 오른쪽 다리 옆에 지팡이 같은 막대가 세워져 있음"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 16.894,
+       "input": 4,
+       "output": 2099,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.027126700000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "틀림",
+      "e.saul-body": "틀림",
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "틀림",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "틀림"
+     },
+     "reasons": {
+      "e.guard": "사울 다리 옆에 아무도 쥐지 않은 막대가 서 있음",
+      "e.spear-shape": "뒤끝도 앞 촉처럼 뾰족한 촉 모양이라 물미가 아님",
+      "e.spear-direction": "양끝이 모두 뾰족해 큰 촉이 어느 쪽인지 분명하지 않음",
+      "e.saul-body": "다리를 넓게 벌려 서 있고 몸통에 비해 다리가 가늘어 보임",
+      "e.proportion-saul": "머리가 몸통에 비해 작아 보임",
+      "e.lyre-frame": "수금이 작고 손에 가려 U자 틀의 양팔과 가로대가 분명하지 않음",
+      "e.saul-proportion-measure": "머리가 작아 보이고 다리가 긴 편이라 길이 비가 어색함",
+      "e.spear-tip-attached": "앞 촉이 납작한 마름모 스티커처럼 보임",
+      "e.spear-back-cap": "뒤끝이 뭉툭한 덮개가 아니라 뾰족한 촉으로 보임",
+      "e.saul-no-stick": "사울 다리 곁에 아무도 쥐지 않은 막대가 서 있음"
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 16.715,
+       "input": 4,
+       "output": 1954,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.025676700000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "틀림",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "틀림"
+     },
+     "reasons": {
+      "e.guard": "사울 다리 옆에 아무도 쥐지 않은 막대가 서 있음",
+      "e.spear-shape": "뒤끝이 앞 촉처럼 뾰족한 촉 모양",
+      "e.spear-two-thirds": "창이 두 사람 사이 한가운데쯤에 있어 다윗 쪽 3분의 2에 못 미침",
+      "e.spear-tip-attached": "촉이 얇고 납작해 오려 붙인 마름모처럼 보임",
+      "e.spear-back-cap": "뒤끝이 뭉툭한 물미가 아니라 뾰족한 촉으로 보임",
+      "e.saul-no-stick": "사울 오른쪽 다리 곁에 쥐는 사람 없는 막대가 서 있음"
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 18.93,
+       "input": 4,
+       "output": 2194,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.028076700000000003,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "틀림",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "틀림",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "틀림",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "틀림"
+     },
+     "reasons": {
+      "e.saul-throw": "팔은 뻗었으나 손바닥을 편 채 손짓하는 꼴에 가깝고, 몸이 앞으로 쏠린 던진 자세가 분명하지 않음",
+      "e.face-each": "사울의 얼굴이 다윗이 아니라 위쪽을 보고, 다윗은 수금을 내려다봄",
+      "e.saul-throw-release": "열린 손바닥을 내민 손짓 같아 던진 직후로 읽히지 않음",
+      "e.spear-back-cap": "뒤끝이 지느러미 달린 뾰족한 촉처럼 보여 짧고 뭉툭한 물미가 아님",
+      "e.saul-no-stick": "사울 오른쪽 다리 곁에 아무도 쥐지 않은 막대가 서 있음"
+     }
+    }
+   }
+  },
+  "g:101": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.568,
+       "input": 4,
+       "output": 340,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.04565240000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "연필과 색연필 동화풍 자체는 맞지만, 그림 둘레에 회색 테두리가 있어 기대와 어긋남.",
+      "s.no-blob": "사람과 물건에 모두 얼굴·옷·형태가 있고, 평평한 회색 덩어리나 미완성 실루엣은 보이지 않음."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.634,
+       "input": 4,
+       "output": 350,
+       "cache_read": 53110,
+       "cache_create": 1174,
+       "cost_usd": 0.013515000000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 칠이 보이는 동화 그림이다.",
+      "s.no-blob": "인물과 물건 모두 얼굴, 옷, 형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.193,
+       "input": 4,
+       "output": 311,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.008546400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "화풍 자체는 미색 종이에 연필과 색연필로 그린 동화풍이 맞다. 하지만 그림 둘레에 회색 테두리 액자가 보여서 틀림으로 답한다.",
+      "s.no-blob": "인물과 물건 모두 얼굴, 옷, 형태가 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 5.184,
+       "input": 4,
+       "output": 350,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0089364,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "연필+색연필 동화 화풍이지만 그림 둘레에 회색 테두리(액자)가 보여 분명히 맞다고 확인되지 않음",
+      "s.no-blob": "두 인물과 창·수금·의자 모두 얼굴과 옷이 갖춰져 있고 회색 덩어리나 미완성 실루엣이 없음"
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 4.607,
+       "input": 4,
+       "output": 370,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0091364,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "화풍 자체는 연필과 색연필 동화풍이 맞다. 그러나 그림 둘레에 회색 테두리 틀이 있어서 종이에 그린 그림으로 보기 어렵다.",
+      "s.no-blob": "얼굴과 옷이 갖춰진 사람 둘과 지물이 모두 완성돼 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 20.52,
+       "input": 4,
+       "output": 2293,
+       "cache_read": 49873,
+       "cache_create": 11414,
+       "cost_usd": 0.07358129999999999,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "틀림",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "틀림",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "틀림",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "틀림",
+      "e.spear-length": "틀림",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.moment": "창 뒤끝이 사울 어깨·몸에 붙어 있어 손을 떠난 것으로 안 읽힘",
+      "e.spear-air": "창 뒤끝이 사울 몸에 닿아 있고, 바닥에도 가는 막대(둘째 창)가 있음",
+      "e.saul-throw": "몸이 앞으로 쏠리지 않고 뒤로 젖혀 움찔하는 자세",
+      "e.guard": "회색 종이 테두리(액자)가 있고 바닥에 덧붙은 막대가 있음",
+      "e.spear-shape": "자루 중간에 쇠 이음 고리가 있음",
+      "e.saul-throw-release": "몸이 다윗 쪽으로 쏠리지 않고 물러나는 자세",
+      "e.lyre-frame": "악기가 너무 작아 U자 틀과 두 팔이 분명하지 않음",
+      "e.spear-two-thirds": "창이 사울 몸에 붙어 있어 날아간 위치로 보기 어려움",
+      "e.spear-length": "창이 사울 키보다 길어 보임",
+      "e.spear-uniform": "자루 중간(약 x=800)에 금속 이음매가 있음",
+      "e.spear-tip-attached": "촉이 납작한 마름모 모양으로 두께감이 부족함",
+      "e.spear-back-cap": "뒤끝 물미가 보이지 않고 사울 몸에 가려짐"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 16.63,
+       "input": 4,
+       "output": 2045,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.026586700000000005,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "틀림",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "틀림",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "틀림",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "틀림",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.moment": "창 뒤끝이 사울 어깨/몸에 닿아 있어 손을 떠나 날아가는 모습이 아님",
+      "e.spear-air": "창이 사울 몸에 이어져 있어 두 사람 사이에 떠 있는 게 아님",
+      "e.saul-throw": "사울이 몸을 뒤로 젖히고 놀란 표정이며 앞으로 내민 던진 자세가 아님",
+      "e.guard": "회색 종이 테두리가 있고 바닥에 창 같은 막대가 하나 더 있음",
+      "e.spear-shape": "자루 중간에 코등이 같은 쇠 고리가 있음",
+      "e.saul-throw-release": "몸이 다윗 쪽으로 쏠리지 않고 뒤로 물러서 있음",
+      "e.spear-length": "창이 사울 키보다 길어 보임",
+      "e.spear-uniform": "자루 중간에 금속 고리 이음매가 보임",
+      "e.spear-back-cap": "뒤끝이 사울 몸에 가려 물미가 보이지 않음"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 18.596,
+       "input": 4,
+       "output": 2121,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.0273467,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "틀림",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "틀림",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.moment": "창 뒤끝이 아직 사울 몸·어깨에 닿아 있어 손을 떠난 순간으로 안 읽힘",
+      "e.spear-air": "창이 사울 몸에 붙어 있어 두 사람 사이 허공에 떠 있지 않음",
+      "e.guard": "회색 종이 테두리가 있고 바닥에 가는 막대(두 번째 창 같은 것)가 따로 보임",
+      "e.spear-shape": "자루 중간에 은색 고리 이음매가 있고 뒤끝이 사울 몸에 가려 물미를 확인할 수 없음",
+      "e.spear-length": "창이 사울 키보다 길어 보임",
+      "e.spear-uniform": "자루 중간에 은색 고리로 색과 굵기가 바뀌는 이음매가 있음",
+      "e.spear-tip-attached": "촉이 납작한 마름모 스티커처럼 보임",
+      "e.spear-back-cap": "뒤끝이 사울 몸에 가려 뭉툭한 물미가 확인되지 않음"
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 16.948,
+       "input": 4,
+       "output": 2082,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.0269567,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "틀림",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "틀림",
+      "e.spear-length": "틀림",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.moment": "창 뒤끝이 사울 몸에 닿아 아직 손을 떠난 것으로 안 보이고, 바닥에 창이 하나 더 있음",
+      "e.spear-air": "허공의 창 뒤끝이 사울 몸에 붙어 있고, 바닥에 창이 하나 더 있어 창이 하나가 아님",
+      "e.guard": "그림 둘레에 회색 테두리가 있고, 바닥에 창이 하나 더 있음",
+      "e.spear-shape": "자루 중간에 쇠 고리 이음매가 보임",
+      "e.lyre-frame": "악기가 너무 작고 흐릿해 U자 틀과 두 팔이 분명하지 않음",
+      "e.spear-two-thirds": "촉은 3분의 2쯤 갔지만 뒤끝이 사울 몸에 붙어 있음",
+      "e.spear-length": "창이 서 있는 사울 키보다 길어 보임",
+      "e.spear-uniform": "자루 중간에 은색 고리 이음매가 있음",
+      "e.spear-back-cap": "뒤끝이 짧고 뭉툭한 물미로 보이지 않고 가는 자루가 사울 몸에 닿아 있음"
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 18.575,
+       "input": 4,
+       "output": 2225,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.0283867,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "틀림",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "틀림",
+      "e.spear-length": "틀림",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.moment": "창 뒤끝이 사울 몸통에 닿아 손을 떠난 창으로 안 보이고, 바닥에 창이 하나 더 있어 장면이 흐려짐",
+      "e.spear-air": "허공의 창은 사울 몸에 붙어 있고 바닥에 창이 또 있어 창 하나라는 조건이 어긋남",
+      "e.guard": "회색 종이 테두리와 바닥의 두 번째 창이 보임",
+      "e.spear-shape": "자루 중간에 쇠 고리가 있고 뒤끝이 사울 몸에 가려 모양이 확인되지 않음",
+      "e.lyre-frame": "악기가 너무 작아 U자 틀 두 팔이 분명히 확인되지 않음",
+      "e.spear-two-thirds": "촉 위치는 3분의 2쯤이지만 뒤끝이 사울 몸에 닿아 있어 사울 손에서 막 떠난 창이 아님",
+      "e.spear-length": "창 길이가 서 있는 사울의 키보다 길어 보임",
+      "e.spear-uniform": "자루 중간에 금속 고리 이음매가 있음",
+      "e.spear-tip-attached": "촉이 납작한 마름모처럼 보여 끼워진 쇠 촉으로 확신할 수 없음",
+      "e.spear-back-cap": "뒤끝이 사울 몸에 가려 뭉툭한 물미가 확인되지 않음"
+     }
+    }
+   }
+  },
+  "g:202": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.72,
+       "input": 4,
+       "output": 278,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.0450324,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색으로 그린 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 의자 모두 얼굴·옷·질감이 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.239,
+       "input": 4,
+       "output": 266,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.044912400000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴, 옷, 질감이 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.834,
+       "input": 4,
+       "output": 273,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0081664,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 의자 모두 얼굴·옷·질감이 갖춰져 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 4.195,
+       "input": 4,
+       "output": 279,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0082264,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 뚜렷한 동화풍 그림이다.",
+      "s.no-blob": "사울, 다윗, 창, 의자 모두 얼굴·옷·질감이 갖춰져 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 4.069,
+       "input": 4,
+       "output": 274,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0081764,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 뚜렷한 동화풍 그림이다.",
+      "s.no-blob": "두 인물, 창, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "5": {
+     "tries": [
+      {
+       "seconds": 11.756,
+       "input": 4,
+       "output": 1434,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.0204767,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "틀림",
+      "e.david-youth": "맞음",
+      "e.wall": "틀림",
+      "e.lyre": "틀림",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.saul-costume": "틀림",
+      "e.dodge-read": "틀림",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "틀림",
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "틀림",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "틀림",
+      "e.spear-length": "틀림",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "틀림",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.moment": "다윗이 창길 높이에서 창을 향해 서 있어 비켜 피하는 모습이 아님",
+      "e.saul-age": "웃통을 벗은 모습이고 큰 체구라는 조건과 어긋남(회색 수염·머리는 맞음). 확실히 맞다고 보기 어려워 틀림 처리",
+      "e.wall": "다윗이 벽에서 멀리 떨어진 방 가운데 서 있음",
+      "e.lyre": "악기가 매우 작고 단순한 막대형이라 작은 수금으로 확실치 않음",
+      "e.guard": "사울이 웃통을 벗고 있으며 사울 옆에 의자가 있고 인물이 어색함",
+      "e.saul-costume": "사울이 웃통을 벗었고 튜닉이 아님(허리 아래 치마만 입음)",
+      "e.dodge-read": "다윗이 창과 같은 높이에서 마주 보고 서 있어 피함이 분명하지 않음",
+      "e.spear-shape": "뒤끝에 은색 고리·이음 장식이 있고 촉이 작은 마름모 모양이라 기대와 어긋남",
+      "e.saul-body": "다리가 넓게 벌어지고 길어 보임",
+      "e.proportion-saul": "다리가 길고 몸통에 비해 비율이 어색함",
+      "e.saul-throw-release": "팔을 앞으로 벌려 손바닥을 펼친 모습이라 던진 직후로 보기 애매함",
+      "e.lyre-frame": "틀이 매우 작고 U자 틀이 명확하지 않음",
+      "e.spear-two-thirds": "창이 두 사람 사이 중간쯤에 있어 다윗 쪽 3분의 2 지점이 아님",
+      "e.spear-length": "창이 사울 키보다 길어 보임",
+      "e.saul-proportion-measure": "다리가 길고 머리가 작아 보임",
+      "e.spear-uniform": "자루 중간에 은색 이음매가 보임",
+      "e.spear-tip-attached": "촉이 납작한 마름모처럼 보임",
+      "e.spear-back-cap": "뒤끝이 뭉툭한 덮개이긴 하나 은색 고리가 이음매처럼 보여 확실치 않음"
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 20.896,
+       "input": 4,
+       "output": 2485,
+       "cache_read": 49873,
+       "cache_create": 11414,
+       "cost_usd": 0.0755013,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "틀림",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "틀림",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "틀림",
+      "e.figure-size": "틀림",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "틀림",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.wall": "다윗이 방 한가운데 서 있고 벽 바로 앞이 아니다",
+      "e.saul-costume": "사울이 웃통을 벗었고 허리 아래 치마만 입었다. 모직 튜닉이 아니다",
+      "e.spear-shape": "자루 뒤쪽에 칼 코등이 같은 은색 고리가 보인다",
+      "e.saul-throw-release": "두 팔이 앞으로 넓게 벌어져 막아서는 꼴에 가깝다",
+      "e.figure-size": "사울 키가 화면 높이의 4분의 3을 넘는다",
+      "e.saul-proportion-measure": "치마 아래 다리가 짧아 보여 키의 절반에 못 미친다",
+      "e.spear-uniform": "자루 중간 뒤쪽에 색이 다른 고리 이음매가 있다",
+      "e.spear-tip-attached": "촉이 납작한 마름모 스티커처럼 보인다",
+      "e.spear-back-cap": "뒤끝에 뭉툭한 물미가 없고 자루 끝이 그대로 끝난다"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 19.21,
+       "input": 6,
+       "output": 2226,
+       "cache_read": 90079,
+       "cache_create": 1322,
+       "cost_usd": 0.0365679,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "틀림",
+      "e.lyre": "틀림",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "틀림",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "틀림",
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "틀림",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "틀림",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.wall": "다윗이 벽에서 떨어져 방 한가운데 서 있음",
+      "e.lyre": "악기가 아주 작고 새총처럼 보여 작은 수금이라고 분명히 확인되지 않음",
+      "e.saul-costume": "사울이 웃통을 벗고 어두운 치마만 입음. 튜닉이 아님",
+      "e.saul-body": "다리가 길고 벌려 서 있어 몸통 비율이 어색함",
+      "e.proportion-saul": "머리가 몸통에 비해 작아 보임",
+      "e.lyre-frame": "좌우 팔과 가로대가 분명한 U자 틀로 확인되지 않음",
+      "e.spear-length": "창 길이가 사울 키의 약 90%로 3분의 2보다 김",
+      "e.saul-proportion-measure": "머리가 작고 다리가 길어 길이 비가 어긋남"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 20.531,
+       "input": 4,
+       "output": 2396,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.030096700000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "틀림",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "틀림",
+      "e.dodge-read": "틀림",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "틀림",
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "틀림",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "틀림",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.moment": "다윗이 비틀어 피하는 게 아니라 창을 마주 보고 웅크려 수금을 듦. 창은 아직 다윗에게 닿지 않음",
+      "e.wall": "다윗이 벽에서 떨어진 방 가운데에 서 있음",
+      "e.saul-costume": "사울이 상체를 벗었고 가죽 띠 아래 치마 같은 천만 두름. 튜닉이 아님",
+      "e.dodge-read": "다윗이 창 높이에서 정면으로 마주 서 있고 비켜 피하는 동작이 분명하지 않음",
+      "e.saul-body": "다리가 길고 벌려 선 자세에 비해 몸통이 짧음",
+      "e.proportion-saul": "다리가 몸통보다 길어 보임",
+      "e.saul-proportion-measure": "다리가 키의 절반을 넘어 보이고 비례가 어색함",
+      "e.spear-length": "창 길이가 서 있는 사울의 키보다 긺",
+      "e.spear-uniform": "자루 뒤쪽에 은색 고리 띠가 있어 이음매로 보임",
+      "e.spear-back-cap": "뒤끝은 평범한 자루 끝이고 물미 덮개가 없음. 은색 띠는 끝에서 떨어져 있음"
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 20.414,
+       "input": 4,
+       "output": 2407,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.030206700000000003,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "틀림",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "틀림",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "틀림",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "틀림",
+      "e.spear-length": "맞음",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.saul-costume": "사울이 웃통을 벗었고 튜닉이 아니라 어두운 치마 차림",
+      "e.saul-body": "다리를 크게 벌린 자세에 다리가 길고 어색함",
+      "e.figure-size": "사울의 키가 화면 높이의 4분의 3을 넘음",
+      "e.spear-two-thirds": "촉이 다윗 쪽 3분의 2 지점이 아니라 중간보다 다윗에 가깝지만 사울 쪽으로 치우쳐 있고 뒤끝이 사울 손 바로 옆에 있음",
+      "e.spear-uniform": "자루 뒤쪽에 은색 띠 이음매가 보임",
+      "e.spear-back-cap": "뒤끝이 짧은 쇠 덮개로 분명하지 않고 은색 띠만 보임"
+     }
+    }
+   }
+  },
+  "g:303": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.802,
+       "input": 4,
+       "output": 277,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.045022400000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자, 벽 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.2,
+       "input": 4,
+       "output": 289,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.008326400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "인물, 창, 수금, 의자, 벽 모두 얼굴과 옷, 질감이 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.838,
+       "input": 4,
+       "output": 272,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.008156400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴, 옷, 형태가 갖춰져 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 3.759,
+       "input": 4,
+       "output": 282,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0082564,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자, 수금 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 4.005,
+       "input": 4,
+       "output": 283,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0082664,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선을 쓰고 색연필로 칠한 동화 그림 화풍으로 보인다.",
+      "s.no-blob": "인물과 물건 모두 얼굴, 옷, 형태가 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 17.632,
+       "input": 4,
+       "output": 2119,
+       "cache_read": 49873,
+       "cache_create": 11414,
+       "cost_usd": 0.0718413,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "틀림",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "틀림",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "틀림",
+      "e.spear-length": "틀림",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.spear-air": "창 뒤끝이 사울의 몸과 팔에 겹쳐 손을 떠나 허공에 뜬 것으로 분명하지 않음",
+      "e.saul-body": "다리를 컴퍼스처럼 크게 벌려 서 있음",
+      "e.lyre-frame": "수금이 작고 입에 대어 있어 U자 틀과 두 팔이 분명하지 않음",
+      "e.spear-two-thirds": "뒤끝이 사울 몸에 붙어 있어 사울 손 가까이에 있는 것으로 보임",
+      "e.spear-length": "창 길이가 사울 키와 비슷하거나 더 김",
+      "e.spear-uniform": "자루 중간에 금속 고리 같은 이음매가 있음",
+      "e.spear-back-cap": "뒤끝이 사울에게 가려 뭉툭한 물미가 보이지 않음"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 18.086,
+       "input": 4,
+       "output": 2059,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.026726700000000006,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "틀림",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "틀림",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.spear-air": "창 뒤끝이 사울의 팔·어깨에 겹쳐 닿아 있어 손을 떠나 두 사람 사이에 떠 있는 모습이 아님",
+      "e.spear-shape": "자루 중간에 은색 고리 이음매가 있고 뒤끝 물미도 확인되지 않음",
+      "e.spear-length": "창이 서 있는 사울 키보다 길어 보임",
+      "e.spear-uniform": "자루 중간에 은색 금속 고리 이음매가 있음",
+      "e.spear-back-cap": "창 뒤끝이 사울 몸에 가려 짧고 뭉툭한 물미가 분명히 보이지 않음"
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 17.221,
+       "input": 4,
+       "output": 2047,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.026606700000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "틀림",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "틀림",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "틀림",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.spear-air": "창 뒤끝이 사울의 몸통·팔에 닿아 겹쳐 있어 손을 떠나 허공에 뜬 것으로 분명하지 않음",
+      "e.saul-body": "다리를 꽤 크게 벌린 자세이고 다리가 몸통에 비해 가늘어 보임",
+      "e.spear-length": "창 길이가 약 447px로 서 있는 사울의 키(약 415px)보다 김",
+      "e.spear-uniform": "자루 중간(약 x=800)에 색이 바뀌는 은색 이음매가 보임",
+      "e.spear-back-cap": "창 뒤끝이 사울의 몸에 가려 짧고 뭉툭한 물미가 분명히 보이지 않음"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 19.991,
+       "input": 4,
+       "output": 2255,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.028686700000000002,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "틀림",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "틀림",
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "맞음",
+      "e.spear-length": "틀림",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "틀림",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.spear-air": "창 뒤끝이 사울의 팔·몸통에 닿아 붙어 있어 손을 떠나 허공에 뜬 모양이 아님",
+      "e.spear-length": "창 길이가 약 450px로 사울 키(약 425px)보다 길다",
+      "e.spear-uniform": "자루 중간에 은색 고리 이음매가 있다",
+      "e.spear-back-cap": "뒤끝이 사울 몸에 가려 보이지 않아 뭉툭한 물미임을 확인할 수 없다",
+      "e.saul-body": "다리를 꽤 넓게 벌려 컴퍼스처럼 서 있다",
+      "e.proportion-saul": "튜닉 아래 다리가 몸통에 비해 짧아 보인다",
+      "e.saul-proportion-measure": "다리 길이가 키의 절반에 못 미쳐 몸통보다 짧아 보인다"
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 17.773,
+       "input": 4,
+       "output": 2187,
+       "cache_read": 61287,
+       "cache_create": 0,
+       "cost_usd": 0.028006700000000002,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "틀림",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음",
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "맞음",
+      "e.spear-two-thirds": "틀림",
+      "e.spear-length": "틀림",
+      "e.spear-tip-small": "맞음",
+      "e.saul-proportion-measure": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.moment": "창 뒤끝이 아직 사울의 팔·어깨에 닿아 있어 손을 떠나 날아가는 순간으로 읽히지 않음",
+      "e.spear-air": "창 뒤끝이 사울 몸에 겹쳐 두 사람 사이 허공에 떠 있는 것이 아님",
+      "e.guard": "그림 둘레에 종이 테두리 같은 여백이 보이고, 창 뒤끝이 사울 몸에 겹쳐 있음",
+      "e.spear-two-thirds": "창이 사울 가까이에 있고 다윗 쪽 3분의 2 지점까지 가지 않음",
+      "e.spear-length": "창 길이가 서 있는 사울 키보다 긺",
+      "e.spear-uniform": "자루 가운데에 금속 띠 같은 이음매가 있음",
+      "e.spear-back-cap": "뒤끝이 사울에 가려져 물미가 보이지 않음"
+     }
+    }
+   }
+  }
+ },
+ "edit": {
+  "11": [
+   {
+    "end": "back",
+    "src": "m9/s11.png",
+    "crop": [
+     640,
+     220,
+     187
+    ],
+    "box": [
+     660,
+     280,
+     807,
+     348
+    ],
+    "prompt": "Remove the large metal spearhead from the right end of the wooden spear shaft, so the right end is only a small iron cap, much thinner than a spearhead. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "measured": [
+     515,
+     817,
+     320.0,
+     15,
+     17.0
+    ],
+    "status": "ok",
+    "sec": 41.3
+   },
+   {
+    "end": "front",
+    "src": "m11e/s11-front-paint.png",
+    "crop": [
+     487,
+     259,
+     122
+    ],
+    "box": [
+     507,
+     290,
+     589,
+     350
+    ],
+    "prompt": "Turn the small flat grey shape at the left end of the wooden spear shaft into one hand-sized leaf-shaped iron point: a flat grey iron blade shaped like a small willow leaf, exactly the same small size and place as the grey shape — do not make it bigger, only about twice as wide as the shaft. Do not add any crossguard, wings or second blade. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "measured": [
+     515,
+     817,
+     320.0,
+     15,
+     17.0
+    ],
+    "status": "ok",
+    "sec": 40.8
+   },
+   {
+    "end": "held",
+    "figure": "david-youth",
+    "word": "kinnor-lyre",
+    "crop": [
+     183,
+     310,
+     258
+    ],
+    "box": [
+     227,
+     340,
+     397,
+     538
+    ],
+    "prompt": "Place a small wooden lyre in his hands, held against his chest: a small hollow wooden sound box, smaller than a man's torso, with two curved arms rising from the box, joined by a top crossbar, strings from box to crossbar, the two curved arms rising on the left and right of the sound box both clearly visible, forming a U-shaped frame. Keep his hands holding it against his chest, his arms, face, hair and clothes exactly the same, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "status": "ok",
+    "sec": 41.2
+   }
+  ],
+  "42": [
+   {
+    "end": "back",
+    "src": "m9/s42.png",
+    "crop": [
+     640,
+     220,
+     187
+    ],
+    "box": [
+     660,
+     280,
+     807,
+     348
+    ],
+    "prompt": "Remove the large metal spearhead from the right end of the wooden spear shaft, so the right end is only a small iron cap, much thinner than a spearhead. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "measured": [
+     507,
+     817,
+     313.0,
+     9,
+     15.0
+    ],
+    "status": "ok",
+    "sec": 40.5
+   },
+   {
+    "end": "front",
+    "src": "m11e/s42-front-paint.png",
+    "crop": [
+     479,
+     240,
+     145
+    ],
+    "box": [
+     499,
+     287,
+     604,
+     339
+    ],
+    "prompt": "Turn the small flat grey shape at the left end of the wooden spear shaft into one hand-sized leaf-shaped iron point: a flat grey iron blade shaped like a small willow leaf, exactly the same small size and place as the grey shape — do not make it bigger, only about twice as wide as the shaft. Do not add any crossguard, wings or second blade. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "measured": [
+     507,
+     817,
+     313.0,
+     9,
+     15.0
+    ],
+    "status": "ok",
+    "sec": 40.3
+   },
+   {
+    "end": "held",
+    "figure": "david-youth",
+    "word": "kinnor-lyre",
+    "crop": [
+     183,
+     310,
+     258
+    ],
+    "box": [
+     227,
+     340,
+     397,
+     538
+    ],
+    "prompt": "Place a small wooden lyre in his hands, held against his chest: a small hollow wooden sound box, smaller than a man's torso, with two curved arms rising from the box, joined by a top crossbar, strings from box to crossbar, the two curved arms rising on the left and right of the sound box both clearly visible, forming a U-shaped frame. Keep his hands holding it against his chest, his arms, face, hair and clothes exactly the same, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "status": "ok",
+    "sec": 40.2
+   }
+  ],
+  "7": [
+   {
+    "end": "back",
+    "src": "m9/s7.png",
+    "crop": [
+     640,
+     220,
+     187
+    ],
+    "box": [
+     660,
+     280,
+     807,
+     348
+    ],
+    "prompt": "Remove the large metal spearhead from the right end of the wooden spear shaft, so the right end is only a small iron cap, much thinner than a spearhead. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "measured": [
+     509,
+     817,
+     315.5,
+     10,
+     17.5
+    ],
+    "status": "ok",
+    "sec": 40.8
+   },
+   {
+    "end": "front",
+    "src": "m11e/s7-front-paint.png",
+    "crop": [
+     481,
+     246,
+     140
+    ],
+    "box": [
+     501,
+     290,
+     601,
+     342
+    ],
+    "prompt": "Turn the small flat grey shape at the left end of the wooden spear shaft into one hand-sized leaf-shaped iron point: a flat grey iron blade shaped like a small willow leaf, exactly the same small size and place as the grey shape — do not make it bigger, only about twice as wide as the shaft. Do not add any crossguard, wings or second blade. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "measured": [
+     509,
+     817,
+     315.5,
+     10,
+     17.5
+    ],
+    "status": "ok",
+    "sec": 41.6
+   },
+   {
+    "end": "held",
+    "figure": "david-youth",
+    "word": "kinnor-lyre",
+    "crop": [
+     183,
+     310,
+     258
+    ],
+    "box": [
+     227,
+     340,
+     397,
+     538
+    ],
+    "prompt": "Place a small wooden lyre in his hands, held against his chest: a small hollow wooden sound box, smaller than a man's torso, with two curved arms rising from the box, joined by a top crossbar, strings from box to crossbar, the two curved arms rising on the left and right of the sound box both clearly visible, forming a U-shaped frame. Keep his hands holding it against his chest, his arms, face, hair and clothes exactly the same, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "status": "ok",
+    "sec": 41.5
+   }
+  ],
+  "23": [
+   {
+    "end": "back",
+    "src": "m9/s23.png",
+    "crop": [
+     640,
+     220,
+     187
+    ],
+    "box": [
+     660,
+     280,
+     807,
+     348
+    ],
+    "prompt": "Remove the large metal spearhead from the right end of the wooden spear shaft, so the right end is only a small iron cap, much thinner than a spearhead. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "measured": [
+     508,
+     817,
+     312.5,
+     10,
+     14.5
+    ],
+    "status": "ok",
+    "sec": 40.9
+   },
+   {
+    "end": "front",
+    "src": "m11e/s23-front-paint.png",
+    "crop": [
+     480,
+     244,
+     136
+    ],
+    "box": [
+     500,
+     286,
+     596,
+     338
+    ],
+    "prompt": "Turn the small flat grey shape at the left end of the wooden spear shaft into one hand-sized leaf-shaped iron point: a flat grey iron blade shaped like a small willow leaf, exactly the same small size and place as the grey shape — do not make it bigger, only about twice as wide as the shaft. Do not add any crossguard, wings or second blade. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "measured": [
+     508,
+     817,
+     312.5,
+     10,
+     14.5
+    ],
+    "status": "ok",
+    "sec": 40.6
+   },
+   {
+    "end": "held",
+    "figure": "david-youth",
+    "word": "kinnor-lyre",
+    "crop": [
+     183,
+     310,
+     258
+    ],
+    "box": [
+     227,
+     340,
+     397,
+     538
+    ],
+    "prompt": "Place a small wooden lyre in his hands, held against his chest: a small hollow wooden sound box, smaller than a man's torso, with two curved arms rising from the box, joined by a top crossbar, strings from box to crossbar, the two curved arms rising on the left and right of the sound box both clearly visible, forming a U-shaped frame. Keep his hands holding it against his chest, his arms, face, hair and clothes exactly the same, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "status": "ok",
+    "sec": 40.0
+   }
+  ],
+  "5": [
+   {
+    "end": "back",
+    "src": "m9/s5.png",
+    "crop": [
+     640,
+     220,
+     187
+    ],
+    "box": [
+     660,
+     280,
+     807,
+     348
+    ],
+    "prompt": "Remove the large metal spearhead from the right end of the wooden spear shaft, so the right end is only a small iron cap, much thinner than a spearhead. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "measured": [
+     516,
+     817,
+     313.0,
+     9,
+     16.0
+    ],
+    "status": "ok",
+    "sec": 40.5
+   },
+   {
+    "end": "front",
+    "src": "m11e/s5-front-paint.png",
+    "crop": [
+     488,
+     235,
+     155
+    ],
+    "box": [
+     508,
+     287,
+     623,
+     339
+    ],
+    "prompt": "Turn the small flat grey shape at the left end of the wooden spear shaft into one hand-sized leaf-shaped iron point: a flat grey iron blade shaped like a small willow leaf, exactly the same small size and place as the grey shape — do not make it bigger, only about twice as wide as the shaft. Do not add any crossguard, wings or second blade. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "measured": [
+     516,
+     817,
+     313.0,
+     9,
+     16.0
+    ],
+    "status": "ok",
+    "sec": 40.2
+   },
+   {
+    "end": "held",
+    "figure": "david-youth",
+    "word": "kinnor-lyre",
+    "crop": [
+     183,
+     310,
+     258
+    ],
+    "box": [
+     227,
+     340,
+     397,
+     538
+    ],
+    "prompt": "Place a small wooden lyre in his hands, held against his chest: a small hollow wooden sound box, smaller than a man's torso, with two curved arms rising from the box, joined by a top crossbar, strings from box to crossbar, the two curved arms rising on the left and right of the sound box both clearly visible, forming a U-shaped frame. Keep his hands holding it against his chest, his arms, face, hair and clothes exactly the same, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "status": "ok",
+    "sec": 40.2
+   }
+  ],
+  "101": [
+   {
+    "end": "back",
+    "src": "m9/s101.png",
+    "crop": [
+     640,
+     220,
+     187
+    ],
+    "box": [
+     660,
+     280,
+     807,
+     348
+    ],
+    "prompt": "Remove the large metal spearhead from the right end of the wooden spear shaft, so the right end is only a small iron cap, much thinner than a spearhead. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "measured": [
+     506,
+     817,
+     315.0,
+     9,
+     19.0
+    ],
+    "status": "ok",
+    "sec": 40.7
+   },
+   {
+    "end": "front",
+    "src": "m11e/s101-front-paint.png",
+    "crop": [
+     478,
+     241,
+     147
+    ],
+    "box": [
+     498,
+     289,
+     605,
+     341
+    ],
+    "prompt": "Turn the small flat grey shape at the left end of the wooden spear shaft into one hand-sized leaf-shaped iron point: a flat grey iron blade shaped like a small willow leaf, exactly the same small size and place as the grey shape — do not make it bigger, only about twice as wide as the shaft. Do not add any crossguard, wings or second blade. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "measured": [
+     506,
+     817,
+     315.0,
+     9,
+     19.0
+    ],
+    "status": "ok",
+    "sec": 40.5
+   },
+   {
+    "end": "held",
+    "figure": "david-youth",
+    "word": "kinnor-lyre",
+    "crop": [
+     183,
+     310,
+     258
+    ],
+    "box": [
+     227,
+     340,
+     397,
+     538
+    ],
+    "prompt": "Place a small wooden lyre in his hands, held against his chest: a small hollow wooden sound box, smaller than a man's torso, with two curved arms rising from the box, joined by a top crossbar, strings from box to crossbar, the two curved arms rising on the left and right of the sound box both clearly visible, forming a U-shaped frame. Keep his hands holding it against his chest, his arms, face, hair and clothes exactly the same, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "status": "ok",
+    "sec": 40.4
+   }
+  ],
+  "202": [
+   {
+    "end": "back",
+    "src": "m9/s202.png",
+    "crop": [
+     640,
+     220,
+     187
+    ],
+    "box": [
+     660,
+     280,
+     807,
+     348
+    ],
+    "prompt": "Remove the large metal spearhead from the right end of the wooden spear shaft, so the right end is only a small iron cap, much thinner than a spearhead. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "measured": [
+     508,
+     817,
+     314.0,
+     9,
+     17.0
+    ],
+    "status": "ok",
+    "sec": 40.5
+   },
+   {
+    "end": "front",
+    "src": "m11e/s202-front-paint.png",
+    "crop": [
+     480,
+     237,
+     153
+    ],
+    "box": [
+     500,
+     288,
+     613,
+     340
+    ],
+    "prompt": "Turn the small flat grey shape at the left end of the wooden spear shaft into one hand-sized leaf-shaped iron point: a flat grey iron blade shaped like a small willow leaf, exactly the same small size and place as the grey shape — do not make it bigger, only about twice as wide as the shaft. Do not add any crossguard, wings or second blade. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "measured": [
+     508,
+     817,
+     314.0,
+     9,
+     17.0
+    ],
+    "status": "ok",
+    "sec": 40.4
+   },
+   {
+    "end": "held",
+    "figure": "david-youth",
+    "word": "kinnor-lyre",
+    "crop": [
+     183,
+     310,
+     258
+    ],
+    "box": [
+     227,
+     340,
+     397,
+     538
+    ],
+    "prompt": "Place a small wooden lyre in his hands, held against his chest: a small hollow wooden sound box, smaller than a man's torso, with two curved arms rising from the box, joined by a top crossbar, strings from box to crossbar, the two curved arms rising on the left and right of the sound box both clearly visible, forming a U-shaped frame. Keep his hands holding it against his chest, his arms, face, hair and clothes exactly the same, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "status": "ok",
+    "sec": 40.0
+   }
+  ],
+  "303": [
+   {
+    "end": "back",
+    "src": "m9/s303.png",
+    "crop": [
+     640,
+     220,
+     187
+    ],
+    "box": [
+     660,
+     280,
+     807,
+     348
+    ],
+    "prompt": "Remove the large metal spearhead from the right end of the wooden spear shaft, so the right end is only a small iron cap, much thinner than a spearhead. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "measured": [
+     502,
+     817,
+     314.0,
+     7,
+     11.0
+    ],
+    "status": "ok",
+    "sec": 40.6
+   },
+   {
+    "end": "front",
+    "src": "m11e/s303-front-paint.png",
+    "crop": [
+     474,
+     240,
+     148
+    ],
+    "box": [
+     494,
+     288,
+     602,
+     340
+    ],
+    "prompt": "Turn the small flat grey shape at the left end of the wooden spear shaft into one hand-sized leaf-shaped iron point: a flat grey iron blade shaped like a small willow leaf, exactly the same small size and place as the grey shape — do not make it bigger, only about twice as wide as the shaft. Do not add any crossguard, wings or second blade. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "measured": [
+     502,
+     817,
+     314.0,
+     7,
+     11.0
+    ],
+    "status": "ok",
+    "sec": 42.3
+   },
+   {
+    "end": "held",
+    "figure": "david-youth",
+    "word": "kinnor-lyre",
+    "crop": [
+     183,
+     310,
+     258
+    ],
+    "box": [
+     227,
+     340,
+     397,
+     538
+    ],
+    "prompt": "Place a small wooden lyre in his hands, held against his chest: a small hollow wooden sound box, smaller than a man's torso, with two curved arms rising from the box, joined by a top crossbar, strings from box to crossbar, the two curved arms rising on the left and right of the sound box both clearly visible, forming a U-shaped frame. Keep his hands holding it against his chest, his arms, face, hair and clothes exactly the same, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "status": "ok",
+    "sec": 40.1
+   }
+  ]
+ }
+}

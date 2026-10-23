@@ -122,14 +122,18 @@ def edit_prop():
             out = img(s) if i == len(ends) - 1 else os.path.join(OUT, f"s{s}-{end}.png")
             crop, box = GL.prop_box(spec["regions"][e["region"]], w, h, end, head_top(spec, e["region"]), body_left(spec, e["region"]))
             prompt = GL.prop_prompt(look, end, part)
-            pt = ((wl.get("size") or {}).get("parts") or {}).get("point", {})
-            mp = GL.measure_prop(src, spec["regions"][e["region"]], w, h, body_left(spec, e["region"])) if end == "front" and pt.get("ratio") else None
-            if mp:   # r19 edit.size-in-crop: 창을 재어 사전 비율 크기 촉을 미리 칠하고 그 자리만 다듬음
-                painted = os.path.join(OUT, f"s{s}-front-paint.png")
-                box = GL.paint_tip(src, painted, mp, pt["ratio"], pt.get("width", 2.0), w, h)
-                crop, prompt, src = GL.crop_for(box, w, h), GL.tip_prompt(look), painted
+            parts = (wl.get("size") or {}).get("parts") or {}
+            pt = parts.get("point" if end == "front" else "cap", {})
+            mp = GL.measure_prop(src, spec["regions"][e["region"]], w, h, body_left(spec, e["region"])) if pt.get("ratio") else None
+            if mp:   # r19·r20 edit.size-in-crop: 창을 재어 사전 비율 크기 끝(앞 촉·뒤 물미)을 미리 칠하고 그 자리만 다듬음
+                painted = os.path.join(OUT, f"s{s}-{end}-paint.png")
+                paint = GL.paint_tip if end == "front" else GL.paint_cap
+                pbox = paint(src, painted, mp, pt["ratio"], pt.get("width", 2.0), w, h)
+                if pbox:   # 뒤끝이 사울 손과 이어져 못 재면 None → 옛 편집
+                    box = pbox
+                    crop, prompt, src = GL.crop_for(box, w, h), GL.tip_prompt(look) if end == "front" else GL.cap_prompt(), painted
             r = GL.edit(src, crop, box, None, e["seed"], out, prompt=prompt, mask_shape="rect")   # h2e2: 긴 지물은 둥근 사각 마스크
-            steps.append({"end": end, "src": os.path.relpath(src, os.path.dirname(OUT)), "crop": crop, "box": box, "prompt": prompt, "measured": mp if end == "front" else None, **r})
+            steps.append({"end": end, "src": os.path.relpath(src, os.path.dirname(OUT)), "crop": crop, "box": box, "prompt": prompt, "measured": list(mp[:5]) if mp else None, **r})
             print(f"[GibeahRedraw] 편집 s{s} {end} {r}", flush=True)
             src = out
         hd = e.get("held")   # h2: 쥔 지물(뼈대 인물 두 손목 자리) — 창 끝 편집 뒤에 차례로

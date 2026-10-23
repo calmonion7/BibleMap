@@ -757,6 +757,26 @@ class EditSizeInCrop(unittest.TestCase):
         self.assertTrue(all(abs(a - b) <= 3 for a, b in zip(p.getpixel((560, 300)), (236, 226, 200))))   # 큰 촉 위쪽은 벽 색으로 지워짐
         self.assertNotEqual(p.getpixel((520, 320)), (236, 226, 200))        # 작은 촉(길이 340 × 0.12 ≈ 41)은 칠해짐
 
+    def test_paint_cap_only_when_spear_ends_apart(self):
+        import tempfile
+        from PIL import Image, ImageDraw
+        import gen_local_edit as GL
+        im = Image.new("RGB", (1216, 640), (236, 226, 200))
+        ImageDraw.Draw(im).line([(500, 320), (800, 320)], fill=(150, 100, 60), width=8)
+        ImageDraw.Draw(im).polygon([(790, 312), (820, 320), (790, 328)], fill=(120, 120, 120))   # 뾰족한 뒤끝
+        d = tempfile.mkdtemp()
+        src, out = os.path.join(d, "s.png"), os.path.join(d, "p.png")
+        im.save(src)
+        m = GL.measure_prop(src, [0.423, 0.478, 0.662, 0.503], 1216, 640, 0.80)
+        self.assertTrue(m[5]["sep"])
+        box = GL.paint_cap(src, out, m, 0.035, 1.4, 1216, 640)
+        self.assertIsNotNone(box)
+        p = Image.open(out).convert("RGB")
+        self.assertTrue(all(abs(a - b) <= 3 for a, b in zip(p.getpixel((818, 320)), (236, 226, 200))))   # 뾰족한 끝은 지워짐
+        ImageDraw.Draw(im).line([(800, 320), (980, 320)], fill=(150, 100, 60), width=8)                   # 오른쪽 인물과 이어짐
+        im.save(src)
+        self.assertIsNone(GL.paint_cap(src, out, GL.measure_prop(src, [0.423, 0.478, 0.662, 0.503], 1216, 640, 0.80), 0.035, 1.4, 1216, 640))
+
 
 class WallMaterial(unittest.TestCase):
     """derive.wall-material — 벽 문구는 재질 낱말로(task 405 m5e 벽 앞 틀림 「다윗 뒤는 매끈한 회벽」 ← 「a bare wall behind David」)."""

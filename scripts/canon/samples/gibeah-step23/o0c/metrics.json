@@ -1,0 +1,476 @@
+{
+ "answers": {
+  "g:7": {
+   "S": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.361,
+       "input": 4,
+       "output": 273,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.044982400000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·디테일이 있어 회색 덩어리나 미완성 실루엣이 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 5.435,
+       "input": 4,
+       "output": 284,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.045092400000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 5.827,
+       "input": 4,
+       "output": 277,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.045022400000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 5.867,
+       "input": 4,
+       "output": 271,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.044962400000000007,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "인물과 물건 모두 얼굴, 옷, 세부 묘사가 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 6.111,
+       "input": 4,
+       "output": 282,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.045072400000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "인물과 물건(수금, 의자, 창)에 모두 얼굴·옷·세부가 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 9.296,
+       "input": 4,
+       "output": 748,
+       "cache_read": 45037,
+       "cache_create": 9792,
+       "cost_usd": 0.051159699999999995,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-arm-length": "맞음",
+      "e.saul-head-shoulder": "맞음",
+      "e.saul-upright": "맞음"
+     },
+     "reasons": {
+      "e.saul-arm-length": "뻗은 팔이 어깨에서 손끝까지 몸통 길이보다 짧거나 비슷해 자연스럽고, 손 크기도 정상이다.",
+      "e.saul-head-shoulder": "어깨 너비가 머리 폭의 약 2.5배라 머리와 어깨 비율이 어울린다.",
+      "e.saul-upright": "몸이 던진 쪽(왼쪽)으로 기울었지만 등은 곧은 사선이고 둥글게 굽거나 웅크리지 않았다. 다만 크롭 파일 없이 전체 그림만 보고 판정했다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 10.39,
+       "input": 4,
+       "output": 791,
+       "cache_read": 45037,
+       "cache_create": 9792,
+       "cost_usd": 0.051589699999999995,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-arm-length": "맞음",
+      "e.saul-head-shoulder": "맞음",
+      "e.saul-upright": "맞음"
+     },
+     "reasons": {
+      "e.saul-arm-length": "뻗은 팔이 어깨에서 손끝까지 몸통보다 짧거나 비슷한 정도이고 손 크기도 자연스럽다.",
+      "e.saul-head-shoulder": "어깨 너비가 머리 폭의 약 2.8배라서 2~3배 범위 안이다.",
+      "e.saul-upright": "던진 쪽인 화면 왼쪽으로 몸이 기울었지만 등은 곧고 웅크리거나 둥글게 굽지 않았다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 10.95,
+       "input": 4,
+       "output": 770,
+       "cache_read": 54829,
+       "cache_create": 0,
+       "cost_usd": 0.0131909,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-arm-length": "맞음",
+      "e.saul-head-shoulder": "맞음",
+      "e.saul-upright": "맞음"
+     },
+     "reasons": {
+      "e.saul-arm-length": "뻗은 팔이 몸통 길이에 맞게 자연스럽고, 손 크기도 정상이다.",
+      "e.saul-head-shoulder": "어깨 너비가 머리 폭의 약 2.5~3배라서 비례가 맞다.",
+      "e.saul-upright": "몸이 앞으로 기울었지만 등은 곧고 웅크리거나 둥글게 굽지 않았다. 다만 크롭 파일 없이 전체 그림만 보고 판정했다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 8.434,
+       "input": 4,
+       "output": 832,
+       "cache_read": 53496,
+       "cache_create": 1332,
+       "cost_usd": 0.019005599999999997,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-arm-length": "맞음",
+      "e.saul-head-shoulder": "틀림",
+      "e.saul-upright": "틀림"
+     },
+     "reasons": {
+      "e.saul-arm-length": "뻗은 팔이 어깨에서 손끝까지 몸통 길이에 어울리고, 손 크기도 자연스럽다.",
+      "e.saul-head-shoulder": "어깨와 몸통이 매우 넓어 어깨 너비가 머리 폭의 3배를 넘고, 머리가 작아 보인다.",
+      "e.saul-upright": "머리와 목을 앞으로 내밀고 어깨를 웅크린 듯 상체가 구부정해 보여서, 등이 곧다고 분명히 확인되지 않는다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 8.838,
+       "input": 4,
+       "output": 739,
+       "cache_read": 54829,
+       "cache_create": 0,
+       "cost_usd": 0.012880899999999999,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-arm-length": "맞음",
+      "e.saul-head-shoulder": "맞음",
+      "e.saul-upright": "맞음"
+     },
+     "reasons": {
+      "e.saul-arm-length": "뻗은 팔은 어깨에서 손끝까지 몸통 길이의 절반 남짓이다. 손 크기도 자연스럽다.",
+      "e.saul-head-shoulder": "어깨 너비가 머리 폭의 3배 안팎이라 허용 범위 안이다. 머리가 유난히 작아 보이지는 않는다.",
+      "e.saul-upright": "몸이 던진 쪽(화면 왼쪽)으로 기울었지만 등은 곧다. 등을 둥글게 말거나 웅크리지 않았다."
+     }
+    }
+   }
+  },
+  "g:5": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.625,
+       "input": 4,
+       "output": 278,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.0450324,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색으로 그린 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 의자 모두 얼굴·옷·형태가 완성돼 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.07,
+       "input": 4,
+       "output": 273,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.044982400000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣이 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 5.003,
+       "input": 4,
+       "output": 279,
+       "cache_read": 46018,
+       "cache_create": 8266,
+       "cost_usd": 0.04046380000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·질감이 갖춰져 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 4.37,
+       "input": 4,
+       "output": 274,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0081764,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색의 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·형태가 완성되어 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 7.018,
+       "input": 4,
+       "output": 279,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0082264,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 그린 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있다. 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.817,
+       "input": 4,
+       "output": 483,
+       "cache_read": 46644,
+       "cache_create": 8185,
+       "cost_usd": 0.0422424,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-arm-length": "맞음",
+      "e.saul-head-shoulder": "맞음",
+      "e.saul-upright": "맞음"
+     },
+     "reasons": {
+      "e.saul-arm-length": "뻗은 팔 길이가 몸통에 비례해 자연스럽고 손도 크지 않음",
+      "e.saul-head-shoulder": "머리와 어깨 너비 비율이 자연스러움",
+      "e.saul-upright": "등이 곧고 웅크리지 않았으며 앞으로 약간 기울었을 뿐임"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.792,
+       "input": 4,
+       "output": 590,
+       "cache_read": 54829,
+       "cache_create": 0,
+       "cost_usd": 0.011390899999999999,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-arm-length": "맞음",
+      "e.saul-head-shoulder": "맞음",
+      "e.saul-upright": "맞음"
+     },
+     "reasons": {
+      "e.saul-arm-length": "뻗은 팔은 어깨에서 손끝까지 몸통 길이보다 짧거나 비슷해서 자연스럽고, 손도 크지 않다.",
+      "e.saul-head-shoulder": "머리 폭에 비해 어깨 너비가 2~3배쯤이라 균형이 맞는다.",
+      "e.saul-upright": "던진 쪽(왼쪽)으로 몸이 약간 기울었지만 등은 곧고 웅크리지 않았다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 7.265,
+       "input": 4,
+       "output": 678,
+       "cache_read": 54829,
+       "cache_create": 0,
+       "cost_usd": 0.0122709,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-arm-length": "맞음",
+      "e.saul-head-shoulder": "맞음",
+      "e.saul-upright": "맞음"
+     },
+     "reasons": {
+      "e.saul-arm-length": "뻗은 팔은 어깨에서 손끝까지 길이가 자연스럽고, 손도 크지 않다. 원숭이처럼 늘어지지 않았다.",
+      "e.saul-head-shoulder": "머리 폭에 비해 어깨 너비가 2~3배쯤이라 균형이 맞다.",
+      "e.saul-upright": "등이 곧고 어깨를 웅크리지 않았다. 몸이 앞쪽으로 살짝 기울었을 뿐이다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 7.029,
+       "input": 4,
+       "output": 686,
+       "cache_read": 54829,
+       "cache_create": 0,
+       "cost_usd": 0.0123509,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-arm-length": "맞음",
+      "e.saul-head-shoulder": "맞음",
+      "e.saul-upright": "맞음"
+     },
+     "reasons": {
+      "e.saul-arm-length": "뻗은 오른팔이 어깨에서 손끝까지 몸통 길이보다 짧은 자연스러운 비율이고, 손도 크지 않다.",
+      "e.saul-head-shoulder": "어깨 너비가 머리 폭의 2~3배쯤이라 머리와 어깨가 어울린다.",
+      "e.saul-upright": "몸이 앞으로 약간 기울었지만 등은 곧고, 웅크리거나 둥글게 굽지 않았다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 5.879,
+       "input": 4,
+       "output": 480,
+       "cache_read": 54829,
+       "cache_create": 0,
+       "cost_usd": 0.0102909,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-arm-length": "맞음",
+      "e.saul-head-shoulder": "맞음",
+      "e.saul-upright": "맞음"
+     },
+     "reasons": {
+      "e.saul-arm-length": "뻗은 팔 길이가 몸통에 비례해 자연스럽다.",
+      "e.saul-head-shoulder": "머리와 어깨 너비 비율이 적절하다.",
+      "e.saul-upright": "등이 곧고 던진 쪽으로 약간 기울었을 뿐 웅크리지 않았다."
+     }
+    }
+   }
+  }
+ }
+}
