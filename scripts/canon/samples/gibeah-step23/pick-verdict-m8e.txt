@@ -1,0 +1,2 @@
+판정 task gibeah-step23/m8e
+{"task":"gibeah-step23/m8e","kind":"ab","human_minutes":2.18,"active_minutes":2.18,"idle_ms":120000,"screens":1,"scenes":{"authored-saul-gibeah-spear":{"answer":"none","chose":"none","left":"g:7","right":"g:5","memo":"창촉이 큰것 같음 왼쪽화면의 사울은 비율이 안좋음","minutes":2.16,"active_minutes":2.16}}}

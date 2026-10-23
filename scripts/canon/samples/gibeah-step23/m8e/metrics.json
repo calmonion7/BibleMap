@@ -3378,5 +3378,14 @@
    7,
    5
   ]
+ },
+ "verdict": {
+  "answer": "none",
+  "chose": "none",
+  "left": "g:7",
+  "right": "g:5",
+  "memo": "창촉이 큰것 같음 왼쪽화면의 사울은 비율이 안좋음",
+  "minutes": 2.16,
+  "active_minutes": 2.16
  }
 }
