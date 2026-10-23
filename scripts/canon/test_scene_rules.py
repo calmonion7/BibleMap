@@ -715,6 +715,49 @@ class HeldPropAdd(unittest.TestCase):
         self.assertTrue(GL.held_prompt("x").startswith("Remove the long neck"))
 
 
+class NoInflatingBuild(unittest.TestCase):
+    """derive.no-inflating-build — 거인 아닌 인물 체격 문구에 barrel·massive·huge 없음(task 405 m8e 사람 「사울 비율」)."""
+
+    def test_barrel_fails(self):
+        import derive_scene as ds
+        with mock.patch.object(ds, "route_prompt", return_value="broad shoulders, thick barrel torso"):
+            self.assertEqual(len(recheck.inflating_build_errors(gibeah())), 1)
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.inflating_build_errors(gibeah()), [])
+
+
+class EditSizeInCrop(unittest.TestCase):
+    """edit.size-in-crop — 앞 촉 편집 지시의 크기는 사전 parts.point.edit_en(크롭 안 자루에 견줌), 손에 견주지 않음(m8e 「창촉이 큰것 같음」)."""
+
+    def test_front_prompt_uses_shaft_size(self):
+        import gen_local_edit as GL
+        look = recheck._lexicon()["spear"]["look"]
+        part = look["size"]["parts"]["point"]["edit_en"]
+        p = GL.prop_prompt(look["L2"]["en"], "front", part)
+        self.assertIn("as wide as the wooden shaft", p)
+        self.assertNotIn("wider than a hand", p)
+
+    def test_paint_tip_sizes_from_measured_spear(self):
+        import tempfile
+        from PIL import Image, ImageDraw
+        import gen_local_edit as GL
+        im = Image.new("RGB", (1216, 640), (236, 226, 200))
+        ImageDraw.Draw(im).line([(500, 320), (840, 320)], fill=(150, 100, 60), width=8)
+        ImageDraw.Draw(im).polygon([(500, 320), (540, 290), (590, 320), (540, 350)], fill=(120, 120, 120))   # 머리만 한 큰 촉
+        d = tempfile.mkdtemp()
+        src, out = os.path.join(d, "s.png"), os.path.join(d, "p.png")
+        im.save(src)
+        m = GL.measure_prop(src, [0.423, 0.478, 0.662, 0.503], 1216, 640, 0.70)
+        self.assertEqual(m[0], 500)
+        box = GL.paint_tip(src, out, m, 0.12, 2.0, 1216, 640)
+        self.assertLessEqual(box[0], 500)
+        self.assertGreaterEqual(box[2], 590)                 # 옛 큰 촉 자리를 지움
+        p = Image.open(out).convert("RGB")
+        self.assertTrue(all(abs(a - b) <= 3 for a, b in zip(p.getpixel((560, 300)), (236, 226, 200))))   # 큰 촉 위쪽은 벽 색으로 지워짐
+        self.assertNotEqual(p.getpixel((520, 320)), (236, 226, 200))        # 작은 촉(길이 340 × 0.12 ≈ 41)은 칠해짐
+
+
 class WallMaterial(unittest.TestCase):
     """derive.wall-material — 벽 문구는 재질 낱말로(task 405 m5e 벽 앞 틀림 「다윗 뒤는 매끈한 회벽」 ← 「a bare wall behind David」)."""
 

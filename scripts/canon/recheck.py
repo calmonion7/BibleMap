@@ -210,6 +210,20 @@ def wall_material_errors(spec):
     return [f"재질 없는 벽 문구 「{'·'.join(sorted(set(h.lower() for h in hit)))}」 — 매끈한 회벽으로 그려진다"] if hit else []
 
 
+INFLATE_BUILD = re.compile(r"\b(barrel|massive|huge|enormous|bulky)\b", re.I)
+
+
+def inflating_build_errors(spec):
+    """체격은 부풀리는 낱말 없이(task 405 r18, 규칙 derive.no-inflating-build) — 카드 silhouette class가 giant가 아닌 인물이 있는데
+    파생 프롬프트에 barrel·massive·huge 같은 낱말이 있으면 걸림. m8e 사람 「왼쪽 사울은 비율이 안좋음」: 「thick barrel torso」 → 술통 몸통에
+    튜닉 아래 다리가 짧아 보임(문항 e.saul-proportion-measure s7·s5 5/5 틀림). 거인(골리앗)은 본문이 큰 몸을 말하므로 뺀다."""
+    classes = {ds._cast_in_scene(f).get("card", {}).get("silhouette", {}).get("class") for f in spec["figures"]}
+    if not classes - {"giant", None}:
+        return []
+    hit = INFLATE_BUILD.findall(ds.route_prompt(spec)) if "giant" not in classes else []
+    return [f"거인 아닌 인물의 체격 문구에 「{'·'.join(sorted(set(h.lower() for h in hit)))}」 — 몸통이 부풀어 다리가 짧아 보인다"] if hit else []
+
+
 def pose_skeleton_errors(spec):
     """던진 몸짓은 포즈 뼈대로(task 403 c7~c13, 규칙 generate.pose-skeleton) — 몸짓 칸(gesture.ko)에 던짐 동사가 있는 인물은
     guide.pose에 뼈대가 있어야 함. c1~c6: 깊이 꼴은 실루엣 덩어리만 주어 사울 몸·던진 몸짓 함께 맞음 0장 → 뼈대 c7~c13 4장."""
@@ -460,6 +474,7 @@ SPEC_CHECKS = {
     "recheck.pose_skeleton_errors": lambda spec, ctx: pose_skeleton_errors(spec),
     "recheck.empty_hand_fist_errors": lambda spec, ctx: empty_hand_fist_errors(spec),
     "recheck.wall_material_errors": lambda spec, ctx: wall_material_errors(spec),
+    "recheck.inflating_build_errors": lambda spec, ctx: inflating_build_errors(spec),
     "recheck.figure_scale_errors": lambda spec, ctx: figure_scale_errors(spec),
     "recheck.second_point_errors": lambda spec, ctx: second_point_errors(spec),
     "recheck.youth_height_errors": lambda spec, ctx: youth_height_errors(spec),

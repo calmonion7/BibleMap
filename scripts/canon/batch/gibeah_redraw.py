@@ -108,7 +108,9 @@ def edit_prop():
     e = FX["edit"]
     spec = D.load(SID)
     words = json.load(open(os.path.join(HERE, "..", "..", "data", "scripture_words", "words.json"), encoding="utf-8"))["words"]
-    look = next(w for w in words if w["id"] == e["word"])["look"]["L2"]["en"]
+    wl = next(w for w in words if w["id"] == e["word"])["look"]
+    look = wl["L2"]["en"]
+    part = ((wl.get("size") or {}).get("parts") or {}).get("point", {}).get("edit_en")   # r18 edit.size-in-crop
     os.makedirs(OUT, exist_ok=True)
     m = load()
     ends = e.get("ends", ["back"])   # d4: 끝마다 지시 하나씩 차례로(뒤끝 촉 지움 → 앞 촉 모양)
@@ -119,9 +121,15 @@ def edit_prop():
         for i, end in enumerate(ends):
             out = img(s) if i == len(ends) - 1 else os.path.join(OUT, f"s{s}-{end}.png")
             crop, box = GL.prop_box(spec["regions"][e["region"]], w, h, end, head_top(spec, e["region"]), body_left(spec, e["region"]))
-            prompt = GL.prop_prompt(look, end)
+            prompt = GL.prop_prompt(look, end, part)
+            pt = ((wl.get("size") or {}).get("parts") or {}).get("point", {})
+            mp = GL.measure_prop(src, spec["regions"][e["region"]], w, h, body_left(spec, e["region"])) if end == "front" and pt.get("ratio") else None
+            if mp:   # r19 edit.size-in-crop: 창을 재어 사전 비율 크기 촉을 미리 칠하고 그 자리만 다듬음
+                painted = os.path.join(OUT, f"s{s}-front-paint.png")
+                box = GL.paint_tip(src, painted, mp, pt["ratio"], pt.get("width", 2.0), w, h)
+                crop, prompt, src = GL.crop_for(box, w, h), GL.tip_prompt(look), painted
             r = GL.edit(src, crop, box, None, e["seed"], out, prompt=prompt, mask_shape="rect")   # h2e2: 긴 지물은 둥근 사각 마스크
-            steps.append({"end": end, "src": os.path.relpath(src, os.path.dirname(OUT)), "crop": crop, "box": box, "prompt": prompt, **r})
+            steps.append({"end": end, "src": os.path.relpath(src, os.path.dirname(OUT)), "crop": crop, "box": box, "prompt": prompt, "measured": mp if end == "front" else None, **r})
             print(f"[GibeahRedraw] 편집 s{s} {end} {r}", flush=True)
             src = out
         hd = e.get("held")   # h2: 쥔 지물(뼈대 인물 두 손목 자리) — 창 끝 편집 뒤에 차례로

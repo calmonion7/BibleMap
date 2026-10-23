@@ -743,7 +743,11 @@
           "parts": {
             "point": {
               "en": "hand-sized",
-              "ko": "손바닥만 함"
+              "ko": "손바닥만 함",
+              "edit_en": "only about twice as wide as the wooden shaft and about seven times as long as the shaft is thick",
+              "ratio": 0.12,
+              "width": 2.0,
+              "edit_ko": "자루 굵기의 두 배쯤 폭 · 자루 굵기의 일곱 배쯤 길이(편집 크롭 안에 보이는 자루에 견줌 — task 405 r18 사람 「창촉이 큰것 같음」)"
             }
           },
           "grounds": "[저작](본문에 길이·촉 크기 없음 — 그림 사정) 2026-10-23 사람 「창 앞촉이 큰것 같음 사람을 줄였으면 창도 줄여야하지 않아?」 — 사람 크기를 바꾸면 지물도 같은 비로 따라가게 사람 키에 견줌"

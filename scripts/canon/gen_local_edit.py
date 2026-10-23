@@ -84,9 +84,80 @@ def prop_box(region, w, h, end="back", ymax=None, xmax=None):
     return (L, T, side), box
 
 
-def prop_prompt(look_en, end="back"):
+# task 406 r19 — 규칙 edit.size-in-crop: klein은 크롭 전체를 다시 그려 앞 촉을 크롭 비율대로 키움(m9e 촉 크기 0/8 — 편집 전 가는 촉이
+# 편집 뒤 머리만 해짐). 크기 문구·상자 줄이기로는 못 막음(마스크 경계에서 잘릴 뿐) → 바탕에서 창을 재어, 옛 촉 자리를 벽 색으로 지우고
+# 사전 비율(parts.point ratio·width) 크기의 잿빛 잎꼴 촉을 미리 칠한 뒤, 칠한 자리만 덮는 마스크로 「그 크기 그대로 다듬기」(371·386 가이드 띠와 같은 길).
+TIP_PAINT = (128, 130, 136)
+
+
+def measure_prop(src, region, w, h, xmax=None):
+    """바탕에서 허공 막대(창)를 잼 → (왼끝 x, 오른끝 x, 자루 가운데 y, 자루 굵기, 옛 촉 위아래 반폭) 화소. 띠 = 구역 세로 ± 0.03 · 가로 ± 0.12(xmax 앞까지).
+    벽보다 어두운 화소(열마다 띠 중앙값 − 35)를 막대로 봄."""
+    import numpy as np
+    x0, y0, x1, y1 = region
+    bx0, bx1 = max(0, round((x0 - 0.12) * w)), min(w, round((min(x1 + 0.12, xmax if xmax else 1.0)) * w) - 10)
+    by0, by1 = max(0, round((y0 - 0.03) * h)), min(h, round((y1 + 0.03) * h))
+    a = np.asarray(Image.open(src).convert("L"), dtype=float)[by0:by1, bx0:bx1]
+    dark = (np.median(a, axis=0) - a) > 35
+    cols = np.where(dark.sum(axis=0) > 0)[0]
+    if len(cols) < 20:
+        return None
+    xl, xr = bx0 + int(cols[0]), bx0 + int(cols[-1])
+    col = dark[:, round((xl + 0.4 * (xr - xl)) - bx0)]
+    rows = np.where(col)[0]
+    if not len(rows):
+        return None
+    cy = by0 + float(rows.mean())
+    head = np.where(dark[:, cols[0]:cols[0] + max(1, round(0.28 * (xr - xl)))].any(axis=1))[0]   # 옛 촉(왼끝 ~ 0.28)의 위아래 범위
+    reach = max(abs(by0 + head[0] - cy), abs(by0 + head[-1] - cy)) if len(head) else 0
+    return xl, xr, cy, max(2, int(rows[-1] - rows[0] + 1)), reach
+
+
+def paint_tip(src, out, m, ratio, width, w, h):
+    """measure_prop 결과 m으로 src에 작은 촉을 칠해 out에 → 마스크 상자. 옛 촉 자리(왼끝 ~ 창 길이 0.28)는 위아래 벽 띠 색으로 지우고
+    자루를 다시 이은 뒤 잎꼴 촉(길이 = 창 길이 × ratio · 폭 = 자루 굵기 × width)을 칠함."""
+    import numpy as np
+    xl, xr, cy, t, reach = m
+    L = xr - xl
+    ex1, half = round(xl + 0.28 * L), round(max(0.04 * h, width * t, reach + 6))   # 옛 큰 촉 위아래까지 지움
+    box = (max(0, xl - 8), max(0, round(cy - half)), ex1, min(h, round(cy + half)))
+    im = Image.open(src).convert("RGB")
+    a = np.asarray(im).copy()
+    above = a[max(0, box[1] - 6):box[1], box[0]:box[2]].mean(axis=0)
+    below = a[box[3]:min(h, box[3] + 6), box[0]:box[2]].mean(axis=0)
+    for y in range(box[1], box[3]):
+        k = (y - box[1]) / max(1, box[3] - box[1])
+        a[y, box[0]:box[2]] = ((1 - k) * above + k * below).astype(a.dtype)
+    im = Image.fromarray(a)
+    d = ImageDraw.Draw(im)
+    shaft_rgb = tuple(int(v) for v in np.asarray(Image.open(src).convert("RGB"))[round(cy), min(w - 1, ex1 + 4)])
+    tl, tw = ratio * L, width * t / 2
+    d.line([(xl + tl * 0.9, cy), (ex1 + 2, cy)], fill=shaft_rgb, width=max(3, t - 2))   # 잰 굵기는 테두리 포함
+    d.polygon([(xl, cy), (xl + tl * 0.45, cy - tw), (xl + tl, cy), (xl + tl * 0.45, cy + tw)], fill=TIP_PAINT)
+    im.save(out)
+    return box
+
+
+def crop_for(box, w, h, pad=40):
+    """마스크 상자 → 정사각 크롭 (L, T, 변) — prop_box와 같은 셈."""
+    side = min(min(w, h), max(box[2] - box[0], box[3] - box[1]) + pad)
+    cx, cy = (box[0] + box[2]) / 2, (box[1] + box[3]) / 2
+    return int(min(max(0, cx - side / 2), w - side)), int(min(max(0, cy - side / 2), h - side)), side
+
+
+def tip_prompt(look_en):
+    """칠한 촉을 그 크기 그대로 쇠 촉으로 다듬는 지시 하나(r19)."""
+    m = re.search(r"one ([a-z-]+(?: [a-z-]+)*? iron point)", look_en)
+    head = m.group(1) if m else "leaf-shaped iron point"
+    return (f"Turn the small flat grey shape at the left end of the wooden spear shaft into one {head}: a flat grey iron blade shaped like a small "
+            f"willow leaf, exactly the same small size and place as the grey shape — do not make it bigger, only about twice as wide as the shaft. "
+            f"Do not add any crossguard, wings or second blade. {KEEP_PROP}")
+
+
+def prop_prompt(look_en, end="back", part_en=None):
     """편집 지시 하나. back = 뒤끝 촉 지우기(d3e) · front = 앞끝을 사전 촉 모양으로(d3e3 앞 촉이 작은 화살촉·뒤에 나무 혹).
-    look_en(사전 L2)에서 끝 모양 낱말을 빌린다."""
+    look_en(사전 L2)에서 끝 모양 낱말을 빌린다. part_en = 사전 size.parts.point.edit_en — 크롭 안에 보이는 것(자루)에 견준 크기
+    (r18 규칙 edit.size-in-crop: 「not much wider than a hand」는 크롭 밖 손에 견줘 촉이 머리만 하게 — m8e 사람 「창촉이 큰것 같음」)."""
     if end == "back":
         cap = "a small iron cap" if "small iron cap" in look_en else "a plain wooden end"
         return (f"Remove the large metal spearhead from the right end of the wooden spear shaft, so the right end is only {cap}, "
@@ -94,7 +165,7 @@ def prop_prompt(look_en, end="back"):
     m = re.search(r"one ([a-z-]+(?: [a-z-]+)*? iron point)", look_en)   # 사전 L2의 촉 낱말(크기 포함 — derive.prop-size-relative)
     head = m.group(1) if m else "leaf-shaped iron point"
     return (f"Reshape the iron spearhead at the left end of the wooden spear shaft into one {head}: a flat grey iron blade (metal, not a plant leaf) shaped like a small willow leaf, "
-            f"widest in the middle and tapering smoothly to the tip and back to the shaft, with smooth curved edges and no barbs or hooks, not much wider than a hand. "
+            f"widest in the middle and tapering smoothly to the tip and back to the shaft, with smooth curved edges and no barbs or hooks, {part_en or 'not much wider than a hand'}. "
             f"Do not add any crossguard, wings or second blade. {KEEP_PROP}")   # d4e: 「nothing sticking out beyond it」 → 벽에 날개·코등이 장식 · f6e: 「leaf-shaped」만으로는 미늘 화살촉(창 모양 4/5) · f6e2: 「willow leaf」만이면 푸른 진짜 잎(잎맥) — 쇠·회색을 말함 · m5: 「Enlarge … broad blade much wider than the shaft」 → 손바닥만 하게(사람 「창 앞촉이 큰것 같음」)
 
 # task 404 h2 — 쥔 지물 편집(edit.small-prop-orient 넓힘): 뼈대 인물의 두 손목 자리에서 상자를 뽑고, 사전 L2로 그 지물만 바꿈.

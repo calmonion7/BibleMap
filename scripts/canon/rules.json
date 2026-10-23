@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "37c5dc208fa6",
+  "version": "a878c8f92b80",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -191,6 +191,12 @@
      "note": "벽 문구는 재질 낱말로 — 재질 없는 bare·plain·blank·empty wall은 매끈한 회벽으로 그려짐(돌벽 방인데 인물 뒤 벽만 회벽)"},
     {"id": "edit.held-prop-add", "layer": "edit", "scope": "all", "check": "test:test_scene_rules",
      "source": "notes/GIBEAH-STEP23.md m6e·m7 · task 405 r16 「no neck」 긍정문으로도 바탕 류트 약 6/8 그대로", "since": "2026-10-24 task 405 r17",
-     "note": "그림이 사전 꼴로 못 그리는 쥔 지물(수금 → 류트)은 바탕 문구에서 그 구절을 손 모양으로 바꾸고(gen_local_edit.strip_held) 편집 지시 「Place …」(held mode add)로만 넣음 — 몸통만 바꾸는 편집은 상자 밖 류트 목·줄감개를 남겨 가드 「덧붙은 촉」. 명세·관문은 그대로(지물은 명세 문구에 있음)"}
+     "note": "그림이 사전 꼴로 못 그리는 쥔 지물(수금 → 류트)은 바탕 문구에서 그 구절을 손 모양으로 바꾸고(gen_local_edit.strip_held) 편집 지시 「Place …」(held mode add)로만 넣음 — 몸통만 바꾸는 편집은 상자 밖 류트 목·줄감개를 남겨 가드 「덧붙은 촉」. 명세·관문은 그대로(지물은 명세 문구에 있음)"},
+    {"id": "derive.no-inflating-build", "layer": "derive", "scope": "all", "check": "recheck.inflating_build_errors",
+     "source": "notes/GIBEAH-STEP23.md o0a · 사람 m8e 「왼쪽화면의 사울은 비율이 안좋음」 → 문항 e.saul-proportion-measure s7·s5 5/5 틀림", "since": "2026-10-24 task 405 r18",
+     "note": "거인(giant)이 아닌 인물의 파생 문구에 barrel·massive·huge·enormous·bulky 금지 — 「thick barrel torso」가 술통 몸통으로 부풀어 튜닉 아래 다리가 짧아 보임. 거인은 본문이 큰 몸을 말하므로 뺌"},
+    {"id": "edit.size-in-crop", "layer": "edit", "scope": "all", "check": "test:test_scene_rules",
+     "source": "notes/GIBEAH-STEP23.md o0a · 사람 m8e 「창촉이 큰것 같음」 → 문항 e.spear-tip-small s7·s5 5/5 틀림(촉 길이 머리 0.8~1.5배 · 폭 자루 3~5배)", "since": "2026-10-24 task 405 r18",
+     "note": "(r19) klein은 크롭 전체를 다시 그려 촉을 크롭 비율대로 키움 — 문구(m9e 촉 크기 0/8)·상자 줄이기(마스크 경계에서 잘림)로는 못 막음 → 바탕에서 창을 재어(gen_local_edit.measure_prop) 옛 촉 자리를 벽 색으로 지우고 사전 parts.point ratio(창 길이 비)·width(자루 굵기 배) 크기 촉을 미리 칠한 뒤(paint_tip) 칠한 자리만 「그 크기 그대로」 다듬음. (r18) 지시 크기 문구는 크롭 안 자루에 견줌(edit_en)"}
   ]
 }
