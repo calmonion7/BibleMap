@@ -58,11 +58,32 @@ def guide_ok(spec):
     import make_guide
     if not FX.get("guide"):
         sys.exit("[GibeahRedraw] 명세에 guide가 있는데 고정 절 guide가 없다 — 가이드 없이 그리지 않는다")
-    buf = io.BytesIO()
-    make_guide.make(spec).save(buf, format="PNG")
-    with open(os.path.join(HERE, FX["guide"]), "rb") as fh:
-        if fh.read() != buf.getvalue():
-            sys.exit(f"[GibeahRedraw] 고정 절 guide {FX['guide']}가 지금 명세의 가이드와 다르다 — make_guide로 다시 그릴 것")
+    for key, stage in (("guide", 1), ("guide2", 2)):   # h1: guide.split이면 둘째 가이드(깊이)도 고정 절 guide2와 같아야
+        if key == "guide2" and not spec["guide"].get("split"):
+            continue
+        if not FX.get(key):
+            sys.exit(f"[GibeahRedraw] 명세 guide에 맞는 고정 절 {key}가 없다")
+        buf = io.BytesIO()
+        make_guide.make(spec, stage).save(buf, format="PNG")
+        with open(os.path.join(HERE, FX[key]), "rb") as fh:
+            if fh.read() != buf.getvalue():
+                sys.exit(f"[GibeahRedraw] 고정 절 {key} {FX[key]}가 지금 명세의 가이드와 다르다 — make_guide로 다시 그릴 것")
+
+
+def head_top(spec, key):
+    """h1 — 지물 구역과 가로가 겹치는 뼈대 인물 중 가장 높은 머리 꼭대기(화면 비율) — 편집 마스크가 그 머리에 닿지 않게. 없으면 None."""
+    import make_guide as M
+    R, pose = spec["regions"], (spec.get("guide") or {}).get("pose", {})
+    x0, _, x1, _ = R[key]
+    tops = []
+    for k, name in pose.items():
+        a0, b0, a1, b1 = R[k]
+        pts, hh = M.pose_points((a0 * M.W, b0 * M.H, a1 * M.W, b1 * M.H), name)   # 화소 → 화면 비율로 되돌림
+        hx = [x / M.W for i, (x, y) in pts.items() if i in (0, 14, 15, 16, 17)]
+        hy = (min(y for i, (x, y) in pts.items() if i in (0, 14, 15, 16, 17)) - M.HEAD_R["person"] * hh) / M.H
+        if hx and min(hx) - 0.05 < x1 and max(hx) + 0.05 > x0:
+            tops.append(hy)
+    return min(tops) if tops else None
 
 
 def edit_prop():
@@ -82,12 +103,26 @@ def edit_prop():
         steps = []
         for i, end in enumerate(ends):
             out = img(s) if i == len(ends) - 1 else os.path.join(OUT, f"s{s}-{end}.png")
-            crop, box = GL.prop_box(spec["regions"][e["region"]], w, h, end)
+            crop, box = GL.prop_box(spec["regions"][e["region"]], w, h, end, head_top(spec, e["region"]))
             prompt = GL.prop_prompt(look, end)
             r = GL.edit(src, crop, box, None, e["seed"], out, prompt=prompt)
             steps.append({"end": end, "src": os.path.relpath(src, os.path.dirname(OUT)), "crop": crop, "box": box, "prompt": prompt, **r})
             print(f"[GibeahRedraw] 편집 s{s} {end} {r}", flush=True)
             src = out
+        hd = e.get("held")   # h2: 쥔 지물(뼈대 인물 두 손목 자리) — 창 끝 편집 뒤에 차례로
+        if hd:
+            import make_guide as MG
+            a0, b0, a1, b1 = spec["regions"][hd["figure"]]
+            pts, _ = MG.pose_points((a0 * MG.W, b0 * MG.H, a1 * MG.W, b1 * MG.H), spec["guide"]["pose"][hd["figure"]])
+            crop, box = GL.held_box([(pts[i][0] / MG.W, pts[i][1] / MG.H) for i in (4, 7)], w, h)
+            hlook = next(x for x in words if x["id"] == hd["word"])["look"]["L2"]["en"]
+            prompt = GL.held_prompt(hlook)
+            src0, out = img(s), os.path.join(OUT, f"s{s}-held.png")
+            shutil.copyfile(src0, os.path.join(OUT, f"s{s}-tips.png"))
+            r = GL.edit(os.path.join(OUT, f"s{s}-tips.png"), crop, box, None, e["seed"], out, prompt=prompt)
+            steps.append({"end": "held", "figure": hd["figure"], "word": hd["word"], "crop": crop, "box": box, "prompt": prompt, **r})
+            shutil.copyfile(out, img(s))
+            print(f"[GibeahRedraw] 편집 s{s} held {r}", flush=True)
         m.setdefault("edit", {})[str(s)] = steps
     save(m)
 
@@ -105,6 +140,8 @@ def gen():
     prompt = D.route_prompt(D.load(SID))
     w, h = FX["size"]
     cn = {"control": os.path.join(HERE, FX["guide"]), "scale": FX["cn"]["scale"], "cn_steps": FX["cn"]["cn_steps"]} if FX.get("guide") else {}
+    if FX.get("guide2"):   # h1 스텝별 가이드: 앞 cn_steps는 guide(뼈대), 다음 cn_steps2는 guide2(깊이)
+        cn.update(control2=os.path.join(HERE, FX["guide2"]), cn_steps2=FX["cn"]["cn_steps2"])
     jobs = [{"prompt": prompt, "seed": s, "w": w, "h": h, "out": img(s), **cn} for s in FX["seeds"] if not os.path.exists(img(s))]
     m = load()
     m["prompt"] = prompt

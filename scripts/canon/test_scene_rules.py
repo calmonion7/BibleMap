@@ -218,7 +218,7 @@ class GuideBodyBuild(unittest.TestCase):
         sys.path.insert(0, os.path.join(HERE, "batch"))
         import make_guide as M
         s = gibeah()
-        s["guide"].pop("control", None)   # 깊이 모드 규칙(g1부터 기브아는 뼈대만 — 다른 장면은 깊이)
+        s["guide"].pop("control", None), s["guide"].pop("split", None)   # 깊이 모드 규칙(h1부터 기브아는 스텝별 — 다른 장면은 깊이 한 장)
         s["guide"].pop("pose", None)   # c7부터 넓은 체격 사울은 뼈대 — 깊이 몸 너비를 재려고 깊이 꼴로
         wide = sum(M.make(s).convert("L").histogram()[200:])
         s["guide"].pop("body")
@@ -237,7 +237,7 @@ class GuidePose(unittest.TestCase):
         sys.path.insert(0, os.path.join(HERE, "batch"))
         import make_guide as M
         s = gibeah()
-        s["guide"].pop("control", None)   # 깊이 모드 규칙(g1부터 기브아는 뼈대만 — 다른 장면은 깊이)
+        s["guide"].pop("control", None), s["guide"].pop("split", None)   # 깊이 모드 규칙(h1부터 기브아는 스텝별 — 다른 장면은 깊이 한 장)
         x0, y0, x1, y1 = (round(v * d) for v, d in zip(s["regions"]["saul"], (M.W, M.H, M.W, M.H)))
         crop = M.make(s).crop((x0, y0, x1, y1))
         px = list(crop.getdata())
@@ -258,7 +258,7 @@ class PoseBodyMass(unittest.TestCase):
         sys.path.insert(0, os.path.join(HERE, "batch"))
         import make_guide as M
         s = gibeah()
-        s["guide"].pop("control", None)   # 깊이 모드 규칙(g1부터 기브아는 뼈대만 — 다른 장면은 깊이)
+        s["guide"].pop("control", None), s["guide"].pop("split", None)   # 깊이 모드 규칙(h1부터 기브아는 스텝별 — 다른 장면은 깊이 한 장)
         x0, y0, x1, y1 = (round(v * d) for v, d in zip(s["regions"]["saul"], (M.W, M.H, M.W, M.H)))
         def body(spec):
             return sum(1 for r, g, b in M.make(spec).crop((x0, y0, x1, y1)).getdata() if min(r, g, b) > 230)
@@ -404,7 +404,7 @@ class ObjectCrisp(unittest.TestCase):
         sys.path.insert(0, os.path.join(HERE, "batch"))
         import make_guide as M
         s = gibeah()
-        s["guide"].pop("control", None)   # 깊이 모드 규칙(g1부터 기브아는 뼈대만 — 다른 장면은 깊이)
+        s["guide"].pop("control", None), s["guide"].pop("split", None)   # 깊이 모드 규칙(h1부터 기브아는 스텝별 — 다른 장면은 깊이 한 장)
         v = round(255 * s["guide"]["depth"]["spear"])
         x0, y0, x1, y1 = (round(a * d) for a, d in zip(s["regions"]["spear"], (M.W, M.H, M.W, M.H)))
         tip = M.make(s).crop((x0, y0 - 20, x0 + (x1 - x0) // 3, y1 + 20)).convert("L")
@@ -546,6 +546,47 @@ class PoseOnlyControl(unittest.TestCase):
         color = sum(1 for r, g, b in px if max(r, g, b) - min(r, g, b) > 60)
         self.assertLess(grey, 0.002 * len(px))
         self.assertGreater(color, 500)
+
+class SplitControl(unittest.TestCase):
+    """generate.split-control — 뼈대 가이드는 스텝별: 1단계 뼈대만(깊이 회색 없음), 2단계 깊이(뼈대 색 없음, 몸 덩어리 있음)(task 404 h1)."""
+
+    def test_pose_without_split_fails(self):
+        s = gibeah()
+        s["guide"].pop("split")
+        self.assertEqual(len(recheck.split_control_errors(s)), 1)
+
+    def test_stages(self):
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as M
+        s = gibeah()
+        one, two = list(M.make(s, 1).getdata()), list(M.make(s, 2).getdata())
+        grey = lambda px: sum(1 for r, g, b in px if r == g == b and 20 < r < 235)
+        color = lambda px: sum(1 for r, g, b in px if max(r, g, b) - min(r, g, b) > 60)
+        self.assertLess(grey(one), 0.002 * len(one))
+        self.assertGreater(color(one), 500)
+        self.assertEqual(color(two), 0)
+        self.assertGreater(grey(two), 0.5 * len(two))
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.split_control_errors(gibeah()), [])
+
+
+class HeldPropEdit(unittest.TestCase):
+    """edit.small-prop-orient(쥔 지물로 넓힘, task 404 h2) — 상자는 뼈대 두 손목 가운데에서, 지시는 사전 L2 + 손 유지."""
+
+    def test_box_around_wrists(self):
+        import gen_local_edit as GL
+        (L, T, side), box = GL.held_box([(0.2, 0.5), (0.22, 0.52)], 1216, 640)
+        self.assertTrue(box[0] < 0.21 * 1216 < box[2] and box[1] < 0.51 * 640 < box[3])
+        self.assertLess(box[2] - box[0], 0.2 * 1216)   # 작은 크롭(큰 부위 아님)
+
+    def test_prompt_keeps_hands(self):
+        import gen_local_edit as GL
+        p = GL.held_prompt("a hollow wooden sound box with two curved arms joined by a crossbar")
+        self.assertIn("crossbar", p)
+        self.assertIn("Keep his hands", p)
+
 
 if __name__ == "__main__":
     unittest.main()

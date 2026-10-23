@@ -292,6 +292,13 @@ def pose_only_errors(spec):
     return ["guide.pose가 있는데 guide.control이 pose가 아니다 — 깊이 그림과 섞이면 뼈대가 약하게 읽힌다"] if g.get("pose") and g.get("control") != "pose" else []
 
 
+def split_control_errors(spec):
+    """뼈대 가이드는 스텝별로(task 404 h1, 규칙 generate.split-control) — guide.pose가 있으면 guide.split: 앞 스텝 뼈대만(자세) → 다음 스텝 깊이(몸·벽).
+    한 장에 섞으면 깊이 실루엣이 몸짓을 죽이고(f6 · 진단 P1·P2), 뼈대만이면 몸 덩어리·벽·수금을 잃음(g1e·g2e)."""
+    g = spec.get("guide") or {}
+    return ["guide.pose가 있는데 guide.split이 없다 — 깊이와 뼈대를 한 장에 섞거나 하나만 주면 맞바꿈"] if g.get("pose") and not g.get("split") else []
+
+
 def has_situation(spec):
     s = spec.get("situation")
     return [] if isinstance(s, dict) and str(s.get("text", "")).strip() else ["situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"]
@@ -351,6 +358,7 @@ SPEC_CHECKS = {
     "recheck.height_ratio_errors": lambda spec, ctx: height_ratio_errors(spec),
     "recheck.pose_hold_errors": lambda spec, ctx: pose_hold_errors(spec),
     "recheck.pose_only_errors": lambda spec, ctx: pose_only_errors(spec),
+    "recheck.split_control_errors": lambda spec, ctx: split_control_errors(spec),
     "check_scenes.lexicon_look_errors": lambda spec, ctx: check_scenes.lexicon_look_errors(spec, ds.route_prompt(spec)),
 }
 

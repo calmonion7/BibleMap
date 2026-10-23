@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "3e4f43f51287",
+  "version": "70bc76580d84",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -146,7 +146,7 @@
      "note": "가이드의 허공 물체 꼴(AIR_SHAPES — 창)은 몸 덩어리 흐림 뒤에 또렷하게 그림(뼈대처럼) — 흐린 촉은 방향·모양을 못 줌"},
     {"id": "edit.small-prop-orient", "layer": "edit", "scope": "all", "check": "test:test_scene_rules",
      "source": "notes/GIBEAH-STEP23.md · task 403 d1~d3(창 방향 3장 연속 틀림 — 가이드 촉을 또렷하게 해도) · 묶음 기록 c7~c14 창 방향 1~4/8 · LOCAL-EDIT 371·386(작은 지물 국소 편집 선례)", "since": "2026-10-23 task 403",
-     "note": "작은 허공 지물(창)의 방향·모양은 생성으로 못 줌 → 생성 뒤 klein 국소 편집(gen_local_edit.edit). 상자는 명세 구역의 뒤끝(가운데~오른끝 + 가로 0.1, 세로 ± 0.04 — prop_box, 사람 눈 아님), 지시 하나 = 뒤끝 촉 지우기(사전 L2의 뒤끝 낱말) + 「아무것도 더하지 않음(no person …)」 — 크롭 밖 사람을 말하면 빈 벽에 창 쥔 사람을 그림(d3e2) · d4: 끝마다 지시 하나씩 차례로 — 뒤끝 촉 지움(back) → 앞끝을 사전 L2 촉 모양으로 키움(front, d3e3 앞 촉이 작은 화살촉·뒤에 나무 혹 — 바깥 여유 0.015(벽 구역 밖)·「no crossguard, wings or second blade」, d4e 여유 0.1은 벽에 날개 장식 · f6e2: 잎 모양을 꼴로 — 「willow leaf, widest in the middle, tapering, no barbs or hooks」, 「leaf-shaped」만이면 미늘 화살촉 f4e·f6e 4/5 · f6e3: 「a flat grey iron blade (metal, not a plant leaf)」 — 재질 없으면 푸른 진짜 잎·잎맥 f6e2 실행자 눈) · d3e: 창 전체 크롭 + 지시 둘은 klein이 양끝에 촉. 큰 부위(머리·몸)에는 쓰지 않음"},
+     "note": "(h2: 쥔 지물에도 — 뼈대 인물 두 손목 가운데 ± (0.07, 0.11) 상자 · 지시 「Replace the stringed instrument … with a small wooden lyre: <사전 L2>」 + 손·팔·얼굴 유지, h1e 수금이 류트 5/5) 작은 허공 지물(창)의 방향·모양은 생성으로 못 줌 → 생성 뒤 klein 국소 편집(gen_local_edit.edit). 상자는 명세 구역의 뒤끝(가운데~오른끝 + 가로 0.1, 세로 ± 0.04 — prop_box, 사람 눈 아님), 지시 하나 = 뒤끝 촉 지우기(사전 L2의 뒤끝 낱말) + 「아무것도 더하지 않음(no person …)」 — 크롭 밖 사람을 말하면 빈 벽에 창 쥔 사람을 그림(d3e2) · d4: 끝마다 지시 하나씩 차례로 — 뒤끝 촉 지움(back) → 앞끝을 사전 L2 촉 모양으로 키움(front, d3e3 앞 촉이 작은 화살촉·뒤에 나무 혹 — 바깥 여유 0.015(벽 구역 밖)·「no crossguard, wings or second blade」, d4e 여유 0.1은 벽에 날개 장식 · f6e2: 잎 모양을 꼴로 — 「willow leaf, widest in the middle, tapering, no barbs or hooks」, 「leaf-shaped」만이면 미늘 화살촉 f4e·f6e 4/5 · f6e3: 「a flat grey iron blade (metal, not a plant leaf)」 — 재질 없으면 푸른 진짜 잎·잎맥 f6e2 실행자 눈) · d3e: 창 전체 크롭 + 지시 둘은 klein이 양끝에 촉. 큰 부위(머리·몸)에는 쓰지 않음"},
     {"id": "generate.guide-head-ratio", "layer": "generate", "scope": "all", "check": "test:test_scene_rules",
      "source": "notes/GIBEAH-STEP23.md · task 403 d2·d3·d3e3(청년 다윗 「10세 안팎 아이」 3/3 — 숙인 꼴 머리 지름 0.18을 그림이 선 다윗으로 옮김)", "since": "2026-10-23 task 403",
      "note": "가이드 사람 꼴(person*)의 머리 원 지름은 구역 높이 × 0.14 이하(어른·청년 비율, person 0.13) — 숙인 꼴이라도 그림은 선 꼴로 옮기기도 해서 큰 머리가 아이 비율이 됨"},
@@ -167,6 +167,9 @@
      "note": "몸짓 칸이 「두 손으로 … 가슴(품)에」처럼 손 자리를 말하는 인물은 guide.pose 뼈대 — 두 손목을 그 자리에 모은 꼴(make_guide POSES duck_clutch). 깊이 꼴은 손 자리를 못 줌(사울 던진 몸짓 c1~c6과 같은 벽)", "retired": "2026-10-23 f5 — f4e 5표: 수금 쥠 5→1로 고쳤으나 벽 앞·피함·순간 0→5/5로 무너짐(다윗이 벽에서 떨어져 선 채) · 다윗 깊이 꼴 유지, 손 자리는 다른 수단"},
     {"id": "generate.pose-only-control", "layer": "generate", "scope": "all", "check": "recheck.pose_only_errors",
      "source": "notes/GIBEAH-STEP23.md · task 404 진단(gibeah-pose-diag P1·P2 — 뼈대만: 사울 몸통 기울고 다윗 문구대로 숙임 vs 깊이+뼈대 f6: 둘 다 곧게 섬) · 사람 「다른방법 없나? 무슨문제지?」", "since": "2026-10-23 task 404",
-     "note": "guide.pose가 있으면 guide.control = pose — Union ControlNet 한 장에 깊이 그림을 섞지 않고 검은 바탕에 뼈대 + 허공 물체 꼴만(make_pose_only). 깊이를 섞으면 깊이 실루엣이 선 사람으로 그려지고 뼈대(기운 몸통·든 뒷발)가 약하게 읽힘. 뼈대 없는 인물·벽·바탕은 문구에 맡김", "retired": "2026-10-23 g2e — 진단은 맞음(뼈대만이면 몸짓이 살아 다윗 숙임·사울 기욺)이나 맞바꿈: 몸 덩어리·벽 자리·수금 모양을 잃고 액자(g1e 다수결 틀림 6 · g2e 15 vs 섞은 f6e3 2). 깊이+뼈대 섞기 유지, make_pose_only·duck_low는 남김"}
+     "note": "guide.pose가 있으면 guide.control = pose — Union ControlNet 한 장에 깊이 그림을 섞지 않고 검은 바탕에 뼈대 + 허공 물체 꼴만(make_pose_only). 깊이를 섞으면 깊이 실루엣이 선 사람으로 그려지고 뼈대(기운 몸통·든 뒷발)가 약하게 읽힘. 뼈대 없는 인물·벽·바탕은 문구에 맡김", "retired": "2026-10-23 g2e — 진단은 맞음(뼈대만이면 몸짓이 살아 다윗 숙임·사울 기욺)이나 맞바꿈: 몸 덩어리·벽 자리·수금 모양을 잃고 액자(g1e 다수결 틀림 6 · g2e 15 vs 섞은 f6e3 2). 깊이+뼈대 섞기 유지, make_pose_only·duck_low는 남김"},
+    {"id": "generate.split-control", "layer": "generate", "scope": "all", "check": "recheck.split_control_errors",
+     "source": "notes/GIBEAH-STEP23.md · task 404 repair-r7 진단(섞은 f6: 몸짓 죽음 · 뼈대만 g1e·g2e: 몸·벽·수금 잃음) · 사람 「1」", "since": "2026-10-23 task 404",
+     "note": "guide.pose가 있으면 guide.split — Union ControlNet에 스텝별로 가이드를 나눠 줌: 앞 cn_steps는 뼈대만(make stage 1 — 자세), 다음 cn_steps2는 깊이(make stage 2 — 뼈대를 따른 몸 덩어리·무릎 치마·벽·바탕·창, 뼈대 선 없음). run_scene gencn control2 · 편집 마스크는 뼈대 인물 머리 위에서 끝남"}
   ]
 }

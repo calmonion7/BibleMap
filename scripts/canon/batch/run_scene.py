@@ -65,10 +65,28 @@ def worker(mode, jobs_path):
                                                         torch_dtype=torch.bfloat16).to("mps")
         fwd, calls, cur = pipe.controlnet.forward, [0], [0]
 
+        alt, cur2 = [None], [0]   # task 404 h1 — 둘째 가이드(control2): 앞 cur 스텝 뒤 cur2 스텝은 그 latent로 바꿔 넣는다(스텝별 가이드)
+
         def first_k(*a, **k):   # 파이프라인에 control_guidance_end가 없다 — 앞 cur 스텝 뒤엔 None(트랜스포머가 CN 없이 돈다)
             calls[0] += 1
-            return fwd(*a, **k) if calls[0] <= cur[0] else None
+            if calls[0] <= cur[0]:
+                return fwd(*a, **k)
+            if alt[0] is not None and calls[0] <= cur[0] + cur2[0]:
+                a = list(a)
+                a[3] = alt[0].repeat(a[3].shape[0] // alt[0].shape[0], 1, 1, 1, 1)
+                return fwd(*a, **k)
+            return None
         pipe.controlnet.forward = first_k
+        import diffusers.pipelines.z_image.pipeline_z_image_controlnet as zcn
+
+        def encode_control(img, w, h, gen):   # 파이프라인 4절(control_image 준비)과 같은 길 — 둘째 가이드를 미리 latent로
+            ci = pipe.prepare_image(image=img, width=w, height=h, batch_size=1, num_images_per_prompt=1, device="mps", dtype=pipe.vae.dtype)
+            ci = zcn.retrieve_latents(pipe.vae.encode(ci), generator=gen, sample_mode="argmax")
+            ci = ((ci - pipe.vae.config.shift_factor) * pipe.vae.config.scaling_factor).unsqueeze(2)
+            n = pipe.transformer.in_channels
+            if n != pipe.controlnet.config.control_in_dim:
+                ci = torch.cat([ci, torch.zeros(ci.shape[0], pipe.controlnet.config.control_in_dim - n, *ci.shape[2:]).to(ci.device, ci.dtype)], dim=1)
+            return ci
         if mode == "i2icn":   # restyle-try r2 — 두 번째 단계 img2img에도 약한 CN: CN 파이프라인에 잘린 일정 + 잡음 섞은 시작 latent
             import diffusers.pipelines.z_image.pipeline_z_image_controlnet as zc
             from diffusers import ZImageImg2ImgPipeline
@@ -106,6 +124,9 @@ def worker(mode, jobs_path):
         if mode in ("gencn", "i2icn"):
             from PIL import Image
             calls[0], cur[0] = 0, j["cn_steps"]
+            alt[0], cur2[0] = None, 0
+            if j.get("control2"):
+                alt[0], cur2[0] = encode_control(Image.open(j["control2"]).convert("RGB"), j["w"], j["h"], gen), j["cn_steps2"]
             kw = {"control_image": Image.open(j["control"]).convert("RGB"), "controlnet_conditioning_scale": j["scale"]}
             if mode == "i2icn":
                 strength[0] = j["strength"]

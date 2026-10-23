@@ -64,7 +64,7 @@ KEEP_PROP = ("Add nothing new: no person, no hand, no other object — the plain
              "Keep the lighting and the same soft pencil and colored-pencil illustration style.")   # d3e2: 「Keep … the people」이 빈 벽 크롭에 창 쥔 사람을 불러옴
 
 
-def prop_box(region, w, h, end="back"):
+def prop_box(region, w, h, end="back", ymax=None):
     """명세 구역(0~1)의 한 끝 → (크롭 (L, T, 변), 마스크 상자) 원본 화소. 가이드 꼴 spear는 촉이 늘 왼쪽 끝(make_guide.spear) —
     end back = 가운데~오른끝 + PROP_PAD_X, front = 왼끝 - PROP_PAD_X ~ 가운데. 세로는 ± PROP_PAD_Y.
     d3e: 창 전체 크롭 + 지시 둘(왼쪽 촉·오른쪽 물미)은 klein이 양끝에 촉을 그림 → 끝마다 작은 크롭·지시 하나로 차례로.
@@ -73,6 +73,8 @@ def prop_box(region, w, h, end="back"):
     mid = (x0 + x1) / 2
     bx0, bx1 = (mid, x1 + PROP_PAD_X) if end == "back" else (x0 - PROP_PAD_FRONT, mid)   # d4e: 앞끝 여유 0.1은 벽 안까지 → 벽에 날개 장식
     box = (max(0, round(bx0 * w)), max(0, round((y0 - PROP_PAD_Y) * h)), min(w, round(bx1 * w)), min(h, round((y1 + PROP_PAD_Y) * h)))
+    if ymax is not None:   # h1: 마스크(상자 +20px)가 아래 사람 머리에 닿지 않게(g2e 숙인 다윗 머리 번짐)
+        box = (box[0], box[1], box[2], max(round(y1 * h) + 2, min(box[3], round(ymax * h) - 20)))
     side = min(min(w, h), max(box[2] - box[0], box[3] - box[1]) + 40)
     cx, cy = (box[0] + box[2]) / 2, (box[1] + box[3]) / 2
     L = int(min(max(0, cx - side / 2), w - side))
@@ -92,6 +94,28 @@ def prop_prompt(look_en, end="back"):
     return (f"Enlarge the iron spearhead at the left end of the wooden spear shaft into one {head}: a flat grey iron blade (metal, not a plant leaf) shaped like a long willow leaf, "
             f"widest in the middle and tapering smoothly to the tip and back to the shaft, with smooth curved edges and no barbs or hooks. "
             f"Do not add any crossguard, wings or second blade. {KEEP_PROP}")   # d4e: 「nothing sticking out beyond it」 → 벽에 날개·코등이 장식 · f6e: 「leaf-shaped」만으로는 미늘 화살촉(창 모양 4/5) · f6e2: 「willow leaf」만이면 푸른 진짜 잎(잎맥) — 쇠·회색을 말함
+
+# task 404 h2 — 쥔 지물 편집(edit.small-prop-orient 넓힘): 뼈대 인물의 두 손목 자리에서 상자를 뽑고, 사전 L2로 그 지물만 바꿈.
+HELD_HALF = (0.07, 0.11)   # 두 손목 가운데 ± (가로, 세로) 화면 비율 — 가슴에 붙여 쥔 작은 수금(키보다 훨씬 작음, 사전 L3)
+KEEP_HELD = ("Keep his hands holding it against his chest, his arms, face, hair and clothes exactly the same, "
+             "the lighting and the same soft pencil and colored-pencil illustration style.")
+
+
+def held_box(wrists, w, h):
+    """두 손목(화면 비율 점) → (크롭, 마스크 상자) 원본 화소 — 손목 가운데 ± HELD_HALF."""
+    cx, cy = sum(x for x, _ in wrists) / len(wrists), sum(y for _, y in wrists) / len(wrists)
+    box = (max(0, round((cx - HELD_HALF[0]) * w)), max(0, round((cy - HELD_HALF[1]) * h)),
+           min(w, round((cx + HELD_HALF[0]) * w)), min(h, round((cy + HELD_HALF[1]) * h)))
+    side = min(min(w, h), max(box[2] - box[0], box[3] - box[1]) + 60)
+    L = int(min(max(0, (box[0] + box[2]) / 2 - side / 2), w - side))
+    T = int(min(max(0, (box[1] + box[3]) / 2 - side / 2), h - side))
+    return (L, T, side), box
+
+
+def held_prompt(look_en):
+    """지시 하나 — 쥔 악기를 사전 L2 꼴로(h1e 「지판과 긴 목이 달린 류트」 5/5)."""
+    return f"Replace the stringed instrument he is holding with a small wooden lyre: {look_en}. {KEEP_HELD}"
+
 
 def busy():
     r = subprocess.run(["pgrep", "-fl", "mflux|run_scene.py --worker|gen_video_pilot|mlx_video"], capture_output=True, text=True)

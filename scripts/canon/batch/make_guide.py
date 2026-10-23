@@ -221,8 +221,9 @@ POSES = {
     #   (묶음 기록: c10 가이드 던진 몸짓 c10 3/8 · c11 2/8 · c13 3/8 — d 시도 전 가장 좋음).
     # · f3: 반대 팔을 몸 뒤 아래로(f1e·f2e 뒤 위로 든 팔 + 몸 덩어리 = 「던지기 전 와인드업」) · 든 뒷발을 앞발 쪽으로 당겨 보폭 줄임(「컴퍼스 다리」 4~5/5)
     # · g2 던진 팔 앞무릎 쪽으로 내림은 되돌림(g2e 「아래로 늘어진 팔」 5/5 — d2와 같음): 팔을 내리면 늘어짐, 앞으로 두면 가리킴
-    "throw_follow": {0: (-0.23, 0.11), 1: (-0.15, 0.18), 2: (-0.14, 0.21), 3: (-0.28, 0.3), 4: (-0.41, 0.41), 5: (-0.17, 0.21), 6: (-0.08, 0.33),
-                     7: (0.0, 0.44), 8: (-0.01, 0.52), 9: (0.1, 0.67), 10: (0.2, 0.74), 11: (0.01, 0.52), 12: (-0.17, 0.72), 13: (-0.14, 0.96),
+    # · h2(스텝별 가이드로 뼈대가 먹힘): 반대 팔을 몸통을 따라 곧게 늘어뜨려 몸에 가림(h1e 몸 뒤로 뻗은 팔 = 「양팔 벌린 멈춤 손짓」 5/5)
+    "throw_follow": {0: (-0.23, 0.11), 1: (-0.15, 0.18), 2: (-0.14, 0.21), 3: (-0.28, 0.3), 4: (-0.41, 0.41), 5: (-0.17, 0.21), 6: (-0.11, 0.35),
+                     7: (-0.07, 0.48), 8: (-0.01, 0.52), 9: (0.1, 0.67), 10: (0.2, 0.74), 11: (0.01, 0.52), 12: (-0.17, 0.72), 13: (-0.14, 0.96),
                      14: (-0.24, 0.095), 16: (-0.17, 0.1)},
     # task 404 g2 — 벽을 등지고 허리를 깊이 숙여(약 45°) 머리를 낮추고 무릎 굽힘 · 두 손목이 가슴 앞(화면 오른쪽을 봄) — 뼈대만 가이드용
     # (g1e: 가이드 없는 다윗은 문구대로 숙였으나 벽에서 떨어져 방 가운데·수금이 류트).
@@ -325,10 +326,12 @@ def make_pose_only(spec):
     return out
 
 
-def make(spec):
+def make(spec, stage=1):
+    """가이드 그림. guide.split(task 404 h1 — 규칙 generate.split-control)이면 stage 1 = 뼈대만(자세), stage 2 = 깊이(몸 덩어리·벽·바탕, 뼈대 선 없음)."""
     g, R = spec["guide"], spec["regions"]
-    if g.get("control") == "pose":
+    if g.get("control") == "pose" or (g.get("split") and stage == 1):
         return make_pose_only(spec)
+    skel = not g.get("split")   # stage 2: 뼈대 인물은 뼈대를 따른 깊이 몸만
     img = Image.new("L", (W, H), 0)
     d = ImageDraw.Draw(img)
     hy = int(HORIZON * H)
@@ -370,7 +373,7 @@ def make(spec):
     BODY.pop("big_tip", None)
     BODY.pop("leaf_tip", None)
     out = img.convert("RGB")
-    for k, name in sorted(pose.items()):
+    for k, name in sorted(pose.items()) if skel else ():
         x0, y0, x1, y1 = R[k]
         draw_pose(out, (x0 * W, y0 * H, x1 * W, y1 * H), name)
     return out
@@ -380,10 +383,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--scene", default="authored-david-returns-jerusalem")
     ap.add_argument("--out", default=os.path.join(HERE, "samples", "jordan-guide", "guide.png"))
+    ap.add_argument("--stage", type=int, default=1)   # guide.split 장면의 둘째 가이드(깊이)는 --stage 2
     a = ap.parse_args()
     spec = json.load(open(os.path.join(HERE, "scenes", f"{a.scene}.json"), encoding="utf-8"))
     os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
-    make(spec).save(a.out, format="PNG")
+    make(spec, a.stage).save(a.out, format="PNG")
     print(f"[MakeGuide] {a.out}")
 
 
