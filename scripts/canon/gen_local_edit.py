@@ -64,7 +64,7 @@ KEEP_PROP = ("Add nothing new: no person, no hand, no other object — the plain
              "Keep the lighting and the same soft pencil and colored-pencil illustration style.")   # d3e2: 「Keep … the people」이 빈 벽 크롭에 창 쥔 사람을 불러옴
 
 
-def prop_box(region, w, h, end="back", ymax=None):
+def prop_box(region, w, h, end="back", ymax=None, xmax=None):
     """명세 구역(0~1)의 한 끝 → (크롭 (L, T, 변), 마스크 상자) 원본 화소. 가이드 꼴 spear는 촉이 늘 왼쪽 끝(make_guide.spear) —
     end back = 가운데~오른끝 + PROP_PAD_X, front = 왼끝 - PROP_PAD_X ~ 가운데. 세로는 ± PROP_PAD_Y.
     d3e: 창 전체 크롭 + 지시 둘(왼쪽 촉·오른쪽 물미)은 klein이 양끝에 촉을 그림 → 끝마다 작은 크롭·지시 하나로 차례로.
@@ -73,6 +73,8 @@ def prop_box(region, w, h, end="back", ymax=None):
     mid = (x0 + x1) / 2
     bx0, bx1 = (mid, x1 + PROP_PAD_X) if end == "back" else (x0 - PROP_PAD_FRONT, mid)   # d4e: 앞끝 여유 0.1은 벽 안까지 → 벽에 날개 장식
     box = (max(0, round(bx0 * w)), max(0, round((y0 - PROP_PAD_Y) * h)), min(w, round(bx1 * w)), min(h, round((y1 + PROP_PAD_Y) * h)))
+    if xmax is not None:   # m3: 마스크(상자 +20px)가 오른쪽 인물 몸에 닿지 않게(m2e 창 뒤끝 편집이 사울 팔을 흐림 — 가드 7/8)
+        box = (box[0], box[1], max(box[0] + 4, min(box[2], round(xmax * w) - 20)), box[3])
     if ymax is not None:   # h1: 마스크(상자 +20px)가 아래 사람 머리에 닿지 않게(g2e 숙인 다윗 머리 번짐)
         box = (box[0], box[1], box[2], max(round(y1 * h) + 2, min(box[3], round(ymax * h) - 20)))
     side = min(min(w, h), max(box[2] - box[0], box[3] - box[1]) + 40)

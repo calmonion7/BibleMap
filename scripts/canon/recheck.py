@@ -313,7 +313,8 @@ def split_control_errors(spec):
     return ["guide.pose가 있는데 guide.split이 없다 — 깊이와 뼈대를 한 장에 섞거나 하나만 주면 맞바꿈"] if g.get("pose") and not g.get("split") else []
 
 
-TWO_THIRDS, TWO_THIRDS_TOL, HAND_GAP = 2 / 3, 0.03, 0.02
+TWO_THIRDS, TWO_THIRDS_TOL, HAND_GAP = 2 / 3, 0.03, 0.07   # m4: HAND_GAP 0.02 → 0.07 — 그림 팔이 뼈대보다 약 0.05 더 뻗음(m3e s11 손 0.67 vs 뼈대 0.72)
+DRAWN_LEN = 1.45   # m3: 그림은 창을 구역보다 길게 그림(d3 실측 0.235 → 0.33) — 뒤끝은 촉 + 구역 길이 × 이 값으로 셈(m2e 「뒤끝이 사울 손 옆」 6/8)
 
 
 def spear_two_thirds_errors(spec):
@@ -342,8 +343,9 @@ def spear_two_thirds_errors(spec):
         x0, _, x1, _ = R[o]
         if abs(x0 - want) > TWO_THIRDS_TOL:
             out.append(f"{o} 촉 x {x0:.3f} ≠ 2/3 지점 {want:.3f}±{TWO_THIRDS_TOL} — 창이 3분의 2쯤 날아간 자리가 아니다")
-        if x1 > hand - HAND_GAP:
-            out.append(f"{o} 뒤끝 x {x1:.3f}가 던진 손목 {hand:.3f}에 닿음 — 창이 손에 남은 꼴(두 사람을 더 떨어뜨릴 것)")
+        butt = x0 + DRAWN_LEN * (x1 - x0)
+        if butt > hand - HAND_GAP:
+            out.append(f"{o} 그려질 뒤끝 x {butt:.3f}(구역 × {DRAWN_LEN})가 던진 손목 {hand:.3f}에 닿음 — 창이 손에 남은 꼴(창 구역을 줄이거나 두 사람을 떨어뜨릴 것)")
     return out
 
 

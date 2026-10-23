@@ -560,17 +560,21 @@ class SplitControl(unittest.TestCase):
         self.assertEqual(len(recheck.split_control_errors(s)), 1)
 
     def test_stages(self):
+        """1단계 = 방 바탕 + 뼈대(사람 깊이 몸 없음, m4) · 2단계 = 깊이(뼈대 색 없음, 몸 덩어리 있음)."""
         import sys
         sys.path.insert(0, os.path.join(HERE, "batch"))
         import make_guide as M
         s = gibeah()
-        one, two = list(M.make(s, 1).getdata()), list(M.make(s, 2).getdata())
-        grey = lambda px: sum(1 for r, g, b in px if r == g == b and 20 < r < 235)
+        one, two = M.make(s, 1), M.make(s, 2)
         color = lambda px: sum(1 for r, g, b in px if max(r, g, b) - min(r, g, b) > 60)
-        self.assertLess(grey(one), 0.002 * len(one))
-        self.assertGreater(color(one), 500)
-        self.assertEqual(color(two), 0)
-        self.assertGreater(grey(two), 0.5 * len(two))
+        x0, y0, x1, y1 = (round(v * d) for v, d in zip(s["regions"]["saul"], (M.W, M.H, M.W, M.H)))
+        body = lambda im: sum(1 for r, g, b in im.crop((x0, y0, x1, y1)).getdata() if r == g == b and r > 230)
+        self.assertGreater(color(list(one.getdata())), 500)
+        self.assertLess(body(one), 0.02 * (x1 - x0) * (y1 - y0))        # 1단계엔 사울 깊이 몸 없음
+        self.assertGreater(body(two), 0.05 * (x1 - x0) * (y1 - y0))     # 2단계엔 있음
+        self.assertEqual(color(list(two.getdata())), 0)
+        grey = sum(1 for r, g, b in one.getdata() if r == g == b and 20 < r < 235)
+        self.assertGreater(grey, 0.3 * M.W * M.H)                        # 1단계에도 방 바탕(m4 — 검은 바탕 액자 방지)
 
     def test_gibeah_passes(self):
         self.assertEqual(recheck.split_control_errors(gibeah()), [])
@@ -637,6 +641,17 @@ class SpearTwoThirds(unittest.TestCase):
 
     def test_gibeah_passes(self):
         self.assertEqual(recheck.spear_two_thirds_errors(gibeah()), [])
+
+
+class EditBoxClearOfBody(unittest.TestCase):
+    """edit.small-prop-orient(m3) — 편집 상자는 오른쪽 뼈대 인물 몸 앞에서 끝남(m2e 창 뒤끝 편집이 사울 팔을 흐림)."""
+
+    def test_xmax_clips_back_box(self):
+        import gen_local_edit as GL
+        (_, _, _), box = GL.prop_box([0.413, 0.48, 0.648, 0.5], 1216, 640, "back", None, 0.70)
+        self.assertLessEqual(box[2] + 20, round(0.70 * 1216))   # 마스크(+20px)까지 몸 앞
+        (_, _, _), box = GL.prop_box([0.413, 0.48, 0.648, 0.5], 1216, 640, "back")
+        self.assertGreater(box[2], round(0.70 * 1216))           # 자르지 않으면 넘어감(m2e)
 
 
 if __name__ == "__main__":

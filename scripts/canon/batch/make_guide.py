@@ -305,11 +305,24 @@ AIR_SHAPES = {"spear"}   # 허공을 나는 물체 꼴(recheck.AIR_SHAPES와 같
 SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "seated": seated, "crowd": crowd, "boat": boat, "bank": bank}
 
 
-def make_pose_only(spec):
+def make_pose_only(spec, backdrop=False):
     """task 404 g1 — 뼈대만 가이드(규칙 generate.pose-only-control): 검은 바탕에 허공 물체 꼴(또렷하게) + 뼈대만, 깊이 그림을 섞지 않는다.
     진단(gibeah-pose-diag P1·P2): 깊이+뼈대 한 장은 깊이 실루엣이 선 사람으로 그려지고 뼈대가 약함 — 뼈대만이면 사울 몸통이 기울고
     가이드 없는 다윗은 문구대로 숙임. 뼈대 없는 인물·벽·바탕은 문구에 맡긴다."""
     g, R = spec["guide"], spec["regions"]
+    if backdrop:   # m4 스텝별 1단계: 방 바탕(벽·바닥·옆벽 깊이) + 창 + 뼈대, 사람 깊이 몸은 뺌 — 검은 바탕은 방 구조 없이 시작해 액자·서명(m2e·m3e 16장 중 6)
+        import copy
+        s2 = copy.deepcopy(spec)
+        g2 = s2["guide"]
+        g2.pop("split", None), g2.pop("control", None)
+        for k in [k for k, v in g2["shape"].items() if str(v).startswith("person")] + list(g2.get("pose", {})):
+            g2["depth"].pop(k, None)
+        g2["pose"] = {}
+        out = make(s2)
+        for k, name in sorted(g.get("pose", {}).items()):
+            x0, y0, x1, y1 = R[k]
+            draw_pose(out, (x0 * W, y0 * H, x1 * W, y1 * H), name)
+        return out
     layer = Image.new("L", (W, H), 0)
     d = ImageDraw.Draw(layer)
     if g.get("tip") in ("big", "leaf"):
@@ -330,8 +343,10 @@ def make_pose_only(spec):
 def make(spec, stage=1):
     """가이드 그림. guide.split(task 404 h1 — 규칙 generate.split-control)이면 stage 1 = 뼈대만(자세), stage 2 = 깊이(몸 덩어리·벽·바탕, 뼈대 선 없음)."""
     g, R = spec["guide"], spec["regions"]
-    if g.get("control") == "pose" or (g.get("split") and stage == 1):
+    if g.get("control") == "pose":
         return make_pose_only(spec)
+    if g.get("split") and stage == 1:
+        return make_pose_only(spec, backdrop=True)
     skel = not g.get("split")   # stage 2: 뼈대 인물은 뼈대를 따른 깊이 몸만
     img = Image.new("L", (W, H), 0)
     d = ImageDraw.Draw(img)

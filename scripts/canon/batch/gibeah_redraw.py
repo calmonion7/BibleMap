@@ -86,6 +86,21 @@ def head_top(spec, key):
     return min(tops) if tops else None
 
 
+def body_left(spec, key):
+    """m3 — 지물 구역 오른쪽에 있는 뼈대 인물 중 가장 왼쪽 관절(화면 비율) − 0.02 — 편집 마스크가 그 몸(던진 팔)에 닿지 않게. 없으면 None."""
+    import make_guide as M
+    R, pose = spec["regions"], (spec.get("guide") or {}).get("pose", {})
+    x0 = R[key][0]
+    lefts = []
+    for k, name in pose.items():
+        a0, b0, a1, b1 = R[k]
+        pts, _ = M.pose_points((a0 * M.W, b0 * M.H, a1 * M.W, b1 * M.H), name)
+        lx = min(x for x, y in pts.values()) / M.W
+        if lx > x0:
+            lefts.append(lx - 0.07)   # m4: 0.02 → 0.07 — 그림 팔이 뼈대보다 더 뻗어 m3e s11 사울 손이 편집에 지워짐
+    return min(lefts) if lefts else None
+
+
 def edit_prop():
     """task 403 d3e — 고정 절 edit(from 시도 · 지물 구역 키 · 사전 id · klein 시드) → 그 시도 그림의 지물만 국소 편집(규칙 edit.small-prop-orient)."""
     import gen_local_edit as GL
@@ -103,7 +118,7 @@ def edit_prop():
         steps = []
         for i, end in enumerate(ends):
             out = img(s) if i == len(ends) - 1 else os.path.join(OUT, f"s{s}-{end}.png")
-            crop, box = GL.prop_box(spec["regions"][e["region"]], w, h, end, head_top(spec, e["region"]))
+            crop, box = GL.prop_box(spec["regions"][e["region"]], w, h, end, head_top(spec, e["region"]), body_left(spec, e["region"]))
             prompt = GL.prop_prompt(look, end)
             r = GL.edit(src, crop, box, None, e["seed"], out, prompt=prompt, mask_shape="rect")   # h2e2: 긴 지물은 둥근 사각 마스크
             steps.append({"end": end, "src": os.path.relpath(src, os.path.dirname(OUT)), "crop": crop, "box": box, "prompt": prompt, **r})
