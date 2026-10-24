@@ -314,6 +314,30 @@ class DodgeClear(unittest.TestCase):
         self.assertEqual(len(recheck.dodge_clear_errors(s)), 1)
 
 
+class FlightHeight(unittest.TestCase):
+    """generate.flight-height — 나는 물체 높이 = 던지는 뼈대 어깨(task 412, 사람 m16e 「던질 때 팔의 높이」)."""
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.flight_height_errors(gibeah()), [])
+
+    def test_spear_at_hand_height_fails(self):
+        s = gibeah()
+        s["regions"]["spear"][1], s["regions"]["spear"][3] = 0.478, 0.503   # m16e — 던진 손목과 어깨 사이
+        self.assertEqual(len(recheck.flight_height_errors(s)), 1)
+
+    def test_no_flight_needs_nothing(self):
+        s = gibeah()
+        s["guide"].pop("flight")
+        self.assertEqual(recheck.flight_height_errors(s), [])
+
+    def test_near_miss_is_one_head(self):
+        """빗나감 한도 = 피하는 사람 머리 하나(기준표 youth 0.1429 × 구역 키) — 옛 고정 0.05를 대신함."""
+        import scale as S
+        s = gibeah()
+        y0, y1 = s["regions"]["david-youth"][1], s["regions"]["david-youth"][3]
+        self.assertAlmostEqual(recheck._near_miss(s, "david-youth"), S.head_ratio("youth") * (y1 - y0))
+
+
 class GuideCostumeLegs(unittest.TestCase):
     """generate.guide-costume-legs — 무릎 길이 차림이면 가이드 꼴에 무릎 아래 다리."""
 
@@ -887,6 +911,16 @@ class EditPropSheetPaste(unittest.TestCase):
         self.assertNotIn("small wooden lyre", p)
         self.assertIn("Only one lyre", p)
         self.assertIn("not touching his mouth", p)
+
+    def test_hug_prompt_frees_arms(self):
+        """task 412 — 수금 안는 꼴: 두 팔뚝으로 울림통을 감싸 가슴에 안음 · 매달지 않음 · 팔은 움직여도 됨(KEEP_HELD 「arms … the same」이면 턱 앞 맞잡은 손이 남아 수금이 떠 있음, m16e 사람 「수금 든 모습 이상함」)."""
+        import gen_local_edit as GL
+        size = recheck._lexicon()["kinnor-lyre"]["look"]["size"]
+        p = GL.held_prompt("a small hollow wooden sound box", "hug", GL.held_head_en(size, "youth", 1.0))
+        self.assertIn("forearms wrapped around its sound box", p)
+        self.assertIn("does not hang from his hands", p)
+        self.assertIn("only his arms and hands may move", p)
+        self.assertNotIn("his arms, face", p)
 
     def test_back_edge_is_tunic_right_end(self):
         import numpy as np

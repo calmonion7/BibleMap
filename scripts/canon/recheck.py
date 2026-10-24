@@ -138,7 +138,15 @@ def guide_body_errors(spec):
 
 
 HEAD_BAND = {"person_dodge": 0.13, "person_duck": 0.14}   # make_guide 피하는 꼴 머리 원 지름 = 키 × 이 값
-NEAR_MISS = 0.05   # b3: 물체 아래끝이 머리 띠 위끝에서 이만큼(화면 높이 비율) 안 — 아슬아슬한 빗나감
+
+
+def _near_miss(spec, region):
+    """b3·task 412 — 아슬아슬한 빗나감 한도 = 피하는 사람 머리 하나 높이(기준표 나이대 머리 × 구역 키). 옛 고정 0.05는 창을 던진 팔 높이
+    (사람 m16e 「창 높이가 조금 올라가야 … 던질 때 팔의 높이」)로 올리면 숙인 머리 위 0.068에서 걸림 — 머리 하나(0.084) 안은 빗나감으로 읽힘."""
+    f = next((f for f in spec.get("figures", []) if f.get("region") == region), None)
+    age = ((ds._cast_in_scene(f).get("card", {}).get("ageBand") or {}).get("class")) if f else None
+    _, y0, _, y1 = spec["regions"][region]
+    return S.head_ratio(age) * (y1 - y0)
 
 
 def dodge_clear_errors(spec):
@@ -163,8 +171,8 @@ def dodge_clear_errors(spec):
             ox0, oy0, ox1, oy1 = R[o]
             if oy0 < bot and oy1 > top:
                 out.append(f"{o} 세로 {oy0}~{oy1}이 {d} 머리 띠 {top:.3f}~{bot:.3f}와 겹침 — 피한 사람에게 곧장 날아가는 꼴")
-            elif top - oy1 > NEAR_MISS:   # b3: 한참 위로 지나면 「겨누지도 않음」 · n1: 「그 사람 앞에서 끝남」 조건은 뺌 — 사람 m1e 「창은 3분의2쯤 날아가게」(가로 자리는 spear-two-thirds)
-                out.append(f"{o}이 {d} 머리 바로 위(띠 위쪽 {NEAR_MISS} 안)를 지나 그 위까지 오지 않음 — 빗나감이 아니라 겨누지 않은 꼴")
+            elif top - oy1 > _near_miss(spec, d):   # b3: 한참 위로 지나면 「겨누지도 않음」 · n1: 「그 사람 앞에서 끝남」 조건은 뺌 — 사람 m1e 「창은 3분의2쯤 날아가게」(가로 자리는 spear-two-thirds)
+                out.append(f"{o}이 {d} 머리 바로 위(띠 위쪽 머리 하나 {_near_miss(spec, d):.3f} 안)를 지나 그 위까지 오지 않음 — 빗나감이 아니라 겨누지 않은 꼴")
     return out
 
 
@@ -466,6 +474,26 @@ def flight_errors(spec):
     return out
 
 
+def flight_height_errors(spec):
+    """나는 물체 높이는 던진 팔 높이(task 412, 규칙 generate.flight-height — 사람 m16e 「창 높이가 조금 올라가야 하지 않을까? 던질 때 팔의 높이」) —
+    guide.flight의 from이 뼈대 인물이면 물체 구역 세로 가운데 = 그 뼈대 어깨(점 2·5 평균) ± FLIGHT_TOL. m16e: 창 0.49는 던진 손목(마무리 꼴 0.579)과
+    어깨(0.443) 사이 — 놓는 순간의 팔 높이보다 낮게 날아감."""
+    g, R = spec.get("guide") or {}, spec.get("regions", {})
+    fl, pose = g.get("flight"), g.get("pose", {})
+    if not fl or fl.get("from") not in pose:
+        return []
+    sys.path.insert(0, os.path.join(HERE, "batch"))
+    import make_guide as M
+    a0, b0, a1, b1 = R[fl["from"]]
+    pts, _ = M.pose_points((a0 * M.W, b0 * M.H, a1 * M.W, b1 * M.H), pose[fl["from"]])
+    ys = [pts[i][1] / M.H for i in (2, 5) if i in pts]
+    if not ys:
+        return [f"{fl['from']} 뼈대에 어깨 점이 없음 — 던진 팔 높이를 못 잼"]
+    sy, (_, oy0, _, oy1) = sum(ys) / len(ys), R[fl["object"]]
+    mid = (oy0 + oy1) / 2
+    return [f"{fl['object']} 세로 가운데 {mid:.3f} ≠ {fl['from']} 어깨 {sy:.3f}±{FLIGHT_TOL} — 던진 팔 높이로 날지 않음"] if abs(mid - sy) > FLIGHT_TOL else []
+
+
 def has_situation(spec):
     s = spec.get("situation")
     return [] if isinstance(s, dict) and str(s.get("text", "")).strip() else ["situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"]
@@ -532,6 +560,7 @@ SPEC_CHECKS = {
     "recheck.prop_size_errors": lambda spec, ctx: prop_size_errors(spec),
     "recheck.prop_size_coverage_errors": lambda spec, ctx: prop_size_coverage_errors(spec),
     "recheck.flight_errors": lambda spec, ctx: flight_errors(spec),
+    "recheck.flight_height_errors": lambda spec, ctx: flight_height_errors(spec),
     "recheck.crowd_count_errors": lambda spec, ctx: crowd_count_errors(spec),
     "recheck.perspective_errors": lambda spec, ctx: perspective_errors(spec),
     "check_scenes.lexicon_look_errors": lambda spec, ctx: check_scenes.lexicon_look_errors(spec, ds.route_prompt(spec)),

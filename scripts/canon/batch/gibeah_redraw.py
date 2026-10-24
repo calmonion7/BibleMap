@@ -170,7 +170,12 @@ def edit_prop():
             src0, out = img(s), os.path.join(OUT, f"s{s}-held.png")
             shutil.copyfile(src0, os.path.join(OUT, f"s{s}-tips.png"))
             hsrc = os.path.join(OUT, f"s{s}-tips.png")
-            if hd.get("size") == "paint":   # task 411 edit.size-in-crop(쥔 지물): 기준표 크기 수금 틀을 칠한 뒤 그 크기 그대로 다듬음
+            if hd.get("size") == "head":   # task 412 h1: 칠하지 않고 넣기 — 크기는 크롭 안 머리에 견준 문구(기준표), 꼴은 hd mode(hug)
+                import scale as S
+                hr = dict(S.standing(spec))[hd["figure"]]
+                age = (D._cast_in_scene(next(f for f in spec["figures"] if f["region"] == hd["figure"])).get("card", {}).get("ageBand") or {}).get("class")
+                prompt = GL.held_prompt(hw["L2"]["en"], hd.get("mode", "hug"), GL.held_head_en(hw["size"], age, hr))
+            elif hd.get("size") == "paint":   # task 411 edit.size-in-crop(쥔 지물): 기준표 크기 수금 틀을 칠한 뒤 그 크기 그대로 다듬음
                 import scale as S
                 fig, hr = spec["regions"][hd["figure"]], dict(S.standing(spec))[hd["figure"]]
                 age = (D._cast_in_scene(next(f for f in spec["figures"] if f["region"] == hd["figure"])).get("card", {}).get("ageBand") or {}).get("class")

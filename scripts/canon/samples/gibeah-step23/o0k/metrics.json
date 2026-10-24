@@ -1,0 +1,456 @@
+{
+ "answers": {
+  "g:303": {
+   "S": {
+    "4": {
+     "tries": [
+      {
+       "seconds": 3.424,
+       "input": 4,
+       "output": 276,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.04501240000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 그린 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 3.627,
+       "input": 4,
+       "output": 275,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.045002400000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·결이 갖춰져 있어 회색 덩어리나 미완성 실루엣이 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.037,
+       "input": 4,
+       "output": 276,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.04501240000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 채색으로 그린 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·질감이 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.232,
+       "input": 4,
+       "output": 282,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.045072400000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 보여 동화 그림 화풍에 맞다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·세부가 갖춰져 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.611,
+       "input": 4,
+       "output": 275,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.045002400000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보여 동화 그림 화풍에 맞다.",
+      "s.no-blob": "사람과 물건 모두 얼굴, 옷, 세부가 다 그려져 있다. 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 5.459,
+       "input": 4,
+       "output": 431,
+       "cache_read": 45041,
+       "cache_create": 9637,
+       "cost_usd": 0.0473701,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-height": "틀림",
+      "e.lyre-hold-natural": "틀림"
+     },
+     "reasons": {
+      "e.spear-height": "창이 사울 어깨(약 y250)보다 뚜렷이 낮은 가슴 높이(y313)로 날아감",
+      "e.lyre-hold-natural": "두 손으로 위 가로대를 잡고 울림통이 아래로 매달려 등불을 든 모습"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 6.4,
+       "input": 4,
+       "output": 499,
+       "cache_read": 45041,
+       "cache_create": 9796,
+       "cost_usd": 0.048686099999999996,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-height": "틀림",
+      "e.lyre-hold-natural": "틀림"
+     },
+     "reasons": {
+      "e.spear-height": "창이 사울 어깨(y≈250)보다 낮은 가슴·뻗은 손 높이(y≈313)로 날아감",
+      "e.lyre-hold-natural": "두 손으로 위 가로대를 잡고 울림통이 아래로 매달려 바구니를 든 모습"
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 6.472,
+       "input": 4,
+       "output": 506,
+       "cache_read": 45041,
+       "cache_create": 9795,
+       "cost_usd": 0.04875210000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-height": "틀림",
+      "e.lyre-hold-natural": "틀림"
+     },
+     "reasons": {
+      "e.spear-height": "창이 사울 어깨(y≈250)보다 낮은 가슴 높이(y≈313)로 날아감",
+      "e.lyre-hold-natural": "두 손으로 위 가로대를 잡고 울림통이 아래로 매달려 등불처럼 들고 있음"
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 5.873,
+       "input": 4,
+       "output": 473,
+       "cache_read": 54836,
+       "cache_create": 0,
+       "cost_usd": 0.0102216,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-height": "틀림",
+      "e.lyre-hold-natural": "틀림"
+     },
+     "reasons": {
+      "e.spear-height": "창이 사울 어깨(y≈250)보다 낮은 가슴 높이(y≈313)로 날아감",
+      "e.lyre-hold-natural": "두 손으로 위 가로대를 잡고 울림통이 아래로 매달려 등불처럼 든 모습"
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 6.199,
+       "input": 4,
+       "output": 613,
+       "cache_read": 54678,
+       "cache_create": 0,
+       "cost_usd": 0.0116058,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-height": "틀림",
+      "e.lyre-hold-natural": "틀림"
+     },
+     "reasons": {
+      "e.spear-height": "창 자루가 사울의 어깨(약 y=255)보다 눈에 띄게 낮은 가슴 높이(약 y=313)로 날고 있다. 사울의 뻗은 손(약 y=360)보다는 높지만, 어깨 높이와 거의 같다고 보기는 어렵다.",
+      "e.lyre-hold-natural": "다윗이 두 손으로 수금의 위 가로대를 잡고 있고 울림통은 아래로 매달려 있다. 가슴이나 옆구리에 붙여 안은 모습이 아니라 바구니를 들고 가는 모양이다."
+     }
+    }
+   }
+  },
+  "g:23": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.801,
+       "input": 4,
+       "output": 273,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.044982400000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필로 칠한 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자가 모두 얼굴·옷·형태를 갖추었고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.198,
+       "input": 4,
+       "output": 283,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.04508240000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "다윗, 사울, 창, 수금, 의자 모두 얼굴·옷·질감이 갖춰져 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 3.395,
+       "input": 4,
+       "output": 277,
+       "cache_read": 53110,
+       "cache_create": 1174,
+       "cost_usd": 0.012785,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.476,
+       "input": 4,
+       "output": 271,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.044962400000000007,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "인물과 물건 모두 얼굴, 옷, 형태가 갖춰져 있고 회색 덩어리나 미완성 실루엣이 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 3.961,
+       "input": 4,
+       "output": 282,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0082564,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "다윗, 사울, 창, 수금, 의자 모두 얼굴·옷·세부가 완성돼 있고 회색 덩어리나 미완성 실루엣이 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 8.972,
+       "input": 4,
+       "output": 819,
+       "cache_read": 46648,
+       "cache_create": 8189,
+       "cost_usd": 0.0456188,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-height": "틀림",
+      "e.lyre-hold-natural": "틀림"
+     },
+     "reasons": {
+      "e.spear-height": "창이 사울의 어깨선보다 눈에 띄게 아래, 가슴께(y≈313)에서 날아간다. 사울의 뻗은 손보다는 위지만 어깨 높이라고 하기에는 낮다. 창이 손에서 떨어져 허공에 떠 있어서 던진 팔의 어깨선과도 이어지지 않는다.",
+      "e.lyre-hold-natural": "다윗이 두 손으로 수금의 위 가로대를 잡고 있고, 네모난 울림통이 아래로 매달려 있다. 가슴이나 옆구리에 붙여 안은 모습이 아니라 등불이나 바구니를 든 모습에 가깝다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 6.311,
+       "input": 4,
+       "output": 533,
+       "cache_read": 54836,
+       "cache_create": 0,
+       "cost_usd": 0.0108216,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-height": "틀림",
+      "e.lyre-hold-natural": "틀림"
+     },
+     "reasons": {
+      "e.spear-height": "창이 사울 어깨(약 y270)보다 아래(y313)로 날아 어깨 높이라고 분명히 확인되지 않음",
+      "e.lyre-hold-natural": "두 손으로 위 가로대를 잡고 울림통이 아래로 매달려 바구니를 든 모습"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.671,
+       "input": 4,
+       "output": 630,
+       "cache_read": 54837,
+       "cache_create": 0,
+       "cost_usd": 0.0117917,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-height": "틀림",
+      "e.lyre-hold-natural": "틀림"
+     },
+     "reasons": {
+      "e.spear-height": "창 자루가 사울의 어깨선(약 y270)보다 눈에 띄게 낮은 가슴 높이(약 y313)로 날아가고, 어깨 높이라고 분명히 말하기 어렵다.",
+      "e.lyre-hold-natural": "다윗이 두 손으로 수금의 위 가로대를 잡고 있고 울림통은 아래로 매달려 있다. 가슴에 안은 모습이 아니라 등불이나 바구니를 든 모습에 가깝다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 7.294,
+       "input": 4,
+       "output": 575,
+       "cache_read": 54836,
+       "cache_create": 0,
+       "cost_usd": 0.011241600000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-height": "틀림",
+      "e.lyre-hold-natural": "틀림"
+     },
+     "reasons": {
+      "e.spear-height": "창이 사울 어깨(y≈270)보다 낮은 가슴 높이(y≈313)로 날아감",
+      "e.lyre-hold-natural": "작은 수금의 울림통이 아래로 매달려 두 손으로 들고 가는 바구니·등불처럼 보이고 가슴에 안은 모습이 아님"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 8.437,
+       "input": 4,
+       "output": 825,
+       "cache_read": 53504,
+       "cache_create": 1332,
+       "cost_usd": 0.0189364,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-height": "맞음",
+      "e.lyre-hold-natural": "틀림"
+     },
+     "reasons": {
+      "e.spear-height": "창 자루가 사울의 어깨 바로 아래 높이(y≈313)에서 수평으로 날아가고, 머리 위도 아니고 뻗은 손(y≈375)보다 높다. 어깨 높이쯤으로 볼 수 있다.",
+      "e.lyre-hold-natural": "다윗이 두 손으로 수금 윗부분을 쥐고 있고 울림통이 아래로 매달려 있다. 가슴이나 옆구리에 붙여 안은 모습이 아니라 등불이나 바구니를 든 것처럼 보인다."
+     }
+    }
+   }
+  }
+ }
+}

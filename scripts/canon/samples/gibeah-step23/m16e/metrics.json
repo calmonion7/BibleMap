@@ -3578,5 +3578,14 @@
    303,
    23
   ]
+ },
+ "verdict": {
+  "answer": "none",
+  "chose": "none",
+  "left": "g:303",
+  "right": "g:23",
+  "memo": "다윗이 수금을 들고 있는 모습아 이상함\n창 높이가 조금 올라가야 하지 않을까? 던질때 팔의높이생각하면말야",
+  "minutes": 2.4,
+  "active_minutes": 2.4
  }
 }
