@@ -2159,6 +2159,78 @@
      }
     }
    }
+  },
+  "approved:authored-saul-gibeah-spear:7": {
+   "group": "B",
+   "src": "/Users/calmonion/Project/BibleMap/scripts/canon/samples/gibeah-step23/m17e/approved-authored-saul-gibeah-spear.png",
+   "reps": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.586,
+       "input": 4,
+       "output": 260,
+       "cache_read": 43952,
+       "cache_create": 10224,
+       "cost_usd": 0.047899199999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "인물과 물건에 모두 얼굴, 옷, 세부 묘사가 있고, 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.652,
+       "input": 4,
+       "output": 272,
+       "cache_read": 43952,
+       "cache_create": 10224,
+       "cost_usd": 0.0480192,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사울, 다윗, 창, 수금, 의자 모두 얼굴·옷·질감이 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.666,
+       "input": 4,
+       "output": 279,
+       "cache_read": 43952,
+       "cache_create": 10224,
+       "cost_usd": 0.0480892,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 액자나 글자도 없다.",
+      "s.no-blob": "사울, 다윗, 창, 수금, 의자 모두 얼굴·옷·질감이 완성돼 있다. 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   }
   }
  }
 }

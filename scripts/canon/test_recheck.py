@@ -124,3 +124,16 @@ class Majority(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ApprovedSource(unittest.TestCase):
+    """task 412 — 국소 편집 승인의 바탕이 plain-words 회차가 아니라 gibeah-step23 시도(steps[0].src)여도 출처를 찾음(recheck.py images가 멈췄음)."""
+
+    def test_gibeah_step23_base(self):
+        f = {"path": "local-edit", "image": "samples/gibeah-step23/m17e/approved-authored-saul-gibeah-spear.png",
+             "steps": [{"end": "paste", "src": "m15/s7.png"}]}
+        r = recheck.source("authored-saul-gibeah-spear", f)
+        self.assertEqual(r["from"], "gibeah-step23 m15 s7 + 국소 편집")
+        self.assertTrue(r["prompt"])
+        self.assertIsNone(r["boxes"])
+

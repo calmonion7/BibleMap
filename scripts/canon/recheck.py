@@ -698,6 +698,14 @@ def source(sid, f):
     """승인 그림의 출처 → {image, prompt, boxes, why} — 생성 묶음 metrics에서 그 시드의 프롬프트·몸 상자를 찾는다."""
     if f.get("path") == "local-edit":   # 국소 편집: 바탕은 plain-words 회차(steps[0].base_src = 「plain-words r2 s5」)
         m = re.match(r"plain-words (\S+) s(\d+)", f["steps"][0].get("base_src", ""))
+        if not m:   # task 412: 기브아 다시 그리기 — 바탕은 gibeah-step23 시도 그림(steps[0].src 「m15/s7.png」), 합성·넣기 편집
+            b = re.match(r"(\w+)/s(\d+)\.png$", f["steps"][0].get("src", ""))
+            if not b:
+                raise SystemExit(f"[Recheck] {sid} 국소 편집 승인의 바탕을 모름: {f['steps'][0]}")
+            mb = json.load(open(os.path.join(HERE, "samples", "gibeah-step23", b.group(1), "metrics.json"), encoding="utf-8"))
+            return {"image": os.path.join(HERE, f["image"]), "prompt": mb.get("prompt"), "boxes": None,
+                    "from": f"gibeah-step23 {b.group(1)} s{b.group(2)} + 국소 편집",
+                    "why_boxes": f"gibeah-step23 {b.group(1)} 기록에 몸 크롭 상자가 없다 — OWLv2 상자는 GPU 단계라 이번 범위 밖"}
         sc = json.load(open(os.path.join(HERE, "samples", "plain-words", "metrics.json")))["rounds"][m.group(1)]["scenes"][sid]
         x = _seed_rec(sc["seeds"], m.group(2))
         return {"image": os.path.join(HERE, f["image"]), "prompt": sc.get("prompt"), "boxes": (x or {}).get("boxes"),

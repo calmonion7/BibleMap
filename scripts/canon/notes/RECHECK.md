@@ -99,41 +99,65 @@
 ## 승인 그림 재검 — 승인 그림 × 그림 규칙
 
 <!-- recheck:images:begin -->
-원장 판 `e09949ef99e7` · 승인 그림 12 · ✅ 통과 · ✗ 실패 · 낡음 = 명세가 바뀌었거나 지금 규칙을 어김 · – 못 잼
+원장 판 `8c95dbfde675` · 승인 그림 12 · ✅ 통과 · ✗ 실패 · 낡음 = 명세가 바뀌었거나 지금 규칙을 어김 · – 못 잼
 
 | 규칙 | 통과 | 실패 | 낡음 | 못 잼 |
 |---|---|---|---|---|
-| `spec.required-fields` | 11 | 0 | 1 | 0 |
-| `spec.whole-fields` | 8 | 0 | 4 | 0 |
-| `spec.verse-elements` | 3 | 0 | 9 | 0 |
-| `spec.no-compromise-words` | 11 | 0 | 1 | 0 |
+| `spec.required-fields` | 5 | 0 | 7 | 0 |
+| `spec.whole-fields` | 5 | 0 | 7 | 0 |
+| `spec.verse-elements` | 2 | 0 | 10 | 0 |
+| `spec.no-compromise-words` | 5 | 0 | 7 | 0 |
 | `spec.scene-all-verses` | 1 | 0 | 11 | 0 |
-| `spec.cast-card-v2` | 11 | 0 | 1 | 0 |
-| `derive.no-hand-prompt` | 9 | 0 | 3 | 0 |
-| `derive.no-bare-head` | 11 | 0 | 1 | 0 |
-| `derive.prop-in-prompt` | 11 | 0 | 1 | 0 |
-| `derive.512-tokens` | 11 | 0 | 1 | 0 |
+| `spec.cast-card-v2` | 5 | 0 | 7 | 0 |
+| `spec.lexicon-link` | 2 | 0 | 7 | 3 |
+| `derive.no-hand-prompt` | 4 | 0 | 8 | 0 |
+| `derive.no-bare-head` | 5 | 0 | 7 | 0 |
+| `derive.prop-in-prompt` | 5 | 0 | 7 | 0 |
+| `derive.512-tokens` | 5 | 0 | 7 | 0 |
 | `judge.j1-items` | 1 | 8 | 0 | 3 |
 | `judge.style` | 0 | 0 | 0 | 12 |
 | `judge.plausibility-adopted` | 11 | 1 | 0 | 0 |
 | `human.face-matched-quality` | 0 | 0 | 0 | 12 |
+| `spec.stage-from-scripture` | 1 | 0 | 11 | 0 |
+| `spec.action-place-on-figure` | 2 | 0 | 7 | 3 |
+| `generate.thrown-guide` | 5 | 0 | 7 | 0 |
+| `generate.guide-backdrop` | 5 | 0 | 7 | 0 |
+| `generate.guide-body-build` | 5 | 0 | 7 | 0 |
+| `generate.dodge-clear` | 5 | 0 | 7 | 0 |
+| `generate.guide-costume-legs` | 5 | 0 | 7 | 0 |
+| `derive.youth-noun` | 4 | 0 | 8 | 0 |
+| `generate.pose-skeleton` | 5 | 0 | 7 | 0 |
+| `generate.figure-scale` | 5 | 0 | 7 | 0 |
+| `derive.no-second-point` | 5 | 0 | 7 | 0 |
+| `generate.youth-height` | 5 | 0 | 7 | 0 |
+| `generate.height-ratio` | 5 | 0 | 7 | 0 |
+| `generate.split-control` | 5 | 0 | 7 | 0 |
+| `derive.prop-size-relative` | 5 | 0 | 7 | 0 |
+| `generate.flight-position` | 5 | 0 | 7 | 0 |
+| `generate.flight-height` | 5 | 0 | 7 | 0 |
+| `derive.empty-hand-open` | 5 | 0 | 7 | 0 |
+| `derive.wall-material` | 5 | 0 | 7 | 0 |
+| `derive.no-inflating-build` | 2 | 0 | 10 | 0 |
+| `derive.prop-size-coverage` | 5 | 0 | 7 | 0 |
+| `derive.crowd-stage` | 5 | 0 | 7 | 0 |
+| `generate.eye-level-perspective` | 5 | 0 | 7 | 0 |
 
-**잰 규칙 모두 통과(실패·낡음 0) 0/12**
+**잰 규칙 모두 통과(실패·낡음 0) 1/12**
 
 | 승인 그림 | 경로 | J1 요소 | 상식 | 낡음 규칙 |
 |---|---|---|---|---|
-| david-gath-achish | local-edit s5 | ✗ 틀림 figures[0].facing | ✅ 걸린 채택 문항 0 | scene-all-verses, no-hand-prompt |
-| david-gibeah-harp | night-pick s11 | ✗ 틀림 figures[0].prop, figures[1].prop | ✅ 걸린 채택 문항 0 | verse-elements, scene-all-verses |
-| david-returns-jerusalem | night-pick s101 | – restyle-r6 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이번 | ✗ 틀림 p.boarding | 없음 |
-| samuel-bethlehem-david-anointing | local-edit s42 | ✗ 틀림 background[0], crowds | ✅ 걸린 채택 문항 0 | whole-fields, scene-all-verses, no-hand-prompt |
-| samuel-ramah-death | night-pick s42 | ✗ 틀림 crowds, figures[0].prop | ✅ 걸린 채택 문항 0 | verse-elements, scene-all-verses |
-| saul-gibeah-spear | night-pick s5 | – 몸 크롭 상자 없음: ['david-boy'] | ✅ 걸린 채택 문항 0 | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, no-hand-prompt, no-bare-head, prop-in-prompt, 512-tokens |
-| saul-gilgal-amalek | night-pick s11 | ✅ 9문항 맞음 | ✅ 걸린 채택 문항 0 | verse-elements, scene-all-verses |
-| saul-gilgal-coronation | attempt a005 s11 | – 단계 사다리 그림에 몸 크롭 상자 기록이 없다 — OWLv2 상자는 GPU 단계라 이번 범위 밖 | ✅ 걸린 채택 문항 0 | verse-elements, scene-all-verses |
-| saul-jabesh-rescue | night-pick s42 | ✗ 틀림 background[0], crowds[0] | ✅ 걸린 채택 문항 0 | verse-elements, scene-all-verses |
-| saul-michmash-battle | night-pick s202 | ✗ 틀림 crowds, figures[1].pose, figures[1].prop | ✅ 걸린 채택 문항 0 | whole-fields, verse-elements, scene-all-verses |
-| saul-mizpah-chosen | night-pick s7 | ✗ 틀림 crowds, figures[0].pose, figures[0].prop, figures[1].faci | ✅ 걸린 채택 문항 0 | whole-fields, verse-elements, scene-all-verses |
-| saul-nob-massacre | night-pick s303 | ✗ 틀림 figures[0].pose, figures[1].prop, figures[2].prop | ✅ 걸린 채택 문항 0 | verse-elements, scene-all-verses |
+| david-gath-achish | local-edit s5 | ✗ 틀림 figures[0].facing | ✅ 걸린 채택 문항 0 | scene-all-verses, no-hand-prompt, stage-from-scripture |
+| david-gibeah-harp | night-pick s11 | ✗ 틀림 figures[0].prop, figures[1].prop | ✅ 걸린 채택 문항 0 | verse-elements, scene-all-verses, stage-from-scripture, youth-noun, no-inflating-build |
+| david-returns-jerusalem | night-pick s101 | – restyle-r6 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이번 | ✗ 틀림 p.boarding | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, lexicon-link, no-hand-prompt, no-bare-head, prop-in-prompt, 512-tokens, stage-from-scripture, action-place-on-figure, thrown-guide, guide-backdrop, guide-body-build, dodge-clear, guide-costume-legs, youth-noun, pose-skeleton, figure-scale, no-second-point, youth-height, height-ratio, split-control, prop-size-relative, flight-position, flight-height, empty-hand-open, wall-material, no-inflating-build, prop-size-coverage, crowd-stage, eye-level-perspective |
+| samuel-bethlehem-david-anointing | local-edit s42 | ✗ 틀림 background[0], crowds | ✅ 걸린 채택 문항 0 | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, lexicon-link, no-hand-prompt, no-bare-head, prop-in-prompt, 512-tokens, stage-from-scripture, action-place-on-figure, thrown-guide, guide-backdrop, guide-body-build, dodge-clear, guide-costume-legs, youth-noun, pose-skeleton, figure-scale, no-second-point, youth-height, height-ratio, split-control, prop-size-relative, flight-position, flight-height, empty-hand-open, wall-material, no-inflating-build, prop-size-coverage, crowd-stage, eye-level-perspective |
+| samuel-ramah-death | night-pick s42 | ✗ 틀림 crowds, figures[0].prop | ✅ 걸린 채택 문항 0 | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, lexicon-link, no-hand-prompt, no-bare-head, prop-in-prompt, 512-tokens, stage-from-scripture, action-place-on-figure, thrown-guide, guide-backdrop, guide-body-build, dodge-clear, guide-costume-legs, youth-noun, pose-skeleton, figure-scale, no-second-point, youth-height, height-ratio, split-control, prop-size-relative, flight-position, flight-height, empty-hand-open, wall-material, no-inflating-build, prop-size-coverage, crowd-stage, eye-level-perspective |
+| saul-gibeah-spear | local-edit s7 | – gibeah-step23 m15 기록에 몸 크롭 상자가 없다 — OWLv2 상자는 GPU 단계라 이번 범위  | ✅ 걸린 채택 문항 0 | 없음 |
+| saul-gilgal-amalek | night-pick s11 | ✅ 9문항 맞음 | ✅ 걸린 채택 문항 0 | verse-elements, scene-all-verses, stage-from-scripture, no-inflating-build |
+| saul-gilgal-coronation | attempt a005 s11 | – 단계 사다리 그림에 몸 크롭 상자 기록이 없다 — OWLv2 상자는 GPU 단계라 이번 범위 밖 | ✅ 걸린 채택 문항 0 | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, lexicon-link, no-hand-prompt, no-bare-head, prop-in-prompt, 512-tokens, stage-from-scripture, action-place-on-figure, thrown-guide, guide-backdrop, guide-body-build, dodge-clear, guide-costume-legs, youth-noun, pose-skeleton, figure-scale, no-second-point, youth-height, height-ratio, split-control, prop-size-relative, flight-position, flight-height, empty-hand-open, wall-material, no-inflating-build, prop-size-coverage, crowd-stage, eye-level-perspective |
+| saul-jabesh-rescue | night-pick s42 | ✗ 틀림 background[0], crowds[0] | ✅ 걸린 채택 문항 0 | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, lexicon-link, no-hand-prompt, no-bare-head, prop-in-prompt, 512-tokens, stage-from-scripture, action-place-on-figure, thrown-guide, guide-backdrop, guide-body-build, dodge-clear, guide-costume-legs, youth-noun, pose-skeleton, figure-scale, no-second-point, youth-height, height-ratio, split-control, prop-size-relative, flight-position, flight-height, empty-hand-open, wall-material, no-inflating-build, prop-size-coverage, crowd-stage, eye-level-perspective |
+| saul-michmash-battle | night-pick s202 | ✗ 틀림 crowds, figures[1].pose, figures[1].prop | ✅ 걸린 채택 문항 0 | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, lexicon-link, no-hand-prompt, no-bare-head, prop-in-prompt, 512-tokens, stage-from-scripture, action-place-on-figure, thrown-guide, guide-backdrop, guide-body-build, dodge-clear, guide-costume-legs, youth-noun, pose-skeleton, figure-scale, no-second-point, youth-height, height-ratio, split-control, prop-size-relative, flight-position, flight-height, empty-hand-open, wall-material, no-inflating-build, prop-size-coverage, crowd-stage, eye-level-perspective |
+| saul-mizpah-chosen | night-pick s7 | ✗ 틀림 crowds, figures[0].pose, figures[0].prop, figures[1].faci | ✅ 걸린 채택 문항 0 | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, lexicon-link, no-hand-prompt, no-bare-head, prop-in-prompt, 512-tokens, stage-from-scripture, action-place-on-figure, thrown-guide, guide-backdrop, guide-body-build, dodge-clear, guide-costume-legs, youth-noun, pose-skeleton, figure-scale, no-second-point, youth-height, height-ratio, split-control, prop-size-relative, flight-position, flight-height, empty-hand-open, wall-material, no-inflating-build, prop-size-coverage, crowd-stage, eye-level-perspective |
+| saul-nob-massacre | night-pick s303 | ✗ 틀림 figures[0].pose, figures[1].prop, figures[2].prop | ✅ 걸린 채택 문항 0 | verse-elements, scene-all-verses, stage-from-scripture, no-inflating-build |
 <!-- recheck:images:end -->
 
 ## 지금 규칙집 통과율과 다음 과제 (2026-10-22 task 396, 원장 판 `e09949ef99e7`)

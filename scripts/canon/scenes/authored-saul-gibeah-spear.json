@@ -217,16 +217,51 @@
   },
   "approved": {
     "final": {
-      "path": "night-pick",
-      "seed": 5,
-      "kind": "base",
-      "image": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s5.png",
+      "path": "local-edit",
+      "seed": 7,
+      "image": "samples/gibeah-step23/m17e/approved-authored-saul-gibeah-spear.png",
+      "steps": [
+        {
+          "end": "paste",
+          "src": "m15/s7.png",
+          "sheet": "m14s/s23.png",
+          "length": 361.2,
+          "box": [
+            457,
+            262,
+            833,
+            305
+          ],
+          "erased": null,
+          "sep": false,
+          "status": "ok"
+        },
+        {
+          "end": "held",
+          "figure": "david-youth",
+          "word": "kinnor-lyre",
+          "crop": [
+            183,
+            310,
+            258
+          ],
+          "box": [
+            227,
+            340,
+            397,
+            538
+          ],
+          "prompt": "Place a wooden lyre in his arms, nearly twice as tall as his head, clutched upright against his chest with both forearms wrapped around its sound box, its top crossbar below his chin, not touching his mouth or face: a small hollow wooden sound box, smaller than a man's torso, with two curved arms rising from the box, joined by a top crossbar, strings from box to crossbar, the two curved arms rising on the left and right of the sound box both clearly visible above his forearms, forming a U-shaped frame. It does not hang from his hands. Only one lyre. Keep his face, hair, clothes, body and legs exactly the same — only his arms and hands may move to hold the lyre — the lighting and the same soft pencil and colored-pencil illustration style.",
+          "status": "ok",
+          "sec": 43.4
+        }
+      ],
       "by": "user",
-      "on": "2026-10-19",
-      "spec_hash": "bf8cfbbb51fe",
-      "rules_version": "14fb4150e572",
-      "prompt_hash": "0706af3dbe75",
-      "prompt_matches_spec": true
+      "on": "2026-10-25",
+      "spec_hash": "bf59d74178c1",
+      "prompt_hash": "7bd31451a650",
+      "rules_version": "8c95dbfde675",
+      "round": "gibeah-step23/m17e"
     }
   },
   "situation": {
