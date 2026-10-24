@@ -408,10 +408,30 @@ def strip_held(prompt, l1_en, l2_en, hands_en):
     return out
 
 
-def held_prompt(look_en, mode="reshape"):
-    """지시 하나 — 쥔 악기를 사전 L2 꼴로(h1e 「지판과 긴 목이 달린 류트」 5/5). mode add = 빈손에 넣기(r17 edit.held-prop-add)."""
+def strip_air(prompt, noun):
+    """task 407 r23(규칙 edit.prop-sheet-paste 넓힘) — 바탕 문구에서 허공 지물 구절만 뺌: 「A {noun} …」로 시작하는 문장 · 「having just ~ his {noun}」 ·
+    「where/out of the path of the … {noun} …」. 빈손·몸짓 문구(fingers open and spread 등)는 남김. m14e: 바탕이 창을 쥔 채 몸 뒤로 그린 4장은 지워도 잔여물."""
+    out = re.sub(r"(?:^|(?<=\. ))A " + noun + r"\b[^.]*\.\s*", "", prompt)
+    out = re.sub(r",\s*having just \w+ (?:his|the|a) (?:[\w-]+ )?" + noun + r"\b", "", out)
+    out = re.sub(r"\s+(?:where|out of the path of) the (?:[\w-]+ )?" + noun + r"\b[\w ]*?(?=[,.])", "", out)
+    if re.search(r"\b" + noun + r"\b", out):
+        raise SystemExit(f"[LocalEdit] 바탕 문구에 {noun!r}이 남음: {out}")
+    return out.strip()
+
+
+def held_size_en(size):
+    """r23 — 쥔 지물 크기를 크롭 안에 보이는 팔에 견준 문구로(edit.size-in-crop · 크기 기준표 body.arm): 사전 size.ratio(어른 키 비) ÷ 팔 길이."""
+    import scale as S
+    k = size["ratio"] * S.ref(size["ref"]) / S.v("body.arm")
+    word = "about half" if 0.4 <= k < 0.7 else "about two thirds" if 0.6 <= k < 0.85 else f"about {k:.1f} times"
+    return f"{word} as tall as his whole arm is long"
+
+
+def held_prompt(look_en, mode="reshape", size_en=None):
+    """지시 하나 — 쥔 악기를 사전 L2 꼴로(h1e 「지판과 긴 목이 달린 류트」 5/5). mode add = 빈손에 넣기(r17 edit.held-prop-add).
+    size_en(r23 held_size_en) — 크롭 안 팔에 견준 크기(m14e s7 수금 약 45px · 사전 0.25 × 어른 키 ≈ 90px → 수금 틀 「작아 U자가 안 보임」)."""
     if mode == "add":
-        return (f"Place a small wooden lyre in his hands, held against his chest: {look_en}, the two curved arms rising on the left and "
+        return (f"Place a small wooden lyre in his hands, held against his chest{', ' + size_en if size_en else ''}: {look_en}, the two curved arms rising on the left and "
                 f"right of the sound box both clearly visible, forming a U-shaped frame. {KEEP_HELD}")
     return (f"Remove the long neck, fingerboard, tuning pegs and any hanging cord from the instrument he is holding, turning it into "
             f"a small wooden lyre: {look_en}, the two curved arms rising on the left and right of the sound box both clearly visible, "

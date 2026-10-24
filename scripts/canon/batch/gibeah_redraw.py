@@ -53,6 +53,18 @@ def save(m):
         json.dump(m, fh, ensure_ascii=False, indent=1)
 
 
+def guide_spec(spec):
+    """r23 air_by_paste: 바탕 가이드에서 허공 지물 꼴을 뺀 명세 사본(명세 자체·구역은 그대로 — 합성 자리는 명세 구역에서 읽음)."""
+    ap = FX.get("air_by_paste")
+    if not ap:
+        return spec
+    import copy
+    s = copy.deepcopy(spec)
+    for k in ("depth", "shape"):
+        s["guide"][k].pop(ap["region"], None)
+    return s
+
+
 def guide_ok(spec):
     """명세에 guide가 있으면 고정 절 guide 파일이 그 명세에서 다시 그린 가이드와 바이트까지 같아야 한다(빠뜨림·낡은 가이드 방지)."""
     if "guide" not in spec:
@@ -67,7 +79,7 @@ def guide_ok(spec):
         if not FX.get(key):
             sys.exit(f"[GibeahRedraw] 명세 guide에 맞는 고정 절 {key}가 없다")
         buf = io.BytesIO()
-        make_guide.make(spec, stage).save(buf, format="PNG")
+        make_guide.make(guide_spec(spec), stage).save(buf, format="PNG")
         with open(os.path.join(HERE, FX[key]), "rb") as fh:
             if fh.read() != buf.getvalue():
                 sys.exit(f"[GibeahRedraw] 고정 절 {key} {FX[key]}가 지금 명세의 가이드와 다르다 — make_guide로 다시 그릴 것")
@@ -152,8 +164,8 @@ def edit_prop():
             a0, b0, a1, b1 = spec["regions"][hd["figure"]]
             pts, _ = MG.pose_points((a0 * MG.W, b0 * MG.H, a1 * MG.W, b1 * MG.H), spec["guide"]["pose"][hd["figure"]])
             crop, box = GL.held_box([(pts[i][0] / MG.W, pts[i][1] / MG.H) for i in (4, 7)], w, h)
-            hlook = next(x for x in words if x["id"] == hd["word"])["look"]["L2"]["en"]
-            prompt = GL.held_prompt(hlook, hd.get("mode", "reshape"))
+            hw = next(x for x in words if x["id"] == hd["word"])["look"]
+            prompt = GL.held_prompt(hw["L2"]["en"], hd.get("mode", "reshape"), GL.held_size_en(hw["size"]) if hd.get("size") else None)
             src0, out = img(s), os.path.join(OUT, f"s{s}-held.png")
             shutil.copyfile(src0, os.path.join(OUT, f"s{s}-tips.png"))
             r = GL.edit(os.path.join(OUT, f"s{s}-tips.png"), crop, box, None, e["seed"], out, prompt=prompt)
@@ -188,7 +200,7 @@ def paste_step(spec, wl, e, src, out, w, h):
     size = wl["size"]
     length = size["ratio"] * S.ref(size["ref"]) * (R[fl["from"]][3] - R[fl["from"]][1]) * h / hr
     x0, y0, x1, y1 = R[e["region"]]
-    mp = GL.measure_prop(src, R[e["region"]], w, h, body_left(spec, e["region"]))
+    mp = GL.measure_prop(src, R[e["region"]], w, h, body_left(spec, e["region"])) if e.get("base_has_prop", True) else None   # r23 바탕에 지물 없음 — 재지도 지우지도 않음
     a = GL.erase_prop(src, mp, w, h) if mp else __import__("numpy").asarray(Image.open(src).convert("RGB")).copy()
     box = GL.paste_prop(a, sheet, sm, (x0 * w, (y0 + y1) / 2 * h), length)
     rec = {"end": "paste", "src": os.path.relpath(src, os.path.dirname(OUT)), "sheet": os.path.relpath(sheet, os.path.dirname(OUT)),
@@ -256,6 +268,9 @@ def gen():
         words = json.load(open(os.path.join(HERE, "..", "..", "data", "scripture_words", "words.json"), encoding="utf-8"))["words"]
         look = next(w for w in words if w["id"] == hb["word"])["look"]
         prompt = GL.strip_held(prompt, look["L1"]["en"], look["L2"]["en"], hb["hands"])
+    if FX.get("air_by_paste"):   # r23: 허공 지물은 바탕에서 빼고(문구 + 가이드 꼴) 빈 벽에 합성(edit.prop-sheet-paste)
+        import gen_local_edit as GL
+        prompt = GL.strip_air(prompt, FX["air_by_paste"]["noun"])
     w, h = FX["size"]
     cn = {"control": os.path.join(HERE, FX["guide"]), "scale": FX["cn"]["scale"], "cn_steps": FX["cn"]["cn_steps"]} if FX.get("guide") else {}
     if FX.get("guide2"):   # h1 스텝별 가이드: 앞 cn_steps는 guide(뼈대), 다음 cn_steps2는 guide2(깊이)

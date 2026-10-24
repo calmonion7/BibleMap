@@ -843,6 +843,23 @@ class EditPropSheetPaste(unittest.TestCase):
         m = (500, 820, 314.5, 7, 14.0, {"sep": False})
         self.assertLessEqual(GL._tail_stop(a, m, 1216, 294, 335), 905)
 
+    def test_strip_air_keeps_empty_hand(self):
+        """r23 — 바탕 문구에서 창 구절만 빠지고 빈손·몸짓 문구(derive.empty-hand-open)는 남음."""
+        import derive_scene as ds
+        import gen_local_edit as GL
+        p = GL.strip_air(ds.route_prompt(gibeah()), "spear")
+        self.assertNotIn("spear", p)
+        self.assertIn("his fingers open and spread", p)
+        self.assertIn("his empty throwing arm", p)
+        self.assertTrue(p.endswith("facing toward the left edge of the picture."))
+
+    def test_held_size_from_scale_table(self):
+        """r23 — 수금 넣기 크기 = 사전 ratio 0.25 ÷ 기준표 팔 길이 0.44 ≈ 0.57 → 팔 길이의 절반쯤(크롭 안에 보이는 것에 견줌)."""
+        import gen_local_edit as GL
+        size = recheck._lexicon()["kinnor-lyre"]["look"]["size"]
+        self.assertEqual(GL.held_size_en(size), "about half as tall as his whole arm is long")
+        self.assertIn("about half as tall", GL.held_prompt("x", "add", GL.held_size_en(size)))
+
     def test_back_edge_is_tunic_right_end(self):
         import numpy as np
         import gen_local_edit as GL
