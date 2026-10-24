@@ -33,6 +33,13 @@ class Ledger(unittest.TestCase):
     def test_every_function_rule_has_runner(self):
         recheck.spec_rules(self.L)   # 실행기 없는 함수 규칙이면 SystemExit
 
+    def test_generate_check_function_not_silently_dropped(self):
+        """generate 층은 SPEC_CHECKS에 없으면 spec_rules가 SystemExit 없이 조용히 뺀다 — 검사 함수(*_errors)를 단 생성 규칙은
+        실행기에 등록돼 있어야 함(task 409 회고: perspective_errors가 빠질 뻔함). 관문 자체(require_pass)·폐기 규칙은 제외."""
+        miss = [r["id"] for r in self.L["rules"] if r["layer"] == "generate" and not r.get("retired")
+                and r["check"].endswith("_errors") and r["check"] not in recheck.SPEC_CHECKS]
+        self.assertEqual(miss, [])
+
 
 class BannedWords(unittest.TestCase):
     def test_catches_word_anywhere_in_spec_text(self):
