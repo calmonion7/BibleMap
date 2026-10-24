@@ -34,7 +34,7 @@ for _q in FX.get("style", []) + FX.get("elements", []):   # task 408 S4: 문항 
     _q["what"] = S.fill(_q["what"])
 LINE = "통과" if TRY else "후보"   # 노트 결론 줄 머리 — task 400 DoD는 「통과: N/8」
 SID = FX["scene"]
-QS = {"S": FX["style"], "E": FX["elements"]}
+QS = {"S": FX.get("style", []), "E": FX.get("elements", [])}   # r22 창 한 장(sheet) 시도는 문항 없음
 
 
 def img(s):
@@ -123,6 +123,11 @@ def edit_prop():
         steps = []
         for i, end in enumerate(ends):
             out = img(s) if i == len(ends) - 1 else os.path.join(OUT, f"s{s}-{end}.png")
+            if end == "paste":   # r22 edit.prop-sheet-paste: 바탕 창을 지우고 따로 그린 한 장의 창을 기준표 길이로 곱하기 합성
+                steps.append(paste_step(spec, wl, e, src, out, w, h))
+                print(f"[GibeahRedraw] 합성 s{s} {steps[-1]}", flush=True)
+                src = out
+                continue
             crop, box = GL.prop_box(spec["regions"][e["region"]], w, h, end, head_top(spec, e["region"]), body_left(spec, e["region"]))
             prompt = GL.prop_prompt(look, end, part)
             parts = (wl.get("size") or {}).get("parts") or {}
@@ -139,6 +144,8 @@ def edit_prop():
             steps.append({"end": end, "src": os.path.relpath(src, os.path.dirname(OUT)), "crop": crop, "box": box, "prompt": prompt, "measured": list(mp[:5]) if mp else None, **r})
             print(f"[GibeahRedraw] 편집 s{s} {end} {r}", flush=True)
             src = out
+        if not ends:   # r21: 창 촉 크기를 가이드(tip scale)가 잡으면 창 끝 편집 없이 쥔 지물만
+            shutil.copyfile(src, img(s))
         hd = e.get("held")   # h2: 쥔 지물(뼈대 인물 두 손목 자리) — 창 끝 편집 뒤에 차례로
         if hd:
             import make_guide as MG
@@ -157,7 +164,82 @@ def edit_prop():
     save(m)
 
 
+def best_sheet(try_name, exclude=()):
+    """창 한 장 시도(sheet)에서 단면 점수가 가장 좋은 장 → (경로, 잰 값). 통과 장이 없으면 멈춤."""
+    sm = json.load(open(os.path.join(HERE, "samples", "gibeah-step23", try_name, "metrics.json"), encoding="utf-8"))["sheet"]
+    m = json.load(open(os.path.join(HERE, "samples", "gibeah-step23", try_name, "metrics.json"), encoding="utf-8"))
+    judged = lambda k: all(maj(v) == "맞음" for v in [[(r.get("answers") or {}).get(q) for r in (m["answers"].get(f"g:{k}") or {}).get("E", {}).values()]
+                                                     for q in m.get("sheet_qs", [])])   # 단면 통과 장에 창 문항(생김새)도 다수결 맞음
+    ok = sorted((v["score"], int(k)) for k, v in sm.items() if v["score"] is not None and judged(k) and k not in exclude)   # exclude = 고정 절 sheet_exclude(사유 기록한 실행자 눈 제외)
+    if not ok:
+        sys.exit(f"[GibeahRedraw] {try_name} 창 한 장 통과 없음 — 합성 안 함")
+    k = str(ok[0][1])
+    return os.path.join(os.path.dirname(OUT), try_name, f"s{k}.png"), sm[k]["m"] | {"seed": int(k)}
+
+
+def paste_step(spec, wl, e, src, out, w, h):
+    """r22 — 촉 끝 = 명세 지물 구역 왼끝(guide.flight 자리) · 길이 = 사전 size.ratio × 기준 길이 × 던진 인물 구역 키 ÷ 그 인물 키 등급(크기 기준표)."""
+    import gen_local_edit as GL
+    from PIL import Image
+    import scale as S
+    R, fl = spec["regions"], spec["guide"]["flight"]
+    sheet, sm = best_sheet(e["sheet"], e.get("sheet_exclude", {}))
+    hr = dict(S.standing(spec))[fl["from"]]
+    size = wl["size"]
+    length = size["ratio"] * S.ref(size["ref"]) * (R[fl["from"]][3] - R[fl["from"]][1]) * h / hr
+    x0, y0, x1, y1 = R[e["region"]]
+    mp = GL.measure_prop(src, R[e["region"]], w, h, body_left(spec, e["region"]))
+    a = GL.erase_prop(src, mp, w, h) if mp else __import__("numpy").asarray(Image.open(src).convert("RGB")).copy()
+    box = GL.paste_prop(a, sheet, sm, (x0 * w, (y0 + y1) / 2 * h), length)
+    rec = {"end": "paste", "src": os.path.relpath(src, os.path.dirname(OUT)), "sheet": os.path.relpath(sheet, os.path.dirname(OUT)),
+           "length": round(length, 1), "box": list(box), "erased": list(mp[:5]) if mp else None, "sep": bool(mp and mp[5]["sep"]), "status": "ok"}
+    if mp and not mp[5]["sep"]:   # 쥔 채 그려진 바탕 창 — 팔 앞 멈춤(stop) 오른쪽 띠의 남은 토막을 klein 지시 하나로 지움
+        Image.fromarray(a).save(out[:-4] + "-pasted.png")
+        sx, (by0, by1) = mp[5]["stop"], mp[5]["band"]
+        sbox = (sx - 6, by0, min(w, sx + 140), by1)
+        rec["stub"] = {"box": list(sbox), **GL.edit(out[:-4] + "-pasted.png", GL.crop_for(sbox, w, h), sbox, None, e["seed"], out[:-4] + "-front.png", prompt=GL.stub_prompt(), mask_shape="rect")}
+        bx = GL.back_edge(a, mp, R[fl["from"]][0] * w, w)   # 쥔 채 몸 뒤로 지나간 바탕 창의 등 뒤 토막 — 몸 뒤 가장자리 둘레 작은 상자
+        if bx:
+            cy = mp[2]
+            bbox = (bx - 25, round(cy - 22), min(w, bx + 45), round(cy + 22))
+            rec["back_stub"] = {"box": list(bbox), **GL.edit(out[:-4] + "-front.png", GL.crop_for(bbox, w, h), bbox, None, e["seed"], out, prompt=GL.back_stub_prompt(), mask_shape="rect")}
+        else:
+            shutil.copyfile(out[:-4] + "-front.png", out)
+    else:
+        Image.fromarray(a).save(out)
+    return rec
+
+
+def gen_sheet():
+    """r22 — 빈 종이 한 장에 지물 하나만(사전 부위 크기 깊이 가이드) 시드마다 그리고 단면을 잼(GL.sheet_measure)."""
+    import gen_local_edit as GL
+    import run_scene
+    sh = FX["sheet"]
+    words = json.load(open(os.path.join(HERE, "..", "..", "data", "scripture_words", "words.json"), encoding="utf-8"))["words"]
+    wl = next(x for x in words if x["id"] == sh["word"])["look"]
+    parts = wl["size"]["parts"]
+    os.makedirs(OUT, exist_ok=True)
+    guide = os.path.join(OUT, "_sheet_guide.png")
+    GL.sheet_guide(parts).convert("RGB").save(guide)
+    prompt = sh["prompt"].replace("{L2}", wl["L2"]["en"])
+    jobs = [{"prompt": prompt, "seed": s, "w": GL.SHEET_W, "h": GL.SHEET_H, "out": img(s), "control": guide, "scale": sh["cn"]["scale"],
+             "cn_steps": sh["cn"]["cn_steps"]} for s in FX["seeds"] if not os.path.exists(img(s))]
+    if jobs:
+        run_scene.gen_zimage(jobs, OUT, "gencn")
+    m = load()
+    m["prompt"] = prompt
+    m["sheet_qs"] = [q["id"] for q in QS["E"]]
+    m["sheet"] = {}
+    for s in FX["seeds"]:
+        score, mm = GL.sheet_measure(img(s), parts)
+        m["sheet"][str(s)] = {"score": None if score is None else round(score, 4), "m": mm}
+        print(f"[GibeahRedraw] 한 장 s{s} 점수 {score} {mm}", flush=True)
+    save(m)
+
+
 def gen():
+    if FX.get("sheet"):
+        return gen_sheet()
     if FX.get("edit"):
         return edit_prop()
     import recheck
@@ -211,7 +293,7 @@ def ask(m, s, kind, rep):
 
 def judge(workers=8):
     m = load()
-    todo = [(s, k, r) for s in FX["seeds"] for k in QS for r in range(1, FX["reps"] + 1)
+    todo = [(s, k, r) for s in FX["seeds"] for k in QS if QS[k] for r in range(1, FX["reps"] + 1)
             if not ((m["answers"].get(f"g:{s}") or {}).get(k, {}).get(str(r)) or {}).get("answers")]
     print(f"[GibeahRedraw] 판정 {len(todo)}건", flush=True)
     with ThreadPoolExecutor(workers) as ex:

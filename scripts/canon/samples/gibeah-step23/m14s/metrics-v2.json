@@ -1,0 +1,1208 @@
+{
+ "answers": {
+  "g:42": {
+   "E": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 7.385,
+       "input": 4,
+       "output": 660,
+       "cache_read": 45292,
+       "cache_create": 9888,
+       "cost_usd": 0.050689200000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 앞끝에 잎 모양 쇠 촉이 하나 있다. 촉은 창 길이의 4분의 1 정도라 과하게 크지 않다. 칼자루나 코등이 같은 장식은 없다.",
+      "e.spear-uniform": "자루가 처음부터 끝까지 굵기·색·결이 같고 중간에 이음매나 마디가 없다.",
+      "e.spear-tip-attached": "촉이 쇠 고리 모양 소켓으로 자루에 끼워져 있다. 명암과 두께가 표현되어 있어 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝은 자루 굵기와 비슷한 작고 둥근 쇠 마개다. 옆으로 벌어진 날이나 미늘이 없고 화살처럼 보이지도 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 8.106,
+       "input": 4,
+       "output": 664,
+       "cache_read": 45292,
+       "cache_create": 10047,
+       "cost_usd": 0.0513652,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 앞끝에 잎 모양 쇠 촉이 하나 있고, 길이에 비해 지나치게 크지 않다. 칼자루나 코등이 같은 장식은 없다.",
+      "e.spear-uniform": "자루가 처음부터 끝까지 굵기·색·결이 같다. 이음매나 마디는 없다. 촉 바로 뒤의 작은 쇠 고리는 촉 쪽 장식으로 보여 자루 이음매로 치지 않았다.",
+      "e.spear-tip-attached": "촉에 두께와 음영, 중앙 능선이 있고 쇠 고리로 자루에 끼워져 있다. 납작한 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝은 자루 굵기와 비슷한 작은 둥근 쇠 물미다. 옆으로 벌어진 날이나 미늘이 없고 화살처럼 보이지도 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 9.656,
+       "input": 4,
+       "output": 562,
+       "cache_read": 45292,
+       "cache_create": 9888,
+       "cost_usd": 0.049709199999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 앞에 잎 모양 쇠 촉이 하나 있고, 크기는 창 길이에 비해 알맞다. 뒤끝은 작은 둥근 쇠 물미이고 칼자루나 코등이는 없다.",
+      "e.spear-uniform": "자루가 처음부터 끝까지 굵기, 색, 결이 같고 중간에 이음매나 마디가 없다. 촉 쪽에 쇠 고리가 하나 있지만 자루 중간이 아니라 촉과 만나는 자리다.",
+      "e.spear-tip-attached": "촉이 두께와 음영이 있는 쇠로 그려져 있고, 쇠 고리를 거쳐 자루에 끼워져 있다. 납작한 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝은 자루 굵기와 비슷한 작은 둥근 쇠 물미이고, 옆으로 벌어진 날이나 미늘이 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 5.924,
+       "input": 4,
+       "output": 539,
+       "cache_read": 55180,
+       "cache_create": 0,
+       "cost_usd": 0.010916,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 끝에 잎 모양 쇠 촉 하나가 달렸고 자루 길이에 비해 과하게 크지 않다. 뒤끝의 작은 물미는 앞 촉만 한 잎 모양이 아니다. 칼자루나 코등이 장식은 없다.",
+      "e.spear-uniform": "자루의 굵기·색·결이 처음부터 끝까지 일정하다. 중간에 이음매나 마디는 보이지 않는다.",
+      "e.spear-tip-attached": "촉이 두께와 음영이 있는 쇠로 보이고, 작은 쇠 고리가 있는 자루 끝에 끼워져 있다. 종이 스티커처럼 납작하지 않다.",
+      "e.spear-back-cap": "뒤끝은 자루 굵기와 비슷한 작고 둥근 쇠 물미다. 양옆으로 벌어진 날이나 미늘은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 7.262,
+       "input": 4,
+       "output": 655,
+       "cache_read": 55339,
+       "cache_create": 0,
+       "cost_usd": 0.0120919,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 자루 앞끝에 잎 모양 쇠 촉이 하나 있고 크기도 알맞다. 뒤끝은 작은 물미이고 칼자루나 코등이 장식은 없다.",
+      "e.spear-uniform": "자루가 처음부터 끝까지 굵기·색·결이 같은 막대이고, 중간에 이음매나 마디는 없다. 촉 바로 뒤에 작은 쇠 고리가 하나 있지만 자루 중간이 아니라 촉과 만나는 부분이다.",
+      "e.spear-tip-attached": "촉에 두께와 음영이 있고 쇠 고리로 자루에 끼워져 있어, 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝은 자루 굵기와 비슷한 작고 둥근 쇠 물미이다. 양옆으로 벌어진 날이나 미늘은 없다."
+     }
+    }
+   }
+  },
+  "g:11": {
+   "E": {
+    "4": {
+     "tries": [
+      {
+       "seconds": 7.891,
+       "input": 4,
+       "output": 726,
+       "cache_read": 45292,
+       "cache_create": 9888,
+       "cost_usd": 0.0513492,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 앞에 잎 모양 쇠 촉이 하나 있고, 길이에 비해 지나치게 크지 않다. 뒤끝은 작은 둥근 물미이고, 칼자루나 코등이 장식은 없다.",
+      "e.spear-uniform": "자루는 굵기·색·결이 한결같다. 이음 고리는 촉 쪽 소켓 하나뿐이고, 자루 중간에는 이음매나 마디가 없다.",
+      "e.spear-tip-attached": "촉이 쇠 소켓과 놋쇠 고리로 자루에 끼워져 있다. 음영과 가운데 능선이 있어 두께가 느껴지고, 종이 스티커처럼 납작하지 않다.",
+      "e.spear-back-cap": "뒤끝은 자루 굵기와 비슷한 작은 둥근 쇠 물미이다. 양옆으로 벌어진 날이나 미늘이 없어 화살촉처럼 보이지 않는다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 8.106,
+       "input": 4,
+       "output": 767,
+       "cache_read": 45292,
+       "cache_create": 9888,
+       "cost_usd": 0.0517592,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 앞끝에 잎 모양 쇠 촉이 하나 있고, 크기는 창 전체 길이에 비해 과하지 않다. 칼자루나 코등이 장식은 없다.",
+      "e.spear-uniform": "자루가 한 가지 굵기·색·나뭇결로 이어지고, 자루 중간에는 이음매나 마디가 없다. 황동 고리는 촉 쪽 끝에만 있다.",
+      "e.spear-tip-attached": "촉에 음영과 두께감이 있고, 황동 고리가 달린 소켓에 끼워져 있다. 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝은 작고 둥근 쇠 물미이고 앞 촉보다 훨씬 작다. 양옆으로 벌어진 날이나 미늘은 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 8.609,
+       "input": 4,
+       "output": 860,
+       "cache_read": 45292,
+       "cache_create": 9888,
+       "cost_usd": 0.0526892,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 자루 앞에 잎 모양 촉이 하나 있고 크기도 알맞다. 뒤끝에 앞 촉만 한 촉은 없고 칼자루나 코등이 장식도 없다.",
+      "e.spear-uniform": "자루 중간에는 색·굵기·결이 바뀌는 곳이 없다. 이음 고리는 촉과 뒤끝 두 곳뿐이다.",
+      "e.spear-tip-attached": "촉에 음영과 두께가 있고 쇠 깃에 끼워져 있어 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝이 둥글고 불룩한 손잡이 마개 같은 모양이라 자루 굵기보다 눈에 띄게 굵다. 가늘고 짧은 물미로 보기 어렵다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 9.08,
+       "input": 4,
+       "output": 956,
+       "cache_read": 45292,
+       "cache_create": 9888,
+       "cost_usd": 0.053649199999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 끝에 잎 모양 쇠 촉 하나가 달렸고 크기도 알맞다. 칼자루나 코등이는 없다. 뒤끝 물미는 앞 촉보다 훨씬 작다.",
+      "e.spear-uniform": "자루가 한 가지 굵기·색·나뭇결로 고르게 이어진다. 양끝의 얇은 금속 고리는 자루 이음매가 아니라 촉과 물미를 거는 부분으로 보인다.",
+      "e.spear-tip-attached": "촉에 중앙 능선과 음영이 있어 두께 있는 쇠로 보이고, 금속 고리로 자루에 끼워져 있다. 종이를 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝이 둥근 혹 모양이다. 그 지름이 자루보다 눈에 띄게 굵어 '자루 굵기를 넘지 않는 가늘고 짧은 물미' 조건에 분명히 맞는다고 확인되지 않는다. 날이나 미늘이 벌어진 것은 아니다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 9.982,
+       "input": 4,
+       "output": 972,
+       "cache_read": 45292,
+       "cache_create": 9888,
+       "cost_usd": 0.0538092,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 자루 앞끝에 잎 모양 쇠 촉이 하나 있고, 크기는 창 길이에 비해 알맞다. 칼자루나 코등이 장식은 없다.",
+      "e.spear-uniform": "자루가 처음부터 끝까지 굵기·색·나뭇결이 같고, 중간에 이음매나 마디는 없다.",
+      "e.spear-tip-attached": "촉에 두께와 음영이 있고, 놋쇠 고리가 달린 소켓에 끼워져 있어 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝이 둥근 놋쇠 혹처럼 부풀어 자루보다 눈에 띄게 굵다. 촉보다 작고 미늘은 없지만, '자루 굵기를 넘게 벌어지지 않는 가늘고 짧은 물미' 조건에는 분명히 맞지 않는다."
+     }
+    }
+   }
+  },
+  "g:7": {
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 10.507,
+       "input": 4,
+       "output": 1009,
+       "cache_read": 45292,
+       "cache_create": 10046,
+       "cost_usd": 0.054811200000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "틀림",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "촉이 양옆으로 뒤로 젖혀진 미늘이 있어 잎 모양보다 화살촉에 가깝다. 촉 바로 뒤에는 금속 고리와 주황 띠 장식도 있다.",
+      "e.spear-uniform": "촉 쪽에 주황색 띠와 쇠 고리가 있고, 뒤끝 쪽은 자루가 굵어지며 벌어져서 한 가지 굵기·색으로 이어지지 않는다.",
+      "e.spear-tip-attached": "촉에 두께와 음영이 있고 쇠 고리에 끼워져 있어 종이 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝의 둥근 쇠 마개는 앞 촉보다 훨씬 작고 날이나 미늘이 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 10.513,
+       "input": 4,
+       "output": 1028,
+       "cache_read": 45292,
+       "cache_create": 10047,
+       "cost_usd": 0.0550052,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "틀림",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-shape": "촉이 화살촉처럼 뒤쪽으로 뻗은 미늘 모양이라 곧은 잎 모양 촉이라고 확신하기 어렵다.",
+      "e.spear-uniform": "촉 바로 뒤에 금색 고리가 있고, 자루 뒤쪽이 점점 굵어져 한 가지 굵기로 이어지지 않는다.",
+      "e.spear-tip-attached": "촉에 음영과 두께가 있고 쇠 칼라로 자루에 끼워져 있어 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝의 둥근 쇠 마개가 자루보다 굵게 부풀어 있어 가늘고 짧은 물미라고 보기 어렵다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 11.046,
+       "input": 4,
+       "output": 962,
+       "cache_read": 55339,
+       "cache_create": 0,
+       "cost_usd": 0.015161899999999999,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "틀림",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-shape": "촉이 양옆으로 벌어진 화살촉 모양이고 창 길이에 비해 큼. 촉 뒤에 쇠 고리와 주황 띠 장식도 붙어 있음.",
+      "e.spear-uniform": "촉 쪽에 주황 띠와 쇠 고리 이음매가 있고, 뒤쪽 자루는 끝으로 갈수록 굵어져 굵기가 고르지 않음.",
+      "e.spear-tip-attached": "촉에 음영이 있어 두께가 느껴지고, 쇠 고리에 끼워진 모양이라 오려 붙인 스티커로 보이지 않음.",
+      "e.spear-back-cap": "뒤끝의 둥근 쇠 마개가 자루 굵기보다 넓게 부풀어 있어 가늘고 짧은 물미라고 보기 어려움."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 11.599,
+       "input": 4,
+       "output": 1106,
+       "cache_read": 55339,
+       "cache_create": 0,
+       "cost_usd": 0.016601900000000003,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "틀림",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "촉이 잎 모양이라기보다 양옆으로 뒤로 젖혀진 날개가 있는 화살촉·삽 모양이고, 창 전체 길이에 비해 꽤 크다(약 19%).",
+      "e.spear-uniform": "촉 바로 뒤에 금색 고리 띠가 있고, 자루가 뒤끝으로 갈수록 눈에 띄게 굵어져 한 가지 굵기로 이어지지 않는다.",
+      "e.spear-tip-attached": "촉에 두께감과 명암이 있고 쇠 이음 고리(깃)로 자루에 끼워져 있어 납작한 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝은 둥근 돔 모양의 작은 쇠 물미이고 앞 촉보다 훨씬 작으며, 양옆으로 벌어진 날이나 미늘이 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 12.844,
+       "input": 4,
+       "output": 993,
+       "cache_read": 46625,
+       "cache_create": 8714,
+       "cost_usd": 0.0494565,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "틀림",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-shape": "촉이 잎 모양이라기보다 양옆으로 뒤로 젖혀진 날개(미늘)가 있는 화살촉·삽 모양에 가깝다. 촉 뒤에 쇠 고리와 주황색 띠도 있다.",
+      "e.spear-uniform": "자루가 뒤끝 쪽으로 갈수록 굵어지며 벌어지고, 촉 쪽에는 주황색 띠가 있어 굵기와 색이 일정하지 않다.",
+      "e.spear-tip-attached": "촉에 두께와 음영, 가운데 홈이 있고 쇠 고리로 자루에 끼워져 있어 종이 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝의 둥근 쇠 마개가 자루보다 굵게 부풀어 있어서, 자루 굵기를 넘지 않는 가늘고 짧은 물미라고 보기 어렵다."
+     }
+    }
+   }
+  },
+  "g:23": {
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 10.308,
+       "input": 4,
+       "output": 939,
+       "cache_read": 45292,
+       "cache_create": 10047,
+       "cost_usd": 0.054115199999999995,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "틀림",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-shape": "촉 양옆이 날개처럼 뻗어 잎 모양이라기보다 화살촉·삽 모양에 가깝다. 뒤끝에는 물미 대신 둥근 공 모양 마개가 달려 있다.",
+      "e.spear-uniform": "자루는 촉 쪽 고리를 빼면 굵기·색·결이 한결같다. 자루 중간에는 이음매가 없다.",
+      "e.spear-tip-attached": "촉에 두께와 음영이 있고 쇠 고리로 자루에 끼워져 있어 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝이 가는 쇠 물미가 아니라 자루보다 굵게 부푼 둥근 공 모양 마개다. 물미로 보기 어렵다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.64,
+       "input": 4,
+       "output": 562,
+       "cache_read": 54006,
+       "cache_create": 1174,
+       "cost_usd": 0.0157246,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 앞에 잎 모양 쇠 촉이 하나 달려 있다. 촉은 창 길이에 비해 크지 않다. 칼자루나 코등이 장식은 없다.",
+      "e.spear-uniform": "자루가 처음부터 끝까지 같은 굵기·색·결이다. 자루 중간에 이음매나 마디는 없다. 촉 쪽의 작은 쇠 고리는 촉과 자루를 잇는 부분이라 자루 이음매로 보지 않았다.",
+      "e.spear-tip-attached": "촉에 두께감과 음영이 있고, 쇠 고리로 자루에 끼워져 있다. 종이를 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝은 자루 굵기와 비슷한 작은 둥근 쇠 물미다. 옆으로 벌어진 날이나 미늘은 없다. 화살촉처럼 보이지도 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 10.174,
+       "input": 4,
+       "output": 1003,
+       "cache_read": 54006,
+       "cache_create": 1332,
+       "cost_usd": 0.0207666,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 앞에 잎 모양 쇠 촉이 하나 있고 크기도 알맞다. 칼자루나 코등이는 없다.",
+      "e.spear-uniform": "자루는 굵기, 색, 결이 처음부터 끝까지 고르다. 중간에 이음매가 없다.",
+      "e.spear-tip-attached": "촉에 음영과 두께가 있고 쇠 고리 이음으로 자루에 끼워져 있다. 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝이 자루보다 굵게 부푼 둥근 공 모양이다. 가늘고 짧은 물미가 아니라 칼 손잡이 끝장식처럼 보인다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 11.048,
+       "input": 4,
+       "output": 1095,
+       "cache_read": 55339,
+       "cache_create": 0,
+       "cost_usd": 0.0164919,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 자루 끝에 잎 모양 쇠 촉 하나가 달렸고, 길이에 비해 과하게 크지 않다. 코등이나 손잡이 장식은 없다.",
+      "e.spear-uniform": "자루는 처음부터 끝까지 굵기·색·결이 같다. 고리는 촉 이음부에만 있고 자루 중간에는 없다.",
+      "e.spear-tip-attached": "촉에 입체감과 음영이 있고 쇠 고리로 자루에 끼워져 있어 종이 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝이 자루보다 굵게 부푼 둥근 금속 공으로 끝난다. 가늘고 짧은 물미가 아니라 칼 자루머리처럼 보인다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 11.48,
+       "input": 4,
+       "output": 927,
+       "cache_read": 55339,
+       "cache_create": 0,
+       "cost_usd": 0.0148119,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 앞끝에 잎 모양 쇠 촉이 하나 있고 길이에 비해 과하게 크지 않다. 칼자루나 코등이 장식은 없다.",
+      "e.spear-uniform": "자루가 한 가지 굵기·색·결로 이어지고 중간에 이음매나 마디가 없다.",
+      "e.spear-tip-attached": "촉에 중앙 능선과 음영이 있고 쇠 고리로 자루에 끼워져 있어 두께 있는 쇠 촉으로 보인다.",
+      "e.spear-back-cap": "뒤끝이 가늘고 짧은 물미가 아니라 자루보다 굵게 부풀어 나온 둥근 쇠 공이다. 분명히 맞다고 확인되지 않아 틀림으로 판정했다."
+     }
+    }
+   }
+  },
+  "g:5": {
+   "E": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 9.346,
+       "input": 4,
+       "output": 927,
+       "cache_read": 45292,
+       "cache_create": 9888,
+       "cost_usd": 0.053359199999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 앞끝에 잎 모양 쇠 촉이 하나 있고, 길이에 비해 지나치게 크지 않다. 칼자루나 코등이 장식은 없다. 촉 아래쪽이 살짝 뒤로 뻗었지만 잎 모양으로 볼 수 있다.",
+      "e.spear-uniform": "자루가 한 가지 굵기·색·결로 고르게 이어진다. 놋쇠 고리는 촉이 끼워지는 목 부분에 있고 자루 중간에는 없다.",
+      "e.spear-tip-attached": "촉에 두께와 명암이 있고 자루 끝에 놋쇠 고리로 끼워진 것으로 보인다. 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝 쇠 마개가 자루보다 눈에 띄게 굵고, 나팔처럼 옆으로 벌어진 손잡이 마개(knob) 모양이다. 가늘고 짧은 물미라고 분명히 확인되지 않는다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 9.367,
+       "input": 4,
+       "output": 954,
+       "cache_read": 45292,
+       "cache_create": 9888,
+       "cost_usd": 0.0536292,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "틀림",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-shape": "촉이 잎 모양이 아니라 아래쪽에 미늘처럼 뾰족하게 벌어진 어깨가 있어 화살촉에 가깝다. 분명히 맞다고 보기 어렵다.",
+      "e.spear-uniform": "자루가 촉 아래 황동 고리 하나에서 뒤끝까지 같은 굵기·색·결로 이어진다. 고리는 촉 자리에 있고 자루 중간에는 이음매가 없다.",
+      "e.spear-tip-attached": "촉이 황동 고리에 끼워져 있고 명암과 두께감이 있어 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝 쇠 물미가 자루보다 눈에 띄게 굵고 바깥쪽으로 벌어진 지팡이 끝 모양이다. 자루 굵기를 넘어 벌어지므로 기대와 다르다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 9.554,
+       "input": 4,
+       "output": 981,
+       "cache_read": 45292,
+       "cache_create": 9888,
+       "cost_usd": 0.0538992,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 자루 앞끝에 잎 모양 쇠 촉이 하나 있고, 칼자루 같은 장식은 없다. 촉 길이는 창 전체의 약 1/6이다.",
+      "e.spear-uniform": "자루가 한 가지 굵기·색·결로 이어진다. 놋쇠 고리는 촉이 끼워지는 자리에 있고 자루 중간에는 이음매가 없다.",
+      "e.spear-tip-attached": "촉이 두께 있는 쇠로 보이고 자루 끝의 고리에 끼워져 있다. 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝 물미가 나팔처럼 벌어져 자루보다 굵다. 가늘고 짧은 쇠 끝이어야 한다는 기대에 맞지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 10.084,
+       "input": 4,
+       "output": 968,
+       "cache_read": 45292,
+       "cache_create": 9888,
+       "cost_usd": 0.0537692,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 자루 앞끝에 잎 모양 쇠 촉이 하나 달려 있고 길이에 비해 과하게 크지 않다. 뒤끝에는 앞 촉만 한 촉이 없고 칼자루나 코등이 장식도 없다.",
+      "e.spear-uniform": "자루가 처음부터 끝까지 같은 굵기·색·결로 이어진다. 놋쇠 고리는 촉 바로 아래에 있고 자루 중간에는 이음매가 없다.",
+      "e.spear-tip-attached": "촉이 놋쇠 고리로 자루에 끼워진 모양이고 두께와 음영이 있어, 오려 붙인 스티커로 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝 물미가 작기는 하지만 자루 굵기보다 눈에 띄게 옆으로 벌어진 나팔 모양 마개다. 가늘고 짧은 쇠 끝이라는 기대와 달라서 분명히 맞다고 확인되지 않는다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 8.822,
+       "input": 4,
+       "output": 841,
+       "cache_read": 55180,
+       "cache_create": 0,
+       "cost_usd": 0.013936,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "틀림",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-shape": "촉 뒤쪽이 갈라져 양옆으로 뻗은 미늘 같은 날개가 있어, 곧은 잎 모양이 아니라 화살촉에 가깝다. 이 항목은 확신이 약하다.",
+      "e.spear-uniform": "자루는 한 가지 굵기·색·결로 고르게 이어진다. 놋 고리는 촉 쪽 소켓 끝에만 있고 자루 중간에는 없다.",
+      "e.spear-tip-attached": "촉에 명암과 두께감이 있고 소켓에 끼워진 모양이라 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝 물미가 나팔처럼 벌어져 자루 굵기보다 옆으로 넓다. 가늘고 짧은 쇠 끝이라는 기대와 어긋난다."
+     }
+    }
+   }
+  },
+  "g:101": {
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 9.807,
+       "input": 4,
+       "output": 914,
+       "cache_read": 45292,
+       "cache_create": 9888,
+       "cost_usd": 0.053229200000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 자루 앞끝에 잎 모양 쇠 촉이 하나 있고 길이에 비해 크지 않다. 칼자루나 코등이는 없다.",
+      "e.spear-uniform": "자루 중간(약 455px 지점)에 이음매처럼 보이는 갈라진 선이 있고 그 앞뒤로 색과 결이 조금 달라 보인다. 분명히 고른 막대라고 확인되지 않아 틀림으로 답한다.",
+      "e.spear-tip-attached": "촉에 쇠 깃(칼라)이 있고 중앙 능선과 두께가 보여 자루에 끼운 쇠 촉으로 보인다. 종이 스티커 같지 않다.",
+      "e.spear-back-cap": "뒤끝은 자루 굵기 안에 든 작은 둥근 쇠 마개에 금색 띠가 둘린 모양이다. 양옆으로 벌어진 날이나 미늘이 없고 화살처럼 보이지 않는다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 8.412,
+       "input": 4,
+       "output": 847,
+       "cache_read": 55180,
+       "cache_create": 0,
+       "cost_usd": 0.013996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 자루 앞끝에 잎 모양 쇠 촉이 하나 있고 크기도 알맞다. 칼자루나 코등이 장식은 없다.",
+      "e.spear-uniform": "자루의 굵기·색·결이 처음부터 끝까지 고르다. 중간에 보이는 작은 선은 갈라진 금이나 옹이 정도로 보여 이음매로 보지 않았다.",
+      "e.spear-tip-attached": "촉이 쇠 고리 모양 꽂이에 끼워져 있고 음영이 있어 두께가 느껴진다. 종이를 오려 붙인 것처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝은 자루 굵기 안에 들어가는 작은 둥근 쇠 마개다. 양옆으로 벌어진 날이나 미늘이 없고 앞 촉보다 훨씬 작다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 8.996,
+       "input": 4,
+       "output": 869,
+       "cache_read": 55180,
+       "cache_create": 0,
+       "cost_usd": 0.014216,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 자루 앞끝에 잎 모양 쇠 촉이 하나 있고, 길이에 비해 크지 않으며 칼자루나 코등이도 없다.",
+      "e.spear-uniform": "촉 가까운 자루에 이음매처럼 보이는 갈라진 선이 하나 있고, 뒤끝에는 금색 띠가 둘려 색이 바뀐다.",
+      "e.spear-tip-attached": "촉에 가운데 능선이 있어 두께가 느껴지고, 쇠 고리 같은 물림쇠로 자루에 끼워져 있다.",
+      "e.spear-back-cap": "뒤끝이 둥근 공 모양에 금색 띠가 있고 자루 굵기보다 위아래로 불룩하게 커서 가늘고 짧은 물미가 아니다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 9.477,
+       "input": 4,
+       "output": 911,
+       "cache_read": 55180,
+       "cache_create": 0,
+       "cost_usd": 0.014636,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 자루 앞에 잎 모양 쇠 촉이 하나 있고 크기도 적당하다. 칼자루나 코등이 장식은 없다.",
+      "e.spear-uniform": "자루 왼쪽 3분의 1 지점에 금이 간 듯한 이음매 선이 보이고, 뒤끝에는 금빛 띠가 있어 색이 바뀐다. 한 가지 막대로 고르게 이어졌다고 확신하기 어렵다.",
+      "e.spear-tip-attached": "촉에 중앙 능선과 음영이 있고 쇠 깃(소켓)이 자루에 끼워져 있어 두께 있는 촉으로 보인다.",
+      "e.spear-back-cap": "뒤끝이 금빛 띠가 있는 둥근 쇠 공이다. 자루보다 굵게 부풀어 있어 가늘고 짧은 물미라기보다 손잡이 끝 장식(폼멜)처럼 보인다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 10.914,
+       "input": 4,
+       "output": 851,
+       "cache_read": 55180,
+       "cache_create": 0,
+       "cost_usd": 0.014036,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 앞끝에 잎 모양 쇠 촉이 하나 있다. 촉 길이는 창 전체의 7분의 1 정도라 지나치게 크지 않다. 칼자루나 코등이 장식은 없다.",
+      "e.spear-uniform": "자루는 굵기·색·결이 끝까지 같다. 중간에 가는 금 하나가 있으나 이음매나 마디로는 보이지 않는다.",
+      "e.spear-tip-attached": "촉 가운데에 능선이 있고 음영이 져서 두께가 느껴진다. 쇠 고리 소켓으로 자루에 끼워져 있어 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝은 자루 굵기를 넘지 않는 작은 둥근 쇠 물미이고 금빛 띠가 둘려 있다. 양옆으로 벌어진 날이나 미늘이 없고 양끝 촉 화살처럼 보이지도 않는다."
+     }
+    }
+   }
+  },
+  "g:202": {
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 6.686,
+       "input": 4,
+       "output": 600,
+       "cache_read": 45292,
+       "cache_create": 10047,
+       "cost_usd": 0.0507252,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 앞끝에 잎 모양 쇠 촉이 하나 있고, 칼자루나 코등이는 없다. 촉 길이는 창 전체의 약 15%로 과하지 않다.",
+      "e.spear-uniform": "자루가 한 가지 굵기·색·결로 이어지고 중간에 이음매나 마디가 없다.",
+      "e.spear-tip-attached": "촉에 중앙 능선과 음영이 있고, 쇠 고리(소켓)로 자루에 끼워져 있어 납작한 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝은 자루 굵기와 비슷한 작은 둥근 쇠 물미이고, 옆으로 벌어진 날이나 미늘이 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 6.901,
+       "input": 4,
+       "output": 670,
+       "cache_read": 45292,
+       "cache_create": 10047,
+       "cost_usd": 0.0514252,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 앞끝에 잎 모양 쇠 촉이 하나 있고, 자루 길이에 비해 지나치게 크지 않다. 칼자루나 코등이 같은 장식은 없다.",
+      "e.spear-uniform": "자루가 한 가지 굵기·색·결로 고르게 이어진다. 자루 중간에 이음매나 마디는 없다. 촉 바로 뒤의 쇠 고리는 촉 쪽 장식이라 자루 중간 이음매로 보지 않았다.",
+      "e.spear-tip-attached": "촉에 두께감과 음영이 있고 쇠 슬리브로 자루에 끼워져 있다. 납작한 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝은 자루 굵기와 비슷한 작은 둥근 쇠 물미다. 양옆으로 벌어진 날이나 미늘은 없고, 앞 촉보다 훨씬 작다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 7.221,
+       "input": 4,
+       "output": 735,
+       "cache_read": 45292,
+       "cache_create": 9888,
+       "cost_usd": 0.051439200000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 앞끝에 잎 모양 쇠 촉 하나가 달렸다. 촉은 창 길이의 약 6분의 1로 과하지 않다. 칼자루나 코등이 같은 장식은 없다.",
+      "e.spear-uniform": "자루가 촉 쪽 쇠 고리부터 뒤끝까지 같은 굵기·색·결로 이어진다. 중간에 이음매나 마디는 없다.",
+      "e.spear-tip-attached": "촉이 쇠 고리(소켓)로 자루에 끼워져 있다. 가운데 능선과 명암이 있어 오려 붙인 스티커로 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝은 자루 굵기 안에 들어가는 작은 쇠 물미다. 양옆으로 벌어진 날이나 미늘이 없어 화살촉처럼 보이지 않는다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 6.717,
+       "input": 4,
+       "output": 619,
+       "cache_read": 55339,
+       "cache_create": 0,
+       "cost_usd": 0.0117319,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 앞끝에 잎 모양 쇠 촉이 하나 있고, 촉 크기도 창 길이에 비해 적당하다. 뒤끝은 작은 쇠 물미이고 칼자루나 코등이는 없다.",
+      "e.spear-uniform": "자루가 같은 굵기·색·나뭇결로 이어지고, 중간에 이음매나 마디가 없다.",
+      "e.spear-tip-attached": "촉이 쇠 소켓(깃)에 끼워져 있고 음영이 있어 두께가 느껴진다. 종이를 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝이 자루 굵기와 비슷한 작은 쇠 물미이고, 양옆으로 벌어진 날이나 미늘이 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 7.385,
+       "input": 4,
+       "output": 610,
+       "cache_read": 55339,
+       "cache_create": 0,
+       "cost_usd": 0.0116419,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 앞에 잎 모양 쇠 촉 하나가 달렸고 크기도 길이에 알맞다. 뒤끝은 작은 물미이고 칼자루나 코등이 장식은 없다.",
+      "e.spear-uniform": "자루가 한 가지 굵기·색·결로 고르게 이어지고 중간에 이음매나 마디가 없다.",
+      "e.spear-tip-attached": "촉이 쇠 소켓으로 자루에 끼워져 있고 명암이 있어 두께가 느껴진다. 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝은 자루 굵기와 비슷한 작은 둥근 쇠 물미이고, 옆으로 벌어진 날이나 미늘이 없다."
+     }
+    }
+   }
+  },
+  "g:303": {
+   "E": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 8.371,
+       "input": 4,
+       "output": 778,
+       "cache_read": 46466,
+       "cache_create": 8714,
+       "cost_usd": 0.0472906,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 앞끝에 잎 모양 쇠 촉이 하나 달려 있고, 길이에 비해 과하게 크지 않다. 칼자루나 코등이 장식은 없다.",
+      "e.spear-uniform": "자루가 한 가지 굵기·색·결로 이어진다. 놋쇠 고리는 촉 쪽 끝과 뒤끝에만 있고 자루 중간에는 이음매가 없다.",
+      "e.spear-tip-attached": "촉에 음영과 두께가 있고 놋쇠 고리 달린 자루 끝에 끼워진 것처럼 보인다. 종이를 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝은 자루 굵기를 넘지 않는 작은 은색 물미다. 양옆으로 벌어진 날이나 미늘이 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 8.937,
+       "input": 4,
+       "output": 915,
+       "cache_read": 45292,
+       "cache_create": 9888,
+       "cost_usd": 0.0532392,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 앞끝에 잎 모양 쇠 촉이 하나 달려 있고 창 길이에 비해 지나치게 크지 않다. 칼자루나 코등이는 없다. 촉 뒤쪽이 약간 뾰족하게 뻗지만 잎 모양 범위 안으로 본다.",
+      "e.spear-uniform": "자루가 한 가지 굵기와 색, 나뭇결로 고르게 이어진다. 중간에 이음매나 마디는 없고, 촉 쪽 금속 고리와 뒤끝 고리만 양 끝에 있다.",
+      "e.spear-tip-attached": "촉에 음영과 두께가 있고 금속 고리로 자루 끝에 끼워져 있다. 종이를 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝은 자루 굵기를 넘지 않는 작은 둥근 쇠 물미이고 앞 촉보다 훨씬 작다. 양옆으로 벌어진 날이나 미늘은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 8.004,
+       "input": 4,
+       "output": 810,
+       "cache_read": 55180,
+       "cache_create": 0,
+       "cost_usd": 0.013626,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 앞끝에 잎 모양 쇠 촉이 하나 있고 길이에 비해 과하게 크지 않다. 칼자루나 코등이 같은 장식은 없다.",
+      "e.spear-uniform": "촉 쪽 자루 끝에 황동 고리가 있고, 뒤끝에는 색이 짙은 나무 마디와 쇠 캡이 이어져 있다. 자루 중간 이음매와 고리가 없어야 한다는 기대에 어긋난다.",
+      "e.spear-tip-attached": "촉이 두께와 명암이 있는 쇠로 그려졌고 자루 끝 고리에 끼워져 있다. 종이를 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝은 자루 굵기를 넘지 않는 둥근 작은 쇠 캡이다. 미늘이나 양옆으로 벌어진 날이 없고, 양끝에 촉이 달린 화살처럼 보이지도 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 8.413,
+       "input": 4,
+       "output": 801,
+       "cache_read": 55180,
+       "cache_create": 0,
+       "cost_usd": 0.013536,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 자루 앞끝에 잎 모양 쇠 촉이 하나 있고 길이에 비해 크기도 적당하다. 칼자루나 코등이 장식은 없다.",
+      "e.spear-uniform": "촉 쪽에 금색 고리가 있고, 뒤끝 쪽에도 더 짙은 색 마디와 고리가 있다. 자루 중간에 색이 바뀌는 이음매가 보인다.",
+      "e.spear-tip-attached": "촉에 입체감과 두께가 있고 금속 고리로 자루에 끼워져 있다. 종이를 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝은 자루 굵기를 넘지 않는 작은 쇠 물미이고, 양옆으로 벌어진 날이나 미늘이 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 7.84,
+       "input": 4,
+       "output": 796,
+       "cache_read": 55180,
+       "cache_create": 0,
+       "cost_usd": 0.013486,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-shape": "맞음",
+      "e.spear-uniform": "맞음",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "곧은 나무 자루 앞끝에 잎 모양 쇠 촉이 하나 있고, 길이에 비해 크기도 적당하다. 뒤끝에 앞 촉만 한 촉은 없다. 칼자루나 코등이 같은 장식도 없다.",
+      "e.spear-uniform": "자루가 처음부터 끝까지 같은 굵기·색·나뭇결로 이어진다. 중간에는 이음매나 마디가 없다. 놋쇠 고리는 양쪽 끝에만 있다.",
+      "e.spear-tip-attached": "촉이 놋쇠 고리를 낀 소켓에 끼워져 있고 두께와 명암이 있다. 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝은 둥글고 작은 쇠 물미다. 자루 굵기와 거의 같고, 양옆으로 벌어진 날이나 미늘이 없다."
+     }
+    }
+   }
+  }
+ },
+ "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. A single spear lying flat and horizontal across an empty sheet of plain cream paper, its point at the left end and its back end at the right: a straight wooden shaft two thirds of a man's height, one hand-sized leaf-shaped iron point at the front, a small iron cap at the back, no crossguard. Nothing else on the paper, no person, no hand, no shadow, no text.",
+ "sheet": {
+  "11": {
+   "score": 0.0592,
+   "m": {
+    "xl": 84,
+    "xr": 1118,
+    "shaft": 35.0,
+    "tip": 0.169,
+    "tip_w": 2.2,
+    "back_w": 1.6,
+    "outside": 0,
+    "ring": 1.26
+   }
+  },
+  "42": {
+   "score": null,
+   "m": {
+    "xl": 85,
+    "xr": 1118,
+    "shaft": 29.0,
+    "tip": 0.195,
+    "tip_w": 2.55,
+    "back_w": 1.38,
+    "outside": 0,
+    "ring": 1.45,
+    "why": [
+     "tip",
+     "ring"
+    ]
+   }
+  },
+  "7": {
+   "score": null,
+   "m": {
+    "xl": 82,
+    "xr": 1128,
+    "shaft": 35.0,
+    "tip": 0.203,
+    "tip_w": 2.26,
+    "back_w": 1.54,
+    "outside": 0,
+    "ring": 1.29,
+    "why": [
+     "tip"
+    ]
+   }
+  },
+  "23": {
+   "score": 0.0601,
+   "m": {
+    "xl": 80,
+    "xr": 1130,
+    "shaft": 32.0,
+    "tip": 0.168,
+    "tip_w": 2.25,
+    "back_w": 1.56,
+    "outside": 0,
+    "ring": 1.19
+   }
+  },
+  "5": {
+   "score": 0.0286,
+   "m": {
+    "xl": 94,
+    "xr": 1104,
+    "shaft": 29.0,
+    "tip": 0.137,
+    "tip_w": 2.24,
+    "back_w": 1.59,
+    "outside": 0,
+    "ring": 1.28
+   }
+  },
+  "101": {
+   "score": null,
+   "m": {
+    "xl": 98,
+    "xr": 1115,
+    "shaft": 28.0,
+    "tip": 0.149,
+    "tip_w": 2.46,
+    "back_w": 1.64,
+    "outside": 0,
+    "ring": 1.39,
+    "why": [
+     "ring"
+    ]
+   }
+  },
+  "202": {
+   "score": null,
+   "m": {
+    "xl": 101,
+    "xr": 1110,
+    "shaft": 24.0,
+    "tip": 0.239,
+    "tip_w": 2.92,
+    "back_w": 1.83,
+    "outside": 0,
+    "ring": 1.46,
+    "why": [
+     "tip",
+     "tip_w",
+     "back_w",
+     "ring"
+    ]
+   }
+  },
+  "303": {
+   "score": null,
+   "m": {
+    "xl": 82,
+    "xr": 1114,
+    "shaft": 30.0,
+    "tip": 0.133,
+    "tip_w": 2.17,
+    "back_w": 1.57,
+    "outside": 0,
+    "ring": 1.4,
+    "why": [
+     "ring"
+    ]
+   }
+  }
+ },
+ "sheet_qs": [
+  "e.spear-shape",
+  "e.spear-uniform",
+  "e.spear-tip-attached",
+  "e.spear-back-cap"
+ ]
+}

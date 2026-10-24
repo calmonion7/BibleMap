@@ -1,0 +1,496 @@
+{
+ "answers": {
+  "g:7": {
+   "S": {
+    "5": {
+     "tries": [
+      {
+       "seconds": 4.21,
+       "input": 4,
+       "output": 274,
+       "cache_read": 43998,
+       "cache_create": 10286,
+       "cost_usd": 0.048291799999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 그린 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 의자 모두 얼굴·옷·디테일이 갖춰져 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.178,
+       "input": 4,
+       "output": 285,
+       "cache_read": 53110,
+       "cache_create": 1174,
+       "cost_usd": 0.012865,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자 모두 얼굴·옷·형태가 완성돼 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 4.775,
+       "input": 4,
+       "output": 275,
+       "cache_read": 53110,
+       "cache_create": 1174,
+       "cost_usd": 0.012765,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.645,
+       "input": 4,
+       "output": 274,
+       "cache_read": 43998,
+       "cache_create": 10286,
+       "cost_usd": 0.048291799999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "인물 둘과 창, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 5.14,
+       "input": 4,
+       "output": 275,
+       "cache_read": 53110,
+       "cache_create": 1174,
+       "cost_usd": 0.012765,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자 모두 얼굴·옷·질감이 갖춰져 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 10.017,
+       "input": 4,
+       "output": 838,
+       "cache_read": 46879,
+       "cache_create": 8419,
+       "cost_usd": 0.0467519,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림",
+      "e.proportion-pair": "틀림",
+      "e.david-youth": "맞음"
+     },
+     "reasons": {
+      "e.spear-tip-small": "촉 길이가 사울 머리 높이와 거의 같아(약 1배) 0.5배보다 크고, 폭도 자루의 2배를 넘어 보인다.",
+      "e.saul-proportion-measure": "머리가 키의 7.5분의 1보다 크고, 튜닉 아래 다리가 짧고 굵어 몸통보다 짧아 보인다.",
+      "e.proportion-pair": "사울이 다윗보다 약 1.4배 크고 몸집도 훨씬 부풀어, 기대한 1.21배보다 차이가 크다.",
+      "e.david-youth": "수염이 없고 몸이 자란 청년이며, 짧은 검은 곱슬머리에 머리쓰개가 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 10.168,
+       "input": 4,
+       "output": 839,
+       "cache_read": 46879,
+       "cache_create": 8419,
+       "cost_usd": 0.046761899999999995,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림",
+      "e.proportion-pair": "틀림",
+      "e.david-youth": "맞음"
+     },
+     "reasons": {
+      "e.spear-tip-small": "촉 길이가 사울 머리 높이와 비슷하고, 촉 폭이 자루 굵기의 3배쯤이라 너무 큼.",
+      "e.saul-proportion-measure": "튜닉 아래 다리가 짧고 몸통이 두툼해서 다리가 키의 절반에 못 미침.",
+      "e.proportion-pair": "다윗이 웅크렸더라도 사울이 훨씬 크고 몸집이 부풀어 보여 키 비 1.21배보다 큼.",
+      "e.david-youth": "수염 없는 청년이고 짧은 검은 곱슬머리에 머리쓰개가 없음."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 11.697,
+       "input": 4,
+       "output": 927,
+       "cache_read": 44426,
+       "cache_create": 10872,
+       "cost_usd": 0.0572086,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림",
+      "e.proportion-pair": "틀림",
+      "e.david-youth": "맞음"
+     },
+     "reasons": {
+      "e.spear-tip-small": "촉 길이가 사울 머리 높이와 거의 같고, 폭은 자루의 2배를 넘는 잎 모양이라 기대보다 큼.",
+      "e.saul-proportion-measure": "튜닉 아래 다리가 키의 절반보다 훨씬 짧아 보이고 몸통이 두툼해서 비례가 부자연스러움.",
+      "e.proportion-pair": "다윗은 웅크리고 있어 키를 견주기 어렵고, 사울 몸집이 훨씬 커 보여 1.21배쯤이라고 분명히 확인되지 않음.",
+      "e.david-youth": "수염이 없고 자란 몸이며 짧은 검은 곱슬머리에 머리쓰개가 없어 청년으로 보임."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 10.99,
+       "input": 4,
+       "output": 1030,
+       "cache_read": 53966,
+       "cache_create": 1333,
+       "cost_usd": 0.021036600000000003,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림",
+      "e.proportion-pair": "틀림",
+      "e.david-youth": "맞음"
+     },
+     "reasons": {
+      "e.spear-tip-small": "촉 길이가 사울 머리 높이의 0.9배쯤으로 기대(0.5배)보다 크고, 가장 넓은 폭도 자루 굵기의 3배쯤인 넓적한 잎 모양이다.",
+      "e.saul-proportion-measure": "튜닉 아래로 보이는 다리가 짧고 몸통이 크다. 다리 길이가 키의 약 0.3~0.35배로 절반에 못 미쳐 보인다.",
+      "e.proportion-pair": "사울이 다윗보다 훨씬 크고 두껍게 그려져 키 비가 1.21배보다 커 보인다. 다윗이 웅크린 자세라 비교가 확실하지 않아, 분명히 맞다고 볼 수 없어 틀림으로 답한다.",
+      "e.david-youth": "다윗은 수염이 없고 몸이 자란 청년이며 머리에 붙은 짧은 검은 곱슬머리다. 머리쓰개도 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 10.969,
+       "input": 4,
+       "output": 867,
+       "cache_read": 55298,
+       "cache_create": 0,
+       "cost_usd": 0.0142078,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림",
+      "e.proportion-pair": "틀림",
+      "e.david-youth": "맞음"
+     },
+     "reasons": {
+      "e.spear-tip-small": "촉 길이가 사울 머리 높이와 거의 같고 폭도 자루의 2배를 넘어 기대(머리의 0.5배)보다 크다.",
+      "e.saul-proportion-measure": "머리가 키의 약 6분의 1로 커 보이고, 튜닉 아래 다리가 키의 절반보다 짧다.",
+      "e.proportion-pair": "사울 몸집이 다윗보다 훨씬 부풀어 보인다. 다윗이 웅크렸더라도 크기 차이가 1.21배보다 크게 보인다.",
+      "e.david-youth": "수염이 없고 머리에 짧은 검은 곱슬머리가 붙어 있으며 머리쓰개가 없다. 몸도 자란 청년이다."
+     }
+    }
+   }
+  },
+  "g:5": {
+   "S": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.829,
+       "input": 4,
+       "output": 275,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.045002400000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 드러나는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자 모두 얼굴·옷·질감이 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.586,
+       "input": 4,
+       "output": 276,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.04501240000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.417,
+       "input": 4,
+       "output": 276,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.04501240000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색으로 그린 동화 그림 화풍이다.",
+      "s.no-blob": "인물과 물건 모두 얼굴, 옷, 세부 묘사가 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 4.322,
+       "input": 4,
+       "output": 272,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.008156400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 드러나는 동화 그림 화풍이다.",
+      "s.no-blob": "인물, 창, 수금, 의자 모두 얼굴·옷·질감이 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 4.522,
+       "input": 4,
+       "output": 274,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0081764,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "4": {
+     "tries": [
+      {
+       "seconds": 9.229,
+       "input": 4,
+       "output": 907,
+       "cache_read": 46879,
+       "cache_create": 8420,
+       "cost_usd": 0.0474459,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림",
+      "e.proportion-pair": "맞음",
+      "e.david-youth": "맞음"
+     },
+     "reasons": {
+      "e.spear-tip-small": "촉 길이가 사울 머리 높이의 1.5배쯤이고, 폭도 자루의 약 5배인 넓적한 잎 모양이다.",
+      "e.saul-proportion-measure": "머리 높이가 키의 7.2분의 1쯤으로 약간 크다. 튜닉 아래 다리는 키의 3분의 1쯤으로 짧아 보여 기대(2분의 1)에 못 미친다.",
+      "e.proportion-pair": "두 사람 크기 차이가 자연스럽다. 다윗은 웅크렸지만 펴면 사울보다 조금 작은 정도이고, 거인과 아이처럼 보이지 않는다.",
+      "e.david-youth": "수염이 없고, 자란 청년의 몸에, 짧은 검은 곱슬머리이며, 머리쓰개가 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 10.197,
+       "input": 4,
+       "output": 895,
+       "cache_read": 46879,
+       "cache_create": 8420,
+       "cost_usd": 0.047325900000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림",
+      "e.proportion-pair": "틀림",
+      "e.david-youth": "맞음"
+     },
+     "reasons": {
+      "e.spear-tip-small": "촉 길이가 사울 머리 높이의 1.5배쯤이고 폭은 자루의 4배쯤인 넓적한 잎 모양이라 기대보다 훨씬 큼.",
+      "e.saul-proportion-measure": "튜닉 아래 다리가 키의 3분의 1쯤으로 짧고, 몸통보다 다리가 짧아 보임.",
+      "e.proportion-pair": "다윗이 웅크려 서 있는 키를 견줄 수 없고, 사울이 훨씬 커 보여 1.21배 비율이 분명히 맞다고 확인되지 않음.",
+      "e.david-youth": "수염이 없고, 자란 청년 몸에, 짧은 검은 곱슬머리이며 머리쓰개가 없음."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 10.698,
+       "input": 4,
+       "output": 959,
+       "cache_read": 46879,
+       "cache_create": 8420,
+       "cost_usd": 0.047965900000000006,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림",
+      "e.proportion-pair": "틀림",
+      "e.david-youth": "맞음"
+     },
+     "reasons": {
+      "e.spear-tip-small": "촉 길이가 사울 머리 높이의 약 1.5배이고, 가장 넓은 폭은 자루 굵기의 3~4배인 넓적한 잎 모양이다.",
+      "e.saul-proportion-measure": "몸을 숙인 자세라 키 대비 머리와 다리 비율이 분명하지 않다. 엉덩이에서 발까지가 키의 절반에 못 미쳐 짧아 보인다. 분명히 맞다고 확인되지 않아 틀림으로 답한다.",
+      "e.proportion-pair": "다윗이 웅크리고 있어 서 있는 키를 견줄 수 없고, 1.21배 비율도 확인되지 않는다. 분명히 맞다고 확인되지 않아 틀림으로 답한다.",
+      "e.david-youth": "수염이 없고 자란 청년의 몸이다. 짧은 검은 곱슬머리가 머리에 붙어 있고 머리쓰개도 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 11.794,
+       "input": 4,
+       "output": 1091,
+       "cache_read": 46879,
+       "cache_create": 8420,
+       "cost_usd": 0.04928590000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림",
+      "e.proportion-pair": "틀림",
+      "e.david-youth": "맞음"
+     },
+     "reasons": {
+      "e.spear-tip-small": "촉 길이가 약 90px로 사울 머리 높이(약 75px)보다 길고, 촉 폭은 자루 굵기의 4배쯤인 넓적한 잎 모양이다.",
+      "e.saul-proportion-measure": "사울은 앞으로 기울어 있고 엉덩이에서 발까지 다리가 키의 절반(약 215px)보다 짧은 약 135px로 보여 튜닉 아래 다리가 짧다.",
+      "e.proportion-pair": "다윗이 웅크려 있어 서 있는 키를 견줄 수 없다. 보이는 비율은 약 1.4배로 1.21배보다 크고, 자연스럽다고 분명히 확인되지 않는다.",
+      "e.david-youth": "다윗은 수염이 없고 몸이 자란 청년이며, 머리에 붙은 짧은 검은 곱슬머리에 머리쓰개가 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 10.269,
+       "input": 4,
+       "output": 1013,
+       "cache_read": 55299,
+       "cache_create": 0,
+       "cost_usd": 0.015667900000000002,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림",
+      "e.proportion-pair": "맞음",
+      "e.david-youth": "맞음"
+     },
+     "reasons": {
+      "e.spear-tip-small": "촉 길이가 사울 머리 높이의 1.5배쯤이고, 가장 넓은 폭은 자루 굵기의 4배쯤이라 크고 넓적한 잎 모양이다.",
+      "e.saul-proportion-measure": "머리 높이는 키의 7분의 1쯤으로 맞다. 그러나 엉덩이에서 발까지 다리 길이가 키의 3분의 1쯤이라 튜닉 아래 다리가 짧아 보인다.",
+      "e.proportion-pair": "다윗이 웅크려 있어서 서 있는 키를 정확히 재긴 어렵다. 어림으로 사울이 다윗보다 1.1~1.2배쯤 크고, 거인과 아이처럼 보이지는 않는다.",
+      "e.david-youth": "수염이 없고 몸이 자란 청년이다. 머리에 짧은 검은 곱슬머리가 붙어 있고 머리쓰개는 없다."
+     }
+    }
+   }
+  }
+ }
+}

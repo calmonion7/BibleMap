@@ -788,6 +788,69 @@ class EditSizeInCrop(unittest.TestCase):
         self.assertIsNone(GL.paint_cap(src, out, GL.measure_prop(src, [0.423, 0.478, 0.662, 0.503], 1216, 640, 0.80), 0.035, 1.4, 1216, 640))
 
 
+class EditPropSheetPaste(unittest.TestCase):
+    """edit.prop-sheet-paste — 작은 허공 지물은 빈 종이 한 장에 사전 부위 크기 가이드로 따로 그려 단면으로 고르고, 기준표 길이로 줄여 곱하기 합성(task 407 r22 —
+    장면 안에서는 촉 크기를 가이드·끝 편집으로 못 맞춤: m13 촉 창의 0.2·뒤집힘 3/8, m11e 이음매·스티커)."""
+
+    def parts(self):
+        return recheck._lexicon()["spear"]["look"]["size"]["parts"]
+
+    def sheet(self, parts):
+        import tempfile
+        from PIL import ImageOps
+        import gen_local_edit as GL
+        p = os.path.join(tempfile.mkdtemp(), "s.png")
+        ImageOps.invert(GL.sheet_guide(parts)).convert("RGB").save(p)   # 종이 위 어두운 창 꼴
+        return p
+
+    def test_lexicon_sheet_measures_lexicon_parts(self):
+        import gen_local_edit as GL
+        score, m = GL.sheet_measure(self.sheet(self.parts()), self.parts())
+        self.assertIsNotNone(score, m)
+        self.assertAlmostEqual(m["tip"], self.parts()["point"]["ratio"], delta=0.03)
+        self.assertAlmostEqual(m["tip_w"], self.parts()["point"]["width"], delta=0.2)
+
+    def test_big_tip_sheet_fails(self):
+        import copy
+        import gen_local_edit as GL
+        big = copy.deepcopy(self.parts())
+        big["point"].update(ratio=0.3, width=4.0)   # m9 바탕 가이드 leaf 촉 크기
+        score, m = GL.sheet_measure(self.sheet(big), self.parts())
+        self.assertIsNone(score)
+        self.assertIn("tip", m["why"])
+
+    def test_paste_changes_only_its_box(self):
+        import numpy as np
+        import gen_local_edit as GL
+        sheet = self.sheet(self.parts())
+        _, sm = GL.sheet_measure(sheet, self.parts())
+        a = np.full((640, 1216, 3), (236, 226, 200), np.uint8)
+        b = a.copy()
+        box = GL.paste_prop(b, sheet, sm, (514, 314), 242)
+        out = np.ones((640, 1216), bool)
+        out[box[1]:box[3], box[0]:box[2]] = False
+        self.assertTrue((a[out] == b[out]).all())                       # 상자 밖 그대로
+        row = (b[314].astype(int).sum(axis=1) < 600).nonzero()[0]
+        self.assertAlmostEqual(row[0], 514, delta=3)                      # 촉 끝이 명세 자리
+        self.assertAlmostEqual(row[-1] - row[0], 242, delta=4)            # 기준표 길이
+
+    def test_tail_stop_before_arm(self):
+        import numpy as np
+        import gen_local_edit as GL
+        a = np.full((640, 1216, 3), (236, 226, 200), np.uint8)
+        a[311:318, 500:900] = (150, 100, 60)       # 손 앞 경계(820) 너머로 이어진 자루
+        a[290:345, 950:1000] = (200, 140, 110)     # 띠를 덮는 팔
+        m = (500, 820, 314.5, 7, 14.0, {"sep": False})
+        self.assertLessEqual(GL._tail_stop(a, m, 1216, 294, 335), 905)
+
+    def test_back_edge_is_tunic_right_end(self):
+        import numpy as np
+        import gen_local_edit as GL
+        a = np.full((640, 1216, 3), (236, 226, 200), np.uint8)
+        a[200:600, 980:1100] = (60, 40, 30)        # 튜닉
+        self.assertEqual(GL.back_edge(a, (500, 820, 314.5, 7, 14.0, {}), 936, 1216), 1099)
+
+
 class WallMaterial(unittest.TestCase):
     """derive.wall-material — 벽 문구는 재질 낱말로(task 405 m5e 벽 앞 틀림 「다윗 뒤는 매끈한 회벽」 ← 「a bare wall behind David」)."""
 

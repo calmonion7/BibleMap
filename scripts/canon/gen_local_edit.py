@@ -116,7 +116,7 @@ def measure_prop(src, region, w, h, xmax=None):
     cy = by0 + float(rows.mean())
     head = np.where(dark[:, run[0]:run[0] + max(1, round(0.28 * (xr - xl)))].any(axis=1))[0]   # 옛 촉(왼끝 ~ 0.28)의 위아래 범위
     reach = max(abs(by0 + head[0] - cy), abs(by0 + head[-1] - cy)) if len(head) else 0
-    return xl, xr, cy, max(2, int(rows[-1] - rows[0] + 1)), reach, {"ext": ext, "bx0": bx0, "sep": bool(sep)}
+    return xl, xr, cy, max(2, int(rows[-1] - rows[0] + 1)), reach, {"ext": ext, "bx0": bx0, "sep": bool(sep), "bh": by1 - by0}
 
 
 def _end_extent(m, side):
@@ -227,6 +227,159 @@ def prop_prompt(look_en, end="back", part_en=None):
     return (f"Reshape the iron spearhead at the left end of the wooden spear shaft into one {head}: a flat grey iron blade (metal, not a plant leaf) shaped like a small willow leaf, "
             f"widest in the middle and tapering smoothly to the tip and back to the shaft, with smooth curved edges and no barbs or hooks, {part_en or 'not much wider than a hand'}. "
             f"Do not add any crossguard, wings or second blade. {KEEP_PROP}")   # d4e: 「nothing sticking out beyond it」 → 벽에 날개·코등이 장식 · f6e: 「leaf-shaped」만으로는 미늘 화살촉(창 모양 4/5) · f6e2: 「willow leaf」만이면 푸른 진짜 잎(잎맥) — 쇠·회색을 말함 · m5: 「Enlarge … broad blade much wider than the shaft」 → 손바닥만 하게(사람 「창 앞촉이 큰것 같음」)
+
+# task 407 r22 — 지물 따로 그려 합성(규칙 edit.prop-sheet-paste): 작은 허공 지물(창)의 부위 크기는 장면 바탕에서도(m9 가이드 큰 촉),
+# 가이드를 줄여도(m13 — 그림 촉 창의 0.2, 뒤집힘 3/8), 끝 편집으로도(m10e·m11e 이음매·스티커) 못 맞춤 → 빈 종이 한 장에 지물만 크게 그리면
+# 깊이 가이드가 부위 크기를 묶음 → 단면을 재어 사전 부위 크기에 맞는 장을 고르고 → 크기 기준표 길이로 줄여 바탕 지물 자리를 지운 벽에 곱하기 합성.
+SHEET_W, SHEET_H, SHEET_SPAN, SHAFT_T = 1216, 640, (0.08, 0.92), 0.025   # 자루 굵기 = 창 길이의 0.025(지름 약 3cm / 113cm, [저작])
+
+
+def sheet_guide(parts):
+    """빈 종이 한 장 깊이 가이드: 가로 창 하나(촉 왼쪽) — 촉 길이 = ratio × 창 · 촉 폭 = width × 자루 · 뒤 물미 길이·폭 = parts.cap."""
+    im = Image.new("L", (SHEET_W, SHEET_H), 0)
+    d = ImageDraw.Draw(im)
+    x0, x1 = (a * SHEET_W for a in SHEET_SPAN)
+    L, cy, v = x1 - x0, SHEET_H / 2, round(255 * 0.95)
+    t = SHAFT_T * L / 2
+    pt, cp = parts["point"], parts["cap"]
+    tl, cl = pt["ratio"] * L, cp["ratio"] * L
+    d.rectangle([x0 + tl, cy - t, x1 - cl, cy + t], fill=v)
+    d.polygon([(x0, cy), (x0 + tl * 0.62, cy - t * pt["width"]), (x0 + tl, cy - t), (x0 + tl, cy + t), (x0 + tl * 0.62, cy + t * pt["width"])], fill=v)   # 촉 뒤끝은 자루 굵기(소켓) — 굵기 0까지 좁히면 허리가 생김
+    d.polygon([(x1 - cl, cy - t * cp["width"]), (x1 - cl * 0.4, cy - t * cp["width"]), (x1, cy), (x1 - cl * 0.4, cy + t * cp["width"]), (x1 - cl, cy + t * cp["width"])], fill=v)
+    return im
+
+
+def sheet_measure(src, parts):
+    """그린 한 장의 창 단면 → (점수, 잰 값 dict) · 점수 None = 탈락. 종이보다 어두운 화소의 열 굵기(T)로:
+    촉 길이 비(가장 넓은 곳 뒤로 자루 굵기가 이어지기 시작하는 열) ≈ ratio · 촉 최대 폭 ≈ width × 자루 · 뒤 0.15 최대 폭 ≤ 1.8 × 자루 · 가운데 고리(촉 끝 + 0.03 ~ 0.85에서 1.35배 넘는 열) 없음 · 덩어리 하나."""
+    import numpy as np
+    a = np.asarray(Image.open(src).convert("L"), dtype=float)
+    paper = np.median(np.concatenate([a[:20].ravel(), a[-20:].ravel()]))
+    dark = (paper - a) > 30
+    T = dark.sum(axis=0)
+    cols = np.where(T > 0)[0]
+    if len(cols) < 100:
+        return None, {"why": "창 없음"}
+    run = max(np.split(cols, np.where(np.diff(cols) > 3)[0] + 1), key=len)
+    xl, xr = int(run[0]), int(run[-1])
+    L = xr - xl
+    T = T[xl:xr + 1]
+    shaft = float(np.median(T[round(0.3 * L):round(0.7 * L)]))
+    head = T[:round(0.3 * L)]
+    top = int(head.argmax())
+    run_on = [x for x in range(top, len(head) - 12) if abs(np.median(T[x:x + 12]) - shaft) <= 0.15 * shaft]   # 촉 끝 = 가장 넓은 곳 뒤로 자루 굵기가 이어지기 시작하는 열(잎꼴 허리·소켓 고리는 촉 몫)
+    tip = run_on[0] / L if run_on and head[top] > 1.25 * shaft else 0.0
+    m = {"xl": xl, "xr": xr, "shaft": shaft, "tip": round(tip, 3), "tip_w": round(float(head.max()) / shaft, 2),
+         "back_w": round(float(T[round(0.85 * L):].max()) / shaft, 2), "outside": int(len(cols) - len(run))}
+    mid = T[min(round(tip * L + 0.03 * L), round(0.5 * L)):round(0.85 * L)]
+    m["ring"] = round(float(mid.max()) / shaft, 2)
+    pt = parts["point"]
+    bad = [k for k, ok in (("tip", 0.07 <= tip <= 0.18), ("tip_w", 1.4 <= m["tip_w"] <= 2.9), ("back_w", m["back_w"] <= 1.8),
+                           ("ring", m["ring"] <= 1.35), ("outside", m["outside"] <= 40), ("L", L >= 0.6 * SHEET_W)) if not ok]
+    if bad:
+        return None, m | {"why": bad}
+    return abs(tip - pt["ratio"]) + 0.05 * abs(m["tip_w"] - pt["width"]), m
+
+
+def erase_prop(src, m, w, h):
+    """measure_prop로 잰 바탕 지물을 지운 RGB 배열 — 띠(촉 반폭 + 6) 안 벽보다 어두운 화소(지물·그 그림자)를 마스크로 OpenCV 인페인트(Telea).
+    오른쪽 인물과 이어지면 _tail_stop(팔·손 앞)까지만(m14e: 열마다 위아래 색 보간은 세로 줄무늬·팔 번짐 · 손 앞 경계에서 멈추면 뒤 조각이 남음)."""
+    import numpy as np
+    import cv2
+    xl, xr, cy, t, reach, info = m
+    a = np.asarray(Image.open(src).convert("RGB")).copy()
+    half = round(max(reach + 6, 0.03 * h, t + 6))
+    y0, y1 = max(6, round(cy - half)), min(h - 6, round(cy + half))
+    x0, x1 = max(0, xl - 8), min(w, xr + 6 if info["sep"] else _tail_stop(a, m, w, y0, y1))
+    g = a.mean(axis=2)
+    bg = np.concatenate([g[y0 - 6:y0], g[y1:y1 + 6]]).mean(axis=0)
+    mk = np.zeros((h, w), np.uint8)
+    mk[y0:y1, x0:x1] = ((bg[None, x0:x1] - g[y0:y1, x0:x1]) > 18) * 255
+    mk = cv2.dilate(mk, np.ones((5, 5), np.uint8))
+    mk[:, x1:] = 0
+    info["stop"], info["band"] = x1, (y0, y1)
+    return np.ascontiguousarray(cv2.inpaint(np.ascontiguousarray(a[..., ::-1]), mk, 6, cv2.INPAINT_TELEA)[..., ::-1])
+
+
+def _tail_stop(a, m, w, y0, y1):
+    """바탕 창이 손 앞 경계(xr)보다 길 때 지울 오른끝 = 얇은 자루 토막이 마지막으로 보인 열 + 4. xr부터 열마다 창 중심선을 지나는 어두운 토막을 따라가다
+    토막이 창보다 굵거나(max(2 × 옛 촉 반폭 + 4, 3 × 자루)) 중심선에서 10화소 넘게 벗어나거나 띠 끝에 닿거나(팔·손), 자루 + 8보다 굵은 토막이 35열 넘게
+    이어지거나, 40열 넘게 비거나, 띠 가장자리가 벽보다 어두워지면(팔이 띠에 들어옴) 멈춤(m14e s23: 쥔 창이 팔 위로 지나 팔까지 따라가면 팔이 번짐)."""
+    import numpy as np
+    xl, xr, cy, t, reach, info = m
+    g = a.mean(axis=2)
+    bg = np.concatenate([g[y0 - 6:y0], g[y1:y1 + 6]]).mean(axis=0)   # 지우는 띠(erase_prop y0~y1) 바로 위아래 — 띠 밖 손·팔은 상관없음(m14e s23 넓은 띠는 아래 손에 걸려 일찍 멈춤)
+    lim, c0, thick, last = max(2 * reach + 4, 3 * t), round(cy) - y0, None, xr
+    wall = float(np.median(bg[max(0, xr - 60):xr]))
+    arm = next((x for x in range(xr, min(w, round(0.8 * w))) if bg[x] < wall - 15), round(0.8 * w))   # 띠 위아래 가장자리가 어두워지는 열 = 팔이 띠에 들어옴 — 팔 위로 지나는 창 선은 못 지움(남으면 빈손 문항이 거름)
+    for x in range(xr, arm - 4):
+        col = (bg[x] - g[y0:y1, x]) > 35
+        near = [i for i in range(max(0, c0 - 4), min(len(col), c0 + 5)) if col[i]]
+        if not near:
+            if x - last > 40:
+                break
+            continue
+        top = bot = near[0]
+        while top > 0 and col[top - 1]:
+            top -= 1
+        while bot < len(col) - 1 and col[bot + 1]:
+            bot += 1
+        if bot - top + 1 > lim or abs((top + bot) / 2 + y0 - cy) > 10 or top == 0 or bot == len(col) - 1:
+            break
+        if bot - top + 1 > t + 8:   # 자루보다 굵은 토막은 뒤 촉 길이(35열)까지만 — 더 이어지면 팔
+            thick = x if thick is None else thick
+            if x - thick > 35:
+                return thick - 4
+        else:
+            thick = None
+        last = x
+    return last + 4
+
+
+def back_edge(a, m, x_from, w):
+    """r22 — 창 높이(중심선 ± 자루 굵기)에서 뒤 인물 튜닉(밝기 < 90)의 가장 오른쪽 열 = 몸 뒤 가장자리. 쥔 채 몸 뒤로 지나간 바탕 창의 뒤끝이
+    여기서 삐져나옴(m14e 4장 가드·덧붙은 막대). 없으면 None."""
+    import numpy as np
+    xl, xr, cy, t, reach, info = m
+    g = np.asarray(a, dtype=float).mean(axis=2)
+    rows = g[round(cy - t):round(cy + t) + 1, round(x_from):w]
+    xs = np.where((rows < 90).any(axis=0))[0]
+    return round(x_from) + int(xs[-1]) if len(xs) else None
+
+
+def back_stub_prompt():
+    """r22 — 몸 뒤 가장자리 둘레 작은 상자: 등 뒤로 삐져나온 창 끝 토막을 지우는 지시 하나."""
+    return ("Remove the small wooden stick end poking out from behind the man's back, so nothing sticks out behind him. "
+            "Keep his brown tunic, his back, the wall behind him, the lighting and the same soft pencil and colored-pencil illustration style. "
+            "Add nothing new.")
+
+
+def stub_prompt():
+    """r22 — 지우기가 팔 앞에서 멈춘 뒤 팔 위에 남은 바탕 창 토막(쥔 채 그려진 자루)을 지우는 지시 하나(m14e 가드·덧붙은 막대 4장)."""
+    return ("Remove the short wooden stick lying across the man's arm and shoulder, so nothing lies on his arm and his hand is empty and open. "
+            "Keep his arm, his open hand, his brown sleeve, the plain wall, the lighting and the same soft pencil and colored-pencil illustration style. "
+            "Add nothing new.")
+
+
+def paste_prop(a, sheet, sm, front, length):
+    """고른 한 장(sheet, 잰 값 sm)의 창을 길이 length 화소로 줄여 촉 끝이 front(x, y)에 오게 배열 a 위에 곱하기 합성(종이 → 1, 선 → 어둡게) → 바뀐 상자."""
+    import numpy as np
+    s = Image.open(sheet).convert("RGB")
+    sa = np.asarray(s, dtype=float)
+    paper = np.median(np.concatenate([sa[:20].reshape(-1, 3), sa[-20:].reshape(-1, 3)]), axis=0)
+    pad = round(0.02 * (sm["xr"] - sm["xl"]))
+    cy = SHEET_H // 2
+    half = round(0.06 * (sm["xr"] - sm["xl"]))
+    box = (sm["xl"] - pad, cy - half, sm["xr"] + pad, cy + half)
+    f = length / (sm["xr"] - sm["xl"])
+    ratio = np.clip(sa[box[1]:box[3], box[0]:box[2]] / paper, 0, 1)
+    rw, rh = round((box[2] - box[0]) * f), round((box[3] - box[1]) * f)
+    r = np.stack([np.asarray(Image.fromarray((ratio[..., c] * 255).astype("uint8")).resize((rw, rh), Image.LANCZOS), dtype=float) / 255 for c in range(3)], -1)
+    x0, y0 = round(front[0] - pad * f), round(front[1] - rh / 2)
+    reg = a[y0:y0 + rh, x0:x0 + rw].astype(float)
+    a[y0:y0 + rh, x0:x0 + rw] = np.clip(reg * r[:reg.shape[0], :reg.shape[1]], 0, 255).astype(a.dtype)
+    return (x0, y0, x0 + rw, y0 + rh)
+
 
 # task 404 h2 — 쥔 지물 편집(edit.small-prop-orient 넓힘): 뼈대 인물의 두 손목 자리에서 상자를 뽑고, 사전 L2로 그 지물만 바꿈.
 HELD_HALF = (0.07, 0.11)   # 두 손목 가운데 ± (가로, 세로) 화면 비율 — 가슴에 붙여 쥔 작은 수금(키보다 훨씬 작음, 사전 L3)

@@ -1,0 +1,436 @@
+{
+ "answers": {
+  "g:7": {
+   "S": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.167,
+       "input": 4,
+       "output": 276,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.04501240000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "다윗, 사울, 창, 의자 모두 얼굴·옷·세부가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 5.04,
+       "input": 4,
+       "output": 278,
+       "cache_read": 43998,
+       "cache_create": 10286,
+       "cost_usd": 0.048331799999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 그린 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자, 수금 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.893,
+       "input": 4,
+       "output": 279,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.0450424,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣이 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 4.859,
+       "input": 4,
+       "output": 282,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.045072400000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 의자, 수금 모두 얼굴·옷·세부 묘사가 있고, 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.278,
+       "input": 4,
+       "output": 279,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.0450424,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 그린 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물, 창, 의자, 벽이 모두 얼굴·옷·세부가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 9.094,
+       "input": 4,
+       "output": 663,
+       "cache_read": 44036,
+       "cache_create": 10482,
+       "cost_usd": 0.0529696,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-back-cap": "창 뒤끝(오른쪽)이 자루에 박힌 가는 물미가 아니라 작은 삼각 날처럼 보이고, 길이도 앞 촉과 크게 다르지 않아 양끝에 촉이 달린 화살처럼 보임. 확연히 작은 물미라고 분명히 확인되지 않음."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 10.423,
+       "input": 6,
+       "output": 747,
+       "cache_read": 71803,
+       "cache_create": 11194,
+       "cost_usd": 0.05943829999999999,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-back-cap": "창 뒤끝은 자루 굵기에 가까운 작고 짧은 원뿔형 쇠 끝이다. 앞쪽의 큼직한 잎 모양 촉보다 확연히 작아서, 양끝에 같은 촉이 달린 화살처럼 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 10.956,
+       "input": 6,
+       "output": 778,
+       "cache_read": 72649,
+       "cache_create": 10372,
+       "cost_usd": 0.0565449,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-back-cap": "창 뒤끝(오른쪽)은 자루 굵기와 비슷한 가늘고 짧은 쇠 끝입니다. 앞 촉(왼쪽)은 자루보다 넓은 마름모 날입니다. 그래서 양끝에 같은 촉이 달린 화살처럼 보이지 않습니다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 7.539,
+       "input": 4,
+       "output": 410,
+       "cache_read": 54360,
+       "cache_create": 0,
+       "cost_usd": 0.009544,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-back-cap": "맞음"
+     },
+     "reasons": {
+      "e.spear-back-cap": "앞 촉은 자루보다 넓은 잎 모양 날이다. 뒤끝(화면 오른쪽)은 자루 굵기에 가까운 작고 가는 쇠 끝이라 확연히 작다. 양끝에 같은 촉이 달린 화살처럼 보이지 않는다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 7.297,
+       "input": 4,
+       "output": 647,
+       "cache_read": 54518,
+       "cache_create": 0,
+       "cost_usd": 0.0119298,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-back-cap": "오른쪽 뒤끝이 자루보다 약간 넓은 작은 삼각 촉 모양이다. 앞 촉보다는 작지만 가는 물미로 보이지 않고, 양끝에 촉이 달린 화살처럼 보인다. 분명히 맞다고 확인되지 않아 틀림으로 답한다."
+     }
+    }
+   }
+  },
+  "g:5": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.114,
+       "input": 4,
+       "output": 279,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.0450424,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·질감이 갖춰져 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.087,
+       "input": 4,
+       "output": 281,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.0450624,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "인물 둘과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있다. 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.441,
+       "input": 4,
+       "output": 279,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.0450424,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자, 벽이 모두 얼굴·옷·질감을 갖추고 있다. 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 4.131,
+       "input": 4,
+       "output": 277,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0082064,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자, 벽 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 4.25,
+       "input": 4,
+       "output": 267,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0081064,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색 느낌의 동화 그림이다.",
+      "s.no-blob": "모든 인물과 물건에 얼굴, 옷, 세부 묘사가 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.222,
+       "input": 4,
+       "output": 347,
+       "cache_read": 46489,
+       "cache_create": 7871,
+       "cost_usd": 0.039610900000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-back-cap": "창 오른쪽 뒤끝이 자루보다 넓게 퍼진 뾰족한 날처럼 보인다. 가늘고 짧은 쇠 물미로 분명히 확인되지 않고, 양끝에 촉이 달린 화살처럼 보인다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 5.535,
+       "input": 4,
+       "output": 407,
+       "cache_read": 54360,
+       "cache_create": 0,
+       "cost_usd": 0.009514,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-back-cap": "오른쪽 뒤끝에 작은 쇠 물미가 아니라 촉처럼 생긴 뾰족한 끝이 달려 있고 날개 같은 흐릿한 모양도 보입니다. 앞 촉과 같이 양끝에 촉이 달린 화살처럼 보여서, 분명히 물미라고 확인되지 않습니다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 6.493,
+       "input": 4,
+       "output": 441,
+       "cache_read": 46489,
+       "cache_create": 7871,
+       "cost_usd": 0.0405509,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-back-cap": "창 오른쪽 뒤끝이 가는 물미로 분명하지 않다. 뾰족한 쇠 끝에 날개처럼 퍼진 부분이 보여 화살촉에 가깝다. 왼쪽 앞 촉보다 작긴 하지만, 양끝에 촉이 달린 모양으로 읽힐 수 있어 맞다고 확인되지 않는다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 6.05,
+       "input": 4,
+       "output": 408,
+       "cache_read": 54360,
+       "cache_create": 0,
+       "cost_usd": 0.009524,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-back-cap": "오른쪽 뒤끝이 가는 물미라기보다 날개 같은 갈래가 달린 화살촉이나 깃처럼 보인다. 양끝에 촉이 달린 화살처럼 읽혀서, 분명히 맞다고 확인되지 않는다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 6.029,
+       "input": 4,
+       "output": 443,
+       "cache_read": 54360,
+       "cache_create": 0,
+       "cost_usd": 0.009874,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-back-cap": "틀림"
+     },
+     "reasons": {
+      "e.spear-back-cap": "창 오른쪽 뒤끝이 자루보다 넓고 뾰족한 촉이나 깃처럼 보입니다. 자루 굵기만 한 가는 물미로는 확실히 보이지 않아 틀림으로 판정했습니다. 확대해서 다시 보지는 않았습니다."
+     }
+    }
+   }
+  }
+ }
+}

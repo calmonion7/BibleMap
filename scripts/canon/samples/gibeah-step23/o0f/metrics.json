@@ -1,0 +1,230 @@
+{
+ "answers": {
+  "g:5": {
+   "S": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.202,
+       "input": 4,
+       "output": 272,
+       "cache_read": 43998,
+       "cache_create": 10286,
+       "cost_usd": 0.048271800000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "인물과 물건 모두 얼굴, 옷, 세부 묘사가 갖춰져 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 4.414,
+       "input": 4,
+       "output": 273,
+       "cache_read": 43998,
+       "cache_create": 10286,
+       "cost_usd": 0.0482818,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금 모두 얼굴·옷·세부가 완성돼 있고 회색 덩어리나 미완성 실루엣이 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.903,
+       "input": 4,
+       "output": 285,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.0451024,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "얼굴·옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다. 사울, 다윗, 수금, 창이 모두 완성돼 있다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.455,
+       "input": 4,
+       "output": 274,
+       "cache_read": 43998,
+       "cache_create": 10286,
+       "cost_usd": 0.048291799999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다.",
+      "s.no-blob": "사람과 물건 모두 얼굴, 옷, 세부 묘사가 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 4.886,
+       "input": 4,
+       "output": 273,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.044982400000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 창, 수금 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 8.54,
+       "input": 4,
+       "output": 628,
+       "cache_read": 44166,
+       "cache_create": 10613,
+       "cost_usd": 0.0531566,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-pair": "맞음",
+      "e.saul-proportion-measure": "틀림"
+     },
+     "reasons": {
+      "e.proportion-pair": "사울 키가 다윗의 약 1.3배라 자연스럽고 거인과 아이처럼 보이지 않음",
+      "e.saul-proportion-measure": "사울 머리가 키의 약 4분의 1로 너무 크고, 튜닉 아래 다리도 키의 약 3분의 1로 짧고 뭉툭함"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 8.684,
+       "input": 4,
+       "output": 761,
+       "cache_read": 44166,
+       "cache_create": 10454,
+       "cost_usd": 0.0538506,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-pair": "맞음",
+      "e.saul-proportion-measure": "틀림"
+     },
+     "reasons": {
+      "e.proportion-pair": "사울은 서 있는 키로 다윗의 1.2~1.3배쯤이다. 몸이 굵고 건장하지만 거인과 아이처럼 보일 정도는 아니다.",
+      "e.saul-proportion-measure": "튜닉 아래로 드러난 다리가 짧고 뭉툭하다. 허리띠에서 발까지가 키의 절반에 한참 못 미치고, 몸통이 다리보다 길어 보인다. 확실히 맞다고 볼 수 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 9.31,
+       "input": 4,
+       "output": 798,
+       "cache_read": 44166,
+       "cache_create": 10613,
+       "cost_usd": 0.0548566,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-pair": "맞음",
+      "e.saul-proportion-measure": "틀림"
+     },
+     "reasons": {
+      "e.proportion-pair": "사울은 다윗보다 1.3배쯤 커 보이고, 둘 다 어른과 청년 정도의 자연스러운 차이다. 거인과 아이처럼 보이지는 않는다.",
+      "e.saul-proportion-measure": "사울은 머리가 몸에 비해 크다. 키가 머리 높이의 4~5배쯤으로 보여 7.5분의 1에 못 미친다. 튜닉 아래 다리도 짧고 굵어서 키의 절반이 되지 않고, 몸통이 다리보다 길어 보인다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 8.496,
+       "input": 4,
+       "output": 724,
+       "cache_read": 54779,
+       "cache_create": 0,
+       "cost_usd": 0.0127259,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-pair": "맞음",
+      "e.saul-proportion-measure": "틀림"
+     },
+     "reasons": {
+      "e.proportion-pair": "사울 키가 다윗의 1.3배쯤으로 자연스러운 차이이고 거인과 아이처럼 보이지 않음",
+      "e.saul-proportion-measure": "튜닉 아래 다리가 짧고 굵어 몸통보다 짧아 보이며 키의 절반에 못 미침, 머리도 큼"
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 7.895,
+       "input": 4,
+       "output": 648,
+       "cache_read": 54779,
+       "cache_create": 0,
+       "cost_usd": 0.011965900000000002,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-pair": "맞음",
+      "e.saul-proportion-measure": "틀림"
+     },
+     "reasons": {
+      "e.proportion-pair": "사울 키가 다윗의 1.3배쯤으로 거인과 아이처럼 보이지 않음",
+      "e.saul-proportion-measure": "머리가 키의 약 4~5분의 1로 크고, 엉덩이에서 발까지 다리가 키의 절반에 못 미쳐 몸통보다 짧아 보임"
+     }
+    }
+   }
+  }
+ }
+}
