@@ -85,7 +85,9 @@
     {
       "what": "블레셋 활 쏘는 자들이 산 위로 뒤쫓아 온다",
       "verse": "31:3",
-      "region": "crest_right"
+      "region": "crest_right",
+      "count": 8,
+      "count_why": "[저작](「활 쏘는 자가 따라 미치니」 31:3 — 수 없음, 뒤쫓아 오는 사수들이라 작은 무리 8로 어림)"
     }
   ],
   "figures": [

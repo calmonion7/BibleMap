@@ -233,19 +233,17 @@ def pose_skeleton_errors(spec):
     return [f"{', '.join(miss)}: 몸짓에 던짐 동사가 있는데 guide.pose 뼈대가 없다 — 깊이 꼴은 던진 몸짓의 관절을 못 준다"] if miss else []
 
 
-FIGURE_MIN_SEEN = 0.45   # 뼈대 인물의 보이는 키(머리 꼭대기 ~ 발) 하한 — h4 0.55 → n1 0.45(사람 m1e 「사람사이즈를 조금 줄여야」)
-FIGURE_MAX_H = 0.70      # n1: 인물 구역 높이 위 한도 — m1e s42 사울 0.84가 화면 90%(「너무 가까이」)
-FIGURE_MIN_H = 0.6   # d1: 사람 키가 화면 높이 절반을 넘게 그리려면 구역은 그보다 넉넉히(c14 s5 다윗 구역 0.52 → 「절반에 못 미침」)
-
-
 def figure_scale_errors(spec):
-    """가까운 장면 인물은 크게(task 403 d1, 규칙 generate.figure-scale) — 무리 꼴(crowd)이 없는 guide에서 인물 구역(사람 꼴 person*·뼈대)의
-    높이가 화면 FIGURE_MIN_H 미만이면 걸림. c14 s5: 다윗 구역 0.52(숙인 꼴) → 「다윗 키가 화면 절반에 못 미치고 빈 벽이 화면 대부분」 3/3."""
+    """초점 인물 화면 키는 무리 단계 범위 안(task 403 d1 · task 409, 규칙 generate.figure-scale·derive.crowd-stage) — guide 인물 구역(사람 꼴 person*·뼈대)의
+    높이가 장면 사람 수(figures + crowds[].count)의 단계 범위(S.crowd_stage — 독대 0.60~0.70 …) 밖이면 걸림. 뼈대 인물의 하한은 보이는 키 × perspective.pose_seen.
+    c14 s5: 다윗 구역 0.52(숙인 꼴) → 「다윗 키가 화면 절반에 못 미치고 빈 벽이 화면 대부분」 3/3 · m1e s42 사울 0.84 → 「너무 가까이」.
+    task 409 전에는 무리 꼴(crowd)이 있으면 건너뛰었다 — 이제 무리 장면은 그 단계 범위로 잰다."""
     g, R = spec.get("guide") or {}, spec.get("regions", {})
-    sh = g.get("shape", {})
-    if not g or "crowd" in sh.values():
+    if not g:
         return []
-    pose = g.get("pose", {})
+    sh, pose = g.get("shape", {}), g.get("pose", {})
+    stage, (lo, hi) = S.crowd_stage(S.people_count(spec))
+    lo_seen = lo * S.v("perspective.pose_seen")
 
     def seen(k):   # h4: 뼈대 인물은 보이는 키(뼈대 머리 꼭대기 ~ 발) — 숙인 뼈대는 구역보다 작게 그려짐(h3e 숙인 다윗 「화면 절반」 5/5)
         h = R[k][3] - R[k][1]
@@ -256,10 +254,10 @@ def figure_scale_errors(spec):
         top = min(y for i, (x, y) in M.POSES[pose[k]].items() if i in (0, 14, 15, 16, 17)) - M.HEAD_R["person"]
         return h * (1 - max(0.0, top))
     people = [k for k in dict.fromkeys(list(sh) + list(pose)) if str(sh.get(k, "")).startswith("person") or k in pose]
-    small = [k for k in people if seen(k) < (FIGURE_MIN_SEEN if k in pose else FIGURE_MIN_H)]
-    big = [k for k in people if R[k][3] - R[k][1] > FIGURE_MAX_H]
-    return ([f"{k}: 보이는 키 {seen(k):.2f} < {FIGURE_MIN_SEEN if k in pose else FIGURE_MIN_H} — 인물이 화면 절반보다 작게 그려진다" for k in small]
-            + [f"{k}: 구역 높이 {R[k][3] - R[k][1]:.2f} > {FIGURE_MAX_H} — 화면을 가득 채워 너무 가깝게 그려진다" for k in big])
+    small = [k for k in people if seen(k) < (lo_seen if k in pose else lo)]
+    big = [k for k in people if R[k][3] - R[k][1] > hi]
+    return ([f"{k}: 보이는 키 {seen(k):.2f} < {lo_seen if k in pose else lo:.2f}(무리 단계 {stage}) — 인물이 단계 범위보다 작게 그려진다" for k in small]
+            + [f"{k}: 구역 높이 {R[k][3] - R[k][1]:.2f} > {hi}(무리 단계 {stage}) — 단계 범위보다 가깝게 그려진다" for k in big])
 
 
 YOUTH_MIN_RATIO = S.v("age_height_min.youth")   # d5: 청년 구역 높이 / 같은 장면 어른 구역 높이(d4e2 다윗 0.62/0.86 = 0.72 → 「몸이 작아 12~14세」)
@@ -279,28 +277,55 @@ def youth_height_errors(spec):
             for k, c in people.items() if c == "youth" and R[k][3] - R[k][1] < YOUTH_MIN_RATIO * max(adult)]
 
 
-HEIGHT_RANK = {"child": 0, "short": 1, "average": 2, "tall": 3, "towering": 4}
-HEAD_TOL = 0.04   # 판정 여유 — 키 비 자체는 크기 기준표 height(task 408: f1 HEAD_STEP 0.87 거듭제곱 → 표 키 비 직접, 삼상 9:2 「어깨 위만큼」)
+COUNT_WHY = ("[직접]", "[추론]", "[저작](")
+
+
+def crowd_count_errors(spec):
+    """무리 칸은 사람 수와 근거를 가짐(task 409, 규칙 derive.crowd-stage) — crowds[]마다 count(정수)·count_why([직접]·[추론]·[저작](이유)).
+    무리 단계(S.crowd_stage)가 장면 사람 수에서 초점 인물 화면 키 범위를 정하므로, 수가 없으면 단계를 셀 수 없다."""
+    return [f"무리 「{c.get('what', '')[:20]}」: count·count_why(근거 단계) 없음 — 무리 단계를 셀 수 없다"
+            for c in spec.get("crowds") or []
+            if not isinstance(c.get("count"), int) or not str(c.get("count_why", "")).startswith(COUNT_WHY)]
+
+
+def perspective_errors(spec):
+    """무리 구역은 눈높이 원근의 사람 키를 담음(task 409, 규칙 generate.eye-level-perspective) — guide 무리 꼴(crowd) 구역의 발 y(아래 끝)가
+    장면 지평선(S.scene_horizon) 아래면, 그 자리 보통 키 어른 화면 키(S.screen_height)가 구역 높이를 넘으면 걸림(가이드 무리가 구역 위로 솟음).
+    발이 지평선 위인 구역(강 건너 둑·언덕)은 평지 셈 밖이라 건너뜀."""
+    g, R = spec.get("guide") or {}, spec.get("regions", {})
+    hy = S.scene_horizon(spec) if g else None
+    out = []
+    for k, shape in (g.get("shape") or {}).items():
+        if shape != "crowd" or R[k][3] <= hy:
+            continue
+        ph, h = S.screen_height(R[k][3], hy), R[k][3] - R[k][1]
+        if ph > h:
+            out.append(f"{k}: 발 y {R[k][3]:.2f}의 어른 화면 키 {ph:.2f} > 구역 높이 {h:.2f}(지평선 {hy:.3f}) — 무리 구역이 원근보다 낮다")
+    return out
+
+
+HEAD_TOL = 0.04   # 판정 여유(초점 화면 키 비) — 키 비 자체는 크기 기준표 height(task 408: f1 HEAD_STEP 0.87 거듭제곱 → 표 키 비 직접, 삼상 9:2 「어깨 위만큼」)
 
 
 def height_ratio_errors(spec):
-    """같은 깊이에 선 인물의 키 비는 카드 키 등급에서(task 404 f1, 규칙 generate.height-ratio) — guide 사람 꼴·뼈대 인물 중 depth 값이 같은
-    두 인물의 구역 높이 비가 표 키 비(S.height_rel 낮은 등급 / 높은 등급) ± HEAD_TOL 밖이면 걸림. d5e·d4e2: 다윗 0.69 / 사울 0.86 = 0.80(tall vs average 한 칸) →
-    「거인과 아이」(두 사람 크기 3/3 틀림, 기록 c5 2/8 · c11 0/8)."""
-    g, R = spec.get("guide") or {}, spec.get("regions", {})
-    sh, pose, dep = g.get("shape", {}), g.get("pose", {}), g.get("depth", {})
-    people = [(f["region"], ds._cast_in_scene(f).get("card", {}).get("heightRel")) for f in spec["figures"]
-              if str(sh.get(f["region"], "")).startswith("person") or f["region"] in pose]
+    """서 있는 인물의 화면 키는 눈높이 지평선에서(task 404 f1 · task 409, 규칙 generate.height-ratio·generate.eye-level-perspective) — 화면 키가 가장 큰
+    guide 사람 꼴·뼈대 인물(초점)로 지평선을 정하고(S.scene_horizon), 다른 서 있는 인물의 구역 높이가 발 y에서 계산한 화면 키(S.screen_height × 카드 키 등급)와
+    초점 화면 키의 ± HEAD_TOL 넘게 다르면 걸림. 같은 발 y면 옛 검사(같은 깊이 두 인물 구역 높이 비 = 표 키 비)와 같다.
+    d5e·d4e2: 다윗 0.69 / 사울 0.86 = 0.80(tall vs average 한 칸) → 「거인과 아이」(두 사람 크기 3/3 틀림, 기록 c5 2/8 · c11 0/8)."""
+    R = spec.get("regions", {})
+    people = S.standing(spec)
+    if len(people) < 2:
+        return []
+    hy = S.scene_horizon(spec)
+    fk = max(people, key=lambda p: R[p[0]][3] - R[p[0]][1])[0]
+    fh = R[fk][3] - R[fk][1]
     out = []
-    for i, (a, ra) in enumerate(people):
-        for b, rb in people[i + 1:]:
-            if dep.get(a) != dep.get(b) or ra not in HEIGHT_RANK or rb not in HEIGHT_RANK:
-                continue
-            (hi, rh), (lo, rl) = sorted([(a, ra), (b, rb)], key=lambda x: -HEIGHT_RANK[x[1]])
-            want = S.height_rel(rl) / S.height_rel(rh)
-            got = (R[lo][3] - R[lo][1]) / (R[hi][3] - R[hi][1])
-            if abs(got - want) > HEAD_TOL:
-                out.append(f"{lo}/{hi} 구역 높이 비 {got:.2f} ≠ {want:.2f}±{HEAD_TOL}(키 등급 {rl}·{rh}) — 두 사람 크기가 어긋나 그려진다")
+    for k, hr in people:
+        if k == fk:
+            continue
+        want, got = S.screen_height(R[k][3], hy, hr), R[k][3] - R[k][1]
+        if abs(got - want) / fh > HEAD_TOL:
+            out.append(f"{k}: 구역 높이 {got:.2f} ≠ 지평선 {hy:.3f}에서 계산한 {want:.2f}(± 초점 {fk} 키의 {HEAD_TOL}) — 두 사람 크기가 어긋나 그려진다")
     return out
 
 
@@ -506,6 +531,8 @@ SPEC_CHECKS = {
     "recheck.prop_size_errors": lambda spec, ctx: prop_size_errors(spec),
     "recheck.prop_size_coverage_errors": lambda spec, ctx: prop_size_coverage_errors(spec),
     "recheck.flight_errors": lambda spec, ctx: flight_errors(spec),
+    "recheck.crowd_count_errors": lambda spec, ctx: crowd_count_errors(spec),
+    "recheck.perspective_errors": lambda spec, ctx: perspective_errors(spec),
     "check_scenes.lexicon_look_errors": lambda spec, ctx: check_scenes.lexicon_look_errors(spec, ds.route_prompt(spec)),
 }
 

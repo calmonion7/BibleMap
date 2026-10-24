@@ -1,6 +1,7 @@
 """task 408 — 크기 기준표(scale.json) 읽개. 가이드 그림·명세 검사·판정 문항이 크기 숫자를 여기서만 읽는다(규칙 derive.scale-table).
 
   import scale as S; S.height_rel("tall") → 1.205 · S.cm(6, "cubit") → 267.0 · S.fill("키의 {{1/[body.head]|1}}분의 1") → "키의 7.5분의 1"
+  task 409: S.crowd_stage(36) → ("large", (0.35, 0.5)) · S.scene_horizon(spec) → 눈높이 지평선 y · S.screen_height(발 y, 지평선, 키 등급)
 """
 import json
 import os
@@ -56,6 +57,56 @@ def cm(n, unit):
 def ref(name):
     """지물 크기 기준 길이(사전 look.size.ref) — 어른 남자 키 비."""
     return v(f"refs.{name}")
+
+
+def crowd_stage(n):
+    """task 409 — 장면 사람 수 → (무리 단계 이름, (초점 화면 키 하한, 위 한도))."""
+    for name, node in table()["crowd_stage"].items():
+        if name.startswith("_"):
+            continue
+        st = node["v"]
+        if st["max"] is None or n <= st["max"]:
+            return name, tuple(st["focus_h"])
+    raise ValueError(f"[Scale] 무리 단계에 위 끝 없는 단계가 없다: {n}")
+
+
+def people_count(spec):
+    """장면 사람 수 = figures 수 + crowds[].count(본문 근거 — 칸이 없으면 0으로 셈)."""
+    return len(spec.get("figures") or []) + sum(c.get("count", 0) for c in spec.get("crowds") or [])
+
+
+def horizon(foot_y, screen_h, height_rel=1.0):
+    """눈높이 카메라 지평선 y(화면 높이 비, 위 = 0) — 초점 인물 발 y·화면 키·키 등급에서."""
+    return foot_y - v("perspective.eye") * screen_h / height_rel
+
+
+def screen_height(foot_y, hy, height_rel=1.0):
+    """발 y에 서 있는 사람의 화면 키 — (발 y − 지평선) ÷ 눈높이 비 × 키 등급."""
+    return (foot_y - hy) / v("perspective.eye") * height_rel
+
+
+def standing(spec):
+    """가이드 사람 꼴(person*)·뼈대로 그리는 figures → [(구역 이름, 카드 키 등급 값)]. 꿇음·엎드림·앉음 꼴은 빠짐."""
+    import derive_scene as ds   # 늦은 읽기 — derive_scene 쪽 무거운 읽기를 표만 쓰는 곳에 끌어오지 않게
+    g = spec.get("guide") or {}
+    sh, pose = g.get("shape", {}), g.get("pose", {})
+    out = []
+    for f in spec.get("figures") or []:
+        k = f["region"]
+        if str(sh.get(k, "")).startswith("person") or k in pose:
+            cls = ds._cast_in_scene(f).get("card", {}).get("heightRel")
+            out.append((k, height_rel(cls) if cls in table()["height"] else height_rel("average")))
+    return out
+
+
+def scene_horizon(spec):
+    """장면 지평선 — 화면 키가 가장 큰(가장 가까운) 서 있는 인물이 초점. 없으면 표 기본값."""
+    R = spec.get("regions", {})
+    people = standing(spec)
+    if not people:
+        return v("perspective.horizon_default")
+    k, hr = max(people, key=lambda p: R[p[0]][3] - R[p[0]][1])
+    return horizon(R[k][3], R[k][3] - R[k][1], hr)
 
 
 def _lexicon():

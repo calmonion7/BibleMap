@@ -122,6 +122,54 @@ class Quotes(unittest.TestCase):
         self.assertFalse(self.misquotes("삼상 9:2 「키는 모든 백성보다 어깨 위는 더하더라」"))
 
 
+class Perspective(unittest.TestCase):
+    """task 409 — 무리 단계(본문 사람 수 → 초점 화면 키 범위)와 눈높이 지평선."""
+
+    def test_crowd_stage_bounds(self):
+        self.assertEqual(S.crowd_stage(1)[0], "duo")
+        self.assertEqual(S.crowd_stage(2)[0], "duo")
+        self.assertEqual(S.crowd_stage(3)[0], "small")
+        self.assertEqual(S.crowd_stage(20)[0], "small")
+        self.assertEqual(S.crowd_stage(21)[0], "large")
+        self.assertEqual(S.crowd_stage(999)[0], "large")
+        self.assertEqual(S.crowd_stage(1000)[0], "throng")
+        self.assertEqual(S.crowd_stage(330000)[0], "throng")
+        lo, hi = S.crowd_stage(2)[1]
+        self.assertEqual((lo, hi), (0.6, 0.7))   # 독대 = 옛 FIGURE_MIN_H·FIGURE_MAX_H(사람 조정 값)
+
+    def test_stage_ranges_shrink(self):
+        """사람이 많을수록 초점 인물은 물러난다 — 단계 차례대로 범위가 내려감."""
+        rng = [S.crowd_stage(n)[1] for n in (2, 20, 999, 1000)]
+        for a, b in zip(rng, rng[1:]):
+            self.assertGreater(a[0], b[0])
+            self.assertGreater(a[1], b[1])
+
+    def test_horizon_roundtrip(self):
+        """지평선을 초점 인물에서 정하면 그 인물 자리 화면 키가 되돌아온다 · 보통 키 어른 머리 위끝은 지평선 바로 위(키의 1 − 0.93)."""
+        hy = S.horizon(0.9, 0.6, 1.0)
+        self.assertAlmostEqual(hy, 0.9 - S.v("perspective.eye") * 0.6)
+        self.assertAlmostEqual(S.screen_height(0.9, hy, 1.0), 0.6)
+        self.assertAlmostEqual(hy - (0.9 - 0.6), (1 - S.v("perspective.eye")) * 0.6)   # 머리 위끝(0.3)은 지평선보다 키의 0.07 위
+        self.assertLess(S.screen_height(0.6, hy), S.screen_height(0.9, hy))   # 멀수록(발 y 위로) 작게
+
+    def test_same_foot_ratio_is_table_ratio(self):
+        """기브아 두 사람 같은 깊이 — 같은 발 y면 화면 키 비 = 표 키 비(사울 tall · 다윗 average)."""
+        with open(os.path.join(S.HERE, "scenes", "authored-saul-gibeah-spear.json"), encoding="utf-8") as fh:
+            spec = json.load(fh)
+        R = spec["regions"]
+        self.assertEqual(R["saul"][3], R["david-youth"][3])
+        hy = S.scene_horizon(spec)
+        self.assertAlmostEqual(hy, S.horizon(R["saul"][3], R["saul"][3] - R["saul"][1], S.height_rel("tall")))
+        foot = R["saul"][3]
+        self.assertAlmostEqual(S.screen_height(foot, hy, S.height_rel("average")) / S.screen_height(foot, hy, S.height_rel("tall")),
+                               S.height_rel("average") / S.height_rel("tall"))
+        self.assertEqual(S.crowd_stage(S.people_count(spec))[0], "duo")
+
+    def test_people_count(self):
+        spec = {"figures": [{}, {}], "crowds": [{"count": 15}, {"count": 20}, {}]}
+        self.assertEqual(S.people_count(spec), 37)
+
+
 class Literals(unittest.TestCase):
     def test_no_size_literals_in_code(self):
         """크기 숫자는 표에서만(규칙 derive.scale-table) — 지킴 이름이 코드에서 숫자로 다시 정해지면 걸림."""

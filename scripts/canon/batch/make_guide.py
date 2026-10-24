@@ -5,7 +5,8 @@
 
 깊이 그림 = 가까움 밝게 · 멂 어둡게. 선을 주지 않고(ZIMAGE §2 「콘티 되그림」) 자리·크기·멀고 가까움만 준다.
 꼴(guide.shape): person(서 있는 한 사람) · person_bow(고개를 앞·아래로 숙인 서 있는 사람, restyle r5) · kneel_bow(무릎 꿇고 엉덩이 들고 머리를 왼쪽 땅에, r6) · seated(배 안에 앉은 머리·어깨 한 줄, r6) · prostrate(엎드린 낮은 몸, 머리는 왼쪽 — 다윗 쪽) · crowd(작은 실루엣 두 줄) · boat(선체) · bank(강 너머 둑).
-바탕: 하늘 0 · 땅은 지평선(0.26)에서 아래로 0.12 → 0.5. 그리는 순서는 먼 것부터(깊이 오름차순)."""
+바탕: 하늘 0 · 땅은 지평선에서 아래로 0.12 → 0.5. 그리는 순서는 먼 것부터(깊이 오름차순).
+지평선은 눈높이 카메라(task 409, 규칙 generate.eye-level-perspective): 가장 가까운 서 있는 인물의 발 y·화면 키·키 등급에서 파생(S.scene_horizon)."""
 import argparse, json, os, sys
 
 from PIL import Image, ImageDraw, ImageFilter
@@ -14,7 +15,8 @@ HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, HERE)
 import scale as S  # noqa: E402 — task 408 크기 숫자는 크기 기준표(scale.json)에서만
 W, H = 1216, 640
-HORIZON, GROUND = 0.26, (0.12, 0.5)
+GROUND = (0.12, 0.5)
+PERSP = {"hy": S.v("perspective.horizon_default")}   # make()가 장면 지평선(화면 높이 비)으로 바꿈 — 무리 꼴 줄 높이가 발 y에서 읽음(꼴 함수 서명 유지, BODY와 같은 까닭)
 ROOM_WALL = 0.12   # 실내 뒷벽 깊이(바닥 시작값과 같음 — 벽과 바닥이 이어짐)
 # task 400 a5 — 몸 너비(키 비율)를 카드 체격(card.silhouette)에서: guide.body = "card"일 때만(옛 가이드 바이트 유지).
 # a3·a4: 카드는 넓은 어깨·통 몸통인데 가이드 몸이 기본 너비면 체격 문구가 화면 끝 셋째 인물로 그려짐. 너비 값은 S.build_width(크기 기준표).
@@ -91,8 +93,12 @@ def seated(d, x0, y0, x1, y1, v):
 
 
 def crowd(d, x0, y0, x1, y1, v):
+    """작은 실루엣 두 줄. 줄 높이는 발 y에서(task 409, 규칙 generate.eye-level-perspective): 보통 키 어른 화면 키 = (발 y − 지평선) ÷ 눈높이 비.
+    발이 지평선 위인 줄(강 건너 둑·언덕 — 평지 눈높이 셈 밖)은 옛 상자 비(뒷줄 0.558 · 앞줄 0.62 × 상자 높이)."""
     h = y1 - y0
-    for row, (ph, top, val) in enumerate(((h * 0.62 * 0.9, y0, round(v * 0.92)), (h * 0.62, y1 - h * 0.62, v))):
+    for row, (foot, old, val) in enumerate(((y0 + h * 0.62 * 0.9, h * 0.62 * 0.9, round(v * 0.92)), (y1, h * 0.62, v))):
+        ph = S.screen_height(foot / H, PERSP["hy"]) * H if foot / H > PERSP["hy"] else old
+        top = foot - ph
         step = ph * 0.32
         n = max(1, int((x1 - x0 - ph * 0.3) / step))
         for i in range(n):
@@ -351,7 +357,8 @@ def make(spec, stage=1):
     skel = not g.get("split")   # stage 2: 뼈대 인물은 뼈대를 따른 깊이 몸만
     img = Image.new("L", (W, H), 0)
     d = ImageDraw.Draw(img)
-    hy = int(HORIZON * H)
+    PERSP["hy"] = S.scene_horizon(spec)
+    hy = int(PERSP["hy"] * H)
     if g.get("backdrop") == "room":   # a3 실내 바탕: 바닥선 위를 먼 뒷벽(중간 깊이)으로 — 빈 검은 띠가 캡션 자리로 읽혔다(a2 4/8 글자)
         d.rectangle([0, 0, W, hy], fill=round(255 * ROOM_WALL))
     for y in range(hy, H):

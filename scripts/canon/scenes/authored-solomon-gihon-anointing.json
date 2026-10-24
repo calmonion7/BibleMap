@@ -24,7 +24,9 @@
     {
       "what": "모든 백성 — 뒤편에 모여 따른다",
       "verse": "1:40",
-      "region": "crest_back"
+      "region": "crest_back",
+      "count": 1000,
+      "count_why": "[저작](「모든 백성이 왕을 따라 올라와서」 1:40 — 수 없음, 모든 백성이라 군중 1000 이상으로 어림)"
     }
   ],
   "figures": [

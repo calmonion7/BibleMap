@@ -102,7 +102,9 @@
     {
       "what": "사울과 함께 온 두 사람 — 수염 없는 젊은 종 둘이 왼쪽 문 가에 선다",
       "verse": "28:8 · 수염 없는 젊은 종·문 가 · 본문 밖 · 저작자 정함",
-      "region": "companions"
+      "region": "companions",
+      "count": 2,
+      "count_why": "[직접] 28:8 「두 사람과 함께 갈새」"
     }
   ],
   "figures": [

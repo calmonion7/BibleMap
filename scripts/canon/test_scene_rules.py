@@ -276,11 +276,19 @@ class HeightRatio(unittest.TestCase):
         s["regions"]["david-youth"][1] = s["regions"]["david-youth"][3] - 0.78 * (s["regions"]["saul"][3] - s["regions"]["saul"][1])   # 0.87 − 0.09
         self.assertEqual(len(recheck.height_ratio_errors(s)), 1)
 
-    def test_other_depth_needs_nothing(self):
+    def test_farther_foot_from_horizon_passes(self):
+        """task 409 — 거리는 depth 꼬리표가 아니라 발 y: 다윗 발을 위로(멀리) 옮기고 지평선에서 계산한 키로 그리면 통과,
+        같은 발 y에 depth 꼬리표만 다르게 둔 작은 다윗은 이제 걸린다(옛 검사는 depth가 다르면 건너뜀)."""
+        import scale as S
         s = gibeah()
-        s["regions"]["david-youth"][1] = s["regions"]["david-youth"][3] - 0.78 * (s["regions"]["saul"][3] - s["regions"]["saul"][1])
-        s["guide"]["depth"]["david-youth"] = 0.7
+        hy = S.scene_horizon(s)
+        s["regions"]["david-youth"][3] = 0.8
+        s["regions"]["david-youth"][1] = 0.8 - S.screen_height(0.8, hy, S.height_rel("average"))
         self.assertEqual(recheck.height_ratio_errors(s), [])
+        t = gibeah()
+        t["regions"]["david-youth"][1] = t["regions"]["david-youth"][3] - 0.78 * (t["regions"]["saul"][3] - t["regions"]["saul"][1])
+        t["guide"]["depth"]["david-youth"] = 0.7
+        self.assertEqual(len(recheck.height_ratio_errors(t)), 1)
 
     def test_gibeah_passes(self):
         self.assertEqual(recheck.height_ratio_errors(gibeah()), [])
@@ -366,18 +374,20 @@ class PoseSkeleton(unittest.TestCase):
 
 
 class FigureScale(unittest.TestCase):
-    """generate.figure-scale — 무리 없는 가까운 장면의 인물 구역은 화면 높이 0.6 이상(task 403 d1)."""
+    """generate.figure-scale — 가까운 장면의 인물 구역은 무리 단계 범위 안(task 403 d1 · task 409 — 독대 0.60~0.70)."""
 
     def test_small_figure_fails(self):
         s = gibeah()
         s["regions"]["david-youth"][1] = 0.46
         self.assertEqual(len(recheck.figure_scale_errors(s)), 1)
 
-    def test_crowd_scene_needs_nothing(self):
+    def test_crowd_scene_uses_stage(self):
+        """task 409 — 무리 꼴이 있다고 건너뛰지 않고 장면 사람 수의 무리 단계 범위로 잰다: 무리 10명(작은 무리 0.45~0.60)이면 사울 0.68은 너무 가깝다."""
         s = gibeah()
-        s["regions"]["david-youth"][1] = 0.46
         s["guide"]["shape"]["wall"] = "crowd"
-        self.assertEqual(recheck.figure_scale_errors(s), [])
+        s["crowds"] = [{"count": 10}]
+        errs = recheck.figure_scale_errors(s)
+        self.assertTrue(any(e.startswith("saul:") and "small" in e for e in errs), errs)
 
     def test_gibeah_passes(self):
         self.assertEqual(recheck.figure_scale_errors(gibeah()), [])

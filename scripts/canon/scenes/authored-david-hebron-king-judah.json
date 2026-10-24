@@ -67,7 +67,9 @@
     {
       "what": "유다 사람들 — 뒤편에 로브 입고 도열",
       "verse": "2:4",
-      "region": "crest_back"
+      "region": "crest_back",
+      "count": 50,
+      "count_why": "[저작](「유다 사람들이 와서」 2:4 — 수 없음, 뒤편에 도열한 대표 무리라 큰 무리 50으로 어림)"
     }
   ],
   "figures": [
