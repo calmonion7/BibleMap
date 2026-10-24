@@ -164,7 +164,7 @@
       "quote": "칼로",
       "kind": "지물",
       "ko": "칼로 찌르려 쥔 칼 — 쥔 손은 본문 밖 · 저작자 정함",
-      "en": "a short sword in the other hand",
+      "en": "a straight iron sword in the other hand",
       "field": "stages[S5].prompt"
     },
     {
@@ -371,7 +371,7 @@
       "kind": "region",
       "region": "youths",
       "verse": "2:15-16",
-      "prompt": "twenty-four young men in plain knee-length wool tunics fighting close in the open ground before the pool, twelve young men of Benjamin and twelve young men of David's servants facing each other in matched pairs, each gripping his opponent by the head, a short sword in the other hand.",
+      "prompt": "twenty-four young men in plain knee-length wool tunics fighting close in the open ground before the pool, twelve young men of Benjamin and twelve young men of David's servants facing each other in matched pairs, each gripping his opponent by the head, a straight iron sword in the other hand.",
       "neg": [
         "modern clothes",
         "plate armour",

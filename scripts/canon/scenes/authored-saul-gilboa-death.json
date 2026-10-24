@@ -43,7 +43,7 @@
       "quote": "자기 칼을",
       "kind": "지물",
       "ko": "사울이 허리에 찬 자기 칼",
-      "en": "a sheathed sword at his hip",
+      "en": "a straight iron sword sheathed at his hip",
       "field": "stages[S3].prompt"
     },
     {
@@ -184,7 +184,7 @@
       "kind": "plate",
       "region": "saul-old",
       "verse": "31:3-4",
-      "prompt": "{cast:saul-old}, standing upright, wounded by arrows, one hand stretched out toward the armour-bearer in command, a sheathed sword at his hip, his own blade not drawn, facing right.",
+      "prompt": "{cast:saul-old}, standing upright, wounded by arrows, one hand stretched out toward the armour-bearer in command, a straight iron sword sheathed at his hip, his own blade not drawn, facing right.",
       "neg": [
         "armour",
         "bare blade",
