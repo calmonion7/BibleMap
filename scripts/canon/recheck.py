@@ -429,7 +429,7 @@ def prop_size_coverage_errors(spec=None):
 def flight_errors(spec):
     """나는 물체의 자리는 명세 칸으로(task 405, 규칙 generate.flight-position — 사람 m1e 「창은 3분의2쯤 날아가게」를 일반화) —
     guide에 허공 물체 꼴과 던지는 뼈대(throw_follow)·피하는 뼈대가 있으면 guide.flight{object, word, from, to, at}가 있어야 하고:
-    촉(구역 왼끝, make_guide.spear 관례)이 from 손목 → to 머리의 at 지점 ± 0.03, 그려질 뒤끝(촉 + 사전 size.ratio × from 키)이 손목 − 0.07 앞.
+    촉(구역 왼끝, make_guide.spear 관례)이 from 손목 → to 머리의 at 지점 ± 0.03, 그려질 뒤끝(촉 + 사전 size.ratio × from 키 ÷ from 키 등급)이 손목 − 0.07 앞.
     (m4 실측: 그림은 구역 길이와 상관없이 지물을 제 크기로 그림 — 길이는 사전 크기로 셈)."""
     g, R = spec.get("guide") or {}, spec.get("regions", {})
     sh, pose = g.get("shape", {}), g.get("pose", {})
@@ -459,7 +459,8 @@ def flight_errors(spec):
     if abs(x0 - want) > FLIGHT_TOL:
         out.append(f"{fl['object']} 촉 x {x0:.3f} ≠ {fl['at']:.2f} 지점 {want:.3f}±{FLIGHT_TOL} — 명세 자리(guide.flight)가 아니다")
     tb = R[fl["from"]]
-    butt = x0 + max(x1 - x0, size["ratio"] * S.ref(size["ref"]) * (tb[3] - tb[1]) * M.H / M.W)
+    hr = dict(S.standing(spec)).get(fl["from"], 1.0)   # task 411: 사전 비는 어른 남자 키 비 — 큰 사람(사울 tall)은 구역 키 ÷ 키 등급(합성 paste_step과 같은 셈)
+    butt = x0 + max(x1 - x0, size["ratio"] * S.ref(size["ref"]) * (tb[3] - tb[1]) * M.H / M.W / hr)
     if butt > hand - HAND_GAP:
         out.append(f"{fl['object']} 그려질 뒤끝 x {butt:.3f}(사전 크기 {size['ratio']} × 던지는 사람 키)가 던진 손목 {hand:.3f}에 닿음 — 손에 남은 꼴")
     return out

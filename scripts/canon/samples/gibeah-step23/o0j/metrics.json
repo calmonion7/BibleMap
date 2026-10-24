@@ -1,0 +1,496 @@
+{
+ "answers": {
+  "g:5": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.074,
+       "input": 4,
+       "output": 277,
+       "cache_read": 43998,
+       "cache_create": 10286,
+       "cost_usd": 0.0483218,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감이 보이는 동화풍 그림이다.",
+      "s.no-blob": "인물 둘과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 3.707,
+       "input": 4,
+       "output": 273,
+       "cache_read": 43998,
+       "cache_create": 10286,
+       "cost_usd": 0.0482818,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 의자 모두 얼굴·옷·질감이 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.798,
+       "input": 4,
+       "output": 281,
+       "cache_read": 43998,
+       "cache_create": 10286,
+       "cost_usd": 0.048361799999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·질감이 갖춰져 있다. 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 4.373,
+       "input": 4,
+       "output": 277,
+       "cache_read": 43998,
+       "cache_create": 10286,
+       "cost_usd": 0.0483218,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.813,
+       "input": 4,
+       "output": 277,
+       "cache_read": 43998,
+       "cache_create": 10286,
+       "cost_usd": 0.0483218,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 6.009,
+       "input": 4,
+       "output": 532,
+       "cache_read": 44372,
+       "cache_create": 10660,
+       "cost_usd": 0.0524052,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-length": "틀림",
+      "e.spear-two-thirds": "틀림",
+      "e.lyre-size": "틀림",
+      "e.lyre-one": "맞음"
+     },
+     "reasons": {
+      "e.spear-length": "창 길이가 사울 키의 약 0.55배로 너무 짧음",
+      "e.spear-two-thirds": "창이 사울 쪽에서 다윗 쪽으로 약 40% 지점이라 4분의 3까지 가지 않았음",
+      "e.lyre-size": "수금이 다윗 머리보다 작은 손바닥만 한 크기",
+      "e.lyre-one": "수금이 하나만 보임"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 7.391,
+       "input": 4,
+       "output": 628,
+       "cache_read": 44372,
+       "cache_create": 10660,
+       "cost_usd": 0.053365199999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-length": "틀림",
+      "e.spear-two-thirds": "맞음",
+      "e.lyre-size": "틀림",
+      "e.lyre-one": "맞음"
+     },
+     "reasons": {
+      "e.spear-length": "창 길이가 사울 키의 약 0.55배로 너무 짧음",
+      "e.spear-two-thirds": "촉이 사울 손에서 다윗 쪽으로 약 70~75% 날아간 자리에 있고 벽에는 닿지 않음",
+      "e.lyre-size": "수금이 다윗 머리 높이와 비슷한 손바닥만 한 크기라 1.75배에 못 미침",
+      "e.lyre-one": "수금이 하나만 보임"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 9.984,
+       "input": 4,
+       "output": 842,
+       "cache_read": 44372,
+       "cache_create": 10819,
+       "cost_usd": 0.0561412,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-length": "틀림",
+      "e.spear-two-thirds": "틀림",
+      "e.lyre-size": "틀림",
+      "e.lyre-one": "맞음"
+     },
+     "reasons": {
+      "e.spear-length": "창 길이는 약 236px이고 사울 키는 약 430px이라 0.55배 정도다. 0.83배보다 훨씬 짧다.",
+      "e.spear-two-thirds": "촉이 사울에서 다윗 쪽으로 약 2/3 지점에 있어 4분의 3에 못 미친다. 창 전체가 두 사람 사이 한가운데쯤에 떠 있는 것처럼 보인다.",
+      "e.lyre-size": "수금 높이가 다윗 머리 높이의 1.2배쯤으로 작다. 1.75배에는 못 미친다.",
+      "e.lyre-one": "수금은 다윗 얼굴 앞에 하나만 보인다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 6.93,
+       "input": 4,
+       "output": 708,
+       "cache_read": 55032,
+       "cache_create": 0,
+       "cost_usd": 0.0125912,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-length": "틀림",
+      "e.spear-two-thirds": "맞음",
+      "e.lyre-size": "틀림",
+      "e.lyre-one": "맞음"
+     },
+     "reasons": {
+      "e.spear-length": "창이 약 235px로 사울 키(약 400px)의 0.6배쯤이라 너무 짧음",
+      "e.spear-two-thirds": "촉이 사울 손에서 약 73% 지점으로 다윗 쪽에 가깝고 아직 닿지 않음",
+      "e.lyre-size": "수금 높이가 다윗 머리와 비슷한 정도(약 1배)라 1.75배에 못 미침",
+      "e.lyre-one": "수금이 하나만 보임"
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 7.27,
+       "input": 4,
+       "output": 732,
+       "cache_read": 55032,
+       "cache_create": 0,
+       "cost_usd": 0.0128312,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-length": "틀림",
+      "e.spear-two-thirds": "맞음",
+      "e.lyre-size": "틀림",
+      "e.lyre-one": "맞음"
+     },
+     "reasons": {
+      "e.spear-length": "창 길이는 약 237px이고 사울 키는 약 430px이라 0.55배쯤이다. 0.83배보다 훨씬 짧고 3분의 2에도 못 미친다.",
+      "e.spear-two-thirds": "창촉이 사울 손에서 다윗 쪽으로 약 0.79 지점에 있다. 두 사람 사이에서 다윗 쪽에 훨씬 가깝고, 다윗 머리나 벽에는 닿지 않았으며 사울 손과도 멀다.",
+      "e.lyre-size": "수금 높이가 다윗 머리 높이와 비슷한 1배쯤이다. 1.75배보다 작은 손바닥만 한 악기다.",
+      "e.lyre-one": "수금은 다윗의 손에 든 하나뿐이다."
+     }
+    }
+   }
+  },
+  "g:42": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.519,
+       "input": 4,
+       "output": 278,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.0450324,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 칠이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 없다. 인물, 창, 수금, 의자가 모두 완성되어 있다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.684,
+       "input": 4,
+       "output": 276,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.04501240000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴, 옷, 형태가 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.345,
+       "input": 4,
+       "output": 278,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.0450324,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "인물, 창, 수금, 의자 모두 얼굴·옷·형태가 갖춰져 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 4.158,
+       "input": 4,
+       "output": 271,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0081464,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "모든 인물과 물건에 얼굴, 옷, 형태가 있고 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 3.405,
+       "input": 4,
+       "output": 268,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.008116400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물, 창, 수금, 의자 모두 형태와 디테일이 완성돼 있고 평평한 회색 덩어리는 없다."
+     }
+    }
+   },
+   "E": {
+    "5": {
+     "tries": [
+      {
+       "seconds": 6.979,
+       "input": 4,
+       "output": 638,
+       "cache_read": 55032,
+       "cache_create": 0,
+       "cost_usd": 0.0118912,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-length": "틀림",
+      "e.spear-two-thirds": "틀림",
+      "e.lyre-size": "틀림",
+      "e.lyre-one": "틀림"
+     },
+     "reasons": {
+      "e.spear-length": "창 길이가 사울 키의 약 0.55배로 3분의 2에도 못 미침",
+      "e.spear-two-thirds": "촉이 사울에서 다윗 쪽으로 약 65% 지점이라 4분의 3에 못 미침. 확실하지 않아 틀림 처리",
+      "e.lyre-size": "수금 높이가 다윗 머리 높이와 비슷해 1.75배보다 훨씬 작음",
+      "e.lyre-one": "얼굴 앞과 손 아래쪽에 수금 모양이 둘로 보임"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 9.112,
+       "input": 4,
+       "output": 860,
+       "cache_read": 46825,
+       "cache_create": 8207,
+       "cost_usd": 0.0461185,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-length": "틀림",
+      "e.spear-two-thirds": "틀림",
+      "e.lyre-size": "틀림",
+      "e.lyre-one": "틀림"
+     },
+     "reasons": {
+      "e.spear-length": "창 길이는 약 236px이고 사울 키는 약 430px이라 0.55배쯤이다. 0.83배에 한참 못 미친다.",
+      "e.spear-two-thirds": "창이 두 사람 사이 한가운데쯤에 떠 있다. 4분의 3 지점까지 날아간 모습이 아니라서 분명히 맞다고 확인되지 않는다.",
+      "e.lyre-size": "수금이 다윗 머리만 하거나 그보다 작다. 머리 높이의 1.75배가 되지 않는다.",
+      "e.lyre-one": "수금이 둘로 보인다. 하나는 얼굴 앞에 들려 있고, 다른 하나는 가슴과 손 아래쪽에 있다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 10.312,
+       "input": 4,
+       "output": 951,
+       "cache_read": 46825,
+       "cache_create": 8365,
+       "cost_usd": 0.047660499999999995,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-length": "틀림",
+      "e.spear-two-thirds": "맞음",
+      "e.lyre-size": "틀림",
+      "e.lyre-one": "틀림"
+     },
+     "reasons": {
+      "e.spear-length": "창은 약 235px인데 사울 키는 약 430px이라 0.55배쯤이다. 0.83배보다 훨씬 짧다.",
+      "e.spear-two-thirds": "창 촉이 사울 손과 다윗 사이 거리의 4분의 3쯤 되는 곳에 있다. 다윗 머리나 벽에는 닿지 않았고 사울 손에서도 멀다.",
+      "e.lyre-size": "다윗이 든 수금은 손바닥만 하고 머리보다 크지 않아 1.75배에 못 미친다.",
+      "e.lyre-one": "다윗 손 근처에 수금이 둘 보인다. 위쪽 손에 작은 것 하나, 아래 가슴 쪽에 하나다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 9.09,
+       "input": 4,
+       "output": 740,
+       "cache_read": 55032,
+       "cache_create": 0,
+       "cost_usd": 0.0129112,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-length": "틀림",
+      "e.spear-two-thirds": "맞음",
+      "e.lyre-size": "틀림",
+      "e.lyre-one": "틀림"
+     },
+     "reasons": {
+      "e.spear-length": "창은 약 236px이고 사울 키는 약 430px이라 0.55배 정도다. 0.83배보다 훨씬 짧다.",
+      "e.spear-two-thirds": "촉이 사울 손에서 다윗 쪽으로 약 0.73 지점에 있다. 다윗 머리 위나 벽에 닿지 않았고 사울 손에서도 멀다.",
+      "e.lyre-size": "수금이 다윗 머리 크기 정도이거나 더 작다. 머리 높이의 1.75배에 한참 못 미친다.",
+      "e.lyre-one": "작은 수금이 얼굴 앞 오른손에 하나, 가슴 아래 왼손 쪽에 하나로 따로 두 개가 보인다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 10.444,
+       "input": 6,
+       "output": 859,
+       "cache_read": 74928,
+       "cache_create": 9558,
+       "cost_usd": 0.054326799999999995,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-length": "틀림",
+      "e.spear-two-thirds": "틀림",
+      "e.lyre-size": "틀림",
+      "e.lyre-one": "틀림"
+     },
+     "reasons": {
+      "e.spear-length": "창 길이가 약 240px이고 사울 키는 약 430px이라 0.55배쯤이다. 0.83배보다 많이 짧고, 3분의 2에도 못 미친다.",
+      "e.spear-two-thirds": "촉이 사울에게서 다윗 쪽으로 약 72% 지점에 있어 4분의 3에 가깝다. 그러나 창이 사울의 손을 떠나 허공에 가로로 뜬 채 짧게 그려졌다. 창 전체 모양이 어긋나서 분명히 맞다고 확인되지 않으므로 틀림으로 답한다.",
+      "e.lyre-size": "수금이 작아서 높이가 다윗 머리와 비슷하거나 약간 큰 정도다. 머리의 1.75배에는 못 미친다.",
+      "e.lyre-one": "다윗의 얼굴 앞쪽에 작은 수금이 하나 있고, 가슴 쪽 손에도 수금 모양이 하나 더 보여서 두 개로 읽힌다."
+     }
+    }
+   }
+  }
+ }
+}

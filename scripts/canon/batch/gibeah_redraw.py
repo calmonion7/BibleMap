@@ -163,13 +163,26 @@ def edit_prop():
             import make_guide as MG
             a0, b0, a1, b1 = spec["regions"][hd["figure"]]
             pts, _ = MG.pose_points((a0 * MG.W, b0 * MG.H, a1 * MG.W, b1 * MG.H), spec["guide"]["pose"][hd["figure"]])
-            crop, box = GL.held_box([(pts[i][0] / MG.W, pts[i][1] / MG.H) for i in (4, 7)], w, h)
+            wrists = [(pts[i][0] / MG.W, pts[i][1] / MG.H) for i in (4, 7)]
+            crop, box = GL.held_box(wrists, w, h)
             hw = next(x for x in words if x["id"] == hd["word"])["look"]
-            prompt = GL.held_prompt(hw["L2"]["en"], hd.get("mode", "reshape"), GL.held_size_en(hw["size"]) if hd.get("size") else None)
+            prompt = GL.held_prompt(hw["L2"]["en"], hd.get("mode", "reshape"), GL.held_size_en(hw["size"]) if hd.get("size") is True else None)
             src0, out = img(s), os.path.join(OUT, f"s{s}-held.png")
             shutil.copyfile(src0, os.path.join(OUT, f"s{s}-tips.png"))
-            r = GL.edit(os.path.join(OUT, f"s{s}-tips.png"), crop, box, None, e["seed"], out, prompt=prompt)
-            steps.append({"end": "held", "figure": hd["figure"], "word": hd["word"], "crop": crop, "box": box, "prompt": prompt, **r})
+            hsrc = os.path.join(OUT, f"s{s}-tips.png")
+            if hd.get("size") == "paint":   # task 411 edit.size-in-crop(쥔 지물): 기준표 크기 수금 틀을 칠한 뒤 그 크기 그대로 다듬음
+                import scale as S
+                fig, hr = spec["regions"][hd["figure"]], dict(S.standing(spec))[hd["figure"]]
+                age = (D._cast_in_scene(next(f for f in spec["figures"] if f["region"] == hd["figure"])).get("card", {}).get("ageBand") or {}).get("class")
+                chin = pts[0][1] / MG.H * h + 0.6 * S.head_ratio(age) * (fig[3] - fig[1]) * h   # p3: 숙인 뼈대는 코·목이 같은 높이 — 턱 = 코 + 머리 0.6(기준표 나이대 머리)
+                lbox = GL.held_target(wrists, hw["size"], fig[3] - fig[1], hr, w, h, top_min=max(chin, pts[1][1] / MG.H * h))
+                pb = GL.paint_lyre(hsrc, os.path.join(OUT, f"s{s}-held-paint.png"), lbox)
+                box = (min(box[0], pb[0]), min(box[1], pb[1]), max(box[2], pb[2]), max(box[3], pb[3]))
+                crop, hsrc = GL.crop_for(box, w, h), os.path.join(OUT, f"s{s}-held-paint.png")
+                prompt = GL.held_prompt(hw["L2"]["en"], "paint", GL.held_head_en(hw["size"], age, hr))
+            r = GL.edit(hsrc, crop, box, None, e["seed"], out, prompt=prompt)
+            steps.append({"end": "held", "figure": hd["figure"], "word": hd["word"], "crop": crop, "box": box, "prompt": prompt,
+                          **({"lyre_box": lbox} if hd.get("size") == "paint" else {}), **r})
             shutil.copyfile(out, img(s))
             print(f"[GibeahRedraw] 편집 s{s} held {r}", flush=True)
         m.setdefault("edit", {})[str(s)] = steps

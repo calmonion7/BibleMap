@@ -427,9 +427,62 @@ def held_size_en(size):
     return f"{word} as tall as his whole arm is long"
 
 
+LYRE_ASPECT = 0.75   # 수금 폭 ÷ 높이 — [저작](본문에 모양 없음 — 사전 kinnor-lyre L2 틀 모양: 울림통 위로 두 팔·가로대, 높이보다 조금 좁음)
+LYRE_PAINT = ((176, 122, 72), (104, 66, 36), (232, 216, 182))   # 칠할 나무 · 테두리 · 줄
+
+
+def held_target(wrists, size, fig_h, hr, w, h, top_min=None):
+    """task 411(edit.size-in-crop을 쥔 지물로) — 쥔 수금 상자(원본 화소)를 크기 기준표에서: 높이 = 사전 size.ratio × 기준 길이 × 인물 구역 키 ÷ 키 등급 ·
+    폭 = 높이 × LYRE_ASPECT · 두 손목 가운데가 울림통(아래 3분의 1쯤)에 오게. m15e: 문구(팔 길이의 절반)로는 klein이 수금을 머리만 하게 그림(사전의 절반).
+    top_min(화소, 뼈대 목 y) — 숙인 인물은 손이 턱 가까이라 위로 올리면 얼굴을 가림 → 위끝을 목 아래로(손이 틀 위쪽을 쥠)."""
+    import scale as S
+    cx, cy = sum(x for x, _ in wrists) / len(wrists) * w, sum(y for _, y in wrists) / len(wrists) * h
+    H = size["ratio"] * S.ref(size["ref"]) * fig_h * h / hr
+    W = H * LYRE_ASPECT
+    top = cy - H * 0.7 if top_min is None else max(cy - H * 0.7, top_min)
+    return (round(cx - W / 2), round(top), round(cx + W / 2), round(top + H))
+
+
+def paint_lyre(src, out, lbox):
+    """held_target 상자에 나무 수금 틀(울림통 · 굽은 두 팔 · 가로대 · 줄)을 칠해 out에 → 칠한 상자 둘레를 덮는 마스크 상자."""
+    x0, y0, x1, y1 = lbox
+    W, H = x1 - x0, y1 - y0
+    wood, edge, string = LYRE_PAINT
+    im = Image.open(src).convert("RGB")
+    d = ImageDraw.Draw(im)
+    lw = max(3, round(W * 0.09))
+    sb = y0 + 0.62 * H
+    for sx in (-1, 1):   # 굽은 두 팔 — 울림통 위 모서리에서 바깥으로 불룩하게 올라 가로대로
+        bx = x0 + W / 2 + sx * 0.3 * W
+        pts = [(bx, sb), (x0 + W / 2 + sx * 0.46 * W, y0 + 0.4 * H), (x0 + W / 2 + sx * 0.4 * W, y0 + 0.16 * H), (x0 + W / 2 + sx * 0.44 * W, y0 + 0.06 * H)]
+        d.line(pts, fill=edge, width=lw + 2, joint="curve")
+        d.line(pts, fill=wood, width=lw, joint="curve")
+    d.line([(x0 + 0.04 * W, y0 + 0.08 * H), (x1 - 0.04 * W, y0 + 0.08 * H)], fill=edge, width=lw + 2)
+    d.line([(x0 + 0.04 * W, y0 + 0.08 * H), (x1 - 0.04 * W, y0 + 0.08 * H)], fill=wood, width=lw)
+    for i in range(5):   # 줄 — 울림통에서 가로대로
+        x = x0 + W * (0.32 + 0.09 * i)
+        d.line([(x, sb), (x, y0 + 0.08 * H + lw / 2)], fill=string, width=1)
+    d.rounded_rectangle([x0 + 0.12 * W, sb, x1 - 0.12 * W, y1], radius=max(2, round(W * 0.08)), fill=wood, outline=edge, width=2)
+    im.save(out)
+    pad = max(10, round(0.12 * H))
+    return (max(0, x0 - pad), max(0, y0 - pad), min(im.width, x1 + pad), min(im.height, y1 + pad))
+
+
+def held_head_en(size, age, hr):
+    """task 411 p1 — 쥔 지물 크기를 크롭 안에 보이는 머리에 견준 문구로(edit.size-in-crop · 기준표 age_head): 사전 size.ratio × 기준 길이 ÷ (나이대 머리 × 키 등급)."""
+    import scale as S
+    k = size["ratio"] * S.ref(size["ref"]) / (S.v(f"age_head.{age}") * hr)
+    word = "about as tall as" if k < 1.3 else "about one and a half times as tall as" if k < 1.6 else "nearly twice as tall as" if k < 2.2 else f"about {k:.0f} times as tall as"
+    return f"{word} his head"
+
+
 def held_prompt(look_en, mode="reshape", size_en=None):
     """지시 하나 — 쥔 악기를 사전 L2 꼴로(h1e 「지판과 긴 목이 달린 류트」 5/5). mode add = 빈손에 넣기(r17 edit.held-prop-add).
     size_en(r23 held_size_en) — 크롭 안 팔에 견준 크기(m14e s7 수금 약 45px · 사전 0.25 × 어른 키 ≈ 90px → 수금 틀 「작아 U자가 안 보임」)."""
+    if mode == "paint":   # task 411: held_target 크기로 칠한 틀을 그 크기 그대로 다듬음(edit.size-in-crop) · p1: 「small lyre」는 klein 작은 꼴을 부름 → 머리에 견준 크기(size_en) · p2: 가로대가 입 높이(m15e 사람 「입에 댐」) → 얼굴에 닿지 않게
+        return (f"Turn the plain painted wooden U-shaped frame he holds against his chest into a finely drawn wooden lyre exactly as big as the painted frame, "
+                f"{size_en}, its sound box against his chest and its top crossbar below his chin, not touching his mouth or face: {look_en}, the two curved arms rising on the left and "
+                f"right of the sound box both clearly visible, forming a U-shaped frame, his fingers resting on it. Only one lyre. {KEEP_HELD}")
     if mode == "add":
         return (f"Place a small wooden lyre in his hands, held against his chest{', ' + size_en if size_en else ''}: {look_en}, the two curved arms rising on the left and "
                 f"right of the sound box both clearly visible, forming a U-shaped frame. {KEEP_HELD}")

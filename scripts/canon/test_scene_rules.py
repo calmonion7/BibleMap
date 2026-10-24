@@ -656,6 +656,13 @@ class FlightPosition(unittest.TestCase):
     def test_gibeah_passes(self):
         self.assertEqual(recheck.flight_errors(gibeah()), [])
 
+    def test_butt_divides_by_height_class(self):
+        """task 411 — 사전 비는 어른 남자 키 비: 큰 사울(tall)의 창은 구역 키 ÷ 1.205(합성 paste_step과 같은 셈). 등급을 빼면 뒤끝이 손에 닿음."""
+        from unittest import mock
+        s = gibeah()
+        with mock.patch.object(recheck.S, "standing", lambda spec: [("saul", 1.0)]):
+            self.assertTrue(any("손목" in e for e in recheck.flight_errors(s)))
+
 
 class PropSizeRelative(unittest.TestCase):
     """derive.prop-size-relative — 장면이 잇는 사전 지물은 look.size가 있고 L2에 크기 문구(task 405 — 사람 「사람을 줄였으면 창도 줄여야」)."""
@@ -859,6 +866,27 @@ class EditPropSheetPaste(unittest.TestCase):
         size = recheck._lexicon()["kinnor-lyre"]["look"]["size"]
         self.assertEqual(GL.held_size_en(size), "about half as tall as his whole arm is long")
         self.assertIn("about half as tall", GL.held_prompt("x", "add", GL.held_size_en(size)))
+
+    def test_held_target_from_scale_table(self):
+        """task 411 — 쥔 수금 칠할 상자 높이 = 사전 0.25 × 인물 구역 키 ÷ 키 등급(m15e 수금이 사전의 절반) · 위끝은 턱(top_min) 아래."""
+        import gen_local_edit as GL
+        size = recheck._lexicon()["kinnor-lyre"]["look"]["size"]
+        b = GL.held_target([(0.25, 0.64), (0.26, 0.64)], size, 0.59, 1.0, 1216, 640)
+        self.assertAlmostEqual(b[3] - b[1], 0.25 * 0.59 * 640, delta=1)
+        self.assertAlmostEqual((b[2] - b[0]) / (b[3] - b[1]), GL.LYRE_ASPECT, delta=0.03)
+        self.assertEqual(GL.held_target([(0.25, 0.64), (0.26, 0.64)], size, 0.59, 1.0, 1216, 640, top_min=403)[1], 403)
+
+    def test_held_head_en_and_paint_prompt(self):
+        """task 411 p1 — 크기는 크롭 안 머리에 견줌(0.25 ÷ youth 머리 0.1429 = 1.75) · 칠하기 지시에 「small wooden lyre」 없음(klein 작은 꼴) · 수금 하나."""
+        import gen_local_edit as GL
+        size = recheck._lexicon()["kinnor-lyre"]["look"]["size"]
+        en = GL.held_head_en(size, "youth", 1.0)
+        self.assertEqual(en, "nearly twice as tall as his head")
+        p = GL.held_prompt("a small hollow wooden sound box", "paint", en)
+        self.assertIn(en, p)
+        self.assertNotIn("small wooden lyre", p)
+        self.assertIn("Only one lyre", p)
+        self.assertIn("not touching his mouth", p)
 
     def test_back_edge_is_tunic_right_end(self):
         import numpy as np
