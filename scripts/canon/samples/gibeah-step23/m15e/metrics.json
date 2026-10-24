@@ -3481,5 +3481,14 @@
    5,
    42
   ]
+ },
+ "verdict": {
+  "answer": "none",
+  "chose": "none",
+  "left": "g:5",
+  "right": "g:42",
+  "memo": "하프와 창크기가 맞는건가? 확인필요",
+  "minutes": 0.97,
+  "active_minutes": 0.97
  }
 }
