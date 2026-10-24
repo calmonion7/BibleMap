@@ -241,14 +241,21 @@ def pose_skeleton_errors(spec):
     return [f"{', '.join(miss)}: 몸짓에 던짐 동사가 있는데 guide.pose 뼈대가 없다 — 깊이 꼴은 던진 몸짓의 관절을 못 준다"] if miss else []
 
 
+def _guide_people(spec):
+    """guide 사람 구역(사람 꼴 person*·뼈대) 이름 — task 413: 이게 없으면 크기 규칙은 잴 칸이 없다(빈 통과 → 못 잼 None)."""
+    g = spec.get("guide") or {}
+    sh, pose = g.get("shape", {}), g.get("pose", {})
+    return [k for k in dict.fromkeys(list(sh) + list(pose)) if str(sh.get(k, "")).startswith("person") or k in pose]
+
+
 def figure_scale_errors(spec):
     """초점 인물 화면 키는 무리 단계 범위 안(task 403 d1 · task 409, 규칙 generate.figure-scale·derive.crowd-stage) — guide 인물 구역(사람 꼴 person*·뼈대)의
     높이가 장면 사람 수(figures + crowds[].count)의 단계 범위(S.crowd_stage — 독대 0.60~0.70 …) 밖이면 걸림. 뼈대 인물의 하한은 보이는 키 × perspective.pose_seen.
     c14 s5: 다윗 구역 0.52(숙인 꼴) → 「다윗 키가 화면 절반에 못 미치고 빈 벽이 화면 대부분」 3/3 · m1e s42 사울 0.84 → 「너무 가까이」.
     task 409 전에는 무리 꼴(crowd)이 있으면 건너뛰었다 — 이제 무리 장면은 그 단계 범위로 잰다."""
     g, R = spec.get("guide") or {}, spec.get("regions", {})
-    if not g:
-        return []
+    if not _guide_people(spec):   # task 413: 사람이 있는데 잴 구역이 없으면 못 잼(빈 통과 아님)
+        return None if spec.get("figures") else []
     sh, pose = g.get("shape", {}), g.get("pose", {})
     stage, (lo, hi) = S.crowd_stage(S.people_count(spec))
     lo_seen = lo * S.v("perspective.pose_seen")
@@ -278,6 +285,8 @@ def youth_height_errors(spec):
     sh, pose = g.get("shape", {}), g.get("pose", {})
     people = {f["region"]: ds._cast_in_scene(f).get("card", {}).get("ageBand", {}).get("class") for f in spec["figures"]
               if str(sh.get(f["region"], "")).startswith("person") or f["region"] in pose}
+    if not people:   # task 413: 청년이 있는데 잴 구역이 없으면 못 잼
+        return None if any(ds._cast_in_scene(f).get("card", {}).get("ageBand", {}).get("class") == "youth" for f in spec["figures"]) else []
     adult = [R[k][3] - R[k][1] for k, c in people.items() if c not in ("child", "youth")]
     if not adult:
         return []
@@ -301,6 +310,8 @@ def perspective_errors(spec):
     장면 지평선(S.scene_horizon) 아래면, 그 자리 보통 키 어른 화면 키(S.screen_height)가 구역 높이를 넘으면 걸림(가이드 무리가 구역 위로 솟음).
     발이 지평선 위인 구역(강 건너 둑·언덕)은 평지 셈 밖이라 건너뜀."""
     g, R = spec.get("guide") or {}, spec.get("regions", {})
+    if spec.get("crowds") and "crowd" not in (g.get("shape") or {}).values():   # task 413: 무리가 있는데 잴 무리 구역이 없으면 못 잼
+        return None
     hy = S.scene_horizon(spec) if g else None
     out = []
     for k, shape in (g.get("shape") or {}).items():
@@ -322,6 +333,8 @@ def height_ratio_errors(spec):
     d5e·d4e2: 다윗 0.69 / 사울 0.86 = 0.80(tall vs average 한 칸) → 「거인과 아이」(두 사람 크기 3/3 틀림, 기록 c5 2/8 · c11 0/8)."""
     R = spec.get("regions", {})
     people = S.standing(spec)
+    if not people and len(spec.get("figures") or []) >= 2:   # task 413: 두 사람 이상인데 잴 구역이 없으면 못 잼
+        return None
     if len(people) < 2:
         return []
     hy = S.scene_horizon(spec)
@@ -434,6 +447,34 @@ def prop_size_coverage_errors(spec=None):
     return out
 
 
+HOLD_MODES = ("hand", "hug", "wear", "touch")   # 손에 쥠(그림 기본값) · 품에 안음 · 입음 · 손을 댐
+
+
+def held_hold_errors(spec):
+    """쥔 꼴은 사전에서(task 413, 규칙 derive.held-hold — 기브아 수금 hug를 넓힘) — ① 사전 held 항목은 모두 look.hold{mode, grounds(근거 단계)},
+    hug는 en·item·noun까지 · ② 장면 figures[].prop이 hug 항목에 묶였는데 파생 문구에 hold.en이 없으면 걸림 — 그림 기본값은 손에 매단 꼴(m16e).
+    add 항목(수금 — edit.held-prop-add)은 바탕에서 빼고 편집 지시(gen_local_edit.held_prompt hug)가 hold 문구를 쓰므로 ②에서 뺀다."""
+    L, out = _lexicon(), []
+    for w in L.values():
+        if not w.get("held"):
+            continue
+        h = w.get("look", {}).get("hold") or {}
+        if h.get("mode") not in HOLD_MODES or not str(h.get("grounds", "")).startswith(COUNT_WHY):
+            out.append(f"사전 {w['id']}: look.hold(mode {'·'.join(HOLD_MODES)} · grounds 근거 단계) 없음")
+        elif h["mode"] == "hug" and not all(h.get(k) for k in ("en", "item", "noun")):
+            out.append(f"사전 {w['id']}: hug인데 look.hold en·item·noun 없음")
+    held, prompt = {x: w for w in L.values() for x in w.get("held", [])}, None
+    for f in spec.get("figures", []):
+        w = held.get(f.get("prop"))
+        h = (w or {}).get("look", {}).get("hold") or {}
+        if h.get("mode") != "hug" or h.get("add") or not h.get("en"):
+            continue
+        prompt = ds.route_prompt(spec) if prompt is None else prompt
+        if h["en"] not in prompt:
+            out.append(f"{f['region']}: 손 지물 「{f['prop']}」(사전 {w['id']} hug)인데 파생 문구에 쥔 꼴 「{h['en']}」 없음 — 손에 매단 꼴로 그려진다")
+    return out
+
+
 def flight_errors(spec):
     """나는 물체의 자리는 명세 칸으로(task 405, 규칙 generate.flight-position — 사람 m1e 「창은 3분의2쯤 날아가게」를 일반화) —
     guide에 허공 물체 꼴과 던지는 뼈대(throw_follow)·피하는 뼈대가 있으면 guide.flight{object, word, from, to, at}가 있어야 하고:
@@ -443,9 +484,10 @@ def flight_errors(spec):
     sh, pose = g.get("shape", {}), g.get("pose", {})
     objs = [k for k, v in sh.items() if v in AIR_SHAPES]
     thrower = [k for k, n in pose.items() if n == "throw_follow"]
-    dodger = [k for k, n in pose.items() if k not in thrower and sh.get(k) in HEAD_BAND]
-    if not (objs and thrower and dodger):
+    if not objs:
         return []
+    if not thrower:   # task 413: 꼴만 있는 허공 물체(던지는 뼈대 없음)는 빈 통과였음 → 날아간 자리를 셀 수 없어 실패
+        return [f"{', '.join(objs)}: 허공 물체 꼴이 있는데 던지는 뼈대(throw_follow)가 없다 — 누가 던졌는지·날아간 자리를 셀 수 없다"]
     fl = g.get("flight")
     if not fl:
         return ["guide.flight(나는 물체 자리 — 누구에게서 누구에게 몇 분의 몇) 칸 없음"]
@@ -563,6 +605,7 @@ SPEC_CHECKS = {
     "recheck.split_control_errors": lambda spec, ctx: split_control_errors(spec),
     "recheck.prop_size_errors": lambda spec, ctx: prop_size_errors(spec),
     "recheck.prop_size_coverage_errors": lambda spec, ctx: prop_size_coverage_errors(spec),
+    "recheck.held_hold_errors": lambda spec, ctx: held_hold_errors(spec),
     "recheck.flight_errors": lambda spec, ctx: flight_errors(spec),
     "recheck.flight_height_errors": lambda spec, ctx: flight_height_errors(spec),
     "recheck.crowd_count_errors": lambda spec, ctx: crowd_count_errors(spec),

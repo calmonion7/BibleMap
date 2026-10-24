@@ -431,7 +431,7 @@ LYRE_ASPECT = 0.75   # 수금 폭 ÷ 높이 — [저작](본문에 모양 없음
 LYRE_PAINT = ((176, 122, 72), (104, 66, 36), (232, 216, 182))   # 칠할 나무 · 테두리 · 줄
 
 
-KEEP_HOLD_POSE = ("Keep his face, hair, clothes, body and legs exactly the same — only his arms and hands may move to hold the lyre — "
+KEEP_HOLD_POSE = ("Keep his face, hair, clothes, body and legs exactly the same — only his arms and hands may move to hold the {noun} — "
                   "the lighting and the same soft pencil and colored-pencil illustration style.")   # task 412: KEEP_HELD 「arms … the same」면 턱 앞 맞잡은 손이 남아 수금이 떠 있음
 
 
@@ -480,19 +480,22 @@ def held_head_en(size, age, hr):
     return f"{word} his head"
 
 
-def held_prompt(look_en, mode="reshape", size_en=None):
+HUG_EDIT = "Place {item} in his arms, {size}, {hold}: {look}. Only one {noun}."   # task 413: 사전 look.hold에 edit_en이 없는 hug 항목(아기)의 편집 뼈대
+
+
+def held_prompt(look_en, mode="reshape", size_en=None, hold=None):
     """지시 하나 — 쥔 악기를 사전 L2 꼴로(h1e 「지판과 긴 목이 달린 류트」 5/5). mode add = 빈손에 넣기(r17 edit.held-prop-add).
     size_en(r23 held_size_en) — 크롭 안 팔에 견준 크기(m14e s7 수금 약 45px · 사전 0.25 × 어른 키 ≈ 90px → 수금 틀 「작아 U자가 안 보임」)."""
     if mode == "hug":   # task 412 h1: 칠하지 않고 넣기 — 칠한 틀은 팔 앞을 덮어 매단 꼴·떠 있는 꼴(m16e·p) → 두 팔뚝으로 울림통을 감싸 가슴에 안음
-        return (f"Place a wooden lyre in his arms, {size_en}, clutched upright against his chest with both forearms wrapped around its sound box, "
-                f"its top crossbar below his chin, not touching his mouth or face: {look_en}, the two curved arms rising on the left and right of the "
-                f"sound box both clearly visible above his forearms, forming a U-shaped frame. It does not hang from his hands. Only one lyre. {KEEP_HOLD_POSE}")
+        # task 413: 쥔 꼴 문구·편집 뼈대는 사전 look.hold가 정본(derive.held-hold) — 수금 m17e 지시와 바이트 같게
+        return (hold.get("edit_en", HUG_EDIT).format(item=hold["item"], noun=hold["noun"], size=size_en, hold=hold["en"], look=look_en)
+                + " " + KEEP_HOLD_POSE.format(noun=hold["noun"]))
     if mode == "paint":   # task 411: held_target 크기로 칠한 틀을 그 크기 그대로 다듬음(edit.size-in-crop) · p1: 「small lyre」는 klein 작은 꼴을 부름 → 머리에 견준 크기(size_en) · p2: 가로대가 입 높이(m15e 사람 「입에 댐」) → 얼굴에 닿지 않게 · task 412: 가로대를 쥐고 매단 꼴(사람 m16e 「수금 든 모습 이상함」) → 한 팔로 울림통을 안고 다른 손가락 줄 위
         return (f"Turn the plain painted wooden U-shaped frame he holds against his chest into a finely drawn wooden lyre exactly as big as the painted frame, "
                 f"{size_en}, held upright with one arm wrapped around its sound box, pressing it against his chest, and the fingers of his other hand "
                 f"on its strings, its top crossbar below his chin, not touching his mouth or face: {look_en}, the two curved arms rising on the left and "
                 f"right of the sound box both clearly visible, forming a U-shaped frame. He is not holding it up by the crossbar and it does not hang "
-                f"from his hands. Only one lyre. {KEEP_HOLD_POSE}")
+                f"from his hands. Only one lyre. {KEEP_HOLD_POSE.format(noun='lyre')}")
     if mode == "add":
         return (f"Place a small wooden lyre in his hands, held against his chest{', ' + size_en if size_en else ''}: {look_en}, the two curved arms rising on the left and "
                 f"right of the sound box both clearly visible, forming a U-shaped frame. {KEEP_HELD}")

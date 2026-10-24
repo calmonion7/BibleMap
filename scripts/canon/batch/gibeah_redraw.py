@@ -166,7 +166,7 @@ def edit_prop():
             wrists = [(pts[i][0] / MG.W, pts[i][1] / MG.H) for i in (4, 7)]
             crop, box = GL.held_box(wrists, w, h)
             hw = next(x for x in words if x["id"] == hd["word"])["look"]
-            prompt = GL.held_prompt(hw["L2"]["en"], hd.get("mode", "reshape"), GL.held_size_en(hw["size"]) if hd.get("size") is True else None)
+            prompt = GL.held_prompt(hw["L2"]["en"], hd.get("mode", "reshape"), GL.held_size_en(hw["size"]) if hd.get("size") is True else None, hw.get("hold"))
             src0, out = img(s), os.path.join(OUT, f"s{s}-held.png")
             shutil.copyfile(src0, os.path.join(OUT, f"s{s}-tips.png"))
             hsrc = os.path.join(OUT, f"s{s}-tips.png")
@@ -174,7 +174,7 @@ def edit_prop():
                 import scale as S
                 hr = dict(S.standing(spec))[hd["figure"]]
                 age = (D._cast_in_scene(next(f for f in spec["figures"] if f["region"] == hd["figure"])).get("card", {}).get("ageBand") or {}).get("class")
-                prompt = GL.held_prompt(hw["L2"]["en"], hd.get("mode", "hug"), GL.held_head_en(hw["size"], age, hr))
+                prompt = GL.held_prompt(hw["L2"]["en"], hd.get("mode", hw["hold"]["mode"]), GL.held_head_en(hw["size"], age, hr), hw["hold"])   # task 413: 쥔 꼴은 사전 look.hold(시도 칸 mode가 있으면 그것)
             elif hd.get("size") == "paint":   # task 411 edit.size-in-crop(쥔 지물): 기준표 크기 수금 틀을 칠한 뒤 그 크기 그대로 다듬음
                 import scale as S
                 fig, hr = spec["regions"][hd["figure"]], dict(S.standing(spec))[hd["figure"]]

@@ -101,3 +101,17 @@
 - **`held`(task 408, 규칙 `derive.prop-size-coverage`)**: 장면 명세 `figures[].prop`(손에 쥔 지물) 문구를 **글자 그대로** 담는 배열. 37장면의 손 지물은 모두 어느 항목의 `held`에 묶이고 그 항목은 `look.size`를 가진다(한 문구는 한 항목에만 — 검증기 ⑧). 옷자락·빈손·입은 옷처럼 크기 대상이 아닌 문구는 크기 기준표 `scripts/canon/scale.json` `held_exclude`에 근거와 함께 둔다. 명세 지물 문구를 바꾸면 `held`도 함께 고친다.
 - 크기 숫자의 기준(어른 남자 키 168cm = 1 · 규빗·뼘·손바닥 cm · 키 등급)은 크기 기준표 `scripts/canon/scale.json`이 정본이다.
 - 장면 프롬프트에 이미 실린 L 문구를 바꾸면 그 장면의 `spec.lexicon-link`가 걸린다(명세가 사전 문구를 글자 그대로 싣기 때문) — 크기 구절을 L2에 끼울 때는 그 항목을 쓰는 장면 명세도 함께 고친다(task 408: 나룻배는 요단 명세 때문에 미룸).
+
+## 쥔 꼴 — `look.hold` (2026-10-25, task 413)
+
+`held`가 있는 항목(손 지물)은 **어떻게 드는지**를 적는다. 기브아 수금은 그림 기본값(손에 매단 꼴)으로 「수금 든 모습 이상함」(task 412 m16e)이 나와 품에 안는 꼴(hug)로 고쳤다 — 그 고침을 수금 한 장면이 아니라 사전 칸으로 둔다.
+
+```json
+"hold": { "mode": "hug", "en": "cradled in both arms against the chest", "item": "a newborn baby", "noun": "baby",
+          "grounds": "[직접] 룻 4:16 「나오미가 아기를 취하여 품에 품고」 …" }
+```
+
+- `mode`: `hand`(손에 쥠 — 그림 기본값) · `hug`(품에 안음) · `wear`(입음) · `touch`(손을 댐, 쥐지 않음). `grounds`는 근거 단계([직접]·[추론]·[저작](이유))로 시작.
+- **그리는 문구에 쥔 꼴 문구를 싣는 것은 `hug`뿐**이다. `hand`·`wear`·`touch`는 문구를 더하지 않는다 — 근거 없는 쥔 꼴 문구로 승인 그림을 낡게 만들지 않는다.
+- `hug`는 `en`(쥔 꼴 문구)·`item`(편집 지시의 물건 이름)·`noun`(「Only one …」)을 갖는다. 장면 `figures[].prop`이 hug 항목에 묶이면 파생 문구에 `en`이 글자 그대로 들어 있어야 한다(규칙 `derive.held-hold`).
+- `add: true`는 바탕이 못 그려 편집으로 넣는 지물(수금 — 규칙 `edit.held-prop-add`)이다. 이때는 바탕 문구 대신 편집 지시(`gen_local_edit.held_prompt` hug)가 `edit_en` 뼈대(`{item}`·`{size}`·`{hold}`·`{look}`·`{noun}`)로 쓴다. `edit_en`이 없으면 기본 뼈대 `HUG_EDIT`.

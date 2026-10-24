@@ -1,5 +1,5 @@
 {
- "rules_version": "8c95dbfde675",
+ "rules_version": "cb0b1f5f7371",
  "images": {
   "authored-david-gath-achish": {
    "image": "/Users/calmonion/Project/BibleMap/scripts/canon/samples/local-edit/approved-authored-david-gath-achish.png",
@@ -33,10 +33,10 @@
     "generate.guide-costume-legs": "pass",
     "derive.youth-noun": "pass",
     "generate.pose-skeleton": "pass",
-    "generate.figure-scale": "pass",
+    "generate.figure-scale": "none",
     "derive.no-second-point": "pass",
     "generate.youth-height": "pass",
-    "generate.height-ratio": "pass",
+    "generate.height-ratio": "none",
     "generate.split-control": "pass",
     "derive.prop-size-relative": "pass",
     "generate.flight-position": "pass",
@@ -45,6 +45,7 @@
     "derive.wall-material": "pass",
     "derive.no-inflating-build": "pass",
     "derive.prop-size-coverage": "pass",
+    "derive.held-hold": "pass",
     "derive.crowd-stage": "pass",
     "generate.eye-level-perspective": "pass"
    },
@@ -149,10 +150,10 @@
     "generate.guide-costume-legs": "pass",
     "derive.youth-noun": "stale",
     "generate.pose-skeleton": "pass",
-    "generate.figure-scale": "pass",
+    "generate.figure-scale": "none",
     "derive.no-second-point": "pass",
-    "generate.youth-height": "pass",
-    "generate.height-ratio": "pass",
+    "generate.youth-height": "none",
+    "generate.height-ratio": "none",
     "generate.split-control": "pass",
     "derive.prop-size-relative": "pass",
     "generate.flight-position": "pass",
@@ -161,6 +162,7 @@
     "derive.wall-material": "pass",
     "derive.no-inflating-build": "stale",
     "derive.prop-size-coverage": "pass",
+    "derive.held-hold": "pass",
     "derive.crowd-stage": "pass",
     "generate.eye-level-perspective": "pass"
    },
@@ -279,6 +281,7 @@
     "derive.wall-material": "stale",
     "derive.no-inflating-build": "stale",
     "derive.prop-size-coverage": "stale",
+    "derive.held-hold": "stale",
     "derive.crowd-stage": "stale",
     "generate.eye-level-perspective": "stale"
    },
@@ -319,6 +322,7 @@
     "derive.wall-material": "그림 뒤 명세가 바뀜",
     "derive.no-inflating-build": "그림 뒤 명세가 바뀜",
     "derive.prop-size-coverage": "그림 뒤 명세가 바뀜",
+    "derive.held-hold": "그림 뒤 명세가 바뀜",
     "derive.crowd-stage": "그림 뒤 명세가 바뀜",
     "generate.eye-level-perspective": "그림 뒤 명세가 바뀜"
    },
@@ -396,8 +400,8 @@
      }
     ],
     "majority": {
-     "p.boarding": "틀림",
-     "p.one-crown": "맞음"
+     "p.one-crown": "맞음",
+     "p.boarding": "틀림"
     }
    }
   },
@@ -445,6 +449,7 @@
     "derive.wall-material": "stale",
     "derive.no-inflating-build": "stale",
     "derive.prop-size-coverage": "stale",
+    "derive.held-hold": "stale",
     "derive.crowd-stage": "stale",
     "generate.eye-level-perspective": "stale"
    },
@@ -485,6 +490,7 @@
     "derive.wall-material": "그림 뒤 명세가 바뀜",
     "derive.no-inflating-build": "그림 뒤 명세가 바뀜",
     "derive.prop-size-coverage": "그림 뒤 명세가 바뀜",
+    "derive.held-hold": "그림 뒤 명세가 바뀜",
     "derive.crowd-stage": "그림 뒤 명세가 바뀜",
     "generate.eye-level-perspective": "그림 뒤 명세가 바뀜"
    },
@@ -600,6 +606,7 @@
     "derive.wall-material": "stale",
     "derive.no-inflating-build": "stale",
     "derive.prop-size-coverage": "stale",
+    "derive.held-hold": "stale",
     "derive.crowd-stage": "stale",
     "generate.eye-level-perspective": "stale"
    },
@@ -640,6 +647,7 @@
     "derive.wall-material": "그림 뒤 명세가 바뀜",
     "derive.no-inflating-build": "그림 뒤 명세가 바뀜",
     "derive.prop-size-coverage": "그림 뒤 명세가 바뀜",
+    "derive.held-hold": "그림 뒤 명세가 바뀜",
     "derive.crowd-stage": "그림 뒤 명세가 바뀜",
     "generate.eye-level-perspective": "그림 뒤 명세가 바뀜"
    },
@@ -745,6 +753,7 @@
     "derive.wall-material": "pass",
     "derive.no-inflating-build": "pass",
     "derive.prop-size-coverage": "pass",
+    "derive.held-hold": "pass",
     "derive.crowd-stage": "pass",
     "generate.eye-level-perspective": "pass"
    },
@@ -789,10 +798,10 @@
     "generate.guide-costume-legs": "pass",
     "derive.youth-noun": "pass",
     "generate.pose-skeleton": "pass",
-    "generate.figure-scale": "pass",
+    "generate.figure-scale": "none",
     "derive.no-second-point": "pass",
     "generate.youth-height": "pass",
-    "generate.height-ratio": "pass",
+    "generate.height-ratio": "none",
     "generate.split-control": "pass",
     "derive.prop-size-relative": "pass",
     "generate.flight-position": "pass",
@@ -801,6 +810,7 @@
     "derive.wall-material": "pass",
     "derive.no-inflating-build": "stale",
     "derive.prop-size-coverage": "pass",
+    "derive.held-hold": "pass",
     "derive.crowd-stage": "pass",
     "generate.eye-level-perspective": "pass"
    },
@@ -918,6 +928,7 @@
     "derive.wall-material": "stale",
     "derive.no-inflating-build": "stale",
     "derive.prop-size-coverage": "stale",
+    "derive.held-hold": "stale",
     "derive.crowd-stage": "stale",
     "generate.eye-level-perspective": "stale"
    },
@@ -958,6 +969,7 @@
     "derive.wall-material": "그림 뒤 명세가 바뀜",
     "derive.no-inflating-build": "그림 뒤 명세가 바뀜",
     "derive.prop-size-coverage": "그림 뒤 명세가 바뀜",
+    "derive.held-hold": "그림 뒤 명세가 바뀜",
     "derive.crowd-stage": "그림 뒤 명세가 바뀜",
     "generate.eye-level-perspective": "그림 뒤 명세가 바뀜"
    },
@@ -1008,6 +1020,7 @@
     "derive.wall-material": "stale",
     "derive.no-inflating-build": "stale",
     "derive.prop-size-coverage": "stale",
+    "derive.held-hold": "stale",
     "derive.crowd-stage": "stale",
     "generate.eye-level-perspective": "stale"
    },
@@ -1048,6 +1061,7 @@
     "derive.wall-material": "그림 뒤 명세가 바뀜",
     "derive.no-inflating-build": "그림 뒤 명세가 바뀜",
     "derive.prop-size-coverage": "그림 뒤 명세가 바뀜",
+    "derive.held-hold": "그림 뒤 명세가 바뀜",
     "derive.crowd-stage": "그림 뒤 명세가 바뀜",
     "generate.eye-level-perspective": "그림 뒤 명세가 바뀜"
    },
@@ -1153,6 +1167,7 @@
     "derive.wall-material": "stale",
     "derive.no-inflating-build": "stale",
     "derive.prop-size-coverage": "stale",
+    "derive.held-hold": "stale",
     "derive.crowd-stage": "stale",
     "generate.eye-level-perspective": "stale"
    },
@@ -1193,6 +1208,7 @@
     "derive.wall-material": "그림 뒤 명세가 바뀜",
     "derive.no-inflating-build": "그림 뒤 명세가 바뀜",
     "derive.prop-size-coverage": "그림 뒤 명세가 바뀜",
+    "derive.held-hold": "그림 뒤 명세가 바뀜",
     "derive.crowd-stage": "그림 뒤 명세가 바뀜",
     "generate.eye-level-perspective": "그림 뒤 명세가 바뀜"
    },
@@ -1304,6 +1320,7 @@
     "derive.wall-material": "stale",
     "derive.no-inflating-build": "stale",
     "derive.prop-size-coverage": "stale",
+    "derive.held-hold": "stale",
     "derive.crowd-stage": "stale",
     "generate.eye-level-perspective": "stale"
    },
@@ -1344,6 +1361,7 @@
     "derive.wall-material": "그림 뒤 명세가 바뀜",
     "derive.no-inflating-build": "그림 뒤 명세가 바뀜",
     "derive.prop-size-coverage": "그림 뒤 명세가 바뀜",
+    "derive.held-hold": "그림 뒤 명세가 바뀜",
     "derive.crowd-stage": "그림 뒤 명세가 바뀜",
     "generate.eye-level-perspective": "그림 뒤 명세가 바뀜"
    },
@@ -1441,10 +1459,10 @@
     "generate.guide-costume-legs": "pass",
     "derive.youth-noun": "pass",
     "generate.pose-skeleton": "pass",
-    "generate.figure-scale": "pass",
+    "generate.figure-scale": "none",
     "derive.no-second-point": "pass",
     "generate.youth-height": "pass",
-    "generate.height-ratio": "pass",
+    "generate.height-ratio": "none",
     "generate.split-control": "pass",
     "derive.prop-size-relative": "pass",
     "generate.flight-position": "pass",
@@ -1453,6 +1471,7 @@
     "derive.wall-material": "pass",
     "derive.no-inflating-build": "stale",
     "derive.prop-size-coverage": "pass",
+    "derive.held-hold": "pass",
     "derive.crowd-stage": "pass",
     "generate.eye-level-perspective": "pass"
    },
@@ -2141,11 +2160,7 @@
    "scope": "all",
    "check": "recheck.figure_scale_errors",
    "pass": [
-    "authored-david-gath-achish",
-    "authored-david-gibeah-harp",
-    "authored-saul-gibeah-spear",
-    "authored-saul-gilgal-amalek",
-    "authored-saul-nob-massacre"
+    "authored-saul-gibeah-spear"
    ],
    "fail": [],
    "stale": [
@@ -2157,8 +2172,13 @@
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen"
    ],
-   "none": [],
-   "rate": 0.4167
+   "none": [
+    "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
+    "authored-saul-gilgal-amalek",
+    "authored-saul-nob-massacre"
+   ],
+   "rate": 0.125
   },
   {
    "id": "derive.no-second-point",
@@ -2192,7 +2212,6 @@
    "check": "recheck.youth_height_errors",
    "pass": [
     "authored-david-gath-achish",
-    "authored-david-gibeah-harp",
     "authored-saul-gibeah-spear",
     "authored-saul-gilgal-amalek",
     "authored-saul-nob-massacre"
@@ -2207,8 +2226,10 @@
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen"
    ],
-   "none": [],
-   "rate": 0.4167
+   "none": [
+    "authored-david-gibeah-harp"
+   ],
+   "rate": 0.3636
   },
   {
    "id": "generate.height-ratio",
@@ -2216,11 +2237,7 @@
    "scope": "all",
    "check": "recheck.height_ratio_errors",
    "pass": [
-    "authored-david-gath-achish",
-    "authored-david-gibeah-harp",
-    "authored-saul-gibeah-spear",
-    "authored-saul-gilgal-amalek",
-    "authored-saul-nob-massacre"
+    "authored-saul-gibeah-spear"
    ],
    "fail": [],
    "stale": [
@@ -2232,8 +2249,13 @@
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen"
    ],
-   "none": [],
-   "rate": 0.4167
+   "none": [
+    "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
+    "authored-saul-gilgal-amalek",
+    "authored-saul-nob-massacre"
+   ],
+   "rate": 0.125
   },
   {
    "id": "generate.split-control",
@@ -2415,6 +2437,31 @@
    "layer": "derive",
    "scope": "all",
    "check": "recheck.prop_size_coverage_errors",
+   "pass": [
+    "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
+    "authored-saul-gibeah-spear",
+    "authored-saul-gilgal-amalek",
+    "authored-saul-nob-massacre"
+   ],
+   "fail": [],
+   "stale": [
+    "authored-david-returns-jerusalem",
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-samuel-ramah-death",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-jabesh-rescue",
+    "authored-saul-michmash-battle",
+    "authored-saul-mizpah-chosen"
+   ],
+   "none": [],
+   "rate": 0.4167
+  },
+  {
+   "id": "derive.held-hold",
+   "layer": "derive",
+   "scope": "all",
+   "check": "recheck.held_hold_errors",
    "pass": [
     "authored-david-gath-achish",
     "authored-david-gibeah-harp",

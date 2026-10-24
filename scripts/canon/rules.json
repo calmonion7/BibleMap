@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "d63fb2faac26",
+  "version": "cb0b1f5f7371",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -134,7 +134,7 @@
      "note": "몸짓 칸(gesture.ko)에 던짐 동사(던지·쏘·떨어뜨)가 있는 인물은 guide.pose에 OpenPose 뼈대 — 깊이 꼴은 실루엣 덩어리만 주어 관절 각도·다리 길이가 그림마다 넓은 보폭으로 되돌아감"},
     {"id": "generate.figure-scale", "layer": "generate", "scope": "all", "check": "recheck.figure_scale_errors",
      "source": "notes/GIBEAH-STEP23.md · task 403 c14 s5(다윗 구역 0.52 — 「키가 화면 절반에 못 미치고 빈 벽이 대부분」 3/3) · 사람 2026-10-23 「한 장 → 규칙 수정 → 반복」", "since": "2026-10-23 task 403",
-     "note": "(task 409: 한도는 무리 단계 범위 — scale.json crowd_stage, 장면 사람 수에서. 독대 0.60~0.70은 아래 옛 값 그대로 · 무리 장면도 이제 잼) (n1: 위 한도 — 구역 높이 ≤ 0.70, 숙인 뼈대 보이는 키 하한 0.55 → 0.45: 사람 m1e 「너무 가까이 … 사람사이즈를 조금 줄여야」, s42 사울 0.84가 화면 90%) (h4: 뼈대 인물은 보이는 키 = 구역 높이 × (1 − 뼈대 머리 꼭대기) ≥ 0.55 — 숙인 다윗이 구역보다 작게 그려져 「화면 절반」 h3e 5/5) 무리 꼴(crowd)이 없는 가까운 장면의 guide 인물 구역(사람 꼴 person*·뼈대)은 높이가 화면 0.6 이상 — 숙인 꼴은 구역 위끝이 머리라 구역 높이가 곧 그려지는 키"},
+     "note": "(넓힘 task 413: 사람이 있는데 guide 사람 구역이 없으면 못 잼 — 전에는 빈 통과) (task 409: 한도는 무리 단계 범위 — scale.json crowd_stage, 장면 사람 수에서. 독대 0.60~0.70은 아래 옛 값 그대로 · 무리 장면도 이제 잼) (n1: 위 한도 — 구역 높이 ≤ 0.70, 숙인 뼈대 보이는 키 하한 0.55 → 0.45: 사람 m1e 「너무 가까이 … 사람사이즈를 조금 줄여야」, s42 사울 0.84가 화면 90%) (h4: 뼈대 인물은 보이는 키 = 구역 높이 × (1 − 뼈대 머리 꼭대기) ≥ 0.55 — 숙인 다윗이 구역보다 작게 그려져 「화면 절반」 h3e 5/5) 무리 꼴(crowd)이 없는 가까운 장면의 guide 인물 구역(사람 꼴 person*·뼈대)은 높이가 화면 0.6 이상 — 숙인 꼴은 구역 위끝이 머리라 구역 높이가 곧 그려지는 키"},
     {"id": "derive.no-second-point", "layer": "derive", "scope": "all", "check": "recheck.second_point_errors",
      "source": "notes/GIBEAH-STEP23.md · task 403 c14 s5(「a short pointed iron butt-spike」 → 뒤끝 화살촉, 창 모양 3/3 틀림)", "since": "2026-10-23 task 403",
      "note": "파생 프롬프트에 실린 낱말 사전 look 문구에 pointed·spike·barb 금지 — 부수 부위가 둘째 촉으로 그려짐. 뾰족하다는 본문 근거는 뜻·근거·L3 ko에 두고 그리는 문구는 크기 대비(much smaller)로"},
@@ -152,13 +152,13 @@
      "note": "가이드 사람 꼴(person*)의 머리 원 지름은 구역 높이 × 0.14 이하(어른·청년 비율, person 0.13) — 숙인 꼴이라도 그림은 선 꼴로 옮기기도 해서 큰 머리가 아이 비율이 됨"},
     {"id": "generate.youth-height", "layer": "generate", "scope": "all", "check": "recheck.youth_height_errors",
      "source": "notes/GIBEAH-STEP23.md · task 403 d4e2(다윗 구역 0.62 = 사울 0.86의 0.72 — 「몸이 작아 12~14세 소년」, 21/22 중 유일한 틀림)", "since": "2026-10-23 task 403",
-     "note": "guide 인물 중 카드 ageBand youth의 구역 높이는 같은 장면 어른(child·youth 아님) 구역 높이 × 0.8 이상 — 숙인 꼴이라도 그림은 선 꼴로 옮겨 작은 아이가 됨"},
+     "note": "(넓힘 task 413: 청년이 있는데 guide 사람 구역이 없으면 못 잼 — 전에는 빈 통과) guide 인물 중 카드 ageBand youth의 구역 높이는 같은 장면 어른(child·youth 아님) 구역 높이 × 0.8 이상 — 숙인 꼴이라도 그림은 선 꼴로 옮겨 작은 아이가 됨"},
     {"id": "generate.pose-body-mass", "layer": "generate", "scope": "all", "check": "test:test_scene_rules",
      "source": "notes/GIBEAH-STEP23.md · task 404 f0d·f0e(비율 문항 사울: 깊이 꼴 c5 5/8 · 뼈대 c11 1/8 · 사람 d5e 「인물들의 비율이 이상함」)", "since": "2026-10-23 task 404",
      "note": "guide.pose 뼈대 인물도 뼈대 관절을 따라 깊이 몸을 함께(make_guide.pose_body — 몸통 = 카드 silhouette 너비, 팔다리 = 키 비율 — f2 팔다리 × 카드 너비는 되돌림: 굵은 팔 덩어리가 뒤로 든 팔을 「던지기 전」으로(f2e 5표 던진 몸짓 5/5)) — 뼈대만이면 몸 너비 제한이 없어 카드 체형 낱말(「thick barrel torso」)이 부풀려짐"},
     {"id": "generate.height-ratio", "layer": "generate", "scope": "all", "check": "recheck.height_ratio_errors",
      "source": "notes/GIBEAH-STEP23.md · task 404 f0(두 사람 크기 d5e·d4e2 3/3 틀림 · 기록 c5 2/8 · c11 0/8 — 다윗/사울 0.80) · 삼상 9:2 「모든 백성보다 어깨 위만큼 더 컸더라」", "since": "2026-10-23 task 404",
-     "note": "(task 409: 눈높이 지평선으로 — 가장 가까운 서 있는 인물로 지평선을 정하고 다른 서 있는 인물의 구역 높이가 발 y에서 계산한 화면 키 × 표 키 등급과 초점 키의 ± 0.04 안. 같은 발 y면 아래 옛 검사와 같음) guide 사람 꼴·뼈대 인물 중 depth가 같은 두 인물의 구역 높이 비 = 0.87 ** (카드 heightRel 등급 차) ± 0.04 — 한 칸 = 머리 하나. 등급 child·short·average·tall·towering"},
+     "note": "(넓힘 task 413: 두 사람 이상인데 서 있는 guide 구역이 없으면 못 잼 — 전에는 빈 통과) (task 409: 눈높이 지평선으로 — 가장 가까운 서 있는 인물로 지평선을 정하고 다른 서 있는 인물의 구역 높이가 발 y에서 계산한 화면 키 × 표 키 등급과 초점 키의 ± 0.04 안. 같은 발 y면 아래 옛 검사와 같음) guide 사람 꼴·뼈대 인물 중 depth가 같은 두 인물의 구역 높이 비 = 0.87 ** (카드 heightRel 등급 차) ± 0.04 — 한 칸 = 머리 하나. 등급 child·short·average·tall·towering"},
     {"id": "judge.single-image-reps", "layer": "judge", "scope": "all", "check": "test:test_scene_rules",
      "source": "notes/GIBEAH-STEP23.md · task 404 f1e·f2e(가이드 조금만 다른 거의 같은 그림이 3표로 수금 2/3→0/3·던진 몸짓 2/3→0/3 뒤집힘) · 메모리 판정자 재현성", "since": "2026-10-23 task 404",
      "note": "한 장 시도(시드 하나, 새 그림 — images_from 검증 제외)는 같은 그림에 5표를 묻고 다수결 — 한 장 반복은 규칙 효과보다 판정 흔들림이 커서 3표로는 결함을 가를 수 없음"},
@@ -182,7 +182,7 @@
      "note": "장면 구절 요소(지물)가 잇는 사전 항목은 look.size(사람 키 등에 견준 비·문구 · 부위 크기 parts)를 갖고, 그리는 문구 L2에 그 크기 문구를 담음 — 사람 크기를 바꾸면 지물도 같은 비로 따라감(사전 AUTHORING 「크기」)"},
     {"id": "generate.flight-position", "layer": "generate", "scope": "all", "check": "recheck.flight_errors",
      "source": "사람 m1e 「창은 3분의2쯤 날아가게」 → 일반화 · task 405 m2e~m4e(뒤끝이 손에)", "since": "2026-10-23 task 405",
-     "note": "허공 물체 + 던지는·피하는 뼈대가 있으면 명세 guide.flight{object, word, from, to, at} — 촉 = from 손목 → to 머리의 at 지점 ± 0.03, 그려질 뒤끝 = 촉 + 사전 size.ratio × from 키 ÷ from 키 등급(task 411)이 손목 − 0.07 앞. 자리는 장면마다 명세 칸, 길이는 사전 크기. (task 399 회고) from 인물 prop이 날아가는 지물(사전 held)이면 실패 — 던진 지물은 손에 없음"},
+     "note": "(넓힘 task 413: 허공 물체 꼴이 있으면 던지는 뼈대·guide.flight 필수 — 피하는 뼈대 없다고 건너뛰지 않음, 꼴만 있는 창은 실패) 허공 물체 + 던지는·피하는 뼈대가 있으면 명세 guide.flight{object, word, from, to, at} — 촉 = from 손목 → to 머리의 at 지점 ± 0.03, 그려질 뒤끝 = 촉 + 사전 size.ratio × from 키 ÷ from 키 등급(task 411)이 손목 − 0.07 앞. 자리는 장면마다 명세 칸, 길이는 사전 크기. (task 399 회고) from 인물 prop이 날아가는 지물(사전 held)이면 실패 — 던진 지물은 손에 없음"},
     {"id": "generate.flight-height", "layer": "generate", "scope": "all", "check": "recheck.flight_height_errors",
      "source": "사람 m16e 「창 높이가 조금 올라가야 하지 않을까? 던질 때 팔의 높이 생각하면」 → 문항 e.spear-height o0k 거절 s303·s23 잡음", "since": "2026-10-25 task 412",
      "note": "guide.flight의 from이 뼈대 인물이면 나는 물체 구역 세로 가운데 = 던지는 뼈대 어깨(점 2·5) ± 0.03 — 마무리 꼴 손목(아래로 휘두름)보다 놓는 순간의 팔 높이. 짝: generate.dodge-clear 빗나감 한도 = 피하는 사람 머리 하나(기준표)"},
@@ -210,11 +210,14 @@
     {"id": "derive.prop-size-coverage", "layer": "derive", "scope": "all", "check": "recheck.prop_size_coverage_errors",
      "source": "ADR 261024-083947 · 사람 「일회성으로 쓰지말고 규칙화」 — 창·수금만 사전 크기가 있어 다른 장면 손 지물은 그림이 제 크기로 그림(task 405 m4 실측)", "since": "2026-10-24 task 408",
      "note": "장면 figures[].prop(손 지물) 문구는 사전 항목 held에 글자 그대로 묶이고 그 항목은 look.size(사람 키에 견준 비)를 가짐 — 옷자락·빈손·입은 옷은 scale.json held_exclude에 근거와 함께. 명세 지물 문구를 바꾸면 held도 함께 고쳐야 통과"},
+    {"id": "derive.held-hold", "layer": "derive", "scope": "all", "check": "recheck.held_hold_errors",
+     "source": "task 412 사람 m16e 「수금 든 모습 이상함」 → 수금 안아 넣기(hug) m17e 승인 s7 · task 413 넓힘(전에는 gen_local_edit.held_prompt에 수금 문구로 박힘, 고르는 자리는 기브아 시도 칸뿐)", "since": "2026-10-25 task 413",
+     "note": "사전 held 항목은 모두 look.hold{mode hand·hug·wear·touch, grounds 근거 단계} — hug(품에 안음)만 그리는 문구에 쥔 꼴 문구(hold.en)를 싣고, 손에 쥠(그림 기본값)은 문구를 더하지 않음(근거 없는 문구로 승인 그림을 낡게 하지 않음). 장면 prop이 hug 항목이면 파생 문구에 hold.en — add 항목(수금, edit.held-prop-add)은 편집 지시(held_prompt hug)가 hold.edit_en으로 씀"},
     {"id": "derive.crowd-stage", "layer": "derive", "scope": "all", "check": "recheck.crowd_count_errors",
      "source": "사람 2026-10-24 「개체의 비율은 상대적 — 두 사람·다섯 사람·100명일 때 다 다르고 원근감도」 · ADR 261024-083947 2항 ③ · task 409", "since": "2026-10-24 task 409",
      "note": "장면 사람 수 = figures 수 + crowds[].count(본문 근거 [직접]·[추론]·[저작](이유)) → 무리 단계(scale.json crowd_stage: 독대 1~2 · 작은 무리 3~20 · 큰 무리 21~999 · 군중 1000+)가 초점 인물 화면 키 범위를 정함(recheck.figure_scale_errors). 독대 외 범위는 [저작] — 첫 그림 판정에서 사람이 고칠 칸"},
     {"id": "generate.eye-level-perspective", "layer": "generate", "scope": "all", "check": "recheck.perspective_errors",
      "source": "사람 2026-10-24 「원근감도」 · ADR 261024-083947 2항 ④(눈높이 지평선 — 띠 배율 대안 버림) · 387 사람 메모 「베냐민 사람 1천명은 조금멀리 원근감」 · task 409", "since": "2026-10-24 task 409",
-     "note": "눈높이 카메라: 지평선 y = 가장 가까운 서 있는 인물 발 y − 0.93 × 화면 키 ÷ 키 등급(scale.scene_horizon) — 가이드 바탕 지평선(make_guide)·무리 꼴 줄 높이(발 y에서)·서 있는 인물 키 검사(recheck.height_ratio_errors)가 이 하나에서. 검사 함수는 무리 구역이 그 자리 어른 화면 키를 담는지(발이 지평선 위인 둑·언덕은 건너뜀)"}
+     "note": "(넓힘 task 413: 무리가 있는데 guide 무리 꼴이 없으면 못 잼 — 전에는 빈 통과) 눈높이 카메라: 지평선 y = 가장 가까운 서 있는 인물 발 y − 0.93 × 화면 키 ÷ 키 등급(scale.scene_horizon) — 가이드 바탕 지평선(make_guide)·무리 꼴 줄 높이(발 y에서)·서 있는 인물 키 검사(recheck.height_ratio_errors)가 이 하나에서. 검사 함수는 무리 구역이 그 자리 어른 화면 키를 담는지(발이 지평선 위인 둑·언덕은 건너뜀)"}
   ]
 }

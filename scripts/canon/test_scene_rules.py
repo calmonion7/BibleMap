@@ -694,6 +694,63 @@ class FlightPosition(unittest.TestCase):
             self.assertTrue(any("손목" in e for e in recheck.flight_errors(s)))
 
 
+class WidenUnmeasured(unittest.TestCase):
+    """task 413 — 걸릴 내용(사람·청년·무리·허공 물체)이 있는데 잴 칸(guide 구역·던지는 뼈대)이 없으면 빈 통과가 아니라 못 잼(None)·실패."""
+
+    def test_no_guide_people_is_unmeasured(self):
+        import derive_scene as ds
+        s = ds.load("authored-david-goliath-gath")   # 사람 3 · 청년 다윗 · 무리 2 · guide 없음
+        for f in (recheck.figure_scale_errors, recheck.youth_height_errors, recheck.height_ratio_errors, recheck.perspective_errors):
+            self.assertIsNone(f(s), f.__name__)
+
+    def test_no_people_is_not_applicable(self):
+        s = gibeah()
+        s.pop("guide")
+        s["figures"], s["crowds"] = [], []
+        for f in (recheck.figure_scale_errors, recheck.youth_height_errors, recheck.height_ratio_errors, recheck.perspective_errors):
+            self.assertEqual(f(s), [], f.__name__)
+
+    def test_spear_shape_without_thrower_fails(self):
+        s = gibeah()
+        s["guide"]["pose"] = {k: v for k, v in s["guide"]["pose"].items() if v != "throw_follow"}
+        self.assertTrue(any("던지는 뼈대" in e for e in recheck.flight_errors(s)))
+
+
+class HeldHold(unittest.TestCase):
+    """derive.held-hold — 쥔 꼴은 사전 look.hold가 정본(task 413): 수금 hug 편집 지시는 승인 m17e s7과 바이트 같고, 아기 hug는 수금 문구가 섞이지 않음."""
+
+    M17E_S7 = "Place a wooden lyre in his arms, nearly twice as tall as his head, clutched upright against his chest with both forearms wrapped around its sound box, its top crossbar below his chin, not touching his mouth or face: a small hollow wooden sound box, smaller than a man's torso, with two curved arms rising from the box, joined by a top crossbar, strings from box to crossbar, the two curved arms rising on the left and right of the sound box both clearly visible above his forearms, forming a U-shaped frame. It does not hang from his hands. Only one lyre. Keep his face, hair, clothes, body and legs exactly the same — only his arms and hands may move to hold the lyre — the lighting and the same soft pencil and colored-pencil illustration style."
+
+    def test_lyre_hug_reproduces_m17e(self):
+        import gen_local_edit as GL
+        import scale as S
+        look = recheck._lexicon()["kinnor-lyre"]["look"]
+        hr = dict(S.standing(gibeah()))["david-youth"]
+        p = GL.held_prompt(look["L2"]["en"], look["hold"]["mode"], GL.held_head_en(look["size"], "youth", hr), look["hold"])
+        self.assertEqual(p, self.M17E_S7)
+
+    def test_baby_hug_has_no_lyre(self):
+        import gen_local_edit as GL
+        look = recheck._lexicon()["baby"]["look"]
+        p = GL.held_prompt(look["L2"]["en"], look["hold"]["mode"], "about as long as his forearm", look["hold"])
+        self.assertIn(look["hold"]["en"], p)
+        self.assertNotIn("lyre", p)
+
+    def test_gibeah_passes(self):
+        self.assertEqual(recheck.held_hold_errors(gibeah()), [])
+
+    def test_missing_hold_fails(self):
+        L = copy.deepcopy(recheck._lexicon())
+        L["spear"]["look"].pop("hold")
+        with mock.patch.object(recheck, "_lexicon", lambda: L):
+            self.assertTrue(any("spear" in e for e in recheck.held_hold_errors(gibeah())))
+
+    def test_hug_prop_without_hold_phrase_fails(self):
+        import derive_scene as ds
+        s = ds.load("authored-solomon-jerusalem-two-mothers")   # 참 어머니 prop 「아기」 — 사전 baby hug, 파생 문구에 품에 안은 꼴 없음
+        self.assertTrue(any("baby" in e for e in recheck.held_hold_errors(s)))
+
+
 class PropSizeRelative(unittest.TestCase):
     """derive.prop-size-relative — 장면이 잇는 사전 지물은 look.size가 있고 L2에 크기 문구(task 405 — 사람 「사람을 줄였으면 창도 줄여야」)."""
 
@@ -922,7 +979,7 @@ class EditPropSheetPaste(unittest.TestCase):
         """task 412 — 수금 안는 꼴: 두 팔뚝으로 울림통을 감싸 가슴에 안음 · 매달지 않음 · 팔은 움직여도 됨(KEEP_HELD 「arms … the same」이면 턱 앞 맞잡은 손이 남아 수금이 떠 있음, m16e 사람 「수금 든 모습 이상함」)."""
         import gen_local_edit as GL
         size = recheck._lexicon()["kinnor-lyre"]["look"]["size"]
-        p = GL.held_prompt("a small hollow wooden sound box", "hug", GL.held_head_en(size, "youth", 1.0))
+        p = GL.held_prompt("a small hollow wooden sound box", "hug", GL.held_head_en(size, "youth", 1.0), recheck._lexicon()["kinnor-lyre"]["look"]["hold"])
         self.assertIn("forearms wrapped around its sound box", p)
         self.assertIn("does not hang from his hands", p)
         self.assertIn("only his arms and hands may move", p)
