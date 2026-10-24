@@ -464,6 +464,10 @@ def flight_errors(spec):
     out = []
     if not size:
         return [f"guide.flight.word {fl.get('word')} — 사전 look.size 없음(그릴 길이를 못 셈)"]
+    held = set(_lexicon().get(fl.get("word"), {}).get("held", []))   # task 399 회고: 던진 지물을 던지는 사람 prop으로 두면 손에 남은 꼴(판정자도 속음)
+    fp = next((f.get("prop") for f in spec.get("figures", []) if f.get("region") == fl["from"]), None)
+    if fp in held:
+        out.append(f"{fl['from']} prop 「{fp}」가 날아가는 {fl['object']} — 던진 지물은 던진 사람 손 지물이 아니다(prop none)")
     if abs(x0 - want) > FLIGHT_TOL:
         out.append(f"{fl['object']} 촉 x {x0:.3f} ≠ {fl['at']:.2f} 지점 {want:.3f}±{FLIGHT_TOL} — 명세 자리(guide.flight)가 아니다")
     tb = R[fl["from"]]

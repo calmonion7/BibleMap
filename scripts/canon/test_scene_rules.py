@@ -680,6 +680,12 @@ class FlightPosition(unittest.TestCase):
     def test_gibeah_passes(self):
         self.assertEqual(recheck.flight_errors(gibeah()), [])
 
+    def test_thrower_holding_thrown_prop_fails(self):
+        """task 399 회고 — 던진 창을 사울 prop(「a spear」)으로 두면 손에 남은 꼴로 그려지고 판정자도 속음 → prop none."""
+        s = gibeah()
+        next(f for f in s["figures"] if f["region"] == "saul")["prop"] = "a spear"
+        self.assertTrue(any("던진 지물" in e for e in recheck.flight_errors(s)))
+
     def test_butt_divides_by_height_class(self):
         """task 411 — 사전 비는 어른 남자 키 비: 큰 사울(tall)의 창은 구역 키 ÷ 1.205(합성 paste_step과 같은 셈). 등급을 빼면 뒤끝이 손에 닿음."""
         from unittest import mock
