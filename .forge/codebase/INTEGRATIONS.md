@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 924f501dc41ba3f6602b5cb0ebeb3831834400a1
-mapped: 2026-10-10
+last_mapped_commit: 50d8961b1d6148fed2952fc59cb4bed3e634b592
+mapped: 2026-10-24
 ---
 
 # INTEGRATIONS
@@ -9,7 +9,7 @@ BibleMap이 의존하는 외부 데이터·서비스·데이터베이스·인프
 
 핵심 경계: 런타임 API(`backend/app/`)는 외부 HTTP를 전혀 호출하지 않는다. 외부 수집은 전부 빌드타임/오프라인 스크립트(`backend/scripts/`)가 수행하고 산출물을 `data/`에 커밋 → 런타임은 Neo4j + `data/` 오버레이만 읽는다. 프론트 런타임의 외부 호출은 지도 타일·지도 글리프 2건뿐(폰트는 셀프호스팅).
 
-이번 구간에 **네 번째 외부 의존이 오프라인 쪽에 추가됐다** — `scripts/canon/` 저작 파이프라인이 Hugging Face Hub에서 모델 가중치를 받아 온다(§4). 이것도 런타임 미접촉이며, 그 산출물조차 레포에 들어오지 않는다(`.forge/reports/`가 gitignore). 같은 파이프라인이 **로컬 개발 서버(`:8080`)를 입력으로 읽는** 새 내부 배선을 하나 만들었다(§「저작 파이프라인의 입력 배선」).
+이번 구간에 **네 번째 외부 의존이 오프라인 쪽에 추가됐다** — `scripts/canon/` 저작 파이프라인이 Hugging Face Hub에서 모델 가중치(SDXL 계열에 더해 Z-Image-Turbo·FLUX.2-klein·Qwen-Image-Edit-2511·LTX/Wan MLX 변환본)를 받아 오고, 판정에는 `claude -p`(구독 OAuth 서브프로세스)를 쓴다(§4). 둘 다 레포 밖 venv·캐시에서 돈다. 이것도 런타임 미접촉이며, 그 산출물조차 레포에 들어오지 않는다(`.forge/reports/`가 gitignore). 같은 파이프라인이 **로컬 개발 서버(`:8080`)를 입력으로 읽는** 새 내부 배선을 하나 만들었다(§「저작 파이프라인의 입력 배선」).
 
 ## 데이터베이스: Neo4j
 
@@ -17,7 +17,7 @@ BibleMap이 의존하는 외부 데이터·서비스·데이터베이스·인프
 - 인증: `NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}`를 compose가 루트 `.env`의 `NEO4J_PASSWORD`에서 파생. 앱·스크립트는 `NEO4J_URI`/`NEO4J_USER`/`NEO4J_PASSWORD`로 접속(값은 이 문서에 기재하지 않음).
 - 런타임 접속점: `backend/app/db.py`의 싱글턴 `get_driver()` 하나뿐. 라우트가 `with driver.session()`으로 Cypher를 직접 실행하며 ORM·쿼리빌더는 없다.
 - 인덱스: 기동 시 `backend/app/main.py` lifespan이 `Person`/`Place`/`Event`/`PeopleGroup`/`Book`의 `theographic_id` 인덱스를 `IF NOT EXISTS`로 보장. 적재 스크립트 `backend/scripts/load_theographic.py`도 동일 인덱스를 생성한다.
-- 오프라인 접속점(호스트 python3 실행): `backend/scripts/load_*.py`(적재), `inject_*.py`(속성 주입), `validate_event_chronology.py`(연대 검증). 배포 경로에서 실제로 도는 것은 `inject_ko_names.py` 하나(`deploy.sh` 4단계)와, Neo4j가 떠 있을 때의 `validate_event_chronology`(`scripts/check.sh`)다.
+- 오프라인 접속점(호스트 python3 실행): `backend/scripts/load_*.py`(적재), `inject_*.py`(속성 주입), `validate_event_chronology.py`(연대 검증). 배포 경로에서 실제로 도는 것은 `inject_ko_names.py` 하나(`deploy/pre-deploy.sh` 2단계, `inject_date_corrections.py`와 함께)와, Neo4j가 떠 있을 때의 `validate_event_chronology`(`scripts/check.sh`)다.
 - 캐시 특성: 집계·오버레이 응답이 `lru_cache`이므로 Neo4j나 `data/`를 바꾼 뒤에는 API 재시작(`docker compose -p biblemap restart api`)이 있어야 반영된다.
 
 ## 외부 데이터 소스 (빌드타임/오프라인 수집 — 런타임 미접촉)
@@ -44,7 +44,7 @@ BibleMap이 의존하는 외부 데이터·서비스·데이터베이스·인프
 - SDK: `anthropic` 파이썬 패키지 — **`backend/requirements.txt`에 없고 호스트 python에만 설치**(현재 0.111.0). API 컨테이너에는 들어가지 않는다.
 - 인증: `ANTHROPIC_API_KEY` 환경변수. 각 스크립트가 없으면 `RuntimeError`로 즉시 중단. 사용 모델은 5개 스크립트 모두 `claude-haiku-4-5-20251001`.
 - 클라이언트 코드(5개): `backend/scripts/generate_book_context.py`, `generate_book_events.py`, `generate_person_context.py`, `generate_person_traits.py`, `generate_verse_events.py`. 공통 패턴 — `anthropic.Anthropic(api_key=...)` → 응답 텍스트에서 마크다운 코드펜스 제거 → `json.loads` → 산출물 JSON에 즉시 중간 저장(재실행 시 이미 있는 키는 SKIP) → `time.sleep(0.3)` 레이트리밋 여유.
-- 런타임·CI 미사용: `deploy.sh`·`scripts/check.sh`·`.github/workflows/deploy.yml` 어디에도 이 키가 필요하지 않다(배포는 이 스크립트를 돌리지 않음).
+- 런타임·CI 미사용: `deploy/pre-deploy.sh`·`scripts/check.sh`·`.github/workflows/deploy.yml` 어디에도 이 키가 필요하지 않다(배포는 이 스크립트를 돌리지 않음).
 
 ### 4. Hugging Face Hub (모델 가중치 — 저작 파이프라인)
 
@@ -56,14 +56,14 @@ BibleMap이 의존하는 외부 데이터·서비스·데이터베이스·인프
 - 인증 없음: HF 토큰·`HF_TOKEN`·`HF_HOME` 어느 것도 쓰지 않는다(공개 저장소 익명 다운로드). 파이프라인 전체가 읽는 환경변수는 `BASE` 하나뿐이다.
 - 접속 방식: `diffusers`/`transformers`의 `from_pretrained`가 `huggingface_hub`을 통해 받아 **`~/.cache/huggingface`(실측 47GB)에 캐시**한다 — 레포에는 가중치가 없다. 캐시가 채워진 뒤에는 네트워크 없이 돈다.
 - 리비전 미고정: 위 세 ID는 저장소 이름일 뿐 커밋/리비전이 아니라 업스트림이 가중치를 갱신하면 같은 코드가 다른 그림을 낸다. 유일하게 스냅샷 해시가 박힌 `params.IMAGE_ENCODER`(CLIP ViT-bigG 이미지 인코더)는 **이 머신 로컬 캐시의 절대경로**라 다른 머신에서 성립하지 않는다 — `scripts/canon/requirements.txt` 머리 주석이 이것을 재현 미결 3축의 하나로 명시한다.
-- 런타임·CI 미접촉: 앱 컨테이너에는 `torch`/`diffusers`가 없고(`backend/requirements.txt` 3줄), `deploy.sh`·`.github/workflows/deploy.yml`은 이 파이프라인을 실행하지 않는다. 배포 경로에 걸리는 것은 **소스만 읽는** 게이트 `validate_canon_pipeline.py` 하나다(GPU·생성 venv 없이 돈다).
+- 런타임·CI 미접촉: 앱 컨테이너에는 `torch`/`diffusers`가 없고(`backend/requirements.txt` 3줄), `deploy/pre-deploy.sh`·`.github/workflows/deploy.yml`은 이 파이프라인을 실행하지 않는다. 배포 경로에 걸리는 것은 **소스만 읽는** 게이트 `validate_canon_pipeline.py` 하나다(GPU·생성 venv 없이 돈다).
 - 산출물도 레포에 들어오지 않는다: `params.OUT_ROOT = .forge/reports/canon-pilot`이 `.gitignore`의 `.forge/reports/`에 덮인다. 레포에 커밋되는 것은 판정 기준 자산(`scripts/canon/reference/`·`frozen/`·`samples/` 등 49MB)과 판단 문서(`notes/`)뿐이다.
 
 ## 저작 파이프라인의 입력 배선 (내부 경계)
 
 `scripts/canon/`은 외부 서비스만이 아니라 **이 레포의 앱 소스와 로컬 스택을 입력으로 읽는다**. 방향은 단방향(파이프라인 → 앱 소스 읽기)이며 앱은 파이프라인을 참조하지 않는다.
 
-- 로컬 개발 서버: `scripts/canon/cond_shoot_heads.py`가 `BASE`(기본 `http://localhost:8080`, 즉 nginx가 `frontend/dist`를 서빙하는 그 포트)의 `#/cast` 화면을 playwright로 열어 인물 카드 svg를 `position:fixed`로 떼고 `getScreenCTM()` 좌표로 머리만 클립 촬영한다 → 조건 입력 PNG + `notes/cond-heads-meta.json`. **파이프라인이 프론트 빌드·nginx 기동에 의존하는 유일한 지점**이라, 빌드가 낡으면 조건 입력도 낡는다.
+- 로컬 개발 서버: `scripts/canon/cond_shoot_heads.py`가 `BASE`(기본 `http://localhost:8080`; 표준 배포 뒤 nginx 호스트 포트는 `TAEBRO_HTTP_PORT`라 값이 다르면 `BASE`로 넘긴다)의 `#/cast` 화면을 playwright로 열어 인물 카드 svg를 `position:fixed`로 떼고 `getScreenCTM()` 좌표로 머리만 클립 촬영한다 → 조건 입력 PNG + `notes/cond-heads-meta.json`. **파이프라인이 프론트 빌드·nginx 기동에 의존하는 유일한 지점**이라, 빌드가 낡으면 조건 입력도 낡는다.
 - 레포 안 소스 파생: `scripts/canon/derive_prompts.py`가 `frontend/src/sketches/cast/<name>.jsx`의 `export const AXES`/`BRIEF`를 정적으로 읽고, `data/person_events/<slug>.json`의 `sortKey` 차이로 인물 나이를 계산한다. 프롬프트를 파일에 리터럴로 적지 않는 규율이 이 파생에 걸려 있다.
 - 역방향 배선 하나: `scripts/canon/make_masks.py`가 레포 루트의 `scripts/check_mask_ranges.py`에서 `derive_ranges()`/`derive_head_ranges()`를 import한다 — 게이트가 쓰는 함수를 파이프라인이 그대로 재사용해 마스크와 판정이 어긋나지 않게 한다.
 - 앱이 쓰지만 파이프라인이 만들지 않는 자산: `frontend/public/scene-color/*.webp`(장면 채색층). `sketches/ageOfJudges.jsx`가 `color: '/scene-color/samuel-circuit.webp'`로 참조하는데 `.gitignore` 대상이고, 레포 안 어떤 스크립트도 이 디렉터리에 쓰지 않는다.
@@ -76,7 +76,8 @@ BibleMap이 의존하는 외부 데이터·서비스·데이터베이스·인프
 
 ## API 프록시 / 클라이언트 배선
 
-- nginx(`nginx/nginx.conf`, 서비스 `nginx`가 `8080:80`):
+- nginx(`nginx/nginx.conf`, 서비스 `nginx`가 `127.0.0.1:${TAEBRO_HTTP_PORT}:80`, 터널·프록시는 taebro-infra 경로표 소관):
+  - `location = /health` → `proxy_pass http://api:8000/health`(배포 헬스 폴링 경로).
   - `location /api/` → `proxy_pass http://api:8000/`(끝 슬래시로 `/api/` 프리픽스 제거). `Host`/`X-Real-IP`/`X-Forwarded-For`/`X-Forwarded-Proto` 전달.
   - `location = /index.html` → `Cache-Control: no-cache, no-store, must-revalidate`.
   - `location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff2?)$` → `Cache-Control: public, max-age=31536000, immutable`.
@@ -87,21 +88,21 @@ BibleMap이 의존하는 외부 데이터·서비스·데이터베이스·인프
 ## 인증 / 웹훅
 
 - 사용자 인증·세션·토큰 없음. API는 공개 읽기 전용 — `backend/app/main.py`의 `CORSMiddleware`가 `allow_origins=["*"]`, `allow_credentials=False`, `allow_methods=["GET"]`. 라우트 32개 전부 GET이며 쓰기 엔드포인트가 존재하지 않는다.
-- 시스템에 존재하는 비밀은 여전히 두 개뿐: Neo4j 비밀번호(`NEO4J_PASSWORD`, 루트 `.env` — gitignore됨)와 빌드타임 전용 `ANTHROPIC_API_KEY`. 새로 들어온 저작 파이프라인은 **비밀을 하나도 늘리지 않았다**(Hugging Face 익명 다운로드, 환경변수는 `BASE` 하나). OAuth·API 게이트웨이·JWT·레이트리밋 미들웨어 없음.
-- 애플리케이션 레벨 웹훅 없음. 유일한 인바운드 트리거는 GitHub `push`(main) 이벤트 → self-hosted 러너 배포.
+- 시스템에 존재하는 비밀은 여전히 두 개뿐: Neo4j 비밀번호(`NEO4J_PASSWORD`, 배포는 실행 자리 `~/runtime/biblemap/<env>/.env`·단독 개발은 루트 `.env` — 둘 다 레포 밖/gitignore)와 빌드타임 전용 `ANTHROPIC_API_KEY`. 새로 들어온 저작 파이프라인은 **비밀을 하나도 늘리지 않았다**(Hugging Face 익명 다운로드, 환경변수는 `BASE` 하나). OAuth·API 게이트웨이·JWT·레이트리밋 미들웨어 없음.
+- 애플리케이션 레벨 웹훅 없음. 유일한 인바운드 트리거는 GitHub `push`(main·dev)·`workflow_dispatch` → self-hosted 러너 배포.
 
 ## CI/CD · 인프라 · 배포 표면
 
-- 리모트: `https://github.com/calmonion7/BibleMap.git`(origin). 워크플로는 `.github/workflows/deploy.yml` 하나뿐 — 테스트·린트 전용 워크플로 없음(린트/검증은 `deploy.sh`가 부르는 `scripts/check.sh`에서 배포 직전에 돈다).
-- 워크플로: `on: push` (`branches: [main]`) → `runs-on: self-hosted` → 단일 스텝이 `cd /Users/calmonion/Project/BibleMap && git fetch origin && git reset --hard origin/main && bash deploy.sh`. 체크아웃 액션도 없이 러너 머신의 작업 디렉터리(= 이 레포 클론)를 직접 리셋한다. GitHub Secrets 사용 없음(비밀은 머신 로컬 `.env`에서 온다).
+- 리모트: `https://github.com/calmonion7/BibleMap.git`(origin). 워크플로는 `.github/workflows/deploy.yml` 하나뿐 — 테스트·린트 전용 워크플로 없음(린트/검증은 `deploy/pre-deploy.sh`가 부르는 `scripts/check.sh`에서 배포 직전에 돈다).
+- 워크플로: `on: push`(`branches: [main, dev]`, `.forge/**`·`**/*.md`만 바뀐 push는 `paths-ignore`)·`workflow_dispatch` → `runs-on: [self-hosted, ARM64]` → `actions/checkout@v4` → `deploy/pre-deploy.sh <env>` → `~/runtime/taebro-infra/bin/deploy biblemap <env>`(main=prod, dev=dev). 외부 계약 문서는 taebro-infra `docs/CONTRACT.md`, 이 레포의 선언은 `deploy/taebro.env`(`HEALTH_PATH`·`HEALTH_EXPECT`·`HEALTH_TIMEOUT`·`BUILD_SERVICES`). GitHub Secrets 사용 없음(비밀은 머신 로컬 실행 자리 `.env`).
 - self-hosted 러너: 이 레포 전용 디렉터리 `/Users/calmonion/actions-runner-biblemap` + 전용 launchd 서비스 `~/Library/LaunchAgents/actions.runner.calmonion7-BibleMap.calmonionui-MacBookPro-biblemap.plist`. 같은 머신에 다른 프로젝트 러너(`actions-runner-lab-taebro`, `actions-runner-portfolion`)가 공존하므로 러너 디렉터리를 재사용/재등록하면 이 레포가 무음 미배포된다.
-- 배포 실행체 `deploy.sh`(task#259/ADR `260801-195022`로 순서 재구성): 락(`/tmp/biblemap-deploy.lock`) → 임시 `DOCKER_CONFIG`(macOS 키체인 우회, `~/.docker/cli-plugins` 심링크로 compose 플러그인 인식) → `.env` 로드 → Neo4j 도달 대기 → **데이터 주입**(`inject_ko_names.py` → `inject_date_corrections.py`, 둘 다 멱등, 검증보다 앞) → `npm install` → `CHECK_STRICT=1 scripts/check.sh` 게이트(스킵-경고를 실패로 승격) → 프론트 빌드 → `docker compose -p biblemap build api` → `up -d api` + `up -d --force-recreate nginx`(task#263 — `nginx.conf`만 바뀌면 Compose가 재생성을 감지 못해 매번 강제 재생성). 로그는 `~/Library/Logs/com.biblemap.deploy.log`. `load_*` 적재는 배포가 하지 않는다.
+- 배포 전 단계 `deploy/pre-deploy.sh <prod|dev>`: 실행 자리 `.env` 로드 → `npm ci` → `inject_ko_names.py`·`inject_date_corrections.py`(해당 env Neo4j) → `CHECK_STRICT=1 scripts/check.sh`. 이미지 빌드·교체·`/health` 확인은 taebro-infra `bin/deploy`가 한다(옛 루트 `deploy.sh`·락·`DOCKER_CONFIG` 우회는 삭제됨).
 - `scripts/check.sh` 게이트는 이번 구간에 파일 기반 데이터 검증 **22종**(신규 2종: `api_cache_headers`·`scene_sketch_detail`) + 대조군 `--selftest` **10종**(신규 3종: `api_cache_headers`·`scene_sketch_detail`·`scene_coverage`)으로 확장되고, 소스 불변식 2건(`scripts/check_cast_axes.py`·`scripts/check_mask_ranges.py`)이 `backend.scripts` 밖에서 직호출로 붙었다.
 - **git 자체를 도구로 쓰는 하드 게이트가 이제 둘이다.** 둘 다 `git rev-parse --is-inside-work-tree`가 실패하면 스킵-경고(→ `CHECK_STRICT=1`에서 실패)로 같은 계약을 쓴다.
   - `backend/scripts/validate_forge_docs_tracked.py`(task#279) — `git ls-files --others --exclude-standard`로 `.forge/adr`·`.forge/retro` 아래 미추적 파일 0건.
   - `backend/scripts/validate_canon_pipeline.py`(신규, task#316) — 축2가 같은 명령으로 **`scripts/` 아래 미추적 0건**을 단언한다. 위생이 아니라 필요다: check.sh가 부르는 `check_cast_axes.py`·`check_mask_ranges.py`가 미추적이면 새 클론·CI에서 게이트 자신이 깨진다. 축1은 `scripts/canon/params.py`를 AST로 파싱해 정본 키(모델 ID 포함)를 파생하고 같은 디렉터리 다른 `.py`의 모듈 레벨 재선언을 금지한다 — 소스만 읽으므로 GPU·생성 venv 없이 돈다.
-  - 두 게이트가 배포 경로에서 실제로 살아 있는 이유는 같다: `.github/workflows/deploy.yml`의 `git reset --hard`는 추적 파일만 되돌리고 미추적 파일을 지우지 않으므로(`git clean`이 아님), 커밋을 빠뜨린 파일이 있으면 `CHECK_STRICT=1` 배포 경로에서 배포가 중단된다(실패 메시지가 파일 목록을 지목하므로 무음 실패는 아니다).
-- 프로덕션 도메인은 이 머신 스택 앞단의 프록시라 `localhost:8080` == prod이며 동일 Neo4j를 본다. `data/`가 볼륨 마운트이므로 데이터만 바뀌면 `docker compose -p biblemap restart api`로 충분(lru_cache 비우기).
+  - 두 게이트가 배포 경로에서 실제로 살아 있는 이유는 같다: 표준 배포 뒤 러너는 깨끗한 `actions/checkout`에서 돌므로 커밋을 빠뜨린 파일은 배포 경로에서 애초에 보이지 않는다 — 이 가드는 작업 폴더의 push 전 단독 실행에서 의미가 있다. 반대로 `check_cast_axes.py` 같은 게이트 입력이 미커밋이면 러너 체크아웃에서 게이트가 깨진다.
+- 실행 자리는 env별 prod/dev(포트·Neo4j 분리). `data/`는 api 이미지에 구워지므로 데이터 변경도 push 재배포로 반영된다.
 - 컨테이너 레지스트리 미사용(이미지는 로컬 빌드), 클라우드 PaaS·CDN·오브젝트 스토리지 연동 없음.
 
 ## API 엔드포인트 인벤토리 (런타임, GET 전용 32개)

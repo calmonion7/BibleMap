@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 924f501dc41ba3f6602b5cb0ebeb3831834400a1
-mapped: 2026-10-10
+last_mapped_commit: 50d8961b1d6148fed2952fc59cb4bed3e634b592
+mapped: 2026-10-24
 ---
 
 # TESTING
@@ -316,6 +316,9 @@ ADR `260821-000937-invariant-encodes-defect-class.md`(task#280~281)가 승급한
 
 ### 13.1 장면 승인 도구의 테스트 — 게이트 밖, host python3 (task 338·339)
 
+- **`scripts/canon/test_*.py` 15개(2026-10-24 실측, 전부 host python3 표준 `unittest`)**: `test_scene_state`·`test_approve`·`test_recheck`·`test_scale`·`test_scene_rules`(95개 시험, 최다)·`test_spec_judge`·`test_verse_elements`·`test_whole_prompt`·`test_judge_rounds`·`test_candidate_page` 외. 실행은 `cd scripts/canon && python3 -m unittest test_x` 꼴이며 `scripts/check.sh`에는 배선돼 있지 않다.
+  - `test_recheck.py`: 규칙 원장 `rules.json` 형식·내용 해시 판, 함수 규칙마다 실행기 존재(`check`가 `SPEC_CHECKS`에 있음), 생성 층 검사 함수가 재검에서 조용히 빠지지 않음, 금지 낱말·지물 문구·승인 해시 출처.
+  - `test_scale.py`(task 408·409): 표의 값마다 `_why` 근거 단계(`[직접]`·`[추론]`·`[저작]`), cast 카드 등급이 표에 다 있음, 환산·문항 채우기, `Quotes`(근거 칸 성경 인용 = 개역한글 본문 글자 그대로, 다른 역본 인용을 잡는 대조 시험 포함), `Perspective`(무리 단계·눈높이 지평선), `Literals`(코드에 크기 리터럴 없음 + 탐지기 대조 시험).
 - **`scripts/canon/test_scene_state.py`**: 표준 `unittest`만(16개 단언 지점), GPU·파일 없이 명세·곁파일을 dict로 지어 `scene_state`의 재검토 규칙(DoD 3의 일곱 경우)을 검증한다. 실행: `cd scripts/canon && python3 test_scene_state.py`. `scripts/check.sh`에는 배선돼 있지 않다 — 이 레포에서 백엔드 쪽 Python 단위 테스트에 가장 가까운 것이나 앱이 아니라 canon 도구 대상이다(§0의 "백엔드 러너 부재"는 `backend/`에 한한다).
 - **`scripts/canon/tool/uat_scene_tool.py`**: 폰 뷰포트 390×844 Playwright 스모크. 실제 명세를 건드리지 않도록 명세·곁파일을 임시 폴더에 복사해 `SCENE_TOOL_SCENES_DIR`·`SCENE_TOOL_ATTEMPTS_DIR`로 서버를 띄우고 `SCENE_TOOL_FAKE_GEN=1`로 GPU를 대체한다. 목록→시도 등록→승인→문구 저장→「재검토」 전파를 보고 스크린샷 3장(`.forge/reports/canon-pilot/scene-tool/uat/`)을 남기며 exit 0/1.
 - **`scripts/canon/check_scenes.py`**: 장면 명세 기계검증(필수 필드·인용 절 존재·구역 상자 [0,1]·참조 정합). 게이트 밖이나 GPU 0이라 상시 실행 가능.

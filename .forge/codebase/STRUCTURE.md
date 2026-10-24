@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 924f501dc41ba3f6602b5cb0ebeb3831834400a1
-mapped: 2026-10-10
+last_mapped_commit: 50d8961b1d6148fed2952fc59cb4bed3e634b592
+mapped: 2026-10-24
 ---
 
 # STRUCTURE
@@ -194,7 +194,7 @@ BibleMap/
 
 ### 저작 파이프라인 (`scripts/canon/`)
 
-앱과 다른 런타임에서 돈다 — 소스만 레포 안에 있고, venv·모델 캐시는 레포 밖(`~/.local/biblemap-imggen/`)이며 산출 이미지는 gitignored인 `.forge/reports/canon-pilot/`에 쌓인다(`params.OUT_ROOT`). 추적 파일 291개.
+앱과 다른 런타임에서 돈다 — 소스만 레포 안에 있고, venv·모델 캐시는 레포 밖(`~/.local/biblemap-imggen/`)이며 산출 이미지는 gitignored인 `.forge/reports/canon-pilot/`에 쌓인다(`params.OUT_ROOT`). 추적 파일 827개(`batch/` 로그 제외).
 
 ```
 scripts/canon/
@@ -205,14 +205,18 @@ scripts/canon/
 ├── derive_scene.py · check_scenes.py  명세 → 단계 프롬프트 파생(생성기·판정자 공용) · 명세 기계 검사
 ├── attempt.py · approve.py · scene_state.py(+test_scene_state.py)  단계 시도 실행기 · 승인 기록기 · 재검토 계산(순수 함수)
 ├── gen_cast_plate.py · approve_cast.py · make_scene_table.py · make_scene_montage.py · make_inscene_montage.py  인물 판 · 검토 표·몽타주
+├── batch/               장면 그림 실행 주축 — 가이드(make_guide)·생성(run_scene·run_night·gibeah_redraw)·판정(judge_vlm·judge_items·judge_spec·style_judge·plausibility·judge_learn)·기록(record)·애니(build_anim) 등 py 15개. `*.log`는 비추적
+├── rules.json · recheck.py   규칙 원장(version = 내용 해시)과 전 명세·승인 그림 재검
+├── scale.json · scale.py     크기 기준표(cm 정본)와 읽개 — 가이드·검사·문항이 숫자를 여기서만 읽음
+├── test_*.py            unittest 가드(recheck·scale·scene_rules·verse_elements 등)
 ├── scenes/              장면 명세 `<id>.json` 37개(정본)
 ├── attempts/            시도 곁파일 `<scene-id>.json`(scenes/ 밖 — check_scenes가 명세로 읽으므로)
-├── cast/                인물 어휘 정본 `<id>.json` + CAST.md
+├── cast/                인물 어휘 정본 `<id>.json`(생애 단계 분할 포함) + CAST.md·APPEARANCE-VERSES.md
 ├── tool/                장면 승인 로컬 웹 도구 — server.py·index.html·compose.py·count_tokens.py·glossary.json·uat_scene_tool.py
 ├── try_prompt.py        프롬프트 연습대(--check는 토큰만, GPU 0)
 ├── freeze_*.py · prep_cond.py · make_masks.py · make_montage.py · probe_cn.py · arm_sweep.py · sweep_cause.py · long_prompt.py · cond_shoot_heads.py
 ├── requirements.txt     런타임 박제 + **재현 미결 3축**을 미결로 적은 머리 주석
-├── notes/               판단 문서 22(.md, 대문자 — `SCENE-TOOL.md`·`SCENES-DAVID-TOUR.md` 포함) + 판정 결과 37(.json)
+├── notes/               판단 문서 75(.md, 대문자 — `SCENE-TOOL.md`·`SCENES-DAVID-TOUR.md` 포함) + 판정 결과 37(.json)
 ├── reference/           정답지 10장 — 축 A(화풍) 임계의 양성 기준(직속 *.png가 전부 읽힌다 = 여기 넣는 것이 곧 임계 변경). 후보·승인 이력은 task 번호 서브디렉터리로
 ├── setup/               설정화 시트(그래서 reference/ 밖) — SETUP.md가 그 경계를 적어 둔다
 ├── samples/             [[전신 표본]] — 인물 레퍼런스(SAMPLES.md)

@@ -1,6 +1,6 @@
 ---
-last_mapped_commit: 924f501dc41ba3f6602b5cb0ebeb3831834400a1
-mapped: 2026-10-10
+last_mapped_commit: 50d8961b1d6148fed2952fc59cb4bed3e634b592
+mapped: 2026-10-24
 ---
 
 # ARCHITECTURE
@@ -254,7 +254,7 @@ mapped: 2026-10-10
 
 ### 장면 명세 파이프라인과 승인 도구 (ADR `260905-104910`)
 
-명세 정본이 `notes/*.md`에서 기계 판독 가능한 `scripts/canon/scenes/<id>.json`(37개, 다윗 투어 장면 등)으로 옮겨 왔다. 인물 어휘 정본은 `scripts/canon/cast/<id>.json`(CAST.md 포함 30개), 동결 얼굴은 `frozen/`. 흐름은 다음과 같다.
+명세 정본이 `notes/*.md`에서 기계 판독 가능한 `scripts/canon/scenes/<id>.json`(37개, 다윗 투어 장면 등)으로 옮겨 왔다. 인물 어휘 정본은 `scripts/canon/cast/<id>.json`(CAST.md 포함 36개), 동결 얼굴은 `frozen/`. 흐름은 다음과 같다.
 
 - **명세 → 프롬프트**: `derive_scene.py`가 한국어 명세에서 단계별 영문 프롬프트·구역 상자·단계 순서·인물 목록을 파생한다. **생성기(`gen_scripture_scene.py`)와 판정자(`judge_scene.py`)가 둘 다 여기서 읽는다**(ADR `260904-070504` — 자와 그림이 한 파일에서 갈린다). `check_scenes.py`가 `scenes/*.json`을 GPU 0으로 기계 검사한다(필수 필드·인용 절 존재·`figures[].prop` 1개·`figures[].cast` 존재).
 - **인물 판**: `gen_cast_plate.py`가 빈 종이 위 단독 판 시트(얼굴 동결 후보 + 앵커 끔/켬 몽타주)를 뽑고, `approve_cast.py`가 사람의 선택을 `cast/<id>.json`에 옮겨 적는다(ADR `260904-055320`).
@@ -262,6 +262,18 @@ mapped: 2026-10-10
 - **승인 상태 기계**: `scene_state.py`(순수 함수, torch·파일 접근 없음, `test_scene_state.py`가 단위 테스트). 사다리 ①`verses` ②`description` ③`split`의 해시(`sha256` 앞 12자)와 단계별 승인을 비교해 [[재검토]]를 계산하며 앞 단계가 재검토면 아래로 전파한다.
 - **시도 실행기·승인 기록기**: `attempt.py`가 승인된 앞 단계 캔버스 위에서 한 단계를 그리고 곁파일 `scripts/canon/attempts/<scene-id>.json`에 입력 스냅샷(문구·부정어·구역·`upstream`·이미지 경로)을 적는다(`scenes/`에 두면 `check_scenes.py`가 명세로 오독하므로 분리). `approve.py`가 선택을 **명세 안**에 적는다 — 승인은 명세가, 이력은 곁파일이 진다.
 - **로컬 웹 도구**: `scripts/canon/tool/server.py`(표준 라이브러리 HTTP 서버, `127.0.0.1:8100`, 단일 페이지 `tool/index.html`). 외부 접근은 Cloudflare Access 헤더(`SCENE_TOOL_USERS`)로 인증, `SCENE_TOOL_DEV`·`SCENE_TOOL_FAKE_GEN`·`SCENE_TOOL_SCENES_DIR`·`SCENE_TOOL_ATTEMPTS_DIR` 환경변수로 스모크 격리. GPU 작업은 `attempt.py`를 venv 파이썬 서브프로세스로 부른다. 보조 모듈: `tool/compose.py`(한국어 지시 → `claude -p`로 단계 문구 작성), `tool/count_tokens.py`(저장 전 77토큰 검사, `{cast:...}` 확장 포함), `tool/glossary.json`(구역 이름 한글 용어집). 화면 스모크는 `tool/uat_scene_tool.py`(390x844, GPU 0). 운용 노트 `notes/SCENE-TOOL.md`.
+
+### 장면 그림 현행 흐름 (명세 → 가이드 → 생성 → 판정·편집 → 재검)
+
+위 단계 구조 이후 실행 주축은 `scripts/canon/batch/`로 옮겨 왔다. 바탕 한 장 + 인물 판 N장을 `batch/run_scene.py`가 무인으로 돌리고, 사람 판정은 후보 화면으로 최종 후보만 본다.
+
+1. **명세** — `scripts/canon/scenes/<id>.json`(37개; `regions`·`guide`·`figures`·`approved` 칸). 인물은 `cast/<id>.json`(생애 단계별 id 분할: `david-boy`·`david-youth`·`david-prime`·`david-elder` 등), 지물·낱말 근거는 `tool/glossary.json`과 낱말 사전(`look.size` 포함).
+2. **파생** — `derive_scene.py`가 명세에서 바탕·판 프롬프트를 파생한다(생성기·판정자·재검 공용). 크기 숫자는 `scale.json`(cm 정본, 어른 남자 키 비) 한 표에서 `scale.py`가 읽어 가이드·검사·문항에 주입한다(`S.fill`·`crowd_stage`·`scene_horizon`) — 규칙 `derive.scale-table`.
+3. **가이드** — `batch/make_guide.py`가 명세의 `regions`·`guide`에서 깊이 그림·OpenPose 뼈대를 결정적으로 파생(꼴 `person`·`person_bow` 등)해 ControlNet 입력으로 준다.
+4. **생성** — `batch/run_scene.py`(Z-Image, 스텝별 가이드 `control2`)·`batch/run_night.py`(밤샘 8시드)·`batch/gibeah_redraw.py`(장면별 단계·시도 `gen|judge|record`)·`gen_local_edit.py`(지물 국소 편집). `batch/fg_mask.py`·`build_anim.py`·`record.py`는 판 오리기·애니 HTML·녹화.
+5. **판정** — `batch/judge_vlm.py`·`judge_items.py`·`judge_spec.py`·`style_judge.py`·`plausibility.py`(구독 `claude -p` 기계 판정자: 명세 판정·장면 요소 문항·화풍·상식 규칙), `judge_learn.py`(사람 라벨 학습·믿음 관문), `make_cand_page.py`·`check_cand_page.py`(폰용 후보 화면), `batch/record`로 사람 답을 기록.
+6. **규칙 원장·재검** — `rules.json`(규칙 id·layer·scope·check 함수 경로, `version` = 내용 해시)이 정본이고 `recheck.py ledger|stamp|specs|images`가 규칙 변경 때 전 명세·승인 그림을 다시 잰다(승인 `approved.final`에 spec·prompt·rules 해시 기록). 생성 층 검사 함수는 `SPEC_CHECKS` 등록이 필수다(빠지면 재검에서 조용히 빠짐). 코드 가드는 `test_*.py`(unittest)와 `check.sh`가 돈다.
+7. **기록** — 시도·결과 서술은 `notes/*.md`(대문자, 75개)와 `.forge/` 하위(ADR·retro)에 남는다. 실행 로그(`batch/*.log`)와 그림 산출물은 추적하지 않는다.
 
 ### 그래프 DB 호환성 점검 (`scripts/age_compat/`)
 
