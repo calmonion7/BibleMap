@@ -84,6 +84,44 @@ class Fill(unittest.TestCase):
             S.table()["height"]["tall"]["v"] = old
 
 
+class Quotes(unittest.TestCase):
+    """절 번호 바로 뒤 인용 「…」은 개역한글 본문 글자 그대로(task 408 회고 — 기억으로 쓴 개역개정 꼴 「어깨 위만큼 더 컸더라」가
+    scripture-reviewer 틀림 3건). 크기 기준표 _why와 낱말 사전 grounds에 건다. 「…」 안 줄임표는 조각마다 본다."""
+    REF_QUOTE = __import__("re").compile(r"\d+:\d+(?:-\d+)?\s*「([^」]+)」")
+
+    @classmethod
+    def setUpClass(cls):
+        with open(os.path.join(S.HERE, "..", "..", "data", "bible", "verses.json"), encoding="utf-8") as fh:
+            cls.text = "\n".join((v.get("textKo") or "").replace(" ", "") for v in json.load(fh).values())
+
+    def misquotes(self, s):
+        import re
+        return [q for q in self.REF_QUOTE.findall(s) for f in re.split(r"…|\.\.\.", q)
+                if len(f.replace(" ", "").strip("·,")) >= 4 and f.replace(" ", "").strip("·,") not in self.text]
+
+    def strings(self, node, want):
+        if isinstance(node, dict):
+            for k, x in node.items():
+                yield from self.strings(x, want or k in ("_why", "grounds"))
+        elif isinstance(node, list):
+            for x in node:
+                yield from self.strings(x, want)
+        elif isinstance(node, str) and want:
+            yield node
+
+    def test_scale_quotes(self):
+        self.assertEqual([q for s in self.strings(S.table(), False) for q in self.misquotes(s)], [])
+
+    def test_lexicon_quotes(self):
+        with open(os.path.join(S.HERE, "..", "..", "data", "scripture_words", "words.json"), encoding="utf-8") as fh:
+            words = json.load(fh)["words"]
+        self.assertEqual([q for s in self.strings(words, False) for q in self.misquotes(s)], [])
+
+    def test_catches_other_translation(self):
+        self.assertTrue(self.misquotes("삼상 9:2 「모든 백성보다 어깨 위만큼 더 컸더라」"))
+        self.assertFalse(self.misquotes("삼상 9:2 「키는 모든 백성보다 어깨 위는 더하더라」"))
+
+
 class Literals(unittest.TestCase):
     def test_no_size_literals_in_code(self):
         """크기 숫자는 표에서만(규칙 derive.scale-table) — 지킴 이름이 코드에서 숫자로 다시 정해지면 걸림."""
