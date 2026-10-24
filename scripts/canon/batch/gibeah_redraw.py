@@ -29,6 +29,9 @@ APPROVED = os.path.join("samples", NAME, "approved-authored-saul-gibeah-spear.pn
 LOCK = threading.Lock()
 with open(NOTES, encoding="utf-8") as _fh:
     FX = json.loads(re.search(rf"```json fixed{' ' + TRY if TRY else ''}\n(.*?)\n```", _fh.read(), re.S).group(1))
+import scale as S  # noqa: E402
+for _q in FX.get("style", []) + FX.get("elements", []):   # task 408 S4: 문항 크기 숫자는 자리표 {{식|자리}} → 크기 기준표·사전 값(옛 고정 절은 자리표가 없어 그대로)
+    _q["what"] = S.fill(_q["what"])
 LINE = "통과" if TRY else "후보"   # 노트 결론 줄 머리 — task 400 DoD는 「통과: N/8」
 SID = FX["scene"]
 QS = {"S": FX["style"], "E": FX["elements"]}

@@ -5,6 +5,7 @@
 ③ look L1·L2·L3 en 낱말 수 8·30·60 이하, 추상어 금지 목록 없음 ④ meaning.ko 2문장·80자 이하
 ⑤ criteria.features 3개 이상, 문항마다 「?」로 끝남 ⑥ verified_level 꼴
 ⑦ drawable:false 항목은 signs 1개 이상, 각 id가 사전에 실재하는 그리는 항목. id·word 중복 금지.
+⑧ held(장면 손 지물 문구 배열)는 항목끼리 겹치지 않고, held가 있으면 look.size도 있음(task 408).
 위반이 있으면 목록 출력 + 종료 코드 1, 사전 파일이 없으면 종료 코드 2.
 --selftest: 내장 정상 사본이 통과하고, 일부러 깨뜨린 사본 여섯이 각각 불통해야 종료 0.
 """
@@ -207,6 +208,22 @@ def check(data, resolve):
                 for wid in vl["with"]:
                     if wid not in by_id:
                         errors.append(f"{tag}: verified_level.with의 '{wid}'가 사전에 없음")
+
+    # ⑧ 손 지물 묶음(task 408, 규칙 derive.prop-size-coverage) — held는 장면 figures[].prop 문구 배열, 한 문구는 한 항목에만, 묶인 항목은 look.size
+    held_by = {}
+    for e in words:
+        held = e.get("held")
+        if held is None:
+            continue
+        if not (isinstance(held, list) and all(isinstance(h, str) and h for h in held)):
+            errors.append(f"{e.get('id')}: held 문자열 배열 아님")
+            continue
+        if not (e.get("look") or {}).get("size"):
+            errors.append(f"{e.get('id')}: held가 있는데 look.size 없음")
+        for h in held:
+            if h in held_by:
+                errors.append(f"{e.get('id')}: held 「{h}」가 {held_by[h]}에도 있음")
+            held_by[h] = e.get("id")
     return errors
 
 

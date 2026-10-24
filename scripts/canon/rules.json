@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "89a8b8229402",
+  "version": "80ede77c7dea",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -197,6 +197,12 @@
      "note": "거인(giant)이 아닌 인물의 파생 문구에 barrel·massive·huge·enormous·bulky 금지 — 「thick barrel torso」가 술통 몸통으로 부풀어 튜닉 아래 다리가 짧아 보임. 거인은 본문이 큰 몸을 말하므로 뺌"},
     {"id": "edit.size-in-crop", "layer": "edit", "scope": "all", "check": "test:test_scene_rules",
      "source": "notes/GIBEAH-STEP23.md o0a · 사람 m8e 「창촉이 큰것 같음」 → 문항 e.spear-tip-small s7·s5 5/5 틀림(촉 길이 머리 0.8~1.5배 · 폭 자루 3~5배)", "since": "2026-10-24 task 405 r18",
-     "note": "(r20) 끝 쇠붙이(고리 포함)까지 지우고 자루는 창 가운데 진짜 자루 화소로 메움(칠한 자루는 이음매) · 뒤끝은 창이 오른쪽 인물과 떨어져 끝날 때만 parts.cap 크기 덮개를 칠함 — m11e: 크기는 잡히나 끝 생김새(뾰족한 뒤끝·납작 마름모)는 klein 다듬기로 안 바뀜. (r19) klein은 크롭 전체를 다시 그려 촉을 크롭 비율대로 키움 — 문구(m9e 촉 크기 0/8)·상자 줄이기(마스크 경계에서 잘림)로는 못 막음 → 바탕에서 창을 재어(gen_local_edit.measure_prop) 옛 촉 자리를 벽 색으로 지우고 사전 parts.point ratio(창 길이 비)·width(자루 굵기 배) 크기 촉을 미리 칠한 뒤(paint_tip) 칠한 자리만 「그 크기 그대로」 다듬음. (r18) 지시 크기 문구는 크롭 안 자루에 견줌(edit_en)"}
+     "note": "(r20) 끝 쇠붙이(고리 포함)까지 지우고 자루는 창 가운데 진짜 자루 화소로 메움(칠한 자루는 이음매) · 뒤끝은 창이 오른쪽 인물과 떨어져 끝날 때만 parts.cap 크기 덮개를 칠함 — m11e: 크기는 잡히나 끝 생김새(뾰족한 뒤끝·납작 마름모)는 klein 다듬기로 안 바뀜. (r19) klein은 크롭 전체를 다시 그려 촉을 크롭 비율대로 키움 — 문구(m9e 촉 크기 0/8)·상자 줄이기(마스크 경계에서 잘림)로는 못 막음 → 바탕에서 창을 재어(gen_local_edit.measure_prop) 옛 촉 자리를 벽 색으로 지우고 사전 parts.point ratio(창 길이 비)·width(자루 굵기 배) 크기 촉을 미리 칠한 뒤(paint_tip) 칠한 자리만 「그 크기 그대로」 다듬음. (r18) 지시 크기 문구는 크롭 안 자루에 견줌(edit_en)"},
+    {"id": "derive.scale-table", "layer": "derive", "scope": "all", "check": "test:test_scale",
+     "source": "사람 2026-10-24 「크기 기준표 미리」 · ADR 261024-083947 — task 405~407 거절마다 크기 상수를 하나씩 덧댐(YOUTH_MIN_RATIO 0.8 · HEAD_STEP 0.87 · 촉 0.12 …), 다른 장면에 옮길 수 없었음", "since": "2026-10-24 task 408",
+     "note": "크기 숫자(키 등급·체격 너비·어른 몸 비·나이대 머리·가이드 머리·지물 기준 길이·본문이 키를 말하는 인물)는 scripts/canon/scale.json에서만 — 값마다 _why 근거 단계([직접]·[추론]·[저작](이유)), cast 카드 등급이 표에 다 있음, 코드에 지킴 이름(_guarded)을 숫자로 다시 쓰면 test_scale이 잡음. 판정 문항의 크기 숫자는 손으로 쓰지 않고 scale.fill 자리표 {{식|자리}}로 채움"},
+    {"id": "derive.prop-size-coverage", "layer": "derive", "scope": "all", "check": "recheck.prop_size_coverage_errors",
+     "source": "ADR 261024-083947 · 사람 「일회성으로 쓰지말고 규칙화」 — 창·수금만 사전 크기가 있어 다른 장면 손 지물은 그림이 제 크기로 그림(task 405 m4 실측)", "since": "2026-10-24 task 408",
+     "note": "장면 figures[].prop(손 지물) 문구는 사전 항목 held에 글자 그대로 묶이고 그 항목은 look.size(사람 키에 견준 비)를 가짐 — 옷자락·빈손·입은 옷은 scale.json held_exclude에 근거와 함께. 명세 지물 문구를 바꾸면 held도 함께 고쳐야 통과"}
   ]
 }

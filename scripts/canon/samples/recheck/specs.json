@@ -1,5 +1,5 @@
 {
- "rules_version": "a878c8f92b80",
+ "rules_version": "80ede77c7dea",
  "tokens": "venv314",
  "specs": {
   "authored-david-adullam-cave": {
@@ -32,7 +32,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-david-ark-jerusalem": {
    "spec.required-fields": "pass",
@@ -60,11 +61,12 @@
    "generate.youth-height": "pass",
    "generate.height-ratio": "pass",
    "generate.split-control": "pass",
-   "derive.prop-size-relative": "fail",
+   "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-david-en-gedi-saul": {
    "spec.required-fields": "pass",
@@ -96,7 +98,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "fail"
+   "derive.no-inflating-build": "fail",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-david-gath-achish": {
    "spec.required-fields": "pass",
@@ -128,7 +131,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-david-gibeah-harp": {
    "spec.required-fields": "pass",
@@ -160,7 +164,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "fail"
+   "derive.no-inflating-build": "fail",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-david-gibeon-battle": {
    "spec.required-fields": "pass",
@@ -169,7 +174,7 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
-   "spec.lexicon-link": "pass",
+   "spec.lexicon-link": "fail",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
@@ -192,7 +197,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-david-goliath-gath": {
    "spec.required-fields": "pass",
@@ -224,7 +230,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-david-hebron-king-judah": {
    "spec.required-fields": "pass",
@@ -256,7 +263,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-david-jerusalem-conquest": {
    "spec.required-fields": "pass",
@@ -288,7 +296,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "fail"
+   "derive.no-inflating-build": "fail",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-david-mahanaim-exile": {
    "spec.required-fields": "pass",
@@ -320,7 +329,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-david-nathan-covenant": {
    "spec.required-fields": "pass",
@@ -352,7 +362,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-david-nob-priests": {
    "spec.required-fields": "pass",
@@ -384,7 +395,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "fail"
+   "derive.no-inflating-build": "fail",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-david-ramah-samuel": {
    "spec.required-fields": "pass",
@@ -416,7 +428,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-david-returns-jerusalem": {
    "spec.required-fields": "pass",
@@ -448,7 +461,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-david-ziklag-base": {
    "spec.required-fields": "pass",
@@ -480,7 +494,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-samuel-bethlehem-david-anointing": {
    "spec.required-fields": "pass",
@@ -512,7 +527,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-samuel-ramah-death": {
    "spec.required-fields": "pass",
@@ -544,7 +560,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-saul-endor-medium": {
    "spec.required-fields": "pass",
@@ -576,7 +593,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-saul-gibeah-spear": {
    "spec.required-fields": "pass",
@@ -608,7 +626,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-saul-gilboa-death": {
    "spec.required-fields": "pass",
@@ -617,7 +636,7 @@
    "spec.no-compromise-words": "pass",
    "spec.scene-all-verses": "fail",
    "spec.cast-card-v2": "pass",
-   "spec.lexicon-link": "pass",
+   "spec.lexicon-link": "fail",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
@@ -640,7 +659,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-saul-gilgal-amalek": {
    "spec.required-fields": "pass",
@@ -672,7 +692,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "fail"
+   "derive.no-inflating-build": "fail",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-saul-gilgal-coronation": {
    "spec.required-fields": "pass",
@@ -704,7 +725,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "fail"
+   "derive.no-inflating-build": "fail",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-saul-jabesh-rescue": {
    "spec.required-fields": "pass",
@@ -736,7 +758,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "fail"
+   "derive.no-inflating-build": "fail",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-saul-michmash-battle": {
    "spec.required-fields": "pass",
@@ -768,7 +791,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "fail"
+   "derive.no-inflating-build": "fail",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-saul-mizpah-chosen": {
    "spec.required-fields": "pass",
@@ -800,7 +824,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "fail"
+   "derive.no-inflating-build": "fail",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-saul-nob-massacre": {
    "spec.required-fields": "pass",
@@ -832,7 +857,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "fail"
+   "derive.no-inflating-build": "fail",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-solomon-ezion-geber-fleet": {
    "spec.required-fields": "pass",
@@ -864,7 +890,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-solomon-gibeon-dream": {
    "spec.required-fields": "pass",
@@ -896,7 +923,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-solomon-gihon-anointing": {
    "spec.required-fields": "pass",
@@ -928,7 +956,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-solomon-jerusalem-apostasy": {
    "spec.required-fields": "pass",
@@ -960,7 +989,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-solomon-jerusalem-birth": {
    "spec.required-fields": "pass",
@@ -992,7 +1022,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-solomon-jerusalem-david-charge": {
    "spec.required-fields": "pass",
@@ -1024,7 +1055,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-solomon-jerusalem-palace": {
    "spec.required-fields": "pass",
@@ -1056,7 +1088,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-solomon-jerusalem-sheba": {
    "spec.required-fields": "pass",
@@ -1088,7 +1121,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-solomon-jerusalem-temple-build": {
    "spec.required-fields": "pass",
@@ -1120,7 +1154,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-solomon-jerusalem-temple-dedication": {
    "spec.required-fields": "pass",
@@ -1152,7 +1187,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   },
   "authored-solomon-jerusalem-two-mothers": {
    "spec.required-fields": "pass",
@@ -1184,7 +1220,8 @@
    "generate.flight-position": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "pass"
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass"
   }
  },
  "details": {
@@ -1224,9 +1261,6 @@
    ],
    "spec.stage-from-scripture": [
     "david-prime: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
-   ],
-   "derive.prop-size-relative": [
-    "사전 ephod: look.size(사람에 견준 크기) 없음"
    ]
   },
   "authored-david-en-gedi-saul": {
@@ -1282,6 +1316,9 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.lexicon-link": [
+    "verse_elements[18] '칼로': 사전 sword look 문구가 파생 프롬프트에 없음"
    ],
    "spec.stage-from-scripture": [
     "abner: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
@@ -1383,19 +1420,17 @@
    ],
    "spec.lexicon-link": [
     "verse_elements[3] '진설병': 사전 showbread look 문구가 파생 프롬프트에 없음",
+    "verse_elements[5] '내 칼과 병기를 가지지 못하였나이다': 사전 sword look 문구가 파생 프롬프트에 없음",
     "verse_elements[6] '골리앗의 칼이 보자기에 싸여': 사전 wrapped-in-cloth look 문구가 파생 프롬프트에 없음",
     "verse_elements[6] '골리앗의 칼이 보자기에 싸여': 사전 goliath-sword look 문구가 파생 프롬프트에 없음",
-    "verse_elements[7] '에봇 뒤에 있으니': 사전 ephod look 문구가 파생 프롬프트에 없음",
-    "verse_elements[8] '에봇 뒤에 있으니': 사전 ephod look 문구가 파생 프롬프트에 없음"
+    "verse_elements[6] '골리앗의 칼이 보자기에 싸여': 사전 sword look 문구가 파생 프롬프트에 없음",
+    "verse_elements[7] '에봇 뒤에 있으니': 사전 ephod look 문구가 파생 프롬프트에 없음"
    ],
    "spec.stage-from-scripture": [
     "ahimelech: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "david: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ],
    "derive.prop-size-relative": [
-    "사전 ephod: look.size(사람에 견준 크기) 없음",
-    "사전 goliath-sword: look.size(사람에 견준 크기) 없음",
-    "사전 showbread: look.size(사람에 견준 크기) 없음",
     "사전 wrapped-in-cloth: look.size(사람에 견준 크기) 없음"
    ],
    "derive.no-inflating-build": [
@@ -1466,8 +1501,6 @@
     "youth 인물인데 파생 프롬프트에 「boy」 — 청년이 아이로 그려진다"
    ],
    "derive.prop-size-relative": [
-    "사전 horn: look.size(사람에 견준 크기) 없음",
-    "사전 oil-horn: look.size(사람에 견준 크기) 없음",
     "사전 oil: look.size(사람에 견준 크기) 없음"
    ]
   },
@@ -1512,6 +1545,10 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
+   ],
+   "spec.lexicon-link": [
+    "verse_elements[3] '자기 칼을': 사전 sword look 문구가 파생 프롬프트에 없음",
+    "verse_elements[4] '네 칼을 빼어': 사전 sword look 문구가 파생 프롬프트에 없음"
    ],
    "spec.stage-from-scripture": [
     "saul-old: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
@@ -2147,7 +2184,6 @@
    "check": "check_scenes.lexicon_look_errors",
    "pass": [
     "authored-david-gath-achish",
-    "authored-david-gibeon-battle",
     "authored-david-hebron-king-judah",
     "authored-david-jerusalem-conquest",
     "authored-david-mahanaim-exile",
@@ -2156,13 +2192,14 @@
     "authored-david-returns-jerusalem",
     "authored-david-ziklag-base",
     "authored-saul-endor-medium",
-    "authored-saul-gibeah-spear",
-    "authored-saul-gilboa-death"
+    "authored-saul-gibeah-spear"
    ],
    "fail": [
     "authored-david-ark-jerusalem",
+    "authored-david-gibeon-battle",
     "authored-david-nob-priests",
-    "authored-samuel-bethlehem-david-anointing"
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-saul-gilboa-death"
    ],
    "stale": [],
    "none": [
@@ -2189,7 +2226,7 @@
     "authored-solomon-jerusalem-temple-dedication",
     "authored-solomon-jerusalem-two-mothers"
    ],
-   "rate": 0.8
+   "rate": 0.6667
   },
   {
    "id": "derive.no-hand-prompt",
@@ -3085,6 +3122,7 @@
    "check": "recheck.prop_size_errors",
    "pass": [
     "authored-david-adullam-cave",
+    "authored-david-ark-jerusalem",
     "authored-david-en-gedi-saul",
     "authored-david-gath-achish",
     "authored-david-gibeah-harp",
@@ -3119,14 +3157,13 @@
     "authored-solomon-jerusalem-two-mothers"
    ],
    "fail": [
-    "authored-david-ark-jerusalem",
     "authored-david-nob-priests",
     "authored-david-returns-jerusalem",
     "authored-samuel-bethlehem-david-anointing"
    ],
    "stale": [],
    "none": [],
-   "rate": 0.8919
+   "rate": 0.9189
   },
   {
    "id": "generate.flight-position",
@@ -3324,6 +3361,55 @@
    "stale": [],
    "none": [],
    "rate": 0.7297
+  },
+  {
+   "id": "derive.prop-size-coverage",
+   "layer": "derive",
+   "scope": "all",
+   "check": "recheck.prop_size_coverage_errors",
+   "pass": [
+    "authored-david-adullam-cave",
+    "authored-david-ark-jerusalem",
+    "authored-david-en-gedi-saul",
+    "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
+    "authored-david-gibeon-battle",
+    "authored-david-goliath-gath",
+    "authored-david-hebron-king-judah",
+    "authored-david-jerusalem-conquest",
+    "authored-david-mahanaim-exile",
+    "authored-david-nathan-covenant",
+    "authored-david-nob-priests",
+    "authored-david-ramah-samuel",
+    "authored-david-returns-jerusalem",
+    "authored-david-ziklag-base",
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-samuel-ramah-death",
+    "authored-saul-endor-medium",
+    "authored-saul-gibeah-spear",
+    "authored-saul-gilboa-death",
+    "authored-saul-gilgal-amalek",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-jabesh-rescue",
+    "authored-saul-michmash-battle",
+    "authored-saul-mizpah-chosen",
+    "authored-saul-nob-massacre",
+    "authored-solomon-ezion-geber-fleet",
+    "authored-solomon-gibeon-dream",
+    "authored-solomon-gihon-anointing",
+    "authored-solomon-jerusalem-apostasy",
+    "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-david-charge",
+    "authored-solomon-jerusalem-palace",
+    "authored-solomon-jerusalem-sheba",
+    "authored-solomon-jerusalem-temple-build",
+    "authored-solomon-jerusalem-temple-dedication",
+    "authored-solomon-jerusalem-two-mothers"
+   ],
+   "fail": [],
+   "stale": [],
+   "none": [],
+   "rate": 1.0
   }
  ]
 }

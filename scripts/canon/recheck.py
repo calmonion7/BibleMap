@@ -28,6 +28,7 @@ import check_scenes  # noqa: E402
 import check_cast_v2  # noqa: E402
 import derive_scene as ds  # noqa: E402
 import scene_state as ss  # noqa: E402
+import scale as S  # noqa: E402 — task 408 크기 숫자는 크기 기준표(scale.json)에서만
 
 LEDGER = os.path.join(HERE, "rules.json")
 OUT = os.path.join(HERE, "samples", "recheck")
@@ -261,7 +262,7 @@ def figure_scale_errors(spec):
             + [f"{k}: 구역 높이 {R[k][3] - R[k][1]:.2f} > {FIGURE_MAX_H} — 화면을 가득 채워 너무 가깝게 그려진다" for k in big])
 
 
-YOUTH_MIN_RATIO = 0.8   # d5: 청년 구역 높이 / 같은 장면 어른 구역 높이(d4e2 다윗 0.62/0.86 = 0.72 → 「몸이 작아 12~14세」)
+YOUTH_MIN_RATIO = S.v("age_height_min.youth")   # d5: 청년 구역 높이 / 같은 장면 어른 구역 높이(d4e2 다윗 0.62/0.86 = 0.72 → 「몸이 작아 12~14세」)
 
 
 def youth_height_errors(spec):
@@ -279,12 +280,12 @@ def youth_height_errors(spec):
 
 
 HEIGHT_RANK = {"child": 0, "short": 1, "average": 2, "tall": 3, "towering": 4}
-HEAD_STEP, HEAD_TOL = 0.87, 0.04   # f1: 키 등급 한 칸 = 머리 하나(키의 약 1/7.5) — 삼상 9:2 「모든 백성보다 어깨 위만큼 더 컸더라」
+HEAD_TOL = 0.04   # 판정 여유 — 키 비 자체는 크기 기준표 height(task 408: f1 HEAD_STEP 0.87 거듭제곱 → 표 키 비 직접, 삼상 9:2 「어깨 위만큼」)
 
 
 def height_ratio_errors(spec):
     """같은 깊이에 선 인물의 키 비는 카드 키 등급에서(task 404 f1, 규칙 generate.height-ratio) — guide 사람 꼴·뼈대 인물 중 depth 값이 같은
-    두 인물의 구역 높이 비가 HEAD_STEP ** (등급 차) ± HEAD_TOL 밖이면 걸림. d5e·d4e2: 다윗 0.69 / 사울 0.86 = 0.80(tall vs average 한 칸) →
+    두 인물의 구역 높이 비가 표 키 비(S.height_rel 낮은 등급 / 높은 등급) ± HEAD_TOL 밖이면 걸림. d5e·d4e2: 다윗 0.69 / 사울 0.86 = 0.80(tall vs average 한 칸) →
     「거인과 아이」(두 사람 크기 3/3 틀림, 기록 c5 2/8 · c11 0/8)."""
     g, R = spec.get("guide") or {}, spec.get("regions", {})
     sh, pose, dep = g.get("shape", {}), g.get("pose", {}), g.get("depth", {})
@@ -296,7 +297,7 @@ def height_ratio_errors(spec):
             if dep.get(a) != dep.get(b) or ra not in HEIGHT_RANK or rb not in HEIGHT_RANK:
                 continue
             (hi, rh), (lo, rl) = sorted([(a, ra), (b, rb)], key=lambda x: -HEIGHT_RANK[x[1]])
-            want = HEAD_STEP ** (HEIGHT_RANK[rh] - HEIGHT_RANK[rl])
+            want = S.height_rel(rl) / S.height_rel(rh)
             got = (R[lo][3] - R[lo][1]) / (R[hi][3] - R[hi][1])
             if abs(got - want) > HEAD_TOL:
                 out.append(f"{lo}/{hi} 구역 높이 비 {got:.2f} ≠ {want:.2f}±{HEAD_TOL}(키 등급 {rl}·{rh}) — 두 사람 크기가 어긋나 그려진다")
@@ -380,6 +381,26 @@ def prop_size_errors(spec):
     return sorted(set(out))
 
 
+def prop_size_coverage_errors(spec=None):
+    """손에 쥔 지물은 모두 크기를 가짐(task 408, 규칙 derive.prop-size-coverage) — 장면 figures[].prop 문구마다 크기 기준표 held_exclude
+    (옷자락·빈손 — 근거와 함께)에 있거나, 그 문구를 held에 담은 사전 항목이 있고 그 항목에 look.size가 있어야 함. spec이 없으면 37명세 전부."""
+    specs = [spec] if spec else [ds.load(sid) for sid in scene_ids()]
+    skip = S.table()["held_exclude"]
+    held = {h: w for w in _lexicon().values() for h in w.get("held", [])}
+    out = []
+    for sp in specs:
+        for f in sp.get("figures", []):
+            p = f.get("prop")
+            if not p or p in skip:
+                continue
+            w = held.get(p)
+            if not w:
+                out.append(f"{sp['id']} {f.get('region')}: 손 지물 「{p}」를 held에 담은 사전 항목 없음(크기 대상 아니면 scale.json held_exclude에 근거와 함께)")
+            elif not w.get("look", {}).get("size"):
+                out.append(f"{sp['id']} {f.get('region')}: 손 지물 「{p}」 → 사전 {w['id']}에 look.size 없음")
+    return out
+
+
 def flight_errors(spec):
     """나는 물체의 자리는 명세 칸으로(task 405, 규칙 generate.flight-position — 사람 m1e 「창은 3분의2쯤 날아가게」를 일반화) —
     guide에 허공 물체 꼴과 던지는 뼈대(throw_follow)·피하는 뼈대가 있으면 guide.flight{object, word, from, to, at}가 있어야 하고:
@@ -413,7 +434,7 @@ def flight_errors(spec):
     if abs(x0 - want) > FLIGHT_TOL:
         out.append(f"{fl['object']} 촉 x {x0:.3f} ≠ {fl['at']:.2f} 지점 {want:.3f}±{FLIGHT_TOL} — 명세 자리(guide.flight)가 아니다")
     tb = R[fl["from"]]
-    butt = x0 + max(x1 - x0, size["ratio"] * (tb[3] - tb[1]) * M.H / M.W)
+    butt = x0 + max(x1 - x0, size["ratio"] * S.ref(size["ref"]) * (tb[3] - tb[1]) * M.H / M.W)
     if butt > hand - HAND_GAP:
         out.append(f"{fl['object']} 그려질 뒤끝 x {butt:.3f}(사전 크기 {size['ratio']} × 던지는 사람 키)가 던진 손목 {hand:.3f}에 닿음 — 손에 남은 꼴")
     return out
@@ -483,6 +504,7 @@ SPEC_CHECKS = {
     "recheck.pose_only_errors": lambda spec, ctx: pose_only_errors(spec),
     "recheck.split_control_errors": lambda spec, ctx: split_control_errors(spec),
     "recheck.prop_size_errors": lambda spec, ctx: prop_size_errors(spec),
+    "recheck.prop_size_coverage_errors": lambda spec, ctx: prop_size_coverage_errors(spec),
     "recheck.flight_errors": lambda spec, ctx: flight_errors(spec),
     "check_scenes.lexicon_look_errors": lambda spec, ctx: check_scenes.lexicon_look_errors(spec, ds.route_prompt(spec)),
 }

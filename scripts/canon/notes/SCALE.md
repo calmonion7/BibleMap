@@ -241,3 +241,100 @@ CLIP 토큰 게이트가 실제로 발화(1/2 스윕에서 79/77 초과를 잡�
 - 스크립트: `derive_prompts.py:age_at`·`num_to_words` · `gen_sweep_scale_age.py:main` ·
   `make_masks.py` · `judge_metrics.py:ink_style_vector`·`cos` · `scripts/check_mask_ranges.py:derive_ranges`·`assert_contiguous`
 - CONTEXT: `.forge/CONTEXT.md` [[인물 정본]] (이 문서 발행과 함께 개정됨)
+
+---
+
+# 크기 기준표 (task 408 — 위 task#315 「확대 판단」과 다른 글. 계획이 같은 파일명을 골라 끝에 덧붙임)
+
+사람 방향(2026-10-24) 「크기 기준표 미리」 · ADR `261024-083947`. task 405~407 기브아에서 사람 거절마다 덧댄 크기 상수를 표 하나(`scripts/canon/scale.json`)로 옮기고, 가이드 그림(`batch/make_guide.py`)·명세 검사(`recheck.py`)·판정 문항(`scale.fill`)이 그 표에서만 숫자를 읽게 했다. 읽개 `scale.py` · 시험 `test_scale.py` · 원장 규칙 `derive.scale-table`(test:test_scale)·`derive.prop-size-coverage`(recheck.prop_size_coverage_errors) — 원장 67규칙.
+
+## 표 — 정한 값
+
+| 칸 | 값 | 근거 단계 |
+|---|---|---|
+| 어른 남자 키 | 168cm = 1 | [저작] 철기 시대 레반트 유골 평균 |
+| 어른 여자 | 0.93 | [저작] |
+| 규빗 · 뼘 · 손바닥 | 44.5 · 22.25 · 7.4cm | 규빗 정의 [직접] 겔 40:5·신 3:11, cm는 [저작] 통설 |
+| 머리 · 어깨선 · 가랑이 · 무릎 · 팔 | 1/7.5 · 0.17 · 0.5 · 0.72 · 0.44 | [저작] 미술 해부 통례 |
+| 나이대 머리 | child 1/6 · youth 1/7 · 어른 1/7.5 | [저작] |
+| 청년 키 하한 | 어른의 0.8 | [추론] 삼상 17:38-39(군복을 입을 체구) + [저작] 0.8 |
+| 키 등급 | child 0.70 · short 0.92 · average 1 · **tall 1.205** · towering 1.72 | tall [추론] 삼상 9:2 「키는 모든 백성보다 어깨 위는 더하더라」 — 백성 키 = 사울 어깨 높이 → 1 ÷ 0.83 · towering [직접] 삼상 17:4 「여섯 규빗 한 뼘」 = 289cm |
+| 체격 너비 | slight 0.26 … giant 0.44 | [저작] task 400 a5 값 그대로 |
+| 가이드 머리 반지름 | 0.065 · 숙인 꼴 0.07 | [저작] 같은 명세 → 같은 바이트를 지키려고 옛 값 |
+| 지물 기준 길이 | man-height = 1 | [저작] |
+| 인물 칸 | 사울 tall · 골리앗 6규빗 1뼘 · 청년 다윗 15~20세 | 본문 구절과 함께(카드엔 등급 낱말만) |
+
+## 코드가 표에서 읽는 곳 — 값 전 → 후
+
+| 곳 | 전 | 후 | 영향 |
+|---|---|---|---|
+| make_guide `BUILD_WIDTH` | 리터럴 dict | `S.build_width(등급)` | 값 같음 |
+| make_guide `KNEE` · `HEAD_R` · 꼴 함수의 `0.065` 셋 | 리터럴 | `S.v("body.knee")` · `S.guide_head_r()` | 값 같음 — 가이드 4장(요단 1·2, 기브아 1·2) 바이트 같음 |
+| recheck `YOUTH_MIN_RATIO` | 0.8 | `S.v("age_height_min.youth")` | 값 같음 |
+| recheck 키 비 `HEAD_STEP ** 등급차` | tall/average 0.870 · short/average 0.870 · towering/average 0.757 | 표 키 비 직접: 0.830 · 0.920 · 0.581 | 가이드 있는 두 장면만 잼 — 기브아 실제 0.868(±0.04 안), 통과 그대로 |
+| recheck `flight_errors` 지물 길이 | ratio × 키 | ratio × `S.ref(ref)` × 키 | 값 같음(man-height = 1) |
+
+표로 옮기지 않은 것: `POSES` 관절 좌표(자세 자료 — 키 비가 아닌 꼴) · 꼴 함수의 모양 비(어깨 반폭·기울기) · `FIGURE_MAX_H`·`FIGURE_MIN_H`·`HORIZON`(task 409).
+
+## 판정 문항 자리표(S4)
+
+문항 글에 `{{식|소수 자리}}`, 식 안 `[표 경로]`·`[w.사전id.경로]`. `gibeah_redraw.py`가 고정 절을 읽을 때 채운다(옛 고정 절은 자리표가 없어 글 그대로). 다음 시도 고정 절에 쓸 꼴:
+
+| 문항 | 자리표 | 채운 글(지금 표) | 옛 손 숫자 |
+|---|---|---|---|
+| e.david-youth | `{{[figures.david-youth.0]\|0}}~{{[figures.david-youth.1]\|0}}세` | 15~20세 | 15~20세 |
+| e.proportion-pair | `사울 키가 다윗의 {{[height.tall]/[height.average]\|2}}배쯤` | 1.21배쯤 | 「머리 하나쯤」 |
+| e.spear-tip-small | `머리 높이의 {{[w.spear.look.size.ratio]*[w.spear.look.size.parts.point.ratio]*[refs.man-height]/([body.head]*[height.tall])\|1}}배쯤 · 자루 굵기의 {{[w.spear.look.size.parts.point.width]\|0}}배쯤` | 0.5배 · 2배 | 절반쯤 · 두 배쯤 |
+| e.saul-proportion-measure | `키의 {{1/[age_head.middle]\|1}}분의 1 · 다리 키의 {{1/[body.crotch]\|0}}분의 1` | 7.5분의 1 · 2분의 1 | 7분의 1 · 절반 |
+| e.saul-arm-length | `몸통(어깨선~가랑이)의 {{[body.arm]/([body.crotch]-[body.shoulder])\|1}}배쯤` | 1.3배 | 1.5배 |
+| e.saul-head-shoulder | `어깨 너비가 머리 높이의 {{[build_width.broad]/[body.head]\|1}}배쯤` | 3배 | 2~3배 |
+
+숫자가 바뀐 문항(머리·팔·어깨·키 비)은 다음 시도 전에 옛 거절 그림을 여전히 잡는지 문항 검증(judge.human-reject-to-question)을 다시 할 것 — 이번엔 판정 0회(GPU·판정자 0).
+
+## 손 지물 크기 전수(S3)
+
+37장면 `figures[].prop` 손 지물 → 사전 `held` 묶음(19문구) + `look.size`. 덮음 검사 `recheck.prop_size_coverage_errors()` → `[]`.
+
+| 사전 항목 | 묶인 장면 문구 | ratio(어른 남자 키 비) |
+|---|---|---|
+| sword(새) | a sword · a sheathed sword | 0.35 |
+| weaver-beam-spear(새, 골리앗 창) | 베틀채 같은 굵은 창 한 자루(손) | 1.7 · 날 0.2 |
+| large-shield(새) | 큰 방패 | 0.6 |
+| sling(새) | 물매 — … | 0.44 · 받침 0.06 |
+| shepherd-rod(새) | a shepherd's staff | 0.72 |
+| walking-staff(새) | a wooden staff | 0.83 |
+| baby(새) | an infant · 아기 | 0.27 |
+| scepter(새) | 왕홀 | 0.5 |
+| spices(새) | 향품 상자 | 0.3 |
+| spear | a spear | 0.67(그대로) |
+| kinnor-lyre | a small harp · a small wooden lyre | 0.25(그대로) |
+| goliath-sword | a huge / the huge cloth-wrapped sword | 0.6 |
+| oil-horn | a horn of oil | 0.15 |
+| ephod | a linen ephod | 0.23 |
+| scrawl-door | the wooden doors of the gate | 2.0 |
+
+크기만 더함(손 지물 아님): horn 0.15 · showbread 0.16. 크기 대상 아님(`scale.json` held_exclude, 근거와 함께): 옷자락·입은 옷·이불·none·빈손 13문구 + 재검 1(아래).
+
+## 근거 검토 — scripture-reviewer
+
+1차: 틀림 4 · 약함 10 — 사울 키 인용이 개역개정 꼴(개역한글 9:2 「키는 모든 백성보다 어깨 위는 더하더라」·10:23 「다른 사람보다 어깨 위나 더 크더라」)·셈 방향(백성 키 = 사울 어깨 높이 → 1.17 → 1.205)·어깨선 0.17 단계([추론] → [저작])·홀 겔 19:11 어미 「견강하여」. 약함: 손바닥·규빗 단계, 청년 다윗 위 한도 구절, 청년 키 하한 [추론] 17:38-39, 골리앗 창 굵기 [직접] → [추론]·비례로 안 센 까닭, 큰 방패 시 5:12, 목자 막대기 L1 쓰임 낱말, 아기 눅 2:12, 향품 「액체 몰약」, 에봇 아래 끝.
+2차(고친 14곳 재판정): 틀림 0 · 약함 1(향품 「마른 것」 → 「향품(유향·몰약)」으로 고침).
+
+판정표: 틀림 0 · 약함 1 (2차 — 남은 약함은 고친 뒤 재판정 전, 문구 한 줄)
+
+## 재검 목록
+
+1. **기브온(authored-david-gibeon-battle)·길보아(authored-saul-gilboa-death) `spec.lexicon-link` 통과 → 실패** — 새 사전 항목 sword(칼)가 구절 요소 「칼로」·「자기 칼을」·「네 칼을 빼어」에 걸리는데, 두 명세 프롬프트는 「a short sword」·「a sheathed sword」처럼 자체 문구라 사전 칼 look 문구가 없음. 명세 결함이 드러난 것(코드 회귀 아님) — 두 명세에 사전 칼 문구를 싣는 재저작이 필요. **기브아 루프 C8(기존 칸 통과→실패 0, 기준 9b29989)도 이 두 칸에 걸림 → 루프 재개 전 사람 결정**(두 명세 재저작 / C8 기준을 이 작업 뒤로).
+2. **엔게디 「a small knife」** — 삼상 24:4-5 본문에 자르는 도구 낱말 없음, 명세도 「칼 본문 밖 · 저작자 정함」. `held_exclude`에 「재검」으로 둠 → 명세를 a sword(삼상 25:13 「다윗도 자기 칼을 차고」)로 할지 도구를 뺄지 정하면 그 줄을 지움.
+3. **나룻배 크기 미룸** — 요단 명세가 사전 L2 옛 문구를 글자 그대로 실어서, L2에 크기 구절을 끼우면 요단 `spec.lexicon-link`가 걸림. 요단 명세와 함께 고칠 때 ferry-boat size(2.5)를 넣음(사전 verified_level L2 조건부도 그때 재측정).
+4. **문짝(scrawl-door) verified_level L2 조건부** — 옛 L2 문구에서 나온 그림 증거, L2에 크기 구절이 들어가 재측정 필요.
+5. **에봇 0.23 vs 놉 삼상 21:9 「골리앗의 칼이 보자기에 싸여 에봇 뒤에 있으니」** — 칼 꾸러미 0.6 앞의 에봇 0.23(어깨~허리)은 「뒤에」를 그리기 어려움. 아래 끝을 넓적다리(≈0.33)로 할지 — L2 문구를 바꾸면 놉 장면 명세도 함께.
+6. **에봇 L1 「a priest's vest-like garment」** — 다윗이 입은 베 에봇(삼하 6:14) 장면엔 맞지 않음.
+7. **아기 refs** — 장면 구절(왕상 3장)엔 「아이」·「아들」뿐이라 grounds에만.
+8. **진설병 두께** — 레 24:5 「매 덩이를 에바 십분 이로」는 큰 덩이, 지름 0.16 납작한 떡은 작게 그려질 수 있음(모순은 아님).
+9. **판정 문항 숫자 바뀜**(위 S4 표) — 다음 기브아 시도 전 문항 검증.
+10. 덮음 검사 덕에 좋아진 칸: 법궤(authored-david-ark-jerusalem) `derive.prop-size-relative` 실패 → 통과.
+
+## 용어 초안
+
+**크기 기준표** — 장면 그림의 모든 크기 숫자(사람 키 등급·체격 너비·몸 비·나이대 머리·지물 기준 길이·본문이 키를 말하는 인물)를 담는 한 파일(`scripts/canon/scale.json`). 정본은 cm, 그림은 어른 남자 키 = 1의 비. 값마다 근거 단계([직접]·[추론]·[저작](이유)). 가이드 그림·명세 검사·판정 문항은 숫자를 여기서만 읽고(규칙 derive.scale-table), 지물 크기의 정본은 낱말 사전 `look.size`(표는 기준 길이만). _피할 말_: 「상수」(장면마다 덧대던 값 — 이 표가 바꾼 것). CONTEXT.md에는 사용자 미커밋 변경이 커밋된 뒤 옮김(루프 C9).

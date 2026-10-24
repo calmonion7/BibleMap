@@ -98,3 +98,6 @@
 - `ref`는 지금 `man-height`(사람 키)만. `ratio`는 그 비 — 생성 규칙(`generate.flight-position`)이 그릴 길이를 셀 때 쓴다.
 - `en`과 `parts.*.en`은 **L2 en에 그대로** 들어 있어야 한다(검사기·규칙 `derive.prop-size-relative`). L2 30낱말 한도 안에 짧은 꼴로.
 - 본문에 크기가 없으면 `[저작]`으로 그림 사정임을 밝힌다(사람 판단이 바꿀 수 있는 칸).
+- **`held`(task 408, 규칙 `derive.prop-size-coverage`)**: 장면 명세 `figures[].prop`(손에 쥔 지물) 문구를 **글자 그대로** 담는 배열. 37장면의 손 지물은 모두 어느 항목의 `held`에 묶이고 그 항목은 `look.size`를 가진다(한 문구는 한 항목에만 — 검증기 ⑧). 옷자락·빈손·입은 옷처럼 크기 대상이 아닌 문구는 크기 기준표 `scripts/canon/scale.json` `held_exclude`에 근거와 함께 둔다. 명세 지물 문구를 바꾸면 `held`도 함께 고친다.
+- 크기 숫자의 기준(어른 남자 키 168cm = 1 · 규빗·뼘·손바닥 cm · 키 등급)은 크기 기준표 `scripts/canon/scale.json`이 정본이다.
+- 장면 프롬프트에 이미 실린 L 문구를 바꾸면 그 장면의 `spec.lexicon-link`가 걸린다(명세가 사전 문구를 글자 그대로 싣기 때문) — 크기 구절을 L2에 끼울 때는 그 항목을 쓰는 장면 명세도 함께 고친다(task 408: 나룻배는 요단 명세 때문에 미룸).

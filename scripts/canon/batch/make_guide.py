@@ -6,19 +6,20 @@
 깊이 그림 = 가까움 밝게 · 멂 어둡게. 선을 주지 않고(ZIMAGE §2 「콘티 되그림」) 자리·크기·멀고 가까움만 준다.
 꼴(guide.shape): person(서 있는 한 사람) · person_bow(고개를 앞·아래로 숙인 서 있는 사람, restyle r5) · kneel_bow(무릎 꿇고 엉덩이 들고 머리를 왼쪽 땅에, r6) · seated(배 안에 앉은 머리·어깨 한 줄, r6) · prostrate(엎드린 낮은 몸, 머리는 왼쪽 — 다윗 쪽) · crowd(작은 실루엣 두 줄) · boat(선체) · bank(강 너머 둑).
 바탕: 하늘 0 · 땅은 지평선(0.26)에서 아래로 0.12 → 0.5. 그리는 순서는 먼 것부터(깊이 오름차순)."""
-import argparse, json, os
+import argparse, json, os, sys
 
 from PIL import Image, ImageDraw, ImageFilter
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, HERE)
+import scale as S  # noqa: E402 — task 408 크기 숫자는 크기 기준표(scale.json)에서만
 W, H = 1216, 640
 HORIZON, GROUND = 0.26, (0.12, 0.5)
 ROOM_WALL = 0.12   # 실내 뒷벽 깊이(바닥 시작값과 같음 — 벽과 바닥이 이어짐)
 # task 400 a5 — 몸 너비(키 비율)를 카드 체격(card.silhouette)에서: guide.body = "card"일 때만(옛 가이드 바이트 유지).
-# a3·a4: 카드는 넓은 어깨·통 몸통인데 가이드 몸이 기본 너비면 체격 문구가 화면 끝 셋째 인물로 그려짐.
-BUILD_WIDTH = {"slight": 0.26, "lean": 0.28, "average": 0.3, "broad": 0.4, "heavy": 0.44, "giant": 0.44}
-BODY = {"w": 0.3, "knee": False}   # make()가 인물마다 바꾸는 몸 너비·무릎 아래 다리 — 꼴 함수 서명(d, 상자, v)을 그대로 두려고 모듈 상태로 둠
-KNEE = 0.72   # 무릎 높이(키 비율, 머리 위끝부터)
+# a3·a4: 카드는 넓은 어깨·통 몸통인데 가이드 몸이 기본 너비면 체격 문구가 화면 끝 셋째 인물로 그려짐. 너비 값은 S.build_width(크기 기준표).
+BODY = {"w": S.build_width(), "knee": False}   # make()가 인물마다 바꾸는 몸 너비·무릎 아래 다리 — 꼴 함수 서명(d, 상자, v)을 그대로 두려고 모듈 상태로 둠
+KNEE = S.v("body.knee")   # 무릎 높이(키 비율, 머리 위끝부터)
 
 
 def body(d, top_l, top_r, cx, y0, y1, bw, v):
@@ -37,7 +38,7 @@ def body(d, top_l, top_r, cx, y0, y1, bw, v):
         d.polygon([(cx + s * kw * 0.15 - lw / 2, ky), (cx + s * kw * 0.15 + lw / 2, ky), (cx + s * bw * 0.5 + lw / 2, y1), (cx + s * bw * 0.5 - lw / 2, y1)], fill=v)
 
 
-HEAD_R = {"person": 0.065, "person_duck": 0.07}   # 머리 반지름 = 구역 높이 × 이 값 — 지름 ≤ 0.14(규칙 generate.guide-head-ratio, d4)
+HEAD_R = S.guide_head_r()   # 머리 반지름 = 구역 높이 × 이 값 — 지름 ≤ 0.14(규칙 generate.guide-head-ratio, d4)
 
 
 def person(d, x0, y0, x1, y1, v):
@@ -53,7 +54,7 @@ def person_bow(d, x0, y0, x1, y1, v):
     """restyle r5 — 고개를 앞(화면 오른쪽)·아래로 숙인 서 있는 사람: 몸은 person과 같고 머리 원이 어깨선 앞·아래, 목이 앞으로 기욺."""
     h, cx = y1 - y0, (x0 + x1) / 2
     bw = min(x1 - x0, h * BODY["w"])
-    r = h * 0.065
+    r = h * HEAD_R["person"]
     sh = y0 + 2 * r
     d.polygon([(cx - bw * 0.3, sh), (cx + bw * 0.3, sh), (cx + bw / 2, y1), (cx - bw / 2, y1)], fill=v)
     hx, hy = cx + r * 1.3, y0 + r * 2.1                                           # 숙인 머리 가운데(앞·아래)
@@ -114,7 +115,7 @@ def bank(d, x0, y0, x1, y1, v):
 def leaning(d, x0, y0, x1, y1, v, lean):
     """몸통을 lean(키 비율, 음수 = 화면 왼쪽)만큼 위쪽을 기울인 사람 — 머리·어깨가 옮겨지고 두 발은 벌림. → (어깨 가운데 x, 머리 반지름)."""
     h, cx = y1 - y0, (x0 + x1) / 2
-    bw, r, dx = min(x1 - x0, h * BODY["w"]), h * 0.065, h * lean
+    bw, r, dx = min(x1 - x0, h * BODY["w"]), h * HEAD_R["person"], h * lean
     hx = cx + dx
     d.ellipse([hx - r, y0, hx + r, y0 + 2 * r], fill=v)
     sh = y0 + 2 * r
@@ -169,7 +170,7 @@ def person_follow(d, x0, y0, x1, y1, v):
     던진 팔은 앞·아래로 휘둘러 내려오고, 다른 팔은 뒤로. b7 person_throw(큰 직사각 몸통 + 무릎에서 컴퍼스처럼 벌린 다리 + 어깨 높이로 곧게 뻗은
     막대 팔·편 손)가 그대로 그려져 사람 「사울 몸 비율·자세가 어색함」(가는 긴 다리 · 「멈춰」 손짓)."""
     h, cx = y1 - y0, (x0 + x1) / 2
-    sw, lw, aw, r = h * BODY["w"] * 0.66, h * BODY["w"] * 0.44, h * BODY["w"] * 0.22, h * 0.065
+    sw, lw, aw, r = h * BODY["w"] * 0.66, h * BODY["w"] * 0.44, h * BODY["w"] * 0.22, h * HEAD_R["person"]
     hip = (cx + h * 0.05, y0 + h * 0.55)
     sh = (hip[0] - h * 0.17, y0 + h * 0.2)                                                # 약 27° 앞으로(c3 42° 구부정 · c4 15° 서서 가리킴)
     hem = y0 + h * 0.7                                                                    # 무릎 길이 옷자락
@@ -374,13 +375,13 @@ def make(spec, stage=1):
             continue
         if k in pose:   # f1: 뼈대 인물도 뼈대를 따른 깊이 몸(카드 너비) — 뼈대는 흐림 뒤에 위에 그림
             x0, y0, x1, y1 = R[k]
-            pose_body(d, (x0 * W, y0 * H, x1 * W, y1 * H), pose[k], round(255 * g["depth"][k]), BUILD_WIDTH.get(build.get(k), 0.3), k in knee)
+            pose_body(d, (x0 * W, y0 * H, x1 * W, y1 * H), pose[k], round(255 * g["depth"][k]), S.build_width(build.get(k)), k in knee)
             continue
         x0, y0, x1, y1 = R[k]
-        BODY["w"] = BUILD_WIDTH.get(build.get(k), 0.3)
+        BODY["w"] = S.build_width(build.get(k))
         BODY["knee"] = k in knee
         SHAPES[g["shape"][k]](d, x0 * W, y0 * H, x1 * W, y1 * H, round(255 * g["depth"][k]))
-    BODY["w"], BODY["knee"] = 0.3, False
+    BODY["w"], BODY["knee"] = S.build_width(), False
     img = img.filter(ImageFilter.GaussianBlur(g.get("blur", 3)))   # b6: blur 키우면 각진 몸이 누그러짐(b5 사울 상자 튜닉)
     d = ImageDraw.Draw(img)
     for k in air:
