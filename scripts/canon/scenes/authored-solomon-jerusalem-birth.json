@@ -72,6 +72,32 @@
     },
     {
       "cast": "david-prime",
+      "cast_override": {
+        "card": {
+          "heightRel": "average",
+          "ageBand": {
+            "class": "middle",
+            "text": "about 50, fuller face with lines at the eyes and brow"
+          },
+          "beardVolume": {
+            "class": "trimmed",
+            "text": "dark beard trimmed to a rounded edge along the jaw"
+          },
+          "silhouette": {
+            "class": "average",
+            "text": "solid settled shoulders, straight back"
+          },
+          "headOutline": {
+            "class": "bare",
+            "text": "bare head, dark curls close to the skull"
+          },
+          "costumeColor": {
+            "class": "red",
+            "text": "deep red long royal robe, gold-edged sash"
+          }
+        }
+      },
+      "cast_override_why": "나이 [추론] 삼하 5:4 「다윗이 삼십 세에 위에 나아가서」 + 5:5 「예루살렘에서 삼십삼 년 동안」 — 솔로몬 출생(12:24)은 예루살렘 재위 중 암몬 전쟁(11:1) 뒤 · 보수 연대 추정(즉위 BC 1010 · 출생 약 BC 990)으로 즉위 뒤 약 20년, 약 50세 · 카드 대표값 「late 30s」 대신 · 카드 층 나머지는 정본 그대로(task 429)",
       "role": "다윗 왕 — 나단에게서 아들의 새 이름을 듣는 왕",
       "pose": "나단을 마주 보고 서서 두 손을 앞에 모으고 듣는다",
       "prop": "none",

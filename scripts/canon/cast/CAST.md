@@ -6,7 +6,7 @@
 
 - **인물** = 고정한 순간에 판(plate)으로 단독으로 그릴 개체. 이름 있는 개인뿐 아니라, 이름 없어도 장면의 핵심 개체(엔돌의 신접한 여인, 두 여인, 스바 여왕)를 포함한다.
 - **군중은 인물이 아니다**: 백성·군대·제사장들·왕비들·창기의 배경 등은 역표의 「군중/무리」 열로 뺐다. 예: 미스바의 「모든 백성」, 놉 학살의 「남녀와 아이들」, 성전 낙성식의 「온 이스라엘 회중」.
-- **생애 단계가 크게 갈리는 인물은 id를 나눈다**: 사울(청년~장년 재위, mizpah~en-gedi)과 사울(노년, 엔돌·길보아 — 삼상28:20 「기력이 진하였으니」)을 나눴다. 다윗도 소년(david-boy, 수금·기름부음·골리앗)·청년(david-youth, 골리앗 뒤 군대의 장 — 삼상18:5·13·27, 15~20세, task 399)·도망자(david, 즉위 전 20대)·장년 왕(david-prime, 헤브론~솔로몬 출생 — 삼하5:4-5)·노년 직전 왕(david-elder, 압살롬 반란·귀환 60세 전후)·노년(david-old, 왕상2:1 임종 유언)으로 나눴다. 솔로몬은 청년 왕(solomon, 왕상9:10 「이십 년」 이전)·장년 왕(solomon-prime, 궁전·에시온게벨·스바)·노년(solomon-old, 왕상11:4 「나이 늙을 때에」)으로 나눴다(task 355). id 이름은 카드 층 `ageBand` 사다리(youth < young < prime < elder)를 따른다. 새로 나눈 id는 얼굴 층을 원래 id와 같게 둔다(같은 사람).
+- **생애 단계가 크게 갈리는 인물은 id를 나눈다**: 사울(청년~장년 재위, mizpah~en-gedi)과 사울(노년, 엔돌·길보아 — 삼상28:20 「기력이 진하였으니」)을 나눴다. 다윗도 소년(david-boy, 수금·기름부음·골리앗)·청년(david-youth, 골리앗 뒤 군대의 장 — 삼상18:5·13·27, 15~20세, task 399)·도망자(david, 즉위 전 20대)·장년 왕(david-prime, 헤브론~솔로몬 출생 — 삼하5:4-5)·노년 직전 왕(david-elder, 압살롬 반란·귀환 60세 전후)·노년(david-old, 왕상2:1 임종 유언)으로 나눴다. 솔로몬은 청년 왕(solomon, 왕상9:10 「이십 년」 이전)·장년 왕(solomon-prime, 궁전·에시온게벨·스바)·노년(solomon-old, 왕상11:4 「나이 늙을 때에」)으로 나눴다(task 355). id 이름은 카드 층 `ageBand` 사다리(youth < young < prime < elder)를 따른다 — 단 `-prime` id는 장년(30~40대) 생애 단계 이름이고 카드 `class`는 나이대로 둔다(solomon-prime은 40대라 `middle` — task 429). 새로 나눈 id는 얼굴 층을 원래 id와 같게 둔다(같은 사람).
 - **본문에 등장만 하고 직접 행동하지 않는 이름**(엘리압 등 이새의 아들들, 사독·브나야, 바로의 딸, 이스보셋)은 인물로 세우지 않고 군중/배경으로 처리했다 — 근거가 이름 언급 1회뿐이고 반복 등장이 없어 별도 판이 불필요하다고 판단.
 - 하나님/천사/여호와의 영은 인물로 세우지 않는다(그리지 않음). 사무엘의 영은 엔돌 정차지에서 「영으로 등장」으로 표시했다.
 - 골리앗은 36정차지 본문 범위 밖(삼상17장)이지만 사용자 지시로 명단에 포함 — 정차지 없음(v41 기존 자산 이관, 재저작 대상).
@@ -134,7 +134,7 @@ vocab-2는 두 층을 **더한다**. 값은 프롬프트에 바로 쓰는 영문
 | 필드 | 모양 | `class` 허용값 | `text` 예 |
 |---|---|---|---|
 | `heightRel` | 문자열(허용값 중 하나) | `child` · `short` · `average` · `tall` · `towering` | — |
-| `ageBand` | `{class, text}` | `child` · `youth`(10대 — 파생 문구 boy·girl 금지는 카드 나이 15세 이상만, 14세 david-boy는 삼상 17:33 「너는 소년이요」대로 boy 허용 · 원장 derive.youth-noun) · `young`(20대) · `prime`(30대) · `middle`(40~50대) · `elder`(60대~) | `in his 40s, deep forehead lines` |
+| `ageBand` | `{class, text}` | `child` · `youth`(10대 — 파생 문구 boy·girl 금지는 카드 나이 15세 이상만, 14세 david-boy는 삼상 17:33 「너는 소년이요」대로 boy 허용 · 원장 derive.youth-noun) · `young`(20대) · `prime`(30대) · `middle`(40~50대) · `elder`(60대~) — `text`의 나이 숫자(「about N」·「in his Ns」)가 `class` 범위 안(원장 spec.cast-age-band, 장면 `cast_override`도) | `in his 40s, deep forehead lines` |
 | `beardVolume` | `{class, text}` | `none` · `stubble` · `trimmed` · `full` · `long` | `close-trimmed dark beard, jawline visible` / `thick beard reaching the chest` |
 | `silhouette` | `{class, text}` | `slight` · `lean` · `average` · `broad` · `heavy` · `giant` | `broad shoulders, thick barrel torso` |
 | `headOutline` | `{class, text}` | `bare` · `headwrap` · `turban` · `veil` · `shawl` · `diadem` · `helmet` | `bare head, tight dark curls close to the skull` |

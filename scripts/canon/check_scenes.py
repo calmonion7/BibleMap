@@ -10,6 +10,7 @@ task 363: 한 장 프롬프트(`derive_scene.whole_prompt`)가 Z-Image 인코더
 task 375: 구절 시각 요소(`verse_elements`)가 있는 장면은 요소마다 인용·칸·파생 프롬프트 문구를 짝짓고, 「못 그림」류 제외 사유는 실패.
   대상 14장면(params.VERSE_ELEMENT_SCENES)에 목록이 없으면 「미작성」 경고, 끝에 「구절 요소: N/14 장면」(notes/VERSE-ELEMENTS.md).
 task 387: 장면 구절 상황 칸(`situation`)이 있는 명세는 text가 비지 않고 same_time 키가 quotes 키와 같아야 한다(없는 명세는 그대로).
+task 429: 장면 `cast_override.card.ageBand`도 나이 글 숫자가 class 범위 안(규칙 spec.cast-age-band, check_cast_v2.age_band_errors).
 """
 import glob
 import json
@@ -17,6 +18,7 @@ import os
 import re
 import sys
 
+import check_cast_v2
 import params
 
 SCENES = os.path.join(params.CANON_DIR, "scenes")
@@ -92,6 +94,11 @@ def check(spec, verses):
             errs.append(f"figures[{f.get('cast')}] 구역 없음: {f.get('region')}")
         if f.get("facing") not in ("left", "right"):
             errs.append(f"figures[{f.get('cast')}] facing은 left|right: {f.get('facing')!r}")
+        band = ((f.get("cast_override") or {}).get("card") or {}).get("ageBand")
+        if band is not None:
+            age = check_cast_v2.age_band_errors(band)
+            errs += [f"figures[{f.get('cast')}] cast_override 나이 글에 숫자 없음: {band.get('text')!r}"] if age is None \
+                else [f"figures[{f.get('cast')}] cast_override {e}" for e in age]
         casts.add(f.get("cast"))
     for c in spec.get("crowds", []):
         if c.get("region") not in regs:

@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "3d265f5d52ce",
+  "version": "76650c677a15",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -20,6 +20,9 @@
     {"id": "spec.cast-card-v2", "layer": "spec", "scope": "all", "check": "check_cast_v2.check",
      "source": "check_cast_v2.py · task 390", "since": "2026-10-21 task 390",
      "note": "명세가 쓰는 cast 카드 — 성품 낱말 금지(calm·steady·composed 포함) · 카드 층 class · _why 근거 단계·구절"},
+    {"id": "spec.cast-age-band", "layer": "spec", "scope": "all", "check": "recheck.cast_age_band_errors",
+     "source": "task 426 scripture-reviewer 판정표(notes/PLATE-CAST-TOKEN.md) · 후속 fu-df5f1c58b64d · fu-e325b633fcd4 · notes/CAST-AGE-BAND.md", "since": "2026-10-26 task 429",
+     "note": "카드 ageBand 나이 글의 숫자(「about N」「around N」「in his (early|mid-|late) Ns」)가 class 범위 안 — child ~9 · youth 10대 · young 20대 · prime 30대 · middle 40~50대 · elder 60대~(CAST.md 사다리). 명세 인물마다 카드와 장면 cast_override.card 모두(check_cast_v2 (j) · check_scenes.check도 같은 함수). david-prime 「in his 40s」가 prime으로 남았다 · 숫자를 못 읽으면 못 잼"},
     {"id": "spec.scripture-over-human", "layer": "spec", "scope": "doc", "check": "todo",
      "source": "메모리 feedback_scripture_over_human · CONTEXT 「근거 우선순위」", "since": "2026-10-21",
      "note": "본문과 사람 판정이 갈리면 본문 — 기계로 옮기기 어려움(효과 순위 낮음, scripture-reviewer 판정표로)"},

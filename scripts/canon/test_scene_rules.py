@@ -397,6 +397,41 @@ class YouthNoun(unittest.TestCase):
         self.assertIsNone(recheck.youth_noun_errors(self._with_youth_age("a smooth youthful face")))
 
 
+class CastAgeBand(unittest.TestCase):
+    """spec.cast-age-band — 카드 나이 글의 숫자가 class 범위 안(task 429). 카드·장면 cast_override 모두."""
+
+    def test_parse(self):
+        import check_cast_v2 as C
+        self.assertEqual(C.card_age("about 14, smooth round cheeks"), (14, 14))
+        self.assertEqual(C.card_age("around 60, lined face"), (60, 60))
+        self.assertEqual(C.card_age("in his 40s, deep forehead lines"), (40, 49))
+        self.assertEqual(C.card_age("late 30s, fuller face"), (36, 39))
+        self.assertEqual(C.card_age("in his mid-60s, a wrinkled older face"), (63, 66))
+        self.assertIsNone(C.card_age("a smooth youthful face"))
+
+    def test_in_out_unreadable(self):
+        import check_cast_v2 as C
+        self.assertEqual(C.age_band_errors({"class": "prime", "text": "late 30s, fuller face"}), [])
+        self.assertEqual(len(C.age_band_errors({"class": "prime", "text": "in his 40s, fuller face"})), 1)
+        self.assertIsNone(C.age_band_errors({"class": "prime", "text": "a fuller face"}))
+
+    def _with_saul_age(self, cls, text):
+        import derive_scene as ds
+        s = gibeah()
+        f = next(f for f in s["figures"] if f["cast"] == "saul")
+        card = copy.deepcopy(ds._cast_in_scene(f)["card"])
+        card["ageBand"] = {"class": cls, "text": text}
+        f["cast_override"] = {**f.get("cast_override", {}), "card": card}
+        return s
+
+    def test_scene_override(self):
+        self.assertEqual(recheck.cast_age_band_errors(gibeah()), [])
+        self.assertEqual(len(recheck.cast_age_band_errors(self._with_saul_age("middle", "about 70, old face"))), 1)
+        self.assertIsNone(recheck.cast_age_band_errors(self._with_saul_age("elder", "an old face")))
+        bad = [e for e in check_scenes.check(self._with_saul_age("middle", "about 70, old face"), verses()) if "cast_override" in e]
+        self.assertEqual(len(bad), 1)
+
+
 class PoseSkeleton(unittest.TestCase):
     """generate.pose-skeleton — 몸짓에 던짐 동사가 있는 인물은 guide.pose 뼈대(task 403 c7)."""
 

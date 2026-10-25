@@ -36,7 +36,7 @@
   "card": {
     "heightRel": "average",
     "ageBand": {
-      "class": "prime",
+      "class": "middle",
       "text": "in his 40s, fuller face with first lines at the brow"
     },
     "beardVolume": {
@@ -44,8 +44,8 @@
       "text": "full dark beard combed to a square edge"
     },
     "silhouette": {
-      "class": "average",
-      "text": "average build, straight shoulders, narrow waist"
+      "class": "lean",
+      "text": "lean build, straight shoulders, narrow waist"
     },
     "headOutline": {
       "class": "bare",
@@ -73,9 +73,9 @@
     "headwear": "[저작](초기 재위 맨머리 — 본문에 머리쓰개 없음)",
     "costume": "[저작](시대 복식 고증 — 궁정 왕의 긴 세마포 겉옷)",
     "card.heightRel": "[저작](역표 동석 인물과 구분용)",
-    "card.ageBand": "[저작](즉위 나이 본문 없음 — 왕상 9:10 「이십 년 만에」 이후 정차지라 중년 대표값 40대)",
+    "card.ageBand": "[저작](즉위 나이 본문 없음 — 왕상 9:10 「이십 년 만에」 이후 정차지라 중년 대표값 40대, class는 나이대로 middle — task 429)",
     "card.beardVolume": "[저작](40대 왕 수염 관습 대표값 — 젊은 solomon은 수염 없음, 동시대 david-prime의 다듬은 수염과 가름)",
-    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용 — ageBand middle로 nathan과 한 필드만 달라져 lean으로 가름, task 429)",
     "card.headOutline": "[저작](역표 동석 인물과 구분용)",
     "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
     "face.faceShape": "[저작](얼굴 구분용)",

@@ -206,6 +206,17 @@ def youth_noun_errors(spec):
     return [f"youth 인물인데 파생 프롬프트에 「{'·'.join(sorted(set(hit)))}」 — 청년이 아이로 그려진다"] if hit else []
 
 
+def cast_age_band_errors(spec):
+    """카드 나이 글은 class 범위 안(task 429, 규칙 spec.cast-age-band) — 명세 인물마다 카드(장면 cast_override 포함)의 ageBand.
+    david-prime 「in his 40s」가 class prime(30대)으로 남았다(task 426 scripture-reviewer) · 숫자를 못 읽는 글이 있으면 못 잼."""
+    errs, unread = [], False
+    for f in spec["figures"]:
+        age = check_cast_v2.age_band_errors(ds._cast_in_scene(f).get("card", {}).get("ageBand"))
+        unread |= age is None
+        errs += [f"{f['cast']}: {e}" for e in age or []]
+    return errs or (None if unread else [])
+
+
 FIST_WORDS = re.compile(r"\b(curled|clenched|balled|closed hand|fists?)\b", re.I)
 
 
@@ -702,6 +713,7 @@ SPEC_CHECKS = {
     "recheck.dodge_clear_errors": lambda spec, ctx: dodge_clear_errors(spec),
     "recheck.guide_legs_errors": lambda spec, ctx: guide_legs_errors(spec),
     "recheck.youth_noun_errors": lambda spec, ctx: youth_noun_errors(spec),
+    "recheck.cast_age_band_errors": lambda spec, ctx: cast_age_band_errors(spec),
     "recheck.pose_skeleton_errors": lambda spec, ctx: pose_skeleton_errors(spec),
     "recheck.empty_hand_fist_errors": lambda spec, ctx: empty_hand_fist_errors(spec),
     "recheck.wall_material_errors": lambda spec, ctx: wall_material_errors(spec),

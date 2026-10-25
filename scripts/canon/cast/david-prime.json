@@ -44,7 +44,7 @@
     "heightRel": "average",
     "ageBand": {
       "class": "prime",
-      "text": "in his 40s, fuller face with first lines at the eyes"
+      "text": "late 30s, fuller face with first lines at the eyes"
     },
     "beardVolume": {
       "class": "trimmed",
@@ -80,7 +80,7 @@
     "headwear": "[저작](맨머리 기본값 — 면류관(삼하 12:30)은 랍바 이후 장면 몫)",
     "costume": "[저작](즉위 뒤 왕의 차림 시대 고증값 — 본문은 궤 앞 베 에봇(삼하 6:14)·세마포 겉옷(대상 15:27)만 말해 그 차림은 장면 몫)",
     "card.heightRel": "[저작](역표 동석 인물과 구분용)",
-    "card.ageBand": "[추론] 삼하 5:4 「다윗이 삼십 세에 위에 나아가서」 + 5:5 「예루살렘에서 삼십삼 년」 — 헤브론(30대)~솔로몬 출생(50 안팎) 정차지, 「in his 40s」는 그 구간의 대표값",
+    "card.ageBand": "[추론] 삼하 5:4 「다윗이 삼십 세에 위에 나아가서」 + 삼하 5:5 「헤브론에서 칠 년 육 개월 동안 유다를 다스렸고 예루살렘에서 삼십삼 년」 — 정복 약 37(30 + 7년 6개월) · 궤·나단은 그 뒤 몇 해(보수 연대 추정 약 38·약 40) → 「late 30s」(prime)가 대표값. 헤브론(30세)·솔로몬 출생(50 안팎)은 장면 cast_override로(task 429)",
     "card.beardVolume": "[저작](역표 동석 인물과 구분용 — 다듬은 왕의 수염, 요압의 풍성한 수염과 가름)",
     "card.silhouette": "[저작](도망자 david의 마른 체형보다 자리 잡은 장년)",
     "card.headOutline": "[저작](역표 동석 인물과 구분용)",

@@ -10,6 +10,7 @@
 task 353에서 더함: (f) `_why`가 근거 단계 `[직접]`·`[추론]`·`[저작](이유 4자 이상)`로 시작 · `role` 필드와 근거
 (g) 얼굴·카드 층에 성품 낱말 없음(삼상 16:7 — 표정은 장면 `expression` 몫) (h) 생애 단계 쌍을 뺀 **모든** 쌍이 카드 층 2필드 이상 다름
 (i) 파생 문구(장면 `cast_describe`·정본 `gen_face_canon.look`)에 `bare head` 없음 — Z-Image가 민머리로 그린다(346·353 두 번 밟음, notes/PROMPTING.md 14).
+task 429에서 더함: (j) ageBand 나이 글의 숫자가 class 범위 안(규칙 spec.cast-age-band).
 """
 import glob
 import itertools
@@ -48,6 +49,9 @@ TRAIT = re.compile(r"\b(cold|cruel|hard|harsh|wicked|evil|sly|cunning|menacing|s
 STAGES = {frozenset(p) for fam in [("david-boy", "david-youth", "david", "david-prime", "david-elder", "david-old"),
                                    ("saul", "saul-old"), ("solomon", "solomon-prime", "solomon-old")]
           for p in itertools.combinations(fam, 2)}
+# ageBand class 나이 범위(CAST.md 사다리 — youth 10대 · young 20대 · prime 30대 · middle 40~50대 · elder 60대~, task 429)
+AGE_RANGE = {"child": (0, 9), "youth": (10, 19), "young": (20, 29), "prime": (30, 39), "middle": (40, 59), "elder": (60, 120)}
+AGE_TEXT = re.compile(r"\b(?:about|around) (\d+)\b|\b(early |mid-|late )?(\d)0s\b")
 REF = re.compile(r"(" + "|".join(sorted(BOOK, key=len, reverse=True)) + r")\s*(\d+):(\d+)(?:\s*[-–~]\s*(\d+))?")
 QUOTE = re.compile(REF.pattern + r"\s*(?:\([^)]*\)\s*)?「([^」]+)」")
 
@@ -61,6 +65,31 @@ def stop_cast():
             if m:
                 out[m.group(1)] = [re.sub(r"\(.*?\)", "", x).strip() for x in m.group(2).split(",") if x.strip()]
     return out
+
+
+def card_age(text):
+    """나이 글 → (낮은, 높은) 나이. 「about 14」「around 60」 → 한 점 · 「in his 40s」 → 40~49 · early/mid-/late → 40~43·43~46·46~49.
+    숫자를 못 읽으면 None."""
+    m = AGE_TEXT.search(text or "")
+    if not m:
+        return None
+    if m.group(1):
+        return int(m.group(1)), int(m.group(1))
+    d = int(m.group(3)) * 10
+    lo, hi = {"early ": (0, 3), "mid-": (3, 6), "late ": (6, 9)}.get(m.group(2), (0, 9))
+    return d + lo, d + hi
+
+
+def age_band_errors(band):
+    """규칙 spec.cast-age-band(task 429) — 나이 글의 나이가 class 범위 안인지. → [] 통과 · [오류] 걸림 · None 못 잼(숫자 없음).
+    david-prime 「in his 40s」가 class prime(30대)으로 남아 판 경로 문구와 카드가 갈렸다(task 426 scripture-reviewer)."""
+    age = card_age((band or {}).get("text", ""))
+    if age is None:
+        return None
+    lo, hi = AGE_RANGE.get((band or {}).get("class"), (None, None))
+    if lo is None or not (lo <= age[0] and age[1] <= hi):
+        return [f"ageBand 나이 {age[0]}~{age[1]}세가 class {band.get('class')!r} 범위 {lo}~{hi} 밖: {band.get('text')!r}"]
+    return []
 
 
 def check(c, verses):
@@ -86,6 +115,8 @@ def check(c, verses):
         words = [w for w in re.findall(r"[a-z']+", text.lower()) if w not in DEGREE and w not in STOP]
         if len(words) < 2:
             errs.append(f"(a2) card.{k}.text 정도 낱말뿐: {text!r}")
+    age = age_band_errors(card.get("ageBand"))
+    errs += ["(j) 나이 글에 숫자 없음(「about N」·「in his Ns」)"] if age is None else [f"(j) {e}" for e in age]
     if not c.get("role"):
         errs.append("(f) role 비어 있음")
     keys = list(V1) + [f"card.{k}" for k in CARD] + [f"face.{k}" for k in FACE] + ["role"]

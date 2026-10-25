@@ -223,32 +223,9 @@
         "verse": "본문 밖 · 저작자 정함(철기 시대 초 이스라엘 무장 고증 — 376 사람 메모 「두 지휘관 옷이 시대를 반영하지 못함」)"
       },
       "cast_override": {
-        "costume": "in a knee-length undyed wool tunic, a short leather-scale corselet and a wide leather belt, bareheaded",
-        "card": {
-          "heightRel": "average",
-          "ageBand": {
-            "class": "elder",
-            "text": "in his 60s, weathered face, firm jaw line"
-          },
-          "beardVolume": {
-            "class": "full",
-            "text": "full dark beard with gray"
-          },
-          "silhouette": {
-            "class": "broad",
-            "text": "broad armored shoulders, thick chest"
-          },
-          "headOutline": {
-            "class": "bare",
-            "text": "bare head, short graying hair"
-          },
-          "costumeColor": {
-            "class": "brown",
-            "text": "brown leather cuirass, short kilt"
-          }
-        }
+        "costume": "in a knee-length undyed wool tunic, a short leather-scale corselet and a wide leather belt, bareheaded"
       },
-      "cast_override_why": "차림은 장면 칸 figures.costume(본문 밖 · 저작자 정함 — 철기 시대 초 이스라엘 무장 고증, 376 사람 메모 「두 지휘관 옷이 시대를 반영하지 못함」) — 카드 차림 대신 · 나이 [추론] 삼상 14:50 「그 군장의 이름은 아브넬이니 사울의 숙부 넬의 아들」(사울 치세 초기에 이미 군장) · 삼하 2:10 「사울의 아들 이스보셋이 비로소 이스라엘 왕이 될 때에 나이 사십 세」 — 2:12는 사울 치세 뒤라 60대 · 카드 대표값 「in his 30s」 대신"
+      "cast_override_why": "차림은 장면 칸 figures.costume(본문 밖 · 저작자 정함 — 철기 시대 초 이스라엘 무장 고증, 376 사람 메모 「두 지휘관 옷이 시대를 반영하지 못함」) — 카드 차림 대신 · 나이(60대)는 task 429에서 카드 정본과 같아져 카드 덮어쓰기를 뺌"
     },
     {
       "cast": "joab",
