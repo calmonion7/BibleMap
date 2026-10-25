@@ -86,6 +86,9 @@ def ask(m, s, kind, rep, qids):
 
 
 def judge(workers=8):
+    gone = [f"{k} s{s}" for s in FX["seeds"] for k in QS if not os.path.exists(img(k, s))]
+    if gone:   # task 424 회고: 생성 워커가 죽어 그림이 빠진 채 판정까지 돌면 빈 그림 답이 쌓임
+        sys.exit(f"[InsetJudge] 그림 없음 — 판정하지 않음: {', '.join(gone)}")
     m = load()
     todo = [(s, k, r, missing(m, s, k, r)) for s in FX["seeds"] for k in QS for r in range(1, FX["reps"] + 1)]
     todo = [t for t in todo if t[3]]

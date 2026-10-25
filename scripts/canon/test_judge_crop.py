@@ -57,6 +57,15 @@ class StaleCopy(unittest.TestCase):
         self.assertEqual(Image.open(files["a"]).getpixel((0, 0)), (0, 0, 0))
 
 
+    def test_judge_refuses_missing_images(self):
+        """task 424 회고 — 생성 워커 SIGSEGV로 7장이 빠진 채 판정이 돌아 빈 그림 답이 쌓였다: 그림이 하나라도 없으면 묻지 않고 멈춘다."""
+        from unittest import mock
+        import inset_judge as I
+        with mock.patch.object(I, "img", lambda kind, s: os.path.join(self.d, "없음.png")), mock.patch.object(I, "ask") as ask:
+            with self.assertRaises(SystemExit):
+                I.judge()
+            ask.assert_not_called()
+
     def test_control_group_has_own_copy(self):
         """task 424 — 같은 장면·시드의 대조군(I0, 옛 그림)과 곁 장면(I, 새 그림)은 복사본 폴더가 달라야 함:
         한 폴더를 같이 쓰면 옛 그림이 더 오래돼 낡음으로 걸리지 않아 대조군이 새 그림 복사본을 봄."""
