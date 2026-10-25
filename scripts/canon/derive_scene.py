@@ -24,6 +24,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import params  # noqa: E402
+import check_cast_v2  # noqa: E402
 import derive_prompts as dp  # noqa: E402
 
 SCENES_DIR = os.path.join(params.CANON_DIR, "scenes")
@@ -40,14 +41,23 @@ CAST_RE = re.compile(r"\{castc?:([a-z0-9-]+)\}")
 
 NOUN = {("male", False): "man", ("male", True): "boy", ("female", False): "woman", ("female", True): "girl"}
 YOUTH = {"male": "young man", "female": "young woman"}   # task 403 r4 — youth(15~20)를 「boy」로 옮기면 열두 살 아이로 그려짐(c11 s101)
+YOUTH_NOUN_MIN_AGE = 15   # youth 중 이 나이 미만은 boy·girl(task 430 — 14세 david-boy, 삼상 17:33 「너는 소년이요」)
 HEIGHT = {"short": "short of stature", "tall": "tall of stature", "towering": "towering in height"}
+
+
+def youth_age(band):
+    """ageBand 나이 글 → 위 끝 나이(check_cast_v2.card_age — 규칙 spec.cast-age-band와 같은 해석). 못 읽으면 None."""
+    age = check_cast_v2.card_age((band or {}).get("text", ""))
+    return age and age[1]
 
 
 def _who(c):
     """시대·민족 + 성별 명사 + 신분(task 353). 성별을 `age` 낱말에 묻지 않고 `sex`에서 고정한다
     — 골리앗 「warrior」·병기 든 자 「young soldier」에는 남성 명사가 없었다."""
-    cls = c.get("card", {}).get("ageBand", {}).get("class")
-    who = f"{c['era']} {YOUTH[c['sex']] if cls == 'youth' else NOUN[(c['sex'], cls == 'child')]}"
+    band = c.get("card", {}).get("ageBand", {})
+    cls, age = band.get("class"), youth_age(band)
+    young = cls == "youth" and (age is None or age >= YOUTH_NOUN_MIN_AGE)   # 숫자 없는 youth는 청년 명사(task 430)
+    who = f"{c['era']} {YOUTH[c['sex']] if young else NOUN[(c['sex'], cls in ('child', 'youth'))]}"
     if c.get("role"):
         who += f", {'an' if c['role'][0] in 'aeiou' else 'a'} {c['role']}"
     return who

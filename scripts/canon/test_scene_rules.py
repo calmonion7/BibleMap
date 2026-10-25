@@ -369,6 +369,19 @@ class YouthNoun(unittest.TestCase):
         c["sex"], c["card"]["ageBand"]["class"] = "female", "youth"
         self.assertEqual(ds._who(c), "an ancient Israelite young woman")
 
+    def test_who_under_15_youth_is_boy(self):
+        """task 430 — youth 중 카드 나이 15세 미만은 boy·girl(14세 david-boy · 삼상 17:33), 숫자 없으면 청년 명사."""
+        import derive_scene as ds
+        c = {"era": "an ancient Israelite", "sex": "male", "card": {"ageBand": {"class": "youth", "text": "about 14, smooth round cheeks"}}}
+        self.assertEqual(ds._who(c), "an ancient Israelite boy")
+        c["card"]["ageBand"]["text"] = "about 18, smooth youthful face"
+        self.assertEqual(ds._who(c), "an ancient Israelite young man")
+        c["card"]["ageBand"]["text"] = "a smooth youthful face"
+        self.assertEqual(ds._who(c), "an ancient Israelite young man")
+        c["sex"], c["card"]["ageBand"]["text"] = "female", "about 14, smooth round cheeks"
+        self.assertEqual(ds._who(c), "an ancient Israelite girl")
+        self.assertEqual(ds._who(ds.load_cast("david-boy")), "an ancient Israelite boy, a shepherd")
+
     def test_boy_in_prompt_with_youth_fails(self):
         import derive_scene as ds
         with mock.patch.object(ds, "route_prompt", return_value="an ancient Israelite boy, a commander"):

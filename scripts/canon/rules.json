@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "76650c677a15",
+  "version": "28e03cda2a89",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -131,7 +131,7 @@
      "note": "(f4: 뼈대 인물도 — pose_body가 엉덩이 ~ 무릎 치마 덩어리, 몸이 엉덩이에서 끝나면 튜닉 짧음·다리 길고 가늚 f1e~f3e) 차림 문구가 무릎 길이인 인물의 가이드 사람 꼴은 legs costume(무릎까지 사다리꼴 + 무릎 아래 두 다리) — 바닥까지 넓어지는 사다리꼴은 긴 로브 실루엣이라 깊이 가이드가 차림 문구를 이김"},
     {"id": "derive.youth-noun", "layer": "derive", "scope": "all", "check": "recheck.youth_noun_errors",
      "source": "notes/GIBEAH-STEP23.md · task 403 c11 s101(청년 다윗 「열두 살쯤 어린아이」 — 21/22 중 유일한 틀림) · 사람 결정 2026-10-23 「무인자동화 규칙 기준」 3번", "since": "2026-10-23 task 403",
-     "note": "카드 ageBand class youth(10대)는 파생 성별 명사가 young man·young woman(derive_scene._who) — child만 boy·girl. youth 중 카드 나이(「about N」) 15세 이상 인물이 있고 child가 없는 명세의 파생 프롬프트에 boy·girl이 있으면 걸림(boy 금지 15세 이상 — task 419: 14세 david-boy는 삼상 17:33 「너는 소년이요」대로 허용) · 나이 글을 못 읽으면 못 잼"},
+     "note": "카드 ageBand class youth(10대)는 파생 성별 명사가 young man·young woman(derive_scene._who) — child와 카드 나이 15세 미만 youth만 boy·girl(task 430, 나이 해석은 check_cast_v2.card_age 하나). youth 중 카드 나이(「about N」) 15세 이상 인물이 있고 child가 없는 명세의 파생 프롬프트에 boy·girl이 있으면 걸림(boy 금지 15세 이상 — task 419: 14세 david-boy는 삼상 17:33 「너는 소년이요」대로 허용) · 나이 글을 못 읽으면 못 잼"},
     {"id": "generate.pose-skeleton", "layer": "generate", "scope": "all", "check": "recheck.pose_skeleton_errors",
      "source": "notes/GIBEAH-STEP23.md · task 403 c1~c6(깊이 꼴 — 사울 몸·던진 몸짓 함께 맞음 0) → c7~c13(뼈대 — 4장) · 사람 결정 「1 포즈 뼈대」", "since": "2026-10-23 task 403",
      "note": "몸짓 칸(gesture.ko)에 던짐 동사(던지·쏘·떨어뜨)가 있는 인물은 guide.pose에 OpenPose 뼈대 — 깊이 꼴은 실루엣 덩어리만 주어 관절 각도·다리 길이가 그림마다 넓은 보폭으로 되돌아감"},
