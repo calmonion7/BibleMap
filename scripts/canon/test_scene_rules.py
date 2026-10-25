@@ -1058,5 +1058,92 @@ class WallMaterial(unittest.TestCase):
         self.assertEqual(recheck.wall_material_errors(gibeah()), [])
 
 
+def birth():
+    import derive_scene as ds
+    return copy.deepcopy(ds.load("authored-solomon-jerusalem-birth"))
+
+
+class Inset(unittest.TestCase):
+    """spec.inset(task 417) — 큰 장면 순간에 없는 다른 때는 곁 장면 명세로 따로, 구름은 인물 사이 위(사람 판정 「다른때로 읽힘」)."""
+
+    def test_birth_passes(self):
+        self.assertEqual(recheck.inset_errors(birth()), [])
+
+    def test_cloud_beside_one_head_fails(self):
+        """판 1 자리 — 인물 오른쪽 가운데·구름 왼쪽 위 구석: 판정 4(한 사람의 생각으로 읽힐 위험)."""
+        s = birth()
+        s["regions"]["nathan"], s["regions"]["david-prime"] = [0.42, 0.27, 0.56, 0.92], [0.66, 0.27, 0.8, 0.92]
+        s["inset"]["region"] = [0.01, 0.02, 0.4, 0.58]
+        self.assertTrue(any("사이" in e for e in recheck.inset_errors(s)))
+
+    def test_cloud_over_figure_fails(self):
+        s = birth()
+        s["inset"]["region"] = [0.1, 0.02, 0.5, 0.56]
+        self.assertTrue(any("겹친다" in e for e in recheck.inset_errors(s)))
+
+    def test_missing_or_foreign_sub_spec_fails(self):
+        s = birth()
+        s["inset"]["spec"] = "authored-solomon-jerusalem-two-mothers"   # inset_of가 이 장면이 아님
+        self.assertTrue(any("inset_of" in e for e in recheck.inset_errors(s)))
+        s["inset"]["spec"] = "no-such-scene"
+        self.assertTrue(any("없다" in e for e in recheck.inset_errors(s)))
+
+    def test_inset_elements_read_sub_prompt(self):
+        """field inset 구절 요소는 곁 장면 파생 문구에서 잰다(check_scenes) — 큰 장면 문구에는 밧세바가 없다."""
+        import derive_scene as ds
+        s = birth()
+        self.assertEqual(check_scenes.verse_element_errors(s, ds.route_prompt(s)), [])
+        e = next(e for e in s["verse_elements"] if e.get("field") == "inset")
+        e["en"] = "a phrase the inset never says"
+        self.assertTrue(any("곁 장면" in x for x in check_scenes.verse_element_errors(s, ds.route_prompt(s))))
+
+
+class InsetFrameAspect(unittest.TestCase):
+    """generate.inset-frame-aspect(task 417) — 곁 장면은 구름 틀 비율로 생성(넓은 화면엔 빈자리에 선 여인 2/2)."""
+
+    def test_width_follows_frame(self):
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import birth_inset_try as B
+        s = birth()
+        x0, y0, x1, y1 = s["inset"]["region"]
+        want = (x1 - x0) * B.W / ((y1 - y0) * B.H)
+        w = B.inset_w(s)
+        self.assertEqual(w % 16, 0)
+        self.assertLess(abs(w / B.H - want), 16 / B.H)
+
+
+class PoseHoldGesture(unittest.TestCase):
+    """generate.pose-hold 넓힘(task 417) — 말을 주고받는 손짓(내밂·폄·모음)은 뼈대, 품에 안은 아기(hug)는 문구로."""
+
+    def test_speaking_hand_without_pose_fails(self):
+        s = birth()
+        s["guide"].pop("pose")
+        self.assertTrue(recheck.pose_hold_errors(s))
+
+    def test_hug_not_flagged(self):
+        import derive_scene as ds
+        s = copy.deepcopy(ds.load("authored-solomon-jerusalem-birth-inset"))
+        self.assertEqual(recheck.pose_hold_errors(s), [])
+
+
+class SitFacing(unittest.TestCase):
+    """task 417 — make_guide sit 꼴은 인물 screen_facing을 따름(오른쪽이면 상자 안 좌우 대칭)."""
+
+    def test_right_is_mirror_of_left(self):
+        import sys
+        from PIL import Image, ImageChops, ImageDraw, ImageOps
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as M
+        def draw(right):
+            img = Image.new("L", (400, 400), 0)
+            M.BODY["sit_right"] = right
+            M.sit(ImageDraw.Draw(img), 100, 50, 300, 350, 255)
+            M.BODY["sit_right"] = False
+            return img
+        diff = ImageChops.difference(ImageOps.mirror(draw(False)), draw(True))
+        self.assertLess(sum(1 for v in diff.getdata() if v > 128), 400 * 4)   # 정수 화소 반올림 띠만
+
+
 if __name__ == "__main__":
     unittest.main()

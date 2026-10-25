@@ -157,15 +157,16 @@ def sit(d, x0, y0, x1, y1, v):
     h, w = y1 - y0, x1 - x0
     hs = h / S.v("body.seated")                        # 서 있는 키
     bw, r = min(w, hs * BODY["w"]), hs * HEAD_R["person"]
-    cx = x0 + w * 0.62
+    sg = -1 if BODY.get("sit_right") else 1            # task 417: 화면 오른쪽을 보는 앉은 사람은 상자 안에서 좌우를 뒤집음(곁 장면 밧세바)
+    cx = x0 + w * 0.62 if sg > 0 else x1 - w * 0.62
     d.ellipse([cx - r, y0, cx + r, y0 + 2 * r], fill=v)
     seat = y1 - hs * (1 - S.v("body.knee"))            # 걸상 높이 ≈ 무릎 높이
     knee, BODY["knee"] = BODY["knee"], False           # 위몸은 무릎 아래 다리 없이(다리는 아래 넓적다리·정강이)
     body(d, (cx - bw * 0.3, y0 + 2 * r), (cx + bw * 0.3, y0 + 2 * r), cx, y0, seat, bw * 0.8, v)    # 위몸
     BODY["knee"] = knee
-    kx = cx - hs * 0.25
+    kx = cx - sg * hs * 0.25
     limb(d, (cx, seat - bw * 0.2), (kx, seat - bw * 0.2), bw * 0.45, v)                              # 넓적다리
-    limb(d, (kx, seat - bw * 0.2), (kx - bw * 0.1, y1 - bw * 0.1), bw * 0.32, v, bw * 0.24)         # 정강이
+    limb(d, (kx, seat - bw * 0.2), (kx - sg * bw * 0.1, y1 - bw * 0.1), bw * 0.32, v, bw * 0.24)    # 정강이
     d.rectangle([cx - bw * 0.35, seat, cx + bw * 0.35, y1], fill=round(v * 0.85))                  # 걸상
 
 
@@ -266,6 +267,10 @@ POSES = {
     "speak_open": {0: (0.05, 0.065), 1: (0.0, 0.14), 2: (0.05, 0.165), 3: (0.14, 0.25), 4: (0.23, 0.27), 5: (-0.05, 0.165), 6: (-0.06, 0.3),
                    7: (-0.05, 0.42), 8: (0.03, 0.52), 9: (0.03, 0.74), 10: (0.03, 0.97), 11: (-0.03, 0.52), 12: (-0.03, 0.74), 13: (-0.04, 0.97),
                    14: (0.045, 0.05), 16: (0.0, 0.055)},
+    # task 417 — 곧게 서서 화면 오른쪽 상대에게 두 손을 내밀어 애원함: 두 팔을 가슴 높이로 앞으로 뻗어 두 손목을 나란히(두 여인 참 어머니 왕상 3:26 — 넓힌 pose-hold에 걸림).
+    "plead_out": {0: (0.05, 0.065), 1: (0.0, 0.14), 2: (0.05, 0.165), 3: (0.13, 0.25), 4: (0.22, 0.29), 5: (-0.05, 0.165), 6: (0.06, 0.27),
+                  7: (0.18, 0.31), 8: (0.03, 0.52), 9: (0.03, 0.74), 10: (0.03, 0.97), 11: (-0.03, 0.52), 12: (-0.03, 0.74), 13: (-0.04, 0.97),
+                  14: (0.045, 0.05), 16: (0.0, 0.055)},
     # task 417 — 곧게 서서 화면 왼쪽 상대의 말을 들음: 두 손목을 몸 앞 허리 높이에 모음(문구 「both empty hands clasped before him」만으로는 팔이 내려감).
     "listen_clasp": {0: (-0.05, 0.065), 1: (0.0, 0.14), 2: (-0.05, 0.165), 3: (-0.07, 0.29), 4: (-0.02, 0.4), 5: (0.05, 0.165), 6: (0.05, 0.3),
                      7: (-0.01, 0.41), 8: (-0.03, 0.52), 9: (-0.03, 0.74), 10: (-0.04, 0.97), 11: (0.03, 0.52), 12: (0.03, 0.74), 13: (0.04, 0.97),
@@ -402,6 +407,7 @@ def make(spec, stage=1):
         sys.path.insert(0, HERE)
         import derive_scene as ds
         build = {f["region"]: ds._cast_in_scene(f).get("card", {}).get("silhouette", {}).get("class") for f in spec["figures"]}
+    facing = {f["region"]: f.get("screen_facing") for f in spec.get("figures") or []}   # task 417: sit 꼴 방향
     pose = g.get("pose", {})   # task 403 c7 — 뼈대로 줄 인물은 깊이 꼴을 그리지 않는다(흐림 뒤 draw_pose)
     air = [k for k in g["depth"] if g["shape"][k] in AIR_SHAPES]   # d2 — 허공 물체는 흐림 뒤에 또렷하게(d1 흐린 촉 → 창 방향 뒤집힘·화살촉)
     for k in sorted(g["depth"], key=lambda k: (g["depth"][k], k)):
@@ -414,8 +420,9 @@ def make(spec, stage=1):
         x0, y0, x1, y1 = R[k]
         BODY["w"] = S.build_width(build.get(k))
         BODY["knee"] = k in knee
+        BODY["sit_right"] = facing.get(k) == "right"
         SHAPES[g["shape"][k]](d, x0 * W, y0 * H, x1 * W, y1 * H, round(255 * g["depth"][k]))
-    BODY["w"], BODY["knee"] = S.build_width(), False
+    BODY["w"], BODY["knee"], BODY["sit_right"] = S.build_width(), False, False
     img = img.filter(ImageFilter.GaussianBlur(g.get("blur", 3)))   # b6: blur 키우면 각진 몸이 누그러짐(b5 사울 상자 튜닉)
     d = ImageDraw.Draw(img)
     for k in air:

@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "e58559424efd",
+  "version": "f1faeab5d244",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -161,13 +161,13 @@
      "note": "(넓힘 task 413: 두 사람 이상인데 서 있는 guide 구역이 없으면 못 잼 — 전에는 빈 통과) (task 409: 눈높이 지평선으로 — 가장 가까운 서 있는 인물로 지평선을 정하고 다른 서 있는 인물의 구역 높이가 발 y에서 계산한 화면 키 × 표 키 등급과 초점 키의 ± 0.04 안. 같은 발 y면 아래 옛 검사와 같음) guide 사람 꼴·뼈대 인물 중 depth가 같은 두 인물의 구역 높이 비 = 0.87 ** (카드 heightRel 등급 차) ± 0.04 — 한 칸 = 머리 하나. 등급 child·short·average·tall·towering"},
     {"id": "generate.seated-height", "layer": "generate", "scope": "all", "check": "recheck.seated_height_errors",
      "source": "notes/HARP-STEP1.md 시도 1 · task 414(기브아 수금 — 삼상 19:9 「그 집에 앉았을 때에」 앉아 듣는 사울이 서 있는 사람만 재는 크기 규칙에 빈 통과)", "since": "2026-10-25 task 414",
-     "note": "guide 앉은 꼴(sit) 인물의 구역 높이 = 눈높이 지평선에서 그 발 y의 서 있는 화면 키 × 카드 키 등급 × 크기 기준표 body.seated(0.75) ± 초점 키의 0.04. (넓힘 task 416: 서 있는 초점 인물이 없으면 못 잼 → 앉은 인물 중 가장 큰 이의 서 있을 때 키(구역 높이 ÷ body.seated)로 지평선·초점 키를 정함(S.scene_horizon) — 홀로 앉은 한 사람은 견줄 이가 없어 통과, 크기는 figure-scale이 잼)"},
+     "note": "(task 417: make_guide sit 꼴은 인물 screen_facing을 따름 — 오른쪽을 보면 상자 안에서 좌우 대칭, 왼쪽 그림은 바이트 그대로) guide 앉은 꼴(sit) 인물의 구역 높이 = 눈높이 지평선에서 그 발 y의 서 있는 화면 키 × 카드 키 등급 × 크기 기준표 body.seated(0.75) ± 초점 키의 0.04. (넓힘 task 416: 서 있는 초점 인물이 없으면 못 잼 → 앉은 인물 중 가장 큰 이의 서 있을 때 키(구역 높이 ÷ body.seated)로 지평선·초점 키를 정함(S.scene_horizon) — 홀로 앉은 한 사람은 견줄 이가 없어 통과, 크기는 figure-scale이 잼)"},
     {"id": "judge.single-image-reps", "layer": "judge", "scope": "all", "check": "test:test_scene_rules",
      "source": "notes/GIBEAH-STEP23.md · task 404 f1e·f2e(가이드 조금만 다른 거의 같은 그림이 3표로 수금 2/3→0/3·던진 몸짓 2/3→0/3 뒤집힘) · 메모리 판정자 재현성", "since": "2026-10-23 task 404",
      "note": "한 장 시도(시드 하나, 새 그림 — images_from 검증 제외)는 같은 그림에 5표를 묻고 다수결 — 한 장 반복은 규칙 효과보다 판정 흔들림이 커서 3표로는 결함을 가를 수 없음"},
     {"id": "generate.pose-hold", "layer": "generate", "scope": "all", "check": "recheck.pose_hold_errors",
      "source": "notes/GIBEAH-STEP23.md · task 404 f1e~f3e(깊이 꼴 숙인 다윗 — 「수금이 벽에 기대 있음」 5표 중 5 × 3장 · 다윗 다리 길고 가늚)", "since": "2026-10-23 task 404",
-     "note": "몸짓 칸이 「두 손으로 … 가슴(품)에」처럼 손 자리를 말하는 인물은 guide.pose 뼈대 — 두 손목을 그 자리에 모은 꼴(make_guide POSES duck_clutch). 깊이 꼴은 손 자리를 못 줌(사울 던진 몸짓 c1~c6과 같은 벽)", "retired": "2026-10-23 f5 — f4e 5표: 수금 쥠 5→1로 고쳤으나 벽 앞·피함·순간 0→5/5로 무너짐(다윗이 벽에서 떨어져 선 채) · 다윗 깊이 꼴 유지, 손 자리는 다른 수단"},
+     "note": "(넓힘 task 417: 말을 주고받는 손짓 「손을 내밂·폄·모음」도 — 출생 나단 「한 손을 펴 왕 쪽으로 내밂」·다윗 「두 손을 모음」 문구만 0/4, 뼈대 speak_open으로 나단 1/1(다윗 listen_clasp은 편 손으로 그려짐) · 품에 안은 아기(hug)는 사전 hold 문구로 2/2라 넣지 않음 · 새로 걸린 두 여인 참 어머니는 plead_out) 몸짓 칸이 「두 손으로 … 가슴(품)에」처럼 손 자리를 말하는 인물은 guide.pose 뼈대 — 두 손목을 그 자리에 모은 꼴(make_guide POSES duck_clutch). 깊이 꼴은 손 자리를 못 줌(사울 던진 몸짓 c1~c6과 같은 벽)", "retired": "2026-10-23 f5 — f4e 5표: 수금 쥠 5→1로 고쳤으나 벽 앞·피함·순간 0→5/5로 무너짐(다윗이 벽에서 떨어져 선 채) · 다윗 깊이 꼴 유지, 손 자리는 다른 수단"},
     {"id": "generate.pose-only-control", "layer": "generate", "scope": "all", "check": "recheck.pose_only_errors",
      "source": "notes/GIBEAH-STEP23.md · task 404 진단(gibeah-pose-diag P1·P2 — 뼈대만: 사울 몸통 기울고 다윗 문구대로 숙임 vs 깊이+뼈대 f6: 둘 다 곧게 섬) · 사람 「다른방법 없나? 무슨문제지?」", "since": "2026-10-23 task 404",
      "note": "guide.pose가 있으면 guide.control = pose — Union ControlNet 한 장에 깊이 그림을 섞지 않고 검은 바탕에 뼈대 + 허공 물체 꼴만(make_pose_only). 깊이를 섞으면 깊이 실루엣이 선 사람으로 그려지고 뼈대(기운 몸통·든 뒷발)가 약하게 읽힘. 뼈대 없는 인물·벽·바탕은 문구에 맡김", "retired": "2026-10-23 g2e — 진단은 맞음(뼈대만이면 몸짓이 살아 다윗 숙임·사울 기욺)이나 맞바꿈: 몸 덩어리·벽 자리·수금 모양을 잃고 액자(g1e 다수결 틀림 6 · g2e 15 vs 섞은 f6e3 2). 깊이+뼈대 섞기 유지, make_pose_only·duck_low는 남김"},
@@ -221,6 +221,8 @@
      "note": "장면 사람 수 = figures 수 + crowds[].count(본문 근거 [직접]·[추론]·[저작](이유)) → 무리 단계(scale.json crowd_stage: 독대 1~2 · 작은 무리 3~20 · 큰 무리 21~999 · 군중 1000+)가 초점 인물 화면 키 범위를 정함(recheck.figure_scale_errors). 독대 외 범위는 [저작] — 첫 그림 판정에서 사람이 고칠 칸"},
     {"id": "generate.eye-level-perspective", "layer": "generate", "scope": "all", "check": "recheck.perspective_errors",
      "source": "사람 2026-10-24 「원근감도」 · ADR 261024-083947 2항 ④(눈높이 지평선 — 띠 배율 대안 버림) · 387 사람 메모 「베냐민 사람 1천명은 조금멀리 원근감」 · task 409", "since": "2026-10-24 task 409",
-     "note": "(넓힘 task 413: 무리가 있는데 guide 무리 꼴이 없으면 못 잼 — 전에는 빈 통과) 눈높이 카메라: 지평선 y = 가장 가까운 서 있는 인물 발 y − 0.93 × 화면 키 ÷ 키 등급(scale.scene_horizon) — 가이드 바탕 지평선(make_guide)·무리 꼴 줄 높이(발 y에서)·서 있는 인물 키 검사(recheck.height_ratio_errors)가 이 하나에서. 검사 함수는 무리 구역이 그 자리 어른 화면 키를 담는지(발이 지평선 위인 둑·언덕은 건너뜀)"}
+     "note": "(넓힘 task 413: 무리가 있는데 guide 무리 꼴이 없으면 못 잼 — 전에는 빈 통과) 눈높이 카메라: 지평선 y = 가장 가까운 서 있는 인물 발 y − 0.93 × 화면 키 ÷ 키 등급(scale.scene_horizon) — 가이드 바탕 지평선(make_guide)·무리 꼴 줄 높이(발 y에서)·서 있는 인물 키 검사(recheck.height_ratio_errors)가 이 하나에서. 검사 함수는 무리 구역이 그 자리 어른 화면 키를 담는지(발이 지평선 위인 둑·언덕은 건너뜀)"},
+    {"id": "spec.inset", "layer": "spec", "scope": "all", "check": "recheck.inset_errors", "source": "notes/BIRTH-INSET.md · task 417 사람 제안(fu-416b1c7e2a90 — 12:25 나단 장면에 12:24 밧세바를 「뭉개뭉개」) · 판정 판 3·4 「다른때로 읽힘」 · 판 2 메모 「구름을 가운데 … 해당 장면에 대한 이야기를 하고 있는 것처럼」", "since": "2026-10-25 task 417", "note": "장면 구절의 보이는 내용 둘이 한 순간에 함께 있을 수 없고 큰 장면 순간에 그 사람이 있었다는 본문 근거가 없으면, 다른 때는 곁 장면 명세(inset.spec · inset_of)로 따로 그려 뭉게구름으로 합성 — 동작 난이도로 쓰지 않음(타협 금지와 같은 선). 큰 장면 inset 칸 spec·verse·when(앞선 때|그 뒤)·frame·region·why · 곁 장면 구절 요소는 제외하지 않고 field inset으로(check_scenes가 곁 장면 문구에서 잼) · 곁 장면 명세도 전 규칙 통과 · 구름은 인물 구역과 안 겹치고 인물이 둘 이상이면 그 사이 위(한 사람 머리 곁 = 그 사람의 생각, 왼쪽 위 구석 판 1 판정 4) · 하나님은 구름 안에도 형상 없음(ADR 261025-120741)"},
+    {"id": "generate.inset-frame-aspect", "layer": "generate", "scope": "all", "check": "test:test_scene_rules", "source": "notes/BIRTH-INSET.md 곁 장면 1~3 · task 417", "since": "2026-10-25 task 417", "note": "곁 장면은 구름 틀(inset.region) 가로세로 비로 생성하고 가이드도 같은 비로 자름(batch/birth_inset_try.inset_w) — 1216×640 넓은 화면에 앉은 한 사람이면 빈자리에 선 여인을 그려 넣음(s42 2/2, 관계 문구의 부정 「no one else」를 빼도 남음 → 가설 기각) · 틀 비율 848·896×640은 한 사람 2/2"}
   ]
 }

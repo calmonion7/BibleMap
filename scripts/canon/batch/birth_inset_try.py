@@ -4,12 +4,10 @@
 
   VENV=~/.local/biblemap-imggen/.venv314/bin/python
   $VENV batch/birth_inset_try.py gen        # 두 장면 route_prompt · 깊이 가이드(CN 1.0 · 4스텝) · 시드 SEED 한 장씩
-  python3 batch/birth_inset_try.py comp     # 합성 → samples/birth-inset/comp-s<시드>.png
-
-곁 장면 가이드는 좌우를 뒤집어 씀 — make_guide sit 꼴은 왼쪽을 보는데 곁 장면 밧세바는 큰 장면 쪽(오른쪽)을 봄(시험 한정)."""
+  python3 batch/birth_inset_try.py comp     # 합성 → samples/birth-inset/comp-s<시드>.png"""
 import json, os, subprocess, sys
 
-from PIL import Image, ImageDraw, ImageFilter, ImageOps
+from PIL import Image, ImageDraw, ImageFilter
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, HERE)
@@ -45,7 +43,7 @@ def gen():
         w = W
         if sid == sub:   # 곁 장면은 구름 틀 비율로 그림 — 넓은 화면에 앉은 한 사람이면 빈자리에 다른 사람을 그려 넣음(s42 곁에 선 여인, 문구를 바꿔도 남음)
             w = inset_w(spec)
-            g = ImageOps.mirror(Image.open(guide).convert("RGB"))
+            g = Image.open(guide).convert("RGB")   # make_guide sit 꼴이 screen_facing을 따름(task 417 — 전엔 여기서 좌우를 뒤집음)
             x0 = (W - w) // 2   # 인물 구역이 가운데(0.38~0.62)라 가운데로 자름
             g = g.crop((x0, 0, x0 + w, H))
             guide = os.path.join(OUT, f"_guide-{sid}-flip-{w}.png")

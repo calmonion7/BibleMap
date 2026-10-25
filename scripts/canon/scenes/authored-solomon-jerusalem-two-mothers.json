@@ -365,7 +365,11 @@
     },
     "backdrop": "room",
     "body": "card",
-    "why": "task 415 — 기브아 수금 규칙을 물려받음: 실내 방 바탕(generate.guide-backdrop) · 카드 체격 몸 너비(guide-body-build). 두 여인은 서 있는 사람 꼴(3:16 「그 앞에 서며」), 왕은 앉은 꼴 sit(2:19 [추론] · generate.seated-height로 크기를 잼). 긴 겉옷 차림이라 legs costume 아님. 아기는 사전 look.hold hug(add 아님) — 파생 문구의 품에 안은 꼴로 그림(derive.held-hold)."
+    "why": "task 415 — 기브아 수금 규칙을 물려받음: 실내 방 바탕(generate.guide-backdrop) · 카드 체격 몸 너비(guide-body-build). 두 여인은 서 있는 사람 꼴(3:16 「그 앞에 서며」), 왕은 앉은 꼴 sit(2:19 [추론] · generate.seated-height로 크기를 잼). 긴 겉옷 차림이라 legs costume 아님. 아기는 사전 look.hold hug(add 아님) — 파생 문구의 품에 안은 꼴로 그림(derive.held-hold). · task 417 규칙 generate.pose-hold 넓힘(대화 손짓은 뼈대 — 출생 나단 문구만 0/4 → 뼈대 1/1): 참 어머니 「두 손을 왕 쪽으로 내밀어 애원」은 뼈대 plead_out · 스텝별(앞 뼈대 → 뒤 깊이). 다른 계집의 품에 안은 아기는 사전 hold 문구(hug)로 — 출생 곁 장면에서 문구로 2/2 그려짐.",
+    "pose": {
+      "mother-a": "plead_out"
+    },
+    "split": true
   },
   "stages": [
     {

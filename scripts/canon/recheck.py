@@ -402,16 +402,18 @@ def second_point_errors(spec):
 
 
 HOLD = re.compile(r"두 손으로[^,—·]*(가슴|품)")
+GESTURE = re.compile(r"손[^,—·]*?(내밂|내밀|내민|펴|폄|모으|모은|모음|모아)")   # task 417: 말을 주고받는 손짓(내밂·폄·모음) — 문구만으로 0/4(나단·다윗 s42), 뼈대로 나단 1/1
 
 
 def pose_hold_errors(spec):
-    """손 자리는 뼈대로(task 404 f4, 규칙 generate.pose-hold) — 몸짓 칸(gesture.ko)이 「두 손으로 … 가슴(품)에」처럼 손 자리를 말하는 인물은
+    """손 자리는 뼈대로(task 404 f4, 규칙 generate.pose-hold · task 417 넓힘: 「손을 내밂·폄·모음」 손짓) — 몸짓 칸(gesture.ko)이 「두 손으로 … 가슴(품)에」처럼 손 자리를 말하는 인물은
     guide.pose 뼈대가 있어야 함. f1e~f3e: 깊이 꼴 숙인 다윗은 손 자리를 못 줘 「수금이 벽에 기대 있음」 5/5(사울 던진 몸짓 c1~c6과 같은 벽)."""
     pose = (spec.get("guide") or {}).get("pose", {})
     if "guide" not in spec:
         return []
-    miss = [f["region"] for f in spec["figures"] if HOLD.search((f.get("gesture") or {}).get("ko", "")) and f["region"] not in pose]
-    return [f"{', '.join(miss)}: 몸짓이 두 손 자리를 말하는데 guide.pose 뼈대가 없다 — 깊이 꼴은 손 자리를 못 준다"] if miss else []
+    hand = lambda t: HOLD.search(t) or GESTURE.search(t)   # task 417 넓힘: 품에 안은 손(hug — 사전 hold 문구로 2/2 그려짐)은 넣지 않음
+    miss = [f["region"] for f in spec["figures"] if hand((f.get("gesture") or {}).get("ko", "")) and f["region"] not in pose]
+    return [f"{', '.join(miss)}: 몸짓이 손 자리(두 손으로 가슴 · 손을 내밂·폄·모음)를 말하는데 guide.pose 뼈대가 없다 — 깊이 꼴·문구는 손 자리를 못 준다"] if miss else []
 
 
 def pose_only_errors(spec):
@@ -572,6 +574,42 @@ def flight_height_errors(spec):
     return [f"{fl['object']} 세로 가운데 {mid:.3f} ≠ {fl['from']} 어깨 {sy:.3f}±{FLIGHT_TOL} — 던진 팔 높이로 날지 않음"] if abs(mid - sy) > FLIGHT_TOL else []
 
 
+INSET_WHEN = ("앞선 때", "그 뒤")
+
+
+def inset_errors(spec):
+    """곁 장면은 다른 때를 따로(task 417, 규칙 spec.inset — 사람 판정 「다른때로 읽힘」 솔로몬 출생 판 3·4) — 큰 장면 순간에 그 사람이 있었는지 본문에 없는
+    장면 구절의 다른 때는 곁 장면 명세(inset.spec)로 따로 그려 뭉게구름으로 합성. 칸이 있으면: 곁 장면 명세가 있고 inset_of가 이 장면 ·
+    when 앞선 때|그 뒤 · verse가 장면 인용 절 · 곁 장면 명세도 전 규칙 통과 · field inset 요소가 하나 이상 · 구름 구역이 인물 구역과 안 겹침 ·
+    인물이 둘 이상이면 구름 가운데가 인물들 사이(한 사람 머리 곁이면 그 사람의 생각으로 읽힘 — 판정 4 메모)."""
+    ins = spec.get("inset")
+    if not ins:
+        return []
+    out = []
+    try:
+        sub = ds.load(ins.get("spec", ""))
+    except OSError:
+        return [f"inset.spec 곁 장면 명세 {ins.get('spec')!r}가 없다"]
+    if sub.get("inset_of") != spec["id"]:
+        out.append(f"곁 장면 {sub['id']}의 inset_of가 {spec['id']}가 아니다")
+    if ins.get("when") not in INSET_WHEN:
+        out.append(f"inset.when은 {'·'.join(INSET_WHEN)} 중 하나 — 지금 {ins.get('when')!r}")
+    if ins.get("verse") not in spec["verses"].get("quotes", {}):
+        out.append(f"inset.verse {ins.get('verse')!r}가 장면 인용 절이 아니다")
+    if spec_failures(sub["id"]):
+        out.append(f"곁 장면 {sub['id']}가 규칙을 어김: {spec_failures(sub['id'])}")
+    if not any(e.get("field") == "inset" for e in spec.get("verse_elements") or []):
+        out.append("field inset 구절 요소가 없다 — 곁 장면이 싣는 구절이 무엇인지 명세에 없음")
+    R, (x0, y0, x1, y1) = spec["regions"], ins.get("region", (0, 0, 0, 0))
+    figs = [R[f["region"]] for f in spec["figures"]]
+    out += [f"구름 구역이 인물 구역 {f['region']}과 겹친다" for f, r in zip(spec["figures"], figs)
+            if x0 < r[2] and r[0] < x1 and y0 < r[3] and r[1] < y1]
+    cx = [(r[0] + r[2]) / 2 for r in figs]
+    if len(cx) >= 2 and not min(cx) < (x0 + x1) / 2 < max(cx):
+        out.append("구름 가운데가 인물들 사이가 아니다 — 한 사람 머리 곁이면 그 사람의 생각으로 읽힌다")
+    return out
+
+
 def has_situation(spec):
     s = spec.get("situation")
     return [] if isinstance(s, dict) and str(s.get("text", "")).strip() else ["situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"]
@@ -634,6 +672,7 @@ SPEC_CHECKS = {
     "recheck.height_ratio_errors": lambda spec, ctx: height_ratio_errors(spec),
     "recheck.seated_height_errors": lambda spec, ctx: seated_height_errors(spec),
     "recheck.pose_hold_errors": lambda spec, ctx: pose_hold_errors(spec),
+    "recheck.inset_errors": lambda spec, ctx: inset_errors(spec),
     "recheck.pose_only_errors": lambda spec, ctx: pose_only_errors(spec),
     "recheck.split_control_errors": lambda spec, ctx: split_control_errors(spec),
     "recheck.prop_size_errors": lambda spec, ctx: prop_size_errors(spec),
