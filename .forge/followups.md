@@ -60,7 +60,7 @@
 - 다윗 장년 판 경로 4장면(헤브론 즉위·예루살렘 정복·궤·나단 언약) 판 문구가 「an ancient Israelite lean young man」 — 카드 david-prime(40대 왕)와 어긋난 생애 단계 나눔(task 355) 전 낡은 말. 재검 규칙이 못 잡음(판 경로 인물 문구 ↔ cast 나이대 대조 검사 후보).
   근거: task 423 S1 — `derive_scene.route_prompt` 네 장면 출력 · notes/RULE-AB.md.
 
-<!-- followup: fu-723581cdf048 | source: rule-candidates-royal-backwall | task: 423 | date: 2026-10-26 | status: open | taken: - -->
+<!-- followup: fu-723581cdf048 | source: rule-candidates-royal-backwall | task: 423 | date: 2026-10-26 | status: taken | taken: 432 -->
 - 두 여인 단계 ②에서 뒷벽 재질 문구 대조 8시드 — task 423 한 시드에서 문구를 더한 B가 칼 자리 1→5 · 교회 도상(스테인드글라스) 0→5 · 가드 0→5로 나았으나 뒷벽 원리가 아닌 구도 흔들림일 수 있음. 규칙 후보 아님 — 단계 ② 시도의 대조군으로.
   근거: notes/RULE-AB.md 결과 표 · samples/rule-ab/back-wall-{A,B}-s11.png.
 
