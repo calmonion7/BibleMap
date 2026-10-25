@@ -24,7 +24,8 @@ with open(NOTES, encoding="utf-8") as _fh:
 MAIN = FX["main"]
 SUB = D.load(MAIN)["inset"]["spec"]
 METRICS = os.path.join(HERE, "samples", FX["dir"], "metrics.json")
-QS = {"M": FX["main_qs"], "I": FX["inset_qs"]}
+QS = {"M": FX["main_qs"], "I": FX["inset_qs"], "I0": FX["inset_qs"]}
+GATED = ("M", "I")   # I0 = 대조군(task 424 — 다시 그리기 전 곁 장면 원본에 같은 곁 장면 문항): 같은 회차에 함께 묻되 통과 셈·check 밖
 LOCK = threading.Lock()
 
 
@@ -32,6 +33,8 @@ def img(kind, s):
     """큰 장면 문항 = 합성 그림(구름 자리·다른 때까지 봄) · 곁 장면 문항 = 곁 장면 원본(줄이기 전 화소)."""
     if kind == "M":
         return os.path.join(HERE, "samples", FX["dir"], f"comp-s{s}.png")
+    if kind == "I0":
+        return os.path.expanduser(f"~/.local/biblemap-imggen/{FX['dir']}/control/{SUB}-s{s}.png")
     return os.path.expanduser(f"~/.local/biblemap-imggen/{FX['dir']}/{SUB}-s{s}.png")
 
 
@@ -51,12 +54,17 @@ def missing(m, s, kind, rep):
     return [q["id"] for q in QS[kind] if q["id"] not in got]
 
 
+def task_of(kind):
+    """판정 복사본 폴더 이름 — 대조군(I0)은 곁 장면(I)과 같은 장면·시드라 폴더를 따로(task 424: 한 폴더를 같이 써서 I0이 새 그림 복사본을 봄)."""
+    return "inset-421" + ("-I0" if kind == "I0" else "")
+
+
 def ask(m, s, kind, rep, qids):
     sid = MAIN if kind == "M" else SUB
     spec = D.load(sid)
-    it = {"key": f"{kind}:{s}", "task": "inset-421", "scene": sid, "title": spec["title"], "range": spec["verses"]["range"],
+    it = {"key": f"{kind}:{s}", "task": task_of(kind), "scene": sid, "title": spec["title"], "range": spec["verses"]["range"],
           "seed": s, "src": img(kind, s), "qs": [dict(q) for q in QS[kind]], "qids": qids}
-    d, files = J.prepare(it, "inset-421")
+    d, files = J.prepare(it, "inset-421")   # 폴더 = 판 이름 / task_of(kind)-장면-시드
     text = J.prompt(it, files, J.HEADERS["v2"])
     got, tries = None, []
     for _ in range(2):
@@ -95,7 +103,7 @@ def maj(v):
 
 
 def fails(m, s):
-    return [f"{k}/{q['id']}" for k in QS for q in J.gating(QS[k]) if maj(votes(m, s, k, q["id"])) == "틀림"]
+    return [f"{k}/{q['id']}" for k in GATED for q in J.gating(QS[k]) if maj(votes(m, s, k, q["id"])) == "틀림"]
 
 
 def conclude(m):
@@ -105,7 +113,7 @@ def conclude(m):
 
 def report():
     m = load()
-    for k, name in (("M", "큰 장면"), ("I", "곁 장면")):
+    for k, name in (("M", "큰 장면"), ("I", "곁 장면"), ("I0", "대조군(전 곁 장면)")):
         print(f"{name}: " + " · ".join(f"{q['q']}{'(기록)' if q.get('record') else ''} {sum(maj(votes(m, s, k, q['id'])) == '맞음' for s in FX['seeds'])}" for q in QS[k]))
     for s in FX["seeds"]:
         print(f"s{s}: 틀림 {len(fails(m, s))} {' '.join(fails(m, s))}")
@@ -115,7 +123,7 @@ def report():
 def check():
     m, err = load(), []
     for s in FX["seeds"]:
-        for k in QS:
+        for k in GATED:
             if not os.path.exists(img(k, s)):
                 err.append(f"그림 없음 {k} s{s}")
             for q in QS[k]:

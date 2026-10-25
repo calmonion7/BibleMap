@@ -55,3 +55,16 @@ class StaleCopy(unittest.TestCase):
         _, files = J.prepare(it, "t")
         self.assertEqual(Image.open(files["full"]).getpixel((0, 0)), (0, 0, 0))
         self.assertEqual(Image.open(files["a"]).getpixel((0, 0)), (0, 0, 0))
+
+
+    def test_control_group_has_own_copy(self):
+        """task 424 — 같은 장면·시드의 대조군(I0, 옛 그림)과 곁 장면(I, 새 그림)은 복사본 폴더가 달라야 함:
+        한 폴더를 같이 쓰면 옛 그림이 더 오래돼 낡음으로 걸리지 않아 대조군이 새 그림 복사본을 봄."""
+        import inset_judge as I
+        old = os.path.join(self.d, "old.png")
+        Image.new("RGB", (64, 32), "black").save(old)
+        new = dict(task=I.task_of("I"), scene="x", seed=1, src=self.src, qs=[])
+        ctl = dict(new, task=I.task_of("I0"), src=old)
+        J.prepare(new, "t")
+        _, files = J.prepare(ctl, "t")
+        self.assertEqual(Image.open(files["full"]).getpixel((0, 0)), (0, 0, 0))
