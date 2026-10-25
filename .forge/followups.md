@@ -27,3 +27,15 @@
 
 <!-- followup: fu-417a7f3d1c55 | source: birth-inset-cloud-try | task: 417 | date: 2026-10-25 | status: taken | taken: 421 -->
 - 출생 그림 눈 결함 셋: 다윗 listen_clasp 뼈대가 편 손으로(뼈대 고치거나 명세를 편 손으로 — 사람 결정) · 다윗 머리 금띠(카드 머리쓰개 없음) · 곁 장면 가운데 밝음이 밧세바 뒤 후광처럼(성모자상 느낌 — fu-416d3f5b8c21 카드 색과 함께).
+
+<!-- followup: fu-99f933390f2d | source: birth-stage234 | task: 421 | date: 2026-10-25 | status: open | taken: - -->
+곁 장면 아기 높이 — 8시드 중 6장이 아기를 가슴이 아니라 무릎·허리에 눕혀 받침(s303은 어머니가 섬). 가이드 sit 꼴 손목이 무릎 자리 → 품에 안음은 뼈대로(원장 generate.pose-hold의 hug 제외를 다시 볼 자리). 같은 사전 look.hold hug를 쓰는 수금·두 여인도 재검.
+
+<!-- followup: fu-fbed559228ed | source: birth-stage234 | task: 421 | date: 2026-10-25 | status: open | taken: - -->
+다윗 띠 — 명세 「gold-edged sash」가 8장 중 7장 세로 금테 장식으로만(허리에 맨 띠 없음). 카드 차림 낱말을 「a cloth sash tied at the waist」류로 바꿀지(공유 카드 david-prime — 사람 결정) 또는 문항 기준.
+
+<!-- followup: fu-6dfd6ace15f1 | source: birth-stage234 | task: 421 | date: 2026-10-25 | status: open | taken: - -->
+가드 종이 테두리 — 큰 장면 4/8·곁 장면 4/8에서 그림 둘레 미색 종이 여백·테두리(화풍 머리 「warm cream paper」). 기브아·다른 장면 가드와 같은 결인지 재검 후 생성 규칙.
+
+<!-- followup: fu-1592d4713d06 | source: birth-stage234 | task: 421 | date: 2026-10-25 | status: open | taken: - -->
+규칙 후보 둘(출생 8/8 근거 · 다른 장면 근거 모으기): 「king + royal robe」 → 금띠·관이 그려짐(royal 빼면 맨머리 8/8) · 넓은 뒷벽은 「drawn block by block like the side walls」 없으면 가운데 후광 번짐(넣으면 8/8 없음).
