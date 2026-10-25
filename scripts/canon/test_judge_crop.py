@@ -31,3 +31,27 @@ class CropUnits(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class StaleCopy(unittest.TestCase):
+    """task 422 회고 — 원본을 고치면(여백 자름) prepare가 옛 full.jpg·크롭을 다시 쓰지 않는다(판정자가 자르기 전 그림을 봤다)."""
+
+    def setUp(self):
+        self.d = tempfile.mkdtemp()
+        self.src = os.path.join(self.d, "s.png")
+        Image.new("RGB", (64, 32), "white").save(self.src)
+        self.work, J.WORK = J.WORK, self.d
+
+    def tearDown(self):
+        J.WORK = self.work
+
+    def test_newer_source_rebuilds_copy(self):
+        it = {"task": "t", "scene": "x", "seed": 1, "src": self.src, "qs": [{"who": "a", "crop": {"1": [0, 0, 0.5, 0.5]}}]}
+        _, files = J.prepare(it, "t")
+        old = os.path.getmtime(files["full"])
+        os.utime(files["full"], (old - 10, old - 10))
+        os.utime(files["a"], (old - 10, old - 10))
+        Image.new("RGB", (64, 32), "black").save(self.src)
+        _, files = J.prepare(it, "t")
+        self.assertEqual(Image.open(files["full"]).getpixel((0, 0)), (0, 0, 0))
+        self.assertEqual(Image.open(files["a"]).getpixel((0, 0)), (0, 0, 0))
