@@ -138,7 +138,7 @@ vocab-2는 두 층을 **더한다**. 값은 프롬프트에 바로 쓰는 영문
 | `beardVolume` | `{class, text}` | `none` · `stubble` · `trimmed` · `full` · `long` | `close-trimmed dark beard, jawline visible` / `thick beard reaching the chest` |
 | `silhouette` | `{class, text}` | `slight` · `lean` · `average` · `broad` · `heavy` · `giant` | `broad shoulders, thick barrel torso` |
 | `headOutline` | `{class, text}` | `bare` · `headwrap` · `turban` · `veil` · `shawl` · `diadem` · `helmet` | `bare head, tight dark curls close to the skull` |
-| `costumeColor` | `{class, text}` | `red` · `brown` · `white` · `blue` · `purple` · `black` · `gold` · `undyed` | `deep red wool tunic, dark brown belt` |
+| `costumeColor` | `{class, text}` | `red` · `brown` · `white` · `blue` · `green` · `purple` · `black` · `gold` · `undyed` | `deep red wool tunic, dark brown belt` |
 
 - **구별 규칙**: `cast/CAST.md` 역표의 한 정차지에 함께 나오는 두 인물은 위 6필드 중 **2개 이상에서 `class`가 다르다**(`heightRel`은 값 자체).
 - **값 규칙(정도만 말하는 낱말 금지)**: `ageBand`·`beardVolume`·`silhouette`의 `text`는 그림을 강제하는 모양을 말한다. 아래 금지 낱말과 관사·전치사만으로 된 `text`는 받지 않으며, 금지 낱말을 빼고도 내용어가 **2개 이상** 남아야 한다.

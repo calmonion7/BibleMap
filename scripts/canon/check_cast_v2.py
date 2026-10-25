@@ -31,7 +31,7 @@ CARD = {
     "beardVolume": {"none", "stubble", "trimmed", "full", "long"},
     "silhouette": {"slight", "lean", "average", "broad", "heavy", "giant"},
     "headOutline": {"bare", "headwrap", "turban", "veil", "shawl", "diadem", "helmet"},
-    "costumeColor": {"red", "brown", "white", "blue", "purple", "black", "gold", "undyed"},
+    "costumeColor": {"red", "brown", "white", "blue", "green", "purple", "black", "gold", "undyed"},
 }
 FACE = ("faceShape", "eyes", "nose", "mouth", "skin", "brows", "marks")
 V1 = ("age", "hair", "beard", "headwear", "build", "costume")

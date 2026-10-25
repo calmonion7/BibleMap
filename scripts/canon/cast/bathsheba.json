@@ -11,14 +11,14 @@
   "era": "an ancient Israelite",
   "age": "young woman",
   "sex": "female",
-  "role": "queen",
+  "role": "mother",
   "hair": "dark hair",
   "beard": "none",
   "headwear": "veil",
   "build": "slender build",
   "costume": "in a long linen robe with a woven belt",
   "colorWords": [
-    "deep blue",
+    "deep green",
     "tan"
   ],
   "propCandidates": [],
@@ -49,8 +49,8 @@
       "text": "fine veil over the hair and shoulders"
     },
     "costumeColor": {
-      "class": "blue",
-      "text": "deep blue linen robe, woven belt"
+      "class": "green",
+      "text": "deep green linen robe, woven belt"
     }
   },
   "face": {
@@ -63,18 +63,18 @@
     "marks": "none"
   },
   "_why": {
-    "age": "[저작](나이 기록 없어 직책·경력에서 본 연령대 대표값)",
-    "build": "[저작](체격 기록 없어 직책 이미지의 대표값)",
-    "hair": "[저작](머리 기록 없어 고대 근동 남성 짙은 머리 대표값)",
-    "beard": "[저작](수염 기록 없어 고대 근동 성인 남성 수염 관습 대표값)",
-    "headwear": "[저작](쓰개 기록 없어 맨머리 기본값)",
+    "age": "[저작](나이 기록 없어 우리아의 아내로 첫 아이를 낳고 다시 낳는 시기에서 본 20대 대표값)",
+    "build": "[저작](체격 기록 없어 시대 젊은 여성 대표값)",
+    "hair": "[저작](머리 기록 없어 고대 근동 여성 짙은 머리 대표값)",
+    "beard": "[저작](여성이라 수염 없음 — 기본값)",
+    "headwear": "[저작](쓰개 기록 없어 시대 여성 너울 관습 대표값)",
     "costume": "[저작](시대 복식 고증 — 여성 긴 아마포 겉옷·짠 띠; 삼하 12:24 「다윗이 그 처 밧세바를」은 신분만 말함)",
     "card.heightRel": "[저작](역표 동석 인물과 구분용)",
     "card.ageBand": "[저작](역표 동석 인물과 구분용)",
     "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
     "card.silhouette": "[저작](역표 동석 인물과 구분용)",
     "card.headOutline": "[저작](역표 동석 인물과 구분용)",
-    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[저작](파란 겉옷 + 너울 + 아기가 성모자상으로 읽혀(task 417 그림) 짙은 녹색으로 가름)",
     "face.faceShape": "[저작](29명 얼굴 유사 검토 — 스바 여왕와 같은 얼굴로 그려짐 판정 → 가름; 갸름한 달걀형은 정한 값; 삼하 11:2 「심히 아름다워 보이는지라」는 아름다움만 말함)",
     "face.eyes": "[저작](얼굴 구분용)",
     "face.nose": "[저작](얼굴 구분용)",
@@ -82,7 +82,7 @@
     "face.skin": "[저작](얼굴 구분용)",
     "face.brows": "[저작](얼굴 구분용)",
     "face.marks": "[저작](얼굴 구분용)",
-    "role": "[추론] 삼하 12:24 「다윗이 그 처 밧세바를」 — 왕의 아내이자 솔로몬의 어머니"
+    "role": "[추론] 삼하 12:24 「다윗이 그 처 밧세바를 위로하고 저에게 들어가 동침하였더니 저가 아들을 낳으매」 — 이 카드는 출생 장면에서만 씀: 아들을 낳은 어머니(왕의 모친 신분은 왕상 1~2장)"
   },
   "plate": {
     "seed": 42,

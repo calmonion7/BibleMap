@@ -84,3 +84,10 @@
 
 재검: 전 명세 통과 5/38(새 규칙으로 바뀐 명세 0) · 승인 그림 잰 규칙 모두 통과 1/12(이전과 같음 — 새로 낡은 그림 0) · 시험 168 OK.
 
+
+## task 420 밧세바 카드 정리 (2026-10-25)
+
+- role queen → mother(삼하 12:24 해산 순간 · 이 카드는 출생 장면에서만 씀) · 옷 색 deep blue → **deep green**(파란 겉옷 + 너울 + 아기 = 성모자상으로 읽힘, task 417 그림) — 어휘 costumeColor에 `green` 추가(CAST.md·check_cast_v2)
+- _why 남성 문구(hair·beard)·맨머리(headwear)·직책 복사 잔재(age·build) 고침 · 곁 장면 costume ko·en·verse 녹색
+- scripture-reviewer 1차 틀림 3(age·build 직책 잔재 · 장면 ko 「푸른」) → 고침 → 2차 0
+- 카드 정리 판정표: 틀림 0
