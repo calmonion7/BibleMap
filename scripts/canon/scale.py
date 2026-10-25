@@ -85,28 +85,45 @@ def screen_height(foot_y, hy, height_rel=1.0):
     return (foot_y - hy) / v("perspective.eye") * height_rel
 
 
-def standing(spec):
-    """가이드 사람 꼴(person*)·뼈대로 그리는 figures → [(구역 이름, 카드 키 등급 값)]. 꿇음·엎드림·앉음 꼴은 빠짐."""
+SEATED_SHAPES = {"sit"}   # 앉은 한 사람 꼴(make_guide) — 배 안 머리·어깨 줄(seated)은 무리 꼴이라 뺌
+
+
+def _figures(spec, pick):
     import derive_scene as ds   # 늦은 읽기 — derive_scene 쪽 무거운 읽기를 표만 쓰는 곳에 끌어오지 않게
     g = spec.get("guide") or {}
     sh, pose = g.get("shape", {}), g.get("pose", {})
     out = []
     for f in spec.get("figures") or []:
         k = f["region"]
-        if str(sh.get(k, "")).startswith("person") or k in pose:
+        if pick(str(sh.get(k, "")), k in pose):
             cls = ds._cast_in_scene(f).get("card", {}).get("heightRel")
             out.append((k, height_rel(cls) if cls in table()["height"] else height_rel("average")))
     return out
 
 
+def standing(spec):
+    """가이드 사람 꼴(person*)·뼈대로 그리는 figures → [(구역 이름, 카드 키 등급 값)]. 꿇음·엎드림·앉음 꼴은 빠짐."""
+    return _figures(spec, lambda shape, posed: shape.startswith("person") or posed)
+
+
+def seated(spec):
+    """가이드 앉은 꼴(SEATED_SHAPES)로 그리는 figures → [(구역 이름, 카드 키 등급 값)]."""
+    return _figures(spec, lambda shape, posed: shape in SEATED_SHAPES)
+
+
 def scene_horizon(spec):
-    """장면 지평선 — 화면 키가 가장 큰(가장 가까운) 서 있는 인물이 초점. 없으면 표 기본값."""
+    """장면 지평선 — 화면 키가 가장 큰(가장 가까운) 서 있는 인물이 초점. 서 있는 인물이 없으면 앉은 인물 중 가장 큰 이의
+    서 있을 때 키(구역 높이 ÷ body.seated)로(task 416 — 홀로 앉은 밧세바), 그도 없으면 표 기본값."""
     R = spec.get("regions", {})
     people = standing(spec)
-    if not people:
-        return v("perspective.horizon_default")
-    k, hr = max(people, key=lambda p: R[p[0]][3] - R[p[0]][1])
-    return horizon(R[k][3], R[k][3] - R[k][1], hr)
+    if people:
+        k, hr = max(people, key=lambda p: R[p[0]][3] - R[p[0]][1])
+        return horizon(R[k][3], R[k][3] - R[k][1], hr)
+    sat = seated(spec)
+    if sat:
+        k, hr = max(sat, key=lambda p: R[p[0]][3] - R[p[0]][1])
+        return horizon(R[k][3], (R[k][3] - R[k][1]) / v("body.seated"), hr)
+    return v("perspective.horizon_default")
 
 
 def _lexicon():

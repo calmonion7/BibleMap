@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "bac0f1d2cb3c",
+  "version": "e58559424efd",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -134,7 +134,7 @@
      "note": "몸짓 칸(gesture.ko)에 던짐 동사(던지·쏘·떨어뜨)가 있는 인물은 guide.pose에 OpenPose 뼈대 — 깊이 꼴은 실루엣 덩어리만 주어 관절 각도·다리 길이가 그림마다 넓은 보폭으로 되돌아감"},
     {"id": "generate.figure-scale", "layer": "generate", "scope": "all", "check": "recheck.figure_scale_errors",
      "source": "notes/GIBEAH-STEP23.md · task 403 c14 s5(다윗 구역 0.52 — 「키가 화면 절반에 못 미치고 빈 벽이 대부분」 3/3) · 사람 2026-10-23 「한 장 → 규칙 수정 → 반복」", "since": "2026-10-23 task 403",
-     "note": "(넓힘 task 413: 사람이 있는데 guide 사람 구역이 없으면 못 잼 — 전에는 빈 통과) (task 409: 한도는 무리 단계 범위 — scale.json crowd_stage, 장면 사람 수에서. 독대 0.60~0.70은 아래 옛 값 그대로 · 무리 장면도 이제 잼) (n1: 위 한도 — 구역 높이 ≤ 0.70, 숙인 뼈대 보이는 키 하한 0.55 → 0.45: 사람 m1e 「너무 가까이 … 사람사이즈를 조금 줄여야」, s42 사울 0.84가 화면 90%) (h4: 뼈대 인물은 보이는 키 = 구역 높이 × (1 − 뼈대 머리 꼭대기) ≥ 0.55 — 숙인 다윗이 구역보다 작게 그려져 「화면 절반」 h3e 5/5) 무리 꼴(crowd)이 없는 가까운 장면의 guide 인물 구역(사람 꼴 person*·뼈대)은 높이가 화면 0.6 이상 — 숙인 꼴은 구역 위끝이 머리라 구역 높이가 곧 그려지는 키"},
+     "note": "(넓힘 task 416: 서 있는 사람 없이 앉은 꼴(sit)만이면 서 있을 때 키 = 구역 높이 ÷ body.seated로 같은 단계 범위를 잼 — 홀로 앉은 밧세바(삼하 12:24)가 못 잼이었음) (넓힘 task 413: 사람이 있는데 guide 사람 구역이 없으면 못 잼 — 전에는 빈 통과) (task 409: 한도는 무리 단계 범위 — scale.json crowd_stage, 장면 사람 수에서. 독대 0.60~0.70은 아래 옛 값 그대로 · 무리 장면도 이제 잼) (n1: 위 한도 — 구역 높이 ≤ 0.70, 숙인 뼈대 보이는 키 하한 0.55 → 0.45: 사람 m1e 「너무 가까이 … 사람사이즈를 조금 줄여야」, s42 사울 0.84가 화면 90%) (h4: 뼈대 인물은 보이는 키 = 구역 높이 × (1 − 뼈대 머리 꼭대기) ≥ 0.55 — 숙인 다윗이 구역보다 작게 그려져 「화면 절반」 h3e 5/5) 무리 꼴(crowd)이 없는 가까운 장면의 guide 인물 구역(사람 꼴 person*·뼈대)은 높이가 화면 0.6 이상 — 숙인 꼴은 구역 위끝이 머리라 구역 높이가 곧 그려지는 키"},
     {"id": "derive.no-second-point", "layer": "derive", "scope": "all", "check": "recheck.second_point_errors",
      "source": "notes/GIBEAH-STEP23.md · task 403 c14 s5(「a short pointed iron butt-spike」 → 뒤끝 화살촉, 창 모양 3/3 틀림)", "since": "2026-10-23 task 403",
      "note": "파생 프롬프트에 실린 낱말 사전 look 문구에 pointed·spike·barb 금지 — 부수 부위가 둘째 촉으로 그려짐. 뾰족하다는 본문 근거는 뜻·근거·L3 ko에 두고 그리는 문구는 크기 대비(much smaller)로"},
@@ -161,7 +161,7 @@
      "note": "(넓힘 task 413: 두 사람 이상인데 서 있는 guide 구역이 없으면 못 잼 — 전에는 빈 통과) (task 409: 눈높이 지평선으로 — 가장 가까운 서 있는 인물로 지평선을 정하고 다른 서 있는 인물의 구역 높이가 발 y에서 계산한 화면 키 × 표 키 등급과 초점 키의 ± 0.04 안. 같은 발 y면 아래 옛 검사와 같음) guide 사람 꼴·뼈대 인물 중 depth가 같은 두 인물의 구역 높이 비 = 0.87 ** (카드 heightRel 등급 차) ± 0.04 — 한 칸 = 머리 하나. 등급 child·short·average·tall·towering"},
     {"id": "generate.seated-height", "layer": "generate", "scope": "all", "check": "recheck.seated_height_errors",
      "source": "notes/HARP-STEP1.md 시도 1 · task 414(기브아 수금 — 삼상 19:9 「그 집에 앉았을 때에」 앉아 듣는 사울이 서 있는 사람만 재는 크기 규칙에 빈 통과)", "since": "2026-10-25 task 414",
-     "note": "guide 앉은 꼴(sit) 인물의 구역 높이 = 눈높이 지평선에서 그 발 y의 서 있는 화면 키 × 카드 키 등급 × 크기 기준표 body.seated(0.75) ± 초점 키의 0.04. 서 있는 초점 인물이 없으면 못 잼"},
+     "note": "guide 앉은 꼴(sit) 인물의 구역 높이 = 눈높이 지평선에서 그 발 y의 서 있는 화면 키 × 카드 키 등급 × 크기 기준표 body.seated(0.75) ± 초점 키의 0.04. (넓힘 task 416: 서 있는 초점 인물이 없으면 못 잼 → 앉은 인물 중 가장 큰 이의 서 있을 때 키(구역 높이 ÷ body.seated)로 지평선·초점 키를 정함(S.scene_horizon) — 홀로 앉은 한 사람은 견줄 이가 없어 통과, 크기는 figure-scale이 잼)"},
     {"id": "judge.single-image-reps", "layer": "judge", "scope": "all", "check": "test:test_scene_rules",
      "source": "notes/GIBEAH-STEP23.md · task 404 f1e·f2e(가이드 조금만 다른 거의 같은 그림이 3표로 수금 2/3→0/3·던진 몸짓 2/3→0/3 뒤집힘) · 메모리 판정자 재현성", "since": "2026-10-23 task 404",
      "note": "한 장 시도(시드 하나, 새 그림 — images_from 검증 제외)는 같은 그림에 5표를 묻고 다수결 — 한 장 반복은 규칙 효과보다 판정 흔들림이 커서 3표로는 결함을 가를 수 없음"},

@@ -1,5 +1,5 @@
 {
- "rules_version": "bac0f1d2cb3c",
+ "rules_version": "e58559424efd",
  "tokens": "venv314",
  "specs": {
   "authored-david-adullam-cave": {
@@ -1144,18 +1144,18 @@
   },
   "authored-solomon-jerusalem-birth": {
    "spec.required-fields": "pass",
-   "spec.whole-fields": "fail",
-   "spec.verse-elements": "fail",
+   "spec.whole-fields": "pass",
+   "spec.verse-elements": "pass",
    "spec.no-compromise-words": "pass",
-   "spec.scene-all-verses": "fail",
+   "spec.scene-all-verses": "pass",
    "spec.cast-card-v2": "pass",
-   "spec.lexicon-link": "none",
+   "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
-   "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none",
+   "spec.stage-from-scripture": "pass",
+   "spec.action-place-on-figure": "pass",
    "generate.thrown-guide": "pass",
    "generate.guide-backdrop": "pass",
    "generate.guide-body-build": "pass",
@@ -1163,7 +1163,7 @@
    "generate.guide-costume-legs": "pass",
    "derive.youth-noun": "pass",
    "generate.pose-skeleton": "pass",
-   "generate.figure-scale": "none",
+   "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "pass",
@@ -1176,7 +1176,7 @@
    "derive.wall-material": "pass",
    "derive.no-inflating-build": "pass",
    "derive.prop-size-coverage": "pass",
-   "derive.held-hold": "fail",
+   "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass"
   },
@@ -1897,28 +1897,7 @@
     "solomon-old: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
-  "authored-solomon-jerusalem-birth": {
-   "spec.whole-fields": [
-    "장면.meaning: ko/en/verse 가 비어 있거나 없다",
-    "장면.relation: ko/en/verse 가 비어 있거나 없다",
-    "장면.whole_background: ko/en/verse 가 비어 있거나 없다",
-    "bathsheba.expression: ko/en/verse 가 비어 있거나 없다",
-    "bathsheba.gesture: ko/en/verse 가 비어 있거나 없다",
-    "bathsheba.costume: ko/en/verse 가 비어 있거나 없다"
-   ],
-   "spec.verse-elements": [
-    "verse_elements 없음 — 구절 시각 요소 목록 미작성"
-   ],
-   "spec.scene-all-verses": [
-    "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "spec.stage-from-scripture": [
-    "bathsheba: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
-   ],
-   "derive.held-hold": [
-    "bathsheba: 손 지물 「an infant」(사전 baby hug)인데 파생 문구에 쥔 꼴 「cradled in both arms against the chest」 없음 — 손에 매단 꼴로 그려진다"
-   ]
-  },
+  "authored-solomon-jerusalem-birth": {},
   "authored-solomon-jerusalem-david-charge": {
    "spec.whole-fields": [
     "장면.meaning: ko/en/verse 가 비어 있거나 없다",
@@ -2091,6 +2070,7 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-nob-massacre",
     "authored-solomon-jerusalem-apostasy",
+    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-temple-build",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2111,7 +2091,6 @@
     "authored-solomon-ezion-geber-fleet",
     "authored-solomon-gibeon-dream",
     "authored-solomon-gihon-anointing",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -2119,7 +2098,7 @@
    ],
    "stale": [],
    "none": [],
-   "rate": 0.4324
+   "rate": 0.4595
   },
   {
    "id": "spec.verse-elements",
@@ -2143,6 +2122,7 @@
     "authored-saul-endor-medium",
     "authored-saul-gibeah-spear",
     "authored-saul-gilboa-death",
+    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-two-mothers"
    ],
    "fail": [
@@ -2160,7 +2140,6 @@
     "authored-solomon-gibeon-dream",
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -2169,7 +2148,7 @@
    ],
    "stale": [],
    "none": [],
-   "rate": 0.4595
+   "rate": 0.4865
   },
   {
    "id": "spec.no-compromise-words",
@@ -2230,6 +2209,7 @@
     "authored-david-returns-jerusalem",
     "authored-saul-gibeah-spear",
     "authored-solomon-jerusalem-apostasy",
+    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-temple-build",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2260,7 +2240,6 @@
     "authored-solomon-ezion-geber-fleet",
     "authored-solomon-gibeon-dream",
     "authored-solomon-gihon-anointing",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -2268,7 +2247,7 @@
    ],
    "stale": [],
    "none": [],
-   "rate": 0.1622
+   "rate": 0.1892
   },
   {
    "id": "spec.cast-card-v2",
@@ -2338,6 +2317,7 @@
     "authored-saul-endor-medium",
     "authored-saul-gibeah-spear",
     "authored-saul-gilboa-death",
+    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-two-mothers"
    ],
    "fail": [
@@ -2361,14 +2341,13 @@
     "authored-solomon-gibeon-dream",
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
     "authored-solomon-jerusalem-temple-build",
     "authored-solomon-jerusalem-temple-dedication"
    ],
-   "rate": 0.8235
+   "rate": 0.8333
   },
   {
    "id": "derive.no-hand-prompt",
@@ -2575,6 +2554,7 @@
    "pass": [
     "authored-david-gibeah-harp",
     "authored-saul-gibeah-spear",
+    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-two-mothers"
    ],
    "fail": [
@@ -2606,7 +2586,6 @@
     "authored-solomon-gibeon-dream",
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -2615,7 +2594,7 @@
    ],
    "stale": [],
    "none": [],
-   "rate": 0.0811
+   "rate": 0.1081
   },
   {
    "id": "spec.action-place-on-figure",
@@ -2639,6 +2618,7 @@
     "authored-saul-endor-medium",
     "authored-saul-gibeah-spear",
     "authored-saul-gilboa-death",
+    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-two-mothers"
    ],
    "fail": [],
@@ -2658,7 +2638,6 @@
     "authored-solomon-gibeon-dream",
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -3021,6 +3000,7 @@
     "authored-david-gibeah-harp",
     "authored-david-returns-jerusalem",
     "authored-saul-gibeah-spear",
+    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-two-mothers"
    ],
    "fail": [],
@@ -3053,7 +3033,6 @@
     "authored-solomon-gibeon-dream",
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -3690,6 +3669,7 @@
     "authored-solomon-gibeon-dream",
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
+    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -3697,12 +3677,10 @@
     "authored-solomon-jerusalem-temple-dedication",
     "authored-solomon-jerusalem-two-mothers"
    ],
-   "fail": [
-    "authored-solomon-jerusalem-birth"
-   ],
+   "fail": [],
    "stale": [],
    "none": [],
-   "rate": 0.973
+   "rate": 1.0
   },
   {
    "id": "derive.crowd-stage",

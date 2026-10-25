@@ -254,10 +254,15 @@ def figure_scale_errors(spec):
     c14 s5: 다윗 구역 0.52(숙인 꼴) → 「다윗 키가 화면 절반에 못 미치고 빈 벽이 화면 대부분」 3/3 · m1e s42 사울 0.84 → 「너무 가까이」.
     task 409 전에는 무리 꼴(crowd)이 있으면 건너뛰었다 — 이제 무리 장면은 그 단계 범위로 잰다."""
     g, R = spec.get("guide") or {}, spec.get("regions", {})
-    if not _guide_people(spec):   # task 413: 사람이 있는데 잴 구역이 없으면 못 잼(빈 통과 아님)
-        return None if spec.get("figures") else []
-    sh, pose = g.get("shape", {}), g.get("pose", {})
     stage, (lo, hi) = S.crowd_stage(S.people_count(spec))
+    if not _guide_people(spec):   # task 413: 사람이 있는데 잴 구역이 없으면 못 잼(빈 통과 아님)
+        sat = S.seated(spec)   # task 416: 서 있는 사람 없이 앉은 사람만이면 서 있을 때 키(구역 높이 ÷ body.seated)로 잼 — 홀로 앉은 밧세바
+        if not sat:
+            return None if spec.get("figures") else []
+        up = {k: (R[k][3] - R[k][1]) / S.v("body.seated") for k, _ in sat}
+        return ([f"{k}: 앉은 구역의 서 있을 때 키 {h:.2f} < {lo:.2f}(무리 단계 {stage}) — 인물이 단계 범위보다 작게 그려진다" for k, h in up.items() if h < lo]
+                + [f"{k}: 앉은 구역의 서 있을 때 키 {h:.2f} > {hi}(무리 단계 {stage}) — 단계 범위보다 가깝게 그려진다" for k, h in up.items() if h > hi])
+    sh, pose = g.get("shape", {}), g.get("pose", {})
     lo_seen = lo * S.v("perspective.pose_seen")
 
     def seen(k):   # h4: 뼈대 인물은 보이는 키(뼈대 머리 꼭대기 ~ 발) — 숙인 뼈대는 구역보다 작게 그려짐(h3e 숙인 다윗 「화면 절반」 5/5)
@@ -350,23 +355,23 @@ def height_ratio_errors(spec):
     return out
 
 
-SEATED_SHAPES = {"sit"}   # 앉은 한 사람 꼴(make_guide) — 배 안 머리·어깨 줄(seated)은 무리 꼴이라 뺌
+SEATED_SHAPES = S.SEATED_SHAPES
 
 
 def seated_height_errors(spec):
     """앉은 인물의 화면 키도 눈높이 지평선에서(task 414, 규칙 generate.seated-height) — guide 앉은 꼴(SEATED_SHAPES) 인물의 구역 높이가
     발 y에서 계산한 서 있는 화면 키(S.screen_height × 카드 키 등급) × 표 body.seated와 초점 화면 키의 ± HEAD_TOL 넘게 다르면 걸림.
     서 있는 사람만 재는 크기 규칙(figure-scale·youth-height·height-ratio)에는 앉은 사울(삼상 19:9 「그 집에 앉았을 때에」)이 빈 통과였다.
-    지평선을 정할 서 있는 초점 인물이 없으면 못 잼(None)."""
+    서 있는 인물이 없으면 지평선·초점 키는 앉은 인물 중 가장 큰 이의 서 있을 때 키로(task 416, S.scene_horizon) — 홀로 앉은 한 사람은 견줄 이가 없어 통과,
+    크기는 figure-scale이 잰다(전에는 못 잼)."""
     R, sh = spec.get("regions", {}), (spec.get("guide") or {}).get("shape", {})
     seated = [f for f in spec.get("figures") or [] if sh.get(f["region"]) in SEATED_SHAPES]
     if not seated:
         return []
     people = S.standing(spec)
-    if not people:
-        return None
     hy = S.scene_horizon(spec)
-    fh = max(R[k][3] - R[k][1] for k, _ in people)
+    fh = (max(R[k][3] - R[k][1] for k, _ in people) if people
+          else max(R[f["region"]][3] - R[f["region"]][1] for f in seated) / S.v("body.seated"))
     out = []
     for f in seated:
         k, cls = f["region"], ds._cast_in_scene(f).get("card", {}).get("heightRel")

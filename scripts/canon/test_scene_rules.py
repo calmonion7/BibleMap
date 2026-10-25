@@ -732,10 +732,28 @@ class SeatedHeight(unittest.TestCase):
         s["regions"]["saul"][1] = s["regions"]["saul"][3] - 0.70   # 앉았는데 서 있는 사울 키만큼
         self.assertTrue(any("saul" in e for e in recheck.seated_height_errors(s)))
 
-    def test_no_standing_focus_is_unmeasured(self):
+    def lone(self, top):
+        """수금 사본에서 다윗을 빼고 앉은 사울만 — 홀로 앉은 사람 장면(task 416 밧세바 꼴)."""
+        s = self.harp()
+        s["figures"] = [f for f in s["figures"] if f["region"] == "saul"]
+        del s["guide"]["shape"]["david-boy"]
+        s["regions"]["saul"][1] = top
+        return s
+
+    def test_no_standing_uses_seated_focus(self):
+        """task 416 — 서 있는 사람이 없으면 못 잼(옛 기대)이 아니라 앉은 초점의 서 있을 때 키로 지평선을 정해 잼."""
         s = self.harp()
         s["guide"]["shape"]["david-boy"] = "sit"
-        self.assertIsNone(recheck.seated_height_errors(s))
+        self.assertIsInstance(recheck.seated_height_errors(s), list)
+        self.assertNotEqual(recheck.S.scene_horizon(s), recheck.S.v("perspective.horizon_default"))
+
+    def test_lone_seated_scale(self):
+        """task 416 — 홀로 앉은 사람: 견줄 이가 없어 seated-height 통과, 크기는 figure-scale이 서 있을 때 키(구역 ÷ body.seated)를 독대 범위로 잼."""
+        foot = self.harp()["regions"]["saul"][3]
+        ok, near = self.lone(foot - 0.49), self.lone(foot - 0.64)   # 0.49 ÷ 0.75 = 0.65 · 0.64 ÷ 0.75 = 0.85 > 0.70
+        self.assertEqual(recheck.seated_height_errors(ok), [])
+        self.assertEqual(recheck.figure_scale_errors(ok), [])
+        self.assertTrue(any(e.startswith("saul:") for e in recheck.figure_scale_errors(near)))
 
     def test_shape_registered(self):
         import sys
