@@ -85,14 +85,14 @@
         "verse": "본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "나단을 마주 보고 서서 빈손 두 손을 몸 앞에 모으고 들음",
-        "en": "standing facing the prophet, listening, both empty hands clasped before him",
+        "ko": "나단을 마주 보고 서서 빈손 두 손을 허리 앞에 포개어 모으고 들음",
+        "en": "standing facing the prophet, listening, his two empty hands folded together in front of his waist",
         "verse": "나단이 다윗에게 옴은 12:1 「여호와께서 나단을 다윗에게 보내시니」와 같은 꼴에서 [추론] · 서 있음·모은 손은 본문 밖 · 저작자 정함"
       },
       "costume": {
-        "ko": "짙은 붉은 왕의 긴 겉옷과 금테 띠",
-        "en": "in a long deep red royal robe with a gold-edged sash",
-        "verse": "본문 밖 · 저작자 정함(정본 david-prime 카드 차림)"
+        "ko": "짙은 붉은 왕의 긴 겉옷과 금테 띠, 곱슬 머리는 덮지 않음",
+        "en": "in a long deep red robe with a gold-edged sash, his dark curly hair uncovered",
+        "verse": "본문 밖 · 저작자 정함(정본 david-prime 카드 차림 · 카드 머리쓰개 없음 — task 421: 「no headwear」만으로는 금띠가 그려짐)"
       },
       "gaze": "nathan",
       "stage_why": "[추론] 삼하 5:4 「다윗이 삼십 세에 위에 나아가서 사십 년을 다스렸으되」 · 삼하 5:5 「예루살렘에서 삼십삼 년 동안 온 이스라엘과 유다를 다스렸더라」 — 예루살렘 통치 중. 프로젝트 연대(data/person_events/david.json 출생 BC 1040경 · solomon.json 솔로몬 출생 BC 990경)로 약 50세 → 장년 왕 id david-prime(헤브론~솔로몬 출생 구간). 카드 ageBand 40대는 이 장면에서 경계 — [저작]"

@@ -1123,7 +1123,7 @@ class InsetFrameAspect(unittest.TestCase):
     def test_width_follows_frame(self):
         import sys
         sys.path.insert(0, os.path.join(HERE, "batch"))
-        import birth_inset_try as B
+        import inset_try as B
         s = birth()
         x0, y0, x1, y1 = s["inset"]["region"]
         want = (x1 - x0) * B.W / ((y1 - y0) * B.H)
