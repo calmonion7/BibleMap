@@ -48,15 +48,15 @@
 - 승인 그림·다른 묶음에 여백 잘라내기 재검 — 기브아 띠 있는 장 66장(가드 테두리 사유 17장)이 잘라내면 풀리는지, 승인 그림(m17e s7 등)은 띠가 없는지 recheck images 쪽에서.
   Evidence: 노트 「task 422」 측정 표 · rules.json generate.trim-paper-margin.
 
-<!-- followup: fu-1a8be0b93426 | source: judge-match-human-sash-paper | task: 422 | date: 2026-10-25 | status: open | taken: - -->
+<!-- followup: fu-1a8be0b93426 | source: judge-match-human-sash-paper | task: 422 | date: 2026-10-25 | status: taken | taken: 428 -->
 - 다른 장면 고정 절 문항에 [저작] 세부가 거르기 문항으로 섞였는지 훑어 기록 문항으로 나눔(기브아 m17e·두 여인·기브아 수금 등) — 기준: 명세 핵심 칸(pose·verse_elements·인용)에 없는 낱말.
   Evidence: 이번 422에서 띠·허리 높이 두 번 같은 꼴로 떨어짐 · rules.json judge.authored-detail-record.
 
-<!-- followup: fu-932e66a1a1c8 | source: hold-cradle-pose | task: 424 | date: 2026-10-25 | status: open | taken: - -->
+<!-- followup: fu-932e66a1a1c8 | source: hold-cradle-pose | task: 424 | date: 2026-10-25 | status: taken | taken: 427 -->
 - 여백 잘라내기: 아래쪽만 있는 미색 종이 띠도 자르기(task 425 「세 변 이상만」 규칙의 빈틈 — 하늘은 위쪽에만 있으므로 아래쪽만 띠는 종이).
   근거: task 424 셋째 실행 곁 장면 s202 bands (0, 0, 0, 31) → measure 0 · 가드 「그림 맨 아래에 미색 종이 띠」 3/3 틀림.
 
-<!-- followup: fu-7e2d75cb2372 | source: rule-candidates-royal-backwall | task: 423 | date: 2026-10-26 | status: open | taken: - -->
+<!-- followup: fu-7e2d75cb2372 | source: rule-candidates-royal-backwall | task: 423 | date: 2026-10-26 | status: taken | taken: 426 -->
 - 다윗 장년 판 경로 4장면(헤브론 즉위·예루살렘 정복·궤·나단 언약) 판 문구가 「an ancient Israelite lean young man」 — 카드 david-prime(40대 왕)와 어긋난 생애 단계 나눔(task 355) 전 낡은 말. 재검 규칙이 못 잡음(판 경로 인물 문구 ↔ cast 나이대 대조 검사 후보).
   근거: task 423 S1 — `derive_scene.route_prompt` 네 장면 출력 · notes/RULE-AB.md.
 
@@ -64,6 +64,18 @@
 - 두 여인 단계 ②에서 뒷벽 재질 문구 대조 8시드 — task 423 한 시드에서 문구를 더한 B가 칼 자리 1→5 · 교회 도상(스테인드글라스) 0→5 · 가드 0→5로 나았으나 뒷벽 원리가 아닌 구도 흔들림일 수 있음. 규칙 후보 아님 — 단계 ② 시도의 대조군으로.
   근거: notes/RULE-AB.md 결과 표 · samples/rule-ab/back-wall-{A,B}-s11.png.
 
-<!-- followup: fu-59f97a5dcb8c | source: rule-candidates-royal-backwall | task: 423 | date: 2026-10-26 | status: open | taken: - -->
+<!-- followup: fu-59f97a5dcb8c | source: rule-candidates-royal-backwall | task: 423 | date: 2026-10-26 | status: taken | taken: 426 -->
 - 요단 귀환 david-elder `cast_override_why` 금관 근거에 삼하 12:30(「다윗이 머리에 쓰니라」 — 귀환 앞의 [추론] 근거)이 없고 1:10(사울의 면류관)만 있음 · 12:30은 「보석 있는 한 금 달란트」 면류관인데 문구는 「a thin gold circlet」 — scripture-reviewer로 근거·모양 대조.
   근거: notes/RULE-AB.md 「요단 본문 확인」 · scenes/authored-david-returns-jerusalem.json.
+
+<!-- followup: fu-df5f1c58b64d | source: plate-cast-token | task: 426 | date: 2026-10-26 | status: open | taken: - -->
+- david-prime 카드 ageBand 「in his 40s」 하나가 정차지 30(헤브론)·37(정복)·38(궤)·약 40(나단)·약 50(솔로몬 출생)을 못 덮음 — 카드를 「late 30s」 쪽으로 낮추거나 정차지별 override · 카드 _why.costume 「즉위 뒤 왕의 차림」이 헤브론 즉위 순간·정복 공성에도 쓰임(보류 2건).
+  근거: notes/PLATE-CAST-TOKEN.md 본문 검토 절 · 헤브론은 장면 override 「about 30」으로 임시.
+
+<!-- followup: fu-e325b633fcd4 | source: plate-cast-token | task: 426 | date: 2026-10-26 | status: open | taken: - -->
+- abner 카드 ageBand 「in his 30s」 ↔ 삼상 14:50 「그 군장의 이름은 아브넬이니」(사울 치세 초기) · 삼하 2:10 — 60대로 카드 정본 고침(지금은 기브온 장면 override만).
+  근거: notes/PLATE-CAST-TOKEN.md · scenes/authored-david-gibeon-battle.json cast_override_why.
+
+<!-- followup: fu-d1a466474adc | source: plate-cast-token | task: 426 | date: 2026-10-26 | status: open | taken: - -->
+- david-boy 파생 「an ancient Israelite young man, a shepherd, about 14 … thin boyish torso」 — 명사와 몸이 한 문장에 섞임(골리앗·베들레헴·기브아 수금). 14세 이하 youth 명사(`derive_scene._who`) 또는 카드 class를 사람이 정함(task 419 결정의 후속).
+  근거: scripture-reviewer 재판정(보류 — 본문 모순 아님, 품질 문제) · notes/PLATE-CAST-TOKEN.md.
