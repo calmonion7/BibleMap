@@ -214,6 +214,12 @@ def cast_age_band_errors(spec):
     return errs or (None if unread else [])
 
 
+def cast_age_word_errors(spec):
+    """v1 `age` 나이 낱말은 카드 ageBand class와 맞음(task 431, 규칙 spec.cast-age-word) — 명세 인물마다 카드(장면 cast_override 포함).
+    시선 대상 문구(「looking toward the <age> …」)·그룹 단계가 이 칸을 쓴다 · joab 「young commander」 대 카드 prime."""
+    return [f"{f['cast']}: {e}" for f in spec["figures"] for e in check_cast_v2.age_word_errors(ds._cast_in_scene(f))]
+
+
 FIST_WORDS = re.compile(r"\b(curled|clenched|balled|closed hand|fists?)\b", re.I)
 
 
@@ -711,6 +717,7 @@ SPEC_CHECKS = {
     "recheck.guide_legs_errors": lambda spec, ctx: guide_legs_errors(spec),
     "recheck.youth_noun_errors": lambda spec, ctx: youth_noun_errors(spec),
     "recheck.cast_age_band_errors": lambda spec, ctx: cast_age_band_errors(spec),
+    "recheck.cast_age_word_errors": lambda spec, ctx: cast_age_word_errors(spec),
     "recheck.pose_skeleton_errors": lambda spec, ctx: pose_skeleton_errors(spec),
     "recheck.empty_hand_fist_errors": lambda spec, ctx: empty_hand_fist_errors(spec),
     "recheck.wall_material_errors": lambda spec, ctx: wall_material_errors(spec),

@@ -445,6 +445,36 @@ class CastAgeBand(unittest.TestCase):
         self.assertEqual(len(bad), 1)
 
 
+class CastAgeWord(unittest.TestCase):
+    """spec.cast-age-word — v1 age 칸의 나이 낱말이 ageBand class와 맞음(task 431). 낱말 없으면 통과 · 장면 cast_override 포함."""
+
+    def _errs(self, age, cls):
+        import check_cast_v2 as C
+        return C.age_word_errors({"age": age, "card": {"ageBand": {"class": cls}}})
+
+    def test_word_allow_and_reject(self):
+        for age, ok, bad in [("shepherd boy", "youth", "young"), ("youth", "youth", "young"),
+                             ("young commander", "young", "prime"), ("lean young man", "youth", "middle"),
+                             ("king in his prime", "middle", "elder"), ("mature king", "prime", "young"),
+                             ("middle-aged king", "middle", "prime"), ("aging king", "elder", "middle"),
+                             ("old, dying king", "elder", "middle"), ("elderly priest", "elder", "prime")]:
+            self.assertEqual(self._errs(age, ok), [], age)
+            self.assertEqual(len(self._errs(age, bad)), 1, age)
+
+    def test_no_age_word_passes(self):
+        for age in ("tall king", "warrior", "a queen", "older commander", "Ammonite warlord"):
+            self.assertEqual(self._errs(age, "elder"), [], age)
+
+    def test_scene_override(self):
+        import derive_scene as ds
+        self.assertEqual(recheck.cast_age_word_errors(gibeah()), [])
+        s = gibeah()
+        f = next(f for f in s["figures"] if f["cast"] == "saul")
+        f["cast_override"] = {**f.get("cast_override", {}), "age": "young king"}
+        self.assertEqual(ds._cast_in_scene(f)["card"]["ageBand"]["class"], "elder")
+        self.assertEqual(len(recheck.cast_age_word_errors(s)), 1)
+
+
 class PoseSkeleton(unittest.TestCase):
     """generate.pose-skeleton — 몸짓에 던짐 동사가 있는 인물은 guide.pose 뼈대(task 403 c7)."""
 

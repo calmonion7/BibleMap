@@ -11,6 +11,7 @@ task 353에서 더함: (f) `_why`가 근거 단계 `[직접]`·`[추론]`·`[저
 (g) 얼굴·카드 층에 성품 낱말 없음(삼상 16:7 — 표정은 장면 `expression` 몫) (h) 생애 단계 쌍을 뺀 **모든** 쌍이 카드 층 2필드 이상 다름
 (i) 파생 문구(장면 `cast_describe`·정본 `gen_face_canon.look`)에 `bare head` 없음 — Z-Image가 민머리로 그린다(346·353 두 번 밟음, notes/PROMPTING.md 14).
 task 429에서 더함: (j) ageBand 나이 글의 숫자가 class 범위 안(규칙 spec.cast-age-band).
+task 431에서 더함: (k) v1 `age` 칸의 나이 낱말이 ageBand class와 맞음(규칙 spec.cast-age-word).
 """
 import glob
 import itertools
@@ -51,6 +52,11 @@ STAGES = {frozenset(p) for fam in [("david-boy", "david-youth", "david", "david-
           for p in itertools.combinations(fam, 2)}
 # ageBand class 나이 범위(CAST.md 사다리 — youth 10대 · young 20대 · prime 30대 · middle 40~50대 · elder 60대~, task 429)
 AGE_RANGE = {"child": (0, 9), "youth": (10, 19), "young": (20, 29), "prime": (30, 39), "middle": (40, 59), "elder": (60, 120)}
+# v1 `age` 나이 낱말 → 허용 ageBand class(task 431). -prime id는 장년 30~40대(CAST.md)라 prime·mature는 middle도 허용.
+AGE_WORD = {"boy": {"child", "youth"}, "girl": {"child", "youth"}, "youth": {"youth"}, "young": {"youth", "young"},
+            "prime": {"prime", "middle"}, "mature": {"prime", "middle"}, "middle-aged": {"middle"},
+            "aging": {"elder"}, "old": {"elder"}, "elderly": {"elder"}}
+AGE_WORD_RE = re.compile(r"(?<![\w-])(" + "|".join(sorted(AGE_WORD, key=len, reverse=True)) + r")(?![\w-])")
 AGE_TEXT = re.compile(r"\b(?:about|around) (\d+)\b|\b(early |mid-|late )?(\d)0s\b")
 REF = re.compile(r"(" + "|".join(sorted(BOOK, key=len, reverse=True)) + r")\s*(\d+):(\d+)(?:\s*[-–~]\s*(\d+))?")
 QUOTE = re.compile(REF.pattern + r"\s*(?:\([^)]*\)\s*)?「([^」]+)」")
@@ -92,6 +98,14 @@ def age_band_errors(band):
     return []
 
 
+def age_word_errors(c):
+    """규칙 spec.cast-age-word(task 431) — v1 `age` 칸의 나이 낱말이 card.ageBand.class와 맞는지. → [] 통과 · [오류] 걸림.
+    나이 낱말 없는 글(「tall king」「warrior」)은 나이를 주장하지 않으니 통과. joab 「young commander」가 카드 prime(30대)과 갈렸다."""
+    cls = ((c.get("card") or {}).get("ageBand") or {}).get("class")
+    return [f"age {c.get('age')!r}의 「{w}」는 ageBand class {cls!r}와 안 맞음(허용 {sorted(AGE_WORD[w])})"
+            for w in AGE_WORD_RE.findall((c.get("age") or "").lower()) if cls not in AGE_WORD[w]]
+
+
 def check(c, verses):
     errs = []
     if "cast-vocab-2" not in c.get("_format", ""):
@@ -117,6 +131,7 @@ def check(c, verses):
             errs.append(f"(a2) card.{k}.text 정도 낱말뿐: {text!r}")
     age = age_band_errors(card.get("ageBand"))
     errs += ["(j) 나이 글에 숫자 없음(「about N」·「in his Ns」)"] if age is None else [f"(j) {e}" for e in age]
+    errs += [f"(k) {e}" for e in age_word_errors(c)]
     if not c.get("role"):
         errs.append("(f) role 비어 있음")
     keys = list(V1) + [f"card.{k}" for k in CARD] + [f"face.{k}" for k in FACE] + ["role"]
