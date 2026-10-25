@@ -1,0 +1,841 @@
+{
+ "answers": {
+  "royal-B": {
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "n.moment": "맞음",
+     "n.two-people": "맞음",
+     "n.facing": "맞음",
+     "n.nathan-arm": "틀림",
+     "n.nathan-staff": "맞음",
+     "n.david-sit": "맞음",
+     "n.david-robe": "틀림",
+     "n.david-bare": "맞음",
+     "n.david": "맞음",
+     "n.nathan": "맞음",
+     "n.place": "맞음",
+     "n.guard": "맞음"
+    },
+    "reasons": {
+     "n.nathan-arm": "한 손은 지팡이를 쥐고 다른 팔은 내려뜨렸다. 말을 전하려고 팔을 들어 올린 몸짓은 없다.",
+     "n.david-robe": "다윗의 손은 무릎에 얹혀 있다. 겉옷 자락을 쥐고 있지 않다.",
+     "n.moment": "두 사람이 서로를 마주 보고, 나단이 서서 전하고 다윗이 앉아 듣는 구도다.",
+     "n.facing": "다윗은 얼굴과 몸이 화면 오른쪽, 나단은 화면 왼쪽을 향한다.",
+     "n.place": "나무로 지은 큰 집이 있고, 그 앞은 뜰이다.",
+     "n.guard": "손가락, 겹친 인물, 테두리, 글자 같은 결함이 눈에 띄지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 10.925,
+      "input": 4,
+      "output": 974,
+      "cache_read": 44723,
+      "cache_create": 11148,
+      "cost_usd": 0.058812300000000005,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "n.moment": "맞음",
+     "n.two-people": "맞음",
+     "n.facing": "맞음",
+     "n.nathan-arm": "틀림",
+     "n.nathan-staff": "맞음",
+     "n.david-sit": "맞음",
+     "n.david-robe": "틀림",
+     "n.david-bare": "맞음",
+     "n.david": "맞음",
+     "n.nathan": "맞음",
+     "n.place": "맞음",
+     "n.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이 위에 연필선과 색연필 질감이 보이는 동화풍이다.",
+     "s.no-blob": "두 사람과 건물 모두 얼굴, 옷, 세부가 완성돼 있다.",
+     "n.moment": "나단이 서서 다윗을 향하고 다윗은 앉아 나단 쪽을 본다. 대화 장면으로 읽힌다.",
+     "n.two-people": "화면 왼쪽 다윗과 오른쪽 나단 두 사람뿐이다.",
+     "n.facing": "다윗은 오른쪽으로, 나단은 왼쪽으로 얼굴과 몸을 돌리고 있다.",
+     "n.nathan-arm": "들어 올린 팔은 지팡이를 쥐고 있을 뿐 말을 전하는 몸짓이 아니다. 다른 팔은 아래로 내려와 있다.",
+     "n.nathan-staff": "나무 지팡이를 한 손에 쥐고 서 있다.",
+     "n.david-sit": "나무 단 가장자리에 앉아 있다.",
+     "n.david-robe": "한 손은 무릎 위에 얹혀 있을 뿐 겉옷 자락을 쥐고 있지 않다.",
+     "n.david-bare": "아무것도 쓰지 않은 맨 곱슬머리다.",
+     "n.david": "짙은 붉은 긴 겉옷에 다듬은 짙은 수염을 한 40대 남자로 보인다.",
+     "n.nathan": "흰 긴 겉옷에 띠를 두른 중년 남자다.",
+     "n.place": "나무로 지은 큰 집 앞의 흙 뜰이다.",
+     "n.guard": "손가락 수 이상, 이중 인물, 테두리, 글자는 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 12.63,
+      "input": 4,
+      "output": 1404,
+      "cache_read": 44723,
+      "cache_create": 11148,
+      "cost_usd": 0.06311230000000001,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "n.moment": "맞음",
+     "n.two-people": "맞음",
+     "n.facing": "맞음",
+     "n.nathan-arm": "틀림",
+     "n.nathan-staff": "맞음",
+     "n.david-sit": "맞음",
+     "n.david-robe": "틀림",
+     "n.david-bare": "맞음",
+     "n.david": "맞음",
+     "n.nathan": "맞음",
+     "n.place": "맞음",
+     "n.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이 바탕에 연필 선과 색연필 질감이 보이는 동화풍이다.",
+     "s.no-blob": "두 사람과 집 모두 얼굴, 옷, 세부가 다 그려져 있다.",
+     "n.moment": "다윗이 오른쪽의 나단을 보고 있고, 나단이 다윗을 향해 서 있어 전하고 듣는 구도다.",
+     "n.two-people": "다윗과 나단 두 사람뿐이다.",
+     "n.facing": "다윗은 오른쪽을, 나단은 왼쪽을 향해 얼굴과 몸을 돌렸다.",
+     "n.nathan-arm": "나단은 한 손으로 지팡이를 쥐었고 다른 팔은 아래로 늘어져 있다. 말을 전하려고 팔을 든 몸짓은 없다.",
+     "n.nathan-staff": "나단이 끝이 마름모꼴인 나무 지팡이를 쥐고 있다.",
+     "n.david-sit": "다윗이 나무 걸상에 앉아 있다.",
+     "n.david-robe": "다윗의 손은 무릎 위에 얹혀 있을 뿐 겉옷 자락을 쥐고 있지 않다.",
+     "n.david-bare": "다윗은 아무것도 쓰지 않은 맨 곱슬머리다. 두건은 뒤로 내려져 있다.",
+     "n.david": "다윗은 짙은 붉은 긴 겉옷을 입었고, 수염이 짙고 단정하며 40대로 보인다.",
+     "n.nathan": "나단은 흰 긴 옷에 겉옷을 걸친 중년 남자다.",
+     "n.place": "뒤에 나무 기둥과 목재 벽, 널 지붕으로 지은 큰 집이 있고 그 앞이 뜰이다.",
+     "n.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자 같은 결함이 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 14.198,
+      "input": 4,
+      "output": 1552,
+      "cache_read": 44723,
+      "cache_create": 11148,
+      "cost_usd": 0.0645923,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "4": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "n.moment": "맞음",
+     "n.two-people": "맞음",
+     "n.facing": "맞음",
+     "n.nathan-arm": "틀림",
+     "n.nathan-staff": "맞음",
+     "n.david-sit": "맞음",
+     "n.david-robe": "틀림",
+     "n.david-bare": "맞음",
+     "n.david": "맞음",
+     "n.nathan": "맞음",
+     "n.place": "맞음",
+     "n.guard": "맞음"
+    },
+    "reasons": {
+     "n.nathan-arm": "나단은 한 손으로 지팡이를 쥐고 있고 다른 팔은 내려져 있다. 말을 전하려고 팔을 든 몸짓이 아니다.",
+     "n.david-robe": "다윗의 손은 무릎 위에 얹혀 있을 뿐 겉옷 자락을 쥐고 있지 않다.",
+     "n.moment": "두 사람이 마주 보고 있고 다윗이 나단 쪽을 보며 듣는 구도다.",
+     "n.facing": "다윗은 화면 오른쪽을, 나단은 화면 왼쪽을 향해 얼굴을 돌리고 있다."
+    },
+    "tries": [
+     {
+      "seconds": 9.009,
+      "input": 4,
+      "output": 1017,
+      "cache_read": 55871,
+      "cache_create": 0,
+      "cost_usd": 0.0157651,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "5": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "n.moment": "맞음",
+     "n.two-people": "맞음",
+     "n.facing": "맞음",
+     "n.nathan-arm": "틀림",
+     "n.nathan-staff": "맞음",
+     "n.david-sit": "맞음",
+     "n.david-robe": "틀림",
+     "n.david-bare": "맞음",
+     "n.david": "맞음",
+     "n.nathan": "맞음",
+     "n.place": "맞음",
+     "n.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이에 색연필 질감의 동화 그림이다.",
+     "s.no-blob": "모든 인물과 물건에 얼굴, 옷, 세부 묘사가 있다.",
+     "n.moment": "두 사람이 서로를 바라보고, 나단이 다윗 앞에 서 있다.",
+     "n.two-people": "사람은 왼쪽 다윗과 오른쪽 나단 둘뿐이다.",
+     "n.facing": "다윗은 오른쪽을, 나단은 왼쪽을 향해 얼굴과 몸을 돌렸다.",
+     "n.nathan-arm": "나단은 팔을 지팡이를 쥐는 데만 쓰고, 다른 팔은 내려뜨렸다. 말을 전하는 몸짓이 없다.",
+     "n.nathan-staff": "나단이 나무 지팡이를 쥐고 있다.",
+     "n.david-sit": "다윗이 나무 단 위에 앉아 있다.",
+     "n.david-robe": "다윗의 손은 무릎 위에 놓여 있고, 겉옷 자락을 쥐고 있지 않다.",
+     "n.david-bare": "다윗은 아무것도 쓰지 않은 맨 곱슬머리다.",
+     "n.david": "짙은 붉은 긴 겉옷에 다듬은 짙은 수염을 한 중년 남자다.",
+     "n.nathan": "흰 긴 겉옷에 걸친 천을 두른 중년 남자다.",
+     "n.place": "나무로 지은 큰 집이 뜰 건너편에 있다.",
+     "n.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자 등의 결함이 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 12.696,
+      "input": 4,
+      "output": 1456,
+      "cache_read": 55871,
+      "cache_create": 0,
+      "cost_usd": 0.020155100000000002,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "royal-A": {
+   "5": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "n.moment": "맞음",
+     "n.two-people": "맞음",
+     "n.facing": "맞음",
+     "n.nathan-arm": "틀림",
+     "n.nathan-staff": "맞음",
+     "n.david-sit": "맞음",
+     "n.david-robe": "틀림",
+     "n.david-bare": "맞음",
+     "n.david": "맞음",
+     "n.nathan": "맞음",
+     "n.place": "맞음",
+     "n.guard": "맞음"
+    },
+    "reasons": {
+     "n.nathan-arm": "나단이 든 팔은 지팡이를 쥐고 있을 뿐이고, 말을 전하는 몸짓으로 보이지 않는다. 다른 팔은 아래로 내려와 있다.",
+     "n.david-robe": "다윗의 두 손은 무릎 위에 포개져 있다. 겉옷 자락을 쥐고 있지 않다.",
+     "n.facing": "다윗은 오른쪽 나단을 향한다. 나단은 얼굴을 왼쪽으로 돌렸지만 시선이 약간 위를 향한다.",
+     "n.nathan-staff": "나단이 나무 지팡이를 쥐고 서 있다."
+    },
+    "tries": [
+     {
+      "seconds": 11.034,
+      "input": 4,
+      "output": 1172,
+      "cache_read": 44723,
+      "cache_create": 11148,
+      "cost_usd": 0.06079230000000001,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "n.moment": "맞음",
+     "n.two-people": "맞음",
+     "n.facing": "맞음",
+     "n.nathan-arm": "틀림",
+     "n.nathan-staff": "맞음",
+     "n.david-sit": "맞음",
+     "n.david-robe": "틀림",
+     "n.david-bare": "맞음",
+     "n.david": "맞음",
+     "n.nathan": "맞음",
+     "n.place": "맞음",
+     "n.guard": "맞음"
+    },
+    "reasons": {
+     "n.nathan-arm": "든 팔은 지팡이를 쥐고 있을 뿐이고, 말을 전하는 몸짓이 아니다. 다른 팔은 아래로 늘어져 있다.",
+     "n.david-robe": "다윗의 두 손은 무릎 위에 포개져 있다. 겉옷 자락을 쥐고 있지 않다.",
+     "n.facing": "다윗은 오른쪽의 나단을 본다. 나단은 몸이 거의 정면이지만 얼굴을 왼쪽 다윗 쪽으로 돌렸다.",
+     "n.moment": "나단이 선 채 다윗을 마주하고 있고, 다윗은 나단 쪽을 보며 듣는다. 다만 말씀을 전하는 몸짓은 약하다."
+    },
+    "tries": [
+     {
+      "seconds": 11.156,
+      "input": 4,
+      "output": 1079,
+      "cache_read": 44723,
+      "cache_create": 11148,
+      "cost_usd": 0.05986230000000001,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "4": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "n.moment": "맞음",
+     "n.two-people": "맞음",
+     "n.facing": "맞음",
+     "n.nathan-arm": "틀림",
+     "n.nathan-staff": "맞음",
+     "n.david-sit": "맞음",
+     "n.david-robe": "틀림",
+     "n.david-bare": "맞음",
+     "n.david": "맞음",
+     "n.nathan": "맞음",
+     "n.place": "맞음",
+     "n.guard": "맞음"
+    },
+    "reasons": {
+     "n.nathan-arm": "들어 올린 팔은 지팡이를 쥐고 있을 뿐이고, 다른 팔은 내려져 있어 말을 전하는 몸짓이 아니다.",
+     "n.david-robe": "다윗의 손은 무릎 위에 놓여 있고 겉옷 자락을 쥐고 있지 않다.",
+     "n.facing": "다윗은 오른쪽을 보고, 나단은 얼굴을 왼쪽으로 돌려 다윗을 본다. 나단의 몸통은 거의 정면이다.",
+     "n.david-bare": "머리는 곱슬 맨머리다. 두건은 등 뒤로 젖혀져 있다."
+    },
+    "tries": [
+     {
+      "seconds": 11.16,
+      "input": 4,
+      "output": 1059,
+      "cache_read": 46034,
+      "cache_create": 9837,
+      "cost_usd": 0.054549400000000005,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "n.moment": "맞음",
+     "n.two-people": "맞음",
+     "n.facing": "맞음",
+     "n.nathan-arm": "틀림",
+     "n.nathan-staff": "맞음",
+     "n.david-sit": "맞음",
+     "n.david-robe": "틀림",
+     "n.david-bare": "맞음",
+     "n.david": "맞음",
+     "n.nathan": "맞음",
+     "n.place": "맞음",
+     "n.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이에 연필과 색연필로 그린 동화풍이다.",
+     "s.no-blob": "모든 인물과 물건에 얼굴, 옷, 질감이 있다.",
+     "n.moment": "나단이 다윗 앞에 서 있고 다윗이 나단 쪽을 보며 앉아 있다.",
+     "n.two-people": "화면 왼쪽 다윗과 오른쪽 나단 두 사람뿐이다.",
+     "n.facing": "다윗은 오른쪽을 보고 나단은 왼쪽 다윗을 올려다본다.",
+     "n.nathan-arm": "한 손은 지팡이를 쥐고 다른 손은 아래로 늘어져 있다. 말을 전하느라 팔을 든 몸짓이 없다.",
+     "n.nathan-staff": "끝이 마름모꼴인 나무 지팡이를 쥐고 있다.",
+     "n.david-sit": "나무 단 위에 앉아 있다.",
+     "n.david-robe": "한 손은 무릎 위에 올려 두었고 겉옷 자락을 쥐지 않았다.",
+     "n.david-bare": "쓴 것 없는 맨 곱슬머리이고 후드는 뒤로 내려져 있다.",
+     "n.david": "짙은 붉은 겉옷에 다듬은 짙은 수염을 한 장년 남자다.",
+     "n.nathan": "흰 긴 겉옷에 금색 걸침을 두른 중년 남자다.",
+     "n.place": "뒤에 나무로 지은 큰 집이 있고 그 앞이 뜰이다.",
+     "n.guard": "손가락 수, 겹친 인물, 테두리, 글자 모두 이상이 없다."
+    },
+    "tries": [
+     {
+      "seconds": 13.099,
+      "input": 4,
+      "output": 1443,
+      "cache_read": 44723,
+      "cache_create": 11148,
+      "cost_usd": 0.06350230000000001,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "n.moment": "맞음",
+     "n.two-people": "맞음",
+     "n.facing": "맞음",
+     "n.nathan-arm": "틀림",
+     "n.nathan-staff": "맞음",
+     "n.david-sit": "맞음",
+     "n.david-robe": "틀림",
+     "n.david-bare": "맞음",
+     "n.david": "맞음",
+     "n.nathan": "맞음",
+     "n.place": "맞음",
+     "n.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이에 연필선과 색연필 질감이 보이는 동화 그림이다.",
+     "s.no-blob": "모든 인물과 물건에 얼굴, 옷, 세부 묘사가 있다.",
+     "n.moment": "다윗이 나단 쪽을 보며 듣고 있고, 나단이 그에게 말을 전하는 구도다.",
+     "n.two-people": "사람은 왼쪽 다윗과 오른쪽 나단 둘뿐이다.",
+     "n.facing": "다윗은 오른쪽 나단을 향한다. 나단은 얼굴을 왼쪽으로 돌렸지만 시선이 다소 위로 올라가 있다.",
+     "n.nathan-arm": "나단이 든 팔은 지팡이를 쥐고 있을 뿐 말을 전하는 몸짓이 아니다. 다른 팔은 아래로 늘어져 있다.",
+     "n.nathan-staff": "나단이 위쪽에 마름모 장식이 달린 나무 지팡이를 쥐고 있다.",
+     "n.david-sit": "다윗이 나무 단 위에 앉아 있다.",
+     "n.david-robe": "다윗의 손은 무릎 위에 얹혀 있을 뿐 겉옷 자락을 쥐고 있지 않다.",
+     "n.david-bare": "다윗은 아무것도 쓰지 않은 곱슬머리이고, 후드는 뒤로 젖혀져 있다.",
+     "n.david": "짙은 붉은 긴 겉옷에 다듬은 짙은 수염을 한 40대 남자다.",
+     "n.nathan": "흰 긴 옷에 금색 어깨 걸침을 두른 중년 남자다.",
+     "n.place": "뒤에 나무로 지은 큰 집이 있고 그 앞은 뜰이다.",
+     "n.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자가 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 56.974,
+      "input": 4,
+      "output": 1804,
+      "cache_read": 44723,
+      "cache_create": 11147,
+      "cost_usd": 0.06710830000000001,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "back-wall-A": {
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "틀림",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "틀림",
+     "t.guard": "틀림"
+    },
+    "reasons": {
+     "t.facing": "왼쪽 여인의 얼굴이 왕 쪽이 아니라 정면에 가깝게 향해, 두 여인 모두 왕을 향한다고 분명히 확인되지 않는다.",
+     "t.sword": "칼은 곧지만 왕 앞이 아니라 왼쪽 여인 발치에서 가운데 여인 쪽으로 놓여 있다. 왕에게서 멀다.",
+     "t.no-halo": "왼쪽 뒷벽에 어두운 아치형 벽감이 있고 오른쪽에는 아치 창이 있다. 아치 벽감 도상이 보인다.",
+     "t.guard": "왼쪽 여인 몸 앞에 세로로 긴 막대나 칼집 같은 물체가 덧붙어 보인다. 옷과 겹쳐 보이는 이상한 물체라 결함으로 본다."
+    },
+    "tries": [
+     {
+      "seconds": 11.718,
+      "input": 4,
+      "output": 1288,
+      "cache_read": 54776,
+      "cache_create": 1323,
+      "cost_usd": 0.0236576,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "틀림",
+     "t.guard": "틀림"
+    },
+    "reasons": {
+     "t.sword": "칼이 왕 앞이 아니라 왼쪽 여인 발치에서 가운데 여인 쪽으로 누워 있다. 왕과는 멀리 떨어져 있다.",
+     "t.no-halo": "왼쪽 벽에 아치형 벽감이 있고 왼쪽 여인이 그 앞에 선다. 아치 벽감 도상이 없다고 분명히 말하기 어렵다.",
+     "t.guard": "왼쪽 여인 옆구리에 정체불명의 세로 칼날 같은 물체가 붙어 있다. 오른쪽 창에는 스테인드글라스 같은 무늬도 있다."
+    },
+    "tries": [
+     {
+      "seconds": 13.824,
+      "input": 4,
+      "output": 1305,
+      "cache_read": 45677,
+      "cache_create": 10422,
+      "cost_usd": 0.0593137,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "4": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.guard": "틀림"
+    },
+    "reasons": {
+     "t.sword": "칼이 왕 앞이 아니라 두 여인 발치 쪽 바닥에 놓여 있고 왕과 멀리 떨어져 있다.",
+     "t.guard": "왼쪽 여인의 몸 앞에 정체불명의 긴 세로 막대(칼집 또는 지팡이 같은 것)가 덧붙어 보인다.",
+     "t.no-halo": "아치는 옆벽의 문과 창일 뿐 인물 뒤 벽에는 후광이나 벽감이 없다."
+    },
+    "tries": [
+     {
+      "seconds": 11.798,
+      "input": 4,
+      "output": 1217,
+      "cache_read": 54776,
+      "cache_create": 1322,
+      "cost_usd": 0.0229436,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "5": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "틀림",
+     "t.guard": "틀림"
+    },
+    "reasons": {
+     "t.sword": "칼이 왕 앞이 아니라 왼쪽 여인 발치에서 가운데 여인 쪽으로 누워 있어 왕 앞에 놓이지 않았다.",
+     "t.no-halo": "왼쪽 여인 뒤 벽에 어두운 아치 벽감이 있다.",
+     "t.guard": "왼쪽 여인 옷 앞에 세로로 선 회색 칼 같은 물체가 덧붙어 있어 정체가 불분명하다."
+    },
+    "tries": [
+     {
+      "seconds": 11.87,
+      "input": 4,
+      "output": 1203,
+      "cache_read": 56099,
+      "cache_create": 0,
+      "cost_usd": 0.0176479,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "틀림",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "틀림",
+     "t.guard": "틀림"
+    },
+    "reasons": {
+     "s.style": "미색 종이에 연필과 색연필로 칠한 동화풍이다.",
+     "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 없다.",
+     "t.moment": "가운데 여인이 앉은 왕에게 애원하고, 왼쪽 여인은 아기를 안고 서 있으며, 왕은 애원하는 여인을 바라본다.",
+     "t.three-people": "사람은 두 여인과 왕 셋뿐이고 아기는 안겨 있다.",
+     "t.king-seated": "왕이 오른쪽 나무 의자에 앉아 있다.",
+     "t.plead": "가운데 여인이 왕을 향해 손을 펴고 말하며 애원한다.",
+     "t.plead-hands": "빈 두 손을 왕 쪽으로 내밀었다.",
+     "t.infant": "천에 싸인 갓난 아기를 두 팔로 가슴에 안고 있다.",
+     "t.facing": "왼쪽 여인은 얼굴과 몸이 정면(보는 사람 쪽)에 가까워 왕 쪽을 향한다고 분명히 말하기 어렵다.",
+     "t.sword": "칼이 왕 앞이 아니라 두 여인 사이 바닥에 놓여 있고 왕과는 멀다. 왼쪽 여인 앞에는 칼처럼 보이는 세로 물체도 있다.",
+     "t.king": "젊은 남자이고 짙은 푸른 긴 옷을 입었으며 머리에는 아무것도 쓰지 않았다.",
+     "t.back-wall": "뒷벽이 옆벽처럼 돌 블록으로 그려졌다.",
+     "t.no-halo": "왼쪽 여인 바로 뒤에 아치형 벽감이 있어 성화 도상처럼 보인다.",
+     "t.guard": "왼쪽 여인 몸 앞에 정체가 불분명한 세로 물체(칼 같은 것)가 덧붙어 있어 결함으로 본다."
+    },
+    "tries": [
+     {
+      "seconds": 16.189,
+      "input": 4,
+      "output": 1831,
+      "cache_read": 45677,
+      "cache_create": 10422,
+      "cost_usd": 0.0645737,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "back-wall-B": {
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 바탕에 연필 선과 색연필 질감의 동화풍 그림이다.",
+     "s.no-blob": "세 사람과 칼, 의자 모두 얼굴·옷·형태가 완성돼 있다.",
+     "t.moment": "가운데 여인이 앉은 왕 앞에서 손을 내밀어 애원하고, 왼쪽 여인은 아기를 안고 서 있다. 왕은 앉아서 그 여인을 바라본다.",
+     "t.three-people": "사람은 두 여인과 왕 셋뿐이고 아기는 안겨 있다.",
+     "t.king-seated": "오른쪽의 왕이 나무 궤 모양 자리에 앉아 있다.",
+     "t.plead": "가운데 여인이 왕 쪽을 보며 두 팔을 벌려 간청하는 몸짓이다.",
+     "t.plead-hands": "빈 두 손을 왕 쪽으로 내밀었다.",
+     "t.infant": "왼쪽 여인이 흰 천에 싸인 아기를 두 팔로 가슴께에 안고 있다.",
+     "t.facing": "두 여인은 오른쪽의 왕을, 왕은 왼쪽의 여인들을 향한다.",
+     "t.sword": "왕 앞 바닥에 곧은 칼 한 자루가 칼집 없이 놓여 있다.",
+     "t.king": "짙은 푸른 긴 겉옷을 입은 젊은 남자이고 머리에는 아무것도 쓰지 않았다.",
+     "t.back-wall": "뒷벽도 옆벽처럼 돌 블록으로 그려졌다.",
+     "t.no-halo": "인물 뒤에 후광이나 빛 번짐은 없다. 아치 창은 옆벽에 있고 인물 뒤가 아니다.",
+     "t.guard": "손가락 수 이상, 겹친 인물, 글자, 종이 테두리가 눈에 띄지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 15.173,
+      "input": 6,
+      "output": 1633,
+      "cache_read": 73208,
+      "cache_create": 10411,
+      "cost_usd": 0.0653068,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이 위에 연필 선과 색연필 질감이 보이는 동화 그림 화풍이다.",
+     "s.no-blob": "세 사람 모두 얼굴과 옷이 끝까지 그려져 있고 회색 덩어리는 없다.",
+     "t.moment": "가운데 여인이 앉은 왕 앞에서 애원하고, 왼쪽 여인은 아기를 안고 서 있으며, 왕은 앉아서 가운데 여인을 바라본다.",
+     "t.three-people": "사람은 두 여인과 왕 셋뿐이고 아기는 안겨 있다.",
+     "t.king-seated": "오른쪽의 왕이 나무 상자 모양 자리에 앉아 있다.",
+     "t.plead": "가운데 여인이 왕 쪽으로 몸을 돌리고 두 손을 펴 내밀어 애원하는 몸짓이다.",
+     "t.plead-hands": "가운데 여인이 빈 두 손을 왕 쪽으로 내밀고 있다.",
+     "t.infant": "왼쪽 여인이 흰 천에 싼 갓난 아기를 두 팔로 가슴께에 안고 있다.",
+     "t.facing": "두 여인의 얼굴과 상체는 오른쪽 왕을 향하고, 왕은 왼쪽 여인들을 향한다.",
+     "t.sword": "곧은 칼 한 자루가 왕 앞 바닥에 놓여 있다.",
+     "t.king": "왕은 짙은 푸른 긴 겉옷을 입은 젊은 남자이고 머리에 아무것도 쓰지 않았다.",
+     "t.back-wall": "넓은 뒷벽이 옆벽처럼 돌 블록으로 그려져 있다.",
+     "t.no-halo": "인물 뒤에 후광이나 빛 번짐은 없다. 아치 창은 옆벽의 평범한 창이라 성화 도상으로 보지 않았다.",
+     "t.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자가 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 12.497,
+      "input": 4,
+      "output": 1639,
+      "cache_read": 54776,
+      "cache_create": 1323,
+      "cost_usd": 0.0271676,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이에 연필 선과 색연필 질감이 보이는 동화풍이다.",
+     "s.no-blob": "세 인물과 아기 모두 얼굴과 옷이 완성돼 있다.",
+     "t.moment": "한 여인이 앉은 왕 앞에서 손을 내밀고, 다른 여인은 아기를 안고 서 있으며, 왕은 애원하는 여인을 바라본다.",
+     "t.three-people": "사람은 두 여인과 왕 셋뿐이고 아기는 안겨 있다.",
+     "t.king-seated": "왕이 오른쪽 나무 상자 모양 자리에 앉아 있다.",
+     "t.plead": "가운데 여인이 왕 쪽으로 몸을 돌려 입을 열고 두 손을 내밀고 있다.",
+     "t.plead-hands": "빈 두 손을 왕 쪽으로 내밀었다.",
+     "t.infant": "왼쪽 여인이 흰 천에 싸인 아기를 두 팔로 가슴께에 안고 있다.",
+     "t.facing": "두 여인은 오른쪽을 향하고 왕은 왼쪽을 향한다. 왼쪽 여인은 몸이 비교적 정면이지만 얼굴은 오른쪽으로 돌렸다.",
+     "t.sword": "왕 앞 바닥에 곧은 칼 한 자루가 놓여 있다.",
+     "t.king": "젊은 남자가 짙은 푸른 긴 겉옷을 입었고 머리에 아무것도 쓰지 않았다.",
+     "t.back-wall": "뒷벽이 옆벽과 같은 돌 블록으로 그려졌다.",
+     "t.no-halo": "후광이나 빛 번짐은 없다. 아치형 창은 옆벽에 있고 인물 머리 바로 뒤가 아니다.",
+     "t.guard": "손가락과 인물 겹침, 테두리, 글자에서 결함을 찾지 못했다."
+    },
+    "tries": [
+     {
+      "seconds": 14.945,
+      "input": 6,
+      "output": 1667,
+      "cache_read": 83619,
+      "cache_create": 0,
+      "cost_usd": 0.0250439,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "4": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이에 연필 선과 색연필 칠이 보이는 동화 그림 화풍이다.",
+     "s.no-blob": "얼굴과 옷이 갖춰져 있고 회색 덩어리로 남은 것이 없다.",
+     "t.moment": "왼쪽 여인은 아기를 안고 서 있고, 가운데 여인은 앉은 왕 앞에서 애원하며, 왕은 그 여인을 바라본다.",
+     "t.three-people": "사람은 두 여인과 왕 셋뿐이고 아기는 안겨 있다.",
+     "t.king-seated": "오른쪽의 왕이 나무 걸상에 앉아 있다.",
+     "t.plead": "가운데 여인이 왕 쪽으로 몸을 향하고 두 손을 벌려 애원하고 있다.",
+     "t.plead-hands": "가운데 여인이 빈 두 손을 왕 쪽으로 내밀었다.",
+     "t.infant": "왼쪽 여인이 흰 천에 싼 갓난 아기를 두 팔로 가슴에 안고 있다.",
+     "t.facing": "두 여인은 오른쪽 왕을 향하고 왕은 왼쪽 여인들을 향한다.",
+     "t.sword": "왕 앞 바닥에 곧은 칼 한 자루가 놓여 있다.",
+     "t.king": "왕은 짙은 푸른 긴 겉옷을 입은 젊은 남자이고 머리에 아무것도 쓰지 않았다.",
+     "t.back-wall": "뒷벽도 옆벽처럼 돌 블록으로 그려졌다.",
+     "t.no-halo": "인물 뒤에 후광이나 빛 번짐이 없다. 아치 창은 옆벽에 있고 인물 바로 뒤가 아니다.",
+     "t.guard": "손가락 수 이상, 겹친 인물, 테두리, 글자가 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 14.391,
+      "input": 6,
+      "output": 1677,
+      "cache_read": 83619,
+      "cache_create": 0,
+      "cost_usd": 0.025143900000000004,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "5": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이 질감에 연필 선과 색연필 채색의 동화 그림이다.",
+     "s.no-blob": "세 사람과 물건 모두 얼굴과 옷이 완성돼 있다.",
+     "t.moment": "가운데 여인이 앉은 왕에게 애원하고, 왼쪽 여인은 아기를 안고 서 있으며, 왕은 가운데 여인을 바라본다.",
+     "t.three-people": "사람은 두 여인과 왕 셋뿐이고, 아기는 안겨 있다.",
+     "t.king-seated": "왕이 화면 오른쪽의 나무 걸상에 앉아 있다.",
+     "t.plead": "가운데 여인이 왕을 향해 손을 펴 내밀며 말하고 있다.",
+     "t.plead-hands": "빈 두 손을 왕 쪽으로 펴 내밀고 있다.",
+     "t.infant": "왼쪽 여인이 흰 천에 싸인 갓난 아기를 두 팔로 가슴에 안고 있다.",
+     "t.facing": "두 여인은 오른쪽 왕을 향하고, 왕은 왼쪽 여인들을 향한다.",
+     "t.sword": "왕 앞 바닥에 곧은 칼이 한 자루 놓여 있다.",
+     "t.king": "짙은 푸른 긴 겉옷을 입은 젊은 남자이고 머리에 아무것도 쓰지 않았다.",
+     "t.back-wall": "뒷벽도 옆벽처럼 돌 블록으로 그려져 있다.",
+     "t.no-halo": "후광이나 빛 번짐은 없다. 아치형 창은 옆벽에 있고 인물 뒤가 아니다.",
+     "t.guard": "손가락 수, 겹친 인물, 테두리, 글자에 이상이 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 14.688,
+      "input": 6,
+      "output": 1577,
+      "cache_read": 83619,
+      "cache_create": 0,
+      "cost_usd": 0.024143900000000003,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  }
+ }
+}

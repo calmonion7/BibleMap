@@ -169,6 +169,12 @@
 | saul-nob-massacre | night-pick s303 | ✗ 틀림 figures[0].pose, figures[1].prop, figures[2].prop | ✅ 걸린 채택 문항 0 | verse-elements, scene-all-verses, stage-from-scripture, no-inflating-build |
 <!-- recheck:images:end -->
 
+## 규칙 후보 둘 다른 장면 A/B — 승급 없음 (2026-10-26 task 423, 원장 판 `78d1dfd7d8cd`)
+
+- 후보 `derive.headwear-word`(머리쓰개 없는 인물 차림에 「royal」 금지)·`derive.wall-material` 넓힘(넓은 빈 뒷벽에 재질 문구)을 나단 언약·두 여인에서
+  같은 시드 A/B로 확인 → **둘 다 재현 안 됨**(notes/RULE-AB.md 결과 절). 원장에 올린 규칙 없음 · 새 규칙에 걸린 명세 없음.
+- `recheck.py ledger && specs`: 원장 판 78d1dfd7d8cd · 규칙 78 · 명세 38 × 규칙 39 · 전 규칙 통과 5/38(이 실행 전후 같음).
+
 ## 안음 뼈대 넓힘 (2026-10-25 task 424, 원장 판 `ecd4c982c439`)
 
 `generate.pose-hold` 폐기(2026-10-23 f5)를 되돌려 재검에 다시 넣고, **사람을 품에 안은 인물**(사전 hug 항목 중 `look.hold.person` — 지금은 아기 하나)까지 넓힘. 재검 38/38 통과.
