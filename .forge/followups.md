@@ -80,6 +80,6 @@
 - david-boy 파생 「an ancient Israelite young man, a shepherd, about 14 … thin boyish torso」 — 명사와 몸이 한 문장에 섞임(골리앗·베들레헴·기브아 수금). 14세 이하 youth 명사(`derive_scene._who`) 또는 카드 class를 사람이 정함(task 419 결정의 후속).
   근거: scripture-reviewer 재판정(보류 — 본문 모순 아님, 품질 문제) · notes/PLATE-CAST-TOKEN.md.
 
-<!-- followup: fu-3a6978704178 | source: cast-age-band | task: 429 | date: 2026-10-26 | status: open | taken: - -->
+<!-- followup: fu-3a6978704178 | source: cast-age-band | task: 429 | date: 2026-10-26 | status: taken | taken: 431 -->
 - v1 `age` 칸(시선 대상 문구 「looking toward the <age> …」에 쓰임)과 카드 ageBand class가 어긋나는지 재는 규칙 — solomon-prime 「king in his prime」(class middle) · david-prime 「mature king」 등 전 카드 점검.
   근거: task 429 scripture-reviewer 보류 ③ — abner 「middle-aged commander」가 60대 카드와 어긋났고 derive_scene.whole_prompt 226행이 이 칸을 파생 문구로 씀. 이번엔 abner만 고침.
