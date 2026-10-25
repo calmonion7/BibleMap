@@ -108,23 +108,30 @@ def load(scene_id):
         return json.load(fh)
 
 
-def _fill(text):
+def _fill(text, cards=None):
+    """`cards`(장면 카드 — `_scene_cards`)가 있으면 그 id는 정본 대신 장면 덮어쓰기 카드로 채운다(task 418)."""
     out = text
+    card = lambda cid: (cards or {}).get(cid) or load_cast(cid)
     for cast in dp.SAMPLE_COSTUME:
         out = out.replace(f"{{costume:{cast}}}", dp.SAMPLE_COSTUME[cast][3:])   # `in ` 뒤
     for cid in set(re.findall(r"\{costume:([a-z0-9-]+)\}", out)):              # 그 밖의 id는 정본 costume의 `in ` 뒤(task 390)
-        out = out.replace(f"{{costume:{cid}}}", load_cast(cid)["costume"][3:])
+        out = out.replace(f"{{costume:{cid}}}", card(cid)["costume"][3:])
     for cid in set(re.findall(r"\{cast:([a-z0-9-]+)\}", out)):                 # 인물 정본 전체 문구(task 331 이후)
-        out = out.replace(f"{{cast:{cid}}}", cast_describe(load_cast(cid)))
+        out = out.replace(f"{{cast:{cid}}}", cast_describe(card(cid)))
     for cid in set(re.findall(r"\{castc:([a-z0-9-]+)\}", out)):                # 짧은 문구(task 337 그룹 단계)
-        out = out.replace(f"{{castc:{cid}}}", cast_describe_compact(load_cast(cid)))
+        out = out.replace(f"{{castc:{cid}}}", cast_describe_compact(card(cid)))
     return out.replace("{head_neg}", dp.HEAD_NEG_EXTRA)
 
 
-def _build(s, kind, regions, prompt_raw, neg_raw):
+def _scene_cards(spec):
+    """→ {cast id: 정본 + 장면 cast_override} — 덮어쓰기가 있는 인물만. 판 경로도 한 장 경로와 같은 카드를 쓰게(task 418)."""
+    return {f["cast"]: _cast_in_scene(f) for f in spec.get("figures", []) if f.get("cast_override")}
+
+
+def _build(s, kind, regions, prompt_raw, neg_raw, cards=None):
     return {**s, "kind": kind, "regions": list(regions),
-            "prompt": f"{ST} {_fill(prompt_raw)}",
-            "neg": NEG + ", " + ", ".join(_fill(n) for n in neg_raw),
+            "prompt": f"{ST} {_fill(prompt_raw, cards)}",
+            "neg": NEG + ", " + ", ".join(_fill(n, cards) for n in neg_raw),
             "skip": s.get("skip"),
             "casts": list(dict.fromkeys(CAST_RE.findall(prompt_raw)))}
 
@@ -163,9 +170,10 @@ def stages(spec, figures="plate"):
     그려져야 서로 닿을 수 있다(각자 다른 상자에 따로 그리면 기하학적으로 불가능하다).
     기본값 `"plate"`는 문자열까지 종전과 같다 — 봉인된 삼상17의 회귀 가드다."""
     grp = {g["stages"][0]: g for g in spec.get("groups", [])} if figures == "inscene" else {}
+    cards = _scene_cards(spec)
     return [_build(s, kind, regs,
                    grp[s["id"]]["prompt"] if s["id"] in grp else s["prompt"],
-                   grp[s["id"]]["neg"] if s["id"] in grp else s["neg"])
+                   grp[s["id"]]["neg"] if s["id"] in grp else s["neg"], cards)
             for s, kind, regs in stage_plan(spec, figures)]
 
 
@@ -236,7 +244,8 @@ def plate_whole_prompt(spec):
     """한 장 모드 칸이 없는 판 단계 명세 → 한 장 프롬프트(task 368, 사용자 결정 — 명세 수정 없음).
     판 단계 문구를 **그대로** 잇는다: 화풍 머리 + 배경(full) + 구역·무리 단계 + 인물마다 「위치: 판 문구」 + `groups` 묶음 문구.
     판 단계의 「no people」은 인물을 따로 얹던 경로의 말이라 뗀다."""
-    bare = lambda t: re.sub(r",?\s*no people\.?\s*$", "", _fill(t).strip()).rstrip(". ") + "."
+    cards = _scene_cards(spec)
+    bare = lambda t: re.sub(r",?\s*no people\.?\s*$", "", _fill(t, cards).strip()).rstrip(". ") + "."
     st = spec["stages"]
     parts = [bare(s["prompt"]) for s in st if s["kind"] == "full"]
     parts += [bare(s["prompt"]) for s in st if s["kind"] not in ("full", "plate")]

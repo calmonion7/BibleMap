@@ -1145,5 +1145,26 @@ class SitFacing(unittest.TestCase):
         self.assertLess(sum(1 for v in diff.getdata() if v > 128), 400 * 4)   # 정수 화소 반올림 띠만
 
 
+class PlateCastOverride(unittest.TestCase):
+    """task 418 — 판 경로 {cast:X}도 장면 cast_override를 따름(한 장 경로 _cast_in_scene과 같은 카드)."""
+
+    def test_override_reaches_plate_prompt(self):
+        import derive_scene as D
+        s = copy.deepcopy(gibeah_cached)
+        saul = next(f for f in s["figures"] if f["cast"] == "saul")
+        saul["cast_override"]["card"]["ageBand"]["text"] = "about 99, test age"
+        stage = next(x for x in D.stages(s) if x["region"] == "saul")
+        self.assertIn("about 99, test age", stage["prompt"])
+        self.assertIn("about 99, test age", D.plate_whole_prompt(s))
+
+    def test_no_override_keeps_canon(self):
+        import derive_scene as D
+        s = copy.deepcopy(gibeah_cached)
+        for f in s["figures"]:
+            f.pop("cast_override", None)
+        stage = next(x for x in D.stages(s) if x["region"] == "saul")
+        self.assertIn(D.cast_describe(D.load_cast("saul")), stage["prompt"])
+
+
 if __name__ == "__main__":
     unittest.main()
