@@ -1,0 +1,1968 @@
+{
+ "answers": {
+  "back-wall-A-s7": {
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림"
+    },
+    "reasons": {
+     "t.sword": "칼이 왕 앞이 아니라 화면 왼쪽 아기 안은 여인 발치에 놓여 있고 왕과는 멀리 떨어져 있음",
+     "t.back-wall": "뒷벽이 돌 블록이 아니라 매끈하고 빈 면으로 그려짐",
+     "t.guard": "오른쪽 아래 구석에 글자나 서명 같은 표식이 보임"
+    },
+    "tries": [
+     {
+      "seconds": 9.143,
+      "input": 4,
+      "output": 796,
+      "cache_read": 44914,
+      "cache_create": 11357,
+      "cost_usd": 0.057887400000000006,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림"
+    },
+    "reasons": {
+     "t.sword": "칼이 왕 앞이 아니라 왼쪽 아기 안은 여인의 발치에 놓여 있다.",
+     "t.back-wall": "뒷벽이 돌 블록 없이 매끈하고 빈 면으로 그려졌다.",
+     "t.guard": "오른쪽 아래 구석에 서명 같은 글자 표식이 보인다."
+    },
+    "tries": [
+     {
+      "seconds": 9.358,
+      "input": 4,
+      "output": 855,
+      "cache_read": 44914,
+      "cache_create": 11356,
+      "cost_usd": 0.0584734,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림"
+    },
+    "reasons": {
+     "s.style": "미색 종이에 연필과 색연필로 그린 동화 화풍이다.",
+     "s.no-blob": "얼굴과 옷이 다 그려져 있고 덩어리로 남은 사람이나 물건은 없다.",
+     "t.moment": "가운데 여인이 서서 애원하고, 왼쪽 여인은 아기를 안고 서 있으며, 왕은 앉아서 가운데 여인을 바라본다.",
+     "t.three-people": "사람은 두 여인과 왕 셋뿐이고 아기는 안겨 있다.",
+     "t.king-seated": "왕이 오른쪽의 나무 의자에 앉아 있다.",
+     "t.plead": "가운데 여인이 왕 쪽으로 두 손을 벌리고 애원하는 표정과 몸짓을 한다.",
+     "t.plead-hands": "빈 두 손을 왕 쪽으로 내밀었다.",
+     "t.infant": "천에 싸인 갓난 아기를 두 팔로 가슴에 안고 있다.",
+     "t.facing": "여인들은 오른쪽 왕을 향하고 왕은 왼쪽 여인들을 향한다.",
+     "t.sword": "칼이 왕 앞이 아니라 왼쪽 여인의 발치 가까이 놓여 있어 기대한 위치와 다르다.",
+     "t.king": "푸른 긴 겉옷을 입은 젊은 남자이고 머리에 아무것도 쓰지 않았다.",
+     "t.back-wall": "뒷벽이 돌 블록이 아니라 매끈한 빈 면이다.",
+     "t.no-halo": "인물 뒤 벽에 후광이나 빛 번짐이 없다.",
+     "t.no-church": "스테인드글라스 창이나 아치 벽감이 없다.",
+     "t.guard": "오른쪽 아래 구석에 서명이나 글자 같은 표식이 보인다."
+    },
+    "tries": [
+     {
+      "seconds": 13.183,
+      "input": 4,
+      "output": 1508,
+      "cache_read": 44914,
+      "cache_create": 11356,
+      "cost_usd": 0.0650034,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "back-wall-A-s5": {
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "틀림",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.facing": "가운데 여인은 오른쪽의 왕을 향하고 왕은 왼쪽을 향한다. 그러나 왼쪽 여인은 아기를 내려다보며 정면에 가깝게 서 있어서, 왕 쪽을 향한다고 분명히 확인되지 않는다.",
+     "t.sword": "곧은 칼이 바닥에 있기는 하다. 그런데 왼쪽 여인의 발치에 놓여 있어서 왕 앞이 아니다.",
+     "t.back-wall": "뒷벽이 매끈한 빈 면이고 돌 블록은 옆벽과 위쪽에만 있다."
+    },
+    "tries": [
+     {
+      "seconds": 12.159,
+      "input": 4,
+      "output": 1284,
+      "cache_read": 44914,
+      "cache_create": 11357,
+      "cost_usd": 0.0627674,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "틀림",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림"
+    },
+    "reasons": {
+     "s.style": "미색 종이에 연필 선과 색연필 질감의 동화 그림이다.",
+     "s.no-blob": "얼굴과 옷이 없는 덩어리는 보이지 않는다.",
+     "t.moment": "한 여인이 앉은 왕 앞에서 애원하고, 다른 여인은 아기를 안고 서 있으며, 왕이 가운데 여인을 지켜본다.",
+     "t.three-people": "사람은 두 여인과 왕 셋뿐이다.",
+     "t.king-seated": "왕이 화면 오른쪽 나무 의자에 앉아 있다.",
+     "t.plead": "가운데 여인이 왕을 향해 간청하는 표정과 몸짓을 하고 있다.",
+     "t.plead-hands": "가운데 여인이 빈 두 손을 펴서 왕 쪽으로 내밀었다.",
+     "t.infant": "왼쪽 여인이 흰 천에 싼 아기를 두 팔로 가슴에 안고 있다.",
+     "t.facing": "왼쪽 여인의 얼굴이 왕 쪽보다 정면이나 왼쪽을 향하는 것처럼 보여 왕 쪽을 향한다고 확신할 수 없다.",
+     "t.sword": "칼이 왕 앞이 아니라 왼쪽 여인의 발치에 놓여 있다.",
+     "t.king": "푸른 긴 겉옷을 입은 젊은 남자이고 머리에 아무것도 쓰지 않았다.",
+     "t.back-wall": "뒷벽이 돌 블록 없이 매끈하게 비어 있고 옆벽에만 돌이 그려져 있다.",
+     "t.no-halo": "벽에 후광이나 빛 번짐이 없다.",
+     "t.no-church": "스테인드글라스 창이나 아치 벽감이 없다.",
+     "t.guard": "방 전체를 두른 굵은 테두리선과 바깥 여백이 종이 테두리나 액자처럼 보여 결함이 없다고 확인되지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 13.924,
+      "input": 4,
+      "output": 1692,
+      "cache_read": 44914,
+      "cache_create": 11357,
+      "cost_usd": 0.0668474,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "틀림",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.facing": "왼쪽 여인의 얼굴과 상체가 왕 쪽(오른쪽)을 향하지 않고 정면이나 아기 쪽을 향한다.",
+     "t.sword": "칼이 왼쪽 여인의 발치에 놓여 있고 왕 앞에는 없다.",
+     "t.back-wall": "뒷벽이 돌 블록 없이 매끈하고 텅 빈 면이다.",
+     "s.style": "미색 종이에 연필과 색연필로 그린 동화풍이다.",
+     "t.guard": "손가락, 두 겹 인물, 테두리, 글자 같은 결함이 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 11.986,
+      "input": 4,
+      "output": 1278,
+      "cache_read": 56271,
+      "cache_create": 0,
+      "cost_usd": 0.018415100000000004,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "back-wall-A-s42": {
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "틀림",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이 질감에 연필선과 색연필 채색의 동화풍이다.",
+     "s.no-blob": "세 사람과 칼 모두 얼굴·옷·형태가 완성돼 있다.",
+     "t.moment": "한 여인이 앉은 왕 앞에서 애원하고, 다른 여인은 아기를 안고 서 있으며, 왕은 애원하는 여인을 바라본다.",
+     "t.three-people": "두 여인과 왕 셋뿐이고 아기는 안겨 있다.",
+     "t.king-seated": "왕이 오른쪽에서 나무 의자에 앉아 있다.",
+     "t.plead": "가운데 여인이 두 손을 들어 왕을 향해 애원하는 모습이다.",
+     "t.plead-hands": "빈 두 손을 왕 쪽으로 내밀었다.",
+     "t.infant": "왼쪽 여인이 천에 싸인 갓난아기를 두 팔로 가슴에 안고 있다.",
+     "t.facing": "두 여인은 오른쪽 왕을, 왕은 왼쪽 여인들을 향한다.",
+     "t.sword": "곧은 칼 한 자루가 바닥에 놓여 있고 왕 쪽 앞에 있다.",
+     "t.king": "왕이 푸른 긴 옷에 맨머리지만 대머리에 얼굴이 야위어 20대 젊은 남자로 분명히 보이지 않는다.",
+     "t.back-wall": "넓은 뒷벽은 매끈한 회벽이고 돌 블록은 왼쪽 기둥 부분뿐이다.",
+     "t.no-halo": "벽에 후광이나 빛 번짐이 없다.",
+     "t.no-church": "스테인드글라스나 아치 벽감이 없다.",
+     "t.guard": "손가락 수 이상, 겹친 인물, 테두리, 글자가 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 14.378,
+      "input": 4,
+      "output": 1589,
+      "cache_read": 44914,
+      "cache_create": 11357,
+      "cost_usd": 0.0658174,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이 질감에 연필선과 색연필 채색의 동화 그림 느낌이다.",
+     "s.no-blob": "인물과 물건 모두 얼굴·옷이 완성되어 있다.",
+     "t.moment": "가운데 여인이 앉은 왕 앞에서 애원하고, 왼쪽 여인은 아기를 안고 서 있으며, 왕은 가운데 여인 쪽을 바라본다.",
+     "t.three-people": "사람은 두 여인과 왕 셋뿐이다.",
+     "t.king-seated": "오른쪽의 왕이 나무 의자에 앉아 있다.",
+     "t.plead": "가운데 여인이 왕을 향해 두 손을 들고 애원하는 표정을 짓고 있다.",
+     "t.plead-hands": "빈 두 손을 왕 쪽으로 들어 내밀었다.",
+     "t.infant": "왼쪽 여인이 천에 싸인 갓난 아기를 두 팔로 가슴에 안고 있다.",
+     "t.facing": "두 여인은 오른쪽 왕 쪽을, 왕은 왼쪽 여인들 쪽을 향한다.",
+     "t.sword": "곧은 칼 한 자루가 바닥에 놓여 있다.",
+     "t.king": "짙은 푸른 긴 겉옷을 입었고 머리에 아무것도 쓰지 않았으며 젊어 보인다.",
+     "t.back-wall": "넓은 뒷벽은 매끈한 회벽이고 돌 블록은 왼쪽 기둥 부분에만 있다.",
+     "t.no-halo": "벽에 후광이나 빛 번짐이 없다.",
+     "t.no-church": "스테인드글라스 창이나 성상 벽감이 없다.",
+     "t.guard": "손가락 수와 인물 모두 정상이고 테두리나 글자도 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 15.275,
+      "input": 4,
+      "output": 1547,
+      "cache_read": 46243,
+      "cache_create": 10028,
+      "cost_usd": 0.060214300000000005,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "틀림",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이 바탕에 연필선과 색연필 질감의 동화풍이다.",
+     "s.no-blob": "모든 인물과 물건에 얼굴, 옷, 형태가 있다.",
+     "t.moment": "한 여인이 서서 애원하고, 다른 여인은 아기를 안고 서 있으며, 왕은 앉아서 그 여인을 본다.",
+     "t.three-people": "사람은 두 여인과 왕 셋이고 아기는 안겨 있다.",
+     "t.king-seated": "왕이 오른쪽 나무 의자에 앉아 있다.",
+     "t.plead": "가운데 여인이 왕을 향해 두 손을 들고 간청하는 얼굴과 몸짓을 한다.",
+     "t.plead-hands": "빈 두 손을 왕 쪽으로 내밀었다.",
+     "t.infant": "왼쪽 여인이 천에 싸인 갓난아기를 두 팔로 가슴에 안고 있다.",
+     "t.facing": "두 여인은 오른쪽 왕을 향하고 왕은 왼쪽을 향한다. 왼쪽 여인은 시선이 아기 쪽이라 약간 애매하다.",
+     "t.sword": "칼은 왕 앞이 아니라 가운데 여인 발치에 놓여 있다. 십자 날밑이 달린 중세식 장검이라 시대에도 맞지 않는다.",
+     "t.king": "머리에 쓴 것은 없지만 대머리에 마르고 나이 들어 보여 20대로 보기 어렵다. 옷도 짙은 청색이라기보다 중간 톤의 파랑이다.",
+     "t.back-wall": "넓은 뒷벽은 매끈한 회벽이고 돌 블록은 왼쪽 기둥 한 줄뿐이다.",
+     "t.no-halo": "벽에 후광이나 빛 번짐이 없다.",
+     "t.no-church": "스테인드글라스도 아치 벽감도 없다.",
+     "t.guard": "손가락 이상, 겹친 인물, 테두리, 글자가 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 16.31,
+      "input": 4,
+      "output": 1699,
+      "cache_read": 44914,
+      "cache_create": 11357,
+      "cost_usd": 0.0669174,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "back-wall-A-s11": {
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "틀림",
+     "t.guard": "틀림"
+    },
+    "reasons": {
+     "s.style": "미색 종이에 연필선과 색연필 질감의 동화풍이다.",
+     "s.no-blob": "모든 인물과 물건에 얼굴과 옷이 있고 회색 덩어리는 없다.",
+     "t.moment": "가운데 여인이 앉은 왕에게 애원하고, 왼쪽 여인은 아기를 안고 서 있으며, 왕은 가운데 여인을 바라본다.",
+     "t.three-people": "사람은 두 여인과 왕 셋뿐이고 아기는 안겨 있다.",
+     "t.king-seated": "왕이 오른쪽에서 나무 의자에 앉아 있다.",
+     "t.plead": "가운데 여인이 입을 열고 두 팔을 왕 쪽으로 벌려 애원한다.",
+     "t.plead-hands": "가운데 여인의 빈 두 손이 왕 쪽으로 펼쳐져 있다.",
+     "t.infant": "왼쪽 여인이 천에 싸인 갓난아기를 두 팔로 가슴께에 안고 있다.",
+     "t.facing": "두 여인은 오른쪽의 왕을, 왕은 왼쪽의 여인들을 향한다.",
+     "t.sword": "칼이 왕 앞이 아니라 왼쪽 여인 발치에서 가운데 여인 쪽으로 놓여 있어 왕과 멀다. 왼쪽 여인 몸 옆에 세로 막대 같은 것이 하나 더 있어 칼이 겹쳐 보인다.",
+     "t.king": "짙은 푸른 긴 겉옷을 입은 젊은 남자이고 맨머리다.",
+     "t.back-wall": "뒷벽도 돌 블록으로 그려져 있다.",
+     "t.no-halo": "벽에 후광이나 빛 번짐이 없다.",
+     "t.no-church": "오른쪽 벽의 아치 창에 스테인드글라스 무늬가 있다.",
+     "t.guard": "왼쪽 여인 몸 옆의 세로 막대 같은 물체가 덧붙은 결함으로 보인다."
+    },
+    "tries": [
+     {
+      "seconds": 15.429,
+      "input": 6,
+      "output": 1686,
+      "cache_read": 73377,
+      "cache_create": 10500,
+      "cost_usd": 0.0662097,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "틀림",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "틀림",
+     "t.guard": "틀림"
+    },
+    "reasons": {
+     "t.facing": "왼쪽 여인은 몸과 얼굴이 정면에 가깝고 왕 쪽을 분명히 향하지 않는다.",
+     "t.sword": "칼이 왕 앞이 아니라 두 여인 발치 사이에 놓여 있고 왕과 멀다.",
+     "t.no-church": "오른쪽 벽의 아치 창에 색유리(스테인드글라스) 무늬가 보인다.",
+     "t.guard": "왼쪽 여인 치마 옆에 세로로 선 칼집이나 막대 같은 물체가 덧붙어 있어 어색하다."
+    },
+    "tries": [
+     {
+      "seconds": 14.022,
+      "input": 6,
+      "output": 1322,
+      "cache_read": 83877,
+      "cache_create": 0,
+      "cost_usd": 0.021619700000000002,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "틀림",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "틀림",
+     "t.guard": "틀림"
+    },
+    "reasons": {
+     "s.style": "미색 종이 바탕에 연필선과 색연필 질감이 보이는 동화 그림이다.",
+     "s.no-blob": "모든 인물과 물건에 얼굴, 옷, 형태가 있다.",
+     "t.moment": "가운데 여인이 서서 애원하고, 왼쪽 여인은 아기를 안고 서 있다. 왕은 앉아서 가운데 여인을 올려다본다.",
+     "t.three-people": "사람은 두 여인과 왕 셋뿐이다. 아기는 안겨 있다.",
+     "t.king-seated": "왕이 오른쪽에서 나무 의자에 앉아 있다.",
+     "t.plead": "가운데 여인이 왕 쪽으로 두 팔을 벌려 호소하는 몸짓이다.",
+     "t.plead-hands": "두 손이 비어 있고 왕 쪽으로 내밀었다.",
+     "t.infant": "천에 싸인 갓난아기를 두 팔로 가슴에 안고 있다.",
+     "t.facing": "왼쪽 여인의 얼굴과 시선이 정면이나 보는 사람 쪽을 향해 오른쪽 왕을 향한다고 분명히 말하기 어렵다.",
+     "t.sword": "칼이 왕 앞이 아니라 두 여인의 발치에 놓여 있다. 왼쪽 여인 옆에는 칼이나 막대처럼 보이는 세로 물체도 있다.",
+     "t.king": "짙은 푸른 긴 겉옷을 입은 젊은 남자이고 머리에 아무것도 쓰지 않았다.",
+     "t.back-wall": "뒷벽도 옆벽처럼 돌 블록으로 그려졌다.",
+     "t.no-halo": "벽에 후광이나 빛 번짐이 없다.",
+     "t.no-church": "오른쪽 벽의 아치 벽감 창에 스테인드글라스 같은 색유리 격자가 보인다.",
+     "t.guard": "왼쪽 여인 몸 옆에 정체불명의 세로 물체(칼이나 막대)가 덧붙은 듯 보인다. 분명히 결함이 없다고 확인되지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 15.329,
+      "input": 4,
+      "output": 1806,
+      "cache_read": 54942,
+      "cache_create": 1328,
+      "cost_usd": 0.028874200000000003,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "back-wall-A-s23": {
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.back-wall": "돌 블록은 왼쪽 벽과 아래쪽 띠에만 있고, 인물 뒤 넓은 윗부분은 아무것도 없는 매끈한 빈 면이다.",
+     "t.sword": "곧은 칼 한 자루가 왕의 발과 의자 앞 바닥에 놓여 있다.",
+     "t.infant": "왼쪽 여인이 천에 싸인 아기를 두 팔로 가슴에 안고 있다.",
+     "t.king": "파란 긴 겉옷을 입은 젊은 남자이고 머리에 쓴 것이 없다."
+    },
+    "tries": [
+     {
+      "seconds": 11.026,
+      "input": 4,
+      "output": 1097,
+      "cache_read": 54942,
+      "cache_create": 1328,
+      "cost_usd": 0.021784200000000004,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.back-wall": "뒷벽은 아래쪽 낮은 띠에만 돌 블록이 있고, 인물 뒤 위쪽의 넓은 면은 매끈하게 비어 있다. 돌 블록은 왼쪽 옆벽에만 있다.",
+     "t.sword": "곧은 칼 한 자루가 왕의 의자 앞 바닥에 놓여 있다.",
+     "t.moment": "한 여인은 아기를 안고 서 있고, 가운데 여인은 앉은 왕을 향해 손을 내밀고 있으며, 왕은 그 여인을 바라본다."
+    },
+    "tries": [
+     {
+      "seconds": 12.149,
+      "input": 4,
+      "output": 1190,
+      "cache_read": 45760,
+      "cache_create": 10511,
+      "cost_usd": 0.058528,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.back-wall": "뒷벽 위쪽의 넓은 면이 돌 블록 없이 매끈하고 비어 있다. 블록은 왼쪽 옆벽과 아래쪽 띠에만 있다.",
+     "t.facing": "두 여인의 얼굴과 몸이 오른쪽 왕 쪽을 향하고, 왕은 왼쪽 여인들 쪽을 향한다. 왼쪽 여인은 시선이 아기 쪽으로 내려가 있다.",
+     "t.guard": "손가락 수 이상, 겹친 인물, 테두리, 글자는 보이지 않는다.",
+     "t.sword": "곧은 칼 한 자루가 왕의 의자 앞 바닥에 놓여 있다."
+    },
+    "tries": [
+     {
+      "seconds": 12.717,
+      "input": 4,
+      "output": 1237,
+      "cache_read": 45760,
+      "cache_create": 10511,
+      "cost_usd": 0.058997999999999995,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "back-wall-A-s101": {
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.back-wall": "뒷벽 윗부분이 돌 블록 없이 매끈하고 빈 회벽이다. 아래쪽 한 줄만 블록으로 그려졌다.",
+     "t.sword": "곧은 칼이 바닥에 놓여 있고 끝이 왕 쪽을 향한다. 다만 왕 바로 앞이 아니라 여인들 앞쪽에 있어 위치가 애매하다."
+    },
+    "tries": [
+     {
+      "seconds": 11.913,
+      "input": 4,
+      "output": 1137,
+      "cache_read": 45760,
+      "cache_create": 10511,
+      "cost_usd": 0.057997999999999994,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "틀림",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "연필과 색연필의 선 맛보다 매끈하게 칠한 사실풍 그림에 가까워서, 동화 그림 화풍이라고 분명히 확인되지 않는다.",
+     "t.sword": "곧은 칼은 있지만 가운데 여인의 발치에 놓여 있고 왕과는 떨어져 있다. 왕 앞 바닥이라고 하기 어렵다.",
+     "t.back-wall": "뒷벽 윗부분이 돌 블록 없이 매끈하고 텅 빈 회벽이다. 돌 블록은 아랫단에만 있다."
+    },
+    "tries": [
+     {
+      "seconds": 13.11,
+      "input": 4,
+      "output": 1325,
+      "cache_read": 54942,
+      "cache_create": 1328,
+      "cost_usd": 0.0240642,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.back-wall": "인물들 뒤 넓은 뒷벽 윗부분이 돌 블록 없이 매끈하고 빈 회벽이다. 블록은 아래쪽 낮은 띠에만 있다.",
+     "t.sword": "곧은 칼이 바닥에 있다. 다만 왕 바로 앞이 아니라 가운데 여인 쪽에 놓였다. 그래도 둘 사이 바닥이라 맞음으로 봤다.",
+     "s.style": "종이 질감이 있는 채색 그림이라 맞음으로 봤다. 다만 동화풍보다는 사실적인 편이다."
+    },
+    "tries": [
+     {
+      "seconds": 13.084,
+      "input": 4,
+      "output": 1311,
+      "cache_read": 56271,
+      "cache_create": 0,
+      "cost_usd": 0.0187451,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "back-wall-A-s202": {
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "틀림",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.king": "왕이 수염 난 30대 안팎의 남자로 보여 20대 젊은 남자라고 확인되지 않음.",
+     "t.back-wall": "넓은 뒷벽 대부분이 빈 미색 면이고 돌 블록은 좌측 끝과 우측 상단에만 희미하게 있음."
+    },
+    "tries": [
+     {
+      "seconds": 10.375,
+      "input": 4,
+      "output": 940,
+      "cache_read": 47088,
+      "cache_create": 9182,
+      "cost_usd": 0.050844799999999996,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.back-wall": "뒷벽 대부분이 빈 미색 면이다. 돌 블록은 오른쪽 위 모서리와 왼쪽 가장자리에 희미하게만 보여서 넓은 뒷벽이 돌 블록으로 그려졌다고 할 수 없다.",
+     "t.king": "왕은 짙은 푸른 긴 겉옷을 입었고 머리에 아무것도 쓰지 않았다. 수염이 있지만 20대로 볼 수 있다.",
+     "t.facing": "두 여인은 오른쪽 왕을 향하고, 왕은 왼쪽 여인들을 향한다.",
+     "t.sword": "곧은 칼 한 자루가 왕 앞 바닥에 놓여 있다.",
+     "t.infant": "왼쪽 여인이 천에 싸인 아기를 두 팔로 안고 있다."
+    },
+    "tries": [
+     {
+      "seconds": 11.683,
+      "input": 4,
+      "output": 1276,
+      "cache_read": 45760,
+      "cache_create": 10510,
+      "cost_usd": 0.05938399999999999,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.back-wall": "뒷벽 대부분이 매끈하고 텅 빈 미색 면이다. 돌 블록은 오른쪽 위 모서리와 왼쪽 끝에 희미하게만 보이고, 옆벽처럼 블록이 가득하지 않다.",
+     "t.facing": "왼쪽 여인의 시선이 정면과 오른쪽 사이라 약간 애매하지만, 몸과 얼굴이 오른쪽으로 틀어져 있다고 보았다. 가운데 여인은 왕을, 왕은 왼쪽을 향한다.",
+     "t.king": "짙은 푸른 긴 겉옷을 입었고 머리에 아무것도 쓰지 않았다. 수염이 짧고 젊어 보인다.",
+     "t.sword": "곧은 칼 한 자루가 왕 앞 바닥에 놓여 있다.",
+     "t.guard": "손가락 수나 인물 겹침, 테두리, 글자 같은 결함이 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 13.059,
+      "input": 4,
+      "output": 1369,
+      "cache_read": 45760,
+      "cache_create": 10510,
+      "cost_usd": 0.06031399999999999,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "back-wall-A-s303": {
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "틀림",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림"
+    },
+    "reasons": {
+     "t.sword": "칼이 왕 앞 바닥에 놓이지 않고 화면 맨 왼쪽 벽에 기대 세워져 있다. 왕에게서 가장 먼 곳이다.",
+     "t.king": "수염 난 얼굴이 20대보다 30대 이상으로 보여 '20대 젊은 남자'가 분명하지 않다. 겉옷은 푸른색이고 머리에 쓴 것은 없다.",
+     "t.guard": "그림 아래쪽 가장자리에 종이 여백처럼 보이는 밝은 띠가 있어 종이 테두리 결함으로 본다."
+    },
+    "tries": [
+     {
+      "seconds": 12.476,
+      "input": 4,
+      "output": 1233,
+      "cache_read": 45760,
+      "cache_create": 10510,
+      "cost_usd": 0.05895399999999999,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "틀림",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이 느낌에 연필 선과 색연필 채색의 동화 그림이다.",
+     "s.no-blob": "모든 사람과 물건에 얼굴·옷·형태가 있다.",
+     "t.moment": "한 여인이 왕 앞에서 손을 내밀어 애원하고, 다른 여인은 아기를 안고 서 있으며, 왕은 앉아서 가운데 여인을 본다.",
+     "t.three-people": "사람은 두 여인과 왕 셋뿐이고 아기는 안겨 있다.",
+     "t.king-seated": "오른쪽의 왕이 나무 의자에 앉아 있다.",
+     "t.plead": "가운데 여인이 왕을 향해 얼굴을 찡그리고 손을 내밀어 애원한다.",
+     "t.plead-hands": "가운데 여인이 빈 두 손을 왕 쪽으로 내밀었다.",
+     "t.infant": "왼쪽 여인이 천에 싸인 아기를 두 팔로 가슴에 안고 있다.",
+     "t.facing": "두 여인은 오른쪽 왕을 향하고 왕은 왼쪽 여인들을 향한다.",
+     "t.sword": "칼이 왕 앞 바닥이 아니라 맨 왼쪽 벽에 기대어 세워져 있다. 왕 앞에 놓여 있지 않다.",
+     "t.king": "왕이 짙은 푸른 겉옷을 입고 모자는 쓰지 않았지만, 수염이 있고 30대로 보여 20대 젊은 남자라고 분명히 확인되지 않는다.",
+     "t.back-wall": "뒷벽이 옆벽처럼 돌 블록으로 그려졌다.",
+     "t.no-halo": "벽에 후광이나 빛 번짐이 없다.",
+     "t.no-church": "스테인드글라스나 성상 벽감이 없다.",
+     "t.guard": "손가락 이상, 겹친 인물, 테두리, 글자가 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 13.148,
+      "input": 4,
+      "output": 1583,
+      "cache_read": 56270,
+      "cache_create": 0,
+      "cost_usd": 0.021465,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "틀림",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림"
+    },
+    "reasons": {
+     "s.style": "미색 종이 바탕에 연필 선과 색연필 채색의 동화풍이다.",
+     "s.no-blob": "모든 인물과 물건에 얼굴, 옷, 세부가 있다.",
+     "t.moment": "한 여인이 서서 애원하고, 다른 여인은 아기를 안고 서 있다. 앉은 왕이 애원하는 여인을 지켜본다.",
+     "t.three-people": "사람은 두 여인과 왕 셋뿐이다.",
+     "t.king-seated": "왕이 오른쪽 나무 걸상에 앉아 있다.",
+     "t.plead": "가운데 여인이 눈물을 보이며 왕을 향해 손을 내밀고 말하는 몸짓이다.",
+     "t.plead-hands": "빈 두 손을 왕 쪽으로 내밀었다.",
+     "t.infant": "천에 싸인 갓난아기를 두 팔로 가슴에 안았다.",
+     "t.facing": "두 여인은 오른쪽 왕을 향하고 왕은 왼쪽 여인들을 향한다.",
+     "t.sword": "칼이 왕 앞 바닥이 아니라 맨 왼쪽 벽에 기대어 세워져 있다.",
+     "t.king": "수염이 있는 30대쯤의 남자로 보여 20대 젊은 남자라고 확신할 수 없다.",
+     "t.back-wall": "뒷벽이 옆벽처럼 돌 블록으로 그려졌다.",
+     "t.no-halo": "벽에 후광이나 빛 번짐이 없다.",
+     "t.no-church": "벽에 스테인드글라스나 아치 벽감이 없다.",
+     "t.guard": "그림 아래쪽에 종이 테두리처럼 보이는 밝은 띠가 있어 결함이 없다고 확인되지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 13.121,
+      "input": 4,
+      "output": 1485,
+      "cache_read": 56270,
+      "cache_create": 0,
+      "cost_usd": 0.020485,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "back-wall-B-s7": {
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "틀림",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.plead-hands": "가운데 여인은 한 손을 가슴에 얹고 다른 한 손만 왕 쪽으로 내밀었다. 두 손을 내민 모습이 아니다.",
+     "t.sword": "칼은 곧지만 왕 앞이 아니라 화면 왼쪽, 아기를 안은 여인과 가운데 여인 사이의 바닥에 있다. 왕과는 멀리 떨어져 있다."
+    },
+    "tries": [
+     {
+      "seconds": 9.476,
+      "input": 4,
+      "output": 971,
+      "cache_read": 45760,
+      "cache_create": 10511,
+      "cost_usd": 0.056338,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "틀림",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.plead-hands": "가운데 여인은 한 손만 왕 쪽으로 내밀었고, 다른 손은 가슴에 얹었다. 빈 두 손을 내민 모습이 아니다.",
+     "t.sword": "칼은 곧지만 두 여인 사이 왼쪽 바닥에 놓였다. 왕 앞에 있지 않다."
+    },
+    "tries": [
+     {
+      "seconds": 10.126,
+      "input": 4,
+      "output": 1029,
+      "cache_read": 56271,
+      "cache_create": 0,
+      "cost_usd": 0.0159251,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "틀림",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이에 연필 선과 색연필 질감의 동화풍이다.",
+     "s.no-blob": "세 사람과 아기 모두 얼굴과 옷이 완성돼 있다.",
+     "t.moment": "가운데 여인이 앉은 왕 앞에서 애원하고, 왼쪽 여인은 아기를 안고 서 있으며, 왕은 앉아서 가운데 여인을 바라본다.",
+     "t.three-people": "사람은 두 여인과 왕뿐이고 아기는 안겨 있다.",
+     "t.king-seated": "왕이 오른쪽 나무 의자에 앉아 있다.",
+     "t.plead": "가운데 여인이 입을 벌리고 한 손은 가슴에 얹고 다른 손은 왕 쪽으로 내밀고 있다.",
+     "t.plead-hands": "한 손은 가슴에 얹었고 왕 쪽으로 내민 손은 하나뿐이라 빈 두 손을 내민 모습이 아니다.",
+     "t.infant": "흰 천에 싸인 갓난 아기를 두 팔로 가슴께에 안고 있다.",
+     "t.facing": "두 여인은 얼굴이 오른쪽을 향하고 왕은 왼쪽 여인들 쪽을 향한다. 왼쪽 여인은 아기를 내려다보며 오른쪽으로 약간 돌아서 있어 확실하지는 않다.",
+     "t.sword": "곧은 칼은 있으나 왼쪽 여인 앞 바닥에 놓여 있어 왕 앞이 아니다.",
+     "t.king": "짙은 푸른 긴 겉옷을 입은 젊은 남자이고 머리에는 아무것도 쓰지 않았다.",
+     "t.back-wall": "뒷벽도 옆벽처럼 돌 블록으로 그려져 있다.",
+     "t.no-halo": "벽에 빛 번짐이나 후광이 없다.",
+     "t.no-church": "벽에 스테인드글라스 창이나 벽감이 없다.",
+     "t.guard": "손가락 수나 겹친 인물, 테두리, 글자 같은 결함이 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 15.031,
+      "input": 4,
+      "output": 1695,
+      "cache_read": 45760,
+      "cache_create": 10510,
+      "cost_usd": 0.06357399999999999,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "back-wall-B-s42": {
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.back-wall": "뒷벽은 왼쪽 가운데에만 돌 블록이 또렷하고, 오른쪽 위쪽은 블록이 흐려져 거의 빈 면이다. 옆벽처럼 전체가 돌 블록으로 그려지지 않았다."
+    },
+    "tries": [
+     {
+      "seconds": 11.169,
+      "input": 4,
+      "output": 1072,
+      "cache_read": 56271,
+      "cache_create": 0,
+      "cost_usd": 0.016355100000000004,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.back-wall": "뒷벽 왼쪽은 돌 블록이지만 오른쪽 위쪽 넓은 면은 블록 줄눈이 거의 없이 매끈하고 비어 있어 옆벽처럼 돌 블록으로 그려졌다고 확신할 수 없음"
+    },
+    "tries": [
+     {
+      "seconds": 10.155,
+      "input": 4,
+      "output": 1070,
+      "cache_read": 56271,
+      "cache_create": 0,
+      "cost_usd": 0.0163351,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.sword": "칼이 가운데 여인 발치에 놓였고 왕 앞이라 하기 어렵다. 황금빛 십자 날밑과 둥근 자루머리가 있는 중세 유럽식 장검이라 그 시대 칼 모양으로 보기 어렵다.",
+     "t.back-wall": "뒷벽 오른쪽 위는 돌 블록 없이 매끈하고 빈 면이다. 블록은 왼쪽 옆벽과 가운데 일부, 아래쪽에만 보인다.",
+     "t.moment": "가운데 여인이 앉은 왕을 향해 두 손을 내밀고, 왼쪽 여인은 아기를 안고 서 있으며, 왕은 앉아서 그 여인을 바라본다."
+    },
+    "tries": [
+     {
+      "seconds": 13.704,
+      "input": 4,
+      "output": 1502,
+      "cache_read": 45760,
+      "cache_create": 10511,
+      "cost_usd": 0.061647999999999994,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "back-wall-B-s5": {
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.sword": "칼은 곧지만 화면 왼쪽, 아기를 안은 여인의 발치 뒤에 놓였다. 왕 앞 바닥이 아니다.",
+     "t.plead-hands": "가운데 여인이 빈 두 손을 펴서 왕 쪽으로 내밀었다.",
+     "t.infant": "천에 싸인 갓난 아기를 가슴께에 안고 있다.",
+     "t.king": "짙은 푸른 긴 겉옷을 입은 젊은 남자이고 머리에 아무것도 쓰지 않았다.",
+     "t.moment": "가운데 여인이 애원하고, 왼쪽 여인은 아기를 안고 서 있으며, 왕은 앉아서 지켜본다."
+    },
+    "tries": [
+     {
+      "seconds": 9.755,
+      "input": 4,
+      "output": 1028,
+      "cache_read": 45760,
+      "cache_create": 10511,
+      "cost_usd": 0.056908,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이에 연필선과 색연필 질감의 동화 그림 화풍이다.",
+     "s.no-blob": "모든 인물과 물건에 얼굴, 옷, 형태가 있다.",
+     "t.moment": "한 여인은 아기를 안고 서 있고, 가운데 여인은 앉은 왕 앞에서 애원하며, 왕은 그 여인을 바라본다.",
+     "t.three-people": "사람은 두 여인과 왕 셋뿐이다.",
+     "t.king-seated": "왕이 화면 오른쪽 나무 의자에 앉아 있다.",
+     "t.plead": "가운데 여인이 왕을 향해 입을 벌리고 두 손을 벌려 애원한다.",
+     "t.plead-hands": "빈 두 손을 왕 쪽으로 내밀었다.",
+     "t.infant": "왼쪽 여인이 흰 천에 싸인 아기를 두 팔로 가슴에 안고 있다.",
+     "t.facing": "두 여인은 오른쪽 왕을, 왕은 왼쪽 여인들을 향한다.",
+     "t.sword": "칼이 왕 앞이 아니라 왼쪽 여인의 발치에 놓여 있어 '왕 앞 바닥'이라는 위치가 맞지 않는다.",
+     "t.king": "왕은 짙은 푸른 긴 겉옷을 입은 젊은 남자이고 머리에 아무것도 쓰지 않았다.",
+     "t.back-wall": "뒷벽이 옆벽처럼 돌 블록으로 그려졌다.",
+     "t.no-halo": "벽에 후광이나 빛 번짐이 없다.",
+     "t.no-church": "스테인드글라스 창이나 아치 벽감이 없다.",
+     "t.guard": "손가락 수 이상, 겹친 인물, 종이 테두리나 액자, 글자가 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 12.238,
+      "input": 4,
+      "output": 1450,
+      "cache_read": 45760,
+      "cache_create": 10511,
+      "cost_usd": 0.061128,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.sword": "칼이 왕 앞이 아니라 화면 왼쪽, 아기를 안은 여인의 발치에 놓여 있어 기대한 위치와 다르다.",
+     "t.infant": "여인이 천에 싸인 아기를 가슴에 안고 있어 맞다. 아기 다리가 천 밖으로 나와 있지만 안은 방식은 맞다고 봤다.",
+     "s.style": "미색 종이 느낌에 연필 선과 색연필 채색의 동화 그림 화풍이다.",
+     "t.moment": "가운데 여인이 서서 왕에게 두 손을 내밀며 애원하고, 왼쪽 여인은 아기를 안고 서 있고, 왕은 앉아서 가운데 여인을 바라본다.",
+     "t.back-wall": "뒷벽이 옆벽처럼 돌 블록으로 그려져 있다."
+    },
+    "tries": [
+     {
+      "seconds": 11.58,
+      "input": 4,
+      "output": 1143,
+      "cache_read": 56271,
+      "cache_create": 0,
+      "cost_usd": 0.0170651,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "back-wall-B-s11": {
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이에 연필 선과 색연필 질감이 보이는 동화 그림 화풍이다.",
+     "s.no-blob": "모든 인물과 물건에 얼굴이나 옷, 형태가 있고 회색 덩어리는 없다.",
+     "t.moment": "가운데 여인이 앉은 왕 앞에 서서 애원하고, 왼쪽 여인은 아기를 안고 서 있으며, 왕은 가운데 여인 쪽을 본다.",
+     "t.three-people": "사람은 두 여인과 왕 셋뿐이고 아기는 안겨 있다.",
+     "t.king-seated": "왕이 화면 오른쪽의 나무 걸상에 앉아 있다.",
+     "t.plead": "가운데 여인이 왕 쪽으로 몸을 돌리고 두 손을 벌려 애원한다.",
+     "t.plead-hands": "빈 두 손을 왕 쪽으로 내밀었다.",
+     "t.infant": "왼쪽 여인이 흰 천에 싸인 갓난 아기를 두 팔로 가슴에 안고 있다.",
+     "t.facing": "두 여인은 오른쪽의 왕을 향하고, 왕은 왼쪽의 여인들을 향한다.",
+     "t.sword": "왕 앞 바닥에 곧은 칼 한 자루가 놓여 있다.",
+     "t.king": "왕은 짙은 푸른 긴 겉옷을 입은 젊은 남자이고 머리에 아무것도 쓰지 않았다.",
+     "t.back-wall": "뒷벽이 옆벽처럼 돌 블록으로 그려졌다.",
+     "t.no-halo": "인물 뒤에 빛 번짐이나 후광이 없다.",
+     "t.no-church": "옆벽의 아치형 창은 평범한 창이고 스테인드글라스나 성상 벽감은 없다.",
+     "t.guard": "손가락 수 이상이나 겹친 인물, 테두리, 글자 같은 결함이 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 13.107,
+      "input": 4,
+      "output": 1570,
+      "cache_read": 45760,
+      "cache_create": 10510,
+      "cost_usd": 0.06232399999999999,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이에 연필선과 색연필 칠 질감이 보인다.",
+     "s.no-blob": "세 사람과 칼, 나무 자리 모두 얼굴·옷·모양이 완성돼 있다.",
+     "t.moment": "가운데 여인이 서서 왕에게 애원하고, 왼쪽 여인은 아기를 안고 서 있으며, 왕은 앉아서 가운데 여인을 쳐다본다.",
+     "t.three-people": "사람은 두 여인과 왕뿐이고 아기는 안겨 있다.",
+     "t.king-seated": "왕이 오른쪽에서 나무 상자 모양 자리에 앉아 있다.",
+     "t.plead": "가운데 여인이 입을 열고 두 손을 벌려 왕을 향해 애원한다.",
+     "t.plead-hands": "빈 두 손을 왕 쪽으로 내밀었다.",
+     "t.infant": "왼쪽 여인이 흰 천에 싼 갓난 아기를 두 팔로 가슴에 안고 있다.",
+     "t.facing": "두 여인은 오른쪽을, 왕은 왼쪽을 향한다.",
+     "t.sword": "왕 앞 바닥에 곧은 칼 한 자루가 놓여 있다.",
+     "t.king": "짙은 푸른 긴 겉옷을 입은 젊은 남자이고 머리에 아무것도 쓰지 않았다.",
+     "t.back-wall": "뒷벽이 옆벽처럼 돌 블록으로 그려졌다.",
+     "t.no-halo": "벽에 빛 번짐이나 후광이 없다.",
+     "t.no-church": "옆벽의 작은 아치창은 평범한 창이고 스테인드글라스나 성상 벽감은 없다.",
+     "t.guard": "손가락과 인물 겹침, 테두리, 글자에서 결함이 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 13.018,
+      "input": 4,
+      "output": 1599,
+      "cache_read": 45760,
+      "cache_create": 10510,
+      "cost_usd": 0.062614,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이에 연필 선과 색연필 질감이 보인다.",
+     "s.no-blob": "사람과 물건 모두 얼굴, 옷, 형태가 완성돼 있다.",
+     "t.moment": "가운데 여인이 앉은 왕 앞에서 손을 내밀어 애원한다. 왼쪽 여인은 아기를 안고 서 있고, 왕은 가운데 여인을 바라본다.",
+     "t.three-people": "사람은 여인 둘과 왕 하나뿐이다. 아기는 안겨 있다.",
+     "t.king-seated": "왕이 오른쪽에서 나무 걸상에 앉아 있다.",
+     "t.plead": "가운데 여인이 왕 쪽으로 몸을 돌려 말하며 애원하는 손짓을 한다.",
+     "t.plead-hands": "빈 두 손을 왕 쪽으로 펴서 내밀었다.",
+     "t.infant": "왼쪽 여인이 흰 천에 싸인 갓난 아기를 두 팔로 가슴에 안고 있다.",
+     "t.facing": "두 여인은 오른쪽 왕을 향하고, 왕은 왼쪽 여인들을 향한다.",
+     "t.sword": "곧은 칼 한 자루가 왕 앞 바닥에 놓여 있다.",
+     "t.king": "짙은 푸른 긴 겉옷을 입은 젊은 남자이고, 머리에는 아무것도 쓰지 않았다.",
+     "t.back-wall": "뒷벽이 옆벽처럼 돌 블록으로 그려져 있다.",
+     "t.no-halo": "벽에 후광이나 빛 번짐이 없다.",
+     "t.no-church": "옆벽의 아치형 구멍은 평범한 창이다. 스테인드글라스나 성상은 없다.",
+     "t.guard": "손가락, 겹친 인물, 테두리, 글자 같은 결함이 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 13.967,
+      "input": 4,
+      "output": 1597,
+      "cache_read": 45760,
+      "cache_create": 10510,
+      "cost_usd": 0.062594,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "back-wall-B-s23": {
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.back-wall": "인물들 뒤 가운데 넓은 뒷벽이 돌 블록 없이 매끈한 빈 회벽 면이다. 돌 블록은 양옆 벽에만 있다."
+    },
+    "tries": [
+     {
+      "seconds": 10.117,
+      "input": 4,
+      "output": 922,
+      "cache_read": 54942,
+      "cache_create": 1329,
+      "cost_usd": 0.0200382,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.back-wall": "인물 뒤 가운데 넓은 뒷벽이 돌 블록 없이 매끈한 회벽처럼 비어 있다. 돌 블록은 양옆 벽에만 있다.",
+     "t.sword": "곧은 칼 한 자루가 왕이 앉은 의자 발치 바닥에 놓여 있다. 칼자루가 왕보다 화면 앞쪽(보는 사람 쪽)에 있어 '왕 앞'으로 보았다. 칼날이 오른쪽으로 뻗어 있어 위치가 조금 애매하다.",
+     "t.facing": "두 여인은 오른쪽 왕 쪽을 향하고, 왕은 왼쪽 여인들 쪽을 바라본다.",
+     "t.king": "왕은 짙은 푸른 긴 겉옷을 입은 젊은 남자이고 머리에 아무것도 쓰지 않았다.",
+     "t.guard": "손가락 수 이상, 겹친 인물, 테두리, 글자가 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 12.574,
+      "input": 4,
+      "output": 1384,
+      "cache_read": 45760,
+      "cache_create": 10510,
+      "cost_usd": 0.06046399999999999,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.sword": "칼이 왕 의자 옆·뒤에 가로로 누워 칼끝이 여인들 반대편(오른쪽)을 향한다. 왕 앞 바닥에 놓인 모습이라고 분명히 말하기 어렵다.",
+     "t.back-wall": "가운데 넓은 뒷벽이 돌 블록 없이 매끈한 회벽처럼 비어 있다. 돌 블록은 양옆 벽에만 있다."
+    },
+    "tries": [
+     {
+      "seconds": 11.356,
+      "input": 4,
+      "output": 1024,
+      "cache_read": 56271,
+      "cache_create": 0,
+      "cost_usd": 0.015875100000000003,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "back-wall-B-s101": {
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이에 연필 선과 색연필 질감이 보이는 동화 그림이다.",
+     "s.no-blob": "모든 인물과 물건에 얼굴, 옷, 형태가 갖춰져 있다.",
+     "t.moment": "가운데 여인이 왕 앞에서 애원하고, 왼쪽 여인은 아기를 안고 서 있으며, 왕은 앉아서 가운데 여인을 바라본다.",
+     "t.three-people": "사람은 두 여인과 왕 셋이고 아기는 안겨 있다.",
+     "t.king-seated": "오른쪽 왕이 나무 의자에 앉아 있다.",
+     "t.plead": "가운데 여인이 왕 쪽으로 두 팔을 벌려 애원하는 자세다.",
+     "t.plead-hands": "빈 두 손을 왕 쪽으로 내밀었다.",
+     "t.infant": "왼쪽 여인이 흰 천에 싸인 아기를 가슴 앞에 안고 있다.",
+     "t.facing": "두 여인은 오른쪽을 향하고, 왕은 왼쪽을 향한다.",
+     "t.sword": "곧은 칼 한 자루가 바닥에 놓여 있다. 가운데 여인과 왕 사이 바닥에 걸쳐 있다.",
+     "t.king": "짙은 푸른 겉옷을 입은 젊은 남자이고 머리에 아무것도 쓰지 않았다.",
+     "t.back-wall": "뒷벽이 돌 블록으로 그려져 있다.",
+     "t.no-halo": "벽에 후광이나 빛 번짐이 없다.",
+     "t.no-church": "스테인드글라스 창이나 아치 벽감이 없다.",
+     "t.guard": "손가락 수 이상, 겹친 인물, 테두리, 글자 같은 결함이 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 12.237,
+      "input": 4,
+      "output": 1488,
+      "cache_read": 45760,
+      "cache_create": 10511,
+      "cost_usd": 0.06150799999999999,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이에 연필 선과 색연필 칠이 보이는 동화 그림 화풍이다.",
+     "s.no-blob": "세 사람과 칼, 의자 모두 얼굴·옷·질감이 완성돼 있다.",
+     "t.moment": "가운데 여인이 앉은 왕 앞에서 손을 내밀고, 왼쪽 여인은 아기를 안고 서 있으며, 왕이 가운데 여인을 올려다본다.",
+     "t.three-people": "사람은 두 여인과 왕 셋뿐이고 아기는 안겨 있다.",
+     "t.king-seated": "왕이 화면 오른쪽 나무 의자에 앉아 있다.",
+     "t.plead": "가운데 여인이 왕 쪽으로 몸을 돌려 두 팔을 벌려 간청하는 몸짓이다.",
+     "t.plead-hands": "빈 두 손을 왕 쪽으로 내밀었다.",
+     "t.infant": "왼쪽 여인이 흰 천에 싸인 갓난아기를 두 팔로 가슴에 안았다.",
+     "t.facing": "두 여인은 오른쪽 왕을 향하고 왕은 왼쪽 여인들을 향한다.",
+     "t.sword": "왕과 여인들 사이 바닥에 곧은 칼 한 자루가 놓여 있다.",
+     "t.king": "맨머리의 젊은 남자가 짙은 푸른 긴 겉옷을 입었다.",
+     "t.back-wall": "뒷벽이 옆벽과 같은 돌 블록으로 그려졌다.",
+     "t.no-halo": "벽에 후광이나 빛 번짐이 없다.",
+     "t.no-church": "스테인드글라스나 성상 벽감이 없다.",
+     "t.guard": "손가락 수나 덧붙은 인물, 테두리, 글자 같은 결함이 보이지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 11.99,
+      "input": 4,
+      "output": 1525,
+      "cache_read": 54942,
+      "cache_create": 1328,
+      "cost_usd": 0.026064200000000003,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "s.style": "미색 종이에 연필 선과 색연필 질감으로 그린 동화풍이다.",
+     "s.no-blob": "세 사람과 칼, 의자 모두 얼굴·옷·형태가 완성돼 있다.",
+     "t.moment": "가운데 여인이 앉은 왕 앞에서 두 손을 내밀고, 왼쪽 여인은 아기를 안고 서 있으며, 왕은 가운데 여인을 올려다본다.",
+     "t.three-people": "사람은 두 여인과 왕 셋뿐이고, 아기는 안겨 있다.",
+     "t.king-seated": "오른쪽의 왕이 나무 의자에 앉아 있다.",
+     "t.plead": "가운데 여인이 왕 쪽으로 몸을 기울이고 팔을 벌려 애원한다.",
+     "t.plead-hands": "빈 두 손을 왕 쪽으로 내밀었다.",
+     "t.infant": "왼쪽 여인이 흰 천에 싸인 아기를 두 팔로 가슴에 안았다. 아기 발만 천 밖으로 나와 있다.",
+     "t.facing": "두 여인은 오른쪽의 왕을 향하고, 왕은 왼쪽의 여인들을 향한다.",
+     "t.sword": "곧은 칼 한 자루가 바닥에 놓여 있다. 왕 앞쪽이고 여인들과 왕 사이다.",
+     "t.king": "왕은 젊은 남자이고 짙은 푸른 겉옷을 입었으며 머리에 아무것도 쓰지 않았다.",
+     "t.back-wall": "뒷벽도 옆벽처럼 돌 블록으로 그려졌다.",
+     "t.no-halo": "벽에 후광이나 빛 번짐이 없다.",
+     "t.no-church": "스테인드글라스나 아치 벽감이 없다.",
+     "t.guard": "손가락 수나 겹친 인물, 테두리, 글자 같은 결함이 보이지 않는다. 가운데 여인 발목의 노란 밴드는 장신구로 보여 결함으로 치지 않았다."
+    },
+    "tries": [
+     {
+      "seconds": 13.048,
+      "input": 6,
+      "output": 1510,
+      "cache_read": 82559,
+      "cache_create": 1318,
+      "cost_usd": 0.028639900000000003,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "back-wall-B-s303": {
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "틀림",
+     "t.infant": "맞음",
+     "t.facing": "틀림",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.plead-hands": "가운데 여인은 한 손만 왕 쪽으로 활짝 뻗었고, 다른 손은 가슴 앞에 모았다. 두 손을 내민 모습이 아니다.",
+     "t.facing": "왼쪽 여인의 얼굴과 몸이 왕 쪽보다 정면(보는 사람 쪽)을 향해 있어, 왕 쪽을 본다고 분명히 확인되지 않는다.",
+     "t.sword": "바닥에 곧은 칼 한 자루가 아니라 두 자루가 엇갈려 놓여 있다."
+    },
+    "tries": [
+     {
+      "seconds": 9.606,
+      "input": 4,
+      "output": 1007,
+      "cache_read": 45760,
+      "cache_create": 10510,
+      "cost_usd": 0.056693999999999994,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.sword": "바닥에 칼이 한 자루가 아니라 두 자루 있고, 서로 엇갈려 놓여 있다.",
+     "t.facing": "두 여인은 오른쪽 왕을 향하고 왕은 왼쪽 여인들을 향한다. 왼쪽 여인의 얼굴은 정면에 가까워 약간 애매하다."
+    },
+    "tries": [
+     {
+      "seconds": 8.828,
+      "input": 4,
+      "output": 826,
+      "cache_read": 56270,
+      "cache_create": 0,
+      "cost_usd": 0.013895000000000001,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "틀림",
+     "t.sword": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음"
+    },
+    "reasons": {
+     "t.sword": "바닥에 칼이 두 자루 있고 서로 엇갈려 놓여 있음. 기대는 곧은 칼 한 자루.",
+     "t.facing": "왼쪽 여인은 상체와 얼굴이 정면 쪽을 향하고 시선이 왕에게 분명히 닿지 않음. 왕 쪽을 향한다고 확인할 수 없음."
+    },
+    "tries": [
+     {
+      "seconds": 10.267,
+      "input": 4,
+      "output": 934,
+      "cache_read": 56270,
+      "cache_create": 0,
+      "cost_usd": 0.014974999999999999,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "back-wall-B-s202": {
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "틀림",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림"
+    },
+    "reasons": {
+     "s.no-blob": "오른쪽 벽에 얼굴·옷 없는 평평한 회색 사람 모양 그림자가 있다. 서 있는 인물의 실루엣처럼 보이는데 그 모양에 맞는 광원이나 인물이 없다.",
+     "t.three-people": "사람은 두 여인과 왕 셋이다. 오른쪽 벽의 그림자는 사람이 아니라 그림자로 보아 센 사람에 넣지 않았다.",
+     "t.guard": "오른쪽 벽의 정체불명 사람 모양 그림자가 덧붙은 인물처럼 보여 결함으로 판정했다."
+    },
+    "tries": [
+     {
+      "seconds": 10.621,
+      "input": 4,
+      "output": 1196,
+      "cache_read": 45760,
+      "cache_create": 10510,
+      "cost_usd": 0.058584,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "틀림",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림"
+    },
+    "reasons": {
+     "s.no-blob": "오른쪽 벽에 얼굴과 옷 없이 평평한 회색 사람 모양 그림자가 남아 있다. 왕은 앉아 있어서 이 모양과 맞지 않는다.",
+     "t.guard": "오른쪽 벽의 회색 사람 모양은 덧붙은 유령 같은 인물처럼 보인다."
+    },
+    "tries": [
+     {
+      "seconds": 10.871,
+      "input": 4,
+      "output": 1168,
+      "cache_read": 47088,
+      "cache_create": 9182,
+      "cost_usd": 0.05312479999999999,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "틀림",
+     "t.moment": "맞음",
+     "t.three-people": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.plead-hands": "맞음",
+     "t.infant": "맞음",
+     "t.facing": "맞음",
+     "t.sword": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림"
+    },
+    "reasons": {
+     "s.no-blob": "오른쪽 벽에 사람 모양의 평평한 회색 그림자 실루엣이 따로 떠 있어 미완성 덩어리로 보임",
+     "t.guard": "오른쪽 벽의 정체불명 회색 사람형 그림자가 덧붙은 인물처럼 보여 결함으로 판정"
+    },
+    "tries": [
+     {
+      "seconds": 12.279,
+      "input": 4,
+      "output": 1180,
+      "cache_read": 47088,
+      "cache_create": 9182,
+      "cost_usd": 0.053244799999999995,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  }
+ }
+}
