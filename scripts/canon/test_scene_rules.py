@@ -1229,6 +1229,40 @@ class TrimPaperMargin(unittest.TestCase):
         img = self.picture(band=0, frame=(110, 110, 110))
         self.assertIs(self.P.trim(img), img)
 
+    @staticmethod
+    def sided(l, t, r, b, w=640, h=400):
+        """칠한 면을 변마다 다른 폭의 종이 빛으로 둘러싼 그림(빈 하늘 = 위쪽 종이 빛)."""
+        import random
+        from PIL import Image, ImageDraw
+        rnd = random.Random(1)
+        img = Image.new("RGB", (w, h), (243, 234, 214))
+        d = ImageDraw.Draw(img)
+        d.rectangle([l, t, w - r - 1, h - b - 1], fill=(205, 175, 125))
+        for _ in range(900):
+            x, y = rnd.randrange(l, w - r), rnd.randrange(t, h - b)
+            d.rectangle([x, y, min(w - r - 1, x + 12), min(h - b - 1, y + 12)], fill=(rnd.randrange(90, 200), rnd.randrange(60, 160), rnd.randrange(30, 120)))
+        return img
+
+    def test_top_only_band_is_sky(self):
+        """task 425 — 위쪽만 종이 빛(야외 빈 하늘, 승인 13장 띠 8장)은 여백이 아니라 그대로."""
+        img = self.sided(0, 60, 0, 0)
+        self.assertEqual(self.P.bands(img)[1], 60)
+        self.assertEqual(self.P.measure(img), (0, 0, 0, 0))
+        self.assertIs(self.P.trim(img), img)
+
+    def test_three_sides_is_trimmed(self):
+        img = self.sided(0, 10, 10, 10)
+        self.assertEqual(self.P.measure(img), (0, 10, 10, 10))
+        self.assertEqual(self.P.measure(self.P.trim(img)), (0, 0, 0, 0))
+
+    def test_margin_plus_wide_sky_keeps_sky(self):
+        """고른 여백 10px + 위 하늘 60px — 위는 다른 변 가운데값의 WIDE배까지만, 하늘 대부분이 남는다."""
+        img = self.sided(10, 70, 10, 10)
+        self.assertEqual(self.P.measure(img), (10, 30, 10, 10))
+        out = self.P.trim(img)
+        self.assertEqual(self.P.bands(out)[0], 0)
+        self.assertGreater(self.P.bands(out)[1], 30)
+
 
 class AuthoredDetailRecord(unittest.TestCase):
     """judge.authored-detail-record(task 422) — 본문 근거 없는 [저작] 세부 문항(record)은 답만 적고 통과 셈에서 뺀다."""
