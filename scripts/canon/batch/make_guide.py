@@ -365,8 +365,8 @@ def make_pose_only(spec, backdrop=False):
         s2 = copy.deepcopy(spec)
         g2 = s2["guide"]
         g2.pop("split", None), g2.pop("control", None)
-        for k in [k for k, v in g2["shape"].items() if str(v).startswith("person")] + list(g2.get("pose", {})):
-            g2["depth"].pop(k, None)
+        for k in [k for k, v in g2["shape"].items() if str(v).startswith("person")] + [k for k in g2.get("pose", {}) if g2["shape"].get(k) != "sit"]:
+            g2["depth"].pop(k, None)   # task 424: 앉은 뼈대 인물은 걸상째 sit 깊이 몸을 남김 — 빼면 사람 뒤 벽 자리가 비어 후광(곁 장면 4/8)
         g2["pose"] = {}
         out = make(s2)
         for k, name in sorted(g.get("pose", {}).items()):

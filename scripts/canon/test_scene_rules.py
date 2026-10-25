@@ -1176,6 +1176,25 @@ class PoseHoldGesture(unittest.TestCase):
         plain["guide"].pop("pose"), plain["guide"].pop("split")
         self.assertEqual(M.make(s, 2).tobytes(), M.make(plain).tobytes())
 
+    def test_seated_pose_body_in_stage_one(self):
+        """task 424 — 스텝별 1단계(방 바탕 + 뼈대)에도 앉은 뼈대 인물은 sit 깊이 몸: 빼면 사람 뒤 벽 자리가 비어 후광(곁 장면 4/8).
+        서 있는 뼈대 인물은 그대로 뺌(기브아 f6 — 깊이와 섞이면 뼈대가 약함)."""
+        import sys
+        import derive_scene as ds
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as M
+        s = ds.load("authored-solomon-jerusalem-birth-inset")
+        x0, y0, x1, y1 = s["regions"]["bathsheba"]
+        g = M.make(s, 1).convert("L")
+        y = int((y0 + 0.8 * (y1 - y0)) * M.H)
+        floor = g.getpixel((int(0.1 * M.W), y))                  # 같은 높이 빈 바닥(몸을 빼면 걸상 자리도 이 값 — 옛 동작 104)
+        seat = g.getpixel((int((x0 + x1) / 2 * M.W), y))         # 걸상 높이 몸 가운데(뼈대 선 밖)
+        self.assertGreater(seat, floor + 50)
+        t = ds.load("authored-solomon-jerusalem-two-mothers")
+        a0, b0, a1, b1 = t["regions"]["mother-b"]
+        h = M.make(t, 1).convert("L")
+        self.assertLess(h.getpixel((int((a0 + a1) / 2 * M.W) + 3, int((b0 + 0.6 * (b1 - b0)) * M.H))), 120)
+
 
 class SitFacing(unittest.TestCase):
     """task 417 — make_guide sit 꼴은 인물 screen_facing을 따름(오른쪽이면 상자 안 좌우 대칭)."""
