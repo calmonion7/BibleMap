@@ -348,7 +348,8 @@ def wrongs(m, s):
 
 def pick(m):
     """후보 2장 = 거르기 틀림 최소 → 전체 틀림 최소 → 시드 순서(통과가 모자라면 불통과로 채우고 화면에 표시)."""
-    fails = {s: sum(maj(votes(m, s, q)) == "틀림" for q in FX["filter_qs"]) for s in FX["seeds"]}
+    gate = {q["id"] for q in J.gating(QS["S"] + QS["E"])}   # task 428: 기록 문항(record — [저작] 세부)은 답만 적고 통과 셈 밖
+    fails = {s: sum(maj(votes(m, s, q)) == "틀림" for q in FX["filter_qs"] if q in gate) for s in FX["seeds"]}
     order = sorted(FX["seeds"], key=lambda s: (fails[s], wrongs(m, s), FX["seeds"].index(s)))
     return [s for s in FX["seeds"] if fails[s] == 0], order[:2], fails
 

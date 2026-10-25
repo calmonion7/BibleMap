@@ -20831,12 +20831,24 @@ c10 가이드 · c11 시드(s101 21/22) · 22문항. 이 장면 다윗 cast_over
     {
       "id": "e.saul-age",
       "q": "사울 나이",
-      "what": "화면 오른쪽 사울이 70세쯤 된 왕으로 보이나(회색 섞인 짧은 수염 · 회색 머리 · 깊은 주름, 그래도 큰 키·넓은 어깨, 관이나 머리쓰개 없음)?"
+      "what": "화면 오른쪽 사울이 70세쯤 된 왕으로 보이나(깊은 주름진 늙은 얼굴, 그래도 큰 키·넓은 어깨)?"
+    },
+    {
+      "id": "e.saul-hair",
+      "q": "사울 머리·수염",
+      "what": "사울이 회색 섞인 짧은 수염에 짧은 회색 머리이고, 관이나 머리쓰개가 없나?",
+      "record": true
     },
     {
       "id": "e.david-youth",
       "q": "청년 다윗",
-      "what": "화면 왼쪽 다윗이 {{[figures.david-youth.0]|0}}~{{[figures.david-youth.1]|0}}세 청년으로 보이나(수염 없음 · 어린아이가 아닌 자란 몸 · 머리에 붙은 짧은 검은 곱슬머리 · 머리쓰개 없음)?"
+      "what": "화면 왼쪽 다윗이 {{[figures.david-youth.0]|0}}~{{[figures.david-youth.1]|0}}세 청년으로 보이나(어린아이가 아닌 자란 몸)?"
+    },
+    {
+      "id": "e.david-hair",
+      "q": "다윗 머리·수염",
+      "what": "다윗이 수염이 없고 머리에 붙은 짧은 검은 곱슬머리이며, 머리쓰개가 없나?",
+      "record": true
     },
     {
       "id": "e.wall",
@@ -20851,7 +20863,13 @@ c10 가이드 · c11 시드(s101 21/22) · 22문항. 이 장면 다윗 cast_over
     {
       "id": "e.tunic",
       "q": "튜닉",
-      "what": "다윗이 웃통을 벗지 않고 무릎 길이 모직 튜닉을 입었고, 무릎 아래는 긴 바지 없이 맨다리인가?"
+      "what": "다윗이 웃통을 벗지 않고 가슴·어깨를 덮는 옷을 입었나?"
+    },
+    {
+      "id": "e.tunic-detail",
+      "q": "튜닉 길이",
+      "what": "다윗의 옷이 무릎 길이 모직 튜닉이고, 무릎 아래는 긴 바지 없이 맨다리인가?",
+      "record": true
     },
     {
       "id": "e.face-each",
@@ -20861,7 +20879,13 @@ c10 가이드 · c11 시드(s101 21/22) · 22문항. 이 장면 다윗 cast_over
     {
       "id": "e.room",
       "q": "방 안",
-      "what": "거친 돌벽으로 된 소박한 방 안(실내)이고, 궁전 장식이나 바깥 풍경이 아닌가?"
+      "what": "소박한 방 안(실내)이고, 궁전 장식이나 바깥 풍경이 아닌가?"
+    },
+    {
+      "id": "e.room-stone",
+      "q": "돌벽",
+      "what": "방의 벽이 거친 돌벽인가?",
+      "record": true
     },
     {
       "id": "e.guard",
@@ -20871,7 +20895,8 @@ c10 가이드 · c11 시드(s101 21/22) · 22문항. 이 장면 다윗 cast_over
     {
       "id": "e.saul-costume",
       "q": "사울 차림",
-      "what": "사울이 무릎 길이쯤의 모직 튜닉에 가죽 띠를 맸고 무릎 아래는 긴 바지 없이 맨다리인가(발목까지 끌리는 수도복·긴 로브·판초가 아님)?"
+      "what": "사울이 무릎 길이쯤의 모직 튜닉에 가죽 띠를 맸고 무릎 아래는 긴 바지 없이 맨다리인가(발목까지 끌리는 수도복·긴 로브·판초가 아님)?",
+      "record": true
     },
     {
       "id": "e.dodge-read",
@@ -20997,12 +21022,16 @@ c10 가이드 · c11 시드(s101 21/22) · 22문항. 이 장면 다윗 cast_over
     "e.saul-empty",
     "e.saul-throw",
     "e.saul-age",
+    "e.saul-hair",
     "e.david-youth",
+    "e.david-hair",
     "e.wall",
     "e.lyre",
     "e.tunic",
+    "e.tunic-detail",
     "e.face-each",
     "e.room",
+    "e.room-stone",
     "e.guard",
     "e.saul-costume",
     "e.dodge-read",
@@ -21067,7 +21096,8 @@ c10 가이드 · c11 시드(s101 21/22) · 22문항. 이 장면 다윗 cast_over
 
 - 다수결 맞음(8장 중): 화풍 7 · 덩어리 8 · 순간 7 · 허공의 창 8 · 사울 빈손 8 · 던진 자세 8 · 사울 나이 8 · 청년 다윗 8 · 벽 앞 8 · 수금 8 · 튜닉 8 · 마주함 8 · 방 안 8 · 가드 6 · 사울 차림 7 · 피함이 보임 7 · 창 모양 8 · 수금 쥠 7 · 촉 방향 8 · 사울 몸 7 · 사울 비율 8 · 다윗 비율 8 · 두 사람 크기 7 · 던진 몸짓 7 · 사람 크기 8 · 수금 틀 8 · 창 4분의 3 8 · 창 길이 8 · 촉 크기 2 · 사울 길이 비 8 · 자루 이음매 8 · 촉 붙음 8 · 뒤끝 물미 8 · 덧붙은 막대 8 · 수금 크기 5 · 수금 하나 8 · 창 높이 8 · 수금 안음 7
 
-통과: 1/8 (후보 s7, s42)
+통과: 3/8 (후보 s42, s7)
+- (task 428 다시 판정 — 42문항 묶음 · 기록 5문항 통과 셈 밖. 38문항 첫 판정은 통과 1/8 (후보 s7, s42), 답 samples/gibeah-step23/m17e/metrics-v1.json · 아래 다수결 줄은 첫 판정)
 
 - s7 38문항 전부 맞음 · 근접 s42·s23·s303(틀림 1 — s303 촉 크기) · s101 8(수금이 의자에 걸침 등).
 - 사람 m16e 사유 축: 창 높이 8/8 · 수금 안음 7/8 · 수금 쥠 5 → 7. 바뀌지 않은 축은 m16e와 같음(바탕 같음).
@@ -21079,3 +21109,57 @@ c10 가이드 · c11 시드(s101 21/22) · 22문항. 이 장면 다윗 cast_over
 - 답 samples/gibeah-step23/pick-verdict-m17e.txt → record: 장면 채택 — approved.final = local-edit s7(m15 바탕 + 창 합성 + 수금 안아 넣기) · spec_hash bf59d74178c1 · 원장 판 8c95dbfde675 · 레포 사본 samples/gibeah-step23/m17e/approved-authored-saul-gibeah-spear.png.
 - 승인 뒤 뒷일: 화풍 점검(task 389 B 묶음 — 승인 최종 그림)에 새 승인 s7 판정 3회 채움(화풍 맞맞맞 · 결론 「CN 탓」 그대로) · recheck.source가 국소 편집 바탕을 plain-words로만 가정해 `recheck.py images`가 멈춤 → gibeah-step23 시도 바탕도 찾게 고침(시험 ApprovedSource) · 승인 그림 잰 규칙 모두 통과 0/12 → 1/12.
 - 루프 C7 통과 → 목표 달성(장면 1 기브아 창 단계 ①~④).
+
+## task 428 — m17e 문항의 [저작] 세부를 기록 문항으로 (2026-10-26)
+
+원장 `judge.authored-detail-record`(task 422)를 그 전에 만든 m17e 묶음에 소급. 기준 = 명세 핵심 칸(인물 pose·gesture·gaze · verse_elements · 인용 절)에 없는 [저작] 세부(카드 _why·장면 칸 「본문 밖 · 저작자 정함」)는 기록(`"record": true` — 답은 적되 통과 셈 밖). 원장·사전·크기 기준표에서 오는 그림 규칙 문항(화풍·가드·비율·지물 모양·크기)은 [저작] 세부가 아니라 규칙이므로 거르기 그대로. `batch/gibeah_redraw.pick`이 `judge_items.gating`을 거침(시험 GibeahRecordGating).
+
+| 문항 | 근거 칸 / 구절 | 가름 |
+|---|---|---|
+| s.style 화풍 | 화풍 머리(원장) | 규칙 |
+| s.no-blob 덩어리 | 품질(원장 guard 계열) | 규칙 |
+| e.moment 순간 | moment 18:11 · VE 「창을 막 던진 사울」「몸을 비틀어 창을 피함」 | 핵심 |
+| e.spear-air 허공의 창 | VE 18:10 「A spear flies through the air」 | 핵심 |
+| e.saul-empty 사울 빈손 | 사울 pose 「빈손이 된 던진 팔」 · VE 18:11 | 핵심 |
+| e.saul-throw 던진 자세 | 사울 pose·gesture · VE 18:11 having just hurled | 핵심 |
+| e.saul-age 사울 나이 | 나이 [추론](cast_override_why · 13:1) · 큰 키·넓은 어깨(카드 heightRel·silhouette) + 수염·머리색·머리쓰개 없음([저작] 카드 beardVolume·headOutline·hair) | **나눔** → e.saul-age 핵심 / e.saul-hair 기록 |
+| e.david-youth 청년 다윗 | 나이 [추론](카드 ageBand 18:5·18:13·18:27) · 자란 몸 + 수염 없음·곱슬·머리쓰개 없음([저작] 카드 hair·beardVolume·headOutline) | **나눔** → e.david-youth 핵심 / e.david-hair 기록 |
+| e.wall 벽 앞 | VE 18:11 자리 「standing with his back against the stone wall」 | 핵심 |
+| e.lyre 수금 | VE 18:10 수금 · 사전 수금 L2 | 핵심 |
+| e.tunic 튜닉 | 장면 costume 「가슴·어깨를 덮음」(397 웃통 벗은 결함) + 무릎 길이 모직·맨다리([저작] 카드 _why.costume 시대 복식) | **나눔** → e.tunic 핵심(옷을 입음) / e.tunic-detail 기록 |
+| e.face-each 마주함 | 두 인물 gaze · VE 18:9 「eyes wide and fixed on David」 | 핵심 |
+| e.room 방 안 | VE 18:10 장소 「the inside of a plain room in Saul's house」 + 거친 돌벽(background 「방의 모습은 본문 밖 · 저작자 정함」) | **나눔** → e.room 핵심 / e.room-stone 기록 |
+| e.guard 가드 | 품질(원장) | 규칙 |
+| e.saul-costume 사울 차림 | 장면 costume 「집 안의 평상 차림」 · 카드 _why.costume [저작](시대 복식) — 핵심 칸 근거 없음 | **기록** |
+| e.dodge-read 피함이 보임 | VE 18:11 피함 · 다윗 pose | 핵심 |
+| e.spear-shape 창 모양 | 사전 창(뒤끝 물미 삼하 2:23) · 원장 spec.lexicon-link | 규칙 |
+| e.lyre-held 수금 쥠 | 다윗 pose 「수금은 두 손으로 가슴에 붙여 쥔다」 · VE 18:10 | 핵심 |
+| e.spear-direction 촉 방향 | VE 18:11 다윗을 향해 던짐 | 핵심 |
+| e.saul-body 사울 몸 | 원장 pose-body-mass · 기준표 | 규칙 |
+| e.proportion-saul 사울 비율 | 원장 no-inflating-build · 기준표 | 규칙 |
+| e.proportion-david 다윗 비율 | 원장 guide-head-ratio · 기준표 | 규칙 |
+| e.proportion-pair 두 사람 크기 | 원장 height-ratio · 기준표 | 규칙 |
+| e.saul-throw-release 던진 몸짓 | 사울 gesture · VE 18:11 | 핵심 |
+| e.figure-size 사람 크기 | 원장 figure-scale | 규칙 |
+| e.lyre-frame 수금 틀 | 사전 수금 L2 | 규칙 |
+| e.spear-two-thirds 창 4분의 3 | 원장 flight-position | 규칙 |
+| e.spear-length 창 길이 | 사전 창 look.size | 규칙 |
+| e.spear-tip-small 촉 크기 | 사전 창 look.size.parts.point | 규칙 |
+| e.saul-proportion-measure 사울 길이 비 | 기준표 age_head·body.crotch | 규칙 |
+| e.spear-uniform 자루 이음매 | 사전 창 · 원장 object-crisp | 규칙 |
+| e.spear-tip-attached 촉 붙음 | 사전 창 · 원장 edit.size-in-crop | 규칙 |
+| e.spear-back-cap 뒤끝 물미 | 사전 창(삼하 2:23) | 규칙 |
+| e.saul-no-stick 덧붙은 막대 | 품질(원장 no-second-point 계열) | 규칙 |
+| e.lyre-size 수금 크기 | 사전 수금 look.size | 규칙 |
+| e.lyre-one 수금 하나 | 품질 | 규칙 |
+| e.spear-height 창 높이 | 원장 flight-height | 규칙 |
+| e.lyre-hold-natural 수금 안음 | 사전 수금 look.hold(hug) · 원장 derive.held-hold | 규칙 |
+
+셈: 38문항 → 핵심 11 · 규칙 22 · 기록 1 · 나눔 4 → 고친 묶음 42문항(거르기 37 · 기록 5: e.saul-hair·e.david-hair·e.tunic-detail·e.room-stone·e.saul-costume).
+
+### 다시 셈 (task 428)
+
+- 저장된 답(38문항 첫 판정)으로 사울 차림만 기록 → 통과 1/8 (s7) 그대로 — 사울 차림이 틀린 s202는 사울 몸·두 사람 크기도 틀림.
+- 나눔이 생겨 8시드 × 42문항 전 문항 한 묶음으로 다시 판정(Sonnet 80건 · 로그 batch/gibeah-m17e-rejudge428.log · 첫 답 metrics-v1.json 보관): **통과 3/8 (s42 · s7 · s23)** — 사람 채택 s7 통과 유지.
+- 늘어난 s42·s23: 첫 판정 틀림은 둘 다 촉 크기 하나(촉 크기 8장 중 2 → 4) — 기록 문항 때문이 아니라 판정자 흔들림(메모 「판정자 재현성」 — 같은 그림도 묶음마다 뒤집힘). 기록 문항 틀림은 s202 사울 차림 하나뿐이고 그 장은 거르기 틀림 2(피함이 보임·사울 몸)로 불통과.
+- 나눈 기록 문항(사울 머리·수염 · 다윗 머리·수염 · 튜닉 길이 · 돌벽)은 8장 모두 맞음 — 이 묶음에서는 [저작] 세부가 통과를 막지 않았다. 규칙은 다음 문항 묶음(두 여인·기브아 수금 단계 ②)부터 만들 때 걸린다.

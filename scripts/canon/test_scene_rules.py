@@ -1383,5 +1383,22 @@ class PlateCastToken(unittest.TestCase):
         self.assertEqual(recheck.plate_cast_token_errors(s), [])
 
 
+class GibeahRecordGating(unittest.TestCase):
+    """task 428 — 기브아 창 통과 셈(gibeah_redraw.pick)은 기록 문항(record)의 틀림을 세지 않는다."""
+
+    def test_record_wrong_not_counted(self):
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import gibeah_redraw as G
+        fx = {"seeds": [1, 2], "filter_qs": ["e.a", "e.b"]}
+        qs = {"S": [], "E": [{"id": "e.a", "q": "", "what": ""}, {"id": "e.b", "q": "", "what": "", "record": True}]}
+        ans = lambda a, b: {"E": {"1": {"answers": {"e.a": a, "e.b": b}}}}
+        m = {"answers": {"g:1": ans("맞음", "틀림"), "g:2": ans("틀림", "맞음")}}
+        with mock.patch.object(G, "FX", fx), mock.patch.object(G, "QS", qs):
+            ok, _, fails = G.pick(m)
+        self.assertEqual(ok, [1])
+        self.assertEqual(fails, {1: 0, 2: 1})
+
+
 if __name__ == "__main__":
     unittest.main()
