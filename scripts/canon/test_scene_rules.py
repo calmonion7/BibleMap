@@ -699,7 +699,8 @@ class WidenUnmeasured(unittest.TestCase):
 
     def test_no_guide_people_is_unmeasured(self):
         import derive_scene as ds
-        s = ds.load("authored-david-goliath-gath")   # 사람 3 · 청년 다윗 · 무리 2 · guide 없음
+        s = copy.deepcopy(ds.load("authored-david-goliath-gath"))   # 사람 3 · 청년 다윗 · 무리 2
+        s.pop("guide", None)   # task 415 회고: 살아 있는 명세가 재저작되어도 「guide 없음」을 사본으로 고정
         for f in (recheck.figure_scale_errors, recheck.youth_height_errors, recheck.height_ratio_errors, recheck.perspective_errors):
             self.assertIsNone(f(s), f.__name__)
 
