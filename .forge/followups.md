@@ -83,3 +83,11 @@
 <!-- followup: fu-3a6978704178 | source: cast-age-band | task: 429 | date: 2026-10-26 | status: taken | taken: 431 -->
 - v1 `age` 칸(시선 대상 문구 「looking toward the <age> …」에 쓰임)과 카드 ageBand class가 어긋나는지 재는 규칙 — solomon-prime 「king in his prime」(class middle) · david-prime 「mature king」 등 전 카드 점검.
   근거: task 429 scripture-reviewer 보류 ③ — abner 「middle-aged commander」가 60대 카드와 어긋났고 derive_scene.whole_prompt 226행이 이 칸을 파생 문구로 씀. 이번엔 abner만 고침.
+
+<!-- followup: fu-62713f7a7248 | source: two-mothers-step23-backwall | task: 432 | date: 2026-10-26 | status: open | taken: - -->
+- 두 여인 단계 ④ 사람 판정 화면 — B 기계 통과 4장(s42 s11 s23 s101) + 기계 불통과 표본(칼 자리 s7·s5)을 한 질문씩 폰 화면으로. s42는 칼이 가운데 여인 발치(판정자 너그러움)라 사람 눈으로 갈라 볼 장.
+  근거: notes/TWO-MOTHERS-STEP23.md 결과·눈 확인 · samples/two-mothers-step23/back-wall-B-s*.png.
+
+<!-- followup: fu-b3f0cc55b565 | source: two-mothers-step23-backwall | task: 432 | date: 2026-10-26 | status: open | taken: - -->
+- 두 여인 칼 자리 수리 — 「a straight iron sword lying on the floor before the king's wooden seat」인데 8시드 중 B 3장이 여인 발치·두 자루(A는 벽에 기댐 포함 4장). 가이드에 칼 자리(왕 자리 앞 바닥)를 넣거나 지물 편집(edit.held-prop-add 꼴)으로 — fg-loop 수리 반복 몫.
+  근거: notes/TWO-MOTHERS-STEP23.md 칼 틀림 이유 · rule_ab report t.sword A 4/8 · B 5/8.
