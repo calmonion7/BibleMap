@@ -8,7 +8,9 @@
 가장자리 줄이 종이가 아니면(그림이 가장자리까지 — 그린 틀 포함) 0. 잘라낼 때는 띠 + 번짐 2px를 자르고 원래 비율을 지켜(남는 쪽 가운데로 더 자름) 원래 크기로 키운다.
 안쪽에 그린 틀·액자는 띠가 아니라 그대로 남는다 — 가드 문항이 계속 잡는다.
 종이 여백은 세 변 이상에 고르게 남는다 — 한두 변만 종이 빛이면 야외 빈 하늘·빈 벽·지물 시트라 자르지 않고(task 425 — 승인 13장 띠 8장이 모두 위쪽만 = 하늘),
-세 변 이상이어도 한 변이 다른 띠 변 가운데값의 WIDE배를 넘으면 여백 + 빈 면으로 보고 그 배까지만 자른다."""
+세 변 이상이어도 한 변이 다른 띠 변 가운데값의 WIDE배를 넘으면 여백 + 빈 면으로 보고 그 배까지만 자른다.
+예외(task 427): 하늘은 위쪽에만 생기므로 **아래쪽만** 띠는 넓고(BOTTOM_MIN) 띠 바로 안쪽이 그림이면(종이 빛 줄 비율 INNER 미만) 종이로 보고 자른다
+— 곁 장면 s202 26~32px(타일·돗자리가 띠에서 끊김, 안쪽 0.34~0.49) vs 기브아 빈 바닥 3~10px(안쪽 0.73~0.90)."""
 import statistics
 import sys
 
@@ -22,6 +24,8 @@ CAP = 0.2         # 한 변 여백 상한(그림 크기 비율) — 넘으면 �
 FADE = 2          # 띠 안쪽 번짐 줄
 SIDES = 3         # 띠가 이만큼 변에서 잡혀야 종이 여백(task 425)
 WIDE = 3          # 한 변 띠가 다른 띠 변 가운데값의 이 배를 넘으면 그 배까지만(여백 + 빈 하늘)
+BOTTOM_MIN = 16   # 아래쪽만 띠가 종이일 최소 폭 px(task 427)
+INNER = 0.6       # 그 띠 바로 안쪽 줄들에서 띠 빛 화소 비율이 이 미만이면 안쪽은 그림 — 띠가 종이(넘으면 밝은 바닥이 이어짐)
 
 
 def paper_line(line):
@@ -37,12 +41,24 @@ def measure(im):
     """→ (왼, 위, 오른, 아래) 잘라낼 종이 여백 px — bands에 세 변 규칙·넓은 변 상한을 건 값."""
     m = bands(im)
     if sum(1 for v in m if v) < SIDES:
-        return (0, 0, 0, 0)
+        return (0, 0, 0, m[3]) if bottom_paper(im, m) else (0, 0, 0, 0)
     out = []
     for i, v in enumerate(m):
         rest = [x for j, x in enumerate(m) if x and j != i]
         out.append(min(v, int(WIDE * statistics.median(rest))) if v else 0)
     return tuple(out)
+
+
+def bottom_paper(im, m):
+    """아래쪽만 띠가 종이인가(task 427) — 폭 BOTTOM_MIN 이상 · 띠 바로 안쪽(번짐 뒤 8줄)이 띠 빛이 아님(그림이 띠에서 끊김)."""
+    l, t, r, b = m
+    if l or t or r or b < BOTTOM_MIN:
+        return False
+    a = np.asarray(im.convert("RGB")).astype(int)
+    h = a.shape[0]
+    c = np.median(a[h - b:].reshape(-1, 3), axis=0)
+    inner = a[h - b - FADE - 8:h - b - FADE]
+    return (np.abs(inner - c) <= TOL).all(axis=2).mean() < INNER
 
 
 def bands(im):

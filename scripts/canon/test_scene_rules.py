@@ -1337,6 +1337,28 @@ class TrimPaperMargin(unittest.TestCase):
         self.assertEqual(self.P.bands(out)[0], 0)
         self.assertGreater(self.P.bands(out)[1], 30)
 
+    def test_bottom_only_band_is_paper(self):
+        """task 427 — 아래쪽만 넓은 띠 + 띠 안쪽이 그림이면 종이(곁 장면 s202 26~32px) → 잘림. 위쪽만은 하늘이라 그대로."""
+        img = self.sided(0, 0, 0, 30)
+        self.assertEqual(self.P.measure(img), (0, 0, 0, 30))
+        out = self.P.trim(img)
+        self.assertEqual(out.size, img.size)
+        self.assertEqual(self.P.measure(out), (0, 0, 0, 0))
+        self.assertEqual(self.P.measure(self.sided(0, 30, 0, 0)), (0, 0, 0, 0))
+
+    def test_bottom_only_thin_or_floor_is_kept(self):
+        """아래쪽만 얇은 띠(기브아 빈 바닥 3~10px)나 안쪽이 같은 밝은 바닥으로 이어지는 띠는 그대로."""
+        self.assertEqual(self.P.measure(self.sided(0, 0, 0, 8)), (0, 0, 0, 0))
+        import random
+        from PIL import ImageDraw
+        rnd, img = random.Random(2), self.sided(0, 0, 0, 30)
+        d = ImageDraw.Draw(img)
+        d.rectangle([0, 400 - 60, 639, 400 - 31], fill=(242, 233, 212))   # 띠 바로 위도 밝은 바닥 빛 — 결(얼룩 10%)이 있어 종이 줄은 아님
+        for _ in range(1900):
+            x, y = rnd.randrange(640), rnd.randrange(400 - 60, 400 - 30)
+            d.point((x, y), fill=(215, 200, 165))
+        self.assertEqual(self.P.measure(img), (0, 0, 0, 0))
+
 
 class AuthoredDetailRecord(unittest.TestCase):
     """judge.authored-detail-record(task 422) — 본문 근거 없는 [저작] 세부 문항(record)은 답만 적고 통과 셈에서 뺀다."""
