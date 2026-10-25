@@ -20,7 +20,13 @@
     "dark ochre",
     "tan"
   ],
-  "propCandidates": [],
+  "propCandidates": [
+    {
+      "prop": "an infant",
+      "verse": "왕상 3:20",
+      "ko": "산 아들 — [추론] 3:20 「자기의 품에 누이고」, 3:27 판결 전까지 제 품에 안음(task 415)"
+    }
+  ],
   "neg": [
     "crown",
     "fine jewelry",
