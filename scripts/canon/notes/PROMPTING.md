@@ -702,3 +702,10 @@ picture.」이 배경 뒤에 한 번 들어간다. 장면 최상위 `screen_ligh
 - **칠한 지물은 팔 앞을 덮는다**: 기준표 크기 틀을 칠하면 크기는 잡혀도 팔·손 위에 그려져 「앞에 들고 감」·덤 막대가 됨. 팔 뒤에만 칠하기는 피부·튜닉 색이 겹쳐 못 가름 → 쥔 지물은 칠하지 말고 **꼴을 말로**(「clutched upright against his chest with both forearms wrapped around its sound box … It does not hang from his hands」, mode hug) — m17e 수금 안음 7/8 · 수금 쥠 5 → 7.
 - **얼굴에 닿지 않게는 뼈대에서 하한을**: 숙인 뼈대는 코·목 높이가 같아 「턱 아래」 하한을 목 점으로 잡으면 입을 가린다 → 코 + 기준표 나이대 머리 0.6.
 - 남은 한계: hug 꼴은 수금 위끝이 입 옆까지 오는 장이 있음(m17e s7·s42) — 문항으로 계속 잰다.
+
+## 30. Z-Image Turbo는 부정어가 안 먹는다 — 원치 않는 것은 **부르는 낱말을 빼고**, 빈 넓은 면은 **재질 문구로 채운다** (2026-10-25 실측, task 421)
+
+Turbo는 CFG 0(`guidance_scale=0.0`, ZIMAGE.md)이라 명세 `neg`·`NEG`는 생성에 실리지 않는다. 프롬프트 안의 「no X」·「uncovered」도 못 막았다.
+- **금띠**: 다윗 카드 문구에 「hair covering the whole head, no headwear」가 있는데도 「a king … in a long deep red **royal** robe」면 머리에 금띠(417 판 전부 · 421 s42). 「his dark curly hair uncovered」를 더해도 그대로(1/1) → 장면 차림에서 「royal」 하나 빼니 **맨머리 8/8**. 왕관·머리띠를 부르는 것은 직함+「royal」 묶음이다(왕관이 본문에 있는 장면 — 요단 귀환 — 은 그대로 둔다).
+- **후광**: 앉은 어머니 + 갓난아기 + 넓고 빈 뒷벽(가이드 평평한 바탕)이면 뒷벽 가운데에 둥근 빛 번짐(성모자상 후광처럼). 「the back wall drawn block by block like the side walls」로 빈 면을 재질로 채우니 **후광 없음 8/8**.
+- 두 결과 모두 한 장면(솔로몬 출생)의 8시드 근거 — 다른 장면에서 같은 결이 보이면 원장 derive 규칙 후보(후속 fu-1592d4713d06).
