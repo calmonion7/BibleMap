@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "437a3ca62c97",
+  "version": "ecd4c982c439",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -167,7 +167,7 @@
      "note": "한 장 시도(시드 하나, 새 그림 — images_from 검증 제외)는 같은 그림에 5표를 묻고 다수결 — 한 장 반복은 규칙 효과보다 판정 흔들림이 커서 3표로는 결함을 가를 수 없음"},
     {"id": "generate.pose-hold", "layer": "generate", "scope": "all", "check": "recheck.pose_hold_errors",
      "source": "notes/GIBEAH-STEP23.md · task 404 f1e~f3e(깊이 꼴 숙인 다윗 — 「수금이 벽에 기대 있음」 5표 중 5 × 3장 · 다윗 다리 길고 가늚)", "since": "2026-10-23 task 404",
-     "note": "(넓힘 task 417: 말을 주고받는 손짓 「손을 내밂·폄·모음」도 — 출생 나단 「한 손을 펴 왕 쪽으로 내밂」·다윗 「두 손을 모음」 문구만 0/4, 뼈대 speak_open으로 나단 1/1(다윗 listen_clasp은 편 손으로 그려짐) · 품에 안은 아기(hug)는 사전 hold 문구로 2/2라 넣지 않음 · 새로 걸린 두 여인 참 어머니는 plead_out) 몸짓 칸이 「두 손으로 … 가슴(품)에」처럼 손 자리를 말하는 인물은 guide.pose 뼈대 — 두 손목을 그 자리에 모은 꼴(make_guide POSES duck_clutch). 깊이 꼴은 손 자리를 못 줌(사울 던진 몸짓 c1~c6과 같은 벽)", "retired": "2026-10-23 f5 — f4e 5표: 수금 쥠 5→1로 고쳤으나 벽 앞·피함·순간 0→5/5로 무너짐(다윗이 벽에서 떨어져 선 채) · 다윗 깊이 꼴 유지, 손 자리는 다른 수단"},
+     "note": "(넓힘 task 424: 사람을 품에 안은 인물도 — 사전 hug 항목 look.hold.person(아기). 출생 곁 장면 사전 hold 문구만으로 아기가 무릎·허리에 누움(곁 순간 421 2/8 · 422 4/8) → 앉은 안음 cradle_sit · 선 안음 cradle_stand 뼈대. 수금 hug는 지물이라 뺌 · 폐기(2026-10-23 f5)를 되돌림 — 폐기 사유는 기브아 숙인 다윗 duck_clutch가 벽 앞 자세를 무너뜨린 한 장면 결과였고 task 417부터 출생·두 여인에 뼈대로 쓰고 있었음 · 기브아 다윗은 깊이 꼴 유지(뼈대 있음 — 걸리지 않음)) (넓힘 task 417: 말을 주고받는 손짓 「손을 내밂·폄·모음」도 — 출생 나단 「한 손을 펴 왕 쪽으로 내밂」·다윗 「두 손을 모음」 문구만 0/4, 뼈대 speak_open으로 나단 1/1(다윗 listen_clasp은 편 손으로 그려짐) · 품에 안은 아기(hug)는 사전 hold 문구로 2/2라 넣지 않음(→ task 424에서 되돌림) · 새로 걸린 두 여인 참 어머니는 plead_out) 몸짓 칸이 「두 손으로 … 가슴(품)에」처럼 손 자리를 말하는 인물은 guide.pose 뼈대 — 두 손목을 그 자리에 모은 꼴(make_guide POSES duck_clutch). 깊이 꼴은 손 자리를 못 줌(사울 던진 몸짓 c1~c6과 같은 벽)", "retired_was": "2026-10-23 f5 — f4e 5표: 수금 쥠 5→1로 고쳤으나 벽 앞·피함·순간 0→5/5로 무너짐(다윗이 벽에서 떨어져 선 채) · 다윗 깊이 꼴 유지, 손 자리는 다른 수단 · 2026-10-25 task 424 되돌림"},
     {"id": "generate.pose-only-control", "layer": "generate", "scope": "all", "check": "recheck.pose_only_errors",
      "source": "notes/GIBEAH-STEP23.md · task 404 진단(gibeah-pose-diag P1·P2 — 뼈대만: 사울 몸통 기울고 다윗 문구대로 숙임 vs 깊이+뼈대 f6: 둘 다 곧게 섬) · 사람 「다른방법 없나? 무슨문제지?」", "since": "2026-10-23 task 404",
      "note": "guide.pose가 있으면 guide.control = pose — Union ControlNet 한 장에 깊이 그림을 섞지 않고 검은 바탕에 뼈대 + 허공 물체 꼴만(make_pose_only). 깊이를 섞으면 깊이 실루엣이 선 사람으로 그려지고 뼈대(기운 몸통·든 뒷발)가 약하게 읽힘. 뼈대 없는 인물·벽·바탕은 문구에 맡김", "retired": "2026-10-23 g2e — 진단은 맞음(뼈대만이면 몸짓이 살아 다윗 숙임·사울 기욺)이나 맞바꿈: 몸 덩어리·벽 자리·수금 모양을 잃고 액자(g1e 다수결 틀림 6 · g2e 15 vs 섞은 f6e3 2). 깊이+뼈대 섞기 유지, make_pose_only·duck_low는 남김"},

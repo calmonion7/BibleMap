@@ -46,26 +46,30 @@ def gen():
     jobs = []
     for sid in (MAIN, sub):
         recheck.require_pass(sid)   # generate.spec-gate
-        guide = os.path.join(SAMPLES, f"guide-{sid}.png")
+        split = D.load(sid)["guide"].get("split")
+        guides = [os.path.join(SAMPLES, f"guide-{sid}{x}.png") for x in (("-1", "-2") if split else ("",))]
         w = W
         if sid == sub:   # 곁 장면은 구름 틀 비율로 그림 — 넓은 화면에 앉은 한 사람이면 빈자리에 다른 사람을 그려 넣음(s42 곁에 선 여인, 문구를 바꿔도 남음)
             w = inset_w(spec)
-            g = Image.open(guide).convert("RGB")   # make_guide sit 꼴이 screen_facing을 따름(task 417 — 전엔 여기서 좌우를 뒤집음)
             rs = [r for k, r in D.load(sid)["regions"].items() if k != "full"]
             cx = sum((r[0] + r[2]) / 2 for r in rs) / len(rs) * W   # 인물 구역 가운데를 중심으로 자름(출생 곁 장면은 0.5 — 전과 같음)
             x0 = min(max(0, round(cx - w / 2)), W - w)
-            g = g.crop((x0, 0, x0 + w, H))
-            guide = os.path.join(OUT, f"_guide-{sid}-flip-{w}.png")
-            g.save(guide)
-        cn = {"control": guide, **CN}
-        if D.load(sid)["guide"].get("split"):   # 시도 3: 뼈대 인물은 스텝별 가이드(앞 2스텝 뼈대 → 뒤 2스텝 깊이, 기브아 m17e와 같은 값)
-            cn = {"control": os.path.join(SAMPLES, f"guide-{sid}-1.png"), "control2": os.path.join(SAMPLES, f"guide-{sid}-2.png"),
-                  "scale": CN["scale"], "cn_steps": 2, "cn_steps2": 2}
+            # make_guide sit 꼴이 screen_facing을 따름(task 417 — 전엔 여기서 좌우를 뒤집음) · 스텝별 두 장도 같이 자름(task 424 — 곁 장면 뼈대)
+            guides = [_crop(g, x0, w) for g in guides]
+        cn = {"control": guides[0], **CN}
+        if split:   # 시도 3: 뼈대 인물은 스텝별 가이드(앞 2스텝 뼈대 → 뒤 2스텝 깊이, 기브아 m17e와 같은 값)
+            cn = {"control": guides[0], "control2": guides[1], "scale": CN["scale"], "cn_steps": 2, "cn_steps2": 2}
         jobs += [{"prompt": D.route_prompt(D.load(sid)), "seed": seed, "w": w, "h": H, "out": img(sid, seed), **cn}
                  for seed in SEEDS if not os.path.exists(img(sid, seed))]
     print(f"[Inset] {len(jobs)}장 생성", flush=True)
     if jobs:
         print(f"[Inset] 생성 끝 {run_scene.gen_zimage(jobs, OUT, 'gencn')}", flush=True)
+
+
+def _crop(path, x0, w):
+    out = os.path.join(OUT, f"_{os.path.basename(path)[:-4]}-flip-{w}.png")
+    Image.open(path).convert("RGB").crop((x0, 0, x0 + w, H)).save(out)
+    return out
 
 
 def inset_w(spec):

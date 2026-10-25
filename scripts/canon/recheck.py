@@ -420,9 +420,17 @@ def pose_hold_errors(spec):
     pose = (spec.get("guide") or {}).get("pose", {})
     if "guide" not in spec:
         return []
-    hand = lambda t: HOLD.search(t) or GESTURE.search(t)   # task 417 넓힘: 품에 안은 손(hug — 사전 hold 문구로 2/2 그려짐)은 넣지 않음
-    miss = [f["region"] for f in spec["figures"] if hand((f.get("gesture") or {}).get("ko", "")) and f["region"] not in pose]
-    return [f"{', '.join(miss)}: 몸짓이 손 자리(두 손으로 가슴 · 손을 내밂·폄·모음)를 말하는데 guide.pose 뼈대가 없다 — 깊이 꼴·문구는 손 자리를 못 준다"] if miss else []
+    hand = lambda t: HOLD.search(t) or GESTURE.search(t)
+    miss = [f["region"] for f in spec["figures"] if (hand((f.get("gesture") or {}).get("ko", "")) or _holds_person(f)) and f["region"] not in pose]
+    return [f"{', '.join(miss)}: 몸짓이 손 자리(두 손으로 가슴 · 손을 내밂·폄·모음 · 사람을 품에 안음)를 말하는데 guide.pose 뼈대가 없다 — 깊이 꼴·문구는 손 자리를 못 준다"] if miss else []
+
+
+def _holds_person(f):
+    """task 424 — 손 지물이 사전 hug 항목이고 look.hold.person(안기는 것이 사람 — 아기)이면 손 자리를 말하는 몸짓.
+    출생 곁 장면: 사전 hold 문구만으로는 아기가 무릎·허리에 누움(곁 순간 421 묶음 2/8 · 422 묶음 4/8). 수금 hug는 지물이라 뺌(기브아 f4e — 뼈대가 벽 앞 자세를 무너뜨림)."""
+    w = {x: w for w in _lexicon().values() for x in w.get("held", [])}.get(f.get("prop"))
+    h = (w or {}).get("look", {}).get("hold") or {}
+    return h.get("mode") == "hug" and bool(h.get("person"))
 
 
 def pose_only_errors(spec):

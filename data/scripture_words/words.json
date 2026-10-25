@@ -1361,6 +1361,7 @@
           "item": "a newborn baby",
           "noun": "baby",
           "en": "cradled in both arms against the chest",
+          "person": true,
           "grounds": "[직접] 룻 4:16 「나오미가 아기를 취하여 품에 품고」 · 왕상 3:20 「내 아들을 내 곁에서 가져다가 자기의 품에 누이고」 — 품에 안음"
         }
       },

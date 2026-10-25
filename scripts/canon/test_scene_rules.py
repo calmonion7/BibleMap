@@ -1133,17 +1133,48 @@ class InsetFrameAspect(unittest.TestCase):
 
 
 class PoseHoldGesture(unittest.TestCase):
-    """generate.pose-hold 넓힘(task 417) — 말을 주고받는 손짓(내밂·폄·모음)은 뼈대, 품에 안은 아기(hug)는 문구로."""
+    """generate.pose-hold 넓힘(task 417 · 424) — 말을 주고받는 손짓(내밂·폄·모음)과 사람을 품에 안은 인물(사전 hug · look.hold.person)은 뼈대."""
 
     def test_speaking_hand_without_pose_fails(self):
         s = birth()
         s["guide"].pop("pose")
         self.assertTrue(recheck.pose_hold_errors(s))
 
-    def test_hug_not_flagged(self):
+    def test_person_hug_needs_pose(self):
+        """task 424 — 사전 hold 문구만으로는 아기가 무릎·허리에 누움(곁 순간 421 2/8 · 422 4/8) → 안은 인물은 뼈대."""
         import derive_scene as ds
+        for sid, who in (("authored-solomon-jerusalem-birth-inset", "bathsheba"), ("authored-solomon-jerusalem-two-mothers", "mother-b")):
+            s = copy.deepcopy(ds.load(sid))
+            self.assertEqual(recheck.pose_hold_errors(s), [])
+            s["guide"]["pose"].pop(who)
+            self.assertIn(who, " ".join(recheck.pose_hold_errors(s)))
+
+    def test_thing_hug_not_flagged(self):
+        """수금 hug는 지물이라 넣지 않음(기브아 f4e — 숙인 다윗 뼈대가 벽 앞 자세를 무너뜨림)."""
+        import derive_scene as ds
+        self.assertEqual(recheck.pose_hold_errors(ds.load("authored-david-gibeah-harp")), [])
+
+    def test_cradle_wrists_at_chest(self):
+        """안음 뼈대는 두 손목이 위몸 위쪽 절반(어깨 ~ 어깨·엉덩이 가운데) — 무릎·허리가 아니라 가슴."""
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as M
+        for name in ("cradle_sit", "cradle_stand"):
+            p = M.POSES[name]
+            sh, hip = (p[2][1] + p[5][1]) / 2, (p[8][1] + p[11][1]) / 2
+            for k in (4, 7):
+                self.assertTrue(sh < p[k][1] < (sh + hip) / 2, (name, k))
+
+    def test_seated_pose_keeps_stool_depth(self):
+        """앉은 뼈대 인물의 깊이 가이드(스텝 2)는 걸상째 sit 꼴 — 뼈대를 빼고 그린 것과 같다(pose_body는 걸상을 못 그림)."""
+        import sys
+        import derive_scene as ds
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as M
         s = copy.deepcopy(ds.load("authored-solomon-jerusalem-birth-inset"))
-        self.assertEqual(recheck.pose_hold_errors(s), [])
+        plain = copy.deepcopy(s)
+        plain["guide"].pop("pose"), plain["guide"].pop("split")
+        self.assertEqual(M.make(s, 2).tobytes(), M.make(plain).tobytes())
 
 
 class SitFacing(unittest.TestCase):

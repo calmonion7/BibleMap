@@ -102,8 +102,8 @@ def _figures(spec, pick):
 
 
 def standing(spec):
-    """가이드 사람 꼴(person*)·뼈대로 그리는 figures → [(구역 이름, 카드 키 등급 값)]. 꿇음·엎드림·앉음 꼴은 빠짐."""
-    return _figures(spec, lambda shape, posed: shape.startswith("person") or posed)
+    """가이드 사람 꼴(person*)·뼈대로 그리는 figures → [(구역 이름, 카드 키 등급 값)]. 꿇음·엎드림·앉음 꼴은 빠짐(앉은 꼴은 뼈대가 있어도 — task 424 곁 장면 밧세바 cradle_sit)."""
+    return _figures(spec, lambda shape, posed: shape.startswith("person") or (posed and shape not in SEATED_SHAPES))
 
 
 def seated(spec):

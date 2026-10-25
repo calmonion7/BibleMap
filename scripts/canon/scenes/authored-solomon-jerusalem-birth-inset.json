@@ -175,7 +175,11 @@
     },
     "backdrop": "room",
     "body": "card",
-    "why": "task 416 — 두 여인의 재판(415) 규칙을 물려받음: 실내 방 바탕(generate.guide-backdrop) · 카드 체격(guide-body-build). 밧세바는 앉은 꼴 sit(앉음은 본문 밖 · 저작자 정함 — 서 있는 사람이 없어 크기는 서 있을 때 키 환산으로 잼, task 416 넓힘). 긴 겉옷 차림이라 legs costume 아님. 아기는 사전 look.hold hug(add 아님) — 파생 문구의 품에 안은 꼴로 그림(derive.held-hold)."
+    "why": "task 416 — 두 여인의 재판(415) 규칙을 물려받음: 실내 방 바탕(generate.guide-backdrop) · 카드 체격(guide-body-build). 밧세바는 앉은 꼴 sit(앉음은 본문 밖 · 저작자 정함 — 서 있는 사람이 없어 크기는 서 있을 때 키 환산으로 잼, task 416 넓힘). 긴 겉옷 차림이라 legs costume 아님. 아기는 사전 look.hold hug(add 아님) — 파생 문구의 품에 안은 꼴로 그림(derive.held-hold). · task 424 규칙 generate.pose-hold 넓힘(사람을 품에 안은 인물은 뼈대): 사전 hold 문구만으로는 아기가 무릎·허리에 누움(곁 순간 421 2/8 · 422 4/8) → 뼈대 cradle_sit(두 손목 가슴 앞 · 팔꿈치 굽힘) · 스텝별(앞 뼈대 → 뒤 깊이, 깊이는 걸상째 sit 꼴).",
+    "pose": {
+      "bathsheba": "cradle_sit"
+    },
+    "split": true
   },
   "stages": [
     {
