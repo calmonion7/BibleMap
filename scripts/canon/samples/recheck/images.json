@@ -1,5 +1,5 @@
 {
- "rules_version": "baca8b6bdf67",
+ "rules_version": "3d265f5d52ce",
  "images": {
   "authored-david-gath-achish": {
    "image": "/Users/calmonion/Project/BibleMap/scripts/canon/samples/local-edit/approved-authored-david-gath-achish.png",
@@ -455,8 +455,8 @@
      }
     ],
     "majority": {
-     "p.one-crown": "맞음",
-     "p.boarding": "틀림"
+     "p.boarding": "틀림",
+     "p.one-crown": "맞음"
     }
    }
   },
