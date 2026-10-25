@@ -377,6 +377,25 @@ class YouthNoun(unittest.TestCase):
     def test_gibeah_passes(self):
         self.assertEqual(recheck.youth_noun_errors(gibeah()), [])
 
+    def _with_youth_age(self, text):
+        import derive_scene as ds
+        s = gibeah()
+        f = next(f for f in s["figures"] if f["cast"] == "david-youth")
+        card = copy.deepcopy(ds.load_cast("david-youth")["card"])
+        card["ageBand"]["text"] = text
+        f["cast_override"] = {**f.get("cast_override", {}), "card": card}
+        return s
+
+    def test_under_15_allows_boy(self):
+        """task 419 — boy 금지는 카드 나이 15세 이상만(14세 david-boy는 삼상 17:33 「너는 소년이요」)."""
+        import derive_scene as ds
+        with mock.patch.object(ds, "route_prompt", return_value="an ancient Israelite boy"):
+            self.assertEqual(recheck.youth_noun_errors(self._with_youth_age("about 14, smooth round cheeks")), [])
+            self.assertEqual(len(recheck.youth_noun_errors(self._with_youth_age("about 15, smooth face"))), 1)
+
+    def test_unreadable_age_not_measured(self):
+        self.assertIsNone(recheck.youth_noun_errors(self._with_youth_age("a smooth youthful face")))
+
 
 class PoseSkeleton(unittest.TestCase):
     """generate.pose-skeleton — 몸짓에 던짐 동사가 있는 인물은 guide.pose 뼈대(task 403 c7)."""

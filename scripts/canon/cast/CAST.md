@@ -134,7 +134,7 @@ vocab-2는 두 층을 **더한다**. 값은 프롬프트에 바로 쓰는 영문
 | 필드 | 모양 | `class` 허용값 | `text` 예 |
 |---|---|---|---|
 | `heightRel` | 문자열(허용값 중 하나) | `child` · `short` · `average` · `tall` · `towering` | — |
-| `ageBand` | `{class, text}` | `child` · `youth`(10대) · `young`(20대) · `prime`(30대) · `middle`(40~50대) · `elder`(60대~) | `in his 40s, deep forehead lines` |
+| `ageBand` | `{class, text}` | `child` · `youth`(10대 — 파생 문구 boy·girl 금지는 카드 나이 15세 이상만, 14세 david-boy는 삼상 17:33 「너는 소년이요」대로 boy 허용 · 원장 derive.youth-noun) · `young`(20대) · `prime`(30대) · `middle`(40~50대) · `elder`(60대~) | `in his 40s, deep forehead lines` |
 | `beardVolume` | `{class, text}` | `none` · `stubble` · `trimmed` · `full` · `long` | `close-trimmed dark beard, jawline visible` / `thick beard reaching the chest` |
 | `silhouette` | `{class, text}` | `slight` · `lean` · `average` · `broad` · `heavy` · `giant` | `broad shoulders, thick barrel torso` |
 | `headOutline` | `{class, text}` | `bare` · `headwrap` · `turban` · `veil` · `shawl` · `diadem` · `helmet` | `bare head, tight dark curls close to the skull` |

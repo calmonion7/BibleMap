@@ -187,11 +187,20 @@ def guide_legs_errors(spec):
     return [f"{', '.join(knee)}: 무릎 길이 차림인데 guide.legs가 costume이 아니다 — 가이드 실루엣이 긴 옷으로 그려진다"] if knee and g.get("legs") != "costume" else []
 
 
+YOUTH_NOUN_MIN_AGE = 15
+
+
 def youth_noun_errors(spec):
-    """youth는 청년 명사로(task 403 r4, 규칙 derive.youth-noun) — 카드 ageBand class youth(15~20)인 인물이 있고 child가 없는데
-    파생 프롬프트에 boy·girl이 있으면 걸림. c11 s101: 「boy」로 옮겨진 20세 다윗이 열두 살 아이로 그려짐(21/22 중 유일한 틀림)."""
-    classes = {ds._cast_in_scene(f).get("card", {}).get("ageBand", {}).get("class") for f in spec["figures"]}
-    if "youth" not in classes or "child" in classes:
+    """youth는 청년 명사로(task 403 r4, 규칙 derive.youth-noun) — 카드 ageBand class youth(10대) 중 카드 나이 15세 이상인 인물이 있고
+    child가 없는데 파생 프롬프트에 boy·girl이 있으면 걸림. c11 s101: 「boy」로 옮겨진 20세 다윗이 열두 살 아이로 그려짐(21/22 중 유일한 틀림).
+    14세 david-boy는 본문 삼상 17:33 「너는 소년이요」대로 boy 허용(task 419) · 나이 글(「about N」)을 못 읽으면 못 잼."""
+    bands = [ds._cast_in_scene(f).get("card", {}).get("ageBand", {}) for f in spec["figures"]]
+    if "youth" not in {b.get("class") for b in bands} or "child" in {b.get("class") for b in bands}:
+        return []
+    ages = [re.search(r"\babout (\d+)", b.get("text", "")) for b in bands if b.get("class") == "youth"]
+    if not all(ages):
+        return None
+    if max(int(m.group(1)) for m in ages) < YOUTH_NOUN_MIN_AGE:
         return []
     hit = re.findall(r"\b(boy|girl)s?\b", ds.route_prompt(spec), re.I)
     return [f"youth 인물인데 파생 프롬프트에 「{'·'.join(sorted(set(hit)))}」 — 청년이 아이로 그려진다"] if hit else []

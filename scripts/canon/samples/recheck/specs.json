@@ -1,5 +1,5 @@
 {
- "rules_version": "f1faeab5d244",
+ "rules_version": "905e3c7bcfe4",
  "tokens": "venv314",
  "specs": {
   "authored-david-adullam-cave": {
@@ -255,7 +255,7 @@
    "generate.guide-body-build": "pass",
    "generate.dodge-clear": "pass",
    "generate.guide-costume-legs": "pass",
-   "derive.youth-noun": "fail",
+   "derive.youth-noun": "pass",
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "none",
    "derive.no-second-point": "pass",
@@ -606,7 +606,7 @@
    "generate.guide-body-build": "pass",
    "generate.dodge-clear": "pass",
    "generate.guide-costume-legs": "pass",
-   "derive.youth-noun": "fail",
+   "derive.youth-noun": "pass",
    "generate.pose-skeleton": "pass",
    "generate.figure-scale": "none",
    "derive.no-second-point": "pass",
@@ -1585,9 +1585,6 @@
     "goliath: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "shieldman: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "david-boy: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
-   ],
-   "derive.youth-noun": [
-    "youth 인물인데 파생 프롬프트에 「boy」 — 청년이 아이로 그려진다"
    ]
   },
   "authored-david-hebron-king-judah": {
@@ -1740,9 +1737,6 @@
     "samuel: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "david-boy: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "jesse: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
-   ],
-   "derive.youth-noun": [
-    "youth 인물인데 파생 프롬프트에 「boy」 — 청년이 아이로 그려진다"
    ],
    "derive.prop-size-relative": [
     "사전 oil: look.size(사람에 견준 크기) 없음"
@@ -2999,6 +2993,7 @@
     "authored-david-gath-achish",
     "authored-david-gibeah-harp",
     "authored-david-gibeon-battle",
+    "authored-david-goliath-gath",
     "authored-david-hebron-king-judah",
     "authored-david-jerusalem-conquest",
     "authored-david-mahanaim-exile",
@@ -3007,6 +3002,7 @@
     "authored-david-ramah-samuel",
     "authored-david-returns-jerusalem",
     "authored-david-ziklag-base",
+    "authored-samuel-bethlehem-david-anointing",
     "authored-samuel-ramah-death",
     "authored-saul-endor-medium",
     "authored-saul-gibeah-spear",
@@ -3030,13 +3026,10 @@
     "authored-solomon-jerusalem-temple-dedication",
     "authored-solomon-jerusalem-two-mothers"
    ],
-   "fail": [
-    "authored-david-goliath-gath",
-    "authored-samuel-bethlehem-david-anointing"
-   ],
+   "fail": [],
    "stale": [],
    "none": [],
-   "rate": 0.9474
+   "rate": 1.0
   },
   {
    "id": "generate.pose-skeleton",
