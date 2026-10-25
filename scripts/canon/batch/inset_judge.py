@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """task 421 — 곁 장면 합성 그림의 기계 판정(단계 ③): 큰 장면 문항은 합성 그림(구름 포함)에, 곁 장면 문항은 곁 장면 원본에 묻는다.
 
-  python3 batch/inset_judge.py judge    # 시드 × (큰 장면 M · 곁 장면 I) × reps — claude -p Sonnet · 머리말 v2
-  python3 batch/inset_judge.py report   # 장마다 다수결 · 문항별 맞음 수 · `통과: N/8` 줄
+  python3 batch/inset_judge.py judge    # 시드 × (큰 장면 M · 곁 장면 I) × reps — claude -p Sonnet · 머리말 v2 · 답 없는 문항만(문항을 바꾸면 그것만)
+  python3 batch/inset_judge.py report   # 장마다 다수결 · 문항별 맞음 수 · `통과: N/8` 줄(「record」 기록 문항은 셈에서 뺌 — judge_items.gating)
   python3 batch/inset_judge.py check    # 답 빠짐 0 · 노트 `통과:` 줄 = 다시 셈 → ok
   python3 batch/inset_judge.py page <out.html>   # 사람 판정 화면(단계 ④) — 8장 전부(통과 + 기계 불통과 표본) · 12:24-25 원문 · 답 복사
   python3 batch/inset_judge.py record '<판정 task 421 + JSON 한 줄>'   # 사람 답 → 노트 「- 사람 답(8시드)」 줄
@@ -45,11 +45,17 @@ def save(m):
         json.dump(m, fh, ensure_ascii=False, indent=1)
 
 
-def ask(m, s, kind, rep):
+def missing(m, s, kind, rep):
+    """그 회차에 답이 없는 문항 — 문항을 바꾸거나 더하면(task 422) 그 문항만 다시 묻는다."""
+    got = (((m["answers"].get(f"s{s}") or {}).get(kind) or {}).get(str(rep)) or {}).get("answers") or {}
+    return [q["id"] for q in QS[kind] if q["id"] not in got]
+
+
+def ask(m, s, kind, rep, qids):
     sid = MAIN if kind == "M" else SUB
     spec = D.load(sid)
     it = {"key": f"{kind}:{s}", "task": "inset-421", "scene": sid, "title": spec["title"], "range": spec["verses"]["range"],
-          "seed": s, "src": img(kind, s), "qs": [dict(q) for q in QS[kind]], "qids": [q["id"] for q in QS[kind]]}
+          "seed": s, "src": img(kind, s), "qs": [dict(q) for q in QS[kind]], "qids": qids}
     d, files = J.prepare(it, "inset-421")
     text = J.prompt(it, files, J.HEADERS["v2"])
     got, tries = None, []
@@ -60,15 +66,22 @@ def ask(m, s, kind, rep):
         if got:
             break
     with LOCK:
-        m["answers"].setdefault(f"s{s}", {}).setdefault(kind, {})[str(rep)] = {"tries": tries, **(got or {"answers": None})}
+        old = m["answers"].setdefault(f"s{s}", {}).setdefault(kind, {}).get(str(rep)) or {}
+        if not got:
+            old.setdefault("answers", None)
+        else:
+            old["answers"] = (old.get("answers") or {}) | got["answers"]
+            old["reasons"] = (old.get("reasons") or {}) | got["reasons"]
+        old["tries"] = old.get("tries", []) + tries
+        m["answers"][f"s{s}"][kind][str(rep)] = old
         save(m)
 
 
 def judge(workers=8):
     m = load()
-    todo = [(s, k, r) for s in FX["seeds"] for k in QS for r in range(1, FX["reps"] + 1)
-            if not ((m["answers"].get(f"s{s}") or {}).get(k, {}).get(str(r)) or {}).get("answers")]
-    print(f"[InsetJudge] 판정 {len(todo)}건", flush=True)
+    todo = [(s, k, r, missing(m, s, k, r)) for s in FX["seeds"] for k in QS for r in range(1, FX["reps"] + 1)]
+    todo = [t for t in todo if t[3]]
+    print(f"[InsetJudge] 판정 {len(todo)}건 · 문항 {sum(len(t[3]) for t in todo)}", flush=True)
     with ThreadPoolExecutor(workers) as ex:
         list(ex.map(lambda job: ask(m, *job), todo))
 
@@ -82,7 +95,7 @@ def maj(v):
 
 
 def fails(m, s):
-    return [f"{k}/{q['id']}" for k in QS for q in QS[k] if maj(votes(m, s, k, q["id"])) == "틀림"]
+    return [f"{k}/{q['id']}" for k in QS for q in J.gating(QS[k]) if maj(votes(m, s, k, q["id"])) == "틀림"]
 
 
 def conclude(m):
@@ -93,7 +106,7 @@ def conclude(m):
 def report():
     m = load()
     for k, name in (("M", "큰 장면"), ("I", "곁 장면")):
-        print(f"{name}: " + " · ".join(f"{q['q']} {sum(maj(votes(m, s, k, q['id'])) == '맞음' for s in FX['seeds'])}" for q in QS[k]))
+        print(f"{name}: " + " · ".join(f"{q['q']}{'(기록)' if q.get('record') else ''} {sum(maj(votes(m, s, k, q['id'])) == '맞음' for s in FX['seeds'])}" for q in QS[k]))
     for s in FX["seeds"]:
         print(f"s{s}: 틀림 {len(fails(m, s))} {' '.join(fails(m, s))}")
     print(f"통과: {conclude(m)}")

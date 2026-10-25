@@ -156,12 +156,25 @@ def oddity_prompt(it, files, header):
     return "\n".join(lines)
 
 
+PREP_LOCK = threading.Lock()   # 같은 그림의 회차들이 동시에 준비하며 옛 복사본을 지우고 쓰는 것이 겹치지 않게
+
+
 def prepare(it, set_name, zoom=1.0):
     """그림 폴더에 full.jpg + 인물마다 몸 크롭 <who>.jpg(zoom ≠ 1이면 키운 <who>-z<zoom>.jpg) → (폴더, 파일 목록)."""
+    with PREP_LOCK:
+        return _prepare(it, set_name, zoom)
+
+
+def _prepare(it, set_name, zoom):
     d = os.path.join(WORK, set_name, f"{it['task']}-{it['scene']}-s{it['seed']}")
     os.makedirs(d, exist_ok=True)
     im = Image.open(it["src"]).convert("RGB")
     files = {"full": os.path.join(d, "full.jpg")}
+    stale = os.path.exists(files["full"]) and os.path.getmtime(files["full"]) < os.path.getmtime(it["src"])   # task 422: 원본을 고치면(여백 자름) 옛 복사본을 묻지 않게
+    if stale:
+        for f in os.listdir(d):
+            if f.endswith(".jpg"):
+                os.remove(os.path.join(d, f))
     if not os.path.exists(files["full"]):
         im.save(files["full"], quality=92)
     for q in it["qs"]:
@@ -193,6 +206,12 @@ def prompt(it, files, header):
         verse = f" · 근거 {q['verse']}" if q.get("verse") else ""
         lines.append(f"- {q['id']}{who}: {q['q']} — 기대: {q['what']}{verse}")
     return "\n".join(lines)
+
+
+def gating(qs):
+    """거르기(통과 셈)에 드는 문항 — `"record": true` 문항(본문 근거 없는 [저작] 세부 — 규칙 judge.authored-detail-record, task 422)은
+    답만 적고 통과 셈에서 뺀다. 본문·명세 핵심 문항은 무르지 않는다(성경 > 사람)."""
+    return [q for q in qs if not q.get("record")]
 
 
 def call(text, d, model):

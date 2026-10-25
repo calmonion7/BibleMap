@@ -1185,5 +1185,73 @@ class PlateCastOverride(unittest.TestCase):
         self.assertIn(D.cast_describe(D.load_cast("saul")), stage["prompt"])
 
 
+class TrimPaperMargin(unittest.TestCase):
+    """generate.trim-paper-margin(task 422) — 둘레 고른 미색 종이 띠는 생성 뒤 잘라 원래 크기로. 그림이 가장자리까지면·안쪽 그린 틀이면 그대로."""
+
+    @staticmethod
+    def picture(w=320, h=200, band=0, frame=None):
+        import random
+        from PIL import Image, ImageDraw
+        rnd = random.Random(1)
+        img = Image.new("RGB", (w, h), (243, 234, 214))   # 화풍 머리 「warm cream paper」 빛
+        d = ImageDraw.Draw(img)
+        d.rectangle([band, band, w - band - 1, h - band - 1], fill=(205, 175, 125))   # 칠한 면(돌벽 빛)
+        for _ in range(400):   # 색연필 결 같은 얼룩 — 줄마다 종이 빛이 아님
+            x, y = rnd.randrange(band, w - band), rnd.randrange(band, h - band)
+            d.rectangle([x, y, min(w - band - 1, x + 12), min(h - band - 1, y + 12)], fill=(rnd.randrange(90, 200), rnd.randrange(60, 160), rnd.randrange(30, 120)))
+        if band:
+            d.rectangle([band, band, w - band - 1, h - band - 1], outline=(150, 110, 70))
+        if frame:
+            d.rectangle([0, 0, w - 1, h - 1], outline=frame, width=6)
+        return img
+
+    def setUp(self):
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import paper_margin
+        self.P = paper_margin
+
+    def test_band_is_trimmed_to_same_size(self):
+        img = self.picture(band=12)
+        self.assertEqual(self.P.measure(img), (12, 12, 12, 12))
+        out = self.P.trim(img)
+        self.assertEqual(out.size, img.size)
+        self.assertEqual(self.P.measure(out), (0, 0, 0, 0))
+        self.assertIs(self.P.trim(out), out)   # 생성·합성에서 두 번 불려도 같은 그림
+
+    def test_no_band_is_untouched(self):
+        img = self.picture(band=0)
+        self.assertEqual(self.P.measure(img), (0, 0, 0, 0))
+        self.assertIs(self.P.trim(img), img)
+
+    def test_picture_to_edge_is_not_cut(self):
+        """둘레 빛이 종이가 아니면(그림이 가장자리까지 — 회색 그린 틀 포함) 자르지 않는다 — 그린 틀·액자는 가드 문항 몫."""
+        img = self.picture(band=0, frame=(110, 110, 110))
+        self.assertIs(self.P.trim(img), img)
+
+
+class AuthoredDetailRecord(unittest.TestCase):
+    """judge.authored-detail-record(task 422) — 본문 근거 없는 [저작] 세부 문항(record)은 답만 적고 통과 셈에서 뺀다."""
+
+    def setUp(self):
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+
+    def test_gating_drops_record_questions(self):
+        import judge_items as J
+        qs = [{"id": "m.david"}, {"id": "m.david-sash", "record": True}, {"id": "m.guard"}]
+        self.assertEqual([q["id"] for q in J.gating(qs)], ["m.david", "m.guard"])
+
+    def test_record_wrong_does_not_fail_seed(self):
+        import inset_judge as I
+        qs = {"M": [{"id": "m.core"}, {"id": "m.sash", "record": True}], "I": []}
+        rounds = {str(r): {"answers": {"m.core": "맞음", "m.sash": "틀림"}} for r in (1, 2, 3)}
+        m = {"answers": {"s11": {"M": rounds}}}
+        with mock.patch.object(I, "QS", qs):
+            self.assertEqual(I.fails(m, 11), [])
+            rounds["1"]["answers"]["m.core"] = rounds["2"]["answers"]["m.core"] = "틀림"
+            self.assertEqual(I.fails(m, 11), ["M/m.core"])
+
+
 if __name__ == "__main__":
     unittest.main()

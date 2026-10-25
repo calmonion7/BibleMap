@@ -14,6 +14,8 @@ Z-Image는 메모리 때문에 인코딩/생성을 별도 프로세스로 쪼갠
 import argparse, json, os, subprocess, sys, time
 from concurrent.futures import ThreadPoolExecutor
 
+import paper_margin
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 CANON = os.path.dirname(HERE)
 ROOT = os.path.abspath(os.path.join(CANON, "..", ".."))
@@ -137,7 +139,7 @@ def worker(mode, jobs_path):
         img = pipe(prompt_embeds=[x.to("mps", torch.bfloat16) for x in e], width=j["w"], height=j["h"],
                    num_inference_steps=9, guidance_scale=0.0,
                    generator=gen, **kw).images[0]
-        img.save(j["out"])
+        paper_margin.trim(img).save(j["out"])   # 규칙 generate.trim-paper-margin — 둘레 미색 종이 띠를 잘라 원래 크기로(task 422)
         secs.append(round(time.time() - t, 1))
         peak = max(peak, torch.mps.driver_allocated_memory() / 2 ** 30)
         print(f"  [zimage] {os.path.basename(j['out'])} {secs[-1]}s", flush=True)

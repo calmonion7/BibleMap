@@ -14,6 +14,7 @@ HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, "batch"))
 import derive_scene as D
+import paper_margin
 
 def _arg(name, default):
     return sys.argv[sys.argv.index(name) + 1] if name in sys.argv else default
@@ -98,10 +99,10 @@ def comp():
 def comp_one(seed):
     spec = D.load(MAIN)
     sub = spec["inset"]["spec"]
-    base = Image.open(img(MAIN, seed)).convert("RGB")
+    base = paper_margin.trim(Image.open(img(MAIN, seed)).convert("RGB"))   # 규칙 generate.trim-paper-margin — 생성 때 안 잘린 옛 그림도(task 422)
     x0, y0, x1, y1 = spec["inset"]["region"]
     bx, by, bw, bh = round(x0 * W), round(y0 * H), round((x1 - x0) * W), round((y1 - y0) * H)
-    ins = Image.open(img(sub, seed)).convert("RGB").resize((bw, bh), Image.LANCZOS)   # 곁 장면은 이미 틀 비율로 그림
+    ins = paper_margin.trim(Image.open(img(sub, seed)).convert("RGB")).resize((bw, bh), Image.LANCZOS)   # 곁 장면은 이미 틀 비율로 그림
     pad = 14                                   # 종이 테두리 두께(px)
     outer = cloud_mask(bw, bh)                 # 종이 구름(바깥)
     inner = cloud_mask(bw, bh, inset=pad).filter(ImageFilter.GaussianBlur(4))   # 그림이 비치는 안쪽 — 가장자리 번짐
