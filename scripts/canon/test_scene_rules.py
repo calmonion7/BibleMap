@@ -716,6 +716,33 @@ class WidenUnmeasured(unittest.TestCase):
         self.assertTrue(any("던지는 뼈대" in e for e in recheck.flight_errors(s)))
 
 
+class SeatedHeight(unittest.TestCase):
+    """generate.seated-height — 앉은 꼴(sit) 인물 구역 높이 = 지평선에서 셈한 서 있는 화면 키 × 키 등급 × body.seated(task 414 기브아 수금 사울)."""
+
+    def harp(self):
+        import derive_scene as ds
+        return copy.deepcopy(ds.load("authored-david-gibeah-harp"))
+
+    def test_harp_passes(self):
+        self.assertEqual(recheck.seated_height_errors(self.harp()), [])
+
+    def test_seated_as_tall_as_standing_fails(self):
+        s = self.harp()
+        s["regions"]["saul"][1] = s["regions"]["saul"][3] - 0.70   # 앉았는데 서 있는 사울 키만큼
+        self.assertTrue(any("saul" in e for e in recheck.seated_height_errors(s)))
+
+    def test_no_standing_focus_is_unmeasured(self):
+        s = self.harp()
+        s["guide"]["shape"]["david-boy"] = "sit"
+        self.assertIsNone(recheck.seated_height_errors(s))
+
+    def test_shape_registered(self):
+        import sys
+        sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "batch"))
+        import make_guide as M
+        self.assertLessEqual(recheck.SEATED_SHAPES, set(M.SHAPES))
+
+
 class HeldHold(unittest.TestCase):
     """derive.held-hold — 쥔 꼴은 사전 look.hold가 정본(task 413): 수금 hug 편집 지시는 승인 m17e s7과 바이트 같고, 아기 hug는 수금 문구가 섞이지 않음."""
 

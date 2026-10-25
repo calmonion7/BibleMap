@@ -350,6 +350,33 @@ def height_ratio_errors(spec):
     return out
 
 
+SEATED_SHAPES = {"sit"}   # 앉은 한 사람 꼴(make_guide) — 배 안 머리·어깨 줄(seated)은 무리 꼴이라 뺌
+
+
+def seated_height_errors(spec):
+    """앉은 인물의 화면 키도 눈높이 지평선에서(task 414, 규칙 generate.seated-height) — guide 앉은 꼴(SEATED_SHAPES) 인물의 구역 높이가
+    발 y에서 계산한 서 있는 화면 키(S.screen_height × 카드 키 등급) × 표 body.seated와 초점 화면 키의 ± HEAD_TOL 넘게 다르면 걸림.
+    서 있는 사람만 재는 크기 규칙(figure-scale·youth-height·height-ratio)에는 앉은 사울(삼상 19:9 「그 집에 앉았을 때에」)이 빈 통과였다.
+    지평선을 정할 서 있는 초점 인물이 없으면 못 잼(None)."""
+    R, sh = spec.get("regions", {}), (spec.get("guide") or {}).get("shape", {})
+    seated = [f for f in spec.get("figures") or [] if sh.get(f["region"]) in SEATED_SHAPES]
+    if not seated:
+        return []
+    people = S.standing(spec)
+    if not people:
+        return None
+    hy = S.scene_horizon(spec)
+    fh = max(R[k][3] - R[k][1] for k, _ in people)
+    out = []
+    for f in seated:
+        k, cls = f["region"], ds._cast_in_scene(f).get("card", {}).get("heightRel")
+        hr = S.height_rel(cls) if cls in S.table()["height"] else S.height_rel("average")
+        want, got = S.screen_height(R[k][3], hy, hr) * S.v("body.seated"), R[k][3] - R[k][1]
+        if abs(got - want) / fh > HEAD_TOL:
+            out.append(f"{k}: 앉은 구역 높이 {got:.2f} ≠ 지평선 {hy:.3f}에서 계산한 앉은 키 {want:.2f}(± 초점 키의 {HEAD_TOL}) — 앉은 사람 크기가 어긋나 그려진다")
+    return out
+
+
 SECOND_POINT = re.compile(r"\b(pointed|spikes?|barbs?)\b", re.I)
 
 
@@ -600,6 +627,7 @@ SPEC_CHECKS = {
     "recheck.second_point_errors": lambda spec, ctx: second_point_errors(spec),
     "recheck.youth_height_errors": lambda spec, ctx: youth_height_errors(spec),
     "recheck.height_ratio_errors": lambda spec, ctx: height_ratio_errors(spec),
+    "recheck.seated_height_errors": lambda spec, ctx: seated_height_errors(spec),
     "recheck.pose_hold_errors": lambda spec, ctx: pose_hold_errors(spec),
     "recheck.pose_only_errors": lambda spec, ctx: pose_only_errors(spec),
     "recheck.split_control_errors": lambda spec, ctx: split_control_errors(spec),

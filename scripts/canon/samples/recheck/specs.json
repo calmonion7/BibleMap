@@ -1,5 +1,5 @@
 {
- "rules_version": "cb0b1f5f7371",
+ "rules_version": "bac0f1d2cb3c",
  "tokens": "venv314",
  "specs": {
   "authored-david-adullam-cave": {
@@ -27,6 +27,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "pass",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -64,6 +65,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "pass",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -101,6 +103,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -138,6 +141,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -153,35 +157,36 @@
   "authored-david-gibeah-harp": {
    "spec.required-fields": "pass",
    "spec.whole-fields": "pass",
-   "spec.verse-elements": "fail",
+   "spec.verse-elements": "pass",
    "spec.no-compromise-words": "pass",
-   "spec.scene-all-verses": "fail",
+   "spec.scene-all-verses": "pass",
    "spec.cast-card-v2": "pass",
-   "spec.lexicon-link": "none",
+   "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
    "derive.prop-in-prompt": "pass",
    "derive.512-tokens": "pass",
-   "spec.stage-from-scripture": "fail",
-   "spec.action-place-on-figure": "none",
+   "spec.stage-from-scripture": "pass",
+   "spec.action-place-on-figure": "pass",
    "generate.thrown-guide": "pass",
    "generate.guide-backdrop": "pass",
    "generate.guide-body-build": "pass",
    "generate.dodge-clear": "pass",
    "generate.guide-costume-legs": "pass",
-   "derive.youth-noun": "fail",
+   "derive.youth-noun": "pass",
    "generate.pose-skeleton": "pass",
-   "generate.figure-scale": "none",
+   "generate.figure-scale": "pass",
    "derive.no-second-point": "pass",
-   "generate.youth-height": "none",
-   "generate.height-ratio": "none",
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
    "generate.flight-height": "pass",
    "derive.empty-hand-open": "pass",
    "derive.wall-material": "pass",
-   "derive.no-inflating-build": "fail",
+   "derive.no-inflating-build": "pass",
    "derive.prop-size-coverage": "pass",
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
@@ -212,6 +217,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -249,6 +255,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "none",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -286,6 +293,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "pass",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -323,6 +331,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "pass",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -360,6 +369,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "pass",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -397,6 +407,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -434,6 +445,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "fail",
    "generate.flight-position": "pass",
@@ -471,6 +483,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -508,6 +521,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "pass",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "fail",
    "generate.flight-position": "pass",
@@ -545,6 +559,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -582,6 +597,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "none",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "fail",
    "generate.flight-position": "pass",
@@ -619,6 +635,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "pass",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -656,6 +673,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -693,6 +711,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "pass",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -730,6 +749,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -767,6 +787,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -804,6 +825,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -841,6 +863,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "pass",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -878,6 +901,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -915,6 +939,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -952,6 +977,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -989,6 +1015,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "pass",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -1026,6 +1053,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "pass",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -1063,6 +1091,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -1100,6 +1129,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "pass",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -1137,6 +1167,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "pass",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -1174,6 +1205,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -1211,6 +1243,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "pass",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -1248,6 +1281,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -1285,6 +1319,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "pass",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -1322,6 +1357,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "pass",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -1359,6 +1395,7 @@
    "derive.no-second-point": "pass",
    "generate.youth-height": "pass",
    "generate.height-ratio": "none",
+   "generate.seated-height": "pass",
    "generate.split-control": "pass",
    "derive.prop-size-relative": "pass",
    "generate.flight-position": "pass",
@@ -1438,24 +1475,7 @@
     "achish: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
-  "authored-david-gibeah-harp": {
-   "spec.verse-elements": [
-    "verse_elements 없음 — 구절 시각 요소 목록 미작성"
-   ],
-   "spec.scene-all-verses": [
-    "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "spec.stage-from-scripture": [
-    "david-boy: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
-    "saul: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
-   ],
-   "derive.youth-noun": [
-    "youth 인물인데 파생 프롬프트에 「boy」 — 청년이 아이로 그려진다"
-   ],
-   "derive.no-inflating-build": [
-    "거인 아닌 인물의 체격 문구에 「barrel」 — 몸통이 부풀어 다리가 짧아 보인다"
-   ]
-  },
+  "authored-david-gibeah-harp": {},
   "authored-david-gibeon-battle": {
    "spec.whole-fields": [
     "장면.meaning: ko/en/verse 가 비어 있거나 없다",
@@ -2137,6 +2157,7 @@
    "pass": [
     "authored-david-ark-jerusalem",
     "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
     "authored-david-gibeon-battle",
     "authored-david-hebron-king-judah",
     "authored-david-jerusalem-conquest",
@@ -2154,7 +2175,6 @@
    "fail": [
     "authored-david-adullam-cave",
     "authored-david-en-gedi-saul",
-    "authored-david-gibeah-harp",
     "authored-david-goliath-gath",
     "authored-samuel-ramah-death",
     "authored-saul-gilgal-amalek",
@@ -2177,7 +2197,7 @@
    ],
    "stale": [],
    "none": [],
-   "rate": 0.4054
+   "rate": 0.4324
   },
   {
    "id": "spec.no-compromise-words",
@@ -2234,6 +2254,7 @@
    "scope": "one",
    "check": "recheck.has_situation",
    "pass": [
+    "authored-david-gibeah-harp",
     "authored-david-returns-jerusalem",
     "authored-saul-gibeah-spear",
     "authored-solomon-jerusalem-apostasy",
@@ -2244,7 +2265,6 @@
     "authored-david-ark-jerusalem",
     "authored-david-en-gedi-saul",
     "authored-david-gath-achish",
-    "authored-david-gibeah-harp",
     "authored-david-gibeon-battle",
     "authored-david-goliath-gath",
     "authored-david-hebron-king-judah",
@@ -2276,7 +2296,7 @@
    ],
    "stale": [],
    "none": [],
-   "rate": 0.1081
+   "rate": 0.1351
   },
   {
    "id": "spec.cast-card-v2",
@@ -2334,6 +2354,7 @@
    "check": "check_scenes.lexicon_look_errors",
    "pass": [
     "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
     "authored-david-gibeon-battle",
     "authored-david-hebron-king-judah",
     "authored-david-jerusalem-conquest",
@@ -2355,7 +2376,6 @@
    "none": [
     "authored-david-adullam-cave",
     "authored-david-en-gedi-saul",
-    "authored-david-gibeah-harp",
     "authored-david-goliath-gath",
     "authored-samuel-ramah-death",
     "authored-saul-gilgal-amalek",
@@ -2376,7 +2396,7 @@
     "authored-solomon-jerusalem-temple-dedication",
     "authored-solomon-jerusalem-two-mothers"
    ],
-   "rate": 0.8
+   "rate": 0.8125
   },
   {
    "id": "derive.no-hand-prompt",
@@ -2581,6 +2601,7 @@
    "scope": "all",
    "check": "recheck.stage_why_errors",
    "pass": [
+    "authored-david-gibeah-harp",
     "authored-saul-gibeah-spear"
    ],
    "fail": [
@@ -2588,7 +2609,6 @@
     "authored-david-ark-jerusalem",
     "authored-david-en-gedi-saul",
     "authored-david-gath-achish",
-    "authored-david-gibeah-harp",
     "authored-david-gibeon-battle",
     "authored-david-goliath-gath",
     "authored-david-hebron-king-judah",
@@ -2623,7 +2643,7 @@
    ],
    "stale": [],
    "none": [],
-   "rate": 0.027
+   "rate": 0.0541
   },
   {
    "id": "spec.action-place-on-figure",
@@ -2633,6 +2653,7 @@
    "pass": [
     "authored-david-ark-jerusalem",
     "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
     "authored-david-gibeon-battle",
     "authored-david-hebron-king-judah",
     "authored-david-jerusalem-conquest",
@@ -2652,7 +2673,6 @@
    "none": [
     "authored-david-adullam-cave",
     "authored-david-en-gedi-saul",
-    "authored-david-gibeah-harp",
     "authored-david-goliath-gath",
     "authored-samuel-ramah-death",
     "authored-saul-gilgal-amalek",
@@ -2931,6 +2951,7 @@
     "authored-david-ark-jerusalem",
     "authored-david-en-gedi-saul",
     "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
     "authored-david-gibeon-battle",
     "authored-david-hebron-king-judah",
     "authored-david-jerusalem-conquest",
@@ -2963,13 +2984,12 @@
     "authored-solomon-jerusalem-two-mothers"
    ],
    "fail": [
-    "authored-david-gibeah-harp",
     "authored-david-goliath-gath",
     "authored-samuel-bethlehem-david-anointing"
    ],
    "stale": [],
    "none": [],
-   "rate": 0.9189
+   "rate": 0.9459
   },
   {
    "id": "generate.pose-skeleton",
@@ -3026,6 +3046,7 @@
    "scope": "all",
    "check": "recheck.figure_scale_errors",
    "pass": [
+    "authored-david-gibeah-harp",
     "authored-david-returns-jerusalem",
     "authored-saul-gibeah-spear"
    ],
@@ -3036,7 +3057,6 @@
     "authored-david-ark-jerusalem",
     "authored-david-en-gedi-saul",
     "authored-david-gath-achish",
-    "authored-david-gibeah-harp",
     "authored-david-gibeon-battle",
     "authored-david-goliath-gath",
     "authored-david-hebron-king-judah",
@@ -3129,6 +3149,7 @@
     "authored-david-ark-jerusalem",
     "authored-david-en-gedi-saul",
     "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
     "authored-david-gibeon-battle",
     "authored-david-hebron-king-judah",
     "authored-david-jerusalem-conquest",
@@ -3163,7 +3184,6 @@
    "fail": [],
    "stale": [],
    "none": [
-    "authored-david-gibeah-harp",
     "authored-david-goliath-gath",
     "authored-samuel-bethlehem-david-anointing"
    ],
@@ -3177,6 +3197,7 @@
    "pass": [
     "authored-david-adullam-cave",
     "authored-david-ark-jerusalem",
+    "authored-david-gibeah-harp",
     "authored-david-hebron-king-judah",
     "authored-david-jerusalem-conquest",
     "authored-david-mahanaim-exile",
@@ -3197,7 +3218,6 @@
    "none": [
     "authored-david-en-gedi-saul",
     "authored-david-gath-achish",
-    "authored-david-gibeah-harp",
     "authored-david-gibeon-battle",
     "authored-david-goliath-gath",
     "authored-david-nathan-covenant",
@@ -3217,6 +3237,55 @@
     "authored-solomon-jerusalem-sheba",
     "authored-solomon-jerusalem-two-mothers"
    ],
+   "rate": 1.0
+  },
+  {
+   "id": "generate.seated-height",
+   "layer": "generate",
+   "scope": "all",
+   "check": "recheck.seated_height_errors",
+   "pass": [
+    "authored-david-adullam-cave",
+    "authored-david-ark-jerusalem",
+    "authored-david-en-gedi-saul",
+    "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
+    "authored-david-gibeon-battle",
+    "authored-david-goliath-gath",
+    "authored-david-hebron-king-judah",
+    "authored-david-jerusalem-conquest",
+    "authored-david-mahanaim-exile",
+    "authored-david-nathan-covenant",
+    "authored-david-nob-priests",
+    "authored-david-ramah-samuel",
+    "authored-david-returns-jerusalem",
+    "authored-david-ziklag-base",
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-samuel-ramah-death",
+    "authored-saul-endor-medium",
+    "authored-saul-gibeah-spear",
+    "authored-saul-gilboa-death",
+    "authored-saul-gilgal-amalek",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-jabesh-rescue",
+    "authored-saul-michmash-battle",
+    "authored-saul-mizpah-chosen",
+    "authored-saul-nob-massacre",
+    "authored-solomon-ezion-geber-fleet",
+    "authored-solomon-gibeon-dream",
+    "authored-solomon-gihon-anointing",
+    "authored-solomon-jerusalem-apostasy",
+    "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-david-charge",
+    "authored-solomon-jerusalem-palace",
+    "authored-solomon-jerusalem-sheba",
+    "authored-solomon-jerusalem-temple-build",
+    "authored-solomon-jerusalem-temple-dedication",
+    "authored-solomon-jerusalem-two-mothers"
+   ],
+   "fail": [],
+   "stale": [],
+   "none": [],
    "rate": 1.0
   },
   {
@@ -3523,6 +3592,7 @@
     "authored-david-adullam-cave",
     "authored-david-ark-jerusalem",
     "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
     "authored-david-gibeon-battle",
     "authored-david-goliath-gath",
     "authored-david-hebron-king-judah",
@@ -3550,7 +3620,6 @@
    ],
    "fail": [
     "authored-david-en-gedi-saul",
-    "authored-david-gibeah-harp",
     "authored-david-jerusalem-conquest",
     "authored-david-nob-priests",
     "authored-saul-gilgal-amalek",
@@ -3562,7 +3631,7 @@
    ],
    "stale": [],
    "none": [],
-   "rate": 0.7297
+   "rate": 0.7568
   },
   {
    "id": "derive.prop-size-coverage",

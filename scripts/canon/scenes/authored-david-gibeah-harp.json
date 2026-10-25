@@ -3,89 +3,271 @@
   "id": "authored-david-gibeah-harp",
   "title": "다윗 — 기브아에서 수금을 타다",
   "verses": {
-    "range": "삼상 16:21-23",
+    "range": "삼상 16:14-23",
     "quotes": {
+      "16:14": "여호와의 신이 사울에게서 떠나고 여호와의 부리신 악신이 그를 번뇌케 한지라",
+      "16:15": "사울의 신하들이 그에게 이르되 보소서 하나님의 부리신 악신이 왕을 번뇌케 하온즉",
+      "16:16": "원컨대 우리 주는 주의 앞에 모시는 신하에게 명하여 수금 잘 탈줄 아는 사람을 구하게 하소서 하나님의 부리신 악신이 왕에게 이를 때에 그가 손으로 타면 왕이 나으시리이다",
+      "16:17": "사울이 신하에게 이르되 나를 위하여 잘 타는 사람을 구하여 내게로 데려오라",
+      "16:18": "소년 중 한사람이 대답하여 가로되 내가 베들레헴 사람 이새의 아들을 본즉 탈줄을 알고 호기와 무용과 구변이 있는 준수한 자라 여호와께서 그와 함께 계시더이다",
+      "16:19": "사울이 이에 사자를 이새에게 보내어 이르되 양치는 네 아들 다윗을 내게로 보내라 하매",
+      "16:20": "이새가 떡과 한 가죽부대의 포도주와 염소 새끼를 나귀에 실리고 그 아들 다윗의 손으로 사울에게 보내니",
       "16:21": "다윗이 사울에게 이르러 그 앞에 모셔 서매 사울이 그를 크게 사랑하여 자기의 병기 든 자를 삼고",
+      "16:22": "이새에게 사람을 보내어 이르되 청컨대 다윗으로 내 앞에 모셔 서게 하라 그가 내게 은총을 얻었느니라 하니라",
       "16:23": "하나님의 부리신 악신이 사울에게 이를 때에 다윗이 수금을 취하여 손으로 탄즉 사울이 상쾌하여 낫고 악신은 그에게서 떠나더라"
+    }
+  },
+  "situation": {
+    "text": "여호와의 신이 사울에게서 떠나고 여호와의 부리신 악신이 그를 번뇌케 했다(16:14). 신하들이 수금 잘 탈 줄 아는 사람을 구하자 하니(16:15-16), 사울이 데려오라 했고(16:17), 소년 중 한 사람이 베들레헴 사람 이새의 아들을 「탈줄을 알고 호기와 무용과 구변이 있는 준수한 자」라 아뢰었다(16:18). 사울이 사자를 보내 양치는 다윗을 불렀고, 이새는 떡과 포도주와 염소 새끼를 나귀에 실려 다윗 손으로 보냈다(16:19-20). 다윗이 사울 앞에 모셔 서니 사울이 그를 크게 사랑하여 병기 든 자로 삼고, 이새에게 다윗을 자기 앞에 모셔 서게 하라 했다(16:21-22). 하나님의 부리신 악신이 사울에게 이를 때에 다윗이 수금을 취하여 손으로 타면 사울이 상쾌하여 낫고 악신이 떠났다(16:23 · 자리는 [추론] 기브아 사울의 본집 — 지리 근거 15:34 「사울은 사울 기브아 본집으로 올라가니라」 · 사울이 집에 앉아 수금을 들음은 19:9 「사울이 … 그 집에 앉았을 때에 … 다윗이 손으로 수금을 탈 때에」).",
+    "same_time": {
+      "16:14": "원인 — 악신이 사울을 번뇌케 함(지금 막 풀리는 괴로움)",
+      "16:15": "앞선 날 — 신하들의 아룀",
+      "16:16": "앞선 날 — 수금 타는 사람을 구하자는 의논",
+      "16:17": "앞선 날 — 사울의 명",
+      "16:18": "앞선 날 — 다윗을 천거함(다윗의 사람됨 · 생애 단계 근거)",
+      "16:19": "앞선 날 — 다윗을 부름",
+      "16:20": "앞선 날 — 이새의 예물",
+      "16:21": "그 뒤 늘 — 다윗이 사울 앞에 모셔 섬(이 자리의 다윗 자리)",
+      "16:22": "그 뒤 늘 — 사울이 다윗을 곁에 둠",
+      "16:23": "고정한 순간 — 악신이 이를 때 다윗이 수금을 손으로 타 사울이 상쾌하여 낫고 악신이 떠남"
     }
   },
   "moment": {
     "verse": "16:23",
-    "why": "다윗이 수금을 손으로 타서 사울이 상쾌해지는 순간을 고정한다 — 병기 든 자로 삼은 절차(16:21)는 이 순간의 요구가 아니다."
+    "why": "상황 안에서 16:23을 고른다 — 단락(16:14-23)이 가장 크게 말하는 것은 악신이 번뇌케 하던 사울이 다윗의 수금으로 상쾌하여 나음이다(16:14 번뇌 → 16:23 나음). 16:15-20의 천거·부름·예물은 앞선 날이고, 16:21 「모셔 서매」(16:22 「모셔 서게 하라」)는 이 순간 다윗이 서 있는 자리로 실린다. 수금을 타는 중 사울 얼굴이 풀리는 때(악신이 떠나는 때)."
   },
   "meaning": {
-    "ko": "왕의 집 어둑한 방에서 소년 다윗이 수금을 손으로 타니 사울이 상쾌하여 낫는다",
-    "en": "In a dim room of the king's house the shepherd boy plays the harp with his hand, and the troubled king is refreshed",
-    "verse": "삼상 16:23"
+    "ko": "기브아 사울의 집에서, 악신이 이를 때 다윗이 사울 앞에 서서 수금을 손으로 타니 앉아 있던 사울이 상쾌하여 낫는다",
+    "en": "In Saul's house at Gibeah, when the evil spirit troubles Saul, David stands before him and plays the lyre with his hand, and the seated king is refreshed",
+    "verse": "삼상 16:21·23(서 있음은 16:21에서 [추론]) · 기브아는 15:34에서 [추론] · 사울 앉음은 19:9(다른 날)에서 [추론]"
   },
   "relation": {
-    "ko": "소년이 왕을 향해 수금을 타고, 왕은 소년 쪽으로 몸을 기울여 그 소리를 듣는다 — 둘은 닿지 않는다",
-    "en": "the boy plays the harp toward the king, and the king leans toward the boy, listening to the music, the two not touching",
-    "verse": "삼상 16:23 「수금을 취하여 손으로 탄즉」 · 몸 기울임 본문 밖 · 저작자 정함"
+    "ko": "소년 다윗이 앉은 왕 앞에 서서 왕을 향해 수금을 타고, 왕은 눈을 반쯤 감고 그 소리를 듣는다 — 둘은 닿지 않는다",
+    "en": "the young man plays the lyre for the seated king, and the king listens, the two not touching",
+    "verse": "삼상 16:21 「그 앞에 모셔 서매」(서 있음은 [추론]) · 16:23 「손으로 탄즉 사울이 상쾌하여 낫고」 · 눈 감음·닿지 않음은 본문 밖 · 저작자 정함"
   },
   "whole_background": {
-    "ko": "왕의 집 안 어둑한 방 — 맨 돌벽, 바닥 깔개",
-    "en": "a dim room inside the king's house, bare stone walls, a simple floor mat",
-    "verse": "삼상 16:21-23 · 방 모습 본문 밖 · 저작자 정함(판 문구와 같은 장소)"
+    "ko": "기브아 사울의 본집 안 소박한 방 — 사방이 거친 돌벽, 바닥에 나무 걸상",
+    "en": "the inside of a plain room in Saul's house at Gibeah, walls of rough uneven stone blocks all around",
+    "verse": "기브아 본집은 지리 근거 15:34 「사울은 사울 기브아 본집으로 올라가니라」 · 집은 19:9 「그 집에 앉았을 때에」 · 돌벽·걸상은 본문 밖 · 저작자 정함(기브아 창 장면과 같은 방)"
   },
   "background": [
     {
-      "what": "사울의 처소, 소박한 실내 자리",
-      "verse": "16:23"
+      "what": "기브아 사울의 본집 안 소박한 방, 거친 돌벽",
+      "verse": "15:34 · 19:9 「그 집에」 · 방 모습은 본문 밖 · 저작자 정함"
     }
   ],
   "figures": [
     {
       "cast": "david-boy",
-      "role": "소년 다윗 — 수금 타는 자",
-      "pose": "앉아서 수금을 탄다",
-      "prop": "a small harp",
+      "role": "다윗(소년) — 사울의 병기 든 자, 왕 앞에 서서 수금을 타는 자",
+      "pose": "앉은 사울 앞에 서서 수금을 가슴에 세워 안고 손가락으로 줄을 뜯는다",
+      "prop": "a small wooden lyre",
       "facing": "right",
       "region": "david-boy",
-      "verse": "16:23",
+      "verse": "16:21·23 · 생애 단계 근거는 stage_why",
+      "screen_facing": "right",
       "expression": {
-        "ko": "차분하게 몰두한 얼굴",
-        "en": "a calm, absorbed face",
-        "verse": "본문 밖 · 저작자 정함"
+        "ko": "준수한 얼굴로 연주에 몰두함",
+        "en": "a handsome face, absorbed in the music",
+        "verse": "16:18 「준수한 자」 · 몰두는 본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "앉아 무릎 위 작은 수금을 손가락으로 탄다",
-        "en": "sitting with one small harp on his knees, plucking its strings with his fingers",
-        "verse": "삼상 16:23 「손으로 탄즉」 · 앉음 본문 밖 · 저작자 정함"
+        "ko": "앉은 왕 앞에 서서 작은 나무 수금(울림통에 두 팔과 가로대, 목·지판 없음)을 가슴에 세워 안고 손가락으로 줄을 뜯음",
+        "en": "standing before the seated king, holding a small wooden lyre upright against his chest, a small hollow wooden sound box, smaller than a man's torso, with two curved arms rising from the box, joined by a top crossbar, strings from box to crossbar, plucking its strings with the fingers of his hand",
+        "verse": "서서 탐은 16:21 「그 앞에 모셔 서매」에서 [추론](섬기는 자리 — 연주 순간의 자세는 본문에 없음) · 16:23 「다윗이 수금을 취하여 손으로 탄즉」 · 수금 모양은 낱말 사전 kinnor-lyre L2 · 가슴에 세워 안음은 사전 look.hold(hug) · 발 자세는 본문 밖 · 저작자 정함"
       },
       "costume": {
-        "ko": "물들이지 않은 황갈색 양모 튜닉과 새끼줄 띠",
-        "en": "an undyed tan wool tunic with a rope belt",
-        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+        "ko": "물들이지 않은 황갈색 모직 반소매 무릎 길이 튜닉(가슴·어깨를 덮음)과 가죽 띠, 무릎 아래 맨다리",
+        "en": "in a short-sleeved knee-length undyed tan wool tunic covering his chest and shoulders, with a leather belt, his bare legs showing below the knee",
+        "verse": "본문 밖 · 저작자 정함(기브아 창 장면과 같은 문구 — david-boy 카드의 띠 낱말과 다름)"
       },
       "gaze": "saul",
-      "screen_facing": "right"
+      "cast_override": {
+        "age": "young shepherd"
+      },
+      "cast_override_why": "정본 david-boy 카드 age 「shepherd boy」가 시선 문구(looking toward the …)로 이어져 「boy」 — 카드 ageBand가 youth(about 14)라 규칙 derive.youth-noun(사람 결정 2026-10-23: youth 등급 파생 명사는 young man)과 어긋남. 주어 명사는 이미 young man으로 파생되므로 이 장면 시선 낱말만 맞춤. 카드 자체·다른 david-boy 장면(골리앗·기름부음)은 이 작업 범위 밖 — 재검 목록",
+      "stage_why": "[추론] 프로젝트 연대(data/person_events/david.json — 출생 BC 1040경 · 수금 BC 1026경 · 골리앗 BC 1025경) → 이 장면 때 약 14세, 바로 다음 골리앗 장면과 같은 david-boy. 이 일 뒤의 삼상 17:33 「너는 소년이요」·삼상 17:42 「그가 젊고」도 어림을 말함. 삼상 16:18 「호기와 무용과 구변이 있는 준수한 자」·삼상 16:21 「자기의 병기 든 자를 삼고」는 청년 쪽으로 읽힐 수 있으나, 청년 근거(삼상 17:56 「청년」 · 삼상 18:5 「군대의 장」)는 골리앗 뒤 일이라 이 장면에 쓰지 않음(task 414 본문 검토 3-a)"
     },
     {
       "cast": "saul",
-      "role": "사울 — 귀 기울이는 왕",
-      "pose": "앉아서 귀 기울인다",
-      "prop": "a plain traveling cloak",
+      "role": "사울 — 악신이 이르렀다가 수금 소리에 상쾌하여 낫는 왕",
+      "pose": "걸상에 앉아 다윗 쪽을 향해 눈을 반쯤 감고 듣는다",
+      "prop": "none",
       "facing": "left",
       "region": "saul",
-      "verse": "16:23 · 지물 본문 밖 · 저작자 정함",
+      "verse": "16:23 · 앉음은 19:9(다른 날)에서 [추론]",
+      "screen_facing": "left",
       "expression": {
-        "ko": "눈을 반쯤 감고 풀린 얼굴",
-        "en": "eyes half closed, a relieved, eased face",
-        "verse": "삼상 16:23 「상쾌하여 낫고」 · 표정 본문 밖 · 저작자 정함"
+        "ko": "눈을 반쯤 감고 풀린 얼굴 — 괴로움이 걷힘",
+        "en": "eyes half closed, a relieved, eased face, the torment gone from his face",
+        "verse": "16:23 「사울이 상쾌하여 낫고 악신은 그에게서 떠나더라」 · 얼굴 모습은 본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "앉아 소년 쪽으로 몸을 기울여 듣는다, 접은 겉옷을 한 팔에 걸침",
-        "en": "sitting and leaning toward the boy to listen, one plain cloak folded over one arm",
-        "verse": "삼상 16:23 · 기울임·겉옷 본문 밖 · 저작자 정함"
+        "ko": "나무 걸상에 앉아 두 손을 무릎에 얹고 다윗 쪽을 향함",
+        "en": "sitting on a simple wooden stool, his hands resting on his knees, turned toward David",
+        "verse": "19:9 「사울이 손에 단창을 가지고 그 집에 앉았을 때에 … 다윗이 손으로 수금을 탈 때에」(다른 날 같은 자리의 평소 모습에서 [추론] — 단창은 19:9 그날 일이라 이 장면에 넣지 않음) · 손 자리는 본문 밖 · 저작자 정함"
       },
       "costume": {
-        "ko": "짙은 갈색 양모 튜닉과 수수한 가죽 띠, 관 없음",
-        "en": "a dark brown wool tunic with a plain leather belt, no crown",
-        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+        "ko": "무릎 길이 반소매 어두운 갈색 모직 튜닉과 수수한 가죽 띠, 정강이가 드러남 — 집 안의 평상 차림",
+        "en": "in a knee-length short-sleeved dark brown wool tunic with a plain leather belt, his bare shins showing",
+        "verse": "본문 밖 · 저작자 정함(정본 saul 카드 차림 · 기브아 창 장면과 같은 문구)"
       },
       "gaze": "david-boy",
-      "screen_facing": "left"
+      "stage_why": "[추론] 삼상 13:1 「사울이 왕이 될 때에 사십 세라」 + 프로젝트 연대(사울 선출 BC 1050경 · 이 일 수금 BC 1026경, data/person_events/saul.json) → 이 장면 때 약 64세. 성경만으로 낮게 잡으면 삼하 2:10 「사울의 아들 이스보셋이 비로소 이스라엘 왕이 될 때에 나이 사십 세며」 — 이스보셋이 사울이 죽은 직후 즉위했다고 가정할 때 사울은 죽을 때 60세 안팎 이상(가정은 느슨함). id는 기력으로 고름 — 아직 왕으로 군대를 거느리니 삼상 28:20 「그 기력이 진하였으니」 이전의 saul(saul-old 아님), 나이는 cast_override로 이 장면만 덮어씀",
+      "cast_override": {
+        "card": {
+          "heightRel": "tall",
+          "ageBand": {
+            "class": "elder",
+            "text": "in his mid-60s, a wrinkled older face, lined forehead and cheeks"
+          },
+          "beardVolume": {
+            "class": "trimmed",
+            "text": "close-trimmed grey-streaked beard, jawline visible"
+          },
+          "silhouette": {
+            "class": "broad",
+            "text": "broad shoulders, a strong solid chest"
+          },
+          "headOutline": {
+            "class": "bare",
+            "text": "bare head, short greying hair cut close"
+          },
+          "costumeColor": {
+            "class": "brown",
+            "text": "dark brown wool tunic, plain leather belt"
+          }
+        }
+      },
+      "cast_override_why": "이 장면 사울은 약 64세(stage_why) — 정본 saul 카드 ‘in his 40s’는 이 장면과 맞지 않아 나이·수염·머리를 덮어씀. 체격 문구 ‘thick barrel torso’는 규칙 derive.no-inflating-build(술통 몸통에 다리가 짧아 보임)로 ‘a strong solid chest’ — 기브아 창 장면과 같은 덮어씀"
+    }
+  ],
+  "verse_elements": [
+    {
+      "verse": "16:14",
+      "quote": "악신이 그를 번뇌케 한지라",
+      "kind": "행동",
+      "ko": "악신이 사울을 번뇌케 함",
+      "out": "수금을 타기 전의 괴로움 — 고정한 순간(16:23)은 그 괴로움이 풀리는 때라 풀린 얼굴로 실림"
+    },
+    {
+      "verse": "16:15",
+      "quote": "사울의 신하들이",
+      "kind": "무리",
+      "ko": "아뢰는 신하들",
+      "out": "앞선 날의 아룀 — 고정한 순간 밖"
+    },
+    {
+      "verse": "16:16",
+      "quote": "수금 잘 탈줄 아는 사람을 구하게 하소서",
+      "kind": "행동",
+      "ko": "수금 타는 사람을 구하자는 의논",
+      "out": "앞선 날의 의논 — 고정한 순간 밖"
+    },
+    {
+      "verse": "16:17",
+      "quote": "잘 타는 사람을 구하여 내게로 데려오라",
+      "kind": "행동",
+      "ko": "사울의 명",
+      "out": "앞선 날의 명 — 고정한 순간 밖"
+    },
+    {
+      "verse": "16:18",
+      "quote": "소년 중 한사람이",
+      "kind": "인물",
+      "ko": "다윗을 천거한 소년",
+      "out": "앞선 날 천거한 사람 — 고정한 순간 밖"
+    },
+    {
+      "verse": "16:18",
+      "quote": "준수한 자라",
+      "kind": "인물",
+      "ko": "준수한 다윗",
+      "en": "a handsome face",
+      "field": "figures[0].expression"
+    },
+    {
+      "verse": "16:19",
+      "quote": "양치는 네 아들 다윗을",
+      "kind": "인물",
+      "ko": "양치는 다윗",
+      "out": "부름받기 전의 일 — 이 순간 다윗은 사울의 병기 든 자(16:21)"
+    },
+    {
+      "verse": "16:20",
+      "quote": "떡과 한 가죽부대의 포도주와 염소 새끼를",
+      "kind": "지물",
+      "ko": "이새가 보낸 예물",
+      "out": "처음 올 때 가져온 예물 — 고정한 순간 밖"
+    },
+    {
+      "verse": "16:21",
+      "quote": "그 앞에 모셔 서매",
+      "kind": "자리",
+      "ko": "다윗이 사울 앞에 섬(서 있음은 [추론] — 「모셔 서다」는 섬김의 말)",
+      "en": "standing before the seated king",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "16:21",
+      "quote": "사울이 그를 크게 사랑하여",
+      "kind": "행동",
+      "ko": "사울이 다윗을 크게 사랑함",
+      "out": "다윗이 처음 섬기게 된 때의 마음 — 고정한 순간의 사울 얼굴은 16:23 「상쾌하여 낫고」로 실음"
+    },
+    {
+      "verse": "16:21",
+      "quote": "자기의 병기 든 자를 삼고",
+      "kind": "인물",
+      "ko": "사울의 병기 든 자가 된 다윗",
+      "out": "직분을 맡긴 일 — 이 순간 다윗 손의 것은 수금(16:23)이고 병기를 들었다는 말은 없음"
+    },
+    {
+      "verse": "16:22",
+      "quote": "내 앞에 모셔 서게 하라",
+      "kind": "자리",
+      "ko": "다윗을 곁에 모셔 세움",
+      "out": "사울이 이새에게 보낸 말 — 같은 자리는 16:21 「그 앞에 모셔 서매」 요소가 실음"
+    },
+    {
+      "verse": "16:23",
+      "quote": "악신이 사울에게 이를 때에",
+      "kind": "때",
+      "ko": "악신이 사울에게 이른 때",
+      "out": "수금을 타기 시작한 때 — 고정한 순간은 그 뒤 「상쾌하여 낫고」 때라 풀린 얼굴로 실림"
+    },
+    {
+      "verse": "16:23",
+      "quote": "다윗이 수금을 취하여",
+      "kind": "지물",
+      "ko": "다윗 손의 수금(낱말 사전 수금 L2 모양)",
+      "en": "a small hollow wooden sound box, smaller than a man's torso, with two curved arms rising from the box, joined by a top crossbar, strings from box to crossbar",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "16:23",
+      "quote": "손으로 탄즉",
+      "kind": "행동",
+      "ko": "다윗이 손가락으로 줄을 뜯음",
+      "en": "plucking its strings with the fingers of his hand",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "16:23",
+      "quote": "사울이 상쾌하여 낫고",
+      "kind": "행동",
+      "ko": "사울이 상쾌하여 나음",
+      "en": "a relieved, eased face",
+      "field": "figures[1].expression"
+    },
+    {
+      "verse": "16:23",
+      "quote": "악신은 그에게서 떠나더라",
+      "kind": "행동",
+      "ko": "악신이 사울에게서 떠남",
+      "en": "the torment gone from his face",
+      "field": "figures[1].expression"
     }
   ],
   "regions": {
@@ -96,26 +278,40 @@
       1.0
     ],
     "david-boy": [
-      0.15,
-      0.5,
-      0.27,
-      0.9
+      0.2,
+      0.3,
+      0.34,
+      0.95
     ],
     "saul": [
-      0.55,
-      0.45,
-      0.685,
-      0.9
+      0.56,
+      0.311,
+      0.8,
+      0.95
     ]
   },
-  "_regions_why": "다윗(소년) 앉은 세로 0.40, 사울 앉은 세로 0.45(성인 왕, 소년보다 다소 큼). 좌우는 16:23(다윗이 수금을 타고 사울이 곁에서 들음).",
+  "_regions_why": "크기 기준표에서 셈(ADR 261024-083947) — 두 사람(독대)이라 초점 다윗(서 있음) 구역 높이 0.65(무리 단계 duo 0.60~0.70) · 발 y 0.95 · 다윗 키 등급 short 0.92 → 지평선 0.95 − 0.93 × 0.65 ÷ 0.92. 사울은 같은 발 y에 앉음: 그 자리 서 있는 화면 키 × tall 1.205 × 앉은 키 0.75 → 위끝 0.311(규칙 generate.seated-height, 스크립트가 기준표로 셈). 좌우는 16:21 「그 앞에 모셔 서매」 — 다윗이 왼쪽에서 오른쪽 사울을 향해 섬.",
+  "guide": {
+    "depth": {
+      "david-boy": 1.0,
+      "saul": 0.95
+    },
+    "shape": {
+      "david-boy": "person",
+      "saul": "sit"
+    },
+    "backdrop": "room",
+    "body": "card",
+    "legs": "costume",
+    "why": "task 414 — 기브아 창 규칙을 물려받음: 실내 방 바탕(generate.guide-backdrop) · 카드 체격 몸 너비(guide-body-build) · 무릎 길이 차림 다리(guide-costume-legs). 다윗은 서 있는 사람 꼴(16:21 「모셔 서매」), 사울은 걸상에 앉은 꼴 sit(19:9 「앉았을 때에」 · 새 규칙 generate.seated-height로 크기를 잼). 수금은 사전 look.hold hug add — 바탕에서 빼고 편집으로 넣음(edit.held-prop-add)."
+  },
   "stages": [
     {
       "id": "S1",
       "kind": "full",
       "region": "full",
       "verse": "16:23",
-      "prompt": "a plain dim interior room, bare stone wall, simple floor mat, no people.",
+      "prompt": "a plain dim interior room, rough stone block walls, a simple wooden stool, no people.",
       "neg": [
         "people",
         "figures",
@@ -134,16 +330,17 @@
       "id": "S2",
       "kind": "plate",
       "region": "david-boy",
-      "verse": "16:23",
-      "prompt": "{cast:david-boy}, sitting, gripping one small harp, playing, facing right.",
+      "verse": "16:21·23",
+      "prompt": "{cast:david-boy}, standing, holding a small wooden lyre against his chest, playing, facing right.",
       "neg": [
         "armour",
         "helmet",
         "sword",
         "beard",
         "old man",
-        "standing",
-        "shoes"
+        "sitting",
+        "lute",
+        "guitar"
       ]
     },
     {
@@ -151,7 +348,7 @@
       "kind": "plate",
       "region": "saul",
       "verse": "16:23",
-      "prompt": "{cast:saul}, sitting, holding one plain cloak folded over one arm, listening, facing left.",
+      "prompt": "{cast:saul}, sitting on a wooden stool, hands on knees, listening, facing left.",
       "neg": [
         "armour",
         "sword",
@@ -172,8 +369,8 @@
     ],
     "gap_bands": [
       [
-        0.27,
-        0.55
+        0.34,
+        0.58
       ]
     ],
     "crest_x": {

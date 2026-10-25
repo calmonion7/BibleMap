@@ -4,7 +4,7 @@
   python3 batch/make_guide.py [--scene <장면 id>] [--out <png>]     # 기본: 요단 귀환 → samples/jordan-guide/guide.png
 
 깊이 그림 = 가까움 밝게 · 멂 어둡게. 선을 주지 않고(ZIMAGE §2 「콘티 되그림」) 자리·크기·멀고 가까움만 준다.
-꼴(guide.shape): person(서 있는 한 사람) · person_bow(고개를 앞·아래로 숙인 서 있는 사람, restyle r5) · kneel_bow(무릎 꿇고 엉덩이 들고 머리를 왼쪽 땅에, r6) · seated(배 안에 앉은 머리·어깨 한 줄, r6) · prostrate(엎드린 낮은 몸, 머리는 왼쪽 — 다윗 쪽) · crowd(작은 실루엣 두 줄) · boat(선체) · bank(강 너머 둑).
+꼴(guide.shape): person(서 있는 한 사람) · person_bow(고개를 앞·아래로 숙인 서 있는 사람, restyle r5) · kneel_bow(무릎 꿇고 엉덩이 들고 머리를 왼쪽 땅에, r6) · seated(배 안에 앉은 머리·어깨 한 줄, r6) · sit(걸상에 앉아 왼쪽을 향한 한 사람, task 414) · prostrate(엎드린 낮은 몸, 머리는 왼쪽 — 다윗 쪽) · crowd(작은 실루엣 두 줄) · boat(선체) · bank(강 너머 둑).
 바탕: 하늘 0 · 땅은 지평선에서 아래로 0.12 → 0.5. 그리는 순서는 먼 것부터(깊이 오름차순).
 지평선은 눈높이 카메라(task 409, 규칙 generate.eye-level-perspective): 가장 가까운 서 있는 인물의 발 y·화면 키·키 등급에서 파생(S.scene_horizon)."""
 import argparse, json, os, sys
@@ -149,6 +149,24 @@ def person_duck(d, x0, y0, x1, y1, v):
     d.polygon([(hip_x - bw * 0.3, hip_y), (hip_x + bw * 0.3, hip_y - h * 0.04), (kx, ky - h * 0.06), (kx - bw * 0.15, ky + h * 0.06)], fill=v)            # 앞 넓적다리
     d.polygon([(kx - bw * 0.4, ky - h * 0.02), (kx, ky - h * 0.04), (kx - w * 0.05, y1), (kx - w * 0.05 - bw * 0.4, y1)], fill=v)                    # 앞 정강이
     d.polygon([(hip_x - bw * 0.4, hip_y + h * 0.05), (hip_x, hip_y), (x0 + w * 0.32, y1), (x0 + w * 0.32 - bw * 0.4, y1)], fill=v)       # 뒤 다리
+
+
+def sit(d, x0, y0, x1, y1, v):
+    """task 414 — 걸상에 앉아 화면 왼쪽을 향한 사람(삼상 19:9 「그 집에 앉았을 때에」): 곧은 위몸, 왼쪽으로 뻗은 넓적다리, 바닥으로 내린 정강이, 걸상.
+    구역 높이 = 앉은 키(서 있는 키 × body.seated, 규칙 generate.seated-height) — 머리·몸 너비는 서 있는 키로 셈."""
+    h, w = y1 - y0, x1 - x0
+    hs = h / S.v("body.seated")                        # 서 있는 키
+    bw, r = min(w, hs * BODY["w"]), hs * HEAD_R["person"]
+    cx = x0 + w * 0.62
+    d.ellipse([cx - r, y0, cx + r, y0 + 2 * r], fill=v)
+    seat = y1 - hs * (1 - S.v("body.knee"))            # 걸상 높이 ≈ 무릎 높이
+    knee, BODY["knee"] = BODY["knee"], False           # 위몸은 무릎 아래 다리 없이(다리는 아래 넓적다리·정강이)
+    body(d, (cx - bw * 0.3, y0 + 2 * r), (cx + bw * 0.3, y0 + 2 * r), cx, y0, seat, bw * 0.8, v)    # 위몸
+    BODY["knee"] = knee
+    kx = cx - hs * 0.25
+    limb(d, (cx, seat - bw * 0.2), (kx, seat - bw * 0.2), bw * 0.45, v)                              # 넓적다리
+    limb(d, (kx, seat - bw * 0.2), (kx - bw * 0.1, y1 - bw * 0.1), bw * 0.32, v, bw * 0.24)         # 정강이
+    d.rectangle([cx - bw * 0.35, seat, cx + bw * 0.35, y1], fill=round(v * 0.85))                  # 걸상
 
 
 def person_throw(d, x0, y0, x1, y1, v):
@@ -309,7 +327,7 @@ def draw_pose(img, box, name, hip_dx=0.06):
 
 
 AIR_SHAPES = {"spear"}   # 허공을 나는 물체 꼴(recheck.AIR_SHAPES와 같음)
-SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "seated": seated, "crowd": crowd, "boat": boat, "bank": bank}
+SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "seated": seated, "sit": sit, "crowd": crowd, "boat": boat, "bank": bank}
 
 
 def make_pose_only(spec, backdrop=False):

@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "cb0b1f5f7371",
+  "version": "bac0f1d2cb3c",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -159,6 +159,9 @@
     {"id": "generate.height-ratio", "layer": "generate", "scope": "all", "check": "recheck.height_ratio_errors",
      "source": "notes/GIBEAH-STEP23.md · task 404 f0(두 사람 크기 d5e·d4e2 3/3 틀림 · 기록 c5 2/8 · c11 0/8 — 다윗/사울 0.80) · 삼상 9:2 「모든 백성보다 어깨 위만큼 더 컸더라」", "since": "2026-10-23 task 404",
      "note": "(넓힘 task 413: 두 사람 이상인데 서 있는 guide 구역이 없으면 못 잼 — 전에는 빈 통과) (task 409: 눈높이 지평선으로 — 가장 가까운 서 있는 인물로 지평선을 정하고 다른 서 있는 인물의 구역 높이가 발 y에서 계산한 화면 키 × 표 키 등급과 초점 키의 ± 0.04 안. 같은 발 y면 아래 옛 검사와 같음) guide 사람 꼴·뼈대 인물 중 depth가 같은 두 인물의 구역 높이 비 = 0.87 ** (카드 heightRel 등급 차) ± 0.04 — 한 칸 = 머리 하나. 등급 child·short·average·tall·towering"},
+    {"id": "generate.seated-height", "layer": "generate", "scope": "all", "check": "recheck.seated_height_errors",
+     "source": "notes/HARP-STEP1.md 시도 1 · task 414(기브아 수금 — 삼상 19:9 「그 집에 앉았을 때에」 앉아 듣는 사울이 서 있는 사람만 재는 크기 규칙에 빈 통과)", "since": "2026-10-25 task 414",
+     "note": "guide 앉은 꼴(sit) 인물의 구역 높이 = 눈높이 지평선에서 그 발 y의 서 있는 화면 키 × 카드 키 등급 × 크기 기준표 body.seated(0.75) ± 초점 키의 0.04. 서 있는 초점 인물이 없으면 못 잼"},
     {"id": "judge.single-image-reps", "layer": "judge", "scope": "all", "check": "test:test_scene_rules",
      "source": "notes/GIBEAH-STEP23.md · task 404 f1e·f2e(가이드 조금만 다른 거의 같은 그림이 3표로 수금 2/3→0/3·던진 몸짓 2/3→0/3 뒤집힘) · 메모리 판정자 재현성", "since": "2026-10-23 task 404",
      "note": "한 장 시도(시드 하나, 새 그림 — images_from 검증 제외)는 같은 그림에 5표를 묻고 다수결 — 한 장 반복은 규칙 효과보다 판정 흔들림이 커서 3표로는 결함을 가를 수 없음"},
