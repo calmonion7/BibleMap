@@ -16,6 +16,3694 @@
       "i.guard": "맞음"
      },
      "reasons": {
+      "s.style": "미색 종이에 연필선과 색연필 질감이 보이는 동화 그림이다.",
+      "s.no-blob": "회색 덩어리나 미완성 실루엣이 없다.",
+      "i.moment": "젊은 어머니가 낮은 나무 걸상에 앉아 두 팔로 아기를 안고 내려다본다. 아기가 가슴보다 조금 낮은 무릎 쪽에 있지만 품어 안은 모양은 맞다.",
+      "i.one-person": "어른은 어머니 한 사람뿐이다.",
+      "i.baby": "갓난아기가 흰 천에 싸여 편안히 안겨 있고 크기도 알맞다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 띠를 매고 머리와 어깨를 덮는 너울을 썼다.",
+      "i.no-halo": "뒷벽이 옆벽처럼 돌로 그려져 있고 후광처럼 밝게 번진 곳이 없다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
+      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥, 짠 돗자리가 모두 있다.",
+      "i.guard": "손가락 수 이상, 겹친 인물, 테두리, 글자가 보이지 않는다."
+     },
+     "tries": [
+      {
+       "seconds": 10.323,
+       "input": 4,
+       "output": 1133,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.0168663,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "2": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "맞음",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 칠, 동화 그림 느낌이다.",
+      "s.no-blob": "얼굴과 옷이 다 그려져 있고 회색 덩어리는 없다.",
+      "i.moment": "어머니가 낮은 나무 걸상에 앉아 두 팔로 아기를 안고 내려다본다. 아기가 가슴보다 조금 낮은 품에 있지만 안은 자세로 볼 수 있다.",
+      "i.one-person": "어른은 앉은 어머니 한 사람뿐이다.",
+      "i.baby": "천에 싸인 작은 갓난아기가 편안해 보인다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 띠를 매고 머리와 어깨를 덮는 녹색 너울을 썼다.",
+      "i.no-halo": "뒷벽은 옆벽처럼 돌로 그려졌고 후광처럼 번진 빛은 없다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없고 너울 가장자리에 얇은 띠만 있다.",
+      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥, 짠 돗자리가 보이는 방 안이다.",
+      "i.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자 같은 결함이 보이지 않는다."
+     },
+     "tries": [
+      {
+       "seconds": 11.029,
+       "input": 4,
+       "output": 1165,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.0171863,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "1": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "맞음",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 질감이 보이는 동화 그림이다.",
+      "s.no-blob": "회색 덩어리나 미완성 실루엣이 없다.",
+      "i.moment": "어머니가 낮은 나무 걸상에 앉아 두 팔로 아기를 안고 내려다본다. 아기는 가슴에서 무릎 위 사이 높이에 있다.",
+      "i.one-person": "어른은 어머니 한 사람뿐이다.",
+      "i.baby": "작은 갓난아기가 흰 천에 싸여 편안해 보인다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 짠 띠를 매고 머리와 어깨를 덮는 너울을 썼다.",
+      "i.no-halo": "뒷벽 전체가 돌로 그려져 있고 후광처럼 밝게 번진 곳이 없다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다. 너울 가장자리에 옅은 테두리만 있다.",
+      "i.room": "돌벽, 나무 들보, 돌바닥, 짠 돗자리가 모두 보인다.",
+      "i.guard": "손가락 이상, 겹친 인물, 테두리·액자, 글자가 보이지 않는다."
+     },
+     "tries": [
+      {
+       "seconds": 11.493,
+       "input": 4,
+       "output": 1203,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.0175663,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    }
+   },
+   "M": {
+    "2": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "맞음",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp": "다윗이 한 손을 펴서 앞으로 내밀고 다른 손은 옆에 늘어뜨림. 두 손을 모으지 않음",
+      "m.david-clasp-height": "모은 손이 없음",
+      "m.moment": "나단이 다윗을 향해 손짓하고 다윗이 마주 봄",
+      "m.nathan-hand": "나단이 오른손을 펴서 다윗 쪽으로 내밂"
+     },
+     "tries": [
+      {
+       "seconds": 6.883,
+       "input": 4,
+       "output": 625,
+       "cache_read": 47402,
+       "cache_create": 8943,
+       "cost_usd": 0.0467702,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "3": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "맞음",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp": "다윗이 한 손은 펴서 앞으로 내밀고 다른 손은 옆에 늘어뜨림. 두 손을 모으지 않았음",
+      "m.david-clasp-height": "모은 손이 없음",
+      "m.moment": "두 사람이 서로 마주 보고 나단이 손을 내밀어 말을 전하는 모습"
+     },
+     "tries": [
+      {
+       "seconds": 6.999,
+       "input": 4,
+       "output": 623,
+       "cache_read": 47402,
+       "cache_create": 8943,
+       "cost_usd": 0.046750200000000006,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "1": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "맞음",
+      "m.nathan": "틀림",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp": "다윗이 한 손은 펴서 앞으로 내밀고 다른 손은 옆에 늘어뜨림. 두 손을 모으지 않음",
+      "m.david-clasp-height": "모은 손이 없음",
+      "m.nathan": "머리·수염이 짙은 회색이고 비교적 젊어 보여 희끗한 50대로 확실하지 않음",
+      "m.cloud-place": "구름이 두 사람 사이 위 가운데에 있고 누구의 머리에도 붙지 않음",
+      "m.cloud-time": "구름 안에 아기를 안은 어머니가 있어 앞선 때의 장면으로 읽힘"
+     },
+     "tries": [
+      {
+       "seconds": 7.985,
+       "input": 4,
+       "output": 682,
+       "cache_read": 47402,
+       "cache_create": 8943,
+       "cost_usd": 0.0473402,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    }
+   }
+  },
+  "s7": {
+   "M": {
+    "2": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-clasp-height": "맞음",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "틀림"
+     },
+     "reasons": {
+      "m.david-sash": "다윗의 겉옷 허리에 띠가 보이지 않는다. 세로 금빛 장식만 있다.",
+      "m.guard": "그림 아래쪽에 바닥 바깥으로 미색 종이 테두리 띠가 남아 있다.",
+      "m.david-clasp-height": "두 손이 가슴 아래, 허리 언저리에 모여 있다. 허리 높이로 볼 수 있다."
+     },
+     "tries": [
+      {
+       "seconds": 10.622,
+       "input": 4,
+       "output": 1003,
+       "cache_read": 47402,
+       "cache_create": 8943,
+       "cost_usd": 0.0505502,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "1": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-clasp-height": "맞음",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "틀림"
+     },
+     "reasons": {
+      "m.david-sash": "다윗의 겉옷 허리에 띠가 보이지 않는다. 금색 테두리 장식만 세로로 내려온다.",
+      "m.guard": "그림 아래쪽에 종이 테두리처럼 보이는 미색 띠가 남아 있다."
+     },
+     "tries": [
+      {
+       "seconds": 15.304,
+       "input": 4,
+       "output": 823,
+       "cache_read": 47402,
+       "cache_create": 8943,
+       "cost_usd": 0.04875020000000001,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "3": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "틀림"
+     },
+     "reasons": {
+      "m.david-clasp-height": "다윗의 모은 손이 허리가 아니라 가슴 높이쯤에 있음",
+      "m.david-sash": "다윗 겉옷 허리에 띠가 보이지 않고 금 장식 테두리만 있음",
+      "m.guard": "그림 아래쪽에 종이 여백 같은 밝은 띠가 남아 있어 테두리로 보임. 확실히 아니라고 할 수 없어 틀림으로 답함."
+     },
+     "tries": [
+      {
+       "seconds": 11.339,
+       "input": 4,
+       "output": 1119,
+       "cache_read": 56345,
+       "cache_create": 0,
+       "cost_usd": 0.0168325,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    }
+   },
+   "I": {
+    "1": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "i.moment": "어머니는 걸상에 앉아 아기를 내려다보지만, 아기가 가슴이 아니라 무릎·허리 높이에서 한 손으로 받쳐져 누워 있다. 두 팔로 가슴에 품어 안은 모습이 분명하지 않아 틀림으로 판정했다.",
+      "s.style": "미색 종이에 연필선과 색연필로 칠한 동화풍이다.",
+      "s.no-blob": "덩어리나 미완성 실루엣이 없다.",
+      "i.one-person": "어른은 앉은 어머니 한 사람뿐이다.",
+      "i.baby": "작은 갓난아기가 흰 천에 싸여 편안해 보인다. 발 하나만 천 밖으로 나와 있다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 짠 띠를 매고 머리와 어깨를 덮는 너울을 썼다.",
+      "i.no-halo": "뒷벽이 옆벽처럼 돌로 그려져 있고 후광처럼 번지는 빛이 없다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
+      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥, 짠 돗자리가 모두 있다.",
+      "i.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자가 보이지 않는다."
+     },
+     "tries": [
+      {
+       "seconds": 11.37,
+       "input": 4,
+       "output": 1200,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.0175363,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "2": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "맞음",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필선과 색연필로 칠한 동화 그림 느낌이다.",
+      "s.no-blob": "얼굴과 옷이 다 그려져 있고 회색 덩어리나 미완성 실루엣은 없다.",
+      "i.moment": "젊은 어머니가 낮은 나무 걸상에 앉아 아기를 팔로 안고 내려다본다. 아기가 가슴보다 무릎 쪽에 가깝게 안겨 있어 이 점만 약간 아쉽다.",
+      "i.one-person": "방 안에 어른은 어머니 한 사람뿐이다.",
+      "i.baby": "팔꿈치에서 손끝 길이쯤의 작은 갓난아기가 흰 천에 싸여 편안히 안겨 있다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 짠 띠를 매고, 머리와 어깨를 덮는 베이지색 너울을 썼다.",
+      "i.no-halo": "뒷벽이 옆벽처럼 돌로 그려져 있고 둥글게 밝게 번진 곳은 없다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없고 너울뿐이다.",
+      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥, 그 위에 짠 돗자리가 있는 방 안이다.",
+      "i.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자는 보이지 않는다."
+     },
+     "tries": [
+      {
+       "seconds": 10.636,
+       "input": 4,
+       "output": 1302,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.018556299999999998,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "3": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "맞음",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필선과 색연필 질감이 보이는 동화 그림이다.",
+      "s.no-blob": "회색 덩어리나 미완성 실루엣이 없다.",
+      "i.moment": "젊은 어머니가 낮은 걸상에 앉아 갓난아기를 두 팔로 안고 내려다본다. 아기가 가슴보다 무릎 쪽에 가깝게 안겨 있지만 품어 안은 자세로 볼 수 있다.",
+      "i.one-person": "어른은 어머니 한 사람뿐이다.",
+      "i.baby": "작은 갓난아기가 흰 천에 싸여 편안하게 누워 있다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 짠 띠를 매고, 머리와 어깨를 덮는 너울을 썼다.",
+      "i.no-halo": "뒷벽이 옆벽과 같은 돌로 그려져 있고 후광처럼 번진 빛이 없다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
+      "i.room": "다듬은 돌벽과 나무 들보, 돌바닥 위 짠 돗자리가 있는 방 안이다.",
+      "i.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자가 보이지 않는다."
+     },
+     "tries": [
+      {
+       "seconds": 10.401,
+       "input": 4,
+       "output": 1167,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.0172063,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    }
+   }
+  },
+  "s5": {
+   "M": {
+    "3": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp-height": "다윗의 모은 손이 허리가 아니라 가슴 높이(몸 위쪽 약 1/3 지점)에 있음",
+      "m.david-sash": "다윗의 겉옷 허리에 띠가 보이지 않음. 금색 세로 장식선만 있음"
+     },
+     "tries": [
+      {
+       "seconds": 9.205,
+       "input": 4,
+       "output": 861,
+       "cache_read": 47402,
+       "cache_create": 8943,
+       "cost_usd": 0.0491302,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "2": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp-height": "다윗의 모은 손이 허리가 아니라 가슴 높이에 있다.",
+      "m.david-sash": "다윗의 겉옷에는 금빛 줄 장식만 있고 허리띠가 보이지 않는다."
+     },
+     "tries": [
+      {
+       "seconds": 10.898,
+       "input": 4,
+       "output": 1058,
+       "cache_read": 47402,
+       "cache_create": 8943,
+       "cost_usd": 0.0511002,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "1": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp-height": "다윗의 모은 손이 허리가 아니라 가슴 높이에 있다.",
+      "m.david-sash": "겉옷에 금색 세로 장식만 있고 허리띠는 보이지 않는다.",
+      "m.david-clasp": "두 손을 몸 앞에 모았다.",
+      "m.facing": "나단은 오른쪽, 다윗은 왼쪽을 향해 서로 마주 본다. 다윗은 몸이 거의 정면이지만 얼굴은 왼쪽을 향한다.",
+      "m.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자가 보이지 않는다. 구름 틀은 장면 요소다.",
+      "m.david": "다윗은 짙은 붉은 긴 겉옷에 짙은 수염이고 40~50대로 보인다.",
+      "m.cloud-time": "구름 속에 아기를 안은 어머니가 있어 앞선 때의 장면으로 읽힌다."
+     },
+     "tries": [
+      {
+       "seconds": 11.599,
+       "input": 6,
+       "output": 1135,
+       "cache_read": 75057,
+       "cache_create": 8933,
+       "cost_usd": 0.0545997,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    }
+   },
+   "I": {
+    "1": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "틀림",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "i.moment": "어머니는 낮은 걸상에 앉아 아기를 내려다보지만, 아기가 가슴이 아니라 무릎·허리 높이에 놓여 있어 가슴에 품어 안은 모습과 다르다.",
+      "i.no-crown": "머리 너울 가장자리에 금빛 띠 장식이 둘러져 있어, 금빛 장식이 없다는 기대와 어긋난다."
+     },
+     "tries": [
+      {
+       "seconds": 9.647,
+       "input": 4,
+       "output": 971,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.015246299999999999,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "3": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "틀림",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "i.moment": "어머니가 앉아 아기를 내려다보긴 하지만, 아기는 가슴에 안기지 않고 무릎 위에 누워 있다. 아기도 어머니가 아닌 위쪽을 보고 있다.",
+      "i.no-crown": "너울 이마 가장자리에 금빛 장식띠가 둘려 있어 금빛 장식이 없다고 할 수 없다.",
+      "i.costume": "짙은 녹색 긴 겉옷, 짠 띠, 머리와 어깨를 덮는 너울이 모두 맞다.",
+      "i.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자 같은 결함이 보이지 않는다."
+     },
+     "tries": [
+      {
+       "seconds": 8.973,
+       "input": 4,
+       "output": 960,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.0151363,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "2": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "틀림",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "i.moment": "아기가 가슴에 안기지 않고 무릎 위 허리께에 누워 있고, 아기는 어머니가 아니라 천장을 본다.",
+      "i.no-crown": "너울 이마 둘레에 금빛 구슬 띠 장식이 보인다.",
+      "s.style": "색연필 질감의 동화 그림이다.",
+      "i.costume": "녹색 긴 겉옷, 짠 띠, 너울이 모두 있다.",
+      "i.baby": "천에 싸인 작은 갓난아기이고 편안해 보인다.",
+      "i.no-halo": "뒷벽은 옆벽처럼 돌로 그려져 있고 후광은 없다.",
+      "i.room": "돌벽, 들보, 돌바닥 위 돗자리가 있다.",
+      "i.one-person": "어른은 어머니 한 사람뿐이다.",
+      "s.no-blob": "덩어리로 남은 사람이나 물건이 없다.",
+      "i.guard": "눈에 띄는 결함이 없다."
+     },
+     "tries": [
+      {
+       "seconds": 10.963,
+       "input": 4,
+       "output": 1154,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.017076300000000003,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    }
+   }
+  },
+  "s11": {
+   "M": {
+    "1": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp-height": "다윗의 모은 손이 허리가 아니라 가슴 높이에 있다.",
+      "m.david-sash": "다윗의 겉옷이 허리에 띠 없이 그냥 흘러내린다.",
+      "m.moment": "나단이 손을 내밀어 말하고 다윗이 나단 쪽을 보며 듣는다.",
+      "m.facing": "나단은 오른쪽을, 다윗은 왼쪽을 향한다."
+     },
+     "tries": [
+      {
+       "seconds": 11.154,
+       "input": 4,
+       "output": 1105,
+       "cache_read": 47402,
+       "cache_create": 8943,
+       "cost_usd": 0.051570200000000004,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "2": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp-height": "다윗의 모은 손이 허리가 아니라 가슴 높이에 있다.",
+      "m.david-sash": "겉옷 앞에 금 장식 테두리는 있지만 허리에 맨 띠는 보이지 않는다.",
+      "m.david-clasp": "두 손을 몸 앞에 모으고 있다.",
+      "m.nathan-hand": "나단이 한 손을 펴서 다윗 쪽으로 내밀고 있다.",
+      "m.guard": "눈에 띄는 결함이 없다. 다만 인물 크롭 파일이 없어 전체 그림만 보고 판정했다."
+     },
+     "tries": [
+      {
+       "seconds": 10.227,
+       "input": 4,
+       "output": 984,
+       "cache_read": 56345,
+       "cache_create": 0,
+       "cost_usd": 0.0154825,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "3": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp-height": "다윗이 모은 두 손이 허리가 아니라 가슴 높이에 있다.",
+      "m.david-sash": "다윗의 겉옷이 허리에 띠 없이 그대로 늘어져 있다. 목선과 앞단의 금테 장식은 있지만 허리띠는 안 보인다.",
+      "m.david-clasp": "다윗이 두 손을 몸 앞에 모으고 있다.",
+      "m.nathan-hand": "나단이 오른손을 펴서 다윗 쪽으로 내밀고 있다."
+     },
+     "tries": [
+      {
+       "seconds": 10.58,
+       "input": 6,
+       "output": 1050,
+       "cache_read": 82692,
+       "cache_create": 1300,
+       "cost_usd": 0.0239812,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    }
+   },
+   "I": {
+    "1": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "i.moment": "아기가 가슴에 안기지 않고 무릎 높이에서 팔 위에 얹혀 누워 있다. 어머니는 내려다보지만 두 팔로 가슴에 품은 자세로 분명하지 않다.",
+      "i.baby": "작은 갓난아기가 흰 천에 싸여 편안히 누워 있다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 띠를 매고 머리와 어깨를 덮는 너울을 썼다.",
+      "i.no-halo": "뒷벽이 옆벽과 같은 돌벽으로 그려져 있고 후광처럼 번진 빛은 없다.",
+      "i.guard": "손가락 수 이상, 겹친 인물, 테두리, 글자가 보이지 않는다."
+     },
+     "tries": [
+      {
+       "seconds": 9.365,
+       "input": 4,
+       "output": 993,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.0154663,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "2": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "맞음",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필선과 색연필 질감의 동화 그림이다.",
+      "s.no-blob": "얼굴과 옷이 다 그려져 있고 회색 덩어리는 없다.",
+      "i.moment": "어머니가 낮은 걸상에 앉아 아기를 두 팔로 안고 내려다본다. 아기는 가슴보다 무릎 쪽에 놓여 있지만 품에 안은 자세로 볼 수 있다.",
+      "i.one-person": "어른은 앉은 어머니뿐이다.",
+      "i.baby": "천에 싸인 작은 갓난아기가 편안히 누워 있다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 띠를 매고 머리와 어깨를 덮는 너울을 썼다.",
+      "i.no-halo": "뒷벽 가운데에 돌 무늬가 그려져 있고 둥근 후광은 없다. 가운데가 옆보다 조금 밝긴 하다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
+      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥, 짠 돗자리가 모두 있다.",
+      "i.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자가 보이지 않는다."
+     },
+     "tries": [
+      {
+       "seconds": 10.792,
+       "input": 4,
+       "output": 1199,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.0175263,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "3": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "맞음",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필선과 색연필 질감의 동화풍이다.",
+      "s.no-blob": "얼굴·옷이 다 그려져 있고 회색 덩어리는 없다.",
+      "i.moment": "젊은 어머니가 낮은 나무 걸상에 앉아 두 팔로 아기를 안고 내려다본다. 아기가 가슴보다 무릎 쪽에 가깝지만 품어 안은 자세로 본다.",
+      "i.one-person": "어른은 어머니 한 사람뿐이다.",
+      "i.baby": "천에 싸인 작은 갓난아기가 편안히 누워 있다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 허리띠가 보이고 머리와 어깨를 덮는 너울을 썼다. 띠는 작아서 잘 보이지 않는다.",
+      "i.no-halo": "뒷벽이 옆벽처럼 돌로 그려져 있다. 가운데가 조금 밝지만 후광처럼 번지지는 않는다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
+      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥 위 짠 돗자리가 있는 방 안이다.",
+      "i.guard": "손가락 수 이상, 겹친 인물, 테두리, 글자가 보이지 않는다."
+     },
+     "tries": [
+      {
+       "seconds": 13.051,
+       "input": 4,
+       "output": 1292,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.018456300000000002,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    }
+   }
+  },
+  "s23": {
+   "M": {
+    "3": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp": "다윗이 두 손을 펴서 앞으로 내밀고 있어 모은 손이 아니다.",
+      "m.david-clasp-height": "손을 모으고 있지 않고, 펴 내민 손이 가슴·허리 사이에 걸쳐 있다.",
+      "m.david-sash": "겉옷 허리에 띠가 보이지 않는다. 금빛 테두리만 세로로 내려온다.",
+      "m.david": "짙은 붉은 긴 겉옷과 짙은 수염이 보인다.",
+      "m.nathan": "희끗한 머리와 수염에 짙은 갈색 긴 겉옷이다.",
+      "m.guard": "손가락 수 이상, 겹친 인물, 글자, 종이 테두리가 보이지 않는다.",
+      "m.facing": "나단은 오른쪽으로, 다윗은 왼쪽으로 얼굴과 몸을 돌리고 있다.",
+      "s.style": "미색 종이 위에 연필선과 색연필 질감이 보이는 동화 그림 화풍이다.",
+      "m.moment": "나단이 손을 내밀어 말을 전하고, 다윗이 마주 보며 듣는 구도다."
+     },
+     "tries": [
+      {
+       "seconds": 9.906,
+       "input": 4,
+       "output": 1106,
+       "cache_read": 56345,
+       "cache_create": 0,
+       "cost_usd": 0.016702500000000002,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "1": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 질감의 동화 그림이다.",
+      "s.no-blob": "두 인물과 구름 속 인물 모두 얼굴과 옷이 완성돼 있다.",
+      "m.moment": "나단이 다윗 앞에서 말을 전하고, 다윗이 나단을 향해 듣고 있다.",
+      "m.two-people": "구름 밖 큰 장면에는 왼쪽 나단과 오른쪽 다윗 두 사람뿐이다.",
+      "m.facing": "나단은 오른쪽, 다윗은 왼쪽을 향해 얼굴과 몸을 돌렸다.",
+      "m.nathan-hand": "나단이 양손을 펴서 다윗 쪽으로 내밀고 있다.",
+      "m.david-clasp": "다윗은 두 손을 모으지 않고 양손을 펴서 앞으로 내밀고 있다.",
+      "m.david-clasp-height": "다윗의 손이 모여 있지 않고, 양옆으로 벌려 내민 모습이다.",
+      "m.david-bare": "다윗은 아무것도 쓰지 않은 맨 곱슬머리다.",
+      "m.david": "짙은 붉은 긴 겉옷에 짙은 수염이다. 나이는 30대 후반에서 40대로 보여 대체로 맞다.",
+      "m.david-sash": "겉옷 허리에 띠가 보이지 않는다. 금색 테두리 장식만 있다.",
+      "m.nathan": "짙은 갈색 긴 겉옷에 희끗한 머리와 수염의 중년 남자다.",
+      "m.room": "다듬은 돌벽, 천장 들보, 돌바닥이 있는 실내다.",
+      "m.cloud-place": "뭉게구름 틀이 두 사람 사이 위 가운데에 있고 누구의 머리에도 붙지 않았다.",
+      "m.cloud-time": "구름 속에 아기를 안은 어머니가 있어 앞선 다른 때의 장면으로 읽힌다.",
+      "m.guard": "손가락 수 이상, 겹친 인물, 종이 테두리·액자, 글자가 보이지 않는다."
+     },
+     "tries": [
+      {
+       "seconds": 13.898,
+       "input": 4,
+       "output": 1611,
+       "cache_read": 47402,
+       "cache_create": 8943,
+       "cost_usd": 0.056630200000000006,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "2": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필선과 색연필 질감의 동화풍이다.",
+      "s.no-blob": "두 인물과 구름 속 인물 모두 얼굴과 옷이 완성돼 있다.",
+      "m.moment": "나단이 다윗 앞에 서서 손짓으로 말하고 다윗이 나단 쪽을 향해 듣는다.",
+      "m.two-people": "구름 밖 큰 장면에는 왼쪽 나단과 오른쪽 다윗 둘뿐이다.",
+      "m.facing": "나단은 오른쪽, 다윗은 왼쪽을 향해 얼굴과 몸을 돌렸다.",
+      "m.nathan-hand": "나단이 손을 펴서 다윗 쪽으로 내밀고 있다.",
+      "m.david-clasp": "다윗은 두 손을 모으지 않고 양손을 펴서 앞으로 내밀었다.",
+      "m.david-clasp-height": "모은 손이 없다. 양손이 가슴·허리 사이에서 펼쳐져 있다.",
+      "m.david-bare": "관이나 띠 없이 맨 곱슬머리다.",
+      "m.david": "짙은 붉은 긴 겉옷에 짙은 수염이고 중년으로 보인다.",
+      "m.david-sash": "겉옷에 금색 가장자리 장식만 있고 허리띠는 보이지 않는다.",
+      "m.nathan": "짙은 갈색 긴 겉옷에 희끗한 머리와 수염의 중년 남자다.",
+      "m.room": "다듬은 돌벽과 목재 들보, 돌바닥이 있는 실내다.",
+      "m.cloud-place": "구름 틀이 두 사람 사이 위 가운데에 있고 어느 머리에도 붙지 않았다.",
+      "m.cloud-time": "구름 속에 아기를 안은 어머니가 있어 지난 때의 회상으로 읽힌다.",
+      "m.guard": "손가락·겹친 인물·테두리·글자 결함이 보이지 않는다."
+     },
+     "tries": [
+      {
+       "seconds": 13.167,
+       "input": 4,
+       "output": 1602,
+       "cache_read": 56345,
+       "cache_create": 0,
+       "cost_usd": 0.0216625,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    }
+   },
+   "I": {
+    "1": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "i.moment": "아기가 어머니 무릎 위에 눕혀져 있고 어머니는 한 손으로 받치고 있다. 두 팔로 가슴에 품어 안은 모습이 아니다.",
+      "s.style": "연필 선에 색연필 질감의 동화풍이다.",
+      "i.baby": "작은 갓난아기가 흰 천에 싸여 편안히 누워 있다.",
+      "i.costume": "짙은 녹색 겉옷에 띠를 매고 머리와 어깨를 덮는 너울을 썼다.",
+      "i.no-halo": "뒷벽 전체가 돌로 그려졌고 후광처럼 번진 빛은 없다.",
+      "i.room": "돌벽, 나무 들보, 돌바닥 위 짠 돗자리가 있다."
+     },
+     "tries": [
+      {
+       "seconds": 9.303,
+       "input": 4,
+       "output": 891,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.0144463,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "2": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "틀림",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "i.moment": "아기가 어머니 무릎 위에 누워 있고 손은 아기 몸에 가볍게 얹혀 있을 뿐이다. 두 팔로 가슴에 품어 안은 모습이 아니다.",
+      "i.costume": "띠가 가늘고 갈색인 가죽끈처럼 보여 짠 띠라고 확인되지 않는다. 겉옷 밑으로 흰 천이 늘어져 있는 것도 기대한 차림과 다르다."
+     },
+     "tries": [
+      {
+       "seconds": 9.529,
+       "input": 4,
+       "output": 957,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.0151063,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "3": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "틀림",
+      "i.no-halo": "틀림",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 그린 동화풍이다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다.",
+      "i.moment": "어머니는 걸상에 앉아 아기를 내려다보지만, 아기는 가슴에 안기지 않고 무릎 위에 눕혀 있다. 두 팔로 가슴에 품어 안은 모습이 아니다.",
+      "i.one-person": "어른은 앉은 어머니 한 사람뿐이다.",
+      "i.baby": "천에 싸인 작은 갓난아기가 편안하게 누워 있다.",
+      "i.costume": "짙은 녹색 긴 겉옷과 머리·어깨를 덮는 너울은 맞다. 하지만 허리띠는 평범한 갈색 가죽끈처럼 보여서 짠 띠라고 확인되지 않는다.",
+      "i.no-halo": "어머니 머리 뒤 벽이 둥글게 밝아 보여 약한 후광처럼 보인다. 뒷벽 자체는 돌로 그려져 있다.",
+      "i.no-crown": "머리에는 너울만 있고 관이나 금빛 장식은 없다.",
+      "i.room": "다듬은 돌벽과 나무 들보, 돌바닥 위의 짠 돗자리가 있는 방 안이다.",
+      "i.guard": "손가락 수 이상, 겹친 인물, 테두리, 글자 같은 결함은 보이지 않는다."
+     },
+     "tries": [
+      {
+       "seconds": 12.117,
+       "input": 4,
+       "output": 1331,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.018846300000000003,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    }
+   }
+  },
+  "s101": {
+   "M": {
+    "1": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp-height": "다윗의 모은 손이 허리가 아니라 가슴 높이쯤에 있다.",
+      "m.david-sash": "다윗 겉옷 허리에 띠가 보이지 않는다. 금빛 테두리 장식만 있다.",
+      "m.david-clasp": "두 손이 몸 앞에 모여 있다.",
+      "m.nathan-hand": "나단이 한 손을 펴서 다윗 쪽으로 내밀고 있다."
+     },
+     "tries": [
+      {
+       "seconds": 9.394,
+       "input": 4,
+       "output": 921,
+       "cache_read": 47402,
+       "cache_create": 8943,
+       "cost_usd": 0.0497302,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "2": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp": "두 손이 맞잡힌 게 아니라 손바닥을 펴 앞으로 내민 모양으로 보임",
+      "m.david-clasp-height": "손이 허리가 아니라 가슴 높이쯤에 있음",
+      "m.david-sash": "겉옷이 허리에서 띠 없이 곧게 내려옴"
+     },
+     "tries": [
+      {
+       "seconds": 9.5,
+       "input": 4,
+       "output": 955,
+       "cache_read": 56345,
+       "cache_create": 0,
+       "cost_usd": 0.0151925,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "3": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-clasp-height": "맞음",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp": "다윗의 손은 모아 쥔 게 아니라 한 손만 펴서 앞으로 내민 모양으로 보임",
+      "m.david-sash": "붉은 겉옷 허리에 띠가 보이지 않고 금색 줄무늬만 세로로 내려옴",
+      "m.david-clasp-height": "손이 허리께 높이에 있음",
+      "s.style": "미색 종이에 연필·색연필 질감의 동화 그림 화풍",
+      "m.guard": "손가락 수 이상, 겹친 인물, 테두리·글자 같은 결함이 보이지 않음"
+     },
+     "tries": [
+      {
+       "seconds": 11.017,
+       "input": 4,
+       "output": 1103,
+       "cache_read": 56345,
+       "cache_create": 0,
+       "cost_usd": 0.0166725,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    }
+   },
+   "I": {
+    "3": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "맞음",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "틀림",
+      "i.no-crown": "틀림",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "i.no-halo": "어머니 머리 뒤 벽 가운데가 돌 줄눈이 흐려지며 하얗게 번져 후광처럼 밝아 보임",
+      "i.no-crown": "너울 이마 쪽에 금빛 머리 장식이 달려 있음",
+      "i.baby": "천에 싸여 편안하고 크기도 적당함. 다만 갓난아기치고는 다소 큼",
+      "i.moment": "낮은 걸상에 앉아 아기를 두 팔로 안고 내려다봄",
+      "i.costume": "짙은 녹색 겉옷, 짠 띠, 흰 너울이 모두 맞음"
+     },
+     "tries": [
+      {
+       "seconds": 10.193,
+       "input": 4,
+       "output": 1043,
+       "cache_read": 54244,
+       "cache_create": 1039,
+       "cost_usd": 0.0200184,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "1": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "맞음",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "틀림",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필선과 색연필 채색 느낌의 동화 그림이다.",
+      "s.no-blob": "회색 덩어리나 미완성 실루엣이 없다.",
+      "i.moment": "어머니가 낮은 걸상에 앉아 두 팔로 아기를 안고 내려다본다.",
+      "i.one-person": "어른은 어머니 한 사람뿐이다.",
+      "i.baby": "아기는 작은 갓난아기이고, 하체가 흰 천에 싸여 있으며 편안해 보인다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 짠 띠를 매고 머리와 어깨를 덮는 너울을 썼다.",
+      "i.no-halo": "뒷벽이 옆벽처럼 돌로 그려져 있고 후광은 없다.",
+      "i.no-crown": "너울 이마 쪽에 금빛 장식이 보인다.",
+      "i.room": "돌벽, 나무 들보, 돌바닥, 짠 돗자리가 모두 있다.",
+      "i.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자 같은 결함이 보이지 않는다."
+     },
+     "tries": [
+      {
+       "seconds": 11.61,
+       "input": 4,
+       "output": 1216,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.0176963,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "2": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "맞음",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "틀림",
+      "i.no-crown": "틀림",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "i.no-halo": "어머니 머리 뒤 벽 가운데가 옆벽보다 하얗게 바래고 돌 윤곽이 흐려져 후광처럼 번져 보인다. 분명히 맞다고 확인하기 어렵다.",
+      "i.no-crown": "너울의 이마 쪽에 금빛 머리띠나 장식이 붙어 있다."
+     },
+     "tries": [
+      {
+       "seconds": 11.471,
+       "input": 4,
+       "output": 1030,
+       "cache_read": 54244,
+       "cache_create": 1039,
+       "cost_usd": 0.0198884,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    }
+   }
+  },
+  "s202": {
+   "M": {
+    "3": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "틀림",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "틀림"
+     },
+     "reasons": {
+      "m.david-clasp": "한 손만 가슴 아래에 얹었고 다른 손은 소매 속에 가려져 두 손을 모은 모습이 아님",
+      "m.david-clasp-height": "두 손이 모여 있지 않고, 한 손도 허리보다 높은 가슴께에 있음",
+      "m.david-sash": "겉옷 허리에 띠가 보이지 않음",
+      "m.nathan": "머리에 천을 둘러 희끗한 머리가 보이지 않고, 수염도 거의 짙은 색임",
+      "m.guard": "바닥 아래쪽 가운데에 글자처럼 보이는 낙서가 있음"
+     },
+     "tries": [
+      {
+       "seconds": 10.404,
+       "input": 4,
+       "output": 978,
+       "cache_read": 55036,
+       "cache_create": 1309,
+       "cost_usd": 0.0205276,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "1": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "틀림",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "틀림"
+     },
+     "reasons": {
+      "m.david-clasp": "다윗의 한 손은 가슴께 겉옷을 잡고 다른 손은 옆으로 내려, 두 손을 몸 앞에 모은 모습이 분명하지 않다",
+      "m.david-clasp-height": "손이 허리가 아니라 가슴 높이에 있고, 모은 손 자체도 확실하지 않다",
+      "m.david-sash": "다윗의 겉옷 허리에 띠가 보이지 않고 금 테두리 단이 앞으로 열려 있다",
+      "m.nathan": "나단의 수염과 머리가 대부분 짙고 희끗함이 뚜렷하지 않다. 머리에는 두건을 둘렀다",
+      "m.guard": "바닥 아래쪽에 글자처럼 보이는 낙서가 있다"
+     },
+     "tries": [
+      {
+       "seconds": 12.446,
+       "input": 6,
+       "output": 1160,
+       "cache_read": 75056,
+       "cache_create": 8932,
+       "cost_usd": 0.0548456,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "2": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "틀림",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필선과 색연필 채색의 동화 화풍이다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리는 보이지 않는다.",
+      "m.moment": "나단이 다윗 앞에서 손짓하며 말하고, 다윗이 나단 쪽을 바라보며 듣는다.",
+      "m.two-people": "구름 밖 큰 장면의 사람은 나단과 다윗 둘뿐이다.",
+      "m.facing": "나단은 오른쪽, 다윗은 왼쪽을 향해 서로 마주 본다.",
+      "m.nathan-hand": "나단이 오른손을 펴서 다윗 쪽으로 내밀고 있다.",
+      "m.david-clasp": "한 손만 가슴께에 올려 있고 다른 손은 소매에 가려져, 두 손을 모은 모습으로 보이지 않는다.",
+      "m.david-clasp-height": "손이 허리가 아니라 가슴 높이에 있다.",
+      "m.david-bare": "곱슬머리에 관이나 띠가 없는 맨머리다.",
+      "m.david": "짙은 붉은 긴 겉옷에 짙은 수염의 중년 남자다.",
+      "m.david-sash": "겉옷 허리에 띠가 보이지 않는다.",
+      "m.nathan": "머리에 두건 같은 띠를 두르고 있고, 머리와 수염이 희끗하지 않고 짙다.",
+      "m.room": "다듬은 돌벽, 나무 들보, 돌바닥이 있는 방이다.",
+      "m.cloud-place": "구름 틀이 두 사람 사이 위 가운데에 있고 누구의 머리에도 붙어 있지 않다.",
+      "m.cloud-time": "구름 속 아기를 안은 어머니가 다른 때의 장면으로 읽힌다.",
+      "m.guard": "바닥 아래쪽에 글자 같은 낙서가 보인다."
+     },
+     "tries": [
+      {
+       "seconds": 12.941,
+       "input": 4,
+       "output": 1517,
+       "cache_read": 55036,
+       "cache_create": 1309,
+       "cost_usd": 0.025917600000000006,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    }
+   },
+   "I": {
+    "1": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "틀림",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "i.moment": "아기가 무릎 위에 눕혀 있고 어머니는 한 손씩 받치고 있다. 두 팔로 가슴에 품어 안은 모습이 아니다.",
+      "i.baby": "아기가 천에 싸여 있지 않다. 흰 옷 위로 팔다리가 드러나 있어서 싸인 갓난아기라고 확인되지 않는다."
+     },
+     "tries": [
+      {
+       "seconds": 8.912,
+       "input": 4,
+       "output": 846,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.0139963,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "3": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "틀림",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "i.moment": "아기가 무릎 위에 눕혀져 있고 어머니는 두 손으로 받친 모습이다. 두 팔로 가슴에 품어 안은 자세가 아니다.",
+      "i.baby": "아기 몸이 천에 싸여 있지 않다. 맨몸에 가깝고 천은 무릎 아래에만 깔려 있다."
+     },
+     "tries": [
+      {
+       "seconds": 7.877,
+       "input": 4,
+       "output": 725,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.012786299999999999,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "2": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "틀림",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필선과 색연필 질감의 동화풍이다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 없다.",
+      "i.moment": "아기가 가슴에 안겨 있지 않고 무릎 위에 눕혀져 있으며, 어머니는 한 손으로 아기를 받친 채 내려다본다. 두 팔로 가슴에 품어 안은 모습이 아니다.",
+      "i.one-person": "그림 속 어른은 앉은 어머니 한 사람뿐이다.",
+      "i.baby": "아기의 팔과 몸이 드러나 있고 천 위에 누워 있을 뿐 천으로 싸여 있다고 분명히 확인되지 않는다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 허리띠를 매고 머리와 어깨를 덮는 흰 너울을 썼다.",
+      "i.no-halo": "뒷벽은 옆벽과 같은 돌로 그려졌고 후광처럼 번진 빛은 없다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
+      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥 위의 짠 돗자리가 모두 있다.",
+      "i.guard": "손가락 수 이상, 겹친 인물, 테두리, 글자가 보이지 않는다."
+     },
+     "tries": [
+      {
+       "seconds": 10.606,
+       "input": 4,
+       "output": 1153,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.0170663,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    }
+   }
+  },
+  "s303": {
+   "M": {
+    "1": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "틀림"
+     },
+     "reasons": {
+      "m.david-clasp-height": "다윗이 모은 두 손이 허리가 아니라 가슴 높이에 있음",
+      "m.david-sash": "다윗 겉옷 허리에 띠가 보이지 않고 금빛 테두리만 세로로 내려옴",
+      "m.guard": "벽 한가운데 아래쪽(약 722,392 부근)에 정체불명의 작은 회색 점이 있음"
+     },
+     "tries": [
+      {
+       "seconds": 9.456,
+       "input": 4,
+       "output": 918,
+       "cache_read": 47402,
+       "cache_create": 8943,
+       "cost_usd": 0.0497002,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "3": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "틀림"
+     },
+     "reasons": {
+      "m.david-clasp-height": "다윗의 모은 손이 허리가 아니라 가슴께에 있음",
+      "m.david-sash": "다윗의 겉옷 허리에 띠가 보이지 않고 그냥 늘어져 있음",
+      "m.guard": "뒷벽 가운데에 정체불명의 작은 회색 점 같은 얼룩이 보임"
+     },
+     "tries": [
+      {
+       "seconds": 9.671,
+       "input": 4,
+       "output": 862,
+       "cache_read": 56345,
+       "cache_create": 0,
+       "cost_usd": 0.0142625,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "2": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-clasp-height": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.david-sash": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp-height": "다윗의 모은 손이 허리가 아니라 가슴 높이에 있음",
+      "m.david-sash": "다윗의 겉옷 허리에 띠가 보이지 않고 금 장식 테두리만 늘어져 있음",
+      "m.guard": "손가락·인물·테두리·글자 결함 없음. 벽에 작은 회색 점이 하나 있으나 사소한 얼룩으로 봄"
+     },
+     "tries": [
+      {
+       "seconds": 12.312,
+       "input": 4,
+       "output": 1230,
+       "cache_read": 48711,
+       "cache_create": 7634,
+       "cost_usd": 0.0477151,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    }
+   },
+   "I": {
+    "2": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "틀림",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 색연필로 그린 동화풍이다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리는 없다.",
+      "i.moment": "어머니는 앉지 않고 서 있다. 아기는 두 팔에 안겨 있지 않고 걸상 위 천에 눕혀져 있다.",
+      "i.baby": "아기는 천 위에 얹혀 있을 뿐 몸이 천에 싸여 있지 않고 팔다리가 드러나 있다.",
+      "i.costume": "짙은 녹색 긴 겉옷과 띠, 머리와 어깨를 덮는 너울이 모두 맞다.",
+      "i.no-halo": "뒷벽은 돌로 그려져 있고 후광은 없다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
+      "i.room": "돌벽, 나무 들보, 돌바닥, 짠 돗자리가 모두 있다.",
+      "i.guard": "걸상 위 아기 밑에 노란 방석 같은 덧붙은 물건이 있고, 발 아래 돗자리 모양도 어색하다. 확실히 결함이 없다고 보기 어렵다."
+     },
+     "tries": [
+      {
+       "seconds": 7.301,
+       "input": 4,
+       "output": 775,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.0132863,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "1": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "틀림",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 색연필로 그린 동화 화풍이다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다.",
+      "i.moment": "어머니가 서 있고 아기는 걸상 위에 눕혀져 있다. 앉아서 두 팔로 가슴에 안고 내려다보는 모습이 아니다.",
+      "i.one-person": "어른은 어머니 한 사람뿐이다.",
+      "i.baby": "아기가 천에 싸여 있지 않고 맨몸에 천 위에 눕혀져 있다. 쿠션 위에 놓인 모습이라 기대와 다르다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 띠를 매고 머리와 어깨를 덮는 너울을 썼다.",
+      "i.no-halo": "뒷벽 전체가 돌로 그려져 있고 후광처럼 번진 밝은 부분은 없다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
+      "i.room": "돌벽, 나무 들보, 돌바닥, 짠 돗자리가 있는 방 안이다.",
+      "i.guard": "어머니의 손과 아기 몸 사이가 어색하게 겹쳐 보인다. 아기 아래 천이 걸상 위로 늘어져 덧붙은 듯하고 손 모양이 불분명하다."
+     },
+     "tries": [
+      {
+       "seconds": 9.333,
+       "input": 4,
+       "output": 860,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.0141363,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    },
+    "3": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "틀림",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 색연필로 칠한 동화풍이다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리는 보이지 않는다.",
+      "i.moment": "어머니가 걸상에 앉지 않고 서 있다. 아기도 품에 안겨 있지 않고 걸상 위 천에 눕혀져 있다.",
+      "i.baby": "아기는 천 위에 누워 있을 뿐 몸이 천에 싸여 있지 않다. 맨몸이 드러나 있다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 띠를 매고 너울을 썼다.",
+      "i.no-halo": "뒷벽 전체가 돌로 그려져 있고 후광처럼 번진 빛은 없다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
+      "i.room": "돌벽, 나무 들보, 돌바닥, 돗자리가 모두 있다.",
+      "i.guard": "방 안에 어른은 한 사람뿐이다. 다만 걸상 위 아기 밑의 금빛 방석 같은 덩어리가 어색하게 덧붙어 있고, 아기 몸이 천에 어색하게 걸쳐 있다."
+     },
+     "tries": [
+      {
+       "seconds": 7.574,
+       "input": 4,
+       "output": 793,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.013466299999999999,
+       "turns": 3,
+       "error": false
+      }
+     ]
+    }
+   }
+  }
+ },
+ "verdict": {
+  "pick": "s11",
+  "memo": ""
+ },
+ "before422": {
+  "s42": {
+   "I": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 9.573,
+       "input": 4,
+       "output": 912,
+       "cache_read": 44565,
+       "cache_create": 10718,
+       "cost_usd": 0.0564565,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "i.moment": "어머니는 걸상에 앉아 아기를 내려다보지만, 아기를 가슴이 아니라 무릎·허리께에 눕혀 한 손으로 받치고 다른 손으로 만지고 있다. 두 팔로 가슴에 품어 안은 모습이 아니다.",
+      "i.baby": "작은 갓난아기가 흰 천에 싸여 있고 편안해 보인다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 짠 띠를 매고, 머리와 어깨를 덮는 녹색 너울을 썼다.",
+      "i.no-halo": "뒷벽 전체가 돌로 그려져 있고, 어머니 뒤에 둥글게 번지는 빛이 없다.",
+      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥, 짠 돗자리가 모두 보인다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 11.39,
+       "input": 4,
+       "output": 1170,
+       "cache_read": 44565,
+       "cache_create": 10718,
+       "cost_usd": 0.0590365,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "i.moment": "어머니는 걸상에 앉아 아기를 내려다보지만, 아기가 가슴에 안기지 않고 무릎 높이에 놓여 있다. 한 손은 아기 가슴께를 짚고 있어 두 팔로 가슴에 품은 모습이 아니다.",
+      "s.style": "미색 종이에 연필선과 색연필 채색으로 그린 동화 그림 화풍이다.",
+      "s.no-blob": "얼굴·옷이 없는 덩어리나 미완성 실루엣이 없다.",
+      "i.one-person": "어른은 앉은 어머니 한 사람뿐이다.",
+      "i.baby": "작은 갓난아기가 흰 천에 싸여 편안해 보인다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 짠 띠를 매고, 머리와 어깨를 덮는 녹색 너울을 썼다.",
+      "i.no-halo": "뒷벽은 옆벽처럼 돌로 그려져 있고 후광처럼 번진 빛이 없다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
+      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥, 짠 돗자리가 모두 있는 방 안이다.",
+      "i.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자 같은 결함이 보이지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 12.643,
+       "input": 4,
+       "output": 1213,
+       "cache_read": 44565,
+       "cache_create": 10718,
+       "cost_usd": 0.059466500000000005,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "i.moment": "어머니는 걸상에 앉아 아기를 내려다보지만, 아기가 가슴이 아니라 허리·무릎 높이에 놓여 있다. 한 손은 아기를 받치고 다른 손은 아기를 만지는 모습이라 두 팔로 가슴에 품어 안은 자세가 아니다.",
+      "s.style": "미색 종이에 연필선과 색연필 채색으로 그린 동화풍이다.",
+      "s.no-blob": "얼굴과 옷이 없는 덩어리나 미완성 형체는 없다.",
+      "i.one-person": "그림에 어른은 앉은 어머니 한 사람뿐이다.",
+      "i.baby": "천에 싸인 작은 갓난아기가 편안히 눈을 뜨고 있다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 짠 띠를 매고 머리와 어깨를 덮는 녹색 너울을 썼다.",
+      "i.no-halo": "뒷벽은 옆벽처럼 돌로 그려져 있고 후광처럼 번진 빛이 없다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
+      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥 위 짠 돗자리가 모두 있다.",
+      "i.guard": "손가락 수 이상, 덧붙은 인물, 테두리·액자, 글자는 보이지 않는다."
+     }
+    }
+   },
+   "M": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 10.693,
+       "input": 4,
+       "output": 1029,
+       "cache_read": 44876,
+       "cache_create": 11299,
+       "cost_usd": 0.05998160000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp": "다윗이 한 손은 펴서 앞으로 내밀고 다른 손은 옆에 늘어뜨렸다. 두 손을 허리 높이에 모으지 않았다.",
+      "m.nathan-hand": "나단이 왼손을 펴서 다윗 쪽으로 내밀었다.",
+      "m.cloud-place": "구름이 두 사람 사이 위 가운데에 있고 어느 머리에도 붙지 않았다.",
+      "m.cloud-time": "구름 속에 아기를 안은 어머니가 따로 그려져 앞선 때의 장면으로 읽힌다.",
+      "m.guard": "손가락 수 이상, 덧붙은 인물, 테두리·액자, 글자 같은 결함이 보이지 않는다.",
+      "m.facing": "나단은 오른쪽을, 다윗은 왼쪽을 향해 서로 마주 본다.",
+      "m.david": "짙은 붉은 긴 겉옷에 띠를 맸고 수염이 짙은 40~50대 남자다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 10.816,
+       "input": 4,
+       "output": 886,
+       "cache_read": 44876,
+       "cache_create": 11299,
+       "cost_usd": 0.05855160000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "맞음",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp": "다윗이 한 손은 펴서 앞으로 내밀고 다른 손은 옆에 늘어뜨림. 허리 높이에 모은 손이 아님",
+      "m.david-bare": "곱슬 맨머리이고 관·띠는 없음. 겉옷 두건은 어깨 뒤로 젖혀져 있어 머리를 덮지 않음",
+      "m.nathan": "짙은 모직 긴 겉옷, 희끗한 회색 머리와 수염의 중년 남자",
+      "m.cloud-place": "구름이 두 사람 사이 위 가운데에 있고 어느 머리에도 붙지 않음"
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 12.849,
+       "input": 6,
+       "output": 749,
+       "cache_read": 73618,
+       "cache_create": 11535,
+       "cost_usd": 0.061003800000000004,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-bare": "틀림",
+      "m.david": "맞음",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp": "다윗이 한 손은 앞으로 펴 내밀고 다른 손은 옆에 늘어뜨림, 모은 손 아님",
+      "m.david-bare": "다윗이 맨 곱슬머리처럼 보이나 분명히 맞다고 확신하기 어려워 틀림 처리(머리에 아무것도 없는 것은 보이나 겉옷 두건이 어깨 뒤에 있음)"
+     }
+    }
+   }
+  },
+  "s7": {
+   "M": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 11.031,
+       "input": 4,
+       "output": 1157,
+       "cache_read": 44876,
+       "cache_create": 11299,
+       "cost_usd": 0.061261600000000006,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "틀림"
+     },
+     "reasons": {
+      "m.david": "짙은 붉은 긴 겉옷과 짙은 수염은 맞지만, 허리에 맨 띠가 분명히 보이지 않는다.",
+      "m.guard": "그림 둘레에 미색 종이 테두리 여백이 그대로 보인다.",
+      "s.style": "미색 종이에 연필선과 색연필 채색으로 그린 동화 그림이다.",
+      "m.david-clasp": "두 손을 몸 앞 허리 높이에 모으고 있다.",
+      "m.facing": "나단은 오른쪽 다윗을, 다윗은 왼쪽 나단을 향해 서 있다.",
+      "m.cloud-place": "구름 틀이 두 사람 사이 위 가운데에 있고 어느 머리에도 붙어 있지 않다.",
+      "m.cloud-time": "구름 안에 아기를 안은 어머니가 있어, 지금 이 방이 아닌 다른 때의 장면으로 읽힌다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 13.178,
+       "input": 4,
+       "output": 1414,
+       "cache_read": 44876,
+       "cache_create": 11299,
+       "cost_usd": 0.0638316,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필선과 색연필 채색의 동화풍이다.",
+      "s.no-blob": "두 인물과 구름 속 인물 모두 얼굴과 옷이 완성되어 있다.",
+      "m.moment": "나단이 다윗 앞에서 손을 내밀어 말하고, 다윗이 나단을 향해 듣고 있다.",
+      "m.two-people": "구름 밖에는 왼쪽 나단과 오른쪽 다윗 두 사람뿐이다.",
+      "m.facing": "나단은 오른쪽을, 다윗은 왼쪽을 향해 얼굴과 몸을 돌렸다.",
+      "m.nathan-hand": "나단의 오른손이 펴진 채 다윗 쪽으로 뻗어 있다.",
+      "m.david-clasp": "다윗의 두 손이 몸 앞 허리 높이에서 모아져 있다.",
+      "m.david-bare": "다윗은 관이나 머리띠 없이 곱슬머리를 드러내고 있다.",
+      "m.david": "붉은 긴 겉옷과 짙은 수염은 맞지만, 허리에 맨 띠가 보이지 않는다. 금 장식 단은 있으나 띠는 아니다.",
+      "m.nathan": "짙은 모직 긴 겉옷에 희끗한 머리와 수염을 한 50대 남자로 보인다.",
+      "m.room": "다듬은 돌벽과 나무 들보, 돌바닥이 있는 방이다.",
+      "m.cloud-place": "구름 틀이 두 사람 사이 위 가운데에 있고, 어느 인물의 머리에도 붙지 않았다.",
+      "m.cloud-time": "구름 속에 아기를 안은 어머니가 있어 앞선 때의 장면으로 읽힌다.",
+      "m.guard": "그림 둘레에 종이 여백과 테두리가 남아 있다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 13.108,
+       "input": 4,
+       "output": 1550,
+       "cache_read": 56175,
+       "cache_create": 0,
+       "cost_usd": 0.021125500000000002,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 채색의 동화풍이다.",
+      "s.no-blob": "두 인물, 구름 속 어머니와 아기 모두 얼굴과 옷이 갖춰져 있다.",
+      "m.moment": "나단이 다윗 앞에서 손짓하며 말하고, 다윗이 나단 쪽을 보고 듣는다.",
+      "m.two-people": "구름 밖 큰 장면에는 왼쪽 나단과 오른쪽 다윗 두 사람뿐이다.",
+      "m.facing": "나단은 오른쪽 다윗 쪽으로, 다윗은 왼쪽 나단 쪽으로 얼굴과 몸을 돌렸다.",
+      "m.nathan-hand": "나단이 오른손을 펴서 다윗 쪽으로 내밀고 있다.",
+      "m.david-clasp": "다윗이 두 손을 허리 높이 몸 앞에 모으고 있다.",
+      "m.david-bare": "다윗은 관이나 머리띠 없이 맨 곱슬머리다.",
+      "m.david": "짙은 붉은 긴 겉옷과 짙은 수염은 맞지만, 허리에 맨 띠가 뚜렷이 보이지 않아 분명히 맞다고 확인되지 않는다.",
+      "m.nathan": "짙은 모직 긴 겉옷에 희끗한 머리와 수염의 50대 남자다.",
+      "m.room": "다듬은 돌벽, 나무 들보 천장, 돌바닥이 있는 궁 안 방이다.",
+      "m.cloud-place": "구름 틀이 두 사람 사이 위 가운데에 있고 누구의 머리에도 붙어 있지 않다.",
+      "m.cloud-time": "아기를 안은 어머니가 구름 속에 그려져 앞선 때의 장면으로 읽힌다.",
+      "m.guard": "그림 둘레에 종이 테두리가 보인다."
+     }
+    }
+   },
+   "I": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 11.038,
+       "input": 4,
+       "output": 1032,
+       "cache_read": 45411,
+       "cache_create": 9872,
+       "cost_usd": 0.0543571,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "틀림"
+     },
+     "reasons": {
+      "i.moment": "어머니가 아기를 가슴에 품지 않았다. 아기가 무릎과 배 높이에 가로로 얹혀 있다.",
+      "i.guard": "그림 둘레에 미색 종이 여백이 테두리처럼 남아 있다.",
+      "i.baby": "천에 싸인 작은 갓난아기이고 편안해 보인다. 다만 다리 하나가 천 밖으로 나와 있다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 12.823,
+       "input": 6,
+       "output": 1257,
+       "cache_read": 72673,
+       "cache_create": 9862,
+       "cost_usd": 0.059297300000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "맞음",
+      "i.one-person": "맞음",
+      "i.baby": "틀림",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 질감으로 그린 동화 그림 화풍이다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣이 없다.",
+      "i.moment": "어머니가 낮은 나무 걸상에 앉아 두 팔로 아기를 안고 내려다본다.",
+      "i.one-person": "어른은 앉은 어머니 한 사람뿐이다.",
+      "i.baby": "크기는 맞지만 다리가 천 밖으로 드러나 있어, 몸이 천에 싸였다고 분명히 확인되지 않는다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 짠 띠를 매고 머리와 어깨를 덮는 너울을 썼다.",
+      "i.no-halo": "뒷벽이 옆벽처럼 돌로 그려졌고 번지는 빛이나 후광이 없다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
+      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥 위 짠 돗자리가 보인다.",
+      "i.guard": "방 그림 둘레에 미색 종이 여백이 테두리처럼 남아 있어, 종이 테두리·액자 결함으로 본다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 13.267,
+       "input": 4,
+       "output": 1339,
+       "cache_read": 45411,
+       "cache_create": 9872,
+       "cost_usd": 0.0574271,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필선과 색연필로 칠한 동화풍이다.",
+      "s.no-blob": "덩어리나 미완성 실루엣이 없다.",
+      "i.moment": "어머니는 앉아서 아기를 내려다보지만, 아기가 가슴이 아니라 무릎 높이에 놓여 있고 두 팔로 가슴에 품어 안은 모습이 아니다.",
+      "i.one-person": "어른은 어머니 한 사람뿐이다.",
+      "i.baby": "작은 갓난아기가 천에 싸여 편안해 보인다. 다리 일부는 천 밖으로 나와 있다.",
+      "i.costume": "짙은 녹색 겉옷에 짠 띠를 매고 머리와 어깨를 덮는 너울을 썼다.",
+      "i.no-halo": "뒷벽 전체가 돌로 그려져 있고 후광처럼 번진 빛이 없다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
+      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥 위 짠 돗자리가 있다.",
+      "i.guard": "그림 둘레에 종이 여백이 테두리처럼 남아 있고 방이 상자 모양 액자처럼 보여서, 분명히 맞다고 확인되지 않는다."
+     }
+    }
+   }
+  },
+  "s5": {
+   "M": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 9.692,
+       "input": 4,
+       "output": 1040,
+       "cache_read": 54866,
+       "cache_create": 1309,
+       "cost_usd": 0.021130600000000003,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david": "짙은 붉은 긴 겉옷에 짙은 수염인 것은 맞지만, 허리에 맨 띠가 보이지 않는다. 금빛 줄무늬가 앞섶을 따라 내려올 뿐이다. 「띠를 맨」이라는 조건이 확인되지 않아 틀림으로 답한다.",
+      "m.david-clasp": "두 손을 몸 앞에 모으고 있다. 높이는 가슴에서 허리 사이로 보인다.",
+      "m.cloud-time": "구름 안에 아기를 안은 어머니가 있어 앞선 다른 때의 장면으로 읽힌다.",
+      "m.guard": "손가락 수 이상, 덧붙은 인물, 종이 테두리·액자, 글자가 모두 보이지 않는다. 몸 크롭 파일이 없어 full.jpg만 보고 판정했다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 11.498,
+       "input": 6,
+       "output": 1044,
+       "cache_read": 73292,
+       "cache_create": 10443,
+       "cost_usd": 0.0595532,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp": "다윗의 두 손이 허리가 아니라 가슴 높이에 모여 있어서 기대한 허리 높이와 다르다.",
+      "m.david": "짙은 붉은 긴 겉옷과 짙은 수염은 맞지만 허리에 띠를 맨 모습이 보이지 않는다. 금빛 줄무늬만 있다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 12.012,
+       "input": 4,
+       "output": 1122,
+       "cache_read": 54866,
+       "cache_create": 1340,
+       "cost_usd": 0.022074600000000003,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david": "짙은 붉은 긴 겉옷과 짙은 수염은 맞지만 허리에 맨 띠가 보이지 않는다. 금색 세로 장식만 있다.",
+      "m.moment": "나단은 손을 내밀어 말하고 다윗은 마주 보며 듣는다. 두 사람 사이가 멀지만 이야기 뜻은 맞다.",
+      "m.facing": "두 사람이 서로를 향해 얼굴과 몸을 돌리고 있다.",
+      "m.david-clasp": "다윗이 두 손을 허리 높이 앞에 모으고 있다.",
+      "m.cloud-place": "구름은 두 사람 사이 위 가운데에 있고 누구의 머리에도 붙어 있지 않다.",
+      "m.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자 같은 결함이 보이지 않는다."
+     }
+    }
+   },
+   "I": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 12.212,
+       "input": 4,
+       "output": 1264,
+       "cache_read": 45411,
+       "cache_create": 9872,
+       "cost_usd": 0.0566771,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "틀림",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필선과 색연필 채색의 동화풍이다.",
+      "s.no-blob": "모든 인물과 물건에 얼굴, 옷, 질감이 있다.",
+      "i.moment": "어머니는 걸상에 앉아 아기를 내려다보지만, 아기는 가슴이 아니라 무릎 위 배 높이에 누워 있다. 아기가 어머니를 올려다보는 점도 기대와 다르다.",
+      "i.one-person": "어른은 앉은 어머니 한 사람뿐이다.",
+      "i.baby": "천에 싸인 작은 갓난아기이고 편안해 보인다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 짠 띠를 매고 머리와 어깨를 덮는 너울을 썼다.",
+      "i.no-halo": "뒷벽 전체가 돌로 그려져 있고 후광처럼 번진 빛은 없다.",
+      "i.no-crown": "너울 이마 가장자리에 금빛 띠 장식이 보인다.",
+      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥, 짠 돗자리가 모두 있다.",
+      "i.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자가 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 12.074,
+       "input": 4,
+       "output": 1282,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.018356300000000002,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "맞음",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "틀림",
+      "i.no-crown": "틀림",
+      "i.room": "맞음",
+      "i.guard": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필선과 색연필 질감으로 그린 동화풍이다.",
+      "s.no-blob": "회색 덩어리나 미완성 실루엣이 없다.",
+      "i.moment": "젊은 어머니가 낮은 걸상에 앉아 두 팔로 갓난아기를 안고 내려다보고 있다.",
+      "i.one-person": "그림에 어른은 어머니 한 사람뿐이다.",
+      "i.baby": "아기는 작고 천에 싸였으며 편안해 보인다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 짠 띠를 매고 너울을 썼다.",
+      "i.no-halo": "어머니 뒤 벽이 가운데만 돌 줄눈이 흐려지고 밝게 번져 후광처럼 보인다. 확실히 맞다고 보기 어렵다.",
+      "i.no-crown": "너울 가장자리 이마께에 금빛 띠 장식이 있어 금빛 장식이 없다고 할 수 없다.",
+      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥, 짠 돗자리가 모두 있다.",
+      "i.guard": "그림 둘레에 종이 여백이 테두리처럼 남아 있어 틀림으로 판정했다. 다만 이 여백은 그림이 가장자리에서 종이로 번지며 사라지는 모양이라 판정이 갈릴 수 있다. 손가락 수나 글자 결함은 보이지 않았다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 11.907,
+       "input": 4,
+       "output": 988,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.015416299999999999,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "틀림",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "i.moment": "아기가 가슴이 아니라 무릎 위 허리 높이에 누워 있다. 두 팔로 가슴에 품어 안은 모습이 아니다.",
+      "i.no-crown": "너울 앞이마 가장자리에 금빛 머리띠 장식이 보인다.",
+      "i.baby": "작은 갓난아기이고 천에 싸여 편안해 보인다.",
+      "i.costume": "짙은 녹색 긴 옷에 짠 띠를 매고 너울을 썼다.",
+      "i.no-halo": "뒷벽이 옆벽처럼 돌로 그려져 있고 후광처럼 빛나는 곳이 없다."
+     }
+    }
+   }
+  },
+  "s11": {
+   "M": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 10.52,
+       "input": 4,
+       "output": 1016,
+       "cache_read": 45722,
+       "cache_create": 10453,
+       "cost_usd": 0.0565522,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "틀림"
+     },
+     "reasons": {
+      "m.david": "짙은 붉은 긴 겉옷과 짙은 수염은 맞지만, 허리에 맨 띠가 보이지 않고 옷이 헐렁하게 늘어져 있다.",
+      "m.guard": "그림 가장자리에 옅은 미색 종이 테두리가 보인다. 분명히 없다고 확인되지 않아 틀림으로 답한다.",
+      "m.david-clasp": "두 손을 몸 앞 가슴에서 허리 사이 높이에 모았다.",
+      "m.facing": "나단은 오른쪽 다윗을 향하고, 다윗은 얼굴을 왼쪽 나단 쪽으로 돌렸다. 다윗의 몸통은 거의 정면이다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 12.836,
+       "input": 4,
+       "output": 1260,
+       "cache_read": 45722,
+       "cache_create": 10453,
+       "cost_usd": 0.058992199999999995,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "틀림"
+     },
+     "reasons": {
+      "m.david": "다윗의 붉은 겉옷에 허리띠가 보이지 않는다. 금색 장식 선만 세로로 내려오고 옷이 곧게 늘어져 있어 '띠를 맨' 모습이 아니다.",
+      "m.guard": "그림 가장자리 둘레에 옅은 미색 종이 테두리 같은 띠가 보인다. 분명히 없다고 확인되지 않아 틀림으로 답한다.",
+      "m.moment": "나단이 왼쪽에서 손을 내밀어 말을 전하고, 다윗이 오른쪽에서 마주 보며 듣는다.",
+      "m.david-clasp": "다윗이 두 손을 허리 높이 몸 앞에 모으고 있다.",
+      "m.cloud-place": "구름 틀이 두 사람 사이 위 가운데에 있고 어느 한 사람의 머리에도 붙어 있지 않다.",
+      "m.cloud-time": "구름 속에 아기를 안은 어머니가 그려져 있어 앞선 다른 때의 장면으로 읽힌다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 14.222,
+       "input": 4,
+       "output": 1605,
+       "cache_read": 56175,
+       "cache_create": 0,
+       "cost_usd": 0.0216755,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 질감의 동화풍이다.",
+      "s.no-blob": "모든 인물과 물건에 얼굴과 옷이 제대로 그려져 있다.",
+      "m.moment": "나단이 손을 내밀어 말하고 다윗이 마주 보며 듣는다.",
+      "m.two-people": "구름 밖 큰 장면에는 왼쪽 나단과 오른쪽 다윗 둘뿐이다.",
+      "m.facing": "두 사람이 서로 상대 쪽으로 얼굴과 몸을 돌리고 있다.",
+      "m.nathan-hand": "나단이 오른손을 펴서 다윗 쪽으로 내밀고 있다.",
+      "m.david-clasp": "다윗의 모은 손이 허리가 아니라 가슴 높이에 있다.",
+      "m.david-bare": "다윗은 아무것도 쓰지 않은 검은 곱슬머리다.",
+      "m.david": "짙은 붉은 긴 겉옷에 짙은 수염은 맞지만, 허리에 띠를 맨 모습이 분명하지 않다.",
+      "m.nathan": "짙은 갈색 모직 긴 겉옷에 희끗한 머리와 수염의 50대로 보인다.",
+      "m.room": "다듬은 돌벽, 나무 들보, 돌바닥이 있는 궁 안 방이다.",
+      "m.cloud-place": "구름 틀이 두 사람 사이 위 가운데에 있고 어느 머리에도 붙지 않았다.",
+      "m.cloud-time": "구름 속 아기를 안은 어머니가 앞선 다른 때의 장면으로 읽힌다.",
+      "m.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자 같은 결함이 보이지 않는다."
+     }
+    }
+   },
+   "I": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 11.57,
+       "input": 4,
+       "output": 1225,
+       "cache_read": 45411,
+       "cache_create": 9872,
+       "cost_usd": 0.0562871,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "맞음",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색의 동화풍이다.",
+      "s.no-blob": "회색 덩어리나 미완성 실루엣은 없다.",
+      "i.moment": "젊은 어머니가 낮은 나무 걸상에 앉아 두 팔로 갓난아기를 안고 내려다본다.",
+      "i.one-person": "어른은 어머니 한 사람뿐이다.",
+      "i.baby": "천에 싸인 작은 갓난아기가 편안해 보인다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 머리와 어깨를 덮는 너울을 썼다. 띠는 아기에 가려 잘 안 보이지만 허리쯤에 보인다.",
+      "i.no-halo": "뒷벽 전체가 옆벽처럼 돌로 그려져 있고 후광처럼 번진 빛은 없다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
+      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥 위에 짠 돗자리가 있는 방 안이다.",
+      "i.guard": "손가락 수나 인물 겹침, 글자, 액자 같은 결함이 보이지 않는다. 가장자리가 종이 쪽으로 옅어지는 것은 비네트 처리로 보고 결함으로 치지 않았다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 11.899,
+       "input": 4,
+       "output": 1307,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.0186063,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "맞음",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 색연필과 연필 질감의 동화풍이다.",
+      "s.no-blob": "평평한 덩어리나 미완성 실루엣이 없다.",
+      "i.moment": "젊은 어머니가 낮은 나무 걸상에 앉아 두 팔로 아기를 안고 내려다본다.",
+      "i.one-person": "방에는 어머니 한 사람만 있다.",
+      "i.baby": "작은 갓난아기가 흰 천에 싸여 편안히 안겨 있다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 허리 띠가 있고 머리와 어깨를 덮는 너울을 썼다. 띠는 작게만 보인다.",
+      "i.no-halo": "뒷벽 전체가 옆벽처럼 돌로 그려져 있다. 가운데가 살짝 밝지만 후광으로 보이지는 않는다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
+      "i.room": "다듬은 돌벽과 나무 들보, 돌바닥 위 짠 돗자리가 있는 방 안이다.",
+      "i.guard": "손가락 수나 인물 겹침, 글자, 액자 같은 결함은 보이지 않는다. 가장자리는 종이에 번지듯 끝나는 정도다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 13.094,
+       "input": 4,
+       "output": 1411,
+       "cache_read": 46450,
+       "cache_create": 8833,
+       "cost_usd": 0.054095000000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "맞음",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 그린 동화풍이다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 없다.",
+      "i.moment": "젊은 어머니가 낮은 나무 걸상에 앉아 천에 싼 아기를 두 팔로 안고 내려다본다.",
+      "i.one-person": "어른은 앉은 어머니 한 사람뿐이다.",
+      "i.baby": "천에 싸인 작은 갓난아기가 편안히 누워 있다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 금빛 목선 장식이 있고 허리에 띠가 있다. 머리와 어깨는 너울이 덮고 있다. 띠는 아기에 일부 가려 또렷하지 않다.",
+      "i.no-halo": "뒷벽은 돌로 그려져 있다. 가운데가 조금 밝지만 후광처럼 둥글게 번지지는 않는다.",
+      "i.no-crown": "머리에는 너울만 있고 관이나 금빛 장식은 없다.",
+      "i.room": "다듬은 돌벽과 나무 들보, 돌바닥 위에 짠 돗자리가 있는 방 안이다.",
+      "i.guard": "그림 가장자리가 불규칙하게 끝나고 둘레에 미색 종이 여백이 남아 있어 종이 테두리 결함으로 본다."
+     }
+    }
+   }
+  },
+  "s23": {
+   "M": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 9.294,
+       "input": 4,
+       "output": 933,
+       "cache_read": 45722,
+       "cache_create": 10453,
+       "cost_usd": 0.0557222,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp": "다윗이 두 손을 모으지 않고, 양손을 펴서 몸 옆으로 벌려 내밀고 있다.",
+      "m.david": "짙은 붉은 긴 겉옷과 짙은 수염은 맞지만, 허리에 맨 띠가 보이지 않는다. 금 장식은 세로 단까지만 있다.",
+      "m.nathan-hand": "나단이 양손을 펴고 있고, 오른쪽 손을 다윗 쪽으로 내밀고 있다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 10.021,
+       "input": 4,
+       "output": 937,
+       "cache_read": 56175,
+       "cache_create": 0,
+       "cost_usd": 0.014995499999999998,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp": "다윗이 두 손을 허리 높이에 모으지 않고 양손을 펴서 바깥으로 내밀고 있다.",
+      "m.david": "짙은 붉은 긴 겉옷과 짙은 수염은 맞지만 허리에 맨 띠가 보이지 않는다. 금테 장식뿐이라 「띠를 맨」이 어긋난다.",
+      "m.moment": "나단이 다윗 앞에서 손을 내밀어 말을 전하고, 다윗이 나단 쪽을 보고 듣는다.",
+      "m.facing": "나단은 오른쪽, 다윗은 왼쪽을 향해 서로 마주 본다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 11.328,
+       "input": 4,
+       "output": 1389,
+       "cache_read": 45722,
+       "cache_create": 10453,
+       "cost_usd": 0.0602822,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 질감의 동화풍이다.",
+      "s.no-blob": "얼굴과 옷이 없는 덩어리나 미완성 실루엣은 보이지 않는다.",
+      "m.moment": "나단이 다윗 앞에서 손짓하며 말하고, 다윗이 나단을 보며 듣는다.",
+      "m.two-people": "구름 밖 큰 장면에는 왼쪽 나단과 오른쪽 다윗 두 사람뿐이다.",
+      "m.facing": "나단은 오른쪽으로, 다윗은 왼쪽으로 얼굴과 몸을 돌렸다.",
+      "m.nathan-hand": "나단이 한 손을 펴서 다윗 쪽으로 내밀고 있다.",
+      "m.david-clasp": "다윗이 두 손을 몸 앞에 모으지 않고 양손을 펴서 바깥으로 내밀고 있다.",
+      "m.david-bare": "다윗은 아무것도 쓰지 않은 맨 곱슬머리다.",
+      "m.david": "짙은 붉은 긴 겉옷과 짙은 수염은 맞지만, 허리에 맨 띠가 분명히 보이지 않는다.",
+      "m.nathan": "짙은 모직 긴 겉옷에 희끗한 머리와 수염의 50대 남자다.",
+      "m.room": "다듬은 돌벽, 나무 들보, 돌바닥이 있는 방이다.",
+      "m.cloud-place": "구름 틀이 두 사람 사이 위 가운데에 있고 어느 머리에도 붙어 있지 않다.",
+      "m.cloud-time": "구름 속에 아기를 안은 어머니가 있어 앞선 다른 때의 장면으로 읽힌다.",
+      "m.guard": "손가락 수 이상, 덧붙은 인물, 테두리·액자, 글자 같은 결함이 보이지 않는다."
+     }
+    }
+   },
+   "I": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 14.895,
+       "input": 4,
+       "output": 1167,
+       "cache_read": 45411,
+       "cache_create": 9872,
+       "cost_usd": 0.0557071,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "i.moment": "어머니는 걸상에 앉아 아기를 내려다보지만, 아기는 가슴이 아니라 무릎·허리 높이에 눕혀 있다. 기대한 '두 팔로 가슴에 품어 안음'과 다르다.",
+      "s.style": "미색 종이에 연필선과 색연필 채색이 보이는 동화풍이다.",
+      "s.no-blob": "덩어리나 미완성 실루엣은 없다.",
+      "i.one-person": "어른은 앉은 어머니 한 사람뿐이다.",
+      "i.baby": "천에 싸인 작은 갓난아기가 편안해 보인다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 띠를 매고, 머리와 어깨를 덮는 너울을 썼다.",
+      "i.no-halo": "뒷벽은 돌로 그려져 있고 후광처럼 번진 빛은 없다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
+      "i.room": "돌벽, 나무 들보, 돌바닥, 그 위의 짠 돗자리가 있다.",
+      "i.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자는 보이지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 15.721,
+       "input": 4,
+       "output": 1075,
+       "cache_read": 46450,
+       "cache_create": 8833,
+       "cost_usd": 0.050735,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "틀림"
+     },
+     "reasons": {
+      "i.moment": "어머니는 걸상에 앉아 아기를 내려다보지만, 아기가 가슴이 아니라 무릎 높이에 눕혀 있다. 두 팔로 가슴에 품어 안은 모습이 아니다.",
+      "i.guard": "무릎 앞쪽에 정체 불명의 흰 천 덩어리가 덧붙은 듯 늘어져 있어, 두 겹 옷이나 덧붙은 물체처럼 보인다.",
+      "i.baby": "몸이 흰 천에 싸였고 얼굴이 편안하며 크기도 갓난아기에 맞다.",
+      "i.costume": "짙은 녹색 긴 겉옷, 허리띠, 머리와 어깨를 덮는 너울이 모두 맞다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 14.945,
+       "input": 4,
+       "output": 1306,
+       "cache_read": 45411,
+       "cache_create": 9872,
+       "cost_usd": 0.0570971,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "i.moment": "어머니는 앉아서 아기를 내려다보지만, 아기가 가슴이 아니라 무릎 위 허리 높이에 놓여 있다. 두 팔로 가슴에 품어 안은 모습이 아니라서 틀림으로 판정했다.",
+      "s.style": "미색 종이에 연필선과 색연필 채색이 보이는 동화풍이다.",
+      "i.baby": "작은 갓난아기가 흰 천에 싸여 편안히 누워 있다.",
+      "i.costume": "짙은 녹색 긴 겉옷, 허리띠, 머리와 어깨를 덮는 너울이 모두 있다.",
+      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥, 짠 돗자리가 모두 있다.",
+      "i.no-halo": "뒷벽이 옆벽처럼 돌로 그려져 있고 후광 같은 번짐은 없다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
+      "i.one-person": "어른은 앉은 어머니 한 사람뿐이다.",
+      "s.no-blob": "덩어리나 미완성 실루엣이 없다.",
+      "i.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자는 보이지 않는다. 무릎 아래 흰 속치마가 조금 어색하지만 결함으로 보지는 않았다."
+     }
+    }
+   }
+  },
+  "s101": {
+   "M": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 11.355,
+       "input": 4,
+       "output": 1030,
+       "cache_read": 45722,
+       "cache_create": 10453,
+       "cost_usd": 0.0566922,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp": "다윗은 한 손만 펴서 앞으로 내밀고 있고 다른 손은 보이지 않아, 두 손을 허리 높이에 모았다고 분명히 확인되지 않는다.",
+      "m.david": "짙은 붉은 긴 겉옷에 짙은 수염의 남자는 맞다. 그러나 허리에 맨 띠가 보이지 않는다. 세로 금빛 단 장식만 있다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 12.142,
+       "input": 4,
+       "output": 1011,
+       "cache_read": 47031,
+       "cache_create": 9144,
+       "cost_usd": 0.0513971,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "m.david-clasp": "다윗의 한 손이 펴져 앞으로 내밀어져 있고 두 손을 허리 높이에 모은 모습이 아니다.",
+      "m.david": "붉은 긴 겉옷과 짙은 수염은 맞지만 허리띠가 보이지 않는다. 띠를 맨 모습이 분명하지 않아 틀림으로 본다.",
+      "m.nathan-hand": "나단이 손바닥을 편 한 손을 다윗 쪽으로 내밀고 있다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 13.156,
+       "input": 4,
+       "output": 1525,
+       "cache_read": 56175,
+       "cache_create": 0,
+       "cost_usd": 0.0208755,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 채색의 동화 그림 느낌이다.",
+      "s.no-blob": "얼굴과 옷이 없는 덩어리나 미완성 실루엣은 보이지 않는다.",
+      "m.moment": "나단이 다윗 앞에서 말을 전하고, 다윗이 나단을 마주 보며 듣는다.",
+      "m.two-people": "구름 밖 큰 장면의 사람은 나단과 다윗 두 사람뿐이다.",
+      "m.facing": "두 사람이 서로를 향해 얼굴과 몸을 돌리고 있다.",
+      "m.nathan-hand": "나단이 한 손을 펴서 다윗 쪽으로 내밀고 있다.",
+      "m.david-clasp": "다윗은 손을 모으지 않고, 한 손을 펴서 앞으로 내밀고 있다.",
+      "m.david-bare": "다윗은 아무것도 쓰지 않은 맨 곱슬머리다.",
+      "m.david": "붉은 긴 겉옷과 짙은 수염은 맞지만, 허리띠가 분명히 보이지 않는다.",
+      "m.nathan": "짙은 모직 긴 겉옷에 희끗한 머리와 수염의 50대 남자로 보인다.",
+      "m.room": "다듬은 돌벽, 나무 들보, 돌바닥이 있는 방이다.",
+      "m.cloud-place": "구름 틀이 두 사람 사이 위 가운데에 있고, 누구의 머리에도 붙어 있지 않다.",
+      "m.cloud-time": "구름 속에 아기를 안은 어머니가 있어, 앞선 다른 때의 장면으로 읽힌다.",
+      "m.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자가 눈에 띄지 않는다."
+     }
+    }
+   },
+   "I": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 9.001,
+       "input": 4,
+       "output": 817,
+       "cache_read": 45411,
+       "cache_create": 9872,
+       "cost_usd": 0.0522071,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "맞음",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "틀림",
+      "i.room": "맞음",
+      "i.guard": "틀림"
+     },
+     "reasons": {
+      "i.no-crown": "이마 쪽 너울 위에 금빛 작은 장식이 보인다.",
+      "i.guard": "그림 둘레에 종이 가장자리가 드러나 있고, 왼쪽 위에는 어두운 얼룩이 있다. 종이 테두리·액자 결함이다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 11.844,
+       "input": 4,
+       "output": 1078,
+       "cache_read": 46450,
+       "cache_create": 8833,
+       "cost_usd": 0.050765000000000005,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "맞음",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "틀림",
+      "i.room": "맞음",
+      "i.guard": "틀림"
+     },
+     "reasons": {
+      "i.no-crown": "이마 쪽 너울에 금빛 장식이 달려 있어 「금빛 장식 없음」과 어긋남",
+      "i.guard": "그림이 종이 페이지 테두리와 가장자리 그림자(스케치북 느낌)로 둘러싸여 있어 종이 테두리·액자 결함에 해당함",
+      "i.costume": "짙은 녹색 긴 겉옷, 땋은 띠, 머리와 어깨를 덮는 너울이 모두 맞음",
+      "i.moment": "어머니가 낮은 걸상에 앉아 두 팔로 아기를 안고 내려다봄",
+      "i.baby": "천에 싸인 작은 갓난아기가 편안히 안겨 있음",
+      "i.no-halo": "뒷벽은 옆벽처럼 돌로 그려졌고 후광처럼 번진 빛은 없음"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 9.572,
+       "input": 4,
+       "output": 1039,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.0159263,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "맞음",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필선과 색연필 질감이 보이는 동화 그림이다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 없다.",
+      "i.moment": "젊은 어머니가 낮은 나무 걸상에 앉아 두 팔로 아기를 가슴에 안고 내려다본다.",
+      "i.one-person": "어른은 어머니 한 사람뿐이다.",
+      "i.baby": "천에 싸인 작은 갓난아기가 편안히 안겨 있다.",
+      "i.costume": "짙은 녹색 긴 겉옷에 띠를 매고 머리와 어깨를 덮는 너울을 썼다.",
+      "i.no-halo": "뒷벽 전체가 옆벽처럼 돌로 그려져 있고 둥글게 번지는 빛은 없다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
+      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥 위에 짠 돗자리가 있다.",
+      "i.guard": "그림 둘레에 종이 가장자리 같은 테두리가 있고 왼쪽 모서리에 검은 표시가 있다."
+     }
+    }
+   }
+  },
+  "s202": {
+   "M": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 10.194,
+       "input": 4,
+       "output": 1021,
+       "cache_read": 45722,
+       "cache_create": 10453,
+       "cost_usd": 0.056602200000000005,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "틀림",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "틀림"
+     },
+     "reasons": {
+      "m.david-clasp": "다윗의 손이 허리가 아니라 가슴 높이에 있고, 다른 손은 소매에 가려 두 손을 모은 모습이 분명하지 않다.",
+      "m.david": "붉은 긴 겉옷과 짙은 수염은 맞지만 허리에 맨 띠가 보이지 않는다.",
+      "m.nathan": "겉옷은 짙은 모직이 맞다. 그러나 머리와 수염이 희끗하지 않고 검은색이며, 머리에 두건을 둘렀다.",
+      "m.guard": "바닥 아래쪽에 글자처럼 보이는 낙서가 있다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 13.162,
+       "input": 4,
+       "output": 1369,
+       "cache_read": 45722,
+       "cache_create": 10453,
+       "cost_usd": 0.0600822,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "틀림",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 채색의 동화 그림 느낌이다.",
+      "s.no-blob": "회색 덩어리나 미완성 실루엣은 없다.",
+      "m.moment": "나단이 손을 내밀어 말하고 다윗이 나단 쪽을 보며 듣는다.",
+      "m.two-people": "구름 밖 큰 장면에는 나단과 다윗 두 사람뿐이다.",
+      "m.facing": "나단은 오른쪽, 다윗은 왼쪽을 향해 서로 마주 본다.",
+      "m.nathan-hand": "나단이 오른손을 펴서 다윗 쪽으로 내밀고 있다.",
+      "m.david-clasp": "한 손은 가슴께에 있고 다른 손은 옆으로 늘어져 있어, 두 손이 허리 높이에 모여 있지 않다.",
+      "m.david-bare": "다윗은 아무것도 쓰지 않은 맨 곱슬머리다.",
+      "m.david": "붉은 긴 겉옷에 짙은 수염은 맞지만, 허리에 맨 띠가 분명히 보이지 않는다.",
+      "m.nathan": "머리와 수염이 짙은 색이라 희끗하지 않고, 50대로 보이지도 않으며 머리에는 두건을 둘렀다.",
+      "m.room": "다듬은 돌벽과 나무 들보, 돌바닥이 있는 방이다.",
+      "m.cloud-place": "구름이 두 사람 사이 위 가운데에 있고 누구의 머리에도 붙어 있지 않다.",
+      "m.cloud-time": "구름 속 아기를 안은 어머니는 다른 때의 장면으로 읽힌다.",
+      "m.guard": "바닥 아래쪽 가운데에 글자처럼 보이는 낙서나 서명 같은 표시가 있다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 13.909,
+       "input": 6,
+       "output": 1582,
+       "cache_read": 73291,
+       "cache_create": 10442,
+       "cost_usd": 0.06492909999999999,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "틀림",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "틀림",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필선과 색연필 채색의 동화풍이다.",
+      "s.no-blob": "모든 인물과 물건에 얼굴, 옷, 형태가 있다.",
+      "m.moment": "나단이 다윗 앞에서 손을 내밀어 말하고, 다윗이 나단 쪽을 보고 듣는다.",
+      "m.two-people": "구름 밖 큰 장면에는 두 사람뿐이다.",
+      "m.facing": "나단은 오른쪽, 다윗은 왼쪽을 향한다.",
+      "m.nathan-hand": "나단이 오른손을 펴서 다윗 쪽으로 내밀고 있다.",
+      "m.david-clasp": "다윗의 손이 허리가 아니라 가슴 높이에 있고, 한 손으로 옷자락을 쥔 듯 보여 두 손을 모은 모양이 아니다.",
+      "m.david-bare": "다윗은 아무것도 쓰지 않은 맨 곱슬머리다.",
+      "m.david": "짙은 붉은 겉옷에 짙은 수염은 맞지만, 허리띠가 뚜렷하게 보이지 않는다.",
+      "m.nathan": "나단의 수염이 짙은 검정이고, 머리는 두건으로 덮여 있어 희끗한 머리·수염이 아니다.",
+      "m.room": "다듬은 돌벽, 나무 들보, 돌바닥이 있는 방이다.",
+      "m.cloud-place": "구름 틀이 두 사람 사이 위 가운데에 떠 있고, 누구의 머리에도 붙어 있지 않다.",
+      "m.cloud-time": "구름 속 아기를 안은 어머니가 지난 때의 장면으로 읽힌다.",
+      "m.guard": "바닥 중앙 아래쪽에 글자 같은 낙서가 있다."
+     }
+    }
+   },
+   "I": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 9.014,
+       "input": 4,
+       "output": 759,
+       "cache_read": 45411,
+       "cache_create": 9872,
+       "cost_usd": 0.0516271,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "틀림",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "틀림"
+     },
+     "reasons": {
+      "i.moment": "아기가 무릎 위에 눕혀 있고 어머니는 두 손으로 받치기만 한다. 두 팔로 가슴에 품어 안은 모습이 아니다. 시선도 아기를 향하긴 하나 안는 자세가 아니다.",
+      "i.baby": "아기가 천에 싸여 있지 않고 맨몸에 가깝게 보인다.",
+      "i.guard": "그림 둘레에 미색 종이 테두리가 그대로 남아 있다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 8.063,
+       "input": 4,
+       "output": 794,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.0134763,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "틀림",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "틀림"
+     },
+     "reasons": {
+      "i.moment": "아기가 어머니 무릎 위에 눕혀져 있고 어머니는 두 손으로 받치고 있을 뿐이다. 두 팔로 가슴에 품어 안은 모습이 아니다.",
+      "i.baby": "아기가 천에 싸여 있지 않다. 천은 몸통 일부만 덮고 있고 팔다리는 드러나 있다. 편안한 모습인지도 분명하지 않다.",
+      "i.guard": "그림 둘레에 미색 종이 테두리가 있어 액자처럼 보인다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 13.096,
+       "input": 4,
+       "output": 1269,
+       "cache_read": 55283,
+       "cache_create": 0,
+       "cost_usd": 0.0182263,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "틀림",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "틀림"
+     },
+     "reasons": {
+      "i.moment": "아기가 어머니 가슴에 안겨 있지 않고 무릎 위에 눕혀져 있으며, 어머니는 두 손으로 받치고 있을 뿐이다. 두 팔로 가슴에 품은 모습이 아니다.",
+      "i.baby": "아기가 무릎 위에 반듯이 누워 있고, 천에 싸였는지 분명하지 않다. 몸 일부가 드러나 보이고 천은 허리께에만 있다. 분명히 맞다고 확인되지 않아 틀림으로 답한다.",
+      "i.guard": "그림 둘레에 미색 종이 여백과 옅은 테두리선이 있어 종이 테두리·액자로 보인다.",
+      "i.costume": "짙은 녹색 긴 겉옷, 허리띠, 머리와 어깨를 덮는 흰 너울이 모두 보인다.",
+      "s.style": "미색 종이에 연필과 색연필로 그린 동화풍이다.",
+      "s.no-blob": "얼굴·옷 없는 회색 덩어리나 미완성 실루엣이 없다.",
+      "i.one-person": "어른은 앉은 어머니 한 사람뿐이다.",
+      "i.no-halo": "뒷벽이 옆벽처럼 돌로 그려져 있고 후광처럼 번진 빛이 없다.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
+      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥, 짠 돗자리가 있는 방 안이다."
+     }
+    }
+   }
+  },
+  "s303": {
+   "M": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 10.394,
+       "input": 4,
+       "output": 1079,
+       "cache_read": 45722,
+       "cache_create": 10453,
+       "cost_usd": 0.0571822,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "틀림"
+     },
+     "reasons": {
+      "m.david": "짙은 붉은 긴 겉옷과 짙은 수염은 맞지만 허리에 맨 띠가 보이지 않는다. 금색 장식 단만 있다.",
+      "m.guard": "화면 가장자리에 종이 테두리가 보이고, 방 한가운데 벽에 정체불명의 작은 회색 점이 있다.",
+      "m.cloud-time": "구름 속 그림에 아기를 안은 어머니가 있어 앞선 때의 장면으로 읽힌다. 다만 배경이 방 벽과 같아 지금 방의 일처럼 보일 여지도 조금 있다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 10.465,
+       "input": 4,
+       "output": 944,
+       "cache_read": 56175,
+       "cache_create": 0,
+       "cost_usd": 0.015065499999999999,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "틀림"
+     },
+     "reasons": {
+      "m.david": "붉은 긴 겉옷과 짙은 수염은 맞지만, 허리에 띠를 맨 모습이 보이지 않고 금색 테두리 장식만 있음",
+      "m.guard": "그림 가장자리에 종이 테두리처럼 보이는 미색 여백이 있고, 벽 가운데에 정체불명의 작은 회색 점이 있음",
+      "m.david-clasp": "두 손을 몸 앞 가슴에서 허리 사이 높이에 모음",
+      "m.david-bare": "아무것도 쓰지 않은 검은 곱슬머리"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 12.214,
+       "input": 4,
+       "output": 1000,
+       "cache_read": 56175,
+       "cache_create": 0,
+       "cost_usd": 0.0156255,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "m.moment": "맞음",
+      "m.two-people": "맞음",
+      "m.facing": "맞음",
+      "m.nathan-hand": "맞음",
+      "m.david-clasp": "맞음",
+      "m.david-bare": "맞음",
+      "m.david": "틀림",
+      "m.nathan": "맞음",
+      "m.room": "맞음",
+      "m.cloud-place": "맞음",
+      "m.cloud-time": "맞음",
+      "m.guard": "틀림"
+     },
+     "reasons": {
+      "m.david": "다윗의 붉은 겉옷에 허리띠가 보이지 않는다. 금 장식 단만 있고 띠를 맨 모습이 아니다.",
+      "m.guard": "벽 가운데에 정체불명의 작은 회색 점이 있다. 가장자리에 종이 테두리처럼 보이는 여백도 있다.",
+      "m.david-clasp": "두 손을 가슴에서 허리 사이 높이로 앞에 모았다.",
+      "m.nathan": "희끗한 머리·수염에 짙은 긴 겉옷을 입은 50대로 보인다."
+     }
+    }
+   },
+   "I": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 7.596,
+       "input": 4,
+       "output": 673,
+       "cache_read": 54244,
+       "cache_create": 1039,
+       "cost_usd": 0.0163184,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "틀림",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "틀림"
+     },
+     "reasons": {
+      "s.style": "그림이 전체적으로 깔끔한 색연필 일러스트이긴 하지만, 방을 둘러싼 틀 같은 가장자리와 종이 여백이 있어 화풍이 순수한 동화 그림 장면으로 분명하지 않다. 분명히 맞다고 확인되지 않아 틀림으로 답한다.",
+      "i.moment": "어머니가 서 있고 아기는 걸상 위에 눕혀 있다. 앉아서 두 팔로 가슴에 품어 안은 모습이 아니다.",
+      "i.baby": "아기가 천에 완전히 싸여 있지 않고 맨몸이 드러나 있으며, 걸상 위 방석에 눕혀 있다. 크기는 알맞다.",
+      "i.guard": "방 전체가 상자처럼 둘러싼 틀 모양이고, 종이 가장자리 여백이 테두리·액자처럼 보인다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 10.259,
+       "input": 4,
+       "output": 848,
+       "cache_read": 45411,
+       "cache_create": 9872,
+       "cost_usd": 0.0525171,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "틀림",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "틀림"
+     },
+     "reasons": {
+      "s.style": "화풍은 대체로 맞지만, 그림이 종이 위의 사각 틀 안에 방이 들어간 액자형 구도라서 틀림으로 답함.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않음.",
+      "i.moment": "어머니가 서 있고 걸상은 아기를 눕힌 받침으로만 쓰임. 앉아서 두 팔로 가슴에 안은 모습이 아님.",
+      "i.one-person": "어른은 어머니 한 사람뿐임.",
+      "i.baby": "아기는 작고 천에 싸여 있지만 몸이 천에 싸이지 않고 대부분 드러나 있음. 걸상 위 방석에 누워 있어 분명히 맞다고 확인되지 않음.",
+      "i.costume": "짙은 녹색 긴 옷에 띠를 매고 너울을 씀.",
+      "i.no-halo": "뒷벽 전체가 돌로 그려져 있고 후광처럼 번지는 빛은 없음.",
+      "i.no-crown": "머리에 관이나 금빛 장식이 없음.",
+      "i.room": "돌벽, 나무 들보, 돌바닥, 짠 돗자리가 모두 있음.",
+      "i.guard": "그림 둘레에 종이 테두리 같은 여백이 있고, 방이 액자처럼 그려져 있음."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 10.404,
+       "input": 4,
+       "output": 883,
+       "cache_read": 54244,
+       "cache_create": 1039,
+       "cost_usd": 0.0184184,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "틀림",
+      "i.one-person": "맞음",
+      "i.baby": "틀림",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
+      "i.moment": "어머니가 걸상에 앉아 있지 않고 서 있다. 아기도 품에 안기지 않고 걸상 위 천에 눕혀 있으며, 두 손은 아기 곁에 얹혀 있을 뿐이다.",
+      "i.baby": "아기는 천에 싸여 있지 않다. 맨몸으로 천 위에 누워 있고 천은 아래에 깔렸을 뿐이다.",
+      "i.one-person": "어른은 어머니 한 사람뿐이다.",
+      "i.guard": "손가락 수 이상, 두 겹 인물, 글자는 보이지 않는다. 방 둘레의 여백은 종이 바탕으로 보고 액자로 치지 않았다."
+     }
+    }
+   }
+  }
+ },
+ "run1_422": {
+  "s42": {
+   "I": {
+    "3": {
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음",
+      "i.moment": "맞음",
+      "i.one-person": "맞음",
+      "i.baby": "맞음",
+      "i.costume": "맞음",
+      "i.no-halo": "맞음",
+      "i.no-crown": "맞음",
+      "i.room": "맞음",
+      "i.guard": "맞음"
+     },
+     "reasons": {
       "s.style": "미색 종이 위 연필선과 색연필 질감의 동화 그림이다.",
       "s.no-blob": "회색 덩어리나 미완성 실루엣이 없다.",
       "i.moment": "젊은 어머니가 낮은 나무 걸상에 앉아 아기를 두 팔로 안고 내려다본다.",
@@ -1883,1846 +5571,6 @@
        "error": false
       }
      ]
-    }
-   }
-  }
- },
- "verdict": {
-  "pick": "s11",
-  "memo": ""
- },
- "before422": {
-  "s42": {
-   "I": {
-    "2": {
-     "tries": [
-      {
-       "seconds": 9.573,
-       "input": 4,
-       "output": 912,
-       "cache_read": 44565,
-       "cache_create": 10718,
-       "cost_usd": 0.0564565,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "틀림",
-      "i.one-person": "맞음",
-      "i.baby": "맞음",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "맞음",
-      "i.room": "맞음",
-      "i.guard": "맞음"
-     },
-     "reasons": {
-      "i.moment": "어머니는 걸상에 앉아 아기를 내려다보지만, 아기를 가슴이 아니라 무릎·허리께에 눕혀 한 손으로 받치고 다른 손으로 만지고 있다. 두 팔로 가슴에 품어 안은 모습이 아니다.",
-      "i.baby": "작은 갓난아기가 흰 천에 싸여 있고 편안해 보인다.",
-      "i.costume": "짙은 녹색 긴 겉옷에 짠 띠를 매고, 머리와 어깨를 덮는 녹색 너울을 썼다.",
-      "i.no-halo": "뒷벽 전체가 돌로 그려져 있고, 어머니 뒤에 둥글게 번지는 빛이 없다.",
-      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥, 짠 돗자리가 모두 보인다."
-     }
-    },
-    "3": {
-     "tries": [
-      {
-       "seconds": 11.39,
-       "input": 4,
-       "output": 1170,
-       "cache_read": 44565,
-       "cache_create": 10718,
-       "cost_usd": 0.0590365,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "틀림",
-      "i.one-person": "맞음",
-      "i.baby": "맞음",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "맞음",
-      "i.room": "맞음",
-      "i.guard": "맞음"
-     },
-     "reasons": {
-      "i.moment": "어머니는 걸상에 앉아 아기를 내려다보지만, 아기가 가슴에 안기지 않고 무릎 높이에 놓여 있다. 한 손은 아기 가슴께를 짚고 있어 두 팔로 가슴에 품은 모습이 아니다.",
-      "s.style": "미색 종이에 연필선과 색연필 채색으로 그린 동화 그림 화풍이다.",
-      "s.no-blob": "얼굴·옷이 없는 덩어리나 미완성 실루엣이 없다.",
-      "i.one-person": "어른은 앉은 어머니 한 사람뿐이다.",
-      "i.baby": "작은 갓난아기가 흰 천에 싸여 편안해 보인다.",
-      "i.costume": "짙은 녹색 긴 겉옷에 짠 띠를 매고, 머리와 어깨를 덮는 녹색 너울을 썼다.",
-      "i.no-halo": "뒷벽은 옆벽처럼 돌로 그려져 있고 후광처럼 번진 빛이 없다.",
-      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
-      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥, 짠 돗자리가 모두 있는 방 안이다.",
-      "i.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자 같은 결함이 보이지 않는다."
-     }
-    },
-    "1": {
-     "tries": [
-      {
-       "seconds": 12.643,
-       "input": 4,
-       "output": 1213,
-       "cache_read": 44565,
-       "cache_create": 10718,
-       "cost_usd": 0.059466500000000005,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "틀림",
-      "i.one-person": "맞음",
-      "i.baby": "맞음",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "맞음",
-      "i.room": "맞음",
-      "i.guard": "맞음"
-     },
-     "reasons": {
-      "i.moment": "어머니는 걸상에 앉아 아기를 내려다보지만, 아기가 가슴이 아니라 허리·무릎 높이에 놓여 있다. 한 손은 아기를 받치고 다른 손은 아기를 만지는 모습이라 두 팔로 가슴에 품어 안은 자세가 아니다.",
-      "s.style": "미색 종이에 연필선과 색연필 채색으로 그린 동화풍이다.",
-      "s.no-blob": "얼굴과 옷이 없는 덩어리나 미완성 형체는 없다.",
-      "i.one-person": "그림에 어른은 앉은 어머니 한 사람뿐이다.",
-      "i.baby": "천에 싸인 작은 갓난아기가 편안히 눈을 뜨고 있다.",
-      "i.costume": "짙은 녹색 긴 겉옷에 짠 띠를 매고 머리와 어깨를 덮는 녹색 너울을 썼다.",
-      "i.no-halo": "뒷벽은 옆벽처럼 돌로 그려져 있고 후광처럼 번진 빛이 없다.",
-      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
-      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥 위 짠 돗자리가 모두 있다.",
-      "i.guard": "손가락 수 이상, 덧붙은 인물, 테두리·액자, 글자는 보이지 않는다."
-     }
-    }
-   },
-   "M": {
-    "3": {
-     "tries": [
-      {
-       "seconds": 10.693,
-       "input": 4,
-       "output": 1029,
-       "cache_read": 44876,
-       "cache_create": 11299,
-       "cost_usd": 0.05998160000000001,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "틀림",
-      "m.david-bare": "맞음",
-      "m.david": "맞음",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "맞음"
-     },
-     "reasons": {
-      "m.david-clasp": "다윗이 한 손은 펴서 앞으로 내밀고 다른 손은 옆에 늘어뜨렸다. 두 손을 허리 높이에 모으지 않았다.",
-      "m.nathan-hand": "나단이 왼손을 펴서 다윗 쪽으로 내밀었다.",
-      "m.cloud-place": "구름이 두 사람 사이 위 가운데에 있고 어느 머리에도 붙지 않았다.",
-      "m.cloud-time": "구름 속에 아기를 안은 어머니가 따로 그려져 앞선 때의 장면으로 읽힌다.",
-      "m.guard": "손가락 수 이상, 덧붙은 인물, 테두리·액자, 글자 같은 결함이 보이지 않는다.",
-      "m.facing": "나단은 오른쪽을, 다윗은 왼쪽을 향해 서로 마주 본다.",
-      "m.david": "짙은 붉은 긴 겉옷에 띠를 맸고 수염이 짙은 40~50대 남자다."
-     }
-    },
-    "2": {
-     "tries": [
-      {
-       "seconds": 10.816,
-       "input": 4,
-       "output": 886,
-       "cache_read": 44876,
-       "cache_create": 11299,
-       "cost_usd": 0.05855160000000001,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "틀림",
-      "m.david-bare": "맞음",
-      "m.david": "맞음",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "맞음"
-     },
-     "reasons": {
-      "m.david-clasp": "다윗이 한 손은 펴서 앞으로 내밀고 다른 손은 옆에 늘어뜨림. 허리 높이에 모은 손이 아님",
-      "m.david-bare": "곱슬 맨머리이고 관·띠는 없음. 겉옷 두건은 어깨 뒤로 젖혀져 있어 머리를 덮지 않음",
-      "m.nathan": "짙은 모직 긴 겉옷, 희끗한 회색 머리와 수염의 중년 남자",
-      "m.cloud-place": "구름이 두 사람 사이 위 가운데에 있고 어느 머리에도 붙지 않음"
-     }
-    },
-    "1": {
-     "tries": [
-      {
-       "seconds": 12.849,
-       "input": 6,
-       "output": 749,
-       "cache_read": 73618,
-       "cache_create": 11535,
-       "cost_usd": 0.061003800000000004,
-       "turns": 4,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "틀림",
-      "m.david-bare": "틀림",
-      "m.david": "맞음",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "맞음"
-     },
-     "reasons": {
-      "m.david-clasp": "다윗이 한 손은 앞으로 펴 내밀고 다른 손은 옆에 늘어뜨림, 모은 손 아님",
-      "m.david-bare": "다윗이 맨 곱슬머리처럼 보이나 분명히 맞다고 확신하기 어려워 틀림 처리(머리에 아무것도 없는 것은 보이나 겉옷 두건이 어깨 뒤에 있음)"
-     }
-    }
-   }
-  },
-  "s7": {
-   "M": {
-    "2": {
-     "tries": [
-      {
-       "seconds": 11.031,
-       "input": 4,
-       "output": 1157,
-       "cache_read": 44876,
-       "cache_create": 11299,
-       "cost_usd": 0.061261600000000006,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "맞음",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "틀림"
-     },
-     "reasons": {
-      "m.david": "짙은 붉은 긴 겉옷과 짙은 수염은 맞지만, 허리에 맨 띠가 분명히 보이지 않는다.",
-      "m.guard": "그림 둘레에 미색 종이 테두리 여백이 그대로 보인다.",
-      "s.style": "미색 종이에 연필선과 색연필 채색으로 그린 동화 그림이다.",
-      "m.david-clasp": "두 손을 몸 앞 허리 높이에 모으고 있다.",
-      "m.facing": "나단은 오른쪽 다윗을, 다윗은 왼쪽 나단을 향해 서 있다.",
-      "m.cloud-place": "구름 틀이 두 사람 사이 위 가운데에 있고 어느 머리에도 붙어 있지 않다.",
-      "m.cloud-time": "구름 안에 아기를 안은 어머니가 있어, 지금 이 방이 아닌 다른 때의 장면으로 읽힌다."
-     }
-    },
-    "1": {
-     "tries": [
-      {
-       "seconds": 13.178,
-       "input": 4,
-       "output": 1414,
-       "cache_read": 44876,
-       "cache_create": 11299,
-       "cost_usd": 0.0638316,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "맞음",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "틀림"
-     },
-     "reasons": {
-      "s.style": "미색 종이에 연필선과 색연필 채색의 동화풍이다.",
-      "s.no-blob": "두 인물과 구름 속 인물 모두 얼굴과 옷이 완성되어 있다.",
-      "m.moment": "나단이 다윗 앞에서 손을 내밀어 말하고, 다윗이 나단을 향해 듣고 있다.",
-      "m.two-people": "구름 밖에는 왼쪽 나단과 오른쪽 다윗 두 사람뿐이다.",
-      "m.facing": "나단은 오른쪽을, 다윗은 왼쪽을 향해 얼굴과 몸을 돌렸다.",
-      "m.nathan-hand": "나단의 오른손이 펴진 채 다윗 쪽으로 뻗어 있다.",
-      "m.david-clasp": "다윗의 두 손이 몸 앞 허리 높이에서 모아져 있다.",
-      "m.david-bare": "다윗은 관이나 머리띠 없이 곱슬머리를 드러내고 있다.",
-      "m.david": "붉은 긴 겉옷과 짙은 수염은 맞지만, 허리에 맨 띠가 보이지 않는다. 금 장식 단은 있으나 띠는 아니다.",
-      "m.nathan": "짙은 모직 긴 겉옷에 희끗한 머리와 수염을 한 50대 남자로 보인다.",
-      "m.room": "다듬은 돌벽과 나무 들보, 돌바닥이 있는 방이다.",
-      "m.cloud-place": "구름 틀이 두 사람 사이 위 가운데에 있고, 어느 인물의 머리에도 붙지 않았다.",
-      "m.cloud-time": "구름 속에 아기를 안은 어머니가 있어 앞선 때의 장면으로 읽힌다.",
-      "m.guard": "그림 둘레에 종이 여백과 테두리가 남아 있다."
-     }
-    },
-    "3": {
-     "tries": [
-      {
-       "seconds": 13.108,
-       "input": 4,
-       "output": 1550,
-       "cache_read": 56175,
-       "cache_create": 0,
-       "cost_usd": 0.021125500000000002,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "맞음",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "틀림"
-     },
-     "reasons": {
-      "s.style": "미색 종이에 연필 선과 색연필 채색의 동화풍이다.",
-      "s.no-blob": "두 인물, 구름 속 어머니와 아기 모두 얼굴과 옷이 갖춰져 있다.",
-      "m.moment": "나단이 다윗 앞에서 손짓하며 말하고, 다윗이 나단 쪽을 보고 듣는다.",
-      "m.two-people": "구름 밖 큰 장면에는 왼쪽 나단과 오른쪽 다윗 두 사람뿐이다.",
-      "m.facing": "나단은 오른쪽 다윗 쪽으로, 다윗은 왼쪽 나단 쪽으로 얼굴과 몸을 돌렸다.",
-      "m.nathan-hand": "나단이 오른손을 펴서 다윗 쪽으로 내밀고 있다.",
-      "m.david-clasp": "다윗이 두 손을 허리 높이 몸 앞에 모으고 있다.",
-      "m.david-bare": "다윗은 관이나 머리띠 없이 맨 곱슬머리다.",
-      "m.david": "짙은 붉은 긴 겉옷과 짙은 수염은 맞지만, 허리에 맨 띠가 뚜렷이 보이지 않아 분명히 맞다고 확인되지 않는다.",
-      "m.nathan": "짙은 모직 긴 겉옷에 희끗한 머리와 수염의 50대 남자다.",
-      "m.room": "다듬은 돌벽, 나무 들보 천장, 돌바닥이 있는 궁 안 방이다.",
-      "m.cloud-place": "구름 틀이 두 사람 사이 위 가운데에 있고 누구의 머리에도 붙어 있지 않다.",
-      "m.cloud-time": "아기를 안은 어머니가 구름 속에 그려져 앞선 때의 장면으로 읽힌다.",
-      "m.guard": "그림 둘레에 종이 테두리가 보인다."
-     }
-    }
-   },
-   "I": {
-    "1": {
-     "tries": [
-      {
-       "seconds": 11.038,
-       "input": 4,
-       "output": 1032,
-       "cache_read": 45411,
-       "cache_create": 9872,
-       "cost_usd": 0.0543571,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "틀림",
-      "i.one-person": "맞음",
-      "i.baby": "맞음",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "맞음",
-      "i.room": "맞음",
-      "i.guard": "틀림"
-     },
-     "reasons": {
-      "i.moment": "어머니가 아기를 가슴에 품지 않았다. 아기가 무릎과 배 높이에 가로로 얹혀 있다.",
-      "i.guard": "그림 둘레에 미색 종이 여백이 테두리처럼 남아 있다.",
-      "i.baby": "천에 싸인 작은 갓난아기이고 편안해 보인다. 다만 다리 하나가 천 밖으로 나와 있다."
-     }
-    },
-    "3": {
-     "tries": [
-      {
-       "seconds": 12.823,
-       "input": 6,
-       "output": 1257,
-       "cache_read": 72673,
-       "cache_create": 9862,
-       "cost_usd": 0.059297300000000004,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "맞음",
-      "i.one-person": "맞음",
-      "i.baby": "틀림",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "맞음",
-      "i.room": "맞음",
-      "i.guard": "틀림"
-     },
-     "reasons": {
-      "s.style": "미색 종이에 연필 선과 색연필 질감으로 그린 동화 그림 화풍이다.",
-      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣이 없다.",
-      "i.moment": "어머니가 낮은 나무 걸상에 앉아 두 팔로 아기를 안고 내려다본다.",
-      "i.one-person": "어른은 앉은 어머니 한 사람뿐이다.",
-      "i.baby": "크기는 맞지만 다리가 천 밖으로 드러나 있어, 몸이 천에 싸였다고 분명히 확인되지 않는다.",
-      "i.costume": "짙은 녹색 긴 겉옷에 짠 띠를 매고 머리와 어깨를 덮는 너울을 썼다.",
-      "i.no-halo": "뒷벽이 옆벽처럼 돌로 그려졌고 번지는 빛이나 후광이 없다.",
-      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
-      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥 위 짠 돗자리가 보인다.",
-      "i.guard": "방 그림 둘레에 미색 종이 여백이 테두리처럼 남아 있어, 종이 테두리·액자 결함으로 본다."
-     }
-    },
-    "2": {
-     "tries": [
-      {
-       "seconds": 13.267,
-       "input": 4,
-       "output": 1339,
-       "cache_read": 45411,
-       "cache_create": 9872,
-       "cost_usd": 0.0574271,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "틀림",
-      "i.one-person": "맞음",
-      "i.baby": "맞음",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "맞음",
-      "i.room": "맞음",
-      "i.guard": "틀림"
-     },
-     "reasons": {
-      "s.style": "미색 종이에 연필선과 색연필로 칠한 동화풍이다.",
-      "s.no-blob": "덩어리나 미완성 실루엣이 없다.",
-      "i.moment": "어머니는 앉아서 아기를 내려다보지만, 아기가 가슴이 아니라 무릎 높이에 놓여 있고 두 팔로 가슴에 품어 안은 모습이 아니다.",
-      "i.one-person": "어른은 어머니 한 사람뿐이다.",
-      "i.baby": "작은 갓난아기가 천에 싸여 편안해 보인다. 다리 일부는 천 밖으로 나와 있다.",
-      "i.costume": "짙은 녹색 겉옷에 짠 띠를 매고 머리와 어깨를 덮는 너울을 썼다.",
-      "i.no-halo": "뒷벽 전체가 돌로 그려져 있고 후광처럼 번진 빛이 없다.",
-      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
-      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥 위 짠 돗자리가 있다.",
-      "i.guard": "그림 둘레에 종이 여백이 테두리처럼 남아 있고 방이 상자 모양 액자처럼 보여서, 분명히 맞다고 확인되지 않는다."
-     }
-    }
-   }
-  },
-  "s5": {
-   "M": {
-    "3": {
-     "tries": [
-      {
-       "seconds": 9.692,
-       "input": 4,
-       "output": 1040,
-       "cache_read": 54866,
-       "cache_create": 1309,
-       "cost_usd": 0.021130600000000003,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "맞음",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "맞음"
-     },
-     "reasons": {
-      "m.david": "짙은 붉은 긴 겉옷에 짙은 수염인 것은 맞지만, 허리에 맨 띠가 보이지 않는다. 금빛 줄무늬가 앞섶을 따라 내려올 뿐이다. 「띠를 맨」이라는 조건이 확인되지 않아 틀림으로 답한다.",
-      "m.david-clasp": "두 손을 몸 앞에 모으고 있다. 높이는 가슴에서 허리 사이로 보인다.",
-      "m.cloud-time": "구름 안에 아기를 안은 어머니가 있어 앞선 다른 때의 장면으로 읽힌다.",
-      "m.guard": "손가락 수 이상, 덧붙은 인물, 종이 테두리·액자, 글자가 모두 보이지 않는다. 몸 크롭 파일이 없어 full.jpg만 보고 판정했다."
-     }
-    },
-    "1": {
-     "tries": [
-      {
-       "seconds": 11.498,
-       "input": 6,
-       "output": 1044,
-       "cache_read": 73292,
-       "cache_create": 10443,
-       "cost_usd": 0.0595532,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "틀림",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "맞음"
-     },
-     "reasons": {
-      "m.david-clasp": "다윗의 두 손이 허리가 아니라 가슴 높이에 모여 있어서 기대한 허리 높이와 다르다.",
-      "m.david": "짙은 붉은 긴 겉옷과 짙은 수염은 맞지만 허리에 띠를 맨 모습이 보이지 않는다. 금빛 줄무늬만 있다."
-     }
-    },
-    "2": {
-     "tries": [
-      {
-       "seconds": 12.012,
-       "input": 4,
-       "output": 1122,
-       "cache_read": 54866,
-       "cache_create": 1340,
-       "cost_usd": 0.022074600000000003,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "맞음",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "맞음"
-     },
-     "reasons": {
-      "m.david": "짙은 붉은 긴 겉옷과 짙은 수염은 맞지만 허리에 맨 띠가 보이지 않는다. 금색 세로 장식만 있다.",
-      "m.moment": "나단은 손을 내밀어 말하고 다윗은 마주 보며 듣는다. 두 사람 사이가 멀지만 이야기 뜻은 맞다.",
-      "m.facing": "두 사람이 서로를 향해 얼굴과 몸을 돌리고 있다.",
-      "m.david-clasp": "다윗이 두 손을 허리 높이 앞에 모으고 있다.",
-      "m.cloud-place": "구름은 두 사람 사이 위 가운데에 있고 누구의 머리에도 붙어 있지 않다.",
-      "m.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자 같은 결함이 보이지 않는다."
-     }
-    }
-   },
-   "I": {
-    "1": {
-     "tries": [
-      {
-       "seconds": 12.212,
-       "input": 4,
-       "output": 1264,
-       "cache_read": 45411,
-       "cache_create": 9872,
-       "cost_usd": 0.0566771,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "틀림",
-      "i.one-person": "맞음",
-      "i.baby": "맞음",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "틀림",
-      "i.room": "맞음",
-      "i.guard": "맞음"
-     },
-     "reasons": {
-      "s.style": "미색 종이에 연필선과 색연필 채색의 동화풍이다.",
-      "s.no-blob": "모든 인물과 물건에 얼굴, 옷, 질감이 있다.",
-      "i.moment": "어머니는 걸상에 앉아 아기를 내려다보지만, 아기는 가슴이 아니라 무릎 위 배 높이에 누워 있다. 아기가 어머니를 올려다보는 점도 기대와 다르다.",
-      "i.one-person": "어른은 앉은 어머니 한 사람뿐이다.",
-      "i.baby": "천에 싸인 작은 갓난아기이고 편안해 보인다.",
-      "i.costume": "짙은 녹색 긴 겉옷에 짠 띠를 매고 머리와 어깨를 덮는 너울을 썼다.",
-      "i.no-halo": "뒷벽 전체가 돌로 그려져 있고 후광처럼 번진 빛은 없다.",
-      "i.no-crown": "너울 이마 가장자리에 금빛 띠 장식이 보인다.",
-      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥, 짠 돗자리가 모두 있다.",
-      "i.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자가 보이지 않는다."
-     }
-    },
-    "2": {
-     "tries": [
-      {
-       "seconds": 12.074,
-       "input": 4,
-       "output": 1282,
-       "cache_read": 55283,
-       "cache_create": 0,
-       "cost_usd": 0.018356300000000002,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "맞음",
-      "i.one-person": "맞음",
-      "i.baby": "맞음",
-      "i.costume": "맞음",
-      "i.no-halo": "틀림",
-      "i.no-crown": "틀림",
-      "i.room": "맞음",
-      "i.guard": "틀림"
-     },
-     "reasons": {
-      "s.style": "미색 종이 위에 연필선과 색연필 질감으로 그린 동화풍이다.",
-      "s.no-blob": "회색 덩어리나 미완성 실루엣이 없다.",
-      "i.moment": "젊은 어머니가 낮은 걸상에 앉아 두 팔로 갓난아기를 안고 내려다보고 있다.",
-      "i.one-person": "그림에 어른은 어머니 한 사람뿐이다.",
-      "i.baby": "아기는 작고 천에 싸였으며 편안해 보인다.",
-      "i.costume": "짙은 녹색 긴 겉옷에 짠 띠를 매고 너울을 썼다.",
-      "i.no-halo": "어머니 뒤 벽이 가운데만 돌 줄눈이 흐려지고 밝게 번져 후광처럼 보인다. 확실히 맞다고 보기 어렵다.",
-      "i.no-crown": "너울 가장자리 이마께에 금빛 띠 장식이 있어 금빛 장식이 없다고 할 수 없다.",
-      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥, 짠 돗자리가 모두 있다.",
-      "i.guard": "그림 둘레에 종이 여백이 테두리처럼 남아 있어 틀림으로 판정했다. 다만 이 여백은 그림이 가장자리에서 종이로 번지며 사라지는 모양이라 판정이 갈릴 수 있다. 손가락 수나 글자 결함은 보이지 않았다."
-     }
-    },
-    "3": {
-     "tries": [
-      {
-       "seconds": 11.907,
-       "input": 4,
-       "output": 988,
-       "cache_read": 55283,
-       "cache_create": 0,
-       "cost_usd": 0.015416299999999999,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "틀림",
-      "i.one-person": "맞음",
-      "i.baby": "맞음",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "틀림",
-      "i.room": "맞음",
-      "i.guard": "맞음"
-     },
-     "reasons": {
-      "i.moment": "아기가 가슴이 아니라 무릎 위 허리 높이에 누워 있다. 두 팔로 가슴에 품어 안은 모습이 아니다.",
-      "i.no-crown": "너울 앞이마 가장자리에 금빛 머리띠 장식이 보인다.",
-      "i.baby": "작은 갓난아기이고 천에 싸여 편안해 보인다.",
-      "i.costume": "짙은 녹색 긴 옷에 짠 띠를 매고 너울을 썼다.",
-      "i.no-halo": "뒷벽이 옆벽처럼 돌로 그려져 있고 후광처럼 빛나는 곳이 없다."
-     }
-    }
-   }
-  },
-  "s11": {
-   "M": {
-    "1": {
-     "tries": [
-      {
-       "seconds": 10.52,
-       "input": 4,
-       "output": 1016,
-       "cache_read": 45722,
-       "cache_create": 10453,
-       "cost_usd": 0.0565522,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "맞음",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "틀림"
-     },
-     "reasons": {
-      "m.david": "짙은 붉은 긴 겉옷과 짙은 수염은 맞지만, 허리에 맨 띠가 보이지 않고 옷이 헐렁하게 늘어져 있다.",
-      "m.guard": "그림 가장자리에 옅은 미색 종이 테두리가 보인다. 분명히 없다고 확인되지 않아 틀림으로 답한다.",
-      "m.david-clasp": "두 손을 몸 앞 가슴에서 허리 사이 높이에 모았다.",
-      "m.facing": "나단은 오른쪽 다윗을 향하고, 다윗은 얼굴을 왼쪽 나단 쪽으로 돌렸다. 다윗의 몸통은 거의 정면이다."
-     }
-    },
-    "2": {
-     "tries": [
-      {
-       "seconds": 12.836,
-       "input": 4,
-       "output": 1260,
-       "cache_read": 45722,
-       "cache_create": 10453,
-       "cost_usd": 0.058992199999999995,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "맞음",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "틀림"
-     },
-     "reasons": {
-      "m.david": "다윗의 붉은 겉옷에 허리띠가 보이지 않는다. 금색 장식 선만 세로로 내려오고 옷이 곧게 늘어져 있어 '띠를 맨' 모습이 아니다.",
-      "m.guard": "그림 가장자리 둘레에 옅은 미색 종이 테두리 같은 띠가 보인다. 분명히 없다고 확인되지 않아 틀림으로 답한다.",
-      "m.moment": "나단이 왼쪽에서 손을 내밀어 말을 전하고, 다윗이 오른쪽에서 마주 보며 듣는다.",
-      "m.david-clasp": "다윗이 두 손을 허리 높이 몸 앞에 모으고 있다.",
-      "m.cloud-place": "구름 틀이 두 사람 사이 위 가운데에 있고 어느 한 사람의 머리에도 붙어 있지 않다.",
-      "m.cloud-time": "구름 속에 아기를 안은 어머니가 그려져 있어 앞선 다른 때의 장면으로 읽힌다."
-     }
-    },
-    "3": {
-     "tries": [
-      {
-       "seconds": 14.222,
-       "input": 4,
-       "output": 1605,
-       "cache_read": 56175,
-       "cache_create": 0,
-       "cost_usd": 0.0216755,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "틀림",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "맞음"
-     },
-     "reasons": {
-      "s.style": "미색 종이에 연필 선과 색연필 질감의 동화풍이다.",
-      "s.no-blob": "모든 인물과 물건에 얼굴과 옷이 제대로 그려져 있다.",
-      "m.moment": "나단이 손을 내밀어 말하고 다윗이 마주 보며 듣는다.",
-      "m.two-people": "구름 밖 큰 장면에는 왼쪽 나단과 오른쪽 다윗 둘뿐이다.",
-      "m.facing": "두 사람이 서로 상대 쪽으로 얼굴과 몸을 돌리고 있다.",
-      "m.nathan-hand": "나단이 오른손을 펴서 다윗 쪽으로 내밀고 있다.",
-      "m.david-clasp": "다윗의 모은 손이 허리가 아니라 가슴 높이에 있다.",
-      "m.david-bare": "다윗은 아무것도 쓰지 않은 검은 곱슬머리다.",
-      "m.david": "짙은 붉은 긴 겉옷에 짙은 수염은 맞지만, 허리에 띠를 맨 모습이 분명하지 않다.",
-      "m.nathan": "짙은 갈색 모직 긴 겉옷에 희끗한 머리와 수염의 50대로 보인다.",
-      "m.room": "다듬은 돌벽, 나무 들보, 돌바닥이 있는 궁 안 방이다.",
-      "m.cloud-place": "구름 틀이 두 사람 사이 위 가운데에 있고 어느 머리에도 붙지 않았다.",
-      "m.cloud-time": "구름 속 아기를 안은 어머니가 앞선 다른 때의 장면으로 읽힌다.",
-      "m.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자 같은 결함이 보이지 않는다."
-     }
-    }
-   },
-   "I": {
-    "1": {
-     "tries": [
-      {
-       "seconds": 11.57,
-       "input": 4,
-       "output": 1225,
-       "cache_read": 45411,
-       "cache_create": 9872,
-       "cost_usd": 0.0562871,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "맞음",
-      "i.one-person": "맞음",
-      "i.baby": "맞음",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "맞음",
-      "i.room": "맞음",
-      "i.guard": "맞음"
-     },
-     "reasons": {
-      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색의 동화풍이다.",
-      "s.no-blob": "회색 덩어리나 미완성 실루엣은 없다.",
-      "i.moment": "젊은 어머니가 낮은 나무 걸상에 앉아 두 팔로 갓난아기를 안고 내려다본다.",
-      "i.one-person": "어른은 어머니 한 사람뿐이다.",
-      "i.baby": "천에 싸인 작은 갓난아기가 편안해 보인다.",
-      "i.costume": "짙은 녹색 긴 겉옷에 머리와 어깨를 덮는 너울을 썼다. 띠는 아기에 가려 잘 안 보이지만 허리쯤에 보인다.",
-      "i.no-halo": "뒷벽 전체가 옆벽처럼 돌로 그려져 있고 후광처럼 번진 빛은 없다.",
-      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
-      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥 위에 짠 돗자리가 있는 방 안이다.",
-      "i.guard": "손가락 수나 인물 겹침, 글자, 액자 같은 결함이 보이지 않는다. 가장자리가 종이 쪽으로 옅어지는 것은 비네트 처리로 보고 결함으로 치지 않았다."
-     }
-    },
-    "3": {
-     "tries": [
-      {
-       "seconds": 11.899,
-       "input": 4,
-       "output": 1307,
-       "cache_read": 55283,
-       "cache_create": 0,
-       "cost_usd": 0.0186063,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "맞음",
-      "i.one-person": "맞음",
-      "i.baby": "맞음",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "맞음",
-      "i.room": "맞음",
-      "i.guard": "맞음"
-     },
-     "reasons": {
-      "s.style": "미색 종이에 색연필과 연필 질감의 동화풍이다.",
-      "s.no-blob": "평평한 덩어리나 미완성 실루엣이 없다.",
-      "i.moment": "젊은 어머니가 낮은 나무 걸상에 앉아 두 팔로 아기를 안고 내려다본다.",
-      "i.one-person": "방에는 어머니 한 사람만 있다.",
-      "i.baby": "작은 갓난아기가 흰 천에 싸여 편안히 안겨 있다.",
-      "i.costume": "짙은 녹색 긴 겉옷에 허리 띠가 있고 머리와 어깨를 덮는 너울을 썼다. 띠는 작게만 보인다.",
-      "i.no-halo": "뒷벽 전체가 옆벽처럼 돌로 그려져 있다. 가운데가 살짝 밝지만 후광으로 보이지는 않는다.",
-      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
-      "i.room": "다듬은 돌벽과 나무 들보, 돌바닥 위 짠 돗자리가 있는 방 안이다.",
-      "i.guard": "손가락 수나 인물 겹침, 글자, 액자 같은 결함은 보이지 않는다. 가장자리는 종이에 번지듯 끝나는 정도다."
-     }
-    },
-    "2": {
-     "tries": [
-      {
-       "seconds": 13.094,
-       "input": 4,
-       "output": 1411,
-       "cache_read": 46450,
-       "cache_create": 8833,
-       "cost_usd": 0.054095000000000004,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "맞음",
-      "i.one-person": "맞음",
-      "i.baby": "맞음",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "맞음",
-      "i.room": "맞음",
-      "i.guard": "틀림"
-     },
-     "reasons": {
-      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 그린 동화풍이다.",
-      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 없다.",
-      "i.moment": "젊은 어머니가 낮은 나무 걸상에 앉아 천에 싼 아기를 두 팔로 안고 내려다본다.",
-      "i.one-person": "어른은 앉은 어머니 한 사람뿐이다.",
-      "i.baby": "천에 싸인 작은 갓난아기가 편안히 누워 있다.",
-      "i.costume": "짙은 녹색 긴 겉옷에 금빛 목선 장식이 있고 허리에 띠가 있다. 머리와 어깨는 너울이 덮고 있다. 띠는 아기에 일부 가려 또렷하지 않다.",
-      "i.no-halo": "뒷벽은 돌로 그려져 있다. 가운데가 조금 밝지만 후광처럼 둥글게 번지지는 않는다.",
-      "i.no-crown": "머리에는 너울만 있고 관이나 금빛 장식은 없다.",
-      "i.room": "다듬은 돌벽과 나무 들보, 돌바닥 위에 짠 돗자리가 있는 방 안이다.",
-      "i.guard": "그림 가장자리가 불규칙하게 끝나고 둘레에 미색 종이 여백이 남아 있어 종이 테두리 결함으로 본다."
-     }
-    }
-   }
-  },
-  "s23": {
-   "M": {
-    "2": {
-     "tries": [
-      {
-       "seconds": 9.294,
-       "input": 4,
-       "output": 933,
-       "cache_read": 45722,
-       "cache_create": 10453,
-       "cost_usd": 0.0557222,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "틀림",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "맞음"
-     },
-     "reasons": {
-      "m.david-clasp": "다윗이 두 손을 모으지 않고, 양손을 펴서 몸 옆으로 벌려 내밀고 있다.",
-      "m.david": "짙은 붉은 긴 겉옷과 짙은 수염은 맞지만, 허리에 맨 띠가 보이지 않는다. 금 장식은 세로 단까지만 있다.",
-      "m.nathan-hand": "나단이 양손을 펴고 있고, 오른쪽 손을 다윗 쪽으로 내밀고 있다."
-     }
-    },
-    "3": {
-     "tries": [
-      {
-       "seconds": 10.021,
-       "input": 4,
-       "output": 937,
-       "cache_read": 56175,
-       "cache_create": 0,
-       "cost_usd": 0.014995499999999998,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "틀림",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "맞음"
-     },
-     "reasons": {
-      "m.david-clasp": "다윗이 두 손을 허리 높이에 모으지 않고 양손을 펴서 바깥으로 내밀고 있다.",
-      "m.david": "짙은 붉은 긴 겉옷과 짙은 수염은 맞지만 허리에 맨 띠가 보이지 않는다. 금테 장식뿐이라 「띠를 맨」이 어긋난다.",
-      "m.moment": "나단이 다윗 앞에서 손을 내밀어 말을 전하고, 다윗이 나단 쪽을 보고 듣는다.",
-      "m.facing": "나단은 오른쪽, 다윗은 왼쪽을 향해 서로 마주 본다."
-     }
-    },
-    "1": {
-     "tries": [
-      {
-       "seconds": 11.328,
-       "input": 4,
-       "output": 1389,
-       "cache_read": 45722,
-       "cache_create": 10453,
-       "cost_usd": 0.0602822,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "틀림",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "맞음"
-     },
-     "reasons": {
-      "s.style": "미색 종이에 연필 선과 색연필 질감의 동화풍이다.",
-      "s.no-blob": "얼굴과 옷이 없는 덩어리나 미완성 실루엣은 보이지 않는다.",
-      "m.moment": "나단이 다윗 앞에서 손짓하며 말하고, 다윗이 나단을 보며 듣는다.",
-      "m.two-people": "구름 밖 큰 장면에는 왼쪽 나단과 오른쪽 다윗 두 사람뿐이다.",
-      "m.facing": "나단은 오른쪽으로, 다윗은 왼쪽으로 얼굴과 몸을 돌렸다.",
-      "m.nathan-hand": "나단이 한 손을 펴서 다윗 쪽으로 내밀고 있다.",
-      "m.david-clasp": "다윗이 두 손을 몸 앞에 모으지 않고 양손을 펴서 바깥으로 내밀고 있다.",
-      "m.david-bare": "다윗은 아무것도 쓰지 않은 맨 곱슬머리다.",
-      "m.david": "짙은 붉은 긴 겉옷과 짙은 수염은 맞지만, 허리에 맨 띠가 분명히 보이지 않는다.",
-      "m.nathan": "짙은 모직 긴 겉옷에 희끗한 머리와 수염의 50대 남자다.",
-      "m.room": "다듬은 돌벽, 나무 들보, 돌바닥이 있는 방이다.",
-      "m.cloud-place": "구름 틀이 두 사람 사이 위 가운데에 있고 어느 머리에도 붙어 있지 않다.",
-      "m.cloud-time": "구름 속에 아기를 안은 어머니가 있어 앞선 다른 때의 장면으로 읽힌다.",
-      "m.guard": "손가락 수 이상, 덧붙은 인물, 테두리·액자, 글자 같은 결함이 보이지 않는다."
-     }
-    }
-   },
-   "I": {
-    "2": {
-     "tries": [
-      {
-       "seconds": 14.895,
-       "input": 4,
-       "output": 1167,
-       "cache_read": 45411,
-       "cache_create": 9872,
-       "cost_usd": 0.0557071,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "틀림",
-      "i.one-person": "맞음",
-      "i.baby": "맞음",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "맞음",
-      "i.room": "맞음",
-      "i.guard": "맞음"
-     },
-     "reasons": {
-      "i.moment": "어머니는 걸상에 앉아 아기를 내려다보지만, 아기는 가슴이 아니라 무릎·허리 높이에 눕혀 있다. 기대한 '두 팔로 가슴에 품어 안음'과 다르다.",
-      "s.style": "미색 종이에 연필선과 색연필 채색이 보이는 동화풍이다.",
-      "s.no-blob": "덩어리나 미완성 실루엣은 없다.",
-      "i.one-person": "어른은 앉은 어머니 한 사람뿐이다.",
-      "i.baby": "천에 싸인 작은 갓난아기가 편안해 보인다.",
-      "i.costume": "짙은 녹색 긴 겉옷에 띠를 매고, 머리와 어깨를 덮는 너울을 썼다.",
-      "i.no-halo": "뒷벽은 돌로 그려져 있고 후광처럼 번진 빛은 없다.",
-      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
-      "i.room": "돌벽, 나무 들보, 돌바닥, 그 위의 짠 돗자리가 있다.",
-      "i.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자는 보이지 않는다."
-     }
-    },
-    "1": {
-     "tries": [
-      {
-       "seconds": 15.721,
-       "input": 4,
-       "output": 1075,
-       "cache_read": 46450,
-       "cache_create": 8833,
-       "cost_usd": 0.050735,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "틀림",
-      "i.one-person": "맞음",
-      "i.baby": "맞음",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "맞음",
-      "i.room": "맞음",
-      "i.guard": "틀림"
-     },
-     "reasons": {
-      "i.moment": "어머니는 걸상에 앉아 아기를 내려다보지만, 아기가 가슴이 아니라 무릎 높이에 눕혀 있다. 두 팔로 가슴에 품어 안은 모습이 아니다.",
-      "i.guard": "무릎 앞쪽에 정체 불명의 흰 천 덩어리가 덧붙은 듯 늘어져 있어, 두 겹 옷이나 덧붙은 물체처럼 보인다.",
-      "i.baby": "몸이 흰 천에 싸였고 얼굴이 편안하며 크기도 갓난아기에 맞다.",
-      "i.costume": "짙은 녹색 긴 겉옷, 허리띠, 머리와 어깨를 덮는 너울이 모두 맞다."
-     }
-    },
-    "3": {
-     "tries": [
-      {
-       "seconds": 14.945,
-       "input": 4,
-       "output": 1306,
-       "cache_read": 45411,
-       "cache_create": 9872,
-       "cost_usd": 0.0570971,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "틀림",
-      "i.one-person": "맞음",
-      "i.baby": "맞음",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "맞음",
-      "i.room": "맞음",
-      "i.guard": "맞음"
-     },
-     "reasons": {
-      "i.moment": "어머니는 앉아서 아기를 내려다보지만, 아기가 가슴이 아니라 무릎 위 허리 높이에 놓여 있다. 두 팔로 가슴에 품어 안은 모습이 아니라서 틀림으로 판정했다.",
-      "s.style": "미색 종이에 연필선과 색연필 채색이 보이는 동화풍이다.",
-      "i.baby": "작은 갓난아기가 흰 천에 싸여 편안히 누워 있다.",
-      "i.costume": "짙은 녹색 긴 겉옷, 허리띠, 머리와 어깨를 덮는 너울이 모두 있다.",
-      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥, 짠 돗자리가 모두 있다.",
-      "i.no-halo": "뒷벽이 옆벽처럼 돌로 그려져 있고 후광 같은 번짐은 없다.",
-      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
-      "i.one-person": "어른은 앉은 어머니 한 사람뿐이다.",
-      "s.no-blob": "덩어리나 미완성 실루엣이 없다.",
-      "i.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자는 보이지 않는다. 무릎 아래 흰 속치마가 조금 어색하지만 결함으로 보지는 않았다."
-     }
-    }
-   }
-  },
-  "s101": {
-   "M": {
-    "1": {
-     "tries": [
-      {
-       "seconds": 11.355,
-       "input": 4,
-       "output": 1030,
-       "cache_read": 45722,
-       "cache_create": 10453,
-       "cost_usd": 0.0566922,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "틀림",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "맞음"
-     },
-     "reasons": {
-      "m.david-clasp": "다윗은 한 손만 펴서 앞으로 내밀고 있고 다른 손은 보이지 않아, 두 손을 허리 높이에 모았다고 분명히 확인되지 않는다.",
-      "m.david": "짙은 붉은 긴 겉옷에 짙은 수염의 남자는 맞다. 그러나 허리에 맨 띠가 보이지 않는다. 세로 금빛 단 장식만 있다."
-     }
-    },
-    "2": {
-     "tries": [
-      {
-       "seconds": 12.142,
-       "input": 4,
-       "output": 1011,
-       "cache_read": 47031,
-       "cache_create": 9144,
-       "cost_usd": 0.0513971,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "틀림",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "맞음"
-     },
-     "reasons": {
-      "m.david-clasp": "다윗의 한 손이 펴져 앞으로 내밀어져 있고 두 손을 허리 높이에 모은 모습이 아니다.",
-      "m.david": "붉은 긴 겉옷과 짙은 수염은 맞지만 허리띠가 보이지 않는다. 띠를 맨 모습이 분명하지 않아 틀림으로 본다.",
-      "m.nathan-hand": "나단이 손바닥을 편 한 손을 다윗 쪽으로 내밀고 있다."
-     }
-    },
-    "3": {
-     "tries": [
-      {
-       "seconds": 13.156,
-       "input": 4,
-       "output": 1525,
-       "cache_read": 56175,
-       "cache_create": 0,
-       "cost_usd": 0.0208755,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "틀림",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "맞음"
-     },
-     "reasons": {
-      "s.style": "미색 종이에 연필 선과 색연필 채색의 동화 그림 느낌이다.",
-      "s.no-blob": "얼굴과 옷이 없는 덩어리나 미완성 실루엣은 보이지 않는다.",
-      "m.moment": "나단이 다윗 앞에서 말을 전하고, 다윗이 나단을 마주 보며 듣는다.",
-      "m.two-people": "구름 밖 큰 장면의 사람은 나단과 다윗 두 사람뿐이다.",
-      "m.facing": "두 사람이 서로를 향해 얼굴과 몸을 돌리고 있다.",
-      "m.nathan-hand": "나단이 한 손을 펴서 다윗 쪽으로 내밀고 있다.",
-      "m.david-clasp": "다윗은 손을 모으지 않고, 한 손을 펴서 앞으로 내밀고 있다.",
-      "m.david-bare": "다윗은 아무것도 쓰지 않은 맨 곱슬머리다.",
-      "m.david": "붉은 긴 겉옷과 짙은 수염은 맞지만, 허리띠가 분명히 보이지 않는다.",
-      "m.nathan": "짙은 모직 긴 겉옷에 희끗한 머리와 수염의 50대 남자로 보인다.",
-      "m.room": "다듬은 돌벽, 나무 들보, 돌바닥이 있는 방이다.",
-      "m.cloud-place": "구름 틀이 두 사람 사이 위 가운데에 있고, 누구의 머리에도 붙어 있지 않다.",
-      "m.cloud-time": "구름 속에 아기를 안은 어머니가 있어, 앞선 다른 때의 장면으로 읽힌다.",
-      "m.guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자가 눈에 띄지 않는다."
-     }
-    }
-   },
-   "I": {
-    "1": {
-     "tries": [
-      {
-       "seconds": 9.001,
-       "input": 4,
-       "output": 817,
-       "cache_read": 45411,
-       "cache_create": 9872,
-       "cost_usd": 0.0522071,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "맞음",
-      "i.one-person": "맞음",
-      "i.baby": "맞음",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "틀림",
-      "i.room": "맞음",
-      "i.guard": "틀림"
-     },
-     "reasons": {
-      "i.no-crown": "이마 쪽 너울 위에 금빛 작은 장식이 보인다.",
-      "i.guard": "그림 둘레에 종이 가장자리가 드러나 있고, 왼쪽 위에는 어두운 얼룩이 있다. 종이 테두리·액자 결함이다."
-     }
-    },
-    "2": {
-     "tries": [
-      {
-       "seconds": 11.844,
-       "input": 4,
-       "output": 1078,
-       "cache_read": 46450,
-       "cache_create": 8833,
-       "cost_usd": 0.050765000000000005,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "맞음",
-      "i.one-person": "맞음",
-      "i.baby": "맞음",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "틀림",
-      "i.room": "맞음",
-      "i.guard": "틀림"
-     },
-     "reasons": {
-      "i.no-crown": "이마 쪽 너울에 금빛 장식이 달려 있어 「금빛 장식 없음」과 어긋남",
-      "i.guard": "그림이 종이 페이지 테두리와 가장자리 그림자(스케치북 느낌)로 둘러싸여 있어 종이 테두리·액자 결함에 해당함",
-      "i.costume": "짙은 녹색 긴 겉옷, 땋은 띠, 머리와 어깨를 덮는 너울이 모두 맞음",
-      "i.moment": "어머니가 낮은 걸상에 앉아 두 팔로 아기를 안고 내려다봄",
-      "i.baby": "천에 싸인 작은 갓난아기가 편안히 안겨 있음",
-      "i.no-halo": "뒷벽은 옆벽처럼 돌로 그려졌고 후광처럼 번진 빛은 없음"
-     }
-    },
-    "3": {
-     "tries": [
-      {
-       "seconds": 9.572,
-       "input": 4,
-       "output": 1039,
-       "cache_read": 55283,
-       "cache_create": 0,
-       "cost_usd": 0.0159263,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "맞음",
-      "i.one-person": "맞음",
-      "i.baby": "맞음",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "맞음",
-      "i.room": "맞음",
-      "i.guard": "틀림"
-     },
-     "reasons": {
-      "s.style": "미색 종이 위에 연필선과 색연필 질감이 보이는 동화 그림이다.",
-      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 없다.",
-      "i.moment": "젊은 어머니가 낮은 나무 걸상에 앉아 두 팔로 아기를 가슴에 안고 내려다본다.",
-      "i.one-person": "어른은 어머니 한 사람뿐이다.",
-      "i.baby": "천에 싸인 작은 갓난아기가 편안히 안겨 있다.",
-      "i.costume": "짙은 녹색 긴 겉옷에 띠를 매고 머리와 어깨를 덮는 너울을 썼다.",
-      "i.no-halo": "뒷벽 전체가 옆벽처럼 돌로 그려져 있고 둥글게 번지는 빛은 없다.",
-      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
-      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥 위에 짠 돗자리가 있다.",
-      "i.guard": "그림 둘레에 종이 가장자리 같은 테두리가 있고 왼쪽 모서리에 검은 표시가 있다."
-     }
-    }
-   }
-  },
-  "s202": {
-   "M": {
-    "2": {
-     "tries": [
-      {
-       "seconds": 10.194,
-       "input": 4,
-       "output": 1021,
-       "cache_read": 45722,
-       "cache_create": 10453,
-       "cost_usd": 0.056602200000000005,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "틀림",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "틀림",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "틀림"
-     },
-     "reasons": {
-      "m.david-clasp": "다윗의 손이 허리가 아니라 가슴 높이에 있고, 다른 손은 소매에 가려 두 손을 모은 모습이 분명하지 않다.",
-      "m.david": "붉은 긴 겉옷과 짙은 수염은 맞지만 허리에 맨 띠가 보이지 않는다.",
-      "m.nathan": "겉옷은 짙은 모직이 맞다. 그러나 머리와 수염이 희끗하지 않고 검은색이며, 머리에 두건을 둘렀다.",
-      "m.guard": "바닥 아래쪽에 글자처럼 보이는 낙서가 있다."
-     }
-    },
-    "1": {
-     "tries": [
-      {
-       "seconds": 13.162,
-       "input": 4,
-       "output": 1369,
-       "cache_read": 45722,
-       "cache_create": 10453,
-       "cost_usd": 0.0600822,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "틀림",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "틀림",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "틀림"
-     },
-     "reasons": {
-      "s.style": "미색 종이에 연필 선과 색연필 채색의 동화 그림 느낌이다.",
-      "s.no-blob": "회색 덩어리나 미완성 실루엣은 없다.",
-      "m.moment": "나단이 손을 내밀어 말하고 다윗이 나단 쪽을 보며 듣는다.",
-      "m.two-people": "구름 밖 큰 장면에는 나단과 다윗 두 사람뿐이다.",
-      "m.facing": "나단은 오른쪽, 다윗은 왼쪽을 향해 서로 마주 본다.",
-      "m.nathan-hand": "나단이 오른손을 펴서 다윗 쪽으로 내밀고 있다.",
-      "m.david-clasp": "한 손은 가슴께에 있고 다른 손은 옆으로 늘어져 있어, 두 손이 허리 높이에 모여 있지 않다.",
-      "m.david-bare": "다윗은 아무것도 쓰지 않은 맨 곱슬머리다.",
-      "m.david": "붉은 긴 겉옷에 짙은 수염은 맞지만, 허리에 맨 띠가 분명히 보이지 않는다.",
-      "m.nathan": "머리와 수염이 짙은 색이라 희끗하지 않고, 50대로 보이지도 않으며 머리에는 두건을 둘렀다.",
-      "m.room": "다듬은 돌벽과 나무 들보, 돌바닥이 있는 방이다.",
-      "m.cloud-place": "구름이 두 사람 사이 위 가운데에 있고 누구의 머리에도 붙어 있지 않다.",
-      "m.cloud-time": "구름 속 아기를 안은 어머니는 다른 때의 장면으로 읽힌다.",
-      "m.guard": "바닥 아래쪽 가운데에 글자처럼 보이는 낙서나 서명 같은 표시가 있다."
-     }
-    },
-    "3": {
-     "tries": [
-      {
-       "seconds": 13.909,
-       "input": 6,
-       "output": 1582,
-       "cache_read": 73291,
-       "cache_create": 10442,
-       "cost_usd": 0.06492909999999999,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "틀림",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "틀림",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "틀림"
-     },
-     "reasons": {
-      "s.style": "미색 종이에 연필선과 색연필 채색의 동화풍이다.",
-      "s.no-blob": "모든 인물과 물건에 얼굴, 옷, 형태가 있다.",
-      "m.moment": "나단이 다윗 앞에서 손을 내밀어 말하고, 다윗이 나단 쪽을 보고 듣는다.",
-      "m.two-people": "구름 밖 큰 장면에는 두 사람뿐이다.",
-      "m.facing": "나단은 오른쪽, 다윗은 왼쪽을 향한다.",
-      "m.nathan-hand": "나단이 오른손을 펴서 다윗 쪽으로 내밀고 있다.",
-      "m.david-clasp": "다윗의 손이 허리가 아니라 가슴 높이에 있고, 한 손으로 옷자락을 쥔 듯 보여 두 손을 모은 모양이 아니다.",
-      "m.david-bare": "다윗은 아무것도 쓰지 않은 맨 곱슬머리다.",
-      "m.david": "짙은 붉은 겉옷에 짙은 수염은 맞지만, 허리띠가 뚜렷하게 보이지 않는다.",
-      "m.nathan": "나단의 수염이 짙은 검정이고, 머리는 두건으로 덮여 있어 희끗한 머리·수염이 아니다.",
-      "m.room": "다듬은 돌벽, 나무 들보, 돌바닥이 있는 방이다.",
-      "m.cloud-place": "구름 틀이 두 사람 사이 위 가운데에 떠 있고, 누구의 머리에도 붙어 있지 않다.",
-      "m.cloud-time": "구름 속 아기를 안은 어머니가 지난 때의 장면으로 읽힌다.",
-      "m.guard": "바닥 중앙 아래쪽에 글자 같은 낙서가 있다."
-     }
-    }
-   },
-   "I": {
-    "1": {
-     "tries": [
-      {
-       "seconds": 9.014,
-       "input": 4,
-       "output": 759,
-       "cache_read": 45411,
-       "cache_create": 9872,
-       "cost_usd": 0.0516271,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "틀림",
-      "i.one-person": "맞음",
-      "i.baby": "틀림",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "맞음",
-      "i.room": "맞음",
-      "i.guard": "틀림"
-     },
-     "reasons": {
-      "i.moment": "아기가 무릎 위에 눕혀 있고 어머니는 두 손으로 받치기만 한다. 두 팔로 가슴에 품어 안은 모습이 아니다. 시선도 아기를 향하긴 하나 안는 자세가 아니다.",
-      "i.baby": "아기가 천에 싸여 있지 않고 맨몸에 가깝게 보인다.",
-      "i.guard": "그림 둘레에 미색 종이 테두리가 그대로 남아 있다."
-     }
-    },
-    "3": {
-     "tries": [
-      {
-       "seconds": 8.063,
-       "input": 4,
-       "output": 794,
-       "cache_read": 55283,
-       "cache_create": 0,
-       "cost_usd": 0.0134763,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "틀림",
-      "i.one-person": "맞음",
-      "i.baby": "틀림",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "맞음",
-      "i.room": "맞음",
-      "i.guard": "틀림"
-     },
-     "reasons": {
-      "i.moment": "아기가 어머니 무릎 위에 눕혀져 있고 어머니는 두 손으로 받치고 있을 뿐이다. 두 팔로 가슴에 품어 안은 모습이 아니다.",
-      "i.baby": "아기가 천에 싸여 있지 않다. 천은 몸통 일부만 덮고 있고 팔다리는 드러나 있다. 편안한 모습인지도 분명하지 않다.",
-      "i.guard": "그림 둘레에 미색 종이 테두리가 있어 액자처럼 보인다."
-     }
-    },
-    "2": {
-     "tries": [
-      {
-       "seconds": 13.096,
-       "input": 4,
-       "output": 1269,
-       "cache_read": 55283,
-       "cache_create": 0,
-       "cost_usd": 0.0182263,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "틀림",
-      "i.one-person": "맞음",
-      "i.baby": "틀림",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "맞음",
-      "i.room": "맞음",
-      "i.guard": "틀림"
-     },
-     "reasons": {
-      "i.moment": "아기가 어머니 가슴에 안겨 있지 않고 무릎 위에 눕혀져 있으며, 어머니는 두 손으로 받치고 있을 뿐이다. 두 팔로 가슴에 품은 모습이 아니다.",
-      "i.baby": "아기가 무릎 위에 반듯이 누워 있고, 천에 싸였는지 분명하지 않다. 몸 일부가 드러나 보이고 천은 허리께에만 있다. 분명히 맞다고 확인되지 않아 틀림으로 답한다.",
-      "i.guard": "그림 둘레에 미색 종이 여백과 옅은 테두리선이 있어 종이 테두리·액자로 보인다.",
-      "i.costume": "짙은 녹색 긴 겉옷, 허리띠, 머리와 어깨를 덮는 흰 너울이 모두 보인다.",
-      "s.style": "미색 종이에 연필과 색연필로 그린 동화풍이다.",
-      "s.no-blob": "얼굴·옷 없는 회색 덩어리나 미완성 실루엣이 없다.",
-      "i.one-person": "어른은 앉은 어머니 한 사람뿐이다.",
-      "i.no-halo": "뒷벽이 옆벽처럼 돌로 그려져 있고 후광처럼 번진 빛이 없다.",
-      "i.no-crown": "머리에 관이나 금빛 장식이 없다.",
-      "i.room": "다듬은 돌벽, 나무 들보, 돌바닥, 짠 돗자리가 있는 방 안이다."
-     }
-    }
-   }
-  },
-  "s303": {
-   "M": {
-    "1": {
-     "tries": [
-      {
-       "seconds": 10.394,
-       "input": 4,
-       "output": 1079,
-       "cache_read": 45722,
-       "cache_create": 10453,
-       "cost_usd": 0.0571822,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "맞음",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "틀림"
-     },
-     "reasons": {
-      "m.david": "짙은 붉은 긴 겉옷과 짙은 수염은 맞지만 허리에 맨 띠가 보이지 않는다. 금색 장식 단만 있다.",
-      "m.guard": "화면 가장자리에 종이 테두리가 보이고, 방 한가운데 벽에 정체불명의 작은 회색 점이 있다.",
-      "m.cloud-time": "구름 속 그림에 아기를 안은 어머니가 있어 앞선 때의 장면으로 읽힌다. 다만 배경이 방 벽과 같아 지금 방의 일처럼 보일 여지도 조금 있다."
-     }
-    },
-    "2": {
-     "tries": [
-      {
-       "seconds": 10.465,
-       "input": 4,
-       "output": 944,
-       "cache_read": 56175,
-       "cache_create": 0,
-       "cost_usd": 0.015065499999999999,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "맞음",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "틀림"
-     },
-     "reasons": {
-      "m.david": "붉은 긴 겉옷과 짙은 수염은 맞지만, 허리에 띠를 맨 모습이 보이지 않고 금색 테두리 장식만 있음",
-      "m.guard": "그림 가장자리에 종이 테두리처럼 보이는 미색 여백이 있고, 벽 가운데에 정체불명의 작은 회색 점이 있음",
-      "m.david-clasp": "두 손을 몸 앞 가슴에서 허리 사이 높이에 모음",
-      "m.david-bare": "아무것도 쓰지 않은 검은 곱슬머리"
-     }
-    },
-    "3": {
-     "tries": [
-      {
-       "seconds": 12.214,
-       "input": 4,
-       "output": 1000,
-       "cache_read": 56175,
-       "cache_create": 0,
-       "cost_usd": 0.0156255,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "m.moment": "맞음",
-      "m.two-people": "맞음",
-      "m.facing": "맞음",
-      "m.nathan-hand": "맞음",
-      "m.david-clasp": "맞음",
-      "m.david-bare": "맞음",
-      "m.david": "틀림",
-      "m.nathan": "맞음",
-      "m.room": "맞음",
-      "m.cloud-place": "맞음",
-      "m.cloud-time": "맞음",
-      "m.guard": "틀림"
-     },
-     "reasons": {
-      "m.david": "다윗의 붉은 겉옷에 허리띠가 보이지 않는다. 금 장식 단만 있고 띠를 맨 모습이 아니다.",
-      "m.guard": "벽 가운데에 정체불명의 작은 회색 점이 있다. 가장자리에 종이 테두리처럼 보이는 여백도 있다.",
-      "m.david-clasp": "두 손을 가슴에서 허리 사이 높이로 앞에 모았다.",
-      "m.nathan": "희끗한 머리·수염에 짙은 긴 겉옷을 입은 50대로 보인다."
-     }
-    }
-   },
-   "I": {
-    "2": {
-     "tries": [
-      {
-       "seconds": 7.596,
-       "input": 4,
-       "output": 673,
-       "cache_read": 54244,
-       "cache_create": 1039,
-       "cost_usd": 0.0163184,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "틀림",
-      "s.no-blob": "맞음",
-      "i.moment": "틀림",
-      "i.one-person": "맞음",
-      "i.baby": "틀림",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "맞음",
-      "i.room": "맞음",
-      "i.guard": "틀림"
-     },
-     "reasons": {
-      "s.style": "그림이 전체적으로 깔끔한 색연필 일러스트이긴 하지만, 방을 둘러싼 틀 같은 가장자리와 종이 여백이 있어 화풍이 순수한 동화 그림 장면으로 분명하지 않다. 분명히 맞다고 확인되지 않아 틀림으로 답한다.",
-      "i.moment": "어머니가 서 있고 아기는 걸상 위에 눕혀 있다. 앉아서 두 팔로 가슴에 품어 안은 모습이 아니다.",
-      "i.baby": "아기가 천에 완전히 싸여 있지 않고 맨몸이 드러나 있으며, 걸상 위 방석에 눕혀 있다. 크기는 알맞다.",
-      "i.guard": "방 전체가 상자처럼 둘러싼 틀 모양이고, 종이 가장자리 여백이 테두리·액자처럼 보인다."
-     }
-    },
-    "1": {
-     "tries": [
-      {
-       "seconds": 10.259,
-       "input": 4,
-       "output": 848,
-       "cache_read": 45411,
-       "cache_create": 9872,
-       "cost_usd": 0.0525171,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "틀림",
-      "s.no-blob": "맞음",
-      "i.moment": "틀림",
-      "i.one-person": "맞음",
-      "i.baby": "틀림",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "맞음",
-      "i.room": "맞음",
-      "i.guard": "틀림"
-     },
-     "reasons": {
-      "s.style": "화풍은 대체로 맞지만, 그림이 종이 위의 사각 틀 안에 방이 들어간 액자형 구도라서 틀림으로 답함.",
-      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않음.",
-      "i.moment": "어머니가 서 있고 걸상은 아기를 눕힌 받침으로만 쓰임. 앉아서 두 팔로 가슴에 안은 모습이 아님.",
-      "i.one-person": "어른은 어머니 한 사람뿐임.",
-      "i.baby": "아기는 작고 천에 싸여 있지만 몸이 천에 싸이지 않고 대부분 드러나 있음. 걸상 위 방석에 누워 있어 분명히 맞다고 확인되지 않음.",
-      "i.costume": "짙은 녹색 긴 옷에 띠를 매고 너울을 씀.",
-      "i.no-halo": "뒷벽 전체가 돌로 그려져 있고 후광처럼 번지는 빛은 없음.",
-      "i.no-crown": "머리에 관이나 금빛 장식이 없음.",
-      "i.room": "돌벽, 나무 들보, 돌바닥, 짠 돗자리가 모두 있음.",
-      "i.guard": "그림 둘레에 종이 테두리 같은 여백이 있고, 방이 액자처럼 그려져 있음."
-     }
-    },
-    "3": {
-     "tries": [
-      {
-       "seconds": 10.404,
-       "input": 4,
-       "output": 883,
-       "cache_read": 54244,
-       "cache_create": 1039,
-       "cost_usd": 0.0184184,
-       "turns": 3,
-       "error": false
-      }
-     ],
-     "answers": {
-      "s.style": "맞음",
-      "s.no-blob": "맞음",
-      "i.moment": "틀림",
-      "i.one-person": "맞음",
-      "i.baby": "틀림",
-      "i.costume": "맞음",
-      "i.no-halo": "맞음",
-      "i.no-crown": "맞음",
-      "i.room": "맞음",
-      "i.guard": "맞음"
-     },
-     "reasons": {
-      "i.moment": "어머니가 걸상에 앉아 있지 않고 서 있다. 아기도 품에 안기지 않고 걸상 위 천에 눕혀 있으며, 두 손은 아기 곁에 얹혀 있을 뿐이다.",
-      "i.baby": "아기는 천에 싸여 있지 않다. 맨몸으로 천 위에 누워 있고 천은 아래에 깔렸을 뿐이다.",
-      "i.one-person": "어른은 어머니 한 사람뿐이다.",
-      "i.guard": "손가락 수 이상, 두 겹 인물, 글자는 보이지 않는다. 방 둘레의 여백은 종이 바탕으로 보고 액자로 치지 않았다."
-     }
     }
    }
   }
