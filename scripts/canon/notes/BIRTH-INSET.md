@@ -340,3 +340,4 @@ s303: 틀림 2 M/m.guard I/i.moment
 
 - 화면 https://claude.ai/artifact/HTL5naijTN83agocf82jCc — 셋째 실행(비킨 구도) 8장 전부(기계 통과 s11 + 불통과 표본, 틀린 문항 순) · 12:24-25 원문(12:25 굵게) · 원래 화소 1~3× 확대 · 곁 장면 원본 · 질문 하나 「이 장면으로 쓸 그림이 있나」 → 답 복사(`판정 task 424` + JSON) → `python3 batch/inset_judge.py record '<답>'`
 
+- 사람 답(8시드): s11
