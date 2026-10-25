@@ -6,49 +6,323 @@
     "range": "왕상 3:16-28",
     "quotes": {
       "3:16": "때에 창기 두 계집이 왕에게 와서 그 앞에 서며",
+      "3:17": "한 계집은 말하되 내 주여 나와 이 계집이 한 집에서 사는데 내가 저와 함께 집에 있으며 아이를 낳았더니",
+      "3:18": "나의 해산한 지 삼일에 이 계집도 해산하고 우리가 함께 있었고 우리 둘 외에는 집에 다른 사람이 없었나이다",
+      "3:19": "그런데 밤에 저 계집이 그 아들 위에 누우므로 그 아들이 죽으니",
+      "3:20": "저가 밤중에 일어나서 계집종 나의 잠든 사이에 내 아들을 내 곁에서 가져다가 자기의 품에 누이고 자기의 죽은 아들을 내 품에 뉘었나이다",
+      "3:21": "미명에 내가 내 아들을 젖 먹이려고 일어나 본즉 죽었기로 내가 아침에 자세히 보니 내가 낳은 아들이 아니더이다 하매",
       "3:22": "다른 계집은 이르되 아니라 산 것은 내 아들이요 죽은 것은 네 아들이라 하고 이 계집은 이르되 아니라 죽은 것이 네 아들이요 산 것이 내 아들이라 하매 왕 앞에서 그와 같이 쟁론하는지라",
-      "3:26": "그 산 아들의 어미되는 계집이 그 아들을 위하여 마음이 불붙는 것 같아서 왕께 아뢰어 가로되 청컨대 내 주여 산 아들을 저에게 주시고 아무쪼록 죽이지 마옵소서",
-      "3:27": "왕이 대답하여 가로되 산 아들을 저 계집에게 주고 결코 죽이지 말라 저가 그 어미니라 하매"
+      "3:23": "왕이 가로되 이는 말하기를 산 것은 내 아들이요 죽은 것은 네 아들이라 하고 저는 말하기를 아니라 죽은 것이 네 아들이요 산 것이 내 아들이라 하는도다 하고",
+      "3:24": "또 가로되 칼을 내게로 가져오라 하니 칼을 왕의 앞으로 가져온지라",
+      "3:25": "왕이 이르되 산 아들을 둘에 나눠 반은 이에게 주고 반은 저에게 주라",
+      "3:26": "그 산 아들의 어미되는 계집이 그 아들을 위하여 마음이 불붙는 것 같아서 왕께 아뢰어 가로되 청컨대 내 주여 산 아들을 저에게 주시고 아무쪼록 죽이지 마옵소서 하되 한 계집은 말하기를 내 것도 되게 말고 네 것도 되게 말고 나누게 하라 하는지라",
+      "3:27": "왕이 대답하여 가로되 산 아들을 저 계집에게 주고 결코 죽이지 말라 저가 그 어미니라 하매",
+      "3:28": "온 이스라엘이 왕의 심리하여 판결함을 듣고 왕을 두려워하였으니 이는 하나님의 지혜가 저의 속에 있어 판결함을 봄이더라"
+    }
+  },
+  "situation": {
+    "text": "창기 두 계집이 왕에게 와서 그 앞에 섰다(3:16). 한 계집이 아뢰기를, 둘이 한 집에서 살며 사흘 사이로 각각 아이를 낳았는데(3:17-18) 밤에 저 계집이 제 아들 위에 누워 그 아들이 죽자, 아뢴 여인이 잠든 사이에 저 계집이 밤중에 일어나 산 아들을 가져다 제 품에 누이고 죽은 아들을 아뢴 여인의 품에 뉘었으며(3:19-20), 새벽에 보니 죽은 아이가 자기가 낳은 아들이 아니더라 했다(3:21). 다른 계집은 산 것이 제 아들이라 하여 둘이 왕 앞에서 쟁론했다(3:22). 왕이 두 말을 되짚고(3:23) 칼을 가져오라 하니 칼을 왕의 앞으로 가져왔고(3:24), 왕이 산 아들을 둘에 나눠 반씩 주라 했다(3:25). 그 산 아들의 어미되는 계집은 아들을 위하여 마음이 불붙는 것 같아 산 아들을 저에게 주고 아무쪼록 죽이지 말라 애원했고, 다른 계집은 내 것도 네 것도 되게 말고 나누게 하라 했다(3:26). 왕이 산 아들을 저 계집에게 주고 결코 죽이지 말라, 저가 그 어미라 판결했고(3:27) 온 이스라엘이 듣고 왕을 두려워했다(3:28). 자리는 [추론] 예루살렘 왕의 집 — 3:15 「예루살렘에 이르러」 바로 뒤 일이고, 3:1 「자기의 궁과 … 필역되기를 기다리니라」로 솔로몬 자신의 궁은 아직 필역 전이라 7:7 재판하는 낭실·10:18 상아 보좌는 이 장면의 것이 아님 · 「왕의 집」과 방 모습은 본문 밖 · 저작자 정함. 왕이 앉음은 [추론] 2:19 「다시 위에 앉고」(왕이 사람을 맞는 평소 모습).",
+    "same_time": {
+      "3:16": "그 뒤 늘 — 두 여인이 왕 앞에 섬(이 자리의 두 여인 자리)",
+      "3:17": "앞선 날 — 한 집에서 아이를 낳음(아뢴 말)",
+      "3:18": "앞선 날 — 사흘 사이로 둘 다 해산함(아뢴 말 · 두 여인 생애 단계 근거)",
+      "3:19": "앞선 밤 — 한 아들이 죽음(아뢴 말)",
+      "3:20": "앞선 밤 — 산 아들을 다른 계집이 자기 품에 누임(아뢴 말 · 이 순간 산 아이가 다른 계집 품에 있는 [추론] 근거)",
+      "3:21": "앞선 새벽 — 참 어머니가 죽은 아이를 알아봄(아뢴 말)",
+      "3:22": "조금 앞 — 두 여인이 왕 앞에서 쟁론함",
+      "3:23": "조금 앞 — 왕이 두 말을 되짚음",
+      "3:24": "조금 앞 — 칼을 가져오라 하여 칼을 왕의 앞으로 가져옴(이 순간 칼이 왕 앞에 있음)",
+      "3:25": "바로 앞 — 산 아들을 둘에 나누라는 왕의 명",
+      "3:26": "고정한 순간 — 참 어머니가 애원하고 다른 계집은 나누게 하라 함",
+      "3:27": "바로 뒤 — 왕의 판결",
+      "3:28": "그 뒤 — 온 이스라엘이 듣고 두려워함"
     }
   },
   "moment": {
-    "verse": "3:16-3:22",
-    "why": "두 여인이 왕 앞에 서서 다투는 순간 — 「칼을 내게로 가져오라」(3:24) 이후의 순간은 아니다(브리프 지시). 아기는 참 어머니 쪽 지물로만 그린다."
+    "verse": "3:26",
+    "why": "상황 안에서 3:26을 고른다 — 단락(3:16-28)이 가장 크게 말하는 것은 3:28 「하나님의 지혜가 저의 속에 있어 판결함을 봄이더라」, 곧 왕이 칼(3:24)과 나누라는 명(3:25)으로 참 어미의 마음을 드러내 판결함이다. 판결의 근거가 보이는 때는 두 여인의 말이 갈리는 3:26 — 참 어머니는 아들을 위해 애원하고 다른 계집은 나누게 하라 한다. 3:16-23의 아룀·쟁론은 앞선 일, 3:27 판결은 바로 뒤. 옛 명세의 순간 3:16-22는 task 332 계획의 순간 선택 지침(동작 난이도로 순간을 고름)에 따른 것이라 장면 구절 전부로 다시 고름(task 394 기브아 18:11과 같은 근거)."
+  },
+  "meaning": {
+    "ko": "예루살렘 왕의 집에서, 왕이 산 아들을 둘로 나누라 하자 참 어머니는 아들을 위해 마음이 불붙는 것 같아 왕께 애원하고, 산 아기를 품에 안은 다른 계집은 나누게 하라 한다 — 왕 앞에 칼이 놓였고 앉은 왕이 두 여인을 지켜본다",
+    "en": "In the king's house at Jerusalem, after the king orders the living child divided, the true mother pleads with the king for her son, while the other woman, holding the infant, says to divide it, and the seated king watches the two women",
+    "verse": "왕상 3:24-26 · 예루살렘은 3:15에서 [추론] · 「왕의 집」은 본문 밖 · 저작자 정함 · 왕이 앉음은 2:19에서 [추론] · 산 아기가 다른 계집 품에 있음은 3:20(참 어머니의 아룀 — 3:27 판결이 확증)에서 [추론] · 칼이 바닥에 놓임은 본문 밖 · 저작자 정함"
+  },
+  "relation": {
+    "ko": "참 어머니가 앉은 왕 앞에 서서 두 손을 내밀어 애원하고, 그 뒤 다른 계집은 아기를 품에 안은 채 굽히지 않는 얼굴로 참 어머니를 보며, 왕은 애원하는 어머니를 지켜본다 — 셋은 닿지 않는다",
+    "en": "the two women stand before the seated king, the true mother pleading with outstretched hands, the other woman holding the infant with a set face, and the king watching the pleading mother, none of them touching",
+    "verse": "왕상 3:16 「그 앞에 서며」 · 3:26 「왕께 아뢰어 가로되 청컨대 내 주여」·「나누게 하라」 · 다른 계집이 참 어머니를 봄은 3:26 「네 것도 되게 말고」(참 어머니에게 하는 말)에서 [추론] · 왕이 참 어머니를 지켜봄·내민 손·굽히지 않는 얼굴·닿지 않음은 본문 밖 · 저작자 정함"
+  },
+  "whole_background": {
+    "ko": "예루살렘 왕의 집 안 소박한 방 — 거친 돌벽, 흙을 다진 바닥, 왕의 나무 자리 앞 바닥에 곧은 쇠 칼 한 자루가 놓임",
+    "en": "the inside of a plain room in the king's house at Jerusalem, walls of rough stone blocks, a packed earth floor, a straight iron sword lying on the floor before the king's wooden seat",
+    "verse": "예루살렘은 3:15 「예루살렘에 이르러」에서 [추론] · 칼은 3:24 「칼을 왕의 앞으로 가져온지라」(칼 모양은 낱말 사전 sword L1 · 바닥에 놓임은 본문 밖 · 저작자 정함) · 「왕의 집」·방 모습·소박함·나무 자리는 본문 밖 · 저작자 정함(3:1 솔로몬 자신의 궁은 필역 전 · 삼하 7:2 다윗의 백향목 궁이 있었으나 방 모습은 본문에 없음)"
   },
   "background": [
     {
-      "what": "왕궁 알현실 — 돌바닥과 기둥",
-      "verse": "본문 밖 · 저작자 정함"
+      "what": "예루살렘 왕의 집 안 소박한 방, 거친 돌벽",
+      "verse": "3:15 · 3:1 · 방 모습은 본문 밖 · 저작자 정함"
     }
   ],
   "crowds": [],
   "figures": [
     {
       "cast": "solomon",
-      "role": "솔로몬",
-      "pose": "보좌에 앉아 듣는다",
-      "prop": "왕홀",
+      "role": "솔로몬 — 칼을 가져오게 하고 나누라 명한 뒤 두 여인의 말을 듣는 왕",
+      "pose": "나무 자리에 앉아 몸을 조금 앞으로 기울이고 애원하는 참 어머니를 지켜본다",
+      "prop": "none",
       "facing": "left",
       "region": "solomon",
-      "verse": "3:16"
+      "verse": "3:24-26 · 앉음은 2:19에서 [추론]",
+      "screen_facing": "left",
+      "expression": {
+        "ko": "두 여인을 살피는 주의 깊은 얼굴",
+        "en": "an attentive, searching face",
+        "verse": "3:23 「왕이 가로되 이는 말하기를 … 하는도다」(두 말을 되짚어 살핌)에서 [추론] · 얼굴 모습은 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "소박한 나무 자리에 앉아 두 손을 무릎에 얹고 몸을 조금 앞으로 기울임",
+        "en": "sitting on a plain wooden seat, his hands resting on his knees, leaning slightly forward",
+        "verse": "2:19 「왕이 일어나 영접하여 절한 후에 다시 위에 앉고」(왕이 사람을 맞는 평소 모습에서 [추론]) · 자리의 재질·모양은 본문 밖 · 저작자 정함(2:12·3:6의 「위」는 다윗의 왕좌, 상아 보좌는 10:18 후대) · 손 자리·기울임은 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "짙은 푸른 고운 베 긴 겉옷과 수놓은 띠",
+        "en": "in a long deep blue fine linen robe with an embroidered belt",
+        "verse": "본문 밖 · 저작자 정함(정본 solomon 카드 차림 · 왕관은 장면 금지 낱말)"
+      },
+      "gaze": "mother-a",
+      "stage_why": "[추론] 프로젝트 연대(data/person_events/solomon.json — 출생 BC 990경 · 이 재판 BC 969경) → 약 21세, 즉위 직후. 바로 앞 기브온 꿈의 왕상 3:7 「종은 작은 아이라 출입할 줄을 알지 못하고」가 어림을 말하고, 왕상 9:10 「여호와의 전과 왕궁을 이십 년 만에 건축하기를 마치고」 이전이라 청년 왕 id solomon(CAST.md 구간)"
     },
     {
       "cast": "mother-a",
-      "role": "참 어머니",
-      "pose": "아기를 안고 왕 앞에 서서 애원한다",
-      "prop": "아기",
+      "role": "참 어머니 — 산 아들의 어미, 아들을 살려 달라 애원하는 여인",
+      "pose": "왕 앞에 서서 두 손을 내밀어 애원한다",
+      "prop": "none",
       "facing": "right",
       "region": "mother-a",
-      "verse": "3:26"
+      "verse": "3:16 · 3:26",
+      "screen_facing": "right",
+      "expression": {
+        "ko": "아들을 위해 마음이 불붙는 듯 괴로워 일그러진 얼굴",
+        "en": "a face torn with anguish, burning with love for her son",
+        "verse": "3:26 「그 아들을 위하여 마음이 불붙는 것 같아서」 · 얼굴 모습은 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "앉은 왕 앞에 서서 두 손을 왕 쪽으로 내밀어 애원함, 빈손",
+        "en": "standing before the seated king, pleading with the king, both empty hands held out toward him",
+        "verse": "3:16 「그 앞에 서며」 · 3:26 「왕께 아뢰어 가로되 청컨대 내 주여」 · 내민 손은 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "물들이지 않은 모직 긴 겉옷과 짙은 갈색 천 띠",
+        "en": "in a long undyed wool robe with a dark brown cloth belt",
+        "verse": "본문 밖 · 저작자 정함(정본 mother-a 카드 차림)"
+      },
+      "gaze": "solomon",
+      "stage_why": "[추론] 왕상 3:17 「아이를 낳았더니」 · 왕상 3:18 「나의 해산한 지 삼일에」 — 며칠 전 아이를 갓 낳은 젖먹이 어머니(왕상 3:21 「내 아들을 젖 먹이려고」)라 아이 낳는 나이의 젊은 여인. 20대는 [저작](카드 young — 두 여인을 나이로 가름)"
     },
     {
       "cast": "mother-b",
-      "role": "다른 어머니",
-      "pose": "팔짱을 끼고 왕 앞에 서서 다툰다",
-      "prop": "겉옷자락",
+      "role": "다른 계집 — 산 아기를 제 것이라 하며 나누게 하라는 여인",
+      "pose": "참 어머니 뒤에 서서 산 아기를 품에 안고 굽히지 않는 얼굴로 참 어머니를 본다",
+      "prop": "an infant",
       "facing": "right",
       "region": "mother-b",
-      "verse": "3:22"
+      "verse": "3:16 · 3:20 · 3:26",
+      "screen_facing": "right",
+      "expression": {
+        "ko": "나누게 하라 하는 굽히지 않는 얼굴",
+        "en": "a set, unyielding face",
+        "verse": "3:26 「내 것도 되게 말고 네 것도 되게 말고 나누게 하라」 · 얼굴 모습은 본문 밖 · 저작자 정함(인격 단정이 아니라 나누자는 말을 굽히지 않음)"
+      },
+      "gesture": {
+        "ko": "왕 앞에 서서 산 아기(천에 싸인 작은 갓난 아기)를 두 팔로 가슴에 안음",
+        "en": "standing before the king, holding the living infant, a tiny newborn baby, as long as a man's arm from elbow to fingertip, its body wrapped in cloth, cradled in both arms against the chest",
+        "verse": "3:16 「그 앞에 서며」 · 산 아기를 안음은 3:20 「내 아들을 내 곁에서 가져다가 자기의 품에 누이고」 · 3:22 「산 것은 내 아들이요」에서 [추론](3:20은 참 어머니의 아룀 — 3:27 판결이 그 아룀을 확증 · 밤에 「누이고」에서 법정에서 품에 안음으로 옮긴 것도 [추론] · 3:27 판결 전까지 아기를 넘겼다는 말이 없음) · 아기 모양은 낱말 사전 baby L2 · 품에 안음은 사전 look.hold(hug)"
+      },
+      "costume": {
+        "ko": "짙은 황토빛 갈색 모직 긴 겉옷과 천 띠",
+        "en": "in a long dark ochre wool robe with a cloth belt",
+        "verse": "본문 밖 · 저작자 정함(정본 mother-b 카드 차림)"
+      },
+      "gaze": "mother-a",
+      "stage_why": "[추론] 왕상 3:18 「이 계집도 해산하고」 — 사흘 사이로 아이를 낳은 어머니라 아이 낳는 나이의 여인. 30대는 [저작](카드 prime — 두 여인을 나이로 가름)"
+    }
+  ],
+  "verse_elements": [
+    {
+      "verse": "3:16",
+      "quote": "창기 두 계집이 왕에게 와서",
+      "kind": "인물",
+      "ko": "왕에게 온 두 여인",
+      "en": "the two women",
+      "field": "relation"
+    },
+    {
+      "verse": "3:16",
+      "quote": "그 앞에 서며",
+      "kind": "자리",
+      "ko": "두 여인이 왕 앞에 섬",
+      "en": "standing before the seated king",
+      "field": "figures[1].gesture"
+    },
+    {
+      "verse": "3:17",
+      "quote": "나와 이 계집이 한 집에서 사는데",
+      "kind": "장소",
+      "ko": "두 여인이 사는 한 집",
+      "out": "아뢴 말 속의 집 — 고정한 순간은 왕 앞"
+    },
+    {
+      "verse": "3:17",
+      "quote": "아이를 낳았더니",
+      "kind": "행동",
+      "ko": "참 어머니의 해산",
+      "out": "앞선 날의 해산 — 고정한 순간 밖"
+    },
+    {
+      "verse": "3:18",
+      "quote": "이 계집도 해산하고",
+      "kind": "행동",
+      "ko": "다른 계집의 해산",
+      "out": "앞선 날의 해산 — 고정한 순간 밖"
+    },
+    {
+      "verse": "3:18",
+      "quote": "우리 둘 외에는 집에 다른 사람이 없었나이다",
+      "kind": "인물",
+      "ko": "그 집에 두 여인뿐이었음",
+      "out": "아뢴 말 속의 앞선 날 — 고정한 순간 밖"
+    },
+    {
+      "verse": "3:19",
+      "quote": "그 아들 위에 누우므로 그 아들이 죽으니",
+      "kind": "행동",
+      "ko": "밤에 한 아들이 죽음",
+      "out": "앞선 밤의 일 — 고정한 순간 밖"
+    },
+    {
+      "verse": "3:20",
+      "quote": "내 아들을 내 곁에서 가져다가 자기의 품에 누이고",
+      "kind": "행동",
+      "ko": "다른 계집이 산 아들을 제 품에 누임(이 순간 산 아기가 다른 계집 품에 있는 근거 — [추론])",
+      "en": "cradled in both arms against the chest",
+      "field": "figures[2].gesture"
+    },
+    {
+      "verse": "3:20",
+      "quote": "자기의 죽은 아들을 내 품에 뉘었나이다",
+      "kind": "인물",
+      "ko": "죽은 아들",
+      "out": "앞선 밤의 일 — 재판 자리의 순간(3:26)에는 산 아들을 두고 다툼"
+    },
+    {
+      "verse": "3:21",
+      "quote": "내 아들을 젖 먹이려고 일어나 본즉 죽었기로",
+      "kind": "행동",
+      "ko": "새벽에 죽은 아이를 봄",
+      "out": "앞선 새벽의 일 — 고정한 순간 밖"
+    },
+    {
+      "verse": "3:22",
+      "quote": "왕 앞에서 그와 같이 쟁론하는지라",
+      "kind": "행동",
+      "ko": "두 여인의 쟁론",
+      "out": "조금 앞의 쟁론 — 고정한 순간의 두 여인 말은 3:26 요소가 실음"
+    },
+    {
+      "verse": "3:23",
+      "quote": "왕이 가로되",
+      "kind": "행동",
+      "ko": "왕이 두 말을 되짚음",
+      "out": "조금 앞의 말 — 고정한 순간의 왕은 3:26 애원을 듣는 때라 지켜보는 얼굴로 실림"
+    },
+    {
+      "verse": "3:24",
+      "quote": "칼을 내게로 가져오라",
+      "kind": "행동",
+      "ko": "왕이 칼을 가져오라 함",
+      "out": "조금 앞의 명 — 그 결과 칼이 왕 앞에 있음(다음 요소가 실음)"
+    },
+    {
+      "verse": "3:24",
+      "quote": "칼을 왕의 앞으로 가져온지라",
+      "kind": "지물",
+      "ko": "왕 앞에 가져온 칼(낱말 사전 칼 L1 모양)",
+      "en": "a straight iron sword lying on the floor before the king's wooden seat",
+      "field": "whole_background"
+    },
+    {
+      "verse": "3:24",
+      "quote": "가져온지라",
+      "kind": "인물",
+      "ko": "칼을 가져온 사람들(주어 없음)",
+      "out": "가져오는 일은 끝난 일 — 3:26 순간에 그들이 그 자리에 있었는지 본문에 말이 없음"
+    },
+    {
+      "verse": "3:25",
+      "quote": "산 아들을 둘에 나눠",
+      "kind": "행동",
+      "ko": "산 아들을 둘에 나누라는 왕의 명",
+      "out": "바로 앞의 명 — 고정한 순간은 그 명에 두 여인이 답하는 때(3:26 요소가 실음)"
+    },
+    {
+      "verse": "3:25",
+      "quote": "산 아들을",
+      "kind": "인물",
+      "ko": "산 아들(갓난 아기 — 낱말 사전 baby L2 모양)",
+      "en": "holding the living infant, a tiny newborn baby",
+      "field": "figures[2].gesture"
+    },
+    {
+      "verse": "3:26",
+      "quote": "그 아들을 위하여 마음이 불붙는 것 같아서",
+      "kind": "인물",
+      "ko": "참 어머니의 불붙는 마음",
+      "en": "a face torn with anguish, burning with love for her son",
+      "field": "figures[1].expression"
+    },
+    {
+      "verse": "3:26",
+      "quote": "청컨대 내 주여 산 아들을 저에게 주시고 아무쪼록 죽이지 마옵소서",
+      "kind": "행동",
+      "ko": "참 어머니가 왕께 애원함",
+      "en": "pleading with the king, both empty hands held out toward him",
+      "field": "figures[1].gesture"
+    },
+    {
+      "verse": "3:26",
+      "quote": "내 것도 되게 말고 네 것도 되게 말고 나누게 하라",
+      "kind": "행동",
+      "ko": "다른 계집이 나누게 하라 함",
+      "en": "a set, unyielding face",
+      "field": "figures[2].expression"
+    },
+    {
+      "verse": "3:27",
+      "quote": "산 아들을 저 계집에게 주고 결코 죽이지 말라 저가 그 어미니라",
+      "kind": "행동",
+      "ko": "왕의 판결",
+      "out": "바로 뒤의 판결 — 고정한 순간 밖"
+    },
+    {
+      "verse": "3:28",
+      "quote": "온 이스라엘이 왕의 심리하여 판결함을 듣고",
+      "kind": "무리",
+      "ko": "판결을 들은 온 이스라엘",
+      "out": "판결 뒤의 일 — 고정한 순간 밖"
+    },
+    {
+      "verse": "3:28",
+      "quote": "왕을 두려워하였으니",
+      "kind": "행동",
+      "ko": "이스라엘이 왕을 두려워함",
+      "out": "판결 뒤의 일 — 고정한 순간 밖"
+    },
+    {
+      "verse": "3:28",
+      "quote": "하나님의 지혜가 저의 속에 있어",
+      "kind": "인물",
+      "ko": "왕 속의 하나님의 지혜",
+      "out": "판결 뒤 이스라엘이 본 것 — 고정한 순간 밖(이 순간 왕은 3:23 [추론] 살피는 얼굴로 실림)"
     }
   ],
   "regions": {
@@ -58,38 +332,53 @@
       1.0,
       1.0
     ],
-    "solomon": [
-      0.68,
-      0.15,
-      0.92,
-      0.72
+    "mother-b": [
+      0.12,
+      0.37,
+      0.27,
+      0.92
     ],
     "mother-a": [
-      0.12,
-      0.35,
-      0.34,
-      0.85
+      0.4,
+      0.414,
+      0.53,
+      0.92
     ],
-    "mother-b": [
-      0.38,
-      0.38,
-      0.58,
-      0.85
+    "solomon": [
+      0.64,
+      0.508,
+      0.84,
+      0.92
     ]
   },
-  "_regions_why": "솔로몬은 보좌에 앉아 있어 세로를 짧게(0.57) 하되 화면 오른쪽 높은 자리. 두 여인은 왕상 3:16 「그 앞에 서며」대로 서 있는 성인 상자(세로 0.47~0.50), 나란히 왼쪽에 서로 안 겹치게 배치.",
+  "_regions_why": "크기 기준표에서 셈(ADR 261024-083947) — 세 사람(무리 단계 small 0.45~0.6)이라 초점 다른 계집(서 있음 · average) 구역 높이 0.55 · 발 y 0.92 → 지평선 0.408. 참 어머니(short 0.92)는 같은 발 y의 화면 키 0.506, 왕은 같은 발 y에 앉음: 서 있는 화면 키 × average × 앉은 키 0.75 = 0.413(규칙 generate.seated-height). 좌우는 3:16 「그 앞에 서며」·3:26 — 두 여인이 왼쪽에서 오른쪽 왕을 향해 서고, 애원하는 참 어머니가 왕 가까이(본문 밖 · 저작자 정함).",
+  "guide": {
+    "depth": {
+      "mother-b": 1.0,
+      "mother-a": 1.0,
+      "solomon": 1.0
+    },
+    "shape": {
+      "mother-b": "person",
+      "mother-a": "person",
+      "solomon": "sit"
+    },
+    "backdrop": "room",
+    "body": "card",
+    "why": "task 415 — 기브아 수금 규칙을 물려받음: 실내 방 바탕(generate.guide-backdrop) · 카드 체격 몸 너비(guide-body-build). 두 여인은 서 있는 사람 꼴(3:16 「그 앞에 서며」), 왕은 앉은 꼴 sit(2:19 [추론] · generate.seated-height로 크기를 잼). 긴 겉옷 차림이라 legs costume 아님. 아기는 사전 look.hold hug(add 아님) — 파생 문구의 품에 안은 꼴로 그림(derive.held-hold)."
+  },
   "stages": [
     {
       "id": "S1",
       "kind": "full",
       "region": "full",
-      "verse": "본문 밖 · 저작자 정함",
-      "prompt": "a plain ancient stone throne hall, bare floor, tall stone columns, no people, quiet room.",
+      "verse": "3:24 · 방 모습은 본문 밖 · 저작자 정함",
+      "prompt": "a plain interior room, rough stone block walls, packed earth floor, a plain wooden seat, a straight iron sword lying on the floor, no people.",
       "neg": [
         "people",
         "figures",
         "outdoor",
-        "modern room",
+        "modern furniture",
         "church",
         "steeple",
         "cathedral",
@@ -103,40 +392,44 @@
       "id": "S3",
       "kind": "plate",
       "region": "solomon",
-      "verse": "3:16",
-      "prompt": "{cast:solomon}, sitting on a throne listening, holding a wooden scepter, facing left.",
+      "verse": "3:26 · 앉음은 2:19에서 [추론]",
+      "prompt": "{cast:solomon}, sitting on a plain wooden seat, hands on knees, leaning slightly forward, listening, facing left.",
       "neg": [
         "gray hair",
         "full beard",
         "armour",
-        "standing"
+        "standing",
+        "crown",
+        "scepter"
       ]
     },
     {
       "id": "S4",
       "kind": "plate",
       "region": "mother-a",
-      "verse": "3:26",
-      "prompt": "{cast:mother-a}, standing pleading, holding an infant wrapped in cloth, facing right.",
+      "verse": "3:16 · 3:26",
+      "prompt": "{cast:mother-a}, standing, pleading with both empty hands held out, facing right.",
       "neg": [
         "crown",
         "fine jewelry",
         "sword",
-        "kneeling"
+        "kneeling",
+        "infant",
+        "baby"
       ]
     },
     {
       "id": "S5",
       "kind": "plate",
       "region": "mother-b",
-      "verse": "3:22",
-      "prompt": "{cast:mother-b}, standing arguing, gripping the edge of her robe, facing right.",
+      "verse": "3:16 · 3:20 · 3:26",
+      "prompt": "{cast:mother-b}, standing, holding a tiny newborn baby wrapped in cloth cradled in both arms against the chest, set unyielding face, facing right.",
       "neg": [
         "crown",
         "fine jewelry",
         "sword",
         "kneeling",
-        "infant"
+        "toddler"
       ]
     }
   ],
@@ -144,13 +437,18 @@
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
     "figures": [
+      "mother-b",
       "mother-a",
-      "mother-b"
+      "solomon"
     ],
     "gap_bands": [
       [
-        0.34,
-        0.38
+        0.22,
+        0.32
+      ],
+      [
+        0.2,
+        0.3
       ]
     ],
     "crest_x": {

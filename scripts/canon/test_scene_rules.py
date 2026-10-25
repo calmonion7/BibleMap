@@ -774,7 +774,9 @@ class HeldHold(unittest.TestCase):
 
     def test_hug_prop_without_hold_phrase_fails(self):
         import derive_scene as ds
-        s = ds.load("authored-solomon-jerusalem-two-mothers")   # 참 어머니 prop 「아기」 — 사전 baby hug, 파생 문구에 품에 안은 꼴 없음
+        s = copy.deepcopy(ds.load("authored-solomon-jerusalem-two-mothers"))   # prop 「an infant」 — 사전 baby hug
+        g = s["figures"][2]["gesture"]   # task 415 재저작으로 명세는 통과 — 품에 안은 꼴 문구를 지운 사본으로 잰다
+        g["en"] = g["en"].replace(", cradled in both arms against the chest", "")
         self.assertTrue(any("baby" in e for e in recheck.held_hold_errors(s)))
 
 
