@@ -1,5 +1,5 @@
 {
- "rules_version": "a7d77218da31",
+ "rules_version": "78d1dfd7d8cd",
  "tokens": "venv314",
  "specs": {
   "authored-david-adullam-cave": {
@@ -40,6 +40,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "fail",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-david-ark-jerusalem": {
@@ -80,6 +81,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-david-en-gedi-saul": {
@@ -120,6 +122,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-david-gath-achish": {
@@ -160,6 +163,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-david-gibeah-harp": {
@@ -200,6 +204,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-david-gibeon-battle": {
@@ -240,6 +245,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-david-goliath-gath": {
@@ -280,6 +286,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-david-hebron-king-judah": {
@@ -320,6 +327,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-david-jerusalem-conquest": {
@@ -360,6 +368,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-david-mahanaim-exile": {
@@ -400,6 +409,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-david-nathan-covenant": {
@@ -440,6 +450,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-david-nob-priests": {
@@ -480,6 +491,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-david-ramah-samuel": {
@@ -520,6 +532,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-david-returns-jerusalem": {
@@ -560,6 +573,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-david-ziklag-base": {
@@ -600,6 +614,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-samuel-bethlehem-david-anointing": {
@@ -640,6 +655,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-samuel-ramah-death": {
@@ -680,6 +696,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-saul-endor-medium": {
@@ -720,6 +737,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-saul-gibeah-spear": {
@@ -760,6 +778,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-saul-gilboa-death": {
@@ -800,6 +819,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-saul-gilgal-amalek": {
@@ -840,6 +860,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-saul-gilgal-coronation": {
@@ -880,6 +901,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-saul-jabesh-rescue": {
@@ -920,6 +942,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-saul-michmash-battle": {
@@ -960,6 +983,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-saul-mizpah-chosen": {
@@ -1000,6 +1024,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-saul-nob-massacre": {
@@ -1040,6 +1065,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-solomon-ezion-geber-fleet": {
@@ -1080,6 +1106,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-solomon-gibeon-dream": {
@@ -1120,6 +1147,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-solomon-gihon-anointing": {
@@ -1160,6 +1188,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-solomon-jerusalem-apostasy": {
@@ -1200,6 +1229,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-solomon-jerusalem-birth": {
@@ -1240,6 +1270,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-solomon-jerusalem-birth-inset": {
@@ -1280,6 +1311,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-solomon-jerusalem-david-charge": {
@@ -1320,6 +1352,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-solomon-jerusalem-palace": {
@@ -1360,6 +1393,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-solomon-jerusalem-sheba": {
@@ -1400,6 +1434,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-solomon-jerusalem-temple-build": {
@@ -1440,6 +1475,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-solomon-jerusalem-temple-dedication": {
@@ -1480,6 +1516,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "none",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   },
   "authored-solomon-jerusalem-two-mothers": {
@@ -1520,6 +1557,7 @@
    "derive.held-hold": "pass",
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass",
+   "spec.solo-off-center": "pass",
    "spec.inset": "pass"
   }
  },
@@ -3974,6 +4012,56 @@
     "authored-solomon-jerusalem-temple-build",
     "authored-solomon-jerusalem-temple-dedication"
    ],
+   "rate": 1.0
+  },
+  {
+   "id": "spec.solo-off-center",
+   "layer": "spec",
+   "scope": "all",
+   "check": "recheck.solo_center_errors",
+   "pass": [
+    "authored-david-adullam-cave",
+    "authored-david-ark-jerusalem",
+    "authored-david-en-gedi-saul",
+    "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
+    "authored-david-gibeon-battle",
+    "authored-david-goliath-gath",
+    "authored-david-hebron-king-judah",
+    "authored-david-jerusalem-conquest",
+    "authored-david-mahanaim-exile",
+    "authored-david-nathan-covenant",
+    "authored-david-nob-priests",
+    "authored-david-ramah-samuel",
+    "authored-david-returns-jerusalem",
+    "authored-david-ziklag-base",
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-samuel-ramah-death",
+    "authored-saul-endor-medium",
+    "authored-saul-gibeah-spear",
+    "authored-saul-gilboa-death",
+    "authored-saul-gilgal-amalek",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-jabesh-rescue",
+    "authored-saul-michmash-battle",
+    "authored-saul-mizpah-chosen",
+    "authored-saul-nob-massacre",
+    "authored-solomon-ezion-geber-fleet",
+    "authored-solomon-gibeon-dream",
+    "authored-solomon-gihon-anointing",
+    "authored-solomon-jerusalem-apostasy",
+    "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
+    "authored-solomon-jerusalem-david-charge",
+    "authored-solomon-jerusalem-palace",
+    "authored-solomon-jerusalem-sheba",
+    "authored-solomon-jerusalem-temple-build",
+    "authored-solomon-jerusalem-temple-dedication",
+    "authored-solomon-jerusalem-two-mothers"
+   ],
+   "fail": [],
+   "stale": [],
+   "none": [],
    "rate": 1.0
   },
   {

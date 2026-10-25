@@ -433,6 +433,20 @@ def _holds_person(f):
     return h.get("mode") == "hug" and bool(h.get("person"))
 
 
+SOLO_MID = (0.4, 0.6)   # derive_scene._side의 「in the center」 범위와 같음
+
+
+def solo_center_errors(spec):
+    """홀로 있는 인물은 가운데 말고(task 424, 규칙 spec.solo-off-center) — 무리 없이 인물 하나인 명세는 그 구역 가로 가운데가 SOLO_MID 밖.
+    출생 곁 장면: 방 한가운데 홀로 앉아 아기를 가슴에 안은 정면 구도가 성모자상 후광을 부름(후광 없음 4/8 — 가이드 빈자리를 채워도 남음)."""
+    figs = spec.get("figures") or []
+    if len(figs) != 1 or spec.get("crowds"):
+        return []
+    r = spec["regions"][figs[0]["region"]]
+    cx = (r[0] + r[2]) / 2
+    return [f"{figs[0]['region']}: 홀로 있는 인물이 화면 가운데({cx:.2f}) — 보는 쪽 반대편 3분의 1로(가운데 정면 홀로는 성모자상 같은 도상을 부름)"] if SOLO_MID[0] <= cx <= SOLO_MID[1] else []
+
+
 def pose_only_errors(spec):
     """뼈대 가이드는 뼈대만(task 404 g1, 규칙 generate.pose-only-control) — guide.pose가 있으면 guide.control이 "pose"여야 함(깊이 그림을 섞지 않음).
     진단 P1·P2(gibeah-pose-diag): 깊이+뼈대 한 장은 깊이 실루엣을 선 사람으로 그려 뼈대(기운 몸통·든 뒷발)가 약하고, 숙인 다윗 깊이 꼴도 선 채로."""
@@ -690,6 +704,7 @@ SPEC_CHECKS = {
     "recheck.seated_height_errors": lambda spec, ctx: seated_height_errors(spec),
     "recheck.pose_hold_errors": lambda spec, ctx: pose_hold_errors(spec),
     "recheck.inset_errors": lambda spec, ctx: inset_errors(spec),
+    "recheck.solo_center_errors": lambda spec, ctx: solo_center_errors(spec),
     "recheck.pose_only_errors": lambda spec, ctx: pose_only_errors(spec),
     "recheck.split_control_errors": lambda spec, ctx: split_control_errors(spec),
     "recheck.prop_size_errors": lambda spec, ctx: prop_size_errors(spec),

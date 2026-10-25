@@ -51,9 +51,7 @@ def gen():
         w = W
         if sid == sub:   # 곁 장면은 구름 틀 비율로 그림 — 넓은 화면에 앉은 한 사람이면 빈자리에 다른 사람을 그려 넣음(s42 곁에 선 여인, 문구를 바꿔도 남음)
             w = inset_w(spec)
-            rs = [r for k, r in D.load(sid)["regions"].items() if k != "full"]
-            cx = sum((r[0] + r[2]) / 2 for r in rs) / len(rs) * W   # 인물 구역 가운데를 중심으로 자름(출생 곁 장면은 0.5 — 전과 같음)
-            x0 = min(max(0, round(cx - w / 2)), W - w)
+            x0 = inset_x0(w)
             # make_guide sit 꼴이 screen_facing을 따름(task 417 — 전엔 여기서 좌우를 뒤집음) · 스텝별 두 장도 같이 자름(task 424 — 곁 장면 뼈대)
             guides = [_crop(g, x0, w) for g in guides]
         cn = {"control": guides[0], **CN}
@@ -70,6 +68,11 @@ def _crop(path, x0, w):
     out = os.path.join(OUT, f"_{os.path.basename(path)[:-4]}-flip-{w}.png")
     Image.open(path).convert("RGB").crop((x0, 0, x0 + w, H)).save(out)
     return out
+
+
+def inset_x0(w):
+    """곁 장면 가이드를 자를 왼끝 — 틀 가운데를 중심으로, 명세 구도(인물 자리)를 지킴(task 424: 인물 가운데 기준이면 비킨 구역도 다시 가운데로 · 규칙 spec.solo-off-center)."""
+    return round((W - w) / 2)
 
 
 def inset_w(spec):

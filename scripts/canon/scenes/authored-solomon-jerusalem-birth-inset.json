@@ -159,13 +159,13 @@
       1.0
     ],
     "bathsheba": [
-      0.38,
+      0.257,
       0.43,
-      0.62,
+      0.497,
       0.92
     ]
   },
-  "_regions_why": "크기 기준표에서 셈(ADR 261024-083947) — 한 사람(무리 단계 duo 0.60~0.70)이 앉은 꼴이라 서 있을 때 키 0.65 × 앉은 키 body.seated 0.75 = 구역 높이 0.49(규칙 generate.figure-scale·generate.seated-height 넓힘 task 416) · 발 y 0.92 → 지평선 0.312(서 있을 때 키에서, S.scene_horizon). 홀로 있는 인물이라 가운데(본문 밖 · 저작자 정함).",
+  "_regions_why": "크기 기준표에서 셈(ADR 261024-083947) — 한 사람(무리 단계 duo 0.60~0.70)이 앉은 꼴이라 서 있을 때 키 0.65 × 앉은 키 body.seated 0.75 = 구역 높이 0.49(규칙 generate.figure-scale·generate.seated-height 넓힘 task 416) · 발 y 0.92 → 지평선 0.312(서 있을 때 키에서, S.scene_horizon). 홀로 있는 인물은 가운데에 두지 않음(규칙 spec.solo-off-center, task 424 — 가운데 홀로 아기를 가슴에 안은 정면 구도가 성모자상 후광을 부름, 후광 없음 4/8 두 번): 오른쪽을 보므로 곁 그림에 보이는 폭(0.132~0.868)의 왼쪽 3분의 1 = 가운데 0.377(본문 밖 · 저작자 정함).",
   "guide": {
     "depth": {
       "bathsheba": 1.0

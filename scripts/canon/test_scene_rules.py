@@ -1196,6 +1196,30 @@ class PoseHoldGesture(unittest.TestCase):
         self.assertLess(h.getpixel((int((a0 + a1) / 2 * M.W) + 3, int((b0 + 0.6 * (b1 - b0)) * M.H))), 120)
 
 
+class SoloOffCenter(unittest.TestCase):
+    """spec.solo-off-center(task 424) — 무리 없이 홀로 있는 인물은 가로 가운데(0.4~0.6) 말고 · 곁 장면 자르기는 명세 구도를 지킴."""
+
+    def test_centered_solo_fails(self):
+        import derive_scene as ds
+        s = copy.deepcopy(ds.load("authored-solomon-jerusalem-birth-inset"))
+        self.assertEqual(recheck.solo_center_errors(s), [])
+        s["regions"]["bathsheba"] = [0.38, 0.43, 0.62, 0.92]
+        self.assertTrue(recheck.solo_center_errors(s))
+        s["crowds"] = [{"id": "x"}]
+        self.assertEqual(recheck.solo_center_errors(s), [])
+
+    def test_inset_crop_keeps_left_third(self):
+        """자른 곁 그림에서도 밧세바(오른쪽을 봄)가 왼쪽 3분의 1 — 인물 가운데로 자르면 다시 가운데(0.5)."""
+        import sys
+        import derive_scene as ds
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import inset_try as B
+        w = B.inset_w(ds.load("authored-solomon-jerusalem-birth"))
+        r = ds.load("authored-solomon-jerusalem-birth-inset")["regions"]["bathsheba"]
+        rel = ((r[0] + r[2]) / 2 * B.W - B.inset_x0(w)) / w
+        self.assertLess(abs(rel - 1 / 3), 0.02)
+
+
 class SitFacing(unittest.TestCase):
     """task 417 — make_guide sit 꼴은 인물 screen_facing을 따름(오른쪽이면 상자 안 좌우 대칭)."""
 
