@@ -68,14 +68,18 @@
 - 요단 귀환 david-elder `cast_override_why` 금관 근거에 삼하 12:30(「다윗이 머리에 쓰니라」 — 귀환 앞의 [추론] 근거)이 없고 1:10(사울의 면류관)만 있음 · 12:30은 「보석 있는 한 금 달란트」 면류관인데 문구는 「a thin gold circlet」 — scripture-reviewer로 근거·모양 대조.
   근거: notes/RULE-AB.md 「요단 본문 확인」 · scenes/authored-david-returns-jerusalem.json.
 
-<!-- followup: fu-df5f1c58b64d | source: plate-cast-token | task: 426 | date: 2026-10-26 | status: open | taken: - -->
+<!-- followup: fu-df5f1c58b64d | source: plate-cast-token | task: 426 | date: 2026-10-26 | status: taken | taken: 429 -->
 - david-prime 카드 ageBand 「in his 40s」 하나가 정차지 30(헤브론)·37(정복)·38(궤)·약 40(나단)·약 50(솔로몬 출생)을 못 덮음 — 카드를 「late 30s」 쪽으로 낮추거나 정차지별 override · 카드 _why.costume 「즉위 뒤 왕의 차림」이 헤브론 즉위 순간·정복 공성에도 쓰임(보류 2건).
   근거: notes/PLATE-CAST-TOKEN.md 본문 검토 절 · 헤브론은 장면 override 「about 30」으로 임시.
 
-<!-- followup: fu-e325b633fcd4 | source: plate-cast-token | task: 426 | date: 2026-10-26 | status: open | taken: - -->
+<!-- followup: fu-e325b633fcd4 | source: plate-cast-token | task: 426 | date: 2026-10-26 | status: taken | taken: 429 -->
 - abner 카드 ageBand 「in his 30s」 ↔ 삼상 14:50 「그 군장의 이름은 아브넬이니」(사울 치세 초기) · 삼하 2:10 — 60대로 카드 정본 고침(지금은 기브온 장면 override만).
   근거: notes/PLATE-CAST-TOKEN.md · scenes/authored-david-gibeon-battle.json cast_override_why.
 
-<!-- followup: fu-d1a466474adc | source: plate-cast-token | task: 426 | date: 2026-10-26 | status: open | taken: - -->
+<!-- followup: fu-d1a466474adc | source: plate-cast-token | task: 426 | date: 2026-10-26 | status: taken | taken: 430 -->
 - david-boy 파생 「an ancient Israelite young man, a shepherd, about 14 … thin boyish torso」 — 명사와 몸이 한 문장에 섞임(골리앗·베들레헴·기브아 수금). 14세 이하 youth 명사(`derive_scene._who`) 또는 카드 class를 사람이 정함(task 419 결정의 후속).
   근거: scripture-reviewer 재판정(보류 — 본문 모순 아님, 품질 문제) · notes/PLATE-CAST-TOKEN.md.
+
+<!-- followup: fu-3a6978704178 | source: cast-age-band | task: 429 | date: 2026-10-26 | status: open | taken: - -->
+- v1 `age` 칸(시선 대상 문구 「looking toward the <age> …」에 쓰임)과 카드 ageBand class가 어긋나는지 재는 규칙 — solomon-prime 「king in his prime」(class middle) · david-prime 「mature king」 등 전 카드 점검.
+  근거: task 429 scripture-reviewer 보류 ③ — abner 「middle-aged commander」가 60대 카드와 어긋났고 derive_scene.whole_prompt 226행이 이 칸을 파생 문구로 씀. 이번엔 abner만 고침.
