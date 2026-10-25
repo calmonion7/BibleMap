@@ -14,3 +14,9 @@
 
 <!-- followup: fu-a4ca3bd3fd58 | source: scene3-two-mothers-step1-spec | task: 415 | date: 2026-10-25 | status: dismissed | taken: - -->
 - 기브온 꿈(authored-solomon-gibeon-dream) moment.why 「하나님은 그리지 않는다(브리프 지시)」 — task 332 브리프 산물. 동작 난이도 타협인지, 하나님을 그리지 않는 신학적 표현 결정인지 사람 결정(결정이면 브리프가 아니라 규칙·근거로 적을 것). 이 장면 단계 ① 재저작 때.
+
+<!-- followup: fu-416b1c7e2a90 | source: scene4-birth-step1-spec | task: 416 | date: 2026-10-25 | status: open | taken: - -->
+- 솔로몬 출생 순간을 12:25(나단의 여디디야 명명 — 사랑이 행동으로 드러나는 절)로 옮길지 — 검토 1차 「둘 다 지킬 수 있음, 사람 결정」. 지금은 12:24 후반(밧세바 정차지).
+
+<!-- followup: fu-416d3f5b8c21 | source: scene4-birth-step1-spec | task: 416 | date: 2026-10-25 | status: open | taken: - -->
+- cast/bathsheba.json — role 「queen」이 파생 문구 「a queen」으로 12:24 장면에 실림(이때는 왕의 아내 · 왕의 모친은 왕상 1~2장) · _why에 남성 문구 잔재(「남성 짙은 머리」·「수염 관습」). 공유 카드라 사람 결정.
