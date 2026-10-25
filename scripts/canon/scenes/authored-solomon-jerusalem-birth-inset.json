@@ -1,0 +1,238 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-solomon-jerusalem-birth-inset",
+  "title": "밧세바 — 솔로몬을 낳다(곁 장면)",
+  "verses": {
+    "range": "삼하 12:24-25",
+    "quotes": {
+      "12:24": "다윗이 그 처 밧세바를 위로하고 저에게 들어가 동침하였더니 저가 아들을 낳으매 그 이름을 솔로몬이라 하니라 여호와께서 그를 사랑하사",
+      "12:25": "선지자 나단을 보내사 그 이름을 여디디야라 하시니 이는 여호와께서 사랑하심을 인함이더라"
+    }
+  },
+  "situation": {
+    "text": "앞서 다윗이 우리아의 처를 궁으로 데려와 아내로 삼았고 그가 낳은 아이를 여호와께서 치시매 이레만에 죽었다(11:27 · 12:15-18). 다윗은 아이가 죽은 뒤 일어나 먹었고(12:20-23), 그 처 밧세바를 위로하고 저에게 들어가 동침하였더니 밧세바가 아들을 낳으매 그 이름을 솔로몬이라 했다. 여호와께서 그를 사랑하셨다(12:24). 여호와께서 선지자 나단을 보내어 그 이름을 여디디야라 하셨으니 여호와께서 사랑하심을 인함이었다(12:25). 이름 부른 이는 본문에서 갈림 — 한글 12:24는 주어 없음 · 영문(KJV) 12:24 「he called」 · 대상 22:9 「그 이름을 솔로몬이라 하리니」는 여호와께서 다윗에게 정해 주신 이름 → 정하지 않음. 자리 — 예루살렘은 5:14 「예루살렘에서 그에게서 난 자의 이름은 삼무아와 소밥과 나단과 솔로몬과」 [직접](대상 3:5 「예루살렘에서 낳은 아들들은」도 같음) · 다윗의 궁은 11:27 「다윗이 보내어 저를 궁으로 데려 오니」에서 [추론] · 궁은 5:11 백향목과 석수로 지은 집 · 방 모습은 본문 밖 · 저작자 정함.",
+    "same_time": {
+      "12:24": "앞선 때 — 다윗이 밧세바를 위로하고 동침함 · 고정한 순간 — 밧세바가 아들을 낳고 그 이름을 솔로몬이라 함(이름 부른 이는 정하지 않음), 여호와께서 그를 사랑하심",
+      "12:25": "그 뒤 — 여호와께서 나단을 보내 여디디야라 이름하심(「보내사」 — 솔로몬 명명 뒤의 일 · 해산과 따로 있었던 때인지는 [추론])"
+    }
+  },
+  "moment": {
+    "verse": "12:24 후반",
+    "why": "곁 장면(큰 장면 authored-solomon-jerusalem-birth의 뭉게구름 안 — 사람 결정 2026-10-25): 큰 장면의 순간은 12:25 나단이 와서 여디디야라 이름함이고, 그 앞선 때인 12:24 후반 — 밧세바가 아들을 낳고 그 이름을 솔로몬이라 함 — 을 여기 싣는다. 12:25 나단의 명명에 밧세바·아기가 함께 있었는지 본문에 말이 없어 큰 장면 안에 두지 않고 다른 때로 따로 그린다. 여호와의 사랑은 형상 없이(ADR 261025-120741) 아기 칸에 싣는다."
+  },
+  "meaning": {
+    "ko": "예루살렘 다윗의 궁 방에서, 첫 아이를 잃은 뒤 다윗이 위로한 밧세바가 갓 낳은 아들(이름 솔로몬)을 품에 안고 내려다본다 — 여호와께서 사랑하신 아들",
+    "en": "In a room of David's house at Jerusalem, Bathsheba, whom David comforted after the death of her first child, holds her newborn son, newly named Solomon, and looks down at him, the son the LORD loved",
+    "verse": "삼하 12:24 · 첫 아이를 잃음은 12:18 · 예루살렘은 5:14 「예루살렘에서 그에게서 난 자의 이름은 삼무아와 소밥과 나단과 솔로몬과」 [직접] · 다윗의 궁은 11:27에서 [추론] · 이름 부른 이는 본문에서 갈림 — 한글 12:24는 주어 없음 · 영문(KJV) 12:24 「he called」 · 대상 22:9 「그 이름을 솔로몬이라 하리니」는 여호와께서 다윗에게 정해 주신 이름 → 정하지 않음 · 품에 안고 내려다봄은 본문 밖 · 저작자 정함 · 여호와의 사랑은 형상 없이(ADR 261025-120741)"
+  },
+  "relation": {
+    "ko": "밧세바 홀로 낮은 나무 걸상에 앉아 품의 아들을 내려다본다",
+    "en": "the mother sits alone with her newborn son, her eyes on him",
+    "verse": "12:24 「저가 아들을 낳으매」 · 다른 사람이 있었는지 본문에 말이 없음 — 홀로 있음·앉음·걸상은 본문 밖 · 저작자 정함"
+  },
+  "whole_background": {
+    "ko": "예루살렘 다윗의 궁 안 방 — 다듬은 돌벽, 백향목 들보, 돌바닥에 짠 돗자리",
+    "en": "the inside of a room in King David's house at Jerusalem, walls of dressed stone blocks, cedar wood ceiling beams, a woven mat on a stone floor",
+    "verse": "다윗의 궁은 11:27 「다윗이 보내어 저를 궁으로 데려 오니」에서 [추론] · 예루살렘은 5:14 「예루살렘에서 그에게서 난 자의 이름은 삼무아와 소밥과 나단과 솔로몬과」 [직접] · 돌벽·백향목은 5:11 「백향목과 목수와 석수를 보내매 저희가 다윗을 위하여 집을 지으니」 · 7:2 「나는 백향목 궁에 거하거늘」에서 [추론] · 방의 쓰임·들보·돗자리는 본문 밖 · 저작자 정함"
+  },
+  "background": [
+    {
+      "what": "예루살렘 다윗의 궁 안 방, 다듬은 돌벽과 백향목 들보",
+      "verse": "5:14 · 11:27 · 5:11 · 7:2 · 방 모습은 본문 밖 · 저작자 정함"
+    }
+  ],
+  "crowds": [],
+  "figures": [
+    {
+      "cast": "bathsheba",
+      "role": "밧세바 — 아들을 낳은 어머니(아들 이름 솔로몬)",
+      "pose": "낮은 나무 걸상에 앉아 갓 낳은 아들을 두 팔로 품에 안고 내려다본다",
+      "prop": "an infant",
+      "facing": "right",
+      "region": "bathsheba",
+      "verse": "12:24",
+      "screen_facing": "right",
+      "expression": {
+        "ko": "부드럽고 조용한 얼굴",
+        "en": "a tender, quiet face",
+        "verse": "본문 밖 · 저작자 정함(12:24 「위로하고」는 잉태 앞선 때라 고정한 순간 밖)"
+      },
+      "gesture": {
+        "ko": "낮은 나무 걸상에 앉아 갓 낳아 이름을 얻은 아들(천에 싸인 작은 갓난 아기)을 두 팔로 가슴에 안음 — 아기는 앓지 않고 평안함",
+        "en": "sitting on a low wooden stool, holding her newly named infant son, a tiny newborn baby, as long as a man's arm from elbow to fingertip, its body wrapped in cloth, cradled in both arms against the chest, healthy and at peace",
+        "verse": "12:24 「저가 아들을 낳으매 그 이름을 솔로몬이라 하니라」(이름 부른 이는 본문에서 갈림 — 한글 12:24는 주어 없음 · 영문(KJV) 12:24 「he called」 · 대상 22:9 「그 이름을 솔로몬이라 하리니」는 여호와께서 다윗에게 정해 주신 이름 → 정하지 않음) · 아기 모양은 낱말 사전 baby L2 · 품에 안음은 본문 밖 · 저작자 정함(꼴은 사전 look.hold hug) · 아기가 앓지 않고 평안함은 약한 [추론] — 12:24 「여호와께서 그를 사랑하사」, 앞 아이 12:15 「여호와께서 치시매 심히 앓는지라」와 견줌 · 이 아들은 살아 자람(왕상 1:11 「솔로몬의 모친 밧세바」) · 대상 22:9 「저는 평강의 사람이라」 참고(여호와는 형상 없이, ADR 261025-120741) · 앉음·걸상은 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "짙은 푸른 아마포 긴 겉옷과 짠 띠, 머리와 어깨를 덮은 고운 너울",
+        "en": "in a long deep blue linen robe with a woven belt and a fine veil over her hair and shoulders",
+        "verse": "본문 밖 · 저작자 정함(정본 bathsheba 카드 차림 · 왕관은 카드 금지 낱말)"
+      },
+      "gaze": {
+        "ko": "품의 아들을 내려다봄",
+        "en": "looking down at the baby in her arms",
+        "verse": "본문 밖 · 저작자 정함"
+      },
+      "stage_why": "[추론] 삼하 11:3 「헷 사람 우리아의 아내 밧세바」 — 우리아의 아내였고, 삼하 11:27 「저가 그 처가 되어 아들을 낳으니라」 · 삼하 12:24 「저가 아들을 낳으매」 — 첫 아이(삼하 12:18 죽음) 뒤 다시 아이를 낳는 나이의 젊은 여인. 대상 3:5 「시므아와 소밥과 나단과 솔로몬 네 사람은 다 암미엘의 딸 밧수아의 소생이요」 — 밧수아를 밧세바(삼하 11:3 「엘리암의 딸」)와 같은 사람으로 봄은 [추론], 다윗에게 아들 넷을 낳았고, 프로젝트 연대(data/person_events/solomon.json — 출생 BC 990경 · 기혼 기름부음 BC 971경)로 약 20년 뒤 왕상 1:11 「솔로몬의 모친 밧세바」로 살아 나섬. 20대는 [저작](카드 young)"
+    }
+  ],
+  "verse_elements": [
+    {
+      "verse": "12:24",
+      "quote": "다윗이",
+      "kind": "인물",
+      "ko": "다윗",
+      "out": "위로·동침은 앞선 때 — 고정한 순간 밖"
+    },
+    {
+      "verse": "12:24",
+      "quote": "그 처 밧세바를 위로하고",
+      "kind": "행동",
+      "ko": "다윗이 밧세바를 위로함",
+      "out": "잉태 앞선 때의 위로 — 고정한 순간 밖"
+    },
+    {
+      "verse": "12:24",
+      "quote": "저에게 들어가 동침하였더니",
+      "kind": "행동",
+      "ko": "다윗이 밧세바와 동침함",
+      "out": "잉태 앞선 때의 일 — 고정한 순간은 해산 뒤"
+    },
+    {
+      "verse": "12:24",
+      "quote": "밧세바",
+      "kind": "인물",
+      "ko": "밧세바",
+      "en": "the mother sits alone",
+      "field": "relation"
+    },
+    {
+      "verse": "12:24",
+      "quote": "저가 아들을 낳으매",
+      "kind": "인물",
+      "ko": "밧세바가 낳은 아들(갓난 아기 — 낱말 사전 baby L2 모양 · 품에 안음 hug)",
+      "en": "a tiny newborn baby, as long as a man's arm from elbow to fingertip, its body wrapped in cloth, cradled in both arms against the chest",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "12:24",
+      "quote": "그 이름을 솔로몬이라 하니라",
+      "kind": "행동",
+      "ko": "아들의 이름을 솔로몬이라 함 — 이름 부른 이는 본문에서 갈려 정하지 않고 이름을 얻은 아들로 실음",
+      "en": "her newly named infant son",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "12:24",
+      "quote": "여호와께서 그를 사랑하사",
+      "kind": "행동",
+      "ko": "여호와께서 아들을 사랑하심 — 형상 없이(ADR 261025-120741), 앓지 않고 평안한 아기로 약한 [추론](12:15 앞 아이와 견줌 · 왕상 1:11 살아 자람 · 대상 22:9 「평강의 사람」 참고)",
+      "en": "healthy and at peace",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "12:25",
+      "quote": "선지자 나단을 보내사",
+      "kind": "인물",
+      "ko": "여호와께서 보내신 선지자 나단",
+      "out": "그 뒤의 일 — 큰 장면(authored-solomon-jerusalem-birth)의 순간이 실음"
+    },
+    {
+      "verse": "12:25",
+      "quote": "그 이름을 여디디야라 하시니",
+      "kind": "행동",
+      "ko": "여디디야라 이름하심",
+      "out": "그 뒤의 일 — 큰 장면(authored-solomon-jerusalem-birth)의 순간이 실음"
+    },
+    {
+      "verse": "12:25",
+      "quote": "이는 여호와께서 사랑하심을 인함이더라",
+      "kind": "행동",
+      "ko": "여디디야 이름의 까닭 — 여호와의 사랑",
+      "out": "그 뒤의 일 — 큰 장면(authored-solomon-jerusalem-birth)의 순간이 실음"
+    }
+  ],
+  "regions": {
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "bathsheba": [
+      0.38,
+      0.43,
+      0.62,
+      0.92
+    ]
+  },
+  "_regions_why": "크기 기준표에서 셈(ADR 261024-083947) — 한 사람(무리 단계 duo 0.60~0.70)이 앉은 꼴이라 서 있을 때 키 0.65 × 앉은 키 body.seated 0.75 = 구역 높이 0.49(규칙 generate.figure-scale·generate.seated-height 넓힘 task 416) · 발 y 0.92 → 지평선 0.312(서 있을 때 키에서, S.scene_horizon). 홀로 있는 인물이라 가운데(본문 밖 · 저작자 정함).",
+  "guide": {
+    "depth": {
+      "bathsheba": 1.0
+    },
+    "shape": {
+      "bathsheba": "sit"
+    },
+    "backdrop": "room",
+    "body": "card",
+    "why": "task 416 — 두 여인의 재판(415) 규칙을 물려받음: 실내 방 바탕(generate.guide-backdrop) · 카드 체격(guide-body-build). 밧세바는 앉은 꼴 sit(앉음은 본문 밖 · 저작자 정함 — 서 있는 사람이 없어 크기는 서 있을 때 키 환산으로 잼, task 416 넓힘). 긴 겉옷 차림이라 legs costume 아님. 아기는 사전 look.hold hug(add 아님) — 파생 문구의 품에 안은 꼴로 그림(derive.held-hold)."
+  },
+  "stages": [
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "11:27 · 5:11 · 방 모습은 본문 밖 · 저작자 정함",
+      "prompt": "the inside of a room, walls of dressed stone blocks, cedar wood ceiling beams, a woven mat on a stone floor, a low wooden stool, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "throne",
+        "outdoor",
+        "temple",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "bathsheba",
+      "verse": "12:24",
+      "prompt": "{cast:bathsheba}, sitting on a low wooden stool, holding a tiny newborn baby wrapped in cloth cradled in both arms against the chest, looking down at the baby, facing right.",
+      "neg": [
+        "crown",
+        "armour",
+        "standing",
+        "veil covering face",
+        "modern clothes",
+        "toddler",
+        "halo"
+      ]
+    }
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "인물 하나뿐이라 gap_bands는 없다.",
+    "figures": [
+      "bathsheba"
+    ],
+    "gap_bands": [],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
+  },
+  "inset_of": "authored-solomon-jerusalem-birth"
+}

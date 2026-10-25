@@ -1180,6 +1180,44 @@
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass"
   },
+  "authored-solomon-jerusalem-birth-inset": {
+   "spec.required-fields": "pass",
+   "spec.whole-fields": "pass",
+   "spec.verse-elements": "pass",
+   "spec.no-compromise-words": "pass",
+   "spec.scene-all-verses": "pass",
+   "spec.cast-card-v2": "pass",
+   "spec.lexicon-link": "pass",
+   "derive.no-hand-prompt": "pass",
+   "derive.no-bare-head": "pass",
+   "derive.prop-in-prompt": "pass",
+   "derive.512-tokens": "pass",
+   "spec.stage-from-scripture": "pass",
+   "spec.action-place-on-figure": "pass",
+   "generate.thrown-guide": "pass",
+   "generate.guide-backdrop": "pass",
+   "generate.guide-body-build": "pass",
+   "generate.dodge-clear": "pass",
+   "generate.guide-costume-legs": "pass",
+   "derive.youth-noun": "pass",
+   "generate.pose-skeleton": "pass",
+   "generate.figure-scale": "pass",
+   "derive.no-second-point": "pass",
+   "generate.youth-height": "pass",
+   "generate.height-ratio": "pass",
+   "generate.seated-height": "pass",
+   "generate.split-control": "pass",
+   "derive.prop-size-relative": "pass",
+   "generate.flight-position": "pass",
+   "generate.flight-height": "pass",
+   "derive.empty-hand-open": "pass",
+   "derive.wall-material": "pass",
+   "derive.no-inflating-build": "pass",
+   "derive.prop-size-coverage": "pass",
+   "derive.held-hold": "pass",
+   "derive.crowd-stage": "pass",
+   "generate.eye-level-perspective": "pass"
+  },
   "authored-solomon-jerusalem-david-charge": {
    "spec.required-fields": "pass",
    "spec.whole-fields": "fail",
@@ -1898,6 +1936,7 @@
    ]
   },
   "authored-solomon-jerusalem-birth": {},
+  "authored-solomon-jerusalem-birth-inset": {},
   "authored-solomon-jerusalem-david-charge": {
    "spec.whole-fields": [
     "장면.meaning: ko/en/verse 가 비어 있거나 없다",
@@ -2038,6 +2077,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -2071,6 +2111,7 @@
     "authored-saul-nob-massacre",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-temple-build",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2098,7 +2139,7 @@
    ],
    "stale": [],
    "none": [],
-   "rate": 0.4595
+   "rate": 0.4737
   },
   {
    "id": "spec.verse-elements",
@@ -2123,6 +2164,7 @@
     "authored-saul-gibeah-spear",
     "authored-saul-gilboa-death",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
    "fail": [
@@ -2148,7 +2190,7 @@
    ],
    "stale": [],
    "none": [],
-   "rate": 0.4865
+   "rate": 0.5
   },
   {
    "id": "spec.no-compromise-words",
@@ -2187,6 +2229,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -2210,6 +2253,7 @@
     "authored-saul-gibeah-spear",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-temple-build",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2247,7 +2291,7 @@
    ],
    "stale": [],
    "none": [],
-   "rate": 0.1892
+   "rate": 0.2105
   },
   {
    "id": "spec.cast-card-v2",
@@ -2286,6 +2330,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -2318,6 +2363,7 @@
     "authored-saul-gibeah-spear",
     "authored-saul-gilboa-death",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
    "fail": [
@@ -2347,7 +2393,7 @@
     "authored-solomon-jerusalem-temple-build",
     "authored-solomon-jerusalem-temple-dedication"
    ],
-   "rate": 0.8333
+   "rate": 0.8421
   },
   {
    "id": "derive.no-hand-prompt",
@@ -2386,6 +2432,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -2435,6 +2482,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -2481,6 +2529,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-temple-build",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2495,7 +2544,7 @@
    ],
    "stale": [],
    "none": [],
-   "rate": 0.8108
+   "rate": 0.8158
   },
   {
    "id": "derive.512-tokens",
@@ -2534,6 +2583,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -2555,6 +2605,7 @@
     "authored-david-gibeah-harp",
     "authored-saul-gibeah-spear",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
    "fail": [
@@ -2594,7 +2645,7 @@
    ],
    "stale": [],
    "none": [],
-   "rate": 0.1081
+   "rate": 0.1316
   },
   {
    "id": "spec.action-place-on-figure",
@@ -2619,6 +2670,7 @@
     "authored-saul-gibeah-spear",
     "authored-saul-gilboa-death",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
    "fail": [],
@@ -2683,6 +2735,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -2732,6 +2785,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -2780,6 +2834,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -2792,7 +2847,7 @@
    ],
    "stale": [],
    "none": [],
-   "rate": 0.973
+   "rate": 0.9737
   },
   {
    "id": "generate.dodge-clear",
@@ -2831,6 +2886,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -2880,6 +2936,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -2927,6 +2984,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -2940,7 +2998,7 @@
    ],
    "stale": [],
    "none": [],
-   "rate": 0.9459
+   "rate": 0.9474
   },
   {
    "id": "generate.pose-skeleton",
@@ -2979,6 +3037,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -3001,6 +3060,7 @@
     "authored-david-returns-jerusalem",
     "authored-saul-gibeah-spear",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
    "fail": [],
@@ -3078,6 +3138,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -3125,6 +3186,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -3160,6 +3222,7 @@
     "authored-solomon-gibeon-dream",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-temple-build",
     "authored-solomon-jerusalem-temple-dedication",
@@ -3227,6 +3290,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -3276,6 +3340,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -3322,6 +3387,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -3336,7 +3402,7 @@
    ],
    "stale": [],
    "none": [],
-   "rate": 0.9189
+   "rate": 0.9211
   },
   {
    "id": "generate.flight-position",
@@ -3375,6 +3441,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -3424,6 +3491,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -3473,6 +3541,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -3522,6 +3591,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -3562,6 +3632,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -3582,7 +3653,7 @@
    ],
    "stale": [],
    "none": [],
-   "rate": 0.7568
+   "rate": 0.7632
   },
   {
    "id": "derive.prop-size-coverage",
@@ -3621,6 +3692,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -3670,6 +3742,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -3718,6 +3791,7 @@
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
@@ -3730,7 +3804,7 @@
    ],
    "stale": [],
    "none": [],
-   "rate": 0.973
+   "rate": 0.9737
   },
   {
    "id": "generate.eye-level-perspective",
@@ -3751,6 +3825,7 @@
     "authored-solomon-ezion-geber-fleet",
     "authored-solomon-gibeon-dream",
     "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",

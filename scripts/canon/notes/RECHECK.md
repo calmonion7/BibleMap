@@ -12,50 +12,50 @@
 ## 명세 재검 — 전 명세 × 명세·파생 함수 규칙
 
 <!-- recheck:specs:begin -->
-원장 판 `e58559424efd` · 토큰 검사 venv314 · 명세 37
+원장 판 `e58559424efd` · 토큰 검사 venv314 · 명세 38
 
 | 규칙 | 층 | 원래 범위 | 통과 | 실패 | 못 잼 | 통과율 |
 |---|---|---|---|---|---|---|
-| `spec.required-fields` | spec | all | 37 | 0 | 0 | 100% |
-| `spec.whole-fields` | spec | list | 17 | 20 | 0 | 46% |
-| `spec.verse-elements` | spec | list | 18 | 19 | 0 | 49% |
-| `spec.no-compromise-words` | spec | list | 37 | 0 | 0 | 100% |
-| `spec.scene-all-verses` | spec | one | 7 | 30 | 0 | 19% |
-| `spec.cast-card-v2` | spec | all | 37 | 0 | 0 | 100% |
-| `spec.lexicon-link` | spec | all | 15 | 3 | 19 | 83% |
-| `derive.no-hand-prompt` | derive | all | 37 | 0 | 0 | 100% |
-| `derive.no-bare-head` | derive | all | 37 | 0 | 0 | 100% |
-| `derive.prop-in-prompt` | derive | all | 30 | 7 | 0 | 81% |
-| `derive.512-tokens` | derive | list | 37 | 0 | 0 | 100% |
-| `spec.stage-from-scripture` | spec | all | 4 | 33 | 0 | 11% |
-| `spec.action-place-on-figure` | spec | all | 18 | 0 | 19 | 100% |
-| `generate.thrown-guide` | generate | all | 37 | 0 | 0 | 100% |
-| `generate.guide-backdrop` | generate | all | 37 | 0 | 0 | 100% |
-| `generate.guide-body-build` | generate | all | 36 | 1 | 0 | 97% |
-| `generate.dodge-clear` | generate | all | 37 | 0 | 0 | 100% |
-| `generate.guide-costume-legs` | generate | all | 37 | 0 | 0 | 100% |
-| `derive.youth-noun` | derive | all | 35 | 2 | 0 | 95% |
-| `generate.pose-skeleton` | generate | all | 37 | 0 | 0 | 100% |
-| `generate.figure-scale` | generate | all | 5 | 0 | 32 | 100% |
-| `derive.no-second-point` | derive | all | 37 | 0 | 0 | 100% |
-| `generate.youth-height` | generate | all | 35 | 0 | 2 | 100% |
-| `generate.height-ratio` | generate | all | 18 | 0 | 19 | 100% |
-| `generate.seated-height` | generate | all | 37 | 0 | 0 | 100% |
-| `generate.split-control` | generate | all | 37 | 0 | 0 | 100% |
-| `derive.prop-size-relative` | derive | all | 34 | 3 | 0 | 92% |
-| `generate.flight-position` | generate | all | 37 | 0 | 0 | 100% |
-| `generate.flight-height` | generate | all | 37 | 0 | 0 | 100% |
-| `derive.empty-hand-open` | derive | all | 37 | 0 | 0 | 100% |
-| `derive.wall-material` | derive | all | 37 | 0 | 0 | 100% |
-| `derive.no-inflating-build` | derive | all | 28 | 9 | 0 | 76% |
-| `derive.prop-size-coverage` | derive | all | 37 | 0 | 0 | 100% |
-| `derive.held-hold` | derive | all | 37 | 0 | 0 | 100% |
-| `derive.crowd-stage` | derive | all | 36 | 1 | 0 | 97% |
-| `generate.eye-level-perspective` | generate | all | 17 | 0 | 20 | 100% |
+| `spec.required-fields` | spec | all | 38 | 0 | 0 | 100% |
+| `spec.whole-fields` | spec | list | 18 | 20 | 0 | 47% |
+| `spec.verse-elements` | spec | list | 19 | 19 | 0 | 50% |
+| `spec.no-compromise-words` | spec | list | 38 | 0 | 0 | 100% |
+| `spec.scene-all-verses` | spec | one | 8 | 30 | 0 | 21% |
+| `spec.cast-card-v2` | spec | all | 38 | 0 | 0 | 100% |
+| `spec.lexicon-link` | spec | all | 16 | 3 | 19 | 84% |
+| `derive.no-hand-prompt` | derive | all | 38 | 0 | 0 | 100% |
+| `derive.no-bare-head` | derive | all | 38 | 0 | 0 | 100% |
+| `derive.prop-in-prompt` | derive | all | 31 | 7 | 0 | 82% |
+| `derive.512-tokens` | derive | list | 38 | 0 | 0 | 100% |
+| `spec.stage-from-scripture` | spec | all | 5 | 33 | 0 | 13% |
+| `spec.action-place-on-figure` | spec | all | 19 | 0 | 19 | 100% |
+| `generate.thrown-guide` | generate | all | 38 | 0 | 0 | 100% |
+| `generate.guide-backdrop` | generate | all | 38 | 0 | 0 | 100% |
+| `generate.guide-body-build` | generate | all | 37 | 1 | 0 | 97% |
+| `generate.dodge-clear` | generate | all | 38 | 0 | 0 | 100% |
+| `generate.guide-costume-legs` | generate | all | 38 | 0 | 0 | 100% |
+| `derive.youth-noun` | derive | all | 36 | 2 | 0 | 95% |
+| `generate.pose-skeleton` | generate | all | 38 | 0 | 0 | 100% |
+| `generate.figure-scale` | generate | all | 6 | 0 | 32 | 100% |
+| `derive.no-second-point` | derive | all | 38 | 0 | 0 | 100% |
+| `generate.youth-height` | generate | all | 36 | 0 | 2 | 100% |
+| `generate.height-ratio` | generate | all | 19 | 0 | 19 | 100% |
+| `generate.seated-height` | generate | all | 38 | 0 | 0 | 100% |
+| `generate.split-control` | generate | all | 38 | 0 | 0 | 100% |
+| `derive.prop-size-relative` | derive | all | 35 | 3 | 0 | 92% |
+| `generate.flight-position` | generate | all | 38 | 0 | 0 | 100% |
+| `generate.flight-height` | generate | all | 38 | 0 | 0 | 100% |
+| `derive.empty-hand-open` | derive | all | 38 | 0 | 0 | 100% |
+| `derive.wall-material` | derive | all | 38 | 0 | 0 | 100% |
+| `derive.no-inflating-build` | derive | all | 29 | 9 | 0 | 76% |
+| `derive.prop-size-coverage` | derive | all | 38 | 0 | 0 | 100% |
+| `derive.held-hold` | derive | all | 38 | 0 | 0 | 100% |
+| `derive.crowd-stage` | derive | all | 37 | 1 | 0 | 97% |
+| `generate.eye-level-perspective` | generate | all | 18 | 0 | 20 | 100% |
 
 폐기 규칙(재검·통과율에서 뺌): `derive.clip-77-tokens` — 2026-10-22 사람 결정 — SDXL 단계별 경로 전용, 지금 생성 경로는 derive.512-tokens가 잼 · `generate.pose-throw-geometry` — 2026-10-23 d3 — 한 장(c14 s5) 근거로 만든 규칙: d1 「달리는 자세」·d2 「늘어진 팔」로 반증, c10 뼈대가 묶음 기록상 가장 좋음(던진 몸짓 3/8). 결함을 규칙으로 옮기기 전에 같은 조건에서 맞게 나온 적이 있는지 기록부터 볼 것 · `generate.pose-hold` — 2026-10-23 f5 — f4e 5표: 수금 쥠 5→1로 고쳤으나 벽 앞·피함·순간 0→5/5로 무너짐(다윗이 벽에서 떨어져 선 채) · 다윗 깊이 꼴 유지, 손 자리는 다른 수단 · `generate.pose-only-control` — 2026-10-23 g2e — 진단은 맞음(뼈대만이면 몸짓이 살아 다윗 숙임·사울 기욺)이나 맞바꿈: 몸 덩어리·벽 자리·수금 모양을 잃고 액자(g1e 다수결 틀림 6 · g2e 15 vs 섞은 f6e3 2). 깊이+뼈대 섞기 유지, make_pose_only·duck_low는 남김 · `generate.spear-two-thirds` — 2026-10-23 m5 — generate.flight-position(명세 칸 guide.flight + 사전 크기)로 일반화(사람 「지적한거 그대로 일회성으로 쓰지말고 규칙화」)
 
-**전 규칙 통과 명세 4/37** · 칸 통과 1093/1221 (90%)
+**전 규칙 통과 명세 5/38** · 칸 통과 1129/1257 (90%)
 
 | 명세 | required-fields | whole-fields | verse-elements | no-compromise-words | scene-all-verses | cast-card-v2 | lexicon-link | no-hand-prompt | no-bare-head | prop-in-prompt | 512-tokens | stage-from-scripture | action-place-on-figure | thrown-guide | guide-backdrop | guide-body-build | dodge-clear | guide-costume-legs | youth-noun | pose-skeleton | figure-scale | no-second-point | youth-height | height-ratio | seated-height | split-control | prop-size-relative | flight-position | flight-height | empty-hand-open | wall-material | no-inflating-build | prop-size-coverage | held-hold | crowd-stage | eye-level-perspective |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -90,6 +90,7 @@
 | solomon-gihon-anointing | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – |
 | solomon-jerusalem-apostasy | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – |
 | solomon-jerusalem-birth | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| solomon-jerusalem-birth-inset | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | solomon-jerusalem-david-charge | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | solomon-jerusalem-palace | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | solomon-jerusalem-sheba | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |

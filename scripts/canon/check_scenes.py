@@ -191,12 +191,22 @@ def verse_element_errors(spec, prompt, verses=None):
             if not e["out"].strip() or bad:
                 errs.append(f"{at}: 제외는 순간 밖만 — 사유 금지 낱말 {bad}")
             continue
+        en = (e.get("en") or "").strip()
+        if e.get("field") == "inset":   # task 417: 큰 장면의 다른 때(곁 장면 명세)가 싣는 요소 — 곁 장면 파생 프롬프트에 en이 있어야 함
+            import derive_scene as ds
+            try:
+                sub = ds.route_prompt(ds.load(spec["inset"]["spec"]))
+            except (KeyError, TypeError, OSError):
+                errs.append(f"{at}: field inset인데 inset.spec 곁 장면 명세가 없음")
+                continue
+            if not en or en.lower() not in sub.lower():
+                errs.append(f"{at}: en이 곁 장면 파생 프롬프트에 없음: {en!r}")
+            continue
         try:
             val = _path(spec, e.get("field", ""))
         except (KeyError, IndexError, StopIteration, TypeError, ValueError):
             errs.append(f"{at}: field 경로 없음: {e.get('field')!r}")
             continue
-        en = (e.get("en") or "").strip()
         if not en or not any(en.lower() in s.lower() for s in _strings(val)):
             errs.append(f"{at}: en이 {e['field']} 칸 안에 없음: {en!r}")
         elif en.lower() not in prompt.lower():
