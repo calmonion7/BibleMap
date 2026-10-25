@@ -34,7 +34,7 @@
       "quote": "다윗에게 기름을 부어",
       "kind": "인물",
       "ko": "다윗이 기름 부음을 받음",
-      "en": "an ancient Israelite lean young man",
+      "en": "an ancient Israelite man, a king",
       "field": "stages[S3].prompt"
     },
     {
@@ -80,7 +80,33 @@
       "prop": "a robe corner",
       "facing": "right",
       "region": "david-prime",
-      "verse": "2:4 · 자세(무릎 꿇음·고개 숙임) 본문 밖 · 저작자 정함 · 지물 본문 밖 · 저작자 정함"
+      "verse": "2:4 · 자세(무릎 꿇음·고개 숙임) 본문 밖 · 저작자 정함 · 지물 본문 밖 · 저작자 정함",
+      "cast_override": {
+        "card": {
+          "heightRel": "average",
+          "ageBand": {
+            "class": "prime",
+            "text": "about 30, a firm face with no lines yet"
+          },
+          "beardVolume": {
+            "class": "trimmed",
+            "text": "dark beard trimmed to a rounded edge along the jaw"
+          },
+          "silhouette": {
+            "class": "average",
+            "text": "solid settled shoulders, straight back"
+          },
+          "headOutline": {
+            "class": "bare",
+            "text": "bare head, dark curls close to the skull"
+          },
+          "costumeColor": {
+            "class": "red",
+            "text": "deep red long royal robe, gold-edged sash"
+          }
+        }
+      },
+      "cast_override_why": "나이 [추론] 삼하 5:4 「다윗이 삼십 세에 위에 나아가서」 — 2:4 기름부음은 즉위 순간(30세)이라 카드 대표값 「in his 40s」 대신 30세 · 카드 층 나머지는 정본 그대로"
     }
   ],
   "regions": {
@@ -179,7 +205,7 @@
       "kind": "plate",
       "region": "david-prime",
       "verse": "2:4",
-      "prompt": "an ancient Israelite lean young man kneeling, head bowed, gripping the corner of his robe with one hand, men of Judah pouring oil over his head, facing right.",
+      "prompt": "{cast:david-prime}, kneeling, head bowed, gripping the corner of his robe with one hand, men of Judah pouring oil over his head, facing right.",
       "neg": [
         "armour",
         "crown",

@@ -20,7 +20,7 @@
       "quote": "다윗이 시온 산성을 빼앗았으니",
       "kind": "인물",
       "ko": "다윗이 거기 섬",
-      "en": "an ancient Israelite lean young man standing",
+      "en": "an ancient Israelite man, a king",
       "field": "stages[S3].prompt"
     },
     {
@@ -177,7 +177,7 @@
       "kind": "plate",
       "region": "david-prime",
       "verse": "5:7",
-      "prompt": "an ancient Israelite lean young man standing, gripping a sword hilt at his side, facing right.",
+      "prompt": "{cast:david-prime}, standing, gripping a sword hilt at his side, facing right.",
       "neg": [
         "armour",
         "crown",

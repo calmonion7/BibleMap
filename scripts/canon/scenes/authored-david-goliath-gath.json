@@ -301,7 +301,7 @@
       "kind": "plate",
       "region": "goliath",
       "verse": "17:5",
-      "prompt": "a towering black-bearded Philistine warrior gripping one thick heavy spear with a long wooden shaft, dark bronze helmet with cheek guards, torso covered in dark overlapping bronze scale armour, bronze greaves, seen from the side, body and face turned left.",
+      "prompt": "{cast:goliath}, gripping one thick heavy spear with a long wooden shaft, seen from the side, body and face turned left.",
       "neg": [
         "horns",
         "plate armour",
@@ -321,7 +321,7 @@
       "kind": "plate",
       "region": "shieldman",
       "verse": "17:7",
-      "prompt": "full body of an unarmed Philistine shield-bearer walking, carrying a large shield upright in front of him with both hands, plain knee-length tunic, sandals, facing left.",
+      "prompt": "{cast:shieldman}, walking, carrying a large shield upright in front of him with both hands, facing left.",
       "neg": [
         "armour",
         "spear",
@@ -341,7 +341,7 @@
       "kind": "plate",
       "region": "david-boy",
       "verse": "17:40",
-      "prompt": "an ancient Israelite shepherd boy running mid-stride, gripping a short leather sling, {costume:david-boy}, a leather pouch at his side, facing right.",
+      "prompt": "{cast:david-boy}, running mid-stride, gripping a short leather sling, a leather pouch at his side, facing right.",
       "neg": [
         "armour",
         "helmet",

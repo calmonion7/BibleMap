@@ -23,7 +23,7 @@
       "quote": "선지자 나단",
       "kind": "인물",
       "ko": "선지자 나단",
-      "en": "an ancient Israelite middle-aged prophet",
+      "en": "an ancient Israelite man, a prophet",
       "field": "stages[S3].prompt"
     },
     {
@@ -31,7 +31,7 @@
       "quote": "왕이",
       "kind": "인물",
       "ko": "왕 다윗",
-      "en": "an ancient Israelite lean young man",
+      "en": "an ancient Israelite man, a king",
       "field": "stages[S4].prompt"
     },
     {
@@ -162,7 +162,7 @@
       "kind": "plate",
       "region": "nathan",
       "verse": "7:12-16",
-      "prompt": "an ancient Israelite middle-aged prophet standing, gripping a wooden staff, one arm raised as if speaking, facing left.",
+      "prompt": "{cast:nathan}, standing, gripping a wooden staff, one arm raised as if speaking, facing left.",
       "neg": [
         "armour",
         "crown",
@@ -176,7 +176,7 @@
       "kind": "plate",
       "region": "david-prime",
       "verse": "7:12",
-      "prompt": "an ancient Israelite lean young man sitting, gripping the corner of his robe with one hand, facing right.",
+      "prompt": "{cast:david-prime}, sitting, gripping the corner of his robe with one hand, facing right.",
       "neg": [
         "armour",
         "crown",

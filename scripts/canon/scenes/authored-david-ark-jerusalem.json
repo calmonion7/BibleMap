@@ -123,7 +123,11 @@
       "prop": "a linen ephod",
       "facing": "right",
       "region": "david-prime",
-      "verse": "6:14-15"
+      "verse": "6:14-15",
+      "cast_override": {
+        "costume": ""
+      },
+      "cast_override_why": "차림은 본문 — 삼하 6:14 「때에 베 에봇을 입었더라」(단계 문구 wearing a linen ephod; 평행 대상 15:27 세마포 겉옷) · 카드 차림(왕의 붉은 겉옷)은 [저작] 즉위 뒤 궁 차림이라 이 장면에서 뺌 — 카드 _why.costume 「본문은 궤 앞 베 에봇(삼하 6:14)·세마포 겉옷(대상 15:27)만 말해 그 차림은 장면 몫」"
     }
   ],
   "regions": {
@@ -217,7 +221,7 @@
       "kind": "plate",
       "region": "david-prime",
       "verse": "6:14",
-      "prompt": "an ancient Israelite lean young man dancing with all his might, before the ark of the covenant, both arms flung wide, wearing a linen ephod, facing right.",
+      "prompt": "{cast:david-prime}, dancing with all his might, before the ark of the covenant, both arms flung wide, wearing a linen ephod, facing right.",
       "neg": [
         "armour",
         "crown",

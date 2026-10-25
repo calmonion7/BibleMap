@@ -45,8 +45,8 @@
       "verse": "19:15",
       "quote": "왕이",
       "kind": "인물",
-      "ko": "왕 표지 — 긴 왕의 겉옷·머리에 얇은 금관(본문 밖 · 저작자 정함 · 이 순간 관을 썼다는 본문은 없음 · 왕관 근거 삼하 1:10 사울의 면류관, 띠 모양 · 겉옷 근거 대상 15:27 · 15:30 머리 가림은 떠날 때, 19:8부터 왕으로 돌아옴 · restyle r2 사람 메모 「다윗이 누구인가?」)",
-      "en": "a thin gold circlet",
+      "ko": "왕 표지 — 긴 왕의 겉옷·머리에 보석 박힌 금 면류관([추론] 삼하 12:30 「보석 있는 면류관 … 한 금 달란트라 다윗이 머리에 쓰니라」 — 랍바 정복 때 쓴 관 · 이 순간 관을 썼다는 본문은 없음 · 겉옷은 본문 밖 · 저작자 정함, 근거 대상 15:27 · 15:30 머리 가림은 떠날 때, 19:8부터 왕으로 돌아옴 · restyle r2 사람 메모 「다윗이 누구인가?」)",
+      "en": "a gold crown set with a precious stone",
       "field": "figures[0].cast_override"
     },
     {
@@ -330,7 +330,7 @@
           },
           "headOutline": {
             "class": "crown",
-            "text": "a thin gold circlet over greying dark curls"
+            "text": "a gold crown set with a precious stone over greying dark curls"
           },
           "costumeColor": {
             "class": "red",
@@ -339,7 +339,7 @@
         },
         "hair": "none"
       },
-      "cast_override_why": "귀환 때 다윗은 62세경(삼하 5:4 + 13:23·13:38·14:28·15:7 「사 년만에」 · 보수 연대 BC 978경) — 정본 david는 20대 도망자 카드라 이 장면만 덮어씀. 왕 표지(얇은 금관·왕의 겉옷)는 본문 밖 · 저작자 정함 — 근거 삼하 1:10 사울의 면류관(띠 모양) · 대상 15:27 겉옷 · restyle r2 사람 메모 「다윗이 누구인가?」",
+      "cast_override_why": "귀환 때 다윗은 62세경(삼하 5:4 + 13:23·13:38·14:28·15:7 「사 년만에」 · 보수 연대 BC 978경) — 카드 david-elder(60 전후) 위에 이 장면 나이·왕 표지만 덮어씀. 왕관 [추론] 삼하 12:30 「그 왕의 머리에서 보석 있는 면류관을 취하니 그 중량이 한 금 달란트라 다윗이 머리에 쓰니라」 — 랍바 정복(귀환 앞) 때 다윗이 머리에 쓴 금 면류관, 보석 박힘 · 이 순간 관을 썼다는 본문은 없음 · 겉옷은 본문 밖 · 저작자 정함(대상 15:27 겉옷) · restyle r2 사람 메모 「다윗이 누구인가?」",
       "screen_facing": "right",
       "expression": {
         "ko": "엄숙하고 생각에 잠긴 얼굴 — 노여움도 용서도 아직 드러내지 않음",
@@ -631,7 +631,7 @@
       "kind": "plate",
       "region": "david-elder",
       "verse": "19:18",
-      "prompt": "the king, an Israelite man of about sixty with a greying dark beard, in a long royal robe with a thin gold circlet on his head, standing at the river's edge, about to cross the Jordan, his hands empty, facing right, looking down at Shimei bowed at his feet.",
+      "prompt": "{cast:david-elder}, standing at the river's edge, about to cross the Jordan, his hands empty, facing right, looking down at Shimei bowed at his feet.",
       "neg": [
         "armour",
         "young",

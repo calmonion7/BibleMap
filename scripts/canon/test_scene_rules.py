@@ -1361,5 +1361,27 @@ class AuthoredDetailRecord(unittest.TestCase):
             self.assertEqual(I.fails(m, 11), ["M/m.core"])
 
 
+class PlateCastToken(unittest.TestCase):
+    """derive.plate-cast-token(task 426) — 구역이 cast id인 판 인물 단계는 {cast:<구역>} 자리표."""
+
+    def test_hand_written_fails_token_passes_non_cast_region_ignored(self):
+        s = {"stages": [{"id": "S3", "kind": "plate", "region": "david-prime", "prompt": "an ancient Israelite lean young man standing, facing right."}]}
+        self.assertEqual(len(recheck.plate_cast_token_errors(s)), 1)
+        s["stages"][0]["prompt"] = "{cast:david-prime}, standing, facing right."
+        self.assertEqual(recheck.plate_cast_token_errors(s), [])
+
+    def test_verse_element_en_matched_after_token_fill(self):
+        """구절 요소 en은 칸 원문의 {cast:<id>}를 채운 뒤 대조 — 정체 문구가 카드에서 와도 짝지어진다."""
+        s = {"verses": {"range": "삼하 5:7", "quotes": {"5:7": "다윗이 시온 산성을 빼앗았으니"}},
+             "stages": [{"id": "S3", "kind": "plate", "region": "david-prime", "prompt": "{cast:david-prime}, standing, facing right."}],
+             "figures": [{"cast": "david-prime", "region": "david-prime"}],
+             "verse_elements": [{"verse": "5:7", "quote": "다윗이", "kind": "인물", "ko": "다윗", "en": "an ancient Israelite man, a king", "field": "stages[S3].prompt"}]}
+        import derive_scene as ds
+        self.assertEqual(check_scenes.verse_element_errors(s, ds._fill(s["stages"][0]["prompt"])), [])
+        s["stages"] = [{"id": "S2", "kind": "plate", "region": "crowd-left", "prompt": "many tiny distant people"},
+                       {"id": "S1", "kind": "full", "region": "full", "prompt": "a hillside"}]
+        self.assertEqual(recheck.plate_cast_token_errors(s), [])
+
+
 if __name__ == "__main__":
     unittest.main()

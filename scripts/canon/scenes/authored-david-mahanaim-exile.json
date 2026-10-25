@@ -20,7 +20,7 @@
       "quote": "다윗은",
       "kind": "인물",
       "ko": "다윗",
-      "en": "an ancient Israelite lean young man",
+      "en": "an ancient Israelite man, a king",
       "field": "stages[S3].prompt"
     },
     {
@@ -171,7 +171,7 @@
       "kind": "plate",
       "region": "david-elder",
       "verse": "17:24",
-      "prompt": "an ancient Israelite lean young man arriving on foot, walking wearily at the head of his people, gripping the corner of his robe with one hand, facing right.",
+      "prompt": "{cast:david-elder}, arriving on foot, walking wearily at the head of his people, gripping the corner of his robe with one hand, facing right.",
       "neg": [
         "armour",
         "crown",

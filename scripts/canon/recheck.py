@@ -433,6 +433,15 @@ def _holds_person(f):
     return h.get("mode") == "hug" and bool(h.get("person"))
 
 
+def plate_cast_token_errors(spec):
+    """판 인물 단계는 카드 자리표로(task 426, 규칙 derive.plate-cast-token) — 구역이 cast id인 판 단계 문구에 `{cast:<구역>}`.
+    손으로 적은 인물 문구는 카드가 바뀌어도 그대로 남는다: 다윗 장년·노년 판 문구가 생애 단계 나눔(task 355) 전 「lean young man」으로 나갔다(task 423 나단 언약)."""
+    cast_dir = os.path.join(HERE, "cast")
+    miss = [s["id"] for s in spec.get("stages", []) if s.get("kind") == "plate" and s.get("region")
+            and os.path.exists(os.path.join(cast_dir, f"{s['region']}.json")) and f"{{cast:{s['region']}}}" not in s.get("prompt", "")]
+    return [f"{', '.join(miss)}: 판 인물 단계 문구에 {{cast:<구역>}} 자리표가 없다 — 손으로 적은 인물 문구는 카드와 어긋난다(ADR 260904-055320 1항)"] if miss else []
+
+
 SOLO_MID = (0.4, 0.6)   # derive_scene._side의 「in the center」 범위와 같음
 
 
@@ -705,6 +714,7 @@ SPEC_CHECKS = {
     "recheck.pose_hold_errors": lambda spec, ctx: pose_hold_errors(spec),
     "recheck.inset_errors": lambda spec, ctx: inset_errors(spec),
     "recheck.solo_center_errors": lambda spec, ctx: solo_center_errors(spec),
+    "recheck.plate_cast_token_errors": lambda spec, ctx: plate_cast_token_errors(spec),
     "recheck.pose_only_errors": lambda spec, ctx: pose_only_errors(spec),
     "recheck.split_control_errors": lambda spec, ctx: split_control_errors(spec),
     "recheck.prop_size_errors": lambda spec, ctx: prop_size_errors(spec),

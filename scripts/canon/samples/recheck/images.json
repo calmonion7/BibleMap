@@ -1,5 +1,5 @@
 {
- "rules_version": "213aab242a7f",
+ "rules_version": "baca8b6bdf67",
  "images": {
   "authored-david-gath-achish": {
    "image": "/Users/calmonion/Project/BibleMap/scripts/canon/samples/local-edit/approved-authored-david-gath-achish.png",
@@ -38,6 +38,7 @@
     "generate.youth-height": "pass",
     "generate.height-ratio": "none",
     "generate.seated-height": "pass",
+    "generate.pose-hold": "pass",
     "generate.split-control": "pass",
     "derive.prop-size-relative": "pass",
     "generate.flight-position": "pass",
@@ -49,7 +50,9 @@
     "derive.held-hold": "pass",
     "derive.crowd-stage": "pass",
     "generate.eye-level-perspective": "pass",
-    "spec.inset": "pass"
+    "spec.solo-off-center": "pass",
+    "spec.inset": "pass",
+    "derive.plate-cast-token": "pass"
    },
    "why": {
     "judge.j1-items": "틀림 figures[0].facing",
@@ -157,6 +160,7 @@
     "generate.youth-height": "stale",
     "generate.height-ratio": "stale",
     "generate.seated-height": "stale",
+    "generate.pose-hold": "stale",
     "generate.split-control": "stale",
     "derive.prop-size-relative": "stale",
     "generate.flight-position": "stale",
@@ -168,7 +172,9 @@
     "derive.held-hold": "stale",
     "derive.crowd-stage": "stale",
     "generate.eye-level-perspective": "stale",
-    "spec.inset": "stale"
+    "spec.solo-off-center": "stale",
+    "spec.inset": "stale",
+    "derive.plate-cast-token": "stale"
    },
    "why": {
     "judge.j1-items": "틀림 figures[0].pose, figures[0].prop, figures[1].pose, guard, moment",
@@ -200,6 +206,7 @@
     "generate.youth-height": "그림 뒤 명세가 바뀜",
     "generate.height-ratio": "그림 뒤 명세가 바뀜",
     "generate.seated-height": "그림 뒤 명세가 바뀜",
+    "generate.pose-hold": "그림 뒤 명세가 바뀜",
     "generate.split-control": "그림 뒤 명세가 바뀜",
     "derive.prop-size-relative": "그림 뒤 명세가 바뀜",
     "generate.flight-position": "그림 뒤 명세가 바뀜",
@@ -211,7 +218,9 @@
     "derive.held-hold": "그림 뒤 명세가 바뀜",
     "derive.crowd-stage": "그림 뒤 명세가 바뀜",
     "generate.eye-level-perspective": "그림 뒤 명세가 바뀜",
-    "spec.inset": "그림 뒤 명세가 바뀜"
+    "spec.solo-off-center": "그림 뒤 명세가 바뀜",
+    "spec.inset": "그림 뒤 명세가 바뀜",
+    "derive.plate-cast-token": "그림 뒤 명세가 바뀜"
    },
    "j1": {
     "v2": {
@@ -310,6 +319,7 @@
     "generate.youth-height": "stale",
     "generate.height-ratio": "stale",
     "generate.seated-height": "stale",
+    "generate.pose-hold": "stale",
     "generate.split-control": "stale",
     "derive.prop-size-relative": "stale",
     "generate.flight-position": "stale",
@@ -321,7 +331,9 @@
     "derive.held-hold": "stale",
     "derive.crowd-stage": "stale",
     "generate.eye-level-perspective": "stale",
-    "spec.inset": "stale"
+    "spec.solo-off-center": "stale",
+    "spec.inset": "stale",
+    "derive.plate-cast-token": "stale"
    },
    "why": {
     "judge.j1-items": "restyle-r6 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이번 범위 밖",
@@ -353,6 +365,7 @@
     "generate.youth-height": "그림 뒤 명세가 바뀜",
     "generate.height-ratio": "그림 뒤 명세가 바뀜",
     "generate.seated-height": "그림 뒤 명세가 바뀜",
+    "generate.pose-hold": "그림 뒤 명세가 바뀜",
     "generate.split-control": "그림 뒤 명세가 바뀜",
     "derive.prop-size-relative": "그림 뒤 명세가 바뀜",
     "generate.flight-position": "그림 뒤 명세가 바뀜",
@@ -364,7 +377,9 @@
     "derive.held-hold": "그림 뒤 명세가 바뀜",
     "derive.crowd-stage": "그림 뒤 명세가 바뀜",
     "generate.eye-level-perspective": "그림 뒤 명세가 바뀜",
-    "spec.inset": "그림 뒤 명세가 바뀜"
+    "spec.solo-off-center": "그림 뒤 명세가 바뀜",
+    "spec.inset": "그림 뒤 명세가 바뀜",
+    "derive.plate-cast-token": "그림 뒤 명세가 바뀜"
    },
    "j1": null,
    "plausibility": {
@@ -440,8 +455,8 @@
      }
     ],
     "majority": {
-     "p.boarding": "틀림",
-     "p.one-crown": "맞음"
+     "p.one-crown": "맞음",
+     "p.boarding": "틀림"
     }
    }
   },
@@ -482,6 +497,7 @@
     "generate.youth-height": "stale",
     "generate.height-ratio": "stale",
     "generate.seated-height": "stale",
+    "generate.pose-hold": "stale",
     "generate.split-control": "stale",
     "derive.prop-size-relative": "stale",
     "generate.flight-position": "stale",
@@ -493,7 +509,9 @@
     "derive.held-hold": "stale",
     "derive.crowd-stage": "stale",
     "generate.eye-level-perspective": "stale",
-    "spec.inset": "stale"
+    "spec.solo-off-center": "stale",
+    "spec.inset": "stale",
+    "derive.plate-cast-token": "stale"
    },
    "why": {
     "judge.j1-items": "틀림 background[0], crowds",
@@ -525,6 +543,7 @@
     "generate.youth-height": "그림 뒤 명세가 바뀜",
     "generate.height-ratio": "그림 뒤 명세가 바뀜",
     "generate.seated-height": "그림 뒤 명세가 바뀜",
+    "generate.pose-hold": "그림 뒤 명세가 바뀜",
     "generate.split-control": "그림 뒤 명세가 바뀜",
     "derive.prop-size-relative": "그림 뒤 명세가 바뀜",
     "generate.flight-position": "그림 뒤 명세가 바뀜",
@@ -536,7 +555,9 @@
     "derive.held-hold": "그림 뒤 명세가 바뀜",
     "derive.crowd-stage": "그림 뒤 명세가 바뀜",
     "generate.eye-level-perspective": "그림 뒤 명세가 바뀜",
-    "spec.inset": "그림 뒤 명세가 바뀜"
+    "spec.solo-off-center": "그림 뒤 명세가 바뀜",
+    "spec.inset": "그림 뒤 명세가 바뀜",
+    "derive.plate-cast-token": "그림 뒤 명세가 바뀜"
    },
    "j1": {
     "v2": {
@@ -643,6 +664,7 @@
     "generate.youth-height": "stale",
     "generate.height-ratio": "stale",
     "generate.seated-height": "stale",
+    "generate.pose-hold": "stale",
     "generate.split-control": "stale",
     "derive.prop-size-relative": "stale",
     "generate.flight-position": "stale",
@@ -654,7 +676,9 @@
     "derive.held-hold": "stale",
     "derive.crowd-stage": "stale",
     "generate.eye-level-perspective": "stale",
-    "spec.inset": "stale"
+    "spec.solo-off-center": "stale",
+    "spec.inset": "stale",
+    "derive.plate-cast-token": "stale"
    },
    "why": {
     "judge.j1-items": "틀림 crowds, figures[0].prop",
@@ -686,6 +710,7 @@
     "generate.youth-height": "그림 뒤 명세가 바뀜",
     "generate.height-ratio": "그림 뒤 명세가 바뀜",
     "generate.seated-height": "그림 뒤 명세가 바뀜",
+    "generate.pose-hold": "그림 뒤 명세가 바뀜",
     "generate.split-control": "그림 뒤 명세가 바뀜",
     "derive.prop-size-relative": "그림 뒤 명세가 바뀜",
     "generate.flight-position": "그림 뒤 명세가 바뀜",
@@ -697,7 +722,9 @@
     "derive.held-hold": "그림 뒤 명세가 바뀜",
     "derive.crowd-stage": "그림 뒤 명세가 바뀜",
     "generate.eye-level-perspective": "그림 뒤 명세가 바뀜",
-    "spec.inset": "그림 뒤 명세가 바뀜"
+    "spec.solo-off-center": "그림 뒤 명세가 바뀜",
+    "spec.inset": "그림 뒤 명세가 바뀜",
+    "derive.plate-cast-token": "그림 뒤 명세가 바뀜"
    },
    "j1": {
     "v2": {
@@ -794,6 +821,7 @@
     "generate.youth-height": "pass",
     "generate.height-ratio": "pass",
     "generate.seated-height": "pass",
+    "generate.pose-hold": "pass",
     "generate.split-control": "pass",
     "derive.prop-size-relative": "pass",
     "generate.flight-position": "pass",
@@ -805,7 +833,9 @@
     "derive.held-hold": "pass",
     "derive.crowd-stage": "pass",
     "generate.eye-level-perspective": "pass",
-    "spec.inset": "pass"
+    "spec.solo-off-center": "pass",
+    "spec.inset": "pass",
+    "derive.plate-cast-token": "pass"
    },
    "why": {
     "judge.j1-items": "gibeah-step23 m15 기록에 몸 크롭 상자가 없다 — OWLv2 상자는 GPU 단계라 이번 범위 밖",
@@ -853,6 +883,7 @@
     "generate.youth-height": "pass",
     "generate.height-ratio": "none",
     "generate.seated-height": "pass",
+    "generate.pose-hold": "pass",
     "generate.split-control": "pass",
     "derive.prop-size-relative": "pass",
     "generate.flight-position": "pass",
@@ -864,7 +895,9 @@
     "derive.held-hold": "pass",
     "derive.crowd-stage": "pass",
     "generate.eye-level-perspective": "pass",
-    "spec.inset": "pass"
+    "spec.solo-off-center": "pass",
+    "spec.inset": "pass",
+    "derive.plate-cast-token": "pass"
    },
    "why": {
     "judge.j1-items": "9문항 맞음",
@@ -973,6 +1006,7 @@
     "generate.youth-height": "stale",
     "generate.height-ratio": "stale",
     "generate.seated-height": "stale",
+    "generate.pose-hold": "stale",
     "generate.split-control": "stale",
     "derive.prop-size-relative": "stale",
     "generate.flight-position": "stale",
@@ -984,7 +1018,9 @@
     "derive.held-hold": "stale",
     "derive.crowd-stage": "stale",
     "generate.eye-level-perspective": "stale",
-    "spec.inset": "stale"
+    "spec.solo-off-center": "stale",
+    "spec.inset": "stale",
+    "derive.plate-cast-token": "stale"
    },
    "why": {
     "judge.j1-items": "단계 사다리 그림에 몸 크롭 상자 기록이 없다 — OWLv2 상자는 GPU 단계라 이번 범위 밖",
@@ -1016,6 +1052,7 @@
     "generate.youth-height": "그림 뒤 명세가 바뀜",
     "generate.height-ratio": "그림 뒤 명세가 바뀜",
     "generate.seated-height": "그림 뒤 명세가 바뀜",
+    "generate.pose-hold": "그림 뒤 명세가 바뀜",
     "generate.split-control": "그림 뒤 명세가 바뀜",
     "derive.prop-size-relative": "그림 뒤 명세가 바뀜",
     "generate.flight-position": "그림 뒤 명세가 바뀜",
@@ -1027,7 +1064,9 @@
     "derive.held-hold": "그림 뒤 명세가 바뀜",
     "derive.crowd-stage": "그림 뒤 명세가 바뀜",
     "generate.eye-level-perspective": "그림 뒤 명세가 바뀜",
-    "spec.inset": "그림 뒤 명세가 바뀜"
+    "spec.solo-off-center": "그림 뒤 명세가 바뀜",
+    "spec.inset": "그림 뒤 명세가 바뀜",
+    "derive.plate-cast-token": "그림 뒤 명세가 바뀜"
    },
    "j1": null,
    "plausibility": null
@@ -1069,6 +1108,7 @@
     "generate.youth-height": "stale",
     "generate.height-ratio": "stale",
     "generate.seated-height": "stale",
+    "generate.pose-hold": "stale",
     "generate.split-control": "stale",
     "derive.prop-size-relative": "stale",
     "generate.flight-position": "stale",
@@ -1080,7 +1120,9 @@
     "derive.held-hold": "stale",
     "derive.crowd-stage": "stale",
     "generate.eye-level-perspective": "stale",
-    "spec.inset": "stale"
+    "spec.solo-off-center": "stale",
+    "spec.inset": "stale",
+    "derive.plate-cast-token": "stale"
    },
    "why": {
     "judge.j1-items": "틀림 background[0], crowds[0]",
@@ -1112,6 +1154,7 @@
     "generate.youth-height": "그림 뒤 명세가 바뀜",
     "generate.height-ratio": "그림 뒤 명세가 바뀜",
     "generate.seated-height": "그림 뒤 명세가 바뀜",
+    "generate.pose-hold": "그림 뒤 명세가 바뀜",
     "generate.split-control": "그림 뒤 명세가 바뀜",
     "derive.prop-size-relative": "그림 뒤 명세가 바뀜",
     "generate.flight-position": "그림 뒤 명세가 바뀜",
@@ -1123,7 +1166,9 @@
     "derive.held-hold": "그림 뒤 명세가 바뀜",
     "derive.crowd-stage": "그림 뒤 명세가 바뀜",
     "generate.eye-level-perspective": "그림 뒤 명세가 바뀜",
-    "spec.inset": "그림 뒤 명세가 바뀜"
+    "spec.solo-off-center": "그림 뒤 명세가 바뀜",
+    "spec.inset": "그림 뒤 명세가 바뀜",
+    "derive.plate-cast-token": "그림 뒤 명세가 바뀜"
    },
    "j1": {
     "v2": {
@@ -1220,6 +1265,7 @@
     "generate.youth-height": "stale",
     "generate.height-ratio": "stale",
     "generate.seated-height": "stale",
+    "generate.pose-hold": "stale",
     "generate.split-control": "stale",
     "derive.prop-size-relative": "stale",
     "generate.flight-position": "stale",
@@ -1231,7 +1277,9 @@
     "derive.held-hold": "stale",
     "derive.crowd-stage": "stale",
     "generate.eye-level-perspective": "stale",
-    "spec.inset": "stale"
+    "spec.solo-off-center": "stale",
+    "spec.inset": "stale",
+    "derive.plate-cast-token": "stale"
    },
    "why": {
     "judge.j1-items": "틀림 crowds, figures[1].pose, figures[1].prop",
@@ -1263,6 +1311,7 @@
     "generate.youth-height": "그림 뒤 명세가 바뀜",
     "generate.height-ratio": "그림 뒤 명세가 바뀜",
     "generate.seated-height": "그림 뒤 명세가 바뀜",
+    "generate.pose-hold": "그림 뒤 명세가 바뀜",
     "generate.split-control": "그림 뒤 명세가 바뀜",
     "derive.prop-size-relative": "그림 뒤 명세가 바뀜",
     "generate.flight-position": "그림 뒤 명세가 바뀜",
@@ -1274,7 +1323,9 @@
     "derive.held-hold": "그림 뒤 명세가 바뀜",
     "derive.crowd-stage": "그림 뒤 명세가 바뀜",
     "generate.eye-level-perspective": "그림 뒤 명세가 바뀜",
-    "spec.inset": "그림 뒤 명세가 바뀜"
+    "spec.solo-off-center": "그림 뒤 명세가 바뀜",
+    "spec.inset": "그림 뒤 명세가 바뀜",
+    "derive.plate-cast-token": "그림 뒤 명세가 바뀜"
    },
    "j1": {
     "v2": {
@@ -1377,6 +1428,7 @@
     "generate.youth-height": "stale",
     "generate.height-ratio": "stale",
     "generate.seated-height": "stale",
+    "generate.pose-hold": "stale",
     "generate.split-control": "stale",
     "derive.prop-size-relative": "stale",
     "generate.flight-position": "stale",
@@ -1388,7 +1440,9 @@
     "derive.held-hold": "stale",
     "derive.crowd-stage": "stale",
     "generate.eye-level-perspective": "stale",
-    "spec.inset": "stale"
+    "spec.solo-off-center": "stale",
+    "spec.inset": "stale",
+    "derive.plate-cast-token": "stale"
    },
    "why": {
     "judge.j1-items": "틀림 crowds, figures[0].pose, figures[0].prop, figures[1].facing, figures[1].pose, guard, moment",
@@ -1420,6 +1474,7 @@
     "generate.youth-height": "그림 뒤 명세가 바뀜",
     "generate.height-ratio": "그림 뒤 명세가 바뀜",
     "generate.seated-height": "그림 뒤 명세가 바뀜",
+    "generate.pose-hold": "그림 뒤 명세가 바뀜",
     "generate.split-control": "그림 뒤 명세가 바뀜",
     "derive.prop-size-relative": "그림 뒤 명세가 바뀜",
     "generate.flight-position": "그림 뒤 명세가 바뀜",
@@ -1431,7 +1486,9 @@
     "derive.held-hold": "그림 뒤 명세가 바뀜",
     "derive.crowd-stage": "그림 뒤 명세가 바뀜",
     "generate.eye-level-perspective": "그림 뒤 명세가 바뀜",
-    "spec.inset": "그림 뒤 명세가 바뀜"
+    "spec.solo-off-center": "그림 뒤 명세가 바뀜",
+    "spec.inset": "그림 뒤 명세가 바뀜",
+    "derive.plate-cast-token": "그림 뒤 명세가 바뀜"
    },
    "j1": {
     "v2": {
@@ -1532,6 +1589,7 @@
     "generate.youth-height": "pass",
     "generate.height-ratio": "none",
     "generate.seated-height": "pass",
+    "generate.pose-hold": "pass",
     "generate.split-control": "pass",
     "derive.prop-size-relative": "pass",
     "generate.flight-position": "pass",
@@ -1543,7 +1601,9 @@
     "derive.held-hold": "pass",
     "derive.crowd-stage": "pass",
     "generate.eye-level-perspective": "pass",
-    "spec.inset": "pass"
+    "spec.solo-off-center": "pass",
+    "spec.inset": "pass",
+    "derive.plate-cast-token": "pass"
    },
    "why": {
     "judge.j1-items": "틀림 figures[0].pose, figures[1].prop, figures[2].prop",
@@ -2352,6 +2412,31 @@
    "rate": 0.3333
   },
   {
+   "id": "generate.pose-hold",
+   "layer": "generate",
+   "scope": "all",
+   "check": "recheck.pose_hold_errors",
+   "pass": [
+    "authored-david-gath-achish",
+    "authored-saul-gibeah-spear",
+    "authored-saul-gilgal-amalek",
+    "authored-saul-nob-massacre"
+   ],
+   "fail": [],
+   "stale": [
+    "authored-david-gibeah-harp",
+    "authored-david-returns-jerusalem",
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-samuel-ramah-death",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-jabesh-rescue",
+    "authored-saul-michmash-battle",
+    "authored-saul-mizpah-chosen"
+   ],
+   "none": [],
+   "rate": 0.3333
+  },
+  {
    "id": "generate.split-control",
    "layer": "generate",
    "scope": "all",
@@ -2627,10 +2712,60 @@
    "rate": 0.3333
   },
   {
+   "id": "spec.solo-off-center",
+   "layer": "spec",
+   "scope": "all",
+   "check": "recheck.solo_center_errors",
+   "pass": [
+    "authored-david-gath-achish",
+    "authored-saul-gibeah-spear",
+    "authored-saul-gilgal-amalek",
+    "authored-saul-nob-massacre"
+   ],
+   "fail": [],
+   "stale": [
+    "authored-david-gibeah-harp",
+    "authored-david-returns-jerusalem",
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-samuel-ramah-death",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-jabesh-rescue",
+    "authored-saul-michmash-battle",
+    "authored-saul-mizpah-chosen"
+   ],
+   "none": [],
+   "rate": 0.3333
+  },
+  {
    "id": "spec.inset",
    "layer": "spec",
    "scope": "all",
    "check": "recheck.inset_errors",
+   "pass": [
+    "authored-david-gath-achish",
+    "authored-saul-gibeah-spear",
+    "authored-saul-gilgal-amalek",
+    "authored-saul-nob-massacre"
+   ],
+   "fail": [],
+   "stale": [
+    "authored-david-gibeah-harp",
+    "authored-david-returns-jerusalem",
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-samuel-ramah-death",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-jabesh-rescue",
+    "authored-saul-michmash-battle",
+    "authored-saul-mizpah-chosen"
+   ],
+   "none": [],
+   "rate": 0.3333
+  },
+  {
+   "id": "derive.plate-cast-token",
+   "layer": "derive",
+   "scope": "all",
+   "check": "recheck.plate_cast_token_errors",
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gibeah-spear",

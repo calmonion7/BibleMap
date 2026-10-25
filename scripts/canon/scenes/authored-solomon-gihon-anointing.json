@@ -150,7 +150,7 @@
       "kind": "plate",
       "region": "zadok",
       "verse": "1:39",
-      "prompt": "an ancient Israelite middle-aged priest standing, gripping a horn tilted forward as if pouring oil, facing left.",
+      "prompt": "{cast:zadok}, standing, gripping a horn tilted forward as if pouring oil, facing left.",
       "neg": [
         "armour",
         "crown",
@@ -164,7 +164,7 @@
       "kind": "plate",
       "region": "solomon",
       "verse": "1:39",
-      "prompt": "an ancient Israelite young king kneeling, head bowed, gripping the corner of his robe with one hand, facing right.",
+      "prompt": "{cast:solomon}, kneeling, head bowed, gripping the corner of his robe with one hand, facing right.",
       "neg": [
         "armour",
         "helmet",

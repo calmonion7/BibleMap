@@ -207,7 +207,10 @@ def verse_element_errors(spec, prompt, verses=None):
         except (KeyError, IndexError, StopIteration, TypeError, ValueError):
             errs.append(f"{at}: field 경로 없음: {e.get('field')!r}")
             continue
-        if not en or not any(en.lower() in s.lower() for s in _strings(val)):
+        # 칸 원문은 자리표를 채운 뒤 대조(task 426) — 판 인물 단계의 정체 문구는 {cast:<id>} 카드(장면 cast_override 포함)에서 온다
+        import derive_scene as ds
+        filled = [ds._fill(s, ds._scene_cards(spec)) for s in _strings(val)]
+        if not en or not any(en.lower() in s.lower() for s in filled):
             errs.append(f"{at}: en이 {e['field']} 칸 안에 없음: {en!r}")
         elif en.lower() not in prompt.lower():
             errs.append(f"{at}: en이 파생 프롬프트에 없음: {en!r}")

@@ -22,7 +22,7 @@
       "quote": "아브넬",
       "kind": "인물",
       "ko": "아브넬 — 이스보셋 편 지휘관",
-      "en": "a sturdy battle-hardened commander",
+      "en": "an ancient Israelite man, a commander",
       "field": "stages[S3].prompt"
     },
     {
@@ -46,7 +46,7 @@
       "quote": "스루야의 아들 요압",
       "kind": "인물",
       "ko": "요압 — 다윗 편 지휘관",
-      "en": "a lean quick commander",
+      "en": "an ancient Israelite man, a commander",
       "field": "stages[S4].prompt"
     },
     {
@@ -221,7 +221,34 @@
         "ko": "무릎길이 생양모 튜닉, 짧은 가죽 비늘 갑옷, 넓은 가죽 띠, 맨머리",
         "en": "in a knee-length undyed wool tunic, a short leather-scale corselet and a wide leather belt, bareheaded",
         "verse": "본문 밖 · 저작자 정함(철기 시대 초 이스라엘 무장 고증 — 376 사람 메모 「두 지휘관 옷이 시대를 반영하지 못함」)"
-      }
+      },
+      "cast_override": {
+        "costume": "in a knee-length undyed wool tunic, a short leather-scale corselet and a wide leather belt, bareheaded",
+        "card": {
+          "heightRel": "average",
+          "ageBand": {
+            "class": "elder",
+            "text": "in his 60s, weathered face, firm jaw line"
+          },
+          "beardVolume": {
+            "class": "full",
+            "text": "full dark beard with gray"
+          },
+          "silhouette": {
+            "class": "broad",
+            "text": "broad armored shoulders, thick chest"
+          },
+          "headOutline": {
+            "class": "bare",
+            "text": "bare head, short graying hair"
+          },
+          "costumeColor": {
+            "class": "brown",
+            "text": "brown leather cuirass, short kilt"
+          }
+        }
+      },
+      "cast_override_why": "차림은 장면 칸 figures.costume(본문 밖 · 저작자 정함 — 철기 시대 초 이스라엘 무장 고증, 376 사람 메모 「두 지휘관 옷이 시대를 반영하지 못함」) — 카드 차림 대신 · 나이 [추론] 삼상 14:50 「그 군장의 이름은 아브넬이니 사울의 숙부 넬의 아들」(사울 치세 초기에 이미 군장) · 삼하 2:10 「사울의 아들 이스보셋이 비로소 이스라엘 왕이 될 때에 나이 사십 세」 — 2:12는 사울 치세 뒤라 60대 · 카드 대표값 「in his 30s」 대신"
     },
     {
       "cast": "joab",
@@ -235,7 +262,11 @@
         "ko": "무릎길이 생양모 튜닉, 짧은 가죽 비늘 갑옷, 넓은 가죽 띠, 맨머리",
         "en": "in a knee-length undyed wool tunic, a short leather-scale corselet and a wide leather belt, bareheaded",
         "verse": "본문 밖 · 저작자 정함(철기 시대 초 이스라엘 무장 고증 — 376 사람 메모 「두 지휘관 옷이 시대를 반영하지 못함」)"
-      }
+      },
+      "cast_override": {
+        "costume": "in a knee-length undyed wool tunic, a short leather-scale corselet and a wide leather belt, bareheaded"
+      },
+      "cast_override_why": "차림은 장면 칸 figures.costume(본문 밖 · 저작자 정함 — 철기 시대 초 이스라엘 무장 고증, 376 사람 메모 「두 지휘관 옷이 시대를 반영하지 못함」) — 카드 차림 대신"
     }
   ],
   "regions": {
@@ -385,7 +416,7 @@
       "kind": "plate",
       "region": "abner",
       "verse": "2:13-14",
-      "prompt": "a sturdy battle-hardened commander in a knee-length undyed wool tunic, a short leather-scale corselet and a wide leather belt, bareheaded, sitting on the ground on the near side of the pool, gripping one spear upright, watching the contest before him, facing right.",
+      "prompt": "{cast:abner}, sitting on the ground on the near side of the pool, gripping one spear upright, watching the contest before him, facing right.",
       "neg": [
         "armour",
         "helmet",
@@ -405,7 +436,7 @@
       "kind": "plate",
       "region": "joab",
       "verse": "2:13-14",
-      "prompt": "a lean quick commander in a knee-length undyed wool tunic, a short leather-scale corselet and a wide leather belt, bareheaded, sitting on the ground on the far side of the pool, gripping a sword hilt at his side, watching the contest before him, facing left.",
+      "prompt": "{cast:joab}, sitting on the ground on the far side of the pool, gripping a sword hilt at his side, watching the contest before him, facing left.",
       "neg": [
         "armour",
         "helmet",
