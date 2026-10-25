@@ -50,8 +50,12 @@ def gen():
             g = g.crop((x0, 0, x0 + w, H))
             guide = os.path.join(OUT, f"_guide-{sid}-flip-{w}.png")
             g.save(guide)
+        cn = {"control": guide, **CN}
+        if D.load(sid)["guide"].get("split"):   # 시도 3: 뼈대 인물은 스텝별 가이드(앞 2스텝 뼈대 → 뒤 2스텝 깊이, 기브아 m17e와 같은 값)
+            cn = {"control": os.path.join(SAMPLES, f"guide-{sid}-1.png"), "control2": os.path.join(SAMPLES, f"guide-{sid}-2.png"),
+                  "scale": CN["scale"], "cn_steps": 2, "cn_steps2": 2}
         if not os.path.exists(img(sid)):
-            jobs.append({"prompt": D.route_prompt(D.load(sid)), "seed": SEED, "w": w, "h": H, "out": img(sid), "control": guide, **CN})
+            jobs.append({"prompt": D.route_prompt(D.load(sid)), "seed": SEED, "w": w, "h": H, "out": img(sid), **cn})
     print(f"[BirthInset] {len(jobs)}장 생성", flush=True)
     if jobs:
         print(f"[BirthInset] 생성 끝 {run_scene.gen_zimage(jobs, OUT, 'gencn')}", flush=True)
