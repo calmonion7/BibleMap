@@ -26,6 +26,11 @@ class NightPick(unittest.TestCase):
         with self.assertRaises(ValueError):
             approve.night_pick(spec(), 11, "both", "/x.png", "user")
 
+    def test_comp_kind(self):
+        """task 433 — 곁 장면 합성 그림(큰 장면 + 구름 속 곁 장면)은 바탕도 편집본도 아니다."""
+        f = approve.night_pick(spec(), 11, "comp", "/x/comp-s11.png", "user")["approved"]["final"]
+        self.assertEqual((f["kind"], f["image"]), ("comp", "/x/comp-s11.png"))
+
 
 
 class ConfirmPick(unittest.TestCase):

@@ -137,3 +137,9 @@ class ApprovedSource(unittest.TestCase):
         self.assertTrue(r["prompt"])
         self.assertIsNone(r["boxes"])
 
+    def test_bundle_without_prompt_says_why(self):
+        """task 433 — 출생 곁 장면 묶음(birth-inset)은 생성 프롬프트를 기록하지 않음 → stamp가 why_prompt 없이 멈췄음."""
+        f = {"path": "night-pick", "seed": 11, "kind": "comp", "image": "samples/birth-inset/try2-424/comp-s11.png"}
+        r = recheck.source("authored-solomon-jerusalem-birth", f)
+        self.assertIsNone(r["prompt"])
+        self.assertTrue(r["why_prompt"])

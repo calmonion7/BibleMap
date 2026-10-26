@@ -84,7 +84,7 @@
 - v1 `age` 칸(시선 대상 문구 「looking toward the <age> …」에 쓰임)과 카드 ageBand class가 어긋나는지 재는 규칙 — solomon-prime 「king in his prime」(class middle) · david-prime 「mature king」 등 전 카드 점검.
   근거: task 429 scripture-reviewer 보류 ③ — abner 「middle-aged commander」가 60대 카드와 어긋났고 derive_scene.whole_prompt 226행이 이 칸을 파생 문구로 씀. 이번엔 abner만 고침.
 
-<!-- followup: fu-62713f7a7248 | source: two-mothers-step23-backwall | task: 432 | date: 2026-10-26 | status: open | taken: - -->
+<!-- followup: fu-62713f7a7248 | source: two-mothers-step23-backwall | task: 432 | date: 2026-10-26 | status: taken | taken: 433 -->
 - 두 여인 단계 ④ 사람 판정 화면 — B 기계 통과 4장(s42 s11 s23 s101) + 기계 불통과 표본(칼 자리 s7·s5)을 한 질문씩 폰 화면으로. s42는 칼이 가운데 여인 발치(판정자 너그러움)라 사람 눈으로 갈라 볼 장.
   근거: notes/TWO-MOTHERS-STEP23.md 결과·눈 확인 · samples/two-mothers-step23/back-wall-B-s*.png.
 

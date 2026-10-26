@@ -161,10 +161,21 @@ def page(out):
         return "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
     imgs = {f"comp-{s}": uri(img("M", s), 1216) for s in FX["seeds"]} | {f"inset-{s}": uri(img("I", s), 896) for s in FX["seeds"]}
     tpl = open(os.path.join(HERE, "batch", "inset_judge_page.html"), encoding="utf-8").read()
-    html = tpl.replace("@@VERSES@@", "".join(rows)).replace("/*CARDS*/[]", json.dumps(cards, ensure_ascii=False))
+    html = fill(tpl, TITLE="솔로몬 출생 그림 고르기", H1="솔로몬 출생 — 쓸 그림 고르기", RANGE="사무엘하 12:24-25", TASK="424",
+                LEDE="큰 장면은 12:25 나단이 다윗 왕에게 아들의 새 이름을 전하는 때, 뭉게구름은 그보다 앞선 12:24 밧세바가 갓난 아들을 안은 때입니다. 시드 8장을 모두 보여 드립니다. 기계 판정을 통과한 장과 통과하지 못한 장을 함께 놓았습니다.",
+                HINT="그림을 누르면 원래 화소로 1~3배 확대해 볼 수 있습니다. 「곁 장면 원본」은 구름 속 그림을 줄이기 전 크기로 보여 줍니다.",
+                MEMO_EG="예: 다윗 손이 모이지 않음")
+    html = html.replace("@@VERSES@@", "".join(rows)).replace("/*CARDS*/[]", json.dumps(cards, ensure_ascii=False))
     html = html.replace("/*IMGS*/{}", json.dumps(imgs))   # 그림은 마지막에
     open(out, "w", encoding="utf-8").write(html)
     print(f"[InsetJudge] 화면 {out} {len(html) / 1e6:.2f}MB · 통과 {sum(c['pass'] for c in cards)}/{len(cards)}")
+
+
+def fill(tpl, **kw):
+    """판정 화면 틀(inset_judge_page.html)의 글 자리표 @@KEY@@ — 그림·원문을 넣기 전에(task 433: 두 여인 화면이 같은 틀을 씀)."""
+    for k, v in kw.items():
+        tpl = tpl.replace(f"@@{k}@@", v)
+    return tpl
 
 
 def record(text):

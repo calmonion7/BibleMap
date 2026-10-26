@@ -893,8 +893,11 @@ def source(sid, f):
         m = json.load(open(os.path.join(HERE, "samples", bundle, "metrics.json")))
         sc = (m.get("scenes") or {}).get(sid)
         if sc is None:   # restyle 회차: 장면 하나 — 프롬프트는 맨 위, 몸 상자 기록 없음
-            return {"image": img, "prompt": m.get("prompt"), "boxes": None, "from": bundle,
-                    "why_boxes": f"{bundle} 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이번 범위 밖"}
+            out = {"image": img, "prompt": m.get("prompt"), "boxes": None, "from": bundle,
+                   "why_boxes": f"{bundle} 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이번 범위 밖"}
+            if out["prompt"] is None:   # task 433: birth-inset 묶음은 프롬프트를 기록하지 않음(inset_try.py가 그때 route_prompt로 그림)
+                out["why_prompt"] = f"{bundle} 기록에 생성 프롬프트가 없다 — 생성 때 명세의 파생, 지금 파생과 같은지 모름"
+            return out
         x = _seed_rec(sc["seeds"], f["seed"])
         return {"image": img, "prompt": sc.get("prompt"), "boxes": (x or {}).get("boxes"), "from": bundle}
     # 단계 사다리 완료(attempt) — 한 장 프롬프트 없음, 그림은 곁파일의 마지막 캔버스

@@ -67,3 +67,8 @@
 
 - 미리 정한 규칙대로 **B 채택** → 명세 `whole_background.en`에 「the back wall drawn block by block like the side walls」(ko·근거 칸 함께, 본문 밖 그림 결 문구). `recheck.spec_failures` 두 여인 `[]` 그대로 · 전 규칙 통과 5/38 그대로. 원장 규칙 아님(derive.wall-material 그대로).
 - **단계 ③ 통과 B 4/8**(s42 s11 s23 s101 · 엄하게 3/8) → 다음은 단계 ④ 사람 판정 화면(후속). 수리 반복 후보는 칼 자리.
+
+## 사람 판정(단계 ④) — task 433
+
+- 화면 https://claude.ai/artifact/3dAeWAFXgNhbLKTBvD97Pd — 채택된 B 문구 8장 전부(기계 통과 s42 s11 s23 s101 + 불통과 s7 s5 s202 s303, 틀린 문항 순) · 왕상 3:16-28 원문(3:26 굵게) · 원래 화소 1~3× 확대 · 카드마다 가장 많이 떨어진 문항(칼)의 표 수와 틀림 이유 하나(s42 「칼이 가운데 여인 발치」 2/3표) · 질문 하나 「이 장면으로 쓸 그림이 있나」 → 답 복사(`판정 task 432` + JSON) → `python3 batch/rule_ab.py --fixed 432 record '<답>'`
+- record는 답 원문을 `samples/two-mothers-step23/pick-verdict.txt`에 남기고, 고른 장이 있으면 `approve.night_pick`(base · by user)로 확정 기록한다. 「쓸 그림 없음」이면 확정 기록 없이 다음 차례는 후속 fu-b3f0(칼 자리 수리).

@@ -238,5 +238,19 @@
       ]
     }
   },
-  "inset_of": "authored-solomon-jerusalem-birth"
+  "inset_of": "authored-solomon-jerusalem-birth",
+  "approved": {
+    "final": {
+      "path": "night-pick",
+      "seed": 11,
+      "kind": "base",
+      "image": "/Users/calmonion/.local/biblemap-imggen/birth-inset/try2-424/authored-solomon-jerusalem-birth-inset-s11.png",
+      "by": "user",
+      "on": "2026-10-26",
+      "spec_hash": "cc285fabffcb",
+      "prompt_hash": null,
+      "rules_version": "6575283711cc",
+      "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
+    }
+  }
 }

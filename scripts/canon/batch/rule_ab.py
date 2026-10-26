@@ -6,6 +6,8 @@
   python3 batch/rule_ab.py judge   # 4장 한 묶음 × 장면 전 문항 × reps — claude -p Sonnet · 머리말 v2 · 답 없는 회차만
   python3 batch/rule_ab.py report  # 장마다 문항 다수결 · 축 문항 · 거르기 문항 맞음 수 · `재현:` 줄
   python3 batch/rule_ab.py --fixed 432 seeds|gen|judge|report   # task 432 — 시드 여럿(8시드 대조군) · `통과:`·`채택:` 줄
+  python3 batch/rule_ab.py --fixed 432 page <out.html>      # task 433 — 단계 ④ 사람 판정 화면(채택된 쪽 8장 전부 · 원문 · 답 복사)
+  python3 batch/rule_ab.py --fixed 432 record '<판정 task 432 + JSON 한 줄>'   # 사람 답 → pick-verdict.txt · 노트 줄 · 고른 장 approve
 
 사례·문항·시드는 notes/ 안 「```json fixed N」 절(기본 423 = notes/RULE-AB.md). `seeds`가 있으면 시드마다 그림·판정. 판정 부품은 inset_judge와 같다(judge_items.prepare/prompt/call/parse)."""
 import json, os, re, subprocess, sys, threading
@@ -30,13 +32,15 @@ def fixed(n):
             if hit:
                 fx = json.loads(hit.group(1))
                 fx["seeds"] = fx.get("seeds") or [fx["seed"]]
+                fx["_notes"] = os.path.join(HERE, "notes", name)
                 return fx
     sys.exit(f"[RuleAB] 고정 절 {n} 없음")
 
 
 def use(n):
-    global FX, SAMPLES, METRICS
-    FX = fixed(n)
+    global FX, FX_N, NOTES, SAMPLES, METRICS
+    FX, FX_N = fixed(n), n
+    NOTES = FX.pop("_notes")
     SAMPLES = os.path.join(HERE, "samples", FX["dir"])
     METRICS = os.path.join(SAMPLES, "metrics.json")
 
@@ -179,8 +183,83 @@ def report():
 def seeds():
     print(" ".join(map(str, FX["seeds"])))
 
+
+def side(m, case):
+    """사람에게 보일 쪽 — 채택 규칙이 있으면 채택된 쪽, 없으면 B."""
+    if not FX.get("adopt"):
+        return "B"
+    return "B" if adopt(majority(m, case), [q["id"] for q in J.gating(case["qs"])], FX["adopt"])[0] else "A"
+
+
+def page(out):
+    """task 433 — 단계 ④ 사람 판정 화면: 고른 쪽 8장 전부(기계 통과 + 불통과, 틀린 문항 순) · 장면 구절 원문(순간 절 굵게) · 확대 · 답 복사.
+    틀은 inset_judge와 같다(inset_judge_page.html). 카드 메모 = 그 쪽에서 가장 많이 떨어진 거르기 문항의 표 수와 틀림 이유 하나."""
+    import base64, io
+    import inset_judge as IJ
+    from PIL import Image
+    m, case = load(), FX["cases"][0]
+    ab, spec = side(m, case), D.load(case["scene"])
+    gated = J.gating(case["qs"])
+    ok = majority(m, case)[ab]
+    weak = min(gated, key=lambda q: sum(ok[s][q["id"]] for s in FX["seeds"]))
+    book = {"왕상": 11}[spec["verses"]["range"].split()[0]]
+    verses = json.load(open(os.path.join(HERE, "..", "..", "data", "bible", "verses.json"), encoding="utf-8"))
+    rows = []
+    for cv in spec["verses"]["quotes"]:
+        c, v = map(int, cv.split(":"))
+        txt = verses[f"{book:02d}{c:03d}{v:03d}"]["textKo"].strip()
+        rows.append(f'<p><span class="ref">{cv}</span>{"<b>" + txt + "</b>" if cv == spec["moment"]["verse"] else txt}</p>')
+    cards = []
+    for s in FX["seeds"]:
+        reps = [r for r in (m["answers"].get(key(case, ab, s)) or {}).values() if r.get("answers")]
+        yes = sum(r["answers"][weak["id"]] == "맞음" for r in reps)
+        why = next((r["reasons"][weak["id"]] for r in reps if r["answers"][weak["id"]] == "틀림" and (r.get("reasons") or {}).get(weak["id"])), "")
+        fails = [q["q"] for q in gated if not ok[s][q["id"]]]
+        cards.append({"seed": s, "pass": not fails, "fails": fails,
+                      "note": f"{weak['q']} 맞음 {yes}/{len(reps)}표" + (f" — 틀림 이유: {why}" if why else "")})
+    cards.sort(key=lambda c: (not c["pass"], len(c["fails"]), FX["seeds"].index(c["seed"])))
+
+    def uri(path):
+        buf = io.BytesIO()
+        Image.open(path).convert("RGB").save(buf, "JPEG", quality=88)
+        return "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
+    imgs = {f"comp-{s}": uri(img(case, ab, s)) for s in FX["seeds"]}
+    tpl = open(os.path.join(HERE, "batch", "inset_judge_page.html"), encoding="utf-8").read()
+    html = IJ.fill(tpl, TITLE="두 여인 재판 그림 고르기", H1="두 여인의 재판 — 쓸 그림 고르기", RANGE=spec["verses"]["range"], TASK=str(FX_N),
+                   LEDE=f"3:26 — 참 어머니가 앉은 솔로몬 왕 앞에서 아들을 위해 애원하고, 다른 여인은 아기를 안고 섰으며, 왕 앞 바닥에는 3:24에 가져온 칼이 있는 때입니다. 시드 8장을 모두 보여 드립니다. 기계 판정을 통과한 장과 통과하지 못한 장을 함께 놓았고, 카드마다 가장 많이 떨어진 문항({weak['q']})의 기계 표와 틀림 이유를 적었습니다.",
+                   HINT="그림을 누르면 원래 화소로 1~3배 확대해 볼 수 있습니다. 기계 표는 너그러울 수 있습니다(s42 칼 자리) — 눈으로 갈라 주세요.",
+                   MEMO_EG="예: 칼이 왕 앞이 아니라 여인 발치")
+    html = html.replace("@@VERSES@@", "".join(rows)).replace("/*CARDS*/[]", json.dumps(cards, ensure_ascii=False))
+    html = html.replace("/*IMGS*/{}", json.dumps(imgs))   # 그림은 마지막에(417 판 1)
+    open(out, "w", encoding="utf-8").write(html)
+    print(f"[RuleAB] 화면 {out} {len(html) / 1e6:.2f}MB · {case['id']}-{ab} 통과 {sum(c['pass'] for c in cards)}/{len(cards)}")
+
+
+def record(text):
+    """사람 답(「판정 task N」 + JSON 한 줄) → 원문 pick-verdict.txt · metrics verdict · 노트 「- 사람 답(8시드)」 줄. 고른 장이 있으면 approve(night-pick, by user)."""
+    import approve
+    v = json.loads(text.split("\n", 1)[1].strip().splitlines()[0])
+    m, case = load(), FX["cases"][0]
+    ab = side(m, case)
+    with open(os.path.join(SAMPLES, "pick-verdict.txt"), "w", encoding="utf-8") as fh:
+        fh.write(text.strip() + "\n")
+    m["verdict"] = v
+    save(m)
+    line = f"- 사람 답(8시드): {v['pick']}" + (f" · 메모 「{v['memo']}」" if v.get("memo") else "")
+    with open(NOTES, "a", encoding="utf-8") as fh:
+        fh.write(line + "\n")
+    print(f"[RuleAB] {line}")
+    if v["pick"] != "none":
+        seed = int(v["pick"].lstrip("s"))
+        image = os.path.relpath(img(case, ab, seed), HERE)
+        approve.save_spec(approve.night_pick(approve.load_spec(case["scene"]), seed, "base", image, "user"))
+        print(f"[RuleAB] 장면 완료 기록 {case['scene']} ← {image}")
+
 if __name__ == "__main__":
     args = sys.argv[1:]
     use(int(args.pop(args.index("--fixed") + 1)) if "--fixed" in args else 423)
     args = [a for a in args if a != "--fixed"]
+    if args[0] in ("page", "record"):   # task 433 — 단계 ④ 사람 판정
+        {"page": page, "record": record}[args[0]](args[1])
+        sys.exit(0)
     {"gen": gen, "judge": judge, "report": report, "seeds": seeds}[args[0]]()

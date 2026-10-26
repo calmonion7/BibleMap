@@ -7,7 +7,7 @@
   approve.py --scene <id> --stage S4 --attempt a003 --seed 11        # 단계 승인
   approve.py --scene <id> --ladder verses                            # 사다리 ①②③ 확인(지금 해시를 적는다)
   approve.py --scene <id> --final --attempt a005 --seed 11           # [[장면 완료]]
-  approve.py --scene <id> --night-pick --seed 11 --kind edit --image <그림>   # 한 장 경로 [[장면 완료]](task 368 [[장면 고르기]])
+  approve.py --scene <id> --night-pick --seed 11 --kind edit --image <그림>   # 한 장 경로 [[장면 완료]](task 368 [[장면 고르기]]) · --kind comp = 곁 장면 합성(task 433)
   (task 369 편집 확인 답은 batch/run_night.py record가 confirm_pick으로 적는다)
 
 앞 단계 승인이 이 시도가 얹힌 것과 다르면 **경고만 하고 적는다** — 그 어긋남은 곧 `scene_state.stale`이
@@ -67,11 +67,14 @@ def provenance(spec, prompt):
     return p if prompt else {**p, "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"}
 
 
+KINDS = ("edit", "base", "comp")   # comp = 곁 장면 합성(큰 장면 + 구름 속 곁 장면, task 433)
+
+
 def night_pick(spec, seed, kind, image, by, prompt=None):
     """한 장 경로의 [[장면 완료]](task 368) — 밤샘 후보 중 사람이 고른 한 장. 단계 사다리 밖이라 시도 id 대신
     경로·시드·바탕/편집·그림 경로를 적는다(생성기가 명세만으로 재현 대상을 알 수 있게)."""
-    if kind not in ("edit", "base"):
-        raise ValueError(f"kind는 edit|base다: {kind}")
+    if kind not in KINDS:
+        raise ValueError(f"kind는 {'|'.join(KINDS)}다: {kind}")
     spec.setdefault("approved", {})["final"] = {"path": "night-pick", "seed": seed, "kind": kind, "image": image, **stamp(by),
                                               **provenance(spec, prompt)}
     return spec
@@ -106,7 +109,7 @@ def main():
     ap.add_argument("--ladder", choices=ss.LADDER)
     ap.add_argument("--final", action="store_true")
     ap.add_argument("--night-pick", action="store_true")
-    ap.add_argument("--kind", choices=("edit", "base"))
+    ap.add_argument("--kind", choices=KINDS)
     ap.add_argument("--image")
     ap.add_argument("--by", default="cli")
     a = ap.parse_args()

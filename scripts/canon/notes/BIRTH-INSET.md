@@ -341,6 +341,7 @@ s303: 틀림 2 M/m.guard I/i.moment
 - 화면 https://claude.ai/artifact/HTL5naijTN83agocf82jCc — 셋째 실행(비킨 구도) 8장 전부(기계 통과 s11 + 불통과 표본, 틀린 문항 순) · 12:24-25 원문(12:25 굵게) · 원래 화소 1~3× 확대 · 곁 장면 원본 · 질문 하나 「이 장면으로 쓸 그림이 있나」 → 답 복사(`판정 task 424` + JSON) → `python3 batch/inset_judge.py record '<답>'`
 
 - 사람 답(8시드): s11
+- 확정 기록(task 433): `approve.py --night-pick --by user` — 큰 장면 ← `samples/birth-inset/try2-424/comp-s11.png`(`--kind comp`, 곁 장면 합성) · 곁 장면 ← `~/.local/biblemap-imggen/birth-inset/try2-424/authored-solomon-jerusalem-birth-inset-s11.png`(`--kind base`). 생성 프롬프트는 이 묶음에 기록이 없어 `prompt_hash: null`.
 
 ## task 427 — 아래쪽만 있는 종이 띠 (2026-10-26)
 
