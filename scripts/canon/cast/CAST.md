@@ -43,6 +43,7 @@
 | absalom | 압살롬 | mahanaim-exile | 1 | |
 | mother-a | 참 어머니(두 여인 중 산 아이의 어머니) | mother-a | 1 | 이름 없는 핵심 개체 |
 | mother-b | 다른 어머니(두 여인 중 죽은 아이의 어머니) | mother-b | 1 | 이름 없는 핵심 개체 |
+| solomon-sword-bearer | 칼 가져온 신하(두 여인의 재판) | two-mothers | 1 | 이름 없는 핵심 개체 · 2026-10-26 추가(task 434) — 왕상 3:24 「칼을 왕의 앞으로 가져온지라」 가져온 이 [추론], 한 사람은 [저작] · 정본 그림 없음 |
 | solomon-old | 솔로몬(노년) | apostasy | 1 | 생애 단계 분할 |
 | solomon-prime | 솔로몬(장년 왕) | palace, ezion-geber-fleet, sheba | 3 | 생애 단계 분할(task 355), 왕상7:1·9:10 이후 40대 · 정본 그림 없음 |
 | hiram | 히람 | ezion-geber-fleet | 1 | |
@@ -83,7 +84,7 @@
 | authored-solomon-gihon-anointing | solomon, nathan, zadok | 브나야, 그렛·블렛 사람, 모든 백성 |
 | authored-solomon-jerusalem-david-charge | david-old, solomon | (없음) |
 | authored-solomon-gibeon-dream | solomon | (없음) |
-| authored-solomon-jerusalem-two-mothers | solomon, mother-a, mother-b | (없음) |
+| authored-solomon-jerusalem-two-mothers | solomon, mother-a, mother-b, solomon-sword-bearer | (없음) |
 | authored-solomon-jerusalem-temple-build | solomon | 석수·목수 등 일군들(직접 묘사 없음) |
 | authored-solomon-jerusalem-palace | solomon-prime | 바로의 딸(언급만, 미행동) |
 | authored-solomon-jerusalem-temple-dedication | solomon | 온 이스라엘의 온 회중 |

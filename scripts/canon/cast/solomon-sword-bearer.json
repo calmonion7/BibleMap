@@ -1,0 +1,93 @@
+{
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "solomon-sword-bearer",
+  "names": [
+    "칼 가져온 신하"
+  ],
+  "stops": [
+    "authored-solomon-jerusalem-two-mothers"
+  ],
+  "era": "an ancient Israelite",
+  "age": "man in his prime",
+  "sex": "male",
+  "role": "servant",
+  "hair": "dark hair",
+  "beard": "close-trimmed dark beard",
+  "headwear": "a plain cloth headwrap",
+  "build": "medium build",
+  "costume": "in a long undyed linen tunic, leather belt",
+  "colorWords": [
+    "undyed",
+    "brown"
+  ],
+  "propCandidates": [
+    {
+      "prop": "a straight iron sword",
+      "verse": "왕상 3:24",
+      "ko": "왕 앞으로 가져온 칼"
+    }
+  ],
+  "neg": [
+    "crown",
+    "royal robe",
+    "armour",
+    "modern clothes"
+  ],
+  "poses": [
+    "standing, full body, facing left, holding a straight iron sword drawn in hand, upright"
+  ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "prime",
+      "text": "in his 30s, lined brow"
+    },
+    "beardVolume": {
+      "class": "trimmed",
+      "text": "close-trimmed dark beard"
+    },
+    "silhouette": {
+      "class": "average",
+      "text": "squared shoulders"
+    },
+    "headOutline": {
+      "class": "headwrap",
+      "text": "plain cloth headwrap"
+    },
+    "costumeColor": {
+      "class": "undyed",
+      "text": "undyed linen tunic, leather belt"
+    }
+  },
+  "face": {
+    "faceShape": "long face with a narrow chin",
+    "eyes": "deep-set dark eyes",
+    "nose": "straight narrow nose",
+    "mouth": "thin straight mouth",
+    "skin": "olive skin",
+    "brows": "level dark brows",
+    "marks": "none"
+  },
+  "_why": {
+    "age": "[저작](왕을 섬기는 장년 신하 — 칼을 가져온 이의 나이는 본문에 없음)",
+    "hair": "[저작](시대 인물 대표값 — 머리색 본문에 없음)",
+    "beard": "[저작](장년 신하라 다듬은 수염 — 본문에 없음)",
+    "headwear": "[저작](두 여인·왕과 머리 윤곽을 가르려고 천 두건 — 본문에 없음)",
+    "build": "[저작](보통 체격 — 본문에 체격 언급 없음)",
+    "costume": "[저작](왕을 섬기는 신하의 긴 베 속옷 — 갑옷·군복 근거가 본문에 없어 군사 차림 아님)",
+    "role": "[추론] 왕상 3:24 「칼을 내게로 가져오라 하니 칼을 왕의 앞으로 가져온지라」 — 왕의 명을 받아 칼을 가져온 이 → 왕을 섬기는 신하(가져온 이 주어는 본문에 없음)",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[저작](역표 동석 인물과 구분용 — 솔로몬 20대·두 여인과 나이로 가름)",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용 — 수염 없는 솔로몬과 가름)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용 — 맨머리 솔로몬·숄 두 여인과 가름)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용 — 푸른 옷 솔로몬과 가름)",
+    "face.faceShape": "[저작](얼굴 구분용)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)"
+  }
+}
