@@ -91,3 +91,6 @@
 <!-- followup: fu-b3f0cc55b565 | source: two-mothers-step23-backwall | task: 432 | date: 2026-10-26 | status: open | taken: - -->
 - 두 여인 칼 자리 수리 — 「a straight iron sword lying on the floor before the king's wooden seat」인데 8시드 중 B 3장이 여인 발치·두 자루(A는 벽에 기댐 포함 4장). 가이드에 칼 자리(왕 자리 앞 바닥)를 넣거나 지물 편집(edit.held-prop-add 꼴)으로 — fg-loop 수리 반복 몫.
   근거: notes/TWO-MOTHERS-STEP23.md 칼 틀림 이유 · rule_ab report t.sword A 4/8 · B 5/8.
+
+<!-- followup: fu-5c3bba7a0a3e | source: human-final-confirm-birth-two-mothers | task: 433 | date: 2026-10-26 | status: open | taken: - -->
+두 여인 명세 재저작(단계 ①부터) — 사람 단계 ④ 거절 사유 둘: 「궁전 안으로 안 보임」(배경 「왕의 집 안 소박한 방」 · 3장은 궁 짓기 전 3:1·7:1) · 「칼은 바닥이 아니라 곁의 신하가 차거나 가르는 시늉」(3:24 「칼을 왕의 앞으로 가져온지라」 = 신하가 들고 섬은 본문과 맞음 · 가르는 시늉은 3:25 명령뿐이라 본문 밖). 신하를 넣으면 「세 사람뿐」 문항·cast가 바뀜. fu-b3f0(바닥 칼 수리)을 대체할지 그릴링 때 사람 결정.
