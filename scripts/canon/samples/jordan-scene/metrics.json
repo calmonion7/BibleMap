@@ -1,0 +1,3077 @@
+{
+ "rounds": {
+  "r1": {
+   "scenes": {
+    "authored-david-returns-jerusalem": {
+     "seeds": [
+      {
+       "seed": 11,
+       "base": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/r1/authored-david-returns-jerusalem/s11.png",
+       "boxes": {
+        "david": {
+         "head": [
+          321,
+          324,
+          390,
+          387
+         ],
+         "head_src": "owl",
+         "body": [
+          317,
+          261,
+          394,
+          597
+         ],
+         "body_src": "owl"
+        }
+       }
+      },
+      {
+       "seed": 42,
+       "base": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/r1/authored-david-returns-jerusalem/s42.png",
+       "boxes": {
+        "david": {
+         "head": [
+          149,
+          255,
+          224,
+          326
+         ],
+         "head_src": "owl",
+         "body": [
+          154,
+          183,
+          220,
+          468
+         ],
+         "body_src": "owl"
+        }
+       }
+      },
+      {
+       "seed": 7,
+       "base": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/r1/authored-david-returns-jerusalem/s7.png",
+       "boxes": {
+        "david": {
+         "head": [
+          151,
+          253,
+          241,
+          343
+         ],
+         "head_src": "owl",
+         "body": [
+          134,
+          164,
+          234,
+          614
+         ],
+         "body_src": "owl"
+        }
+       }
+      },
+      {
+       "seed": 23,
+       "base": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/r1/authored-david-returns-jerusalem/s23.png",
+       "boxes": {
+        "david": {
+         "head": [
+          168,
+          272,
+          238,
+          331
+         ],
+         "head_src": "owl",
+         "body": [
+          164,
+          213,
+          237,
+          538
+         ],
+         "body_src": "owl"
+        }
+       }
+      },
+      {
+       "seed": 5,
+       "base": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/r1/authored-david-returns-jerusalem/s5.png",
+       "boxes": {
+        "david": {
+         "head": [
+          514,
+          355,
+          599,
+          444
+         ],
+         "head_src": "owl",
+         "body": [
+          489,
+          265,
+          580,
+          563
+         ],
+         "body_src": "owl"
+        }
+       }
+      },
+      {
+       "seed": 101,
+       "base": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/r1/authored-david-returns-jerusalem/s101.png",
+       "boxes": {
+        "david": {
+         "head": [
+          178,
+          329,
+          219,
+          364
+         ],
+         "head_src": "owl",
+         "body": [
+          150,
+          294,
+          223,
+          556
+         ],
+         "body_src": "owl"
+        }
+       }
+      },
+      {
+       "seed": 202,
+       "base": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/r1/authored-david-returns-jerusalem/s202.png",
+       "boxes": {
+        "david": {
+         "head": [
+          179,
+          271,
+          229,
+          313
+         ],
+         "head_src": "owl",
+         "body": [
+          171,
+          229,
+          227,
+          486
+         ],
+         "body_src": "owl"
+        }
+       }
+      },
+      {
+       "seed": 303,
+       "base": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/r1/authored-david-returns-jerusalem/s303.png",
+       "boxes": {
+        "david": {
+         "head": [
+          185,
+          258,
+          242,
+          308
+         ],
+         "head_src": "owl",
+         "body": [
+          188,
+          208,
+          243,
+          476
+         ],
+         "body_src": "owl"
+        }
+       }
+      }
+     ],
+     "sec": 518.4,
+     "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry grassy bank beside the Jordan river, low distant hills, empty pale sky. a calm wide river with a muddy bank, reeds along the edge, a small flat boat that carries people across a river, crossing the river toward the bank to carry the king's household across. a crowd of men of Judah coming close to meet the king at the river's edge and help him across, some of them stepping to the water's edge to guide the ferry boat in to the bank. on the near bank at the water's edge, the king's household and all his servants standing together, waiting for the boat to come to carry them across. a thousand men of Benjamin, with Ziba and his fifteen sons and twenty servants, who have just waded across the Jordan, coming up behind the bowing man toward the king. close in front of the king, Shimei the son of Gera, a person kneeling low with the face toward the ground, pleading with the king for mercy. beside the king at the river, Barzillai the Gileadite, a very old man of eighty, a wealthy man, with a long white beard, who has come to see the king across the Jordan. On the left: the king, an ancient Israelite lean young man standing at the river's edge, about to cross the Jordan, his hands empty, facing right.",
+     "tokens": 309,
+     "levels": {
+      "ferry-boat": "L2",
+      "jordan": "L1"
+     },
+     "base": "canon",
+     "raised": []
+    }
+   }
+  }
+ },
+ "answers": {
+  "r1": {
+   "W": {
+    "r1:authored-david-returns-jerusalem:11": {
+     "tries": [
+      {
+       "seconds": 6.178,
+       "input": 4,
+       "output": 564,
+       "cache_read": 43850,
+       "cache_create": 10481,
+       "cost_usd": 0.051957,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "맞음",
+      "w.jordan.1": "틀림",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "돛 없이 납작하고 작은 나무배다.",
+      "w.ferry-boat.1": "배가 수면에 떠 있고 물에 비친 모습도 보인다.",
+      "w.ferry-boat.2": "돛이 없고 크기도 작은 배다.",
+      "w.jordan.0": "강 양쪽에 풀과 모래 둑이 있다.",
+      "w.jordan.1": "배에 탄 사람들은 강 위에 있지만, 다른 사람들은 모두 둑에 서서 보고 있다. 강을 건너는 모습으로는 약하다.",
+      "w.jordan.2": "잔잔하지만 굽이쳐 흐르는 강물이 보인다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:42": {
+     "tries": [
+      {
+       "seconds": 6.955,
+       "input": 4,
+       "output": 660,
+       "cache_read": 46289,
+       "cache_create": 7897,
+       "cost_usd": 0.0428249,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "맞음",
+      "w.jordan.1": "맞음",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "돛이나 지붕 없는 낮고 납작한 나무배이고 사람들이 타고 있다.",
+      "w.ferry-boat.1": "배가 수면에 떠 있고 아래로 그림자와 물결이 보인다.",
+      "w.ferry-boat.2": "돛과 돛대가 없는 작은 나룻배다.",
+      "w.jordan.0": "앞쪽 둑과 건너편 둑이 모두 보인다.",
+      "w.jordan.1": "사람들이 배를 타고 건너고 있고 나머지는 강가에서 지켜본다.",
+      "w.jordan.2": "넓은 강물에 잔물결과 반사가 보이는 흐르는 물이다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:7": {
+     "tries": [
+      {
+       "seconds": 7.676,
+       "input": 4,
+       "output": 747,
+       "cache_read": 46289,
+       "cache_create": 7897,
+       "cost_usd": 0.043694899999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "맞음",
+      "w.jordan.1": "맞음",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "돛이 없는 길쭉하고 납작한 나무 배다. 사람이 여럿 탔지만 나룻배로 볼 크기다.",
+      "w.ferry-boat.1": "배가 수면 위에 떠 있고 물결과 반영이 보인다.",
+      "w.ferry-boat.2": "돛이나 돛대가 없는 노 젓는 형태다.",
+      "w.jordan.0": "건너편 둑과 가까운 쪽 둑이 모두 보인다.",
+      "w.jordan.1": "사람들을 태운 배가 강을 건너고 있고, 양쪽 둑에도 사람들이 있다.",
+      "w.jordan.2": "잔물결과 반영이 있는 물이 화면을 가로질러 흐른다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:23": {
+     "tries": [
+      {
+       "seconds": 7.122,
+       "input": 4,
+       "output": 650,
+       "cache_read": 46289,
+       "cache_create": 7897,
+       "cost_usd": 0.042724899999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "맞음",
+      "w.jordan.1": "맞음",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "얕고 긴 나무 배이고, 사람 십여 명이 탄 정도의 크기라 작고 납작한 나룻배로 볼 수 있다.",
+      "w.ferry-boat.1": "배가 물 위에 떠 있고 수면에 배 그림자가 비친다.",
+      "w.ferry-boat.2": "돛이나 돛대가 없다.",
+      "w.jordan.0": "강 양쪽에 풀 덮인 둑이 있다.",
+      "w.jordan.1": "사람들이 탄 배가 강을 건너는 중이고, 앞쪽 둑에서는 사람들이 줄지어 기다린다.",
+      "w.jordan.2": "잔물결과 흐름이 보이는 강물이 화면을 가로지른다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:101": {
+     "tries": [
+      {
+       "seconds": 6.818,
+       "input": 4,
+       "output": 607,
+       "cache_read": 46289,
+       "cache_create": 7897,
+       "cost_usd": 0.042294899999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "맞음",
+      "w.jordan.1": "맞음",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "길쭉하고 낮은 나무배로 작아 보이며, 사람 열 명 안팎이 서 있다.",
+      "w.ferry-boat.1": "배가 수면에 떠 있고 물에 비친 그림자도 보인다.",
+      "w.ferry-boat.2": "돛이나 돛대가 없다.",
+      "w.jordan.0": "왼쪽 둑과 오른쪽 둑이 모두 있고 그 사이로 강이 흐른다.",
+      "w.jordan.1": "사람들이 가득 탄 배가 강을 건너고 있고, 강가에는 건너려는 무리가 서 있다.",
+      "w.jordan.2": "잔물결과 반사가 있는 물이 굽이쳐 흐른다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:5": {
+     "tries": [
+      {
+       "seconds": 7.912,
+       "input": 4,
+       "output": 781,
+       "cache_read": 46289,
+       "cache_create": 7897,
+       "cost_usd": 0.0440349,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "맞음",
+      "w.jordan.1": "맞음",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "돛 없는 낮은 나무 배다. 사람이 열 명쯤 타고 있어 꽤 길지만 납작한 나무배로 보인다. 크기는 경계선이다.",
+      "w.ferry-boat.1": "배가 강물에 떠 있고 수면에 그림자가 비친다.",
+      "w.ferry-boat.2": "돛도 돛대도 없는 배다.",
+      "w.jordan.0": "강 양쪽에 풀이 난 둑이 뚜렷하다.",
+      "w.jordan.1": "사람들이 배를 타고 건너는 중이다. 건너편 둑에는 무리가 서 있고, 이쪽 둑에는 사람들이 줄지어 있다.",
+      "w.jordan.2": "물결과 흐름 무늬가 보이는 강물이 넓게 흐른다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:303": {
+     "tries": [
+      {
+       "seconds": 8.639,
+       "input": 4,
+       "output": 740,
+       "cache_read": 46289,
+       "cache_create": 8058,
+       "cost_usd": 0.0442689,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "맞음",
+      "w.jordan.1": "맞음",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "돛 없는 낮은 나무 나룻배이고, 사람 10여 명이 타는 크기로 나룻배답다.",
+      "w.ferry-boat.1": "배가 수면 위에 떠 있고 물에 반영과 물결 자국이 보인다.",
+      "w.ferry-boat.2": "돛이나 돛대가 없는 평범한 나무배이다.",
+      "w.jordan.0": "왼쪽 앞 둑과 건너편 둑이 모두 보이는 강이다.",
+      "w.jordan.1": "사람들을 태운 배가 강을 건너고 있고, 양쪽 둑에도 사람들이 있다.",
+      "w.jordan.2": "잔잔하지만 물결과 배가 지나간 자국이 있는 강물이 넓게 보인다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:202": {
+     "tries": [
+      {
+       "seconds": 9.82,
+       "input": 4,
+       "output": 1020,
+       "cache_read": 46289,
+       "cache_create": 7897,
+       "cost_usd": 0.046424900000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "맞음",
+      "w.jordan.1": "맞음",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "돛이 없는 낮은 나무배다. 사람이 열 명쯤 타서 크기는 애매하지만 납작한 나룻배로 볼 수 있다.",
+      "w.ferry-boat.1": "배가 물 위에 떠 있고 뒤로 물결이 일어난다.",
+      "w.ferry-boat.2": "주된 배에는 돛이 없다. 멀리 오른쪽 가장자리에 작은 돛배처럼 보이는 것이 있지만 크지 않다.",
+      "w.jordan.0": "왼쪽과 오른쪽 양쪽에 풀이 난 둑이 있다.",
+      "w.jordan.1": "배에 탄 사람들이 강을 건너고, 둑에 선 사람들이 건너편을 향해 있다.",
+      "w.jordan.2": "잔물결과 배가 지나간 물살이 있는 흐르는 강물이 보인다."
+     }
+    }
+   },
+   "W-prop": {},
+   "E": {
+    "r1:authored-david-returns-jerusalem:11": {
+     "tries": [
+      {
+       "seconds": 5.65,
+       "input": 4,
+       "output": 549,
+       "cache_read": 43867,
+       "cache_create": 10498,
+       "cost_usd": 0.0518767,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "틀림",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎은 꿇었지만 이마를 땅 가까이 대고 엎드린 모양이 아니다. 상체를 숙여 한 손으로 땅을 짚은 자세다.",
+      "e.before-david": "엎드린 사람은 다윗에게서 떨어져 있고 다윗 발 앞이 아니다. 다윗은 왕의 모습이 아니라 허리만 두른 맨몸의 젊은 남자로, 왕으로 보이지 않는다.",
+      "e.old-man": "다윗 곁에 선 아주 늙은 노인이 없다. 흰 수염 노인들은 오른쪽 무리 속에 섞여 있다.",
+      "e.no-sword": "다윗 손은 빈손이고 칼이 보이지 않는다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:42": {
+     "tries": [
+      {
+       "seconds": 7.202,
+       "input": 4,
+       "output": 665,
+       "cache_read": 46306,
+       "cache_create": 8076,
+       "cost_usd": 0.043592599999999995,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음"
+     },
+     "reasons": {
+      "e.shimei-bow": "한 사람이 무릎 꿇고 상체를 숙여 머리를 땅 가까이 댄 모양이다.",
+      "e.before-david": "엎드린 사람은 화면 아래 가운데 오른쪽에 있고, 왼쪽에 선 다윗과는 군중 수십 걸음만큼 떨어져 있어 발 앞이 아니다.",
+      "e.old-man": "흰 수염 노인은 오른쪽 군중 속에 서 있고 왼쪽의 다윗과 멀리 떨어져 있어 곁이 아니다.",
+      "e.no-sword": "다윗의 두 손은 몸 옆에 늘어져 있고 칼은 없다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:23": {
+     "tries": [
+      {
+       "seconds": 6.356,
+       "input": 4,
+       "output": 609,
+       "cache_read": 46306,
+       "cache_create": 8076,
+       "cost_usd": 0.043032600000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "틀림",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음"
+     },
+     "reasons": {
+      "e.shimei-bow": "두 사람이 무릎 꿇고 손을 모아 빌 뿐, 이마를 땅 가까이 대고 엎드린 사람은 없음. 한 사람이 아니라 둘이 꿇어 있음.",
+      "e.before-david": "꿇어앉은 사람들이 다윗(왼쪽 서 있는 인물)에게서 멀리 떨어진 오른쪽 아래에 있음. 발 앞 가까이가 아님.",
+      "e.old-man": "흰 수염이 있는 노인이 오른쪽 줄에 있지만 다윗 곁이 아니라 멀리 떨어져 있고, 몸도 곧게 서서 아주 늙은 몸으로 보이지 않음.",
+      "e.no-sword": "다윗은 양손이 비어 있고 칼이 보이지 않음. 다만 그림 전체 해상도로만 확인했고 크롭 파일은 열어 보지 않았음."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:7": {
+     "tries": [
+      {
+       "seconds": 9.493,
+       "input": 4,
+       "output": 920,
+       "cache_read": 46306,
+       "cache_create": 8076,
+       "cost_usd": 0.0461426,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음"
+     },
+     "reasons": {
+      "e.shimei-bow": "어두운 머리의 남자가 무릎 꿇고 머리를 땅 쪽으로 깊이 숙이고 있다. 그 곁에 무릎 꿇은 사람이 한 명 더 있어 '한 사람'은 완벽하지 않지만 엎드려 비는 모양은 분명하다.",
+      "e.before-david": "엎드린 사람은 화면 가운데 아래쪽 군중 속에 있고, 왼쪽에 선 다윗과는 한참 떨어져 있다. 다윗의 발 앞이 아니다.",
+      "e.old-man": "흰 수염의 노인은 오른쪽 군중 속에 서 있고 다윗과는 멀리 떨어져 있다. 다윗 곁이 아니다.",
+      "e.no-sword": "다윗의 두 손은 비어 있고 칼도 허리에 차지 않았다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:202": {
+     "tries": [
+      {
+       "seconds": 6.431,
+       "input": 4,
+       "output": 593,
+       "cache_read": 46306,
+       "cache_create": 8076,
+       "cost_usd": 0.0428726,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "틀림",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 앞으로 숙이고 손을 모았지만 이마가 땅 가까이 닿지 않고 머리를 든 자세라 엎드려 비는 모양이 아님",
+      "e.before-david": "엎드린 사람이 화면 오른쪽 멀리 있고 왼쪽 끝의 다윗과는 줄 선 사람들 열 개 정도 떨어져 있어 발 앞이 아님",
+      "e.old-man": "흰 수염 노인은 있으나 오른쪽에 있고 다윗 곁이 아니라 멀리 떨어져 있음",
+      "e.no-sword": "다윗은 흰 옷에 두 손을 내리고 있으며 칼이 보이지 않음"
+     }
+    },
+    "r1:authored-david-returns-jerusalem:5": {
+     "tries": [
+      {
+       "seconds": 9.942,
+       "input": 6,
+       "output": 875,
+       "cache_read": 72987,
+       "cache_create": 8344,
+       "cost_usd": 0.0494367,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "틀림",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎은 꿇었지만 상체를 세우고 두 손을 얼굴 앞에 모았다. 이마를 땅 가까이 대고 엎드린 모양이 아니다.",
+      "e.before-david": "꿇어앉은 사람은 화면 오른쪽 끝 물가에 있고, 다윗(왼쪽 흰 옷)과는 여러 사람만큼 떨어져 있다. 발 앞이 아니다.",
+      "e.old-man": "흰 수염 노인은 다윗에게서 여러 사람 건너 줄 한가운데 서 있다. 다윗 곁이 아니고 줄의 한 사람처럼 보인다.",
+      "e.no-sword": "다윗의 두 손은 몸 옆에 내려져 있고 비어 있으며 칼은 보이지 않는다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:303": {
+     "tries": [
+      {
+       "seconds": 7.13,
+       "input": 4,
+       "output": 568,
+       "cache_read": 46306,
+       "cache_create": 8075,
+       "cost_usd": 0.0426186,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음"
+     },
+     "reasons": {
+      "e.shimei-bow": "한 사람이 무릎 꿇고 머리를 땅 가까이 숙여 엎드려 있다.",
+      "e.before-david": "엎드린 사람은 다윗에게서 300px쯤 떨어진 줄 안에 있어 발 앞 가까이가 아니다.",
+      "e.old-man": "흰 수염 노인은 오른쪽 줄 속에 있고 다윗 곁이 아니다. 다윗 곁에는 아무도 없다.",
+      "e.no-sword": "다윗은 두 손이 비어 있고 칼이 없다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:101": {
+     "tries": [
+      {
+       "seconds": 7.816,
+       "input": 4,
+       "output": 679,
+       "cache_read": 46306,
+       "cache_create": 8076,
+       "cost_usd": 0.043732599999999996,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음"
+     },
+     "reasons": {
+      "e.shimei-bow": "한 사람이 무릎을 꿇고 상체를 숙여 한 손을 땅에 짚고 머리를 낮춘 모양이다.",
+      "e.before-david": "엎드린 사람은 화면 가운데쯤에 있고 다윗과 한참 떨어져 있다. 다윗 발 앞 가까이가 아니다.",
+      "e.old-man": "흰 수염 노인은 오른쪽 군중 속에 서 있고 다윗과 멀다. 다윗 곁에 서 있지 않다.",
+      "e.no-sword": "다윗은 두 팔을 내렸고 손에 칼이 보이지 않는다. 빈손이다."
+     }
+    }
+   },
+   "J1": {
+    "r1:authored-david-returns-jerusalem:202": {
+     "tries": [
+      {
+       "seconds": 8.208,
+       "input": 4,
+       "output": 890,
+       "cache_read": 45714,
+       "cache_create": 10745,
+       "cost_usd": 0.05645940000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "배는 강 가운데서 건너가고 있고, 시므이는 왕 앞이 아니라 강가 줄 가운데서 혼자 무릎 꿇고 있다. 인물들이 서로 마주 보는 관계도 없이 한 줄로 늘어서 있어 사건이 읽히지 않는다.",
+      "background[0]": "요단 강가의 강, 둑, 갈대가 그려져 있다.",
+      "crowds[0]": "유다 사람들이 왕 가까이 모여 있지 않고 일렬로 늘어서 있다. 물가에서 배를 둑으로 이끄는 사람도 없다.",
+      "crowds[1]": "가족과 신복이 배를 타려고 기다리는 모습이 아니라 줄지어 서서 강만 보고 있다. 배는 이미 강 가운데에 있다.",
+      "crowds[2]": "베냐민 사람 일천 명과 시바 일행이 요단을 밟고 건너오는 모습이 없다. 그냥 강가에 서 있다.",
+      "figures[0].pose": "다윗이 강가에 서서 강을 바라보고 있다.",
+      "figures[0].prop": "손에 든 것이 없는 빈손이다.",
+      "figures[0].facing": "얼굴과 몸이 화면 오른쪽(강 쪽)을 향한다.",
+      "guard": "오른쪽 멀리 둑에 배 모양 같은 이상한 물체가 보이고 배 위 인물들이 뭉쳐 있다. 인물들이 한 줄로 복제한 듯 늘어서 있어 어색하다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:303": {
+     "tries": [
+      {
+       "seconds": 9.334,
+       "input": 4,
+       "output": 1099,
+       "cache_read": 45714,
+       "cache_create": 10756,
+       "cost_usd": 0.058593400000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "다윗이 왕 같지 않게 반라로 홀로 서 있고, 배는 이미 사람들을 태우고 건너가며, 시므이가 왕 앞에 엎드리는 장면이 불분명함",
+      "background[0]": "요단 강가 풍경이 맞음",
+      "crowds[0]": "유다 무리가 맞은편 둑에 멀리 줄지어 있고 배를 둑으로 이끄는 사람이 없음",
+      "crowds[1]": "왕의 가족이 강가에서 배를 기다리지 않고 이미 배에 타 있음",
+      "crowds[2]": "베냐민·시바 일행이 요단을 건너 왕 앞으로 나아오는 모습이 없고 그냥 줄지어 서 있음",
+      "figures[0].pose": "강가에 서 있음",
+      "figures[0].prop": "빈손",
+      "figures[0].facing": "화면 오른쪽을 향함",
+      "guard": "앞쪽 바닥에 종이 같은 이물과 부자연스럽게 줄지은 인물들이 있어 확실히 깨끗하다고 보기 어려움"
+     }
+    },
+    "r1:authored-david-returns-jerusalem:42": {
+     "tries": [
+      {
+       "seconds": 9.306,
+       "input": 6,
+       "output": 955,
+       "cache_read": 74662,
+       "cache_create": 10984,
+       "cost_usd": 0.0609642,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "시므이가 엎드려 있으나 무리가 강가에 줄지어 서 있을 뿐이고, 배는 이미 강 한가운데에 떠 있어 건너려는 순간과 어긋남",
+      "background[0]": "강과 둑, 언덕이 있는 요단 강가",
+      "crowds[0]": "물가로 나가 나룻배를 둑으로 이끄는 사람이 없고 그냥 줄지어 서 있음",
+      "crowds[1]": "왕의 가족이 강가에서 기다리지 않고 배 안에 이미 타고 있음",
+      "crowds[2]": "베냐민 사람과 시바 일행이 요단을 밟고 건너오는 모습이 없고 둑에 줄지어 서 있음",
+      "figures[0].pose": "다윗이 강가에 서서 강을 바라봄",
+      "figures[0].prop": "빈손",
+      "figures[0].facing": "몸과 얼굴이 화면 오른쪽을 향함",
+      "guard": "강가 무리가 일렬로 늘어서 있어 모두 같은 방향으로 겹치듯 붙어 있고, 인물 일부는 서로 겹쳐 덧붙은 듯 보이는 등 깨끗하다고 확인되지 않음"
+     }
+    },
+    "r1:authored-david-returns-jerusalem:101": {
+     "tries": [
+      {
+       "seconds": 10.404,
+       "input": 4,
+       "output": 1212,
+       "cache_read": 45714,
+       "cache_create": 10756,
+       "cost_usd": 0.0597234,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "맞음",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "배가 강을 건너고, 시므이로 보이는 인물이 엎드려 있으며, 무리가 강가에 함께 있다.",
+      "background[0]": "강과 강가 둑이 보이고 배경은 요단 강가에 맞는다.",
+      "crowds[0]": "유다 사람들이 왕 가까이 서 있지 않고 맞은편 둑에 줄지어 서 있다. 물가에서 배를 둑으로 이끄는 사람도 없다.",
+      "crowds[1]": "왕의 가족이 강가에서 배를 기다리지 않고 이미 배에 타서 강 가운데를 건너고 있다.",
+      "crowds[2]": "베냐민 사람들과 시바 일행이 요단을 밟고 건너는 모습이 아니라 둑에 서 있기만 하다.",
+      "figures[0].pose": "다윗이 강가에 서서 강을 바라보고 있다.",
+      "figures[0].prop": "손이 비어 있다. 목걸이는 손에 든 물건이 아니다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향한다.",
+      "guard": "손가락 수 이상, 겹친 인물, 테두리, 글자가 눈에 띄지 않는다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:5": {
+     "tries": [
+      {
+       "seconds": 12.277,
+       "input": 4,
+       "output": 1475,
+       "cache_read": 45714,
+       "cache_create": 10787,
+       "cost_usd": 0.0624774,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "시므이가 엎드려 비는 모습은 있다. 그러나 베냐민 일천과 시바 일행은 건너오지 않고 건너편 둑에 줄지어 서 있어, 장면에 들어가야 할 무리가 강가에 함께 있지 않다.",
+      "background[0]": "넓은 요단 강과 강가 풀밭, 둑이 보인다.",
+      "crowds[0]": "왼쪽 둑에 사람들이 줄지어 서 있을 뿐이다. 물가로 나가 나룻배를 둑으로 이끄는 사람이 없고, 배는 강 가운데에 있다.",
+      "crowds[1]": "왕의 가족과 신복이 강가에서 배를 기다리는 모습이 아니다. 배는 이미 사람들로 차서 강 가운데에 떠 있다.",
+      "crowds[2]": "베냐민 사람과 시바 일행이 건너편 둑에 작게 줄지어 서 있다. 시므이와 함께 요단을 건너 왕 앞으로 나아오는 모습이 아니다.",
+      "figures[0].pose": "크롭 가운데 인물은 강가에 서서 강을 바라본다.",
+      "figures[0].prop": "두 손이 비어 있고 든 것이 없다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽, 강 쪽을 향한다.",
+      "guard": "손가락, 겹친 인물, 테두리, 글자 같은 뚜렷한 결함은 보이지 않는다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:11": {
+     "tries": [
+      {
+       "seconds": 12.339,
+       "input": 4,
+       "output": 1363,
+       "cache_read": 47307,
+       "cache_create": 9218,
+       "cost_usd": 0.055240700000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "맞음",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "틀림",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "배가 건너가고 한 사람이 왕 앞에 엎드려 있으며 무리가 강가에 함께 있어 뜻이 맞음",
+      "background[0]": "강과 둑, 야자와 언덕이 있어 요단 강가로 보임",
+      "crowds[0]": "사람들이 오른쪽에 줄지어 서서 구경할 뿐, 물가로 나가 배를 둑으로 이끄는 이가 없음",
+      "crowds[1]": "가족이 강가에서 배를 기다리는 모습이 아님. 한 무리는 먼 맞은편 둑에 서 있고 배 안의 사람들은 이미 타고 있음",
+      "crowds[2]": "베냐민 일천 명과 시바 일행이 강을 밟고 건너오는 모습이 없음",
+      "figures[0].pose": "강가에 서서 물을 바라봄",
+      "figures[0].prop": "빈손이고 칼 등 든 것이 없음",
+      "figures[0].facing": "다윗은 등을 보이고 얼굴이 화면 왼쪽(물·먼 둑 쪽)으로 향해 오른쪽 방향이 아님",
+      "guard": "손가락 수, 두 겹 인물, 테두리, 글자 같은 눈에 띄는 결함이 보이지 않음"
+     }
+    },
+    "r1:authored-david-returns-jerusalem:23": {
+     "tries": [
+      {
+       "seconds": 13.318,
+       "input": 4,
+       "output": 1460,
+       "cache_read": 45714,
+       "cache_create": 10811,
+       "cost_usd": 0.062423400000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "유다 무리가 먼 건너편 둑에 줄지어 서 있을 뿐 왕 곁에 있지 않다. 배는 이미 강 가운데로 나가 있고, 시므이 일행의 위치도 이야기와 맞지 않는다. 모두 강가에 함께 있는 때로 보이지 않는다.",
+      "background[0]": "요단 강과 강가 둔덕이 분명히 그려져 있다.",
+      "crowds[0]": "유다 사람들이 건너편 먼 둑에 일렬로 서 있다. 왕 가까이 선 사람도, 물가로 나가 배를 둑으로 이끄는 사람도 없다.",
+      "crowds[1]": "가족과 신복으로 보이는 사람들이 이미 배에 타고 강 가운데에 있다. 강가에서 배를 타려고 기다리는 모습이 아니다.",
+      "crowds[2]": "무리가 강가에 줄지어 서서 걷고 있을 뿐이다. 요단을 밟고 건너 왕 앞으로 나아오는 모습이 아니다. 시바 일행과 종·아들들도 구별되지 않는다.",
+      "figures[0].pose": "다윗이 강가에 서서 강을 바라본다.",
+      "figures[0].prop": "다윗이 빈손이고 칼이나 다른 지물이 없다.",
+      "figures[0].facing": "다윗의 얼굴과 상체가 화면 오른쪽을 향한다.",
+      "guard": "화면 왼쪽 아래 풀밭에 정체 모를 둥근 물체가 놓여 있다. 이 밖에 결함이 없다고 분명히 확인되지 않아 틀림으로 답한다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:7": {
+     "tries": [
+      {
+       "seconds": 13.486,
+       "input": 4,
+       "output": 1510,
+       "cache_read": 45714,
+       "cache_create": 10923,
+       "cost_usd": 0.06337140000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "다윗이 무리와 떨어져 혼자 서 있다. 시므이 일행이 요단을 건너 왕 앞에 나아오는 순간이 아니라, 몇 사람만 엎드린 채 보트와 강을 향해 있다. 분명히 맞다고 확인되지 않는다.",
+      "background[0]": "요단 강가, 강, 둑, 언덕이 보인다.",
+      "crowds[0]": "유다 사람들이 왕 가까이 서 있지 않고, 물가에서 배를 둑으로 이끄는 사람도 없다. 무리는 오른쪽에 몰려 있고 다윗은 홀로 떨어져 있다.",
+      "crowds[1]": "저쪽 둑에 한 줄로 서 있는 사람들과 배에 탄 사람들은 보이지만, 배를 타려고 기다리는 가족으로 읽히는지 분명하지 않다.",
+      "crowds[2]": "베냐민 사람들과 시바 일행이 강을 밟고 건너 왕 앞으로 나아오는 모습이 없다. 이쪽 둑에 줄지어 서 있거나 구경하는 모습뿐이다.",
+      "figures[0].pose": "다윗이 강가에 서서 강을 바라보고 있다.",
+      "figures[0].prop": "손에 든 것이 없는 빈손이다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향한다.",
+      "guard": "오른쪽 아래 구석에 글자나 서명처럼 보이는 표식이 있다."
+     }
+    }
+   },
+   "J1-prop": {
+    "r1:authored-david-returns-jerusalem:11": {
+     "tries": [
+      {
+       "seconds": 4.11,
+       "input": 4,
+       "output": 317,
+       "cache_read": 45939,
+       "cache_create": 8611,
+       "cost_usd": 0.0422159,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗은 양손이 비어 있고 손에 든 것이 없다. 허리띠는 천 띠뿐이고 칼이나 다른 물건은 보이지 않는다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:42": {
+     "tries": [
+      {
+       "seconds": 4.326,
+       "input": 4,
+       "output": 352,
+       "cache_read": 45939,
+       "cache_create": 8361,
+       "cost_usd": 0.0415659,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "몸 크롭에서 두 손이 모두 비어 있다. 칼, 수금, 지팡이, 꾸러미 같은 물건이 보이지 않는다. 허리에 찬 칼도 없다. 서서 강을 바라보는 자세도 기대와 맞다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:7": {
+     "tries": [
+      {
+       "seconds": 4.741,
+       "input": 4,
+       "output": 343,
+       "cache_read": 45939,
+       "cache_create": 9346,
+       "cost_usd": 0.0454159,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗 크롭에서 양손이 비어 있고 쥔 물건이 없다. 허리띠만 둘렀을 뿐 칼이나 칼집도 보이지 않는다. 기대한 '지물 없음·빈손'과 일치한다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:23": {
+     "tries": [
+      {
+       "seconds": 4.015,
+       "input": 4,
+       "output": 321,
+       "cache_read": 45939,
+       "cache_create": 8585,
+       "cost_usd": 0.042151900000000006,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗의 두 손이 모두 비어 있고 칼·수금·지팡이 같은 지물이 없다. 허리에 띠만 둘렀고 칼은 보이지 않는다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:101": {
+     "tries": [
+      {
+       "seconds": 4.169,
+       "input": 4,
+       "output": 346,
+       "cache_read": 45939,
+       "cache_create": 8268,
+       "cost_usd": 0.0411339,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗은 양손이 비어 있고 칼·수금·지팡이 같은 손에 든 것이 없다. 허리띠와 목걸이는 보이지만 지물로 보기 어렵고, 기대한 '빈손'과 어긋나지 않는다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:303": {
+     "tries": [
+      {
+       "seconds": 4.1,
+       "input": 4,
+       "output": 320,
+       "cache_read": 45939,
+       "cache_create": 8289,
+       "cost_usd": 0.040957900000000005,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗은 두 손이 비어 있다. 칼이나 지팡이, 그 밖에 손에 들거나 몸에 찬 물건이 크롭에서 보이지 않는다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:202": {
+     "tries": [
+      {
+       "seconds": 5.111,
+       "input": 4,
+       "output": 342,
+       "cache_read": 45939,
+       "cache_create": 8241,
+       "cost_usd": 0.040985900000000006,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗은 두 손이 비어 있다. 한 손은 몸 옆에 늘어뜨렸고 다른 손은 뒤로 가 있다. 허리에는 띠만 있고 칼이나 다른 물건은 보이지 않는다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:5": {
+     "tries": [
+      {
+       "seconds": 6.363,
+       "input": 4,
+       "output": 539,
+       "cache_read": 45939,
+       "cache_create": 8414,
+       "cost_usd": 0.0436479,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "크롭 속 인물은 두 손이 비어 있고 아무것도 쥐지 않았다. 허리띠 아래로 늘어진 끈 같은 것이 있지만 칼집이나 칼은 아니다. 다른 지물도 보이지 않아 '지물 없음·빈손'과 맞는다."
+     }
+    }
+   },
+   "O1": {
+    "r1:authored-david-returns-jerusalem:11": {
+     "tries": [
+      {
+       "seconds": 5.27,
+       "input": 4,
+       "output": 425,
+       "cache_read": 46451,
+       "cache_create": 8362,
+       "cost_usd": 0.0423511,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 상의 없이 허리만 두른 평민 차림이라 왕으로 구별되지 않고, 엎드린 시므이도 군중 속 다른 인물과 구별이 모호하다. 왕의 가족과 신복이 강가에서 기다리는 모습이 없고(배 안 사람들만 보임), 시므이 일행이 요단을 밟고 건너오는 모습도 없다. 군중이 다윗 쪽이 아니라 강 쪽을 향해 서 있어 역할이 모호하다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:42": {
+     "tries": [
+      {
+       "seconds": 6.133,
+       "input": 4,
+       "output": 521,
+       "cache_read": 46451,
+       "cache_create": 8316,
+       "cost_usd": 0.0431271,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 곱슬머리의 젊은 평민 같은 짧은 흰 튜닉 차림으로 그려져 왕으로 구별되지 않고, 뒷모습이라 신원이 모호하다. 시므이로 보이는 엎드린 사람은 다윗 앞이 아니라 무리 끝에 있어서 역할 관계가 흐릿하다. 나룻배에는 사람들이 타고 있지만 왕의 가족과 신복들이 강가에서 기다리는 모습은 없다. 베냐민 일천 명과 시바 일행이 강을 건너는 모습은 없고, 유다 사람들이 배를 둑으로 이끄는 모습도 없다. 배가 강 한가운데에서 건너편으로 떠 있어 명세와 맞지 않는다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:7": {
+     "tries": [
+      {
+       "seconds": 6.146,
+       "input": 4,
+       "output": 512,
+       "cache_read": 46451,
+       "cache_create": 8474,
+       "cost_usd": 0.0436691,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 평민 같은 짧은 튜닉 차림으로 무리와 떨어져 서 있어 왕으로 구별되지 않는다. 꿇어 엎드린 두 사람(시므이?)은 다윗을 향하지 않고 강 쪽을 향해, 왕 앞에서 비는 역할이 모호하다. 오른쪽 가장자리 인물이 잘렸다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:23": {
+     "tries": [
+      {
+       "seconds": 5.972,
+       "input": 4,
+       "output": 530,
+       "cache_read": 46451,
+       "cache_create": 8362,
+       "cost_usd": 0.0434011,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 왕답지 않은 평범한 짧은 튜닉 차림이라 누가 왕인지 구별되지 않고, 가까이 선 유다 사람들 무리 속에 있지도 않고 혼자 떨어져 서 있다. 무릎 꿇은 두 사람 중 누가 시므이인지도 모호하다. 시므이와 함께 건너온 일천 명·시바 일행은 물을 밟고 건너는 모습이 아니라 맞은편 둑에 줄지어 서 있다. 배에는 가족이 타고 있는 것으로 보이나, 배가 이미 강 가운데 떠 있어 '강가에서 기다림'과 어긋난다. 왼쪽 아래에 정체불명의 둥근 물체(돌이나 방패 같은 것)가 놓여 있다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:101": {
+     "tries": [
+      {
+       "seconds": 5.48,
+       "input": 4,
+       "output": 460,
+       "cache_read": 46451,
+       "cache_create": 8307,
+       "cost_usd": 0.042481099999999994,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 왕으로 구별되지 않는다 — 소매 없는 흰 민짜 옷에 관·왕의 표식이 없어 무리 속 평민과 비슷하다. 또 시므이가 엎드린 상대가 다윗이 아니라 무리 쪽을 향해 있는 듯 보여 행동 주체와 대상이 모호하다. 베냐민 일천 명과 시바 일행이 물을 건너오는 모습은 없고, 강 건너편 둑에서 줄 선 무리로만 그려졌다. 배에 탄 사람들은 왕의 가족인지 분명하지 않다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:5": {
+     "tries": [
+      {
+       "seconds": 7.048,
+       "input": 4,
+       "output": 641,
+       "cache_read": 46451,
+       "cache_create": 8338,
+       "cost_usd": 0.0444151,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 누구인지 모호하다. 몸 크롭 가운데는 흰 수염 노인이고, 전체 그림에서 눈에 띄는 인물은 왼쪽의 흰 옷 곱슬머리 남자다. 둘 중 누가 왕인지 구별되지 않고, 왕을 나타내는 표지도 없다. 줄지어 선 사람들은 모두 한 방향으로 걷고 있어 왕 가까이 선 유다 사람들로 읽히지 않는다. 엎드려 비는 시므이도 왕 앞이 아니라 줄 끝에 따로 있다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:303": {
+     "tries": [
+      {
+       "seconds": 5.236,
+       "input": 4,
+       "output": 445,
+       "cache_read": 46451,
+       "cache_create": 8307,
+       "cost_usd": 0.042331099999999997,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 왕답지 않게 상의를 벗고 허리옷만 걸친 젊은이로 그려져, 왕인지 구별되지 않는다. 신원이 모호하다. 시므이로 보이는 엎드린 사람은 다윗 쪽이 아니라 무리 곁에 있어 역할 관계도 불분명하다. 또 맞은편 둑에 줄지어 선 사람들과 나룻배 위의 흰옷 인물이 누구인지 불분명하다. 건너오는 무리와 시바 일행이 명세대로 구별되지 않는다."
+     }
+    },
+    "r1:authored-david-returns-jerusalem:202": {
+     "tries": [
+      {
+       "seconds": 5.5,
+       "input": 4,
+       "output": 464,
+       "cache_read": 46451,
+       "cache_create": 8296,
+       "cost_usd": 0.0424771,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "oddity": "틀림"
+     },
+     "reasons": {
+      "oddity": "다윗이 일반 신복과 같은 평범한 흰 민소매 옷을 입고 줄 맨 끝에 서 있어서, 누가 왕인지 구별되지 않는다(신원 모호). 또 베냐민 일천 명이 요단을 밟고 건너 나오는 모습이 없고, 나룻배는 강 한가운데에 있다. 시므이로 보이는 엎드린 사람은 하나뿐이고 왕 앞이 아니라 다윗과 떨어진 곳에 있다. 바르실래로 보이는 흰 수염 노인이 있지만 시바 일행은 구별되지 않는다."
+     }
+    }
+   }
+  },
+  "edit": {
+   "J1": {
+    "edit:authored-david-returns-jerusalem:P1-b101-k2": {
+     "tries": [
+      {
+       "seconds": 9.418,
+       "input": 6,
+       "output": 1012,
+       "cache_read": 74743,
+       "cache_create": 11007,
+       "cost_usd": 0.0616343,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "틀림",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "시므이 일행이 왕 앞에 엎드린 모습이 약하고, 무리가 모두 강가에 함께 있는 모습이 아님. 다윗은 무리와 떨어져 홀로 서 있고 배는 강 한가운데 있음.",
+      "background[0]": "요단 강과 강가 풍경이 맞음.",
+      "crowds[0]": "유다 사람들이 다윗 가까이 서지 않고 오른쪽에 줄지어 서 있음. 물가에서 배를 둑으로 이끄는 사람이 없음.",
+      "crowds[1]": "배 위에 사람들이 이미 타고 있어 강가에서 기다리는 모습이 아님.",
+      "crowds[2]": "베냐민 일천 명과 시바 일행이 요단을 밟고 건너 나아오는 모습이 없음. 엎드린 두 사람만 있음.",
+      "figures[0].pose": "다윗이 강가에 서 있음.",
+      "figures[0].prop": "손에 든 것이 없는 빈손임.",
+      "figures[0].facing": "다윗의 얼굴과 몸이 화면 오른쪽이 아니라 정면에서 약간 오른쪽을 향해 어중간함. 분명히 오른쪽이라고 확인되지 않음.",
+      "guard": "중앙의 서 있는 인물이 번지고 겹쳐 있어 덧붙은 인물처럼 깨져 보임."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b42-k1": {
+     "tries": [
+      {
+       "seconds": 9.588,
+       "input": 4,
+       "output": 1092,
+       "cache_read": 45750,
+       "cache_create": 10819,
+       "cost_usd": 0.058779000000000005,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "맞음",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "배가 건너가고 강가에 무리가 있고 한 사람이 엎드려 비는 모습",
+      "background[0]": "요단 강가 풍경이 맞음",
+      "crowds[0]": "물가로 나가 배를 둑으로 이끄는 사람이 없고 그냥 줄지어 서 있음",
+      "crowds[1]": "가족이 둑에서 기다리지 않고 이미 배에 타 있음",
+      "crowds[2]": "베냐민 일천 명이 요단을 밟고 건너오는 모습이 없고 둑에 서 있음",
+      "figures[0].pose": "강가에 서 있음",
+      "figures[0].prop": "빈손",
+      "figures[0].facing": "얼굴과 몸이 화면 오른쪽을 향함",
+      "guard": "눈에 띄는 결함 없음"
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b101-k1": {
+     "tries": [
+      {
+       "seconds": 9.861,
+       "input": 6,
+       "output": 1010,
+       "cache_read": 74743,
+       "cache_create": 11116,
+       "cost_usd": 0.0620503,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "배가 강 한가운데 떠 있고 바르실래와 일천 명, 시바 일행이 보이지 않아 문항의 장면 구성이 갖춰지지 않음",
+      "background[0]": "요단 강가의 강, 둑, 언덕이 보임",
+      "crowds[0]": "물가로 나가 배를 둑으로 이끄는 사람이 없고 줄지어 서서 구경만 함",
+      "crowds[1]": "왕의 가족이 강가에서 기다리지 않고 이미 배 위에 타고 있음",
+      "crowds[2]": "시므이로 보이는 엎드린 두 사람뿐이고 일천 명과 시바 일행이 강을 건너 나아오는 모습은 없음",
+      "figures[0].pose": "다윗이 강가에 서 있음",
+      "figures[0].prop": "다윗은 빈손이고 칼 등 지물이 없음",
+      "figures[0].facing": "다윗의 얼굴과 몸이 화면 오른쪽을 향함",
+      "guard": "손가락 수 이상, 두 겹 인물, 테두리, 글자가 보이지 않음"
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b101-k2": {
+     "tries": [
+      {
+       "seconds": 10.451,
+       "input": 4,
+       "output": 1221,
+       "cache_read": 45750,
+       "cache_create": 10810,
+       "cost_usd": 0.060033,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "시므이는 다윗이 선 쪽과 반대편 둑에 엎드려 있고 둘 사이에 강이 있다. 다윗 앞에 엎드려 비는 장면으로 읽히지 않는다.",
+      "background[0]": "요단 강가 풍경이다. 강, 둑, 언덕이 보인다.",
+      "crowds[0]": "무리가 다윗 쪽이 아니라 반대편 둑에 서 있다. 물가로 나가 배를 둑으로 이끄는 사람도 없다.",
+      "crowds[1]": "왕의 가족과 신복이 이미 배에 타고 강 한가운데 있다. 강가에서 기다리는 모습이 아니다.",
+      "crowds[2]": "베냐민 사람들과 시바 일행이 반대편 둑에 줄지어 서 있을 뿐이다. 요단을 밟고 건너 왕 앞으로 나아오는 모습이 아니다.",
+      "figures[0].pose": "다윗이 강가에 서 있다.",
+      "figures[0].prop": "다윗의 두 손이 비어 있다. 칼 등 다른 물건은 없다.",
+      "figures[0].facing": "다윗의 얼굴과 상체가 화면 오른쪽, 곧 강과 무리 쪽을 향한다.",
+      "guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자 같은 결함이 눈에 띄지 않는다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b42-k2": {
+     "tries": [
+      {
+       "seconds": 11.013,
+       "input": 4,
+       "output": 1232,
+       "cache_read": 45750,
+       "cache_create": 10819,
+       "cost_usd": 0.060179,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "배는 이미 건너편 쪽 물 위에 떠 있고, 엎드린 사람은 둘이다. 가족·시바 일행·바르실래가 강가에 함께 있는 모습으로 읽히지 않는다.",
+      "background[0]": "요단 강과 강가 풀밭, 먼 언덕이 그려져 있다.",
+      "crowds[0]": "물가로 나가 나룻배를 둑으로 이끄는 사람이 없다. 모두 둑 위에 줄지어 서 있기만 한다.",
+      "crowds[1]": "왕의 가족이 이미 배에 타 있고, 강가에서 배를 타려고 기다리는 모습이 아니다.",
+      "crowds[2]": "베냐민 사람들과 시바 일행이 시므이와 함께 요단을 건너는 모습이 아니다. 둑 위에 서 있거나 엎드려 있다.",
+      "figures[0].pose": "다윗이 강가 둑에 서서 강을 바라본다.",
+      "figures[0].prop": "양손이 비어 있고 지물이 없다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽, 곧 강 쪽으로 향해 있다.",
+      "guard": "손가락 수 이상, 겹친 인물, 테두리, 글자는 보이지 않는다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b101-k1": {
+     "tries": [
+      {
+       "seconds": 11.108,
+       "input": 4,
+       "output": 1208,
+       "cache_read": 45750,
+       "cache_create": 10810,
+       "cost_usd": 0.059903,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "맞음",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "배가 강 위에 있고 두 사람이 왕 가까운 강가에서 엎드려 있어, 건너기 직전 시므이가 비는 때로 읽힌다.",
+      "background[0]": "요단 강과 강둑이 보인다.",
+      "crowds[0]": "유다 사람들이 오른쪽 둑에 줄지어 서 있을 뿐이다. 물가로 나가 배를 이끄는 사람이 없고, 왕과도 떨어져 있다.",
+      "crowds[1]": "왕의 가족과 신복으로 보이는 사람들이 강가에서 기다리지 않고 이미 배에 타 강 위에 있다.",
+      "crowds[2]": "베냐민 사람 일천 명과 시바 일행이 요단을 밟고 건너 나아오는 모습이 없다. 엎드린 두 사람과 서 있는 줄뿐이다.",
+      "figures[0].pose": "다윗이 강가 풀밭에 서 있다.",
+      "figures[0].prop": "다윗은 빈손이고 칼도 없다.",
+      "figures[0].facing": "다윗의 얼굴과 몸이 화면 오른쪽, 곧 배와 무리 쪽을 향한다.",
+      "guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자가 눈에 띄지 않는다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b101-k3": {
+     "tries": [
+      {
+       "seconds": 11.404,
+       "input": 4,
+       "output": 1281,
+       "cache_read": 45750,
+       "cache_create": 10810,
+       "cost_usd": 0.060633000000000006,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "맞음",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "시므이가 왕 앞에 엎드려 있고, 나룻배가 강 위에 있으며, 무리가 강가에 모여 있다.",
+      "background[0]": "요단 강과 강가 둑이 그려져 있다.",
+      "crowds[0]": "유다 사람들이 오른쪽 둑에 줄지어 서서 구경만 한다. 왕 가까이 서지 않고, 물가로 나가 배를 둑으로 이끄는 사람도 없다.",
+      "crowds[1]": "왕의 가족으로 보이는 사람들이 이미 배에 타고 강 한가운데 있다. 강가에서 배를 타려고 기다리는 모습이 아니다.",
+      "crowds[2]": "시므이 일행이 요단을 밟고 건너 나아오는 모습이 없다. 시므이는 왕 쪽 둑에서 엎드려 있고, 나머지는 줄지어 선 군중이다.",
+      "figures[0].pose": "다윗이 강가에 서서 강을 바라본다.",
+      "figures[0].prop": "다윗이 빈손이고 칼도 없다.",
+      "figures[0].facing": "다윗의 얼굴과 상체가 화면 오른쪽을 향한다.",
+      "guard": "손가락 수, 겹친 인물, 테두리, 글자에서 뚜렷한 결함이 보이지 않는다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b101-k3": {
+     "tries": [
+      {
+       "seconds": 11.837,
+       "input": 4,
+       "output": 1331,
+       "cache_read": 45750,
+       "cache_create": 10810,
+       "cost_usd": 0.06113300000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "무릎 꿇은 두 사람이 왕(다윗)을 향하지 않고 오른쪽 아래를 보고 있어 시므이가 왕 앞에 엎드려 비는 모습으로 읽히지 않는다. 시바 일행과 베냐민 무리도 건너오는 모습이 아니다.",
+      "background[0]": "요단 강과 강둑, 언덕이 그려져 있어 요단 강가로 맞다.",
+      "crowds[0]": "물가로 나가 나룻배를 둑으로 이끄는 사람이 없다. 배는 강 한가운데 떠 있고 무리는 줄지어 서 있기만 하다.",
+      "crowds[1]": "왕의 가족과 신복이 강가에서 기다리지 않고 이미 배에 타고 있다.",
+      "crowds[2]": "베냐민 사람과 시바 일행이 요단을 밟고 건너 나아오지 않고 강둑에 줄지어 서 있다.",
+      "figures[0].pose": "다윗이 강가에 서서 강을 바라보고 있어 기대와 맞다.",
+      "figures[0].prop": "두 손이 비어 있고 목걸이만 걸고 있어 지물이 없다는 기대와 맞다.",
+      "figures[0].facing": "얼굴과 몸이 화면 오른쪽을 향해 기대와 맞다.",
+      "guard": "손가락 수 이상, 겹친 인물, 테두리, 글자 같은 결함이 보이지 않는다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b42-k1": {
+     "tries": [
+      {
+       "seconds": 9.877,
+       "input": 4,
+       "output": 1134,
+       "cache_read": 45750,
+       "cache_create": 10819,
+       "cost_usd": 0.059199,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "배가 이미 강 한가운데 떠 있고 사람들은 그냥 줄지어 서 있음. 가족·바르실래가 강가에 함께 있는 모습이 아님",
+      "background[0]": "요단 강가 풍경이 맞음",
+      "crowds[0]": "물가로 나가 배를 둑으로 이끄는 사람이 없고 줄지어 서 있기만 함",
+      "crowds[1]": "배가 이미 사람을 태우고 강 한가운데 있어 기다리는 모습이 아님",
+      "crowds[2]": "요단을 밟고 건너 나아오는 무리가 없음",
+      "figures[0].pose": "강가에 서 있음",
+      "figures[0].prop": "빈손",
+      "figures[0].facing": "화면 오른쪽(강 쪽)을 향함",
+      "guard": "분명히 맞다고 확인되지 않음. 웅크린 인물 자세가 어색하고 화면 가장자리에서 잘린 인물이 있음"
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b42-k3": {
+     "tries": [
+      {
+       "seconds": 9.743,
+       "input": 6,
+       "output": 994,
+       "cache_read": 74752,
+       "cache_create": 10996,
+       "cost_usd": 0.0614112,
+       "turns": 4,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "배가 이미 왕 일행 없이 강 가운데 떠 있고, 시므이는 왕 앞이 아니라 무리 쪽에서 혼자 엎드려 있어 왕이 건너려는 순간과 맞지 않는다.",
+      "background[0]": "요단 강가와 둑, 언덕이 보인다.",
+      "crowds[0]: ": "유다 사람들이 물가로 나가 배를 둑으로 이끄는 모습이 없고, 그냥 줄지어 서 있다.",
+      "crowds[0]": "유다 사람들이 배를 이끄는 모습이 없고, 그냥 줄지어 서 있다.",
+      "crowds[1]": "왕의 가족이 배를 타려고 기다리는 모습이 아니다. 배에는 이미 사람들이 타고 가 버렸고, 기다리는 가족은 구분되지 않는다.",
+      "crowds[2]": "베냐민 일천 명과 시바 일행이 강을 밟고 건너 왕 앞으로 나오는 모습이 없다. 모두 둑에 줄지어 서 있다.",
+      "figures[0].pose": "다윗이 강가에 서 있다.",
+      "figures[0].prop": "빈손이다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향한다.",
+      "guard": "눈에 띄는 손가락, 겹친 인물, 테두리, 글자 결함은 없다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b42-k2": {
+     "tries": [
+      {
+       "seconds": 10.791,
+       "input": 4,
+       "output": 1263,
+       "cache_read": 45750,
+       "cache_create": 10819,
+       "cost_usd": 0.060489,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "틀림",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "틀림"
+     },
+     "reasons": {
+      "moment": "배가 이미 강 한가운데 떠 있고 나룻배를 타려는 가족이나 건너는 베냐민·시바 일행이 보이지 않는다. 무리는 줄지어 서 있을 뿐이어서 19:18의 순간으로 읽히지 않는다. 엎드린 사람은 둘이지만 시므이가 왕 앞에 엎드려 비는 구도는 분명하지 않다.",
+      "background[0]": "갈대와 구릉이 있는 요단 강가가 맞다.",
+      "crowds[0]": "물가로 나가 나룻배를 둑으로 이끄는 사람이 없다. 유다 사람들은 둑에 줄지어 서 있을 뿐이다.",
+      "crowds[1]": "왕의 가족이 강가에서 배를 기다리는 모습이 아니다. 배는 이미 사람들을 태우고 강 가운데 있다.",
+      "crowds[2]": "시므이와 일천 명, 시바 일행이 요단을 밟고 건너오는 모습이 없다. 사람들은 모두 둑 위에 서 있다.",
+      "figures[0].pose": "다윗이 강가에 서서 강을 바라보고 있어 기대와 맞다.",
+      "figures[0].prop": "다윗의 두 손이 비어 있고 칼도 없다.",
+      "figures[0].facing": "다윗의 얼굴과 상체가 화면 오른쪽, 곧 강 쪽을 향한다.",
+      "guard": "분명히 맞다고 확인되지 않아 틀림으로 답한다. 군중 인물들이 반복되는 복제처럼 비슷해 보이고, 구부린 인물의 얼굴과 손이 어색하며 오른쪽 가장자리의 인물이 잘렸다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b42-k3": {
+     "tries": [
+      {
+       "seconds": 11.975,
+       "input": 4,
+       "output": 1291,
+       "cache_read": 45750,
+       "cache_create": 10819,
+       "cost_usd": 0.060769000000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "moment": "맞음",
+      "background[0]": "맞음",
+      "crowds[0]": "틀림",
+      "crowds[1]": "틀림",
+      "crowds[2]": "틀림",
+      "figures[0].pose": "맞음",
+      "figures[0].prop": "맞음",
+      "figures[0].facing": "맞음",
+      "guard": "맞음"
+     },
+     "reasons": {
+      "moment": "나룻배가 강 위에 있고 한 사람이 엎드려 빌며 무리가 강가에 모여 있어 뜻이 맞음.",
+      "background[0]": "강, 둑, 갈대, 언덕이 있어 요단 강가로 맞음.",
+      "crowds[0]": "물가로 나가 배를 둑으로 이끄는 사람이 없다. 배는 강 한가운데 떠 있고 무리는 줄지어 서 있기만 한다.",
+      "crowds[1]": "왕의 가족이 강가에서 배를 기다리는 모습이 아니다. 배 안 사람들은 이미 타고 있고, 둑의 무리는 가족으로 구분되지 않는다.",
+      "crowds[2]": "일천 명과 시바 일행이 요단을 밟고 건너 나아오는 모습이 없다. 모두 둑 위에 서 있기만 한다.",
+      "figures[0].pose": "다윗이 강가에 서서 강을 바라본다.",
+      "figures[0].prop": "양손이 비어 있다.",
+      "figures[0].facing": "얼굴과 상체가 화면 오른쪽의 강을 향한다.",
+      "guard": "손가락, 겹친 인물, 테두리, 글자에서 뚜렷한 결함이 보이지 않는다."
+     }
+    }
+   },
+   "J1-prop": {
+    "edit:authored-david-returns-jerusalem:P1-b101-k3": {
+     "tries": [
+      {
+       "seconds": 5.108,
+       "input": 4,
+       "output": 480,
+       "cache_read": 45984,
+       "cache_create": 8313,
+       "cost_usd": 0.0426584,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗은 두 손이 모두 비어 있고 칼이나 지팡이 등 든 물건이 없다. 허리띠와 목걸이는 옷차림이라 지물로 보지 않았다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b101-k1": {
+     "tries": [
+      {
+       "seconds": 4.736,
+       "input": 4,
+       "output": 381,
+       "cache_read": 45984,
+       "cache_create": 8313,
+       "cost_usd": 0.0416684,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "두 손이 비어 있고 칼·지팡이 등 든 물건이 없음. 목걸이와 허리띠만 보이며 손에 든 지물은 아님."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b101-k1": {
+     "tries": [
+      {
+       "seconds": 6.483,
+       "input": 4,
+       "output": 626,
+       "cache_read": 45984,
+       "cache_create": 8313,
+       "cost_usd": 0.0441184,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "두 손이 모두 비어 있고 칼, 수금, 지팡이 같은 물건이 없다. 허리에 두른 붉은 띠와 목에 건 가는 금빛 목걸이는 몸에 걸친 장신구일 뿐 손에 든 지물이 아니다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b101-k2": {
+     "tries": [
+      {
+       "seconds": 7.316,
+       "input": 4,
+       "output": 697,
+       "cache_read": 45984,
+       "cache_create": 8313,
+       "cost_usd": 0.044828400000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗은 두 손이 비어 있고 칼, 지팡이, 수금 같은 물건이 없다. 허리에는 띠만 있고 칼은 없다. 목에 가는 금목걸이가 보이지만 장신구일 뿐 손에 든 지물은 아니라서 맞음으로 판정했다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b101-k3": {
+     "tries": [
+      {
+       "seconds": 4.526,
+       "input": 4,
+       "output": 367,
+       "cache_read": 45984,
+       "cache_create": 8313,
+       "cost_usd": 0.0415284,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "두 손이 비어 있고 칼이나 다른 손에 든 물건이 없다. 목걸이와 허리끈뿐이다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b101-k2": {
+     "tries": [
+      {
+       "seconds": 5.807,
+       "input": 4,
+       "output": 538,
+       "cache_read": 45984,
+       "cache_create": 8313,
+       "cost_usd": 0.043238399999999996,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗은 두 손이 비어 있고 칼이나 수금 같은 물건이 없다. 허리띠는 옷의 일부다. 목에 가는 금목걸이가 보이지만 손에 든 지물은 아니다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b42-k2": {
+     "tries": [
+      {
+       "seconds": 4.038,
+       "input": 4,
+       "output": 337,
+       "cache_read": 45984,
+       "cache_create": 8406,
+       "cost_usd": 0.041600399999999996,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗은 강가에 서 있고 양손이 비어 있다. 칼, 막대, 수금 등 손에 든 것이나 몸에 찬 것이 보이지 않는다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b42-k1": {
+     "tries": [
+      {
+       "seconds": 5.274,
+       "input": 4,
+       "output": 361,
+       "cache_read": 45984,
+       "cache_create": 8406,
+       "cost_usd": 0.0418404,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "몸 크롭에서 다윗의 두 손이 모두 비어 있다. 칼, 수금, 지팡이 같은 물건이 허리에도 손에도 보이지 않는다. 기대한 '지물 없음·빈손'과 일치한다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b42-k3": {
+     "tries": [
+      {
+       "seconds": 4.245,
+       "input": 4,
+       "output": 358,
+       "cache_read": 45984,
+       "cache_create": 8406,
+       "cost_usd": 0.0418104,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗은 두 손이 비어 있다. 칼이나 지팡이 같은 물건이 없고 허리띠나 칼집도 보이지 않는다. 옆으로 서서 강가에 서 있다. 현대식 물건도 없다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b42-k2": {
+     "tries": [
+      {
+       "seconds": 4.097,
+       "input": 4,
+       "output": 342,
+       "cache_read": 45984,
+       "cache_create": 8406,
+       "cost_usd": 0.0416504,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "다윗은 두 손이 비어 있고 몸에 칼이나 다른 지물이 보이지 않는다. 허리에 띠도 없고 팔은 자연스럽게 내려와 있다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b42-k1": {
+     "tries": [
+      {
+       "seconds": 4.759,
+       "input": 4,
+       "output": 367,
+       "cache_read": 45984,
+       "cache_create": 8406,
+       "cost_usd": 0.0419004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "크롭에서 다윗의 두 손이 모두 비어 있다. 칼이나 지팡이 같은 물건은 없고 허리에도 찬 것이 없다. 서서 강 쪽을 바라보는 자세로, 기대한 빈손과 일치한다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b42-k3": {
+     "tries": [
+      {
+       "seconds": 14.233,
+       "input": 4,
+       "output": 380,
+       "cache_read": 45984,
+       "cache_create": 8406,
+       "cost_usd": 0.042030399999999996,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "figures[0].prop": "맞음"
+     },
+     "reasons": {
+      "figures[0].prop": "크롭의 인물은 서서 강 쪽을 보고 있고 두 손이 모두 비어 있다. 칼, 수금, 지팡이, 꾸러미는 보이지 않는다. 허리춤에도 칼이 없다. 기대한 '지물 없음, 빈손'과 일치한다."
+     }
+    }
+   },
+   "E": {
+    "edit:authored-david-returns-jerusalem:P1-b101-k1": {
+     "tries": [
+      {
+       "seconds": 7.024,
+       "input": 4,
+       "output": 685,
+       "cache_read": 46395,
+       "cache_create": 8165,
+       "cost_usd": 0.0441575,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "틀림",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음",
+      "e.one-bowing": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "그림에 엎드린 사람이 둘이다. 한 사람은 무릎 꿇고 손으로 얼굴을 가렸고, 다른 한 사람은 무릎 꿇고 손을 짚었다. 둘 다 이마를 땅 가까이 대고 엎드려 비는 모양은 아니다.",
+      "e.before-david": "엎드린 사람들이 다윗 발 앞 가까이에 있지 않고 몇 걸음 떨어져 있다. 둘 중 하나는 다윗 쪽에 더 가깝지만 바로 앞이라고 하기 어렵다.",
+      "e.old-man": "흰 수염 노인은 오른쪽 군중 속에 서 있어서 다윗 곁이 아니다. 아주 늙은 몸으로 보이지도 않는다.",
+      "e.no-sword": "다윗은 손이 빈 채로 서 있고 칼은 보이지 않는다.",
+      "e.one-bowing": "엎드려 무릎 꿇은 사람이 둘이라 한 사람뿐이 아니다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b101-k1": {
+     "tries": [
+      {
+       "seconds": 6.299,
+       "input": 4,
+       "output": 595,
+       "cache_read": 46395,
+       "cache_create": 8164,
+       "cost_usd": 0.0432535,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음",
+      "e.one-bowing": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "무릎 꿇고 몸을 숙여 땅 가까이 엎드린 사람이 있음",
+      "e.before-david": "가까운 엎드린 사람도 다윗과 거리가 있고 발 앞 바로 앞이라 보기 어려우며 두 명이라 모호함",
+      "e.old-man": "흰 수염 노인은 오른쪽 군중 속에 있고 다윗 곁이 아님",
+      "e.no-sword": "다윗은 칼 없이 빈손으로 서 있음",
+      "e.one-bowing": "엎드린 사람이 두 명(왼쪽 가까이, 가운데 아래)"
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b101-k2": {
+     "tries": [
+      {
+       "seconds": 9.023,
+       "input": 4,
+       "output": 942,
+       "cache_read": 46395,
+       "cache_create": 8165,
+       "cost_usd": 0.0467275,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "틀림",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음",
+      "e.one-bowing": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "엎드려 비는 사람이 두 명이다. 한 명은 손으로 머리를 감싸 쥐고, 다른 한 명은 무릎 꿇고 손을 짚고 있다. '한 사람'이라는 기대와 맞지 않는다.",
+      "e.before-david": "엎드린 사람들은 다윗에게서 멀리 떨어진 화면 중앙에 있다. 그 사이에 서 있는 인물들이 끼어 있어 발 앞 가까이가 아니다.",
+      "e.old-man": "흰 수염 노인은 오른쪽 군중 속에 있고 다윗 곁에 서 있지 않다. 다윗 옆에는 노인이 없다.",
+      "e.no-sword": "다윗은 두 손을 몸 옆에 내리고 있고 칼은 보이지 않는다. 빈손이다.",
+      "e.one-bowing": "엎드린 사람이 두 명이다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b101-k3": {
+     "tries": [
+      {
+       "seconds": 9.073,
+       "input": 6,
+       "output": 877,
+       "cache_read": 73165,
+       "cache_create": 9124,
+       "cost_usd": 0.0525945,
+       "turns": 5,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "틀림",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음",
+      "e.one-bowing": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "엎드린 사람이 둘이라 '한 사람'이라는 기대와 어긋남. 한 명은 이마를 땅에 대고 있고 다른 한 명은 손을 짚고 무릎 꿇은 자세.",
+      "e.before-david": "엎드린 두 사람은 다윗에게서 멀리 떨어진 화면 중앙 아래에 있음. 발 앞 가까이가 아님.",
+      "e.old-man": "흰 수염 노인은 오른쪽 군중 속에 서 있음. 다윗 곁이 아님.",
+      "e.no-sword": "다윗은 두 손이 비었고 칼도 차지 않음.",
+      "e.one-bowing": "엎드린 사람이 두 명임."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b101-k3": {
+     "tries": [
+      {
+       "seconds": 6.823,
+       "input": 4,
+       "output": 697,
+       "cache_read": 46395,
+       "cache_create": 8165,
+       "cost_usd": 0.0442775,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음",
+      "e.one-bowing": "맞음"
+     },
+     "reasons": {
+      "e.shimei-bow": "한 사람이 무릎 꿇고 이마를 땅 가까이 대고 손을 짚은 채 엎드려 있다.",
+      "e.before-david": "엎드린 사람은 화면 중앙에 있고 왼쪽의 다윗과는 한참 떨어져 있어 발 앞이 아니다.",
+      "e.old-man": "흰 수염 노인은 오른쪽 군중 속에 서 있고 다윗 곁이 아니다. 다윗 곁에는 아무도 없다.",
+      "e.no-sword": "다윗은 양손을 내리고 있고 칼이 보이지 않는다.",
+      "e.one-bowing": "엎드린 사람은 한 명뿐이다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b101-k2": {
+     "tries": [
+      {
+       "seconds": 8.319,
+       "input": 4,
+       "output": 791,
+       "cache_read": 46395,
+       "cache_create": 8165,
+       "cost_usd": 0.0452175,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음",
+      "e.one-bowing": "맞음"
+     },
+     "reasons": {
+      "e.shimei-bow": "한 사람이 무릎 꿇고 상체를 깊이 숙여 머리를 땅 가까이 내리고 두 손을 앞으로 뻗어 비는 모양이다.",
+      "e.before-david": "엎드린 사람이 다윗에게서 멀리 떨어져 있다. 다윗은 왼쪽 끝, 엎드린 사람은 화면 가운데쯤이며 둘 사이에 간격이 크다. 발 앞 가까이가 아니다.",
+      "e.old-man": "흰 수염 노인은 오른쪽 군중 속에 섞여 있고 다윗 곁에 서 있지 않다. 다윗은 혼자 서 있다.",
+      "e.no-sword": "다윗은 두 손이 비어 있고 칼이 보이지 않는다.",
+      "e.one-bowing": "엎드린 사람은 한 명뿐이고 나머지는 모두 서 있다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b42-k1": {
+     "tries": [
+      {
+       "seconds": 7.473,
+       "input": 4,
+       "output": 782,
+       "cache_read": 46395,
+       "cache_create": 8165,
+       "cost_usd": 0.0451275,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음",
+      "e.one-bowing": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "화면 왼쪽 중간의 남자가 무릎 꿇고 머리를 땅 가까이 숙이고 있다.",
+      "e.before-david": "엎드린 사람은 서 있는 다윗에게서 몇 걸음 떨어져 있어서 발 앞 가까이가 아니다.",
+      "e.old-man": "흰 수염 노인은 화면 오른쪽 무리 속에 서 있어서 다윗 곁이 아니다.",
+      "e.no-sword": "다윗의 두 손은 몸 옆에 내려져 있고 칼이 보이지 않는다.",
+      "e.one-bowing": "화면 오른쪽 아래에도 몸을 굽혀 엎드린 사람이 하나 더 있어 두 명이다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b42-k3": {
+     "tries": [
+      {
+       "seconds": 7.235,
+       "input": 4,
+       "output": 611,
+       "cache_read": 46395,
+       "cache_create": 8164,
+       "cost_usd": 0.04341350000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음",
+      "e.one-bowing": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "중앙 왼쪽의 한 사람이 무릎 꿇고 머리를 땅 가까이 숙여 빌고 있음",
+      "e.before-david": "엎드린 사람은 다윗에게서 멀리 떨어져 군중 사이에 있어 발 앞이 아님",
+      "e.old-man": "흰 수염 노인은 오른쪽 군중 속에 있고 다윗 곁이 아님",
+      "e.no-sword": "다윗은 양손이 비어 있고 칼이 보이지 않음",
+      "e.one-bowing": "오른쪽 아래에도 몸을 굽혀 엎드린 사람이 있어 두 명임"
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b42-k2": {
+     "tries": [
+      {
+       "seconds": 9.175,
+       "input": 4,
+       "output": 792,
+       "cache_read": 46395,
+       "cache_create": 8165,
+       "cost_usd": 0.045227500000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음",
+      "e.one-bowing": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "왼쪽 인물이 무릎 꿇고 머리를 땅 가까이 숙인 채 엎드려 있다.",
+      "e.before-david": "엎드린 사람은 다윗에게서 멀리 떨어져 있고, 둘 사이에 여러 사람이 서 있다. 다윗 발 앞이 아니다.",
+      "e.old-man": "흰 수염 노인은 오른쪽 줄 속에 서 있고 다윗과 멀리 떨어져 있다. 다윗 곁이 아니다.",
+      "e.no-sword": "다윗의 두 손은 비어 있고 칼이 보이지 않는다.",
+      "e.one-bowing": "엎드린 사람이 둘이다. 왼쪽 중앙에 한 명, 오른쪽 아래에 또 한 명이 있다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b42-k1": {
+     "tries": [
+      {
+       "seconds": 9.054,
+       "input": 4,
+       "output": 871,
+       "cache_read": 46395,
+       "cache_create": 8165,
+       "cost_usd": 0.0460175,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음",
+      "e.one-bowing": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "왼쪽의 한 사람이 무릎 꿇고 몸을 숙여 얼굴을 땅 가까이 대고 있다.",
+      "e.before-david": "엎드린 사람이 다윗 발 앞이 아니라 오른쪽으로 꽤 떨어져 있고, 다윗은 강 쪽을 보고 있어 그를 향하지 않는다.",
+      "e.old-man": "흰 수염 노인은 오른쪽 무리 속에 서 있어 왼쪽의 다윗 곁이 아니다.",
+      "e.no-sword": "다윗의 손은 비어 있고 칼이 보이지 않는다.",
+      "e.one-bowing": "엎드린 사람이 둘이다. 왼쪽에 한 사람, 오른쪽 아래에 몸을 숙인 사람이 한 명 더 있다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b42-k3": {
+     "tries": [
+      {
+       "seconds": 9.325,
+       "input": 4,
+       "output": 752,
+       "cache_read": 46395,
+       "cache_create": 8165,
+       "cost_usd": 0.0448275,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음",
+      "e.one-bowing": "맞음"
+     },
+     "reasons": {
+      "e.shimei-bow": "오른쪽 아래의 한 사람이 무릎 꿇고 몸을 깊이 숙여 머리를 땅 가까이 대고 있다.",
+      "e.before-david": "엎드린 사람은 화면 오른쪽 끝 군중 속에 있다. 다윗은 화면 왼쪽에 서 있어서 둘 사이가 아주 멀다.",
+      "e.old-man": "흰 수염 노인은 오른쪽 군중 속에 서 있어 다윗 곁이 아니다. 다윗은 왼쪽에 홀로 서 있다.",
+      "e.no-sword": "왼쪽에 서 있는 다윗의 두 손은 비어 있고 칼이 보이지 않는다.",
+      "e.one-bowing": "엎드린 사람은 그림 전체에서 한 사람뿐이다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b42-k2": {
+     "tries": [
+      {
+       "seconds": 10.15,
+       "input": 4,
+       "output": 1045,
+       "cache_read": 46395,
+       "cache_create": 8165,
+       "cost_usd": 0.0477575,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "e.shimei-bow": "맞음",
+      "e.before-david": "틀림",
+      "e.old-man": "틀림",
+      "e.no-sword": "맞음",
+      "e.one-bowing": "틀림"
+     },
+     "reasons": {
+      "e.shimei-bow": "오른쪽 아래에 무릎 꿇고 머리를 땅 가까이 숙인 사람이 있어 엎드려 비는 모양이다.",
+      "e.before-david": "무릎 꿇은 사람은 오른쪽 군중 속에 있어 다윗 발 앞과 멀다. 다윗 쪽에 가까운 사람은 허리만 굽힌 채 서 있고, 다윗 바로 앞은 아니다.",
+      "e.old-man": "흰 수염 노인은 오른쪽 군중 속에 서 있다. 왼쪽의 다윗과 멀리 떨어져 있어 곁에 선 모습이 아니다.",
+      "e.no-sword": "다윗은 두 손을 늘어뜨린 빈손이고 칼은 보이지 않는다.",
+      "e.one-bowing": "몸을 숙인 사람이 둘이다. 중앙 왼쪽에서 허리를 굽힌 사람과 오른쪽에서 무릎 꿇고 엎드린 사람이 있다."
+     }
+    }
+   },
+   "W": {
+    "edit:authored-david-returns-jerusalem:P1-b101-k2": {
+     "tries": [
+      {
+       "seconds": 5.044,
+       "input": 4,
+       "output": 447,
+       "cache_read": 46325,
+       "cache_create": 7924,
+       "cost_usd": 0.040806499999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "맞음",
+      "w.jordan.1": "틀림",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "돛 없는 낮고 납작한 나무배",
+      "w.ferry-boat.1": "물 위에 떠 있고 물에 비친 그림자도 보임",
+      "w.ferry-boat.2": "돛과 돛대가 없음",
+      "w.jordan.0": "양쪽 둑이 보이고 풀이 자람",
+      "w.jordan.1": "사람들은 둑 위에 서 있고 배에 탄 무리만 강 위에 있어 강을 건너는 모습이 분명하지 않음",
+      "w.jordan.2": "잔물결과 반사가 있는 흐르는 강물이 보임"
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b101-k1": {
+     "tries": [
+      {
+       "seconds": 8.043,
+       "input": 4,
+       "output": 771,
+       "cache_read": 46325,
+       "cache_create": 8095,
+       "cost_usd": 0.0447305,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "맞음",
+      "w.jordan.1": "맞음",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "돛이나 높은 선체 없이 낮고 납작한 나무배이고, 그림 안에서 작게 보임",
+      "w.ferry-boat.1": "배가 수면에 떠 있고 물에 그림자가 비침",
+      "w.ferry-boat.2": "돛과 마스트가 없음",
+      "w.jordan.0": "왼쪽과 오른쪽에 풀 덮인 둑이 있고 강이 그 사이로 흐름",
+      "w.jordan.1": "사람들이 배를 타고 강을 건너는 중이고 다른 이들은 둑에서 기다림",
+      "w.jordan.2": "강물이 넓게 이어지고 잔물결과 반사가 보임"
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b101-k3": {
+     "tries": [
+      {
+       "seconds": 6.002,
+       "input": 4,
+       "output": 554,
+       "cache_read": 46325,
+       "cache_create": 7924,
+       "cost_usd": 0.0418765,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "맞음",
+      "w.jordan.1": "맞음",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "돛 없는 낮고 납작한 나무배다. 사람 열 명 남짓이 타고 있다.",
+      "w.ferry-boat.1": "배가 수면에 떠 있고 물에 비친 모습도 보인다.",
+      "w.ferry-boat.2": "돛이나 돛대가 없다.",
+      "w.jordan.0": "왼쪽 둑과 오른쪽 둑 사이로 강이 흐른다.",
+      "w.jordan.1": "배에 탄 사람들이 강을 건너고 있고, 강가에는 건너려는 무리가 서 있다.",
+      "w.jordan.2": "잔물결과 반영이 있는 강물이 화면을 가로질러 흐른다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b101-k1": {
+     "tries": [
+      {
+       "seconds": 6.108,
+       "input": 4,
+       "output": 569,
+       "cache_read": 46325,
+       "cache_create": 7924,
+       "cost_usd": 0.042026499999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "맞음",
+      "w.jordan.1": "맞음",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "배는 돛이 없는 작고 낮은 나무배다.",
+      "w.ferry-boat.1": "배가 강물 위에 떠 있고 물에 비친 그림자도 보인다.",
+      "w.ferry-boat.2": "돛이나 돛대가 없다.",
+      "w.jordan.0": "강 양쪽에 풀과 흙으로 된 둑이 있다.",
+      "w.jordan.1": "배에 탄 사람들이 강을 건너고 있고, 둑에 선 사람들은 건널 차례를 기다린다.",
+      "w.jordan.2": "잔잔하지만 강물이 굽이쳐 흐르는 모습이 보인다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b101-k2": {
+     "tries": [
+      {
+       "seconds": 5.215,
+       "input": 4,
+       "output": 464,
+       "cache_read": 46325,
+       "cache_create": 7924,
+       "cost_usd": 0.0409765,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "맞음",
+      "w.jordan.1": "틀림",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "배가 작고 납작한 나무배로 보인다.",
+      "w.ferry-boat.1": "배가 수면 위에 떠 있고 물에 비친 모습도 보인다.",
+      "w.ferry-boat.2": "돛이 없는 배다.",
+      "w.jordan.0": "강 양쪽에 둑과 풀밭이 있다.",
+      "w.jordan.1": "배에 탄 사람들이 건너는 중이지만, 둑 위의 무리는 건너지 않고 서 있기만 해서 건너는 모습으로 분명히 확인되지 않는다.",
+      "w.jordan.2": "잔물결이 있는 강물이 보인다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b101-k3": {
+     "tries": [
+      {
+       "seconds": 6.973,
+       "input": 4,
+       "output": 637,
+       "cache_read": 46325,
+       "cache_create": 7924,
+       "cost_usd": 0.042706499999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "맞음",
+      "w.jordan.1": "맞음",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "돛 없는 낮고 길쭉한 나무배이고 사람 여럿이 타고 있어 나룻배로 보임",
+      "w.ferry-boat.1": "배가 수면에 떠 있고 물에 반영이 비침",
+      "w.ferry-boat.2": "돛이나 돛대가 전혀 없음",
+      "w.jordan.0": "왼쪽 풀밭 둑과 오른쪽 모래 둑 사이로 강이 흐름",
+      "w.jordan.1": "사람들이 배를 타고 건너는 중이고 나머지는 기슭에서 건널 차례를 기다림",
+      "w.jordan.2": "잔물결과 반영이 있는 강물이 굽이쳐 흐르는 모습이 보임"
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b42-k2": {
+     "tries": [
+      {
+       "seconds": 5.847,
+       "input": 4,
+       "output": 526,
+       "cache_read": 46325,
+       "cache_create": 7924,
+       "cost_usd": 0.041596499999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "틀림",
+      "w.jordan.1": "틀림",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "돛 없는 납작한 나무배로 보임",
+      "w.ferry-boat.1": "배가 물 위에 떠 있고 수면에 반영도 있음",
+      "w.ferry-boat.2": "돛이 없고 작은 노 젓는 배임",
+      "w.jordan.0": "앞쪽(근경) 둑은 보이지만 맞은편 둑이 뚜렷하지 않고 강이 넓은 호수처럼 보여 양쪽 둑이 분명하다고 확인되지 않음",
+      "w.jordan.1": "사람들이 강가에 줄지어 서 있을 뿐, 건너는 사람은 배 위의 소수뿐이라 사람들이 건너는 모습이 분명하지 않음",
+      "w.jordan.2": "잔잔하지만 물결과 반영이 있는 강물이 보임"
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b42-k3": {
+     "tries": [
+      {
+       "seconds": 6.257,
+       "input": 4,
+       "output": 579,
+       "cache_read": 46325,
+       "cache_create": 7924,
+       "cost_usd": 0.0421265,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "틀림",
+      "w.jordan.1": "틀림",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "돛 없는 길고 얕은 나무배로 보인다. 장면 속 크기에 맞고 납작하다.",
+      "w.ferry-boat.1": "물 위에 떠 있고 수면에 배 그림자가 비친다.",
+      "w.ferry-boat.2": "돛이나 돛대가 없다.",
+      "w.jordan.0": "앞쪽 둑은 보이지만 건너편 둑이 먼 풀밭 띠로만 보여 양쪽 둑이 뚜렷한 강이라고 확신하기 어렵다. 분명히 맞다고 확인되지 않아 틀림으로 답한다.",
+      "w.jordan.1": "건너는 사람은 배에 탄 소수뿐이다. 대부분은 강가에 줄지어 서 있거나 웅크리고 있어서 사람들이 강을 건너는 모습이 분명하지 않다.",
+      "w.jordan.2": "잔잔하지만 물이 넓게 펼쳐지고 흐름과 반영이 보인다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b42-k2": {
+     "tries": [
+      {
+       "seconds": 5.481,
+       "input": 4,
+       "output": 488,
+       "cache_read": 46325,
+       "cache_create": 7924,
+       "cost_usd": 0.0412165,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "맞음",
+      "w.jordan.1": "틀림",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "돛 없는 낮고 납작한 나무배로 보인다.",
+      "w.ferry-boat.1": "강물 위에 떠 있고 물에 비친 모습도 보인다.",
+      "w.ferry-boat.2": "돛이 없고 작은 배다.",
+      "w.jordan.0": "앞쪽과 건너편에 둑이 모두 있다.",
+      "w.jordan.1": "사람들이 강가에 줄지어 서 있을 뿐이고 건너는 사람은 배에 탄 무리뿐이다. 건너는 동작이 분명하지 않아 맞다고 확인되지 않는다.",
+      "w.jordan.2": "잔물결과 물에 비친 모습이 있는 강물이 보인다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P1-b42-k1": {
+     "tries": [
+      {
+       "seconds": 7.348,
+       "input": 4,
+       "output": 704,
+       "cache_read": 46325,
+       "cache_create": 7924,
+       "cost_usd": 0.0433765,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "맞음",
+      "w.jordan.1": "맞음",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "길고 낮은 나무배이고 사람 여럿이 타고 있다. 작고 납작한 편이다.",
+      "w.ferry-boat.1": "수면에 떠 있고 물에 반영이 비친다.",
+      "w.ferry-boat.2": "돛이나 돛대가 없다.",
+      "w.jordan.0": "강 위쪽과 아래쪽에 둑과 풀밭이 있다.",
+      "w.jordan.1": "사람들이 배로 강을 건너고, 강가에는 건너려는 무리가 서 있다.",
+      "w.jordan.2": "넓은 강물에 잔물결과 흐름 결이 보인다. 다만 꽤 잔잔해서 확신은 약하다."
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b42-k1": {
+     "tries": [
+      {
+       "seconds": 6.538,
+       "input": 4,
+       "output": 649,
+       "cache_read": 46325,
+       "cache_create": 7924,
+       "cost_usd": 0.042826499999999997,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "맞음",
+      "w.jordan.1": "맞음",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "돛 없는 길쭉한 나무 평저선이고 사람 여럿이 탈 만한 크기라 작은 나룻배로 볼 수 있음",
+      "w.ferry-boat.1": "수면에 떠 있고 물에 그림자가 비침",
+      "w.ferry-boat.2": "돛이나 마스트가 없음",
+      "w.jordan.0": "가까운 쪽 둑과 먼 쪽 둑이 모두 보임",
+      "w.jordan.1": "배에 사람들이 타고 건너가고 있고 나머지는 둑에서 기다림",
+      "w.jordan.2": "잔잔하지만 물이 넓게 펼쳐져 있고 물결과 반사가 보임"
+     }
+    },
+    "edit:authored-david-returns-jerusalem:P2-b42-k3": {
+     "tries": [
+      {
+       "seconds": 6.787,
+       "input": 4,
+       "output": 608,
+       "cache_read": 46325,
+       "cache_create": 7924,
+       "cost_usd": 0.042416499999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "raw": null,
+     "answers": {
+      "w.ferry-boat.0": "맞음",
+      "w.ferry-boat.1": "맞음",
+      "w.ferry-boat.2": "맞음",
+      "w.jordan.0": "맞음",
+      "w.jordan.1": "맞음",
+      "w.jordan.2": "맞음"
+     },
+     "reasons": {
+      "w.ferry-boat.0": "돛 없는 낮고 납작한 나무배이고, 사람 여럿이 타서 작은 편이다.",
+      "w.ferry-boat.1": "배가 수면에 떠 있고 물에 비친 그림자도 보인다.",
+      "w.ferry-boat.2": "돛이나 돛대가 없다.",
+      "w.jordan.0": "앞쪽 둑에 사람들이 서 있고 건너편 둑에는 풀과 언덕이 보인다.",
+      "w.jordan.1": "사람들이 탄 배가 강을 건너고, 나머지는 둑에서 기다린다.",
+      "w.jordan.2": "넓은 강물에 잔물결과 반영이 보여 강물로 읽힌다."
+     }
+    }
+   }
+  }
+ },
+ "ladder": {
+  "authored-david-returns-jerusalem": {
+   "levels": {
+    "ferry-boat": "L2",
+    "jordan": "L1"
+   },
+   "end": "r1",
+   "rounds": [
+    "r1"
+   ],
+   "units": {
+    "ferry-boat": {
+     "level": "L2",
+     "stop": "사다리 없음(387 — r1 한 회차)",
+     "status": null,
+     "with": [],
+     "hist": []
+    },
+    "jordan": {
+     "level": "L1",
+     "stop": "사다리 없음(387 — r1 한 회차)",
+     "status": null,
+     "with": [],
+     "hist": []
+    }
+   }
+  }
+ },
+ "phrase": {
+  "authored-david-returns-jerusalem": {
+   "ranked": [
+    101,
+    42,
+    7,
+    5,
+    303,
+    11,
+    23,
+    202
+   ],
+   "top": 101,
+   "second": 42
+  }
+ },
+ "edit": {
+  "status": "편집",
+  "bases": [
+   101,
+   42
+  ],
+  "candidates": [
+   {
+    "id": "P1-b101-k1",
+    "arm": "P1",
+    "base": 101,
+    "seed": 1,
+    "image": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/edit/authored-david-returns-jerusalem/P1-b101-k1.png",
+    "crop": [
+     150,
+     0,
+     640
+    ],
+    "box": [
+     215,
+     420,
+     800,
+     640
+    ],
+    "prompt": "Starting right at David's feet: on the ground directly in front of the standing king's feet, one man kneels with his forehead touching the ground and his two hands pressed together, begging. Keep everything else exactly the same: the standing king, the other people, the river, the boat, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "sec": 41.6,
+    "required_ok": false,
+    "wrong": 7
+   },
+   {
+    "id": "P1-b101-k2",
+    "arm": "P1",
+    "base": 101,
+    "seed": 2,
+    "image": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/edit/authored-david-returns-jerusalem/P1-b101-k2.png",
+    "crop": [
+     150,
+     0,
+     640
+    ],
+    "box": [
+     215,
+     420,
+     800,
+     640
+    ],
+    "prompt": "Starting right at David's feet: on the ground directly in front of the standing king's feet, one man kneels with his forehead touching the ground and his two hands pressed together, begging. Keep everything else exactly the same: the standing king, the other people, the river, the boat, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "sec": 41.1,
+    "required_ok": false,
+    "wrong": 10
+   },
+   {
+    "id": "P1-b101-k3",
+    "arm": "P1",
+    "base": 101,
+    "seed": 3,
+    "image": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/edit/authored-david-returns-jerusalem/P1-b101-k3.png",
+    "crop": [
+     150,
+     0,
+     640
+    ],
+    "box": [
+     215,
+     420,
+     800,
+     640
+    ],
+    "prompt": "Starting right at David's feet: on the ground directly in front of the standing king's feet, one man kneels with his forehead touching the ground and his two hands pressed together, begging. Keep everything else exactly the same: the standing king, the other people, the river, the boat, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "sec": 41.6,
+    "required_ok": false,
+    "wrong": 7
+   },
+   {
+    "id": "P2-b101-k1",
+    "arm": "P2",
+    "base": 101,
+    "seed": 1,
+    "image": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/edit/authored-david-returns-jerusalem/P2-b101-k1.png",
+    "crop": [
+     150,
+     0,
+     640
+    ],
+    "box": [
+     215,
+     420,
+     800,
+     640
+    ],
+    "prompt": "Add a single man bowed down low right before the king's feet, face to the earth, palms joined in a plea for mercy, close against the king. Keep everything else exactly the same: the standing king, the other people, the river, the boat, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "sec": 41.8,
+    "required_ok": false,
+    "wrong": 5
+   },
+   {
+    "id": "P2-b101-k2",
+    "arm": "P2",
+    "base": 101,
+    "seed": 2,
+    "image": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/edit/authored-david-returns-jerusalem/P2-b101-k2.png",
+    "crop": [
+     150,
+     0,
+     640
+    ],
+    "box": [
+     215,
+     420,
+     800,
+     640
+    ],
+    "prompt": "Add a single man bowed down low right before the king's feet, face to the earth, palms joined in a plea for mercy, close against the king. Keep everything else exactly the same: the standing king, the other people, the river, the boat, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "sec": 40.9,
+    "required_ok": false,
+    "wrong": 6
+   },
+   {
+    "id": "P2-b101-k3",
+    "arm": "P2",
+    "base": 101,
+    "seed": 3,
+    "image": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/edit/authored-david-returns-jerusalem/P2-b101-k3.png",
+    "crop": [
+     150,
+     0,
+     640
+    ],
+    "box": [
+     215,
+     420,
+     800,
+     640
+    ],
+    "prompt": "Add a single man bowed down low right before the king's feet, face to the earth, palms joined in a plea for mercy, close against the king. Keep everything else exactly the same: the standing king, the other people, the river, the boat, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "sec": 40.9,
+    "required_ok": false,
+    "wrong": 4
+   },
+   {
+    "id": "P1-b42-k1",
+    "arm": "P1",
+    "base": 42,
+    "seed": 1,
+    "image": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/edit/authored-david-returns-jerusalem/P1-b42-k1.png",
+    "crop": [
+     150,
+     0,
+     640
+    ],
+    "box": [
+     225,
+     460,
+     540,
+     635
+    ],
+    "prompt": "Starting right at David's feet: on the ground directly in front of the standing king's feet, one man kneels with his forehead touching the ground and his two hands pressed together, begging. Keep everything else exactly the same: the standing king, the other people, the river, the boat, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "sec": 40.9,
+    "required_ok": false,
+    "wrong": 5
+   },
+   {
+    "id": "P1-b42-k2",
+    "arm": "P1",
+    "base": 42,
+    "seed": 2,
+    "image": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/edit/authored-david-returns-jerusalem/P1-b42-k2.png",
+    "crop": [
+     150,
+     0,
+     640
+    ],
+    "box": [
+     225,
+     460,
+     540,
+     635
+    ],
+    "prompt": "Starting right at David's feet: on the ground directly in front of the standing king's feet, one man kneels with his forehead touching the ground and his two hands pressed together, begging. Keep everything else exactly the same: the standing king, the other people, the river, the boat, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "sec": 40.8,
+    "required_ok": false,
+    "wrong": 8
+   },
+   {
+    "id": "P1-b42-k3",
+    "arm": "P1",
+    "base": 42,
+    "seed": 3,
+    "image": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/edit/authored-david-returns-jerusalem/P1-b42-k3.png",
+    "crop": [
+     150,
+     0,
+     640
+    ],
+    "box": [
+     225,
+     460,
+     540,
+     635
+    ],
+    "prompt": "Starting right at David's feet: on the ground directly in front of the standing king's feet, one man kneels with his forehead touching the ground and his two hands pressed together, begging. Keep everything else exactly the same: the standing king, the other people, the river, the boat, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "sec": 40.3,
+    "required_ok": false,
+    "wrong": 7
+   },
+   {
+    "id": "P2-b42-k1",
+    "arm": "P2",
+    "base": 42,
+    "seed": 1,
+    "image": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/edit/authored-david-returns-jerusalem/P2-b42-k1.png",
+    "crop": [
+     150,
+     0,
+     640
+    ],
+    "box": [
+     225,
+     460,
+     540,
+     635
+    ],
+    "prompt": "Add a single man bowed down low right before the king's feet, face to the earth, palms joined in a plea for mercy, close against the king. Keep everything else exactly the same: the standing king, the other people, the river, the boat, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "sec": 39.9,
+    "required_ok": false,
+    "wrong": 7
+   },
+   {
+    "id": "P2-b42-k2",
+    "arm": "P2",
+    "base": 42,
+    "seed": 2,
+    "image": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/edit/authored-david-returns-jerusalem/P2-b42-k2.png",
+    "crop": [
+     150,
+     0,
+     640
+    ],
+    "box": [
+     225,
+     460,
+     540,
+     635
+    ],
+    "prompt": "Add a single man bowed down low right before the king's feet, face to the earth, palms joined in a plea for mercy, close against the king. Keep everything else exactly the same: the standing king, the other people, the river, the boat, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "sec": 40.2,
+    "required_ok": false,
+    "wrong": 8
+   },
+   {
+    "id": "P2-b42-k3",
+    "arm": "P2",
+    "base": 42,
+    "seed": 3,
+    "image": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/edit/authored-david-returns-jerusalem/P2-b42-k3.png",
+    "crop": [
+     150,
+     0,
+     640
+    ],
+    "box": [
+     225,
+     460,
+     540,
+     635
+    ],
+    "prompt": "Add a single man bowed down low right before the king's feet, face to the earth, palms joined in a plea for mercy, close against the king. Keep everything else exactly the same: the standing king, the other people, the river, the boat, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "sec": 40.5,
+    "required_ok": false,
+    "wrong": 5
+   }
+  ],
+  "sec": 490.5,
+  "top": null,
+  "top_reason": "「다윗 바로 앞」·「엎드려 빎」·「한 사람뿐」을 모두 맞은 편집본 없음"
+ },
+ "cand": {
+  "authored-david-returns-jerusalem": {
+   "left": "r1:authored-david-returns-jerusalem:42",
+   "right": "r1:authored-david-returns-jerusalem:101",
+   "left_is": "문구 2위",
+   "right_is": "문구 1위"
+  }
+ },
+ "human": {
+  "human_minutes": 7.66,
+  "active_minutes": 7.65,
+  "screens": 1,
+  "scenes": {
+   "authored-david-returns-jerusalem": {
+    "answer": "none",
+    "chose": "none",
+    "memo": "다윗, 시므이 무리 (15+20) 포커스 하고 베냐민 사람 1천명은 조금멀리 원근감으로 구도잡기\n그리고 배는 강어귀에 다다르고 가족들이 배에 오르려는 장면이 아닌가?",
+    "minutes": 7.63,
+    "active_minutes": 7.63
+   }
+  }
+ }
+}

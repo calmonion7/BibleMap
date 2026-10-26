@@ -1,0 +1,2175 @@
+{
+ "scenes": {
+  "authored-samuel-bethlehem-david-anointing": {
+   "base": 42,
+   "src": "/Users/calmonion/.local/biblemap-imggen/plain-words/r2/authored-samuel-bethlehem-david-anointing/s42.png",
+   "candidates": [
+    {
+     "id": "O1-k1",
+     "arm": "O1",
+     "seed": 1,
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/386/authored-samuel-bethlehem-david-anointing/O1-k1.png",
+     "crop": [
+      310,
+      160,
+      240
+     ],
+     "box": [
+      365,
+      210,
+      470,
+      330
+     ],
+     "prompt": "Gold, a little thicker than water, shining. It runs in a thin stream from the mouth of a horn and wets the hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
+     "sec": 40.2
+    },
+    {
+     "id": "O1-k2",
+     "arm": "O1",
+     "seed": 2,
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/386/authored-samuel-bethlehem-david-anointing/O1-k2.png",
+     "crop": [
+      310,
+      160,
+      240
+     ],
+     "box": [
+      365,
+      210,
+      470,
+      330
+     ],
+     "prompt": "Gold, a little thicker than water, shining. It runs in a thin stream from the mouth of a horn and wets the hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
+     "sec": 40.0
+    },
+    {
+     "id": "O1-k3",
+     "arm": "O1",
+     "seed": 3,
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/386/authored-samuel-bethlehem-david-anointing/O1-k3.png",
+     "crop": [
+      310,
+      160,
+      240
+     ],
+     "box": [
+      365,
+      210,
+      470,
+      330
+     ],
+     "prompt": "Gold, a little thicker than water, shining. It runs in a thin stream from the mouth of a horn and wets the hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
+     "sec": 40.4
+    },
+    {
+     "id": "O2-k1",
+     "arm": "O2",
+     "seed": 1,
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/386/authored-samuel-bethlehem-david-anointing/O2-k1.png",
+     "crop": [
+      310,
+      160,
+      240
+     ],
+     "box": [
+      365,
+      210,
+      470,
+      330
+     ],
+     "prompt": "Golden oil pours in a thin stream from the open end of the horn and runs down over the boy's curly hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
+     "sec": 40.9
+    },
+    {
+     "id": "O2-k2",
+     "arm": "O2",
+     "seed": 2,
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/386/authored-samuel-bethlehem-david-anointing/O2-k2.png",
+     "crop": [
+      310,
+      160,
+      240
+     ],
+     "box": [
+      365,
+      210,
+      470,
+      330
+     ],
+     "prompt": "Golden oil pours in a thin stream from the open end of the horn and runs down over the boy's curly hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
+     "sec": 40.7
+    },
+    {
+     "id": "O2-k3",
+     "arm": "O2",
+     "seed": 3,
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/386/authored-samuel-bethlehem-david-anointing/O2-k3.png",
+     "crop": [
+      310,
+      160,
+      240
+     ],
+     "box": [
+      365,
+      210,
+      470,
+      330
+     ],
+     "prompt": "Golden oil pours in a thin stream from the open end of the horn and runs down over the boy's curly hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
+     "sec": 40.9
+    },
+    {
+     "id": "O3-k1",
+     "arm": "O3",
+     "seed": 1,
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/386/authored-samuel-bethlehem-david-anointing/O3-k1.png",
+     "crop": [
+      310,
+      160,
+      240
+     ],
+     "box": [
+      365,
+      210,
+      470,
+      330
+     ],
+     "prompt": "Golden oil pours out of the dark open hole of the horn's wide mouth and falls from that opening straight down onto the boy's curly hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
+     "sec": 39.6
+    },
+    {
+     "id": "O3-k2",
+     "arm": "O3",
+     "seed": 2,
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/386/authored-samuel-bethlehem-david-anointing/O3-k2.png",
+     "crop": [
+      310,
+      160,
+      240
+     ],
+     "box": [
+      365,
+      210,
+      470,
+      330
+     ],
+     "prompt": "Golden oil pours out of the dark open hole of the horn's wide mouth and falls from that opening straight down onto the boy's curly hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
+     "sec": 43.3
+    },
+    {
+     "id": "O3-k3",
+     "arm": "O3",
+     "seed": 3,
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/386/authored-samuel-bethlehem-david-anointing/O3-k3.png",
+     "crop": [
+      310,
+      160,
+      240
+     ],
+     "box": [
+      365,
+      210,
+      470,
+      330
+     ],
+     "prompt": "Golden oil pours out of the dark open hole of the horn's wide mouth and falls from that opening straight down onto the boy's curly hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
+     "sec": 44.0
+    },
+    {
+     "id": "OG-k1",
+     "arm": "OG",
+     "seed": 1,
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/386/authored-samuel-bethlehem-david-anointing/OG-k1.png",
+     "crop": [
+      310,
+      160,
+      240
+     ],
+     "box": [
+      365,
+      210,
+      470,
+      330
+     ],
+     "prompt": "Redraw the golden vertical band as golden oil pouring out of the horn's open mouth hole and falling onto the boy's curly hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
+     "sec": 41.8
+    },
+    {
+     "id": "OG-k2",
+     "arm": "OG",
+     "seed": 2,
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/386/authored-samuel-bethlehem-david-anointing/OG-k2.png",
+     "crop": [
+      310,
+      160,
+      240
+     ],
+     "box": [
+      365,
+      210,
+      470,
+      330
+     ],
+     "prompt": "Redraw the golden vertical band as golden oil pouring out of the horn's open mouth hole and falling onto the boy's curly hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
+     "sec": 42.1
+    },
+    {
+     "id": "OG-k3",
+     "arm": "OG",
+     "seed": 3,
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/386/authored-samuel-bethlehem-david-anointing/OG-k3.png",
+     "crop": [
+      310,
+      160,
+      240
+     ],
+     "box": [
+      365,
+      210,
+      470,
+      330
+     ],
+     "prompt": "Redraw the golden vertical band as golden oil pouring out of the horn's open mouth hole and falling onto the boy's curly hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
+     "sec": 41.6
+    }
+   ],
+   "top": {
+    "id": "O3-k2",
+    "all_feats": true
+   }
+  },
+  "authored-david-gath-achish": {
+   "base": 5,
+   "src": "/Users/calmonion/.local/biblemap-imggen/plain-words/r2/authored-david-gath-achish/s5.png",
+   "candidates": [
+    {
+     "id": "D1-k1",
+     "arm": "D1",
+     "seed": 1,
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/386/authored-david-gath-achish/D1-k1.png",
+     "crop": [
+      250,
+      110,
+      240
+     ],
+     "box": [
+      315,
+      200,
+      395,
+      300
+     ],
+     "prompt": "Spit runs from the corner of the mouth down the chin beard in a long strand, and the beard is wet and shiny. Keep his face shape, hair, beard, the lighting and the same soft pencil and colored-pencil illustration style.",
+     "sec": 41.0
+    },
+    {
+     "id": "D1-k2",
+     "arm": "D1",
+     "seed": 2,
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/386/authored-david-gath-achish/D1-k2.png",
+     "crop": [
+      250,
+      110,
+      240
+     ],
+     "box": [
+      315,
+      200,
+      395,
+      300
+     ],
+     "prompt": "Spit runs from the corner of the mouth down the chin beard in a long strand, and the beard is wet and shiny. Keep his face shape, hair, beard, the lighting and the same soft pencil and colored-pencil illustration style.",
+     "sec": 40.8
+    },
+    {
+     "id": "D1-k3",
+     "arm": "D1",
+     "seed": 3,
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/386/authored-david-gath-achish/D1-k3.png",
+     "crop": [
+      250,
+      110,
+      240
+     ],
+     "box": [
+      315,
+      200,
+      395,
+      300
+     ],
+     "prompt": "Spit runs from the corner of the mouth down the chin beard in a long strand, and the beard is wet and shiny. Keep his face shape, hair, beard, the lighting and the same soft pencil and colored-pencil illustration style.",
+     "sec": 40.4
+    },
+    {
+     "id": "D2-k1",
+     "arm": "D2",
+     "seed": 1,
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/386/authored-david-gath-achish/D2-k1.png",
+     "crop": [
+      250,
+      110,
+      240
+     ],
+     "box": [
+      315,
+      200,
+      395,
+      300
+     ],
+     "prompt": "Saliva drips from his mouth down into his beard. Keep his face shape, hair, beard, the lighting and the same soft pencil and colored-pencil illustration style.",
+     "sec": 40.7
+    },
+    {
+     "id": "D2-k2",
+     "arm": "D2",
+     "seed": 2,
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/386/authored-david-gath-achish/D2-k2.png",
+     "crop": [
+      250,
+      110,
+      240
+     ],
+     "box": [
+      315,
+      200,
+      395,
+      300
+     ],
+     "prompt": "Saliva drips from his mouth down into his beard. Keep his face shape, hair, beard, the lighting and the same soft pencil and colored-pencil illustration style.",
+     "sec": 42.1
+    },
+    {
+     "id": "D2-k3",
+     "arm": "D2",
+     "seed": 3,
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/386/authored-david-gath-achish/D2-k3.png",
+     "crop": [
+      250,
+      110,
+      240
+     ],
+     "box": [
+      315,
+      200,
+      395,
+      300
+     ],
+     "prompt": "Saliva drips from his mouth down into his beard. Keep his face shape, hair, beard, the lighting and the same soft pencil and colored-pencil illustration style.",
+     "sec": 40.7
+    }
+   ],
+   "top": {
+    "id": "D1-k1",
+    "all_feats": true
+   }
+  }
+ },
+ "answers": {
+  "J1": {
+   "authored-samuel-bethlehem-david-anointing:O1-k3": {
+    "tries": [
+     {
+      "seconds": 10.775,
+      "input": 4,
+      "output": 1372,
+      "cache_read": 46094,
+      "cache_create": 12590,
+      "cost_usd": 0.0686974,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "맞음",
+     "crowds": "틀림",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "맞음",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[1].facing": "맞음",
+     "figures[2].pose": "틀림",
+     "figures[2].prop": "맞음",
+     "figures[2].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "crowds": "형제가 네 명뿐이라 일곱이 아니다. 다윗 바로 뒤에 선 것도 아니고, 이새 쪽으로 늘어서 있다.",
+     "figures[2].pose": "이새는 지팡이만 쥐고 지켜보지만, 형제 줄 끝에 바싹 붙어 서 있다. 떨어져 선 모습이 아니다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O3-k1": {
+    "tries": [
+     {
+      "seconds": 10.984,
+      "input": 4,
+      "output": 1389,
+      "cache_read": 46094,
+      "cache_create": 12590,
+      "cost_usd": 0.0688674,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "맞음",
+     "crowds": "틀림",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "맞음",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[1].facing": "맞음",
+     "figures[2].pose": "맞음",
+     "figures[2].prop": "맞음",
+     "figures[2].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "crowds": "다윗 뒤에 형제가 넷만 서 있다. 기대는 일곱이다. 이새는 따로 서 있다.",
+     "moment": "사무엘 혼자 기름 뿔로 숙인 다윗의 머리에 기름을 붓고, 나머지는 뿔 없이 지켜본다.",
+     "background[0]": "메마른 돌밭과 풀이 있는 소박한 야외다.",
+     "figures[0].pose": "사무엘이 뿔을 기울여 다윗의 머리에 기름을 붓고 있다.",
+     "figures[0].prop": "기름 뿔에서 기름이 떨어진다.",
+     "figures[0].facing": "사무엘의 얼굴과 상체가 화면 오른쪽을 향한다.",
+     "figures[1].pose": "다윗이 서서 고개를 숙이고 있다.",
+     "figures[1].prop": "다윗이 나무 지팡이를 짚고 있다.",
+     "figures[1].facing": "다윗이 화면 왼쪽의 사무엘을 향한다.",
+     "figures[2].pose": "이새가 지팡이만 쥐고 서서 지켜본다. 기름 뿔은 없다.",
+     "figures[2].prop": "이새가 나무 지팡이를 쥐고 있다.",
+     "figures[2].facing": "이새가 화면 왼쪽을 향한다.",
+     "guard": "손가락, 인물 겹침, 테두리, 글자에서 눈에 띄는 결함이 없다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O1-k1": {
+    "tries": [
+     {
+      "seconds": 12.154,
+      "input": 4,
+      "output": 1574,
+      "cache_read": 46094,
+      "cache_create": 12590,
+      "cost_usd": 0.0707174,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "맞음",
+     "crowds": "틀림",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "맞음",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[1].facing": "맞음",
+     "figures[2].pose": "맞음",
+     "figures[2].prop": "맞음",
+     "figures[2].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "crowds": "다윗 뒤에 서 있는 형제가 일곱이 아니라 넷뿐이다. 넷째는 수염 난 어른처럼 보인다. 이새까지 합쳐도 다섯 명이다.",
+     "moment": "사무엘이 뿔로 고개 숙인 다윗에게 기름을 붓고 있고, 다른 사람은 뿔 없이 지켜본다.",
+     "background[0]": "돌과 마른 풀이 있는 소박한 야외 장소다.",
+     "figures[0].pose": "몸을 숙여 뿔을 기울이고 있고, 기름이 흘러내린다.",
+     "figures[0].prop": "기름 뿔이다.",
+     "figures[0].facing": "사무엘이 화면 오른쪽의 다윗을 향한다.",
+     "figures[1].pose": "서서 고개를 깊이 숙이고 있다.",
+     "figures[1].prop": "목자 지팡이를 쥐고 있다.",
+     "figures[1].facing": "다윗의 얼굴과 몸이 화면 왼쪽, 사무엘 쪽을 향한다.",
+     "figures[2].pose": "줄 끝에서 지팡이만 쥐고 서 있고, 기름 뿔은 들지 않았다.",
+     "figures[2].prop": "긴 나무 지팡이를 들고 있다.",
+     "figures[2].facing": "얼굴과 몸이 화면 왼쪽을 향한다.",
+     "guard": "손가락 수 이상, 덧붙은 인물, 테두리, 글자가 보이지 않는다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:orig": {
+    "tries": [
+     {
+      "seconds": 12.458,
+      "input": 4,
+      "output": 1571,
+      "cache_read": 46076,
+      "cache_create": 12560,
+      "cost_usd": 0.0705656,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "맞음",
+     "crowds": "틀림",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "맞음",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[1].facing": "맞음",
+     "figures[2].pose": "맞음",
+     "figures[2].prop": "맞음",
+     "figures[2].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "moment": "사무엘만 기름 뿔을 쥐고 고개 숙인 다윗 머리에 붓고, 형제들과 이새는 빈손으로 지켜본다.",
+     "background[0]": "돌 많은 소박한 야외 터로 베들레헴 제사 자리에 어긋나지 않는다.",
+     "crowds": "다윗 뒤에 서 있는 형제가 네 명뿐이다. 기대는 이새의 아들 일곱이다.",
+     "figures[0].pose": "사무엘이 몸을 숙여 뿔을 기울이고 기름이 다윗 머리에 떨어진다.",
+     "figures[0].prop": "기름 뿔을 들고 있다.",
+     "figures[0].facing": "사무엘의 얼굴과 상체가 화면 오른쪽을 향한다.",
+     "figures[1].pose": "다윗이 서서 고개를 깊이 숙이고 있다.",
+     "figures[1].prop": "다윗이 나무 목자 지팡이를 쥐고 있다.",
+     "figures[1].facing": "다윗의 얼굴이 화면 왼쪽, 사무엘 쪽을 향한다.",
+     "figures[2].pose": "이새가 줄 끝에서 지팡이만 쥐고 서 있고 뿔은 없다.",
+     "figures[2].prop": "이새가 나무 지팡이를 쥐고 있다.",
+     "figures[2].facing": "이새의 얼굴과 몸이 화면 왼쪽을 향한다.",
+     "guard": "손가락, 겹친 인물, 테두리, 글자에서 눈에 띄는 결함이 없다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O1-k2": {
+    "tries": [
+     {
+      "seconds": 13.417,
+      "input": 4,
+      "output": 1516,
+      "cache_read": 46094,
+      "cache_create": 12590,
+      "cost_usd": 0.0701374,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "맞음",
+     "crowds": "틀림",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "맞음",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[1].facing": "맞음",
+     "figures[2].pose": "맞음",
+     "figures[2].prop": "맞음",
+     "figures[2].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "moment": "사무엘 혼자 뿔을 기울여 고개 숙인 다윗에게 기름을 붓고, 형제들과 이새는 뿔 없이 지켜봄.",
+     "background[0]": "돌과 마른 풀뿐인 소박한 야외 자리라 베들레헴 제사 자리로 어긋나지 않음.",
+     "crowds": "형제가 일곱이 아니라 네 명뿐이고, 다윗 바로 뒤가 아니라 간격을 두고 서 있음.",
+     "figures[0].pose": "허리를 숙여 뿔을 기울이고 기름이 다윗 머리로 흐름.",
+     "figures[0].prop": "금빛 기름 뿔을 쥐고 있음.",
+     "figures[0].facing": "얼굴과 상체가 화면 오른쪽(다윗 쪽)을 향함.",
+     "figures[1].pose": "서서 고개를 깊이 숙이고 있음.",
+     "figures[1].prop": "나무 목자 지팡이를 짚고 있음.",
+     "figures[1].facing": "고개와 얼굴이 화면 왼쪽(사무엘 쪽)을 향함.",
+     "figures[2].pose": "형제들 오른쪽 끝에서 지팡이만 쥐고 서서 지켜봄. 기름 뿔 없음.",
+     "figures[2].prop": "긴 나무 지팡이를 쥠.",
+     "figures[2].facing": "얼굴이 화면 왼쪽을 향함."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O2-k3": {
+    "tries": [
+     {
+      "seconds": 13.516,
+      "input": 4,
+      "output": 1723,
+      "cache_read": 46094,
+      "cache_create": 12590,
+      "cost_usd": 0.0722074,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "틀림",
+     "crowds": "틀림",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "맞음",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[1].facing": "맞음",
+     "figures[2].pose": "맞음",
+     "figures[2].prop": "맞음",
+     "figures[2].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "moment": "사무엘만 기름 뿔을 쥐고 다윗 머리에 붓고, 다윗은 고개를 숙이며, 형제들과 이새는 뿔 없이 지켜봄.",
+     "background[0]": "황량한 돌밭과 마른 풀뿐이라 베들레헴 마을이나 제사 자리 느낌이 없음. 분명히 맞다고 보기 어려움.",
+     "crowds": "이새의 아들 일곱이어야 하는데 형제는 넷뿐임.",
+     "figures[0].pose": "몸을 숙여 뿔을 기울여 다윗 머리에 붓고 있음.",
+     "figures[0].prop": "짐승 뿔 모양의 기름 뿔이고 기름이 흘러내림.",
+     "figures[0].facing": "얼굴과 상체가 화면 오른쪽(다윗 쪽)을 향함.",
+     "figures[1].pose": "서서 고개를 깊이 숙이고 있음.",
+     "figures[1].prop": "나무 목자 지팡이를 짚고 있음.",
+     "figures[1].facing": "고개와 몸이 화면 왼쪽(사무엘 쪽)을 향함.",
+     "figures[2].pose": "형제들 오른쪽 끝에서 지팡이만 쥐고 서 있고 뿔은 없음.",
+     "figures[2].prop": "옹이 있는 긴 나무 지팡이.",
+     "figures[2].facing": "얼굴과 몸이 화면 왼쪽을 향함.",
+     "guard": "손가락 수 이상, 겹친 인물, 테두리, 글자 모두 눈에 띄지 않음."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O2-k1": {
+    "tries": [
+     {
+      "seconds": 13.966,
+      "input": 4,
+      "output": 1741,
+      "cache_read": 46094,
+      "cache_create": 12590,
+      "cost_usd": 0.0723874,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "맞음",
+     "crowds": "틀림",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "맞음",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[1].facing": "맞음",
+     "figures[2].pose": "맞음",
+     "figures[2].prop": "맞음",
+     "figures[2].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "moment": "사무엘이 기름 뿔로 고개 숙인 다윗에게 기름을 붓고, 형제들과 이새는 뿔 없이 지켜본다.",
+     "background[0]": "마을이나 제단은 없지만 바위 섞인 소박한 열린 터라 제사 자리로는 어긋나지 않는다.",
+     "crowds": "형제는 네 명뿐이라 일곱이 아니다. 다윗 바로 뒤가 아니라 옆으로 떨어져 서 있다.",
+     "figures[0].pose": "뿔을 기울여 다윗 머리에 기름을 붓고 있다.",
+     "figures[0].prop": "기름이 흐르는 뿔을 쥐고 있다.",
+     "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향한다.",
+     "figures[1].pose": "서서 고개를 깊이 숙이고 있다.",
+     "figures[1].prop": "목자 지팡이를 쥐고 있다.",
+     "figures[1].facing": "화면 왼쪽의 사무엘 쪽으로 고개를 숙이고 있다.",
+     "figures[2].pose": "줄 끝에서 지팡이만 쥔 채 지켜보며 뿔은 들지 않았다.",
+     "figures[2].prop": "나무 지팡이를 쥐고 있다.",
+     "figures[2].facing": "얼굴이 화면 왼쪽을 향한다.",
+     "guard": "손가락, 겹친 인물, 테두리, 글자 등 눈에 띄는 결함이 없다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O2-k2": {
+    "tries": [
+     {
+      "seconds": 15.258,
+      "input": 4,
+      "output": 1874,
+      "cache_read": 46094,
+      "cache_create": 12590,
+      "cost_usd": 0.0737174,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "틀림",
+     "crowds": "틀림",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "맞음",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[1].facing": "맞음",
+     "figures[2].pose": "틀림",
+     "figures[2].prop": "맞음",
+     "figures[2].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "moment": "사무엘이 혼자 기름 뿔을 기울여 고개 숙인 다윗에게 붓고 있고, 이새와 형제들은 뿔 없이 지켜본다.",
+     "background[0]": "집이나 마을, 제사 자리가 보이지 않고 돌 깔린 빈 황야뿐이라 베들레헴 마을의 제사 자리로 확인되지 않는다.",
+     "crowds": "형제가 네 명뿐이다(이새를 빼면). 기대는 아들 일곱이다.",
+     "figures[0].pose": "몸을 숙여 뿔을 다윗의 머리 위로 기울이고 기름이 흘러내린다.",
+     "figures[0].prop": "기름 뿔을 쥐고 있다.",
+     "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향한다.",
+     "figures[1].pose": "서서 고개를 깊이 숙이고 있다.",
+     "figures[1].prop": "긴 목자 지팡이를 짚고 있다.",
+     "figures[1].facing": "얼굴과 몸이 화면 왼쪽의 사무엘 쪽을 향한다.",
+     "figures[2].pose": "지팡이만 쥐고 뿔은 없지만, 넷째 아들 바로 옆에 붙어 서 있어 떨어져 선 모습이 아니다.",
+     "figures[2].prop": "나무 지팡이를 쥐고 있다.",
+     "figures[2].facing": "얼굴이 화면 왼쪽을 향한다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O3-k2": {
+    "tries": [
+     {
+      "seconds": 11.993,
+      "input": 4,
+      "output": 1428,
+      "cache_read": 46094,
+      "cache_create": 12590,
+      "cost_usd": 0.0692574,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "맞음",
+     "crowds": "틀림",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "맞음",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[1].facing": "맞음",
+     "figures[2].pose": "맞음",
+     "figures[2].prop": "맞음",
+     "figures[2].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "crowds": "다윗 뒤에 선 형제는 넷뿐이라 일곱이 아니다. 다윗 바로 뒤가 아니라 간격을 두고 서 있다.",
+     "moment": "사무엘 한 사람만 뿔로 기름을 붓고, 다윗은 고개를 숙이고 받으며, 나머지는 뿔 없이 지켜본다.",
+     "background[0]": "마을이나 제단은 안 보이지만 돌 깔린 소박한 야외 자리라 틀렸다고 보기 어렵다.",
+     "figures[2].pose": "이새는 형제 줄 끝에 지팡이만 쥐고 서 있고 뿔은 들지 않았다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O3-k3": {
+    "tries": [
+     {
+      "seconds": 12.226,
+      "input": 4,
+      "output": 1625,
+      "cache_read": 46094,
+      "cache_create": 12590,
+      "cost_usd": 0.0712274,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "틀림",
+     "crowds": "틀림",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "맞음",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[1].facing": "맞음",
+     "figures[2].pose": "맞음",
+     "figures[2].prop": "맞음",
+     "figures[2].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "moment": "사무엘 혼자 기름 뿔로 고개 숙인 다윗에게 기름을 붓고, 형제와 이새는 뿔 없이 지켜본다.",
+     "background[0]": "메마른 바위 들판뿐이다. 베들레헴 마을이나 제사 자리로 읽히는 것이 없다.",
+     "crowds": "형제가 네 명뿐이라 일곱이 아니다. 다윗 바로 뒤가 아니라 조금 떨어져 서 있다.",
+     "figures[0].pose": "몸을 숙여 뿔을 기울이고 기름을 붓는다.",
+     "figures[0].prop": "기름이 떨어지는 짐승 뿔을 들고 있다.",
+     "figures[0].facing": "얼굴과 상체가 화면 오른쪽의 다윗을 향한다.",
+     "figures[1].pose": "서서 고개를 깊이 숙이고 있다.",
+     "figures[1].prop": "나무 목자 지팡이를 짚고 있다.",
+     "figures[1].facing": "고개와 몸이 화면 왼쪽의 사무엘을 향한다.",
+     "figures[2].pose": "형제들 오른쪽 끝에서 지팡이만 쥐고 서 있고 뿔은 없다.",
+     "figures[2].prop": "긴 나무 지팡이를 쥐고 있다.",
+     "figures[2].facing": "얼굴과 몸이 화면 왼쪽을 향한다.",
+     "guard": "손가락 수 이상, 겹친 인물, 테두리, 글자가 보이지 않는다."
+    }
+   },
+   "authored-david-gath-achish:D1-k1": {
+    "tries": [
+     {
+      "seconds": 10.73,
+      "input": 4,
+      "output": 1254,
+      "cache_read": 45428,
+      "cache_create": 11407,
+      "cost_usd": 0.0627188,
+      "turns": 4,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "맞음",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "틀림",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[1].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "moment": "다윗이 문짝을 긁고 침을 흘리며, 아기스가 손을 들어 책망한다. 신하들도 보인다.",
+     "background[0]": "나무 성문, 돌 성벽, 흉벽이 보인다.",
+     "figures[0].pose": "문짝에 손을 대고 긁은 자국을 내며 수염에 침이 흐른다.",
+     "figures[0].prop": "철물이 달린 나무 문짝이다.",
+     "figures[0].facing": "어깨 너머로 오른쪽, 아기스와 관람자 쪽을 돌아본다. 초점 없이 허공을 보는 모습이 아니라 시선이 누군가를 향한 듯하다.",
+     "figures[1].pose": "서서 오른손을 들어 책망하는 몸짓이다.",
+     "figures[1].prop": "넓은 소매의 겉옷을 입고 있다. 겉옷 자락이 있어 기대와 어긋나지 않는다.",
+     "figures[1].facing": "얼굴과 상체가 화면 왼쪽의 다윗을 향한다.",
+     "guard": "손가락 수, 겹친 인물, 테두리, 글자에서 결함이 보이지 않는다."
+    }
+   },
+   "authored-david-gath-achish:orig": {
+    "tries": [
+     {
+      "seconds": 11.334,
+      "input": 4,
+      "output": 1221,
+      "cache_read": 45413,
+      "cache_create": 11383,
+      "cost_usd": 0.0622913,
+      "turns": 4,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "맞음",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "틀림",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[1].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "moment": "다윗이 문짝을 긁고 침을 흘리며, 아기스가 손을 들어 책망한다.",
+     "background[0]": "성문 문짝과 돌 성벽이 보인다.",
+     "figures[0].pose": "문짝에 손을 대고 긁은 자국을 내며 수염에 침이 흐른다.",
+     "figures[0].prop": "나무 문짝이 분명하다.",
+     "figures[0].facing": "다윗이 어깨 너머로 고개를 돌려 오른쪽의 아기스 쪽을 보는 것 같다. 허공을 보는지 분명하지 않다.",
+     "figures[1].pose": "서서 한 손을 들어 책망한다.",
+     "figures[1].prop": "넉넉한 겉옷을 걸쳤고 소맷자락이 보인다.",
+     "figures[1].facing": "얼굴과 상체가 화면 왼쪽의 다윗을 향한다.",
+     "guard": "손가락 수나 겹친 인물, 테두리, 글자 같은 결함이 보이지 않는다."
+    }
+   },
+   "authored-david-gath-achish:D1-k2": {
+    "tries": [
+     {
+      "seconds": 10.167,
+      "input": 4,
+      "output": 1166,
+      "cache_read": 45428,
+      "cache_create": 11407,
+      "cost_usd": 0.0618388,
+      "turns": 4,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "맞음",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "틀림",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[1].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "moment": "다윗이 문짝에 그적거리고 수염에 침이 흐르며, 아기스와 신하들이 보고 있다.",
+     "background[0]": "나무 성문 문짝, 석조 기둥, 흉벽이 있는 성벽이 보인다.",
+     "figures[0].pose": "한 손을 문짝에 대고 긁은 자국을 내며 수염에 침을 흘린다.",
+     "figures[0].prop": "나무 문짝에 긁은 자국이 있다.",
+     "figures[0].facing": "어깨 너머로 오른쪽(아기스·보는 이) 쪽을 돌아보며 시선을 둔다. 허공을 보는 것이 아니라 누군가와 마주 본다.",
+     "figures[1].pose": "한 손을 들고 찌푸린 얼굴로 서서 책망한다.",
+     "figures[1].prop": "겉옷(검은 겉옷의 붉은 단과 접힌 자락)을 입고 있다.",
+     "figures[1].facing": "얼굴과 상체가 화면 왼쪽의 다윗 쪽을 향한다.",
+     "guard": "손가락·인물 중복·테두리·글자 결함이 보이지 않는다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:OG-k2": {
+    "tries": [
+     {
+      "seconds": 13.16,
+      "input": 4,
+      "output": 1481,
+      "cache_read": 46094,
+      "cache_create": 12590,
+      "cost_usd": 0.0697874,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "맞음",
+     "crowds": "틀림",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "맞음",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[1].facing": "맞음",
+     "figures[2].pose": "틀림",
+     "figures[2].prop": "맞음",
+     "figures[2].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "crowds": "형제가 넷뿐이라 일곱이 안 된다. 그 넷은 다윗 바로 뒤가 아니라 약간 떨어져 서 있다.",
+     "figures[2].pose": "이새가 형제 줄 끝에 바짝 붙어 있고 지팡이가 형제의 옷 앞을 가린다. 떨어져 서 있다고 보기 어렵다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:OG-k3": {
+    "tries": [
+     {
+      "seconds": 12.52,
+      "input": 4,
+      "output": 1612,
+      "cache_read": 46094,
+      "cache_create": 12590,
+      "cost_usd": 0.0710974,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "틀림",
+     "crowds": "틀림",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "맞음",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[1].facing": "맞음",
+     "figures[2].pose": "맞음",
+     "figures[2].prop": "맞음",
+     "figures[2].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "moment": "사무엘이 기름 뿔을 기울여 고개 숙인 다윗의 머리에 붓고 있다. 이새와 형제들은 뿔 없이 지켜본다.",
+     "background[0]": "황량한 돌밭과 마른 풀뿐이다. 베들레헴 마을이나 제사 자리를 알 만한 것이 없어 확실히 맞다고 할 수 없다.",
+     "crowds": "다윗 뒤에 선 형제가 네 명뿐이다. 기대는 이새의 아들 일곱이다.",
+     "figures[0].pose": "몸을 숙이고 뿔을 기울여 기름을 붓는다.",
+     "figures[0].prop": "기름이 흐르는 뿔이다.",
+     "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향한다.",
+     "figures[1].pose": "서서 고개를 숙이고 있다.",
+     "figures[1].prop": "나무 목자 지팡이를 쥐고 있다.",
+     "figures[1].facing": "머리가 화면 왼쪽(사무엘 쪽)을 향한다.",
+     "figures[2].pose": "형제들 오른쪽에 조금 떨어져 서서 지팡이만 쥐고 있다. 뿔은 없다.",
+     "figures[2].prop": "긴 나무 지팡이를 쥐고 있다.",
+     "figures[2].facing": "얼굴과 몸이 화면 왼쪽을 향한다.",
+     "guard": "손가락 수 이상, 겹친 인물, 테두리, 글자가 보이지 않는다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:OG-k1": {
+    "tries": [
+     {
+      "seconds": 14.462,
+      "input": 4,
+      "output": 1666,
+      "cache_read": 46094,
+      "cache_create": 12590,
+      "cost_usd": 0.0716374,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "맞음",
+     "crowds": "틀림",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "맞음",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[1].facing": "맞음",
+     "figures[2].pose": "맞음",
+     "figures[2].prop": "맞음",
+     "figures[2].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "moment": "사무엘 혼자 뿔로 기름을 붓고, 다윗은 고개를 숙여 받는다. 이새와 형제들은 뿔 없이 지켜본다.",
+     "background[0]": "메마른 들판에 돌과 풀뿐인 소박한 야외 자리라 기대와 어긋나지 않는다.",
+     "crowds": "형제가 네 명뿐이라 일곱이 아니다. 다윗 바로 뒤가 아니라 옆쪽에 줄지어 서 있다.",
+     "figures[0].pose": "허리를 숙여 뿔을 기울이고 기름을 다윗 머리에 붓고 있다.",
+     "figures[0].prop": "금속 테를 두른 기름 뿔을 들고 있다.",
+     "figures[0].facing": "얼굴과 상체가 화면 오른쪽을 향한다.",
+     "figures[1].pose": "서서 고개를 깊이 숙이고 있다.",
+     "figures[1].prop": "나무 목자 지팡이를 쥐고 있다.",
+     "figures[1].facing": "화면 왼쪽(사무엘 쪽)을 향해 숙이고 있다.",
+     "figures[2].pose": "무리 끝에서 지팡이만 쥐고 서서 지켜보며 뿔은 들지 않았다.",
+     "figures[2].prop": "긴 나무 지팡이를 쥐고 있다.",
+     "figures[2].facing": "얼굴과 몸이 화면 왼쪽을 향한다.",
+     "guard": "손가락 수, 겹친 인물, 테두리, 글자에서 결함이 보이지 않는다."
+    }
+   },
+   "authored-david-gath-achish:D2-k2": {
+    "tries": [
+     {
+      "seconds": 9.607,
+      "input": 4,
+      "output": 1215,
+      "cache_read": 45428,
+      "cache_create": 11407,
+      "cost_usd": 0.062328800000000004,
+      "turns": 4,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "맞음",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "틀림",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "틀림",
+     "figures[1].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "moment": "다윗이 문짝을 긁고 수염에 침을 흘리며, 아기스가 손을 들어 책망하고 신하들이 뒤에 서 있다.",
+     "background[0]": "나무 성문과 돌 성벽, 흉벽이 보인다.",
+     "figures[0].pose": "문짝에 손을 대고 긁은 자국을 내며 침을 흘린다.",
+     "figures[0].prop": "나무 문짝이 분명하다.",
+     "figures[0].facing": "다윗이 어깨 너머로 고개를 돌려 아기스 쪽을 보는 것으로 읽힌다. 허공을 보는 시선으로 분명히 확인되지 않는다.",
+     "figures[1].pose": "서서 오른손을 들어 책망하는 모습이다.",
+     "figures[1].prop": "내려간 손은 주먹만 쥐고 있고 겉옷 자락을 쥔 모습이 없다.",
+     "figures[1].facing": "얼굴과 상체가 화면 왼쪽의 다윗을 향한다.",
+     "guard": "손가락 수, 겹친 인물, 테두리, 글자 모두 이상이 없다."
+    }
+   },
+   "authored-david-gath-achish:D2-k1": {
+    "tries": [
+     {
+      "seconds": 11.503,
+      "input": 4,
+      "output": 1298,
+      "cache_read": 45428,
+      "cache_create": 11407,
+      "cost_usd": 0.0631588,
+      "turns": 4,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "맞음",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "틀림",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "틀림",
+     "figures[1].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "moment": "다윗이 문짝을 긁으며 수염에 침을 흘리고, 아기스가 손을 들어 책망하며 신하들이 뒤에 서 있어 장면 뜻에 맞다.",
+     "background[0]": "나무 성문, 돌 성벽, 성가퀴가 보인다.",
+     "figures[0].pose": "문짝에 손을 대고 기댄 채 긁고 있고, 긁힌 자국과 흐르는 침이 보인다.",
+     "figures[0].prop": "나무 문짝이 분명하다.",
+     "figures[0].facing": "다윗이 어깨 너머로 초점 있는 눈을 하고 화면 오른쪽(아기스나 보는 사람)을 돌아본다. 허공을 보는 모습이 아니다.",
+     "figures[1].pose": "선 채로 한 손을 들어 책망하는 자세다.",
+     "figures[1].prop": "겉옷은 입고 있지만 손에 쥔 자락은 없다. 「겉옷 자락」이라는 지물이 분명히 확인되지 않는다.",
+     "figures[1].facing": "얼굴과 상체가 화면 왼쪽, 다윗 쪽을 향한다.",
+     "guard": "손가락 수, 두 겹 인물, 테두리, 글자 같은 결함이 보이지 않는다."
+    }
+   },
+   "authored-david-gath-achish:D2-k3": {
+    "tries": [
+     {
+      "seconds": 10.07,
+      "input": 4,
+      "output": 1187,
+      "cache_read": 45428,
+      "cache_create": 11407,
+      "cost_usd": 0.0620488,
+      "turns": 4,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "맞음",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "틀림",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "틀림",
+     "figures[1].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "moment": "다윗이 문짝에 그적거리며 침을 흘리고, 아기스와 신하들이 곁에 서 있다.",
+     "background[0]": "성문과 성벽 흉벽이 보인다.",
+     "figures[0].pose": "문짝에 손을 대고 긁으며 침을 수염으로 흘린다.",
+     "figures[0].prop": "나무 문짝이 분명하다.",
+     "figures[0].facing": "어깨 너머로 뒤돌아보며 시선이 또렷해 보인다. 초점 없이 허공을 보는 모습이 분명하지 않다.",
+     "figures[1].pose": "손을 들어 책망하는 자세로 서 있다.",
+     "figures[1].prop": "겉옷 자락을 쥐거나 드는 모습이 없다. 옷은 입고만 있어서 기대한 지물이 확인되지 않는다.",
+     "figures[1].facing": "얼굴과 상체가 화면 왼쪽의 다윗을 향한다.",
+     "guard": "손가락 수, 겹친 인물, 테두리, 글자 모두 이상이 보이지 않는다."
+    }
+   },
+   "authored-david-gath-achish:D1-k3": {
+    "tries": [
+     {
+      "seconds": 14.607,
+      "input": 4,
+      "output": 1316,
+      "cache_read": 45428,
+      "cache_create": 11407,
+      "cost_usd": 0.0633388,
+      "turns": 4,
+      "error": false
+     }
+    ],
+    "answers": {
+     "moment": "맞음",
+     "background[0]": "맞음",
+     "figures[0].pose": "맞음",
+     "figures[0].prop": "맞음",
+     "figures[0].facing": "틀림",
+     "figures[1].pose": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[1].facing": "맞음",
+     "guard": "맞음"
+    },
+    "reasons": {
+     "moment": "다윗이 문짝에 긁고 수염에 침을 흘리며, 아기스와 신하들이 곁에 있다.",
+     "background[0]": "나무 성문과 석조 성벽, 흉벽이 보인다.",
+     "figures[0].pose": "문짝에 손을 대고 긁은 자국을 내며 침을 흘린다.",
+     "figures[0].prop": "철제 경첩이 달린 나무 문짝이 보인다.",
+     "figures[0].facing": "어깨 너머로 고개를 돌려 오른쪽의 아기스 쪽을 보는 듯하다. 초점 없이 허공을 보는 모습이 아니다.",
+     "figures[1].pose": "서서 손을 들어 책망하는 자세다.",
+     "figures[1].prop": "겉옷을 입었고 넓은 소매와 자락이 드러난다. 자락을 쥐고 있지는 않아 완전히 분명하지는 않다.",
+     "figures[1].facing": "얼굴과 상체가 화면 왼쪽의 다윗을 향한다.",
+     "guard": "손가락 수, 중복 인물, 테두리, 글자에서 눈에 띄는 결함이 없다."
+    }
+   }
+  },
+  "J1-prop": {
+   "authored-samuel-bethlehem-david-anointing:O1-k3": {
+    "tries": [
+     {
+      "seconds": 6.403,
+      "input": 4,
+      "output": 791,
+      "cache_read": 46293,
+      "cache_create": 15986,
+      "cost_usd": 0.07649130000000001,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[2].prop": "맞음"
+    },
+    "reasons": {
+     "figures[0].prop": "사무엘이 한 손으로 금빛 짐승 뿔 모양 그릇을 쥐고 다윗의 머리에 기름을 붓고 있다. 뿔 모양과 쥔 방식이 모두 맞다.",
+     "figures[1].prop": "다윗이 한 손으로 나무 지팡이를 짚고 서 있다. 소년 키에 맞는 길이의 단순한 막대라 목자 지팡이로 맞다.",
+     "figures[2].prop": "이새가 한 손으로 키보다 큰 울퉁불퉁한 나무 지팡이를 세워 쥐고 있고, 다른 인물들과 떨어져 선 모습이다. 현대식 물건은 없다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:orig": {
+    "tries": [
+     {
+      "seconds": 9.726,
+      "input": 4,
+      "output": 1030,
+      "cache_read": 46272,
+      "cache_create": 15959,
+      "cost_usd": 0.0787712,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[2].prop": "맞음"
+    },
+    "reasons": {
+     "figures[0].prop": "사무엘이 한 손으로 양각 뿔을 쥐고 다윗의 머리 위에서 기름을 붓고 있다. 기름 방울이 떨어지는 것도 보인다. 고대 양식의 뿔이다.",
+     "figures[1].prop": "다윗이 가슴 높이쯤 오는 나무 막대를 한 손으로 짚고 있다. 목자가 쓰는 소박한 지팡이로 보이고 시대에도 맞다. 끝이 굽은 갈고리는 없지만 목자 지팡이로 볼 수 있는 모양이다.",
+     "figures[2].prop": "이새가 자기 키보다 큰 울퉁불퉁한 나무 지팡이를 한 손으로 쥐고 세워 두었다. 인물과 떨어져 서 있고, 현대식 요소는 없다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O1-k1": {
+    "tries": [
+     {
+      "seconds": 11.18,
+      "input": 4,
+      "output": 1156,
+      "cache_read": 46293,
+      "cache_create": 15986,
+      "cost_usd": 0.0801413,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "틀림",
+     "figures[1].prop": "맞음",
+     "figures[2].prop": "맞음"
+    },
+    "reasons": {
+     "figures[0].prop": "기름이 쏟아지는 도구는 입구가 나팔처럼 크게 벌어진 금빛 광택 물건이다. 휘어진 짐승 뿔이 아니라 금속 나팔이나 깔때기처럼 보여서 기름 뿔이라고 확실히 말할 수 없다.",
+     "figures[1].prop": "다윗이 한 손으로 쥐고 몸을 기댄 소박한 나무 막대다. 목자 지팡이로 자연스럽고 시대에도 맞는다.",
+     "figures[2].prop": "이새가 손으로 쥐고 선 키 큰 마디진 나무 지팡이다. 모양과 쥐는 방식이 모두 맞다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O1-k2": {
+    "tries": [
+     {
+      "seconds": 12.132,
+      "input": 4,
+      "output": 1222,
+      "cache_read": 46293,
+      "cache_create": 15986,
+      "cost_usd": 0.0808013,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[2].prop": "맞음"
+    },
+    "reasons": {
+     "figures[0].prop": "사무엘이 한 손으로 금빛 뿔을 기울여 다윗의 머리에 기름을 붓고 있다. 뿔 끝이 좁고 입구가 나팔처럼 벌어졌으며 금속 테가 둘려 있다. 기름이 실제로 흘러내려 기름 뿔로 읽힌다.",
+     "figures[1].prop": "소년 다윗이 거친 나무 지팡이를 한 손으로 짚고 서 있다. 소년 키에 맞는 길이다. 끝이 구부러지지 않은 곧은 막대지만 목자 지팡이로 볼 수 있고, 현대식 물건은 아니다.",
+     "figures[2].prop": "이새가 옹이 진 긴 나무 지팡이를 한 손으로 쥐고 몸 옆에 세워 두고 있다. 이새와 떨어져 서 있고 시대에 맞는 모양이다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O3-k1": {
+    "tries": [
+     {
+      "seconds": 6.278,
+      "input": 4,
+      "output": 762,
+      "cache_read": 46293,
+      "cache_create": 15986,
+      "cost_usd": 0.0762013,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[2].prop": "맞음"
+    },
+    "reasons": {
+     "figures[0].prop": "사무엘이 한 손으로 소뿔 모양의 뿔을 쥐고 다윗의 머리 위에서 기름을 붓고 있다. 뿔 모양이 분명하고 기름이 흘러내린다.",
+     "figures[1].prop": "다윗이 한 손으로 소박한 나무 막대를 짚고 있다. 목자 지팡이로 자연스럽고 시대에 맞다.",
+     "figures[2].prop": "이새가 오른손으로 키 높이의 휘어진 나무 지팡이를 세워 쥐고 있다. 무리에서 떨어져 선 위치와도 맞는다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O2-k1": {
+    "tries": [
+     {
+      "seconds": 9.494,
+      "input": 4,
+      "output": 975,
+      "cache_read": 46293,
+      "cache_create": 15986,
+      "cost_usd": 0.0783313,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[2].prop": "맞음"
+    },
+    "reasons": {
+     "figures[0].prop": "사무엘이 한 손으로 뿔 모양 용기를 기울여 다윗의 머리에 기름을 붓고 있다. 끝이 나팔처럼 벌어졌지만 뿔로 읽힌다.",
+     "figures[1].prop": "다윗이 곧은 나무 막대를 한 손으로 짚고 있다. 크기와 쥔 방식이 소년 목자에게 맞는다.",
+     "figures[2].prop": "이새가 옹이진 긴 나무 지팡이를 한 손으로 세워 쥐고 있다. 시대에 맞는 모양이다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O3-k2": {
+    "tries": [
+     {
+      "seconds": 8.871,
+      "input": 4,
+      "output": 897,
+      "cache_read": 46293,
+      "cache_create": 15986,
+      "cost_usd": 0.0775513,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[2].prop": "맞음"
+    },
+    "reasons": {
+     "figures[0].prop": "사무엘이 속이 빈 짐승 뿔을 손에 쥐고 다윗의 머리 위로 기름을 붓고 있다. 기름 방울도 보인다. 크기와 모양, 쥔 방식이 모두 맞다.",
+     "figures[1].prop": "소년 다윗이 소박한 나무 막대 지팡이를 손에 쥐고 땅을 짚고 있다. 키에 맞는 길이라 목자 지팡이로 보기에 무리가 없다.",
+     "figures[2].prop": "이새가 거친 나무결의 긴 지팡이를 한 손으로 쥐고 땅에 세워 서 있다. 고대 복장과 어울리는 나무 지팡이다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O2-k2": {
+    "tries": [
+     {
+      "seconds": 10.099,
+      "input": 4,
+      "output": 1003,
+      "cache_read": 46293,
+      "cache_create": 15986,
+      "cost_usd": 0.07861130000000001,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[2].prop": "맞음"
+    },
+    "reasons": {
+     "figures[0].prop": "한쪽 끝이 좁고 입구가 나팔처럼 벌어진 뿔 모양이다. 사무엘이 한 손으로 쥐고 다윗의 머리 위에서 기울이고 있고, 기름이 흘러내린다.",
+     "figures[1].prop": "소년이 한 손으로 짚은 갈고리 없는 곧은 나무 막대다. 키는 허리 위쯤이고 시대에 맞는 목자 지팡이다. 현대식 물건은 아니다.",
+     "figures[2].prop": "이새가 한 손으로 세워 쥔 마디진 긴 나무 지팡이다. 이새 몸보다 길고 옛 모양이며, 다른 사람과 떨어진 오른쪽에 서 있다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O3-k3": {
+    "tries": [
+     {
+      "seconds": 8.746,
+      "input": 4,
+      "output": 900,
+      "cache_read": 46293,
+      "cache_create": 15986,
+      "cost_usd": 0.0775813,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[2].prop": "맞음"
+    },
+    "reasons": {
+     "figures[0].prop": "사무엘이 속이 빈 짐승 뿔을 한 손에 쥐고 다윗의 머리 위로 기울여 기름을 붓고 있다. 기름 방울도 보인다.",
+     "figures[1].prop": "소년 다윗이 한 손으로 나무 지팡이를 쥐고 땅을 짚고 있다. 키에 맞는 길이의 소박한 막대라 시대에도 어긋나지 않는다.",
+     "figures[2].prop": "이새가 거칠고 옹이 진 긴 나무 지팡이를 한 손으로 쥐고 세워 서 있다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:OG-k1": {
+    "tries": [
+     {
+      "seconds": 9.017,
+      "input": 4,
+      "output": 1008,
+      "cache_read": 46293,
+      "cache_create": 15986,
+      "cost_usd": 0.0786613,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[2].prop": "맞음"
+    },
+    "reasons": {
+     "figures[0].prop": "사무엘이 한 손으로 쥔 휘어진 뿔 모양 그릇이 다윗의 머리 위에서 기름을 쏟는다. 끝이 어두운 가는 뿔에 벌어진 아가리가 달려 있고, 크기도 적당하다. 아가리가 하얗고 넓어서 컵처럼 보이는 점은 아쉽지만 뿔로 읽힌다.",
+     "figures[1].prop": "소년 다윗이 키에 맞는 긴 나무 지팡이를 한 손으로 짚고 있다. 목자 지팡이로 자연스럽고 현대식 물건도 아니다.",
+     "figures[2].prop": "이새가 옹이 진 긴 나무 지팡이를 한 손으로 세워 쥐고 있다. 소재와 쥐는 방식이 기대와 맞고 시대에도 어긋나지 않는다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O2-k3": {
+    "tries": [
+     {
+      "seconds": 13.209,
+      "input": 4,
+      "output": 959,
+      "cache_read": 46293,
+      "cache_create": 15986,
+      "cost_usd": 0.0781713,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[2].prop": "맞음"
+    },
+    "reasons": {
+     "figures[0].prop": "사무엘이 손에 쥔 것은 끝이 벌어진 속이 빈 짐승 뿔이다. 그 뿔에서 기름이 다윗의 머리 위로 흘러내린다. 크기와 모양, 쥔 방식이 모두 맞다.",
+     "figures[1].prop": "다윗은 한 손으로 땅을 짚은 긴 나무 막대를 쥐고 있다. 고대 목자의 지팡이로 자연스러운 모양과 크기다. 현대식 물건처럼 보이지 않는다.",
+     "figures[2].prop": "이새가 한 손으로 세워 쥔 마디진 거친 나무 지팡이다. 키 높이쯤 되는 길이로 시대에 맞고, 땅에 짚고 서 있어 쥔 방식도 맞다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:OG-k2": {
+    "tries": [
+     {
+      "seconds": 10.4,
+      "input": 4,
+      "output": 1038,
+      "cache_read": 46293,
+      "cache_create": 15986,
+      "cost_usd": 0.07896130000000001,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[2].prop": "맞음"
+    },
+    "reasons": {
+     "figures[0].prop": "사무엘이 굽은 짐승 뿔을 쥐고 있다. 입구가 나팔처럼 벌어지고 금띠가 둘려 있으며, 그 입구에서 기름이 다윗의 머리 위로 흘러내린다. 뿔은 현대식 물건이 아니고 크기도 맞다.",
+     "figures[1].prop": "다윗이 소박한 나무 막대를 한 손으로 쥐고 땅을 짚고 있다. 키에 맞는 길이의 목자 지팡이로 보이며, 시대에도 어긋나지 않는다.",
+     "figures[2].prop": "이새가 마디진 거친 나무 지팡이를 한 손으로 쥐고 세워 서 있다. 모양과 쥐는 방식이 모두 맞다."
+    }
+   },
+   "authored-david-gath-achish:D1-k2": {
+    "tries": [
+     {
+      "seconds": 5.467,
+      "input": 4,
+      "output": 550,
+      "cache_read": 46041,
+      "cache_create": 13511,
+      "cost_usd": 0.0641561,
+      "turns": 4,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "맞음",
+     "figures[1].prop": "맞음"
+    },
+    "reasons": {
+     "figures[0].prop": "다윗이 나무 문짝에 손을 대고 긁적이고 있다. 문짝은 판자와 가로대, 못, 경첩이 보이는 목재 이중문이고 시대에도 맞다.",
+     "figures[1].prop": "아기스는 겉옷(검은 망토에 붉은 단을 댄 것)을 어깨에 걸치고 있고 자락이 몸 옆으로 늘어져 있다. 시대에 맞고 틀린 물건은 없다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:OG-k3": {
+    "tries": [
+     {
+      "seconds": 9.53,
+      "input": 4,
+      "output": 979,
+      "cache_read": 46293,
+      "cache_create": 15986,
+      "cost_usd": 0.0783713,
+      "turns": 5,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "맞음",
+     "figures[1].prop": "맞음",
+     "figures[2].prop": "맞음"
+    },
+    "reasons": {
+     "figures[0].prop": "사무엘이 양손으로 속이 빈 뿔(끝이 어두운 가는 쪽, 넓게 벌어진 입구)을 다윗의 머리 위에서 기울여 기름을 붓고 있다. 기름이 흘러내리고, 크기와 쥐는 방식이 시대에 맞다.",
+     "figures[1].prop": "다윗이 곧은 나무 막대를 한 손으로 짚고 있다. 키에 맞는 길이의 소박한 목자 지팡이이고, 현대식 요소는 없다.",
+     "figures[2].prop": "이새가 울퉁불퉁한 긴 나무 지팡이를 한 손으로 세워 쥐고 있다. 원목 질감이고 크기도 자연스럽다."
+    }
+   },
+   "authored-david-gath-achish:orig": {
+    "tries": [
+     {
+      "seconds": 9.242,
+      "input": 4,
+      "output": 879,
+      "cache_read": 46023,
+      "cache_create": 13490,
+      "cost_usd": 0.0673603,
+      "turns": 4,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "맞음",
+     "figures[1].prop": "맞음"
+    },
+    "reasons": {
+     "figures[0].prop": "다윗이 성문의 나무 문짝에 손을 대고 긁적이고 있다. 문짝은 판자, 가로대, 못, 경첩이 있는 큰 나무 문이다. 입가에 침이 흐르는 것도 본문과 맞는다.",
+     "figures[1].prop": "아기스가 붉은 테를 두른 검은 겉옷을 걸쳤다. 소맷자락과 앞자락이 겹겹이 늘어져 겉옷 자락이 분명히 보인다. 시대에 맞는 옷이고 어긋난 데는 없다."
+    }
+   },
+   "authored-david-gath-achish:D1-k1": {
+    "tries": [
+     {
+      "seconds": 8.702,
+      "input": 4,
+      "output": 766,
+      "cache_read": 46041,
+      "cache_create": 13511,
+      "cost_usd": 0.0663161,
+      "turns": 4,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "맞음",
+     "figures[1].prop": "맞음"
+    },
+    "reasons": {
+     "figures[0].prop": "다윗은 두 짝짜리 나무 성문에 손을 대고 긁적이고 있다. 문짝은 널판, 철 장식, 경첩이 있는 나무 문으로 시대에도 맞고 기대와 일치한다.",
+     "figures[1].prop": "아기스는 붉은 테를 두른 검은 겉옷을 걸쳤고, 소매와 옷자락이 접히며 늘어져 있다. 기대한 겉옷 자락으로 볼 수 있고, 시대에 맞지 않는 물건도 없다."
+    }
+   },
+   "authored-david-gath-achish:D2-k1": {
+    "tries": [
+     {
+      "seconds": 7.782,
+      "input": 4,
+      "output": 577,
+      "cache_read": 46041,
+      "cache_create": 13511,
+      "cost_usd": 0.06442610000000001,
+      "turns": 4,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "맞음",
+     "figures[1].prop": "틀림"
+    },
+    "reasons": {
+     "figures[0].prop": "다윗은 손을 성문의 나무 문짝에 대고 긁고 있다. 문짝은 두 짝 널문이고 경첩과 못이 보인다. 시대에도 맞는다.",
+     "figures[1].prop": "아기스는 겉옷(검은 로브)을 입고 있지만, 손으로 쥐거나 걷어 올린 겉옷 자락은 보이지 않는다. 한 손은 들었고 다른 손은 내려뜨렸다. 기대한 '겉옷 자락'이 분명하게 확인되지 않는다."
+    }
+   },
+   "authored-david-gath-achish:D1-k3": {
+    "tries": [
+     {
+      "seconds": 9.467,
+      "input": 4,
+      "output": 865,
+      "cache_read": 46041,
+      "cache_create": 13511,
+      "cost_usd": 0.06730610000000001,
+      "turns": 4,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "맞음",
+     "figures[1].prop": "맞음"
+    },
+    "reasons": {
+     "figures[0].prop": "다윗이 나무 문짝에 손을 대고 긁고 있다. 문짝은 두 짝짜리 목재 성문이고 쇠 경첩과 대갈못이 있어 시대에 맞다.",
+     "figures[1].prop": "아기스는 붉은 테두리를 두른 검은 겉옷을 입었고, 앞쪽 자락이 드리워진 모습이 보인다. 현대식 물건은 없다. 다만 자락을 쥐거나 들어 보이지는 않아서 판정이 확실하지는 않다."
+    }
+   },
+   "authored-david-gath-achish:D2-k3": {
+    "tries": [
+     {
+      "seconds": 7.264,
+      "input": 4,
+      "output": 833,
+      "cache_read": 46041,
+      "cache_create": 13511,
+      "cost_usd": 0.06698609999999999,
+      "turns": 4,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "맞음",
+     "figures[1].prop": "맞음"
+    },
+    "reasons": {
+     "figures[0].prop": "다윗 뒤에 나무 판자에 쇠 장식과 경첩이 달린 성문 문짝이 크게 보이고, 다윗이 손으로 문짝을 긁적이고 있다. 시대에 맞는 모양이다.",
+     "figures[1].prop": "아기스가 검은 바탕에 붉은 단을 두른 겉옷을 걸치고 있고, 넓은 소매와 옷자락이 늘어져 접힌 모양이 보인다. 현대식 물건은 없다. 다만 옷자락을 쥐거나 걷어 올린 동작은 없고 입은 상태 그대로라 약간 애매하다."
+    }
+   },
+   "authored-david-gath-achish:D2-k2": {
+    "tries": [
+     {
+      "seconds": 9.108,
+      "input": 4,
+      "output": 871,
+      "cache_read": 46041,
+      "cache_create": 13511,
+      "cost_usd": 0.06736610000000001,
+      "turns": 4,
+      "error": false
+     }
+    ],
+    "answers": {
+     "figures[0].prop": "맞음",
+     "figures[1].prop": "틀림"
+    },
+    "reasons": {
+     "figures[0].prop": "다윗이 나무판에 쇠 경첩과 징이 박힌 성문 나무 문짝에 손을 대고 긁적이고 있다. 문짝이 크고 분명하며 시대에도 맞다.",
+     "figures[1].prop": "아기스는 소매가 달린 검은 겉옷을 제대로 입고 있을 뿐이다. 겉옷 자락을 쥐거나 걷어 올리거나 늘어뜨려 보이는 모습이 없고, 오른손은 주먹만 쥐고 있다. 「겉옷 자락」이라는 지물이 분명히 확인되지 않는다."
+    }
+   }
+  },
+  "W": {
+   "authored-samuel-bethlehem-david-anointing:O2-k3": {
+    "tries": [
+     {
+      "seconds": 7.271,
+      "input": 4,
+      "output": 794,
+      "cache_read": 46052,
+      "cache_create": 8299,
+      "cost_usd": 0.0457492,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.oil.0": "맞음",
+     "w.oil.1": "맞음",
+     "w.oil.2": "틀림",
+     "w.oil.x0": "틀림"
+    },
+    "reasons": {
+     "w.oil.0": "노랗고 윤이 나는 액체로 그려져 있다.",
+     "w.oil.1": "기름이 가닥으로 길게 흘러내리고 끝이 방울져 있다.",
+     "w.oil.2": "기름 줄기가 뿔의 입구가 아니라 뿔 몸통 바깥 윗면에서 시작해 흘러내린다. 입구에서 쏟아지는 모습이 아니다.",
+     "w.oil.x0": "뿔의 열린 입구는 어둡게 비어 있고, 그 안에서 나오는 기름은 보이지 않는다. 기름은 뿔 바깥면을 타고 흐른다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O1-k3": {
+    "tries": [
+     {
+      "seconds": 7.669,
+      "input": 4,
+      "output": 600,
+      "cache_read": 46052,
+      "cache_create": 8299,
+      "cost_usd": 0.0438092,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.oil.0": "맞음",
+     "w.oil.1": "맞음",
+     "w.oil.2": "맞음",
+     "w.oil.x0": "맞음"
+    },
+    "reasons": {
+     "w.oil.0": "기름이 노르스름하고 윤이 나는 액체로 보인다.",
+     "w.oil.1": "기름이 머리카락을 타고 방울져 얼굴 앞으로 흘러내린다.",
+     "w.oil.2": "기울인 뿔의 입구에서 머리 위로 쏟아진다.",
+     "w.oil.x0": "뿔의 넓고 열린 입구 가장자리에서 기름이 나와 머리로 떨어진다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O2-k1": {
+    "tries": [
+     {
+      "seconds": 8.529,
+      "input": 4,
+      "output": 941,
+      "cache_read": 46052,
+      "cache_create": 8299,
+      "cost_usd": 0.0472192,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.oil.0": "맞음",
+     "w.oil.1": "맞음",
+     "w.oil.2": "틀림",
+     "w.oil.x0": "틀림"
+    },
+    "reasons": {
+     "w.oil.0": "기름이 노랗고 윤이 나는 액체로 그려져 있다.",
+     "w.oil.1": "머리 위에서 얼굴 옆과 앞쪽으로 가닥가닥 흘러내린다.",
+     "w.oil.2": "뿔의 넓은 입구가 위·오른쪽을 향해 기울어 있어 그 입구에서 쏟아지는 모양이 아니다. 기름은 뿔 몸통 바깥 윗면과 테두리 가장자리를 타고 흐른다. 분명히 맞다고 확인되지 않아 틀림으로 답한다.",
+     "w.oil.x0": "뿔의 열린 입구 안쪽은 어둡게 비어 있고, 기름은 그 구멍 안에서 나오지 않는다. 뿔 바깥 표면에서 흘러내리는 것으로 보인다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O3-k1": {
+    "tries": [
+     {
+      "seconds": 8.281,
+      "input": 4,
+      "output": 845,
+      "cache_read": 46052,
+      "cache_create": 8299,
+      "cost_usd": 0.0462592,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.oil.0": "맞음",
+     "w.oil.1": "맞음",
+     "w.oil.2": "맞음",
+     "w.oil.x0": "틀림"
+    },
+    "reasons": {
+     "w.oil.0": "기름이 노르스름하고 윤이 나는 액체로 그려졌다.",
+     "w.oil.1": "기름이 머리카락을 타고 흘러내리다가 방울져 떨어진다.",
+     "w.oil.2": "뿔 입구 가장자리에서 시작한 기름이 다윗의 머리 위로 흘러내린다.",
+     "w.oil.x0": "뿔 입구는 위쪽을 향해 어두운 구멍으로 보이는데, 기름은 그 구멍 안에서 나오지 않는다. 입구 바깥 테두리와 뿔 아랫면에 묻어 있어서, 입구에서 쏟아지는 것으로 분명히 확인되지 않는다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:orig": {
+    "tries": [
+     {
+      "seconds": 8.477,
+      "input": 4,
+      "output": 860,
+      "cache_read": 46037,
+      "cache_create": 8284,
+      "cost_usd": 0.046347700000000006,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.oil.0": "맞음",
+     "w.oil.1": "맞음",
+     "w.oil.2": "맞음",
+     "w.oil.x0": "틀림"
+    },
+    "reasons": {
+     "w.oil.0": "노란 호박색의 윤나는 방울이다.",
+     "w.oil.1": "뿔 가장자리에서 방울이 맺혀 이마 앞으로 가늘게 흘러 떨어진다.",
+     "w.oil.2": "뿔 입구 가장자리와 머리카락 닿는 곳에서 방울이 나온다.",
+     "w.oil.x0": "방울은 뿔 입구 바깥쪽 아래 가장자리에서 맺혀 있다. 열린 구멍 안에서 나오는 모습은 확실히 보이지 않는다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O1-k1": {
+    "tries": [
+     {
+      "seconds": 9.789,
+      "input": 4,
+      "output": 1067,
+      "cache_read": 46052,
+      "cache_create": 8299,
+      "cost_usd": 0.0484792,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.oil.0": "맞음",
+     "w.oil.1": "맞음",
+     "w.oil.2": "맞음",
+     "w.oil.x0": "틀림"
+    },
+    "reasons": {
+     "w.oil.0": "기름이 노르스름하고 윤이 나는 액체로 그려져 있다.",
+     "w.oil.1": "기름이 뿔에서 머리 위와 얼굴 옆으로 줄기져 흘러내리고 방울도 떨어진다.",
+     "w.oil.2": "기름이 뿔에서 다윗의 머리 위로 쏟아져 내린다.",
+     "w.oil.x0": "뿔의 넓은 입구는 오른쪽 위를 향해 열려 있는데, 기름 줄기는 입구 안쪽이 아니라 뿔 몸통 옆면과 아래쪽 가장자리에서 시작한다. 입구 안에서 나온다고 분명히 확인되지 않는다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O2-k2": {
+    "tries": [
+     {
+      "seconds": 10.102,
+      "input": 4,
+      "output": 1027,
+      "cache_read": 46052,
+      "cache_create": 8299,
+      "cost_usd": 0.0480792,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.oil.0": "맞음",
+     "w.oil.1": "맞음",
+     "w.oil.2": "맞음",
+     "w.oil.x0": "틀림"
+    },
+    "reasons": {
+     "w.oil.0": "기름이 노르스름하고 윤이 나는 액체로 보인다.",
+     "w.oil.1": "머리 위로 줄기와 방울이 흘러내린다.",
+     "w.oil.2": "오른쪽 입구 테두리에서 한 줄기가 머리 위로 떨어진다. 이 줄기만 입구에서 나온다.",
+     "w.oil.x0": "굵은 줄기 여러 개가 열린 입구 안이 아니라 뿔 몸통 바깥 면에서 시작해 몸통을 감싸 흐른다. 입구에서 나오는 건 한 줄기뿐이라 전체가 입구에서 나온다고 하기 어렵다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O1-k2": {
+    "tries": [
+     {
+      "seconds": 10.78,
+      "input": 4,
+      "output": 1097,
+      "cache_read": 46052,
+      "cache_create": 8299,
+      "cost_usd": 0.048779199999999995,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.oil.0": "맞음",
+     "w.oil.1": "맞음",
+     "w.oil.2": "맞음",
+     "w.oil.x0": "틀림"
+    },
+    "reasons": {
+     "w.oil.0": "기름이 노르스름하고 윤이 나는 액체로 보인다.",
+     "w.oil.1": "머리카락과 얼굴 앞으로 줄기와 방울이 흘러내린다.",
+     "w.oil.2": "뿔 입구 가장자리와 머리 위에서 쏟아진다.",
+     "w.oil.x0": "기름 줄기 여럿이 뿔 입구 안쪽이 아니라 뿔 몸통 바깥 면과 테두리에서 시작해 입구 안에서 나온다고 분명히 확인되지 않는다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O3-k2": {
+    "tries": [
+     {
+      "seconds": 4.43,
+      "input": 4,
+      "output": 460,
+      "cache_read": 46052,
+      "cache_create": 8299,
+      "cost_usd": 0.042409199999999994,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.oil.0": "맞음",
+     "w.oil.1": "맞음",
+     "w.oil.2": "맞음",
+     "w.oil.x0": "맞음"
+    },
+    "reasons": {
+     "w.oil.0": "노르스름하고 윤이 나는 액체가 보인다.",
+     "w.oil.1": "뿔 입구에서 머리 위로 흘러내리고 머리카락에서 한 방울이 떨어진다.",
+     "w.oil.2": "뿔의 입구에서 머리 위로 쏟아진다.",
+     "w.oil.x0": "기름이 뿔의 넓고 열린 입구 안쪽에서 나온다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:O3-k3": {
+    "tries": [
+     {
+      "seconds": 4.888,
+      "input": 4,
+      "output": 478,
+      "cache_read": 46052,
+      "cache_create": 8299,
+      "cost_usd": 0.0425892,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.oil.0": "맞음",
+     "w.oil.1": "맞음",
+     "w.oil.2": "맞음",
+     "w.oil.x0": "맞음"
+    },
+    "reasons": {
+     "w.oil.0": "기름이 노르스름하고 윤기 있는 액체로 보인다.",
+     "w.oil.1": "머리에서 흘러내리고 한 방울이 매달려 떨어지는 모양이다.",
+     "w.oil.2": "뿔의 입구 가장자리에서 머리 위로 쏟아진다.",
+     "w.oil.x0": "뿔의 열린 넓은 입구에서 기름이 나온다. 뿔은 입구가 아래로 기울어져 있다."
+    }
+   },
+   "authored-david-gath-achish:D1-k1": {
+    "tries": [
+     {
+      "seconds": 5.113,
+      "input": 4,
+      "output": 426,
+      "cache_read": 45969,
+      "cache_create": 8216,
+      "cost_usd": 0.0417289,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.drool-beard.0": "맞음",
+     "w.drool-beard.1": "맞음",
+     "w.drool-beard.2": "맞음"
+    },
+    "reasons": {
+     "w.drool-beard.0": "입가와 턱 아래로 침이 줄줄 흘러내리는 것이 보인다.",
+     "w.drool-beard.1": "수염이 침으로 젖어 반짝이고 가닥으로 엉겨 있으며 침방울이 맺혀 있다.",
+     "w.drool-beard.2": "짙은 턱수염과 콧수염이 있는 얼굴이다."
+    }
+   },
+   "authored-david-gath-achish:D1-k2": {
+    "tries": [
+     {
+      "seconds": 4.902,
+      "input": 4,
+      "output": 476,
+      "cache_read": 45969,
+      "cache_create": 8216,
+      "cost_usd": 0.0422289,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.drool-beard.0": "맞음",
+     "w.drool-beard.1": "맞음",
+     "w.drool-beard.2": "맞음"
+    },
+    "reasons": {
+     "w.drool-beard.0": "수염 아래로 침줄기가 길게 늘어져 흘러내리고 있다. 입가 자체에서 나오는 모습은 수염에 가려 직접 보이지 않지만, 흘러내리는 침으로 읽힌다.",
+     "w.drool-beard.1": "수염 아랫부분이 젖어 윤이 나고 침방울이 매달려 있어 젖어 보인다.",
+     "w.drool-beard.2": "짙은 검은 수염이 얼굴 아래쪽을 덮고 있다."
+    }
+   },
+   "authored-david-gath-achish:orig": {
+    "tries": [
+     {
+      "seconds": 6.341,
+      "input": 4,
+      "output": 703,
+      "cache_read": 45954,
+      "cache_create": 8201,
+      "cost_usd": 0.0444374,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.drool-beard.0": "틀림",
+     "w.drool-beard.1": "맞음",
+     "w.drool-beard.2": "맞음"
+    },
+    "reasons": {
+     "w.drool-beard.0": "입은 다물려 있고 침줄은 입가가 아니라 턱수염 아래쪽 끝에서 늘어져, 입가에서 흘러내린다고 확신하기 어렵다.",
+     "w.drool-beard.1": "수염 아랫부분에 흰 물방울이 맺혀 있고 윤기가 돌아 젖은 것처럼 보인다.",
+     "w.drool-beard.2": "짙은 턱수염과 콧수염이 난 얼굴이다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:OG-k2": {
+    "tries": [
+     {
+      "seconds": 8.183,
+      "input": 4,
+      "output": 847,
+      "cache_read": 46052,
+      "cache_create": 8299,
+      "cost_usd": 0.0462792,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.oil.0": "맞음",
+     "w.oil.1": "맞음",
+     "w.oil.2": "맞음",
+     "w.oil.x0": "틀림"
+    },
+    "reasons": {
+     "w.oil.0": "노란 호박색의 윤기 나는 액체로 보인다.",
+     "w.oil.1": "머리카락을 타고 흘러내리고 끝에서 방울져 떨어진다.",
+     "w.oil.2": "뿔 입구 가장자리에서 한 줄기가 머리 위로 흘러내리고 머리에도 묻어 있다.",
+     "w.oil.x0": "기름이 뿔 입구 안쪽에서 나오는 모습이 분명하지 않다. 여러 줄기가 뿔 몸통 바깥을 고리처럼 감아 흐르고, 입구에서 나온 줄기는 가장자리 하나뿐이다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:OG-k3": {
+    "tries": [
+     {
+      "seconds": 8.693,
+      "input": 4,
+      "output": 883,
+      "cache_read": 46052,
+      "cache_create": 8299,
+      "cost_usd": 0.0466392,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.oil.0": "맞음",
+     "w.oil.1": "맞음",
+     "w.oil.2": "맞음",
+     "w.oil.x0": "틀림"
+    },
+    "reasons": {
+     "w.oil.0": "기름이 노르스름하고 윤이 나는 액체로 보인다.",
+     "w.oil.1": "기름이 머리카락을 따라 가닥으로 흘러내리고 끝에 방울이 맺혀 있다.",
+     "w.oil.2": "오른쪽 줄기는 뿔 입구 가장자리에서 머리 위로 떨어진다.",
+     "w.oil.x0": "뿔의 열린 입구 안쪽은 비어 있고 흰 속만 보인다. 왼쪽 줄기는 입구 안이 아니라 뿔 몸통 바깥에서 시작해, 입구 안에서 나온다고 확인되지 않는다."
+    }
+   },
+   "authored-samuel-bethlehem-david-anointing:OG-k1": {
+    "tries": [
+     {
+      "seconds": 8.933,
+      "input": 4,
+      "output": 907,
+      "cache_read": 46052,
+      "cache_create": 8299,
+      "cost_usd": 0.046879199999999996,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.oil.0": "맞음",
+     "w.oil.1": "맞음",
+     "w.oil.2": "맞음",
+     "w.oil.x0": "틀림"
+    },
+    "reasons": {
+     "w.oil.0": "기름이 노르스름하고 윤이 나는 액체로 그려져 있다.",
+     "w.oil.1": "기름이 뿔 가장자리에서 머리와 얼굴을 따라 줄기로 흘러내리고, 끝에 방울이 맺혀 있다.",
+     "w.oil.2": "기름이 뿔 입구 쪽 가장자리에서 머리 위로 쏟아진다.",
+     "w.oil.x0": "뿔의 입구 안쪽은 하얗게 비어 있고 기름이 보이지 않는다. 기름은 뿔 바깥 몸통을 덮고 입구 가장자리 바깥으로 흐르는 것처럼 보여서, 입구 안에서 나온다고 분명히 확인되지 않는다."
+    }
+   },
+   "authored-david-gath-achish:D1-k3": {
+    "tries": [
+     {
+      "seconds": 5.238,
+      "input": 4,
+      "output": 412,
+      "cache_read": 45969,
+      "cache_create": 8216,
+      "cost_usd": 0.0415889,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.drool-beard.0": "맞음",
+     "w.drool-beard.1": "맞음",
+     "w.drool-beard.2": "맞음"
+    },
+    "reasons": {
+     "w.drool-beard.0": "입가·턱 부근에서 침줄이 수염 아래로 흘러내리는 모습이 보임",
+     "w.drool-beard.1": "수염 아래쪽이 침으로 젖어 번들거리고 침줄이 이어져 있음",
+     "w.drool-beard.2": "짙은 갈색 수염이 난 얼굴임"
+    }
+   },
+   "authored-david-gath-achish:D2-k1": {
+    "tries": [
+     {
+      "seconds": 5.161,
+      "input": 4,
+      "output": 429,
+      "cache_read": 45969,
+      "cache_create": 8216,
+      "cost_usd": 0.0417589,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.drool-beard.0": "맞음",
+     "w.drool-beard.1": "맞음",
+     "w.drool-beard.2": "맞음"
+    },
+    "reasons": {
+     "w.drool-beard.0": "입가에서 침줄이 여러 가닥 흘러내려 수염 아래로 늘어진다.",
+     "w.drool-beard.1": "수염 아랫부분이 침으로 젖어 윤기가 돌고 물방울이 맺혀 있다.",
+     "w.drool-beard.2": "짙은 곱슬 수염이 얼굴 아래쪽을 덮고 있다."
+    }
+   },
+   "authored-david-gath-achish:D2-k3": {
+    "tries": [
+     {
+      "seconds": 5.693,
+      "input": 4,
+      "output": 454,
+      "cache_read": 45969,
+      "cache_create": 8216,
+      "cost_usd": 0.0420089,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.drool-beard.0": "맞음",
+     "w.drool-beard.1": "틀림",
+     "w.drool-beard.2": "맞음"
+    },
+    "reasons": {
+     "w.drool-beard.0": "입가에서 침이 길게 흘러내려 턱 아래까지 이어진다.",
+     "w.drool-beard.1": "침줄이 수염 앞쪽으로 늘어져 있을 뿐이다. 수염 자체가 젖어 보이지는 않고 마르고 곱슬한 상태다. 분명하지 않아 틀림으로 판정한다.",
+     "w.drool-beard.2": "수염이 풍성하게 난 얼굴이다."
+    }
+   },
+   "authored-david-gath-achish:D2-k2": {
+    "tries": [
+     {
+      "seconds": 7.29,
+      "input": 4,
+      "output": 402,
+      "cache_read": 45969,
+      "cache_create": 8216,
+      "cost_usd": 0.0414889,
+      "turns": 3,
+      "error": false
+     }
+    ],
+    "answers": {
+     "w.drool-beard.0": "맞음",
+     "w.drool-beard.1": "맞음",
+     "w.drool-beard.2": "맞음"
+    },
+    "reasons": {
+     "w.drool-beard.0": "입가에서 침이 가닥으로 길게 흘러내림",
+     "w.drool-beard.1": "수염 아래로 침이 흘러 젖은 듯 반짝이며 물방울이 맺혀 있음",
+     "w.drool-beard.2": "짙은 수염이 뚜렷한 얼굴"
+    }
+   }
+  }
+ },
+ "sec": 741.2,
+ "cand": {
+  "authored-samuel-bethlehem-david-anointing": {
+   "left": "authored-samuel-bethlehem-david-anointing:orig",
+   "right": "authored-samuel-bethlehem-david-anointing:O3-k2",
+   "left_is": "orig",
+   "right_is": "edit",
+   "top": "O3-k2"
+  },
+  "authored-david-gath-achish": {
+   "left": "authored-david-gath-achish:orig",
+   "right": "authored-david-gath-achish:D1-k1",
+   "left_is": "orig",
+   "right_is": "edit",
+   "top": "D1-k1"
+  }
+ },
+ "human": {
+  "human_minutes": 1.48,
+  "active_minutes": 1.48,
+  "screens": 2,
+  "scenes": {
+   "authored-samuel-bethlehem-david-anointing": {
+    "answer": "right",
+    "chose": "edit",
+    "memo": "기름을 부으는 위치가 이상함",
+    "minutes": 0.98,
+    "active_minutes": 0.97
+   },
+   "authored-david-gath-achish": {
+    "answer": "right",
+    "chose": "edit",
+    "memo": "",
+    "minutes": 0.48,
+    "active_minutes": 0.48
+   }
+  }
+ }
+}

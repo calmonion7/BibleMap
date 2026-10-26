@@ -1,0 +1,267 @@
+{
+ "model": "qwen-image-edit-2511",
+ "try": [
+  {
+   "raw": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/try/gilgal/s11-saul.png",
+   "who": "saul",
+   "seed": 11,
+   "quantize": 8,
+   "model": "qwen-image-edit-2511",
+   "status": "error",
+   "sec": 1200.0,
+   "peak_gb": null,
+   "error": "timeout b'\\r  0%|          | 0/20 [00:00<?, ?it/s]\\r  5%|\\xe2\\x96\\x8c         | 1/20 [03:54<1:14:06, 234.01s/it]\\r 10%|\\xe2\\x96\\x88         | 2/20 [06:53<1:00:35, 201.98s/it]\\r 15%|\\xe2\\x96\\x88\\xe2\\x96\\x8c        | 3/20 [09:53<54:21, 191.83s/it]  \\r 20%|\\xe2\\x96\\x88\\xe2\\x96\\x88        | 4/20 [12:53<49:53, 187.11s/it]\\r 25%|\\xe2\\x96\\x88\\xe2\\x96\\x88\\xe2\\x96\\x8c       | 5/20 [15:53<46:10, 184.71s/it]\\r 30%|\\xe2\\x96\\x88\\xe2\\x96\\x88\\xe2\\x96\\x88       | 6/20 [18:54<42:49, 183.54s/it]'",
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/mask/gilgal/saul-s11.png",
+   "mask_box": [
+    795,
+    0,
+    1163,
+    629
+   ],
+   "head": [
+    908,
+    88,
+    1046,
+    202
+   ],
+   "mask_src": "owl",
+   "scene": "gilgal",
+   "base": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s11.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s11.png",
+   "side": "right"
+  },
+  {
+   "raw": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/try/engedi/s11-saul.png",
+   "who": "saul",
+   "seed": 11,
+   "quantize": 8,
+   "model": "qwen-image-edit-2511",
+   "status": "error",
+   "sec": 1200.2,
+   "peak_gb": null,
+   "error": "timeout b'\\r  0%|          | 0/20 [00:00<?, ?it/s]\\r  5%|\\xe2\\x96\\x8c         | 1/20 [05:21<1:41:44, 321.27s/it]\\r 10%|\\xe2\\x96\\x88         | 2/20 [08:11<1:09:46, 232.57s/it]\\r 15%|\\xe2\\x96\\x88\\xe2\\x96\\x8c        | 3/20 [11:05<58:17, 205.71s/it]  \\r 20%|\\xe2\\x96\\x88\\xe2\\x96\\x88        | 4/20 [13:54<51:00, 191.26s/it]\\r 25%|\\xe2\\x96\\x88\\xe2\\x96\\x88\\xe2\\x96\\x8c       | 5/20 [16:49<46:21, 185.42s/it]\\r 30%|\\xe2\\x96\\x88\\xe2\\x96\\x88\\xe2\\x96\\x88       | 6/20 [19:46<42:36, 182.61s/it]'",
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/mask/engedi/saul-s11.png",
+   "mask_box": [
+    638,
+    65,
+    897,
+    587
+   ],
+   "head": [
+    796,
+    216,
+    901,
+    312
+   ],
+   "mask_src": "owl",
+   "scene": "engedi",
+   "base": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s11.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s11.png",
+   "side": "right"
+  },
+  {
+   "raw": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/try/gilgal/s11-saul.png",
+   "who": "saul",
+   "seed": 11,
+   "quantize": 6,
+   "model": "qwen-image-edit-2511",
+   "status": "error",
+   "sec": 1200.0,
+   "peak_gb": null,
+   "error": "timeout \n  0%|          | 0/20 [00:00<?, ?it/s]\n  5%|▌         | 1/20 [03:41<1:10:02, 221.16s/it]\n 10%|█         | 2/20 [06:10<53:44, 179.16s/it]  \n 15%|█▌        | 3/20 [08:58<49:14, 173.78s/it]\n 20%|██        | 4/20 [11:55<46:39, 174.94s/it]\n 25%|██▌       | 5/20 [14:45<43:18, 173.25s/it]\n 30%|███       | 6/20 [17:39<40:32, 173.74s/it]",
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/mask/gilgal/saul-s11.png",
+   "mask_box": [
+    795,
+    0,
+    1163,
+    629
+   ],
+   "head": [
+    908,
+    88,
+    1046,
+    202
+   ],
+   "mask_src": "owl",
+   "scene": "gilgal",
+   "base": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s11.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s11.png",
+   "side": "right"
+  },
+  {
+   "raw": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/try/gilgal/s11-saul.png",
+   "who": "saul",
+   "seed": 11,
+   "quantize": 4,
+   "model": "qwen-image-edit-2511",
+   "status": "error",
+   "sec": 1200.0,
+   "peak_gb": null,
+   "error": "timeout \n  0%|          | 0/20 [00:00<?, ?it/s]\n  5%|▌         | 1/20 [03:30<1:06:38, 210.44s/it]\n 10%|█         | 2/20 [05:53<51:11, 170.66s/it]  \n 15%|█▌        | 3/20 [08:15<44:39, 157.62s/it]\n 20%|██        | 4/20 [10:37<40:24, 151.54s/it]\n 25%|██▌       | 5/20 [12:59<37:01, 148.11s/it]\n 30%|███       | 6/20 [15:21<34:05, 146.10s/it]\n 35%|███▌      | 7/20 [17:44<31:22, 144.83s/it]",
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/mask/gilgal/saul-s11.png",
+   "mask_box": [
+    795,
+    0,
+    1163,
+    629
+   ],
+   "head": [
+    908,
+    88,
+    1046,
+    202
+   ],
+   "mask_src": "owl",
+   "scene": "gilgal",
+   "base": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s11.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s11.png",
+   "side": "right"
+  }
+ ],
+ "ladder": [
+  {
+   "quantize": 8,
+   "scene": "gilgal",
+   "seed": 11,
+   "status": "error",
+   "sec": 1200.0,
+   "steps_done": 6
+  },
+  {
+   "quantize": 8,
+   "scene": "engedi",
+   "seed": 11,
+   "status": "error",
+   "sec": 1200.2,
+   "steps_done": 6
+  },
+  {
+   "quantize": 6,
+   "scene": "gilgal",
+   "seed": 11,
+   "status": "error",
+   "sec": 1200.0,
+   "steps_done": 6
+  },
+  {
+   "quantize": 4,
+   "scene": "gilgal",
+   "seed": 11,
+   "status": "error",
+   "sec": 1200.0,
+   "steps_done": 7
+  }
+ ],
+ "stop": "실행 불가 — 양자화 사다리 q8·q6·q4 모두 첫 1장이 장당 10분 초과(20분 제한에서 6~7/20스텝, 스텝당 약 145~180초 → 장당 약 48~60분). 디노이징 중 스왑 출입은 적어 원인은 메모리가 아니라 계산량: 20B급 모델(2.1은 7B)에 스텝마다 트랜스포머 2회(guidance 2.5 CFG) + 조건 그림 3장.",
+ "lightning": [
+  {
+   "mode": "plain",
+   "quantize": 8,
+   "scene": "gilgal",
+   "who": "saul",
+   "seed": 11,
+   "steps": 4,
+   "guidance": 1.0,
+   "sec": 870.6,
+   "peak_gb": 58.52,
+   "s_per_it": [
+    292.96,
+    219.2,
+    200.83,
+    192.25,
+    204.65
+   ],
+   "status": "ok",
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/mask/gilgal/saul-s11.png",
+   "mask_box": [
+    795,
+    0,
+    1163,
+    629
+   ],
+   "head": [
+    908,
+    88,
+    1046,
+    202
+   ],
+   "mask_src": "owl",
+   "raw": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/lightning/raw/plain-q8-gilgal-s11-saul.png",
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/lightning/plain-q8-gilgal-s11.png",
+   "mask_diff": 12.23
+  },
+  {
+   "mode": "cfg1",
+   "quantize": 8,
+   "scene": "gilgal",
+   "who": "saul",
+   "seed": 11,
+   "steps": 4,
+   "guidance": 1.0,
+   "sec": 498.1,
+   "peak_gb": 58.52,
+   "s_per_it": [
+    162.61,
+    132.97,
+    111.09,
+    101.1,
+    111.42
+   ],
+   "status": "ok",
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/mask/gilgal/saul-s11.png",
+   "mask_box": [
+    795,
+    0,
+    1163,
+    629
+   ],
+   "head": [
+    908,
+    88,
+    1046,
+    202
+   ],
+   "mask_src": "owl",
+   "raw": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/lightning/raw/cfg1-q8-gilgal-s11-saul.png",
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/lightning/cfg1-q8-gilgal-s11.png",
+   "mask_diff": 12.23
+  },
+  {
+   "prompt": "env",
+   "mode": "cfg1",
+   "quantize": 8,
+   "scene": "gilgal",
+   "who": "saul",
+   "seed": 11,
+   "steps": 4,
+   "guidance": 1.0,
+   "sec": 483.6,
+   "peak_gb": 58.51,
+   "s_per_it": [
+    160.27,
+    127.87,
+    107.88,
+    98.33,
+    108.31
+   ],
+   "status": "ok",
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/mask/gilgal/saul-s11.png",
+   "mask_box": [
+    795,
+    0,
+    1163,
+    629
+   ],
+   "head": [
+    908,
+    88,
+    1046,
+    202
+   ],
+   "mask_src": "owl",
+   "raw": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/lightning/raw/cfg1-p2-q8-gilgal-s11-saul.png",
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit-2511/lightning/cfg1-p2-q8-gilgal-s11.png",
+   "mask_diff": 49.11
+  }
+ ]
+}

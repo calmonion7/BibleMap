@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "zadok",
   "names": [
     "사독",
@@ -11,6 +11,7 @@
   "era": "an ancient Israelite",
   "age": "elderly priest",
   "sex": "male",
+  "role": "priest",
   "hair": "grey hair",
   "beard": "long grey beard",
   "headwear": "white linen turban",
@@ -37,12 +38,59 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, holding a horn of oil"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "elder",
+      "text": "in his 60s, lined face"
+    },
+    "beardVolume": {
+      "class": "long",
+      "text": "long gray beard to the chest"
+    },
+    "silhouette": {
+      "class": "lean",
+      "text": "lean upright narrow shoulders"
+    },
+    "headOutline": {
+      "class": "turban",
+      "text": "white linen turban wound high"
+    },
+    "costumeColor": {
+      "class": "white",
+      "text": "long white linen robe, woven sash"
+    }
+  },
+  "face": {
+    "faceShape": "narrow oval face, high cheekbones",
+    "eyes": "deep-set gray-brown eyes",
+    "nose": "straight long nose",
+    "mouth": "level mouth, soft lips",
+    "skin": "pale weathered skin",
+    "brows": "thin gray brows",
+    "marks": "none"
+  },
   "_why": {
-    "age": "본문 밖 · 저작자 정함(다윗 시대부터 섬긴 제사장 — 삼하 8:17)",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함(제사장 복식 — 출 28:40 관)",
-    "costume": "본문 밖 · 저작자 정함(제사장 세마포 — 삼상 22:18 「세마포 에봇」)"
+    "age": "[저작](노년 제사장 대표값 — 삼하 8:17 「아히둡의 아들 사독과 … 제사장이 되고」는 직분만 말함)",
+    "hair": "[저작](노년 제사장 대표값 — 본문에 머리색 없음)",
+    "beard": "[저작](노년 제사장 대표값 — 본문에 수염 없음)",
+    "headwear": "[추론] 출 28:39 「가는 베실로 관을 만드고」 · 28:40 「관을 만들어서 영화롭고 아름답게」 — 제사장 관 규례 → 흰 베 관",
+    "costume": "[추론] 출 28:39 「가는 베실로 반포 속옷을 짜고」 · 28:40 「그들을 위하여 띠를 만들며」 — 제사장 속옷·띠 규례 → 흰 베 겉옷과 띠",
+    "build": "[저작](노년 제사장 대표값 — 본문에 체격 없음)",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[저작](역표 동석 인물과 구분용)",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "face.faceShape": "[저작](얼굴 구분용)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[직접] 왕상 1:39 「제사장 사독」"
   },
   "plate": {
     "seed": 11,

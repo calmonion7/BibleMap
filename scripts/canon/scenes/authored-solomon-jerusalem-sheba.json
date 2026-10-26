@@ -23,12 +23,12 @@
   "crowds": [],
   "figures": [
     {
-      "cast": "solomon",
+      "cast": "solomon-prime",
       "role": "솔로몬",
       "pose": "보좌에 앉아 맞이한다",
       "prop": "왕홀",
       "facing": "left",
-      "region": "solomon",
+      "region": "solomon-prime",
       "verse": "10:3"
     },
     {
@@ -48,7 +48,7 @@
       1.0,
       1.0
     ],
-    "solomon": [
+    "solomon-prime": [
       0.68,
       0.15,
       0.92,
@@ -86,9 +86,9 @@
     {
       "id": "S3",
       "kind": "plate",
-      "region": "solomon",
+      "region": "solomon-prime",
       "verse": "10:3",
-      "prompt": "{cast:solomon}, sitting on a throne receiving a guest, holding a wooden scepter, facing left.",
+      "prompt": "{cast:solomon-prime}, sitting on a throne receiving a guest, holding a wooden scepter, facing left.",
       "neg": [
         "gray hair",
         "full beard",
@@ -116,7 +116,7 @@
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
     "figures": [
-      "solomon",
+      "solomon-prime",
       "sheba-queen"
     ],
     "gap_bands": [

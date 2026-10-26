@@ -1,0 +1,814 @@
+{
+ "scenes": {
+  "authored-saul-gilgal-amalek": {
+   "who": [
+    "saul"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-saul-gilgal-amalek/base/s11.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        376,
+        119,
+        484,
+        218
+       ],
+       "head_src": "owl",
+       "body": [
+        168,
+        21,
+        443,
+        572
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        950,
+        89,
+        1060,
+        247
+       ],
+       "head_src": "owl",
+       "body": [
+        530,
+        0,
+        1065,
+        595
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-saul-gilgal-amalek/base/s42.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        336,
+        71,
+        451,
+        181
+       ],
+       "head_src": "owl",
+       "body": [
+        126,
+        0,
+        406,
+        554
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        903,
+        88,
+        1015,
+        237
+       ],
+       "head_src": "owl",
+       "body": [
+        578,
+        0,
+        1004,
+        582
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-saul-gilgal-amalek/base/s7.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        387,
+        113,
+        483,
+        202
+       ],
+       "head_src": "owl",
+       "body": [
+        159,
+        2,
+        523,
+        613
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        859,
+        89,
+        961,
+        231
+       ],
+       "head_src": "owl",
+       "body": [
+        505,
+        0,
+        933,
+        585
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-saul-gilgal-amalek/base/s23.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        396,
+        120,
+        493,
+        216
+       ],
+       "head_src": "owl",
+       "body": [
+        170,
+        23,
+        460,
+        543
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        892,
+        99,
+        1007,
+        257
+       ],
+       "head_src": "owl",
+       "body": [
+        601,
+        0,
+        992,
+        587
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-saul-gilgal-amalek/base/s5.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        375,
+        130,
+        472,
+        236
+       ],
+       "head_src": "owl",
+       "body": [
+        124,
+        25,
+        425,
+        581
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        935,
+        96,
+        1047,
+        249
+       ],
+       "head_src": "owl",
+       "body": [
+        589,
+        0,
+        1055,
+        599
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-saul-gilgal-amalek/base/s101.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        339,
+        132,
+        448,
+        226
+       ],
+       "head_src": "owl",
+       "body": [
+        128,
+        37,
+        436,
+        563
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        782,
+        59,
+        889,
+        225
+       ],
+       "head_src": "owl",
+       "body": [
+        786,
+        0,
+        1053,
+        609
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-saul-gilgal-amalek/base/s202.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        347,
+        115,
+        435,
+        204
+       ],
+       "head_src": "owl",
+       "body": [
+        135,
+        26,
+        401,
+        543
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        926,
+        74,
+        1025,
+        224
+       ],
+       "head_src": "owl",
+       "body": [
+        547,
+        0,
+        1024,
+        584
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-saul-gilgal-amalek/base/s303.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        392,
+        138,
+        496,
+        246
+       ],
+       "head_src": "owl",
+       "body": [
+        134,
+        14,
+        554,
+        628
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        918,
+        99,
+        1031,
+        258
+       ],
+       "head_src": "owl",
+       "body": [
+        548,
+        0,
+        1017,
+        543
+       ],
+       "body_src": "owl"
+      }
+     }
+    }
+   ],
+   "sec": {
+    "base": 518.6,
+    "edit": 538.3
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry open field at Gilgal, sparse dry grass, hazy low hills far behind, pale sky, with no buildings anywhere. On the left: an ancient Israelite man, a king, in his 40s, deep forehead lines, tall of stature, close-trimmed dark beard, jawline visible, broad shoulders, thick barrel torso, short dark hair cut close, hair covering the whole head, no headwear, a desperate, pleading face, leaning forward, one hand stretched out and clutching the back hem of the old prophet's robe, the cloth tearing in his grip, a dark wool tunic with a leather belt, no crown, looking toward the old prophet on the right, facing toward the right edge of the picture. On the right: an ancient Israelite man, a prophet, in his 70s, deep wrinkles, long white beard to the chest, slight stooped narrow shoulders, long white hair falling to the shoulders, hair covering the whole head, no headwear, a stern, sorrowful face, half turned away from the man behind him, leaning on one wooden staff, striding off toward the right edge, a long dark wool robe with a cloth belt, its back hem torn, looking straight ahead toward the right edge of the picture, facing toward the right edge of the picture. Saul's hand clutches the back hem of Samuel's robe from behind, so the two men are joined by the cloth, and the robe is tearing between them as Samuel walks away.",
+   "items": {
+    "moment": {
+     "wrong": [
+      101
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "background[0]": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].identity": {
+     "wrong": [
+      202
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].prop": {
+     "wrong": [
+      101
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].facing": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].identity": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].pose": {
+     "wrong": [
+      101
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].prop": {
+     "wrong": [
+      101
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].facing": {
+     "wrong": [
+      101
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "guard": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "s11 바탕",
+    "seed": 11,
+    "kind": "base",
+    "image": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-saul-gilgal-amalek/base/s11.png"
+   },
+   "human_minutes": 1.79,
+   "pick_edit": {
+    "seed": 11,
+    "log": [
+     {
+      "raw": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-saul-gilgal-amalek/raw/s11-saul.png",
+      "who": "saul",
+      "seed": 11,
+      "quantize": 8,
+      "model": "qwen-image-edit-2511",
+      "status": "ok",
+      "sec": 538.3,
+      "peak_gb": 58.52,
+      "scene": "authored-saul-gilgal-amalek",
+      "src": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-saul-gilgal-amalek/base/s11.png",
+      "side": "left",
+      "mask_box": [
+       152,
+       0,
+       460,
+       605
+      ],
+      "resized": false,
+      "out": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-saul-gilgal-amalek/edit/s11.png",
+      "targeted": 1.9,
+      "diff_in": 16.58,
+      "diff_out": 14.68
+     }
+    ],
+    "out": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-saul-gilgal-amalek/edit/s11.png"
+   },
+   "confirm": {
+    "answer": "바탕",
+    "seed": 11,
+    "minutes": 0.47
+   }
+  },
+  "authored-samuel-ramah-death": {
+   "who": [
+    "david"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base/s11.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        888,
+        121,
+        938,
+        184
+       ],
+       "head_src": "owl",
+       "body": [
+        876,
+        57,
+        1018,
+        435
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base/s42.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        871,
+        150,
+        950,
+        212
+       ],
+       "head_src": "owl",
+       "body": [
+        811,
+        87,
+        951,
+        448
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base/s7.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        847,
+        154,
+        896,
+        212
+       ],
+       "head_src": "owl",
+       "body": [
+        846,
+        96,
+        966,
+        436
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base/s23.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        796,
+        141,
+        847,
+        203
+       ],
+       "head_src": "owl",
+       "body": [
+        790,
+        79,
+        920,
+        438
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base/s5.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        917,
+        131,
+        972,
+        197
+       ],
+       "head_src": "owl",
+       "body": [
+        924,
+        66,
+        1050,
+        443
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base/s101.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        876,
+        116,
+        931,
+        188
+       ],
+       "head_src": "owl",
+       "body": [
+        871,
+        43,
+        1018,
+        455
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base/s202.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        855,
+        114,
+        912,
+        183
+       ],
+       "head_src": "owl",
+       "body": [
+        790,
+        21,
+        1005,
+        619
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base/s303.png",
+     "edits": {},
+     "boxes": {
+      "david": {
+       "head": [
+        847,
+        142,
+        893,
+        202
+       ],
+       "head_src": "owl",
+       "body": [
+        835,
+        82,
+        970,
+        441
+       ],
+       "body_src": "owl"
+      }
+     }
+    }
+   ],
+   "sec": {
+    "base": 500.1,
+    "edit": 489.3
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a dry hillside at the edge of a town of pale packed earth, dry low hills behind, sparse dry grass, pale sky; on the left a low burial mound of piled pale stones, and around it, far away, a dense distant crowd of tiny mourning figures gathered close together. On the right: an ancient Israelite man, a commander, in his 20s, lean angular face, close-trimmed dark beard, jawline visible, lean wiry shoulders, narrow waist, dark curls close to the skull, hair covering the whole head, no headwear, a grave, sorrowful face, walking away with long strides, his back to the grave and the crowd, a sword hanging at his belt, a dark wool tunic with a leather belt, looking ahead past the right edge of the picture, facing toward the right edge of the picture. David has turned his back on the grave mound and the mourners and walks away from them, out of the right edge of the picture.",
+   "items": {
+    "moment": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "백성들과 마주보는게 틀림"
+    },
+    "background[0]": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "background[1]": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "crowds": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].identity": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].prop": {
+     "wrong": [
+      5,
+      11,
+      23,
+      42,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "칼이 허리에 끈으로 매여 있지 않음"
+    },
+    "figures[0].facing": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "guard": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "s42 바탕",
+    "seed": 42,
+    "kind": "base",
+    "image": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base/s42.png"
+   },
+   "human_minutes": 2.7,
+   "pick_edit": {
+    "seed": 42,
+    "log": [
+     {
+      "raw": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/raw/s42-david.png",
+      "who": "david",
+      "seed": 42,
+      "quantize": 8,
+      "model": "qwen-image-edit-2511",
+      "status": "ok",
+      "sec": 489.3,
+      "peak_gb": 58.51,
+      "scene": "authored-samuel-ramah-death",
+      "src": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base/s42.png",
+      "side": "right",
+      "mask_box": [
+       803,
+       65,
+       959,
+       470
+      ],
+      "resized": false,
+      "out": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/edit/s42.png",
+      "targeted": 28.78,
+      "diff_in": 42.72,
+      "diff_out": 13.94
+     }
+    ],
+    "out": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/edit/s42.png"
+   },
+   "confirm": {
+    "answer": "바탕",
+    "seed": 42,
+    "minutes": 0.15
+   }
+  }
+ },
+ "runs": [
+  {
+   "start": 1792379108.070134,
+   "last": 1792380205.335011,
+   "end": 1792380205.335011
+  },
+  {
+   "start": 1792380257.168927,
+   "last": 1792380798.5618749,
+   "end": 1792380798.561874
+  }
+ ],
+ "restarts": 1,
+ "unattended": false,
+ "wall_seconds": 1638.7,
+ "ramah_r1": {
+  "note": "S3 실행자 눈 확인 — 다윗이 무덤·무리 쪽(오른쪽)으로 걸음 8/8 → 좌우 반전 대비책",
+  "toward_grave": 8,
+  "seeds": [
+   {
+    "seed": 11,
+    "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base-r1/s11.png"
+   },
+   {
+    "seed": 42,
+    "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base-r1/s42.png"
+   },
+   {
+    "seed": 7,
+    "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base-r1/s7.png"
+   },
+   {
+    "seed": 23,
+    "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base-r1/s23.png"
+   },
+   {
+    "seed": 5,
+    "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base-r1/s5.png"
+   },
+   {
+    "seed": 101,
+    "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base-r1/s101.png"
+   },
+   {
+    "seed": 202,
+    "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base-r1/s202.png"
+   },
+   {
+    "seed": 303,
+    "base": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base-r1/s303.png"
+   }
+  ],
+  "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a dry hillside at the edge of a town of pale packed earth, dry low hills behind, sparse dry grass, pale sky; on the right a low burial mound of piled pale stones, and around it, far away, a dense distant crowd of tiny mourning figures gathered close together. On the left: an ancient Israelite man, a commander, in his 20s, lean angular face, close-trimmed dark beard, jawline visible, lean wiry shoulders, narrow waist, dark curls close to the skull, hair covering the whole head, no headwear, a grave, sorrowful face, walking away with long strides, his back to the grave and the crowd, a sword hanging at his belt, a dark wool tunic with a leather belt, looking ahead past the left edge of the picture, facing toward the left edge of the picture. David has turned his back on the grave mound and the mourners and walks away from them, out of the left edge of the picture.",
+  "sec": {
+   "base": 501.7,
+   "edit": 0.0
+  }
+ },
+ "human_minutes": 4.51
+}

@@ -1,0 +1,1523 @@
+{
+  "version": 1,
+  "words": [
+    {
+      "id": "oil-horn",
+      "word": "기름 뿔",
+      "forms": [
+        "기름 뿔을",
+        "기름을 뿔에"
+      ],
+      "kjv": "horn of oil",
+      "refs": [
+        "삼상 16:13",
+        "삼상 16:1",
+        "왕상 1:39"
+      ],
+      "held": [
+        "a horn of oil"
+      ],
+      "meaning": {
+        "ko": "기름을 담아 두는 짐승의 뿔이에요. 왕을 세울 때 그 머리에 기름을 부었어요.",
+        "grounds": "[직접] 삼상 16:1 「기름을 뿔에 채워」 · 삼상 16:13 「기름 뿔을 취하여 … 부었더니」 · [추론] 삼상 10:1 「사울의 머리에 붓고」 — 왕 될 사람의 머리에 기름을 부은 용례(기름병이라 뿔 용례는 아님)"
+      },
+      "look": {
+        "L1": {
+          "ko": "기름 뿔",
+          "en": "an animal horn full of oil"
+        },
+        "L2": {
+          "ko": "팔뚝보다 짧은 소나 양의 굽은 뿔 속에 기름을 가득 담았어요.",
+          "en": "A curved horn from a cow or ram, shorter than a man's forearm, filled with oil, with the wide end open."
+        },
+        "L3": {
+          "ko": "속이 빈 짐승 뿔로, 한 손으로 쥘 만큼 팔뚝보다 짧아요. 굵은 쪽 입구로 머리에 기름을 부어요.",
+          "en": "A real hollow animal horn, shorter than a forearm, held in one hand. The wide open end is tipped to pour oil onto a head."
+        },
+        "grounds": "[추론] 삼상 16:1 「뿔에 채워」는 속이 빈 그릇임을, 16:13 「부었더니」는 쏟는 쓰임을 말한다. 본문이 뿔이라 적었으므로 병·장대가 아닌 짐승 뿔로 본다. [저작](본문에 없음) 소·양의 뿔, 굽은 모양, 팔뚝보다 짧은 크기는 양각을 부는 용례(왕상 1:39)와 짐승 뿔의 일반 모양에서 정한 그림 사정이다.",
+        "size": {
+          "ref": "man-height",
+          "ratio": 0.15,
+          "en": "shorter than a man's forearm",
+          "ko": "팔뚝보다 짧음",
+          "grounds": "[저작](본문에 크기 없음 — 그림 사정) L3 「한 손으로 쥘 만큼 팔뚝보다 짧아요」와 같음 — 팔뚝(팔꿈치~손목, 약 27cm)보다 짧은 약 25cm(0.15)"
+        },
+        "hold": {
+          "mode": "hand",
+          "grounds": "[직접] 삼상 16:13 「사무엘이 기름 뿔을 취하여 … 부었더니」 · 왕상 1:39 「사독이 … 기름 뿔을 가져다가」 — 손에 쥠(그림 기본값 — 그리는 문구에 쥔 꼴 문구를 더하지 않음)"
+        }
+      },
+      "criteria": {
+        "ko": "짐승의 뿔 그 자체다. 굵은 밑동은 열려 있고 끝으로 갈수록 가늘게 굽는다. 병·항아리·원뿔 깔때기·장대가 아니다. 사무엘이 한 손에 들고 기울여 다윗 머리에 붓는다.",
+        "features": [
+          {
+            "q": "뿔이 한쪽으로 굽고 끝이 뾰족한가?",
+            "grounds": "[추론] 짐승 뿔의 자연 모양(삼상 16:1 「뿔」)."
+          },
+          {
+            "q": "굵은 쪽 입구가 열려 있나?",
+            "grounds": "[추론] 삼상 16:1 「뿔에 채워」 — 기름이 들어가는 입구가 있어야 한다."
+          },
+          {
+            "q": "병이나 항아리가 아니라 짐승 뿔로 보이나?",
+            "grounds": "[직접] 삼상 16:13 「기름 뿔」 — 본문이 뿔이라 적었다."
+          },
+          {
+            "q": "한 손으로 쥘 만한 크기인가?",
+            "grounds": "[저작](본문에 크기 없음, 사람이 들고 붓는 동작에서 정한 그림 사정)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "horn",
+      "word": "뿔",
+      "forms": [
+        "뿔에"
+      ],
+      "kjv": "horn",
+      "refs": [
+        "삼상 16:1",
+        "왕상 1:39"
+      ],
+      "meaning": {
+        "ko": "소나 양의 머리에 난 단단하고 굽은 것이에요. 속이 비어서 그릇으로도 썼어요.",
+        "grounds": "[추론] 삼상 16:1 「기름을 뿔에 채워」 — 속이 비어 담는 그릇으로 쓴 용례. [저작](본문에 없음) 소·양의 머리에 난 단단하고 굽은 모양은 짐승 뿔의 일반 모양이다."
+      },
+      "look": {
+        "L1": {
+          "ko": "뿔",
+          "en": "an animal horn"
+        },
+        "L2": {
+          "ko": "소나 양의 머리에 난 단단하고 굽은 것으로, 팔뚝보다 짧아요.",
+          "en": "A hard curved horn like the one on a cow's or ram's head, shorter than a man's forearm."
+        },
+        "L3": {
+          "ko": "굵은 밑동에서 끝으로 가늘어지며 굽고, 속이 비어 있어요. 팔뚝보다 짧은 것을 한 손으로 쥐어요.",
+          "en": "Thick at the base, thinning to a curved tip, hollow inside. A short one, shorter than a forearm, fits in one hand."
+        },
+        "grounds": "[추론] 삼상 16:1 「뿔에 채워」 — 속이 비어야 채울 수 있다. [저작](본문에 없음) 소·양의 뿔(왕상 1:39 「양각」과 연결), 굽은 모양, 팔뚝보다 짧은 크기는 짐승 뿔의 일반 모양에서 정한 그림 사정이다.",
+        "size": {
+          "ref": "man-height",
+          "ratio": 0.15,
+          "en": "shorter than a man's forearm",
+          "ko": "팔뚝보다 짧음",
+          "grounds": "[저작](본문에 크기 없음 — 그림 사정) L3 「팔뚝보다 짧은 것을 한 손으로 쥐어요」와 같음 — 기름 뿔(oil-horn)과 같은 약 25cm(0.15)"
+        }
+      },
+      "criteria": {
+        "ko": "소·양 같은 짐승의 머리에서 난 뿔이다. 밑동이 굵고 끝이 가늘며 굽었고 속이 비었다. 장식 나팔이나 병이 아니다.",
+        "features": [
+          {
+            "q": "끝으로 갈수록 가늘어지나?",
+            "grounds": "[추론] 짐승 뿔의 자연 모양."
+          },
+          {
+            "q": "끝이 굽었나?",
+            "grounds": "[추론] 짐승 뿔의 자연 모양."
+          },
+          {
+            "q": "속이 빈 짐승 뿔로 보이나?",
+            "grounds": "[추론] 삼상 16:1 「뿔에 채워」."
+          }
+        ]
+      }
+    },
+    {
+      "id": "oil",
+      "word": "기름",
+      "forms": [
+        "기름을",
+        "기름"
+      ],
+      "kjv": "oil",
+      "refs": [
+        "삼상 16:1",
+        "삼상 16:13"
+      ],
+      "meaning": {
+        "ko": "올리브 열매에서 짜낸 노르스름한 물질이에요. 왕이 될 사람의 머리에 부었어요.",
+        "grounds": "[추론] 삼상 16:13 「기름 … 부었더니」 · 삼상 10:1 「사울의 머리에 붓고」 — 머리에 붓는 액체. [저작](본문에 재료 없음) 올리브 열매에서 짠 것과 노르스름한 색은 이스라엘 고증이다."
+      },
+      "look": {
+        "L1": {
+          "ko": "기름",
+          "en": "golden oil"
+        },
+        "L2": {
+          "ko": "노르스름하고 미끈한 물 같은 것이에요.",
+          "en": "A smooth, yellow-gold liquid that is thicker than water."
+        },
+        "L3": {
+          "ko": "물보다 걸쭉하고 노르스름하게 빛나요. 뿔 입구에서 가늘게 흘러 머리카락을 적셔요.",
+          "en": "Gold, a little thicker than water, shining. It runs in a thin stream from the mouth of a horn and wets the hair."
+        },
+        "grounds": "[저작](본문에 색·걸쭉함 없음, 올리브 기름 고증) 삼상 16:13 「부었더니」는 쏟는 액체임을, 삼상 10:1 「머리에 붓고」는 머리를 적시는 쓰임을 보인다."
+      },
+      "criteria": {
+        "ko": "노르스름하고 윤이 나는 액체다. 뿔 입구에서 가늘게 쏟아져 머리를 적신다. 가루나 불꽃이 아니다.",
+        "features": [
+          {
+            "q": "노르스름하고 윤이 나는 액체인가?",
+            "grounds": "[저작](본문에 색 없음, 올리브 기름 고증)"
+          },
+          {
+            "q": "흘러내리는 모양인가?",
+            "grounds": "[직접] 삼상 16:13 「부었더니」."
+          },
+          {
+            "q": "머리나 뿔 입구에서 쏟아지나?",
+            "grounds": "[추론] 삼상 10:1 「사울의 머리에 붓고」 · 삼상 16:13 「기름 뿔을 취하여 … 부었더니」"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ferry-boat",
+      "word": "나룻배",
+      "forms": [
+        "나룻배가"
+      ],
+      "kjv": "ferry boat",
+      "refs": [
+        "삼하 19:18"
+      ],
+      "meaning": {
+        "ko": "강을 건너게 해 주는 배예요. 왕의 가족을 건네는 데 썼어요.",
+        "grounds": "[직접] 삼하 19:18 「왕의 가족을 건네려 하며 … 나룻배가 건너가니」"
+      },
+      "look": {
+        "L1": {
+          "ko": "나룻배",
+          "en": "a small river ferry boat"
+        },
+        "L2": {
+          "ko": "강 이쪽에서 저쪽으로 사람을 태워 나르는 작은 배예요.",
+          "en": "A small flat boat that carries people across a river."
+        },
+        "L3": {
+          "ko": "납작하고 폭이 좁은 나무배로, 사람 몇이 탈 만해요. 사공이 긴 막대로 밀어 강을 건너요.",
+          "en": "A narrow, flat wooden boat holding a few people. A boatman pushes it across the river with a long pole."
+        },
+        "grounds": "[추론] 삼하 19:18 — 가족을 건네는 쓰임. [저작](본문에 없음) 작은 배, 납작하고 좁은 나무배, 사람 몇이 탐, 사공이 긴 막대로 밂은 요단 나루 고증이다."
+      },
+      "criteria": {
+        "ko": "나무로 만든 납작한 작은 배다. 사람 몇 명이 탄다. 돛 달린 큰 배가 아니다. 요단 강 위에서 건너편으로 간다.",
+        "features": [
+          {
+            "q": "작고 납작한 나무배인가?",
+            "grounds": "[저작](본문에 모양·재료 없음, 나루 고증)"
+          },
+          {
+            "q": "강 위에 떠 있나?",
+            "grounds": "[직접] 삼하 19:18 「나룻배가 건너가니」."
+          },
+          {
+            "q": "돛 달린 큰 배가 아닌가?",
+            "grounds": "[저작](본문에 크기 없음, 나룻배 쓰임에서 정한 그림 사정)"
+          }
+        ]
+      },
+      "verified_level": {
+        "level": "L2",
+        "status": "조건부",
+        "with": [
+          "bow-down",
+          "jordan"
+        ]
+      }
+    },
+    {
+      "id": "jordan",
+      "word": "요단",
+      "forms": [
+        "요단을",
+        "요단"
+      ],
+      "kjv": "Jordan",
+      "refs": [
+        "삼하 19:15",
+        "삼하 19:18"
+      ],
+      "meaning": {
+        "ko": "이스라엘 땅 동쪽을 남북으로 흐르는 큰 강 이름이에요.",
+        "grounds": "[직접] 삼하 19:15 「왕이 돌아와 요단에 이르매」 · 19:17 「요단 강을 밟고 건너」 · [저작](지리 고증) 이스라엘 땅 동쪽을 남북으로 흐르는 큰 강이다."
+      },
+      "look": {
+        "L1": {
+          "ko": "요단 강",
+          "en": "the Jordan river"
+        },
+        "L2": {
+          "ko": "들판 사이를 구불구불 흐르는 넓은 강이에요.",
+          "en": "A wide river winding between flat banks."
+        },
+        "L3": {
+          "ko": "두 둑 사이를 구불구불 흐르는 강이에요. 물빛은 흐려요.",
+          "en": "A winding river between two banks. The water is muddy."
+        },
+        "grounds": "[저작](본문에 없음) 구불구불한 모양과 흐린 물빛은 요단 고증이다. 들판 사이·넓음도 [저작](요단 골짜기 고증)이다."
+      },
+      "criteria": {
+        "ko": "양쪽에 둑이 있는 구불구불한 강이다. 사람들이 걸어 건너고 왕의 가족은 배로 건너는 강이다. 바다나 작은 개울이 아니다.",
+        "features": [
+          {
+            "q": "양쪽에 둑이 있는 강인가?",
+            "grounds": "[저작](본문에 모양 없음, 강의 일반 모양)"
+          },
+          {
+            "q": "사람들이 건너는 강인가?",
+            "grounds": "[직접] 삼하 19:17 「요단 강을 밟고 건너」."
+          },
+          {
+            "q": "흐르는 강물이 보이나?",
+            "grounds": "[저작](본문에 물의 흐름 없음, 강의 일반 모양)"
+          }
+        ]
+      },
+      "verified_level": {
+        "level": "L1",
+        "status": "조건부",
+        "with": [
+          "bow-down",
+          "ferry-boat"
+        ]
+      }
+    },
+    {
+      "id": "bow-down",
+      "word": "엎드리다",
+      "forms": [
+        "엎드려"
+      ],
+      "kjv": "fell down",
+      "refs": [
+        "삼하 19:18",
+        "창 42:6"
+      ],
+      "meaning": {
+        "ko": "몸을 땅 가까이 깊이 숙여 절하는 거예요.",
+        "grounds": "[직접] 삼하 19:18 「시므이가 왕의 앞에 엎드려」 · [직접] 창 42:6 「땅에 엎드려 절하매」"
+      },
+      "look": {
+        "L1": {
+          "ko": "엎드린 사람",
+          "en": "a person bowed face down"
+        },
+        "L2": {
+          "ko": "얼굴을 땅 쪽으로 숙이고 무릎과 몸을 낮춰요.",
+          "en": "A person kneeling low with the face toward the ground."
+        },
+        "L3": {
+          "ko": "무릎을 꿇고 허리를 굽혀 이마가 땅에 닿을 만큼 낮춰요. 두 손은 앞 땅에 짚어요.",
+          "en": "Kneeling with the back bent so the forehead nearly touches the ground. Both hands rest on the ground in front."
+        },
+        "grounds": "[직접] 창 42:6 「땅에 엎드려 절하매」 · [추론] 삼하 19:18 — 왕의 앞에서 하는 절. [저작](본문에 없음) 무릎을 꿇고 허리를 굽혀 이마가 땅 가까이 닿는 자세와 두 손 짚음은 절하는 자세의 일반 모양이다."
+      },
+      "criteria": {
+        "ko": "왕 앞에서 무릎을 꿇고 몸을 땅 가까이 낮춘 자세다. 서 있거나 앉은 자세가 아니다.",
+        "features": [
+          {
+            "q": "무릎을 꿇고 있나?",
+            "grounds": "[저작](본문에 자세 없음, 엎드림의 일반 모양)"
+          },
+          {
+            "q": "이마가 땅 가까이 있나?",
+            "grounds": "[저작](본문에 자세 없음, 엎드림의 일반 모양)"
+          },
+          {
+            "q": "왕 앞에서 낮춘 모양인가?",
+            "grounds": "[직접] 삼하 19:18 「왕의 앞에 엎드려」."
+          }
+        ]
+      }
+    },
+    {
+      "id": "wrapped-in-cloth",
+      "word": "보자기에 싸이다",
+      "forms": [
+        "보자기에 싸여",
+        "보자기에 싸서"
+      ],
+      "kjv": "wrapped in a cloth",
+      "refs": [
+        "삼상 21:9",
+        "민 4:12"
+      ],
+      "meaning": {
+        "ko": "천으로 감싸서 속이 보이지 않게 되었다는 뜻이에요.",
+        "grounds": "[직접] 삼상 21:9 「골리앗의 칼이 보자기에 싸여 에봇 뒤에 있으니」 · 민 4:12 「청색 보자기에 싸서」"
+      },
+      "look": {
+        "L1": {
+          "ko": "천에 싸인 칼",
+          "en": "a sword wrapped in cloth"
+        },
+        "L2": {
+          "ko": "칼이 천으로 둘둘 감겨 있어서 칼날이 보이지 않아요.",
+          "en": "A sword wrapped round and round in cloth so the blade cannot be seen."
+        },
+        "L3": {
+          "ko": "긴 칼을 천으로 칭칭 감아 기다란 꾸러미로 만들었어요. 칼날도 자루도 천에 가려요. 두 팔로 안아 들 만큼 길어요.",
+          "en": "A long sword wound in cloth into a long bundle; blade and handle are both hidden. It is long enough to carry in both arms."
+        },
+        "grounds": "[직접] 삼상 21:9 — 칼이 보자기에 싸여 있음. [저작](본문에 없음) 칭칭 감은 모양, 기다란 꾸러미, 두 팔로 안아 들 만한 길이는 천 꾸러미의 일반 모양이다. 민 4:12는 기물을 청색 천으로 싼 용례."
+      },
+      "criteria": {
+        "ko": "칼이 천으로 완전히 덮여 날이 드러나지 않는 긴 꾸러미다. 칼집 없이 날이 드러난 칼이 아니다.",
+        "features": [
+          {
+            "q": "칼날이 천에 가려 보이지 않나?",
+            "grounds": "[직접] 삼상 21:9 「보자기에 싸여」."
+          },
+          {
+            "q": "긴 꾸러미 모양인가?",
+            "grounds": "[추론] 삼상 21:9 — 칼을 싼 것이므로 칼 길이의 꾸러미."
+          },
+          {
+            "q": "천이 칼을 감싼 것이 보이나?",
+            "grounds": "[직접] 삼상 21:9 「보자기에 싸여」."
+          },
+          {
+            "q": "날이 드러난 칼이 없나?",
+            "grounds": "[추론] 삼상 21:9 — 싸여 있으므로 날이 드러나지 않는다고 본다."
+          }
+        ]
+      }
+    },
+    {
+      "id": "goliath-sword",
+      "word": "골리앗의 칼",
+      "forms": [
+        "골리앗의 칼이",
+        "골리앗의 칼도"
+      ],
+      "kjv": "sword of Goliath",
+      "refs": [
+        "삼상 21:9",
+        "삼상 22:10"
+      ],
+      "held": [
+        "a huge cloth-wrapped sword",
+        "the huge cloth-wrapped sword"
+      ],
+      "meaning": {
+        "ko": "블레셋 거인 골리앗이 쓰던 아주 크고 긴 칼이에요. 이런 칼은 또 없었어요.",
+        "grounds": "[직접] 삼상 21:9 「골리앗의 칼이」 · 삼상 22:10 「골리앗의 칼도 주더이다」 — 골리앗의 칼. [추론] 삼상 17:4-7 — 신장 여섯 규빗 한 뼘·놋 오천 세겔 갑옷인 거인의 무장 규모에서 칼도 크다고 본다 · 17:45 「너는 칼과 창과 단창으로 내게 오거니와」 — 칼을 든 거인."
+      },
+      "look": {
+        "L1": {
+          "ko": "크고 긴 칼",
+          "en": "a huge long sword"
+        },
+        "L2": {
+          "ko": "사람 팔보다 길고, 다른 사람의 칼보다 훨씬 크고 긴 칼이에요.",
+          "en": "A huge, long sword, longer than a man's arm, much bigger than the swords of ordinary men."
+        },
+        "L3": {
+          "ko": "사람 팔보다 긴 넓고 두툼한 날의 큰 칼이에요. 무거워 보여 두 손으로 받쳐 들어요.",
+          "en": "A giant's sword with a broad heavy blade, longer than a man's arm. It looks so heavy that a man holds it with both hands."
+        },
+        "grounds": "[추론] 삼상 21:9 「그같은 것이 또 없나니」 — 본문은 크기를 직접 말하지 않고 비길 것 없음만 말한다. 거인의 칼(17:4)이므로 크다고 본다. [추론] 삼상 17:4-7 — 신장 여섯 규빗 한 뼘, 갑옷 놋 오천 세겔, 창날 철 육백 세겔인 거인의 무장 규모에서 칼도 크고 무겁다고 본다. 삼상 17:51 「그의 칼을 그 집에서 빼어」 — 칼집이 있는 칼. [저작](본문에 치수 없음, 거인의 무장 규모에서 그림 사정으로 정함) 사람 팔보다 긴 길이, 넓고 두툼한 날, 두 손으로 받쳐 듦.",
+        "size": {
+          "ref": "man-height",
+          "ratio": 0.6,
+          "en": "longer than a man's arm",
+          "ko": "사람 팔보다 긺",
+          "grounds": "[추론] 삼상 17:4 「그 신장은 여섯 규빗 한 뼘이요」 — 거인 키(scale height.towering 1.72) × 보통 칼(사전 sword 0.35) ≈ 0.6 · 삼상 21:9 「그같은 것이 또 없나니」 — 보통 칼보다 큼. [저작](본문에 칼 길이 없음 — 그림 사정) L3 「사람 팔보다 긴」(scale body.arm 0.44보다 김)"
+        },
+        "hold": {
+          "mode": "hand",
+          "grounds": "[직접] 삼상 21:9 「네가 그것을 가지려거든 가지라」 · [추론] 사전 L3 「두 손으로 받쳐 들어요」 — 손에 쥠(그림 기본값 — 그리는 문구에 쥔 꼴 문구를 더하지 않음)"
+        }
+      },
+      "criteria": {
+        "ko": "거인이 쓰던 아주 크고 긴 칼이다. 날이 넓고 두툼하며 사람 팔보다 길고, 두 손으로 받쳐 들 만큼 무거워 보인다. 보통 칼이나 단검이 아니다.",
+        "features": [
+          {
+            "q": "칼이 사람 팔보다 긴가?",
+            "grounds": "[추론] 삼상 17:4-7 — 거인의 무장 규모. [저작](본문에 치수 없음, 그림 사정으로 정함) 팔보다 긴 길이."
+          },
+          {
+            "q": "두 손으로 받쳐 들어야 할 만큼 무거워 보이나?",
+            "grounds": "[저작](본문에 무게 없음, 그림 사정으로 정함) 두 손으로 받침."
+          },
+          {
+            "q": "날이 넓고 두툼한 큰 칼로 보이나?",
+            "grounds": "[저작](본문에 날 모양 없음, 거인의 칼 크기에서 그림 사정으로 정함)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ephod",
+      "word": "에봇",
+      "forms": [
+        "에봇"
+      ],
+      "kjv": "ephod",
+      "refs": [
+        "삼상 21:9",
+        "출 28:6",
+        "삼하 6:14"
+      ],
+      "held": [
+        "a linen ephod"
+      ],
+      "meaning": {
+        "ko": "제사장이 입는 조끼 같은 옷이에요. 어깨에 걸치고 허리를 매요.",
+        "grounds": "[추론] 출 28:4 「그들의 지을 옷은 … 흉패와 에봇과 겉옷…」 · 28:7 「견대 둘을 달아」 · 28:8 「에봇 위에 매는 띠」 — 제사장 옷, 어깨끈과 띠. 삼상 21:9 「에봇 뒤에 있으니」"
+      },
+      "look": {
+        "L1": {
+          "ko": "제사장의 조끼 옷",
+          "en": "a priest's vest-like garment"
+        },
+        "L2": {
+          "ko": "어깨에서 허리까지 내려오는 짧은 조끼 같은 옷이에요.",
+          "en": "A short vest-like garment from the shoulders to the waist."
+        },
+        "L3": {
+          "ko": "어깨끈이 있고 허리띠로 매는 앞뒤 두 쪽 천옷이에요. 걸어 두면 사람이 선 모양으로 천이 늘어져요.",
+          "en": "A two-piece cloth garment with shoulder straps and a waist belt. Hung up, the cloth hangs down as if a person were standing."
+        },
+        "grounds": "[추론] 출 28:7-8 어깨끈과 띠. [저작](본문에 없음) 걸려 있음, 입은 사람 없음, 천이 늘어진 모양은 삼상 21:9 「에봇 뒤에 있으니」를 그림으로 옮기는 사정이다.",
+        "size": {
+          "ref": "man-height",
+          "ratio": 0.23,
+          "en": "from the shoulders to the waist",
+          "ko": "어깨에서 허리까지",
+          "grounds": "[추론] 출 28:7-8 「견대 둘을 달아」·「에봇 위에 매는 띠」 — 어깨에 걸고 허리에 띠로 맴(출 28:27 「공교히 짠 띠 윗편」 — 적어도 허리까지) · 삼하 6:14 「베 에봇을 입었더라」 — 입는 옷. [저작](본문에 아래 끝·길이 없음 — 그림 사정) 아래 끝을 허리로, 어깨선(scale body.shoulder 0.17)부터 허리(머리 위끝에서 키의 약 0.4)까지 ≈ 0.23"
+        },
+        "hold": {
+          "mode": "wear",
+          "grounds": "[직접] 삼하 6:14 「때에 베 에봇을 입었더라」 — 입는 옷, 손에 쥐지 않음(문구 더하지 않음)"
+        }
+      },
+      "criteria": {
+        "ko": "제사장이 입는 천옷으로, 어깨끈과 허리띠가 있다. 여기서는 입은 사람 없이 걸려 있고 그 뒤에 칼 꾸러미가 있다.",
+        "features": [
+          {
+            "q": "어깨끈이 있는 조끼 모양 천옷인가?",
+            "grounds": "[저작](본문에 모양 없음, 출 28장 에봇 고증)"
+          },
+          {
+            "q": "입은 사람 없이 걸려 있나?",
+            "grounds": "[저작](본문에 없음, 삼상 21:9 「에봇 뒤에 있으니」를 그림으로 옮기는 사정)"
+          },
+          {
+            "q": "그 뒤에 물건이 놓여 있나?",
+            "grounds": "[직접] 삼상 21:9 「에봇 뒤에 있으니」."
+          }
+        ]
+      }
+    },
+    {
+      "id": "showbread",
+      "word": "진설병",
+      "forms": [
+        "진설병"
+      ],
+      "kjv": "shewbread",
+      "refs": [
+        "삼상 21:6",
+        "출 25:30"
+      ],
+      "meaning": {
+        "ko": "여호와 앞 상 위에 늘 차려 두던 떡이에요. 새 떡으로 바꾸면 물려 냈어요.",
+        "grounds": "[직접] 삼상 21:6 「진설병 곧 여호와 앞에서 물려 낸 떡」 · 출 25:30 「상 위에 진설병을 두어」"
+      },
+      "look": {
+        "L1": {
+          "ko": "상에서 물려 낸 떡",
+          "en": "loaves taken from the table"
+        },
+        "L2": {
+          "ko": "상에서 내려 온 납작하고 둥근 떡 덩이들로, 한 덩이 너비가 팔뚝 길이쯤이에요.",
+          "en": "Flat round loaves of bread, each as wide as a man's forearm is long, that were taken from the table."
+        },
+        "L3": {
+          "ko": "손바닥보다 큰 납작한 떡 덩이를 여럿 겹쳐 쌓았어요.",
+          "en": "Several flat loaves bigger than a palm, stacked up."
+        },
+        "grounds": "[직접] 삼상 21:6 「여호와 앞에서 물려 낸 떡」. [저작](본문에 없음) 손바닥보다 큰 납작한 덩이, 둥근 모양, 겹쳐 쌓음은 떡 고증이다.",
+        "size": {
+          "ref": "man-height",
+          "ratio": 0.16,
+          "en": "each as wide as a man's forearm is long",
+          "ko": "한 덩이 너비가 팔뚝 길이쯤",
+          "grounds": "[추론] 레 24:5 「떡 열둘을 굽되 매 덩이를 에바 십분 이로 하여」 — 한 덩이에 고운 가루가 많이 든 큰 덩이, L3 「손바닥보다 큰」. [저작](본문에 지름 없음 — 그림 사정) 지름을 팔뚝(팔꿈치~손목, 약 27cm) 길이쯤으로 둠"
+        }
+      },
+      "criteria": {
+        "ko": "납작한 둥근 떡 덩이 여럿이 겹쳐 쌓여 있다. 상에서 물려 낸 떡이다. 과자나 케이크가 아니다.",
+        "features": [
+          {
+            "q": "납작한 떡 덩이인가?",
+            "grounds": "[저작](본문에 모양 없음, 떡 고증)"
+          },
+          {
+            "q": "여러 덩이가 함께 있나?",
+            "grounds": "[추론] 레 24:5-6 「떡 열둘을 굽되 … 두 줄로 한 줄에 여섯씩 진설하고」 — 상 위에 차리는 떡이 여러 덩이다."
+          },
+          {
+            "q": "떡 덩이가 여러 겹 쌓여 있나?",
+            "grounds": "[저작](본문에 쌓임 없음, 상 위에 여러 덩이를 겹쳐 둔 떡 고증)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scrawl-door",
+      "word": "대문짝에 그적거리다",
+      "forms": [
+        "대문짝에 그적거리며"
+      ],
+      "kjv": "scribbled on the doors of the gate",
+      "refs": [
+        "삼상 21:13"
+      ],
+      "held": [
+        "the wooden doors of the gate"
+      ],
+      "meaning": {
+        "ko": "성문의 큰 문짝에 마구 선을 긋는 거예요.",
+        "grounds": "[직접] 삼상 21:13 「대문짝에 그적거리며」"
+      },
+      "look": {
+        "L1": {
+          "ko": "문에 낙서",
+          "en": "scribbling on gate doors"
+        },
+        "L2": {
+          "ko": "사람 키의 두 배쯤 되는 성문의 큰 나무 문짝에 손으로 마구 선을 그어요.",
+          "en": "Drawing wild lines by hand on the big wooden doors of a gate, each door twice a man's height."
+        },
+        "L3": {
+          "ko": "두 쪽 큰 나무 문짝에 사람이 손을 뻗어 삐뚤빼뚤한 줄을 마구 그어요. 줄이 문짝 위에 어지러워요.",
+          "en": "A man reaches out to the two big wooden doors and draws crooked lines across them. The lines are messy."
+        },
+        "grounds": "[직접] 삼상 21:13 — 대문짝에 그적거림. 도구는 [저작](본문에 없음, 손이나 막대로 그린 그림 사정).",
+        "size": {
+          "ref": "man-height",
+          "ratio": 2.0,
+          "en": "twice a man's height",
+          "ko": "문짝 하나가 사람 키의 두 배쯤",
+          "grounds": "[추론] 삿 16:3 「성문짝들과 두 설주와 빗장을 빼어 그것을 모두 어깨에 메고」 — 성문짝은 메고 간 일이 기록될 만큼 크고 무거움 · 느 3:3 「그 들보를 얹고 문짝을 달고 자물쇠와 빗장을 갖추었고」 — 성문 들보 아래 다는 문짝. [저작](본문에 높이 없음 — 그림 사정) 문짝 하나 높이를 사람 키의 두 배(약 3.4m)로 둠"
+        },
+        "hold": {
+          "mode": "touch",
+          "grounds": "[직접] 삼상 21:13 「대문짝에 그적거리며」 — 손을 뻗어 문짝에 긋는 것, 쥐는 지물 아님(문구 더하지 않음)"
+        }
+      },
+      "criteria": {
+        "ko": "성문의 큰 나무 문짝 위에 삐뚤빼뚤하고 어지러운 줄이 그어져 있고, 사람이 손을 뻗어 긋는 모습이다.",
+        "features": [
+          {
+            "q": "큰 나무 문짝이 보이나?",
+            "grounds": "[직접] 삼상 21:13 「대문짝」. [저작](본문에 없음) 나무라는 재료는 성문 문짝 고증이다."
+          },
+          {
+            "q": "문짝 위에 삐뚤빼뚤한 줄이 있나?",
+            "grounds": "[직접] 삼상 21:13 「그적거리며」."
+          },
+          {
+            "q": "사람이 손을 뻗어 긋고 있나?",
+            "grounds": "[추론] 삼상 21:13 — 그적거리는 동작."
+          }
+        ]
+      },
+      "verified_level": {
+        "level": "L2",
+        "status": "조건부",
+        "with": [
+          "drool-beard"
+        ]
+      }
+    },
+    {
+      "id": "drool-beard",
+      "word": "침을 수염에 흘리다",
+      "forms": [
+        "침을 수염에 흘리매"
+      ],
+      "kjv": "let his spittle fall down upon his beard",
+      "refs": [
+        "삼상 21:13"
+      ],
+      "meaning": {
+        "ko": "입에서 침이 흘러 수염을 적시는 거예요.",
+        "grounds": "[직접] 삼상 21:13 「침을 수염에 흘리매」"
+      },
+      "look": {
+        "L1": {
+          "ko": "수염에 침",
+          "en": "drool in the beard"
+        },
+        "L2": {
+          "ko": "입가에서 침이 줄줄 흘러 수염이 젖어요.",
+          "en": "Spit runs from the mouth and wets the beard."
+        },
+        "L3": {
+          "ko": "입가에서 흘러내린 침이 턱수염 끝까지 길게 이어지고 수염이 번들번들 젖어요.",
+          "en": "Spit runs from the corner of the mouth down the chin beard in a long strand, and the beard is wet and shiny."
+        },
+        "grounds": "[직접] 삼상 21:13 — 침을 수염에 흘림. [저작](본문에 없음) 턱수염 끝까지 긴 가닥, 수염이 번들거림은 그림 사정이다."
+      },
+      "criteria": {
+        "ko": "입가에서 침이 길게 흘러 턱수염을 적신 모습이다. 수염이 젖어 번들거린다.",
+        "features": [
+          {
+            "q": "입가에서 침이 흘러내리나?",
+            "grounds": "[직접] 삼상 21:13 「침을 … 흘리매」."
+          },
+          {
+            "q": "수염이 젖어 보이나?",
+            "grounds": "[직접] 삼상 21:13 「수염에」."
+          },
+          {
+            "q": "수염이 있는 얼굴인가?",
+            "grounds": "[직접] 삼상 21:13 「수염」."
+          }
+        ]
+      }
+    },
+    {
+      "id": "feigned-madness",
+      "word": "미친 체",
+      "forms": [
+        "미친 체"
+      ],
+      "kjv": "feigned himself mad",
+      "refs": [
+        "삼상 21:13"
+      ],
+      "drawable": false,
+      "signs": [
+        "scrawl-door",
+        "drool-beard"
+      ],
+      "meaning": {
+        "ko": "미친 사람처럼 꾸몄다는 뜻이에요. 정말 미친 것이 아니에요.",
+        "grounds": "[직접] 삼상 21:13 「행동을 변하여 미친 체 하고」 · [추론] 삼상 21:12 「다윗이 … 아기스를 심히 두려워하여」 — 두려워서 꾸민 것."
+      }
+    },
+    {
+      "id": "kinnor-lyre",
+      "word": "수금",
+      "forms": [
+        "수금을",
+        "수금과",
+        "수금 잘"
+      ],
+      "kjv": "harp",
+      "refs": [
+        "삼상 16:23",
+        "삼상 18:10",
+        "삼상 16:16",
+        "삼상 10:5",
+        "왕상 10:12",
+        "삼하 6:5"
+      ],
+      "held": [
+        "a small harp",
+        "a small wooden lyre"
+      ],
+      "meaning": {
+        "ko": "손으로 줄을 뜯어 소리를 내는 작은 나무 현악기예요. 다윗이 이것을 타면 사울에게서 악신이 떠났어요.",
+        "grounds": "[직접] 삼상 16:23 「다윗이 수금을 취하여 손으로 탄즉」 · 삼상 18:10 「손으로 수금을 타는데」 · 왕상 10:12 「왕이 백단목으로 … 노래하는 자를 위하여 수금과 비파를 만들었으니」 · [추론] 삼상 10:5 「수금을 앞세우고 예언하며 내려오는」 — 들고 걸을 만한 크기"
+      },
+      "look": {
+        "L1": {
+          "ko": "작은 나무 수금",
+          "en": "a small wooden lyre"
+        },
+        "L2": {
+          "ko": "사람 몸통보다 작은 속 빈 나무 울림통에 굽은 두 팔이 솟아 위 가로대로 이어지고, 줄이 울림통에서 가로대로 걸림.",
+          "en": "a small hollow wooden sound box, smaller than a man's torso, with two curved arms rising from the box, joined by a top crossbar, strings from box to crossbar"
+        },
+        "L3": {
+          "ko": "품에 안거나 한 팔에 끼고 손가락으로 줄을 뜯어요. 몸통보다 훨씬 작고, 류트·기타처럼 긴 목이 달린 악기나 땅에 세우는 큰 하프가 아니에요.",
+          "en": "Small enough to hold against the chest or in one arm and pluck with the fingers; much smaller than the torso, not a long-necked lute or guitar, and not a tall floor harp."
+        },
+        "grounds": "[추론] 삼상 16:23 「손으로 탄즉」 — 손가락으로 뜯는 현악기 · 왕상 10:12 「백단목으로 … 수금과 비파를 만들었으니」 — 나무(삼하 6:5 「잣나무로 만든 여러 가지 악기와 수금과」는 「잣나무로 만든」이 「여러 가지 악기」를 꾸며 수금이 나무라고 바로 말하지 않음) · 삼상 10:5 「앞세우고 … 내려오는」 — 들고 다니는 크기. [저작](본문에 모양 없음) 울림통·두 팔·가로대의 틀 모양은 고대 근동 수금 그림에서 정한 그림 사정 — 긴 목·지판(류트)은 이 시대 수금 모양이 아니다(task 397 그림이 류트로 끌림, 사람 “하프가 아님”).",
+        "size": {
+          "ref": "man-height",
+          "ratio": 0.25,
+          "en": "smaller than a man's torso",
+          "ko": "사람 몸통보다 작음",
+          "grounds": "[추론] 삼상 10:5 「앞세우고 … 내려오는」 — 들고 다니는 크기 · L3 「몸통보다 훨씬 작고」 · 2026-10-23 크기 규칙(derive.prop-size-relative)으로 그리는 문구에 넣음"
+        },
+        "hold": {
+          "mode": "hug",
+          "add": true,
+          "item": "a wooden lyre",
+          "noun": "lyre",
+          "en": "clutched upright against his chest with both forearms wrapped around its sound box, its top crossbar below his chin, not touching his mouth or face",
+          "edit_en": "Place {item} in his arms, {size}, {hold}: {look}, the two curved arms rising on the left and right of the sound box both clearly visible above his forearms, forming a U-shaped frame. It does not hang from his hands. Only one {noun}.",
+          "grounds": "[직접] 삼상 16:23 「다윗이 수금을 취하여 손으로 탄즉」 — 손에 드는 악기 · [저작](본문에 드는 꼴 없음 — task 412 사람 m16e 「수금 든 모습 이상함」 → 두 팔뚝으로 울림통을 감싸 가슴에 안음, m17e 승인 s7) · add [저작](바탕이 류트로 끌려 편집으로 넣음 — 규칙 edit.held-prop-add)"
+        }
+      },
+      "criteria": {
+        "ko": "나무 울림통 위로 두 팔이 솟고 가로대로 이어진 틀 모양이다. 줄은 울림통에서 가로대로 간다. 목·지판·줄감개 머리가 없다. 사람 몸통보다 훨씬 작아 손에 들거나 품에 안는다.",
+        "features": [
+          {
+            "q": "울림통 위로 두 팔이 솟고 위에서 가로대로 이어진 틀 모양인가?",
+            "grounds": "[저작](고대 근동 수금 모양 — 본문에 모양 없음)"
+          },
+          {
+            "q": "류트·기타처럼 긴 목과 지판이 없나?",
+            "grounds": "[저작](task 397 그림 결함 — 류트로 끌림)"
+          },
+          {
+            "q": "손에 들거나 품에 안을 만큼 작은가?",
+            "grounds": "[추론] 삼상 10:5 「수금을 앞세우고 예언하며 내려오는」 — 들고 걷는 크기"
+          },
+          {
+            "q": "나무로 만든 것으로 보이나?",
+            "grounds": "[직접] 왕상 10:12 「왕이 백단목으로 … 노래하는 자를 위하여 수금과 비파를 만들었으니」"
+          }
+        ]
+      }
+    },
+    {
+      "id": "spear",
+      "word": "창",
+      "forms": [
+        "창을",
+        "창이",
+        "창은",
+        "창과",
+        "창자루",
+        "창날",
+        "창 뒤 끝"
+      ],
+      "kjv": "spear",
+      "refs": [
+        "삼상 18:10",
+        "삼상 18:11",
+        "삼상 17:7",
+        "삼상 26:7",
+        "삼상 26:11",
+        "삼하 2:23",
+        "삼상 19:9",
+        "삼상 19:10",
+        "삼상 20:33",
+        "삼상 22:6",
+        "삼하 1:6"
+      ],
+      "held": [
+        "a spear"
+      ],
+      "meaning": {
+        "ko": "긴 나무 자루 끝에 쇠 날을 단 무기예요. 사울은 손에 들고 있던 창을 다윗에게 던졌어요.",
+        "grounds": "[직접] 삼상 18:10 「사울의 손에 창이 있는지라」 · 삼상 18:11 「그 창을 던졌으나」 · 삼상 17:7 「창날은 철 육백 세겔이며」 · [추론] 삼상 17:7 「그 창자루는 베틀채 같고」 — 베틀채에 견준 굵기에서 긴 나무 자루"
+      },
+      "look": {
+        "L1": {
+          "ko": "긴 나무 창",
+          "en": "a long wooden spear"
+        },
+        "L2": {
+          "ko": "사람 키쯤 되는 곧은 나무 자루, 앞끝에 손바닥만 한 잎 모양 쇠 촉 하나, 뒤끝에 작은 쇠 물미, 코등이 없음(그림 문구는 크기만 — 물미의 뾰족함은 L3·근거).",
+          "en": "a straight wooden shaft about a man's height, one hand-sized leaf-shaped iron point at the front, a small iron cap at the back, no crossguard"
+        },
+        "L3": {
+          "ko": "사람 키쯤이고 한 손으로 쥐어 던질 수 있어요. 손바닥만 한 잎 모양 촉은 앞에만 있고, 뒤끝 물미는 짧고 뾰족하지만 앞 촉보다 훨씬 작아요.",
+          "en": "About as long as a man is tall and light enough to hurl with one hand. The leaf-shaped point, about the size of a hand, is only at the front; the back end has a short pointed iron spike, much smaller than the front point, and the shaft has no handle or hilt."
+        },
+        "grounds": "[추론] 삼상 17:7 「그 창자루는 베틀채 같고 창날은 철」 — 쇠 날, 자루는 베틀채(나무)에 견준 데서 나무 · 삼하 2:23 「아브넬이 창 뒤 끝으로 그 배를 찌르니 창이 그 등을 꿰뚫고 나간지라」 · 삼상 26:7 「창은 머리 곁 땅에 꽂혔고」 — 뒤끝도 찌르고 땅에 꽂는 뾰족한 쇠 물미 · 삼상 18:11 「그 창을 던졌으나」 — 한 손으로 던질 무게 · [추론] 길이: 삼상 19:9·19:10 「손에 단창을 가지고 … 단창으로 다윗을 벽에 박으려」·20:33 「단창을 던져」·22:6 「손에 단창을 들고」 — 같은 창이 「단창」(던질 창)이라 골리앗의 창(삼상 17:7 베틀채)보다 짧음 · 삼하 1:6 「사울이 자기 창을 의지하였고」 — 기대 설 만큼 김 · 삼상 26:7 「창은 머리 곁 땅에 꽂혔고」 — 꽂아 세워 둠 → 사람 키쯤(2026-10-24 사람 「가」, 지팡이 0.83보다 긺). [저작](본문에 모양 없음) 잎 모양 촉·물미가 앞 촉보다 훨씬 작음·촉 크기(손바닥만 함)는 그림 사정 — 길이는 2026-10-23 사람 「사람을 줄였으면 창도 줄여야」로 3분의 2([저작], 본문 근거 없음)로 줄였다가 2026-10-24 위 본문 근거로 사람 키쯤으로 되돌림(m15e 사람 「창크기가 맞는건가?」) · 촉은 같은 날 「창 앞촉이 큰것 같음」으로 「큰 촉」에서 손바닥만 함으로 바꿈 — 앞 촉만 한 잎 모양 촉을 뒤에 달거나 칼자루를 붙이지 않는다(task 401 사람 “창 모양” 거절).",
+        "size": {
+          "ref": "man-height",
+          "ratio": 1.0,
+          "en": "about a man's height",
+          "ko": "사람 키쯤",
+          "parts": {
+            "point": {
+              "en": "hand-sized",
+              "ko": "손바닥만 함",
+              "edit_en": "only about twice as wide as the wooden shaft and about seven times as long as the shaft is thick",
+              "ratio": 0.12,
+              "width": 2.0,
+              "edit_ko": "자루 굵기의 두 배쯤 폭 · 자루 굵기의 일곱 배쯤 길이(편집 크롭 안에 보이는 자루에 견줌 — task 405 r18 사람 「창촉이 큰것 같음」)"
+            },
+            "cap": {
+              "en": "small iron cap",
+              "ko": "작은 쇠 물미",
+              "ratio": 0.035,
+              "width": 1.4
+            }
+          },
+          "grounds": "[추론] 길이: 삼상 19:9·19:10·20:33·22:6 「단창」 — 던질 창이라 골리앗의 창보다 짧음 · 삼하 1:6 「자기 창을 의지하였고」 — 기대 설 만큼 김 · 삼상 26:7 「땅에 꽂혔고」 → 사람 키쯤(2026-10-24 사람 「가」 — 옛 0.67은 [저작] 2026-10-23 「사람을 줄였으면 창도 줄여야」, 기대기엔 엉덩이 높이) · parts 비는 창 길이에 견줌 — 촉 0.12 = 사람 키의 0.12(손 길이쯤)"
+        },
+        "hold": {
+          "mode": "hand",
+          "grounds": "[직접] 삼상 18:10 「사울의 손에 창이 있는지라」 — 손에 쥠(그림 기본값 — 그리는 문구에 쥔 꼴 문구를 더하지 않음)"
+        }
+      },
+      "criteria": {
+        "ko": "곧은 나무 자루(사람 키쯤) 앞끝에 손바닥만 한 잎 모양 쇠 촉이 하나 있다. 뒤끝은 짧고 뾰족한 쇠 물미이며 앞 촉보다 훨씬 작고 잎 모양 날이 아니다. 칼자루·코등이·손잡이 장식이 없다.",
+        "features": [
+          {
+            "q": "앞끝에 손바닥만 한 쇠 촉이 하나 분명히 있나(창 길이에 비해 지나치게 크지 않음)?",
+            "grounds": "[직접] 삼상 17:7 「창날은 철 육백 세겔이며」"
+          },
+          {
+            "q": "뒤끝이 앞 촉보다 훨씬 작은 짧은 물미이고, 앞 촉만 한 잎 모양 촉이 없나?",
+            "grounds": "[추론] 삼하 2:23 「창 뒤 끝으로 그 배를 찌르니 창이 그 등을 꿰뚫고 나간지라」 — 뒤끝은 뾰족한 물미이되 앞 촉과 다름"
+          },
+          {
+            "q": "칼자루·코등이·손잡이 장식이 없나?",
+            "grounds": "[저작](task 401 그림 결함 — 칼자루 모양 손잡이)"
+          },
+          {
+            "q": "곧은 나무 자루인가?",
+            "grounds": "[추론] 삼상 17:7 「그 창자루는 베틀채 같고」 — 베틀채에 견준 굵기에서 나무 자루"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sword",
+      "word": "칼",
+      "forms": [
+        "칼을",
+        "칼이",
+        "칼로",
+        "칼과",
+        "칼 위에"
+      ],
+      "kjv": "sword",
+      "refs": [
+        "삼상 25:13",
+        "삼상 31:4",
+        "삼상 31:5",
+        "삼상 17:51",
+        "삼하 20:8",
+        "삼하 2:16",
+        "삼상 22:19",
+        "삼상 13:19",
+        "삿 3:16"
+      ],
+      "held": [
+        "a sword",
+        "a sheathed sword"
+      ],
+      "meaning": {
+        "ko": "쇠 날로 베고 찌르는 무기예요. 칼집에 꽂아 허리에 찼어요.",
+        "grounds": "[직접] 삼하 2:16 「칼로 적수의 옆구리를 찌르매」 · 삼상 17:51 「그의 칼을 그 집에서 빼어 내어 그 칼로 그를 죽이고」 · 삼하 20:8 「집에 꽂은 칼을 허리에 매었는데」 · 삼상 25:13 「너희는 각기 칼을 차라」 · [추론] 삼상 13:19 「철공이 없어졌으니 … 칼이나 창을 만들까」 — 대장장이가 만드는 쇠 무기"
+      },
+      "look": {
+        "L1": {
+          "ko": "곧은 쇠 칼",
+          "en": "a straight iron sword"
+        },
+        "L2": {
+          "ko": "사람 팔보다 조금 짧은 곧은 쇠 날에 한 손 손잡이가 달린 칼, 허리의 칼집에 꽂혀 있거나 손에 빼어 듦.",
+          "en": "a straight iron blade a little shorter than a man's arm, with a one-hand grip, worn in a sheath at the waist or drawn in hand"
+        },
+        "L3": {
+          "ko": "한 손으로 쥐는 곧은 쇠 칼로, 날은 사람 팔보다 조금 짧아요. 찰 때는 허리띠에 맨 칼집에 꽂혀 손잡이만 보이고, 빼면 맨 날이 보여요.",
+          "en": "A straight iron sword held in one hand, the blade a little shorter than a man's arm. Worn on the belt, it sits in a sheath at the hip with only the grip showing; drawn, the bare blade shows."
+        },
+        "grounds": "[추론] 삼상 13:19 「철공이 없어졌으니 … 칼이나 창을 만들까」 — 대장장이가 만드는 쇠 날 · 삼상 17:51 「그의 칼을 그 집에서 빼어」 · 삼하 20:8 「집에 꽂은 칼을 허리에 매었는데 저가 행할 때에 칼이 빠져 떨어졌더라」 — 칼집에 꽂아 허리에 맴 · 삼상 25:13 「각기 칼을 차라」. [저작](본문에 날 모양 없음 — 그림 사정) 곧은 날·한 손 손잡이.",
+        "size": {
+          "ref": "man-height",
+          "ratio": 0.35,
+          "en": "a little shorter than a man's arm",
+          "ko": "사람 팔보다 조금 짧음",
+          "grounds": "[추론] 삿 3:16 「장이 한 규빗 되는 좌우에 날선 칼을 만들어 우편 다리 옷 속에 차고」 — 옷 속에 감춘 칼이 한 규빗(44.5cm ÷ 168cm ≈ 0.26)이니 드러내어 차는 칼은 그보다 조금 김. [저작](본문에 보통 칼 길이 없음 — 그림 사정) 0.35(약 59cm), 사람 팔(scale body.arm 0.44)보다 조금 짧게 — 골리앗의 칼(팔보다 김, 0.6)과 갈림"
+        },
+        "hold": {
+          "mode": "hand",
+          "grounds": "[직접] 삼상 17:51 「그의 칼을 … 빼어 내어 그 칼로」 · 삼하 2:16 「칼로 적수의 옆구리를 찌르매」 — 손에 쥠(그림 기본값 — 그리는 문구에 쥔 꼴 문구를 더하지 않음) · 찬 칼(삼상 25:13 「칼을 차라」)은 장면 몸짓 문구가 말함"
+        }
+      },
+      "criteria": {
+        "ko": "곧은 쇠 날에 한 손 손잡이가 달린 칼이다. 날은 사람 팔보다 조금 짧다. 차고 있을 때는 허리의 칼집에 꽂혀 손잡이만 보인다. 창·몽둥이·거인의 큰 칼·작은 손칼이 아니다.",
+        "features": [
+          {
+            "q": "날이 쇠로 된 곧은 칼인가?",
+            "grounds": "[추론] 삼상 13:19 「철공이 없어졌으니 … 칼이나 창을 만들까」 — 대장장이가 만드는 쇠 무기"
+          },
+          {
+            "q": "날이 사람 팔보다 조금 짧은가(거인의 큰 칼이나 작은 손칼이 아님)?",
+            "grounds": "[추론] 삿 3:16 「장이 한 규빗 되는」 — 감춘 칼보다 조금 긴 크기 · [저작](본문에 보통 칼 길이 없음 — 그림 사정)"
+          },
+          {
+            "q": "한 손으로 쥐는 손잡이가 있나?",
+            "grounds": "[저작](본문에 손잡이 모양 없음 — 그림 사정)"
+          },
+          {
+            "q": "차고 있는 칼이면 허리의 칼집에 꽂혀 있나?",
+            "grounds": "[직접] 삼하 20:8 「집에 꽂은 칼을 허리에 매었는데」"
+          }
+        ]
+      }
+    },
+    {
+      "id": "weaver-beam-spear",
+      "word": "베틀채 같은 창자루",
+      "forms": [
+        "창자루는 베틀채 같고",
+        "창자루는 베틀채 같았더라",
+        "창이 베틀채 같으나"
+      ],
+      "kjv": "staff of his spear was like a weaver's beam",
+      "refs": [
+        "삼상 17:7",
+        "삼하 21:19",
+        "대상 20:5",
+        "대상 11:23"
+      ],
+      "held": [
+        "베틀채 같은 굵은 창 한 자루(손)"
+      ],
+      "meaning": {
+        "ko": "베 짜는 틀의 굵은 나무 막대만큼 굵은 창 자루예요. 거인 골리앗이 이런 창을 들었어요.",
+        "grounds": "[직접] 삼상 17:7 「그 창자루는 베틀채 같고 창날은 철 육백 세겔이며」 · 삼하 21:19 「가드 골리앗의 아우 라흐미를 죽였는데 그 자의 창 자루는 베틀채 같았더라」 · 대상 20:5 · 대상 11:23 「키가 다섯 규빗이요 그 손에 든 창이 베틀채 같으나」 — 거인의 굵은 창. [저작](본문에 베틀채 모양 없음 — 베틀 고증) 베틀채는 베틀의 굵은 나무 막대."
+      },
+      "look": {
+        "L1": {
+          "ko": "거인의 굵고 긴 창",
+          "en": "a giant's thick, heavy spear"
+        },
+        "L2": {
+          "ko": "사람 키보다 훨씬 긴 창, 자루는 베틀채만큼 굵은 나무, 앞끝에 무거운 큰 쇠 창날.",
+          "en": "a spear much longer than a man is tall, its wooden shaft as thick as a weaver's beam, with a big heavy iron head at the front"
+        },
+        "L3": {
+          "ko": "거인이 드는 창으로 사람 키보다 훨씬 길어요. 나무 자루는 베틀의 굵은 막대만큼 굵어 보통 창 자루보다 몇 배 굵고, 앞끝 쇠 창날은 크고 무거워요. 보통 사람은 들기도 어려워 보여요.",
+          "en": "A spear made for a giant, much longer than a man is tall. The wooden shaft is as thick as a weaver's beam, several times thicker than an ordinary spear shaft, and the iron head at the front is big and heavy. It looks too heavy for an ordinary man."
+        },
+        "grounds": "[직접] 삼상 17:7 「그 창자루는 베틀채 같고 창날은 철 육백 세겔이며」 — 쇠 날 · [추론] 베틀채에 견준 비유에서 굵은 자루·무거운 날 · 삼상 17:45 「너는 칼과 창과 단창으로 내게 오거니와」 — 골리앗이 창을 듦. [저작](본문에 길이·창날 모양 없음 — 그림 사정) 길이는 드는 거인 키에 맞춤.",
+        "size": {
+          "ref": "man-height",
+          "ratio": 1.7,
+          "en": "much longer than a man is tall",
+          "ko": "사람 키보다 훨씬 긺",
+          "parts": {
+            "shaft": {
+              "en": "as thick as a weaver's beam",
+              "ko": "베틀채만큼 굵음"
+            },
+            "point": {
+              "en": "a big heavy iron head",
+              "ko": "무거운 큰 쇠 창날",
+              "ratio": 0.2
+            }
+          },
+          "grounds": "[추론] 삼상 17:7 「그 창자루는 베틀채 같고 창날은 철 육백 세겔이며」 — 베틀채에 견준 비유에서 굵은 자루, 무거운 쇠 날. [저작](본문에 길이·창날 길이 없음 — 그림 사정) 창 길이를 드는 거인 키(삼상 17:4 「여섯 규빗 한 뼘」, scale height.towering 1.72)쯤인 1.7로, 창날을 보통 창 촉(사전 spear point 0.12)보다 큰 0.2로 둠 · 골리앗의 칼처럼 보통 창(0.67) × 거인 키 비(1.72) = 1.15로 셈하지 않은 까닭: 그러면 거인 손에서 거인 키보다 짧아져 L2 「사람 키보다 훨씬 긴」과 어긋남(본문 「베틀채」는 보통 창보다 큰 무기)"
+        },
+        "hold": {
+          "mode": "hand",
+          "grounds": "[직접] 대상 11:23 「그 손에 든 창이 베틀채 같으나」 — 손에 쥠(그림 기본값 — 그리는 문구에 쥔 꼴 문구를 더하지 않음)"
+        }
+      },
+      "criteria": {
+        "ko": "거인이 드는 아주 굵고 긴 창이다. 나무 자루가 보통 창 자루보다 몇 배 굵고, 앞끝에 크고 무거운 쇠 창날이 있다. 사람 키보다 훨씬 길다. 가는 투창이나 깃발 장대가 아니다.",
+        "features": [
+          {
+            "q": "자루가 보통 창 자루보다 몇 배 굵은가?",
+            "grounds": "[추론] 삼상 17:7 「그 창자루는 베틀채 같고」 — 베틀채 비유에서 굵음 · 「몇 배」는 [저작](그림 판정 사정)"
+          },
+          {
+            "q": "앞끝에 크고 무거운 쇠 창날이 있나?",
+            "grounds": "[직접] 삼상 17:7 「창날은 철 육백 세겔이며」"
+          },
+          {
+            "q": "창이 사람 키보다 훨씬 긴가?",
+            "grounds": "[저작](본문에 길이 없음 — 거인 키에 맞춘 그림 사정)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "large-shield",
+      "word": "큰 방패",
+      "forms": [
+        "큰 방패와",
+        "큰 방패"
+      ],
+      "kjv": "target",
+      "refs": [
+        "왕상 10:16",
+        "대하 9:15",
+        "대하 14:8",
+        "대하 23:9"
+      ],
+      "held": [
+        "큰 방패"
+      ],
+      "meaning": {
+        "ko": "몸을 넓게 가려 지키는 큰 방패예요. 작은 방패보다 훨씬 크고 무거웠어요.",
+        "grounds": "[직접] 왕상 10:16-17 「큰 방패 이백을 만들었으니 매 방패에 든 금이 육백 세겔이며 … 작은 방패 삼백 … 매 방패에 든 금이 삼 마네라」 — 큰 방패에 금이 훨씬 많이 듦 · 대하 14:8 「큰 방패와 창을 잡는 자 … 작은 방패를 잡으며 활을 당기는 자」"
+      },
+      "look": {
+        "L1": {
+          "ko": "몸을 가리는 큰 방패",
+          "en": "a big body-covering shield"
+        },
+        "L2": {
+          "ko": "사람 턱부터 무릎까지 가리는 크고 두꺼운 방패, 위아래로 길쭉하고 안쪽에 손잡이.",
+          "en": "a big, thick shield covering a man from chin to knee, taller than it is wide, with grips on the inside"
+        },
+        "L3": {
+          "ko": "위아래로 길쭉한 무거운 방패로, 앞에 세우면 사람 턱부터 무릎까지 가려요. 안쪽 손잡이를 잡고 몸 앞에 세워 들어요. 한 팔에 끼는 작은 둥근 방패보다 훨씬 크고 무거워요.",
+          "en": "A tall, heavy shield, longer than it is wide; standing in front of a man it covers him from chin to knee. It is carried upright in front of the body by grips on the inside. Much bigger and heavier than a small round shield."
+        },
+        "grounds": "[추론] 왕상 10:16-17 — 큰 방패 하나에 금 육백 세겔, 작은 방패 하나에 삼 마네(대하 9:16 「삼백 세겔」) — 큰 방패가 작은 방패보다 훨씬 큼 · [추론] 삼상 17:7 「방패 든 자는 앞서 행하더라」·17:41 — 개역한글은 「방패」뿐이나, 따로 드는 사람이 앞설 만큼 크고 무거워 큰 방패로 봄. [저작](본문에 모양·치수 없음 — 그림 사정) 위아래로 길쭉함, 안쪽 손잡이, 작은 방패의 둥근 꼴.",
+        "size": {
+          "ref": "man-height",
+          "ratio": 0.6,
+          "en": "covering a man from chin to knee",
+          "ko": "사람 턱부터 무릎까지 가림",
+          "grounds": "[추론] 왕상 10:16-17 — 큰 방패는 작은 방패보다 훨씬 큼 · [추론] 삼상 17:7·41(개역한글 「방패」) — 거인 앞에 따로 든 자가 앞설 만큼 큼. [저작](본문에 치수 없음 — 그림 사정) 턱(scale body.head 0.1333)부터 무릎(body.knee 0.72)까지 ≈ 0.6"
+        },
+        "hold": {
+          "mode": "hand",
+          "grounds": "[직접] 대하 14:8 「큰 방패와 창을 잡는 자」 · 삼상 17:7 「방패 든 자는 앞서 행하더라」 — 손에 쥠(그림 기본값 — 그리는 문구에 쥔 꼴 문구를 더하지 않음)"
+        }
+      },
+      "criteria": {
+        "ko": "위아래로 길쭉한 크고 두꺼운 방패다. 앞에 세우면 사람 턱부터 무릎까지 가린다. 한 팔에 끼는 작은 둥근 방패가 아니다.",
+        "features": [
+          {
+            "q": "방패가 사람 턱부터 무릎까지 가릴 만큼 큰가?",
+            "grounds": "[추론] 왕상 10:16-17 — 큰 방패가 작은 방패보다 훨씬 큼 · [저작](치수는 그림 사정) 턱부터 무릎"
+          },
+          {
+            "q": "위아래로 길쭉한 모양인가?",
+            "grounds": "[저작](본문에 모양 없음 — 그림 사정)"
+          },
+          {
+            "q": "한 팔에 끼는 작은 방패가 아닌가?",
+            "grounds": "[직접] 대하 14:8 「큰 방패와 창을 잡는 자 … 작은 방패를 잡으며」 — 큰 방패와 작은 방패가 다른 것"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sling",
+      "word": "물매",
+      "forms": [
+        "물매를",
+        "물매로",
+        "물매와",
+        "물매도"
+      ],
+      "kjv": "sling",
+      "refs": [
+        "삼상 17:40",
+        "삼상 17:49",
+        "삼상 17:50",
+        "삿 20:16",
+        "삼상 25:29",
+        "대상 12:2"
+      ],
+      "held": [
+        "물매 — 끈 두 가닥 사이에 돌을 담는 넓은 가죽 받침"
+      ],
+      "meaning": {
+        "ko": "돌을 담아 멀리 던지는 끈 도구예요. 다윗이 이것으로 골리앗을 이겼어요.",
+        "grounds": "[직접] 삼상 17:49 「손을 주머니에 넣어 돌을 취하여 물매로 던져」 · 삼상 17:50 「물매와 돌로 블레셋 사람을 이기고」 · 삿 20:16 「물매로 돌을 던지면 호리도 틀림이 없는 자」 · [저작](본문에 끈 없음 — 물매 고증) 끈으로 된 도구"
+      },
+      "look": {
+        "L1": {
+          "ko": "가죽 받침 달린 끈 물매",
+          "en": "a cord sling with a leather pouch"
+        },
+        "L2": {
+          "ko": "가는 끈 두 가닥 사이에 돌을 담는 손바닥만 한 가죽 받침, 펼친 길이는 사람 팔 길이쯤.",
+          "en": "two thin cords with a palm-sized leather pouch between them for a stone, about as long as a man's arm"
+        },
+        "L3": {
+          "ko": "한쪽 끈 끝은 손가락에 감고 다른 끈 끝은 손가락으로 집어, 받침에 돌 하나를 담아 늘어뜨려 쥐어요. 펼치면 사람 팔 길이쯤이고, 막대나 Y자 새총이 아니에요.",
+          "en": "One cord end is looped on a finger and the other pinched between the fingers, so the pouch hangs down with a stone in it. Spread out it is about as long as a man's arm. It is not a stick or a forked slingshot."
+        },
+        "grounds": "[직접] 삼상 17:49 「돌을 취하여 물매로 던져」 · 삿 20:16 「물매로 돌을 던지면」 — 돌을 담아 던지는 도구 · 삼상 17:40 「손에 물매를 가지고」 — 손에 쥠 · [추론] 삼상 25:29 「물매로 던지듯 여호와께서 그것을 던지시리이다」 — 멀리 내던지는 쓰임. [저작](본문에 모양 없음 — 물매 고증) 끈 두 가닥·가죽 받침·손가락으로 쥠.",
+        "size": {
+          "ref": "man-height",
+          "ratio": 0.44,
+          "en": "about as long as a man's arm",
+          "ko": "펼친 길이가 사람 팔 길이쯤",
+          "parts": {
+            "pouch": {
+              "en": "a palm-sized leather pouch",
+              "ko": "손바닥만 한 가죽 받침",
+              "ratio": 0.06
+            }
+          },
+          "grounds": "[저작](본문에 길이 없음 — 물매 고증·그림 사정) 펼친 길이를 사람 팔(scale body.arm 0.44)에, 받침을 손바닥(약 10cm)에 견줌 — 막대·새총으로 끌리지 않게 몸에 묶음"
+        },
+        "hold": {
+          "mode": "hand",
+          "grounds": "[직접] 삼상 17:40 「손에 물매를 가지고」 — 손에 쥠(그림 기본값 — 그리는 문구에 쥔 꼴 문구를 더하지 않음)"
+        }
+      },
+      "criteria": {
+        "ko": "가는 끈 두 가닥과 그 가운데 손바닥만 한 가죽 받침으로 된 물매다. 받침에 돌을 담는다. 펼친 길이는 사람 팔 길이쯤이다. 막대·Y자 새총·채찍이 아니다.",
+        "features": [
+          {
+            "q": "끈 두 가닥 사이에 가죽 받침이 있나?",
+            "grounds": "[저작](본문에 모양 없음 — 물매 고증)"
+          },
+          {
+            "q": "받침에 돌을 담을 수 있는 모양인가?",
+            "grounds": "[직접] 삼상 17:49 「돌을 취하여 물매로 던져」"
+          },
+          {
+            "q": "Y자 새총이나 막대가 아닌가?",
+            "grounds": "[저작](그림 사정 — 요즘 새총으로 끌리지 않게)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "shepherd-rod",
+      "word": "막대기",
+      "forms": [
+        "막대기를",
+        "막대기와",
+        "막대기 아래로"
+      ],
+      "kjv": "staff",
+      "refs": [
+        "삼상 17:40",
+        "삼상 17:43",
+        "레 27:32",
+        "시 23:4",
+        "대상 11:23"
+      ],
+      "held": [
+        "a shepherd's staff"
+      ],
+      "meaning": {
+        "ko": "손에 쥐고 다니는 나무 막대예요. 양 치는 사람이 양 떼를 돌볼 때 썼어요.",
+        "grounds": "[직접] 삼상 17:40 「손에 막대기를 가지고」 · 17:43 「막대기를 가지고 내게 나아왔느냐」 — 손에 드는 막대 · [추론] 레 27:32 「소나 양의 십분 일은 막대기 아래로 통과하는」 · 시 23:4 「주의 지팡이와 막대기가 나를 안위하시나이다」 — 양 떼를 치는 쓰임 · [저작](본문에 재료 없음 — 나무는 고증)"
+      },
+      "look": {
+        "L1": {
+          "ko": "나무 막대기",
+          "en": "a plain wooden stick"
+        },
+        "L2": {
+          "ko": "사람 가슴 높이쯤 되는 곧고 투박한 나무 막대기, 장식 없음.",
+          "en": "a plain, straight, sturdy wooden stick reaching up to a man's chest"
+        },
+        "L3": {
+          "ko": "한 손으로 쥐는 곧은 나무 막대기로, 세우면 사람 가슴 높이쯤이에요. 껍질을 벗긴 투박한 나무이고, 갈고리·새김 장식·쇠 날이 없어요.",
+          "en": "A plain wooden stick held in one hand; stood on the ground it reaches up to a man's chest. Rough peeled wood with no hook, no carving and no metal point."
+        },
+        "grounds": "[직접] 삼상 17:40 「손에 막대기를 가지고」 — 한 손에 드는 막대 · [추론] 대상 11:23 「저가 막대기를 가지고 내려가서 그 애굽 사람의 손에서 창을 빼앗아」 — 창과 다른, 날 없는 막대 · 레 27:32·시 23:4 — 양 떼를 치는 쓰임. [저작](본문에 재료·길이·모양 없음 — 그림 사정) 나무, 곧음, 장식 없음.",
+        "size": {
+          "ref": "man-height",
+          "ratio": 0.72,
+          "en": "reaching up to a man's chest",
+          "ko": "사람 가슴 높이쯤",
+          "grounds": "[저작](본문에 길이 없음 — 그림 사정) 걸으며 쥐고 다니는 목자의 막대를 가슴 높이(머리 위끝에서 키의 약 0.28 아래)로 둠 — 짚고 기대는 지팡이(어깨 높이 0.83)보다 짧게 갈림"
+        },
+        "hold": {
+          "mode": "hand",
+          "grounds": "[직접] 삼상 17:40 「손에 막대기를 가지고」 — 손에 쥠(그림 기본값 — 그리는 문구에 쥔 꼴 문구를 더하지 않음)"
+        }
+      },
+      "criteria": {
+        "ko": "한 손에 쥐는 곧은 나무 막대기다. 세우면 사람 가슴 높이쯤이다. 갈고리·장식·쇠 날이 없다. 창·칼·왕의 홀이 아니다.",
+        "features": [
+          {
+            "q": "곧은 나무 막대기인가?",
+            "grounds": "[저작](본문에 재료·모양 없음 — 그림 사정)"
+          },
+          {
+            "q": "끝에 쇠 날이나 촉이 없나?",
+            "grounds": "[추론] 대상 11:23 「막대기를 가지고 내려가서 … 창을 빼앗아」 — 막대기는 창과 다른 것"
+          },
+          {
+            "q": "세우면 사람 가슴 높이쯤인가?",
+            "grounds": "[저작](본문에 길이 없음 — 그림 사정)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "walking-staff",
+      "word": "지팡이",
+      "forms": [
+        "지팡이를",
+        "지팡이만",
+        "지팡이에",
+        "지팡이 머리에"
+      ],
+      "kjv": "staff",
+      "refs": [
+        "출 21:19",
+        "슥 8:4",
+        "창 32:10",
+        "히 11:21",
+        "민 17:8",
+        "삼상 14:27"
+      ],
+      "held": [
+        "a wooden staff"
+      ],
+      "meaning": {
+        "ko": "걸을 때 짚거나 손에 들고 다니는 긴 나무 막대예요. 나이 많은 사람은 지팡이를 잡고 다녔어요.",
+        "grounds": "[직접] 출 21:19 「지팡이를 짚고 기동하면」 · 슥 8:4 「다 나이 많으므로 각기 손에 지팡이를 잡을 것이요」 · 창 32:10 「내 지팡이만 가지고 이 요단을 건넜더니」 — 걸어 다닐 때 듦 · [추론] 민 17:8 「아론의 지팡이에 움이 돋고 순이 나고」 — 나무 막대"
+      },
+      "look": {
+        "L1": {
+          "ko": "긴 나무 지팡이",
+          "en": "a long wooden walking staff"
+        },
+        "L2": {
+          "ko": "사람 어깨 높이쯤 되는 곧고 장식 없는 나무 지팡이.",
+          "en": "a straight, plain wooden staff as tall as a man's shoulder"
+        },
+        "L3": {
+          "ko": "한 손으로 위끝 가까이를 쥐고 아래끝을 땅에 짚는 곧은 나무 지팡이예요. 세우면 사람 어깨 높이쯤이고, 굽은 갈고리나 장식, 쇠 날이 없어요.",
+          "en": "A straight wooden staff, gripped in one hand near the top with the lower end resting on the ground. Standing, it is as tall as a man's shoulder. Plain wood with no hook, no carving and no metal point."
+        },
+        "grounds": "[직접] 출 21:19 「지팡이를 짚고 기동하면」 — 아래끝을 땅에 짚음 · 히 11:21 「그 지팡이 머리에 의지하여」 — 위끝을 잡고 기댐 · [추론] 민 17:8 「아론의 지팡이에 움이 돋고」 — 나무. [저작](본문에 길이·모양 없음 — 그림 사정) 곧음, 장식 없음.",
+        "size": {
+          "ref": "man-height",
+          "ratio": 0.83,
+          "en": "as tall as a man's shoulder",
+          "ko": "사람 어깨 높이쯤",
+          "grounds": "[추론] 출 21:19 「지팡이를 짚고」 · 히 11:21 「지팡이 머리에 의지하여」 — 짚고 기대는 막대라 선 사람 손이 위끝에 닿는 길이. [저작](본문에 길이 없음 — 그림 사정) 어깨 높이 = 1 − scale body.shoulder 0.17 ≈ 0.83"
+        },
+        "hold": {
+          "mode": "hand",
+          "grounds": "[직접] 슥 8:4 「각기 손에 지팡이를 잡을 것이요」 — 손에 쥠(그림 기본값 — 그리는 문구에 쥔 꼴 문구를 더하지 않음)"
+        }
+      },
+      "criteria": {
+        "ko": "곧은 나무 지팡이로, 세우면 사람 어깨 높이쯤이다. 위끝 가까이를 손으로 쥐고 아래끝은 땅에 닿는다. 창·칼·왕의 홀이 아니다.",
+        "features": [
+          {
+            "q": "곧은 나무 막대인가?",
+            "grounds": "[추론] 민 17:8 「아론의 지팡이에 움이 돋고」 — 나무"
+          },
+          {
+            "q": "세우면 사람 어깨 높이쯤인가?",
+            "grounds": "[저작](본문에 길이 없음 — 그림 사정)"
+          },
+          {
+            "q": "아래끝이 땅에 닿게 짚을 수 있나?",
+            "grounds": "[직접] 출 21:19 「지팡이를 짚고 기동하면」"
+          },
+          {
+            "q": "끝에 쇠 날이나 촉이 없나?",
+            "grounds": "[저작](본문에 없음 — 창과 갈리게 하는 그림 사정)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "baby",
+      "word": "아기",
+      "forms": [
+        "아기를",
+        "아기가"
+      ],
+      "kjv": "child",
+      "refs": [
+        "룻 4:16",
+        "사 9:6",
+        "눅 2:12"
+      ],
+      "held": [
+        "an infant",
+        "아기"
+      ],
+      "meaning": {
+        "ko": "갓 태어난 어린아이예요. 어머니가 품에 안아 젖을 먹였어요.",
+        "grounds": "[직접] 룻 4:16 「나오미가 아기를 취하여 품에 품고」 · 사 9:6 「한 아기가 우리에게 났고」 — 갓 난 아이 · [추론] 왕상 3:17-21 「아이를 낳았더니 … 나의 해산한 지 삼일에 … 내 아들을 젖 먹이려고」 — 장면의 아이는 낳은 지 며칠 된 젖먹이"
+      },
+      "look": {
+        "L1": {
+          "ko": "천에 싸인 갓난 아기",
+          "en": "a newborn baby wrapped in cloth"
+        },
+        "L2": {
+          "ko": "어른 팔꿈치에서 손끝까지만 한 작은 갓난 아기, 몸을 천으로 감쌈.",
+          "en": "a tiny newborn baby, as long as a man's arm from elbow to fingertip, its body wrapped in cloth"
+        },
+        "L3": {
+          "ko": "어른 한 팔에 쏙 안기는 갓난 아기로, 길이는 팔꿈치에서 손끝까지쯤이에요. 머리만 내놓고 몸은 천으로 감쌌어요. 앉거나 걷는 어린아이가 아니에요.",
+          "en": "A newborn small enough to lie in the crook of one arm, as long as a man's arm from elbow to fingertip. Only the head shows; the body is wrapped in cloth. Not a toddler who can sit or walk."
+        },
+        "grounds": "[직접] 룻 4:16 「아기를 취하여 품에 품고」 — 품에 안는 크기 · [직접] 눅 2:12 「강보에 싸여 구유에 누인 아기」 — 아기를 천으로 쌈 · [추론] 겔 16:4 「너를 강보에 싸지도 아니하였나니」 · 눅 2:7 「맏아들을 낳아 강보로 싸서」 — 갓난 아이를 천으로 싸는 용례 · 왕상 3:18 「나의 해산한 지 삼일에」 — 장면의 아이는 갓난 아이. [저작](본문에 크기 없음 — 그림 사정) 팔꿈치에서 손끝까지 길이.",
+        "size": {
+          "ref": "man-height",
+          "ratio": 0.27,
+          "en": "as long as a man's arm from elbow to fingertip",
+          "ko": "어른 팔꿈치에서 손끝까지(한 규빗)쯤",
+          "grounds": "[저작](본문에 크기 없음 — 그림 사정) 갓난 아이 키 약 45~50cm를 한 규빗(scale unit.cubit_cm 44.5, 팔꿈치~손끝)쯤으로 둠"
+        },
+        "hold": {
+          "mode": "hug",
+          "item": "a newborn baby",
+          "noun": "baby",
+          "en": "cradled in both arms against the chest",
+          "person": true,
+          "grounds": "[직접] 룻 4:16 「나오미가 아기를 취하여 품에 품고」 · 왕상 3:20 「내 아들을 내 곁에서 가져다가 자기의 품에 누이고」 — 품에 안음"
+        }
+      },
+      "criteria": {
+        "ko": "갓 태어난 작은 아기다. 길이는 어른 팔꿈치에서 손끝까지쯤이고, 몸이 천에 싸여 있다. 앉거나 걷는 어린아이가 아니다.",
+        "features": [
+          {
+            "q": "어른 품에 안길 만큼 작은 갓난 아기인가?",
+            "grounds": "[직접] 룻 4:16 「아기를 취하여 품에 품고」"
+          },
+          {
+            "q": "몸이 천으로 싸여 있나?",
+            "grounds": "[직접] 눅 2:12 「강보에 싸여 구유에 누인 아기」 · [추론] 겔 16:4 「강보에 싸지도」 · 눅 2:7 「강보로 싸서」"
+          },
+          {
+            "q": "앉거나 걸을 만한 큰 아이가 아닌가?",
+            "grounds": "[추론] 왕상 3:18 「나의 해산한 지 삼일에」 — 낳은 지 며칠 된 아이"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scepter",
+      "word": "홀",
+      "forms": [
+        "홀이",
+        "홀은",
+        "금홀을",
+        "금홀"
+      ],
+      "kjv": "sceptre",
+      "refs": [
+        "에 5:2",
+        "에 4:11",
+        "창 49:10",
+        "시 45:6",
+        "민 24:17"
+      ],
+      "held": [
+        "왕홀"
+      ],
+      "meaning": {
+        "ko": "왕이 손에 쥐고 있는 막대예요. 왕이 다스린다는 표예요.",
+        "grounds": "[직접] 에 5:2 「손에 잡았던 금홀을 그에게 내어미니」 — 왕이 손에 쥠 · 창 49:10 「홀이 유다를 떠나지 아니하며 치리자의 지팡이가」 · 시 45:6 「주의 나라의 홀은 공평한 홀이니이다」 — 다스리는 자의 것"
+      },
+      "look": {
+        "L1": {
+          "ko": "왕이 쥔 짧은 홀",
+          "en": "a king's short scepter rod"
+        },
+        "L2": {
+          "ko": "사람 키의 절반쯤 되는 곧고 매끈한 막대, 위끝에 작고 둥근 머리.",
+          "en": "a straight, smooth rod about half a man's height, with a small rounded knob at the top"
+        },
+        "L3": {
+          "ko": "왕이 한 손에 세워 쥐거나 앞으로 내미는 곧은 막대로, 사람 키의 절반쯤이에요. 위끝에 둥근 머리가 있고, 땅에 짚는 지팡이보다 짧아요.",
+          "en": "A straight rod held upright in one hand or held out in front, about half a man's height. It has a rounded knob at the top and is shorter than a walking staff; it is not leaned on the ground."
+        },
+        "grounds": "[직접] 에 5:2 「손에 잡았던 금홀을 그에게 내어미니 에스더가 가까이 가서 금홀 끝을 만진지라」 — 한 손에 쥐고 내미는 막대, 끝이 있음 · [추론] 겔 19:11 「권세 잡은 자의 홀이 될 만한」 「그 가지들은 견강하여」 — 곧고 단단한 막대 · 민 21:18 「홀과 지팡이로 판 것」 — 지팡이와 다른 것. [저작](본문에 솔로몬의 홀 모양 없음 — 그림 사정) 둥근 머리, 길이, 재료(에스더의 금홀은 바사 왕의 것이라 그대로 옮기지 않음).",
+        "size": {
+          "ref": "man-height",
+          "ratio": 0.5,
+          "en": "about half a man's height",
+          "ko": "사람 키의 절반쯤",
+          "grounds": "[저작](본문에 길이 없음 — 그림 사정) 한 손에 세워 쥐고 앞으로 내밀 만한 길이로, 짚는 지팡이(사전 walking-staff 0.83)보다 짧게 둠 · [추론] 에 5:2 「손에 잡았던 금홀을 … 내어미니」 — 한 손으로 내미는 막대"
+        },
+        "hold": {
+          "mode": "hand",
+          "grounds": "[직접] 에 5:2 「손에 잡았던 금홀을 그에게 내어미니」 — 손에 쥠(그림 기본값 — 그리는 문구에 쥔 꼴 문구를 더하지 않음)"
+        }
+      },
+      "criteria": {
+        "ko": "왕이 한 손에 쥔 곧은 막대로, 사람 키의 절반쯤이고 위끝에 둥근 머리가 있다. 땅에 짚는 긴 지팡이나 칼·창이 아니다.",
+        "features": [
+          {
+            "q": "한 손에 쥔 곧은 막대인가?",
+            "grounds": "[직접] 에 5:2 「손에 잡았던 금홀」"
+          },
+          {
+            "q": "땅에 짚는 지팡이보다 짧은가?",
+            "grounds": "[추론] 민 21:18 「홀과 지팡이로」 — 홀과 지팡이가 다른 것 · [저작](길이는 그림 사정)"
+          },
+          {
+            "q": "끝에 날이나 촉이 없나?",
+            "grounds": "[저작](본문에 없음 — 칼·창과 갈리게 하는 그림 사정)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "spices",
+      "word": "향품",
+      "forms": [
+        "향품과",
+        "향품을",
+        "향품이"
+      ],
+      "kjv": "spices",
+      "refs": [
+        "왕상 10:2",
+        "왕상 10:10",
+        "왕상 10:25",
+        "출 30:23",
+        "아 4:14",
+        "창 37:25"
+      ],
+      "held": [
+        "향품 상자"
+      ],
+      "meaning": {
+        "ko": "좋은 냄새가 나는 나무 진·껍질·풀 같은 귀한 것이에요. 스바 여왕이 솔로몬에게 많이 드렸어요.",
+        "grounds": "[직접] 왕상 10:10 「심히 많은 향품과 보석을 왕께 드렸으니」 · 왕상 10:2 「향품과 심히 많은 금과 보석을 약대에 실었더라」 · [추론] 출 30:23 「상등 향품을 취하되 액체 몰약 … 향기로운 육계 … 향기로운 창포」 · 아 4:14 「창포와 계수와 각종 유향목과 몰약과 침향과 모든 귀한 향품」 — 향 나는 나무 진·껍질·풀"
+      },
+      "look": {
+        "L1": {
+          "ko": "상자에 담은 향품",
+          "en": "fragrant spices in a small box"
+        },
+        "L2": {
+          "ko": "사람 가슴 너비쯤 되는 작은 나무 상자에 담은 마른 나무 진 덩이·말린 나무껍질·풀줄기.",
+          "en": "dried resin lumps, rolled bark and bundled reeds heaped in a small wooden box about as wide as a man's chest"
+        },
+        "L3": {
+          "ko": "두 손으로 들 만한 작은 나무 상자로, 너비는 사람 가슴 너비쯤이에요. 안에 누르스름한 나무 진 덩이, 돌돌 말린 나무껍질, 향 나는 풀줄기가 소복이 담겨 있어요.",
+          "en": "A small wooden box carried in both hands, about as wide as a man's chest, filled with yellow-brown resin lumps, curls of dried bark and sweet-smelling reed stalks heaped above the rim."
+        },
+        "grounds": "[추론] 출 30:23 「향기로운 육계 … 향기로운 창포」 — 껍질·풀줄기 · 창 37:25 「약대들에 향품과 유향과 몰약을 싣고」 · 아 4:14 「창포와 계수와 각종 유향목과 몰약과 침향」 — 싣고 나르는 향품(유향·몰약). [저작](본문에 꼴 없음) 「마른 나무 진 덩이」. [저작](본문에 그릇 없음 — 왕상 10:2는 「약대에 실었더라」뿐, 들고 드리는 그림 사정으로 작은 나무 상자를 둠; 색은 고증).",
+        "size": {
+          "ref": "man-height",
+          "ratio": 0.3,
+          "en": "about as wide as a man's chest",
+          "ko": "사람 가슴 너비쯤",
+          "grounds": "[저작](본문에 상자 없음 — 그림 사정) 두 손으로 드는 상자 너비를 어른 몸 너비(scale build_width.average 0.3)에 견줌"
+        },
+        "hold": {
+          "mode": "hand",
+          "grounds": "[저작](본문은 약대에 실음 — 왕상 10:2, 사람이 드는 꼴 없음) 사전 L3 「두 손으로 들 만한 작은 나무 상자」 — 손에 쥠(그림 기본값 — 그리는 문구에 쥔 꼴 문구를 더하지 않음)"
+        }
+      },
+      "criteria": {
+        "ko": "작은 나무 상자 안에 마른 나무 진 덩이·나무껍질·풀줄기 같은 향품이 소복이 담겨 있다. 상자는 두 손으로 들 만하다. 금덩이나 보석만 담긴 상자가 아니다.",
+        "features": [
+          {
+            "q": "상자 안에 나무 진 덩이나 껍질·풀줄기 같은 것이 담겨 있나?",
+            "grounds": "[추론] 창 37:25 「향품과 유향과 몰약을 싣고」 · 출 30:23 「향기로운 육계 … 향기로운 창포」 — 실어 나르는 껍질·풀줄기 · 덩이 꼴은 [저작](그림 사정)"
+          },
+          {
+            "q": "두 손으로 들 만한 작은 상자인가?",
+            "grounds": "[저작](본문에 상자 없음 — 그림 사정)"
+          },
+          {
+            "q": "금이나 보석만 담긴 상자가 아닌가?",
+            "grounds": "[직접] 왕상 10:10 「향품과 보석을 왕께 드렸으니」 — 향품은 보석과 다른 것"
+          }
+        ]
+      }
+    }
+  ]
+}

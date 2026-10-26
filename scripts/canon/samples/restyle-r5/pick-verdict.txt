@@ -1,0 +1,3 @@
+판정 task restyle-r5
+{"task":"restyle-r5","kind":"ab","human_minutes":2.55,"active_minutes":2.55,"idle_ms":120000,"screens":1,"scenes":{"authored-david-returns-jerusalem":{"answer":"none","chose":"none","left":"cn:202","right":"cn:23","memo":"왼쪽 : 시므이가 누웠음...\n오른쪽 : 배타는게 이상함","minutes":2.53,"active_minutes":2.34}}}
+source: conversation

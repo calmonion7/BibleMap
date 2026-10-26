@@ -1,0 +1,1156 @@
+{
+ "answers": {
+  "g:42": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.664,
+       "input": 4,
+       "output": 284,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.045071200000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금 모두 얼굴·옷·형태가 완성돼 있고 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.475,
+       "input": 4,
+       "output": 287,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.04510120000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물 모두 얼굴과 옷이 갖춰져 있고, 창과 수금도 완성된 모습이다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.856,
+       "input": 4,
+       "output": 280,
+       "cache_read": 54072,
+       "cache_create": 0,
+       "cost_usd": 0.0082152,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금 모두 얼굴·옷·세부가 완성돼 있고, 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.573,
+       "input": 4,
+       "output": 557,
+       "cache_read": 46476,
+       "cache_create": 8229,
+       "cost_usd": 0.0431416,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음"
+     },
+     "reasons": {
+      "e.proportion-saul": "몸통이 크고 통짜로 불룩한데 머리는 작아 보임",
+      "e.proportion-david": "머리·팔다리·몸통이 청년답게 어울림",
+      "e.proportion-pair": "사울이 더 크지만 두세 배 거인/아이 정도는 아님"
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 8.037,
+       "input": 4,
+       "output": 766,
+       "cache_read": 46476,
+       "cache_create": 8228,
+       "cost_usd": 0.0452276,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "맞음"
+     },
+     "reasons": {
+      "e.proportion-saul": "몸통이 통짜 상자처럼 크고 불룩한데 머리는 그에 비해 작아 보인다.",
+      "e.proportion-david": "머리가 몸에 비해 큰 편이라 청년보다 어린아이 비율에 가깝다. 분명히 맞다고 보기 어렵다.",
+      "e.proportion-pair": "사울이 다윗보다 키가 약 1.5배라 머리 하나 이상 크지만 거인과 아이 정도는 아니다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 9.636,
+       "input": 4,
+       "output": 878,
+       "cache_read": 53372,
+       "cache_create": 1332,
+       "cost_usd": 0.0194532,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "몸통이 크고 네모진 술통 모양인데 머리는 작아 보인다. 다리도 몸통에 비해 가늘다.",
+      "e.proportion-david": "머리 크기와 팔다리, 몸통이 서로 어울리는 청년 체형이다.",
+      "e.proportion-pair": "사울의 키가 다윗의 약 1.6배이고 몸집도 훨씬 커서 머리 하나 차이를 넘는다. 다윗이 웅크린 점을 감안해도 크기 차이가 부자연스럽다."
+     }
+    }
+   }
+  },
+  "g:11": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.852,
+       "input": 4,
+       "output": 287,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.04510120000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 윤곽선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 의자, 창, 수금 모두 얼굴·옷·형태가 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.875,
+       "input": 4,
+       "output": 282,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.045051200000000007,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 의자, 창, 수금 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.51,
+       "input": 4,
+       "output": 274,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.0449712,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필로 칠한 동화 그림처럼 보인다.",
+      "s.no-blob": "두 인물과 의자 모두 얼굴, 옷, 세부 묘사가 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.33,
+       "input": 4,
+       "output": 487,
+       "cache_read": 44869,
+       "cache_create": 9835,
+       "cost_usd": 0.0487049,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "머리가 큰 몸통과 긴 팔다리에 비해 작고, 비율이 어색함",
+      "e.proportion-david": "머리가 약간 크고 몸이 작아 아이 같은 비율이며 다리가 가늘고 어색함",
+      "e.proportion-pair": "사울이 다윗보다 훨씬 커서 머리 하나 차이를 넘어 거인과 아이처럼 보임"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 6.991,
+       "input": 4,
+       "output": 521,
+       "cache_read": 44869,
+       "cache_create": 9835,
+       "cost_usd": 0.0490449,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "머리가 몸에 비해 작고 팔다리가 길쭉하며 몸이 지나치게 커 보임",
+      "e.proportion-david": "머리가 몸에 비해 큰 편이고 어린아이처럼 작아 보임",
+      "e.proportion-pair": "사울이 다윗보다 머리 하나 정도가 아니라 훨씬 커서 거인과 아이처럼 보임"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 7.425,
+       "input": 4,
+       "output": 548,
+       "cache_read": 44869,
+       "cache_create": 9835,
+       "cost_usd": 0.0493149,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "머리가 몸통과 긴 팔다리에 비해 작고, 몸이 비정상적으로 길쭉함. 불룩한 몸통은 아니지만 비율이 부자연스러움.",
+      "e.proportion-david": "청년 비율이 대체로 자연스러움. 머리가 약간 크지만 허용 범위임.",
+      "e.proportion-pair": "사울이 다윗보다 머리 하나 정도가 아니라 거의 두 배 가까이 커 보여 거인과 아이처럼 보임. 원근 차이를 감안해도 과함."
+     }
+    }
+   }
+  },
+  "g:7": {
+   "S": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.551,
+       "input": 4,
+       "output": 258,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.04481120000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 질감으로 그린 동화풍 그림이다.",
+      "s.no-blob": "사울과 다윗 모두 얼굴과 옷이 있고, 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.347,
+       "input": 4,
+       "output": 276,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.04499120000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 그린 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 수금, 창, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.707,
+       "input": 4,
+       "output": 273,
+       "cache_read": 54072,
+       "cache_create": 0,
+       "cost_usd": 0.008145200000000002,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 수금, 창, 의자 모두 얼굴·옷·형태가 완성돼 있고 평평한 회색 덩어리는 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.633,
+       "input": 4,
+       "output": 457,
+       "cache_read": 46476,
+       "cache_create": 8228,
+       "cost_usd": 0.0421376,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "Saul is a natural adult man. His torso, head and legs fit together, and he is not barrel-shaped.",
+      "e.proportion-david": "David looks like a boy, not a young man. His head is large for his body and his limbs are short.",
+      "e.proportion-pair": "Saul is almost twice David's height. The size gap is far more than one head, so they read as an adult and a child."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 6.349,
+       "input": 4,
+       "output": 507,
+       "cache_read": 54704,
+       "cache_create": 0,
+       "cost_usd": 0.010548400000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "몸통·머리·다리 비율이 자연스러운 어른 남자.",
+      "e.proportion-david": "머리가 몸에 비해 커 보이고 체구가 소년/아이 같아 청년 비율이 아님.",
+      "e.proportion-pair": "사울이 다윗보다 훨씬 커서(키 약 1.7배) 머리 하나 차이를 넘고 어른과 아이처럼 보임."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 9.895,
+       "input": 4,
+       "output": 927,
+       "cache_read": 54704,
+       "cache_create": 0,
+       "cost_usd": 0.014748400000000002,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음"
+     },
+     "reasons": {
+      "e.proportion-saul": "머리가 큰 몸통과 긴 몸에 비해 작아 보이고(약 5.6두신), 다리도 몸통에 비해 가늘어서 비율이 확실히 자연스럽다고 보기 어렵다.",
+      "e.proportion-david": "머리, 몸통, 팔다리가 청년답게 서로 어울린다. 몸을 웅크린 자세인데도 비율은 자연스럽다.",
+      "e.proportion-pair": "사울이 다윗보다 크지만, 다윗이 웅크린 점을 감안하면 머리 하나 반 정도 차이다. 거인과 아이처럼 보이지는 않는다."
+     }
+    }
+   }
+  },
+  "g:23": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.309,
+       "input": 4,
+       "output": 277,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.045001200000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사울, 다윗, 창, 수금, 의자 모두 얼굴·옷·세부가 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.539,
+       "input": 4,
+       "output": 284,
+       "cache_read": 52898,
+       "cache_create": 1174,
+       "cost_usd": 0.012833800000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사울, 다윗, 창, 수금, 의자 모두 얼굴이나 옷, 세부 묘사가 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.09,
+       "input": 4,
+       "output": 286,
+       "cache_read": 54072,
+       "cache_create": 0,
+       "cost_usd": 0.008275200000000002,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사울, 다윗, 창, 수금, 의자 모두 얼굴과 옷, 세부가 갖춰져 있다. 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.391,
+       "input": 4,
+       "output": 527,
+       "cache_read": 53372,
+       "cache_create": 1332,
+       "cost_usd": 0.0159432,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "머리·몸통·다리 비율이 대체로 자연스러운 어른 남자.",
+      "e.proportion-david": "청년이라기보다 어린아이처럼 작고, 머리가 몸에 비해 커 보임.",
+      "e.proportion-pair": "다윗이 사울 키의 약 60%로 머리 하나 차이보다 훨씬 크게 벌어져 어른과 아이처럼 보임."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 6.443,
+       "input": 4,
+       "output": 538,
+       "cache_read": 46476,
+       "cache_create": 8228,
+       "cost_usd": 0.0429476,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "어른 남자 비율이 대체로 자연스러움(몸통이 약간 네모지지만 허용 범위).",
+      "e.proportion-david": "머리가 몸에 비해 크고 체구가 소년/아이처럼 작아 청년 비율이 아님.",
+      "e.proportion-pair": "사울이 다윗보다 거의 두 배 커 보여 어른과 아이처럼 보임. 머리 하나 정도 차이가 아님."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 5.964,
+       "input": 4,
+       "output": 493,
+       "cache_read": 53372,
+       "cache_create": 1332,
+       "cost_usd": 0.015603200000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "몸통이 크고 불룩한 술통형 튜닉이고 머리가 몸통에 비해 작아 보이며 팔이 어색하게 길다",
+      "e.proportion-david": "머리가 크고 키가 작아 청년이 아니라 어린아이처럼 보인다",
+      "e.proportion-pair": "사울이 다윗보다 머리 하나 정도가 아니라 거의 두 배 크기여서 거인과 아이처럼 보인다"
+     }
+    }
+   }
+  },
+  "g:5": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.189,
+       "input": 4,
+       "output": 272,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.04495120000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사람·창·수금·의자 모두 얼굴, 옷, 디테일이 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.872,
+       "input": 4,
+       "output": 277,
+       "cache_read": 52898,
+       "cache_create": 1174,
+       "cost_usd": 0.0127638,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴, 옷, 세부가 완성돼 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.072,
+       "input": 4,
+       "output": 280,
+       "cache_read": 52898,
+       "cache_create": 1174,
+       "cost_usd": 0.012793800000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴, 옷, 세부가 갖춰져 있고 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    }
+   },
+   "E": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.896,
+       "input": 4,
+       "output": 503,
+       "cache_read": 54705,
+       "cache_create": 0,
+       "cost_usd": 0.0105085,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "몸통이 불룩하고 두껍고 머리가 몸통에 비해 작아 보이며 팔이 길다",
+      "e.proportion-david": "머리가 크고 몸이 작아 청년보다 어린아이처럼 보이고 비율이 어색하다",
+      "e.proportion-pair": "사울이 다윗보다 머리 하나 정도가 아니라 거의 두 배 가까이 커서 어른과 아이처럼 보인다"
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 8.493,
+       "input": 4,
+       "output": 744,
+       "cache_read": 46476,
+       "cache_create": 8229,
+       "cost_usd": 0.0450116,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "머리, 몸통, 다리가 어른 남자답게 어울리고 몸통이 불룩하지 않다.",
+      "e.proportion-david": "머리가 몸에 비해 커서 청년보다 어린아이처럼 보이고 몸집도 작다.",
+      "e.proportion-pair": "사울이 다윗보다 머리 하나 정도가 아니라 훨씬 커서, 다윗이 소년처럼 보이고 키 차이가 지나치다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.753,
+       "input": 4,
+       "output": 524,
+       "cache_read": 54705,
+       "cache_create": 0,
+       "cost_usd": 0.0107185,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "몸통·머리·다리 비율이 자연스러운 어른 남자로 보임",
+      "e.proportion-david": "머리가 몸에 비해 크고 키가 작아 청년이 아니라 어린아이처럼 보임",
+      "e.proportion-pair": "사울이 다윗보다 머리 하나 정도가 아니라 키가 거의 1.7배라 어른과 아이처럼 보임"
+     }
+    }
+   }
+  },
+  "g:101": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.238,
+       "input": 4,
+       "output": 281,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.0450412,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "인물과 물건 모두 얼굴, 옷, 세부 묘사가 갖춰져 있고 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.305,
+       "input": 4,
+       "output": 282,
+       "cache_read": 52898,
+       "cache_create": 1174,
+       "cost_usd": 0.012813800000000002,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴, 옷, 세부 묘사가 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.45,
+       "input": 4,
+       "output": 277,
+       "cache_read": 54072,
+       "cache_create": 0,
+       "cost_usd": 0.008185200000000002,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·세부가 완성돼 있고 회색 덩어리나 미완성 실루엣이 없다."
+     }
+    }
+   },
+   "E": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.91,
+       "input": 4,
+       "output": 465,
+       "cache_read": 46476,
+       "cache_create": 8228,
+       "cost_usd": 0.0422176,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음"
+     },
+     "reasons": {
+      "e.proportion-saul": "몸통·머리·다리 비율이 자연스러운 어른 남자",
+      "e.proportion-david": "웅크린 자세의 청년/소년으로 머리·팔다리가 몸과 어울림",
+      "e.proportion-pair": "사울이 다윗보다 크지만 거인과 아이 정도는 아니고 자연스러운 차이"
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 6.221,
+       "input": 4,
+       "output": 622,
+       "cache_read": 46476,
+       "cache_create": 8229,
+       "cost_usd": 0.0437916,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음"
+     },
+     "reasons": {
+      "e.proportion-saul": "머리·몸통·다리가 자연스러운 어른 비율",
+      "e.proportion-david": "머리가 약간 크지만 팔다리와 몸통이 어울리는 청소년 비율",
+      "e.proportion-pair": "사울이 다윗보다 훨씬 크지만 거인과 아이처럼 부풀지는 않음. 다윗이 웅크려 차이가 커 보임"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 7.517,
+       "input": 4,
+       "output": 752,
+       "cache_read": 54704,
+       "cache_create": 0,
+       "cost_usd": 0.0129984,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "머리가 긴 몸통에 비해 작아 보이고, 다리는 몸에 붙는 바지 때문에 가늘고 길어 보인다. 비율이 뚜렷이 자연스럽다고 확인되지 않는다.",
+      "e.proportion-david": "머리가 몸에 비해 커서 청년이라기보다 소년처럼 보이고, 웅크린 자세 때문에 몸통과 팔다리의 균형도 확실하지 않다.",
+      "e.proportion-pair": "사울의 키가 웅크린 다윗의 거의 두 배라서 머리 하나 정도 차이를 넘어선다. 어른과 아이처럼 보인다."
+     }
+    }
+   }
+  },
+  "g:202": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.131,
+       "input": 4,
+       "output": 301,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.04524120000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 그린 동화 그림이다. 종이 테두리나 액자는 보이지 않는다.",
+      "s.no-blob": "사울, 다윗, 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.241,
+       "input": 4,
+       "output": 278,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.0450112,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·세부가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.271,
+       "input": 4,
+       "output": 271,
+       "cache_read": 45806,
+       "cache_create": 8266,
+       "cost_usd": 0.040362600000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴, 옷, 디테일이 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 6.28,
+       "input": 4,
+       "output": 480,
+       "cache_read": 46476,
+       "cache_create": 8228,
+       "cost_usd": 0.0423676,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "몸통이 크고 불룩한 반면 머리가 작아 보여 비율이 부자연스러움",
+      "e.proportion-david": "머리·몸통·팔다리가 청년답게 어울림",
+      "e.proportion-pair": "사울이 다윗보다 훨씬 커서(몸집 두 배 가까이) 어른과 아이처럼 보임"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.697,
+       "input": 4,
+       "output": 482,
+       "cache_read": 53372,
+       "cache_create": 1332,
+       "cost_usd": 0.015493200000000002,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "몸통이 불룩하고 크며 머리가 몸통에 비해 작아 보임",
+      "e.proportion-david": "청년이라기보다 소년처럼 보이고 머리가 큼, 다리가 가늘고 긺",
+      "e.proportion-pair": "사울이 다윗보다 훨씬 커서 어른과 아이처럼 보임, 머리 하나 차이를 넘음"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.061,
+       "input": 4,
+       "output": 539,
+       "cache_read": 53372,
+       "cache_create": 1332,
+       "cost_usd": 0.0160632,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "몸통이 술통처럼 불룩하고 크며 머리가 몸통에 비해 작아 보임",
+      "e.proportion-david": "머리는 괜찮으나 다리가 가늘고 길며 어린아이처럼 보여 청년 비율이 확실치 않음",
+      "e.proportion-pair": "사울이 다윗보다 훨씬 커서(머리 하나 이상, 몸집 두 배 가까이) 거인과 아이처럼 보임"
+     }
+    }
+   }
+  },
+  "g:303": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.52,
+       "input": 4,
+       "output": 278,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.0450112,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 그린 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금 모두 얼굴·옷·세부가 완성돼 있고 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.169,
+       "input": 4,
+       "output": 272,
+       "cache_read": 54072,
+       "cache_create": 0,
+       "cost_usd": 0.008135200000000002,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 그린 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 수금 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.471,
+       "input": 4,
+       "output": 270,
+       "cache_read": 54072,
+       "cache_create": 0,
+       "cost_usd": 0.008115200000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 수금 모두 얼굴·옷·세부가 있고 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.181,
+       "input": 4,
+       "output": 478,
+       "cache_read": 53372,
+       "cache_create": 1332,
+       "cost_usd": 0.0154532,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "사울은 몸통·머리·다리 비율이 자연스러운 어른 남자로 보임",
+      "e.proportion-david": "다윗은 머리가 크고 키가 작아 청년이 아니라 아이 같은 비율임",
+      "e.proportion-pair": "사울이 다윗보다 머리 하나 정도가 아니라 거의 두 배 크기여서 어른과 아이처럼 보임"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 6.641,
+       "input": 4,
+       "output": 558,
+       "cache_read": 54705,
+       "cache_create": 0,
+       "cost_usd": 0.0110585,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "몸통·머리·다리 비율이 자연스러운 어른 남자.",
+      "e.proportion-david": "머리가 몸에 비해 크고 팔다리가 짧아 청년보다 어린아이 비율에 가깝다.",
+      "e.proportion-pair": "사울이 다윗보다 거의 두 배 커서 어른과 아이처럼 보이고, 머리 하나 차이를 넘는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 8.784,
+       "input": 4,
+       "output": 791,
+       "cache_read": 46476,
+       "cache_create": 8229,
+       "cost_usd": 0.0454816,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음"
+     },
+     "reasons": {
+      "e.proportion-saul": "몸통이 불룩하지 않고 다리가 몸통에 어울리는 길이다. 머리가 몸통에 비해 조금 작은 편이지만 자연스러운 범위다.",
+      "e.proportion-david": "머리와 팔다리와 몸통이 어울리는 청년 비율이다. 웅크린 자세라 작아 보일 뿐이다.",
+      "e.proportion-pair": "사울이 다윗보다 키가 크지만 거인과 아이만큼 차이 나지는 않는다. 다윗이 웅크리고 있어 차이가 조금 커 보인다."
+     }
+    }
+   }
+  }
+ }
+}

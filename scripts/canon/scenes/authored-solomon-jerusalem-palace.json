@@ -28,12 +28,12 @@
   "crowds": [],
   "figures": [
     {
-      "cast": "solomon",
+      "cast": "solomon-prime",
       "role": "솔로몬",
       "pose": "궁 앞에 서서 바라본다",
       "prop": "겉옷자락",
       "facing": "right",
-      "region": "solomon",
+      "region": "solomon-prime",
       "verse": "7:1"
     }
   ],
@@ -50,7 +50,7 @@
       0.98,
       0.9
     ],
-    "solomon": [
+    "solomon-prime": [
       0.05,
       0.38,
       0.24,
@@ -106,9 +106,9 @@
     {
       "id": "S3",
       "kind": "plate",
-      "region": "solomon",
+      "region": "solomon-prime",
       "verse": "7:1",
-      "prompt": "{cast:solomon}, standing looking up at a building, holding the edge of his robe, facing right.",
+      "prompt": "{cast:solomon-prime}, standing looking up at a building, holding the edge of his robe, facing right.",
       "neg": [
         "gray hair",
         "full beard",
@@ -121,7 +121,7 @@
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
     "figures": [
-      "solomon"
+      "solomon-prime"
     ],
     "gap_bands": [],
     "crest_x": {

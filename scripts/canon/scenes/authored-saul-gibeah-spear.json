@@ -1,43 +1,108 @@
 {
   "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
   "id": "authored-saul-gibeah-spear",
-  "title": "사울 — 기브아에서 창을 들다",
+  "title": "사울 — 기브아에서 창을 던지다",
   "verses": {
     "range": "삼상 18:6-11",
     "quotes": {
+      "18:6": "무리가 돌아올 때 곧 다윗이 블레셋 사람을 죽이고 돌아올 때에 여인들이 이스라엘 모든 성에서 나와서 노래하며 춤추며 소고와 경쇠를 가지고 왕 사울을 환영하는데",
+      "18:7": "여인들이 뛰놀며 창화하여 가로되 사울의 죽인 자는 천천이요 다윗은 만만이로다 한지라",
+      "18:8": "사울이 이 말에 불쾌하여 심히 노하여 가로되 다윗에게는 만만을 돌리고 내게는 천천만 돌리니 그의 더 얻을 것이 나라 밖에 무엇이냐 하고",
       "18:9": "그 날 후로 사울이 다윗을 주목하였더라",
       "18:10": "그 이튿날 하나님의 부리신 악신이 사울에게 힘있게 내리매 그가 집 가운데서 야료하는고로 다윗이 평일과 같이 손으로 수금을 타는데 때에 사울의 손에 창이 있는지라",
       "18:11": "그가 스스로 이르기를 내가 다윗을 벽에 박으리라 하고 그 창을 던졌으나 다윗이 그 앞에서 두 번 피하였더라"
     }
   },
   "moment": {
-    "verse": "18:10 후반",
-    "why": "다윗이 수금을 타는 곁에서 사울의 손에 창이 들린 순간을 고정한다 — 창을 던지는 동작과 다윗이 피하는 장면(18:11)은 모델 prior에 없는 동작이라 그리지 않는다(ADR 260903-154254)."
+    "verse": "18:11",
+    "why": "상황 안에서 18:11을 고른다 — 단락이 가장 크게 말하는 것은 18:8-9의 시기가 터져 「내가 다윗을 벽에 박으리라」 하고 창을 던진 일과 다윗이 그 앞에서 피한 일이다(18:12 「여호와께서 … 다윗과 함께 계시므로」로 이어짐). 18:10의 야료·수금·창을 쥠은 그 바로 앞이라 같은 자리에 실린다(야료하는 얼굴·수금을 든 다윗). 창이 날아가 다윗이 몸을 비키는 때(두 번 중 한 번 — 어느 번째인지는 본문 밖 · 저작자 정함). 창이 벽에 박힘은 19:10 다른 날의 일이라 그리지 않는다. 전날의 여인들 노래(18:6-7)는 원인이라 그리지 않는다."
   },
   "background": [
     {
-      "what": "사울의 처소 벽, 소박한 실내",
-      "verse": "18:10"
+      "what": "기브아 사울의 본집 안 — 집 가운데 소박한 방, 다윗 바로 뒤도 같은 거친 돌벽",
+      "verse": "18:10 「집 가운데서」 · 18:11 「벽에 박으리라」 · 기브아는 지리 근거 15:34 · 방의 모습은 본문 밖 · 저작자 정함"
     }
   ],
   "figures": [
     {
       "cast": "saul",
-      "role": "사울 — 창을 쥔 왕",
-      "pose": "서서 창을 쥐고 있다",
-      "prop": "a spear",
+      "role": "사울 — 악신이 내려 야료하며 창을 던진 왕",
+      "pose": "집 가운데 서서 다윗을 향해 창을 막 던져, 빈손이 된 던진 팔이 앞·아래로 휘둘러 내려옴",
+      "prop": "none",
       "facing": "left",
       "region": "saul",
-      "verse": "18:10"
+      "verse": "18:10-11",
+      "screen_facing": "left",
+      "expression": {
+        "ko": "악신이 힘있게 내려 야료하는 얼굴 — 눈을 부릅뜨고 다윗을 노려봄",
+        "en": "a wild, raving face, eyes wide and fixed on David",
+        "verse": "18:10 「악신이 사울에게 힘있게 내리매 … 야료하는고로」 · 18:9 「다윗을 주목하였더라」 · 눈 모습은 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "다윗을 향해 창을 막 던져, 빈손이 된 던진 오른팔이 앞·아래로 휘둘러 내려오고 몸이 굽힌 앞발 쪽으로 쏠림",
+        "en": "having just hurled his spear, his empty throwing arm swinging forward and down across his body, his fingers open and spread where the spear just left them, his weight thrown onto his bent front leg",
+        "verse": "18:11 「그 창을 던졌으나」(던졌으니 손은 비었음) · 18:10 「사울의 손에 창이 있는지라」(던지기 전) · 팔·몸의 모습은 본문 밖 · 저작자 정함 · task 403 c3: 「hand stretched out toward David」는 손바닥 편 「멈춰」 손짓으로 그려짐(c1·c2 판정 이유) → 휘둘러 내려오는 팔 · task 405 r15: 「his hand loosely curled」는 주먹으로 그려짐(m2e~m5e 던진 몸짓 틀림 52표 중 47 「주먹」, 규칙 derive.empty-hand-open) → 펴진 손가락"
+      },
+      "costume": {
+        "ko": "무릎 길이 반소매 어두운 갈색 모직 튜닉과 수수한 가죽 띠, 정강이가 드러남 — 집 안의 평상 차림",
+        "en": "in a knee-length short-sleeved dark brown wool tunic with a plain leather belt, his bare shins showing",
+        "verse": "본문 밖 · 저작자 정함(정본 saul 카드 차림 — 집 가운데 평상 · 길이는 task 401 사람 거절 “수도복 같은 긴 옷” 뒤 밝힘)"
+      },
+      "gaze": "david-youth",
+      "stage_why": "[추론] 삼상 13:1 「사울이 왕이 될 때에 사십 세라」 + 프로젝트 연대(사울 선출 BC 1050경 · 이 사건 BC 1020경, data/person_events/saul.json) → 이 장면 때 약 70세. 성경만으로 낮게 잡으면 삼하 2:10 「사울의 아들 이스보셋이 비로소 이스라엘 왕이 될 때에 나이 사십 세며」 — 이스보셋이 사울이 죽은 직후 즉위했다고 가정할 때 사울은 죽을 때 60세 안팎 이상(‘비로소’·두 해와 일곱 해 여섯 달의 차이로 그 가정은 느슨함), 이 사건(죽기 약 10년 전)엔 50세 안팎 이상. id는 기력으로 고름 — 창을 던질 기력이 있으니 삼상 28:20 「그 기력이 진하였으니」 이전의 saul(saul-old 아님), 나이는 cast_override로 이 장면만 덮어씀",
+      "cast_override": {
+        "card": {
+          "heightRel": "tall",
+          "ageBand": {
+            "class": "elder",
+            "text": "about 70, a deeply wrinkled old face, lined forehead and cheeks"
+          },
+          "beardVolume": {
+            "class": "trimmed",
+            "text": "close-trimmed grey-streaked beard, jawline visible"
+          },
+          "silhouette": {
+            "class": "broad",
+            "text": "broad shoulders, a strong solid chest"
+          },
+          "headOutline": {
+            "class": "bare",
+            "text": "bare head, short greying hair cut close"
+          },
+          "costumeColor": {
+            "class": "brown",
+            "text": "dark brown wool tunic, plain leather belt"
+          }
+        }
+      },
+      "cast_override_why": "이 장면 사울은 약 70세(stage_why — 13:1 사십 세 즉위 + 연대 BC 1050→1020, 삼하 2:10으로는 사망 직후 즉위를 가정할 때 50세 안팎 이상 — 가정은 느슨) — 정본 saul 카드 ‘in his 40s’(재위 중 40대로 고정, 역표 구분용)는 이 장면과 맞지 않아 나이·수염·머리만 덮어씀. 체격(broad)·차림은 정본 그대로(아직 창을 던질 기력 — 28:20 이전). saul·saul-old 카드 나이와 연대의 어긋남은 그 장면 차례에(task 399 노트)"
     },
     {
-      "cast": "david",
-      "role": "다윗 — 수금 타는 병기 든 자",
-      "pose": "곁에 앉아 수금을 탄다",
-      "prop": "a small harp",
+      "cast": "david-youth",
+      "role": "다윗(청년) — 골리앗을 죽이고 돌아와 군대의 장이 된 청년(18:5), 수금을 타다가 사울이 던진 창을 벽 앞에서 피함",
+      "pose": "벽을 등지고 낮게 몸을 굽혀 머리를 숙이고 비틀어 창이 머리 위로 스쳐 지나게 피한다, 수금은 두 손으로 가슴에 붙여 쥔다",
+      "prop": "a small wooden lyre",
       "facing": "right",
-      "region": "david",
-      "verse": "18:10"
+      "region": "david-youth",
+      "verse": "18:10-11 · 생애 단계 근거는 stage_why",
+      "screen_facing": "right",
+      "expression": {
+        "ko": "놀라 창을 보는 얼굴",
+        "en": "a startled face",
+        "verse": "18:11 「그 앞에서 두 번 피하였더라」 · 표정은 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "벽을 등진 채 낮게 몸을 굽혀 머리를 숙이고 몸을 옆으로 비틀어 날아오는 창의 길에서 비킴 — 작은 나무 수금(울림통에 두 팔과 가로대, 목·지판 없음)을 두 손으로 가슴에 붙여 쥠",
+        "en": "standing with his back against the stone wall, bending low and ducking his head, twisting his body aside out of the path of the flying spear, clutching a small wooden lyre against his chest with both hands, a small hollow wooden sound box, smaller than a man's torso, with two curved arms rising from the box, joined by a top crossbar, strings from box to crossbar",
+        "verse": "18:11 「내가 다윗을 벽에 박으리라」(다윗이 창이 날아가는 길 끝 벽 앞에 있음 — 벽을 등지고 선 자세는 이 말에서 추론, 벽에 붙은 정도는 본문 밖 · 저작자 정함) · 18:11 「그 앞에서 두 번 피하였더라」 · 18:10 「손으로 수금을 타는데」 · 수금 모양은 낱말 사전 kinnor-lyre L2(나무 = 왕상 10:12 「백단목으로 … 수금과 비파를 만들었으니」 · 틀 모양은 [저작]) · 숙인 머리·비튼 몸은 본문 밖 · 저작자 정함(18:11 「피하였더라」를 창이 머리 위로 스쳐 지나는 모습으로) · 두 손으로 가슴에 붙여 쥠은 본문 밖 · 저작자 정함(18:10 「손으로 수금을 타는데」를 이어 받음)"
+      },
+      "costume": {
+        "ko": "물들이지 않은 황갈색 모직 반소매 무릎 길이 튜닉(가슴·어깨를 덮음)과 가죽 띠, 무릎 아래 맨다리",
+        "en": "in a short-sleeved knee-length undyed tan wool tunic covering his chest and shoulders, with a leather belt, his bare legs showing below the knee",
+        "verse": "본문 밖 · 저작자 정함(정본 david-youth 카드 차림 · 덮는 곳은 시도 a1에서 웃통 벗은 그림 7/8이라 문구로 밝힘)"
+      },
+      "gaze": "saul",
+      "stage_why": "[추론] 삼상 18:5 「사울이 그로 군대의 장을 삼았더니」 · 삼상 17:56 「이 청년이 누구의 아들인가」 · 삼하 5:4 「다윗이 삼십 세에 위에 나아가서」 — 골리앗 뒤 군대를 맡은 청년이고 즉위(30세)는 한참 뒤 → 15~20세 david-youth. 삼상 17:33 「너는 소년이요」 한 낱말로 david-boy를 고르지 않음(사용자 2026-10-22 “청소년기 15~20 · 유추 가능” · 프로젝트 연대로 다윗 출생 BC 1040경 → 이 사건 약 20세)"
     }
   ],
   "regions": {
@@ -48,19 +113,31 @@
       1.0
     ],
     "saul": [
-      0.6,
-      0.34,
-      0.762,
-      0.92
+      0.77,
+      0.3,
+      0.98,
+      0.98
     ],
-    "david": [
-      0.15,
-      0.52,
-      0.27,
-      0.92
+    "david-youth": [
+      0.05,
+      0.39,
+      0.28,
+      0.98
+    ],
+    "spear": [
+      0.382,
+      0.431,
+      0.679,
+      0.456
+    ],
+    "wall": [
+      0.0,
+      0.0,
+      0.09,
+      1.0
     ]
   },
-  "_regions_why": "사울 서서 세로 0.58(창을 든 왕), 다윗 앉아 세로 0.40. 좌우는 18:10(다윗이 곁에서 수금을 타고 사울이 창을 쥐고 서 있음).",
+  "_regions_why": "b1 구도(task 401 사람 “구도” — 텅 빈 방에 인물이 작고 멂): 사울 서서 세로 0.86(창을 던진 왕), 청년 다윗 숙여 세로 0.52(벽 쪽으로 머리를 낮추고 위몸을 굽혀 무릎을 꺾어 피함 — 삼상 9:2 「키는 모든 백성보다 어깨 위는 더하더라」라 사울이 더 큼). 좌우는 18:11 — 사울이 오른쪽에서 왼쪽 다윗에게 창을 던지고 다윗 등 뒤가 옆벽(wall 0~0.09, 다윗 0.06~0.25로 벽에 닿음), 창(spear x 0.105~0.34 · y 0.42~0.445 — 벽에서 조금 떨어져 촉부터 숙인 머리 바로 위 벽 쪽으로)은 사울 손(약 0.45)과 떨어진 허공에서 숙인 다윗 머리 위를 지남. 구역 이름은 cast id(david-youth)를 따름(task 355).",
   "stages": [
     {
       "id": "S1",
@@ -86,8 +163,8 @@
       "id": "S2",
       "kind": "plate",
       "region": "saul",
-      "verse": "18:10",
-      "prompt": "{cast:saul}, standing tall, gripping one spear upright, facing left.",
+      "verse": "18:11",
+      "prompt": "{cast:saul}, standing, having just hurled his spear, his empty throwing arm swinging forward and down across his body, his fingers open and spread where the spear just left them, facing left.",
       "neg": [
         "armour",
         "crown",
@@ -95,23 +172,22 @@
         "modern clothes",
         "two spears",
         "sitting",
-        "throwing"
+        "spear in hand"
       ]
     },
     {
       "id": "S3",
       "kind": "plate",
-      "region": "david",
-      "verse": "18:10",
-      "prompt": "{cast:david}, sitting, gripping one small harp, playing, facing right.",
+      "region": "david-youth",
+      "verse": "18:11",
+      "prompt": "{cast:david-youth}, standing with his back against the stone wall, twisting aside, a small wooden lyre held in his hands, facing right.",
       "neg": [
         "armour",
         "helmet",
         "crown",
         "royal robe",
         "modern clothes",
-        "standing",
-        "fleeing"
+        "sitting"
       ]
     }
   ],
@@ -120,12 +196,12 @@
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
     "figures": [
       "saul",
-      "david"
+      "david-youth"
     ],
     "gap_bands": [
       [
-        0.27,
-        0.6
+        0.25,
+        0.56
       ]
     ],
     "crest_x": {
@@ -137,6 +213,224 @@
         0.7,
         0.98
       ]
+    }
+  },
+  "approved": {
+    "final": {
+      "path": "local-edit",
+      "seed": 7,
+      "image": "samples/gibeah-step23/m17e/approved-authored-saul-gibeah-spear.png",
+      "steps": [
+        {
+          "end": "paste",
+          "src": "m15/s7.png",
+          "sheet": "m14s/s23.png",
+          "length": 361.2,
+          "box": [
+            457,
+            262,
+            833,
+            305
+          ],
+          "erased": null,
+          "sep": false,
+          "status": "ok"
+        },
+        {
+          "end": "held",
+          "figure": "david-youth",
+          "word": "kinnor-lyre",
+          "crop": [
+            183,
+            310,
+            258
+          ],
+          "box": [
+            227,
+            340,
+            397,
+            538
+          ],
+          "prompt": "Place a wooden lyre in his arms, nearly twice as tall as his head, clutched upright against his chest with both forearms wrapped around its sound box, its top crossbar below his chin, not touching his mouth or face: a small hollow wooden sound box, smaller than a man's torso, with two curved arms rising from the box, joined by a top crossbar, strings from box to crossbar, the two curved arms rising on the left and right of the sound box both clearly visible above his forearms, forming a U-shaped frame. It does not hang from his hands. Only one lyre. Keep his face, hair, clothes, body and legs exactly the same — only his arms and hands may move to hold the lyre — the lighting and the same soft pencil and colored-pencil illustration style.",
+          "status": "ok",
+          "sec": 43.4
+        }
+      ],
+      "by": "user",
+      "on": "2026-10-25",
+      "spec_hash": "bf59d74178c1",
+      "prompt_hash": "7bd31451a650",
+      "rules_version": "8c95dbfde675",
+      "round": "gibeah-step23/m17e"
+    }
+  },
+  "situation": {
+    "text": "다윗이 블레셋 사람을 죽이고 무리와 함께 돌아올 때 이스라엘 모든 성의 여인들이 소고와 경쇠를 들고 노래하며 「사울의 죽인 자는 천천이요 다윗은 만만이로다」 하고 창화했다(18:6-7). 사울은 이 말에 심히 노하여 「그의 더 얻을 것이 나라 밖에 무엇이냐」 하고(18:8), 그 날 후로 다윗을 주목했다(18:9). 그 이튿날 하나님의 부리신 악신이 사울에게 힘있게 내려 사울이 집 가운데서 야료하고, 다윗은 평일과 같이 손으로 수금을 탔으며, 그때 사울의 손에 창이 있었다(18:10 · 집은 기브아 사울의 본집 — 지리 근거 15:34 「사울은 사울 기브아 본집으로 올라가니라」 · 수금으로 악신을 달램은 16:23). 사울은 스스로 「내가 다윗을 벽에 박으리라」 하고 그 창을 던졌으나, 다윗이 그 앞에서 두 번 피했다(18:11).",
+    "same_time": {
+      "18:6": "원인 — 전날 개선 때 여인들의 환영(이 자리에 없음)",
+      "18:7": "원인 — 전날 여인들의 노래(이 자리에 없음)",
+      "18:8": "원인 — 그 노래에 사울이 심히 노함(지금 창을 던지는 까닭)",
+      "18:9": "그 날 후로 사울이 다윗을 주목해 옴 — 지금 이 자리의 사울 마음",
+      "18:10": "같은 자리 — 악신이 내려 사울이 집 가운데서 야료하고, 다윗이 수금을 타며, 사울 손에 창이 있음",
+      "18:11": "고정한 순간 — 사울이 창을 던졌고 다윗이 그 앞에서 피함(두 번 중 한 번)"
+    }
+  },
+  "meaning": {
+    "ko": "기브아 사울의 집 가운데서, 악신이 내려 야료하던 사울이 수금을 타던 다윗을 벽에 박으려고 창을 던지고 다윗이 그 앞에서 피한다",
+    "en": "In Saul's house at Gibeah, Saul, raving under an evil spirit, hurls his spear to pin David to the wall, and David, who was playing the lyre, dodges it",
+    "verse": "삼상 18:10-11 · 기브아 지리 근거 15:34"
+  },
+  "relation": {
+    "ko": "사울이 방을 가로질러 다윗에게 창을 던졌고, 쇠 촉은 왼쪽 끝 다윗 가까이, 자루 끝은 오른쪽 사울 가까이 둔 창이 둘 사이 허공을 날아 다윗과 그 뒤 벽 쪽으로 가는데, 다윗이 머리를 숙이고 몸을 비틀어 피해 창이 촉부터 숙인 머리 바로 위 벽 쪽으로 날아간다",
+    "en": "A spear flies through the air from Saul toward David and the wall behind him, a straight wooden shaft about a man's height, one hand-sized leaf-shaped iron point at the front, a small iron cap at the back, no crossguard, and David ducks and twists aside out of its path so that it flies point-first toward the wall just above his ducked head",
+    "verse": "18:11 「다윗을 벽에 박으리라 하고 그 창을 던졌으나 다윗이 그 앞에서 두 번 피하였더라」 · 날아가는 창의 자리·촉부터 숙인 머리 바로 위 벽 쪽으로 날아감은 본문 밖 · 저작자 정함(18:11 「벽에 박으리라」의 겨냥) · 창 모양은 낱말 사전 spear L2(삼상 17:7 「창날은 철」 · 삼하 2:23 「창 뒤 끝으로 그 배를 찌르니 창이 그 등을 꿰뚫고 나간지라」)(창이 벽에 박힘은 19:10 다른 날이라 그리지 않음)"
+  },
+  "whole_background": {
+    "ko": "기브아 사울의 본집 안 소박한 방 — 사방이 거친 돌벽, 다윗 바로 뒤도 같은 거친 돌벽, 바닥에 놓인 나무 걸상 하나",
+    "en": "the inside of a plain room in Saul's house at Gibeah, walls of rough uneven stone blocks all around, the same rough stone blocks in the wall right behind David, a simple wooden stool on the floor",
+    "verse": "18:10 「집 가운데서」 · 18:11 「벽」 · 기브아는 지리 근거 15:34 · 돌벽·걸상은 본문 밖 · 저작자 정함"
+  },
+  "verse_elements": [
+    {
+      "verse": "18:6",
+      "quote": "여인들이 이스라엘 모든 성에서 나와서",
+      "kind": "무리",
+      "ko": "개선 때 노래하며 춤추며 맞은 여인들",
+      "out": "전날 개선 때 일 — 고정한 순간(이튿날 18:11) 밖"
+    },
+    {
+      "verse": "18:7",
+      "quote": "사울의 죽인 자는 천천이요 다윗은 만만이로다",
+      "kind": "무리",
+      "ko": "여인들의 창화",
+      "out": "전날 일 — 고정한 순간 밖, 지금 사울이 노한 까닭"
+    },
+    {
+      "verse": "18:8",
+      "quote": "심히 노하여",
+      "kind": "행동",
+      "ko": "사울이 여인들의 노래를 듣고 심히 노함",
+      "out": "전날 노래를 들은 때의 일 — 고정한 순간(이튿날 18:11) 밖. 지금 얼굴은 18:10 야료와 18:9 주목으로 실음"
+    },
+    {
+      "verse": "18:9",
+      "quote": "다윗을 주목하였더라",
+      "kind": "행동",
+      "ko": "사울이 다윗을 노려봄",
+      "en": "eyes wide and fixed on David",
+      "field": "figures[0].expression"
+    },
+    {
+      "verse": "18:10",
+      "quote": "사울의 손에",
+      "kind": "인물",
+      "ko": "창을 던지는 사울",
+      "en": "from Saul",
+      "field": "relation"
+    },
+    {
+      "verse": "18:10",
+      "quote": "다윗이 평일과 같이",
+      "kind": "인물",
+      "ko": "평소처럼 사울 곁에서 수금을 타던 다윗",
+      "en": "toward David and the wall behind him",
+      "field": "relation"
+    },
+    {
+      "verse": "18:10",
+      "quote": "집 가운데서",
+      "kind": "장소",
+      "ko": "기브아 사울의 본집 안 방",
+      "en": "the inside of a plain room in Saul's house at Gibeah",
+      "field": "whole_background"
+    },
+    {
+      "verse": "18:10",
+      "quote": "악신이 사울에게 힘있게 내리매",
+      "kind": "행동",
+      "ko": "악신이 내려 야료하는 사울",
+      "en": "a wild, raving face",
+      "field": "figures[0].expression"
+    },
+    {
+      "verse": "18:10",
+      "quote": "손으로 수금을 타는데",
+      "kind": "지물",
+      "ko": "다윗 손의 수금 — 타다가 두 손으로 가슴에 붙여 쥠(낱말 사전 수금 L2 모양)",
+      "en": "a small wooden lyre against his chest",
+      "field": "figures[1].gesture"
+    },
+    {
+      "verse": "18:10",
+      "quote": "사울의 손에 창이 있는지라",
+      "kind": "지물",
+      "ko": "사울의 창 — 이 순간 던져져 허공을 남",
+      "en": "A spear flies through the air",
+      "field": "relation"
+    },
+    {
+      "verse": "18:11",
+      "quote": "그 창을 던졌으나",
+      "kind": "행동",
+      "ko": "창을 막 던진 사울 — 빈손으로 팔을 뻗음",
+      "en": "having just hurled his spear",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "18:11",
+      "quote": "내가 다윗을 벽에 박으리라",
+      "kind": "자리",
+      "ko": "다윗이 벽을 등지고 섬 — 사울이 다윗을 벽에 박으려 함",
+      "en": "standing with his back against the stone wall",
+      "field": "figures[1].gesture"
+    },
+    {
+      "verse": "18:11",
+      "quote": "다윗이 그 앞에서 두 번 피하였더라",
+      "kind": "행동",
+      "ko": "다윗이 몸을 비틀어 창을 피함",
+      "en": "twisting his body aside out of the path of the flying spear",
+      "field": "figures[1].gesture"
+    },
+    {
+      "verse": "18:11",
+      "quote": "두 번",
+      "kind": "행동",
+      "ko": "두 번 피함 중 다른 한 번",
+      "out": "고정한 순간은 두 번 중 한 번 — 다른 한 번은 앞뒤 시점이라 순간 밖"
+    }
+  ],
+  "guide": {
+    "depth": {
+      "wall": 0.8,
+      "spear": 0.95,
+      "saul": 1.0,
+      "david-youth": 1.0
+    },
+    "shape": {
+      "wall": "wall",
+      "spear": "spear",
+      "saul": "person_follow",
+      "david-youth": "person_duck"
+    },
+    "why": "task 400 시도 a1·397 — 문구(‘having just hurled his spear’·‘A spear flies through the air’·‘his empty throwing hand’)로는 16/16 창이 사울 손에 남아 찌르는 자세가 됨 → 가이드로 준다(PROMPTING 24·25·28 배치·상태는 가이드). 사울 = 빈 팔을 왼쪽으로 뻗은 꼴(손끝 앞 빈칸), 창 = 사울 손과 떨어진 허공의 막대(촉은 다윗 쪽), 다윗 = 등 뒤 옆벽 판에 붙음(18:11 「벽에 박으리라」, 다윗은 오른쪽 사울을 보니 등이 왼쪽 벽). · a3: 실내 바탕(backdrop room — a2 위쪽 빈 검은 띠에 캡션 글자 4/8) · 옆벽 원근 사다리꼴(a2 끝 띠가 지면 여백·붉은 선으로) · 사울 몸 앞으로 기울임·다윗 벽 쪽으로 젖혀 피함(a2 곧게 선 꼴이 그대로 — 던진 자세 0·순간 0) · 창 촉 키움(a2 촉 뒤집힘·양쪽 촉). · a5: 몸 너비는 카드 체격(body card — 사울 broad, 다윗 lean; a3·a4 넓은 체격 문구가 화면 끝 셋째 인물로) · 기울기 0.18(a4 0.1은 곧게 펴져 순간·던진 자세 0). · a6: 창길을 숙인 다윗 머리 바로 위로(a5 창이 머리 높이로 곧장 → 판정 ‘움츠릴 뿐 창길에서 비키지 않음’ 40/40) · 다윗 구역 위끝 0.45(숙임). · b1: 인물 크게(사람 “구도”) · 창 사전 L2 · 다윗 낮게 숙임. · b2: 무릎 길이 차림이면 가이드 꼴에 무릎 아래 두 다리(legs costume — b1 바닥까지 넓어지는 사다리꼴이 곧 긴 로브 실루엣이라 사울 긴 망토 8/8) · 다윗 기울기 0.3(b1 피함이 보임 0). · b3: 다윗 숙인 꼴(person_duck — 머리를 벽 쪽으로 낮추고 위몸을 굽혀 무릎을 꺾음, b2 기울인 꼴은 ‘벽에 기대 섬’으로 옮겨져 순간 0·피함이 보임 0) · 창은 낮춘 머리 바로 위. · b4: 창 촉이 벽에 거의 닿게 숙인 머리 바로 위로(b3 창이 한참 위로 지나 ‘겨누지도 않음’ · a5 머리 높이면 ‘맞기 직전’ — 아슬아슬한 빗나감만 피함으로 읽힘). · b5: 창을 벽에서 띄움(b4 창이 벽에 닿아 촉이 사울 쪽으로 뒤집힘 — 검토 10차 주의) · relation ‘strike’ → ‘flies point-first’ · 무릎 길이 몸통을 곧게(사울 판초). · b6: 촉 크게(tip big — b5 촉이 사울 쪽으로 뒤집힘 거의 전부) · 흐림 8(blur — b5 사울 튜닉이 상자처럼 각짐) · relation 촉·자루 끝 좌우를 밝힘. · b7: 촉을 잎 모양(마름모)으로(tip leaf — b6 삼각형 촉이 미늘 달린 화살촉으로 그려짐, 사전 spear L2 ‘leaf-shaped’). · c1: 사울 던짐 마무리 꼴(person_follow — 몸통 앞으로 기울고 굽힌 앞무릎에 체중·뒷다리 뻗음·던진 팔 앞·아래로 휘둘러 내림·뒤 팔 균형, task 403 — b7 person_throw의 큰 직사각 몸통·컴퍼스 다리·어깨 높이 막대 팔이 그대로 그려져 사람 「사울 몸 비율·자세가 어색함」). · c2: 뒤 팔을 몸 뒤 아래로(c1 어깨 높이 = 두 팔 벌림 8/8) · 다리 허벅지→발목 가늘어짐(c1 대롱 다리 = 긴 바지 7/8) · 보폭 줄임 · 몸통 더 기욺. · c3: 보폭 0.37h → 0.28h · 정강이 덜 가늘게(c2 판정 이유 「다리를 컴퍼스처럼 크게 벌렸고 길고 가늚」). · c4: 몸통을 거의 세움(약 15° — c3 42° 굽힘은 구부정·팔 늘어짐·다리가 길어 보임 「컴퍼스·길고 가늚」 8/8) · 엉덩이 낮춤 · 앞발 엉덩이 바로 앞 · 뒷다리 뒤꿈치 들고 끌림 · 던진 팔 앞으로 길게 조금 아래 · 어깨 폭 줄임(넓은 판 = 상자 튜닉). · c5: 기울기 가운데 약 27°(c4 15°는 사울 몸 3/8로 나아졌으나 서서 가리킴 — 던진 몸짓 0·던진 자세 0) · 앞무릎 굽혀 체중 · 뒷다리 곧게 뻗어 뒤꿈치 듦 · 던진 팔 앞·아래(c3 s23 던진 몸짓 맞음). · c6: CN 앞 6스텝은 악화(사울 차림·피함·창 모양 0) — 가이드 꼴은 c5 그대로, CN은 4스텝. · c7: 사울은 깊이 꼴 대신 포즈 뼈대(guide.pose throw_follow — OpenPose 18점, 사람 결정 「1」) — 깊이 꼴은 실루엣 덩어리만 주어 관절 각도·다리 길이는 그림마다 넓은 보폭으로 되돌아감(c1~c6). 탐침 s5에서 어른 비율·내디딘 걸음·앞 아래로 뻗은 팔이 그대로 그려짐. · c9: 뼈대 몸통 약 35°·던진 팔 앞무릎 쪽으로 휘둘러 내림·앞무릎 더 굽힘(c8 25°는 그림에서 곧게 펴져 「몸통 곧음」 던진 몸짓 0, 사울 몸 5/8). · c10: 뼈대 투창 마무리 — 오른 뒷다리를 땅에서 들어 뒤로 올림 · 굽힌 앞다리 한 발로 섬 · 던진 팔 앞·아래로 길게 · 왼팔 뒤 위(c9 35°+팔 내림 = 구부정히 걷는 사람, 던진 자세 0). · d1(한 장 반복, 사람 「한장 → 규칙 수정 → 반복」): 다윗 구역 높이 0.62(규칙 generate.figure-scale — c14 s5 0.52 「화면 절반에 못 미침」) · 창길을 다윗 머리 바로 위로 함께 올림 · 뼈대 던진 손목 더 아래·앞무릎 굽힘·뒷발 더 높이(규칙 generate.pose-throw-geometry — c14 s5 「주먹을 앞으로 곧게 뻗음」). · d2: 창 꼴을 흐림 뒤에 또렷하게(규칙 generate.object-crisp — d1 흐린 촉이 방향 뒤집힘·화살촉) · 뼈대 던진 팔·든 뒷다리 곧게·반대 팔 몸 뒤 아래(d1 굽은 팔다리 = 「달리는 자세」). · d3: 뼈대를 c10 꼴로 되돌림(d1·d2 뼈대 = 「달리는 자세」·「늘어진 팔」, 근거가 c14 s5 한 장이던 규칙 폐기). · d4: 다윗 숙인 꼴 머리 지름 0.18 → 0.14(규칙 generate.guide-head-ratio — 그림이 숙인 꼴을 선 다윗으로 옮기면 머리 큰 아이 비율, d2·d3 「10세 안팎」). · d5: 다윗 구역 위끝 0.36 → 0.29(높이 0.69 = 사울 0.86 × 0.8, 규칙 generate.youth-height — d4e2 「몸이 작아 12~14세」) · 창길 함께 올림. · f1(task 404, 사람 「인물들의 비율이 이상함」): 사울 뼈대를 따라 카드 너비 깊이 몸을 함께(규칙 generate.pose-body-mass — 뼈대만이면 「barrel torso」가 부풀어 사울 비율 c11 1/8 vs 깊이 꼴 c5 5/8) · 다윗 구역 높이 = 사울 × 0.87(규칙 generate.height-ratio — tall·average 한 칸 = 머리 하나, 삼상 9:2) · 창길 함께 올림. · f2: 뼈대 몸 팔다리 굵기도 카드 너비 비례(f1e 가는 다리 「컴퍼스·길고 가늚」). · f3: f2 팔다리 굵기 되돌림 · 반대 팔 몸 뒤 아래로(뒤 위로 든 팔 = 「던지기 전」) · 든 뒷발을 앞쪽으로(보폭 줄임, 「컴퍼스 다리」). · f4: 뼈대 몸에 무릎 길이 치마 덩어리(generate.guide-costume-legs를 뼈대 인물에도 — 몸이 엉덩이에서 끝나 튜닉 짧음·다리 길고 가늚 f1e~f3e) · 다윗도 뼈대 duck_clutch(무릎 굽힘·머리 숙임·두 손목 가슴, 규칙 generate.pose-hold — 깊이 꼴은 손 자리를 못 줘 수금이 벽에 기댐 5/5). · f4 창길: 다윗 뼈대의 실제 머리(구역 위끝 아래 약 0.05) 바로 위로 내림(dodge-clear를 뼈대 머리로 잼). · f5: 다윗 뼈대 되돌림(f4e 수금 쥠은 고쳐졌으나 벽 앞·피함·순간 5/5 틀림 — generate.pose-hold 폐기) · 창길 f1 자리로 · 사울 뼈대 치마는 유지. · f6: 두 사람 키 비는 다윗을 키우지 않고 사울을 줄여 맞춤(사울 0.77 · 다윗 0.69 = 0.90) — 다윗을 키운 f1~f5에서 수금 쥠 5/5 틀림(d 시도 다윗 크기에서는 맞음) · 창길 d5 자리. · g1(사람 「다른방법 없나? 무슨문제지?」 → 진단): 뼈대만 가이드(control pose — 규칙 generate.pose-only-control): 검은 바탕에 사울 뼈대 + 또렷한 창만, 깊이 그림(벽·바탕·다윗 꼴·뼈대 몸)은 섞지 않음 — 깊이+뼈대 한 장은 깊이 실루엣이 선 사람으로 그려져 사울 몸통이 곧고 다윗이 숙이지 않음(진단 P1·P2: 뼈대만이면 사울 기울고 다윗 문구대로 숙임). · g2: 다윗도 뼈대 duck_low(벽 앞 자리·허리 숙임·두 손 가슴 — g1e 다윗이 벽에서 떨어짐·류트) · 사울 던진 팔 앞무릎 쪽으로 내림(g1e 「손을 펴 앞으로 뻗음」). · g2 뒤 f6 설정으로 되돌림: 뼈대만 가이드는 다윗 숙임·사울 기울기는 살리나 몸 덩어리(술통 사울)·벽 자리·수금 모양을 잃고 액자까지(g1e 틀림 6 · g2e 15 vs f6e3 2) — generate.pose-only-control 폐기 표시. · h1(사람 「1」 — 스텝별 가이드, 규칙 generate.split-control): 앞 2스텝 뼈대만(사울 throw_follow · 다윗 duck_low — 자세) → 다음 2스텝 깊이(뼈대를 따른 몸 덩어리·무릎 치마·벽·바탕·창) · 창길 숙인 다윗 머리 바로 위. · h2: 사울 반대 팔을 몸통을 따라 늘어뜨려 가림(h1e 「양팔 벌린 멈춤 손짓」). · h3: 사울 뼈대 보폭 줄임(h2e·h2e2 컴퍼스 다리 경계 2/5↔3/5). · h4: 두 사람 키움 — 숙인 다윗 보이는 키 ≥ 0.55(규칙 figure-scale 보강, h3e 구도 「화면 절반」 5/5) · 다윗 0.73 · 사울 0.84(키 비 0.87) · 창길 숙인 머리 바로 위. · n1(사람 m1e 「사람사이즈를 조금 줄여야 · 창은 3분의2쯤 날아가게」): 사울 구역 0.68(오른쪽 끝) · 다윗 0.59(키 비 0.87) — figure-scale 위 한도 0.70 · 창 촉을 사울 던진 손목 → 다윗 머리의 2/3 지점에, 뒤끝은 손보다 앞(규칙 generate.spear-two-thirds) · 창길은 숙인 머리 바로 위 높이로 겨눔. · m3: 창 구역 길이 0.235 → 0.19(그림은 창을 구역보다 약 1.45배 길게 그려 m2e 뒤끝이 사울 손에 6/8 — 규칙 spear-two-thirds 그릴 길이로 셈). 그림 창은 사울 키보다 짧아짐(사전 L3 「사람 키보다 조금 긺」과 맞바꿈 — 3분의 2 자리 우선, 사람 m1e). · m4: 1단계 가이드에 방 바탕(사람 깊이 몸 없음 — 검은 바탕 액자·서명 m2e·m3e 6/16) · 손 간격 0.07(그림 팔이 뼈대보다 더 뻗음) · 사울 오른쪽으로 0.03 · 창 구역 다시 계산. · m5(사람 「창 앞촉이 큰것 같음 사람을 줄였으면 창도 줄여야」): 창 길이를 사울 키의 2/3로(사전 L2 · 구역 길이 0.239) · 앞 촉 손바닥만 하게(사전 L2·편집 지시). · m5 512토큰: 관계 문구에서 촉·뒤끝 좌우 낱말을 뺌(빼기만 — 방향은 편집 규칙 edit.small-prop-orient가 정함, d1~d3에선 이 낱말이 있어도 거꾸로). · m5 규칙화(사람 「지적한거 그대로 일회성으로 쓰지말고 규칙화」): 창 자리는 guide.flight 칸(from saul → to 다윗 머리, at 2/3) · 길이·촉 크기는 사전 look.size(사람 키의 2/3 · 손바닥만 한 촉) · 수금 크기도 사전(사람 몸통보다 작음). · task 411(사람 m15e 「창크기가 맞는건가?」 → 「가」): 사전 창 길이 사람 키쯤(1.0 — 삼상 19:9·19:10·20:33·22:6 「단창」·삼하 1:6 「의지」·26:7 「꽂혔고」) · flight.at 4분의 3 · 창 구역 촉 0.382 · 길이 = 1.0 × 사울 구역 키 ÷ tall 1.205(기준표 — 검사도 합성과 같은 셈). · task 412(사람 m16e 「창 높이가 조금 올라가야 … 던질 때 팔의 높이」): 창 세로 0.478~0.503 → 0.431~0.456(가운데 = 사울 뼈대 어깨 0.443, 규칙 generate.flight-height) · 숙인 다윗 머리 위 0.067 = 머리 하나(0.084) 안(dodge-clear 한도 보완).",
+    "backdrop": "room",
+    "body": "card",
+    "legs": "costume",
+    "tip": "leaf",
+    "blur": 8,
+    "pose": {
+      "saul": "throw_follow",
+      "david-youth": "duck_low"
+    },
+    "split": true,
+    "flight": {
+      "object": "spear",
+      "word": "spear",
+      "from": "saul",
+      "to": "david-youth",
+      "at": 0.75,
+      "why": "사람 m1e 「창은 3분의2쯤 날아가게」 → task 411(2026-10-24 사람 「가」): 사전 창 길이 1.0(사람 키쯤)이면 3분의 2에서 뒤끝이 손에 닿아 4분의 3"
     }
   }
 }

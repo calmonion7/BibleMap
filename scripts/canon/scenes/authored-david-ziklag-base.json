@@ -11,12 +11,67 @@
   },
   "moment": {
     "verse": "27:6",
-    "why": "아기스가 손을 들어 성읍을 다윗에게 내어 주고, 다윗이 그 성읍을 마주 보고 서는 순간 — 정착 이후의 활동(습격 등, 27:8 이하)은 이 절의 요구가 아니다."
+    "why": "아기스가 손을 들어 성읍을 다윗에게 내어 주고, 다윗이 그 성읍을 마주 보고 서는 순간 — 정착 이후의 활동(습격 등, 27:8 이하)은 이 절의 요구가 아니다. 성읍을 눈앞에 둠은 본문 밖 · 저작자 정함(27:5 가드에서 청함)."
   },
+  "verse_elements": [
+    {
+      "verse": "27:6",
+      "quote": "아기스가",
+      "kind": "인물",
+      "ko": "가드 왕 아기스",
+      "en": "standing, one arm raised gesturing toward the town",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "27:6",
+      "quote": "시글락을 그에게 주었으므로",
+      "kind": "행동",
+      "ko": "아기스가 성읍을 내어 줌",
+      "en": "gesturing toward the town",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "27:6",
+      "quote": "그에게",
+      "kind": "인물",
+      "ko": "다윗 — 성읍을 받음",
+      "en": "facing the town",
+      "field": "stages[S4].prompt"
+    },
+    {
+      "verse": "27:6",
+      "quote": "시글락을",
+      "kind": "장소",
+      "ko": "시글락 성읍과 성문 — 성읍을 눈앞에 둠은 본문 밖 · 저작자 정함(27:5 가드에서 청함)",
+      "en": "a small ancient walled town with a low stone gate",
+      "field": "stages[S1b].prompt"
+    },
+    {
+      "verse": "27:6",
+      "quote": "그 날에",
+      "kind": "때",
+      "ko": "성읍을 준 그 날",
+      "out": "날짜 표지일 뿐 시각·광경 정보가 없는 말 — 이 장면은 내어 주는 순간"
+    },
+    {
+      "verse": "27:6",
+      "quote": "유다 왕에게 속하니라",
+      "kind": "행동",
+      "ko": "시글락이 오늘까지 유다 왕에게 속함",
+      "out": "후대 시점의 설명 — 이 장면 순간 밖"
+    },
+    {
+      "verse": "27:7",
+      "quote": "일년 넉달",
+      "kind": "때",
+      "ko": "블레셋 지방에 거한 기간",
+      "out": "체류 기간 서술 — 한 순간이 아님"
+    }
+  ],
   "background": [
     {
       "what": "시글락 성읍 성벽과 성문",
-      "verse": "27:6"
+      "verse": "27:6 · 성읍을 눈앞에 둠은 본문 밖 · 저작자 정함(27:5 가드에서 청함)"
     },
     {
       "what": "네게브 마른 벌판",
@@ -70,7 +125,7 @@
       0.9
     ]
   },
-  "_regions_why": "성읍(town)은 두 인물 사이 배경 구조물(27:6). 아기스·다윗 모두 성인 남자 세로 0.55·0.54. 주는 자(아기스) 왼쪽, 받는 자(다윗) 오른쪽.",
+  "_regions_why": "성읍(town)은 두 인물 사이 배경 구조물(27:6). 아기스·다윗 모두 성인 남자 세로 0.55·0.54. 주는 자(아기스) 왼쪽, 받는 자(다윗) 오른쪽. 성읍을 눈앞에 둠은 본문 밖 · 저작자 정함(27:5 가드에서 청함).",
   "stages": [
     {
       "id": "S1",
@@ -97,7 +152,7 @@
       "id": "S1b",
       "kind": "region",
       "region": "town",
-      "verse": "27:6",
+      "verse": "27:6 · 성읍을 눈앞에 둠은 본문 밖 · 저작자 정함(27:5 가드에서 청함)",
       "prompt": "a small ancient walled town with a low stone gate, flat rooftops, dry ground before it, no people.",
       "neg": [
         "people",

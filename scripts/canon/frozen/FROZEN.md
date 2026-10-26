@@ -177,3 +177,27 @@
 
 - 출처 `cast/zadok/a-P1-s11.png` 머리 크롭(몸 bbox 위 20%) → `frozen/zadok.png`
 - 선택 근거(사람 육안): 사용자 육안 판정(장면 검토 페이지, 2026-09-04)
+
+### saul seed 7 · Z-Image-Turbo Q8 · 정면 머리 초상 768×768 (2026-10-14, task#346 S1 — SDXL 정본 폐기, 옛 판은 `retired-sdxl/saul.png`)
+
+- 출처 `gen_face_canon.py` 후보 8장(시드 11·42·7·23·5·101·202·303, 레포 밖 `~/.local/biblemap-imggen/face-canon/saul/`) → `frozen/saul.png`
+- 선택 근거(VLM `claude -p`, `judge_face_canon.py`): 어휘 부합·화풍·깨끗함·머리 4항목 평균 9.0(후보 8장 중 최고, 범위 8.25~9.0). 풍성한 직모 검은 머리·짧은 검은 수염·각진 턱의 장년으로 정본(`dark hair`·`short dark beard`)과 맞고, 상위 3×3 쌍 판정에서 다윗 s11과 구별 9/10(직모 vs 곱슬·수염 밀도·나이대).
+- 프롬프트 교훈: 「bare head」·「graying temples」는 정수리 대머리를 만들었다(v1·v2 각 8장 전부) — 「hair covering the whole head」로 바꾸자 전부 풍성한 머리.
+
+### david seed 11 · Z-Image-Turbo Q8 · 정면 머리 초상 768×768 (2026-10-14, task#346 S1 — SDXL 정본 폐기, 옛 판은 `retired-sdxl/david.png`)
+
+- 출처 `gen_face_canon.py` 후보 8장(같은 시드, `~/.local/biblemap-imggen/face-canon/david/`) → `frozen/david.png`
+- 선택 근거(VLM): 4항목 평균 9.25(후보 8장 중 단독 최고, 나머지 9.0). 조밀한 검은 곱슬머리·성긴 짧은 수염·갸름한 청년 얼굴로 정본(`dark curly hair`·`short dark beard`·`lean young man`)과 맞고, 사울 s7과 구별 9/10.
+
+### samuel seed 11 · Z-Image-Turbo Q8 · 정면 머리 초상 768×768 (2026-10-15, task#348 S1 — SDXL 정본 폐기, 옛 판은 `retired-sdxl/samuel.png`)
+
+- 출처 `gen_face_canon.py --who samuel` 후보 8장(같은 시드, `~/.local/biblemap-imggen/face-canon/samuel/`) → `frozen/samuel.png`
+- 선택 근거(VLM, `judge_face_canon.py --who samuel`): 4항목 평균 9.38(후보 8장 중 단독 최고, 범위 8.75~9.38). 흰 장발이 머리를 덮고 가슴까지 오는 흰 수염, 깊은 주름의 야윈 노인으로 정본(`old prophet`·`white hair`·`long white beard`·`thin`)과 맞다. 상위 3장 중 확정된 사울 정본과 가장 구별되는 1장으로도 뽑혔다(나이·머리·수염 색).
+- 사람 확인은 task#348 판정 페이지 문항 ⓪에서 한다(중간 사람 관문 없음).
+
+### saul · david · samuel seed 11 · Z-Image-Turbo Q8 · 정면 머리 초상 768×768 (2026-10-16, task#353 S3 — 정의 파생 정본, 옛 판은 `retired-v1/<id>.png`)
+
+- 출처 `gen_cast_v2_pilot.py` → `gen_face_canon.prompt(id, view)`(cast-vocab-2 카드·얼굴 층에서만 파생, 인물별 `LOOK` 상수 없음) 후보 인물당 8시드 × 정면·3/4(레포 밖 `~/.local/biblemap-imggen/cast-v2-pilot/face/<id>/`) → 정면 `s11-front.png`를 `frozen/<id>.png`로. 3/4는 같은 시드·`view="34"`로 재현된다.
+- 선택 근거(사람): task#353 판정 페이지 https://claude.ai/artifact/65nvPyVBZYynBCsd8tuSBe 정본 3문항에 사용자는 시드를 고르지 않고 「별차이 없어보인다」고 답했다(후보 8개가 서로 구별되지 않음 — 「없음」(정의 불일치)과 다름). 그래서 기본값으로 첫 시드 11을 썼다. 기록 `notes/CAST-V2-PILOT.md`.
+- 프롬프트 교훈(346 교훈의 재발): 카드 층 머리 윤곽 text의 `bare head`(머리쓰개 없음)가 다시 민머리를 만들었다(사울 16/16). 이제 `derive_scene.head_text`가 그 낱말을 떼고 「hair covering the whole head, no headwear」를 붙인다 — 정본·장면 공통.
+- 주의: 같은 정의로 그린 장면 사이 같은 인물 판정은 1/9였다. 이 정본은 「정의와 맞는 머리 초상」일 뿐, 장면에서의 같은 인물감은 아직 보장하지 않는다.

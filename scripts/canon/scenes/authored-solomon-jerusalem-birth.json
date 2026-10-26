@@ -1,7 +1,7 @@
 {
   "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
   "id": "authored-solomon-jerusalem-birth",
-  "title": "밧세바 — 솔로몬을 낳다",
+  "title": "솔로몬 출생 — 나단이 여디디야라 이름을 전함",
   "verses": {
     "range": "삼하 12:24-25",
     "quotes": {
@@ -9,28 +9,213 @@
       "12:25": "선지자 나단을 보내사 그 이름을 여디디야라 하시니 이는 여호와께서 사랑하심을 인함이더라"
     }
   },
+  "situation": {
+    "text": "앞서 다윗이 우리아의 처를 궁으로 데려와 아내로 삼았고 여호와께서 나단을 다윗에게 보내 그 죄를 책망하셨으며(12:1-14), 그 아이를 여호와께서 치시매 이레만에 죽었다(12:15-18). 다윗이 그 처 밧세바를 위로하고 저에게 들어가 동침하였더니 밧세바가 아들을 낳으매 그 이름을 솔로몬이라 했다. 여호와께서 그를 사랑하셨다(12:24). 여호와께서 선지자 나단을 보내어 그 이름을 여디디야라 하셨으니 여호와께서 사랑하심을 인함이었다(12:25). 솔로몬이라 이름 부른 이는 본문에서 갈림(한글 12:24 주어 없음 · 영문(KJV) 「he called」) → 정하지 않음. 나단이 다윗에게 옴은 12:1 「여호와께서 나단을 다윗에게 보내시니」와 같은 꼴에서 [추론] — 앞서 아이의 죽음을 말한 같은 선지자(12:14)가 이번엔 사랑의 이름을 가지고 옴. 자리 — 예루살렘은 5:14 「예루살렘에서 그에게서 난 자의 이름은 삼무아와 소밥과 나단과 솔로몬과」 [직접] · 다윗의 궁은 11:27 「다윗이 보내어 저를 궁으로 데려 오니」·12:20 「궁으로 돌아와서」에서 [추론] · 방 모습은 본문 밖 · 저작자 정함.",
+    "same_time": {
+      "12:24": "앞선 때 — 다윗이 밧세바를 위로하고 동침함 · 밧세바가 아들을 낳고 그 이름을 솔로몬이라 함(이름 부른 이는 정하지 않음), 여호와께서 그를 사랑하심 — 곁 장면(뭉게구름)이 실음",
+      "12:25": "고정한 순간 — 여호와께서 보내신 나단이 와서 그 이름을 여디디야라 함"
+    }
+  },
   "moment": {
-    "verse": "12:24 후반",
-    "why": "밧세바가 갓난 아기를 품에 안은 순간을 고정한다. 아기는 지물로 삼는다. 나단의 개명 선포(12:25)는 별개 방문이라 배제한다."
+    "verse": "12:25",
+    "why": "상황 안에서 12:25를 고른다 — 단락(12:24-25)이 두 번 말하는 것은 「여호와께서 그를 사랑하사」·「여호와께서 사랑하심을 인함이더라」이고, 그 사랑이 행동으로 드러나는 절이 12:25 「선지자 나단을 보내사 그 이름을 여디디야라 하시니」다. 앞서 죄와 아이의 죽음을 말한 같은 선지자(12:7·12:14)가 이번엔 여호와께서 사랑하신다는 이름을 가지고 온다. 앞선 때인 12:24 해산·명명은 이 순간 그 자리에 밧세바·아기가 있었는지 본문에 말이 없어, 큰 장면에 넣지 않고 곁 장면(뭉게구름 — inset)으로 다른 때를 따로 싣는다(사람 결정 2026-10-25). 여호와는 형상 없이(ADR 261025-120741)."
+  },
+  "meaning": {
+    "ko": "예루살렘 다윗의 궁 방에서, 여호와께서 보내신 선지자 나단이 다윗 왕 앞에 서서 아들의 새 이름 여디디야를 전하고 다윗이 듣는다 — 위쪽 뭉게구름 안에는 그 앞선 때, 밧세바가 갓 낳은 아들(이름 솔로몬)을 품에 안고 있다",
+    "en": "In a room of King David's house at Jerusalem, the prophet Nathan, sent by the LORD, stands before King David and tells him the new name the LORD has given his son, Jedidiah, while David listens; in a soft cloud above, an earlier moment: Bathsheba holding her newborn son, newly named Solomon",
+    "verse": "삼하 12:24-25 · 나단이 다윗에게 옴은 12:1 「여호와께서 나단을 다윗에게 보내시니」와 같은 꼴에서 [추론] · 예루살렘은 5:14 「예루살렘에서 그에게서 난 자의 이름은 삼무아와 소밥과 나단과 솔로몬과」 [직접] · 다윗의 궁은 11:27·12:20에서 [추론] · 솔로몬이라 이름 부른 이는 본문에서 갈림(한글 12:24 주어 없음 · 영문(KJV) 「he called」) → 정하지 않음 · 서서 마주 봄·듣는 몸짓은 본문 밖 · 저작자 정함 · 뭉게구름 곁 장면은 그림 꼴(사람 결정 2026-10-25) · 여호와는 형상 없이(ADR 261025-120741)"
+  },
+  "relation": {
+    "ko": "나단이 다윗 왕 앞에 서서 왕을 향해 말을 전하고, 왕은 나단을 마주 보고 듣는다 — 둘은 닿지 않는다",
+    "en": "the prophet stands facing the king and speaks to him, and the king faces the prophet and listens, the two not touching",
+    "verse": "12:25 「선지자 나단을 보내사 그 이름을 여디디야라 하시니」 · 나단이 다윗에게 옴은 12:1 「여호와께서 나단을 다윗에게 보내시니」와 같은 꼴에서 [추론] · 마주 봄·닿지 않음은 본문 밖 · 저작자 정함"
+  },
+  "whole_background": {
+    "ko": "예루살렘 다윗의 궁 안 방 — 다듬은 돌벽, 백향목 들보, 돌바닥",
+    "en": "the inside of a room in the king's house at Jerusalem, walls of dressed stone blocks, cedar wood ceiling beams, a stone floor",
+    "verse": "다윗의 궁은 11:27 「다윗이 보내어 저를 궁으로 데려 오니」·12:20 「궁으로 돌아와서」에서 [추론] · 예루살렘은 5:14 「예루살렘에서 그에게서 난 자의 이름은 삼무아와 소밥과 나단과 솔로몬과」 [직접] · 돌벽·백향목은 5:11 「백향목과 목수와 석수를 보내매 저희가 다윗을 위하여 집을 지으니」 · 7:2 「나는 백향목 궁에 거하거늘」에서 [추론] · 방의 쓰임·들보는 본문 밖 · 저작자 정함"
   },
   "background": [
     {
-      "what": "처소의 방",
-      "verse": "본문 밖 · 저작자 정함"
+      "what": "예루살렘 다윗의 궁 안 방, 다듬은 돌벽과 백향목 들보",
+      "verse": "5:14 · 11:27 · 12:20 · 5:11 · 7:2 · 방 모습은 본문 밖 · 저작자 정함"
     }
   ],
   "crowds": [],
   "figures": [
     {
-      "cast": "bathsheba",
-      "role": "밧세바",
-      "pose": "앉아서 갓난 아기를 품에 안는다",
-      "prop": "an infant",
+      "cast": "nathan",
+      "role": "선지자 나단 — 여호와께서 보내셔서 아들의 이름을 여디디야라 전하는 이",
+      "pose": "다윗 왕 앞에 서서 한 손을 펴 왕 쪽으로 내밀고 말을 전한다",
+      "prop": "none",
       "facing": "right",
-      "region": "bathsheba",
-      "verse": "12:24"
+      "region": "nathan",
+      "verse": "12:25",
+      "screen_facing": "right",
+      "expression": {
+        "ko": "여호와의 사랑을 전하는 따뜻한 얼굴",
+        "en": "a warm, gentle face",
+        "verse": "12:25 「이는 여호와께서 사랑하심을 인함이더라」에서 [추론] · 얼굴 모습은 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "왕 앞에 서서, 여호와께서 보내신 말씀을 가지고 와 왕에게 아들의 새 이름을 전하며 빈손 한 손을 펴 왕 쪽으로 내밂",
+        "en": "standing before the king, a prophet come to the king, telling the king his son's new name, one empty hand open toward the king",
+        "verse": "12:25 「선지자 나단을 보내사 그 이름을 여디디야라 하시니」 · 서 있음·편 손은 본문 밖 · 저작자 정함 · 왕에게 이름을 전함은 12:1 「여호와께서 나단을 다윗에게 보내시니」와 같은 꼴에서 [추론]"
+      },
+      "costume": {
+        "ko": "짙은 모직 긴 겉옷과 천 띠",
+        "en": "in a long dark wool robe with a cloth belt",
+        "verse": "본문 밖 · 저작자 정함(정본 nathan 카드 차림)"
+      },
+      "gaze": "david-prime",
+      "stage_why": "[추론] 삼하 7:2 「왕이 선지자 나단에게 이르되」 — 다윗 언약 때(프로젝트 연대 BC 993경) 이미 왕 곁의 선지자였고, 삼하 12:1 「여호와께서 나단을 다윗에게 보내시니」 · 왕상 1:11 「나단이 솔로몬의 모친 밧세바에게 고하여」 — 약 20년 뒤(기혼 기름부음 BC 971경)에도 왕궁 일을 이끔. 그 사이의 중년. 50대는 [저작](카드 middle)"
+    },
+    {
+      "cast": "david-prime",
+      "cast_override": {
+        "card": {
+          "heightRel": "average",
+          "ageBand": {
+            "class": "middle",
+            "text": "about 50, fuller face with lines at the eyes and brow"
+          },
+          "beardVolume": {
+            "class": "trimmed",
+            "text": "dark beard trimmed to a rounded edge along the jaw"
+          },
+          "silhouette": {
+            "class": "average",
+            "text": "solid settled shoulders, straight back"
+          },
+          "headOutline": {
+            "class": "bare",
+            "text": "bare head, dark curls close to the skull"
+          },
+          "costumeColor": {
+            "class": "red",
+            "text": "deep red long royal robe, gold-edged sash"
+          }
+        }
+      },
+      "cast_override_why": "나이 [추론] 삼하 5:4 「다윗이 삼십 세에 위에 나아가서」 + 5:5 「예루살렘에서 삼십삼 년 동안」 — 솔로몬 출생(12:24)은 예루살렘 재위 중 암몬 전쟁(11:1) 뒤 · 보수 연대 추정(즉위 BC 1010 · 출생 약 BC 990)으로 즉위 뒤 약 20년, 약 50세 · 카드 대표값 「late 30s」 대신 · 카드 층 나머지는 정본 그대로(task 429)",
+      "role": "다윗 왕 — 나단에게서 아들의 새 이름을 듣는 왕",
+      "pose": "나단을 마주 보고 서서 두 손을 앞에 모으고 듣는다",
+      "prop": "none",
+      "facing": "left",
+      "region": "david-prime",
+      "verse": "12:25 · 다윗이 그 자리에 있음은 12:1에서 [추론]",
+      "screen_facing": "left",
+      "expression": {
+        "ko": "나단의 말을 주의 깊게 듣는 얼굴",
+        "en": "an attentive, listening face",
+        "verse": "본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "나단을 마주 보고 서서 빈손 두 손을 허리 앞에 포개어 모으고 들음",
+        "en": "standing facing the prophet, listening, his two empty hands folded together in front of his waist",
+        "verse": "나단이 다윗에게 옴은 12:1 「여호와께서 나단을 다윗에게 보내시니」와 같은 꼴에서 [추론] · 서 있음·모은 손은 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "짙은 붉은 왕의 긴 겉옷과 금테 띠, 곱슬 머리는 덮지 않음",
+        "en": "in a long deep red robe with a gold-edged sash, his dark curly hair uncovered",
+        "verse": "본문 밖 · 저작자 정함(정본 david-prime 카드 차림 · 카드 머리쓰개 없음 — task 421: 「no headwear」만으로는 금띠가 그려짐)"
+      },
+      "gaze": "nathan",
+      "stage_why": "[추론] 삼하 5:4 「다윗이 삼십 세에 위에 나아가서 사십 년을 다스렸으되」 · 삼하 5:5 「예루살렘에서 삼십삼 년 동안 온 이스라엘과 유다를 다스렸더라」 — 예루살렘 통치 중. 프로젝트 연대(data/person_events/david.json 출생 BC 1040경 · solomon.json 솔로몬 출생 BC 990경)로 약 50세 → 장년 왕 id david-prime(헤브론~솔로몬 출생 구간). 카드 ageBand 40대는 이 장면에서 경계 — [저작]"
     }
   ],
+  "verse_elements": [
+    {
+      "verse": "12:24",
+      "quote": "다윗이",
+      "kind": "인물",
+      "ko": "밧세바를 위로·동침한 다윗",
+      "out": "위로·동침은 앞선 때 — 고정한 순간 밖(이 순간의 다윗은 12:25 요소 쪽 [추론]으로 실림)"
+    },
+    {
+      "verse": "12:24",
+      "quote": "그 처 밧세바를 위로하고",
+      "kind": "행동",
+      "ko": "다윗이 밧세바를 위로함",
+      "out": "잉태 앞선 때의 위로 — 고정한 순간 밖"
+    },
+    {
+      "verse": "12:24",
+      "quote": "저에게 들어가 동침하였더니",
+      "kind": "행동",
+      "ko": "다윗이 밧세바와 동침함",
+      "out": "잉태 앞선 때의 일 — 고정한 순간 밖"
+    },
+    {
+      "verse": "12:24",
+      "quote": "밧세바",
+      "kind": "인물",
+      "ko": "밧세바 — 곁 장면(앞선 때)",
+      "en": "the mother sits alone",
+      "field": "inset"
+    },
+    {
+      "verse": "12:24",
+      "quote": "저가 아들을 낳으매",
+      "kind": "인물",
+      "ko": "밧세바가 낳은 아들 — 곁 장면(사전 baby L2 · hug)",
+      "en": "a tiny newborn baby, as long as a man's arm from elbow to fingertip, its body wrapped in cloth, cradled in both arms against the chest",
+      "field": "inset"
+    },
+    {
+      "verse": "12:24",
+      "quote": "그 이름을 솔로몬이라 하니라",
+      "kind": "행동",
+      "ko": "아들의 이름을 솔로몬이라 함 — 곁 장면(이름 부른 이는 정하지 않음)",
+      "en": "her newly named infant son",
+      "field": "inset"
+    },
+    {
+      "verse": "12:24",
+      "quote": "여호와께서 그를 사랑하사",
+      "kind": "행동",
+      "ko": "여호와께서 아들을 사랑하심 — 형상 없이, 곁 장면의 평안한 아기(약한 [추론])와 큰 장면 나단의 얼굴(12:25)이 실음",
+      "en": "healthy and at peace",
+      "field": "inset"
+    },
+    {
+      "verse": "12:25",
+      "quote": "선지자 나단을 보내사",
+      "kind": "인물",
+      "ko": "여호와께서 보내신 선지자 나단",
+      "en": "a prophet come to the king",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "12:25",
+      "quote": "그 이름을 여디디야라 하시니",
+      "kind": "행동",
+      "ko": "아들의 이름을 여디디야라 전함",
+      "en": "telling the king his son's new name",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "12:25",
+      "quote": "이는 여호와께서 사랑하심을 인함이더라",
+      "kind": "행동",
+      "ko": "이름의 까닭 — 여호와의 사랑(형상 없이 나단의 얼굴로)",
+      "en": "a warm, gentle face",
+      "field": "figures[0].expression"
+    }
+  ],
+  "inset": {
+    "spec": "authored-solomon-jerusalem-birth-inset",
+    "verse": "12:24",
+    "when": "앞선 때",
+    "frame": "cloud",
+    "region": [
+      0.3,
+      0.02,
+      0.7,
+      0.56
+    ],
+    "why": "사람 결정 2026-10-25(fu-416b1c7e2a90): 순간은 12:25 나단, 12:24 밧세바가 아들을 안음은 뭉게구름 곁 장면으로 합성 — 12:25에 밧세바·아기가 함께 있었는지 본문에 말이 없어 다른 때로 따로 그림. 자리는 두 사람 사이 위 가운데(사람 판정 4 메모 — 나단이 다윗에게 전하는 이야기의 주제인 그 아들로 읽히게, 한 사람 머리 곁이면 그 사람의 생각으로 읽힘)."
+  },
   "regions": {
     "full": [
       0.0,
@@ -38,21 +223,45 @@
       1.0,
       1.0
     ],
-    "bathsheba": [
-      0.42,
-      0.5,
-      0.58,
-      0.9
+    "nathan": [
+      0.12,
+      0.27,
+      0.26,
+      0.92
+    ],
+    "david-prime": [
+      0.74,
+      0.27,
+      0.88,
+      0.92
     ]
   },
-  "_regions_why": "밧세바 세로 0.40(앉은 자세). 단독 인물이라 중앙 배치.",
+  "_regions_why": "크기 기준표에서 셈(ADR 261024-083947) — 두 사람(무리 단계 duo 0.60~0.70) · 둘 다 average라 같은 발 y 0.92 · 구역 높이 0.65 → 지평선 0.316. 가운데 위 0.30~0.70 × 0.02~0.56은 곁 장면 구름 자리라 나단은 왼쪽, 다윗은 오른쪽으로 벌려 마주 섬(본문 밖 · 저작자 정함 — 사람 판정 4 메모).",
+  "guide": {
+    "depth": {
+      "nathan": 1.0,
+      "david-prime": 1.0
+    },
+    "shape": {
+      "nathan": "person",
+      "david-prime": "person"
+    },
+    "backdrop": "room",
+    "body": "card",
+    "why": "task 417 — 415·416 규칙을 물려받음: 실내 방 바탕 · 카드 체격. 두 사람 서 있는 꼴. 곁 장면은 따로 그려 합성하므로 큰 장면 가이드에 넣지 않음. · 시도 3(사람 판정 4 메모 「이야기하는 모습으로 보이려면 손짓이 있어야」): 문구의 편 손·모은 손이 두 번(s42 시도 1·2) 다 팔 내림 → 뼈대 가이드(나단 speak_open · 다윗 listen_clasp) · 스텝별(앞 뼈대 → 뒤 깊이, 기브아와 같음).",
+    "pose": {
+      "nathan": "speak_open",
+      "david-prime": "listen_clasp"
+    },
+    "split": true
+  },
   "stages": [
     {
       "id": "S1",
       "kind": "full",
       "region": "full",
-      "verse": "본문 밖 · 저작자 정함",
-      "prompt": "a plain quiet room with a pale plastered wall, a simple woven mat on the floor, soft daylight, no people.",
+      "verse": "11:27 · 5:11 · 방 모습은 본문 밖 · 저작자 정함",
+      "prompt": "the inside of a room, walls of dressed stone blocks, cedar wood ceiling beams, a stone floor, no people.",
       "neg": [
         "people",
         "figures",
@@ -71,25 +280,46 @@
     {
       "id": "S3",
       "kind": "plate",
-      "region": "bathsheba",
-      "verse": "12:24",
-      "prompt": "an ancient Israelite young woman sitting, cradling a swaddled infant in both arms, facing right.",
+      "region": "nathan",
+      "verse": "12:25",
+      "prompt": "{cast:nathan}, standing, speaking, one empty hand open toward the king, facing right.",
       "neg": [
         "crown",
         "armour",
-        "standing",
-        "veil covering face",
-        "modern clothes"
+        "staff",
+        "scroll",
+        "halo",
+        "light rays"
+      ]
+    },
+    {
+      "id": "S4",
+      "kind": "plate",
+      "region": "david-prime",
+      "verse": "12:25",
+      "prompt": "{cast:david-prime}, standing, listening, both hands clasped before him, facing left.",
+      "neg": [
+        "armour",
+        "sword",
+        "harp",
+        "halo",
+        "sitting"
       ]
     }
   ],
   "negatives": [],
   "judge": {
-    "_why": "인물 하나뿐이라 gap_bands는 없다.",
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
     "figures": [
-      "bathsheba"
+      "nathan",
+      "david-prime"
     ],
-    "gap_bands": [],
+    "gap_bands": [
+      [
+        0.5,
+        0.7
+      ]
+    ],
     "crest_x": {
       "left": [
         0.02,
@@ -99,6 +329,20 @@
         0.7,
         0.98
       ]
+    }
+  },
+  "approved": {
+    "final": {
+      "path": "night-pick",
+      "seed": 11,
+      "kind": "comp",
+      "image": "samples/birth-inset/try2-424/comp-s11.png",
+      "by": "user",
+      "on": "2026-10-26",
+      "spec_hash": "763c3df1ff44",
+      "prompt_hash": null,
+      "rules_version": "6575283711cc",
+      "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "solomon",
   "names": [
     "솔로몬"
@@ -10,14 +10,12 @@
     "authored-solomon-gibeon-dream",
     "authored-solomon-jerusalem-two-mothers",
     "authored-solomon-jerusalem-temple-build",
-    "authored-solomon-jerusalem-palace",
-    "authored-solomon-jerusalem-temple-dedication",
-    "authored-solomon-ezion-geber-fleet",
-    "authored-solomon-jerusalem-sheba"
+    "authored-solomon-jerusalem-temple-dedication"
   ],
   "era": "an ancient Israelite",
   "age": "young king",
   "sex": "male",
+  "role": "king",
   "hair": "dark hair",
   "beard": "none",
   "headwear": "none",
@@ -29,19 +27,14 @@
   ],
   "propCandidates": [
     {
-      "prop": "a horn of oil",
-      "verse": "왕상 1:39",
-      "ko": "기름 뿔"
-    },
-    {
       "prop": "a sword",
       "verse": "왕상 3:24",
       "ko": "칼"
     },
     {
-      "prop": "a temple model",
-      "verse": "왕상 6:14",
-      "ko": "전"
+      "prop": "a plan of the temple",
+      "verse": "대상 28:11",
+      "ko": "식양"
     }
   ],
   "neg": [
@@ -54,13 +47,60 @@
     "standing, full body, side view facing left",
     "sitting, full body, facing right, on a throne with one arm raised"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "young",
+      "text": "in his 20s, smooth clear face"
+    },
+    "beardVolume": {
+      "class": "none",
+      "text": "없음"
+    },
+    "silhouette": {
+      "class": "average",
+      "text": "average build, straight shoulders, narrow waist"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, short dark hair"
+    },
+    "costumeColor": {
+      "class": "blue",
+      "text": "deep blue fine linen robe, embroidered belt"
+    }
+  },
+  "face": {
+    "faceShape": "oval face, wide clear brow",
+    "eyes": "dark eyes",
+    "nose": "straight nose",
+    "mouth": "slight smile",
+    "skin": "warm olive skin",
+    "brows": "level dark brows",
+    "marks": "none"
+  },
   "_why": {
-    "age": "왕상 1~3장 초기 재위 문맥",
-    "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식)"
+    "age": "[추론] 대상 29:1 「오히려 어리고 연약하고」 — 즉위 때 어림 → 젊은 왕, 왕상 1~3장 초기 재위 문맥",
+    "build": "[저작](젊은 왕 평균 체격 — 본문에 체격 없음)",
+    "hair": "[저작](시대 인물 대표값 — 본문에 머리색 없음)",
+    "beard": "[저작](20대, 수염 없는 얼굴 — 본문에 없음)",
+    "headwear": "[저작](초기 재위 맨머리 — 본문에 머리쓰개 없음)",
+    "costume": "[저작](시대 복식 고증 — 궁정 왕의 긴 세마포 겉옷)",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[추론] 대상 29:1 「오히려 어리고 연약하고」 — 즉위·기브온·두 어미는 20대, 착공(왕상 6:1 「왕이 된지 사년」)·봉헌(즉위 11~12년차)은 20대 후반~30대 초(즉위 나이는 본문에 없어 20세 가정). 왕상 9:10 「이십 년 만에」 이후(궁전·에시온게벨·스바)는 solomon-prime(task 355)",
+    "card.beardVolume": "[저작](20대, 수염 없는 얼굴)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "face.faceShape": "[저작](얼굴 구분용)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[직접] 왕상 1:39 「솔로몬 왕 만세」",
+    "propCandidates[1]": "[직접] 대상 28:11 「속죄소의 식양을 그 아들 솔로몬에게 주고」 — 다윗이 준 전의 식양(설계도). 손에 든 모형은 본문에 없음(옛 왕상 6:14 오인용 교체)"
   },
   "plate": {
     "seed": 42,

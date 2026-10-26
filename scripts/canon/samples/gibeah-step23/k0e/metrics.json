@@ -1,0 +1,220 @@
+{
+ "answers": {
+  "g:5": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.507,
+       "input": 4,
+       "output": 273,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.04496120000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴·옷·형태가 완성돼 있고 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.554,
+       "input": 4,
+       "output": 269,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.04492120000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "인물과 물건 모두 얼굴·옷·질감이 있고, 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 3.736,
+       "input": 4,
+       "output": 273,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.04496120000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건이 모두 얼굴·옷·형태를 갖췄고 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 4.14,
+       "input": 4,
+       "output": 278,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.0450112,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물, 창, 수금, 의자 모두 얼굴·옷·질감이 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.538,
+       "input": 4,
+       "output": 305,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.04528120000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리나 액자는 보이지 않는다.",
+      "s.no-blob": "사울, 다윗, 수금, 의자, 창 모두 얼굴·옷·형태가 완성되어 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.782,
+       "input": 4,
+       "output": 297,
+       "cache_read": 44688,
+       "cache_create": 9496,
+       "cost_usd": 0.0454308,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-throw-release": "맞음"
+     },
+     "reasons": {
+      "e.saul-throw-release": "사울의 두 손이 모두 비었고, 앞으로 뻗은 팔이 다윗 쪽을 향해 있다. 몸이 다윗 쪽으로 쏠려 있고 창은 이미 날아가 벽에 꽂히는 중이다. 두 팔을 벌려 막는 자세도, 멈춰 손짓도, 주먹도 아니다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 5.133,
+       "input": 4,
+       "output": 361,
+       "cache_read": 44688,
+       "cache_create": 9496,
+       "cost_usd": 0.0460708,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-throw-release": "맞음"
+     },
+     "reasons": {
+      "e.saul-throw-release": "창은 이미 손을 떠나 벽에 꽂혀 있고, 사울의 빈 앞팔이 다윗 쪽으로 뻗었으며 몸도 다윗 쪽으로 기울어 던진 직후로 보임. 뒷팔은 던지는 동작의 연장선이라 막아서는 자세가 아님."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.359,
+       "input": 4,
+       "output": 448,
+       "cache_read": 44688,
+       "cache_create": 9496,
+       "cost_usd": 0.046940800000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-throw-release": "맞음"
+     },
+     "reasons": {
+      "e.saul-throw-release": "사울의 두 손은 비어 있고, 앞팔은 다윗 쪽(화면 왼쪽)으로 뻗었습니다. 몸이 다윗 쪽으로 기울었고 뒷팔은 던진 뒤처럼 뒤로 젖혀졌습니다. 창은 이미 날아가 벽 쪽에 있습니다. 두 팔을 벌려 막는 꼴도, 멈추라는 손짓도, 주먹을 내지르는 꼴도 아닙니다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 3.91,
+       "input": 4,
+       "output": 303,
+       "cache_read": 54184,
+       "cache_create": 0,
+       "cost_usd": 0.008456400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-throw-release": "맞음"
+     },
+     "reasons": {
+      "e.saul-throw-release": "사울의 두 손이 모두 비어 있다. 던진 팔은 다윗 쪽으로 뻗어 있고, 몸도 다윗 쪽으로 기울어 있다. 창은 이미 날아가 벽에 박히고 있다. 두 팔을 벌려 막는 꼴이나 멈추라는 손짓, 주먹을 내지르는 꼴은 아니다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 5.288,
+       "input": 4,
+       "output": 438,
+       "cache_read": 54184,
+       "cache_create": 0,
+       "cost_usd": 0.009806400000000002,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-throw-release": "맞음"
+     },
+     "reasons": {
+      "e.saul-throw-release": "사울의 오른팔(화면 왼쪽 팔)이 빈손으로 다윗 쪽을 향해 뻗어 있고, 몸과 앞다리도 다윗 쪽으로 쏠려 있다. 창은 이미 날아가 벽에 꽂혀 있다. 뒤쪽 팔은 던진 뒤 균형을 잡는 모양이라 두 팔로 막아서는 꼴이 아니다. 손바닥을 세운 손짓도 주먹질도 아니다."
+     }
+    }
+   }
+  }
+ }
+}

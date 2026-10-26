@@ -1,0 +1,254 @@
+{
+ "answers": {
+  "g:5": {
+   "S": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.437,
+       "input": 4,
+       "output": 277,
+       "cache_read": 43792,
+       "cache_create": 10294,
+       "cost_usd": 0.04833319999999999,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자 모두 얼굴·옷·질감이 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.492,
+       "input": 4,
+       "output": 282,
+       "cache_read": 43792,
+       "cache_create": 10294,
+       "cost_usd": 0.048383199999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·질감이 완성돼 있고, 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.567,
+       "input": 4,
+       "output": 276,
+       "cache_read": 43792,
+       "cache_create": 10294,
+       "cost_usd": 0.0483232,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·디테일이 완성돼 있고 평평한 회색 덩어리는 없다."
+     }
+    }
+   },
+   "E": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 12.123,
+       "input": 4,
+       "output": 1304,
+       "cache_read": 45651,
+       "cache_create": 12153,
+       "cost_usd": 0.06622510000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "틀림",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.composition": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.saul-throw-pose": "맞음"
+     },
+     "reasons": {
+      "e.david-youth": "곱슬머리에 수염은 없지만 몸이 작고 얼굴이 어려서 15~20세 청년이 아니라 12~14세 소년으로 보인다. 자란 몸이라고 확인되지 않아 틀림으로 답한다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 12.638,
+       "input": 4,
+       "output": 1519,
+       "cache_read": 46827,
+       "cache_create": 10977,
+       "cost_usd": 0.0637887,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.composition": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.saul-throw-pose": "맞음"
+     },
+     "reasons": {
+      "e.moment": "창이 다윗 머리 위로 날아가고 다윗은 몸을 숙여 피함",
+      "e.spear-air": "창 하나가 허공에 떠 있음",
+      "e.saul-empty": "두 손 모두 비어 있음",
+      "e.saul-throw": "팔을 다윗 쪽으로 뻗고 앞으로 기울임",
+      "e.saul-age": "회색 머리와 수염, 주름, 관 없음",
+      "e.david-youth": "수염 없는 곱슬머리 청년",
+      "e.wall": "돌벽에 등을 붙이고 서 있음",
+      "e.lyre": "작은 나무 수금",
+      "e.tunic": "무릎 길이 튜닉에 맨다리",
+      "e.face-each": "서로 마주 봄",
+      "e.room": "소박한 돌벽 실내",
+      "e.guard": "눈에 띄는 결함 없음",
+      "e.composition": "두 인물이 크게 그려져 있음",
+      "e.saul-costume": "모직 튜닉에 가죽 띠, 맨다리",
+      "e.dodge-read": "몸을 숙여 창이 머리 위로 지나감",
+      "e.spear-shape": "잎 모양 촉 하나와 작은 뒤끝",
+      "e.lyre-held": "두 손으로 몸에 붙여 듦",
+      "e.spear-direction": "큰 촉이 왼쪽 다윗 쪽을 향함",
+      "e.saul-body": "굵고 튼튼한 어른 체형",
+      "e.saul-throw-pose": "주먹 쥔 팔이 앞으로 뻗고 앞발에 체중이 실림"
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 13.232,
+       "input": 4,
+       "output": 1310,
+       "cache_read": 45651,
+       "cache_create": 12314,
+       "cost_usd": 0.0669291,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "틀림",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.composition": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.saul-throw-pose": "맞음"
+     },
+     "reasons": {
+      "e.david-youth": "얼굴과 몸집이 12~13세 소년처럼 작고 앳되어 15~20세 청년으로 확신할 수 없음",
+      "e.moment": "창이 다윗 머리 위로 지나가고 다윗은 몸을 웅크려 비킴",
+      "e.saul-body": "다리를 넓게 벌렸지만 굵고 튼튼해 어른 비율에 맞음"
+     }
+    }
+   }
+  }
+ },
+ "edit": {
+  "5": [
+   {
+    "end": "back",
+    "src": "d4/s5.png",
+    "crop": [
+     251,
+     54,
+     304
+    ],
+    "box": [
+     271,
+     173,
+     535,
+     240
+    ],
+    "prompt": "Remove the large metal spearhead from the right end of the wooden spear shaft, so the right end is only a small iron cap, much thinner than a spearhead. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "status": "ok",
+    "sec": 40.6
+   },
+   {
+    "end": "front",
+    "src": "d4e2/s5-back.png",
+    "crop": [
+     89,
+     105,
+     202
+    ],
+    "box": [
+     109,
+     173,
+     271,
+     240
+    ],
+    "prompt": "Enlarge the iron spearhead at the left end of the wooden spear shaft into one large leaf-shaped iron point, a broad blade much wider than the shaft. Do not add any crossguard, wings or second blade. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "status": "ok",
+    "sec": 39.6
+   }
+  ]
+ }
+}

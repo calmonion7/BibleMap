@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "saul-armor-bearer",
   "names": [
     "병기 든 자"
@@ -10,6 +10,7 @@
   "era": "an ancient Israelite",
   "age": "young soldier",
   "sex": "male",
+  "role": "soldier",
   "hair": "dark hair",
   "beard": "none",
   "headwear": "none",
@@ -35,13 +36,59 @@
     "standing, full body, side view facing left",
     "kneeling, full body, facing right, falling on his own sword"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "young",
+      "text": "in his 20s, smooth earnest face"
+    },
+    "beardVolume": {
+      "class": "none",
+      "text": "없음"
+    },
+    "silhouette": {
+      "class": "broad",
+      "text": "broad sturdy shoulders, thick arms"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, short dark hair"
+    },
+    "costumeColor": {
+      "class": "brown",
+      "text": "brown leather cuirass, short kilt"
+    }
+  },
+  "face": {
+    "faceShape": "round open face",
+    "eyes": "wide dark eyes",
+    "nose": "short blunt nose",
+    "mouth": "full lips",
+    "skin": "tanned skin",
+    "brows": "thick short brows",
+    "marks": "none"
+  },
   "_why": {
-    "age": "본문 밖 · 저작자 정함",
-    "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식) — 삼상 31:4 「병기 든 자」"
+    "age": "[저작](병기 든 젊은 종자 — 나이는 본문에 없음)",
+    "build": "[저작](병기 든 군인 체격 — 본문에 체격 언급 없음)",
+    "hair": "[저작](시대 인물 대표값 — 머리색 본문에 없음)",
+    "beard": "[저작](젊은 종자라 수염 없음 — 본문에 없음)",
+    "headwear": "[저작](병기 든 종자 맨머리 — 투구 언급 없음)",
+    "costume": "[추론] 삼상 31:4 「병기 든 자」 — 병기 든 군인 → 가죽 흉갑, 짧은 치마는 시대 복식 고증",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[저작](역표 동석 인물과 구분용)",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "face.faceShape": "[저작](얼굴 구분용)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[추론] 삼상 31:4 「병기 든 자」 — 왕의 병기를 드는 자 → 군인"
   },
   "plate": {
     "seed": 11,

@@ -1,0 +1,479 @@
+{
+ "answers": {
+  "g:5": {
+   "S": {
+    "5": {
+     "tries": [
+      {
+       "seconds": 4.775,
+       "input": 4,
+       "output": 281,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.0450412,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 질감의 동화풍이 맞다.",
+      "s.no-blob": "다윗 머리 위에 회색 번짐 덩어리가 있어 미완성 부분처럼 보인다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.188,
+       "input": 4,
+       "output": 327,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.045501200000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·질감이 갖춰져 있고 회색 덩어리나 미완성 실루엣은 없다. 다윗의 머리 위쪽에 회색 음영이 약간 있지만 머리카락 그림자 수준이다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.202,
+       "input": 4,
+       "output": 321,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.0454412,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다. 다윗 머리 위쪽의 회색 번짐은 머리카락 음영 정도로 보인다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 6.163,
+       "input": 4,
+       "output": 510,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.047331200000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "사울과 다윗 모두 얼굴과 옷이 갖춰져 있고, 의자와 창도 완성된 모양이다. 다윗 머리 위에 회색 번짐이 있지만 머리카락 음영이라 덩어리로 남은 인물이나 물건은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.905,
+       "input": 4,
+       "output": 531,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.047541200000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감이 보여 동화 그림 화풍에 맞다.",
+      "s.no-blob": "사울, 다윗, 창, 의자 모두 얼굴·옷·형태가 완성돼 있다. 다윗 머리 위에 회색 번짐이 있지만 머리카락 음영이고 따로 남은 덩어리는 아니다."
+     }
+    }
+   },
+   "E": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 12.31,
+       "input": 4,
+       "output": 1474,
+       "cache_read": 46850,
+       "cache_create": 11816,
+       "cost_usd": 0.066697,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "틀림",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "틀림",
+      "e.david-youth": "틀림",
+      "e.wall": "틀림",
+      "e.lyre": "틀림",
+      "e.tunic": "맞음",
+      "e.face-each": "틀림",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.composition": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "틀림",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "틀림",
+      "e.saul-throw-pose": "틀림",
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음"
+     },
+     "reasons": {
+      "e.moment": "창이 다윗 머리 위 벽 쪽으로 높이 날아가 다윗은 비틀어 피하지 않고 그냥 서 있음",
+      "e.spear-air": "창이 사울 손에서 멀리 떨어져 두 사람 사이가 아니라 위쪽 허공, 벽 가까이에 있음",
+      "e.saul-empty": "두 손 모두 비어 있음(주먹)",
+      "e.saul-throw": "팔을 뻗고 몸을 앞으로 내민 던진 자세",
+      "e.saul-age": "회색 머리와 수염은 맞으나 얼굴이 젊고 주름이 깊지 않아 70세로 보기 어려움",
+      "e.david-youth": "머리 위에 회색 얼룩 같은 번짐이 있어 짧은 검은 곱슬머리가 깔끔하지 않음",
+      "e.wall": "다윗이 돌벽에서 떨어져 서 있고 사이에 매끈한 벽면이 있어 벽 바로 앞이 아님",
+      "e.lyre": "지판과 긴 목이 달린 류트 모양 악기",
+      "e.tunic": "무릎 길이 튜닉에 맨다리",
+      "e.face-each": "다윗은 사울 쪽이 아니라 아래/옆(악기 쪽)을 보는 듯해 서로 마주함이 분명치 않음",
+      "e.room": "돌벽 실내 방",
+      "e.guard": "다윗 머리 위 회색 번짐 등 결함이 있음",
+      "e.composition": "두 인물이 화면 높이의 절반 넘게 큼",
+      "e.saul-costume": "무릎 길이 튜닉과 가죽 띠, 맨다리",
+      "e.dodge-read": "다윗이 몸을 숙이거나 비틀지 않고 서 있어 피함이 분명하지 않음",
+      "e.spear-shape": "촉이 화살촉처럼 갈래진 모양이라 큰 잎 모양 촉이 아님",
+      "e.lyre-held": "두 손으로 몸에 붙여 듦",
+      "e.spear-direction": "촉이 왼쪽 벽 쪽, 뒤끝이 오른쪽",
+      "e.saul-body": "다리를 컴퍼스처럼 크게 벌리고 서 있음",
+      "e.saul-throw-pose": "팔이 주먹 쥔 채 앞으로 뻗은 정지 모양이고 던진 뒤 휘둘러 내려오는 느낌이 약하며 체중이 앞발에 실리지 않음",
+      "e.proportion-saul": "다리가 길고 몸통에 비해 가늘어 비율이 어색함",
+      "e.proportion-david": "비율 자연스러움",
+      "e.proportion-pair": "사울이 머리 하나쯤 큼"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 12.313,
+       "input": 4,
+       "output": 1633,
+       "cache_read": 46850,
+       "cache_create": 11817,
+       "cost_usd": 0.068291,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "틀림",
+      "e.saul-age": "틀림",
+      "e.david-youth": "틀림",
+      "e.wall": "틀림",
+      "e.lyre": "틀림",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.composition": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "틀림",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "틀림",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "틀림",
+      "e.saul-throw-pose": "틀림",
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "맞음"
+     },
+     "reasons": {
+      "e.moment": "창이 다윗 머리 위로 지나가는 것처럼 보이지만 다윗이 몸을 비틀지 않고 그냥 서 있어 피하는 순간이 불분명하다.",
+      "e.spear-air": "창 하나가 사울과 다윗 사이 위쪽 허공에 떠 있다.",
+      "e.saul-empty": "두 손이 모두 비어 있고 주먹만 쥐고 있다.",
+      "e.saul-throw": "팔을 앞으로 뻗었으나 몸을 앞으로 내밀지 않고 상체가 곧게 서 있어 던진 자세가 약하다.",
+      "e.saul-age": "머리와 수염은 회색이지만 70세로 보기엔 근육질에 가깝다. 확실하지 않아 틀림으로 답한다.",
+      "e.david-youth": "머리 둘레가 흐릿하게 번져 있고 몸이 어린 소년에 가까워 15~20세로 확실하지 않다.",
+      "e.wall": "다윗이 돌벽에서 떨어져 방 가운데 서 있어 벽 바로 앞이 아니다.",
+      "e.lyre": "지판과 긴 목이 달린 류트 모양이다.",
+      "e.tunic": "무릎 길이 튜닉에 맨다리다.",
+      "e.face-each": "서로 마주 보고 있다.",
+      "e.room": "돌벽이 있는 소박한 실내다.",
+      "e.guard": "머리 위에 흐릿한 얼룩이 있어 결함으로 본다.",
+      "e.composition": "두 인물이 화면 높이의 절반을 넘는다.",
+      "e.saul-costume": "무릎 길이 튜닉에 가죽 띠를 맸고 맨다리다.",
+      "e.dodge-read": "다윗이 몸을 숙이거나 비틀지 않고 똑바로 서 있다. 창은 머리 위로 지나지만 피하는 동작이 분명하지 않다.",
+      "e.spear-shape": "곧은 자루 앞에 큰 잎 모양 촉이 있고 뒤끝은 작은 물미다.",
+      "e.lyre-held": "류트를 두 손으로 몸에 붙여 들고 있어 쥠은 맞지만 악기가 수금이 아니라서 틀림으로 답한다.",
+      "e.spear-direction": "촉이 화면 왼쪽을 향한다.",
+      "e.saul-body": "다리가 길고 컴퍼스처럼 크게 벌려 서 있다.",
+      "e.saul-throw-pose": "던진 팔이 주먹을 쥔 채 앞으로 뻗어 있고 휘둘러 내려오는 모습이 아니며, 체중이 앞발에 실린 것도 분명하지 않다.",
+      "e.proportion-saul": "다리가 몸통에 비해 길고 가늘어 비율이 어색하다.",
+      "e.proportion-david": "다리가 길고 가늘며 머리가 상대적으로 커 보인다.",
+      "e.proportion-pair": "사울이 다윗보다 머리 하나쯤 큰 정도로 자연스럽다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 12.521,
+       "input": 4,
+       "output": 1558,
+       "cache_read": 46850,
+       "cache_create": 11817,
+       "cost_usd": 0.067541,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "틀림",
+      "e.david-youth": "틀림",
+      "e.wall": "틀림",
+      "e.lyre": "틀림",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.composition": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "틀림",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "틀림",
+      "e.saul-throw-pose": "틀림",
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음"
+     },
+     "reasons": {
+      "e.moment": "다윗이 몸을 비틀지 않고 그냥 서 있고, 창은 이미 머리 위를 지나 벽에 거의 닿았다.",
+      "e.spear-air": "창 하나가 두 사람 사이 허공에 떠 있다.",
+      "e.saul-empty": "사울의 두 주먹이 모두 비어 있다.",
+      "e.saul-throw": "팔을 다윗 쪽으로 뻗고 앞으로 기운 자세다.",
+      "e.saul-age": "머리와 수염이 회색이고 관은 없지만, 70세로 보이는 깊은 주름이 약하다.",
+      "e.david-youth": "머리 위에 흐릿한 회색 후광 같은 얼룩이 있어 짧은 곱슬머리가 깔끔하게 보이지 않는다.",
+      "e.wall": "다윗이 벽에서 떨어져 서 있어 벽 바로 앞이 아니다.",
+      "e.lyre": "지판과 긴 목이 달린 류트 모양 악기라 수금이 아니다.",
+      "e.tunic": "무릎 길이 튜닉에 맨다리다.",
+      "e.face-each": "두 사람이 서로를 향한다.",
+      "e.room": "소박한 돌벽 방 안이다.",
+      "e.guard": "머리 위 얼룩과 창 촉 모양이 이상하다. 창 뒤끝이 둔한 마개 모양이다.",
+      "e.composition": "두 인물의 키가 화면 높이 절반을 넘는다.",
+      "e.saul-costume": "무릎 길이 튜닉에 가죽 띠를 맸고 맨다리다.",
+      "e.dodge-read": "다윗이 몸을 숙이거나 비틀지 않고 서 있다. 창은 머리 위 높은 곳을 지나 피함이 다윗의 동작으로 보이지 않는다.",
+      "e.spear-shape": "촉이 큰 잎 모양이 아니라 화살촉이나 작살처럼 갈라진 모양이다.",
+      "e.lyre-held": "두 손으로 몸에 붙여 들었다.",
+      "e.spear-direction": "촉이 화면 왼쪽을 향하고 뒤끝은 사울 쪽에 있다.",
+      "e.saul-body": "다리를 컴퍼스처럼 크게 벌리고 서 있다.",
+      "e.saul-throw-pose": "팔이 주먹을 쥐고 앞으로 뻗은 채 정지해 있어 휘둘러 내려오는 모습이 아니다. 체중도 굽힌 앞발에 실리지 않았다.",
+      "e.proportion-saul": "머리가 몸통에 비해 작고 다리가 길고 가늘어 비율이 어색하다.",
+      "e.proportion-david": "비율이 자연스럽다.",
+      "e.proportion-pair": "사울이 다윗보다 머리 하나쯤 크다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 13.629,
+       "input": 4,
+       "output": 1773,
+       "cache_read": 58667,
+       "cache_create": 0,
+       "cost_usd": 0.0236047,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "틀림",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "틀림",
+      "e.lyre": "틀림",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.composition": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "틀림",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "틀림",
+      "e.saul-throw-pose": "틀림",
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음"
+     },
+     "reasons": {
+      "e.moment": "창이 다윗 머리 위 높이로 날아가지만 다윗은 비틀거나 숙이지 않고 그냥 서서 연주하고 있어 피하는 순간이 아니다.",
+      "e.spear-air": "창 하나가 허공에 떠 있지만 사울 손에서 멀리 떨어져 있어 사울과 다윗 사이라기보다 벽 쪽에 치우쳐 있다. 그래도 허공의 창으로는 맞다.",
+      "e.saul-empty": "두 손 모두 비어 있고 주먹만 쥐고 있다.",
+      "e.saul-throw": "팔을 앞으로 뻗었으나 주먹을 쥔 채 몸이 뒤로 젖혀 있어 던진 뒤 몸이 앞으로 나간 자세가 아니다.",
+      "e.saul-age": "회색 머리와 회색 수염, 주름이 보이고 관은 없다.",
+      "e.david-youth": "수염 없는 청년이고 짧은 검은 곱슬머리에 머리쓰개는 없다. 머리 둘레에 흐릿한 후광 같은 얼룩이 있으나 청년으로는 맞다.",
+      "e.wall": "다윗은 벽에서 한참 떨어져 서 있고 벽 바로 앞이 아니다. 돌벽은 왼쪽 모서리에만 있다.",
+      "e.lyre": "지판과 목이 달린 류트 모양 악기로 수금이 아니다.",
+      "e.tunic": "무릎 길이 튜닉에 맨다리다.",
+      "e.face-each": "다윗은 오른쪽을, 사울은 왼쪽을 향한다.",
+      "e.room": "돌 모서리와 바닥이 있는 소박한 실내다.",
+      "e.guard": "다윗 머리 둘레의 흐릿한 얼룩이 두 겹처럼 보이고, 사울 팔이 부자연스럽다. 확실히 깨끗하다고 보기 어렵다.",
+      "e.composition": "다윗의 키가 화면 높이의 절반 정도로 경계에 있고, 빈 벽이 화면 대부분을 차지한다.",
+      "e.dodge-read": "다윗이 숙이거나 비틀지 않고 서 있어 창이 비켜 지나가는 것이 분명하지 않다. 창이 머리 위를 지나가는 것은 우연처럼 보인다.",
+      "e.spear-shape": "촉이 화살촉 같은 갈래 모양으로 큰 잎 모양 촉이 아니고, 뒤끝에 쇠 물미도 있다.",
+      "e.lyre-held": "두 손으로 몸에 붙여 들고 있다.",
+      "e.spear-direction": "큰 촉이 화면 왼쪽을 향하고 뒤끝이 오른쪽에 있다.",
+      "e.saul-body": "다리를 컴퍼스처럼 크게 벌려 서 있고 다리가 길고 가늘다.",
+      "e.saul-throw-pose": "던진 팔이 주먹을 쥔 채 앞으로 뻗어 있고 몸통은 오히려 뒤로 기울었다. 앞발에 체중이 실리지 않았다.",
+      "e.proportion-saul": "다리가 길고 가늘며 몸통에 비해 어색하고 머리가 작아 보인다.",
+      "e.proportion-david": "비율이 자연스럽다.",
+      "e.proportion-pair": "사울이 다윗보다 머리 하나쯤 크다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 13.781,
+       "input": 4,
+       "output": 1679,
+       "cache_read": 58667,
+       "cache_create": 0,
+       "cost_usd": 0.0226647,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "틀림",
+      "e.saul-age": "틀림",
+      "e.david-youth": "틀림",
+      "e.wall": "틀림",
+      "e.lyre": "틀림",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.composition": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "틀림",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "틀림",
+      "e.saul-throw-pose": "틀림",
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음"
+     },
+     "reasons": {
+      "e.moment": "창이 다윗 머리 위로 지나가긴 하나 다윗은 비틀지 않고 서 있어 피하는 순간으로 읽히지 않음. 창은 사울 손에서 멀리 떨어져 벽에 거의 닿음.",
+      "e.spear-air": "창 하나가 두 사람 사이 허공에 떠 있음.",
+      "e.saul-empty": "두 손 모두 빈 주먹임.",
+      "e.saul-throw": "팔을 앞으로 뻗었으나 몸통이 곧게 서 있고 앞으로 내밀지 않아 방금 던진 자세로 보기 어려움. 주먹을 쥔 채 뻗은 모습임.",
+      "e.saul-age": "머리와 수염은 회색이나 얼굴 주름이 깊지 않고 70세로 보기에는 젊음. 확실하지 않아 틀림 처리.",
+      "e.david-youth": "머리 둘레에 회색 후광 같은 얼룩이 있고 머리가 작은 소년처럼 보여 청년으로 분명하지 않음.",
+      "e.wall": "다윗이 벽에서 떨어져 있고 벽을 등지지 않음. 왼쪽 돌벽은 옆면이고 그 앞 평평한 벽 앞에 서 있음.",
+      "e.lyre": "지판과 긴 목이 있는 류트 모양 악기임.",
+      "e.tunic": "무릎 길이 튜닉에 맨다리임.",
+      "e.face-each": "서로를 향함.",
+      "e.room": "돌벽과 소박한 방 안임.",
+      "e.guard": "다윗 머리 주위에 회색 번짐이 있고 창 촉이 이상하게 생김.",
+      "e.composition": "두 인물이 화면 높이의 절반을 넘음.",
+      "e.saul-costume": "무릎 길이 튜닉, 가죽 띠, 맨다리임.",
+      "e.dodge-read": "다윗이 몸을 숙이거나 비틀지 않고 곧게 서 있음. 창이 머리 위로 지나가긴 하나 피하는 동작이 분명하지 않음.",
+      "e.spear-shape": "촉이 잎 모양이 아니라 화살촉처럼 뾰족하게 갈라진 형태이고 뒤에 쇠 물미가 있음. 큰 잎 모양 촉이 아님.",
+      "e.lyre-held": "두 손으로 몸에 붙여 들고 있음.",
+      "e.spear-direction": "촉이 왼쪽 다윗과 벽 쪽을 향함.",
+      "e.saul-body": "다리를 컴퍼스처럼 크게 벌리고 서 있음.",
+      "e.saul-throw-pose": "던진 팔이 주먹을 쥔 채 앞으로 뻗어 있고 몸통이 곧게 서 있어 체중이 앞발에 실린 모습이 아님.",
+      "e.proportion-saul": "머리가 몸통에 비해 작아 보이고 다리가 길고 몸통이 큼.",
+      "e.proportion-david": "비율이 자연스러움.",
+      "e.proportion-pair": "사울이 다윗보다 머리 하나 이상 크지만 거인처럼 보일 정도는 아님."
+     }
+    }
+   }
+  }
+ },
+ "edit": {
+  "5": [
+   {
+    "end": "back",
+    "src": "f4/s5.png",
+    "crop": [
+     251,
+     6,
+     304
+    ],
+    "box": [
+     271,
+     125,
+     535,
+     192
+    ],
+    "prompt": "Remove the large metal spearhead from the right end of the wooden spear shaft, so the right end is only a small iron cap, much thinner than a spearhead. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "status": "ok",
+    "sec": 42.1
+   },
+   {
+    "end": "front",
+    "src": "f4e/s5-back.png",
+    "crop": [
+     89,
+     57,
+     202
+    ],
+    "box": [
+     109,
+     125,
+     271,
+     192
+    ],
+    "prompt": "Enlarge the iron spearhead at the left end of the wooden spear shaft into one large leaf-shaped iron point, a broad blade much wider than the shaft. Do not add any crossguard, wings or second blade. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "status": "ok",
+    "sec": 42.4
+   }
+  ]
+ }
+}

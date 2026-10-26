@@ -1,0 +1,148 @@
+{
+ "answers": {
+  "g:5": {
+   "S": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.525,
+       "input": 4,
+       "output": 279,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.045021200000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·세부가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.757,
+       "input": 4,
+       "output": 266,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.044891200000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감이 보이는 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·세부가 완성돼 있고 회색 덩어리는 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.929,
+       "input": 4,
+       "output": 275,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.044981200000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다.",
+      "s.no-blob": "인물과 물건 모두 얼굴·옷·질감이 갖춰져 있고, 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 6.202,
+       "input": 4,
+       "output": 507,
+       "cache_read": 44869,
+       "cache_create": 9836,
+       "cost_usd": 0.0489089,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "몸통이 술통처럼 불룩하고 다리가 짧고 굵으며 머리가 몸통에 비해 작아 보임",
+      "e.proportion-david": "머리가 몸에 비해 크고 소년처럼 보여 청년 비율이 아님",
+      "e.proportion-pair": "사울이 다윗보다 훨씬 커서 몸집이 두 배 가까이 되며 거인과 아이처럼 보임"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.284,
+       "input": 4,
+       "output": 474,
+       "cache_read": 44869,
+       "cache_create": 9835,
+       "cost_usd": 0.048574900000000004,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "몸통이 크고 불룩하며 머리가 작아 보이고 다리가 짧고 굵음",
+      "e.proportion-david": "머리가 몸에 비해 큰 편이고 아이처럼 보여 청년 비율이 분명하지 않음",
+      "e.proportion-pair": "사울이 다윗의 두 배 이상으로 커서 거인과 아이처럼 보임"
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 6.511,
+       "input": 4,
+       "output": 494,
+       "cache_read": 44869,
+       "cache_create": 9836,
+       "cost_usd": 0.0487789,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.proportion-saul": "틀림",
+      "e.proportion-david": "틀림",
+      "e.proportion-pair": "틀림"
+     },
+     "reasons": {
+      "e.proportion-saul": "몸통이 불룩하고 술통 같다. 머리는 몸통에 비해 작아 보이고, 다리는 짧고 굵다.",
+      "e.proportion-david": "머리가 몸에 비해 큰 편이고 몸이 어린아이처럼 작다. 청년 비율로 분명히 확인되지 않는다.",
+      "e.proportion-pair": "사울이 다윗보다 훨씬 크고 몸집도 두세 배로 부풀어 보여서 거인과 아이 같다. 머리 하나 차이가 아니다."
+     }
+    }
+   }
+  }
+ }
+}

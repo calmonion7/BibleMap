@@ -1,0 +1,225 @@
+{
+ "answers": {
+  "g:5": {
+   "S": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.876,
+       "input": 4,
+       "output": 274,
+       "cache_read": 44626,
+       "cache_create": 9432,
+       "cost_usd": 0.0449386,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴·옷·질감이 갖춰져 있고, 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 8.237,
+       "input": 4,
+       "output": 268,
+       "cache_read": 45798,
+       "cache_create": 8260,
+       "cost_usd": 0.040307800000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴, 옷, 질감이 그려져 있다. 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 9.648,
+       "input": 4,
+       "output": 286,
+       "cache_read": 45798,
+       "cache_create": 8260,
+       "cost_usd": 0.040487800000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사울, 다윗, 창, 수금, 의자 모두 얼굴·옷·질감이 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 12.835,
+       "input": 4,
+       "output": 1482,
+       "cache_read": 46485,
+       "cache_create": 11448,
+       "cost_usd": 0.06526850000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "틀림",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.composition": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "틀림",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "틀림",
+      "e.saul-body": "맞음",
+      "e.saul-throw-pose": "틀림"
+     },
+     "reasons": {
+      "e.moment": "창 촉이 오른쪽 사울 쪽을 향해 거꾸로 떠 있고, 다윗이 창길을 비켜 피하는 장면으로 읽히지 않음",
+      "e.saul-throw": "사울은 주먹 쥔 팔을 굽혀 달려오는 모습이라 던진 팔을 다윗 쪽으로 뻗은 자세가 아님",
+      "e.dodge-read": "창이 사울 쪽으로 향해 있어 다윗을 향해 날아와 비켜 지나가는 모습이 분명하지 않음",
+      "e.spear-shape": "촉이 잎 모양이 아니라 화살촉처럼 미늘 달린 모양임",
+      "e.spear-direction": "큰 쇠 촉이 화면 오른쪽 사울 쪽을 향하고 뒤끝이 다윗 쪽에 있어 거꾸로임",
+      "e.saul-throw-pose": "던진 팔이 휘둘러 내려오는 꼴이 아니라 달리는 자세이며 몸통도 앞으로 기울지 않음"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 15.314,
+       "input": 4,
+       "output": 1609,
+       "cache_read": 47814,
+       "cache_create": 10119,
+       "cost_usd": 0.0613554,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "틀림",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.composition": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "틀림",
+      "e.saul-body": "맞음",
+      "e.saul-throw-pose": "틀림"
+     },
+     "reasons": {
+      "e.moment": "창 촉이 오른쪽(사울 쪽)을 향해 거꾸로 날아가는 모양이라 사울이 다윗에게 던진 순간으로 읽히지 않음",
+      "e.saul-throw": "사울이 두 주먹을 쥐고 달리는 자세임. 던진 팔을 다윗 쪽으로 뻗지 않았음",
+      "e.spear-shape": "촉이 잎 모양이 아니라 미늘 달린 화살촉 모양이고, 뒤끝에 쇠 장식 마디가 있음",
+      "e.spear-direction": "큰 쇠 촉이 화면 오른쪽(사울 쪽)을 향하고 뒤끝이 왼쪽(다윗 쪽)에 있음",
+      "e.saul-throw-pose": "던진 팔이 휘둘러 내려오는 모습이 아니라 달리는 자세임. 몸통이 앞으로 기울지 않았음"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 18.659,
+       "input": 4,
+       "output": 1934,
+       "cache_read": 47814,
+       "cache_create": 10119,
+       "cost_usd": 0.0646054,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "틀림",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "틀림",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.composition": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "틀림",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "틀림",
+      "e.saul-body": "맞음",
+      "e.saul-throw-pose": "틀림"
+     },
+     "reasons": {
+      "e.moment": "창 촉이 오른쪽(사울 쪽)을 향해 거꾸로 떠 있고, 다윗은 비틀어 피하지 않고 창을 올려다봄",
+      "e.spear-air": "창이 두 사람 사이가 아니라 다윗 머리 옆 왼쪽에 치우쳐 있고 방향도 맞지 않음",
+      "e.saul-empty": "두 손 모두 주먹만 쥐고 빈손",
+      "e.saul-throw": "던진 팔을 뻗지 않았고 달리는 자세임",
+      "e.saul-age": "회색 머리와 수염, 주름, 관 없음",
+      "e.david-youth": "수염 없고 짧은 검은 곱슬머리의 청년",
+      "e.wall": "돌벽에 등을 대고 섬",
+      "e.lyre": "작은 나무 수금",
+      "e.tunic": "무릎 길이 튜닉에 맨다리",
+      "e.face-each": "다윗은 오른쪽, 사울은 왼쪽을 향함",
+      "e.room": "거친 돌벽의 소박한 실내",
+      "e.guard": "눈에 띄는 결함 없음",
+      "e.composition": "두 인물이 화면 높이의 절반 넘게 큼",
+      "e.saul-costume": "무릎 길이 튜닉에 가죽 띠, 맨다리",
+      "e.dodge-read": "다윗이 창길 옆에 서서 올려다볼 뿐 몸을 숙이거나 비틀어 피하는 모습이 아님",
+      "e.spear-shape": "촉이 큰 잎 모양이 아니라 갈고리 달린 화살촉 모양임",
+      "e.lyre-held": "두 손으로 몸에 붙여 듦",
+      "e.spear-direction": "큰 촉이 오른쪽(사울 쪽), 뒤끝이 왼쪽에 있어 거꾸로임",
+      "e.saul-body": "튼튼한 체형으로 비율이 자연스러움",
+      "e.saul-throw-pose": "던진 팔이 휘둘러 내려오는 모습이 아니라 달려가는 모습임"
+     }
+    }
+   }
+  }
+ },
+ "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. the inside of a plain room in Saul's house at Gibeah, walls of rough uneven stone blocks all around, a bare wall behind David, a simple wooden stool on the floor. On the left: an ancient Israelite young man, a commander, about 18, smooth youthful face, no lines, lean youthful shoulders, slim straight torso, tight dark curls close to the skull, hair covering the whole head, no headwear, a startled face, standing with his back against the stone wall, bending low and ducking his head, twisting his body aside out of the path of the flying spear, clutching a small wooden lyre against his chest with both hands, a hollow wooden sound box with two curved arms joined by a crossbar at the top, strings running up from the box to the crossbar, no neck and no fingerboard, in a short-sleeved knee-length undyed tan wool tunic covering his chest and shoulders, with a leather belt, his bare legs showing below the knee, looking toward the tall king on the right, facing toward the right edge of the picture. On the right: an ancient Israelite man, a king, about 70, a deeply wrinkled old face, lined forehead and cheeks, tall of stature, close-trimmed grey-streaked beard, jawline visible, broad shoulders, thick barrel torso, short greying hair cut close, hair covering the whole head, no headwear, a wild, raving face, eyes wide and fixed on David, having just hurled his spear, his empty throwing arm swinging forward and down across his body, his hand loosely curled, his weight thrown onto his bent front leg, in a knee-length short-sleeved dark brown wool tunic with a plain leather belt, his bare shins showing, looking toward the youth on the left, facing toward the left edge of the picture. A spear flies through the air across the room from Saul toward David and the wall behind him, a straight wooden shaft with one large leaf-shaped iron point at the front and a small iron cap on the back end, much smaller than the point, no crossguard, its iron point on the left end nearest David and its butt end on the right end nearest Saul, and David ducks and twists aside out of its path so that it flies point-first toward the wall just above his ducked head.",
+ "secs": [
+  74.0
+ ]
+}

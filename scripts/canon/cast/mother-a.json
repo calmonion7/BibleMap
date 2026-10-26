@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "mother-a",
   "names": [
     "참 어머니(두 여인 중 산 아이의 어머니)"
@@ -10,6 +10,7 @@
   "era": "an ancient Israelite",
   "age": "young woman",
   "sex": "female",
+  "role": "mother",
   "hair": "dark braided hair",
   "beard": "none",
   "headwear": "none",
@@ -19,13 +20,7 @@
     "dull red",
     "tan"
   ],
-  "propCandidates": [
-    {
-      "prop": "an infant",
-      "verse": "왕상 3:26",
-      "ko": "산 아들"
-    }
-  ],
+  "propCandidates": [],
   "neg": [
     "crown",
     "fine jewelry",
@@ -35,13 +30,59 @@
     "kneeling, full body, side view facing left, pleading with arms out",
     "kneeling, full body, facing right, reaching out with both hands"
   ],
+  "card": {
+    "heightRel": "short",
+    "ageBand": {
+      "class": "young",
+      "text": "in her 20s, tired face"
+    },
+    "beardVolume": {
+      "class": "none",
+      "text": "없음"
+    },
+    "silhouette": {
+      "class": "slight",
+      "text": "slight narrow shoulders, thin arms"
+    },
+    "headOutline": {
+      "class": "shawl",
+      "text": "plain brown shawl over a dark braid"
+    },
+    "costumeColor": {
+      "class": "undyed",
+      "text": "undyed plain wool robe, brown cloth belt"
+    }
+  },
+  "face": {
+    "faceShape": "round soft face",
+    "eyes": "wide dark eyes",
+    "nose": "small nose",
+    "mouth": "full lips",
+    "skin": "tanned skin",
+    "brows": "thin dark brows",
+    "marks": "none"
+  },
   "_why": {
-    "age": "본문 밖 · 저작자 정함(두 인물 구분용)",
-    "build": "본문 밖 · 저작자 정함(두 인물 구분용)",
-    "hair": "본문 밖 · 저작자 정함(두 인물 구분용)",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함(두 인물 구분용)",
-    "costume": "왕상 3:26 「산 아이를 저에게 주고 죽이지 마옵소서」(세부는 본문 밖 · 저작자 정함, 두 인물 구분용)"
+    "age": "[저작](두 여인 구분용 젊은 여인, 구절은 나이를 말하지 않음)",
+    "build": "[저작](두 여인 구분용 가는 체격, 구절은 체격을 말하지 않음)",
+    "hair": "[저작](두 여인 구분용 땋은 검은 머리, 구절은 머리털을 말하지 않음)",
+    "beard": "[저작](여성 인물이라 수염 없음)",
+    "headwear": "[저작](두 여인 구분용 맨머리, 구절은 쓴 것을 말하지 않음)",
+    "costume": "[저작](두 여인 구분용 시대 복식 고증 — 표백 안 한 모직 겉옷; 왕상 3:26 「산 아들을 저에게 주시고 아무쪼록 죽이지 마옵소서」는 참 어머니 식별만 말하고 복식은 말하지 않음)",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[저작](역표 동석 인물과 구분용)",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](29명 전체 구별 — 소년 다윗과 갈림. 성인 여성 머리 가림은 시대 고증)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "face.faceShape": "[저작](얼굴 구분용)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[직접] 왕상 3:26 「그 산 아들의 어미되는 계집이」"
   },
   "plate": {
     "seed": 11,

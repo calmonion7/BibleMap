@@ -1,0 +1,516 @@
+{
+ "answers": {
+  "g:7": {
+   "S": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 24.889,
+       "input": 4,
+       "output": 278,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.0450324,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴, 옷, 세부가 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 25.141,
+       "input": 4,
+       "output": 283,
+       "cache_read": 53110,
+       "cache_create": 1174,
+       "cost_usd": 0.012845,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴, 옷, 세부가 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 25.443,
+       "input": 4,
+       "output": 280,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.045052400000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자 모두 얼굴·옷·형태가 완성돼 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 25.421,
+       "input": 4,
+       "output": 279,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.0450424,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 그린 동화풍 그림이다.",
+      "s.no-blob": "다윗, 사울, 창, 의자, 수금이 모두 얼굴·옷·세부가 있고 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 27.026,
+       "input": 4,
+       "output": 275,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0081864,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 그린 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자 모두 얼굴·옷·모양이 갖춰져 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 29.952,
+       "input": 4,
+       "output": 873,
+       "cache_read": 46847,
+       "cache_create": 8388,
+       "cost_usd": 0.0469747,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-torso-leg": "맞음",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.spear-uniform": "자루 가운데쯤에서 매끈한 부분이 거친 나뭇결 부분으로 바뀌어 이음매가 보인다.",
+      "e.spear-tip-attached": "앞 촉이 얇고 납작한 마름모꼴이라 오려 붙인 스티커처럼 보이고, 자루에 끼워진 두께가 느껴지지 않는다.",
+      "e.spear-back-cap": "뒤끝이 앞 촉처럼 뾰족한 작은 촉 모양이고, 짧고 뭉툭한 물미가 아니다.",
+      "e.saul-torso-leg": "몸통은 어깨에서 허리띠까지 약 140픽셀이고, 다리는 엉덩이에서 발까지 더 길다.",
+      "e.saul-no-stick": "사울 곁에 아무도 쥐지 않은 막대나 지팡이가 붙어 있거나 서 있지 않다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 31.244,
+       "input": 4,
+       "output": 929,
+       "cache_read": 46573,
+       "cache_create": 8662,
+       "cost_usd": 0.048603299999999995,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-torso-leg": "맞음",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.spear-uniform": "자루 가운데쯤에서 색과 결이 바뀌는 이음매가 보인다. 앞쪽은 매끈한 밝은 막대이고 뒤쪽은 거친 결이다.",
+      "e.spear-tip-attached": "앞 촉이 작고 납작한 마름모처럼 보여서, 자루에 끼워진 두께 있는 쇠 촉이라고 분명히 확인되지 않는다.",
+      "e.spear-back-cap": "뒤끝이 앞 촉과 같은 뾰족한 작은 촉 모양이다. 짧고 뭉툭한 물미가 아니다.",
+      "e.saul-torso-leg": "몸통(어깨~허리띠)이 다리(엉덩이~발)보다 짧다.",
+      "e.saul-no-stick": "사울 곁에 붙어 있거나 서 있는 막대는 없다. 창은 허공에 날아가는 중이다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 35.945,
+       "input": 4,
+       "output": 952,
+       "cache_read": 53902,
+       "cache_create": 1332,
+       "cost_usd": 0.0202462,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림",
+      "e.saul-torso-leg": "맞음",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.spear-uniform": "자루 중간(약 x=597)에서 앞쪽 밝은 마디와 뒤쪽 어두운 결로 색과 결이 바뀌는 이음매가 보임",
+      "e.spear-tip-attached": "왼쪽 촉은 중앙 능선과 음영이 있고 자루 끝 고리에 끼워진 쇠 촉으로 보임. 다만 작아서 확신은 약함",
+      "e.spear-back-cap": "오른쪽 뒤끝이 앞 촉처럼 뾰족한 은색 촉이라 짧고 뭉툭한 물미가 아님",
+      "e.saul-torso-leg": "어깨에서 허리띠까지가 엉덩이에서 발까지보다 짧음",
+      "e.saul-no-stick": "사울 곁에 아무도 쥐지 않은 막대는 없음"
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 7.283,
+       "input": 4,
+       "output": 776,
+       "cache_read": 53902,
+       "cache_create": 1174,
+       "cost_usd": 0.0178542,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-torso-leg": "맞음",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.spear-uniform": "자루 가운데쯤(약 x=597)에서 왼쪽은 매끈하고 밝고, 오른쪽은 더 어둡고 결이 거칠어 색과 결이 바뀌는 이음매가 보인다.",
+      "e.spear-tip-attached": "앞 촉이 작고 납작한 마름모꼴이라 오려 붙인 스티커처럼 보이고, 자루에 끼워진 두께 있는 쇠 촉이라고 분명히 확인되지 않는다.",
+      "e.spear-back-cap": "뒤끝이 앞 촉처럼 뾰족한 작은 촉 모양이라 짧고 뭉툭한 물미로 보이지 않는다.",
+      "e.saul-torso-leg": "몸통(어깨~허리띠)이 다리(엉덩이~발)보다 짧아 비율이 맞다.",
+      "e.saul-no-stick": "사울 곁에 아무도 쥐지 않은 막대나 지팡이는 보이지 않는다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 8.235,
+       "input": 4,
+       "output": 836,
+       "cache_read": 55235,
+       "cache_create": 0,
+       "cost_usd": 0.0138915,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림",
+      "e.saul-torso-leg": "맞음",
+      "e.saul-no-stick": "맞음"
+     },
+     "reasons": {
+      "e.spear-uniform": "자루 가운데쯤에서 앞쪽은 매끈하고 뒤쪽은 거칠게 결이 달라져 이음매처럼 보인다.",
+      "e.spear-tip-attached": "앞 촉은 두께와 음영이 있는 쇠 촉이고 자루에 끼워진 모양이다. 오려 붙인 스티커처럼 보이지 않는다.",
+      "e.spear-back-cap": "뒤끝이 앞 촉처럼 작고 뾰족한 촉 모양이다. 짧고 뭉툭한 덮개가 아니다.",
+      "e.saul-torso-leg": "사울은 어깨에서 허리띠까지가 엉덩이에서 발까지보다 짧다.",
+      "e.saul-no-stick": "사울 곁에 쥐지 않은 막대나 지팡이는 없다."
+     }
+    }
+   }
+  },
+  "g:5": {
+   "S": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.519,
+       "input": 4,
+       "output": 283,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.04508240000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자, 벽 모두 얼굴·옷·질감이 갖춰져 있고 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.7,
+       "input": 4,
+       "output": 278,
+       "cache_read": 44844,
+       "cache_create": 9440,
+       "cost_usd": 0.0450324,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자, 벽 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.17,
+       "input": 4,
+       "output": 280,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0082364,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 드러나는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·질감이 갖춰져 있고 회색 덩어리나 미완성 실루엣이 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 4.298,
+       "input": 4,
+       "output": 272,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.008156400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색의 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 4.731,
+       "input": 4,
+       "output": 278,
+       "cache_read": 54284,
+       "cache_create": 0,
+       "cost_usd": 0.0082164,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·질감이 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.264,
+       "input": 4,
+       "output": 581,
+       "cache_read": 46847,
+       "cache_create": 8388,
+       "cost_usd": 0.0440547,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림",
+      "e.saul-torso-leg": "맞음",
+      "e.saul-no-stick": "틀림"
+     },
+     "reasons": {
+      "e.spear-uniform": "자루 앞쪽에 쇠 고리나 이음매가 보이고 그 앞뒤로 색과 결이 달라 보임",
+      "e.spear-tip-attached": "앞 촉에 두께와 음영이 있어 끼워진 쇠 촉으로 보임",
+      "e.spear-back-cap": "뒤끝도 앞 촉처럼 뾰족한 촉 모양이라 뭉툭한 물미가 아님",
+      "e.saul-torso-leg": "몸통(어깨에서 허리띠까지)이 다리보다 짧음",
+      "e.saul-no-stick": "사울 다리 곁에 아무도 쥐지 않은 막대가 세로로 서 있음"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.994,
+       "input": 4,
+       "output": 628,
+       "cache_read": 46847,
+       "cache_create": 8388,
+       "cost_usd": 0.0445247,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-torso-leg": "맞음",
+      "e.saul-no-stick": "틀림"
+     },
+     "reasons": {
+      "e.spear-uniform": "자루 가운데에 금속 고리 같은 이음매가 있고 앞쪽과 뒤쪽의 색이 달라 보인다.",
+      "e.spear-tip-attached": "앞 촉이 납작한 마름모꼴이라 오려 붙인 스티커처럼 보인다.",
+      "e.spear-back-cap": "뒤끝이 앞 촉처럼 뾰족한 촉 모양이고 뭉툭한 물미가 아니다.",
+      "e.saul-torso-leg": "몸통이 다리보다 짧아 보인다. 튜닉이 무릎 위까지 내려오고 다리가 길게 드러난다.",
+      "e.saul-no-stick": "사울의 오른쪽 다리 곁에 아무도 쥐지 않은 가는 막대가 바닥에 기대어 서 있다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 5.863,
+       "input": 4,
+       "output": 617,
+       "cache_read": 55235,
+       "cache_create": 0,
+       "cost_usd": 0.0117015,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-torso-leg": "맞음",
+      "e.saul-no-stick": "틀림"
+     },
+     "reasons": {
+      "e.spear-uniform": "촉 가까이에 금속 고리 이음매가 있고 자루 앞쪽 색(분홍)과 뒤쪽 색(주황 갈색)이 다름",
+      "e.spear-tip-attached": "앞 촉이 납작한 마름모 스티커처럼 보임",
+      "e.spear-back-cap": "뒤끝도 뾰족한 화살촉 모양이라 뭉툭한 물미가 아님",
+      "e.saul-torso-leg": "몸통이 다리보다 짧음",
+      "e.saul-no-stick": "사울 오른쪽 다리 곁에 아무도 쥐지 않은 막대가 서 있음"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.389,
+       "input": 4,
+       "output": 622,
+       "cache_read": 55235,
+       "cache_create": 0,
+       "cost_usd": 0.011751500000000002,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "맞음",
+      "e.spear-back-cap": "틀림",
+      "e.saul-torso-leg": "맞음",
+      "e.saul-no-stick": "틀림"
+     },
+     "reasons": {
+      "e.spear-uniform": "자루 앞쪽에 금속 고리가 있고 그 앞뒤로 색과 결이 다르다. 앞부분은 분홍빛이고 뒷부분은 주황빛이다.",
+      "e.spear-tip-attached": "앞 촉이 두께 있는 쇠 촉으로 보이고 스티커처럼 납작하지 않다.",
+      "e.spear-back-cap": "뒤끝이 뾰족한 촉처럼 생겼고 짧고 뭉툭한 물미가 아니다.",
+      "e.saul-torso-leg": "사울의 몸통은 튜닉 때문에 짧아 보이고 다리가 더 길다.",
+      "e.saul-no-stick": "사울 다리 옆 바닥에 아무도 쥐지 않은 가는 막대가 세워져 있다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 5.748,
+       "input": 4,
+       "output": 576,
+       "cache_read": 55235,
+       "cache_create": 0,
+       "cost_usd": 0.011291500000000001,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-uniform": "틀림",
+      "e.spear-tip-attached": "틀림",
+      "e.spear-back-cap": "틀림",
+      "e.saul-torso-leg": "맞음",
+      "e.saul-no-stick": "틀림"
+     },
+     "reasons": {
+      "e.spear-uniform": "자루 앞쪽에 쇠 고리 마디가 있고 앞뒤 색과 결이 달라 이음매로 보임",
+      "e.spear-tip-attached": "촉이 작고 납작한 마름모꼴이라 붙여 놓은 스티커처럼 보임",
+      "e.spear-back-cap": "뒤끝도 앞 촉처럼 뾰족한 촉 모양이고 뭉툭한 물미가 아님",
+      "e.saul-torso-leg": "몸통(어깨~허리띠)이 다리보다 짧음",
+      "e.saul-no-stick": "사울의 다리 옆에 아무도 쥐지 않은 막대가 서 있음"
+     }
+    }
+   }
+  }
+ }
+}

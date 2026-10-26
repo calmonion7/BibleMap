@@ -1,0 +1,220 @@
+{
+ "answers": {
+  "g:5": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.613,
+       "input": 4,
+       "output": 284,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.045071200000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금 모두 얼굴·옷·세부가 완성돼 있고 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.701,
+       "input": 4,
+       "output": 278,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.0450112,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 수금 모두 얼굴·옷·디테일이 완성돼 있고 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.024,
+       "input": 4,
+       "output": 279,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.045021200000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사울, 다윗, 수금, 창 모두 얼굴·옷·질감이 갖춰져 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 4.37,
+       "input": 4,
+       "output": 280,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.04503120000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색으로 그린 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금 모두 얼굴·옷·세부가 완성돼 있고, 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 4.302,
+       "input": 4,
+       "output": 287,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.04510120000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감이 드러나는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물 모두 얼굴과 옷이 완성돼 있고, 평평한 회색 덩어리나 미완성 실루엣은 없다. 창도 형태가 완성돼 있다."
+     }
+    }
+   },
+   "E": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.878,
+       "input": 4,
+       "output": 342,
+       "cache_read": 44688,
+       "cache_create": 9496,
+       "cost_usd": 0.0458808,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-throw-release": "틀림"
+     },
+     "reasons": {
+      "e.saul-throw-release": "던진 팔이 다윗 쪽으로 뻗었고 몸도 쏠려 있으나 손이 꽉 쥔 주먹이라 주먹을 내지르는 꼴로 보인다. 빈손이 펴진 투척 직후로 분명히 확인되지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.959,
+       "input": 4,
+       "output": 353,
+       "cache_read": 44688,
+       "cache_create": 9496,
+       "cost_usd": 0.0459908,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-throw-release": "맞음"
+     },
+     "reasons": {
+      "e.saul-throw-release": "창이 이미 날아가 빈손이 된 사울의 팔이 다윗 쪽으로 뻗었고 몸도 그쪽으로 쏠려 있다. 손은 주먹처럼 쥐었지만 던진 직후의 모양으로 읽힌다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.55,
+       "input": 4,
+       "output": 398,
+       "cache_read": 44688,
+       "cache_create": 9496,
+       "cost_usd": 0.046440800000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-throw-release": "맞음"
+     },
+     "reasons": {
+      "e.saul-throw-release": "창이 이미 날아가 사울의 던진 팔이 다윗 쪽으로 뻗어 있고 몸이 다윗 쪽으로 쏠려 있다. 두 팔을 벌려 막는 꼴도 멈춰 손짓도 아니다. 손이 주먹 모양이지만 창이 손을 떠난 빈손으로 읽혀 던진 직후의 자세로 본다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 4.217,
+       "input": 4,
+       "output": 357,
+       "cache_read": 54184,
+       "cache_create": 0,
+       "cost_usd": 0.008996400000000002,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-throw-release": "틀림"
+     },
+     "reasons": {
+      "e.saul-throw-release": "던진 팔이 다윗 쪽으로 뻗고 몸도 쏠려 있으나, 손이 꽉 쥔 주먹이라 주먹을 내지르는 꼴로 보인다. 빈손으로 막 던진 손이라고 분명히 확인되지 않는다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 4.681,
+       "input": 4,
+       "output": 383,
+       "cache_read": 54184,
+       "cache_create": 0,
+       "cost_usd": 0.009256400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.saul-throw-release": "틀림"
+     },
+     "reasons": {
+      "e.saul-throw-release": "사울의 팔이 다윗 쪽으로 뻗었고 창은 이미 날아갔으나, 손이 주먹을 쥔 채라 빈손으로 막 놓은 모양이 아니라 주먹을 내지르는 꼴로 읽힌다. 분명히 맞다고 확인되지 않아 틀림."
+     }
+    }
+   }
+  }
+ }
+}

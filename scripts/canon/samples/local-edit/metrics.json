@@ -1,0 +1,778 @@
+{
+ "scenes": {
+  "authored-david-nob-priests": {
+   "bases": {
+    "7": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s7.png",
+    "202": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s202.png"
+   },
+   "candidates": [
+    {
+     "id": "N1-b7-k1",
+     "stage": 1,
+     "arm": "N1",
+     "base": 7,
+     "seed": 1,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s7.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-nob-priests/N1-b7-k1.png",
+     "crop": [
+      440,
+      250,
+      380
+     ],
+     "box": [
+      445,
+      355,
+      810,
+      500
+     ],
+     "sec": 40.2
+    },
+    {
+     "id": "N1-b7-k2",
+     "stage": 1,
+     "arm": "N1",
+     "base": 7,
+     "seed": 2,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s7.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-nob-priests/N1-b7-k2.png",
+     "crop": [
+      440,
+      250,
+      380
+     ],
+     "box": [
+      445,
+      355,
+      810,
+      500
+     ],
+     "sec": 39.5
+    },
+    {
+     "id": "N1-b7-k3",
+     "stage": 1,
+     "arm": "N1",
+     "base": 7,
+     "seed": 3,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s7.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-nob-priests/N1-b7-k3.png",
+     "crop": [
+      440,
+      250,
+      380
+     ],
+     "box": [
+      445,
+      355,
+      810,
+      500
+     ],
+     "sec": 40.3
+    },
+    {
+     "id": "N2-b7-k1",
+     "stage": 1,
+     "arm": "N2",
+     "base": 7,
+     "seed": 1,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s7.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-nob-priests/N2-b7-k1.png",
+     "crop": [
+      440,
+      250,
+      380
+     ],
+     "box": [
+      445,
+      355,
+      810,
+      500
+     ],
+     "sec": 41.0
+    },
+    {
+     "id": "N2-b7-k2",
+     "stage": 1,
+     "arm": "N2",
+     "base": 7,
+     "seed": 2,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s7.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-nob-priests/N2-b7-k2.png",
+     "crop": [
+      440,
+      250,
+      380
+     ],
+     "box": [
+      445,
+      355,
+      810,
+      500
+     ],
+     "sec": 40.9
+    },
+    {
+     "id": "N2-b7-k3",
+     "stage": 1,
+     "arm": "N2",
+     "base": 7,
+     "seed": 3,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s7.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-nob-priests/N2-b7-k3.png",
+     "crop": [
+      440,
+      250,
+      380
+     ],
+     "box": [
+      445,
+      355,
+      810,
+      500
+     ],
+     "sec": 40.6
+    },
+    {
+     "id": "N1-b202-k1",
+     "stage": 1,
+     "arm": "N1",
+     "base": 202,
+     "seed": 1,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s202.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-nob-priests/N1-b202-k1.png",
+     "crop": [
+      430,
+      260,
+      380
+     ],
+     "box": [
+      435,
+      390,
+      810,
+      535
+     ],
+     "sec": 40.2
+    },
+    {
+     "id": "N1-b202-k2",
+     "stage": 1,
+     "arm": "N1",
+     "base": 202,
+     "seed": 2,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s202.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-nob-priests/N1-b202-k2.png",
+     "crop": [
+      430,
+      260,
+      380
+     ],
+     "box": [
+      435,
+      390,
+      810,
+      535
+     ],
+     "sec": 40.4
+    },
+    {
+     "id": "N1-b202-k3",
+     "stage": 1,
+     "arm": "N1",
+     "base": 202,
+     "seed": 3,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s202.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-nob-priests/N1-b202-k3.png",
+     "crop": [
+      430,
+      260,
+      380
+     ],
+     "box": [
+      435,
+      390,
+      810,
+      535
+     ],
+     "sec": 40.3
+    },
+    {
+     "id": "N2-b202-k1",
+     "stage": 1,
+     "arm": "N2",
+     "base": 202,
+     "seed": 1,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s202.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-nob-priests/N2-b202-k1.png",
+     "crop": [
+      430,
+      260,
+      380
+     ],
+     "box": [
+      435,
+      390,
+      810,
+      535
+     ],
+     "sec": 40.1
+    },
+    {
+     "id": "N2-b202-k2",
+     "stage": 1,
+     "arm": "N2",
+     "base": 202,
+     "seed": 2,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s202.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-nob-priests/N2-b202-k2.png",
+     "crop": [
+      430,
+      260,
+      380
+     ],
+     "box": [
+      435,
+      390,
+      810,
+      535
+     ],
+     "sec": 40.5
+    },
+    {
+     "id": "N2-b202-k3",
+     "stage": 1,
+     "arm": "N2",
+     "base": 202,
+     "seed": 3,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-nob-priests/base/s202.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-nob-priests/N2-b202-k3.png",
+     "crop": [
+      430,
+      260,
+      380
+     ],
+     "box": [
+      435,
+      390,
+      810,
+      535
+     ],
+     "sec": 40.2
+    }
+   ],
+   "labels1": {
+    "N2-b202-k1": "01",
+    "N1-b202-k3": "02",
+    "base-b7": "03",
+    "N1-b7-k1": "04",
+    "N2-b202-k3": "05",
+    "base-b202": "06",
+    "N1-b7-k2": "07",
+    "N1-b202-k1": "08",
+    "N1-b7-k3": "09",
+    "N2-b7-k1": "10",
+    "N2-b202-k2": "11",
+    "N2-b7-k3": "12",
+    "N2-b7-k2": "13",
+    "N1-b202-k2": "14"
+   },
+   "items1": {
+    "prop": {
+     "wrong": [
+      "base-b7"
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "moment": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "seam": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].identity": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].identity": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick1": {
+    "answer": "없음",
+    "id": null,
+    "memo": "대검으로 알고 있어 골리앗의검 일단 칼크기가 너무적고 모자기에 쌓여있는데 칼모양이 나야지"
+   },
+   "minutes1": 5.89,
+   "items": {
+    "prop": {
+     "wrong": [
+      "base-b7"
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "moment": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "seam": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].identity": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].identity": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "없음",
+    "id": null,
+    "memo": "대검으로 알고 있어 골리앗의검 일단 칼크기가 너무적고 모자기에 쌓여있는데 칼모양이 나야지"
+   }
+  },
+  "authored-david-gath-achish": {
+   "bases": {
+    "5": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s5.png",
+    "7": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s7.png"
+   },
+   "candidates": [
+    {
+     "id": "I-b5-k1",
+     "stage": 1,
+     "arm": "I",
+     "base": 5,
+     "seed": 1,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s5.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-gath-achish/I-b5-k1.png",
+     "crop": [
+      20,
+      120,
+      400
+     ],
+     "box": [
+      70,
+      140,
+      400,
+      505
+     ],
+     "sec": 39.9
+    },
+    {
+     "id": "I-b5-k2",
+     "stage": 1,
+     "arm": "I",
+     "base": 5,
+     "seed": 2,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s5.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-gath-achish/I-b5-k2.png",
+     "crop": [
+      20,
+      120,
+      400
+     ],
+     "box": [
+      70,
+      140,
+      400,
+      505
+     ],
+     "sec": 39.7
+    },
+    {
+     "id": "I-b5-k3",
+     "stage": 1,
+     "arm": "I",
+     "base": 5,
+     "seed": 3,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s5.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-gath-achish/I-b5-k3.png",
+     "crop": [
+      20,
+      120,
+      400
+     ],
+     "box": [
+      70,
+      140,
+      400,
+      505
+     ],
+     "sec": 40.3
+    },
+    {
+     "id": "G-b5-k1",
+     "stage": 1,
+     "arm": "G",
+     "base": 5,
+     "seed": 1,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s5.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-gath-achish/G-b5-k1.png",
+     "crop": [
+      20,
+      120,
+      400
+     ],
+     "box": [
+      70,
+      140,
+      400,
+      505
+     ],
+     "sec": 40.2
+    },
+    {
+     "id": "G-b5-k2",
+     "stage": 1,
+     "arm": "G",
+     "base": 5,
+     "seed": 2,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s5.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-gath-achish/G-b5-k2.png",
+     "crop": [
+      20,
+      120,
+      400
+     ],
+     "box": [
+      70,
+      140,
+      400,
+      505
+     ],
+     "sec": 40.2
+    },
+    {
+     "id": "G-b5-k3",
+     "stage": 1,
+     "arm": "G",
+     "base": 5,
+     "seed": 3,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s5.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-gath-achish/G-b5-k3.png",
+     "crop": [
+      20,
+      120,
+      400
+     ],
+     "box": [
+      70,
+      140,
+      400,
+      505
+     ],
+     "sec": 40.1
+    },
+    {
+     "id": "I-b7-k1",
+     "stage": 1,
+     "arm": "I",
+     "base": 7,
+     "seed": 1,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s7.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-gath-achish/I-b7-k1.png",
+     "crop": [
+      20,
+      120,
+      400
+     ],
+     "box": [
+      70,
+      140,
+      400,
+      505
+     ],
+     "sec": 40.5
+    },
+    {
+     "id": "I-b7-k2",
+     "stage": 1,
+     "arm": "I",
+     "base": 7,
+     "seed": 2,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s7.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-gath-achish/I-b7-k2.png",
+     "crop": [
+      20,
+      120,
+      400
+     ],
+     "box": [
+      70,
+      140,
+      400,
+      505
+     ],
+     "sec": 39.9
+    },
+    {
+     "id": "I-b7-k3",
+     "stage": 1,
+     "arm": "I",
+     "base": 7,
+     "seed": 3,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s7.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-gath-achish/I-b7-k3.png",
+     "crop": [
+      20,
+      120,
+      400
+     ],
+     "box": [
+      70,
+      140,
+      400,
+      505
+     ],
+     "sec": 40.3
+    },
+    {
+     "id": "G-b7-k1",
+     "stage": 1,
+     "arm": "G",
+     "base": 7,
+     "seed": 1,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s7.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-gath-achish/G-b7-k1.png",
+     "crop": [
+      20,
+      120,
+      400
+     ],
+     "box": [
+      70,
+      140,
+      400,
+      505
+     ],
+     "sec": 39.5
+    },
+    {
+     "id": "G-b7-k2",
+     "stage": 1,
+     "arm": "G",
+     "base": 7,
+     "seed": 2,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s7.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-gath-achish/G-b7-k2.png",
+     "crop": [
+      20,
+      120,
+      400
+     ],
+     "box": [
+      70,
+      140,
+      400,
+      505
+     ],
+     "sec": 39.6
+    },
+    {
+     "id": "G-b7-k3",
+     "stage": 1,
+     "arm": "G",
+     "base": 7,
+     "seed": 3,
+     "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gath-achish/base/s7.png",
+     "image": "/Users/calmonion/.local/biblemap-imggen/local-edit/authored-david-gath-achish/G-b7-k3.png",
+     "crop": [
+      20,
+      120,
+      400
+     ],
+     "box": [
+      70,
+      140,
+      400,
+      505
+     ],
+     "sec": 39.9
+    }
+   ],
+   "labels1": {
+    "G-b5-k2": "01",
+    "I-b5-k2": "02",
+    "G-b5-k3": "03",
+    "I-b7-k2": "04",
+    "G-b5-k1": "05",
+    "I-b7-k3": "06",
+    "I-b7-k1": "07",
+    "base-b7": "08",
+    "G-b7-k1": "09",
+    "I-b5-k1": "10",
+    "G-b7-k2": "11",
+    "G-b7-k3": "12",
+    "I-b5-k3": "13",
+    "base-b5": "14"
+   },
+   "items1": {
+    "figures[0].pose": {
+     "wrong": [],
+     "unsure": false,
+     "memo": "나무기둥인데 성벽옆 나무문 옆에기댄모습"
+    },
+    "figures[0].facing": {
+     "wrong": [
+      "G-b5-k2",
+      "G-b5-k3",
+      "G-b5-k1",
+      "base-b7",
+      "G-b7-k1",
+      "I-b5-k1",
+      "G-b7-k3",
+      "I-b5-k3",
+      "base-b5"
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].prop": {
+     "wrong": [
+      "G-b5-k2",
+      "I-b5-k2",
+      "G-b5-k3",
+      "I-b7-k2",
+      "G-b5-k1",
+      "I-b7-k3",
+      "I-b7-k1",
+      "base-b7",
+      "G-b7-k1",
+      "I-b5-k1",
+      "G-b7-k2",
+      "G-b7-k3",
+      "base-b5",
+      "I-b5-k3"
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "seam": {
+     "wrong": [
+      "G-b5-k2",
+      "G-b5-k3",
+      "G-b5-k1",
+      "G-b7-k1",
+      "G-b7-k2",
+      "G-b7-k3",
+      "I-b5-k2",
+      "I-b7-k2",
+      "I-b7-k3"
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].identity": {
+     "wrong": [
+      "I-b7-k3",
+      "I-b7-k2",
+      "I-b5-k2",
+      "I-b7-k1",
+      "G-b7-k2",
+      "G-b7-k3"
+     ],
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick1": {
+    "answer": "없음",
+    "id": null,
+    "memo": "잔상도 있고 나무기둥도 아니고 침도 안흘림"
+   },
+   "minutes1": 4.94,
+   "items": {
+    "figures[0].pose": {
+     "wrong": [],
+     "unsure": false,
+     "memo": "나무기둥인데 성벽옆 나무문 옆에기댄모습"
+    },
+    "figures[0].facing": {
+     "wrong": [
+      "G-b5-k2",
+      "G-b5-k3",
+      "G-b5-k1",
+      "base-b7",
+      "G-b7-k1",
+      "I-b5-k1",
+      "G-b7-k3",
+      "I-b5-k3",
+      "base-b5"
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].prop": {
+     "wrong": [
+      "G-b5-k2",
+      "I-b5-k2",
+      "G-b5-k3",
+      "I-b7-k2",
+      "G-b5-k1",
+      "I-b7-k3",
+      "I-b7-k1",
+      "base-b7",
+      "G-b7-k1",
+      "I-b5-k1",
+      "G-b7-k2",
+      "G-b7-k3",
+      "base-b5",
+      "I-b5-k3"
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "seam": {
+     "wrong": [
+      "G-b5-k2",
+      "G-b5-k3",
+      "G-b5-k1",
+      "G-b7-k1",
+      "G-b7-k2",
+      "G-b7-k3",
+      "I-b5-k2",
+      "I-b7-k2",
+      "I-b7-k3"
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].identity": {
+     "wrong": [
+      "I-b7-k3",
+      "I-b7-k2",
+      "I-b5-k2",
+      "I-b7-k1",
+      "G-b7-k2",
+      "G-b7-k3"
+     ],
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "없음",
+    "id": null,
+    "memo": "잔상도 있고 나무기둥도 아니고 침도 안흘림"
+   }
+  }
+ },
+ "sec": 964.3,
+ "human_minutes": {
+  "1": 8.16
+ }
+}

@@ -1,0 +1,167 @@
+{
+ "prompts": {
+  "A": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. the inside of a huge, deep, dark cave with dark brown-black rock walls and a low dark rock ceiling filling most of the picture, with the cave mouth only a small opening far away at the right edge; the light from it lights only the two men while the rest of the cave stays in deep darkness, dry rocky floor, and the faint dim silhouettes of David's men barely visible far back in the deep darkness on the left. Most of the picture is deep brown-black shadow: the cave interior around and behind them is very dark, and only a soft pool of light from the distant cave mouth falls on the two men. On the left: an ancient Israelite man, a commander, in his 20s, lean angular face, close-trimmed dark beard, jawline visible, lean wiry shoulders, narrow waist, dark curls close to the skull, hair covering the whole head, no headwear, a tense, hushed face with careful, intent eyes, creeping forward on his knees, one hand holding the hem of the king's cloak that lies on the ground, the other hand cutting it with a small knife, a dark wool tunic with a leather belt, looking toward the king on the right, facing toward the right edge of the picture. On the right: an ancient Israelite man, a king, in his 40s, deep forehead lines, close-trimmed dark beard, jawline visible, broad shoulders, thick barrel torso, short dark hair cut close, hair covering the whole head, no headwear, an unsuspecting, unguarded face in profile, looking toward the cave mouth, hunched down on the cave floor, facing toward the cave mouth, not looking back, his long cloak trailing on the ground behind him, a dark wool cloak, the king's robe, its hem trailing on the ground still whole and being cut at one corner by the man to the left, no crown, looking straight ahead toward the right edge of the picture, facing toward the right edge of the picture. Saul crouches looking toward the cave mouth and does not look back; David creeps up on his knees from the left darkness, also facing right, and cuts the corner of the cloak trailing on the ground; their eyes do not meet.",
+  "B": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. the inside of a huge, deep, dark cave with dark brown-black rock walls and a low dark rock ceiling filling most of the picture, with the cave mouth only a tiny distant opening at the far end of a long dark passage on the right; the light from it lights only the two men while the rest of the cave stays in deep darkness, dry rocky floor, and the faint dim silhouettes of David's men barely visible far back in the deep darkness on the left. Most of the picture is deep brown-black shadow: the cave interior around and behind them is very dark, and only a soft pool of light from the distant cave mouth falls on the two men. On the left: an ancient Israelite man, a commander, in his 20s, lean angular face, close-trimmed dark beard, jawline visible, lean wiry shoulders, narrow waist, dark curls close to the skull, hair covering the whole head, no headwear, a tense, hushed face with careful, intent eyes, creeping forward on his knees, one hand holding the hem of the king's cloak that lies on the ground, the other hand cutting it with a small knife, a dark wool tunic with a leather belt, looking toward the king on the right, facing toward the right edge of the picture. On the right: an ancient Israelite man, a king, in his 40s, deep forehead lines, close-trimmed dark beard, jawline visible, broad shoulders, thick barrel torso, short dark hair cut close, hair covering the whole head, no headwear, an unsuspecting, unguarded face in profile, looking toward the cave mouth, hunched down on the cave floor, facing toward the cave mouth, not looking back, his long cloak trailing on the ground behind him, a dark wool cloak, the king's robe, its hem trailing on the ground still whole and being cut at one corner by the man to the left, no crown, looking straight ahead toward the right edge of the picture, facing toward the right edge of the picture. Saul crouches looking toward the cave mouth and does not look back; David creeps up on his knees from the left darkness, also facing right, and cuts the corner of the cloak trailing on the ground; their eyes do not meet."
+ },
+ "tokens": {
+  "A": 492,
+  "B": 499
+ },
+ "done": {
+  "A": [
+   7,
+   11,
+   42,
+   23,
+   5,
+   101,
+   202,
+   303
+  ],
+  "B": [
+   7,
+   11,
+   42,
+   23,
+   5,
+   101,
+   202,
+   303
+  ]
+ },
+ "screens": {
+  "C-engedi": [
+   {
+    "n": 1,
+    "kind": "A",
+    "seed": 202
+   },
+   {
+    "n": 2,
+    "kind": "B",
+    "seed": 11
+   },
+   {
+    "n": 3,
+    "kind": "A",
+    "seed": 23
+   },
+   {
+    "n": 4,
+    "kind": "B",
+    "seed": 7
+   },
+   {
+    "n": 5,
+    "kind": "r2",
+    "seed": 202
+   },
+   {
+    "n": 6,
+    "kind": "r2",
+    "seed": 42
+   },
+   {
+    "n": 7,
+    "kind": "A",
+    "seed": 42
+   },
+   {
+    "n": 8,
+    "kind": "A",
+    "seed": 5
+   },
+   {
+    "n": 9,
+    "kind": "B",
+    "seed": 101
+   },
+   {
+    "n": 10,
+    "kind": "B",
+    "seed": 23
+   },
+   {
+    "n": 11,
+    "kind": "B",
+    "seed": 202
+   },
+   {
+    "n": 12,
+    "kind": "r2",
+    "seed": 23
+   },
+   {
+    "n": 13,
+    "kind": "A",
+    "seed": 101
+   },
+   {
+    "n": 14,
+    "kind": "B",
+    "seed": 42
+   },
+   {
+    "n": 15,
+    "kind": "A",
+    "seed": 11
+   },
+   {
+    "n": 16,
+    "kind": "r2",
+    "seed": 5
+   },
+   {
+    "n": 17,
+    "kind": "r2",
+    "seed": 303
+   },
+   {
+    "n": 18,
+    "kind": "A",
+    "seed": 7
+   },
+   {
+    "n": 19,
+    "kind": "r2",
+    "seed": 101
+   },
+   {
+    "n": 20,
+    "kind": "B",
+    "seed": 5
+   },
+   {
+    "n": 21,
+    "kind": "B",
+    "seed": 303
+   },
+   {
+    "n": 22,
+    "kind": "A",
+    "seed": 303
+   },
+   {
+    "n": 23,
+    "kind": "r2",
+    "seed": 7
+   },
+   {
+    "n": 24,
+    "kind": "r2",
+    "seed": 11
+   }
+  ],
+  "C-why-engedi": {
+   "screen_of": "C-engedi",
+   "keys": [
+    "style",
+    "bright",
+    "mouth",
+    "cloak",
+    "pose",
+    "etc"
+   ]
+  }
+ }
+}

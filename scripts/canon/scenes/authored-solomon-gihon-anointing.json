@@ -24,7 +24,9 @@
     {
       "what": "모든 백성 — 뒤편에 모여 따른다",
       "verse": "1:40",
-      "region": "crest_back"
+      "region": "crest_back",
+      "count": 1000,
+      "count_why": "[저작](「모든 백성이 왕을 따라 올라와서」 1:40 — 수 없음, 모든 백성이라 군중 1000 이상으로 어림)"
     }
   ],
   "figures": [
@@ -148,7 +150,7 @@
       "kind": "plate",
       "region": "zadok",
       "verse": "1:39",
-      "prompt": "an ancient Israelite middle-aged priest standing, gripping a horn tilted forward as if pouring oil, facing left.",
+      "prompt": "{cast:zadok}, standing, gripping a horn tilted forward as if pouring oil, facing left.",
       "neg": [
         "armour",
         "crown",
@@ -162,7 +164,7 @@
       "kind": "plate",
       "region": "solomon",
       "verse": "1:39",
-      "prompt": "an ancient Israelite young king kneeling, head bowed, gripping the corner of his robe with one hand, facing right.",
+      "prompt": "{cast:solomon}, kneeling, head bowed, gripping the corner of his robe with one hand, facing right.",
       "neg": [
         "armour",
         "helmet",

@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "absalom",
   "names": [
     "압살롬"
@@ -10,6 +10,7 @@
   "era": "an ancient Israelite",
   "age": "young prince",
   "sex": "male",
+  "role": "prince",
   "hair": "long dark hair",
   "beard": "none",
   "headwear": "none",
@@ -28,13 +29,59 @@
     "standing, full body, side view facing left",
     "riding, full body, facing right, crossing a river ford"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "young",
+      "text": "in his 20s, flawless face"
+    },
+    "beardVolume": {
+      "class": "none",
+      "text": "없음"
+    },
+    "silhouette": {
+      "class": "lean",
+      "text": "lean graceful build, long straight limbs"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, very heavy long dark hair to the shoulders"
+    },
+    "costumeColor": {
+      "class": "gold",
+      "text": "gold-trimmed fine robe, embroidered belt"
+    }
+  },
+  "face": {
+    "faceShape": "perfect oval face, clean jaw",
+    "eyes": "bright dark eyes",
+    "nose": "straight fine nose",
+    "mouth": "full red lips",
+    "skin": "clear fair skin",
+    "brows": "even arched dark brows",
+    "marks": "none"
+  },
   "_why": {
-    "age": "본문 밖 · 저작자 정함",
-    "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함(전승상 긴 머리, 본 절 범위 밖)",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식) — 삼하 17:24 「압살롬」"
+    "age": "[저작](반역기 청년 왕자 대표값 — 삼하 14:25 외모 칭찬과 맞춤)",
+    "build": "[저작](체격 기록 없어 직책 이미지의 대표값)",
+    "hair": "[직접] 삼하 14:26 「그 머리털이 무거우므로 년말마다 깎았으며」",
+    "beard": "[저작](수염 기록 없어 고대 근동 성인 남성 수염 관습 대표값)",
+    "headwear": "[저작](쓰개 기록 없어 맨머리 기본값)",
+    "costume": "[저작](시대 복식 고증 — 왕자 긴 수놓은 겉옷 대표값; 삼하 17:24 「압살롬」은 이름만 말함)",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[저작](역표 동석 인물과 구분용)",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[저작](29명 전체 구별 — 솔로몬·방패 든 자와 갈림)",
+    "card.headOutline": "[직접] 삼하 14:26 「그 머리털이 무거우므로 년말마다 깎았으며」",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "face.faceShape": "[저작](완벽한 달걀형은 정한 값; 삼하 14:25 「압살롬 같이 아름다움으로 크게 칭찬 받는 자가 없었으니」는 아름다움만 말함)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[직접] 삼하 14:25 「발바닥부터 정수리까지 흠이 없음이라」",
+    "role": "[추론] 삼하 13:1 「다윗의 아들 압살롬」 — 왕의 아들 → 왕자"
   },
   "plate": {
     "seed": 11,

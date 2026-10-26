@@ -2468,7 +2468,7 @@
    },
    {
     "word": "블레셋",
-    "count": 146,
+    "count": 147,
     "polarity": "neutral"
    },
    {
@@ -18312,6 +18312,11 @@
     "polarity": "positive"
    },
    {
+    "word": "블레셋",
+    "count": 289,
+    "polarity": "neutral"
+   },
+   {
     "word": "기도",
     "count": 289,
     "polarity": "neutral"
@@ -18319,11 +18324,6 @@
    {
     "word": "열조",
     "count": 289,
-    "polarity": "neutral"
-   },
-   {
-    "word": "블레셋",
-    "count": 288,
     "polarity": "neutral"
    },
    {

@@ -1,0 +1,3670 @@
+{
+ "scenes": [
+  {
+   "cond": "L1",
+   "scene": "gilgal",
+   "loras": [
+    "saul"
+   ],
+   "seed": 11,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s11.png",
+   "secs": null,
+   "active": null,
+   "heads": {
+    "saul": [
+     0.7446531747516832,
+     0.1256558380126953,
+     0.8648449496219033,
+     0.3127771339416504
+    ],
+    "samuel": [
+     0.1322684978183947,
+     0.24613696670532229,
+     0.2404213641819201,
+     0.4555604133605957
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "gilgal",
+   "loras": [
+    "saul"
+   ],
+   "seed": 42,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s42.png",
+   "secs": 68.5,
+   "active": [
+    "saul"
+   ],
+   "heads": {
+    "saul": [
+     0.6900184029027036,
+     0.14457403945922853,
+     0.8175842887476871,
+     0.3402796440124512
+    ],
+    "samuel": [
+     0.16113872277109245,
+     0.2663992285728455,
+     0.27682388456244217,
+     0.4837761759757996
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "gilgal",
+   "loras": [
+    "saul"
+   ],
+   "seed": 7,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s7.png",
+   "secs": 68.5,
+   "active": [
+    "saul"
+   ],
+   "heads": {
+    "saul": [
+     0.7517738844219007,
+     0.13608806681632996,
+     0.8613331945318925,
+     0.30035648894309996
+    ],
+    "samuel": [
+     0.14068990632107384,
+     0.19373019742965697,
+     0.25327028098859283,
+     0.42205456304550176
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "gilgal",
+   "loras": [
+    "saul"
+   ],
+   "seed": 23,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s23.png",
+   "secs": 68.5,
+   "active": [
+    "saul"
+   ],
+   "heads": {
+    "saul": [
+     0.7260139364945261,
+     0.16882818603515623,
+     0.8345665680734735,
+     0.32264736557006835
+    ],
+    "samuel": [
+     0.16584826770581698,
+     0.27691086769104,
+     0.2698081543571071,
+     0.4844170475006104
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "gilgal",
+   "loras": [
+    "saul"
+   ],
+   "seed": 5,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s5.png",
+   "secs": 68.6,
+   "active": [
+    "saul"
+   ],
+   "heads": {
+    "saul": [
+     0.7115577396593595,
+     0.14096305060386655,
+     0.8344012310630397,
+     0.31237582850456236
+    ],
+    "samuel": [
+     0.151584361728869,
+     0.2590781488418579,
+     0.2569619103481895,
+     0.4617044725418091
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "gilgal",
+   "loras": [
+    "saul"
+   ],
+   "seed": 101,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s101.png",
+   "secs": 68.5,
+   "active": [
+    "saul"
+   ],
+   "heads": {
+    "saul": [
+     0.7328799398321855,
+     0.14259563899040223,
+     0.8360929991069593,
+     0.29858960127830503
+    ],
+    "samuel": [
+     0.14889488722148694,
+     0.25178914737701413,
+     0.2561490159285696,
+     0.44024501514434816
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "gilgal",
+   "loras": [
+    "saul"
+   ],
+   "seed": 202,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s202.png",
+   "secs": 68.6,
+   "active": [
+    "saul"
+   ],
+   "heads": {
+    "saul": [
+     0.7068803937811601,
+     0.11585329580307006,
+     0.8322954930757221,
+     0.29300349760055544
+    ],
+    "samuel": [
+     0.15023174411372134,
+     0.1779617371559143,
+     0.26830628671144185,
+     0.4190614285469055
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "gilgal",
+   "loras": [
+    "saul"
+   ],
+   "seed": 303,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s303.png",
+   "secs": 68.5,
+   "active": [
+    "saul"
+   ],
+   "heads": {
+    "saul": [
+     0.7118989040977076,
+     0.11489576435089113,
+     0.8476097709254214,
+     0.32373985385894777
+    ],
+    "samuel": [
+     0.12515793348613538,
+     0.26393718147277834,
+     0.24843168258666992,
+     0.49531058692932123
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "gilgal",
+   "loras": [
+    "samuel"
+   ],
+   "seed": 11,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s11.png",
+   "secs": 68.5,
+   "active": [
+    "samuel"
+   ],
+   "heads": {
+    "saul": [
+     0.7456674826772589,
+     0.13570327663421633,
+     0.8575757428219444,
+     0.3175471296310425
+    ],
+    "samuel": [
+     0.13422354898954691,
+     0.23063745737075805,
+     0.23713359079862895,
+     0.45298638582229617
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "gilgal",
+   "loras": [
+    "samuel"
+   ],
+   "seed": 42,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s42.png",
+   "secs": 68.5,
+   "active": [
+    "samuel"
+   ],
+   "heads": {
+    "saul": [
+     0.691634454225239,
+     0.14533463716506959,
+     0.8147099394547311,
+     0.34119192361831663
+    ],
+    "samuel": [
+     0.1706850905167429,
+     0.24327429008483886,
+     0.27256099801314504,
+     0.48070371818542484
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "gilgal",
+   "loras": [
+    "samuel"
+   ],
+   "seed": 7,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s7.png",
+   "secs": 68.5,
+   "active": [
+    "samuel"
+   ],
+   "heads": {
+    "saul": [
+     0.740766726042095,
+     0.14837451720237732,
+     0.8511656710976049,
+     0.31144922518730167
+    ],
+    "samuel": [
+     0.1484262504075703,
+     0.1934060826301575,
+     0.23826636138715243,
+     0.39542229318618777
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "gilgal",
+   "loras": [
+    "samuel"
+   ],
+   "seed": 23,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s23.png",
+   "secs": 68.5,
+   "active": [
+    "samuel"
+   ],
+   "heads": {
+    "saul": [
+     0.7042671755740517,
+     0.16550984239578245,
+     0.8219247868186549,
+     0.35192041254043577
+    ],
+    "samuel": [
+     0.1760134634218718,
+     0.26416717100143433,
+     0.26636002565685074,
+     0.46245365667343136
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "gilgal",
+   "loras": [
+    "samuel"
+   ],
+   "seed": 5,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s5.png",
+   "secs": 68.5,
+   "active": [
+    "samuel"
+   ],
+   "heads": {
+    "saul": [
+     0.711197903281764,
+     0.1485674247741699,
+     0.8018718518708882,
+     0.2942000732421875
+    ],
+    "samuel": [
+     0.1539958966405768,
+     0.2525532827377319,
+     0.2493005112597817,
+     0.4389173612594604
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "gilgal",
+   "loras": [
+    "samuel"
+   ],
+   "seed": 101,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s101.png",
+   "secs": 68.6,
+   "active": [
+    "samuel"
+   ],
+   "heads": {
+    "saul": [
+     0.7246139425980417,
+     0.14586794495582583,
+     0.8198285855745014,
+     0.2950677883625031
+    ],
+    "samuel": [
+     0.15137556352113424,
+     0.21747822093963626,
+     0.25667092047239604,
+     0.4335900716781616
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "gilgal",
+   "loras": [
+    "samuel"
+   ],
+   "seed": 202,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s202.png",
+   "secs": 68.6,
+   "active": [
+    "samuel"
+   ],
+   "heads": {
+    "saul": [
+     0.7241907621684828,
+     0.1302402892112732,
+     0.8250449331183183,
+     0.2784296908378601
+    ],
+    "samuel": [
+     0.16226561445938914,
+     0.17396442794799807,
+     0.260273067574752,
+     0.4051442375183106
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "gilgal",
+   "loras": [
+    "samuel"
+   ],
+   "seed": 303,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s303.png",
+   "secs": 68.6,
+   "active": [
+    "samuel"
+   ],
+   "heads": {
+    "saul": [
+     0.7214507303739849,
+     0.11081648039817811,
+     0.8402499399687114,
+     0.3039248721599579
+    ],
+    "samuel": [
+     0.13007783262353195,
+     0.24128394889831545,
+     0.24608465872312846,
+     0.4800775127410889
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "gilgal",
+   "loras": [
+    "saul",
+    "samuel"
+   ],
+   "seed": 11,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s11.png",
+   "secs": null,
+   "active": null,
+   "heads": {
+    "saul": [
+     0.749020400800203,
+     0.1358311161994934,
+     0.8555501385738975,
+     0.3085326180458069
+    ],
+    "samuel": [
+     0.1314858637358013,
+     0.23394498586654663,
+     0.24803098879362406,
+     0.4497331118583679
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "gilgal",
+   "loras": [
+    "saul",
+    "samuel"
+   ],
+   "seed": 42,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s42.png",
+   "secs": 72.7,
+   "active": [
+    "saul",
+    "samuel"
+   ],
+   "heads": {
+    "saul": [
+     0.6910397880955746,
+     0.1385730628967285,
+     0.8121919631958008,
+     0.34302195358276366
+    ],
+    "samuel": [
+     0.17523082306510523,
+     0.23370907068252564,
+     0.2877031313745599,
+     0.46188304185867307
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "gilgal",
+   "loras": [
+    "saul",
+    "samuel"
+   ],
+   "seed": 7,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s7.png",
+   "secs": 72.7,
+   "active": [
+    "saul",
+    "samuel"
+   ],
+   "heads": {
+    "saul": [
+     0.7412678567986739,
+     0.13831541609764098,
+     0.8522791611520868,
+     0.3008128650188446
+    ],
+    "samuel": [
+     0.14145592011903463,
+     0.17826899766921994,
+     0.2563277733953376,
+     0.4161756920814514
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "gilgal",
+   "loras": [
+    "saul",
+    "samuel"
+   ],
+   "seed": 23,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s23.png",
+   "secs": 72.8,
+   "active": [
+    "saul",
+    "samuel"
+   ],
+   "heads": {
+    "saul": [
+     0.7095771839744166,
+     0.17818398475646974,
+     0.8143005622060675,
+     0.3365463733673096
+    ],
+    "samuel": [
+     0.17440846719239889,
+     0.2712380790710449,
+     0.2785446079153764,
+     0.46100591659545903
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "gilgal",
+   "loras": [
+    "saul",
+    "samuel"
+   ],
+   "seed": 5,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s5.png",
+   "secs": 72.8,
+   "active": [
+    "saul",
+    "samuel"
+   ],
+   "heads": {
+    "saul": [
+     0.7063340638813219,
+     0.1394934332370758,
+     0.8019608949360094,
+     0.2991822636127472
+    ],
+    "samuel": [
+     0.15534165658448873,
+     0.25113934803009036,
+     0.25796225823854146,
+     0.4504808359146118
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "gilgal",
+   "loras": [
+    "saul",
+    "samuel"
+   ],
+   "seed": 101,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s101.png",
+   "secs": 72.8,
+   "active": [
+    "saul",
+    "samuel"
+   ],
+   "heads": {
+    "saul": [
+     0.7146218199478952,
+     0.13142267131805419,
+     0.8171065732052452,
+     0.28965021038055416
+    ],
+    "samuel": [
+     0.16390171803926168,
+     0.22289097213745118,
+     0.27328279143885564,
+     0.4439999809265137
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "gilgal",
+   "loras": [
+    "saul",
+    "samuel"
+   ],
+   "seed": 202,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s202.png",
+   "secs": 72.8,
+   "active": [
+    "saul",
+    "samuel"
+   ],
+   "heads": {
+    "saul": [
+     0.7127161026000977,
+     0.11503787851333618,
+     0.8226556777954102,
+     0.28719483232498166
+    ],
+    "samuel": [
+     0.14861226081848145,
+     0.16097412586212156,
+     0.2726988917902896,
+     0.40337143421173094
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "gilgal",
+   "loras": [
+    "saul",
+    "samuel"
+   ],
+   "seed": 303,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s303.png",
+   "secs": 72.7,
+   "active": [
+    "saul",
+    "samuel"
+   ],
+   "heads": {
+    "saul": [
+     0.713638983274761,
+     0.10869011926651,
+     0.8399846679285953,
+     0.3074992184638977
+    ],
+    "samuel": [
+     0.12775182723999023,
+     0.23124838495254516,
+     0.24956585231580233,
+     0.47952447557449335
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "engedi",
+   "loras": [
+    "david"
+   ],
+   "seed": 11,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s11.png",
+   "secs": 70.6,
+   "active": [
+    "david"
+   ],
+   "heads": {
+    "david": [
+     0.32156900355690404,
+     0.35450588321685794,
+     0.41399434993141576,
+     0.5208428010940552
+    ],
+    "saul": [
+     0.6488904702036005,
+     0.31798266172409057,
+     0.7450446329618755,
+     0.4883100867271423
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "engedi",
+   "loras": [
+    "david"
+   ],
+   "seed": 42,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s42.png",
+   "secs": 70.5,
+   "active": [
+    "david"
+   ],
+   "heads": {
+    "david": [
+     0.36588968728718,
+     0.3175246262550354,
+     0.4687083771354274,
+     0.4777512097358704
+    ],
+    "saul": [
+     0.6775724260430587,
+     0.3259578709602356,
+     0.7707621674788626,
+     0.471616316318512
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "engedi",
+   "loras": [
+    "david"
+   ],
+   "seed": 7,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s7.png",
+   "secs": 70.7,
+   "active": [
+    "david"
+   ],
+   "heads": {
+    "david": [
+     0.35243808595757736,
+     0.3886943063735962,
+     0.4458536474328292,
+     0.5473388872146606
+    ],
+    "saul": [
+     0.6175081855372379,
+     0.34896025419235227,
+     0.704829216003418,
+     0.4842773413658142
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "engedi",
+   "loras": [
+    "david"
+   ],
+   "seed": 23,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s23.png",
+   "secs": 70.6,
+   "active": [
+    "david"
+   ],
+   "heads": {
+    "david": [
+     0.3240899161288613,
+     0.39042357730865473,
+     0.4204170954854865,
+     0.5527005128860474
+    ],
+    "saul": [
+     0.6642085125571803,
+     0.34144288587570193,
+     0.755924475820441,
+     0.48606993246078495
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "engedi",
+   "loras": [
+    "david"
+   ],
+   "seed": 5,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s5.png",
+   "secs": 70.8,
+   "active": [
+    "david"
+   ],
+   "heads": {
+    "david": [
+     0.37252224119086014,
+     0.24452980709075928,
+     0.4863549659126683,
+     0.44178999614715575
+    ],
+    "saul": [
+     0.6001019728811163,
+     0.2950148997306824,
+     0.6975086613705284,
+     0.4572956023216248
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "engedi",
+   "loras": [
+    "david"
+   ],
+   "seed": 101,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s101.png",
+   "secs": 70.5,
+   "active": [
+    "david"
+   ],
+   "heads": {
+    "david": [
+     0.3257353180333188,
+     0.3679747819900513,
+     0.41951061549939606,
+     0.529977822303772
+    ],
+    "saul": [
+     0.6015597393638209,
+     0.3208854489326477,
+     0.6961423472354287,
+     0.48637269067764277
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "engedi",
+   "loras": [
+    "david"
+   ],
+   "seed": 202,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s202.png",
+   "secs": 70.5,
+   "active": [
+    "david"
+   ],
+   "heads": {
+    "david": [
+     0.3423269924364592,
+     0.34539659976959225,
+     0.43596506118774414,
+     0.4995022630691528
+    ],
+    "saul": [
+     0.5196646640175268,
+     0.23667229843139648,
+     0.6069373080604955,
+     0.4091293258666992
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "engedi",
+   "loras": [
+    "david"
+   ],
+   "seed": 303,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s303.png",
+   "secs": 70.5,
+   "active": [
+    "david"
+   ],
+   "heads": {
+    "david": [
+     0.347436177103143,
+     0.3925587968826294,
+     0.44142519800286545,
+     0.5346807794570922
+    ],
+    "saul": [
+     0.6160412336650648,
+     0.33337276792526244,
+     0.7131975575497276,
+     0.4846776328086853
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "engedi",
+   "loras": [
+    "saul"
+   ],
+   "seed": 11,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s11.png",
+   "secs": 70.5,
+   "active": [
+    "saul"
+   ],
+   "heads": {
+    "david": [
+     0.3175742500706723,
+     0.3319797930717468,
+     0.4186219667133532,
+     0.49577206945419305
+    ],
+    "saul": [
+     0.6513117238094932,
+     0.3286808743476867,
+     0.7463928523816561,
+     0.4914915337562561
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "engedi",
+   "loras": [
+    "saul"
+   ],
+   "seed": 42,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s42.png",
+   "secs": 70.6,
+   "active": [
+    "saul"
+   ],
+   "heads": {
+    "david": [
+     0.3646721839904785,
+     0.3192108235359192,
+     0.4713073278728284,
+     0.48519512033462525
+    ],
+    "saul": [
+     0.6289290879902086,
+     0.3118617663383484,
+     0.7248879984805459,
+     0.460879720211029
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "engedi",
+   "loras": [
+    "saul"
+   ],
+   "seed": 7,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s7.png",
+   "secs": 70.6,
+   "active": [
+    "saul"
+   ],
+   "heads": {
+    "david": [
+     0.35043989984612717,
+     0.3966760177612304,
+     0.4369094497279117,
+     0.5486352462768554
+    ],
+    "saul": [
+     0.6104408816287392,
+     0.34082484674453734,
+     0.7055257245113975,
+     0.5001748127937317
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "engedi",
+   "loras": [
+    "saul"
+   ],
+   "seed": 23,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s23.png",
+   "secs": 70.6,
+   "active": [
+    "saul"
+   ],
+   "heads": {
+    "david": [
+     0.32662510871887207,
+     0.41652385711669926,
+     0.4109766483306885,
+     0.5525445175170899
+    ],
+    "saul": [
+     0.633803969935367,
+     0.3653053913116455,
+     0.7183300319470858,
+     0.5001324329376221
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "engedi",
+   "loras": [
+    "saul"
+   ],
+   "seed": 5,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s5.png",
+   "secs": 70.6,
+   "active": [
+    "saul"
+   ],
+   "heads": {
+    "david": [
+     0.3676245714488782,
+     0.2588400173187256,
+     0.4835750554737292,
+     0.4395059871673584
+    ],
+    "saul": [
+     0.6020323853743704,
+     0.30685063552856445,
+     0.7026292650323165,
+     0.4698476905822754
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "engedi",
+   "loras": [
+    "saul"
+   ],
+   "seed": 101,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s101.png",
+   "secs": 70.5,
+   "active": [
+    "saul"
+   ],
+   "heads": {
+    "david": [
+     0.32341871763530533,
+     0.23928420448303225,
+     0.426664904544228,
+     0.4215476741790772
+    ],
+    "saul": [
+     0.6085153629905299,
+     0.32311510848999025,
+     0.7072000754506964,
+     0.4899310569763184
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "engedi",
+   "loras": [
+    "saul"
+   ],
+   "seed": 202,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s202.png",
+   "secs": 70.6,
+   "active": [
+    "saul"
+   ],
+   "heads": {
+    "david": [
+     0.3515963554382324,
+     0.3553753900527954,
+     0.4466573062695955,
+     0.5031419801712036
+    ],
+    "saul": [
+     0.5211870795802066,
+     0.2732348928451538,
+     0.6053591778403834,
+     0.4349808225631714
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "engedi",
+   "loras": [
+    "saul"
+   ],
+   "seed": 303,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s303.png",
+   "secs": 70.5,
+   "active": [
+    "saul"
+   ],
+   "heads": {
+    "david": [
+     0.35420456685517965,
+     0.3843547954559326,
+     0.44163396483973455,
+     0.5227430477142334
+    ],
+    "saul": [
+     0.5907744106493498,
+     0.3395237426757813,
+     0.6825121578417326,
+     0.4962641220092774
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "engedi",
+   "loras": [
+    "david",
+    "saul"
+   ],
+   "seed": 11,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s11.png",
+   "secs": 74.9,
+   "active": [
+    "david",
+    "saul"
+   ],
+   "heads": {
+    "david": [
+     0.3120272912477192,
+     0.3064074440002441,
+     0.4289911797172145,
+     0.49457387161254884
+    ],
+    "saul": [
+     0.6468442866676732,
+     0.328277666091919,
+     0.7505451252585963,
+     0.4863613910675049
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "engedi",
+   "loras": [
+    "david",
+    "saul"
+   ],
+   "seed": 42,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s42.png",
+   "secs": 74.9,
+   "active": [
+    "david",
+    "saul"
+   ],
+   "heads": {
+    "david": [
+     0.35642126986854955,
+     0.30735455799102784,
+     0.4779135553460372,
+     0.4950593118667602
+    ],
+    "saul": [
+     0.6600120193079898,
+     0.3734608097076416,
+     0.7608275413513184,
+     0.5332411212921142
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "engedi",
+   "loras": [
+    "david",
+    "saul"
+   ],
+   "seed": 7,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s7.png",
+   "secs": 75.0,
+   "active": [
+    "david",
+    "saul"
+   ],
+   "heads": {
+    "david": [
+     0.32800210149664627,
+     0.4009307498931885,
+     0.4163651466369629,
+     0.537921106338501
+    ],
+    "saul": [
+     0.5079456881472939,
+     0.3665128574371338,
+     0.6176687290793971,
+     0.5213460788726807
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "engedi",
+   "loras": [
+    "david",
+    "saul"
+   ],
+   "seed": 23,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s23.png",
+   "secs": 74.9,
+   "active": [
+    "david",
+    "saul"
+   ],
+   "heads": {
+    "david": [
+     0.31639422868427475,
+     0.3824965848922729,
+     0.41585884596172135,
+     0.5486629858016967
+    ],
+    "saul": [
+     0.6597296062268709,
+     0.3247709822654724,
+     0.7481366207725123,
+     0.480395610332489
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "engedi",
+   "loras": [
+    "david",
+    "saul"
+   ],
+   "seed": 5,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s5.png",
+   "secs": 74.9,
+   "active": [
+    "david",
+    "saul"
+   ],
+   "heads": {
+    "david": [
+     0.35398451905501516,
+     0.2488916449546814,
+     0.4627740132181268,
+     0.4427006297111511
+    ],
+    "saul": [
+     0.5950580396150288,
+     0.29792615509033205,
+     0.6973678187320107,
+     0.46512090301513676
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "engedi",
+   "loras": [
+    "david",
+    "saul"
+   ],
+   "seed": 101,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s101.png",
+   "secs": 74.9,
+   "active": [
+    "david",
+    "saul"
+   ],
+   "heads": {
+    "david": [
+     0.32085965809069183,
+     0.21535796117782594,
+     0.43708344509727076,
+     0.41516183805465695
+    ],
+    "saul": [
+     0.5777853162665116,
+     0.27830484151840207,
+     0.6821802289862382,
+     0.45091727018356326
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "engedi",
+   "loras": [
+    "david",
+    "saul"
+   ],
+   "seed": 202,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s202.png",
+   "secs": 74.9,
+   "active": [
+    "david",
+    "saul"
+   ],
+   "heads": {
+    "david": [
+     0.3376979953364322,
+     0.30891679096221925,
+     0.4453713893890381,
+     0.494812424659729
+    ],
+    "saul": [
+     0.5417017183805767,
+     0.26396811628341676,
+     0.634804223713122,
+     0.452594262599945
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "engedi",
+   "loras": [
+    "david",
+    "saul"
+   ],
+   "seed": 303,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s303.png",
+   "secs": 74.9,
+   "active": [
+    "david",
+    "saul"
+   ],
+   "heads": {
+    "david": [
+     0.3445003911068565,
+     0.38145399665832513,
+     0.445345728020919,
+     0.5600747165679931
+    ],
+    "saul": [
+     0.4873677554883455,
+     0.255455295085907,
+     0.5888942166378623,
+     0.46825613164901736
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "ramah",
+   "loras": [
+    "david"
+   ],
+   "seed": 11,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s11.png",
+   "secs": 68.2,
+   "active": [
+    "david"
+   ],
+   "heads": {
+    "david": [
+     0.24921517623098274,
+     0.1170216498374939,
+     0.3824841348748458,
+     0.32649254179000853
+    ],
+    "samuel": [
+     0.6545295966298956,
+     0.07246396255493166,
+     0.7913414051658229,
+     0.3916075439453125
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "ramah",
+   "loras": [
+    "david"
+   ],
+   "seed": 42,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s42.png",
+   "secs": 68.2,
+   "active": [
+    "david"
+   ],
+   "heads": {
+    "david": [
+     0.2325591664565237,
+     0.1400462517738342,
+     0.3655620499661094,
+     0.34688071107864377
+    ],
+    "samuel": [
+     0.637715364757337,
+     0.13406265068054196,
+     0.7890155942816484,
+     0.427549913406372
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "ramah",
+   "loras": [
+    "david"
+   ],
+   "seed": 7,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s7.png",
+   "secs": 68.2,
+   "active": [
+    "david"
+   ],
+   "heads": {
+    "david": [
+     0.22194217380724454,
+     0.13713156580924987,
+     0.33489274978637695,
+     0.3189811646938324
+    ],
+    "samuel": [
+     0.6756002526534232,
+     0.11343433761596682,
+     0.8145947707326788,
+     0.4056206932067871
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "ramah",
+   "loras": [
+    "david"
+   ],
+   "seed": 23,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s23.png",
+   "secs": 68.2,
+   "active": [
+    "david"
+   ],
+   "heads": {
+    "david": [
+     0.2407576786844354,
+     0.1566355652809143,
+     0.3594401886588649,
+     0.3390487141609192
+    ],
+    "samuel": [
+     0.6490776162398489,
+     0.10423731994628907,
+     0.7955387015091745,
+     0.41487364959716794
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "ramah",
+   "loras": [
+    "david"
+   ],
+   "seed": 5,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s5.png",
+   "secs": 68.3,
+   "active": [
+    "david"
+   ],
+   "heads": {
+    "david": [
+     0.2338841337906687,
+     0.1469389600753784,
+     0.3588057317231831,
+     0.3416809720993042
+    ],
+    "samuel": [
+     0.6716343980086478,
+     0.10918188238143922,
+     0.8146717924820749,
+     0.4229925646781922
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "ramah",
+   "loras": [
+    "david"
+   ],
+   "seed": 101,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s101.png",
+   "secs": 68.2,
+   "active": [
+    "david"
+   ],
+   "heads": {
+    "david": [
+     0.25490593910217285,
+     0.14050334930419922,
+     0.3835130867205168,
+     0.3448457145690918
+    ],
+    "samuel": [
+     0.6355407614456979,
+     0.09487191843986512,
+     0.7707958723369398,
+     0.40411733794212346
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "ramah",
+   "loras": [
+    "david"
+   ],
+   "seed": 202,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s202.png",
+   "secs": 68.3,
+   "active": [
+    "david"
+   ],
+   "heads": {
+    "david": [
+     0.25702820326152603,
+     0.11075225019454955,
+     0.3579661971644351,
+     0.2716317191123962
+    ],
+    "samuel": [
+     0.6839220147383841,
+     0.09437620043754577,
+     0.8039492556923314,
+     0.3558742940425873
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "ramah",
+   "loras": [
+    "david"
+   ],
+   "seed": 303,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s303.png",
+   "secs": 68.2,
+   "active": [
+    "david"
+   ],
+   "heads": {
+    "david": [
+     0.2521588676854184,
+     0.12805224156379696,
+     0.3780796151412161,
+     0.3231237242221832
+    ],
+    "samuel": [
+     0.6628715364556563,
+     0.09542662620544436,
+     0.8063389878523978,
+     0.40838486671447755
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "ramah",
+   "loras": [
+    "samuel"
+   ],
+   "seed": 11,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s11.png",
+   "secs": 68.3,
+   "active": [
+    "samuel"
+   ],
+   "heads": {
+    "david": [
+     0.24944250207198293,
+     0.12387411332130434,
+     0.3754056127447831,
+     0.31978101468086245
+    ],
+    "samuel": [
+     0.6755563083447909,
+     0.08967287302017213,
+     0.8197041812695955,
+     0.40091902971267696
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "ramah",
+   "loras": [
+    "samuel"
+   ],
+   "seed": 42,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s42.png",
+   "secs": 68.3,
+   "active": [
+    "samuel"
+   ],
+   "heads": {
+    "david": [
+     0.23101490422299034,
+     0.15033840417861938,
+     0.35501354619076375,
+     0.34117411851882934
+    ],
+    "samuel": [
+     0.641577168514854,
+     0.10866339302062986,
+     0.7889808855558696,
+     0.4268047580718994
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "ramah",
+   "loras": [
+    "samuel"
+   ],
+   "seed": 7,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s7.png",
+   "secs": 68.2,
+   "active": [
+    "samuel"
+   ],
+   "heads": {
+    "david": [
+     0.2174045537647448,
+     0.15692671585083007,
+     0.3267786000904284,
+     0.3267310028076172
+    ],
+    "samuel": [
+     0.7086230328208522,
+     0.08187061047554015,
+     0.8322967228136564,
+     0.3987549135684967
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "ramah",
+   "loras": [
+    "samuel"
+   ],
+   "seed": 23,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s23.png",
+   "secs": 68.3,
+   "active": [
+    "samuel"
+   ],
+   "heads": {
+    "david": [
+     0.2327728773418226,
+     0.1561706099510193,
+     0.3504320947747481,
+     0.34137668943405153
+    ],
+    "samuel": [
+     0.6568751586110968,
+     0.12628985643386842,
+     0.7920858985499332,
+     0.4549176812171936
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "ramah",
+   "loras": [
+    "samuel"
+   ],
+   "seed": 5,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s5.png",
+   "secs": 68.3,
+   "active": [
+    "samuel"
+   ],
+   "heads": {
+    "david": [
+     0.23482389199106316,
+     0.1667244348526001,
+     0.3447079031090987,
+     0.3355380449295044
+    ],
+    "samuel": [
+     0.6859235010649029,
+     0.0985510001182556,
+     0.8196761231673392,
+     0.45247780179977415
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "ramah",
+   "loras": [
+    "samuel"
+   ],
+   "seed": 101,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s101.png",
+   "secs": 68.3,
+   "active": [
+    "samuel"
+   ],
+   "heads": {
+    "david": [
+     0.2523251081767835,
+     0.14183576917648316,
+     0.3785107763190019,
+     0.348530038356781
+    ],
+    "samuel": [
+     0.6435606605128238,
+     0.08105992221832277,
+     0.772727514568128,
+     0.4228812112808228
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "ramah",
+   "loras": [
+    "samuel"
+   ],
+   "seed": 202,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s202.png",
+   "secs": 68.3,
+   "active": [
+    "samuel"
+   ],
+   "heads": {
+    "david": [
+     0.260698443964908,
+     0.11720238447189331,
+     0.3530326893455104,
+     0.26501641988754276
+    ],
+    "samuel": [
+     0.6858309695595189,
+     0.09131445479393005,
+     0.801557038959704,
+     0.37465483736991884
+    ]
+   }
+  },
+  {
+   "cond": "L1",
+   "scene": "ramah",
+   "loras": [
+    "samuel"
+   ],
+   "seed": 303,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s303.png",
+   "secs": 68.3,
+   "active": [
+    "samuel"
+   ],
+   "heads": {
+    "david": [
+     0.24844150794179817,
+     0.12902947545051574,
+     0.3656826646704423,
+     0.3267417776584625
+    ],
+    "samuel": [
+     0.6786181550276907,
+     0.09185332679748534,
+     0.8181169158534,
+     0.4285219135284423
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "ramah",
+   "loras": [
+    "david",
+    "samuel"
+   ],
+   "seed": 11,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s11.png",
+   "secs": 72.5,
+   "active": [
+    "david",
+    "samuel"
+   ],
+   "heads": {
+    "david": [
+     0.2512623761829577,
+     0.1203870668411255,
+     0.3831043870825517,
+     0.3219800844192505
+    ],
+    "samuel": [
+     0.6602343509071752,
+     0.07783256506919863,
+     0.7939852664345189,
+     0.3904823157787323
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "ramah",
+   "loras": [
+    "david",
+    "samuel"
+   ],
+   "seed": 42,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s42.png",
+   "secs": 72.5,
+   "active": [
+    "david",
+    "samuel"
+   ],
+   "heads": {
+    "david": [
+     0.23237500692668714,
+     0.14226734161376955,
+     0.36270017372934443,
+     0.34080612182617187
+    ],
+    "samuel": [
+     0.6378802249306127,
+     0.11995140314102173,
+     0.7883015682822779,
+     0.4177850842475891
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "ramah",
+   "loras": [
+    "david",
+    "samuel"
+   ],
+   "seed": 7,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s7.png",
+   "secs": 72.5,
+   "active": [
+    "david",
+    "samuel"
+   ],
+   "heads": {
+    "david": [
+     0.22206468331186394,
+     0.13909925460815428,
+     0.3361782902165463,
+     0.3162404441833496
+    ],
+    "samuel": [
+     0.6939574542798495,
+     0.09872056245803833,
+     0.8236106822365209,
+     0.4041955590248108
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "ramah",
+   "loras": [
+    "david",
+    "samuel"
+   ],
+   "seed": 23,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s23.png",
+   "secs": 72.4,
+   "active": [
+    "david",
+    "samuel"
+   ],
+   "heads": {
+    "david": [
+     0.23986712254975973,
+     0.15414683294296264,
+     0.35967948562220525,
+     0.33584234189987183
+    ],
+    "samuel": [
+     0.6498316463671232,
+     0.11251126813888548,
+     0.7931936916552091,
+     0.4566302924156188
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "ramah",
+   "loras": [
+    "david",
+    "samuel"
+   ],
+   "seed": 5,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s5.png",
+   "secs": 72.5,
+   "active": [
+    "david",
+    "samuel"
+   ],
+   "heads": {
+    "david": [
+     0.23622532894736842,
+     0.1497708601951599,
+     0.35834292361610814,
+     0.3310744090080261
+    ],
+    "samuel": [
+     0.6717731827183774,
+     0.10893770503997802,
+     0.8161382926137823,
+     0.4503699903488159
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "ramah",
+   "loras": [
+    "david",
+    "samuel"
+   ],
+   "seed": 101,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s101.png",
+   "secs": 72.5,
+   "active": [
+    "david",
+    "samuel"
+   ],
+   "heads": {
+    "david": [
+     0.25687543969405324,
+     0.12989485836029052,
+     0.388609484622353,
+     0.34338429546356203
+    ],
+    "samuel": [
+     0.6349705394945646,
+     0.09085669469833375,
+     0.7722240498191432,
+     0.41751737546920775
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "ramah",
+   "loras": [
+    "david",
+    "samuel"
+   ],
+   "seed": 202,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s202.png",
+   "secs": 72.4,
+   "active": [
+    "david",
+    "samuel"
+   ],
+   "heads": {
+    "david": [
+     0.2574501539531507,
+     0.11352825808525084,
+     0.3557401456330952,
+     0.2654445950984955
+    ],
+    "samuel": [
+     0.6848997818796259,
+     0.08821818900108336,
+     0.8032702395790502,
+     0.3626722342967987
+    ]
+   }
+  },
+  {
+   "cond": "L2",
+   "scene": "ramah",
+   "loras": [
+    "david",
+    "samuel"
+   ],
+   "seed": 303,
+   "path": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s303.png",
+   "secs": 72.4,
+   "active": [
+    "david",
+    "samuel"
+   ],
+   "heads": {
+    "david": [
+     0.24948165291234067,
+     0.12142792797088622,
+     0.37504181108976664,
+     0.31933146572113036
+    ],
+    "samuel": [
+     0.6656191474513004,
+     0.09068846893310548,
+     0.8073086487619501,
+     0.42838053894042966
+    ]
+   }
+  }
+ ],
+ "controls": [
+  {
+   "who": "saul",
+   "seed": 11,
+   "a": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s11.png",
+   "b": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s11.png"
+  },
+  {
+   "who": "saul",
+   "seed": 42,
+   "a": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s42.png",
+   "b": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s42.png"
+  },
+  {
+   "who": "saul",
+   "seed": 7,
+   "a": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s7.png",
+   "b": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s7.png"
+  },
+  {
+   "who": "david",
+   "seed": 11,
+   "a": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s11.png",
+   "b": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-ramah-samuel/s11.png"
+  },
+  {
+   "who": "david",
+   "seed": 42,
+   "a": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s42.png",
+   "b": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-ramah-samuel/s42.png"
+  },
+  {
+   "who": "david",
+   "seed": 7,
+   "a": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s7.png",
+   "b": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-ramah-samuel/s7.png"
+  },
+  {
+   "who": "samuel",
+   "seed": 11,
+   "a": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s11.png",
+   "b": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-ramah-samuel/s11.png"
+  },
+  {
+   "who": "samuel",
+   "seed": 42,
+   "a": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s42.png",
+   "b": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-ramah-samuel/s42.png"
+  },
+  {
+   "who": "samuel",
+   "seed": 7,
+   "a": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s7.png",
+   "b": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-ramah-samuel/s7.png"
+  }
+ ],
+ "scene_path": {
+  "L1": {
+   "gilgal": {
+    "saul": {
+     "11": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s11.png",
+     "42": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s42.png",
+     "7": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s7.png",
+     "23": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s23.png",
+     "5": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s5.png",
+     "101": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s101.png",
+     "202": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s202.png",
+     "303": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s303.png"
+    },
+    "samuel": {
+     "11": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s11.png",
+     "42": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s42.png",
+     "7": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s7.png",
+     "23": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s23.png",
+     "5": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s5.png",
+     "101": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s101.png",
+     "202": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s202.png",
+     "303": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s303.png"
+    }
+   },
+   "engedi": {
+    "david": {
+     "11": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s11.png",
+     "42": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s42.png",
+     "7": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s7.png",
+     "23": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s23.png",
+     "5": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s5.png",
+     "101": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s101.png",
+     "202": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s202.png",
+     "303": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s303.png"
+    },
+    "saul": {
+     "11": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s11.png",
+     "42": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s42.png",
+     "7": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s7.png",
+     "23": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s23.png",
+     "5": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s5.png",
+     "101": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s101.png",
+     "202": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s202.png",
+     "303": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s303.png"
+    }
+   },
+   "ramah": {
+    "david": {
+     "11": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s11.png",
+     "42": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s42.png",
+     "7": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s7.png",
+     "23": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s23.png",
+     "5": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s5.png",
+     "101": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s101.png",
+     "202": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s202.png",
+     "303": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s303.png"
+    },
+    "samuel": {
+     "11": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s11.png",
+     "42": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s42.png",
+     "7": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s7.png",
+     "23": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s23.png",
+     "5": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s5.png",
+     "101": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s101.png",
+     "202": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s202.png",
+     "303": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s303.png"
+    }
+   }
+  },
+  "L2": {
+   "gilgal": {
+    "both": {
+     "11": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s11.png",
+     "42": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s42.png",
+     "7": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s7.png",
+     "23": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s23.png",
+     "5": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s5.png",
+     "101": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s101.png",
+     "202": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s202.png",
+     "303": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s303.png"
+    }
+   },
+   "engedi": {
+    "both": {
+     "11": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s11.png",
+     "42": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s42.png",
+     "7": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s7.png",
+     "23": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s23.png",
+     "5": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s5.png",
+     "101": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s101.png",
+     "202": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s202.png",
+     "303": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s303.png"
+    }
+   },
+   "ramah": {
+    "both": {
+     "11": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s11.png",
+     "42": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s42.png",
+     "7": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s7.png",
+     "23": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s23.png",
+     "5": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s5.png",
+     "101": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s101.png",
+     "202": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s202.png",
+     "303": "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s303.png"
+    }
+   }
+  }
+ },
+ "heads": {
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s11.png": {
+   "saul": [
+    0.7446531747516832,
+    0.1256558380126953,
+    0.8648449496219033,
+    0.3127771339416504
+   ],
+   "samuel": [
+    0.1322684978183947,
+    0.24613696670532229,
+    0.2404213641819201,
+    0.4555604133605957
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s42.png": {
+   "saul": [
+    0.6900184029027036,
+    0.14457403945922853,
+    0.8175842887476871,
+    0.3402796440124512
+   ],
+   "samuel": [
+    0.16113872277109245,
+    0.2663992285728455,
+    0.27682388456244217,
+    0.4837761759757996
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s7.png": {
+   "saul": [
+    0.7517738844219007,
+    0.13608806681632996,
+    0.8613331945318925,
+    0.30035648894309996
+   ],
+   "samuel": [
+    0.14068990632107384,
+    0.19373019742965697,
+    0.25327028098859283,
+    0.42205456304550176
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s23.png": {
+   "saul": [
+    0.7260139364945261,
+    0.16882818603515623,
+    0.8345665680734735,
+    0.32264736557006835
+   ],
+   "samuel": [
+    0.16584826770581698,
+    0.27691086769104,
+    0.2698081543571071,
+    0.4844170475006104
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s5.png": {
+   "saul": [
+    0.7115577396593595,
+    0.14096305060386655,
+    0.8344012310630397,
+    0.31237582850456236
+   ],
+   "samuel": [
+    0.151584361728869,
+    0.2590781488418579,
+    0.2569619103481895,
+    0.4617044725418091
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s101.png": {
+   "saul": [
+    0.7328799398321855,
+    0.14259563899040223,
+    0.8360929991069593,
+    0.29858960127830503
+   ],
+   "samuel": [
+    0.14889488722148694,
+    0.25178914737701413,
+    0.2561490159285696,
+    0.44024501514434816
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s202.png": {
+   "saul": [
+    0.7068803937811601,
+    0.11585329580307006,
+    0.8322954930757221,
+    0.29300349760055544
+   ],
+   "samuel": [
+    0.15023174411372134,
+    0.1779617371559143,
+    0.26830628671144185,
+    0.4190614285469055
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/saul-s303.png": {
+   "saul": [
+    0.7118989040977076,
+    0.11489576435089113,
+    0.8476097709254214,
+    0.32373985385894777
+   ],
+   "samuel": [
+    0.12515793348613538,
+    0.26393718147277834,
+    0.24843168258666992,
+    0.49531058692932123
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s11.png": {
+   "saul": [
+    0.7456674826772589,
+    0.13570327663421633,
+    0.8575757428219444,
+    0.3175471296310425
+   ],
+   "samuel": [
+    0.13422354898954691,
+    0.23063745737075805,
+    0.23713359079862895,
+    0.45298638582229617
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s42.png": {
+   "saul": [
+    0.691634454225239,
+    0.14533463716506959,
+    0.8147099394547311,
+    0.34119192361831663
+   ],
+   "samuel": [
+    0.1706850905167429,
+    0.24327429008483886,
+    0.27256099801314504,
+    0.48070371818542484
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s7.png": {
+   "saul": [
+    0.740766726042095,
+    0.14837451720237732,
+    0.8511656710976049,
+    0.31144922518730167
+   ],
+   "samuel": [
+    0.1484262504075703,
+    0.1934060826301575,
+    0.23826636138715243,
+    0.39542229318618777
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s23.png": {
+   "saul": [
+    0.7042671755740517,
+    0.16550984239578245,
+    0.8219247868186549,
+    0.35192041254043577
+   ],
+   "samuel": [
+    0.1760134634218718,
+    0.26416717100143433,
+    0.26636002565685074,
+    0.46245365667343136
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s5.png": {
+   "saul": [
+    0.711197903281764,
+    0.1485674247741699,
+    0.8018718518708882,
+    0.2942000732421875
+   ],
+   "samuel": [
+    0.1539958966405768,
+    0.2525532827377319,
+    0.2493005112597817,
+    0.4389173612594604
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s101.png": {
+   "saul": [
+    0.7246139425980417,
+    0.14586794495582583,
+    0.8198285855745014,
+    0.2950677883625031
+   ],
+   "samuel": [
+    0.15137556352113424,
+    0.21747822093963626,
+    0.25667092047239604,
+    0.4335900716781616
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s202.png": {
+   "saul": [
+    0.7241907621684828,
+    0.1302402892112732,
+    0.8250449331183183,
+    0.2784296908378601
+   ],
+   "samuel": [
+    0.16226561445938914,
+    0.17396442794799807,
+    0.260273067574752,
+    0.4051442375183106
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/gilgal/samuel-s303.png": {
+   "saul": [
+    0.7214507303739849,
+    0.11081648039817811,
+    0.8402499399687114,
+    0.3039248721599579
+   ],
+   "samuel": [
+    0.13007783262353195,
+    0.24128394889831545,
+    0.24608465872312846,
+    0.4800775127410889
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s11.png": {
+   "saul": [
+    0.749020400800203,
+    0.1358311161994934,
+    0.8555501385738975,
+    0.3085326180458069
+   ],
+   "samuel": [
+    0.1314858637358013,
+    0.23394498586654663,
+    0.24803098879362406,
+    0.4497331118583679
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s42.png": {
+   "saul": [
+    0.6910397880955746,
+    0.1385730628967285,
+    0.8121919631958008,
+    0.34302195358276366
+   ],
+   "samuel": [
+    0.17523082306510523,
+    0.23370907068252564,
+    0.2877031313745599,
+    0.46188304185867307
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s7.png": {
+   "saul": [
+    0.7412678567986739,
+    0.13831541609764098,
+    0.8522791611520868,
+    0.3008128650188446
+   ],
+   "samuel": [
+    0.14145592011903463,
+    0.17826899766921994,
+    0.2563277733953376,
+    0.4161756920814514
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s23.png": {
+   "saul": [
+    0.7095771839744166,
+    0.17818398475646974,
+    0.8143005622060675,
+    0.3365463733673096
+   ],
+   "samuel": [
+    0.17440846719239889,
+    0.2712380790710449,
+    0.2785446079153764,
+    0.46100591659545903
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s5.png": {
+   "saul": [
+    0.7063340638813219,
+    0.1394934332370758,
+    0.8019608949360094,
+    0.2991822636127472
+   ],
+   "samuel": [
+    0.15534165658448873,
+    0.25113934803009036,
+    0.25796225823854146,
+    0.4504808359146118
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s101.png": {
+   "saul": [
+    0.7146218199478952,
+    0.13142267131805419,
+    0.8171065732052452,
+    0.28965021038055416
+   ],
+   "samuel": [
+    0.16390171803926168,
+    0.22289097213745118,
+    0.27328279143885564,
+    0.4439999809265137
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s202.png": {
+   "saul": [
+    0.7127161026000977,
+    0.11503787851333618,
+    0.8226556777954102,
+    0.28719483232498166
+   ],
+   "samuel": [
+    0.14861226081848145,
+    0.16097412586212156,
+    0.2726988917902896,
+    0.40337143421173094
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/gilgal/both-s303.png": {
+   "saul": [
+    0.713638983274761,
+    0.10869011926651,
+    0.8399846679285953,
+    0.3074992184638977
+   ],
+   "samuel": [
+    0.12775182723999023,
+    0.23124838495254516,
+    0.24956585231580233,
+    0.47952447557449335
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s11.png": {
+   "david": [
+    0.32156900355690404,
+    0.35450588321685794,
+    0.41399434993141576,
+    0.5208428010940552
+   ],
+   "saul": [
+    0.6488904702036005,
+    0.31798266172409057,
+    0.7450446329618755,
+    0.4883100867271423
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s42.png": {
+   "david": [
+    0.36588968728718,
+    0.3175246262550354,
+    0.4687083771354274,
+    0.4777512097358704
+   ],
+   "saul": [
+    0.6775724260430587,
+    0.3259578709602356,
+    0.7707621674788626,
+    0.471616316318512
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s7.png": {
+   "david": [
+    0.35243808595757736,
+    0.3886943063735962,
+    0.4458536474328292,
+    0.5473388872146606
+   ],
+   "saul": [
+    0.6175081855372379,
+    0.34896025419235227,
+    0.704829216003418,
+    0.4842773413658142
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s23.png": {
+   "david": [
+    0.3240899161288613,
+    0.39042357730865473,
+    0.4204170954854865,
+    0.5527005128860474
+   ],
+   "saul": [
+    0.6642085125571803,
+    0.34144288587570193,
+    0.755924475820441,
+    0.48606993246078495
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s5.png": {
+   "david": [
+    0.37252224119086014,
+    0.24452980709075928,
+    0.4863549659126683,
+    0.44178999614715575
+   ],
+   "saul": [
+    0.6001019728811163,
+    0.2950148997306824,
+    0.6975086613705284,
+    0.4572956023216248
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s101.png": {
+   "david": [
+    0.3257353180333188,
+    0.3679747819900513,
+    0.41951061549939606,
+    0.529977822303772
+   ],
+   "saul": [
+    0.6015597393638209,
+    0.3208854489326477,
+    0.6961423472354287,
+    0.48637269067764277
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s202.png": {
+   "david": [
+    0.3423269924364592,
+    0.34539659976959225,
+    0.43596506118774414,
+    0.4995022630691528
+   ],
+   "saul": [
+    0.5196646640175268,
+    0.23667229843139648,
+    0.6069373080604955,
+    0.4091293258666992
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/david-s303.png": {
+   "david": [
+    0.347436177103143,
+    0.3925587968826294,
+    0.44142519800286545,
+    0.5346807794570922
+   ],
+   "saul": [
+    0.6160412336650648,
+    0.33337276792526244,
+    0.7131975575497276,
+    0.4846776328086853
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s11.png": {
+   "david": [
+    0.3175742500706723,
+    0.3319797930717468,
+    0.4186219667133532,
+    0.49577206945419305
+   ],
+   "saul": [
+    0.6513117238094932,
+    0.3286808743476867,
+    0.7463928523816561,
+    0.4914915337562561
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s42.png": {
+   "david": [
+    0.3646721839904785,
+    0.3192108235359192,
+    0.4713073278728284,
+    0.48519512033462525
+   ],
+   "saul": [
+    0.6289290879902086,
+    0.3118617663383484,
+    0.7248879984805459,
+    0.460879720211029
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s7.png": {
+   "david": [
+    0.35043989984612717,
+    0.3966760177612304,
+    0.4369094497279117,
+    0.5486352462768554
+   ],
+   "saul": [
+    0.6104408816287392,
+    0.34082484674453734,
+    0.7055257245113975,
+    0.5001748127937317
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s23.png": {
+   "david": [
+    0.32662510871887207,
+    0.41652385711669926,
+    0.4109766483306885,
+    0.5525445175170899
+   ],
+   "saul": [
+    0.633803969935367,
+    0.3653053913116455,
+    0.7183300319470858,
+    0.5001324329376221
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s5.png": {
+   "david": [
+    0.3676245714488782,
+    0.2588400173187256,
+    0.4835750554737292,
+    0.4395059871673584
+   ],
+   "saul": [
+    0.6020323853743704,
+    0.30685063552856445,
+    0.7026292650323165,
+    0.4698476905822754
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s101.png": {
+   "david": [
+    0.32341871763530533,
+    0.23928420448303225,
+    0.426664904544228,
+    0.4215476741790772
+   ],
+   "saul": [
+    0.6085153629905299,
+    0.32311510848999025,
+    0.7072000754506964,
+    0.4899310569763184
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s202.png": {
+   "david": [
+    0.3515963554382324,
+    0.3553753900527954,
+    0.4466573062695955,
+    0.5031419801712036
+   ],
+   "saul": [
+    0.5211870795802066,
+    0.2732348928451538,
+    0.6053591778403834,
+    0.4349808225631714
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/engedi/saul-s303.png": {
+   "david": [
+    0.35420456685517965,
+    0.3843547954559326,
+    0.44163396483973455,
+    0.5227430477142334
+   ],
+   "saul": [
+    0.5907744106493498,
+    0.3395237426757813,
+    0.6825121578417326,
+    0.4962641220092774
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s11.png": {
+   "david": [
+    0.3120272912477192,
+    0.3064074440002441,
+    0.4289911797172145,
+    0.49457387161254884
+   ],
+   "saul": [
+    0.6468442866676732,
+    0.328277666091919,
+    0.7505451252585963,
+    0.4863613910675049
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s42.png": {
+   "david": [
+    0.35642126986854955,
+    0.30735455799102784,
+    0.4779135553460372,
+    0.4950593118667602
+   ],
+   "saul": [
+    0.6600120193079898,
+    0.3734608097076416,
+    0.7608275413513184,
+    0.5332411212921142
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s7.png": {
+   "david": [
+    0.32800210149664627,
+    0.4009307498931885,
+    0.4163651466369629,
+    0.537921106338501
+   ],
+   "saul": [
+    0.5079456881472939,
+    0.3665128574371338,
+    0.6176687290793971,
+    0.5213460788726807
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s23.png": {
+   "david": [
+    0.31639422868427475,
+    0.3824965848922729,
+    0.41585884596172135,
+    0.5486629858016967
+   ],
+   "saul": [
+    0.6597296062268709,
+    0.3247709822654724,
+    0.7481366207725123,
+    0.480395610332489
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s5.png": {
+   "david": [
+    0.35398451905501516,
+    0.2488916449546814,
+    0.4627740132181268,
+    0.4427006297111511
+   ],
+   "saul": [
+    0.5950580396150288,
+    0.29792615509033205,
+    0.6973678187320107,
+    0.46512090301513676
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s101.png": {
+   "david": [
+    0.32085965809069183,
+    0.21535796117782594,
+    0.43708344509727076,
+    0.41516183805465695
+   ],
+   "saul": [
+    0.5777853162665116,
+    0.27830484151840207,
+    0.6821802289862382,
+    0.45091727018356326
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s202.png": {
+   "david": [
+    0.3376979953364322,
+    0.30891679096221925,
+    0.4453713893890381,
+    0.494812424659729
+   ],
+   "saul": [
+    0.5417017183805767,
+    0.26396811628341676,
+    0.634804223713122,
+    0.452594262599945
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/engedi/both-s303.png": {
+   "david": [
+    0.3445003911068565,
+    0.38145399665832513,
+    0.445345728020919,
+    0.5600747165679931
+   ],
+   "saul": [
+    0.4873677554883455,
+    0.255455295085907,
+    0.5888942166378623,
+    0.46825613164901736
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s11.png": {
+   "david": [
+    0.24921517623098274,
+    0.1170216498374939,
+    0.3824841348748458,
+    0.32649254179000853
+   ],
+   "samuel": [
+    0.6545295966298956,
+    0.07246396255493166,
+    0.7913414051658229,
+    0.3916075439453125
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s42.png": {
+   "david": [
+    0.2325591664565237,
+    0.1400462517738342,
+    0.3655620499661094,
+    0.34688071107864377
+   ],
+   "samuel": [
+    0.637715364757337,
+    0.13406265068054196,
+    0.7890155942816484,
+    0.427549913406372
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s7.png": {
+   "david": [
+    0.22194217380724454,
+    0.13713156580924987,
+    0.33489274978637695,
+    0.3189811646938324
+   ],
+   "samuel": [
+    0.6756002526534232,
+    0.11343433761596682,
+    0.8145947707326788,
+    0.4056206932067871
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s23.png": {
+   "david": [
+    0.2407576786844354,
+    0.1566355652809143,
+    0.3594401886588649,
+    0.3390487141609192
+   ],
+   "samuel": [
+    0.6490776162398489,
+    0.10423731994628907,
+    0.7955387015091745,
+    0.41487364959716794
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s5.png": {
+   "david": [
+    0.2338841337906687,
+    0.1469389600753784,
+    0.3588057317231831,
+    0.3416809720993042
+   ],
+   "samuel": [
+    0.6716343980086478,
+    0.10918188238143922,
+    0.8146717924820749,
+    0.4229925646781922
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s101.png": {
+   "david": [
+    0.25490593910217285,
+    0.14050334930419922,
+    0.3835130867205168,
+    0.3448457145690918
+   ],
+   "samuel": [
+    0.6355407614456979,
+    0.09487191843986512,
+    0.7707958723369398,
+    0.40411733794212346
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s202.png": {
+   "david": [
+    0.25702820326152603,
+    0.11075225019454955,
+    0.3579661971644351,
+    0.2716317191123962
+   ],
+   "samuel": [
+    0.6839220147383841,
+    0.09437620043754577,
+    0.8039492556923314,
+    0.3558742940425873
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/david-s303.png": {
+   "david": [
+    0.2521588676854184,
+    0.12805224156379696,
+    0.3780796151412161,
+    0.3231237242221832
+   ],
+   "samuel": [
+    0.6628715364556563,
+    0.09542662620544436,
+    0.8063389878523978,
+    0.40838486671447755
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s11.png": {
+   "david": [
+    0.24944250207198293,
+    0.12387411332130434,
+    0.3754056127447831,
+    0.31978101468086245
+   ],
+   "samuel": [
+    0.6755563083447909,
+    0.08967287302017213,
+    0.8197041812695955,
+    0.40091902971267696
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s42.png": {
+   "david": [
+    0.23101490422299034,
+    0.15033840417861938,
+    0.35501354619076375,
+    0.34117411851882934
+   ],
+   "samuel": [
+    0.641577168514854,
+    0.10866339302062986,
+    0.7889808855558696,
+    0.4268047580718994
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s7.png": {
+   "david": [
+    0.2174045537647448,
+    0.15692671585083007,
+    0.3267786000904284,
+    0.3267310028076172
+   ],
+   "samuel": [
+    0.7086230328208522,
+    0.08187061047554015,
+    0.8322967228136564,
+    0.3987549135684967
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s23.png": {
+   "david": [
+    0.2327728773418226,
+    0.1561706099510193,
+    0.3504320947747481,
+    0.34137668943405153
+   ],
+   "samuel": [
+    0.6568751586110968,
+    0.12628985643386842,
+    0.7920858985499332,
+    0.4549176812171936
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s5.png": {
+   "david": [
+    0.23482389199106316,
+    0.1667244348526001,
+    0.3447079031090987,
+    0.3355380449295044
+   ],
+   "samuel": [
+    0.6859235010649029,
+    0.0985510001182556,
+    0.8196761231673392,
+    0.45247780179977415
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s101.png": {
+   "david": [
+    0.2523251081767835,
+    0.14183576917648316,
+    0.3785107763190019,
+    0.348530038356781
+   ],
+   "samuel": [
+    0.6435606605128238,
+    0.08105992221832277,
+    0.772727514568128,
+    0.4228812112808228
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s202.png": {
+   "david": [
+    0.260698443964908,
+    0.11720238447189331,
+    0.3530326893455104,
+    0.26501641988754276
+   ],
+   "samuel": [
+    0.6858309695595189,
+    0.09131445479393005,
+    0.801557038959704,
+    0.37465483736991884
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L1/ramah/samuel-s303.png": {
+   "david": [
+    0.24844150794179817,
+    0.12902947545051574,
+    0.3656826646704423,
+    0.3267417776584625
+   ],
+   "samuel": [
+    0.6786181550276907,
+    0.09185332679748534,
+    0.8181169158534,
+    0.4285219135284423
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s11.png": {
+   "david": [
+    0.2512623761829577,
+    0.1203870668411255,
+    0.3831043870825517,
+    0.3219800844192505
+   ],
+   "samuel": [
+    0.6602343509071752,
+    0.07783256506919863,
+    0.7939852664345189,
+    0.3904823157787323
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s42.png": {
+   "david": [
+    0.23237500692668714,
+    0.14226734161376955,
+    0.36270017372934443,
+    0.34080612182617187
+   ],
+   "samuel": [
+    0.6378802249306127,
+    0.11995140314102173,
+    0.7883015682822779,
+    0.4177850842475891
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s7.png": {
+   "david": [
+    0.22206468331186394,
+    0.13909925460815428,
+    0.3361782902165463,
+    0.3162404441833496
+   ],
+   "samuel": [
+    0.6939574542798495,
+    0.09872056245803833,
+    0.8236106822365209,
+    0.4041955590248108
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s23.png": {
+   "david": [
+    0.23986712254975973,
+    0.15414683294296264,
+    0.35967948562220525,
+    0.33584234189987183
+   ],
+   "samuel": [
+    0.6498316463671232,
+    0.11251126813888548,
+    0.7931936916552091,
+    0.4566302924156188
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s5.png": {
+   "david": [
+    0.23622532894736842,
+    0.1497708601951599,
+    0.35834292361610814,
+    0.3310744090080261
+   ],
+   "samuel": [
+    0.6717731827183774,
+    0.10893770503997802,
+    0.8161382926137823,
+    0.4503699903488159
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s101.png": {
+   "david": [
+    0.25687543969405324,
+    0.12989485836029052,
+    0.388609484622353,
+    0.34338429546356203
+   ],
+   "samuel": [
+    0.6349705394945646,
+    0.09085669469833375,
+    0.7722240498191432,
+    0.41751737546920775
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s202.png": {
+   "david": [
+    0.2574501539531507,
+    0.11352825808525084,
+    0.3557401456330952,
+    0.2654445950984955
+   ],
+   "samuel": [
+    0.6848997818796259,
+    0.08821818900108336,
+    0.8032702395790502,
+    0.3626722342967987
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/lora-scene/L2/ramah/both-s303.png": {
+   "david": [
+    0.24948165291234067,
+    0.12142792797088622,
+    0.37504181108976664,
+    0.31933146572113036
+   ],
+   "samuel": [
+    0.6656191474513004,
+    0.09068846893310548,
+    0.8073086487619501,
+    0.42838053894042966
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s11.png": {
+   "saul": [
+    0.7468232104652807,
+    0.13754346990585326,
+    0.860084985431872,
+    0.31604636335372926
+   ],
+   "samuel": [
+    0.1289972757038317,
+    0.23045610094070437,
+    0.23564376329120837,
+    0.4657164444923401
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s11.png": {
+   "david": [
+    0.3239794279399671,
+    0.36196454048156734,
+    0.40860326666581004,
+    0.5164092350006103
+   ],
+   "saul": [
+    0.6550010630958959,
+    0.33700171566009524,
+    0.7411014908238461,
+    0.48707848644256596
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s42.png": {
+   "saul": [
+    0.6890453790363512,
+    0.150651198387146,
+    0.8180262164065712,
+    0.3401867208480835
+   ],
+   "samuel": [
+    0.1598919065375077,
+    0.28453539133071903,
+    0.2601408456501208,
+    0.48278210878372196
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s42.png": {
+   "david": [
+    0.37336597944560806,
+    0.32692968082427976,
+    0.46421831532528524,
+    0.46621314716339113
+   ],
+   "saul": [
+    0.6374906489723607,
+    0.3557331852912903,
+    0.7179967227735018,
+    0.4943601899147033
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s7.png": {
+   "saul": [
+    0.7574437041031686,
+    0.16542615365982055,
+    0.8589494855780351,
+    0.3097328610420227
+   ],
+   "samuel": [
+    0.13359986480913663,
+    0.24071582269668582,
+    0.224846645405418,
+    0.4493392796516419
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s7.png": {
+   "david": [
+    0.3636501086385627,
+    0.4197826118469238,
+    0.44507938937137004,
+    0.5463197441101074
+   ],
+   "saul": [
+    0.6202440010873895,
+    0.3620271120071411,
+    0.7068385324980083,
+    0.5021780405044556
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-ramah-samuel/s11.png": {
+   "david": [
+    0.253532233991121,
+    0.13827918910980225,
+    0.36938147795827764,
+    0.3161137952804566
+   ],
+   "samuel": [
+    0.6939101219177246,
+    0.10166668462753296,
+    0.8267271393223813,
+    0.4071948008537293
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-ramah-samuel/s42.png": {
+   "david": [
+    0.23070462126480906,
+    0.1497870192527771,
+    0.3442276528007106,
+    0.3342044100761413
+   ],
+   "samuel": [
+    0.6437521482768812,
+    0.13022201728820798,
+    0.7855671330502159,
+    0.422890645980835
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-ramah-samuel/s7.png": {
+   "david": [
+    0.2175877345235724,
+    0.16480715465545653,
+    0.31887843734339666,
+    0.309821249961853
+   ],
+   "samuel": [
+    0.7118644463388544,
+    0.10626438522338866,
+    0.8403323073136179,
+    0.3899930801391601
+   ]
+  }
+ },
+ "refs": {
+  "gilgal": "/Users/calmonion/Project/BibleMap/scripts/canon/samples/face-widen/approved-gilgal.png",
+  "engedi": "/Users/calmonion/Project/BibleMap/scripts/canon/samples/face-ab/approved-engedi.png",
+  "ramah": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-ramah-samuel/s11.png"
+ },
+ "head_fallback": 0,
+ "l1": {
+  "saul": "2/8",
+  "david": "2/8",
+  "samuel": "8/8"
+ },
+ "l2": {
+  "saul": "0/8",
+  "david": "3/8",
+  "samuel": "7/8"
+ },
+ "verdict": "다른 길",
+ "screens": {
+  "A-saul-L1": [
+   {
+    "n": 1,
+    "kind": "lora",
+    "seed": 11
+   },
+   {
+    "n": 2,
+    "kind": "control",
+    "seed": 42
+   },
+   {
+    "n": 3,
+    "kind": "lora",
+    "seed": 23
+   },
+   {
+    "n": 4,
+    "kind": "lora",
+    "seed": 5
+   },
+   {
+    "n": 5,
+    "kind": "lora",
+    "seed": 202
+   },
+   {
+    "n": 6,
+    "kind": "lora",
+    "seed": 303
+   },
+   {
+    "n": 7,
+    "kind": "control",
+    "seed": 11
+   },
+   {
+    "n": 8,
+    "kind": "control",
+    "seed": 7
+   },
+   {
+    "n": 9,
+    "kind": "lora",
+    "seed": 42
+   },
+   {
+    "n": 10,
+    "kind": "lora",
+    "seed": 101
+   },
+   {
+    "n": 11,
+    "kind": "lora",
+    "seed": 7
+   }
+  ],
+  "A-saul-L2": [
+   {
+    "n": 1,
+    "kind": "lora",
+    "seed": 303
+   },
+   {
+    "n": 2,
+    "kind": "control",
+    "seed": 7
+   },
+   {
+    "n": 3,
+    "kind": "lora",
+    "seed": 42
+   },
+   {
+    "n": 4,
+    "kind": "lora",
+    "seed": 202
+   },
+   {
+    "n": 5,
+    "kind": "lora",
+    "seed": 5
+   },
+   {
+    "n": 6,
+    "kind": "lora",
+    "seed": 23
+   },
+   {
+    "n": 7,
+    "kind": "control",
+    "seed": 42
+   },
+   {
+    "n": 8,
+    "kind": "control",
+    "seed": 11
+   },
+   {
+    "n": 9,
+    "kind": "lora",
+    "seed": 101
+   },
+   {
+    "n": 10,
+    "kind": "lora",
+    "seed": 11
+   },
+   {
+    "n": 11,
+    "kind": "lora",
+    "seed": 7
+   }
+  ],
+  "A-david-L1": [
+   {
+    "n": 1,
+    "kind": "control",
+    "seed": 42
+   },
+   {
+    "n": 2,
+    "kind": "lora",
+    "seed": 303
+   },
+   {
+    "n": 3,
+    "kind": "lora",
+    "seed": 5
+   },
+   {
+    "n": 4,
+    "kind": "lora",
+    "seed": 7
+   },
+   {
+    "n": 5,
+    "kind": "lora",
+    "seed": 23
+   },
+   {
+    "n": 6,
+    "kind": "lora",
+    "seed": 11
+   },
+   {
+    "n": 7,
+    "kind": "control",
+    "seed": 11
+   },
+   {
+    "n": 8,
+    "kind": "lora",
+    "seed": 101
+   },
+   {
+    "n": 9,
+    "kind": "lora",
+    "seed": 42
+   },
+   {
+    "n": 10,
+    "kind": "lora",
+    "seed": 202
+   },
+   {
+    "n": 11,
+    "kind": "control",
+    "seed": 7
+   }
+  ],
+  "A-david-L2": [
+   {
+    "n": 1,
+    "kind": "control",
+    "seed": 7
+   },
+   {
+    "n": 2,
+    "kind": "lora",
+    "seed": 5
+   },
+   {
+    "n": 3,
+    "kind": "lora",
+    "seed": 202
+   },
+   {
+    "n": 4,
+    "kind": "lora",
+    "seed": 11
+   },
+   {
+    "n": 5,
+    "kind": "lora",
+    "seed": 7
+   },
+   {
+    "n": 6,
+    "kind": "control",
+    "seed": 11
+   },
+   {
+    "n": 7,
+    "kind": "lora",
+    "seed": 23
+   },
+   {
+    "n": 8,
+    "kind": "lora",
+    "seed": 42
+   },
+   {
+    "n": 9,
+    "kind": "lora",
+    "seed": 303
+   },
+   {
+    "n": 10,
+    "kind": "lora",
+    "seed": 101
+   },
+   {
+    "n": 11,
+    "kind": "control",
+    "seed": 42
+   }
+  ],
+  "A-samuel-L1": [
+   {
+    "n": 1,
+    "kind": "control",
+    "seed": 11
+   },
+   {
+    "n": 2,
+    "kind": "lora",
+    "seed": 303
+   },
+   {
+    "n": 3,
+    "kind": "lora",
+    "seed": 23
+   },
+   {
+    "n": 4,
+    "kind": "lora",
+    "seed": 7
+   },
+   {
+    "n": 5,
+    "kind": "lora",
+    "seed": 5
+   },
+   {
+    "n": 6,
+    "kind": "lora",
+    "seed": 42
+   },
+   {
+    "n": 7,
+    "kind": "lora",
+    "seed": 101
+   },
+   {
+    "n": 8,
+    "kind": "control",
+    "seed": 42
+   },
+   {
+    "n": 9,
+    "kind": "control",
+    "seed": 7
+   },
+   {
+    "n": 10,
+    "kind": "lora",
+    "seed": 11
+   },
+   {
+    "n": 11,
+    "kind": "lora",
+    "seed": 202
+   }
+  ],
+  "A-samuel-L2": [
+   {
+    "n": 1,
+    "kind": "lora",
+    "seed": 303
+   },
+   {
+    "n": 2,
+    "kind": "control",
+    "seed": 11
+   },
+   {
+    "n": 3,
+    "kind": "lora",
+    "seed": 11
+   },
+   {
+    "n": 4,
+    "kind": "lora",
+    "seed": 42
+   },
+   {
+    "n": 5,
+    "kind": "lora",
+    "seed": 101
+   },
+   {
+    "n": 6,
+    "kind": "lora",
+    "seed": 202
+   },
+   {
+    "n": 7,
+    "kind": "lora",
+    "seed": 5
+   },
+   {
+    "n": 8,
+    "kind": "lora",
+    "seed": 23
+   },
+   {
+    "n": 9,
+    "kind": "control",
+    "seed": 42
+   },
+   {
+    "n": 10,
+    "kind": "control",
+    "seed": 7
+   },
+   {
+    "n": 11,
+    "kind": "lora",
+    "seed": 7
+   }
+  ]
+ },
+ "controls_read": "1/9",
+ "mix_l2": {
+  "gilgal": "0/8",
+  "engedi": "2/8",
+  "ramah": "0/8"
+ },
+ "style_broken": {
+  "L1": {
+   "gilgal": "0/16",
+   "engedi": "16/16",
+   "ramah": "6/16"
+  },
+  "L2": {
+   "gilgal": "0/8",
+   "engedi": "8/8",
+   "ramah": "5/8"
+  }
+ }
+}

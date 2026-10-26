@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "sheba-queen",
   "names": [
     "스바 여왕"
@@ -10,6 +10,7 @@
   "era": "an ancient South Arabian Sabaean queen",
   "age": "a queen",
   "sex": "female",
+  "role": "queen",
   "hair": "dark hair",
   "beard": "none",
   "headwear": "gold diadem with a veil",
@@ -37,13 +38,59 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, presenting gifts"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "prime",
+      "text": "in her 30s, poised smooth face"
+    },
+    "beardVolume": {
+      "class": "none",
+      "text": "없음"
+    },
+    "silhouette": {
+      "class": "slight",
+      "text": "slight elegant narrow shoulders, long neck"
+    },
+    "headOutline": {
+      "class": "diadem",
+      "text": "gold diadem over a fine veil"
+    },
+    "costumeColor": {
+      "class": "red",
+      "text": "crimson robe, gold fringe, necklaces"
+    }
+  },
+  "face": {
+    "faceShape": "long narrow face with a pointed chin",
+    "eyes": "large dark kohl-lined eyes",
+    "nose": "aquiline nose with a high bridge",
+    "mouth": "thin wide mouth with a faint upward curl",
+    "skin": "dark glowing skin",
+    "brows": "straight thick black brows",
+    "marks": "none"
+  },
   "_why": {
-    "age": "본문 밖 · 저작자 정함",
-    "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함(기원전 10세기 남아라비아 사바 — 왕상 10:2 금·보석만 근거)",
-    "costume": "본문 밖 · 저작자 정함(기원전 10세기 남아라비아 사바 — 왕상 10:2 금·보석만 근거)"
+    "age": "[저작](여왕 신분 성인 — 나이는 본문에 없음)",
+    "build": "[추론] 왕상 10:1 「스바 여왕」 — 여왕 신분 → 위엄 있는 자세",
+    "hair": "[저작](남아라비아 인물 대표값 — 본문에 머리색 없음)",
+    "beard": "[저작](여성이라 수염 없음)",
+    "headwear": "[저작](기원전 10세기 남아라비아 사바 — 왕상 10:2의 금·보석은 낙타에 실은 선물이라 머리 장식의 근거 아님)",
+    "costume": "[저작](기원전 10세기 남아라비아 사바 — 몸에 두른 금·목걸이는 본문에 없음)",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[저작](역표 동석 인물과 구분용)",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "face.faceShape": "[저작](29명 얼굴 유사 검토 — 밧세바와 같은 얼굴로 그려짐 판정 → 가름; 얼굴 구분용)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](29명 얼굴 유사 검토 — 밧세바와 같은 얼굴로 그려짐 판정 → 가름; 얼굴 구분용)",
+    "face.mouth": "[저작](29명 얼굴 유사 검토 — 밧세바와 같은 얼굴로 그려짐 판정 → 가름; 얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](29명 얼굴 유사 검토 — 밧세바와 같은 얼굴로 그려짐 판정 → 가름; 얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[직접] 왕상 10:1 「스바 여왕」"
   },
   "plate": {
     "seed": 11,

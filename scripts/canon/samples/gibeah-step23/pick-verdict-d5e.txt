@@ -1,0 +1,2 @@
+판정 task gibeah-step23/d5e
+{"task":"gibeah-step23/d5e","kind":"ab","human_minutes":3.28,"active_minutes":0.71,"idle_ms":120000,"screens":1,"scenes":{"authored-saul-gibeah-spear":{"answer":"none","chose":"none","left":"d5e:5","right":"d4e2:5","memo":"인물들의 비율이 이상함","minutes":3.26,"active_minutes":0.69}}}

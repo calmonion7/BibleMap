@@ -1,0 +1,133 @@
+<title>@@TITLE@@</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;600&display=swap">
+<style>
+/* 한 화면 한 질문: 위에 본문, 가운데 후보 그림 칸(폰 1열 · 넓으면 2열), 아래 답 복사 */
+:root {
+  --bg: #e9ecee; --panel: #f7f8f9; --ink: #1f2a30; --muted: #5b6870; --line: #c9d0d4;
+  --accent: #2f5d50; --accent-ink: #ffffff; --ok: #2f6b3a; --bad: #9a3b2c;
+  --serif: "Gowun Batang", "Noto Serif KR", "AppleMyungjo", serif;
+  --sans: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #161b1e; --panel: #20272b; --ink: #e4e9ec; --muted: #9aa7ae; --line: #36414a;
+  --accent: #7fb8a6; --accent-ink: #10201b; --ok: #8fcf98; --bad: #f0a091; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #161b1e; --panel: #20272b; --ink: #e4e9ec; --muted: #9aa7ae; --line: #36414a;
+  --accent: #7fb8a6; --accent-ink: #10201b; --ok: #8fcf98; --bad: #f0a091; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.55; }
+main { max-width: 1080px; margin: 0 auto; padding-block: 20px 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 20px; }
+h1 { font-family: var(--serif); font-size: 1.6rem; margin: 0; text-wrap: balance; }
+.lede { color: var(--muted); margin: 4px 0 0; max-width: 65ch; }
+.verses { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px;
+  font-family: var(--serif); font-size: 1.02rem; display: grid; gap: 6px; max-height: 40vh; overflow-y: auto; }
+.verses b { font-weight: 700; }
+.verses .ref { font-family: var(--sans); font-size: .8rem; color: var(--muted); margin-right: 6px; }
+.q { font-size: 1.15rem; font-weight: 600; margin: 0; }
+.q small { display: block; font-weight: 400; font-size: .9rem; color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 460px), 1fr)); gap: 16px; }
+.card { background: var(--panel); border: 2px solid var(--line); border-radius: 10px; padding: 10px; display: grid; gap: 8px; min-width: 0; }
+.card.sel { border-color: var(--accent); }
+.card img { width: 100%; height: auto; display: block; border-radius: 4px; cursor: zoom-in; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; }
+.seed { font-weight: 600; font-variant-numeric: tabular-nums; }
+.chip { font-size: .8rem; padding: 2px 8px; border-radius: 999px; border: 1px solid currentColor; }
+.chip.ok { color: var(--ok); } .chip.bad { color: var(--bad); }
+.fails { font-size: .82rem; color: var(--muted); margin: 0; }
+.pick { display: flex; gap: 8px; align-items: center; font-weight: 600; cursor: pointer; }
+.pick input { width: 20px; height: 20px; accent-color: var(--accent); }
+button.sub { background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 6px; padding: 4px 10px; font: inherit; font-size: .85rem; cursor: pointer; }
+.none { background: var(--panel); border: 2px solid var(--line); border-radius: 10px; padding: 12px; }
+textarea { width: 100%; box-sizing: border-box; min-height: 80px; font: inherit; color: var(--ink); background: var(--panel);
+  border: 1px solid var(--line); border-radius: 8px; padding: 10px; }
+.send { display: grid; gap: 10px; }
+.send button { justify-self: start; background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 8px; padding: 12px 18px; font: inherit; font-weight: 600; cursor: pointer; }
+.send pre { white-space: pre-wrap; word-break: break-all; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px; margin: 0; font-size: .85rem; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.zoom { position: fixed; inset: 0; background: var(--bg); z-index: 20; display: grid; grid-template-rows: auto 1fr;
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.zoom[hidden] { display: none; }
+.zoom .bar { display: flex; gap: 8px; align-items: center; padding: 10px max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px)); border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.zoom .bar span { margin-right: auto; font-weight: 600; }
+.zoom .bar button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.zoom .view { overflow: auto; }
+.zoom .view img { display: block; max-width: none; image-rendering: pixelated; }
+</style>
+
+<main>
+  <header>
+    <h1>@@H1@@</h1>
+    <p class="lede">@@LEDE@@</p>
+  </header>
+  <section class="verses" aria-label="본문 @@RANGE@@ 개역한글">@@VERSES@@</section>
+  <p class="q">이 장면으로 쓸 그림이 있나요?<small>@@HINT@@</small></p>
+  <section class="grid" id="grid"></section>
+  <label class="none pick" for="pick-none"><input type="radio" name="pick" id="pick-none" value="none"> 쓸 그림이 없음</label>
+  <label for="memo">메모 (무엇이 이상한지, 고른 까닭)</label>
+  <textarea id="memo" placeholder="@@MEMO_EG@@"></textarea>
+  <section class="send">
+    <button type="button" id="copy">답 복사</button>
+    <pre id="out" aria-live="polite"></pre>
+    <p class="lede">복사한 글을 대화창에 붙여 넣어 주세요.</p>
+  </section>
+</main>
+<div class="zoom" id="zoom" hidden>
+  <div class="bar"><span id="ztitle"></span>
+    <button type="button" class="sub" data-z="1">1×</button><button type="button" class="sub" data-z="2">2×</button>
+    <button type="button" class="sub" data-z="3">3×</button><button type="button" class="sub" id="zclose">닫기</button></div>
+  <div class="view"><img id="zimg" alt=""></div>
+</div>
+<script>
+const CARDS = /*CARDS*/[];
+const IMGS = /*IMGS*/{};
+const grid = document.getElementById("grid");
+for (const c of CARDS) {
+  const el = document.createElement("article");
+  el.className = "card"; el.id = "card-" + c.seed;
+  el.innerHTML = `<img alt="시드 ${c.seed} 그림" data-src="comp-${c.seed}">
+    <div class="meta"><span class="seed">시드 ${c.seed}</span>
+      <span class="chip ${c.pass ? "ok" : "bad"}">${c.pass ? "기계 통과" : "기계 불통과 · 틀림 " + c.fails.length}</span></div>
+    ${c.pass ? "" : `<p class="fails">${c.fails.join(" · ")}</p>`}
+    ${c.note ? `<p class="fails">${c.note}</p>` : ""}
+    <div class="meta"><label class="pick" for="pick-${c.seed}"><input type="radio" name="pick" id="pick-${c.seed}" value="s${c.seed}"> 이 그림을 씀</label>
+      ${IMGS["inset-" + c.seed] ? `<button type="button" class="sub" data-inset="${c.seed}">곁 장면 원본</button>` : ""}</div>`;
+  el.querySelector("img").src = IMGS["comp-" + c.seed];
+  grid.appendChild(el);
+}
+const zoom = document.getElementById("zoom"), zimg = document.getElementById("zimg");
+let natW = 0;
+function setZ(z) {
+  zimg.style.width = (natW * z / (window.devicePixelRatio || 1)) + "px";
+  zoom.querySelectorAll("[data-z]").forEach(b => b.setAttribute("aria-pressed", String(+b.dataset.z === z)));
+}
+function openZoom(key, title) {
+  zimg.onload = () => { natW = zimg.naturalWidth; setZ(1); };
+  zimg.src = IMGS[key]; document.getElementById("ztitle").textContent = title; zoom.hidden = false;
+}
+grid.addEventListener("click", e => {
+  const img = e.target.closest("img[data-src]");
+  if (img) openZoom(img.dataset.src, img.alt);
+  const b = e.target.closest("[data-inset]");
+  if (b) openZoom("inset-" + b.dataset.inset, `시드 ${b.dataset.inset} 곁 장면 원본`);
+});
+zoom.addEventListener("click", e => {
+  if (e.target.dataset.z) setZ(+e.target.dataset.z);
+  if (e.target.id === "zclose") zoom.hidden = true;
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") zoom.hidden = true; });
+document.addEventListener("change", e => {
+  if (e.target.name !== "pick") return;
+  document.querySelectorAll(".card").forEach(c => c.classList.toggle("sel", c.id === "card-" + e.target.value.slice(1)));
+});
+document.getElementById("copy").addEventListener("click", () => {
+  const p = document.querySelector("input[name=pick]:checked");
+  const out = document.getElementById("out");
+  if (!p) { out.textContent = "먼저 그림 하나 또는 「쓸 그림이 없음」을 고르세요."; return; }
+  const text = "판정 task @@TASK@@\n" + JSON.stringify({ pick: p.value, memo: document.getElementById("memo").value.trim() });
+  out.textContent = text;
+  const sel = () => { const r = document.createRange(); r.selectNodeContents(out); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+  try { navigator.clipboard.writeText(text).then(() => { out.textContent = text + "\n(복사됨)"; }, sel); } catch (_) { sel(); }
+});
+</script>

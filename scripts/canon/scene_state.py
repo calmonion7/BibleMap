@@ -45,6 +45,15 @@ def ladder_hashes(spec):
     }
 
 
+def spec_hash(spec):
+    """명세 전체 해시(승인 기록 approved·_format 제외) — 승인 그림이 어느 명세에서 나왔는지(task 392 재검)."""
+    return _h({k: v for k, v in spec.items() if k not in ("approved", "_format")})
+
+
+def prompt_hash(prompt):
+    return hashlib.sha256(prompt.encode()).hexdigest()[:12]
+
+
 def live_stages(spec):
     """건너뛰지 않는 단계만, 명세 순서대로."""
     return [s for s in spec["stages"] if not s.get("skip")]
@@ -98,7 +107,7 @@ def stale(spec, attempts):
         prev = (st["id"], ap["attempt"], ap["seed"])
 
     fin = appr.get("final")
-    if fin:
+    if fin and fin.get("path") not in ("night-pick", "local-edit"):   # 한 장 경로 완료(task 368·371)는 단계 사다리 밖 — 대조할 단계 승인이 없다
         why = []
         last = live[-1] if live else None
         last_ap = (last or {}).get("approved")

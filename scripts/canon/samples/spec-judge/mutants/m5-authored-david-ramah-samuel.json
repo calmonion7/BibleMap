@@ -1,0 +1,229 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-david-ramah-samuel",
+  "title": "다윗 — 라마의 사무엘에게로 도피하다",
+  "verses": {
+    "range": "삼상 19:18",
+    "quotes": {
+      "19:18": "다윗이 도피하여 라마로 가서 사무엘에게로 나아가서 사울이 자기에게 행한 일을 다 고하였고 다윗과 사무엘이 나욧으로 가서 거하였더라"
+    }
+  },
+  "moment": {
+    "verse": "19:18",
+    "why": "다윗이 도피하여 라마의 사무엘 앞에 나아간 순간(19:18 전반)을 고정한다 — 두 사람이 나욧으로 가서 거함은 그 뒤의 다른 시점이다."
+  },
+  "verse_elements": [
+    {
+      "verse": "19:18",
+      "quote": "라마로 가서",
+      "kind": "장소",
+      "ko": "라마의 소박한 마른 뜰",
+      "en": "a small quiet dry courtyard at Ramah",
+      "field": "whole_background"
+    },
+    {
+      "verse": "19:18",
+      "quote": "다윗이 도피하여",
+      "kind": "행동",
+      "ko": "다윗이 사울을 피해 도망쳐 옴",
+      "en": "a man who has just fled",
+      "field": "figures[0].expression"
+    },
+    {
+      "verse": "19:18",
+      "quote": "사무엘에게로 나아가서",
+      "kind": "행동",
+      "ko": "다윗이 사무엘 앞에 나아가 섬",
+      "en": "standing before Samuel",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "19:18",
+      "quote": "사무엘에게로 나아가서",
+      "kind": "인물",
+      "ko": "사무엘이 다윗을 마주 보고 들음",
+      "en": "standing facing David",
+      "field": "figures[1].gesture"
+    },
+    {
+      "verse": "19:18",
+      "quote": "다윗과 사무엘이 나욧으로 가서 거하였더라",
+      "kind": "행동",
+      "ko": "두 사람이 나욧으로 옮겨 거함",
+      "out": "고한 뒤 이어지는 다른 시점의 사건(순간 밖)"
+    }
+  ],
+  "background": [
+    {
+      "what": "라마의 소박한 뜰",
+      "verse": "19:18"
+    }
+  ],
+  "figures": [
+    {
+      "cast": "david",
+      "role": "다윗 — 도피한 자",
+      "pose": "사무엘 앞에 선다",
+      "prop": "an open hand",
+      "facing": "right",
+      "region": "david",
+      "verse": "19:18",
+      "expression": {
+        "ko": "지치고 다급한 얼굴 — 도망쳐 온 사람",
+        "en": "a weary, urgent face of a man who has just fled",
+        "verse": "삼상 19:18 「도피하여」(도망쳐 옴) · 표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "사무엘 앞에 서 있다",
+        "en": "standing before Samuel",
+        "verse": "삼상 19:18 「사무엘에게로 나아가서」 · 손짓은 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "먼지 묻은 어두운 붉은 양모 튜닉과 가죽 띠",
+        "en": "a dusty dark red wool tunic with a leather belt",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색 red와 맞춤)"
+      },
+      "gaze": "samuel",
+      "screen_facing": "right"
+    },
+    {
+      "cast": "samuel",
+      "role": "사무엘 — 선지자",
+      "pose": "서서 겉옷자락을 쥔다",
+      "prop": "a robe corner",
+      "facing": "left",
+      "region": "samuel",
+      "verse": "19:18",
+      "expression": {
+        "ko": "조용히 귀 기울이는 늙은 얼굴",
+        "en": "a quiet, attentive old face, listening",
+        "verse": "삼상 19:18 · 표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "다윗을 마주 보고 서서 겉옷자락을 쥔 채 듣는다",
+        "en": "standing facing David, one hand holding the edge of his robe, listening",
+        "verse": "삼상 19:18 · 자세·손 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "긴 짙은 갈색 양모 겉옷과 천 띠, 지팡이 없음",
+        "en": "a long dark brown wool robe with a cloth belt, no staff",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색 brown과 맞춤)"
+      },
+      "gaze": "david",
+      "screen_facing": "left"
+    }
+  ],
+  "regions": {
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "david": [
+      0.15,
+      0.37,
+      0.315,
+      0.92
+    ],
+    "samuel": [
+      0.6,
+      0.37,
+      0.762,
+      0.92
+    ]
+  },
+  "_regions_why": "다윗·사무엘 모두 세로 0.55(둘 다 성인). 좌우는 19:18(다윗이 사무엘 앞에서 고함).",
+  "stages": [
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "19:18",
+      "prompt": "a small dry village courtyard, simple stone ground, sparse dry grass, pale sky, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "soldiers",
+        "modern buildings",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S2",
+      "kind": "plate",
+      "region": "david",
+      "verse": "19:18",
+      "prompt": "{cast:david}, standing tall, one open hand raised, facing right.",
+      "neg": [
+        "armour",
+        "crown",
+        "royal robe",
+        "modern clothes",
+        "sitting",
+        "sword"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "samuel",
+      "verse": "19:18",
+      "prompt": "{cast:samuel}, standing tall, gripping one robe corner, listening, facing left.",
+      "neg": [
+        "armour",
+        "sword",
+        "spear",
+        "crown",
+        "modern clothes",
+        "staff",
+        "sitting"
+      ]
+    }
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": [
+      "david",
+      "samuel"
+    ],
+    "gap_bands": [
+      [
+        0.315,
+        0.6
+      ]
+    ],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
+  },
+  "meaning": {
+    "ko": "사울을 피해 온 다윗이 라마의 사무엘 앞에 서고, 늙은 선지자 사무엘이 그를 맞는다",
+    "en": "David, having fled from Saul, stands before the old prophet Samuel at Ramah",
+    "verse": "삼상 19:18 「다윗이 도피하여 라마로 가서 사무엘에게로 나아가서」 · 뜰·자세·거리는 본문 밖 · 저작자 정함(구도)"
+  },
+  "relation": {
+    "ko": "다윗은 왼쪽에서 사무엘을 향해 서고, 사무엘은 오른쪽에서 다윗을 마주 본다. 둘은 서로 바라본다",
+    "en": "David on the left stands toward Samuel, and Samuel on the right faces him; the two men look at each other",
+    "verse": "삼상 19:18 · 좌우 배치·손짓·시선 본문 밖 · 저작자 정함"
+  },
+  "whole_background": {
+    "ko": "라마의 소박한 마른 뜰 — 낮은 돌담과 흙벽 집 한 채, 마른 풀, 엷은 하늘",
+    "en": "a small quiet dry courtyard at Ramah with simple packed-earth ground, a low rough stone wall and one plain mud-brick house behind, sparse dry grass, pale sky",
+    "verse": "삼상 19:18(장소 라마) · 뜰·돌담·집·하늘은 본문 밖 · 저작자 정함(시대 고증 — 철기 초 이스라엘 마을)"
+  }
+}

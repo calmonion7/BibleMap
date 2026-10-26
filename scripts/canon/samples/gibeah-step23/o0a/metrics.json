@@ -1,0 +1,456 @@
+{
+ "answers": {
+  "g:7": {
+   "S": {
+    "4": {
+     "tries": [
+      {
+       "seconds": 3.814,
+       "input": 4,
+       "output": 305,
+       "cache_read": 43786,
+       "cache_create": 10286,
+       "cost_usd": 0.0485806,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리나 액자는 보이지 않는다.",
+      "s.no-blob": "인물 둘과 창, 수금, 의자 모두 얼굴·옷·세부 묘사가 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.894,
+       "input": 4,
+       "output": 313,
+       "cache_read": 43786,
+       "cache_create": 10286,
+       "cost_usd": 0.0486606,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리나 액자, 글자는 보이지 않는다.",
+      "s.no-blob": "사울, 다윗, 창, 의자, 수금 모두 얼굴·옷·질감이 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 4.631,
+       "input": 4,
+       "output": 280,
+       "cache_read": 43786,
+       "cache_create": 10286,
+       "cost_usd": 0.0483306,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴, 옷, 세부 묘사가 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.674,
+       "input": 4,
+       "output": 278,
+       "cache_read": 43786,
+       "cache_create": 10286,
+       "cost_usd": 0.048310599999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사울, 다윗, 창, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.731,
+       "input": 4,
+       "output": 281,
+       "cache_read": 43786,
+       "cache_create": 10286,
+       "cost_usd": 0.0483406,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사람 둘, 창, 의자 모두 얼굴·옷·결이 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 6.192,
+       "input": 4,
+       "output": 548,
+       "cache_read": 43968,
+       "cache_create": 10468,
+       "cost_usd": 0.0517568,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림"
+     },
+     "reasons": {
+      "e.spear-tip-small": "촉 길이가 사울 머리 높이의 0.8배쯤이라 절반보다 길고, 가장 넓은 폭은 자루 굵기의 3배 이상인 넓적한 잎 모양이다.",
+      "e.saul-proportion-measure": "머리 높이가 키의 약 1/4.5이라 머리가 크다. 튜닉 아래 다리는 몸통보다 짧아 보이고 키의 절반에 못 미친다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.406,
+       "input": 4,
+       "output": 579,
+       "cache_read": 43968,
+       "cache_create": 10468,
+       "cost_usd": 0.052066799999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림"
+     },
+     "reasons": {
+      "e.spear-tip-small": "촉 길이가 사울 머리 높이의 절반보다 훨씬 길고, 약 75px로 머리 높이와 거의 같다. 촉 폭도 자루 굵기의 서너 배인 넓적한 잎 모양이다.",
+      "e.saul-proportion-measure": "튜닉 아래로 보이는 다리가 짧다. 엉덩이에서 발까지가 키의 4분의 1쯤이라 절반에 못 미치고, 몸통이 길고 다리가 짧아 보인다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 7.798,
+       "input": 4,
+       "output": 638,
+       "cache_read": 43968,
+       "cache_create": 10626,
+       "cost_usd": 0.0532888,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림"
+     },
+     "reasons": {
+      "e.spear-tip-small": "촉 길이가 약 75px로 사울 머리 높이(약 80px)와 거의 같아 절반쯤이 아니다. 폭도 자루의 2배를 넘는 넓적한 잎 모양이다.",
+      "e.saul-proportion-measure": "머리가 키의 약 1/5로 커 보이고, 튜닉 아래 다리가 키의 절반보다 짧아 몸통보다 짧아 보인다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 7.038,
+       "input": 4,
+       "output": 542,
+       "cache_read": 54436,
+       "cache_create": 0,
+       "cost_usd": 0.010871599999999999,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림"
+     },
+     "reasons": {
+      "e.spear-tip-small": "촉 길이가 사울 머리 높이의 절반보다 훨씬 길고(머리 높이에 가까움), 가장 넓은 폭이 자루 굵기의 약 3배인 잎 모양이다.",
+      "e.saul-proportion-measure": "머리가 키의 약 1/5로 크고, 튜닉 아래 다리가 짧아 키의 절반에 못 미친다. 몸통에 비해 다리가 짧아 보인다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 7.313,
+       "input": 4,
+       "output": 627,
+       "cache_read": 54594,
+       "cache_create": 0,
+       "cost_usd": 0.011737399999999999,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림"
+     },
+     "reasons": {
+      "e.spear-tip-small": "촉 길이가 사울 머리 높이와 거의 같고 절반이 아니다. 폭도 자루의 두 배를 넘는 잎 모양이다.",
+      "e.saul-proportion-measure": "머리가 키의 약 5분의 1로 크다. 튜닉 아래 다리가 짧아 키의 절반에 못 미치고 몸통보다 짧아 보인다."
+     }
+    }
+   }
+  },
+  "g:5": {
+   "S": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.348,
+       "input": 4,
+       "output": 280,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.04503120000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선을 두고 색연필로 칠한 동화 그림 느낌이 난다.",
+      "s.no-blob": "두 인물과 창, 의자, 수금 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.336,
+       "input": 4,
+       "output": 277,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.045001200000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.57,
+       "input": 4,
+       "output": 275,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.044981200000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 의자, 수금 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 3.451,
+       "input": 4,
+       "output": 273,
+       "cache_read": 52898,
+       "cache_create": 1174,
+       "cost_usd": 0.012723800000000002,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자 모두 얼굴·옷·질감이 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 4.834,
+       "input": 4,
+       "output": 274,
+       "cache_read": 54072,
+       "cache_create": 0,
+       "cost_usd": 0.008155200000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자 모두 얼굴·옷·형태가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 6.463,
+       "input": 4,
+       "output": 645,
+       "cache_read": 46421,
+       "cache_create": 8015,
+       "cost_usd": 0.04316009999999999,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림"
+     },
+     "reasons": {
+      "e.spear-tip-small": "앞쪽(화면 왼쪽) 촉은 길이가 사울 머리 높이(약 60px)보다 긴 약 90px이고, 가장 넓은 폭은 자루 굵기의 4~5배쯤 되는 넓적한 잎 모양이다.",
+      "e.saul-proportion-measure": "튜닉 아래로 보이는 다리가 몸통보다 짧아 보이고, 엉덩이에서 발까지가 키의 절반에 못 미친다. 머리 높이는 키의 7분의 1쯤으로 맞지만 다리 비가 어긋난다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.678,
+       "input": 4,
+       "output": 610,
+       "cache_read": 54436,
+       "cache_create": 0,
+       "cost_usd": 0.0115516,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림"
+     },
+     "reasons": {
+      "e.spear-tip-small": "창 한쪽 끝에 넓적한 잎 모양 촉이 있다. 길이는 사울 머리 높이를 넘고, 폭은 자루 굵기의 약 4배다. 반대쪽 끝에도 작은 촉이 하나 더 있다.",
+      "e.saul-proportion-measure": "사울의 튜닉 아래로 보이는 다리가 몸통(어깨~튜닉 밑단)보다 짧다. 엉덩이에서 발까지가 키의 절반에 못 미치고, 머리도 몸에 비해 작아 보인다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 7.285,
+       "input": 4,
+       "output": 685,
+       "cache_read": 54436,
+       "cache_create": 0,
+       "cost_usd": 0.012301600000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림"
+     },
+     "reasons": {
+      "e.spear-tip-small": "촉은 길이가 사울 머리 높이보다 길고 가장 넓은 폭이 자루 굵기의 4배쯤이라, 기대한 작은 촉이 아니라 넓적한 잎 모양이다.",
+      "e.saul-proportion-measure": "머리는 키의 7분의 1쯤으로 괜찮다. 하지만 튜닉 아래 다리가 짧고 몸통이 길어서 다리 길이가 키의 절반에 못 미친다. 분명히 맞다고 확인되지 않아 틀림으로 답한다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 8.149,
+       "input": 4,
+       "output": 720,
+       "cache_read": 54436,
+       "cache_create": 0,
+       "cost_usd": 0.0126516,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림"
+     },
+     "reasons": {
+      "e.spear-tip-small": "창의 앞 촉(화면 왼쪽, 다윗 쪽)이 잎 모양으로 넓적하다. 길이가 사울 머리 높이(약 60px)보다 긴 약 90px이고, 가장 넓은 폭은 자루 굵기의 서너 배다.",
+      "e.saul-proportion-measure": "머리 높이는 키의 7분의 1쯤으로 맞다. 그러나 튜닉 밑단이 무릎 위에 있고 엉덩이에서 발까지 다리가 키의 3분의 1쯤으로 짧다. 절반쯤이라는 기준에 못 미치고 몸통보다 짧아 보인다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 8.807,
+       "input": 4,
+       "output": 755,
+       "cache_read": 54436,
+       "cache_create": 0,
+       "cost_usd": 0.0130016,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.spear-tip-small": "틀림",
+      "e.saul-proportion-measure": "틀림"
+     },
+     "reasons": {
+      "e.spear-tip-small": "날아가는 창의 앞 촉(화면 왼쪽)은 길이가 사울 머리 높이의 절반보다 길고, 가장 넓은 폭이 자루 굵기의 약 3배인 넓적한 잎 모양이다.",
+      "e.saul-proportion-measure": "머리 높이는 키의 7분의 1쯤으로 자연스럽다. 하지만 튜닉 아래로 보이는 다리가 짧아서, 엉덩이에서 발까지가 키의 절반에 못 미치고 몸통보다 짧아 보인다. 분명히 맞다고 확인되지 않아 틀림으로 판정한다."
+     }
+    }
+   }
+  }
+ }
+}

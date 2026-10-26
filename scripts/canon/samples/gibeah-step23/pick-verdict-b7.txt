@@ -1,0 +1,3 @@
+판정 task gibeah-step23/b7
+{"task":"gibeah-step23/b7","kind":"ab","human_minutes":0.08,"active_minutes":0.07,"idle_ms":120000,"screens":1,"scenes":{"authored-saul-gibeah-spear":{"answer":"none","chose":"none","left":"g:5","right":"g:303","memo":"사울 모습이이상함","minutes":1.85,"active_minutes":0.05}}}
+source: conversation

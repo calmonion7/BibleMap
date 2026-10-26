@@ -12,11 +12,51 @@
   },
   "moment": {
     "verse": "5:7",
-    "why": "다윗이 시온 산성을 빼앗아 그 앞에 선 순간을 고정한다. 5:6의 여부스 사람의 조롱, 5:8의 수구 전투는 순간 밖이라 배제한다."
+    "why": "다윗이 시온 산성을 빼앗아 그 성벽 앞에 선 순간을 고정한다(5:7). 5:6 「왕과 그 종자들이」는 대상 11:4 「온 이스라엘로 더불어」 평행으로 다윗 뒤에 선 종자들로 싣는다. 5:6의 여부스 사람의 조롱, 5:9의 거함과 성 쌓기는 앞뒤 다른 시점이라 순간 밖이다. 종자들은 다윗 바로 뒤 같은 언덕에 모여 서 있고, 성벽 쪽 먼 무리가 아니다. (task 378 — 376 되돌림 원인: 종자 배치)"
   },
+  "verse_elements": [
+    {
+      "verse": "5:7",
+      "quote": "다윗이 시온 산성을 빼앗았으니",
+      "kind": "인물",
+      "ko": "다윗이 거기 섬",
+      "en": "an ancient Israelite man, a king",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "5:7",
+      "quote": "시온 산성",
+      "kind": "장소",
+      "ko": "시온 산성의 성벽",
+      "en": "a massive ancient stone fortress wall on a steep hill",
+      "field": "stages[S1b].prompt"
+    },
+    {
+      "verse": "5:6",
+      "quote": "왕과 그 종자들이",
+      "kind": "무리",
+      "ko": "다윗의 종자들(온 이스라엘 — 대상 11:4)이 그 뒤에 많이 섬",
+      "en": "a band of armed Israelite men standing close together just behind the man at the front",
+      "field": "stages[S2].prompt"
+    },
+    {
+      "verse": "5:6",
+      "quote": "네가 이리로 들어오지 못하리라",
+      "kind": "행동",
+      "ko": "여부스 사람들의 조롱",
+      "out": "빼앗기 전 성 안의 말로 5:7의 순간 앞 시점"
+    },
+    {
+      "verse": "5:9",
+      "quote": "밀로에서부터 안으로 성을 둘러 쌓으니라",
+      "kind": "행동",
+      "ko": "성을 둘러 쌓음",
+      "out": "빼앗은 뒤에 이어지는 별개 시점"
+    }
+  ],
   "background": [
     {
-      "what": "시온 산성 성벽",
+      "what": "시온 산성 성벽 — 다윗이 빼앗은 다윗 성",
       "verse": "5:7 · 5:9"
     },
     {
@@ -24,15 +64,23 @@
       "verse": "본문 밖 · 저작자 정함"
     }
   ],
-  "crowds": [],
+  "crowds": [
+    {
+      "what": "다윗의 종자들 — 다윗 바로 뒤 같은 언덕에 모여 선 무장한 많은 사람(대상 11:4 「온 이스라엘로 더불어」 평행)",
+      "verse": "5:6 · 대상 11:4 · 배치(다윗 바로 뒤)·창 쥠 · 본문 밖 · 저작자 정함",
+      "region": "retinue",
+      "count": 1000,
+      "count_why": "[저작](「왕과 그 종자들이 예루살렘으로 가서」 5:6 · 대상 11:4 「다윗이 온 이스라엘로 더불어 예루살렘 곧 여부스에 이르니」 평행 — 수 없음, 종자들은 다윗과 함께 온 온 이스라엘이라 다른 장면 「온 이스라엘」과 같이 군중 1000 이상으로 어림)"
+    }
+  ],
   "figures": [
     {
-      "cast": "david",
+      "cast": "david-prime",
       "role": "다윗",
       "pose": "성벽을 마주 보고 서서 칼자루를 쥔다",
       "prop": "a sword",
       "facing": "right",
-      "region": "david",
+      "region": "david-prime",
       "verse": "5:7 · 지물 본문 밖 · 저작자 정함"
     }
   ],
@@ -49,14 +97,20 @@
       1.0,
       0.65
     ],
-    "david": [
+    "david-prime": [
       0.14,
       0.42,
       0.3,
       0.92
+    ],
+    "retinue": [
+      0.0,
+      0.38,
+      0.22,
+      0.9
     ]
   },
-  "_regions_why": "다윗 세로 0.50(성인 표준). 성벽은 우측 원경 큰 배경 요소(위치 서술어 없이 상자로만 배치).",
+  "_regions_why": "다윗 세로 0.50(성인 표준). 성벽은 우측 원경 큰 배경 요소(위치 서술어 없이 상자로만 배치). 종자들은 다윗 뒤 좌측 원경 띠(저작자 정한 배치). (task 378: retinue를 다윗 바로 뒤 [0.0,0.38,0.22,0.9]로 옮김 — 376 되돌림 원인 「종자들이 멀리 성벽 쪽」)",
   "stages": [
     {
       "id": "S1",
@@ -83,7 +137,7 @@
       "kind": "region",
       "region": "wall",
       "verse": "5:7",
-      "prompt": "a massive ancient stone city wall on a steep hill, thick fortified stonework, no people.",
+      "prompt": "a massive ancient stone fortress wall on a steep hill, thick fortified stonework, no people.",
       "neg": [
         "people",
         "figures",
@@ -100,11 +154,30 @@
       ]
     },
     {
+      "id": "S2",
+      "kind": "region",
+      "region": "retinue",
+      "verse": "5:6",
+      "prompt": "a band of armed Israelite men standing close together just behind the man at the front, spears in hand, on the same hillside, not near the wall.",
+      "neg": [
+        "empty ground",
+        "single figure",
+        "close-up",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
       "id": "S3",
       "kind": "plate",
-      "region": "david",
+      "region": "david-prime",
       "verse": "5:7",
-      "prompt": "an ancient Israelite lean young man standing, gripping a sword hilt at his side, facing right.",
+      "prompt": "{cast:david-prime}, standing, gripping a sword hilt at his side, facing right.",
       "neg": [
         "armour",
         "crown",
@@ -118,7 +191,7 @@
   "judge": {
     "_why": "인물 하나뿐이라 gap_bands는 없다.",
     "figures": [
-      "david"
+      "david-prime"
     ],
     "gap_bands": [],
     "crest_x": {

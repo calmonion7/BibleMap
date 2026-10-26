@@ -1,0 +1,190 @@
+#!/usr/bin/env python3
+"""`scale.py`·`scale.json` 단위 테스트 (task 408). host python3 · 표준 unittest만 — 크기 기준표 꼴·근거·카드 등급 덮음·환산·문항 채우기·코드 리터럴."""
+import glob
+import json
+import os
+import unittest
+
+import scale as S
+
+
+class Table(unittest.TestCase):
+    def test_why_every_value(self):
+        """값마다 근거 단계([직접]·[추론]·[저작](이유)) — 근거 없는 숫자가 표에 들어오지 않게."""
+        self.assertEqual(S.why_errors(), [])
+
+    def test_schema(self):
+        T = S.table()
+        for k in ("unit", "body", "age_head", "age_height_min", "height", "build_width", "guide", "refs", "figures", "held_exclude"):
+            self.assertIn(k, T)
+        for k in ("head", "shoulder", "crotch", "knee", "arm"):
+            self.assertTrue(0 < S.v(f"body.{k}") < 1, k)
+        self.assertEqual(S.ref("man-height"), 1.0)
+
+    def test_cast_classes_covered(self):
+        """cast 카드 등급(heightRel·silhouette.class·ageBand.class)이 표에 다 있다 — 표에 없는 등급은 가이드·검사가 숫자를 못 셈."""
+        T = S.table()
+        miss = []
+        for p in sorted(glob.glob(os.path.join(S.HERE, "cast", "*.json"))):
+            with open(p, encoding="utf-8") as fh:
+                card = json.load(fh).get("card", {})
+            for sect, cls in (("height", card.get("heightRel")), ("build_width", (card.get("silhouette") or {}).get("class")),
+                              ("age_head", (card.get("ageBand") or {}).get("class"))):
+                if cls not in T[sect]:
+                    miss.append(f"{os.path.basename(p)} {sect}.{cls}")
+        self.assertEqual(miss, [])
+
+    def test_figures_match_cards(self):
+        """본문이 키를 말하는 인물 — 카드 등급이 표의 인물 칸과 같다."""
+        with open(os.path.join(S.HERE, "cast", "saul.json"), encoding="utf-8") as fh:
+            self.assertEqual(json.load(fh)["card"]["heightRel"], S.v("figures.saul"))
+        with open(os.path.join(S.HERE, "cast", "goliath.json"), encoding="utf-8") as fh:
+            self.assertEqual(json.load(fh)["card"]["heightRel"], "towering")
+
+
+class Units(unittest.TestCase):
+    def test_cubit(self):
+        """골리앗 「여섯 규빗 한 뼘」(삼상 17:4) = 289cm → towering = 289 ÷ 어른 남자 키."""
+        g = S.v("figures.goliath")
+        h = S.cm(g["cubit"], "cubit") + S.cm(g["span"], "span")
+        self.assertAlmostEqual(h, 289.25, places=2)
+        self.assertAlmostEqual(S.height_rel("towering"), h / S.v("unit.man_cm"), places=2)
+        self.assertAlmostEqual(S.cm(1, "span"), S.cm(1, "cubit") / 2, places=3)
+
+    def test_tall_is_shoulder_step(self):
+        """tall — 백성의 키가 사울의 어깨 높이에 닿음(삼상 9:2 「어깨 위는 더하더라」): 보통 키 ÷ (1 − 어깨 위). 두 값이 따로 놀지 않게."""
+        self.assertAlmostEqual(S.height_rel("tall"), S.height_rel("average") / (1 - S.v("body.shoulder")), places=2)
+
+    def test_head_ratio(self):
+        self.assertGreater(S.head_ratio("child"), S.head_ratio("youth"))
+        self.assertGreater(S.head_ratio("youth"), S.head_ratio("middle"))
+        self.assertEqual(S.head_ratio("없는등급"), S.v("body.head"))
+        self.assertEqual(S.build_width(None), S.v("build_width.average"))
+
+
+class Fill(unittest.TestCase):
+    def test_fill(self):
+        self.assertEqual(S.fill("키의 {{1/[body.head]|1}}분의 1"), "키의 7.5분의 1")
+        self.assertEqual(S.fill("{{[figures.david-youth.0]|0}}~{{[figures.david-youth.1]|0}}세"), "15~20세")
+        self.assertEqual(S.fill("숫자 없음"), "숫자 없음")
+        with self.assertRaises(ValueError):
+            S.fill("{{__import__('os')}}")
+
+    def test_fill_follows_table(self):
+        """표 값을 바꾸면 문항 글 숫자도 바뀐다(S4) — 문항에 숫자를 손으로 쓰지 않는 까닭."""
+        q = "사울이 다윗보다 키가 {{[height.tall]/[height.average]|2}}배쯤 · 촉 길이가 머리의 {{[w.spear.look.size.ratio]*[w.spear.look.size.parts.point.ratio]/[body.head]|1}}배쯤"
+        before = S.fill(q)
+        self.assertIn("1.21배", before)
+        old = S.table()["height"]["tall"]["v"]
+        try:
+            S.table()["height"]["tall"]["v"] = 1.3
+            self.assertNotEqual(S.fill(q), before)
+            self.assertIn("1.3배", S.fill(q))
+        finally:
+            S.table()["height"]["tall"]["v"] = old
+
+
+class Quotes(unittest.TestCase):
+    """절 번호 바로 뒤 인용 「…」은 개역한글 본문 글자 그대로(task 408 회고 — 기억으로 쓴 개역개정 꼴 「어깨 위만큼 더 컸더라」가
+    scripture-reviewer 틀림 3건). 크기 기준표 _why와 낱말 사전 grounds에 건다. 「…」 안 줄임표는 조각마다 본다."""
+    REF_QUOTE = __import__("re").compile(r"\d+:\d+(?:-\d+)?\s*「([^」]+)」")
+
+    @classmethod
+    def setUpClass(cls):
+        with open(os.path.join(S.HERE, "..", "..", "data", "bible", "verses.json"), encoding="utf-8") as fh:
+            cls.text = "\n".join((v.get("textKo") or "").replace(" ", "") for v in json.load(fh).values())
+
+    def misquotes(self, s):
+        import re
+        return [q for q in self.REF_QUOTE.findall(s) for f in re.split(r"…|\.\.\.", q)
+                if len(f.replace(" ", "").strip("·,")) >= 4 and f.replace(" ", "").strip("·,") not in self.text]
+
+    def strings(self, node, want):
+        if isinstance(node, dict):
+            for k, x in node.items():
+                yield from self.strings(x, want or k in ("_why", "grounds"))
+        elif isinstance(node, list):
+            for x in node:
+                yield from self.strings(x, want)
+        elif isinstance(node, str) and want:
+            yield node
+
+    def test_scale_quotes(self):
+        self.assertEqual([q for s in self.strings(S.table(), False) for q in self.misquotes(s)], [])
+
+    def test_lexicon_quotes(self):
+        with open(os.path.join(S.HERE, "..", "..", "data", "scripture_words", "words.json"), encoding="utf-8") as fh:
+            words = json.load(fh)["words"]
+        self.assertEqual([q for s in self.strings(words, False) for q in self.misquotes(s)], [])
+
+    def test_catches_other_translation(self):
+        self.assertTrue(self.misquotes("삼상 9:2 「모든 백성보다 어깨 위만큼 더 컸더라」"))
+        self.assertFalse(self.misquotes("삼상 9:2 「키는 모든 백성보다 어깨 위는 더하더라」"))
+
+
+class Perspective(unittest.TestCase):
+    """task 409 — 무리 단계(본문 사람 수 → 초점 화면 키 범위)와 눈높이 지평선."""
+
+    def test_crowd_stage_bounds(self):
+        self.assertEqual(S.crowd_stage(1)[0], "duo")
+        self.assertEqual(S.crowd_stage(2)[0], "duo")
+        self.assertEqual(S.crowd_stage(3)[0], "small")
+        self.assertEqual(S.crowd_stage(20)[0], "small")
+        self.assertEqual(S.crowd_stage(21)[0], "large")
+        self.assertEqual(S.crowd_stage(999)[0], "large")
+        self.assertEqual(S.crowd_stage(1000)[0], "throng")
+        self.assertEqual(S.crowd_stage(330000)[0], "throng")
+        lo, hi = S.crowd_stage(2)[1]
+        self.assertEqual((lo, hi), (0.6, 0.7))   # 독대 = 옛 FIGURE_MIN_H·FIGURE_MAX_H(사람 조정 값)
+
+    def test_stage_ranges_shrink(self):
+        """사람이 많을수록 초점 인물은 물러난다 — 단계 차례대로 범위가 내려감."""
+        rng = [S.crowd_stage(n)[1] for n in (2, 20, 999, 1000)]
+        for a, b in zip(rng, rng[1:]):
+            self.assertGreater(a[0], b[0])
+            self.assertGreater(a[1], b[1])
+
+    def test_horizon_roundtrip(self):
+        """지평선을 초점 인물에서 정하면 그 인물 자리 화면 키가 되돌아온다 · 보통 키 어른 머리 위끝은 지평선 바로 위(키의 1 − 0.93)."""
+        hy = S.horizon(0.9, 0.6, 1.0)
+        self.assertAlmostEqual(hy, 0.9 - S.v("perspective.eye") * 0.6)
+        self.assertAlmostEqual(S.screen_height(0.9, hy, 1.0), 0.6)
+        self.assertAlmostEqual(hy - (0.9 - 0.6), (1 - S.v("perspective.eye")) * 0.6)   # 머리 위끝(0.3)은 지평선보다 키의 0.07 위
+        self.assertLess(S.screen_height(0.6, hy), S.screen_height(0.9, hy))   # 멀수록(발 y 위로) 작게
+
+    def test_same_foot_ratio_is_table_ratio(self):
+        """기브아 두 사람 같은 깊이 — 같은 발 y면 화면 키 비 = 표 키 비(사울 tall · 다윗 average)."""
+        with open(os.path.join(S.HERE, "scenes", "authored-saul-gibeah-spear.json"), encoding="utf-8") as fh:
+            spec = json.load(fh)
+        R = spec["regions"]
+        self.assertEqual(R["saul"][3], R["david-youth"][3])
+        hy = S.scene_horizon(spec)
+        self.assertAlmostEqual(hy, S.horizon(R["saul"][3], R["saul"][3] - R["saul"][1], S.height_rel("tall")))
+        foot = R["saul"][3]
+        self.assertAlmostEqual(S.screen_height(foot, hy, S.height_rel("average")) / S.screen_height(foot, hy, S.height_rel("tall")),
+                               S.height_rel("average") / S.height_rel("tall"))
+        self.assertEqual(S.crowd_stage(S.people_count(spec))[0], "duo")
+
+    def test_people_count(self):
+        spec = {"figures": [{}, {}], "crowds": [{"count": 15}, {"count": 20}, {}]}
+        self.assertEqual(S.people_count(spec), 37)
+
+
+class Literals(unittest.TestCase):
+    def test_no_size_literals_in_code(self):
+        """크기 숫자는 표에서만(규칙 derive.scale-table) — 지킴 이름이 코드에서 숫자로 다시 정해지면 걸림."""
+        self.assertEqual(S.literal_errors(), [])
+
+    def test_literal_detector_catches(self):
+        import tempfile
+        with tempfile.NamedTemporaryFile("w", suffix=".py", dir=S.HERE, delete=False) as fh:
+            fh.write("KNEE = 0.72\nHEAD_STEP, HEAD_TOL = 0.87, 0.04\nBUILD_WIDTH = S.x()\n")
+        try:
+            errs = S.literal_errors((os.path.basename(fh.name),))
+            self.assertEqual(len(errs), 2, errs)
+        finally:
+            os.unlink(fh.name)
+
+
+if __name__ == "__main__":
+    unittest.main()

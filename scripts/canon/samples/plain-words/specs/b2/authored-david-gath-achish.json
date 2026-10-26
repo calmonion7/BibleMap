@@ -1,0 +1,286 @@
+{
+ "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+ "id": "authored-david-gath-achish",
+ "title": "다윗의 미친 체함 — 가드",
+ "verses": {
+  "range": "삼상 21:10-15",
+  "quotes": {
+   "21:10": "그 날에 다윗이 사울을 두려워하여 일어나 도망하여 가드 왕 아기스에게로 가니",
+   "21:11": "아기스의 신하들이 아기스에게 고하되 이는 그 땅의 왕 다윗이 아니니이까 무리가 춤추며 이 사람의 일을 창화하여 가로되 사울의 죽인 자는 천천이요 다윗은 만만이로다 하지 아니하였나이까 한지라",
+   "21:13": "그들의 앞에서 그 행동을 변하여 미친 체 하고 대문짝에 그적거리며 침을 수염에 흘리매",
+   "21:14": "아기스가 그 신하에게 이르되 너희도 보거니와 이 사람이 미치광이로다 어찌하여 그를 내게로 데려왔느냐",
+   "21:15": "내게 미치광이가 부족하여서 너희가 이 자를 데려다가 내 앞에서 미친 짓을 하게 하느냐"
+  }
+ },
+ "moment": {
+  "verse": "21:13 후반",
+  "why": "다윗이 아기스와 신하들 앞에서 미친 체하며 성문 문짝에 그적거리고 침을 수염에 흘리는 순간(21:13 후반)을 고정한다 — 아기스가 신하들에게 다윗을 가리켜 책망하는 21:14-15가 같은 장면에 겹친다."
+ },
+ "verse_elements": [
+  {
+   "verse": "21:10",
+   "quote": "가드 왕 아기스에게로 가니",
+   "kind": "장소",
+   "ko": "가드 성읍 — 두꺼운 돌 성벽의 겹문 앞 거리",
+   "en": "a dusty street of Gath",
+   "field": "whole_background"
+  },
+  {
+   "verse": "21:13",
+   "quote": "미친 체 하고",
+   "kind": "행동",
+   "ko": "다윗이 미친 체함",
+   "en": "feigning madness",
+   "field": "figures[0].expression"
+  },
+  {
+   "verse": "21:13",
+   "quote": "대문짝에 그적거리며",
+   "kind": "행동",
+   "ko": "다윗이 성문 문짝에 그적거림",
+   "en": "scratching marks on the doors of the gate",
+   "field": "figures[0].gesture"
+  },
+  {
+   "verse": "21:13",
+   "quote": "침을 수염에 흘리매",
+   "kind": "행동",
+   "ko": "다윗이 침을 수염에 흘림",
+   "en": "drool running down his beard",
+   "field": "figures[0].gesture"
+  },
+  {
+   "verse": "21:13",
+   "quote": "대문짝",
+   "kind": "지물",
+   "ko": "높은 나무 겹문(대문짝)",
+   "en": "a tall heavy wooden double gate",
+   "field": "whole_background"
+  },
+  {
+   "verse": "21:14",
+   "quote": "그 신하에게 이르되",
+   "kind": "무리",
+   "ko": "아기스의 신하들이 곁에 섬",
+   "en": "two of his servants close behind him",
+   "field": "relation"
+  },
+  {
+   "verse": "21:15",
+   "quote": "내 앞에서 미친 짓을 하게 하느냐",
+   "kind": "행동",
+   "ko": "아기스가 다윗을 가리키며 신하들을 꾸짖음(21:14-15) — 손짓은 본문 밖 · 저작자 정함",
+   "en": "waves his raised palm toward the young man as he scolds his servants",
+   "field": "relation"
+  },
+  {
+   "verse": "21:11",
+   "quote": "춤추며 이 사람의 일을 창화하여",
+   "kind": "무리",
+   "ko": "신하들이 다윗을 두고 춤추며 창화한 말",
+   "out": "다윗이 미친 체하기 전 신하들이 아기스에게 고한 앞선 시점의 말(순간 밖)"
+  }
+ ],
+ "meaning": {
+  "ko": "가드 성문 앞에서 다윗이 미친 체하며 성문 문짝에 그적거리고 침을 수염에 흘리고, 아기스가 신하들 앞에서 역겨워하며 신하들에게 책망한다",
+  "en": "At the gate of Gath the young man feigns madness, scratching at the doors of the gate and drooling, while the Philistine king, disgusted, scolds his servants for bringing the madman",
+  "verse": "삼상 21:13-15"
+ },
+ "relation": {
+  "ko": "아기스가 신하 둘을 뒤에 두고 떨어져 서서 든 손바닥을 다윗 쪽으로 저으며 신하들을 꾸짖고, 다윗은 그를 보지 않고 성문 문짝에 그적거린다 — 둘은 닿지 않는다",
+  "en": "the king stands back, away from the young man. Two of his servants stand close behind the king. The king waves his open hand at the young man and scolds his servants for bringing this madman to him. The young man keeps scratching at the gate doors and does not look at the king. The two do not touch",
+  "verse": "삼상 21:14-15 「그 신하에게 이르되」「내 앞에서 미친 짓을」 · 책망하는 손짓·떨어짐·신하 수는 본문 밖 · 저작자 정함"
+ },
+ "whole_background": {
+  "ko": "가드 성읍 거리 — 두꺼운 돌 성벽에 박힌 높은 나무 겹문, 마른 땅",
+  "en": "a dusty street in the city of Gath. A tall heavy wooden double gate in a thick stone city wall. Dry ground",
+  "verse": "삼상 21:10·13 「가드」「대문짝」 · 거리 모습 본문 밖 · 저작자 정함"
+ },
+ "background": [
+  {
+   "what": "가드 성문과 성벽",
+   "verse": "21:10 · 21:13"
+  }
+ ],
+ "crowds": [],
+ "figures": [
+  {
+   "cast": "david",
+   "role": "다윗 — 미친 체함",
+   "pose": "성문 문짝에 기대어 그적거리며 침을 수염에 흘린다",
+   "prop": "the wooden doors of the gate",
+   "facing": "left",
+   "region": "david",
+   "verse": "21:13",
+   "expression": {
+    "ko": "미친 체하는 넋 나간 얼굴",
+    "en": "an empty, dazed face",
+    "verse": "삼상 21:13 「미친 체 하고」"
+   },
+   "gesture": {
+    "ko": "성문 문짝에 어깨를 기대 서서 문짝에 그적거리고 수염에 침을 흘린다",
+    "en": "leaning one shoulder on the gate, drawing wild lines by hand on the big wooden doors of a gate, while spit runs from the corner of the mouth down the chin beard in a long strand, and the beard is wet and shiny",
+    "verse": "삼상 21:13 「대문짝에 그적거리며 침을 수염에 흘리매」 · 기댐은 본문 밖 · 저작자 정함"
+   },
+   "costume": {
+    "ko": "짙은 붉은 양모 튜닉과 짙은 갈색 가죽 띠",
+    "en": "a deep red wool tunic with a dark brown leather belt",
+    "verse": "본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+   },
+   "gaze": {
+    "ko": "초점 없이 허공을 봄 — 아무와도 마주 보지 않음",
+    "en": "staring blankly into empty air, not looking at anyone",
+    "verse": "삼상 21:13 「미친 체 하고」 · 시선 본문 밖 · 저작자 정함"
+   },
+   "screen_facing": "viewer"
+  },
+  {
+   "cast": "achish",
+   "role": "가드 왕 아기스",
+   "pose": "손을 들어 책망하며 서 있다",
+   "prop": "a fold of his robe",
+   "facing": "right",
+   "region": "achish",
+   "verse": "21:14-15 · 지물 본문 밖 · 저작자 정함",
+   "expression": {
+    "ko": "역겨워하는 얼굴",
+    "en": "a face full of disgust",
+    "verse": "삼상 21:14-15 · 표정 본문 밖 · 저작자 정함"
+   },
+   "gesture": {
+    "ko": "한 손을 들어 손바닥을 저어 책망하고, 다른 손은 겉옷 자락을 쥔다",
+    "en": "one hand up with the palm out, waving him away, the other hand holding a fold of his robe",
+    "verse": "삼상 21:14-15 · 손 본문 밖 · 저작자 정함"
+   },
+   "costume": {
+    "ko": "검고 짙은 붉은 술 달린 양모 겉옷과 넓은 띠",
+    "en": "a black and deep red wool robe with fringes and a wide belt",
+    "verse": "본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+   },
+   "gaze": "david",
+   "screen_facing": "left"
+  }
+ ],
+ "regions": {
+  "full": [
+   0.0,
+   0.0,
+   1.0,
+   1.0
+  ],
+  "gate": [
+   0.3,
+   0.05,
+   0.62,
+   0.6
+  ],
+  "david": [
+   0.15,
+   0.36,
+   0.32,
+   0.9
+  ],
+  "achish": [
+   0.62,
+   0.35,
+   0.8,
+   0.9
+  ]
+ },
+ "_regions_why": "성문(gate)은 다윗 앞 구조물(21:13 대문짝). 다윗·아기스 모두 성인 남자 세로 0.54. 21:11-15 대화 순서로 다윗 왼쪽, 아기스 오른쪽.",
+ "stages": [
+  {
+   "id": "S1",
+   "kind": "full",
+   "region": "full",
+   "verse": "21:10",
+   "prompt": "a dusty ancient city street beside a tall stone gate wall, sunbaked ground, empty pale sky, no people.",
+   "neg": [
+    "people",
+    "figures",
+    "soldiers",
+    "modern street",
+    "car",
+    "church",
+    "steeple",
+    "cathedral",
+    "chapel",
+    "cross",
+    "bell tower",
+    "spire"
+   ]
+  },
+  {
+   "id": "S1b",
+   "kind": "region",
+   "region": "gate",
+   "verse": "21:13",
+   "prompt": "a tall heavy wooden double gate set into a thick stone city wall, iron hinges, dry ground before it, no people.",
+   "neg": [
+    "people",
+    "figures",
+    "modern door",
+    "pagoda",
+    "temple",
+    "church",
+    "steeple",
+    "cathedral",
+    "chapel",
+    "cross",
+    "bell tower",
+    "spire"
+   ]
+  },
+  {
+   "id": "S3",
+   "kind": "plate",
+   "region": "david",
+   "verse": "21:13",
+   "prompt": "{cast:david}, feigning madness, leaning against a wooden gate door, scratching marks on the doors of the gate, drooling on his beard, facing left.",
+   "neg": [
+    "armour",
+    "crown",
+    "royal robe",
+    "sword",
+    "modern clothes"
+   ]
+  },
+  {
+   "id": "S4",
+   "kind": "plate",
+   "region": "achish",
+   "verse": "21:14-15",
+   "prompt": "{cast:achish}, standing, one hand raised in a rebuking wave, the other hand holding a fold of his robe, facing right.",
+   "neg": [
+    "Israelite dress",
+    "crown of Israel",
+    "modern clothes",
+    "weapon"
+   ]
+  }
+ ],
+ "negatives": [],
+ "judge": {
+  "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+  "figures": [
+   "david",
+   "achish"
+  ],
+  "gap_bands": [
+   [
+    0.32,
+    0.62
+   ]
+  ],
+  "crest_x": {
+   "left": [
+    0.02,
+    0.3
+   ],
+   "right": [
+    0.7,
+    0.98
+   ]
+  }
+ }
+}

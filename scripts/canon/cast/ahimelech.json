@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "ahimelech",
   "names": [
     "아히멜렉",
@@ -12,6 +12,7 @@
   "era": "an ancient Israelite",
   "age": "middle-aged priest",
   "sex": "male",
+  "role": "priest",
   "hair": "dark hair",
   "beard": "dark beard",
   "headwear": "linen turban",
@@ -37,13 +38,59 @@
     "standing, full body, side view facing left",
     "kneeling, full body, facing right, trembling before the king"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "middle",
+      "text": "in his 50s, lined brow"
+    },
+    "beardVolume": {
+      "class": "full",
+      "text": "full dark beard, rounded"
+    },
+    "silhouette": {
+      "class": "average",
+      "text": "average build, upright, narrow chest"
+    },
+    "headOutline": {
+      "class": "turban",
+      "text": "white linen turban wound high"
+    },
+    "costumeColor": {
+      "class": "white",
+      "text": "white linen ephod over a pale robe"
+    }
+  },
+  "face": {
+    "faceShape": "long soft face, high brow",
+    "eyes": "soft dark eyes",
+    "nose": "long narrow nose",
+    "mouth": "closed mouth",
+    "skin": "pale olive skin",
+    "brows": "level dark brows",
+    "marks": "none"
+  },
   "_why": {
-    "age": "본문 밖 · 저작자 정함",
-    "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "costume": "삼상 22:18 「세마포 에봇 입은 자」"
+    "age": "[저작](나이 기록 없어 직책·경력에서 본 연령대 대표값)",
+    "build": "[저작](체격 기록 없어 직책 이미지의 대표값)",
+    "hair": "[저작](머리 기록 없어 고대 근동 남성 짙은 머리 대표값)",
+    "beard": "[저작](수염 기록 없어 고대 근동 성인 남성 수염 관습 대표값)",
+    "headwear": "[저작](제사장 복식 고증 — 흰 세마포 터번 대표값)",
+    "costume": "[직접] 삼상 22:18 「세마포 에봇 입은 자」",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[저작](역표 동석 인물과 구분용)",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[직접] 삼상 22:18 「세마포 에봇 입은 자」",
+    "face.faceShape": "[저작](얼굴 구분용)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[직접] 삼상 22:11 「제사장 아히멜렉」"
   },
   "plate": {
     "seed": 5,

@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "david-old",
   "names": [
     "다윗(노년)"
@@ -10,6 +10,7 @@
   "era": "an ancient Israelite",
   "age": "old, dying king",
   "sex": "male",
+  "role": "king",
   "hair": "gray hair",
   "beard": "long gray beard",
   "headwear": "none",
@@ -30,13 +31,59 @@
     "lying, full body, facing right, propped up on a bed",
     "standing, full body, side view facing left"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "elder",
+      "text": "in his 70s, deep wrinkles and sunken cheeks"
+    },
+    "beardVolume": {
+      "class": "long",
+      "text": "long white-gray beard, thin"
+    },
+    "silhouette": {
+      "class": "lean",
+      "text": "gaunt bony frame, sunken chest"
+    },
+    "headOutline": {
+      "class": "headwrap",
+      "text": "soft white linen head-cloth over thin gray curls"
+    },
+    "costumeColor": {
+      "class": "brown",
+      "text": "plain dark brown wool robe, blanket over the knees"
+    }
+  },
+  "face": {
+    "faceShape": "oval face gone gaunt, soft jaw, sunken cheeks",
+    "eyes": "large dark eyes, clouded and heavy-lidded",
+    "nose": "straight narrow nose",
+    "mouth": "wide mouth, thin dry lips",
+    "skin": "faded ruddy skin, pale and weathered",
+    "brows": "arched gray brows",
+    "marks": "fine age wrinkles across forehead and cheeks"
+  },
   "_why": {
-    "age": "왕상 2:1 「다윗이 죽을 날이 임박하매」",
-    "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식)"
+    "age": "[직접] 왕상 1:1 「다윗 왕이 나이 많아 늙으니」 · 왕상 2:1 「다윗이 죽을 날이 임박하매」",
+    "build": "[추론] 왕상 1:1 「이불을 덮어도 따뜻하지 아니한지라」 — 쇠약해 누운 몸",
+    "hair": "[추론] 왕상 1:1 「나이 많아 늙으니」 — 노인은 흰 머리",
+    "beard": "[추론] 왕상 1:1 「나이 많아 늙으니」 — 노인은 흰 수염",
+    "headwear": "[저작](침상에 누운 장면이라 맨머리 기본값)",
+    "costume": "[저작](시대 복식)",
+    "card.heightRel": "[저작](david와 같은 사람 연속)",
+    "card.ageBand": "[추론] 왕상 1:1 「나이 많아 늙으니」 — 삼하 5:4 즉위 30세+재위 40년으로 70대",
+    "card.beardVolume": "[저작](같은 사람 연속)",
+    "card.silhouette": "[저작](29명 전체 구별 — 사무엘(slight)과 갈림. 왕상 1:1 「이불을 덮어도 따뜻하지 아니한지라」의 쇠약함을 마른 뼈대로 그림)",
+    "card.headOutline": "[저작](29명 전체 구별 — 사무엘과 갈림. 병상의 늙은 왕(왕상 1:1)이라 머리를 감싼 차림으로 정함)",
+    "card.costumeColor": "[저작](같은 사람 연속)",
+    "face.faceShape": "[추론] 왕상 1:1 「나이 많아 늙으니」 — david 얼굴 연속에 노령 야윔을 얹음",
+    "face.eyes": "[저작](david과 같은 얼굴 연속)",
+    "face.nose": "[저작](david과 같은 얼굴 연속)",
+    "face.mouth": "[저작](david과 같은 얼굴 연속)",
+    "face.skin": "[저작](david과 같은 얼굴 연속)",
+    "face.brows": "[저작](david과 같은 얼굴 연속)",
+    "face.marks": "[추론] 왕상 1:15 「왕이 심히 늙었으므로」 — 노령에서 주름을 끌어냄",
+    "role": "[직접] 왕상 1:1 「다윗 왕이 나이 많아 늙으니」"
   },
   "plate": {
     "seed": 42,

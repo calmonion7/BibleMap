@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "bathsheba",
   "names": [
     "밧세바",
@@ -11,13 +11,14 @@
   "era": "an ancient Israelite",
   "age": "young woman",
   "sex": "female",
+  "role": "mother",
   "hair": "dark hair",
   "beard": "none",
   "headwear": "veil",
   "build": "slender build",
   "costume": "in a long linen robe with a woven belt",
   "colorWords": [
-    "deep blue",
+    "deep green",
     "tan"
   ],
   "propCandidates": [],
@@ -29,13 +30,59 @@
     "standing, full body, side view facing left",
     "sitting, full body, facing right, comforted by the king"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "young",
+      "text": "in her 20s, smooth face"
+    },
+    "beardVolume": {
+      "class": "none",
+      "text": "없음"
+    },
+    "silhouette": {
+      "class": "slight",
+      "text": "slight slender shoulders, narrow waist"
+    },
+    "headOutline": {
+      "class": "veil",
+      "text": "fine veil over the hair and shoulders"
+    },
+    "costumeColor": {
+      "class": "green",
+      "text": "deep green linen robe, woven belt"
+    }
+  },
+  "face": {
+    "faceShape": "delicate oval face, high cheekbones, soft round cheeks",
+    "eyes": "large dark almond eyes",
+    "nose": "fine straight nose",
+    "mouth": "full soft lips",
+    "skin": "fair olive skin, clear",
+    "brows": "long arched dark brows",
+    "marks": "none"
+  },
   "_why": {
-    "age": "본문 밖 · 저작자 정함",
-    "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식) — 삼하 12:24 「다윗이 그 처 밧세바를」"
+    "age": "[저작](나이 기록 없어 우리아의 아내로 첫 아이를 낳고 다시 낳는 시기에서 본 20대 대표값)",
+    "build": "[저작](체격 기록 없어 시대 젊은 여성 대표값)",
+    "hair": "[저작](머리 기록 없어 고대 근동 여성 짙은 머리 대표값)",
+    "beard": "[저작](여성이라 수염 없음 — 기본값)",
+    "headwear": "[저작](쓰개 기록 없어 시대 여성 너울 관습 대표값)",
+    "costume": "[저작](시대 복식 고증 — 여성 긴 아마포 겉옷·짠 띠; 삼하 12:24 「다윗이 그 처 밧세바를」은 신분만 말함)",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[저작](역표 동석 인물과 구분용)",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[저작](파란 겉옷 + 너울 + 아기가 성모자상으로 읽혀(task 417 그림) 짙은 녹색으로 가름)",
+    "face.faceShape": "[저작](29명 얼굴 유사 검토 — 스바 여왕와 같은 얼굴로 그려짐 판정 → 가름; 갸름한 달걀형은 정한 값; 삼하 11:2 「심히 아름다워 보이는지라」는 아름다움만 말함)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[추론] 삼하 12:24 「다윗이 그 처 밧세바를 위로하고 저에게 들어가 동침하였더니 저가 아들을 낳으매」 — 이 카드는 출생 장면에서만 씀: 아들을 낳은 어머니(왕의 모친 신분은 왕상 1~2장)"
   },
   "plate": {
     "seed": 42,

@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "solomon-old",
   "names": [
     "솔로몬(노년)"
@@ -10,6 +10,7 @@
   "era": "an ancient Israelite",
   "age": "old king",
   "sex": "male",
+  "role": "king",
   "hair": "gray hair",
   "beard": "gray beard",
   "headwear": "none",
@@ -29,13 +30,59 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, head turned toward an idol"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "elder",
+      "text": "in his 60s, deep wrinkles and heavy jowls"
+    },
+    "beardVolume": {
+      "class": "full",
+      "text": "full gray beard, trimmed rounded"
+    },
+    "silhouette": {
+      "class": "heavy",
+      "text": "heavy thick torso, soft heavy belly"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, thin gray hair"
+    },
+    "costumeColor": {
+      "class": "purple",
+      "text": "deep purple rich robe, jeweled belt"
+    }
+  },
+  "face": {
+    "faceShape": "oval face gone heavy, jowls, wide brow",
+    "eyes": "dark heavy-lidded eyes, weary",
+    "nose": "straight nose",
+    "mouth": "slack mouth",
+    "skin": "warm olive skin, faded",
+    "brows": "gray level brows",
+    "marks": "deep creases from nose to mouth"
+  },
   "_why": {
-    "age": "왕상 11:4 「솔로몬의 나이 늙을 때에」",
-    "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식)"
+    "age": "[직접] 왕상 11:4 「솔로몬의 나이 늙을 때에」",
+    "build": "[저작](생애 단계 대표값 — 노년 솔로몬의 무거운 체격)",
+    "hair": "[저작](생애 단계 대표값 — 노년 회색 머리, 본문에 없음)",
+    "beard": "[저작](생애 단계 대표값 — 노년 회색 수염, 본문에 없음)",
+    "headwear": "[저작](생애 단계 대표값 — 맨머리, 본문에 머리쓰개 없음)",
+    "costume": "[저작](시대 복식 고증 — 궁정 왕의 긴 겉옷)",
+    "card.heightRel": "[저작](같은 사람 연속)",
+    "card.ageBand": "[추론] 대상 29:1 「내 아들 솔로몬이 … 오히려 어리고 연약하고」(즉위 때 젊음) + 왕상 11:42 「다스린 날 수가 사십 년이라」 → 재위 말 60대",
+    "card.beardVolume": "[저작](같은 사람 연속)",
+    "card.silhouette": "[저작](같은 사람 연속)",
+    "card.headOutline": "[저작](같은 사람 연속)",
+    "card.costumeColor": "[저작](같은 사람 연속)",
+    "face.faceShape": "[저작](노년 대표값 — solomon 얼굴이 나이 들어 처짐; 왕상 11:4 「솔로몬의 나이 늙을 때에」는 늙음만 말함)",
+    "face.eyes": "[저작](solomon과 같은 얼굴 연속)",
+    "face.nose": "[저작](solomon과 같은 얼굴 연속)",
+    "face.mouth": "[저작](solomon과 같은 얼굴 연속)",
+    "face.skin": "[저작](solomon과 같은 얼굴 연속)",
+    "face.brows": "[저작](solomon과 같은 얼굴 연속)",
+    "face.marks": "[저작](solomon과 같은 얼굴 연속)",
+    "role": "[직접] 왕상 11:42 「솔로몬이 예루살렘에서 온 이스라엘을 다스린 날 수가 사십 년이라」"
   },
   "plate": {
     "seed": 11,

@@ -1,0 +1,207 @@
+{
+ "answers": {
+  "g:5": {
+   "S": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.334,
+       "input": 4,
+       "output": 276,
+       "cache_read": 44626,
+       "cache_create": 9432,
+       "cost_usd": 0.0449586,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 그린 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물, 창, 수금, 의자 모두 얼굴·옷·세부가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.082,
+       "input": 4,
+       "output": 281,
+       "cache_read": 44626,
+       "cache_create": 9432,
+       "cost_usd": 0.0450086,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 그린 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴, 옷, 질감이 제대로 그려져 있고 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.329,
+       "input": 4,
+       "output": 266,
+       "cache_read": 44626,
+       "cache_create": 9432,
+       "cost_usd": 0.044858600000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화풍 그림이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴, 옷, 질감이 있고 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 12.145,
+       "input": 4,
+       "output": 1433,
+       "cache_read": 46485,
+       "cache_create": 11448,
+       "cost_usd": 0.0647785,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.composition": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "틀림",
+      "e.saul-body": "틀림",
+      "e.saul-throw-pose": "맞음"
+     },
+     "reasons": {
+      "e.moment": "창의 큰 촉이 오른쪽(사울 쪽)을 향해 있어 사울에게서 다윗 쪽으로 날아오는 모습이 아님",
+      "e.spear-shape": "양끝에 모두 촉이 있고, 왼쪽 끝도 잎 모양 촉처럼 보임",
+      "e.spear-direction": "큰 촉이 오른쪽 사울 쪽을 향하고 작은 끝이 다윗 쪽에 있어 거꾸로임",
+      "e.saul-body": "다리를 컴퍼스처럼 크게 벌리고 서 있음"
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 13.063,
+       "input": 4,
+       "output": 1404,
+       "cache_read": 47814,
+       "cache_create": 10119,
+       "cost_usd": 0.0593054,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.composition": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "틀림",
+      "e.saul-body": "맞음",
+      "e.saul-throw-pose": "맞음"
+     },
+     "reasons": {
+      "e.spear-shape": "창 양 끝에 잎 모양 촉이 하나씩 있어 앞 촉만 한 촉이 뒤끝에도 있음",
+      "e.spear-direction": "큰 촉이 오른쪽(사울 쪽)에도 있어 촉이 다윗 쪽 하나만 향한다고 볼 수 없음. 양끝 촉이라 방향이 불분명함"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 14.342,
+       "input": 4,
+       "output": 1684,
+       "cache_read": 46485,
+       "cache_create": 11448,
+       "cost_usd": 0.0672885,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "틀림",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.composition": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "틀림",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "틀림",
+      "e.saul-body": "틀림",
+      "e.saul-throw-pose": "틀림"
+     },
+     "reasons": {
+      "e.moment": "창의 큰 촉이 사울 쪽(오른쪽)을 향해 있어 사울에게서 다윗 쪽으로 날아오는 모습이 아니다. 창은 다윗 머리 위에 떠 있다.",
+      "e.face-each": "다윗은 사울이 아니라 위쪽 창을 올려다본다.",
+      "e.dodge-read": "다윗은 벽에 붙어 살짝 웅크렸을 뿐이다. 창의 방향이 거꾸로라서 날아온 창을 피하는 것으로 읽히지 않는다.",
+      "e.spear-shape": "왼쪽 뒤끝에도 촉처럼 보이는 쇠 장식이 달려 있다. 앞끝은 작고 뾰족한 촉이라 큰 잎 모양 촉으로 보기 어렵다.",
+      "e.spear-direction": "큰 촉이 사울 쪽(오른쪽)을 향하고, 뒤끝이 다윗 쪽(왼쪽)에 있다. 방향이 거꾸로다.",
+      "e.saul-body": "다리를 컴퍼스처럼 크게 벌리고 서 있다.",
+      "e.saul-throw-pose": "던진 팔이 주먹을 쥔 채 수평으로 뻗어 있다. 휘둘러 내려오는 모습이 아니고, 몸통도 거의 곧게 서 있다."
+     }
+    }
+   }
+  }
+ },
+ "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. the inside of a plain room in Saul's house at Gibeah, walls of rough uneven stone blocks all around, a bare wall behind David, a simple wooden stool on the floor. On the left: an ancient Israelite young man, a commander, about 18, smooth youthful face, no lines, lean youthful shoulders, slim straight torso, tight dark curls close to the skull, hair covering the whole head, no headwear, a startled face, standing with his back against the stone wall, bending low and ducking his head, twisting his body aside out of the path of the flying spear, clutching a small wooden lyre against his chest with both hands, a hollow wooden sound box with two curved arms joined by a crossbar at the top, strings running up from the box to the crossbar, no neck and no fingerboard, in a short-sleeved knee-length undyed tan wool tunic covering his chest and shoulders, with a leather belt, his bare legs showing below the knee, looking toward the tall king on the right, facing toward the right edge of the picture. On the right: an ancient Israelite man, a king, about 70, a deeply wrinkled old face, lined forehead and cheeks, tall of stature, close-trimmed grey-streaked beard, jawline visible, broad shoulders, thick barrel torso, short greying hair cut close, hair covering the whole head, no headwear, a wild, raving face, eyes wide and fixed on David, having just hurled his spear, his empty throwing arm swinging forward and down across his body, his hand loosely curled, his weight thrown onto his bent front leg, in a knee-length short-sleeved dark brown wool tunic with a plain leather belt, his bare shins showing, looking toward the youth on the left, facing toward the left edge of the picture. A spear flies through the air across the room from Saul toward David and the wall behind him, a straight wooden shaft with one large leaf-shaped iron point at the front and a small iron cap on the back end, much smaller than the point, no crossguard, its iron point on the left end nearest David and its butt end on the right end nearest Saul, and David ducks and twists aside out of its path so that it flies point-first toward the wall just above his ducked head.",
+ "secs": [
+  74.2
+ ]
+}

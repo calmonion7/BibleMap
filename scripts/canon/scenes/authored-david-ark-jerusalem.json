@@ -6,17 +6,98 @@
     "range": "삼하 6:12-15",
     "quotes": {
       "6:12": "혹이 다윗 왕에게 고하여 가로되 여호와께서 하나님의 궤를 인하여 오벧에돔의 집과 그 모든 소유에 복을 주셨다 한지라 다윗이 가서 하나님의 궤를 기쁨으로 메고 오벧에돔의 집에서 다윗 성으로 올라갈새",
+      "6:13": "여호와의 궤를 멘 사람들이 여섯 걸음을 행하매 다윗이 소와 살진 것으로 제사를 드리고",
       "6:14": "여호와 앞에서 힘을 다하여 춤을 추는데 때에 베 에봇을 입었더라",
       "6:15": "다윗과 온 이스라엘 족속이 즐거이 부르며 나팔을 불고 여호와의 궤를 메어 오니라"
     }
   },
   "moment": {
     "verse": "6:15",
-    "why": "다윗이 법궤 앞에서 두 손을 들고 걷는 순간을 고정한다. 6:14의 「춤」은 모델 prior에 불안정하므로(브리프 지시) 「두 손을 들고 걷는다」로 대체한다. 법궤는 배경의 메는 자들이 나르는 것으로 두고, 다윗은 칼자루를 쥔 손 하나만 지물로 삼는다."
+    "why": "다윗이 법궤 앞에서 힘을 다해 춤추는 순간을 고정한다(6:14 「여호와 앞에서 힘을 다하여 춤을 추는데 때에 베 에봇을 입었더라」). 같은 순간을 6:15가 묘사한다 — 온 이스라엘 족속이 즐거이 부르며 나팔을 불고 여호와의 궤를 멘 사람들과 함께 올라온다. 다윗은 베 에봇을 입고 두 팔을 벌려 춤춘다."
   },
+  "verse_elements": [
+    {
+      "verse": "6:14",
+      "quote": "힘을 다하여 춤을 추는데",
+      "kind": "행동",
+      "ko": "다윗이 힘을 다해 춤춤",
+      "en": "dancing with all his might",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "6:14",
+      "quote": "여호와 앞에서",
+      "kind": "장소",
+      "ko": "다윗이 궤 앞에서 춤춤",
+      "en": "before the ark of the covenant",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "6:14",
+      "quote": "베 에봇을 입었더라",
+      "kind": "지물",
+      "ko": "다윗이 베 에봇을 입음",
+      "en": "wearing a linen ephod",
+      "field": "stages[S3].prompt"
+    },
+    {
+      "verse": "6:15",
+      "quote": "다윗과 온 이스라엘 족속이",
+      "kind": "무리",
+      "ko": "온 이스라엘 족속의 무리",
+      "en": "many tiny distant people",
+      "field": "stages[S2a].prompt"
+    },
+    {
+      "verse": "6:15",
+      "quote": "즐거이 부르며",
+      "kind": "행동",
+      "ko": "무리가 즐거이 환호의 외침을 부름",
+      "en": "shouting joyfully",
+      "field": "stages[S2a].prompt"
+    },
+    {
+      "verse": "6:15",
+      "quote": "나팔을 불고",
+      "kind": "지물",
+      "ko": "무리가 나팔을 붊",
+      "en": "blowing trumpets",
+      "field": "stages[S2a].prompt"
+    },
+    {
+      "verse": "6:15",
+      "quote": "여호와의 궤를 메어 오니라",
+      "kind": "지물",
+      "ko": "궤를 멘 사람들이 궤를 나름",
+      "en": "men carrying the ark of the covenant on two poles",
+      "field": "stages[S2b].prompt"
+    },
+    {
+      "verse": "6:12",
+      "quote": "다윗 성으로 올라갈새",
+      "kind": "장소",
+      "ko": "다윗 성으로 오르는 길",
+      "en": "a wide dry sloping road up a hillside toward a distant city",
+      "field": "stages[S1].prompt"
+    },
+    {
+      "verse": "6:13",
+      "quote": "소와 살진 것으로 제사를 드리고",
+      "kind": "행동",
+      "ko": "여섯 걸음 뒤 소와 살진 것으로 제사함",
+      "out": "여섯 걸음 뒤에 드리는 제사로, 6:14-15의 춤추며 올라오는 순간보다 앞선 별개 시점"
+    },
+    {
+      "verse": "6:12",
+      "quote": "오벧에돔의 집에서",
+      "kind": "장소",
+      "ko": "출발지 오벧에돔의 집",
+      "out": "출발지이며 올라가는 순간은 이미 집을 떠난 뒤의 길 위"
+    }
+  ],
   "background": [
     {
-      "what": "법궤를 멘 자들 — 다윗 앞에서 궤를 나른다",
+      "what": "법궤를 멘 사람들 — 두 채에 궤를 메고 다윗 앞에서 올라간다",
       "verse": "6:12-13 · 6:15",
       "region": "ark_bearers"
     },
@@ -27,20 +108,26 @@
   ],
   "crowds": [
     {
-      "what": "이스라엘 족속 — 뒤에서 노래하며 따른다",
+      "what": "온 이스라엘 족속 — 즐거이 노래하며 나팔을 불고 따른다",
       "verse": "6:15",
-      "region": "crest_back"
+      "region": "crest_back",
+      "count": 1000,
+      "count_why": "[저작](「온 이스라엘 족속」 6:15 — 수 없음, 나라 전체 모임이라 군중 1000 이상으로 어림)"
     }
   ],
   "figures": [
     {
-      "cast": "david",
+      "cast": "david-prime",
       "role": "다윗",
-      "pose": "한 손을 높이 들고 걸으며 다른 손은 칼자루를 쥔다",
-      "prop": "a sword",
+      "pose": "두 팔을 벌리고 힘을 다해 춤추며 베 에봇을 입는다",
+      "prop": "a linen ephod",
       "facing": "right",
-      "region": "david",
-      "verse": "6:14-15 · 지물 본문 밖 · 저작자 정함"
+      "region": "david-prime",
+      "verse": "6:14-15",
+      "cast_override": {
+        "costume": ""
+      },
+      "cast_override_why": "차림은 본문 — 삼하 6:14 「때에 베 에봇을 입었더라」(단계 문구 wearing a linen ephod; 평행 대상 15:27 세마포 겉옷) · 카드 차림(왕의 붉은 겉옷)은 [저작] 즉위 뒤 궁 차림이라 이 장면에서 뺌 — 카드 _why.costume 「본문은 궤 앞 베 에봇(삼하 6:14)·세마포 겉옷(대상 15:27)만 말해 그 차림은 장면 몫」"
     }
   ],
   "regions": {
@@ -62,14 +149,14 @@
       0.9,
       0.46
     ],
-    "david": [
+    "david-prime": [
       0.2,
       0.48,
       0.36,
       0.9
     ]
   },
-  "_regions_why": "다윗 세로 0.42(걷는 자세). 궤를 멘 자들은 다윗보다 앞서 우측(6:13 궤가 먼저 걸음), 족속은 뒤편 원경 띠.",
+  "_regions_why": "다윗 세로 0.42(춤추는 자세). 궤를 멘 사람들은 다윗보다 앞서 우측, 족속은 뒤편 원경 띠.",
   "stages": [
     {
       "id": "S1",
@@ -96,7 +183,7 @@
       "kind": "ridge",
       "region": "crest_back",
       "verse": "6:15",
-      "prompt": "many tiny distant people singing and following along a road, small silhouettes, tiny far away crowd.",
+      "prompt": "many tiny distant people shouting joyfully and blowing trumpets and following along a road, small silhouettes, tiny far away crowd.",
       "neg": [
         "empty ground",
         "single figure",
@@ -112,15 +199,32 @@
       ]
     },
     {
+      "id": "S2b",
+      "kind": "region",
+      "region": "ark_bearers",
+      "verse": "6:13 · 6:15",
+      "prompt": "men carrying the ark of the covenant on two poles, a gold-covered wooden chest borne on their shoulders.",
+      "neg": [
+        "empty ground",
+        "close-up",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
       "id": "S3",
       "kind": "plate",
-      "region": "david",
+      "region": "david-prime",
       "verse": "6:14",
-      "prompt": "an ancient Israelite lean young man walking, one arm raised high, the other hand gripping a sword hilt at his side, wearing a plain linen ephod, facing right.",
+      "prompt": "{cast:david-prime}, dancing with all his might, before the ark of the covenant, both arms flung wide, wearing a linen ephod, facing right.",
       "neg": [
         "armour",
         "crown",
-        "dancing pose",
         "helmet",
         "sword swinging",
         "kneeling"
@@ -131,7 +235,7 @@
   "judge": {
     "_why": "인물 하나뿐이라 gap_bands는 없다.",
     "figures": [
-      "david"
+      "david-prime"
     ],
     "gap_bands": [],
     "crest_x": {

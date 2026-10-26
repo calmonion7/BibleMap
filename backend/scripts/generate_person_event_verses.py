@@ -328,25 +328,26 @@ def process_event(ev: dict, abbr_to_info: dict, abbr_pat: re.Pattern) -> list:
 
     keys = verse_keys_by_book()
 
-    # 같은 bookId 중복 제거 (여러 세그먼트에서 같은 권 참조 시 첫 번째만)
-    seen_book_ids: set = set()
-    book_entries = []
+    # 같은 bookId 구간은 버리지 않고 순서대로 ", "로 이어 한 항목에 싣는다(task 398 —
+    # 예전엔 첫 구간만 남아 "1Sam 18:6–11; 19:9–10"의 19:9–10이 조용히 빠졌다).
+    # expand_range_label이 쉼표 라벨을 합집합으로 펼치므로 겹치는 구간도 중복 절이 없다.
+    by_book: dict = {}
     for ref in refs:
-        bid = ref["bookId"]
-        if bid in seen_book_ids:
-            continue
-        seen_book_ids.add(bid)
+        entry = by_book.get(ref["bookId"])
+        if entry is None:
+            by_book[ref["bookId"]] = {
+                "bookId": ref["bookId"],
+                "bookOrder": ref["bookOrder"],
+                "rangeLabel": ref["rangeLabel"],
+            }
+        elif ref["rangeLabel"] not in [x.strip() for x in entry["rangeLabel"].split(",")]:
+            entry["rangeLabel"] += ", " + ref["rangeLabel"]
 
-        # 라벨이 가리키는 범위 전량을 오프라인으로 전개한다 — 교차-장·장 단위도 첫 절만
-        # 채우지 않는다(ADR 260821-125000). 네트워크 호출 0회.
-        verses = verses_for_label(ref["rangeLabel"], ref["bookOrder"], keys)
-
-        book_entries.append({
-            "bookId": bid,
-            "bookOrder": ref["bookOrder"],
-            "rangeLabel": ref["rangeLabel"],
-            "verses": verses,
-        })
+    # 라벨이 가리키는 범위 전량을 오프라인으로 전개한다 — 교차-장·장 단위도 첫 절만
+    # 채우지 않는다(ADR 260821-125000). 네트워크 호출 0회.
+    book_entries = list(by_book.values())
+    for b in book_entries:
+        b["verses"] = verses_for_label(b["rangeLabel"], b["bookOrder"], keys)
 
     return book_entries
 
@@ -393,6 +394,49 @@ def rebake_range_labels(dry_run: bool = False) -> int:
         print(f"  (dry-run) 재전개 대상 {fixed}개 블록")
     else:
         print("  재전개 대상 없음 — 모든 블록이 라벨 범위와 정합")
+    return fixed
+
+
+def resync_books(dry_run: bool = False) -> int:
+    """이미 books가 있는 사건 중 context 파싱 결과와 어긋난 것만 다시 쓴다 (task 398).
+
+    main()의 멱등 스킵 때문에 생성기 규칙을 고쳐도 기존 사건은 갱신되지 않는다 — 이 모드가
+    person_events의 books와 event_verses의 같은 bookId 블록(rangeLabel·verses)을 맞춘다.
+    어긋나지 않은 사건·블록은 손대지 않는다.
+    """
+    abbr_to_info = build_lookups()
+    abbr_pat = _make_abbr_pattern(abbr_to_info)
+    event_verses: dict = json.load(open(EVENT_VERSES_PATH, encoding="utf-8"))
+
+    fixed = 0
+    for fpath in sorted(glob_module.glob(os.path.join(PERSON_EVENTS_DIR, "*.json"))):
+        events: list = json.load(open(fpath, encoding="utf-8"))
+        file_changed = False
+        for ev in events:
+            if "books" not in ev:
+                continue
+            entries = process_event(ev, abbr_to_info, abbr_pat)
+            books = [{"bookId": b["bookId"], "rangeLabel": b["rangeLabel"]} for b in entries]
+            if books == ev["books"]:
+                continue
+            print(f"  {ev['id']}: {ev['books']} → {books}")
+            ev["books"] = books
+            file_changed = True
+            fixed += 1
+            by_id = {b["bookId"]: b for b in entries}
+            for block in event_verses.get(ev["id"], {}).get("books", []):
+                b = by_id.get(block.get("bookId"))
+                if b and block.get("rangeLabel") != b["rangeLabel"]:
+                    block["rangeLabel"] = b["rangeLabel"]
+                    block["verses"] = b["verses"]
+        if file_changed and not dry_run:
+            with open(fpath, "w", encoding="utf-8") as f:
+                json.dump(events, f, ensure_ascii=False, indent=2)
+
+    if fixed and not dry_run:
+        with open(EVENT_VERSES_PATH, "w", encoding="utf-8") as f:
+            json.dump(event_verses, f, ensure_ascii=False, indent=2)
+    print(f"  {'(dry-run) ' if dry_run else ''}재동기화 {fixed}개 사건")
     return fixed
 
 
@@ -474,5 +518,7 @@ if __name__ == "__main__":
 
     if "--rebake" in sys.argv:
         rebake_range_labels(dry_run="--dry-run" in sys.argv)
+    elif "--resync" in sys.argv:
+        resync_books(dry_run="--dry-run" in sys.argv)
     else:
         main()

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>장면 애니메이션</title>
+<style>html,body{margin:0;height:100%;background:#f4ecd8;overflow:hidden}
+#st{position:fixed;inset:0;overflow:hidden}
+#st img{position:absolute;top:50%;left:50%;height:100%;max-width:none;transform-origin:0 0;will-change:transform}
+#cap{position:fixed;left:0;right:0;bottom:0;padding:14px 16px 18px;background:rgba(244,236,216,.9);font-family:"Apple SD Gothic Neo",sans-serif;color:#2e2a20;text-align:center}
+#cap b{display:block;font-size:18px}#cap span{font-family:AppleMyungjo,serif;font-size:13px;color:#6b5a3a}</style></head>
+<body><div id="st"></div><div id="cap"><b id="t"></b><span id="v"></span></div>
+<script>
+// 데이터 JSON 하나로 구동: {title, verse, aspect, dur, layers:[{src,p}], cam:[{c,y,s},{c,y,s}]}  (build_anim.py가 채운다)
+const D = __DATA__;
+t.textContent = D.title; v.textContent = D.verse;
+const W = innerWidth, H = innerHeight, bw = H * D.aspect;       // 배경은 높이에 맞춘 cover
+const imgs = D.layers.map(l => { const i = new Image(); i.src = l.src; i.style.width = bw + "px"; st.appendChild(i); return i; });
+const lerp = (a, b, e) => a + (b - a) * e, clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+function draw(e, now) {
+  const [a, b] = D.cam, s = lerp(a.s, b.s, e), sway = Math.sin(now / 1400) * 0.004;
+  D.layers.forEach((l, k) => {
+    const sk = 1 + (s - 1) * l.p;                                  // 가까운 층일수록 더 크게 확대 = 패럴랙스
+    const cx = clamp(lerp(a.c, b.c, e), W / 2 / (bw * sk), 1 - W / 2 / (bw * sk));
+    const cy = sk < 1 ? 0.5 : clamp(lerp(a.y, b.y, e) + sway, 0.5 / sk, 1 - 0.5 / sk);   // sk<1: 인물이 커서 줄임 → 위아래 여백, 가운데 맞춤
+    imgs[k].style.transform = `translate(${-cx * bw * sk}px,${-cy * H * sk}px) scale(${sk})`;
+  });
+}
+const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+Promise.all(imgs.map(i => i.decode())).then(() => {
+  const t0 = performance.now();
+  if (still) return draw(0, 0);                                    // reduce-motion: 정지 그림
+  (function f(now) { const s = Math.min((now - t0) / D.dur, 1); draw(s * s * (3 - 2 * s), now); requestAnimationFrame(f); })(t0);
+});
+</script></body></html>

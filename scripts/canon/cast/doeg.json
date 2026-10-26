@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "doeg",
   "names": [
     "도엑",
@@ -12,6 +12,7 @@
   "era": "an ancient Edomite",
   "age": "middle-aged herdsman",
   "sex": "male",
+  "role": "shepherd",
   "hair": "dark hair",
   "beard": "dark beard",
   "headwear": "none",
@@ -24,7 +25,7 @@
   "propCandidates": [
     {
       "prop": "a sword",
-      "verse": "삼상 22:18",
+      "verse": "삼상 22:19",
       "ko": "칼"
     }
   ],
@@ -37,13 +38,59 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, sword raised"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "middle",
+      "text": "in his 40s, weathered sun-lined face"
+    },
+    "beardVolume": {
+      "class": "full",
+      "text": "full coarse black beard"
+    },
+    "silhouette": {
+      "class": "broad",
+      "text": "broad heavy shoulders, thick neck"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, rough cropped dark hair"
+    },
+    "costumeColor": {
+      "class": "undyed",
+      "text": "undyed rough gray-brown wool herdsman tunic"
+    }
+  },
+  "face": {
+    "faceShape": "narrow pinched face, small receding chin",
+    "eyes": "droopy heavy-lidded dark eyes",
+    "nose": "crooked nose bent to one side",
+    "mouth": "wide loose mouth, heavy lower lip",
+    "skin": "sun-darkened coarse skin",
+    "brows": "low heavy brows",
+    "marks": "none"
+  },
   "_why": {
-    "age": "본문 밖 · 저작자 정함",
-    "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "costume": "삼상 21:7 「에돔 사람 도엑이요 사울의 목자장이었더라」"
+    "age": "[저작](나이 기록 없어 직책·경력에서 본 연령대 대표값)",
+    "build": "[저작](체격 기록 없어 직책 이미지의 대표값)",
+    "hair": "[저작](머리 기록 없어 고대 근동 남성 짙은 머리 대표값)",
+    "beard": "[저작](수염 기록 없어 고대 근동 성인 남성 수염 관습 대표값)",
+    "headwear": "[저작](쓰개 기록 없어 맨머리 기본값)",
+    "costume": "[추론] 삼상 21:7 「도엑이라 이름하는 에돔 사람이요 사울의 목자장이었더라」 — 목자장이라 거친 어두운 튜닉",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[저작](역표 동석 인물과 구분용)",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[저작](29명 전체 구별 — 나하스·아브넬과 갈림. 목자장 작업복은 물들이지 않은 양모)",
+    "face.faceShape": "[저작](29명 얼굴 유사 검토 — 나하스·나단과 같은 얼굴로 그려짐 판정 → 가름; 얼굴 구분용)",
+    "face.eyes": "[저작](29명 얼굴 유사 검토 — 나하스와 같은 얼굴로 그려짐 판정 → 가름; 얼굴 구분용)",
+    "face.nose": "[저작](29명 얼굴 유사 검토 — 나하스·나단과 같은 얼굴로 그려짐 판정 → 가름; 얼굴 구분용)",
+    "face.mouth": "[저작](29명 얼굴 유사 검토 — 나하스·나단과 같은 얼굴로 그려짐 판정 → 가름; 얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[직접] 삼상 21:7 「사울의 목자장」"
   },
   "plate": {
     "seed": 11,

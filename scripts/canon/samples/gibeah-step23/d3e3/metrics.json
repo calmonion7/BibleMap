@@ -1,0 +1,223 @@
+{
+ "answers": {
+  "g:5": {
+   "S": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.719,
+       "input": 4,
+       "output": 272,
+       "cache_read": 44638,
+       "cache_create": 9448,
+       "cost_usd": 0.044983800000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창 모두 얼굴, 옷, 질감이 완성돼 있다. 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.747,
+       "input": 4,
+       "output": 278,
+       "cache_read": 44638,
+       "cache_create": 9448,
+       "cost_usd": 0.0450438,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금 모두 얼굴·옷·세부가 갖춰져 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.53,
+       "input": 4,
+       "output": 275,
+       "cache_read": 44638,
+       "cache_create": 9448,
+       "cost_usd": 0.0450138,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금 모두 얼굴·옷·세부가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 14.385,
+       "input": 4,
+       "output": 1636,
+       "cache_read": 46497,
+       "cache_create": 11468,
+       "cost_usd": 0.0668897,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "틀림",
+      "e.wall": "맞음",
+      "e.lyre": "틀림",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.composition": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.saul-throw-pose": "맞음"
+     },
+     "reasons": {
+      "e.david-youth": "몸집과 얼굴이 15~20세 청년이 아니라 10세 안팎 어린아이로 보임",
+      "e.lyre": "지판 같은 긴 목에 줄감개와 줄이 달려 류트나 만돌린처럼 보여 작은 수금이라 하기 어려움",
+      "e.spear-shape": "앞 촉이 화살촉처럼 작고 뾰족하며 큰 잎 모양 쇠 촉이라 하기 어려움. 자루 끝에 손잡이 같은 마디도 있음"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 16.714,
+       "input": 4,
+       "output": 1820,
+       "cache_read": 47834,
+       "cache_create": 10131,
+       "cost_usd": 0.0635154,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "틀림",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "틀림",
+      "e.wall": "맞음",
+      "e.lyre": "틀림",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.composition": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "틀림",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.saul-throw-pose": "틀림"
+     },
+     "reasons": {
+      "e.moment": "다윗이 몸을 비틀어 피하는 동작이 분명치 않고, 벽에 기대 위를 올려다볼 뿐이다.",
+      "e.david-youth": "몸집이 작고 머리가 커서 15~20세 청년이 아니라 어린아이로 보인다.",
+      "e.lyre": "악기에 지판 같은 중앙 목이 있어 류트처럼 보이고, 작은 수금으로 단정하기 어렵다.",
+      "e.dodge-read": "창이 머리 위로 지나가지만 다윗은 몸을 숙이거나 비틀지 않아, 피하는 모습이 분명하지 않다.",
+      "e.spear-shape": "촉이 작고 화살촉 같으며 촉 뒤에 마디가 있어, 큰 잎 모양 촉이라고 보기 어렵다.",
+      "e.saul-throw-pose": "팔이 주먹을 쥔 채 수평으로 뻗어 있고, 휘둘러 내려오는 모습이 아니다. 몸통도 앞으로 기울지 않았다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 17.418,
+       "input": 4,
+       "output": 1922,
+       "cache_read": 47834,
+       "cache_create": 10131,
+       "cost_usd": 0.06453539999999999,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "틀림",
+      "e.wall": "맞음",
+      "e.lyre": "틀림",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "맞음",
+      "e.composition": "맞음",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "틀림",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "틀림",
+      "e.saul-throw-pose": "틀림"
+     },
+     "reasons": {
+      "e.david-youth": "몸집이 작아 15~20세 청년이 아니라 어린아이로 보임",
+      "e.lyre": "몸통에 지판과 소리구멍이 있어 류트와 수금이 섞인 모양",
+      "e.spear-shape": "앞끝에 작은 마개나 코등이 같은 돌기가 있고 촉도 작은 화살촉 모양",
+      "e.saul-body": "다리를 컴퍼스처럼 넓게 벌리고 선 자세",
+      "e.saul-throw-pose": "던진 팔이 수평으로 뻗은 채 주먹을 쥐고 있고, 몸통은 거의 세워져 있어 체중이 앞발로 쏠리지 않음"
+     }
+    }
+   }
+  }
+ },
+ "edit": {
+  "5": {
+   "src": "d3/s5.png",
+   "crop": [
+    251,
+    54,
+    304
+   ],
+   "box": [
+    271,
+    173,
+    535,
+    240
+   ],
+   "prompt": "Remove the large metal spearhead from the right end of the wooden spear shaft, so the right end is only a small iron cap, much thinner than a spearhead. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+   "status": "ok",
+   "sec": 40.8
+  }
+ }
+}

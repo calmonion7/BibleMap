@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "abner",
   "names": [
     "아브넬",
@@ -9,8 +9,9 @@
     "authored-david-gibeon-battle"
   ],
   "era": "an ancient Israelite",
-  "age": "middle-aged commander",
+  "age": "older commander",
   "sex": "male",
+  "role": "commander",
   "hair": "dark hair",
   "beard": "dark beard",
   "headwear": "none",
@@ -29,13 +30,59 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, arm extended in challenge"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "elder",
+      "text": "in his 60s, weathered face, firm jaw line"
+    },
+    "beardVolume": {
+      "class": "full",
+      "text": "full dark beard with gray"
+    },
+    "silhouette": {
+      "class": "broad",
+      "text": "broad armored shoulders, thick chest"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, short graying hair"
+    },
+    "costumeColor": {
+      "class": "brown",
+      "text": "brown leather cuirass, short kilt"
+    }
+  },
+  "face": {
+    "faceShape": "broad squarish face, heavy jaw",
+    "eyes": "deep-set dark eyes",
+    "nose": "broad straight nose",
+    "mouth": "firm level mouth",
+    "skin": "weathered tanned skin",
+    "brows": "thick dark brows",
+    "marks": "none"
+  },
   "_why": {
-    "age": "본문 밖 · 저작자 정함",
-    "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식) — 삼하 2:12 「넬의 아들 아브넬」"
+    "age": "[추론] 삼상 14:50 「그 군장의 이름은 아브넬이니」 — 사울 치세 초기에 이미 군장, 카드 ageBand(60대)와 같은 근거(task 429)",
+    "build": "[저작](체격 기록 없어 직책 이미지의 대표값)",
+    "hair": "[저작](머리 기록 없어 고대 근동 남성 짙은 머리 대표값)",
+    "beard": "[저작](수염 기록 없어 고대 근동 성인 남성 수염 관습 대표값)",
+    "headwear": "[저작](쓰개 기록 없어 맨머리 기본값)",
+    "costume": "[추론] 삼상 17:55 「군장 아브넬」 — 군 지휘관이라 가죽 흉갑·짧은 치마 군복",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[추론] 삼상 14:50 「그 군장의 이름은 아브넬이니 사울의 숙부 넬의 아들이며」 — 사울 치세(약 40년) 초기에 이미 군장이고 사울과 같은 항렬이라 사울 사후(삼하 2:12 기브온) 60대 · 삼하 2:10 「이스보셋이 비로소 이스라엘 왕이 될 때에 나이 사십 세며」 — 같은 항렬 사울의 아들이 이미 40세(task 429)",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "face.faceShape": "[저작](얼굴 구분용)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[직접] 삼상 17:55 「군장 아브넬」"
   },
   "plate": {
     "seed": 11,

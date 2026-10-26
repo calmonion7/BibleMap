@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "nathan",
   "names": [
     "나단",
@@ -13,6 +13,7 @@
   "era": "an ancient Israelite",
   "age": "middle-aged prophet",
   "sex": "male",
+  "role": "prophet",
   "hair": "dark hair",
   "beard": "dark beard",
   "headwear": "none",
@@ -22,13 +23,7 @@
     "dark brown",
     "deep gray"
   ],
-  "propCandidates": [
-    {
-      "prop": "a horn of oil",
-      "verse": "왕상 1:39",
-      "ko": "기름 뿔"
-    }
-  ],
+  "propCandidates": [],
   "neg": [
     "crown",
     "armour",
@@ -38,13 +33,59 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, one arm raised speaking"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "middle",
+      "text": "in his 50s, deep brow lines"
+    },
+    "beardVolume": {
+      "class": "full",
+      "text": "full dark beard, squared"
+    },
+    "silhouette": {
+      "class": "average",
+      "text": "average build, straight bearing"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, dark hair streaked with gray"
+    },
+    "costumeColor": {
+      "class": "brown",
+      "text": "long dark brown wool robe, cloth belt"
+    }
+  },
+  "face": {
+    "faceShape": "long angular face, hollow cheeks",
+    "eyes": "deep-set dark eyes, direct stare",
+    "nose": "hooked nose",
+    "mouth": "thin tight lips",
+    "skin": "olive skin",
+    "brows": "straight heavy dark brows",
+    "marks": "two deep lines between the brows"
+  },
   "_why": {
-    "age": "본문 밖 · 저작자 정함",
-    "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식)"
+    "age": "[저작](왕 곁에서 오래 일한 선지자 대표값; 삼하 7:2 「왕이 선지자 나단에게 이르되」는 직분만 말하고 나이는 말하지 않음)",
+    "build": "[저작](역표 동석 인물과 구분용 평균 체격, 구절은 체격을 말하지 않음)",
+    "hair": "[저작](역표 동석 인물과 구분용 검은 머리, 구절은 머리털을 말하지 않음)",
+    "beard": "[저작](역표 동석 인물과 구분용 검은 수염, 구절은 수염을 말하지 않음)",
+    "headwear": "[저작](맨머리 선지자 표현, 구절은 쓴 것을 말하지 않음)",
+    "costume": "[저작](시대 복식 고증 — 철기 초 이스라엘 남성 어두운 모직 겉옷과 띠)",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[저작](역표 동석 인물과 구분용)",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "face.faceShape": "[저작](얼굴 구분용)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[직접] 삼하 7:2 「왕이 선지자 나단에게 이르되」"
   },
   "plate": {
     "seed": 11,

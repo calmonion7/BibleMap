@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "jonathan",
   "names": [
     "요나단",
@@ -9,8 +9,9 @@
     "authored-saul-gilboa-death"
   ],
   "era": "an ancient Israelite",
-  "age": "young prince",
+  "age": "warrior prince",
   "sex": "male",
+  "role": "prince",
   "hair": "dark hair tied back",
   "beard": "none",
   "headwear": "none",
@@ -21,11 +22,6 @@
     "dark brown"
   ],
   "propCandidates": [
-    {
-      "prop": "a bow",
-      "verse": "삼상 31:3",
-      "ko": "활"
-    },
     {
       "prop": "a bow",
       "verse": "삼하 1:22",
@@ -42,14 +38,60 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, holding a bow"
   ],
+  "card": {
+    "heightRel": "tall",
+    "ageBand": {
+      "class": "middle",
+      "text": "in his 40s, clear open face weathered by campaigns"
+    },
+    "beardVolume": {
+      "class": "none",
+      "text": "없음"
+    },
+    "silhouette": {
+      "class": "lean",
+      "text": "lean athletic build, long limbs, narrow waist"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, dark hair tied back"
+    },
+    "costumeColor": {
+      "class": "blue",
+      "text": "deep blue tunic, dark leather belt, quiver strap"
+    }
+  },
+  "face": {
+    "faceShape": "oval face, straight clean jaw",
+    "eyes": "bright open dark eyes",
+    "nose": "straight fine nose",
+    "mouth": "soft slightly smiling mouth",
+    "skin": "warm olive skin",
+    "brows": "clean arched dark brows",
+    "marks": "none"
+  },
   "_why": {
-    "age": "본문 밖 · 저작자 정함",
-    "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식) — 삼상 31:2 「사울의 아들 요나단」",
-    "note": "사용자 2026-09-04 보류: 요압과 동일 → 무수염·긴 머리·청색 튜닉으로 개정(b); 활은 삼하 1:22"
+    "age": "[추론] 삼상 13:2 「일천은 요나단과 함께 베냐민 기브아에 있게 하고」 — 천 명을 거느린 성인 지휘관. 삼하 4:4 「그 나이 다섯 살」(아들) · 삼하 2:10 「나이 사십 세며」(아우 이스보셋)도 성인을 받침",
+    "build": "[저작](삼하 1:23 「독수리보다 빠르고 사자보다 강하였도다」의 빠르고 강함을 날씬한 운동선수 체격으로 풂, 신장은 정함)",
+    "hair": "[저작](역표 동석 사울과 구분용 묶은 검은 머리, 구절은 머리털을 말하지 않음)",
+    "beard": "[저작](사울·다윗과 구분용 무수염, 구절은 수염을 말하지 않음)",
+    "headwear": "[저작](맨머리 왕자 표현, 구절은 쓴 것을 말하지 않음)",
+    "costume": "[저작](삼상 18:4 「그 군복과 칼과 활과 띠」는 군복·활·띠만 받침, 색과 화살통 끈은 시대 복식 고증값)",
+    "note": "사용자 2026-09-04 보류: 요압과 동일 → 무수염·긴 머리·청색 튜닉으로 개정(b); 활은 삼하 1:22",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[추론] 삼상 13:2-3 「일천은 요나단과 함께 베냐민 기브아에 있게 하고」(사울 재위 2년에 이미 천 명을 거느림) · 삼하 4:4 「그 나이 다섯 살」(므비보셋의 아버지) · 삼하 2:10 「이스보셋이…나이 사십 세며」 — 길보아의 요나단은 20대일 수 없어 40대로 고정",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[추론] 삼하 1:23 「독수리보다 빠르고 사자보다 강하였도다」 — 빠르고 강한 몸을 날씬한 근육질로 풂, 세부는 정함",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "face.faceShape": "[저작](삼하 1:23 「사랑스럽고 아름다운 자러니」는 용모가 빼어남만 말하고 얼굴형은 정함)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[추론] 삼상 14:1 「사울의 아들 요나단이」 — 왕 사울의 아들이라 왕자"
   },
   "plate": {
     "seed": 11,

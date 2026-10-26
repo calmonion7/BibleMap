@@ -1,11 +1,11 @@
 ---
-last_mapped_commit: 924f501dc41ba3f6602b5cb0ebeb3831834400a1
-mapped: 2026-10-10
+last_mapped_commit: 50d8961b1d6148fed2952fc59cb4bed3e634b592
+mapped: 2026-10-24
 ---
 
 # CONCERNS
 
-현재 코드베이스의 기술 부채·확정 결함·보안 노출·성능 병목·취약 지점·데이터 정합성 위험 목록. 최초 전면 매핑은 HEAD `43f987c` 기준이었고, 이후 task#259~316 커밋들이 실어 나른 부분 갱신이 누적됐다. **2026-10-10 증분(HEAD `924f501`): 장면 승인 도구 서버·장면 상태 기계·AGE 호환성 판정(막힘)·작업트리 미커밋 편집을 Tech Debt 12~15로 추가했다(그 외 절은 미재검증).** 이전 갱신은 도장 `4ad1d83` 이후 커밋 ∪ 미커밋 작업트리를 증분 반영했다(HEAD `fbd547d`)** — 변경 항목의 압도적 다수(`scripts/canon/` 아래 180건)가 신설된 **로컬 이미지 생성·판정 파이프라인**이라, 이번에 늘어난 절은 대부분 그 서브시스템의 위험이다.
+현재 코드베이스의 기술 부채·확정 결함·보안 노출·성능 병목·취약 지점·데이터 정합성 위험 목록. 최초 전면 매핑은 HEAD `43f987c` 기준이었고, 이후 task#259~316 커밋들이 실어 나른 부분 갱신이 누적됐다. **2026-10-24 증분(HEAD `50d8961`): Tech Debt 10을 실측으로 고치고(PNG 251장 약 200 MB·size-pack 206.77 MiB), Tech Debt 16(그림 파이프라인 모듈 상태·검사 함수 등록·요단 구역 원근 어긋남·로그 누적)을 추가했다. 그 외 절은 미재검증이다.** 앞선 2026-10-10 증분(HEAD `924f501`): 장면 승인 도구 서버·장면 상태 기계·AGE 호환성 판정(막힘)·작업트리 미커밋 편집을 Tech Debt 12~15로 추가했다(그 외 절은 미재검증).** 이전 갱신은 도장 `4ad1d83` 이후 커밋 ∪ 미커밋 작업트리를 증분 반영했다(HEAD `fbd547d`)** — 변경 항목의 압도적 다수(`scripts/canon/` 아래 180건)가 신설된 **로컬 이미지 생성·판정 파이프라인**이라, 이번에 늘어난 절은 대부분 그 서브시스템의 위험이다.
 
 이번 갱신에서 다음을 **실제로 실행해** 검증했다.
 
@@ -564,7 +564,7 @@ task#280이 이 결함을 인트로 화면(`frontend/src/IntroView.jsx`)에서 �
 
 배포 게이트가 이 서브시스템에 관해 단언할 수 있는 것은 **소스뿐**이다 — `validate_canon_pipeline`은 GPU도 생성 venv도 없는 `check.sh` 환경에서 돌아야 하므로 AST·텍스트 스캔만 한다(§배포/운영 8). 파이프라인이 실제로 도는지, 같은 그림을 다시 내는지는 어떤 게이트도 보지 않는다.
 
-### 10. 커밋된 이미지 자산 49 MB — 이제 저장소 무게의 대부분
+### 10. 커밋된 이미지 자산 — 이제 저장소 무게의 대부분 (2026-10-24 실측: PNG 251장 약 200 MB · size-pack 206.77 MiB, 아래 수치는 10-10 당시)
 
 **심각도: 중간 · 시급도: 낮음**
 
@@ -605,6 +605,14 @@ task#280이 이 결함을 인트로 화면(`frontend/src/IntroView.jsx`)에서 �
 
 `scripts/age_compat/REPORT.md`(task#340, 하네스 `run_check.py`·`age_adapter.py`·`docker-compose.yml`): 호출 지점 94 중 막힘 4·기계적 치환 7. 막힘은 `backend/app/routes/family.py:97`(`all(n IN nodes(p)[1..] ...)` 리스트 술어 미지원), `backend/app/routes/nodes.py:175`(agtype 컨테이너 내부 오류), `backend/app/routes/search.py:23`(문자열 정렬 순서가 neo4j와 다름), `backend/scripts/apply_event_dedupe.py:45`(`CALL (r,k) {}` 서브쿼리 미지원). 지연도 9/45 엔드포인트가 10배 이상 느리고 최악 `/person/{jesus}/family` 24.4s(neo4j 48ms). ADR `261010-110220-keep-neo4j-as-standard-db-exception`이 neo4j를 표준 DB 예외로 확정했다. 위험: 하네스가 레포에 남아 있어 neo4j 쿼리가 바뀌면 보고서가 낡는다(재실행 `python3 scripts/age_compat/run_check.py`), 하네스는 `check.sh`에 배선되지 않았다.
 
+
+### 16. 그림 파이프라인 — 모듈 상태·검사 함수 등록·요단 구역·산출물 누적 (2026-10-24 증분)
+
+- **모듈 전역 상태로 넘기는 값**: `scripts/canon/batch/make_guide.py`의 `BODY`(몸 너비·무릎·`big_tip`·`leaf_tip`)와 `PERSP["hy"]`(장면 지평선)는 꼴 함수 서명 `(d, 상자, v)`를 유지하려고 모듈 딕셔너리로 전달된다. `make()`가 인물마다 바꾸고 `pop`으로 되돌리는 구조라 예외·중단 시 값이 남아 다음 호출에 새고, 병렬 호출에 안전하지 않다.
+- **생성 층 검사 함수 미등록**: `scripts/canon/recheck.py`는 `SPEC_CHECKS`에 없는 생성 층 규칙을 재검에서 조용히 뺀다(`r["check"] in SPEC_CHECKS` 필터). 이제 `scripts/canon/test_recheck.py`가 등록 누락을 막지만, `scripts/canon/test_*.py`는 `scripts/check.sh`에 배선돼 있지 않다(2026-10-24 확인 — 저작 파이프라인 게이트는 `validate_canon_pipeline` 하나) — 작업마다 DoD 명령으로 손수 돌려야 걸린다.
+- **요단 장면 구역과 원근 어긋남**: `scripts/canon/notes/SCALE-CROWD.md` 재검 목록 기준 — `generate.figure-scale`(사람 수 2055 대비 구역 0.62)·`generate.eye-level-perspective`(시바·유다 무리 구역이 원근보다 낮음) 실패, 유다 족속(gilgal) 구역은 지평선 위 둑이라 셈 밖. 사람 결정 대기이며 요단 가이드 구역 재저작이 필요하다.
+- **산출물 누적**: `scripts/canon/batch/*.log` 146개가 미추적으로 쌓여 있고(`.gitignore` 미적용, 추적 로그 0) `scripts/canon/samples/` 382개 파일이 추적된다. `git add -A` 한 번에 로그가 커밋에 딸려 갈 수 있다.
+
 ---
 
 ## Dependencies at Risk
@@ -632,7 +640,7 @@ task#280이 이 결함을 인트로 화면(`frontend/src/IntroView.jsx`)에서 �
 - **Person 생몰 ↔ Event 연대 계 격차 측정 게이트 없음**(§데이터 정합성 1) — 이 축은 여전히 미검증이다. **다른 두 연대 축은 이번에 새로 게이트됨**: `sortKey`↔`startDate` 전역 역전(`validate_sortkey_startdate.py`, task#283)과 근거 절 범위↔라벨 정합(`validate_event_verses.py`, task#282) — 둘 다 §데이터 정합성 1·9 참조.
 - **`/node/{id}` vs `/node/{id}/neighbors/grouped` 동작 일치 테스트 없음** — `backend/app/routes/nodes.py:120-147`의 `get_node_neighbors_grouped`는 여전히 `-[r]-(m)` 무방향 매치에 정규화·디듀프가 없다. 유일 소비처 `frontend/src/mapRingController.js:112`가 응답의 Event만 읽어 현재 UI 영향은 없다.
 - **UI 검증은 Playwright 수동 실행 의존**, CI 미연동. 증적은 `.forge/reports/`의 수동 캡처뿐. 이번 갱신으로 수동 UAT 스크립트가 2종 늘었다 — `scripts/uat_scene_detail_pilot.py`(애니메이션을 `pause()`+`currentTime` / `pauseAnimations()`+`setCurrentTime()`으로 고정해 필름스트립을 찍는다, 그래야 비결정적이지 않다)와 `scripts/uat_tour_chunk_split.py`(**네트워크를 본다** — 정적 청크 목록만 보면 "쪼갰지만 어차피 전부 로드"가 통과하므로, 한 투어 재생 중 다른 투어 청크가 요청되지 않는지를 격리 축으로 잰다). **둘 다 `check.sh`에 배선되지 않는다** — `deploy.sh`가 빌드 **전에** 게이트를 부르므로 그 시점 `:8080`은 옛 빌드를 서빙해 초록·빨강이 둘 다 거짓이 된다(`uat_intro_gutter.py`·`uat_intro_entry.py`와 같은 이유).
-- **저작 파이프라인은 실행 축이 전혀 검증되지 않는다.** `scripts/canon/`의 게이트는 `validate_canon_pipeline` 하나뿐이고, 그것도 **소스만** 본다(정본 재선언 0건 · `scripts/` 미추적 0건). GPU도 생성 venv도 없는 `check.sh` 환경이라 실행형 검사가 애초에 성립하지 않는다는 것이 도크스트링의 설명이다. 판정 도구(`judge_*.py` 8개)는 파이프라인 산출물을 채점하는 저작 도구이지 게이트가 아니며 `check.sh`에 배선되지 않는다. 같은 이유로 `scripts/render_scene.py`(저작자용 시각 피드백)도 배선 밖이다 — 도크스트링이 "판정 게이트가 아니다"라고 명시한다. 즉 **이 서브시스템의 초록은 "선언이 한 곳에 있다"까지이고 "그림이 나온다"는 사람이 본다.**
+- **저작 파이프라인은 실행 축이 전혀 검증되지 않는다.** `scripts/canon/`의 게이트는 `validate_canon_pipeline` 하나뿐이고, 그것도 **소스만** 본다(정본 재선언 0건 · `scripts/` 미추적 0건). GPU도 생성 venv도 없는 `check.sh` 환경이라 실행형 검사가 애초에 성립하지 않는다는 것이 도크스트링의 설명이다. 판정 도구(`judge_*.py` 10개)는 파이프라인 산출물을 채점하는 저작 도구이지 게이트가 아니며 `check.sh`에 배선되지 않는다. 같은 이유로 `scripts/render_scene.py`(저작자용 시각 피드백)도 배선 밖이다 — 도크스트링이 "판정 게이트가 아니다"라고 명시한다. 즉 **이 서브시스템의 초록은 "선언이 한 곳에 있다"까지이고 "그림이 나온다"는 사람이 본다.**
 - **장면 저작 규약 게이트의 미결 축(B12)** — `backend/scripts/validate_scene_sketch_detail.py`가 B1~B12를 강제하는데, B12(인물 정본 컴포넌트 사용 강제)의 판정 신호가 **이름표(`<Label>`)의 존재**다. 이름표 없이 그려진 인물은 기계 신호가 없어 강제 대상에서 빠진다 — 도크스트링이 "대안 없음(미결로 남긴다)"이라 적었다. 또한 이 검증기는 정본 컴포넌트 호출부(`<David cx={..} .../>`)를 소스에서 읽어 리터럴로 치환·평가해 인라인 전개하므로(`expand_cast`), **호출 규약(숫자 리터럴 인자, `transform`·조건 분기 금지)을 어기면 전개가 깨진다** — 규약을 지키는 한 초록이지만 규약 자체를 강제하는 축은 이 파일 안에 없다.
 - **정본 구별성은 5축 조합 중복만 본다** — `scripts/check_cast_axes.py`가 `cast/*.jsx`의 `export const AXES` 5축(머리카락·수염·머리쓰개·나이대·성별) 조합이 파일 간 겹치지 않는지 단정한다. 조합이 같으면 서로 다른 인물이 같은 얼굴로 그려질 수 있다는 것이 근거다. 정본이 2개(david·goliath)인 현재는 표면이 좁고, **축이 5개뿐이라 인물이 늘면 조합이 고갈된다** — 그때 이 검사는 "겹쳤다"고 빨강을 낼 뿐 축을 늘려 주지는 않는다.
 - **헬스/레디니스 엔드포인트 없음** — 오버레이 로딩 실패(§데이터 정합성 8)나 Neo4j 인덱스 생성 실패(`backend/app/main.py:37-38`이 예외를 삼키고 계속 진행)를 외부에서 알 방법이 없다.

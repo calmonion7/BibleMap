@@ -1,0 +1,36 @@
+{
+  "authored-samuel-bethlehem-david-anointing": {
+    "stages[0].prompt": "a small dry village yard in Bethlehem, plain stone ground, a little dry grass, a pale sky, no people.",
+    "stages[1].prompt": "{cast:samuel}. He stands and holds {{oil-horn}}. He tips it over the boy's bowed head and looks down at the boy, facing right.",
+    "stages[2].prompt": "{cast:david-boy}. His face is ruddy and his eyes are bright. He has just come in from the sheep. He stands still with his head bowed, holding one shepherd's staff, facing left.",
+    "stages[3].prompt": "{cast:jesse}. He stands tall, a little apart, holding one wooden staff straight up. His other hand is empty and he holds no horn. He watches, facing left.",
+    "stages[4].prompt": "seven grown brothers stand in one row just behind the boy. Their hands are empty and hang at their sides. They watch in silence.",
+    "groups[0].prompt": "{castc:samuel} is the only one holding a horn. He pours oil from it onto the head of {castc:david-boy}, who stands beside him. The oil runs down into the boy's hair. No one else holds a horn."
+  },
+  "authored-david-returns-jerusalem": {
+    "stages[0].prompt": "a wide dry grassy bank beside {{jordan}}, low hills far away, an empty pale sky, no people.",
+    "stages[1].prompt": "the water is calm and wide. The bank is muddy, with reeds at the edge. {{ferry-boat}} comes over the water toward this bank to carry the king's family across.",
+    "stages[2].prompt": "many men of Judah have come down from Gilgal to the water's edge to bring the king back. They stand close to the king to meet him and help him cross. Some of them hold the ferry boat still at the bank.",
+    "stages[3].prompt": "an ancient Israelite lean young man walks toward the men waiting at the water's edge. One hand holds the handle of the sword at his side. He faces right."
+  },
+  "authored-david-nob-priests": {
+    "whole_background.en": "a small dry yard in front of the tent shrine at Nob. A low stone wall. A heavy tent curtain. In front of it stands a low wooden table of {{showbread}}. Beside the curtain, on a peg, is {{ephod}}. One man stays at the edge of the yard and watches",
+    "figures[0].expression.en": "a careful, worried face, shaking a little",
+    "figures[0].gesture.en": "reaching behind the ephod hanging beside him and pulling out {{wrapped-in-cloth}}, holding it out in front of him with both hands",
+    "figures[0].costume.en": "a white linen ephod over a pale robe",
+    "figures[1].expression.en": "a tired face, in a hurry",
+    "figures[1].gesture.en": "reaching out with both hands and taking hold of the far end of the wrapped sword",
+    "figures[1].costume.en": "a deep red wool tunic with a dark brown leather belt, no sword at his belt",
+    "relation.en": "the priest holds one end of the one big wrapped sword and the young man holds the other end. The sword is going from the priest to the young man. The young man has come alone, with no one else"
+  },
+  "authored-david-gath-achish": {
+    "whole_background.en": "a dusty street in the city of Gath. A tall heavy wooden double gate in a thick stone city wall. Dry ground",
+    "figures[0].expression.en": "an empty, dazed face",
+    "figures[0].gesture.en": "leaning one shoulder on the gate, {{scrawl-door}}, while {{drool-beard}}",
+    "figures[0].costume.en": "a deep red wool tunic with a dark brown leather belt",
+    "figures[1].expression.en": "a face full of disgust",
+    "figures[1].gesture.en": "one hand up with the palm out, waving him away, the other hand holding a fold of his robe",
+    "figures[1].costume.en": "a black and deep red wool robe with fringes and a wide belt",
+    "relation.en": "the king stands back, away from the young man. Two of his servants stand close behind the king. The king waves his open hand at the young man and scolds his servants for bringing this madman to him. The young man keeps scratching at the gate doors and does not look at the king. The two do not touch"
+  }
+}

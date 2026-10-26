@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "jesse",
   "names": [
     "이새"
@@ -10,6 +10,7 @@
   "era": "an ancient Israelite",
   "age": "elderly father",
   "sex": "male",
+  "role": "shepherd",
   "hair": "gray hair",
   "beard": "short gray beard",
   "headwear": "brown cloth headwrap",
@@ -30,13 +31,59 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, gesturing toward his sons"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "elder",
+      "text": "in his 60s, deeply lined forehead"
+    },
+    "beardVolume": {
+      "class": "trimmed",
+      "text": "close-trimmed gray beard, jawline visible"
+    },
+    "silhouette": {
+      "class": "broad",
+      "text": "broad stocky shoulders, thick short torso"
+    },
+    "headOutline": {
+      "class": "headwrap",
+      "text": "brown cloth headwrap tied at the nape"
+    },
+    "costumeColor": {
+      "class": "brown",
+      "text": "long brown wool robe, cloth belt"
+    }
+  },
+  "face": {
+    "faceShape": "square weathered face, heavy jaw",
+    "eyes": "small dark eyes under heavy lids",
+    "nose": "broad flat nose",
+    "mouth": "thin lips",
+    "skin": "tanned leathery skin",
+    "brows": "thick gray brows",
+    "marks": "deep crow's feet"
+  },
   "_why": {
-    "age": "본문 밖 · 저작자 정함(다윗의 부친 세대)",
-    "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함 — 사무엘과 실루엣이 겹쳐 구분되지 않아 두건 추가(실측 2026-09-04, task 333)",
-    "costume": "본문 밖 · 저작자 정함(시대 복식)"
+    "age": "[직접] 삼상 17:12 「이새는 사울 당시 사람 중에 나이 많아 늙은 자로서」",
+    "build": "[저작](체격 구분용 땅딸막한 몸, 구절은 체격을 말하지 않음)",
+    "hair": "[추론] 삼상 17:12 「나이 많아 늙은 자로서」 — 늙은 자라 회색 머리",
+    "beard": "[저작](회색은 삼상 17:12 「나이 많아 늙은 자로서」에서 끌어냈으나 짧은 길이는 정함)",
+    "headwear": "[저작](사무엘과 실루엣이 겹쳐 구분되지 않아 두건 추가(실측 2026-09-04, task 333))",
+    "costume": "[저작](시대 복식 고증 — 철기 초 이스라엘 남성 갈색 모직 겉옷과 띠)",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[추론] 삼상 17:12 「나이 많아 늙은 자로서」 — 늙은 자라 60대로 둠",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "face.faceShape": "[저작](얼굴 구분용)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[저작](이새 본인 직업은 본문 밖 — 베들레헴 목축 집안으로 정함; 삼상 16:11 「그가 양을 지키나이다」는 아들 다윗의 일)"
   },
   "plate": {
     "seed": 11,

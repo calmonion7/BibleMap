@@ -1,0 +1,65 @@
+{
+ "A-e-engedi-s23": {
+  "david": 0.0078,
+  "saul": 0.0112
+ },
+ "A-e-engedi-s42": {
+  "david": 0.0062,
+  "saul": 0.0084
+ },
+ "A-e-gilgal-s23": {
+  "saul": 0.0166
+ },
+ "A-e-gilgal-s42": {
+  "saul": 0.0185
+ },
+ "A-f-engedi-s23": {
+  "david": 0.0849,
+  "saul": 0.1577
+ },
+ "A-f-engedi-s42": {
+  "david": 0.0261,
+  "saul": 0.1061
+ },
+ "A-f-gilgal-s23": {
+  "saul": 0.0206
+ },
+ "A-f-gilgal-s42": {
+  "saul": 0.0254
+ },
+ "B-e-engedi-s23": {
+  "david": 0.3242,
+  "saul": 0.3852
+ },
+ "B-e-engedi-s42": {
+  "david": 0.4121,
+  "saul": 0.4728
+ },
+ "B-e-gilgal-s23": {
+  "saul": 0.163
+ },
+ "B-e-gilgal-s42": {
+  "saul": 0.2743
+ },
+ "B-f-engedi-s23": {
+  "david": 0.1139,
+  "saul": 0.1428
+ },
+ "B-f-engedi-s42": {
+  "david": 0.117,
+  "saul": 0.1701
+ },
+ "B-f-gilgal-s23": {
+  "saul": 0.1568
+ },
+ "B-f-gilgal-s42": {
+  "saul": 0.1731
+ },
+ "approved-engedi": {
+  "david": 0.0,
+  "saul": 0.0
+ },
+ "approved-gilgal": {
+  "saul": 0.0
+ }
+}

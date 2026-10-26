@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "david-boy",
   "names": [
     "다윗(소년)"
@@ -11,6 +11,7 @@
   "era": "an ancient Israelite",
   "age": "shepherd boy",
   "sex": "male",
+  "role": "shepherd",
   "hair": "curly hair",
   "beard": "none",
   "headwear": "none",
@@ -42,13 +43,59 @@
     "standing, full body, side view facing left",
     "sitting, full body, facing right, playing a small harp"
   ],
+  "card": {
+    "heightRel": "short",
+    "ageBand": {
+      "class": "youth",
+      "text": "about 14, smooth round cheeks, no lines"
+    },
+    "beardVolume": {
+      "class": "none",
+      "text": "없음"
+    },
+    "silhouette": {
+      "class": "slight",
+      "text": "slight narrow shoulders, thin boyish torso"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, tight dark curls close to the skull"
+    },
+    "costumeColor": {
+      "class": "undyed",
+      "text": "undyed tan wool tunic, rope belt"
+    }
+  },
+  "face": {
+    "faceShape": "oval face, soft jaw, fine cheekbones",
+    "eyes": "large bright dark eyes",
+    "nose": "straight narrow nose",
+    "mouth": "wide mouth with a quick smile",
+    "skin": "ruddy, sun-warmed skin",
+    "brows": "arched dark brows",
+    "marks": "none"
+  },
   "_why": {
-    "age": "삼상 16:11 「그가 양을 지키나이다」",
-    "build": "삼상 16:12 「그의 빛이 붉고 눈이 빼어나고 얼굴이 아름답더라」",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식) — 기존 v41 정본 이관"
+    "age": "[추론] 삼상 16:11 「그가 양을 지키나이다」 — 막내가 양을 치는 소년",
+    "build": "[저작](소년 체구 정함; 삼상 17:33 「너는 소년이요」·17:42 「그가 젊고」는 나이만 말하고 체구는 말하지 않음)",
+    "hair": "[저작](머리 기록 없어 고대 근동 남성 짙은 머리 대표값)",
+    "beard": "[저작](수염 기록 없어 고대 근동 성인 남성 수염 관습 대표값)",
+    "headwear": "[저작](쓰개 기록 없어 맨머리 기본값)",
+    "costume": "[저작](시대 복식 고증 — 목자 소년 양모 튜닉; 기존 v41 정본 이관)",
+    "card.heightRel": "[저작](소년이라 어른보다 작게; 삼상 17:33 「너는 소년이요」는 나이만 말함)",
+    "card.ageBand": "[추론] 삼상 17:33 「너는 소년이요」 — 소년 → 10대. 「about 14」 숫자는 [저작](생애 단계 대표값)",
+    "card.beardVolume": "[저작](같은 사람 연속)",
+    "card.silhouette": "[저작](같은 사람 연속)",
+    "card.headOutline": "[저작](같은 사람 연속)",
+    "card.costumeColor": "[저작](같은 사람 연속)",
+    "face.faceShape": "[저작](둥근 달걀형은 정한 값; 삼상 16:12 「얼굴이 아름답더라」는 아름다움만 말함)",
+    "face.eyes": "[저작](크기·색은 정함; 삼상 16:12 「눈이 빼어나고」는 눈이 빼어남만 말함)",
+    "face.nose": "[저작](david과 같은 얼굴 연속)",
+    "face.mouth": "[저작](david과 같은 얼굴 연속)",
+    "face.skin": "[직접] 삼상 16:12 「그의 빛이 붉고」",
+    "face.brows": "[저작](david과 같은 얼굴 연속)",
+    "face.marks": "[저작](david과 같은 얼굴 연속)",
+    "role": "[직접] 삼상 16:11 「그가 양을 지키나이다」"
   },
   "plate": {
     "seed": 11,

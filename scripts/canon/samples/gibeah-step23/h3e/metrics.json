@@ -1,0 +1,399 @@
+{
+ "answers": {
+  "g:5": {
+   "S": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.565,
+       "input": 4,
+       "output": 286,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.045091200000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보여 동화 그림 화풍에 맞다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴·옷·디테일이 갖춰져 있고 평평한 회색 덩어리나 미완성 실루엣이 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.809,
+       "input": 4,
+       "output": 287,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.04510120000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 칠이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 수금, 의자 모두 얼굴이나 옷, 질감이 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 5.135,
+       "input": 4,
+       "output": 407,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.04630120000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 윤곽선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 창, 의자 모두 얼굴·옷·형태가 완성돼 있다. 바닥과 벽의 회색 그림자는 그림자일 뿐 미완성 덩어리가 아니다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 5.446,
+       "input": 4,
+       "output": 369,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.04592120000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "사울, 다윗, 창, 수금, 의자 모두 얼굴·옷·형태가 완성돼 있다. 회색 부분은 벽에 드리운 그림자일 뿐 미완성 덩어리가 아니다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.872,
+       "input": 4,
+       "output": 284,
+       "cache_read": 45806,
+       "cache_create": 8266,
+       "cost_usd": 0.040492600000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사울, 다윗, 창, 수금, 의자 모두 얼굴·옷·형태가 분명하다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 12.217,
+       "input": 4,
+       "output": 1323,
+       "cache_read": 46865,
+       "cache_create": 11832,
+       "cost_usd": 0.06525249999999999,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.composition": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음"
+     },
+     "reasons": {
+      "e.guard": "뒷벽 둘레에 액자 같은 테두리 선이 있고 오른쪽에 종이 여백처럼 빈 가장자리가 보임",
+      "e.composition": "다윗 키가 화면 높이의 딱 절반 정도라 절반을 넘지 못하고, 빈 벽이 화면 상당 부분을 차지함"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 14.702,
+       "input": 4,
+       "output": 1581,
+       "cache_read": 46865,
+       "cache_create": 11832,
+       "cost_usd": 0.0678325,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.composition": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음"
+     },
+     "reasons": {
+      "e.guard": "뒷벽을 두른 짙은 테두리선과 오른쪽의 빈 종이색 띠가 액자·종이 테두리처럼 보인다.",
+      "e.composition": "다윗은 키가 화면 높이의 절반에 못 미치고, 매끈한 빈 벽이 화면 대부분을 차지한다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 14.728,
+       "input": 4,
+       "output": 1529,
+       "cache_read": 48198,
+       "cache_create": 10499,
+       "cost_usd": 0.0621138,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.composition": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "틀림",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음"
+     },
+     "reasons": {
+      "e.guard": "방 뒷벽을 사각 테두리선이 둘러싸 액자나 종이 테두리처럼 보임",
+      "e.composition": "다윗 키가 화면 높이의 절반에 못 미치고 빈 벽이 화면 대부분을 차지함",
+      "e.saul-body": "다리를 크게 벌린 런지 자세라 컴퍼스처럼 벌려 선 꼴에 가까움",
+      "e.saul-empty": "왼손은 비어 있고 오른손은 허리 뒤로 가려졌지만 쥔 것은 보이지 않음"
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 14.924,
+       "input": 4,
+       "output": 1713,
+       "cache_read": 58697,
+       "cache_create": 0,
+       "cost_usd": 0.0230077,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.composition": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음"
+     },
+     "reasons": {
+      "e.guard": "방 윤곽이 액자 같은 어두운 테두리 사각형으로 그려졌고 오른쪽에 빈 종이 여백이 남아 테두리·액자 결함으로 본다",
+      "e.composition": "다윗 키가 화면 높이의 절반을 겨우 넘는 정도이고, 매끈한 벽면이 화면 대부분을 차지한다",
+      "e.room": "돌벽이 왼쪽과 위쪽에만 있고 뒷벽은 매끈한 회벽이지만 실내이고 장식이 없어 맞음으로 본다",
+      "e.spear-shape": "큰 잎 모양 촉이 앞(왼쪽)에 있고 뒤끝은 작은 물미라 맞음으로 본다"
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 16.142,
+       "input": 4,
+       "output": 1711,
+       "cache_read": 58697,
+       "cache_create": 0,
+       "cost_usd": 0.0229877,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.moment": "맞음",
+      "e.spear-air": "맞음",
+      "e.saul-empty": "맞음",
+      "e.saul-throw": "맞음",
+      "e.saul-age": "맞음",
+      "e.david-youth": "맞음",
+      "e.wall": "맞음",
+      "e.lyre": "맞음",
+      "e.tunic": "맞음",
+      "e.face-each": "맞음",
+      "e.room": "맞음",
+      "e.guard": "틀림",
+      "e.composition": "틀림",
+      "e.saul-costume": "맞음",
+      "e.dodge-read": "맞음",
+      "e.spear-shape": "맞음",
+      "e.lyre-held": "맞음",
+      "e.spear-direction": "맞음",
+      "e.saul-body": "맞음",
+      "e.proportion-saul": "맞음",
+      "e.proportion-david": "맞음",
+      "e.proportion-pair": "맞음",
+      "e.saul-throw-release": "맞음"
+     },
+     "reasons": {
+      "e.guard": "방 가장자리에 액자·테두리처럼 보이는 어두운 사각 윤곽선과 종이 여백이 있어 확실히 괜찮다고 보기 어렵다",
+      "e.composition": "사울은 화면 높이의 절반을 넘지만 몸을 웅크린 다윗은 절반이 안 되고, 빈 벽이 화면 대부분을 차지한다",
+      "e.spear-air": "창이 허공에 떠 있다. 다만 위치가 다윗 머리 위 쪽에 치우쳐 있다"
+     }
+    }
+   }
+  }
+ },
+ "edit": {
+  "5": [
+   {
+    "end": "back",
+    "src": "h3/s5.png",
+    "crop": [
+     251,
+     100,
+     304
+    ],
+    "box": [
+     271,
+     230,
+     535,
+     274
+    ],
+    "prompt": "Remove the large metal spearhead from the right end of the wooden spear shaft, so the right end is only a small iron cap, much thinner than a spearhead. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "status": "ok",
+    "sec": 41.6
+   },
+   {
+    "end": "front",
+    "src": "h3e/s5-back.png",
+    "crop": [
+     89,
+     151,
+     202
+    ],
+    "box": [
+     109,
+     230,
+     271,
+     274
+    ],
+    "prompt": "Enlarge the iron spearhead at the left end of the wooden spear shaft into one large leaf-shaped iron point: a flat grey iron blade (metal, not a plant leaf) shaped like a long willow leaf, widest in the middle and tapering smoothly to the tip and back to the shaft, with smooth curved edges and no barbs or hooks. Do not add any crossguard, wings or second blade. Add nothing new: no person, no hand, no other object — the plain wall behind the spear stays empty. Keep the lighting and the same soft pencil and colored-pencil illustration style.",
+    "status": "ok",
+    "sec": 40.6
+   },
+   {
+    "end": "held",
+    "figure": "david-youth",
+    "word": "kinnor-lyre",
+    "crop": [
+     196,
+     273,
+     258
+    ],
+    "box": [
+     240,
+     303,
+     410,
+     501
+    ],
+    "prompt": "Remove the long neck, fingerboard, tuning pegs and any hanging cord from the instrument he is holding, turning it into a small wooden lyre: a hollow wooden sound box with two curved arms joined by a crossbar at the top, strings running up from the box to the crossbar, no neck and no fingerboard. Keep his hands holding it against his chest, his arms, face, hair and clothes exactly the same, the lighting and the same soft pencil and colored-pencil illustration style.",
+    "status": "ok",
+    "sec": 40.7
+   }
+  ]
+ }
+}

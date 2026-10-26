@@ -1,0 +1,2026 @@
+{
+ "try": [
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/try/m0-gilgal-saul-s11-st1.0.png",
+   "who": "saul",
+   "seed": 11,
+   "strength": 1.0,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 211.7,
+   "peak_gb": 18.17,
+   "rss_gb": 1.62,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/gilgal/saul-s11.png",
+   "mask_box": [
+    795,
+    58,
+    1163,
+    624
+   ],
+   "head": [
+    908,
+    88,
+    1046,
+    202
+   ],
+   "mask_src": "owl"
+  }
+ ],
+ "model_i": 0,
+ "model": "qwen-image-2.1",
+ "axis": "strength",
+ "axis_values": [
+  0.7,
+  0.85,
+  1.0
+ ],
+ "preview": [
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/preview/gilgal-saul-s404-st0.7.png",
+   "who": "saul",
+   "seed": 404,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 166.4,
+   "peak_gb": 18.29,
+   "rss_gb": 2.37,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/gilgal/saul-s404.png",
+   "mask_box": [
+    744,
+    0,
+    1035,
+    598
+   ],
+   "head": [
+    821,
+    118,
+    934,
+    206
+   ],
+   "mask_src": "owl",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/gilgal/s404.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/preview/gilgal-saul-s404-st0.85.png",
+   "who": "saul",
+   "seed": 404,
+   "strength": 0.85,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 190.1,
+   "peak_gb": 18.17,
+   "rss_gb": 2.38,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/gilgal/saul-s404.png",
+   "mask_box": [
+    744,
+    0,
+    1035,
+    598
+   ],
+   "head": [
+    821,
+    118,
+    934,
+    206
+   ],
+   "mask_src": "owl",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/gilgal/s404.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/preview/gilgal-saul-s404-st1.0.png",
+   "who": "saul",
+   "seed": 404,
+   "strength": 1.0,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 210.1,
+   "peak_gb": 18.17,
+   "rss_gb": 2.37,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/gilgal/saul-s404.png",
+   "mask_box": [
+    744,
+    0,
+    1035,
+    598
+   ],
+   "head": [
+    821,
+    118,
+    934,
+    206
+   ],
+   "mask_src": "owl",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/gilgal/s404.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/preview/gilgal-saul-s505-st0.7.png",
+   "who": "saul",
+   "seed": 505,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 166.0,
+   "peak_gb": 18.17,
+   "rss_gb": 2.35,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/gilgal/saul-s505.png",
+   "mask_box": [
+    697,
+    0,
+    1042,
+    608
+   ],
+   "head": [
+    802,
+    87,
+    916,
+    182
+   ],
+   "mask_src": "owl",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/gilgal/s505.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/preview/gilgal-saul-s505-st0.85.png",
+   "who": "saul",
+   "seed": 505,
+   "strength": 0.85,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 192.7,
+   "peak_gb": 18.03,
+   "rss_gb": 2.37,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/gilgal/saul-s505.png",
+   "mask_box": [
+    697,
+    0,
+    1042,
+    608
+   ],
+   "head": [
+    802,
+    87,
+    916,
+    182
+   ],
+   "mask_src": "owl",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/gilgal/s505.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/preview/gilgal-saul-s505-st1.0.png",
+   "who": "saul",
+   "seed": 505,
+   "strength": 1.0,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 212.6,
+   "peak_gb": 18.17,
+   "rss_gb": 2.37,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/gilgal/saul-s505.png",
+   "mask_box": [
+    697,
+    0,
+    1042,
+    608
+   ],
+   "head": [
+    802,
+    87,
+    916,
+    182
+   ],
+   "mask_src": "owl",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/gilgal/s505.png"
+  }
+ ],
+ "heads": {
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/preview/gilgal-saul-s404-st0.7.png": {
+   "saul": [
+    0.6829371452331543,
+    0.19544053697586058,
+    0.7628595703526547,
+    0.31110582971572875
+   ],
+   "samuel": [
+    0.19379993488914088,
+    0.30203617668151855,
+    0.2808715544248882,
+    0.4609177455902099
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/preview/gilgal-saul-s505-st0.7.png": {
+   "saul": [
+    0.6586027647319593,
+    0.13618394494056701,
+    0.7529705449154502,
+    0.28277405858039856
+   ],
+   "samuel": [
+    0.22558297609028063,
+    0.2238575735092163,
+    0.3218394329673366,
+    0.46374395275115965
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/preview/gilgal-saul-s404-st0.85.png": {
+   "saul": [
+    0.6862177597848993,
+    0.20125881481170654,
+    0.7592109880949321,
+    0.3104594831466675
+   ],
+   "samuel": [
+    0.19382986269499125,
+    0.3020609140396118,
+    0.2808612773292943,
+    0.4609025239944458
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/preview/gilgal-saul-s505-st0.85.png": {
+   "saul": [
+    0.6605281578867059,
+    0.14291137099266052,
+    0.7533368311430279,
+    0.28147464632987973
+   ],
+   "samuel": [
+    0.22558142009534335,
+    0.22386660814285278,
+    0.3218279386821546,
+    0.46373930215835574
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/preview/gilgal-saul-s404-st1.0.png": {
+   "saul": [
+    0.6869563303495708,
+    0.2094481177330017,
+    0.7645289019534462,
+    0.3191602892875671
+   ],
+   "samuel": [
+    0.1938089696984542,
+    0.3020768723487854,
+    0.28090026504115057,
+    0.46095152711868287
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/preview/gilgal-saul-s505-st1.0.png": {
+   "saul": [
+    0.6691446304321289,
+    0.15041412353515624,
+    0.7558045136301141,
+    0.2777115249633789
+   ],
+   "samuel": [
+    0.2257829465364155,
+    0.22385199594497682,
+    0.3218167455572831,
+    0.4638450436592102
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/gilgal/s404.png": {
+   "saul": [
+    0.6750591177689401,
+    0.18383900785446167,
+    0.7680423636185495,
+    0.321136971950531
+   ],
+   "samuel": [
+    0.1937903730492843,
+    0.3021216149330139,
+    0.2808596836893182,
+    0.46083071184158325
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/gilgal/s505.png": {
+   "saul": [
+    0.6593747138977051,
+    0.13656065082550048,
+    0.7529943114832828,
+    0.2841855249404907
+   ],
+   "samuel": [
+    0.22560985464798777,
+    0.22383958292007447,
+    0.3218096933866802,
+    0.46381699037551877
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s11.png": {
+   "saul": [
+    0.7468232104652807,
+    0.13754346990585326,
+    0.860084985431872,
+    0.31604636335372926
+   ],
+   "samuel": [
+    0.1289972757038317,
+    0.23045610094070437,
+    0.23564376329120837,
+    0.4657164444923401
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s11.png": {
+   "david": [
+    0.3239794279399671,
+    0.36196454048156734,
+    0.40860326666581004,
+    0.5164092350006103
+   ],
+   "saul": [
+    0.6550010630958959,
+    0.33700171566009524,
+    0.7411014908238461,
+    0.48707848644256596
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/gilgal/s7.png": {
+   "saul": [
+    0.7604196950008995,
+    0.16723108768463132,
+    0.8565167376869603,
+    0.30405664920806885
+   ],
+   "samuel": [
+    0.13361592669236033,
+    0.2406524314880371,
+    0.22484805082020007,
+    0.4494266166687012
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s7.png": {
+   "david": [
+    0.36279358361896713,
+    0.4174941329956055,
+    0.44312533579374613,
+    0.545945671081543
+   ],
+   "saul": [
+    0.619481739244963,
+    0.3602831773757934,
+    0.7068320826480263,
+    0.5012693338394165
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s42.png": {
+   "saul": [
+    0.6890453790363512,
+    0.150651198387146,
+    0.8180262164065712,
+    0.3401867208480835
+   ],
+   "samuel": [
+    0.1598919065375077,
+    0.28453539133071903,
+    0.2601408456501208,
+    0.48278210878372196
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s42.png": {
+   "david": [
+    0.37336597944560806,
+    0.32692968082427976,
+    0.46421831532528524,
+    0.46621314716339113
+   ],
+   "saul": [
+    0.6374906489723607,
+    0.3557331852912903,
+    0.7179967227735018,
+    0.4943601899147033
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/gilgal/s303.png": {
+   "saul": [
+    0.734148150996158,
+    0.13069293785095212,
+    0.8450445124977514,
+    0.30169503974914547
+   ],
+   "samuel": [
+    0.13212719716523824,
+    0.2530071763992309,
+    0.24165764607881246,
+    0.4974565057754516
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s303.png": {
+   "david": [
+    0.361047343203896,
+    0.3895826435089111,
+    0.4410572052001953,
+    0.5222807025909424
+   ],
+   "saul": [
+    0.6151422701383892,
+    0.3938421697616577,
+    0.6953577242399517,
+    0.5473611326217651
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/gilgal/s101.png": {
+   "saul": [
+    0.7367827766820004,
+    0.15759223699569702,
+    0.8422653800562808,
+    0.30185574293136597
+   ],
+   "samuel": [
+    0.14340248860810934,
+    0.2443984532356262,
+    0.243339877379568,
+    0.46569357156753544
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s101.png": {
+   "david": [
+    0.32904052734375,
+    0.3793111610412597,
+    0.4188759452418277,
+    0.5316482353210449
+   ],
+   "saul": [
+    0.6170646516900313,
+    0.33360445356369023,
+    0.707754561775609,
+    0.48112895345687867
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/gilgal/s11.png": {
+   "saul": [
+    0.7464284645883661,
+    0.13689174461364745,
+    0.8594241142272949,
+    0.31375465202331543
+   ],
+   "samuel": [
+    0.12900713870399877,
+    0.23056318616867064,
+    0.23561864150197884,
+    0.46570174551010124
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s11.png": {
+   "david": [
+    0.32409454646863434,
+    0.3603949270248413,
+    0.407428314811305,
+    0.5170558652877808
+   ],
+   "saul": [
+    0.6546871034722579,
+    0.33518842983245845,
+    0.741815491726524,
+    0.48565410900115963
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/gilgal/s42.png": {
+   "saul": [
+    0.6980039696944388,
+    0.1570142774581909,
+    0.8086864069888466,
+    0.3180242567062378
+   ],
+   "samuel": [
+    0.15987125195954976,
+    0.28446316957473755,
+    0.26015271638569076,
+    0.48285103082656866
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s42.png": {
+   "david": [
+    0.3728692280618768,
+    0.32835400676727294,
+    0.46629292086551066,
+    0.4649200735092164
+   ],
+   "saul": [
+    0.6375932191547594,
+    0.3547708387374878,
+    0.7188474755538138,
+    0.4933180685043335
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/gilgal/s5.png": {
+   "saul": [
+    0.7277118030347323,
+    0.18025703191757203,
+    0.8129633602343107,
+    0.3012523150444031
+   ],
+   "samuel": [
+    0.1513006749906038,
+    0.26859876108169556,
+    0.24577263154481588,
+    0.45639587831497186
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s5.png": {
+   "david": [
+    0.3647424672779284,
+    0.31517332363128664,
+    0.4542147360349956,
+    0.47591102886199954
+   ],
+   "saul": [
+    0.6092455010665091,
+    0.3266040015220642,
+    0.6982957940352591,
+    0.46528088331222534
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/gilgal/s202.png": {
+   "saul": [
+    0.7216196311147589,
+    0.12596483206748962,
+    0.8294399412054765,
+    0.2850644347667694
+   ],
+   "samuel": [
+    0.15029078408291466,
+    0.17634748697280883,
+    0.2540007327732287,
+    0.4203576970100403
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s202.png": {
+   "david": [
+    0.37032896593997355,
+    0.3676811561584473,
+    0.4508386034714548,
+    0.5082044944763184
+   ],
+   "saul": [
+    0.6520699450844213,
+    0.33911936902999884,
+    0.7357182251779657,
+    0.46852710866928104
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s7.png": {
+   "saul": [
+    0.7574437041031686,
+    0.16542615365982055,
+    0.8589494855780351,
+    0.3097328610420227
+   ],
+   "samuel": [
+    0.13359986480913663,
+    0.24071582269668582,
+    0.224846645405418,
+    0.4493392796516419
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s7.png": {
+   "david": [
+    0.3636501086385627,
+    0.4197826118469238,
+    0.44507938937137004,
+    0.5463197441101074
+   ],
+   "saul": [
+    0.6202440010873895,
+    0.3620271120071411,
+    0.7068385324980083,
+    0.5021780405044556
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/gilgal/s23.png": {
+   "saul": [
+    0.7300340752852591,
+    0.17531724214553832,
+    0.8292647913882607,
+    0.31420536279678346
+   ],
+   "samuel": [
+    0.16244472955402575,
+    0.2825685725212097,
+    0.2550795831178364,
+    0.48262622213363643
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s23.png": {
+   "david": [
+    0.34033795406943873,
+    0.41325194072723387,
+    0.42178043566252055,
+    0.5449727697372436
+   ],
+   "saul": [
+    0.6708729392603824,
+    0.36097557163238525,
+    0.7552325600071957,
+    0.5119240007400513
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/ramah/s5.png": {
+   "david": [
+    0.22650480270385742,
+    0.1590870752334595,
+    0.3394395175733064,
+    0.32821940326690674
+   ],
+   "samuel": [
+    0.6916540296454179,
+    0.10679051351547239,
+    0.813764396466707,
+    0.4229278750419617
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/ramah/s7.png": {
+   "david": [
+    0.2172534465789795,
+    0.16261871194839478,
+    0.3194143019224468,
+    0.31392405366897586
+   ],
+   "samuel": [
+    0.7118436160840487,
+    0.10612943077087404,
+    0.8404136707908229,
+    0.39003312492370606
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/ramah/s11.png": {
+   "david": [
+    0.2531116008758545,
+    0.1321512315273285,
+    0.3689222461298892,
+    0.3180314395427704
+   ],
+   "samuel": [
+    0.693859476792185,
+    0.10120694279670714,
+    0.8269218394630834,
+    0.40737967133522035
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-ramah-samuel/s11.png": {
+   "david": [
+    0.253532233991121,
+    0.13827918910980225,
+    0.36938147795827764,
+    0.3161137952804566
+   ],
+   "samuel": [
+    0.6939101219177246,
+    0.10166668462753296,
+    0.8267271393223813,
+    0.4071948008537293
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-ramah-samuel/s7.png": {
+   "david": [
+    0.2175877345235724,
+    0.16480715465545653,
+    0.31887843734339666,
+    0.309821249961853
+   ],
+   "samuel": [
+    0.7118644463388544,
+    0.10626438522338866,
+    0.8403323073136179,
+    0.3899930801391601
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/ramah/s42.png": {
+   "david": [
+    0.2304035738894814,
+    0.146558301448822,
+    0.3449513033816689,
+    0.3339059519767761
+   ],
+   "samuel": [
+    0.6437295863502904,
+    0.13002392721176145,
+    0.7855557140551115,
+    0.4229369349479676
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/ramah/s202.png": {
+   "david": [
+    0.2632360709340949,
+    0.12269698500633239,
+    0.35145917691682516,
+    0.25961231112480165
+   ],
+   "samuel": [
+    0.6846424152976588,
+    0.10531699514389037,
+    0.8002778354444002,
+    0.35253860807418824
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-ramah-samuel/s42.png": {
+   "david": [
+    0.23070462126480906,
+    0.1497870192527771,
+    0.3442276528007106,
+    0.3342044100761413
+   ],
+   "samuel": [
+    0.6437521482768812,
+    0.13022201728820798,
+    0.7855671330502159,
+    0.422890645980835
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/ramah/s303.png": {
+   "david": [
+    0.24018384280957675,
+    0.14449880433082582,
+    0.35293720897875336,
+    0.31900277447700504
+   ],
+   "samuel": [
+    0.6847462905080695,
+    0.10271455287933348,
+    0.8134272725958573,
+    0.40606500148773195
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/ramah/s101.png": {
+   "david": [
+    0.25008225440979004,
+    0.14020803570747375,
+    0.35684012111864594,
+    0.30942502617836
+   ],
+   "samuel": [
+    0.6680225071154142,
+    0.09754389834403994,
+    0.7917991939343905,
+    0.4070750386714936
+   ]
+  },
+  "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/ramah/s23.png": {
+   "david": [
+    0.23300267520703768,
+    0.158279993057251,
+    0.34553669628344086,
+    0.3387588520050049
+   ],
+   "samuel": [
+    0.6684290484378212,
+    0.10211911392211914,
+    0.8028962235701712,
+    0.4316453475952148
+   ]
+  }
+ },
+ "preview_choice": 0.7,
+ "preview_answer": "task 358 세기 고르기\n- [P-strength] 길갈 사울 · 편집 세기를 하나만 고르세요 → 0.7\n(보여 준 그림: qwen-image-2.1 참조 편집 · strength [0.7, 0.85, 1.0] · 시드 [404, 505] · 카드 폭 356px · 기계 거르기 없음)",
+ "edits": [
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/gilgal/s11.png",
+   "who": "saul",
+   "seed": 11,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 164.9,
+   "peak_gb": 18.17,
+   "rss_gb": 2.36,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/gilgal/saul-s11.png",
+   "mask_box": [
+    795,
+    0,
+    1163,
+    629
+   ],
+   "head": [
+    908,
+    88,
+    1046,
+    202
+   ],
+   "mask_src": "owl",
+   "scene": "gilgal",
+   "base": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s11.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s11.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/gilgal/s42.png",
+   "who": "saul",
+   "seed": 42,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 164.5,
+   "peak_gb": 18.15,
+   "rss_gb": 2.35,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/gilgal/saul-s42.png",
+   "mask_box": [
+    746,
+    0,
+    1123,
+    640
+   ],
+   "head": [
+    838,
+    96,
+    995,
+    218
+   ],
+   "mask_src": "owl",
+   "scene": "gilgal",
+   "base": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s42.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s42.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/gilgal/s7.png",
+   "who": "saul",
+   "seed": 7,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 164.2,
+   "peak_gb": 18.17,
+   "rss_gb": 2.35,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/gilgal/saul-s7.png",
+   "mask_box": [
+    816,
+    0,
+    1142,
+    593
+   ],
+   "head": [
+    921,
+    106,
+    1044,
+    198
+   ],
+   "mask_src": "owl",
+   "scene": "gilgal",
+   "base": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s7.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-saul-gilgal-coronation/s7.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/gilgal/s23.png",
+   "who": "saul",
+   "seed": 23,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 164.0,
+   "peak_gb": 18.05,
+   "rss_gb": 2.41,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/gilgal/saul-s23.png",
+   "mask_box": [
+    767,
+    0,
+    1113,
+    621
+   ],
+   "head": [
+    889,
+    112,
+    1006,
+    202
+   ],
+   "mask_src": "owl",
+   "scene": "gilgal",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/gilgal/s23.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/gilgal/s23.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/gilgal/s5.png",
+   "who": "saul",
+   "seed": 5,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 165.1,
+   "peak_gb": 18.28,
+   "rss_gb": 2.36,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/gilgal/saul-s5.png",
+   "mask_box": [
+    759,
+    0,
+    1112,
+    612
+   ],
+   "head": [
+    880,
+    112,
+    998,
+    201
+   ],
+   "mask_src": "owl",
+   "scene": "gilgal",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/gilgal/s5.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/gilgal/s5.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/gilgal/s101.png",
+   "who": "saul",
+   "seed": 101,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 164.9,
+   "peak_gb": 18.17,
+   "rss_gb": 2.37,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/gilgal/saul-s101.png",
+   "mask_box": [
+    782,
+    0,
+    1128,
+    614
+   ],
+   "head": [
+    893,
+    96,
+    1019,
+    194
+   ],
+   "mask_src": "owl",
+   "scene": "gilgal",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/gilgal/s101.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/gilgal/s101.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/gilgal/s202.png",
+   "who": "saul",
+   "seed": 202,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 165.4,
+   "peak_gb": 17.98,
+   "rss_gb": 2.36,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/gilgal/saul-s202.png",
+   "mask_box": [
+    754,
+    0,
+    1125,
+    614
+   ],
+   "head": [
+    877,
+    82,
+    1009,
+    183
+   ],
+   "mask_src": "owl",
+   "scene": "gilgal",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/gilgal/s202.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/gilgal/s202.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/gilgal/s303.png",
+   "who": "saul",
+   "seed": 303,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 165.1,
+   "peak_gb": 18.17,
+   "rss_gb": 2.37,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/gilgal/saul-s303.png",
+   "mask_box": [
+    751,
+    0,
+    1149,
+    640
+   ],
+   "head": [
+    893,
+    82,
+    1028,
+    191
+   ],
+   "mask_src": "owl",
+   "scene": "gilgal",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/gilgal/s303.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/gilgal/s303.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s11-saul.png",
+   "who": "saul",
+   "seed": 11,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 165.2,
+   "peak_gb": 17.99,
+   "rss_gb": 2.37,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/engedi/saul-s11.png",
+   "mask_box": [
+    638,
+    65,
+    897,
+    587
+   ],
+   "head": [
+    796,
+    216,
+    901,
+    312
+   ],
+   "mask_src": "owl",
+   "scene": "engedi",
+   "base": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s11.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s11.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s11.png",
+   "who": "david",
+   "seed": 11,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 164.6,
+   "peak_gb": 18.06,
+   "rss_gb": 2.37,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/engedi/david-s11.png",
+   "mask_box": [
+    122,
+    74,
+    508,
+    622
+   ],
+   "head": [
+    394,
+    232,
+    497,
+    331
+   ],
+   "mask_src": "owl",
+   "scene": "engedi",
+   "base": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s11.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s11-saul.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s42-saul.png",
+   "who": "saul",
+   "seed": 42,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 165.3,
+   "peak_gb": 18.17,
+   "rss_gb": 2.38,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/engedi/saul-s42.png",
+   "mask_box": [
+    528,
+    113,
+    877,
+    604
+   ],
+   "head": [
+    775,
+    228,
+    873,
+    316
+   ],
+   "mask_src": "owl",
+   "scene": "engedi",
+   "base": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s42.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s42.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s42.png",
+   "who": "david",
+   "seed": 42,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 166.9,
+   "peak_gb": 18.17,
+   "rss_gb": 2.41,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/engedi/david-s42.png",
+   "mask_box": [
+    187,
+    46,
+    631,
+    640
+   ],
+   "head": [
+    454,
+    209,
+    564,
+    298
+   ],
+   "mask_src": "owl",
+   "scene": "engedi",
+   "base": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s42.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s42-saul.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s7-saul.png",
+   "who": "saul",
+   "seed": 7,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 168.0,
+   "peak_gb": 18.17,
+   "rss_gb": 2.36,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/engedi/saul-s7.png",
+   "mask_box": [
+    569,
+    117,
+    871,
+    578
+   ],
+   "head": [
+    754,
+    232,
+    860,
+    321
+   ],
+   "mask_src": "owl",
+   "scene": "engedi",
+   "base": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s7.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s7.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s7.png",
+   "who": "david",
+   "seed": 7,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 164.9,
+   "peak_gb": 18.17,
+   "rss_gb": 2.39,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/engedi/david-s7.png",
+   "mask_box": [
+    194,
+    129,
+    575,
+    621
+   ],
+   "head": [
+    442,
+    269,
+    541,
+    350
+   ],
+   "mask_src": "owl",
+   "scene": "engedi",
+   "base": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-en-gedi-saul/s7.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s7-saul.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s23-saul.png",
+   "who": "saul",
+   "seed": 23,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 167.0,
+   "peak_gb": 18.28,
+   "rss_gb": 2.37,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/engedi/saul-s23.png",
+   "mask_box": [
+    697,
+    123,
+    888,
+    543
+   ],
+   "head": [
+    819,
+    236,
+    916,
+    327
+   ],
+   "mask_src": "owl",
+   "scene": "engedi",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/engedi/s23.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/engedi/s23.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s23.png",
+   "who": "david",
+   "seed": 23,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 166.7,
+   "peak_gb": 18.28,
+   "rss_gb": 2.37,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/engedi/david-s23.png",
+   "mask_box": [
+    113,
+    122,
+    536,
+    632
+   ],
+   "head": [
+    413,
+    267,
+    514,
+    349
+   ],
+   "mask_src": "owl",
+   "scene": "engedi",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/engedi/s23.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s23-saul.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s5-saul.png",
+   "who": "saul",
+   "seed": 5,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 169.7,
+   "peak_gb": 18.28,
+   "rss_gb": 2.37,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/engedi/saul-s5.png",
+   "mask_box": [
+    483,
+    98,
+    842,
+    584
+   ],
+   "head": [
+    740,
+    210,
+    849,
+    297
+   ],
+   "mask_src": "owl",
+   "scene": "engedi",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/engedi/s5.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/engedi/s5.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s5.png",
+   "who": "david",
+   "seed": 5,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 168.4,
+   "peak_gb": 18.29,
+   "rss_gb": 2.39,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/engedi/david-s5.png",
+   "mask_box": [
+    153,
+    34,
+    580,
+    640
+   ],
+   "head": [
+    444,
+    202,
+    552,
+    306
+   ],
+   "mask_src": "owl",
+   "scene": "engedi",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/engedi/s5.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s5-saul.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s101-saul.png",
+   "who": "saul",
+   "seed": 101,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 165.4,
+   "peak_gb": 18.17,
+   "rss_gb": 2.36,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/engedi/saul-s101.png",
+   "mask_box": [
+    467,
+    68,
+    869,
+    610
+   ],
+   "head": [
+    748,
+    215,
+    863,
+    307
+   ],
+   "mask_src": "owl",
+   "scene": "engedi",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/engedi/s101.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/engedi/s101.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s101.png",
+   "who": "david",
+   "seed": 101,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 176.9,
+   "peak_gb": 18.17,
+   "rss_gb": 2.41,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/engedi/david-s101.png",
+   "mask_box": [
+    151,
+    84,
+    526,
+    617
+   ],
+   "head": [
+    400,
+    243,
+    510,
+    340
+   ],
+   "mask_src": "owl",
+   "scene": "engedi",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/engedi/s101.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s101-saul.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s202-saul.png",
+   "who": "saul",
+   "seed": 202,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 171.0,
+   "peak_gb": 18.28,
+   "rss_gb": 2.39,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/engedi/saul-s202.png",
+   "mask_box": [
+    488,
+    108,
+    916,
+    604
+   ],
+   "head": [
+    797,
+    217,
+    893,
+    300
+   ],
+   "mask_src": "owl",
+   "scene": "engedi",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/engedi/s202.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/engedi/s202.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s202.png",
+   "who": "david",
+   "seed": 202,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 166.0,
+   "peak_gb": 18.17,
+   "rss_gb": 2.44,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/engedi/david-s202.png",
+   "mask_box": [
+    203,
+    93,
+    568,
+    595
+   ],
+   "head": [
+    449,
+    238,
+    548,
+    322
+   ],
+   "mask_src": "owl",
+   "scene": "engedi",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/engedi/s202.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s202-saul.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s303-saul.png",
+   "who": "saul",
+   "seed": 303,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 165.5,
+   "peak_gb": 18.29,
+   "rss_gb": 2.39,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/engedi/saul-s303.png",
+   "mask_box": [
+    649,
+    144,
+    841,
+    564
+   ],
+   "head": [
+    754,
+    256,
+    848,
+    346
+   ],
+   "mask_src": "owl",
+   "scene": "engedi",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/engedi/s303.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/engedi/s303.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s303.png",
+   "who": "david",
+   "seed": 303,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 164.6,
+   "peak_gb": 18.04,
+   "rss_gb": 2.37,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/engedi/david-s303.png",
+   "mask_box": [
+    337,
+    147,
+    726,
+    617
+   ],
+   "head": [
+    442,
+    253,
+    536,
+    334
+   ],
+   "mask_src": "owl",
+   "scene": "engedi",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/engedi/s303.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/engedi/s303-saul.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/ramah/s11.png",
+   "who": "david",
+   "seed": 11,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 165.3,
+   "peak_gb": 18.01,
+   "rss_gb": 2.36,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/ramah/david-s11.png",
+   "mask_box": [
+    198,
+    0,
+    482,
+    640
+   ],
+   "head": [
+    308,
+    88,
+    449,
+    202
+   ],
+   "mask_src": "owl",
+   "scene": "ramah",
+   "base": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-ramah-samuel/s11.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-ramah-samuel/s11.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/ramah/s42.png",
+   "who": "david",
+   "seed": 42,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 184.1,
+   "peak_gb": 18.17,
+   "rss_gb": 2.37,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/ramah/david-s42.png",
+   "mask_box": [
+    153,
+    0,
+    447,
+    640
+   ],
+   "head": [
+    281,
+    96,
+    419,
+    214
+   ],
+   "mask_src": "owl",
+   "scene": "ramah",
+   "base": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-ramah-samuel/s42.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-ramah-samuel/s42.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/ramah/s7.png",
+   "who": "david",
+   "seed": 7,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 311.8,
+   "peak_gb": 18.28,
+   "rss_gb": 2.35,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/ramah/david-s7.png",
+   "mask_box": [
+    184,
+    0,
+    406,
+    620
+   ],
+   "head": [
+    265,
+    105,
+    388,
+    198
+   ],
+   "mask_src": "owl",
+   "scene": "ramah",
+   "base": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-ramah-samuel/s7.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/cast-v2-pilot/scene/authored-david-ramah-samuel/s7.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/ramah/s23.png",
+   "who": "david",
+   "seed": 23,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 317.7,
+   "peak_gb": 18.28,
+   "rss_gb": 2.37,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/ramah/david-s23.png",
+   "mask_box": [
+    175,
+    0,
+    453,
+    640
+   ],
+   "head": [
+    284,
+    102,
+    421,
+    217
+   ],
+   "mask_src": "owl",
+   "scene": "ramah",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/ramah/s23.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/ramah/s23.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/ramah/s5.png",
+   "who": "david",
+   "seed": 5,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 329.0,
+   "peak_gb": 18.28,
+   "rss_gb": 2.37,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/ramah/david-s5.png",
+   "mask_box": [
+    169,
+    0,
+    433,
+    640
+   ],
+   "head": [
+    274,
+    100,
+    413,
+    211
+   ],
+   "mask_src": "owl",
+   "scene": "ramah",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/ramah/s5.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/ramah/s5.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/ramah/s101.png",
+   "who": "david",
+   "seed": 101,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 334.8,
+   "peak_gb": 18.04,
+   "rss_gb": 2.36,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/ramah/david-s101.png",
+   "mask_box": [
+    209,
+    0,
+    463,
+    640
+   ],
+   "head": [
+    303,
+    89,
+    434,
+    197
+   ],
+   "mask_src": "owl",
+   "scene": "ramah",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/ramah/s101.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/ramah/s101.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/ramah/s202.png",
+   "who": "david",
+   "seed": 202,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 173.5,
+   "peak_gb": 18.21,
+   "rss_gb": 1.83,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/ramah/david-s202.png",
+   "mask_box": [
+    234,
+    0,
+    452,
+    592
+   ],
+   "head": [
+    320,
+    81,
+    427,
+    166
+   ],
+   "mask_src": "owl",
+   "scene": "ramah",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/ramah/s202.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/ramah/s202.png"
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit/edit/ramah/s303.png",
+   "who": "david",
+   "seed": 303,
+   "strength": 0.7,
+   "model": "qwen-image-2.1",
+   "status": "ok",
+   "sec": 169.9,
+   "peak_gb": 18.28,
+   "rss_gb": 2.41,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit/mask/ramah/david-s303.png",
+   "mask_box": [
+    183,
+    0,
+    460,
+    640
+   ],
+   "head": [
+    291,
+    89,
+    429,
+    205
+   ],
+   "mask_src": "owl",
+   "scene": "ramah",
+   "base": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/ramah/s303.png",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit/base/ramah/s303.png"
+  }
+ ],
+ "screens": {
+  "A-saul": [
+   {
+    "n": 1,
+    "kind": "control",
+    "seed": 11
+   },
+   {
+    "n": 2,
+    "kind": "edit",
+    "seed": 7
+   },
+   {
+    "n": 3,
+    "kind": "control",
+    "seed": 42
+   },
+   {
+    "n": 4,
+    "kind": "edit",
+    "seed": 303
+   },
+   {
+    "n": 5,
+    "kind": "edit",
+    "seed": 101
+   },
+   {
+    "n": 6,
+    "kind": "edit",
+    "seed": 11
+   },
+   {
+    "n": 7,
+    "kind": "edit",
+    "seed": 42
+   },
+   {
+    "n": 8,
+    "kind": "edit",
+    "seed": 5
+   },
+   {
+    "n": 9,
+    "kind": "edit",
+    "seed": 202
+   },
+   {
+    "n": 10,
+    "kind": "control",
+    "seed": 7
+   },
+   {
+    "n": 11,
+    "kind": "edit",
+    "seed": 23
+   }
+  ],
+  "A-david": [
+   {
+    "n": 1,
+    "kind": "edit",
+    "seed": 5
+   },
+   {
+    "n": 2,
+    "kind": "edit",
+    "seed": 7
+   },
+   {
+    "n": 3,
+    "kind": "edit",
+    "seed": 11
+   },
+   {
+    "n": 4,
+    "kind": "control",
+    "seed": 11
+   },
+   {
+    "n": 5,
+    "kind": "control",
+    "seed": 7
+   },
+   {
+    "n": 6,
+    "kind": "edit",
+    "seed": 42
+   },
+   {
+    "n": 7,
+    "kind": "edit",
+    "seed": 202
+   },
+   {
+    "n": 8,
+    "kind": "control",
+    "seed": 42
+   },
+   {
+    "n": 9,
+    "kind": "edit",
+    "seed": 303
+   },
+   {
+    "n": 10,
+    "kind": "edit",
+    "seed": 101
+   },
+   {
+    "n": 11,
+    "kind": "edit",
+    "seed": 23
+   }
+  ],
+  "B-engedi": [
+   {
+    "key": "s11",
+    "kind": "edit",
+    "seed": 11
+   },
+   {
+    "key": "s42",
+    "kind": "edit",
+    "seed": 42
+   },
+   {
+    "key": "s7",
+    "kind": "edit",
+    "seed": 7
+   },
+   {
+    "key": "s23",
+    "kind": "edit",
+    "seed": 23
+   },
+   {
+    "key": "s5",
+    "kind": "edit",
+    "seed": 5
+   },
+   {
+    "key": "s101",
+    "kind": "edit",
+    "seed": 101
+   },
+   {
+    "key": "s202",
+    "kind": "edit",
+    "seed": 202
+   },
+   {
+    "key": "s303",
+    "kind": "edit",
+    "seed": 303
+   }
+  ],
+  "C-gilgal": [
+   {
+    "n": 1,
+    "kind": "edit",
+    "seed": 5
+   },
+   {
+    "n": 2,
+    "kind": "control",
+    "seed": 7
+   },
+   {
+    "n": 3,
+    "kind": "control",
+    "seed": 42
+   },
+   {
+    "n": 4,
+    "kind": "edit",
+    "seed": 42
+   },
+   {
+    "n": 5,
+    "kind": "edit",
+    "seed": 11
+   },
+   {
+    "n": 6,
+    "kind": "control",
+    "seed": 11
+   },
+   {
+    "n": 7,
+    "kind": "edit",
+    "seed": 101
+   },
+   {
+    "n": 8,
+    "kind": "edit",
+    "seed": 23
+   },
+   {
+    "n": 9,
+    "kind": "edit",
+    "seed": 7
+   },
+   {
+    "n": 10,
+    "kind": "edit",
+    "seed": 202
+   },
+   {
+    "n": 11,
+    "kind": "edit",
+    "seed": 303
+   }
+  ],
+  "C-engedi": [
+   {
+    "n": 1,
+    "kind": "edit",
+    "seed": 42
+   },
+   {
+    "n": 2,
+    "kind": "edit",
+    "seed": 101
+   },
+   {
+    "n": 3,
+    "kind": "edit",
+    "seed": 202
+   },
+   {
+    "n": 4,
+    "kind": "control",
+    "seed": 11
+   },
+   {
+    "n": 5,
+    "kind": "edit",
+    "seed": 11
+   },
+   {
+    "n": 6,
+    "kind": "control",
+    "seed": 7
+   },
+   {
+    "n": 7,
+    "kind": "edit",
+    "seed": 7
+   },
+   {
+    "n": 8,
+    "kind": "edit",
+    "seed": 23
+   },
+   {
+    "n": 9,
+    "kind": "control",
+    "seed": 42
+   },
+   {
+    "n": 10,
+    "kind": "edit",
+    "seed": 5
+   },
+   {
+    "n": 11,
+    "kind": "edit",
+    "seed": 303
+   }
+  ],
+  "C-ramah": [
+   {
+    "n": 1,
+    "kind": "edit",
+    "seed": 7
+   },
+   {
+    "n": 2,
+    "kind": "control",
+    "seed": 11
+   },
+   {
+    "n": 3,
+    "kind": "edit",
+    "seed": 303
+   },
+   {
+    "n": 4,
+    "kind": "control",
+    "seed": 7
+   },
+   {
+    "n": 5,
+    "kind": "edit",
+    "seed": 23
+   },
+   {
+    "n": 6,
+    "kind": "edit",
+    "seed": 202
+   },
+   {
+    "n": 7,
+    "kind": "control",
+    "seed": 42
+   },
+   {
+    "n": 8,
+    "kind": "edit",
+    "seed": 42
+   },
+   {
+    "n": 9,
+    "kind": "edit",
+    "seed": 5
+   },
+   {
+    "n": 10,
+    "kind": "edit",
+    "seed": 11
+   },
+   {
+    "n": 11,
+    "kind": "edit",
+    "seed": 101
+   }
+  ]
+ },
+ "judge": {
+  "A-saul": {
+   "edit": 1,
+   "control": 0
+  },
+  "A-david": {
+   "edit": 2,
+   "control": 0
+  },
+  "B-engedi": {
+   "edit": 0
+  },
+  "C-gilgal": {
+   "edit": 1,
+   "control": 0
+  },
+  "C-engedi": {
+   "edit": 7,
+   "control": 2
+  },
+  "C-ramah": {
+   "edit": 0,
+   "control": 0
+  },
+  "verdict": "다른 길"
+ }
+}

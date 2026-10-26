@@ -1,0 +1,282 @@
+{
+ "scenes": {
+  "authored-saul-jabesh-rescue": {
+   "who": [
+    "saul"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/jabesh-crowd/authored-saul-jabesh-rescue/base/s11.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        387,
+        171,
+        470,
+        241
+       ],
+       "head_src": "owl",
+       "body": [
+        270,
+        79,
+        493,
+        631
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/jabesh-crowd/authored-saul-jabesh-rescue/base/s42.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        372,
+        203,
+        453,
+        277
+       ],
+       "head_src": "owl",
+       "body": [
+        229,
+        114,
+        477,
+        623
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/jabesh-crowd/authored-saul-jabesh-rescue/base/s7.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        351,
+        192,
+        433,
+        268
+       ],
+       "head_src": "owl",
+       "body": [
+        198,
+        99,
+        453,
+        628
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/jabesh-crowd/authored-saul-jabesh-rescue/base/s23.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        358,
+        165,
+        455,
+        256
+       ],
+       "head_src": "owl",
+       "body": [
+        177,
+        63,
+        473,
+        631
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/jabesh-crowd/authored-saul-jabesh-rescue/base/s5.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        379,
+        190,
+        472,
+        272
+       ],
+       "head_src": "owl",
+       "body": [
+        217,
+        91,
+        477,
+        637
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/jabesh-crowd/authored-saul-jabesh-rescue/base/s101.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        363,
+        169,
+        444,
+        251
+       ],
+       "head_src": "owl",
+       "body": [
+        233,
+        74,
+        471,
+        630
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/jabesh-crowd/authored-saul-jabesh-rescue/base/s202.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        357,
+        181,
+        433,
+        255
+       ],
+       "head_src": "owl",
+       "body": [
+        239,
+        107,
+        429,
+        522
+       ],
+       "body_src": "owl"
+      }
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/jabesh-crowd/authored-saul-jabesh-rescue/base/s303.png",
+     "edits": {},
+     "boxes": {
+      "saul": {
+       "head": [
+        381,
+        185,
+        453,
+        261
+       ],
+       "head_src": "owl",
+       "body": [
+        254,
+        109,
+        431,
+        483
+       ],
+       "body_src": "owl"
+      }
+     }
+    }
+   ],
+   "sec": {
+    "base": 499.8,
+    "edit": 0.0
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a low open field at dawn in pale gray light with collapsed tents in the middle; behind on the left, Israelite soldiers in three separate columns run in toward the right; from the middle right to the far hills, Ammonite soldiers with their backs turned flee one by one, scattered apart, dropped shields and spears on the ground. On the left: an ancient Israelite man, a king, in his 40s, deep forehead lines, tall of stature, close-trimmed dark beard, jawline visible, broad shoulders, thick barrel torso, short dark hair cut close, hair covering the whole head, no headwear, a resolute, fierce face, gripping one sword and striding forward, a dark brown wool tunic with a plain leather belt, no crown, looking ahead at the scattering enemy camp, facing toward the right edge of the picture. the king and his soldiers chase toward the right, and the Ammonite soldiers turn their backs on them and scatter, running away, no one touching.",
+   "items": {
+    "moment": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "background[0]": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "장막이 무너진 느낌이 나야함"
+    },
+    "crowds[0]": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "crowds[1]": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].identity": {
+     "wrong": [
+      303
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].prop": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].facing": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "guard": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "s42 바탕",
+    "seed": 42,
+    "kind": "base",
+    "image": "/Users/calmonion/.local/biblemap-imggen/jabesh-crowd/authored-saul-jabesh-rescue/base/s42.png"
+   },
+   "human_minutes": 9.64,
+   "confirm": {
+    "answer": "바탕(편집 없음)",
+    "seed": 42,
+    "minutes": null,
+    "why": "고른 장 s42의 crowds[1]·figures[0].identity가 사람 판정에서 맞음 → 무리 편집·사울 정본 편집 모두 건너뜀(계획 결정 7), 확인 페이지 없음"
+   }
+  }
+ },
+ "runs": [
+  {
+   "start": 1792443357.8565109,
+   "last": 1792443902.962613,
+   "end": 1792443902.962612
+  }
+ ],
+ "restarts": 0,
+ "unattended": true,
+ "wall_seconds": 545.1,
+ "human_minutes": 9.67
+}

@@ -12,6 +12,21 @@
     "verse": "25:1 후반",
     "why": "다윗이 애곡하는 무리를 뒤로하고 바란 광야로 내려가는 순간 — 사무엘의 시신은 그리지 않고 무덤 봉분과 애곡하는 무리로 죽음과 장사를 나타낸다."
   },
+  "meaning": {
+    "ko": "라마에서 사무엘을 장사한 뒤, 다윗이 무덤과 애곡하는 무리를 등지고 바란 광야로 떠나간다",
+    "en": "After Samuel is buried at Ramah, David turns his back on the grave and the mourning crowd and walks away toward the wilderness",
+    "verse": "삼상 25:1"
+  },
+  "relation": {
+    "ko": "다윗은 무덤 봉분과 애곡하는 무리를 등지고 그들에게서 멀어져 화면 오른쪽 밖으로 떠난다",
+    "en": "David has turned his back on the grave mound and the mourners and walks away from them, out of the right edge of the picture",
+    "verse": "삼상 25:1 「다윗이 일어나 바란 광야로 내려가니라」 · 화면 방향 본문 밖 · 저작자 정함(2026-10-19 그릴링)"
+  },
+  "whole_background": {
+    "ko": "옅은 다진 흙의 마을 언저리 마른 언덕과 뒤쪽 낮은 마른 언덕, 성긴 마른 풀, 옅은 하늘 — 왼쪽에 쌓은 옅은 돌의 낮은 무덤 봉분이 있고, 그 둘레 먼 곳에 작은 애곡 무리가 빽빽이 모여 있다",
+    "en": "a dry hillside at the edge of a town of pale packed earth, dry low hills behind, sparse dry grass, pale sky; on the left a low burial mound of piled pale stones, and around it, far away, a dense distant crowd of tiny mourning figures gathered close together",
+    "verse": "삼상 25:1 「온 이스라엘 무리가 모여 그를 애곡하며 … 장사한지라」 · 봉분·언덕·위치 본문 밖 · 저작자 정함"
+  },
   "background": [
     {
       "what": "라마의 낮은 무덤 봉분",
@@ -26,7 +41,9 @@
     {
       "what": "온 이스라엘 무리가 모여 애곡함",
       "verse": "25:1",
-      "region": "mourners"
+      "region": "mourners",
+      "count": 1000,
+      "count_why": "[저작](「온 이스라엘 무리가 모여 그를 애곡하며」 25:1 — 수 없음, 온 이스라엘 모임이라 군중 1000 이상으로 어림)"
     }
   ],
   "figures": [
@@ -35,9 +52,30 @@
       "role": "다윗 — 떠나감",
       "pose": "무리를 뒤로하고 돌아서 걸어간다",
       "prop": "a sword",
-      "facing": "left",
+      "facing": "right",
       "region": "david",
-      "verse": "25:1 · 지물 본문 밖 · 저작자 정함"
+      "verse": "25:1 · 지물 본문 밖 · 저작자 정함",
+      "expression": {
+        "ko": "무겁고 슬픈 얼굴",
+        "en": "a grave, sorrowful face",
+        "verse": "삼상 25:1 · 표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "무덤과 무리를 등진 채 성큼성큼 걸어 나가고, 허리에 칼을 찼다",
+        "en": "walking away with long strides, his back to the grave and the crowd, a sword hanging at his belt",
+        "verse": "삼상 25:1 · 칼·걸음 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "어두운 양모 튜닉과 가죽 띠",
+        "en": "a dark wool tunic with a leather belt",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+      },
+      "gaze": {
+        "ko": "화면 오른쪽 끝 너머 앞을 봄",
+        "en": "looking ahead past the right edge of the picture",
+        "verse": "삼상 25:1 · 시선 본문 밖 · 저작자 정함"
+      },
+      "screen_facing": "right"
     }
   ],
   "regions": {
@@ -48,25 +86,25 @@
       1.0
     ],
     "grave": [
-      0.55,
+      0.15,
       0.45,
-      0.85,
+      0.45,
       0.75
     ],
     "mourners": [
-      0.5,
+      0.05,
       0.3,
-      0.95,
+      0.5,
       0.55
     ],
     "david": [
-      0.1,
+      0.72,
       0.36,
-      0.28,
+      0.9,
       0.9
     ]
   },
-  "_regions_why": "다윗 세로 0.54(성인, 걸어 나감). 무덤(grave)은 배경 구조물, 애곡 무리(mourners)는 원경 띠 — 다윗과 겹치지 않게 오른쪽.",
+  "_regions_why": "다윗 세로 0.54(성인, 걸어 나감). 무덤(grave)은 배경 구조물, 애곡 무리(mourners)는 원경 띠 — 다윗과 겹치지 않게 오른쪽. · task 369 S3 대비책(2026-10-19): 첫 회 8/8이 다윗을 무덤 쪽(오른쪽)으로 걷게 해 좌우를 한 번 뒤집음 — 무덤·무리 왼쪽, 다윗 오른쪽에서 오른쪽 끝으로 떠남.",
   "stages": [
     {
       "id": "S1",
@@ -160,6 +198,20 @@
         0.7,
         0.98
       ]
+    }
+  },
+  "approved": {
+    "final": {
+      "path": "night-pick",
+      "seed": 42,
+      "kind": "base",
+      "image": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base/s42.png",
+      "by": "user",
+      "on": "2026-10-19",
+      "spec_hash": "128b9ac52d11",
+      "rules_version": "14fb4150e572",
+      "prompt_hash": "dce977ff4845",
+      "prompt_matches_spec": true
     }
   }
 }

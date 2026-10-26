@@ -1,0 +1,240 @@
+{
+ "answers": {
+  "g:5": {
+   "S": {
+    "5": {
+     "tries": [
+      {
+       "seconds": 3.657,
+       "input": 4,
+       "output": 274,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.0449712,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 칠이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 수금, 창 모두 얼굴·옷·세부가 완성돼 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 3.748,
+       "input": 4,
+       "output": 280,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.04503120000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 드러나는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 하프, 창 모두 얼굴·옷·세부가 완성돼 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.02,
+       "input": 4,
+       "output": 275,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.044981200000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 창, 하프 모두 얼굴·옷·세부가 완성돼 있고 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.532,
+       "input": 4,
+       "output": 272,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.04495120000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선을 긋고 색연필로 칠한 동화 그림 느낌이 일관되게 보인다.",
+      "s.no-blob": "두 인물 모두 얼굴과 옷이 완성돼 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.402,
+       "input": 4,
+       "output": 280,
+       "cache_read": 44632,
+       "cache_create": 9440,
+       "cost_usd": 0.04503120000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 수금, 창 모두 얼굴·옷·질감이 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   },
+   "E": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.159,
+       "input": 4,
+       "output": 459,
+       "cache_read": 44970,
+       "cache_create": 9778,
+       "cost_usd": 0.048207,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.figure-size": "틀림",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "틀림"
+     },
+     "reasons": {
+      "e.figure-size": "서 있는 사울의 키가 화면 높이의 약 4분의 3을 넘는다(머리 위 약 45px에서 발끝 약 590px까지, 화면 높이 640px). 방의 벽과 바닥은 거의 보이지 않는다.",
+      "e.lyre-frame": "다윗의 악기는 한쪽에 굽은 기둥이 있는 아일랜드식 하프 꼴이다. 울림통 위로 좌우 두 팔이 가로대로 이어진 U자 수금 틀이 아니다.",
+      "e.spear-two-thirds": "창은 날아가는 중이 아니라 사울이 손에 쥐고 세운 채 서 있다. 사울 손 가까이에 있어서 3분의 2 지점에 있지 않다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.899,
+       "input": 4,
+       "output": 405,
+       "cache_read": 44970,
+       "cache_create": 9778,
+       "cost_usd": 0.047667,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "틀림"
+     },
+     "reasons": {
+      "e.figure-size": "서 있는 사울의 키가 화면 높이의 약 3분의 2이고, 둘레로 벽과 바닥이 넉넉히 보인다.",
+      "e.lyre-frame": "악기는 굽은 기둥 하나와 울림통으로 된 삼각형 하프다. 좌우 두 팔과 위쪽 가로대로 이어진 U자 수금 틀이 아니다.",
+      "e.spear-two-thirds": "창이 날아가지 않고 사울이 손에 쥔 채 세워져 있다. 사울 손 가까이에 있으니 3분의 2 지점에 있지 않다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.284,
+       "input": 4,
+       "output": 549,
+       "cache_read": 44970,
+       "cache_create": 9936,
+       "cost_usd": 0.049739000000000005,
+       "turns": 3,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.figure-size": "틀림",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "틀림"
+     },
+     "reasons": {
+      "e.figure-size": "서 있는 사울의 키가 화면 높이의 약 4분의 3(상단 45px~하단 620px, 화면 640px 기준 약 90%)이다. 4분의 3에 못 미친다는 기준에 어긋난다.",
+      "e.lyre-frame": "악기는 굽은 기둥, 울림통, 앞기둥이 있는 삼각형 하프다. 좌우 팔 두 개가 가로대로 이어진 U자 수금 틀이 아니다.",
+      "e.spear-two-thirds": "창이 날아가지 않고 사울이 세워서 손에 쥐고 있다. 사울 손 가까이에 있어 다윗 쪽 3분의 2 지점이 아니다."
+     }
+    },
+    "5": {
+     "tries": [
+      {
+       "seconds": 4.638,
+       "input": 4,
+       "output": 380,
+       "cache_read": 54748,
+       "cache_create": 0,
+       "cost_usd": 0.0092828,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "틀림"
+     },
+     "reasons": {
+      "e.figure-size": "사울의 키가 화면 높이의 약 70%이고 두 사람 둘레로 벽과 바닥이 넉넉히 보인다.",
+      "e.lyre-frame": "다윗의 악기는 굽은 기둥 하나와 울림통으로 된 삼각형 하프다. 좌우 팔이 가로대로 이어진 U자 수금 틀이 아니다.",
+      "e.spear-two-thirds": "창이 사울 손에 쥐인 채 똑바로 서 있다. 던져서 날아가는 중이 아니다."
+     }
+    },
+    "4": {
+     "tries": [
+      {
+       "seconds": 4.977,
+       "input": 4,
+       "output": 387,
+       "cache_read": 54748,
+       "cache_create": 0,
+       "cost_usd": 0.0093528,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "e.figure-size": "맞음",
+      "e.lyre-frame": "틀림",
+      "e.spear-two-thirds": "틀림"
+     },
+     "reasons": {
+      "e.figure-size": "서 있는 사울의 키는 화면 높이의 약 4분의 3보다 작고(약 0.7), 방의 벽과 바닥이 넉넉히 보인다.",
+      "e.lyre-frame": "수금이 아니라 하프다. 굽은 기둥이 하나이고 앞기둥과 몸통이 삼각 틀을 이루며, U자 틀과 가로대가 없다.",
+      "e.spear-two-thirds": "창이 날아가지 않고 사울이 손에 세워 쥐고 있다. 사울 손 가까이에 있다."
+     }
+    }
+   }
+  }
+ }
+}

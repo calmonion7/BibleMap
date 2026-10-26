@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "endor-medium",
   "names": [
     "엔돌의 신접한 여인"
@@ -10,6 +10,7 @@
   "era": "an ancient Israelite",
   "age": "old woman",
   "sex": "female",
+  "role": "medium",
   "hair": "gray hair",
   "beard": "none",
   "headwear": "dark head-covering",
@@ -30,13 +31,59 @@
     "standing, full body, side view facing left",
     "kneeling, full body, facing right, arms raised in incantation"
   ],
+  "card": {
+    "heightRel": "short",
+    "ageBand": {
+      "class": "elder",
+      "text": "in her 60s, deep wrinkles"
+    },
+    "beardVolume": {
+      "class": "none",
+      "text": "없음"
+    },
+    "silhouette": {
+      "class": "slight",
+      "text": "slight bent thin shoulders"
+    },
+    "headOutline": {
+      "class": "shawl",
+      "text": "dark shawl pulled over the head"
+    },
+    "costumeColor": {
+      "class": "black",
+      "text": "long black wool robe, plain dark shawl"
+    }
+  },
+  "face": {
+    "faceShape": "narrow pinched face, sunken cheeks",
+    "eyes": "dark wary eyes",
+    "nose": "sharp thin nose",
+    "mouth": "thin cracked lips",
+    "skin": "gray-brown weathered skin",
+    "brows": "sparse gray brows",
+    "marks": "deep wrinkles around the eyes and mouth"
+  },
   "_why": {
-    "age": "본문 밖 · 저작자 정함",
-    "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식) — 삼상 28:7 「엔돌에 신접한 여인이 있나이다」"
+    "age": "[저작](노년 신접한 여인 대표값; 삼상 28:7 「엔돌에 신접한 여인이 있나이다」는 직업만 말하고 나이는 말하지 않음)",
+    "build": "[저작](노년 여인 대표값 — 마른 체격, 구절은 체격을 말하지 않음)",
+    "hair": "[저작](노년 표현용 회색 머리, 구절은 머리털을 말하지 않음)",
+    "beard": "[저작](여성 인물이라 수염 없음)",
+    "headwear": "[저작](은밀한 술법 장면 분위기용 어두운 두건, 구절은 쓴 것을 말하지 않음)",
+    "costume": "[저작](시대 복식 고증 — 철기 초 이스라엘 여성 긴 겉옷과 숄; 삼상 28:7 「엔돌에 신접한 여인이 있나이다」는 신분만 말함)",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[저작](역표 동석 인물과 구분용)",
+    "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "face.faceShape": "[저작](얼굴 구분용)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[직접] 삼상 28:7 「엔돌에 신접한 여인이 있나이다」"
   },
   "plate": {
     "seed": 11,

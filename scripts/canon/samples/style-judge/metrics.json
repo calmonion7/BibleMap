@@ -1,0 +1,2236 @@
+{
+ "answers": {
+  "387r1:authored-david-returns-jerusalem:42": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/r1/authored-david-returns-jerusalem/s42.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.87,
+       "input": 4,
+       "output": 253,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.0445618,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "모든 인물과 배에 얼굴과 옷이 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.918,
+       "input": 4,
+       "output": 333,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.045361799999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 연필 윤곽선과 색연필 질감이 보이는 동화풍 그림이다.",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있다. 회색 덩어리나 미완성 실루엣은 없다. 물 위의 흰 바위는 자연물이다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.824,
+       "input": 4,
+       "output": 290,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.044931799999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필로 칠한 질감이 나는 동화 그림 화풍이다.",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다. 물에 잠긴 흰 바위 모양은 사람이 아니라 돌이다."
+     }
+    }
+   }
+  },
+  "387r1:authored-david-returns-jerusalem:11": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/r1/authored-david-returns-jerusalem/s11.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.153,
+       "input": 4,
+       "output": 269,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.0447218,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "얼굴과 옷이 없는 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다. 멀리 있는 작은 인물들도 옷 색이 구분된다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.304,
+       "input": 4,
+       "output": 258,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.04461179999999999,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "모든 인물과 배에 얼굴과 옷이 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.519,
+       "input": 4,
+       "output": 249,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.0445218,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색의 동화 그림 느낌이 난다.",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있고, 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    }
+   }
+  },
+  "387r1:authored-david-returns-jerusalem:7": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/r1/authored-david-returns-jerusalem/s7.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.367,
+       "input": 4,
+       "output": 343,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.0454618,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "멀리 늘어선 작은 인물까지 색 있는 옷을 입고 있어 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.206,
+       "input": 4,
+       "output": 380,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.0458318,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 연필 윤곽선과 색연필 같은 채색이 보이는 동화 그림 화풍이다. 다만 물 표현은 수채화에 가깝다.",
+      "s.no-blob": "멀리 있는 인물까지 모두 옷 색과 형태가 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.116,
+       "input": 4,
+       "output": 408,
+       "cache_read": 53989,
+       "cache_create": 0,
+       "cost_usd": 0.0094869,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "멀리 있는 인물과 배 위의 사람들도 작지만 색 있는 옷과 형체를 갖췄다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    }
+   }
+  },
+  "387r1:authored-david-returns-jerusalem:23": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/r1/authored-david-returns-jerusalem/s23.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.754,
+       "input": 4,
+       "output": 261,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.044641799999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "모든 인물과 사물에 얼굴, 옷, 형태가 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.667,
+       "input": 4,
+       "output": 284,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.044871799999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색의 동화 그림 느낌이 분명하다.",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있고, 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다. 땅 위의 갈색 물체는 돌이나 방패로 읽힌다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.386,
+       "input": 4,
+       "output": 250,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.044531799999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색 느낌의 동화 그림이다.",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    }
+   }
+  },
+  "387r1:authored-david-returns-jerusalem:5": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/r1/authored-david-returns-jerusalem/s5.png",
+   "reps": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.617,
+       "input": 4,
+       "output": 254,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.044571799999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필로 칠한 듯한 동화 그림 화풍이다.",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있고 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.833,
+       "input": 4,
+       "output": 249,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.0445218,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.344,
+       "input": 4,
+       "output": 250,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.044531799999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색 느낌의 동화풍 그림이다.",
+      "s.no-blob": "모든 인물과 배에 얼굴과 옷이 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   }
+  },
+  "387r1:authored-david-returns-jerusalem:101": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/r1/authored-david-returns-jerusalem/s101.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.596,
+       "input": 4,
+       "output": 258,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.04461179999999999,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "모든 인물과 물건에 얼굴, 옷, 세부가 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.109,
+       "input": 4,
+       "output": 266,
+       "cache_read": 53989,
+       "cache_create": 0,
+       "cost_usd": 0.008066900000000002,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴과 옷이 제대로 그려져 있고, 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.473,
+       "input": 4,
+       "output": 304,
+       "cache_read": 53989,
+       "cache_create": 0,
+       "cost_usd": 0.0084469,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필로 칠한 질감이 보이고, 동화 그림 같은 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴과 옷이 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다. 멀리 줄지어 선 군중과 배 위 인물도 옷 색과 형태가 구분된다."
+     }
+    }
+   }
+  },
+  "387r1:authored-david-returns-jerusalem:202": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/r1/authored-david-returns-jerusalem/s202.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.786,
+       "input": 4,
+       "output": 261,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.044641799999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "모든 인물과 배에 얼굴·옷·디테일이 있고, 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.449,
+       "input": 4,
+       "output": 254,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.044571799999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴과 옷이 갖춰져 있다. 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.313,
+       "input": 4,
+       "output": 256,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.0445918,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색의 동화 그림 느낌이 분명하다.",
+      "s.no-blob": "사람과 배 모두 얼굴과 옷이 그려져 있다. 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    }
+   }
+  },
+  "387r1:authored-david-returns-jerusalem:303": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-scene/r1/authored-david-returns-jerusalem/s303.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.361,
+       "input": 4,
+       "output": 260,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.0446318,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림처럼 보인다.",
+      "s.no-blob": "사람과 물건 모두 얼굴과 옷이 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.225,
+       "input": 4,
+       "output": 253,
+       "cache_read": 44598,
+       "cache_create": 9391,
+       "cost_usd": 0.0445618,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필로 칠한 동화 그림 느낌이 난다.",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.261,
+       "input": 4,
+       "output": 262,
+       "cache_read": 52830,
+       "cache_create": 1159,
+       "cost_usd": 0.012547000000000003,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선을 살리고 색연필로 칠한 듯한 동화 그림 느낌이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴과 옷이 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    }
+   }
+  },
+  "approved:authored-david-gath-achish:5": {
+   "group": "B",
+   "src": "/Users/calmonion/Project/BibleMap/scripts/canon/samples/local-edit/approved-authored-david-gath-achish.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.11,
+       "input": 4,
+       "output": 311,
+       "cache_read": 44575,
+       "cache_create": 9364,
+       "cost_usd": 0.045031499999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다. 채색 결이 디지털 매끈함이 아니라 손으로 칠한 느낌이다.",
+      "s.no-blob": "인물과 물건 모두 얼굴·옷·질감이 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다. 문에 비친 그림자는 의도된 그림자다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.392,
+       "input": 4,
+       "output": 317,
+       "cache_read": 44575,
+       "cache_create": 9364,
+       "cost_usd": 0.04509149999999999,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필과 색연필로 그린 느낌이 아니다. 매끈하게 채색한 디지털 일러스트에 가깝고, 질감과 선도 연필 동화풍과 다르다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 없다. 모든 인물에 얼굴과 옷이 있다. 문에 드리운 다윗의 그림자는 자연스러운 그림자다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 7.764,
+       "input": 4,
+       "output": 547,
+       "cache_read": 53939,
+       "cache_create": 0,
+       "cost_usd": 0.0108719,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "연필 윤곽선 위에 색연필 같은 질감으로 칠한 동화풍 그림이다. 돌벽과 옷감에서 연필 결이 보인다. 다만 배경이 꽉 채워져 있어 미색 종이 느낌은 약하다.",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있다. 문에 비친 회색 그림자는 다윗의 그림자로 읽혀서 미완성 덩어리가 아니다."
+     }
+    }
+   }
+  },
+  "approved:authored-david-gibeah-harp:11": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-david-gibeah-harp/edit/s11.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.98,
+       "input": 4,
+       "output": 263,
+       "cache_read": 44584,
+       "cache_create": 9375,
+       "cost_usd": 0.044596399999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "두 인물과 하프, 방석 모두 얼굴·옷·디테일이 완성돼 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.918,
+       "input": 4,
+       "output": 264,
+       "cache_read": 44584,
+       "cache_create": 9375,
+       "cost_usd": 0.0446064,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선을 살리고 색연필로 칠한 동화 그림 느낌이다.",
+      "s.no-blob": "두 인물과 하프, 방석 모두 얼굴·옷·질감이 완성돼 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.527,
+       "input": 4,
+       "output": 268,
+       "cache_read": 44584,
+       "cache_create": 9375,
+       "cost_usd": 0.044646399999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 느낌이 난다.",
+      "s.no-blob": "두 인물과 하프, 깔개 모두 얼굴·옷·질감이 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   }
+  },
+  "approved:authored-samuel-bethlehem-david-anointing:42": {
+   "group": "B",
+   "src": "/Users/calmonion/Project/BibleMap/scripts/canon/samples/local-edit/approved-authored-samuel-bethlehem-david-anointing.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.926,
+       "input": 4,
+       "output": 257,
+       "cache_read": 44611,
+       "cache_create": 9408,
+       "cost_usd": 0.044671100000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.42,
+       "input": 4,
+       "output": 258,
+       "cache_read": 44611,
+       "cache_create": 9408,
+       "cost_usd": 0.0446811,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "모든 인물과 물건에 얼굴, 옷, 디테일이 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.742,
+       "input": 4,
+       "output": 261,
+       "cache_read": 54019,
+       "cache_create": 0,
+       "cost_usd": 0.008019900000000002,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴, 옷, 디테일이 있고 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   }
+  },
+  "approved:authored-samuel-ramah-death:42": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base/s42.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.96,
+       "input": 4,
+       "output": 259,
+       "cache_read": 44578,
+       "cache_create": 9369,
+       "cost_usd": 0.0445318,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "인물과 물건 모두 얼굴·옷·무늬가 있고, 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.603,
+       "input": 4,
+       "output": 262,
+       "cache_read": 44578,
+       "cache_create": 9369,
+       "cost_usd": 0.0445618,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "인물과 사물 모두 얼굴·옷·질감이 갖춰져 있고, 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.889,
+       "input": 4,
+       "output": 255,
+       "cache_read": 52790,
+       "cache_create": 1157,
+       "cost_usd": 0.012465,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴·옷·질감이 있고 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    }
+   }
+  },
+  "approved:authored-saul-gibeah-spear:5": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s5.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.941,
+       "input": 4,
+       "output": 263,
+       "cache_read": 44585,
+       "cache_create": 9377,
+       "cost_usd": 0.044604500000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 수금, 창 모두 얼굴·옷·질감이 갖춰져 있고 평평한 회색 덩어리나 미완성 실루엣이 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.064,
+       "input": 4,
+       "output": 254,
+       "cache_read": 52804,
+       "cache_create": 1158,
+       "cost_usd": 0.0124604,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물 모두 얼굴, 옷, 지물이 완성돼 있다. 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.367,
+       "input": 4,
+       "output": 263,
+       "cache_read": 52804,
+       "cache_create": 1158,
+       "cost_usd": 0.0125504,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색으로 그린 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물과 수금, 창 모두 얼굴·옷·무늬가 그려져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   }
+  },
+  "approved:authored-saul-gilgal-amalek:11": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-saul-gilgal-amalek/base/s11.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.07,
+       "input": 4,
+       "output": 256,
+       "cache_read": 44596,
+       "cache_create": 9389,
+       "cost_usd": 0.0445836,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물 모두 얼굴과 옷이 제대로 그려져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.794,
+       "input": 4,
+       "output": 254,
+       "cache_read": 52826,
+       "cache_create": 1159,
+       "cost_usd": 0.012466600000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물 모두 얼굴·옷·주름이 완성돼 있고 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.371,
+       "input": 4,
+       "output": 264,
+       "cache_read": 53985,
+       "cache_create": 0,
+       "cost_usd": 0.0080465,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "두 인물 모두 얼굴과 옷이 제대로 그려져 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    }
+   }
+  },
+  "approved:authored-saul-jabesh-rescue:42": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jabesh-crowd/authored-saul-jabesh-rescue/base/s42.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.514,
+       "input": 4,
+       "output": 275,
+       "cache_read": 44583,
+       "cache_create": 9376,
+       "cost_usd": 0.044720300000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "인물과 물건 모두 얼굴, 옷, 디테일이 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다. 회색 부분은 먼 산뿐이다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.188,
+       "input": 4,
+       "output": 272,
+       "cache_read": 44583,
+       "cache_create": 9376,
+       "cost_usd": 0.0446903,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 뚜렷한 동화풍 그림이다.",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있고, 회색 덩어리나 미완성 실루엣은 보이지 않는다. 방패와 천막도 형태가 완성돼 있다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.299,
+       "input": 4,
+       "output": 267,
+       "cache_read": 52800,
+       "cache_create": 1159,
+       "cost_usd": 0.012594000000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴, 옷, 형태가 제대로 그려져 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    }
+   }
+  },
+  "approved:authored-saul-michmash-battle:202": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s202.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.221,
+       "input": 4,
+       "output": 302,
+       "cache_read": 44591,
+       "cache_create": 9382,
+       "cost_usd": 0.0450151,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리나 글자도 없다.",
+      "s.no-blob": "두 인물 모두 얼굴과 옷이 분명하고, 멀리 있는 무리도 작은 인물 모양으로 그려져 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.995,
+       "input": 4,
+       "output": 287,
+       "cache_read": 44591,
+       "cache_create": 9382,
+       "cost_usd": 0.0448651,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "인물과 물건 모두 얼굴, 옷, 질감이 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다. 멀리 있는 작은 인물들도 형태가 갖춰져 있다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.517,
+       "input": 4,
+       "output": 280,
+       "cache_read": 53973,
+       "cache_create": 0,
+       "cost_usd": 0.0082053,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감이 보이는 동화풍 그림이다.",
+      "s.no-blob": "인물과 물건 모두 얼굴, 옷, 질감이 갖춰져 있다. 멀리 있는 작은 무리도 옷을 입은 형태로 그려져 있어 평평한 회색 덩어리는 없다."
+     }
+    }
+   }
+  },
+  "approved:authored-saul-mizpah-chosen:7": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s7.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.261,
+       "input": 4,
+       "output": 404,
+       "cache_read": 44588,
+       "cache_create": 9381,
+       "cost_usd": 0.0460308,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감이 보여 동화 그림 화풍에 맞다.",
+      "s.no-blob": "앞쪽 인물은 모두 얼굴과 옷이 있다. 멀리 있는 무리는 작지만 옷 색이 구분되어 평평한 회색 덩어리로 남은 것은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.446,
+       "input": 4,
+       "output": 337,
+       "cache_read": 53969,
+       "cache_create": 0,
+       "cost_usd": 0.0087749,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다.",
+      "s.no-blob": "멀리 있는 작은 인물들은 얼굴과 옷의 구분이 거의 없는 어두운 실루엣에 가깝다. 왼쪽 노인이 손에 쥔 물건도 뭉개진 덩어리다. 또 오른쪽 아래 구석에 서명 같은 표식이 있어 분명히 맞다고 확인되지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.641,
+       "input": 4,
+       "output": 277,
+       "cache_read": 53969,
+       "cache_create": 0,
+       "cost_usd": 0.0081749,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "얼굴과 옷이 있는 인물만 보이고, 평평한 회색 덩어리나 미완성 실루엣은 없다. 멀리 선 무리도 작지만 옷 색이 구분된다."
+     }
+    }
+   }
+  },
+  "approved:authored-saul-nob-massacre:303": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/whole-wide/authored-saul-nob-massacre/base/s303.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.431,
+       "input": 4,
+       "output": 266,
+       "cache_read": 44582,
+       "cache_create": 9373,
+       "cost_usd": 0.0446182,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "세 인물 모두 얼굴과 옷이 완성돼 있고, 천막과 돌담 같은 물건도 회색 덩어리나 미완성 실루엣이 아니다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.012,
+       "input": 4,
+       "output": 271,
+       "cache_read": 52798,
+       "cache_create": 1157,
+       "cost_usd": 0.0126258,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감이 보이고 동화 그림 느낌이 난다.",
+      "s.no-blob": "인물 셋과 천막, 돌담 모두 얼굴·옷·질감이 완성돼 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.979,
+       "input": 4,
+       "output": 259,
+       "cache_read": 52798,
+       "cache_create": 1157,
+       "cost_usd": 0.012505800000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사람과 물건 모두 얼굴·옷·질감이 갖춰져 있고, 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   }
+  },
+  "g-0.65-9:authored-david-returns-jerusalem:11": {
+   "group": "C",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-guide/g-0.65-9/authored-david-returns-jerusalem/s11.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.09,
+       "input": 4,
+       "output": 321,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.045307,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "전체가 매끈한 디지털 수채·일러스트 느낌이다. 연필 선이나 색연필 질감이 거의 없고, 종이 바탕이 아니라 채색된 하늘 배경이다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다. 먼 곳의 작은 인물들도 색이 있는 옷을 입은 모습으로 그려져 있다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 6.761,
+       "input": 4,
+       "output": 325,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.045347,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필로 그리고 색연필로 칠한 동화 그림으로 보이지 않는다. 매끈한 디지털 수채화풍 일러스트이고, 연필 선과 색연필 결이 눈에 띄지 않는다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다. 멀리 줄지은 사람들도 작지만 색과 옷이 구분된다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 5.402,
+       "input": 4,
+       "output": 346,
+       "cache_read": 52854,
+       "cache_create": 1163,
+       "cost_usd": 0.013405400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "화풍은 미색 종이 위 연필선과 색연필 질감의 동화 그림보다 매끈한 디지털 수채·일러스트 같다. 연필 스케치 선과 색연필 결이 뚜렷하지 않다. 분명히 맞다고 확인되지 않아 틀림으로 답한다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다. 먼 줄 행렬의 인물들은 작지만 색과 옷이 구분된다."
+     }
+    }
+   }
+  },
+  "g-0.65-9:authored-david-returns-jerusalem:42": {
+   "group": "C",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-guide/g-0.65-9/authored-david-returns-jerusalem/s42.png",
+   "reps": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.501,
+       "input": 4,
+       "output": 311,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.045207000000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "배경은 미색이지만 선이 또렷하고 색이 매끈해서 디지털 일러스트처럼 보입니다. 연필 질감이나 색연필로 칠한 결이 분명하지 않습니다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않습니다. 멀리 있는 사람들은 작지만 형태가 갖춰져 있습니다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.92,
+       "input": 4,
+       "output": 442,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.046517,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "선이 깔끔한 디지털 만화풍이고 색이 평평하게 채워져 있다. 연필 선이나 색연필 질감, 미색 종이 느낌이 뚜렷하지 않다.",
+      "s.no-blob": "인물과 배마다 얼굴과 옷이 있고, 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 6.586,
+       "input": 4,
+       "output": 470,
+       "cache_read": 45773,
+       "cache_create": 8244,
+       "cost_usd": 0.0422613,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "선이 깔끔하고 색이 평평한 디지털 일러스트 느낌이다. 연필 선과 색연필 질감, 미색 종이 결이 분명하게 보이지 않는다.",
+      "s.no-blob": "가까운 인물과 배 위의 인물 모두 얼굴과 옷이 있다. 멀리 있는 줄지은 사람들도 작지만 형태가 갖춰져 있어 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   }
+  },
+  "g-0.65-4:authored-david-returns-jerusalem:11": {
+   "group": "C",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-guide/g-0.65-4/authored-david-returns-jerusalem/s11.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.058,
+       "input": 4,
+       "output": 332,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.045417,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "그림이 매끈한 디지털 수채 느낌이고 연필 선과 색연필 질감이 뚜렷하지 않다. 배경은 미색 종이라기보다 채색된 하늘이다. 분명히 맞다고 확인되지 않아 틀림으로 답한다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다. 멀리 있는 인물들도 작지만 색과 옷이 있다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.031,
+       "input": 4,
+       "output": 329,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.045387000000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 배경에 부드러운 수채와 펜선에 가까운 그림이다. 연필 선과 색연필 질감이 뚜렷하지 않아 동화풍 연필·색연필 화풍이라고 분명히 확인되지 않는다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다. 먼 곳의 작은 무리도 색 있는 옷을 입은 사람으로 그려져 있다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.698,
+       "input": 4,
+       "output": 329,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.008699700000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필로 그리고 색연필로 칠한 질감이 아니라, 매끈한 수채·디지털 일러스트처럼 보입니다. 하늘과 물이 고르게 채색돼 있고 연필 선이나 색연필 결이 뚜렷하지 않습니다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않습니다. 모든 인물에 옷과 색이 있습니다."
+     }
+    }
+   }
+  },
+  "g-0.65-4:authored-david-returns-jerusalem:42": {
+   "group": "C",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-guide/g-0.65-4/authored-david-returns-jerusalem/s42.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.601,
+       "input": 4,
+       "output": 285,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.044947,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필로 칠한 듯한 동화풍 그림이다.",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있고 회색 덩어리나 미완성 실루엣은 보이지 않는다. 먼 곳의 작은 인물들도 줄지은 사람 모양으로 그려져 있다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.012,
+       "input": 4,
+       "output": 296,
+       "cache_read": 52854,
+       "cache_create": 1163,
+       "cost_usd": 0.012905400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리나 액자는 없다.",
+      "s.no-blob": "모든 인물과 물건에 얼굴, 옷, 디테일이 있다. 멀리 있는 작은 인물들도 채색된 형태이고, 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.533,
+       "input": 4,
+       "output": 301,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.0084197,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 같은 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "모든 인물과 배에 얼굴·옷·무늬가 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다. 멀리 있는 작은 인물 행렬도 형태가 갖춰져 있다."
+     }
+    }
+   }
+  },
+  "g-0.8-9:authored-david-returns-jerusalem:11": {
+   "group": "C",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-guide/g-0.8-9/authored-david-returns-jerusalem/s11.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.47,
+       "input": 4,
+       "output": 321,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.045307,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "매끈한 디지털 수채/일러스트 느낌이고 연필선·색연필 질감이 분명하지 않으며 미색 종이 느낌도 약함",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있고 회색 덩어리나 미완성 실루엣은 보이지 않음"
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.973,
+       "input": 4,
+       "output": 283,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.044927,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "그림은 매끈한 디지털 수채화·일러스트 느낌이다. 연필 선과 색연필 질감이 보이지 않고, 미색 종이 느낌도 약하다.",
+      "s.no-blob": "사람과 물건 모두 얼굴과 옷이 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.713,
+       "input": 4,
+       "output": 420,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.046297000000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "매끈한 디지털 수채풍 풍경화에 가깝다. 연필 선과 색연필 질감이 보이지 않고, 배경이 미색 종이가 아니라 하늘과 강, 사막으로 꽉 차 있다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다. 멀리 있는 인물들도 색이 있는 작은 사람으로 그려져 있다."
+     }
+    }
+   }
+  },
+  "g-0.8-9:authored-david-returns-jerusalem:42": {
+   "group": "C",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-guide/g-0.8-9/authored-david-returns-jerusalem/s42.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 6.343,
+       "input": 4,
+       "output": 461,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.046707,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "선이 깔끔하고 채색이 매끈한 디지털 일러스트 느낌이다. 연필 선과 색연필 질감이 분명하게 보이지 않고, 배경도 종이 바탕이 아니라 하늘과 사막 그림이다.",
+      "s.no-blob": "평평한 회색 덩어리나 미완성 실루엣은 없다. 모든 인물이 옷과 색을 갖추고 있고, 멀리 있는 작은 무리도 인물 형태로 그려져 있다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.963,
+       "input": 4,
+       "output": 388,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.009289700000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "연필·색연필 질감이 없고 매끈한 디지털 채색이라 동화풍 연필화와 다르다. 배경도 미색 종이가 아니다.",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있고 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.672,
+       "input": 4,
+       "output": 435,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.0097597,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "선이 깔끔하고 색이 매끈한 디지털 일러스트에 가깝다. 물과 하늘은 평평하게 칠해졌고, 연필 선이나 색연필 결이 보이지 않으며 종이 질감도 없다.",
+      "s.no-blob": "모든 인물에 옷과 머리 디테일이 있다. 멀리 있는 작은 무리도 실루엣만 남은 덩어리가 아니라 작은 사람들로 그려져 있다."
+     }
+    }
+   }
+  },
+  "g-0.8-4:authored-david-returns-jerusalem:11": {
+   "group": "C",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-guide/g-0.8-4/authored-david-returns-jerusalem/s11.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.337,
+       "input": 4,
+       "output": 440,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.046497000000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "매끈한 수채·과슈풍 디지털 채색에 가깝다. 연필 선과 색연필 질감이 분명하지 않고, 미색 종이 위에 그린 느낌도 뚜렷하지 않다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다. 인물과 배 모두 옷과 형체가 갖춰져 있다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.472,
+       "input": 4,
+       "output": 309,
+       "cache_read": 45773,
+       "cache_create": 8244,
+       "cost_usd": 0.0406513,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "전체가 매끈한 수채·디지털 회화처럼 보인다. 연필 선과 색연필 질감이 거의 없고, 배경도 종이 색이라기보다 하늘과 풍경으로 채워져 있다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다. 멀리 있는 무리도 작은 사람들로 그려져 있다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 5.003,
+       "input": 4,
+       "output": 397,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.009379700000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "매끈한 수채·구아슈풍 디지털 채색에 가깝다. 연필 선과 색연필 결이 뚜렷하지 않고, 미색 종이 질감도 확실하지 않다.",
+      "s.no-blob": "멀리 있는 작은 인물을 포함해 모든 인물에 옷 색과 형태가 있다. 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    }
+   }
+  },
+  "g-1.0-9:authored-david-returns-jerusalem:11": {
+   "group": "C",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-guide/g-1.0-9/authored-david-returns-jerusalem/s11.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.263,
+       "input": 4,
+       "output": 309,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.045187000000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "틀림"
+     },
+     "reasons": {
+      "s.style": "연필 선과 색연필 질감의 동화 그림이 아니라 매끈한 디지털 페인팅에 가깝다. 인물도 뻣뻣한 기둥 같은 모양이다.",
+      "s.no-blob": "앞쪽의 두 인물이 얼굴 표정과 팔다리 없이 사각 기둥 모양의 옷 덩어리에 머리만 얹혀 있어 미완성 실루엣으로 보인다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.124,
+       "input": 4,
+       "output": 290,
+       "cache_read": 52854,
+       "cache_create": 1163,
+       "cost_usd": 0.0128454,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "틀림"
+     },
+     "reasons": {
+      "s.style": "연필 선과 색연필 질감의 동화풍이 아니다. 매끈한 디지털 회화처럼 보이고 종이 질감도 약하다.",
+      "s.no-blob": "왼쪽 앞의 두 인물은 얼굴과 옷의 구별 없이 각진 갈색 기둥 모양이다. 미완성 실루엣 덩어리로 남아 있다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 5.697,
+       "input": 4,
+       "output": 357,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.0089797,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 바탕이긴 하지만 매끈한 디지털 수채·페인팅 느낌이다. 연필선과 색연필로 칠한 질감이 없어서 동화 그림 화풍으로 보기 어렵다.",
+      "s.no-blob": "왼쪽의 큰 인물 둘은 각진 갈색 기둥 같은 몸통에 머리만 얹혀 있다. 옷의 주름이나 팔다리가 없어서 덜 그려진 덩어리 실루엣이다. 나머지 인물들도 막대처럼 단순하게 그려져 있다."
+     }
+    }
+   }
+  },
+  "g-0.8-4:authored-david-returns-jerusalem:42": {
+   "group": "C",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-guide/g-0.8-4/authored-david-returns-jerusalem/s42.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 7.502,
+       "input": 4,
+       "output": 536,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.047457,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 연필 윤곽선과 색연필 같은 질감으로 칠한 동화풍 그림이다. 물 표현이 다소 매끈하긴 하다.",
+      "s.no-blob": "모든 인물과 배가 얼굴·옷·색이 있게 그려져 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 7.146,
+       "input": 4,
+       "output": 650,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.048597,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "물감을 올린 구아슈·수채 삽화처럼 보이고 펜 윤곽선이 뚜렷하다. 색연필 결이나 연필 밑그림이 분명하지 않고 하늘도 평평하게 칠해져 있어서, 연필과 색연필 화풍이라고 확신할 수 없다.",
+      "s.no-blob": "앞쪽 인물과 배 위 인물은 모두 얼굴과 옷이 있다. 먼 언덕의 작은 행렬은 원경이라 작게 그려진 것이고, 평평한 회색 덩어리로 남은 사람이나 물건은 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.516,
+       "input": 4,
+       "output": 517,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.010579700000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 하늘과 가는 윤곽선에 결이 보이는 색칠이라 종이 위 연필·색연필 동화 그림으로 볼 수 있다. 다만 채색이 다소 수채나 과슈처럼 보여 확신은 약하다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣이 없다. 멀리 있는 무리도 색 있는 작은 사람들로 그려져 있다."
+     }
+    }
+   }
+  },
+  "g-1.0-9:authored-david-returns-jerusalem:42": {
+   "group": "C",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-guide/g-1.0-9/authored-david-returns-jerusalem/s42.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.195,
+       "input": 4,
+       "output": 336,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.045457,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필로 그리고 색연필로 칠한 질감이 아니다. 매끈한 디지털 수채 일러스트에 가깝다. 인물도 뻣뻣하게 줄지어 서 있다.",
+      "s.no-blob": "앞쪽 두 인물은 얼굴 없는 갈색 원뿔형 망토 덩어리다. 뒤통수만 보이고 팔다리와 옷의 주름 같은 세부가 없어 미완성 실루엣처럼 남아 있다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 6.571,
+       "input": 4,
+       "output": 342,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.045517,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "틀림"
+     },
+     "reasons": {
+      "s.style": "그림이 매끈한 디지털 수채·일러스트 느낌이다. 연필 선과 색연필 질감이 보이지 않아 연필·색연필 동화 화풍으로 확인되지 않는다.",
+      "s.no-blob": "앞쪽 두 인물은 얼굴 없이 뒤통수와 긴 갈색 망토 덩어리로만 그려졌다. 다른 인물들도 뒷모습이 평평하게 서 있는 기둥 같은 실루엣이라 미완성 덩어리처럼 보인다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 5.038,
+       "input": 4,
+       "output": 382,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.0092297,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "틀림"
+     },
+     "reasons": {
+      "s.style": "배경은 연필과 색연필 느낌이지만 인물이 매끈한 디지털풍이다. 종이 질감이 약하고 화면이 전체적으로 깨끗해서 미색 종이 위 연필·색연필 동화 화풍이라고 확실히 말하기 어렵다.",
+      "s.no-blob": "앞쪽 두 인물이 얼굴 없이 갈색 천을 뒤집어쓴 원뿔·기둥 모양이고 팔도 없어서 미완성 실루엣처럼 보인다. 뒤쪽 줄지어 선 인물들도 모두 뒷모습이고 이목구비가 없다."
+     }
+    }
+   }
+  },
+  "g-1.0-4:authored-david-returns-jerusalem:11": {
+   "group": "C",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-guide/g-1.0-4/authored-david-returns-jerusalem/s11.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.516,
+       "input": 4,
+       "output": 333,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.045427,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위 연필 선과 색연필 질감의 동화 그림이라기보다 매끈한 디지털 일러스트(구아슈·벡터 느낌)로 보인다. 연필 윤곽선과 색연필 결이 분명하지 않다.",
+      "s.no-blob": "얼굴과 옷이 없는 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다. 멀리 있는 인물들도 작지만 옷 색과 형태가 구분된다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.573,
+       "input": 4,
+       "output": 313,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.045227,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 하늘과 동화풍 채색은 있지만 연필 선과 색연필 질감이 분명하지 않다. 매끈한 디지털 구아슈나 수채화처럼 보여서 맞다고 확인할 수 없다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다. 멀리 있는 인물들도 옷 색이 구분된다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 6.115,
+       "input": 4,
+       "output": 523,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.047327,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 윤곽선은 있지만, 색이 매끈하게 채워진 디지털 구아슈 같은 그림이다. 연필 선과 색연필 결, 종이 질감이 분명히 보이지 않는다.",
+      "s.no-blob": "얼굴과 옷이 없는 회색 덩어리나 미완성 실루엣은 보이지 않는다. 멀리 줄지어 선 작은 인물들도 옷과 색이 갖춰져 있다."
+     }
+    }
+   }
+  },
+  "g-1.0-4:authored-david-returns-jerusalem:42": {
+   "group": "C",
+   "src": "/Users/calmonion/.local/biblemap-imggen/jordan-guide/g-1.0-4/authored-david-returns-jerusalem/s42.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 6.326,
+       "input": 4,
+       "output": 499,
+       "cache_read": 44610,
+       "cache_create": 9407,
+       "cost_usd": 0.047087000000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "배경은 미색이지만 전체가 매끈한 구아슈·수채식 평면 채색에 또렷한 윤곽선이다. 연필 선과 색연필 결이 분명하게 보이지 않아서 기대한 화풍이라고 확인할 수 없다.",
+      "s.no-blob": "화면의 모든 인물과 배에 탄 사람들에게 옷 색과 형태가 있다. 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.403,
+       "input": 4,
+       "output": 329,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.008699700000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 배경은 맞지만, 선명한 윤곽선과 균일하게 채운 색은 연필로 그리고 색연필로 칠한 질감이라기보다 매끈한 구아슈·디지털 일러스트에 가깝다. 분명히 맞다고 확인되지 않아 틀림으로 답한다.",
+      "s.no-blob": "모든 인물에 얼굴과 옷이 있고 평평한 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 8.079,
+       "input": 4,
+       "output": 595,
+       "cache_read": 54017,
+       "cache_create": 0,
+       "cost_usd": 0.0113597,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 연필 윤곽선을 두르고 색을 칠한 동화풍 그림이다. 풀과 모래에 색연필 결이 보인다. 다만 색 면이 꽤 매끈해서 확신하기는 어렵다.",
+      "s.no-blob": "모든 인물과 배에 옷 색과 얼굴이나 머리 모양이 있다. 멀리 있는 무리도 작지만 색을 입은 사람으로 보인다. 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   }
+  },
+  "approved:authored-saul-gibeah-spear:7": {
+   "group": "B",
+   "src": "/Users/calmonion/Project/BibleMap/scripts/canon/samples/gibeah-step23/m17e/approved-authored-saul-gibeah-spear.png",
+   "reps": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.586,
+       "input": 4,
+       "output": 260,
+       "cache_read": 43952,
+       "cache_create": 10224,
+       "cost_usd": 0.047899199999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다.",
+      "s.no-blob": "인물과 물건에 모두 얼굴, 옷, 세부 묘사가 있고, 회색 덩어리나 미완성 실루엣은 보이지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.652,
+       "input": 4,
+       "output": 272,
+       "cache_read": 43952,
+       "cache_create": 10224,
+       "cost_usd": 0.0480192,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다.",
+      "s.no-blob": "사울, 다윗, 창, 수금, 의자 모두 얼굴·옷·질감이 갖춰져 있다. 평평한 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.666,
+       "input": 4,
+       "output": 279,
+       "cache_read": 43952,
+       "cache_create": 10224,
+       "cost_usd": 0.0480892,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음",
+      "s.no-blob": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 액자나 글자도 없다.",
+      "s.no-blob": "사울, 다윗, 창, 수금, 의자 모두 얼굴·옷·질감이 완성돼 있다. 회색 덩어리나 미완성 실루엣은 없다."
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "samuel",
   "names": [
     "사무엘"
@@ -11,13 +11,13 @@
     "authored-saul-gilgal-amalek",
     "authored-samuel-bethlehem-david-anointing",
     "authored-david-ramah-samuel",
-    "authored-samuel-ramah-death",
     "authored-saul-endor-medium"
   ],
   "era": "an ancient Israelite",
   "age": "old prophet",
   "sex": "male",
-  "hair": "white hair",
+  "role": "prophet",
+  "hair": "long white hair",
   "beard": "long white beard",
   "headwear": "none",
   "build": "thin, stooped",
@@ -48,13 +48,59 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, one hand raised in blessing"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "elder",
+      "text": "in his 70s, deep wrinkles"
+    },
+    "beardVolume": {
+      "class": "long",
+      "text": "long white beard to the chest"
+    },
+    "silhouette": {
+      "class": "slight",
+      "text": "slight stooped narrow shoulders"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, long white hair falling to the shoulders"
+    },
+    "costumeColor": {
+      "class": "brown",
+      "text": "long dark brown wool robe, cloth belt"
+    }
+  },
+  "face": {
+    "faceShape": "long narrow face, high forehead",
+    "eyes": "deep-set pale-brown eyes, solemn",
+    "nose": "long straight nose",
+    "mouth": "thin tight lips",
+    "skin": "pale weathered skin",
+    "brows": "bushy white brows",
+    "marks": "deep wrinkles on forehead"
+  },
   "_why": {
-    "age": "삼상 28:14 「한 노인이 올라 오는데」(엔돌에서 묘사된 사무엘의 영)",
-    "build": "본문 밖 · 저작자 정함",
-    "hair": "본문 밖 · 저작자 정함",
-    "beard": "본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "costume": "본문 밖 · 저작자 정함(시대 복식)"
+    "age": "[직접] 삼상 8:1 「사무엘이 늙으매」 · 삼상 28:14 「한 노인이 올라 오는데」",
+    "build": "[저작](노년 선지자 체격 — 마르고 구부정함은 본문에 없음)",
+    "hair": "[추론] 삼상 1:11 「삭도를 그 머리에 대지 아니하겠나이다」 — 한나의 서원대로 평생 머리를 깎지 않음 → 긴 머리. 흰색은 삼상 12:2 「나는 늙어 머리가 희었고」",
+    "beard": "[저작](노년이라 긴 흰 수염; 삼상 12:2 「머리가 희었고」는 머리털만 말함)",
+    "headwear": "[저작](사사 시대 선지자 맨머리 — 머리쓰개 언급 없음)",
+    "costume": "[추론] 삼상 28:14 「그가 겉옷을 입었나이다」 — 겉옷 차림 → 긴 모직 겉옷, 허리띠는 시대 복식 고증",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[추론] 삼상 12:2 「나는 늙어 머리가 희었고」 — 늙음 → 노년, 70대는 저작",
+    "card.beardVolume": "[저작](노년이라 긴 수염; 삼상 12:2 「머리가 희었고」는 머리털만 말함)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[추론] 삼상 1:11 「삭도를 그 머리에 대지 아니하겠나이다」 — 한나의 서원대로 평생 머리를 깎지 않음 → 긴 머리. 흰색은 삼상 12:2 「나는 늙어 머리가 희었고」",
+    "card.costumeColor": "[저작](색은 본문 밖 — 겉옷 차림만 삼상 28:14 「그가 겉옷을 입었나이다」)",
+    "face.faceShape": "[저작](얼굴 구분용)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[직접] 삼상 3:20 「사무엘은 여호와의 선지자로 세우심을 입은 줄을 알았더라」"
   },
   "plate": {
     "seed": 11,
@@ -63,5 +109,20 @@
     "approved": "승인",
     "approvedOn": "2026-09-04",
     "label": "a"
+  },
+  "canon_face": {
+    "engine": "z-image-turbo",
+    "seed": 11,
+    "views": [
+      "front",
+      "34"
+    ],
+    "file": "frozen/samuel.png",
+    "script": "scripts/canon/gen_face_canon.py",
+    "prompt": "gen_face_canon.prompt(id, view) — cast-vocab-2 카드·얼굴 층에서 파생",
+    "size": "768x768",
+    "task": 353,
+    "retired": "frozen/retired-v1/samuel.png",
+    "approved": "2026-10-16 사용자 「별차이 없어보인다」(후보 8개 구별 안 됨) → 기본값 첫 시드"
   }
 }

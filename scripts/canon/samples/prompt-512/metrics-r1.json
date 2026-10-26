@@ -1,0 +1,320 @@
+{
+ "prompts": {
+  "engedi": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. the inside of a huge, deep, dark cave with dark brown-black rock walls and a low dark rock ceiling filling most of the picture, with the cave mouth only a small bright opening far away at the right edge; the light from it lights only the two men while the rest of the cave stays in deep darkness, dry rocky floor, and the faint dim silhouettes of David's men barely visible far back in the deep darkness on the left. Most of the picture is deep brown-black shadow: the cave interior around and behind them is very dark, and only a soft pool of light from the distant cave mouth falls on the two men. Both figures face toward the right edge of the picture. On the left: an ancient Israelite man, a commander, in his 20s, lean angular face, close-trimmed dark beard, jawline visible, lean wiry shoulders, narrow waist, dark curls close to the skull, hair covering the whole head, no headwear, a dark wool tunic with a leather belt, a tense, hushed face with careful, intent eyes, creeping forward on his knees, one hand holding the hem of the king's cloak that lies on the ground, the other hand cutting it with a small knife, looking toward the king on the right. On the right: an ancient Israelite man, a king, in his 40s, deep forehead lines, close-trimmed dark beard, jawline visible, broad shoulders, thick barrel torso, short dark hair cut close, hair covering the whole head, no headwear, a dark wool cloak, the king's robe, its hem trailing on the ground still whole and being cut at one corner by the man to the left, no crown, an unsuspecting, unguarded face in profile, looking toward the cave mouth, hunched down on the cave floor, facing toward the cave mouth, not looking back, his long cloak trailing on the ground behind him, looking straight ahead toward the right edge of the picture. Saul crouches looking toward the cave mouth and does not look back; David creeps up on his knees from the left darkness, also facing right, and cuts the corner of the cloak trailing on the ground; their eyes do not meet. Daylight from the small cave mouth far on the right lights only these two men.",
+  "gilgal": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry open field at Gilgal with sparse dry grass, a joyful crowd of people returned from war in the middle ground with raised hands and a few carrying spears, a low pile of rough stones forming an altar with thin smoke rising on the ground in front, hazy low hills, bright pale sky. On the left: an ancient Israelite man, a prophet, in his 70s, deep wrinkles, long white beard to the chest, slight stooped narrow shoulders, long white hair falling to the shoulders, hair covering the whole head, no headwear, a long dark wool robe with a cloth belt, no crown, no staff, a solemn, gentle old face, standing beside Saul with both hands lowered, looking toward the tall king on the right. On the right: an ancient Israelite man, a king, in his 40s, deep forehead lines, tall of stature, close-trimmed dark beard, jawline visible, broad shoulders, thick barrel torso, short dark hair cut close, hair covering the whole head, no headwear, a plain dark wool tunic with a leather belt and a plain traveling cloak, no crown, no armor, a broad, joyful, deeply glad face, standing among the rejoicing people, one hand raised in gladness, a plain cloak folded over the other arm, looking straight out toward the crowd and the viewer. Saul stands among the rejoicing people with Samuel quietly beside him looking at him, a wide crowd of war-returned people behind them in the middle ground with raised hands and some carrying weapons, and a low stone altar with thin rising smoke on the ground in front.",
+  "ramah": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a small quiet dry courtyard at Ramah with simple packed-earth ground, a low rough stone wall and one plain mud-brick house behind, sparse dry grass, pale sky. On the left: an ancient Israelite man, a commander, in his 20s, lean angular face, close-trimmed dark beard, jawline visible, lean wiry shoulders, narrow waist, dark curls close to the skull, hair covering the whole head, no headwear, a dusty dark red wool tunic with a leather belt, a weary, urgent face of a man who has just fled, standing before Samuel, one open hand raised as he tells what happened, a sword hanging at his belt, looking toward the old prophet on the right, facing toward the right edge of the picture. On the right: an ancient Israelite man, a prophet, in his 70s, deep wrinkles, long white beard to the chest, slight stooped narrow shoulders, long white hair falling to the shoulders, hair covering the whole head, no headwear, a long dark brown wool robe with a cloth belt, no staff, a quiet, attentive old face, listening, standing facing David, one hand holding the edge of his robe, listening, looking toward the lean young man on the left, facing toward the left edge of the picture. David on the left speaks earnestly toward Samuel with one open hand, and Samuel on the right faces him and listens; the two men look at each other."
+ },
+ "tokens": {
+  "engedi": 503,
+  "gilgal": 363,
+  "ramah": 329
+ },
+ "done": {
+  "engedi": [
+   7,
+   11,
+   42,
+   23,
+   5,
+   101,
+   202,
+   303
+  ],
+  "gilgal": [
+   11,
+   42,
+   7,
+   23,
+   5,
+   101,
+   202,
+   303
+  ],
+  "ramah": [
+   11,
+   42,
+   7,
+   23,
+   5,
+   101,
+   202,
+   303
+  ]
+ },
+ "screens": {
+  "C-engedi": [
+   {
+    "n": 1,
+    "kind": "old",
+    "seed": 23
+   },
+   {
+    "n": 2,
+    "kind": "new",
+    "seed": 303
+   },
+   {
+    "n": 3,
+    "kind": "old",
+    "seed": 303
+   },
+   {
+    "n": 4,
+    "kind": "old",
+    "seed": 7
+   },
+   {
+    "n": 5,
+    "kind": "old",
+    "seed": 5
+   },
+   {
+    "n": 6,
+    "kind": "new",
+    "seed": 23
+   },
+   {
+    "n": 7,
+    "kind": "old",
+    "seed": 202
+   },
+   {
+    "n": 8,
+    "kind": "new",
+    "seed": 202
+   },
+   {
+    "n": 9,
+    "kind": "old",
+    "seed": 42
+   },
+   {
+    "n": 10,
+    "kind": "new",
+    "seed": 42
+   },
+   {
+    "n": 11,
+    "kind": "new",
+    "seed": 5
+   },
+   {
+    "n": 12,
+    "kind": "new",
+    "seed": 7
+   },
+   {
+    "n": 13,
+    "kind": "old",
+    "seed": 11
+   },
+   {
+    "n": 14,
+    "kind": "new",
+    "seed": 11
+   },
+   {
+    "n": 15,
+    "kind": "old",
+    "seed": 101
+   },
+   {
+    "n": 16,
+    "kind": "new",
+    "seed": 101
+   }
+  ],
+  "C-why-engedi": {
+   "screen_of": "C-engedi",
+   "keys": [
+    "style",
+    "dark",
+    "cloak",
+    "pose",
+    "etc"
+   ]
+  },
+  "C-gilgal": [
+   {
+    "n": 1,
+    "kind": "new",
+    "seed": 5
+   },
+   {
+    "n": 2,
+    "kind": "new",
+    "seed": 202
+   },
+   {
+    "n": 3,
+    "kind": "old",
+    "seed": 7
+   },
+   {
+    "n": 4,
+    "kind": "new",
+    "seed": 11
+   },
+   {
+    "n": 5,
+    "kind": "old",
+    "seed": 23
+   },
+   {
+    "n": 6,
+    "kind": "old",
+    "seed": 202
+   },
+   {
+    "n": 7,
+    "kind": "old",
+    "seed": 5
+   },
+   {
+    "n": 8,
+    "kind": "new",
+    "seed": 101
+   },
+   {
+    "n": 9,
+    "kind": "old",
+    "seed": 42
+   },
+   {
+    "n": 10,
+    "kind": "new",
+    "seed": 7
+   },
+   {
+    "n": 11,
+    "kind": "new",
+    "seed": 303
+   },
+   {
+    "n": 12,
+    "kind": "old",
+    "seed": 11
+   },
+   {
+    "n": 13,
+    "kind": "new",
+    "seed": 23
+   },
+   {
+    "n": 14,
+    "kind": "old",
+    "seed": 303
+   },
+   {
+    "n": 15,
+    "kind": "old",
+    "seed": 101
+   },
+   {
+    "n": 16,
+    "kind": "new",
+    "seed": 42
+   }
+  ],
+  "C-why-gilgal": {
+   "screen_of": "C-gilgal",
+   "keys": [
+    "style",
+    "meaning",
+    "pose",
+    "etc"
+   ]
+  },
+  "C-ramah": [
+   {
+    "n": 1,
+    "kind": "old",
+    "seed": 202
+   },
+   {
+    "n": 2,
+    "kind": "new",
+    "seed": 101
+   },
+   {
+    "n": 3,
+    "kind": "new",
+    "seed": 23
+   },
+   {
+    "n": 4,
+    "kind": "old",
+    "seed": 42
+   },
+   {
+    "n": 5,
+    "kind": "new",
+    "seed": 11
+   },
+   {
+    "n": 6,
+    "kind": "new",
+    "seed": 5
+   },
+   {
+    "n": 7,
+    "kind": "old",
+    "seed": 303
+   },
+   {
+    "n": 8,
+    "kind": "new",
+    "seed": 42
+   },
+   {
+    "n": 9,
+    "kind": "old",
+    "seed": 5
+   },
+   {
+    "n": 10,
+    "kind": "new",
+    "seed": 202
+   },
+   {
+    "n": 11,
+    "kind": "new",
+    "seed": 7
+   },
+   {
+    "n": 12,
+    "kind": "old",
+    "seed": 7
+   },
+   {
+    "n": 13,
+    "kind": "old",
+    "seed": 23
+   },
+   {
+    "n": 14,
+    "kind": "old",
+    "seed": 101
+   },
+   {
+    "n": 15,
+    "kind": "new",
+    "seed": 303
+   },
+   {
+    "n": 16,
+    "kind": "old",
+    "seed": 11
+   }
+  ],
+  "C-why-ramah": {
+   "screen_of": "C-ramah",
+   "keys": [
+    "style",
+    "meaning",
+    "pose",
+    "etc"
+   ]
+  }
+ }
+}

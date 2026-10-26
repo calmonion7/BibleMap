@@ -1,5 +1,5 @@
 {
-  "_format": "cast-vocab-1 — 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
   "id": "joab",
   "names": [
     "요압",
@@ -9,8 +9,9 @@
     "authored-david-gibeon-battle"
   ],
   "era": "an ancient Israelite",
-  "age": "young commander",
+  "age": "commander in his prime",
   "sex": "male",
+  "role": "commander",
   "hair": "close-cropped dark hair",
   "beard": "short dark beard",
   "headwear": "none",
@@ -23,7 +24,7 @@
   "propCandidates": [
     {
       "prop": "a sword",
-      "verse": "삼하 2:16",
+      "verse": "삼하 20:8",
       "ko": "칼"
     }
   ],
@@ -37,13 +38,59 @@
     "standing, full body, side view facing left",
     "standing, full body, facing right, sword drawn"
   ],
+  "card": {
+    "heightRel": "average",
+    "ageBand": {
+      "class": "prime",
+      "text": "in his 30s, weathered set face"
+    },
+    "beardVolume": {
+      "class": "full",
+      "text": "full dark beard squared at the jaw"
+    },
+    "silhouette": {
+      "class": "lean",
+      "text": "lean wiry shoulders, tight muscles"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, close-cropped dark hair"
+    },
+    "costumeColor": {
+      "class": "red",
+      "text": "deep red wool tunic, wide leather belt"
+    }
+  },
+  "face": {
+    "faceShape": "angular face, square jaw",
+    "eyes": "narrow dark eyes, sharp",
+    "nose": "hawk nose",
+    "mouth": "tight thin mouth",
+    "skin": "dark tanned skin",
+    "brows": "straight low brows",
+    "marks": "small scar on the chin"
+  },
   "_why": {
-    "age": "아브넬과 구분 — 삼하 2:13 요압은 다윗 편 지휘관, 나이·복식은 본문 밖 · 저작자 정함",
-    "build": "아브넬과 구분 — 삼하 2:13 요압은 다윗 편 지휘관, 나이·복식은 본문 밖 · 저작자 정함",
-    "hair": "아브넬과 구분 — 삼하 2:13 요압은 다윗 편 지휘관, 나이·복식은 본문 밖 · 저작자 정함",
-    "beard": "아브넬과 구분 — 삼하 2:13 요압은 다윗 편 지휘관, 나이·복식은 본문 밖 · 저작자 정함",
-    "headwear": "본문 밖 · 저작자 정함",
-    "costume": "아브넬과 구분 — 삼하 2:13 요압은 다윗 편 지휘관, 나이·복식은 본문 밖 · 저작자 정함"
+    "age": "[저작](아브넬과 구분용 젊은 지휘관; 삼하 2:13 「스루야의 아들 요압과 다윗의 신복들」은 소속만 말하고 나이는 말하지 않음) · 카드 ageBand 30대와 맞춤 — task 431",
+    "build": "[저작](아브넬과 구분용 마른 체격, 구절은 체격을 말하지 않음)",
+    "hair": "[저작](아브넬과 구분용 짧게 깎은 머리, 구절은 머리털을 말하지 않음)",
+    "beard": "[저작](아브넬과 구분용 짧은 수염, 구절은 수염을 말하지 않음)",
+    "headwear": "[저작](맨머리 군인 표현, 구절은 쓴 것을 말하지 않음)",
+    "costume": "[저작](삼하 20:8 「요압이 군복을 입고 띠를 띠고」는 군복과 띠만 받침, 붉은 모직 색과 샌들은 시대 복식 고증값)",
+    "card.heightRel": "[저작](역표 동석 인물과 구분용)",
+    "card.ageBand": "[저작](역표 동석 인물과 구분용)",
+    "card.beardVolume": "[저작](29명 전체 구별 — 다윗과 갈림(같은 정차지에 함께 나오진 않으나 카드에서 같은 인물로 읽힘))",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.headOutline": "[저작](역표 동석 인물과 구분용)",
+    "card.costumeColor": "[저작](삼하 20:8 「요압이 군복을 입고 띠를 띠고」는 군복 차림만 받침, 색은 정함)",
+    "face.faceShape": "[저작](얼굴 구분용)",
+    "face.eyes": "[저작](얼굴 구분용)",
+    "face.nose": "[저작](얼굴 구분용)",
+    "face.mouth": "[저작](얼굴 구분용)",
+    "face.skin": "[저작](얼굴 구분용)",
+    "face.brows": "[저작](얼굴 구분용)",
+    "face.marks": "[저작](얼굴 구분용)",
+    "role": "[직접] 삼하 8:16 「스루야의 아들 요압은 군대장관이 되고」"
   },
   "plate": {
     "seed": 23,

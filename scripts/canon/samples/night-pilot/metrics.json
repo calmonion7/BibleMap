@@ -1,0 +1,3414 @@
+{
+ "scenes": {
+  "authored-saul-gibeah-spear": {
+   "who": [
+    "saul",
+    "david"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s11.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s11-saul.png",
+      "david": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s11.png"
+     },
+     "boxes": {
+      "david": {
+       "head": [
+        224,
+        267,
+        325,
+        349
+       ],
+       "head_src": "owl",
+       "body": [
+        137,
+        152,
+        393,
+        612
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        849,
+        61,
+        963,
+        157
+       ],
+       "head_src": "owl",
+       "body": [
+        807,
+        0,
+        1053,
+        532
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/raw/s11-saul.png",
+       "who": "saul",
+       "seed": 11,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 687.6,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-gibeah-spear",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s11.png",
+       "side": "right",
+       "mask_box": [
+        792,
+        0,
+        1068,
+        564
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s11-saul.png",
+       "targeted": 15.8,
+       "diff_in": 29.67,
+       "diff_out": 13.87
+      },
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/raw/s11-david.png",
+       "who": "david",
+       "seed": 11,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 492.7,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-gibeah-spear",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s11-saul.png",
+       "side": "left",
+       "mask_box": [
+        122,
+        124,
+        408,
+        640
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s11.png",
+       "targeted": 2.06,
+       "diff_in": 18.7,
+       "diff_out": 16.64
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged.",
+      "david": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s42.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s42-saul.png",
+      "david": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s42.png"
+     },
+     "boxes": {
+      "david": {
+       "head": [
+        250,
+        279,
+        346,
+        357
+       ],
+       "head_src": "owl",
+       "body": [
+        177,
+        202,
+        400,
+        607
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        808,
+        73,
+        908,
+        157
+       ],
+       "head_src": "owl",
+       "body": [
+        768,
+        0,
+        996,
+        548
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/raw/s42-saul.png",
+       "who": "saul",
+       "seed": 42,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 646.8,
+       "peak_gb": 58.52,
+       "scene": "authored-saul-gibeah-spear",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s42.png",
+       "side": "right",
+       "mask_box": [
+        754,
+        0,
+        1010,
+        581
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s42-saul.png",
+       "targeted": 17.58,
+       "diff_in": 28.82,
+       "diff_out": 11.25
+      },
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/raw/s42-david.png",
+       "who": "david",
+       "seed": 42,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 489.8,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-gibeah-spear",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s42-saul.png",
+       "side": "left",
+       "mask_box": [
+        164,
+        178,
+        413,
+        631
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s42.png",
+       "targeted": 12.91,
+       "diff_in": 18.37,
+       "diff_out": 5.47
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged.",
+      "david": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s7.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s7-saul.png",
+      "david": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s7.png"
+     },
+     "boxes": {
+      "david": {
+       "head": [
+        245,
+        269,
+        342,
+        360
+       ],
+       "head_src": "owl",
+       "body": [
+        194,
+        178,
+        380,
+        608
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        771,
+        80,
+        879,
+        170
+       ],
+       "head_src": "owl",
+       "body": [
+        738,
+        0,
+        959,
+        550
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/raw/s7-saul.png",
+       "who": "saul",
+       "seed": 7,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 659.9,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-gibeah-spear",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s7.png",
+       "side": "right",
+       "mask_box": [
+        725,
+        0,
+        972,
+        583
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s7-saul.png",
+       "targeted": 12.39,
+       "diff_in": 23.83,
+       "diff_out": 11.44
+      },
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/raw/s7-david.png",
+       "who": "david",
+       "seed": 7,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 500.9,
+       "peak_gb": 58.52,
+       "scene": "authored-saul-gibeah-spear",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s7-saul.png",
+       "side": "left",
+       "mask_box": [
+        183,
+        152,
+        391,
+        634
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s7.png",
+       "targeted": 6.07,
+       "diff_in": 17.81,
+       "diff_out": 11.74
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged.",
+      "david": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s23.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s23-saul.png",
+      "david": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s23.png"
+     },
+     "boxes": {
+      "david": {
+       "head": [
+        224,
+        261,
+        329,
+        351
+       ],
+       "head_src": "owl",
+       "body": [
+        160,
+        140,
+        413,
+        615
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        817,
+        78,
+        936,
+        169
+       ],
+       "head_src": "owl",
+       "body": [
+        775,
+        0,
+        1015,
+        547
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/raw/s23-saul.png",
+       "who": "saul",
+       "seed": 23,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 498.8,
+       "peak_gb": 58.52,
+       "scene": "authored-saul-gibeah-spear",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s23.png",
+       "side": "right",
+       "mask_box": [
+        761,
+        0,
+        1029,
+        580
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s23-saul.png",
+       "targeted": 11.03,
+       "diff_in": 23.03,
+       "diff_out": 12.0
+      },
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/raw/s23-david.png",
+       "who": "david",
+       "seed": 23,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 471.8,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-gibeah-spear",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s23-saul.png",
+       "side": "left",
+       "mask_box": [
+        145,
+        112,
+        428,
+        640
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s23.png",
+       "targeted": 5.55,
+       "diff_in": 19.63,
+       "diff_out": 14.08
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged.",
+      "david": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s5.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s5-saul.png",
+      "david": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s5.png"
+     },
+     "boxes": {
+      "david": {
+       "head": [
+        220,
+        272,
+        317,
+        352
+       ],
+       "head_src": "owl",
+       "body": [
+        105,
+        192,
+        379,
+        611
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        838,
+        68,
+        941,
+        154
+       ],
+       "head_src": "owl",
+       "body": [
+        792,
+        0,
+        1033,
+        578
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/raw/s5-saul.png",
+       "who": "saul",
+       "seed": 5,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 486.2,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-gibeah-spear",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s5.png",
+       "side": "right",
+       "mask_box": [
+        778,
+        0,
+        1047,
+        613
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s5-saul.png",
+       "targeted": 16.24,
+       "diff_in": 27.67,
+       "diff_out": 11.43
+      },
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/raw/s5-david.png",
+       "who": "david",
+       "seed": 5,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 513.8,
+       "peak_gb": 58.52,
+       "scene": "authored-saul-gibeah-spear",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s5-saul.png",
+       "side": "left",
+       "mask_box": [
+        89,
+        167,
+        395,
+        636
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s5.png",
+       "targeted": 4.96,
+       "diff_in": 19.82,
+       "diff_out": 14.85
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged.",
+      "david": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s101.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s101-saul.png",
+      "david": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s101.png"
+     },
+     "boxes": {
+      "david": {
+       "head": [
+        219,
+        278,
+        314,
+        360
+       ],
+       "head_src": "owl",
+       "body": [
+        117,
+        170,
+        413,
+        617
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        851,
+        63,
+        964,
+        155
+       ],
+       "head_src": "owl",
+       "body": [
+        805,
+        0,
+        1041,
+        580
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/raw/s101-saul.png",
+       "who": "saul",
+       "seed": 101,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 634.8,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-gibeah-spear",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s101.png",
+       "side": "right",
+       "mask_box": [
+        791,
+        0,
+        1055,
+        615
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s101-saul.png",
+       "targeted": 8.76,
+       "diff_in": 21.39,
+       "diff_out": 12.63
+      },
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/raw/s101-david.png",
+       "who": "david",
+       "seed": 101,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 590.0,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-gibeah-spear",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s101-saul.png",
+       "side": "left",
+       "mask_box": [
+        99,
+        143,
+        431,
+        640
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s101.png",
+       "targeted": 6.63,
+       "diff_in": 19.36,
+       "diff_out": 12.74
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged.",
+      "david": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s202.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s202-saul.png",
+      "david": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s202.png"
+     },
+     "boxes": {
+      "david": {
+       "head": [
+        256,
+        270,
+        357,
+        353
+       ],
+       "head_src": "owl",
+       "body": [
+        136,
+        187,
+        412,
+        603
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        848,
+        61,
+        963,
+        160
+       ],
+       "head_src": "owl",
+       "body": [
+        822,
+        0,
+        1032,
+        553
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/raw/s202-saul.png",
+       "who": "saul",
+       "seed": 202,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 510.9,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-gibeah-spear",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s202.png",
+       "side": "right",
+       "mask_box": [
+        809,
+        0,
+        1045,
+        586
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s202-saul.png",
+       "targeted": 8.83,
+       "diff_in": 18.37,
+       "diff_out": 9.54
+      },
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/raw/s202-david.png",
+       "who": "david",
+       "seed": 202,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 518.5,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-gibeah-spear",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s202-saul.png",
+       "side": "left",
+       "mask_box": [
+        119,
+        162,
+        429,
+        628
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s202.png",
+       "targeted": 13.53,
+       "diff_in": 18.95,
+       "diff_out": 5.42
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged.",
+      "david": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s303.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s303-saul.png",
+      "david": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s303.png"
+     },
+     "boxes": {
+      "david": {
+       "head": [
+        244,
+        259,
+        346,
+        342
+       ],
+       "head_src": "owl",
+       "body": [
+        143,
+        145,
+        430,
+        606
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        833,
+        73,
+        952,
+        162
+       ],
+       "head_src": "owl",
+       "body": [
+        797,
+        0,
+        1036,
+        582
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/raw/s303-saul.png",
+       "who": "saul",
+       "seed": 303,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 649.8,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-gibeah-spear",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s303.png",
+       "side": "right",
+       "mask_box": [
+        783,
+        0,
+        1050,
+        617
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s303-saul.png",
+       "targeted": 15.43,
+       "diff_in": 27.95,
+       "diff_out": 12.52
+      },
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/raw/s303-david.png",
+       "who": "david",
+       "seed": 303,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 504.5,
+       "peak_gb": 58.52,
+       "scene": "authored-saul-gibeah-spear",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s303-saul.png",
+       "side": "left",
+       "mask_box": [
+        126,
+        117,
+        447,
+        634
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/edit/s303.png",
+       "targeted": 3.92,
+       "diff_in": 17.92,
+       "diff_out": 14.0
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged.",
+      "david": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    }
+   ],
+   "sec": {
+    "base": 493.9,
+    "edit": 8856.8
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a plain dim interior room, bare stone wall, simple floor mat. On the left: an ancient Israelite man, a commander, in his 20s, lean angular face, close-trimmed dark beard, jawline visible, lean wiry shoulders, narrow waist, dark curls close to the skull, hair covering the whole head, no headwear, in a dark wool tunic with a leather belt, sitting, gripping one small harp, playing, facing right. On the right: an ancient Israelite man, a king, in his 40s, deep forehead lines, tall of stature, close-trimmed dark beard, jawline visible, broad shoulders, thick barrel torso, short dark hair cut close, hair covering the whole head, no headwear, in a dark wool tunic with a leather belt, standing tall, gripping one spear upright, facing left.",
+   "items": {
+    "moment": {
+     "wrong": [
+      7,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "사울은 왕인데 옷차림이 왕같아야하지 않을까? 그리고 이장면은 창을 던지고 피하는 장면이 되는게 맞을것 깉은데 포인투를 잡아야지..."
+    },
+    "background[0]": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].identity": {
+     "wrong": [
+      11
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].prop": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].facing": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].identity": {
+     "wrong": [
+      5,
+      7,
+      11,
+      42,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "머리 곱슬표현이 달랐음"
+    },
+    "figures[1].pose": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].prop": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "큰 수금인것 같음"
+    },
+    "figures[1].facing": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "guard": {
+     "wrong": [],
+     "unsure": false,
+     "memo": "장면자체가 창돈지고 피하눈게 필요"
+    }
+   },
+   "pick": {
+    "answer": "s5 바탕",
+    "seed": 5,
+    "kind": "base",
+    "image": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gibeah-spear/base/s5.png"
+   },
+   "human_minutes": 7.11
+  },
+  "authored-saul-mizpah-chosen": {
+   "who": [
+    "saul"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s11.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/edit/s11.png"
+     },
+     "boxes": {
+      "samuel": {
+       "head": [
+        284,
+        131,
+        397,
+        288
+       ],
+       "head_src": "owl",
+       "body": [
+        207,
+        0,
+        447,
+        618
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        788,
+        84,
+        885,
+        170
+       ],
+       "head_src": "owl",
+       "body": [
+        753,
+        0,
+        984,
+        591
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/raw/s11-saul.png",
+       "who": "saul",
+       "seed": 11,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 616.8,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-mizpah-chosen",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s11.png",
+       "side": "right",
+       "mask_box": [
+        739,
+        0,
+        998,
+        626
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/edit/s11.png",
+       "targeted": 4.57,
+       "diff_in": 15.49,
+       "diff_out": 10.93
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s42.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/edit/s42.png"
+     },
+     "boxes": {
+      "samuel": {
+       "head": [
+        243,
+        134,
+        351,
+        257
+       ],
+       "head_src": "owl",
+       "body": [
+        137,
+        10,
+        382,
+        630
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        826,
+        100,
+        922,
+        197
+       ],
+       "head_src": "owl",
+       "body": [
+        804,
+        4,
+        1011,
+        610
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/raw/s42-saul.png",
+       "who": "saul",
+       "seed": 42,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 493.7,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-mizpah-chosen",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s42.png",
+       "side": "right",
+       "mask_box": [
+        792,
+        0,
+        1023,
+        640
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/edit/s42.png",
+       "targeted": 7.85,
+       "diff_in": 21.26,
+       "diff_out": 13.4
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s7.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/edit/s7.png"
+     },
+     "boxes": {
+      "samuel": {
+       "head": [
+        232,
+        143,
+        339,
+        275
+       ],
+       "head_src": "owl",
+       "body": [
+        169,
+        11,
+        391,
+        613
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        822,
+        108,
+        913,
+        194
+       ],
+       "head_src": "owl",
+       "body": [
+        761,
+        22,
+        996,
+        593
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/raw/s7-saul.png",
+       "who": "saul",
+       "seed": 7,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 659.1,
+       "peak_gb": 58.52,
+       "scene": "authored-saul-mizpah-chosen",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s7.png",
+       "side": "right",
+       "mask_box": [
+        747,
+        0,
+        1010,
+        627
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/edit/s7.png",
+       "targeted": 9.5,
+       "diff_in": 21.94,
+       "diff_out": 12.43
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s23.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/edit/s23.png"
+     },
+     "boxes": {
+      "samuel": {
+       "head": [
+        260,
+        148,
+        372,
+        289
+       ],
+       "head_src": "owl",
+       "body": [
+        164,
+        8,
+        426,
+        626
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        849,
+        106,
+        941,
+        190
+       ],
+       "head_src": "owl",
+       "body": [
+        816,
+        22,
+        1024,
+        598
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/raw/s23-saul.png",
+       "who": "saul",
+       "seed": 23,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 497.6,
+       "peak_gb": 58.52,
+       "scene": "authored-saul-mizpah-chosen",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s23.png",
+       "side": "right",
+       "mask_box": [
+        804,
+        0,
+        1036,
+        633
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/edit/s23.png",
+       "targeted": 12.07,
+       "diff_in": 23.27,
+       "diff_out": 11.19
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s5.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/edit/s5.png"
+     },
+     "boxes": {
+      "samuel": {
+       "head": [
+        256,
+        158,
+        361,
+        288
+       ],
+       "head_src": "owl",
+       "body": [
+        178,
+        28,
+        404,
+        616
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        811,
+        88,
+        909,
+        180
+       ],
+       "head_src": "owl",
+       "body": [
+        779,
+        0,
+        1002,
+        600
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/raw/s5-saul.png",
+       "who": "saul",
+       "seed": 5,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 555.0,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-mizpah-chosen",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s5.png",
+       "side": "right",
+       "mask_box": [
+        766,
+        0,
+        1015,
+        636
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/edit/s5.png",
+       "targeted": 11.1,
+       "diff_in": 24.95,
+       "diff_out": 13.85
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s101.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/edit/s101.png"
+     },
+     "boxes": {
+      "samuel": {
+       "head": [
+        217,
+        166,
+        319,
+        289
+       ],
+       "head_src": "owl",
+       "body": [
+        136,
+        42,
+        344,
+        637
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        803,
+        87,
+        913,
+        198
+       ],
+       "head_src": "owl",
+       "body": [
+        788,
+        0,
+        1070,
+        637
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/raw/s101-saul.png",
+       "who": "saul",
+       "seed": 101,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 484.8,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-mizpah-chosen",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s101.png",
+       "side": "right",
+       "mask_box": [
+        771,
+        0,
+        1087,
+        640
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/edit/s101.png",
+       "targeted": 12.85,
+       "diff_in": 25.05,
+       "diff_out": 12.21
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s202.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/edit/s202.png"
+     },
+     "boxes": {
+      "samuel": {
+       "head": [
+        293,
+        147,
+        398,
+        259
+       ],
+       "head_src": "owl",
+       "body": [
+        214,
+        35,
+        432,
+        612
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        851,
+        91,
+        932,
+        188
+       ],
+       "head_src": "owl",
+       "body": [
+        843,
+        0,
+        1030,
+        617
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/raw/s202-saul.png",
+       "who": "saul",
+       "seed": 202,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 481.5,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-mizpah-chosen",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s202.png",
+       "side": "right",
+       "mask_box": [
+        832,
+        0,
+        1041,
+        640
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/edit/s202.png",
+       "targeted": 12.3,
+       "diff_in": 24.52,
+       "diff_out": 12.22
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s303.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/edit/s303.png"
+     },
+     "boxes": {
+      "samuel": {
+       "head": [
+        278,
+        158,
+        393,
+        293
+       ],
+       "head_src": "owl",
+       "body": [
+        204,
+        24,
+        440,
+        619
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        827,
+        81,
+        920,
+        174
+       ],
+       "head_src": "owl",
+       "body": [
+        790,
+        0,
+        1004,
+        619
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/raw/s303-saul.png",
+       "who": "saul",
+       "seed": 303,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 654.9,
+       "peak_gb": 58.52,
+       "scene": "authored-saul-mizpah-chosen",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s303.png",
+       "side": "right",
+       "mask_box": [
+        777,
+        0,
+        1017,
+        640
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/edit/s303.png",
+       "targeted": 14.0,
+       "diff_in": 25.16,
+       "diff_out": 11.15
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    }
+   ],
+   "sec": {
+    "base": 491.3,
+    "edit": 4443.4
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry open assembly ground, sparse dry grass, hazy low hills far behind, empty pale sky. a loose distant crowd of tiny people standing in scattered groups, tiny far away figures, no weapons. On the left: an ancient Israelite man, a prophet, in his 70s, deep wrinkles, long white beard to the chest, slight stooped narrow shoulders, long white hair falling to the shoulders, hair covering the whole head, no headwear, in a long dark wool robe with a cloth belt, standing tall, gripping one robe corner, one arm raised, facing right. On the right: an ancient Israelite man, a king, in his 40s, deep forehead lines, tall of stature, close-trimmed dark beard, jawline visible, broad shoulders, thick barrel torso, short dark hair cut close, hair covering the whole head, no headwear, in a dark wool tunic with a leather belt, standing tall among a crowd, holding one plain cloak folded over one arm, facing left.",
+   "items": {
+    "moment": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "background[0]": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "crowds": {
+     "wrong": [
+      5,
+      42,
+      101,
+      202
+     ],
+     "unsure": false,
+     "memo": "사람이 잘리고나 다른방향을 보고 있음"
+    },
+    "figures[0].identity": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].prop": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].facing": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].identity": {
+     "wrong": [
+      5,
+      101,
+      202
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].pose": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].prop": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].facing": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "guard": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "s7 바탕",
+    "seed": 7,
+    "kind": "base",
+    "image": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s7.png"
+   },
+   "human_minutes": 3.44
+  },
+  "authored-saul-michmash-battle": {
+   "who": [
+    "saul"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s11.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/edit/s11.png"
+     },
+     "boxes": {
+      "samuel": {
+       "head": [
+        369,
+        149,
+        476,
+        274
+       ],
+       "head_src": "owl",
+       "body": [
+        294,
+        23,
+        476,
+        595
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        925,
+        81,
+        1018,
+        164
+       ],
+       "head_src": "owl",
+       "body": [
+        857,
+        0,
+        1125,
+        574
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/raw/s11-saul.png",
+       "who": "saul",
+       "seed": 11,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 654.0,
+       "peak_gb": 58.52,
+       "scene": "authored-saul-michmash-battle",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s11.png",
+       "side": "right",
+       "mask_box": [
+        841,
+        0,
+        1141,
+        608
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/edit/s11.png",
+       "targeted": 5.2,
+       "diff_in": 17.6,
+       "diff_out": 12.4
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s42.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/edit/s42.png"
+     },
+     "boxes": {
+      "samuel": {
+       "head": [
+        242,
+        131,
+        350,
+        251
+       ],
+       "head_src": "owl",
+       "body": [
+        168,
+        11,
+        341,
+        599
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        843,
+        87,
+        931,
+        173
+       ],
+       "head_src": "owl",
+       "body": [
+        782,
+        1,
+        1010,
+        560
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/raw/s42-saul.png",
+       "who": "saul",
+       "seed": 42,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 532.4,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-michmash-battle",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s42.png",
+       "side": "right",
+       "mask_box": [
+        768,
+        0,
+        1024,
+        594
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/edit/s42.png",
+       "targeted": 15.95,
+       "diff_in": 29.56,
+       "diff_out": 13.61
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s7.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/edit/s7.png"
+     },
+     "boxes": {
+      "samuel": {
+       "head": [
+        273,
+        152,
+        384,
+        307
+       ],
+       "head_src": "owl",
+       "body": [
+        172,
+        0,
+        364,
+        599
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        915,
+        80,
+        1012,
+        165
+       ],
+       "head_src": "owl",
+       "body": [
+        865,
+        0,
+        1112,
+        554
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/raw/s7-saul.png",
+       "who": "saul",
+       "seed": 7,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 505.4,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-michmash-battle",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s7.png",
+       "side": "right",
+       "mask_box": [
+        850,
+        0,
+        1127,
+        587
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/edit/s7.png",
+       "targeted": 11.73,
+       "diff_in": 24.5,
+       "diff_out": 12.77
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s23.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/edit/s23.png"
+     },
+     "boxes": {
+      "samuel": {
+       "head": [
+        269,
+        160,
+        374,
+        296
+       ],
+       "head_src": "owl",
+       "body": [
+        166,
+        24,
+        360,
+        617
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        851,
+        104,
+        943,
+        181
+       ],
+       "head_src": "owl",
+       "body": [
+        798,
+        28,
+        1041,
+        590
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/raw/s23-saul.png",
+       "who": "saul",
+       "seed": 23,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 493.2,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-michmash-battle",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s23.png",
+       "side": "right",
+       "mask_box": [
+        783,
+        0,
+        1056,
+        624
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/edit/s23.png",
+       "targeted": 11.21,
+       "diff_in": 23.83,
+       "diff_out": 12.62
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s5.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/edit/s5.png"
+     },
+     "boxes": {
+      "samuel": {
+       "head": [
+        204,
+        159,
+        309,
+        289
+       ],
+       "head_src": "owl",
+       "body": [
+        114,
+        29,
+        299,
+        603
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        930,
+        88,
+        1018,
+        165
+       ],
+       "head_src": "owl",
+       "body": [
+        884,
+        12,
+        1120,
+        569
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/raw/s5-saul.png",
+       "who": "saul",
+       "seed": 5,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 513.1,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-michmash-battle",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s5.png",
+       "side": "right",
+       "mask_box": [
+        870,
+        0,
+        1134,
+        602
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/edit/s5.png",
+       "targeted": 18.31,
+       "diff_in": 28.82,
+       "diff_out": 10.51
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s101.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/edit/s101.png"
+     },
+     "boxes": {
+      "samuel": {
+       "head": [
+        220,
+        162,
+        322,
+        284
+       ],
+       "head_src": "owl",
+       "body": [
+        131,
+        40,
+        311,
+        615
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        907,
+        74,
+        1005,
+        163
+       ],
+       "head_src": "owl",
+       "body": [
+        857,
+        0,
+        1094,
+        605
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/raw/s101-saul.png",
+       "who": "saul",
+       "seed": 101,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 495.0,
+       "peak_gb": 58.52,
+       "scene": "authored-saul-michmash-battle",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s101.png",
+       "side": "right",
+       "mask_box": [
+        843,
+        0,
+        1108,
+        640
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/edit/s101.png",
+       "targeted": 13.05,
+       "diff_in": 24.15,
+       "diff_out": 11.11
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s202.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/edit/s202.png"
+     },
+     "boxes": {
+      "samuel": {
+       "head": [
+        320,
+        139,
+        428,
+        285
+       ],
+       "head_src": "owl",
+       "body": [
+        242,
+        0,
+        425,
+        579
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        861,
+        88,
+        951,
+        170
+       ],
+       "head_src": "owl",
+       "body": [
+        815,
+        6,
+        1034,
+        570
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/raw/s202-saul.png",
+       "who": "saul",
+       "seed": 202,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 495.1,
+       "peak_gb": 58.52,
+       "scene": "authored-saul-michmash-battle",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s202.png",
+       "side": "right",
+       "mask_box": [
+        802,
+        0,
+        1047,
+        604
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/edit/s202.png",
+       "targeted": 13.78,
+       "diff_in": 25.11,
+       "diff_out": 11.33
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s303.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/edit/s303.png"
+     },
+     "boxes": {
+      "samuel": {
+       "head": [
+        273,
+        173,
+        374,
+        303
+       ],
+       "head_src": "owl",
+       "body": [
+        199,
+        43,
+        369,
+        603
+       ],
+       "body_src": "owl"
+      },
+      "saul": {
+       "head": [
+        887,
+        78,
+        994,
+        167
+       ],
+       "head_src": "owl",
+       "body": [
+        844,
+        0,
+        1110,
+        613
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/raw/s303-saul.png",
+       "who": "saul",
+       "seed": 303,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 510.9,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-michmash-battle",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s303.png",
+       "side": "right",
+       "mask_box": [
+        828,
+        0,
+        1126,
+        640
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/edit/s303.png",
+       "targeted": 20.85,
+       "diff_in": 34.41,
+       "diff_out": 13.56
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the right in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    }
+   ],
+   "sec": {
+    "base": 492.4,
+    "edit": 4199.1
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry open field, sparse dry grass, hazy low hills far behind, pale sky. a low pile of rough stones with thin smoke rising from a burnt offering. a thin scattered crowd of tiny distant people drifting apart, loose groups, no weapons. On the left: an ancient Israelite man, a prophet, in his 70s, deep wrinkles, long white beard to the chest, slight stooped narrow shoulders, long white hair falling to the shoulders, hair covering the whole head, no headwear, in a long dark wool robe with a cloth belt, standing tall, gripping one robe corner, walking forward, facing right. On the right: an ancient Israelite man, a king, in his 40s, deep forehead lines, tall of stature, close-trimmed dark beard, jawline visible, broad shoulders, thick barrel torso, short dark hair cut close, hair covering the whole head, no headwear, in a dark wool tunic with a leather belt, standing tall, holding one plain cloak folded over one arm, facing left.",
+   "items": {
+    "moment": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "background[0]": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "background[1]": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "crowds": {
+     "wrong": [
+      5,
+      23,
+      101
+     ],
+     "unsure": false,
+     "memo": "줄지어 있음"
+    },
+    "figures[0].identity": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].prop": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].facing": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].identity": {
+     "wrong": [
+      11,
+      23,
+      202
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].pose": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].prop": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].facing": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "guard": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "s202 바탕",
+    "seed": 202,
+    "kind": "base",
+    "image": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s202.png"
+   },
+   "human_minutes": 5.23
+  },
+  "authored-saul-gilgal-amalek": {
+   "who": [
+    "saul"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/base/s11.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/edit/s11.png"
+     },
+     "boxes": {
+      "saul": {
+       "head": [
+        361,
+        70,
+        451,
+        148
+       ],
+       "head_src": "owl",
+       "body": [
+        267,
+        0,
+        542,
+        582
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        932,
+        156,
+        1056,
+        275
+       ],
+       "head_src": "owl",
+       "body": [
+        894,
+        37,
+        1106,
+        578
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/raw/s11-saul.png",
+       "who": "saul",
+       "seed": 11,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 670.7,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-gilgal-amalek",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/base/s11.png",
+       "side": "left",
+       "mask_box": [
+        250,
+        0,
+        558,
+        617
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/edit/s11.png",
+       "targeted": 0.15,
+       "diff_in": 17.36,
+       "diff_out": 17.21
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/base/s42.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/edit/s42.png"
+     },
+     "boxes": {
+      "saul": {
+       "head": [
+        274,
+        38,
+        369,
+        126
+       ],
+       "head_src": "owl",
+       "body": [
+        172,
+        0,
+        487,
+        581
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        792,
+        133,
+        877,
+        243
+       ],
+       "head_src": "owl",
+       "body": [
+        743,
+        24,
+        968,
+        622
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/raw/s42-saul.png",
+       "who": "saul",
+       "seed": 42,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 503.4,
+       "peak_gb": 58.52,
+       "scene": "authored-saul-gilgal-amalek",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/base/s42.png",
+       "side": "left",
+       "mask_box": [
+        153,
+        0,
+        506,
+        616
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/edit/s42.png",
+       "targeted": -2.22,
+       "diff_in": 12.94,
+       "diff_out": 15.16
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/base/s7.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/edit/s7.png"
+     },
+     "boxes": {
+      "saul": {
+       "head": [
+        235,
+        68,
+        326,
+        158
+       ],
+       "head_src": "owl",
+       "body": [
+        137,
+        0,
+        449,
+        579
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        667,
+        153,
+        754,
+        256
+       ],
+       "head_src": "owl",
+       "body": [
+        642,
+        49,
+        856,
+        610
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/raw/s7-saul.png",
+       "who": "saul",
+       "seed": 7,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 537.2,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-gilgal-amalek",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/base/s7.png",
+       "side": "left",
+       "mask_box": [
+        118,
+        0,
+        468,
+        614
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/edit/s7.png",
+       "targeted": 2.27,
+       "diff_in": 19.32,
+       "diff_out": 17.05
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/base/s23.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/edit/s23.png"
+     },
+     "boxes": {
+      "saul": {
+       "head": [
+        320,
+        83,
+        409,
+        164
+       ],
+       "head_src": "owl",
+       "body": [
+        226,
+        2,
+        516,
+        545
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        770,
+        143,
+        855,
+        251
+       ],
+       "head_src": "owl",
+       "body": [
+        741,
+        36,
+        954,
+        608
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/raw/s23-saul.png",
+       "who": "saul",
+       "seed": 23,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 653.8,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-gilgal-amalek",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/base/s23.png",
+       "side": "left",
+       "mask_box": [
+        209,
+        0,
+        533,
+        578
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/edit/s23.png",
+       "targeted": 3.7,
+       "diff_in": 18.63,
+       "diff_out": 14.93
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/base/s5.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/edit/s5.png"
+     },
+     "boxes": {
+      "saul": {
+       "head": [
+        244,
+        56,
+        341,
+        147
+       ],
+       "head_src": "owl",
+       "body": [
+        128,
+        0,
+        475,
+        596
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        724,
+        161,
+        815,
+        270
+       ],
+       "head_src": "owl",
+       "body": [
+        694,
+        51,
+        893,
+        613
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/raw/s5-saul.png",
+       "who": "saul",
+       "seed": 5,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 504.9,
+       "peak_gb": 58.52,
+       "scene": "authored-saul-gilgal-amalek",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/base/s5.png",
+       "side": "left",
+       "mask_box": [
+        107,
+        0,
+        496,
+        632
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/edit/s5.png",
+       "targeted": 4.07,
+       "diff_in": 20.18,
+       "diff_out": 16.11
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/base/s101.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/edit/s101.png"
+     },
+     "boxes": {
+      "saul": {
+       "head": [
+        233,
+        66,
+        329,
+        156
+       ],
+       "head_src": "owl",
+       "body": [
+        133,
+        0,
+        441,
+        586
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        892,
+        168,
+        995,
+        282
+       ],
+       "head_src": "owl",
+       "body": [
+        831,
+        54,
+        1066,
+        616
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/raw/s101-saul.png",
+       "who": "saul",
+       "seed": 101,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 496.6,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-gilgal-amalek",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/base/s101.png",
+       "side": "left",
+       "mask_box": [
+        115,
+        0,
+        459,
+        621
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/edit/s101.png",
+       "targeted": 3.88,
+       "diff_in": 17.69,
+       "diff_out": 13.81
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/base/s202.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/edit/s202.png"
+     },
+     "boxes": {
+      "saul": {
+       "head": [
+        255,
+        59,
+        348,
+        145
+       ],
+       "head_src": "owl",
+       "body": [
+        160,
+        0,
+        381,
+        548
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        834,
+        126,
+        926,
+        230
+       ],
+       "head_src": "owl",
+       "body": [
+        814,
+        23,
+        1041,
+        595
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/raw/s202-saul.png",
+       "who": "saul",
+       "seed": 202,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 487.7,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-gilgal-amalek",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/base/s202.png",
+       "side": "left",
+       "mask_box": [
+        147,
+        0,
+        394,
+        581
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/edit/s202.png",
+       "targeted": 6.2,
+       "diff_in": 18.23,
+       "diff_out": 12.03
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/base/s303.png",
+     "edits": {
+      "saul": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/edit/s303.png"
+     },
+     "boxes": {
+      "saul": {
+       "head": [
+        286,
+        54,
+        391,
+        156
+       ],
+       "head_src": "owl",
+       "body": [
+        192,
+        0,
+        436,
+        599
+       ],
+       "body_src": "owl"
+      },
+      "samuel": {
+       "head": [
+        891,
+        115,
+        1005,
+        267
+       ],
+       "head_src": "owl",
+       "body": [
+        827,
+        0,
+        1085,
+        622
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/raw/s303-saul.png",
+       "who": "saul",
+       "seed": 303,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 646.9,
+       "peak_gb": 58.51,
+       "scene": "authored-saul-gilgal-amalek",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/base/s303.png",
+       "side": "left",
+       "mask_box": [
+        177,
+        0,
+        451,
+        635
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-gilgal-amalek/edit/s303.png",
+       "targeted": 9.2,
+       "diff_in": 23.88,
+       "diff_out": 14.67
+      }
+     ],
+     "prompts": {
+      "saul": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    }
+   ],
+   "sec": {
+    "base": 494.0,
+    "edit": 4501.2
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a wide dry open field, sparse dry grass, hazy low hills far behind, pale sky. On the left: an ancient Israelite man, a king, in his 40s, deep forehead lines, tall of stature, close-trimmed dark beard, jawline visible, broad shoulders, thick barrel torso, short dark hair cut close, hair covering the whole head, no headwear, in a dark wool tunic with a leather belt, standing tall, reaching one hand forward, gripping one torn strip of cloth, facing right. On the right: an ancient Israelite man, a prophet, in his 70s, deep wrinkles, long white beard to the chest, slight stooped narrow shoulders, long white hair falling to the shoulders, hair covering the whole head, no headwear, in a long dark wool robe with a cloth belt, standing tall, gripping one wooden staff upright, walking away, facing right. an ancient Israelite man, a king, tall king, in a dark wool tunic with a leather belt reaching out, gripping the torn robe corner of an ancient Israelite man, a prophet, old prophet, in a long dark wool robe with a cloth belt, who turns away with one wooden staff.",
+   "items": {
+    "moment": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "겉옷자락을 찌는 장면이 아님"
+    },
+    "background[0]": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].identity": {
+     "wrong": [
+      5,
+      42,
+      303
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "사울과 붙어서 옷을 찢어야함"
+    },
+    "figures[0].prop": {
+     "wrong": [
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].facing": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].identity": {
+     "wrong": [
+      11,
+      42,
+      303
+     ],
+     "unsure": false,
+     "memo": "대머리 아님"
+    },
+    "figures[1].pose": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "머주보고 있음 ,두명이 있는 그림도 있음"
+    },
+    "figures[1].prop": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[1].facing": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "왼쪽을 바라봄"
+    },
+    "guard": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "없음",
+    "seed": null,
+    "kind": null,
+    "memo": "옷자락을 찢는 장면이 아님"
+   },
+   "human_minutes": 4.2
+  },
+  "authored-samuel-ramah-death": {
+   "who": [
+    "david"
+   ],
+   "seeds": [
+    {
+     "seed": 11,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/base/s11.png",
+     "edits": {
+      "david": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/edit/s11.png"
+     },
+     "boxes": {
+      "david": {
+       "head": [
+        221,
+        173,
+        284,
+        232
+       ],
+       "head_src": "owl",
+       "body": [
+        169,
+        114,
+        284,
+        445
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/raw/s11-david.png",
+       "who": "david",
+       "seed": 11,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 666.9,
+       "peak_gb": 58.52,
+       "scene": "authored-samuel-ramah-death",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/base/s11.png",
+       "side": "left",
+       "mask_box": [
+        162,
+        94,
+        291,
+        465
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/edit/s11.png",
+       "targeted": 14.77,
+       "diff_in": 30.8,
+       "diff_out": 16.03
+      }
+     ],
+     "prompts": {
+      "david": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 42,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/base/s42.png",
+     "edits": {
+      "david": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/edit/s42.png"
+     },
+     "boxes": {
+      "david": {
+       "head": [
+        240,
+        122,
+        316,
+        203
+       ],
+       "head_src": "owl",
+       "body": [
+        172,
+        41,
+        305,
+        450
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/raw/s42-david.png",
+       "who": "david",
+       "seed": 42,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 502.4,
+       "peak_gb": 58.51,
+       "scene": "authored-samuel-ramah-death",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/base/s42.png",
+       "side": "left",
+       "mask_box": [
+        164,
+        16,
+        313,
+        475
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/edit/s42.png",
+       "targeted": 11.8,
+       "diff_in": 27.61,
+       "diff_out": 15.81
+      }
+     ],
+     "prompts": {
+      "david": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 7,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/base/s7.png",
+     "edits": {
+      "david": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/edit/s7.png"
+     },
+     "boxes": {
+      "david": {
+       "head": [
+        266,
+        193,
+        321,
+        251
+       ],
+       "head_src": "owl",
+       "body": [
+        203,
+        134,
+        322,
+        462
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/raw/s7-david.png",
+       "who": "david",
+       "seed": 7,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 520.3,
+       "peak_gb": 58.51,
+       "scene": "authored-samuel-ramah-death",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/base/s7.png",
+       "side": "left",
+       "mask_box": [
+        196,
+        114,
+        329,
+        482
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/edit/s7.png",
+       "targeted": 22.49,
+       "diff_in": 37.34,
+       "diff_out": 14.85
+      }
+     ],
+     "prompts": {
+      "david": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 23,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/base/s23.png",
+     "edits": {
+      "david": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/edit/s23.png"
+     },
+     "boxes": {
+      "david": {
+       "head": [
+        305,
+        190,
+        361,
+        250
+       ],
+       "head_src": "owl",
+       "body": [
+        243,
+        129,
+        359,
+        455
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/raw/s23-david.png",
+       "who": "david",
+       "seed": 23,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 594.5,
+       "peak_gb": 58.51,
+       "scene": "authored-samuel-ramah-death",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/base/s23.png",
+       "side": "left",
+       "mask_box": [
+        236,
+        109,
+        366,
+        475
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/edit/s23.png",
+       "targeted": 13.85,
+       "diff_in": 29.46,
+       "diff_out": 15.61
+      }
+     ],
+     "prompts": {
+      "david": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 5,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/base/s5.png",
+     "edits": {
+      "david": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/edit/s5.png"
+     },
+     "boxes": {
+      "david": {
+       "head": [
+        216,
+        191,
+        276,
+        252
+       ],
+       "head_src": "owl",
+       "body": [
+        152,
+        129,
+        279,
+        461
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/raw/s5-david.png",
+       "who": "david",
+       "seed": 5,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 515.5,
+       "peak_gb": 58.51,
+       "scene": "authored-samuel-ramah-death",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/base/s5.png",
+       "side": "left",
+       "mask_box": [
+        144,
+        109,
+        287,
+        481
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/edit/s5.png",
+       "targeted": 13.2,
+       "diff_in": 27.22,
+       "diff_out": 14.03
+      }
+     ],
+     "prompts": {
+      "david": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 101,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/base/s101.png",
+     "edits": {
+      "david": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/edit/s101.png"
+     },
+     "boxes": {
+      "david": {
+       "head": [
+        236,
+        181,
+        296,
+        239
+       ],
+       "head_src": "owl",
+       "body": [
+        177,
+        122,
+        295,
+        458
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/raw/s101-david.png",
+       "who": "david",
+       "seed": 101,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 504.6,
+       "peak_gb": 58.51,
+       "scene": "authored-samuel-ramah-death",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/base/s101.png",
+       "side": "left",
+       "mask_box": [
+        170,
+        102,
+        302,
+        478
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/edit/s101.png",
+       "targeted": 17.99,
+       "diff_in": 35.35,
+       "diff_out": 17.35
+      }
+     ],
+     "prompts": {
+      "david": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 202,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/base/s202.png",
+     "edits": {
+      "david": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/edit/s202.png"
+     },
+     "boxes": {
+      "david": {
+       "head": [
+        287,
+        181,
+        345,
+        238
+       ],
+       "head_src": "owl",
+       "body": [
+        233,
+        123,
+        346,
+        442
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/raw/s202-david.png",
+       "who": "david",
+       "seed": 202,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 665.7,
+       "peak_gb": 58.52,
+       "scene": "authored-samuel-ramah-death",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/base/s202.png",
+       "side": "left",
+       "mask_box": [
+        226,
+        104,
+        353,
+        461
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/edit/s202.png",
+       "targeted": 15.21,
+       "diff_in": 26.54,
+       "diff_out": 11.33
+      }
+     ],
+     "prompts": {
+      "david": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    },
+    {
+     "seed": 303,
+     "base": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/base/s303.png",
+     "edits": {
+      "david": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/edit/s303.png"
+     },
+     "boxes": {
+      "david": {
+       "head": [
+        244,
+        208,
+        288,
+        260
+       ],
+       "head_src": "owl",
+       "body": [
+        187,
+        156,
+        291,
+        450
+       ],
+       "body_src": "owl"
+      }
+     },
+     "log": [
+      {
+       "raw": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/raw/s303-david.png",
+       "who": "david",
+       "seed": 303,
+       "quantize": 8,
+       "model": "qwen-image-edit-2511",
+       "status": "ok",
+       "sec": 496.1,
+       "peak_gb": 58.52,
+       "scene": "authored-samuel-ramah-death",
+       "src": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/base/s303.png",
+       "side": "left",
+       "mask_box": [
+        181,
+        138,
+        297,
+        468
+       ],
+       "resized": false,
+       "out": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-samuel-ramah-death/edit/s303.png",
+       "targeted": 7.01,
+       "diff_in": 21.57,
+       "diff_out": 14.56
+      }
+     ],
+     "prompts": {
+      "david": "Change the man on the left in image 1 into the man shown in image 2 and image 3: an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build, in a dark wool tunic with a leather belt. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged."
+     }
+    }
+   ],
+   "sec": {
+    "base": 485.5,
+    "edit": 4466.0
+   },
+   "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a dry hillside town outskirts of pale packed earth, sparse dry grass, a low burial mound of piled stones, pale sky. a low mound of piled pale stones marking a grave, dry earth around it. a dense distant crowd of tiny mourning figures gathered near a grave mound, small and far away. On the left: an ancient Israelite man, a commander, in his 20s, lean angular face, close-trimmed dark beard, jawline visible, lean wiry shoulders, narrow waist, dark curls close to the skull, hair covering the whole head, no headwear, in a dark wool tunic with a leather belt, walking away, body turned from the crowd, gripping a sword at his side, facing left.",
+   "items": {
+    "moment": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "무리를 뒤로한다는데 마주보고 있음"
+    },
+    "background[0]": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "background[1]": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "crowds": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].identity": {
+     "wrong": [
+      7,
+      303
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].pose": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      303
+     ],
+     "unsure": false,
+     "memo": "칼잡는 위치 손잡이를 잡아야하는데 칼날을 잡음, 칼이 제대로 표현 안된것도 있음"
+    },
+    "figures[0].prop": {
+     "wrong": [
+      5,
+      7,
+      23,
+      101
+     ],
+     "unsure": false,
+     "memo": ""
+    },
+    "figures[0].facing": {
+     "wrong": [
+      5,
+      7,
+      11,
+      23,
+      42,
+      101,
+      202,
+      303
+     ],
+     "unsure": false,
+     "memo": "어른쪽을 향한.ㄴ데?"
+    },
+    "guard": {
+     "wrong": [],
+     "unsure": false,
+     "memo": ""
+    }
+   },
+   "pick": {
+    "answer": "없음",
+    "seed": null,
+    "kind": null,
+    "memo": "다윗의 방향성이 틀림"
+   },
+   "human_minutes": 93.1
+  }
+ },
+ "runs": [
+  {
+   "start": 1792337078.549406,
+   "last": 1792364972.188761,
+   "end": 1792364972.18876
+  }
+ ],
+ "restarts": 0,
+ "trial": {
+  "scene": "authored-saul-gibeah-spear",
+  "seed": 11,
+  "sec": 1274.8
+ },
+ "unattended": true,
+ "wall_seconds": 27893.6,
+ "human_minutes": 113.12
+}

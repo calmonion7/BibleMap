@@ -98,3 +98,259 @@ SEED_FIXED = 11
 BG_SEED = 11                    # 배경 후보 1장 — 위와 같은 시드를 쓴다(축을 섞지 않는다).
 PERSON_SEEDS = [11, 42, 7, 23]  # 인물 후보 4장.
 SCENE_SEEDS = [11, 42, 7]       # 장면 4조건 × 3시드 — PERSON_SEEDS 관례에서 3개.
+FACE_CANON_SIZE = (768, 768)    # task#346 S1 — Z-Image 얼굴 정본 후보(정사각 정면 머리, 옛 frozen과 같은 비율).
+FACE_CANON_SEEDS = [11, 42, 7, 23, 5, 101, 202, 303]   # 인물당 후보 8장.
+
+# --- 얼굴 닮음 자(check_face_scale.py)·판정자 교정(check_face_judge.py) — task#346 S2, 실행 전 고정 ---
+FACE_SCALE_SIZES = [256, 128, 64]       # 같은 그림의 머리 크롭을 이 한 변(px)으로 줄여 넣는 척도 검사(a) — 32는 CLIP이 무너지는 영역이라 제외(실측 풀 얼굴 최소 139px)
+FACE_SCALE_DEGRADE_MAX_PX = 128         # 열화 해상도 상한: 이보다 큰 얼굴은 정본·후보 모두 128로 맞춰 큰 얼굴 우대를 없앤다
+FACE_SCALE_SPREAD_MAX = 0.05            # (a) 크기를 바꿨을 때 점수 최대-최소 허용 폭
+FACE_SCALE_CORR_MAX = 0.5               # (b) 후보 풀에서 log(얼굴 크기)–점수 상관 |r| 허용 상한
+FACE_SCALE_POOL_MIN = 8                 # (b) 검출 성공 후보가 이보다 적으면 검사 불성립(실패)
+FACE_SCALE_HEAD_MARGIN = 0.15           # 머리 상자 사방 여유 비율(정본·후보 같은 비율)
+FACE_JUDGE_REJECT_MIN = 0.9             # 다른 인물 쌍 중 기각돼야 하는 비율 하한
+FACE_JUDGE_ACCEPT_MIN = 0.9             # 정본 변형 쌍 중 통과해야 하는 비율 하한
+
+# --- A 갈래 다각도 시트(gen_face_sheet.py·select_face_sheet.py) — task#346 S3 ---
+FACE_SHEET_SEED0 = 1000         # 시트 시드 시작값(정본 시드와 겹치지 않게)
+FACE_SHEET_SIZES = {"close": (768, 768), "half": (768, 768), "full": (640, 896)}   # 구도별 생성 크기
+FACE_SHEET_STAGE1 = 20          # 1차(CLIP 마진) 통과 장수
+FACE_SHEET_STAGE2 = 12          # 2차(VLM 같은 사람) 최종 장수 상한(10~15)
+
+# --- task#346 S5 — A/B 얼굴 유지 비교
+FACE_AB_SEEDS = [42, 23]         # 비교 시드(345 시드 [11,42,7,23] 중 승인 시드 11·7을 뺀 둘 — 승인 그림과 같은 그림이 (f)에서 재생성되지 않게)
+FACE_AB_CROP_SCALE = 2.6         # A 인페인트: 머리 상자 한 변의 이 배수를 정사각 크롭해 768로 올려 그린다
+FACE_AB_INPAINT_STRENGTH = 0.85  # A 인페인트 강도(1.0이면 원본 무시, 낮을수록 원래 얼굴 구조가 남는다)
+FACE_AB_MASK_GROW = 1.15         # A 마스크(머리 상자 타원)의 확장 배율
+FACE_AB_MASK_FEATHER = 0.12      # A 마스크 가장자리 번짐(마스크 한 변 대비)
+
+# --- task#347 — B-e 얼굴을 지키며 화풍 되찾기(R1 머리 되붙이기 · R2 저강도 img2img). 실행 전 고정 ---
+FACE_STYLE_SETTINGS = {"R1": [1.3, 1.6], "R2": [0.25, 0.4]}   # R1 = 머리 상자 타원 확장 배율, R2 = img2img 강도
+FACE_STYLE_R1_FEATHER = 0.12     # R1 타원 마스크 번짐(마스크 한 변 대비 — A와 같은 값)
+FACE_STYLE_REGION_SCALE = 2.0    # 화풍 측정 영역 ①: 머리 상자 중심, 한 변 2배 상자(머리 포함). ② 그림 전체
+FACE_STYLE_METRICS = ("sat_p95", "val_p05", "ink")   # judge_style.style_metrics — 화풍 거리 = 두 영역 × 세 지표 절대차 평균
+FACE_STYLE_UNIT = "head"         # 집계 단위: 그림이 아니라 머리 하나(장면·시드·인물)
+FACE_STYLE_DIST_MAX_RATIO = 0.5  # 통과 ①: 화풍 거리가 같은 장면·시드·인물 B-e 원본 거리의 이 배 이하
+FACE_STYLE_FACE_MIN_RATIO = 0.8  # 통과 ②: 얼굴 마진 점수(346 S2 자)가 B-e 원본 점수의 이 배 이상
+FACE_STYLE_REQUIRE_SAME = True   # 통과 ③: VLM(check_face_judge.same_person)이 정본과 같은 사람이라 한다
+
+# task#348 — 조건부 R1(머리 되붙이기)을 새 장면(골리앗)·새 인물(사무엘)로 넓히기. 실행 전 고정. 347 FACE_STYLE_*는 건드리지 않는다.
+FACE_WIDEN_SCENES = {"goliath": ("authored-david-goliath-gath", ["david"]),
+                     "gilgal": ("authored-saul-gilgal-coronation", ["saul", "samuel"])}   # 장면 → (승인 장면 id, 되붙일 인물)
+FACE_WIDEN_SEEDS = [42, 23]       # klein 시드 — 347과 같은 둘
+FACE_WIDEN_R1_GROW = 1.6          # R1 확장 배율(347 채택값). 깃털·LAB 맞춤은 FACE_STYLE_R1_FEATHER·gen_face_style 그대로
+# 기계 자(화풍 거리·얼굴 마진·VLM 같은 사람)는 347 FACE_STYLE_* 정의 그대로 재고, 통과 판정은 「참고」로만 적는다 — 머리 판정은 사람.
+
+# task#349 — klein 얼굴 적중률(참조 1명 대 2명, 머리당 시드 8) + 화질(결) 측정. 실행 전 고정. 347·348 FACE_STYLE_*·FACE_WIDEN_*는 건드리지 않는다.
+FACE_HITRATE_SCENES = {"gilgal": ["saul", "samuel"], "engedi": ["david", "saul"]}   # 장면 → 머리(나이 문제 없는 두 승인본, 골리앗 다윗 제외)
+FACE_HITRATE_SEEDS = [42, 23, 5, 101, 202, 303, 404, 505]   # 머리당 klein 시드 8
+FACE_HITRATE_CONDS = ("K1", "K2")   # K1 = 그 인물 정본 하나만 참조·그 얼굴만 / K2 = 두 정본 다 참조·두 얼굴 다(348 방식). 같은 장면·같은 시드
+FACE_HITRATE_LAP_RATIO_MAX = 1.5    # 화질 자: 머리 상자 회색조 라플라시안 분산 「대상 ÷ 승인본 같은 머리」 > 이 값이면 「거칠다」고 예측
+FACE_HITRATE_R1_SEEDS = [42, 23]    # 화질 표본: K2 이 시드들의 R1 되붙이기(확장 FACE_WIDEN_R1_GROW, 깃털·LAB 347 그대로) 4장 = 머리 8
+
+# task#356 — 인물 LoRA 학습 시트(정본 초상 + 전신 단독). 생성 전 고정. 353 FACE_CANON_*·cast-v2-pilot 산출은 건드리지 않는다.
+LORA_SHEET_WHO = ("saul", "david", "samuel")
+LORA_SHEET_TRIGGER = {"saul": "saul_bm", "david": "david_bm", "samuel": "samuel_bm"}   # 캡션 첫 낱말(정체성은 이 낱말에 묶는다)
+LORA_SHEET_PORTRAIT_SEEDS = [11, 42, 7]     # 353 cast-v2-pilot/face/<id>/s<시드>-<front|34>.png 재사용(시드 11이 정본) → 인물당 6장
+LORA_SHEET_BODY_SEEDS = [11, 42, 7, 23, 5, 101, 202, 303]   # 전신 시드 8(= FACE_CANON_SEEDS 값)
+LORA_SHEET_POSES = {"stand": "standing still, full front view", "walk": "walking, three-quarter side view"}   # 자세 2묶음 × 시드 8 = 전신 16
+LORA_SHEET_BODY_SIZE = (768, 1152)          # 전신 세로 캔버스(Z-Image-Turbo Q8)
+LORA_SHEET_BODY_MIN = 8                     # 사람 거르기 뒤 남은 전신이 이보다 적으면 기록(이번엔 다시 그리지 않음)
+LORA_SHEET_BODY_MAX = 10                    # 남은 전신 중 시드 순으로 이 장수까지 시트에 쓴다
+# task#356 수리 r1(사용자 결정 「2」) — 문구 전신의 만화체 얼굴 위에 정본 초상 머리를 되붙인다(347 R1 기법). 결과는 사람이 다시 거른다.
+LORA_SHEET_PASTE_WHO = ("saul", "david")
+LORA_SHEET_PASTE_POSE = "stand"                 # 정면 서기만(정본 정면 머리와 방향이 같다). 걷기는 고개 방향이 갈려 뺀다
+LORA_SHEET_PASTE_CANON_SEEDS = [11, 42, 7]      # 붙일 정본 정면 머리 — 전신 시드 순서대로 돌려 쓴다
+LORA_SHEET_PASTE_GROW = 1.0                     # 머리 상자(얼굴 상자 × face_ab_heads.GROW) 배율 — 1.6이면 정본 어깨까지 덮는다
+# task#356 수리 r2 — r1에서 남은 것은 바탕 전신의 머리가 작은 것뿐이었다 → 바탕부터 사실 비율로 다시 그려 같은 방식으로 되붙인다.
+# 시험 1장(인물당 s404)에서 비율 낱말 「realistic adult proportions, small head, head about one eighth of body height」은
+# 머리를 줄이지 못했다(사울 배율 0.455 — 더 큼, 다윗 0.394) → 낱말은 빼고 기존 문구 그대로 시드를 늘린다(r1 남음률 사울 3/8·다윗 1/8).
+LORA_SHEET_R2_PROP = ""
+LORA_SHEET_R2_SEEDS = {"saul": [404, 505, 606, 707, 808, 909, 1001, 1102],
+                       "david": [404, 505, 606, 707, 808, 909, 1001, 1102] + [1200 + 7 * i for i in range(24)]}
+
+# task#357 — 인물 LoRA 2/2: 356 시트로 LoRA 학습 → 353 세 장면을 LoRA 걸고 다시 그려 카드 크기 같은 인물 판정. 학습·생성 전 고정.
+LORA_SCENE_WHO = ("saul", "david", "samuel")
+LORA_SCENE_SCALE = 1.0          # 추론 세기 한 값(ADR 260904-055320 「한 값으로 시험」)
+LORA_SCENE_TRAIN_STEP = 300     # 346 설정의 300스텝 — 학습 설정(25에폭)은 그대로라 13~14장이면 300을 넘겨 돌고, 300 체크포인트 어댑터를 쓴다
+LORA_SCENE_SEEDS = [11, 42, 7, 23, 5, 101, 202, 303]   # = FACE_CANON_SEEDS
+LORA_SCENE_SCENES = {"gilgal": ("authored-saul-gilgal-coronation", ["saul", "samuel"]),
+                     "engedi": ("authored-david-en-gedi-saul", ["david", "saul"]),
+                     "ramah": ("authored-david-ramah-samuel", ["david", "samuel"])}   # 장면 → (명세 id, 정본 인물 2)
+LORA_SCENE_PAIRS = {"saul": ("gilgal", "engedi"), "david": ("engedi", "ramah"), "samuel": ("gilgal", "ramah")}   # 353과 같은 짝
+LORA_SCENE_CONTROL_SEEDS = [11, 42, 7]   # 음성 대조 = 353 cast-v2-pilot/scene/<장면>/s<시드>.png 같은 시드끼리 쌍(인물마다 3, 합 9)
+LORA_SCENE_SHUFFLE_SEED = 357            # 화면 A 쌍 순서 섞기(대조 위치를 숨김)
+LORA_SCENE_ADOPT_MIN = 5                 # 채택: L1 인물마다 「읽힌다」 ≥ 5/8, 3명 모두
+LORA_SCENE_CONTROL_MAX = 3               # 분해능: 음성 대조 「읽힌다」 합 ≤ 3/9 (넘으면 보류)
+
+# task#358 — 정본 참조 편집: 353 바탕 위에서 처치 인물의 몸 상자를 마스크로 잡고 정본 참조 2장으로 편집(mflux Qwen edit). 편집 전 고정.
+REF_EDIT_WHO = ("saul", "david")
+REF_EDIT_SCENES = {"gilgal": ["saul"], "engedi": ["saul", "david"], "ramah": ["david"]}   # 장면 → 처치 인물(엔게디는 사울 → 다윗 차례)
+REF_EDIT_SEEDS = LORA_SCENE_SEEDS                 # 판정 시드 8 — 11·42·7은 353 바탕 그대로, 나머지 5는 같은 설정으로 새로
+REF_EDIT_PREVIEW_SEEDS = [404, 505]               # 세기 미리보기 시드(판정 시드와 안 겹침) — 길갈 사울만
+REF_EDIT_MODELS = [("qwen-image-2.1", "mflux-generate-qwen-2.1-edit", 8),     # 1순위(q8, --low-ram)
+                   ("qwen-image-edit-2511", "mflux-generate-qwen-edit", 4)]   # 2순위(낮은 양자화) — 1순위가 「안 돔」일 때만
+REF_EDIT_REF_FULL = {"saul": "07", "david": "07"}  # 356 시트 lora-sheet-v2/<id>/<번호>.png — 캡션 「standing still, full front view」의 첫 장(정본 머리 되붙임)
+REF_EDIT_AXIS = "strength"                         # 편집 세기 축 — mask 안에서 바탕을 얼마나 남기나(얼굴 ↔ 화풍 균형). guidance는 2.1이 「guidance 없이」 학습돼 축으로 안 씀
+REF_EDIT_AXIS_VALUES = [0.7, 0.85, 1.0]            # 1.0 = 문서 기본값
+REF_EDIT_STEPS = 25                                # 공식 ComfyUI 편집 워크플로 값(mflux README 예시)
+REF_EDIT_MASK_PAD = 0.06                           # 몸 상자를 각 변으로 폭·높이의 이만큼 넓혀 마스크(옷자락·머리카락 포함)
+REF_EDIT_SHUFFLE_SEED = 358                        # 화면 A·C 순서 섞기(대조 위치를 숨김)
+REF_EDIT_ADOPT_MIN = 5                             # 채택: 사울·다윗 각각 「읽힌다」 ≥ 5/8
+REF_EDIT_CONTROL_MAX = 2                           # 분해능: 대조 「읽힌다」 합 ≤ 2/6 (넘으면 보류)
+REF_EDIT_STYLE_PENALTY = 0.5                       # 처치 무너짐 비율 − 대조 무너짐 비율 > 이 값이면 채택 → 조건부
+
+# task#359 — 같은 참조 편집을 Qwen-Image-Edit-2511로: 전체 편집 → 358 몸 상자만 바탕에 되붙임. 장면·시드·참조·마스크·판정 규칙은 REF_EDIT_* 그대로. 편집 전 고정.
+REF_EDIT_2511_MODEL = ("qwen-image-edit-2511", "mflux-generate-qwen-edit")
+REF_EDIT_2511_QUANTS = [8, 6, 4]                   # 양자화 사다리(q8 --low-ram → q6 → q4) — 단계마다 첫 1장까지만 「안 돔」 확인
+REF_EDIT_2511_STEPS = 20                           # mflux 기본(cli/defaults/defaults.py)
+REF_EDIT_2511_GUIDANCE = 2.5                       # models/qwen README 기본
+REF_EDIT_2511_FEATHER = 8                          # 되붙임 경계 가우시안 반경 px(마스크 상자 경계만 부드럽게)
+REF_EDIT_2511_MIN_DIFF = 10.0                      # 조작 확인 하한: 몸 상자 안 평균 픽셀 차(0~255) — 358 세기 1.0 변화 29.9의 1/3
+REF_EDIT_2511_MAX_SEC = 600                        # 「안 돔」: 장당 10분 초과(스왑)
+REF_EDIT_2511_SHUFFLE_SEED = 359                   # 화면 A·C 순서 섞기
+REF_EDIT_2511_PROMPT = ("Replace the man on the {side} in image 1 with the man shown in image 2 and image 3 — same face, hair, "
+                        "beard, body build and clothing. Keep his pose and position, and keep the pencil and watercolor drawing style, "
+                        "lighting and everything else of image 1 unchanged.")   # 358 틀에서 「the person in the masked area」만 위치로
+
+# task#360 — 같은 참조 편집을 2511 + Lightning 4스텝 LoRA로(guidance 1 래퍼 mflux_qwen_edit_cfg1.py). 장면·시드·참조·마스크·되붙임·판정 규칙은 REF_EDIT_*·REF_EDIT_2511_* 그대로. 편집 전 고정.
+REF_EDIT_LIGHTNING_LORA = ("lightx2v/Qwen-Image-Edit-2511-Lightning", "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors", 1.0)   # (HF 레포, 파일, 세기)
+REF_EDIT_LIGHTNING_QUANTS = [8, 6]                 # q8 --low-ram → 「안 돔」이면 q6 한 번만, 그래도 안 되면 stop
+REF_EDIT_LIGHTNING_STEPS = 4
+REF_EDIT_LIGHTNING_GUIDANCE = 1.0                  # 래퍼가 부정 계산을 건너뜀(결과 동일, 후속 시험 평균 차 0.053/255)
+REF_EDIT_LIGHTNING_MAX_SEC = 600                   # 「안 돔」: 첫 1장 장당 10분 초과 또는 오류
+REF_EDIT_LIGHTNING_MIN_TARGETED = 10.0             # 조작 확인 하한: 전체 편집 원본 대 입력 그림의 몸 상자 안 평균 차 − 상자 밖 평균 차(0~255) — 후속 시험 외형 명시 33.4, 무처치 −2.7
+REF_EDIT_LIGHTNING_SHUFFLE_SEED = 360              # 화면 A·C 순서 섞기
+REF_EDIT_LIGHTNING_PROMPT = ("Change the man on the {side} in image 1 into the man shown in image 2 and image 3: {look}. "
+                             "Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style "
+                             "and everything else in image 1 unchanged.")   # {look} = derive_scene.cast_describe(장면 안 정본 — cast_override 포함), 손으로 쓰지 않음
+# task#360 S0 뒤 개정(2026-10-17, 사용자 「권장진행」): 카드 층 {look}은 바탕과 같은 문구라 다윗이 무처치(targeted −1.49·8.27)였고 정본 그림(붉은 튜닉)에서 멀어졌다
+# → {look}을 정본 그림(frozen 초상 + lora-sheet-v2 전신 07) 쪽 서술로. 그림을 보고 손으로 썼다(사람 결정). 나머지 고정 절은 그대로.
+REF_EDIT_LIGHTNING_LOOK_SRC = "image+scene"        # "card" = cast_describe(S0 첫 시도) · "image" = 아래 서술(360 재현은 이 값으로) · "image+scene" = task#361
+REF_EDIT_LIGHTNING_LOOK_IMAGE = {
+    "saul": "an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build, "
+            "in a plain brown short-sleeved tunic reaching the shins with a brown leather belt",
+    "david": "an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build, "
+             "in a plain red short-sleeved knee-length tunic with a brown leather belt",
+}
+# task#361(2026-10-17): 360 엔게디 처치 8/8 「무너짐」 — 정본 튜닉 절이 사울 겉옷을 지웠다(용어집 「카드 층 / 얼굴 층」: 차림은 장면 명세가 덮어씀).
+# → "image+scene" = 정체성(얼굴·머리·수염·체격·나이대)은 아래(LOOK_IMAGE에서 차림 절만 뗌) + ", wearing " + 장면 명세 figures[].costume.en. 편집 대상은 엔게디만.
+REF_EDIT_LIGHTNING_LOOK_IDENTITY = {
+    "saul": "an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build",
+    "david": "an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build",
+}
+REF_EDIT_COSTUME_SCENES = {"engedi": ["saul", "david"]}   # "image+scene" 모드의 편집 장면 → 처치 인물(사울 → 다윗 차례)
+REF_EDIT_COSTUME_SHUFFLE_SEED = 361                # 판정 화면 순서 섞기
+# task#362(2026-10-17): 엔게디 장면 문구 수리(굴 벽 색 낱말) — 판정 화면 순서 섞기(기준 + 새 바탕 8 + 353 바탕 8)
+ENGEDI_TEXT_SHUFFLE_SEED = 362
+# task#363(2026-10-17): 512토큰 수리 판정 — 화면 순서 섞기(장면마다 기준 + 새 8 + 이전 8)
+PROMPT_512_SHUFFLE_SEED = 363
+PROMPT_512_SHUFFLE_SEED_R2 = 3632   # r2(차림 자리·인물별 방향 복원) — r1 그림 위치를 기억하지 않게
+# task#364(2026-10-18): 엔게디 굴 어둠·빛 판정 — 화면 순서 섞기(기준 + r2 8 + A 8 + B 8)
+ENGEDI_DARK_SHUFFLE_SEED = 364
+# task#365(2026-10-18): 엔게디 시선 축 판정 — 그림 순서 섞기(기준 + r2 8 + A 8 + B 8, 네 화면 같은 순서)
+ENGEDI_GAZE_SHUFFLE_SEED = 365
+# task#366(2026-10-18): 엔게디 마주 봄 B1·B2 판정 — 그림 순서 섞기(기준 + A 8 + B1 8 + B2 8 + B 8, 네 화면 같은 순서)
+ENGEDI_AWAY_SHUFFLE_SEED = 366
+# task#367(2026-10-18): 엔게디 마주 봄 귀속·손 B′·Bh 판정 — 그림 순서 섞기(기준 + A 8 + B 8 + B′ 8 + Bh 8, 네 화면 같은 순서)
+ENGEDI_BACKHAND_SHUFFLE_SEED = 367
+# task#368(2026-10-18): 밤샘 5장면 × 8시드(바탕 + 정본 참조 편집) → 아침 한 번 요소 문항 + 고르기. 실행 전 고정(notes/NIGHT-PILOT.md).
+# 바탕 = derive_scene.plate_whole_prompt(판 단계 문구 이어 붙이기 — 다섯 장면에 한 장 모드 칸이 없음, 사용자 결정), 편집 = gen_ref_edit_lightning 그대로(장면 id 인자).
+NIGHT_SCENES = {"authored-saul-gibeah-spear": ["saul", "david"],   # 순서 = 실행 순서(편집 두 번인 기브아 창 먼저), 값 = 편집 인물 차례
+                "authored-saul-mizpah-chosen": ["saul"],
+                "authored-saul-michmash-battle": ["saul"],
+                "authored-saul-gilgal-amalek": ["saul"],
+                "authored-samuel-ramah-death": ["david"]}
+NIGHT_SEEDS = REF_EDIT_SEEDS
+NIGHT_ADOPT_MIN = 4          # 채택: 5장면 중 고른 장면 ≥ 4 · 부분: 2~3 · 다른 길: ≤ 1
+NIGHT_HUMAN_MINUTES = 15     # 참고 문턱(사람 소요 분) — 결론 규칙에는 넣지 않는다
+# task#369(2026-10-19): 368 「없음」 두 장면에 한 장 모드 칸 저작 → 같은 8시드 바탕(derive_scene.whole_prompt), 편집은 후보에서 빼고 고른 한 장에만(ADR 261017-152627 개정).
+WHOLE_FIX_SCENES = {"authored-saul-gilgal-amalek": ["saul"],      # 값 = 고른 장 편집 인물(368 NIGHT_SCENES와 같음)
+                    "authored-samuel-ramah-death": ["david"]}
+WHOLE_FIX_SEEDS = REF_EDIT_SEEDS
+# task#370(2026-10-19): 판 경로 5장면에 한 장 모드 칸 저작 → 칸 묶음(whole_prompt) + 판 묶음(plate_whole_prompt, 대조) 같은 8시드.
+# 값 = 고른 장 편집 인물(편집 정체성 서술 REF_EDIT_LIGHTNING_LOOK_IDENTITY가 있는 사울·다윗만, 계획 결정 5). 실행 전 고정(notes/WHOLE-WIDE.md).
+WHOLE_WIDE_SCENES = {"authored-david-gibeah-harp": ["saul"],
+                     "authored-david-nob-priests": ["david"],
+                     "authored-david-gath-achish": ["david"],
+                     "authored-saul-jabesh-rescue": ["saul"],
+                     "authored-saul-nob-massacre": ["saul"]}
+WHOLE_WIDE_SEEDS = REF_EDIT_SEEDS
+WHOLE_WIDE_SHUFFLE_SEED = 370   # 장면마다 판 묶음이 「가」인지 「나」인지 섞기(대응은 metrics plate.label)
+# task#371(2026-10-20): 370 칸 묶음에서 처치 칸 밖이 깨끗한 바탕 두 장씩에 klein 국소 편집(엔게디 칼 조리법 — gen_local_edit.py).
+# 값 = 바탕 시드(370 whole-wide base/). 새 바탕은 그리지 않는다. 실행 전 고정(notes/LOCAL-EDIT.md).
+LOCAL_EDIT_BASES = {"authored-david-nob-priests": [7, 202],
+                    "authored-david-gath-achish": [5, 7]}
+LOCAL_EDIT_SEEDS = (1, 2, 3)          # klein 편집 시드(엔게디 칼과 같음)
+LOCAL_EDIT_SHUFFLE_SEED = 371         # 판정 페이지 후보 번호 섞기(대응은 metrics candidates[].label)
+# task#372(2026-10-20): 야베스 구원 명세를 무리 구도로 다시 씀(나하스 뺌, crowds 2) → 한 장 모드 바탕 8장(whole_prompt), 후보 편집 끔.
+# 고른 바탕에만 무리 국소 편집(gen_local_edit 조리법) · 사울 정본 편집(같은 사람 틀릴 때만). 실행 전 고정(notes/JABESH-CROWD.md).
+JABESH_CROWD_SCENES = {"authored-saul-jabesh-rescue": ["saul"]}
+JABESH_CROWD_SEEDS = REF_EDIT_SEEDS
+# task#373(2026-10-20): 남은 판 경로 11장면(사울·다윗·사무엘, 칸 없음·세트 밖·미승인) → 판 문구(plate_whole_prompt) 바탕 8장씩, 후보 편집 끔, 대조 없음.
+# 값 = 고른 장 편집 인물(편집 정체성 서술 REF_EDIT_LIGHTNING_LOOK_IDENTITY가 있는 saul·david만 — 노년 사울·소년 다윗은 빈 목록). 실행 전 고정(notes/PLATE-REST.md).
+PLATE_REST_SCENES = {"authored-david-ark-jerusalem": ["david"],
+                     "authored-david-gibeon-battle": [],
+                     "authored-david-hebron-king-judah": ["david"],
+                     "authored-david-jerusalem-conquest": ["david"],
+                     "authored-david-mahanaim-exile": ["david"],
+                     "authored-david-nathan-covenant": ["david"],
+                     "authored-david-returns-jerusalem": ["david"],
+                     "authored-david-ziklag-base": ["david"],
+                     "authored-samuel-bethlehem-david-anointing": [],
+                     "authored-saul-endor-medium": [],
+                     "authored-saul-gilboa-death": []}
+PLATE_REST_SEEDS = REF_EDIT_SEEDS
+# task#375(2026-10-20): 구절 시각 요소 목록(verse_elements) — 순간을 고정한 구절의 인물·행동·지물·때·장소·무리를 명세 칸·파생 프롬프트 문구와 짝짓는다.
+# 대상 = 미승인 사울·다윗 14장면(판 경로 11 + 한 장 모드 칸 3). 제외(out)는 「순간 밖」만, 사유에 금지 낱말이 있으면 실패. 실행 전 고정(notes/VERSE-ELEMENTS.md).
+VERSE_ELEMENT_SCENES = tuple(PLATE_REST_SCENES) + ("authored-david-gath-achish", "authored-david-nob-priests", "authored-david-ramah-samuel")
+# task#376(2026-10-20): 구절 요소 14장면을 375 명세로 다시 생성(시글락 포함 — 한 조건) → J1 예측 → 후보 화면. 경로 = 한 장 모드 칸이 있으면 whole_prompt,
+# 없으면 plate_whole_prompt. 값 = 고른 장 편집 인물(PLATE_REST와 같은 규칙 — 칸 장면 셋은 다윗). 후보 편집 끔. 실행 전 고정(notes/VERSE-REGEN.md).
+VERSE_REGEN_SCENES = {**PLATE_REST_SCENES, "authored-david-gath-achish": ["david"], "authored-david-nob-priests": ["david"],
+                      "authored-david-ramah-samuel": ["david"]}
+VERSE_REGEN_SEEDS = REF_EDIT_SEEDS
+# task#379(2026-10-20): 두 겹 판정 2/3 — 378에서 명세를 고친 장면 중 파생 프롬프트가 바뀐 7장면(notes/SPEC-JUDGE.md ```json regen, 가드는 같은 글이라 뺌)을
+# 376과 같은 경로·시드로 다시 생성 → J1·이상한 점 예측 → 후보 화면. 값 = 고른 장 편집 인물(376 그대로). 실행 전 고정(notes/SPEC-REGEN.md).
+SPEC_REGEN_SCENES = {sid: VERSE_REGEN_SCENES[sid] for sid in (
+    "authored-david-gibeon-battle", "authored-david-mahanaim-exile", "authored-david-returns-jerusalem",
+    "authored-samuel-bethlehem-david-anointing", "authored-david-jerusalem-conquest", "authored-saul-endor-medium", "authored-saul-gilboa-death")}
+SPEC_REGEN_SEEDS = REF_EDIT_SEEDS
+VERSE_ELEMENT_KINDS = ("인물", "행동", "지물", "때", "장소", "무리", "자리")   # 자리(task 399) = 행동이 겨누는 곳·인물이 있어야 할 곳 → 인물 칸
+VERSE_ELEMENT_BANNED = ("prior", "모델", "못 그", "대체", "어렵")
+# task#350(2026-10-22): 얼굴 인식 판정자(ArcFace)를 한 장 생성 그림의 `.identity` 사람 라벨로 교정 — J1이 빼 둔 문항을 기계가 맡을 수 있는가.
+# 묶음은 J1과 같음(다듬기 368·369 / 검증 370·372, 판 묶음 제외), 라벨·머리 크롭은 사람 페이지 identity 문항 그대로. 실행 전 고정(notes/FACE-ID-JUDGE.md).
+FACE_ID_SETS = {"dev": (368, 369), "holdout": (370, 372)}
+# 음성 대조에서 뺄 같은 인물 나이 변형 묶음
+FACE_ID_SAME_PERSON = (("saul", "saul-old"), ("david", "david-boy", "david-old"), ("solomon", "solomon-old"))
+# 양성 대조 = 정본 대 자기 변형(좌우 반전 · 밝기 ±20% · 장면 머리 크기로 줄였다가 다시 키움)
+FACE_ID_POS_VARIANTS = ("flip", "bright+20", "bright-20", "down48")
+FACE_ID_SCENE_HEAD_PX = 48
+FACE_ID_PASS_LINE = 0.8
+# 2026-10-22 얼굴 각도 정본 시험(task 350 회고 (가)·(나)): klein 4B로 정면 정본 → 3/4·옆얼굴(가), 기브아 창 바탕 8시드에 얼굴만 다시 그림 —
+# A = 정면 정본 참조(349와 같은 방식) / B = 3/4 각도 정본 참조. 참조 장 수·지시문은 같고 참조 그림의 각도만 다르다. 실행 전 고정(notes/FACE-ANGLES.md).
+FACE_ANGLE_PEOPLE = {"saul": "left", "david": "right"}   # 인물 → 장면에서 보는 쪽(명세 facing)
+FACE_ANGLE_VIEWS = ("three-quarter", "profile")
+FACE_ANGLE_VIEW_SEEDS = (11, 42, 7)
+FACE_ANGLE_SCENE = "authored-saul-gibeah-spear"
+FACE_ANGLE_SCENE_SET = "night-pilot"
+FACE_ANGLE_REDRAW_SEEDS = REF_EDIT_SEEDS
+# 2026-10-22 인물 LoRA v3(FACE-ANGLES 다음): 승인된 각도 정본(3/4·옆얼굴)으로 다각도·원경 시트 → v2와 같은 학습 설정(300스텝)으로 다시 학습.
+# v2와 다른 것은 시트뿐. 장면 비교 = 기브아 창 8시드 × C(LoRA 없음)·V2·V3. 실행 전 고정(notes/FACE-LORA-V3.md).
+LORA_V3_WHO = ("saul", "david")
+LORA_V3_BODY = {"waist": ("waist-up, three-quarter view, standing in a stone palace room", (768, 1152)),
+                "kneel": ("full body, kneeling on the floor, side profile view, plain light background", (768, 1152)),
+                "walk": ("full body, walking, three-quarter side view, on a dirt road outdoors", (768, 1152)),
+                "stand": ("full body, standing, side view, plain light background", (768, 1152))}
+LORA_V3_BODY_SEEDS = (11, 42)
+LORA_V3_FAR = {"stand": 0.38, "kneel": 0.30}   # 원경(빈 바탕 전신만 — 걷기는 풍경 사각형이 액자처럼 붙어 뺌) = 전신을 화면 높이의 이 비율로 줄여 1216×640 빈 바탕에 놓음(두 시드씩 → 4장)
+LORA_V3_STEPS = 300
+LORA_V3_SCENE_SEEDS = REF_EDIT_SEEDS
+# task 393 얼굴 보정(사람 메모 「화질이 안좋음」 두 번 — 장면 머리 95~139px): 머리 둘레 정사각(머리 상자 긴 변 × MARGIN)을 SIZE로 키워
+# 그 갈래의 생성 방식(LoRA 판)으로 img2img STRENGTH — 갈래마다 같은 처리, 비교 기준 머리도 C 방식으로
+FACE_DETAIL_MARGIN = 2.4
+FACE_DETAIL_SIZE = 768
+FACE_DETAIL_STRENGTH = 0.3   # 시험(0.3·0.45 × 3머리): 0.45는 옷·머리털 결까지 바뀜 → 0.3
+FACE_DETAIL_TRIAL = (0.3, 0.45)
+# task 395 — C 장면 머리에 V3 얼굴 보정 → 되붙임(notes/FACE-DETAIL-V3.md 고정 절). 보정 방식은 FACE_DETAIL_* 그대로.
+FACE_DETAIL_V3_PASTE_GROW = 1.3      # 되붙임 타원 = 머리 상자 가로·세로 × 이 값(정사각 전체가 아니라 머리만)
+FACE_DETAIL_V3_PASTE_FEATHER = 0.12  # 타원 가장자리 가우스 흐림 반지름 = 머리 상자 긴 변 × 이 값
