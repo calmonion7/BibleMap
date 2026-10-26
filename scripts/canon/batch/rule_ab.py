@@ -234,10 +234,9 @@ def page(out):
         return "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
     imgs = {f"comp-{s}": uri(img(case, ab, s)) for s in FX["seeds"]}
     tpl = open(os.path.join(HERE, "batch", "inset_judge_page.html"), encoding="utf-8").read()
+    pg = FX["page"]   # task 437 — 앞글은 고정 절 칸(판마다 문구가 달라 코드에 박지 않음) · lede의 {weak} = 가장 많이 떨어진 문항
     html = IJ.fill(tpl, TITLE="두 여인 재판 그림 고르기", H1="두 여인의 재판 — 쓸 그림 고르기", RANGE=spec["verses"]["range"], TASK=str(FX_N),
-                   LEDE=f"3:26 — 참 어머니가 앉은 솔로몬 왕 앞에서 아들을 위해 애원하고, 다른 여인은 아기를 안고 섰으며, 왕 앞 바닥에는 3:24에 가져온 칼이 있는 때입니다. 시드 8장을 모두 보여 드립니다. 기계 판정을 통과한 장과 통과하지 못한 장을 함께 놓았고, 카드마다 가장 많이 떨어진 문항({weak['q']})의 기계 표와 틀림 이유를 적었습니다.",
-                   HINT="그림을 누르면 원래 화소로 1~3배 확대해 볼 수 있습니다. 기계 표는 너그러울 수 있습니다(s42 칼 자리) — 눈으로 갈라 주세요.",
-                   MEMO_EG="예: 칼이 왕 앞이 아니라 여인 발치")
+                   LEDE=pg["lede"].replace("{weak}", weak["q"]), HINT=pg["hint"], MEMO_EG=pg["memo_eg"])
     html = html.replace("@@VERSES@@", "".join(rows)).replace("/*CARDS*/[]", json.dumps(cards, ensure_ascii=False))
     html = html.replace("/*IMGS*/{}", json.dumps(imgs))   # 그림은 마지막에(417 판 1)
     open(out, "w", encoding="utf-8").write(html)

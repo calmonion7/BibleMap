@@ -15,6 +15,7 @@
 
 ```json fixed 432
 {"dir": "two-mothers-step23", "seeds": [42, 7, 5, 11, 23, 101, 202, 303], "reps": 3, "adopt": {"qs": ["t.sword", "t.no-church", "t.guard"], "gain": 3, "loss": 2},
+ "page": {"lede": "3:26 — 참 어머니가 앉은 솔로몬 왕 앞에서 아들을 위해 애원하고, 다른 여인은 아기를 안고 섰으며, 왕 앞 바닥에는 3:24에 가져온 칼이 있는 때입니다. 시드 8장을 모두 보여 드립니다. 기계 판정을 통과한 장과 통과하지 못한 장을 함께 놓았고, 카드마다 가장 많이 떨어진 문항({weak})의 기계 표와 틀림 이유를 적었습니다.", "hint": "그림을 누르면 원래 화소로 1~3배 확대해 볼 수 있습니다. 기계 표는 너그러울 수 있습니다(s42 칼 자리) — 눈으로 갈라 주세요.", "memo_eg": "예: 칼이 왕 앞이 아니라 여인 발치"},
  "cases": [
   {"id": "back-wall", "scene": "authored-solomon-jerusalem-two-mothers", "guide": true, "a_from": null, "b_from": ["walls of rough stone blocks,", "walls of rough stone blocks, the back wall drawn block by block like the side walls,"], "qs": [
    {"id": "s.style", "q": "화풍", "what": "미색 종이에 연필로 그리고 색연필로 칠한 동화 그림 화풍인가?"},
@@ -94,6 +95,7 @@ task 434에서 단계 ①을 다시 통과한 명세(칼 든 신하 solomon-swor
 
 ```json fixed 436
 {"dir": "two-mothers-step23-r2", "seeds": [42, 7, 5, 11, 23, 101, 202, 303], "reps": 3,
+ "page": {"lede": "3:26 — 산 아들의 어미가 앉은 솔로몬 왕 앞에 서서 「청컨대 내 주여 산 아들을 저에게 주시고 아무쪼록 죽이지 마옵소서」 하고 애원하고, 다른 여인은 아기를 안고 선 때입니다. 3:24 「칼을 왕의 앞으로 가져온지라」 — 그 칼을 왕 곁에 선 신하가 들고 있습니다(가져온 이가 신하인 것은 [추론], 왕 곁에 선 자리는 [저작]). 시드 8장을 모두 보여 드립니다. 기계 판정을 통과한 장과 통과하지 못한 장을 함께 놓았고, 카드마다 가장 많이 떨어진 문항({weak})의 기계 표와 틀림 이유를 적었습니다.", "hint": "그림을 누르면 원래 화소로 1~3배 확대해 볼 수 있습니다. 기계 표는 교회 도상 문항에서 엄했습니다(s42·s11 왼쪽 벽 아치는 눈으로 보면 평범한 문) — 눈으로 갈라 주세요. 신하 차림(금빛 띠·짙은 색)·벽 재질·의자는 [저작] 세부라 통과 셈에서 뺐습니다.", "memo_eg": "예: 신하 옷에 금빛 띠"},
  "cases": [
   {"id": "reauthored", "scene": "authored-solomon-jerusalem-two-mothers", "guide": true, "a_from": null, "b_from": null, "qs": [
    {"id": "s.style", "q": "화풍", "what": "미색 종이에 연필로 그리고 색연필로 칠한 동화 그림 화풍인가?"},
@@ -153,3 +155,9 @@ task 434에서 단계 ①을 다시 통과한 명세(칼 든 신하 solomon-swor
 - 단계 ③ 통과 **1/8 (s202)** · 눈으로 너그럽게 2/8(s42 더함) → 결정 5대로 **다음 차례는 단계 ④ 사람 판정 화면**(후속 — `--fixed 436 page`, 통과 장 + 불통과 표본 전부 · 원문 3:26 굵게). 화면 앞글(LEDE·HINT·MEMO_EG)은 아직 432 문구(「왕 앞 바닥에는 칼」)라 고쳐서 써야 한다.
 - 명세·프롬프트 바꾸지 않음(510/512토큰 그대로) · `recheck.spec_failures` 두 여인 `[]` 그대로.
 - 신하 차림 기록 4/8 — 카드 「long undyed linen tunic, leather belt」가 금빛 장식·짙은 색·짧은 튜닉으로 덜 실림(후속 후보, 토큰 여유 2라 fu-4aa6과 함께).
+
+## 사람 판정(단계 ④, task 436) — task 437
+
+- 화면: https://claude.ai/artifact/QCjvs3gcKeUzqQT5zVTZZ9 (폰용 비공개 · 8장 전부 — 기계 통과 s202 + 불통과 표본, 틀린 문항 순 · 왕상 3:16-28 원문 3:26 굵게 · 1~3× 확대 · 질문 하나 「이 장면으로 쓸 그림이 있나」)
+- 앞글은 고정 절 `page` 칸에서 읽음(task 437 — 432 화면 문구 「왕 앞 바닥에는 칼」이 코드에 박혀 있던 것을 판마다 절로 옮김). 인용 3:26·3:24는 verses.json 복사.
+- 답 기록: `python3 batch/rule_ab.py --fixed 436 record '<화면에서 복사한 「판정 task 436」 + JSON 한 줄>'` → 아래 「- 사람 답(8시드)」 줄 · 고른 장이 있으면 approved.final(by user)

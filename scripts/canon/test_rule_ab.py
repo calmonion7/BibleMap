@@ -42,6 +42,17 @@ class FixedTest(unittest.TestCase):
         self.assertEqual(sum(l.startswith("통과:") for l in lines), 1)
         self.assertFalse(any(l.startswith("채택:") or " B " in l for l in lines))
 
+    def test_page_text_per_fixed_block(self):
+        """task 437 — 화면 앞글은 고정 절 칸: 432는 바닥 칼 문구 그대로, 436은 신하 손 칼(바닥 문구 없음)."""
+        R.use(432)
+        self.assertIn("왕 앞 바닥에는", R.FX["page"]["lede"])
+        R.use(436)
+        pg = R.FX["page"]
+        self.assertNotIn("바닥에는", pg["lede"])
+        self.assertIn("신하", pg["lede"])
+        self.assertIn("{weak}", pg["lede"])
+        self.assertTrue(pg["hint"] and pg["memo_eg"])
+
     def test_missing_block_exits(self):
         with self.assertRaises(SystemExit):
             R.fixed(999999)
