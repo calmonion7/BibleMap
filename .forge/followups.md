@@ -102,3 +102,7 @@
 <!-- followup: fu-4aa6e7b5ae12 | source: scene3-two-mothers-spec-reauthor | task: 434 | date: 2026-10-26 | status: open | taken: - -->
 - 두 여인 한 장 프롬프트 510/512토큰(여유 2) — 네 사람 장면은 카드 문구만으로 한도에 닿음. 단계 ②에서 문구를 더해야 하면 카드 글 줄이기 규칙(예: 장면에서 덮이는 카드 칸 생략) 또는 판 경로 검토.
   근거: tok 측정 605 → 510 · run.md 「계획과 달라진 점」.
+
+<!-- followup: fu-3319f9f29480 | source: scene3-two-mothers-spec-reauthor | task: 434 | date: 2026-10-26 | status: open | taken: - -->
+- 명세 근거 칸 인용 원문 대조 규칙(원장 spec 층) — situation.text·meaning/relation/whole_background/figures[].*.verse·background 등 근거 칸의 「인용」을 verses.json과 띄어쓰기 무시 대조(장면 범위 책으로 장:절 풀이 · 「삼하 5:11」처럼 책 이름이 붙으면 그 책). 지금은 verse_elements quote·stage_why·카드 _why만 대조함. 38명세 전부 재검해 걸리는 인용 목록부터.
+  근거: task 434 계획 결정 7 「그 부친 다윗의 위」(원문 「그 아비」) · 352 도엑 21:7 기억 인용(check_cast_v2 c2가 생긴 이유)과 같은 꼴.
