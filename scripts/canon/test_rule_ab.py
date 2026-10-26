@@ -21,9 +21,26 @@ class FixedTest(unittest.TestCase):
         keys = {R.key(case, ab, s) for ab in "AB" for s in R.FX["seeds"]}
         self.assertEqual((len(paths), len(keys)), (16, 16))
         self.assertTrue(all("two-mothers-step23" in p for p in paths))
+
+    def test_436_one_side_a_only(self):
+        """task 436 — b_from null: 지금 명세 그대로 A만(그림 8 · B 없음 · 통과 한 줄). 432 prompts 검사는 여기로 옮김
+        (434가 벽 문구를 「dressed stone」으로 바꿔 432 b_from이 지금 명세에 없다)."""
+        import contextlib, io
+        from unittest import mock
+        import derive_scene as D
+        R.use(436)
+        case = R.FX["cases"][0]
+        self.assertEqual(R.sides(case), "A")
+        self.assertEqual(len({R.img(case, ab, s) for ab in R.sides(case) for s in R.FX["seeds"]}), 8)
         a, b = R.prompts(case)
-        self.assertNotEqual(a, b)
-        self.assertEqual(b, a.replace(*case["b_from"]))
+        self.assertEqual((a, b), (D.route_prompt(D.load(case["scene"])), None))
+        self.assertEqual(R.side({}, case), "A")
+        out = io.StringIO()
+        with mock.patch.object(R, "load", return_value={"answers": {}}), contextlib.redirect_stdout(out):
+            R.report()
+        lines = out.getvalue().splitlines()
+        self.assertEqual(sum(l.startswith("통과:") for l in lines), 1)
+        self.assertFalse(any(l.startswith("채택:") or " B " in l for l in lines))
 
     def test_missing_block_exits(self):
         with self.assertRaises(SystemExit):

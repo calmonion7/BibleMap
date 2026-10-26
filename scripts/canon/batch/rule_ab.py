@@ -54,14 +54,21 @@ def key(case, ab, seed):
     return f"{case['id']}-{ab}" if "seed" in FX and len(FX["seeds"]) == 1 else f"{case['id']}-{ab}-s{seed}"
 
 
+def sides(case):
+    """task 436 — b_from이 null이면 한 쪽(A만): 대조군 없이 지금 명세 그대로 시드 여럿을 잰다."""
+    return "A" if case["b_from"] is None else "AB"
+
+
 def prompts(case):
-    """→ (A, B). A = route_prompt(+ a_from 바꿈 — 카드 자리표는 장면 카드로 채움) · B = A에서 b_from 한 군데만 바꿈."""
+    """→ (A, B). A = route_prompt(+ a_from 바꿈 — 카드 자리표는 장면 카드로 채움) · B = A에서 b_from 한 군데만 바꿈(한 쪽이면 None)."""
     spec = D.load(case["scene"])
     a = D.route_prompt(spec)
     if case["a_from"]:
         old, new = case["a_from"]
         assert a.count(old) == 1, (case["id"], old)
         a = a.replace(old, D._fill(new, D._scene_cards(spec)))
+    if case["b_from"] is None:
+        return a, None
     old, new = case["b_from"]
     assert a.count(old) == 1, (case["id"], old)
     return a, a.replace(old, new)
@@ -87,7 +94,7 @@ def gen():
                 make_guide.make(spec, k).save(g, format="PNG")
             cn = {"control": gs[0], "control2": gs[1], "scale": 1.0, "cn_steps": 2, "cn_steps2": 2}
         for seed in FX["seeds"]:
-            for ab, p in (("A", pa), ("B", pb)):
+            for ab, p in zip(sides(case), (pa, pb)):
                 if not os.path.exists(img(case, ab, seed)):
                     by_mode["gencn" if cn else "gen"].append({"prompt": p, "seed": seed, "w": W, "h": H, "out": img(case, ab, seed), **cn})
     for mode, jobs in by_mode.items():
@@ -123,11 +130,11 @@ def ask(m, case, ab, seed, rep):
 
 
 def judge(workers=8):
-    gone = [os.path.basename(img(c, ab, s)) for c in FX["cases"] for ab in "AB" for s in FX["seeds"] if not os.path.exists(img(c, ab, s))]
+    gone = [os.path.basename(img(c, ab, s)) for c in FX["cases"] for ab in sides(c) for s in FX["seeds"] if not os.path.exists(img(c, ab, s))]
     if gone:   # task 424 회고: 그림이 빠진 채 판정하지 않음
         sys.exit(f"[RuleAB] 그림 없음 — 판정하지 않음: {', '.join(gone)}")
     m = load()
-    todo = [(c, ab, s, r) for c in FX["cases"] for ab in "AB" for s in FX["seeds"] for r in range(1, FX["reps"] + 1)
+    todo = [(c, ab, s, r) for c in FX["cases"] for ab in sides(c) for s in FX["seeds"] for r in range(1, FX["reps"] + 1)
             if not ((m["answers"].get(key(c, ab, s)) or {}).get(str(r)) or {}).get("answers")]
     print(f"[RuleAB] 판정 {len(todo)}건", flush=True)
     with ThreadPoolExecutor(workers) as ex:
@@ -142,7 +149,7 @@ def votes(m, case, ab, seed, qid):
 def majority(m, case):
     """→ {ab: {seed: {qid: 다수결 맞음}}}"""
     return {ab: {s: {q["id"]: 2 * votes(m, case, ab, s, q["id"])[0] > votes(m, case, ab, s, q["id"])[1] for q in case["qs"]}
-                 for s in FX["seeds"]} for ab in "AB"}
+                 for s in FX["seeds"]} for ab in sides(case)}
 
 
 def adopt(ok, gated, rule):
@@ -162,9 +169,9 @@ def report():
         print(f"## {case['id']} — {case['scene']} s{' s'.join(map(str, FX['seeds']))}")
         for q in case["qs"]:
             tag = "축" if q["id"] in case.get("axis", []) else "기록" if q.get("record") else ""
-            row = [(sum(ok[ab][s][q["id"]] for s in FX["seeds"]),) + tuple(map(sum, zip(*[votes(m, case, ab, s, q["id"]) for s in FX["seeds"]]))) for ab in "AB"]
-            print(f"- {q['id']} {q['q']}{f' ({tag})' if tag else ''}: " + " · ".join(f"{ab} {r[0]}/{k}장 ({r[1]}/{r[2]}표)" for ab, r in zip("AB", row)))
-        for ab in "AB":
+            row = [(sum(ok[ab][s][q["id"]] for s in FX["seeds"]),) + tuple(map(sum, zip(*[votes(m, case, ab, s, q["id"]) for s in FX["seeds"]]))) for ab in sides(case)]
+            print(f"- {q['id']} {q['q']}{f' ({tag})' if tag else ''}: " + " · ".join(f"{ab} {r[0]}/{k}장 ({r[1]}/{r[2]}표)" for ab, r in zip(sides(case), row)))
+        for ab in sides(case):
             fine = [s for s in FX["seeds"] if all(ok[ab][s][q] for q in gated)]
             print(f"통과: {case['id']}-{ab} {len(fine)}/{k}" + (f" (s{' s'.join(map(str, fine))})" if fine else ""))
         if case.get("axis"):
@@ -185,7 +192,9 @@ def seeds():
 
 
 def side(m, case):
-    """사람에게 보일 쪽 — 채택 규칙이 있으면 채택된 쪽, 없으면 B."""
+    """사람에게 보일 쪽 — 한 쪽이면 A, 채택 규칙이 있으면 채택된 쪽, 없으면 B."""
+    if case["b_from"] is None:
+        return "A"
     if not FX.get("adopt"):
         return "B"
     return "B" if adopt(majority(m, case), [q["id"] for q in J.gating(case["qs"])], FX["adopt"])[0] else "A"
