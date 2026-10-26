@@ -107,9 +107,10 @@
 - 명세 근거 칸 인용 원문 대조 규칙(원장 spec 층) — situation.text·meaning/relation/whole_background/figures[].*.verse·background 등 근거 칸의 「인용」을 verses.json과 띄어쓰기 무시 대조(장면 범위 책으로 장:절 풀이 · 「삼하 5:11」처럼 책 이름이 붙으면 그 책). 지금은 verse_elements quote·stage_why·카드 _why만 대조함. 38명세 전부 재검해 걸리는 인용 목록부터.
   근거: task 434 계획 결정 7 「그 부친 다윗의 위」(원문 「그 아비」) · 352 도엑 21:7 기억 인용(check_cast_v2 c2가 생긴 이유)과 같은 꼴.
 
-<!-- followup: fu-44441adb2ecf | source: spec-quote-matches-verse | task: 435 | date: 2026-10-26 | status: open | taken: - -->
+<!-- followup: fu-44441adb2ecf | source: spec-quote-matches-verse | task: 435 | date: 2026-10-26 | status: dismissed | taken: - -->
 - verses.json 삼상 17:21(09017021) 「블레섹」 판본 확인(사람) — verses.json에서 「블레섹」은 이 절 하나·「블레셋」 252절이라 오탈 의심. 개역한글 판본으로 확인되면 verses.json을 고치고(골리앗 spec.quote-matches-verse 풀림), 판본이 「블레섹」이면 골리앗 명세 verses.quotes를 원문대로.
   근거: notes/RECHECK.md 「인용 원문 대조 규칙 (task 435)」 · DoD 3.
+  해결(2026-10-26): 사람이 판본 「블레셋」 확인 → verses.json 고침(작업 없이 직접 — 닫힘).
 
 <!-- followup: fu-e89d18b15b65 | source: two-mothers-step23-reauthored | task: 436 | date: 2026-10-26 | status: open | taken: - -->
 - 두 여인 단계 ④ 사람 판정 화면 — `rule_ab.py --fixed 436 page`(8장 전부: 기계 통과 s202 + 눈으로 통과에 가까운 s42 + 불통과 표본) → `record`. 화면 앞글(LEDE·HINT·MEMO_EG)이 432 문구(「왕 앞 바닥에는 칼」 · s42 칼 자리)로 박혀 있어 고정 절에서 읽게 바꿀 것.

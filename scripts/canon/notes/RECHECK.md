@@ -30,7 +30,7 @@
 | `derive.prop-in-prompt` | derive | all | 31 | 7 | 0 | 82% |
 | `derive.512-tokens` | derive | list | 38 | 0 | 0 | 100% |
 | `spec.stage-from-scripture` | spec | all | 5 | 33 | 0 | 13% |
-| `spec.quote-matches-verse` | spec | all | 37 | 1 | 0 | 97% |
+| `spec.quote-matches-verse` | spec | all | 38 | 0 | 0 | 100% |
 | `spec.action-place-on-figure` | spec | all | 19 | 0 | 19 | 100% |
 | `generate.thrown-guide` | generate | all | 38 | 0 | 0 | 100% |
 | `generate.guide-backdrop` | generate | all | 38 | 0 | 0 | 100% |
@@ -62,7 +62,7 @@
 
 폐기 규칙(재검·통과율에서 뺌): `derive.clip-77-tokens` — 2026-10-22 사람 결정 — SDXL 단계별 경로 전용, 지금 생성 경로는 derive.512-tokens가 잼 · `generate.pose-throw-geometry` — 2026-10-23 d3 — 한 장(c14 s5) 근거로 만든 규칙: d1 「달리는 자세」·d2 「늘어진 팔」로 반증, c10 뼈대가 묶음 기록상 가장 좋음(던진 몸짓 3/8). 결함을 규칙으로 옮기기 전에 같은 조건에서 맞게 나온 적이 있는지 기록부터 볼 것 · `generate.pose-only-control` — 2026-10-23 g2e — 진단은 맞음(뼈대만이면 몸짓이 살아 다윗 숙임·사울 기욺)이나 맞바꿈: 몸 덩어리·벽 자리·수금 모양을 잃고 액자(g1e 다수결 틀림 6 · g2e 15 vs 섞은 f6e3 2). 깊이+뼈대 섞기 유지, make_pose_only·duck_low는 남김 · `generate.spear-two-thirds` — 2026-10-23 m5 — generate.flight-position(명세 칸 guide.flight + 사전 크기)로 일반화(사람 「지적한거 그대로 일회성으로 쓰지말고 규칙화」)
 
-**전 규칙 통과 명세 5/38** · 칸 통과 1396/1523 (92%)
+**전 규칙 통과 명세 5/38** · 칸 통과 1397/1523 (92%)
 
 | 명세 | required-fields | whole-fields | verse-elements | no-compromise-words | scene-all-verses | cast-card-v2 | cast-age-band | cast-age-word | lexicon-link | no-hand-prompt | no-bare-head | prop-in-prompt | 512-tokens | stage-from-scripture | quote-matches-verse | action-place-on-figure | thrown-guide | guide-backdrop | guide-body-build | dodge-clear | guide-costume-legs | youth-noun | pose-skeleton | figure-scale | no-second-point | youth-height | height-ratio | seated-height | pose-hold | split-control | prop-size-relative | flight-position | flight-height | empty-hand-open | wall-material | no-inflating-build | prop-size-coverage | held-hold | crowd-stage | eye-level-perspective | solo-off-center | inset | plate-cast-token |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -72,7 +72,7 @@
 | david-gath-achish | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | david-gibeah-harp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | david-gibeon-battle | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
-| david-goliath-gath | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | – | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
+| david-goliath-gath | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | – | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
 | david-hebron-king-judah | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
 | david-jerusalem-conquest | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
 | david-mahanaim-exile | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
@@ -184,6 +184,7 @@
 
 - 새 규칙 `spec.quote-matches-verse`(`recheck.quote_errors`) — 명세 모든 글 칸의 장:절 붙은 「인용」과 `verses.quotes` 값을 verses.json 원문과 띄어쓰기 무시로 대조.
 - 걸린 곳 1: `authored-david-goliath-gath` `verses.quotes["17:21"]` 「블레셋」 ↔ verses.json 09017021 「블레섹」 — verses.json 전체에서 「블레섹」은 이 절 하나(「블레셋」 252절)라 **원문 데이터 오탈 의심**. 판본 확인 전이라 데이터·명세 둘 다 그대로 둠(사람 확인 후속).
+  → **고침(2026-10-26)**: 사람이 개역한글 판본 「블레셋」 확인 → verses.json 09017021 한 글자 고침 · 낱말 색인·분포 다시 만듦(kiwipiepy 0.23.2 — 커밋된 산출물을 바이트 재현하는 판, 스크립트에 고정) · 인용 걸림 0.
 - `recheck.py ledger && specs`: 규칙 82 · 명세 38 × 규칙 43 · 전 규칙 통과 5/38(이 실행 전후 같음 — 골리앗은 이미 다른 규칙에 걸려 있음).
 
 ## 규칙 후보 둘 다른 장면 A/B — 승급 없음 (2026-10-26 task 423, 원장 판 `78d1dfd7d8cd`)

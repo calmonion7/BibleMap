@@ -287,7 +287,7 @@
    "derive.prop-in-prompt": "fail",
    "derive.512-tokens": "pass",
    "spec.stage-from-scripture": "fail",
-   "spec.quote-matches-verse": "fail",
+   "spec.quote-matches-verse": "pass",
    "spec.action-place-on-figure": "none",
    "generate.thrown-guide": "pass",
    "generate.guide-backdrop": "pass",
@@ -1813,9 +1813,6 @@
     "goliath: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "shieldman: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "david-boy: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
-   ],
-   "spec.quote-matches-verse": [
-    "verses.quotes.17:21: 인용이 본문에 없음 「이스라엘과 블레셋 사람이 항오를 벌이고 양군이 서로 대」"
    ]
   },
   "authored-david-hebron-king-judah": {
@@ -3022,6 +3019,7 @@
     "authored-david-gath-achish",
     "authored-david-gibeah-harp",
     "authored-david-gibeon-battle",
+    "authored-david-goliath-gath",
     "authored-david-hebron-king-judah",
     "authored-david-jerusalem-conquest",
     "authored-david-mahanaim-exile",
@@ -3054,12 +3052,10 @@
     "authored-solomon-jerusalem-temple-dedication",
     "authored-solomon-jerusalem-two-mothers"
    ],
-   "fail": [
-    "authored-david-goliath-gath"
-   ],
+   "fail": [],
    "stale": [],
    "none": [],
-   "rate": 0.9737
+   "rate": 1.0
   },
   {
    "id": "spec.action-place-on-figure",

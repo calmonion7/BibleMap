@@ -6,7 +6,8 @@ data/bible/verses.json(textKo)에서 kiwipiepy로 일반명사(NNG)·고유명�
 병합해 data/word_distribution.json을 쓴다.
 
 실행(그래프 미접근 — Neo4j 환경변수 불필요, kiwipiepy 필요):
-    python -m venv /tmp/kiwi-venv && /tmp/kiwi-venv/bin/pip install kiwipiepy
+    python -m venv /tmp/kiwi-venv && /tmp/kiwi-venv/bin/pip install kiwipiepy==0.23.2
+    # 판 고정: 커밋된 산출물은 0.23.2로 바이트 재현됨(2026-10-26 확인) — 0.24.x는 낱말 수천 개를 다르게 자른다
     /tmp/kiwi-venv/bin/python backend/scripts/build_word_distribution.py
     /tmp/kiwi-venv/bin/python backend/scripts/build_word_distribution.py --dump-words  # 감정 미분류 단어 목록만 출력
 
