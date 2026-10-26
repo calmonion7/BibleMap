@@ -94,3 +94,11 @@
 
 <!-- followup: fu-5c3bba7a0a3e | source: human-final-confirm-birth-two-mothers | task: 433 | date: 2026-10-26 | status: taken | taken: 434 -->
 두 여인 명세 재저작(단계 ①부터) — 사람 단계 ④ 거절 사유 둘: 「궁전 안으로 안 보임」(배경 「왕의 집 안 소박한 방」 · 3장은 궁 짓기 전 3:1·7:1) · 「칼은 바닥이 아니라 곁의 신하가 차거나 가르는 시늉」(3:24 「칼을 왕의 앞으로 가져온지라」 = 신하가 들고 섬은 본문과 맞음 · 가르는 시늉은 3:25 명령뿐이라 본문 밖). 신하를 넣으면 「세 사람뿐」 문항·cast가 바뀜. fu-b3f0(바닥 칼 수리)을 대체할지 그릴링 때 사람 결정.
+
+<!-- followup: fu-88ab73750ec7 | source: scene3-two-mothers-spec-reauthor | task: 434 | date: 2026-10-26 | status: open | taken: - -->
+- 두 여인 단계 ②③ 8시드 — 판정 문항 고침: 「세 사람뿐」→「네 사람」 · 「바닥 칼」 문항 빼고 「신하 손에 든 곧은 칼(휘두르지 않음)」 · 「궁 재질(다듬은 돌벽·백향목 들보·돌바닥)」·「등받이 의자(궤짝 아님)」 기록 문항(회고 432 — 문구 효과는 그 문구의 기록 문항에서 먼저). relation.en이 짧아져 애원·지켜봄이 gesture·gaze로만 실림 — 그림에서 확인.
+  근거: notes/TWO-MOTHERS-STEP1.md 「재저작 (task 434)」 · 커밋 8c52d10.
+
+<!-- followup: fu-4aa6e7b5ae12 | source: scene3-two-mothers-spec-reauthor | task: 434 | date: 2026-10-26 | status: open | taken: - -->
+- 두 여인 한 장 프롬프트 510/512토큰(여유 2) — 네 사람 장면은 카드 문구만으로 한도에 닿음. 단계 ②에서 문구를 더해야 하면 카드 글 줄이기 규칙(예: 장면에서 덮이는 카드 칸 생략) 또는 판 경로 검토.
+  근거: tok 측정 605 → 510 · run.md 「계획과 달라진 점」.
