@@ -1500,5 +1500,51 @@ class GibeahRecordGating(unittest.TestCase):
         self.assertEqual(fails, {1: 0, 2: 1})
 
 
+class QuoteErrors(unittest.TestCase):
+    """spec.quote-matches-verse(task 435) — 장:절이 붙은 「인용」은 어느 칸이든 본문 글자 그대로(띄어쓰기 무시).
+    434 계획 「그 부친 다윗의 위」 ↔ 왕상 2:12 「그 아비」 — 기억으로 쓴 인용이 근거 칸에 남았다."""
+
+    V = verses()
+
+    def errs(self, rng, text, quotes=None):
+        return recheck.quote_errors({"verses": {"range": rng, "quotes": quotes or {}}, "moment": {"why": text}}, self.V)
+
+    def test_a_memory_quote_fails(self):
+        self.assertEqual(len(self.errs("왕상 3:16-28", "2:12 「솔로몬이 그 부친 다윗의 위에 앉으니」")), 1)
+
+    def test_b_exact_quote_passes(self):
+        self.assertEqual(self.errs("왕상 3:16-28", "2:12 「솔로몬이 그 아비 다윗의 위에 앉으니」"), [])
+
+    def test_c_latin_quote_reads_english(self):
+        """곁 장면 「영문(KJV) 12:24 「he called」」 — 라틴 글자만이면 textEn(대소문자 무시)."""
+        self.assertEqual(self.errs("삼하 12:24-25", "영문(KJV) 12:24 「he called」"), [])
+        self.assertEqual(len(self.errs("삼하 12:24-25", "영문(KJV) 12:24 「she called」")), 1)
+
+    def test_d_trailing_ref(self):
+        ok = "「그의 더 얻을 것이 나라 밖에 무엇이냐」(18:8)"
+        self.assertEqual(self.errs("삼상 18:6-11", ok), [])
+        self.assertEqual(len(self.errs("삼상 18:6-11", ok.replace("무엇", "누엇"))), 1)
+
+    def test_e_no_ref_not_checked(self):
+        self.assertEqual(self.errs("삼상 18:6-11", "사람 메모 「다윗이 누구인가?」"), [])
+
+    def test_f_book_prefix_overrides_range(self):
+        q = "삼하 5:11 「두로 왕 히람이 다윗에게 사자들과 백향목과 목수와 석수를 보내매」"
+        self.assertEqual(self.errs("왕상 3:16-28", q), [])
+        self.assertEqual(len(self.errs("왕상 3:16-28", q.replace("석수", "석공"))), 1)
+
+    def test_g_verses_quotes_value(self):
+        s = gibeah()
+        self.assertEqual(recheck.quote_errors(s, self.V), [])
+        k = next(iter(s["verses"]["quotes"]))
+        v = s["verses"]["quotes"][k]
+        s["verses"]["quotes"][k] = v[:3] + ("가" if v[3] != "가" else "나") + v[4:]
+        self.assertEqual(len(recheck.quote_errors(s, self.V)), 1)
+
+    def test_leading_ref_not_reused_as_trailing(self):
+        """「모셔 서매」(16:22 「…」) — 앞 장:절이 붙은 인용은 뒤 장:절 꼴로 다시 풀지 않는다."""
+        self.assertEqual(self.errs("삼상 16:14-23", "16:21 「모셔 서매」(16:22 「모셔 서게 하라」)"), [])
+
+
 if __name__ == "__main__":
     unittest.main()

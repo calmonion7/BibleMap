@@ -100,6 +100,55 @@ def stage_why_errors(spec, verses=None):
     return out
 
 
+_BOOKS = "|".join(sorted(check_cast_v2.BOOK, key=len, reverse=True))
+_REF = r"(?:(" + _BOOKS + r")\s*)?(\d+):(\d+)(?:\s*[-–~]\s*(\d+))?"
+QUOTE_PRE = re.compile(_REF + r"\s*(?:\([^)]*\)\s*)?「([^」]+)」")     # 「삼하 5:11 「…」」 · 「2:12 「…」」 · 「12:24 (KJV) 「…」」
+QUOTE_POST = re.compile(r"「([^」]+)」\s*\(?" + _REF)                 # 「「…」 5:6」 · 「「…」(18:8)」
+HANGUL = re.compile(r"[가-힣]")
+
+
+def quote_errors(spec, verses):
+    """인용은 원문 그대로(task 435, 규칙 spec.quote-matches-verse) — 명세 모든 글 칸에서 장:절이 바로 붙은 「인용」과
+    verses.quotes 값을 verses.json 원문과 띄어쓰기 무시로 대조한다(… 로 끊은 조각마다). 책 이름이 없으면 verses.range의 책,
+    한글이 있으면 textKo · 라틴 글자만이면 textEn(대소문자 무시). 434 계획 「그 부친 다윗의 위」 ↔ 왕상 2:12 「그 아비」."""
+    rm = check_cast_v2.REF.match(spec["verses"].get("range", ""))
+    home = check_cast_v2.BOOK[rm.group(1)] if rm else None
+
+    def bad(book, ch, a, b, quote):
+        book = check_cast_v2.BOOK[book] if book else home
+        if book is None:
+            return ["책을 풀 수 없음"]
+        en = not HANGUL.search(quote)
+        src = "".join(verses.get(f"{book:02d}{ch:03d}{v:03d}", {}).get("textEn" if en else "textKo", "") for v in range(a, b + 1))
+        norm = (lambda t: re.sub(r"\s+", "", t).lower()) if en else (lambda t: re.sub(r"\s+", "", t))
+        return [frag.strip()[:30] for frag in re.split(r"…|\.\.\.", quote) if norm(frag) not in norm(src)]
+
+    out = []
+
+    def walk(v, path):
+        if isinstance(v, dict):
+            for k, x in v.items():
+                walk(x, f"{path}.{k}" if path else k)
+        elif isinstance(v, list):
+            for i, x in enumerate(v):
+                walk(x, f"{path}[{i}]")
+        elif isinstance(v, str):
+            pre = list(QUOTE_PRE.finditer(v))
+            seen = {m.start(5) for m in pre}
+            hits = [(m.group(1), m.group(2), m.group(3), m.group(4), m.group(5)) for m in pre]
+            hits += [(m.group(2), m.group(3), m.group(4), m.group(5), m.group(1)) for m in QUOTE_POST.finditer(v) if m.start(1) not in seen]
+            for book, ch, a, b, q in hits:
+                out.extend(f"{path}: {ch}:{a} 인용이 본문에 없음 「{f}」"
+                           for f in bad(book, int(ch), int(a), int(b or a), q))
+    walk({**spec, "verses": {k: v for k, v in spec["verses"].items() if k != "quotes"}}, "")   # quotes 값은 아래에서 키 장:절로
+    for ref, q in spec["verses"].get("quotes", {}).items():
+        ids = check_scenes.verse_ids(home, ref) if home else []
+        src = re.sub(r"\s+", "", "".join(verses.get(i, {}).get("textKo", "") for i in ids))
+        out += [f"verses.quotes.{ref}: 인용이 본문에 없음 「{frag.strip()[:30]}」"
+                for frag in re.split(r"…|\.\.\.", q) if re.sub(r"\s+", "", frag) not in src]
+    return out
+
+
 THROWN = re.compile(r"던지|던져|던졌|쏘|쏜|떨어뜨")
 AIR_SHAPES = {"spear"}   # 허공을 나는 물체 가이드 꼴(make_guide) — 새 물체가 나오면 꼴과 함께 더한다
 
@@ -710,6 +759,7 @@ SPEC_CHECKS = {
     "check_scenes.prop_in_prompt_errors": lambda spec, ctx: check_scenes.prop_in_prompt_errors(spec, ds.route_prompt(spec)),
     "check_scenes.place_on_figure_errors": lambda spec, ctx: check_scenes.place_on_figure_errors(spec),
     "recheck.stage_why_errors": lambda spec, ctx: stage_why_errors(spec, ctx["verses"]),
+    "recheck.quote_errors": lambda spec, ctx: quote_errors(spec, ctx["verses"]),
     "recheck.thrown_guide_errors": lambda spec, ctx: thrown_guide_errors(spec),
     "recheck.guide_backdrop_errors": lambda spec, ctx: guide_backdrop_errors(spec),
     "recheck.guide_body_errors": lambda spec, ctx: guide_body_errors(spec),
