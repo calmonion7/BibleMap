@@ -106,3 +106,7 @@
 <!-- followup: fu-3319f9f29480 | source: scene3-two-mothers-spec-reauthor | task: 434 | date: 2026-10-26 | status: taken | taken: 435 -->
 - 명세 근거 칸 인용 원문 대조 규칙(원장 spec 층) — situation.text·meaning/relation/whole_background/figures[].*.verse·background 등 근거 칸의 「인용」을 verses.json과 띄어쓰기 무시 대조(장면 범위 책으로 장:절 풀이 · 「삼하 5:11」처럼 책 이름이 붙으면 그 책). 지금은 verse_elements quote·stage_why·카드 _why만 대조함. 38명세 전부 재검해 걸리는 인용 목록부터.
   근거: task 434 계획 결정 7 「그 부친 다윗의 위」(원문 「그 아비」) · 352 도엑 21:7 기억 인용(check_cast_v2 c2가 생긴 이유)과 같은 꼴.
+
+<!-- followup: fu-44441adb2ecf | source: spec-quote-matches-verse | task: 435 | date: 2026-10-26 | status: open | taken: - -->
+- verses.json 삼상 17:21(09017021) 「블레섹」 판본 확인(사람) — verses.json에서 「블레섹」은 이 절 하나·「블레셋」 252절이라 오탈 의심. 개역한글 판본으로 확인되면 verses.json을 고치고(골리앗 spec.quote-matches-verse 풀림), 판본이 「블레섹」이면 골리앗 명세 verses.quotes를 원문대로.
+  근거: notes/RECHECK.md 「인용 원문 대조 규칙 (task 435)」 · DoD 3.
