@@ -465,8 +465,8 @@
      }
     ],
     "majority": {
-     "p.one-crown": "맞음",
-     "p.boarding": "틀림"
+     "p.boarding": "틀림",
+     "p.one-crown": "맞음"
     }
    }
   },
