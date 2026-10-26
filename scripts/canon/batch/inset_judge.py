@@ -18,8 +18,8 @@ sys.path.insert(0, os.path.join(HERE, "batch"))
 import derive_scene as D
 import judge_items as J
 
-NOTES = os.path.join(HERE, "notes", "BIRTH-INSET.md")
-with open(NOTES, encoding="utf-8") as _fh:
+NOTE_MD = os.path.join(HERE, "notes", "BIRTH-INSET.md")
+with open(NOTE_MD, encoding="utf-8") as _fh:
     FX = json.loads(re.search(r"```json fixed 421\n(.*?)\n```", _fh.read(), re.S).group(1))
 MAIN = FX["main"]
 SUB = D.load(MAIN)["inset"]["spec"]
@@ -133,7 +133,7 @@ def check():
                 v = votes(m, s, k, q["id"])
                 if len(v) != FX["reps"] or None in v:
                     err.append(f"s{s} {k}/{q['id']} 답 {v}")
-    line = re.findall(r"^통과: (.+)$", open(NOTES, encoding="utf-8").read(), re.M)
+    line = re.findall(r"^통과: (.+)$", open(NOTE_MD, encoding="utf-8").read(), re.M)
     if not err and line != [conclude(m)]:
         err.append(f"노트 통과 줄 {line} ≠ 다시 셈 {conclude(m)}")
     print("ok" if not err else "\n".join(err[:20]))
@@ -184,7 +184,7 @@ def record(text):
     m["verdict"] = v
     save(m)
     line = f"- 사람 답(8시드): {v['pick']}" + (f" · 메모 「{v['memo']}」" if v.get("memo") else "")
-    with open(NOTES, "a", encoding="utf-8") as fh:
+    with open(NOTE_MD, "a", encoding="utf-8") as fh:
         fh.write(line + "\n")
     print(f"[InsetJudge] {line}")
 

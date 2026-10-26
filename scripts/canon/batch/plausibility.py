@@ -15,11 +15,11 @@ sys.path.insert(0, os.path.join(HERE, "batch"))
 import derive_scene as D
 import judge_items as J
 
-NOTES = os.path.join(HERE, "notes", "PLAUSIBILITY.md")
+NOTE_MD = os.path.join(HERE, "notes", "PLAUSIBILITY.md")
 METRICS = os.path.join(HERE, "samples", "plausibility", "metrics.json")
 IMG = os.path.expanduser("~/.local/biblemap-imggen")
 V2 = "--v" in sys.argv and sys.argv[sys.argv.index("--v") + 1] == "2"
-_T = open(NOTES, encoding="utf-8").read()
+_T = open(NOTE_MD, encoding="utf-8").read()
 FX = json.loads(re.search(r"```json fixed\n(.*?)\n```", _T, re.S).group(1))
 FX2 = json.loads(re.search(r"```json fixed2\n(.*?)\n```", _T, re.S).group(1))
 OF = {r["of"]: r["id"] for r in FX2["rules"]} if V2 else {}   # v2: v1 문항 → 셀 수 있게 다시 쓴 문항(걸림 낱말·묶음은 v1 그대로)
@@ -58,7 +58,7 @@ def questions(spec_or_sid, adopted_only=False):
 
 
 def adopted():
-    line = re.findall(rf"^{TAG}: (.*)$", open(NOTES, encoding="utf-8").read(), re.M)
+    line = re.findall(rf"^{TAG}: (.*)$", open(NOTE_MD, encoding="utf-8").read(), re.M)
     return [x.strip() for x in line[0].split("·") if x.strip() and x.strip() != "없음"] if line else []
 
 

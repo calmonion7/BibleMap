@@ -19,7 +19,7 @@ HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = os.path.expanduser("~/.local/biblemap-imggen/pages")
 WORK = os.path.expanduser("~/.local/biblemap-imggen/judge-items")
 METRICS = os.path.join(HERE, "samples", "judge-items", "metrics.json")
-NOTES = os.path.join(HERE, "notes", "JUDGE-ITEMS.md")
+NOTE_MD = os.path.join(HERE, "notes", "JUDGE-ITEMS.md")
 # 과제 → (samples 폴더, 사람 페이지, 그림 = 편집본?)
 TASKS = {368: ("night-pilot", "night-pick.html", True), 369: ("whole-fix", "whole-fix-pick.html", False),
          370: ("whole-wide", "whole-wide-pick.html", False), 372: ("jabesh-crowd", "jabesh-crowd-pick.html", False),
@@ -424,7 +424,7 @@ def score(a):
     if a.check:
         bad = [f"{s}/{k}" for s in fresh for k, x in fresh[s].items() if m[s][k].get("summary") != x]
         cur = {s: {k: {**r, "summary": fresh[s][k]} for k, r in m.get(s, {}).items()} for s in ("dev", "holdout")}
-        notes = open(NOTES, encoding="utf-8").read()
+        notes = open(NOTE_MD, encoding="utf-8").read()
         block = notes[notes.index(BEGIN) + len(BEGIN): notes.index(END)].strip() if BEGIN in notes else ""
         if block != table({**m, **cur}):
             bad.append("notes 결과 표")
@@ -436,10 +436,10 @@ def score(a):
                 m[s][k]["summary"] = x
     m = update(put)
     m = {**m, **{s: {k: {**r, "summary": fresh[s][k]} if k in fresh[s] else r for k, r in m[s].items()} for s in fresh}}
-    notes = open(NOTES, encoding="utf-8").read()
+    notes = open(NOTE_MD, encoding="utf-8").read()
     block = f"{BEGIN}\n{table(m)}\n{END}"
     notes = re.sub(re.escape(BEGIN) + r".*?" + re.escape(END), lambda _: block, notes, flags=re.S) if BEGIN in notes else notes.rstrip() + "\n\n## 결과\n\n" + block + "\n"
-    open(NOTES, "w", encoding="utf-8").write(notes)
+    open(NOTE_MD, "w", encoding="utf-8").write(notes)
     print(table(m), flush=True)
 
 

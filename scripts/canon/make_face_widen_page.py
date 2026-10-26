@@ -10,7 +10,6 @@ import params
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "samples", "face-widen")
-FROZEN = os.path.join(HERE, "frozen")
 G = params.FACE_WIDEN_R1_GROW
 NAME = {"david": "다윗", "saul": "사울", "samuel": "사무엘", "goliath": "골리앗", "gilgal": "길갈"}
 SAME = ["같은 사람", "다른 사람"]
@@ -43,7 +42,7 @@ def img(name):
 
 def screens():
     met = json.load(open(os.path.join(OUT, "metrics.json")))
-    canon = {w: uri(Image.open(os.path.join(FROZEN, f"{w}.png")), 360) for w in ("david", "saul", "samuel")}
+    canon = {w: uri(Image.open(os.path.join(params.FROZEN, f"{w}.png")), 360) for w in ("david", "saul", "samuel")}
     sc = []
     vocab = json.load(open(os.path.join(HERE, "cast", "samuel.json"), encoding="utf-8"))
     sc.append({"id": "q0-samuel-canon", "q": "⓪ 새 사무엘 정본이 사무엘다운가?",

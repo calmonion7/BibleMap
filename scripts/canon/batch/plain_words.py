@@ -45,7 +45,7 @@ SETS = {"plain-words": {"notes": "PLAIN-WORDS.md", "task": 382, "canon_rev": "03
         "jordan-guide": {"notes": "JORDAN-GUIDE.md", "task": 388, "canon_rev": "a680048"}}   # restyle r3가 요단 정본에 다윗 왕·시므이 방향을 넣기 전
 SET = sys.argv[sys.argv.index("--set") + 1] if "--set" in sys.argv else "plain-words"
 TASK = SETS[SET]["task"]
-NOTES = os.path.join(HERE, "notes", SETS[SET]["notes"])
+NOTE_MD = os.path.join(HERE, "notes", SETS[SET]["notes"])
 WORDS = os.path.join(HERE, "..", "..", "data", "scripture_words", "words.json")
 SAMPLES = os.path.join(HERE, "samples", SET)
 SPECS = os.path.join(SAMPLES, "specs")
@@ -70,7 +70,7 @@ _TOK = []
 
 
 def fixed():
-    t = open(NOTES, encoding="utf-8").read()
+    t = open(NOTE_MD, encoding="utf-8").read()
     return json.loads(re.search(r"```json fixed\n(.*?)\n```", t, re.S).group(1))
 
 
@@ -896,7 +896,7 @@ def report387(m):
 
 def edit_boxes():
     """고정 절 추가분(```json edit-boxes) — 바탕 시드마다 크롭(L, T, 변)·마스크 상자(원본 좌표). 편집 전에 커밋."""
-    t = open(NOTES, encoding="utf-8").read()
+    t = open(NOTE_MD, encoding="utf-8").read()
     g = re.search(r"```json edit-boxes\n(.*?)\n```", t, re.S)
     return json.loads(g.group(1)) if g else None
 

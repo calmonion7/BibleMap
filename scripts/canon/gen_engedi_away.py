@@ -15,7 +15,7 @@ import argparse, json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.expanduser("~/.local/biblemap-imggen/engedi-away")
 METRICS = os.path.join(HERE, "samples", "engedi-away", "metrics.json")
-NOTES = os.path.join(HERE, "notes", "ENGEDI-AWAY.md")
+NOTE_MD = os.path.join(HERE, "notes", "ENGEDI-AWAY.md")
 GAZE_A_EN = "looking down at the hem he is cutting"
 # 고정 절 문구 diff — (어디, 언어, old, new). 지금 명세 위에 적용.
 DIFF = {
@@ -78,7 +78,7 @@ if __name__ == "__main__":
     ap.add_argument("--tally", action="store_true")
     a = ap.parse_args()
     if a.tally:
-        raw = open(NOTES, encoding="utf-8").read().split("## 사람 판정 원문", 1)[1]
+        raw = open(NOTE_MD, encoding="utf-8").read().split("## 사람 판정 원문", 1)[1]
         cnt, ref, ok, line = tally(json.load(open(METRICS)), raw)
         for sid, lab in AXES:
             print(f"{lab}: {cnt[sid]} · 기준 눌림 {ref[sid]}")

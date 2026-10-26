@@ -21,7 +21,7 @@ import check_scenes as CS
 import derive_scene as D
 import params
 
-NOTES = os.path.join(HERE, "notes", "SPEC-JUDGE.md")
+NOTE_MD = os.path.join(HERE, "notes", "SPEC-JUDGE.md")
 OUT = os.path.join(HERE, "samples", "spec-judge")
 METRICS = os.path.join(OUT, "metrics.json")
 MUTANTS = os.path.join(OUT, "mutants")
@@ -46,7 +46,7 @@ HEADER = """너는 성경 장면 명세를 검토하는 성경 고증가다. 아
 출력은 JSON 하나만: {"findings": [{"kind": "빠짐|축약|어긋남|순간", "verse": "장:절", "quote": "본문 인용", "field": "칸 이름 또는 [칸, 칸]", "제안": "..."}]}"""
 
 
-def fixed(path=NOTES):
+def fixed(path=NOTE_MD):
     """고정 절의 ```json fixed 블록 → dict."""
     with open(path, encoding="utf-8") as fh:
         t = fh.read()
@@ -429,7 +429,7 @@ def score(a):
     fx, m, jm = fixed(), load(), J.load()
     sm, om = spec_summary(m, fx), oddity_summary(jm, fx)
     block = table(sm, om, fx)
-    notes = open(NOTES, encoding="utf-8").read()
+    notes = open(NOTE_MD, encoding="utf-8").read()
     if a.check:
         bad = []
         if m.get("summary") != {"spec": sm, "oddity": om}:
@@ -442,7 +442,7 @@ def score(a):
     update(lambda mm: mm.__setitem__("summary", {"spec": sm, "oddity": om}))   # 그 사이 run이 쓴 답을 지우지 않게 요약만 합쳐 씀
     body = f"{BEGIN}\n{block}\n{END}"
     notes = re.sub(re.escape(BEGIN) + r".*?" + re.escape(END), lambda _: body, notes, flags=re.S) if BEGIN in notes else notes.rstrip() + "\n\n## 결과\n\n" + body + "\n"
-    open(NOTES, "w", encoding="utf-8").write(notes)
+    open(NOTE_MD, "w", encoding="utf-8").write(notes)
     print(block, flush=True)
 
 

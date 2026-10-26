@@ -22,7 +22,7 @@ import judge_items as J
 
 ROUND = sys.argv[sys.argv.index("--round") + 1] if "--round" in sys.argv else "r1"
 NAME = {"r1": "restyle-try", "r2": "restyle-r2", "r3": "restyle-r3", "r4": "restyle-r4", "r4e": "restyle-r4e", "r5": "restyle-r5", "r6": "restyle-r6"}[ROUND]
-NOTES = os.path.join(HERE, "notes", {"r1": "RESTYLE-TRY.md", "r2": "RESTYLE-R2.md", "r3": "RESTYLE-R3.md", "r4": "RESTYLE-R4.md",
+NOTE_MD = os.path.join(HERE, "notes", {"r1": "RESTYLE-TRY.md", "r2": "RESTYLE-R2.md", "r3": "RESTYLE-R3.md", "r4": "RESTYLE-R4.md",
                                      "r4e": "RESTYLE-R4E.md", "r5": "RESTYLE-R5.md", "r6": "RESTYLE-R6.md"}[ROUND])
 METRICS = os.path.join(HERE, "samples", NAME, "metrics.json")
 IMG = os.path.expanduser("~/.local/biblemap-imggen")
@@ -37,7 +37,7 @@ def fixed(path):
     return json.loads(re.search(r"```json fixed\n(.*?)\n```", open(path, encoding="utf-8").read(), re.S).group(1))
 
 
-FX = fixed(NOTES)
+FX = fixed(NOTE_MD)
 G = fixed(os.path.join(HERE, "notes", "JORDAN-GUIDE.md"))["scenes"][SID]
 QS = {"S": G["style"], "E": FX["elements"] if "elements" in FX else G["elements"] + FX.get("extra_elements", [])}
 
@@ -295,7 +295,7 @@ def check():
                 v = votes(m, a, s, q["id"])
                 if len(v) != FX["reps"] or None in v:
                     err.append(f"{a} s{s} {q['id']} 답 {v}")
-    line = re.findall(rf"^{LINE}: (.+)$", open(NOTES, encoding="utf-8").read(), re.M)
+    line = re.findall(rf"^{LINE}: (.+)$", open(NOTE_MD, encoding="utf-8").read(), re.M)
     if not err and line != [conclude(m)]:
         err.append(f"노트 {LINE} 줄 {line} ≠ 다시 셈 {conclude(m)}")
     print("ok" if not err else "\n".join(err[:20]))

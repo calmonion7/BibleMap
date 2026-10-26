@@ -18,8 +18,7 @@ import judge_items as J  # noqa: E402
 import params as P  # noqa: E402
 
 METRICS = os.path.join(HERE, "samples", "face-id", "metrics.json")
-NOTES = os.path.join(HERE, "notes", "FACE-ID-JUDGE.md")
-FROZEN = os.path.join(HERE, "frozen")
+NOTE_MD = os.path.join(HERE, "notes", "FACE-ID-JUDGE.md")
 EMBEDDER = "insightface buffalo_l (det_10g + 5점 정렬 + w600k_r50 ArcFace), 긴 변 512px로 맞춘 뒤 검출, 가장 큰 얼굴"
 LONG = 512
 _app = None
@@ -55,12 +54,12 @@ def cos(a, b):
 
 def canon_embed(name, cache={}):
     if name not in cache:
-        cache[name] = embed(Image.open(os.path.join(FROZEN, f"{name}.png")))
+        cache[name] = embed(Image.open(os.path.join(P.FROZEN, f"{name}.png")))
     return cache[name]
 
 
 def variants(name):
-    im = Image.open(os.path.join(FROZEN, f"{name}.png")).convert("RGB")
+    im = Image.open(os.path.join(P.FROZEN, f"{name}.png")).convert("RGB")
     out = {"flip": ImageOps.mirror(im), "bright+20": ImageEnhance.Brightness(im).enhance(1.2),
            "bright-20": ImageEnhance.Brightness(im).enhance(0.8)}
     f, k = largest(im)
@@ -125,7 +124,7 @@ def save(m):
 
 def controls():
     canons = sorted({it["canon"] for s in P.FACE_ID_SETS for it in labels(s)})
-    others = sorted(os.path.basename(p)[:-4] for p in glob.glob(os.path.join(FROZEN, "*.png")))
+    others = sorted(os.path.basename(p)[:-4] for p in glob.glob(os.path.join(P.FROZEN, "*.png")))
     neg = [{"canon": c, "other": o, "score": cos(canon_embed(c), canon_embed(o))}
            for c in canons for o in others if o != c and not same_person(c, o)]
     pos = []
@@ -247,9 +246,9 @@ def write_notes(m):
         f"판정: {m['verdict']}",
         "",
     ]
-    t = open(NOTES, encoding="utf-8").read()
+    t = open(NOTE_MD, encoding="utf-8").read()
     head_, _, _ = t.partition("## 결과")
-    open(NOTES, "w", encoding="utf-8").write(head_ + "\n".join(lines))
+    open(NOTE_MD, "w", encoding="utf-8").write(head_ + "\n".join(lines))
 
 
 if __name__ == "__main__":

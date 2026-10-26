@@ -18,7 +18,6 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "batch"))
 WHO = ("saul", "david", "samuel")
 SCENES = ("authored-saul-gilgal-coronation", "authored-david-en-gedi-saul", "authored-david-ramah-samuel")
-SCENE_SIZE = (1216, 640)   # 345 한 장 모드 캔버스(run_scene.ZI_BG)
 
 
 def jobs(out):
@@ -30,7 +29,7 @@ def jobs(out):
                 js.append({"prompt": g.prompt(cid, v), "seed": s, "w": w, "h": h, "out": os.path.join(out, "face", cid, f"s{s}-{v}.png")})
     for sc in SCENES:
         for s in params.SCENE_SEEDS:
-            js.append({"prompt": ds.whole_prompt(ds.load(sc)), "seed": s, "w": SCENE_SIZE[0], "h": SCENE_SIZE[1],
+            js.append({"prompt": ds.whole_prompt(ds.load(sc)), "seed": s, "w": params.SCENE_SIZE[0], "h": params.SCENE_SIZE[1],
                        "out": os.path.join(out, "scene", sc, f"s{s}.png")})
     return js
 

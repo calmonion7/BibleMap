@@ -9,10 +9,10 @@ from PIL import Image
 
 import params
 from gen_face_hitrate import OUT
-from make_face_widen_page import FROZEN, crop, fig, uri
+from make_face_widen_page import crop, fig, uri
 
 NAME = {"david": "다윗", "saul": "사울", "samuel": "사무엘", "gilgal": "길갈", "engedi": "엔게디"}
-COND = {"K1": "참조 1명", "K2": "참조 2명"}
+COND_LABEL = {"K1": "참조 1명", "K2": "참조 2명"}
 NONE = "없음"
 
 
@@ -22,7 +22,7 @@ def img(name):
 
 def screens():
     met = json.load(open(os.path.join(OUT, "metrics.json")))
-    canon = {w: uri(Image.open(os.path.join(FROZEN, f"{w}.png")), 360) for w in ("david", "saul", "samuel")}
+    canon = {w: uri(Image.open(os.path.join(params.FROZEN, f"{w}.png")), 360) for w in ("david", "saul", "samuel")}
     sc = []
     for scene, whos in params.FACE_HITRATE_SCENES.items():
         for who in whos:
@@ -35,7 +35,7 @@ def screens():
                     face = crop(im, h["box"], 1.6) if h["box"] else im   # 머리를 못 찾으면 그림 전체
                     body += f'<figure class="pick" data-pick="{tag}"><img src="{uri(face, 300)}" alt="{tag}"><figcaption>{tag}</figcaption></figure>'
                     picks.append(tag)
-                tag = f"{NAME[scene]} {NAME[who]} · {COND[cond]}"
+                tag = f"{NAME[scene]} {NAME[who]} · {COND_LABEL[cond]}"
                 look = ("klein이 이 인물 정본 하나만 보고 이 얼굴만 다시 그렸습니다." if cond == "K1"
                         else "klein이 두 인물 정본을 다 보고 두 얼굴을 함께 다시 그렸습니다.")
                 sc.append({"id": f"a-{scene}-{who}-{cond}", "q": f"(가) {tag} · 정본과 같은 사람을 모두 고르세요",

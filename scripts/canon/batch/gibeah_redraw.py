@@ -22,12 +22,12 @@ import judge_items as J
 
 TRY = sys.argv[sys.argv.index("--try") + 1] if "--try" in sys.argv else None   # task 400 단계 ②③ 시도(a1, a2 …)
 NAME = f"gibeah-step23/{TRY}" if TRY else "gibeah-redraw"
-NOTES = os.path.join(HERE, "notes", "GIBEAH-STEP23.md" if TRY else "GIBEAH-REDRAW.md")
+NOTE_MD = os.path.join(HERE, "notes", "GIBEAH-STEP23.md" if TRY else "GIBEAH-REDRAW.md")
 METRICS = os.path.join(HERE, "samples", NAME, "metrics.json")
 OUT = os.path.expanduser(f"~/.local/biblemap-imggen/{NAME}")
 APPROVED = os.path.join("samples", NAME, "approved-authored-saul-gibeah-spear.png")   # 레포 사본(CANON_DIR 기준 상대 경로)
 LOCK = threading.Lock()
-with open(NOTES, encoding="utf-8") as _fh:
+with open(NOTE_MD, encoding="utf-8") as _fh:
     FX = json.loads(re.search(rf"```json fixed{' ' + TRY if TRY else ''}\n(.*?)\n```", _fh.read(), re.S).group(1))
 import scale as S  # noqa: E402
 for _q in FX.get("style", []) + FX.get("elements", []):   # task 408 S4: 문항 크기 숫자는 자리표 {{식|자리}} → 크기 기준표·사전 값(옛 고정 절은 자리표가 없어 그대로)
@@ -453,7 +453,7 @@ def check():
             v = votes(m, s, q["id"])
             if len(v) != FX["reps"] or None in v:
                 err.append(f"s{s} {q['id']} 답 {v}")
-    with open(NOTES, encoding="utf-8") as fh:
+    with open(NOTE_MD, encoding="utf-8") as fh:
         text = fh.read()
     if TRY:   # 시도 절(「## 시도 a1」 ~ 다음 「## 」) 안의 결론 줄만
         text = re.search(rf"^## 시도 {TRY}\b(.*?)(?=^## |\Z)", text, re.S | re.M).group(1)

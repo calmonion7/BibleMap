@@ -635,7 +635,7 @@ def page(stage):
 
 
 # --- task#386 -------------------------------------------------------------------
-NOTES = os.path.join(HERE, "notes", "LOCAL-EDIT.md")
+NOTE_MD = os.path.join(HERE, "notes", "LOCAL-EDIT.md")
 M386 = os.path.join(HERE, "samples", "local-edit", "metrics-386.json")
 OUT386 = os.path.join(OUT, "386")
 sys.path.insert(0, os.path.join(HERE, "batch"))   # judge_items · plain_words · make_night_page
@@ -643,7 +643,7 @@ KINDS386 = {"J1": ("v2", 1.0), "J1-prop": ("p2", 2.5), "W": ("p2", 2.5)}   # 특
 
 
 def fx386():
-    t = open(NOTES, encoding="utf-8").read()
+    t = open(NOTE_MD, encoding="utf-8").read()
     return json.loads(re.search(r"```json fixed386\n(.*?)\n```", t, re.S).group(1))
 
 

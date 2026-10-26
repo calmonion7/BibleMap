@@ -13,7 +13,7 @@ import gen_ref_edit as G
 import gen_ref_edit_2511 as R
 
 LORA = os.path.expanduser("~/.cache/huggingface/hub/models--lightx2v--Qwen-Image-Edit-2511-Lightning")
-STEPS, GUIDANCE = 4, 1.0
+LIGHTNING_STEPS, LIGHTNING_GUIDANCE = 4, 1.0
 
 
 def lora_path():
@@ -38,7 +38,7 @@ def run(mode, q, scene, sd):
     cmd = ["/usr/bin/time", "-l", *head, "--model", R.NAME, "-q", str(q), *(["--low-ram"] if q == 8 else []),
            "--lora", lora_path(), "1.0", "--image-paths", src, *G.refs(who),
            "--prompt", (os.environ.get("REF_EDIT_PROMPT") or params.REF_EDIT_2511_PROMPT).format(side=side), "--seed", str(sd),
-           "--steps", str(STEPS), "--guidance", str(GUIDANCE), "--width", str(G.W), "--height", str(G.H), "--output", raw]
+           "--steps", str(LIGHTNING_STEPS), "--guidance", str(LIGHTNING_GUIDANCE), "--width", str(G.W), "--height", str(G.H), "--output", raw]
     t = time.time()
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, start_new_session=True)
     try:
@@ -50,8 +50,8 @@ def run(mode, q, scene, sd):
         rc, err = -9, "timeout " + err
     sec = round(time.time() - t, 1)
     peak = re.search(r"(\d+)\s+peak memory footprint", err)
-    steps = re.findall(r"(\d+)/%d \[[^\]]*?([\d.]+)s/it" % STEPS, err)
-    e = {"prompt": "env" if os.environ.get("REF_EDIT_PROMPT") else "params", "mode": mode, "quantize": q, "scene": scene, "who": who, "seed": sd, "steps": STEPS, "guidance": GUIDANCE,
+    steps = re.findall(r"(\d+)/%d \[[^\]]*?([\d.]+)s/it" % LIGHTNING_STEPS, err)
+    e = {"prompt": "env" if os.environ.get("REF_EDIT_PROMPT") else "params", "mode": mode, "quantize": q, "scene": scene, "who": who, "seed": sd, "steps": LIGHTNING_STEPS, "guidance": LIGHTNING_GUIDANCE,
          "sec": sec, "peak_gb": round(int(peak.group(1)) / 2**30, 2) if peak else None,
          "s_per_it": [float(x[1]) for x in steps], "status": "ok" if rc == 0 and os.path.exists(raw) else "error", **mk}
     if e["status"] == "ok":

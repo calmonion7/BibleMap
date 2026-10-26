@@ -16,7 +16,7 @@ sys.path.insert(0, os.path.join(HERE, "batch"))
 import derive_scene as D
 import judge_items as J
 
-NOTES = os.path.join(HERE, "notes", "STYLE-JUDGE.md")
+NOTE_MD = os.path.join(HERE, "notes", "STYLE-JUDGE.md")
 GUIDE = os.path.join(HERE, "notes", "JORDAN-GUIDE.md")
 METRICS = os.path.join(HERE, "samples", "style-judge", "metrics.json")
 IMG = os.path.expanduser("~/.local/biblemap-imggen")
@@ -28,7 +28,7 @@ def fixed(path):
     return json.loads(re.search(r"```json fixed\n(.*?)\n```", open(path, encoding="utf-8").read(), re.S).group(1))
 
 
-FX = fixed(NOTES)
+FX = fixed(NOTE_MD)
 QS = fixed(GUIDE)["scenes"][SID]["style"]
 
 
@@ -129,7 +129,7 @@ def check():
         v = votes(m, f"{t}:{sid}:{s}") + votes(m, f"{t}:{sid}:{s}", "s.no-blob")
         if len(v) != 2 * FX["reps"] or None in v:
             err.append(f"{t}:{sid}:{s} 답 {len(v)}/{2 * FX['reps']} 또는 빈 답")
-    line = re.findall(r"^점검: (.+)$", open(NOTES, encoding="utf-8").read(), re.M)
+    line = re.findall(r"^점검: (.+)$", open(NOTE_MD, encoding="utf-8").read(), re.M)
     if not err and line != [conclude(m)[0]]:
         err.append(f"노트 점검 줄 {line} ≠ 다시 셈 {conclude(m)[0]}")
     print("ok" if not err else "\n".join(err))
