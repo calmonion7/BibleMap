@@ -110,3 +110,11 @@
 <!-- followup: fu-44441adb2ecf | source: spec-quote-matches-verse | task: 435 | date: 2026-10-26 | status: open | taken: - -->
 - verses.json 삼상 17:21(09017021) 「블레섹」 판본 확인(사람) — verses.json에서 「블레섹」은 이 절 하나·「블레셋」 252절이라 오탈 의심. 개역한글 판본으로 확인되면 verses.json을 고치고(골리앗 spec.quote-matches-verse 풀림), 판본이 「블레섹」이면 골리앗 명세 verses.quotes를 원문대로.
   근거: notes/RECHECK.md 「인용 원문 대조 규칙 (task 435)」 · DoD 3.
+
+<!-- followup: fu-e89d18b15b65 | source: two-mothers-step23-reauthored | task: 436 | date: 2026-10-26 | status: open | taken: - -->
+- 두 여인 단계 ④ 사람 판정 화면 — `rule_ab.py --fixed 436 page`(8장 전부: 기계 통과 s202 + 눈으로 통과에 가까운 s42 + 불통과 표본) → `record`. 화면 앞글(LEDE·HINT·MEMO_EG)이 432 문구(「왕 앞 바닥에는 칼」 · s42 칼 자리)로 박혀 있어 고정 절에서 읽게 바꿀 것.
+  근거: notes/TWO-MOTHERS-STEP23.md 「결론 (task 436)」 · 커밋 ad5b04a.
+
+<!-- followup: fu-4ec787e9a087 | source: two-mothers-step23-reauthored | task: 436 | date: 2026-10-26 | status: open | taken: - -->
+- 칼 든 신하 차림 기록 4/8 — 카드 「long undyed linen tunic, leather belt」가 금빛 띠·옷깃 장식·짙은 색·무릎 길이로 그려짐(s202·s303 금빛). 문구를 더하면 510/512토큰이라 fu-4aa6(토큰 여유)과 함께 다룰 것.
+  근거: notes/TWO-MOTHERS-STEP23.md 「결과 (task 436)」 기록 문항.
