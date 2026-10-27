@@ -149,3 +149,11 @@
 <!-- followup: fu-c2cb45d265ab | source: cast-headwear-agree | task: 440 | date: 2026-10-27 | status: open | taken: - -->
 - `test_judge_rounds.test_plausibility_recount` 기존 실패 2건 — 「답 없음 approved:authored-solomon-jerusalem-birth-inset 회차 3」. 출생 삽화 승인 그림의 상식 판정 회차 3 답이 비었음: 회차 3을 다시 돌려 채우거나 시험의 기대(지난 회차 다시 셈)를 승인 그림 추가 뒤 상태에 맞춤.
   근거: task 440 전체 시험 실행 · HEAD(6044861) 임시 작업 트리에서도 같은 실패.
+
+<!-- followup: fu-b34301155089 | source: two-mothers-step4-human-page-r3 | task: 441 | date: 2026-10-27 | status: open | taken: - -->
+- 두 여인 확정 그림 s42에서 솔로몬이 왕으로 읽히지 않음(사람 메모 「솔로몬 맞나?」) — 맨머리·짙은 푸른 겉옷·나무 의자뿐, 명세가 왕관을 장면 금지 낱말로 두고 10:18-20 상아 보좌는 후대라 뺌. 왕 신원 표지의 본문 근거(왕상 2:12 「다윗의 위에 앉으니」 위(位) · 아 3:11 면류관 [추론] 등)부터 찾고, 판정 문항 「가운데 앉은 이가 왕으로 읽히나」를 사람 거절 사유 → 문항(human-reject-to-question)으로. 선례: 다윗 귀환 「다윗이 누구인가?」 → 삼하 12:30 면류관 덮어쓰기.
+  근거: task 441 사람 답 · notes/TWO-MOTHERS-STEP23.md 「결론 (task 441)」.
+
+<!-- followup: fu-763d99ccb187 | source: two-mothers-step4-human-page-r3 | task: 441 | date: 2026-10-27 | status: open | taken: - -->
+- 솔로몬 카드 머리 길이가 그림에 안 실림 — 카드 headOutline 「bare head, short dark hair」인데 s42 왕은 어깨까지 오는 머리. head_text가 bare를 「hair covering the whole head, no headwear」로 바꾸며 short가 약해지는지 확인(다른 장면 솔로몬도).
+  근거: task 441 s42 눈 확인.
