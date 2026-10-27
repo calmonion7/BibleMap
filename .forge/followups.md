@@ -172,3 +172,6 @@
 <!-- followup: fu-65e80328cb1c | source: two-mothers-crown-spread | task: 443 | date: 2026-10-27 | status: open | taken: - -->
 - 카드 없는 사람(가이드 자리만 있는 인물)은 곁 인물 문구를 한 번 더 받는다 — 다른 장면 카드 없는 구역(기브아 spear 구역 선례 등)도 같은지 보고 PROMPTING 28-5를 좁혀 고칠 것(원장 규칙 후보).
   근거: notes/TWO-MOTHERS-STEP23.md 「한 장 반복 (task 443)」 Va~Vh.
+
+<!-- followup: fu-67a4a7277b53 | source: face-detail-v3-on-c-scene | task: 395 | date: 2026-10-22 | status: open | taken: - -->
+얼굴 유지(정본 → 장면) 다음 후보: LoRA 시트를 장면 화풍으로 다시 만들어 인물 LoRA 재학습 — 사울·다윗으로 화풍(원래 화소 확대 한 장)부터 싸게 확인, 통과하면 같은 사람 화면 · 솔로몬(2026-10-27 새 정본 s7)도 포함. 근거: retro 261022-212614 「장면 화풍 시트로 LoRA 재학습이 다음 후보」 · 후속 장부에서 빠져 있었음.
