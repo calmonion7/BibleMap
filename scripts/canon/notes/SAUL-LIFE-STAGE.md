@@ -87,3 +87,10 @@ HF_HUB_OFFLINE=1 $P recheck.py specs && HF_HUB_OFFLINE=1 $P recheck.py images
 2. **정본 전이**(참조 어댑터 PuLID·InfiniteYou 등 — fu-7fb5a2c109fb)는 이 작업의 `saul-elder` 정본으로.
 3. **카드 머리·수염 낱말이 정본 그림에 덜 먹음** — `saul-old` 「thin gray hair」인데 8장 모두 숱 많은 장발 · `saul-elder` 「greying」·「close-trimmed」인데 거의 흰머리·풍성한 수염. 사람 답이 「모두 아님」이면 이것부터(같은 시드 한 장 규칙 반복).
 4. `apply_canon_faces.py`의 `keep`은 지문(`prompt_sha`)을 안 고쳐 카드가 바뀐 뒤 「그대로 둠」을 골라도 규칙이 계속 걸림 — keep을 「지금 카드에 맞음」으로 받을지 정하기.
+
+## 사람 답 (2026-10-28)
+
+`{"saul-elder":"s42","saul-old":"s23"}` — saul-elder는 기계 고름(s11)이 아니라 **s42**(Claude 눈 확인에서 눈썹이 짙어 saul과 가장 가깝다고 본 장), saul-old는 v4 새 후보 **s23**(기계 점수 1위 9.25 · 기계 고름 s303 아님). 옛 saul-old 정본(v3 s23)은 `frozen/retired-v2/saul-old.png`.
+
+반영 뒤 재검: `spec.cast-canon-face` 32 → 38/38 · 전 규칙 통과 명세 3 → 5/38(작업 전과 같음) · 칸 통과 1468 → 1474/1599(작업 전 1473보다 1칸 많음 — 체격 문구) · 승인 그림 모두 통과 3/15(기브아 창 s7·놉은 명세 바뀜 낡음 그대로 — 다시 그릴 때 새 정본으로).
+- 기계 고름과 사람 답이 둘 다 갈림(2/2) — 같은 사람 판정 `SAME`의 고름은 아직 사람 대신 쓸 수 없음(이유 글만 참고).

@@ -98,5 +98,20 @@
     "face.brows": "[저작](saul과 같은 얼굴 — 같은 사람)",
     "face.marks": "[저작](saul과 같은 얼굴 — 같은 사람)",
     "role": "[직접] 삼상 11:15 「여호와 앞에 사울로 왕을 삼고」"
+  },
+  "canon_face": {
+    "engine": "z-image-turbo",
+    "seed": 42,
+    "views": [
+      "front",
+      "34"
+    ],
+    "file": "frozen/saul-elder.png",
+    "script": "scripts/canon/gen_face_canon.py",
+    "prompt": "gen_face_canon.prompt(id, view) — cast-vocab-2 카드·얼굴 층에서 파생",
+    "prompt_sha": "b3e25dc4e67a",
+    "size": "768x768",
+    "task": "saul-life-stage task 446 (2026-10-28, 규칙 spec.cast-canon-face)",
+    "approved": "2026-10-28 사용자 판정 화면에서 s42"
   }
 }

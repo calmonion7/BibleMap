@@ -106,7 +106,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -200,7 +200,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -811,7 +811,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -858,7 +858,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -905,7 +905,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -1187,7 +1187,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -1838,9 +1838,6 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "spec.cast-canon-face": [
-    "saul-elder: canon_face 없음"
-   ],
    "spec.stage-from-scripture": [
     "david: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "saul-elder: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
@@ -1858,11 +1855,7 @@
     "achish: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
-  "authored-david-gibeah-harp": {
-   "spec.cast-canon-face": [
-    "saul-elder: canon_face 없음"
-   ]
-  },
+  "authored-david-gibeah-harp": {},
   "authored-david-gibeon-battle": {
    "spec.whole-fields": [
     "장면.meaning: ko/en/verse 가 비어 있거나 없다",
@@ -2076,20 +2069,13 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "spec.cast-canon-face": [
-    "saul-old: 카드가 정본 뒤에 바뀜(prompt_sha f9ebe29f9f55 ≠ c5f3cbf2a217)"
-   ],
    "spec.stage-from-scripture": [
     "saul-old: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "samuel: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "endor-medium: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
-  "authored-saul-gibeah-spear": {
-   "spec.cast-canon-face": [
-    "saul-elder: canon_face 없음"
-   ]
-  },
+  "authored-saul-gibeah-spear": {},
   "authored-saul-gilboa-death": {
    "spec.whole-fields": [
     "장면.meaning: ko/en/verse 가 비어 있거나 없다",
@@ -2101,9 +2087,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "spec.cast-canon-face": [
-    "saul-old: 카드가 정본 뒤에 바뀜(prompt_sha f9ebe29f9f55 ≠ c5f3cbf2a217)"
    ],
    "spec.stage-from-scripture": [
     "saul-old: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
@@ -2206,9 +2189,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "spec.cast-canon-face": [
-    "saul-elder: canon_face 없음"
    ],
    "spec.stage-from-scripture": [
     "saul-elder: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
@@ -2854,7 +2834,9 @@
    "pass": [
     "authored-david-adullam-cave",
     "authored-david-ark-jerusalem",
+    "authored-david-en-gedi-saul",
     "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
     "authored-david-gibeon-battle",
     "authored-david-goliath-gath",
     "authored-david-hebron-king-judah",
@@ -2867,11 +2849,15 @@
     "authored-david-ziklag-base",
     "authored-samuel-bethlehem-david-anointing",
     "authored-samuel-ramah-death",
+    "authored-saul-endor-medium",
+    "authored-saul-gibeah-spear",
+    "authored-saul-gilboa-death",
     "authored-saul-gilgal-amalek",
     "authored-saul-gilgal-coronation",
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
+    "authored-saul-nob-massacre",
     "authored-solomon-ezion-geber-fleet",
     "authored-solomon-gibeon-dream",
     "authored-solomon-gihon-anointing",
@@ -2885,17 +2871,10 @@
     "authored-solomon-jerusalem-temple-dedication",
     "authored-solomon-jerusalem-two-mothers"
    ],
-   "fail": [
-    "authored-david-en-gedi-saul",
-    "authored-david-gibeah-harp",
-    "authored-saul-endor-medium",
-    "authored-saul-gibeah-spear",
-    "authored-saul-gilboa-death",
-    "authored-saul-nob-massacre"
-   ],
+   "fail": [],
    "stale": [],
    "none": [],
-   "rate": 0.8421
+   "rate": 1.0
   },
   {
    "id": "spec.lexicon-link",
