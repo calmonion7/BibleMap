@@ -132,3 +132,15 @@
 <!-- followup: fu-1c905917d287 | source: two-mothers-composition-1of2 | task: 438 | date: 2026-10-27 | status: open | taken: - -->
 - `test_spec_judge` Mutants 1건 실패(figures[0].cast_override_why 「기름」 — 변이 사본에 금지 낱말이 남음) — HEAD에서도 같은 기존 실패, 기름 부음 장면 쪽.
   근거: task 438 실행 중 `python3 -m unittest test_spec_judge` · HEAD 워크트리 재현.
+
+<!-- followup: fu-b86cd427f374 | source: two-mothers-composition-2of2 | task: 439 | date: 2026-10-27 | status: open | taken: - -->
+- 두 여인 단계 ④ 사람 판정 화면 — `rule_ab.py --fixed 439 page`(8장 전부: 기계 통과 s42 + 불통과 표본 · 왕상 3:16-28 원문 3:26 굵게) → `record`. 앞글은 고정 절 439 page 칸에 적어 둠.
+  근거: notes/TWO-MOTHERS-STEP23.md 「결론 (task 439)」.
+
+<!-- followup: fu-51684c92eebd | source: two-mothers-composition-2of2 | task: 439 | date: 2026-10-27 | status: open | taken: - -->
+- 두 여인 「순간」 문항이 「왕 자리(화면을 향함)」와 왕 얼굴 방향을 반대로 물음 — 순간에서 「지켜봄」을 빼거나 정면 왕에 맞게 고침(명세도 screen_facing viewer + gaze mother-a가 함께 있음 — 어느 쪽인지 정하기). 다음 8시드 재측정 때.
+  근거: task 439 s23·s202 순간 틀림 이유 「왕이 정면(보는 사람)을 봄」.
+
+<!-- followup: fu-157945bb7284 | source: two-mothers-composition-2of2 | task: 439 | date: 2026-10-27 | status: open | taken: - -->
+- 두 여인 앞뒤 깊이가 약함 — 다섯이 거의 한 줄로 그려짐(발 y 앞 0.94 · 뒤 0.845). figure-scale 하한 0.45와 앞뒤 깊이가 부딪힘: 무리 단계 하한을 뒤쪽 시중드는 사람에게도 걸지, 깊이 밝기 차를 키울지. 사람 화면 답이 「앞뒤」를 문제 삼으면 집을 것.
+  근거: notes/TWO-MOTHERS-STEP23.md 「눈 확인 (task 439)」 · 438 결정 5.
