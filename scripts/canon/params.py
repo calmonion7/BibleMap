@@ -354,3 +354,14 @@ FACE_DETAIL_TRIAL = (0.3, 0.45)
 # task 395 — C 장면 머리에 V3 얼굴 보정 → 되붙임(notes/FACE-DETAIL-V3.md 고정 절). 보정 방식은 FACE_DETAIL_* 그대로.
 FACE_DETAIL_V3_PASTE_GROW = 1.3      # 되붙임 타원 = 머리 상자 가로·세로 × 이 값(정사각 전체가 아니라 머리만)
 FACE_DETAIL_V3_PASTE_FEATHER = 0.12  # 타원 가장자리 가우스 흐림 반지름 = 머리 상자 긴 변 × 이 값
+# task 445 정본 전이 v4(notes/FACE-LORA-V4.md 고정 절) — V3 묶음 구성을 새 정본으로, 모든 묶음 그림을 Z-Image img2img로 장면 화풍에 다시 칠함(바꾸는 것은 묶음 화풍 하나).
+LORA_V4_WHO = ("saul", "david-youth")
+LORA_V4_CANON_SEED = {"saul": 11, "david-youth": 23}   # 카드 파생 정본(frozen) 시드 — 3/4는 face-canon-v3/<id>/s<시드>-34.png
+LORA_V4_TRIGGER = {"saul": "saul_bm", "david-youth": "davidy_bm"}   # 기브아 502 + 둘 = 511/512
+LORA_V4_SIDE = {"saul": "left", "david-youth": "right"}   # 기브아 명세 facing — 각도 정본이 보는 쪽
+LORA_V4_RESTYLE = 0.5          # 묶음 다시 칠하기 img2img 세기(첫 값)
+LORA_V4_RESTYLE_RETRY = 0.65   # 묶음 화풍 관문 미달 인물 — 한 번만
+LORA_V4_SCALE = 1.0            # 장면 L 어댑터 세기(첫 값)
+LORA_V4_SCALE_RETRY = 0.7      # 장면 화풍 관문 L 미달 — L 8장만 한 번
+LORA_V4_SCENE_SEEDS = REF_EDIT_SEEDS
+LORA_V4_STEPS = 300
