@@ -28,3 +28,11 @@
 - 사람 화면: https://claude.ai/artifact/55Z4kFdmhig934fBFjvd7W (폰용 비공개 · 질문 하나 「솔로몬 정본 얼굴로 어느 그림을 쓸까요?」 · 정면 8장(3/4 단추) + 지금 정본 + 참고 두 여인 s101 왕 얼굴).
 - 답 반영(353 선례): 새 장을 고르면 `frozen/solomon.png` → `frozen/retired-v1/solomon.png`로 옮기고 고른 정면을 `frozen/solomon.png`로 · `cast/solomon.json`에 `canon_face`(saul 꼴) · 「지금 정본」이면 그대로 두고 카드를 정본에 맞출지 다시 결정 · 「아무거나」면 기계 1위 s7.
 - 사람 답(2026-10-27): **s7** 고름(메모 없음) → `frozen/solomon.png` 교체 · 옛 판 `frozen/retired-v1/solomon.png` · 카드 `canon_face` 추가.
+
+## 규칙으로 넓힘 — spec.cast-canon-face (2026-10-27 사용자 「규칙으로」)
+
+- 원장 규칙 `spec.cast-canon-face`(recheck.cast_canon_face_errors): 명세 인물마다 카드 `canon_face` · 정본 파일 · `prompt_sha` = 지금 카드의 정면 정본 문구 지문(`gen_face_canon.prompt_sha`). 처음 재검: 명세 3/38 · 걸린 인물 29.
+- 다윗·사무엘: 지금 카드 문구로 같은 시드 11 정면을 다시 그리니 frozen과 화소까지 같음 → 지문만 채움(사람 확인 없음). 사울은 다름(평균 화소차 22 — 353 뒤 카드가 바뀜) → 다시 그림.
+- 27명(사울 + 카드 파생 정본 없던 26명): `gen_face_canon.py --seeds 11 42 7 23`(353·솔로몬 모두 후보끼리 차이가 거의 없어 8 → 4시드) → `~/.local/biblemap-imggen/face-canon-v3/` · `judge_face_canon.py --dir … --who <id>`. david-boy·doeg는 인코더 SIGSEGV로 한 번 실패 → 다시 돌려 됨.
+- 눈 확인(기계 추천 25장 몽타주): 대머리·붕괴 없음. 아히멜렉·칼 든 신하는 추천이 3/4 그림 → 화면에서 같은 시드 정면을 추천으로.
+- 사람 화면: https://claude.ai/artifact/1SKN9yTGFUpb8z4Jz3P9qB (`batch/make_canon_face_page.py` · 27명 × 후보 4 + 지금 정본 · 「전부 기계 추천으로」 단추 · 8.8MB) → 답 반영 `python3 batch/apply_canon_faces.py '<판정 task canon-faces + JSON>'` → `recheck.py specs`·`images`.
