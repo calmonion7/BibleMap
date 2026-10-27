@@ -426,3 +426,9 @@ task 441 확정 그림 s42에 사람이 남긴 메모 「솔로몬 맞나?」를
 - 화면: https://claude.ai/artifact/L1m3Bsbrnze9BcqmCh9QTd (폰용 비공개 · r5 8장 전부 — 기계 통과 s101 + 불통과 표본, 틀린 문항 순 · 왕상 3:16-28 원문 3:26 굵게 · 1~3× 확대 · 질문 하나 「이 장면으로 쓸 그림이 있나」 · 지금 확정 s42(맨머리)는 앞글로 알림)
 - 앞글 근거 문장 고침: 「혼인 3:1이 이 재판 바로 앞」 → 「어느 혼인인지는 본문에 없음 — 이 재판 때도 썼음은 [추론]」(task 442 scripture-reviewer 2-③ — 명세는 이미 고쳤고 page 칸만 남아 있었음).
 - 답 기록: `python3 batch/rule_ab.py --fixed 443 record '<화면에서 복사한 「판정 task 443」 + JSON 한 줄>'` → 아래 「- 사람 답(8시드)」 줄 · 고른 장이 있으면 approved.final(by user) + `recheck.py stamp`
+- 사람 답(8시드): s101
+
+### 결론 (task 444 사람 답)
+
+- 사람 답 **s101 고름**(기계 통과 1장과 같음 · 메모 없음) → `approved.final` = `samples/two-mothers-step23-r5/composition-A-s101.png`(by user) — 지난 확정 r3 s42(맨머리 · 「솔로몬 맞나?」)를 바꿈. 확정 현황: 승인 그림 15 · 지금 규칙 통과 4/15 그대로. stamp 0장(record 경로는 prompt_hash 안 넘김 — 433·441과 같음).
+- 사람이 문제 삼지 않음: 앞뒤 깊이(다섯이 한 줄) · 다섯 사람 문항 3/8 — 확정 그림 s101엔 해당 없음.

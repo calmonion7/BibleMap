@@ -1894,10 +1894,10 @@
    "plausibility": null
   },
   "authored-solomon-jerusalem-two-mothers": {
-   "image": "/Users/calmonion/Project/BibleMap/scripts/canon/samples/two-mothers-step23-r3/composition-A-s42.png",
-   "seed": 42,
+   "image": "/Users/calmonion/Project/BibleMap/scripts/canon/samples/two-mothers-step23-r5/composition-A-s101.png",
+   "seed": 101,
    "path": "night-pick",
-   "from": "two-mothers-step23-r3",
+   "from": "two-mothers-step23-r5",
    "spec_changed": false,
    "prompt_matches_spec": null,
    "rules": {
@@ -1951,7 +1951,7 @@
     "derive.plate-cast-token": "pass"
    },
    "why": {
-    "judge.j1-items": "two-mothers-step23-r3 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이번 범위 밖",
+    "judge.j1-items": "two-mothers-step23-r5 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이번 범위 밖",
     "judge.plausibility-adopted": "걸린 채택 문항 0",
     "judge.style": "화풍 판정자 조건부(판정자 재현성) — 승인 그림 재검에 아직 안 씀",
     "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전"

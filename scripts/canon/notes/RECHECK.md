@@ -181,7 +181,7 @@
 | saul-nob-massacre | night-pick s303 | ✗ 틀림 figures[0].pose, figures[1].prop, figures[2].prop | ✅ 걸린 채택 문항 0 | verse-elements, scene-all-verses, stage-from-scripture, no-inflating-build |
 | solomon-jerusalem-birth | night-pick s11 | – birth-inset 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이 | ✅ 걸린 채택 문항 0 | 없음 |
 | solomon-jerusalem-birth-inset | night-pick s11 | – birth-inset 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이 | ✅ 걸린 채택 문항 0 | 없음 |
-| solomon-jerusalem-two-mothers | night-pick s42 | – two-mothers-step23-r3 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 | ✅ 걸린 채택 문항 0 | 없음 |
+| solomon-jerusalem-two-mothers | night-pick s101 | – two-mothers-step23-r5 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 | ✅ 걸린 채택 문항 0 | 없음 |
 <!-- recheck:images:end -->
 
 ## 인용 원문 대조 규칙 (2026-10-26 task 435, 원장 판 `334a4c911d11`)
