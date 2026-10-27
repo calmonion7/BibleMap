@@ -334,7 +334,7 @@ def scene_prompt(loras):
     p = ds.route_prompt(spec)
     for f in spec["figures"]:
         if f["cast"] in loras:
-            d = ds.cast_describe(ds._cast_in_scene(f))
+            d = ds.cast_describe(ds._cast_in_scene(f)).rsplit(", in ", 1)[0]   # 장면 문구는 옷 서술을 표정·자세 뒤로 보냄 — 옷 앞까지로 자리 찾기
             assert p.count(d) == 1, (f["cast"], p.count(d))
             p = p.replace(d, f"{TRIG[f['cast']]}, {d}")
     return p
