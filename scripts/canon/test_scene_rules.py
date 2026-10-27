@@ -475,6 +475,53 @@ class CastAgeWord(unittest.TestCase):
         self.assertEqual(len(recheck.cast_age_word_errors(s)), 1)
 
 
+class CastHeadwear(unittest.TestCase):
+    """spec.cast-headwear — v1 headwear none ⟺ headOutline class bare · class가 어휘 안(task 440). 장면 cast_override 포함."""
+
+    def _errs(self, hw, cls):
+        import check_cast_v2 as C
+        return C.headwear_errors({"headwear": hw, "card": {"headOutline": {"class": cls, "text": "x"}}})
+
+    def test_none_iff_bare(self):
+        self.assertEqual(self._errs("none", "bare"), [])
+        self.assertEqual(self._errs("plain brown shawl", "shawl"), [])
+        self.assertEqual(len(self._errs("none", "shawl")), 1)      # (가) 숄인데 none — 참 어머니
+        self.assertEqual(len(self._errs("bronze helmet", "bare")), 1)  # (가) 반대쪽
+
+    def test_class_in_vocab(self):
+        self.assertEqual(self._errs("gold crown", "crown"), [])
+        self.assertEqual(len(self._errs("feather hat", "hat")), 1)  # (나) 어휘 밖
+
+    def test_scene_override(self):
+        import derive_scene as ds
+        self.assertEqual(recheck.cast_headwear_errors(gibeah()), [])
+        s = gibeah()
+        f = next(f for f in s["figures"] if f["cast"] == "saul")
+        card = copy.deepcopy(ds._cast_in_scene(f)["card"])
+        card["headOutline"] = {"class": "crown", "text": "a gold crown"}
+        f["cast_override"] = {**f.get("cast_override", {}), "card": card}
+        self.assertEqual(ds._cast_in_scene(f)["headwear"], "none")
+        self.assertEqual(len(recheck.cast_headwear_errors(s)), 1)
+        f["cast_override"]["headwear"] = "gold crown"
+        self.assertEqual(recheck.cast_headwear_errors(s), [])
+
+    def test_neg_for_keeps_headwear(self):
+        import sys
+        import derive_scene as ds
+        fake = {m: mock.MagicMock() for m in ("torch", "diffusers") if m not in sys.modules}  # GPU 0 — neg_for만 씀
+        sys.modules.update(fake)  # patch.dict는 안에서 처음 불린 numpy까지 지워 재로드 오류 — 가짜만 넣고 뺀다
+        try:
+            import gen_cast_plate
+        finally:
+            for m in fake:
+                sys.modules.pop(m)
+        for cid in ("mother-a", "achish", "agag", "david-old", "shieldman"):
+            c = ds.load_cast(cid)
+            neg = gen_cast_plate.neg_for(c)[len(", ".join([ds.NEG] + c.get("neg", []))):]  # 카드 자체 neg 뒤 덧붙임만
+            for w in ("helmet", "crown", "turban"):
+                self.assertNotIn(w, neg, cid)
+
+
 class PoseSkeleton(unittest.TestCase):
     """generate.pose-skeleton — 몸짓에 던짐 동사가 있는 인물은 guide.pose 뼈대(task 403 c7)."""
 

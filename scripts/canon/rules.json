@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "334a4c911d11",
+  "version": "826e3c0c066d",
   "rules": [
     {"id": "spec.required-fields", "layer": "spec", "scope": "all", "check": "check_scenes.check",
      "source": "check_scenes.py · task 332·363·387", "since": "2026-09-04 task 332",
@@ -26,6 +26,9 @@
     {"id": "spec.cast-age-word", "layer": "spec", "scope": "all", "check": "recheck.cast_age_word_errors",
      "source": "task 429 scripture-reviewer 보류 ③ · 후속 fu-3a6978704178 · notes/CAST-AGE-WORD.md", "since": "2026-10-26 task 431",
      "note": "카드 v1 age 칸의 나이 낱말이 ageBand class와 맞음 — boy·girl → child·youth · youth → youth · young → youth·young · prime·mature → prime·middle(-prime id 장년) · middle-aged → middle · aging·old·elderly → elder. 나이 낱말 없는 글(「tall king」「warrior」)은 통과. 명세 인물마다 카드와 장면 cast_override 모두(check_cast_v2 (k)도 같은 함수 — spec.cast-card-v2로도 잡힘). 이 칸은 시선 대상 문구·그룹 단계로 프롬프트에 나간다 · joab 「young commander」 대 prime"},
+    {"id": "spec.cast-headwear", "layer": "spec", "scope": "all", "check": "recheck.cast_headwear_errors",
+     "source": "task 438 scripture-reviewer 1차 주의 · 후속 fu-16d6cf9daa2a · notes/CAST-HEADWEAR.md", "since": "2026-10-27 task 440",
+     "note": "카드 v1 headwear 칸이 card.headOutline과 맞음 — (가) headwear none ⟺ class bare (나) class가 머리 윤곽 어휘 안(bare·headwrap·turban·veil·shawl·diadem·helmet·crown). 명세 인물마다 카드와 장면 cast_override 모두(check_cast_v2 (l)도 같은 함수 — spec.cast-card-v2로도 잡힘). 이 칸은 판 시트 부정 낱말(neg_for — none이면 helmet·crown·turban 뺌)과 판정 설명으로 나간다 · 숄 쓴 참 어머니 「headwear: none」 · 다윗 귀환 crown 대 none"},
     {"id": "spec.scripture-over-human", "layer": "spec", "scope": "doc", "check": "todo",
      "source": "메모리 feedback_scripture_over_human · CONTEXT 「근거 우선순위」", "since": "2026-10-21",
      "note": "본문과 사람 판정이 갈리면 본문 — 기계로 옮기기 어려움(효과 순위 낮음, scripture-reviewer 판정표로)"},

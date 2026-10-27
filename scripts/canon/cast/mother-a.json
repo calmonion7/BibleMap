@@ -13,7 +13,7 @@
   "role": "mother",
   "hair": "dark braided hair",
   "beard": "none",
-  "headwear": "none",
+  "headwear": "plain brown shawl",
   "build": "slender build",
   "costume": "in an undyed wool robe with a dark brown cloth belt",
   "colorWords": [
@@ -67,7 +67,7 @@
     "build": "[저작](두 여인 구분용 가는 체격, 구절은 체격을 말하지 않음)",
     "hair": "[저작](두 여인 구분용 땋은 검은 머리, 구절은 머리털을 말하지 않음)",
     "beard": "[저작](여성 인물이라 수염 없음)",
-    "headwear": "[저작](두 여인 구분용 맨머리, 구절은 쓴 것을 말하지 않음)",
+    "headwear": "[저작](카드 머리 윤곽과 맞춤 — task 440. 성인 여성 머리 가림은 시대 고증, 구절은 쓴 것을 말하지 않음)",
     "costume": "[저작](두 여인 구분용 시대 복식 고증 — 표백 안 한 모직 겉옷; 왕상 3:26 「산 아들을 저에게 주시고 아무쪼록 죽이지 마옵소서」는 참 어머니 식별만 말하고 복식은 말하지 않음)",
     "card.heightRel": "[저작](역표 동석 인물과 구분용)",
     "card.ageBand": "[저작](역표 동석 인물과 구분용)",

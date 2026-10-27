@@ -138,7 +138,7 @@ vocab-2는 두 층을 **더한다**. 값은 프롬프트에 바로 쓰는 영문
 | `ageBand` | `{class, text}` | `child` · `youth`(10대 — 파생 문구 boy·girl 금지는 카드 나이 15세 이상만, 14세 david-boy는 삼상 17:33 「너는 소년이요」대로 boy 허용 · 원장 derive.youth-noun) · `young`(20대) · `prime`(30대) · `middle`(40~50대) · `elder`(60대~) — `text`의 나이 숫자(「about N」·「in his Ns」)가 `class` 범위 안(원장 spec.cast-age-band, 장면 `cast_override`도) | `in his 40s, deep forehead lines` |
 | `beardVolume` | `{class, text}` | `none` · `stubble` · `trimmed` · `full` · `long` | `close-trimmed dark beard, jawline visible` / `thick beard reaching the chest` |
 | `silhouette` | `{class, text}` | `slight` · `lean` · `average` · `broad` · `heavy` · `giant` | `broad shoulders, thick barrel torso` |
-| `headOutline` | `{class, text}` | `bare` · `headwrap` · `turban` · `veil` · `shawl` · `diadem` · `helmet` | `bare head, tight dark curls close to the skull` |
+| `headOutline` | `{class, text}` | `bare` · `headwrap` · `turban` · `veil` · `shawl` · `diadem` · `helmet` · `crown` | `bare head, tight dark curls close to the skull` |
 | `costumeColor` | `{class, text}` | `red` · `brown` · `white` · `blue` · `green` · `purple` · `black` · `gold` · `undyed` | `deep red wool tunic, dark brown belt` |
 
 - **구별 규칙**: `cast/CAST.md` 역표의 한 정차지에 함께 나오는 두 인물은 위 6필드 중 **2개 이상에서 `class`가 다르다**(`heightRel`은 값 자체).

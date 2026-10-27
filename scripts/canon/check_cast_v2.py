@@ -12,6 +12,7 @@ task 353에서 더함: (f) `_why`가 근거 단계 `[직접]`·`[추론]`·`[저
 (i) 파생 문구(장면 `cast_describe`·정본 `gen_face_canon.look`)에 `bare head` 없음 — Z-Image가 민머리로 그린다(346·353 두 번 밟음, notes/PROMPTING.md 14).
 task 429에서 더함: (j) ageBand 나이 글의 숫자가 class 범위 안(규칙 spec.cast-age-band).
 task 431에서 더함: (k) v1 `age` 칸의 나이 낱말이 ageBand class와 맞음(규칙 spec.cast-age-word).
+task 440에서 더함: (l) v1 `headwear`가 `none` ⟺ headOutline class `bare` · class가 머리 윤곽 어휘 안(규칙 spec.cast-headwear).
 """
 import glob
 import itertools
@@ -32,7 +33,7 @@ CARD = {
     "ageBand": {"child", "youth", "young", "prime", "middle", "elder"},
     "beardVolume": {"none", "stubble", "trimmed", "full", "long"},
     "silhouette": {"slight", "lean", "average", "broad", "heavy", "giant"},
-    "headOutline": {"bare", "headwrap", "turban", "veil", "shawl", "diadem", "helmet"},
+    "headOutline": {"bare", "headwrap", "turban", "veil", "shawl", "diadem", "helmet", "crown"},
     "costumeColor": {"red", "brown", "white", "blue", "green", "purple", "black", "gold", "undyed"},
 }
 FACE = ("faceShape", "eyes", "nose", "mouth", "skin", "brows", "marks")
@@ -106,6 +107,18 @@ def age_word_errors(c):
             for w in AGE_WORD_RE.findall((c.get("age") or "").lower()) if cls not in AGE_WORD[w]]
 
 
+def headwear_errors(c):
+    """규칙 spec.cast-headwear(task 440) — v1 `headwear`가 card.headOutline과 맞는지. → [] 통과 · [오류] 걸림.
+    (가) `none` ⟺ class `bare` (나) class가 머리 윤곽 어휘 안. v1 칸은 판 시트 부정 낱말(`gen_cast_plate.neg_for` — `none`이면
+    helmet·crown·turban을 뺌)과 판정 설명이 쓴다 · 숄 쓴 참 어머니가 「headwear: none」이었다(task 438 scripture-reviewer)."""
+    head = (c.get("card") or {}).get("headOutline") or {}
+    cls, hw = head.get("class"), c.get("headwear")
+    errs = [] if cls in CARD["headOutline"] else [f"headOutline class {cls!r} ∉ 머리 윤곽 어휘 {sorted(CARD['headOutline'])}"]
+    if (hw == "none") != (cls == "bare"):
+        errs.append(f"headwear {hw!r}가 headOutline class {cls!r}와 안 맞음(none ⟺ bare): {head.get('text')!r}")
+    return errs
+
+
 def check(c, verses):
     errs = []
     if "cast-vocab-2" not in c.get("_format", ""):
@@ -132,6 +145,7 @@ def check(c, verses):
     age = age_band_errors(card.get("ageBand"))
     errs += ["(j) 나이 글에 숫자 없음(「about N」·「in his Ns」)"] if age is None else [f"(j) {e}" for e in age]
     errs += [f"(k) {e}" for e in age_word_errors(c)]
+    errs += [f"(l) {e}" for e in headwear_errors(c)]
     if not c.get("role"):
         errs.append("(f) role 비어 있음")
     keys = list(V1) + [f"card.{k}" for k in CARD] + [f"face.{k}" for k in FACE] + ["role"]

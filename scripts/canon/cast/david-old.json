@@ -13,7 +13,7 @@
   "role": "king",
   "hair": "gray hair",
   "beard": "long gray beard",
-  "headwear": "none",
+  "headwear": "soft white linen head-cloth",
   "build": "frail, bedridden",
   "costume": "in a plain dark robe, lying in bed",
   "colorWords": [
@@ -68,7 +68,7 @@
     "build": "[추론] 왕상 1:1 「이불을 덮어도 따뜻하지 아니한지라」 — 쇠약해 누운 몸",
     "hair": "[추론] 왕상 1:1 「나이 많아 늙으니」 — 노인은 흰 머리",
     "beard": "[추론] 왕상 1:1 「나이 많아 늙으니」 — 노인은 흰 수염",
-    "headwear": "[저작](침상에 누운 장면이라 맨머리 기본값)",
+    "headwear": "[저작](카드 머리 윤곽과 맞춤 — task 440. 병상의 늙은 왕(왕상 1:1)이라 머리를 감싼 차림으로 정함)",
     "costume": "[저작](시대 복식)",
     "card.heightRel": "[저작](david와 같은 사람 연속)",
     "card.ageBand": "[추론] 왕상 1:1 「나이 많아 늙으니」 — 삼하 5:4 즉위 30세+재위 40년으로 70대",

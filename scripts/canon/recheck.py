@@ -269,6 +269,12 @@ def cast_age_word_errors(spec):
     return [f"{f['cast']}: {e}" for f in spec["figures"] for e in check_cast_v2.age_word_errors(ds._cast_in_scene(f))]
 
 
+def cast_headwear_errors(spec):
+    """v1 `headwear`는 카드 머리 윤곽과 맞음(task 440, 규칙 spec.cast-headwear) — 명세 인물마다 카드(장면 cast_override 포함).
+    판 시트 부정 낱말·판정 설명이 이 칸을 쓴다 · 다윗 귀환 david-elder 덮어쓰기 class crown 대 v1 none."""
+    return [f"{f['cast']}: {e}" for f in spec["figures"] for e in check_cast_v2.headwear_errors(ds._cast_in_scene(f))]
+
+
 FIST_WORDS = re.compile(r"\b(curled|clenched|balled|closed hand|fists?)\b", re.I)
 
 
@@ -768,6 +774,7 @@ SPEC_CHECKS = {
     "recheck.youth_noun_errors": lambda spec, ctx: youth_noun_errors(spec),
     "recheck.cast_age_band_errors": lambda spec, ctx: cast_age_band_errors(spec),
     "recheck.cast_age_word_errors": lambda spec, ctx: cast_age_word_errors(spec),
+    "recheck.cast_headwear_errors": lambda spec, ctx: cast_headwear_errors(spec),
     "recheck.pose_skeleton_errors": lambda spec, ctx: pose_skeleton_errors(spec),
     "recheck.empty_hand_fist_errors": lambda spec, ctx: empty_hand_fist_errors(spec),
     "recheck.wall_material_errors": lambda spec, ctx: wall_material_errors(spec),
