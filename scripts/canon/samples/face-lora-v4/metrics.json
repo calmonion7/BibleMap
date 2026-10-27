@@ -5959,5 +5959,376 @@
  "sheet_strength": {
   "saul": 0.5,
   "david-youth": 0.5
+ },
+ "scene": [
+  {
+   "arm": "C",
+   "seed": 11,
+   "scale": null,
+   "tokens": 503,
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/C-s11.png",
+   "secs": 67.1,
+   "active": []
+  },
+  {
+   "arm": "C",
+   "seed": 42,
+   "scale": null,
+   "tokens": 503,
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/C-s42.png",
+   "secs": 67.5,
+   "active": []
+  },
+  {
+   "arm": "C",
+   "seed": 7,
+   "scale": null,
+   "tokens": 503,
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/C-s7.png",
+   "secs": 67.3,
+   "active": []
+  },
+  {
+   "arm": "C",
+   "seed": 23,
+   "scale": null,
+   "tokens": 503,
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/C-s23.png",
+   "secs": 67.0,
+   "active": []
+  },
+  {
+   "arm": "C",
+   "seed": 5,
+   "scale": null,
+   "tokens": 503,
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/C-s5.png",
+   "secs": 66.8,
+   "active": []
+  },
+  {
+   "arm": "C",
+   "seed": 101,
+   "scale": null,
+   "tokens": 503,
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/C-s101.png",
+   "secs": 66.9,
+   "active": []
+  },
+  {
+   "arm": "C",
+   "seed": 202,
+   "scale": null,
+   "tokens": 503,
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/C-s202.png",
+   "secs": 66.8,
+   "active": []
+  },
+  {
+   "arm": "C",
+   "seed": 303,
+   "scale": null,
+   "tokens": 503,
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/C-s303.png",
+   "secs": 66.9,
+   "active": []
+  },
+  {
+   "arm": "L",
+   "seed": 11,
+   "scale": 1.0,
+   "tokens": 511,
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/L-s11.png",
+   "secs": 75.6,
+   "active": [
+    "saul-v4",
+    "david-youth-v4"
+   ]
+  },
+  {
+   "arm": "L",
+   "seed": 42,
+   "scale": 1.0,
+   "tokens": 511,
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/L-s42.png",
+   "secs": 75.6,
+   "active": [
+    "saul-v4",
+    "david-youth-v4"
+   ]
+  },
+  {
+   "arm": "L",
+   "seed": 7,
+   "scale": 1.0,
+   "tokens": 511,
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/L-s7.png",
+   "secs": 75.3,
+   "active": [
+    "saul-v4",
+    "david-youth-v4"
+   ]
+  },
+  {
+   "arm": "L",
+   "seed": 23,
+   "scale": 1.0,
+   "tokens": 511,
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/L-s23.png",
+   "secs": 75.2,
+   "active": [
+    "saul-v4",
+    "david-youth-v4"
+   ]
+  },
+  {
+   "arm": "L",
+   "seed": 5,
+   "scale": 1.0,
+   "tokens": 511,
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/L-s5.png",
+   "secs": 75.2,
+   "active": [
+    "saul-v4",
+    "david-youth-v4"
+   ]
+  },
+  {
+   "arm": "L",
+   "seed": 101,
+   "scale": 1.0,
+   "tokens": 511,
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/L-s101.png",
+   "secs": 75.1,
+   "active": [
+    "saul-v4",
+    "david-youth-v4"
+   ]
+  },
+  {
+   "arm": "L",
+   "seed": 202,
+   "scale": 1.0,
+   "tokens": 511,
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/L-s202.png",
+   "secs": 75.2,
+   "active": [
+    "saul-v4",
+    "david-youth-v4"
+   ]
+  },
+  {
+   "arm": "L",
+   "seed": 303,
+   "scale": 1.0,
+   "tokens": 511,
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/L-s303.png",
+   "secs": 75.2,
+   "active": [
+    "saul-v4",
+    "david-youth-v4"
+   ]
+  }
+ ],
+ "detail": [
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/C-s11-david-youth.png",
+   "secs": 15.7,
+   "active": []
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/C-s11-saul.png",
+   "secs": 15.7,
+   "active": []
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/C-s42-david-youth.png",
+   "secs": 15.6,
+   "active": []
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/C-s42-saul.png",
+   "secs": 15.7,
+   "active": []
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/C-s7-david-youth.png",
+   "secs": 15.6,
+   "active": []
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/C-s7-saul.png",
+   "secs": 15.7,
+   "active": []
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/C-s23-david-youth.png",
+   "secs": 15.6,
+   "active": []
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/C-s23-saul.png",
+   "secs": 15.7,
+   "active": []
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/C-s5-david-youth.png",
+   "secs": 15.6,
+   "active": []
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/C-s5-saul.png",
+   "secs": 15.8,
+   "active": []
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/C-s101-david-youth.png",
+   "secs": 15.6,
+   "active": []
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/C-s101-saul.png",
+   "secs": 15.7,
+   "active": []
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/C-s202-david-youth.png",
+   "secs": 15.6,
+   "active": []
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/C-s202-saul.png",
+   "secs": 15.7,
+   "active": []
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/C-s303-david-youth.png",
+   "secs": 15.6,
+   "active": []
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/C-s303-saul.png",
+   "secs": 15.7,
+   "active": []
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/L-s11-david-youth.png",
+   "secs": 16.7,
+   "active": [
+    "david-youth-v4"
+   ]
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/L-s11-saul.png",
+   "secs": 16.7,
+   "active": [
+    "saul-v4"
+   ]
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/L-s42-david-youth.png",
+   "secs": 16.7,
+   "active": [
+    "david-youth-v4"
+   ]
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/L-s42-saul.png",
+   "secs": 16.7,
+   "active": [
+    "saul-v4"
+   ]
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/L-s7-david-youth.png",
+   "secs": 16.7,
+   "active": [
+    "david-youth-v4"
+   ]
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/L-s7-saul.png",
+   "secs": 16.7,
+   "active": [
+    "saul-v4"
+   ]
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/L-s23-david-youth.png",
+   "secs": 16.7,
+   "active": [
+    "david-youth-v4"
+   ]
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/L-s23-saul.png",
+   "secs": 16.7,
+   "active": [
+    "saul-v4"
+   ]
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/L-s5-david-youth.png",
+   "secs": 16.7,
+   "active": [
+    "david-youth-v4"
+   ]
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/L-s5-saul.png",
+   "secs": 16.7,
+   "active": [
+    "saul-v4"
+   ]
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/L-s101-david-youth.png",
+   "secs": 16.7,
+   "active": [
+    "david-youth-v4"
+   ]
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/L-s101-saul.png",
+   "secs": 16.7,
+   "active": [
+    "saul-v4"
+   ]
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/L-s202-david-youth.png",
+   "secs": 16.7,
+   "active": [
+    "david-youth-v4"
+   ]
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/L-s202-saul.png",
+   "secs": 16.7,
+   "active": [
+    "saul-v4"
+   ]
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/L-s303-david-youth.png",
+   "secs": 16.7,
+   "active": [
+    "david-youth-v4"
+   ]
+  },
+  {
+   "out": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/detail/L-s303-saul.png",
+   "secs": 16.7,
+   "active": [
+    "saul-v4"
+   ]
+  }
+ ],
+ "page": {
+  "path": "/Users/calmonion/.local/biblemap-imggen/pages/face-lora-v4.html",
+  "n": 34,
+  "style_seed": 11,
+  "l_arm": "L",
+  "mb": 4.37
  }
 }
