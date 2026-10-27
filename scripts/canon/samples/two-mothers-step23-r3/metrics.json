@@ -1,0 +1,1146 @@
+{
+ "answers": {
+  "composition-A-s7": {
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "틀림",
+     "t.five-people": "틀림",
+     "t.king-place": "맞음",
+     "t.servants-sides": "틀림",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림",
+     "t.plead-hands": "맞음",
+     "t.king": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "틀림",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.moment": "애원하는 여인 곁에 흰 겉옷의 여인이 하나 더 있어 장면이 어긋나고, 왕은 애원하는 여인이 아니라 정면을 본다.",
+     "t.five-people": "여인 셋(왼쪽 갈색 겉옷, 흰 겉옷, 오른쪽 아기 안은 여인), 왕, 남자 둘로 여섯 명이다.",
+     "t.servants-sides": "남자 둘이 모두 왕의 오른쪽(화면 오른쪽)에 서 있고, 왕 왼쪽에는 흰 겉옷의 여인이 서 있다.",
+     "t.guard": "흰 겉옷의 인물이 덧붙은 인물로 보인다. 분명히 아니라고 확인되지 않아 틀림으로 답한다.",
+     "t.king": "왕의 푸른 옷이 무릎 길이 튜닉이라 긴 겉옷이 아니고, 20대보다 어려 보인다.",
+     "t.bearer-dress": "칼을 든 남자는 회색 무늬 조끼 차림이고 갈색 띠가 없다. 밝은 베 긴 옷이 아니다.",
+     "t.attendant-dress": "왕 곁 화면 왼쪽에는 남자가 없고 흰 겉옷 입은 여인이 서 있다."
+    },
+    "tries": [
+     {
+      "seconds": 13.907,
+      "input": 4,
+      "output": 1602,
+      "cache_read": 46163,
+      "cache_create": 12490,
+      "cost_usd": 0.07060430000000001,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "틀림",
+     "t.five-people": "틀림",
+     "t.king-place": "맞음",
+     "t.servants-sides": "틀림",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "틀림",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림",
+     "t.plead-hands": "틀림",
+     "t.king": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "틀림",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.moment": "사람이 여섯 명이고, 흰 옷을 입은 인물이 왕 곁에 서서 장면이 어긋난다.",
+     "t.five-people": "왼쪽 여인, 흰 옷 인물, 왕, 남자 둘, 오른쪽 여인으로 여섯 명이다.",
+     "t.servants-sides": "남자 둘이 모두 왕의 화면 오른쪽에 서 있다. 왼쪽에는 흰 옷 인물이 있다.",
+     "t.sword-held": "칼은 두 남자 중 왼쪽 남자가 들고 있다. 왕 곁 가장 오른쪽 남자는 빈손이다.",
+     "t.guard": "왕 곁의 흰 옷 인물은 덧붙은 인물로 보인다. 손도 어색하다.",
+     "t.plead-hands": "왼쪽 여인이 두 손을 모아 가슴께에 둔 모습이라 왕 쪽으로 내밀었다고 하기 어렵다.",
+     "t.king": "왕이 입은 것은 무릎 길이 짧은 소매 튜닉이라 긴 겉옷이 아니다.",
+     "t.bearer-dress": "칼 든 남자는 밝은 베옷이 아니라 회색 무늬 옷을 입었고, 띠도 뚜렷하지 않다.",
+     "t.attendant-dress": "왕 곁 화면 왼쪽에 서 있는 인물은 남자가 아니라 흰 옷을 입은 여인으로 보인다."
+    },
+    "tries": [
+     {
+      "seconds": 15.31,
+      "input": 4,
+      "output": 1701,
+      "cache_read": 46163,
+      "cache_create": 12490,
+      "cost_usd": 0.0715943,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "틀림",
+     "t.five-people": "틀림",
+     "t.king-place": "맞음",
+     "t.servants-sides": "틀림",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림",
+     "t.plead-hands": "맞음",
+     "t.king": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "틀림",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.moment": "왕 왼쪽에 흰 망토를 두른 여인이 하나 더 있어 여인이 셋이다. 왕은 애원하는 여인을 보지 않고 정면을 본다.",
+     "t.five-people": "사람이 여섯이다. 왼쪽 여인, 흰 망토 여인, 왕, 남자 둘, 오른쪽 여인이 보인다.",
+     "t.servants-sides": "남자 둘이 모두 왕 오른쪽에 서 있다. 왕 왼쪽에는 남자 대신 흰 망토 여인이 서 있다.",
+     "t.guard": "왕 곁에 흰 망토를 두른 여인이 덧붙어 있어 인물 구성이 어긋난다. 분명히 맞다고 확인되지 않아 틀림으로 답한다.",
+     "t.king": "왕이 입은 푸른 옷이 긴 겉옷이 아니라 무릎 길이 튜닉이고 다리에 각반이 보인다. 20대보다 어려 보이는 점도 확실하지 않다.",
+     "t.bearer-dress": "칼 든 남자는 무늬 있는 회색 조끼형 옷을 입었고, 밝은 베 긴 옷에 갈색 띠를 맨 차림이 아니다.",
+     "t.attendant-dress": "왕 곁 화면 왼쪽에는 남자가 없고 흰 망토 여인이 서 있다."
+    },
+    "tries": [
+     {
+      "seconds": 17.862,
+      "input": 4,
+      "output": 2157,
+      "cache_read": 57342,
+      "cache_create": 1311,
+      "cost_usd": 0.0325562,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "composition-A-s5": {
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "틀림",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.servants-sides": "맞음",
+     "t.women-front": "틀림",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "틀림",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림",
+     "t.plead-hands": "맞음",
+     "t.king": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "맞음"
+    },
+    "reasons": {
+     "t.moment": "두 여인이 왕 앞이 아니라 왕과 같은 줄 양옆 벽가에 서 있어, 왕 앞에 서서 애원하는 구도가 아님",
+     "t.women-front": "두 여인이 왕보다 앞쪽(화면 아래)이 아니라 신하들 바깥쪽 같은 깊이에 서 있음",
+     "t.one-sword": "손에 든 칼 외에 그 남자 허리띠에도 단검 손잡이가 꽂혀 있어 칼이 두 자루",
+     "t.guard": "그림 둘레에 어두운 테두리선과 미색 종이 여백이 보임",
+     "t.king": "왕이 20대보다 10대 소년처럼 앳돼 보여 확실히 맞다고 할 수 없음"
+    },
+    "tries": [
+     {
+      "seconds": 14.416,
+      "input": 4,
+      "output": 1578,
+      "cache_read": 47474,
+      "cache_create": 11179,
+      "cost_usd": 0.0652514,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "틀림",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.servants-sides": "맞음",
+     "t.women-front": "틀림",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "틀림",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림",
+     "t.plead-hands": "맞음",
+     "t.king": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "맞음"
+    },
+    "reasons": {
+     "t.moment": "두 여인이 왕 앞이 아니라 양쪽 끝에 서 있고, 왕은 애원하는 여인이 아니라 정면(보는 사람)을 본다.",
+     "t.women-front": "두 여인이 왕과 같은 줄, 양쪽 가장자리에 서 있어 왕보다 앞(화면 아래쪽)이 아니다.",
+     "t.one-sword": "오른쪽 남자가 손에 든 칼 외에 허리띠에도 단검이 꽂혀 있다.",
+     "t.guard": "그림 좌우에 검은 세로 테두리선과 미색 종이 여백이 보인다.",
+     "t.king": "왕이 20대보다 훨씬 어린 소년처럼 보인다."
+    },
+    "tries": [
+     {
+      "seconds": 14.332,
+      "input": 4,
+      "output": 1649,
+      "cache_read": 46163,
+      "cache_create": 12490,
+      "cost_usd": 0.0710743,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "틀림",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.servants-sides": "맞음",
+     "t.women-front": "틀림",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "틀림",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림",
+     "t.plead-hands": "맞음",
+     "t.king": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "맞음"
+    },
+    "reasons": {
+     "t.moment": "두 여인이 왕 앞이 아니라 왕·신하와 같은 줄 양옆에 늘어서 있어 왕 앞에서 애원하는 구도가 아님",
+     "t.women-front": "두 여인이 왕보다 앞쪽이 아니라 신하들과 같은 줄에 서 있음",
+     "t.one-sword": "손에 든 칼 외에 그 남자 허리띠에도 단검이 꽂혀 있음",
+     "t.guard": "그림 좌우에 검은 테두리선과 종이 여백이 있어 액자·종이 테두리 결함",
+     "t.king": "왕이 20대 남자보다 10대 소년처럼 앳되어 보임"
+    },
+    "tries": [
+     {
+      "seconds": 12.539,
+      "input": 4,
+      "output": 1510,
+      "cache_read": 58653,
+      "cache_create": 0,
+      "cost_usd": 0.0209733,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "composition-A-s42": {
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.servants-sides": "맞음",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "틀림",
+     "t.attendant-dress": "맞음"
+    },
+    "reasons": {
+     "t.bearer-dress": "옷이 긴 옷이 아니라 무릎길이 짧은 튜닉이고, 초록 망토와 머리 두건까지 더해져 기대한 차림과 다름",
+     "t.attendant-dress": "칼 없이 수수한 튜닉 차림이라 맞다고 판단함. 다만 옷 길이가 무릎까지라 애매함",
+     "t.women-front": "두 여인이 왕보다 약간 앞쪽에 서 있고 얼굴이 보이며 왕 쪽을 향함",
+     "t.no-swing": "칼날이 위로 세워져 있고 아기나 여인을 겨누지 않음"
+    },
+    "tries": [
+     {
+      "seconds": 14.183,
+      "input": 4,
+      "output": 1644,
+      "cache_read": 46163,
+      "cache_create": 12490,
+      "cost_usd": 0.0710243,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.servants-sides": "맞음",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "틀림",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.bearer-dress": "칼을 든 남자의 옷이 무릎길이 짧은 튜닉이라 긴 옷이 아니다. 초록 망토와 머리 두건도 더해져 기대한 차림과 다르다.",
+     "t.attendant-dress": "왼쪽 신하의 옷이 무릎길이 짧은 튜닉이라 수수한 긴 옷으로 보기 어렵다."
+    },
+    "tries": [
+     {
+      "seconds": 15.464,
+      "input": 4,
+      "output": 1739,
+      "cache_read": 47474,
+      "cache_create": 11179,
+      "cost_usd": 0.0668614,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "틀림",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.servants-sides": "맞음",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "틀림",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.moment": "왕이 정면(보는 사람)만 보고 애원하는 여인을 지켜보지 않는다. 여인도 왕 앞이 아니라 화면 왼쪽 가장자리에서 시립 신하 쪽을 향해 있다.",
+     "t.bearer-dress": "칼 든 남자의 옷이 무릎 길이 짧은 튜닉이라 긴 옷이 아니다. 초록 망토와 머리 두건도 걸쳤다.",
+     "t.attendant-dress": "왼쪽 신하의 옷이 무릎 길이 짧은 튜닉이라 긴 옷이 아니다."
+    },
+    "tries": [
+     {
+      "seconds": 16.017,
+      "input": 4,
+      "output": 1689,
+      "cache_read": 47474,
+      "cache_create": 11179,
+      "cost_usd": 0.0663614,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "composition-A-s11": {
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.servants-sides": "맞음",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "틀림",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "틀림",
+     "t.guard": "틀림",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "맞음"
+    },
+    "reasons": {
+     "t.one-sword": "남자가 든 긴 칼 외에 허리춤에 칼집에 든 칼이 하나 더 보인다.",
+     "t.no-church": "오른쪽 벽에 큰 아치 벽감이 있고 왼쪽에도 아치 벽감이 있어 교회 도상처럼 보인다.",
+     "t.guard": "그림 둘레에 종이 여백과 둥근 테두리가 남아 있다."
+    },
+    "tries": [
+     {
+      "seconds": 12.916,
+      "input": 4,
+      "output": 1461,
+      "cache_read": 47009,
+      "cache_create": 11644,
+      "cost_usd": 0.0658949,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "틀림",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.servants-sides": "맞음",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "틀림",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "틀림",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "맞음"
+    },
+    "reasons": {
+     "t.moment": "두 여인이 왕 앞이 아니라 화면 양끝에 따로 서 있고, 왕은 애원하는 여인을 지켜보지 않고 정면(보는 사람)을 본다.",
+     "t.one-sword": "남자가 손에 든 칼 외에 허리에 비스듬히 찬 칼집 달린 칼이 하나 더 보인다.",
+     "t.no-church": "오른쪽 벽에 조각 장식이 있는 높은 아치 벽감이 있고, 왼쪽 벽에도 아치 벽감이 있어 교회 도상처럼 보인다."
+    },
+    "tries": [
+     {
+      "seconds": 14.266,
+      "input": 4,
+      "output": 1641,
+      "cache_read": 47009,
+      "cache_create": 11643,
+      "cost_usd": 0.0676909,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.servants-sides": "맞음",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "틀림",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "틀림",
+     "t.guard": "틀림",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "맞음"
+    },
+    "reasons": {
+     "t.one-sword": "칼을 든 남자의 허리춤에 칼집에 든 또 다른 칼이 있어서 칼이 두 자루다.",
+     "t.no-church": "오른쪽 벽의 키 큰 아치 벽감과 왼쪽 벽의 아치 오목부가 교회식 벽감처럼 보이고, 문이라고 분명히 말할 수 없다.",
+     "t.guard": "그림 둘레에 둥글게 번진 종이 테두리(비네트)가 보인다."
+    },
+    "tries": [
+     {
+      "seconds": 17.56,
+      "input": 4,
+      "output": 1813,
+      "cache_read": 48320,
+      "cache_create": 10333,
+      "cost_usd": 0.064302,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "composition-A-s23": {
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "틀림",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.servants-sides": "맞음",
+     "t.women-front": "틀림",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "틀림",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "맞음"
+    },
+    "reasons": {
+     "t.moment": "왕이 애원하는 여인을 보지 않고 정면(보는 사람)을 바라봄. 오른쪽 여인도 왕 쪽이 아니라 정면을 봄.",
+     "t.women-front": "두 여인이 왕 양옆에서 신하들과 거의 같은 줄에 서 있어 왕보다 분명히 앞이라 보기 어렵고, 오른쪽 여인은 왕 쪽이 아니라 정면을 향함.",
+     "t.infant": "아기가 천에 싸이지 않고 기저귀만 찬 채 드러나 있으며 팔 위에 얹혀 있음.",
+     "t.plead-hands": "한 손만 왕 쪽으로 내밀고 다른 손은 가슴께에 있어 두 손을 내민 모습이 아님."
+    },
+    "tries": [
+     {
+      "seconds": 15.545,
+      "input": 4,
+      "output": 1708,
+      "cache_read": 47009,
+      "cache_create": 11644,
+      "cost_usd": 0.0683649,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "틀림",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.servants-sides": "맞음",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "틀림",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "틀림",
+     "t.king": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "맞음"
+    },
+    "reasons": {
+     "t.moment": "왕이 애원하는 여인이 아니라 정면(보는 사람)을 보고 있고, 두 여인이 양쪽 끝에 멀리 떨어져 서 있어 왕 앞에서 애원하는 장면으로 읽히지 않음",
+     "t.infant": "아기가 천에 싸인 모습이 아니라 기저귀 차림으로 드러나 있고, 두 팔로 가슴에 안은 자세도 아님",
+     "t.plead-hands": "왼쪽 여인은 한 손만 왕 쪽으로 내밀었고 다른 손은 가슴께에 모았음",
+     "t.king": "왕의 푸른 겉옷이 짙은 색이 아니라 중간 밝기의 푸른색이고, 20대인지도 분명하지 않음"
+    },
+    "tries": [
+     {
+      "seconds": 17.527,
+      "input": 4,
+      "output": 1969,
+      "cache_read": 47009,
+      "cache_create": 11644,
+      "cost_usd": 0.07097490000000001,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "틀림",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.servants-sides": "맞음",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "맞음"
+    },
+    "reasons": {
+     "t.moment": "두 여인이 왕 앞이 아니라 신하들과 나란히 좌우 가장자리에 서 있다. 왕도 애원하는 여인이 아니라 정면(보는 사람)을 보고 있어 지켜보는 구도가 분명하지 않다.",
+     "t.one-sword": "칼은 손에 든 한 자루뿐이다. 허리 쪽에 보이는 검은 물체는 칼집으로 보이지만 확실하지는 않다.",
+     "t.plead-hands": "화면 왼쪽 여인은 빈 손을 내밀었지만 한 손은 가슴께에 두고 있다. 내민 손도 왕보다 가운데 신하 쪽에 가깝게 보인다."
+    },
+    "tries": [
+     {
+      "seconds": 17.211,
+      "input": 4,
+      "output": 1915,
+      "cache_read": 57342,
+      "cache_create": 1310,
+      "cost_usd": 0.0301322,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "composition-A-s101": {
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "틀림",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.servants-sides": "맞음",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "틀림",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림",
+     "t.plead-hands": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "맞음"
+    },
+    "reasons": {
+     "t.moment": "왼쪽 여인이 왕 앞이 아니라 화면 왼쪽 끝에 서 있고, 왕이 아닌 곁의 신하를 향해 말하고 있다. 오른쪽 여인도 가장자리에 서 있어 인물이 일렬로 늘어선 모습이다.",
+     "t.plead": "애원하는 몸짓이 왕이 아니라 왼쪽 신하를 향한다. 시선도 신하에게 가 있다.",
+     "t.plead-hands": "한 손은 위로 들었고 다른 손은 왕이 아닌 왼쪽 신하 쪽으로 내밀었다. 두 손을 왕 쪽으로 내밀지 않았다.",
+     "t.guard": "그림 가장자리가 미색 종이 여백으로 번져 종이 테두리처럼 보인다."
+    },
+    "tries": [
+     {
+      "seconds": 16.432,
+      "input": 4,
+      "output": 1899,
+      "cache_read": 47009,
+      "cache_create": 11644,
+      "cost_usd": 0.0702749,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "틀림",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.servants-sides": "맞음",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "틀림",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "틀림",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "맞음"
+    },
+    "reasons": {
+     "t.moment": "왼쪽 여인이 왕 앞이 아니라 왕과 떨어진 가장자리에 서 있고, 두 팔도 왕이 아닌 곁의 신하 쪽으로 뻗어서 왕에게 애원하는 순간으로 읽히지 않음",
+     "t.plead": "왼쪽 여인의 몸과 손이 왕이 아니라 그 사이에 선 왼쪽 신하를 향함",
+     "t.plead-hands": "내민 두 손이 왕이 아니라 왼쪽 신하를 향함"
+    },
+    "tries": [
+     {
+      "seconds": 12.614,
+      "input": 4,
+      "output": 1525,
+      "cache_read": 58653,
+      "cache_create": 0,
+      "cost_usd": 0.0211233,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.servants-sides": "맞음",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.guard": "좌우 가장자리에 미색 종이 여백이 테두리처럼 남아 있음",
+     "t.attendant-dress": "왼쪽 신하가 무릎 길이의 해진 천을 두르고 맨다리를 드러내서 수수한 긴 옷이라 보기 어렵고, 여인처럼 보이기도 함",
+     "t.moment": "애원하는 여인이 왕 앞이 아니라 화면 왼쪽 끝에 서 있지만 뜻은 맞음",
+     "t.infant": "아기의 맨살이 많이 드러나지만 천에 싸여 두 팔에 안겨 있음"
+    },
+    "tries": [
+     {
+      "seconds": 15.741,
+      "input": 4,
+      "output": 1697,
+      "cache_read": 58653,
+      "cache_create": 0,
+      "cost_usd": 0.0228433,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "composition-A-s202": {
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "틀림",
+     "t.five-people": "틀림",
+     "t.king-place": "맞음",
+     "t.servants-sides": "틀림",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.moment": "오른쪽 남자가 칼을 비스듬히 든 모습이 장면 순간을 흐리고, 왕 곁 신하 구성이 기대와 달라 확실히 맞다고 보기 어려움",
+     "t.five-people": "사람이 두 여인, 왕, 칼 든 남자 한 명으로 모두 네 명뿐임",
+     "t.servants-sides": "왕 오른쪽에만 남자가 서 있고 왼쪽 곁에는 신하가 없음",
+     "t.no-swing": "칼끝이 왼쪽 위, 왕과 여인 쪽을 향해 비스듬히 들려 있어 겨누지 않았다고 확신할 수 없음",
+     "t.king": "수염이 있는 중년 얼굴로 20대로 보이지 않고, 겉옷도 짙은 푸른색이라기엔 중간 톤임",
+     "t.attendant-dress": "왕 곁 화면 왼쪽에는 선 남자가 없음"
+    },
+    "tries": [
+     {
+      "seconds": 14.034,
+      "input": 4,
+      "output": 1544,
+      "cache_read": 47009,
+      "cache_create": 11644,
+      "cost_usd": 0.0667249,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "틀림",
+     "t.king-place": "맞음",
+     "t.servants-sides": "틀림",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "틀림",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "틀림",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.five-people": "사람이 네 명뿐이다. 두 여인, 왕, 칼 든 남자만 있고 왕 왼쪽 신하가 없다.",
+     "t.servants-sides": "왕 오른쪽(화면)에만 남자가 있고 왼쪽에는 없다.",
+     "t.attendant-dress": "왕 곁 화면 왼쪽에 선 남자가 없다.",
+     "t.no-swing": "칼을 들어 올려 끝이 왕과 왼쪽 여인 쪽 앞을 향한다. 겨누는 자세로 보인다.",
+     "t.king": "왕이 수염 난 30대쯤으로 보여 20대 젊은 남자라고 분명히 확인되지 않는다.",
+     "t.bearer-dress": "짧은 튜닉에 바지를 입고 머리에 두건을 썼다. 물들이지 않은 밝은 베 긴 옷이라고 보기 어렵다."
+    },
+    "tries": [
+     {
+      "seconds": 13.677,
+      "input": 4,
+      "output": 1594,
+      "cache_read": 58653,
+      "cache_create": 0,
+      "cost_usd": 0.0218133,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "틀림",
+     "t.five-people": "틀림",
+     "t.king-place": "맞음",
+     "t.servants-sides": "틀림",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림",
+     "t.plead-hands": "맞음",
+     "t.king": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "틀림",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.moment": "왕이 애원하는 여인이 아니라 정면(보는 사람)을 바라봄. 왕 곁 신하도 한 명뿐임.",
+     "t.five-people": "사람이 넷뿐임: 두 여인, 왕, 칼 든 남자. 화면 왼쪽 신하가 없음.",
+     "t.servants-sides": "남자는 왕 오른쪽(화면 기준)에만 있고 왼쪽에는 없음.",
+     "t.guard": "왼쪽 여인 뺨에 붉은 자국이 있어 결함으로 봄. 분명히 맞다고 확인되지 않아 틀림 처리.",
+     "t.king": "왕이 20대보다 나이 들어 보이고 수염이 있음. 겉옷도 짙은 푸른색이라 하기엔 중간 푸른색임.",
+     "t.bearer-dress": "칼 든 남자의 옷이 무릎 길이 튜닉에 바지 차림이라 긴 옷이 아님.",
+     "t.attendant-dress": "왕 곁 화면 왼쪽에 선 남자가 없음."
+    },
+    "tries": [
+     {
+      "seconds": 15.755,
+      "input": 4,
+      "output": 1709,
+      "cache_read": 58653,
+      "cache_create": 0,
+      "cost_usd": 0.022963300000000002,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  },
+  "composition-A-s303": {
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "틀림",
+     "t.king-place": "맞음",
+     "t.servants-sides": "틀림",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "틀림",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림",
+     "t.plead-hands": "맞음",
+     "t.king": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.five-people": "그림에 보이는 사람은 두 여인, 왕, 칼 든 남자까지 넷뿐이다. 왕 왼쪽 신하가 없다.",
+     "t.servants-sides": "왕 오른쪽에만 남자가 서 있고 왼쪽에는 남자가 없다.",
+     "t.attendant-dress": "왕 곁 화면 왼쪽에 선 남자가 없다.",
+     "t.sword-held": "든 것이 곧은 칼 한 자루가 아니라 긴 나무 자루 끝에 칼날을 붙인 창 같은 물건이다.",
+     "t.guard": "오른쪽 벽에 사람 모양 그림자가 크게 드리워져 덧붙은 인물처럼 보인다.",
+     "t.king": "왕이 20대로 보이지 않고 수염 난 30대쯤으로 보이며, 푸른 옷도 짙다기보다 밝은 편이다."
+    },
+    "tries": [
+     {
+      "seconds": 15.311,
+      "input": 4,
+      "output": 1639,
+      "cache_read": 47009,
+      "cache_create": 11644,
+      "cost_usd": 0.06767490000000001,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "틀림",
+     "t.moment": "맞음",
+     "t.five-people": "틀림",
+     "t.king-place": "맞음",
+     "t.servants-sides": "틀림",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "틀림",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "s.no-blob": "오른쪽 벽에 얼굴·옷 없이 평평한 회색 사람 모양 그림자가 크게 남아 있음",
+     "t.five-people": "사람이 네 명뿐임(두 여인, 왕, 오른쪽 남자). 왕 왼쪽 남자가 없음",
+     "t.servants-sides": "왕 오른쪽에만 남자가 있고 왼쪽에는 없음",
+     "t.sword-held": "칼날 아래로 긴 나무 막대가 바닥까지 이어져 곧은 칼이 아니라 창이나 지팡이에 칼날을 단 모양임",
+     "t.guard": "오른쪽 벽의 사람 모양 그림자가 덧붙은 인물처럼 보임. 칼과 막대가 이어진 것도 어색함",
+     "t.attendant-dress": "왕 곁 화면 왼쪽에 선 남자가 아예 없음"
+    },
+    "tries": [
+     {
+      "seconds": 14.359,
+      "input": 4,
+      "output": 1675,
+      "cache_read": 57342,
+      "cache_create": 1310,
+      "cost_usd": 0.027732200000000002,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "틀림",
+     "t.moment": "맞음",
+     "t.five-people": "틀림",
+     "t.king-place": "맞음",
+     "t.servants-sides": "틀림",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "틀림",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림",
+     "t.plead-hands": "맞음",
+     "t.king": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "s.no-blob": "오른쪽 벽에 얼굴 없는 회색 사람 모양 그림자가 남아 있음",
+     "t.five-people": "사람이 넷뿐임(두 여인, 왕, 칼 든 남자). 왼쪽 신하가 없음",
+     "t.servants-sides": "왕 오른쪽에만 남자가 있고 왼쪽에는 없음",
+     "t.sword-held": "칼날이 바닥까지 닿는 긴 막대에 이어져 창처럼 보임. 손에 든 곧은 칼 한 자루로 보기 어려움",
+     "t.guard": "벽에 사람 모양 그림자가 있고 칼과 막대가 합쳐진 이상한 물건이 있음",
+     "t.king": "수염이 있고 서른 안팎으로 보여 20대 젊은 남자로 보기 어려움",
+     "t.attendant-dress": "왕 곁 화면 왼쪽에 선 남자가 없음",
+     "t.moment": "왼쪽 여인은 애원하고 오른쪽 여인은 아기를 안았으며 왕은 앉아 있음",
+     "s.style": "미색 바탕에 선이 보이는 색연필풍 동화 그림으로 봄"
+    },
+    "tries": [
+     {
+      "seconds": 15.679,
+      "input": 4,
+      "output": 1782,
+      "cache_read": 47009,
+      "cache_create": 11644,
+      "cost_usd": 0.0691049,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  }
+ }
+}
