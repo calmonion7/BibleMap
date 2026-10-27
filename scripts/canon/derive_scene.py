@@ -209,6 +209,16 @@ def _side(fig, spec):
     return "on the left" if cx < 0.4 else "on the right" if cx > 0.6 else "in the center"
 
 
+def _head(fig, spec):
+    """한 장 프롬프트 인물 절의 머리 낱말 — 같은 쪽 낱말을 둘이 받으면 발 y로 앞·뒤를 붙인다(task 438: 두 여인 다섯 사람 —
+    「On the right:」가 두 번이면 어느 절이 어느 인물인지 모른다)."""
+    side = _side(fig, spec)
+    foot = [spec["regions"][f["region"]][3] for f in spec["figures"] if _side(f, spec) == side]
+    if len(foot) < 2:
+        return side
+    return f"{side}, {'in front' if spec['regions'][fig['region']][3] == max(foot) else 'further back'}"
+
+
 def _cast_in_scene(f):
     """cast 정본 + 이 장면 한정 덮어쓰기(`cast_override`, 근거 `cast_override_why` 필수).
     정본 낱말이 장면 자세와 부딪힐 때 쓴다 — 엔게디 24:3-4 사울의 'tall king·a head taller'가 웅크림을 세웠다(r4 실측)."""
@@ -237,7 +247,7 @@ def whole_prompt(spec):
         # 차림은 장면 명세가 덮어쓴다(용어집 「카드 층 / 얼굴 층」) — 정본 costume은 빼고 장면 costume을 몸짓 뒤에 한 번(task 363)
         c, cost = {**_cast_in_scene(f), "costume": ""}, [f["costume"]["en"]]
         facing = [SCREEN_FACING[f["screen_facing"]][0]] if f.get("screen_facing") else []
-        parts.append(", ".join([f"{_side(f, spec).capitalize()}: {cast_describe(c)}", f["expression"]["en"],
+        parts.append(", ".join([f"{_head(f, spec).capitalize()}: {cast_describe(c)}", f["expression"]["en"],
                                 f["gesture"]["en"], *cost, looks, *facing]) + ".")
     parts.append(spec["relation"]["en"] + ".")
     if spec.get("screen_light"):  # 선택: 화면 기준 빛 방향 {ko,en,verse}

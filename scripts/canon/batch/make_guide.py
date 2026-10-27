@@ -157,6 +157,17 @@ def sit(d, x0, y0, x1, y1, v):
     h, w = y1 - y0, x1 - x0
     hs = h / S.v("body.seated")                        # 서 있는 키
     bw, r = min(w, hs * BODY["w"]), hs * HEAD_R["person"]
+    if BODY.get("sit_front"):   # task 438: 화면을 보고 앉은 사람(두 여인 솔로몬 — 맨 뒤 가운데) — 옆 꼴은 넓적다리가 옆으로 뻗어 옆모습으로 그려짐
+        cx, seat = (x0 + x1) / 2, y1 - hs * (1 - S.v("body.knee"))
+        d.rectangle([cx - bw * 0.55, y0 - r, cx + bw * 0.55, seat], fill=round(v * 0.85))           # 등받이 높은 의자(머리 위까지)
+        d.ellipse([cx - r, y0, cx + r, y0 + 2 * r], fill=v)
+        knee, BODY["knee"] = BODY["knee"], False
+        body(d, (cx - bw * 0.3, y0 + 2 * r), (cx + bw * 0.3, y0 + 2 * r), cx, y0, seat, bw * 0.8, v)    # 위몸
+        BODY["knee"] = knee
+        d.rectangle([cx - bw * 0.4, seat - bw * 0.25, cx + bw * 0.4, seat + bw * 0.1], fill=v)       # 앞으로 짧아 보이는 넓적다리 둘
+        for s in (-1, 1):
+            limb(d, (cx + s * bw * 0.2, seat), (cx + s * bw * 0.22, y1 - bw * 0.1), bw * 0.32, v, bw * 0.24)   # 정강이
+        return
     sg = -1 if BODY.get("sit_right") else 1            # task 417: 화면 오른쪽을 보는 앉은 사람은 상자 안에서 좌우를 뒤집음(곁 장면 밧세바)
     cx = x0 + w * 0.62 if sg > 0 else x1 - w * 0.62
     d.ellipse([cx - r, y0, cx + r, y0 + 2 * r], fill=v)
@@ -287,6 +298,8 @@ POSES = {
                      7: (0.09, 0.25), 8: (0.03, 0.52), 9: (0.03, 0.74), 10: (0.03, 0.97), 11: (-0.03, 0.52), 12: (-0.03, 0.74), 13: (-0.04, 0.97),
                      14: (0.045, 0.05), 16: (0.0, 0.055)},
 }
+# task 438 — 곧게 서서 갓난 아기를 안고 화면 왼쪽을 봄(두 여인 다른 계집 — 앞쪽 오른쪽에서 맨 뒤 가운데 왕 쪽): cradle_stand를 x로 뒤집음(listen_clasp 선례)
+POSES["cradle_stand_left"] = {k: (-x, y) for k, (x, y) in POSES["cradle_stand"].items()}
 
 
 def pose_points(box, name, hip_dx=0.06):
@@ -432,8 +445,9 @@ def make(spec, stage=1):
         BODY["w"] = S.build_width(build.get(k))
         BODY["knee"] = k in knee
         BODY["sit_right"] = facing.get(k) == "right"
+        BODY["sit_front"] = facing.get(k) == "viewer"
         SHAPES[g["shape"][k]](d, x0 * W, y0 * H, x1 * W, y1 * H, round(255 * g["depth"][k]))
-    BODY["w"], BODY["knee"], BODY["sit_right"] = S.build_width(), False, False
+    BODY["w"], BODY["knee"], BODY["sit_right"], BODY["sit_front"] = S.build_width(), False, False, False
     img = img.filter(ImageFilter.GaussianBlur(g.get("blur", 3)))   # b6: blur 키우면 각진 몸이 누그러짐(b5 사울 상자 튜닉)
     d = ImageDraw.Draw(img)
     for k in air:

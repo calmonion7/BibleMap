@@ -36,7 +36,7 @@ NAME = {"saul": "사울", "david": "다윗", "samuel": "사무엘", "david-boy":
         "saul-old": "노년 사울", "endor-medium": "엔돌 여인", "saul-armor-bearer": "무기 든 자",
         "david-prime": "다윗", "david-elder": "늙어가는 다윗", "solomon-prime": "솔로몬",
         "bathsheba": "밧세바", "david-old": "노년 다윗", "goliath": "골리앗", "mother-a": "참 어머니", "mother-b": "다른 어머니",
-        "sheba-queen": "스바 여왕", "shieldman": "방패 든 자", "shimei": "시므이", "solomon": "솔로몬", "solomon-old": "노년 솔로몬",
+        "sheba-queen": "스바 여왕", "shieldman": "방패 든 자", "shimei": "시므이", "solomon": "솔로몬", "solomon-old": "노년 솔로몬", "solomon-sword-bearer": "칼 든 신하",
         "zadok": "사독", "absalom": "압살롬", "agag": "아각", "hiram": "히람", "jonathan": "요나단"}
 FACING370 = {370, 373, 376}   # 방향 문항을 「누구와 마주 보는가」로 묻는 과제(373: 한 장 모드 칸이 없어 설명은 판 facing과 앞쪽 인물에서)
 # task 370(whole-wide): 방향 문항은 사람이 본 축 「누구와 마주 보는가(얼굴·상체)」로, 설명은 한 장 모드 gaze에서(계획 결정 4)

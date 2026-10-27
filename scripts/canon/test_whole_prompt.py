@@ -23,7 +23,7 @@ def whole_scenes():
 
 
 def figure_sentence(prompt, spec, f):
-    head = f"{ds._side(f, spec).capitalize()}: "
+    head = f"{ds._head(f, spec).capitalize()}: "
     i = prompt.index(head)
     return prompt[i:prompt.index(". ", i) if ". " in prompt[i:] else len(prompt)]
 
@@ -143,7 +143,10 @@ class GuideSide(unittest.TestCase):
                 continue
             others = [cx(spec["regions"][k]) for k, v in spec["guide"]["shape"].items() if v in self.ONE]
             for f in spec["figures"]:
-                side, x = ds._side(f, spec), cx(spec["regions"][f["region"]])
+                # task 438: 같은 쪽 낱말을 둘이 받으면(앞·뒤로 가름 — ds._head) 그 무리의 가장 바깥 인물로 잰다
+                side = ds._side(f, spec)
+                same = [cx(spec["regions"][g["region"]]) for g in spec["figures"] if ds._side(g, spec) == side]
+                x = min(same) if side == "on the left" else max(same)
                 if side == "on the left":
                     self.assertFalse([o for o in others if o < x], f"{p}: {f['cast']} 왼쪽에 한 사람 꼴 칸")
                 elif side == "on the right":

@@ -99,7 +99,7 @@
 - 두 여인 단계 ②③ 8시드 — 판정 문항 고침: 「세 사람뿐」→「네 사람」 · 「바닥 칼」 문항 빼고 「신하 손에 든 곧은 칼(휘두르지 않음)」 · 「궁 재질(다듬은 돌벽·백향목 들보·돌바닥)」·「등받이 의자(궤짝 아님)」 기록 문항(회고 432 — 문구 효과는 그 문구의 기록 문항에서 먼저). relation.en이 짧아져 애원·지켜봄이 gesture·gaze로만 실림 — 그림에서 확인.
   근거: notes/TWO-MOTHERS-STEP1.md 「재저작 (task 434)」 · 커밋 8c52d10.
 
-<!-- followup: fu-4aa6e7b5ae12 | source: scene3-two-mothers-spec-reauthor | task: 434 | date: 2026-10-26 | status: open | taken: - -->
+<!-- followup: fu-4aa6e7b5ae12 | source: scene3-two-mothers-spec-reauthor | task: 434 | date: 2026-10-26 | status: taken | taken: 438 -->
 - 두 여인 한 장 프롬프트 510/512토큰(여유 2) — 네 사람 장면은 카드 문구만으로 한도에 닿음. 단계 ②에서 문구를 더해야 하면 카드 글 줄이기 규칙(예: 장면에서 덮이는 카드 칸 생략) 또는 판 경로 검토.
   근거: tok 측정 605 → 510 · run.md 「계획과 달라진 점」.
 
@@ -120,6 +120,6 @@
 - 칼 든 신하 차림 기록 4/8 — 카드 「long undyed linen tunic, leather belt」가 금빛 띠·옷깃 장식·짙은 색·무릎 길이로 그려짐(s202·s303 금빛). 문구를 더하면 510/512토큰이라 fu-4aa6(토큰 여유)과 함께 다룰 것.
   근거: notes/TWO-MOTHERS-STEP23.md 「결과 (task 436)」 기록 문항.
 
-<!-- followup: fu-3f013d456699 | source: two-mothers-step4-human-page | task: 437 | date: 2026-10-27 | status: open | taken: - -->
+<!-- followup: fu-3f013d456699 | source: two-mothers-step4-human-page | task: 437 | date: 2026-10-27 | status: taken | taken: 438 -->
 - 두 여인 명세 구도 재저작(단계 ①부터) — 사람 단계 ④ 거절 사유 「왕이 맨 뒤 상석, 신하는 좌우」. 근거: 왕상 10:5 「그 신하들의 시립한 것」·10:8 「항상 당신의 앞에 서서」(솔로몬 궁 — 이 장면 적용 [추론]) · 22:19 「그 좌우편에 모시고 서 있는데」(하늘 보좌 유비 [추론]) · 3:16 「그 앞에 서며」. 그릴링 때 정할 것: 왕 정면 가운데 → 두 여인이 등·옆을 보임(방향·표정 문항 바뀜) · 신하 수(칼 든 이 하나 + 시립 몇) · 가운데 왕 뒤 뒷벽 후광 위험(spec.solo-off-center는 홀로 인물만 — 이 경우 뒷벽 재질 문구로) · 토큰 510/512(fu-4aa6 머리털 빼기 −11 함께) · 신하 차림 fu-4ec7 함께.
   근거: notes/TWO-MOTHERS-STEP23.md 「결론 (task 437)」 · samples/two-mothers-step23-r2/pick-verdict.txt.
