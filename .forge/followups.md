@@ -116,10 +116,11 @@
 - 두 여인 단계 ④ 사람 판정 화면 — `rule_ab.py --fixed 436 page`(8장 전부: 기계 통과 s202 + 눈으로 통과에 가까운 s42 + 불통과 표본) → `record`. 화면 앞글(LEDE·HINT·MEMO_EG)이 432 문구(「왕 앞 바닥에는 칼」 · s42 칼 자리)로 박혀 있어 고정 절에서 읽게 바꿀 것.
   근거: notes/TWO-MOTHERS-STEP23.md 「결론 (task 436)」 · 커밋 ad5b04a.
 
-<!-- followup: fu-4ec787e9a087 | source: two-mothers-step23-reauthored | task: 436 | date: 2026-10-26 | status: open | taken: - -->
+<!-- followup: fu-4ec787e9a087 | source: two-mothers-step23-reauthored | task: 436 | date: 2026-10-26 | status: dismissed | taken: - -->
 - 칼 든 신하 차림 기록 4/8 — 카드 「long undyed linen tunic, leather belt」가 금빛 띠·옷깃 장식·짙은 색·무릎 길이로 그려짐(s202·s303 금빛). 문구를 더하면 510/512토큰이라 fu-4aa6(토큰 여유)과 함께 다룰 것.
   근거: notes/TWO-MOTHERS-STEP23.md 「결과 (task 436)」 기록 문항.
   task 439 다시 잼: 5/8(구도 재저작 뒤 · 532→512토큰) — 허리띠가 칼집·둘째 칼로 그려진 장 s5·s11(칼 하나 6/8). notes/TWO-MOTHERS-STEP23.md 「결과 (task 439)」.
+  닫음 2026-10-27 — 기록 문항(통과 셈 밖)이고 사람이 금빛 띠 신하의 s42를 확정. task 442 r4에서도 t.bearer-dress로 계속 기록됨.
 
 <!-- followup: fu-3f013d456699 | source: two-mothers-step4-human-page | task: 437 | date: 2026-10-27 | status: taken | taken: 438 -->
 - 두 여인 명세 구도 재저작(단계 ①부터) — 사람 단계 ④ 거절 사유 「왕이 맨 뒤 상석, 신하는 좌우」. 근거: 왕상 10:5 「그 신하들의 시립한 것」·10:8 「항상 당신의 앞에 서서」(솔로몬 궁 — 이 장면 적용 [추론]) · 22:19 「그 좌우편에 모시고 서 있는데」(하늘 보좌 유비 [추론]) · 3:16 「그 앞에 서며」. 그릴링 때 정할 것: 왕 정면 가운데 → 두 여인이 등·옆을 보임(방향·표정 문항 바뀜) · 신하 수(칼 든 이 하나 + 시립 몇) · 가운데 왕 뒤 뒷벽 후광 위험(spec.solo-off-center는 홀로 인물만 — 이 경우 뒷벽 재질 문구로) · 토큰 510/512(fu-4aa6 머리털 빼기 −11 함께) · 신하 차림 fu-4ec7 함께.
@@ -138,22 +139,24 @@
 - 두 여인 단계 ④ 사람 판정 화면 — `rule_ab.py --fixed 439 page`(8장 전부: 기계 통과 s42 + 불통과 표본 · 왕상 3:16-28 원문 3:26 굵게) → `record`. 앞글은 고정 절 439 page 칸에 적어 둠.
   근거: notes/TWO-MOTHERS-STEP23.md 「결론 (task 439)」.
 
-<!-- followup: fu-51684c92eebd | source: two-mothers-composition-2of2 | task: 439 | date: 2026-10-27 | status: open | taken: - -->
+<!-- followup: fu-51684c92eebd | source: two-mothers-composition-2of2 | task: 439 | date: 2026-10-27 | status: taken | taken: 442 -->
 - 두 여인 「순간」 문항이 「왕 자리(화면을 향함)」와 왕 얼굴 방향을 반대로 물음 — 순간에서 「지켜봄」을 빼거나 정면 왕에 맞게 고침(명세도 screen_facing viewer + gaze mother-a가 함께 있음 — 어느 쪽인지 정하기). 다음 8시드 재측정 때.
   근거: task 439 s23·s202 순간 틀림 이유 「왕이 정면(보는 사람)을 봄」.
 
-<!-- followup: fu-157945bb7284 | source: two-mothers-composition-2of2 | task: 439 | date: 2026-10-27 | status: open | taken: - -->
+<!-- followup: fu-157945bb7284 | source: two-mothers-composition-2of2 | task: 439 | date: 2026-10-27 | status: dismissed | taken: - -->
 - 두 여인 앞뒤 깊이가 약함 — 다섯이 거의 한 줄로 그려짐(발 y 앞 0.94 · 뒤 0.845). figure-scale 하한 0.45와 앞뒤 깊이가 부딪힘: 무리 단계 하한을 뒤쪽 시중드는 사람에게도 걸지, 깊이 밝기 차를 키울지. 사람 화면 답이 「앞뒤」를 문제 삼으면 집을 것.
   근거: notes/TWO-MOTHERS-STEP23.md 「눈 확인 (task 439)」 · 438 결정 5.
+  닫음 2026-10-27 — 사람이 s42 확정 때 앞뒤 깊이를 문제 삼지 않음(조건부 후보의 조건 불충족).
 
-<!-- followup: fu-c2cb45d265ab | source: cast-headwear-agree | task: 440 | date: 2026-10-27 | status: open | taken: - -->
+<!-- followup: fu-c2cb45d265ab | source: cast-headwear-agree | task: 440 | date: 2026-10-27 | status: dismissed | taken: - -->
 - `test_judge_rounds.test_plausibility_recount` 기존 실패 2건 — 「답 없음 approved:authored-solomon-jerusalem-birth-inset 회차 3」. 출생 삽화 승인 그림의 상식 판정 회차 3 답이 비었음: 회차 3을 다시 돌려 채우거나 시험의 기대(지난 회차 다시 셈)를 승인 그림 추가 뒤 상태에 맞춤.
   근거: task 440 전체 시험 실행 · HEAD(6044861) 임시 작업 트리에서도 같은 실패.
+  처리 2026-10-27 fg-ask 중 바로 고침(1bd4d3e) — plausibility validate로 새 승인 3장 회차 답 채움 · 채택 그대로 · test_judge_rounds OK.
 
-<!-- followup: fu-b34301155089 | source: two-mothers-step4-human-page-r3 | task: 441 | date: 2026-10-27 | status: open | taken: - -->
+<!-- followup: fu-b34301155089 | source: two-mothers-step4-human-page-r3 | task: 441 | date: 2026-10-27 | status: taken | taken: 442 -->
 - 두 여인 확정 그림 s42에서 솔로몬이 왕으로 읽히지 않음(사람 메모 「솔로몬 맞나?」) — 맨머리·짙은 푸른 겉옷·나무 의자뿐, 명세가 왕관을 장면 금지 낱말로 두고 10:18-20 상아 보좌는 후대라 뺌. 왕 신원 표지의 본문 근거(왕상 2:12 「다윗의 위에 앉으니」 위(位) · 아 3:11 면류관 [추론] 등)부터 찾고, 판정 문항 「가운데 앉은 이가 왕으로 읽히나」를 사람 거절 사유 → 문항(human-reject-to-question)으로. 선례: 다윗 귀환 「다윗이 누구인가?」 → 삼하 12:30 면류관 덮어쓰기.
   근거: task 441 사람 답 · notes/TWO-MOTHERS-STEP23.md 「결론 (task 441)」.
 
-<!-- followup: fu-763d99ccb187 | source: two-mothers-step4-human-page-r3 | task: 441 | date: 2026-10-27 | status: open | taken: - -->
+<!-- followup: fu-763d99ccb187 | source: two-mothers-step4-human-page-r3 | task: 441 | date: 2026-10-27 | status: taken | taken: 442 -->
 - 솔로몬 카드 머리 길이가 그림에 안 실림 — 카드 headOutline 「bare head, short dark hair」인데 s42 왕은 어깨까지 오는 머리. head_text가 bare를 「hair covering the whole head, no headwear」로 바꾸며 short가 약해지는지 확인(다른 장면 솔로몬도).
   근거: task 441 s42 눈 확인.
