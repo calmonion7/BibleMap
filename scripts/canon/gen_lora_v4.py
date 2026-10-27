@@ -504,7 +504,8 @@ def page():
     pick = next(s for s in params.LORA_V4_SCENE_SEEDS if all(len(boxes[f"{a}-s{s}"]) == len(WHO) for a in ("C", la)))
     st = []
     for w in WHO:
-        c, lz = (Image.open(os.path.join(OUT, "judge-src", f"{a}-s{pick}-{w}.png")) for a in ("C", la))
+        c, lz = (Image.open(zoom_crop(os.path.join(OUT, "scene", f"{a}-s{pick}.png"), boxes[f"{a}-s{pick}"][w],   # 판정자가 관문 아니면 scene_judge가 안 만듦
+                                      os.path.join(OUT, "judge-src", f"{a}-s{pick}-{w}.png"))) for a in ("C", la))
         st.append({"id": f"S:{w}", "tag": "화풍", "wide": True, "q": f"{NAME[w]} 머리 둘레 — 아래 그림이 위(기준)와 같은 화풍인가요?",
                    "hint": "같은 장면·같은 시드를 원래 화소의 3배로 키웠습니다. 연필 선·색연필 결·종이 질감이 같은지만 봅니다(같은 사람인지는 묻지 않습니다). "
                            "「다름」이면 나머지 문항은 안 풀어도 됩니다.", "yes": "같은 화풍", "no": "다름",
