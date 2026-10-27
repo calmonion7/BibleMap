@@ -93,5 +93,20 @@
     "face.brows": "[저작](얼굴 구분용)",
     "face.marks": "[저작](얼굴 구분용)",
     "role": "[직접] 삼하 5:3 「기름을 부어 이스라엘 왕을 삼으니라」"
+  },
+  "canon_face": {
+    "engine": "z-image-turbo",
+    "seed": 42,
+    "views": [
+      "front",
+      "34"
+    ],
+    "file": "frozen/david-prime.png",
+    "script": "scripts/canon/gen_face_canon.py",
+    "prompt": "gen_face_canon.prompt(id, view) — cast-vocab-2 카드·얼굴 층에서 파생",
+    "prompt_sha": "5ddbad94d025",
+    "size": "768x768",
+    "task": "canon-faces (2026-10-27, 규칙 spec.cast-canon-face)",
+    "approved": "2026-10-27 사용자 판정 화면에서 s42"
   }
 }

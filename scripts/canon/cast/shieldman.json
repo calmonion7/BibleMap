@@ -93,5 +93,20 @@
     "ipScale": 0.25,
     "approved": "보류: 삼상17 v41 봉인본의 S4 판 문구·시드(11)를 그대로 쓰는 인물 — 다윗 투어 36장면 미등장이라 A/B 거름 생략(task 332, 2026-09-04)",
     "approvedOn": "2026-09-04"
+  },
+  "canon_face": {
+    "engine": "z-image-turbo",
+    "seed": 7,
+    "views": [
+      "front",
+      "34"
+    ],
+    "file": "frozen/shieldman.png",
+    "script": "scripts/canon/gen_face_canon.py",
+    "prompt": "gen_face_canon.prompt(id, view) — cast-vocab-2 카드·얼굴 층에서 파생",
+    "prompt_sha": "78af9a42e924",
+    "size": "768x768",
+    "task": "canon-faces (2026-10-27, 규칙 spec.cast-canon-face)",
+    "approved": "2026-10-27 사용자 판정 화면에서 s7"
   }
 }

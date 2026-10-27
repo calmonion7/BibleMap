@@ -208,3 +208,10 @@
 - 까닭: 옛 판(2026-09-04 판 경로)이 카드 얼굴 층(task 352)과 어긋남 — 웨이브 장발 ↔ 「short dark hair」 · 크림색 ↔ 짙은 푸른 베옷 · 만화풍 ↔ 색연필. 사람이 확정한 두 여인 s101은 카드 쪽.
 - 선택 근거(사람): 판정 화면 https://claude.ai/artifact/55Z4kFdmhig934fBFjvd7W 에서 s7 고름(메모 없음) — 기계 1위(8.88)·사울 정본과 가장 구별됨. 기록 `notes/SOLOMON-FACE-CANON.md`.
 - 주의(353과 같음): 「정의와 맞는 머리 초상」일 뿐, 장면 속 같은 인물감은 보장하지 않는다.
+
+### 27명 정의 파생 정본 · Z-Image-Turbo Q8 · 정면 머리 초상 768×768 (2026-10-27 — 규칙 spec.cast-canon-face, 옛 판은 `retired-v1/<id>.png` · 사울은 `retired-v2/saul.png`)
+
+- 출처 `gen_face_canon.py --who <id> --seeds 11 42 7 23 --out ~/.local/biblemap-imggen/face-canon-v3`(카드·얼굴 층에서만 파생) → `judge_face_canon.py` → 사람 판정 화면 https://claude.ai/artifact/1SKN9yTGFUpb8z4Jz3P9qB(`batch/make_canon_face_page.py`) → `batch/apply_canon_faces.py`가 고른 정면을 `frozen/<id>.png`로 · 카드 `canon_face.prompt_sha` 기록.
+- 고른 시드(사람): saul s11 · abner s11 · achish s23 · ahimelech s11 · bathsheba s42 · david-boy s11 · david-elder s42 · david-old s42 · david-prime s42 · david-youth s23 · doeg s23 · endor-medium s23 · goliath s42 · jesse s42 · joab s23 · mother-a s11 · mother-b s11 · nathan s23 · saul-armor-bearer s7 · saul-old s23 · sheba-queen s11 · shieldman s7 · shimei s11 · solomon-old s42 · solomon-prime s23 · solomon-sword-bearer s42 · zadok s7.
+- 처음 정본이 생긴 id(옛 판 없음): david-elder · david-prime · david-youth · shieldman · shimei · solomon-prime · solomon-sword-bearer.
+- 주의(353과 같음): 「정의와 맞는 머리 초상」일 뿐, 장면 속 같은 인물감은 보장하지 않는다(얼굴 유지 = 후속 fu-67a4a7277b53).

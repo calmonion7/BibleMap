@@ -168,4 +168,27 @@ class CanonFace(unittest.TestCase):
             ds.load_cast = real
 
     def test_old_canon_without_card_link_fails(self):
-        self.assertIn("canon_face 없음", recheck.cast_canon_face_errors(self.fig("abner"))[0])
+        import derive_scene as ds
+        real = ds.load_cast
+        def bare(cid):
+            c = copy.deepcopy(real(cid))
+            c.pop("canon_face", None)
+            return c
+        ds.load_cast = bare
+        try:
+            self.assertIn("canon_face 없음", recheck.cast_canon_face_errors(self.fig("abner"))[0])
+        finally:
+            ds.load_cast = real
+
+    def test_sha_missing_cannot_be_checked(self):
+        import derive_scene as ds
+        real = ds.load_cast
+        def no_sha(cid):
+            c = copy.deepcopy(real(cid))
+            c["canon_face"].pop("prompt_sha", None)
+            return c
+        ds.load_cast = no_sha
+        try:
+            self.assertIn("prompt_sha 없음", recheck.cast_canon_face_errors(self.fig("abner"))[0])
+        finally:
+            ds.load_cast = real

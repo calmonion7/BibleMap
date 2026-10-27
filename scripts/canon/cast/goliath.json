@@ -96,5 +96,21 @@
     "ipScale": 0.25,
     "approved": "보류: 문구 a·b·c 3종 상한 — 중세 느낌은 c에서 빠졌으나 비늘갑이 세 문구 모두 미출현(어휘로 안 밀림). 삼상17 전용 인물이라 36장면 미사용. 장면 재작업 시 갑옷은 최소 패치 레퍼런스로(사용자 결정 2026-09-04)",
     "approvedOn": "2026-09-04"
+  },
+  "canon_face": {
+    "engine": "z-image-turbo",
+    "seed": 42,
+    "views": [
+      "front",
+      "34"
+    ],
+    "file": "frozen/goliath.png",
+    "script": "scripts/canon/gen_face_canon.py",
+    "prompt": "gen_face_canon.prompt(id, view) — cast-vocab-2 카드·얼굴 층에서 파생",
+    "prompt_sha": "d314cd5d8b50",
+    "size": "768x768",
+    "task": "canon-faces (2026-10-27, 규칙 spec.cast-canon-face)",
+    "retired": "frozen/retired-v1/goliath.png",
+    "approved": "2026-10-27 사용자 판정 화면에서 s42"
   }
 }

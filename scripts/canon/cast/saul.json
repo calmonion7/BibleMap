@@ -123,9 +123,10 @@
     "file": "frozen/saul.png",
     "script": "scripts/canon/gen_face_canon.py",
     "prompt": "gen_face_canon.prompt(id, view) — cast-vocab-2 카드·얼굴 층에서 파생",
+    "prompt_sha": "d05e9bbc99fe",
     "size": "768x768",
-    "task": 353,
-    "retired": "frozen/retired-v1/saul.png",
-    "approved": "2026-10-16 사용자 「별차이 없어보인다」(후보 8개 구별 안 됨) → 기본값 첫 시드"
+    "task": "canon-faces (2026-10-27, 규칙 spec.cast-canon-face)",
+    "retired": "frozen/retired-v2/saul.png",
+    "approved": "2026-10-27 사용자 판정 화면에서 s11"
   }
 }

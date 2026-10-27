@@ -36,3 +36,4 @@
 - 27명(사울 + 카드 파생 정본 없던 26명): `gen_face_canon.py --seeds 11 42 7 23`(353·솔로몬 모두 후보끼리 차이가 거의 없어 8 → 4시드) → `~/.local/biblemap-imggen/face-canon-v3/` · `judge_face_canon.py --dir … --who <id>`. david-boy·doeg는 인코더 SIGSEGV로 한 번 실패 → 다시 돌려 됨.
 - 눈 확인(기계 추천 25장 몽타주): 대머리·붕괴 없음. 아히멜렉·칼 든 신하는 추천이 3/4 그림 → 화면에서 같은 시드 정면을 추천으로.
 - 사람 화면: https://claude.ai/artifact/1SKN9yTGFUpb8z4Jz3P9qB (`batch/make_canon_face_page.py` · 27명 × 후보 4 + 지금 정본 · 「전부 기계 추천으로」 단추 · 8.8MB) → 답 반영 `python3 batch/apply_canon_faces.py '<판정 task canon-faces + JSON>'` → `recheck.py specs`·`images`.
+- 사람 답(2026-10-27): 27명 모두 시드 고름(메모 없음) → `apply_canon_faces.py` 반영 · 재검 정본 규칙 38/38 · 전 규칙 명세 5/38 · 승인 그림 4/15(규칙 전 값 회복) · 시험 232 OK.

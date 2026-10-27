@@ -95,5 +95,20 @@
     "face.brows": "[저작](david과 같은 얼굴 연속)",
     "face.marks": "[저작](david과 같은 얼굴 연속)",
     "role": "[직접] 삼상 18:5 「사울이 그로 군대의 장을 삼았더니」"
+  },
+  "canon_face": {
+    "engine": "z-image-turbo",
+    "seed": 23,
+    "views": [
+      "front",
+      "34"
+    ],
+    "file": "frozen/david-youth.png",
+    "script": "scripts/canon/gen_face_canon.py",
+    "prompt": "gen_face_canon.prompt(id, view) — cast-vocab-2 카드·얼굴 층에서 파생",
+    "prompt_sha": "fac6cedf1886",
+    "size": "768x768",
+    "task": "canon-faces (2026-10-27, 규칙 spec.cast-canon-face)",
+    "approved": "2026-10-27 사용자 판정 화면에서 s23"
   }
 }

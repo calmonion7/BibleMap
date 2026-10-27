@@ -12,7 +12,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -59,7 +59,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "fail",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -106,7 +106,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -153,7 +153,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -200,7 +200,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -247,7 +247,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -294,7 +294,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -341,7 +341,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -388,7 +388,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -435,7 +435,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -482,7 +482,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -529,7 +529,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "fail",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -576,7 +576,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -623,7 +623,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -670,7 +670,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -717,7 +717,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "fail",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -764,7 +764,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -811,7 +811,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -858,7 +858,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -905,7 +905,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -952,7 +952,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -999,7 +999,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -1046,7 +1046,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -1093,7 +1093,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -1140,7 +1140,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -1187,7 +1187,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -1234,7 +1234,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -1328,7 +1328,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -1375,7 +1375,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -1422,7 +1422,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -1456,7 +1456,7 @@
    "derive.crowd-stage": "pass",
    "generate.eye-level-perspective": "pass",
    "spec.solo-off-center": "pass",
-   "spec.inset": "fail",
+   "spec.inset": "pass",
    "derive.plate-cast-token": "pass"
   },
   "authored-solomon-jerusalem-birth-inset": {
@@ -1469,7 +1469,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -1516,7 +1516,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -1563,7 +1563,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -1610,7 +1610,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "none",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -1751,7 +1751,7 @@
    "spec.cast-age-band": "pass",
    "spec.cast-age-word": "pass",
    "spec.cast-headwear": "pass",
-   "spec.cast-canon-face": "fail",
+   "spec.cast-canon-face": "pass",
    "spec.lexicon-link": "pass",
    "derive.no-hand-prompt": "pass",
    "derive.no-bare-head": "pass",
@@ -1805,9 +1805,6 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "spec.cast-canon-face": [
-    "david: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음"
-   ],
    "spec.stage-from-scripture": [
     "david: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ],
@@ -1827,9 +1824,6 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "spec.cast-canon-face": [
-    "david-prime: canon_face 없음"
-   ],
    "spec.lexicon-link": [
     "verse_elements[2] '베 에봇을 입었더라': 사전 ephod look 문구가 파생 프롬프트에 없음"
    ],
@@ -1844,10 +1838,6 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "spec.cast-canon-face": [
-    "david: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음",
-    "saul: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음"
-   ],
    "spec.stage-from-scripture": [
     "david: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "saul: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
@@ -1860,21 +1850,12 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "spec.cast-canon-face": [
-    "david: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음",
-    "achish: canon_face 없음"
-   ],
    "spec.stage-from-scripture": [
     "david: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "achish: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
-  "authored-david-gibeah-harp": {
-   "spec.cast-canon-face": [
-    "david-boy: canon_face 없음",
-    "saul: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음"
-   ]
-  },
+  "authored-david-gibeah-harp": {},
   "authored-david-gibeon-battle": {
    "spec.whole-fields": [
     "장면.meaning: ko/en/verse 가 비어 있거나 없다",
@@ -1887,10 +1868,6 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "spec.cast-canon-face": [
-    "abner: canon_face 없음",
-    "joab: canon_face 없음"
-   ],
    "spec.stage-from-scripture": [
     "abner: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "joab: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
@@ -1902,11 +1879,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "spec.cast-canon-face": [
-    "goliath: canon_face 없음",
-    "shieldman: canon_face 없음",
-    "david-boy: canon_face 없음"
    ],
    "derive.prop-in-prompt": [
     "goliath prop '베틀채 같은 굵은 창 한 자루(손)': 영문 없음",
@@ -1931,9 +1903,6 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "spec.cast-canon-face": [
-    "david-prime: canon_face 없음"
-   ],
    "spec.stage-from-scripture": [
     "david-prime: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
@@ -1949,9 +1918,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "spec.cast-canon-face": [
-    "david-prime: canon_face 없음"
    ],
    "spec.stage-from-scripture": [
     "david-prime: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
@@ -1972,9 +1938,6 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "spec.cast-canon-face": [
-    "david-elder: canon_face 없음"
-   ],
    "spec.stage-from-scripture": [
     "david-elder: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
@@ -1991,10 +1954,6 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "spec.cast-canon-face": [
-    "nathan: canon_face 없음",
-    "david-prime: canon_face 없음"
-   ],
    "spec.stage-from-scripture": [
     "nathan: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "david-prime: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
@@ -2003,10 +1962,6 @@
   "authored-david-nob-priests": {
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "spec.cast-canon-face": [
-    "ahimelech: canon_face 없음",
-    "david: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음"
    ],
    "spec.lexicon-link": [
     "verse_elements[3] '진설병': 사전 showbread look 문구가 파생 프롬프트에 없음",
@@ -2031,20 +1986,12 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "spec.cast-canon-face": [
-    "david: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음",
-    "samuel: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음"
-   ],
    "spec.stage-from-scripture": [
     "david: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "samuel: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
   "authored-david-returns-jerusalem": {
-   "spec.cast-canon-face": [
-    "david-elder: canon_face 없음",
-    "shimei: canon_face 없음"
-   ],
    "spec.stage-from-scripture": [
     "david-elder: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "shimei: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
@@ -2068,10 +2015,6 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "spec.cast-canon-face": [
-    "achish: canon_face 없음",
-    "david: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음"
-   ],
    "spec.stage-from-scripture": [
     "achish: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "david: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
@@ -2088,11 +2031,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "spec.cast-canon-face": [
-    "samuel: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음",
-    "david-boy: canon_face 없음",
-    "jesse: canon_face 없음"
    ],
    "spec.lexicon-link": [
     "verse_elements[0] '기름 뿔을 취하여': 사전 oil-horn look 문구가 파생 프롬프트에 없음",
@@ -2115,9 +2053,6 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "spec.cast-canon-face": [
-    "david: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음"
-   ],
    "spec.stage-from-scripture": [
     "david: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
@@ -2134,23 +2069,13 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "spec.cast-canon-face": [
-    "saul-old: canon_face 없음",
-    "samuel: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음",
-    "endor-medium: canon_face 없음"
-   ],
    "spec.stage-from-scripture": [
     "saul-old: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "samuel: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "endor-medium: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
-  "authored-saul-gibeah-spear": {
-   "spec.cast-canon-face": [
-    "saul: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음",
-    "david-youth: canon_face 없음"
-   ]
-  },
+  "authored-saul-gibeah-spear": {},
   "authored-saul-gilboa-death": {
    "spec.whole-fields": [
     "장면.meaning: ko/en/verse 가 비어 있거나 없다",
@@ -2163,10 +2088,6 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "spec.cast-canon-face": [
-    "saul-old: canon_face 없음",
-    "saul-armor-bearer: canon_face 없음"
-   ],
    "spec.stage-from-scripture": [
     "saul-old: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "saul-armor-bearer: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
@@ -2178,10 +2099,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "spec.cast-canon-face": [
-    "saul: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음",
-    "samuel: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음"
    ],
    "spec.stage-from-scripture": [
     "saul: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
@@ -2198,10 +2115,6 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "spec.cast-canon-face": [
-    "samuel: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음",
-    "saul: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음"
-   ],
    "spec.stage-from-scripture": [
     "samuel: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "saul: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
@@ -2216,9 +2129,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "spec.cast-canon-face": [
-    "saul: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음"
    ],
    "spec.stage-from-scripture": [
     "saul: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
@@ -2241,10 +2151,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "spec.cast-canon-face": [
-    "saul: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음",
-    "samuel: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음"
    ],
    "spec.stage-from-scripture": [
     "saul: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
@@ -2269,10 +2175,6 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "spec.cast-canon-face": [
-    "samuel: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음",
-    "saul: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음"
-   ],
    "spec.stage-from-scripture": [
     "samuel: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "saul: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
@@ -2287,11 +2189,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "spec.cast-canon-face": [
-    "saul: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음",
-    "doeg: canon_face 없음",
-    "ahimelech: canon_face 없음"
    ],
    "spec.stage-from-scripture": [
     "saul: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
@@ -2316,9 +2213,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "spec.cast-canon-face": [
-    "solomon-prime: canon_face 없음"
    ],
    "derive.prop-in-prompt": [
     "solomon-prime prop '겉옷자락': 영문 없음"
@@ -2364,9 +2258,6 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "spec.cast-canon-face": [
-    "zadok: canon_face 없음"
-   ],
    "spec.stage-from-scripture": [
     "zadok: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "solomon: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
@@ -2376,27 +2267,12 @@
    "spec.verse-elements": [
     "verse_elements 없음 — 구절 시각 요소 목록 미작성"
    ],
-   "spec.cast-canon-face": [
-    "solomon-old: canon_face 없음"
-   ],
    "spec.stage-from-scripture": [
     "solomon-old: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
-  "authored-solomon-jerusalem-birth": {
-   "spec.cast-canon-face": [
-    "nathan: canon_face 없음",
-    "david-prime: canon_face 없음"
-   ],
-   "spec.inset": [
-    "곁 장면 authored-solomon-jerusalem-birth-inset가 규칙을 어김: ['spec.cast-canon-face']"
-   ]
-  },
-  "authored-solomon-jerusalem-birth-inset": {
-   "spec.cast-canon-face": [
-    "bathsheba: canon_face 없음"
-   ]
-  },
+  "authored-solomon-jerusalem-birth": {},
+  "authored-solomon-jerusalem-birth-inset": {},
   "authored-solomon-jerusalem-david-charge": {
    "spec.whole-fields": [
     "장면.meaning: ko/en/verse 가 비어 있거나 없다",
@@ -2411,9 +2287,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "spec.cast-canon-face": [
-    "david-old: canon_face 없음"
    ],
    "derive.prop-in-prompt": [
     "david-old prop '이불': 영문 없음",
@@ -2439,9 +2312,6 @@
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
    ],
-   "spec.cast-canon-face": [
-    "solomon-prime: canon_face 없음"
-   ],
    "derive.prop-in-prompt": [
     "solomon-prime prop '겉옷자락': 영문 없음"
    ],
@@ -2463,10 +2333,6 @@
    ],
    "spec.scene-all-verses": [
     "situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"
-   ],
-   "spec.cast-canon-face": [
-    "solomon-prime: canon_face 없음",
-    "sheba-queen: canon_face 없음"
    ],
    "derive.prop-in-prompt": [
     "solomon-prime prop '왕홀': 영문 없음",
@@ -2507,13 +2373,7 @@
     "solomon: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐"
    ]
   },
-  "authored-solomon-jerusalem-two-mothers": {
-   "spec.cast-canon-face": [
-    "mother-a: canon_face 없음",
-    "mother-b: canon_face 없음",
-    "solomon-sword-bearer: canon_face 없음"
-   ]
-  }
+  "authored-solomon-jerusalem-two-mothers": {}
  },
  "rules": [
   {
@@ -2975,11 +2835,6 @@
    "scope": "all",
    "check": "recheck.cast_canon_face_errors",
    "pass": [
-    "authored-solomon-gibeon-dream",
-    "authored-solomon-jerusalem-temple-build",
-    "authored-solomon-jerusalem-temple-dedication"
-   ],
-   "fail": [
     "authored-david-adullam-cave",
     "authored-david-ark-jerusalem",
     "authored-david-en-gedi-saul",
@@ -3007,6 +2862,7 @@
     "authored-saul-mizpah-chosen",
     "authored-saul-nob-massacre",
     "authored-solomon-ezion-geber-fleet",
+    "authored-solomon-gibeon-dream",
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
     "authored-solomon-jerusalem-birth",
@@ -3014,11 +2870,14 @@
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
     "authored-solomon-jerusalem-sheba",
+    "authored-solomon-jerusalem-temple-build",
+    "authored-solomon-jerusalem-temple-dedication",
     "authored-solomon-jerusalem-two-mothers"
    ],
+   "fail": [],
    "stale": [],
    "none": [],
-   "rate": 0.0789
+   "rate": 1.0
   },
   {
    "id": "spec.lexicon-link",
@@ -4719,6 +4578,7 @@
     "authored-solomon-gibeon-dream",
     "authored-solomon-gihon-anointing",
     "authored-solomon-jerusalem-apostasy",
+    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-david-charge",
     "authored-solomon-jerusalem-palace",
@@ -4727,12 +4587,10 @@
     "authored-solomon-jerusalem-temple-dedication",
     "authored-solomon-jerusalem-two-mothers"
    ],
-   "fail": [
-    "authored-solomon-jerusalem-birth"
-   ],
+   "fail": [],
    "stale": [],
    "none": [],
-   "rate": 0.9737
+   "rate": 1.0
   },
   {
    "id": "derive.plate-cast-token",
