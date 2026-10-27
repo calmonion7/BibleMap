@@ -201,3 +201,10 @@
 - 선택 근거(사람): task#353 판정 페이지 https://claude.ai/artifact/65nvPyVBZYynBCsd8tuSBe 정본 3문항에 사용자는 시드를 고르지 않고 「별차이 없어보인다」고 답했다(후보 8개가 서로 구별되지 않음 — 「없음」(정의 불일치)과 다름). 그래서 기본값으로 첫 시드 11을 썼다. 기록 `notes/CAST-V2-PILOT.md`.
 - 프롬프트 교훈(346 교훈의 재발): 카드 층 머리 윤곽 text의 `bare head`(머리쓰개 없음)가 다시 민머리를 만들었다(사울 16/16). 이제 `derive_scene.head_text`가 그 낱말을 떼고 「hair covering the whole head, no headwear」를 붙인다 — 정본·장면 공통.
 - 주의: 같은 정의로 그린 장면 사이 같은 인물 판정은 1/9였다. 이 정본은 「정의와 맞는 머리 초상」일 뿐, 장면에서의 같은 인물감은 아직 보장하지 않는다.
+
+### solomon seed 7 · Z-Image-Turbo Q8 · 정면 머리 초상 768×768 (2026-10-27 — 정의 파생 정본, 옛 판은 `retired-v1/solomon.png`)
+
+- 출처 `gen_face_canon.py --who solomon --out ~/.local/biblemap-imggen/face-canon`(cast-vocab-2 카드·얼굴 층에서만 파생) 8시드 × 정면·3/4 → 정면 `s7-front.png`를 `frozen/solomon.png`로. 3/4는 같은 시드·`view="34"`로 재현된다.
+- 까닭: 옛 판(2026-09-04 판 경로)이 카드 얼굴 층(task 352)과 어긋남 — 웨이브 장발 ↔ 「short dark hair」 · 크림색 ↔ 짙은 푸른 베옷 · 만화풍 ↔ 색연필. 사람이 확정한 두 여인 s101은 카드 쪽.
+- 선택 근거(사람): 판정 화면 https://claude.ai/artifact/55Z4kFdmhig934fBFjvd7W 에서 s7 고름(메모 없음) — 기계 1위(8.88)·사울 정본과 가장 구별됨. 기록 `notes/SOLOMON-FACE-CANON.md`.
+- 주의(353과 같음): 「정의와 맞는 머리 초상」일 뿐, 장면 속 같은 인물감은 보장하지 않는다.

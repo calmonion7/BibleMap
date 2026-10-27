@@ -109,5 +109,20 @@
     "approved": "승인",
     "approvedOn": "2026-09-04",
     "label": "a"
+  },
+  "canon_face": {
+    "engine": "z-image-turbo",
+    "seed": 7,
+    "views": [
+      "front",
+      "34"
+    ],
+    "file": "frozen/solomon.png",
+    "script": "scripts/canon/gen_face_canon.py",
+    "prompt": "gen_face_canon.prompt(id, view) — cast-vocab-2 카드·얼굴 층에서 파생",
+    "size": "768x768",
+    "task": "solomon-face (2026-10-27)",
+    "retired": "frozen/retired-v1/solomon.png",
+    "approved": "2026-10-27 사용자 판정 화면 https://claude.ai/artifact/55Z4kFdmhig934fBFjvd7W 에서 s7 고름(기계 1위 8.88)"
   }
 }

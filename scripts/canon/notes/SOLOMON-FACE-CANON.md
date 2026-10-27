@@ -27,3 +27,4 @@
 - 눈 확인: 정면 8장이 거의 같은 얼굴(353 「별차이 없어보인다」와 같은 결) · s42만 턱수염 뚜렷(vocab 4) · 여럿이 옅은 수염 그림자 · 20대 초반보다 서른 즈음으로 보임(카드 ageBand 「in his 20s」가 그만큼만 끌어냄).
 - 사람 화면: https://claude.ai/artifact/55Z4kFdmhig934fBFjvd7W (폰용 비공개 · 질문 하나 「솔로몬 정본 얼굴로 어느 그림을 쓸까요?」 · 정면 8장(3/4 단추) + 지금 정본 + 참고 두 여인 s101 왕 얼굴).
 - 답 반영(353 선례): 새 장을 고르면 `frozen/solomon.png` → `frozen/retired-v1/solomon.png`로 옮기고 고른 정면을 `frozen/solomon.png`로 · `cast/solomon.json`에 `canon_face`(saul 꼴) · 「지금 정본」이면 그대로 두고 카드를 정본에 맞출지 다시 결정 · 「아무거나」면 기계 1위 s7.
+- 사람 답(2026-10-27): **s7** 고름(메모 없음) → `frozen/solomon.png` 교체 · 옛 판 `frozen/retired-v1/solomon.png` · 카드 `canon_face` 추가.
