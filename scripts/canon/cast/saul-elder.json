@@ -1,0 +1,102 @@
+{
+  "_format": "cast-vocab-2 — card·face 층 추가. 한국어 근거가 정본, 영문 낱말은 파생물. 근거 없는 필드는 '본문 밖 · 저작자 정함'",
+  "id": "saul-elder",
+  "names": [
+    "사울(재위 후반)"
+  ],
+  "stops": [
+    "authored-david-gibeah-harp",
+    "authored-saul-gibeah-spear",
+    "authored-saul-nob-massacre",
+    "authored-david-en-gedi-saul"
+  ],
+  "era": "an ancient Israelite",
+  "age": "aging tall king",
+  "sex": "male",
+  "role": "king",
+  "hair": "short greying hair",
+  "beard": "close-trimmed grey-streaked beard",
+  "headwear": "none",
+  "build": "a head taller than others",
+  "costume": "in a dark wool tunic with a leather belt",
+  "colorWords": [
+    "dark brown",
+    "deep red"
+  ],
+  "propCandidates": [
+    {
+      "prop": "a spear",
+      "verse": "삼상 18:10",
+      "ko": "창"
+    },
+    {
+      "prop": "a sacrificial altar",
+      "verse": "삼상 13:9",
+      "ko": "제단"
+    }
+  ],
+  "neg": [
+    "crown",
+    "royal robe",
+    "armour",
+    "modern clothes"
+  ],
+  "poses": [
+    "standing, full body, side view facing left",
+    "standing, full body, facing right, arm raised holding a spear"
+  ],
+  "card": {
+    "heightRel": "tall",
+    "ageBand": {
+      "class": "elder",
+      "text": "about 70, a deeply wrinkled old face, lined forehead and cheeks"
+    },
+    "beardVolume": {
+      "class": "trimmed",
+      "text": "close-trimmed grey-streaked beard, jawline visible"
+    },
+    "silhouette": {
+      "class": "broad",
+      "text": "broad shoulders, a strong solid chest"
+    },
+    "headOutline": {
+      "class": "bare",
+      "text": "bare head, short greying hair cut close"
+    },
+    "costumeColor": {
+      "class": "brown",
+      "text": "dark brown wool tunic, plain leather belt"
+    }
+  },
+  "face": {
+    "faceShape": "long squared face, high cheekbones, strong jaw",
+    "eyes": "wide-set dark brown eyes",
+    "nose": "straight high-bridged nose",
+    "mouth": "firm full lips",
+    "skin": "olive tanned skin",
+    "brows": "straight dark thick brows",
+    "marks": "none"
+  },
+  "_why": {
+    "age": "[추론] 삼상 13:1 「사울이 왕이 될 때에 사십 세라」 + 연대(즉위 BC 1050 → 수금 BC 1026 약 64 · 창 BC 1020 약 70 · 엔게디 BC 1011 약 79, data/person_events) — 재위 후반. 아직 창을 던지고 군대를 거느림(삼상 18:11·24:2)",
+    "build": "[직접] 삼상 10:23 「다른 사람보다 어깨 위나 더 크더라」",
+    "hair": "[저작](재위 후반 희끗한 머리 — 본문에 머리색 없음, 기브아 창 cast_override 값을 카드로 올림)",
+    "beard": "[저작](재위 후반 희끗한 수염 — 본문에 수염 언급 없음, 기브아 창 cast_override 값을 카드로 올림)",
+    "headwear": "[저작](재위 중 맨머리 — 본문에 머리쓰개 언급 없음)",
+    "costume": "[저작](시대 복식)",
+    "card.heightRel": "[추론] 삼상 10:23 「다른 사람보다 어깨 위나 더 크더라」 — 같은 사람이라 키 불변",
+    "card.ageBand": "[추론] 삼상 13:1 「사울이 왕이 될 때에 사십 세라」 + 연대 BC 1050→1026~1011 — 수금 64~엔게디 79의 대표값 70(한 id 한 값)",
+    "card.beardVolume": "[저작](같은 사람 연속 — saul의 짧은 수염에 회색만 더함)",
+    "card.silhouette": "[저작](saul의 넓은 어깨 연속 — 문구 ‘thick barrel torso’는 규칙 derive.no-inflating-build로 ‘a strong solid chest’, 아직 창을 던질 기력 — 28:20 이전)",
+    "card.headOutline": "[저작](같은 사람 연속 — 맨머리, 회색만 더함)",
+    "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
+    "face.faceShape": "[저작](saul과 같은 얼굴 — 같은 사람)",
+    "face.eyes": "[저작](saul과 같은 얼굴 — 같은 사람)",
+    "face.nose": "[저작](saul과 같은 얼굴 — 같은 사람)",
+    "face.mouth": "[저작](saul과 같은 얼굴 — 같은 사람)",
+    "face.skin": "[저작](saul과 같은 얼굴 — 같은 사람)",
+    "face.brows": "[저작](saul과 같은 얼굴 — 같은 사람)",
+    "face.marks": "[저작](saul과 같은 얼굴 — 같은 사람)",
+    "role": "[직접] 삼상 11:15 「여호와 앞에 사울로 왕을 삼고」"
+  }
+}

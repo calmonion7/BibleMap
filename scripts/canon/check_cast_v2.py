@@ -49,7 +49,7 @@ TRAIT = re.compile(r"\b(cold|cruel|hard|harsh|wicked|evil|sly|cunning|menacing|s
                    r"|haughty|shifty|pleading|trembling|tense|anxious|fierce|stern|serene|innocent|calm|steady|composed)\b")
 # 같은 사람의 생애 단계 — 일부러 닮게 하므로 (h)에서 뺀다.
 STAGES = {frozenset(p) for fam in [("david-boy", "david-youth", "david", "david-prime", "david-elder", "david-old"),
-                                   ("saul", "saul-old"), ("solomon", "solomon-prime", "solomon-old")]
+                                   ("saul", "saul-elder", "saul-old"), ("solomon", "solomon-prime", "solomon-old")]
           for p in itertools.combinations(fam, 2)}
 # ageBand class 나이 범위(CAST.md 사다리 — youth 10대 · young 20대 · prime 30대 · middle 40~50대 · elder 60대~, task 429)
 AGE_RANGE = {"child": (0, 9), "youth": (10, 19), "young": (20, 29), "prime": (30, 39), "middle": (40, 59), "elder": (60, 120)}

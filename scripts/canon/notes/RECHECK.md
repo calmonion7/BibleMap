@@ -12,7 +12,7 @@
 ## 명세 재검 — 전 명세 × 명세·파생 함수 규칙
 
 <!-- recheck:specs:begin -->
-원장 판 `bc9c29f32407` · 토큰 검사 venv314 · 명세 38
+원장 판 `bc9c29f32407` · 토큰 검사 this python · 명세 38
 
 | 규칙 | 층 | 원래 범위 | 통과 | 실패 | 못 잼 | 통과율 |
 |---|---|---|---|---|---|---|
@@ -25,7 +25,7 @@
 | `spec.cast-age-band` | spec | all | 38 | 0 | 0 | 100% |
 | `spec.cast-age-word` | spec | all | 38 | 0 | 0 | 100% |
 | `spec.cast-headwear` | spec | all | 38 | 0 | 0 | 100% |
-| `spec.cast-canon-face` | spec | all | 38 | 0 | 0 | 100% |
+| `spec.cast-canon-face` | spec | all | 32 | 6 | 0 | 84% |
 | `spec.lexicon-link` | spec | all | 16 | 3 | 19 | 84% |
 | `derive.no-hand-prompt` | derive | all | 38 | 0 | 0 | 100% |
 | `derive.no-bare-head` | derive | all | 38 | 0 | 0 | 100% |
@@ -53,7 +53,7 @@
 | `generate.flight-height` | generate | all | 38 | 0 | 0 | 100% |
 | `derive.empty-hand-open` | derive | all | 38 | 0 | 0 | 100% |
 | `derive.wall-material` | derive | all | 38 | 0 | 0 | 100% |
-| `derive.no-inflating-build` | derive | all | 29 | 9 | 0 | 76% |
+| `derive.no-inflating-build` | derive | all | 30 | 8 | 0 | 79% |
 | `derive.prop-size-coverage` | derive | all | 38 | 0 | 0 | 100% |
 | `derive.held-hold` | derive | all | 38 | 0 | 0 | 100% |
 | `derive.crowd-stage` | derive | all | 37 | 1 | 0 | 97% |
@@ -64,15 +64,15 @@
 
 폐기 규칙(재검·통과율에서 뺌): `derive.clip-77-tokens` — 2026-10-22 사람 결정 — SDXL 단계별 경로 전용, 지금 생성 경로는 derive.512-tokens가 잼 · `generate.pose-throw-geometry` — 2026-10-23 d3 — 한 장(c14 s5) 근거로 만든 규칙: d1 「달리는 자세」·d2 「늘어진 팔」로 반증, c10 뼈대가 묶음 기록상 가장 좋음(던진 몸짓 3/8). 결함을 규칙으로 옮기기 전에 같은 조건에서 맞게 나온 적이 있는지 기록부터 볼 것 · `generate.pose-only-control` — 2026-10-23 g2e — 진단은 맞음(뼈대만이면 몸짓이 살아 다윗 숙임·사울 기욺)이나 맞바꿈: 몸 덩어리·벽 자리·수금 모양을 잃고 액자(g1e 다수결 틀림 6 · g2e 15 vs 섞은 f6e3 2). 깊이+뼈대 섞기 유지, make_pose_only·duck_low는 남김 · `generate.spear-two-thirds` — 2026-10-23 m5 — generate.flight-position(명세 칸 guide.flight + 사전 크기)로 일반화(사람 「지적한거 그대로 일회성으로 쓰지말고 규칙화」)
 
-**전 규칙 통과 명세 5/38** · 칸 통과 1473/1599 (92%)
+**전 규칙 통과 명세 3/38** · 칸 통과 1468/1599 (92%)
 
 | 명세 | required-fields | whole-fields | verse-elements | no-compromise-words | scene-all-verses | cast-card-v2 | cast-age-band | cast-age-word | cast-headwear | cast-canon-face | lexicon-link | no-hand-prompt | no-bare-head | prop-in-prompt | 512-tokens | stage-from-scripture | quote-matches-verse | action-place-on-figure | thrown-guide | guide-backdrop | guide-body-build | dodge-clear | guide-costume-legs | youth-noun | pose-skeleton | figure-scale | no-second-point | youth-height | height-ratio | seated-height | pose-hold | split-control | prop-size-relative | flight-position | flight-height | empty-hand-open | wall-material | no-inflating-build | prop-size-coverage | held-hold | crowd-stage | eye-level-perspective | solo-off-center | inset | plate-cast-token |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | david-adullam-cave | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ |
 | david-ark-jerusalem | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
-| david-en-gedi-saul | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
+| david-en-gedi-saul | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
 | david-gath-achish | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| david-gibeah-harp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| david-gibeah-harp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | david-gibeon-battle | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
 | david-goliath-gath | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | – | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
 | david-hebron-king-judah | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
@@ -85,15 +85,15 @@
 | david-ziklag-base | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | samuel-bethlehem-david-anointing | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | – | – | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
 | samuel-ramah-death | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
-| saul-endor-medium | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
-| saul-gibeah-spear | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| saul-gilboa-death | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
+| saul-endor-medium | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
+| saul-gibeah-spear | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| saul-gilboa-death | ✅ | ✗ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
 | saul-gilgal-amalek | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | saul-gilgal-coronation | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
 | saul-jabesh-rescue | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
 | saul-michmash-battle | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
 | saul-mizpah-chosen | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
-| saul-nob-massacre | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| saul-nob-massacre | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✗ | – | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | solomon-ezion-geber-fleet | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | solomon-gibeon-dream | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✗ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | solomon-gihon-anointing | ✅ | ✗ | ✗ | ✅ | ✗ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✗ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | – | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | – | ✅ | ✅ | ✅ |
@@ -115,72 +115,72 @@
 
 | 규칙 | 통과 | 실패 | 낡음 | 못 잼 |
 |---|---|---|---|---|
-| `spec.required-fields` | 7 | 0 | 8 | 0 |
-| `spec.whole-fields` | 7 | 0 | 8 | 0 |
-| `spec.verse-elements` | 5 | 0 | 10 | 0 |
-| `spec.no-compromise-words` | 7 | 0 | 8 | 0 |
-| `spec.scene-all-verses` | 4 | 0 | 11 | 0 |
-| `spec.cast-card-v2` | 7 | 0 | 8 | 0 |
-| `spec.cast-age-band` | 7 | 0 | 8 | 0 |
-| `spec.cast-age-word` | 7 | 0 | 8 | 0 |
-| `spec.cast-headwear` | 7 | 0 | 8 | 0 |
-| `spec.cast-canon-face` | 7 | 0 | 8 | 0 |
-| `spec.lexicon-link` | 5 | 0 | 8 | 2 |
-| `derive.no-hand-prompt` | 6 | 0 | 9 | 0 |
-| `derive.no-bare-head` | 7 | 0 | 8 | 0 |
-| `derive.prop-in-prompt` | 7 | 0 | 8 | 0 |
-| `derive.512-tokens` | 7 | 0 | 8 | 0 |
-| `judge.j1-items` | 1 | 8 | 0 | 6 |
+| `spec.required-fields` | 5 | 0 | 10 | 0 |
+| `spec.whole-fields` | 5 | 0 | 10 | 0 |
+| `spec.verse-elements` | 4 | 0 | 11 | 0 |
+| `spec.no-compromise-words` | 5 | 0 | 10 | 0 |
+| `spec.scene-all-verses` | 3 | 0 | 12 | 0 |
+| `spec.cast-card-v2` | 5 | 0 | 10 | 0 |
+| `spec.cast-age-band` | 5 | 0 | 10 | 0 |
+| `spec.cast-age-word` | 5 | 0 | 10 | 0 |
+| `spec.cast-headwear` | 5 | 0 | 10 | 0 |
+| `spec.cast-canon-face` | 5 | 0 | 10 | 0 |
+| `spec.lexicon-link` | 4 | 0 | 10 | 1 |
+| `derive.no-hand-prompt` | 4 | 0 | 11 | 0 |
+| `derive.no-bare-head` | 5 | 0 | 10 | 0 |
+| `derive.prop-in-prompt` | 5 | 0 | 10 | 0 |
+| `derive.512-tokens` | 5 | 0 | 10 | 0 |
+| `judge.j1-items` | 1 | 6 | 0 | 8 |
 | `judge.style` | 0 | 0 | 0 | 15 |
 | `judge.plausibility-adopted` | 14 | 1 | 0 | 0 |
 | `human.face-matched-quality` | 0 | 0 | 0 | 15 |
-| `spec.stage-from-scripture` | 4 | 0 | 11 | 0 |
-| `spec.quote-matches-verse` | 7 | 0 | 8 | 0 |
-| `spec.action-place-on-figure` | 5 | 0 | 8 | 2 |
-| `generate.thrown-guide` | 7 | 0 | 8 | 0 |
-| `generate.guide-backdrop` | 7 | 0 | 8 | 0 |
-| `generate.guide-body-build` | 7 | 0 | 8 | 0 |
-| `generate.dodge-clear` | 7 | 0 | 8 | 0 |
-| `generate.guide-costume-legs` | 7 | 0 | 8 | 0 |
-| `derive.youth-noun` | 7 | 0 | 8 | 0 |
-| `generate.pose-skeleton` | 7 | 0 | 8 | 0 |
-| `generate.figure-scale` | 4 | 0 | 8 | 3 |
-| `derive.no-second-point` | 7 | 0 | 8 | 0 |
-| `generate.youth-height` | 7 | 0 | 8 | 0 |
-| `generate.height-ratio` | 4 | 0 | 8 | 3 |
-| `generate.seated-height` | 7 | 0 | 8 | 0 |
-| `generate.pose-hold` | 7 | 0 | 8 | 0 |
-| `generate.split-control` | 7 | 0 | 8 | 0 |
-| `derive.prop-size-relative` | 7 | 0 | 8 | 0 |
-| `generate.flight-position` | 7 | 0 | 8 | 0 |
-| `generate.flight-height` | 7 | 0 | 8 | 0 |
-| `derive.empty-hand-open` | 7 | 0 | 8 | 0 |
-| `derive.wall-material` | 7 | 0 | 8 | 0 |
-| `derive.no-inflating-build` | 5 | 0 | 10 | 0 |
-| `derive.prop-size-coverage` | 7 | 0 | 8 | 0 |
-| `derive.held-hold` | 7 | 0 | 8 | 0 |
-| `derive.crowd-stage` | 7 | 0 | 8 | 0 |
-| `generate.eye-level-perspective` | 7 | 0 | 8 | 0 |
-| `spec.solo-off-center` | 7 | 0 | 8 | 0 |
-| `spec.inset` | 7 | 0 | 8 | 0 |
-| `derive.plate-cast-token` | 7 | 0 | 8 | 0 |
+| `spec.stage-from-scripture` | 3 | 0 | 12 | 0 |
+| `spec.quote-matches-verse` | 5 | 0 | 10 | 0 |
+| `spec.action-place-on-figure` | 4 | 0 | 10 | 1 |
+| `generate.thrown-guide` | 5 | 0 | 10 | 0 |
+| `generate.guide-backdrop` | 5 | 0 | 10 | 0 |
+| `generate.guide-body-build` | 5 | 0 | 10 | 0 |
+| `generate.dodge-clear` | 5 | 0 | 10 | 0 |
+| `generate.guide-costume-legs` | 5 | 0 | 10 | 0 |
+| `derive.youth-noun` | 5 | 0 | 10 | 0 |
+| `generate.pose-skeleton` | 5 | 0 | 10 | 0 |
+| `generate.figure-scale` | 3 | 0 | 10 | 2 |
+| `derive.no-second-point` | 5 | 0 | 10 | 0 |
+| `generate.youth-height` | 5 | 0 | 10 | 0 |
+| `generate.height-ratio` | 3 | 0 | 10 | 2 |
+| `generate.seated-height` | 5 | 0 | 10 | 0 |
+| `generate.pose-hold` | 5 | 0 | 10 | 0 |
+| `generate.split-control` | 5 | 0 | 10 | 0 |
+| `derive.prop-size-relative` | 5 | 0 | 10 | 0 |
+| `generate.flight-position` | 5 | 0 | 10 | 0 |
+| `generate.flight-height` | 5 | 0 | 10 | 0 |
+| `derive.empty-hand-open` | 5 | 0 | 10 | 0 |
+| `derive.wall-material` | 5 | 0 | 10 | 0 |
+| `derive.no-inflating-build` | 4 | 0 | 11 | 0 |
+| `derive.prop-size-coverage` | 5 | 0 | 10 | 0 |
+| `derive.held-hold` | 5 | 0 | 10 | 0 |
+| `derive.crowd-stage` | 5 | 0 | 10 | 0 |
+| `generate.eye-level-perspective` | 5 | 0 | 10 | 0 |
+| `spec.solo-off-center` | 5 | 0 | 10 | 0 |
+| `spec.inset` | 5 | 0 | 10 | 0 |
+| `derive.plate-cast-token` | 5 | 0 | 10 | 0 |
 
-**잰 규칙 모두 통과(실패·낡음 0) 4/15**
+**잰 규칙 모두 통과(실패·낡음 0) 3/15**
 
 | 승인 그림 | 경로 | J1 요소 | 상식 | 낡음 규칙 |
 |---|---|---|---|---|
 | david-gath-achish | local-edit s5 | ✗ 틀림 figures[0].facing | ✅ 걸린 채택 문항 0 | scene-all-verses, no-hand-prompt, stage-from-scripture |
-| david-gibeah-harp | night-pick s11 | ✗ 틀림 figures[0].pose, figures[0].prop, figures[1].pose, guard, | ✅ 걸린 채택 문항 0 | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, cast-age-band, cast-age-word, cast-headwear, cast-canon-face, lexicon-link, no-hand-prompt, no-bare-head, prop-in-prompt, 512-tokens, stage-from-scripture, quote-matches-verse, action-place-on-figure, thrown-guide, guide-backdrop, guide-body-build, dodge-clear, guide-costume-legs, youth-noun, pose-skeleton, figure-scale, no-second-point, youth-height, height-ratio, seated-height, pose-hold, split-control, prop-size-relative, flight-position, flight-height, empty-hand-open, wall-material, no-inflating-build, prop-size-coverage, held-hold, crowd-stage, eye-level-perspective, solo-off-center, inset, plate-cast-token |
+| david-gibeah-harp | night-pick s11 | – 몸 크롭 상자 없음: ['saul-elder'] | ✅ 걸린 채택 문항 0 | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, cast-age-band, cast-age-word, cast-headwear, cast-canon-face, lexicon-link, no-hand-prompt, no-bare-head, prop-in-prompt, 512-tokens, stage-from-scripture, quote-matches-verse, action-place-on-figure, thrown-guide, guide-backdrop, guide-body-build, dodge-clear, guide-costume-legs, youth-noun, pose-skeleton, figure-scale, no-second-point, youth-height, height-ratio, seated-height, pose-hold, split-control, prop-size-relative, flight-position, flight-height, empty-hand-open, wall-material, no-inflating-build, prop-size-coverage, held-hold, crowd-stage, eye-level-perspective, solo-off-center, inset, plate-cast-token |
 | david-returns-jerusalem | night-pick s101 | – restyle-r6 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이번 | ✗ 틀림 p.boarding | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, cast-age-band, cast-age-word, cast-headwear, cast-canon-face, lexicon-link, no-hand-prompt, no-bare-head, prop-in-prompt, 512-tokens, stage-from-scripture, quote-matches-verse, action-place-on-figure, thrown-guide, guide-backdrop, guide-body-build, dodge-clear, guide-costume-legs, youth-noun, pose-skeleton, figure-scale, no-second-point, youth-height, height-ratio, seated-height, pose-hold, split-control, prop-size-relative, flight-position, flight-height, empty-hand-open, wall-material, no-inflating-build, prop-size-coverage, held-hold, crowd-stage, eye-level-perspective, solo-off-center, inset, plate-cast-token |
 | samuel-bethlehem-david-anointing | local-edit s42 | ✗ 틀림 background[0], crowds | ✅ 걸린 채택 문항 0 | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, cast-age-band, cast-age-word, cast-headwear, cast-canon-face, lexicon-link, no-hand-prompt, no-bare-head, prop-in-prompt, 512-tokens, stage-from-scripture, quote-matches-verse, action-place-on-figure, thrown-guide, guide-backdrop, guide-body-build, dodge-clear, guide-costume-legs, youth-noun, pose-skeleton, figure-scale, no-second-point, youth-height, height-ratio, seated-height, pose-hold, split-control, prop-size-relative, flight-position, flight-height, empty-hand-open, wall-material, no-inflating-build, prop-size-coverage, held-hold, crowd-stage, eye-level-perspective, solo-off-center, inset, plate-cast-token |
 | samuel-ramah-death | night-pick s42 | ✗ 틀림 crowds, figures[0].prop | ✅ 걸린 채택 문항 0 | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, cast-age-band, cast-age-word, cast-headwear, cast-canon-face, lexicon-link, no-hand-prompt, no-bare-head, prop-in-prompt, 512-tokens, stage-from-scripture, quote-matches-verse, action-place-on-figure, thrown-guide, guide-backdrop, guide-body-build, dodge-clear, guide-costume-legs, youth-noun, pose-skeleton, figure-scale, no-second-point, youth-height, height-ratio, seated-height, pose-hold, split-control, prop-size-relative, flight-position, flight-height, empty-hand-open, wall-material, no-inflating-build, prop-size-coverage, held-hold, crowd-stage, eye-level-perspective, solo-off-center, inset, plate-cast-token |
-| saul-gibeah-spear | local-edit s7 | – gibeah-step23 m15 기록에 몸 크롭 상자가 없다 — OWLv2 상자는 GPU 단계라 이번 범위  | ✅ 걸린 채택 문항 0 | 없음 |
+| saul-gibeah-spear | local-edit s7 | – gibeah-step23 m15 기록에 몸 크롭 상자가 없다 — OWLv2 상자는 GPU 단계라 이번 범위  | ✅ 걸린 채택 문항 0 | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, cast-age-band, cast-age-word, cast-headwear, cast-canon-face, lexicon-link, no-hand-prompt, no-bare-head, prop-in-prompt, 512-tokens, stage-from-scripture, quote-matches-verse, action-place-on-figure, thrown-guide, guide-backdrop, guide-body-build, dodge-clear, guide-costume-legs, youth-noun, pose-skeleton, figure-scale, no-second-point, youth-height, height-ratio, seated-height, pose-hold, split-control, prop-size-relative, flight-position, flight-height, empty-hand-open, wall-material, no-inflating-build, prop-size-coverage, held-hold, crowd-stage, eye-level-perspective, solo-off-center, inset, plate-cast-token |
 | saul-gilgal-amalek | night-pick s11 | ✅ 9문항 맞음 | ✅ 걸린 채택 문항 0 | verse-elements, scene-all-verses, stage-from-scripture, no-inflating-build |
 | saul-gilgal-coronation | attempt a005 s11 | – 단계 사다리 그림에 몸 크롭 상자 기록이 없다 — OWLv2 상자는 GPU 단계라 이번 범위 밖 | ✅ 걸린 채택 문항 0 | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, cast-age-band, cast-age-word, cast-headwear, cast-canon-face, lexicon-link, no-hand-prompt, no-bare-head, prop-in-prompt, 512-tokens, stage-from-scripture, quote-matches-verse, action-place-on-figure, thrown-guide, guide-backdrop, guide-body-build, dodge-clear, guide-costume-legs, youth-noun, pose-skeleton, figure-scale, no-second-point, youth-height, height-ratio, seated-height, pose-hold, split-control, prop-size-relative, flight-position, flight-height, empty-hand-open, wall-material, no-inflating-build, prop-size-coverage, held-hold, crowd-stage, eye-level-perspective, solo-off-center, inset, plate-cast-token |
 | saul-jabesh-rescue | night-pick s42 | ✗ 틀림 background[0], crowds[0] | ✅ 걸린 채택 문항 0 | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, cast-age-band, cast-age-word, cast-headwear, cast-canon-face, lexicon-link, no-hand-prompt, no-bare-head, prop-in-prompt, 512-tokens, stage-from-scripture, quote-matches-verse, action-place-on-figure, thrown-guide, guide-backdrop, guide-body-build, dodge-clear, guide-costume-legs, youth-noun, pose-skeleton, figure-scale, no-second-point, youth-height, height-ratio, seated-height, pose-hold, split-control, prop-size-relative, flight-position, flight-height, empty-hand-open, wall-material, no-inflating-build, prop-size-coverage, held-hold, crowd-stage, eye-level-perspective, solo-off-center, inset, plate-cast-token |
 | saul-michmash-battle | night-pick s202 | ✗ 틀림 crowds, figures[1].pose, figures[1].prop | ✅ 걸린 채택 문항 0 | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, cast-age-band, cast-age-word, cast-headwear, cast-canon-face, lexicon-link, no-hand-prompt, no-bare-head, prop-in-prompt, 512-tokens, stage-from-scripture, quote-matches-verse, action-place-on-figure, thrown-guide, guide-backdrop, guide-body-build, dodge-clear, guide-costume-legs, youth-noun, pose-skeleton, figure-scale, no-second-point, youth-height, height-ratio, seated-height, pose-hold, split-control, prop-size-relative, flight-position, flight-height, empty-hand-open, wall-material, no-inflating-build, prop-size-coverage, held-hold, crowd-stage, eye-level-perspective, solo-off-center, inset, plate-cast-token |
 | saul-mizpah-chosen | night-pick s7 | ✗ 틀림 crowds, figures[0].pose, figures[0].prop, figures[1].faci | ✅ 걸린 채택 문항 0 | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, cast-age-band, cast-age-word, cast-headwear, cast-canon-face, lexicon-link, no-hand-prompt, no-bare-head, prop-in-prompt, 512-tokens, stage-from-scripture, quote-matches-verse, action-place-on-figure, thrown-guide, guide-backdrop, guide-body-build, dodge-clear, guide-costume-legs, youth-noun, pose-skeleton, figure-scale, no-second-point, youth-height, height-ratio, seated-height, pose-hold, split-control, prop-size-relative, flight-position, flight-height, empty-hand-open, wall-material, no-inflating-build, prop-size-coverage, held-hold, crowd-stage, eye-level-perspective, solo-off-center, inset, plate-cast-token |
-| saul-nob-massacre | night-pick s303 | ✗ 틀림 figures[0].pose, figures[1].prop, figures[2].prop | ✅ 걸린 채택 문항 0 | verse-elements, scene-all-verses, stage-from-scripture, no-inflating-build |
+| saul-nob-massacre | night-pick s303 | – 몸 크롭 상자 없음: ['saul-elder'] | ✅ 걸린 채택 문항 0 | required-fields, whole-fields, verse-elements, no-compromise-words, scene-all-verses, cast-card-v2, cast-age-band, cast-age-word, cast-headwear, cast-canon-face, lexicon-link, no-hand-prompt, no-bare-head, prop-in-prompt, 512-tokens, stage-from-scripture, quote-matches-verse, action-place-on-figure, thrown-guide, guide-backdrop, guide-body-build, dodge-clear, guide-costume-legs, youth-noun, pose-skeleton, figure-scale, no-second-point, youth-height, height-ratio, seated-height, pose-hold, split-control, prop-size-relative, flight-position, flight-height, empty-hand-open, wall-material, no-inflating-build, prop-size-coverage, held-hold, crowd-stage, eye-level-perspective, solo-off-center, inset, plate-cast-token |
 | solomon-jerusalem-birth | night-pick s11 | – birth-inset 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이 | ✅ 걸린 채택 문항 0 | 없음 |
 | solomon-jerusalem-birth-inset | night-pick s11 | – birth-inset 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이 | ✅ 걸린 채택 문항 0 | 없음 |
 | solomon-jerusalem-two-mothers | night-pick s101 | – two-mothers-step23-r5 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 | ✅ 걸린 채택 문항 0 | 없음 |

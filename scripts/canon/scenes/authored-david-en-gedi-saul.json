@@ -81,16 +81,16 @@
       "screen_facing": "right"
     },
     {
-      "cast": "saul",
+      "cast": "saul-elder",
       "role": "사울 — 굴 안쪽으로 들어와 어귀 쪽을 향해 웅크려 앉음",
       "pose": "어스름 빛 속에서 웅크려 앉아 굴 어귀 쪽을 향한다",
       "prop": "none",
       "facing": "right",
-      "region": "saul",
+      "region": "saul-elder",
       "verse": "24:3 · 24:4 · 자세 본문 밖 · 저작자 정함",
       "expression": {
-        "ko": "아무것도 모르는 무방비한 옆얼굴 — 어귀 쪽을 바라봄",
-        "en": "an unsuspecting, unguarded face in profile, looking toward the cave mouth",
+        "ko": "아무것도 모르는 무방비한 옆얼굴",
+        "en": "an unsuspecting, unguarded face in profile",
         "verse": "삼상 24:4 「가만히」(사울이 모름은 추론) · 표정 본문 밖 · 저작자 정함"
       },
       "gesture": {
@@ -137,7 +137,7 @@
       0.38,
       0.92
     ],
-    "saul": [
+    "saul-elder": [
       0.68,
       0.34,
       0.86,
@@ -223,9 +223,9 @@
     {
       "id": "S4",
       "kind": "plate",
-      "region": "saul",
+      "region": "saul-elder",
       "verse": "24:8",
-      "prompt": "{cast:saul}, standing, body turning to look back, gripping a sword at his hip, facing left.",
+      "prompt": "{cast:saul-elder}, standing, body turning to look back, gripping a sword at his hip, facing left.",
       "neg": [
         "crown",
         "armour",
@@ -238,7 +238,7 @@
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
     "figures": [
       "david",
-      "saul"
+      "saul-elder"
     ],
     "gap_bands": [
       [

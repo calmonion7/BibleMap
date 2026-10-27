@@ -10,11 +10,7 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-gilgal-coronation",
     "authored-saul-michmash-battle",
-    "authored-saul-gilgal-amalek",
-    "authored-david-gibeah-harp",
-    "authored-saul-gibeah-spear",
-    "authored-saul-nob-massacre",
-    "authored-david-en-gedi-saul"
+    "authored-saul-gilgal-amalek"
   ],
   "era": "an ancient Israelite",
   "age": "tall king",
@@ -91,7 +87,7 @@
     "headwear": "[저작](재위 중 맨머리 — 본문에 머리쓰개 언급 없음)",
     "costume": "[저작](시대 복식)",
     "card.heightRel": "[직접] 삼상 10:23 「다른 사람보다 어깨 위나 더 크더라」",
-    "card.ageBand": "[추론] 삼상 13:1 「사울이 왕이 될 때에 사십 세라」 — 왕위 때 40세, 재위 중 40대로 고정(역표 동석 인물과 구분)",
+    "card.ageBand": "[추론] 삼상 13:1 「사울이 왕이 될 때에 사십 세라」 — 즉위~아말렉(BC 1050~1045) 40대. 재위 후반(수금·창·놉·엔게디)은 saul-elder, 엔돌·길보아는 saul-old",
     "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
     "card.silhouette": "[저작](역표 동석 인물과 구분용)",
     "card.headOutline": "[저작](역표 동석 인물과 구분용)",

@@ -53,7 +53,9 @@ class SpecGate(unittest.TestCase):
 
     def test_gibeah_passes_now(self):
         """단계 ① 통과 실측(task 399) — 재저작한 기브아 명세는 걸리는 규칙이 없다."""
-        self.assertEqual(recheck.spec_failures(GIBEAH), [])
+        import derive_scene as ds
+        pending = [] if ds.load_cast("saul-elder").get("canon_face") else ["spec.cast-canon-face"]   # task 446 — 사람 답 반영 전엔 saul-elder 정본 얼굴 없음
+        self.assertEqual(recheck.spec_failures(GIBEAH), pending)
 
 
 class StageFromScripture(unittest.TestCase):
@@ -238,7 +240,7 @@ class GuidePose(unittest.TestCase):
         import make_guide as M
         s = gibeah()
         s["guide"].pop("control", None), s["guide"].pop("split", None)   # 깊이 모드 규칙(h1부터 기브아는 스텝별 — 다른 장면은 깊이 한 장)
-        x0, y0, x1, y1 = (round(v * d) for v, d in zip(s["regions"]["saul"], (M.W, M.H, M.W, M.H)))
+        x0, y0, x1, y1 = (round(v * d) for v, d in zip(s["regions"]["saul-elder"], (M.W, M.H, M.W, M.H)))
         crop = M.make(s).crop((x0, y0, x1, y1))
         px = list(crop.getdata())
         color = sum(1 for r, g, b in px if max(r, g, b) - min(r, g, b) > 60)   # 뼈대 색
@@ -259,7 +261,7 @@ class PoseBodyMass(unittest.TestCase):
         import make_guide as M
         s = gibeah()
         s["guide"].pop("control", None), s["guide"].pop("split", None)   # 깊이 모드 규칙(h1부터 기브아는 스텝별 — 다른 장면은 깊이 한 장)
-        x0, y0, x1, y1 = (round(v * d) for v, d in zip(s["regions"]["saul"], (M.W, M.H, M.W, M.H)))
+        x0, y0, x1, y1 = (round(v * d) for v, d in zip(s["regions"]["saul-elder"], (M.W, M.H, M.W, M.H)))
         def body(spec):
             return sum(1 for r, g, b in M.make(spec).crop((x0, y0, x1, y1)).getdata() if min(r, g, b) > 230)
         broad = body(s)
@@ -273,7 +275,7 @@ class HeightRatio(unittest.TestCase):
 
     def test_youth_too_small_fails(self):
         s = gibeah()
-        s["regions"]["david-youth"][1] = s["regions"]["david-youth"][3] - 0.78 * (s["regions"]["saul"][3] - s["regions"]["saul"][1])   # 0.87 − 0.09
+        s["regions"]["david-youth"][1] = s["regions"]["david-youth"][3] - 0.78 * (s["regions"]["saul-elder"][3] - s["regions"]["saul-elder"][1])   # 0.87 − 0.09
         self.assertEqual(len(recheck.height_ratio_errors(s)), 1)
 
     def test_farther_foot_from_horizon_passes(self):
@@ -286,7 +288,7 @@ class HeightRatio(unittest.TestCase):
         s["regions"]["david-youth"][1] = 0.8 - S.screen_height(0.8, hy, S.height_rel("average"))
         self.assertEqual(recheck.height_ratio_errors(s), [])
         t = gibeah()
-        t["regions"]["david-youth"][1] = t["regions"]["david-youth"][3] - 0.78 * (t["regions"]["saul"][3] - t["regions"]["saul"][1])
+        t["regions"]["david-youth"][1] = t["regions"]["david-youth"][3] - 0.78 * (t["regions"]["saul-elder"][3] - t["regions"]["saul-elder"][1])
         t["guide"]["depth"]["david-youth"] = 0.7
         self.assertEqual(len(recheck.height_ratio_errors(t)), 1)
 
@@ -431,7 +433,7 @@ class CastAgeBand(unittest.TestCase):
     def _with_saul_age(self, cls, text):
         import derive_scene as ds
         s = gibeah()
-        f = next(f for f in s["figures"] if f["cast"] == "saul")
+        f = next(f for f in s["figures"] if f["cast"] == "saul-elder")
         card = copy.deepcopy(ds._cast_in_scene(f)["card"])
         card["ageBand"] = {"class": cls, "text": text}
         f["cast_override"] = {**f.get("cast_override", {}), "card": card}
@@ -469,7 +471,7 @@ class CastAgeWord(unittest.TestCase):
         import derive_scene as ds
         self.assertEqual(recheck.cast_age_word_errors(gibeah()), [])
         s = gibeah()
-        f = next(f for f in s["figures"] if f["cast"] == "saul")
+        f = next(f for f in s["figures"] if f["cast"] == "saul-elder")
         f["cast_override"] = {**f.get("cast_override", {}), "age": "young king"}
         self.assertEqual(ds._cast_in_scene(f)["card"]["ageBand"]["class"], "elder")
         self.assertEqual(len(recheck.cast_age_word_errors(s)), 1)
@@ -496,7 +498,7 @@ class CastHeadwear(unittest.TestCase):
         import derive_scene as ds
         self.assertEqual(recheck.cast_headwear_errors(gibeah()), [])
         s = gibeah()
-        f = next(f for f in s["figures"] if f["cast"] == "saul")
+        f = next(f for f in s["figures"] if f["cast"] == "saul-elder")
         card = copy.deepcopy(ds._cast_in_scene(f)["card"])
         card["headOutline"] = {"class": "crown", "text": "a gold crown"}
         f["cast_override"] = {**f.get("cast_override", {}), "card": card}
@@ -555,7 +557,7 @@ class FigureScale(unittest.TestCase):
         s["guide"]["shape"]["wall"] = "crowd"
         s["crowds"] = [{"count": 10}]
         errs = recheck.figure_scale_errors(s)
-        self.assertTrue(any(e.startswith("saul:") and "small" in e for e in errs), errs)
+        self.assertTrue(any(e.startswith("saul-elder:") and "small" in e for e in errs), errs)
 
     def test_gibeah_passes(self):
         self.assertEqual(recheck.figure_scale_errors(gibeah()), [])
@@ -655,7 +657,7 @@ class YouthHeight(unittest.TestCase):
 
     def test_small_youth_fails(self):
         s = gibeah()
-        s["regions"]["david-youth"][1] = s["regions"]["david-youth"][3] - 0.7 * (s["regions"]["saul"][3] - s["regions"]["saul"][1])   # 어른의 0.7
+        s["regions"]["david-youth"][1] = s["regions"]["david-youth"][3] - 0.7 * (s["regions"]["saul-elder"][3] - s["regions"]["saul-elder"][1])   # 어른의 0.7
         self.assertEqual(len(recheck.youth_height_errors(s)), 1)
 
     def test_gibeah_passes(self):
@@ -745,7 +747,7 @@ class SplitControl(unittest.TestCase):
         s = gibeah()
         one, two = M.make(s, 1), M.make(s, 2)
         color = lambda px: sum(1 for r, g, b in px if max(r, g, b) - min(r, g, b) > 60)
-        x0, y0, x1, y1 = (round(v * d) for v, d in zip(s["regions"]["saul"], (M.W, M.H, M.W, M.H)))
+        x0, y0, x1, y1 = (round(v * d) for v, d in zip(s["regions"]["saul-elder"], (M.W, M.H, M.W, M.H)))
         body = lambda im: sum(1 for r, g, b in im.crop((x0, y0, x1, y1)).getdata() if r == g == b and r > 230)
         self.assertGreater(color(list(one.getdata())), 500)
         self.assertLess(body(one), 0.02 * (x1 - x0) * (y1 - y0))        # 1단계엔 사울 깊이 몸 없음
@@ -799,8 +801,8 @@ class FigureScalePose(unittest.TestCase):
     def test_too_big_fails(self):
         """n1(사람 m1e 「사람사이즈를 조금 줄여야」) — 구역 높이 0.70 위 한도."""
         s = gibeah()
-        s["regions"]["saul"][1] = s["regions"]["saul"][3] - 0.84   # m1e 크기
-        self.assertTrue(any("saul" in e and "가깝게" in e for e in recheck.figure_scale_errors(s)))
+        s["regions"]["saul-elder"][1] = s["regions"]["saul-elder"][3] - 0.84   # m1e 크기
+        self.assertTrue(any("saul-elder" in e and "가깝게" in e for e in recheck.figure_scale_errors(s)))
 
 
 class FlightPosition(unittest.TestCase):
@@ -818,7 +820,7 @@ class FlightPosition(unittest.TestCase):
 
     def test_people_too_close_fails(self):
         s = gibeah()
-        s["regions"]["saul"] = [0.56, 0.12, 0.78, 0.98]   # 크고 가까운 사울(m1e) — 사전 크기 창이 손에 남음
+        s["regions"]["saul-elder"] = [0.56, 0.12, 0.78, 0.98]   # 크고 가까운 사울(m1e) — 사전 크기 창이 손에 남음
         self.assertTrue(any("손목" in e or "지점" in e for e in recheck.flight_errors(s)))
 
     def test_gibeah_passes(self):
@@ -827,14 +829,14 @@ class FlightPosition(unittest.TestCase):
     def test_thrower_holding_thrown_prop_fails(self):
         """task 399 회고 — 던진 창을 사울 prop(「a spear」)으로 두면 손에 남은 꼴로 그려지고 판정자도 속음 → prop none."""
         s = gibeah()
-        next(f for f in s["figures"] if f["region"] == "saul")["prop"] = "a spear"
+        next(f for f in s["figures"] if f["region"] == "saul-elder")["prop"] = "a spear"
         self.assertTrue(any("던진 지물" in e for e in recheck.flight_errors(s)))
 
     def test_butt_divides_by_height_class(self):
         """task 411 — 사전 비는 어른 남자 키 비: 큰 사울(tall)의 창은 구역 키 ÷ 1.205(합성 paste_step과 같은 셈). 등급을 빼면 뒤끝이 손에 닿음."""
         from unittest import mock
         s = gibeah()
-        with mock.patch.object(recheck.S, "standing", lambda spec: [("saul", 1.0)]):
+        with mock.patch.object(recheck.S, "standing", lambda spec: [("saul-elder", 1.0)]):
             self.assertTrue(any("손목" in e for e in recheck.flight_errors(s)))
 
 
@@ -873,15 +875,15 @@ class SeatedHeight(unittest.TestCase):
 
     def test_seated_as_tall_as_standing_fails(self):
         s = self.harp()
-        s["regions"]["saul"][1] = s["regions"]["saul"][3] - 0.70   # 앉았는데 서 있는 사울 키만큼
-        self.assertTrue(any("saul" in e for e in recheck.seated_height_errors(s)))
+        s["regions"]["saul-elder"][1] = s["regions"]["saul-elder"][3] - 0.70   # 앉았는데 서 있는 사울 키만큼
+        self.assertTrue(any("saul-elder" in e for e in recheck.seated_height_errors(s)))
 
     def lone(self, top):
         """수금 사본에서 다윗을 빼고 앉은 사울만 — 홀로 앉은 사람 장면(task 416 밧세바 꼴)."""
         s = self.harp()
-        s["figures"] = [f for f in s["figures"] if f["region"] == "saul"]
+        s["figures"] = [f for f in s["figures"] if f["region"] == "saul-elder"]
         del s["guide"]["shape"]["david-boy"]
-        s["regions"]["saul"][1] = top
+        s["regions"]["saul-elder"][1] = top
         return s
 
     def test_no_standing_uses_seated_focus(self):
@@ -893,11 +895,11 @@ class SeatedHeight(unittest.TestCase):
 
     def test_lone_seated_scale(self):
         """task 416 — 홀로 앉은 사람: 견줄 이가 없어 seated-height 통과, 크기는 figure-scale이 서 있을 때 키(구역 ÷ body.seated)를 독대 범위로 잼."""
-        foot = self.harp()["regions"]["saul"][3]
+        foot = self.harp()["regions"]["saul-elder"][3]
         ok, near = self.lone(foot - 0.49), self.lone(foot - 0.64)   # 0.49 ÷ 0.75 = 0.65 · 0.64 ÷ 0.75 = 0.85 > 0.70
         self.assertEqual(recheck.seated_height_errors(ok), [])
         self.assertEqual(recheck.figure_scale_errors(ok), [])
-        self.assertTrue(any(e.startswith("saul:") for e in recheck.figure_scale_errors(near)))
+        self.assertTrue(any(e.startswith("saul-elder:") for e in recheck.figure_scale_errors(near)))
 
     def test_shape_registered(self):
         import sys
@@ -1369,9 +1371,11 @@ class PlateCastOverride(unittest.TestCase):
     def test_override_reaches_plate_prompt(self):
         import derive_scene as D
         s = copy.deepcopy(gibeah_cached)
-        saul = next(f for f in s["figures"] if f["cast"] == "saul")
-        saul["cast_override"]["card"]["ageBand"]["text"] = "about 99, test age"
-        stage = next(x for x in D.stages(s) if x["region"] == "saul")
+        saul = next(f for f in s["figures"] if f["cast"] == "saul-elder")
+        card = copy.deepcopy(D._cast_in_scene(saul)["card"])
+        card["ageBand"]["text"] = "about 99, test age"
+        saul["cast_override"] = {**saul.get("cast_override", {}), "card": card}
+        stage = next(x for x in D.stages(s) if x["region"] == "saul-elder")
         self.assertIn("about 99, test age", stage["prompt"])
         self.assertIn("about 99, test age", D.plate_whole_prompt(s))
 
@@ -1380,8 +1384,8 @@ class PlateCastOverride(unittest.TestCase):
         s = copy.deepcopy(gibeah_cached)
         for f in s["figures"]:
             f.pop("cast_override", None)
-        stage = next(x for x in D.stages(s) if x["region"] == "saul")
-        self.assertIn(D.cast_describe(D.load_cast("saul")), stage["prompt"])
+        stage = next(x for x in D.stages(s) if x["region"] == "saul-elder")
+        self.assertIn(D.cast_describe(D.load_cast("saul-elder")), stage["prompt"])
 
 
 class TrimPaperMargin(unittest.TestCase):

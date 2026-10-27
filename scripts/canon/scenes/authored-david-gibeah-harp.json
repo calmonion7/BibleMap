@@ -82,7 +82,7 @@
         "en": "in a short-sleeved knee-length undyed tan wool tunic covering his chest and shoulders, with a leather belt, his bare legs showing below the knee",
         "verse": "본문 밖 · 저작자 정함(기브아 창 장면과 같은 문구 — david-boy 카드의 띠 낱말과 다름)"
       },
-      "gaze": "saul",
+      "gaze": "saul-elder",
       "cast_override": {
         "age": "young shepherd"
       },
@@ -90,12 +90,12 @@
       "stage_why": "[추론] 프로젝트 연대(data/person_events/david.json — 출생 BC 1040경 · 수금 BC 1026경 · 골리앗 BC 1025경) → 이 장면 때 약 14세, 바로 다음 골리앗 장면과 같은 david-boy. 이 일 뒤의 삼상 17:33 「너는 소년이요」·삼상 17:42 「그가 젊고」도 어림을 말함. 삼상 16:18 「호기와 무용과 구변이 있는 준수한 자」·삼상 16:21 「자기의 병기 든 자를 삼고」는 청년 쪽으로 읽힐 수 있으나, 청년 근거(삼상 17:56 「청년」 · 삼상 18:5 「군대의 장」)는 골리앗 뒤 일이라 이 장면에 쓰지 않음(task 414 본문 검토 3-a)"
     },
     {
-      "cast": "saul",
+      "cast": "saul-elder",
       "role": "사울 — 악신이 이르렀다가 수금 소리에 상쾌하여 낫는 왕",
       "pose": "걸상에 앉아 다윗 쪽을 향해 눈을 반쯤 감고 듣는다",
       "prop": "none",
       "facing": "left",
-      "region": "saul",
+      "region": "saul-elder",
       "verse": "16:23 · 앉음은 19:9(다른 날)에서 [추론]",
       "screen_facing": "left",
       "expression": {
@@ -114,33 +114,7 @@
         "verse": "본문 밖 · 저작자 정함(정본 saul 카드 차림 · 기브아 창 장면과 같은 문구)"
       },
       "gaze": "david-boy",
-      "stage_why": "[추론] 삼상 13:1 「사울이 왕이 될 때에 사십 세라」 + 프로젝트 연대(사울 선출 BC 1050경 · 이 일 수금 BC 1026경, data/person_events/saul.json) → 이 장면 때 약 64세. 성경만으로 낮게 잡으면 삼하 2:10 「사울의 아들 이스보셋이 비로소 이스라엘 왕이 될 때에 나이 사십 세며」 — 이스보셋이 사울이 죽은 직후 즉위했다고 가정할 때 사울은 죽을 때 60세 안팎 이상(가정은 느슨함). id는 기력으로 고름 — 아직 왕으로 군대를 거느리니 삼상 28:20 「그 기력이 진하였으니」 이전의 saul(saul-old 아님), 나이는 cast_override로 이 장면만 덮어씀",
-      "cast_override": {
-        "card": {
-          "heightRel": "tall",
-          "ageBand": {
-            "class": "elder",
-            "text": "in his mid-60s, a wrinkled older face, lined forehead and cheeks"
-          },
-          "beardVolume": {
-            "class": "trimmed",
-            "text": "close-trimmed grey-streaked beard, jawline visible"
-          },
-          "silhouette": {
-            "class": "broad",
-            "text": "broad shoulders, a strong solid chest"
-          },
-          "headOutline": {
-            "class": "bare",
-            "text": "bare head, short greying hair cut close"
-          },
-          "costumeColor": {
-            "class": "brown",
-            "text": "dark brown wool tunic, plain leather belt"
-          }
-        }
-      },
-      "cast_override_why": "이 장면 사울은 약 64세(stage_why) — 정본 saul 카드 ‘in his 40s’는 이 장면과 맞지 않아 나이·수염·머리를 덮어씀. 체격 문구 ‘thick barrel torso’는 규칙 derive.no-inflating-build(술통 몸통에 다리가 짧아 보임)로 ‘a strong solid chest’ — 기브아 창 장면과 같은 덮어씀"
+      "stage_why": "[추론] 삼상 13:1 「사울이 왕이 될 때에 사십 세라」 + 프로젝트 연대(사울 선출 BC 1050경 · 이 일 수금 BC 1026경, data/person_events/saul.json) → 이 장면 때 약 64세. 성경만으로 낮게 잡으면 삼하 2:10 「사울의 아들 이스보셋이 비로소 이스라엘 왕이 될 때에 나이 사십 세며」 — 이스보셋이 사울이 죽은 직후 즉위했다고 가정할 때 사울은 죽을 때 60세 안팎 이상(가정은 느슨함). id는 기력으로 고름 — 아직 왕으로 군대를 거느리니 삼상 28:20 「그 기력이 진하였으니」 이전 — 재위 후반 saul-elder(saul-old 아님). 카드 나이는 수금 64~엔게디 79의 대표값 about 70(한 id 한 값, task 446)"
     }
   ],
   "verse_elements": [
@@ -283,7 +257,7 @@
       0.34,
       0.95
     ],
-    "saul": [
+    "saul-elder": [
       0.56,
       0.311,
       0.8,
@@ -294,11 +268,11 @@
   "guide": {
     "depth": {
       "david-boy": 1.0,
-      "saul": 0.95
+      "saul-elder": 0.95
     },
     "shape": {
       "david-boy": "person",
-      "saul": "sit"
+      "saul-elder": "sit"
     },
     "backdrop": "room",
     "body": "card",
@@ -346,9 +320,9 @@
     {
       "id": "S3",
       "kind": "plate",
-      "region": "saul",
+      "region": "saul-elder",
       "verse": "16:23",
-      "prompt": "{cast:saul}, sitting on a wooden stool, hands on knees, listening, facing left.",
+      "prompt": "{cast:saul-elder}, sitting on a wooden stool, hands on knees, listening, facing left.",
       "neg": [
         "armour",
         "sword",
@@ -365,7 +339,7 @@
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
     "figures": [
       "david-boy",
-      "saul"
+      "saul-elder"
     ],
     "gap_bands": [
       [

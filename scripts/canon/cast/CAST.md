@@ -6,7 +6,7 @@
 
 - **인물** = 고정한 순간에 판(plate)으로 단독으로 그릴 개체. 이름 있는 개인뿐 아니라, 이름 없어도 장면의 핵심 개체(엔돌의 신접한 여인, 두 여인, 스바 여왕)를 포함한다.
 - **군중은 인물이 아니다**: 백성·군대·제사장들·왕비들·창기의 배경 등은 역표의 「군중/무리」 열로 뺐다. 예: 미스바의 「모든 백성」, 놉 학살의 「남녀와 아이들」, 성전 낙성식의 「온 이스라엘 회중」.
-- **생애 단계가 크게 갈리는 인물은 id를 나눈다**: 사울(청년~장년 재위, mizpah~en-gedi)과 사울(노년, 엔돌·길보아 — 삼상28:20 「기력이 진하였으니」)을 나눴다. 다윗도 소년(david-boy, 수금·기름부음·골리앗)·청년(david-youth, 골리앗 뒤 군대의 장 — 삼상18:5·13·27, 15~20세, task 399)·도망자(david, 즉위 전 20대)·장년 왕(david-prime, 헤브론~솔로몬 출생 — 삼하5:4-5)·노년 직전 왕(david-elder, 압살롬 반란·귀환 60세 전후)·노년(david-old, 왕상2:1 임종 유언)으로 나눴다. 솔로몬은 청년 왕(solomon, 왕상9:10 「이십 년」 이전)·장년 왕(solomon-prime, 궁전·에시온게벨·스바)·노년(solomon-old, 왕상11:4 「나이 늙을 때에」)으로 나눴다(task 355). id 이름은 카드 층 `ageBand` 사다리(youth < young < prime < elder)를 따른다 — 단 `-prime` id는 장년(30~40대) 생애 단계 이름이고 카드 `class`는 나이대로 둔다(solomon-prime은 40대라 `middle` — task 429). 새로 나눈 id는 얼굴 층을 원래 id와 같게 둔다(같은 사람).
+- **생애 단계가 크게 갈리는 인물은 id를 나눈다**: 사울은 즉위~아말렉(saul, 40대)·재위 후반(saul-elder, 수금~엔게디 — 삼상13:1 + 연대로 약 70, 아직 창을 던지고 군대를 거느림 — task 446)·노년(saul-old, 엔돌·길보아 — 삼상28:20 「기력이 진하였으니」)으로 나눴다. 다윗도 소년(david-boy, 수금·기름부음·골리앗)·청년(david-youth, 골리앗 뒤 군대의 장 — 삼상18:5·13·27, 15~20세, task 399)·도망자(david, 즉위 전 20대)·장년 왕(david-prime, 헤브론~솔로몬 출생 — 삼하5:4-5)·노년 직전 왕(david-elder, 압살롬 반란·귀환 60세 전후)·노년(david-old, 왕상2:1 임종 유언)으로 나눴다. 솔로몬은 청년 왕(solomon, 왕상9:10 「이십 년」 이전)·장년 왕(solomon-prime, 궁전·에시온게벨·스바)·노년(solomon-old, 왕상11:4 「나이 늙을 때에」)으로 나눴다(task 355). id 이름은 카드 층 `ageBand` 사다리(youth < young < prime < elder)를 따른다 — 단 `-prime` id는 장년(30~40대) 생애 단계 이름이고 카드 `class`는 나이대로 둔다(solomon-prime은 40대라 `middle` — task 429). 새로 나눈 id는 얼굴 층을 원래 id와 같게 둔다(같은 사람).
 - **본문에 등장만 하고 직접 행동하지 않는 이름**(엘리압 등 이새의 아들들, 사독·브나야, 바로의 딸, 이스보셋)은 인물로 세우지 않고 군중/배경으로 처리했다 — 근거가 이름 언급 1회뿐이고 반복 등장이 없어 별도 판이 불필요하다고 판단.
 - 하나님/천사/여호와의 영은 인물로 세우지 않는다(그리지 않음). 사무엘의 영은 엔돌 정차지에서 「영으로 등장」으로 표시했다.
 - 골리앗은 36정차지 본문 범위 밖(삼상17장)이지만 사용자 지시로 명단에 포함 — 정차지 없음(v41 기존 자산 이관, 재저작 대상).
@@ -17,7 +17,7 @@
 | id | 이름(한글·별칭) | 등장 정차지(id 목록) | 정차지 수 | 비고 |
 |---|---|---|---|---|
 | david | 다윗, 이새의 아들 다윗 | ramah-samuel, ramah-death, nob-priests, gath-achish, adullam-cave, en-gedi-saul, ziklag-base | 7 | 즉위 전 도망자(20대) 구간 |
-| saul | 사울, 기스의 아들 사울 | mizpah-chosen, jabesh-rescue, gilgal-coronation, michmash-battle, gilgal-amalek, gibeah-harp, gibeah-spear, nob-massacre, en-gedi-saul | 9 | 청년 선택~재위 구간 |
+| saul | 사울, 기스의 아들 사울 | mizpah-chosen, jabesh-rescue, gilgal-coronation, michmash-battle, gilgal-amalek | 5 | 즉위~아말렉 구간(40대, BC 1050~1045) |
 | solomon | 솔로몬 | gihon-anointing, solomon-jerusalem-david-charge, gibeon-dream, two-mothers, temple-build, temple-dedication | 6 | 청년 왕 구간(왕상9:10 「이십 년」 이전) |
 | samuel | 사무엘 | mizpah-chosen, gilgal-coronation, michmash-battle, gilgal-amalek, bethlehem-david-anointing, ramah-samuel, endor-medium | 7 | 엔돌은 영으로 등장 |
 | david-boy | 다윗(소년) | bethlehem-david-anointing, gibeah-harp | 2 | 기존 v41 정본 이관 출발점 · 골리앗 장면(정차지 아님)도 이 id(삼상17:33·42 「소년」) |
@@ -25,6 +25,7 @@
 | ahimelech | 아히멜렉, 제사장 아히멜렉 | nob-priests, nob-massacre | 2 | 놉 학살에서 사망 |
 | doeg | 도엑, 에돔 사람 도엑 | nob-priests, nob-massacre | 2 | |
 | achish | 아기스, 가드 왕 아기스 | gath-achish, ziklag-base | 2 | |
+| saul-elder | 사울(재위 후반) | gibeah-harp, gibeah-spear, nob-massacre, en-gedi-saul | 4 | 생애 단계 분할(task 446), 삼상13:1 + 연대 → 약 64~79, 대표값 70 · 정본 그림 없음 |
 | saul-old | 사울(노년) | endor-medium, gilboa-death | 2 | 생애 단계 분할 |
 | nathan | 나단, 선지자 나단 | nathan-covenant, solomon-jerusalem-birth, gihon-anointing | 3 | |
 | nahash | 나하스, 암몬 사람 나하스 | jabesh-rescue | 1 | |
@@ -61,14 +62,14 @@
 | authored-saul-michmash-battle | samuel, saul | 백성(흩어짐) |
 | authored-saul-gilgal-amalek | samuel, saul, agag | 아말렉 백성(진멸당함) |
 | authored-samuel-bethlehem-david-anointing | samuel, jesse, david-boy | 성읍 장로들, 이새의 다른 아들들(엘리압 등) |
-| authored-david-gibeah-harp | saul, david-boy | (없음) |
-| authored-saul-gibeah-spear | saul, david-youth | (없음 — 18:6-7 여인들은 전날 일, task 394) |
+| authored-david-gibeah-harp | saul-elder, david-boy | (없음) |
+| authored-saul-gibeah-spear | saul-elder, david-youth | (없음 — 18:6-7 여인들은 전날 일, task 394) |
 | authored-david-ramah-samuel | david, samuel | (없음) |
 | authored-david-nob-priests | david, ahimelech, doeg | 다윗의 소년들 |
 | authored-david-gath-achish | david, achish | 아기스의 신하들 |
 | authored-david-adullam-cave | david | 환난 당한 자·빚진 자·마음 원통한 자(약 400명) |
-| authored-saul-nob-massacre | saul, ahimelech, doeg | 놉의 제사장들(85인), 놉의 남녀와 아이들 |
-| authored-david-en-gedi-saul | david, saul | 사울의 택한 사람 삼천, 다윗의 사람들 |
+| authored-saul-nob-massacre | saul-elder, ahimelech, doeg | 놉의 제사장들(85인), 놉의 남녀와 아이들 |
+| authored-david-en-gedi-saul | david, saul-elder | 사울의 택한 사람 삼천, 다윗의 사람들 |
 | authored-samuel-ramah-death | david | 온 이스라엘 무리(애곡) · 사무엘은 죽어 장사됨(25:1) — 장면 인물은 바란 광야로 떠나는 다윗(명세 figures) |
 | authored-david-ziklag-base | david, achish | (없음) |
 | authored-saul-endor-medium | saul-old, endor-medium, samuel(영으로 등장) | 사울의 두 신하 |
@@ -168,7 +169,7 @@ vocab-2는 두 층을 **더한다**. 값은 프롬프트에 바로 쓰는 영문
 - 구절 표기(`삼상 16:12 「…」`)는 `data/bible/verses.json`에 있는 절로 풀려야 하고, 인용은 그 절 원문에서 **글자 그대로 복사**한다(c2).
 - **성품 낱말은 정의에 넣지 않는다.** 행적·성품에서 유추한 인상은 장면 `figures[].expression`이 그 순간에만 맡는다 — 삼상 16:7 「사람은 외모를 보거니와 나 여호와는 중심을 보느니라」. 얼굴 층 값과 카드 층 `text`에 금지: `cold` `cruel` `hard` `harsh` `wicked` `evil` `sly` `cunning` `menacing` `sinister` `kind` `gentle` `wise` `noble` `arrogant` `proud` `haughty` `shifty` `pleading` `trembling` `tense` `anxious` `fierce` `stern` `serene` `innocent` `calm` `steady` `composed`.
 - **신분 `role`**: 영어 신분 명사 하나(`king` `queen` `prince` `priest` `prophet` `commander` `soldier` `warrior` `shepherd` `servant` `medium` `mother` 등). 성별은 넣지 않는다 — 장면 문구 파생(`derive_scene.cast_describe`)이 `sex`와 카드 `ageBand`로 성별 명사(man·woman·boy·girl)를 맨 앞에 붙인다.
-- **전체 구별 규칙**: 동석 인물끼리(위 구별 규칙)뿐 아니라 **29명 전체 쌍**에서 카드 층 `class`가 2개 이상 다르다. 같은 사람의 생애 단계 쌍(david-boy·david·david-prime·david-elder·david-old, saul·saul-old, solomon·solomon-prime·solomon-old)은 일부러 닮게 하므로 뺀다. 가를 때는 `[저작]` 필드만 바꾸고 `[직접]`·`[추론]` 값은 근거가 있으므로 그대로 둔다.
+- **전체 구별 규칙**: 동석 인물끼리(위 구별 규칙)뿐 아니라 **29명 전체 쌍**에서 카드 층 `class`가 2개 이상 다르다. 같은 사람의 생애 단계 쌍(david-boy·david·david-prime·david-elder·david-old, saul·saul-elder·saul-old, solomon·solomon-prime·solomon-old)은 일부러 닮게 하므로 뺀다. 가를 때는 `[저작]` 필드만 바꾸고 `[직접]`·`[추론]` 값은 근거가 있으므로 그대로 둔다.
 - 얼굴 층의 의미 유사(글자는 달라도 같은 얼굴로 그려질 쌍)는 기계로 못 잰다 — 검토 에이전트가 29명을 나란히 놓고 판정한다(353: 1회차 2쌍 → 3회차 0쌍).
 - **정본 그림 없는 id**(task 355에서 나눈 david-prime·david-elder·solomon-prime): `frozen/<id>.png`가 없다. 지금 주 경로(한 장 프롬프트 `derive_scene.whole_prompt`)는 글만 써서 돌지만, 얼굴 그림을 넣는 옛 IP 경로(`gen_staged.py`·`gen_combined.py` 등)는 정본을 그려 승인(`approve_cast.py`)하기 전까지 이 id를 못 쓴다.
 - 구절 수집 원천은 `cast/APPEARANCE-VERSES.md`(인물 · 구절 · 개역한글 원문 · 말하는 특징).

@@ -157,10 +157,10 @@ class Perspective(unittest.TestCase):
         with open(os.path.join(S.HERE, "scenes", "authored-saul-gibeah-spear.json"), encoding="utf-8") as fh:
             spec = json.load(fh)
         R = spec["regions"]
-        self.assertEqual(R["saul"][3], R["david-youth"][3])
+        self.assertEqual(R["saul-elder"][3], R["david-youth"][3])
         hy = S.scene_horizon(spec)
-        self.assertAlmostEqual(hy, S.horizon(R["saul"][3], R["saul"][3] - R["saul"][1], S.height_rel("tall")))
-        foot = R["saul"][3]
+        self.assertAlmostEqual(hy, S.horizon(R["saul-elder"][3], R["saul-elder"][3] - R["saul-elder"][1], S.height_rel("tall")))
+        foot = R["saul-elder"][3]
         self.assertAlmostEqual(S.screen_height(foot, hy, S.height_rel("average")) / S.screen_height(foot, hy, S.height_rel("tall")),
                                S.height_rel("average") / S.height_rel("tall"))
         self.assertEqual(S.crowd_stage(S.people_count(spec))[0], "duo")

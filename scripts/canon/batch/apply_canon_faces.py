@@ -6,7 +6,7 @@
 시드를 고른 사람: 옛 frozen/<id>.png는 retired-vN/<id>.png(비어 있는 가장 낮은 N)로 옮기고, 고른 정면을 frozen/<id>.png로,
 카드 canon_face(prompt_sha 포함)를 적는다. keep·none·미답은 손대지 않고 목록으로만 낸다(규칙은 계속 걸림).
 """
-import argparse, json, os, shutil, sys
+import argparse, datetime, json, os, shutil, sys
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, HERE)
@@ -16,7 +16,9 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("text")
     ap.add_argument("--dir", default=os.path.expanduser("~/.local/biblemap-imggen/face-canon-v3"))
+    ap.add_argument("--task", default="canon-faces")
     a = ap.parse_args()
+    today = datetime.date.today().isoformat()
     v = json.loads(a.text.split("\n", 1)[1].strip().splitlines()[0])
     memo = v.pop("_memo", "")
     left = {}
@@ -39,9 +41,9 @@ if __name__ == "__main__":
         c = json.load(open(p, encoding="utf-8"))
         c["canon_face"] = {"engine": "z-image-turbo", "seed": int(pick[1:]), "views": ["front", "34"], "file": f"frozen/{cid}.png",
                            "script": "scripts/canon/gen_face_canon.py", "prompt": "gen_face_canon.prompt(id, view) — cast-vocab-2 카드·얼굴 층에서 파생",
-                           "prompt_sha": gfc.prompt_sha(cid), "size": "768x768", "task": "canon-faces (2026-10-27, 규칙 spec.cast-canon-face)",
+                           "prompt_sha": gfc.prompt_sha(cid), "size": "768x768", "task": f"{a.task} ({today}, 규칙 spec.cast-canon-face)",
                            **({"retired": retired} if retired else {}),
-                           "approved": f"2026-10-27 사용자 판정 화면에서 {pick}" + (f" · 메모 「{memo}」" if memo else "")}
+                           "approved": f"{today} 사용자 판정 화면에서 {pick}" + (f" · 메모 「{memo}」" if memo else "")}
         open(p, "w", encoding="utf-8").write(json.dumps(c, ensure_ascii=False, indent=2) + "\n")
         print(f"[CanonFace] {cid} ← {pick}" + (f" (옛 판 {retired})" if retired else ""))
     if left:

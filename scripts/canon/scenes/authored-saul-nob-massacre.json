@@ -37,12 +37,12 @@
   "crowds": [],
   "figures": [
     {
-      "cast": "saul",
+      "cast": "saul-elder",
       "role": "사울 — 명령하는 왕",
       "pose": "선 채로 창을 쥐고 한 손을 들어 명령한다",
       "prop": "a spear",
       "facing": "right",
-      "region": "saul",
+      "region": "saul-elder",
       "verse": "22:18",
       "expression": {
         "ko": "노한 얼굴",
@@ -122,7 +122,7 @@
       1.0,
       1.0
     ],
-    "saul": [
+    "saul-elder": [
       0.06,
       0.35,
       0.24,
@@ -166,9 +166,9 @@
     {
       "id": "S3",
       "kind": "plate",
-      "region": "saul",
+      "region": "saul-elder",
       "verse": "22:18",
-      "prompt": "{cast:saul}, standing, gripping a spear upright, one arm raised in command, facing right.",
+      "prompt": "{cast:saul-elder}, standing, gripping a spear upright, one arm raised in command, facing right.",
       "neg": [
         "crown",
         "royal robe",
