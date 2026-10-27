@@ -160,3 +160,15 @@
 <!-- followup: fu-763d99ccb187 | source: two-mothers-step4-human-page-r3 | task: 441 | date: 2026-10-27 | status: taken | taken: 442 -->
 - 솔로몬 카드 머리 길이가 그림에 안 실림 — 카드 headOutline 「bare head, short dark hair」인데 s42 왕은 어깨까지 오는 머리. head_text가 bare를 「hair covering the whole head, no headwear」로 바꾸며 short가 약해지는지 확인(다른 장면 솔로몬도).
   근거: task 441 s42 눈 확인.
+
+<!-- followup: fu-b8b21313a60a | source: solomon-king-crown | task: 442 | date: 2026-10-27 | status: taken | taken: 443 -->
+- 두 여인 관 번짐 — 왕 면류관이 카드 없는 왼쪽 시립 신하에게 옮겨 감(s42·s7, 관 하나 6/8). s42 고정 시드 한 장 반복으로 시립 신하 머리를 다른 낱말로 채움(PROMPTING 30 — 부정어 안 먹음) → 8시드.
+  근거: notes/TWO-MOTHERS-STEP23.md 「눈 확인 (task 442)」.
+
+<!-- followup: fu-a8a99d8ee9b4 | source: solomon-king-crown | task: 442 | date: 2026-10-27 | status: open | taken: - -->
+- 두 여인 아기 싸개 — s23 아기가 천에 싸이지 않고 기저귀 맨몸·허리께(안은 아기 6/8). 관 번짐을 고친 뒤에도 남으면 집을 것.
+  근거: task 442 s23 틀림 이유.
+
+<!-- followup: fu-65e80328cb1c | source: two-mothers-crown-spread | task: 443 | date: 2026-10-27 | status: open | taken: - -->
+- 카드 없는 사람(가이드 자리만 있는 인물)은 곁 인물 문구를 한 번 더 받는다 — 다른 장면 카드 없는 구역(기브아 spear 구역 선례 등)도 같은지 보고 PROMPTING 28-5를 좁혀 고칠 것(원장 규칙 후보).
+  근거: notes/TWO-MOTHERS-STEP23.md 「한 장 반복 (task 443)」 Va~Vh.
