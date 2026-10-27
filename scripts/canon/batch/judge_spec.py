@@ -170,6 +170,7 @@ MUTANT_EDITS = {
         ("moment.why", "다윗에게 기름을 부어 유다 족속의 왕을 삼는 순간", "다윗을 유다 족속의 왕으로 맞는 순간"),
         ("verse_elements[4].out", "기름 부음 뒤에", "왕을 삼은 뒤에"),
         ("figures[0].pose", " 머리에 기름 부음을 받으며", ""),
+        ("figures[0].cast_override_why", "2:4 기름부음은 즉위 순간(30세)", "2:4는 즉위 순간(30세)"),
         ("stages[3].prompt", ", men of Judah pouring oil over his head", "")]},
     "m3": {"drop": ["내 종 다윗에게 말하기를"], "edit": [
         ("title", "나단 — 다윗에게 언약을 전하다", "나단과 다윗"),
