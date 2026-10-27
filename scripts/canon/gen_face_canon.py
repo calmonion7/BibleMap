@@ -48,13 +48,15 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=os.path.expanduser("~/.local/biblemap-imggen/face-canon-v2"))
     ap.add_argument("--who", nargs="+", default=["saul", "david", "samuel"])
+    ap.add_argument("--seeds", nargs="+", type=int, default=params.FACE_CANON_SEEDS)
+    ap.add_argument("--views", nargs="+", default=list(VIEWS))
     a = ap.parse_args()
     w, h = params.FACE_CANON_SIZE
     for cid in a.who:
         d = os.path.join(a.out, cid)
         os.makedirs(d, exist_ok=True)
         jobs = [{"prompt": prompt(cid, v), "seed": s, "w": w, "h": h, "out": os.path.join(d, f"s{s}-{v}.png")}
-                for s in params.FACE_CANON_SEEDS for v in VIEWS if not os.path.exists(os.path.join(d, f"s{s}-{v}.png"))]
+                for s in a.seeds for v in a.views if not os.path.exists(os.path.join(d, f"s{s}-{v}.png"))]
         print(f"[{cid}] {prompt(cid)}\n  후보 {len(jobs)}장 생성", flush=True)
         if jobs:
             run_scene.gen_zimage(jobs, d)
