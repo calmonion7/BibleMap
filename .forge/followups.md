@@ -145,3 +145,7 @@
 <!-- followup: fu-157945bb7284 | source: two-mothers-composition-2of2 | task: 439 | date: 2026-10-27 | status: open | taken: - -->
 - 두 여인 앞뒤 깊이가 약함 — 다섯이 거의 한 줄로 그려짐(발 y 앞 0.94 · 뒤 0.845). figure-scale 하한 0.45와 앞뒤 깊이가 부딪힘: 무리 단계 하한을 뒤쪽 시중드는 사람에게도 걸지, 깊이 밝기 차를 키울지. 사람 화면 답이 「앞뒤」를 문제 삼으면 집을 것.
   근거: notes/TWO-MOTHERS-STEP23.md 「눈 확인 (task 439)」 · 438 결정 5.
+
+<!-- followup: fu-c2cb45d265ab | source: cast-headwear-agree | task: 440 | date: 2026-10-27 | status: open | taken: - -->
+- `test_judge_rounds.test_plausibility_recount` 기존 실패 2건 — 「답 없음 approved:authored-solomon-jerusalem-birth-inset 회차 3」. 출생 삽화 승인 그림의 상식 판정 회차 3 답이 비었음: 회차 3을 다시 돌려 채우거나 시험의 기대(지난 회차 다시 셈)를 승인 그림 추가 뒤 상태에 맞춤.
+  근거: task 440 전체 시험 실행 · HEAD(6044861) 임시 작업 트리에서도 같은 실패.
