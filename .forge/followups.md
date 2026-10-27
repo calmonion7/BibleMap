@@ -125,15 +125,16 @@
 - 두 여인 명세 구도 재저작(단계 ①부터) — 사람 단계 ④ 거절 사유 「왕이 맨 뒤 상석, 신하는 좌우」. 근거: 왕상 10:5 「그 신하들의 시립한 것」·10:8 「항상 당신의 앞에 서서」(솔로몬 궁 — 이 장면 적용 [추론]) · 22:19 「그 좌우편에 모시고 서 있는데」(하늘 보좌 유비 [추론]) · 3:16 「그 앞에 서며」. 그릴링 때 정할 것: 왕 정면 가운데 → 두 여인이 등·옆을 보임(방향·표정 문항 바뀜) · 신하 수(칼 든 이 하나 + 시립 몇) · 가운데 왕 뒤 뒷벽 후광 위험(spec.solo-off-center는 홀로 인물만 — 이 경우 뒷벽 재질 문구로) · 토큰 510/512(fu-4aa6 머리털 빼기 −11 함께) · 신하 차림 fu-4ec7 함께.
   근거: notes/TWO-MOTHERS-STEP23.md 「결론 (task 437)」 · samples/two-mothers-step23-r2/pick-verdict.txt.
 
-<!-- followup: fu-16d6cf9daa2a | source: two-mothers-composition-1of2 | task: 438 | date: 2026-10-27 | status: open | taken: - -->
+<!-- followup: fu-16d6cf9daa2a | source: two-mothers-composition-1of2 | task: 438 | date: 2026-10-27 | status: taken | taken: 440 -->
 - 참 어머니 카드(cast/mother-a.json) 안 모순 — 머리 윤곽 글 「plain brown shawl over a dark braid」인데 headwear는 none(「두 여인 구분용 맨머리」). 카드 쪽에서 하나로 정리(숄이면 headwear·_why, 맨머리면 윤곽 글).
   근거: task 438 scripture-reviewer 1차 주의 · notes/TWO-MOTHERS-STEP1.md 「검토 (438)」.
 
-<!-- followup: fu-1c905917d287 | source: two-mothers-composition-1of2 | task: 438 | date: 2026-10-27 | status: open | taken: - -->
+<!-- followup: fu-1c905917d287 | source: two-mothers-composition-1of2 | task: 438 | date: 2026-10-27 | status: dismissed | taken: - -->
 - `test_spec_judge` Mutants 1건 실패(figures[0].cast_override_why 「기름」 — 변이 사본에 금지 낱말이 남음) — HEAD에서도 같은 기존 실패, 기름 부음 장면 쪽.
   근거: task 438 실행 중 `python3 -m unittest test_spec_judge` · HEAD 워크트리 재현.
+  닫음(2026-10-27 fg-ask): 계획 없이 바로 고침 — 커밋 26eb554(m2 편집표에 cast_override_why 한 줄 · 27/27 통과).
 
-<!-- followup: fu-b86cd427f374 | source: two-mothers-composition-2of2 | task: 439 | date: 2026-10-27 | status: open | taken: - -->
+<!-- followup: fu-b86cd427f374 | source: two-mothers-composition-2of2 | task: 439 | date: 2026-10-27 | status: taken | taken: 441 -->
 - 두 여인 단계 ④ 사람 판정 화면 — `rule_ab.py --fixed 439 page`(8장 전부: 기계 통과 s42 + 불통과 표본 · 왕상 3:16-28 원문 3:26 굵게) → `record`. 앞글은 고정 절 439 page 칸에 적어 둠.
   근거: notes/TWO-MOTHERS-STEP23.md 「결론 (task 439)」.
 
