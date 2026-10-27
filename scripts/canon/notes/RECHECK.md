@@ -110,60 +110,60 @@
 ## 승인 그림 재검 — 승인 그림 × 그림 규칙
 
 <!-- recheck:images:begin -->
-원장 판 `826e3c0c066d` · 승인 그림 14 · ✅ 통과 · ✗ 실패 · 낡음 = 명세가 바뀌었거나 지금 규칙을 어김 · – 못 잼
+원장 판 `826e3c0c066d` · 승인 그림 15 · ✅ 통과 · ✗ 실패 · 낡음 = 명세가 바뀌었거나 지금 규칙을 어김 · – 못 잼
 
 | 규칙 | 통과 | 실패 | 낡음 | 못 잼 |
 |---|---|---|---|---|
-| `spec.required-fields` | 6 | 0 | 8 | 0 |
-| `spec.whole-fields` | 6 | 0 | 8 | 0 |
-| `spec.verse-elements` | 4 | 0 | 10 | 0 |
-| `spec.no-compromise-words` | 6 | 0 | 8 | 0 |
-| `spec.scene-all-verses` | 3 | 0 | 11 | 0 |
-| `spec.cast-card-v2` | 6 | 0 | 8 | 0 |
-| `spec.cast-age-band` | 6 | 0 | 8 | 0 |
-| `spec.cast-age-word` | 6 | 0 | 8 | 0 |
-| `spec.cast-headwear` | 6 | 0 | 8 | 0 |
-| `spec.lexicon-link` | 4 | 0 | 8 | 2 |
-| `derive.no-hand-prompt` | 5 | 0 | 9 | 0 |
-| `derive.no-bare-head` | 6 | 0 | 8 | 0 |
-| `derive.prop-in-prompt` | 6 | 0 | 8 | 0 |
-| `derive.512-tokens` | 6 | 0 | 8 | 0 |
-| `judge.j1-items` | 1 | 8 | 0 | 5 |
-| `judge.style` | 0 | 0 | 0 | 14 |
-| `judge.plausibility-adopted` | 13 | 1 | 0 | 0 |
-| `human.face-matched-quality` | 0 | 0 | 0 | 14 |
-| `spec.stage-from-scripture` | 3 | 0 | 11 | 0 |
-| `spec.quote-matches-verse` | 6 | 0 | 8 | 0 |
-| `spec.action-place-on-figure` | 4 | 0 | 8 | 2 |
-| `generate.thrown-guide` | 6 | 0 | 8 | 0 |
-| `generate.guide-backdrop` | 6 | 0 | 8 | 0 |
-| `generate.guide-body-build` | 6 | 0 | 8 | 0 |
-| `generate.dodge-clear` | 6 | 0 | 8 | 0 |
-| `generate.guide-costume-legs` | 6 | 0 | 8 | 0 |
-| `derive.youth-noun` | 6 | 0 | 8 | 0 |
-| `generate.pose-skeleton` | 6 | 0 | 8 | 0 |
-| `generate.figure-scale` | 3 | 0 | 8 | 3 |
-| `derive.no-second-point` | 6 | 0 | 8 | 0 |
-| `generate.youth-height` | 6 | 0 | 8 | 0 |
-| `generate.height-ratio` | 3 | 0 | 8 | 3 |
-| `generate.seated-height` | 6 | 0 | 8 | 0 |
-| `generate.pose-hold` | 6 | 0 | 8 | 0 |
-| `generate.split-control` | 6 | 0 | 8 | 0 |
-| `derive.prop-size-relative` | 6 | 0 | 8 | 0 |
-| `generate.flight-position` | 6 | 0 | 8 | 0 |
-| `generate.flight-height` | 6 | 0 | 8 | 0 |
-| `derive.empty-hand-open` | 6 | 0 | 8 | 0 |
-| `derive.wall-material` | 6 | 0 | 8 | 0 |
-| `derive.no-inflating-build` | 4 | 0 | 10 | 0 |
-| `derive.prop-size-coverage` | 6 | 0 | 8 | 0 |
-| `derive.held-hold` | 6 | 0 | 8 | 0 |
-| `derive.crowd-stage` | 6 | 0 | 8 | 0 |
-| `generate.eye-level-perspective` | 6 | 0 | 8 | 0 |
-| `spec.solo-off-center` | 6 | 0 | 8 | 0 |
-| `spec.inset` | 6 | 0 | 8 | 0 |
-| `derive.plate-cast-token` | 6 | 0 | 8 | 0 |
+| `spec.required-fields` | 7 | 0 | 8 | 0 |
+| `spec.whole-fields` | 7 | 0 | 8 | 0 |
+| `spec.verse-elements` | 5 | 0 | 10 | 0 |
+| `spec.no-compromise-words` | 7 | 0 | 8 | 0 |
+| `spec.scene-all-verses` | 4 | 0 | 11 | 0 |
+| `spec.cast-card-v2` | 7 | 0 | 8 | 0 |
+| `spec.cast-age-band` | 7 | 0 | 8 | 0 |
+| `spec.cast-age-word` | 7 | 0 | 8 | 0 |
+| `spec.cast-headwear` | 7 | 0 | 8 | 0 |
+| `spec.lexicon-link` | 5 | 0 | 8 | 2 |
+| `derive.no-hand-prompt` | 6 | 0 | 9 | 0 |
+| `derive.no-bare-head` | 7 | 0 | 8 | 0 |
+| `derive.prop-in-prompt` | 7 | 0 | 8 | 0 |
+| `derive.512-tokens` | 7 | 0 | 8 | 0 |
+| `judge.j1-items` | 1 | 8 | 0 | 6 |
+| `judge.style` | 0 | 0 | 0 | 15 |
+| `judge.plausibility-adopted` | 14 | 1 | 0 | 0 |
+| `human.face-matched-quality` | 0 | 0 | 0 | 15 |
+| `spec.stage-from-scripture` | 4 | 0 | 11 | 0 |
+| `spec.quote-matches-verse` | 7 | 0 | 8 | 0 |
+| `spec.action-place-on-figure` | 5 | 0 | 8 | 2 |
+| `generate.thrown-guide` | 7 | 0 | 8 | 0 |
+| `generate.guide-backdrop` | 7 | 0 | 8 | 0 |
+| `generate.guide-body-build` | 7 | 0 | 8 | 0 |
+| `generate.dodge-clear` | 7 | 0 | 8 | 0 |
+| `generate.guide-costume-legs` | 7 | 0 | 8 | 0 |
+| `derive.youth-noun` | 7 | 0 | 8 | 0 |
+| `generate.pose-skeleton` | 7 | 0 | 8 | 0 |
+| `generate.figure-scale` | 4 | 0 | 8 | 3 |
+| `derive.no-second-point` | 7 | 0 | 8 | 0 |
+| `generate.youth-height` | 7 | 0 | 8 | 0 |
+| `generate.height-ratio` | 4 | 0 | 8 | 3 |
+| `generate.seated-height` | 7 | 0 | 8 | 0 |
+| `generate.pose-hold` | 7 | 0 | 8 | 0 |
+| `generate.split-control` | 7 | 0 | 8 | 0 |
+| `derive.prop-size-relative` | 7 | 0 | 8 | 0 |
+| `generate.flight-position` | 7 | 0 | 8 | 0 |
+| `generate.flight-height` | 7 | 0 | 8 | 0 |
+| `derive.empty-hand-open` | 7 | 0 | 8 | 0 |
+| `derive.wall-material` | 7 | 0 | 8 | 0 |
+| `derive.no-inflating-build` | 5 | 0 | 10 | 0 |
+| `derive.prop-size-coverage` | 7 | 0 | 8 | 0 |
+| `derive.held-hold` | 7 | 0 | 8 | 0 |
+| `derive.crowd-stage` | 7 | 0 | 8 | 0 |
+| `generate.eye-level-perspective` | 7 | 0 | 8 | 0 |
+| `spec.solo-off-center` | 7 | 0 | 8 | 0 |
+| `spec.inset` | 7 | 0 | 8 | 0 |
+| `derive.plate-cast-token` | 7 | 0 | 8 | 0 |
 
-**잰 규칙 모두 통과(실패·낡음 0) 3/14**
+**잰 규칙 모두 통과(실패·낡음 0) 4/15**
 
 | 승인 그림 | 경로 | J1 요소 | 상식 | 낡음 규칙 |
 |---|---|---|---|---|
@@ -181,6 +181,7 @@
 | saul-nob-massacre | night-pick s303 | ✗ 틀림 figures[0].pose, figures[1].prop, figures[2].prop | ✅ 걸린 채택 문항 0 | verse-elements, scene-all-verses, stage-from-scripture, no-inflating-build |
 | solomon-jerusalem-birth | night-pick s11 | – birth-inset 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이 | ✅ 걸린 채택 문항 0 | 없음 |
 | solomon-jerusalem-birth-inset | night-pick s11 | – birth-inset 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이 | ✅ 걸린 채택 문항 0 | 없음 |
+| solomon-jerusalem-two-mothers | night-pick s42 | – two-mothers-step23-r3 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 | ✅ 걸린 채택 문항 0 | 없음 |
 <!-- recheck:images:end -->
 
 ## 인용 원문 대조 규칙 (2026-10-26 task 435, 원장 판 `334a4c911d11`)
