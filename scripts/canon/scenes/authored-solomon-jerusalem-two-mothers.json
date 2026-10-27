@@ -67,6 +67,34 @@
   "figures": [
     {
       "cast": "solomon",
+      "cast_override": {
+        "card": {
+          "heightRel": "average",
+          "ageBand": {
+            "class": "young",
+            "text": "in his 20s, smooth clear face"
+          },
+          "beardVolume": {
+            "class": "none",
+            "text": "없음"
+          },
+          "silhouette": {
+            "class": "average",
+            "text": "average build, straight shoulders, narrow waist"
+          },
+          "headOutline": {
+            "class": "crown",
+            "text": "a plain gold crown over short dark hair cropped above the neck"
+          },
+          "costumeColor": {
+            "class": "blue",
+            "text": "deep blue fine linen robe, embroidered belt"
+          }
+        },
+        "hair": "none",
+        "headwear": "gold crown"
+      },
+      "cast_override_why": "두 여인 재판에서만 솔로몬 머리에 면류관을 씌움 — 카드 solomon(맨머리) 위에 왕 표지만 덮어씀. 면류관 [추론] 아 3:11 「솔로몬 왕을 보라 혼인날 마음이 기쁠 때에 그 모친의 씌운 면류관이 그 머리에 있구나」(솔로몬이 관을 쓴 직접 본문) · 어느 혼인인지는 본문에 없음(3:1 바로의 딸 · 14:21·11:42 나아마 — 즉위 전 혼인은 [추론] 등) — 재위 초 혼인 무렵이라 이 재판 때도 썼음은 [추론] · 삼하 12:30 · 대상 20:2 다윗이 머리에 쓴 관(이스라엘 왕이 관을 쓴 유비 — 그 관을 이었다는 본문 없음 · 이 장면 관은 그것과 다른 저작 관) · 왕하 11:12 · 대하 23:11 즉위 면류관(후대 유비) · 관 모양은 본문 밖 · 저작자 정함(「a plain gold crown」 — 보석 박힌 다윗 귀환 관과 가름) · 짧은 머리는 카드 「short dark hair」를 관 문구에 직접 씀(fu-763d) · 본문은 착용을 허용할 뿐 요구하지 않음 · 이 장면에만 씌우는 까닭은 왕 신원 표지 — task 441 사람 메모 「솔로몬 맞나?」(확정 s42는 맨머리·푸른 겉옷·나무 의자뿐이라 왕으로 안 읽힘) · v1 headwear 「gold crown」은 카드 머리 윤곽 crown과 맞춤(규칙 spec.cast-headwear) · 상아 보좌(10:18-20)는 후대라 그대로 뺌",
       "role": "솔로몬 — 칼을 가져오게 하고 나누라 명한 뒤 두 여인의 말을 듣는 왕",
       "pose": "방 맨 뒤 가운데, 다윗의 위 — 등받이 높은 조각한 나무 의자에 화면을 향해 앉아 몸을 조금 앞으로 기울이고 애원하는 참 어머니를 지켜본다",
       "prop": "none",
@@ -87,7 +115,7 @@
       "costume": {
         "ko": "짙은 푸른 고운 베 긴 겉옷과 수놓은 띠",
         "en": "in a long deep blue fine linen robe with an embroidered belt",
-        "verse": "본문 밖 · 저작자 정함(정본 solomon 카드 차림 · 왕관은 장면 금지 낱말)"
+        "verse": "본문 밖 · 저작자 정함(정본 solomon 카드 차림) · 면류관은 cast_override([추론] 아 3:11)"
       },
       "gaze": "mother-a",
       "stage_why": "[추론] 프로젝트 연대(data/person_events/solomon.json — 출생 BC 990경 · 이 재판 BC 969경) → 약 21세, 즉위 직후. 바로 앞 기브온 꿈의 왕상 3:7 「종은 작은 아이라 출입할 줄을 알지 못하고」가 어림을 말하고, 왕상 9:10 「여호와의 전과 왕궁을 이십 년 만에 건축하기를 마치고」 이전이라 청년 왕 id solomon(CAST.md 구간)"
@@ -466,7 +494,6 @@
         "full beard",
         "armour",
         "standing",
-        "crown",
         "scepter"
       ]
     },
