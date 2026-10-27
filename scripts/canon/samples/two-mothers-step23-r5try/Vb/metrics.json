@@ -1,0 +1,157 @@
+{
+ "answers": {
+  "composition-A-s42": {
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.king-crown": "맞음",
+     "t.one-crown": "맞음",
+     "t.servants-sides": "틀림",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "틀림",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "틀림",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.king-hair": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "틀림",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.servants-sides": "남자 둘이 모두 왕의 화면 오른쪽에 모여 서 있고 왼쪽에는 없음",
+     "t.sword-held": "칼을 든 사람은 두 남자 중 왼쪽(머리쓰개) 남자이고, 가장 오른쪽 남자는 칼 없이 손을 뒤로 함",
+     "t.no-church": "뒷벽 왼쪽에 뾰족 아치 모양의 창/벽감이 있어 교회 도상처럼 보임",
+     "t.bearer-dress": "칼 든 남자의 옷이 긴 옷이 아니라 무릎 근처까지 오는 짧은 튜닉이고, 왕 곁 오른쪽 자리 배치도 어긋남",
+     "t.attendant-dress": "왕 곁 화면 왼쪽에는 남자가 아예 없음"
+    },
+    "tries": [
+     {
+      "seconds": 15.961,
+      "input": 4,
+      "output": 1822,
+      "cache_read": 47192,
+      "cache_create": 11837,
+      "cost_usd": 0.0702952,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.king-crown": "맞음",
+     "t.one-crown": "맞음",
+     "t.servants-sides": "틀림",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "틀림",
+     "t.guard": "틀림",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.king-hair": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "틀림",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.servants-sides": "남자 둘이 모두 왕의 화면 오른쪽에 모여 있고 왼쪽에는 없음",
+     "t.attendant-dress": "왕 곁 화면 왼쪽에는 선 남자가 없음",
+     "t.no-church": "왕 뒤 왼쪽 벽에 뾰족한 아치 벽감 창이 있고 안에 십자 모양 가로대가 보여 교회 도상처럼 보임",
+     "t.guard": "그림 가장자리가 미색 종이 여백으로 번져 종이 테두리처럼 보임",
+     "t.bearer-dress": "칼 든 남자는 무릎 길이의 짧은 튜닉에 머리 두건 차림이라 긴 옷이 아님"
+    },
+    "tries": [
+     {
+      "seconds": 16.18,
+      "input": 4,
+      "output": 1802,
+      "cache_read": 48513,
+      "cache_create": 10516,
+      "cost_usd": 0.0649433,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.king-crown": "맞음",
+     "t.one-crown": "맞음",
+     "t.servants-sides": "틀림",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "틀림",
+     "t.guard": "틀림",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.king-hair": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "틀림",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.servants-sides": "남자 둘이 모두 왕의 화면 오른쪽에 모여 서 있고 왼쪽에는 아무도 없음",
+     "t.attendant-dress": "왕 곁 화면 왼쪽에 선 남자가 없음",
+     "t.bearer-dress": "칼 든 남자의 옷이 무릎 길이 짧은 튜닉이라 긴 옷이 아님",
+     "t.no-church": "왕 뒤 벽에 십자 살대가 있는 뾰족 아치 창이 있어 교회 창·벽감처럼 보임",
+     "t.king-hair": "머리털이 귀·목덜미 쪽까지 내려와 짧다고 분명히 말하기 어려움",
+     "t.guard": "그림 가장자리가 미색 종이 여백으로 번져 종이 테두리처럼 보임"
+    },
+    "tries": [
+     {
+      "seconds": 16.449,
+      "input": 4,
+      "output": 1861,
+      "cache_read": 47192,
+      "cache_create": 11837,
+      "cost_usd": 0.0706852,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  }
+ }
+}

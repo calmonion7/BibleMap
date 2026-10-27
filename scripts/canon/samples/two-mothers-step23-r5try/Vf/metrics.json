@@ -1,0 +1,152 @@
+{
+ "answers": {
+  "composition-A-s42": {
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.king-crown": "맞음",
+     "t.one-crown": "맞음",
+     "t.servants-sides": "맞음",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "틀림",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.king-hair": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "틀림",
+     "t.attendant-dress": "맞음"
+    },
+    "reasons": {
+     "t.sword-held": "손에 든 것이 긴 자루 끝에 날이 달린 창처럼 보여 곧은 칼 한 자루라고 보기 어렵다",
+     "t.king-hair": "왕의 머리털이 턱·목 아래까지 내려와 짧다고 확신할 수 없다",
+     "t.bearer-dress": "무릎 길이 짧은 튜닉이고 어깨 뒤에 초록 망토가 있어 밝은 베 긴 옷에 갈색 띠만 맨 차림이 아니다"
+    },
+    "tries": [
+     {
+      "seconds": 15.924,
+      "input": 4,
+      "output": 1771,
+      "cache_read": 47192,
+      "cache_create": 11837,
+      "cost_usd": 0.0697852,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.king-crown": "맞음",
+     "t.one-crown": "맞음",
+     "t.servants-sides": "틀림",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.king-hair": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "틀림",
+     "t.attendant-dress": "맞음"
+    },
+    "reasons": {
+     "t.servants-sides": "왼쪽 남자가 왕 곁이 아니라 화면 맨 왼쪽 여인 바깥에 떨어져 서 있다.",
+     "t.guard": "그림 가장자리가 미색 종이 위에 번지듯 끝나 종이 테두리처럼 보인다.",
+     "t.king-hair": "관 아래 머리털이 귀와 목 근처까지 내려와 짧다고 하기 어렵다.",
+     "t.bearer-dress": "무릎길이 튜닉에 초록 망토를 걸쳐 긴 밝은 베 옷 한 벌 차림이 아니다."
+    },
+    "tries": [
+     {
+      "seconds": 16.264,
+      "input": 4,
+      "output": 1882,
+      "cache_read": 47192,
+      "cache_create": 11837,
+      "cost_usd": 0.0708952,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.king-crown": "맞음",
+     "t.one-crown": "맞음",
+     "t.servants-sides": "틀림",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "틀림",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.king-hair": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "틀림",
+     "t.attendant-dress": "맞음"
+    },
+    "reasons": {
+     "t.servants-sides": "왼쪽 남자가 왕 곁이 아니라 왼쪽 벽 끝, 여인 바깥에 서 있어 왕의 좌우 시립으로 보기 어렵다",
+     "t.sword-held": "든 것이 칼이라기보다 긴 자루가 달린 창처럼 보여 곧은 칼 한 자루로 확인되지 않는다",
+     "t.king-hair": "왕의 머리털이 얼굴 옆으로 내려와 턱·목선에 닿는 길이로 보인다",
+     "t.bearer-dress": "밝은 베 튜닉에 갈색 띠는 맞지만 초록 겉망토를 걸쳤고 옷이 긴 옷이라기엔 무릎께까지라 기대와 다르다"
+    },
+    "tries": [
+     {
+      "seconds": 17.018,
+      "input": 4,
+      "output": 1975,
+      "cache_read": 47192,
+      "cache_create": 11837,
+      "cost_usd": 0.0718252,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  }
+ }
+}

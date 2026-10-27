@@ -1,0 +1,152 @@
+{
+ "answers": {
+  "composition-A-s42": {
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "틀림",
+     "t.king-place": "맞음",
+     "t.king-crown": "맞음",
+     "t.one-crown": "맞음",
+     "t.servants-sides": "틀림",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.king-hair": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.five-people": "사람이 네 명뿐이다. 두 여인, 왕, 칼 든 남자만 있고 왕 곁에 선 남자가 하나 모자란다.",
+     "t.servants-sides": "왕의 오른쪽(화면)에만 남자가 있고 왼쪽에는 없다.",
+     "t.attendant-dress": "왕 곁 화면 왼쪽에 선 남자가 없다. 그 자리에 있는 건 왕에게서 떨어져 서 있는 여인이다."
+    },
+    "tries": [
+     {
+      "seconds": 10.771,
+      "input": 4,
+      "output": 1237,
+      "cache_read": 47192,
+      "cache_create": 11837,
+      "cost_usd": 0.06444520000000001,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "틀림",
+     "t.king-place": "맞음",
+     "t.king-crown": "맞음",
+     "t.one-crown": "맞음",
+     "t.servants-sides": "틀림",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "틀림",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.king-hair": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.five-people": "두 여인, 왕, 칼 든 남자 하나로 네 명뿐이다. 왕 곁 남자가 하나 모자란다.",
+     "t.servants-sides": "왕 오른쪽(화면 오른쪽)에만 남자가 있고, 화면 왼쪽에는 남자가 없다.",
+     "t.attendant-dress": "왕 곁 화면 왼쪽에 선 신하가 없다.",
+     "t.guard": "그림 가장자리가 종이 여백으로 번지며 테두리처럼 보인다. 분명히 결함이 없다고 확인되지 않아 틀림으로 답한다."
+    },
+    "tries": [
+     {
+      "seconds": 13.535,
+      "input": 4,
+      "output": 1606,
+      "cache_read": 47192,
+      "cache_create": 11837,
+      "cost_usd": 0.0681352,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "틀림",
+     "t.king-place": "맞음",
+     "t.king-crown": "맞음",
+     "t.one-crown": "맞음",
+     "t.servants-sides": "틀림",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.king-hair": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.five-people": "사람이 왕, 두 여인, 칼 든 남자 하나로 넷뿐이다. 왕 곁에 선 남자가 하나 모자란다.",
+     "t.servants-sides": "왕 오른쪽에만 남자가 서 있고 왼쪽에는 아무도 없다.",
+     "t.attendant-dress": "왕 곁 화면 왼쪽에 선 남자가 없다.",
+     "t.king-hair": "왕의 머리털이 관 아래로 귀와 턱선을 지나 목 가까이까지 내려와, 짧아서 목·어깨에 닿지 않는다고 분명히 확인되지 않는다."
+    },
+    "tries": [
+     {
+      "seconds": 14.401,
+      "input": 4,
+      "output": 1736,
+      "cache_read": 47192,
+      "cache_create": 11837,
+      "cost_usd": 0.0694352,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  }
+ }
+}

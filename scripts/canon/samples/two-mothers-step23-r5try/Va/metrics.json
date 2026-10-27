@@ -1,0 +1,150 @@
+{
+ "answers": {
+  "composition-A-s42": {
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.king-crown": "맞음",
+     "t.one-crown": "틀림",
+     "t.servants-sides": "맞음",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.king-hair": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "맞음"
+    },
+    "reasons": {
+     "t.one-crown": "왕 곁 화면 왼쪽에 선 남자의 머리에 금관이 있음. 관이 없어야 하는데 왕 말고도 관을 쓴 사람이 있어 왕이 둘로 보임."
+    },
+    "tries": [
+     {
+      "seconds": 12.819,
+      "input": 4,
+      "output": 1424,
+      "cache_read": 47189,
+      "cache_create": 11832,
+      "cost_usd": 0.0662949,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "틀림",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.king-crown": "맞음",
+     "t.one-crown": "틀림",
+     "t.servants-sides": "맞음",
+     "t.women-front": "틀림",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.king-hair": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "틀림",
+     "t.attendant-dress": "맞음"
+    },
+    "reasons": {
+     "t.moment": "두 여인이 화면 양 끝에 서 있고 왼쪽 여인은 왕이 아니라 옆의 신하 쪽을 향함. 왕 앞에서 애원하는 구도가 아님.",
+     "t.one-crown": "왕 왼쪽에 선 신하의 머리에도 금관이 있음.",
+     "t.women-front": "두 여인이 왕 앞쪽이 아니라 양쪽 끝 옆자리에 서 있고 몸이 왕이 아닌 안쪽·옆을 향함.",
+     "t.bearer-dress": "밝은 베 튜닉에 갈색 띠는 맞지만, 무릎 길이 튜닉에 녹색 겉옷까지 걸쳐 '물들이지 않은 밝은 베 긴 옷'과 어긋남."
+    },
+    "tries": [
+     {
+      "seconds": 14.528,
+      "input": 4,
+      "output": 1719,
+      "cache_read": 47189,
+      "cache_create": 11832,
+      "cost_usd": 0.0692449,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.king-crown": "맞음",
+     "t.one-crown": "틀림",
+     "t.servants-sides": "맞음",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.king-hair": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "맞음"
+    },
+    "reasons": {
+     "t.one-crown": "왕 곁 화면 왼쪽에 선 남자도 머리에 금관을 쓰고 있어 관이 둘이다.",
+     "t.moment": "왼쪽 여인이 두 손을 내밀고 오른쪽 여인은 아기를 안고 서 있어 대체로 맞다. 다만 왼쪽 여인의 몸짓이 왕보다 관 쓴 시종 쪽을 향하는 듯 보인다.",
+     "t.plead": "왼쪽 여인이 빈 손을 펴 내미는 애원 몸짓이다. 방향이 왕보다 시종 쪽에 가까워 확신은 약하다.",
+     "t.women-front": "두 여인의 발이 왕보다 아래쪽에 있고 얼굴이 보인다. 다만 양 끝에 서 있어 왕을 향한 정도는 애매하다."
+    },
+    "tries": [
+     {
+      "seconds": 15.036,
+      "input": 4,
+      "output": 1743,
+      "cache_read": 47189,
+      "cache_create": 11832,
+      "cost_usd": 0.0694849,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  }
+ }
+}

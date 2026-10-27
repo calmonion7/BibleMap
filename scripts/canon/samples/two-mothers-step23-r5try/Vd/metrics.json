@@ -1,0 +1,152 @@
+{
+ "answers": {
+  "composition-A-s42": {
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.king-crown": "맞음",
+     "t.one-crown": "틀림",
+     "t.servants-sides": "맞음",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.king-hair": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.one-crown": "왕 곁 화면 왼쪽에 선 남자가 머리에 금관을 쓰고 있음",
+     "t.king-hair": "왕의 머리털이 귀와 목덜미를 덮을 만큼 길어 짧다고 볼 수 없음",
+     "t.attendant-dress": "왼쪽 남자의 옷이 무릎 위까지 오는 짧은 튜닉이고 머리에 관도 썼음"
+    },
+    "tries": [
+     {
+      "seconds": 15.622,
+      "input": 4,
+      "output": 1643,
+      "cache_read": 47192,
+      "cache_create": 11837,
+      "cost_usd": 0.0685052,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.king-crown": "맞음",
+     "t.one-crown": "틀림",
+     "t.servants-sides": "맞음",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.king-hair": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.one-crown": "왕 왼쪽에 선 남자가 머리에 금관을 쓰고 있음",
+     "t.king-hair": "왕의 머리털이 귀와 목덜미를 덮을 만큼 길어 짧지 않음",
+     "t.attendant-dress": "왼쪽 신하가 금관을 썼고 옷도 무릎 길이 튜닉이라 수수한 긴 옷이 아님"
+    },
+    "tries": [
+     {
+      "seconds": 15.798,
+      "input": 4,
+      "output": 1752,
+      "cache_read": 47192,
+      "cache_create": 11837,
+      "cost_usd": 0.0695952,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "틀림",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.king-crown": "맞음",
+     "t.one-crown": "틀림",
+     "t.servants-sides": "맞음",
+     "t.women-front": "틀림",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.king-hair": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "맞음",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.moment": "애원하는 여인이 왕이 아니라 금관 쓴 서 있는 남자를 향하고, 오른쪽 여인은 정면 바깥을 보며 서 있어 재판 순간으로 읽히지 않음",
+     "t.one-crown": "왕 왼쪽에 선 남자도 금관을 쓰고 있음",
+     "t.women-front": "두 여인이 왕 앞이 아니라 방 양쪽 가장자리에 서 있고, 오른쪽 여인은 왕이 아니라 바깥을 향함",
+     "t.king-hair": "왕 머리털이 턱선과 목 가까이까지 내려와 짧다고 확신할 수 없음",
+     "t.attendant-dress": "왼쪽 남자가 무릎 길이의 짧은 튜닉을 입었고 금관까지 써서 수수한 긴 옷 차림이 아님"
+    },
+    "tries": [
+     {
+      "seconds": 16.433,
+      "input": 4,
+      "output": 1870,
+      "cache_read": 47192,
+      "cache_create": 11836,
+      "cost_usd": 0.0707712,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  }
+ }
+}

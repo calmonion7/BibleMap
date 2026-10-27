@@ -1,0 +1,152 @@
+{
+ "answers": {
+  "composition-A-s42": {
+   "3": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.king-crown": "맞음",
+     "t.one-crown": "틀림",
+     "t.servants-sides": "맞음",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.king-hair": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "틀림",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.one-crown": "왕 왼쪽에 선 남자가 머리에 금빛 관을 쓰고 있음",
+     "t.bearer-dress": "칼 든 남자의 옷이 무릎 길이 짧은 튜닉이고 초록 망토까지 걸쳐 '밝은 베 긴 옷'과 다름",
+     "t.attendant-dress": "왼쪽 신하가 무릎 길이 짧은 튜닉에 관을 쓰고 있어 '수수한 긴 옷'과 다름"
+    },
+    "tries": [
+     {
+      "seconds": 15.041,
+      "input": 4,
+      "output": 1718,
+      "cache_read": 47192,
+      "cache_create": 11837,
+      "cost_usd": 0.0692552,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "2": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.king-crown": "맞음",
+     "t.one-crown": "틀림",
+     "t.servants-sides": "맞음",
+     "t.women-front": "맞음",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.king-hair": "맞음",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "틀림",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.one-crown": "왕 곁 왼쪽에 선 남자가 머리에 금빛 관을 쓰고 있음",
+     "t.bearer-dress": "칼 든 남자의 옷이 무릎 길이 짧은 튜닉이고 초록 망토까지 걸쳐 '밝은 베 긴 옷'이 아님",
+     "t.attendant-dress": "왼쪽 신하의 옷이 무릎 길이 짧은 튜닉이라 '긴 옷'이 아님(머리에 관도 있음)"
+    },
+    "tries": [
+     {
+      "seconds": 15.255,
+      "input": 4,
+      "output": 1796,
+      "cache_read": 47192,
+      "cache_create": 11837,
+      "cost_usd": 0.07003519999999999,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   },
+   "1": {
+    "answers": {
+     "s.style": "맞음",
+     "s.no-blob": "맞음",
+     "t.moment": "맞음",
+     "t.five-people": "맞음",
+     "t.king-place": "맞음",
+     "t.king-crown": "맞음",
+     "t.one-crown": "틀림",
+     "t.servants-sides": "맞음",
+     "t.women-front": "틀림",
+     "t.king-seated": "맞음",
+     "t.plead": "맞음",
+     "t.infant": "맞음",
+     "t.sword-held": "맞음",
+     "t.one-sword": "맞음",
+     "t.no-swing": "맞음",
+     "t.no-halo": "맞음",
+     "t.no-church": "맞음",
+     "t.guard": "맞음",
+     "t.plead-hands": "맞음",
+     "t.king": "맞음",
+     "t.king-hair": "틀림",
+     "t.back-wall": "맞음",
+     "t.cedar-beams": "맞음",
+     "t.stone-floor": "맞음",
+     "t.chair-back": "맞음",
+     "t.bearer-dress": "틀림",
+     "t.attendant-dress": "틀림"
+    },
+    "reasons": {
+     "t.one-crown": "왕 곁 왼쪽 남자가 머리에 금빛 관을 썼다.",
+     "t.women-front": "두 여인이 화면 양끝 옆쪽에 서서 서로 또는 신하 쪽을 향하고 있다. 왕보다 앞쪽에서 왕을 향해 서 있지 않다.",
+     "t.king-hair": "왕의 머리털이 목과 어깨 가까이까지 내려와 짧다고 확인되지 않는다.",
+     "t.bearer-dress": "옷이 무릎 길이 짧은 튜닉이고 초록 망토까지 걸쳤다. 밝은 베 긴 옷에 갈색 띠만 맨 차림이 아니다.",
+     "t.attendant-dress": "옷이 무릎 길이 짧은 튜닉이라 긴 옷이 아니고, 머리에 관까지 썼다 (수수한 차림이 아님)."
+    },
+    "tries": [
+     {
+      "seconds": 15.418,
+      "input": 4,
+      "output": 1828,
+      "cache_read": 48513,
+      "cache_create": 10516,
+      "cost_usd": 0.06520329999999999,
+      "turns": 3,
+      "error": false
+     }
+    ]
+   }
+  }
+ }
+}
