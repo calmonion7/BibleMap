@@ -112,10 +112,14 @@
   근거: notes/RECHECK.md 「인용 원문 대조 규칙 (task 435)」 · DoD 3.
   해결(2026-10-26): 사람이 판본 「블레셋」 확인 → verses.json 고침(작업 없이 직접 — 닫힘).
 
-<!-- followup: fu-e89d18b15b65 | source: two-mothers-step23-reauthored | task: 436 | date: 2026-10-26 | status: open | taken: - -->
+<!-- followup: fu-e89d18b15b65 | source: two-mothers-step23-reauthored | task: 436 | date: 2026-10-26 | status: taken | taken: 437 -->
 - 두 여인 단계 ④ 사람 판정 화면 — `rule_ab.py --fixed 436 page`(8장 전부: 기계 통과 s202 + 눈으로 통과에 가까운 s42 + 불통과 표본) → `record`. 화면 앞글(LEDE·HINT·MEMO_EG)이 432 문구(「왕 앞 바닥에는 칼」 · s42 칼 자리)로 박혀 있어 고정 절에서 읽게 바꿀 것.
   근거: notes/TWO-MOTHERS-STEP23.md 「결론 (task 436)」 · 커밋 ad5b04a.
 
 <!-- followup: fu-4ec787e9a087 | source: two-mothers-step23-reauthored | task: 436 | date: 2026-10-26 | status: open | taken: - -->
 - 칼 든 신하 차림 기록 4/8 — 카드 「long undyed linen tunic, leather belt」가 금빛 띠·옷깃 장식·짙은 색·무릎 길이로 그려짐(s202·s303 금빛). 문구를 더하면 510/512토큰이라 fu-4aa6(토큰 여유)과 함께 다룰 것.
   근거: notes/TWO-MOTHERS-STEP23.md 「결과 (task 436)」 기록 문항.
+
+<!-- followup: fu-3f013d456699 | source: two-mothers-step4-human-page | task: 437 | date: 2026-10-27 | status: open | taken: - -->
+- 두 여인 명세 구도 재저작(단계 ①부터) — 사람 단계 ④ 거절 사유 「왕이 맨 뒤 상석, 신하는 좌우」. 근거: 왕상 10:5 「그 신하들의 시립한 것」·10:8 「항상 당신의 앞에 서서」(솔로몬 궁 — 이 장면 적용 [추론]) · 22:19 「그 좌우편에 모시고 서 있는데」(하늘 보좌 유비 [추론]) · 3:16 「그 앞에 서며」. 그릴링 때 정할 것: 왕 정면 가운데 → 두 여인이 등·옆을 보임(방향·표정 문항 바뀜) · 신하 수(칼 든 이 하나 + 시립 몇) · 가운데 왕 뒤 뒷벽 후광 위험(spec.solo-off-center는 홀로 인물만 — 이 경우 뒷벽 재질 문구로) · 토큰 510/512(fu-4aa6 머리털 빼기 −11 함께) · 신하 차림 fu-4ec7 함께.
+  근거: notes/TWO-MOTHERS-STEP23.md 「결론 (task 437)」 · samples/two-mothers-step23-r2/pick-verdict.txt.
