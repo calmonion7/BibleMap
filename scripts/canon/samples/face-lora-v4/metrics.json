@@ -5955,5 +5955,9 @@
    "saul": 25,
    "david": 25
   }
+ },
+ "sheet_strength": {
+  "saul": 0.5,
+  "david-youth": 0.5
  }
 }

@@ -191,12 +191,18 @@ def gate_on():
 
 # ── S3 묶음 ─────────────────────────────────────────────────────────────────
 
+# 성인 틀(「man … beard」)을 수염 없는 청년 정본에 걸면 klein이 수염 난 성인을 그림(2026-10-27 각도 6장 모두) — 인물마다 정체성 낱말
+LOOK = {"saul": ("man", "hair, beard, age"),
+        "david-youth": ("young man", "curly hair, beardless smooth youthful face (about 18, no beard, no stubble), age")}
+
+
 def views():
     from gen_face_angles import VIEW_TEXT, klein
     for who in WHO:
+        man, keep = LOOK[who]
         for view in ("three-quarter", "profile"):
-            prompt = ("Image 1 is a portrait of a man in a soft colored-pencil storybook style. Draw the very same man — exactly the same face, "
-                      "eyes, nose, hair, beard, age and skin — " + VIEW_TEXT[view].format(side=params.LORA_V4_SIDE[who]) +
+            prompt = (f"Image 1 is a portrait of a {man} in a soft colored-pencil storybook style. Draw the very same {man} — exactly the same face, "
+                      f"eyes, nose, {keep} and skin — " + VIEW_TEXT[view].format(side=params.LORA_V4_SIDE[who]) +
                       ". Head and shoulders, same clothes, same plain cream paper background, same colored-pencil art style.")
             for seed in params.FACE_ANGLE_VIEW_SEEDS:
                 klein([canon(who)[0]], prompt, seed, os.path.join(OUT, "views", f"{who}-{view}-s{seed}.png"), 768, 768)
@@ -205,9 +211,10 @@ def views():
 def body():
     from gen_face_angles import klein
     for who in WHO:
+        man, keep = LOOK[who]
         for pose, (text, (w, h)) in params.LORA_V3_BODY.items():
-            prompt = ("Images 1 and 2 show the same man from the front and in three-quarter view. Draw the very same man — exactly the same face, "
-                      f"hair, beard, age and build — {text}. Plain clothes of an ancient Israelite, soft colored-pencil storybook style, natural adult proportions.")
+            prompt = (f"Images 1 and 2 show the same {man} from the front and in three-quarter view. Draw the very same {man} — exactly the same face, "
+                      f"{keep} and build — {text}. Plain clothes of an ancient Israelite, soft colored-pencil storybook style, natural adult proportions.")
             for seed in params.LORA_V3_BODY_SEEDS:
                 klein(list(canon(who)), prompt, seed, os.path.join(OUT, "body", f"{who}-{pose}-s{seed}.png"), w, h)
 
