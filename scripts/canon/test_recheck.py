@@ -143,3 +143,29 @@ class ApprovedSource(unittest.TestCase):
         r = recheck.source("authored-solomon-jerusalem-birth", f)
         self.assertIsNone(r["prompt"])
         self.assertTrue(r["why_prompt"])
+
+
+class CanonFace(unittest.TestCase):
+    """규칙 spec.cast-canon-face(2026-10-27) — 정본 얼굴은 지금 카드에서 파생."""
+
+    def fig(self, cid):
+        return {"figures": [{"cast": cid}]}
+
+    def test_card_derived_canon_passes(self):
+        self.assertEqual(recheck.cast_canon_face_errors(self.fig("solomon")), [])
+
+    def test_card_change_makes_canon_stale(self):
+        import derive_scene as ds
+        real = ds.load_cast
+        def changed(cid):
+            c = copy.deepcopy(real(cid))
+            c["face"]["eyes"] = "grey eyes"
+            return c
+        ds.load_cast = changed
+        try:
+            self.assertIn("카드가 정본 뒤에 바뀜", recheck.cast_canon_face_errors(self.fig("solomon"))[0])
+        finally:
+            ds.load_cast = real
+
+    def test_old_canon_without_card_link_fails(self):
+        self.assertIn("canon_face 없음", recheck.cast_canon_face_errors(self.fig("abner"))[0])

@@ -1,5 +1,5 @@
 {
- "rules_version": "826e3c0c066d",
+ "rules_version": "bc9c29f32407",
  "images": {
   "authored-david-gath-achish": {
    "image": "/Users/calmonion/Project/BibleMap/scripts/canon/samples/local-edit/approved-authored-david-gath-achish.png",
@@ -22,6 +22,7 @@
     "spec.cast-age-band": "pass",
     "spec.cast-age-word": "pass",
     "spec.cast-headwear": "pass",
+    "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "pass",
     "derive.no-hand-prompt": "stale",
     "derive.no-bare-head": "pass",
@@ -64,6 +65,7 @@
     "judge.style": "화풍 판정자 조건부(판정자 재현성) — 승인 그림 재검에 아직 안 씀",
     "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
     "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다",
+    "spec.cast-canon-face": "명세가 지금 규칙을 어김: david: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음; achish: canon_face 없음",
     "spec.stage-from-scripture": "명세가 지금 규칙을 어김: david: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐; achish: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "derive.no-hand-prompt": "생성 때 프롬프트(plain-words r2 s5 + 국소 편집)가 지금 명세의 파생과 다름 — 생성 때 명세 기록 없음, 지금 명세의 해시"
    },
@@ -148,6 +150,7 @@
     "spec.cast-age-band": "stale",
     "spec.cast-age-word": "stale",
     "spec.cast-headwear": "stale",
+    "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "stale",
     "derive.no-hand-prompt": "stale",
     "derive.no-bare-head": "stale",
@@ -198,6 +201,7 @@
     "spec.cast-age-band": "그림 뒤 명세가 바뀜",
     "spec.cast-age-word": "그림 뒤 명세가 바뀜",
     "spec.cast-headwear": "그림 뒤 명세가 바뀜",
+    "spec.cast-canon-face": "그림 뒤 명세가 바뀜",
     "spec.lexicon-link": "그림 뒤 명세가 바뀜",
     "derive.no-hand-prompt": "그림 뒤 명세가 바뀜",
     "derive.no-bare-head": "그림 뒤 명세가 바뀜",
@@ -315,6 +319,7 @@
     "spec.cast-age-band": "stale",
     "spec.cast-age-word": "stale",
     "spec.cast-headwear": "stale",
+    "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "stale",
     "derive.no-hand-prompt": "stale",
     "derive.no-bare-head": "stale",
@@ -365,6 +370,7 @@
     "spec.cast-age-band": "그림 뒤 명세가 바뀜",
     "spec.cast-age-word": "그림 뒤 명세가 바뀜",
     "spec.cast-headwear": "그림 뒤 명세가 바뀜",
+    "spec.cast-canon-face": "그림 뒤 명세가 바뀜",
     "spec.lexicon-link": "그림 뒤 명세가 바뀜",
     "derive.no-hand-prompt": "그림 뒤 명세가 바뀜",
     "derive.no-bare-head": "그림 뒤 명세가 바뀜",
@@ -475,8 +481,8 @@
      }
     ],
     "majority": {
-     "p.boarding": "틀림",
-     "p.one-crown": "맞음"
+     "p.one-crown": "맞음",
+     "p.boarding": "틀림"
     }
    }
   },
@@ -501,6 +507,7 @@
     "spec.cast-age-band": "stale",
     "spec.cast-age-word": "stale",
     "spec.cast-headwear": "stale",
+    "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "stale",
     "derive.no-hand-prompt": "stale",
     "derive.no-bare-head": "stale",
@@ -551,6 +558,7 @@
     "spec.cast-age-band": "그림 뒤 명세가 바뀜",
     "spec.cast-age-word": "그림 뒤 명세가 바뀜",
     "spec.cast-headwear": "그림 뒤 명세가 바뀜",
+    "spec.cast-canon-face": "그림 뒤 명세가 바뀜",
     "spec.lexicon-link": "그림 뒤 명세가 바뀜",
     "derive.no-hand-prompt": "생성 때 프롬프트(plain-words r2 s42 + 국소 편집)가 지금 명세의 파생과 다름 — 생성 때 명세 기록 없음, 지금 명세의 해시",
     "derive.no-bare-head": "그림 뒤 명세가 바뀜",
@@ -676,6 +684,7 @@
     "spec.cast-age-band": "stale",
     "spec.cast-age-word": "stale",
     "spec.cast-headwear": "stale",
+    "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "stale",
     "derive.no-hand-prompt": "stale",
     "derive.no-bare-head": "stale",
@@ -726,6 +735,7 @@
     "spec.cast-age-band": "그림 뒤 명세가 바뀜",
     "spec.cast-age-word": "그림 뒤 명세가 바뀜",
     "spec.cast-headwear": "그림 뒤 명세가 바뀜",
+    "spec.cast-canon-face": "그림 뒤 명세가 바뀜",
     "spec.lexicon-link": "그림 뒤 명세가 바뀜",
     "derive.no-hand-prompt": "그림 뒤 명세가 바뀜",
     "derive.no-bare-head": "그림 뒤 명세가 바뀜",
@@ -841,6 +851,7 @@
     "spec.cast-age-band": "pass",
     "spec.cast-age-word": "pass",
     "spec.cast-headwear": "pass",
+    "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "pass",
     "derive.no-hand-prompt": "pass",
     "derive.no-bare-head": "pass",
@@ -881,7 +892,8 @@
     "judge.j1-items": "gibeah-step23 m15 기록에 몸 크롭 상자가 없다 — OWLv2 상자는 GPU 단계라 이번 범위 밖",
     "judge.plausibility-adopted": "걸린 채택 문항 0",
     "judge.style": "화풍 판정자 조건부(판정자 재현성) — 승인 그림 재검에 아직 안 씀",
-    "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전"
+    "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
+    "spec.cast-canon-face": "명세가 지금 규칙을 어김: saul: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음; david-youth: canon_face 없음"
    },
    "j1": null,
    "plausibility": null
@@ -907,6 +919,7 @@
     "spec.cast-age-band": "pass",
     "spec.cast-age-word": "pass",
     "spec.cast-headwear": "pass",
+    "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "none",
     "derive.no-hand-prompt": "pass",
     "derive.no-bare-head": "pass",
@@ -950,6 +963,7 @@
     "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
     "spec.verse-elements": "명세가 지금 규칙을 어김: verse_elements 없음 — 구절 시각 요소 목록 미작성",
     "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다",
+    "spec.cast-canon-face": "명세가 지금 규칙을 어김: saul: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음; samuel: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음",
     "spec.stage-from-scripture": "명세가 지금 규칙을 어김: saul: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐; samuel: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "derive.no-inflating-build": "명세가 지금 규칙을 어김: 거인 아닌 인물의 체격 문구에 「barrel」 — 몸통이 부풀어 다리가 짧아 보인다"
    },
@@ -1034,6 +1048,7 @@
     "spec.cast-age-band": "stale",
     "spec.cast-age-word": "stale",
     "spec.cast-headwear": "stale",
+    "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "stale",
     "derive.no-hand-prompt": "stale",
     "derive.no-bare-head": "stale",
@@ -1084,6 +1099,7 @@
     "spec.cast-age-band": "그림 뒤 명세가 바뀜",
     "spec.cast-age-word": "그림 뒤 명세가 바뀜",
     "spec.cast-headwear": "그림 뒤 명세가 바뀜",
+    "spec.cast-canon-face": "그림 뒤 명세가 바뀜",
     "spec.lexicon-link": "그림 뒤 명세가 바뀜",
     "derive.no-hand-prompt": "그림 뒤 명세가 바뀜",
     "derive.no-bare-head": "그림 뒤 명세가 바뀜",
@@ -1144,6 +1160,7 @@
     "spec.cast-age-band": "stale",
     "spec.cast-age-word": "stale",
     "spec.cast-headwear": "stale",
+    "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "stale",
     "derive.no-hand-prompt": "stale",
     "derive.no-bare-head": "stale",
@@ -1194,6 +1211,7 @@
     "spec.cast-age-band": "그림 뒤 명세가 바뀜",
     "spec.cast-age-word": "그림 뒤 명세가 바뀜",
     "spec.cast-headwear": "그림 뒤 명세가 바뀜",
+    "spec.cast-canon-face": "그림 뒤 명세가 바뀜",
     "spec.lexicon-link": "그림 뒤 명세가 바뀜",
     "derive.no-hand-prompt": "그림 뒤 명세가 바뀜",
     "derive.no-bare-head": "그림 뒤 명세가 바뀜",
@@ -1309,6 +1327,7 @@
     "spec.cast-age-band": "stale",
     "spec.cast-age-word": "stale",
     "spec.cast-headwear": "stale",
+    "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "stale",
     "derive.no-hand-prompt": "stale",
     "derive.no-bare-head": "stale",
@@ -1359,6 +1378,7 @@
     "spec.cast-age-band": "그림 뒤 명세가 바뀜",
     "spec.cast-age-word": "그림 뒤 명세가 바뀜",
     "spec.cast-headwear": "그림 뒤 명세가 바뀜",
+    "spec.cast-canon-face": "그림 뒤 명세가 바뀜",
     "spec.lexicon-link": "그림 뒤 명세가 바뀜",
     "derive.no-hand-prompt": "그림 뒤 명세가 바뀜",
     "derive.no-bare-head": "그림 뒤 명세가 바뀜",
@@ -1480,6 +1500,7 @@
     "spec.cast-age-band": "stale",
     "spec.cast-age-word": "stale",
     "spec.cast-headwear": "stale",
+    "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "stale",
     "derive.no-hand-prompt": "stale",
     "derive.no-bare-head": "stale",
@@ -1530,6 +1551,7 @@
     "spec.cast-age-band": "그림 뒤 명세가 바뀜",
     "spec.cast-age-word": "그림 뒤 명세가 바뀜",
     "spec.cast-headwear": "그림 뒤 명세가 바뀜",
+    "spec.cast-canon-face": "그림 뒤 명세가 바뀜",
     "spec.lexicon-link": "그림 뒤 명세가 바뀜",
     "derive.no-hand-prompt": "그림 뒤 명세가 바뀜",
     "derive.no-bare-head": "그림 뒤 명세가 바뀜",
@@ -1649,6 +1671,7 @@
     "spec.cast-age-band": "pass",
     "spec.cast-age-word": "pass",
     "spec.cast-headwear": "pass",
+    "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "none",
     "derive.no-hand-prompt": "pass",
     "derive.no-bare-head": "pass",
@@ -1692,6 +1715,7 @@
     "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
     "spec.verse-elements": "명세가 지금 규칙을 어김: verse_elements 없음 — 구절 시각 요소 목록 미작성",
     "spec.scene-all-verses": "명세가 지금 규칙을 어김: situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다",
+    "spec.cast-canon-face": "명세가 지금 규칙을 어김: saul: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음; doeg: canon_face 없음; ahimelech: canon_face 없음",
     "spec.stage-from-scripture": "명세가 지금 규칙을 어김: saul: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐; doeg: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐; ahimelech: stage_why 없음 또는 [직접]/[추론] · 「인용」 · 장:절 빠짐",
     "derive.no-inflating-build": "명세가 지금 규칙을 어김: 거인 아닌 인물의 체격 문구에 「barrel」 — 몸통이 부풀어 다리가 짧아 보인다"
    },
@@ -1782,6 +1806,7 @@
     "spec.cast-age-band": "pass",
     "spec.cast-age-word": "pass",
     "spec.cast-headwear": "pass",
+    "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "pass",
     "derive.no-hand-prompt": "pass",
     "derive.no-bare-head": "pass",
@@ -1815,14 +1840,16 @@
     "derive.crowd-stage": "pass",
     "generate.eye-level-perspective": "pass",
     "spec.solo-off-center": "pass",
-    "spec.inset": "pass",
+    "spec.inset": "stale",
     "derive.plate-cast-token": "pass"
    },
    "why": {
     "judge.j1-items": "birth-inset 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이번 범위 밖",
     "judge.plausibility-adopted": "걸린 채택 문항 0",
     "judge.style": "화풍 판정자 조건부(판정자 재현성) — 승인 그림 재검에 아직 안 씀",
-    "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전"
+    "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
+    "spec.cast-canon-face": "명세가 지금 규칙을 어김: nathan: canon_face 없음; david-prime: canon_face 없음",
+    "spec.inset": "명세가 지금 규칙을 어김: 곁 장면 authored-solomon-jerusalem-birth-inset가 규칙을 어김: ['spec.cast-canon-face']"
    },
    "j1": null,
    "plausibility": null
@@ -1848,6 +1875,7 @@
     "spec.cast-age-band": "pass",
     "spec.cast-age-word": "pass",
     "spec.cast-headwear": "pass",
+    "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "pass",
     "derive.no-hand-prompt": "pass",
     "derive.no-bare-head": "pass",
@@ -1888,7 +1916,8 @@
     "judge.j1-items": "birth-inset 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이번 범위 밖",
     "judge.plausibility-adopted": "걸린 채택 문항 0",
     "judge.style": "화풍 판정자 조건부(판정자 재현성) — 승인 그림 재검에 아직 안 씀",
-    "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전"
+    "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
+    "spec.cast-canon-face": "명세가 지금 규칙을 어김: bathsheba: canon_face 없음"
    },
    "j1": null,
    "plausibility": null
@@ -1914,6 +1943,7 @@
     "spec.cast-age-band": "pass",
     "spec.cast-age-word": "pass",
     "spec.cast-headwear": "pass",
+    "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "pass",
     "derive.no-hand-prompt": "pass",
     "derive.no-bare-head": "pass",
@@ -1954,7 +1984,8 @@
     "judge.j1-items": "two-mothers-step23-r5 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이번 범위 밖",
     "judge.plausibility-adopted": "걸린 채택 문항 0",
     "judge.style": "화풍 판정자 조건부(판정자 재현성) — 승인 그림 재검에 아직 안 씀",
-    "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전"
+    "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
+    "spec.cast-canon-face": "명세가 지금 규칙을 어김: mother-a: canon_face 없음; mother-b: canon_face 없음; solomon-sword-bearer: canon_face 없음"
    },
    "j1": null,
    "plausibility": null
@@ -2212,6 +2243,33 @@
    ],
    "none": [],
    "rate": 0.4667
+  },
+  {
+   "id": "spec.cast-canon-face",
+   "layer": "spec",
+   "scope": "all",
+   "check": "recheck.cast_canon_face_errors",
+   "pass": [],
+   "fail": [],
+   "stale": [
+    "authored-david-gath-achish",
+    "authored-david-gibeah-harp",
+    "authored-david-returns-jerusalem",
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-samuel-ramah-death",
+    "authored-saul-gibeah-spear",
+    "authored-saul-gilgal-amalek",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-jabesh-rescue",
+    "authored-saul-michmash-battle",
+    "authored-saul-mizpah-chosen",
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth",
+    "authored-solomon-jerusalem-birth-inset",
+    "authored-solomon-jerusalem-two-mothers"
+   ],
+   "none": [],
+   "rate": 0.0
   },
   {
    "id": "spec.lexicon-link",
@@ -3262,7 +3320,6 @@
     "authored-saul-gibeah-spear",
     "authored-saul-gilgal-amalek",
     "authored-saul-nob-massacre",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -3275,10 +3332,11 @@
     "authored-saul-gilgal-coronation",
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
-    "authored-saul-mizpah-chosen"
+    "authored-saul-mizpah-chosen",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.4667
+   "rate": 0.4
   },
   {
    "id": "derive.plate-cast-token",

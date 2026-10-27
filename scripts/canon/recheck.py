@@ -275,6 +275,25 @@ def cast_headwear_errors(spec):
     return [f"{f['cast']}: {e}" for f in spec["figures"] for e in check_cast_v2.headwear_errors(ds._cast_in_scene(f))]
 
 
+def cast_canon_face_errors(spec):
+    """정본 얼굴은 지금 카드에서 파생(2026-10-27, 규칙 spec.cast-canon-face) — 명세 인물마다 카드 `canon_face`가 있고 파일이 있고
+    `prompt_sha`가 지금 카드의 정면 정본 문구 지문(gen_face_canon.prompt_sha)과 같음. 카드를 고치면 정본이 낡음 · 지문 없는 옛 정본은 못 맞춰 봄 = 걸림.
+    솔로몬 옛 판(웨이브 장발·만화풍)이 카드 「short dark hair」·푸른 베옷과 어긋났던 일(notes/SOLOMON-FACE-CANON.md)."""
+    import gen_face_canon as gfc
+    out = []
+    for cid in dict.fromkeys(f["cast"] for f in spec["figures"]):
+        cf = ds.load_cast(cid).get("canon_face")
+        if not cf:
+            out.append(f"{cid}: canon_face 없음")
+        elif not os.path.exists(os.path.join(HERE, cf["file"])):
+            out.append(f"{cid}: 정본 파일 없음 {cf['file']}")
+        elif not cf.get("prompt_sha"):
+            out.append(f"{cid}: prompt_sha 없음 — 지금 카드와 맞춰 볼 수 없음")
+        elif cf["prompt_sha"] != gfc.prompt_sha(cid):
+            out.append(f"{cid}: 카드가 정본 뒤에 바뀜(prompt_sha {cf['prompt_sha']} ≠ {gfc.prompt_sha(cid)})")
+    return out
+
+
 FIST_WORDS = re.compile(r"\b(curled|clenched|balled|closed hand|fists?)\b", re.I)
 
 
@@ -775,6 +794,7 @@ SPEC_CHECKS = {
     "recheck.cast_age_band_errors": lambda spec, ctx: cast_age_band_errors(spec),
     "recheck.cast_age_word_errors": lambda spec, ctx: cast_age_word_errors(spec),
     "recheck.cast_headwear_errors": lambda spec, ctx: cast_headwear_errors(spec),
+    "recheck.cast_canon_face_errors": lambda spec, ctx: cast_canon_face_errors(spec),
     "recheck.pose_skeleton_errors": lambda spec, ctx: pose_skeleton_errors(spec),
     "recheck.empty_hand_fist_errors": lambda spec, ctx: empty_hand_fist_errors(spec),
     "recheck.wall_material_errors": lambda spec, ctx: wall_material_errors(spec),

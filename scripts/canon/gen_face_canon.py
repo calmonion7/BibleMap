@@ -8,7 +8,7 @@
 (task 353 — 이 파일에 인물별 낱말을 두던 `LOOK` 상수는 카드 값과 어긋나서 지웠다: 사울 「fifties」 ↔ 카드 40대).
 Z-Image 생성 프로세스는 batch/run_scene.py의 enc/gen 분리 워커를 그대로 쓴다. 머신에서 생성은 한 번에 하나.
 """
-import argparse, json, os, sys
+import argparse, hashlib, json, os, sys
 
 import params
 import derive_scene as ds
@@ -36,6 +36,11 @@ def look(cid):
 
 def prompt(cid, view="front"):
     return f"{STYLE}, close-up head portrait, {VIEWS[view]}, plain cream background. {look(cid)}, head and shoulders only."
+
+
+def prompt_sha(cid):
+    """정면 정본 문구 지문 — 카드에 `canon_face.prompt_sha`로 적고, 카드가 바뀌면 정본이 낡았다고 잡는다(규칙 spec.cast-canon-face)."""
+    return hashlib.sha256(prompt(cid).encode()).hexdigest()[:12]
 
 
 if __name__ == "__main__":
