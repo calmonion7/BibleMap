@@ -1,0 +1,5959 @@
+{
+ "judge": {
+  "cal:A:C:s11": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/C-s11.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.028,
+       "input": 4,
+       "output": 207,
+       "cache_read": 44370,
+       "cache_create": 10519,
+       "cost_usd": 0.048591,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리와 액자, 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.055,
+       "input": 4,
+       "output": 205,
+       "cache_read": 44990,
+       "cache_create": 10519,
+       "cost_usd": 0.048633,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.131,
+       "input": 4,
+       "output": 213,
+       "cache_read": 44990,
+       "cache_create": 10519,
+       "cost_usd": 0.048713,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 윤곽선과 색연필 채색이 뚜렷하고 동화 그림 같은 화풍이다. 글자나 테두리 같은 이질적인 요소는 없다."
+     }
+    }
+   }
+  },
+  "cal:A:C:s42": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/C-s42.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.011,
+       "input": 4,
+       "output": 204,
+       "cache_read": 44990,
+       "cache_create": 10519,
+       "cost_usd": 0.048623,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 밑선이 보이고 색연필로 칠한 동화 그림 느낌이 분명하다. 종이 테두리나 액자, 글자는 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.951,
+       "input": 4,
+       "output": 203,
+       "cache_read": 44990,
+       "cache_create": 10519,
+       "cost_usd": 0.048613,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 밑선이 보이고 색연필로 칠한 동화 그림 느낌이다. 종이 테두리·액자·글자는 보이지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 7.167,
+       "input": 4,
+       "output": 203,
+       "cache_read": 44370,
+       "cache_create": 10519,
+       "cost_usd": 0.048551000000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 밑선과 색연필 채색의 질감이 보이는 동화 그림 화풍이다. 종이 테두리나 액자, 글자는 없다."
+     }
+    }
+   }
+  },
+  "cal:A:C:s7": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/C-s7.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 6.452,
+       "input": 4,
+       "output": 340,
+       "cache_read": 44370,
+       "cache_create": 10519,
+       "cost_usd": 0.04992100000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다. 벽에 콘센트처럼 보이는 물체가 있지만 화풍 문항이 아니라 가드 문항에서 볼 결함이다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 8.237,
+       "input": 4,
+       "output": 341,
+       "cache_read": 45503,
+       "cache_create": 9386,
+       "cost_usd": 0.045512300000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다. 벽에 콘센트처럼 보이는 작은 물체와 글자가 있지만 화풍 문항이 아니라 가드 문항에서 다룰 결함이다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.826,
+       "input": 4,
+       "output": 314,
+       "cache_read": 54889,
+       "cache_create": 0,
+       "cost_usd": 0.0086369,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다. 벽의 콘센트 같은 물체는 화풍이 아니라 가드 문항에서 따질 결함이다."
+     }
+    }
+   }
+  },
+  "cal:A:C:s23": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/C-s23.png",
+   "reps": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.766,
+       "input": 4,
+       "output": 206,
+       "cache_read": 45216,
+       "cache_create": 9673,
+       "cost_usd": 0.045281600000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다. 종이 테두리, 액자, 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.936,
+       "input": 4,
+       "output": 205,
+       "cache_read": 45216,
+       "cache_create": 9673,
+       "cost_usd": 0.0452716,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.225,
+       "input": 4,
+       "output": 203,
+       "cache_read": 45216,
+       "cache_create": 9673,
+       "cost_usd": 0.0452516,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:A:C:s5": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/C-s5.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.447,
+       "input": 4,
+       "output": 201,
+       "cache_read": 45216,
+       "cache_create": 9673,
+       "cost_usd": 0.045231600000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리, 액자, 글자는 보이지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.9,
+       "input": 4,
+       "output": 198,
+       "cache_read": 45216,
+       "cache_create": 9673,
+       "cost_usd": 0.0452016,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 테두리·액자·글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.609,
+       "input": 4,
+       "output": 209,
+       "cache_read": 53756,
+       "cache_create": 1133,
+       "cost_usd": 0.012005600000000002,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리·액자·글자 같은 이상한 요소는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:A:C:s101": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/C-s101.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.576,
+       "input": 4,
+       "output": 188,
+       "cache_read": 45216,
+       "cache_create": 9673,
+       "cost_usd": 0.045101600000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 액자나 글자도 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.253,
+       "input": 4,
+       "output": 195,
+       "cache_read": 54889,
+       "cache_create": 0,
+       "cost_usd": 0.007446900000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 뚜렷한 동화풍 그림이다. 액자나 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.491,
+       "input": 4,
+       "output": 196,
+       "cache_read": 54889,
+       "cache_create": 0,
+       "cost_usd": 0.007456900000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 뚜렷한 동화 그림풍이다. 테두리나 글자도 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:A:C:s202": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/C-s202.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.192,
+       "input": 4,
+       "output": 212,
+       "cache_read": 45216,
+       "cache_create": 9673,
+       "cost_usd": 0.0453416,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화풍 그림이며, 매끄러운 디지털 느낌이나 테두리·글자는 보이지 않음."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.519,
+       "input": 4,
+       "output": 198,
+       "cache_read": 45216,
+       "cache_create": 9673,
+       "cost_usd": 0.0452016,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화풍 그림이다. 테두리나 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.111,
+       "input": 4,
+       "output": 205,
+       "cache_read": 53756,
+       "cache_create": 1133,
+       "cost_usd": 0.0119656,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:A:C:s303": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/C-s303.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.241,
+       "input": 4,
+       "output": 195,
+       "cache_read": 45216,
+       "cache_create": 9673,
+       "cost_usd": 0.045171600000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화풍 그림이다. 화풍은 기대와 일치한다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.241,
+       "input": 4,
+       "output": 207,
+       "cache_read": 45216,
+       "cache_create": 9673,
+       "cost_usd": 0.0452916,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리, 액자, 글자는 보이지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.016,
+       "input": 4,
+       "output": 204,
+       "cache_read": 45216,
+       "cache_create": 9673,
+       "cost_usd": 0.0452616,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 밑그림 선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다. 테두리나 글자도 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:A:V2:s11": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/V2-s11.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.726,
+       "input": 4,
+       "output": 216,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.0453979,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 분명하다. 종이 테두리, 액자, 글자, 손가락 이상은 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.066,
+       "input": 4,
+       "output": 200,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.0452379,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 테두리·글자 같은 이질적인 요소는 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.545,
+       "input": 4,
+       "output": 208,
+       "cache_read": 53762,
+       "cache_create": 1134,
+       "cost_usd": 0.012000199999999999,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:A:V2:s42": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/V2-s42.png",
+   "reps": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 2.967,
+       "input": 4,
+       "output": 190,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.045137899999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 테두리나 글자는 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.481,
+       "input": 4,
+       "output": 201,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.045247899999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 테두리, 액자, 글자는 보이지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.962,
+       "input": 4,
+       "output": 201,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.045247899999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 테두리, 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:A:V2:s7": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/V2-s7.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 2.844,
+       "input": 4,
+       "output": 199,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.0452279,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림풍이다. 테두리나 글자는 보이지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.791,
+       "input": 4,
+       "output": 202,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.0452579,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.406,
+       "input": 4,
+       "output": 206,
+       "cache_read": 54896,
+       "cache_create": 0,
+       "cost_usd": 0.0075576,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:A:V2:s23": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/V2-s23.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 2.99,
+       "input": 4,
+       "output": 202,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.0452579,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.995,
+       "input": 4,
+       "output": 207,
+       "cache_read": 54896,
+       "cache_create": 0,
+       "cost_usd": 0.0075676,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감이 뚜렷하고 동화책 같은 그림이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.063,
+       "input": 4,
+       "output": 203,
+       "cache_read": 53762,
+       "cache_create": 1134,
+       "cost_usd": 0.011950200000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 칠 질감이 분명하고 동화 그림 느낌이다. 종이 테두리나 액자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:A:V2:s5": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/V2-s5.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.684,
+       "input": 4,
+       "output": 219,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.0454279,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 채색 질감이 뚜렷한 동화 그림 화풍이다. 종이 테두리나 글자, 그 밖의 결함은 보이지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.49,
+       "input": 4,
+       "output": 203,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.0452679,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감이 뚜렷한 동화 그림 화풍이다. 테두리나 글자도 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.565,
+       "input": 4,
+       "output": 208,
+       "cache_read": 54896,
+       "cache_create": 0,
+       "cost_usd": 0.0075776,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:A:V2:s101": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/V2-s101.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.554,
+       "input": 4,
+       "output": 207,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.0453079,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.731,
+       "input": 4,
+       "output": 206,
+       "cache_read": 54896,
+       "cache_create": 0,
+       "cost_usd": 0.0075576,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.436,
+       "input": 4,
+       "output": 208,
+       "cache_read": 54896,
+       "cache_create": 0,
+       "cost_usd": 0.0075776,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 분명하다. 종이 테두리, 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:A:V2:s202": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/V2-s202.png",
+   "reps": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.598,
+       "input": 4,
+       "output": 208,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.045317899999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이 분명하다. 종이 테두리나 액자는 보이지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.908,
+       "input": 4,
+       "output": 208,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.045317899999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.216,
+       "input": 4,
+       "output": 206,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.0452979,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:A:V2:s303": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/V2-s303.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.662,
+       "input": 4,
+       "output": 202,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.0452579,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리·액자·글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.818,
+       "input": 4,
+       "output": 199,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.0452279,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다. 테두리나 글자도 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.521,
+       "input": 4,
+       "output": 202,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.0452579,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:A:V3:s11": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/V3-s11.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.511,
+       "input": 4,
+       "output": 208,
+       "cache_read": 53762,
+       "cache_create": 1134,
+       "cost_usd": 0.012000199999999999,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이 분명하다. 종이 테두리나 글자는 보이지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.272,
+       "input": 4,
+       "output": 208,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.045317899999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.873,
+       "input": 4,
+       "output": 207,
+       "cache_read": 54896,
+       "cache_create": 0,
+       "cost_usd": 0.0075676,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:A:V3:s42": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/V3-s42.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.465,
+       "input": 4,
+       "output": 240,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.045637899999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "화풍은 미색 종이에 연필과 색연필로 그린 동화 그림 느낌에 맞다. 그러나 왼쪽 위에 'Saul_bm'이라는 글자가 들어가 있다. 글자는 화풍 결함으로 보아 틀림으로 답한다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.061,
+       "input": 4,
+       "output": 229,
+       "cache_read": 53762,
+       "cache_create": 1134,
+       "cost_usd": 0.012210200000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필과 색연필로 칠한 동화 그림 화풍 자체는 맞다. 그러나 'Saul_bm'이라는 글자가 그림 안에 들어 있어 화풍 문항에서 '틀림'으로 답한다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.031,
+       "input": 4,
+       "output": 240,
+       "cache_read": 54896,
+       "cache_create": 0,
+       "cost_usd": 0.007897600000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "화풍 자체는 미색 종이에 연필과 색연필로 그린 동화 그림에 가깝다. 하지만 'Saul_bm'이라는 글자가 그림에 들어가 있어서, 분명히 맞다고 확인되지 않으므로 틀림으로 판정한다."
+     }
+    }
+   }
+  },
+  "cal:A:V3:s7": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/V3-s7.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.399,
+       "input": 4,
+       "output": 207,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.0453079,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.173,
+       "input": 4,
+       "output": 218,
+       "cache_read": 53762,
+       "cache_create": 1134,
+       "cost_usd": 0.012100199999999998,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이 분명하다. 가장자리에 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.407,
+       "input": 4,
+       "output": 200,
+       "cache_read": 54896,
+       "cache_create": 0,
+       "cost_usd": 0.0074976,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다. 테두리나 글자도 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:A:V3:s23": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/V3-s23.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.214,
+       "input": 4,
+       "output": 200,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.0452379,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리나 액자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.531,
+       "input": 4,
+       "output": 204,
+       "cache_read": 53762,
+       "cache_create": 1134,
+       "cost_usd": 0.0119602,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.366,
+       "input": 4,
+       "output": 202,
+       "cache_read": 54896,
+       "cache_create": 0,
+       "cost_usd": 0.0075176,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:A:V3:s5": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/V3-s5.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.014,
+       "input": 4,
+       "output": 189,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.0451279,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 채색한 동화풍 그림이다. 액자나 글자도 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.073,
+       "input": 4,
+       "output": 294,
+       "cache_read": 53762,
+       "cache_create": 1134,
+       "cost_usd": 0.012860199999999999,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이 분명하다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.068,
+       "input": 4,
+       "output": 287,
+       "cache_read": 54896,
+       "cache_create": 0,
+       "cost_usd": 0.0083676,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이 분명하다."
+     }
+    }
+   }
+  },
+  "cal:A:V3:s101": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/V3-s101.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.253,
+       "input": 4,
+       "output": 197,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.045207899999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 테두리나 글자도 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.515,
+       "input": 4,
+       "output": 214,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.0453779,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다. 테두리, 글자, 그 밖의 이상한 요소는 보이지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.015,
+       "input": 4,
+       "output": 206,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.0452979,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 테두리·글자 같은 이질적 요소는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:A:V3:s202": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/V3-s202.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.046,
+       "input": 4,
+       "output": 204,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.045277899999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선을 그리고 색연필로 칠한 질감의 동화 그림 화풍이 분명하다. 테두리나 글자는 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.022,
+       "input": 4,
+       "output": 207,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.0453079,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 2.946,
+       "input": 4,
+       "output": 214,
+       "cache_read": 53762,
+       "cache_create": 1134,
+       "cost_usd": 0.0120602,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선을 두고 색연필 질감으로 칠한 동화 그림 화풍이 맞다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:A:V3:s303": {
+   "group": "A",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-v3-scene/V3-s303.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.641,
+       "input": 4,
+       "output": 205,
+       "cache_read": 45219,
+       "cache_create": 9677,
+       "cost_usd": 0.0452879,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이 분명하다. 테두리나 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.74,
+       "input": 4,
+       "output": 211,
+       "cache_read": 54896,
+       "cache_create": 0,
+       "cost_usd": 0.0076076,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이다. 테두리, 글자, 그 밖의 결함은 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.588,
+       "input": 4,
+       "output": 184,
+       "cache_read": 54896,
+       "cache_create": 0,
+       "cost_usd": 0.0073376,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 칠 질감이 뚜렷한 동화 그림 화풍이다."
+     }
+    }
+   }
+  },
+  "cal:B:s11:saul": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/judge-src/cal-B-s11-saul.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.968,
+       "input": 4,
+       "output": 211,
+       "cache_read": 45219,
+       "cache_create": 9565,
+       "cost_usd": 0.0448999,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 칠이 뚜렷해서 동화 그림 화풍에 맞다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.126,
+       "input": 4,
+       "output": 217,
+       "cache_read": 45219,
+       "cache_create": 9565,
+       "cost_usd": 0.0449599,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 칠이 뚜렷하고, 따뜻한 동화 그림 화풍이다. 테두리나 글자 같은 다른 결함은 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.617,
+       "input": 4,
+       "output": 243,
+       "cache_read": 53762,
+       "cache_create": 1022,
+       "cost_usd": 0.011902199999999998,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 그림이라 기대한 화풍과 맞다. 다만 장면이 상반신 한 명으로 잘려 있어 창 던지는 장면은 보이지 않는다. 화풍만 판정했다."
+     }
+    }
+   }
+  },
+  "cal:B:s11:david": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/judge-src/cal-B-s11-david.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.215,
+       "input": 4,
+       "output": 185,
+       "cache_read": 45216,
+       "cache_create": 9337,
+       "cost_usd": 0.043727600000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 윤곽선과 색연필 채색이 뚜렷한 동화 그림 화풍이다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.381,
+       "input": 4,
+       "output": 202,
+       "cache_read": 45216,
+       "cache_create": 9337,
+       "cost_usd": 0.0438976,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 칠이 뚜렷한 동화 그림 화풍이다. 글자나 테두리·액자도 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.183,
+       "input": 4,
+       "output": 181,
+       "cache_read": 54553,
+       "cache_create": 0,
+       "cost_usd": 0.007273300000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 뚜렷한 동화 그림 화풍이다."
+     }
+    }
+   }
+  },
+  "cal:B:s42:saul": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/judge-src/cal-B-s42-saul.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.407,
+       "input": 4,
+       "output": 204,
+       "cache_read": 45219,
+       "cache_create": 9341,
+       "cost_usd": 0.0439339,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다. 종이 테두리, 액자, 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.162,
+       "input": 4,
+       "output": 207,
+       "cache_read": 45219,
+       "cache_create": 9341,
+       "cost_usd": 0.0439639,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 보여 동화 그림 화풍에 맞고, 글자·테두리·액자 같은 결함도 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.613,
+       "input": 4,
+       "output": 203,
+       "cache_read": 54560,
+       "cache_create": 0,
+       "cost_usd": 0.007494000000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 뚜렷한 동화 그림 화풍이다. 종이 테두리나 액자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:B:s42:david": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/judge-src/cal-B-s42-david.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.107,
+       "input": 4,
+       "output": 314,
+       "cache_read": 45216,
+       "cache_create": 9286,
+       "cost_usd": 0.0448136,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 윤곽선과 색연필 결이 보이는 동화 그림 화풍이다. 수채나 디지털 페인트처럼 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.944,
+       "input": 4,
+       "output": 292,
+       "cache_read": 54502,
+       "cache_create": 0,
+       "cost_usd": 0.0083782,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 결이 보이는 동화책 그림 화풍이다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.005,
+       "input": 4,
+       "output": 184,
+       "cache_read": 54502,
+       "cache_create": 0,
+       "cost_usd": 0.0072982,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 윤곽선과 색연필 채색이 보여 동화 그림 화풍에 맞다."
+     }
+    }
+   }
+  },
+  "cal:B:s7:saul": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/judge-src/cal-B-s7-saul.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.657,
+       "input": 4,
+       "output": 195,
+       "cache_read": 45219,
+       "cache_create": 9449,
+       "cost_usd": 0.0442759,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 보이는 동화책 그림 화풍이다. 글자·테두리·액자는 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.181,
+       "input": 4,
+       "output": 188,
+       "cache_read": 53762,
+       "cache_create": 906,
+       "cost_usd": 0.0108882,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 뚜렷하게 보이는 동화책 그림 화풍이다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.245,
+       "input": 4,
+       "output": 207,
+       "cache_read": 54668,
+       "cache_create": 0,
+       "cost_usd": 0.0075448,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 뚜렷하고, 동화 그림 같은 화풍이다. 테두리·글자·액자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:B:s7:david": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/judge-src/cal-B-s7-david.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.608,
+       "input": 4,
+       "output": 202,
+       "cache_read": 45216,
+       "cache_create": 9286,
+       "cost_usd": 0.043693600000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 뚜렷하게 보이는 동화 그림 화풍이다. 종이 테두리나 액자는 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.278,
+       "input": 4,
+       "output": 210,
+       "cache_read": 53756,
+       "cache_create": 746,
+       "cost_usd": 0.0104676,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 윤곽선과 색연필 칠이 뚜렷하게 보이는 동화 그림 화풍이다. 종이 테두리나 액자, 글자는 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.338,
+       "input": 4,
+       "output": 211,
+       "cache_read": 54502,
+       "cache_create": 0,
+       "cost_usd": 0.007568200000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 윤곽선과 색연필 칠이 뚜렷하고 동화 그림 화풍이다. 종이 테두리, 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:B:s23:saul": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/judge-src/cal-B-s23-saul.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.242,
+       "input": 4,
+       "output": 189,
+       "cache_read": 45219,
+       "cache_create": 9626,
+       "cost_usd": 0.044923899999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 윤곽선과 색연필 채색이 뚜렷해 동화 그림 화풍에 맞다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.158,
+       "input": 4,
+       "output": 189,
+       "cache_read": 45219,
+       "cache_create": 9626,
+       "cost_usd": 0.044923899999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 윤곽선과 색연필 채색이 뚜렷하고 동화 그림 느낌이 난다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.368,
+       "input": 4,
+       "output": 190,
+       "cache_read": 45219,
+       "cache_create": 9626,
+       "cost_usd": 0.0449339,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 뚜렷해서 기대한 동화 그림 화풍과 맞다."
+     }
+    }
+   }
+  },
+  "cal:B:s23:david": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/judge-src/cal-B-s23-david.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.642,
+       "input": 4,
+       "output": 181,
+       "cache_read": 45216,
+       "cache_create": 9390,
+       "cost_usd": 0.043899600000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 뚜렷한 동화 그림 화풍이다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.208,
+       "input": 4,
+       "output": 206,
+       "cache_read": 54606,
+       "cache_create": 0,
+       "cost_usd": 0.007528600000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 윤곽선과 색연필 칠이 뚜렷한 동화 그림 화풍이다. 종이 테두리나 액자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 6.411,
+       "input": 4,
+       "output": 259,
+       "cache_read": 54606,
+       "cache_create": 0,
+       "cost_usd": 0.0080586,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 칠이 뚜렷해서 동화 그림 화풍에 맞는다."
+     }
+    }
+   }
+  },
+  "cal:B:s5:saul": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/judge-src/cal-B-s5-saul.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.672,
+       "input": 4,
+       "output": 200,
+       "cache_read": 45219,
+       "cache_create": 9394,
+       "cost_usd": 0.044105899999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 칠이 뚜렷한 동화 그림 화풍이다. 테두리나 글자도 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.153,
+       "input": 4,
+       "output": 212,
+       "cache_read": 53762,
+       "cache_create": 851,
+       "cost_usd": 0.0109082,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 뚜렷하고, 동화 그림 같은 화풍이다. 종이 테두리, 액자, 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.164,
+       "input": 4,
+       "output": 210,
+       "cache_read": 54613,
+       "cache_create": 0,
+       "cost_usd": 0.0075693,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 뚜렷하고 동화 그림 느낌이 난다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:B:s5:david": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/judge-src/cal-B-s5-david.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.883,
+       "input": 4,
+       "output": 186,
+       "cache_read": 45216,
+       "cache_create": 9286,
+       "cost_usd": 0.043533600000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필로 칠한 질감이 보이고, 동화 그림 같은 화풍이다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.989,
+       "input": 4,
+       "output": 251,
+       "cache_read": 45216,
+       "cache_create": 9286,
+       "cost_usd": 0.0441836,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 삽화 화풍이다. 다만 왼쪽 가장자리에 종이 결 같은 세로 얼룩이 있다. 이는 화풍 문항이 아니라 가드 문항에서 따질 사항이다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.092,
+       "input": 4,
+       "output": 335,
+       "cache_read": 45216,
+       "cache_create": 9286,
+       "cost_usd": 0.045023600000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 같은 결로 칠한 동화풍 그림이다. 머리카락, 피부, 옷의 질감이 색연필 느낌과 맞는다."
+     }
+    }
+   }
+  },
+  "cal:B:s101:saul": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/judge-src/cal-B-s101-saul.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.271,
+       "input": 4,
+       "output": 207,
+       "cache_read": 45219,
+       "cache_create": 9565,
+       "cost_usd": 0.044859899999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 그림이다. 종이 테두리·액자·글자는 없고, 동화 그림 화풍에 맞는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.477,
+       "input": 4,
+       "output": 221,
+       "cache_read": 53762,
+       "cache_create": 1022,
+       "cost_usd": 0.0116822,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감이 뚜렷하고, 따뜻한 색연필 채색으로 동화 그림 느낌이 난다. 종이 테두리나 글자도 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 5.106,
+       "input": 4,
+       "output": 209,
+       "cache_read": 54784,
+       "cache_create": 0,
+       "cost_usd": 0.0075764000000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 윤곽선과 색연필 칠이 뚜렷하게 보이는 손그림 화풍이다. 종이 테두리나 액자, 글자는 없다."
+     }
+    }
+   }
+  },
+  "cal:B:s101:david": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/judge-src/cal-B-s101-david.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.542,
+       "input": 4,
+       "output": 185,
+       "cache_read": 45216,
+       "cache_create": 9286,
+       "cost_usd": 0.0435236,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 칠 느낌이 뚜렷한 동화 그림 화풍이다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.048,
+       "input": 4,
+       "output": 197,
+       "cache_read": 53756,
+       "cache_create": 746,
+       "cost_usd": 0.0103376,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 윤곽선과 색연필 결이 보이는 동화 그림 화풍이다. 종이 테두리나 액자는 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.288,
+       "input": 4,
+       "output": 203,
+       "cache_read": 54502,
+       "cache_create": 0,
+       "cost_usd": 0.0074882,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 보이는 동화 그림 화풍이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:B:s202:saul": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/judge-src/cal-B-s202-saul.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.729,
+       "input": 4,
+       "output": 200,
+       "cache_read": 45219,
+       "cache_create": 9565,
+       "cost_usd": 0.044789899999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 결이 보이는 동화 그림 화풍이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.395,
+       "input": 4,
+       "output": 205,
+       "cache_read": 45219,
+       "cache_create": 9565,
+       "cost_usd": 0.044839899999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리, 액자, 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.46,
+       "input": 4,
+       "output": 215,
+       "cache_read": 53762,
+       "cache_create": 1022,
+       "cost_usd": 0.0116222,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리나 액자, 글자, 손가락 이상은 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:B:s202:david": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/judge-src/cal-B-s202-david.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.422,
+       "input": 4,
+       "output": 182,
+       "cache_read": 45216,
+       "cache_create": 9337,
+       "cost_usd": 0.0436976,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 분명하다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.942,
+       "input": 4,
+       "output": 203,
+       "cache_read": 53756,
+       "cache_create": 797,
+       "cost_usd": 0.0106016,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.552,
+       "input": 4,
+       "output": 207,
+       "cache_read": 54553,
+       "cache_create": 0,
+       "cost_usd": 0.0075333000000000015,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 분명하다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:B:s303:saul": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/judge-src/cal-B-s303-saul.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.345,
+       "input": 4,
+       "output": 218,
+       "cache_read": 45219,
+       "cache_create": 9626,
+       "cost_usd": 0.0452139,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리나 액자, 글자, 겹친 인물 같은 결함은 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.219,
+       "input": 4,
+       "output": 194,
+       "cache_read": 54845,
+       "cache_create": 0,
+       "cost_usd": 0.0074325,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화풍 그림이다. 테두리나 글자도 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.3,
+       "input": 4,
+       "output": 197,
+       "cache_read": 54845,
+       "cache_create": 0,
+       "cost_usd": 0.0074625,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 테두리·글자·액자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:B:s303:david": {
+   "group": "B",
+   "src": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/judge-src/cal-B-s303-david.png",
+   "reps": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.192,
+       "input": 4,
+       "output": 295,
+       "cache_read": 45216,
+       "cache_create": 9390,
+       "cost_usd": 0.045039600000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.751,
+       "input": 4,
+       "output": 307,
+       "cache_read": 45216,
+       "cache_create": 9390,
+       "cost_usd": 0.0451596,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 결이 보이는 동화 그림 화풍이다. 수염과 머리카락의 질감, 부드러운 채색이 이를 뒷받침한다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.008,
+       "input": 4,
+       "output": 293,
+       "cache_read": 45216,
+       "cache_create": 9390,
+       "cost_usd": 0.04501960000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선을 두고 색연필로 칠한 질감이 보인다. 곱슬머리, 수염, 피부 음영 모두 색연필 결이고 동화 그림 느낌이다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:01": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/01.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.117,
+       "input": 4,
+       "output": 427,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.046579600000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 칠이 뚜렷하다. 다만 동화 그림치고는 사실적인 초상에 가까워서 그 점은 확신이 약하다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.357,
+       "input": 4,
+       "output": 246,
+       "cache_read": 54661,
+       "cache_create": 0,
+       "cost_usd": 0.0079341,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 칠이 뚜렷해서 기대한 화풍과 맞다. 다만 이 그림은 동화 장면이라기보다 인물 초상에 가깝다. 이 문항은 화풍만 묻기 때문에 맞음으로 판정했다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 6.16,
+       "input": 4,
+       "output": 242,
+       "cache_read": 54661,
+       "cache_create": 0,
+       "cost_usd": 0.007894100000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 칠이 뚜렷하게 보여서 기대한 화풍에 맞는다. 다만 동화 그림보다는 사실적인 초상화에 가깝다. 화풍 문항은 종이 재질과 도구 기준으로 판정했다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:02": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/02.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.722,
+       "input": 4,
+       "output": 214,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.044449600000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 칠이 뚜렷해서 기대한 화풍과 맞다. 다만 이 그림은 동화풍이라기보다 사실적인 초상에 가깝다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.014,
+       "input": 4,
+       "output": 222,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.0445296,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 칠이 뚜렷하다. 질감과 해칭이 보여 지정한 화풍에 맞다. 다만 동화 그림치고는 사실적인 초상에 가깝다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.798,
+       "input": 4,
+       "output": 207,
+       "cache_read": 54661,
+       "cache_create": 0,
+       "cost_usd": 0.007544100000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감이 분명하다. 동화 그림 화풍에 맞다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:03": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/03.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.556,
+       "input": 4,
+       "output": 223,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.044539600000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 그림이다. 해칭이 보이고 채색이 부드러워 동화 그림 화풍에 맞다. 종이 테두리나 액자, 글자는 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.582,
+       "input": 4,
+       "output": 224,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.0445496,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 칠이 뚜렷하게 보이는 그림이다. 해칭 질감도 색연필 화풍에 맞는다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.476,
+       "input": 4,
+       "output": 276,
+       "cache_read": 54661,
+       "cache_create": 0,
+       "cost_usd": 0.008234100000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 질감으로 칠한 그림이다. 테두리나 글자도 없다. 다만 동화 그림보다는 사실적인 초상에 가까워서 '동화 그림'이라는 부분은 아주 분명하지는 않다. 그래도 화풍의 핵심인 종이 색, 연필 선, 색연필 채색은 모두 맞다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:04": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/04.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.105,
+       "input": 4,
+       "output": 189,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.044199600000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 그린 그림이다. 종이 테두리나 액자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.141,
+       "input": 4,
+       "output": 207,
+       "cache_read": 53756,
+       "cache_create": 905,
+       "cost_usd": 0.0110736,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 그린 그림이다. 종이 테두리나 액자, 글자는 보이지 않아 동화 그림 화풍에 맞다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.145,
+       "input": 4,
+       "output": 228,
+       "cache_read": 54661,
+       "cache_create": 0,
+       "cost_usd": 0.007754100000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 그림이다. 화풍 기대에 맞다. 그림이 인물 얼굴 하나뿐이어서 동화풍인지는 장면 구성으로 따지지 않았다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:05": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/05.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.735,
+       "input": 4,
+       "output": 231,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.0446196,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 그린 그림이다. 다만 동화 그림보다는 사실적인 초상에 가깝다. 그래도 화풍 조건인 종이, 연필, 색연필 칠은 충족한다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.713,
+       "input": 4,
+       "output": 239,
+       "cache_read": 53756,
+       "cache_create": 905,
+       "cost_usd": 0.0113936,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 그림이다. 다만 동화 그림보다는 사실적인 초상화에 가깝다. 질문은 종이·연필·색연필 기법을 묻는 것이라 기법은 맞는다고 판단했다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.32,
+       "input": 4,
+       "output": 229,
+       "cache_read": 54661,
+       "cache_create": 0,
+       "cost_usd": 0.0077641,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 그린 그림이다. 다만 동화 그림보다는 사실적인 초상에 가깝다. 그래도 화풍 조건(미색 종이, 연필, 색연필)은 충족한다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:06": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/06.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.697,
+       "input": 4,
+       "output": 233,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.0446396,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 그린 그림이다. 다만 동화 그림보다는 사실적인 초상화에 가깝다. 질문은 종이·연필·색연필 화풍 여부이므로 이 기준에서는 맞다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.149,
+       "input": 4,
+       "output": 192,
+       "cache_read": 54661,
+       "cache_create": 0,
+       "cost_usd": 0.007394100000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 그림이다. 동화 그림 화풍에 부합한다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.487,
+       "input": 4,
+       "output": 235,
+       "cache_read": 53756,
+       "cache_create": 905,
+       "cost_usd": 0.011353600000000002,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 칠이 뚜렷해서 기대한 화풍과 맞다. 다만 동화 그림보다는 사실적인 초상 스케치에 가깝다. 그래도 매체와 질감은 기대와 일치한다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:07": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/07.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.843,
+       "input": 4,
+       "output": 196,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.044269600000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 윤곽선과 색연필 질감으로 칠한 그림이다. 테두리나 글자는 없고 화풍 기대에 맞다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.401,
+       "input": 4,
+       "output": 229,
+       "cache_read": 54661,
+       "cache_create": 0,
+       "cost_usd": 0.0077641,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 채색 질감이 뚜렷하다. 종이 테두리나 글자도 보이지 않는다. 다만 사실적인 인물 초상에 가까워 동화 그림 느낌은 다소 약하다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 5.176,
+       "input": 4,
+       "output": 230,
+       "cache_read": 54661,
+       "cache_create": 0,
+       "cost_usd": 0.0077741,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 질감으로 칠한 그림이다. 종이 테두리나 액자, 글자는 보이지 않는다. 동화 그림 화풍으로는 사실적인 편이지만 화풍 조건에는 맞는다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:08": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/08.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.453,
+       "input": 4,
+       "output": 190,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.0442096,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 결이 뚜렷하게 보이는 그림이다. 화풍은 기대와 맞는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.297,
+       "input": 4,
+       "output": 217,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.0444796,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 칠이 뚜렷하다. 다만 동화 그림보다 사실적인 초상에 가깝다. 요청한 화풍(연필 + 색연필)에는 부합한다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.125,
+       "input": 4,
+       "output": 254,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.0448496,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 칠이 뚜렷하다. 질감과 해칭이 동화 그림 화풍에 맞는다. 다만 장면 없이 인물 옆얼굴만 그려져 있다. 이 문항은 화풍만 묻기 때문에 틀림으로 보지 않았다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:09": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/09.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.363,
+       "input": 4,
+       "output": 226,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.0445696,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 질감이 뚜렷한 그림이다. 다만 동화 그림보다는 사실적인 초상화에 가깝다. 화풍 문항의 기준인 연필·색연필 기법은 충족한다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.949,
+       "input": 4,
+       "output": 240,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.0447096,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 칠이 뚜렷하다. 질감도 색연필 그림답다. 다만 동화 그림이라기보다 사실적인 인물 초상에 가깝다. 그래도 지정한 화풍 재료와 느낌은 맞는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.574,
+       "input": 4,
+       "output": 210,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.04440960000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 색연필로 그린 질감은 맞다. 그러나 동화 그림이라기보다 사실적인 옆얼굴 초상 습작에 가깝다. 장면 요소도 없다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:10": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/10.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.681,
+       "input": 4,
+       "output": 231,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.0446196,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 그림이다. 다만 동화 그림보다는 사실적인 초상화에 가깝다. 그래도 화풍 기준인 종이, 연필, 색연필 칠은 충족한다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.048,
+       "input": 4,
+       "output": 226,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.0445696,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 색연필로 그린 화풍은 맞다. 그러나 동화 그림 느낌이 아니라 사실적인 수염 남자 옆모습 초상화다. 현대적인 티셔츠 같은 옷도 입고 있다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.291,
+       "input": 4,
+       "output": 254,
+       "cache_read": 54661,
+       "cache_create": 0,
+       "cost_usd": 0.0080141,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필과 색연필로 그린 질감은 맞다. 하지만 동화 그림이라기보다 사실적인 남자 옆얼굴 초상화로 보인다. 현대식 짧은 머리에 티셔츠 같은 옷차림이라 동화 화풍으로 분명히 확인되지 않는다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:11": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/11.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.433,
+       "input": 4,
+       "output": 202,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.044329600000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 그린 그림이다. 동화 그림 화풍에 맞고, 테두리나 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.731,
+       "input": 4,
+       "output": 248,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.044789600000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 질감으로 그린 그림이다. 칠한 결이 색연필 그대로이고 종이 테두리나 액자, 글자는 없다. 다만 동화 그림보다는 사실적인 초상화에 가까워 동화 화풍인지는 다소 애매하다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.317,
+       "input": 4,
+       "output": 220,
+       "cache_read": 54661,
+       "cache_create": 0,
+       "cost_usd": 0.0076741000000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 결이 뚜렷한 그림이다. 종이 테두리나 액자, 글자는 보이지 않는다. 다만 동화 그림보다는 사실적인 초상에 가깝다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:12": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/12.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.928,
+       "input": 4,
+       "output": 207,
+       "cache_read": 54661,
+       "cache_create": 0,
+       "cost_usd": 0.007544100000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 결이 보이는 그림이라 화풍은 기대와 맞다. 다만 장면 내용은 이 문항에서 판정하지 않았다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.534,
+       "input": 4,
+       "output": 219,
+       "cache_read": 54661,
+       "cache_create": 0,
+       "cost_usd": 0.007664100000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 색연필로 그린 질감은 맞다. 하지만 동화 그림이라기보다 사실적인 옆얼굴 초상화다. 이야기 장면 없이 인물 한 명의 흉상만 있다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.411,
+       "input": 4,
+       "output": 454,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.046849600000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 결이 뚜렷하다. 매체와 화풍은 기대와 맞는다. 다만 장면이 아니라 옆얼굴 초상만 그려져 있고 인물도 사실적인 편이라 동화풍 정도는 다소 약하다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:13": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/13.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.515,
+       "input": 4,
+       "output": 232,
+       "cache_read": 45216,
+       "cache_create": 9445,
+       "cost_usd": 0.044629600000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 칠이 뚜렷하다. 다만 사실적인 옆얼굴 초상이라 동화 그림 느낌은 약하다. 그래도 화풍 기준인 종이·연필·색연필은 충족한다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.3,
+       "input": 4,
+       "output": 219,
+       "cache_read": 53756,
+       "cache_create": 905,
+       "cost_usd": 0.011193600000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필과 색연필로 그린 질감은 맞다. 하지만 동화 그림 느낌이 아니라 사실적인 옆얼굴 초상 습작처럼 보인다. 장면 요소도 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.105,
+       "input": 4,
+       "output": 210,
+       "cache_read": 54661,
+       "cache_create": 0,
+       "cost_usd": 0.0075741,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색이 뚜렷해서 기대한 화풍과 맞다. 다만 장면 내용은 이 문항의 판정 대상이 아니다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:14": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/14.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.275,
+       "input": 4,
+       "output": 206,
+       "cache_read": 45216,
+       "cache_create": 9837,
+       "cost_usd": 0.0459376,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 뚜렷한 동화 그림 화풍이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.556,
+       "input": 4,
+       "output": 209,
+       "cache_read": 53756,
+       "cache_create": 1297,
+       "cost_usd": 0.012661600000000002,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 윤곽선과 색연필 채색이 뚜렷한 동화 그림 화풍이다. 액자·글자·테두리 같은 결함은 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.225,
+       "input": 4,
+       "output": 193,
+       "cache_read": 55053,
+       "cache_create": 0,
+       "cost_usd": 0.0074433,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이고, 종이 테두리나 액자, 글자도 없다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:15": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/15.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.613,
+       "input": 4,
+       "output": 205,
+       "cache_read": 45216,
+       "cache_create": 9837,
+       "cost_usd": 0.0459276,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 칠이 뚜렷한 동화 그림 화풍이다. 종이 테두리, 액자, 글자는 보이지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.005,
+       "input": 4,
+       "output": 237,
+       "cache_read": 45216,
+       "cache_create": 9837,
+       "cost_usd": 0.0462476,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감이 뚜렷한 동화 그림 화풍이다. 사실적인 인물 묘사이긴 하지만 화풍은 기대와 일치한다. 종이 테두리·액자·글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.521,
+       "input": 4,
+       "output": 199,
+       "cache_read": 53756,
+       "cache_create": 1297,
+       "cost_usd": 0.0125616,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리, 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:16": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/16.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.637,
+       "input": 4,
+       "output": 206,
+       "cache_read": 45216,
+       "cache_create": 9837,
+       "cost_usd": 0.0459376,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다. 종이 테두리, 액자, 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.376,
+       "input": 4,
+       "output": 210,
+       "cache_read": 45216,
+       "cache_create": 9837,
+       "cost_usd": 0.04597760000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다. 종이 테두리나 액자, 글자도 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 2.92,
+       "input": 4,
+       "output": 207,
+       "cache_read": 53756,
+       "cache_create": 1297,
+       "cost_usd": 0.0126416,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리나 액자, 글자도 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:17": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/17.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 2.975,
+       "input": 4,
+       "output": 201,
+       "cache_read": 45216,
+       "cache_create": 9837,
+       "cost_usd": 0.0458876,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.02,
+       "input": 4,
+       "output": 199,
+       "cache_read": 55053,
+       "cache_create": 0,
+       "cost_usd": 0.007503300000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.18,
+       "input": 4,
+       "output": 196,
+       "cache_read": 55053,
+       "cache_create": 0,
+       "cost_usd": 0.0074733,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 테두리, 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:18": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/18.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.414,
+       "input": 4,
+       "output": 200,
+       "cache_read": 45216,
+       "cache_create": 9837,
+       "cost_usd": 0.045877600000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 윤곽선을 두고 색연필로 칠한 질감이 보이는 동화 그림 화풍이다. 테두리나 글자도 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.251,
+       "input": 4,
+       "output": 196,
+       "cache_read": 45216,
+       "cache_create": 9837,
+       "cost_usd": 0.045837600000000006,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 테두리나 글자도 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.913,
+       "input": 4,
+       "output": 204,
+       "cache_read": 55053,
+       "cache_create": 0,
+       "cost_usd": 0.007553300000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 선과 색연필 채색이 뚜렷한 동화 그림 화풍이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:19": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/19.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.55,
+       "input": 4,
+       "output": 193,
+       "cache_read": 45216,
+       "cache_create": 9837,
+       "cost_usd": 0.045807600000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 칠이 보이는 동화 그림 화풍이다. 종이 테두리나 액자는 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.665,
+       "input": 4,
+       "output": 194,
+       "cache_read": 45216,
+       "cache_create": 9837,
+       "cost_usd": 0.0458176,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 테두리나 글자도 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 5.101,
+       "input": 4,
+       "output": 206,
+       "cache_read": 45216,
+       "cache_create": 9837,
+       "cost_usd": 0.0459376,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 뚜렷한 동화 그림 화풍이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:20": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/20.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.282,
+       "input": 4,
+       "output": 206,
+       "cache_read": 45216,
+       "cache_create": 9837,
+       "cost_usd": 0.0459376,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.314,
+       "input": 4,
+       "output": 201,
+       "cache_read": 53756,
+       "cache_create": 1297,
+       "cost_usd": 0.012581600000000002,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리, 액자, 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.836,
+       "input": 4,
+       "output": 192,
+       "cache_read": 55053,
+       "cache_create": 0,
+       "cost_usd": 0.0074333,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리나 액자는 없다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:21": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/21.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.331,
+       "input": 4,
+       "output": 205,
+       "cache_read": 45216,
+       "cache_create": 9837,
+       "cost_usd": 0.0459276,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 그림이다. 동화 그림 화풍에 맞다. 종이 테두리나 액자, 글자는 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.199,
+       "input": 4,
+       "output": 185,
+       "cache_read": 53756,
+       "cache_create": 1297,
+       "cost_usd": 0.012421600000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 그림이다. 동화 그림 화풍에 맞다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.679,
+       "input": 4,
+       "output": 213,
+       "cache_read": 55053,
+       "cache_create": 0,
+       "cost_usd": 0.0076433000000000004,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 그림이라 기대한 동화 그림 화풍에 맞다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:22": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/22.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.137,
+       "input": 4,
+       "output": 280,
+       "cache_read": 45216,
+       "cache_create": 9673,
+       "cost_usd": 0.0460216,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 부드러운 채색 화풍이긴 하나, 거의 빈 화면 구석에 인물 하나만 작게 떠 있고 인물 주변에 종이 질감과 다른 흐린 사각 배경이 덧붙어 있다. 연필 선과 색연필 칠이 분명히 보이지 않아 동화 그림 화풍이라고 확인되지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.081,
+       "input": 4,
+       "output": 282,
+       "cache_read": 45216,
+       "cache_create": 9673,
+       "cost_usd": 0.0460416,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 색연필풍 인물이 있긴 하지만, 작은 인물 하나가 구석에 떠 있고 나머지는 거의 빈 종이다. 동화 그림 장면으로 완성돼 있지 않고, 연필 선 질감도 분명히 확인되지 않는다. 또 인물 주변에 옅은 사각 번짐이 보여 테두리 결함으로 보인다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.007,
+       "input": 4,
+       "output": 264,
+       "cache_read": 53756,
+       "cache_create": 1133,
+       "cost_usd": 0.0125556,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕과 색연필 느낌의 채색은 보이지만, 장면이 거의 비어 있습니다. 인물 한 명만 작게 서 있고 창도 다윗도 없는 데다 가장자리가 번진 사각 테두리가 있어서, 동화 그림 화풍이 분명히 맞다고 확인되지 않습니다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:23": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/23.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.357,
+       "input": 4,
+       "output": 267,
+       "cache_read": 45216,
+       "cache_create": 9673,
+       "cost_usd": 0.045891600000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 부드러운 색연필풍 인물이 그려져 있기는 하다. 하지만 인물이 화면 구석에 작게 떠 있고, 둘레에 사각형 종이 테두리 같은 가장자리가 보인다. 동화 그림으로 완성된 장면이라고 볼 수 없어서 맞다고 확인되지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.828,
+       "input": 4,
+       "output": 273,
+       "cache_read": 53756,
+       "cache_create": 1133,
+       "cost_usd": 0.0126456,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "화풍 자체는 미색 종이에 연필과 색연필로 그린 느낌이지만, 그림이 거의 빈 종이다. 작은 인물 하나만 오른쪽 아래에 서 있고 장면이 없다. 인물 둘레에 옅은 사각 테두리 자국도 보인다. 동화 그림으로 분명히 맞다고 확인되지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.481,
+       "input": 4,
+       "output": 238,
+       "cache_read": 53756,
+       "cache_create": 1133,
+       "cost_usd": 0.0122956,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 색연필 느낌의 그림체는 맞다. 하지만 인물 하나만 구석에 작게 서 있고 그 둘레에 옅은 사각형 종이 테두리가 보여서, 동화 그림으로 확실히 맞다고 할 수 없다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:24": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/24.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.967,
+       "input": 4,
+       "output": 246,
+       "cache_read": 45216,
+       "cache_create": 9673,
+       "cost_usd": 0.0456816,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 인물 하나만 작게 그려져 있고 나머지는 빈 종이다. 인물은 부드러운 채색이라 연필 선과 색연필 질감이 분명하지 않다. 동화 그림 한 장면이 아니라 화풍이 맞다고 확인되지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.678,
+       "input": 4,
+       "output": 282,
+       "cache_read": 53756,
+       "cache_create": 1133,
+       "cost_usd": 0.0127356,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필과 색연필 느낌은 있다. 하지만 장면이 거의 비어 있고 인물 하나만 작게 그려져 있다. 창을 던지는 장면의 그림으로 보기 어렵다. 인물 주변에 종이 위로 네모나게 떠 보이는 경계도 있다. 분명히 맞다고 확인되지 않아 틀림으로 답한다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.933,
+       "input": 4,
+       "output": 277,
+       "cache_read": 54889,
+       "cache_create": 0,
+       "cost_usd": 0.0082669,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 색연필 느낌의 인물은 있지만, 그림이 거의 비어 있고 무릎 꿇은 인물 하나만 작게 있다. 장면 그림으로 완성된 동화 화풍이라고 확실히 말할 수 없다. 사각형 경계가 보이고 연필 선과 색연필 칠의 질감도 뚜렷하지 않다."
+     }
+    }
+   }
+  },
+  "cal:M:saul:25": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/saul/25.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.123,
+       "input": 4,
+       "output": 200,
+       "cache_read": 53756,
+       "cache_create": 1133,
+       "cost_usd": 0.011915600000000002,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색 느낌의 동화풍 그림이다. 장면 내용은 이 문항의 판정 대상이 아니다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.759,
+       "input": 4,
+       "output": 211,
+       "cache_read": 45216,
+       "cache_create": 9673,
+       "cost_usd": 0.0453316,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색 질감이 보여 동화 그림 화풍에 맞는다. 장면 구성은 이 문항에서 묻지 않았다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.772,
+       "input": 4,
+       "output": 275,
+       "cache_read": 53756,
+       "cache_create": 1133,
+       "cost_usd": 0.012665599999999999,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 연필과 색연필 느낌의 인물 하나는 있다. 그러나 그림이 장면 대부분이 빈 종이이고 작은 인물만 구석에 있어 동화 그림으로 완성되지 않았다. 또 장면 내용(창 던지기)이 전혀 없다. 분명히 맞다고 확인되지 않아 틀림으로 답한다."
+     }
+    }
+   }
+  },
+  "cal:M:david:01": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/01.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.489,
+       "input": 4,
+       "output": 239,
+       "cache_read": 45213,
+       "cache_create": 9441,
+       "cost_usd": 0.044683299999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 칠이 뚜렷하게 보이는 그림이다. 다만 동화 그림보다는 사실적인 초상에 가깝다. 그래도 요구한 화풍(연필 밑그림에 색연필 채색)에는 맞는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.569,
+       "input": 4,
+       "output": 258,
+       "cache_read": 53750,
+       "cache_create": 904,
+       "cost_usd": 0.011579,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감이 뚜렷해서 기대한 화풍과 맞다. 다만 이 그림은 인물 초상 한 장이라 사울이 창을 던지는 장면은 담겨 있지 않다. 이 문항은 화풍만 묻기 때문에 화풍만 판정했다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.347,
+       "input": 4,
+       "output": 219,
+       "cache_read": 54654,
+       "cache_create": 0,
+       "cost_usd": 0.007663400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감이 뚜렷하다. 머리카락과 옷의 색연필 결도 보여 요구한 화풍과 맞다. 테두리나 글자는 없다."
+     }
+    }
+   }
+  },
+  "cal:M:david:02": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/02.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.253,
+       "input": 4,
+       "output": 212,
+       "cache_read": 45213,
+       "cache_create": 9441,
+       "cost_usd": 0.044413299999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 칠이 뚜렷한 그림이다. 다만 동화 그림보다는 사실적인 초상화에 가깝다. 화풍 조건은 충족한다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.439,
+       "input": 4,
+       "output": 219,
+       "cache_read": 54654,
+       "cache_create": 0,
+       "cost_usd": 0.007663400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 채색이 뚜렷하게 보여 화풍 기대와 맞다. 다만 이 그림은 장면이 아니라 인물 초상이다. 화풍 문항만 판정했다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.252,
+       "input": 4,
+       "output": 186,
+       "cache_read": 54654,
+       "cache_create": 0,
+       "cost_usd": 0.0073334,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 질감이 뚜렷하다. 색연필로 칠한 그림 화풍에 맞다."
+     }
+    }
+   }
+  },
+  "cal:M:david:03": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/03.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.127,
+       "input": 4,
+       "output": 203,
+       "cache_read": 45213,
+       "cache_create": 9441,
+       "cost_usd": 0.044323299999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 그린 그림이라 기대한 화풍과 맞다. 종이 테두리·액자·글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.105,
+       "input": 4,
+       "output": 204,
+       "cache_read": 53750,
+       "cache_create": 904,
+       "cost_usd": 0.011039,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 질감으로 칠한 그림이다. 동화 그림 화풍으로 보이고, 테두리·글자·덧붙은 인물도 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.092,
+       "input": 4,
+       "output": 219,
+       "cache_read": 54654,
+       "cache_create": 0,
+       "cost_usd": 0.007663400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 질감으로 칠한 그림이다. 다만 동화 그림보다 사실적인 초상에 가깝다. 종이 테두리나 글자 같은 결함은 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:M:david:04": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/04.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.216,
+       "input": 4,
+       "output": 201,
+       "cache_read": 45213,
+       "cache_create": 9441,
+       "cost_usd": 0.0443033,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 윤곽선과 색연필 질감으로 칠한 그림이다. 동화 그림 화풍에 맞고 종이 테두리나 글자도 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 2.801,
+       "input": 4,
+       "output": 196,
+       "cache_read": 53750,
+       "cache_create": 904,
+       "cost_usd": 0.010959,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 채색이 뚜렷하게 보이는 동화풍 그림이다. 종이 테두리나 글자도 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.894,
+       "input": 4,
+       "output": 202,
+       "cache_read": 53750,
+       "cache_create": 904,
+       "cost_usd": 0.011019000000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 윤곽선을 긋고 색연필로 칠한 그림이다. 종이 테두리나 글자도 없어서 기대한 화풍과 맞다."
+     }
+    }
+   }
+  },
+  "cal:M:david:05": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/05.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.438,
+       "input": 4,
+       "output": 182,
+       "cache_read": 45213,
+       "cache_create": 9441,
+       "cost_usd": 0.044113299999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 질감으로 칠한 그림이다. 동화 그림 화풍에 맞다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.285,
+       "input": 4,
+       "output": 208,
+       "cache_read": 45213,
+       "cache_create": 9441,
+       "cost_usd": 0.0443733,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 칠이 뚜렷하다. 곱슬머리와 붉은 옷의 색연필 결이 보이고 동화 그림 느낌도 난다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.505,
+       "input": 4,
+       "output": 182,
+       "cache_read": 45213,
+       "cache_create": 9441,
+       "cost_usd": 0.044113299999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 그린 그림이다. 화풍은 기대와 맞는다."
+     }
+    }
+   }
+  },
+  "cal:M:david:06": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/06.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 5.453,
+       "input": 4,
+       "output": 222,
+       "cache_read": 45213,
+       "cache_create": 9441,
+       "cost_usd": 0.04451329999999999,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 질감으로 칠한 그림이다. 다만 동화 그림보다는 사실적인 초상화에 가까워 보일 수 있다. 종이 테두리나 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.247,
+       "input": 4,
+       "output": 231,
+       "cache_read": 53750,
+       "cache_create": 904,
+       "cost_usd": 0.011309,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 결이 보이는 그림이다. 다만 동화풍보다는 사실적인 초상화에 가깝다. 그래도 연필로 그리고 색연필로 칠한 화풍이라는 조건은 충족한다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.973,
+       "input": 4,
+       "output": 232,
+       "cache_read": 53750,
+       "cache_create": 904,
+       "cost_usd": 0.011319000000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 칠이 뚜렷하게 보이는 손그림 질감이다. 테두리나 글자도 없다. 다만 사실적인 초상 쪽에 가까워서 동화 그림 느낌은 약간 약하다."
+     }
+    }
+   }
+  },
+  "cal:M:david:07": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/07.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.27,
+       "input": 4,
+       "output": 236,
+       "cache_read": 45213,
+       "cache_create": 9441,
+       "cost_usd": 0.04465329999999999,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감이 뚜렷해서 기대한 화풍과 맞다. 다만 이 그림은 한 사람의 얼굴 초상이다. 화풍 항목만 물었으므로 장면 내용은 판정하지 않았다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.989,
+       "input": 4,
+       "output": 217,
+       "cache_read": 45213,
+       "cache_create": 9441,
+       "cost_usd": 0.0444633,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 그린 그림이다. 다만 동화 그림보다는 사실적인 초상에 가깝다. 그래도 요구한 매체와 질감에는 맞는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.862,
+       "input": 4,
+       "output": 219,
+       "cache_read": 54654,
+       "cache_create": 0,
+       "cost_usd": 0.007663400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 질감으로 칠한 그림이다. 다만 동화 그림보다는 사실적인 초상화에 가깝다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:M:david:08": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/08.png",
+   "reps": {
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.118,
+       "input": 4,
+       "output": 251,
+       "cache_read": 45213,
+       "cache_create": 9441,
+       "cost_usd": 0.0448033,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 색연필로 그린 화풍 자체는 맞다. 하지만 이 그림은 사실적인 옆얼굴 초상이다. 동화 그림 느낌이 약하고 장면(창 던지기)과도 무관하다. 분명히 맞다고 확인되지 않아 틀림으로 답한다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.217,
+       "input": 4,
+       "output": 257,
+       "cache_read": 45213,
+       "cache_create": 9441,
+       "cost_usd": 0.044863299999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필과 색연필로 그린 질감은 맞다. 하지만 동화 그림이라기보다 사실적인 인물 초상화에 가깝다. 사울이 창을 던지는 장면도 아니고 옆얼굴 하나만 그려져 있어 화풍이 분명히 맞다고 확인되지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.283,
+       "input": 4,
+       "output": 247,
+       "cache_read": 54654,
+       "cache_create": 0,
+       "cost_usd": 0.0079434,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필과 색연필로 그린 질감은 맞다. 하지만 동화 그림이 아니라 사실적인 남성 옆얼굴 초상이고, 사울이 창을 던지는 장면도 아니다. 화풍이 기대와 분명히 맞는다고 확인되지 않는다."
+     }
+    }
+   }
+  },
+  "cal:M:david:09": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/09.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.249,
+       "input": 4,
+       "output": 180,
+       "cache_read": 45213,
+       "cache_create": 9441,
+       "cost_usd": 0.044093299999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 채색이 뚜렷해서 기대한 화풍과 맞는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.885,
+       "input": 4,
+       "output": 249,
+       "cache_read": 45213,
+       "cache_create": 9441,
+       "cost_usd": 0.0447833,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 채색이 뚜렷해서 기대한 화풍과 맞다. 다만 이 그림은 장면과 무관한 인물 옆모습 한 장이라 장면 문항이 있다면 틀렸을 것이다. 이 문항은 화풍만 묻는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.276,
+       "input": 4,
+       "output": 204,
+       "cache_read": 54654,
+       "cache_create": 0,
+       "cost_usd": 0.0075134,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 그린 그림이라 기대한 화풍과 맞다. 동화 그림 느낌의 인물 옆얼굴이다."
+     }
+    }
+   }
+  },
+  "cal:M:david:10": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/10.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.76,
+       "input": 4,
+       "output": 389,
+       "cache_read": 45213,
+       "cache_create": 9441,
+       "cost_usd": 0.0461833,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 윤곽선과 색연필 질감이 뚜렷하다. 곱슬머리, 수염, 붉은 옷이 모두 색연필로 칠해져 있고, 따뜻하고 부드러운 그림책풍이다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.089,
+       "input": 4,
+       "output": 227,
+       "cache_read": 54654,
+       "cache_create": 0,
+       "cost_usd": 0.007743400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 칠이 보여 기대한 화풍과 맞다. 다만 동화 그림이라기보다 사실적인 인물 옆모습 습작에 가깝다. 종이 테두리나 글자는 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 5.36,
+       "input": 4,
+       "output": 409,
+       "cache_read": 54654,
+       "cache_create": 0,
+       "cost_usd": 0.009563400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 윤곽선과 색연필 질감으로 칠한 그림이다. 입체감이 있는 초상 느낌이 강하지만 화풍 기준에는 맞는다."
+     }
+    }
+   }
+  },
+  "cal:M:david:11": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/11.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.677,
+       "input": 4,
+       "output": 209,
+       "cache_read": 45213,
+       "cache_create": 9441,
+       "cost_usd": 0.044383299999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 그림이다. 동화 그림 화풍에 맞다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.929,
+       "input": 4,
+       "output": 253,
+       "cache_read": 53750,
+       "cache_create": 904,
+       "cost_usd": 0.011529,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 칠이 뚜렷하게 보이는 그림이라 기대한 화풍과 맞다. 다만 동화 그림이라기보다 사실적인 인물 초상에 가깝다. 이 문항은 화풍만 묻기 때문에 '맞음'으로 판정했다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.648,
+       "input": 4,
+       "output": 215,
+       "cache_read": 54654,
+       "cache_create": 0,
+       "cost_usd": 0.007623400000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색 질감이 뚜렷해서 기대한 동화 그림 화풍과 맞다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:M:david:12": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/12.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.395,
+       "input": 4,
+       "output": 203,
+       "cache_read": 45213,
+       "cache_create": 9441,
+       "cost_usd": 0.044323299999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 윤곽선을 두고 색연필로 칠한 질감이 뚜렷하다. 종이 테두리, 액자, 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.657,
+       "input": 4,
+       "output": 209,
+       "cache_read": 45213,
+       "cache_create": 9441,
+       "cost_usd": 0.044383299999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 칠이 뚜렷하게 보여 기대한 화풍과 맞다. 다만 동화 그림보다는 사실적인 초상에 가깝다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.929,
+       "input": 4,
+       "output": 224,
+       "cache_read": 54654,
+       "cache_create": 0,
+       "cost_usd": 0.0077134000000000005,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 칠로 그린 그림이라 기대한 화풍과 맞다. 다만 장면 속 인물을 그린 동화 그림이라기보다 한 사람의 옆모습 초상에 가깝다."
+     }
+    }
+   }
+  },
+  "cal:M:david:13": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/13.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.735,
+       "input": 4,
+       "output": 214,
+       "cache_read": 45213,
+       "cache_create": 9441,
+       "cost_usd": 0.044433299999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 질감으로 칠한 그림이다. 다만 동화 그림보다는 사실적인 초상화에 가깝다. 종이 테두리나 액자, 글자는 없다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.381,
+       "input": 4,
+       "output": 228,
+       "cache_read": 53750,
+       "cache_create": 904,
+       "cost_usd": 0.011278999999999999,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 채색이 뚜렷하다. 종이 테두리나 액자는 보이지 않는다. 다만 이 그림은 동화 장면이라기보다 사실적인 인물 옆모습 초상에 가깝다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.419,
+       "input": 4,
+       "output": 230,
+       "cache_read": 54654,
+       "cache_create": 0,
+       "cost_usd": 0.0077734,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이에 연필 선과 색연필 질감으로 칠한 그림이다. 종이 테두리나 액자, 글자는 보이지 않는다. 다만 장면 구성은 동화 그림이라기보다 사실적인 인물 초상에 가깝다."
+     }
+    }
+   }
+  },
+  "cal:M:david:14": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/14.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.298,
+       "input": 4,
+       "output": 180,
+       "cache_read": 45213,
+       "cache_create": 9833,
+       "cost_usd": 0.045661299999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 뚜렷한 동화 그림 화풍이다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.405,
+       "input": 4,
+       "output": 202,
+       "cache_read": 45213,
+       "cache_create": 9833,
+       "cost_usd": 0.0458813,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 윤곽선과 색연필 채색이 뚜렷한 동화 그림 화풍이다. 테두리나 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.095,
+       "input": 4,
+       "output": 199,
+       "cache_read": 53750,
+       "cache_create": 1296,
+       "cost_usd": 0.012557,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 뚜렷한 동화풍 그림이다. 종이 테두리나 액자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:M:david:15": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/15.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.843,
+       "input": 4,
+       "output": 202,
+       "cache_read": 45213,
+       "cache_create": 9833,
+       "cost_usd": 0.0458813,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.526,
+       "input": 4,
+       "output": 202,
+       "cache_read": 53750,
+       "cache_create": 1296,
+       "cost_usd": 0.012587000000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 종이 테두리, 액자, 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.674,
+       "input": 4,
+       "output": 198,
+       "cache_read": 55046,
+       "cache_create": 0,
+       "cost_usd": 0.0074926,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "연필 선과 색연필 질감이 보이는 미색 종이 톤의 동화풍 그림이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:M:david:16": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/16.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 2.98,
+       "input": 4,
+       "output": 203,
+       "cache_read": 45213,
+       "cache_create": 9833,
+       "cost_usd": 0.045891299999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 맞다. 종이 테두리나 액자, 글자도 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.635,
+       "input": 4,
+       "output": 198,
+       "cache_read": 55046,
+       "cache_create": 0,
+       "cost_usd": 0.0074926,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 채색한 동화풍 그림이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.306,
+       "input": 4,
+       "output": 196,
+       "cache_read": 55046,
+       "cache_create": 0,
+       "cost_usd": 0.007472600000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리나 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:M:david:17": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/17.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.011,
+       "input": 4,
+       "output": 194,
+       "cache_read": 45213,
+       "cache_create": 9833,
+       "cost_usd": 0.045801299999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 종이 테두리나 액자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.081,
+       "input": 4,
+       "output": 211,
+       "cache_read": 45213,
+       "cache_create": 9833,
+       "cost_usd": 0.04597129999999999,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 그림이고, 동화 그림 화풍에 맞다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.251,
+       "input": 4,
+       "output": 194,
+       "cache_read": 55046,
+       "cache_create": 0,
+       "cost_usd": 0.0074526,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 채색한 동화풍 그림이다. 종이 테두리나 액자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:M:david:18": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/18.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.894,
+       "input": 4,
+       "output": 206,
+       "cache_read": 45213,
+       "cache_create": 9833,
+       "cost_usd": 0.0459213,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선을 긋고 색연필로 칠한 동화 그림 화풍이 분명하다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.868,
+       "input": 4,
+       "output": 207,
+       "cache_read": 45213,
+       "cache_create": 9833,
+       "cost_usd": 0.045931299999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감에 연필 윤곽선과 색연필 채색이 뚜렷한 동화 그림 화풍이다. 종이 테두리, 액자, 글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.085,
+       "input": 4,
+       "output": 204,
+       "cache_read": 45213,
+       "cache_create": 9833,
+       "cost_usd": 0.04590129999999999,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색으로 그린 동화 그림 화풍이 맞다. 테두리나 글자 같은 결함은 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:M:david:19": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/19.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.742,
+       "input": 4,
+       "output": 203,
+       "cache_read": 45213,
+       "cache_create": 9833,
+       "cost_usd": 0.045891299999999996,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 칠이 뚜렷하고 동화 그림 느낌이다. 종이 테두리·액자·글자는 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.886,
+       "input": 4,
+       "output": 205,
+       "cache_read": 45213,
+       "cache_create": 9833,
+       "cost_usd": 0.045911299999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 질감 위에 연필 선과 색연필 채색이 뚜렷한 동화 그림 화풍이다. 종이 테두리나 액자, 글자는 보이지 않는다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.352,
+       "input": 4,
+       "output": 196,
+       "cache_read": 53750,
+       "cache_create": 1296,
+       "cost_usd": 0.012527,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감이 분명히 보이는 동화 그림 화풍이다. 종이 테두리나 액자는 없다."
+     }
+    }
+   }
+  },
+  "cal:M:david:20": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/20.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.331,
+       "input": 4,
+       "output": 190,
+       "cache_read": 45213,
+       "cache_create": 9833,
+       "cost_usd": 0.0457613,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 액자나 글자도 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 2.966,
+       "input": 4,
+       "output": 190,
+       "cache_read": 53750,
+       "cache_create": 1296,
+       "cost_usd": 0.012467,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이다. 테두리나 글자도 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 2.897,
+       "input": 4,
+       "output": 185,
+       "cache_read": 55046,
+       "cache_create": 0,
+       "cost_usd": 0.0073626,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 액자나 글자도 없다."
+     }
+    }
+   }
+  },
+  "cal:M:david:21": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/21.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.473,
+       "input": 4,
+       "output": 204,
+       "cache_read": 45213,
+       "cache_create": 9833,
+       "cost_usd": 0.04590129999999999,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 동화 그림 화풍이 분명하다. 종이 테두리나 액자, 글자도 보이지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.09,
+       "input": 4,
+       "output": 189,
+       "cache_read": 45213,
+       "cache_create": 9833,
+       "cost_usd": 0.045751299999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 동화풍 그림이고, 종이 테두리나 액자도 없다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 2.991,
+       "input": 4,
+       "output": 191,
+       "cache_read": 55046,
+       "cache_create": 0,
+       "cost_usd": 0.007422600000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필 선과 색연필 질감으로 칠한 동화풍 그림이다. 테두리나 글자는 보이지 않는다."
+     }
+    }
+   }
+  },
+  "cal:M:david:22": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/22.png",
+   "reps": {
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.592,
+       "input": 4,
+       "output": 257,
+       "cache_read": 45213,
+       "cache_create": 9669,
+       "cost_usd": 0.04577529999999999,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 인물 한 명만 작게 서 있고 장면이 없다. 인물에는 종이 테두리처럼 보이는 경계가 있고, 채색은 연필과 색연필보다 수채나 디지털 느낌에 가깝다. 동화 그림 화풍이 분명히 맞다고 확인되지 않는다."
+     }
+    },
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.561,
+       "input": 4,
+       "output": 256,
+       "cache_read": 45213,
+       "cache_create": 9669,
+       "cost_usd": 0.045765299999999995,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 바탕에 색연필 느낌의 인물 하나가 있어 화풍 자체는 비슷하다. 하지만 그림이 거의 빈 캔버스이고, 인물 뒤에 종이 조각처럼 보이는 가장자리가 따로 있다. 완성된 동화 그림 장면으로 보기 어렵다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 4.496,
+       "input": 4,
+       "output": 291,
+       "cache_read": 45213,
+       "cache_create": 9669,
+       "cost_usd": 0.0461153,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 색연필 느낌의 인물이 있기는 하다. 하지만 장면이 거의 비어 있고 인물 한 명만 오른쪽 아래에 작게 서 있다. 창을 던지는 장면이 아니다. 인물 둘레에 종이 조각 같은 흐릿한 사각 테두리도 보여서 동화 그림 화풍이 분명히 맞다고 확인되지 않는다."
+     }
+    }
+   }
+  },
+  "cal:M:david:23": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/23.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 4.179,
+       "input": 4,
+       "output": 274,
+       "cache_read": 45213,
+       "cache_create": 9669,
+       "cost_usd": 0.045945299999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 색연필 느낌의 인물은 보이지만, 장면 그림이 아니라 빈 종이 한쪽에 인물 한 명만 작게 서 있다. 연필 선과 색연필 칠이 분명하다고 확인하기 어렵고, 인물 주변에 종이가 따로 붙은 듯한 흐린 사각 테두리도 보인다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.518,
+       "input": 4,
+       "output": 238,
+       "cache_read": 53750,
+       "cache_create": 1132,
+       "cost_usd": 0.012291,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 색연필 느낌의 인물 하나만 작게 있고 장면이 없다. 동화 그림 화풍이 분명하게 확인되지 않는다. 인물 주변에 종이 테두리처럼 보이는 네모난 흐린 영역도 있다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.495,
+       "input": 4,
+       "output": 251,
+       "cache_read": 54882,
+       "cache_create": 0,
+       "cost_usd": 0.0080062,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 색을 입힌 인물 하나가 작게 서 있을 뿐, 장면을 채운 동화 그림이 아니다. 질감도 연필선과 색연필 칠보다 매끈한 디지털 채색에 가깝고, 인물 주변에 옅은 사각 얼룩이 보인다."
+     }
+    }
+   }
+  },
+  "cal:M:david:24": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/24.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.895,
+       "input": 4,
+       "output": 274,
+       "cache_read": 45213,
+       "cache_create": 9669,
+       "cost_usd": 0.045945299999999994,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "인물의 채색과 질감은 연필 위에 색연필을 칠한 동화 그림에 가깝다. 하지만 화면 대부분이 빈 미색 바탕이고 작은 인물 하나만 오른쪽 아래에 있다. 인물 둘레에 네모난 종이 테두리 자국도 보인다. 화풍이 온전히 맞다고 확인되지 않는다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.901,
+       "input": 4,
+       "output": 212,
+       "cache_read": 53750,
+       "cache_create": 1132,
+       "cost_usd": 0.012031,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "맞음"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 연필 선과 색연필 채색의 동화풍 그림이 맞다. 인물이 작게 그려지고 장면이 비어 있는 문제는 화풍 항목이 아니다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 4.052,
+       "input": 4,
+       "output": 314,
+       "cache_read": 54882,
+       "cache_create": 0,
+       "cost_usd": 0.0086362,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이 위에 연필과 색연필 느낌의 인물이 그려져 있어 화풍 자체는 맞아 보입니다. 그러나 그림이 거의 비어 있고, 인물 하나만 오른쪽 아래에 아주 작게 놓여 있습니다. 인물 주변에는 사각형으로 도드라진 종이 테두리 자국이 보입니다. 동화 그림으로 완성된 장면이라고 분명히 확인되지 않아 틀림으로 답합니다."
+     }
+    }
+   }
+  },
+  "cal:M:david:25": {
+   "group": "M",
+   "src": "/Users/calmonion/.local/biblemap-imggen/lora-sheet-v3/david/25.png",
+   "reps": {
+    "1": {
+     "tries": [
+      {
+       "seconds": 3.875,
+       "input": 4,
+       "output": 287,
+       "cache_read": 45213,
+       "cache_create": 9669,
+       "cost_usd": 0.0460753,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "그림 대부분이 빈 미색 종이이고 무릎 꿇은 인물 하나만 작게 있다. 인물의 색감은 연필과 색연필 느낌에 가깝지만, 인물이 화면에 작게 떠 있어 동화 그림 한 장면으로 보기 어렵다. 장면 구성이 깨진 것이며, 맞다고 확실히 확인되지 않아 틀림으로 답한다."
+     }
+    },
+    "2": {
+     "tries": [
+      {
+       "seconds": 3.618,
+       "input": 4,
+       "output": 260,
+       "cache_read": 53750,
+       "cache_create": 1132,
+       "cost_usd": 0.012511000000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "그림 화풍은 미색 종이에 연필과 색연필로 그린 동화풍에 가깝지만, 화면 대부분이 빈 종이이고 인물 하나만 작게 그려져 있다. 장면(창 던지기)도 전혀 담기지 않았다. 분명히 맞다고 확인되지 않아 틀림으로 답한다."
+     }
+    },
+    "3": {
+     "tries": [
+      {
+       "seconds": 3.551,
+       "input": 4,
+       "output": 269,
+       "cache_read": 53750,
+       "cache_create": 1132,
+       "cost_usd": 0.012601000000000001,
+       "turns": 2,
+       "error": false
+      }
+     ],
+     "answers": {
+      "s.style": "틀림"
+     },
+     "reasons": {
+      "s.style": "미색 종이 바탕에 색연필풍 인물이 있긴 하지만, 그림 전체가 거의 빈 종이다. 인물 한 명만 오른쪽 아래에 아주 작게 그려져 있어 동화 그림 장면으로 보기 어렵다. 연필 선과 색연필 질감도 이 크기에서는 분명히 확인되지 않는다."
+     }
+    }
+   }
+  }
+ },
+ "cal": {
+  "conclusion": "관문 아님",
+  "a_agree": 9,
+  "a_n": 24,
+  "b_wrong": 0,
+  "b_n": 16,
+  "v3_sheet_ok": {
+   "saul": 21,
+   "david": 20
+  },
+  "v3_sheet_n": {
+   "saul": 25,
+   "david": 25
+  }
+ }
+}
