@@ -160,16 +160,21 @@ def page():
     for arm in ASKED:
         for w in MAP:
             c, a = (Image.open(os.path.join(OUT, "heads", f"{x}-s{SEED}-{w}.png")) for x in ("C", arm))
+            # 선명도 맞춤(human.face-matched-quality를 화풍 문항에도) — LoRA 갈래가 C보다 선명해(장면 hf C 11.4 대 L 16.2) 사람이 「화질 차이」로 비교를 못 함(2026-10-28)
+            c = F.up(c)
+            a, s = F.matched_to(a, F.hf(c))
             qs.append({"arm": arm, "who": w, "tag": "화풍", "wide": True, "q": f"{NAME[w]} 머리 둘레 — 아래 그림이 위(기준)와 같은 화풍인가요?",
-                       "hint": "같은 장면·같은 시드를 원래 화소의 3배로 키웠습니다. 연필 선·색연필 결·종이 질감·색 진함이 같은지만 봅니다(같은 사람인지는 묻지 않습니다).",
-                       "yes": "같은 화풍", "no": "다른 화풍", "refs": [F.uri(c, 900)], "caps": ["기준 — 인물 학습 없이 그린 그림"], "img": F.uri(a, 900)})
+                       "hint": "같은 장면·같은 시드를 같은 배율로 키우고, 선명도(화질)를 기준에 맞췄습니다. 연필 선 모양·색연필 결·색 진함이 같은지만 봅니다(같은 사람인지는 묻지 않습니다).",
+                       "yes": "같은 화풍", "no": "다른 화풍", "refs": [F.uri(c, 900)], "caps": ["기준 — 인물 학습 없이 그린 그림"], "img": F.uri(a, 900),
+                       "hf": [round(F.hf(a), 2), round(F.hf(c), 2), s]})
     random.Random(1447).shuffle(qs)
     for i, q in enumerate(qs, 1):   # 갈래 이름은 화면·답에 안 나오게 문항 번호로만
         key[f"Q{i}"] = [q.pop("arm"), q.pop("who")]
         q["id"] = f"Q{i}"
     verses = [[r, t, r == "18:11"] for r, t, _ in F.scripture() if r in ("18:10", "18:11")]
     html = (F.page(qs, verses).replace("<title>얼굴 판정 v2</title>", "<title>LoRA 화풍 판정</title>")
-            .replace("판정 face-judge-v2", "판정 lora-style").replace("18:6-11", "18:10-11"))
+            .replace("판정 face-judge-v2", "판정 lora-style").replace("18:6-11", "18:10-11")
+            .replace(".refs figure.one { max-width: 320px; margin: 0 auto }", ".refs figure.one { margin: 0 }"))   # 기준·판정 그림 같은 화면 크기
     os.makedirs(os.path.dirname(PAGE), exist_ok=True)
     open(PAGE, "w", encoding="utf-8").write(html)
     m = load()
