@@ -166,14 +166,16 @@ def page():
     for arm in ASKED:
         for w in MAP:
             c, a = (Image.open(os.path.join(OUT, "heads", f"{x}-s{SEED}-{w}.png")) for x in ("C", arm))
-            # 머리 하나에 든 화소를 같게: 갈래 크롭을 C 크롭 화소 수로 줄인 뒤 둘 다 같은 배율로 640px(2026-10-28 v3).
-            # v2의 hf 맞춤은 갈래만 75~86%로 줄였다 2배 키워 「기준이 화질이 높아」 — 선명도 숫자가 같아도 해상도가 달랐다.
-            n = c.width
-            c, a = F.up(c), F.up(a.resize((n, n), Image.LANCZOS))
+            # 화소 배율을 같게(2026-10-28 v4, 사람 「화소가 적은 그림이 작아지는 방향」): 줄이지 않고 원래 화소 1개 = 같은 화면 크기.
+            # 두 크롭을 같은 배율 k로 키우고 화면 폭도 원래 화소 수에 비례 — 머리를 작게 그린 C가 작게 보인다.
+            # (v2 hf 맞춤은 갈래 해상도만 깎음 · v3 머리당 화소 맞춤도 갈래를 79~88%로 줄였음)
+            big = max(c.width, a.width)
+            k = 640 / big
+            c, a = (x.resize((round(x.width * k), round(x.height * k)), Image.LANCZOS) for x in (c, a))
             qs.append({"arm": arm, "who": w, "tag": "화풍", "wide": True, "q": f"{NAME[w]} 머리 둘레 — 아래 그림이 위(기준)와 같은 화풍인가요?",
-                       "hint": "같은 장면·같은 시드에서 머리 크기와 화소 수를 맞춰 같은 배율로 키웠습니다. 연필 선 모양·색연필 결·색 진함이 같은지만 봅니다(같은 사람인지는 묻지 않습니다).",
+                       "hint": "같은 장면·같은 시드를 줄이지 않고 원래 화소 그대로 같은 배율로 키웠습니다(머리를 작게 그린 그림은 작게 보입니다). 연필 선 모양·색연필 결·색 진함이 같은지만 봅니다(같은 사람인지는 묻지 않습니다).",
                        "yes": "같은 화풍", "no": "다른 화풍", "refs": [F.uri(c, 900)], "caps": ["기준 — 인물 학습 없이 그린 그림"], "img": F.uri(a, 900),
-                       "hf": [round(F.hf(a), 2), round(F.hf(c), 2), n]})
+                       "rw": round(100 * c.width / round(big * k)), "iw": round(100 * a.width / round(big * k)), "px": [c.width, a.width]})
     random.Random(1447).shuffle(qs)
     for i, q in enumerate(qs, 1):   # 갈래 이름은 화면·답에 안 나오게 문항 번호로만
         key[f"Q{i}"] = [q.pop("arm"), q.pop("who")]
@@ -181,7 +183,9 @@ def page():
     verses = [[r, t, r == "18:11"] for r, t, _ in F.scripture() if r in ("18:10", "18:11")]
     html = (F.page(qs, verses).replace("<title>얼굴 판정 v2</title>", "<title>LoRA 화풍 판정</title>")
             .replace("판정 face-judge-v2", "판정 lora-style").replace("18:6-11", "18:10-11")
-            .replace(".refs figure.one { max-width: 320px; margin: 0 auto }", ".refs figure.one { margin: 0 }"))   # 기준·판정 그림 같은 화면 크기
+            .replace(".refs figure.one { max-width: 320px; margin: 0 auto }", ".refs figure.one { margin: 0 }")
+            .replace('<img src="${r}"', '<img style="width:${q.rw || 100}%;margin:0 auto" src="${r}"')   # 화면 폭 = 원래 화소 수 비례
+            .replace('<img src="${q.img}" alt="판정할 그림">', '<img style="width:${q.iw || 100}%;margin:0 auto" src="${q.img}" alt="판정할 그림">'))   # 기준·판정 그림 같은 화면 크기
     os.makedirs(os.path.dirname(PAGE), exist_ok=True)
     open(PAGE, "w", encoding="utf-8").write(html)
     m = load()
