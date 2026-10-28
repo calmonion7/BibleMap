@@ -1,0 +1,193 @@
+{
+ "scene": [
+  {
+   "arm": "C",
+   "seed": 11,
+   "tokens": 504,
+   "out": "/Users/calmonion/.local/biblemap-imggen/lora-style/scene/C-s11.png",
+   "secs": 68.2,
+   "active": [],
+   "lora_steps": []
+  },
+  {
+   "arm": "L",
+   "seed": 11,
+   "tokens": 512,
+   "out": "/Users/calmonion/.local/biblemap-imggen/lora-style/scene/L-s11.png",
+   "secs": 77.8,
+   "active": [
+    "saul-v4",
+    "david-youth-v4"
+   ],
+   "lora_steps": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ]
+  },
+  {
+   "arm": "K5",
+   "seed": 11,
+   "tokens": 512,
+   "out": "/Users/calmonion/.local/biblemap-imggen/lora-style/scene/K5-s11.png",
+   "secs": 77.5,
+   "active": [
+    "saul-v4",
+    "david-youth-v4"
+   ],
+   "lora_steps": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ]
+  },
+  {
+   "arm": "K3",
+   "seed": 11,
+   "tokens": 512,
+   "out": "/Users/calmonion/.local/biblemap-imggen/lora-style/scene/K3-s11.png",
+   "secs": 77.9,
+   "active": [
+    "saul-v4",
+    "david-youth-v4"
+   ],
+   "lora_steps": [
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "arm": "R",
+   "seed": 11,
+   "tokens": 504,
+   "out": "/Users/calmonion/.local/biblemap-imggen/lora-style/scene/R-s11.png",
+   "secs": 31.0,
+   "active": [],
+   "lora_steps": []
+  }
+ ],
+ "heads": {
+  "C": {
+   "david-youth": [
+    185,
+    154,
+    369,
+    289
+   ],
+   "saul-elder": [
+    869,
+    79,
+    1017,
+    209
+   ]
+  },
+  "L": {
+   "david-youth": [
+    277,
+    180,
+    396,
+    295
+   ],
+   "saul-elder": [
+    862,
+    71,
+    1038,
+    207
+   ]
+  },
+  "K5": {
+   "david-youth": [
+    281,
+    179,
+    394,
+    296
+   ],
+   "saul-elder": [
+    856,
+    68,
+    1039,
+    213
+   ]
+  },
+  "K3": {
+   "david-youth": [
+    281,
+    176,
+    397,
+    294
+   ],
+   "saul-elder": [
+    858,
+    68,
+    1032,
+    213
+   ]
+  },
+  "R": {
+   "david-youth": [
+    275,
+    169,
+    398,
+    304
+   ],
+   "saul-elder": [
+    861,
+    75,
+    1038,
+    210
+   ]
+  }
+ },
+ "crop_side": {
+  "saul-elder": 176,
+  "david-youth": 119
+ },
+ "page": {
+  "path": "/Users/calmonion/.local/biblemap-imggen/pages/lora-style.html",
+  "n": 8,
+  "key": {
+   "Q1": [
+    "R",
+    "david-youth"
+   ],
+   "Q2": [
+    "L",
+    "david-youth"
+   ],
+   "Q3": [
+    "K5",
+    "saul-elder"
+   ],
+   "Q4": [
+    "R",
+    "saul-elder"
+   ],
+   "Q5": [
+    "K3",
+    "saul-elder"
+   ],
+   "Q6": [
+    "K5",
+    "david-youth"
+   ],
+   "Q7": [
+    "L",
+    "saul-elder"
+   ],
+   "Q8": [
+    "K3",
+    "david-youth"
+   ]
+  },
+  "mb": 1.31
+ }
+}
