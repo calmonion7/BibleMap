@@ -365,3 +365,15 @@ LORA_V4_SCALE = 1.0            # 장면 L 어댑터 세기(첫 값)
 LORA_V4_SCALE_RETRY = 0.7      # 장면 화풍 관문 L 미달 — L 8장만 한 번
 LORA_V4_SCENE_SEEDS = REF_EDIT_SEEDS
 LORA_V4_STEPS = 300
+
+# task#448 — LoRA 학습 묶음을 장면 화풍으로(notes/LORA-V5.md 고정 절). 실행 전 고정. 445 LORA_V4_*·447 상수는 건드리지 않는다.
+LORA_V5_WHO = "david-youth"
+LORA_V5_TRIGGER = "davidy_bm"
+LORA_V5_PROBE = (0.65, 0.8, 0.9)      # 한 장 세기 시험(묶음 01) — 0.5는 v4 묶음 것을 그대로 잼
+LORA_V5_LAYERS = ("gram2", "gram6")    # 화풍 자(DINOv2 Gram 층) — 맞춰 보기 AUC 0.9 이상인 층만 관문에 씀
+LORA_V5_AUC_MIN = 0.9
+LORA_V5_SHEET_PASS = 0.8              # 묶음 관문: 머리 둘레 문턱 안 비율(머리 상자 못 잡은 장은 빼고 셈)
+LORA_V5_SCALE = 1.0                   # 장면 L 어댑터 세기
+LORA_V5_SCENE_SEEDS = LORA_V4_SCENE_SEEDS
+LORA_V5_SAME_MIN = 6                  # 기계 「같은 화풍」: 8시드 중 d(L,C) ≤ max d(T,C)인 시드 수(두 층 모두)
+LORA_V5_STEPS = LORA_V4_STEPS
