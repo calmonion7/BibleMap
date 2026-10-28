@@ -20,6 +20,7 @@ MAP = {"saul-elder": ("saul_bm", "saul-v4"), "david-youth": ("davidy_bm", "david
 NAME = {"saul-elder": "사울", "david-youth": "다윗"}
 KSTEPS = {"L": 9, "K5": 5, "K3": 3}   # LoRA를 거는 앞 스텝 수(9스텝 중)
 R_STRENGTH = 0.35
+HEAD_FRAME = 3   # 머리 둘레 = 머리 전체 상자 긴 변 × 3 정사각
 ASKED = ("K3", "K5", "R", "L")        # 사람 화면 갈래(C는 기준)
 
 
@@ -137,18 +138,23 @@ def worker(mode, path):
 
 
 def heads():
+    """OWLv2 후보 중 가장 큰 상자(머리털까지 든 머리 전체 — 갈래마다 일관됨, 2026-10-28 실측) → 긴 변 × HEAD_FRAME 정사각을 원래 화소로.
+    face_ab_heads.heads()는 점수 1위를 써서 C 다윗만 머리 전체·나머지는 얼굴만 잡혔다(0.07 대 0.08 — 기준이 엇갈림)."""
     import face_ab_heads as fh
-    fh.SIDE["gibeah"] = {"david-youth": (0, 0.5), "saul-elder": (0.5, 1)}   # 기브아 창: 다윗 왼쪽(수금)·사울 오른쪽(창)
-    import statistics
     m = load()
-    m["heads"] = {x["arm"]: {w: [round(v) for v in bb] for w, bb in fh.heads("gibeah", x["out"]).items()} for x in m["scene"]}
-    # 배율을 갈래끼리 맞춤 — 인물마다 상자 긴 변 중앙값의 정사각을 각 갈래 상자 중심에(C 다윗 상자가 몸통까지 잡아 1.5배 컸다, 실측)
-    side = {w: statistics.median(max(b[2] - b[0], b[3] - b[1]) for b in (h[w] for h in m["heads"].values())) for w in MAP}
-    m["crop_side"] = side
+    m["heads"] = {}
     for x in m["scene"]:
-        for w, b in m["heads"][x["arm"]].items():
-            cx, cy, s = (b[0] + b[2]) / 2, (b[1] + b[3]) / 2, side[w] / 2
-            V4.zoom_crop(x["out"], [cx - s, cy - s, cx + s, cy + s], os.path.join(OUT, "heads", f"{x['arm']}-s{SEED}-{w}.png"))
+        im = Image.open(x["out"]).convert("RGB")
+        f = [b for b, s in fh._faces(im) if s >= 0.05]
+        m["heads"][x["arm"]] = {}
+        for w, (lo, hi) in {"david-youth": (0, 0.5), "saul-elder": (0.5, 1)}.items():   # 기브아 창: 다윗 왼쪽(수금)·사울 오른쪽(창)
+            b = max((b for b in f if lo * im.width <= (b[0] + b[2]) / 2 < hi * im.width), key=lambda b: (b[2] - b[0]) * (b[3] - b[1]))
+            s = round(max(b[2] - b[0], b[3] - b[1]) * HEAD_FRAME)
+            x0 = min(max(0, round((b[0] + b[2] - s) / 2)), im.width - s)
+            y0 = min(max(0, round((b[1] + b[3] - s) / 2)), im.height - s)
+            m["heads"][x["arm"]][w] = [round(v) for v in b] + [s]
+            os.makedirs(os.path.join(OUT, "heads"), exist_ok=True)
+            im.crop((x0, y0, x0 + s, y0 + s)).save(os.path.join(OUT, "heads", f"{x['arm']}-s{SEED}-{w}.png"))
         print(x["arm"], m["heads"][x["arm"]], flush=True)
     save(m)
 
@@ -160,13 +166,14 @@ def page():
     for arm in ASKED:
         for w in MAP:
             c, a = (Image.open(os.path.join(OUT, "heads", f"{x}-s{SEED}-{w}.png")) for x in ("C", arm))
-            # 선명도 맞춤(human.face-matched-quality를 화풍 문항에도) — LoRA 갈래가 C보다 선명해(장면 hf C 11.4 대 L 16.2) 사람이 「화질 차이」로 비교를 못 함(2026-10-28)
-            c = F.up(c)
-            a, s = F.matched_to(a, F.hf(c))
+            # 머리 하나에 든 화소를 같게: 갈래 크롭을 C 크롭 화소 수로 줄인 뒤 둘 다 같은 배율로 640px(2026-10-28 v3).
+            # v2의 hf 맞춤은 갈래만 75~86%로 줄였다 2배 키워 「기준이 화질이 높아」 — 선명도 숫자가 같아도 해상도가 달랐다.
+            n = c.width
+            c, a = F.up(c), F.up(a.resize((n, n), Image.LANCZOS))
             qs.append({"arm": arm, "who": w, "tag": "화풍", "wide": True, "q": f"{NAME[w]} 머리 둘레 — 아래 그림이 위(기준)와 같은 화풍인가요?",
-                       "hint": "같은 장면·같은 시드를 같은 배율로 키우고, 선명도(화질)를 기준에 맞췄습니다. 연필 선 모양·색연필 결·색 진함이 같은지만 봅니다(같은 사람인지는 묻지 않습니다).",
+                       "hint": "같은 장면·같은 시드에서 머리 크기와 화소 수를 맞춰 같은 배율로 키웠습니다. 연필 선 모양·색연필 결·색 진함이 같은지만 봅니다(같은 사람인지는 묻지 않습니다).",
                        "yes": "같은 화풍", "no": "다른 화풍", "refs": [F.uri(c, 900)], "caps": ["기준 — 인물 학습 없이 그린 그림"], "img": F.uri(a, 900),
-                       "hf": [round(F.hf(a), 2), round(F.hf(c), 2), s]})
+                       "hf": [round(F.hf(a), 2), round(F.hf(c), 2), n]})
     random.Random(1447).shuffle(qs)
     for i, q in enumerate(qs, 1):   # 갈래 이름은 화면·답에 안 나오게 문항 번호로만
         key[f"Q{i}"] = [q.pop("arm"), q.pop("who")]
