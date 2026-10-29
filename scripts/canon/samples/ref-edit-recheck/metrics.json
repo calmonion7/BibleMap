@@ -324,5 +324,26 @@
    ]
   },
   "mb": 1.04
+ },
+ "verdict": {
+  "answers": {
+   "W": {
+    "saul-elder": "no",
+    "david-youth": "no",
+    "whole": "yes"
+   },
+   "T": {
+    "david-youth": "no",
+    "saul-elder": "no",
+    "whole": "yes"
+   },
+   "E": {
+    "david-youth": "no",
+    "saul-elder": "no",
+    "whole": "no"
+   }
+  },
+  "pass": [],
+  "line": "미채택 — 편집기 통과만으로 화풍이 바뀜"
  }
 }
