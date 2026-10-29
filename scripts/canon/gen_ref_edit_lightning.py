@@ -63,11 +63,12 @@ def targeted(raw, src, box):
     return round(i - o, 2), round(i, 2), round(o, 2)
 
 
-def run_edit(q, src, who, sd, prompt, raw):
+def run_edit(q, src, who, sd, prompt, raw, refs=None):
+    """refs = 참조 그림 목록(기본 정본 초상 + 전신 — task#450은 초상 하나)."""
     _, _, scale = params.REF_EDIT_LIGHTNING_LORA
     cmd = ["/usr/bin/time", "-l", os.path.join(G.MFLUX, "python"), os.path.join(G.HERE, "mflux_qwen_edit_cfg1.py"),
            "--model", NAME, "-q", str(q), *(["--low-ram"] if q == 8 else []), "--lora", lora_path(), str(scale),
-           "--image-paths", src, *G.refs(who), "--prompt", prompt, "--seed", str(sd),
+           "--image-paths", src, *(refs or G.refs(who)), "--prompt", prompt, "--seed", str(sd),
            "--steps", str(params.REF_EDIT_LIGHTNING_STEPS), "--guidance", str(params.REF_EDIT_LIGHTNING_GUIDANCE),
            "--width", str(G.W), "--height", str(G.H), "--output", raw]
     os.makedirs(os.path.dirname(raw), exist_ok=True)

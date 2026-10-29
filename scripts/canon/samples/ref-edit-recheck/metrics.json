@@ -1,0 +1,328 @@
+{
+ "scene": "authored-saul-gibeah-spear",
+ "seed": 11,
+ "base": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/C-s11.png",
+ "model": "qwen-image-edit-2511",
+ "lora": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors",
+ "edits": {
+  "saul": {
+   "raw": "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/raw/saul.png",
+   "who": "saul-elder",
+   "seed": 11,
+   "quantize": 8,
+   "model": "qwen-image-edit-2511",
+   "status": "ok",
+   "sec": 564.6,
+   "peak_gb": 58.51,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/mask/saul-elder.png",
+   "mask_box": [
+    841,
+    0,
+    1150,
+    499
+   ],
+   "head": [
+    868,
+    79,
+    1017,
+    208
+   ],
+   "mask_src": "owl",
+   "arm": "EW",
+   "src": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/C-s11.png",
+   "side": "right",
+   "refs": [
+    "/Users/calmonion/Project/BibleMap/scripts/canon/frozen/saul-elder.png"
+   ],
+   "look": "an ancient Israelite old man about 70, short cropped grey-white hair, a full grey-white beard with dark grey streaks around the mouth, deeply lined forehead and cheeks, thick dark eyebrows, deep-set brown eyes, a broad nose, broad shoulders, wearing a knee-length short-sleeved dark brown wool tunic with a plain leather belt, his bare shins showing",
+   "prompt": "Change the man on the right in image 1 into the man shown in image 2: an ancient Israelite old man about 70, short cropped grey-white hair, a full grey-white beard with dark grey streaks around the mouth, deeply lined forehead and cheeks, thick dark eyebrows, deep-set brown eyes, a broad nose, broad shoulders, wearing a knee-length short-sleeved dark brown wool tunic with a plain leather belt, his bare shins showing. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged.",
+   "targeted": 10.24,
+   "diff_in": 23.47,
+   "diff_out": 13.23,
+   "resized": false,
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/E/saul.png",
+   "mask_diff": 23.15
+  },
+  "david-E": {
+   "raw": "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/raw/david-E.png",
+   "who": "david-youth",
+   "seed": 11,
+   "quantize": 8,
+   "model": "qwen-image-edit-2511",
+   "status": "ok",
+   "sec": 553.4,
+   "peak_gb": 58.51,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/mask/david-youth.png",
+   "mask_box": [
+    18,
+    50,
+    375,
+    640
+   ],
+   "head": [
+    234,
+    195,
+    335,
+    309
+   ],
+   "mask_src": "owl",
+   "arm": "E",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/E/saul.png",
+   "side": "left",
+   "refs": [
+    "/Users/calmonion/Project/BibleMap/scripts/canon/frozen/david-youth.png"
+   ],
+   "look": "an ancient Israelite youth about 18, thick dark-brown hair in tight round ringlet curls, a smooth beardless face, rosy cheeks, thick dark eyebrows, brown eyes, a rounded jaw, slender build, wearing a short-sleeved knee-length undyed tan wool tunic covering his chest and shoulders, with a leather belt, his bare legs showing below the knee",
+   "prompt": "Change the man on the left in image 1 into the man shown in image 2: an ancient Israelite youth about 18, thick dark-brown hair in tight round ringlet curls, a smooth beardless face, rosy cheeks, thick dark eyebrows, brown eyes, a rounded jaw, slender build, wearing a short-sleeved knee-length undyed tan wool tunic covering his chest and shoulders, with a leather belt, his bare legs showing below the knee. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged.",
+   "targeted": 7.14,
+   "diff_in": 20.29,
+   "diff_out": 13.15,
+   "resized": false,
+   "out": "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/E/final.png",
+   "mask_diff": 20.07
+  },
+  "david-W": {
+   "raw": "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/W/final.png",
+   "who": "david-youth",
+   "seed": 11,
+   "quantize": 8,
+   "model": "qwen-image-edit-2511",
+   "status": "ok",
+   "sec": 508.5,
+   "peak_gb": 58.51,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/mask/david-youth.png",
+   "mask_box": [
+    18,
+    50,
+    375,
+    640
+   ],
+   "head": [
+    234,
+    195,
+    335,
+    309
+   ],
+   "mask_src": "owl",
+   "arm": "W",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/raw/saul.png",
+   "side": "left",
+   "refs": [
+    "/Users/calmonion/Project/BibleMap/scripts/canon/frozen/david-youth.png"
+   ],
+   "look": "an ancient Israelite youth about 18, thick dark-brown hair in tight round ringlet curls, a smooth beardless face, rosy cheeks, thick dark eyebrows, brown eyes, a rounded jaw, slender build, wearing a short-sleeved knee-length undyed tan wool tunic covering his chest and shoulders, with a leather belt, his bare legs showing below the knee",
+   "prompt": "Change the man on the left in image 1 into the man shown in image 2: an ancient Israelite youth about 18, thick dark-brown hair in tight round ringlet curls, a smooth beardless face, rosy cheeks, thick dark eyebrows, brown eyes, a rounded jaw, slender build, wearing a short-sleeved knee-length undyed tan wool tunic covering his chest and shoulders, with a leather belt, his bare legs showing below the knee. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged.",
+   "targeted": 7.19,
+   "diff_in": 18.18,
+   "diff_out": 10.99
+  },
+  "T-saul": {
+   "raw": "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/T/saul.png",
+   "who": "saul-elder",
+   "seed": 11,
+   "quantize": 8,
+   "model": "qwen-image-edit-2511",
+   "status": "ok",
+   "sec": 496.8,
+   "peak_gb": 58.51,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/mask/saul-elder.png",
+   "mask_box": [
+    841,
+    0,
+    1150,
+    499
+   ],
+   "head": [
+    868,
+    79,
+    1017,
+    208
+   ],
+   "mask_src": "owl",
+   "arm": "T",
+   "src": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/C-s11.png",
+   "side": "right",
+   "refs": [
+    "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/self-ref/saul-elder.png"
+   ],
+   "look": "an ancient Israelite man, a king, about 70, a deeply wrinkled old face, lined forehead and cheeks, tall of stature, close-trimmed grey-streaked beard, jawline visible, broad shoulders, a strong solid chest, short greying hair cut close, hair covering the whole head, no headwear, wearing a knee-length short-sleeved dark brown wool tunic with a plain leather belt, his bare shins showing",
+   "prompt": "Change the man on the right in image 1 into the man shown in image 2: an ancient Israelite man, a king, about 70, a deeply wrinkled old face, lined forehead and cheeks, tall of stature, close-trimmed grey-streaked beard, jawline visible, broad shoulders, a strong solid chest, short greying hair cut close, hair covering the whole head, no headwear, wearing a knee-length short-sleeved dark brown wool tunic with a plain leather belt, his bare shins showing. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged.",
+   "targeted": 6.6,
+   "diff_in": 19.48,
+   "diff_out": 12.88
+  },
+  "T-david": {
+   "raw": "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/T/final.png",
+   "who": "david-youth",
+   "seed": 11,
+   "quantize": 8,
+   "model": "qwen-image-edit-2511",
+   "status": "ok",
+   "sec": 564.2,
+   "peak_gb": 58.52,
+   "mask": "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/mask/david-youth.png",
+   "mask_box": [
+    18,
+    50,
+    375,
+    640
+   ],
+   "head": [
+    234,
+    195,
+    335,
+    309
+   ],
+   "mask_src": "owl",
+   "arm": "T",
+   "src": "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/T/saul.png",
+   "side": "left",
+   "refs": [
+    "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/self-ref/david-youth.png"
+   ],
+   "look": "an ancient Israelite young man, a commander, about 18, smooth youthful face, no lines, lean youthful shoulders, slim straight torso, tight dark curls close to the skull, hair covering the whole head, no headwear, wearing a short-sleeved knee-length undyed tan wool tunic covering his chest and shoulders, with a leather belt, his bare legs showing below the knee",
+   "prompt": "Change the man on the left in image 1 into the man shown in image 2: an ancient Israelite young man, a commander, about 18, smooth youthful face, no lines, lean youthful shoulders, slim straight torso, tight dark curls close to the skull, hair covering the whole head, no headwear, wearing a short-sleeved knee-length undyed tan wool tunic covering his chest and shoulders, with a leather belt, his bare legs showing below the knee. Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style and everything else in image 1 unchanged.",
+   "targeted": 6.09,
+   "diff_in": 17.17,
+   "diff_out": 11.08
+  }
+ },
+ "eye": {
+  "T-saul": "거의 그대로(소음 바닥으로 맞음) — 같은 얼굴·놀란 표정·벌린 입 유지. 다만 선이 흐려지고 튜닉 결이 뭉개져 편집기를 한 번 거친 것만으로 연필 결이 옅어진 낌새(Claude 눈, 원래 화소 2배)",
+  "T-david": "거의 그대로(소음 바닥으로 맞음) — 곱슬·벌린 입 비슷하게 남음(입은 조금 다묾). 선이 흐려지고 머리털·튜닉 결이 뭉개짐. T 전체도 W처럼 구도가 수 화소 밀리고 벽·종이 결이 옅어짐(Claude 눈)"
+ },
+ "arms": {
+  "C": "/Users/calmonion/.local/biblemap-imggen/face-lora-v4/scene/C-s11.png",
+  "E": "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/E/final.png",
+  "W": "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/W/final.png",
+  "T": "/Users/calmonion/.local/biblemap-imggen/ref-edit-recheck/T/final.png"
+ },
+ "sec": {
+  "saul": 564.6,
+  "david-E": 553.4,
+  "david-W": 508.5,
+  "T-saul": 496.8,
+  "T-david": 564.2
+ },
+ "look": {
+  "saul": "an ancient Israelite old man about 70, short cropped grey-white hair, a full grey-white beard with dark grey streaks around the mouth, deeply lined forehead and cheeks, thick dark eyebrows, deep-set brown eyes, a broad nose, broad shoulders, wearing a knee-length short-sleeved dark brown wool tunic with a plain leather belt, his bare shins showing",
+  "david-E": "an ancient Israelite youth about 18, thick dark-brown hair in tight round ringlet curls, a smooth beardless face, rosy cheeks, thick dark eyebrows, brown eyes, a rounded jaw, slender build, wearing a short-sleeved knee-length undyed tan wool tunic covering his chest and shoulders, with a leather belt, his bare legs showing below the knee",
+  "david-W": "an ancient Israelite youth about 18, thick dark-brown hair in tight round ringlet curls, a smooth beardless face, rosy cheeks, thick dark eyebrows, brown eyes, a rounded jaw, slender build, wearing a short-sleeved knee-length undyed tan wool tunic covering his chest and shoulders, with a leather belt, his bare legs showing below the knee",
+  "T-saul": "an ancient Israelite man, a king, about 70, a deeply wrinkled old face, lined forehead and cheeks, tall of stature, close-trimmed grey-streaked beard, jawline visible, broad shoulders, a strong solid chest, short greying hair cut close, hair covering the whole head, no headwear, wearing a knee-length short-sleeved dark brown wool tunic with a plain leather belt, his bare shins showing",
+  "T-david": "an ancient Israelite young man, a commander, about 18, smooth youthful face, no lines, lean youthful shoulders, slim straight torso, tight dark curls close to the skull, hair covering the whole head, no headwear, wearing a short-sleeved knee-length undyed tan wool tunic covering his chest and shoulders, with a leather belt, his bare legs showing below the knee"
+ },
+ "gram": {
+  "saul-elder": {
+   "E": {
+    "gram2": 0.0541,
+    "gram6": 0.17845
+   },
+   "W": {
+    "gram2": 0.09074,
+    "gram6": 0.22092
+   },
+   "T": {
+    "gram2": 0.09982,
+    "gram6": 0.18445
+   }
+  },
+  "david-youth": {
+   "E": "측정 불가",
+   "W": "측정 불가",
+   "T": "측정 불가"
+  }
+ },
+ "head_boxes": {
+  "saul-elder-C": [
+   912,
+   71,
+   1013,
+   183
+  ],
+  "saul-elder-E": [
+   919,
+   49,
+   1021,
+   189
+  ],
+  "saul-elder-W": [
+   924,
+   49,
+   1027,
+   186
+  ],
+  "saul-elder-T": [
+   923,
+   68,
+   1020,
+   178
+  ],
+  "david-youth-C": [
+   233,
+   199,
+   320,
+   265
+  ],
+  "david-youth-E": [
+   230,
+   186,
+   337,
+   265
+  ],
+  "david-youth-W": [
+   234,
+   179,
+   342,
+   265
+  ],
+  "david-youth-T": [
+   249,
+   194,
+   341,
+   262
+  ]
+ },
+ "page": {
+  "path": "/Users/calmonion/.local/biblemap-imggen/pages/ref-edit-recheck.html",
+  "n": 9,
+  "key": {
+   "Q1": [
+    "W",
+    "saul-elder"
+   ],
+   "Q2": [
+    "T",
+    "david-youth"
+   ],
+   "Q3": [
+    "T",
+    "saul-elder"
+   ],
+   "Q4": [
+    "E",
+    "david-youth"
+   ],
+   "Q5": [
+    "W",
+    "david-youth"
+   ],
+   "Q6": [
+    "E",
+    "saul-elder"
+   ],
+   "Q7": [
+    "T",
+    "whole"
+   ],
+   "Q8": [
+    "W",
+    "whole"
+   ],
+   "Q9": [
+    "E",
+    "whole"
+   ]
+  },
+  "mb": 1.04
+ }
+}
