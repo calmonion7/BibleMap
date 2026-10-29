@@ -238,6 +238,11 @@ REF_EDIT_LIGHTNING_LOOK_IMAGE = {
 REF_EDIT_LIGHTNING_LOOK_IDENTITY = {
     "saul": "an ancient Israelite man in his 40s, short dark hair cropped close, short full dark beard, angular face, lean average build",
     "david": "an ancient Israelite young man in his 20s, thick tight dark curly hair, short full dark beard, rosy cheeks, slender build",
+    # task#450(2026-10-29): 새 정본 id — Claude가 frozen/<id>.png 초상을 보고 씀(360은 사람이 씀). 바탕 문구 낱말과 겹치지 않게(ADR 2항).
+    "saul-elder": "an ancient Israelite old man about 70, short cropped grey-white hair, a full grey-white beard with dark grey streaks "
+                  "around the mouth, deeply lined forehead and cheeks, thick dark eyebrows, deep-set brown eyes, a broad nose, broad shoulders",
+    "david-youth": "an ancient Israelite youth about 18, thick dark-brown hair in tight round ringlet curls, a smooth beardless face, "
+                   "rosy cheeks, thick dark eyebrows, brown eyes, a rounded jaw, slender build",
 }
 REF_EDIT_COSTUME_SCENES = {"engedi": ["saul", "david"]}   # "image+scene" 모드의 편집 장면 → 처치 인물(사울 → 다윗 차례)
 REF_EDIT_COSTUME_SHUFFLE_SEED = 361                # 판정 화면 순서 섞기
@@ -377,3 +382,22 @@ LORA_V5_SCALE = 1.0                   # 장면 L 어댑터 세기
 LORA_V5_SCENE_SEEDS = LORA_V4_SCENE_SEEDS
 LORA_V5_SAME_MIN = 6                  # 기계 「같은 화풍」: 8시드 중 d(L,C) ≤ max d(T,C)인 시드 수(두 층 모두)
 LORA_V5_STEPS = LORA_V4_STEPS
+
+# task#450 — 정본 참조 편집(2511 + Lightning, ADR 261017-152627) 재검: 기브아 창 시드 11 한 장, 화풍 축만(notes/REF-EDIT-RECHECK.md 고정 절). 편집 전 고정.
+# 편집 = REF_EDIT_LIGHTNING_* 그대로(LoRA·스텝·guidance·양자화 사다리·600초). 참조 = 초상 하나(새 정본용 전신 없음) → 지시문 「image 2 and image 3」 → 「image 2」.
+REF_EDIT_RECHECK_SCENE = ("authored-saul-gibeah-spear", 11)   # 바탕 = 445 face-lora-v4/scene/C-s11.png(다시 그리지 않음)
+REF_EDIT_RECHECK_WHO = ["saul-elder", "david-youth"]          # 편집 차례(사울 → 다윗)
+REF_EDIT_RECHECK_SIDE = {"david-youth": (0, 0.5), "saul-elder": (0.5, 1)}   # 머리 후보 x 중심 범위(그림 폭 비율) — 다윗 왼쪽·사울 오른쪽
+REF_EDIT_RECHECK_PROMPT = ("Change the man on the {side} in image 1 into the man shown in image 2: {look}. "
+                           "Keep his pose, his position and size in the scene, and keep the pencil and watercolor drawing style "
+                           "and everything else in image 1 unchanged.")   # REF_EDIT_LIGHTNING_PROMPT에서 「and image 3」만 뺌
+# T(소음 바닥) {look} = 바탕 문구(face-lora-v4/scene-jobs.json C-s11)의 그 인물 절에서 자세·표정·지물 앞까지(정체성) + 같은 차림 — 참조 = 바탕 자기 머리 크롭.
+REF_EDIT_RECHECK_SELF_LOOK = {
+    "saul-elder": "an ancient Israelite man, a king, about 70, a deeply wrinkled old face, lined forehead and cheeks, tall of stature, "
+                  "close-trimmed grey-streaked beard, jawline visible, broad shoulders, a strong solid chest, short greying hair cut close, "
+                  "hair covering the whole head, no headwear",
+    "david-youth": "an ancient Israelite young man, a commander, about 18, smooth youthful face, no lines, lean youthful shoulders, "
+                   "slim straight torso, tight dark curls close to the skull, hair covering the whole head, no headwear",
+}
+REF_EDIT_RECHECK_MIN_HEAD = 100        # 머리 상자 긴 변(원래 화소)이 이보다 작으면 그 칸 Gram 「측정 불가」(448 C-s42 교훈)
+REF_EDIT_RECHECK_SHUFFLE_SEED = 450    # 사람 화면 문항 순서 섞기
