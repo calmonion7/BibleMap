@@ -81,6 +81,17 @@ def kneel_bow(d, x0, y0, x1, y1, v):
     d.ellipse([x0, y1 - 2 * r, x0 + 2 * r, y1], fill=v)                                         # 땅에 댄 머리(왼쪽)
 
 
+def kneel_bow_reach(d, x0, y0, x1, y1, v):
+    """task 457 — kneel_bow에서 오른쪽 땅으로 뻗은 정강이 막대를 엉덩이 밑에 접고, 두 팔을 머리 쪽(왼쪽 땅)으로 뻗는다.
+    kneel_bow 456 t2~u2 s42 3/3: 오른쪽 막대가 앞으로 짚은 팔로 읽혀 머리가 오른쪽(왕 반대)에 그려짐."""
+    h, w = y1 - y0, x1 - x0
+    d.polygon([(x0 + w * 0.25, y1 - h * 0.08), (x0 + w * 0.35, y1 - h * 0.5), (x0 + w * 0.62, y0), (x0 + w * 0.85, y0 + h * 0.08),
+               (x0 + w * 0.92, y1 - h * 0.1), (x0 + w * 0.6, y1)], fill=v)                      # 등·엉덩이·접은 다리
+    d.polygon([(x0, y1 - h * 0.1), (x0 + w * 0.35, y1 - h * 0.3), (x0 + w * 0.35, y1 - h * 0.12), (x0, y1)], fill=v)  # 왼쪽으로 뻗은 팔
+    r = h * 0.2
+    d.ellipse([x0 + w * 0.1, y1 - 2 * r, x0 + w * 0.1 + 2 * r, y1], fill=v)                     # 땅에 댄 머리(왼쪽)
+
+
 def seated(d, x0, y0, x1, y1, v):
     """restyle r6 — 배 안에 앉은 사람들: 머리·어깨만 한 줄(뱃전 위로 보이는 몫). 상자 아래 끝 = 뱃전."""
     h = y1 - y0
@@ -116,6 +127,13 @@ def boat(d, x0, y0, x1, y1, v):
 def bank(d, x0, y0, x1, y1, v):
     h, w = y1 - y0, x1 - x0
     d.polygon([(x0, y1), (x0 + w * 0.2, y0 + h * 0.4), (x0 + w * 0.5, y0), (x0 + w * 0.8, y0 + h * 0.3), (x1, y0 + h * 0.5), (x1, y1)], fill=v)
+
+
+def river(d, x0, y0, x1, y1, v):
+    """task 457 — 강(물 면): 둘레 땅보다 어두운 평평한 띠. 위쪽은 오른쪽에서만 시작하는 사선 둑이라 왼쪽 가까운 둑이 뒤로 이어진다
+    (456 8/8: 강 칸이 없으면 강이 화면을 가로질러 「가까운 둑 먼 뒤쪽」 무리가 늘 건너편에 섬)."""
+    w = x1 - x0
+    d.polygon([(x0 + w * 0.45, y0), (x1, y0), (x1, y1), (x0, y1)], fill=v)
 
 
 def leaning(d, x0, y0, x1, y1, v, lean):
@@ -365,7 +383,7 @@ def draw_pose(img, box, name, hip_dx=0.06):
 
 
 AIR_SHAPES = {"spear"}   # 허공을 나는 물체 꼴(recheck.AIR_SHAPES와 같음)
-SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "seated": seated, "sit": sit, "crowd": crowd, "boat": boat, "bank": bank}
+SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "kneel_bow_reach": kneel_bow_reach, "seated": seated, "sit": sit, "crowd": crowd, "boat": boat, "bank": bank, "river": river}
 
 
 def make_pose_only(spec, backdrop=False):
