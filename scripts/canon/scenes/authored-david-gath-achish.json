@@ -47,7 +47,7 @@
       "quote": "침을 수염에 흘리매",
       "kind": "행동",
       "ko": "다윗이 침을 수염에 흘림",
-      "en": "a glistening thread of spittle hanging from his lower lip down into his wet beard",
+      "en": "wet spittle glistening at the corner of his mouth and dripping into his beard",
       "field": "figures[0].gesture"
     },
     {
@@ -122,14 +122,14 @@
       "region": "david",
       "verse": "21:13",
       "expression": {
-        "ko": "미친 체하여 눈을 희번덕이고 입을 헤벌린, 머리가 헝클어진 얼굴",
-        "en": "feigning madness, wild rolling eyes and a slack open mouth, hair tousled",
+        "ko": "미친 체하여 초점 없이 멍하게 크게 뜬 눈과 헤벌린 입, 머리가 헝클어진 얼굴",
+        "en": "feigning madness, a vacant dazed stare with wide unfocused eyes and a slack open mouth, hair tousled",
         "verse": "삼상 21:13 「미친 체 하고」 · 눈·입·머리 모습은 본문 밖 · 저작자 정함(466 사람 「미친척 … 그리지 않음」)"
       },
       "gesture": {
         "ko": "머리 위로 높이 솟은 성문 문짝 바로 밑에 웅크려 두 손으로 문짝을 마구 할퀴며 그적거리고 수염에 침을 흘린다",
-        "en": "hunched at the foot of the gate, the doors rising far above his head, clawing frantically at them with both hands, scratching marks on the doors of the gate, a glistening thread of spittle hanging from his lower lip down into his wet beard",
-        "verse": "삼상 21:13 「대문짝에 그적거리며 침을 수염에 흘리매」 · 웅크림·두 손·마구 할큄·아랫입술 침 가닥은 본문 밖 · 저작자 정함 · 문짝 바로 밑·머리 위로 솟음은 크기 기준표 scrawl-door 2.0과 사람 메모 task 471 「성문 옆에 있어야 하는데 성문과 높이가 비슷」에서 · 저작자 정함 · 사람 메모 task 473 「침 다시 한번 · 멀리서 보면 침으로 보임」"
+        "en": "hunched at the foot of the gate, the doors rising far above his head, scratching at them with both hands, scratching marks on the doors of the gate, wet spittle glistening at the corner of his mouth and dripping into his beard",
+        "verse": "삼상 21:13 「대문짝에 그적거리며 침을 수염에 흘리매」 · 웅크림·두 손·마구 할큄·입꼬리 침은 본문 밖 · 저작자 정함 · 문짝 바로 밑·머리 위로 솟음은 크기 기준표 scrawl-door 2.0과 사람 메모 task 471 「성문 옆에 있어야 하는데 성문과 높이가 비슷」에서 · 저작자 정함 · 사람 메모 task 473 「침 다시 한번 · 멀리서 보면 침으로 보임」"
       },
       "costume": {
         "ko": "짙은 붉은 양모 튜닉과 짙은 갈색 가죽 띠",
