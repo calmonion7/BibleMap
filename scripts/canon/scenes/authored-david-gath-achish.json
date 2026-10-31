@@ -137,11 +137,11 @@
         "verse": "본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
       },
       "gaze": {
-        "ko": "초점 없이 허공을 봄 — 아무와도 마주 보지 않음",
-        "en": "staring blankly into empty air, not looking at anyone",
-        "verse": "삼상 21:13 「미친 체 하고」 · 시선 본문 밖 · 저작자 정함"
+        "ko": "문짝을 멍하니 봄 — 아무와도 마주 보지 않음",
+        "en": "staring blankly at the doors, not looking at anyone",
+        "verse": "삼상 21:13 「미친 체 하고」 · 시선 본문 밖 · 저작자 정함 · 사람 메모 task 472 「다윗이 고개를 너무 돌린듯」(몸은 문 쪽인데 방향 칸이 화면 쪽이라 고개가 뒤로 돌아감)"
       },
-      "screen_facing": "viewer",
+      "screen_facing": "left",
       "stage_why": "[추론] 본문은 삼상 17:42 「그가 젊고 붉고 용모가 아름다움이라」(소년기)와 삼하 5:4 「다윗이 삼십 세에 위에 나아가」(상한) 사이만 말한다. 소년기를 지났음은 삼상 18:13 「천부장을 삼으매」 · 삼상 18:27 「사울이 그 딸 미갈을 다윗에게 아내로 주었더라」가 받친다(CAST.md는 이 절을 청년 david-youth 근거로도 씀). 성인·20대와 약 27세는 프로젝트 연대 정본(data/person_events/david.json — 출생 BC 1040경 · 가드 피신 BC 1013경)에서 나온 값이라 id david(CAST.md 즉위 전 도망자 20대 구간)."
     },
     {
