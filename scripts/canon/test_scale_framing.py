@@ -38,6 +38,14 @@ class FigureScale(unittest.TestCase):
             s["regions"][k] = [s["regions"][k][0], 0.305, s["regions"][k][2], 0.90]
         self.assertTrue(any("(무리 단계 knee)" in e for e in recheck.figure_scale_errors(s)))
 
+    def test_knee_only_front_figure(self):   # task 467: 자른 구도는 가장 앞(가장 큰) 인물 하나만 — 뒤 인물은 무리 단계 범위
+        s = copy.deepcopy(D.load(GATH))
+        s["guide"]["framing"] = "knee"
+        s["guide"]["framing_why"] = "21:13 「침을 수염에 흘리매」"
+        s["regions"]["david"] = [0.04, 0.12, 0.40, 1.40]
+        s["regions"]["achish"] = [0.62, 0.17, 0.78, 0.72]
+        self.assertEqual([e for e in recheck.figure_scale_errors(s) if e.startswith(("david", "achish"))], [])
+
     def test_gath_passes_with_knee(self):
         s = D.load(GATH)
         self.assertEqual(s["guide"].get("framing"), "knee")

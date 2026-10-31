@@ -362,8 +362,6 @@ def figure_scale_errors(spec):
         return why + ([f"{k}: 앉은 구역의 서 있을 때 키 {h:.2f} < {lo:.2f}(무리 단계 {stage}) — 인물이 단계 범위보다 작게 그려진다" for k, h in up.items() if h < lo]
                 + [f"{k}: 앉은 구역의 서 있을 때 키 {h:.2f} > {hi}(무리 단계 {stage}) — 단계 범위보다 가깝게 그려진다" for k, h in up.items() if h > hi])
     sh, pose = g.get("shape", {}), g.get("pose", {})
-    lo_seen = lo * S.v("perspective.pose_seen")
-
     def seen(k):   # h4: 뼈대 인물은 보이는 키(뼈대 머리 꼭대기 ~ 발) — 숙인 뼈대는 구역보다 작게 그려짐(h3e 숙인 다윗 「화면 절반」 5/5)
         h = R[k][3] - R[k][1]
         if k not in pose:
@@ -373,10 +371,15 @@ def figure_scale_errors(spec):
         top = min(y for i, (x, y) in M.POSES[pose[k]].items() if i in (0, 14, 15, 16, 17)) - M.HEAD_R["person"]
         return h * (1 - max(0.0, top))
     people = [k for k in dict.fromkeys(list(sh) + list(pose)) if str(sh.get(k, "")).startswith("person") or k in pose]
-    small = [k for k in people if seen(k) < (lo_seen if k in pose else lo)]
-    big = [k for k in people if R[k][3] - R[k][1] > hi]
-    return why + ([f"{k}: 보이는 키 {seen(k):.2f} < {lo_seen if k in pose else lo:.2f}(무리 단계 {stage}) — 인물이 단계 범위보다 작게 그려진다" for k in small]
-            + [f"{k}: 구역 높이 {R[k][3] - R[k][1]:.2f} > {hi}(무리 단계 {stage}) — 단계 범위보다 가깝게 그려진다" for k in big])
+    # task 467: 자른 구도는 가장 앞(가장 큰) 인물 하나만 framing 범위 — 뒤 인물은 무리 단계 범위(466 두 사람 다 자르니 「몸비율 이상」)
+    front = max(people, key=lambda k: R[k][3] - R[k][1]) if g.get("framing") and people else None
+    cst, (clo, chi) = S.crowd_stage(S.people_count(spec))
+    rng = {k: (stage, lo, hi) if not g.get("framing") or k == front else (cst, clo, chi) for k in people}
+    need = {k: rng[k][1] * (S.v("perspective.pose_seen") if k in pose else 1) for k in people}
+    small = [k for k in people if seen(k) < need[k]]
+    big = [k for k in people if R[k][3] - R[k][1] > rng[k][2]]
+    return why + ([f"{k}: 보이는 키 {seen(k):.2f} < {need[k]:.2f}(무리 단계 {rng[k][0]}) — 인물이 단계 범위보다 작게 그려진다" for k in small]
+            + [f"{k}: 구역 높이 {R[k][3] - R[k][1]:.2f} > {rng[k][2]}(무리 단계 {rng[k][0]}) — 단계 범위보다 가깝게 그려진다" for k in big])
 
 
 YOUTH_MIN_RATIO = S.v("age_height_min.youth")   # d5: 청년 구역 높이 / 같은 장면 어른 구역 높이(d4e2 다윗 0.62/0.86 = 0.72 → 「몸이 작아 12~14세」)
