@@ -309,12 +309,12 @@
   "approved": {
     "final": {
       "path": "night-pick",
-      "seed": 23,
+      "seed": 11,
       "kind": "base",
-      "image": "samples/gath-step23-r10/composition-A-s23.png",
+      "image": "samples/gath-step23-r12/composition-A-s11.png",
       "by": "user",
-      "on": "2026-10-31",
-      "spec_hash": "691fa7914f2b",
+      "on": "2026-11-01",
+      "spec_hash": "404d9d872e52",
       "prompt_hash": null,
       "rules_version": "258b409c298a",
       "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
