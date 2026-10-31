@@ -470,3 +470,4 @@
 
 - 화면: https://claude.ai/artifact/GKfpW8FdBz7u2sVSQ8UTL2 (폰용 비공개 · 8장 전부 · 기계 통과 s42 · 360px·1280px 가로 넘침 0)
 - 답 기록: `python3 batch/rule_ab.py --fixed 472 record '<「판정 task 472」 + JSON 한 줄>'` — 고르면 확정 그림이 s5(471)에서 그 장으로 바뀜.
+- 사람 답(8시드): s42 · 메모 「다윗이 고개를 너무 돌린듯」
