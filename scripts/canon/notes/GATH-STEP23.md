@@ -450,3 +450,4 @@
 
 - 화면: https://claude.ai/artifact/DCPgeCK9894sTvNESd6ND3 (폰용 비공개 · 8장 전부 · 기계 통과 s5 · 360px·1280px 가로 넘침 0)
 - 답 기록: `python3 batch/rule_ab.py --fixed 471 record '<「판정 task 471」 + JSON 한 줄>'` — 고르면 확정 그림이 s23(470)에서 그 장으로 바뀜.
+- 사람 답(8시드): s5 · 메모 「뭔가 다윗과 성문의 원근감이 이상함 성문을 그적 거린다는 의미는 성문 옆에 있어야 하는데 성문과 높이가 비슷함」
