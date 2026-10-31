@@ -200,6 +200,17 @@ def side(m, case):
     return "B" if adopt(majority(m, case), [q["id"] for q in J.gating(case["qs"])], FX["adopt"])[0] else "A"
 
 
+BOOK = {"삼상": 9, "삼하": 10, "왕상": 11}   # task 465 — verses.json 키 책 번호(장면이 있는 책만)
+
+
+def book_no(rng):
+    """「삼상 21:10-15」 → 9. 모르는 책이면 이름을 대며 멈춘다(task 465 — 사무엘상에서 KeyError였음)."""
+    name = rng.split()[0]
+    if name not in BOOK:
+        sys.exit(f"[RuleAB] 책 번호 표에 없는 책: {name} — BOOK에 더할 것")
+    return BOOK[name]
+
+
 def page(out):
     """task 433 — 단계 ④ 사람 판정 화면: 고른 쪽 8장 전부(기계 통과 + 불통과, 틀린 문항 순) · 장면 구절 원문(순간 절 굵게) · 확대 · 답 복사.
     틀은 inset_judge와 같다(inset_judge_page.html). 카드 메모 = 그 쪽에서 가장 많이 떨어진 거르기 문항의 표 수와 틀림 이유 하나."""
@@ -211,13 +222,14 @@ def page(out):
     gated = J.gating(case["qs"])
     ok = majority(m, case)[ab]
     weak = min(gated, key=lambda q: sum(ok[s][q["id"]] for s in FX["seeds"]))
-    book = {"왕상": 11}[spec["verses"]["range"].split()[0]]
+    book = book_no(spec["verses"]["range"])
+    mv = spec["moment"]["verse"].split()[0]   # task 465 — 「21:13 후반」 → 21:13
     verses = json.load(open(os.path.join(HERE, "..", "..", "data", "bible", "verses.json"), encoding="utf-8"))
     rows = []
     for cv in spec["verses"]["quotes"]:
         c, v = map(int, cv.split(":"))
         txt = verses[f"{book:02d}{c:03d}{v:03d}"]["textKo"].strip()
-        rows.append(f'<p><span class="ref">{cv}</span>{"<b>" + txt + "</b>" if cv == spec["moment"]["verse"] else txt}</p>')
+        rows.append(f'<p><span class="ref">{cv}</span>{"<b>" + txt + "</b>" if cv == mv else txt}</p>')
     cards = []
     for s in FX["seeds"]:
         reps = [r for r in (m["answers"].get(key(case, ab, s)) or {}).values() if r.get("answers")]
@@ -235,7 +247,7 @@ def page(out):
     imgs = {f"comp-{s}": uri(img(case, ab, s)) for s in FX["seeds"]}
     tpl = open(os.path.join(HERE, "batch", "inset_judge_page.html"), encoding="utf-8").read()
     pg = FX["page"]   # task 437 — 앞글은 고정 절 칸(판마다 문구가 달라 코드에 박지 않음) · lede의 {weak} = 가장 많이 떨어진 문항
-    html = IJ.fill(tpl, TITLE="두 여인 재판 그림 고르기", H1="두 여인의 재판 — 쓸 그림 고르기", RANGE=spec["verses"]["range"], TASK=str(FX_N),
+    html = IJ.fill(tpl, TITLE=pg.get("title", "두 여인 재판 그림 고르기"), H1=pg.get("h1", "두 여인의 재판 — 쓸 그림 고르기"), RANGE=spec["verses"]["range"], TASK=str(FX_N),
                    LEDE=pg["lede"].replace("{weak}", weak["q"]), HINT=pg["hint"], MEMO_EG=pg["memo_eg"])
     html = html.replace("@@VERSES@@", "".join(rows)).replace("/*CARDS*/[]", json.dumps(cards, ensure_ascii=False))
     html = html.replace("/*IMGS*/{}", json.dumps(imgs))   # 그림은 마지막에(417 판 1)

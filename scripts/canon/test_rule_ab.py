@@ -53,6 +53,15 @@ class FixedTest(unittest.TestCase):
         self.assertIn("{weak}", pg["lede"])
         self.assertTrue(pg["hint"] and pg["memo_eg"])
 
+    def test_page_book_and_title_465(self):
+        """task 465 — 화면 책 번호는 표 하나(사무엘상에서 KeyError였음) · 제목은 고정 절 page 칸."""
+        self.assertEqual(R.book_no("삼상 21:10-15"), 9)
+        self.assertEqual(R.book_no("왕상 3:16-28"), 11)
+        with self.assertRaises(SystemExit):
+            R.book_no("창 1:1")
+        R.use(464)
+        self.assertIn("아기스", R.FX["page"]["title"] + R.FX["page"]["h1"])
+
     def test_missing_block_exits(self):
         with self.assertRaises(SystemExit):
             R.fixed(999999)
