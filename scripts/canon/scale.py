@@ -70,6 +70,12 @@ def crowd_stage(n):
     raise ValueError(f"[Scale] 무리 단계에 위 끝 없는 단계가 없다: {n}")
 
 
+def focus_range(spec):
+    """task 464 — 초점 인물 화면 키 범위. 명세 guide.framing(자른 구도 갈래 — scale.json framing)이 있으면 그 범위, 없으면 무리 단계."""
+    fr = (spec.get("guide") or {}).get("framing")
+    return (fr, tuple(v(f"framing.{fr}")["focus_h"])) if fr else crowd_stage(people_count(spec))
+
+
 def people_count(spec):
     """장면 사람 수 = figures 수 + crowds[].count(본문 근거 — 칸이 없으면 0으로 셈)."""
     return len(spec.get("figures") or []) + sum(c.get("count", 0) for c in spec.get("crowds") or [])

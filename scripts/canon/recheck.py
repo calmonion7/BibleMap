@@ -351,13 +351,15 @@ def figure_scale_errors(spec):
     c14 s5: 다윗 구역 0.52(숙인 꼴) → 「다윗 키가 화면 절반에 못 미치고 빈 벽이 화면 대부분」 3/3 · m1e s42 사울 0.84 → 「너무 가까이」.
     task 409 전에는 무리 꼴(crowd)이 있으면 건너뛰었다 — 이제 무리 장면은 그 단계 범위로 잰다."""
     g, R = spec.get("guide") or {}, spec.get("regions", {})
-    stage, (lo, hi) = S.crowd_stage(S.people_count(spec))
+    stage, (lo, hi) = S.focus_range(spec)   # task 464: 자른 구도 갈래(guide.framing)면 무리 단계 대신 기준표 framing 범위
+    why = [] if not g.get("framing") or "「" in str(g.get("framing_why", "")) else \
+        [f"guide.framing {g['framing']}: framing_why에 얼굴에 실리는 구절 인용(「」)이 없다 — 자른 구도는 근거가 있을 때만"]
     if not _guide_people(spec):   # task 413: 사람이 있는데 잴 구역이 없으면 못 잼(빈 통과 아님)
         sat = S.seated(spec)   # task 416: 서 있는 사람 없이 앉은 사람만이면 서 있을 때 키(구역 높이 ÷ body.seated)로 잼 — 홀로 앉은 밧세바
         if not sat:
             return None if spec.get("figures") else []
         up = {k: (R[k][3] - R[k][1]) / S.v("body.seated") for k, _ in sat}
-        return ([f"{k}: 앉은 구역의 서 있을 때 키 {h:.2f} < {lo:.2f}(무리 단계 {stage}) — 인물이 단계 범위보다 작게 그려진다" for k, h in up.items() if h < lo]
+        return why + ([f"{k}: 앉은 구역의 서 있을 때 키 {h:.2f} < {lo:.2f}(무리 단계 {stage}) — 인물이 단계 범위보다 작게 그려진다" for k, h in up.items() if h < lo]
                 + [f"{k}: 앉은 구역의 서 있을 때 키 {h:.2f} > {hi}(무리 단계 {stage}) — 단계 범위보다 가깝게 그려진다" for k, h in up.items() if h > hi])
     sh, pose = g.get("shape", {}), g.get("pose", {})
     lo_seen = lo * S.v("perspective.pose_seen")
@@ -373,7 +375,7 @@ def figure_scale_errors(spec):
     people = [k for k in dict.fromkeys(list(sh) + list(pose)) if str(sh.get(k, "")).startswith("person") or k in pose]
     small = [k for k in people if seen(k) < (lo_seen if k in pose else lo)]
     big = [k for k in people if R[k][3] - R[k][1] > hi]
-    return ([f"{k}: 보이는 키 {seen(k):.2f} < {lo_seen if k in pose else lo:.2f}(무리 단계 {stage}) — 인물이 단계 범위보다 작게 그려진다" for k in small]
+    return why + ([f"{k}: 보이는 키 {seen(k):.2f} < {lo_seen if k in pose else lo:.2f}(무리 단계 {stage}) — 인물이 단계 범위보다 작게 그려진다" for k in small]
             + [f"{k}: 구역 높이 {R[k][3] - R[k][1]:.2f} > {hi}(무리 단계 {stage}) — 단계 범위보다 가깝게 그려진다" for k in big])
 
 

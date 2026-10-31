@@ -76,9 +76,10 @@ def check(spec, verses):
     regs = spec["regions"]
     if "full" not in regs:
         errs.append("regions.full 없음")
+    cut = (spec.get("guide") or {}).get("framing")   # task 464 자른 구도 갈래: 인물 발(아래 끝)은 화면 밖(> 1)일 수 있다
     for name, box in regs.items():
-        ok = isinstance(box, list) and len(box) == 4 and all(isinstance(v, (int, float)) and 0 <= v <= 1 for v in box) \
-            and box[0] < box[2] and box[1] < box[3]
+        ok = isinstance(box, list) and len(box) == 4 and all(isinstance(v, (int, float)) and 0 <= v <= 1 for v in box[:3]) \
+            and isinstance(box[3], (int, float)) and 0 <= box[3] <= (1.5 if cut else 1) and box[0] < box[2] and box[1] < box[3]
         if not ok:
             errs.append(f"구역 상자 이상: {name}={box}")
     casts = set()
