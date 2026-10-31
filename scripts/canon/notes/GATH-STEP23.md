@@ -390,3 +390,4 @@
 
 - 화면: https://claude.ai/artifact/Scsjxint5sjvKa6YWR7N7E (폰용 비공개 · 8장 전부 · 기계 통과 0이나 장마다 한두 문항만 떨어짐 · 360px·1280px 가로 넘침 0)
 - 답 기록: `python3 batch/rule_ab.py --fixed 468 record '<「판정 task 468」 + JSON 한 줄>'`
+- 사람 답(8시드): s7 · 메모 「성문모양맘 고치면 될듯 일단 그시대 성이 어떻게 생겼는지 파악후 그리고」

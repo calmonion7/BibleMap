@@ -308,36 +308,16 @@
   },
   "approved": {
     "final": {
-      "path": "local-edit",
-      "seed": 5,
-      "image": "samples/local-edit/approved-authored-david-gath-achish.png",
-      "steps": [
-        {
-          "id": "D1-k1",
-          "arm": "D1",
-          "seed": 1,
-          "crop": [
-            250,
-            110,
-            240
-          ],
-          "box": [
-            315,
-            200,
-            395,
-            300
-          ],
-          "prompt": "Spit runs from the corner of the mouth down the chin beard in a long strand, and the beard is wet and shiny. Keep his face shape, hair, beard, the lighting and the same soft pencil and colored-pencil illustration style.",
-          "base_src": "plain-words r2 s5"
-        }
-      ],
+      "path": "night-pick",
+      "seed": 7,
+      "kind": "base",
+      "image": "samples/gath-step23-r5/composition-A-s7.png",
       "by": "user",
-      "on": "2026-10-21",
-      "spec_hash": "380a918b4e7b",
-      "rules_version": "14fb4150e572",
-      "prompt_hash": "c434b086ef4d",
-      "prompt_matches_spec": false,
-      "spec_hash_why": "생성 때 프롬프트(plain-words r2 s5 + 국소 편집)가 지금 명세의 파생과 다름 — 생성 때 명세 기록 없음, 지금 명세의 해시"
+      "on": "2026-10-31",
+      "spec_hash": "3db431bd4703",
+      "prompt_hash": null,
+      "rules_version": "258b409c298a",
+      "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
     }
   },
   "situation": {
