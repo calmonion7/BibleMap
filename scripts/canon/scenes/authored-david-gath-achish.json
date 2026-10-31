@@ -311,10 +311,10 @@
       "path": "night-pick",
       "seed": 11,
       "kind": "base",
-      "image": "samples/gath-step23-r12/composition-A-s11.png",
+      "image": "samples/gath-step23-r13/composition-A-s11.png",
       "by": "user",
       "on": "2026-11-01",
-      "spec_hash": "404d9d872e52",
+      "spec_hash": "588558936c73",
       "prompt_hash": null,
       "rules_version": "258b409c298a",
       "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"

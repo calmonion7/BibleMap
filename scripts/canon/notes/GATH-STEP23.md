@@ -551,3 +551,4 @@
 
 - 화면: https://claude.ai/artifact/RSv9UDf46cndJxE3Tf9ref (폰용 비공개 · 8장 전부 · 기계 통과 0 · 360px·1280px 가로 넘침 0)
 - 답 기록: `python3 batch/rule_ab.py --fixed 476 record '<「판정 task 476」 + JSON 한 줄>'` — 고르면 확정 그림이 s11(475)에서 그 장으로 바뀜.
+- 사람 답(8시드): s11 · 메모 「그적거림 다기 손의 위치가 다르면 그적거리는것처럼 보일듯」
