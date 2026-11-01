@@ -175,3 +175,24 @@
 
 <!-- followup: fu-67a4a7277b53 | source: face-detail-v3-on-c-scene | task: 395 | date: 2026-10-22 | status: open | taken: - -->
 얼굴 유지(정본 → 장면) 다음 후보: LoRA 시트를 장면 화풍으로 다시 만들어 인물 LoRA 재학습 — 사울·다윗으로 화풍(원래 화소 확대 한 장)부터 싸게 확인, 통과하면 같은 사람 화면 · 솔로몬(2026-10-27 새 정본 s7)도 포함. 근거: retro 261022-212614 「장면 화풍 시트로 LoRA 재학습이 다음 후보」 · 후속 장부에서 빠져 있었음.
+
+<!-- followup: fu-68a71ee954a3 | source: scene-batch-dok-dae | task: 490 | date: 2026-11-01 | status: open -->
+- 독대·소수 묶음 — 다윗의 유언(authored-solomon-jerusalem-david-charge) 가이드 막힘: make_guide에 침상에 누운 사람 꼴이 없어 figure-scale·height-ratio 못 잼(require_pass가 생성을 막음). 새 유형 — 누운 꼴 · scale.json 누운 몸 길이 기준 · 그 꼴을 재는 크기 규칙을 정한 뒤 하나씩 진행. 명세·노트(CHARGE-STEP1/23)는 그 앞까지 써 둠.
+
+<!-- followup: fu-c66d1a76b007 | source: scene-batch-dok-dae | task: 489 | date: 2026-11-01 | status: open -->
+- 독대·소수 묶음 — 길갈 겉옷자락(authored-saul-gilgal-amalek) 막힘: saul 카드 silhouette 「thick barrel torso」가 derive.no-inflating-build에 걸림(장면 덮어쓰기는 spec.cast-identity-fixed). 카드 수리 → 정본 얼굴 다시(GPU + 사람 판정) → saul 쓰는 미스바·야베스·길갈 즉위·믹마스도 영향. 또 앞 사람 옷자락을 낮게 붙잡는 뼈대 없음(pose-hold 낱말에 「붙잡음」 없음). 사전에 겉옷·겉옷자락 항목 없음(엔게디도 씀).
+
+<!-- followup: fu-d7c9d14cc06c | source: scene-batch-dok-dae | task: 491 | date: 2026-11-01 | status: open -->
+- scale.json held_exclude 키가 한국어(「이불」·「허리띠」·「겉옷자락」)이고 사전 held 일부도 한국어뿐(scepter 「왕홀」·spices 「향품 상자」) — derive.prop-in-prompt(영문 머리 명사 필요)와 derive.prop-size-coverage(held 글자 그대로)를 함께 통과할 수 없음. 영문 키·문구 더하기 필요(다윗의 유언·스바 보고).
+
+<!-- followup: fu-9ddd521d0f90 | source: scene-batch-dok-dae | task: 492 | date: 2026-11-01 | status: open -->
+- 낱말 사전 빈 항목 — 산당·분향(향)·제단(배교) · 백향목 궁(나단) · 겉옷자락(길갈·엔게디). spec.lexicon-link는 사전에 있는 낱말만 재서 지금은 검사 없이 통과(빈 통과에 가까움).
+
+<!-- followup: fu-44c21854c05e | source: scene-batch-dok-dae | task: 491 | date: 2026-11-01 | status: open -->
+- make_guide·파생 작은 것 — 두 손으로 받는 왼쪽 뼈대 plead_out_left 없음(놉) · 시선 문구가 화면 전체 좌우로만 불러 맨 오른쪽 인물이 가운데 인물을 볼 때 「on the right」(놉) · sheba-queen 카드 age 「a queen」으로 「looking toward the a queen」(스바) · 장면 공통 문항 몸 꼴·몸 비율·팔 모양이 「두 남자의」로 고정(여인 있는 장면).
+
+<!-- followup: fu-2250487b91be | source: scene-batch-dok-dae | task: 486 | date: 2026-11-01 | status: open -->
+- 넓은 성읍 파노라마 문구(시글락 「houses crowded close together behind … city wall beyond the rooftops」)에서 화면 가운데 세로 접힌 선(펼친 책 꼴) 5/8 — 사람이 거절하지 않아 규칙 안 만듦. 다른 장면에서 또 나오면 문항·문구 규칙으로.
+
+<!-- followup: fu-62ce97db8f0c | source: scene-batch-dok-dae | task: 491 | date: 2026-11-01 | status: open -->
+- data/person_events/solomon.json 스바 방문 startDate -950이 궁 준공(ADR-0014 성전 착공 966 + 왕상 6:1 재위 4년 + 9:10 이십 년 → BC 946경)보다 이름 — -946 이후로 고칠지(본문 검토 task 491 발견).
