@@ -286,14 +286,14 @@
   "approved": {
     "final": {
       "path": "night-pick",
-      "seed": 23,
+      "seed": 303,
       "kind": "base",
-      "image": "samples/ziklag-step23/composition-A-s23.png",
+      "image": "samples/ziklag-step23-r1/composition-A-s303.png",
       "by": "user",
       "on": "2026-11-01",
-      "spec_hash": "ee45c4d6fc19",
+      "spec_hash": "b71d1cbc0cf5",
       "prompt_hash": null,
-      "rules_version": "ad46498afcf6",
+      "rules_version": "a559c51fae22",
       "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
     }
   }
