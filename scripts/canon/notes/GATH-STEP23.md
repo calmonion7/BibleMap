@@ -572,3 +572,16 @@
 - 화면: https://claude.ai/artifact/LGhUV8YyyTXhixjyjyN2Y2 (폰용 비공개 · 8장 전부 · 기계 통과 0 · 360px·1280px 가로 넘침 0)
 - 답 기록: `python3 batch/rule_ab.py --fixed 477 record '<「판정 task 477」 + JSON 한 줄>'` — 고르면 확정 그림이 s11(476)에서 그 장으로 바뀜.
 - 사람 답(8시드): s42 · 메모 「침 해결해줘」
+
+## 침 — 입·수염만 같은 생성기로 (task 478 · 사람 답 477 s42 「침 해결해줘」 → 사람 결정 「입·수염만 같은 생성기로」)
+
+- s42 눈 확인(원래 화소 얼굴 크롭): 침 없음. 문구 수단(462~477 · PROMPTING §24)·klein 덧그림(사람 「품질이 안좋음」)·2배 해상도(실패)는 이미 막힘 → 사람에게 수단을 물음.
+- 수단: s42는 그대로, 다윗 머리 둘레 정사각 `(320,255,440,375)`을 768px로 키워 Z-Image img2img(`gen_face_detail.worker` 재사용 · LoRA 없음 · 9스텝) → 줄여 **입~수염 타원 `(360,322,406,360)`만** 가우스 4px로 되붙임. 눈·머리털·몸·배경은 원본 화소. 스크립트 `.forge/scratch/gath_drool.py`(gitignore — 결과만 `samples/gath-drool/`).
+- 문구: 화풍 머리 + 「close-up of the face … three-quarter view … feigning madness with crazed wandering eyes and a slack open mouth, saliva drooling from his lips and dripping down into his beard」.
+- 세기 0.4·0.5·0.6 × 시드 42·7 = 6장(장당 21~31초). 눈 확인: 모두 입가→수염 끝 침 줄·방울이 생김, 세기 높을수록 또렷 · 키운 그림(768)에서는 입술에서 가는 줄로 내려와 수염 끝에서 방울(하얀 끈 아님) · 되붙인 원래 크기에서는 1~2화소라 작음 · 수염 결이 조금 매끈해짐. 0.4·0.5 일부는 수염 아래 목에 방울 자국.
+- 화면 후보: 원본 · 가 s7-0.6 · 나 s42-0.6 · 다 s7-0.5.
+
+## 사람 판정(단계 ④, task 478) — task 478
+
+- 화면: https://claude.ai/artifact/8jhGfrd1JkgUfN6K5PJXZW (폰용 비공개 · 질문 하나 · 얼굴 ×4·상반신 ×2 같은 배율 · 360px·1280px 가로 넘침 0)
+- 답 기록: 고른 장을 `samples/gath-drool/<키>.png`에서 확정(local-edit, 바탕 r14 s42)으로 — rule_ab 고정 절이 아니라 손으로 approve.
