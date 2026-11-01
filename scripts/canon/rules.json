@@ -233,7 +233,8 @@
       "check": "batch.run_night.edit_pick",
       "source": "task 368 · notes/PROMPTING.md 17",
       "since": "2026-10-19 task 368",
-      "note": "정본 참조 편집(2511+Lightning) — 고른 장에만"
+      "note": "정본 참조 편집(2511+Lightning) — 고른 장에만",
+      "retired": "2026-10-30 ADR 261030-011200 — 편집기를 한 번 거치면 원래 화소 화풍이 바뀜(자기 자신 편집 T 갈래부터 「다른 화풍」, task 450) · 생산 채택 1/7. 정체성은 어휘 정본만, 승인본은 고른 바탕. 편집 코드·재현값은 남김"
     },
     {
       "id": "judge.j1-items",
