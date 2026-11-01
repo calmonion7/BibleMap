@@ -597,3 +597,4 @@
 
 - 화면: https://claude.ai/artifact/D4uFG659C4Yudz64juquqf (폰용 비공개 · 질문 하나 · 얼굴 ×4·상반신 ×2 같은 배율 · 360px·1280px 가로 넘침 0)
 - 답 기록: 478과 같이 손으로 approve local-edit(steps에 region·타원·세기·시드·문구).
+- 사람 답: big-w200-s7-0.7 · 메모 없음 → 확정 = `samples/gath-drool/big-w200-s7-0.7.png`(local-edit · 바탕 r14 s42 · 원문 `samples/gath-drool/pick-verdict.txt`).
