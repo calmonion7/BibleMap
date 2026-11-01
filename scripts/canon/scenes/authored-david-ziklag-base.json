@@ -3,55 +3,72 @@
   "id": "authored-david-ziklag-base",
   "title": "다윗과 아기스 — 시글락",
   "verses": {
-    "range": "삼상 27:6-7",
+    "range": "삼상 27:5-7",
     "quotes": {
+      "27:5": "다윗이 아기스에게 이르되 내가 당신께 은혜를 받았거든 지방 성읍 중 한 곳을 주어 나로 거하게 하소서 당신의 종이 어찌 당신과 함께 왕도에 거하리이까",
       "27:6": "아기스가 그 날에 시글락을 그에게 주었으므로 시글락이 오늘까지 유다 왕에게 속하니라",
       "27:7": "다윗이 블레셋 사람의 지방에 거한 날 수는 일년 넉달이었더라"
     }
   },
   "moment": {
     "verse": "27:6",
-    "why": "아기스가 손을 들어 성읍을 다윗에게 내어 주고, 다윗이 그 성읍을 마주 보고 서는 순간 — 정착 이후의 활동(습격 등, 27:8 이하)은 이 절의 요구가 아니다. 성읍을 눈앞에 둠은 본문 밖 · 저작자 정함(27:5 가드에서 청함)."
+    "why": "다윗이 청한 그 날(27:5-6) 가드 왕도에서 아기스가 시글락을 다윗에게 내어 주는 순간을 고정한다 — 다윗이 시글락으로 옮겨 거함과 그 뒤 습격(27:8 이하)은 뒤의 일이다."
   },
   "verse_elements": [
     {
       "verse": "27:6",
       "quote": "아기스가",
       "kind": "인물",
-      "ko": "가드 왕 아기스",
-      "en": "standing, one arm raised gesturing toward the town",
-      "field": "stages[S3].prompt"
+      "ko": "아기스 — 성읍을 내어 줌",
+      "en": "granting him the town",
+      "field": "figures[0].gesture"
     },
     {
       "verse": "27:6",
       "quote": "시글락을 그에게 주었으므로",
       "kind": "행동",
-      "ko": "아기스가 성읍을 내어 줌",
-      "en": "gesturing toward the town",
-      "field": "stages[S3].prompt"
+      "ko": "아기스가 시글락을 다윗에게 내어 줌(손을 다윗 쪽으로 폄 — 손짓은 본문 밖 · 저작자 정함)",
+      "en": "one open hand held out toward David",
+      "field": "figures[0].gesture"
     },
     {
       "verse": "27:6",
       "quote": "그에게",
       "kind": "인물",
-      "ko": "다윗 — 성읍을 받음",
-      "en": "facing the town",
-      "field": "stages[S4].prompt"
+      "ko": "다윗 — 왕이 말로 주는 성읍을 받음(말로 줌은 [추론] — 27:5 「지방 성읍」은 왕도에 없음)",
+      "en": "receiving the king's word",
+      "field": "figures[1].gesture"
+    },
+    {
+      "verse": "27:5",
+      "quote": "당신의 종이",
+      "kind": "행동",
+      "ko": "다윗이 자신을 왕의 종이라 낮춤(두 손 모음은 본문 밖 · 저작자 정함)",
+      "en": "both empty hands clasped before him",
+      "field": "figures[1].gesture"
+    },
+    {
+      "verse": "27:5",
+      "quote": "당신과 함께 왕도에 거하리이까",
+      "kind": "장소",
+      "ko": "가드 왕도",
+      "en": "the royal city of Gath",
+      "field": "whole_background",
+      "note": "가드: 27:3 「가드에서 아기스와 동거하였는데」 [직접] · 왕도에 거함 27:5 [직접] → 그 자리에서 청함 [추론] · 주는 자리가 왕도라는 것은 27:6 「그 날에」 [추론] · 왕의 집 뜰 모양은 본문 밖 · 저작자 정함"
     },
     {
       "verse": "27:6",
       "quote": "시글락을",
       "kind": "장소",
-      "ko": "시글락 성읍과 성문 — 성읍을 눈앞에 둠은 본문 밖 · 저작자 정함(27:5 가드에서 청함)",
-      "en": "a small ancient walled town with a low stone gate",
-      "field": "stages[S1b].prompt"
+      "ko": "시글락 성읍",
+      "out": "27:5 「지방 성읍 중 한 곳」 — 왕도가 아닌 다른 성읍이라 왕도에서 주는 이 자리에 없다(말로 주는 성읍)"
     },
     {
       "verse": "27:6",
       "quote": "그 날에",
       "kind": "때",
-      "ko": "성읍을 준 그 날",
-      "out": "날짜 표지일 뿐 시각·광경 정보가 없는 말 — 이 장면은 내어 주는 순간"
+      "ko": "다윗이 청한 그 날",
+      "out": "날짜 표지 — 자리가 왕도라는 추론에만 씀"
     },
     {
       "verse": "27:6",
@@ -70,33 +87,65 @@
   ],
   "background": [
     {
-      "what": "시글락 성읍 성벽과 성문",
-      "verse": "27:6 · 성읍을 눈앞에 둠은 본문 밖 · 저작자 정함(27:5 가드에서 청함)"
-    },
-    {
-      "what": "네게브 마른 벌판",
-      "verse": "27:6 · 배경 본문 밖 · 저작자 정함"
+      "what": "가드 왕도 왕의 집 앞 뜰",
+      "verse": "27:3 「가드에서 아기스와 동거하였는데」 [직접] · 27:5(왕도) · 27:6 「그 날에」 [추론](그 자리에서 줌) · 뜰 모양 본문 밖 · 저작자 정함"
     }
   ],
   "crowds": [],
   "figures": [
     {
       "cast": "achish",
-      "role": "가드 왕 아기스 — 성읍을 내어 줌",
-      "pose": "손을 들어 성읍을 가리키며 서 있다",
+      "role": "가드 왕 아기스 — 시글락을 내어 줌",
+      "pose": "서서 한 손을 펴 다윗 쪽으로 내밀고 다른 손은 겉옷 자락을 쥔다",
       "prop": "a fold of his robe",
-      "facing": "left",
+      "facing": "right",
       "region": "achish",
-      "verse": "27:6 · 지물 본문 밖 · 저작자 정함"
+      "verse": "27:6 · 손짓·지물 본문 밖 · 저작자 정함",
+      "expression": {
+        "ko": "너그럽게 허락하는 얼굴",
+        "en": "a generous, approving face",
+        "verse": "삼상 27:6(내어 줌) · 표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "한 손을 펴 다윗 쪽으로 내밀어 성읍을 내어 주고, 다른 손은 겉옷 자락을 쥔다",
+        "en": "one open hand held out toward David, granting him the town, the other hand holding a fold of his robe",
+        "verse": "삼상 27:6 「시글락을 그에게 주었으므로」 · 선 자세·손짓 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "가슴과 배를 덮어 여민 검고 짙은 붉은 술 달린 양모 겉옷과 넓은 띠",
+        "en": "a closed black and deep red fringed wool robe with a wide belt, covering his chest and belly",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색 · 갓 아기스 장면과 같음)"
+      },
+      "gaze": "david",
+      "screen_facing": "right",
+      "stage_why": "[직접] 삼상 21:10 「가드 왕 아기스」 · 삼상 27:2 「가드 왕 마옥의 아들 아기스」 — 이미 왕위에 있음. 나이는 본문 어디에도 없고 40대는 본문 밖 · 저작자 정함(카드 achish _why.age — 직책·경력의 대표값)."
     },
     {
       "cast": "david",
-      "role": "다윗 — 성읍을 받음",
-      "pose": "서서 성읍을 마주 본다",
-      "prop": "a sword",
-      "facing": "right",
+      "role": "다윗 — 시글락을 받음",
+      "pose": "왕 앞에 서서 두 빈손을 몸 앞에 모으고 왕의 말을 받는다",
+      "prop": "none",
+      "facing": "left",
       "region": "david",
-      "verse": "27:6 · 지물 본문 밖 · 저작자 정함"
+      "verse": "27:5-6 · 선 자세·손 모음 본문 밖 · 저작자 정함 · 왕의 말로 받음은 [추론](27:5 「지방 성읍」은 왕도에 없음)",
+      "expression": {
+        "ko": "공손하고 고마워하는 얼굴",
+        "en": "a respectful, grateful face",
+        "verse": "삼상 27:5 「내가 당신께 은혜를 받았거든」 · 표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "왕 앞에 서서 두 빈손을 몸 앞에 모으고 왕의 말을 받는다",
+        "en": "standing before the king with both empty hands clasped before him, receiving the king's word",
+        "verse": "삼상 27:5 「당신의 종이」 · 왕의 말로 받음은 [추론](27:5 「지방 성읍」은 왕도에 없음) · 선 자세·손 모음 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "어두운 붉은 양모 튜닉과 가죽 띠",
+        "en": "a dark red wool tunic with a leather belt",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색 red와 맞춤)"
+      },
+      "gaze": "achish",
+      "screen_facing": "left",
+      "stage_why": "[추론] 삼상 27:7 「다윗이 블레셋 사람의 지방에 거한 날 수는 일년 넉달이었더라」 — 블레셋 지방 체류 1년 4개월 끝 무렵 사울이 죽고(삼상 31장), 그 뒤 헤브론에서 왕이 됨(삼하 2:1 「그 후에」 · 삼하 2:4 「유다 족속의 왕을 삼았더라」), 그때 삼하 5:4 「다윗이 삼십 세에 위에 나아가서」라 시글락은 20대 후반. 연대 정본(data/person_events/david.json — 출생 BC 1040경 · 시글락 BC 1011–1010)으로 약 29세 → id david(CAST.md 즉위 전 도망자 20대 구간)."
     }
   ],
   "regions": {
@@ -106,60 +155,32 @@
       1.0,
       1.0
     ],
-    "town": [
-      0.3,
-      0.1,
-      0.7,
-      0.55
-    ],
     "achish": [
-      0.15,
-      0.35,
-      0.33,
-      0.9
+      0.2,
+      0.27,
+      0.37,
+      0.92
     ],
     "david": [
-      0.62,
-      0.36,
-      0.8,
-      0.9
+      0.6,
+      0.27,
+      0.76,
+      0.92
     ]
   },
-  "_regions_why": "성읍(town)은 두 인물 사이 배경 구조물(27:6). 아기스·다윗 모두 성인 남자 세로 0.55·0.54. 주는 자(아기스) 왼쪽, 받는 자(다윗) 오른쪽. 성읍을 눈앞에 둠은 본문 밖 · 저작자 정함(27:5 가드에서 청함).",
+  "_regions_why": "아기스·다윗 모두 세로 0.65 — 사람 수 2(무리 단계 duo 0.60~0.70). 둘 다 카드 키 average라 같은 깊이·같은 발 높이. 주는 자(아기스) 왼쪽 · 받는 자(다윗) 오른쪽은 저작(뼈대 speak_open·listen_clasp 방향).",
   "stages": [
     {
       "id": "S1",
       "kind": "full",
       "region": "full",
-      "verse": "27:6",
-      "prompt": "a dry southern desert plain of pale packed earth, sparse dry scrub, distant low walled town, empty pale sky, no people.",
+      "verse": "27:5-6 · 뜰 모양 본문 밖 · 저작자 정함",
+      "prompt": "the courtyard before the king's house in the royal city of Gath, packed-earth ground, a large stone house wall with a wooden door behind, pale sky, no people.",
       "neg": [
         "people",
         "figures",
         "soldiers",
-        "green field",
         "modern building",
-        "church",
-        "steeple",
-        "cathedral",
-        "chapel",
-        "cross",
-        "bell tower",
-        "spire"
-      ]
-    },
-    {
-      "id": "S1b",
-      "kind": "region",
-      "region": "town",
-      "verse": "27:6 · 성읍을 눈앞에 둠은 본문 밖 · 저작자 정함(27:5 가드에서 청함)",
-      "prompt": "a small ancient walled town with a low stone gate, flat rooftops, dry ground before it, no people.",
-      "neg": [
-        "people",
-        "figures",
-        "modern skyline",
-        "pagoda",
-        "tower",
         "church",
         "steeple",
         "cathedral",
@@ -174,7 +195,7 @@
       "kind": "plate",
       "region": "achish",
       "verse": "27:6",
-      "prompt": "{cast:achish}, standing, one arm raised gesturing toward the town, the other hand holding a fold of his robe, facing left.",
+      "prompt": "{cast:achish}, standing, one open hand held out, the other hand holding a fold of his robe, facing right.",
       "neg": [
         "Israelite dress",
         "crown of Israel",
@@ -186,13 +207,14 @@
       "id": "S4",
       "kind": "plate",
       "region": "david",
-      "verse": "27:6",
-      "prompt": "{cast:david}, standing, facing the town, one hand gripping a sword at his side, facing right.",
+      "verse": "27:5-6",
+      "prompt": "{cast:david}, standing, both empty hands clasped before him, facing left.",
       "neg": [
         "crown",
         "royal robe",
         "armour",
-        "modern clothes"
+        "modern clothes",
+        "sword"
       ]
     }
   ],
@@ -205,8 +227,8 @@
     ],
     "gap_bands": [
       [
-        0.33,
-        0.62
+        0.37,
+        0.6
       ]
     ],
     "crest_x": {
@@ -219,5 +241,46 @@
         0.98
       ]
     }
+  },
+  "situation": {
+    "text": "다윗이 육백 인과 함께 가드 왕 마옥의 아들 아기스에게로 건너가(27:2) 가드에서 아기스와 동거하였다(27:3) — 앞선 일이라 그리지 않는다. 다윗이 아기스에게 「지방 성읍 중 한 곳을 주어 나로 거하게 하소서 당신의 종이 어찌 당신과 함께 왕도에 거하리이까」 하고 청하였고(27:5), 아기스가 그 날에 시글락을 그에게 주었다(27:6 — 고정한 순간). 그래서 이 장면에는 다윗과 아기스 두 사람이 있다. 육백 인과 가족이 가드에 있었으나(27:2-3) 이 말을 나눌 때 그 자리에 있었다는 말은 본문에 없다. 지리: 자리는 가드 왕도다 — 다윗은 가드에서 아기스와 동거하였고(27:3 「가드에서 아기스와 동거하였는데」 [직접]) 왕도에 거하고 있었으며(27:5 「당신과 함께 왕도에 거하리이까」 [직접]), 그 자리에서 청하였다는 것은 [추론]. 아기스가 그 날에 주었으니(27:6 「그 날에」) 주는 자리도 왕도라는 것은 [추론]. 시글락은 말로 주는 성읍이다 [추론]. 시글락은 27:5 「지방 성읍 중 한 곳」 — 왕도가 아닌 다른 성읍이라 이 자리에 없고 그리지 않는다 [추론]. 왕의 집 앞 뜰·돌벽·문은 본문 밖 · 저작자 정함. 「시글락이 오늘까지 유다 왕에게 속하니라」(27:6 후반)와 「일년 넉달」(27:7)은 후대·기간 서술이라 그리지 않는다.",
+    "verse": "삼상 27:5-7",
+    "same_time": {
+      "27:5": "조금 앞 — 같은 대화: 다윗이 아기스에게 지방 성읍 하나를 청함(왕도에 거함 [직접] · 그 자리에서 청함 [추론])",
+      "27:6": "고정한 순간 — 그 날에 아기스가 시글락을 다윗에게 줌 · 후반 「오늘까지 유다 왕에게 속하니라」는 후대 설명",
+      "27:7": "기간 서술 — 한 순간이 아님(다윗 나이 추론에만 씀)"
+    }
+  },
+  "guide": {
+    "depth": {
+      "achish": 1.0,
+      "david": 1.0
+    },
+    "shape": {
+      "achish": "person",
+      "david": "person"
+    },
+    "body": "card",
+    "pose": {
+      "achish": "speak_open",
+      "david": "listen_clasp"
+    },
+    "split": true,
+    "why": "task 482 단계 ① — 가이드가 없어 크기 규칙 둘(generate.figure-scale·height-ratio)이 못 잼이었다. 아기스(왼쪽)는 뼈대 speak_open(화면 오른쪽 상대에게 손을 펴 말함 — 27:6 내어 줌), 다윗(오른쪽)은 listen_clasp(화면 왼쪽 상대의 말을 두 손 모아 들음 — 27:5 「당신의 종이」). 같은 깊이, 카드 체격 몸 너비, 키 0.65는 duo(0.60~0.70) 안. 뜰·집은 문구가 맡는다."
+  },
+  "meaning": {
+    "ko": "가드 왕 아기스가 왕도에서 자기 앞에 선 다윗에게 시글락 성읍을 내어 주고, 다윗이 두 손을 모은 채 그 말을 받는다",
+    "en": "Achish king of Gath, in his royal city, grants the town of Ziklag to David standing before him, and David receives his word with his hands clasped",
+    "verse": "삼상 27:5 「당신의 종이 어찌 당신과 함께 왕도에 거하리이까」 · 27:6 「아기스가 그 날에 시글락을 그에게 주었으므로」 · 뜰·자세·거리는 본문 밖 · 저작자 정함(구도) · 「말을 받는다」는 [추론](시글락은 왕도에 없어 말로 줌)"
+  },
+  "relation": {
+    "ko": "아기스는 왼쪽에서 한 손을 펴 다윗 쪽으로 내밀고, 다윗은 오른쪽에서 두 손을 모은 채 왕을 마주 본다. 둘은 서로 바라본다",
+    "en": "Achish on the left holds one open hand out toward David, and David on the right faces the king with his hands clasped; the two men look at each other",
+    "verse": "삼상 27:5-6(청함·내어 줌) · 좌우 배치·손짓·시선 본문 밖 · 저작자 정함"
+  },
+  "whole_background": {
+    "ko": "가드 왕도 안 왕의 집 앞 뜰 — 다져진 흙 바닥, 돌로 쌓은 큰 집 벽과 나무 문, 엷은 하늘",
+    "en": "the courtyard before the king's house in the royal city of Gath, packed-earth ground, a large stone house wall with a wooden door behind, pale sky",
+    "verse": "삼상 27:3 「가드에서 아기스와 동거하였는데」 · 27:5 「왕도」 · 27:6 「그 날에」 [추론](주는 자리가 왕도) · 왕의 집 뜰·돌벽·문·하늘은 본문 밖 · 저작자 정함(시대 고증 — 철기 초 블레셋 성읍)"
   }
 }
