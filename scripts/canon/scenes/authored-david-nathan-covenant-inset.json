@@ -66,7 +66,12 @@
       "verse": "7:13 「집을 건축할 것이요」(말 속) · 일꾼은 실제 건축 왕상 5:18 「솔로몬의 건축자와 히람의 건축자와 그발 사람이 그 돌을 다듬고」에서 [추론] · 몇 사람만 보임(일곱)은 본문 밖 · 저작자 정함",
       "region": "builders",
       "count": 7,
-      "count_why": "[저작](말 속 장면 — 7:13은 일꾼 수를 말하지 않음 · 실제 건축 왕상 5:15 「담군이 칠만 인이요」 가운데 화면에 보이는 몇 사람 — 가이드 무리 꼴이 그리는 앞줄 둘·뒷줄 다섯과 맞춤)"
+      "count_why": "[저작](말 속 장면 — 7:13은 일꾼 수를 말하지 않음 · 실제 건축 왕상 5:15 「담군이 칠만 인이요」 가운데 화면에 보이는 몇 사람 — 가이드 무리 꼴이 그리는 앞줄 둘·뒷줄 다섯과 맞춤)",
+      "costume": {
+        "ko": "물들이지 않은 무릎 길이 양모 튜닉과 천 띠, 머리천",
+        "en": "in plain knee-length undyed wool tunics with cloth belts and head cloths",
+        "verse": "본문 밖 · 저작자 정함(시대 고증 — 철기 이스라엘 일꾼 차림) · 사람 판정 task 493 \"인부들의 옷차림이 시대상에 안맞\" → 규칙 spec.crowd-era-dress"
+      }
     }
   ],
   "figures": [
@@ -224,7 +229,7 @@
   },
   "whole_background": {
     "ko": "언덕 위 건축 터 — 돌 뜨는 곳에서 크고 매끈하게 다듬어 온 네모난 돌로 쌓아 올라가는 긴 네모난 집, 아직 지붕 없음, 벽을 따라 나무 비계, 곁에 쌓은 다듬은 돌과 백향목 재목 · 일꾼 몇이 다듬어 온 돌을 날라 와 손으로 벽에 쌓음 · 엷은 하늘",
-    "en": "a hilltop building site, the rising walls of a long rectangular stone house built of large smooth stone blocks finished at the quarry, no roof yet, wooden scaffolding along the walls, stacks of finished stones and cedar beams nearby, a few builders carrying squared stone blocks and setting them into the walls by hand, pale sky",
+    "en": "a hilltop building site, the rising walls of a long rectangular stone house built of large smooth stone blocks finished at the quarry, no roof yet, wooden scaffolding along the walls, stacks of finished stones and cedar beams nearby, a few builders in plain knee-length undyed wool tunics with cloth belts and head cloths carrying squared stone blocks and setting them into the walls by hand, pale sky",
     "verse": "삼하 7:13 「집을 건축할 것이요」(말 속) · 자리 대하 3:1 「솔로몬이 예루살렘 모리아 산에 여호와의 전 건축하기를 시작하니」 [추론] · 돌을 다듬어 와 쌓음 왕상 6:7 「돌을 뜨는 곳에서 치석하고 가져다가 건축하였으므로」 [추론] · 백향목 재목 왕상 6:9 「백향목 서까래와 널판으로 덮었고」 [추론] · 긴 네모 꼴 왕상 6:2 [추론] · 비계·지붕 없음·일꾼 몇은 본문 밖 · 저작자 정함(성전 건축 장면과 같은 시대 고증) · 모양·자리·일꾼은 성취 본문(왕상 5-6장 · 대하 3:1)에서 빌린 [추론] — 약속(7:13)에는 없음"
   },
   "situation": {

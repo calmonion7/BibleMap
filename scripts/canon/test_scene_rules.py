@@ -1273,6 +1273,25 @@ class SpeechInset(unittest.TestCase):
         self.assertEqual(recheck.speech_inset_errors(s), [])
 
 
+class CrowdEraDress(unittest.TestCase):
+    """spec.crowd-era-dress(task 493) — 무리도 시대 옷 문구(사람 판정 나단 「인부들의 옷차림이 시대상에 안맞」)."""
+
+    def test_crowd_without_costume_fails(self):
+        s = {"crowds": [{"region": "builders", "count": 7}]}
+        self.assertEqual(len(recheck.crowd_era_dress_errors(s)), 1)
+
+    def test_crowd_costume_must_be_era_and_in_prompt(self):
+        import derive_scene as ds
+        s = {"crowds": [{"region": "builders", "count": 7, "costume": {"ko": "무릎 튜닉", "en": "in plain knee-length wool tunics", "verse": "본문 밖"}}]}
+        with mock.patch.object(ds, "route_prompt", return_value="a few builders in plain knee-length wool tunics carrying stones"):
+            self.assertEqual(recheck.crowd_era_dress_errors(s), [])
+        with mock.patch.object(ds, "route_prompt", return_value="a few builders carrying stones"):
+            self.assertEqual(len(recheck.crowd_era_dress_errors(s)), 1)
+        s["crowds"][0]["costume"]["en"] = "in orange safety vests"
+        with mock.patch.object(ds, "route_prompt", return_value="builders in orange safety vests"):
+            self.assertEqual(len(recheck.crowd_era_dress_errors(s)), 1)
+
+
 class InsetFrameAspect(unittest.TestCase):
     """generate.inset-frame-aspect(task 417) — 곁 장면은 구름 틀 비율로 생성(넓은 화면엔 빈자리에 선 여인 2/2)."""
 

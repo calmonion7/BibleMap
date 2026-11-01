@@ -748,6 +748,15 @@
       "note": "순간 절의 중심 동작이 말을 전하는 것(고하다·전하다·명하다·예언하다)이면 그 말 속 핵심 장면을 뭉게구름 곁 장면으로 — inset.when 「말 속」 · inset.verse는 말 내용 절(장면 인용 절에 넣음) · 곁 장면 명세·구름 자리 규칙은 spec.inset과 같음. 말하는 두 사람만 그리면 무엇을 말하는지 그림에 안 보인다(나단 언약 8시드 사람 「없음」). 지금 걸리는 장면: 나단 언약 7:17 · 라마 사무엘 19:18 · 다윗의 유언 2:1"
     },
     {
+      "id": "spec.crowd-era-dress",
+      "layer": "spec",
+      "scope": "all",
+      "check": "recheck.crowd_era_dress_errors",
+      "source": "사람 판정 task 493 나단 언약 「나머지 그림들은 인부들의 옷차림이 시대상에 안맞이보임 해당시대의 옷차림이 유지되게 규칙추가」",
+      "since": "2026-11-02 task 493",
+      "note": "무리(crowds[])마다 costume{ko,en,verse} — en에 시대 옷 낱말(tunic·robe·cloak·mantle·loincloth·head cloth·veil …), 그 en이 파생 문구(무리를 말하는 관계·배경 문장)에 실림. 옷 문구 없는 무리는 모델이 현대 작업복·중세 옷을 그린다(나단 곁 장면 일꾼 「a few builders carrying squared stone blocks」 8장 중 다수). 카드 인물은 figures[].costume이 맡음. 판정 쪽은 장면 공통 거르기 문항 t.era-dress(모든 사람 — 무리·일꾼 포함 — 시대 옷차림)"
+    },
+    {
       "id": "generate.inset-frame-aspect",
       "layer": "generate",
       "scope": "all",

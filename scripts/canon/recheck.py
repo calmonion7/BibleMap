@@ -757,6 +757,27 @@ def speech_inset_errors(spec):
     return [] if ins.get("when") == "말 속" else [f"순간 {m}이 말을 전하는 때인데 말 속 장면 곁 장면(inset.when 「말 속」)이 없다 — 무엇을 말하는지 그림에 안 보인다"]
 
 
+ERA_GARMENT = re.compile(r"\b(tunics?|robes?|cloaks?|mantles?|loincloths?|kilts?|shawls?|veils?|head ?cloths?|headwraps?|ephods?|sackcloth)\b", re.I)
+
+
+def crowd_era_dress_errors(spec):
+    """무리도 시대 옷차림(task 493, 규칙 spec.crowd-era-dress — 사람 판정 나단 언약 「나머지 그림들은 인부들의 옷차림이 시대상에 안맞이보임
+    해당시대의 옷차림이 유지되게 규칙추가」) — crowds[]마다 costume{ko,en,verse}이 있고 en에 시대 옷 낱말이 있으며 그 en이 파생 문구에 실린다.
+    카드 인물은 figures[].costume(spec.whole-fields)이 맡고, 무리는 옷 문구가 없으면 모델이 현대·중세 옷을 그린다."""
+    out, prompt = [], None
+    for c in spec.get("crowds") or []:
+        cos, name = c.get("costume") or {}, c.get("region", "?")
+        if not all(str(cos.get(k, "")).strip() for k in ("ko", "en", "verse")):
+            out.append(f"무리 {name}: costume ko/en/verse 없음 — 무리 옷차림이 문구에 없으면 시대에 안 맞는 옷이 그려진다")
+            continue
+        if not ERA_GARMENT.search(cos["en"]):
+            out.append(f"무리 {name}: costume.en에 시대 옷 낱말(tunic·robe·cloak·mantle·head cloth …)이 없다 — {cos['en'][:60]!r}")
+        prompt = prompt if prompt is not None else ds.route_prompt(spec)
+        if cos["en"] not in prompt:
+            out.append(f"무리 {name}: costume.en이 파생 문구에 실리지 않았다 — 무리를 말하는 문장(관계·배경)에 그 옷 문구를 넣을 것")
+    return out
+
+
 def has_situation(spec):
     s = spec.get("situation")
     return [] if isinstance(s, dict) and str(s.get("text", "")).strip() else ["situation 칸 없음 — 장면 구절 전부로 쓴 상황 묘사가 없다"]
@@ -826,6 +847,7 @@ SPEC_CHECKS = {
     "recheck.pose_hold_errors": lambda spec, ctx: pose_hold_errors(spec),
     "recheck.inset_errors": lambda spec, ctx: inset_errors(spec),
     "recheck.speech_inset_errors": lambda spec, ctx: speech_inset_errors(spec),
+    "recheck.crowd_era_dress_errors": lambda spec, ctx: crowd_era_dress_errors(spec),
     "recheck.solo_center_errors": lambda spec, ctx: solo_center_errors(spec),
     "recheck.plate_cast_token_errors": lambda spec, ctx: plate_cast_token_errors(spec),
     "recheck.pose_only_errors": lambda spec, ctx: pose_only_errors(spec),

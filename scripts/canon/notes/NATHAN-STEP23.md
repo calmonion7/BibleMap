@@ -94,3 +94,11 @@ python3 batch/rule_ab.py --fixed 493 record '<판정 task 493 + JSON 한 줄>'
 
 - 화면: https://claude.ai/artifact/Ntqgzou8wrwfF98x2aQdBg (같은 주소 갱신 · 합성 8장 전부 · 기계 통과 7)
 - 답 기록: `python3 batch/rule_ab.py --fixed 493 record '<판정 task 493 + JSON 한 줄>'`
+- 사람 답(8시드): s7 · 메모 「나머지 그림들은 인부들의 옷차림이 시대상에 안맞이보임 해당시대의 옷차림이 유지되게 규칙추가」
+
+### 사람 답 결론 (task 493 · 2026-11-02)
+
+- **확정 s7** · 메모 "나머지 그림들은 인부들의 옷차림이 시대상에 안맞이보임 해당시대의 옷차림이 유지되게 규칙추가" · 사람 판정 2번(상한 5).
+- 규칙 신설 **spec.crowd-era-dress**: 무리(crowds[])마다 costume{ko,en,verse} · en에 시대 옷 낱말 · 파생 문구에 실림(시험 CrowdEraDress). 무리 있는 명세 24개 모두 옷 문구가 없어 전 규칙 통과 13 → 7/39(각 장면 차례에 고침).
+- 장면 공통 거르기 문항에 `t.era-dress`(모든 사람 시대 옷차림) — 스킬 ③ 1.
+- 나단 곁 장면 일꾼 costume 「in plain knee-length undyed wool tunics with cloth belts and head cloths」(시대 고증 [저작]) → 두 명세 다시 `[]`. 확정 s7은 옛 문구 그림이라 재검에서 낡음 표시(승인은 그대로).
