@@ -7,7 +7,10 @@
     "quotes": {
       "21:1": "다윗이 놉에 가서 제사장 아히멜렉에게 이르니 아히멜렉이 떨며 다윗을 영접하며 그에게 이르되 어찌하여 네가 홀로 있고 함께 하는 자가 아무도 없느냐",
       "21:2": "다윗이 제사장 아히멜렉에게 이르되 왕이 내게 일을 명하고 이르시기를 내가 너를 보내는 바와 네게 명한 바 일의 아무 것이라도 사람에게 알게 하지 말라 하시기로 내가 나의 소년들을 여차여차한 곳으로 약정하였나이다",
-      "21:6": "제사장이 그 거룩한 떡을 주었으니 거기는 진설병 곧 여호와 앞에서 물려 낸 떡밖에 없음이라",
+      "21:3": "이제 당신의 수중에 무엇이 있나이까 떡 다섯 덩이나 무엇이든지 있는 대로 내 손에 주소서",
+      "21:4": "제사장이 다윗에게 대답하여 가로되 항용 떡은 내 수중에 없으나 거룩한 떡은 있나니 그 소년들이 부녀를 가까이만 아니하였으면 주리라",
+      "21:5": "다윗이 제사장에게 대답하여 가로되 우리가 참으로 삼 일 동안이나 부녀를 가까이 하지 아니하였나이다 나의 떠난 길이 보통 여행이라도 소년들의 그릇이 성결하겠거든 하물며 오늘날 그들의 그릇이 성결치 아니하겠나이까 하매",
+      "21:6": "제사장이 그 거룩한 떡을 주었으니 거기는 진설병 곧 여호와 앞에서 물려 낸 떡밖에 없음이라 이 떡은 더운 떡을 드리는 날에 물려낸 것이더라",
       "21:7": "그 날에 사울의 신하 한 사람이 여호와 앞에 머물러 있었는데 그는 도엑이라 이름하는 에돔 사람이요 사울의 목자장이었더라",
       "21:8": "다윗이 아히멜렉에게 이르되 여기 당신의 수중에 창이나 칼이 없나이까 왕의 일이 급하므로 내가 내 칼과 병기를 가지지 못하였나이다",
       "21:9": "제사장이 가로되 네가 엘라 골짜기에서 죽인 블레셋 사람 골리앗의 칼이 보자기에 싸여 에봇 뒤에 있으니 네가 그것을 가지려거든 가지라 여기는 그 밖에 다른 것이 없느니라 다윗이 가로되 그같은 것이 또 없나니 내게 주소서"
@@ -15,22 +18,46 @@
   },
   "moment": {
     "verse": "21:9",
-    "why": "제사장 아히멜렉이 곁에 걸어 둔 에봇 뒤에서 보자기에 싼 골리앗의 칼을 꺼내 두 손으로 내밀고, 다윗이 두 손을 뻗어 받으려는 순간(21:9 — 「가지려거든 가지라」에 「내게 주소서」로 응해 건네지는 때)을 고정한다 — 진설병을 건넨 21:6과 도엑이 머문 21:7은 같은 날 같은 뜰이다."
+    "why": "제사장 아히멜렉이 「가지려거든 가지라」 하고 다윗이 「내게 주소서」 하여, 보자기에 싼 골리앗의 칼이 아히멜렉의 두 손에서 다윗의 손으로 건네지는 순간(21:9 끝)을 고정한다 — 21:9는 내어 줌과 청함까지만 말하고, 건네짐은 22:10 「골리앗의 칼도 주더이다」 [직접](평행 기사) — 떡을 준 21:6은 조금 앞의 같은 방문이고, 도엑이 여호와 앞에 머물러 있던 21:7은 같은 날 같은 자리다. 다윗이 일어나 가드로 도망함(21:10)은 뒤의 일이다."
+  },
+  "situation": {
+    "text": "요나단이 들에서 다윗과 헤어지고 「다윗은 일어나 떠나고 요나단은 성으로 들어오니라」(20:42) — 앞선 일이라 그리지 않는다. 다윗이 놉에 가서 제사장 아히멜렉에게 이르니 아히멜렉이 떨며 다윗을 영접하며 「어찌하여 네가 홀로 있고 함께 하는 자가 아무도 없느냐」 하였다(21:1). 다윗은 왕의 비밀한 일이라 둘러대고 소년들은 다른 곳으로 약정하였다고 말하였으며(21:2), 떡을 청하였고(21:3-5), 제사장이 그 거룩한 떡을 주었다(21:6 — 조금 앞의 일). 같은 방문에 아히멜렉이 다윗을 위하여 여호와께 물었다(22:10 「아히멜렉이 그를 위하여 여호와께 묻고」 · 22:13 「그를 위하여 하나님께 물어서」 [직접] · 21:1-9와의 순서는 본문에 없음) — 그리지 않는다. 그 날에 사울의 신하 도엑이 여호와 앞에 머물러 있었다(21:7). 다윗이 창이나 칼을 청하자(21:8) 제사장이 보자기에 싸여 에봇 뒤에 있는 골리앗의 칼을 가지려거든 가지라 하였고 다윗이 「그같은 것이 또 없나니 내게 주소서」 하였다(21:9 — 고정한 순간). 그래서 이 장면에는 다윗 · 아히멜렉 · 도엑 세 사람이 있다. 다윗이 홀로 왔음은 21:1 [직접] — 21:2의 소년들은 다른 곳에 있어 이 자리에 없다. 도엑이 그 날 거기 있었음은 21:7 「그 날에 사울의 신하 한 사람이 여호와 앞에 머물러 있었는데」 [직접], 그가 이 건넴을 보았음은 22:9 「이새의 아들이 놉에 와서 아히둡의 아들 아히멜렉에게 이른 것을 내가 보았었는데」 · 22:10 「블레셋 사람 골리앗의 칼도 주더이다」 · 22:22 「그 날에 에돔 사람 도엑이 거기 있기로」에서 [추론] — 그래서 순간에 보이는 자리에 둔다. 놉의 다른 제사장들(22:11 「놉에 있는 제사장들」)이 이 대화 자리에 있었다는 말은 본문에 없어 그리지 않는다. 지리: 놉은 제사장들의 성읍이다(22:19 「제사장들의 성읍 놉」 [직접]). 이 자리는 여호와 앞이다 — 진설병을 여호와 앞에서 물려 냈고(21:6) 도엑이 여호와 앞에 머물렀으며(21:7) 칼이 에봇 뒤에 있었으니(21:9) 성소 곁이라는 것은 [추론]. 성소가 장막이라는 것은 삼하 7:6 「집에 거하지 아니하고 장막과 회막에 거하며 행하였나니」에서 [추론]. 장막 앞 뜰·돌담·걸어 둔 에봇의 못·좌우 배치는 본문 밖 · 저작자 정함. 다윗은 숨어 있던 들(20:24 「다윗이 들에 숨으니라」 · 20:41 「다윗이 곧 바위 남편에서 일어나서」)에서 요나단과 헤어져 놉으로 왔다 — 화면에서는 장막 휘장이 뒤로 길게 늘어서고, 오른쪽(바깥)에서 온 다윗이 왼쪽의 아히멜렉을 마주하며, 도엑은 오른편 뒤 휘장 앞에 머물러 선다(21:7 「여호와 앞에 머물러」 — 성소 앞 · 좌우·앞뒤는 저작자 정함). 이어서 「그 날에 다윗이 사울을 두려워하여 일어나 도망하여 가드 왕 아기스에게로 가니」(21:10)는 뒤의 일이라 그리지 않는다.",
+    "verse": "삼상 21:1-9",
+    "same_time": {
+      "21:1": "조금 앞 — 같은 방문: 다윗이 놉에 와 아히멜렉이 떨며 맞음 · 다윗이 홀로 옴(순간에도 그대로 [직접])",
+      "21:2": "조금 앞 — 같은 대화: 왕의 일이라 둘러댐 · 소년들은 다른 곳(이 자리에 없음)",
+      "21:3": "조금 앞 — 같은 대화: 떡을 청함",
+      "21:4": "조금 앞 — 같은 대화: 거룩한 떡뿐이라 함",
+      "21:5": "조금 앞 — 같은 대화: 소년들의 성결을 말함",
+      "21:6": "조금 앞 — 제사장이 거룩한 떡(진설병)을 줌 · 순간에는 받은 떡이 다윗 발치 천 꾸러미 위에 놓여 있음(자리 본문 밖 · 저작자 정함)",
+      "21:7": "같은 때 — 그 날에 도엑이 여호와 앞에 머물러 있음(건넴을 보았음은 22:9-10 [추론])",
+      "21:8": "조금 앞 — 같은 대화: 창이나 칼을 청함 · 다윗에게 칼과 병기가 없음(순간에도 그대로 [직접])",
+      "21:9": "고정한 순간 — 「가지려거든 가지라」 · 「내게 주소서」 — 보자기에 싼 골리앗의 칼이 건네짐(건네짐은 22:10 「골리앗의 칼도 주더이다」 [직접])"
+    }
   },
   "verse_elements": [
     {
       "verse": "21:1",
-      "quote": "놉에 가서 제사장 아히멜렉에게",
+      "quote": "다윗이 놉에 가서",
       "kind": "장소",
-      "ko": "놉 성막 앞 뜰",
-      "en": "a small dry courtyard before a tent shrine at Nob",
-      "field": "whole_background"
+      "ko": "놉 — 성소 장막 앞 뜰",
+      "en": "a small courtyard before the tent sanctuary at Nob",
+      "field": "whole_background",
+      "note": "놉만 21:1 [직접] · 성소 곁은 21:6·7·9 「여호와 앞」 · 「에봇 뒤」 [추론] · 장막은 삼하 7:6 [추론] · 뜰·돌담 모양은 본문 밖 · 저작자 정함"
+    },
+    {
+      "verse": "21:1",
+      "quote": "제사장 아히멜렉에게",
+      "kind": "인물",
+      "ko": "제사장 아히멜렉 — 세마포 에봇 차림(삼상 22:18 [추론])",
+      "en": "a white linen ephod",
+      "field": "figures[0].costume"
     },
     {
       "verse": "21:1",
       "quote": "아히멜렉이 떨며",
       "kind": "행동",
-      "ko": "아히멜렉이 떨며 맞이함",
+      "ko": "아히멜렉이 떨며 근심함(맞을 때 떨었음 [직접] · 건넬 때까지 이어짐은 본문 밖 · 저작자 정함)",
       "en": "trembling",
       "field": "figures[0].expression"
     },
@@ -38,161 +65,250 @@
       "verse": "21:1",
       "quote": "홀로 있고 함께 하는 자가 아무도 없느냐",
       "kind": "인물",
-      "ko": "다윗이 홀로 옴",
+      "ko": "다윗이 홀로 옴 — 함께 온 사람 없음",
       "en": "has come alone with no companions",
       "field": "relation"
     },
     {
       "verse": "21:6",
-      "quote": "진설병",
+      "quote": "진설병 곧 여호와 앞에서 물려 낸 떡",
       "kind": "지물",
-      "ko": "진설병 곧 쌓인 거룩한 떡과 낮은 상",
-      "en": "a low wooden table of stacked round loaves",
+      "ko": "다윗이 받은 진설병 — 다윗 발치 천 꾸러미 위에 쌓아 둔 납작한 떡 여러 덩이(받았음은 21:6 [직접] · 놓인 자리·덩이 수는 본문 밖 · 저작자 정함)",
+      "en": "several flat loaves bigger than a palm, stacked up",
       "field": "whole_background"
     },
     {
+      "verse": "21:6",
+      "quote": "제사장이 그 거룩한 떡을 주었으니",
+      "kind": "행동",
+      "ko": "제사장이 떡을 건넴",
+      "out": "칼을 건네기 조금 앞의 건넴(순간 밖) — 받은 떡이 다윗 몫으로 놓인 모습은 진설병 요소가 실음"
+    },
+    {
+      "verse": "21:6",
+      "quote": "이 떡은 더운 떡을 드리는 날에 물려낸 것이더라",
+      "kind": "때",
+      "ko": "떡을 물려 낸 날의 설명",
+      "out": "떡의 내력 설명 — 한 순간의 모습이 아님"
+    },
+    {
       "verse": "21:7",
-      "quote": "여호와 앞에 머물러 있었는데",
+      "quote": "사울의 신하 한 사람이 여호와 앞에 머물러 있었는데",
       "kind": "인물",
-      "ko": "뜰 가장자리에 머물러 지켜보는 사울의 신하 한 사람",
-      "en": "a lone man lingering at the edge of the courtyard watching",
-      "field": "whole_background"
+      "ko": "도엑 — 장막 곁 뒤쪽에 머물러 서서 두 사람을 지켜봄(머묾 [직접] · 지켜봄은 22:9-10 [추론] · 자리 본문 밖 · 저작자 정함)",
+      "en": "lingering back by the tent, watching the two men",
+      "field": "figures[2].gesture"
+    },
+    {
+      "verse": "21:7",
+      "quote": "에돔 사람이요 사울의 목자장이었더라",
+      "kind": "인물",
+      "ko": "도엑 — 에돔 사람 · 사울의 목자장(목자 차림은 [추론])",
+      "en": "herdsman's tunic",
+      "field": "figures[2].costume"
+    },
+    {
+      "verse": "21:7",
+      "quote": "그 날에",
+      "kind": "때",
+      "ko": "도엑이 있던 날 = 다윗이 온 날",
+      "out": "날짜 표지 — 도엑이 같은 때 그 자리에 있었다는 근거로만 씀"
     },
     {
       "verse": "21:8",
       "quote": "내 칼과 병기를 가지지 못하였나이다",
       "kind": "지물",
-      "ko": "다윗은 허리에 무기가 없음",
+      "ko": "다윗은 허리에 칼도 병기도 없음",
       "en": "no weapon at his belt",
       "field": "figures[1].costume"
     },
     {
+      "verse": "21:8",
+      "quote": "왕의 일이 급하므로",
+      "kind": "행동",
+      "ko": "다윗이 급하다고 말함 — 급하고 긴장한 얼굴(말은 둘러댄 것이나 사울을 피해 온 처지 [추론] 21:10)",
+      "en": "a tense, hurried face",
+      "field": "figures[1].expression"
+    },
+    {
       "verse": "21:9",
-      "quote": "골리앗의 칼이 보자기에 싸여",
+      "quote": "골리앗의 칼이",
       "kind": "지물",
-      "ko": "보자기에 싼 골리앗의 큰 칼",
-      "en": "huge cloth-wrapped sword",
+      "ko": "골리앗의 칼 — 크고 긴 칼(사전 goliath-sword L1)",
+      "en": "a huge long sword",
+      "field": "relation"
+    },
+    {
+      "verse": "21:9",
+      "quote": "보자기에 싸여",
+      "kind": "지물",
+      "ko": "칼이 보자기에 싸여 날이 보이지 않음(사전 wrapped-in-cloth L1 · L2)",
+      "en": "a sword wrapped in cloth",
       "field": "figures[0].gesture"
     },
     {
       "verse": "21:9",
       "quote": "에봇 뒤에 있으니",
       "kind": "지물",
-      "ko": "곁에 걸어 둔 에봇 뒤에서 칼을 꺼냄",
-      "en": "out from behind the ephod hanging beside him",
-      "field": "figures[0].gesture"
-    },
-    {
-      "verse": "21:9",
-      "quote": "에봇 뒤에 있으니",
-      "kind": "지물",
-      "ko": "칼이 놓인 자리인 걸어 둔 에봇",
-      "en": "a linen ephod hanging on a peg beside the curtain",
+      "ko": "칼이 있던 자리인 에봇 — 장막 휘장 곁 못에 걸어 둔 제사장의 조끼 옷(걸어 둠은 [추론] — 입은 에봇 뒤일 수 없음 · 못은 본문 밖 · 저작자 정함)",
+      "en": "a priest's vest-like garment hanging on a peg beside the curtain",
       "field": "whole_background"
     },
     {
       "verse": "21:9",
-      "quote": "가지려거든 가지라",
+      "quote": "네가 그것을 가지려거든 가지라",
       "kind": "행동",
-      "ko": "아히멜렉이 칼을 두 손으로 내밀어 건넴",
-      "en": "holding it out in front with both hands",
+      "ko": "아히멜렉이 칼을 두 손으로 다윗 쪽에 내밂(두 손은 본문 밖 · 저작자 정함)",
+      "en": "holding it out with both hands toward the young man",
       "field": "figures[0].gesture"
     },
     {
       "verse": "21:9",
       "quote": "내게 주소서",
       "kind": "행동",
-      "ko": "다윗이 두 손을 뻗어 칼을 받음",
-      "en": "both hands reaching out and gripping the far end of the huge wrapped sword",
+      "ko": "다윗이 한 손을 뻗어 칼 꾸러미 끝을 잡아 받음(손은 본문 밖 · 저작자 정함)",
+      "en": "reaching out one hand to grip the far end of the wrapped sword",
       "field": "figures[1].gesture"
+    },
+    {
+      "verse": "21:9",
+      "quote": "네가 엘라 골짜기에서 죽인 블레셋 사람",
+      "kind": "때",
+      "ko": "다윗이 엘라 골짜기에서 골리앗을 죽인 일",
+      "out": "지난 일(삼상 17장) — 칼의 내력을 밝히는 말 속 내용"
+    },
+    {
+      "verse": "21:9",
+      "quote": "여기는 그 밖에 다른 것이 없느니라",
+      "kind": "지물",
+      "ko": "그곳에 다른 무기가 없음",
+      "out": "말 속 내용 — 다른 무기를 그림에 두지 않는 것으로 지킴(문항 t.one-sword)"
+    },
+    {
+      "verse": "21:2",
+      "quote": "내가 나의 소년들을 여차여차한 곳으로 약정하였나이다",
+      "kind": "인물",
+      "ko": "다윗의 소년들",
+      "out": "다른 곳에 있다고 한 사람들 — 이 자리에 없음(21:1 「홀로 있고」)"
     },
     {
       "verse": "21:2",
       "quote": "왕이 내게 일을 명하고",
       "kind": "행동",
       "ko": "다윗이 왕의 명을 핑계로 둘러댄 말",
-      "out": "칼을 받기 전 맞이할 때 한 말(순간 밖)"
+      "out": "칼을 받기 조금 앞, 맞이할 때 한 말(순간 밖)"
+    },
+    {
+      "verse": "21:3",
+      "quote": "떡 다섯 덩이나",
+      "kind": "지물",
+      "ko": "다윗이 청한 떡 다섯 덩이",
+      "out": "청한 수(조금 앞 대화) — 준 수는 본문에 없음"
     }
   ],
   "meaning": {
-    "ko": "놉 성막 앞에서 제사장 아히멜렉이 보자기에 싼 골리앗의 칼을 두 손으로 내밀어 다윗에게 건넨다",
-    "en": "Before the tent shrine at Nob the priest holds out the huge cloth-wrapped sword of a giant with both hands and hands it over to the young man",
-    "verse": "삼상 21:9"
+    "ko": "놉의 성소 장막 앞에서 제사장 아히멜렉이 보자기에 싼 골리앗의 칼을 두 손으로 내밀어 홀로 온 다윗에게 건네고, 사울의 목자장 도엑이 장막 곁에서 그것을 지켜본다",
+    "en": "Before the tent sanctuary at Nob the priest Ahimelech holds out the cloth-wrapped sword of Goliath with both hands and hands it to David, who has come alone, while Saul's chief herdsman Doeg watches from beside the tent",
+    "verse": "삼상 21:9 「네가 그것을 가지려거든 가지라 … 내게 주소서」 · 21:1 「홀로 있고」 · 21:7 「여호와 앞에 머물러 있었는데」 · 도엑이 지켜봄은 [추론](22:9-10) · 자리·손·거리는 본문 밖 · 저작자 정함(구도)"
   },
   "relation": {
-    "ko": "아히멜렉의 두 손과 다윗의 두 손이 둘 사이의 보자기 싼 큰 칼 한 자루를 함께 잡고 있어 칼이 제사장에게서 다윗에게 건네지는 중이고, 다윗은 홀로 와 함께한 자가 없다",
-    "en": "the priest's two hands and the young man's two hands hold the same single huge cloth-wrapped sword between them, so the sword is passing from the priest to the young man, who has come alone with no companions",
-    "verse": "삼상 21:1 「홀로 있고 함께 하는 자가 아무도 없느냐」 · 21:9 「내게 주소서」 · 손 위치 본문 밖 · 저작자 정함"
+    "ko": "왼쪽 아히멜렉의 두 손과 오른쪽 다윗의 한 손이 둘 사이의 보자기 싼 큰 칼 한 자루를 함께 잡아 칼이 제사장에게서 다윗에게 건네지는 중이고, 다윗은 홀로 와 함께한 자가 없다(서로 바라봄·도엑의 지켜봄은 인물 칸 gaze·gesture가 실음)",
+    "en": "between the priest and the young man is a huge long sword, a sword wrapped round and round in cloth so the blade cannot be seen, longer than a man's arm; the priest's two hands and the young man's hand hold the same single wrapped sword, a straight iron sword, still wrapped in its cloth, passing from the priest to the young man, who has come alone with no companions",
+    "verse": "삼상 21:9 「가지려거든 가지라」 · 「내게 주소서」 · 21:1 「홀로 있고 함께 하는 자가 아무도 없느냐」 · 21:7 · 도엑이 지켜봄은 [추론](22:9-10) · 손 수·좌우·시선은 본문 밖 · 저작자 정함 · 칼 모양은 사전 goliath-sword L1 · wrapped-in-cloth L2(날이 보이지 않음 — 21:9 「보자기에 싸여」) · sword L1"
   },
   "whole_background": {
-    "ko": "놉 성막 앞 마른 뜰 — 낮은 돌담, 장막 휘장 앞 진설병 쌓인 낮은 상, 뜰 가장자리에 머물러 지켜보는 사내 하나, 장막 휘장 곁 못에 걸어 둔 에봇",
-    "en": "a small dry courtyard before a tent shrine at Nob, a low stone wall, a heavy tent curtain with a low wooden table of stacked round loaves, a linen ephod hanging on a peg beside the curtain, a lone man lingering at the edge of the courtyard watching",
-    "verse": "삼상 21:1·6·7 「놉」「진설병」「머물러 있었는데」 · 뜰 모습 본문 밖 · 저작자 정함 · 걸어 둔 에봇 자리는 21:9 「에봇 뒤」 해석 · 저작자 정함"
+    "ko": "놉 성소 장막 앞의 작은 뜰 — 다져진 흙 바닥, 낮은 돌담, 뒤로 길게 늘어선 두꺼운 장막 휘장, 휘장 곁 못에 걸어 둔 제사장의 조끼 옷(에봇), 다윗 발치 천 꾸러미 위에 쌓아 둔 납작한 떡 여러 덩이, 엷은 하늘",
+    "en": "a small courtyard before the tent sanctuary at Nob, packed-earth ground, a low stone wall, a heavy tent curtain stretching along the back, a priest's vest-like garment hanging on a peg beside the curtain, several flat loaves bigger than a palm, stacked up on a cloth bundle at the young man's feet, pale sky",
+    "verse": "삼상 21:1 「다윗이 놉에 가서」 · 21:6 「진설병 곧 여호와 앞에서 물려 낸 떡」 · 21:9 「에봇 뒤에 있으니」 · 성소 곁은 [추론](21:6·7 「여호와 앞」) · 장막은 [추론](삼하 7:6 「장막과 회막에 거하며 행하였나니」) · 걸어 둔 에봇은 [추론](입은 에봇 뒤일 수 없음 — 사전 ephod L3) · 뜰·돌담·휘장 길이·못·떡 놓인 자리(천 꾸러미)·하늘은 본문 밖 · 저작자 정함(시대 고증 — 철기 초 이스라엘 성소)"
   },
   "background": [
     {
-      "what": "놉 성막 앞뜰, 마른 흙바닥",
-      "verse": "21:1"
-    },
-    {
-      "what": "성막 휘장과 낮은 떡상 — 배경 뒤편",
-      "verse": "21:6",
-      "region": "shrine"
+      "what": "놉 성소 장막 앞 뜰 — 장막 휘장과 걸어 둔 에봇",
+      "verse": "21:1(놉) · 21:6·7(여호와 앞) · 21:9(에봇) · 장막 [추론](삼하 7:6) · 뜰 모양 본문 밖 · 저작자 정함"
     }
   ],
   "crowds": [],
   "figures": [
     {
       "cast": "ahimelech",
-      "role": "제사장 아히멜렉",
-      "pose": "곁에 걸어 둔 에봇 뒤에서 보자기에 싼 칼을 두 손으로 꺼내 내밀며 서 있다",
+      "role": "제사장 아히멜렉 — 골리앗의 칼을 건넴",
+      "pose": "장막 앞에 서서 보자기에 싼 칼을 두 손으로 다윗 쪽에 내민다",
       "prop": "a huge cloth-wrapped sword",
       "facing": "right",
       "region": "ahimelech",
-      "verse": "21:9",
+      "verse": "21:9 · 선 자세·두 손 본문 밖 · 저작자 정함",
       "expression": {
         "ko": "떨며 근심하는 조심스러운 얼굴",
-        "en": "a careful, worried, trembling face",
-        "verse": "삼상 21:1 「떨며」"
+        "en": "a careful, worried face, trembling",
+        "verse": "삼상 21:1 「아히멜렉이 떨며 다윗을 영접하며」 — 맞을 때 떨었음 [직접] · 건넬 때까지 이어짐은 본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "곁에 걸어 둔 에봇 뒤에서 꺼낸 보자기에 싼 큰 칼을 두 손으로 앞으로 내민다",
-        "en": "drawing the huge cloth-wrapped sword out from behind the ephod hanging beside him and holding it out in front with both hands",
-        "verse": "삼상 21:9 「보자기에 싸여 에봇 뒤에 있으니」 · 걸어 둔 에봇·손은 본문 밖 · 저작자 정함"
+        "ko": "보자기에 싼 칼을 두 손으로 다윗 쪽에 내민다",
+        "en": "a sword wrapped in cloth, holding it out with both hands toward the young man",
+        "verse": "삼상 21:9 「보자기에 싸여」 · 「네가 그것을 가지려거든 가지라」 · 두 손·손 자세 본문 밖 · 저작자 정함"
       },
       "costume": {
         "ko": "옅은 겉옷 위에 흰 세마포 에봇",
         "en": "a white linen ephod over a pale robe",
-        "verse": "삼상 22:18 「세마포 에봇 입은 자」 · 겉옷 색 본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+        "verse": "삼상 22:18 「세마포 에봇 입은 자 팔십오 인을 죽였고」 — 놉 제사장들의 차림(아히멜렉 포함 22:16) [추론] · 겉옷 색 본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
       },
       "gaze": "david",
-      "screen_facing": "right"
+      "screen_facing": "right",
+      "stage_why": "[추론] 삼상 22:20 「아히둡의 아들 아히멜렉의 아들 중 하나가 피하였으니 그 이름은 아비아달이라」 · 삼상 23:6 「아히멜렉의 아들 아비아달이 그일라 다윗에게로 도망할 때에 손에 에봇을 가지고 내려왔었더라」 — 에봇을 맡을 만큼 자란 아들이 있으니 중년. 삼상 22:11 「제사장 아히멜렉과 그 아비의 온 집 곧 놉에 있는 제사장들」 — 놉 제사장 집의 어른. 50대는 본문 밖 · 저작자 정함(카드 ahimelech ageBand middle — 단계 카드 하나)."
     },
     {
       "cast": "david",
-      "role": "다윗",
-      "pose": "두 손을 뻗어 칼을 받으려 선다",
+      "role": "다윗 — 홀로 와서 칼을 받음",
+      "pose": "아히멜렉 앞에 서서 한 손을 뻗어 칼 꾸러미 끝을 잡는다",
       "prop": "the huge cloth-wrapped sword",
       "facing": "left",
       "region": "david",
-      "verse": "21:9",
+      "verse": "21:9 · 선 자세·한 손 본문 밖 · 저작자 정함",
       "expression": {
-        "ko": "급하고 지친 얼굴",
-        "en": "an urgent, weary face",
-        "verse": "삼상 21:8 「급하므로」"
+        "ko": "급하고 긴장한 얼굴",
+        "en": "a tense, hurried face",
+        "verse": "삼상 21:8 「왕의 일이 급하므로」(다윗의 말 — 21:2의 둘러댐) · 사울을 피해 온 처지는 [추론](21:10 「그 날에 다윗이 사울을 두려워하여」) · 표정 본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "두 손을 뻗어 칼 꾸러미 끝을 받쳐 잡는다",
-        "en": "both hands reaching out and gripping the far end of the huge wrapped sword",
-        "verse": "삼상 21:9 「내게 주소서」 · 손 본문 밖 · 저작자 정함"
+        "ko": "한 손을 뻗어 칼 꾸러미 끝을 잡아 받는다",
+        "en": "reaching out one hand to grip the far end of the wrapped sword",
+        "verse": "삼상 21:9 「내게 주소서」 · 한 손·잡는 자리 본문 밖 · 저작자 정함"
       },
       "costume": {
         "ko": "짙은 붉은 양모 튜닉과 짙은 갈색 가죽 띠, 허리에 무기 없음",
         "en": "a deep red wool tunic with a dark brown leather belt, no weapon at his belt",
-        "verse": "삼상 21:8 「내 칼과 병기를 가지지 못하였나이다」 · 옷 색 저작자 정함(카드 층 옷 색과 같음)"
+        "verse": "삼상 21:8 「내 칼과 병기를 가지지 못하였나이다」 · 옷 색 본문 밖 · 저작자 정함(카드 층 옷 색 red와 같음)"
       },
       "gaze": "ahimelech",
-      "screen_facing": "left"
+      "screen_facing": "left",
+      "stage_why": "[추론] 본문은 삼상 17:42 「그가 젊고 붉고 용모가 아름다움이라」(소년기)와 삼하 5:4 「다윗이 삼십 세에 위에 나아가」(상한) 사이만 말한다. 소년기를 지났음은 삼상 18:13 「천부장을 삼으매」 · 삼상 18:27 「사울이 그 딸 미갈을 다윗에게 아내로 주었더라」가 받친다. 놉은 요나단과 헤어진 바로 뒤(삼상 20:42 「다윗은 일어나 떠나고」)이고 같은 날 가드로 간다(삼상 21:10 「그 날에 다윗이 사울을 두려워하여 일어나 도망하여 가드 왕 아기스에게로 가니」). 성인·20대와 약 27세는 프로젝트 연대 정본(data/person_events/david.json — 출생 BC 1040경 · 놉 BC 1013경)에서 나온 값이라 id david(CAST.md 즉위 전 도망자 20대 구간 · 갓 아기스 장면과 같은 날)."
+    },
+    {
+      "cast": "doeg",
+      "role": "에돔 사람 도엑 — 사울의 목자장, 여호와 앞에 머물러 지켜봄",
+      "pose": "뒤쪽 장막 곁에 서서 두 사람을 지켜본다",
+      "prop": "none",
+      "facing": "left",
+      "region": "doeg",
+      "verse": "21:7 · 지켜봄은 [추론](22:9-10) · 자리·자세 본문 밖 · 저작자 정함",
+      "expression": {
+        "ko": "말없이 엿보는 차가운 얼굴",
+        "en": "a cold, watchful face",
+        "verse": "삼상 22:9 「아히멜렉에게 이른 것을 내가 보았었는데」 [추론](지켜봄) · 표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "장막 곁 뒤쪽에 머물러 서서 두 사람을 지켜본다",
+        "en": "lingering back by the tent, watching the two men",
+        "verse": "삼상 21:7 「여호와 앞에 머물러 있었는데」 · 지켜봄은 [추론](22:9-10 · 22:22 「그 날에 에돔 사람 도엑이 거기 있기로」) · 자리 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "수수한 회갈색 양모 목자 튜닉",
+        "en": "a plain gray-brown wool herdsman's tunic",
+        "verse": "삼상 21:7 「사울의 목자장이었더라」 [추론](목자 차림) · 색·수수함은 본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+      },
+      "gaze": "ahimelech",
+      "screen_facing": "left",
+      "stage_why": "[추론] 삼상 21:7 「그는 도엑이라 이름하는 에돔 사람이요 사울의 목자장이었더라」 — 왕의 목자들을 거느리는 직책이라 다 자란 어른. 삼상 22:9 「때에 에돔 사람 도엑이 사울의 신하 중에 섰더니」 — 왕의 신하 자리. 나이는 본문 어디에도 없고 40대는 본문 밖 · 저작자 정함(카드 doeg _why.age — 직책·경력의 대표값 · 단계 카드 하나)."
     }
   ],
   "regions": {
@@ -202,33 +318,33 @@
       1.0,
       1.0
     ],
-    "shrine": [
-      0.3,
-      0.05,
-      0.65,
-      0.42
-    ],
     "ahimelech": [
-      0.15,
-      0.35,
-      0.33,
-      0.9
+      0.28,
+      0.34,
+      0.43,
+      0.92
     ],
     "david": [
-      0.6,
+      0.54,
+      0.34,
+      0.69,
+      0.92
+    ],
+    "doeg": [
+      0.8,
       0.35,
-      0.78,
-      0.9
+      0.91,
+      0.81
     ]
   },
-  "_regions_why": "두 성인 남자, 세로 0.55(21:9 마주 선 장면 — 나이 차이 크지 않음). 아히멜렉 왼쪽(에봇·떡상 뒤 인물), 다윗 오른쪽(받는 자) — 21:9 대화 순서.",
+  "_regions_why": "사람 수 3(무리 단계 small 0.45~0.60). 아히멜렉·다윗은 세로 0.58 · 같은 발 높이 0.92(카드 키 average 둘). 도엑은 뒤쪽 — 발 0.81에서 지평선(0.92 − 0.93 × 0.58 ≈ 0.381)으로 계산한 키 0.46(average)이라 구역 높이 0.46(generate.height-ratio · figure-scale 하한 0.45). 주는 자(아히멜렉) 왼쪽 장막 앞 · 받는 자(다윗) 오른쪽 · 도엑 오른편 뒤 장막 끝은 저작(뼈대 plead_out·speak_open_left 방향). 둘 사이 손목 간격은 가로 약 0.12(가이드 1216px에서 약 146px)로 골리앗의 칼 길이(사전 goliath-sword size 0.6 × 키 0.58 ≈ 223px)보다 짧게 — 칼 한 자루를 둘이 함께 잡을 거리(첫 가이드 구역 0.22·0.60에서는 손목 간격 약 290px로 칼보다 멀었음).",
   "stages": [
     {
       "id": "S1",
       "kind": "full",
       "region": "full",
-      "verse": "21:1",
-      "prompt": "a small dry courtyard of pale packed earth in front of a tent shrine, low stone wall, sparse dry grass, empty pale sky, no people.",
+      "verse": "21:1·6·9 · 장막 [추론](삼하 7:6) · 뜰 모양 본문 밖 · 저작자 정함",
+      "prompt": "a small courtyard of packed earth before a tent sanctuary, a low stone wall, a heavy tent curtain stretching along the back, a priest's vest-like garment hanging on a peg beside the curtain, several flat loaves stacked on a cloth bundle, pale sky, no people.",
       "neg": [
         "people",
         "figures",
@@ -245,64 +361,66 @@
       ]
     },
     {
-      "id": "S1b",
-      "kind": "region",
-      "region": "shrine",
-      "verse": "21:6",
-      "prompt": "a heavy tent curtain backdrop with a low wooden table bearing stacked round flatbread loaves, a linen ephod hanging on a peg beside the curtain, dim interior shadow, no people.",
-      "neg": [
-        "people",
-        "figures",
-        "church",
-        "pagoda",
-        "temple roof",
-        "modern furniture",
-        "steeple",
-        "cathedral",
-        "chapel",
-        "cross",
-        "bell tower",
-        "spire"
-      ]
-    },
-    {
       "id": "S3",
       "kind": "plate",
       "region": "ahimelech",
       "verse": "21:9",
-      "prompt": "{cast:ahimelech}, standing, drawing a huge cloth-wrapped sword out from behind the ephod hanging beside him and holding it out with both hands, facing right.",
+      "prompt": "{cast:ahimelech}, standing, holding out a long cloth-wrapped sword with both hands, facing right.",
       "neg": [
         "armour",
         "crown",
         "modern clothes",
-        "two swords"
+        "two swords",
+        "bare blade",
+        "unsheathed blade"
       ]
     },
     {
       "id": "S4",
       "kind": "plate",
       "region": "david",
-      "verse": "21:9",
-      "prompt": "{cast:david}, standing, unarmed, both arms reaching out to receive a huge wrapped sword, facing left.",
+      "verse": "21:8-9",
+      "prompt": "{cast:david}, standing, unarmed, one hand reaching out to take a long wrapped sword, facing left.",
       "neg": [
         "armour",
         "crown",
         "royal robe",
-        "modern clothes"
+        "modern clothes",
+        "sword at belt",
+        "bare blade",
+        "unsheathed blade"
+      ]
+    },
+    {
+      "id": "S5",
+      "kind": "plate",
+      "region": "doeg",
+      "verse": "21:7",
+      "prompt": "{cast:doeg}, standing, arms at his sides, watching, facing left.",
+      "neg": [
+        "armour",
+        "crown",
+        "modern clothes",
+        "sword",
+        "spear"
       ]
     }
   ],
-  "negatives": [],
+  "negatives": [
+    "bare blade",
+    "unsheathed blade"
+  ],
   "judge": {
     "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
     "figures": [
       "ahimelech",
-      "david"
+      "david",
+      "doeg"
     ],
     "gap_bands": [
       [
-        0.33,
-        0.6
+        0.43,
+        0.54
       ]
     ],
     "crest_x": {
@@ -315,5 +433,24 @@
         0.98
       ]
     }
+  },
+  "guide": {
+    "depth": {
+      "ahimelech": 1.0,
+      "david": 1.0,
+      "doeg": 0.85
+    },
+    "shape": {
+      "ahimelech": "person",
+      "david": "person",
+      "doeg": "person"
+    },
+    "body": "card",
+    "pose": {
+      "ahimelech": "plead_out",
+      "david": "speak_open_left"
+    },
+    "split": true,
+    "why": "단계 ① — 가이드가 없어 크기 규칙 둘(generate.figure-scale·height-ratio)이 못 잼이었다. 아히멜렉(왼쪽)은 뼈대 plead_out(두 팔을 가슴 높이로 앞으로 뻗어 두 손목을 나란히 — 21:9 「가지려거든 가지라」 칼을 두 손으로 내밂, generate.pose-hold 「손 … 내밂」), 다윗(오른쪽)은 speak_open_left(화면 왼쪽으로 앞 팔을 가슴 높이로 뻗음 — 21:9 「내게 주소서」 한 손으로 받음). 두 손으로 받는 왼쪽 뼈대(plead_out을 x로 뒤집은 꼴)는 make_guide에 없어 한 손으로 저작. 도엑은 뒤쪽 서 있는 사람 꼴(깊이 0.85 — 발 y 차와 같은 앞뒤를 밝기로도 줌). 카드 체격 몸 너비. 뼈대가 있어 스텝별 나눔(generate.split-control). 뜰·장막·에봇·떡은 문구가 맡는다."
   }
 }
