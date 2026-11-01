@@ -707,7 +707,7 @@ def flight_height_errors(spec):
     return [f"{fl['object']} 세로 가운데 {mid:.3f} ≠ {fl['from']} 어깨 {sy:.3f}±{FLIGHT_TOL} — 던진 팔 높이로 날지 않음"] if abs(mid - sy) > FLIGHT_TOL else []
 
 
-INSET_WHEN = ("앞선 때", "그 뒤")
+INSET_WHEN = ("앞선 때", "그 뒤", "말 속")   # 말 속: task 487 — 말을 전하는 순간의 말 내용(spec.speech-inset)
 
 
 def inset_errors(spec):
@@ -741,6 +741,20 @@ def inset_errors(spec):
     if len(cx) >= 2 and not min(cx) < (x0 + x1) / 2 < max(cx):
         out.append("구름 가운데가 인물들 사이가 아니다 — 한 사람 머리 곁이면 그 사람의 생각으로 읽힌다")
     return out
+
+
+SPEECH_ACT = re.compile(r"(고하|전하|명하|예언하)")
+
+
+def speech_inset_errors(spec):
+    """말을 전하는 순간은 말 속 장면을 뭉게구름으로(task 487, 규칙 spec.speech-inset — 사람 판정 나단 언약 「무엇을 말하는지 모르겠음
+    … 말하는 내용의 장면을 … 뭉개뭉개로 표기하면 좋을듯 규칙으로」) — 순간 절에 고하다·전하다·명하다·예언하다가 있으면 inset.when 「말 속」
+    곁 장면이 있어야 한다. 말 내용 절(inset.verse)은 장면 인용 절에 넣는다(spec.inset이 함께 잰다)."""
+    m = (spec.get("moment") or {}).get("verse", "")
+    if not SPEECH_ACT.search((spec.get("verses") or {}).get("quotes", {}).get(m, "")):
+        return []
+    ins = spec.get("inset") or {}
+    return [] if ins.get("when") == "말 속" else [f"순간 {m}이 말을 전하는 때인데 말 속 장면 곁 장면(inset.when 「말 속」)이 없다 — 무엇을 말하는지 그림에 안 보인다"]
 
 
 def has_situation(spec):
@@ -811,6 +825,7 @@ SPEC_CHECKS = {
     "recheck.seated_height_errors": lambda spec, ctx: seated_height_errors(spec),
     "recheck.pose_hold_errors": lambda spec, ctx: pose_hold_errors(spec),
     "recheck.inset_errors": lambda spec, ctx: inset_errors(spec),
+    "recheck.speech_inset_errors": lambda spec, ctx: speech_inset_errors(spec),
     "recheck.solo_center_errors": lambda spec, ctx: solo_center_errors(spec),
     "recheck.plate_cast_token_errors": lambda spec, ctx: plate_cast_token_errors(spec),
     "recheck.pose_only_errors": lambda spec, ctx: pose_only_errors(spec),

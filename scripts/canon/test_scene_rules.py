@@ -1259,6 +1259,20 @@ class Inset(unittest.TestCase):
         self.assertTrue(any("곁 장면" in x for x in check_scenes.verse_element_errors(s, ds.route_prompt(s))))
 
 
+class SpeechInset(unittest.TestCase):
+    """spec.speech-inset(task 487) — 말을 전하는 순간은 말 속 장면 곁 장면(사람 판정 나단 「무엇을 말하는지 모르겠음 … 뭉개뭉개 … 규칙으로」)."""
+
+    def test_speech_moment_without_inset_fails(self):
+        s = {"moment": {"verse": "7:17"}, "verses": {"quotes": {"7:17": "나단이 이 모든 말씀과 이 모든 묵시대로 다윗에게 고하니라"}}}
+        self.assertEqual(len(recheck.speech_inset_errors(s)), 1)
+        s["inset"] = {"when": "말 속"}
+        self.assertEqual(recheck.speech_inset_errors(s), [])
+
+    def test_non_speech_moment_passes(self):
+        s = {"moment": {"verse": "27:6"}, "verses": {"quotes": {"27:6": "아기스가 그 날에 시글락을 그에게 주었으므로"}}}
+        self.assertEqual(recheck.speech_inset_errors(s), [])
+
+
 class InsetFrameAspect(unittest.TestCase):
     """generate.inset-frame-aspect(task 417) — 곁 장면은 구름 틀 비율로 생성(넓은 화면엔 빈자리에 선 여인 2/2)."""
 
