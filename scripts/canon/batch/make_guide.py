@@ -103,6 +103,20 @@ def seated(d, x0, y0, x1, y1, v):
         d.polygon([(cx - r * 1.3, y0 + 2 * r), (cx + r * 1.3, y0 + 2 * r), (cx + r * 1.6, y1), (cx - r * 1.6, y1)], fill=v)
 
 
+CROWD_SHOULDER = 0.45   # 무리 실루엣 어깨 반너비 ÷ 몸 아래 너비(규칙 generate.crowd-shoulders) — person의 0.3이면 원뿔 기둥이라 「막대기 같은 신하」(task 498)
+CROWD_BOX = 0.4         # 무리 한 사람 상자 너비 ÷ 줄 키(옛 0.3 — 가늘게 그려짐)
+
+
+def crowd_person(d, x0, y0, x1, y1, v):
+    """task 499 — 무리 한 사람: person과 같되 어깨가 넓은 몸(어깨 0.9 × 아래 너비). 원뿔 기둥이면 사람이 막대기처럼 그려짐(사람 판정 498)."""
+    h, cx = y1 - y0, (x0 + x1) / 2
+    bw = min(x1 - x0, h * max(BODY["w"], S.build_width()))
+    r = h * HEAD_R["person"]
+    d.ellipse([cx - r, y0, cx + r, y0 + 2 * r], fill=v)
+    sh = y0 + 2 * r
+    body(d, (cx - bw * CROWD_SHOULDER, sh), (cx + bw * CROWD_SHOULDER, sh), cx, y0, y1, bw, v)
+
+
 def crowd(d, x0, y0, x1, y1, v):
     """작은 실루엣 두 줄. 줄 높이는 발 y에서(task 409, 규칙 generate.eye-level-perspective): 보통 키 어른 화면 키 = (발 y − 지평선) ÷ 눈높이 비.
     발이 지평선 위인 줄(강 건너 둑·언덕 — 평지 눈높이 셈 밖)은 옛 상자 비(뒷줄 0.558 · 앞줄 0.62 × 상자 높이)."""
@@ -110,13 +124,14 @@ def crowd(d, x0, y0, x1, y1, v):
     for row, (foot, old, val) in enumerate(((y0 + h * 0.62 * 0.9, h * 0.62 * 0.9, round(v * 0.92)), (y1, h * 0.62, v))):
         ph = S.screen_height(foot / H, PERSP["hy"]) * H if foot / H > PERSP["hy"] else old
         top = foot - ph
-        step = ph * 0.32
-        n = max(1, int((x1 - x0 - ph * 0.3) / step))
+        hb = ph * CROWD_BOX / 2
+        step = ph * (CROWD_BOX + 0.02)
+        n = max(1, int((x1 - x0 - hb * 2) / step))
         for i in range(n):
-            x = x0 + ph * 0.15 + i * step + (step / 2 if row == 0 else 0)
+            x = x0 + hb + i * step + (step / 2 if row == 0 else 0)
             dy = (i % 3) * ph * 0.04                                              # 키 들쭉날쭉(고정 무늬)
-            if x + ph * 0.15 <= x1:
-                person(d, x - ph * 0.15, top + dy, x + ph * 0.15, top + ph, val)
+            if x + hb <= x1:
+                crowd_person(d, x - hb, top + dy, x + hb, top + ph, val)
 
 
 def boat(d, x0, y0, x1, y1, v):

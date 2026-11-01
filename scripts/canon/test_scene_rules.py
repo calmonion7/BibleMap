@@ -1292,6 +1292,17 @@ class CrowdEraDress(unittest.TestCase):
             self.assertEqual(len(recheck.crowd_era_dress_errors(s)), 1)
 
 
+class CrowdShoulders(unittest.TestCase):
+    """generate.crowd-shoulders(task 499) — 가이드 무리 실루엣은 어깨 있는 몸(사람 판정 498 「신하들 너무 막대기 같고」)."""
+
+    def test_crowd_shoulder_wide(self):
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as MG
+        self.assertGreaterEqual(MG.CROWD_SHOULDER * 2, 0.9)
+        self.assertGreaterEqual(MG.CROWD_BOX, 0.4)
+
+
 class InsetFrameAspect(unittest.TestCase):
     """generate.inset-frame-aspect(task 417) — 곁 장면은 구름 틀 비율로 생성(넓은 화면엔 빈자리에 선 여인 2/2)."""
 

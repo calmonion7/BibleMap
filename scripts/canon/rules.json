@@ -757,6 +757,15 @@
       "note": "무리(crowds[])마다 costume{ko,en,verse} — en에 시대 옷 낱말(tunic·robe·cloak·mantle·loincloth·head cloth·veil …), 그 en이 파생 문구(무리를 말하는 관계·배경 문장)에 실림. 옷 문구 없는 무리는 모델이 현대 작업복·중세 옷을 그린다(나단 곁 장면 일꾼 「a few builders carrying squared stone blocks」 8장 중 다수). 카드 인물은 figures[].costume이 맡음. 판정 쪽은 장면 공통 거르기 문항 t.era-dress(모든 사람 — 무리·일꾼 포함 — 시대 옷차림)"
     },
     {
+      "id": "generate.crowd-shoulders",
+      "layer": "generate",
+      "scope": "all",
+      "check": "test:test_scene_rules",
+      "source": "사람 판정 task 498 스바 여왕 「신하들 너무 막대기 같고」 · 문항 먼저 검증 t.crowd-natural(s303 3/3 틀림)",
+      "since": "2026-11-02 task 499",
+      "note": "가이드 무리 꼴(make_guide.crowd)의 한 사람은 어깨 있는 몸 — 어깨 너비 ≥ 몸 아래 너비 × 0.9(CROWD_SHOULDER 0.45), 한 사람 상자 ≥ 줄 키 × 0.4(CROWD_BOX). 옛 꼴은 person과 같은 원뿔(어깨 0.6 × 아래 너비)·상자 0.3이라 작게 줄지어 선 무리가 어깨·팔 없는 막대기로 그려졌다. 대가: 같은 구역에 그려지는 사람 수가 줄어든다(무리 수는 문구가 나름)"
+    },
+    {
       "id": "generate.inset-frame-aspect",
       "layer": "generate",
       "scope": "all",
