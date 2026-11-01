@@ -42,7 +42,8 @@ description: BibleMap 장면 그림 저작 절차 — 한 장면을 ① 명세(�
 
 통과 기준 — 둘 다:
 - `python3 -c "import recheck; print(recheck.spec_failures('<sid>', details=True))"` → 실패·못 잼 0
-- scripture-reviewer 에이전트 판정표 틀림 0 (명세 파일·장면 구절을 주고 읽기 전용으로). 지적을 고친 뒤에는 **같은 검토자에게 SendMessage로 재검토**를 받는다 — 고치면서 새 어긋남이 생긴다(A1: 1차 틀림 2 → 2차 틀림 0 · 약함 2).
+- scripture-reviewer 에이전트 판정표 틀림 0 (명세 파일·장면 구절을 주고 읽기 전용으로). 지적을 고친 뒤에는 **같은 검토자에게 SendMessage로 재검토**를 받는다 — 고치면서 새 어긋남이 생긴다(A1: 1차 틀림 2 → 2차 틀림 0 · 약함 2). 근거 하나를 고치면 같은 말을 다루는 칸(situation·background·verse_elements·figures[].verse·meaning)을 모두 찾아 함께 고친다(A1-2 2차 약함이 바로 옆 칸). 1차가 틀림 0이고 수정이 영문 파생 문구를 바꾸지 않으면 재검토와 s42 생성을 나란히 돌려도 된다.
+- 옛 판 방식 명세(meaning·whole_background 없음, `stages`만 있음)는 장면 전체 칸을 새로 쓰고 `stages` 문구·`regions`·`judge.gap_bands`도 같은 말로 맞춘다 — 옛 구도가 본문 밖 저작이면(A1-2: 시글락 성벽을 눈앞에 둠) 장소부터 본문으로 다시 정한다.
 
 지킬 것: 인용은 `data/bible/verses.json` 원문 복사 · 「못 그림」 사유로 요소를 빼지 않음 · 본문 > 사람 판단.
 
@@ -114,3 +115,4 @@ description: BibleMap 장면 그림 저작 절차 — 한 장면을 ① 명세(�
 - 2026-11-01 — 처음 만듦(규칙 원장 87개 · CONTEXT 장면 절 · 장면 6 갓 아기스 task 461~479 진행을 절차로 옮김)
 - 2026-11-01 — 원장·ADR 엇갈림 처리법(`retired` 칸)으로 바꿈 — `edit.canon-ref-edit` 폐기 표시(ba37a50)
 - 2026-11-01 — 본문 재검토 절차 · 요소 영문 짝·stage_why 책 이름 함정 · 샘플은 확정 장만 커밋 — A1 라마 사무엘(task 480·481)
+- 2026-11-01 — 같은 말 칸 함께 고치기 · 재검토와 생성 나란히 · 옛 판 명세 다시 쓰기 — A1-2 시글락(task 482·483)
