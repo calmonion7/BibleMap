@@ -316,7 +316,7 @@ def wall_material_errors(spec):
     return [f"재질 없는 벽 문구 「{'·'.join(sorted(set(h.lower() for h in hit)))}」 — 매끈한 회벽으로 그려진다"] if hit else []
 
 
-INFLATE_BUILD = re.compile(r"\b(barrel|massive|huge|enormous|bulky)\b", re.I)
+INFLATE_BUILD = re.compile(r"\b(barrel|massive|huge|enormous|bulky)\b(?=(?:[\s,-]+[a-z]+){0,2}?[\s,-]+(?:torso|chest|body|build|frame|physique|shoulders?|belly|waist|arms?|limbs|man|figure)\b)", re.I)   # task 488: 몸 낱말이 뒤따를 때만 — 「a huge cloth-wrapped sword」(지물)는 체격 아님
 
 
 def inflating_build_errors(spec):

@@ -1031,6 +1031,14 @@ class NoInflatingBuild(unittest.TestCase):
     def test_gibeah_passes(self):
         self.assertEqual(recheck.inflating_build_errors(gibeah()), [])
 
+    def test_huge_prop_is_not_build(self):
+        # task 488 — 지물 문구의 huge(골리앗 칼)는 체격이 아니다 · 몸 낱말이 뒤따르면 그대로 걸림
+        import derive_scene as ds
+        with mock.patch.object(ds, "route_prompt", return_value="lean shoulders, holding the huge cloth-wrapped sword"):
+            self.assertEqual(recheck.inflating_build_errors(gibeah()), [])
+        with mock.patch.object(ds, "route_prompt", return_value="a massive, heavy chest"):
+            self.assertEqual(len(recheck.inflating_build_errors(gibeah())), 1)
+
 
 class EditSizeInCrop(unittest.TestCase):
     """edit.size-in-crop — 앞 촉 편집 지시의 크기는 사전 parts.point.edit_en(크롭 안 자루에 견줌), 손에 견주지 않음(m8e 「창촉이 큰것 같음」)."""
