@@ -101,6 +101,9 @@ description: BibleMap 장면 그림 저작 절차 — 한 장면을 ① 명세(�
 - 판정 결론은 같은 묶음 안에서만 비교 — 같은 파일도 묶음마다 뒤집힌다.
 - `verse_elements[i].en`은 그 `field` 칸 영문 안에 글자 그대로 있어야 한다(`spec.verse-elements`) — 요소 영문을 고치면 칸 영문도 같은 말로. 고친 뒤 파생 문구를 출력해 낱말 겹침(「listening, listening」)을 본다.
 - 백그라운드 명령은 `cd scripts/canon`이 안 먹고 레포 맨 위에서 돌 수 있다(나단 첫 생성이 `batch/rule_ab.py` 못 찾음) — 스크립트는 절대 경로로 부르고, grep 거르기에 `Errno`도 넣는다.
+- 셸은 zsh라 `S="42 7"; for s in $S`가 낱말로 안 나뉜다(나단 곁 장면 복사 전부 실패) — 시드 목록은 `for s in 42 7 5 …`로 직접 쓴다.
+- 곁 장면(`inset`) 생성은 `rule_ab gen`이 아니라 `batch/inset_try.py gen → comp` → `samples/<dir>/composition-A-s*.png`·`inset-A-s*.png`로 복사 → `rule_ab --fixed N judge`. gen 전에 두 명세 가이드를 `samples/<dir>/guide-<scene>-<1|2>.png`로 먼저 그린다(없으면 FileNotFoundError). gen은 있는 그림을 건너뛰므로 곁 장면만 다시 그리려면 옛 곁 장면 그림을 다른 폴더로 옮긴다.
+- 「구름 안 장면」처럼 구름 속 인물을 묻는 문항은 합성 그림에서 작게 보여 곁 장면 원본보다 엄하게 걸린다 — 구름 속 인물의 신원 표지(왕이면 관 등)를 차림 덮어쓰기로 분명히 준다(나단 곁 장면 0/8 → 금관).
 - `verse_elements[].quote`는 `verses.quotes` 안의 절이어야 한다 — 장면 구절 밖 근거(예: 15:14)는 situation·whole_background 근거 칸에만.
 - `stage_why` 인용마다 책 이름을 붙인다(「삼상 19:18 「…」」) — 장:절만 있으면 대조 못 함으로 걸린다.
 
@@ -126,3 +129,4 @@ description: BibleMap 장면 그림 저작 절차 — 한 장면을 ① 명세(�
 - 2026-11-01 — 본문 재검토 절차 · 요소 영문 짝·stage_why 책 이름 함정 · 샘플은 확정 장만 커밋 — A1 라마 사무엘(task 480·481)
 - 2026-11-01 — 같은 말 칸 함께 고치기 · 재검토와 생성 나란히 · 옛 판 명세 다시 쓰기 — A1-2 시글락(task 482·483)
 - 2026-11-01 — 「묶음 진행」 절(하위 에이전트 나눔·막힘 셋 가르기·지물 낱말 확정 먼저·PID 잇기) · 백그라운드 절대 경로 · quote는 장면 구절 안 — 독대·소수 묶음(task 487~492)
+- 2026-11-02 — zsh 시드 목록 · 곁 장면 생성 순서(가이드 먼저·inset_try·옛 그림 옮기기) · 구름 속 인물 신원 표지 — 나단 언약 말 속 곁 장면(task 493·496)
