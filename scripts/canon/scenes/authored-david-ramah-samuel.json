@@ -259,5 +259,19 @@
       "david": "speak_open"
     },
     "split": true
+  },
+  "approved": {
+    "final": {
+      "path": "night-pick",
+      "seed": 303,
+      "kind": "base",
+      "image": "samples/ramah-step23/composition-A-s303.png",
+      "by": "user",
+      "on": "2026-11-01",
+      "spec_hash": "106d0321821d",
+      "prompt_hash": null,
+      "rules_version": "ad46498afcf6",
+      "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
+    }
   }
 }
