@@ -19,7 +19,7 @@ description: BibleMap 장면 그림 저작 절차 — 한 장면을 ① 명세(�
 | 직전 장면의 실제 진행 예 | `scripts/canon/notes/<장면>-STEP1.md`·`-STEP23.md`(최근: `GATH-*`) |
 | 지금 재검 결과 | `scripts/canon/notes/RECHECK.md` |
 
-원장과 ADR이 갈리면 **ADR이 이긴다**. 알려진 예: `edit.canon-ref-edit`는 ADR `261030-011200`으로 기본 경로에서 빠졌다(정체성은 어휘 정본만).
+원장과 ADR이 갈리면 **ADR이 이긴다** — 발견하면 원장 항목에 `"retired": "<날짜> <ADR> — 까닭"`을 달아 맞추고 `recheck.py ledger && specs`. 폐기 규칙은 `"retired"` 칸이 있는 항목이다(재검·통과율에서 빠짐).
 
 ## 진행 방식
 
@@ -109,3 +109,4 @@ description: BibleMap 장면 그림 저작 절차 — 한 장면을 ① 명세(�
 ## 고친 이력
 
 - 2026-11-01 — 처음 만듦(규칙 원장 87개 · CONTEXT 장면 절 · 장면 6 갓 아기스 task 461~479 진행을 절차로 옮김)
+- 2026-11-01 — 원장·ADR 엇갈림 처리법(`retired` 칸)으로 바꿈 — `edit.canon-ref-edit` 폐기 표시(ba37a50)
