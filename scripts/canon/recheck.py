@@ -163,7 +163,7 @@ def thrown_guide_errors(spec):
     return [] if shapes & AIR_SHAPES else [f"순간 {v}에 던짐·쏨 동사 — 명세 guide에 허공 물체 꼴({'·'.join(sorted(AIR_SHAPES))})이 없다"]
 
 
-INDOOR = re.compile(r"\b(inside|interior|room|indoors)\b", re.I)
+INDOOR = re.compile(r"\b(inside(?!\s+(?:the\s+)?(?:[a-z-]+\s+){0,3}(?:city|town|camp|walls?)\b)|interior|room|indoors)\b", re.I)   # task 484: 「inside the royal city」(성읍 안 야외)는 실내 아님
 
 
 def guide_backdrop_errors(spec):

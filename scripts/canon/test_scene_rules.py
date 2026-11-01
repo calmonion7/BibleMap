@@ -178,6 +178,13 @@ class GuideBackdrop(unittest.TestCase):
         s["whole_background"]["en"] = "a dry riverbank under an open sky"
         self.assertEqual(recheck.guide_backdrop_errors(s), [])
 
+    def test_inside_city_is_outdoor(self):
+        # task 484 — 「inside the royal city」는 성읍 안 야외(시글락 가드 왕도 광장)라 방 바탕을 요구하지 않는다
+        s = gibeah()
+        s["guide"].pop("backdrop")
+        s["whole_background"]["en"] = "an open square inside the royal city of Gath, houses crowded behind"
+        self.assertEqual(recheck.guide_backdrop_errors(s), [])
+
     def test_gibeah_passes(self):
         self.assertEqual(recheck.guide_backdrop_errors(gibeah()), [])
 

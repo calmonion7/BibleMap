@@ -380,7 +380,7 @@
       "check": "recheck.guide_backdrop_errors",
       "source": "notes/GIBEAH-STEP23.md · task 400 시도 a2(가이드 위쪽 빈 검은 띠 → 캡션 글자 4/8·붉은 여백 선)",
       "since": "2026-10-22 task 400",
-      "note": "실내 장면(배경 문구 inside·room·interior)의 guide는 backdrop room(바닥선 위를 먼 뒷벽 깊이로 채움) — 빈 띠는 글자·지면으로 그려짐. 옆벽은 원근 사다리꼴(꽉 찬 끝 띠는 여백 선)"
+      "note": "(고침 task 484: inside 뒤에 city·town·camp·walls가 오면 성읍 안 야외라 실내로 보지 않음 — 시글락 「an open square inside the royal city of Gath」가 방 바탕을 요구받음) 실내 장면(배경 문구 inside·room·interior)의 guide는 backdrop room(바닥선 위를 먼 뒷벽 깊이로 채움) — 빈 띠는 글자·지면으로 그려짐. 옆벽은 원근 사다리꼴(꽉 찬 끝 띠는 여백 선)"
     },
     {
       "id": "generate.guide-body-mass",
