@@ -598,3 +598,4 @@
 - 화면: https://claude.ai/artifact/D4uFG659C4Yudz64juquqf (폰용 비공개 · 질문 하나 · 얼굴 ×4·상반신 ×2 같은 배율 · 360px·1280px 가로 넘침 0)
 - 답 기록: 478과 같이 손으로 approve local-edit(steps에 region·타원·세기·시드·문구).
 - 사람 답: big-w200-s7-0.7 · 메모 없음 → 확정 = `samples/gath-drool/big-w200-s7-0.7.png`(local-edit · 바탕 r14 s42 · 원문 `samples/gath-drool/pick-verdict.txt`).
+- 어깨 얼룩 고침(사람 「고쳐줘」): 같은 다시 그린 머리를 타원 둘(입~수염 `(358,320,408,356)` + 수염 밑 방울 `(365,348,380,368)`, 흐림 3px)로 다시 붙임 → 어깨는 원본 화소 · 확정 = `samples/gath-drool/big-w200-s7-0.7-fix.png`. 다음부터 붙이는 범위를 아래로 넓힐 때는 옷·살결이 걸리는지 차이 지도로 먼저 볼 것.

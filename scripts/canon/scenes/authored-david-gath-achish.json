@@ -310,7 +310,7 @@
     "final": {
       "path": "local-edit",
       "seed": 42,
-      "image": "samples/gath-drool/big-w200-s7-0.7.png",
+      "image": "samples/gath-drool/big-w200-s7-0.7-fix.png",
       "steps": [
         {
           "part": "mouth-beard",
@@ -321,18 +321,29 @@
             480,
             435
           ],
-          "paste_ellipse": [
-            358,
-            320,
-            408,
-            376
-          ],
-          "feather": 4,
+          "feather": 3,
           "strength": 0.7,
           "seed": 7,
           "prompt": "thick glistening strands of saliva drooling from his open mouth, his beard soaked and dripping with spittle, a long drop of drool hanging below his beard",
           "script": ".forge/scratch/gath_drool.py r2",
-          "base": "samples/gath-step23-r14/composition-A-s42.png"
+          "base": "samples/gath-step23-r14/composition-A-s42.png",
+          "paste_mask": {
+            "ellipses": [
+              [
+                358,
+                320,
+                408,
+                356
+              ],
+              [
+                365,
+                348,
+                380,
+                368
+              ]
+            ],
+            "why": "어깨 얼룩 빼고 입~수염 + 수염 밑 방울만(사람 「고쳐줘」)"
+          }
         }
       ],
       "by": "user",
