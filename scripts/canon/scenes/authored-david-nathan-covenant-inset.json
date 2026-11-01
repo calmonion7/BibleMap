@@ -1,0 +1,228 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-david-nathan-covenant-inset",
+  "title": "나단 언약 — 말 속: 다윗의 아들이 여호와의 이름을 위하여 집을 건축함",
+  "inset_of": "authored-david-nathan-covenant",
+  "verses": {
+    "range": "삼하 7:12-13",
+    "quotes": {
+      "7:12": "네 수한이 차서 네 조상들과 함께 잘 때에 내가 네 몸에서 날 자식을 네 뒤에 세워 그 나라를 견고케 하리라",
+      "7:13": "저는 내 이름을 위하여 집을 건축할 것이요 나는 그 나라 위를 영원히 견고케 하리라"
+    }
+  },
+  "moment": {
+    "verse": "7:13",
+    "why": "곁 장면(큰 장면 authored-david-nathan-covenant의 뭉게구름 안 — 사람 판정 task 487 메모 \"나단선지자가 말하는 내용의 장면을 보여주면 좋을듯\" · 규칙 spec.speech-inset): 큰 장면 순간은 7:17 나단이 다윗에게 고함이고, 그 말 속 핵심 — 다윗의 몸에서 날 자식이 뒤를 이어 왕이 되고(7:12) 그가 여호와의 이름을 위하여 집을 건축함(7:13) — 을 여기 싣는다. 말 속의 앞일이라 큰 장면의 방 안에 있지 않다. 여호와는 형상 없이(ADR 261025-120741)."
+  },
+  "verse_elements": [
+    {
+      "verse": "7:12",
+      "quote": "네 몸에서 날 자식을 네 뒤에 세워",
+      "kind": "인물",
+      "ko": "다윗의 몸에서 날 자식 — 다윗의 뒤를 이은 젊은 왕(7:12-13에는 이름이 없음 · 솔로몬임은 대상 22:9 [직접] · 그림·문구에 이름은 쓰지 않음)",
+      "en": "the young king",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "7:13",
+      "quote": "저는 내 이름을 위하여 집을 건축할 것이요",
+      "kind": "행동",
+      "ko": "그가 여호와의 이름을 위하여 집을 건축함 — 일꾼에게 일을 시켜 지음(왕상 5:17 「왕이 영을 내려」에서 [추론] · 손짓은 본문 밖 · 저작자 정함)",
+      "en": "directing the work",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "7:13",
+      "quote": "집을",
+      "kind": "장소",
+      "ko": "여호와의 이름을 위한 집 — 쌓아 올라가는 돌집(모양은 실제 건축 왕상 6:2·6:7에서 [추론] · 지붕 없음·비계는 본문 밖 · 저작자 정함)",
+      "en": "the rising walls of a long rectangular stone house",
+      "field": "whole_background"
+    },
+    {
+      "verse": "7:12",
+      "quote": "네 수한이 차서 네 조상들과 함께 잘 때에",
+      "kind": "때",
+      "ko": "다윗이 죽어 조상들과 함께 잠",
+      "out": "곁 장면 순간 앞의 다른 때 — 다윗은 이 장면에 없음"
+    },
+    {
+      "verse": "7:13",
+      "quote": "나는 그 나라 위를 영원히 견고케 하리라",
+      "kind": "행동",
+      "ko": "여호와께서 그 나라 위를 영원히 견고케 함",
+      "out": "말 속의 더 먼 앞일 — 한 순간에 보이는 일이 아님"
+    }
+  ],
+  "background": [
+    {
+      "what": "언덕 위 건축 터 — 쌓아 올라가는 돌집",
+      "verse": "7:13 「집을 건축할 것이요」(말 속) · 자리는 대하 3:1 「솔로몬이 예루살렘 모리아 산에 여호와의 전 건축하기를 시작하니」 [추론] · 집 모양은 왕상 6:2·6:7 [추론] · 비계·재목 더미는 본문 밖 · 저작자 정함"
+    }
+  ],
+  "crowds": [
+    {
+      "what": "일꾼들 — 다듬어 온 네모난 돌을 날라 와 손으로 벽에 쌓음",
+      "verse": "7:13 「집을 건축할 것이요」(말 속) · 일꾼은 실제 건축 왕상 5:18 「솔로몬의 건축자와 히람의 건축자와 그발 사람이 그 돌을 다듬고」에서 [추론] · 몇 사람만 보임(일곱)은 본문 밖 · 저작자 정함",
+      "region": "builders",
+      "count": 7,
+      "count_why": "[저작](말 속 장면 — 7:13은 일꾼 수를 말하지 않음 · 실제 건축 왕상 5:15 「담군이 칠만 인이요」 가운데 화면에 보이는 몇 사람 — 가이드 무리 꼴이 그리는 앞줄 둘·뒷줄 다섯과 맞춤)"
+    }
+  ],
+  "figures": [
+    {
+      "cast": "solomon",
+      "role": "약속된 아들 — 다윗의 뒤를 이은 젊은 왕(7:12-13에는 이름이 없음)",
+      "pose": "올라가는 집 앞에 서서 빈손 한 손을 펴 일꾼들 쪽으로 내밀어 일을 시킨다",
+      "prop": "none",
+      "facing": "right",
+      "region": "solomon",
+      "verse": "7:12-13 · 선 자세·손짓 본문 밖 · 저작자 정함",
+      "expression": {
+        "ko": "진지하고 곧은 젊은 얼굴",
+        "en": "an earnest young face",
+        "verse": "본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "젊은 왕이 올라가는 집 앞에 서서 빈손 한 손을 펴 일꾼들 쪽으로 내밀어 일을 시킨다",
+        "en": "the young king standing before the rising house, one empty hand open toward the builders, directing the work",
+        "verse": "삼하 7:12 「네 몸에서 날 자식을 네 뒤에 세워」 · 7:13 「저는 내 이름을 위하여 집을 건축할 것이요」 · 일을 시켜 지음은 왕상 5:17 「이에 왕이 영을 내려」에서 [추론] · 선 자세·손짓은 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "짙은 청색 고운 베 겉옷과 수놓은 띠",
+        "en": "a deep blue fine linen robe with an embroidered belt",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색 blue와 맞춤 · 성전 건축 장면과 같음)"
+      },
+      "gaze": {
+        "ko": "일꾼들과 올라가는 집 쪽을 바라봄",
+        "en": "looking toward the builders and the rising walls",
+        "verse": "본문 밖 · 저작자 정함"
+      },
+      "screen_facing": "right",
+      "stage_why": "[직접] 대상 22:9 「그 이름을 솔로몬이라 하리니」 · 대상 22:10 「저가 내 이름을 위하여 전을 건축할지라」 — 7:12-13의 자식은 솔로몬이다(같은 약속 대상 17:11 「네 씨 곧 네 아들 중 하나를 세우고」 · 성취 왕상 8:20 「내 부친 다윗을 대신하여 일어나서 이스라엘 위에 앉고 이스라엘 하나님 여호와의 이름을 위하여 전을 건축하고」 · 왕상 5:5 「그가 내 이름을 위하여 전을 건축하리라 하신 대로」). 나이는 [추론]: 건축은 왕상 6:1 「솔로몬이 이스라엘 왕이 된지 사년 … 전 건축하기를 시작하였더라」 — 즉위 4년 착공이고, 왕상 11:42 「솔로몬이 예루살렘에서 온 이스라엘을 다스린 날 수가 사십 년이라」 · 왕상 14:21 「르호보암이 위에 나아갈 때에 나이 사십일 세라」로 솔로몬은 즉위 전에 이미 아들을 둔 성인이다 → 착공 때 20대 [추론] · 20대는 카드 값(id solomon · 청년 왕). 왕상 3:7 「종은 작은 아이라」는 나이가 아니라 겸손한 말이라 보조로만 쓴다. 말 속의 앞일이라 큰 장면 순간의 다윗·나단은 그 이름을 모르며, 7:12-13 본문에도 이름이 없어 그림·문구에 이름을 쓰지 않는다."
+    }
+  ],
+  "regions": {
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "house": [
+      0.36,
+      0.08,
+      0.88,
+      0.8
+    ],
+    "builders": [
+      0.52,
+      0.34,
+      0.78,
+      0.82
+    ],
+    "solomon": [
+      0.16,
+      0.34,
+      0.29,
+      0.9
+    ]
+  },
+  "_regions_why": "곁 장면은 구름 틀 비율 너비(inset_try.inset_w — 큰 장면 구름 [0.31,0.02,0.71,0.52] → 976×640)로 가운데를 잘라 그림 — 잘린 틀은 1216 화면의 0.10~0.90이라 모든 구역을 그 안에 둠. 왕 키 0.56은 사람 수 8(왕 1 + 일꾼 7)의 무리 단계 small(0.45~0.60) 안. 일꾼 구역은 발 y 0.82의 어른 화면 키(눈높이 원근)를 담게 위끝 0.34, 너비 0.26(무리 꼴이 앞줄 둘·뒷줄 다섯을 그리는 너비 — 넓히면 아홉·넷으로 늘어 명세 수와 어긋남). 집 벽은 일꾼 뒤 깊이 0.55.",
+  "stages": [
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "7:13(말 속) · 집 모양 왕상 6:2·6:7 [추론] · 비계·재목 본문 밖 · 저작자 정함",
+      "prompt": "a hilltop building site, the rising walls of a long rectangular stone house built of large smooth stone blocks, no roof yet, wooden scaffolding along the walls, stacks of finished stones and cedar beams nearby, pale sky, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire",
+        "dome",
+        "halo",
+        "light rays"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "solomon",
+      "verse": "7:12-13",
+      "prompt": "{cast:solomon}, standing, one empty hand open toward the builders, facing right.",
+      "neg": [
+        "crown",
+        "armour",
+        "sword",
+        "modern clothes",
+        "halo"
+      ]
+    }
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": [
+      "solomon"
+    ],
+    "gap_bands": [],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
+  },
+  "meaning": {
+    "ko": "나단이 전한 말 속의 앞일 — 다윗의 몸에서 날 자식이 뒤를 이어 왕이 되어, 일꾼들이 돌을 쌓아 올리는 여호와의 이름을 위한 집 앞에 서서 그 일을 시킨다",
+    "en": "The word Nathan brings, still to come: a son of David, now king after him, stands before the house being built for the LORD's name and directs the builders as they raise its stone walls",
+    "verse": "삼하 7:12 「네 몸에서 날 자식을 네 뒤에 세워」 · 7:13 「저는 내 이름을 위하여 집을 건축할 것이요」 · 일을 시킴은 왕상 5:17 [추론] · 자리·집 모양은 대하 3:1 · 왕상 6:2·6:7 [추론] · 선 자세·손짓은 본문 밖 · 저작자 정함 · 여호와는 형상 없이(ADR 261025-120741)"
+  },
+  "relation": {
+    "ko": "젊은 왕은 왼쪽에 서서 오른쪽의 일꾼들과 올라가는 돌벽 쪽으로 한 손을 펴 일을 시키고, 일꾼들은 다듬은 돌을 벽에 쌓는다",
+    "en": "The young king on the left holds one open hand toward the builders on the right, who set squared stones into the rising walls",
+    "verse": "7:13(건축) · 좌우 배치·손짓은 본문 밖 · 저작자 정함"
+  },
+  "whole_background": {
+    "ko": "언덕 위 건축 터 — 돌 뜨는 곳에서 크고 매끈하게 다듬어 온 네모난 돌로 쌓아 올라가는 긴 네모난 집, 아직 지붕 없음, 벽을 따라 나무 비계, 곁에 쌓은 다듬은 돌과 백향목 재목 · 일꾼 몇이 다듬어 온 돌을 날라 와 손으로 벽에 쌓음 · 엷은 하늘",
+    "en": "a hilltop building site, the rising walls of a long rectangular stone house built of large smooth stone blocks finished at the quarry, no roof yet, wooden scaffolding along the walls, stacks of finished stones and cedar beams nearby, a few builders carrying squared stone blocks and setting them into the walls by hand, pale sky",
+    "verse": "삼하 7:13 「집을 건축할 것이요」(말 속) · 자리 대하 3:1 「솔로몬이 예루살렘 모리아 산에 여호와의 전 건축하기를 시작하니」 [추론] · 돌을 다듬어 와 쌓음 왕상 6:7 「돌을 뜨는 곳에서 치석하고 가져다가 건축하였으므로」 [추론] · 백향목 재목 왕상 6:9 「백향목 서까래와 널판으로 덮었고」 [추론] · 긴 네모 꼴 왕상 6:2 [추론] · 비계·지붕 없음·일꾼 몇은 본문 밖 · 저작자 정함(성전 건축 장면과 같은 시대 고증) · 모양·자리·일꾼은 성취 본문(왕상 5-6장 · 대하 3:1)에서 빌린 [추론] — 약속(7:13)에는 없음"
+  },
+  "situation": {
+    "text": "큰 장면(authored-david-nathan-covenant)에서 나단이 다윗에게 고하는 말(7:5-16) 가운데 눈에 그려지는 핵심을 뭉게구름으로 싣는다. 다윗의 수한이 차서 조상들과 함께 잘 때에(7:12 전반 — 다윗이 죽는 때, 이 장면 앞의 다른 때라 그리지 않음) 여호와께서 다윗의 몸에서 날 자식을 다윗의 뒤에 세워 그 나라를 견고케 하시고(7:12), 그가 여호와의 이름을 위하여 집을 건축한다(7:13 — 고정한 순간). 7:12-13 본문에는 그 자식의 이름이 없다 — 솔로몬임은 대상 22:9 「그 이름을 솔로몬이라 하리니」로 [직접]이지만, 그림·문구에는 이름을 쓰지 않는다. 그래서 이 장면에는 뒤를 이은 젊은 왕과 집을 짓는 일꾼 몇이 있다. 일꾼은 7:13에 없고 실제 건축(왕상 5:15-18)에서 [추론], 몇 사람만 보임은 본문 밖 · 저작자 정함. 지리: 집을 짓는 자리는 7:13에 없다 — 실제 건축 자리 대하 3:1 「솔로몬이 예루살렘 모리아 산에 여호와의 전 건축하기를 시작하니」에서 언덕 위 건축 터로 [추론]. 집 모양(다듬어 온 돌·긴 네모 꼴·백향목 재목)은 왕상 6:2·6:7·6:9에서 [추론], 비계·지붕 없음은 본문 밖 · 저작자 정함. 모양·자리·일꾼은 성취 본문에서 빌린 [추론]이고 약속(7:13)에는 없다. 여호와께서 그 나라 위를 영원히 견고케 하심(7:13 후반)은 말 속의 더 먼 앞일이라 그리지 않으며, 여호와는 형상 없이(ADR 261025-120741).",
+    "verse": "삼하 7:12-13",
+    "same_time": {
+      "7:12": "말 속 — 다윗의 몸에서 날 자식이 뒤를 이어 왕이 됨(전반 「수한이 차서 … 잘 때에」는 앞의 다른 때)",
+      "7:13": "고정한 순간(말 속) — 그가 여호와의 이름을 위하여 집을 건축함 · 후반 「영원히 견고케 하리라」는 더 먼 앞일"
+    }
+  },
+  "guide": {
+    "depth": {
+      "house": 0.55,
+      "builders": 0.8,
+      "solomon": 1.0
+    },
+    "shape": {
+      "house": "wall",
+      "builders": "crowd",
+      "solomon": "person"
+    },
+    "body": "card",
+    "pose": {
+      "solomon": "speak_open"
+    },
+    "split": true,
+    "why": "task 493 — 말 속 곁 장면(spec.speech-inset). 젊은 왕(왼쪽)은 뼈대 speak_open(화면 오른쪽 상대에게 앞 팔을 가슴 높이로 내밀어 손을 폄 — 일꾼들에게 일을 시킴, generate.pose-hold) · 스텝별 나눔(generate.split-control). 일꾼 몇(일곱)은 무리 꼴(crowd, 눈높이 원근 — generate.eye-level-perspective), 그 뒤 올라가는 돌벽은 벽 꼴(wall) 깊이 0.55. 카드 체격 몸 너비(generate.guide-body-build). 야외라 방 바탕 없음. 구역은 구름 틀 비율로 자르는 가운데 0.10~0.90 안(generate.inset-frame-aspect)."
+  }
+}

@@ -24,3 +24,56 @@
 ## 사람 판정(단계 ④, task 487) — 1번째
 
 - 화면: https://claude.ai/artifact/Ntqgzou8wrwfF98x2aQdBg (폰용 비공개 · 8장 전부 · 기계 통과 3 · 360px·1280px 가로 넘침 0)
+- 사람 답(8시드): none · 메모 「장소가 궁전같지않고 무엇을 말하는지 모르겠음 뭉개뭉개 나단선지자가 말하는 내용의 장면을 보여주면 좋을듯 이렇게 얘기하는거는 어떤얘기를 하는지 뭉개뭉개 로 표기하면 좋을듯 규칙으로」
+
+## task 493 — 말 속 뭉게구름 · 궁 모습 (사람 메모 → 규칙 `spec.speech-inset`)
+
+사람 메모는 두 가지다. 「장소가 궁전같지않고」와 「무엇을 말하는지 모르겠음 … 나단선지자가 말하는 내용의 장면을 … 뭉개뭉개로」. 둘째는 규칙 `spec.speech-inset`이 되었다. 순간 절에 「고하」가 있으면 말 속 곁 장면(`inset.when` 「말 속」)이 있어야 한다.
+
+### 명세 바꿈 (GPU 0)
+
+- **궁 모습**: 배경을 「궁 안 방(돌벽)」에서 「백향목 궁 안 왕의 큰 방」으로 바꿨다.
+  - 영문: 「a king's hall in a house of cedar …, walls of dressed stone blocks lined with carved cedar wood panels, the back wall panelled in cedar like the side walls, tall cedar pillars, heavy cedar ceiling beams, a woven rug on a stone floor」
+  - 백향목 궁은 7:2 [직접]이고, 판·조각·기둥·깔개는 [저작]이다(왕상 7:2-3 참고).
+  - 「King David's house」처럼 고유 이름 소유격을 쓰면 간판 글자로 그려진다는 관찰이 있어(BIRTH-INSET 2a) 「a house of cedar」로 썼다.
+- **말 속 곁 장면** `authored-david-nathan-covenant-inset`(삼하 7:12-13, 순간 7:13):
+  - 뒤를 이은 젊은 왕(cast solomon)이 서서 한 손을 펴(뼈대 `speak_open`) 일꾼들에게 돌을 쌓아 올라가는 집을 짓게 한다.
+  - 7:12-13에는 아들 이름이 없어 문구·그림에 이름을 쓰지 않는다. 카드 근거는 대상 22:9-10 [직접]이다.
+  - 일꾼 7은 무리 꼴이 그리는 수(앞줄 2·뒷줄 5)에 맞춘 [저작]이다. 처음 3으로 적었더니 가이드가 13명을 그려 구역을 좁혔다.
+  - 하나님은 형상 없이 둔다.
+- **큰 장면 구역**: 두 사람을 화면 양 끝으로 옮겼다(다윗 [0.06,0.433,0.30,0.92] · 나단 [0.80,0.27,0.96,0.92]). 구름 `inset.region`은 [0.31,0.02,0.71,0.52]로, 두 사람 사이 위이고 나단이 내민 손(x 약 0.73)보다 왼쪽이다.
+  - 곁 장면 생성 너비는 `inset_try.inset_w` = 976이다. 가이드는 1216 화면의 0.10~0.90을 잘라 쓰므로, 곁 장면 구역은 모두 그 안에 둔다.
+- **말 속 요소**: 7:12 「네 몸에서 날 자식을 네 뒤에 세워」와 7:13 「집을 건축할 것이요」를 `out`에서 `field: "inset"`으로 바꿨다. same_time 7:12·7:13도 「말 속 — 곁 장면이 실음」으로 고쳤다.
+- **재검**: 두 명세 `spec_failures` → `[[], {}]` · `derive_scene --check --figures whole` 두 명세 통과 · `test_scene_rules` 192 OK(InsetFrameAspect 포함) · `test_cast_registry` OK.
+- **가이드 눈 확인**(`samples/nathan-step1/guide-<장면 id>-1|2.png`):
+  - 큰 장면: 다윗이 왼쪽 끝에 앉아 오른쪽을 보고, 나단은 오른쪽 끝에 서서 앞 팔을 내민다. 가운데 위가 비어 있다.
+  - 곁 장면: 왕이 왼쪽에 서서(뼈대) 앞 팔을 오른쪽 일꾼 쪽으로 내밀고, 그 뒤에 일꾼 무리와 벽 꼴이 있다.
+
+### 판정 방식 — rule_ab 두 사례(합성 그림 · 곁 장면 원본)
+
+`inset_judge.py`는 BIRTH-INSET.md 고정 절 421에 묶여 있어(`NOTE_MD`·정규식 하드코딩) 다른 장면에 쓸 수 없다. 그래서 BIRTH 421과 같은 방식(큰 장면 문항은 합성 그림 · 곁 장면 문항은 곁 장면 원본)을 `rule_ab.py` 두 사례로 옮겼다.
+
+- `rule_ab gen`은 곁 장면을 합성하지 못하므로 **쓰지 않는다**. 생성·합성은 `inset_try.py`가 맡고, 결과를 rule_ab 사례 그림 이름으로 복사한다.
+- `rule_ab page`·`record`는 첫 사례(composition)만 본다. 화면 카드의 통과·불통과는 합성 그림 문항 기준이고, inset 사례 결과는 `report`의 `통과: inset-A` 줄에서만 보인다.
+
+```
+VENV=~/.local/biblemap-imggen/.venv314/bin/python
+S="42 7 5 11 23 101 202 303"
+for s in authored-david-nathan-covenant authored-david-nathan-covenant-inset; do for k in 1 2; do python3 batch/make_guide.py --scene $s --stage $k --out samples/nathan-inset/guide-$s-$k.png; done; done
+$VENV batch/inset_try.py gen  --main authored-david-nathan-covenant --dir nathan-inset --seeds 42,7,5,11,23,101,202,303
+python3 batch/inset_try.py comp --main authored-david-nathan-covenant --dir nathan-inset --seeds 42,7,5,11,23,101,202,303
+mkdir -p samples/nathan-step23-inset
+for s in $S; do cp samples/nathan-inset/comp-s$s.png samples/nathan-step23-inset/composition-A-s$s.png; cp ~/.local/biblemap-imggen/nathan-inset/authored-david-nathan-covenant-inset-s$s.png samples/nathan-step23-inset/inset-A-s$s.png; done
+python3 batch/rule_ab.py --fixed 493 judge
+python3 batch/rule_ab.py --fixed 493 report
+python3 batch/rule_ab.py --fixed 493 page <out.html>
+python3 batch/rule_ab.py --fixed 493 record '<판정 task 493 + JSON 한 줄>'
+```
+
+### 고정 절 (생성 전에 적음)
+
+8시드 효과 측정(장마다 3표). 사례 composition은 합성 그림에, inset은 곁 장면 원본에 묻는다. 공통 문항은 483과 글자 그대로이고, 곁 장면 사례의 몸 꼴·팔 모양만 「사람들」로 고쳤다(`i.*`).
+
+```json fixed 493
+{"dir": "nathan-step23-inset", "seeds": [42, 7, 5, 11, 23, 101, 202, 303], "reps": 3, "page": {"title": "나단 언약 그림 고르기", "h1": "나단이 다윗에게 여호와의 말씀을 고하다 — 쓸 그림 고르기(말 속 뭉게구름)", "lede": "삼하 7:17 — 「나단이 이 모든 말씀과 이 모든 묵시대로 다윗에게 고하니라」. 다윗이 「나는 백향목 궁에 거하거늘」(7:2)이라 하였으니 자리를 다윗의 백향목 궁 안 큰 방으로 그렸고, 지난번 메모대로 두 사람 사이 위 뭉게구름에 나단이 전하는 말의 핵심 — 「네 몸에서 날 자식을 네 뒤에 세워」(7:12) 「저는 내 이름을 위하여 집을 건축할 것이요」(7:13) — 을 그렸습니다. 그 아들은 7:12-13에 이름이 없어 그림에 이름을 쓰지 않았고, 하나님은 형상 없이 두었습니다. 시드 8장을 모두 보여 드립니다. 기계 통과 장과 불통과 장을 함께 놓았고, 카드마다 가장 많이 떨어진 문항({weak})의 기계 표와 틀림 이유를 적었습니다.", "hint": "그림을 누르면 원래 화소로 1~3배 확대해 볼 수 있습니다. 들보·옷 색, 다윗이 앉았는지, 나단의 편 손·지팡이 여부, 두 사람 나이(30대·50대)는 본문 밖 저작 세부라 통과 셈에서 뺐습니다. 구름 안 장면이 무엇을 말하는지 읽히는지 함께 봐 주세요. 고를 장이 없으면 「없음」과 까닭을 적어 주세요.", "memo_eg": "예: 구름 안이 무엇인지 모르겠음"}, "cases": [{"id": "composition", "scene": "authored-david-nathan-covenant", "guide": false, "a_from": null, "b_from": null, "qs": [{"id": "s.style", "q": "화풍", "what": "미색 종이에 연필로 그리고 색연필로 칠한 동화 그림 화풍인가?"}, {"id": "s.no-blob", "q": "덩어리", "what": "얼굴·옷 없이 평평한 회색 덩어리나 미완성 실루엣으로 남은 사람·물건이 없나?"}, {"id": "t.two-men", "q": "두 남자", "what": "뭉게구름 틀 밖 큰 장면에 남자 두 사람(왕처럼 차린 남자 하나와 다른 남자 하나)이 함께 있나?", "verse": "삼하 7:17 「나단이 이 모든 말씀과 이 모든 묵시대로 다윗에게 고하니라」"}, {"id": "t.facing", "q": "마주 봄", "what": "두 남자가 서로 마주 보고 있나(몸이나 얼굴이 상대 쪽을 향함)?", "verse": "삼하 7:17 [추론]"}, {"id": "t.speaking", "q": "고함", "what": "오른쪽 남자가 왼쪽 남자에게 무언가를 말하며 전하는 모습인가(손짓이나 몸짓이 말하는 사람으로 보임 — 두 팔을 늘어뜨리고 가만히 서 있지 않음)?", "verse": "삼하 7:17 「이 모든 말씀과 이 모든 묵시대로 다윗에게 고하니라」"}, {"id": "t.listening", "q": "들음", "what": "왼쪽 남자가 오른쪽 남자의 말을 귀 기울여 듣는 모습인가(오른쪽 남자 쪽을 향해 조용히 있음 — 딴 곳을 보거나 연설하지 않음)?", "verse": "삼하 7:17 「다윗에게 고하니라」 [추론]"}, {"id": "t.king", "q": "왕", "what": "왼쪽 남자가 오른쪽 남자보다 지위가 높은 왕으로 보이나(더 화려한 왕의 겉옷)?", "verse": "삼하 7:8 「내 백성 이스라엘의 주권자를 삼고」"}, {"id": "t.only-two", "q": "두 사람뿐", "what": "뭉게구름 틀 밖 큰 장면에 사람이 이 두 남자 말고는 없나(멀리 있는 사람·덧붙은 사람도 없음 — 구름 틀 안 사람은 셈 밖)?", "verse": "삼하 7:17 — 다른 사람 언급 없음 · 그리지 않음은 본문 밖 · 저작자 정함(이물이라 거르기)"}, {"id": "t.adult", "q": "성인", "what": "왼쪽 남자가 소년도 노인도 아닌 성인 남자인가?", "verse": "삼하 5:4 · 5:5 [추론]"}, {"id": "t.palace", "q": "왕궁", "what": "큰 장면 배경이 왕의 궁 안(백향목 판을 댄 벽·나무 기둥·굵은 들보가 있는 화려한 큰 방)으로 보이나(맨 돌벽만 있는 빈 방이나 창고처럼 보이면 틀림)?", "verse": "삼하 7:2 「나는 백향목 궁에 거하거늘」"}, {"id": "t.cloud-place", "q": "구름 자리", "what": "뭉게구름 모양 틀 속 그림이 두 사람 사이 위 가운데에 있고, 어느 한 사람의 머리에 붙거나 사람을 가리지 않나?"}, {"id": "t.cloud-content", "q": "구름 안 장면", "what": "뭉게구름 틀 안에 왕처럼 차린 젊은 남자가 서서 일꾼들에게 돌을 쌓아 올리는 집(하나님의 집)을 짓게 하는 장면이 그려져 있나?", "verse": "삼하 7:12 「네 몸에서 날 자식을 네 뒤에 세워」 · 7:13 「저는 내 이름을 위하여 집을 건축할 것이요」"}, {"id": "t.cloud-speech", "q": "말 속", "what": "구름 틀 속 그림이 지금 이 방에서 일어나는 일이 아니라 나단이 말하는 내용(앞날의 일)으로 읽히나?", "verse": "삼하 7:17 「이 모든 말씀과 이 모든 묵시대로 다윗에게 고하니라」 [추론]"}, {"id": "t.no-god", "q": "하나님 형상 없음", "what": "구름 안팎 어디에도 하나님을 사람 모양·빛나는 형상·하늘에서 내민 손·빛줄기로 그리지 않았나?", "verse": "ADR 261025-120741"}, {"id": "t.no-halo", "q": "후광 없음", "what": "인물 뒤에 둥근 빛 번짐이나 후광이 없나?"}, {"id": "t.no-church", "q": "교회 도상 없음", "what": "교회 건물·십자가·스테인드글라스 같은 교회 도상이 없나?"}, {"id": "t.guard", "q": "가드", "what": "손가락 수 이상, 두 겹·덧붙은 인물, 종이 테두리·액자, 글자 같은 결함이 하나도 없나?"}, {"id": "t.body-natural", "q": "몸 꼴", "what": "두 남자의 몸이 어깨·팔·몸통 굴곡이 있는 자연스러운 사람 몸인가(천막·원뿔·상자 같은 천 덩어리가 아님)?", "verse": "갓 아기스 사람 판정 task 464 「몸이 천막·상자 같음」"}, {"id": "t.proportion", "q": "몸 비율", "what": "두 남자의 머리와 몸 비율이 자연스러운가(머리가 몸에 비해 너무 작거나, 몸통·옷이 길게 늘어난 거인처럼 보이지 않음)?", "verse": "갓 아기스 사람 판정 task 466 「몸비율이 이상함」"}, {"id": "t.arms-natural", "q": "팔 모양", "what": "두 남자의 팔과 손이 자연스러운가(팔이 이상하게 꺾이거나 길게 늘어나거나, 팔이 셋이거나 몸에서 엉뚱하게 뻗어 나오지 않음)?", "verse": "갓 아기스 사람 판정 task 467 「팔도 이상하게 그려짐」"}, {"id": "t.age30", "q": "30대", "what": "왼쪽 남자(왕)가 30대로 보이나?", "record": true}, {"id": "t.nathan-age", "q": "50대", "what": "오른쪽 남자가 50대로 보이고 검은 머리에 흰 털이 섞였나?", "record": true}, {"id": "t.cedar-beams", "q": "백향목 들보", "what": "큰 장면 천장에 굵은 나무 들보가 보이나?", "record": true}, {"id": "t.seated", "q": "앉음", "what": "왼쪽 남자(왕)가 의자에 앉아 있나?", "record": true}, {"id": "t.open-hand", "q": "편 손", "what": "오른쪽 남자가 한 손을 펴서 왼쪽 남자 쪽으로 내밀고 있나?", "record": true}, {"id": "t.red-robe", "q": "붉은 왕의 겉옷", "what": "왼쪽 남자가 짙은 붉은 긴 겉옷에 금빛 띠를 맸나?", "record": true}, {"id": "t.brown-robe", "q": "갈색 겉옷", "what": "오른쪽 남자가 긴 짙은 갈색 겉옷을 입었나?", "record": true}, {"id": "t.no-staff", "q": "지팡이 없음", "what": "오른쪽 남자가 지팡이를 들고 있지 않나?", "record": true}]}, {"id": "inset", "scene": "authored-david-nathan-covenant-inset", "guide": false, "a_from": null, "b_from": null, "qs": [{"id": "s.style", "q": "화풍", "what": "미색 종이에 연필로 그리고 색연필로 칠한 동화 그림 화풍인가?"}, {"id": "s.no-blob", "q": "덩어리", "what": "얼굴·옷 없이 평평한 회색 덩어리나 미완성 실루엣으로 남은 사람·물건이 없나?"}, {"id": "i.king", "q": "젊은 왕", "what": "왕처럼 차린 젊은 남자(소년도 노인도 아님) 한 사람이 서 있나?", "verse": "삼하 7:12 「네 몸에서 날 자식을 네 뒤에 세워」 · 왕상 6:1 [추론]"}, {"id": "i.directing", "q": "일을 시킴", "what": "젊은 왕이 일꾼들 쪽을 향해 손짓하며 일을 시키는 모습인가(등을 돌리거나 딴 곳을 보지 않음)?", "verse": "삼하 7:13 「저는 내 이름을 위하여 집을 건축할 것이요」 · 왕상 5:17 [추론]"}, {"id": "i.building", "q": "짓는 집", "what": "다듬은 돌을 쌓아 올라가는 짓고 있는 돌집(아직 다 짓지 않음)이 그려져 있나?", "verse": "삼하 7:13 「집을 건축할 것이요」"}, {"id": "i.builders", "q": "일꾼", "what": "일꾼들이 돌을 나르거나 벽에 쌓는 일을 하고 있나?", "verse": "왕상 5:18 [추론]"}, {"id": "i.no-god", "q": "하나님 형상 없음", "what": "하나님을 사람 모양·빛나는 형상·하늘에서 내민 손·빛줄기로 그리지 않았나?", "verse": "ADR 261025-120741"}, {"id": "i.no-david", "q": "다윗 없음", "what": "늙거나 앉은 왕·선지자처럼 큰 장면의 두 사람이 이 그림에 다시 나오지 않나?", "verse": "삼하 7:12 「네 수한이 차서 네 조상들과 함께 잘 때에」 — 다윗이 없는 때 [추론]"}, {"id": "t.no-halo", "q": "후광 없음", "what": "인물 뒤에 둥근 빛 번짐이나 후광이 없나?"}, {"id": "t.no-church", "q": "교회 도상 없음", "what": "교회 건물·십자가·스테인드글라스 같은 교회 도상이 없나?"}, {"id": "t.guard", "q": "가드", "what": "손가락 수 이상, 두 겹·덧붙은 인물, 종이 테두리·액자, 글자 같은 결함이 하나도 없나?"}, {"id": "i.body-natural", "q": "몸 꼴", "what": "사람들의 몸이 어깨·팔·몸통 굴곡이 있는 자연스러운 사람 몸인가(천막·원뿔·상자 같은 천 덩어리가 아님)?", "verse": "갓 아기스 사람 판정 task 464 「몸이 천막·상자 같음」"}, {"id": "i.arms-natural", "q": "팔 모양", "what": "사람들의 팔과 손이 자연스러운가(팔이 이상하게 꺾이거나 길게 늘어나거나, 팔이 셋이거나 몸에서 엉뚱하게 뻗어 나오지 않음)?", "verse": "갓 아기스 사람 판정 task 467 「팔도 이상하게 그려짐」"}, {"id": "i.blue-robe", "q": "청색 겉옷", "what": "젊은 왕이 짙은 청색 고운 겉옷에 수놓은 띠를 맸나?", "record": true}, {"id": "i.open-hand", "q": "편 손", "what": "젊은 왕이 한 손을 펴서 일꾼들 쪽으로 내밀고 있나?", "record": true}, {"id": "i.scaffold", "q": "비계", "what": "짓는 집 벽을 따라 나무 비계가 있나?", "record": true}, {"id": "i.cedar", "q": "백향목 재목", "what": "곁에 나무 재목 더미가 있나?", "record": true}]}]}
+```

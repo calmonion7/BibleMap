@@ -54,7 +54,7 @@
       "quote": "심히 많은 향품과",
       "kind": "지물",
       "ko": "향품 — 신복들이 저마다 작은 나무 상자에 담아 듦(사전 spices L1 · 상자는 사전 [저작], 많음은 상자 여럿으로)",
-      "en": "fragrant spices in a small box",
+      "en": "dried resin lumps, rolled bark and bundled reeds heaped in a small wooden box about as wide as a man's chest",
       "field": "relation"
     },
     {
@@ -62,7 +62,7 @@
       "quote": "보석을",
       "kind": "지물",
       "ko": "보석 — 신복들이 그릇에 담아 듦(그릇은 본문 밖 · 저작자 정함)",
-      "en": "bowls of precious stones",
+      "en": "a shallow bowl about as wide as a man's head heaped with glittering red, green and yellow gemstones",
       "field": "relation"
     },
     {
@@ -375,7 +375,7 @@
   },
   "relation": {
     "ko": "여왕은 왼쪽에서 한 손을 오른쪽 보좌에 앉은 솔로몬 왕 쪽으로 내밀고 왕은 예물을 받는다. 여왕 뒤로 그 많은 신복들이 금을 담은 연 궤, 보석을 담은 그릇, 저마다 작은 상자에 담은 향품을 들고 왕 쪽으로 나아오고, 왕 뒤에는 신하들이 같은 공복을 입고 시립한다. 여왕과 왕은 서로 바라본다",
-    "en": "The queen on the left holds one hand out toward King Solomon on the right, who receives her gifts; behind her, her many servants carry open chests of gold, bowls of precious stones and fragrant spices in a small box each toward the king; behind the king his attendants stand in matching court robes; the queen and the king look at each other",
+    "en": "The queen on the left holds one hand out toward King Solomon on the right, who receives her gifts; behind her, her many servants carry open chests of gold, a shallow bowl about as wide as a man's head heaped with glittering red, green and yellow gemstones and dried resin lumps, rolled bark and bundled reeds heaped in a small wooden box about as wide as a man's chest each toward the king; behind the king his attendants stand in matching court robes; the queen and the king look at each other",
     "verse": "왕상 10:10(드림·받음) · 왕상 10:2 「수원이 심히 많고」 · 왕상 10:5 「그 신하들의 시립한 것과 그들의 공복과」 · 왕상 10:8 「항상 당신의 앞에 서서」 [추론](이 순간 시립) · 궤·그릇·상자·좌우 배치·시선은 본문 밖 · 저작자 정함"
   },
   "whole_background": {
