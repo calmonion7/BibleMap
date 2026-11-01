@@ -586,3 +586,14 @@
 - 화면: https://claude.ai/artifact/8jhGfrd1JkgUfN6K5PJXZW (폰용 비공개 · 질문 하나 · 얼굴 ×4·상반신 ×2 같은 배율 · 360px·1280px 가로 넘침 0)
 - 답 기록: 고른 장을 `samples/gath-drool/<키>.png`에서 확정(local-edit, 바탕 r14 s42)으로 — rule_ab 고정 절이 아니라 손으로 approve.
 - 사람 답: s42-0.6 · 메모 「침이 넘 작아보임」 → 확정 = `samples/gath-drool/s42-0.6.png`(local-edit · 바탕 r14 s42 · 원문 `samples/gath-drool/pick-verdict.txt`).
+
+## 침 크게 (task 479 · 사람 답 478 s42-0.6 「침이 넘 작아보임」)
+
+- 손잡이 둘: ① 문구 「thick glistening strands of saliva drooling from his open mouth, his beard soaked and dripping with spittle, a long drop of drool hanging below his beard」 ② 다시 그리는 범위 120px(6.4배) → 200px `(280,235,480,435)`(3.84배) — 줄이는 배율이 작아 같은 선 굵기가 최종에서 굵게 남음. 되붙임 타원 아래로 넓힘 `(358,320,408,376)`(수염 밑 방울). `.forge/scratch/gath_drool.py r2`.
+- 범위 2 × 세기 0.6·0.7 × 시드 42·7 = 8장(장당 31~36초). 눈 확인: w120은 478과 비슷하게 작음 · **w200은 침 줄기·수염 밑 방울이 원래 크기에서도 보임**. w200-s7-0.6이 가장 자연스러움 · s7-0.7 어깨에 밝은 얼룩(넓힌 타원이 어깨에 걸림) · s42 둘은 수염에 흰 점.
+- 화면 후보: 지금 확정 s42-0.6 · 가 big-w200-s7-0.6 · 나 big-w200-s7-0.7 · 다 big-w200-s42-0.6 · 라 big-w200-s42-0.7.
+
+## 사람 판정(단계 ④, task 479) — task 479
+
+- 화면: https://claude.ai/artifact/D4uFG659C4Yudz64juquqf (폰용 비공개 · 질문 하나 · 얼굴 ×4·상반신 ×2 같은 배율 · 360px·1280px 가로 넘침 0)
+- 답 기록: 478과 같이 손으로 approve local-edit(steps에 region·타원·세기·시드·문구).
