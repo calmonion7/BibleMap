@@ -585,3 +585,4 @@
 
 - 화면: https://claude.ai/artifact/8jhGfrd1JkgUfN6K5PJXZW (폰용 비공개 · 질문 하나 · 얼굴 ×4·상반신 ×2 같은 배율 · 360px·1280px 가로 넘침 0)
 - 답 기록: 고른 장을 `samples/gath-drool/<키>.png`에서 확정(local-edit, 바탕 r14 s42)으로 — rule_ab 고정 절이 아니라 손으로 approve.
+- 사람 답: s42-0.6 · 메모 「침이 넘 작아보임」 → 확정 = `samples/gath-drool/s42-0.6.png`(local-edit · 바탕 r14 s42 · 원문 `samples/gath-drool/pick-verdict.txt`).

@@ -308,10 +308,33 @@
   },
   "approved": {
     "final": {
-      "path": "night-pick",
+      "path": "local-edit",
       "seed": 42,
-      "kind": "base",
-      "image": "samples/gath-step23-r14/composition-A-s42.png",
+      "image": "samples/gath-drool/s42-0.6.png",
+      "steps": [
+        {
+          "part": "mouth-beard",
+          "tool": "zimage-img2img",
+          "region": [
+            320,
+            255,
+            440,
+            375
+          ],
+          "paste_ellipse": [
+            360,
+            322,
+            406,
+            360
+          ],
+          "feather": 4,
+          "strength": 0.6,
+          "seed": 42,
+          "prompt": "saliva drooling from his lips and dripping down into his beard",
+          "script": ".forge/scratch/gath_drool.py",
+          "base": "samples/gath-step23-r14/composition-A-s42.png"
+        }
+      ],
       "by": "user",
       "on": "2026-11-01",
       "spec_hash": "a7910055c343",
