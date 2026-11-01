@@ -46,7 +46,7 @@
       "quote": "금 일백이십 달란트와",
       "kind": "지물",
       "ko": "금 — 신복들이 연 궤에 담아 듦(궤에 담음·듦은 본문 밖 · 저작자 정함, 많음은 궤 여럿으로)",
-      "en": "open chests of gold",
+      "en": "an open wooden chest about as wide as a man's chest heaped with gleaming gold bars",
       "field": "relation"
     },
     {
@@ -183,14 +183,24 @@
       "verse": "왕상 10:2 「수원이 심히 많고」 · 왕상 10:13 「그 신복들로 더불어」 [추론](머무는 동안 여왕과 함께 있음) · 예물을 든 신복 열은 드림을 보이는 대표 — 들고 옴·수·양은 본문 밖 · 저작자 정함(120달란트 전량이 그 자리에 있었다는 말 없음) · 궤·그릇·상자·자리는 본문 밖 · 저작자 정함",
       "region": "sheba-servants",
       "count": 10,
-      "count_why": "[저작](「수원이 심히 많고」 10:2 — 수 없음, 예물을 든 신복 열은 드림을 보이는 대표라 작은 무리 10으로 어림 · 나머지 수원이 어디 있었는지는 본문에 없음)"
+      "count_why": "[저작](「수원이 심히 많고」 10:2 — 수 없음, 예물을 든 신복 열은 드림을 보이는 대표라 작은 무리 10으로 어림 · 나머지 수원이 어디 있었는지는 본문에 없음)",
+      "costume": {
+        "ko": "줄무늬 긴 양모 겉옷과 머리천",
+        "en": "in long striped wool robes and head cloths",
+        "verse": "본문 밖 · 저작자 정함(시대 고증 — 남방 스바 사람 차림 · 마 12:42 「남방 여왕이」) · 규칙 spec.crowd-era-dress"
+      }
     },
     {
       "what": "솔로몬의 신하들 — 왕 뒤 오른쪽에 같은 공복을 입고 시립함",
       "verse": "왕상 10:5 「그 신하들의 시립한 것과 그들의 공복과」 · 왕상 10:8 「항상 당신의 앞에 서서」 [추론](이 순간에도 모시고 섬) · 수·자리는 본문 밖 · 저작자 정함",
       "region": "attendants",
       "count": 4,
-      "count_why": "[저작](「그 신하들의 시립한 것」 10:5 — 수 없음, 왕 뒤에서 모시는 소수라 4로 어림)"
+      "count_why": "[저작](「그 신하들의 시립한 것」 10:5 — 수 없음, 왕 뒤에서 모시는 소수라 4로 어림)",
+      "costume": {
+        "ko": "같은 모양의 궁정 겉옷",
+        "en": "in matching court robes",
+        "verse": "왕상 10:5 「그들의 공복과」 [직접](공복) · 모양·색은 본문 밖 · 저작자 정함 · 규칙 spec.crowd-era-dress"
+      }
     }
   ],
   "figures": [
@@ -375,7 +385,7 @@
   },
   "relation": {
     "ko": "여왕은 왼쪽에서 한 손을 오른쪽 보좌에 앉은 솔로몬 왕 쪽으로 내밀고 왕은 예물을 받는다. 여왕 뒤로 그 많은 신복들이 금을 담은 연 궤, 보석을 담은 그릇, 저마다 작은 상자에 담은 향품을 들고 왕 쪽으로 나아오고, 왕 뒤에는 신하들이 같은 공복을 입고 시립한다. 여왕과 왕은 서로 바라본다",
-    "en": "The queen on the left holds one hand out toward King Solomon on the right, who receives her gifts; behind her, her many servants carry open chests of gold, a shallow bowl about as wide as a man's head heaped with glittering red, green and yellow gemstones and dried resin lumps, rolled bark and bundled reeds heaped in a small wooden box about as wide as a man's chest each toward the king; behind the king his attendants stand in matching court robes; the queen and the king look at each other",
+    "en": "The queen on the left holds one hand out toward King Solomon on the right, who receives her gifts; behind her, her many servants in long striped wool robes and head cloths carry an open wooden chest about as wide as a man's chest heaped with gleaming gold bars, a shallow bowl about as wide as a man's head heaped with glittering red, green and yellow gemstones and dried resin lumps, rolled bark and bundled reeds heaped in a small wooden box about as wide as a man's chest each toward the king; behind the king his attendants stand in matching court robes; the queen and the king look at each other",
     "verse": "왕상 10:10(드림·받음) · 왕상 10:2 「수원이 심히 많고」 · 왕상 10:5 「그 신하들의 시립한 것과 그들의 공복과」 · 왕상 10:8 「항상 당신의 앞에 서서」 [추론](이 순간 시립) · 궤·그릇·상자·좌우 배치·시선은 본문 밖 · 저작자 정함"
   },
   "whole_background": {

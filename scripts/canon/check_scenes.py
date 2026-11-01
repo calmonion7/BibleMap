@@ -252,6 +252,8 @@ def lexicon_look_errors(spec, prompt):
         if e.get("kind") != "지물" or "out" in e:
             continue
         for w in words:
+            if any(squash(x) in squash(e["quote"]) for x in w.get("exclude", [])):   # task 497: 「금」이 「수금」에 걸리지 않게
+                continue
             if any(squash(f) in squash(e["quote"]) for f in [w["word"], *w["forms"]]) and \
                     not any(w["look"][k]["en"].lower().rstrip(".") in low for k in ("L1", "L2", "L3")):
                 errs.append(f"verse_elements[{i}] {e['quote']!r}: 사전 {w['id']} look 문구가 파생 프롬프트에 없음")

@@ -1584,6 +1584,68 @@
           }
         ]
       }
+    },
+    {
+      "id": "gold",
+      "word": "금",
+      "forms": [
+        "금과",
+        "금을",
+        "금이"
+      ],
+      "kjv": "gold",
+      "refs": [
+        "왕상 10:2",
+        "왕상 10:10",
+        "왕상 10:14"
+      ],
+      "held": [],
+      "meaning": {
+        "ko": "누렇게 빛나는 귀한 쇠붙이예요. 스바 여왕이 솔로몬에게 금 일백이십 달란트를 드렸어요.",
+        "grounds": "[직접] 왕상 10:10 「금 일백이십 달란트와 심히 많은 향품과 보석을 왕께 드렸으니」 · 왕상 10:2 「심히 많은 금과 보석을 약대에 실었더라」"
+      },
+      "look": {
+        "L1": {
+          "ko": "상자에 담은 금",
+          "en": "chests of gold"
+        },
+        "L2": {
+          "ko": "사람 가슴 너비쯤 되는 뚜껑 연 나무 궤에 번쩍이는 금덩이를 소복이 담음.",
+          "en": "an open wooden chest about as wide as a man's chest heaped with gleaming gold bars"
+        },
+        "L3": {
+          "ko": "두 사람이 들 만한 뚜껑 연 나무 궤로, 너비는 사람 가슴 너비쯤이에요. 안에 누렇게 번쩍이는 금덩이가 넘치게 쌓여 있어요. 향품이나 색 돌이 아니에요.",
+          "en": "An open wooden chest carried between two men, about as wide as a man's chest, overflowing with heavy gleaming yellow gold bars; not spices and not colored stones."
+        },
+        "grounds": "[저작](본문에 궤·금덩이 꼴 없음 — 왕상 10:2는 「약대에 실었더라」뿐, 들고 드리는 그림 사정으로 뚜껑 연 나무 궤 · 금은 덩이로 둠).",
+        "size": {
+          "ref": "man-height",
+          "ratio": 0.3,
+          "en": "about as wide as a man's chest",
+          "ko": "사람 가슴 너비쯤",
+          "grounds": "[저작](본문에 궤 없음 — 그림 사정) 드는 궤 너비를 어른 몸 너비(scale build_width.average 0.3)에 견줌 · 향품 상자와 같은 값"
+        },
+        "hold": {
+          "mode": "hand",
+          "grounds": "[저작](본문은 약대에 실음 — 왕상 10:2) 사전 L3 「두 사람이 들 만한 뚜껑 연 나무 궤」 — 손에 쥠(그림 기본값)"
+        }
+      },
+      "criteria": {
+        "ko": "뚜껑 연 궤 안에 누렇게 번쩍이는 금덩이가 담겨 있다. 향품이나 보석만 담긴 그릇이 아니다.",
+        "features": [
+          {
+            "q": "궤 안에 누렇게 번쩍이는 금덩이가 보이나?",
+            "grounds": "[직접] 왕상 10:10 「금 일백이십 달란트」 · 덩이 꼴 [저작]"
+          },
+          {
+            "q": "향품·보석과 따로 금이 보이나?",
+            "grounds": "[직접] 왕상 10:10 「금 … 향품과 보석을」 — 셋은 서로 다른 것"
+          }
+        ]
+      },
+      "exclude": [
+        "수금"
+      ]
     }
   ]
 }
