@@ -17,9 +17,10 @@
       "verse": "19:18",
       "quote": "라마로 가서",
       "kind": "장소",
-      "ko": "라마의 소박한 마른 뜰",
-      "en": "a small quiet dry courtyard at Ramah",
-      "field": "whole_background"
+      "ko": "라마 사무엘의 집 앞 뜰",
+      "en": "the courtyard of Samuel's house at Ramah",
+      "field": "whole_background",
+      "note": "라마만 19:18 [직접] · 사무엘의 집 뜰은 7:17 [추론] · 소박한·마른 모양은 본문 밖 · 저작자 정함"
     },
     {
       "verse": "19:18",
@@ -33,16 +34,16 @@
       "verse": "19:18",
       "quote": "사무엘에게로 나아가서",
       "kind": "행동",
-      "ko": "다윗이 사무엘 앞에 나아가 섬",
-      "en": "standing before Samuel",
+      "ko": "다윗이 사무엘 앞에 나아감",
+      "en": "coming before Samuel",
       "field": "figures[0].gesture"
     },
     {
       "verse": "19:18",
-      "quote": "사무엘에게로 나아가서",
+      "quote": "사무엘에게로 나아가서 사울이 자기에게 행한 일을 다 고하였고",
       "kind": "인물",
-      "ko": "사무엘이 다윗을 마주 보고 들음",
-      "en": "standing facing David",
+      "ko": "사무엘이 다윗의 고함을 들음(마주 봄은 본문 밖 · 저작자 정함)",
+      "en": "listening to David",
       "field": "figures[1].gesture"
     },
     {
@@ -50,7 +51,7 @@
       "quote": "사울이 자기에게 행한 일을 다 고하였고",
       "kind": "행동",
       "ko": "다윗이 사울이 행한 모든 일을 고함",
-      "en": "tells him everything that happened",
+      "en": "tells him everything Saul has done to him",
       "field": "figures[0].gesture"
     },
     {
@@ -63,8 +64,8 @@
   ],
   "background": [
     {
-      "what": "라마의 소박한 뜰",
-      "verse": "19:18"
+      "what": "라마 사무엘의 집 앞 뜰",
+      "verse": "19:18(라마) · 7:17 [추론](사무엘의 집) · 뜰 모양 본문 밖 · 저작자 정함"
     }
   ],
   "figures": [
@@ -83,8 +84,8 @@
       },
       "gesture": {
         "ko": "사무엘 앞에 서서 한 손을 펴 들고 사울이 한 일을 다 고한다",
-        "en": "standing before Samuel, one open hand raised as he tells him everything that happened",
-        "verse": "삼상 19:18 「사무엘에게로 나아가서 … 다 고하였고」 · 손짓은 본문 밖 · 저작자 정함"
+        "en": "coming before Samuel, one open hand raised as he tells him everything Saul has done to him",
+        "verse": "삼상 19:18 「사무엘에게로 나아가서 … 다 고하였고」 · 선 자세·손짓은 본문 밖 · 저작자 정함"
       },
       "costume": {
         "ko": "먼지 묻은 어두운 붉은 양모 튜닉과 가죽 띠",
@@ -92,7 +93,8 @@
         "verse": "본문 밖 · 저작자 정함(카드 층 옷 색 red와 맞춤)"
       },
       "gaze": "samuel",
-      "screen_facing": "right"
+      "screen_facing": "right",
+      "stage_why": "[추론] 삼상 19:18 「다윗이 도피하여」 — 즉위 전 도망자 구간의 시작(삼상 19:10 「다윗이 그 밤에 도피하매」). 소년기를 지났음은 삼상 18:13 「천부장을 삼으매」 · 삼상 18:27 「사울이 그 딸 미갈을 다윗에게 아내로 주었더라」가 받치고, 상한은 삼하 5:4 「다윗이 삼십 세에 위에 나아가서」. 약 25세는 프로젝트 연대 정본(data/person_events/david.json — 출생 BC 1040경 · 라마 피신 BC 1015경)에서 나온 값이라 id david(CAST.md 즉위 전 도망자 20대 구간)."
     },
     {
       "cast": "samuel",
@@ -104,21 +106,22 @@
       "verse": "19:18",
       "expression": {
         "ko": "조용히 귀 기울이는 늙은 얼굴",
-        "en": "a quiet, attentive old face, listening",
+        "en": "a quiet, attentive old face",
         "verse": "삼상 19:18(사무엘에게 고함 — 듣는 자) · 표정 본문 밖 · 저작자 정함"
       },
       "gesture": {
         "ko": "다윗을 마주 보고 서서 겉옷자락을 쥔 채 듣는다",
-        "en": "standing facing David, one hand holding the edge of his robe, listening",
+        "en": "listening to David, facing him, one hand holding the edge of his robe",
         "verse": "삼상 19:18 · 자세·손 본문 밖 · 저작자 정함"
       },
       "costume": {
         "ko": "긴 짙은 갈색 양모 겉옷과 천 띠, 지팡이 없음",
         "en": "a long dark brown wool robe with a cloth belt, no staff",
-        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색 brown과 맞춤)"
+        "verse": "삼상 28:14 「그가 겉옷을 입었나이다」 [추론](겉옷 차림) · 색·띠는 본문 밖 · 저작자 정함(카드 층 옷 색 brown과 맞춤)"
       },
       "gaze": "david",
-      "screen_facing": "left"
+      "screen_facing": "left",
+      "stage_why": "[추론] 삼상 8:1 「사무엘이 늙으매」 — 사울이 왕이 되기 전에 이미 늙었고(시간 순서로 19:18도 노년), 삼상 12:2 「나는 늙어 머리가 희었고」. 19:18은 그 뒤라 노년(id samuel · 카드 elder). 70대는 카드 값(본문 밖)."
     }
   ],
   "regions": {
@@ -129,26 +132,26 @@
       1.0
     ],
     "david": [
-      0.15,
-      0.37,
-      0.315,
+      0.22,
+      0.27,
+      0.38,
       0.92
     ],
     "samuel": [
-      0.6,
-      0.37,
-      0.762,
+      0.58,
+      0.27,
+      0.74,
       0.92
     ]
   },
-  "_regions_why": "다윗·사무엘 모두 세로 0.55(둘 다 성인). 좌우는 19:18(다윗이 사무엘 앞에서 고함).",
+  "_regions_why": "다윗·사무엘 모두 세로 0.65 — 사람 수 2(무리 단계 duo 0.60~0.70, task A1). 둘 다 카드 키 average라 같은 깊이·같은 발 높이. 좌우는 저작(다윗이 왼쪽에서 와서 사무엘 앞에 섬).",
   "stages": [
     {
       "id": "S1",
       "kind": "full",
       "region": "full",
       "verse": "19:18",
-      "prompt": "a small dry village courtyard, simple stone ground, sparse dry grass, pale sky, no people.",
+      "prompt": "a small dry village courtyard, packed-earth ground, a low rough stone wall and one plain mud-brick house behind, sparse dry grass, pale sky, no people.",
       "neg": [
         "people",
         "figures",
@@ -168,7 +171,7 @@
       "kind": "plate",
       "region": "david",
       "verse": "19:18",
-      "prompt": "{cast:david}, standing tall, one open hand raised, telling everything, facing right.",
+      "prompt": "{cast:david}, standing, one open hand raised, telling everything, facing right.",
       "neg": [
         "armour",
         "crown",
@@ -183,7 +186,7 @@
       "kind": "plate",
       "region": "samuel",
       "verse": "19:18",
-      "prompt": "{cast:samuel}, standing tall, gripping one robe corner, listening, facing left.",
+      "prompt": "{cast:samuel}, standing, slightly stooped, gripping one robe corner, listening, facing left.",
       "neg": [
         "armour",
         "sword",
@@ -204,8 +207,8 @@
     ],
     "gap_bands": [
       [
-        0.315,
-        0.6
+        0.38,
+        0.58
       ]
     ],
     "crest_x": {
@@ -226,12 +229,35 @@
   },
   "relation": {
     "ko": "다윗은 왼쪽에서 사무엘을 향해 한 손을 펴고 고하고, 사무엘은 오른쪽에서 다윗을 마주 보며 듣는다. 둘은 서로 바라본다",
-    "en": "David on the left speaks earnestly toward Samuel with one open hand, and Samuel on the right faces him and listens; the two men look at each other",
+    "en": "David on the left speaks toward Samuel with one open hand, and Samuel on the right faces him and listens; the two men look at each other",
     "verse": "삼상 19:18(고함·들음) · 좌우 배치·손짓·시선 본문 밖 · 저작자 정함"
   },
   "whole_background": {
-    "ko": "라마의 소박한 마른 뜰 — 낮은 돌담과 흙벽 집 한 채, 마른 풀, 엷은 하늘",
-    "en": "a small quiet dry courtyard at Ramah with simple packed-earth ground, a low rough stone wall and one plain mud-brick house behind, sparse dry grass, pale sky",
-    "verse": "삼상 19:18(장소 라마) · 뜰·돌담·집·하늘은 본문 밖 · 저작자 정함(시대 고증 — 철기 초 이스라엘 마을)"
+    "ko": "라마 사무엘의 집 앞 뜰 — 다져진 흙 바닥, 낮은 돌담과 흙벽 집 한 채, 마른 풀, 엷은 하늘",
+    "en": "the courtyard of Samuel's house at Ramah, packed-earth ground, a low rough stone wall and his plain mud-brick house behind, sparse dry grass, pale sky",
+    "verse": "삼상 19:18(장소 라마) · 삼상 7:17 「이는 거기 자기 집이 있음이라」(사무엘의 집 — 뜰이라는 것은 [추론]) · 돌담·흙벽 집 모양·마른 풀·하늘은 본문 밖 · 저작자 정함(시대 고증 — 철기 초 이스라엘 마을)"
+  },
+  "situation": {
+    "text": "사울이 단창으로 다윗을 벽에 박으려 하였고 다윗이 그 밤에 도피하였으며(19:10), 미갈이 다윗을 창에서 달아 내리매 그가 도망하여 피하였다(19:12) — 이것은 앞선 일이라 그리지 않는다. 다윗이 도피하여 라마로 가서 사무엘에게로 나아가서 사울이 자기에게 행한 일을 다 고하였다(19:18 전반 — 고정한 순간). 그래서 이 장면에는 다윗과 사무엘 두 사람이 있다. 다른 사람이 그 자리에 있었다는 말은 본문에 없다. 라마는 사무엘의 집이 있는 곳이다(7:17 「라마로 돌아왔으니 이는 거기 자기 집이 있음이라」) — 고하는 자리가 사무엘의 집 앞 뜰이라는 것은 [추론], 뜰의 모양·돌담·하늘은 본문 밖 · 저작자 정함. 지리: 다윗은 사울의 성읍 기브아(15:34 「사울은 사울 기브아 본집으로 올라가니라」)에서 도망해 라마로 왔다 — 출발지가 기브아라는 것은 [추론](19:9-11은 사울의 집·다윗의 집만 말함) — 화면에서는 다윗이 왼쪽에서 와서 오른쪽의 사무엘 앞에 선다(좌우는 저작자 정함). 이어서 「다윗과 사무엘이 나욧으로 가서 거하였더라」(19:18 후반)와 사울이 사자들을 보냄(19:19-20)은 뒤의 일이라 그리지 않는다.",
+    "verse": "삼상 19:18",
+    "same_time": {
+      "19:18": "고정한 순간(전반) — 도피한 다윗이 라마의 사무엘에게 나아가 사울이 행한 일을 다 고함 · 후반 「나욧으로 가서 거하였더라」는 뒤의 일"
+    }
+  },
+  "guide": {
+    "depth": {
+      "david": 1.0,
+      "samuel": 1.0
+    },
+    "shape": {
+      "david": "person",
+      "samuel": "person"
+    },
+    "body": "card",
+    "why": "task A1 단계 ① — 가이드가 없어 크기 규칙 둘(generate.figure-scale·height-ratio)이 못 잼이었다. 다윗(왼쪽)·사무엘(오른쪽)은 서 있는 사람 꼴, 같은 깊이(마주 서서 고하고 들음 — 19:18). 카드 체격 몸 너비(generate.guide-body-build). 키 0.65는 사람 수 2의 무리 단계 duo(0.60~0.70) 안. 뜰·집은 문구가 맡는다. 다윗은 뼈대 speak_open(task 417 — 화면 오른쪽 상대에게 앞 팔을 가슴 높이로 내밀어 손을 폄) — 19:18 「다 고하였고」의 고하는 손짓(generate.pose-hold), 뼈대가 있으니 스텝별 나눔(generate.split-control).",
+    "pose": {
+      "david": "speak_open"
+    },
+    "split": true
   }
 }
