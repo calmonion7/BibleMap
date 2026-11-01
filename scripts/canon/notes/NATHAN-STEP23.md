@@ -84,3 +84,13 @@ python3 batch/rule_ab.py --fixed 493 record '<판정 task 493 + JSON 한 줄>'
 - 곁 장면 원본: 통과 5/8(젊은 왕 6/8).
 - 눈 확인(`samples/nathan-step23-inset/v1/montage4.png`): 구름 안 젊은이가 수수한 푸른 옷·맨머리라 「왕처럼 차린」으로 안 읽힌다 — 7:12 뒤를 이은 왕이므로 실제 결함.
 - 고침(task 496): 곁 장면 솔로몬에 두 여인 장면과 같은 차림 덮어쓰기(금관 — 아 3:11 [추론]) · cast_override_why. 곁 장면만 다시(옛 그림은 v1로 옮김).
+
+### 결과 2차 (task 496 · 2026-11-02 · 금관 곁 장면 · 3표)
+
+- 판정기는 같은 파일 이름이면 옛 답을 다시 쓴다(첫 판정 「0건」) — 옛 `metrics.json`도 v1로 옮기고 다시 판정.
+- 합성 그림 **통과 7/8**(s42 s7 s5 s11 s101 s202 s303) · 구름 안 장면 0/8 → 풀림 · 왕궁 7/8. 곁 장면 원본 5/8.
+
+## 사람 판정(단계 ④, task 493) — 2번째
+
+- 화면: https://claude.ai/artifact/Ntqgzou8wrwfF98x2aQdBg (같은 주소 갱신 · 합성 8장 전부 · 기계 통과 7)
+- 답 기록: `python3 batch/rule_ab.py --fixed 493 record '<판정 task 493 + JSON 한 줄>'`
