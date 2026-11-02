@@ -387,5 +387,19 @@
         0.98
       ]
     }
+  },
+  "approved": {
+    "final": {
+      "path": "night-pick",
+      "seed": 11,
+      "kind": "base",
+      "image": "samples/apostasy-step23-t9/composition-A-s11.png",
+      "by": "user",
+      "on": "2026-11-03",
+      "spec_hash": "a12c9a23455a",
+      "prompt_hash": null,
+      "rules_version": "c602a50bbe6b",
+      "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
+    }
   }
 }
