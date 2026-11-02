@@ -43,7 +43,7 @@
   },
   "whole_background": {
     "ko": "예루살렘을 마주한 메마른 바위 산마루 — 골짜기 건너 멀리 성벽 두른 예루살렘 · 산마루 오른쪽에 후비들의 산당: 다듬지 않은 돌을 쌓은 제단, 제단에서 오르는 향 연기 · 산등성이를 따라 더 멀리 산당 둘(그모스·몰록) · 제단 앞에서 이족 후비 다섯이 저마다 자기 백성의 옷을 입고 분향하며 제단에 제물을 올림",
-    "en": "a bare rocky hilltop facing Jerusalem, the walled city of Jerusalem far across the valley; on the right of the hilltop a high place: a rough altar of piled unhewn stones, incense smoke rising from the altar, and two more high places farther along the ridge; in front of the altar five of his foreign wives, each in the robes of her own people, burning incense and laying offerings on the altar",
+    "en": "a bare rocky hilltop facing Jerusalem, the walled city of Jerusalem far across the valley; on the right of the hilltop a high place: a rough altar of piled unhewn stones, incense smoke rising from the altar, and two more high places farther along the ridge; in front of the altar five of his foreign wives in ankle-length wool robes and head veils, each in the robes of her own people, burning incense and laying a slaughtered young lamb on the altar fire",
     "verse": "왕상 11:7 「예루살렘 앞 산에 산당을 지었고 또 암몬 자손의 가증한 몰록을 위하여 그와 같이 하였으며」 · 11:8 「저가 또 이족 후비들을 위하여 다 그와 같이 한지라 저희가 자기의 신들에게 분향하며 제사하였더라」 · 11:1 「모압과 암몬과 에돔과 시돈과 헷 여인이라」 · 성이 골짜기 건너 보임은 [추론](「앞」 — 마주함) · 제단은 [추론](11:8 제사 · 왕상 3:4 「그 단에」) · 앞 산당이 후비들의 것·뒤 산당 둘이 그모스·몰록의 것인 배치, 다섯·옷 모양·돌 쌓음·바위·골짜기·성벽 모양은 본문 밖 · 저작자 정함(시대 고증 — 철기 이스라엘 산당) · 신의 형상은 본문에 없어 그리지 않음"
   },
   "verse_elements": [
@@ -116,8 +116,8 @@
       "verse": "11:8",
       "quote": "제사하였더라",
       "kind": "행동",
-      "ko": "후비들이 제단에 제물을 올림(제물 모양은 본문 밖 · 저작자 정함)",
-      "en": "laying offerings on the altar",
+      "ko": "후비들이 제단에 제물을 올림(제물 모양은 본문 밖 · 저작자 정함) — 잡은 어린 양을 제단 불에 올림(사전 sacrifice L2 · 짐승은 [추론] 왕상 3:4·8:63 · 어린 양은 저작 · task 536)",
+      "en": "laying a slaughtered young lamb on the altar fire",
       "field": "whole_background"
     },
     {
@@ -211,7 +211,12 @@
       "verse": "11:8 「저희가 자기의 신들에게 분향하며 제사하였더라」 · 11:1 모압·암몬·에돔·시돈·헷 · 수·옷은 본문 밖 · 저작자 정함",
       "region": "wives",
       "count": 5,
-      "count_why": "[저작](11:1 「모압과 암몬과 에돔과 시돈과 헷 여인이라」 다섯 백성에서 한 사람씩 — 11:3 「후비가 칠백 인이요 빈장이 삼백 인이라」는 전체 수라 이 자리에 온 수가 아니고, 분향하는 자리에 몇이 왔는지는 본문에 없음)"
+      "count_why": "[저작](11:1 「모압과 암몬과 에돔과 시돈과 헷 여인이라」 다섯 백성에서 한 사람씩 — 11:3 「후비가 칠백 인이요 빈장이 삼백 인이라」는 전체 수라 이 자리에 온 수가 아니고, 분향하는 자리에 몇이 왔는지는 본문에 없음)",
+      "costume": {
+        "ko": "발목까지 내려오는 긴 양모 겉옷과 머리 너울",
+        "en": "in ankle-length wool robes and head veils",
+        "verse": "본문 밖 · 저작자 정함(시대 고증 — 철기 근동 여인 차림 · 11:1 모압·암몬·에돔·시돈·헷 「여인」) · 저마다 다른 백성 옷은 verse_elements 「each in the robes of her own people」 · 규칙 spec.crowd-era-dress"
+      }
     }
   ],
   "figures": [

@@ -1301,6 +1301,7 @@ class CrowdShoulders(unittest.TestCase):
         import make_guide as MG
         self.assertGreaterEqual(MG.CROWD_SHOULDER * 2, 0.9)
         self.assertGreaterEqual(MG.CROWD_BOX, 0.4)
+        self.assertGreaterEqual(MG.CROWD_ARM_OUT - MG.CROWD_SHOULDER, 0.3)   # task 538 — 팔이 몸통에서 떨어짐
 
 
 class LexiconSpecificAbsent(unittest.TestCase):

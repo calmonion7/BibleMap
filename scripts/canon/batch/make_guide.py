@@ -105,16 +105,19 @@ def seated(d, x0, y0, x1, y1, v):
 
 CROWD_SHOULDER = 0.45   # 무리 실루엣 어깨 반너비 ÷ 몸 아래 너비(규칙 generate.crowd-shoulders) — person의 0.3이면 원뿔 기둥이라 「막대기 같은 신하」(task 498)
 CROWD_BOX = 0.4         # 무리 한 사람 상자 너비 ÷ 줄 키(옛 0.3 — 가늘게 그려짐)
+CROWD_ARM_OUT = 0.8     # 무리 한 사람 손 x 반너비 ÷ 몸 아래 너비 — 팔이 몸통에서 떨어져 보이게(task 538 배교 후비 「어깨·팔 굴곡 없이 원뿔·기둥 같은 천 덩어리」 몸 꼴 3/8)
 
 
 def crowd_person(d, x0, y0, x1, y1, v):
-    """task 499 — 무리 한 사람: person과 같되 어깨가 넓은 몸(어깨 0.9 × 아래 너비). 원뿔 기둥이면 사람이 막대기처럼 그려짐(사람 판정 498)."""
+    """task 499 — 무리 한 사람: person과 같되 어깨가 넓은 몸(어깨 0.9 × 아래 너비). 원뿔 기둥이면 사람이 막대기처럼 그려짐(사람 판정 498). task 538 — 몸에서 떨어진 두 팔."""
     h, cx = y1 - y0, (x0 + x1) / 2
     bw = min(x1 - x0, h * max(BODY["w"], S.build_width()))
     r = h * HEAD_R["person"]
     d.ellipse([cx - r, y0, cx + r, y0 + 2 * r], fill=v)
     sh = y0 + 2 * r
     body(d, (cx - bw * CROWD_SHOULDER, sh), (cx + bw * CROWD_SHOULDER, sh), cx, y0, y1, bw, v)
+    for s in (-1, 1):   # 두 팔 — 어깨에서 몸 옆으로 비껴 허리 높이 손까지(팔 없는 꼴은 천 기둥으로 그려짐, task 538)
+        d.line([(cx + s * bw * CROWD_SHOULDER, sh + h * 0.02), (cx + s * bw * CROWD_ARM_OUT, y0 + h * 0.45)], fill=v, width=max(1, round(h * 0.05)))
 
 
 def crowd(d, x0, y0, x1, y1, v):
