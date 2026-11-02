@@ -105,8 +105,8 @@ class WideQuestions(unittest.TestCase):
     def test_facing_without_gaze(self):   # task 373 — 한 장 모드 칸이 없는 판 경로 장면: 판 facing + 그 방향 앞쪽 인물
         import make_night_page as P
         spec = ds.load("authored-david-nathan-covenant")
-        nathan, david = spec["figures"]
-        self.assertNotIn("gaze", nathan)
+        nathan = next(f for f in spec["figures"] if f["cast"] == "nathan")   # 인물 순서가 바뀌어도(task 487) 나단을 cast로 고름
+        nathan.pop("gaze", None)   # task 487 나단을 한 장 방식으로 다시 써 gaze가 생김 — 이 시험은 gaze 없는 판 경로를 잰다(ds.load는 새로 읽은 사본)
         self.assertEqual(P.facing_q(nathan, spec), ("나단이 누구와 마주 보는가(얼굴·상체)가 틀린 그림", "화면 왼쪽을 향한다 — 다윗 쪽"))
 
     def test_pair_plate_only_treatment_and_label(self):
