@@ -282,6 +282,12 @@
       0.37,
       0.72,
       0.86
+    ],
+    "city_hill": [
+      0.0,
+      0.2,
+      0.4,
+      0.36
     ]
   },
   "_regions_why": "사람 수 6(솔로몬 1 + 후비 5) → 무리 단계 small(0.45~0.60). 초점 솔로몬(서 있음 · average) 구역 높이 0.56 · 발 y 0.92 → 지평선 0.398. 후비 무리는 조금 뒤 발 y 0.86 — 그 자리 어른 화면 키 0.496 ≤ 구역 높이 0.53(generate.eye-level-perspective). 무리 구역 너비 0.27은 가이드 무리 꼴이 보이는 실루엣 다섯(앞줄 2 · 뒷줄 5 중 앞줄에 가려지지 않는 3)을 그리는 너비 — count 5와 맞춤(0.25~0.28이 다섯 · 0.22는 넷 · 0.32는 여섯, make_guide.crowd로 셈). 솔로몬 왼쪽(뼈대 speak_open은 화면 오른쪽을 향함) · 후비들 가운데 · 산당(shrine — 가이드 꼴 없이 문구가 맡음) 오른쪽은 저작자 정함.",
@@ -290,13 +296,15 @@
       "solomon-old": 1.0,
       "wives": 0.85,
       "shrine": 0.85,
-      "offerer": 0.85
+      "offerer": 0.85,
+      "city_hill": 0.1
     },
     "shape": {
       "solomon-old": "person",
       "wives": "crowd",
       "shrine": "altar",
-      "offerer": "person"
+      "offerer": "person",
+      "city_hill": "bank"
     },
     "body": "card",
     "pose": {
@@ -304,7 +312,7 @@
       "offerer": "point_down"
     },
     "split": true,
-    "why": "task 492 단계 ① — 가이드가 없어 크기·원근 규칙(generate.figure-scale·eye-level-perspective)이 못 잼이었다. 솔로몬(왼쪽)은 뼈대 speak_open(task 417 — 화면 오른쪽으로 앞 팔을 가슴 높이로 내밀어 손을 폄): 몸짓 「한 손을 펴 … 제단 쪽으로 내밀고」(generate.pose-hold) — 11:8 「저가 또 이족 후비들을 위하여」 지어 준 산당 쪽. 뼈대가 있으니 스텝별 나눔(generate.split-control). 후비 다섯은 가운데 무리 꼴(crowds 5 · 깊이 0.85 — 솔로몬보다 조금 뒤). 카드 체격 몸 너비(generate.guide-body-build). 산당·제단·향 연기·먼 성은 문구가 맡는다(맞는 가이드 꼴 없음). (task 546: 산당 구역에 altar 꼴 — 돌 제단 덩어리 위 제물 덩어리. 문구만으로는 다섯 판 동안 어린 양이 땅바닥·품에 그려짐(제단 위 제물 2~4/8)) (task 549: 다섯째 후비를 무리에서 떼어 구역 offerer — 뼈대 point_down(앞·아래로 손을 뻗어 제단 위에 올림). 카드 없는 인물이라 relation 「stands a …」 한 사람 절(spec.cardless-person-clause))"
+    "why": "task 492 단계 ① — 가이드가 없어 크기·원근 규칙(generate.figure-scale·eye-level-perspective)이 못 잼이었다. 솔로몬(왼쪽)은 뼈대 speak_open(task 417 — 화면 오른쪽으로 앞 팔을 가슴 높이로 내밀어 손을 폄): 몸짓 「한 손을 펴 … 제단 쪽으로 내밀고」(generate.pose-hold) — 11:8 「저가 또 이족 후비들을 위하여」 지어 준 산당 쪽. 뼈대가 있으니 스텝별 나눔(generate.split-control). 후비 다섯은 가운데 무리 꼴(crowds 5 · 깊이 0.85 — 솔로몬보다 조금 뒤). 카드 체격 몸 너비(generate.guide-body-build). 산당·제단·향 연기·먼 성은 문구가 맡는다(맞는 가이드 꼴 없음). (task 546: 산당 구역에 altar 꼴 — 돌 제단 덩어리 위 제물 덩어리. 문구만으로는 다섯 판 동안 어린 양이 땅바닥·품에 그려짐(제단 위 제물 2~4/8)) (task 549: 다섯째 후비를 무리에서 떼어 구역 offerer — 뼈대 point_down(앞·아래로 손을 뻗어 제단 위에 올림). 카드 없는 인물이라 relation 「stands a …」 한 사람 절(spec.cardless-person-clause)) (task 550: 왼쪽 위 먼 언덕 city_hill — bank 꼴 · 깊이 0.1. 문구 「on the opposite hill across a deep valley」만으로는 성이 왕 뒤 같은 비탈에 붙어 그려짐 건너편 성 3/8 — 가까운 산마루와 먼 언덕 사이 깊이 차가 골짜기)"
   },
   "stages": [
     {
