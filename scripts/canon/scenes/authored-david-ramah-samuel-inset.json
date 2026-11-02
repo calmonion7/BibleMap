@@ -75,7 +75,7 @@
       "quote": "사울의 창은 벽에 박힌지라",
       "kind": "지물",
       "ko": "사울의 창이 다윗 숙인 머리 바로 위 벽에 촉부터 박힘(창 모양은 낱말 사전 창 L2 · 박힌 높이는 본문 밖 · 저작자 정함)",
-      "en": "Saul's spear is stuck point-first in the stone wall just above David's ducked head",
+      "en": "Saul's spear is stuck in the stone wall just above David's ducked head",
       "field": "relation"
     },
     {
@@ -292,12 +292,12 @@
   },
   "relation": {
     "ko": "사울이 방을 가로질러 다윗에게 창을 던졌고, 다윗이 머리를 숙이고 몸을 비틀어 피해, 창이 숙인 다윗 머리 바로 위 벽에 촉부터 박혀 자루가 사울 쪽으로 곧게 뻗어 있다",
-    "en": "Saul's spear is stuck point-first in the stone wall just above David's ducked head, a straight wooden shaft about a man's height, one hand-sized leaf-shaped iron point at the front, a small iron cap at the back, no crossguard, its shaft sticking out level toward Saul, and David has ducked and twisted aside out of its path",
+    "en": "Saul's spear is stuck in the stone wall just above David's ducked head, its point buried in the wall, shaft sticking out toward Saul — a long wooden spear, its shaft sticking out level toward Saul, and David has ducked and twisted aside out of its path",
     "verse": "삼상 19:10 「사울이 단창으로 다윗을 벽에 박으려 하였으나 그는 사울의 앞을 피하고 사울의 창은 벽에 박힌지라」 · 박힌 높이(숙인 머리 바로 위)·자루 방향은 본문 밖 · 저작자 정함 · 창 모양은 낱말 사전 spear L2(삼상 19:9 「손에 단창을 가지고」 — 단창) · 던짐은 [추론](gesture와 같음) · 방을 가로지른 거리는 본문 밖 · 저작자 정함"
   },
   "whole_background": {
     "ko": "기브아 사울의 집 안 소박한 방 — 사방이 거친 돌벽, 다윗 바로 뒤도 같은 거친 돌벽, 바닥에 놓인 나무 걸상 하나(사울이 앉았다 일어선 걸상)",
-    "en": "the inside of a plain room in Saul's house at Gibeah, walls of rough uneven stone blocks all around, the same rough stone blocks in the wall right behind David, a simple wooden stool on the floor",
+    "en": "the inside of a plain room in Saul's house at Gibeah, walls of rough uneven stone blocks all around, the same rough stone blocks in the wall right behind David, a wooden stool",
     "verse": "삼상 19:9 「그 집에 앉았을 때에」(사울의 집 · 앉아 있던 자리) · 19:10 「벽에 박힌지라」 · 기브아는 삼상 15:34 「사울은 사울 기브아 본집으로 올라가니라」 [추론](19:9-11은 사울의 집·다윗의 집만 말함) · 걸상은 사울이 앉았다 일어선 걸상 — 19:9 「앉았을 때에」의 흔적([추론]) · 돌벽은 본문 밖 · 저작자 정함(기브아 창 승인 장면과 같은 방)"
   },
   "situation": {
@@ -324,7 +324,7 @@
     "backdrop": "room",
     "body": "card",
     "legs": "costume",
-    "tip": "leaf",
+    "tip": "buried",
     "blur": 8,
     "pose": {
       "saul-elder": "throw_follow",
@@ -339,6 +339,6 @@
       "at": 1.61,
       "why": "19:10 「사울의 창은 벽에 박힌지라」 — 창이 다윗 머리를 지나 그 뒤 벽까지 가서 박힌 자리라 at > 1(던진 손목 → 다윗 머리 길의 1.61배 = 벽 속 0.17). 기브아 창(18:11, at 0.75)은 날아가는 중이었고 여기는 박힌 뒤."
     },
-    "why": "기브아 창 승인 장면(18:10-11, m17e)의 가이드 설정을 그대로 물려받음 — 실내 방 바탕(generate.guide-backdrop) · 카드 체격 몸 너비(guide-body-build) · 무릎 길이 차림 다리(guide-costume-legs) · 잎 모양 촉(tip leaf) · 흐림 8 · 사울 던짐 마무리 뼈대 throw_follow(generate.pose-skeleton — 몸짓에 던짐) · 다윗 숙인 뼈대 duck_low(generate.pose-hold — 두 손으로 수금을 가슴에) · 스텝별 나눔(generate.split-control: 앞 2스텝 뼈대 → 뒤 2스텝 깊이). 다른 점: 창이 날아가는 중이 아니라 벽에 박힌 뒤라 촉을 옆벽 안(0.17)에 두고 flight.at 1.61(창 자리 = 사울 손목 → 다윗 머리 길을 머리 너머 벽까지 늘인 곳) — 그려질 뒤끝 0.467은 사울 손목 0.670 − 0.07 앞(손에 남은 꼴 아님). 창 높이는 사울 뼈대 어깨 0.443(generate.flight-height), 숙인 다윗 머리 띠 바로 위 머리 하나 안(generate.dodge-clear). 곁 장면 틀 0.10~0.90 안(generate.inset-frame-aspect)."
+    "why": "기브아 창 승인 장면(18:10-11, m17e)의 가이드 설정을 그대로 물려받음 — 실내 방 바탕(generate.guide-backdrop) · 카드 체격 몸 너비(guide-body-build) · 무릎 길이 차림 다리(guide-costume-legs) · 잎 모양 촉(tip leaf) · 흐림 8 · 사울 던짐 마무리 뼈대 throw_follow(generate.pose-skeleton — 몸짓에 던짐) · 다윗 숙인 뼈대 duck_low(generate.pose-hold — 두 손으로 수금을 가슴에) · 스텝별 나눔(generate.split-control: 앞 2스텝 뼈대 → 뒤 2스텝 깊이). 다른 점: 창이 날아가는 중이 아니라 벽에 박힌 뒤라 촉을 옆벽 안(0.17)에 두고 flight.at 1.61(창 자리 = 사울 손목 → 다윗 머리 길을 머리 너머 벽까지 늘인 곳) — 그려질 뒤끝 0.467은 사울 손목 0.670 − 0.07 앞(손에 남은 꼴 아님). 창 높이는 사울 뼈대 어깨 0.443(generate.flight-height), 숙인 다윗 머리 띠 바로 위 머리 하나 안(generate.dodge-clear). 곁 장면 틀 0.10~0.90 안(generate.inset-frame-aspect). · task 516: tip buried — 촉을 벽 속에 두고 자루만(r1·t2 창이 거꾸로 — 벽 앞 마름모를 쇠판으로 읽음)."
   }
 }

@@ -264,6 +264,10 @@ def spear(d, x0, y0, x1, y1, v):
     tip = (x1 - x0) * (0.3 if BODY.get("big_tip") else 0.18)   # a3: 촉을 키움 · b6: big_tip이면 더 크게(b5 촉이 사울 쪽으로 뒤집힘 8장 거의 전부)
     d.rectangle([x0 + tip, cy - t, x1, cy + t], fill=v)
     k = 5 if BODY.get("big_tip") else 3
+    if BODY.get("buried_tip"):   # task 516: 벽에 박힌 창 — 촉은 벽 속(그리지 않음), 자루는 벽 면에서 시작해 반대쪽 끝에 작은 뭉툭한 마개
+        d.rectangle([x0, cy - t, x1, cy + t], fill=v)                          # 자루는 촉 자리부터 — 벽 면을 뚫고 들어간 꼴(떠 보이지 않게)
+        d.rectangle([x1 - t * 3, cy - t * 1.8, x1, cy + t * 1.8], fill=v)   # 라마 곁 장면 r1·t2: 벽 앞 마름모 촉을 벽에 붙은 쇠판으로, 허공 쪽 끝을 촉으로 거꾸로 그림
+        return
     if BODY.get("leaf_tip"):   # b7: 잎 모양(마름모 — 가장 넓은 곳이 촉 뒤쪽 1/3) — 삼각형은 미늘 달린 화살촉으로 그려짐(b6 s5 단 하나의 틀림)
         d.polygon([(x0, cy), (x0 + tip * 0.62, cy - t * k * 0.8), (x0 + tip, cy), (x0 + tip * 0.62, cy + t * k * 0.8)], fill=v)
     else:
@@ -440,12 +444,14 @@ def make_pose_only(spec, backdrop=False):
     d = ImageDraw.Draw(layer)
     if g.get("tip") in ("big", "leaf"):
         BODY["big_tip"], BODY["leaf_tip"] = True, g["tip"] == "leaf"
+    BODY["buried_tip"] = g.get("tip") == "buried"
     for k in g["shape"]:
         if g["shape"][k] in AIR_SHAPES:
             x0, y0, x1, y1 = R[k]
             SHAPES[g["shape"][k]](d, x0 * W, y0 * H, x1 * W, y1 * H, 255)
     BODY.pop("big_tip", None)
     BODY.pop("leaf_tip", None)
+    BODY.pop("buried_tip", None)
     out = layer.convert("RGB")
     for k, name in sorted(g.get("pose", {}).items()):
         x0, y0, x1, y1 = R[k]
@@ -473,6 +479,7 @@ def make(spec, stage=1):
     if g.get("tip") in ("big", "leaf"):
         BODY["big_tip"] = True
         BODY["leaf_tip"] = g["tip"] == "leaf"
+    BODY["buried_tip"] = g.get("tip") == "buried"
     build, knee = {}, set()
     if g.get("legs") == "costume":   # b2: 차림 문구가 무릎 길이면 그 인물 꼴에 무릎 아래 다리
         knee = {f["region"] for f in spec["figures"] if "knee-length" in (f.get("costume") or {}).get("en", "")}
