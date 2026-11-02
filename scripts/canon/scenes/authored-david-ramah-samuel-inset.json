@@ -1,0 +1,344 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-david-ramah-samuel-inset",
+  "title": "라마 사무엘 — 말 속: 사울의 창이 벽에 박히고 다윗이 피함",
+  "inset_of": "authored-david-ramah-samuel",
+  "verses": {
+    "range": "삼상 19:9-10",
+    "quotes": {
+      "19:9": "사울이 손에 단창을 가지고 그 집에 앉았을 때에 여호와의 부리신 악신이 사울에게 접하였으므로 다윗이 손으로 수금을 탈 때에",
+      "19:10": "사울이 단창으로 다윗을 벽에 박으려 하였으나 그는 사울의 앞을 피하고 사울의 창은 벽에 박힌지라 다윗이 그 밤에 도피하매"
+    }
+  },
+  "moment": {
+    "verse": "19:10",
+    "why": "곁 장면(큰 장면 authored-david-ramah-samuel의 뭉게구름 안 — 규칙 spec.speech-inset): 큰 장면 순간은 19:18 다윗이 사무엘에게 「사울이 자기에게 행한 일을 다 고하였고」이고, 그 말 속 핵심으로 19:10 — 사울이 단창으로 다윗을 벽에 박으려 하였으나 다윗이 사울의 앞을 피하고 사울의 창이 벽에 박힌 순간 — 을 여기 싣는다. 19:18이 「다 고하였고」라 무엇을 고하였는지 하나하나 적지 않으므로 19:10-12가 한 밤의 도피로 이어지고(19:10 「그 밤에 도피하매」 … 19:12 「도망하여 피하니라」 → 19:18 「도피하여」), 그 가운데 사울이 제 손으로 다윗에게 행한 일이 19:10이라 고름 — [추론]. 19:9는 같은 자리의 앞 정황(사울이 손에 단창을 가지고 집에 앉았을 때 악신이 접하였고 다윗이 수금을 탐)이라 같은 장면 구절로 넣는다. 그 밤에 도피함(19:10 끝)은 이 순간 뒤의 일이다."
+  },
+  "verse_elements": [
+    {
+      "verse": "19:9",
+      "quote": "그 집에",
+      "kind": "장소",
+      "ko": "사울의 집 안 방(기브아는 삼상 15:34 「사울은 사울 기브아 본집으로 올라가니라」에서 [추론] · 방 모습은 본문 밖 · 저작자 정함)",
+      "en": "the inside of a plain room in Saul's house at Gibeah",
+      "field": "whole_background"
+    },
+    {
+      "verse": "19:9",
+      "quote": "여호와의 부리신 악신이 사울에게 접하였으므로",
+      "kind": "행동",
+      "ko": "악신이 접한 사울의 사나운 얼굴(악신은 형상 없이 — 얼굴로만)",
+      "en": "a wild, raving face",
+      "field": "figures[0].expression"
+    },
+    {
+      "verse": "19:9",
+      "quote": "사울이 손에 단창을 가지고 그 집에 앉았을 때에",
+      "kind": "때",
+      "ko": "사울이 단창을 손에 들고 집에 앉아 있던 때",
+      "out": "곁 장면 순간(19:10 창이 벽에 박힘) 앞의 때 — 악신이 접한 때의 자세이고, 이 순간 창은 이미 손을 떠나 벽에 박힘"
+    },
+    {
+      "verse": "19:9",
+      "quote": "다윗이 손으로 수금을 탈 때에",
+      "kind": "지물",
+      "ko": "다윗 손의 수금 — 타다가 피하며 두 손으로 가슴에 붙여 쥠(낱말 사전 수금 L2 모양 · 피하는 순간에도 쥐고 있음은 본문 밖 · 저작자 정함 — 기브아 창 18:10과 같은 꼴)",
+      "en": "clutching a small wooden lyre against his chest",
+      "field": "figures[1].gesture"
+    },
+    {
+      "verse": "19:10",
+      "quote": "사울이 단창으로 다윗을 벽에 박으려 하였으나",
+      "kind": "행동",
+      "ko": "사울이 다윗을 벽에 박으려고 창을 막 던짐 — 빈손이 된 던진 팔(던진 몸짓은 「박으려 하였으나 … 창은 벽에 박힌지라」에서 [추론] · 팔·몸 모습은 본문 밖 · 저작자 정함)",
+      "en": "having just hurled his spear",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "19:10",
+      "quote": "다윗을 벽에 박으려",
+      "kind": "자리",
+      "ko": "다윗이 벽을 등지고 섬 — 사울이 다윗을 벽에 박으려 함(벽 앞 자리는 이 말에서 [추론] · 벽에 붙은 정도는 본문 밖 · 저작자 정함)",
+      "en": "standing with his back against the stone wall",
+      "field": "figures[1].gesture"
+    },
+    {
+      "verse": "19:10",
+      "quote": "그는 사울의 앞을 피하고",
+      "kind": "행동",
+      "ko": "다윗이 낮게 몸을 숙이고 비틀어 창이 날아온 길에서 비킴(숙임·비틈은 본문 밖 · 저작자 정함)",
+      "en": "twisting his body aside out of the path of the spear",
+      "field": "figures[1].gesture"
+    },
+    {
+      "verse": "19:10",
+      "quote": "사울의 창은 벽에 박힌지라",
+      "kind": "지물",
+      "ko": "사울의 창이 다윗 숙인 머리 바로 위 벽에 촉부터 박힘(창 모양은 낱말 사전 창 L2 · 박힌 높이는 본문 밖 · 저작자 정함)",
+      "en": "Saul's spear is stuck point-first in the stone wall just above David's ducked head",
+      "field": "relation"
+    },
+    {
+      "verse": "19:10",
+      "quote": "다윗이 그 밤에 도피하매",
+      "kind": "행동",
+      "ko": "다윗이 그 밤에 도피함",
+      "out": "곁 장면 순간 뒤의 일 — 큰 장면 19:18 「다윗이 도피하여」로 이어짐"
+    }
+  ],
+  "background": [
+    {
+      "what": "기브아 사울의 집 안 소박한 방 — 사방 거친 돌벽, 다윗 바로 뒤도 같은 거친 돌벽, 바닥에 나무 걸상 하나",
+      "verse": "19:9 「그 집에」 · 19:10 「벽에 박힌지라」 · 기브아는 삼상 15:34 [추론] · 걸상은 사울이 앉았다 일어선 걸상 — 19:9 「앉았을 때에」의 흔적([추론]) · 돌벽은 본문 밖 · 저작자 정함(기브아 창 18:10-11 승인 장면과 같은 방)"
+    }
+  ],
+  "figures": [
+    {
+      "cast": "saul-elder",
+      "role": "사울 — 악신이 접하여 단창으로 다윗을 벽에 박으려 한 왕",
+      "pose": "방 가운데 서서 다윗을 향해 창을 막 던져, 빈손이 된 던진 팔이 앞·아래로 휘둘러 내려옴",
+      "prop": "none",
+      "facing": "left",
+      "region": "saul-elder",
+      "verse": "19:9-10 · 선 자세·팔 모습 본문 밖 · 저작자 정함",
+      "screen_facing": "left",
+      "expression": {
+        "ko": "악신이 접하여 사나운 얼굴 — 눈을 부릅뜨고 다윗을 노려봄",
+        "en": "a wild, raving face, eyes wide and fixed on David",
+        "verse": "삼상 19:9 「여호와의 부리신 악신이 사울에게 접하였으므로」 · 눈 모습은 본문 밖 · 저작자 정함(기브아 창과 같은 문구) (사나운 얼굴은 18:10 「집 가운데서 야료하는고로」에 견준 [추론])"
+      },
+      "gesture": {
+        "ko": "다윗을 향해 창을 막 던져, 빈손이 된 던진 오른팔이 앞·아래로 휘둘러 내려오고 몸이 굽힌 앞발 쪽으로 쏠림",
+        "en": "having just hurled his spear, his empty throwing arm swinging forward and down across his body, his fingers open and spread where the spear just left them, his weight thrown onto his bent front leg",
+        "verse": "삼상 19:10 「사울이 단창으로 다윗을 벽에 박으려 하였으나 … 사울의 창은 벽에 박힌지라」(창이 손을 떠나 벽에 박혔으니 손은 비었음 — 던짐은 [추론]) · 19:9 「그 집에 앉았을 때에」는 악신이 접한 때의 자세이고, 던질 때 일어섰는지는 본문에 없음 — 선 자세·팔·몸 모습은 본문 밖 · 저작자 정함(기브아 창 18:11 승인 장면의 던진 몸짓 문구·뼈대를 그대로 씀) · 던짐을 받치는 같은 사울의 같은 몸짓: 삼상 18:11 「그 창을 던졌으나」 · 삼상 20:33 「단창을 던져」"
+      },
+      "costume": {
+        "ko": "무릎 길이 반소매 어두운 갈색 모직 튜닉과 수수한 가죽 띠, 정강이가 드러남 — 집 안의 평상 차림",
+        "en": "in a knee-length short-sleeved dark brown wool tunic with a plain leather belt, his bare shins showing",
+        "verse": "본문 밖 · 저작자 정함(기브아 창 승인 장면과 같은 집 안 평상 차림)"
+      },
+      "gaze": "david",
+      "stage_why": "[추론] 삼상 13:1 「사울이 왕이 될 때에 사십 세라」 + 프로젝트 연대(사울 즉위 BC 1050경 · 이 일은 라마 피신 BC 1015경과 같은 때 — 삼상 19:10 「다윗이 그 밤에 도피하매」가 삼상 19:18 「다윗이 도피하여」로 이어짐) → 약 75세. id는 기력으로 고름 — 단창으로 다윗을 벽에 박으려 할 기력이 있으니 삼상 28:20 「그 기력이 진하였으니」 이전 — 재위 후반 saul-elder(카드 약 64~79의 대표값 70 · 기브아 창 18:11과 같은 id).",
+      "cast_override": {
+        "card": {
+          "heightRel": "tall",
+          "ageBand": {
+            "class": "elder",
+            "text": "about 70, a deeply wrinkled old face, lined forehead and cheeks"
+          },
+          "beardVolume": {
+            "class": "trimmed",
+            "text": "close-trimmed grey-streaked beard, jawline visible"
+          },
+          "silhouette": {
+            "class": "broad",
+            "text": "broad shoulders, a strong solid chest"
+          },
+          "headOutline": {
+            "class": "crown",
+            "text": "a plain gold crown over short greying hair cut close"
+          },
+          "costumeColor": {
+            "class": "brown",
+            "text": "dark brown wool tunic, plain leather belt"
+          }
+        },
+        "hair": "none",
+        "headwear": "gold crown"
+      },
+      "cast_override_why": "왕의 표지(금관)는 차림이라 덮어씀 — 뭉게구름 속 작은 인물은 신원 표지가 있어야 「사울이 자기에게 행한 일」로 읽힘(나단 곁 장면 「구름 안 장면」 0/8 → 금관, scene-authoring 함정) · 사울의 면류관은 삼하 1:10 「그 머리에 있는 면류관과 팔에 있는 고리를 벗겨서」 [직접](사울이 면류관을 씀) · 집 안에서 이 순간 썼는지는 본문 밖 · 저작자 정함 · 관 모양 본문 밖 · 저작자 정함 · 정체성 값(나이·수염·체격)은 카드 그대로"
+    },
+    {
+      "cast": "david",
+      "role": "다윗 — 수금을 타다가 사울이 던진 창을 피함",
+      "pose": "벽을 등지고 낮게 몸을 굽혀 머리를 숙이고 비틀어 창이 머리 위 벽에 박히게 피한다, 수금은 두 손으로 가슴에 붙여 쥔다",
+      "prop": "a small wooden lyre",
+      "facing": "right",
+      "region": "david",
+      "verse": "19:9-10 · 생애 단계 근거는 stage_why",
+      "screen_facing": "right",
+      "expression": {
+        "ko": "놀란 얼굴(시선은 gaze 칸 — 사울)",
+        "en": "a startled face",
+        "verse": "19:10 「그는 사울의 앞을 피하고」 · 표정·시선은 본문 밖 · 저작자 정함(시선은 gaze saul-elder와 같음)"
+      },
+      "gesture": {
+        "ko": "벽을 등진 채 낮게 몸을 굽혀 머리를 숙이고 몸을 옆으로 비틀어 창의 길에서 비킴 — 작은 나무 수금(울림통에 두 팔과 가로대, 목·지판 없음)을 두 손으로 가슴에 붙여 쥠",
+        "en": "standing with his back against the stone wall, bending low and ducking his head, twisting his body aside out of the path of the spear, clutching a small wooden lyre against his chest with both hands, a small hollow wooden sound box, smaller than a man's torso, with two curved arms rising from the box, joined by a top crossbar, strings from box to crossbar",
+        "verse": "19:10 「다윗을 벽에 박으려」(다윗이 창이 날아간 길 끝 벽 앞에 있음 — 벽을 등지고 선 자세는 이 말에서 추론, 벽에 붙은 정도는 본문 밖 · 저작자 정함) · 19:10 「그는 사울의 앞을 피하고」 · 19:9 「다윗이 손으로 수금을 탈 때에」 · 수금 모양은 낱말 사전 kinnor-lyre L2 · 숙인 머리·비튼 몸·두 손으로 가슴에 붙여 쥠은 본문 밖 · 저작자 정함(기브아 창 승인 장면과 같은 꼴)"
+      },
+      "costume": {
+        "ko": "가슴과 어깨를 덮는 반소매 무릎 길이 짙은 붉은 모직 튜닉과 가죽 띠, 무릎 아래 맨다리",
+        "en": "in a short-sleeved knee-length dark red wool tunic covering his chest and shoulders, with a leather belt, his bare legs showing below the knee",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색 red · 큰 장면과 같은 붉은 튜닉 · 덮는 곳은 기브아 창 시도 a1 웃통 벗은 그림 7/8 · 라마 8시드 웃통 4/8에서 문구로 밝힘)"
+      },
+      "gaze": "saul-elder",
+      "stage_why": "[추론] 삼상 19:10 「다윗이 그 밤에 도피하매」 — 이 일 바로 그 밤에 도피하여 삼상 19:18 「다윗이 도피하여 라마로 가서」로 이어지므로 큰 장면(라마)과 같은 때이고 같은 사람이라 같은 id. 기브아 창(삼상 18:11)의 david-youth(15~20세)보다 뒤다 — 그 사이 삼상 18:13 「천부장을 삼으매」 · 삼상 18:27 「사울이 그 딸 미갈을 다윗에게 아내로 주었더라」 · 삼상 19:8 「전쟁이 다시 있으므로」로 때가 흘렀다. 상한은 삼하 5:4 「다윗이 삼십 세에 위에 나아가서」. 약 25세는 프로젝트 연대 정본(data/person_events/david.json — 출생 BC 1040경 · 라마 피신 BC 1015경)에서 나온 값이라 id david(CAST.md 즉위 전 도망자 20대 구간)."
+    }
+  ],
+  "regions": {
+    "full": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "wall": [
+      0.1,
+      0.0,
+      0.19,
+      1.0
+    ],
+    "david": [
+      0.15,
+      0.39,
+      0.38,
+      0.98
+    ],
+    "spear": [
+      0.17,
+      0.431,
+      0.467,
+      0.456
+    ],
+    "saul-elder": [
+      0.69,
+      0.3,
+      0.9,
+      0.98
+    ]
+  },
+  "_regions_why": "곁 장면은 구름 틀 비율 너비(inset_try.inset_w — 큰 장면 구름 [0.31,0.02,0.71,0.52] → 976×640)로 가운데를 잘라 그림 — 잘린 틀은 1216 화면의 0.10~0.90이라 모든 구역을 그 안에 둠. 세로 자리·키는 기브아 창 승인 장면(h4·n1 이후) 그대로: 사울 서서 0.68(창을 던진 왕) · 숙인 다윗 0.59(키 비 0.87 — 삼상 9:2 「어깨 위는 더하더라」 · tall vs average) · 사람 수 2의 무리 단계 duo. 가로는 기브아 구도를 틀 안으로 접음: 옆벽 0.10~0.19(다윗 등 뒤) · 다윗 0.15~0.38(벽에 닿음) · 사울 0.69~0.90(오른쪽 끝). 창은 촉이 벽 속 0.17에 박히고 자루가 사울 쪽으로 수평(길이 = 사전 사람 키 1.0 × 사울 키 ÷ tall — 기브아와 같은 셈 0.297), 높이는 던진 팔 어깨(0.443 — generate.flight-height), 숙인 다윗 머리 바로 위(generate.dodge-clear).",
+  "stages": [
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "19:9(그 집) · 19:10(벽)",
+      "prompt": "a plain dim interior room, walls of rough uneven stone blocks, a simple wooden stool, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "outdoor",
+        "modern furniture",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ]
+    },
+    {
+      "id": "S2",
+      "kind": "plate",
+      "region": "saul-elder",
+      "verse": "19:10",
+      "prompt": "{cast:saul-elder}, standing, having just hurled his spear, his empty throwing arm swinging forward and down across his body, his fingers open and spread where the spear just left them, facing left.",
+      "neg": [
+        "armour",
+        "royal robe",
+        "modern clothes",
+        "two spears",
+        "sitting",
+        "spear in hand"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "david",
+      "verse": "19:9-10",
+      "prompt": "{cast:david}, back against the stone wall, bending low and ducking his head, twisting aside, a small wooden lyre clutched to his chest, facing right.",
+      "neg": [
+        "armour",
+        "helmet",
+        "crown",
+        "royal robe",
+        "modern clothes",
+        "sitting"
+      ]
+    }
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": [
+      "saul-elder",
+      "david"
+    ],
+    "gap_bands": [
+      [
+        0.38,
+        0.69
+      ]
+    ],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
+  },
+  "meaning": {
+    "ko": "다윗이 사무엘에게 고한 말 속의 일 — 기브아 사울의 집 안에서 악신이 접한 사울이 수금을 타던 다윗을 단창으로 벽에 박으려 하였으나, 다윗이 피하고 사울의 창이 벽에 박힌다",
+    "en": "What David tells Samuel: in Saul's house at Gibeah, Saul, seized by an evil spirit, has hurled his spear to pin David to the wall, but David, who was playing the lyre, has dodged aside and the spear is stuck in the wall",
+    "verse": "삼상 19:9-10 · 기브아는 삼상 15:34 [추론] · 말 속 고름은 19:18 「사울이 자기에게 행한 일을 다 고하였고」에서 [추론] · 악신·여호와는 형상 없이(ADR 261025-120741)"
+  },
+  "relation": {
+    "ko": "사울이 방을 가로질러 다윗에게 창을 던졌고, 다윗이 머리를 숙이고 몸을 비틀어 피해, 창이 숙인 다윗 머리 바로 위 벽에 촉부터 박혀 자루가 사울 쪽으로 곧게 뻗어 있다",
+    "en": "Saul's spear is stuck point-first in the stone wall just above David's ducked head, a straight wooden shaft about a man's height, one hand-sized leaf-shaped iron point at the front, a small iron cap at the back, no crossguard, its shaft sticking out level toward Saul, and David has ducked and twisted aside out of its path",
+    "verse": "삼상 19:10 「사울이 단창으로 다윗을 벽에 박으려 하였으나 그는 사울의 앞을 피하고 사울의 창은 벽에 박힌지라」 · 박힌 높이(숙인 머리 바로 위)·자루 방향은 본문 밖 · 저작자 정함 · 창 모양은 낱말 사전 spear L2(삼상 19:9 「손에 단창을 가지고」 — 단창) · 던짐은 [추론](gesture와 같음) · 방을 가로지른 거리는 본문 밖 · 저작자 정함"
+  },
+  "whole_background": {
+    "ko": "기브아 사울의 집 안 소박한 방 — 사방이 거친 돌벽, 다윗 바로 뒤도 같은 거친 돌벽, 바닥에 놓인 나무 걸상 하나(사울이 앉았다 일어선 걸상)",
+    "en": "the inside of a plain room in Saul's house at Gibeah, walls of rough uneven stone blocks all around, the same rough stone blocks in the wall right behind David, a simple wooden stool on the floor",
+    "verse": "삼상 19:9 「그 집에 앉았을 때에」(사울의 집 · 앉아 있던 자리) · 19:10 「벽에 박힌지라」 · 기브아는 삼상 15:34 「사울은 사울 기브아 본집으로 올라가니라」 [추론](19:9-11은 사울의 집·다윗의 집만 말함) · 걸상은 사울이 앉았다 일어선 걸상 — 19:9 「앉았을 때에」의 흔적([추론]) · 돌벽은 본문 밖 · 저작자 정함(기브아 창 승인 장면과 같은 방)"
+  },
+  "situation": {
+    "text": "큰 장면(authored-david-ramah-samuel)에서 다윗이 라마의 사무엘에게 「사울이 자기에게 행한 일을 다 고하였고」(19:18) — 그 말 속 핵심을 뭉게구름으로 싣는다. 무엇을 고하였는지는 19:18에 적혀 있지 않다. 19:10-12가 한 밤의 도피로 이어지고(19:10 「그 밤에 도피하매」 … 19:12 「도망하여 피하니라」 → 19:18 「도피하여」), 그 가운데 사울이 제 손으로 다윗에게 행한 일이 19:10이라 고름 — [추론]. 블레셋과 다시 싸워 크게 도륙한 일(19:8)은 앞선 일이라 그리지 않는다. 사울이 손에 단창을 가지고 그 집에 앉았을 때에 여호와의 부리신 악신이 사울에게 접하였고, 다윗이 손으로 수금을 탔다(19:9 — 같은 자리의 앞 정황). 사울이 단창으로 다윗을 벽에 박으려 하였으나 다윗이 사울의 앞을 피하고 사울의 창은 벽에 박혔다(19:10 — 고정한 순간). 그래서 이 장면에는 사울과 다윗 두 사람이 있다. 다른 사람이 그 자리에 있었다는 말은 본문에 없다 — 다른 사람을 그리지 않는 것은 본문 밖 · 저작자 정함. 악신은 형상 없이 사울의 얼굴로만, 여호와는 형상 없이(ADR 261025-120741). 지리: 「그 집」(19:9)은 사울의 집이다(다윗의 집은 19:11에 따로 나옴). 사울의 집이 기브아에 있음은 삼상 15:34 「사울은 사울 기브아 본집으로 올라가니라」에서 [추론]. 방 모양(거친 돌벽)은 본문 밖 · 저작자 정함, 바닥의 걸상은 사울이 앉았다 일어선 걸상 — 19:9 「앉았을 때에」의 흔적([추론]). 창을 던질 때 사울이 앉아 있었는지 일어섰는지는 본문에 없다 — 19:9 「앉았을 때에」는 악신이 접한 때의 자세이고, 선 자세로 그림은 저작자 정함(기브아 창 18:11과 같은 던진 몸짓). 이어서 다윗이 그 밤에 도피하고(19:10 끝), 사울이 사자들을 다윗의 집에 보내고 미갈이 다윗을 창에서 달아 내림(19:11-12)은 뒤의 일이라 그리지 않는다.",
+    "verse": "삼상 19:9-10",
+    "same_time": {
+      "19:9": "같은 자리의 앞 정황 — 사울이 단창을 손에 들고 집에 앉았을 때 악신이 접하였고 다윗이 수금을 탐 · 앉음은 이 순간 앞의 자세",
+      "19:10": "고정한 순간(말 속) — 사울이 다윗을 벽에 박으려 하였으나 다윗이 피하고 창이 벽에 박힘 · 끝 「그 밤에 도피하매」는 뒤의 일"
+    }
+  },
+  "guide": {
+    "depth": {
+      "wall": 0.8,
+      "spear": 0.95,
+      "saul-elder": 1.0,
+      "david": 1.0
+    },
+    "shape": {
+      "wall": "wall",
+      "spear": "spear",
+      "saul-elder": "person_follow",
+      "david": "person_duck"
+    },
+    "backdrop": "room",
+    "body": "card",
+    "legs": "costume",
+    "tip": "leaf",
+    "blur": 8,
+    "pose": {
+      "saul-elder": "throw_follow",
+      "david": "duck_low"
+    },
+    "split": true,
+    "flight": {
+      "object": "spear",
+      "word": "spear",
+      "from": "saul-elder",
+      "to": "david",
+      "at": 1.61,
+      "why": "19:10 「사울의 창은 벽에 박힌지라」 — 창이 다윗 머리를 지나 그 뒤 벽까지 가서 박힌 자리라 at > 1(던진 손목 → 다윗 머리 길의 1.61배 = 벽 속 0.17). 기브아 창(18:11, at 0.75)은 날아가는 중이었고 여기는 박힌 뒤."
+    },
+    "why": "기브아 창 승인 장면(18:10-11, m17e)의 가이드 설정을 그대로 물려받음 — 실내 방 바탕(generate.guide-backdrop) · 카드 체격 몸 너비(guide-body-build) · 무릎 길이 차림 다리(guide-costume-legs) · 잎 모양 촉(tip leaf) · 흐림 8 · 사울 던짐 마무리 뼈대 throw_follow(generate.pose-skeleton — 몸짓에 던짐) · 다윗 숙인 뼈대 duck_low(generate.pose-hold — 두 손으로 수금을 가슴에) · 스텝별 나눔(generate.split-control: 앞 2스텝 뼈대 → 뒤 2스텝 깊이). 다른 점: 창이 날아가는 중이 아니라 벽에 박힌 뒤라 촉을 옆벽 안(0.17)에 두고 flight.at 1.61(창 자리 = 사울 손목 → 다윗 머리 길을 머리 너머 벽까지 늘인 곳) — 그려질 뒤끝 0.467은 사울 손목 0.670 − 0.07 앞(손에 남은 꼴 아님). 창 높이는 사울 뼈대 어깨 0.443(generate.flight-height), 숙인 다윗 머리 띠 바로 위 머리 하나 안(generate.dodge-clear). 곁 장면 틀 0.10~0.90 안(generate.inset-frame-aspect)."
+  }
+}
