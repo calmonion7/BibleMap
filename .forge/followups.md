@@ -196,3 +196,6 @@
 
 <!-- followup: fu-62ce97db8f0c | source: scene-batch-dok-dae | task: 491 | date: 2026-11-01 | status: open -->
 - data/person_events/solomon.json 스바 방문 startDate -950이 궁 준공(ADR-0014 성전 착공 966 + 왕상 6:1 재위 4년 + 9:10 이십 년 → BC 946경)보다 이름 — -946 이후로 고칠지(본문 검토 task 491 발견).
+
+<!-- followup: fu-42795d2baccb | source: scene-ramah-inset | task: 513 | date: 2026-11-02 | status: open -->
+- data/person_events/saul.json gibeah-spear 사건(BC 1020)이 삼상 19:9-10까지 한 사건으로 묶음 — 19:9-10은 라마 피신(BC 1015)과 같은 때라 약 5년 어긋남(라마 말 속 곁 장면 저작 중 발견).

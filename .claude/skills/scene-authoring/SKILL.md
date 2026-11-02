@@ -106,6 +106,7 @@ description: BibleMap 장면 그림 저작 절차 — 한 장면을 ① 명세(�
 - 곁 장면(`inset`) 생성은 `rule_ab gen`이 아니라 `batch/inset_try.py gen → comp` → `samples/<dir>/composition-A-s*.png`·`inset-A-s*.png`로 복사 → `rule_ab --fixed N judge`. gen 전에 두 명세 가이드를 `samples/<dir>/guide-<scene>-<1|2>.png`로 먼저 그린다(없으면 FileNotFoundError). gen은 있는 그림을 건너뛰므로 곁 장면만 다시 그리려면 옛 곁 장면 그림을 다른 폴더로 옮긴다.
 - 판정기(`rule_ab judge`)는 같은 폴더·같은 파일 이름·같은 문항이면 옛 답(`metrics.json`)을 다시 쓴다 — 그림을 바꿔 다시 잴 때는 옛 그림과 함께 `metrics.json`도 옮긴다(나단 2차 첫 판정 「0건」).
 - 「구름 안 장면」처럼 구름 속 인물을 묻는 문항은 합성 그림에서 작게 보여 곁 장면 원본보다 엄하게 걸린다 — 구름 속 인물의 신원 표지(왕이면 관 등)를 차림 덮어쓰기로 분명히 준다(나단 곁 장면 0/8 → 금관).
+- 몇몇 시험이 실제 명세를 본보기로 쓴다(`test_whole_prompt`가 나단 명세 — 한 장 방식으로 다시 쓰자 깨짐). 명세를 다시 쓰면 `python3 -m unittest test_scene_rules test_whole_prompt test_cast_registry test_verse_elements` 전부 돌린다.
 - `verse_elements[].quote`는 `verses.quotes` 안의 절이어야 한다 — 장면 구절 밖 근거(예: 15:14)는 situation·whole_background 근거 칸에만.
 - `stage_why` 인용마다 책 이름을 붙인다(「삼상 19:18 「…」」) — 장:절만 있으면 대조 못 함으로 걸린다.
 
@@ -134,3 +135,4 @@ description: BibleMap 장면 그림 저작 절차 — 한 장면을 ① 명세(�
 - 2026-11-02 — zsh 시드 목록 · 곁 장면 생성 순서(가이드 먼저·inset_try·옛 그림 옮기기) · 구름 속 인물 신원 표지 — 나단 언약 말 속 곁 장면(task 493·496)
 - 2026-11-02 — 장면 공통 거르기 문항 목록 + 시대 옷차림 t.era-dress(사람 판정 493 「인부들의 옷차림이 시대상에 안맞」 · 규칙 spec.crowd-era-dress)
 - 2026-11-02 — 공통 문항에 현실성 p.no-floating · p.royal-gifts(사람 판정 504 「보석이 날라다니지 않음 · 현실성 규칙 필요」 · 거절 8장 중 7 잡음 · 승인 헛경보 0/5)
+- 2026-11-02 — 명세 다시 쓰면 시험 전부 돌리기(test_whole_prompt가 나단 명세를 본보기로 씀)
