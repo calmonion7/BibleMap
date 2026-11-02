@@ -80,6 +80,9 @@ def gen():
     busy = subprocess.run(["pgrep", "-fl", "mflux|run_scene.py --worker|gen_video_pilot|mlx_video"], capture_output=True, text=True).stdout.strip()
     if busy:
         sys.exit(f"[RuleAB] 다른 생성 프로세스가 돈다 — 겹치지 않게 멈춤:\n{busy}")
+    import recheck
+    for sid in sorted({c["scene"] for c in FX["cases"]}):
+        recheck.require_pass(sid)   # generate.spec-gate — task 509: 규칙에 걸린 명세(512토큰 넘침)로 생성이 돌았다
     os.makedirs(SAMPLES, exist_ok=True)
     out = os.path.expanduser(f"~/.local/biblemap-imggen/{FX['dir']}")
     os.makedirs(out, exist_ok=True)

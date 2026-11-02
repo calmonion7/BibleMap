@@ -335,7 +335,7 @@
       "check": "recheck.require_pass",
       "source": "notes/GIBEAH-STEP1.md · task 399 (397 기브아 창이 verse-elements ✗ 명세로 그려짐)",
       "since": "2026-10-22 task 399",
-      "note": "새 그림을 만드는 정본 생성 명령(gibeah_redraw·run_night one|all|edit-pick·restyle_try gen)이 첫 GPU 호출 전에 spec_failures(sid)를 부르고 걸리면 멈춤 — 못 잼도 통과 아님, 우회 없음. plain_words 사다리는 명세 사본 실험이라 뺌(정본이 되면 관문을 지남)"
+      "note": "(넓힘 task 509: batch/rule_ab.py gen도 — 장면 저작의 주 생성 경로인데 관문이 없어 512토큰 넘은 스바 명세로 생성이 돌았다) 새 그림을 만드는 정본 생성 명령(gibeah_redraw·run_night one|all|edit-pick·restyle_try gen)이 첫 GPU 호출 전에 spec_failures(sid)를 부르고 걸리면 멈춤 — 못 잼도 통과 아님, 우회 없음. plain_words 사다리는 명세 사본 실험이라 뺌(정본이 되면 관문을 지남)"
     },
     {
       "id": "spec.stage-from-scripture",
@@ -764,6 +764,15 @@
       "source": "사람 판정 task 498 스바 여왕 「신하들 너무 막대기 같고」 · 문항 먼저 검증 t.crowd-natural(s303 3/3 틀림)",
       "since": "2026-11-02 task 499",
       "note": "가이드 무리 꼴(make_guide.crowd)의 한 사람은 어깨 있는 몸 — 어깨 너비 ≥ 몸 아래 너비 × 0.9(CROWD_SHOULDER 0.45), 한 사람 상자 ≥ 줄 키 × 0.4(CROWD_BOX). 옛 꼴은 person과 같은 원뿔(어깨 0.6 × 아래 너비)·상자 0.3이라 작게 줄지어 선 무리가 어깨·팔 없는 막대기로 그려졌다. 대가: 같은 구역에 그려지는 사람 수가 줄어든다(무리 수는 문구가 나름)"
+    },
+    {
+      "id": "judge.realism-common",
+      "layer": "judge",
+      "scope": "all",
+      "check": "human",
+      "source": "사람 판정 task 504 스바 「스바여왕이 보석들수 없고 보석이 날라다니지 않음 현실성을 체크하는 규칙 필요」 · notes/PLAUSIBILITY.md 「현실성 두 문항」(fixed 505·506)",
+      "since": "2026-11-02 task 505",
+      "note": "상식 규칙 두 문항을 장면 공통 거르기에 — p.no-floating(늘: 물건이 바닥·상·손 위 · 허공에 뜨지 않음, 던지는 순간 제외) · p.royal-gifts(예물 있는 장면: 무거운 예물을 왕·여왕이 손수 들지 않음 — 수종자나 바닥·상). 채택 실측: 사람 「없음」 스바 r2 8장 중 7장 잡음 · 승인 그림 5장 헛경보 0/5(PLAUSIBILITY 채택 기준 ≥ 2/3 · ≤ 20%). 장면 고정 절에 넣는 것은 scene-authoring 공통 문항 목록이 나름"
     },
     {
       "id": "generate.inset-frame-aspect",
