@@ -614,6 +614,41 @@ def prop_size_coverage_errors(spec=None):
     return out
 
 
+JOINT_TOL = 0.9   # 함께 쥔 지물 손목 간격 ≥ 사전 크기 × 이 값(뼈대 손목과 그림 손은 조금 어긋남)
+
+
+def joint_hold_span_errors(spec):
+    """함께 쥔 지물은 두 손목 사이 길이로 그려짐(task 531, 규칙 generate.joint-hold-span) — 두 인물의 손 지물(figures[].prop)이 같은 사전 항목(held)이고
+    둘 다 뼈대가 있으면, 서로 가까운 쪽 손목 간격 ≥ 그 항목 look.size(사람 키 비) × 키(구역 높이 ÷ 키 등급) × JOINT_TOL.
+    놉 보자기 꾸러미: 간격 = 키의 0.40이면 「longer than a man's arm」(0.6)이 짧고 통통하게(큰 칼 3/8) → 0.60이면 8/8."""
+    g, R = spec.get("guide") or {}, spec.get("regions", {})
+    pose = g.get("pose", {})
+    held = {h: w for w in _lexicon().values() for h in w.get("held", [])}
+    by = {}
+    for f in spec.get("figures", []):
+        w = held.get(f.get("prop"))
+        if w and f.get("region") in pose:
+            by.setdefault(w["id"], []).append(f["region"])
+    sys.path.insert(0, os.path.join(HERE, "batch"))
+    import make_guide as M
+    hr, out = dict(S.standing(spec)), []
+    for wid, ks in by.items():
+        size = _lexicon()[wid]["look"].get("size")
+        if len(ks) != 2 or not size:
+            continue
+        pts = {}
+        for k in ks:
+            a0, b0, a1, b1 = R[k]
+            pts[k], h = M.pose_points((a0 * M.W, b0 * M.H, a1 * M.W, b1 * M.H), pose[k])
+            pts[k] = ([pts[k][i][0] for i in (4, 7)], h / hr.get(k, 1.0))
+        left, right = sorted(ks, key=lambda k: R[k][0])
+        gap = min(pts[right][0]) - max(pts[left][0])
+        need = size["ratio"] * S.ref(size["ref"]) * (pts[left][1] + pts[right][1]) / 2
+        if gap < need * JOINT_TOL:
+            out.append(f"{left}·{right}: 함께 쥔 「{wid}」 손목 간격 {gap:.0f}px < 사전 크기 {size['ratio']} × 키 {need:.0f}px × {JOINT_TOL} — 지물이 손 사이 길이로 짧게 그려진다")
+    return out
+
+
 HOLD_MODES = ("hand", "hug", "wear", "touch")   # 손에 쥠(그림 기본값) · 품에 안음 · 입음 · 손을 댐
 
 
@@ -826,6 +861,7 @@ SPEC_CHECKS = {
     "recheck.stage_why_errors": lambda spec, ctx: stage_why_errors(spec, ctx["verses"]),
     "recheck.quote_errors": lambda spec, ctx: quote_errors(spec, ctx["verses"]),
     "recheck.thrown_guide_errors": lambda spec, ctx: thrown_guide_errors(spec),
+    "recheck.joint_hold_span_errors": lambda spec, ctx: joint_hold_span_errors(spec),
     "recheck.guide_backdrop_errors": lambda spec, ctx: guide_backdrop_errors(spec),
     "recheck.guide_body_errors": lambda spec, ctx: guide_body_errors(spec),
     "recheck.dodge_clear_errors": lambda spec, ctx: dodge_clear_errors(spec),

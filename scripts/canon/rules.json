@@ -556,6 +556,15 @@
       "retired_was": "2026-10-23 f5 — f4e 5표: 수금 쥠 5→1로 고쳤으나 벽 앞·피함·순간 0→5/5로 무너짐(다윗이 벽에서 떨어져 선 채) · 다윗 깊이 꼴 유지, 손 자리는 다른 수단 · 2026-10-25 task 424 되돌림"
     },
     {
+      "id": "generate.joint-hold-span",
+      "layer": "generate",
+      "scope": "all",
+      "check": "recheck.joint_hold_span_errors",
+      "source": "notes/NOB-STEP23.md t6·t7(task 530·531) — 큰 칼 「꾸러미가 짧고 통통해 팔보다 확연히 길어 보이지 않음」",
+      "since": "2026-11-02 task 531",
+      "note": "두 인물이 같은 사전 항목(held)을 함께 쥐고 둘 다 뼈대가 있으면, 서로 가까운 쪽 손목 간격 ≥ 사전 look.size(사람 키 비) × 키(구역 높이 ÷ 키 등급) × 0.9. 그림은 함께 쥔 지물을 두 손목 사이 길이로 그림 — 놉 보자기 꾸러미 간격 = 키의 0.40이면 큰 칼 3/8, 0.60이면 8/8"
+    },
+    {
       "id": "generate.pose-only-control",
       "layer": "generate",
       "scope": "all",

@@ -1326,6 +1326,17 @@ class LexiconSpecificAbsent(unittest.TestCase):
         self.assertTrue(any("covered_by" in e for e in check_scenes.lexicon_look_errors(s, w["look"]["L3"]["en"].lower())))
 
 
+class JointHoldSpan(unittest.TestCase):
+    """generate.joint-hold-span(task 531) — 함께 쥔 지물은 두 손목 사이 길이로 그려짐(놉 꾸러미 손목 간격 키의 0.40 → 큰 칼 3/8)."""
+
+    def test_nob_gap(self):
+        import derive_scene as ds
+        s = copy.deepcopy(ds.load("authored-david-nob-priests"))
+        self.assertEqual(recheck.joint_hold_span_errors(s), [])
+        s["regions"]["ahimelech"], s["regions"]["david"] = [0.28, 0.34, 0.43, 0.92], [0.54, 0.34, 0.69, 0.92]
+        self.assertTrue(recheck.joint_hold_span_errors(s))
+
+
 class InsetFrameAspect(unittest.TestCase):
     """generate.inset-frame-aspect(task 417) — 곁 장면은 구름 틀 비율로 생성(넓은 화면엔 빈자리에 선 여인 2/2)."""
 

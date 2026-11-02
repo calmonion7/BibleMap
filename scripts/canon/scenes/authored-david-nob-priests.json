@@ -50,7 +50,7 @@
       "quote": "제사장 아히멜렉에게",
       "kind": "인물",
       "ko": "제사장 아히멜렉 — 세마포 에봇 차림(삼상 22:18 [추론])",
-      "en": "a white linen ephod with shoulder straps and a waist belt",
+      "en": "a white linen ephod, a short vest-like garment from the shoulders to the waist",
       "field": "figures[0].costume"
     },
     {
@@ -252,8 +252,8 @@
       },
       "costume": {
         "ko": "짙은 청색 겉옷 위에 흰 세마포 에봇(어깨끈·허리띠)",
-        "en": "a white linen ephod with shoulder straps and a waist belt over a deep blue robe",
-        "verse": "삼상 22:18 「세마포 에봇 입은 자 팔십오 인을 죽였고」 — 놉 제사장들의 차림(아히멜렉 포함 22:16) [추론] · 겉옷 청색은 [추론] 출 28:31 「너는 에봇 받침 겉옷을 전부 청색으로 하되」(장면 칸만 · task 530 — 카드 옷 칸은 얼굴 정본 지문(gen_face_canon.prompt_sha)에 들어 있어 바꾸면 정본 재판정이 필요해 그대로 둠) · 어깨끈·허리띠는 사전 ephod L3([추론] 출 28:7-8)"
+        "en": "a white linen ephod, a short vest-like garment from the shoulders to the waist, over a deep blue robe",
+        "verse": "삼상 22:18 「세마포 에봇 입은 자 팔십오 인을 죽였고」 — 놉 제사장들의 차림(아히멜렉 포함 22:16) [추론] · 겉옷 청색은 [추론] 출 28:31 「너는 에봇 받침 겉옷을 전부 청색으로 하되」(장면 칸만 · task 530 — 카드 옷 칸은 얼굴 정본 지문(gen_face_canon.prompt_sha)에 들어 있어 바꾸면 정본 재판정이 필요해 그대로 둠) · 조끼 꼴은 사전 ephod L2(어깨끈·허리띠 L3 낱말은 어깨에 늘어진 흰 띠(스톨)로 그려짐 — t8 세마포 「어깨에 두른 긴 띠」, task 533)"
       },
       "gaze": "david",
       "screen_facing": "right",
@@ -322,15 +322,15 @@
       1.0
     ],
     "ahimelech": [
-      0.28,
+      0.25,
       0.34,
-      0.43,
+      0.4,
       0.92
     ],
     "david": [
-      0.54,
+      0.57,
       0.34,
-      0.69,
+      0.72,
       0.92
     ],
     "doeg": [
@@ -452,9 +452,9 @@
     "pose": {
       "ahimelech": "plead_out",
       "david": "speak_open_left",
-      "doeg": "listen_clasp"
+      "doeg": "watch_side_left"
     },
     "split": true,
-    "why": "단계 ① — 가이드가 없어 크기 규칙 둘(generate.figure-scale·height-ratio)이 못 잼이었다. 아히멜렉(왼쪽)은 뼈대 plead_out(두 팔을 가슴 높이로 앞으로 뻗어 두 손목을 나란히 — 21:9 「가지려거든 가지라」 칼을 두 손으로 내밂, generate.pose-hold 「손 … 내밂」), 다윗(오른쪽)은 speak_open_left(화면 왼쪽으로 앞 팔을 가슴 높이로 뻗음 — 21:9 「내게 주소서」 한 손으로 받음). 두 손으로 받는 왼쪽 뼈대(plead_out을 x로 뒤집은 꼴)는 make_guide에 없어 한 손으로 저작. 도엑은 뒤쪽 서 있는 사람 꼴(깊이 0.85 — 발 y 차와 같은 앞뒤를 밝기로도 줌). 카드 체격 몸 너비. 뼈대가 있어 스텝별 나눔(generate.split-control). 뜰·장막·에봇·떡은 문구가 맡는다. (task 529: 도엑 뼈대 listen_clasp — 뼈대 없는 사람 꼴은 넓은 원뿔 깊이 꼴이라 8시드 4/8이 앞에 선 거인·망토로 그려짐 · 화면 왼쪽을 보며 두 손을 몸 앞에 모아 섬 = 머물러 지켜봄)"
+    "why": "단계 ① — 가이드가 없어 크기 규칙 둘(generate.figure-scale·height-ratio)이 못 잼이었다. 아히멜렉(왼쪽)은 뼈대 plead_out(두 팔을 가슴 높이로 앞으로 뻗어 두 손목을 나란히 — 21:9 「가지려거든 가지라」 칼을 두 손으로 내밂, generate.pose-hold 「손 … 내밂」), 다윗(오른쪽)은 speak_open_left(화면 왼쪽으로 앞 팔을 가슴 높이로 뻗음 — 21:9 「내게 주소서」 한 손으로 받음). 두 손으로 받는 왼쪽 뼈대(plead_out을 x로 뒤집은 꼴)는 make_guide에 없어 한 손으로 저작. 도엑은 뒤쪽 서 있는 사람 꼴(깊이 0.85 — 발 y 차와 같은 앞뒤를 밝기로도 줌). 카드 체격 몸 너비. 뼈대가 있어 스텝별 나눔(generate.split-control). 뜰·장막·에봇·떡은 문구가 맡는다. (task 529: 도엑 뼈대 listen_clasp — 뼈대 없는 사람 꼴은 넓은 원뿔 깊이 꼴이라 8시드 4/8이 앞에 선 거인·망토로 그려짐 · 화면 왼쪽을 보며 두 손을 몸 앞에 모아 섬 = 머물러 지켜봄) (task 531: 두 사람이 함께 쥔 꾸러미는 가이드 앞 손목 간격만큼 그려짐 — 간격 149px = 키의 0.40이라 「longer than a man's arm」(사전 size 0.6)이 짧고 통통한 꾸러미로(큰 칼 3/8) → 두 구역을 양쪽으로 0.03씩 벌려 간격 ≈ 키의 0.6) (task 532: 도엑 뼈대 watch_side_left — listen_clasp는 어깨·엉덩이가 정면 너비라 작은 뒤쪽 인물이 정면을 봄, 지켜봄 2/8)"
   }
 }

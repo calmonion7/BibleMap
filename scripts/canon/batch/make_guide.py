@@ -354,6 +354,10 @@ POSES = {
 POSES["cradle_stand_left"] = {k: (-x, y) for k, (x, y) in POSES["cradle_stand"].items()}
 # task 466 — 곧게 서서 화면 왼쪽 상대에게 손을 펴 꾸짖음(갓 아기스 21:14-15): speak_open을 x로 뒤집음(cradle_stand_left 선례)
 POSES["speak_open_left"] = {k: (-x, y) for k, (x, y) in POSES["speak_open"].items()}
+# task 532 — 멀리 서서 화면 왼쪽 사람들을 옆모습으로 지켜봄(놉 도엑 21:7 · 22:9 「내가 보았었는데」): listen_clasp에서 어깨·엉덩이를 몸 가운데로
+# 겹치고(옆으로 선 몸) 코를 앞으로 더 냄 — 정면 너비 listen_clasp는 작은 뒤쪽 인물이 정면을 봄(t7 지켜봄 2/8 「정면(보는 사람 쪽)을 향함」).
+POSES["watch_side_left"] = {**POSES["listen_clasp"], 0: (-0.075, 0.07), 2: (-0.015, 0.165), 5: (0.015, 0.165), 8: (-0.01, 0.52), 11: (0.01, 0.52),
+                            9: (-0.02, 0.74), 12: (0.02, 0.74), 14: (-0.055, 0.05), 16: (-0.01, 0.055)}
 
 
 def pose_points(box, name, hip_dx=0.06):
