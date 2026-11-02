@@ -1314,6 +1314,17 @@ class LexiconSpecificAbsent(unittest.TestCase):
         s["verse_elements"][1].pop("absent")
         self.assertTrue(any("sword" in e for e in check_scenes.lexicon_look_errors(s, "a huge long sword")))
 
+    def test_covered_prop_drawn_as_cover(self):
+        """task 528 — 보자기에 싼 칼은 덮개(꾸러미)로만 그림: covered_by가 같은 절 지물이면 칼 문구를 요구하지 않음."""
+        s = {"verse_elements": [{"verse": "21:9", "quote": "골리앗의 칼이", "kind": "지물", "en": "x", "field": "relation", "covered_by": 1},
+                                {"verse": "21:9", "quote": "보자기에 싸여", "kind": "지물", "en": "y", "field": "relation"}]}
+        prompt = "a long cloth bundle wrapped round and round, tied at both ends"
+        self.assertTrue(any("wrapped-in-cloth" in e for e in check_scenes.lexicon_look_errors(s, prompt)))   # 덮개 문구는 여전히 요구
+        w = next(x for x in json.load(open(check_scenes.WORDS, encoding="utf-8"))["words"] if x["id"] == "wrapped-in-cloth")
+        self.assertEqual(check_scenes.lexicon_look_errors(s, w["look"]["L3"]["en"].lower()), [])
+        s["verse_elements"][1]["verse"] = "21:8"
+        self.assertTrue(any("covered_by" in e for e in check_scenes.lexicon_look_errors(s, w["look"]["L3"]["en"].lower())))
+
 
 class InsetFrameAspect(unittest.TestCase):
     """generate.inset-frame-aspect(task 417) — 곁 장면은 구름 틀 비율로 생성(넓은 화면엔 빈자리에 선 여인 2/2)."""

@@ -345,6 +345,10 @@
         "삼상 21:9",
         "민 4:12"
       ],
+      "held": [
+        "a long cloth bundle",
+        "the long cloth bundle"
+      ],
       "meaning": {
         "ko": "천으로 감싸서 속이 보이지 않게 되었다는 뜻이에요.",
         "grounds": "[직접] 삼상 21:9 「골리앗의 칼이 보자기에 싸여 에봇 뒤에 있으니」 · 민 4:12 「청색 보자기에 싸서」"
@@ -359,16 +363,20 @@
           "en": "A sword wrapped round and round in cloth so the blade cannot be seen, longer than a man's arm."
         },
         "L3": {
-          "ko": "긴 칼을 천으로 칭칭 감아 기다란 꾸러미로 만들었어요. 칼날도 자루도 천에 가려요. 두 팔로 안아 들 만큼 길어요.",
-          "en": "A long sword wound in cloth into a long bundle; blade and handle are both hidden. It is long enough to carry in both arms."
+          "ko": "천을 칭칭 감고 두 끝을 묶은 기다란 꾸러미예요. 두 팔로 안아 들 만큼 길어요. 속에 싼 것은 보이지 않아요.",
+          "en": "A long cloth bundle wrapped round and round and tied at both ends, long enough to carry in both arms."
         },
-        "grounds": "[직접] 삼상 21:9 — 칼이 보자기에 싸여 있음. [저작](본문에 없음) 칭칭 감은 모양, 기다란 꾸러미, 두 팔로 안아 들 만한 길이는 천 꾸러미의 일반 모양이다. 민 4:12는 기물을 청색 천으로 싼 용례.",
+        "grounds": "[직접] 삼상 21:9 — 칼이 보자기에 싸여 있음. [저작](본문에 없음) 칭칭 감은 모양, 두 끝을 묶음, 기다란 꾸러미, 두 팔로 안아 들 만한 길이는 천 꾸러미의 일반 모양이다(두 끝 묶음 task 524 — L3에도 칼끝이 드러남). 덮인 상태는 긍정형으로만 — 「no blade, point or handle shows」는 맨 칼날을 불렀다(task 524 t2, PROMPTING 「없음을 말하려고 부위를 부르지 않는다」). L3는 속 지물 낱말(sword) 없이 꾸러미 꼴만 — 「sword」가 실리면 8시드 7장이 자루만 감고 칼날을 드러냄(task 526 · 보이는 것은 보자기뿐, 속 지물 요소는 covered_by). 민 4:12는 기물을 청색 천으로 싼 용례.",
         "size": {
           "ref": "man-height",
           "ratio": 0.6,
           "en": "longer than a man's arm",
           "ko": "사람 팔보다 긺",
           "grounds": "[추론] 삼상 21:9 「골리앗의 칼이 보자기에 싸여 에봇 뒤에 있으니」 — 보자기는 골리앗의 칼을 싼 것이라 꾸러미 길이는 싼 칼과 같다(사전 goliath-sword size 0.6과 같은 값) · [저작](천 두께는 크기에 셈하지 않음) · task 488"
+        },
+        "hold": {
+          "mode": "hand",
+          "grounds": "[직접] 삼상 21:9 「네가 그것을 가지려거든 가지라」 — 칼을 싼 꾸러미를 손으로 건넴(그림 기본값 — 그리는 문구에 쥔 꼴 문구를 더하지 않음 · task 528 goliath-sword에서 옮김)"
         }
       },
       "criteria": {
@@ -404,10 +412,6 @@
       "refs": [
         "삼상 21:9",
         "삼상 22:10"
-      ],
-      "held": [
-        "a huge cloth-wrapped sword",
-        "the huge cloth-wrapped sword"
       ],
       "meaning": {
         "ko": "블레셋 거인 골리앗이 쓰던 아주 크고 긴 칼이에요. 이런 칼은 또 없었어요.",
@@ -486,10 +490,10 @@
           "en": "A short vest-like garment from the shoulders to the waist."
         },
         "L3": {
-          "ko": "어깨끈이 있고 허리띠로 매는 앞뒤 두 쪽 천옷이에요. 걸어 두면 사람이 선 모양으로 천이 늘어져요.",
-          "en": "A two-piece cloth garment with shoulder straps and a waist belt. Hung up, the cloth hangs down as if a person were standing."
+          "ko": "어깨끈이 있고 허리띠로 매는 앞뒤 두 쪽 천옷이에요.",
+          "en": "A two-piece cloth garment with shoulder straps and a waist belt."
         },
-        "grounds": "[추론] 출 28:7-8 어깨끈과 띠. [저작](본문에 없음) 걸려 있음, 입은 사람 없음, 천이 늘어진 모양은 삼상 21:9 「에봇 뒤에 있으니」를 그림으로 옮기는 사정이다.",
+        "grounds": "[추론] 출 28:7-8 어깨끈과 띠. [저작](본문에 없음) 앞뒤 두 쪽은 에봇 고증. 걸려 있음·입은 사람 없음은 삼상 21:9 「에봇 뒤에 있으니」를 그림으로 옮기는 장면 사정이라 장면 명세에 둔다(task 524 — L3 en은 파생 문구에 통째로 실리도록 한 구).",
         "size": {
           "ref": "man-height",
           "ratio": 0.23,

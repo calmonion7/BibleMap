@@ -342,14 +342,14 @@
   "approved": {
     "final": {
       "path": "night-pick",
-      "seed": 303,
+      "seed": 11,
       "kind": "base",
-      "image": "samples/ramah-step23/composition-A-s303.png",
+      "image": "samples/ramah-step23-inset-r2/composition-A-s11.png",
       "by": "user",
-      "on": "2026-11-01",
-      "spec_hash": "106d0321821d",
+      "on": "2026-11-02",
+      "spec_hash": "3c828ffc67a7",
       "prompt_hash": null,
-      "rules_version": "ad46498afcf6",
+      "rules_version": "6a151b908aee",
       "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
     }
   }

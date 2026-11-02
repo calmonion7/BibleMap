@@ -251,6 +251,11 @@ def lexicon_look_errors(spec, prompt):
     for i, e in enumerate(els):
         if e.get("kind") != "지물" or "out" in e or e.get("absent"):   # absent: 없음을 말하는 요소(task 514 — 21:8 「내 칼과 병기를 가지지 못하였나이다」)
             continue
+        if "covered_by" in e:   # 덮인 지물은 덮개 꼴로만 그림(task 528 — 「a huge long sword」가 맨 칼날을 불러 보자기 1/8) · 덮개는 같은 절 지물 요소
+            c = els[e["covered_by"]] if isinstance(e["covered_by"], int) and 0 <= e["covered_by"] < len(els) else {}
+            if c.get("kind") != "지물" or c.get("verse") != e.get("verse"):
+                errs.append(f"verse_elements[{i}] covered_by {e['covered_by']!r}: 같은 절 지물 요소가 아님")
+            continue
         hits = [w for w in words if not any(squash(x) in squash(e["quote"]) for x in w.get("exclude", []))   # task 497: 「금」이 「수금」에 걸리지 않게
                 and any(squash(f) in squash(e["quote"]) for f in [w["word"], *w["forms"]])]
         hits = [w for w in hits if not any(o is not w and squash(w["word"]) in squash(o["word"]) for o in hits)]   # task 514: 구체 항목 우선(「골리앗의 칼」이면 「칼」은 요구 안 함)

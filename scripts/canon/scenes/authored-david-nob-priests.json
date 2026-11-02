@@ -135,25 +135,26 @@
       "verse": "21:9",
       "quote": "골리앗의 칼이",
       "kind": "지물",
-      "ko": "골리앗의 칼 — 크고 긴 칼(사전 goliath-sword L1)",
-      "en": "a huge long sword",
+      "ko": "골리앗의 칼 — 보자기 속이라 보이지 않음 · 크기만 꾸러미 길이로(그같은 것이 또 없나니 [추론] · 사전 goliath-sword size)",
+      "en": "long enough to carry in both arms",
       "field": "relation",
-      "note": "task 514: 보자기 낱말 L2 → L3(「긴 꾸러미 — 날도 자루도 가려짐」) · 「a straight iron sword」 뺌(8시드 보자기 0/8 — 칼 낱말이 거듭 나와 맨 칼로 그려짐 [추론])"
+      "note": "task 528: 덮인 지물은 덮개 꼴로만 — 「a huge long sword」가 맨 칼날을 불러 8시드 보자기 1/8(task 526 · 7장이 자루만 감고 칼날 드러냄) · 이전 task 514: 「a straight iron sword」 뺌",
+      "covered_by": 13
     },
     {
       "verse": "21:9",
       "quote": "보자기에 싸여",
       "kind": "지물",
-      "ko": "칼이 보자기에 싸여 날이 보이지 않음(사전 wrapped-in-cloth L1 · L2)",
-      "en": "a sword wrapped in cloth",
-      "field": "figures[0].gesture"
+      "ko": "칼이 보자기에 싸여 보이는 것은 천 꾸러미뿐(사전 wrapped-in-cloth L3)",
+      "en": "a long cloth bundle wrapped round and round and tied at both ends",
+      "field": "relation"
     },
     {
       "verse": "21:9",
       "quote": "에봇 뒤에 있으니",
       "kind": "지물",
       "ko": "칼이 있던 자리인 에봇 — 장막 휘장 곁 못에 걸어 둔 제사장의 조끼 옷(걸어 둠은 [추론] — 입은 에봇 뒤일 수 없음 · 못은 본문 밖 · 저작자 정함)",
-      "en": "a priest's vest-like garment hanging on a peg beside the curtain",
+      "en": "a two-piece cloth garment with shoulder straps and a waist belt hanging on a peg beside the curtain",
       "field": "whole_background"
     },
     {
@@ -161,7 +162,7 @@
       "quote": "네가 그것을 가지려거든 가지라",
       "kind": "행동",
       "ko": "아히멜렉이 칼을 두 손으로 다윗 쪽에 내밂(두 손은 본문 밖 · 저작자 정함)",
-      "en": "holding it out with both hands toward the young man",
+      "en": "holding the cloth bundle out with both hands toward the young man",
       "field": "figures[0].gesture"
     },
     {
@@ -169,7 +170,7 @@
       "quote": "내게 주소서",
       "kind": "행동",
       "ko": "다윗이 한 손을 뻗어 칼 꾸러미 끝을 잡아 받음(손은 본문 밖 · 저작자 정함)",
-      "en": "reaching out one hand to grip the far end of the wrapped sword",
+      "en": "reaching out one hand to grip the far end of the cloth bundle",
       "field": "figures[1].gesture"
     },
     {
@@ -214,13 +215,13 @@
     "verse": "삼상 21:9 「네가 그것을 가지려거든 가지라 … 내게 주소서」 · 21:1 「홀로 있고」 · 21:7 「여호와 앞에 머물러 있었는데」 · 도엑이 지켜봄은 [추론](22:9-10) · 자리·손·거리는 본문 밖 · 저작자 정함(구도)"
   },
   "relation": {
-    "ko": "왼쪽 아히멜렉의 두 손과 오른쪽 다윗의 한 손이 둘 사이의 보자기 싼 큰 칼 한 자루를 함께 잡아 칼이 제사장에게서 다윗에게 건네지는 중이고, 다윗은 홀로 와 함께한 자가 없다(서로 바라봄·도엑의 지켜봄은 인물 칸 gaze·gesture가 실음)",
-    "en": "between the priest and the young man is a huge long sword, longer than a man's arm, a long sword wound in cloth into a long bundle; blade and handle are both hidden; the priest's two hands and the young man's hand hold the same single cloth bundle, passing from the priest to the young man, who has come alone with no companions",
-    "verse": "삼상 21:9 「가지려거든 가지라」 · 「내게 주소서」 · 21:1 「홀로 있고 함께 하는 자가 아무도 없느냐」 · 21:7 · 도엑이 지켜봄은 [추론](22:9-10) · 손 수·좌우·시선은 본문 밖 · 저작자 정함 · 칼 모양은 사전 goliath-sword L1 · wrapped-in-cloth L2(날이 보이지 않음 — 21:9 「보자기에 싸여」) · sword L1"
+    "ko": "왼쪽 아히멜렉의 두 손과 오른쪽 다윗의 한 손이 둘 사이의 기다란 천 꾸러미(보자기에 싼 골리앗의 칼) 하나를 함께 잡아 제사장에게서 다윗에게 건네지는 중이고, 다윗은 홀로 와 함께한 자가 없다(서로 바라봄·도엑의 지켜봄은 인물 칸 gaze·gesture가 실음)",
+    "en": "between the priest and the young man is a long cloth bundle wrapped round and round and tied at both ends, long enough to carry in both arms; the priest's two hands and the young man's hand hold the same single cloth bundle, passing from the priest to the young man, who has come alone with no companions",
+    "verse": "삼상 21:9 「가지려거든 가지라」 · 「내게 주소서」 · 21:1 「홀로 있고 함께 하는 자가 아무도 없느냐」 · 21:7 · 도엑이 지켜봄은 [추론](22:9-10) · 손 수·좌우·시선은 본문 밖 · 저작자 정함 · 칼은 보자기 속이라 꾸러미 꼴로만(사전 wrapped-in-cloth L3 — 21:9 「보자기에 싸여」 · 감음·두 끝 묶음은 저작 · 길이는 사전 goliath-sword size · task 528)"
   },
   "whole_background": {
     "ko": "놉 성소 장막 앞의 작은 뜰 — 다져진 흙 바닥, 낮은 돌담, 뒤로 길게 늘어선 두꺼운 장막 휘장, 휘장 곁 못에 걸어 둔 제사장의 조끼 옷(에봇), 다윗 발치 천 꾸러미 위에 쌓아 둔 납작한 떡 여러 덩이, 엷은 하늘",
-    "en": "a small courtyard before the tent sanctuary at Nob, packed-earth ground, a low stone wall, a heavy tent curtain stretching along the back, a priest's vest-like garment hanging on a peg beside the curtain, several flat loaves bigger than a palm, stacked up on a cloth bundle at the young man's feet, pale sky",
+    "en": "a small courtyard before the tent sanctuary at Nob, packed-earth ground, a low stone wall, a heavy tent curtain stretching along the back, a two-piece cloth garment with shoulder straps and a waist belt hanging on a peg beside the curtain, several flat loaves bigger than a palm, stacked up on a cloth bundle at the young man's feet, pale sky",
     "verse": "삼상 21:1 「다윗이 놉에 가서」 · 21:6 「진설병 곧 여호와 앞에서 물려 낸 떡」 · 21:9 「에봇 뒤에 있으니」 · 성소 곁은 [추론](21:6·7 「여호와 앞」) · 장막은 [추론](삼하 7:6 「장막과 회막에 거하며 행하였나니」) · 걸어 둔 에봇은 [추론](입은 에봇 뒤일 수 없음 — 사전 ephod L3) · 뜰·돌담·휘장 길이·못·떡 놓인 자리(천 꾸러미)·하늘은 본문 밖 · 저작자 정함(시대 고증 — 철기 초 이스라엘 성소)"
   },
   "background": [
@@ -235,7 +236,7 @@
       "cast": "ahimelech",
       "role": "제사장 아히멜렉 — 골리앗의 칼을 건넴",
       "pose": "장막 앞에 서서 보자기에 싼 칼을 두 손으로 다윗 쪽에 내민다",
-      "prop": "a huge cloth-wrapped sword",
+      "prop": "a long cloth bundle",
       "facing": "right",
       "region": "ahimelech",
       "verse": "21:9 · 선 자세·두 손 본문 밖 · 저작자 정함",
@@ -245,8 +246,8 @@
         "verse": "삼상 21:1 「아히멜렉이 떨며 다윗을 영접하며」 — 맞을 때 떨었음 [직접] · 건넬 때까지 이어짐은 본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "보자기에 싼 칼을 두 손으로 다윗 쪽에 내민다",
-        "en": "a sword wrapped in cloth, holding it out with both hands toward the young man",
+        "ko": "보자기에 싼 칼 꾸러미를 두 손으로 다윗 쪽에 내민다",
+        "en": "holding the cloth bundle out with both hands toward the young man",
         "verse": "삼상 21:9 「보자기에 싸여」 · 「네가 그것을 가지려거든 가지라」 · 두 손·손 자세 본문 밖 · 저작자 정함"
       },
       "costume": {
@@ -262,7 +263,7 @@
       "cast": "david",
       "role": "다윗 — 홀로 와서 칼을 받음",
       "pose": "아히멜렉 앞에 서서 한 손을 뻗어 칼 꾸러미 끝을 잡는다",
-      "prop": "the huge cloth-wrapped sword",
+      "prop": "the long cloth bundle",
       "facing": "left",
       "region": "david",
       "verse": "21:9 · 선 자세·한 손 본문 밖 · 저작자 정함",
@@ -273,7 +274,7 @@
       },
       "gesture": {
         "ko": "한 손을 뻗어 칼 꾸러미 끝을 잡아 받는다",
-        "en": "reaching out one hand to grip the far end of the wrapped sword",
+        "en": "reaching out one hand to grip the far end of the cloth bundle",
         "verse": "삼상 21:9 「내게 주소서」 · 한 손·잡는 자리 본문 밖 · 저작자 정함"
       },
       "costume": {
@@ -346,7 +347,7 @@
       "kind": "full",
       "region": "full",
       "verse": "21:1·6·9 · 장막 [추론](삼하 7:6) · 뜰 모양 본문 밖 · 저작자 정함",
-      "prompt": "a small courtyard of packed earth before a tent sanctuary, a low stone wall, a heavy tent curtain stretching along the back, a priest's vest-like garment hanging on a peg beside the curtain, several flat loaves stacked on a cloth bundle, pale sky, no people.",
+      "prompt": "a small courtyard of packed earth before a tent sanctuary, a low stone wall, a heavy tent curtain stretching along the back, a two-piece cloth garment with shoulder straps and a waist belt hanging on a peg beside the curtain, several flat loaves stacked on a cloth bundle, pale sky, no people.",
       "neg": [
         "people",
         "figures",
@@ -367,7 +368,7 @@
       "kind": "plate",
       "region": "ahimelech",
       "verse": "21:9",
-      "prompt": "{cast:ahimelech}, standing, holding out a long cloth-wrapped sword with both hands, facing right.",
+      "prompt": "{cast:ahimelech}, standing, holding out a long cloth bundle with both hands, facing right.",
       "neg": [
         "armour",
         "crown",
