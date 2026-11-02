@@ -50,7 +50,7 @@
       "quote": "제사장 아히멜렉에게",
       "kind": "인물",
       "ko": "제사장 아히멜렉 — 세마포 에봇 차림(삼상 22:18 [추론])",
-      "en": "a white linen ephod",
+      "en": "a white linen ephod with shoulder straps and a waist belt",
       "field": "figures[0].costume"
     },
     {
@@ -136,7 +136,7 @@
       "quote": "골리앗의 칼이",
       "kind": "지물",
       "ko": "골리앗의 칼 — 보자기 속이라 보이지 않음 · 크기만 꾸러미 길이로(그같은 것이 또 없나니 [추론] · 사전 goliath-sword size)",
-      "en": "long enough to carry in both arms",
+      "en": "longer than a man's arm",
       "field": "relation",
       "note": "task 528: 덮인 지물은 덮개 꼴로만 — 「a huge long sword」가 맨 칼날을 불러 8시드 보자기 1/8(task 526 · 7장이 자루만 감고 칼날 드러냄) · 이전 task 514: 「a straight iron sword」 뺌",
       "covered_by": 13
@@ -146,7 +146,7 @@
       "quote": "보자기에 싸여",
       "kind": "지물",
       "ko": "칼이 보자기에 싸여 보이는 것은 천 꾸러미뿐(사전 wrapped-in-cloth L3)",
-      "en": "a long cloth bundle wrapped round and round and tied at both ends",
+      "en": "a huge long cloth bundle wrapped round and round and tied at both ends",
       "field": "relation"
     },
     {
@@ -216,7 +216,7 @@
   },
   "relation": {
     "ko": "왼쪽 아히멜렉의 두 손과 오른쪽 다윗의 한 손이 둘 사이의 기다란 천 꾸러미(보자기에 싼 골리앗의 칼) 하나를 함께 잡아 제사장에게서 다윗에게 건네지는 중이고, 다윗은 홀로 와 함께한 자가 없다(서로 바라봄·도엑의 지켜봄은 인물 칸 gaze·gesture가 실음)",
-    "en": "between the priest and the young man is a long cloth bundle wrapped round and round and tied at both ends, long enough to carry in both arms; the priest's two hands and the young man's hand hold the same single cloth bundle, passing from the priest to the young man, who has come alone with no companions",
+    "en": "between the priest and the young man is a huge long cloth bundle wrapped round and round and tied at both ends, longer than a man's arm; the priest's two hands and the young man's hand hold the same single cloth bundle, passing from the priest to the young man, who has come alone with no companions",
     "verse": "삼상 21:9 「가지려거든 가지라」 · 「내게 주소서」 · 21:1 「홀로 있고 함께 하는 자가 아무도 없느냐」 · 21:7 · 도엑이 지켜봄은 [추론](22:9-10) · 손 수·좌우·시선은 본문 밖 · 저작자 정함 · 칼은 보자기 속이라 꾸러미 꼴로만(사전 wrapped-in-cloth L3 — 21:9 「보자기에 싸여」 · 감음·두 끝 묶음은 저작 · 길이는 사전 goliath-sword size · task 528)"
   },
   "whole_background": {
@@ -251,9 +251,9 @@
         "verse": "삼상 21:9 「보자기에 싸여」 · 「네가 그것을 가지려거든 가지라」 · 두 손·손 자세 본문 밖 · 저작자 정함"
       },
       "costume": {
-        "ko": "옅은 겉옷 위에 흰 세마포 에봇",
-        "en": "a white linen ephod over a pale robe",
-        "verse": "삼상 22:18 「세마포 에봇 입은 자 팔십오 인을 죽였고」 — 놉 제사장들의 차림(아히멜렉 포함 22:16) [추론] · 겉옷 색 본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+        "ko": "짙은 청색 겉옷 위에 흰 세마포 에봇(어깨끈·허리띠)",
+        "en": "a white linen ephod with shoulder straps and a waist belt over a deep blue robe",
+        "verse": "삼상 22:18 「세마포 에봇 입은 자 팔십오 인을 죽였고」 — 놉 제사장들의 차림(아히멜렉 포함 22:16) [추론] · 겉옷 청색은 [추론] 출 28:31 「너는 에봇 받침 겉옷을 전부 청색으로 하되」(장면 칸만 · task 530 — 카드 옷 칸은 얼굴 정본 지문(gen_face_canon.prompt_sha)에 들어 있어 바꾸면 정본 재판정이 필요해 그대로 둠) · 어깨끈·허리띠는 사전 ephod L3([추론] 출 28:7-8)"
       },
       "gaze": "david",
       "screen_facing": "right",
@@ -451,9 +451,10 @@
     "body": "card",
     "pose": {
       "ahimelech": "plead_out",
-      "david": "speak_open_left"
+      "david": "speak_open_left",
+      "doeg": "listen_clasp"
     },
     "split": true,
-    "why": "단계 ① — 가이드가 없어 크기 규칙 둘(generate.figure-scale·height-ratio)이 못 잼이었다. 아히멜렉(왼쪽)은 뼈대 plead_out(두 팔을 가슴 높이로 앞으로 뻗어 두 손목을 나란히 — 21:9 「가지려거든 가지라」 칼을 두 손으로 내밂, generate.pose-hold 「손 … 내밂」), 다윗(오른쪽)은 speak_open_left(화면 왼쪽으로 앞 팔을 가슴 높이로 뻗음 — 21:9 「내게 주소서」 한 손으로 받음). 두 손으로 받는 왼쪽 뼈대(plead_out을 x로 뒤집은 꼴)는 make_guide에 없어 한 손으로 저작. 도엑은 뒤쪽 서 있는 사람 꼴(깊이 0.85 — 발 y 차와 같은 앞뒤를 밝기로도 줌). 카드 체격 몸 너비. 뼈대가 있어 스텝별 나눔(generate.split-control). 뜰·장막·에봇·떡은 문구가 맡는다."
+    "why": "단계 ① — 가이드가 없어 크기 규칙 둘(generate.figure-scale·height-ratio)이 못 잼이었다. 아히멜렉(왼쪽)은 뼈대 plead_out(두 팔을 가슴 높이로 앞으로 뻗어 두 손목을 나란히 — 21:9 「가지려거든 가지라」 칼을 두 손으로 내밂, generate.pose-hold 「손 … 내밂」), 다윗(오른쪽)은 speak_open_left(화면 왼쪽으로 앞 팔을 가슴 높이로 뻗음 — 21:9 「내게 주소서」 한 손으로 받음). 두 손으로 받는 왼쪽 뼈대(plead_out을 x로 뒤집은 꼴)는 make_guide에 없어 한 손으로 저작. 도엑은 뒤쪽 서 있는 사람 꼴(깊이 0.85 — 발 y 차와 같은 앞뒤를 밝기로도 줌). 카드 체격 몸 너비. 뼈대가 있어 스텝별 나눔(generate.split-control). 뜰·장막·에봇·떡은 문구가 맡는다. (task 529: 도엑 뼈대 listen_clasp — 뼈대 없는 사람 꼴은 넓은 원뿔 깊이 꼴이라 8시드 4/8이 앞에 선 거인·망토로 그려짐 · 화면 왼쪽을 보며 두 손을 몸 앞에 모아 섬 = 머물러 지켜봄)"
   }
 }
