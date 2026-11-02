@@ -221,7 +221,7 @@
   },
   "whole_background": {
     "ko": "놉 성소 장막 앞의 작은 뜰 — 다져진 흙 바닥, 낮은 돌담, 뒤로 길게 늘어선 두꺼운 장막 휘장, 휘장 곁 못에 걸어 둔 제사장의 조끼 옷(에봇), 다윗 발치 천 꾸러미 위에 쌓아 둔 납작한 떡 여러 덩이, 엷은 하늘",
-    "en": "a small courtyard before the tent sanctuary at Nob, packed-earth ground, a low stone wall, a heavy tent curtain stretching along the back, a short vest-like garment from the shoulders to the waist, sleeveless, hanging on a peg beside the curtain, several flat round bread cakes like thick discs bigger than a palm, stacked up on the ground, pale sky",
+    "en": "a small courtyard before the tent sanctuary at Nob, packed-earth ground, a low stone wall, a heavy tent curtain stretching along the back, a short vest-like garment from the shoulders to the waist, sleeveless, hanging on a peg beside the curtain, several flat round bread cakes like thick discs bigger than a palm, stacked up, pale sky",
     "verse": "삼상 21:1 「다윗이 놉에 가서」 · 21:6 「진설병 곧 여호와 앞에서 물려 낸 떡」 · 21:9 「에봇 뒤에 있으니」 · 성소 곁은 [추론](21:6·7 「여호와 앞」) · 장막은 [추론](삼하 7:6 「장막과 회막에 거하며 행하였나니」) · 걸어 둔 에봇은 [추론](입은 에봇 뒤일 수 없음 — 사전 ephod L3) · 뜰·돌담·휘장 길이·못·떡 놓인 자리(땅 — 천 꾸러미 위는 칼 꾸러미와 같은 낱말이라 뺌, task 541)·하늘은 본문 밖 · 저작자 정함(시대 고증 — 철기 초 이스라엘 성소)"
   },
   "background": [
@@ -252,7 +252,7 @@
       },
       "costume": {
         "ko": "짙은 청색 긴 튜닉 위에 소매 없는 흰 세마포 에봇 조끼",
-        "en": "a long deep blue tunic, and over it a white linen ephod, a short sleeveless vest",
+        "en": "a long deep blue tunic, and over it a white linen ephod, a short sleeveless vest belted on top",
         "verse": "삼상 22:18 「세마포 에봇 입은 자 팔십오 인을 죽였고」 — 놉 제사장들의 차림(아히멜렉 포함 22:16) [추론] · 겉옷 청색은 [추론] 출 28:31 「너는 에봇 받침 겉옷을 전부 청색으로 하되」(장면 칸만 · task 530 — 카드 옷 칸은 얼굴 정본 지문(gen_face_canon.prompt_sha)에 들어 있어 바꾸면 정본 재판정이 필요해 그대로 둠) · 조끼 꼴은 사전 ephod L2(어깨끈·허리띠 L3 낱말은 어깨에 늘어진 흰 띠(스톨)로 그려짐 — t8 세마포 「어깨에 두른 긴 띠」, task 533) · t13(task 545): 「tunic, and over it」 — 「over a deep blue robe」는 청색 겉옷이 위에 열린 꼴로 그려져 흰 옷이 속옷이 됨(세마포 2/8)"
       },
       "gaze": "david",
