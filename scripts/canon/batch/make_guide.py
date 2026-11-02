@@ -4,7 +4,7 @@
   python3 batch/make_guide.py [--scene <장면 id>] [--out <png>]     # 기본: 요단 귀환 → samples/jordan-guide/guide.png
 
 깊이 그림 = 가까움 밝게 · 멂 어둡게. 선을 주지 않고(ZIMAGE §2 「콘티 되그림」) 자리·크기·멀고 가까움만 준다.
-꼴(guide.shape): person(서 있는 한 사람) · person_bow(고개를 앞·아래로 숙인 서 있는 사람, restyle r5) · kneel_bow(무릎 꿇고 엉덩이 들고 머리를 왼쪽 땅에, r6) · seated(배 안에 앉은 머리·어깨 한 줄, r6) · sit(걸상에 앉아 왼쪽을 향한 한 사람, task 414) · prostrate(엎드린 낮은 몸, 머리는 왼쪽 — 다윗 쪽) · crowd(작은 실루엣 두 줄) · boat(선체) · bank(강 너머 둑).
+꼴(guide.shape): altar(돌 제단 위 제물, task 546) · person(서 있는 한 사람) · person_bow(고개를 앞·아래로 숙인 서 있는 사람, restyle r5) · kneel_bow(무릎 꿇고 엉덩이 들고 머리를 왼쪽 땅에, r6) · seated(배 안에 앉은 머리·어깨 한 줄, r6) · sit(걸상에 앉아 왼쪽을 향한 한 사람, task 414) · prostrate(엎드린 낮은 몸, 머리는 왼쪽 — 다윗 쪽) · crowd(작은 실루엣 두 줄) · boat(선체) · bank(강 너머 둑).
 바탕: 하늘 0 · 땅은 지평선에서 아래로 0.12 → 0.5. 그리는 순서는 먼 것부터(깊이 오름차순).
 지평선은 눈높이 카메라(task 409, 규칙 generate.eye-level-perspective): 가장 가까운 서 있는 인물의 발 y·화면 키·키 등급에서 파생(S.scene_horizon)."""
 import argparse, json, os, sys
@@ -284,6 +284,15 @@ def wall(d, x0, y0, x1, y1, v):
     d.polygon([(x0, y0), (x1, y0 + h * 0.18), (x1, y1 - h * 0.06), (x0, y1)], fill=v)
 
 
+def altar(d, x0, y0, x1, y1, v):
+    """task 546 — 돌 제단과 그 위 제물: 구역 아래 0.4에 사다리꼴 돌 덩어리(허리 높이) · 윗면 가운데에 낮은 덩어리(제물).
+    꼴 없이 문구만이면 배교 「잡은 어린 양을 제단 불에」가 다섯 판 동안 땅바닥·품에 그려짐(제단 위 제물 2~4/8)."""
+    w, h = x1 - x0, y1 - y0
+    top = y1 - h * 0.4
+    d.polygon([(x0 + w * 0.15, top), (x1 - w * 0.15, top), (x1 - w * 0.05, y1), (x0 + w * 0.05, y1)], fill=v)
+    d.ellipse([x0 + w * 0.32, top - h * 0.1, x1 - w * 0.32, top + h * 0.03], fill=v)
+
+
 # task 403 c7 — 포즈(뼈대) 제어: OpenPose 18점 규약(controlnet_aux draw_bodypose와 같은 관절 순서·팔다리 짝·색).
 # 깊이 꼴은 실루엣 덩어리만 주고 관절 각도·다리 길이는 모델이 시드마다 넓은 보폭으로 되돌렸다(c1~c6).
 LIMBS = [(1, 2), (1, 5), (2, 3), (3, 4), (5, 6), (6, 7), (1, 8), (8, 9), (9, 10), (1, 11), (11, 12), (12, 13), (1, 0), (0, 14), (14, 16), (0, 15), (15, 17)]
@@ -426,7 +435,7 @@ def draw_pose(img, box, name, hip_dx=0.06):
 
 
 AIR_SHAPES = {"spear"}   # 허공을 나는 물체 꼴(recheck.AIR_SHAPES와 같음)
-SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "kneel_bow_reach": kneel_bow_reach, "seated": seated, "sit": sit, "crowd": crowd, "boat": boat, "bank": bank, "river": river}
+SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "kneel_bow_reach": kneel_bow_reach, "seated": seated, "sit": sit, "crowd": crowd, "boat": boat, "bank": bank, "river": river, "altar": altar}
 
 
 def make_pose_only(spec, backdrop=False):

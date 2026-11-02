@@ -43,8 +43,8 @@
   },
   "whole_background": {
     "ko": "예루살렘을 마주한 메마른 바위 산마루 — 골짜기 건너 멀리 성벽 두른 예루살렘 · 산마루 오른쪽에 후비들의 산당: 다듬지 않은 돌을 쌓은 제단, 제단에서 오르는 향 연기 · 산등성이를 따라 더 멀리 산당 둘(그모스·몰록) · 제단 앞에서 이족 후비 다섯이 저마다 자기 백성의 옷을 입고 분향하며 제단에 제물을 올림",
-    "en": "a bare rocky hilltop facing Jerusalem, the walled city of Jerusalem of flat-roofed stone houses far across the valley; on the right of the hilltop a high place: a rough altar of piled unhewn stones with a slaughtered young lamb laid on its fire, incense smoke rising from the altar, and two more high places farther along the ridge, small stone altars with smoke; in front of the altar five of his foreign wives, women in long colorful dresses with bracelets and veils over long hair, each in the robes of her own people, burning incense at the altar",
-    "verse": "왕상 11:7 「예루살렘 앞 산에 산당을 지었고 또 암몬 자손의 가증한 몰록을 위하여 그와 같이 하였으며」 · 11:8 「저가 또 이족 후비들을 위하여 다 그와 같이 한지라 저희가 자기의 신들에게 분향하며 제사하였더라」 · 11:1 「모압과 암몬과 에돔과 시돈과 헷 여인이라」 · 성이 골짜기 건너 보임은 [추론](「앞」 — 마주함) · 제단은 [추론](11:8 제사 · 왕상 3:4 「그 단에」) · 앞 산당이 후비들의 것·뒤 산당 둘이 그모스·몰록의 것인 배치, 다섯·옷 모양·돌 쌓음·바위·골짜기·성벽 모양은 본문 밖 · 저작자 정함(시대 고증 — 철기 이스라엘 산당) · 신의 형상은 본문에 없어 그리지 않음 · 평평한 지붕 돌집은 [추론] 삼하 11:2 「왕궁 지붕 위에서 거닐다가」(task 539 — 뾰족탑·십자가가 교회 도상으로 4/8) · 여인 표지(색 있는 긴 옷·팔찌·너울 아래 긴 머리)는 본문 밖 · 저작자 정함(task 539 — 갈색 두건 겉옷이 수도사·남자로 읽혀 다른 남자 없음 2/8) · 제물은 제단 칸에 상태로(「… with a slaughtered young lamb laid on its fire」) — 후비 문장 끝 행동 「laying … on the altar fire」은 t3 제물 1/8(task 542) · 먼 산당 「small stone altars with smoke」(다른 산당 3/8)"
+    "en": "a bare rocky hilltop facing Jerusalem, the low walled city of Jerusalem of flat-roofed stone houses on the opposite hill across a deep valley; on the right of the hilltop a high place: a rough altar of piled unhewn stones with a fire on it, incense smoke rising from the altar, and two more high places farther along the ridge, small stone altars with smoke; in front of the altar five of his foreign wives, women in long colorful dresses with bracelets and veils over long hair, each in the robes of her own people; one wife laying a slaughtered young lamb on the altar fire while the others burn incense",
+    "verse": "왕상 11:7 「예루살렘 앞 산에 산당을 지었고 또 암몬 자손의 가증한 몰록을 위하여 그와 같이 하였으며」 · 11:8 「저가 또 이족 후비들을 위하여 다 그와 같이 한지라 저희가 자기의 신들에게 분향하며 제사하였더라」 · 11:1 「모압과 암몬과 에돔과 시돈과 헷 여인이라」 · 성이 골짜기 건너 보임은 [추론](「앞」 — 마주함) · 제단은 [추론](11:8 제사 · 왕상 3:4 「그 단에」) · 앞 산당이 후비들의 것·뒤 산당 둘이 그모스·몰록의 것인 배치, 다섯·옷 모양·돌 쌓음·바위·골짜기·성벽 모양은 본문 밖 · 저작자 정함(시대 고증 — 철기 이스라엘 산당) · 신의 형상은 본문에 없어 그리지 않음 · 평평한 지붕 돌집은 [추론] 삼하 11:2 「왕궁 지붕 위에서 거닐다가」(task 539 — 뾰족탑·십자가가 교회 도상으로 4/8) · 여인 표지(색 있는 긴 옷·팔찌·너울 아래 긴 머리)는 본문 밖 · 저작자 정함(task 539 — 갈색 두건 겉옷이 수도사·남자로 읽혀 다른 남자 없음 2/8) · 제물은 제단 칸에 상태로(「… with a slaughtered young lamb laid on its fire」) — 후비 문장 끝 행동 「laying … on the altar fire」은 t3 제물 1/8(task 542) · 먼 산당 「small stone altars with smoke」(다른 산당 3/8) · t5(task 544): 제물은 후비 한 사람의 행동(나머지는 분향) — 제단 칸 상태로만 두면 「바치는 동작 없음」 3/8 · 성은 「on the opposite hill across a deep valley」(같은 비탈에 붙어 그려짐 3/8)"
   },
   "verse_elements": [
     {
@@ -109,7 +109,7 @@
       "quote": "자기의 신들에게 분향하며",
       "kind": "행동",
       "ko": "후비들이 자기 신들에게 분향함(오르는 향 연기)",
-      "en": "burning incense",
+      "en": "the others burn incense",
       "field": "whole_background"
     },
     {
@@ -117,7 +117,7 @@
       "quote": "제사하였더라",
       "kind": "행동",
       "ko": "후비들이 제단에 제물을 올림(제물 모양은 본문 밖 · 저작자 정함) — 잡은 어린 양을 제단 불에 올림(사전 sacrifice L2 · 짐승은 [추론] 왕상 3:4·8:63 · 어린 양은 저작 · task 536)",
-      "en": "a slaughtered young lamb laid on its fire",
+      "en": "one wife laying a slaughtered young lamb on the altar fire",
       "field": "whole_background"
     },
     {
@@ -282,18 +282,20 @@
   "guide": {
     "depth": {
       "solomon-old": 1.0,
-      "wives": 0.85
+      "wives": 0.85,
+      "shrine": 0.85
     },
     "shape": {
       "solomon-old": "person",
-      "wives": "crowd"
+      "wives": "crowd",
+      "shrine": "altar"
     },
     "body": "card",
     "pose": {
       "solomon-old": "speak_open"
     },
     "split": true,
-    "why": "task 492 단계 ① — 가이드가 없어 크기·원근 규칙(generate.figure-scale·eye-level-perspective)이 못 잼이었다. 솔로몬(왼쪽)은 뼈대 speak_open(task 417 — 화면 오른쪽으로 앞 팔을 가슴 높이로 내밀어 손을 폄): 몸짓 「한 손을 펴 … 제단 쪽으로 내밀고」(generate.pose-hold) — 11:8 「저가 또 이족 후비들을 위하여」 지어 준 산당 쪽. 뼈대가 있으니 스텝별 나눔(generate.split-control). 후비 다섯은 가운데 무리 꼴(crowds 5 · 깊이 0.85 — 솔로몬보다 조금 뒤). 카드 체격 몸 너비(generate.guide-body-build). 산당·제단·향 연기·먼 성은 문구가 맡는다(맞는 가이드 꼴 없음)."
+    "why": "task 492 단계 ① — 가이드가 없어 크기·원근 규칙(generate.figure-scale·eye-level-perspective)이 못 잼이었다. 솔로몬(왼쪽)은 뼈대 speak_open(task 417 — 화면 오른쪽으로 앞 팔을 가슴 높이로 내밀어 손을 폄): 몸짓 「한 손을 펴 … 제단 쪽으로 내밀고」(generate.pose-hold) — 11:8 「저가 또 이족 후비들을 위하여」 지어 준 산당 쪽. 뼈대가 있으니 스텝별 나눔(generate.split-control). 후비 다섯은 가운데 무리 꼴(crowds 5 · 깊이 0.85 — 솔로몬보다 조금 뒤). 카드 체격 몸 너비(generate.guide-body-build). 산당·제단·향 연기·먼 성은 문구가 맡는다(맞는 가이드 꼴 없음). (task 546: 산당 구역에 altar 꼴 — 돌 제단 덩어리 위 제물 덩어리. 문구만으로는 다섯 판 동안 어린 양이 땅바닥·품에 그려짐(제단 위 제물 2~4/8))"
   },
   "stages": [
     {
