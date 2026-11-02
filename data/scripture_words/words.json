@@ -363,10 +363,10 @@
           "en": "A sword wrapped round and round in cloth so the blade cannot be seen, longer than a man's arm."
         },
         "L3": {
-          "ko": "천을 칭칭 감은 크고 기다란 꾸러미예요. 사람 팔보다 길어요.",
-          "en": "A huge long cloth bundle wrapped round and round, longer than a man's arm."
+          "ko": "천을 단단히 칭칭 감은, 곧고 가는 기다란 꾸러미예요. 사람 팔보다 길어요.",
+          "en": "A long, straight, slim bundle of cloth wound tightly round and round, longer than a man's arm."
         },
-        "grounds": "[직접] 삼상 21:9 — 칼이 보자기에 싸여 있음. [저작](본문에 없음) 칭칭 감은 모양, 두 끝을 묶음, 기다란 꾸러미, 두 팔로 안아 들 만한 길이는 천 꾸러미의 일반 모양이다(두 끝 묶음 task 524 — L3에도 칼끝이 드러남). 덮인 상태는 긍정형으로만 — 「no blade, point or handle shows」는 맨 칼날을 불렀다(task 524 t2, PROMPTING 「없음을 말하려고 부위를 부르지 않는다」). L3는 속 지물 낱말(sword) 없이 꾸러미 꼴만 — 「sword」가 실리면 8시드 7장이 자루만 감고 칼날을 드러냄(task 526 · 보이는 것은 보자기뿐, 속 지물 요소는 covered_by). 민 4:12는 기물을 청색 천으로 싼 용례. 길이 문구는 크기 기준표 size en(「longer than a man's arm」) — 「long enough to carry in both arms」는 팔뚝 길이로 그려짐(task 528 큰 칼 1/8). 「tied at both ends」는 뺌 — 속 지물이 칼일 때 칼자루가 드러나야 칼로 읽힘(사람 판정 놉 534 「칼이 천에 싸여 보이지 않음」, task 541 · 드러난 자루는 장면 명세 몫).",
+        "grounds": "[직접] 삼상 21:9 — 칼이 보자기에 싸여 있음. [저작](본문에 없음) 칭칭 감은 모양, 두 끝을 묶음, 기다란 꾸러미, 두 팔로 안아 들 만한 길이는 천 꾸러미의 일반 모양이다(두 끝 묶음 task 524 — L3에도 칼끝이 드러남). 덮인 상태는 긍정형으로만 — 「no blade, point or handle shows」는 맨 칼날을 불렀다(task 524 t2, PROMPTING 「없음을 말하려고 부위를 부르지 않는다」). L3는 속 지물 낱말(sword) 없이 꾸러미 꼴만 — 「sword」가 실리면 8시드 7장이 자루만 감고 칼날을 드러냄(task 526 · 보이는 것은 보자기뿐, 속 지물 요소는 covered_by). 민 4:12는 기물을 청색 천으로 싼 용례. 길이 문구는 크기 기준표 size en(「longer than a man's arm」) — 「long enough to carry in both arms」는 팔뚝 길이로 그려짐(task 528 큰 칼 1/8). 「tied at both ends」는 뺌 — 속 지물이 칼일 때 칼자루가 드러나야 칼로 읽힘(사람 판정 놉 534 「칼이 천에 싸여 보이지 않음」, task 541 · 드러난 자루는 장면 명세 몫). 「huge … wrapped round and round」는 부푼 천 뭉치·베개 꼴로 그려짐(사람 판정 놉 553 「보자기가 너무 풍성하게 쌓여」) → 곧고 가늘게 단단히 감음(task 555).",
         "size": {
           "ref": "man-height",
           "ratio": 0.6,

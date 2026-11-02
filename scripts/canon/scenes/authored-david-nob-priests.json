@@ -146,7 +146,7 @@
       "quote": "보자기에 싸여",
       "kind": "지물",
       "ko": "칼이 보자기에 싸여 보이는 것은 천 꾸러미뿐(사전 wrapped-in-cloth L3)",
-      "en": "a huge long cloth bundle wrapped round and round",
+      "en": "a long, straight, slim bundle of cloth wound tightly round and round",
       "field": "relation"
     },
     {
@@ -162,7 +162,7 @@
       "quote": "네가 그것을 가지려거든 가지라",
       "kind": "행동",
       "ko": "아히멜렉이 칼을 두 손으로 다윗 쪽에 내밂(두 손은 본문 밖 · 저작자 정함)",
-      "en": "holding the cloth bundle out with both hands toward the young man",
+      "en": "holding the wrapped end of the bundle out with both hands toward the young man",
       "field": "figures[0].gesture"
     },
     {
@@ -216,7 +216,7 @@
   },
   "relation": {
     "ko": "왼쪽 아히멜렉의 두 손과 오른쪽 다윗의 한 손이 둘 사이의 기다란 천 꾸러미(보자기에 싼 골리앗의 칼) 하나를 함께 잡아 제사장에게서 다윗에게 건네지는 중이고, 다윗은 홀로 와 함께한 자가 없다(서로 바라봄·도엑의 지켜봄은 인물 칸 gaze·gesture가 실음)",
-    "en": "between the priest and the young man is a huge long cloth bundle wrapped round and round, longer than a man's arm, with a sword's bare hilt and crossguard sticking out of its near end; the priest's two hands and the young man's hand hold the same single cloth bundle, passing from the priest to the young man, who has come alone with no companions",
+    "en": "between the priest and the young man is a long, straight, slim bundle of cloth wound tightly round and round, longer than a man's arm, with one straight sword hilt at the young man's end; the priest's two hands and the young man's hand hold the same single bundle, passing to the young man, who has come alone with no companions",
     "verse": "삼상 21:9 「가지려거든 가지라」 · 「내게 주소서」 · 21:1 「홀로 있고 함께 하는 자가 아무도 없느냐」 · 21:7 · 도엑이 지켜봄은 [추론](22:9-10) · 손 수·좌우·시선은 본문 밖 · 저작자 정함 · 칼은 보자기 속이라 꾸러미 꼴로만(사전 wrapped-in-cloth L3 — 21:9 「보자기에 싸여」 · 감음·두 끝 묶음은 저작 · 길이는 사전 goliath-sword size · task 528) · 꾸러미 끝에 드러난 칼자루·코등이는 본문 밖 · 저작자 정함(사람 판정 534 「칼이 천에 싸여 보이지 않음」 — 건넬 때 한쪽을 푼 꼴 · task 541)"
   },
   "whole_background": {
@@ -247,7 +247,7 @@
       },
       "gesture": {
         "ko": "보자기에 싼 칼 꾸러미를 두 손으로 다윗 쪽에 내민다",
-        "en": "holding the cloth bundle out with both hands toward the young man",
+        "en": "holding the wrapped end of the bundle out with both hands toward the young man",
         "verse": "삼상 21:9 「보자기에 싸여」 · 「네가 그것을 가지려거든 가지라」 · 두 손·손 자세 본문 밖 · 저작자 정함"
       },
       "costume": {
