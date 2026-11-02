@@ -549,10 +549,10 @@
           "en": "Flat round loaves of bread, each as wide as a man's forearm is long, that were taken from the table."
         },
         "L3": {
-          "ko": "손바닥보다 큰 납작한 떡 덩이를 여럿 겹쳐 쌓았어요.",
-          "en": "Several flat loaves bigger than a palm, stacked up."
+          "ko": "손바닥보다 큰 납작하고 둥근 떡을 두꺼운 원반처럼 여럿 겹쳐 쌓았어요.",
+          "en": "Several flat round bread cakes like thick discs bigger than a palm, stacked up."
         },
-        "grounds": "[직접] 삼상 21:6 「여호와 앞에서 물려 낸 떡」. [저작](본문에 없음) 손바닥보다 큰 납작한 덩이, 둥근 모양, 겹쳐 쌓음은 떡 고증이다.",
+        "grounds": "[직접] 삼상 21:6 「여호와 앞에서 물려 낸 떡」. [저작](본문에 없음) 손바닥보다 큰 납작한 덩이, 둥근 모양, 겹쳐 쌓음은 떡 고증이다. L3는 「loaves」 대신 「bread cakes … thick discs」 — 「flat loaves」는 칼집 무늬 타원 빵·바게트로 그려짐(놉 t9 진설병 2/8 · 레 24:5 KJV 「twelve cakes」, task 534).",
         "size": {
           "ref": "man-height",
           "ratio": 0.16,

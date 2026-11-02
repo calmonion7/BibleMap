@@ -74,7 +74,7 @@
       "quote": "진설병 곧 여호와 앞에서 물려 낸 떡",
       "kind": "지물",
       "ko": "다윗이 받은 진설병 — 다윗 발치 천 꾸러미 위에 쌓아 둔 납작한 떡 여러 덩이(받았음은 21:6 [직접] · 놓인 자리·덩이 수는 본문 밖 · 저작자 정함)",
-      "en": "several flat loaves bigger than a palm, stacked up",
+      "en": "several flat round bread cakes like thick discs bigger than a palm, stacked up",
       "field": "whole_background"
     },
     {
@@ -221,7 +221,7 @@
   },
   "whole_background": {
     "ko": "놉 성소 장막 앞의 작은 뜰 — 다져진 흙 바닥, 낮은 돌담, 뒤로 길게 늘어선 두꺼운 장막 휘장, 휘장 곁 못에 걸어 둔 제사장의 조끼 옷(에봇), 다윗 발치 천 꾸러미 위에 쌓아 둔 납작한 떡 여러 덩이, 엷은 하늘",
-    "en": "a small courtyard before the tent sanctuary at Nob, packed-earth ground, a low stone wall, a heavy tent curtain stretching along the back, a two-piece cloth garment with shoulder straps and a waist belt hanging on a peg beside the curtain, several flat loaves bigger than a palm, stacked up on a cloth bundle at the young man's feet, pale sky",
+    "en": "a small courtyard before the tent sanctuary at Nob, packed-earth ground, a low stone wall, a heavy tent curtain stretching along the back, a two-piece cloth garment with shoulder straps and a waist belt hanging on a peg beside the curtain, several flat round bread cakes like thick discs bigger than a palm, stacked up on a cloth bundle at the young man's feet, pale sky",
     "verse": "삼상 21:1 「다윗이 놉에 가서」 · 21:6 「진설병 곧 여호와 앞에서 물려 낸 떡」 · 21:9 「에봇 뒤에 있으니」 · 성소 곁은 [추론](21:6·7 「여호와 앞」) · 장막은 [추론](삼하 7:6 「장막과 회막에 거하며 행하였나니」) · 걸어 둔 에봇은 [추론](입은 에봇 뒤일 수 없음 — 사전 ephod L3) · 뜰·돌담·휘장 길이·못·떡 놓인 자리(천 꾸러미)·하늘은 본문 밖 · 저작자 정함(시대 고증 — 철기 초 이스라엘 성소)"
   },
   "background": [
@@ -347,7 +347,7 @@
       "kind": "full",
       "region": "full",
       "verse": "21:1·6·9 · 장막 [추론](삼하 7:6) · 뜰 모양 본문 밖 · 저작자 정함",
-      "prompt": "a small courtyard of packed earth before a tent sanctuary, a low stone wall, a heavy tent curtain stretching along the back, a two-piece cloth garment with shoulder straps and a waist belt hanging on a peg beside the curtain, several flat loaves stacked on a cloth bundle, pale sky, no people.",
+      "prompt": "a small courtyard of packed earth before a tent sanctuary, a low stone wall, a heavy tent curtain stretching along the back, a two-piece cloth garment with shoulder straps and a waist belt hanging on a peg beside the curtain, several flat round bread cakes stacked on a cloth bundle, pale sky, no people.",
       "neg": [
         "people",
         "figures",
