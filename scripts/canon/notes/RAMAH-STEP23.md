@@ -208,3 +208,10 @@ python3 $C/batch/rule_ab.py --fixed 513 record '<판정 task 513 + JSON 한 줄>
 - 배운 것: 벽에 박힌 창은 **촉이 벽 옆면 속으로 사라지는 가림**이 있어야 박힘으로 읽힘(정면 벽 위 대각선·그림자는 「나는 창」). 머리 바로 위(약 20px)·짧지 않은 자루(화살 아님).
 - 사람 확인 화면(같은 주소 갱신): https://claude.ai/artifact/TJFjUVnZi53uSkiKNGVRzf
 
+- 사람 답(8시드): s11
+
+## 사람 판정(단계 ④, task 535) — 확정
+
+- 사람 답: **s11 확정**(메모 없음). 명세 approved → `samples/ramah-inset-wall2/composition-A-s11.png`(큰 장면 s11 + 곁 장면 s7 편집본 v6).
+- 라마 사무엘 장면 완료 — 사람 판정 4번(481·522·527·535), 상한 5 안.
+
