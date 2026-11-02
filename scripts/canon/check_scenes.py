@@ -249,11 +249,12 @@ def lexicon_look_errors(spec, prompt):
         words = [w for w in json.load(fh)["words"] if w.get("drawable", True)]
     squash, low, errs = lambda t: re.sub(r"\s+", "", t), prompt.lower(), []
     for i, e in enumerate(els):
-        if e.get("kind") != "지물" or "out" in e:
+        if e.get("kind") != "지물" or "out" in e or e.get("absent"):   # absent: 없음을 말하는 요소(task 514 — 21:8 「내 칼과 병기를 가지지 못하였나이다」)
             continue
-        for w in words:
-            if any(squash(x) in squash(e["quote"]) for x in w.get("exclude", [])):   # task 497: 「금」이 「수금」에 걸리지 않게
-                continue
+        hits = [w for w in words if not any(squash(x) in squash(e["quote"]) for x in w.get("exclude", []))   # task 497: 「금」이 「수금」에 걸리지 않게
+                and any(squash(f) in squash(e["quote"]) for f in [w["word"], *w["forms"]])]
+        hits = [w for w in hits if not any(o is not w and squash(w["word"]) in squash(o["word"]) for o in hits)]   # task 514: 구체 항목 우선(「골리앗의 칼」이면 「칼」은 요구 안 함)
+        for w in hits:
             if any(squash(f) in squash(e["quote"]) for f in [w["word"], *w["forms"]]) and \
                     not any(w["look"][k]["en"].lower().rstrip(".") in low for k in ("L1", "L2", "L3")):
                 errs.append(f"verse_elements[{i}] {e['quote']!r}: 사전 {w['id']} look 문구가 파생 프롬프트에 없음")

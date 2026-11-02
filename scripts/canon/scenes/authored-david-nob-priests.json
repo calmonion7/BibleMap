@@ -120,7 +120,8 @@
       "kind": "지물",
       "ko": "다윗은 허리에 칼도 병기도 없음",
       "en": "no weapon at his belt",
-      "field": "figures[1].costume"
+      "field": "figures[1].costume",
+      "absent": true
     },
     {
       "verse": "21:8",
@@ -136,7 +137,8 @@
       "kind": "지물",
       "ko": "골리앗의 칼 — 크고 긴 칼(사전 goliath-sword L1)",
       "en": "a huge long sword",
-      "field": "relation"
+      "field": "relation",
+      "note": "task 514: 보자기 낱말 L2 → L3(「긴 꾸러미 — 날도 자루도 가려짐」) · 「a straight iron sword」 뺌(8시드 보자기 0/8 — 칼 낱말이 거듭 나와 맨 칼로 그려짐 [추론])"
     },
     {
       "verse": "21:9",
@@ -213,7 +215,7 @@
   },
   "relation": {
     "ko": "왼쪽 아히멜렉의 두 손과 오른쪽 다윗의 한 손이 둘 사이의 보자기 싼 큰 칼 한 자루를 함께 잡아 칼이 제사장에게서 다윗에게 건네지는 중이고, 다윗은 홀로 와 함께한 자가 없다(서로 바라봄·도엑의 지켜봄은 인물 칸 gaze·gesture가 실음)",
-    "en": "between the priest and the young man is a huge long sword, a sword wrapped round and round in cloth so the blade cannot be seen, longer than a man's arm; the priest's two hands and the young man's hand hold the same single wrapped sword, a straight iron sword, still wrapped in its cloth, passing from the priest to the young man, who has come alone with no companions",
+    "en": "between the priest and the young man is a huge long sword, longer than a man's arm, a long sword wound in cloth into a long bundle; blade and handle are both hidden; the priest's two hands and the young man's hand hold the same single cloth bundle, passing from the priest to the young man, who has come alone with no companions",
     "verse": "삼상 21:9 「가지려거든 가지라」 · 「내게 주소서」 · 21:1 「홀로 있고 함께 하는 자가 아무도 없느냐」 · 21:7 · 도엑이 지켜봄은 [추론](22:9-10) · 손 수·좌우·시선은 본문 밖 · 저작자 정함 · 칼 모양은 사전 goliath-sword L1 · wrapped-in-cloth L2(날이 보이지 않음 — 21:9 「보자기에 싸여」) · sword L1"
   },
   "whole_background": {

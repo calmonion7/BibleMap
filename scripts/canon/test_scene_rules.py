@@ -1303,6 +1303,18 @@ class CrowdShoulders(unittest.TestCase):
         self.assertGreaterEqual(MG.CROWD_BOX, 0.4)
 
 
+class LexiconSpecificAbsent(unittest.TestCase):
+    """spec.lexicon-link(task 514) — 구체 항목 우선 · 없음 요소는 지물 문구를 요구하지 않음(놉 「골리앗의 칼」·21:8)."""
+
+    def test_specific_entry_wins_and_absent_skipped(self):
+        s = {"verse_elements": [{"verse": "21:9", "quote": "골리앗의 칼이", "kind": "지물", "en": "x", "field": "relation"},
+                                {"verse": "21:8", "quote": "내 칼과 병기를 가지지 못하였나이다", "kind": "지물", "en": "no weapon", "field": "relation", "absent": True}]}
+        errs = check_scenes.lexicon_look_errors(s, "a huge long sword, longer than a man's arm")
+        self.assertEqual(errs, [])
+        s["verse_elements"][1].pop("absent")
+        self.assertTrue(any("sword" in e for e in check_scenes.lexicon_look_errors(s, "a huge long sword")))
+
+
 class InsetFrameAspect(unittest.TestCase):
     """generate.inset-frame-aspect(task 417) — 곁 장면은 구름 틀 비율로 생성(넓은 화면엔 빈자리에 선 여인 2/2)."""
 

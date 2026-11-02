@@ -20,3 +20,9 @@
 - **통과 0/8** — 묶음 기준(기계 통과 0장이면 하나씩 진행 줄로)에 따라 독대·소수 묶음에서 뺀다.
 - 막힌 것: 보자기 0/8(21:9 「보자기에 싸여」 — 8장 모두 맨 칼, 맞댄 결투처럼) · 세마포 1/8 · 에봇 2/8 · 진설병 2/8 · 도엑이 앞에 거인처럼 큼(s7·s11).
 - 다음: 0/8인 지물 낱말을 사전 설명 단계(L1→L2→L3)로 올려 s42 한 장 반복(성경 낱말 사전 절차).
+
+## 하나씩 — 보자기 낱말 단계 올리기 (task 514)
+
+- 0/8의 읽기(추론): 관계 문구에 「a huge long sword」·「a straight iron sword」로 칼 낱말이 거듭 나와 맨 칼이 그려짐. 「a straight iron sword」는 사전 일반 항목 sword(L1)를 사전 연결 검사가 요구해서 들어가 있었다.
+- **규칙 고침 spec.lexicon-link**(check_scenes.lexicon_look_errors): 한 인용에 여러 항목이 걸리면 구체 항목 우선(「골리앗의 칼」 ⊃ 「칼」) · 요소 `absent: true`(21:8 「내 칼과 병기를 가지지 못하였나이다」)는 건너뜀 · 시험 LexiconSpecificAbsent.
+- 보자기 낱말 L2 → **L3** 「a long sword wound in cloth into a long bundle; blade and handle are both hidden」 · 「the same single cloth bundle」 · 「a straight iron sword」 뺌.

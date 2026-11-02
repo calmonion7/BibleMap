@@ -139,7 +139,7 @@
       "check": "check_scenes.lexicon_look_errors",
       "source": "메모리 project_scripture_word_lexicon · task 381~383 · task 400(397 사람 메모 ② 「다웃의 악기가 하프가 아님」)",
       "since": "2026-10-20 · 검사화 2026-10-22 task 400",
-      "note": "실은 지물 요소 quote에 사전 표제어·꼴이 있으면 파생 프롬프트에 그 항목 look L1|L2|L3 en 하나가 실려야 함(단계는 장면 증거로 — 기브아 수금은 L1 16장 중 1장 → L2). 요소 목록 없으면 못 잼"
+      "note": "(고침 task 497·514: 사전 exclude 칸(「금」이 「수금」에 안 걸림) · 한 인용에 여러 항목이 걸리면 구체 항목 우선(「골리앗의 칼」이면 일반 「칼」의 「a straight iron sword」를 요구 안 함 — 놉 보자기 0/8의 원인 하나) · 요소 absent:true(없음을 말하는 요소)는 건너뜀) 실은 지물 요소 quote에 사전 표제어·꼴이 있으면 파생 프롬프트에 그 항목 look L1|L2|L3 en 하나가 실려야 함(단계는 장면 증거로 — 기브아 수금은 L1 16장 중 1장 → L2). 요소 목록 없으면 못 잼"
     },
     {
       "id": "derive.no-hand-prompt",
