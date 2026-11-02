@@ -417,14 +417,14 @@
   "approved": {
     "final": {
       "path": "night-pick",
-      "seed": 303,
+      "seed": 7,
       "kind": "base",
-      "image": "samples/sheba-step23-r1/composition-A-s303.png",
+      "image": "samples/sheba-step23-r3/composition-A-s7.png",
       "by": "user",
       "on": "2026-11-02",
-      "spec_hash": "1abf5ab3bad5",
+      "spec_hash": "1a374482ba50",
       "prompt_hash": null,
-      "rules_version": "e72e1a610358",
+      "rules_version": "1a49d8b90b23",
       "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
     }
   }

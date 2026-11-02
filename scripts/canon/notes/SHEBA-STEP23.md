@@ -203,3 +203,9 @@
 ## 사람 판정(단계 ④, task 512) — 3번째
 
 - 화면: https://claude.ai/artifact/4VPMrAshqYjwJ8nC64wcU1 (같은 주소 갱신 · 8장 전부 · 기계 통과 2)
+- 사람 답(8시드): s7
+
+### 사람 답 결론 (task 512 · 2026-11-02)
+
+- **확정 s7** · 메모 없음 · 사람 판정 3번(상한 5).
+- 묶음 0/8에서 하나씩으로: 낱말 셋 단계 올리기(향품 L2 · 보석·금 사전 신설 L2) → 사람 메모 셋을 규칙으로(무리 실루엣 어깨 generate.crowd-shoulders · 상식 p.no-floating·p.royal-gifts · 뼈대 point_down) · 생성 관문 rule_ab에도.
