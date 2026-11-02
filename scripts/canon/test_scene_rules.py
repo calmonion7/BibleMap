@@ -1331,8 +1331,12 @@ class JointHoldSpan(unittest.TestCase):
     """generate.joint-hold-span(task 531) — 함께 쥔 지물은 두 손목 사이 길이로 그려짐(놉 꾸러미 손목 간격 키의 0.40 → 큰 칼 3/8)."""
 
     def test_nob_gap(self):
+        """놉 t7 꼴(두 사람이 꾸러미를 함께 쥠) — 명세는 task 558에서 「에봇 뒤 칼을 가리킴」으로 바뀌어 시험 안에서 옛 꼴을 만든다."""
         import derive_scene as ds
         s = copy.deepcopy(ds.load("authored-david-nob-priests"))
+        s["figures"][0]["prop"], s["figures"][1]["prop"] = "a long cloth bundle", "the long cloth bundle"
+        s["guide"]["pose"].update(ahimelech="plead_out", david="speak_open_left")
+        s["regions"]["ahimelech"], s["regions"]["david"] = [0.25, 0.34, 0.40, 0.92], [0.57, 0.34, 0.72, 0.92]
         self.assertEqual(recheck.joint_hold_span_errors(s), [])
         s["regions"]["ahimelech"], s["regions"]["david"] = [0.28, 0.34, 0.43, 0.92], [0.54, 0.34, 0.69, 0.92]
         self.assertTrue(recheck.joint_hold_span_errors(s))
