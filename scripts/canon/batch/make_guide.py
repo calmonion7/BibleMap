@@ -301,7 +301,7 @@ def ephod_sword(d, x0, y0, x1, y1, v):
     back = round(v * 0.82)
     # task 576: 칼을 비스듬히 기대 세움(위끝이 조끼 왼쪽 위로) · 코등이 작게 — 곧게 선 가운데 막대 + 넓은 코등이는 걸이 기둥·십자가로 그려짐(t23)
     bx0, by0, bx1, by1 = cx + w * 0.16, y1 - h * 0.05, cx - w * 0.14, y0
-    hw = w * 0.05
+    hw = w * 0.08   # task 577: 꾸러미는 칼보다 굵게 — 0.05는 맨 칼날로 그려짐(t24 보자기 2/16)
     d.polygon([(bx0 - hw, by0), (bx0 + hw, by0), (bx1 + hw, by1), (bx1 - hw, by1)], fill=back)   # 칼 꾸러미(뒤)
     gy = y0 + h * 0.07
     gx = bx1 + (bx0 - bx1) * 0.07
