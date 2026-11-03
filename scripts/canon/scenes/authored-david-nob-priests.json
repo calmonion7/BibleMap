@@ -96,7 +96,7 @@
       "quote": "사울의 신하 한 사람이 여호와 앞에 머물러 있었는데",
       "kind": "인물",
       "ko": "도엑 — 장막 곁 뒤쪽에 머물러 서서 두 사람을 지켜봄(머묾 [직접] · 지켜봄은 22:9-10 [추론] · 자리 본문 밖 · 저작자 정함)",
-      "en": "lingering back by the tent, watching the two men",
+      "en": "lingering by the tent, hands clasped in front, watching",
       "field": "figures[2].gesture"
     },
     {
@@ -162,7 +162,7 @@
       "quote": "네가 그것을 가지려거든 가지라",
       "kind": "행동",
       "ko": "아히멜렉이 한 손을 펴 걸린 에봇 쪽을 가리킴(가져가라 함 — 손 자세 본문 밖 · 저작자 정함)",
-      "en": "pointing with one open hand toward the hanging vest",
+      "en": "pointing with one open hand toward the hanging vest, the other hand at his side",
       "field": "figures[0].gesture"
     },
     {
@@ -170,7 +170,7 @@
       "quote": "내게 주소서",
       "kind": "행동",
       "ko": "다윗이 「가지려거든 가지라」에 응해 한 손을 뻗어 에봇 뒤의 칼자루로(「내게 주소서」는 청하는 말 — 손 뻗음 본문 밖 · 저작자 정함)",
-      "en": "reaching one hand toward the sword hilt behind the vest",
+      "en": "reaching one hand toward the sword hilt behind the vest, the other hand at his side",
       "field": "figures[1].gesture"
     },
     {
@@ -216,8 +216,8 @@
   },
   "relation": {
     "ko": "왼쪽 아히멜렉이 한 손을 펴 걸린 에봇 쪽을 가리키고, 오른쪽 다윗이 한 손을 뻗어 에봇 뒤의 칼자루를 잡으려 하며, 다윗은 홀로 와 함께한 자가 없다",
-    "en": "the priest on the left points with one open hand toward the hanging vest, and the young man on the right reaches one hand behind it for the sword hilt; the young man has come alone with no companions",
-    "verse": "삼상 21:9 「에봇 뒤에 있으니 네가 그것을 가지려거든 가지라」 · 「내게 주소서」 · 21:1 「홀로 있고 함께 하는 자가 아무도 없느냐」 · 가리킴·손 수·좌우는 본문 밖 · 저작자 정함(task 558 순간 재저작)"
+    "en": "the priest and the young man face each other across the hanging vest; the young man has come alone with no companions",
+    "verse": "삼상 21:9 「에봇 뒤에 있으니 네가 그것을 가지려거든 가지라」 · 「내게 주소서」 · 21:1 「홀로 있고 함께 하는 자가 아무도 없느냐」 · 가리킴·손 수·좌우는 본문 밖 · 저작자 정함(task 558 순간 재저작) · task 564: 가리킴·손 뻗음은 인물 몸짓 칸이 실음(관계 문장에서 되풀이 뺌 — 토큰)"
   },
   "whole_background": {
     "ko": "놉 성소 장막 앞의 작은 뜰 — 다져진 흙 바닥, 낮은 돌담, 뒤로 길게 늘어선 두꺼운 장막 휘장, 가운데 나무 받침대에 걸어 둔 제사장의 조끼 옷(에봇)과 그 뒤에 세워 둔, 천으로 가늘게 감은 긴 칼 꾸러미(칼자루가 에봇 위로 보임), 땅에 쌓아 둔 납작하고 둥근 떡 여러 덩이, 엷은 하늘",
@@ -247,7 +247,7 @@
       },
       "gesture": {
         "ko": "한 손을 펴 걸린 에봇 쪽을 가리킨다",
-        "en": "pointing with one open hand toward the hanging vest",
+        "en": "pointing with one open hand toward the hanging vest, the other hand at his side",
         "verse": "삼상 21:9 「에봇 뒤에 있으니 네가 그것을 가지려거든 가지라」 · 손 자세 본문 밖 · 저작자 정함"
       },
       "costume": {
@@ -274,7 +274,7 @@
       },
       "gesture": {
         "ko": "한 손을 뻗어 에봇 뒤의 칼자루를 잡으려 한다",
-        "en": "reaching one hand toward the sword hilt behind the vest",
+        "en": "reaching one hand toward the sword hilt behind the vest, the other hand at his side",
         "verse": "삼상 21:9 「네가 그것을 가지려거든 가지라」 · 「그같은 것이 또 없나니 내게 주소서」 [직접] — 그 응답으로 손을 뻗음은 [추론] · 손·자리 본문 밖 · 저작자 정함"
       },
       "costume": {
@@ -301,7 +301,7 @@
       },
       "gesture": {
         "ko": "장막 곁 뒤쪽에 머물러 서서 두 사람을 지켜본다",
-        "en": "lingering back by the tent, watching the two men",
+        "en": "lingering by the tent, hands clasped in front, watching",
         "verse": "삼상 21:7 「여호와 앞에 머물러 있었는데」 · 지켜봄은 [추론](22:9-10 · 22:22 「그 날에 에돔 사람 도엑이 거기 있기로」) · 자리 본문 밖 · 저작자 정함"
       },
       "costume": {
