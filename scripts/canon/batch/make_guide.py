@@ -396,6 +396,7 @@ POSES["watch_side_left"] = {**POSES["listen_clasp"], 0: (-0.075, 0.07), 2: (-0.0
 POSES["point_chest"] = {**POSES["speak_open"], 7: (0.07, 0.30)}                 # 화면 오른쪽을 가리키며 다른 손은 가슴께(몸 앞)
 POSES["reach_belt"] = {**POSES["speak_open"], 7: (0.06, 0.40)}                  # 화면 오른쪽으로 손을 뻗으며 다른 손은 허리띠 앞
 POSES["reach_belt_left"] = {k: (-x, y) for k, (x, y) in POSES["reach_belt"].items()}
+POSES["reach_chest_left"] = {k: (-x, y) for k, (x, y) in POSES["point_chest"].items()}   # task 584: 허리띠 손은 몸통·옷에 묻힘(사람 582) → 다른 손도 가슴께
 
 # task 574 — 뼈대 팔 길이를 크기 기준표로(규칙 generate.pose-arm-length · 사람 판정 놉 567 「손이 너무 짧잖아 비율 규칙이 적용안되었나?」):
 # 손으로 적은 뼈대 팔(어깨→팔꿈치→손목)이 키의 0.19~0.28로 기준(위팔 0.186 + 아래팔 0.154 = 0.34)보다 짧았다.
