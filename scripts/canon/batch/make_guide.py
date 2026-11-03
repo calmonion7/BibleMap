@@ -299,8 +299,13 @@ def ephod_sword(d, x0, y0, x1, y1, v):
     w, h = x1 - x0, y1 - y0
     cx = (x0 + x1) / 2
     back = round(v * 0.82)
-    d.rectangle([cx - w * 0.06, y0, cx + w * 0.06, y1 - h * 0.05], fill=back)                 # 칼 꾸러미(뒤)
-    d.rectangle([cx - w * 0.2, y0 + h * 0.05, cx + w * 0.2, y0 + h * 0.08], fill=back)       # 코등이
+    # task 576: 칼을 비스듬히 기대 세움(위끝이 조끼 왼쪽 위로) · 코등이 작게 — 곧게 선 가운데 막대 + 넓은 코등이는 걸이 기둥·십자가로 그려짐(t23)
+    bx0, by0, bx1, by1 = cx + w * 0.16, y1 - h * 0.05, cx - w * 0.14, y0
+    hw = w * 0.05
+    d.polygon([(bx0 - hw, by0), (bx0 + hw, by0), (bx1 + hw, by1), (bx1 - hw, by1)], fill=back)   # 칼 꾸러미(뒤)
+    gy = y0 + h * 0.07
+    gx = bx1 + (bx0 - bx1) * 0.07
+    d.rectangle([gx - w * 0.11, gy, gx + w * 0.11, gy + h * 0.025], fill=back)                  # 코등이(작게)
     d.polygon([(x0 + w * 0.12, y0 + h * 0.3), (x1 - w * 0.12, y0 + h * 0.3), (x1 - w * 0.06, y0 + h * 0.65), (x0 + w * 0.06, y0 + h * 0.65)], fill=v)   # 조끼(앞)
     for s in (-1, 1):                                                                        # 걸이 다리
         d.line([(cx + s * w * 0.25, y0 + h * 0.65), (cx + s * w * 0.4, y1)], fill=v, width=max(1, round(w * 0.05)))

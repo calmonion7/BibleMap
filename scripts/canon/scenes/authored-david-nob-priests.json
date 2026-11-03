@@ -170,7 +170,7 @@
       "quote": "내게 주소서",
       "kind": "행동",
       "ko": "다윗이 「가지려거든 가지라」에 응해 한 손을 뻗어 에봇 뒤의 칼자루로(「내게 주소서」는 청하는 말 — 손 뻗음 본문 밖 · 저작자 정함)",
-      "en": "reaching one hand toward the sword hilt behind the vest",
+      "en": "reaching one hand toward the hanging vest",
       "field": "figures[1].gesture"
     },
     {
@@ -216,12 +216,12 @@
   },
   "relation": {
     "ko": "왼쪽 아히멜렉이 한 손을 펴 걸린 에봇 쪽을 가리키고, 오른쪽 다윗이 한 손을 뻗어 에봇 뒤의 칼자루를 잡으려 하며, 다윗은 홀로 와 함께한 자가 없다",
-    "en": "the priest on the left points with one open hand toward the hanging vest, and the young man on the right reaches one hand behind it for the sword hilt; the young man has come alone with no companions",
+    "en": "the priest on the left points with one open hand toward the hanging vest, and the young man on the right reaches one hand toward it; the young man has come alone with no companions",
     "verse": "삼상 21:9 「에봇 뒤에 있으니 네가 그것을 가지려거든 가지라」 · 「내게 주소서」 · 21:1 「홀로 있고 함께 하는 자가 아무도 없느냐」 · 가리킴·손 수·좌우는 본문 밖 · 저작자 정함(task 558 순간 재저작) · task 566: t19 관계 문장으로 되돌림(t20 줄임은 손 뻗음·지켜봄을 떨어뜨림)"
   },
   "whole_background": {
     "ko": "놉 성소 장막 앞의 작은 뜰 — 다져진 흙 바닥, 낮은 돌담, 뒤로 길게 늘어선 두꺼운 장막 휘장, 가운데 나무 받침대에 걸어 둔 제사장의 조끼 옷(에봇)과 그 뒤에 세워 둔, 천으로 가늘게 감은 긴 칼 꾸러미(칼자루가 에봇 위로 보임), 땅에 쌓아 둔 납작하고 둥근 떡 여러 덩이, 엷은 하늘",
-    "en": "a small courtyard before the tent sanctuary at Nob, a heavy tent curtain stretching along the back, in the middle a short vest-like garment from the shoulders to the waist, sleeveless, hanging on a wooden stand, and standing just behind it a long, straight, slim bundle of cloth wound tightly round and round, longer than a man's arm, with one sword hilt and crossguard rising above the vest, its foot on the ground, several flat round bread cakes like thick discs bigger than a palm, stacked up, pale sky",
+    "en": "a small courtyard before the tent sanctuary at Nob, a heavy tent curtain stretching along the back, in the middle a short vest-like garment from the shoulders to the waist, sleeveless, hanging on a wooden stand, and leaning just behind it a long, straight, slim bundle of cloth wound tightly round and round, longer than a man's arm, with one sword hilt and crossguard rising above the vest, its foot on the ground, several flat round bread cakes like thick discs bigger than a palm, stacked up, pale sky",
     "verse": "삼상 21:1 「다윗이 놉에 가서」 · 21:6 「진설병 곧 여호와 앞에서 물려 낸 떡」 · 21:9 「에봇 뒤에 있으니」 · 성소 곁은 [추론](21:6·7 「여호와 앞」) · 장막은 [추론](삼하 7:6 「장막과 회막에 거하며 행하였나니」) · 걸어 둔 에봇은 [추론](입은 에봇 뒤일 수 없음 — 사전 ephod L2) · 칼이 에봇 뒤에 있음은 21:9 「에봇 뒤에 있으니」 [직접] · 「바로」 뒤·세운 꼴·자루가 위로 보임은 본문 밖 · 저작자 정함(사람 판정 534 칼로 보이게) · 뜰·돌담·휘장 길이·받침대·떡 놓인 자리(땅 — 천 꾸러미 위는 칼 꾸러미와 같은 낱말이라 뺌, task 541)·하늘은 본문 밖 · 저작자 정함(시대 고증 — 철기 초 이스라엘 성소) · 걸어 둔 에봇은 23:6 「손에 에봇을 가지고」(들고 다니는 물건)도 받침 · task 565: 「packed-earth ground」·「a low stone wall」(본문 밖)은 토큰 때문에 뺌"
   },
   "background": [
@@ -274,7 +274,7 @@
       },
       "gesture": {
         "ko": "한 손을 뻗어 에봇 뒤의 칼자루를 잡으려 한다",
-        "en": "reaching one hand toward the sword hilt behind the vest",
+        "en": "reaching one hand toward the hanging vest",
         "verse": "삼상 21:9 「네가 그것을 가지려거든 가지라」 · 「그같은 것이 또 없나니 내게 주소서」 [직접] — 그 응답으로 손을 뻗음은 [추론] · 손·자리 본문 밖 · 저작자 정함"
       },
       "costume": {
