@@ -199,3 +199,6 @@
 
 <!-- followup: fu-42795d2baccb | source: scene-ramah-inset | task: 513 | date: 2026-11-02 | status: open -->
 - data/person_events/saul.json gibeah-spear 사건(BC 1020)이 삼상 19:9-10까지 한 사건으로 묶음 — 19:9-10은 라마 피신(BC 1015)과 같은 때라 약 5년 어긋남(라마 말 속 곁 장면 저작 중 발견).
+
+<!-- followup: fu-0b5ed8eb3471 | source: scene-nob | task: 567 | date: 2026-11-03 | status: open -->
+- 놉 아히멜렉(authored-david-nob-priests) — 사람 판정 5/5 상한에서 멈춤(534·553·557·562·567). 지금 가장 가까운 그림 = t19 s9(`samples/nob-step23-t19e` 아래 끝 손질) + 손 국소 손질(`batch/nob_hands.py`, `samples/nob-hands`) — 사람 567 「손이 너무 짧잖아」: 제사장·다윗 내린 손이 엉덩이 높이(문항 t.arm-length로 잡힘). 남은 수단: 손질 자리를 아래팔까지 넓혀 팔 길이를 크기 기준표로 맞춰 다시 그리거나(국소 손질도 크기 규칙을 거치게), 생성으로 돌아가 t.hands-visible·t.arm-length를 거르기에 넣고 시드를 더 돌림. 세마포는 사람 결정으로 기록 문항(task 557). 기록: scripts/canon/notes/NOB-STEP23.md 끝.
