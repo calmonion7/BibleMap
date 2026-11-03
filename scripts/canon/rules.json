@@ -263,7 +263,7 @@
       "check": "human",
       "source": "메모리 feedback_no_paste_large_parts · restyle r4e",
       "since": "2026-10-21",
-      "note": "머리·얼굴 같은 큰 부위는 klein 크롭 되붙임 금지 — 작은 지물·흐름만"
+      "note": "(넓힘 2026-11-04 task 571: 손·팔 등 인물 몸 부위 전부 — 같은 생성기 img2img로 덧대어도 품질이 떨어짐(사람 판정 놉 567·570) · 몸 부위는 한 번에 생성으로만, 덧그림 흔적은 공통 문항 t.no-patch로 거름) 머리·얼굴 같은 큰 부위는 klein 크롭 되붙임 금지 — 작은 지물·흐름만"
     },
     {
       "id": "judge.plausibility-adopted",
@@ -563,6 +563,15 @@
       "source": "notes/NOB-STEP23.md t6·t7(task 530·531) — 큰 칼 「꾸러미가 짧고 통통해 팔보다 확연히 길어 보이지 않음」",
       "since": "2026-11-02 task 531",
       "note": "두 인물이 같은 사전 항목(held)을 함께 쥐고 둘 다 뼈대가 있으면, 서로 가까운 쪽 손목 간격 ≥ 사전 look.size(사람 키 비) × 키(구역 높이 ÷ 키 등급) × 0.9. 그림은 함께 쥔 지물을 두 손목 사이 길이로 그림 — 놉 보자기 꾸러미 간격 = 키의 0.40이면 큰 칼 3/8, 0.60이면 8/8"
+    },
+    {
+      "id": "generate.pose-arm-length",
+      "layer": "generate",
+      "scope": "all",
+      "check": "test:test_scene_rules",
+      "source": "사람 판정 놉 567 「손이 너무 짧잖아 비율 규칙이 적용안되었나?」 · 570 「손을 덧데어 그리는거는 확실히 품질이 안좋음」",
+      "since": "2026-11-04 task 574",
+      "note": "뼈대 가이드(make_guide.POSES)의 팔은 크기 기준표 위팔 body.upper_arm 0.186 · 아래팔 body.forearm 0.154(어깨→손목 0.34 = arm 0.44 − 손) — 손으로 적은 뼈대 팔이 0.19~0.28로 짧아 손이 허리·엉덩이 높이에서 끝났다. make_guide.arm_fit: 곧게 내린 팔은 같은 방향으로 늘이고, 굽힌 팔은 손목 자리를 두고 팔꿈치만 다시 잡음. 몸 부위를 국소 손질로 고치지 않는다(edit.no-paste-large-parts)"
     },
     {
       "id": "generate.pose-only-control",

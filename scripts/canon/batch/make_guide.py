@@ -7,7 +7,7 @@
 꼴(guide.shape): ephod_sword(걸린 에봇 뒤에 세운 칼, task 560) · altar(돌 제단 위 제물, task 546) · person(서 있는 한 사람) · person_bow(고개를 앞·아래로 숙인 서 있는 사람, restyle r5) · kneel_bow(무릎 꿇고 엉덩이 들고 머리를 왼쪽 땅에, r6) · seated(배 안에 앉은 머리·어깨 한 줄, r6) · sit(걸상에 앉아 왼쪽을 향한 한 사람, task 414) · prostrate(엎드린 낮은 몸, 머리는 왼쪽 — 다윗 쪽) · crowd(작은 실루엣 두 줄) · boat(선체) · bank(강 너머 둑).
 바탕: 하늘 0 · 땅은 지평선에서 아래로 0.12 → 0.5. 그리는 순서는 먼 것부터(깊이 오름차순).
 지평선은 눈높이 카메라(task 409, 규칙 generate.eye-level-perspective): 가장 가까운 서 있는 인물의 발 y·화면 키·키 등급에서 파생(S.scene_horizon)."""
-import argparse, json, os, sys
+import argparse, json, math, os, sys
 
 from PIL import Image, ImageDraw, ImageFilter
 
@@ -383,6 +383,38 @@ POSES["speak_open_left"] = {k: (-x, y) for k, (x, y) in POSES["speak_open"].item
 # 겹치고(옆으로 선 몸) 코를 앞으로 더 냄 — 정면 너비 listen_clasp는 작은 뒤쪽 인물이 정면을 봄(t7 지켜봄 2/8 「정면(보는 사람 쪽)을 향함」).
 POSES["watch_side_left"] = {**POSES["listen_clasp"], 0: (-0.075, 0.07), 2: (-0.015, 0.165), 5: (0.015, 0.165), 8: (-0.01, 0.52), 11: (0.01, 0.52),
                             9: (-0.02, 0.74), 12: (0.02, 0.74), 14: (-0.055, 0.05), 16: (-0.01, 0.055)}
+
+
+# task 574 — 뼈대 팔 길이를 크기 기준표로(규칙 generate.pose-arm-length · 사람 판정 놉 567 「손이 너무 짧잖아 비율 규칙이 적용안되었나?」):
+# 손으로 적은 뼈대 팔(어깨→팔꿈치→손목)이 키의 0.19~0.28로 기준(위팔 0.186 + 아래팔 0.154 = 0.34)보다 짧았다.
+# 곧게 내린 팔(꺾임이 거의 없음)은 같은 방향으로 늘이고, 굽힌 팔은 손목 자리(손 둔 곳 — 가슴에 쥠·가리킴)를 두고 팔꿈치만 다시 잡는다.
+ARM_U, ARM_F = S.v("body.upper_arm"), S.v("body.forearm")
+ARM_STRAIGHT = 0.97   # 어깨→손목 거리 ÷ (위팔 + 아래팔) 이 이 값 넘으면 곧은 팔
+ARM_TOL = 0.03        # 팔 전체(위팔+아래팔)가 기준에서 이만큼(비) 안이면 그대로 — 기브아 던진 팔 0.337(1% 짧음)을 늘이면 창 뒤끝 간격 검사가 경계를 넘음
+
+
+def arm_fit(s, e, w):
+    """→ (팔꿈치, 손목) — 위팔 ARM_U · 아래팔 ARM_F 길이로 맞춤."""
+    sx, sy = s
+    if abs((math.dist(s, e) + math.dist(e, w)) / (ARM_U + ARM_F) - 1) <= ARM_TOL:   # 팔 전체 길이가 기준 안이면 그대로
+        return e, w
+    d = math.dist(s, w)
+    if d == 0:
+        return e, w
+    ux, uy = (w[0] - sx) / d, (w[1] - sy) / d
+    if d / (math.dist(s, e) + math.dist(e, w)) > ARM_STRAIGHT or d >= ARM_U + ARM_F:
+        return (sx + ux * ARM_U, sy + uy * ARM_U), (sx + ux * (ARM_U + ARM_F), sy + uy * (ARM_U + ARM_F))
+    a = (ARM_U ** 2 - ARM_F ** 2 + d ** 2) / (2 * d)   # 두 원(어깨 중심 ARM_U · 손목 중심 ARM_F)의 만나는 점 — 원래 팔꿈치에 가까운 쪽
+    hgt = math.sqrt(max(ARM_U ** 2 - a ** 2, 0))
+    mx, my = sx + ux * a, sy + uy * a
+    c1, c2 = (mx - uy * hgt, my + ux * hgt), (mx + uy * hgt, my - ux * hgt)
+    return (c1 if math.dist(c1, e) <= math.dist(c2, e) else c2), w
+
+
+for _p in POSES.values():
+    for _s, _e, _w in ((2, 3, 4), (5, 6, 7)):
+        if all(k in _p for k in (_s, _e, _w)):
+            _p[_e], _p[_w] = arm_fit(_p[_s], _p[_e], _p[_w])
 
 
 def pose_points(box, name, hip_dx=0.06):

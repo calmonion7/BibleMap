@@ -1336,10 +1336,32 @@ class JointHoldSpan(unittest.TestCase):
         s = copy.deepcopy(ds.load("authored-david-nob-priests"))
         s["figures"][0]["prop"], s["figures"][1]["prop"] = "a long cloth bundle", "the long cloth bundle"
         s["guide"]["pose"].update(ahimelech="plead_out", david="speak_open_left")
-        s["regions"]["ahimelech"], s["regions"]["david"] = [0.25, 0.34, 0.40, 0.92], [0.57, 0.34, 0.72, 0.92]
+        s["regions"]["ahimelech"], s["regions"]["david"] = [0.22, 0.34, 0.37, 0.92], [0.60, 0.34, 0.75, 0.92]   # task 574 팔 길이 맞춤 뒤 — 손목이 앞으로 나와 더 벌림
         self.assertEqual(recheck.joint_hold_span_errors(s), [])
         s["regions"]["ahimelech"], s["regions"]["david"] = [0.28, 0.34, 0.43, 0.92], [0.54, 0.34, 0.69, 0.92]
         self.assertTrue(recheck.joint_hold_span_errors(s))
+
+
+class PoseArmLength(unittest.TestCase):
+    """generate.pose-arm-length(task 574) — 뼈대 팔은 크기 기준표 위팔·아래팔 길이(사람 판정 놉 567 「손이 너무 짧잖아」)."""
+
+    def test_all_poses_anatomical(self):
+        import math
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as MG
+        import scale as S
+        u, f = S.v("body.upper_arm"), S.v("body.forearm")
+        for name, p in MG.POSES.items():
+            for s, e, w in ((2, 3, 4), (5, 6, 7)):
+                if all(k in p for k in (s, e, w)):
+                    self.assertAlmostEqual(math.dist(p[s], p[e]) + math.dist(p[e], p[w]), u + f, delta=(u + f) * MG.ARM_TOL + 0.001, msg=name)
+
+    def test_hanging_arm_reaches_thigh(self):
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as MG
+        self.assertGreaterEqual(MG.POSES["speak_open"][7][1], 0.49)   # 내린 손목이 가랑이(0.5) 높이쯤 — 옛 0.42는 허리 높이
 
 
 class InsetFrameAspect(unittest.TestCase):
