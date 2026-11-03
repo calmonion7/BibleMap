@@ -4,6 +4,8 @@
 
     $VENV batch/nob_hands.py        → ~/.local/biblemap-imggen/nob-hands/parts · 사람마다 되붙인 판 samples/nob-hands/<who>-s<seed>-<세기>.png
     $VENV batch/nob_hands.py pick doeg=<key> priest=<key> david=<key>   → samples/nob-hands/composition-A-s9.png(세 자리를 함께 되붙임)
+    $VENV batch/nob_hands.py r2   → 제사장·다윗 팔을 아래팔째(task 570 · 사람 567 짧은 팔) · samples/nob-hands2/<who>2-s<seed>-<세기>.png
+    $VENV batch/nob_hands.py pick2 priest2=<key> david2=<key>   → samples/nob-hands2/composition-A-s9.png
 """
 import json
 import os
@@ -33,6 +35,21 @@ PARTS = {
     "david": {"region": (700, 300, 860, 460), "mask": (742, 345, 850, 450),
               "prompt": f"{ds.ST} close view of the torso of a lean young man in a deep red wool tunic with a plain leather belt, "
                         "his free hand hanging relaxed at his side, the hand clearly visible."},
+}
+
+
+# task 570 r2 — 사람 567 「손이 너무 짧잖아」: 자리를 아래팔까지 넓혀(어깨 아래 ~ 허벅지 중간) 팔 길이째 다시 그림 · 도엑은 r1 그대로
+R2 = {
+    "priest": {"region": (200, 270, 420, 490), "mask": (238, 300, 336, 478),
+               "prompt": f"{ds.ST} view of an ancient Israelite priest in a long deep blue mantle over a white linen robe, "
+                         "his free arm hanging straight down at his side in front of the mantle, the hand reaching down to the middle of his thigh, natural arm length."},
+    # r3: 제사장 팔을 내리면 겉옷에 가려 손이 허리 높이(r2 6판 모두) → 굽힌 팔로 가슴께 겉옷 자락을 쥠(내린 팔 없음)
+    "priest3": {"region": (200, 270, 420, 490), "mask": (238, 290, 336, 430),
+                "prompt": f"{ds.ST} view of an ancient Israelite priest in a long deep blue mantle over a white linen robe, "
+                          "his free hand raised to his chest, holding the edge of his blue mantle, the hand clearly visible."},
+    "david": {"region": (680, 270, 900, 490), "mask": (786, 300, 862, 478),
+              "prompt": f"{ds.ST} view of a lean young man in a deep red wool tunic with a plain leather belt, "
+                        "his free arm hanging straight down at his side, the hand reaching down to the middle of his thigh, natural arm length."},
 }
 
 
@@ -71,7 +88,24 @@ def paste(im, picks):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "pick":
+    if len(sys.argv) > 1 and sys.argv[1] == "r3":
+        BASE = os.path.join(PASTE, "composition-A-s9.png")
+        PARTS = {"priest32": R2["priest3"]}
+        PASTE = os.path.join(HERE, "samples", "nob-hands2")
+        STRENGTHS, SEEDS = (0.65, 0.75, 0.85, 0.9), (42, 7, 5)   # 0.65·0.75는 6판 모두 손이 허리 높이 그대로 → 0.85·0.9 더함
+        gen()
+    elif len(sys.argv) > 1 and sys.argv[1] == "r2":   # 바탕 = r1 되붙임본(도엑 손 포함) · 제사장·다윗 팔 길이째
+        BASE = os.path.join(PASTE, "composition-A-s9.png")
+        PARTS = {f"{k}2": v for k, v in R2.items() if k != "priest3"}
+        PASTE = os.path.join(HERE, "samples", "nob-hands2")
+        STRENGTHS, SEEDS = (0.65, 0.75), (42, 7, 5)
+        gen()
+    elif len(sys.argv) > 1 and sys.argv[1] == "pick2":
+        PARTS = {f"{k}2": v for k, v in R2.items()}
+        dst = os.path.join(HERE, "samples", "nob-hands2", "composition-A-s9.png")
+        paste(Image.open(os.path.join(PASTE, "composition-A-s9.png")).convert("RGB"), dict(a.split("=", 1) for a in sys.argv[2:])).save(dst)
+        print(f"[NobHands] {dst}")
+    elif len(sys.argv) > 1 and sys.argv[1] == "pick":
         picks = dict(a.split("=", 1) for a in sys.argv[2:])
         dst = os.path.join(PASTE, "composition-A-s9.png")
         paste(Image.open(BASE).convert("RGB"), picks).save(dst)
