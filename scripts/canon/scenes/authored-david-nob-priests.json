@@ -162,7 +162,7 @@
       "quote": "네가 그것을 가지려거든 가지라",
       "kind": "행동",
       "ko": "아히멜렉이 한 손을 펴 걸린 에봇 쪽을 가리킴(가져가라 함 — 손 자세 본문 밖 · 저작자 정함)",
-      "en": "pointing with one open hand toward the hanging vest",
+      "en": "pointing with one open hand toward the hanging vest, the other hand at his side",
       "field": "figures[0].gesture"
     },
     {
@@ -170,7 +170,7 @@
       "quote": "내게 주소서",
       "kind": "행동",
       "ko": "다윗이 「가지려거든 가지라」에 응해 한 손을 뻗어 에봇 뒤의 칼자루로(「내게 주소서」는 청하는 말 — 손 뻗음 본문 밖 · 저작자 정함)",
-      "en": "reaching one hand toward the hanging vest",
+      "en": "reaching one hand toward the hanging vest, the other hand at his side",
       "field": "figures[1].gesture"
     },
     {
@@ -247,7 +247,7 @@
       },
       "gesture": {
         "ko": "한 손을 펴 걸린 에봇 쪽을 가리킨다",
-        "en": "pointing with one open hand toward the hanging vest",
+        "en": "pointing with one open hand toward the hanging vest, the other hand at his side",
         "verse": "삼상 21:9 「에봇 뒤에 있으니 네가 그것을 가지려거든 가지라」 · 손 자세 본문 밖 · 저작자 정함"
       },
       "costume": {
@@ -274,7 +274,7 @@
       },
       "gesture": {
         "ko": "한 손을 뻗어 에봇 뒤의 칼자루를 잡으려 한다",
-        "en": "reaching one hand toward the hanging vest",
+        "en": "reaching one hand toward the hanging vest, the other hand at his side",
         "verse": "삼상 21:9 「네가 그것을 가지려거든 가지라」 · 「그같은 것이 또 없나니 내게 주소서」 [직접] — 그 응답으로 손을 뻗음은 [추론] · 손·자리 본문 밖 · 저작자 정함"
       },
       "costume": {
