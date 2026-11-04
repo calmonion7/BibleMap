@@ -581,9 +581,11 @@ def prop_size_errors(spec):
     for e in els:
         if e.get("kind") != "지물" or "out" in e:
             continue
-        for w in words.values():
-            if w.get("drawable", True) is False or not any(squash(f) in squash(e["quote"]) for f in [w["word"], *w["forms"]]):
-                continue
+        hits = [w for w in words.values() if w.get("drawable", True) is not False
+                and not any(squash(x) in squash(e["quote"]) for x in w.get("exclude", []))
+                and any(squash(f) in squash(e["quote"]) for f in [w["word"], *w["forms"]])]
+        # 구체 항목 우선(spec.lexicon-link task 514와 같은 선 — A2 「기름 뿔을 취하여」면 일반 「기름」은 크기 대상 아님)
+        for w in [w for w in hits if not any(o is not w and squash(w["word"]) in squash(o["word"]) for o in hits)]:
             size, l2 = w["look"].get("size"), w["look"]["L2"]["en"]
             if not size:
                 out.append(f"사전 {w['id']}: look.size(사람에 견준 크기) 없음")

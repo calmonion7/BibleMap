@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "1ecd3caac249",
+  "version": "8175fd1e2b69",
   "rules": [
     {
       "id": "spec.required-fields",
@@ -619,7 +619,7 @@
       "check": "recheck.prop_size_errors",
       "source": "사람 2026-10-23 「창 앞촉이 큰것 같음 사람을 줄였으면 창도 줄여야하지 않아?」·「일회성으로 쓰지말고 규칙화」 · m4 실측(그림은 지물을 구역과 상관없이 제 크기로 그림)",
       "since": "2026-10-23 task 405",
-      "note": "장면 구절 요소(지물)가 잇는 사전 항목은 look.size(사람 키 등에 견준 비·문구 · 부위 크기 parts)를 갖고, 그리는 문구 L2에 그 크기 문구를 담음 — 사람 크기를 바꾸면 지물도 같은 비로 따라감(사전 AUTHORING 「크기」)"
+      "note": "(고침 task 588: 한 인용에 여러 항목이 걸리면 구체 항목만 · 사전 exclude 칸 — spec.lexicon-link와 같은 선. A2 「기름 뿔을 취하여」가 일반 「기름」(액체)에 크기를 요구한 오탐) 장면 구절 요소(지물)가 잇는 사전 항목은 look.size(사람 키 등에 견준 비·문구 · 부위 크기 parts)를 갖고, 그리는 문구 L2에 그 크기 문구를 담음 — 사람 크기를 바꾸면 지물도 같은 비로 따라감(사전 AUTHORING 「크기」)"
     },
     {
       "id": "generate.flight-position",

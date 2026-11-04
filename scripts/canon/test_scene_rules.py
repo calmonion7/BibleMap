@@ -970,6 +970,15 @@ class PropSizeRelative(unittest.TestCase):
     def test_gibeah_passes(self):
         self.assertEqual(recheck.prop_size_errors(gibeah()), [])
 
+    def test_specific_entry_wins(self):
+        """A2 베들레헴 — 「기름 뿔을 취하여」는 구체 항목 oil-horn만 크기 대상, 일반 oil(액체·크기 없음)은 아님(spec.lexicon-link task 514와 같은 선)."""
+        spec = {"verse_elements": [{"verse": "16:13", "quote": "기름 뿔을 취하여", "kind": "지물"}]}
+        self.assertEqual(recheck.prop_size_errors(spec), [])
+        words = recheck._lexicon()
+        words["oil-horn"]["look"].pop("size")
+        with mock.patch.object(recheck, "_lexicon", return_value=words):
+            self.assertEqual(recheck.prop_size_errors(spec), ["사전 oil-horn: look.size(사람에 견준 크기) 없음"])
+
 class EditBoxClearOfBody(unittest.TestCase):
     """edit.small-prop-orient(m3) — 편집 상자는 오른쪽 뼈대 인물 몸 앞에서 끝남(m2e 창 뒤끝 편집이 사울 팔을 흐림)."""
 

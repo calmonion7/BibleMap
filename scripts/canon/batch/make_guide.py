@@ -397,6 +397,13 @@ POSES["point_chest"] = {**POSES["speak_open"], 7: (0.07, 0.30)}                 
 POSES["reach_belt"] = {**POSES["speak_open"], 7: (0.06, 0.40)}                  # 화면 오른쪽으로 손을 뻗으며 다른 손은 허리띠 앞
 POSES["reach_belt_left"] = {k: (-x, y) for k, (x, y) in POSES["reach_belt"].items()}
 POSES["reach_chest_left"] = {k: (-x, y) for k, (x, y) in POSES["point_chest"].items()}   # task 584: 허리띠 손은 몸통·옷에 묻힘(사람 582) → 다른 손도 가슴께
+# task 588 — A2 베들레헴 삼상 16:13 「기름 뿔을 취하여 … 그에게 부었더니」: 화면 오른쪽 앞에 선 소년의 머리 위로 앞 팔을 들어 손목이 소년 머리보다 위(0.05) ·
+# 다른 손은 가슴께(몸 앞 — 두 손 보임). 고개를 조금 숙여 소년을 내려다봄. 소년 엉덩이는 이 인물 엉덩이에서 키의 약 0.40 오른쪽(명세 _regions_why).
+POSES["pour_over"] = {**POSES["point_chest"], 0: (0.06, 0.075), 3: (0.18, 0.22), 4: (0.30, 0.10), 14: (0.05, 0.06)}
+# task 588 — 곧게 서서 화면 왼쪽으로 고개를 숙여 머리에 붓는 기름을 받음: listen_clasp(두 손목 몸 앞 배 높이)에서 머리만 앞·아래로.
+POSES["bow_clasp_left"] = {**POSES["listen_clasp"], 0: (-0.075, 0.10), 14: (-0.07, 0.085), 16: (-0.02, 0.075)}
+# task 588 — 곧게 서서 화면 왼쪽을 지켜보며 앞 손으로 세운 지팡이 위끝 가까이를 가슴 높이에 쥠(사전 walking-staff L3 「gripped in one hand near the top」) · task 592: 다른 손도 그 아래 지팡이를 쥠(배 앞 빈손은 겉옷에 묻힘 — 591 s42 두 손 보임 1/5).
+POSES["staff_hold_left"] = {**POSES["listen_clasp"], 3: (-0.06, 0.32), 4: (-0.13, 0.27), 6: (0.0, 0.40), 7: (-0.12, 0.38)}
 
 # task 574 — 뼈대 팔 길이를 크기 기준표로(규칙 generate.pose-arm-length · 사람 판정 놉 567 「손이 너무 짧잖아 비율 규칙이 적용안되었나?」):
 # 손으로 적은 뼈대 팔(어깨→팔꿈치→손목)이 키의 0.19~0.28로 기준(위팔 0.186 + 아래팔 0.154 = 0.34)보다 짧았다.

@@ -26,7 +26,7 @@ import params
 CAST = os.path.join(params.CANON_DIR, "cast")
 VERSES = os.path.join(params.REPO_ROOT, "data", "bible", "verses.json")
 BOOK = {"창": 1, "출": 2, "레": 3, "민": 4, "신": 5, "수": 6, "삿": 7, "룻": 8, "삼상": 9, "삼하": 10,
-        "왕상": 11, "왕하": 12, "대상": 13, "대하": 14, "느": 16, "시": 19, "잠": 20, "전": 21, "아": 22,
+        "왕상": 11, "왕하": 12, "대상": 13, "대하": 14, "느": 16, "시": 19, "잠": 20, "전": 21, "아": 22, "슥": 38,
         "마": 40, "막": 41, "눅": 42, "행": 44}
 CARD = {
     "heightRel": {"child", "short", "average", "tall", "towering"},
