@@ -466,15 +466,15 @@
   "approved": {
     "final": {
       "path": "night-pick",
-      "seed": 202,
+      "seed": 42,
       "kind": "base",
-      "image": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-michmash-battle/base/s202.png",
+      "image": "samples/gilgal-wait-step23-t1/composition-A-s42.png",
       "by": "user",
-      "on": "2026-10-19",
-      "spec_hash": "5fb5b4f46593",
-      "rules_version": "14fb4150e572",
-      "prompt_hash": "6098fe06c337",
-      "prompt_matches_spec": true
+      "on": "2026-11-07",
+      "spec_hash": "f02830b5cc83",
+      "prompt_hash": null,
+      "rules_version": "13bb6c21b5ae",
+      "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
     }
   }
 }
