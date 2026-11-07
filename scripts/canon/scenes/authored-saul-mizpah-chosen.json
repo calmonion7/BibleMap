@@ -283,7 +283,7 @@
     ],
     "assembly": [
       0.0,
-      0.42,
+      0.46,
       1.0,
       0.56
     ]
@@ -293,12 +293,14 @@
     "depth": {
       "samuel": 1.0,
       "saul": 1.0,
-      "people": 0.8
+      "people": 0.8,
+      "assembly": 0.5
     },
     "shape": {
       "samuel": "person",
       "saul": "person",
-      "people": "crowd"
+      "people": "crowd",
+      "assembly": "crowd"
     },
     "body": "card",
     "pose": {
@@ -306,7 +308,7 @@
       "saul": "stand_rest"
     },
     "split": true,
-    "why": "단계 ① — 옛 판 명세라 가이드가 없어 크기·원근 규칙(generate.figure-scale·height-ratio·eye-level-perspective)이 못 잼이었다. 사무엘(왼쪽)은 있는 뼈대 point_chest — 앞 팔을 화면 오른쪽(사울 쪽)으로 뻗고 다른 손은 가슴께(두 손 보임): 10:24 「너희는 여호와의 택하신 자를 보느냐」(가리킴 [추론]). 사울은 뼈대 stand_rest — 곧게 서서 화면 왼쪽(사무엘)을 향하고 두 팔을 몸 옆에 내림(10:23 「그가 백성 중에 서니」 · task 626: 시도 1 listen_clasp는 한 손이 허리 옷에 묻힘 — 두 손 2/8 · 손 또렷함 3/8). 카드 인물 둘 모두 뼈대(놉 도엑 task 529 — 뼈대 없는 서 있는 인물은 원뿔). 사울 둘레 백성은 사울 뒤 무리 꼴(깊이 0.8). 큰 무리·언덕은 문구가 맡는다. 카드 체격 몸 너비(generate.guide-body-build) · 뼈대가 있으니 스텝별 나눔(generate.split-control) · 사울 무릎 길이 튜닉은 legs costume.",
+    "why": "단계 ① — 옛 판 명세라 가이드가 없어 크기·원근 규칙(generate.figure-scale·height-ratio·eye-level-perspective)이 못 잼이었다. 사무엘(왼쪽)은 있는 뼈대 point_chest — 앞 팔을 화면 오른쪽(사울 쪽)으로 뻗고 다른 손은 가슴께(두 손 보임): 10:24 「너희는 여호와의 택하신 자를 보느냐」(가리킴 [추론]). 사울은 뼈대 stand_rest — 곧게 서서 화면 왼쪽(사무엘)을 향하고 두 팔을 몸 옆에 내림(10:23 「그가 백성 중에 서니」 · task 626: 시도 1 listen_clasp는 한 손이 허리 옷에 묻힘 — 두 손 2/8 · 손 또렷함 3/8). 카드 인물 둘 모두 뼈대(놉 도엑 task 529 — 뼈대 없는 서 있는 인물은 원뿔). 사울 둘레 백성은 사울 뒤 무리 꼴(깊이 0.8). 뒤 비탈의 온 지파 큰 무리도 무리 꼴(assembly · 깊이 0.5 · 위 끝 0.46 = 사울 머리 높이 — 넘으면 「어깨 위나 더 크더라」가 흐려짐) — task 628: 사람 판정 626 메모 — 온 지파가 모인 가운데서 베냐민 지파의 사울이 뽑혔으니 무리가 더 많아야 함 · 10:19 「너희 지파대로 천 명씩 여호와 앞에 나아오라」. 큰 무리·언덕은 문구가 맡는다. 카드 체격 몸 너비(generate.guide-body-build) · 뼈대가 있으니 스텝별 나눔(generate.split-control) · 사울 무릎 길이 튜닉은 legs costume.",
     "legs": "costume"
   },
   "stages": [
@@ -410,15 +412,15 @@
   "approved": {
     "final": {
       "path": "night-pick",
-      "seed": 7,
+      "seed": 42,
       "kind": "base",
-      "image": "/Users/calmonion/.local/biblemap-imggen/night-pilot/authored-saul-mizpah-chosen/base/s7.png",
+      "image": "samples/mizpah-step23-t2/composition-A-s42.png",
       "by": "user",
-      "on": "2026-10-19",
-      "spec_hash": "60d008f13554",
-      "rules_version": "14fb4150e572",
-      "prompt_hash": "85e337efded3",
-      "prompt_matches_spec": true
+      "on": "2026-11-07",
+      "spec_hash": "84af80c4805a",
+      "prompt_hash": null,
+      "rules_version": "13bb6c21b5ae",
+      "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
     }
   }
 }

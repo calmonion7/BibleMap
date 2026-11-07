@@ -245,11 +245,11 @@
     },
     "body": "card",
     "pose": {
-      "samuel": "stand_rest_right",
+      "samuel": "stand_rest_wide_right",
       "saul": "reach_chest_left"
     },
     "split": true,
-    "why": "단계 ① — 옛 판 명세라 가이드가 없어 크기·원근 규칙(generate.figure-scale·height-ratio·eye-level-perspective)이 못 잼이었다. 사울(가운데)은 있는 뼈대 reach_chest_left — 앞 팔을 화면 왼쪽 제단 쪽으로 가슴 높이에 펴 내밀고 먼 손은 가슴께 몸 앞(두 손 보임 — 놉 task 580·584). 사무엘(왼쪽)은 뼈대 stand_rest_right — 두 팔을 몸 옆에 내림(task 626: 시도 1 listen_clasp_right는 손이 겉옷에 묻힘 — 두 손 보임·손 또렷함 각 6/8). 카드 인물 둘 모두 뼈대(놉 도엑 task 529 — 뼈대 없는 서 있는 인물은 원뿔). 제단은 가이드 꼴 altar(돌 덩어리 위 제물 덩어리 — 배교 task 546: 문구만이면 제물이 땅바닥에 그려짐) · 연기는 문구가 맡는다. 백성은 뒤 들판 무리 꼴(깊이 0.6 — 앞 인물보다 멀리). 카드 체격 몸 너비(generate.guide-body-build) · 스텝별 나눔(generate.split-control). 무리의 손 든 모습은 가이드 무리 꼴(팔 내림)과 다르다 — 문구가 맡고, 그려지지 않으면 단계 ③ 기록 문항이 잡는다."
+    "why": "단계 ① — 옛 판 명세라 가이드가 없어 크기·원근 규칙(generate.figure-scale·height-ratio·eye-level-perspective)이 못 잼이었다. 사울(가운데)은 있는 뼈대 reach_chest_left — 앞 팔을 화면 왼쪽 제단 쪽으로 가슴 높이에 펴 내밀고 먼 손은 가슴께 몸 앞(두 손 보임 — 놉 task 580·584). 사무엘(왼쪽)은 뼈대 stand_rest_wide_right — 두 팔을 몸 옆에 내리고 몸은 정면 쪽으로 돌림(시도 1 listen_clasp_right는 손이 겉옷에 묻힘 — 두 손 보임·손 또렷함 각 6/8 · 시도 2 stand_rest_right는 옆모습이라 먼 손이 몸 뒤로 사라짐 — 두 손 보임 8/8 틀림, task 629). 카드 인물 둘 모두 뼈대(놉 도엑 task 529 — 뼈대 없는 서 있는 인물은 원뿔). 제단은 가이드 꼴 altar(돌 덩어리 위 제물 덩어리 — 배교 task 546: 문구만이면 제물이 땅바닥에 그려짐) · 연기는 문구가 맡는다. 백성은 뒤 들판 무리 꼴(깊이 0.6 — 앞 인물보다 멀리). 카드 체격 몸 너비(generate.guide-body-build) · 스텝별 나눔(generate.split-control). 무리의 손 든 모습은 가이드 무리 꼴(팔 내림)과 다르다 — 문구가 맡고, 그려지지 않으면 단계 ③ 기록 문항이 잡는다."
   },
   "stages": [
     {
