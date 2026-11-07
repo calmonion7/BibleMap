@@ -214,8 +214,11 @@ def book_no(rng):
     return BOOK[name]
 
 
+MAX_FAILS = 2   # 사람 화면 후보는 틀린 거르기 문항 2개 이하 장만(사람 2026-11-07 「3이상한점 이상은 후보로 주지마」 — 기혼 616)
+
+
 def page(out):
-    """task 433 — 단계 ④ 사람 판정 화면: 고른 쪽 8장 전부(기계 통과 + 불통과, 틀린 문항 순) · 장면 구절 원문(순간 절 굵게) · 확대 · 답 복사.
+    """task 433 — 단계 ④ 사람 판정 화면: 고른 쪽에서 틀린 거르기 문항 MAX_FAILS개 이하 장(기계 통과 + 불통과, 틀린 문항 순 — 617부터 3개 이상은 뺌) · 장면 구절 원문(순간 절 굵게) · 확대 · 답 복사.
     틀은 inset_judge와 같다(inset_judge_page.html). 카드 메모 = 그 쪽에서 가장 많이 떨어진 거르기 문항의 표 수와 틀림 이유 하나."""
     import base64, io
     import inset_judge as IJ
@@ -242,12 +245,17 @@ def page(out):
         cards.append({"seed": s, "pass": not fails, "fails": fails,
                       "note": f"{weak['q']} 맞음 {yes}/{len(reps)}표" + (f" — 틀림 이유: {why}" if why else "")})
     cards.sort(key=lambda c: (not c["pass"], len(c["fails"]), FX["seeds"].index(c["seed"])))
+    shown = [c for c in cards if len(c["fails"]) <= MAX_FAILS]
+    if not shown:
+        print(f"[RuleAB] 화면 안 만듦 — 틀린 거르기 문항 {MAX_FAILS}개 이하 장이 없음(가장 적은 장 {min(len(c['fails']) for c in cards)}개) · 다시 시도하거나 시도 상한이면 멈추고 보고")
+        return
+    cards = shown
 
     def uri(path):
         buf = io.BytesIO()
         Image.open(path).convert("RGB").save(buf, "JPEG", quality=88)
         return "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
-    imgs = {f"comp-{s}": uri(img(case, ab, s)) for s in FX["seeds"]}
+    imgs = {f"comp-{c['seed']}": uri(img(case, ab, c["seed"])) for c in cards}
     tpl = open(os.path.join(HERE, "batch", "inset_judge_page.html"), encoding="utf-8").read()
     pg = FX["page"]   # task 437 — 앞글은 고정 절 칸(판마다 문구가 달라 코드에 박지 않음) · lede의 {weak} = 가장 많이 떨어진 문항
     html = IJ.fill(tpl, TITLE=pg.get("title", "두 여인 재판 그림 고르기"), H1=pg.get("h1", "두 여인의 재판 — 쓸 그림 고르기"), RANGE=spec["verses"]["range"], TASK=str(FX_N),
