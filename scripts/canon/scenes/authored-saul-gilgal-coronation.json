@@ -162,7 +162,7 @@
         "en": "looking toward the tall man in the center",
         "verse": "본문 밖 · 저작자 정함"
       },
-      "screen_facing": "right",
+      "screen_facing": "three_quarter_right",
       "stage_why": "[추론] 삼상 12:2 「보라 나는 늙어 머리가 희었고」 — 11:15에 바로 이어지는 같은 길갈 모임(삼상 12:1 「사무엘이 온 이스라엘에게 이르되」)에서 사무엘이 스스로 늙었다고 말함. 삼상 8:1 「사무엘이 늙으매」 — 왕을 구하기 전에 이미 늙음 → 노년(id samuel · 카드 elder). 70대는 카드 값(본문 밖). 선지자 직무는 삼상 3:20 「사무엘은 여호와의 선지자로 세우심을 입은 줄을 알았더라」."
     },
     {
@@ -337,7 +337,7 @@
       "kind": "plate",
       "region": "samuel",
       "verse": "11:14",
-      "prompt": "{cast:samuel}, standing quietly beside the altar, both empty hands hanging at his sides, looking toward the tall man in the center, facing right.",
+      "prompt": "{cast:samuel}, standing quietly beside the altar, both empty hands hanging at his sides, looking toward the tall man in the center, his body turned three-quarters toward the viewer.",
       "neg": [
         "armour",
         "sword",

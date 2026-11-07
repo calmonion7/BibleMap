@@ -197,6 +197,8 @@ SCREEN_FACING = {
     "right": ("facing toward the right edge of the picture", "face toward the right edge of the picture"),
     "left": ("facing toward the left edge of the picture", "face toward the left edge of the picture"),
     "viewer": ("facing the viewer", "face the viewer"),
+    # task 630 — 몸은 보는 사람 쪽 4분의 3, 얼굴만 오른쪽: "right"는 옆모습으로 그려져 몸 옆에 내린 먼 손이 몸 뒤로 사라짐(길갈 즉위 627·629 사무엘 두 손 보임 8/8 틀림)
+    "three_quarter_right": ("his body turned three-quarters toward the viewer, his face turned toward the right edge of the picture", "turn three-quarters toward the viewer"),
     "away": ("turned away from the viewer, back to the viewer", "are turned away from the viewer"),
 }
 PHRASE_KEYS = ("expression", "gesture", "costume")
