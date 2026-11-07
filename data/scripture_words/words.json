@@ -27,14 +27,14 @@
           "en": "an animal horn full of oil"
         },
         "L2": {
-          "ko": "팔뚝보다 짧은 소나 양의 굽은 뿔 속에 기름을 가득 담았어요.",
-          "en": "A curved horn from a cow or ram, shorter than a man's forearm, filled with oil, with the wide end open."
+          "ko": "팔뚝보다 짧은, 골이 진 옅은 뼈빛 숫양의 굽은 뿔 속에 기름을 가득 담았어요.",
+          "en": "A curved, ridged ram's horn of pale bone color, shorter than a man's forearm, filled with oil."
         },
         "L3": {
           "ko": "속이 빈 짐승 뿔로, 한 손으로 쥘 만큼 팔뚝보다 짧아요. 굵은 쪽 입구로 머리에 기름을 부어요.",
           "en": "A real hollow animal horn, shorter than a forearm, held in one hand. The wide open end is tipped to pour oil onto a head."
         },
-        "grounds": "[추론] 삼상 16:1 「뿔에 채워」는 속이 빈 그릇임을, 16:13 「부었더니」는 쏟는 쓰임을 말한다. 본문이 뿔이라 적었으므로 병·장대가 아닌 짐승 뿔로 본다. [저작](본문에 없음) 소·양의 뿔, 굽은 모양, 팔뚝보다 짧은 크기는 양각을 부는 용례(왕상 1:39)와 짐승 뿔의 일반 모양에서 정한 그림 사정이다.",
+        "grounds": "[추론] 삼상 16:1 「뿔에 채워」는 속이 빈 그릇임을, 16:13 「부었더니」는 쏟는 쓰임을 말한다. 본문이 뿔이라 적었으므로 병·장대가 아닌 짐승 뿔로 본다. [저작](본문에 없음) 소·양의 뿔, 굽은 모양, 팔뚝보다 짧은 크기는 양각을 부는 용례(왕상 1:39)와 짐승 뿔의 일반 모양에서 정한 그림 사정이다. 숫양 뿔·골·옅은 뼈빛은 짐승 뿔의 일반 모양에서 정한 그림 사정(task 597 — 「from a cow or ram … with the wide end open」은 「golden oil」과 겹쳐 황동 나팔·깔때기로 그려짐, 베들레헴 594~596 8시드 뿔 7·3·4/8).",
         "size": {
           "ref": "man-height",
           "ratio": 0.15,

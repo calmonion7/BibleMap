@@ -106,6 +106,7 @@ def seated(d, x0, y0, x1, y1, v):
 CROWD_SHOULDER = 0.45   # 무리 실루엣 어깨 반너비 ÷ 몸 아래 너비(규칙 generate.crowd-shoulders) — person의 0.3이면 원뿔 기둥이라 「막대기 같은 신하」(task 498)
 CROWD_BOX = 0.4         # 무리 한 사람 상자 너비 ÷ 줄 키(옛 0.3 — 가늘게 그려짐)
 CROWD_ARM_OUT = 0.8     # 무리 한 사람 손 x 반너비 ÷ 몸 아래 너비 — 팔이 몸통에서 떨어져 보이게(task 538 배교 후비 「어깨·팔 굴곡 없이 원뿔·기둥 같은 천 덩어리」 몸 꼴 3/8)
+CROWD_HAND_Y = S.v("body.shoulder") + S.v("body.upper_arm") + S.v("body.forearm")   # 무리 한 사람 손목 높이 ÷ 키(어깨 0.17 + 팔 0.34 = 0.51) — 0.45(허리)면 형들 손이 허리띠에 붙어 팔 길이 4/8(베들레헴 593, 규칙 generate.pose-arm-length 넓힘 task 594)
 
 
 def crowd_person(d, x0, y0, x1, y1, v):
@@ -116,8 +117,8 @@ def crowd_person(d, x0, y0, x1, y1, v):
     d.ellipse([cx - r, y0, cx + r, y0 + 2 * r], fill=v)
     sh = y0 + 2 * r
     body(d, (cx - bw * CROWD_SHOULDER, sh), (cx + bw * CROWD_SHOULDER, sh), cx, y0, y1, bw, v)
-    for s in (-1, 1):   # 두 팔 — 어깨에서 몸 옆으로 비껴 허리 높이 손까지(팔 없는 꼴은 천 기둥으로 그려짐, task 538)
-        d.line([(cx + s * bw * CROWD_SHOULDER, sh + h * 0.02), (cx + s * bw * CROWD_ARM_OUT, y0 + h * 0.45)], fill=v, width=max(1, round(h * 0.05)))
+    for s in (-1, 1):   # 두 팔 — 어깨에서 몸 옆으로 비껴 손목 높이(CROWD_HAND_Y)까지(팔 없는 꼴은 천 기둥으로 그려짐, task 538)
+        d.line([(cx + s * bw * CROWD_SHOULDER, sh + h * 0.02), (cx + s * bw * CROWD_ARM_OUT, y0 + h * CROWD_HAND_Y)], fill=v, width=max(1, round(h * 0.05)))
 
 
 def crowd(d, x0, y0, x1, y1, v):
@@ -398,12 +399,12 @@ POSES["reach_belt"] = {**POSES["speak_open"], 7: (0.06, 0.40)}                  
 POSES["reach_belt_left"] = {k: (-x, y) for k, (x, y) in POSES["reach_belt"].items()}
 POSES["reach_chest_left"] = {k: (-x, y) for k, (x, y) in POSES["point_chest"].items()}   # task 584: 허리띠 손은 몸통·옷에 묻힘(사람 582) → 다른 손도 가슴께
 # task 588 — A2 베들레헴 삼상 16:13 「기름 뿔을 취하여 … 그에게 부었더니」: 화면 오른쪽 앞에 선 소년의 머리 위로 앞 팔을 들어 손목이 소년 머리보다 위(0.05) ·
-# 다른 손은 가슴께(몸 앞 — 두 손 보임). 고개를 조금 숙여 소년을 내려다봄. 소년 엉덩이는 이 인물 엉덩이에서 키의 약 0.40 오른쪽(명세 _regions_why).
-POSES["pour_over"] = {**POSES["point_chest"], 0: (0.06, 0.075), 3: (0.18, 0.22), 4: (0.30, 0.10), 14: (0.05, 0.06)}
+# 다른 손은 가슴께(몸 앞 — 두 손 보임) → task 597: 다른 손도 뿔 아래쪽(두 손으로 쥠 — 가슴께 손은 겉옷에 묻힘 596). 고개를 조금 숙여 소년을 내려다봄. 소년 엉덩이는 이 인물 엉덩이에서 키의 약 0.40 오른쪽(명세 _regions_why).
+POSES["pour_over"] = {**POSES["point_chest"], 0: (0.06, 0.075), 3: (0.18, 0.22), 4: (0.30, 0.10), 6: (0.10, 0.30), 7: (0.24, 0.14), 14: (0.05, 0.06)}
 # task 588 — 곧게 서서 화면 왼쪽으로 고개를 숙여 머리에 붓는 기름을 받음: listen_clasp(두 손목 몸 앞 배 높이)에서 머리만 앞·아래로.
 POSES["bow_clasp_left"] = {**POSES["listen_clasp"], 0: (-0.075, 0.10), 14: (-0.07, 0.085), 16: (-0.02, 0.075)}
-# task 588 — 곧게 서서 화면 왼쪽을 지켜보며 앞 손으로 세운 지팡이 위끝 가까이를 가슴 높이에 쥠(사전 walking-staff L3 「gripped in one hand near the top」) · task 592: 다른 손도 그 아래 지팡이를 쥠(배 앞 빈손은 겉옷에 묻힘 — 591 s42 두 손 보임 1/5).
-POSES["staff_hold_left"] = {**POSES["listen_clasp"], 3: (-0.06, 0.32), 4: (-0.13, 0.27), 6: (0.0, 0.40), 7: (-0.12, 0.38)}
+# task 588 — 곧게 서서 화면 왼쪽을 지켜보며 앞 손으로 세운 지팡이 위끝 가까이를 가슴 높이에 쥠(사전 walking-staff L3 「gripped in one hand near the top」) · task 592: 다른 손도 그 아래 지팡이를 쥠(배 앞 빈손은 겉옷에 묻힘 — 591 s42 두 손 보임 1/5) · task 595: 몸 앞에 세운 지팡이 머리에 두 손을 나란히 얹음(두 손목 가슴 높이 몸 앞 — 594 8시드 먼 손이 겉옷에 묻힘 4장).
+POSES["staff_hold_left"] = {**POSES["listen_clasp"], 3: (-0.12, 0.30), 4: (-0.08, 0.30), 6: (0.04, 0.32), 7: (-0.06, 0.32)}
 
 # task 574 — 뼈대 팔 길이를 크기 기준표로(규칙 generate.pose-arm-length · 사람 판정 놉 567 「손이 너무 짧잖아 비율 규칙이 적용안되었나?」):
 # 손으로 적은 뼈대 팔(어깨→팔꿈치→손목)이 키의 0.19~0.28로 기준(위팔 0.186 + 아래팔 0.154 = 0.34)보다 짧았다.

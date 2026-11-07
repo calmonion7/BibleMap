@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "8175fd1e2b69",
+  "version": "dc5741a7a272",
   "rules": [
     {
       "id": "spec.required-fields",
@@ -571,7 +571,7 @@
       "check": "test:test_scene_rules",
       "source": "사람 판정 놉 567 「손이 너무 짧잖아 비율 규칙이 적용안되었나?」 · 570 「손을 덧데어 그리는거는 확실히 품질이 안좋음」",
       "since": "2026-11-04 task 574",
-      "note": "뼈대 가이드(make_guide.POSES)의 팔은 크기 기준표 위팔 body.upper_arm 0.186 · 아래팔 body.forearm 0.154(어깨→손목 0.34 = arm 0.44 − 손) — 손으로 적은 뼈대 팔이 0.19~0.28로 짧아 손이 허리·엉덩이 높이에서 끝났다. make_guide.arm_fit: 곧게 내린 팔은 같은 방향으로 늘이고, 굽힌 팔은 손목 자리를 두고 팔꿈치만 다시 잡음. 몸 부위를 국소 손질로 고치지 않는다(edit.no-paste-large-parts)"
+      "note": "(넓힘 task 594: 무리 실루엣(make_guide.crowd_person) 손도 손목 높이 CROWD_HAND_Y = 어깨 + 위팔 + 아래팔 0.51 — 허리 0.45에서 끝나 베들레헴 593 팔 길이 4/8, 틀림 이유 전부 형 무리) 뼈대 가이드(make_guide.POSES)의 팔은 크기 기준표 위팔 body.upper_arm 0.186 · 아래팔 body.forearm 0.154(어깨→손목 0.34 = arm 0.44 − 손) — 손으로 적은 뼈대 팔이 0.19~0.28로 짧아 손이 허리·엉덩이 높이에서 끝났다. make_guide.arm_fit: 곧게 내린 팔은 같은 방향으로 늘이고, 굽힌 팔은 손목 자리를 두고 팔꿈치만 다시 잡음. 몸 부위를 국소 손질로 고치지 않는다(edit.no-paste-large-parts)"
     },
     {
       "id": "generate.pose-only-control",

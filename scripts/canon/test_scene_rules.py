@@ -1312,6 +1312,15 @@ class CrowdShoulders(unittest.TestCase):
         self.assertGreaterEqual(MG.CROWD_BOX, 0.4)
         self.assertGreaterEqual(MG.CROWD_ARM_OUT - MG.CROWD_SHOULDER, 0.3)   # task 538 — 팔이 몸통에서 떨어짐
 
+    def test_crowd_hand_at_wrist_height(self):
+        """generate.pose-arm-length 넓힘(task 594) — 무리 실루엣 손도 기준표 손목 높이(어깨 + 위팔 + 아래팔), 허리(0.45)가 아님(베들레헴 593 팔 길이 4/8 · 틀림 이유 전부 형 무리)."""
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as MG
+        import scale as S
+        self.assertAlmostEqual(MG.CROWD_HAND_Y, S.v("body.shoulder") + S.v("body.upper_arm") + S.v("body.forearm"))
+        self.assertGreaterEqual(MG.CROWD_HAND_Y, 0.5)
+
 
 class LexiconSpecificAbsent(unittest.TestCase):
     """spec.lexicon-link(task 514) — 구체 항목 우선 · 없음 요소는 지물 문구를 요구하지 않음(놉 「골리앗의 칼」·21:8)."""
