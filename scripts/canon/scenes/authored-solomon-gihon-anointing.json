@@ -29,8 +29,8 @@
     "verse": "왕상 1:39 「제사장 사독이 성막 가운데서 기름 뿔을 가져다가 솔로몬에게 기름을 부으니」 · 1:38 「제사장 사독과 선지자 나단과 여호야다의 아들 브나야와 그렛 사람과 블렛 사람이」 · 머리는 [추론] 삼상 10:1 「사무엘이 기름병을 취하여 사울의 머리에 붓고」 · 숙임·배치는 본문 밖 · 저작자 정함 · 백성 [추론] 1:39 「모든 백성이 솔로몬 왕 만세를 부르니라」 · 시위대 [추론] 삼하 8:18 · 23:23 · 젊은 [추론] 대상 29:1 「오히려 어리고 연약하고」"
   },
   "relation": {
-    "ko": "금빛 기름이 뿔에서 젊은 왕의 머리카락으로 흘러내린다 · 그 뒤에 다윗 왕의 노새(긴 귀의 갈색 노새, 등이 사람 가슴 높이쯤, 등에 천 안장)가 서 있다 · 오른쪽에 왕의 시위대(짧은 양모 튜닉과 가죽 띠, 누구는 팔짱 끼고 누구는 손을 내린 군사)가 한 줄로 선다",
-    "en": "Golden oil running from the horn onto the young king's hair; behind him stands David's mule, a brown mule with long ears, its back about as high as a man's chest, a cloth saddle on its back; on the right stand the king's guard, soldiers in short wool tunics with leather belts, some with arms folded, others with arms at their sides, in a line",
+    "ko": "금빛 기름이 뿔에서 젊은 왕의 머리카락으로 흘러내린다 · 그 뒤에 다윗 왕의 노새(긴 귀의 갈색 노새, 등이 사람 가슴 높이쯤, 등에 천 안장)가 서 있다 · 오른쪽에 왕의 시위대(짧은 양모 튜닉과 가죽 띠, 차렷 자세로 팔을 내리고 지켜보는 군사)가 한 줄로 선다",
+    "en": "Golden oil running from the horn onto the young king's hair; behind him stands David's mule, a brown mule with long ears, its back about as high as a man's chest, a cloth saddle on its back; on the right stand the king's guard, soldiers in short wool tunics with leather belts, standing at attention with arms straight at their sides, watching, in a line",
     "verse": "왕상 1:39 「솔로몬에게 기름을 부으니」 · 1:38 「솔로몬을 다윗 왕의 노새에 태우고」 · 「그렛 사람과 블렛 사람이」(시위대는 [추론] 삼하 8:18 · 23:23) · 머리는 [추론] 삼상 10:1 「사울의 머리에 붓고」 · 금빛 기름은 사전 oil L1(본문 밖) — task 604에서 「thick olive oil」로 바꾸자 기름이 덜 보여 흐르는 기름 5 → 3/8, 뿔 꼴(task 606)이 뿔 모양을 잡으니 되돌림(task 607) · 노새 모양은 사전 mule L2 · 노새가 솔로몬 뒤에 섬·시위대 자리·옷은 본문 밖 · 저작자 정함"
   },
   "whole_background": {
@@ -146,9 +146,9 @@
       "count": 10,
       "count_why": "[저작](1:38 「그렛 사람과 블렛 사람이」 — 수 없음, 이 자리에 보이는 시위대 한 줄로 어림)",
       "costume": {
-        "ko": "짧은 양모 튜닉과 가죽 띠의 군사 — 누구는 팔짱, 누구는 손을 내림",
-        "en": "soldiers in short wool tunics with leather belts, some with arms folded, others with arms at their sides",
-        "verse": "본문 밖 · 저작자 정함(시대 고증 — 철기 이스라엘 군사 차림 · 규칙 spec.crowd-era-dress) · 섞인 자세는 본문 밖 · 저작자 정함(사람 612 「군사들은 누구는 팔짱 누구는 손을 내리는것이 자연스러워보임」)"
+        "ko": "짧은 양모 튜닉과 가죽 띠의 군사 — 차렷 자세로 팔을 몸 옆에 곧게 내리고 지켜봄",
+        "en": "soldiers in short wool tunics with leather belts, standing at attention with arms straight at their sides, watching",
+        "verse": "본문 밖 · 저작자 정함(시대 고증 — 철기 이스라엘 군사 차림 · 규칙 spec.crowd-era-dress) · 차렷 자세는 본문 밖 · 저작자 정함(사람 614 「병사들이 모드 팔짱을 끼고 있어서 장면 분위기에 안맞음」 — 왕에게 기름 붓는 의식이라 시위대는 공손히 선 차렷, 팔짱은 느긋·거만하게 읽힘)"
       }
     },
     {
@@ -402,7 +402,7 @@
       "kind": "region",
       "region": "guards",
       "verse": "1:38",
-      "prompt": "the king's guard, soldiers in short wool tunics with leather belts, some with arms folded, others with arms at their sides, standing in a line.",
+      "prompt": "the king's guard, soldiers in short wool tunics with leather belts, standing at attention with arms straight at their sides, watching, standing in a line.",
       "neg": [
         "modern clothes",
         "crown",
@@ -447,12 +447,12 @@
   "approved": {
     "final": {
       "path": "night-pick",
-      "seed": 101,
+      "seed": 42,
       "kind": "base",
-      "image": "samples/gihon-step23-t13/composition-A-s101.png",
+      "image": "samples/gihon-step23-t14/composition-A-s42.png",
       "by": "user",
       "on": "2026-11-07",
-      "spec_hash": "39cacdcdbd23",
+      "spec_hash": "08ac6493855d",
       "prompt_hash": null,
       "rules_version": "883eafdd3f9d",
       "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
