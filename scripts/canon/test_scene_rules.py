@@ -1322,6 +1322,33 @@ class CrowdShoulders(unittest.TestCase):
         self.assertGreaterEqual(MG.CROWD_HAND_Y, 0.5)
 
 
+class CrowdDepth(unittest.TestCase):
+    """generate.crowd-depth — 가이드 무리는 여러 줄·덩이, 뒤 줄은 오르막에 올려 상자 위 끝까지(옛 두 줄은 지평선에 머리가 모인 한 줄 합창단 — 길갈 즉위 623 · 미스바 621)."""
+
+    def draw(self, box):
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as MG
+        from PIL import Image, ImageDraw
+        img = Image.new("L", (MG.W, MG.H), 0)
+        MG.PERSP["hy"] = 0.55
+        MG.crowd(ImageDraw.Draw(img), *(v * s for v, s in zip(box, (MG.W, MG.H, MG.W, MG.H))), 200)
+        rows = [y for y in range(MG.H) if any(img.getpixel((x, y)) for x in range(0, MG.W, 2))]
+        cols = [any(img.getpixel((x, y)) for y in range(MG.H)) for x in range(MG.W)]
+        return MG, rows, cols
+
+    def test_back_rows_reach_box_top_not_above(self):
+        MG, rows, _ = self.draw((0.1, 0.35, 0.9, 0.75))
+        self.assertGreaterEqual(rows[0], round(0.35 * MG.H) - 1)   # 상자 위로 넘지 않음(초점 인물 키를 묻지 않게)
+        self.assertLess(rows[0], round(0.35 * MG.H) + 8)           # 지평선(0.55)이 아니라 상자 위 끝까지 오름
+
+    def test_clusters_leave_gaps(self):
+        _, _, cols = self.draw((0.1, 0.5, 0.9, 0.75))
+        x = [i for i, c in enumerate(cols) if c]
+        gaps = [b - a for a, b in zip(x, x[1:]) if b - a > 1]
+        self.assertTrue(gaps, "덩이 사이 빈틈 없음 — 고른 한 줄")
+
+
 class LexiconSpecificAbsent(unittest.TestCase):
     """spec.lexicon-link(task 514) — 구체 항목 우선 · 없음 요소는 지물 문구를 요구하지 않음(놉 「골리앗의 칼」·21:8)."""
 

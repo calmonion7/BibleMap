@@ -1,6 +1,6 @@
 {
   "_format": "rules-ledger-1 — 장면 그림 규칙 원장(task 392). version = rules 내용 해시(recheck.py ledger가 다시 셈 — 규칙을 바꾸면 판이 바뀐다). layer: spec|derive|generate|edit|judge|human · scope: all|list|one|doc|rejected(만든 때 적용 범위 — recheck는 함수 규칙을 37명세 전부에 건다) · check: 함수 경로(recheck가 돌림) | test:<모듈>(코드 가드 — unittest·check.sh가 돌림) | human | todo(문서만 — 다음 과제 후보, note에 효과 순위)",
-  "version": "dc5741a7a272",
+  "version": "2396995993da",
   "rules": [
     {
       "id": "spec.required-fields",
@@ -782,6 +782,15 @@
       "source": "사람 판정 task 498 스바 여왕 「신하들 너무 막대기 같고」 · 문항 먼저 검증 t.crowd-natural(s303 3/3 틀림)",
       "since": "2026-11-02 task 499",
       "note": "(넓힘 task 538: 두 팔 — 어깨에서 몸 옆으로 비껴 허리 높이 손(CROWD_ARM_OUT 0.8 × 아래 너비). 팔 없는 꼴은 배교 후비가 「어깨·팔 굴곡 없이 원뿔·기둥 같은 천 덩어리」 몸 꼴 3/8) 가이드 무리 꼴(make_guide.crowd)의 한 사람은 어깨 있는 몸 — 어깨 너비 ≥ 몸 아래 너비 × 0.9(CROWD_SHOULDER 0.45), 한 사람 상자 ≥ 줄 키 × 0.4(CROWD_BOX). 옛 꼴은 person과 같은 원뿔(어깨 0.6 × 아래 너비)·상자 0.3이라 작게 줄지어 선 무리가 어깨·팔 없는 막대기로 그려졌다. 대가: 같은 구역에 그려지는 사람 수가 줄어든다(무리 수는 문구가 나름)"
+    },
+    {
+      "id": "generate.crowd-depth",
+      "layer": "generate",
+      "scope": "all",
+      "check": "test:test_scene_rules",
+      "source": "길갈 즉위 task 623 8/8 · 미스바 621 t.assembly 4/8 — 백성이 평지에 같은 키 한 줄로 서서 정면을 봄(합창단)",
+      "since": "2026-11-07 task 626",
+      "note": "가이드 무리 꼴(make_guide.crowd)은 네 줄(CROWD_FEET)·덩이(CROWD_CLUSTER)와 빈틈 — 줄 키는 평지 발 y에서 재되(generate.eye-level-perspective), 눈높이 평지면 모든 머리가 지평선에 모여 옛 두 줄 꼴이 한 줄로 그려졌다(그림이 가이드를 그대로 따름). 그래서 뒤 줄을 오르막에 올려 맨 뒤 머리가 무리 상자 위 끝(y0)에 닿게 한다. 상자 위로는 넘지 않음 — 미스바 시험에서 뒤 무리 머리가 사울 머리까지 올라 「어깨 위나 더 크더라」(10:23)를 묻었다. 그러므로 무리를 얼마나 높이 쌓을지는 장면 명세의 무리 상자 위 끝이 정한다(평지 무리를 깊게 보이려면 상자 위 끝을 지평선보다 올림)."
     },
     {
       "id": "judge.realism-common",

@@ -4,7 +4,7 @@
   python3 batch/make_guide.py [--scene <장면 id>] [--out <png>]     # 기본: 요단 귀환 → samples/jordan-guide/guide.png
 
 깊이 그림 = 가까움 밝게 · 멂 어둡게. 선을 주지 않고(ZIMAGE §2 「콘티 되그림」) 자리·크기·멀고 가까움만 준다.
-꼴(guide.shape): ephod_sword(걸린 에봇 뒤에 세운 칼, task 560) · altar(돌 제단 위 제물, task 546) · person(서 있는 한 사람) · person_bow(고개를 앞·아래로 숙인 서 있는 사람, restyle r5) · kneel_bow(무릎 꿇고 엉덩이 들고 머리를 왼쪽 땅에, r6) · seated(배 안에 앉은 머리·어깨 한 줄, r6) · sit(걸상에 앉아 왼쪽을 향한 한 사람, task 414) · prostrate(엎드린 낮은 몸, 머리는 왼쪽 — 다윗 쪽) · crowd(작은 실루엣 두 줄) · boat(선체) · bank(강 너머 둑).
+꼴(guide.shape): ephod_sword(걸린 에봇 뒤에 세운 칼, task 560) · altar(돌 제단 위 제물, task 546) · person(서 있는 한 사람) · person_bow(고개를 앞·아래로 숙인 서 있는 사람, restyle r5) · kneel_bow(무릎 꿇고 엉덩이 들고 머리를 왼쪽 땅에, r6) · seated(배 안에 앉은 머리·어깨 한 줄, r6) · sit(걸상에 앉아 왼쪽을 향한 한 사람, task 414) · prostrate(엎드린 낮은 몸, 머리는 왼쪽 — 다윗 쪽) · crowd(여러 줄 깊이 무리 — 덩이·오르막) · boat(선체) · bank(강 너머 둑).
 바탕: 하늘 0 · 땅은 지평선에서 아래로 0.12 → 0.5. 그리는 순서는 먼 것부터(깊이 오름차순).
 지평선은 눈높이 카메라(task 409, 규칙 generate.eye-level-perspective): 가장 가까운 서 있는 인물의 발 y·화면 키·키 등급에서 파생(S.scene_horizon)."""
 import argparse, json, math, os, sys
@@ -121,21 +121,40 @@ def crowd_person(d, x0, y0, x1, y1, v):
         d.line([(cx + s * bw * CROWD_SHOULDER, sh + h * 0.02), (cx + s * bw * CROWD_ARM_OUT, y0 + h * CROWD_HAND_Y)], fill=v, width=max(1, round(h * 0.05)))
 
 
+CROWD_FEET = (0.56, 0.68, 0.82, 1.0)          # 무리 줄 발 y ÷ 상자 높이(뒤 → 앞) — 옛 두 줄(0.558 · 1.0)은 한 줄로 그려짐(길갈 즉위 623 8/8 · 미스바 621)
+CROWD_CLUSTER = (5, 3, 6, 4, 7, 3, 5, 4)      # 덩이 사람 수(고정 무늬) — 고른 간격 한 줄은 합창단처럼 그려짐 · 덩이 사이 빈틈 1.6칸
+CROWD_JITTER = (0.0, 0.3, -0.2, 0.15, -0.3, 0.25, -0.1, 0.2, -0.25, 0.1)   # 덩이 안 x 흔들림 ÷ 한 사람 칸
+
+
 def crowd(d, x0, y0, x1, y1, v):
-    """작은 실루엣 두 줄. 줄 높이는 발 y에서(task 409, 규칙 generate.eye-level-perspective): 보통 키 어른 화면 키 = (발 y − 지평선) ÷ 눈높이 비.
-    발이 지평선 위인 줄(강 건너 둑·언덕 — 평지 눈높이 셈 밖)은 옛 상자 비(뒷줄 0.558 · 앞줄 0.62 × 상자 높이)."""
+    """여러 줄 깊이 무리. 줄 높이는 평지 발 y에서(task 409, 규칙 generate.eye-level-perspective): 보통 키 어른 화면 키 = (발 y − 지평선) ÷ 눈높이 비.
+    발이 지평선 위인 줄(강 건너 둑·언덕 — 평지 눈높이 셈 밖)은 옛 상자 비(뒷줄 0.558 → 앞줄 0.62 × 상자 높이).
+    눈높이 평지면 모든 머리가 지평선 한 줄에 모이므로 뒤 줄을 오르막에 올려 맨 뒤 머리가 상자 위 끝에 닿게 한다 — 상자 위로는 넘지 않음
+    (미스바 시험: 넘으면 「어깨 위나 더 큰」 사울 키를 묻음). 줄마다 덩이와 빈틈이 엇갈림(규칙 generate.crowd-depth)."""
     h = y1 - y0
-    for row, (foot, old, val) in enumerate(((y0 + h * 0.62 * 0.9, h * 0.62 * 0.9, round(v * 0.92)), (y1, h * 0.62, v))):
-        ph = S.screen_height(foot / H, PERSP["hy"]) * H if foot / H > PERSP["hy"] else old
+    rows = []
+    for f in CROWD_FEET:
+        foot = y0 + h * f
+        old = h * 0.62 * (0.9 + 0.1 * (f - CROWD_FEET[0]) / (1 - CROWD_FEET[0]))
+        rows.append((foot, S.screen_height(foot / H, PERSP["hy"]) * H if foot / H > PERSP["hy"] else old))
+    lift = max(0.0, rows[0][0] - rows[0][1] - y0)
+    for row, (foot, ph) in enumerate(rows):
+        back = (len(rows) - 1 - row) / (len(rows) - 1)
+        foot -= lift * back
         top = foot - ph
         hb = ph * CROWD_BOX / 2
-        step = ph * (CROWD_BOX + 0.02)
-        n = max(1, int((x1 - x0 - hb * 2) / step))
-        for i in range(n):
-            x = x0 + hb + i * step + (step / 2 if row == 0 else 0)
-            dy = (i % 3) * ph * 0.04                                              # 키 들쭉날쭉(고정 무늬)
-            if x + hb <= x1:
-                crowd_person(d, x - hb, top + dy, x + hb, top + ph, val)
+        step = ph * (CROWD_BOX - 0.04)   # 덩이 안은 어깨가 겹치게 붙어 섬
+        val = round(v * (1 - 0.14 * back))
+        x, i, c = x0 + hb + (row % 2) * step * 2.5, 0, row
+        while x + hb <= x1:
+            for _ in range(CROWD_CLUSTER[c % len(CROWD_CLUSTER)]):
+                px = x + CROWD_JITTER[i % len(CROWD_JITTER)] * step
+                if px + hb <= x1:
+                    crowd_person(d, px - hb, top + (i % 3) * ph * 0.04, px + hb, top + ph, val)   # 키 들쭉날쭉(고정 무늬)
+                x += step
+                i += 1
+            x += step * 1.6
+            c += 1
 
 
 def boat(d, x0, y0, x1, y1, v):
@@ -439,6 +458,10 @@ POSES["staff_hold_left"] = {**POSES["listen_clasp"], 3: (-0.12, 0.30), 4: (-0.08
 POSES["bow_deep_left"] = {**POSES["listen_clasp"], 0: (-0.11, 0.17), 1: (-0.04, 0.17), 2: (-0.09, 0.20), 5: (0.01, 0.20), 14: (-0.10, 0.15), 16: (-0.05, 0.13), 3: (-0.18, 0.30), 4: (-0.11, 0.38), 7: (-0.07, 0.39)}
 # task 598 — 곧게 서서 화면 오른쪽을 지켜보며 두 손목을 몸 앞 배 높이에 모음: listen_clasp를 x로 뒤집음(speak_open_left 선례).
 POSES["listen_clasp_right"] = {k: (-x, y) for k, (x, y) in POSES["listen_clasp"].items()}
+# task 626 — 곧게 서서 화면 왼쪽을 향하고 두 팔을 몸 옆에 조금 띄워 내림(미스바 사울 10:23 「그가 백성 중에 서니」): listen_clasp에서 팔만.
+# 두 손목을 배 앞에 모은 listen_clasp는 손이 겉옷에 묻힘(미스바 621 사울 두 손 2/8 · 길갈 즉위 623 사무엘 두 손 보임·손 또렷함 각 6/8).
+POSES["stand_rest"] = {**POSES["listen_clasp"], 3: (-0.085, 0.33), 4: (-0.10, 0.50), 6: (0.085, 0.33), 7: (0.10, 0.50)}
+POSES["stand_rest_right"] = {k: (-x, y) for k, (x, y) in POSES["stand_rest"].items()}   # 길갈 즉위 사무엘(조용히 선 노선지자) — 화면 오른쪽을 향함
 # task 602 — A2-2 기혼: 같은 키(average)의 어른이 붓는 이 쪽(화면 왼쪽)을 보며 무릎 꿇고 상체를 세워 고개를 숙임 · 두 손 몸 앞 —
 # bow_deep_left(선 채 숙임)는 머리가 붓는 이 어깨 높이에 남아 뿔이 머리 옆에 세워짐(601 8시드 머리 위 0/8). 상자 = 서 있을 때 키(크기 규칙 그대로):
 # task 608: 두 손바닥을 가슴 앞에 맞댐(손목 0.50 — 배 앞 모은 손은 옆모습에서 한 손만 보임, 603·607 두 손 보임) · 무릎 땅(0.97) · 넓적다리 세움(엉덩이 0.77 = 땅 − 넓적다리 body.knee − body.crotch 0.22 꼴) · 정강이 뒤(화면 오른쪽)로 · 목 0.40 · 머리 가운데 약 0.345(베들레헴 소년 머리 높이 꼴).

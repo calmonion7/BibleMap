@@ -239,8 +239,8 @@
       },
       "gesture": {
         "ko": "백성 가운데 서서 둘레 모든 사람보다 어깨 위나 더 크고, 두 빈손을 몸 앞에 모은다",
-        "en": "standing among the people, head and shoulders above all the people around him, both empty hands clasped in front",
-        "verse": "삼상 10:23 「그가 백성 중에 서니 다른 사람보다 어깨 위나 더 크더라」 · 10:21 「기스의 아들 사울이 뽑혔으나」 · 모은 빈손은 본문 밖 · 저작자 정함(두 손 보임 — 사람 판정 562 · 뼈대 listen_clasp)"
+        "en": "standing among the people, head and shoulders above all the people around him, both empty hands hanging at his sides",
+        "verse": "삼상 10:23 「그가 백성 중에 서니 다른 사람보다 어깨 위나 더 크더라」 · 10:21 「기스의 아들 사울이 뽑혔으나」 · 몸 옆에 내린 빈손은 본문 밖 · 저작자 정함(두 손 보임 — 사람 판정 562 · 뼈대 stand_rest · 모은 손 listen_clasp는 손이 겉옷에 묻힘 — 미스바 621 두 손 2/8)"
       },
       "costume": {
         "ko": "좁은 소매의 무릎 길이 짙은 갈색 양모 튜닉과 수수한 가죽 띠",
@@ -303,10 +303,10 @@
     "body": "card",
     "pose": {
       "samuel": "point_chest",
-      "saul": "listen_clasp"
+      "saul": "stand_rest"
     },
     "split": true,
-    "why": "단계 ① — 옛 판 명세라 가이드가 없어 크기·원근 규칙(generate.figure-scale·height-ratio·eye-level-perspective)이 못 잼이었다. 사무엘(왼쪽)은 있는 뼈대 point_chest — 앞 팔을 화면 오른쪽(사울 쪽)으로 뻗고 다른 손은 가슴께(두 손 보임): 10:24 「너희는 여호와의 택하신 자를 보느냐」(가리킴 [추론]). 사울은 있는 뼈대 listen_clasp — 곧게 서서 화면 왼쪽(사무엘)을 향하고 두 손목을 몸 앞에 모음(10:23 「그가 백성 중에 서니」). 카드 인물 둘 모두 뼈대(놉 도엑 task 529 — 뼈대 없는 서 있는 인물은 원뿔). 사울 둘레 백성은 사울 뒤 무리 꼴(깊이 0.8). 큰 무리·언덕은 문구가 맡는다. 카드 체격 몸 너비(generate.guide-body-build) · 뼈대가 있으니 스텝별 나눔(generate.split-control) · 사울 무릎 길이 튜닉은 legs costume.",
+    "why": "단계 ① — 옛 판 명세라 가이드가 없어 크기·원근 규칙(generate.figure-scale·height-ratio·eye-level-perspective)이 못 잼이었다. 사무엘(왼쪽)은 있는 뼈대 point_chest — 앞 팔을 화면 오른쪽(사울 쪽)으로 뻗고 다른 손은 가슴께(두 손 보임): 10:24 「너희는 여호와의 택하신 자를 보느냐」(가리킴 [추론]). 사울은 뼈대 stand_rest — 곧게 서서 화면 왼쪽(사무엘)을 향하고 두 팔을 몸 옆에 내림(10:23 「그가 백성 중에 서니」 · task 626: 시도 1 listen_clasp는 한 손이 허리 옷에 묻힘 — 두 손 2/8 · 손 또렷함 3/8). 카드 인물 둘 모두 뼈대(놉 도엑 task 529 — 뼈대 없는 서 있는 인물은 원뿔). 사울 둘레 백성은 사울 뒤 무리 꼴(깊이 0.8). 큰 무리·언덕은 문구가 맡는다. 카드 체격 몸 너비(generate.guide-body-build) · 뼈대가 있으니 스텝별 나눔(generate.split-control) · 사울 무릎 길이 튜닉은 legs costume.",
     "legs": "costume"
   },
   "stages": [
@@ -371,7 +371,7 @@
       "kind": "plate",
       "region": "saul",
       "verse": "10:23",
-      "prompt": "{cast:saul}, standing among the people, head and shoulders above all the people around him, both empty hands clasped in front, facing left.",
+      "prompt": "{cast:saul}, standing among the people, head and shoulders above all the people around him, both empty hands hanging at his sides, facing left.",
       "neg": [
         "armour",
         "sword",

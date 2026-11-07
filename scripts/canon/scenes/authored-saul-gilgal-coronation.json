@@ -42,7 +42,7 @@
       "quote": "사무엘이",
       "kind": "인물",
       "ko": "사무엘 — 백성을 길갈로 부른 노선지자가 그 자리에 있음([추론] 「우리가 길갈로 가서」 · 12:1) · 제단 곁 자리는 본문 밖 · 저작자 정함",
-      "en": "standing quietly beside the altar, both empty hands clasped in front",
+      "en": "standing quietly beside the altar, both empty hands hanging at his sides",
       "field": "figures[0].gesture"
     },
     {
@@ -149,7 +149,7 @@
       },
       "gesture": {
         "ko": "제단 곁에 조용히 서서 두 빈손을 몸 앞에 모은다",
-        "en": "standing quietly beside the altar, both empty hands clasped in front",
+        "en": "standing quietly beside the altar, both empty hands hanging at his sides",
         "verse": "사무엘이 그 자리에 있음은 [추론] 삼상 11:14 「우리가 길갈로 가서」 · 12:1 「사무엘이 온 이스라엘에게 이르되」 · 11:15 기뻐함의 주어에 사무엘이 없음(조용히 섬) · 제단 곁 자리는 본문 밖 · 저작자 정함(참고 — 길갈에서 화목제를 드리겠다던 삼상 10:8 「내가 네게로 내려가서 번제와 화목제를 드리리니」 · 삼상 7:9 「사무엘이 젖 먹는 어린 양을 취하여 온전한 번제를 여호와께 드리고」) · 모은 손은 본문 밖 · 저작자 정함(두 손 보임 — 사람 판정 562)"
       },
       "costume": {
@@ -212,7 +212,7 @@
     ],
     "crowd_back": [
       0.02,
-      0.54,
+      0.48,
       0.98,
       0.74
     ],
@@ -245,11 +245,11 @@
     },
     "body": "card",
     "pose": {
-      "samuel": "listen_clasp_right",
+      "samuel": "stand_rest_right",
       "saul": "reach_chest_left"
     },
     "split": true,
-    "why": "단계 ① — 옛 판 명세라 가이드가 없어 크기·원근 규칙(generate.figure-scale·height-ratio·eye-level-perspective)이 못 잼이었다. 사울(가운데)은 있는 뼈대 reach_chest_left — 앞 팔을 화면 왼쪽 제단 쪽으로 가슴 높이에 펴 내밀고 먼 손은 가슴께 몸 앞(두 손 보임 — 놉 task 580·584). 사무엘(왼쪽)은 있는 뼈대 listen_clasp_right — 두 손목을 몸 앞 배 높이에 모음(기혼 나단과 같은 뼈대). 카드 인물 둘 모두 뼈대(놉 도엑 task 529 — 뼈대 없는 서 있는 인물은 원뿔). 제단은 가이드 꼴 altar(돌 덩어리 위 제물 덩어리 — 배교 task 546: 문구만이면 제물이 땅바닥에 그려짐) · 연기는 문구가 맡는다. 백성은 뒤 들판 무리 꼴(깊이 0.6 — 앞 인물보다 멀리). 카드 체격 몸 너비(generate.guide-body-build) · 스텝별 나눔(generate.split-control). 무리의 손 든 모습은 가이드 무리 꼴(팔 내림)과 다르다 — 문구가 맡고, 그려지지 않으면 단계 ③ 기록 문항이 잡는다."
+    "why": "단계 ① — 옛 판 명세라 가이드가 없어 크기·원근 규칙(generate.figure-scale·height-ratio·eye-level-perspective)이 못 잼이었다. 사울(가운데)은 있는 뼈대 reach_chest_left — 앞 팔을 화면 왼쪽 제단 쪽으로 가슴 높이에 펴 내밀고 먼 손은 가슴께 몸 앞(두 손 보임 — 놉 task 580·584). 사무엘(왼쪽)은 뼈대 stand_rest_right — 두 팔을 몸 옆에 내림(task 626: 시도 1 listen_clasp_right는 손이 겉옷에 묻힘 — 두 손 보임·손 또렷함 각 6/8). 카드 인물 둘 모두 뼈대(놉 도엑 task 529 — 뼈대 없는 서 있는 인물은 원뿔). 제단은 가이드 꼴 altar(돌 덩어리 위 제물 덩어리 — 배교 task 546: 문구만이면 제물이 땅바닥에 그려짐) · 연기는 문구가 맡는다. 백성은 뒤 들판 무리 꼴(깊이 0.6 — 앞 인물보다 멀리). 카드 체격 몸 너비(generate.guide-body-build) · 스텝별 나눔(generate.split-control). 무리의 손 든 모습은 가이드 무리 꼴(팔 내림)과 다르다 — 문구가 맡고, 그려지지 않으면 단계 ③ 기록 문항이 잡는다."
   },
   "stages": [
     {
@@ -337,7 +337,7 @@
       "kind": "plate",
       "region": "samuel",
       "verse": "11:14",
-      "prompt": "{cast:samuel}, standing quietly beside the altar, both empty hands clasped in front, looking toward the tall man in the center, facing right.",
+      "prompt": "{cast:samuel}, standing quietly beside the altar, both empty hands hanging at his sides, looking toward the tall man in the center, facing right.",
       "neg": [
         "armour",
         "sword",
