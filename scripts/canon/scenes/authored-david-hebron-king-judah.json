@@ -289,5 +289,19 @@
         0.98
       ]
     }
+  },
+  "approved": {
+    "final": {
+      "path": "night-pick",
+      "seed": 23,
+      "kind": "base",
+      "image": "samples/hebron-step23-t1/composition-A-s23.png",
+      "by": "user",
+      "on": "2026-11-07",
+      "spec_hash": "029b28de8211",
+      "prompt_hash": null,
+      "rules_version": "13bb6c21b5ae",
+      "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
+    }
   }
 }

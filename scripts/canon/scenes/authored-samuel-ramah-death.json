@@ -239,15 +239,15 @@
   "approved": {
     "final": {
       "path": "night-pick",
-      "seed": 42,
+      "seed": 5,
       "kind": "base",
-      "image": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-samuel-ramah-death/base/s42.png",
+      "image": "samples/samuel-death-step23-t1/composition-A-s5.png",
       "by": "user",
-      "on": "2026-10-19",
-      "spec_hash": "128b9ac52d11",
-      "rules_version": "14fb4150e572",
-      "prompt_hash": "dce977ff4845",
-      "prompt_matches_spec": true
+      "on": "2026-11-07",
+      "spec_hash": "b782cb3f0b8b",
+      "prompt_hash": null,
+      "rules_version": "13bb6c21b5ae",
+      "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
     }
   }
 }
