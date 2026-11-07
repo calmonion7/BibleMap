@@ -294,6 +294,19 @@ def altar(d, x0, y0, x1, y1, v):
     d.ellipse([x0 + w * 0.32, top - h * 0.1, x1 - w * 0.32, top + h * 0.03], fill=v)
 
 
+def bier(d, x0, y0, x1, y1, v):
+    """task 618 — 상여 위에 누운 몸(사무엘의 죽음 삼상 25:1 「그를 장사한지라」): 구역 아래 짧은 다리 넷 · 낮은 나무 판(구역 높이 0.60~0.72) ·
+    그 위에 천에 싸여 가로로 누운 몸(왼쪽 끝 머리 둥근 부분). 산 사람 꼴(prostrate·kneel_bow)뿐이라 누운 몸이 서거나 덩어리로 그려질 위험(단계 ① 에이전트 보고)."""
+    w, h = x1 - x0, y1 - y0
+    top, bot = y0 + h * 0.60, y0 + h * 0.72
+    d.rectangle([x0, top, x1, bot], fill=v)                                                    # 나무 판
+    for lx in (x0 + w * 0.04, x1 - w * 0.08):
+        d.rectangle([lx, bot, lx + w * 0.04, y1], fill=v)                                      # 다리
+    d.rounded_rectangle([x0 + w * 0.10, y0 + h * 0.30, x1 - w * 0.04, top], radius=h * 0.15, fill=v)   # 천에 싸인 몸
+    r = h * 0.17
+    d.ellipse([x0 + w * 0.02, y0 + h * 0.26, x0 + w * 0.02 + 2 * r * 1.2, y0 + h * 0.26 + 2 * r], fill=v)  # 머리(왼쪽)
+
+
 def horn_pour(d, x0, y0, x1, y1, v):
     """task 606 — 머리 위로 기울여 붓는 짐승 뿔과 기름 줄기: 구역 위 왼쪽 가는 끝 → 아래 오른쪽 넓은 입(구역 높이 0.7)으로 굽으며 굵어지는 몸통 ·
     입에서 구역 아래 끝(받는 이 머리 꼭대기)까지 가는 줄기. 꼴 없이 문구만이면 기혼 다섯 판(601~605) 동안 뿔이 붓는 이 얼굴 높이에 세워지거나
@@ -432,6 +445,11 @@ POSES["listen_clasp_right"] = {k: (-x, y) for k, (x, y) in POSES["listen_clasp"]
 POSES["kneel_bow_left"] = {0: (-0.07, 0.36), 1: (-0.02, 0.40), 2: (-0.07, 0.425), 3: (-0.18, 0.55), 4: (-0.11, 0.50), 5: (0.03, 0.425), 6: (0.05, 0.56),
                            7: (-0.10, 0.51), 8: (-0.03, 0.77), 9: (-0.05, 0.97), 10: (0.22, 0.98), 11: (0.03, 0.77), 12: (0.02, 0.97), 13: (0.27, 0.98),
                            14: (-0.06, 0.34), 16: (-0.02, 0.33)}
+# task 617 — 성전 봉헌 왕상 8:54 「무릎을 꿇고 손을 펴서 하늘을 향하여」: 화면 오른쪽(회중)을 보며 무릎 꿇고 상체·고개를 세워 두 팔을 위·앞으로 들어 손을 폄 —
+# kneel_bow_left를 좌우 뒤집고 머리를 세우며 두 손목을 머리 위 앞쪽(0.18~0.20)에. 상자 = 서 있을 때 키(크기 규칙 그대로).
+POSES["kneel_raise_right"] = {**{k: (-x, y) for k, (x, y) in POSES["kneel_bow_left"].items()},
+                              0: (0.07, 0.33), 14: (0.06, 0.315), 16: (0.02, 0.32), 1: (0.02, 0.40),
+                              3: (0.17, 0.32), 4: (0.21, 0.20), 6: (0.01, 0.30), 7: (0.07, 0.18)}
 # task 602 — 무릎 꿇은 이의 머리에 붓기: pour_over(손목 어깨 높이 0.10)에서 두 손목을 가슴 높이로 — 뿔이 꿇은 이 머리(가운데 약 0.345) 위에서 기울게.
 # task 611 — 둘째 손목을 뿔의 가는 끝(0.22, 0.14 — 머리보다 한 뼘 위)으로: 머리 곁(0.25, 0.26)이면 그 손이 머리카락과 한 덩어리로 뭉개짐(사람 610 「사독 왼손이 뭉뜽그려져」).
 POSES["pour_low"] = {**POSES["pour_over"], 3: (0.17, 0.30), 4: (0.31, 0.22), 6: (0.08, 0.25), 7: (0.22, 0.14)}
@@ -531,7 +549,7 @@ def draw_pose(img, box, name, hip_dx=0.06):
 
 
 AIR_SHAPES = {"spear"}   # 허공을 나는 물체 꼴(recheck.AIR_SHAPES와 같음)
-SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "kneel_bow_reach": kneel_bow_reach, "seated": seated, "sit": sit, "crowd": crowd, "boat": boat, "bank": bank, "river": river, "altar": altar, "ephod_sword": ephod_sword, "horn_pour": horn_pour}
+SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "kneel_bow_reach": kneel_bow_reach, "seated": seated, "sit": sit, "crowd": crowd, "boat": boat, "bank": bank, "river": river, "altar": altar, "ephod_sword": ephod_sword, "horn_pour": horn_pour, "bier": bier}
 
 
 def make_pose_only(spec, backdrop=False):

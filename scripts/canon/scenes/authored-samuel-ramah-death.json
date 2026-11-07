@@ -8,76 +8,110 @@
       "25:1": "사무엘이 죽으매 온 이스라엘 무리가 모여 그를 애곡하며 라마 그의 집에서 그를 장사한지라 다윗이 일어나 바란 광야로 내려가니라"
     }
   },
+  "situation": {
+    "text": "사무엘이 죽었다(25:1 「사무엘이 죽으매」). 온 이스라엘 무리가 모여 그를 애곡하며 라마 그의 집에서 그를 장사하였다(25:1 전반 — 고정한 순간). 같은 일을 뒤에 다시 적은 삼상 28:3 「온 이스라엘이 그를 애곡하며 그의 본성 라마에 장사하였고」는 결과로만 쓴다 — 라마가 그의 본성(제 성읍)임을 받친다. 라마에 그의 집이 있음은 삼상 7:17 「라마로 돌아왔으니 이는 거기 자기 집이 있음이라」 [직접]이고, 라마가 산지에 있음은 삼상 1:1 「에브라임 산지 라마다임소빔에」에서 [추론](라마다임소빔 = 라마, 삼상 1:19 「라마의 자기 집에 이르니라」). 그래서 그 자리에는 모여 애곡하는 온 이스라엘 무리와, 그들이 장사하는 사무엘의 몸이 있다 — 무리·애곡·장사·라마·그의 집은 25:1 [직접], 이름 있는 다른 사람이 그 자리에 있었다는 말은 없다. 사무엘이 늙었음은 삼상 8:1 「사무엘이 늙으매」 · 12:2 「나는 늙어 머리가 희었고」(그 뒤의 죽음이라 [추론]). 몸을 상여에 뉘었음은 같은 시대 장례 삼하 3:31 「다윗 왕이 상여를 따라 가서」에서 [추론], 무덤 어귀 곁에 내려놓은 때는 저작자 정함, 무덤 곁에서 소리 내어 욺은 삼하 3:32 「아브넬의 무덤에서 소리를 높여 울고 백성도 다 우니라」에서 [추론]. 몸을 머리부터 발까지 천에 쌈·집 뜰 바위를 판 낮은 무덤 어귀(바위를 판 무덤 꼴은 시대 고증(철기 바위 무덤) · 집 뜰에 둔 자리는 「그의 집에서」를 따른 저작 · 굴린 돌 없음)·집 돌벽과 뜰 돌담·뒤의 마른 언덕은 본문 밖 · 저작자 정함 — 「그의 집에서」가 집 어느 자리인지는 본문에 없다. 순간은 무리가 모여 우는 가운데 상여를 무덤 어귀 곁에 내려놓은 때로 잡는다 — 몸을 손으로 무덤에 내리는 사람은 그리지 않는다(아래로 내리는 두 사람 뼈대가 가이드에 없음 — 노트 막힘 보고). 다윗이 일어나 바란 광야로 내려감(25:1 끝)은 장사 뒤의 일이라 그리지 않는다 — 다윗이 라마 장례 자리에 있었다는 말이 없고, 바로 앞에서 다윗은 요새에 있었다(삼상 24:22 「다윗과 그의 사람들은 요새로 올라가니라」). 지리: 라마는 사울의 기브아와 다른 성읍이다(삼상 15:34 「이에 사무엘은 라마로 가고 사울은 사울 기브아 본집으로 올라가니라」 — 두 곳이 나뉨 [직접], 거리는 본문 밖). 화면에서는 집 돌벽이 왼쪽, 상여와 무덤이 앞 가운데, 무리가 그 둘레와 뒤에 선다(좌우는 저작자 정함). 여호와는 형상 없이 그리지 않는다(ADR 261025-120741).",
+    "verse": "삼상 25:1",
+    "same_time": {
+      "25:1": "고정한 순간(전반) — 사무엘이 죽어 온 이스라엘 무리가 모여 애곡하며 라마 그의 집에서 장사함 · 다윗이 일어나 바란 광야로 내려감(끝)은 장사 뒤의 일"
+    }
+  },
   "moment": {
-    "verse": "25:1 후반",
-    "why": "다윗이 애곡하는 무리를 뒤로하고 바란 광야로 내려가는 순간 — 사무엘의 시신은 그리지 않고 무덤 봉분과 애곡하는 무리로 죽음과 장사를 나타낸다."
+    "verse": "25:1 전반",
+    "why": "온 이스라엘 무리가 모여 애곡하며 라마 그의 집에서 사무엘을 장사하는 순간(25:1 「온 이스라엘 무리가 모여 그를 애곡하며 라마 그의 집에서 그를 장사한지라」)을 고정한다 — 순간의 동작은 이 절의 말 그대로 셋(모임·애곡·장사)이다. 다윗이 일어나 바란 광야로 내려감(25:1 끝)은 그 뒤의 일이고, 다윗이 장례 자리에 있었다는 말이 없어 다윗은 그리지 않는다 (옛 명세는 25:1 후반 — 다윗이 무덤을 등지고 떠남을 고정했으나, 다윗을 라마 무덤 곁에 둔 것이 본문 밖이었다 · 옛 승인 그림은 기록으로 남김). 장사는 상여에 뉜 몸을 뜰 바위 무덤 어귀 곁에 내려놓은 모습으로 보인다 — 몸을 손으로 내리는 사람은 맞는 뼈대가 없어 그리지 않는다."
   },
   "meaning": {
-    "ko": "라마에서 사무엘을 장사한 뒤, 다윗이 무덤과 애곡하는 무리를 등지고 바란 광야로 떠나간다",
-    "en": "After Samuel is buried at Ramah, David turns his back on the grave and the mourning crowd and walks away toward the wilderness",
-    "verse": "삼상 25:1"
+    "ko": "사무엘이 죽어 온 이스라엘 무리가 라마 그의 집에 모여, 천에 싸여 상여에 누운 그의 몸을 뜰 바위 무덤 어귀 곁에 두고 고개 숙여 운다",
+    "en": "Samuel has died, and all Israel has gathered at his house in Ramah to bury him, weeping with bowed heads around his body, wrapped in cloth on a bier beside the burial opening in the rock",
+    "verse": "삼상 25:1 「사무엘이 죽으매 온 이스라엘 무리가 모여 그를 애곡하며 라마 그의 집에서 그를 장사한지라」 · 상여는 [추론] 삼하 3:31 「다윗 왕이 상여를 따라 가서」 · 무덤 곁에서 욺은 [추론] 삼하 3:32 「아브넬의 무덤에서 소리를 높여 울고 백성도 다 우니라」 · 천에 쌈·바위를 판 무덤 어귀·숙인 고개는 본문 밖 · 저작자 정함"
   },
   "relation": {
-    "ko": "다윗은 무덤 봉분과 애곡하는 무리를 등지고 그들에게서 멀어져 화면 오른쪽 밖으로 떠난다",
-    "en": "David has turned his back on the grave mound and the mourners and walks away from them, out of the right edge of the picture",
-    "verse": "삼상 25:1 「다윗이 일어나 바란 광야로 내려가니라」 · 화면 방향 본문 밖 · 저작자 정함(2026-10-19 그릴링)"
+    "ko": "앞에 머리부터 발까지 수수한 물들이지 않은 천에 싸인 늙은 남자의 몸이 소박한 나무 상여에 누워, 뜰 바위를 판 낮고 어두운 무덤 어귀 곁에 내려놓여 있다 · 그 둘레와 뒤에 온 이스라엘이 모였다 — 수수한 양모 옷과 머리천의 남녀 큰 무리가 빽빽이 서서 고개를 숙이고 울며 상여를 향한다",
+    "en": "In the foreground the body of an old man, wrapped from head to foot in plain undyed cloth, lies on a simple wooden bier set down beside a low dark burial opening cut into the rock of the yard; around and behind it all Israel has gathered, a great crowd of men and women in plain wool robes and head cloths, standing close together with heads bowed, weeping, facing the bier",
+    "verse": "삼상 25:1 「사무엘이 죽으매 온 이스라엘 무리가 모여 그를 애곡하며」 · 「라마 그의 집에서 그를 장사한지라」 · 늙은 몸은 [추론] 삼상 12:2 「나는 늙어 머리가 희었고」 · 상여는 [추론] 삼하 3:31 「다윗 왕이 상여를 따라 가서」 · 무덤 곁에서 욺은 [추론] 삼하 3:32 「아브넬의 무덤에서 소리를 높여 울고 백성도 다 우니라」 · 천에 쌈·얼굴까지 가림·바위를 판 무덤 어귀(무덤 꼴은 시대 고증(철기 바위 무덤) · 집 뜰에 둔 자리는 「그의 집에서」를 따른 저작)·무리 자리와 옷·남녀·숙인 고개·빽빽이 섬은 본문 밖 · 저작자 정함"
   },
   "whole_background": {
-    "ko": "옅은 다진 흙의 마을 언저리 마른 언덕과 뒤쪽 낮은 마른 언덕, 성긴 마른 풀, 옅은 하늘 — 왼쪽에 쌓은 옅은 돌의 낮은 무덤 봉분이 있고, 그 둘레 먼 곳에 작은 애곡 무리가 빽빽이 모여 있다",
-    "en": "a dry hillside at the edge of a town of pale packed earth, dry low hills behind, sparse dry grass, pale sky; on the left a low burial mound of piled pale stones, and around it, far away, a dense distant crowd of tiny mourning figures gathered close together",
-    "verse": "삼상 25:1 「온 이스라엘 무리가 모여 그를 애곡하며 … 장사한지라」 · 봉분·언덕·위치 본문 밖 · 저작자 정함"
+    "ko": "마른 산지 라마에 있는 죽은 이 자신의 집 뜰 — 다져진 흙 바닥과 드러난 바위, 왼쪽에 집의 거친 돌벽, 낮은 거친 돌 뜰담, 뒤로 마른 민둥 언덕, 엷은 하늘",
+    "en": "the yard of the dead man's own house at Ramah in the dry hill country, packed-earth ground with bare bedrock showing, the rough stone wall of the house on the left, a low rough stone yard wall, dry bare hills behind, pale sky",
+    "verse": "삼상 25:1 「라마 그의 집에서」 [직접] · 라마에 그의 집 — 삼상 7:17 「이는 거기 자기 집이 있음이라」 · 산지는 [추론] 삼상 1:1 「에브라임 산지 라마다임소빔에」 · 집 안 어느 자리(뜰)인지·돌벽·돌담·언덕·하늘은 본문 밖 · 저작자 정함(시대 고증 — 철기 베냐민·에브라임 산지) · 집 지붕은 그리지 않음 — 「flat-roofed mud-brick houses」가 박공지붕·십자가로 그려짐(베들레헴 task 597)"
   },
-  "background": [
+  "verse_elements": [
     {
-      "what": "라마의 낮은 무덤 봉분",
-      "verse": "25:1"
+      "verse": "25:1",
+      "quote": "사무엘이 죽으매",
+      "kind": "인물",
+      "ko": "죽은 사무엘의 몸 — 머리부터 발까지 수수한 물들이지 않은 천에 싸임(늙음은 [추론] 삼상 12:2 · 천에 쌈·얼굴까지 가림은 본문 밖 · 저작자 정함)",
+      "en": "the body of an old man, wrapped from head to foot in plain undyed cloth",
+      "field": "relation"
     },
     {
-      "what": "무덤 뒤 마른 언덕",
-      "verse": "25:1 · 배경 본문 밖 · 저작자 정함"
+      "verse": "25:1",
+      "quote": "온 이스라엘 무리가 모여",
+      "kind": "무리",
+      "ko": "모인 온 이스라엘 — 수수한 양모 옷과 머리천의 남녀 큰 무리(수는 [저작] · 남녀·옷은 본문 밖 · 저작자 정함)",
+      "en": "all Israel has gathered, a great crowd of men and women in plain wool robes and head cloths",
+      "field": "relation"
+    },
+    {
+      "verse": "25:1",
+      "quote": "그를 애곡하며",
+      "kind": "행동",
+      "ko": "무리가 빽빽이 서서 고개를 숙이고 울며 상여를 향함(욺은 [직접] · 상여를 향함은 [추론] 「그를 애곡하며」 · 숙인 고개·선 자세는 본문 밖 · 저작자 정함)",
+      "en": "standing close together with heads bowed, weeping, facing the bier",
+      "field": "relation"
+    },
+    {
+      "verse": "25:1",
+      "quote": "라마 그의 집에서",
+      "kind": "장소",
+      "ko": "라마에 있는 사무엘 자신의 집 뜰(집은 [직접] · 뜰 자리는 본문 밖 · 저작자 정함)",
+      "en": "the yard of the dead man's own house at Ramah",
+      "field": "whole_background"
+    },
+    {
+      "verse": "25:1",
+      "quote": "그를 장사한지라",
+      "kind": "행동",
+      "ko": "몸을 뉜 상여를 뜰 바위를 판 낮은 무덤 어귀 곁에 내려놓음(상여는 [추론] 삼하 3:31 · 바위를 판 무덤 꼴은 본문 밖 · 시대 고증(철기 바위 무덤) · 집 뜰에 둔 자리는 「그의 집에서」를 따른 저작)",
+      "en": "set down beside a low dark burial opening cut into the rock of the yard",
+      "field": "relation"
+    },
+    {
+      "verse": "25:1",
+      "quote": "다윗이 일어나 바란 광야로 내려가니라",
+      "kind": "행동",
+      "ko": "다윗이 바란 광야로 내려감",
+      "out": "순간 뒤의 일 — 장사한 뒤 다윗이 일어남 · 다윗이 라마 장례 자리에 있었다는 말 없음(바로 앞 24:22 요새)"
+    }
+  ],
+  "background": [
+    {
+      "what": "라마 사무엘 자신의 집 뜰 — 집 돌벽·낮은 돌 뜰담·다진 흙 바닥 · 드러난 바위",
+      "verse": "25:1 「라마 그의 집에서」 · 7:17 · 뜰 자리·돌벽·돌담 본문 밖 · 저작자 정함"
+    },
+    {
+      "what": "뜰 바위를 판 낮은 무덤 어귀와 그 곁에 내려놓은 상여",
+      "verse": "25:1 「그를 장사한지라」 · 상여 [추론] 삼하 3:31 · 바위 무덤 어귀 본문 밖 · 저작자 정함"
+    },
+    {
+      "what": "뒤의 마른 민둥 언덕",
+      "verse": "산지 [추론] 1:1 · 언덕 모양 본문 밖 · 저작자 정함"
     }
   ],
   "crowds": [
     {
-      "what": "온 이스라엘 무리가 모여 애곡함",
-      "verse": "25:1",
+      "what": "온 이스라엘 무리 — 상여와 무덤 어귀 둘레와 뒤에 빽빽이 모여 고개 숙여 욺",
+      "verse": "25:1 「온 이스라엘 무리가 모여 그를 애곡하며」 · 자리·자세 본문 밖 · 저작자 정함",
       "region": "mourners",
-      "count": 1000,
-      "count_why": "[저작](「온 이스라엘 무리가 모여 그를 애곡하며」 25:1 — 수 없음, 온 이스라엘 모임이라 군중 1000 이상으로 어림)"
-    }
-  ],
-  "figures": [
-    {
-      "cast": "david",
-      "role": "다윗 — 떠나감",
-      "pose": "무리를 뒤로하고 돌아서 걸어간다",
-      "prop": "a sword",
-      "facing": "right",
-      "region": "david",
-      "verse": "25:1 · 지물 본문 밖 · 저작자 정함",
-      "expression": {
-        "ko": "무겁고 슬픈 얼굴",
-        "en": "a grave, sorrowful face",
-        "verse": "삼상 25:1 · 표정 본문 밖 · 저작자 정함"
-      },
-      "gesture": {
-        "ko": "무덤과 무리를 등진 채 성큼성큼 걸어 나가고, 허리에 칼을 찼다",
-        "en": "walking away with long strides, his back to the grave and the crowd, a sword hanging at his belt",
-        "verse": "삼상 25:1 · 칼·걸음 본문 밖 · 저작자 정함"
-      },
+      "count": 200,
+      "count_why": "[저작](삼상 25:1 「온 이스라엘 무리가 모여」 — 수 없음. 한 집 뜰과 그 둘레에 그려지는 무리로 어림 — 큰 무리 단계 · 옛 명세 1000은 원경 덩어리 꼴이었음)",
       "costume": {
-        "ko": "어두운 양모 튜닉과 가죽 띠",
-        "en": "a dark wool tunic with a leather belt",
-        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
-      },
-      "gaze": {
-        "ko": "화면 오른쪽 끝 너머 앞을 봄",
-        "en": "looking ahead past the right edge of the picture",
-        "verse": "삼상 25:1 · 시선 본문 밖 · 저작자 정함"
-      },
-      "screen_facing": "right"
+        "ko": "수수한 양모 옷과 머리천의 남녀",
+        "en": "men and women in plain wool robes and head cloths",
+        "verse": "본문 밖 · 저작자 정함(시대 고증 — 철기 이스라엘 백성 차림 · 규칙 spec.crowd-era-dress · 기혼 백성과 같은 문구) · 남녀는 본문 밖 · 저작자 정함(「온 이스라엘」)"
+      }
     }
   ],
+  "figures": [],
   "regions": {
     "full": [
       0.0,
@@ -85,33 +119,45 @@
       1.0,
       1.0
     ],
-    "grave": [
-      0.15,
-      0.45,
-      0.45,
-      0.75
-    ],
     "mourners": [
-      0.05,
-      0.3,
-      0.5,
-      0.55
+      0.12,
+      0.23,
+      0.98,
+      0.58
     ],
-    "david": [
-      0.72,
-      0.36,
-      0.9,
-      0.9
+    "grave": [
+      0.3,
+      0.68,
+      0.66,
+      0.92
+    ],
+    "bier": [
+      0.34,
+      0.7,
+      0.62,
+      0.86
     ]
   },
-  "_regions_why": "다윗 세로 0.54(성인, 걸어 나감). 무덤(grave)은 배경 구조물, 애곡 무리(mourners)는 원경 띠 — 다윗과 겹치지 않게 오른쪽. · task 369 S3 대비책(2026-10-19): 첫 회 8/8이 다윗을 무덤 쪽(오른쪽)으로 걷게 해 좌우를 한 번 뒤집음 — 무덤·무리 왼쪽, 다윗 오른쪽에서 오른쪽 끝으로 떠남.",
+  "_regions_why": "사람 수 200(무리만 — 카드 인물 없음) → 무리 단계 large. 서 있는 카드 인물이 없어 지평선은 표 기본값 0.26(S.scene_horizon — perspective.horizon_default, 조금 내려다보는 눈높이). 무리(mourners)는 상여 뒤 발 y 0.58 → 그 자리 어른 화면 키 (0.58−0.26)÷0.93 = 0.344 ≤ 구역 높이 0.35(generate.eye-level-perspective) — 가이드 눈 확인에서 발 y 0.64(키 0.41)는 앞줄 여덟·뒷줄 열 남짓의 큰 실루엣 한 줄이라 「큰 무리」로 읽히지 않아 뒤로 물려 작게 둠(앞줄 열하나 · 뒷줄 스물 남짓). 무리 너비는 집 돌벽 자리(왼쪽 0~0.12)를 비우고 화면 오른쪽 끝까지 — 「온 이스라엘」이 화면 너비를 채움. 상여·무덤(grave)은 앞 가운데 발 y 0.86 언저리(구역 0.68~0.92) — 그 자리 어른 키 (0.86−0.26)÷0.93 = 0.645 × 640화소 ≈ 413화소가 누운 몸 길이라 1216화소 너비의 약 0.34(구역 너비 0.36). bier 구역 [0.34,0.70,0.62,0.86]은 새 가이드 꼴 bier(task 618 — 머리 왼쪽). grave 구역은 무덤 어귀를 포함한 상여 둘레 기록용(가이드 꼴 없음 — 문구가 맡음). 구역 가운데 x: 무리 0.55 · 상여 0.48 — 둘 다 「in the center」지만 인물 절이 없어 머리 낱말이 겹치지 않음. 집 돌벽 왼쪽·상여 앞 가운데·무리 둘레와 뒤는 저작자 정함.",
+  "guide": {
+    "depth": {
+      "mourners": 0.8,
+      "bier": 0.95
+    },
+    "shape": {
+      "mourners": "crowd",
+      "bier": "bier"
+    },
+    "body": "card",
+    "why": "단계 ① 다시 쓰기 — 옛 판 명세라 가이드가 없어 크기·원근 규칙(generate.figure-scale·eye-level-perspective)이 못 잼이었다. 카드 인물이 없어 뼈대가 없다(스텝별 나눔 불필요). 무리는 상여 뒤 무리 꼴(깊이 0.8). 무덤 어귀·집 돌벽은 문구가 맡는다. (task 618: 사람 결정 2026-11-07 순간 25:1 전반 장례 · 구역 bier — 새 가이드 꼴 bier(낮은 나무 상여 위 천에 싸여 가로로 누운 몸, 머리 왼쪽). 무덤 어귀는 문구가 맡음. 본문 검토 약함 반영: 「a freshly dug grave」·흙더미는 현대 네모 구덩이로 그려질 위험 → 뜰 바위를 판 낮은 무덤 어귀(철기 바위 무덤 · 굴린 돌 없음).)"
+  },
   "stages": [
     {
       "id": "S1",
       "kind": "full",
       "region": "full",
       "verse": "25:1",
-      "prompt": "a dry hillside town outskirts of pale packed earth, sparse dry grass, a low burial mound of piled stones, pale sky, no people.",
+      "prompt": "the yard of a house at Ramah in the dry hill country, packed-earth ground, the rough stone wall of the house on the left, a low rough stone yard wall, dry bare hills behind, pale sky, no people.",
       "neg": [
         "people",
         "figures",
@@ -132,33 +178,38 @@
       "kind": "region",
       "region": "grave",
       "verse": "25:1",
-      "prompt": "a low mound of piled pale stones marking a grave, dry earth around it, no people.",
+      "prompt": "the body of an old man, wrapped from head to foot in plain undyed cloth, lies on a simple wooden bier set down beside a low dark burial opening cut into the rock of the yard.",
       "neg": [
-        "people",
-        "figures",
+        "coffin",
         "modern headstone",
         "cross",
         "statue",
+        "halo",
         "church",
         "steeple",
         "cathedral",
         "chapel",
         "bell tower",
-        "spire"
+        "spire",
+        "rectangular pit",
+        "heap of earth",
+        "rolling stone",
+        "praying hands raised to heaven"
       ]
     },
     {
       "id": "S2a",
-      "kind": "ridge",
+      "kind": "region",
       "region": "mourners",
       "verse": "25:1",
-      "prompt": "a dense distant crowd of tiny mourning figures gathered near a grave mound, small and far away.",
+      "prompt": "a great crowd of men and women in plain wool robes and head cloths, standing close together with heads bowed, weeping, facing the bier.",
       "neg": [
-        "empty hill",
-        "bare ridge",
+        "empty yard",
         "single figure",
-        "close-up",
         "soldiers in rank",
+        "armour",
+        "modern clothes",
+        "smiling",
         "church",
         "steeple",
         "cathedral",
@@ -166,28 +217,13 @@
         "cross",
         "bell tower",
         "spire"
-      ]
-    },
-    {
-      "id": "S3",
-      "kind": "plate",
-      "region": "david",
-      "verse": "25:1",
-      "prompt": "{cast:david}, walking away, body turned from the crowd, gripping a sword at his side, facing left.",
-      "neg": [
-        "crown",
-        "armour",
-        "royal robe",
-        "modern clothes"
       ]
     }
   ],
   "negatives": [],
   "judge": {
-    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
-    "figures": [
-      "david"
-    ],
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다. 카드 인물이 없어 잴 인물 없음(무리·상여는 문항이 맡음).",
+    "figures": [],
     "gap_bands": [],
     "crest_x": {
       "left": [

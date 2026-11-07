@@ -3,102 +3,198 @@
   "id": "authored-saul-gilgal-coronation",
   "title": "사울 — 길갈에서 왕이 되다",
   "verses": {
-    "range": "삼상 11:1-15",
+    "range": "삼상 11:14-15",
     "quotes": {
-      "11:11": "이튿날에 사울이 백성을 삼 대에 나누고 새벽에 적진 중에 들어가서 날이 더울 때까지 암몬 사람을 치매",
-      "11:13": "사울이 가로되 이 날에는 사람을 죽이지 못하리니 여호와께서 오늘날 이스라엘 중에 구원을 베푸셨음이니라",
       "11:14": "사무엘이 백성에게 이르되 오라 우리가 길갈로 가서 나라를 새롭게 하자",
       "11:15": "모든 백성이 길갈로 가서 거기서 여호와 앞에 사울로 왕을 삼고 거기서 여호와 앞에 화목제를 드리고 사울과 이스라엘 모든 사람이 거기서 크게 기뻐하니라"
     }
   },
+  "situation": {
+    "text": "암몬 사람 나하스가 길르앗 야베스를 대하여 진 쳤고(11:1), 사울이 이스라엘을 불러 베섹에서 계수하니 「이스라엘 자손이 삼십만이요 유다 사람이 삼만이더라」(11:8). 이튿날 사울이 백성을 삼 대에 나누어 암몬 사람을 쳤고(11:11), 사울을 멸시하던 자들을 죽이자는 백성에게 사울은 「여호와께서 오늘날 이스라엘 중에 구원을 베푸셨음이니라」 하며 아무도 죽이지 못하게 하였다(11:12-13) — 앞의 일. 사무엘이 백성에게 「오라 우리가 길갈로 가서 나라를 새롭게 하자」 하였고(11:14), 모든 백성이 길갈로 가서 거기서 여호와 앞에 사울로 왕을 삼고, 거기서 여호와 앞에 화목제를 드리고, 사울과 이스라엘 모든 사람이 거기서 크게 기뻐하였다(11:15 — 고정한 순간은 끝의 「크게 기뻐하니라」). 그래서 그 자리에는 사울, 사무엘, 그리고 모든 백성이 있다 — 사울과 이스라엘 모든 사람은 11:15 [직접], 사무엘은 11:14 「우리가 길갈로 가서」와 바로 이어지는 12:1 「사무엘이 온 이스라엘에게 이르되」(같은 길갈 모임)에서 [추론]. 백성의 수는 베섹에서 센 그 사람들이 모두 길갈로 갔다고 보아 [추론](11:8 · 11:15 「모든 백성이」). 왕을 삼음과 화목제를 드림은 같은 절 앞부분이라 순간 바로 앞이고, 그 결과(왕으로 세워진 사울 · 제단에서 화목제 희생의 기름을 사르는 연기)가 순간에 남는다 — 돌 제단은 [추론] 출 20:25 「네가 내게 돌로 단을 쌓거든 다듬은 돌로 쌓지 말라」 · 신 27:6 「너는 다듬지 않은 돌로 네 하나님 여호와의 단을 쌓고」, 연기는 화목제 희생의 기름을 사르는 연기 [추론] 레 3:3 「그 화목제의 희생 중에서 여호와께 화제를 드릴지니 곧 내장에 덮인 기름과」 · 레 3:5 「단 윗불 위에 있는 나무 위 번제물 위에 사를지니」(화목제는 기름만 사르고 고기는 먹음 — 신 27:7), 제단 모양·크기·자리는 본문 밖 · 저작자 정함. 화목제와 기뻐함이 함께인 것은 신 27:7 「또 화목제를 드리고 거기서 먹으며 네 하나님 여호와 앞에서 즐거워하라」와 맞는다. 「여호와 앞에」는 제단 앞으로 그리고([추론]) 여호와는 형상 없이 그리지 않는다(ADR 261025-120741). 사울에게 관을 씌웠다는 말은 본문에 없어 사울은 맨머리로 그린다([추론]). 지리: 백성은 길르앗 야베스(11:1 · 요단 동편은 본문 밖 · 저작자 정함)에서 암몬을 치고 길갈로 왔다 — 길갈은 요단 골짜기의 낮은 곳([추론] 삼상 10:8 「너는 나보다 앞서 길갈로 내려가라」 · 수 4:19 「요단에서 올라와서 여리고 동편 지경 길갈에 진 치매」), 넓은 마른 들·먼 민둥 언덕은 본문 밖 · 저작자 정함. 화면에서는 왼쪽에 제단과 그 곁의 사무엘, 가운데에 사울이 제단 쪽을 향해 서고, 모든 백성은 뒤 들판을 채워 사울을 향한다(좌우·자리는 저작자 정함). 사무엘이 온 이스라엘에게 말함(12:1 이하)은 뒤의 일이다.",
+    "verse": "삼상 11:14-15",
+    "same_time": {
+      "11:14": "순간 앞의 말 — 사무엘이 백성을 길갈로 부름 · 사무엘도 함께 길갈에 있음([추론] 「우리가」 · 12:1)",
+      "11:15": "고정한 순간 — 왕을 삼음·화목제를 드림은 같은 절 앞부분(순간 바로 앞, 결과인 왕으로 선 사울·화목제 희생의 기름을 사르는 연기가 오르는 제단이 남음) · 사울과 이스라엘 모든 사람이 크게 기뻐함이 순간"
+    }
+  },
   "moment": {
     "verse": "11:15",
-    "why": "암몬을 이기고(11:11) 사울을 반대하던 자들까지 살려 준(11:12-13) 뒤, 사무엘의 부름(11:14)으로 길갈에 모인 백성이 여호와 앞에서 사울로 나라를 새롭게 하고 화목제를 드리며 크게 기뻐하는 순간을 고정한다 — 제물을 잡는 동작은 그리지 않고 이미 놓여 연기가 오르는 제단으로 대신한다."
+    "why": "사울과 이스라엘 모든 사람이 길갈에서 크게 기뻐하는 순간(11:15 끝)을 고정한다 — 거기서 여호와 앞에 사울로 왕을 삼고 화목제를 드린 일은 같은 절 앞부분으로 순간 바로 앞이고, 그 결과(왕으로 세워진 사울 · 제단에서 화목제 희생의 기름을 사르는 연기)가 순간에 남는다. 암몬을 친 일(11:11)과 사무엘의 부름(11:14)은 앞의 일, 사무엘이 온 이스라엘에게 한 말(12장)은 뒤의 일이다. 기뻐하는 이는 순간 절의 말 그대로 「사울과 이스라엘 모든 사람」이다 — 사무엘은 기뻐함의 주어에 없어 제단 곁에 조용히 선다(순간 동작을 다른 절로 보태지 않음 — 놉 task 558)."
   },
   "meaning": {
-    "ko": "전쟁에서 돌아온 백성 가운데 사울이 서서 함께 기뻐하고, 뒤쪽 백성은 손을 들어 크게 기뻐하며, 앞 땅의 제단에서 화목제 연기가 오른다",
-    "en": "Saul stands rejoicing among the people returned from the war, the crowd behind him raising their hands in great joy, with peace-offering smoke rising from the altar on the ground in front",
-    "verse": "삼상 11:15(왕을 삼음·화목제·크게 기뻐함) · 11:11·13(암몬에게 이김 — 전쟁에서 돌아온 백성) · 11:14(길갈로 불러 나라를 새롭게 함) · 사무엘의 위치·동작은 본문에 없음 · 본문 밖 · 저작자 정함(구도·손 든 모습)"
+    "ko": "길갈에서 여호와 앞에 왕으로 세워진 사울이 화목제 희생의 기름을 사르는 연기가 오르는 제단 쪽을 향해 크게 기뻐하고, 노선지자 사무엘이 제단 곁에 서서 보며, 이스라엘 모든 사람이 뒤 들판을 채워 손을 들어 기뻐한다",
+    "en": "At Gilgal, Saul, just made king before the LORD, rejoices greatly toward the altar where smoke rises from the burning fat of the peace offering, the old prophet Samuel standing beside it, while all the men of Israel fill the plain behind, rejoicing with raised hands",
+    "verse": "삼상 11:15 「거기서 여호와 앞에 사울로 왕을 삼고 거기서 여호와 앞에 화목제를 드리고 사울과 이스라엘 모든 사람이 거기서 크게 기뻐하니라」 · 사무엘이 있음은 [추론] 11:14 「우리가 길갈로 가서」 · 12:1 「사무엘이 온 이스라엘에게 이르되」 · 돌 제단 [추론] 출 20:25 · 신 27:6 · 화목제 희생의 기름을 사르는 연기 [추론] 레 3:3-5(고기는 먹음 — 신 27:7) · 자리·손짓·손 든 모습은 본문 밖 · 저작자 정함"
   },
   "relation": {
-    "ko": "사울은 기뻐하는 백성 가운데 서고, 사무엘은 그 곁에 조용히 서서 사울을 본다(본문 밖). 백성은 두 사람 뒤 중경에 넓게 모여 손을 들어 기뻐하며 일부는 무기를 들었고, 앞 땅의 화목제 돌 제단에서 연기가 오른다",
-    "en": "Saul stands among the rejoicing people with Samuel quietly beside him looking at him, a wide crowd of war-returned people behind them in the middle ground with raised hands and some carrying weapons, and a low stone altar with thin rising smoke on the ground in front",
-    "verse": "삼상 11:15(백성의 기쁨·화목제·사울 왕 삼음) · 11:11(전쟁 후 — 일부 무장) · 11:14(사무엘이 백성을 부름) · 사무엘의 자리·시선은 본문에 없음 · 본문 밖 · 저작자 정함(구도·연기·시선)"
+    "ko": "다듬지 않은 돌로 쌓은 낮은 제단에서 화목제 희생의 기름을 사르는 가는 연기가 오르고 노선지자가 그 곁에 선다 · 멀리 뒤로 이스라엘 모든 사람이 넓은 들을 채워 손을 들어 크게 기뻐하며 모두 가운데의 키 큰 사울을 향한다",
+    "en": "Thin smoke rising from the burning fat of the peace offering on a low altar of rough uncut stones beside the old prophet; far behind them, filling the wide plain, a great crowd of all the men of Israel, men in plain wool tunics and cloaks with cloth headwraps, rejoicing greatly with raised hands, all facing the tall man in the center",
+    "verse": "삼상 11:15 「거기서 여호와 앞에 화목제를 드리고」 · 돌 제단은 [추론] 출 20:25 「네가 내게 돌로 단을 쌓거든 다듬은 돌로 쌓지 말라」 · 신 27:6 「너는 다듬지 않은 돌로 네 하나님 여호와의 단을 쌓고」 · 화목제 희생의 기름을 사르는 연기는 [추론] 레 3:3 「그 화목제의 희생 중에서 여호와께 화제를 드릴지니 곧 내장에 덮인 기름과」 · 레 3:5 「단 윗불 위에 있는 나무 위 번제물 위에 사를지니」 · 11:15 「모든 백성이 길갈로 가서」 · 「이스라엘 모든 사람이 거기서 크게 기뻐하니라」 [직접] · 사울을 향함은 [추론] 11:15 「사울로 왕을 삼고」 · 제단 모양·자리·사무엘이 그 곁에 섬·무리 자리·손 든 모습·옷은 본문 밖 · 저작자 정함"
   },
   "whole_background": {
-    "ko": "길갈의 넓은 마른 들, 전쟁에서 돌아와 손을 들어 기뻐하는 백성 무리(일부 무장), 앞 땅에 화목제 연기가 오르는 낮은 돌 제단",
-    "en": "a wide dry open field at Gilgal with sparse dry grass, a joyful crowd of people returned from war in the middle ground with raised hands and a few carrying spears, a low pile of rough stones forming an altar with thin smoke rising on the ground in front, hazy low hills, bright pale sky",
-    "verse": "삼상 11:14-15(장소 길갈 · 백성의 기쁨 · 화목제) · 11:11(전쟁 후) · 들·언덕·하늘 배경과 제단 형상·연기·손 든 모습·일부 무장은 본문 밖 · 저작자 정함"
+    "ko": "길갈의 넓고 낮은 들 — 다져진 마른 흙바닥과 듬성한 마른 풀, 먼 민둥 언덕, 엷은 하늘",
+    "en": "the wide low open plain of Gilgal, dry packed earth with sparse dry grass, distant bare hills, pale sky",
+    "verse": "삼상 11:15 「모든 백성이 길갈로 가서」 · 낮은 곳은 [추론] 삼상 10:8 「너는 나보다 앞서 길갈로 내려가라」 · 수 4:19 「여리고 동편 지경 길갈에 진 치매」 · 들·흙바닥·풀·언덕·하늘은 본문 밖 · 저작자 정함 · 집·성벽은 그리지 않음(베들레헴 task 597 — 집·성벽 낱말이 지붕 십자가·망루를 부름)"
   },
-  "background": [
+  "verse_elements": [
     {
-      "what": "화목제를 위해 쌓은 돌 제단",
-      "verse": "11:15(화목제) · 돌 제단 형상은 본문 밖 — 출 20:25 참고 · 저작자 정함"
+      "verse": "11:14",
+      "quote": "사무엘이",
+      "kind": "인물",
+      "ko": "사무엘 — 백성을 길갈로 부른 노선지자가 그 자리에 있음([추론] 「우리가 길갈로 가서」 · 12:1) · 제단 곁 자리는 본문 밖 · 저작자 정함",
+      "en": "standing quietly beside the altar, both empty hands clasped in front",
+      "field": "figures[0].gesture"
     },
     {
-      "what": "길갈의 넓은 들",
-      "verse": "11:14"
+      "verse": "11:14",
+      "quote": "백성에게 이르되 오라 우리가 길갈로 가서 나라를 새롭게 하자",
+      "kind": "행동",
+      "ko": "사무엘이 백성을 길갈로 부름",
+      "out": "앞의 일(말) — 나라를 새롭게 함은 11:15 「사울로 왕을 삼고」 요소가 실음"
+    },
+    {
+      "verse": "11:15",
+      "quote": "모든 백성이 길갈로 가서",
+      "kind": "장소",
+      "ko": "길갈의 낮은 들(낮음은 [추론] 삼상 10:8 · 들·언덕은 본문 밖 · 저작자 정함) · 가서는 앞의 일",
+      "en": "the wide low open plain of Gilgal",
+      "field": "whole_background"
+    },
+    {
+      "verse": "11:15",
+      "quote": "모든 백성이",
+      "kind": "무리",
+      "ko": "모든 백성 — 길갈에 모인 이스라엘 사람들(수는 [추론] 11:8 · 뒤 들판 자리는 본문 밖)",
+      "en": "a great crowd of all the men of Israel",
+      "field": "relation"
+    },
+    {
+      "verse": "11:15",
+      "quote": "거기서 여호와 앞에 사울로 왕을 삼고",
+      "kind": "행동",
+      "ko": "사울을 왕으로 세움 — 온 백성이 가운데 선 사울을 향함(향함은 [추론] · 가운데 자리는 본문 밖 · 저작자 정함) · 「여호와 앞에」는 제단 앞([추론]) · 여호와는 형상 없이(ADR 261025-120741) · 세운 일은 순간 바로 앞, 결과가 남음",
+      "en": "all facing the tall man in the center",
+      "field": "relation"
+    },
+    {
+      "verse": "11:15",
+      "quote": "사울로 왕을 삼고",
+      "kind": "인물",
+      "ko": "왕으로 세워진 사울 — 관·갑옷 없는 차림(관을 씌웠다는 말 없음 [추론] · 옷 색·모양은 본문 밖 · 저작자 정함)",
+      "en": "a long dark brown wool tunic with a plain leather belt and a deep red wool cloak over his shoulders",
+      "field": "figures[1].costume"
+    },
+    {
+      "verse": "11:15",
+      "quote": "거기서 여호와 앞에 화목제를 드리고",
+      "kind": "지물",
+      "ko": "화목제 — 다듬지 않은 돌로 쌓은 낮은 제단에서 화목제 희생의 기름을 사르는 가는 연기가 오름(돌 제단 [추론] 출 20:25 · 신 27:6 · 기름만 사름 [추론] 레 3:3-5 · 고기는 먹음 신 27:7 · 드림은 순간 바로 앞이고 연기가 남음 · 모양·크기·자리는 본문 밖 · 저작자 정함)",
+      "en": "thin smoke rising from the burning fat of the peace offering on a low altar of rough uncut stones",
+      "field": "relation"
+    },
+    {
+      "verse": "11:15",
+      "quote": "사울과 이스라엘 모든 사람이 거기서 크게 기뻐하니라",
+      "kind": "행동",
+      "ko": "사울이 크게 기뻐함 — 환한 얼굴(고정한 순간)",
+      "en": "a broad, glad, joyful smile",
+      "field": "figures[1].expression"
+    },
+    {
+      "verse": "11:15",
+      "quote": "이스라엘 모든 사람이 거기서 크게 기뻐하니라",
+      "kind": "무리",
+      "ko": "이스라엘 모든 사람이 크게 기뻐함(고정한 순간 [직접]) — 손을 든 모습은 본문 밖 · 저작자 정함",
+      "en": "rejoicing greatly with raised hands",
+      "field": "relation"
+    }
+  ],
+  "background": [
+    {
+      "what": "길갈의 넓고 낮은 들",
+      "verse": "11:15(길갈) · 낮음 [추론] 삼상 10:8 · 들·흙바닥·언덕·하늘 본문 밖 · 저작자 정함"
+    },
+    {
+      "what": "다듬지 않은 돌로 쌓은 낮은 제단과 화목제 희생의 기름을 사르는 연기",
+      "verse": "11:15(화목제) · 돌 제단 [추론] 출 20:25 · 신 27:6 · 기름을 사르는 연기 [추론] 레 3:3-5 · 모양·크기·자리 본문 밖 · 저작자 정함"
     }
   ],
   "crowds": [
     {
-      "what": "암몬을 이기고 돌아와 크게 기뻐하는 이스라엘 백성 — 뒤쪽에 둘러섬, 일부 무장",
-      "verse": "11:11·15",
+      "what": "이스라엘 모든 사람 — 암몬을 치고 길갈에 모여 사울 뒤 넓은 들을 채우고 손을 들어 크게 기뻐하며 사울을 향함",
+      "verse": "11:15 「모든 백성이 길갈로 가서」 · 「이스라엘 모든 사람이 거기서 크게 기뻐하니라」 · 사울을 향함 [추론] 「사울로 왕을 삼고」 · 뒤 들판 자리·손 든 모습은 본문 밖 · 저작자 정함",
       "region": "crowd_back",
       "count": 330000,
-      "count_why": "[추론] 11:8 「이스라엘 자손이 삼십만이요 유다 사람이 삼만이더라」 · 11:15 「모든 백성이 길갈로 가서」 — 암몬을 친 그 백성(11:11)이 길갈로 감, 300000 + 30000 = 330000"
+      "count_why": "[추론] 삼상 11:8 「이스라엘 자손이 삼십만이요 유다 사람이 삼만이더라」 — 베섹에서 센 그 백성이 암몬을 치고(11:11 「사울이 백성을 삼 대에 나누고」) 11:15 「모든 백성이 길갈로 가서」, 300000 + 30000 = 330000 · 모두 길갈에 갔음은 [추론]",
+      "costume": {
+        "ko": "수수한 양모 튜닉과 겉옷, 천 머리두건의 남자들 — 손을 들어 크게 기뻐하며 모두 가운데의 키 큰 사람을 향함",
+        "en": "men in plain wool tunics and cloaks with cloth headwraps, rejoicing greatly with raised hands, all facing the tall man in the center",
+        "verse": "옷은 본문 밖 · 저작자 정함(시대 고증 — 철기 초 이스라엘 남자 차림 · 규칙 spec.crowd-era-dress) · 크게 기뻐함은 삼상 11:15 「이스라엘 모든 사람이 거기서 크게 기뻐하니라」 [직접] · 손 든 모습은 본문 밖 · 저작자 정함 · 사울을 향함은 [추론] 11:15 「사울로 왕을 삼고」 · 남자는 [추론] 11:15 「이스라엘 모든 사람이」(영문 KJV 11:15 all the men of Israel) · 11:8(센 사람들) · 볼 대상 「facing」은 기혼 task 616(「watching」만이면 등을 보임)"
+      }
     }
   ],
   "figures": [
     {
       "cast": "samuel",
-      "role": "사무엘 — 백성을 길갈로 부른 선지자",
-      "pose": "사울 곁에 조용히 서서 사울을 본다",
-      "prop": "a plain dark robe",
+      "role": "사무엘 — 백성을 길갈로 부른 노선지자",
+      "pose": "제단 곁에 조용히 서서 두 빈손을 몸 앞에 모으고 가운데의 사울을 바라본다",
+      "prop": "none",
       "facing": "right",
       "region": "samuel",
-      "verse": "11:14",
+      "verse": "11:14-15",
       "expression": {
-        "ko": "엄숙하고 온화한 노선지자의 얼굴",
+        "ko": "엄숙하고 온화한 늙은 얼굴",
         "en": "a solemn, gentle old face",
-        "verse": "삼상 8:1(사무엘이 늙으매) · 12:2(늙어 머리가 희었다) · 표정은 본문 밖 · 저작자 정함"
+        "verse": "삼상 12:2 「나는 늙어 머리가 희었고」(늙음 — 같은 길갈 모임에서 한 말 [추론]) · 표정은 본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "사울 곁에 서서 두 손을 내리고 선다",
-        "en": "standing beside Saul with both hands lowered",
-        "verse": "사무엘의 위치·동작은 본문에 없음 · 본문 밖 · 저작자 정함"
+        "ko": "제단 곁에 조용히 서서 두 빈손을 몸 앞에 모은다",
+        "en": "standing quietly beside the altar, both empty hands clasped in front",
+        "verse": "사무엘이 그 자리에 있음은 [추론] 삼상 11:14 「우리가 길갈로 가서」 · 12:1 「사무엘이 온 이스라엘에게 이르되」 · 11:15 기뻐함의 주어에 사무엘이 없음(조용히 섬) · 제단 곁 자리는 본문 밖 · 저작자 정함(참고 — 길갈에서 화목제를 드리겠다던 삼상 10:8 「내가 네게로 내려가서 번제와 화목제를 드리리니」 · 삼상 7:9 「사무엘이 젖 먹는 어린 양을 취하여 온전한 번제를 여호와께 드리고」) · 모은 손은 본문 밖 · 저작자 정함(두 손 보임 — 사람 판정 562)"
       },
       "costume": {
-        "ko": "긴 어두운 양모 겉옷과 천 띠, 관·지팡이 없음",
-        "en": "a long dark wool robe with a cloth belt, no crown, no staff",
+        "ko": "옅은 양모 속옷 위에 걸친 긴 짙은 갈색 양모 겉옷과 천 띠",
+        "en": "a long dark brown wool mantle over a pale wool tunic, with a cloth belt",
+        "verse": "삼상 15:27 「사울이 그의 겉옷자락을 붙잡으매」 [직접](사무엘의 겉옷 — 뒤의 일) · 이 순간에도 입음은 [추론] · 색·띠는 본문 밖 · 저작자 정함(카드 층 옷 색 brown과 맞춤) · 속옷 위 겉옷 두 겹은 본문 밖 · 저작자 정함(베들레헴 task 594 — 통옷 한 벌은 중세 수도복으로 읽힘)"
+      },
+      "gaze": {
+        "ko": "가운데의 키 큰 사울을 바라봄",
+        "en": "looking toward the tall man in the center",
         "verse": "본문 밖 · 저작자 정함"
       },
-      "gaze": "saul"
+      "screen_facing": "right",
+      "stage_why": "[추론] 삼상 12:2 「보라 나는 늙어 머리가 희었고」 — 11:15에 바로 이어지는 같은 길갈 모임(삼상 12:1 「사무엘이 온 이스라엘에게 이르되」)에서 사무엘이 스스로 늙었다고 말함. 삼상 8:1 「사무엘이 늙으매」 — 왕을 구하기 전에 이미 늙음 → 노년(id samuel · 카드 elder). 70대는 카드 값(본문 밖). 선지자 직무는 삼상 3:20 「사무엘은 여호와의 선지자로 세우심을 입은 줄을 알았더라」."
     },
     {
       "cast": "saul",
-      "role": "사울 — 기뻐하는 백성 가운데 왕으로 세워진 사람",
-      "pose": "백성 가운데 서서 기뻐한다",
-      "prop": "a plain traveling cloak",
+      "role": "사울 — 길갈에서 여호와 앞에 왕으로 세워진 사람",
+      "pose": "가운데 서서 크게 기뻐하며 한 빈손을 제단 쪽으로 펴 내밀고 다른 손을 가슴에 얹는다",
+      "prop": "none",
       "facing": "left",
       "region": "saul",
       "verse": "11:15",
       "expression": {
         "ko": "크게 기뻐하는 환한 얼굴",
-        "en": "a broad, joyful, deeply glad face",
-        "verse": "삼상 11:15"
+        "en": "a broad, glad, joyful smile",
+        "verse": "삼상 11:15 「사울과 이스라엘 모든 사람이 거기서 크게 기뻐하니라」 [직접]"
       },
       "gesture": {
-        "ko": "백성 가운데 서서 한 손을 들어 기뻐하고 다른 팔에 소박한 겉옷을 접어 걸친다",
-        "en": "standing among the rejoicing people, one hand raised in gladness, a plain cloak folded over the other arm",
-        "verse": "삼상 11:15(사울과 모든 사람이 크게 기뻐함) · 손을 든 모습·겉옷·몸 방향은 본문 밖 · 저작자 정함"
+        "ko": "한 빈손을 펴서 제단 쪽으로 내밀고 다른 빈손을 가슴에 얹는다",
+        "en": "one empty hand open and stretched out toward the altar, the other hand laid on his chest",
+        "verse": "삼상 11:15 「크게 기뻐하니라」(기뻐함 [직접]) · 손짓 모양과 제단 쪽 방향은 본문 밖 · 저작자 정함(참고 — 그 무렵 사울이 구원을 여호와께 돌린 말 삼상 11:13 「여호와께서 오늘날 이스라엘 중에 구원을 베푸셨음이니라」) · 가슴에 얹은 손은 먼 손을 몸 앞에 둔 뼈대 reach_chest_left(두 손 보임 — 놉 task 580·584)"
       },
       "costume": {
-        "ko": "관·갑옷 없는 소박한 차림 — 어두운 양모 튜닉, 가죽 띠, 접어 든 여행용 겉옷",
-        "en": "a plain dark wool tunic with a leather belt and a plain traveling cloak, no crown, no armor",
-        "verse": "본문 밖 · 저작자 정함"
+        "ko": "긴 짙은 갈색 양모 튜닉과 수수한 가죽 띠, 어깨에 걸친 짙은 붉은 양모 겉옷",
+        "en": "a long dark brown wool tunic with a plain leather belt and a deep red wool cloak over his shoulders",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색 brown · 카드 colorWords deep red와 맞춤 · 두 겹은 베들레헴 task 594) · 관·갑옷 없음은 [추론] 11:15 「사울로 왕을 삼고」에 관을 씌웠다는 말이 없음"
       },
-      "gaze": "viewer"
+      "gaze": {
+        "ko": "화목제 희생의 기름을 사르는 연기가 오르는 제단 쪽을 바라봄",
+        "en": "looking toward the smoking altar",
+        "verse": "본문 밖 · 저작자 정함(11:15 「여호와 앞에」 — 제단 쪽을 봄)"
+      },
+      "screen_facing": "left",
+      "stage_why": "[직접] 삼상 13:1 「사울이 왕이 될 때에 사십 세라」(개역한글 본문 · 영문 KJV에는 나이 없음) — 삼상 11:15 「사울로 왕을 삼고」가 바로 왕이 된 때라 40대(id saul · CAST.md 즉위~아말렉 구간). [직접] 삼상 10:23 「다른 사람보다 어깨 위나 더 크더라」 — 키 등급 tall(카드 heightRel). 40대 얼굴 세부는 카드 값(본문 밖)."
     }
   ],
   "regions": {
@@ -108,39 +204,60 @@
       1.0,
       1.0
     ],
+    "altar": [
+      0.05,
+      0.55,
+      0.19,
+      0.9
+    ],
     "crowd_back": [
       0.02,
-      0.15,
+      0.54,
       0.98,
-      0.33
-    ],
-    "altar": [
-      0.4,
-      0.75,
-      0.55,
-      0.92
+      0.74
     ],
     "samuel": [
-      0.12,
-      0.37,
-      0.285,
+      0.22,
+      0.547,
+      0.33,
       0.92
     ],
     "saul": [
-      0.6,
-      0.34,
-      0.762,
+      0.44,
+      0.4705,
+      0.56,
       0.92
     ]
   },
-  "_regions_why": "사무엘 세로 0.55, 사울 세로 0.58(어깨 위나 더 큼). altar는 낮은 돌더미(높이 0.17)로 두 인물 사이 바닥에.",
+  "_regions_why": "사람 수 330002(사울·사무엘 + 모든 백성 330000) → 무리 단계 throng(0.30~0.45). 초점 사울(서 있음 · tall 1.205) 구역 높이 0.4495(위 한도 0.45 바로 안 — 얼굴이 가장 크게) · 발 y 0.92 → 지평선 0.92 − 0.93 × 0.4495 ÷ 1.205 = 0.573. 사무엘(average)은 같은 발 y라 0.4495 ÷ 1.205 = 0.373(위끝 0.547) — 어깨 위나 더 큰 사울(삼상 10:23)과 같은 땅에 선 키. 백성 무리는 뒤 들판 발 y 0.74 → 그 자리 어른 화면 키 (0.74 − 0.573) ÷ 0.93 = 0.180 ≤ 구역 높이 0.20(generate.eye-level-perspective) — 앞줄 실루엣 0.18은 사울 0.45의 0.4배라 주인공보다 뚜렷이 작음(기혼 task 599 — 무리가 초점 키의 3/4 이상이면 이름이 한 칸씩 밀림). 제단 altar는 사무엘 왼쪽 발 y 0.90 — 그 자리 어른 화면 키 0.352, 가이드 altar 꼴은 구역 아래 0.4가 돌 덩어리라 구역 높이 0.35 → 돌 덩어리 0.14(어른 무릎~허리 높이의 낮은 제단 — 본문 밖 · 저작자 정함). 사울 구역 가운데 x 0.50(파생 머리 낱말 「In the center:」 — 기혼 task 600: 0.42면 생성기가 가운데를 0.53에 그려 이름이 밀림, 0.45~0.5에 둠) · 사무엘 0.275(「On the left:」) — 두 인물 쪽이 갈려 머리 낱말이 겹치지 않음(베들레헴 task 588). 사울 뼈대 reach_chest_left의 내민 손목은 엉덩이(구역 가운데 + 키 0.06)에서 키의 0.23 왼쪽 — 화면 x 약 0.46, 사무엘 모은 손(약 0.30)과 띠 0.33~0.44가 빔. 제단 왼쪽·사무엘 그 곁·사울 가운데·백성 뒤 들판은 저작자 정함.",
+  "guide": {
+    "depth": {
+      "samuel": 1.0,
+      "saul": 1.0,
+      "altar": 0.9,
+      "crowd_back": 0.6
+    },
+    "shape": {
+      "samuel": "person",
+      "saul": "person",
+      "altar": "altar",
+      "crowd_back": "crowd"
+    },
+    "body": "card",
+    "pose": {
+      "samuel": "listen_clasp_right",
+      "saul": "reach_chest_left"
+    },
+    "split": true,
+    "why": "단계 ① — 옛 판 명세라 가이드가 없어 크기·원근 규칙(generate.figure-scale·height-ratio·eye-level-perspective)이 못 잼이었다. 사울(가운데)은 있는 뼈대 reach_chest_left — 앞 팔을 화면 왼쪽 제단 쪽으로 가슴 높이에 펴 내밀고 먼 손은 가슴께 몸 앞(두 손 보임 — 놉 task 580·584). 사무엘(왼쪽)은 있는 뼈대 listen_clasp_right — 두 손목을 몸 앞 배 높이에 모음(기혼 나단과 같은 뼈대). 카드 인물 둘 모두 뼈대(놉 도엑 task 529 — 뼈대 없는 서 있는 인물은 원뿔). 제단은 가이드 꼴 altar(돌 덩어리 위 제물 덩어리 — 배교 task 546: 문구만이면 제물이 땅바닥에 그려짐) · 연기는 문구가 맡는다. 백성은 뒤 들판 무리 꼴(깊이 0.6 — 앞 인물보다 멀리). 카드 체격 몸 너비(generate.guide-body-build) · 스텝별 나눔(generate.split-control). 무리의 손 든 모습은 가이드 무리 꼴(팔 내림)과 다르다 — 문구가 맡고, 그려지지 않으면 단계 ③ 기록 문항이 잡는다."
+  },
   "stages": [
     {
       "id": "S1",
       "kind": "full",
       "region": "full",
-      "verse": "11:14",
-      "prompt": "a wide dry open field, sparse dry grass, hazy low hills far behind, bright pale sky, no people.",
+      "verse": "11:15",
+      "prompt": "the wide low open plain, dry packed earth with sparse dry grass, distant bare hills, pale sky, no people.",
       "neg": [
         "people",
         "figures",
@@ -167,14 +284,12 @@
       "kind": "region",
       "region": "altar",
       "verse": "11:15",
-      "prompt": "a low pile of rough stones forming a simple sacrificial altar, no people, no fire.",
+      "prompt": "thin smoke rising from the burning fat of the peace offering on a low altar of rough uncut stones, no people.",
       "neg": [
         "people",
         "figures",
         "building",
         "tall structure",
-        "fire",
-        "smoke",
         "church",
         "steeple",
         "cathedral",
@@ -195,12 +310,13 @@
       "kind": "ridge",
       "region": "crowd_back",
       "verse": "11:15",
-      "prompt": "a loose joyful crowd of tiny distant people, scattered groups standing, no weapons.",
+      "prompt": "a great crowd of all the men of Israel far behind, men in plain wool tunics and cloaks with cloth headwraps, rejoicing greatly with raised hands, all facing the tall man in the center.",
       "neg": [
         "empty ground",
         "single figure",
         "close-up",
         "soldiers in rows",
+        "modern clothes",
         "church",
         "steeple",
         "cathedral",
@@ -221,7 +337,7 @@
       "kind": "plate",
       "region": "samuel",
       "verse": "11:14",
-      "prompt": "{cast:samuel}, standing tall, gripping one robe corner, facing right.",
+      "prompt": "{cast:samuel}, standing quietly beside the altar, both empty hands clasped in front, looking toward the tall man in the center, facing right.",
       "neg": [
         "armour",
         "sword",
@@ -243,7 +359,7 @@
       "kind": "plate",
       "region": "saul",
       "verse": "11:15",
-      "prompt": "{cast:saul}, standing tall, holding one plain cloak folded over one arm, facing left.",
+      "prompt": "{cast:saul}, a broad, glad, joyful smile, one empty hand open and stretched out toward the altar, the other hand laid on his chest, facing left.",
       "neg": [
         "armour",
         "sword",
@@ -263,19 +379,15 @@
   ],
   "negatives": [],
   "judge": {
-    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다. 사무엘 모은 손(약 0.30)과 사울 내민 손(약 0.46) 사이가 빈 띠.",
     "figures": [
       "samuel",
       "saul"
     ],
     "gap_bands": [
       [
-        0.285,
-        0.4
-      ],
-      [
-        0.55,
-        0.6
+        0.33,
+        0.44
       ]
     ],
     "crest_x": {

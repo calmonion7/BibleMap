@@ -59,7 +59,7 @@
     },
     "silhouette": {
       "class": "broad",
-      "text": "broad shoulders, thick barrel torso"
+      "text": "broad shoulders, a strong solid chest"
     },
     "headOutline": {
       "class": "bare",
@@ -89,7 +89,7 @@
     "card.heightRel": "[직접] 삼상 10:23 「다른 사람보다 어깨 위나 더 크더라」",
     "card.ageBand": "[추론] 삼상 13:1 「사울이 왕이 될 때에 사십 세라」 — 즉위~아말렉(BC 1050~1045) 40대. 재위 후반(수금·창·놉·엔게디)은 saul-elder, 엔돌·길보아는 saul-old",
     "card.beardVolume": "[저작](역표 동석 인물과 구분용)",
-    "card.silhouette": "[저작](역표 동석 인물과 구분용)",
+    "card.silhouette": "[저작](역표 동석 인물과 구분용) · 2026-11-07 「thick barrel torso」 → 「a strong solid chest」(saul-elder와 같은 문구 — 규칙 derive.no-inflating-build, 사울 장면 다섯이 걸림 · 정본 얼굴 지문 gen_face_canon.look에 체격 문구가 없어 정본 재판정 불요)",
     "card.headOutline": "[저작](역표 동석 인물과 구분용)",
     "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
     "face.faceShape": "[저작](삼상 9:2 「준수한 소년이라」는 용모가 빼어남만 말함, 얼굴형 세부는 저작자 정함)",

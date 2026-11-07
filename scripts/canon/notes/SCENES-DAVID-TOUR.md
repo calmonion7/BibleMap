@@ -22,7 +22,7 @@
 | 12 | `authored-david-adullam-cave` 다윗과 무리 — 아둘람 굴 | 22:2 전반 — 다윗이 굴 어귀에 서서 모여드는 무리를 손을 들어 맞아들이는 순간 | david(a sword) | 아둘람 굴 어귀 큰 바위 · 굴 위 마른 언덕 비탈 | ✅ |
 | 13 | `authored-saul-nob-massacre` 사울과 도엑 — 놉의 심판 | 22:18 전반 — 사울의 명을 받은 도엑이 칼을 뽑아 쥐고 제사장들 쪽으로 돌아서는 순간 | saul(a spear) · doeg(a sword) · ahimelech(the hem of his ephod) | 놉 성막 앞뜰 | ✅ |
 | 14 | `authored-david-en-gedi-saul` 다윗과 사울 — 엔게디 굴 | 24:8 후반 — 다윗이 땅에 엎드려 절하고 벤 옷자락을 들어 보이며, 사울이 돌아보는 순간 | david(a robe corner) · saul(a sword) | 엔게디 황무지 바위 절벽, 들염소 바위 · 양의 우리 곁 굴 어귀 | ✅ |
-| 15 | `authored-samuel-ramah-death` 사무엘의 죽음 — 라마 | 25:1 후반 — 다윗이 애곡하는 무리를 뒤로하고 바란 광야로 내려가는 순간 | david(a sword) | 라마의 낮은 무덤 봉분 · 무덤 뒤 마른 언덕 | ✅ |
+| 15 | `authored-samuel-ramah-death` 사무엘의 죽음 — 라마 | 25:1 전반 — 온 이스라엘 무리가 모여 애곡하며 라마 그의 집에서 사무엘을 장사하는 순간(사람 결정 2026-11-07 — 장례 자리에 다윗이 있었다는 말이 본문에 없음 · 24:22 다윗은 요새 · 다윗이 떠남(25:1 후반)은 순간 밖) | (카드 인물 없음 — 천에 싸인 사무엘의 몸이 상여에 누움) | 라마 사무엘의 집 곁 새로 판 무덤 · 애곡하는 온 이스라엘 무리 | 🔄 |
 | 16 | `authored-david-ziklag-base` 다윗과 아기스 — 시글락 | 27:6 — 아기스가 손을 들어 성읍을 다윗에게 내어 주고, 다윗이 그 성읍을 마주 보고 서는 순간 | achish(a fold of his robe) · david(a sword) | 시글락 성읍 성벽과 성문 · 네게브 마른 벌판 | ✅ |
 | 17 | `authored-saul-endor-medium` 사울과 엔돌의 신접한 여인 | 28:14 후반 — 사울이 사무엘의 영을 알아보고 얼굴을 땅에 대고 절하는 순간 | saul-old(a disguise cloak) · samuel(a robe corner) · endor-medium(a shawl fold) | 엔돌의 어두운 방, 밤 · 희미한 등불 하나 | ✅ |
 | 18 | `authored-saul-gilboa-death` 사울의 마지막 — 길보아 산 | 31:4 전반 — 중상한 사울이 자기 칼을 세워 쥐고 선 채로 병기 든 자에게 명하는 순간 | saul-old(a sword) · saul-armor-bearer(a sword) | 길보아 산 마른 비탈 · 뒤쫓는 블레셋 군대 — 능선 원경 | ✅ |

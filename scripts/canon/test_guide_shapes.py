@@ -61,5 +61,15 @@ class GuideShapes(unittest.TestCase):
         self.assertEqual(img.getpixel((80, 97)), 255)    # 입 아래 기름 줄기
         self.assertEqual(img.getpixel((5, 95)), 0)       # 왼쪽 아래는 빔
 
+    def test_bier_lying_body(self):
+        """bier(task 618 사무엘의 죽음)는 낮은 판 위에 가로로 누운 몸 — 구역 가운데 위쪽은 몸, 위 끝은 빔, 판 아래 가운데는 빔(다리 사이)."""
+        from PIL import Image, ImageDraw
+        img = Image.new("L", (200, 100), 0)
+        mg.bier(ImageDraw.Draw(img), 0, 0, 200, 100, 255)
+        self.assertEqual(img.getpixel((100, 45)), 255)   # 누운 몸
+        self.assertEqual(img.getpixel((100, 66)), 255)   # 나무 판
+        self.assertEqual(img.getpixel((100, 5)), 0)      # 몸 위는 빔
+        self.assertEqual(img.getpixel((100, 90)), 0)     # 판 아래 다리 사이는 빔
+
 if __name__ == "__main__":
     unittest.main()
