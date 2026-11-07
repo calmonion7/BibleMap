@@ -29,13 +29,13 @@
     "verse": "왕상 1:39 「제사장 사독이 성막 가운데서 기름 뿔을 가져다가 솔로몬에게 기름을 부으니」 · 1:38 「제사장 사독과 선지자 나단과 여호야다의 아들 브나야와 그렛 사람과 블렛 사람이」 · 머리는 [추론] 삼상 10:1 「사무엘이 기름병을 취하여 사울의 머리에 붓고」 · 숙임·배치는 본문 밖 · 저작자 정함 · 백성 [추론] 1:39 「모든 백성이 솔로몬 왕 만세를 부르니라」 · 시위대 [추론] 삼하 8:18 · 23:23 · 젊은 [추론] 대상 29:1 「오히려 어리고 연약하고」"
   },
   "relation": {
-    "ko": "금빛 기름이 뿔에서 젊은 왕의 머리카락으로 흘러내린다 · 그 뒤에 다윗 왕의 노새(긴 귀의 갈색 노새, 등이 사람 가슴 높이쯤, 등에 천 안장)가 서 있다 · 오른쪽에 왕의 시위대(짧은 양모 튜닉과 가죽 띠, 팔짱 낀 군사)가 한 줄로 선다",
-    "en": "Golden oil running from the horn onto the young king's hair; behind him stands David's mule, a brown mule with long ears, its back about as high as a man's chest, a cloth saddle on its back; on the right stand the king's guard, soldiers in short wool tunics with leather belts, arms folded across their chests, in a line",
+    "ko": "금빛 기름이 뿔에서 젊은 왕의 머리카락으로 흘러내린다 · 그 뒤에 다윗 왕의 노새(긴 귀의 갈색 노새, 등이 사람 가슴 높이쯤, 등에 천 안장)가 서 있다 · 오른쪽에 왕의 시위대(짧은 양모 튜닉과 가죽 띠, 누구는 팔짱 끼고 누구는 손을 내린 군사)가 한 줄로 선다",
+    "en": "Golden oil running from the horn onto the young king's hair; behind him stands David's mule, a brown mule with long ears, its back about as high as a man's chest, a cloth saddle on its back; on the right stand the king's guard, soldiers in short wool tunics with leather belts, some with arms folded, others with arms at their sides, in a line",
     "verse": "왕상 1:39 「솔로몬에게 기름을 부으니」 · 1:38 「솔로몬을 다윗 왕의 노새에 태우고」 · 「그렛 사람과 블렛 사람이」(시위대는 [추론] 삼하 8:18 · 23:23) · 머리는 [추론] 삼상 10:1 「사울의 머리에 붓고」 · 금빛 기름은 사전 oil L1(본문 밖) — task 604에서 「thick olive oil」로 바꾸자 기름이 덜 보여 흐르는 기름 5 → 3/8, 뿔 꼴(task 606)이 뿔 모양을 잡으니 되돌림(task 607) · 노새 모양은 사전 mule L2 · 노새가 솔로몬 뒤에 섬·시위대 자리·옷은 본문 밖 · 저작자 정함"
   },
   "whole_background": {
     "ko": "성 아래 바위 골짜기의 기혼 샘 — 왼쪽에 바위 틈에서 맑은 물이 흘러 작은 돌 웅덩이에 고임, 다져진 흙 바닥, 뒤로 솟은 민둥 바위 비탈, 엷은 하늘 · 뒤 비탈에 모든 백성이 모여 지켜봄",
-    "en": "the spring of Gihon in a rocky valley, clear water running from a cleft in the rock into a small stone pool on the left, packed-earth ground, bare rocky slopes rising behind, pale sky; on the slope behind, all the people, men and women in plain wool robes and head cloths, watching",
+    "en": "the spring of Gihon in a rocky valley, clear water running from a cleft in the rock into a small stone pool on the left, packed-earth ground, rocky slopes behind, pale sky; on the slope behind, all the people, men and women in plain wool robes and head cloths, watching",
     "verse": "왕상 1:38 「기혼으로 가서」 · 1:38 「내려가서」·1:40 「올라와서」(성 아래 [직접]) · 샘은 [추론] 대하 32:30 「기혼의 윗 샘물을 막아」 · 백성이 있음은 [추론] 1:39 「모든 백성이 솔로몬 왕 만세를 부르니라」 · 1:40 「모든 백성이 왕을 따라 올라와서」 · 바위 골짜기·물 모양·웅덩이·비탈·하늘·백성 자리와 옷은 본문 밖 · 저작자 정함(시대 고증 — 철기 예루살렘 기드론 골짜기)"
   },
   "verse_elements": [
@@ -82,8 +82,8 @@
       "verse": "1:39",
       "quote": "성막 가운데서 기름 뿔을 가져다가",
       "kind": "지물",
-      "ko": "사독의 기름 뿔(사전 oil-horn L2) · 성막에서 가져옴은 앞의 일",
-      "en": "a curved, ridged ram's horn of pale bone color, shorter than a man's forearm, filled with oil",
+      "ko": "사독의 기름 뿔(사전 oil-horn L2 — 매끈한 굽은 소뿔, task 613) · 성막에서 가져옴은 앞의 일",
+      "en": "a smooth, gently curved cow horn of pale bone color, tapering from a wide open mouth to a closed narrow tip, shorter than a man's forearm, filled with oil",
       "field": "figures[0].gesture"
     },
     {
@@ -146,9 +146,9 @@
       "count": 10,
       "count_why": "[저작](1:38 「그렛 사람과 블렛 사람이」 — 수 없음, 이 자리에 보이는 시위대 한 줄로 어림)",
       "costume": {
-        "ko": "짧은 양모 튜닉과 가죽 띠, 팔짱 낀 군사",
-        "en": "soldiers in short wool tunics with leather belts, arms folded across their chests",
-        "verse": "본문 밖 · 저작자 정함(시대 고증 — 철기 이스라엘 군사 차림 · 규칙 spec.crowd-era-dress) · 팔짱은 본문 밖 · 저작자 정함(task 609 — 창(본문 밖)을 한 손·두 손으로 쥐게 해도 내린 팔이 허리띠에 붙어 팔 길이 틀림 이유가 시위대, 602·608 · 두 번 남는 본문 밖 지물은 뺌)"
+        "ko": "짧은 양모 튜닉과 가죽 띠의 군사 — 누구는 팔짱, 누구는 손을 내림",
+        "en": "soldiers in short wool tunics with leather belts, some with arms folded, others with arms at their sides",
+        "verse": "본문 밖 · 저작자 정함(시대 고증 — 철기 이스라엘 군사 차림 · 규칙 spec.crowd-era-dress) · 섞인 자세는 본문 밖 · 저작자 정함(사람 612 「군사들은 누구는 팔짱 누구는 손을 내리는것이 자연스러워보임」)"
       }
     },
     {
@@ -179,9 +179,9 @@
         "verse": "왕상 1:39(기름 부음) · 표정 본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "젊은 왕 앞에 서서 두 손으로 쥔 기름 뿔(골이 진 옅은 뼈빛 숫양 뿔, 팔뚝보다 짧음)의 좁은 끝을 위로, 열린 입을 아래로 젊은 왕의 숙인 머리에 기울인다",
-        "en": "standing before the young king, holding in both hands a curved, ridged ram's horn of pale bone color, shorter than a man's forearm, filled with oil, its narrow tip up and its open mouth tipped down onto the young king's bowed head",
-        "verse": "왕상 1:39 「제사장 사독이 성막 가운데서 기름 뿔을 가져다가 솔로몬에게 기름을 부으니」 · 머리 위는 [추론] 삼상 10:1 「사울의 머리에 붓고」 · 뿔 모양은 사전 oil-horn L2 · 두 손·선 자세는 본문 밖 · 저작자 정함(베들레헴 A2 확정 597과 같은 뼈대 pour_over) · (task 604 「one hand near each end」는 뿔을 가로로 들게 해 머리 위 5 → 2/8 — 되돌림 task 605)"
+        "ko": "젊은 왕 앞에 서서 두 손으로 쥔 기름 뿔(옅은 뼈빛의 매끈하게 조금 굽은 소뿔, 넓게 열린 입에서 막힌 뾰족한 끝으로 가늘어짐, 팔뚝보다 짧음)의 열린 입을 젊은 왕의 숙인 머리에 기울인다",
+        "en": "holding in both hands a smooth, gently curved cow horn of pale bone color, tapering from a wide open mouth to a closed narrow tip, shorter than a man's forearm, filled with oil, its open mouth tipped down onto the young king's bowed head",
+        "verse": "왕상 1:39 「제사장 사독이 성막 가운데서 기름 뿔을 가져다가 솔로몬에게 기름을 부으니」 · 머리 위는 [추론] 삼상 10:1 「사울의 머리에 붓고」 · 뿔 모양은 사전 oil-horn L2 · 두 손·선 자세는 본문 밖 · 저작자 정함(베들레헴 A2 확정 597과 같은 뼈대 pour_over) · (task 604 「one hand near each end」는 뿔을 가로로 들게 해 머리 위 5 → 2/8 — 되돌림 task 605) · 뿔 모양은 task 613 사전 L2 고침(사람 612 「삼각뿔형태의 굽어진형상」 — 611 s101 U자 관)"
       },
       "costume": {
         "ko": "좁은 소매의 긴 흰 세마포 옷(제사장 속옷)과 짠 띠",
@@ -211,7 +211,7 @@
       },
       "gesture": {
         "ko": "제사장 앞에 무릎 꿇고 고개를 숙여 기름을 받으며 두 손바닥을 가슴 앞에 맞댄다",
-        "en": "kneeling before the priest with his head bowed to receive the oil, palms pressed together in front of his chest",
+        "en": "kneeling with his head bowed to receive the oil, palms pressed together before his chest",
         "verse": "왕상 1:39 「솔로몬에게 기름을 부으니」 · 노새에서 내림·무릎 꿇음·숙인 고개·모은 손은 본문 밖 · 저작자 정함(task 602 — 선 채 허리를 숙이면 같은 키의 붓는 이 어깨 높이에 머리가 남아 뿔이 머리 옆에 세워짐, 601 8시드 머리 위 0/8) · 맞댄 손바닥은 task 608(배 앞 모은 손은 옆모습에서 한 손만 — 603·607 두 손 보임)"
       },
       "costume": {
@@ -353,7 +353,7 @@
       "kind": "plate",
       "region": "zadok",
       "verse": "1:39",
-      "prompt": "{cast:zadok}, standing, holding in both hands a curved, ridged ram's horn of pale bone color, shorter than a man's forearm, filled with oil, its narrow tip up and its open mouth tipped down onto the bowed head, facing right.",
+      "prompt": "{cast:zadok}, standing, holding in both hands a smooth, gently curved cow horn of pale bone color, tapering from a wide open mouth to a closed narrow tip, shorter than a man's forearm, filled with oil, its open mouth tipped down onto the bowed head, facing right.",
       "neg": [
         "armour",
         "sword",
@@ -402,7 +402,7 @@
       "kind": "region",
       "region": "guards",
       "verse": "1:38",
-      "prompt": "the king's guard, soldiers in short wool tunics with leather belts, arms folded across their chests, standing in a line.",
+      "prompt": "the king's guard, soldiers in short wool tunics with leather belts, some with arms folded, others with arms at their sides, standing in a line.",
       "neg": [
         "modern clothes",
         "crown",
@@ -447,12 +447,12 @@
   "approved": {
     "final": {
       "path": "night-pick",
-      "seed": 42,
+      "seed": 101,
       "kind": "base",
-      "image": "samples/gihon-step23-t11/composition-A-s42.png",
+      "image": "samples/gihon-step23-t13/composition-A-s101.png",
       "by": "user",
       "on": "2026-11-07",
-      "spec_hash": "57d00c9ba943",
+      "spec_hash": "39cacdcdbd23",
       "prompt_hash": null,
       "rules_version": "883eafdd3f9d",
       "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
