@@ -450,36 +450,16 @@
   },
   "approved": {
     "final": {
-      "path": "local-edit",
-      "seed": 42,
-      "image": "samples/local-edit/approved-authored-samuel-bethlehem-david-anointing.png",
-      "steps": [
-        {
-          "id": "O3-k2",
-          "arm": "O3",
-          "seed": 2,
-          "crop": [
-            310,
-            160,
-            240
-          ],
-          "box": [
-            365,
-            210,
-            470,
-            330
-          ],
-          "prompt": "Golden oil pours out of the dark open hole of the horn's wide mouth and falls from that opening straight down onto the boy's curly hair. Keep the old man's hand and the horn, the boy's face and curly hair, the background, the lighting and the same soft pencil and colored-pencil illustration style.",
-          "base_src": "plain-words r2 s42"
-        }
-      ],
+      "path": "night-pick",
+      "seed": 202,
+      "kind": "base",
+      "image": "samples/bethlehem-step23-t9/composition-A-s202.png",
       "by": "user",
-      "on": "2026-10-21",
-      "spec_hash": "687a0409c727",
-      "rules_version": "14fb4150e572",
-      "prompt_hash": "8422733c1da7",
-      "prompt_matches_spec": false,
-      "spec_hash_why": "생성 때 프롬프트(plain-words r2 s42 + 국소 편집)가 지금 명세의 파생과 다름 — 생성 때 명세 기록 없음, 지금 명세의 해시"
+      "on": "2026-11-07",
+      "spec_hash": "eafc64ab892c",
+      "prompt_hash": null,
+      "rules_version": "883eafdd3f9d",
+      "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
     }
   }
 }

@@ -120,3 +120,10 @@
 ## 단계 ④ 사람 판정 (task 597 · 2번째)
 
 화면 https://claude.ai/artifact/SXUSAB9WcXks41nU9Ufnp7 (8시드 전부 · 기계 통과 s202 · 360px·1280px 가로 넘침 0). 답 대기 — `python3 batch/rule_ab.py --fixed 597 record '판정 task 597\n<json>'`.
+- 사람 답(8시드): s202
+
+## 사람 판정(단계 ④, task 597) — 확정
+
+- 사람 답: **s202 확정**(메모 없음). 명세 approved → `samples/bethlehem-step23-t9/composition-A-s202.png`. 사람 판정 2번(593 「다시시도」 · 597 확정), 상한 5 안.
+- 확정까지 쓴 수단: 새 뼈대 pour_over(어깨 높이 손목 — 머리 높이면 거인)·bow_clasp_left · 사전 oil-horn L2(숫양 뿔·뼈빛 — L1·옛 L2는 나팔) · 가이드 무리 실루엣 손목 0.51(generate.pose-arm-length 넓힘) · 집·성벽 뺌(부정 프롬프트 없음 — 지붕 십자가) · 이새 지팡이 뺌 · 형들 「grown … taller than the boy」.
+- 관문(의식·큰 무리): A2는 새 규칙 0(고침 1 · 넓힘 1) · 사람 판정 2 · 회귀 0 → 1/2. 같은 유형 둘째 장면이 관문을 채우면 묶음.
