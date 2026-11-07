@@ -443,5 +443,19 @@
         0.98
       ]
     }
+  },
+  "approved": {
+    "final": {
+      "path": "night-pick",
+      "seed": 42,
+      "kind": "base",
+      "image": "samples/gihon-step23-t11/composition-A-s42.png",
+      "by": "user",
+      "on": "2026-11-07",
+      "spec_hash": "57d00c9ba943",
+      "prompt_hash": null,
+      "rules_version": "883eafdd3f9d",
+      "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
+    }
   }
 }

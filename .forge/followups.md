@@ -202,3 +202,6 @@
 
 <!-- followup: fu-0b5ed8eb3471 | source: scene-nob | task: 567 | date: 2026-11-03 | status: done -->
 - 놉 아히멜렉(authored-david-nob-priests) — 사람 판정 5/5 상한에서 멈춤(534·553·557·562·567). 지금 가장 가까운 그림 = t19 s9(`samples/nob-step23-t19e` 아래 끝 손질) + 손 국소 손질(`batch/nob_hands.py`, `samples/nob-hands`) — 사람 567 「손이 너무 짧잖아」: 제사장·다윗 내린 손이 엉덩이 높이(문항 t.arm-length로 잡힘). 남은 수단: 손질 자리를 아래팔까지 넓혀 팔 길이를 크기 기준표로 맞춰 다시 그리거나(국소 손질도 크기 규칙을 거치게), 생성으로 돌아가 t.hands-visible·t.arm-length를 거르기에 넣고 시드를 더 돌림. 세마포는 사람 결정으로 기록 문항(task 557). 기록: scripts/canon/notes/NOB-STEP23.md 끝.
+
+<!-- followup: fu-75dbc94c31da | source: scene-gihon | task: 610 | date: 2026-11-07 | status: open -->
+- 기혼(authored-solomon-gihon-anointing) s42 확정(사람 610) 뒤 남은 세부 둘 — 사람 메모 「병사 왼쪽사람 왼손이 그려지다 말긴했지 그리고 제사장사독 왼손이 뭉뜽그려져 있음」. ① 맨 왼쪽 회색 병사 왼손이 허리띠 옆에서 손 없이 끝남(기계는 「팔 길이 — 손이 허리띠 높이」로 2/3 잡음) ② 사독 왼손이 솔로몬 머리 위에서 머리카락과 한 덩어리(뼈대 pour_low 두 번째 손목을 머리 곁에 둔 탓 · 기계 「두 손 보임」은 맞음을 줌 — 손 또렷함 크롭 문항 없음). 손질은 몸 부위 국소 손질 금지(사람 570)라 다시 생성으로만 — 묶음 진행 때 손 또렷함 크롭 문항(t.hands-clear-*)을 공통으로 넣고, pour_low 두 번째 손목을 머리에서 떼어 뿔 아래 몸쪽으로.
