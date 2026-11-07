@@ -418,15 +418,16 @@
       "on": "2026-09-05"
     },
     "final": {
-      "attempt": "a005",
-      "seed": 11,
-      "by": "cli",
-      "on": "2026-09-05",
-      "spec_hash": "054872e6245e",
-      "rules_version": "14fb4150e572",
+      "path": "night-pick",
+      "seed": 202,
+      "kind": "base",
+      "image": "samples/gilgal-coronation-step23-t1/composition-A-s202.png",
+      "by": "user",
+      "on": "2026-11-08",
+      "spec_hash": "97fda628ce89",
       "prompt_hash": null,
-      "prompt_hash_why": "단계 사다리 경로 — 단계별 판 문구로 그려 한 장 프롬프트가 없다",
-      "spec_hash_why": "생성 때 명세 기록 없음 — 2026-09-05 승인 뒤 지금 명세의 해시"
+      "rules_version": "13bb6c21b5ae",
+      "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
     }
   }
 }
