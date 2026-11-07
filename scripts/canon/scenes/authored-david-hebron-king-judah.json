@@ -25,8 +25,8 @@
     "verse": "삼하 2:4 「유다 사람들이 와서 거기서 다윗에게 기름을 부어 유다 족속의 왕을 삼았더라」 · 대표 장로는 [추론] 삼하 5:1 「이스라엘 모든 지파가 헤브론에 이르러」 → 삼하 5:3 「저희가 다윗에게 기름을 부어」 · 삼상 30:26 「그 친구 유다 장로들에게」 · 한 사람이라는 수는 본문 밖 · 저작자 정함(그릇 하나) · 2:7은 주어가 족속 전체임을 확인할 뿐 · 머리는 [추론] 삼상 10:1 「사울의 머리에 붓고」 · 뿔·무릎 꿇음·배치는 본문 밖 · 저작자 정함"
   },
   "relation": {
-    "ko": "왼쪽에 늙은 회색 수염의 유다 장로(물들이지 않은 긴 양모 옷 위에 줄무늬 양모 겉옷, 머리천)가 서서 두 손으로 쥔 기름 뿔(옅은 뼈빛의 매끈하게 조금 굽은 소뿔, 넓게 열린 입에서 막힌 뾰족한 끝으로 가늘어짐, 팔뚝보다 짧고 기름이 든)의 열린 입을 무릎 꿇은 다윗의 숙인 머리에 기울인다 · 금빛 기름이 뿔에서 다윗의 머리카락으로 흘러내린다 · 오른쪽에 유다 사람들(수수한 양모 튜닉과 겉옷, 머리천을 두른 남자들)이 팔을 몸 옆에 내리고 공손히 서서 무릎 꿇은 다윗을 향해 느슨한 줄로 선다",
-    "en": "On the left stands an old grey-bearded elder of Judah in a long undyed wool robe under a striped wool cloak, with a cloth head wrap, holding in both hands a smooth, gently curved cow horn of pale bone color, tapering from a wide open mouth to a closed narrow tip, shorter than a man's forearm, filled with oil, its open mouth tipped down onto the kneeling man's bowed head; golden oil running from the horn onto the kneeling man's hair; on the right stand the men of Judah, men in plain wool tunics and cloaks with cloth head wraps, standing respectfully with arms at their sides, facing the kneeling man, in loose rows",
+    "ko": "왼쪽에 늙은 회색 수염의 유다 장로(물들이지 않은 긴 양모 옷 위에 줄무늬 양모 겉옷, 머리천)가 서서 두 손으로 쥔 기름 뿔(옅은 뼈빛의 매끈하게 조금 굽은 소뿔, 넓은 밑동에서 열린 뾰족한 끝으로 가늘어짐, 팔뚝보다 짧고 기름이 든)의 뾰족한 끝을 무릎 꿇은 다윗의 숙인 머리에 기울인다 · 금빛 기름이 뿔에서 다윗의 머리카락으로 흘러내린다 · 오른쪽에 유다 사람들(수수한 양모 튜닉과 겉옷, 머리천을 두른 남자들)이 팔을 몸 옆에 내리고 공손히 서서 무릎 꿇은 다윗을 향해 느슨한 줄로 선다",
+    "en": "On the left stands an old grey-bearded elder of Judah in a long undyed wool robe under a striped wool cloak, with a cloth head wrap, holding in both hands a smooth, gently curved cow horn of pale bone color, tapering from its wide end to a narrow open tip, shorter than a man's forearm, filled with oil, its wide end held up in his hands and its narrow pointed tip tipped down over the kneeling man's bowed head; golden oil running from the horn onto the kneeling man's hair; on the right stand the men of Judah, men in plain wool tunics and cloaks with cloth head wraps, standing respectfully with arms at their sides, facing the kneeling man, in loose rows",
     "verse": "삼하 2:4 「유다 사람들이 와서 거기서 다윗에게 기름을 부어」 · 대표 장로는 [추론] 삼하 5:1 「이스라엘 모든 지파가 헤브론에 이르러」 → 삼하 5:3 「저희가 다윗에게 기름을 부어」 · 삼상 30:26 「그 친구 유다 장로들에게」 · 한 사람이라는 수는 본문 밖 · 저작자 정함(그릇 하나) · 2:7은 주어가 족속 전체임을 확인할 뿐 · 늙음·회색 수염·옷은 본문 밖 · 저작자 정함 · 뿔은 본문 밖 · 저작자 정함(용례 삼상 16:13 「사무엘이 기름 뿔을 취하여」 · 왕상 1:39 · 모양은 사전 oil-horn L2) · 머리는 [추론] 삼상 10:1 「사울의 머리에 붓고」 · 금빛 기름은 사전 oil L1(본문 밖) · 무리 자리·옷·자세는 본문 밖 · 저작자 정함(왕을 세우는 의식이라 공손히 선 자세 — 기혼 사람 614 팔짱 지적) · 한 사람을 무리에서 떼어 뼈대로 세움은 저작(배교 task 549 — 무리 꼴로는 손동작이 안 그려짐)"
   },
   "whole_background": {
@@ -176,7 +176,7 @@
       0.578
     ]
   },
-  "_regions_why": "사람 수 41(다윗 1 + 유다 사람들 40 — 붓는 장로는 카드 없는 한 사람이라 셈 밖) → 무리 단계 large(0.35~0.50). 초점 다윗(average) 구역 높이 0.48 · 발 y 0.92 → 지평선 0.474(무릎 꿇은 뼈대 kneel_bow_left는 상자를 서 있을 때 키로 두고 상자 안에서 꿇은 키로 그림 — 기혼 task 602). 유다 장로(카드 없음 · 보통 키 어른)도 같은 발 y·같은 높이 0.48. 유다 사람들은 오른쪽 뒤 발 y 0.74 → 어른 화면 키 0.286 ≤ 구역 높이 0.30(generate.eye-level-perspective) — 기혼 task 599: 무리 앞줄 실루엣이 주인공만큼 크면(발 0.80 · 키 0.36) 생성기가 인물 절을 그 자리로 옮겨 이름이 한 칸씩 밀림. 다윗 구역 가운데 x 0.48(파생 머리 낱말 「In the center:」 — 기혼 task 600: 0.42면 생성기가 화면 가운데 약 0.53에 그려 붓는 이가 받는 이 뼈대 자리로 감) · 장로 0.39(왼쪽 — 장로는 relation 「On the left stands …」 절이 맡음). 장로 뼈대 pour_low(두 손목 가슴 높이 · 둘째 손목은 뿔 가는 끝 — 기혼 확정 s101과 같은 뼈대) 손목이 다윗 숙인 머리 위에 오도록 다윗 엉덩이를 장로 엉덩이에서 장로 키의 약 0.36 오른쪽. 뿔 구역 horn [0.462,0.50,0.505,0.578]: 장로 pour_low 손목(x 0.484 · y 0.546)에서 다윗 머리 꼭대기(x 0.484 · y 0.574)까지 — 넓은 입이 머리 바로 위(기혼과 같은 기하). 장로 왼쪽·다윗 가운데·유다 사람들 오른쪽 뒤는 저작자 정함(본문에 자리 서술 없음).",
+  "_regions_why": "사람 수 41(다윗 1 + 유다 사람들 40 — 붓는 장로는 카드 없는 한 사람이라 셈 밖) → 무리 단계 large(0.35~0.50). 초점 다윗(average) 구역 높이 0.48 · 발 y 0.92 → 지평선 0.474(무릎 꿇은 뼈대 kneel_bow_left는 상자를 서 있을 때 키로 두고 상자 안에서 꿇은 키로 그림 — 기혼 task 602). 유다 장로(카드 없음 · 보통 키 어른)도 같은 발 y·같은 높이 0.48. 유다 사람들은 오른쪽 뒤 발 y 0.74 → 어른 화면 키 0.286 ≤ 구역 높이 0.30(generate.eye-level-perspective) — 기혼 task 599: 무리 앞줄 실루엣이 주인공만큼 크면(발 0.80 · 키 0.36) 생성기가 인물 절을 그 자리로 옮겨 이름이 한 칸씩 밀림. 다윗 구역 가운데 x 0.48(파생 머리 낱말 「In the center:」 — 기혼 task 600: 0.42면 생성기가 화면 가운데 약 0.53에 그려 붓는 이가 받는 이 뼈대 자리로 감) · 장로 0.39(왼쪽 — 장로는 relation 「On the left stands …」 절이 맡음). 장로 뼈대 pour_low(두 손목 가슴 높이 · 둘째 손목은 뿔 가는 끝 — 기혼 확정 s101과 같은 뼈대) 손목이 다윗 숙인 머리 위에 오도록 다윗 엉덩이를 장로 엉덩이에서 장로 키의 약 0.36 오른쪽. 뿔 구역 horn [0.462,0.50,0.505,0.578]: 장로 pour_low 손목(x 0.484 · y 0.546)에서 다윗 머리 꼭대기(x 0.484 · y 0.574)까지 — 뾰족한 끝이 머리 바로 위(task 631 — 넓은 입과 뾰족한 끝 자리를 바꿈, 사람 판정 620)(기혼과 같은 기하). 장로 왼쪽·다윗 가운데·유다 사람들 오른쪽 뒤는 저작자 정함(본문에 자리 서술 없음).",
   "guide": {
     "depth": {
       "elder": 1.0,
@@ -227,7 +227,7 @@
       "kind": "region",
       "region": "elder",
       "verse": "2:4",
-      "prompt": "an old grey-bearded elder of Judah in a long undyed wool robe under a striped wool cloak, with a cloth head wrap, standing, holding in both hands a smooth, gently curved cow horn of pale bone color, tapering from a wide open mouth to a closed narrow tip, shorter than a man's forearm, filled with oil, its open mouth tipped down onto the bowed head, facing right.",
+      "prompt": "an old grey-bearded elder of Judah in a long undyed wool robe under a striped wool cloak, with a cloth head wrap, standing, holding in both hands a smooth, gently curved cow horn of pale bone color, tapering from its wide end to a narrow open tip, shorter than a man's forearm, filled with oil, its wide end held up in his hands and its narrow pointed tip tipped down over the bowed head, facing right.",
       "neg": [
         "armour",
         "sword",

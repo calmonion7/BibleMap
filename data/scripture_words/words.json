@@ -27,14 +27,14 @@
           "en": "an animal horn full of oil"
         },
         "L2": {
-          "ko": "팔뚝보다 짧은, 옅은 뼈빛의 매끈하게 조금 굽은 소뿔이에요. 넓게 열린 입에서 막힌 뾰족한 끝으로 가늘어지고, 속에 기름을 가득 담았어요.",
-          "en": "A smooth, gently curved cow horn of pale bone color, tapering from a wide open mouth to a closed narrow tip, shorter than a man's forearm, filled with oil."
+          "ko": "팔뚝보다 짧은, 옅은 뼈빛의 매끈하게 조금 굽은 소뿔이에요. 넓은 밑동에서 열린 뾰족한 끝으로 가늘어지고, 속에 기름을 가득 담았어요.",
+          "en": "A smooth, gently curved cow horn of pale bone color, tapering from its wide end to a narrow open tip, shorter than a man's forearm, filled with oil."
         },
         "L3": {
-          "ko": "속이 빈 짐승 뿔로, 한 손으로 쥘 만큼 팔뚝보다 짧아요. 굵은 쪽 입구로 머리에 기름을 부어요.",
-          "en": "A real hollow animal horn, shorter than a forearm, held in one hand. The wide open end is tipped to pour oil onto a head."
+          "ko": "속이 빈 짐승 뿔로, 한 손으로 쥘 만큼 팔뚝보다 짧아요. 넓은 밑동을 쥐고 뾰족한 끝으로 머리에 기름을 부어요.",
+          "en": "A real hollow animal horn, shorter than a forearm, held by its wide end. Oil pours out of the narrow tip onto a head."
         },
-        "grounds": "[추론] 삼상 16:1 「뿔에 채워」는 속이 빈 그릇임을, 16:13 「부었더니」는 쏟는 쓰임을 말한다. 본문이 뿔이라 적었으므로 병·장대가 아닌 짐승 뿔로 본다. [저작](본문에 없음) 소·양의 뿔, 굽은 모양, 팔뚝보다 짧은 크기는 양각을 부는 용례(왕상 1:39)와 짐승 뿔의 일반 모양에서 정한 그림 사정이다. 숫양 뿔·골·옅은 뼈빛은 짐승 뿔의 일반 모양에서 정한 그림 사정(task 597 — 「from a cow or ram … with the wide end open」은 「golden oil」과 겹쳐 황동 나팔·깔때기로 그려짐, 베들레헴 594~596 8시드 뿔 7·3·4/8). (task 613 — 「curved, ridged ram's horn」은 기혼 611 s101에서 양 끝이 열린 U자 관으로 그려짐, 사람 612 「기름뿔이 삼각뿔형태의 굽어진형상이 아닌가 ? 이상함」 → 매끈한 소뿔 · 넓은 입에서 막힌 뾰족한 끝으로 가늘어짐.)",
+        "grounds": "[추론] 삼상 16:1 「뿔에 채워」는 속이 빈 그릇임을, 16:13 「부었더니」는 쏟는 쓰임을 말한다. 본문이 뿔이라 적었으므로 병·장대가 아닌 짐승 뿔로 본다. [저작](본문에 없음) 소·양의 뿔, 굽은 모양, 팔뚝보다 짧은 크기는 양각을 부는 용례(왕상 1:39)와 짐승 뿔의 일반 모양에서 정한 그림 사정이다. 숫양 뿔·골·옅은 뼈빛은 짐승 뿔의 일반 모양에서 정한 그림 사정(task 597 — 「from a cow or ram … with the wide end open」은 「golden oil」과 겹쳐 황동 나팔·깔때기로 그려짐, 베들레헴 594~596 8시드 뿔 7·3·4/8). (task 613 — 「curved, ridged ram's horn」은 기혼 611 s101에서 양 끝이 열린 U자 관으로 그려짐, 사람 612 「기름뿔이 삼각뿔형태의 굽어진형상이 아닌가 ? 이상함」 → 매끈한 소뿔 · 넓은 입에서 막힌 뾰족한 끝으로 가늘어짐.) (task 631 — 넓은 입으로 붓는 꼴은 사람 판정 620 「뿔 위아래 위치 바뀜」 = 넓은 입과 뾰족한 끝의 자리가 바뀜(사람 풀이 2026-11-07) → 넓은 밑동을 쥐고 열린 뾰족한 끝으로 부음.)",
         "size": {
           "ref": "man-height",
           "ratio": 0.15,
