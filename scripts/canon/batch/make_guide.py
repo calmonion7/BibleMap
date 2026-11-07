@@ -294,6 +294,22 @@ def altar(d, x0, y0, x1, y1, v):
     d.ellipse([x0 + w * 0.32, top - h * 0.1, x1 - w * 0.32, top + h * 0.03], fill=v)
 
 
+def horn_pour(d, x0, y0, x1, y1, v):
+    """task 606 — 머리 위로 기울여 붓는 짐승 뿔과 기름 줄기: 구역 위 왼쪽 가는 끝 → 아래 오른쪽 넓은 입(구역 높이 0.7)으로 굽으며 굵어지는 몸통 ·
+    입에서 구역 아래 끝(받는 이 머리 꼭대기)까지 가는 줄기. 꼴 없이 문구만이면 기혼 다섯 판(601~605) 동안 뿔이 붓는 이 얼굴 높이에 세워지거나
+    가로로 들려 입이 머리 옆·얼굴 앞(머리 위 0~5/8) — 배교 altar(task 546)처럼 자리를 기하로 준다."""
+    w, h = x1 - x0, y1 - y0
+    P0, C, P1 = (x0, y0), (x0 + w * 0.75, y0), (x0 + w * 0.8, y0 + h * 0.7)
+    n = 12
+    for i in range(n + 1):
+        t = i / n
+        x = (1 - t) ** 2 * P0[0] + 2 * (1 - t) * t * C[0] + t * t * P1[0]
+        y = (1 - t) ** 2 * P0[1] + 2 * (1 - t) * t * C[1] + t * t * P1[1]
+        r = max(1.0, w * (0.03 + 0.17 * t))
+        d.ellipse([x - r, y - r, x + r, y + r], fill=v)
+    d.line([P1, (P1[0], y1)], fill=v, width=max(2, round(w * 0.06)))
+
+
 def ephod_sword(d, x0, y0, x1, y1, v):
     """task 560 — 걸이에 걸린 에봇과 그 뒤에 세운 칼 꾸러미(놉 21:9 「보자기에 싸여 에봇 뒤에 있으니」): 가운데 긴 막대(칼 — 깊이 한 단 뒤)가
     구역 위끝(자루)부터 바닥 가까이까지, 그 앞을 조끼 덩어리(구역 0.3~0.65 높이)가 가리고, 걸이 다리 둘. 문구만이면 칼이 에봇 옆에 따로 서 16장 중 1장."""
@@ -405,6 +421,19 @@ POSES["pour_over"] = {**POSES["point_chest"], 0: (0.06, 0.075), 3: (0.18, 0.22),
 POSES["bow_clasp_left"] = {**POSES["listen_clasp"], 0: (-0.075, 0.10), 14: (-0.07, 0.085), 16: (-0.02, 0.075)}
 # task 588 — 곧게 서서 화면 왼쪽을 지켜보며 앞 손으로 세운 지팡이 위끝 가까이를 가슴 높이에 쥠(사전 walking-staff L3 「gripped in one hand near the top」) · task 592: 다른 손도 그 아래 지팡이를 쥠(배 앞 빈손은 겉옷에 묻힘 — 591 s42 두 손 보임 1/5) · task 595: 몸 앞에 세운 지팡이 머리에 두 손을 나란히 얹음(두 손목 가슴 높이 몸 앞 — 594 8시드 먼 손이 겉옷에 묻힘 4장).
 POSES["staff_hold_left"] = {**POSES["listen_clasp"], 3: (-0.12, 0.30), 4: (-0.08, 0.30), 6: (0.04, 0.32), 7: (-0.06, 0.32)}
+# task 598 — A2-2 기혼 왕상 1:39 「솔로몬에게 기름을 부으니」: 같은 키(average)의 어른이 붓는 이 쪽(화면 왼쪽)으로 상체를 숙여 머리를 낮춤 —
+# bow_clasp_left(소년, 머리만 숙임)는 붓는 이와 키가 같으면 머리 꼭대기가 붓는 손목(pour_over 0.10)보다 높다. 목·어깨를 앞으로, 머리 가운데 y 0.15(꼭대기 약 0.085) · 두 손 몸 앞.
+POSES["bow_deep_left"] = {**POSES["listen_clasp"], 0: (-0.11, 0.17), 1: (-0.04, 0.17), 2: (-0.09, 0.20), 5: (0.01, 0.20), 14: (-0.10, 0.15), 16: (-0.05, 0.13), 3: (-0.18, 0.30), 4: (-0.11, 0.38), 7: (-0.07, 0.39)}
+# task 598 — 곧게 서서 화면 오른쪽을 지켜보며 두 손목을 몸 앞 배 높이에 모음: listen_clasp를 x로 뒤집음(speak_open_left 선례).
+POSES["listen_clasp_right"] = {k: (-x, y) for k, (x, y) in POSES["listen_clasp"].items()}
+# task 602 — A2-2 기혼: 같은 키(average)의 어른이 붓는 이 쪽(화면 왼쪽)을 보며 무릎 꿇고 상체를 세워 고개를 숙임 · 두 손 몸 앞 —
+# bow_deep_left(선 채 숙임)는 머리가 붓는 이 어깨 높이에 남아 뿔이 머리 옆에 세워짐(601 8시드 머리 위 0/8). 상자 = 서 있을 때 키(크기 규칙 그대로):
+# task 608: 두 손바닥을 가슴 앞에 맞댐(손목 0.50 — 배 앞 모은 손은 옆모습에서 한 손만 보임, 603·607 두 손 보임) · 무릎 땅(0.97) · 넓적다리 세움(엉덩이 0.77 = 땅 − 넓적다리 body.knee − body.crotch 0.22 꼴) · 정강이 뒤(화면 오른쪽)로 · 목 0.40 · 머리 가운데 약 0.345(베들레헴 소년 머리 높이 꼴).
+POSES["kneel_bow_left"] = {0: (-0.07, 0.36), 1: (-0.02, 0.40), 2: (-0.07, 0.425), 3: (-0.18, 0.55), 4: (-0.11, 0.50), 5: (0.03, 0.425), 6: (0.05, 0.56),
+                           7: (-0.10, 0.51), 8: (-0.03, 0.77), 9: (-0.05, 0.97), 10: (0.22, 0.98), 11: (0.03, 0.77), 12: (0.02, 0.97), 13: (0.27, 0.98),
+                           14: (-0.06, 0.34), 16: (-0.02, 0.33)}
+# task 602 — 무릎 꿇은 이의 머리에 붓기: pour_over(손목 어깨 높이 0.10)에서 두 손목을 가슴 높이로 — 뿔이 꿇은 이 머리(가운데 약 0.345) 위에서 기울게.
+POSES["pour_low"] = {**POSES["pour_over"], 3: (0.17, 0.30), 4: (0.31, 0.22), 6: (0.10, 0.34), 7: (0.25, 0.26)}
 
 # task 574 — 뼈대 팔 길이를 크기 기준표로(규칙 generate.pose-arm-length · 사람 판정 놉 567 「손이 너무 짧잖아 비율 규칙이 적용안되었나?」):
 # 손으로 적은 뼈대 팔(어깨→팔꿈치→손목)이 키의 0.19~0.28로 기준(위팔 0.186 + 아래팔 0.154 = 0.34)보다 짧았다.
@@ -501,7 +530,7 @@ def draw_pose(img, box, name, hip_dx=0.06):
 
 
 AIR_SHAPES = {"spear"}   # 허공을 나는 물체 꼴(recheck.AIR_SHAPES와 같음)
-SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "kneel_bow_reach": kneel_bow_reach, "seated": seated, "sit": sit, "crowd": crowd, "boat": boat, "bank": bank, "river": river, "altar": altar, "ephod_sword": ephod_sword}
+SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "kneel_bow_reach": kneel_bow_reach, "seated": seated, "sit": sit, "crowd": crowd, "boat": boat, "bank": bank, "river": river, "altar": altar, "ephod_sword": ephod_sword, "horn_pour": horn_pour}
 
 
 def make_pose_only(spec, backdrop=False):

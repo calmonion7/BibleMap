@@ -10,43 +10,253 @@
       "1:40": "모든 백성이 왕을 따라 올라와서 피리를 불며 크게 즐거워하므로 땅이 저희 소리로 인하여 갈라질 듯하니"
     }
   },
+  "situation": {
+    "text": "다윗 왕이 제사장 사독과 선지자 나단과 여호야다의 아들 브나야를 불러, 솔로몬을 자기 노새에 태우고 기혼으로 인도하여 내려가 거기서 사독과 나단이 그에게 기름을 부어 왕을 삼으라 명하였다(1:32-34) — 앞의 일. 이에 사독과 나단과 브나야와 그렛 사람과 블렛 사람이 내려가서 솔로몬을 다윗 왕의 노새에 태우고 인도하여 기혼으로 갔다(1:38). 제사장 사독이 성막 가운데서 기름 뿔을 가져다가 솔로몬에게 기름을 부었다(1:39 전반 — 고정한 순간). 이에 양각을 불고 모든 백성이 솔로몬 왕 만세를 불렀고(1:39 후반), 모든 백성이 왕을 따라 올라와서 피리를 불며 크게 즐거워하였다(1:40) — 뒤의 일이라 그리지 않는다. 그래서 그 자리에는 사독, 솔로몬, 나단, 다윗 왕의 노새, 그렛 사람과 블렛 사람(브나야가 거느림 — 시위대는 [추론] 삼하 8:18 「여호야다의 아들 브나야는 그렛 사람과 블렛 사람을 관할하고」 · 삼하 23:23 「다윗이 저를 세워 시위대 장관을 삼았더라」), 그리고 모든 백성이 있다 — 사독·나단·브나야·그렛 사람·블렛 사람·노새가 기혼에 있음은 1:38 [직접], 백성이 기름 부을 때 이미 거기 있었음은 바로 이어 「모든 백성이 … 만세를 부르니라」(1:39)와 1:40 「모든 백성이 왕을 따라 올라와서」(기혼에 있었음)에서 [추론]. 나단은 1:34에서 사독과 함께 기름 붓도록 명을 받았고 1:45 요나단의 보고도 「제사장 사독과 선지자 나단이 기혼에서 기름을 부어」라 하지만, 순간 절(1:39)은 붓는 이를 사독 한 사람으로 적으므로 뿔을 든 이는 사독뿐이고 나단은 곁에 선다(보고 절은 결과로만 — 순간 동작에 보태지 않음). 솔로몬이 노새에서 내려 섰는지는 본문에 없다 — 노새 곁에 서서 몸을 숙여 기름을 받는 모습은 본문 밖 · 저작자 정함. 지리: 기혼은 성 아래다(1:38 「내려가서」 [직접] · 1:40 「올라와서」) — 샘은 [추론] 대하 32:30 「히스기야가 또 기혼의 윗 샘물을 막아」, 골짜기·바위·샘물 모양·비탈은 본문 밖 · 저작자 정함. 화면에서는 사독이 왼쪽에서 가운데의 솔로몬에게 붓고, 나단은 사독 뒤 왼쪽, 노새는 솔로몬 뒤, 시위대는 오른쪽, 백성은 뒤 비탈에 선다(좌우는 저작자 정함). 여호와는 형상 없이 그리지 않는다(ADR 261025-120741).",
+    "verse": "왕상 1:38-40",
+    "same_time": {
+      "1:38": "순간 바로 앞 — 사독·나단·브나야·그렛 사람·블렛 사람이 솔로몬을 다윗 왕의 노새에 태우고 기혼으로 감 · 그 사람들과 노새가 순간에 기혼에 있음",
+      "1:39": "고정한 순간(전반) — 사독이 기름 뿔로 솔로몬에게 기름을 부음 · 「성막 가운데서 … 가져다가」는 앞의 일 · 후반 양각·만세는 「이에」 뒤의 일이나 백성이 그 자리에 있음은 [추론]",
+      "1:40": "뒤의 일 — 백성이 왕을 따라 올라오며 피리를 불고 즐거워함"
+    }
+  },
   "moment": {
     "verse": "1:39",
-    "why": "기름 붓는 자는 왕상 1:39 「제사장 사독이 ... 기름을 부으니」에 따라 사독이다(나단은 1:38에서 곁에 내려간 자일 뿐 붓는 행위자가 아니다). 사독이 기름 뿔을 들어 솔로몬에게 붓는 순간으로 고정한다. 노새 행차(1:38)·나팔·환호(1:39-40)는 순간 밖이라 배제한다."
+    "why": "제사장 사독이 기름 뿔로 솔로몬에게 기름을 붓는 순간(1:39 전반)을 고정한다 — 노새 행차(1:38)는 순간 바로 앞, 양각·만세(1:39 「이에」 뒤)와 백성이 올라감(1:40)은 뒤다. 붓는 이는 순간 절의 말 그대로 사독 한 사람이다(「제사장 사독이 … 솔로몬에게 기름을 부으니」) — 1:45 요나단의 보고 「사독과 … 나단이 … 기름을 부어」는 결과로만 쓰고, 나단은 뿔 없이 곁에 선다(놉 task 558 — 보고 절로 순간 동작을 보태지 않음)."
   },
+  "meaning": {
+    "ko": "기혼 샘에서 제사장 사독이 기름 뿔로 몸을 숙인 젊은 솔로몬의 머리에 기름을 붓고, 선지자 나단과 왕의 시위대와 백성이 지켜본다",
+    "en": "At the spring of Gihon the priest Zadok pours oil from a horn on the head of the young Solomon, who bows to receive it, while the prophet Nathan, the king's guard and the people look on",
+    "verse": "왕상 1:39 「제사장 사독이 성막 가운데서 기름 뿔을 가져다가 솔로몬에게 기름을 부으니」 · 1:38 「제사장 사독과 선지자 나단과 여호야다의 아들 브나야와 그렛 사람과 블렛 사람이」 · 머리는 [추론] 삼상 10:1 「사무엘이 기름병을 취하여 사울의 머리에 붓고」 · 숙임·배치는 본문 밖 · 저작자 정함 · 백성 [추론] 1:39 「모든 백성이 솔로몬 왕 만세를 부르니라」 · 시위대 [추론] 삼하 8:18 · 23:23 · 젊은 [추론] 대상 29:1 「오히려 어리고 연약하고」"
+  },
+  "relation": {
+    "ko": "금빛 기름이 뿔에서 젊은 왕의 머리카락으로 흘러내린다 · 그 뒤에 다윗 왕의 노새(긴 귀의 갈색 노새, 등이 사람 가슴 높이쯤, 등에 천 안장)가 서 있다 · 오른쪽에 왕의 시위대(짧은 양모 튜닉과 가죽 띠, 팔짱 낀 군사)가 한 줄로 선다",
+    "en": "Golden oil running from the horn onto the young king's hair; behind him stands David's mule, a brown mule with long ears, its back about as high as a man's chest, a cloth saddle on its back; on the right stand the king's guard, soldiers in short wool tunics with leather belts, arms folded across their chests, in a line",
+    "verse": "왕상 1:39 「솔로몬에게 기름을 부으니」 · 1:38 「솔로몬을 다윗 왕의 노새에 태우고」 · 「그렛 사람과 블렛 사람이」(시위대는 [추론] 삼하 8:18 · 23:23) · 머리는 [추론] 삼상 10:1 「사울의 머리에 붓고」 · 금빛 기름은 사전 oil L1(본문 밖) — task 604에서 「thick olive oil」로 바꾸자 기름이 덜 보여 흐르는 기름 5 → 3/8, 뿔 꼴(task 606)이 뿔 모양을 잡으니 되돌림(task 607) · 노새 모양은 사전 mule L2 · 노새가 솔로몬 뒤에 섬·시위대 자리·옷은 본문 밖 · 저작자 정함"
+  },
+  "whole_background": {
+    "ko": "성 아래 바위 골짜기의 기혼 샘 — 왼쪽에 바위 틈에서 맑은 물이 흘러 작은 돌 웅덩이에 고임, 다져진 흙 바닥, 뒤로 솟은 민둥 바위 비탈, 엷은 하늘 · 뒤 비탈에 모든 백성이 모여 지켜봄",
+    "en": "the spring of Gihon in a rocky valley, clear water running from a cleft in the rock into a small stone pool on the left, packed-earth ground, bare rocky slopes rising behind, pale sky; on the slope behind, all the people, men and women in plain wool robes and head cloths, watching",
+    "verse": "왕상 1:38 「기혼으로 가서」 · 1:38 「내려가서」·1:40 「올라와서」(성 아래 [직접]) · 샘은 [추론] 대하 32:30 「기혼의 윗 샘물을 막아」 · 백성이 있음은 [추론] 1:39 「모든 백성이 솔로몬 왕 만세를 부르니라」 · 1:40 「모든 백성이 왕을 따라 올라와서」 · 바위 골짜기·물 모양·웅덩이·비탈·하늘·백성 자리와 옷은 본문 밖 · 저작자 정함(시대 고증 — 철기 예루살렘 기드론 골짜기)"
+  },
+  "verse_elements": [
+    {
+      "verse": "1:38",
+      "quote": "제사장 사독과 선지자 나단과",
+      "kind": "인물",
+      "ko": "제사장 사독과 선지자 나단이 기혼에 있음(나단은 물러서서 지켜봄)",
+      "en": "standing a few steps back",
+      "field": "figures[2].gesture"
+    },
+    {
+      "verse": "1:38",
+      "quote": "여호야다의 아들 브나야와 그렛 사람과 블렛 사람이",
+      "kind": "무리",
+      "ko": "브나야가 거느린 그렛 사람과 블렛 사람 — 왕의 시위대([추론] 삼하 8:18 · 23:23) · 브나야는 무리 안에(CAST.md 이름만 나오는 인물은 무리로)",
+      "en": "the king's guard",
+      "field": "relation"
+    },
+    {
+      "verse": "1:38",
+      "quote": "솔로몬을 다윗 왕의 노새에 태우고",
+      "kind": "지물",
+      "ko": "다윗 왕의 노새(사전 mule L2) — 솔로몬 뒤에 섬(자리는 본문 밖)",
+      "en": "a brown mule with long ears, its back about as high as a man's chest, a cloth saddle on its back",
+      "field": "relation"
+    },
+    {
+      "verse": "1:38",
+      "quote": "내려가서",
+      "kind": "장소",
+      "ko": "성에서 내려간 곳(1:38 「내려가서」 [직접] · 1:40 「올라와서」)의 기혼 샘(샘 [추론] 대하 32:30) — 골짜기·바위는 본문 밖 · 저작자 정함",
+      "en": "the spring of Gihon in a rocky valley",
+      "field": "whole_background"
+    },
+    {
+      "verse": "1:38",
+      "quote": "인도하여 기혼으로 가서",
+      "kind": "행동",
+      "ko": "노새에 태워 기혼으로 인도함",
+      "out": "순간 바로 앞의 일 — 결과(노새와 사람들이 기혼에 있음)는 다른 요소가 실음"
+    },
+    {
+      "verse": "1:39",
+      "quote": "성막 가운데서 기름 뿔을 가져다가",
+      "kind": "지물",
+      "ko": "사독의 기름 뿔(사전 oil-horn L2) · 성막에서 가져옴은 앞의 일",
+      "en": "a curved, ridged ram's horn of pale bone color, shorter than a man's forearm, filled with oil",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "1:39",
+      "quote": "제사장 사독이",
+      "kind": "인물",
+      "ko": "제사장 사독 — 세마포 속옷은 [추론](출 39:27 · 삼상 22:18) · 띠는 [추론](출 28:40) · 흰색·모양은 본문 밖",
+      "en": "a long white linen robe with narrow sleeves and a woven sash",
+      "field": "figures[0].costume"
+    },
+    {
+      "verse": "1:39",
+      "quote": "솔로몬에게 기름을 부으니",
+      "kind": "행동",
+      "ko": "뿔을 솔로몬의 숙인 머리 위로 기울여 금빛 기름이 머리카락으로 흘러내림(머리는 [추론] 삼상 10:1 · 금빛은 사전 oil L1 — 본문 밖)",
+      "en": "golden oil running from the horn onto the young king's hair",
+      "field": "relation"
+    },
+    {
+      "verse": "1:39",
+      "quote": "이에 양각을 불고",
+      "kind": "행동",
+      "ko": "양각을 붊",
+      "out": "「이에」 — 기름 부은 뒤의 일"
+    },
+    {
+      "verse": "1:39",
+      "quote": "모든 백성이 솔로몬 왕 만세를 부르니라",
+      "kind": "무리",
+      "ko": "모든 백성 — 기름 부을 때 이미 그 자리에 있음([추론]) · 만세는 뒤의 일",
+      "en": "all the people",
+      "field": "whole_background"
+    },
+    {
+      "verse": "1:40",
+      "quote": "모든 백성이 왕을 따라 올라와서 피리를 불며 크게 즐거워하므로",
+      "kind": "행동",
+      "ko": "백성이 왕을 따라 올라오며 피리를 불고 즐거워함",
+      "out": "순간 뒤의 일"
+    },
+    {
+      "verse": "1:40",
+      "quote": "땅이 저희 소리로 인하여 갈라질 듯하니",
+      "kind": "행동",
+      "ko": "땅이 소리로 갈라질 듯함",
+      "out": "순간 뒤의 일(소리)"
+    }
+  ],
   "background": [
     {
-      "what": "기혼의 샘가",
-      "verse": "1:38"
+      "what": "성 아래 골짜기의 기혼 샘",
+      "verse": "1:38(기혼 · 「내려가서」 성 아래 [직접]) · 샘 [추론] 대하 32:30 · 바위 골짜기·물·비탈 본문 밖 · 저작자 정함"
     }
   ],
   "crowds": [
     {
-      "what": "모든 백성 — 뒤편에 모여 따른다",
-      "verse": "1:40",
-      "region": "crest_back",
-      "count": 1000,
-      "count_why": "[저작](「모든 백성이 왕을 따라 올라와서」 1:40 — 수 없음, 모든 백성이라 군중 1000 이상으로 어림)"
+      "what": "브나야가 거느린 그렛 사람과 블렛 사람 — 왕의 시위대가 오른쪽에 한 줄로 섬",
+      "verse": "1:38 「여호야다의 아들 브나야와 그렛 사람과 블렛 사람이」 · 시위대는 [추론] 삼하 8:18 · 삼하 23:23 「다윗이 저를 세워 시위대 장관을 삼았더라」 · 자리·옷 본문 밖 · 저작자 정함",
+      "region": "guards",
+      "count": 10,
+      "count_why": "[저작](1:38 「그렛 사람과 블렛 사람이」 — 수 없음, 이 자리에 보이는 시위대 한 줄로 어림)",
+      "costume": {
+        "ko": "짧은 양모 튜닉과 가죽 띠, 팔짱 낀 군사",
+        "en": "soldiers in short wool tunics with leather belts, arms folded across their chests",
+        "verse": "본문 밖 · 저작자 정함(시대 고증 — 철기 이스라엘 군사 차림 · 규칙 spec.crowd-era-dress) · 팔짱은 본문 밖 · 저작자 정함(task 609 — 창(본문 밖)을 한 손·두 손으로 쥐게 해도 내린 팔이 허리띠에 붙어 팔 길이 틀림 이유가 시위대, 602·608 · 두 번 남는 본문 밖 지물은 뺌)"
+      }
+    },
+    {
+      "what": "모든 백성 — 뒤 비탈에 모여 지켜봄",
+      "verse": "1:39 「모든 백성이 솔로몬 왕 만세를 부르니라」(있음 [추론]) · 1:40 「모든 백성이 왕을 따라 올라와서」 · 비탈 자리 본문 밖 · 저작자 정함",
+      "region": "people",
+      "count": 200,
+      "count_why": "[저작](1:39-40 「모든 백성이」 — 수 없음. 성 아래 샘가 골짜기 비탈에 그려지는 무리로 어림 — 큰 무리 단계)",
+      "costume": {
+        "ko": "수수한 양모 옷과 머리천의 남녀",
+        "en": "men and women in plain wool robes and head cloths",
+        "verse": "본문 밖 · 저작자 정함(시대 고증 — 철기 이스라엘 백성 차림 · 규칙 spec.crowd-era-dress)"
+      }
     }
   ],
   "figures": [
     {
       "cast": "zadok",
-      "role": "제사장 사독(기름 붓는 자)",
-      "pose": "무릎 꿇은 솔로몬 앞에 서서 기름 뿔을 기울인다",
+      "role": "제사장 사독 — 기름 붓는 자",
+      "pose": "무릎 꿇은 솔로몬 앞에 서서 두 손으로 쥔 기름 뿔을 숙인 머리 위로 기울인다",
       "prop": "a horn of oil",
-      "facing": "left",
+      "facing": "right",
       "region": "zadok",
-      "verse": "1:39"
+      "verse": "1:39",
+      "expression": {
+        "ko": "엄숙한 늙은 얼굴",
+        "en": "a solemn old face",
+        "verse": "왕상 1:39(기름 부음) · 표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "젊은 왕 앞에 서서 두 손으로 쥔 기름 뿔(골이 진 옅은 뼈빛 숫양 뿔, 팔뚝보다 짧음)의 좁은 끝을 위로, 열린 입을 아래로 젊은 왕의 숙인 머리에 기울인다",
+        "en": "standing before the young king, holding in both hands a curved, ridged ram's horn of pale bone color, shorter than a man's forearm, filled with oil, its narrow tip up and its open mouth tipped down onto the young king's bowed head",
+        "verse": "왕상 1:39 「제사장 사독이 성막 가운데서 기름 뿔을 가져다가 솔로몬에게 기름을 부으니」 · 머리 위는 [추론] 삼상 10:1 「사울의 머리에 붓고」 · 뿔 모양은 사전 oil-horn L2 · 두 손·선 자세는 본문 밖 · 저작자 정함(베들레헴 A2 확정 597과 같은 뼈대 pour_over) · (task 604 「one hand near each end」는 뿔을 가로로 들게 해 머리 위 5 → 2/8 — 되돌림 task 605)"
+      },
+      "costume": {
+        "ko": "좁은 소매의 긴 흰 세마포 옷(제사장 속옷)과 짠 띠",
+        "en": "a long white linen robe with narrow sleeves and a woven sash",
+        "verse": "[추론] 출 39:27 「그들이 또 직조한 가는 베로 아론과 그 아들들을 위하여 속옷을 짓고」 · 삼상 22:18 「세마포 에봇 입은 자」(제사장 세마포) · 띠는 [추론] 출 28:40 「그들을 위하여 띠를 만들며」 · 흰색·모양은 본문 밖 · 저작자 정함(카드 층 옷 색 white와 맞춤) · 좁은 소매는 본문 밖 · 저작자 정함(task 605 — 넓은 소매가 뿔 안 든 손을 삼킴, 603·604 두 손 보임 2·5/8)"
+      },
+      "gaze": {
+        "ko": "젊은 왕의 숙인 머리를 내려다봄",
+        "en": "looking down at his head",
+        "verse": "본문 밖 · 저작자 정함(붓는 자리를 봄)"
+      },
+      "screen_facing": "right",
+      "stage_why": "[추론] 대상 12:28 「또 젊은 용사 사독과」 — 헤브론 때 이미 젊은 용사. 삼하 5:4 「사십 년을 다스렸으되」의 끝인 왕상 1:1 「다윗 왕이 나이 많아 늙으니」 때라 그 사이 삼십여 년(삼하 5:5 「예루살렘에서 삼십삼 년 동안」) → 노년(id zadok · 카드 elder). 60대는 카드 값(본문 밖)."
     },
     {
       "cast": "solomon",
-      "role": "솔로몬",
-      "pose": "무릎을 꿇고 로브 자락을 쥔 채 고개를 숙인다",
-      "prop": "a robe corner",
-      "facing": "right",
+      "role": "솔로몬 — 기름 받는 젊은 왕",
+      "pose": "사독 앞에 무릎 꿇고 상체를 세워 고개를 숙이고 두 손바닥을 가슴 앞에 맞댄다",
+      "prop": "none",
+      "facing": "left",
       "region": "solomon",
-      "verse": "1:39"
+      "verse": "1:39",
+      "expression": {
+        "ko": "젊은 얼굴",
+        "en": "a young face",
+        "verse": "표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "제사장 앞에 무릎 꿇고 고개를 숙여 기름을 받으며 두 손바닥을 가슴 앞에 맞댄다",
+        "en": "kneeling before the priest with his head bowed to receive the oil, palms pressed together in front of his chest",
+        "verse": "왕상 1:39 「솔로몬에게 기름을 부으니」 · 노새에서 내림·무릎 꿇음·숙인 고개·모은 손은 본문 밖 · 저작자 정함(task 602 — 선 채 허리를 숙이면 같은 키의 붓는 이 어깨 높이에 머리가 남아 뿔이 머리 옆에 세워짐, 601 8시드 머리 위 0/8) · 맞댄 손바닥은 task 608(배 앞 모은 손은 옆모습에서 한 손만 — 603·607 두 손 보임)"
+      },
+      "costume": {
+        "ko": "짙은 청색 고운 세마포 긴 옷과 수 놓은 띠",
+        "en": "a deep blue fine linen robe with an embroidered belt",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색 blue와 맞춤) · 관은 쓰지 않음(관을 씌웠다는 말이 본문에 없음)"
+      },
+      "gaze": {
+        "ko": "눈을 내리깔고 땅을 내려다봄",
+        "en": "eyes lowered to the ground",
+        "verse": "본문 밖 · 저작자 정함"
+      },
+      "screen_facing": "left",
+      "stage_why": "[추론] 대상 29:1 「내 아들 솔로몬이 홀로 하나님의 택하신 바 되었으나 오히려 어리고 연약하고」 · 왕상 3:7 「종은 작은 아이라」 — 즉위 무렵 어림. 왕상 11:42 「솔로몬이 예루살렘에서 온 이스라엘을 다스린 날 수가 사십 년이라」의 시작이라 청년 왕(id solomon · CAST.md 왕상 9:10 「이십 년」 이전 구간). 20대는 카드 값(본문 밖)."
+    },
+    {
+      "cast": "nathan",
+      "role": "선지자 나단 — 곁에 선 자",
+      "pose": "사독 곁 왼쪽에 서서 두 빈손을 몸 앞에 모은 채 지켜본다 — 뿔은 들지 않음",
+      "prop": "none",
+      "facing": "right",
+      "region": "nathan",
+      "verse": "1:38",
+      "expression": {
+        "ko": "진지한 얼굴",
+        "en": "a grave face",
+        "verse": "표정 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "몇 걸음 물러서서 두 빈손을 몸 앞에 모은다",
+        "en": "standing a few steps back, both empty hands clasped in front",
+        "verse": "왕상 1:38 「제사장 사독과 선지자 나단과」(그 자리에 있음 [직접]) · 1:39 붓는 이는 사독(나단은 뿔 없음) · 물러선 자리·모은 손은 본문 밖 · 저작자 정함(두 손 보임 — 사람 판정 562) · task 604(「standing beside the priest」면 나단도 뿔을 듦 — 603 8시드 3장)"
+      },
+      "costume": {
+        "ko": "옅은 양모 속옷 위에 걸친 긴 짙은 갈색 양모 겉옷과 천 띠",
+        "en": "a long dark brown wool mantle over a pale wool tunic, with a cloth belt",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색 brown과 맞춤 · 두 겹은 베들레헴 task 594 — 통옷 한 벌은 중세 수도복으로 읽힘)"
+      },
+      "gaze": {
+        "ko": "젊은 왕을 바라봄",
+        "en": "looking toward the young king",
+        "verse": "본문 밖 · 저작자 정함"
+      },
+      "screen_facing": "right",
+      "stage_why": "[추론] 삼하 7:2 「왕이 선지자 나단에게 이르되」 — 다윗이 예루살렘 궁에 거한 때에 이미 선지자. 왕상 1:38은 다윗이 늙은 때(왕상 1:1 「다윗 왕이 나이 많아 늙으니」)라 그 사이 수십 년 → 중년 이후(id nathan · 카드 middle). 50대는 카드 값(본문 밖)."
     }
   ],
   "regions": {
@@ -56,66 +266,79 @@
       1.0,
       1.0
     ],
-    "spring": [
-      0.3,
-      0.7,
-      0.7,
-      0.85
-    ],
-    "crest_back": [
-      0.1,
-      0.28,
-      0.9,
-      0.46
+    "nathan": [
+      0.12,
+      0.45,
+      0.23,
+      0.86
     ],
     "zadok": [
-      0.58,
-      0.4,
-      0.76,
-      0.9
+      0.32,
+      0.44,
+      0.46,
+      0.92
     ],
     "solomon": [
+      0.43,
+      0.44,
+      0.53,
+      0.92
+    ],
+    "guards": [
+      0.66,
+      0.44,
+      0.98,
+      0.74
+    ],
+    "people": [
+      0.45,
       0.3,
-      0.55,
-      0.46,
-      0.9
+      1.0,
+      0.45
+    ],
+    "horn": [
+      0.462,
+      0.5,
+      0.505,
+      0.578
     ]
   },
-  "_regions_why": "사독은 선 자세 세로 0.50, 솔로몬은 무릎 꿇은 자세 세로 0.35(0.35-0.45 범위). 사독이 솔로몬을 향해 기울이도록 마주 배치.",
+  "_regions_why": "사람 수 213(사독·솔로몬·나단 + 시위대 10 + 백성 200) → 무리 단계 large(0.35~0.50). 초점 사독(서 있음 · average) 구역 높이 0.48 · 발 y 0.92 → 지평선 0.474. 솔로몬(average)은 같은 발 y라 0.48. 나단은 사독에게서 몇 걸음 물러선 왼쪽 뒤 발 y 0.86 → 0.415(task 604 — 곁에 서면 뿔을 함께 듦). 시위대는 오른쪽 뒤 발 y 0.74 → 어른 화면 키 0.286 ≤ 구역 높이 0.30(generate.eye-level-perspective) — task 599: 발 0.80(키 0.36)이면 시위대 앞줄 실루엣이 주인공만큼 커서 「In the center: 솔로몬」이 그 자리로 가고 인물 이름이 한 칸씩 밀림(598 s42: 나단 둘·사독이 솔로몬 자리·솔로몬 셋). 백성은 오른쪽 뒤 비탈 [0.45~1.0] — 발 y 0.45가 지평선 위라 평지 원근 셈 밖(둑·언덕 꼴과 같음) · 화면 폭 전체면 가이드 무리가 울타리 한 줄로 비탈을 가림(task 598 가이드 눈 확인). 사독 뼈대 pour_over(베들레헴 A2 확정과 같은 손목 — 키의 0.10)가 솔로몬 숙인 머리 위에 오도록 솔로몬 엉덩이를 사독 엉덩이에서 사독 키의 0.40 오른쪽 · 솔로몬 구역 가운데 x 0.48(파생 머리 낱말 「In the center:」 — 0.4 미만이면 사독과 같은 「On the left, in front:」) · 사독 0.39(「On the left」). task 600: 솔로몬 0.42면 생성기가 「In the center」를 화면 가운데(약 0.53)에 그려 사독이 솔로몬 뼈대 자리로 가고 사독 뼈대 자리에 흰 옷 제사장이 하나 더 생김(599 s42 붓는 이 하나 1/5) — 낱말과 가이드 자리를 맞춤. 사독 왼쪽·솔로몬 가운데·나단 사독 뒤 왼쪽·시위대 오른쪽·백성 뒤 비탈은 저작자 정함. task 602: 솔로몬 무릎 꿇음 — 상자는 서 있을 때 키(0.48) 그대로, 뼈대 kneel_bow_left가 상자 안에서 무릎 꿇은 키(약 0.75)로 그림. 머리가 사독 가슴께라 사독 손목(pour_low 0.22)이 머리 위 · 솔로몬 엉덩이를 사독 엉덩이에서 사독 키의 약 0.36 오른쪽. 뿔 구역 horn [0.462,0.50,0.505,0.578]: 사독 pour_low 손목(x 0.484 · y 0.546)에서 솔로몬 머리 꼭대기(x 0.484 · y 0.574)까지 — 넓은 입이 머리 바로 위.",
+  "guide": {
+    "depth": {
+      "nathan": 0.9,
+      "zadok": 1.0,
+      "solomon": 1.0,
+      "guards": 0.8,
+      "horn": 1.0
+    },
+    "shape": {
+      "nathan": "person",
+      "zadok": "person",
+      "solomon": "person",
+      "guards": "crowd",
+      "horn": "horn_pour"
+    },
+    "body": "card",
+    "pose": {
+      "zadok": "pour_low",
+      "solomon": "kneel_bow_left",
+      "nathan": "listen_clasp_right"
+    },
+    "split": true,
+    "why": "task 598 단계 ① — 옛 판 명세라 가이드가 없어 크기·원근 규칙이 못 잼이었다. 사독은 베들레헴 A2 확정(597)과 같은 뼈대 pour_over(앞 팔 손목이 받는 이 머리 바로 위, 어깨 높이 — 머리 높이면 거인 590) — 1:39 「솔로몬에게 기름을 부으니」(generate.pose-hold). 솔로몬은 사독과 키가 같아(average) 머리만 숙이는 bow_clasp_left로는 머리 꼭대기가 붓는 손목보다 높다 — 새 뼈대 bow_deep_left(허리를 숙여 머리 꼭대기 키의 약 0.085). 나단은 새 뼈대 listen_clasp_right(두 손 몸 앞 — 두 손 보임). 카드 인물 셋 모두 뼈대(뼈대 없는 서 있는 인물은 원뿔, 놉 task 529). 시위대는 오른쪽 무리 꼴 · 백성은 뒤 비탈 무리 꼴(깊이 0.3). 노새·샘은 문구가 맡는다(맞는 가이드 꼴 없음). 카드 체격 몸 너비(generate.guide-body-build) · 스텝별 나눔(generate.split-control). (task 602: 솔로몬 bow_deep_left → 새 뼈대 kneel_bow_left(무릎 꿇고 상체 세움 · 머리 가운데 키의 약 0.345 — 베들레헴 소년 머리 높이 꼴) · 사독 pour_over → 새 뼈대 pour_low(두 손목 가슴 높이). 601 8시드 머리 위 0/8 — 같은 키 선 채 숙임은 뿔이 머리 옆에 세워짐. 백성은 가이드 무리 꼴을 빼고 문구만 — 규칙적인 실루엣 줄이 「복제해 줄 세운 듯」(601 가드 2/8). 원근 검사는 시위대 무리 꼴이 맡음.) (task 606: 구역 horn — 가이드 꼴 horn_pour(굽은 뿔 · 가는 끝 위 왼쪽 · 넓은 입 아래 오른쪽 · 입에서 솔로몬 머리 꼭대기까지 기름 줄기). 문구만으로는 다섯 판(601~605) 동안 뿔이 사독 얼굴 높이에 세워지거나 가로로 들려 머리 위 0~5/8 — 배교 altar(task 546)와 같은 수단.)"
+  },
   "stages": [
     {
       "id": "S1",
       "kind": "full",
       "region": "full",
-      "verse": "본문 밖 · 저작자 정함",
-      "prompt": "a wide open area beside a natural spring, pale stony ground, sparse dry grass, empty pale sky, no people.",
-      "neg": [
-        "people",
-        "figures",
-        "throne room",
-        "temple",
-        "indoor",
-        "church",
-        "steeple",
-        "cathedral",
-        "chapel",
-        "cross",
-        "bell tower",
-        "spire"
-      ]
-    },
-    {
-      "id": "S1b",
-      "kind": "region",
-      "region": "spring",
       "verse": "1:38",
-      "prompt": "a small natural spring with clear water pooling among pale stones, no people.",
+      "prompt": "a spring in a rocky valley, clear water running from a cleft in the rock into a small stone pool, packed-earth ground, bare rocky slopes rising behind, pale sky, no people.",
       "neg": [
         "people",
         "figures",
-        "fountain",
-        "waterfall",
-        "boat",
+        "modern buildings",
         "church",
         "steeple",
         "cathedral",
@@ -127,66 +350,89 @@
     },
     {
       "id": "S2",
-      "kind": "ridge",
-      "region": "crest_back",
-      "verse": "1:40",
-      "prompt": "many tiny distant people gathered and celebrating, small silhouettes, tiny far away crowd.",
+      "kind": "plate",
+      "region": "zadok",
+      "verse": "1:39",
+      "prompt": "{cast:zadok}, standing, holding in both hands a curved, ridged ram's horn of pale bone color, shorter than a man's forearm, filled with oil, its narrow tip up and its open mouth tipped down onto the bowed head, facing right.",
       "neg": [
-        "empty ground",
-        "single figure",
-        "close-up",
-        "soldiers with spears",
-        "church",
-        "steeple",
-        "cathedral",
-        "chapel",
-        "cross",
-        "bell tower",
-        "spire"
+        "armour",
+        "sword",
+        "spear",
+        "crown",
+        "modern clothes",
+        "two horns",
+        "sitting",
+        "staff"
       ]
     },
     {
       "id": "S3",
       "kind": "plate",
-      "region": "zadok",
+      "region": "solomon",
       "verse": "1:39",
-      "prompt": "{cast:zadok}, standing, gripping a horn tilted forward as if pouring oil, facing left.",
+      "prompt": "{cast:solomon}, kneeling with his head bowed, palms pressed together in front of his chest, facing left.",
       "neg": [
         "armour",
         "crown",
-        "helmet",
-        "staff",
-        "kneeling"
+        "sword",
+        "beard",
+        "old man",
+        "standing"
       ]
     },
     {
       "id": "S4",
       "kind": "plate",
-      "region": "solomon",
-      "verse": "1:39",
-      "prompt": "{cast:solomon}, kneeling, head bowed, gripping the corner of his robe with one hand, facing right.",
+      "region": "nathan",
+      "verse": "1:38",
+      "prompt": "{cast:nathan}, standing a few steps back, both empty hands clasped in front, watching, holding no horn, facing right.",
       "neg": [
         "armour",
-        "helmet",
+        "crown",
+        "horn",
+        "modern clothes",
+        "oil",
+        "sitting",
         "sword",
-        "standing",
-        "crown"
+        "staff"
+      ]
+    },
+    {
+      "id": "S5",
+      "kind": "region",
+      "region": "guards",
+      "verse": "1:38",
+      "prompt": "the king's guard, soldiers in short wool tunics with leather belts, arms folded across their chests, standing in a line.",
+      "neg": [
+        "modern clothes",
+        "crown",
+        "horn",
+        "oil",
+        "kneeling"
+      ]
+    },
+    {
+      "id": "S6",
+      "kind": "region",
+      "region": "people",
+      "verse": "1:39",
+      "prompt": "a crowd of men and women in plain wool robes and head cloths on the slope, watching.",
+      "neg": [
+        "modern clothes",
+        "crown",
+        "horn",
+        "oil"
       ]
     }
   ],
   "negatives": [],
   "judge": {
-    "_why": "판정자가 이 장면에서 재는 기하 — 기름 붓는 자(사독)와 솔로몬 간격.",
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다. 사독·솔로몬은 붓는 거리라 붙어 있어 빈 띠 없음.",
     "figures": [
       "zadok",
       "solomon"
     ],
-    "gap_bands": [
-      [
-        0.46,
-        0.58
-      ]
-    ],
+    "gap_bands": [],
     "crest_x": {
       "left": [
         0.02,

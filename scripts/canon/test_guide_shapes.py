@@ -52,5 +52,14 @@ class GuideShapes(unittest.TestCase):
         self.assertEqual(img.getpixel((197, 97)), 0)     # 오른쪽 끝에 뻗은 정강이 없음
 
 
+    def test_horn_pour_mouth_low_right(self):
+        """horn_pour(task 606 기혼)는 가는 끝이 위 왼쪽, 넓은 입이 아래 오른쪽 — 입에서 구역 아래 끝까지 기름 줄기(뿔이 세워져 입이 위를 향함 601~605)."""
+        from PIL import Image, ImageDraw
+        img = Image.new("L", (100, 100), 0)
+        mg.horn_pour(ImageDraw.Draw(img), 0, 0, 100, 100, 255)
+        self.assertEqual(img.getpixel((80, 70)), 255)    # 넓은 입(아래 오른쪽)
+        self.assertEqual(img.getpixel((80, 97)), 255)    # 입 아래 기름 줄기
+        self.assertEqual(img.getpixel((5, 95)), 0)       # 왼쪽 아래는 빔
+
 if __name__ == "__main__":
     unittest.main()
