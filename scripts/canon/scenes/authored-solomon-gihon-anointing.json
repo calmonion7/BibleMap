@@ -30,7 +30,7 @@
   },
   "relation": {
     "ko": "금빛 기름이 뿔에서 젊은 왕의 머리카락으로 흘러내린다 · 그 뒤에 다윗 왕의 노새(긴 귀의 갈색 노새, 등이 사람 가슴 높이쯤, 등에 천 안장)가 서 있다 · 오른쪽에 왕의 시위대(짧은 양모 튜닉과 가죽 띠, 차렷 자세로 팔을 내리고 지켜보는 군사)가 한 줄로 선다",
-    "en": "Golden oil running from the horn onto the young king's hair; behind him stands David's mule, a brown mule with long ears, its back about as high as a man's chest, a cloth saddle on its back; on the right stand the king's guard, soldiers in short wool tunics with leather belts, at attention, turned toward the young king, in profile, in a line",
+    "en": "Golden oil dripping from the horn's pointed tip onto the young king's hair; behind him stands David's mule, a brown mule with long ears, its back about as high as a man's chest, a cloth saddle on its back; on the right stand the king's guard, soldiers in short wool tunics with leather belts, at attention, turned toward the young king, in profile",
     "verse": "왕상 1:39 「솔로몬에게 기름을 부으니」 · 1:38 「솔로몬을 다윗 왕의 노새에 태우고」 · 「그렛 사람과 블렛 사람이」(시위대는 [추론] 삼하 8:18 · 23:23) · 머리는 [추론] 삼상 10:1 「사울의 머리에 붓고」 · 금빛 기름은 사전 oil L1(본문 밖) — task 604에서 「thick olive oil」로 바꾸자 기름이 덜 보여 흐르는 기름 5 → 3/8, 뿔 꼴(task 606)이 뿔 모양을 잡으니 되돌림(task 607) · 노새 모양은 사전 mule L2 · 노새가 솔로몬 뒤에 섬·시위대 자리·옷은 본문 밖 · 저작자 정함"
   },
   "whole_background": {
@@ -99,7 +99,7 @@
       "quote": "솔로몬에게 기름을 부으니",
       "kind": "행동",
       "ko": "뿔을 솔로몬의 숙인 머리 위로 기울여 금빛 기름이 머리카락으로 흘러내림(머리는 [추론] 삼상 10:1 · 금빛은 사전 oil L1 — 본문 밖)",
-      "en": "golden oil running from the horn onto the young king's hair",
+      "en": "golden oil dripping from the horn's pointed tip onto the young king's hair",
       "field": "relation"
     },
     {
