@@ -412,12 +412,12 @@
   "approved": {
     "final": {
       "path": "night-pick",
-      "seed": 42,
+      "seed": 303,
       "kind": "base",
-      "image": "samples/mizpah-step23-t2/composition-A-s42.png",
+      "image": "samples/mizpah-step23-t3/composition-A-s303.png",
       "by": "user",
-      "on": "2026-11-07",
-      "spec_hash": "84af80c4805a",
+      "on": "2026-11-18",
+      "spec_hash": "28f4896cd966",
       "prompt_hash": null,
       "rules_version": "13bb6c21b5ae",
       "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"

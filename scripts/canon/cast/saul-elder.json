@@ -57,7 +57,7 @@
     },
     "silhouette": {
       "class": "broad",
-      "text": "broad shoulders, a strong solid chest"
+      "text": "broad shoulders, a sturdy build"
     },
     "headOutline": {
       "class": "bare",
@@ -87,7 +87,7 @@
     "card.heightRel": "[추론] 삼상 10:23 「다른 사람보다 어깨 위나 더 크더라」 — 같은 사람이라 키 불변",
     "card.ageBand": "[추론] 삼상 13:1 「사울이 왕이 될 때에 사십 세라」 + 연대 BC 1050→1026~1011 — 수금 64~엔게디 79의 대표값 70(한 id 한 값)",
     "card.beardVolume": "[저작](같은 사람 연속 — saul의 짧은 수염에 회색만 더함)",
-    "card.silhouette": "[저작](saul의 넓은 어깨 연속 — 문구 ‘thick barrel torso’는 규칙 derive.no-inflating-build로 ‘a strong solid chest’, 아직 창을 던질 기력 — 28:20 이전)",
+    "card.silhouette": "[저작](saul의 넓은 어깨 연속 — 문구 ‘thick barrel torso’는 규칙 derive.no-inflating-build로 ‘a strong solid chest’, 아직 창을 던질 기력 — 28:20 이전) · task 636 「a strong solid chest」 → 「a sturdy build」(saul과 같음 — chest가 맨가슴을 부름, 미스바 628)",
     "card.headOutline": "[저작](같은 사람 연속 — 맨머리, 회색만 더함)",
     "card.costumeColor": "[저작](역표 동석 인물과 구분용)",
     "face.faceShape": "[저작](saul과 같은 얼굴 — 같은 사람)",

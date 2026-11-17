@@ -73,7 +73,7 @@ class GazeObject(unittest.TestCase):
         # task 446 — 사울 → saul-elder 카드(나이·수염·체격·머리) · 표정 칸 반복 「looking toward the cave mouth」 뺌(512토큰). 그 밖은 C 그대로
         for old, new in (("in his 40s, deep forehead lines, close-trimmed dark beard",
                           "about 70, a deeply wrinkled old face, lined forehead and cheeks, close-trimmed grey-streaked beard"),
-                         ("thick barrel torso, short dark hair cut close", "a strong solid chest, short greying hair cut close"),
+                         ("thick barrel torso, short dark hair cut close", "a sturdy build, short greying hair cut close"),
                          ("unguarded face in profile, looking toward the cave mouth", "unguarded face in profile")):
             self.assertEqual(c.count(old), 1, old)
             c = c.replace(old, new)
