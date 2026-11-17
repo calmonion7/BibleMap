@@ -30,7 +30,7 @@
   },
   "relation": {
     "ko": "금빛 기름이 뿔에서 젊은 왕의 머리카락으로 흘러내린다 · 그 뒤에 다윗 왕의 노새(긴 귀의 갈색 노새, 등이 사람 가슴 높이쯤, 등에 천 안장)가 서 있다 · 오른쪽에 왕의 시위대(짧은 양모 튜닉과 가죽 띠, 차렷 자세로 팔을 내리고 지켜보는 군사)가 한 줄로 선다",
-    "en": "Golden oil running from the horn onto the young king's hair; behind him stands David's mule, a brown mule with long ears, its back about as high as a man's chest, a cloth saddle on its back; on the right stand the king's guard, soldiers in short wool tunics with leather belts, standing at attention with arms straight at their sides, watching, in a line",
+    "en": "Golden oil running from the horn onto the young king's hair; behind him stands David's mule, a brown mule with long ears, its back about as high as a man's chest, a cloth saddle on its back; on the right stand the king's guard, soldiers in short wool tunics with leather belts, at attention, turned toward the young king, in profile, in a line",
     "verse": "왕상 1:39 「솔로몬에게 기름을 부으니」 · 1:38 「솔로몬을 다윗 왕의 노새에 태우고」 · 「그렛 사람과 블렛 사람이」(시위대는 [추론] 삼하 8:18 · 23:23) · 머리는 [추론] 삼상 10:1 「사울의 머리에 붓고」 · 금빛 기름은 사전 oil L1(본문 밖) — task 604에서 「thick olive oil」로 바꾸자 기름이 덜 보여 흐르는 기름 5 → 3/8, 뿔 꼴(task 606)이 뿔 모양을 잡으니 되돌림(task 607) · 노새 모양은 사전 mule L2 · 노새가 솔로몬 뒤에 섬·시위대 자리·옷은 본문 밖 · 저작자 정함"
   },
   "whole_background": {
@@ -146,8 +146,8 @@
       "count": 10,
       "count_why": "[저작](1:38 「그렛 사람과 블렛 사람이」 — 수 없음, 이 자리에 보이는 시위대 한 줄로 어림)",
       "costume": {
-        "ko": "짧은 양모 튜닉과 가죽 띠의 군사 — 차렷 자세로 팔을 몸 옆에 곧게 내리고 지켜봄",
-        "en": "soldiers in short wool tunics with leather belts, standing at attention with arms straight at their sides, watching",
+        "ko": "짧은 양모 튜닉과 가죽 띠의 군사 — 차렷 자세로 팔을 몸 옆에 곧게 내리고 무릎 꿇은 젊은 왕 쪽으로 옆으로 돌아서 얼굴이 옆모습(헤브론 638 — 무리 향함 8/8 → 4/8)",
+        "en": "soldiers in short wool tunics with leather belts, at attention, turned toward the young king, in profile",
         "verse": "본문 밖 · 저작자 정함(시대 고증 — 철기 이스라엘 군사 차림 · 규칙 spec.crowd-era-dress) · 차렷 자세는 본문 밖 · 저작자 정함(사람 614 「병사들이 모드 팔짱을 끼고 있어서 장면 분위기에 안맞음」 — 왕에게 기름 붓는 의식이라 시위대는 공손히 선 차렷, 팔짱은 느긋·거만하게 읽힘)"
       }
     },
@@ -402,7 +402,7 @@
       "kind": "region",
       "region": "guards",
       "verse": "1:38",
-      "prompt": "the king's guard, soldiers in short wool tunics with leather belts, standing at attention with arms straight at their sides, watching, standing in a line.",
+      "prompt": "the king's guard, soldiers in short wool tunics with leather belts, at attention, turned toward the young king, in profile, standing in a line.",
       "neg": [
         "modern clothes",
         "crown",

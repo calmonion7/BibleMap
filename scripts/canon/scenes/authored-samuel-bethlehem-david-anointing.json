@@ -36,7 +36,7 @@
   },
   "relation": {
     "ko": "금빛 기름이 뿔에서 소년의 머리카락으로 흘러내린다 · 소년은 형 일곱 가운데 서 있고 형들은 빈손으로 그 바로 뒤에 선다 · 늙은 아버지는 떨어져 선다",
-    "en": "Golden oil running from the horn onto the boy's hair; the boy stands in the midst of his seven older brothers, grown bearded men taller than the boy in plain wool tunics and cloaks with cloth headwraps, close behind him, empty-handed; their old father stands apart",
+    "en": "Golden oil running from the horn onto the boy's hair; the boy stands in the midst of his seven older brothers, grown bearded men taller than the boy in plain wool tunics and cloaks with cloth headwraps, turned toward the boy, in profile, close behind him, empty-handed",
     "verse": "삼상 16:13 「사무엘이 기름 뿔을 취하여 그 형제 중에서 그에게 부었더니」 · 16:10 「이새가 그 아들 일곱으로 다 사무엘 앞을 지나게 하나」 · 금빛 기름은 사전 oil L1(올리브 기름 고증 — 본문 밖) · 형들이 다윗 뒤에 섬·빈손·이새가 떨어져 섬·좌우 배치는 본문 밖 · 저작자 정함(task 378 — 둘러선 형제·곁의 이새가 기름 붓는 이로 읽힘) · 형들의 수염은 본문 밖 · 저작자 정함 — 일곱 모두 다윗보다 손위([추론] 16:11 「말째」) · 위로 셋이 장성함은 17:13 「그 장성한 세 아들은」 · 머리는 [추론] 삼상 10:1 「사무엘이 기름병을 취하여 사울의 머리에 붓고」"
   },
   "whole_background": {
@@ -182,7 +182,7 @@
       "count_why": "[직접] 수 7 — 삼상 16:10 「이새가 그 아들 일곱으로 다 사무엘 앞을 지나게 하나」 · 17:12 「여덟 아들이 있는 중」에서 다윗을 뺀 수 / 일곱 모두 순간에 있음은 [추론] 16:13 「그 형제 중에서」 · 대상 2:15 「일곱째로 다윗」(형 여섯)과 다름은 삼상 본문을 따름",
       "costume": {
         "ko": "소년보다 키 큰 수염 난 어른 남자들의 수수한 양모 튜닉과 겉옷, 천 머리두건",
-        "en": "grown bearded men taller than the boy in plain wool tunics and cloaks with cloth headwraps",
+        "en": "grown bearded men taller than the boy in plain wool tunics and cloaks with cloth headwraps, turned toward the boy, in profile",
         "verse": "본문 밖 · 저작자 정함(시대 고증 — 철기 초 이스라엘 남자 차림 · 규칙 spec.crowd-era-dress) · 수염은 본문 밖 · 저작자 정함 — 일곱 모두 다윗보다 손위([추론] 16:11 「말째」) · 위로 셋이 장성함은 17:13 「그 장성한 세 아들은 사울을 따라 싸움에 나갔으니」 · 소년보다 큰 어른은 [추론] 16:11 「아직 말째가 남았는데」(일곱 모두 손위) · 16:7 「그 용모와 신장을 보지 말라」(엘리압의 키 [직접]) — task 594(593 8시드: 앞줄 형이 다윗 또래 소년·여자로 보임, 형들 6/8)"
       }
     }
@@ -202,8 +202,8 @@
         "verse": "삼상 16:13(기름 부음) · 표정 본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "소년 앞에 서서 두 손으로 쥔 기름 뿔(골이 진 옅은 뼈빛 숫양 뿔, 팔뚝보다 짧음)의 좁은 끝을 위로, 열린 입을 아래로 소년의 머리에 기울인다",
-        "en": "standing before the boy, holding in both hands a smooth, gently curved cow horn of pale bone color, tapering from its wide end to a narrow open tip, shorter than a man's forearm, filled with oil, its wide end held up in his hands and its narrow pointed tip tipped down over the boy's head",
+        "ko": "소년 앞에 서서 두 손으로 쥔 기름 뿔(골이 진 옅은 뼈빛 숫양 뿔, 팔뚝보다 짧음)의 넓은 밑동을 위로, 뾰족한 끝을 아래로 소년의 머리에 기울인다",
+        "en": "standing before the boy, holding in both hands a smooth, gently curved cow horn of pale bone color, tapering from its wide end to a narrow open tip, shorter than a man's forearm, filled with oil, its wide end up, its narrow tip down over the boy's head",
         "verse": "삼상 16:12 「일어나 기름을 부으라」 · 16:11 「우리가 식사 자리에 앉지 아니하겠노라」(아무도 앉지 않음 — 선 자세) · 16:13 「사무엘이 기름 뿔을 취하여 … 그에게 부었더니」 · 머리 위는 [추론] 삼상 10:1 「사무엘이 기름병을 취하여 사울의 머리에 붓고」 · 뿔 모양은 사전 oil-horn L2 — task 597에서 L2를 숫양 뿔·뼈빛으로 고침(task 591: L1 「an animal horn full of oil」은 590 s42 나팔 꼴 — t.horn 0/5) · 두 손으로 쥠은 본문 밖 · 저작자 정함(task 597 — 가슴께 다른 손이 겉옷에 묻힘 596 8시드, 사람 판정 562 두 손 보임) · 든 손에 쥠·빈 다른 손은 task 590(589 s42: 뿔이 허공에 떠서 붓고 가슴께 손에 잔 — t.horn 0/5 · p.no-floating 0/5) · 넓은 밑동 위·뾰족한 끝 아래(task 631 — 사람 판정 620 「뿔 위아래 위치 바뀜」으로 594의 좁은 끝 위·넓은 입 아래를 뒤집음) · 594(593 8시드: 뿔이 거꾸로 들리거나 얼굴 앞 — 머리 위 5/8) · 뿔 문구는 task 613 사전 oil-horn L2 고침을 따름(확정 그림 597 s202는 그대로 — 재검이 낡음으로 표시)"
       },
       "costume": {
@@ -312,6 +312,12 @@
       0.363,
       0.97,
       0.88
+    ],
+    "horn": [
+      0.39,
+      0.37,
+      0.43,
+      0.425
     ]
   },
   "_regions_why": "사람 수 10(사무엘·다윗·이새 + 형 일곱) → 무리 단계 small(0.45~0.60). 초점 사무엘(서 있음 · average) 구역 높이 0.56 · 발 y 0.92 → 지평선 0.399. 다윗(short 0.92)은 같은 발 y라 0.515(청년 하한 0.8 × 0.56 = 0.448 위). 형들은 다윗 바로 뒤 발 y 0.84 — 그 자리 어른 화면 키 0.474 ≤ 구역 높이 0.48(generate.eye-level-perspective). (task 595에서 앞줄을 발 0.90으로 당겼더니 다윗 곁 큰 실루엣이 「또래 소년 하나 더」로 그려져 형들 1/8 · 가드 3/8 — 되돌림, task 596) 이새는 조금 뒤 발 y 0.88 → 0.517. 형 무리 구역 너비 0.42는 가이드 무리 꼴(앞줄 3 · 뒷줄 6, 다윗·앞줄에 가려 보이는 실루엣 약 일곱)을 count 7과 맞춘 너비(0.39는 앞줄 2 · 뒷줄 6으로 보이는 여섯 — make_guide.crowd로 셈). 사무엘 뼈대 pour_over의 손목이 다윗 숙인 머리 위에 오도록 다윗 엉덩이를 사무엘 엉덩이에서 사무엘 키의 0.40 오른쪽(화소 1216×640에서 0.118)에 둠 — 두 구역이 조금 겹침(붓는 손이 닿는 거리). 사무엘 왼쪽·다윗 가운데(구역 가운데 x 0.414 — 파생 머리 낱말 「in the center」; 0.4 미만이면 사무엘과 같은 「On the left, in front」가 되어 두 인물 절이 갈리지 않음)·형들 다윗 뒤·이새 오른쪽 떨어져 섬은 저작자 정함(task 378 — 이새를 사무엘 곁에 두면 기름 붓는 이로 읽힘).",
@@ -320,13 +326,15 @@
       "samuel": 1.0,
       "david-boy": 1.0,
       "brothers": 0.8,
-      "jesse": 0.9
+      "jesse": 0.9,
+      "horn": 1.0
     },
     "shape": {
       "samuel": "person",
       "david-boy": "person",
       "brothers": "crowd",
-      "jesse": "person"
+      "jesse": "person",
+      "horn": "horn_pour"
     },
     "body": "card",
     "pose": {
@@ -364,7 +372,7 @@
       "kind": "plate",
       "region": "samuel",
       "verse": "16:13",
-      "prompt": "{cast:samuel}, standing, holding in both hands a smooth, gently curved cow horn of pale bone color, tapering from its wide end to a narrow open tip, shorter than a man's forearm, filled with oil, its wide end held up in his hands and its narrow pointed tip tipped down over the boy's head, facing right.",
+      "prompt": "{cast:samuel}, standing, holding in both hands a smooth, gently curved cow horn of pale bone color, tapering from its wide end to a narrow open tip, shorter than a man's forearm, filled with oil, its wide end up, its narrow tip down over the boy's head, facing right.",
       "neg": [
         "armour",
         "sword",
@@ -415,7 +423,7 @@
       "kind": "region",
       "region": "brothers",
       "verse": "16:10 · 16:13",
-      "prompt": "seven older brothers, grown bearded men taller than the boy in plain wool tunics and cloaks with cloth headwraps, standing close behind the boy, empty-handed, watching in silence.",
+      "prompt": "seven older brothers, grown bearded men taller than the boy in plain wool tunics and cloaks with cloth headwraps, turned toward the boy, in profile, standing close behind the boy, empty-handed, watching in silence.",
       "neg": [
         "armour",
         "crown",
