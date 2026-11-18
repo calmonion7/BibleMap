@@ -58,11 +58,11 @@ class GuideShapes(unittest.TestCase):
         from PIL import Image, ImageDraw
         img = Image.new("L", (100, 100), 0)
         mg.horn_pour(ImageDraw.Draw(img), 0, 0, 100, 100, 255)
-        self.assertEqual(img.getpixel((80, 70)), 255)    # 뾰족한 끝(아래 오른쪽)
-        self.assertEqual(img.getpixel((80, 97)), 255)    # 끝 아래 기름 줄기
+        self.assertEqual(img.getpixel((85, 75)), 255)    # 뾰족한 끝(아래 오른쪽)
+        self.assertEqual(img.getpixel((85, 97)), 255)    # 끝 아래 기름 줄기
         self.assertEqual(img.getpixel((5, 95)), 0)       # 왼쪽 아래는 빔
-        self.assertEqual(img.getpixel((20, 15)), 255)    # 넓은 밑동(위 — 반지름 0.2, 세워 듦 631 b)
-        self.assertEqual(img.getpixel((90, 70)), 0)      # 끝은 가늘다(옛 넓은 입 반지름 0.2면 칠해짐)
+        self.assertEqual(img.getpixel((5, 5)), 255)      # 넓은 밑동(위 왼쪽 — 반지름 0.2, 비스듬히 644)
+        self.assertEqual(img.getpixel((95, 80)), 0)      # 끝은 가늘다(옛 넓은 입 반지름 0.2면 칠해짐)
 
     def test_bier_lying_body(self):
         """bier(task 618 사무엘의 죽음)는 낮은 판 위에 가로로 누운 몸 — 구역 가운데 위쪽은 몸, 위 끝은 빔, 판 아래 가운데는 빔(다리 사이)."""
