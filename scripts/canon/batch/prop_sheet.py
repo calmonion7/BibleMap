@@ -17,7 +17,7 @@ PROPS = {
     # task 653 — 사람 사진(숫양 뿔) 윤곽을 좌표로 옮긴 가이드(_guide_photo60.png — 끝이 아래로 60° 돌림). 사진은 생성에 넣지 않음(저작권) — 윤곽만.
     # 652까지 make_guide 꼴 + 문구로는 끝이 급히 가늘어지는 긴 갈고리(사람 650 「뿔이 이렇게 길지 않음」·「변한게 없음」).
     "oil-horn-photo": {"word": "oil-horn", "guide": "samples/prop-oil-horn/_guide_photo60.png",
-                       "pose": "thick and only gently tapering, its length about four times the width of its plugged wide end, ending in a blunt cut tip with a small spout, tilted with the plugged wide end at the upper left and the tip at the lower right, a thin stream of golden oil dripping straight down from the spout"},
+                       "pose": "its length about four times the width of its wide end, tilted with the wide end at the upper left and the blunt tip at the lower right, a thin stream of golden oil dripping straight down from the tip"},   # task 654: 마개 낱말 뺌(사람 653 「마개가 아니고 기름뿔이 문제」)
 }
 
 
