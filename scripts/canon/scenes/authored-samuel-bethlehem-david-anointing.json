@@ -459,12 +459,12 @@
   "approved": {
     "final": {
       "path": "night-pick",
-      "seed": 20,
+      "seed": 7,
       "kind": "base",
-      "image": "samples/bethlehem-horn-i2i/composition-A-s20.png",
+      "image": "samples/bethlehem-step23-t14/composition-A-s7.png",
       "by": "user",
       "on": "2026-11-18",
-      "spec_hash": "a9a5988e88fc",
+      "spec_hash": "56648fdae81b",
       "prompt_hash": null,
       "rules_version": "13bb6c21b5ae",
       "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
