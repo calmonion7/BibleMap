@@ -84,7 +84,9 @@ def scene(fixed_n, src, seed, box, reps=3):
         if q.get("who") and str(seed) not in q.get("crop", {}):
             sys.exit(f"[HornCompare] {q['id']} 크롭에 시드 {seed} 없음")
     spec = R.D.load(case["scene"])
-    it = {"task": "horn-canon-scene", "scene": spec["id"], "title": spec["title"], "range": spec["verses"]["range"], "seed": seed,
+    import hashlib   # 판정 폴더를 그림마다 따로 — 장면·시드만으로 이름 지으면 같은 장면 두 그림이 full.jpg를 나눠 씀(663 원본 기준 판정이 out-0.2를 봄)
+    tag = hashlib.sha1(src.encode()).hexdigest()[:8]
+    it = {"task": "horn-canon-scene-" + tag, "scene": spec["id"], "title": spec["title"], "range": spec["verses"]["range"], "seed": seed,
           "src": os.path.join(HERE, src), "qs": qs, "qids": [q["id"] for q in qs]}
     d, files = J.prepare(it, "horn-compare")
     text = J.prompt(it, files, J.HEADERS["v2"])

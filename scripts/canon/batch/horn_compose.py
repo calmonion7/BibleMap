@@ -35,6 +35,19 @@ SCENES = {
                                     "narrowing to a blunt tip with a small spout, filled with oil, his left hand hanging open and empty at his side,")],
                     # 칠할 때 자리(밑동 374 · 끝 361)는 끝이 밑동보다 높아 기름이 끝으로 못 나옴 → 밑동을 위쪽 손 높이로(끝과 같은 높이 · 굽어 끝이 아래로)
                     "horn": ((519, 352), (548, 320), (577, 353)), "r": 12, "oil": ((574, 354), (579, 369)), "oil_w": 4, "strengths": (0.2,)},
+    # task 664 — 사람 663 「둘다(두 손) 해야하는데 구멍 뚫린쪽으로 기름이 떨어져야함」: 두 손으로 쥔 642 s7에서 · 밑동을 두 손 안에 · 끝 구멍을 칠해 보이게
+    "gihon7-canon": {"base": "samples/gihon-step23-t17/composition-A-s7.png", "out": "gihon7-horn-canon", "fixed": 642, "seed": 7, "canon": True,
+                     "erase": [[(522, 318), (560, 308), (590, 290), (612, 294), (616, 336), (608, 366), (596, 366), (588, 336), (540, 345), (522, 345)],
+                               [(188, 408), (222, 408), (222, 446), (188, 446)], [(184, 384), (196, 384), (201, 410), (189, 410)]],
+                     "horn": ((505, 343), (538, 302), (567, 334)), "r": 12, "hole": True, "oil": ((567, 335), (569, 343)), "oil_w": 3,
+                     # 옛 금빛 나팔 입(540~608, 297~340) 자리를 번지게 메우면 다시 그릴 때 나팔 입이 되살아남(664 1·2판) → 위 모래 바탕 조각으로 덮음(머리 위 336부터는 메움 그대로)
+                     "patch": [((552, 290, 614, 335), (640, 292))],   # 위쪽 조각은 언덕 능선이 딸려 와 회색 줄(664 3판) → 오른쪽 모래
+                     "front": (494, 332, 526, 356),   # 뿔을 위에서 감싼 손가락(원본) — 밑동을 얹으면 덮여 손이 하나만 보임(664 4판) → 살빛 화소를 뿔 앞에 다시 얹음
+                     "local_box": (470, 270, 640, 420), "strengths": (0.2,),   # 나단 병 자리도 되붙이면 지운 얼룩이 i2i 0.2에 안 메워져 번진 채 남음(664 7판) → 나단은 원본(병 남음)
+                     "prompt_sub": [("a curved, ridged and streaked ram's horn shorter than a man's forearm, its wide end sealed with a wooden plug, "
+                                     "tapering to a narrow tip with a small spout, filled with oil,",
+                                     "a thick, gently curved natural ram's horn, glossy dark brown with pale amber streaks, its wide end closed, "
+                                     "narrowing to a blunt tip with a small spout, filled with oil,")]},
 }
 CANON_HORN = "frozen/props/oil-horn.png"
 CANON_MOUTH, CANON_TIP = (352, 234), (968, 238)   # 정본 1216×640에서 입구(마개) 가운데 · 잘린 끝 주둥이
@@ -78,6 +91,48 @@ def paste_canon(im, cfg):
     return out.convert("RGB")
 
 
+def tip_hole(im, cfg, k=4):
+    """task 664 — 줄인 정본은 끝 구멍이 1화소로 사라짐(사람 663 「구멍 뚫린쪽으로 기름이 떨어져야함」) → 끝에 잘린 면(뿔 색)과 짙은 구멍을 칠하고 기름을 구멍에서 시작.
+    화소로 바로 칠하면 검은 덩이·계단 진 줄(664 3판) → k배 크기 층에 그려 줄여 얹음."""
+    import math
+    base, ctrl, tip = cfg["horn"]
+    (tx, ty), (ox, oy) = cfg["oil"]
+    x0, y0 = int(min(tip[0], ox)) - 12, int(min(tip[1], ty)) - 12
+    x1, y1 = int(max(tip[0], ox)) + 12, int(max(tip[1], oy)) + 12
+    lay = Image.new("RGBA", ((x1 - x0) * k, (y1 - y0) * k), (0, 0, 0, 0))
+    d = ImageDraw.Draw(lay)
+    P = lambda x, y: ((x - x0) * k, (y - y0) * k)
+    ang = math.atan2(tip[1] - ctrl[1], tip[0] - ctrl[0])   # 끝이 향하는 쪽
+    ca, sa = math.cos(ang + math.pi / 2), math.sin(ang + math.pi / 2)
+    def ell(cx, cy, rx, ry, n=40):   # rx = 잘린 면 너비(축에 수직) · ry = 축 방향 두께
+        return [P(cx + rx * math.cos(t) * ca + ry * math.sin(t) * math.cos(ang), cy + rx * math.cos(t) * sa + ry * math.sin(t) * math.sin(ang))
+                for t in (2 * math.pi * i / n for i in range(n))]
+    w = cfg.get("oil_w", 3)
+    d.line([P(tx, ty), P(ox, oy - 1)], fill=(206, 160, 38, 235), width=round(w * k * 0.8))   # 구멍에서 떨어지는 기름(가늘게)
+    d.ellipse([*P(ox - 1.6, oy - 1.6), *P(ox + 1.6, oy + 1.8)], fill=(214, 168, 40, 240))   # 머리에 닿는 방울
+    d.polygon(ell(*tip, 2.6, 1.3), fill=(118, 82, 48, 255), outline=(52, 34, 18, 255))      # 잘린 면(뿔 색)
+    d.polygon(ell(*tip, 1.1, 0.7), fill=(20, 12, 5, 255))                                  # 주둥이 구멍
+    small = lay.resize((x1 - x0, y1 - y0), Image.LANCZOS)
+    rgba = im.convert("RGBA")
+    rgba.alpha_composite(small, (x0, y0))
+    im.paste(rgba.convert("RGB"))
+    return im
+
+
+def front_hand(im, cfg):
+    """원본에서 cfg front 상자 안 살빛 화소(g < 0.8r · r > 120 — 크림 바탕은 g/r≈0.94라 빠짐)를 뿔 위에 다시 얹음 → 손이 뿔 앞에."""
+    import numpy as np
+    if not cfg.get("front"):
+        return im
+    x0, y0, x1, y1 = cfg["front"]
+    o = np.asarray(Image.open(os.path.join(CANON, cfg["base"])).convert("RGB")).astype(int)[y0:y1, x0:x1]
+    m = ((o[:, :, 1] < 0.8 * o[:, :, 0]) & (o[:, :, 0] > 120)).astype("uint8") * 255
+    from PIL import ImageFilter
+    mk = Image.fromarray(m).filter(ImageFilter.MaxFilter(3)).filter(ImageFilter.GaussianBlur(0.8))
+    im.paste(Image.fromarray(o.astype("uint8")), (x0, y0), mk)
+    return im
+
+
 def bez(p0, c, p1, n=24):
     return [((1 - t) ** 2 * p0[0] + 2 * (1 - t) * t * c[0] + t * t * p1[0],
              (1 - t) ** 2 * p0[1] + 2 * (1 - t) * t * c[1] + t * t * p1[1]) for t in (i / n for i in range(n + 1))]
@@ -99,10 +154,11 @@ def compose(cfg):
     for (x0, y0, x1, y1), (sx, sy) in cfg.get("patch", []):   # 바탕 조각 옮겨 붙이기(원본에서)
         im.paste(src0.crop((sx, sy, sx + x1 - x0, sy + y1 - y0)), (x0, y0))
     if cfg.get("canon"):
-        im = paste_canon(im, cfg)
-        d = ImageDraw.Draw(im)
-        (tx, ty), (ox, oy) = cfg["oil"]
-        d.line([(tx, ty), (ox, oy)], fill=(214, 168, 40), width=cfg.get("oil_w", 3))   # 끝 주둥이에서 머리로 떨어지는 금빛 기름
+        im = front_hand(paste_canon(im, cfg), cfg)
+        if True:   # 끝 구멍은 다시 그린 뒤(repaste)에만 칠함 — 다시 그리기 전에 칠하면 생성기가 짙은 구멍을 나팔 입으로 키움(664 1판)
+            d = ImageDraw.Draw(im)
+            (tx, ty), (ox, oy) = cfg["oil"]
+            d.line([(tx, ty), (ox, oy)], fill=(214, 168, 40), width=round(cfg.get("oil_w", 3)))   # 끝 주둥이에서 머리로 떨어지는 금빛 기름
         im.save(os.path.join(out, "src.png"))
         print("[HornCompose]", os.path.join(out, "src.png"))
         return
@@ -149,6 +205,9 @@ def repaste(cfg, strength=0.12):
     out = os.path.join(CANON, "samples", cfg["out"])
     first = cfg["strengths"][0]
     im = paste_canon(Image.open(os.path.join(out, f"out-{first}.png")).convert("RGB"), cfg)
+    im = front_hand(im, cfg)
+    if cfg.get("hole"):
+        tip_hole(im, cfg)
     im.save(os.path.join(out, f"src2-{first}.png"))
     R.use(cfg["fixed"])
     pa, _ = R.prompts(R.FX["cases"][0])
@@ -161,16 +220,19 @@ def repaste(cfg, strength=0.12):
     print("[HornCompose] 다시 얹기 i2i", run_scene.gen_zimage(jobs, tmp, "i2i"))
 
 
-def local(cfg, box=(470, 270, 650, 430)):
+def local(cfg, box=None):
     """task 663 — 그림 전체 i2i가 멀리 있는 시위대 팔을 바꿈(t.arm-length·t.hands-clear-guards 새로 걸림) → 다시 그린 뿔 둘레(box, 흐린 경계)만 원본에 되붙임."""
     from PIL import ImageFilter
+    box = box or cfg.get("local_box", (470, 270, 650, 430))
     out = os.path.join(CANON, "samples", cfg["out"])
     first = cfg["strengths"][0]
     base = Image.open(os.path.join(CANON, cfg["base"])).convert("RGB")
     new = Image.open(os.path.join(out, f"src2-{first}.png")).convert("RGB")
     m = Image.new("L", base.size, 0)
-    ImageDraw.Draw(m).rounded_rectangle([box[0] + 12, box[1] + 12, box[2] - 12, box[3] - 12], radius=20, fill=255)
-    Image.composite(new, base, m.filter(ImageFilter.GaussianBlur(10))).save(os.path.join(out, f"local-{first}.png"))
+    for b in (box if isinstance(box, list) else [box]):
+        ImageDraw.Draw(m).rounded_rectangle([b[0] + 12, b[1] + 12, b[2] - 12, b[3] - 12], radius=20, fill=255)
+    res = Image.composite(new, base, m.filter(ImageFilter.GaussianBlur(10)))
+    res.save(os.path.join(out, f"local-{first}.png"))
     print("[HornCompose]", os.path.join(out, f"local-{first}.png"))
 
 
