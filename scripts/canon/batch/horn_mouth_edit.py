@@ -27,7 +27,13 @@ ARMS = {"linen": "Close the open wide end of this ram's horn with a rounded wood
         "linensnug": "Close the open wide end of this ram's horn with a short wooden stopper wrapped in a thin layer of pale linen cloth, "
                      "pushed deep into the opening. The thin cloth fills the whole uneven opening right up to the rim with no gap and "
                      "rises only a little above the rim, with small tight folds around a round wooden top in the middle. " + KEEP}
+ARMS.update({   # task 668 — 사람 667 뒤 고증 「넓은 밑부분을 나무나 금속 판으로 영구적으로 막아 바닥을 만들고, 뾰족한 끝부분을 잘라내어 작은 구멍을 낸 뒤 마개」 — 밑동은 마개가 아니라 컵 바닥
+    "woodplate": "Seal the wide open end of this ram's horn permanently with a flat round wooden disc fitted inside the rim, set flush with the "
+                 "rim edge like the flat bottom of a cup, with fine wood grain — no stopper sticking out, no cloth. " + KEEP,
+    "bronzeplate": "Seal the wide open end of this ram's horn permanently with a flat round dull bronze plate fitted inside the rim, set flush "
+                   "with the rim edge like the flat bottom of a cup — no stopper sticking out, no cloth. " + KEEP})
 BOX_HI = {"linensnug": (262, 150, 442, 282)}
+SEEDS4 = {"linensnug", "woodplate", "bronzeplate"}
 
 def run():
     if G.busy():
@@ -40,7 +46,7 @@ def run():
     tmp = os.path.expanduser("~/.local/biblemap-imggen/prop-oil-horn-lying/mouth"); os.makedirs(tmp, exist_ok=True)
     for arm in (sys.argv[2].split(",") if len(sys.argv) > 2 else ARMS):
         prompt = ARMS[arm]
-        for seed in ((1, 2, 3, 4) if arm in BOX_HI else (1, 2)):
+        for seed in ((1, 2, 3, 4) if arm in SEEDS4 else (1, 2)):
             out = os.path.join(tmp, f"mouth-{arm}-s{seed}.png")
             r = G.edit(src, CROP, BOX_HI.get(arm, BOX), arm, seed, out, prompt=prompt)
             if r["status"] == "ok":
