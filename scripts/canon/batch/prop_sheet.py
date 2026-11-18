@@ -14,6 +14,10 @@ PROPS = {
     # word: 사전 낱말 id(look L2를 문구로) · shape: make_guide 꼴 · box: 화면 비 · pose: 방향·흐름 문구(사람 620 「뿔 위아래 위치 바뀜」)
     "oil-horn": {"word": "oil-horn", "shape": "horn_pour", "box": (0.34, 0.2, 0.66, 0.86),   # task 652: 짧고 굵게(사람 650 「뿔이 이렇게 길지 않음」 — 화면 0.64 너비 구역은 길고 가는 뿔)
                  "pose": "short and stout, its length only about three times the width of its plugged wide end, tilted with its plugged wide end at the upper left and its narrow tip with the spout at the lower right, a thin stream of golden oil dripping straight down from the spout"},   # task 651 — 사람 제공 고증: 숫양 뿔 · 밑동 마개 · 끝 주둥이(v1 매끈한 소뿔은 samples/prop-oil-horn/v1)
+    # task 653 — 사람 사진(숫양 뿔) 윤곽을 좌표로 옮긴 가이드(_guide_photo60.png — 끝이 아래로 60° 돌림). 사진은 생성에 넣지 않음(저작권) — 윤곽만.
+    # 652까지 make_guide 꼴 + 문구로는 끝이 급히 가늘어지는 긴 갈고리(사람 650 「뿔이 이렇게 길지 않음」·「변한게 없음」).
+    "oil-horn-photo": {"word": "oil-horn", "guide": "samples/prop-oil-horn/_guide_photo60.png",
+                       "pose": "thick and only gently tapering, its length about four times the width of its plugged wide end, ending in a blunt cut tip with a small spout, tilted with the plugged wide end at the upper left and the tip at the lower right, a thin stream of golden oil dripping straight down from the spout"},
 }
 
 
@@ -30,11 +34,14 @@ def gen(name):
     cfg = PROPS[name]
     out = os.path.join(HERE, "samples", f"prop-{name}")
     os.makedirs(out, exist_ok=True)
-    g = Image.new("L", (W, H), 0)
-    x0, y0, x1, y1 = cfg["box"]
-    G.SHAPES[cfg["shape"]](ImageDraw.Draw(g), x0 * W, y0 * H, x1 * W, y1 * H, 255)
     guide = os.path.join(out, "_guide.png")
-    g.convert("RGB").save(guide)
+    if "guide" in cfg:   # 미리 그린 윤곽 가이드
+        Image.open(os.path.join(HERE, cfg["guide"])).convert("RGB").save(guide)
+    else:
+        g = Image.new("L", (W, H), 0)
+        x0, y0, x1, y1 = cfg["box"]
+        G.SHAPES[cfg["shape"]](ImageDraw.Draw(g), x0 * W, y0 * H, x1 * W, y1 * H, 255)
+        g.convert("RGB").save(guide)
     prompt = (f"{STYLE} A single object drawn alone on plain warm cream paper, with nothing else: {look(cfg['word'])}, {cfg['pose']}. "
               "No hands, no people, no background, no text.")
     jobs = [{"prompt": prompt, "seed": s, "w": W, "h": H, "out": os.path.join(out, f"sheet-s{s}.png"),
