@@ -18,6 +18,9 @@ PROPS = {
     # 652까지 make_guide 꼴 + 문구로는 끝이 급히 가늘어지는 긴 갈고리(사람 650 「뿔이 이렇게 길지 않음」·「변한게 없음」).
     "oil-horn-photo": {"word": "oil-horn", "guide": "samples/prop-oil-horn/_guide_photo60.png",
                        "pose": "its length about four times the width of its wide end, tilted with the wide end at the upper left and the blunt tip at the lower right, a thin stream of golden oil dripping straight down from the tip"},   # task 654: 마개 낱말 뺌(사람 653 「마개가 아니고 기름뿔이 문제」)
+    # task 655 — 사람 654 「예제사진처럼은 못만드나?」 → 사람 「4」(출발 그림 없이): 사진과 같은 방향(옆으로 누움)으로 그림 — 붓는 방향은 장면에 얹을 때 돌림 · 가이드 5스텝(3+2)
+    "oil-horn-lying": {"word": "oil-horn", "guide": "samples/prop-oil-horn/_guide_photo0.png", "cn_steps": (3, 2),
+                       "pose": "lying on its side, its wide end flaring into a large oval opening at the upper left, the body sagging into a gentle curve and rising to a blunt tip at the upper right, its length about four times the width of its wide end"},
 }
 
 
@@ -45,7 +48,7 @@ def gen(name):
     prompt = (f"{STYLE} A single object drawn alone on plain warm cream paper, with nothing else: {look(cfg['word'])}, {cfg['pose']}. "
               "No hands, no people, no background, no text.")
     jobs = [{"prompt": prompt, "seed": s, "w": W, "h": H, "out": os.path.join(out, f"sheet-s{s}.png"),
-             "control": guide, "control2": guide, "scale": 1.0, "cn_steps": 2, "cn_steps2": 2}
+             "control": guide, "control2": guide, "scale": 1.0, "cn_steps": cfg.get("cn_steps", (2, 2))[0], "cn_steps2": cfg.get("cn_steps", (2, 2))[1]}
             for s in SEEDS if not os.path.exists(os.path.join(out, f"sheet-s{s}.png"))]
     with open(os.path.join(out, "prompt.txt"), "w", encoding="utf-8") as fh:
         fh.write(prompt + "\n")
