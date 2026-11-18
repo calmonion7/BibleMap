@@ -192,18 +192,27 @@ def _prepare(it, set_name, zoom):
                 c = c.resize((round(c.width * zoom), round(c.height * zoom)), Image.LANCZOS)
             c.save(p, quality=92)
         files[who] = p
+    for q in it["qs"]:   # task 662 — 비교 문항: 지물 정본(기준 그림)을 함께 넘김(`"ref": "frozen/props/<id>.png"`, canon 기준 경로)
+        ref = q.get("ref")
+        if ref and "ref:" + ref not in files:
+            p = os.path.join(d, "ref-" + os.path.splitext(os.path.basename(ref))[0] + ".jpg")
+            if not os.path.exists(p):
+                Image.open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ref)).convert("RGB").save(p, quality=92)
+            files["ref:" + ref] = p
     return d, files
 
 
 def prompt(it, files, header):
     lines = [header, "", f"장면: {it['title']} ({it['range']})", f"전체 그림: {files['full']}"]
     lines += [f"{w} 몸 크롭: {files[w]}" for w in dict.fromkeys(q["who"] for q in it["qs"] if q.get("who"))]
+    lines += [f"기준 그림 {r[4:]}: {p}" for r, p in files.items() if r.startswith("ref:")]
     lines += ["", "문항:"]
     for q in it["qs"]:
         if q["id"] not in it["qids"]:
             continue
         who = f" · 크롭 {q['who']}" if q.get("who") else ""
         verse = f" · 근거 {q['verse']}" if q.get("verse") else ""
+        who += f" · 기준 그림 {q['ref']}" if q.get("ref") else ""
         lines.append(f"- {q['id']}{who}: {q['q']} — 기대: {q['what']}{verse}")
     return "\n".join(lines)
 
