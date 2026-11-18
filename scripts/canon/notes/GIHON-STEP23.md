@@ -283,3 +283,8 @@
 ## 다른 출발 그림에서 칠해 얹기 (task 647 — `batch/horn_compose.py gihon7`)
 
 사람 결정 「1」: 사독이 두 손으로 뿔 하나만 쥔 642 s7에서 출발(640 s7은 서명 글자 · 둘 다 나단이 끈 단 주머니를 듦 — 같이 지움). 결과: 0.2 — 칠한 뿔이 흰 그릇 둘로 바뀌고 하나는 솔로몬 머리 위에 얹힘 · 0.25 — 속 빈 관, 기름이 손 쪽 밑동에서 떨어짐 · 나단 주머니 자리 회색 얼룩 남음. 기혼은 칠해 얹기 세 번(646·646 b·647) 모두 실패 — 베들레헴 645만 0.2에서 맞음. 확정 s101 유지 · 사람에게 넘김.
+
+## task 663 — 확정 s101의 기름 뿔을 정본으로 바꿈(2026-11-19)
+- 길(`batch/horn_compose.py gihon-canon compose → redraw → repaste → local`): 옛 뿔 지움(cv2 inpaint) · 아래 주먹이 쥔 둘째 흰 뿔(사람 616 「뿔이 두개임」)은 번지게 메우면 잔·두루마리로 다시 그려져(646·663 1판) 옆 모래 조각을 옮겨 붙임 · 정본을 Vision 전경 마스크로 오려(`canon-cut.png`, 그림자 지움) 뒤집고 돌리고 줄여 얹음(밑동 위쪽 손 519,352 → 끝 577,353 — 칠하던 자리는 끝이 밑동보다 높아 기름이 끝으로 못 나옴) · 끝에서 금빛 기름 줄 · i2i 0.2(문구 「holding in both hands」 → 한 손·왼손 빔 — 두 손 문구면 빈 주먹에 물건이 생김) · i2i는 작은 천 마개를 열린 입으로 바꿈(0.12도) → 다시 그린 그림에 정본을 한 번 더 얹고 다시 그리지 않음 · 그림 전체 i2i가 시위대 팔을 바꿔(t.arm-length·t.hands-clear-guards 새로 걸림) 뿔 둘레(470~650, 270~430)만 원본에 되붙임.
+- 기계(642 문항 + t.horn-canon, Sonnet 3회, `batch/horn_compare_check.py scene`): 원본 s101 틀림 1(t.horn-canon 「열린 입」) · 전체 i2i판 2(시위대) → 다시 얹음 2(시위대) · **local판 1(t.arm-length 시위대 — 원본과 같은 화소, 원본에선 통과 · 판정 흔들림)** · t.horn-canon 통과.
+- 사람 판정 화면 https://claude.ai/artifact/7KypDuQgmLE6APfQhFLeBu (`.forge/scratch/judge-663.html`, A 확정본 / B local · 답 줄 task 663).

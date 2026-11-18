@@ -1,7 +1,8 @@
 """task 662 — 비교 문항(장면 뿔 크롭 ↔ 기름 뿔 정본) 검증: 결함 그림을 잡고 정본 꼴 그림은 통과시키는지 먼저 본다.
   python3 batch/horn_compare_check.py crops   # 크롭 모아 보기(눈 확인) → $CLAUDE_JOB_DIR/tmp 또는 /tmp
   python3 batch/horn_compare_check.py judge   # claude -p Sonnet × 3회 → samples/horn-compare/metrics.json
-  python3 batch/horn_compare_check.py report"""
+  python3 batch/horn_compare_check.py report
+  python3 batch/horn_compare_check.py scene <고정 절> <그림> <시드> <x,y,w,h>   # 정본 얹은 장면: 장면 문항 + t.horn-canon"""
 import json, os, sys
 from concurrent.futures import ThreadPoolExecutor
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -74,4 +75,33 @@ def report():
         why = next((r["reasons"].get(Q["id"]) for r in reps if r.get("reasons")), "")
         print(f"{n:11} 맞음 {ok}/{len(reps)} 기대 {want or '-'} · {str(why)[:110]}")
 
-{"crops": crops, "judge": judge, "report": report}[sys.argv[1]]()
+def scene(fixed_n, src, seed, box, reps=3):
+    """task 663 — 정본을 얹은 장면 한 장: 고정 절 fixed_n의 장면 문항 전부 + t.horn-canon(크롭 box) × reps → 거르기 문항 다수결 틀림 목록."""
+    import rule_ab as R
+    R.use(int(fixed_n)); case = R.FX["cases"][0]
+    qs = [dict(q) for q in case["qs"]] + [dict(Q, crop={str(seed): list(box)})]
+    for q in qs:
+        if q.get("who") and str(seed) not in q.get("crop", {}):
+            sys.exit(f"[HornCompare] {q['id']} 크롭에 시드 {seed} 없음")
+    spec = R.D.load(case["scene"])
+    it = {"task": "horn-canon-scene", "scene": spec["id"], "title": spec["title"], "range": spec["verses"]["range"], "seed": seed,
+          "src": os.path.join(HERE, src), "qs": qs, "qids": [q["id"] for q in qs]}
+    d, files = J.prepare(it, "horn-compare")
+    text = J.prompt(it, files, J.HEADERS["v2"])
+    with ThreadPoolExecutor(reps) as ex:
+        outs = list(ex.map(lambda _: J.call(text, d, "sonnet"), range(reps)))
+    got = [g for g in (None if o.get("is_error") else J.parse(o.get("result"), it["qids"]) for o in outs) if g]
+    gated = [q["id"] for q in J.gating(qs)]
+    bad = [q for q in gated if 2 * sum(g["answers"][q] == "맞음" for g in got) <= len(got)]
+    m = json.load(open(METRICS)) if os.path.exists(METRICS) else {}
+    m["scene:" + src] = {"answers": got, "bad": bad}
+    json.dump(m, open(METRICS, "w"), ensure_ascii=False, indent=1)
+    print(f"[HornCompare] 판정 {len(got)}/{reps} · 틀린 거르기 {len(bad)}: {bad}")
+    for q in bad:
+        print(" ", q, "·", next((g["reasons"].get(q) for g in got if g["answers"][q] == "틀림" and g.get("reasons")), ""))
+
+
+if sys.argv[1] == "scene":
+    scene(sys.argv[2], sys.argv[3], int(sys.argv[4]), tuple(float(v) for v in sys.argv[5].split(",")))
+else:
+    {"crops": crops, "judge": judge, "report": report}[sys.argv[1]]()
