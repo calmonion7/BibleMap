@@ -6,16 +6,21 @@ from PIL import Image, ImageDraw
 D = os.path.join(CANON, "samples", "prop-oil-horn-lying")
 
 def compose():
-    import cv2, numpy as np
+    import math
     im = Image.open(os.path.join(D, "sheet-s5.png")).convert("RGB")
-    mask = Image.new("L", im.size, 0); ImageDraw.Draw(mask).rectangle([917, 205, 1000, 300], fill=255)   # 끝 바깥을 종이로
-    im = Image.fromarray(cv2.inpaint(np.array(im)[:, :, ::-1], np.array(mask), 9, cv2.INPAINT_TELEA)[:, :, ::-1])
     d = ImageDraw.Draw(im)
-    d.ellipse([907, 236, 925, 274], fill=(196, 160, 110), outline=(70, 45, 25), width=2)   # 잘린 면
-    d.ellipse([912, 250, 920, 260], fill=(40, 25, 15))                                    # 주둥이 구멍
-    d.ellipse([292, 207, 412, 262], fill=(128, 84, 46), outline=(70, 45, 25), width=3)    # 입구에 꼭 맞는 나무 마개
-    d.ellipse([310, 214, 380, 240], fill=(156, 108, 62))                                  # 마개 윗면 밝은 결
+    paper = im.getpixel((1050, 150))
+    d.rectangle([908, 196, 1010, 300], fill=paper)                        # 끝 바깥을 종이색으로(둘레 화소 메움은 그림자 얼룩 — 656)
+    def ell(cx, cy, rx, ry, deg, n=48):
+        a = math.radians(deg)
+        return [(cx + rx * math.cos(t) * math.cos(a) - ry * math.sin(t) * math.sin(a),
+                 cy + rx * math.cos(t) * math.sin(a) + ry * math.sin(t) * math.cos(a)) for t in (2 * math.pi * i / n for i in range(n))]
+    d.polygon(ell(908, 252, 13, 25, -20), fill=(205, 170, 120), outline=(60, 38, 20))   # 잘린 면(보는 쪽으로 조금 돌림)
+    d.polygon(ell(909, 252, 6, 12, -20), fill=(25, 15, 8))                                # 크고 짙은 주둥이 구멍(사람 656 「구멍 뚫는데 잘보이게」)
+    d.polygon(ell(352, 234, 80, 34, -11), fill=(122, 80, 44), outline=(64, 40, 22))      # 입구 안쪽 타원을 꽉 채운 마개(사람 656 「마개는 입구에 맞게」)
+    d.polygon(ell(345, 228, 52, 18, -11), fill=(150, 104, 60))                           # 마개 윗면 결
     im.save(os.path.join(D, "fix-src.png"))
+
 
 def redraw():
     import run_scene, prop_sheet as P
@@ -24,7 +29,7 @@ def redraw():
               "lying on its side, its wide opening at the upper left closed by a fitted round wooden stopper, the body sagging into a gentle curve "
               "and rising to the right, its tip cut off flat with a small hole. No hands, no people, no background, no text.")
     jobs = [{"prompt": prompt, "seed": 5, "w": 1216, "h": 640, "src": os.path.join(D, "fix-src.png"), "strength": s,
-             "out": os.path.join(D, f"fix-{s}.png")} for s in (0.25, 0.35)]
+             "out": os.path.join(D, f"fix-{s}.png")} for s in (0.2, 0.25)]
     tmp = os.path.expanduser("~/.local/biblemap-imggen/prop-oil-horn-lying"); os.makedirs(tmp, exist_ok=True)
     print("[HornSheetFix]", run_scene.gen_zimage(jobs, tmp, "i2i"))
 
