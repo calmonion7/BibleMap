@@ -1,5 +1,6 @@
 """task 660 — 기름 뿔 정본 입구를 klein 지시 편집으로(사람 657·658·659 마개 세 번 연속 미채택 → 칠하고 i2i 대신 모델이 입구를 직접 그림).
 바탕 = fix-0.2(끝 다듬음) 위에 원본 s5의 열린 입을 되돌림 → 입구 크롭만 고증 세 꼴(사람 658 고증)로 편집 → 마스크 안만 되붙임.
+  python3 batch/horn_mouth_edit.py tip woodplate-s1,bronzeplate-s4   # task 669 끝 구멍 마개 + 끈
   python3 batch/horn_mouth_edit.py run [꼴,꼴]   # 세 꼴 × 시드 1·2 → samples/prop-oil-horn-lying/mouth-<꼴>-s<시드>.png"""
 import os, sys
 CANON = "/Users/calmonion/Project/BibleMap/scripts/canon"
@@ -53,4 +54,32 @@ def run():
                 Image.open(out).save(os.path.join(D, f"mouth-{arm}-s{seed}.png"))
             print("[HornMouthEdit]", arm, seed, r)
 
-{"run": run}[sys.argv[1]]()
+TIP_CROP, TIP_BOX = (780, 100, 280), (850, 180, 1010, 300)
+TIP_PROMPT = ("Push a small carved wooden stopper into the small hole at the narrow cut tip of this ram's horn, and tie the stopper to the horn "
+              "with a thin leather cord that is wrapped around the horn a little below the tip. " + KEEP)
+
+
+TIP_PROMPT2 = ("Push a small solid wooden plug with a rounded closed top, no hole, into the small hole at the narrow cut tip of this ram's horn; "
+               "the plug sticks out a little. A thin leather cord is tied around the neck of the plug and runs back to a few turns of cord wrapped "
+               "around the horn a little below the tip, so the plug hangs on the cord when pulled out. " + KEEP)   # 669 2판 — 1판 s1 마개 윗면 구멍(속 빈 관) · s2~s4 끝이 대롱·나팔·꼭지
+
+
+def tip(base_names):
+    """task 669 — 사람 668 「구멍 뚫은 곳에 마개가 꽂혀 있어야하고 해당 마개는 끈으로 연결되어 있어야함」: 끝 구멍에 마개 + 끈. 바탕 = 밑동 바닥판 정본 후보."""
+    if G.busy():
+        sys.exit("[HornMouthEdit] 다른 생성 프로세스가 돎 — 끝난 뒤 다시")
+    tmp = os.path.expanduser("~/.local/biblemap-imggen/prop-oil-horn-lying/tip"); os.makedirs(tmp, exist_ok=True)
+    for b in base_names:
+        for seed in ((5, 6, 7, 8) if V2 else (1, 2, 3, 4)):
+            name = f"tip{'2' if V2 else ''}-{b}-s{seed}.png"
+            r = G.edit(os.path.join(D, f"mouth-{b}.png"), TIP_CROP, TIP_BOX, "tip", seed, os.path.join(tmp, name), prompt=TIP_PROMPT2 if V2 else TIP_PROMPT, mask_shape="rect")
+            if r["status"] == "ok":
+                Image.open(os.path.join(tmp, name)).save(os.path.join(D, name))
+            print("[HornMouthEdit] tip", b, seed, r)
+
+
+V2 = "--v2" in sys.argv
+if sys.argv[1] == "tip":
+    tip(sys.argv[2].split(","))
+else:
+    {"run": run}[sys.argv[1]]()
