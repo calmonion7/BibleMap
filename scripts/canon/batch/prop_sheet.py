@@ -12,8 +12,8 @@ SEEDS = (42, 7, 5, 11, 23, 101, 202, 303)
 STYLE = "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines."
 PROPS = {
     # word: 사전 낱말 id(look L2를 문구로) · shape: make_guide 꼴 · box: 화면 비 · pose: 방향·흐름 문구(사람 620 「뿔 위아래 위치 바뀜」)
-    "oil-horn": {"word": "oil-horn", "shape": "horn_pour", "box": (0.18, 0.12, 0.82, 0.92),
-                 "pose": "tilted with its plugged wide end at the upper left and its narrow tip with the spout at the lower right, a thin stream of golden oil dripping straight down from the spout"},   # task 651 — 사람 제공 고증: 숫양 뿔 · 밑동 마개 · 끝 주둥이(v1 매끈한 소뿔은 samples/prop-oil-horn/v1)
+    "oil-horn": {"word": "oil-horn", "shape": "horn_pour", "box": (0.34, 0.2, 0.66, 0.86),   # task 652: 짧고 굵게(사람 650 「뿔이 이렇게 길지 않음」 — 화면 0.64 너비 구역은 길고 가는 뿔)
+                 "pose": "short and stout, its length only about three times the width of its plugged wide end, tilted with its plugged wide end at the upper left and its narrow tip with the spout at the lower right, a thin stream of golden oil dripping straight down from the spout"},   # task 651 — 사람 제공 고증: 숫양 뿔 · 밑동 마개 · 끝 주둥이(v1 매끈한 소뿔은 samples/prop-oil-horn/v1)
 }
 
 
