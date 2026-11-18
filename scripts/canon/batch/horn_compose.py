@@ -48,6 +48,12 @@ SCENES = {
                                      "tapering to a narrow tip with a small spout, filled with oil,",
                                      "a thick, gently curved natural ram's horn, glossy dark brown with pale amber streaks, its wide end closed, "
                                      "narrowing to a blunt tip with a small spout, filled with oil,")]},
+    # task 665 — 새 구도(두 손 어깨 높이 pour_high) 665 s42에서: 두 손 사이 밑동 → 머리 위 끝(틈 약 26화소)
+    "gihon18-canon": {"base": "samples/gihon-step23-t18/composition-A-s42.png", "out": "gihon18-horn-canon", "fixed": 665, "seed": 42, "canon": True,
+                      "erase": [[(586, 342), (598, 342), (598, 354), (588, 354)]],   # 옛 기름 줄기(머리카락 위 356 전까지)
+                      "patch": [((534, 266, 580, 308), (640, 250)), ((572, 292, 614, 346), (620, 292)), ((550, 300, 580, 330), (650, 300))],   # 옛 뿔 가는 끝 · 넓은 입 · 몸통
+                      "horn": ((535, 322), (565, 288), (594, 328)), "r": 12, "hole": True, "oil": ((594, 329), (596, 354)), "oil_w": 3,
+                      "front": (508, 316, 562, 348), "local_box": (480, 250, 650, 410), "strengths": (0.2,)},
 }
 CANON_HORN = "frozen/props/oil-horn.png"
 CANON_MOUTH, CANON_TIP = (352, 234), (968, 238)   # 정본 1216×640에서 입구(마개) 가운데 · 잘린 끝 주둥이

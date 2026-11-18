@@ -64,6 +64,16 @@ class GuideShapes(unittest.TestCase):
         self.assertEqual(img.getpixel((5, 5)), 255)      # 넓은 밑동(위 왼쪽 — 반지름 0.2, 비스듬히 644)
         self.assertEqual(img.getpixel((95, 80)), 0)      # 끝은 가늘다(옛 넓은 입 반지름 0.2면 칠해짐)
 
+    def test_horn_pour_high_long_stream(self):
+        """horn_pour_high(task 665 기혼)는 뿔을 구역 위쪽에 두고 끝(높이 0.40)에서 아래 끝까지 긴 기름 줄기 — horn_pour(끝 0.75)는 끝~머리 틈이 짧아 기름이 안 보임(664)."""
+        from PIL import Image, ImageDraw
+        img = Image.new("L", (100, 100), 0)
+        mg.horn_pour_high(ImageDraw.Draw(img), 0, 0, 100, 100, 255)
+        self.assertEqual(img.getpixel((85, 40)), 255)    # 뾰족한 끝
+        self.assertEqual(img.getpixel((85, 70)), 255)    # 끝 아래 긴 기름 줄기
+        self.assertEqual(img.getpixel((70, 70)), 0)      # 줄기 옆은 빔(뿔 몸통이 끝 아래로 안 내려옴)
+        self.assertEqual(img.getpixel((5, 5)), 255)      # 넓은 밑동(위 왼쪽)
+
     def test_bier_lying_body(self):
         """bier(task 618 사무엘의 죽음)는 낮은 판 위에 가로로 누운 몸 — 구역 가운데 위쪽은 몸, 위 끝은 빔, 판 아래 가운데는 빔(다리 사이)."""
         from PIL import Image, ImageDraw

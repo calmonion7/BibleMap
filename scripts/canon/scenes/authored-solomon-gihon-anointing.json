@@ -30,7 +30,7 @@
   },
   "relation": {
     "ko": "금빛 기름이 뿔에서 젊은 왕의 머리카락으로 흘러내린다 · 그 뒤에 다윗 왕의 노새(긴 귀의 갈색 노새, 등이 사람 가슴 높이쯤, 등에 천 안장)가 서 있다 · 오른쪽에 왕의 시위대(짧은 양모 튜닉과 가죽 띠, 차렷 자세로 팔을 내리고 지켜보는 군사)가 한 줄로 선다",
-    "en": "Golden oil dripping from the horn's pointed tip onto the young king's hair; behind him stands David's mule, a brown mule with long ears, its back about as high as a man's chest, a cloth saddle on its back; on the right stand the king's guard, soldiers in short wool tunics with leather belts, at attention, turned toward the young king, in profile",
+    "en": "Golden oil dripping from the horn's tip onto the young king's hair; behind him stands David's mule, a brown mule with long ears, its back about as high as a man's chest, a cloth saddle on its back; on the right stand the king's guard, soldiers in short wool tunics with leather belts, at attention, turned toward the young king, in profile",
     "verse": "왕상 1:39 「솔로몬에게 기름을 부으니」 · 1:38 「솔로몬을 다윗 왕의 노새에 태우고」 · 「그렛 사람과 블렛 사람이」(시위대는 [추론] 삼하 8:18 · 23:23) · 머리는 [추론] 삼상 10:1 「사울의 머리에 붓고」 · 금빛 기름은 사전 oil L1(본문 밖) — task 604에서 「thick olive oil」로 바꾸자 기름이 덜 보여 흐르는 기름 5 → 3/8, 뿔 꼴(task 606)이 뿔 모양을 잡으니 되돌림(task 607) · 노새 모양은 사전 mule L2 · 노새가 솔로몬 뒤에 섬·시위대 자리·옷은 본문 밖 · 저작자 정함"
   },
   "whole_background": {
@@ -44,7 +44,7 @@
       "quote": "제사장 사독과 선지자 나단과",
       "kind": "인물",
       "ko": "제사장 사독과 선지자 나단이 기혼에 있음(나단은 물러서서 지켜봄)",
-      "en": "standing a few steps back",
+      "en": "a few steps back",
       "field": "figures[2].gesture"
     },
     {
@@ -83,7 +83,7 @@
       "quote": "성막 가운데서 기름 뿔을 가져다가",
       "kind": "지물",
       "ko": "사독의 기름 뿔(사전 oil-horn L2 — 매끈한 굽은 소뿔, task 613) · 성막에서 가져옴은 앞의 일",
-      "en": "a curved, ridged and streaked ram's horn shorter than a man's forearm, its wide end sealed with a wooden plug, tapering to a narrow tip with a small spout, filled with oil",
+      "en": "a thick, gently curved natural ram's horn shorter than a man's forearm, glossy dark brown with pale amber streaks and fine ridges, its wide end closed, narrowing to a blunt tip with a small spout, filled with oil",
       "field": "figures[0].gesture"
     },
     {
@@ -99,7 +99,7 @@
       "quote": "솔로몬에게 기름을 부으니",
       "kind": "행동",
       "ko": "뿔을 솔로몬의 숙인 머리 위로 기울여 금빛 기름이 머리카락으로 흘러내림(머리는 [추론] 삼상 10:1 · 금빛은 사전 oil L1 — 본문 밖)",
-      "en": "golden oil dripping from the horn's pointed tip onto the young king's hair",
+      "en": "golden oil dripping from the horn's tip onto the young king's hair",
       "field": "relation"
     },
     {
@@ -179,9 +179,9 @@
         "verse": "왕상 1:39(기름 부음) · 표정 본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "젊은 왕 앞에 서서 두 손으로 쥔 기름 뿔(골지고 줄무늬 진 숫양 뿔, 넓은 밑동은 나무 마개로 막히고 뾰족한 끝에 작은 주둥이, 팔뚝보다 짧음)의 뾰족한 끝을 젊은 왕의 숙인 머리에 기울인다",
-        "en": "holding in both hands a curved, ridged and streaked ram's horn shorter than a man's forearm, its wide end sealed with a wooden plug, tapering to a narrow tip with a small spout, filled with oil, its tip tilted down over the young king's bowed head",
-        "verse": "왕상 1:39 「제사장 사독이 성막 가운데서 기름 뿔을 가져다가 솔로몬에게 기름을 부으니」 · 머리 위는 [추론] 삼상 10:1 「사울의 머리에 붓고」 · 뿔 모양은 사전 oil-horn L2 · 두 손·선 자세는 본문 밖 · 저작자 정함(베들레헴 A2 확정 597과 같은 뼈대 pour_over) · (task 604 「one hand near each end」는 뿔을 가로로 들게 해 머리 위 5 → 2/8 — 되돌림 task 605) · 뿔 모양은 task 613 사전 L2 고침(사람 612 「삼각뿔형태의 굽어진형상」 — 611 s101 U자 관)"
+        "ko": "젊은 왕 앞에 서서 두 손으로 높이 든 기름 뿔(윤기 나는 짙은 갈색 숫양 뿔, 넓은 밑동은 천으로 감싼 나무 마개로 막히고 뾰족한 끝에 작은 주둥이, 팔뚝보다 짧음)의 뾰족한 끝을 젊은 왕의 숙인 머리에 기울인다",
+        "en": "raising in both hands a thick, gently curved natural ram's horn shorter than a man's forearm, glossy dark brown with pale amber streaks and fine ridges, its wide end closed, narrowing to a blunt tip with a small spout, filled with oil, its tip tilted down over the bowed head",
+        "verse": "왕상 1:39 「제사장 사독이 성막 가운데서 기름 뿔을 가져다가 솔로몬에게 기름을 부으니」 · 머리 위는 [추론] 삼상 10:1 「사울의 머리에 붓고」 · 뿔 모양은 사전 oil-horn L2 · 두 손·선 자세는 본문 밖 · 저작자 정함(베들레헴 A2 확정 597과 같은 뼈대 pour_over → task 665 pour_high — 두 손을 어깨 높이에 모아 높이 듦, 사람 663·664) · (task 604 「one hand near each end」는 뿔을 가로로 들게 해 머리 위 5 → 2/8 — 되돌림 task 605) · 뿔 모양은 task 613 사전 L2 고침(사람 612 「삼각뿔형태의 굽어진형상」 — 611 s101 U자 관)"
       },
       "costume": {
         "ko": "좁은 소매의 긴 흰 세마포 옷(제사장 속옷)과 짠 띠",
@@ -221,7 +221,7 @@
       },
       "gaze": {
         "ko": "눈을 내리깔고 땅을 내려다봄",
-        "en": "eyes lowered to the ground",
+        "en": "eyes lowered",
         "verse": "본문 밖 · 저작자 정함"
       },
       "screen_facing": "left",
@@ -242,7 +242,7 @@
       },
       "gesture": {
         "ko": "몇 걸음 물러서서 두 빈손을 몸 앞에 모은다",
-        "en": "standing a few steps back, both empty hands clasped in front",
+        "en": "a few steps back, both empty hands clasped in front",
         "verse": "왕상 1:38 「제사장 사독과 선지자 나단과」(그 자리에 있음 [직접]) · 1:39 붓는 이는 사독(나단은 뿔 없음) · 물러선 자리·모은 손은 본문 밖 · 저작자 정함(두 손 보임 — 사람 판정 562) · task 604(「standing beside the priest」면 나단도 뿔을 듦 — 603 8시드 3장)"
       },
       "costume": {
@@ -279,9 +279,9 @@
       0.92
     ],
     "solomon": [
-      0.43,
+      0.45,
       0.44,
-      0.53,
+      0.55,
       0.92
     ],
     "guards": [
@@ -297,10 +297,10 @@
       0.45
     ],
     "horn": [
-      0.462,
-      0.5,
-      0.505,
-      0.578
+      0.452,
+      0.49,
+      0.488,
+      0.59
     ]
   },
   "_regions_why": "사람 수 213(사독·솔로몬·나단 + 시위대 10 + 백성 200) → 무리 단계 large(0.35~0.50). 초점 사독(서 있음 · average) 구역 높이 0.48 · 발 y 0.92 → 지평선 0.474. 솔로몬(average)은 같은 발 y라 0.48. 나단은 사독에게서 몇 걸음 물러선 왼쪽 뒤 발 y 0.86 → 0.415(task 604 — 곁에 서면 뿔을 함께 듦). 시위대는 오른쪽 뒤 발 y 0.74 → 어른 화면 키 0.286 ≤ 구역 높이 0.30(generate.eye-level-perspective) — task 599: 발 0.80(키 0.36)이면 시위대 앞줄 실루엣이 주인공만큼 커서 「In the center: 솔로몬」이 그 자리로 가고 인물 이름이 한 칸씩 밀림(598 s42: 나단 둘·사독이 솔로몬 자리·솔로몬 셋). 백성은 오른쪽 뒤 비탈 [0.45~1.0] — 발 y 0.45가 지평선 위라 평지 원근 셈 밖(둑·언덕 꼴과 같음) · 화면 폭 전체면 가이드 무리가 울타리 한 줄로 비탈을 가림(task 598 가이드 눈 확인). 사독 뼈대 pour_over(베들레헴 A2 확정과 같은 손목 — 키의 0.10)가 솔로몬 숙인 머리 위에 오도록 솔로몬 엉덩이를 사독 엉덩이에서 사독 키의 0.40 오른쪽 · 솔로몬 구역 가운데 x 0.48(파생 머리 낱말 「In the center:」 — 0.4 미만이면 사독과 같은 「On the left, in front:」) · 사독 0.39(「On the left」). task 600: 솔로몬 0.42면 생성기가 「In the center」를 화면 가운데(약 0.53)에 그려 사독이 솔로몬 뼈대 자리로 가고 사독 뼈대 자리에 흰 옷 제사장이 하나 더 생김(599 s42 붓는 이 하나 1/5) — 낱말과 가이드 자리를 맞춤. 사독 왼쪽·솔로몬 가운데·나단 사독 뒤 왼쪽·시위대 오른쪽·백성 뒤 비탈은 저작자 정함. task 602: 솔로몬 무릎 꿇음 — 상자는 서 있을 때 키(0.48) 그대로, 뼈대 kneel_bow_left가 상자 안에서 무릎 꿇은 키(약 0.75)로 그림. 머리가 사독 가슴께라 사독 손목(pour_low 0.22)이 머리 위 · 솔로몬 엉덩이를 사독 엉덩이에서 사독 키의 약 0.36 오른쪽. 뿔 구역 horn [0.462,0.50,0.505,0.578]: 사독 pour_low 손목(x 0.484 · y 0.546)에서 솔로몬 머리 꼭대기(x 0.484 · y 0.574)까지 — 뾰족한 끝이 머리 바로 위(task 631 — 넓은 입과 뾰족한 끝 자리를 바꿈, 사람 판정 620).",
@@ -317,16 +317,16 @@
       "zadok": "person",
       "solomon": "person",
       "guards": "crowd",
-      "horn": "horn_pour"
+      "horn": "horn_pour_high"
     },
     "body": "card",
     "pose": {
-      "zadok": "pour_low",
+      "zadok": "pour_high",
       "solomon": "kneel_bow_left",
       "nathan": "listen_clasp_right"
     },
     "split": true,
-    "why": "task 598 단계 ① — 옛 판 명세라 가이드가 없어 크기·원근 규칙이 못 잼이었다. 사독은 베들레헴 A2 확정(597)과 같은 뼈대 pour_over(앞 팔 손목이 받는 이 머리 바로 위, 어깨 높이 — 머리 높이면 거인 590) — 1:39 「솔로몬에게 기름을 부으니」(generate.pose-hold). 솔로몬은 사독과 키가 같아(average) 머리만 숙이는 bow_clasp_left로는 머리 꼭대기가 붓는 손목보다 높다 — 새 뼈대 bow_deep_left(허리를 숙여 머리 꼭대기 키의 약 0.085). 나단은 새 뼈대 listen_clasp_right(두 손 몸 앞 — 두 손 보임). 카드 인물 셋 모두 뼈대(뼈대 없는 서 있는 인물은 원뿔, 놉 task 529). 시위대는 오른쪽 무리 꼴 · 백성은 뒤 비탈 무리 꼴(깊이 0.3). 노새·샘은 문구가 맡는다(맞는 가이드 꼴 없음). 카드 체격 몸 너비(generate.guide-body-build) · 스텝별 나눔(generate.split-control). (task 602: 솔로몬 bow_deep_left → 새 뼈대 kneel_bow_left(무릎 꿇고 상체 세움 · 머리 가운데 키의 약 0.345 — 베들레헴 소년 머리 높이 꼴) · 사독 pour_over → 새 뼈대 pour_low(두 손목 가슴 높이). 601 8시드 머리 위 0/8 — 같은 키 선 채 숙임은 뿔이 머리 옆에 세워짐. 백성은 가이드 무리 꼴을 빼고 문구만 — 규칙적인 실루엣 줄이 「복제해 줄 세운 듯」(601 가드 2/8). 원근 검사는 시위대 무리 꼴이 맡음.) (task 606: 구역 horn — 가이드 꼴 horn_pour(굽은 뿔 · 가는 끝 위 왼쪽 · 넓은 입 아래 오른쪽 · 입에서 솔로몬 머리 꼭대기까지 기름 줄기). 문구만으로는 다섯 판(601~605) 동안 뿔이 사독 얼굴 높이에 세워지거나 가로로 들려 머리 위 0~5/8 — 배교 altar(task 546)와 같은 수단.) (task 611: pour_low 둘째 손목을 뿔 가는 끝(0.22, 0.14)으로 — 머리 곁이면 손이 머리카락과 뭉개짐, 사람 610)"
+    "why": "task 598 단계 ① — 옛 판 명세라 가이드가 없어 크기·원근 규칙이 못 잼이었다. 사독은 베들레헴 A2 확정(597)과 같은 뼈대 pour_over(앞 팔 손목이 받는 이 머리 바로 위, 어깨 높이 — 머리 높이면 거인 590) — 1:39 「솔로몬에게 기름을 부으니」(generate.pose-hold). 솔로몬은 사독과 키가 같아(average) 머리만 숙이는 bow_clasp_left로는 머리 꼭대기가 붓는 손목보다 높다 — 새 뼈대 bow_deep_left(허리를 숙여 머리 꼭대기 키의 약 0.085). 나단은 새 뼈대 listen_clasp_right(두 손 몸 앞 — 두 손 보임). 카드 인물 셋 모두 뼈대(뼈대 없는 서 있는 인물은 원뿔, 놉 task 529). 시위대는 오른쪽 무리 꼴 · 백성은 뒤 비탈 무리 꼴(깊이 0.3). 노새·샘은 문구가 맡는다(맞는 가이드 꼴 없음). 카드 체격 몸 너비(generate.guide-body-build) · 스텝별 나눔(generate.split-control). (task 602: 솔로몬 bow_deep_left → 새 뼈대 kneel_bow_left(무릎 꿇고 상체 세움 · 머리 가운데 키의 약 0.345 — 베들레헴 소년 머리 높이 꼴) · 사독 pour_over → 새 뼈대 pour_low(두 손목 가슴 높이). 601 8시드 머리 위 0/8 — 같은 키 선 채 숙임은 뿔이 머리 옆에 세워짐. 백성은 가이드 무리 꼴을 빼고 문구만 — 규칙적인 실루엣 줄이 「복제해 줄 세운 듯」(601 가드 2/8). 원근 검사는 시위대 무리 꼴이 맡음.) (task 606: 구역 horn — 가이드 꼴 horn_pour(굽은 뿔 · 가는 끝 위 왼쪽 · 넓은 입 아래 오른쪽 · 입에서 솔로몬 머리 꼭대기까지 기름 줄기). 문구만으로는 다섯 판(601~605) 동안 뿔이 사독 얼굴 높이에 세워지거나 가로로 들려 머리 위 0~5/8 — 배교 altar(task 546)와 같은 수단.) (task 611: pour_low 둘째 손목을 뿔 가는 끝(0.22, 0.14)으로 — 머리 곁이면 손이 머리카락과 뭉개짐, 사람 610) (task 665: 사독 pour_low → 새 뼈대 pour_high(두 손목 어깨 높이 0.11~0.13에 모음) · 뿔 꼴 horn_pour → horn_pour_high(끝 구역 높이 0.40 · 긴 기름 줄기) · 구역 horn [0.452,0.49,0.488,0.59](두 손 높이 → 솔로몬 머리 꼭대기) · 솔로몬 구역을 0.45~0.55로(머리가 뿔 끝 아래) — pour_low는 그린 손이 머리에 붙어 끝~머리 틈 8~13화소라 기름이 안 보임(사람 663 「구멍 뚫린쪽으로 기름이 떨어져야함」·「두 손」, 664 「두 장면 모두 새 구도로」).)"
   },
   "stages": [
     {
@@ -353,7 +353,7 @@
       "kind": "plate",
       "region": "zadok",
       "verse": "1:39",
-      "prompt": "{cast:zadok}, standing, holding in both hands a curved, ridged and streaked ram's horn shorter than a man's forearm, its wide end sealed with a wooden plug, tapering to a narrow tip with a small spout, filled with oil, its tip tilted down over the bowed head, facing right.",
+      "prompt": "{cast:zadok}, standing, raising in both hands a thick, gently curved natural ram's horn shorter than a man's forearm, glossy dark brown with pale amber streaks and fine ridges, its wide end closed, narrowing to a blunt tip with a small spout, filled with oil, its tip tilted down over the bowed head, facing right.",
       "neg": [
         "armour",
         "sword",
@@ -385,7 +385,7 @@
       "kind": "plate",
       "region": "nathan",
       "verse": "1:38",
-      "prompt": "{cast:nathan}, standing a few steps back, both empty hands clasped in front, watching, holding no horn, facing right.",
+      "prompt": "{cast:nathan}, a few steps back, both empty hands clasped in front, watching, holding no horn, facing right.",
       "neg": [
         "armour",
         "crown",
