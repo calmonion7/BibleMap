@@ -13,7 +13,7 @@ STYLE = "warm cream paper, soft pencil and colored-pencil storybook illustration
 PROPS = {
     # word: 사전 낱말 id(look L2를 문구로) · shape: make_guide 꼴 · box: 화면 비 · pose: 방향·흐름 문구(사람 620 「뿔 위아래 위치 바뀜」)
     "oil-horn": {"word": "oil-horn", "shape": "horn_pour", "box": (0.18, 0.12, 0.82, 0.92),
-                 "pose": "tilted with its wide end at the upper left and its narrow open pointed tip at the lower right, a thin stream of golden oil dripping straight down from the pointed tip"},
+                 "pose": "tilted with its plugged wide end at the upper left and its narrow tip with the spout at the lower right, a thin stream of golden oil dripping straight down from the spout"},   # task 651 — 사람 제공 고증: 숫양 뿔 · 밑동 마개 · 끝 주둥이(v1 매끈한 소뿔은 samples/prop-oil-horn/v1)
 }
 
 

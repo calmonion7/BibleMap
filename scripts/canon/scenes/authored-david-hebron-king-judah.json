@@ -25,8 +25,8 @@
     "verse": "삼하 2:4 「유다 사람들이 와서 거기서 다윗에게 기름을 부어 유다 족속의 왕을 삼았더라」 · 대표 장로는 [추론] 삼하 5:1 「이스라엘 모든 지파가 헤브론에 이르러」 → 삼하 5:3 「저희가 다윗에게 기름을 부어」 · 삼상 30:26 「그 친구 유다 장로들에게」 · 한 사람이라는 수는 본문 밖 · 저작자 정함(그릇 하나) · 2:7은 주어가 족속 전체임을 확인할 뿐 · 머리는 [추론] 삼상 10:1 「사울의 머리에 붓고」 · 뿔·무릎 꿇음·배치는 본문 밖 · 저작자 정함"
   },
   "relation": {
-    "ko": "왼쪽에 늙은 회색 수염의 유다 장로(물들이지 않은 긴 양모 옷 위에 줄무늬 양모 겉옷, 머리천)가 서서 두 손으로 쥔 기름 뿔(옅은 뼈빛의 매끈하게 조금 굽은 소뿔, 넓은 밑동에서 열린 뾰족한 끝으로 가늘어짐, 팔뚝보다 짧고 기름이 든)의 뾰족한 끝을 무릎 꿇은 다윗의 숙인 머리에 기울인다 · 금빛 기름이 뿔에서 다윗의 머리카락으로 흘러내린다 · 오른쪽에 유다 사람들(수수한 양모 튜닉과 겉옷, 머리천을 두른 남자들)이 팔을 몸 옆에 내리고 공손히 서서 무릎 꿇은 다윗을 향해 느슨한 줄로 선다",
-    "en": "On the left stands an old grey-bearded elder of Judah in a long undyed wool robe under a striped wool cloak, with a cloth head wrap, holding in both hands a smooth, gently curved cow horn of pale bone color, tapering from its wide end to a narrow open tip, shorter than a man's forearm, filled with oil, its wide end held up in his hands and its narrow pointed tip tipped down over the kneeling man's bowed head; golden oil running from the horn onto the kneeling man's hair; on the right stand the men of Judah, men in plain wool tunics and cloaks with cloth head wraps, standing respectfully with arms at their sides, all turned sideways toward the kneeling man on the left, their faces seen in profile, in loose rows",
+    "ko": "왼쪽에 늙은 회색 수염의 유다 장로(물들이지 않은 긴 양모 옷 위에 줄무늬 양모 겉옷, 머리천)가 서서 두 손으로 쥔 기름 뿔(골지고 줄무늬 진 숫양 뿔, 넓은 밑동은 나무 마개로 막히고 뾰족한 끝에 작은 주둥이, 팔뚝보다 짧고 기름이 든)의 뾰족한 끝을 무릎 꿇은 다윗의 숙인 머리에 기울인다 · 금빛 기름이 뿔에서 다윗의 머리카락으로 흘러내린다 · 오른쪽에 유다 사람들(수수한 양모 튜닉과 겉옷, 머리천을 두른 남자들)이 팔을 몸 옆에 내리고 공손히 서서 무릎 꿇은 다윗을 향해 느슨한 줄로 선다",
+    "en": "On the left stands an old grey-bearded elder of Judah in a long undyed wool robe under a striped wool cloak, with a cloth head wrap, holding in both hands a curved, ridged and streaked ram's horn shorter than a man's forearm, its wide end sealed with a wooden plug, tapering to a narrow tip with a small spout, filled with oil, its wide end held up in his hands and its narrow pointed tip tipped down over the kneeling man's bowed head; golden oil running from the horn onto the kneeling man's hair; on the right stand the men of Judah, men in plain wool tunics and cloaks with cloth head wraps, standing respectfully with arms at their sides, all turned sideways toward the kneeling man on the left, their faces seen in profile, in loose rows",
     "verse": "삼하 2:4 「유다 사람들이 와서 거기서 다윗에게 기름을 부어」 · 대표 장로는 [추론] 삼하 5:1 「이스라엘 모든 지파가 헤브론에 이르러」 → 삼하 5:3 「저희가 다윗에게 기름을 부어」 · 삼상 30:26 「그 친구 유다 장로들에게」 · 한 사람이라는 수는 본문 밖 · 저작자 정함(그릇 하나) · 2:7은 주어가 족속 전체임을 확인할 뿐 · 늙음·회색 수염·옷은 본문 밖 · 저작자 정함 · 뿔은 본문 밖 · 저작자 정함(용례 삼상 16:13 「사무엘이 기름 뿔을 취하여」 · 왕상 1:39 · 모양은 사전 oil-horn L2) · 머리는 [추론] 삼상 10:1 「사울의 머리에 붓고」 · 금빛 기름은 사전 oil L1(본문 밖) · 무리 자리·옷·자세는 본문 밖 · 저작자 정함(왕을 세우는 의식이라 공손히 선 자세 — 기혼 사람 614 팔짱 지적) · 한 사람을 무리에서 떼어 뼈대로 세움은 저작(배교 task 549 — 무리 꼴로는 손동작이 안 그려짐)"
   },
   "whole_background": {
@@ -227,7 +227,7 @@
       "kind": "region",
       "region": "elder",
       "verse": "2:4",
-      "prompt": "an old grey-bearded elder of Judah in a long undyed wool robe under a striped wool cloak, with a cloth head wrap, standing, holding in both hands a smooth, gently curved cow horn of pale bone color, tapering from its wide end to a narrow open tip, shorter than a man's forearm, filled with oil, its wide end held up in his hands and its narrow pointed tip tipped down over the bowed head, facing right.",
+      "prompt": "an old grey-bearded elder of Judah in a long undyed wool robe under a striped wool cloak, with a cloth head wrap, standing, holding in both hands a curved, ridged and streaked ram's horn shorter than a man's forearm, its wide end sealed with a wooden plug, tapering to a narrow tip with a small spout, filled with oil, its wide end held up in his hands and its narrow pointed tip tipped down over the bowed head, facing right.",
       "neg": [
         "armour",
         "sword",

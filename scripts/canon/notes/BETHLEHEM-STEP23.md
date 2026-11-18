@@ -212,3 +212,10 @@ horn_pour를 비스듬히(위 왼쪽 넓은 밑동 → 아래 오른쪽 뾰족�
 ## 기름 뿔 정본 그림 (task 650)
 
 빈 종이(화면 전체)에 horn_pour 가이드를 크게 · 사전 L2 + 「빈 종이에 이것 하나만, 손·사람·배경 없음」 + 방향 문구 → 8시드 모두 뿔 방향 맞음(기름이 뾰족한 끝에서) — 장면 안의 작은 뿔과 달리 화면 전체 크기에서는 가이드 꼴이 먹음. s42·s11·s202 밑동이 화면 끝에 잘림 · s101·s303 밑동 끝 갈고리 · s5 작은 뿔 하나 더 · s7·s23 온전. 정본 고르기 화면(사람).
+
+## 기름 뿔 고증 반영 (task 651 — 사람 제공 자료 2026-11-18)
+
+사람 자료: 기름뿔(케렌 하쉐멘)은 숫양·소·염소 뿔을 가공한 휴대용 기름병 · 넓은 밑동은 나무·코르크·가죽 마개로 막아 바닥 · 뾰족한 끝에 구멍을 뚫어 주둥이(평소 작은 마개) · 밑동 쪽 굵은 몸통을 쥐고 끝을 머리 쪽으로 기울여 가늘게 부음 · 숫양 뿔 사진(골·갈색 줄무늬).
+- 사전 oil-horn L2 en 「A curved, ridged and streaked ram's horn shorter than a man's forearm, its wide end sealed with a wooden plug, tapering to a narrow tip with a small spout, filled with oil」 · L3 「held by its thick body near the plugged wide end … oil pours from the small spout」 · 근거에 고증 덧붙임. 「pointed」는 derive.no-second-point로 그리는 문구에서 뺌.
+- 세 장면(베들레헴·기혼·헤브론) 뿔 문구를 새 사전 문구로 · 512토큰 맞춤: 「its wide end up」 뺌(마개·주둥이가 말함) · 기혼 배경 clear·small 뺌 · 「narrow」 뺌 · 베들레헴 형들 「close behind him」 뺌(사람 649 「모두 뒤에 있음」과도 어긋남).
+- 정본 후보 다시(v1 매끈한 소뿔은 samples/prop-oil-horn/v1): 8장 모두 골진 숫양 뿔 · 나무 마개 · 끝 주둥이에서 기름 · s23·s101·s303 골이 고르게 반복돼 애벌레 같음 · s5 마개가 통나무 단면. 정본 고르기 화면 다시 올림.

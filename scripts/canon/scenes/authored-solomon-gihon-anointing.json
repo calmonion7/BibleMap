@@ -35,7 +35,7 @@
   },
   "whole_background": {
     "ko": "성 아래 바위 골짜기의 기혼 샘 — 왼쪽에 바위 틈에서 맑은 물이 흘러 작은 돌 웅덩이에 고임, 다져진 흙 바닥, 뒤로 솟은 민둥 바위 비탈, 엷은 하늘 · 뒤 비탈에 모든 백성이 모여 지켜봄",
-    "en": "the spring of Gihon in a rocky valley, clear water running from a cleft in the rock into a small stone pool on the left, packed-earth ground, rocky slopes behind, pale sky; on the slope behind, all the people, men and women in plain wool robes and head cloths, watching",
+    "en": "the spring of Gihon in a rocky valley, water running from a cleft in the rock into a stone pool on the left, packed-earth ground, rocky slopes behind, pale sky; on the slope behind, all the people, men and women in plain wool robes and head cloths, watching",
     "verse": "왕상 1:38 「기혼으로 가서」 · 1:38 「내려가서」·1:40 「올라와서」(성 아래 [직접]) · 샘은 [추론] 대하 32:30 「기혼의 윗 샘물을 막아」 · 백성이 있음은 [추론] 1:39 「모든 백성이 솔로몬 왕 만세를 부르니라」 · 1:40 「모든 백성이 왕을 따라 올라와서」 · 바위 골짜기·물 모양·웅덩이·비탈·하늘·백성 자리와 옷은 본문 밖 · 저작자 정함(시대 고증 — 철기 예루살렘 기드론 골짜기)"
   },
   "verse_elements": [
@@ -83,7 +83,7 @@
       "quote": "성막 가운데서 기름 뿔을 가져다가",
       "kind": "지물",
       "ko": "사독의 기름 뿔(사전 oil-horn L2 — 매끈한 굽은 소뿔, task 613) · 성막에서 가져옴은 앞의 일",
-      "en": "a smooth, gently curved cow horn of pale bone color, tapering from its wide end to a narrow open tip, shorter than a man's forearm, filled with oil",
+      "en": "a curved, ridged and streaked ram's horn shorter than a man's forearm, its wide end sealed with a wooden plug, tapering to a narrow tip with a small spout, filled with oil",
       "field": "figures[0].gesture"
     },
     {
@@ -179,8 +179,8 @@
         "verse": "왕상 1:39(기름 부음) · 표정 본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "젊은 왕 앞에 서서 두 손으로 쥔 기름 뿔(옅은 뼈빛의 매끈하게 조금 굽은 소뿔, 넓은 밑동에서 열린 뾰족한 끝으로 가늘어짐, 팔뚝보다 짧음)의 뾰족한 끝을 젊은 왕의 숙인 머리에 기울인다",
-        "en": "holding in both hands a smooth, gently curved cow horn of pale bone color, tapering from its wide end to a narrow open tip, shorter than a man's forearm, filled with oil, its wide end up, its narrow tip down over the young king's bowed head",
+        "ko": "젊은 왕 앞에 서서 두 손으로 쥔 기름 뿔(골지고 줄무늬 진 숫양 뿔, 넓은 밑동은 나무 마개로 막히고 뾰족한 끝에 작은 주둥이, 팔뚝보다 짧음)의 뾰족한 끝을 젊은 왕의 숙인 머리에 기울인다",
+        "en": "holding in both hands a curved, ridged and streaked ram's horn shorter than a man's forearm, its wide end sealed with a wooden plug, tapering to a narrow tip with a small spout, filled with oil, its tip tilted down over the young king's bowed head",
         "verse": "왕상 1:39 「제사장 사독이 성막 가운데서 기름 뿔을 가져다가 솔로몬에게 기름을 부으니」 · 머리 위는 [추론] 삼상 10:1 「사울의 머리에 붓고」 · 뿔 모양은 사전 oil-horn L2 · 두 손·선 자세는 본문 밖 · 저작자 정함(베들레헴 A2 확정 597과 같은 뼈대 pour_over) · (task 604 「one hand near each end」는 뿔을 가로로 들게 해 머리 위 5 → 2/8 — 되돌림 task 605) · 뿔 모양은 task 613 사전 L2 고침(사람 612 「삼각뿔형태의 굽어진형상」 — 611 s101 U자 관)"
       },
       "costume": {
@@ -334,7 +334,7 @@
       "kind": "full",
       "region": "full",
       "verse": "1:38",
-      "prompt": "a spring in a rocky valley, clear water running from a cleft in the rock into a small stone pool, packed-earth ground, bare rocky slopes rising behind, pale sky, no people.",
+      "prompt": "a spring in a rocky valley, water running from a cleft in the rock into a stone pool, packed-earth ground, bare rocky slopes rising behind, pale sky, no people.",
       "neg": [
         "people",
         "figures",
@@ -353,7 +353,7 @@
       "kind": "plate",
       "region": "zadok",
       "verse": "1:39",
-      "prompt": "{cast:zadok}, standing, holding in both hands a smooth, gently curved cow horn of pale bone color, tapering from its wide end to a narrow open tip, shorter than a man's forearm, filled with oil, its wide end up, its narrow tip down over the bowed head, facing right.",
+      "prompt": "{cast:zadok}, standing, holding in both hands a curved, ridged and streaked ram's horn shorter than a man's forearm, its wide end sealed with a wooden plug, tapering to a narrow tip with a small spout, filled with oil, its tip tilted down over the bowed head, facing right.",
       "neg": [
         "armour",
         "sword",

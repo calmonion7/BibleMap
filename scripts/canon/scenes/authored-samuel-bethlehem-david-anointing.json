@@ -36,7 +36,7 @@
   },
   "relation": {
     "ko": "금빛 기름이 뿔에서 소년의 머리카락으로 흘러내린다 · 소년은 형 일곱 가운데 서 있고 형들은 빈손으로 그 바로 뒤에 선다 · 늙은 아버지는 떨어져 선다",
-    "en": "Golden oil dripping from the horn's pointed tip onto the boy's hair; the boy stands in the midst of his seven older brothers, grown bearded men taller than the boy in plain wool tunics and cloaks with cloth headwraps, turned toward the boy, in profile, close behind him, empty-handed",
+    "en": "Golden oil dripping from the horn's pointed tip onto the boy's hair; the boy stands in the midst of his seven older brothers, grown bearded men taller than the boy in plain wool tunics and cloaks with cloth headwraps, turned toward the boy, in profile, empty-handed",
     "verse": "삼상 16:13 「사무엘이 기름 뿔을 취하여 그 형제 중에서 그에게 부었더니」 · 16:10 「이새가 그 아들 일곱으로 다 사무엘 앞을 지나게 하나」 · 금빛 기름은 사전 oil L1(올리브 기름 고증 — 본문 밖) · 형들이 다윗 뒤에 섬·빈손·이새가 떨어져 섬·좌우 배치는 본문 밖 · 저작자 정함(task 378 — 둘러선 형제·곁의 이새가 기름 붓는 이로 읽힘) · 형들의 수염은 본문 밖 · 저작자 정함 — 일곱 모두 다윗보다 손위([추론] 16:11 「말째」) · 위로 셋이 장성함은 17:13 「그 장성한 세 아들은」 · 머리는 [추론] 삼상 10:1 「사무엘이 기름병을 취하여 사울의 머리에 붓고」"
   },
   "whole_background": {
@@ -133,7 +133,7 @@
       "quote": "사무엘이 기름 뿔을 취하여",
       "kind": "지물",
       "ko": "사무엘의 기름 뿔(사전 oil-horn L2 — task 591)",
-      "en": "a smooth, gently curved cow horn of pale bone color, tapering from its wide end to a narrow open tip, shorter than a man's forearm, filled with oil",
+      "en": "a curved, ridged and streaked ram's horn shorter than a man's forearm, its wide end sealed with a wooden plug, tapering to a narrow tip with a small spout, filled with oil",
       "field": "figures[0].gesture"
     },
     {
@@ -203,7 +203,7 @@
       },
       "gesture": {
         "ko": "소년 앞에 서서 두 손으로 쥔 기름 뿔(골이 진 옅은 뼈빛 숫양 뿔, 팔뚝보다 짧음)의 넓은 밑동을 위로, 뾰족한 끝을 아래로 소년의 머리에 기울인다",
-        "en": "standing before the boy, holding in both hands a smooth, gently curved cow horn of pale bone color, tapering from its wide end to a narrow open tip, shorter than a man's forearm, filled with oil, its wide end up, its narrow tip down over the boy's head",
+        "en": "standing before the boy, holding in both hands a curved, ridged and streaked ram's horn shorter than a man's forearm, its wide end sealed with a wooden plug, tapering to a narrow tip with a small spout, filled with oil, its tip tilted down over the boy's head",
         "verse": "삼상 16:12 「일어나 기름을 부으라」 · 16:11 「우리가 식사 자리에 앉지 아니하겠노라」(아무도 앉지 않음 — 선 자세) · 16:13 「사무엘이 기름 뿔을 취하여 … 그에게 부었더니」 · 머리 위는 [추론] 삼상 10:1 「사무엘이 기름병을 취하여 사울의 머리에 붓고」 · 뿔 모양은 사전 oil-horn L2 — task 597에서 L2를 숫양 뿔·뼈빛으로 고침(task 591: L1 「an animal horn full of oil」은 590 s42 나팔 꼴 — t.horn 0/5) · 두 손으로 쥠은 본문 밖 · 저작자 정함(task 597 — 가슴께 다른 손이 겉옷에 묻힘 596 8시드, 사람 판정 562 두 손 보임) · 든 손에 쥠·빈 다른 손은 task 590(589 s42: 뿔이 허공에 떠서 붓고 가슴께 손에 잔 — t.horn 0/5 · p.no-floating 0/5) · 넓은 밑동 위·뾰족한 끝 아래(task 631 — 사람 판정 620 「뿔 위아래 위치 바뀜」으로 594의 좁은 끝 위·넓은 입 아래를 뒤집음) · 594(593 8시드: 뿔이 거꾸로 들리거나 얼굴 앞 — 머리 위 5/8) · 뿔 문구는 task 613 사전 oil-horn L2 고침을 따름(확정 그림 597 s202는 그대로 — 재검이 낡음으로 표시)"
       },
       "costume": {
@@ -372,7 +372,7 @@
       "kind": "plate",
       "region": "samuel",
       "verse": "16:13",
-      "prompt": "{cast:samuel}, standing, holding in both hands a smooth, gently curved cow horn of pale bone color, tapering from its wide end to a narrow open tip, shorter than a man's forearm, filled with oil, its wide end up, its narrow tip down over the boy's head, facing right.",
+      "prompt": "{cast:samuel}, standing, holding in both hands a curved, ridged and streaked ram's horn shorter than a man's forearm, its wide end sealed with a wooden plug, tapering to a narrow tip with a small spout, filled with oil, its tip tilted down over the boy's head, facing right.",
       "neg": [
         "armour",
         "sword",
