@@ -864,6 +864,19 @@ class WidenUnmeasured(unittest.TestCase):
         for f in (recheck.figure_scale_errors, recheck.youth_height_errors, recheck.height_ratio_errors, recheck.perspective_errors):
             self.assertEqual(f(s), [], f.__name__)
 
+    def test_crowd_as_people_is_measured(self):
+        """task 680 — 무리를 한 사람씩 뼈대로 준 자리(crowds[].people)는 무리 꼴이 없어도 잰다 · 원근보다 낮은 자리는 걸림."""
+        import derive_scene as ds
+        s = copy.deepcopy(ds.load("authored-samuel-bethlehem-david-anointing"))
+        self.assertEqual(recheck.perspective_errors(s), [])
+        s["crowds"][0].pop("people")
+        s["crowds"][1].pop("people")
+        self.assertIsNone(recheck.perspective_errors(s))
+        s = copy.deepcopy(ds.load("authored-samuel-bethlehem-david-anointing"))
+        x0, y0, x1, y1 = s["regions"]["br1"]
+        s["regions"]["br1"] = [x0, y1 - 0.2, x1, y1]
+        self.assertTrue(any(e.startswith("br1:") for e in recheck.perspective_errors(s)))
+
     def test_spear_shape_without_thrower_fails(self):
         s = gibeah()
         s["guide"]["pose"] = {k: v for k, v in s["guide"]["pose"].items() if v != "throw_follow"}

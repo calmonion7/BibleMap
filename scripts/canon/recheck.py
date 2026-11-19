@@ -417,12 +417,13 @@ def perspective_errors(spec):
     장면 지평선(S.scene_horizon) 아래면, 그 자리 보통 키 어른 화면 키(S.screen_height)가 구역 높이를 넘으면 걸림(가이드 무리가 구역 위로 솟음).
     발이 지평선 위인 구역(강 건너 둑·언덕)은 평지 셈 밖이라 건너뜀."""
     g, R = spec.get("guide") or {}, spec.get("regions", {})
-    if spec.get("crowds") and "crowd" not in (g.get("shape") or {}).values():   # task 413: 무리가 있는데 잴 무리 구역이 없으면 못 잼
+    people = [k for c in spec.get("crowds") or [] for k in c.get("people") or []]   # task 680 — 무리를 한 사람씩 뼈대로 준 자리(crowds[].people)도 잰다
+    if spec.get("crowds") and "crowd" not in (g.get("shape") or {}).values() and not people:   # task 413: 무리가 있는데 잴 무리 구역이 없으면 못 잼
         return None
     hy = S.scene_horizon(spec) if g else None
     out = []
     for k, shape in (g.get("shape") or {}).items():
-        if shape != "crowd" or R[k][3] <= hy:
+        if (shape != "crowd" and k not in people) or R[k][3] <= hy:
             continue
         ph, h = S.screen_height(R[k][3], hy), R[k][3] - R[k][1]
         if ph > h:
