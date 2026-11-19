@@ -70,8 +70,8 @@ SCENES = {
     # task 677 — 사람 676 「뿔이 찌그러져 있음」: klein이 다시 그리면 몸통이 부풀고 꺾임 → 뿔을 지운 깨끗한 바탕(horn_scene_edit bethlehem15b1 clean s1)에 정본을 그대로 얹고 다시 그리지 않음
     "bethlehem-b1c": {"base": "samples/bethlehem15-horn-edit/clean-s1.png", "front_src": "samples/bethlehem15-horn-edit/clean-s1.png",   # B1 손가락은 옛 뿔 금빛 줄무늬가 살빛 문턱에 걸려 따라옴
                       "out": "bethlehem-b1-canon", "src_name": "canon-c.png", "fixed": 666, "seed": 5, "canon": True, "keep_curve": True, "erase": [],
-                      "horn": ((465, 224), (480, 270), (527, 293)), "r": 12, "hole": True, "oil": ((527, 294), (530, 318)), "oil_w": 3,
-                      "hang": ((519, 287), (514, 297)), "front": (430, 240, 492, 290),
+                      "horn": ((465, 224), (480, 270), (527, 293)), "r": 12, "hole": True, "oil": ((527, 294), (529, 320)), "oil_w": 4.5,   # 678: 사람 677 「기름 색깔이 잘 안보임」 — 굵게
+                      "hang": ((519, 287), (514, 297)), "front": (430, 240, 492, 290), "oil_rgb": (240, 186, 30),
 },   # 677 2판: oil_src(B1 줄기 옮기기)는 일부만 옮겨져 끊김 → 칠한 줄기 + horn_scene_edit bethlehem15b1 oil
 }
 CANON_HORN = "frozen/props/oil-horn.png"
@@ -154,7 +154,9 @@ def tip_hole(im, cfg, k=4):
                 for t in (2 * math.pi * i / n for i in range(n))]
     w = cfg.get("oil_w", 3)
     if not cfg.get("oil_src"):
-        d.line([P(tx, ty), P(ox, oy - 1)], fill=(206, 160, 38, 235), width=round(w * k * 0.8))   # 구멍에서 떨어지는 기름(가늘게)
+        d.line([P(tx, ty), P(ox, oy - 1)], fill=(*cfg.get("oil_rgb", (206, 160, 38)), 235), width=round(w * k * 0.8))   # 구멍에서 떨어지는 기름(가늘게)
+        if cfg.get("oil_rgb"):   # 678 — 윤기 줄(밝은 금빛)
+            d.line([P(tx - 0.5, ty + 1), P(ox - 0.5, oy - 2)], fill=(255, 236, 150, 230), width=max(1, round(w * k * 0.25)))
         d.ellipse([*P(ox - 1.6, oy - 1.6), *P(ox + 1.6, oy + 1.8)], fill=(214, 168, 40, 240))   # 머리에 닿는 방울
     d.polygon(ell(*tip, 2.6, 1.3), fill=(118, 82, 48, 255), outline=(52, 34, 18, 255))      # 잘린 면(뿔 색)
     d.polygon(ell(*tip, 1.1, 0.7), fill=(20, 12, 5, 255))                                  # 주둥이 구멍

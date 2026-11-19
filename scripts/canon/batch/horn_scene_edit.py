@@ -130,7 +130,7 @@ def clean(cfg, seeds):
         print("[HornSceneEdit] clean", sd, r)
 
 
-OIL_PROMPT = ("The painted yellow line is golden olive oil: draw it as a thin, glossy stream of golden oil falling from the small hole at the tip "
+OIL_PROMPT = ("The painted yellow line is golden olive oil: draw it as a clearly visible, bright shining golden stream of oil, as wide as the painted line, with a glossy highlight, clearly standing out against the grey tunic behind it, falling from the small hole at the tip "
               "of the horn straight down onto the kneeling boy's hair, with a small shining drop on his hair. The small brown oval is a little wooden "
               "stopper hanging on a thin leather cord from the horn. Keep the horn itself, the boy, the other people, the background and the soft pencil "
               "and colored-pencil illustration style exactly the same.")
