@@ -52,7 +52,8 @@ SCENES = {
     "gihon18-canon": {"base": "samples/gihon-step23-t18/composition-A-s42.png", "out": "gihon18-horn-canon", "fixed": 665, "seed": 42, "canon": True,
                       "erase": [[(586, 342), (598, 342), (598, 354), (588, 354)]],   # 옛 기름 줄기(머리카락 위 356 전까지)
                       "patch": [((534, 266, 580, 308), (640, 250)), ((572, 292, 614, 346), (620, 292)), ((550, 300, 580, 330), (650, 300))],   # 옛 뿔 가는 끝 · 넓은 입 · 몸통
-                      "horn": ((535, 322), (565, 288), (594, 328)), "r": 12, "hole": True, "oil": ((594, 329), (596, 354)), "oil_w": 3,
+                      # task 675 — 거울 없이 정본 휨 그대로: 밑동을 두 손 위로 올리고 끝을 머리 위로 내림(현 각도 약 53° — 끝 접선이 아래를 향해야 기름이 끝에서 떨어짐)
+                      "keep_curve": True, "horn": ((548, 305), (530, 330), (582, 350)), "r": 12, "hole": True, "oil": ((582, 351), (583, 360)), "oil_w": 3,
                       "front": (508, 316, 562, 348), "local_box": (480, 250, 650, 410), "strengths": (0.2,)},
     # task 666 — 베들레헴 새 구도 666 s5에서: 두 손 오른쪽 밑동 → 꿇고 올려다보는 다윗 머리 위 끝
     "bethlehem15-canon": {"base": "samples/bethlehem-step23-t15/composition-A-s5.png", "out": "bethlehem15-horn-canon", "fixed": 666, "seed": 5, "canon": True,
@@ -100,6 +101,8 @@ def paste_canon(im, cfg):
     m = (CANON_MOUTH[0] * k, CANON_MOUTH[1] * k)
     sag = (m[0] - v[1] * k, m[1] + v[0] * k)                      # 정본의 처진 쪽(아래)
     side = 1 if (ctrl[0] - base[0]) * u[1] - (ctrl[1] - base[1]) * u[0] < 0 else -1
+    if cfg.get("keep_curve"):   # task 675 — 거울로 뒤집지 않고 돌리기만(사람 674 「기름뿔 뒤집힘」 — 정본은 배가 처진 U, 거울이면 위로 불룩한 ∩)
+        side = 1
     arch = (base[0] - side * u[1], base[1] + side * u[0])          # 장면의 굽음 점 쪽
     M = cv2.getAffineTransform(np.float32([m, (m[0] + v[0] * k, m[1] + v[1] * k), sag]), np.float32([base, tip, arch]))
     layer = cv2.warpAffine(np.asarray(small), M, im.size, flags=cv2.INTER_LINEAR, borderValue=(0, 0, 0, 0))

@@ -15,10 +15,16 @@ SCENES = {
                     "crop": (390, 170, 200), "box": (425, 205, 548, 328),
                     "prompt": f"Replace the horn the old man holds up with {HORN} just above the kneeling boy's head; golden oil drips in a thin stream "
                               f"from that small tip hole down onto the boy's hair. {KEEP}"},
+    # task 675 — 기혼 665 s42: 오려 얹기는 휨을 거울로 뒤집거나(사람 674 「기름뿔 뒤집힘」) 옛 뿔 끝·흐린 뿔이 남음 → 베들레헴과 같은 klein + 정본
+    "gihon18": {"base": "samples/gihon-step23-t18/composition-A-s42.png", "out": "gihon18-horn-edit",
+                "crop": (450, 225, 195), "box": (500, 255, 622, 365), "who": "kneeling young man", "prompt": ""},
+    # task 675 2판 — s42 그대로면 옛 나팔 배치를 따라 넓은 밑동에서 부음(4/4) → 정본을 거울 없이 얹어 끝을 머리 위에 둔 칠한 그림(horn_compose gihon18-canon src)에서
+    "gihon18g": {"base": "samples/gihon18-horn-canon/src.png", "out": "gihon18-horn-edit",
+                 "crop": (450, 225, 195), "box": (500, 255, 622, 365), "who": "kneeling young man", "prompt": "", "tag": "g"},
 }
 REF_PROMPT = ("Replace the horn the old man holds with the curved ram's horn from the second image — the same shape, glossy dark brown color "
               "with pale amber streaks whose wide end is closed flat with a wooden disc. He holds its thick body near the wide end in his two hands, it curves and "
-              "narrows to its small cut tip just above the kneeling boy's head, and golden oil drips in a thin stream from that small tip hole onto "
+              "narrows to its small cut tip just above the kneeling boy's head — the closed wide end stays up in his hands and no oil comes from it — and golden oil drips in a thin stream from that small tip hole onto "
               "the boy's hair. ") + KEEP
 
 
@@ -34,7 +40,7 @@ def edit_ref(src, crop, box, seed, out):
     c = Image.open(os.path.join(CANON, "frozen/props/oil-horn.png")).convert("RGB").crop((220, 100, 1060, 480))   # task 673 정본(끝이 1031,123까지)
     bg = Image.new("RGB", (G.EDIT, G.EDIT), c.getpixel((5, 5))); c.thumbnail((G.EDIT, G.EDIT)); bg.paste(c, (0, (G.EDIT - c.height) // 2)); bg.save(ref)
     if not os.path.exists(raw):
-        subprocess.run([G.MFLUX, "--model", "flux2-klein-4b", "-q", "8", "--image-paths", inp, ref, "--prompt", REF_PROMPT, "--seed", str(seed),
+        subprocess.run([G.MFLUX, "--model", "flux2-klein-4b", "-q", "8", "--image-paths", inp, ref, "--prompt", REF_PROMPT.replace("kneeling boy", cfg.get("who", "kneeling boy")).replace("the boy's hair", "his hair"), "--seed", str(seed),
                         "--steps", "4", "--width", str(G.EDIT), "--height", str(G.EDIT), "--output", raw], check=False,
                        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     if not os.path.exists(raw):
@@ -56,7 +62,7 @@ if G.busy():
 out = os.path.join(CANON, "samples", cfg["out"]); os.makedirs(out, exist_ok=True)
 tmp = os.path.expanduser(f"~/.local/biblemap-imggen/{cfg['out']}"); os.makedirs(tmp, exist_ok=True)
 for sd in seeds:
-    name = f"edit{'-ref' if use_ref else ''}-s{sd}.png"
+    name = f"edit{'-ref' if use_ref else ''}{cfg.get('tag', '')}-s{sd}.png"
     o = os.path.join(tmp, name)
     r = (edit_ref(os.path.join(CANON, cfg["base"]), cfg["crop"], cfg["box"], sd, o) if use_ref else
          G.edit(os.path.join(CANON, cfg["base"]), cfg["crop"], cfg["box"], "horn", sd, o, prompt=cfg["prompt"], mask_shape="rect"))
