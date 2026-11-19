@@ -99,7 +99,8 @@ def gen():
         for seed in FX["seeds"]:
             for ab, p in zip(sides(case), (pa, pb)):
                 if not os.path.exists(img(case, ab, seed)):
-                    by_mode["gencn" if cn else "gen"].append({"prompt": p, "seed": seed, "w": W, "h": H, "out": img(case, ab, seed), **cn})
+                    by_mode["gencn" if cn else "gen"].append({"prompt": p, "seed": seed, "w": W, "h": H, "out": img(case, ab, seed), **cn,
+                                                              **({"loras": FX["loras"]} if FX.get("loras") else {})})   # task 689 — 고정 절 「loras」: [[이름, 세기], …]
     for mode, jobs in by_mode.items():
         if jobs:
             print(f"[RuleAB] {mode} {len(jobs)}장 {run_scene.gen_zimage(jobs, out, mode)}", flush=True)

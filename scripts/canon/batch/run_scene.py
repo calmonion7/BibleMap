@@ -117,6 +117,12 @@ def worker(mode, jobs_path):
         pipe = ZImagePipeline.from_pretrained(ZI_BASE, transformer=tr, text_encoder=None, tokenizer=None,
                                               torch_dtype=torch.bfloat16).to("mps")
     pipe.set_progress_bar_config(disable=True)
+    loras = jobs[0].get("loras") or []   # task 689 — 지물 LoRA(~/.local/biblemap-imggen/lora/<이름>.safetensors) · 한 묶음 같은 LoRA
+    if loras:
+        root = os.path.expanduser("~/.local/biblemap-imggen/lora")
+        for n, _ in loras:
+            pipe.load_lora_weights(os.path.join(root, f"{n}.safetensors"), adapter_name=n)
+        pipe.set_adapters([n for n, _ in loras], adapter_weights=[w for _, w in loras])
     embs = torch.load(emb_path)
     secs, peak = [], 0.0
     for j, e in zip(jobs, embs):
