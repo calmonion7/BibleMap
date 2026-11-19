@@ -31,7 +31,8 @@ SCENES = {
     # task 685 — 사람 684 「두 손으로 쥐어야 함」: 두 손이 뿔 몸통 한 자리에 모인 665 s303(그 자리 = 정본을 휨 그대로 얹을 때 굽은 배)
     "gihon303": {"image": "samples/gihon-step23-t18/composition-A-s303.png", "out": "gihon303-horn",
                  "clean": {"crop": (490, 228, 175), "box": (515, 245, 640, 382)},
-                 "oil": {"src": "samples/gihon303-horn/canon-c.png", "out": "gihon303-horn", "crop": (564, 310, 72), "box": (590, 330, 610, 366)}},
+                 "oil": {"src": "samples/gihon303-horn/canon-c.png", "out": "gihon303-horn", "crop": (564, 310, 72), "box": (590, 330, 610, 366)},
+                 "grip": {"src": "samples/gihon303-horn/oil-s3-b.png", "out": "gihon303-horn", "crop": (505, 262, 96), "box": (520, 286, 580, 340)}},
     "gihon18": {"base": "samples/gihon-step23-t18/composition-A-s42.png", "out": "gihon18-horn-edit",
                 "crop": (450, 225, 195), "box": (500, 255, 622, 365), "who": "kneeling young man", "prompt": ""},
     # task 675 2판 — s42 그대로면 옛 나팔 배치를 따라 넓은 밑동에서 부음(4/4) → 정본을 거울 없이 얹어 끝을 머리 위에 둔 칠한 그림(horn_compose gihon18-canon src)에서
@@ -157,6 +158,29 @@ def oil(cfg, seeds):
         print("[HornSceneEdit] oil", sd, r)
 
 
+GRIP_PROMPT = ("The old priest's two hands firmly grip the body of the dark brown ram's horn: his fingers wrap around the horn and overlap it, "
+               "both hands holding it together from below and in front, so the horn clearly rests in his hands. Keep the horn's shape, color and "
+               "stripes, his sleeves, his face, the background and the soft pencil and colored-pencil illustration style exactly the same.")
+
+
+def grip(cfg, seeds):
+    """task 686 — 사람 685 「기름뿔을 손으로 들고 있지 않음」: 얹은 정본 아래에 손이 놓였을 뿐 감싸 쥐지 않음 → 두 손과 닿는 몸통만 좁은 크롭 klein."""
+    gr = cfg["grip"]
+    for sd in seeds:
+        name = f"grip-s{sd}.png"
+        tmpo = os.path.join(os.path.expanduser(f"~/.local/biblemap-imggen/{gr['out']}"), name)
+        os.makedirs(os.path.dirname(tmpo), exist_ok=True)
+        r = G.edit(os.path.join(CANON, gr["src"]), gr["crop"], gr["box"], "grip", sd, tmpo, prompt=GRIP_PROMPT, mask_shape="rect")
+        if r["status"] == "ok":
+            Image.open(tmpo).save(os.path.join(CANON, "samples", gr["out"], name))
+        print("[HornSceneEdit] grip", sd, r)
+
+
+if len(sys.argv) > 2 and sys.argv[2] == "grip":
+    if G.busy():
+        sys.exit("[HornSceneEdit] 다른 생성 프로세스가 돎")
+    grip(SCENES[sys.argv[1]], [int(x) for x in sys.argv[3].split(",")] if len(sys.argv) > 3 else [1, 2, 3, 4])
+    sys.exit(0)
 if len(sys.argv) > 2 and sys.argv[2] == "oil":
     if G.busy():
         sys.exit("[HornSceneEdit] 다른 생성 프로세스가 돎")
