@@ -73,6 +73,12 @@ SCENES = {
                       "horn": ((465, 224), (480, 270), (527, 293)), "r": 12, "hole": True, "oil": ((527, 294), (529, 320)), "oil_w": 4.5,   # 678: 사람 677 「기름 색깔이 잘 안보임」 — 굵게
                       "hang": ((519, 287), (514, 297)), "front": (430, 240, 492, 290), "oil_rgb": (240, 186, 30),
 },   # 677 2판: oil_src(B1 줄기 옮기기)는 일부만 옮겨져 끊김 → 칠한 줄기 + horn_scene_edit bethlehem15b1 oil
+    # task 684 — 사람 675 「기름뿔모양이 아님」 → 뿔 지운 바탕(horn_scene_edit gihon18c clean s1)에 정본 그대로(베들레헴 677과 같은 길)
+    "gihon-c": {"base": "samples/gihon18-horn-edit/clean-s1.png", "front_src": "samples/gihon18-horn-edit/clean-s1.png",
+                "out": "gihon18-horn-canon", "src_name": "canon-c.png", "fixed": 665, "seed": 42, "canon": True, "keep_curve": True,
+                "erase": [[(522, 330), (546, 312), (556, 314), (556, 322), (532, 340), (522, 340)]],   # 지운 바탕에 남은 옛 뿔 가는 끝(왼손의 검은 막대)
+                "horn": ((550, 294), (530, 330), (596, 336)), "r": 12, "hole": True, "oil": ((596, 337), (598, 358)), "oil_w": 4.5, "oil_rgb": (240, 186, 30),
+                "hang": ((588, 334), (584, 346)), "front": (500, 290, 575, 350)},
 }
 CANON_HORN = "frozen/props/oil-horn.png"
 CANON_MOUTH, CANON_TIP = (352, 234), (1028, 130)   # 정본 1216×640에서 넓은 밑동(바닥판) 가운데 · 끝 마개 끝(task 673 정본 — 옛 661은 968,238)

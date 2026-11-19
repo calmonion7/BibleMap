@@ -24,6 +24,10 @@ SCENES = {
                       "oil": {"src": "samples/bethlehem-b1-canon/canon-c.png", "out": "bethlehem-b1-canon", "crop": (488, 270, 72), "box": (522, 297, 540, 326)}},
     "bethlehem15b1g": {"base": "samples/bethlehem-b1-canon/src.png", "out": "bethlehem15-horn-edit", "crop": (390, 170, 200), "box": (425, 205, 548, 328),
                        "prompt": "", "tag": "b1g", "extra": " A thin leather cord is wrapped around the horn just below the tip, and the small wooden stopper hangs from it on a short loop of cord, pulled out of the tip."},
+    # task 684 — 사람 675 「기름뿔모양이 아님」(klein이 다시 그림) → 베들레헴 677~678과 같은 길: 뿔 지운 바탕 → 정본 그대로 얹기 → 기름만 klein
+    "gihon18c": {"image": "samples/gihon-step23-t18/composition-A-s42.png", "out": "gihon18-horn-edit",
+                 "clean": {"crop": (480, 240, 170), "box": (512, 262, 628, 372)},
+                 "oil": {"src": "samples/gihon18-horn-canon/canon-c.png", "out": "gihon18-horn-canon", "crop": (560, 315, 72), "box": (588, 336, 608, 366)}},
     "gihon18": {"base": "samples/gihon-step23-t18/composition-A-s42.png", "out": "gihon18-horn-edit",
                 "crop": (450, 225, 195), "box": (500, 255, 622, 365), "who": "kneeling young man", "prompt": ""},
     # task 675 2판 — s42 그대로면 옛 나팔 배치를 따라 넓은 밑동에서 부음(4/4) → 정본을 거울 없이 얹어 끝을 머리 위에 둔 칠한 그림(horn_compose gihon18-canon src)에서
@@ -110,8 +114,8 @@ def tip_edit(cfg, seeds):
         print("[HornSceneEdit] tip", sd, out)
 
 
-CLEAN_PROMPT = ("Remove the horn the old man is holding and the golden oil stream completely, and show what is behind them: the boy's grey "
-                "tunic, the field and the pale sky. Keep the old man's two raised hands exactly where they are with the fingers curled as if "
+CLEAN_PROMPT = ("Remove the horn the old man is holding and the golden oil stream completely, and show what is behind them: the plain "
+                "background behind. Keep the old man's two raised hands exactly where they are with the fingers curled as if "
                 "gripping something, and keep the boy, the other people, the background and the soft pencil and colored-pencil illustration style "
                 "exactly the same.")
 
