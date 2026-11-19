@@ -64,6 +64,25 @@ TIP_PROMPT2 = ("Push a small solid wooden plug with a rounded closed top, no hol
                "around the horn a little below the tip, so the plug hangs on the cord when pulled out. " + KEEP)   # 669 2판 — 1판 s1 마개 윗면 구멍(속 빈 관) · s2~s4 끝이 대롱·나팔·꼭지
 
 
+PLUG_CROP, PLUG_BOX = (860, 70, 220), (948, 145, 1014, 210)
+PLUG_PROMPT = ("Replace the wide wooden cup on the narrow tip of this ram's horn with a small solid wooden stopper that is no wider than the tip: "
+               "a short tapered wooden peg pushed into the tip hole, sticking out only a little, with a smooth rounded closed top and no hole. "
+               "Keep the leather cord tied around it and wrapped around the horn exactly the same. " + KEEP)
+
+
+def plug(seeds=(1, 2, 3, 4)):
+    """task 670 — 사람 669 plug1 · 「마개가 이상함」: 마개가 끝보다 굵은 원통에 윗면이 패여 끝에 컵을 씌운 꼴 → 끝 굵기의 작은 쐐기 마개."""
+    if G.busy():
+        sys.exit("[HornMouthEdit] 다른 생성 프로세스가 돎 — 끝난 뒤 다시")
+    tmp = os.path.expanduser("~/.local/biblemap-imggen/prop-oil-horn-lying/plug"); os.makedirs(tmp, exist_ok=True)
+    for seed in seeds:
+        name = f"plug-s{seed}.png"
+        r = G.edit(os.path.join(D, "tip-woodplate-s1-s1.png"), PLUG_CROP, PLUG_BOX, "plug", seed, os.path.join(tmp, name), prompt=PLUG_PROMPT, mask_shape="rect")
+        if r["status"] == "ok":
+            Image.open(os.path.join(tmp, name)).save(os.path.join(D, name))
+        print("[HornMouthEdit] plug", seed, r)
+
+
 def tip(base_names):
     """task 669 — 사람 668 「구멍 뚫은 곳에 마개가 꽂혀 있어야하고 해당 마개는 끈으로 연결되어 있어야함」: 끝 구멍에 마개 + 끈. 바탕 = 밑동 바닥판 정본 후보."""
     if G.busy():
@@ -79,7 +98,9 @@ def tip(base_names):
 
 
 V2 = "--v2" in sys.argv
-if sys.argv[1] == "tip":
+if sys.argv[1] == "plug":
+    plug()
+elif sys.argv[1] == "tip":
     tip(sys.argv[2].split(","))
 else:
     {"run": run}[sys.argv[1]]()
