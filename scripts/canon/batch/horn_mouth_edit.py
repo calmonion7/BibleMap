@@ -83,6 +83,38 @@ def plug(seeds=(1, 2, 3, 4)):
         print("[HornMouthEdit] plug", seed, r)
 
 
+CORD_CROP, CORD_BOX = (870, 70, 200), (938, 132, 1032, 206)
+CORD_PROMPT = ("The thin brown painted lines are a leather cord. Draw them as a thin leather cord tied in a tight loop around the middle of the "
+               "small wooden stopper in the horn tip, running down to the knot on the horn. Keep the wooden stopper, the horn, the other cord "
+               "and everything else exactly the same. " + KEEP)
+
+
+def cord(seeds=(1, 2, 3, 4)):
+    """task 671 — 사람 670 「끈이 마개에 묶여 있어야 됨」(마개 쪽 두 번 연속 미채택 → 수단 바꿈: 글만 → 칠한 길잡이 선 + 지시 편집).
+    plug-s4에 마개 허리 띠 + 띠에서 뿔 매듭(948,197)까지 처진 선을 칠하고 klein이 가죽 끈으로 그림."""
+    import math
+    from PIL import ImageDraw
+    if G.busy():
+        sys.exit("[HornMouthEdit] 다른 생성 프로세스가 돎 — 끝난 뒤 다시")
+    im = Image.open(os.path.join(D, "plug-s4.png")).convert("RGB")
+    d = ImageDraw.Draw(im)
+    c, ax = (1006, 159), math.radians(-58)                       # 마개 허리 가운데 · 마개 축(아래 왼쪽 → 위 오른쪽)
+    px, py = -math.sin(ax), math.cos(ax)                          # 축에 수직
+    a, b = (c[0] - 11 * px, c[1] - 11 * py), (c[0] + 11 * px, c[1] + 11 * py)
+    col = (150, 95, 50)
+    d.line([a, b], fill=col, width=3)                             # 마개 허리를 두른 띠
+    lo = a if a[1] > b[1] else b
+    d.line([lo, ((lo[0] + 948) / 2 - 2, (lo[1] + 197) / 2 + 4), (948, 197)], fill=col, width=3, joint="curve")   # 띠 → 뿔 매듭(살짝 처짐)
+    src = os.path.join(D, "cord-guide.png"); im.save(src)
+    tmp = os.path.expanduser("~/.local/biblemap-imggen/prop-oil-horn-lying/cord"); os.makedirs(tmp, exist_ok=True)
+    for seed in seeds:
+        name = f"cord-s{seed}.png"
+        r = G.edit(src, CORD_CROP, CORD_BOX, "cord", seed, os.path.join(tmp, name), prompt=CORD_PROMPT, mask_shape="rect")
+        if r["status"] == "ok":
+            Image.open(os.path.join(tmp, name)).save(os.path.join(D, name))
+        print("[HornMouthEdit] cord", seed, r)
+
+
 def tip(base_names):
     """task 669 — 사람 668 「구멍 뚫은 곳에 마개가 꽂혀 있어야하고 해당 마개는 끈으로 연결되어 있어야함」: 끝 구멍에 마개 + 끈. 바탕 = 밑동 바닥판 정본 후보."""
     if G.busy():
@@ -98,7 +130,9 @@ def tip(base_names):
 
 
 V2 = "--v2" in sys.argv
-if sys.argv[1] == "plug":
+if sys.argv[1] == "cord":
+    cord()
+elif sys.argv[1] == "plug":
     plug()
 elif sys.argv[1] == "tip":
     tip(sys.argv[2].split(","))
