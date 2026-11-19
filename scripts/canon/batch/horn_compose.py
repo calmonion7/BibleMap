@@ -63,7 +63,7 @@ SCENES = {
                           "front": (430, 245, 482, 296), "local_box": (410, 190, 580, 350), "strengths": (0.2,)},
 }
 CANON_HORN = "frozen/props/oil-horn.png"
-CANON_MOUTH, CANON_TIP = (352, 234), (968, 238)   # 정본 1216×640에서 입구(마개) 가운데 · 잘린 끝 주둥이
+CANON_MOUTH, CANON_TIP = (352, 234), (1028, 130)   # 정본 1216×640에서 넓은 밑동(바닥판) 가운데 · 끝 마개 끝(task 673 정본 — 옛 661은 968,238)
 
 
 def canon_cut():
@@ -78,7 +78,11 @@ def canon_cut():
         rgb = a[:, :, :3].astype(int)
         lum, sat = rgb.mean(2), rgb.max(2) - rgb.min(2)
         yy = np.arange(a.shape[0])[:, None]
-        a[(yy > 380) & (lum > 110) & (sat < 60), 3] = 0
+        a[(yy > 330) & (lum > 90) & (sat < 60), 3] = 0   # 아래 회색 그림자(673 정본은 그림자가 330부터)
+        import cv2   # 뿔 몸통의 옅은 호박색 줄무늬도 그림자 문턱에 걸려 구멍 — 바깥에서 닿지 않는 구멍은 다시 메움
+        keep = (a[:, :, 3] > 128).astype("uint8") * 255
+        ff = keep.copy(); cv2.floodFill(ff, np.zeros((ff.shape[0] + 2, ff.shape[1] + 2), "uint8"), (0, 0), 128)
+        a[(ff == 0) & (yy > 300), 3] = 255   # 위쪽 끈 고리 안(종이)은 메우지 않음
         Image.fromarray(a).save(out)
     return Image.open(out).convert("RGBA")
 

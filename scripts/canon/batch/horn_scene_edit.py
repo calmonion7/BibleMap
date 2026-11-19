@@ -17,7 +17,7 @@ SCENES = {
                               f"from that small tip hole down onto the boy's hair. {KEEP}"},
 }
 REF_PROMPT = ("Replace the horn the old man holds with the curved ram's horn from the second image — the same shape, glossy dark brown color "
-              "with pale amber streaks and the cloth-wrapped wooden stopper. He holds it by its thick stopper end in his two hands, it curves and "
+              "with pale amber streaks whose wide end is closed flat with a wooden disc. He holds its thick body near the wide end in his two hands, it curves and "
               "narrows to its small cut tip just above the kneeling boy's head, and golden oil drips in a thin stream from that small tip hole onto "
               "the boy's hair. ") + KEEP
 
@@ -31,7 +31,7 @@ def edit_ref(src, crop, box, seed, out):
     stem = out[:-4]
     inp, ref, raw = stem + "-in.png", stem + "-ref.png", stem + "-raw.png"
     base.crop((L, T, L + side, T + side)).resize((G.EDIT, G.EDIT), Image.LANCZOS).save(inp)
-    c = Image.open(os.path.join(CANON, "frozen/props/oil-horn.png")).convert("RGB").crop((200, 60, 1020, 520))
+    c = Image.open(os.path.join(CANON, "frozen/props/oil-horn.png")).convert("RGB").crop((220, 100, 1060, 480))   # task 673 정본(끝이 1031,123까지)
     bg = Image.new("RGB", (G.EDIT, G.EDIT), c.getpixel((5, 5))); c.thumbnail((G.EDIT, G.EDIT)); bg.paste(c, (0, (G.EDIT - c.height) // 2)); bg.save(ref)
     if not os.path.exists(raw):
         subprocess.run([G.MFLUX, "--model", "flux2-klein-4b", "-q", "8", "--image-paths", inp, ref, "--prompt", REF_PROMPT, "--seed", str(seed),
