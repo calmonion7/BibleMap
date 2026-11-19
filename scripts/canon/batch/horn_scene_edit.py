@@ -19,7 +19,9 @@ SCENES = {
     # task 675 — 기혼 665 s42: 오려 얹기는 휨을 거울로 뒤집거나(사람 674 「기름뿔 뒤집힘」) 옛 뿔 끝·흐린 뿔이 남음 → 베들레헴과 같은 klein + 정본
     # task 676 — 확정본 B1 끝을 정본 끝처럼(끈·매달린 마개)
     "bethlehem15b1": {"image": "samples/bethlehem15-horn-edit/edit-ref-s1.png", "out": "bethlehem15-horn-edit",
-                      "tip": {"tip": (527, 295), "deg": 47, "crop": (476, 250, 80), "box": (492, 262, 548, 322), "hang_left": True}},
+                      "tip": {"tip": (527, 295), "deg": 47, "crop": (476, 250, 80), "box": (492, 262, 548, 322), "hang_left": True},
+                      "clean": {"crop": (400, 180, 180), "box": (436, 200, 552, 330)},
+                      "oil": {"src": "samples/bethlehem-b1-canon/canon-c.png", "out": "bethlehem-b1-canon", "crop": (488, 270, 72), "box": (522, 297, 540, 326)}},
     "bethlehem15b1g": {"base": "samples/bethlehem-b1-canon/src.png", "out": "bethlehem15-horn-edit", "crop": (390, 170, 200), "box": (425, 205, 548, 328),
                        "prompt": "", "tag": "b1g", "extra": " A thin leather cord is wrapped around the horn just below the tip, and the small wooden stopper hangs from it on a short loop of cord, pulled out of the tip."},
     "gihon18": {"base": "samples/gihon-step23-t18/composition-A-s42.png", "out": "gihon18-horn-edit",
@@ -108,6 +110,55 @@ def tip_edit(cfg, seeds):
         print("[HornSceneEdit] tip", sd, out)
 
 
+CLEAN_PROMPT = ("Remove the horn the old man is holding and the golden oil stream completely, and show what is behind them: the boy's grey "
+                "tunic, the field and the pale sky. Keep the old man's two raised hands exactly where they are with the fingers curled as if "
+                "gripping something, and keep the boy, the other people, the background and the soft pencil and colored-pencil illustration style "
+                "exactly the same.")
+
+
+def clean(cfg, seeds):
+    """task 677 — 사람 676 「뿔이 찌그러져 있음 정본이랑 비교해봐」: klein이 정본을 다시 그리며 몸통을 부풀리고 꺾음(지운 자리 번짐까지 뿔로) →
+    먼저 뿔만 지운 깨끗한 바탕을 만들고(이 함수), 그 위에 정본을 다시 그리지 않고 그대로 얹는다(horn_compose bethlehem-b1c)."""
+    c = cfg["clean"]
+    for sd in seeds:
+        name = f"clean-s{sd}.png"
+        o = os.path.join(os.path.expanduser(f"~/.local/biblemap-imggen/{cfg['out']}"), name)
+        os.makedirs(os.path.dirname(o), exist_ok=True)
+        r = G.edit(os.path.join(CANON, cfg["image"]), c["crop"], c["box"], "clean", sd, o, prompt=CLEAN_PROMPT, mask_shape="rect")
+        if r["status"] == "ok":
+            Image.open(o).save(os.path.join(CANON, "samples", cfg["out"], name))
+        print("[HornSceneEdit] clean", sd, r)
+
+
+OIL_PROMPT = ("The painted yellow line is golden olive oil: draw it as a thin, glossy stream of golden oil falling from the small hole at the tip "
+              "of the horn straight down onto the kneeling boy's hair, with a small shining drop on his hair. The small brown oval is a little wooden "
+              "stopper hanging on a thin leather cord from the horn. Keep the horn itself, the boy, the other people, the background and the soft pencil "
+              "and colored-pencil illustration style exactly the same.")
+
+
+def oil(cfg, seeds):
+    """task 677 2판 — 정본을 그대로 얹은 그림(canon-c)에 칠한 기름 줄·마개를 좁은 크롭 klein으로 자연스럽게(뿔 몸통은 상자 밖)."""
+    o = cfg["oil"]
+    for sd in seeds:
+        name = f"oil-s{sd}.png"
+        tmpo = os.path.join(os.path.expanduser(f"~/.local/biblemap-imggen/{o['out']}"), name)
+        os.makedirs(os.path.dirname(tmpo), exist_ok=True)
+        r = G.edit(os.path.join(CANON, o["src"]), o["crop"], o["box"], "oil", sd, tmpo, prompt=OIL_PROMPT, mask_shape="rect")
+        if r["status"] == "ok":
+            Image.open(tmpo).save(os.path.join(CANON, "samples", o["out"], name))
+        print("[HornSceneEdit] oil", sd, r)
+
+
+if len(sys.argv) > 2 and sys.argv[2] == "oil":
+    if G.busy():
+        sys.exit("[HornSceneEdit] 다른 생성 프로세스가 돎")
+    oil(SCENES[sys.argv[1]], [int(x) for x in sys.argv[3].split(",")] if len(sys.argv) > 3 else [1, 2, 3, 4])
+    sys.exit(0)
+if len(sys.argv) > 2 and sys.argv[2] == "clean":
+    if G.busy():
+        sys.exit("[HornSceneEdit] 다른 생성 프로세스가 돎")
+    clean(SCENES[sys.argv[1]], [int(x) for x in sys.argv[3].split(",")] if len(sys.argv) > 3 else [1, 2, 3, 4])
+    sys.exit(0)
 if len(sys.argv) > 2 and sys.argv[2] == "tip":
     c = SCENES[sys.argv[1]]
     if G.busy():

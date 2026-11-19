@@ -67,6 +67,12 @@ SCENES = {
                      "erase": [[(448, 232), (452, 215), (470, 211), (485, 222), (502, 258), (537, 291), (528, 303), (511, 291)]],
                      "horn": ((465, 224), (480, 270), (527, 293)), "r": 12, "hole": True, "oil": ((527, 294), (530, 318)), "oil_w": 3,
                      "hang": ((519, 287), (513, 299)), "front": (430, 240, 492, 290), "strengths": (0.2,)},
+    # task 677 — 사람 676 「뿔이 찌그러져 있음」: klein이 다시 그리면 몸통이 부풀고 꺾임 → 뿔을 지운 깨끗한 바탕(horn_scene_edit bethlehem15b1 clean s1)에 정본을 그대로 얹고 다시 그리지 않음
+    "bethlehem-b1c": {"base": "samples/bethlehem15-horn-edit/clean-s1.png", "front_src": "samples/bethlehem15-horn-edit/clean-s1.png",   # B1 손가락은 옛 뿔 금빛 줄무늬가 살빛 문턱에 걸려 따라옴
+                      "out": "bethlehem-b1-canon", "src_name": "canon-c.png", "fixed": 666, "seed": 5, "canon": True, "keep_curve": True, "erase": [],
+                      "horn": ((465, 224), (480, 270), (527, 293)), "r": 12, "hole": True, "oil": ((527, 294), (530, 318)), "oil_w": 3,
+                      "hang": ((519, 287), (514, 297)), "front": (430, 240, 492, 290),
+},   # 677 2판: oil_src(B1 줄기 옮기기)는 일부만 옮겨져 끊김 → 칠한 줄기 + horn_scene_edit bethlehem15b1 oil
 }
 CANON_HORN = "frozen/props/oil-horn.png"
 CANON_MOUTH, CANON_TIP = (352, 234), (1028, 130)   # 정본 1216×640에서 넓은 밑동(바닥판) 가운데 · 끝 마개 끝(task 673 정본 — 옛 661은 968,238)
@@ -116,12 +122,26 @@ def paste_canon(im, cfg):
     return out.convert("RGB")
 
 
+def oil_from(im, cfg):
+    """task 677 — 칠한 노란 줄은 기름으로 안 읽힘 → cfg oil_src(같은 끝 자리에 생성기가 그린 기름 줄기가 있는 그림)의 금빛 화소를 oil_box 안에서 옮김."""
+    import numpy as np
+    x0, y0, x1, y1 = cfg["oil_box"]
+    o = np.asarray(Image.open(os.path.join(CANON, cfg["oil_src"])).convert("RGB")).astype(int)[y0:y1, x0:x1]
+    r, g, b = o[:, :, 0], o[:, :, 1], o[:, :, 2]
+    m = ((r > 150) & (g > 110) & (r - b > 70) & (g - b > 40)).astype("uint8") * 255
+    from PIL import ImageFilter
+    im.paste(Image.fromarray(o.astype("uint8")), (x0, y0), Image.fromarray(m).filter(ImageFilter.GaussianBlur(0.6)))
+    return im
+
+
 def tip_hole(im, cfg, k=4):
     """task 664 — 줄인 정본은 끝 구멍이 1화소로 사라짐(사람 663 「구멍 뚫린쪽으로 기름이 떨어져야함」) → 끝에 잘린 면(뿔 색)과 짙은 구멍을 칠하고 기름을 구멍에서 시작.
     화소로 바로 칠하면 검은 덩이·계단 진 줄(664 3판) → k배 크기 층에 그려 줄여 얹음."""
     import math
     base, ctrl, tip = cfg["horn"]
     (tx, ty), (ox, oy) = cfg["oil"]
+    if cfg.get("oil_src"):
+        oy = ty   # 기름 줄기는 oil_from이 옮김 — 여기서는 구멍만
     x0, y0 = int(min(tip[0], ox)) - 12, int(min(tip[1], ty)) - 12
     x1, y1 = int(max(tip[0], ox)) + 12, int(max(tip[1], oy)) + 12
     lay = Image.new("RGBA", ((x1 - x0) * k, (y1 - y0) * k), (0, 0, 0, 0))
@@ -133,8 +153,9 @@ def tip_hole(im, cfg, k=4):
         return [P(cx + rx * math.cos(t) * ca + ry * math.sin(t) * math.cos(ang), cy + rx * math.cos(t) * sa + ry * math.sin(t) * math.sin(ang))
                 for t in (2 * math.pi * i / n for i in range(n))]
     w = cfg.get("oil_w", 3)
-    d.line([P(tx, ty), P(ox, oy - 1)], fill=(206, 160, 38, 235), width=round(w * k * 0.8))   # 구멍에서 떨어지는 기름(가늘게)
-    d.ellipse([*P(ox - 1.6, oy - 1.6), *P(ox + 1.6, oy + 1.8)], fill=(214, 168, 40, 240))   # 머리에 닿는 방울
+    if not cfg.get("oil_src"):
+        d.line([P(tx, ty), P(ox, oy - 1)], fill=(206, 160, 38, 235), width=round(w * k * 0.8))   # 구멍에서 떨어지는 기름(가늘게)
+        d.ellipse([*P(ox - 1.6, oy - 1.6), *P(ox + 1.6, oy + 1.8)], fill=(214, 168, 40, 240))   # 머리에 닿는 방울
     d.polygon(ell(*tip, 2.6, 1.3), fill=(118, 82, 48, 255), outline=(52, 34, 18, 255))      # 잘린 면(뿔 색)
     d.polygon(ell(*tip, 1.1, 0.7), fill=(20, 12, 5, 255))                                  # 주둥이 구멍
     small = lay.resize((x1 - x0, y1 - y0), Image.LANCZOS)
@@ -150,7 +171,7 @@ def front_hand(im, cfg):
     if not cfg.get("front"):
         return im
     x0, y0, x1, y1 = cfg["front"]
-    o = np.asarray(Image.open(os.path.join(CANON, cfg["base"])).convert("RGB")).astype(int)[y0:y1, x0:x1]
+    o = np.asarray(Image.open(os.path.join(CANON, cfg.get("front_src", cfg["base"]))).convert("RGB")).astype(int)[y0:y1, x0:x1]
     m = ((o[:, :, 1] < 0.8 * o[:, :, 0]) & (o[:, :, 0] > 120)).astype("uint8") * 255
     from PIL import ImageFilter
     mk = Image.fromarray(m).filter(ImageFilter.MaxFilter(3)).filter(ImageFilter.GaussianBlur(0.8))
@@ -184,10 +205,12 @@ def compose(cfg):
             (hx0, hy0), (hx1, hy1) = cfg["hang"]
             dd = ImageDraw.Draw(im)
             dd.line([(hx0, hy0), ((hx0 + hx1) / 2 - 1, (hy0 + hy1) / 2 + 2), (hx1, hy1)], fill=(140, 86, 44), width=2, joint="curve")
-            dd.rounded_rectangle([hx1 - 3, hy1, hx1 + 3, hy1 + 7], radius=2, fill=(210, 174, 124), outline=(110, 74, 40))
+            dd.ellipse([hx1 - 2.2, hy1 - 0.5, hx1 + 2.2, hy1 + 5], fill=(150, 104, 62), outline=(90, 58, 30))   # 작고 둥근 나무 쐐기(네모는 「태그」로 읽힘, 677)
+        if cfg.get("oil_src"):
+            oil_from(im, cfg)
         if cfg.get("hole"):
             tip_hole(im, cfg)
-            im.save(os.path.join(out, "src.png")); print("[HornCompose]", os.path.join(out, "src.png")); return
+            sp = os.path.join(out, cfg.get("src_name", "src.png")); im.save(sp); print("[HornCompose]", sp); return
         if True:   # 끝 구멍은 다시 그린 뒤(repaste)에만 칠함 — 다시 그리기 전에 칠하면 생성기가 짙은 구멍을 나팔 입으로 키움(664 1판)
             d = ImageDraw.Draw(im)
             (tx, ty), (ox, oy) = cfg["oil"]
