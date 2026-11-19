@@ -358,6 +358,27 @@ def horn_pour_high(d, x0, y0, x1, y1, v):
     d.line([P1, (P1[0], y1)], fill=v, width=max(2, round(w * 0.06)))
 
 
+def horn_canon(d, x0, y0, x1, y1, v):
+    """task 688 — 사람 687 「이어붙인 느낌이남 한번에 그릴수는 없나?」: 그린 뒤 얹지 말고 생성 가이드에 지물 정본 윤곽 그대로.
+    정본(frozen/props/oil-horn.png)을 오려 낸 꼴을 휨 그대로(거울 없이) 돌려 구역 위 왼쪽(밑동) → 아래 오른쪽(끝)에 맞춤 + 끝에서 아래로 기름 줄기(구역 높이 0.5)."""
+    import math
+    import numpy as np
+    from PIL import Image as _I
+    cut = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "samples", "prop-oil-horn-lying", "canon-cut.png")
+    a = np.asarray(_I.open(cut).convert("RGBA"))[:, :, 3] > 128
+    M, T = (352, 234), (1028, 130)                                    # 정본 밑동(바닥판) 가운데 · 끝(horn_compose.CANON_MOUTH/TIP)
+    ys, xs = np.nonzero(a)
+    v1 = (T[0] - M[0], T[1] - M[1]); L1 = math.hypot(*v1)
+    v2 = (x1 - x0, y1 - y0); L2 = math.hypot(*v2)
+    k, rot = L2 / L1, math.atan2(v2[1], v2[0]) - math.atan2(v1[1], v1[0])
+    c, s_ = math.cos(rot), math.sin(rot)
+    px = x0 + k * ((xs - M[0]) * c - (ys - M[1]) * s_)
+    py = y0 + k * ((xs - M[0]) * s_ + (ys - M[1]) * c)
+    for X, Y in zip(px[::3], py[::3]):
+        d.point((round(X), round(Y)), fill=v)
+    d.line([(x1, y1), (x1, y1 + (y1 - y0) * 0.5)], fill=v, width=max(2, round(L2 * 0.05)))
+
+
 def ephod_sword(d, x0, y0, x1, y1, v):
     """task 560 — 걸이에 걸린 에봇과 그 뒤에 세운 칼 꾸러미(놉 21:9 「보자기에 싸여 에봇 뒤에 있으니」): 가운데 긴 막대(칼 — 깊이 한 단 뒤)가
     구역 위끝(자루)부터 바닥 가까이까지, 그 앞을 조끼 덩어리(구역 0.3~0.65 높이)가 가리고, 걸이 다리 둘. 문구만이면 칼이 에봇 옆에 따로 서 16장 중 1장."""
@@ -602,7 +623,7 @@ def draw_pose(img, box, name, hip_dx=0.06):
 
 
 AIR_SHAPES = {"spear"}   # 허공을 나는 물체 꼴(recheck.AIR_SHAPES와 같음)
-SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "kneel_bow_reach": kneel_bow_reach, "seated": seated, "sit": sit, "crowd": crowd, "boat": boat, "bank": bank, "river": river, "altar": altar, "ephod_sword": ephod_sword, "horn_pour": horn_pour, "horn_pour_high": horn_pour_high, "bier": bier}
+SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "kneel_bow_reach": kneel_bow_reach, "seated": seated, "sit": sit, "crowd": crowd, "boat": boat, "bank": bank, "river": river, "altar": altar, "ephod_sword": ephod_sword, "horn_pour": horn_pour, "horn_pour_high": horn_pour_high, "horn_canon": horn_canon, "bier": bier}
 
 
 def make_pose_only(spec, backdrop=False):

@@ -74,6 +74,15 @@ class GuideShapes(unittest.TestCase):
         self.assertEqual(img.getpixel((70, 70)), 0)      # 줄기 옆은 빔(뿔 몸통이 끝 아래로 안 내려옴)
         self.assertEqual(img.getpixel((5, 5)), 255)      # 넓은 밑동(위 왼쪽)
 
+    def test_horn_canon_follows_canon_silhouette(self):
+        """horn_canon(task 688)은 정본 윤곽 — 밑동(구역 위 왼쪽)이 넓고 끝(아래 오른쪽)에서 아래로 기름 줄기."""
+        from PIL import Image, ImageDraw
+        img = Image.new("L", (300, 300), 0)
+        mg.horn_canon(ImageDraw.Draw(img), 60, 60, 220, 200, 255)
+        self.assertEqual(img.getpixel((60, 70)), 255)     # 넓은 밑동
+        self.assertEqual(img.getpixel((220, 250)), 255)   # 끝 아래 기름 줄기
+        self.assertEqual(img.getpixel((250, 60)), 0)      # 위 오른쪽은 빔
+
     def test_bier_lying_body(self):
         """bier(task 618 사무엘의 죽음)는 낮은 판 위에 가로로 누운 몸 — 구역 가운데 위쪽은 몸, 위 끝은 빔, 판 아래 가운데는 빔(다리 사이)."""
         from PIL import Image, ImageDraw
