@@ -115,6 +115,57 @@ def cord(seeds=(1, 2, 3, 4)):
         print("[HornMouthEdit] cord", seed, r)
 
 
+SMOOTH_CROP, SMOOTH_BOX = (800, 90, 240), (830, 140, 1012, 322)
+SMOOTH_PROMPT = ("Make the narrow end of this ram's horn one continuous piece of natural horn that tapers smoothly into the tip, its color "
+                 "darkening gradually toward the tip — no separate collar, no ring, no joint and no step anywhere along the horn. Keep the small "
+                 "wooden stopper, the leather cord tied around it and the cord wrapped around the horn exactly the same. " + KEEP)
+
+
+def smooth(seeds=(1, 2, 3, 4)):
+    """task 672 — 사람 「뿔끝이 마디가 안느껴지게」: 끝의 따로 끼운 듯한 검은 원통 테 · 밝은 몸통이 검은 토막으로 꺾이는 이음선 → 한 덩이로 매끈하게."""
+    if G.busy():
+        sys.exit("[HornMouthEdit] 다른 생성 프로세스가 돎 — 끝난 뒤 다시")
+    tmp = os.path.expanduser("~/.local/biblemap-imggen/prop-oil-horn-lying/smooth"); os.makedirs(tmp, exist_ok=True)
+    for seed in seeds:
+        name = f"smooth-s{seed}.png"
+        r = G.edit(os.path.join(D, "cord-s4.png"), SMOOTH_CROP, SMOOTH_BOX, "smooth", seed, os.path.join(tmp, name), prompt=SMOOTH_PROMPT, mask_shape="rect")
+        if r["status"] == "ok":
+            Image.open(os.path.join(tmp, name)).save(os.path.join(D, name))
+        print("[HornMouthEdit] smooth", seed, r)
+
+
+PLUG2_CROP, PLUG2_BOX = (860, 60, 200), (938, 118, 1036, 206)
+PLUG2_PROMPT = ("The painted tan shape at the tip is a small solid wooden stopper pushed into the tip hole, sticking out a little, with a rounded "
+                "closed top. The thin brown painted lines are a leather cord tied in a tight loop around the stopper and running down to the "
+                "knot on the horn. Keep the smooth horn tip, the horn and everything else exactly the same. " + KEEP)
+
+
+def plug2(seeds=(1, 2, 3, 4)):
+    """task 672 2판 — 매끈한 끝(smooth-s2)에서 마개가 사라짐 → 마개·끈 자리를 칠한 길잡이 + klein(671과 같은 수단)."""
+    import math
+    from PIL import ImageDraw
+    if G.busy():
+        sys.exit("[HornMouthEdit] 다른 생성 프로세스가 돎 — 끝난 뒤 다시")
+    im = Image.open(os.path.join(D, "smooth-s2.png")).convert("RGB")
+    d = ImageDraw.Draw(im)
+    tip, ang = (1010, 150), math.radians(-50)
+    ux, uy = math.cos(ang), math.sin(ang); px, py = -uy, ux
+    q = lambda a, b: (tip[0] + ux * a + px * b, tip[1] + uy * a + py * b)
+    d.polygon([q(-3, -6), q(13, -5), q(15, -2), q(15, 2), q(13, 5), q(-3, 6)], fill=(214, 178, 128), outline=(120, 84, 50))   # 마개(끝에서 조금 나옴)
+    col = (150, 95, 50)
+    d.line([q(7, -6.5), q(7, 6.5)], fill=col, width=3)                                         # 마개 허리 끈 고리
+    lo = max((q(7, -6.5), q(7, 6.5)), key=lambda p: p[1])
+    d.line([lo, ((lo[0] + 950) / 2, (lo[1] + 196) / 2 + 4), (950, 196)], fill=col, width=3, joint="curve")   # 고리 → 뿔 매듭
+    src = os.path.join(D, "plug2-guide.png"); im.save(src)
+    tmp = os.path.expanduser("~/.local/biblemap-imggen/prop-oil-horn-lying/plug2"); os.makedirs(tmp, exist_ok=True)
+    for seed in seeds:
+        name = f"plug2-s{seed}.png"
+        r = G.edit(src, PLUG2_CROP, PLUG2_BOX, "plug2", seed, os.path.join(tmp, name), prompt=PLUG2_PROMPT, mask_shape="rect")
+        if r["status"] == "ok":
+            Image.open(os.path.join(tmp, name)).save(os.path.join(D, name))
+        print("[HornMouthEdit] plug2", seed, r)
+
+
 def tip(base_names):
     """task 669 — 사람 668 「구멍 뚫은 곳에 마개가 꽂혀 있어야하고 해당 마개는 끈으로 연결되어 있어야함」: 끝 구멍에 마개 + 끈. 바탕 = 밑동 바닥판 정본 후보."""
     if G.busy():
@@ -130,7 +181,11 @@ def tip(base_names):
 
 
 V2 = "--v2" in sys.argv
-if sys.argv[1] == "cord":
+if sys.argv[1] == "plug2":
+    plug2()
+elif sys.argv[1] == "smooth":
+    smooth()
+elif sys.argv[1] == "cord":
     cord()
 elif sys.argv[1] == "plug":
     plug()
