@@ -31,8 +31,11 @@ SCENES = {
     # task 685 — 사람 684 「두 손으로 쥐어야 함」: 두 손이 뿔 몸통 한 자리에 모인 665 s303(그 자리 = 정본을 휨 그대로 얹을 때 굽은 배)
     "gihon303": {"image": "samples/gihon-step23-t18/composition-A-s303.png", "out": "gihon303-horn",
                  "clean": {"crop": (490, 228, 175), "box": (515, 245, 640, 382)},
-                 "oil": {"src": "samples/gihon303-horn/canon-c.png", "out": "gihon303-horn", "crop": (564, 310, 72), "box": (590, 330, 610, 366)},
+                 "oil": {"src": "samples/gihon303-horn/canon-c.png", "out": "gihon303-horn", "crop": (561, 314, 72), "box": (587, 334, 607, 368)},
                  "grip": {"src": "samples/gihon303-horn/oil-s3-b.png", "out": "gihon303-horn", "crop": (505, 262, 96), "box": (520, 286, 580, 340)}},
+    # task 687 — 사람 686 「똑같이 여전히 손으로 쥐고 있지 않음」(685·686 두 번) → 수단 바꿈: 정본 얹은 그림을 klein --ref로 손과 뿔 함께 다시 그려 쥔 손을 얻고, 그 위에 정본을 다시 얹어 손가락만 앞에(horn_compose gihon303-g)
+    "gihon303g": {"base": "samples/gihon303-horn/canon-c.png", "out": "gihon303-horn", "crop": (480, 225, 170), "box": (505, 245, 625, 360),
+                  "who": "kneeling young man", "prompt": "", "tag": "grip"},
     "gihon18": {"base": "samples/gihon-step23-t18/composition-A-s42.png", "out": "gihon18-horn-edit",
                 "crop": (450, 225, 195), "box": (500, 255, 622, 365), "who": "kneeling young man", "prompt": ""},
     # task 675 2판 — s42 그대로면 옛 나팔 배치를 따라 넓은 밑동에서 부음(4/4) → 정본을 거울 없이 얹어 끝을 머리 위에 둔 칠한 그림(horn_compose gihon18-canon src)에서

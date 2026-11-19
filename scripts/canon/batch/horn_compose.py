@@ -82,8 +82,8 @@ SCENES = {
     # task 685 — 사람 684 「두 손으로 쥐어야 함」: s303 지운 바탕(두 손이 한 자리에 모아 쥔 꼴)에 정본 휨 그대로 — 굽은 배가 두 손 자리(547,312)
     "gihon303-c": {"base": "samples/gihon303-horn/clean-s1.png", "front_src": "samples/gihon303-horn/clean-s1.png",
                    "out": "gihon303-horn", "src_name": "canon-c.png", "fixed": 665, "seed": 303, "canon": True, "keep_curve": True, "erase": [],
-                   "horn": ((538, 258), (520, 300), (600, 330)), "r": 12, "hole": True, "oil": ((600, 331), (601, 358)), "oil_w": 4.5, "oil_rgb": (240, 186, 30),
-                   "hang": ((592, 328), (588, 340)), "front": (525, 290, 572, 335)},
+                   "horn": ((522, 276), (520, 300), (597, 336)), "r": 12, "hole": True, "oil": ((597, 337), (598, 359)), "oil_w": 4.5, "oil_rgb": (240, 186, 30),   # 687: 몸통이 두 주먹 속을 지나게(685·686 「손으로 쥐고 있지 않음」 — 몸통이 주먹 위를 스침)
+                   "hang": ((589, 334), (585, 346)), "front": (525, 290, 572, 335)},
 }
 CANON_HORN = "frozen/props/oil-horn.png"
 CANON_MOUTH, CANON_TIP = (352, 234), (1028, 130)   # 정본 1216×640에서 넓은 밑동(바닥판) 가운데 · 끝 마개 끝(task 673 정본 — 옛 661은 968,238)
