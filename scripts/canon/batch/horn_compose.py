@@ -62,6 +62,11 @@ SCENES = {
                           "patch": [((500, 282, 542, 318), (546, 282))],   # 깔때기(뒤 형 회색 옷 — 옷 오른쪽 조각)
                           "horn": ((470, 268), (500, 242), (528, 290)), "r": 12, "hole": True, "oil": ((528, 291), (532, 312)), "oil_w": 3,
                           "front": (430, 245, 482, 296), "local_box": (410, 190, 580, 350), "strengths": (0.2,)},
+    # task 676 — 확정 B1(베들레헴)의 곧은 원통 뿔을 정본으로: 사람 674 B1 「끝부분이 안닮았고 줄도없음 줄에 묶인 마개도 없고」 — 끝만 고치면 굵은 끝이 남음 → 정본을 바른 방향(keep_curve)으로 칠해 얹고 klein --ref(horn_scene_edit bethlehem15b1g)
+    "bethlehem-b1": {"base": "samples/bethlehem15-horn-edit/edit-ref-s1.png", "out": "bethlehem-b1-canon", "fixed": 666, "seed": 5, "canon": True, "keep_curve": True,
+                     "erase": [[(448, 232), (452, 215), (470, 211), (485, 222), (502, 258), (537, 291), (528, 303), (511, 291)]],
+                     "horn": ((465, 224), (480, 270), (527, 293)), "r": 12, "hole": True, "oil": ((527, 294), (530, 318)), "oil_w": 3,
+                     "hang": ((519, 287), (513, 299)), "front": (430, 240, 492, 290), "strengths": (0.2,)},
 }
 CANON_HORN = "frozen/props/oil-horn.png"
 CANON_MOUTH, CANON_TIP = (352, 234), (1028, 130)   # 정본 1216×640에서 넓은 밑동(바닥판) 가운데 · 끝 마개 끝(task 673 정본 — 옛 661은 968,238)
@@ -175,6 +180,14 @@ def compose(cfg):
         im.paste(src0.crop((sx, sy, sx + x1 - x0, sy + y1 - y0)), (x0, y0))
     if cfg.get("canon"):
         im = front_hand(paste_canon(im, cfg), cfg)
+        if cfg.get("hang"):   # task 676 — 끝 아래 몸통에서 늘어진 끈과 매달린 마개(붓는 중이라 뺌)
+            (hx0, hy0), (hx1, hy1) = cfg["hang"]
+            dd = ImageDraw.Draw(im)
+            dd.line([(hx0, hy0), ((hx0 + hx1) / 2 - 1, (hy0 + hy1) / 2 + 2), (hx1, hy1)], fill=(140, 86, 44), width=2, joint="curve")
+            dd.rounded_rectangle([hx1 - 3, hy1, hx1 + 3, hy1 + 7], radius=2, fill=(210, 174, 124), outline=(110, 74, 40))
+        if cfg.get("hole"):
+            tip_hole(im, cfg)
+            im.save(os.path.join(out, "src.png")); print("[HornCompose]", os.path.join(out, "src.png")); return
         if True:   # 끝 구멍은 다시 그린 뒤(repaste)에만 칠함 — 다시 그리기 전에 칠하면 생성기가 짙은 구멍을 나팔 입으로 키움(664 1판)
             d = ImageDraw.Draw(im)
             (tx, ty), (ox, oy) = cfg["oil"]
