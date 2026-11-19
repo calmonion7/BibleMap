@@ -35,9 +35,9 @@
     "verse": "삼상 16:13 「사무엘이 기름 뿔을 취하여 그 형제 중에서 그에게 부었더니」 · 16:11 「아직 말째가 남았는데 그가 양을 지키나이다」 · 16:5 「제사에 청하니라」 · 자세·배치는 본문 밖 · 저작자 정함 · 머리는 [추론] 삼상 10:1 「사무엘이 기름병을 취하여 사울의 머리에 붓고」"
   },
   "relation": {
-    "ko": "금빛 기름이 뿔에서 소년의 머리카락으로 흘러내린다 · 소년은 형 일곱 가운데 무릎 꿇고 형들은 빈손으로 둘러선다 — 오른쪽 바로 곁의 형은 고개 숙여 소년을 내려다보고, 왼쪽 뒤의 형은 몸을 돌려 소년을 본다 · 늙은 아버지는 떨어져 선다",
-    "en": "Golden oil dripping from the horn's tip onto the boy's hair; the boy kneels in the midst of his seven older brothers, grown bearded men in wool tunics and headwraps, empty-handed; at his right stands a bearded brother looking down at him, and on his left stands a bearded brother looking at him",
-    "verse": "삼상 16:13 「사무엘이 기름 뿔을 취하여 그 형제 중에서 그에게 부었더니」 · 16:10 「이새가 그 아들 일곱으로 다 사무엘 앞을 지나게 하나」 · 금빛 기름은 사전 oil L1(올리브 기름 고증 — 본문 밖) · 형들이 다윗 뒤에 섬·빈손·이새가 떨어져 섬·좌우 배치는 본문 밖 · 저작자 정함(task 378 — 둘러선 형제·곁의 이새가 기름 붓는 이로 읽힘) · 형들의 수염은 본문 밖 · 저작자 정함 — 일곱 모두 다윗보다 손위([추론] 16:11 「말째」) · 위로 셋이 장성함은 17:13 「그 장성한 세 아들은」 · 머리는 [추론] 삼상 10:1 「사무엘이 기름병을 취하여 사울의 머리에 붓고」 · 다윗의 무릎 꿇음은 본문 밖 · 저작자 정함(task 666) · 앞줄 형 둘을 한 사람 절로(task 683 — 무리 문구·뼈대·머리 편집으로는 형들이 정면, 사람 679 · 사람 「형 일곱을 한 사람씩 문구로」)"
+    "ko": "금빛 기름이 뿔에서 소년의 머리카락으로 흘러내린다 · 소년은 형 일곱 가운데 무릎 꿇고 형들은 빈손으로 그 바로 뒤에 서서 소년을 내려다본다 · 늙은 아버지는 떨어져 선다",
+    "en": "Golden oil dripping from the horn's tip onto the boy's hair; the boy kneels in the midst of his seven older brothers, grown bearded men taller than the boy in wool tunics and headwraps, standing close behind him, looking down at him, empty-handed",
+    "verse": "삼상 16:13 「사무엘이 기름 뿔을 취하여 그 형제 중에서 그에게 부었더니」 · 16:10 「이새가 그 아들 일곱으로 다 사무엘 앞을 지나게 하나」 · 금빛 기름은 사전 oil L1(올리브 기름 고증 — 본문 밖) · 형들이 다윗 뒤에 섬·빈손·이새가 떨어져 섬·좌우 배치는 본문 밖 · 저작자 정함(task 378 — 둘러선 형제·곁의 이새가 기름 붓는 이로 읽힘) · 형들의 수염은 본문 밖 · 저작자 정함 — 일곱 모두 다윗보다 손위([추론] 16:11 「말째」) · 위로 셋이 장성함은 17:13 「그 장성한 세 아들은」 · 머리는 [추론] 삼상 10:1 「사무엘이 기름병을 취하여 사울의 머리에 붓고」 · 다윗의 무릎 꿇음은 본문 밖 · 저작자 정함(task 666) (task 693: 형들이 다윗을 바라보게 하는 다섯 수단 — 두 무리·옆 보는 뼈대·무리·머리 편집·한 사람 절(680~683) — 모두 0/8로 형들이 정면(관객)을 봄 → 사람 2026-11-20 「배치 바꿔 다시」: 다윗을 관객 쪽 앞에 등을 반쯤 보이고 꿇게 두고 형 일곱은 한 무리로 그 바로 뒤에서 정면 — 정면을 보는 형들이 곧 다윗을 내려다보는 꼴. 다윗을 바라봄은 본문 밖 · 저작자 정함(사람 679 「사람들이 다윗을 바라보지 않음」))"
   },
   "whole_background": {
     "ko": "베들레헴 성읍 곁 빈터의 제사 자리 — 낮은 돌 밭담, 오른쪽에 돌을 쌓은 작은 제단에서 가는 연기가 오름",
@@ -175,39 +175,16 @@
   ],
   "crowds": [
     {
-      "what": "이새의 다른 아들 일곱 중 둘 — 다윗 왼쪽 뒤에 가까이 서서 다윗을 바라봄(빈손)",
-      "verse": "16:10 · 16:13 「그 형제 중에서」 · 다윗 곁에 둘러섬·바라봄·빈손은 본문 밖 · 저작자 정함(task 378 · 680 — 사람 679)",
-      "region": "brothers_l",
-      "count": 2,
-      "count_why": "[직접] 수 7 — 삼상 16:10 「이새가 그 아들 일곱으로 다 사무엘 앞을 지나게 하나」 · 17:12 「여덟 아들이 있는 중」에서 다윗을 뺀 수 / 일곱 모두 순간에 있음은 [추론] 16:13 「그 형제 중에서」 · 대상 2:15 「일곱째로 다윗」(형 여섯)과 다름은 삼상 본문을 따름 · 일곱을 다윗 양옆으로 나눔(왼쪽 뒤 2 · 오른쪽 곁 5 — task 680, 사람 679 「사람들이 다윗을 바라보지 않음 근처에 둘러 있어야」)",
+      "what": "이새의 다른 아들 일곱 — 다윗 바로 뒤에 서서 기름 뿔 없이 빈손으로 다윗을 내려다봄",
+      "verse": "16:10 · 16:13 「그 형제 중에서」 · 다윗 뒤 배치·빈손 본문 밖 · 저작자 정함(task 378) (task 693: 형들이 다윗을 바라보게 하는 다섯 수단 — 두 무리·옆 보는 뼈대·무리·머리 편집·한 사람 절(680~683) — 모두 0/8로 형들이 정면(관객)을 봄 → 사람 2026-11-20 「배치 바꿔 다시」: 다윗을 관객 쪽 앞에 등을 반쯤 보이고 꿇게 두고 형 일곱은 한 무리로 그 바로 뒤에서 정면 — 정면을 보는 형들이 곧 다윗을 내려다보는 꼴. 다윗을 바라봄은 본문 밖 · 저작자 정함(사람 679 「사람들이 다윗을 바라보지 않음」))",
+      "region": "brothers",
+      "count": 7,
+      "count_why": "[직접] 수 7 — 삼상 16:10 「이새가 그 아들 일곱으로 다 사무엘 앞을 지나게 하나」 · 17:12 「여덟 아들이 있는 중」에서 다윗을 뺀 수 / 일곱 모두 순간에 있음은 [추론] 16:13 「그 형제 중에서」 · 대상 2:15 「일곱째로 다윗」(형 여섯)과 다름은 삼상 본문을 따름",
       "costume": {
         "ko": "소년보다 키 큰 수염 난 어른 남자들의 수수한 양모 튜닉과 겉옷, 천 머리두건",
-        "en": "grown bearded men in wool tunics and headwraps",
+        "en": "grown bearded men taller than the boy in wool tunics and headwraps",
         "verse": "본문 밖 · 저작자 정함(시대 고증 — 철기 초 이스라엘 남자 차림 · 규칙 spec.crowd-era-dress) · 수염은 본문 밖 · 저작자 정함 — 일곱 모두 다윗보다 손위([추론] 16:11 「말째」) · 위로 셋이 장성함은 17:13 「그 장성한 세 아들은 사울을 따라 싸움에 나갔으니」 · 소년보다 큰 어른은 [추론] 16:11 「아직 말째가 남았는데」(일곱 모두 손위) · 16:7 「그 용모와 신장을 보지 말라」(엘리압의 키 [직접]) — task 594(593 8시드: 앞줄 형이 다윗 또래 소년·여자로 보임, 형들 6/8)"
-      },
-      "people": [
-        "bl1",
-        "bl2"
-      ]
-    },
-    {
-      "what": "이새의 다른 아들 일곱 중 다섯 — 다윗 오른쪽 곁에 가까이 서서 다윗을 바라봄(빈손)",
-      "verse": "16:10 · 16:13 「그 형제 중에서」 · 다윗 곁에 둘러섬·바라봄·빈손은 본문 밖 · 저작자 정함(task 378 · 680 — 사람 679)",
-      "region": "brothers_r",
-      "count": 5,
-      "count_why": "[직접] 수 7 — 삼상 16:10 「이새가 그 아들 일곱으로 다 사무엘 앞을 지나게 하나」 · 17:12 「여덟 아들이 있는 중」에서 다윗을 뺀 수 / 일곱 모두 순간에 있음은 [추론] 16:13 「그 형제 중에서」 · 대상 2:15 「일곱째로 다윗」(형 여섯)과 다름은 삼상 본문을 따름 · 일곱을 다윗 양옆으로 나눔(왼쪽 뒤 2 · 오른쪽 곁 5 — task 680, 사람 679 「사람들이 다윗을 바라보지 않음 근처에 둘러 있어야」)",
-      "costume": {
-        "ko": "소년보다 키 큰 수염 난 어른 남자들의 수수한 양모 튜닉과 겉옷, 천 머리두건",
-        "en": "grown bearded men in wool tunics and headwraps",
-        "verse": "본문 밖 · 저작자 정함(시대 고증 — 철기 초 이스라엘 남자 차림 · 규칙 spec.crowd-era-dress) · 수염은 본문 밖 · 저작자 정함 — 일곱 모두 다윗보다 손위([추론] 16:11 「말째」) · 위로 셋이 장성함은 17:13 「그 장성한 세 아들은 사울을 따라 싸움에 나갔으니」 · 소년보다 큰 어른은 [추론] 16:11 「아직 말째가 남았는데」(일곱 모두 손위) · 16:7 「그 용모와 신장을 보지 말라」(엘리압의 키 [직접]) — task 594(593 8시드: 앞줄 형이 다윗 또래 소년·여자로 보임, 형들 6/8)"
-      },
-      "people": [
-        "br1",
-        "br2",
-        "br3",
-        "br4",
-        "br5"
-      ]
+      }
     }
   ],
   "figures": [
@@ -245,7 +222,7 @@
     {
       "cast": "david-boy",
       "role": "소년 다윗 — 기름 받는 막내",
-      "pose": "사무엘 앞에 무릎 꿇고 고개를 들어 사무엘을 올려다보며 두 빈손을 몸 앞에 모은다",
+      "pose": "사무엘 앞, 관객 쪽 앞자리에 등을 반쯤 보이고 무릎 꿇어 고개를 옆으로 돌려 사무엘을 올려다보며 두 빈손을 넓적다리 옆에 둔다",
       "prop": "none",
       "facing": "left",
       "region": "david-boy",
@@ -256,9 +233,9 @@
         "verse": "삼상 16:12 「그의 빛이 붉고 눈이 빼어나고 얼굴이 아름답더라」"
       },
       "gesture": {
-        "ko": "무릎을 꿇고 고개를 들어 기름을 받으며 두 빈손을 몸 앞에 모은다",
-        "en": "kneeling, face raised to receive the oil, both empty hands clasped in front",
-        "verse": "삼상 16:13 「그에게 부었더니」 · 무릎 꿇음·든 고개·모은 손은 본문 밖 · 저작자 정함(두 손 보임 — 사람 판정 562 · task 666 무릎: 소년 키가 사무엘의 0.92라 선 채로는 머리 꼭대기가 붓는 손 높이 — 끝~머리 틈이 없어 기름이 안 보임, 사람 663·664 · 같은 키 붓기는 무릎 — 기혼 602)"
+        "ko": "관객에게 등을 반쯤 보이고 무릎을 꿇어 고개를 옆으로 돌려 기름을 받으며 두 빈손을 넓적다리 옆에 둔다",
+        "en": "kneeling with his back half turned to the viewer, head turned in profile, face raised to receive the oil, both empty hands at his thighs",
+        "verse": "삼상 16:13 「그에게 부었더니」 · 무릎 꿇음·든 고개는 본문 밖 · 저작자 정함(두 손 보임 — 사람 판정 562 · task 666 무릎: 소년 키가 사무엘의 0.92라 선 채로는 머리 꼭대기가 붓는 손 높이 — 끝~머리 틈이 없어 기름이 안 보임, 사람 663·664 · 같은 키 붓기는 무릎 — 기혼 602) · 등을 반쯤 보임·옆얼굴·넓적다리 옆 손은 본문 밖 · 저작자 정함(task 693 — 형들이 정면으로 그를 보게 하는 배치, 등 쪽에서 몸 앞에 모은 손은 가려짐)"
       },
       "costume": {
         "ko": "목자 소년의 무릎 길이 물들이지 않은 양모 튜닉(짧은 소매)과 밧줄 띠",
@@ -324,6 +301,12 @@
       0.48,
       0.92
     ],
+    "brothers": [
+      0.36,
+      0.36,
+      0.58,
+      0.84
+    ],
     "jesse": [
       0.83,
       0.363,
@@ -335,105 +318,32 @@
       0.43,
       0.422,
       0.531
-    ],
-    "brothers_l": [
-      0.3,
-      0.36,
-      0.405,
-      0.8
-    ],
-    "brothers_r": [
-      0.48,
-      0.35,
-      0.71,
-      0.86
-    ],
-    "bl1": [
-      0.3,
-      0.368,
-      0.36,
-      0.79
-    ],
-    "bl2": [
-      0.345,
-      0.367,
-      0.405,
-      0.8
-    ],
-    "br4": [
-      0.505,
-      0.369,
-      0.565,
-      0.78
-    ],
-    "br1": [
-      0.48,
-      0.364,
-      0.545,
-      0.84
-    ],
-    "br2": [
-      0.535,
-      0.365,
-      0.6,
-      0.83
-    ],
-    "br3": [
-      0.59,
-      0.363,
-      0.655,
-      0.85
-    ],
-    "br5": [
-      0.645,
-      0.363,
-      0.71,
-      0.86
     ]
   },
-  "_regions_why": "사람 수 10(사무엘·다윗·이새 + 형 일곱) → 무리 단계 small(0.45~0.60). 초점 사무엘(서 있음 · average) 구역 높이 0.56 · 발 y 0.92 → 지평선 0.399. 다윗(short 0.92)은 같은 발 y라 0.515(청년 하한 0.8 × 0.56 = 0.448 위). 형들은 다윗 바로 뒤 발 y 0.84 — 그 자리 어른 화면 키 0.474 ≤ 구역 높이 0.48(generate.eye-level-perspective). (task 595에서 앞줄을 발 0.90으로 당겼더니 다윗 곁 큰 실루엣이 「또래 소년 하나 더」로 그려져 형들 1/8 · 가드 3/8 — 되돌림, task 596) 이새는 조금 뒤 발 y 0.88 → 0.517. 형 무리 구역 너비 0.42는 가이드 무리 꼴(앞줄 3 · 뒷줄 6, 다윗·앞줄에 가려 보이는 실루엣 약 일곱)을 count 7과 맞춘 너비(0.39는 앞줄 2 · 뒷줄 6으로 보이는 여섯 — make_guide.crowd로 셈). 사무엘 뼈대 pour_over의 손목이 다윗 숙인 머리 위에 오도록 다윗 엉덩이를 사무엘 엉덩이에서 사무엘 키의 0.40 오른쪽(화소 1216×640에서 0.118)에 둠 — 두 구역이 조금 겹침(붓는 손이 닿는 거리). 사무엘 왼쪽·다윗 가운데(구역 가운데 x 0.414 — 파생 머리 낱말 「in the center」; 0.4 미만이면 사무엘과 같은 「On the left, in front」가 되어 두 인물 절이 갈리지 않음)·형들 다윗 뒤·이새 오른쪽 떨어져 섬은 저작자 정함(task 378 — 이새를 사무엘 곁에 두면 기름 붓는 이로 읽힘). (task 666: 사무엘 pour_high(두 손목 어깨 높이) · 다윗 kneel_up_left(무릎 꿇고 올려다봄) · 다윗 구역 0.38~0.48(가운데 0.43 — 「in the center」 그대로) · 뿔 구역 [0.366,0.43,0.422,0.531] = 두 손 높이에서 꿇은 다윗 머리 꼭대기까지, 기름 줄기 약 38화소.) (task 680: 형들을 다윗 양옆 두 무리로 — 위 guide.why.)",
+  "_regions_why": "사람 수 10(사무엘·다윗·이새 + 형 일곱) → 무리 단계 small(0.45~0.60). 초점 사무엘(서 있음 · average) 구역 높이 0.56 · 발 y 0.92 → 지평선 0.399. 다윗(short 0.92)은 같은 발 y라 0.515(청년 하한 0.8 × 0.56 = 0.448 위). 형들은 다윗 바로 뒤 발 y 0.84 — 그 자리 어른 화면 키 0.474 ≤ 구역 높이 0.48(generate.eye-level-perspective). (task 595에서 앞줄을 발 0.90으로 당겼더니 다윗 곁 큰 실루엣이 「또래 소년 하나 더」로 그려져 형들 1/8 · 가드 3/8 — 되돌림, task 596) 이새는 조금 뒤 발 y 0.88 → 0.517. 형 무리 구역 너비 0.42는 가이드 무리 꼴(앞줄 3 · 뒷줄 6, 다윗·앞줄에 가려 보이는 실루엣 약 일곱)을 count 7과 맞춘 너비(0.39는 앞줄 2 · 뒷줄 6으로 보이는 여섯 — make_guide.crowd로 셈). 사무엘 뼈대 pour_over의 손목이 다윗 숙인 머리 위에 오도록 다윗 엉덩이를 사무엘 엉덩이에서 사무엘 키의 0.40 오른쪽(화소 1216×640에서 0.118)에 둠 — 두 구역이 조금 겹침(붓는 손이 닿는 거리). 사무엘 왼쪽·다윗 가운데(구역 가운데 x 0.414 — 파생 머리 낱말 「in the center」; 0.4 미만이면 사무엘과 같은 「On the left, in front」가 되어 두 인물 절이 갈리지 않음)·형들 다윗 뒤·이새 오른쪽 떨어져 섬은 저작자 정함(task 378 — 이새를 사무엘 곁에 두면 기름 붓는 이로 읽힘). (task 666: 사무엘 pour_high(두 손목 어깨 높이) · 다윗 kneel_up_left(무릎 꿇고 올려다봄) · 다윗 구역 0.38~0.48(가운데 0.43 — 「in the center」 그대로) · 뿔 구역 [0.366,0.43,0.422,0.531] = 두 손 높이에서 꿇은 다윗 머리 꼭대기까지, 기름 줄기 약 38화소.) (task 693: 680의 두 무리·일곱 뼈대를 거두고 666 자리(형 무리 [0.36,0.36,0.58,0.84] 다윗 바로 뒤)로 되돌림 — 다윗이 관객 쪽 앞, 형들이 그 뒤 깊은 쪽.)",
   "guide": {
     "depth": {
       "samuel": 1.0,
       "david-boy": 1.0,
+      "brothers": 0.8,
       "jesse": 0.9,
-      "horn": 1.0,
-      "bl1": 0.85,
-      "bl2": 0.85,
-      "br4": 0.85,
-      "br1": 0.9,
-      "br2": 0.9,
-      "br3": 0.9,
-      "br5": 0.9
+      "horn": 1.0
     },
     "shape": {
       "samuel": "person",
       "david-boy": "person",
+      "brothers": "crowd",
       "jesse": "person",
-      "horn": "horn_pour_high",
-      "bl1": "person",
-      "bl2": "person",
-      "br4": "person",
-      "br1": "person",
-      "br2": "person",
-      "br3": "person",
-      "br5": "person"
+      "horn": "horn_pour_high"
     },
     "body": "card",
     "pose": {
       "samuel": "pour_high",
-      "david-boy": "kneel_up_left",
-      "jesse": "listen_clasp",
-      "bl1": "watch_side_right",
-      "bl2": "watch_side_right",
-      "br4": "watch_side_left",
-      "br1": "watch_side_left",
-      "br2": "watch_side_left",
-      "br3": "watch_side_left",
-      "br5": "watch_side_left"
+      "david-boy": "kneel_back_left",
+      "jesse": "listen_clasp"
     },
     "split": true,
-    "why": "task 588 단계 ① — 옛 판 명세라 가이드가 없어 크기·원근 규칙(generate.figure-scale·youth-height·height-ratio·eye-level-perspective)이 못 잼이었다. 사무엘(왼쪽)은 새 뼈대 pour_over — 앞 팔을 들어 손목이 다윗 숙인 머리보다 위, 다른 손은 가슴께: 16:13 「그에게 부었더니」(generate.pose-hold · 옛 승인 사람 메모 「기름을 부으는 위치가 이상함」 — 붓는 자리를 기하로 줌). 다윗은 새 뼈대 bow_clasp_left(listen_clasp에서 머리만 앞·아래 — 두 손 몸 앞). 이새는 새 뼈대 staff_hold_left(앞 손이 세운 지팡이 위끝 가까이를 가슴 높이에 쥠). 뒤쪽 조연이 아닌 카드 인물 셋 모두 뼈대(놉 도엑 task 529 — 뼈대 없는 서 있는 인물은 원뿔). 형 일곱은 다윗 뒤 무리 꼴(깊이 0.8). 카드 체격 몸 너비(generate.guide-body-build). 제단·집·돌담은 문구가 맡는다. 뼈대가 있으니 스텝별 나눔(generate.split-control). (task 591: pour_over 손목을 키의 0.04 → 0.10(어깨 높이 — 다윗 숙인 머리 바로 위)로 낮춤. 590 s42에서 머리 높이로 든 팔이 담 위의 거인 사무엘로 따로 그려지고 원래 자리에 다른 사람이 생김 — 몸 꼴 0/5) (task 596: 이새 뼈대 staff_hold_left → listen_clasp — 지팡이를 빼고 두 손 모음) (task 666: 사무엘 pour_over → pour_high(두 손목 어깨 높이 모음) · 다윗 bow_clasp_left → 새 뼈대 kneel_up_left(무릎 꿇고 고개 들어 사무엘을 올려다봄) · 뿔 꼴 horn_pour_high · 구역 horn [0.366,0.43,0.422,0.531](손 높이 → 꿇은 다윗 머리 꼭대기, 기름 줄기 약 38화소) · 다윗 구역 0.38~0.48 — 소년 키가 사무엘의 0.92라 선 채로는 끝~머리 틈이 없음(사람 663·664 · 기혼 665 같은 수단) · 서로 바라봄(사람 649).) (task 680: 형들 한 무리(다윗 뒤 [0.36,0.36,0.58,0.84]) → 두 무리 — 왼쪽 뒤 brothers_l [0.335,0.36,0.415,0.80] 셋 · 오른쪽 곁 brothers_r [0.485,0.355,0.62,0.86] 넷, 다윗 가까이 둘러섬. 사람 679 「사람들이 다윗을 바라보지 않음 근처에 둘러 있어야 하는데」 — 666 8시드에서 형들이 뒤에 한 줄로 서서 앞을 봄.) (task 680 2판: 무리 실루엣은 정면 꼴이라 8/8 형들이 앞을 봄 → 형 일곱을 한 사람씩 뼈대로 — 다윗 왼쪽 뒤 bl1·bl2 watch_side_right(새 뼈대, watch_side_left 거울) · 오른쪽 곁 br1~br5 watch_side_left · 무리 구역 brothers_l/r는 문구용 상자.)",
+    "why": "task 588 단계 ① — 옛 판 명세라 가이드가 없어 크기·원근 규칙(generate.figure-scale·youth-height·height-ratio·eye-level-perspective)이 못 잼이었다. 사무엘(왼쪽)은 새 뼈대 pour_over — 앞 팔을 들어 손목이 다윗 숙인 머리보다 위, 다른 손은 가슴께: 16:13 「그에게 부었더니」(generate.pose-hold · 옛 승인 사람 메모 「기름을 부으는 위치가 이상함」 — 붓는 자리를 기하로 줌). 다윗은 새 뼈대 bow_clasp_left(listen_clasp에서 머리만 앞·아래 — 두 손 몸 앞). 이새는 새 뼈대 staff_hold_left(앞 손이 세운 지팡이 위끝 가까이를 가슴 높이에 쥠). 뒤쪽 조연이 아닌 카드 인물 셋 모두 뼈대(놉 도엑 task 529 — 뼈대 없는 서 있는 인물은 원뿔). 형 일곱은 다윗 뒤 무리 꼴(깊이 0.8). 카드 체격 몸 너비(generate.guide-body-build). 제단·집·돌담은 문구가 맡는다. 뼈대가 있으니 스텝별 나눔(generate.split-control). (task 591: pour_over 손목을 키의 0.04 → 0.10(어깨 높이 — 다윗 숙인 머리 바로 위)로 낮춤. 590 s42에서 머리 높이로 든 팔이 담 위의 거인 사무엘로 따로 그려지고 원래 자리에 다른 사람이 생김 — 몸 꼴 0/5) (task 596: 이새 뼈대 staff_hold_left → listen_clasp — 지팡이를 빼고 두 손 모음) (task 666: 사무엘 pour_over → pour_high(두 손목 어깨 높이 모음) · 다윗 bow_clasp_left → 새 뼈대 kneel_up_left(무릎 꿇고 고개 들어 사무엘을 올려다봄) · 뿔 꼴 horn_pour_high · 구역 horn [0.366,0.43,0.422,0.531](손 높이 → 꿇은 다윗 머리 꼭대기, 기름 줄기 약 38화소) · 다윗 구역 0.38~0.48 — 소년 키가 사무엘의 0.92라 선 채로는 끝~머리 틈이 없음(사람 663·664 · 기혼 665 같은 수단) · 서로 바라봄(사람 649).) (task 693 뼈대: 다윗 kneel_up_left → kneel_back_left(등 쪽에서 본 몸 · 옆얼굴 · 손은 넓적다리 옆) · 형 무리 한 상자로 되돌림 · 형들이 다윗을 바라보게 하는 다섯 수단 — 두 무리·옆 보는 뼈대·무리·머리 편집·한 사람 절(680~683) — 모두 0/8로 형들이 정면(관객)을 봄 → 사람 2026-11-20 「배치 바꿔 다시」: 다윗을 관객 쪽 앞에 등을 반쯤 보이고 꿇게 두고 형 일곱은 한 무리로 그 바로 뒤에서 정면 — 정면을 보는 형들이 곧 다윗을 내려다보는 꼴. 다윗을 바라봄은 본문 밖 · 저작자 정함(사람 679 「사람들이 다윗을 바라보지 않음」))",
     "legs": "costume"
   },
   "stages": [
@@ -479,7 +389,7 @@
       "kind": "plate",
       "region": "david-boy",
       "verse": "16:12-13",
-      "prompt": "{cast:david-boy}, ruddy handsome young face with beautiful eyes, kneeling, face raised, looking up at the prophet, both empty hands clasped in front, facing left.",
+      "prompt": "{cast:david-boy}, ruddy handsome young face with beautiful eyes, kneeling with his back half turned to the viewer, head turned in profile, face raised, looking up at the prophet, both empty hands resting at his thighs, facing left.",
       "neg": [
         "armour",
         "helmet",
@@ -510,153 +420,9 @@
     {
       "id": "S5",
       "kind": "region",
-      "region": "brothers_r",
+      "region": "brothers",
       "verse": "16:10 · 16:13",
-      "prompt": "seven older brothers, grown bearded men taller than the boy in plain wool tunics and cloaks with cloth headwraps, turned toward the boy, in profile, standing close behind the boy, empty-handed, watching in silence.",
-      "neg": [
-        "armour",
-        "crown",
-        "horn",
-        "jar",
-        "kneeling",
-        "modern clothes",
-        "oil",
-        "spear",
-        "sword"
-      ]
-    },
-    {
-      "id": "S6",
-      "kind": "region",
-      "region": "brothers_l",
-      "verse": "16:10 · 16:13",
-      "prompt": "seven older brothers, grown bearded men taller than the boy in plain wool tunics and cloaks with cloth headwraps, turned toward the boy, in profile, standing close behind the boy, empty-handed, watching in silence.",
-      "neg": [
-        "armour",
-        "crown",
-        "horn",
-        "jar",
-        "kneeling",
-        "modern clothes",
-        "oil",
-        "spear",
-        "sword"
-      ]
-    },
-    {
-      "id": "S7",
-      "kind": "region",
-      "region": "bl1",
-      "verse": "16:10 · 16:13",
-      "prompt": "one of the boy's older brothers, a grown bearded man taller than the boy in a plain wool tunic and headwrap, standing close by, turned to the right toward the kneeling boy, looking down at him, empty-handed.",
-      "neg": [
-        "armour",
-        "crown",
-        "horn",
-        "jar",
-        "kneeling",
-        "modern clothes",
-        "oil",
-        "spear",
-        "sword"
-      ]
-    },
-    {
-      "id": "S8",
-      "kind": "region",
-      "region": "bl2",
-      "verse": "16:10 · 16:13",
-      "prompt": "one of the boy's older brothers, a grown bearded man taller than the boy in a plain wool tunic and headwrap, standing close by, turned to the right toward the kneeling boy, looking down at him, empty-handed.",
-      "neg": [
-        "armour",
-        "crown",
-        "horn",
-        "jar",
-        "kneeling",
-        "modern clothes",
-        "oil",
-        "spear",
-        "sword"
-      ]
-    },
-    {
-      "id": "S9",
-      "kind": "region",
-      "region": "br4",
-      "verse": "16:10 · 16:13",
-      "prompt": "one of the boy's older brothers, a grown bearded man taller than the boy in a plain wool tunic and headwrap, standing close by, turned to the left toward the kneeling boy, looking down at him, empty-handed.",
-      "neg": [
-        "armour",
-        "crown",
-        "horn",
-        "jar",
-        "kneeling",
-        "modern clothes",
-        "oil",
-        "spear",
-        "sword"
-      ]
-    },
-    {
-      "id": "S10",
-      "kind": "region",
-      "region": "br1",
-      "verse": "16:10 · 16:13",
-      "prompt": "one of the boy's older brothers, a grown bearded man taller than the boy in a plain wool tunic and headwrap, standing close by, turned to the left toward the kneeling boy, looking down at him, empty-handed.",
-      "neg": [
-        "armour",
-        "crown",
-        "horn",
-        "jar",
-        "kneeling",
-        "modern clothes",
-        "oil",
-        "spear",
-        "sword"
-      ]
-    },
-    {
-      "id": "S11",
-      "kind": "region",
-      "region": "br2",
-      "verse": "16:10 · 16:13",
-      "prompt": "one of the boy's older brothers, a grown bearded man taller than the boy in a plain wool tunic and headwrap, standing close by, turned to the left toward the kneeling boy, looking down at him, empty-handed.",
-      "neg": [
-        "armour",
-        "crown",
-        "horn",
-        "jar",
-        "kneeling",
-        "modern clothes",
-        "oil",
-        "spear",
-        "sword"
-      ]
-    },
-    {
-      "id": "S12",
-      "kind": "region",
-      "region": "br3",
-      "verse": "16:10 · 16:13",
-      "prompt": "one of the boy's older brothers, a grown bearded man taller than the boy in a plain wool tunic and headwrap, standing close by, turned to the left toward the kneeling boy, looking down at him, empty-handed.",
-      "neg": [
-        "armour",
-        "crown",
-        "horn",
-        "jar",
-        "kneeling",
-        "modern clothes",
-        "oil",
-        "spear",
-        "sword"
-      ]
-    },
-    {
-      "id": "S13",
-      "kind": "region",
-      "region": "br5",
-      "verse": "16:10 · 16:13",
-      "prompt": "one of the boy's older brothers, a grown bearded man taller than the boy in a plain wool tunic and headwrap, standing close by, turned to the left toward the kneeling boy, looking down at him, empty-handed.",
+      "prompt": "seven older brothers, grown bearded men taller than the boy in wool tunics and headwraps, standing close behind the boy, looking down at him, empty-handed, watching in silence.",
       "neg": [
         "armour",
         "crown",
