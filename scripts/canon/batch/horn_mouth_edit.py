@@ -166,6 +166,70 @@ def plug2(seeds=(1, 2, 3, 4)):
         print("[HornMouthEdit] plug2", seed, r)
 
 
+TIE_CROP, TIE_BOX = (958, 102, 96), (985, 120, 1040, 182)
+TIE_PROMPT = ("Close-up of the narrow tip of a ram's horn. The painted tan peg is a small solid wooden stopper pushed into the tip hole. "
+              "The painted brown bands are a thin leather cord wrapped twice tightly around the neck of that wooden stopper and tied in a small "
+              "knot on its side; from the knot the same cord runs down along the horn. Draw the cord clearly tied around the stopper. "
+              "Keep the smooth dark horn, the paper and the soft pencil and colored-pencil illustration style exactly the same.")
+
+
+def tie(seeds=(1, 2, 3, 4)):
+    """task 673 — 사람 672 「마개에 끈이 안묵여 있음」(670·672 두 번 「끈이 마개에」) → 수단 바꿈: 크롭 200 → 96(마개가 15화소라 매듭 그릴 화소가 없었음)
+    + 마개를 조금 더 내밀고 마개 목을 두 번 감은 끈·옆 매듭·내려가는 끈을 굵게 칠한 길잡이."""
+    import math
+    from PIL import ImageDraw
+    if G.busy():
+        sys.exit("[HornMouthEdit] 다른 생성 프로세스가 돎 — 끝난 뒤 다시")
+    im = Image.open(os.path.join(D, "plug2-s4.png")).convert("RGB")
+    d = ImageDraw.Draw(im)
+    tip, ang = (1008, 152), math.radians(-52)
+    ux, uy = math.cos(ang), math.sin(ang); px, py = -uy, ux
+    q = lambda a, b: (tip[0] + ux * a + px * b, tip[1] + uy * a + py * b)
+    d.polygon([q(-2, -5), q(15, -4.5), q(18, -2), q(18, 2), q(15, 4.5), q(-2, 5)], fill=(214, 178, 128), outline=(110, 76, 44))   # 마개
+    col, dark = (150, 92, 48), (96, 58, 30)
+    for a in (5, 8.5):
+        d.line([q(a, -5.6), q(a, 5.6)], fill=col, width=2)                                   # 마개 목을 두 번 감은 끈
+    k = q(7, 6.2)
+    d.ellipse([k[0] - 2.2, k[1] - 2.2, k[0] + 2.2, k[1] + 2.2], fill=dark)                  # 옆 매듭
+    d.line([k, q(-8, 7.5), q(-26, 6.5)], fill=col, width=2, joint="curve")                  # 매듭에서 뿔 따라 내려가는 끈
+    src = os.path.join(D, "tie-guide.png"); im.save(src)
+    tmp = os.path.expanduser("~/.local/biblemap-imggen/prop-oil-horn-lying/tie"); os.makedirs(tmp, exist_ok=True)
+    for seed in seeds:
+        name = f"tie-s{seed}.png"
+        r = G.edit(src, TIE_CROP, TIE_BOX, "tie", seed, os.path.join(tmp, name), prompt=TIE_PROMPT, mask_shape="rect")
+        if r["status"] == "ok":
+            Image.open(os.path.join(tmp, name)).save(os.path.join(D, name))
+        print("[HornMouthEdit] tie", seed, r)
+
+
+def tie2(seeds=(1, 2, 3, 4)):
+    """task 673 2판 — 1판 tie-s3만 마개가 길게 나왔으나 끈은 여전히 뿔 끝 테를 감음 → tie-s3의 나온 마개 허리(1018,139)에 끈 두 줄·매듭을 칠하고 같은 좁은 크롭."""
+    import math
+    from PIL import ImageDraw
+    if G.busy():
+        sys.exit("[HornMouthEdit] 다른 생성 프로세스가 돎 — 끝난 뒤 다시")
+    im = Image.open(os.path.join(D, "tie-s3.png")).convert("RGB")
+    d = ImageDraw.Draw(im)
+    c, ang = (1019, 138), math.radians(-57)
+    ux, uy = math.cos(ang), math.sin(ang); px, py = -uy, ux
+    q = lambda a, b: (c[0] + ux * a + px * b, c[1] + uy * a + py * b)
+    col, dark = (140, 84, 42), (90, 52, 26)
+    for a in (-2, 2):
+        d.line([q(a, -6.2), q(a, 6.2)], fill=col, width=2)                     # 마개 허리를 두 번 감은 끈
+    k = q(0, 6.8)
+    d.ellipse([k[0] - 2.4, k[1] - 2.4, k[0] + 2.4, k[1] + 2.4], fill=dark)     # 옆 매듭
+    d.line([k, q(-12, 9), q(-30, 9.5)], fill=col, width=2, joint="curve")      # 매듭에서 뿔 따라 내려감
+    src = os.path.join(D, "tie2-guide.png"); im.save(src)
+    tmp = os.path.expanduser("~/.local/biblemap-imggen/prop-oil-horn-lying/tie2"); os.makedirs(tmp, exist_ok=True)
+    for seed in seeds:
+        name = f"tie2-s{seed}.png"
+        r = G.edit(src, (957, 92, 96), (995, 112, 1042, 172), "tie2", seed, os.path.join(tmp, name),
+                   prompt=TIE_PROMPT.replace("wrapped twice tightly around the neck of that wooden stopper", "wrapped twice tightly around the middle of that wooden stopper, above the horn rim"), mask_shape="rect")
+        if r["status"] == "ok":
+            Image.open(os.path.join(tmp, name)).save(os.path.join(D, name))
+        print("[HornMouthEdit] tie2", seed, r)
+
+
 def tip(base_names):
     """task 669 — 사람 668 「구멍 뚫은 곳에 마개가 꽂혀 있어야하고 해당 마개는 끈으로 연결되어 있어야함」: 끝 구멍에 마개 + 끈. 바탕 = 밑동 바닥판 정본 후보."""
     if G.busy():
@@ -181,7 +245,11 @@ def tip(base_names):
 
 
 V2 = "--v2" in sys.argv
-if sys.argv[1] == "plug2":
+if sys.argv[1] == "tie2":
+    tie2()
+elif sys.argv[1] == "tie":
+    tie()
+elif sys.argv[1] == "plug2":
     plug2()
 elif sys.argv[1] == "smooth":
     smooth()
