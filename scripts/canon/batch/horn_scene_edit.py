@@ -28,6 +28,10 @@ SCENES = {
     "gihon18c": {"image": "samples/gihon-step23-t18/composition-A-s42.png", "out": "gihon18-horn-edit",
                  "clean": {"crop": (480, 240, 170), "box": (512, 262, 628, 372)},
                  "oil": {"src": "samples/gihon18-horn-canon/canon-c.png", "out": "gihon18-horn-canon", "crop": (560, 315, 72), "box": (588, 336, 608, 366)}},
+    # task 685 — 사람 684 「두 손으로 쥐어야 함」: 두 손이 뿔 몸통 한 자리에 모인 665 s303(그 자리 = 정본을 휨 그대로 얹을 때 굽은 배)
+    "gihon303": {"image": "samples/gihon-step23-t18/composition-A-s303.png", "out": "gihon303-horn",
+                 "clean": {"crop": (490, 228, 175), "box": (515, 245, 640, 382)},
+                 "oil": {"src": "samples/gihon303-horn/canon-c.png", "out": "gihon303-horn", "crop": (564, 310, 72), "box": (590, 330, 610, 366)}},
     "gihon18": {"base": "samples/gihon-step23-t18/composition-A-s42.png", "out": "gihon18-horn-edit",
                 "crop": (450, 225, 195), "box": (500, 255, 622, 365), "who": "kneeling young man", "prompt": ""},
     # task 675 2판 — s42 그대로면 옛 나팔 배치를 따라 넓은 밑동에서 부음(4/4) → 정본을 거울 없이 얹어 끝을 머리 위에 둔 칠한 그림(horn_compose gihon18-canon src)에서
@@ -114,7 +118,7 @@ def tip_edit(cfg, seeds):
         print("[HornSceneEdit] tip", sd, out)
 
 
-CLEAN_PROMPT = ("Remove the horn the old man is holding and the golden oil stream completely, and show what is behind them: the plain "
+CLEAN_PROMPT = ("Remove the horn the old man is holding, the golden oil stream and any oil on the young man's hair completely, and show what is behind them: the plain "
                 "background behind. Keep the old man's two raised hands exactly where they are with the fingers curled as if "
                 "gripping something, and keep the boy, the other people, the background and the soft pencil and colored-pencil illustration style "
                 "exactly the same.")
