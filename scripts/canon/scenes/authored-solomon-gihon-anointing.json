@@ -485,12 +485,12 @@
   "approved": {
     "final": {
       "path": "night-pick",
-      "seed": 1,
+      "seed": 2,
       "kind": "base",
-      "image": "samples/gihon-hires-696c/composition-A-s1.png",
+      "image": "samples/gihon-hires-702c/composition-A-s2.png",
       "by": "user",
       "on": "2026-11-20",
-      "spec_hash": "a49c683f2d16",
+      "spec_hash": "d97716cb0d39",
       "prompt_hash": null,
       "rules_version": "c34cf30c4023",
       "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
