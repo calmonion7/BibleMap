@@ -42,6 +42,9 @@ SCENES = {
     "gihon18g": {"base": "samples/gihon18-horn-canon/src.png", "out": "gihon18-horn-edit",
                  "crop": (450, 225, 195), "box": (500, 255, 622, 365), "who": "kneeling young man", "prompt": "", "tag": "g"},
 }
+# task 703 — 베들레헴 695 s7(형들·다윗 정면 꿇음은 맞고 뿔만 사람 키만 한 나팔): 크게 다시 그리기 전에 옛 뿔·기름을 klein으로 지운 바탕(뿔이 형 어깨·하늘을 가림 — cv2 메우기로는 못 살림)
+SCENES["bethlehem695"] = {"image": "samples/bethlehem-step23-t21/composition-A-s7.png", "out": "bethlehem-hires-703",
+                          "clean": {"crop": (285, 10, 340), "box": (330, 30, 540, 330)}}
 REF_PROMPT = ("Replace the horn the old man holds with the curved ram's horn from the second image — the same shape, glossy dark brown color "
               "with pale amber streaks whose wide end is closed flat with a wooden disc. He holds its thick body near the wide end in his two hands, it curves and "
               "narrows to its small cut tip just above the kneeling boy's head — the closed wide end stays up in his hands and no oil comes from it — and golden oil drips in a thin stream from that small tip hole onto "

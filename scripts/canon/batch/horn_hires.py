@@ -224,6 +224,24 @@ SCENES["gihon702zadok"] = {**SCENES["gihon692"], "base": "samples/gihon-hires-70
                                      "his forearms and wrists coming out of the sleeves, both hands gripping oilhorn_bm, a ram's horn oil flask, glossy dark brown, its wide end closed flat with a round wooden disc, natural wrists and fingers",
                            "strengths": (0.5, 0.6), "seeds": (42, 7, 11), "lora": 1.0}
 
+# task 703 — 베들레헴 695 s7: 옛 사람 키만 한 나팔을 klein으로 지운 바탕(horn_scene_edit bethlehem695 clean) 위에 정본을 붓는 각도로 — 밑동은 사무엘 두 손(원본 430~485,195~240),
+# 끝은 다윗 정수리(원본 약 510,318) 위. 상자 (380,150)~(636,406) 3배 좌표.
+SCENES["bethlehem703"] = {**SCENES["gihon692"], "base": "samples/bethlehem-hires-703/clean-s1.png", "box": (380, 150, 636, 406), "out": "bethlehem-hires-703h",
+                          "mouth": (210, 186), "tip": (390, 345), "oil_to": (399, 540), "hands": [(135, 105, 315, 255)],
+                          "keep": [(205, 40, 330, 165), (370, 560, 560, 768)],
+                          "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. close view: an old prophet with long white hair and a long white beard, "
+                                    "his two raised hands gripping oilhorn_bm, a ram's horn oil flask, glossy dark brown, no metal fittings, its wide end closed flat with a round wooden disc, "
+                                    "tilted with the small cut tip pointing down, a thin stream of golden oil pouring from the small cut tip onto the dark curly hair of a kneeling boy, bearded men standing behind",
+                          "strengths": (0.35, 0.45), "seeds": (42, 7), "lora": 1.0}
+
+# task 703 2단계 — 다윗 웃통 벗음(t.shepherd-dress — 「상체를 벗고 짧은 허리천만」): 뿔 고친 pick 위에 어깨~무릎을 3배로 키워 목자 튜닉을 입힘(기혼 701·702 손처럼 상자만 다시 그림).
+# 얼굴·모은 두 손은 원본(keep). 상자 (400,330)~(656,586) 3배 좌표.
+SCENES["bethlehem703tunic"] = {**SCENES["gihon692"], "base": "samples/bethlehem-hires-703h/pick.png", "box": (400, 330, 656, 586), "out": "bethlehem-hires-703t",
+                               "region": [(200, 150, 580, 720)], "keep": [(240, 0, 480, 165), (440, 80, 560, 330)],
+                               "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a kneeling ancient Israelite shepherd boy wearing a plain knee-length undyed pale wool tunic "
+                                         "with short sleeves that covers his chest, shoulders and back, a rope belt at the waist, his bare forearms raised with palms pressed together before his chest, bare knees on the ground",
+                               "strengths": (0.55, 0.65), "seeds": (42, 7), "lora": 0.0}
+
 
 if __name__ == "__main__":
     {"prep": prep, "gen": gen, "back": back}[sys.argv[2]](SCENES[sys.argv[1]])
