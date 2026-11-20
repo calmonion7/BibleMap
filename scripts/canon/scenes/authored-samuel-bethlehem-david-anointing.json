@@ -636,14 +636,14 @@
   "approved": {
     "final": {
       "path": "night-pick",
-      "seed": 5,
-      "kind": "edit",
-      "image": "samples/bethlehem15-horn-edit/edit-ref-s1.png",
+      "seed": 1,
+      "kind": "base",
+      "image": "samples/bethlehem-hires-709c/composition-A-s1.png",
       "by": "user",
-      "on": "2026-11-19",
-      "spec_hash": "64adfe87bb8d",
+      "on": "2026-11-21",
+      "spec_hash": "5358c5b08e50",
       "prompt_hash": null,
-      "rules_version": "13bb6c21b5ae",
+      "rules_version": "c34cf30c4023",
       "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
     }
   }

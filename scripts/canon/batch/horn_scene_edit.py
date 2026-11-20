@@ -64,6 +64,8 @@ SCENES["bethlehem707r2"] = {"base": "samples/bethlehem-hires-707a/clean-s1.png",
 # task 709 — 707 s5 바탕(손이 가슴 높이): klein은 옛 배치를 따르니(기혼 675) 지운 바탕(707a clean-s1)에 정본을 넓은 쪽 위쪽 손(432,262)·끝 다윗 정수리 위(522,318)로 거울 없이 얹어 칠한 그림에서 klein --ref.
 SCENES["bethlehem709r"] = {"base": "samples/bethlehem-hires-709/painted.png", "out": "bethlehem-hires-709",
                            "crop": (380, 190, 210), "box": (405, 240, 552, 333), "prompt": "", "tag": "p"}
+# task 710 — 사람 709 s1 확정 · 「기름뿔 쥔손이 조금 어색함」(위쪽 손은 뿔 뒤에 숨고 아래쪽 손은 편 손바닥이 뿔 아래에 떠 있음) → 두 손·뿔 몸통 자리만 좁은 크롭 klein 쥔 손(686과 같은 지시).
+SCENES["bethlehem710"] = {"grip": {"src": "samples/bethlehem-hires-709c/composition-A-s1.png", "out": "bethlehem-hires-710", "crop": (392, 240, 110), "box": (408, 266, 484, 344)}}
 REF_PROMPT = ("Replace the horn the old man holds with the curved ram's horn from the second image — the same shape, glossy dark brown color "
               "with pale amber streaks whose wide end is closed flat with a wooden disc. He holds its thick body near the wide end in his two hands, it curves and "
               "narrows to its small cut tip just above the kneeling boy's head — the closed wide end stays up in his hands and no oil comes from it — and golden oil drips in a thin stream from that small tip hole onto "
