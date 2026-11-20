@@ -45,6 +45,14 @@ SCENES = {
 # task 703 — 베들레헴 695 s7(형들·다윗 정면 꿇음은 맞고 뿔만 사람 키만 한 나팔): 크게 다시 그리기 전에 옛 뿔·기름을 klein으로 지운 바탕(뿔이 형 어깨·하늘을 가림 — cv2 메우기로는 못 살림)
 SCENES["bethlehem695"] = {"image": "samples/bethlehem-step23-t21/composition-A-s7.png", "out": "bethlehem-hires-703",
                           "clean": {"crop": (285, 10, 340), "box": (330, 30, 540, 330)}}
+# task 706 — 사람 705 「기름뿔이 너무크다..」(705 s42: 형 일곱 한 줄·다윗 올려다봄은 맞고 뿔이 사람 상반신만 한 나팔) → 나팔을 klein으로 지우고(사무엘 얼굴은 상자 밖 — 머리 위 하늘 a · 얼굴 오른쪽 손 둘레 b),
+# 정본을 둘째 그림으로 넣은 klein 편집이 두 손과 뿔을 함께 그림(7032 되붙인 정본은 「덧붙인 느낌」) — 편집 상자를 손~다윗 머리 위로 좁혀 크기를 묶음.
+SCENES["bethlehem706a"] = {"image": "samples/bethlehem-step23-t23/composition-A-s42.png", "out": "bethlehem-hires-706a",
+                           "clean": {"crop": (195, 0, 290), "box": (225, 0, 470, 185)}}
+SCENES["bethlehem706b"] = {"image": "samples/bethlehem-hires-706a/clean-s1.png", "out": "bethlehem-hires-706b",
+                           "clean": {"crop": (370, 120, 200), "box": (395, 150, 520, 292)}}
+SCENES["bethlehem706r"] = {"base": "samples/bethlehem-hires-706b/clean-s1.png", "out": "bethlehem-hires-706r",
+                           "crop": (380, 170, 200), "box": (405, 195, 545, 300), "prompt": ""}
 REF_PROMPT = ("Replace the horn the old man holds with the curved ram's horn from the second image — the same shape, glossy dark brown color "
               "with pale amber streaks whose wide end is closed flat with a wooden disc. He holds its thick body near the wide end in his two hands, it curves and "
               "narrows to its small cut tip just above the kneeling boy's head — the closed wide end stays up in his hands and no oil comes from it — and golden oil drips in a thin stream from that small tip hole onto "
