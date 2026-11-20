@@ -33,16 +33,26 @@ def prep(c):
     big = Image.open(os.path.join(CANON, c["base"])).convert("RGB").crop(c["box"]).resize(((x1 - x0) * K, (y1 - y0) * K), Image.LANCZOS)
     big.save(os.path.join(out, "crop.png"))
     erase = Image.new("L", big.size, 0)
-    if c.get("erase"):   # 드러날 옛 지물·기름을 지움(밝은 바탕 — 둘레 화소로 메움)
+    if c.get("erase"):   # 드러날 옛 지물·기름을 지움 — 상자마다 차례로, 결을 가져올 방향(shift)이 있으면 옆 바탕을 옮겨 메움
         import cv2, numpy as np
-        a = np.asarray(big).astype(int); em = np.zeros(a.shape[:2], "uint8")
-        for x0e, y0e, x1e, y1e, kind in c["erase"]:
+        em = np.zeros((big.height, big.width), "uint8")
+        for e in c["erase"]:
+            x0e, y0e, x1e, y1e, kind = e[:5]
+            a = np.asarray(big).astype(int)
             r, g, b = a[y0e:y1e, x0e:x1e, 0], a[y0e:y1e, x0e:x1e, 1], a[y0e:y1e, x0e:x1e, 2]
             sel = {"dark": (r < 150) & (r + g + b < 380), "oil": (r > 170) & (g > 120) & (r - b > 70),
-                   "brown": (r - b > 45) & (r + g + b < 560)}[kind]   # brown — 옛 뿔 위 굽이의 옅은 갈색(697 1판 남음)
-            em[y0e:y1e, x0e:x1e] |= (sel * 255).astype("uint8")
-        em = cv2.dilate(em, np.ones((9, 9), "uint8"))
-        big = Image.fromarray(cv2.inpaint(np.asarray(big), em, 7, cv2.INPAINT_TELEA))
+                   "brown": (r - b > 45) & (r + g + b < 560)}[kind]   # brown — 옛 뿔 굽이·관 끝 테의 옅은 갈색(697 1판 남음)
+            one = np.zeros_like(em); one[y0e:y1e, x0e:x1e] = (sel * 255).astype("uint8")
+            one = cv2.dilate(one, np.ones((9, 9), "uint8"))
+            if len(e) > 5:   # 698 — 매끈히 메운 칸은 i2i가 옅은 판으로 그림 → 옆 바탕 결(산비탈 줄무늬)을 옮겨 메움
+                dx, dy = e[5]
+                moved = big.transform(big.size, Image.AFFINE, (1, 0, dx, 0, 1, dy))
+                big = Image.composite(moved, big, Image.fromarray(one))
+                rim = cv2.dilate(one, np.ones((5, 5), "uint8")) - cv2.erode(one, np.ones((5, 5), "uint8"))
+                big = Image.fromarray(cv2.inpaint(np.asarray(big), rim, 3, cv2.INPAINT_TELEA))
+            else:
+                big = Image.fromarray(cv2.inpaint(np.asarray(big), one, 7, cv2.INPAINT_TELEA))
+            em |= one
         erase = Image.fromarray(em)
     cut = H.canon_cut(); bb = cut.getbbox(); cut = cut.crop(bb)
     mouth = (H.CANON_MOUTH[0] - bb[0], H.CANON_MOUTH[1] - bb[1]); tip = (H.CANON_TIP[0] - bb[0], H.CANON_TIP[1] - bb[1])
@@ -57,11 +67,14 @@ def prep(c):
     tx, ty = tx * math.cos(a) + ty * math.sin(a) + h.width / 2, -tx * math.sin(a) + ty * math.cos(a) + h.height / 2
     ox, oy = round(c["tip"][0] - tx), round(c["tip"][1] - ty)
     src = big.convert("RGBA"); src.alpha_composite(h, (ox, oy)); src = src.convert("RGB")
-    for b in c.get("hands", []):   # 쥔 손 살빛을 정본 위로(주먹 속을 지나는 꼴)
+    orig = Image.open(os.path.join(out, "crop.png")).convert("RGB")
+    for b in c.get("hands", []):   # 쥔 손을 정본 위로(주먹 속을 지나는 꼴) — 지우기 전 원본 손에서, 살빛 + 맞닿은 윤곽선까지(698: 지운 뒤 손에서 가져오면 손가락 윤곽이 빠져 「손 뭉개짐」)
         import numpy as np
-        o = np.asarray(big.crop(b)).astype(int); r, g, bl = o[..., 0], o[..., 1], o[..., 2]
-        skin = (r > 140) & (r > g) & (g > bl) & (r - bl > 35) & (r - bl < 120) & (g > 90)
-        src.paste(big.crop(b), b[:2], Image.fromarray((skin * 255).astype("uint8")).filter(ImageFilter.GaussianBlur(1)))
+        o = np.asarray(orig.crop(b)).astype(int); r, g, bl = o[..., 0], o[..., 1], o[..., 2]
+        skin = ((r > 140) & (r > g) & (g > bl) & (r - bl > 35) & (r - bl < 120) & (g > 90)).astype("uint8") * 255
+        if c.get("hand_outline"):
+            skin = np.asarray(Image.fromarray(skin).filter(ImageFilter.MaxFilter(c["hand_outline"])))
+        src.paste(orig.crop(b), b[:2], Image.fromarray(skin).filter(ImageFilter.GaussianBlur(1)))
     d = ImageDraw.Draw(src)
     (sx, sy), (ex, ey) = c["tip"], c["oil_to"]
     d.line([(sx, sy + 3), (ex, ey)], fill=(232, 178, 34), width=9)
@@ -74,6 +87,8 @@ def prep(c):
     for b in c.get("hands", []):
         md.rectangle(b, fill=255)
     md.line([(sx, sy), (ex, ey + 6)], fill=255, width=16)
+    m.filter(ImageFilter.MaxFilter(9)).save(os.path.join(out, "mask-obj.png"))   # 698 — 지물·손·기름만(다시 그린 그림에서)
+    erase.save(os.path.join(out, "mask-erase.png"))                                 # 지운 배경(결 옮겨 메운 src에서 — i2i는 결을 매끈히 지움)
     m.paste(255, (0, 0), erase)
     m.filter(ImageFilter.MaxFilter(21)).save(os.path.join(out, "mask.png"))
     print("[HornHires] 준비", os.path.join(out, "src.png"), "· 정본 왼쪽 위", (ox, oy), "크기", h.size)
@@ -107,7 +122,16 @@ def back(c):
         if f.startswith("hi-"):
             hi = Image.open(os.path.join(out, f)).convert("RGB")
             crop = Image.open(os.path.join(out, "crop.png")).convert("RGB")
-            mixed = Image.composite(hi, crop, m).resize((x1 - x0, y1 - y0), Image.LANCZOS)
+            if os.path.exists(os.path.join(out, "mask-obj.png")):   # 세 겹: 원본 ← 지운 배경은 src ← 지물·손·기름은 다시 그린 그림
+                src = Image.open(os.path.join(out, "src.png")).convert("RGB")
+                me = Image.open(os.path.join(out, "mask-erase.png")).convert("L").filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.GaussianBlur(3))
+                mo = Image.open(os.path.join(out, "mask-obj.png")).convert("L")
+                for b in c["keep"]:
+                    ImageDraw.Draw(mo).rectangle(b, fill=0)
+                mixed = Image.composite(hi, Image.composite(src, crop, me), mo.filter(ImageFilter.GaussianBlur(5)))
+                mixed = mixed.resize((x1 - x0, y1 - y0), Image.LANCZOS)
+            else:
+                mixed = Image.composite(hi, crop, m).resize((x1 - x0, y1 - y0), Image.LANCZOS)
             res = base.copy(); res.paste(mixed, (x0, y0))
             res.save(os.path.join(out, "back-" + f[3:]))
             print("[HornHires]", os.path.join(out, "back-" + f[3:]))
@@ -121,6 +145,15 @@ SCENES["gihon690b"] = {**SCENES["gihon690"], "out": "gihon-hires-697", "mouth": 
 # 덜 세워 끝을 머리 꼭대기 뒤쪽 위(490,468)로 · 몸통은 두 손 사이.
 SCENES["gihon690c"] = {**SCENES["gihon690b"], "out": "gihon-hires-697b", "mouth": (348, 288), "tip": (490, 468), "oil_to": (492, 512),
                        "strengths": (0.55, 0.65), "seeds": (42, 7, 11)}
+
+# task 698 — 사람 697 「여전히 기름 떨어지는 위치가 안맞음」: 690 s202는 두 손 바로 아래에 머리가 있어 끝을 정수리 위에 둘 틈이 없음(끝을 옮기면 뿔이 서서 「열린 입」).
+# 바탕을 690 s5로 — 두 손으로 든 뿔에서 기름이 정수리에 떨어지고 손~머리 틈이 넉넉함(옛 뿔은 넓은 관 꼴이라 정본으로 바꿈 · 옛 관 끝·옛 기름은 erase).
+SCENES["gihon690s5"] = {**SCENES["gihon690"], "base": "samples/gihon-step23-t21/composition-A-s5.png", "box": (420, 180, 676, 436), "out": "gihon-hires-698",
+                        "mouth": (410, 360), "tip": (545, 505), "oil_to": (550, 556), "hands": [(380, 400, 445, 470), (440, 420, 505, 480)],
+                        "erase": [(380, 330, 620, 470, "dark", (0, -120)), (520, 350, 605, 430, "brown", (0, -120)), (500, 440, 580, 548, "oil", (90, 0)), (505, 545, 595, 585, "oil", (0, 24))],
+                        "keep": [(230, 270, 370, 500), (470, 590, 650, 768)], "strengths": (0.55, 0.65), "seeds": (42, 7, 11)}
+
+SCENES["gihon690s5b"] = {**SCENES["gihon690s5"], "out": "gihon-hires-698b", "hand_outline": 5, "strengths": (0.45, 0.55), "seeds": (42, 11)}   # 698 2판 — 원본 손(윤곽 포함) · 낮은 세기
 
 
 if __name__ == "__main__":
