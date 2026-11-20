@@ -36,7 +36,7 @@
   },
   "relation": {
     "ko": "금빛 기름이 뿔에서 소년의 머리카락으로 흘러내린다 · 소년은 형 일곱 가운데 무릎 꿇고 형들은 빈손으로 그 바로 뒤에 어깨를 맞대고 한 줄로 서서 소년을 내려다본다 · 늙은 아버지는 떨어져 선다",
-    "en": "Golden oil dripping from the horn's tip onto the boy's hair; the boy kneels in the midst of his seven older brothers, grown bearded men taller than the boy in wool tunics and headwraps, standing shoulder to shoulder in one row close behind him, looking down at him, empty-handed",
+    "en": "Golden oil dripping from the horn's tip onto the boy's hair; the boy kneels in the midst of his seven older brothers, young men with dark beards, taller than the boy, in wool tunics and headwraps, standing in one row close behind him, looking down at him, empty-handed",
     "verse": "삼상 16:13 「사무엘이 기름 뿔을 취하여 그 형제 중에서 그에게 부었더니」 · 16:10 「이새가 그 아들 일곱으로 다 사무엘 앞을 지나게 하나」 · 금빛 기름은 사전 oil L1(올리브 기름 고증 — 본문 밖) · 형들이 다윗 뒤에 섬·빈손·이새가 떨어져 섬·좌우 배치는 본문 밖 · 저작자 정함(task 378 — 둘러선 형제·곁의 이새가 기름 붓는 이로 읽힘) · 형들의 수염은 본문 밖 · 저작자 정함 — 일곱 모두 다윗보다 손위([추론] 16:11 「말째」) · 위로 셋이 장성함은 17:13 「그 장성한 세 아들은」 · 머리는 [추론] 삼상 10:1 「사무엘이 기름병을 취하여 사울의 머리에 붓고」 · 다윗의 무릎 꿇음은 본문 밖 · 저작자 정함(task 666) (task 693: 형들이 다윗을 바라보게 하는 다섯 수단 — 두 무리·옆 보는 뼈대·무리·머리 편집·한 사람 절(680~683) — 모두 0/8로 형들이 정면(관객)을 봄 → 사람 2026-11-20 「배치 바꿔 다시」: 다윗을 관객 쪽 앞에 등을 반쯤 보이고 꿇게 두고 형 일곱은 한 무리로 그 바로 뒤에서 정면 — 정면을 보는 형들이 곧 다윗을 내려다보는 꼴. 다윗을 바라봄은 본문 밖 · 저작자 정함(사람 679 「사람들이 다윗을 바라보지 않음」))"
   },
   "whole_background": {
@@ -181,9 +181,9 @@
       "count": 7,
       "count_why": "[직접] 수 7 — 삼상 16:10 「이새가 그 아들 일곱으로 다 사무엘 앞을 지나게 하나」 · 17:12 「여덟 아들이 있는 중」에서 다윗을 뺀 수 / 일곱 모두 순간에 있음은 [추론] 16:13 「그 형제 중에서」 · 대상 2:15 「일곱째로 다윗」(형 여섯)과 다름은 삼상 본문을 따름 · 한 줄 일곱 사람 자리(task 705 — 무리 한 상자 0.22 너비는 일곱이 안 들어가 4~6명(704 0/8), 양옆에 흩은 뼈대 일곱은 빈자리에 사람이 더 생겨 4~11명(681·683 1/16) → 사무엘과 제단 사이를 일곱 자리로 빈틈없이 채움 · 사람 7032 「형제가 6명 뿐인데 맞나?」)",
       "costume": {
-        "ko": "소년보다 키 큰 수염 난 어른 남자들의 수수한 양모 튜닉과 겉옷, 천 머리두건",
-        "en": "grown bearded men taller than the boy in wool tunics and headwraps",
-        "verse": "본문 밖 · 저작자 정함(시대 고증 — 철기 초 이스라엘 남자 차림 · 규칙 spec.crowd-era-dress) · 수염은 본문 밖 · 저작자 정함 — 일곱 모두 다윗보다 손위([추론] 16:11 「말째」) · 위로 셋이 장성함은 17:13 「그 장성한 세 아들은 사울을 따라 싸움에 나갔으니」 · 소년보다 큰 어른은 [추론] 16:11 「아직 말째가 남았는데」(일곱 모두 손위) · 16:7 「그 용모와 신장을 보지 말라」(엘리압의 키 [직접]) — task 594(593 8시드: 앞줄 형이 다윗 또래 소년·여자로 보임, 형들 6/8)"
+        "ko": "짙은 수염의 젊은 어른 남자들(소년보다 키 큼)의 수수한 양모 튜닉과 겉옷, 천 머리두건",
+        "en": "young men with dark beards, taller than the boy, in wool tunics and headwraps",
+        "verse": "본문 밖 · 저작자 정함(시대 고증 — 철기 초 이스라엘 남자 차림 · 규칙 spec.crowd-era-dress) · 수염은 본문 밖 · 저작자 정함 — 일곱 모두 다윗보다 손위([추론] 16:11 「말째」) · 위로 셋이 장성함은 17:13 「그 장성한 세 아들은 사울을 따라 싸움에 나갔으니」 · 소년보다 큰 어른은 [추론] 16:11 「아직 말째가 남았는데」(일곱 모두 손위) · 16:7 「그 용모와 신장을 보지 말라」(엘리압의 키 [직접]) — task 594(593 8시드: 앞줄 형이 다윗 또래 소년·여자로 보임, 형들 6/8) · 짙은 수염·검은 머리(흰머리 없음)는 [추론] 삼상 17:12 「이새는 … 나이 많아 늙은 자」의 아들들 — 아버지보다 한 세대 아래 · 본문 밖 · 저작자 정함(task 707 — 사람 706 「형들 중 나이가 많아보이는 형도 있음」 · 앳된 형은 사람 649·704)"
       },
       "people": [
         "b1",
@@ -278,9 +278,9 @@
         "verse": "본문 밖 · 저작자 정함(떨어져 섬 task 378 · 모은 손은 task 596 — 지팡이를 쥔 꼴은 두 번 바꿔도 먼 손이 겉옷에 묻힘 594·595 두 손 보임 3/8)"
       },
       "costume": {
-        "ko": "소매 있는 긴 짙은 황토색 양모 튜닉과 천 띠",
-        "en": "a long-sleeved deep ochre wool tunic with a cloth belt",
-        "verse": "본문 밖 · 저작자 정함(시대 고증 — 철기 초 이스라엘 남자 옷 · 카드 colorWords deep ochre · 소매 튜닉은 task 596 — 한쪽 어깨에 걸친 겉옷이 먼 팔을 덮음)"
+        "ko": "목까지 여민 긴소매 발목 길이 짙은 황토색 양모 겉옷",
+        "en": "a long-sleeved ankle-length deep ochre wool robe closed to the neck",
+        "verse": "본문 밖 · 저작자 정함(시대 고증 — 철기 초 이스라엘 남자 옷 · 카드 colorWords deep ochre · 소매 튜닉은 task 596 — 한쪽 어깨에 걸친 겉옷이 먼 팔을 덮음) · 목까지 여밈·발목 길이는 task 707(사람 706 「이새 옷차림이 산적 같음」 — 맨가슴에 한쪽 어깨 걸친 겉옷으로 그려짐)"
       },
       "gaze": {
         "ko": "막내 다윗을 바라봄",
@@ -474,7 +474,7 @@
       "kind": "plate",
       "region": "jesse",
       "verse": "16:10-11",
-      "prompt": "{cast:jesse}, standing apart, both empty hands clasped in front, watching, holding no horn, facing left.",
+      "prompt": "{cast:jesse}, in a long-sleeved ankle-length robe closed up to the neck, standing apart, both empty hands clasped in front, watching, holding no horn, facing left.",
       "neg": [
         "armour",
         "crown",
@@ -492,7 +492,7 @@
       "kind": "region",
       "region": "b1",
       "verse": "16:10 · 16:13",
-      "prompt": "one of the boy's seven older brothers, a grown bearded man taller than the boy in a plain wool tunic and headwrap, standing shoulder to shoulder in a row close behind the kneeling boy, facing forward, empty hands resting at his sides.",
+      "prompt": "one of the boy's seven older brothers, a young grown man with a full dark beard and dark hair, taller than the boy in a plain wool tunic and headwrap, standing shoulder to shoulder in a row close behind the kneeling boy, facing forward, empty hands resting at his sides.",
       "neg": [
         "armour",
         "crown",
@@ -510,7 +510,7 @@
       "kind": "region",
       "region": "b2",
       "verse": "16:10 · 16:13",
-      "prompt": "one of the boy's seven older brothers, a grown bearded man taller than the boy in a plain wool tunic and headwrap, standing shoulder to shoulder in a row close behind the kneeling boy, facing forward, empty hands resting at his sides.",
+      "prompt": "one of the boy's seven older brothers, a young grown man with a full dark beard and dark hair, taller than the boy in a plain wool tunic and headwrap, standing shoulder to shoulder in a row close behind the kneeling boy, facing forward, empty hands resting at his sides.",
       "neg": [
         "armour",
         "crown",
@@ -528,7 +528,7 @@
       "kind": "region",
       "region": "b3",
       "verse": "16:10 · 16:13",
-      "prompt": "one of the boy's seven older brothers, a grown bearded man taller than the boy in a plain wool tunic and headwrap, standing shoulder to shoulder in a row close behind the kneeling boy, facing forward, empty hands resting at his sides.",
+      "prompt": "one of the boy's seven older brothers, a young grown man with a full dark beard and dark hair, taller than the boy in a plain wool tunic and headwrap, standing shoulder to shoulder in a row close behind the kneeling boy, facing forward, empty hands resting at his sides.",
       "neg": [
         "armour",
         "crown",
@@ -546,7 +546,7 @@
       "kind": "region",
       "region": "b4",
       "verse": "16:10 · 16:13",
-      "prompt": "one of the boy's seven older brothers, a grown bearded man taller than the boy in a plain wool tunic and headwrap, standing shoulder to shoulder in a row close behind the kneeling boy, facing forward, empty hands resting at his sides.",
+      "prompt": "one of the boy's seven older brothers, a young grown man with a full dark beard and dark hair, taller than the boy in a plain wool tunic and headwrap, standing shoulder to shoulder in a row close behind the kneeling boy, facing forward, empty hands resting at his sides.",
       "neg": [
         "armour",
         "crown",
@@ -564,7 +564,7 @@
       "kind": "region",
       "region": "b5",
       "verse": "16:10 · 16:13",
-      "prompt": "one of the boy's seven older brothers, a grown bearded man taller than the boy in a plain wool tunic and headwrap, standing shoulder to shoulder in a row close behind the kneeling boy, facing forward, empty hands resting at his sides.",
+      "prompt": "one of the boy's seven older brothers, a young grown man with a full dark beard and dark hair, taller than the boy in a plain wool tunic and headwrap, standing shoulder to shoulder in a row close behind the kneeling boy, facing forward, empty hands resting at his sides.",
       "neg": [
         "armour",
         "crown",
@@ -582,7 +582,7 @@
       "kind": "region",
       "region": "b6",
       "verse": "16:10 · 16:13",
-      "prompt": "one of the boy's seven older brothers, a grown bearded man taller than the boy in a plain wool tunic and headwrap, standing shoulder to shoulder in a row close behind the kneeling boy, facing forward, empty hands resting at his sides.",
+      "prompt": "one of the boy's seven older brothers, a young grown man with a full dark beard and dark hair, taller than the boy in a plain wool tunic and headwrap, standing shoulder to shoulder in a row close behind the kneeling boy, facing forward, empty hands resting at his sides.",
       "neg": [
         "armour",
         "crown",
@@ -600,7 +600,7 @@
       "kind": "region",
       "region": "b7",
       "verse": "16:10 · 16:13",
-      "prompt": "one of the boy's seven older brothers, a grown bearded man taller than the boy in a plain wool tunic and headwrap, standing shoulder to shoulder in a row close behind the kneeling boy, facing forward, empty hands resting at his sides.",
+      "prompt": "one of the boy's seven older brothers, a young grown man with a full dark beard and dark hair, taller than the boy in a plain wool tunic and headwrap, standing shoulder to shoulder in a row close behind the kneeling boy, facing forward, empty hands resting at his sides.",
       "neg": [
         "armour",
         "crown",

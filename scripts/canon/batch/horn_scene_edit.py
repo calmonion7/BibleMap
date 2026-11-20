@@ -53,6 +53,14 @@ SCENES["bethlehem706b"] = {"image": "samples/bethlehem-hires-706a/clean-s1.png",
                            "clean": {"crop": (370, 120, 200), "box": (395, 150, 520, 292)}}
 SCENES["bethlehem706r"] = {"base": "samples/bethlehem-hires-706b/clean-s1.png", "out": "bethlehem-hires-706r",
                            "crop": (380, 170, 200), "box": (405, 195, 545, 300), "prompt": ""}
+# task 707 — 707 s5(형 일곱 젊은 어른 한 줄 · 이새 긴 옷 · 다윗 올려다봄): 뿔은 이미 붓는 방향(넓은 쪽 손 · 끝 다윗 머리 위)이고 상반신만 하지 않음 → 지우기 없이 정본 둘째 그림 klein으로 손과 뿔을 함께(다윗 얼굴은 상자 밖).
+SCENES["bethlehem707r"] = {"base": "samples/bethlehem-step23-t24/composition-A-s5.png", "out": "bethlehem-hires-707r",
+                           "crop": (380, 190, 210), "box": (412, 245, 552, 333), "prompt": ""}
+# task 707 2판 — 지우기 없이 편집하니 옛 뿔 배치(거의 수평 · 끝이 위로 들림)를 따라 붓는 자세가 아님(7072 기계 3/3) → 706처럼 먼저 지움.
+SCENES["bethlehem707a"] = {"image": "samples/bethlehem-step23-t24/composition-A-s5.png", "out": "bethlehem-hires-707a",
+                           "clean": {"crop": (380, 190, 210), "box": (420, 245, 552, 330)}}
+SCENES["bethlehem707r2"] = {"base": "samples/bethlehem-hires-707a/clean-s1.png", "out": "bethlehem-hires-707r2",
+                            "crop": (380, 190, 210), "box": (412, 240, 552, 333), "prompt": ""}
 REF_PROMPT = ("Replace the horn the old man holds with the curved ram's horn from the second image — the same shape, glossy dark brown color "
               "with pale amber streaks whose wide end is closed flat with a wooden disc. He holds its thick body near the wide end in his two hands, it curves and "
               "narrows to its small cut tip just above the kneeling boy's head — the closed wide end stays up in his hands and no oil comes from it — and golden oil drips in a thin stream from that small tip hole onto "
