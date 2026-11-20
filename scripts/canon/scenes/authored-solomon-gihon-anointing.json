@@ -447,14 +447,14 @@
   "approved": {
     "final": {
       "path": "night-pick",
-      "seed": 101,
+      "seed": 1,
       "kind": "base",
-      "image": "samples/gihon-step23-t15/composition-A-s101.png",
+      "image": "samples/gihon-hires-696c/composition-A-s1.png",
       "by": "user",
-      "on": "2026-11-07",
-      "spec_hash": "d6a56abce90e",
+      "on": "2026-11-20",
+      "spec_hash": "a49c683f2d16",
       "prompt_hash": null,
-      "rules_version": "883eafdd3f9d",
+      "rules_version": "c34cf30c4023",
       "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
     }
   }

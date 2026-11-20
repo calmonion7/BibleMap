@@ -32,6 +32,18 @@ def prep(c):
     x0, y0, x1, y1 = c["box"]
     big = Image.open(os.path.join(CANON, c["base"])).convert("RGB").crop(c["box"]).resize(((x1 - x0) * K, (y1 - y0) * K), Image.LANCZOS)
     big.save(os.path.join(out, "crop.png"))
+    erase = Image.new("L", big.size, 0)
+    if c.get("erase"):   # 드러날 옛 지물·기름을 지움(밝은 바탕 — 둘레 화소로 메움)
+        import cv2, numpy as np
+        a = np.asarray(big).astype(int); em = np.zeros(a.shape[:2], "uint8")
+        for x0e, y0e, x1e, y1e, kind in c["erase"]:
+            r, g, b = a[y0e:y1e, x0e:x1e, 0], a[y0e:y1e, x0e:x1e, 1], a[y0e:y1e, x0e:x1e, 2]
+            sel = {"dark": (r < 150) & (r + g + b < 380), "oil": (r > 170) & (g > 120) & (r - b > 70),
+                   "brown": (r - b > 45) & (r + g + b < 560)}[kind]   # brown — 옛 뿔 위 굽이의 옅은 갈색(697 1판 남음)
+            em[y0e:y1e, x0e:x1e] |= (sel * 255).astype("uint8")
+        em = cv2.dilate(em, np.ones((9, 9), "uint8"))
+        big = Image.fromarray(cv2.inpaint(np.asarray(big), em, 7, cv2.INPAINT_TELEA))
+        erase = Image.fromarray(em)
     cut = H.canon_cut(); bb = cut.getbbox(); cut = cut.crop(bb)
     mouth = (H.CANON_MOUTH[0] - bb[0], H.CANON_MOUTH[1] - bb[1]); tip = (H.CANON_TIP[0] - bb[0], H.CANON_TIP[1] - bb[1])
     if c.get("mouth"):   # 밑동·끝 두 자리로 크기·돌림을 셈
@@ -62,6 +74,7 @@ def prep(c):
     for b in c.get("hands", []):
         md.rectangle(b, fill=255)
     md.line([(sx, sy), (ex, ey + 6)], fill=255, width=16)
+    m.paste(255, (0, 0), erase)
     m.filter(ImageFilter.MaxFilter(21)).save(os.path.join(out, "mask.png"))
     print("[HornHires] 준비", os.path.join(out, "src.png"), "· 정본 왼쪽 위", (ox, oy), "크기", h.size)
 
@@ -98,6 +111,16 @@ def back(c):
             res = base.copy(); res.paste(mixed, (x0, y0))
             res.save(os.path.join(out, "back-" + f[3:]))
             print("[HornHires]", os.path.join(out, "back-" + f[3:]))
+
+# task 697 — 사람 696 「s1 · 기름이 떨어지는 위치만 맞추면됨 머리위로 떨어지게」: 끝을 솔로몬 머리 꼭대기 위(468,468)로 — 몸통은 두 손 사이를 지나게 밑동을 왼쪽 위로.
+# 옮기면 드러나는 옛 뿔 끝(짙은 갈색)·옛 기름 줄기(금빛)는 먼저 지움(erase — cv2.inpaint, 되붙일 자리에도 넣음).
+SCENES["gihon690b"] = {**SCENES["gihon690"], "out": "gihon-hires-697", "mouth": (338, 285), "tip": (468, 468), "oil_to": (470, 508),
+                       "erase": [(330, 235, 600, 500, "dark"), (345, 240, 445, 305, "brown"), (535, 455, 580, 575, "oil")], "strengths": (0.45, 0.55, 0.65), "seeds": (42, 7)}
+
+# 697 2판 — 1판(밑동 338,285 → 끝 468,468 · 0.65-s42)은 기름이 머리 꼭대기에 떨어지나 뿔이 거의 서서 나무판이 비스듬히 「열린 입」으로 판정(t.horn-canon 2/3 틀림)·사독 손 뭉개짐 →
+# 덜 세워 끝을 머리 꼭대기 뒤쪽 위(490,468)로 · 몸통은 두 손 사이.
+SCENES["gihon690c"] = {**SCENES["gihon690b"], "out": "gihon-hires-697b", "mouth": (348, 288), "tip": (490, 468), "oil_to": (492, 512),
+                       "strengths": (0.55, 0.65), "seeds": (42, 7, 11)}
 
 
 if __name__ == "__main__":
