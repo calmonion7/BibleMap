@@ -46,7 +46,22 @@ def prep_recolor(c):
     print("[HornHires] 색 바꾼 바탕", os.path.join(out, "src.png"), int(sel.sum()), "화소")
 
 
+def prep_region(c):
+    """task 701 — 지물 없이 정한 상자(덜 그려진 손 등)만 3배로 키워 다시 그림 — 바탕 그대로, 되붙일 자리 = region 상자."""
+    out = os.path.join(CANON, "samples", c["out"]); os.makedirs(out, exist_ok=True)
+    x0, y0, x1, y1 = c["box"]
+    big = Image.open(os.path.join(CANON, c["base"])).convert("RGB").crop(c["box"]).resize(((x1 - x0) * K, (y1 - y0) * K), Image.LANCZOS)
+    big.save(os.path.join(out, "crop.png")); big.save(os.path.join(out, "src.png"))
+    m = Image.new("L", big.size, 0)
+    for b in c["region"]:
+        ImageDraw.Draw(m).rounded_rectangle(b, radius=24, fill=255)
+    m.save(os.path.join(out, "mask-obj.png")); Image.new("L", big.size, 0).save(os.path.join(out, "mask-erase.png")); m.save(os.path.join(out, "mask.png"))
+    print("[HornHires] 상자만 다시 그릴 바탕", os.path.join(out, "src.png"))
+
+
 def prep(c):
+    if c.get("region"):
+        return prep_region(c)
     if c.get("recolor"):
         return prep_recolor(c)
     import horn_compose as H
@@ -188,6 +203,13 @@ SCENES["gihon699sh"] = {**SCENES["gihon692"], "base": "samples/gihon-hires-699oi
                         "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a bearded soldier in a short wool tunic blowing a long curved natural ram's horn shofar raised to his lips, "
                                   "the horn mottled brown and pale tan with fine ridges, an animal horn, not metal, other soldiers standing beside him",
                         "strengths": (0.5, 0.6), "seeds": (42, 7), "lora": 0.0}
+
+# task 701 — 사람 700 「나단 손이 제대로 다 안그려짐」: 700 그림의 나단 두 손(허리 앞 모음, 한 손이 다른 손 뒤로 숨어 손가락이 덜 그려짐) 자리만.
+SCENES["gihon700nathan"] = {**SCENES["gihon692"], "base": "samples/gihon-hires-700/composition-A-s1.png", "box": (40, 200, 296, 456), "out": "gihon-hires-701",
+                            "region": [(360, 470, 540, 610)], "keep": [],
+                            "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. an ancient Israelite prophet with a full dark beard streaked with gray, "
+                                      "a long dark brown wool mantle over a pale wool tunic, both hands clearly drawn and clasped together in front of his waist, all fingers of both hands visible",
+                            "strengths": (0.45, 0.55, 0.65), "seeds": (42, 7), "lora": 0.0}
 
 
 if __name__ == "__main__":
