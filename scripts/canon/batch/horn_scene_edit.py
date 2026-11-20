@@ -61,6 +61,9 @@ SCENES["bethlehem707a"] = {"image": "samples/bethlehem-step23-t24/composition-A-
                            "clean": {"crop": (380, 190, 210), "box": (420, 245, 552, 330)}}
 SCENES["bethlehem707r2"] = {"base": "samples/bethlehem-hires-707a/clean-s1.png", "out": "bethlehem-hires-707r2",
                             "crop": (380, 190, 210), "box": (412, 240, 552, 333), "prompt": ""}
+# task 709 — 707 s5 바탕(손이 가슴 높이): klein은 옛 배치를 따르니(기혼 675) 지운 바탕(707a clean-s1)에 정본을 넓은 쪽 위쪽 손(432,262)·끝 다윗 정수리 위(522,318)로 거울 없이 얹어 칠한 그림에서 klein --ref.
+SCENES["bethlehem709r"] = {"base": "samples/bethlehem-hires-709/painted.png", "out": "bethlehem-hires-709",
+                           "crop": (380, 190, 210), "box": (405, 240, 552, 333), "prompt": "", "tag": "p"}
 REF_PROMPT = ("Replace the horn the old man holds with the curved ram's horn from the second image — the same shape, glossy dark brown color "
               "with pale amber streaks whose wide end is closed flat with a wooden disc. He holds its thick body near the wide end in his two hands, it curves and "
               "narrows to its small cut tip just above the kneeling boy's head — the closed wide end stays up in his hands and no oil comes from it — and golden oil drips in a thin stream from that small tip hole onto "
