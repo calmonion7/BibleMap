@@ -498,7 +498,11 @@ POSES["staff_hold_left"] = {**POSES["listen_clasp"], 3: (-0.12, 0.30), 4: (-0.08
 POSES["bow_deep_left"] = {**POSES["listen_clasp"], 0: (-0.11, 0.17), 1: (-0.04, 0.17), 2: (-0.09, 0.20), 5: (0.01, 0.20), 14: (-0.10, 0.15), 16: (-0.05, 0.13), 3: (-0.18, 0.30), 4: (-0.11, 0.38), 7: (-0.07, 0.39)}
 # task 598 — 곧게 서서 화면 오른쪽을 지켜보며 두 손목을 몸 앞 배 높이에 모음: listen_clasp를 x로 뒤집음(speak_open_left 선례).
 POSES["listen_clasp_right"] = {k: (-x, y) for k, (x, y) in POSES["listen_clasp"].items()}
-POSES["watch_side_right"] = {k: (-x, y) for k, (x, y) in POSES["watch_side_left"].items()}   # task 680 — 다윗 왼쪽 형들이 오른쪽(다윗)을 봄
+POSES["watch_side_right"] = {k: (-x, y) for k, (x, y) in POSES["watch_side_left"].items()}
+# task 699 — 곧게 서서 화면 왼쪽(왕 쪽)을 보고 고개를 조금 들어 양각을 입에 대고 붊(기혼 왕상 1:39 「이에 양각을 불고」 — 시위대 끝 한 사람):
+# watch_side_left(옆으로 선 몸)에서 가까운 손목을 입 바로 앞, 먼 손목을 뿔을 따라 앞·위로 · 팔꿈치는 아래(arm_fit이 기준 길이로 잡음).
+POSES["blow_horn_left"] = {**POSES["watch_side_left"], 0: (-0.075, 0.06), 14: (-0.055, 0.042), 16: (-0.01, 0.048),
+                           3: (-0.05, 0.25), 4: (-0.07, 0.10), 6: (0.03, 0.24), 7: (-0.17, 0.06)}   # task 680 — 다윗 왼쪽 형들이 오른쪽(다윗)을 봄
 # task 626 — 곧게 서서 화면 왼쪽을 향하고 두 팔을 몸 옆에 조금 띄워 내림(미스바 사울 10:23 「그가 백성 중에 서니」): listen_clasp에서 팔만.
 # 두 손목을 배 앞에 모은 listen_clasp는 손이 겉옷에 묻힘(미스바 621 사울 두 손 2/8 · 길갈 즉위 623 사무엘 두 손 보임·손 또렷함 각 6/8).
 POSES["stand_rest"] = {**POSES["listen_clasp"], 3: (-0.085, 0.33), 4: (-0.10, 0.50), 6: (0.085, 0.33), 7: (0.10, 0.50)}

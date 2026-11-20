@@ -60,3 +60,34 @@
 - 1차: 틀림 0 · 약함 7(백성 [추론]에 1:40 · 지리 라벨 · 브나야 · 사독 stage_why 대상 12:28 · 나단 「재위 초」 · 사독 옷 출 39:27 · 시위대 삼하 23:23 · relation ko · meaning 라벨) — 모두 반영.
 - 2차: 틀림 0 · 약함 4(사독 기간 삼십여 년 · 옷 이름·띠 출 28:40 · 「앞장선」→「거느린」 · 성 아래 [직접] 라벨) — 반영.
 - 3차: 틀림 0 · 약함 1(사독 요소 ko에 띠) — 반영. 영문 파생 문구는 세 번 모두 그대로.
+
+## task 699 — 순간을 1:39 전체로 (2026-11-20)
+
+사람 결정(판정 698 메모 「백성들이 있는게 맞나, 있는게 맞다면 양각을 불고 만세를 불러야지」 · 앞서 640 메모 「백성들이 만세부르는것도아님」): 고정한 순간을 1:39 전반(붓는 순간)에서 **한 절 전부**로 넓힌다 — 「제사장 사독이 성막 가운데서 기름 뿔을 가져다가 솔로몬에게 기름을 부으니 이에 양각을 불고 모든 백성이 솔로몬 왕 만세를 부르니라」.
+
+까닭: 「이에」는 기름 부음에 곧바로 잇는 말이라 양각과 만세를 같은 때로 묶는다([추론] — 1:34 다윗의 명령도 「거기서 … 기름을 부어 … 너희는 양각을 불며 솔로몬 왕 만세를 부르고」로 한 자리의 일). 옛 명세는 양각·만세를 「뒤의 일」로 빼고 백성을 비탈에서 「지켜보는」 무리로 두어(문항 t.no-trumpet로 나팔까지 막음) 본문에 없는 모습(조용히 지켜봄)을 그렸다. 1:40(왕을 따라 올라감·피리)은 그대로 뒤의 일.
+
+바꾼 것:
+- **사전** `data/scripture_words/words.json`에 `shofar`(양각) 신설 — L1 「a long ram's horn shofar」 · L2 「a long curved ram's horn shofar about as long as a man's arm, pale tan with dark ridges, its wide end open, blown at its narrow tip」 · L3 「… held to the lips with both hands, its narrow tip at the mouth and its open wide end raised high」 · size 0.35(팔 길이쯤 — 기름 뿔 0.15의 두 배 넘음) · hold hand · refs 왕상 1:34·1:39·1:41 · 수 6:4·6:8. 기름 뿔(짧고 윤기 나는 짙은 갈색, 넓은 밑동 막힘, 끝 주둥이로 기름)과 길이·색·열린 넓은 끝으로 갈리고 기름·마개·나무판이 없다. 그리는 문구에 trumpet을 쓰지 않고 shofar — 기름 뿔이 금속 나팔·열린 아가리로 그려지는 버릇(590~692)을 같은 프롬프트에서 부추기지 않게.
+- **moment.why · situation(text · same_time 1:39) · meaning**: 1:39 전부 · 기름이 아직 흐르는 동안 양각과 만세(한 화면에 묶음은 저작자 정함). 양각을 분 이는 본문에 주어가 없어 시위대 군사 하나로 정함(본문 밖 · 저작자 정함, [추론] 1:34 「너희는 양각을 불며」 — 1:32 사독·나단·브나야 일행, 브나야가 그렛·블렛 사람을 거느림). 백성이 그 자리에 있음은 이제 1:39 [직접]. 옛 situation의 「노새 곁에 서서 몸을 숙여」(602 무릎 꿇음 뒤 남은 어긋남)를 「무릎 꿇고 고개를 숙여」로 맞춤.
+- **relation**: 끝에 한 사람 절 「at the right end stands a bearded guard blowing a long ram's horn shofar raised to his lips」(spec.cardless-person-clause · 함정 「무리에게 손동작을 시키면 그려지지 않는다」 — 배교 549).
+- **whole_background · crowds[1]**: 백성 「watching」 → 「arms raised, shouting toward the young king」(바라볼 대상을 씀 — 함정 133 · 백성이 뒤 깊은 쪽이라 정면을 보면 곧 왕 쪽, 함정 152). 팔을 듦은 본문 밖 · 저작자 정함(만세를 부르는 몸짓).
+- **verse_elements**: 「이에 양각을 불고」(out) → 지물 「양각을」(en = 사전 L1) + 행동 「이에 양각을 불고」(en 「blowing a long ram's horn shofar raised to his lips」). 「모든 백성이 솔로몬 왕 만세를 부르니라」 한 요소 → 무리 「모든 백성이」(all the people) + 행동 「솔로몬 왕 만세를 부르니라」(arms raised, shouting toward the young king).
+- **regions · guide · stages**: `horn_blower` [0.895,0.448,0.971,0.80] — 시위대 줄 오른쪽 끝 바로 앞, 사독의 기름 뿔(x 0.43~0.49)과 화면 반대쪽 끝. 처음 발 y 0.77(키 0.32)로 두었다가 generate.figure-scale(무리 단계 large 하한 0.35)에 걸려 0.80(키 0.351, 초점의 0.73)으로. 사람 꼴 · 깊이 0.85. stages에 S7(horn_blower) 더함 · S5·S6 neg의 「horn」 뺌 · S6 문구 만세로.
+- **512토큰**: 510 → 528(양각 절·만세 문구) → 512. 뺀 것은 본문 밖 배경·저작 낱말뿐 — 「water running from a cleft in the rock」·「on the left」·「packed-earth ground」·「rocky slopes」·「pale sky」·무리 옷의 「men and women」·양각 절의 「with both hands」. 구절 요소 문구는 그대로.
+
+결과: `recheck.spec_failures` 0 · `derive_scene --check --figures whole` 통과 · 시험 6묶음 262 OK.
+
+**막힘 — 양각 부는 이 뼈대 없음**: `make_guide.POSES`에 두 손을 입 앞에 모아 뿔을 든 꼴이 없다(두 손목이 얼굴 높이인 것은 pour_over·pour_high뿐인데 둘 다 오른쪽을 향해 고개를 숙여 붓는 꼴 · kneel_raise_right는 꿇음). 지금 가이드에서 그는 1단계(뼈대)에 없고 2단계 깊이에서 원뿔 꼴이다(놉 529 — 원뿔은 앞에 선 거인·망토로 그려짐). 필요한 꼴: 곧게 서서 화면 왼쪽(왕 쪽)을 보고 고개를 조금 듦 · 가까운 손목은 입 바로 앞(약 (−0.07, 0.10)) · 먼 손목은 뿔을 따라 앞·위(약 (−0.17, 0.06)) · 두 팔꿈치는 아래로. 생기면 `guide.pose.horn_blower`에 더한다(split은 이미 true).
+
+단계 ③ 문항 등급 — 다음 고정 절에서 바꿀 것:
+
+| 문항 | 묻는 것 | 근거 | 등급 |
+|---|---|---|---|
+| t.no-trumpet | (뺌) | 순간이 1:39 전부 | — |
+| t.one-pourer | 기름을 붓는 사람이 제사장 하나뿐인가(나팔 부는 군사는 셈 밖) — 옛 문구 「뿔·그릇을 든 사람이 제사장 하나뿐인가」는 바르게 그린 장을 떨어뜨림 | 1:39 「제사장 사독이」 | 거르기 |
+| t.shofar | 오른쪽 끝 군사 하나가 긴 짐승 뿔 나팔(금속 나팔 아님)을 입에 대고 부나 | 1:39 「이에 양각을 불고」 · 수 6:4 [추론] | 거르기 |
+| t.shofar-not-oil | 그 나팔 뿔에서 기름이 흐르지 않고 사독의 기름 뿔과 꼴(길이·색·열린 넓은 끝)이 다른가 | 사전 shofar · oil-horn [추론] | 거르기 |
+| t.people | 뒤쪽 무리가 젊은 왕 쪽을 향해 소리치며 환호하나(조용히 지켜보기만 하지 않음) | 1:39 「모든 백성이 솔로몬 왕 만세를 부르니라」 | 거르기 |
+| t.people-arms | 무리가 팔을 들었나 | 저작(만세 몸짓) | 기록 |
+| t.blower-guard | 부는 이가 시위대 차림 군사이고 한 사람뿐인가 | 저작([추론] 1:34) | 기록 |
