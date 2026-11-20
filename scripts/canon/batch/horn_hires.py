@@ -26,7 +26,29 @@ SCENES["gihon690"] = {**SCENES["gihon692"], "base": "samples/gihon-step23-t21/co
                       "keep": [(110, 190, 300, 430), (370, 560, 540, 768)]}
 
 
+def prep_recolor(c):
+    """task 699 — 정본이 없는 지물(양각): 생성기가 금속 나팔로 그린 금빛 화소를 짐승 뿔 빛깔(갈색·황갈색, 밝기 결 유지)로 바꾼 바탕 → i2i로 그 자리만 다시 그림."""
+    import numpy as np
+    out = os.path.join(CANON, "samples", c["out"]); os.makedirs(out, exist_ok=True)
+    x0, y0, x1, y1 = c["box"]
+    big = Image.open(os.path.join(CANON, c["base"])).convert("RGB").crop(c["box"]).resize(((x1 - x0) * K, (y1 - y0) * K), Image.LANCZOS)
+    big.save(os.path.join(out, "crop.png"))
+    a = np.asarray(big).astype(float); sel = np.zeros(a.shape[:2], bool)
+    for bx0, by0, bx1, by1 in c["recolor"]:
+        r, g, b = a[by0:by1, bx0:bx1, 0], a[by0:by1, bx0:bx1, 1], a[by0:by1, bx0:bx1, 2]
+        sel[by0:by1, bx0:bx1] = (r > 120) & (g > 80) & (r - b > 85) & (g - b > 40)   # 금빛·황동(모래 비탈은 r-b 약 60이라 빠짐)
+    lum = a.mean(2)
+    horn = np.stack([lum * 0.62 + 30, lum * 0.48 + 22, lum * 0.34 + 14], 2)   # 짙은 갈색~옅은 황갈색(밝기 결 그대로)
+    a[sel] = horn[sel]
+    src = Image.fromarray(a.clip(0, 255).astype("uint8")); src.save(os.path.join(out, "src.png"))
+    m = Image.fromarray((sel * 255).astype("uint8")).filter(ImageFilter.MaxFilter(15))
+    m.save(os.path.join(out, "mask-obj.png")); Image.new("L", big.size, 0).save(os.path.join(out, "mask-erase.png")); m.save(os.path.join(out, "mask.png"))
+    print("[HornHires] 색 바꾼 바탕", os.path.join(out, "src.png"), int(sel.sum()), "화소")
+
+
 def prep(c):
+    if c.get("recolor"):
+        return prep_recolor(c)
     import horn_compose as H
     out = os.path.join(CANON, "samples", c["out"]); os.makedirs(out, exist_ok=True)
     x0, y0, x1, y1 = c["box"]
@@ -41,6 +63,7 @@ def prep(c):
             a = np.asarray(big).astype(int)
             r, g, b = a[y0e:y1e, x0e:x1e, 0], a[y0e:y1e, x0e:x1e, 1], a[y0e:y1e, x0e:x1e, 2]
             sel = {"dark": (r < 150) & (r + g + b < 380), "oil": (r > 170) & (g > 120) & (r - b > 70),
+                   "gold": (r > 140) & (g > 95) & (r - b > 60) & (g - b > 30),   # 699 — 금빛 나팔 꼴 옛 기름 뿔
                    "brown": (r - b > 45) & (r + g + b < 560)}[kind]   # brown — 옛 뿔 굽이·관 끝 테의 옅은 갈색(697 1판 남음)
             one = np.zeros_like(em); one[y0e:y1e, x0e:x1e] = (sel * 255).astype("uint8")
             one = cv2.dilate(one, np.ones((9, 9), "uint8"))
@@ -154,6 +177,17 @@ SCENES["gihon690s5"] = {**SCENES["gihon690"], "base": "samples/gihon-step23-t21/
                         "keep": [(230, 270, 370, 500), (470, 590, 650, 768)], "strengths": (0.55, 0.65), "seeds": (42, 7, 11)}
 
 SCENES["gihon690s5b"] = {**SCENES["gihon690s5"], "out": "gihon-hires-698b", "hand_outline": 5, "strengths": (0.45, 0.55), "seeds": (42, 11)}   # 698 2판 — 원본 손(윤곽 포함) · 낮은 세기
+
+# task 699 — 1:39 전체 구도 s7(기름이 머리에 · 백성 만세 · 시위대 끝 한 사람이 붊)에서 두 뿔을 고침: ① 기름 뿔(금빛 나팔 꼴·넓은 입으로 부음) → 정본 ② 양각(금속 나팔) → 짐승 뿔.
+SCENES["gihon699oil"] = {**SCENES["gihon690s5b"], "base": "samples/gihon-step23-t24/composition-A-s7.png", "box": (400, 180, 656, 436), "out": "gihon-hires-699oil",
+                         "mouth": (330, 330), "tip": (548, 468), "oil_to": (550, 528), "hands": [(290, 360, 385, 455), (385, 420, 470, 475)],
+                         "erase": [(240, 270, 590, 470, "dark", (0, -150)), (240, 270, 590, 470, "gold", (0, -150)), (520, 440, 590, 512, "oil", (90, 0)), (520, 512, 590, 545, "oil", (0, 22))],
+                         "keep": [(60, 230, 235, 470), (480, 560, 640, 700)], "strengths": (0.45, 0.55), "seeds": (42, 11)}
+SCENES["gihon699sh"] = {**SCENES["gihon692"], "base": "samples/gihon-hires-699oil/pick.png", "box": (1040, 120, 1216, 376), "out": "gihon-hires-699sh",
+                        "recolor": [(140, 250, 380, 480)], "keep": [],
+                        "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. a bearded soldier in a short wool tunic blowing a long curved natural ram's horn shofar raised to his lips, "
+                                  "the horn mottled brown and pale tan with fine ridges, an animal horn, not metal, other soldiers standing beside him",
+                        "strengths": (0.5, 0.6), "seeds": (42, 7), "lora": 0.0}
 
 
 if __name__ == "__main__":
