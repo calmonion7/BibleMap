@@ -211,6 +211,19 @@ SCENES["gihon700nathan"] = {**SCENES["gihon692"], "base": "samples/gihon-hires-7
                                       "a long dark brown wool mantle over a pale wool tunic, both hands clearly drawn and clasped together in front of his waist, all fingers of both hands visible",
                             "strengths": (0.45, 0.55, 0.65), "seeds": (42, 7), "lora": 0.0}
 
+# task 702 — 사람 701 「손목부분 보면 덜 그려져 있음 자연스럽지 않음」: 손만 다시 그려 소매 끝에 손이 바로 붙음(아래팔·손목 없음) → 두 소매 끝·아래팔까지 상자 · 문구에 손목.
+SCENES["gihon700nathan2"] = {**SCENES["gihon700nathan"], "out": "gihon-hires-702", "region": [(300, 410, 545, 762)],
+                             "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. an ancient Israelite prophet with a full dark beard streaked with gray, "
+                                       "a long dark brown wool mantle over a pale wool tunic with wide sleeves, his forearms and wrists coming out of the sleeves, both hands clasped together in front of his waist, natural wrists and fingers",
+                             "strengths": (0.7, 0.75), "seeds": (42, 7, 11)}
+
+# task 702 — 사람 「사독선지자 손목이 다 안그려짐」: 사독 두 손목(왼손목 흰 얼룩 — 699 지운 자리 · 오른손목 소매 이음) + 원판 위 옛 뿔 끝 자국. 바탕 = 나단 고친 702 pick.
+SCENES["gihon702zadok"] = {**SCENES["gihon692"], "base": "samples/gihon-hires-702/pick.png", "box": (400, 180, 656, 436), "out": "gihon-hires-702z",
+                           "region": [(235, 395, 425, 525), (250, 250, 325, 325)], "keep": [],
+                           "prompt": "warm cream paper, soft pencil and colored-pencil storybook illustration, gentle hand-drawn lines. an old priest with a long gray beard in a long white linen robe with narrow sleeves, "
+                                     "his forearms and wrists coming out of the sleeves, both hands gripping oilhorn_bm, a ram's horn oil flask, glossy dark brown, its wide end closed flat with a round wooden disc, natural wrists and fingers",
+                           "strengths": (0.5, 0.6), "seeds": (42, 7, 11), "lora": 1.0}
+
 
 if __name__ == "__main__":
     {"prep": prep, "gen": gen, "back": back}[sys.argv[2]](SCENES[sys.argv[1]])
