@@ -313,6 +313,15 @@ def altar(d, x0, y0, x1, y1, v):
     d.ellipse([x0 + w * 0.32, top - h * 0.1, x1 - w * 0.32, top + h * 0.03], fill=v)
 
 
+def platform(d, x0, y0, x1, y1, v):
+    """task 711 — 사람이 올라선 낮은 네모 받침(성전 봉헌 대하 6:13 놋대 「장이 다섯 규빗 광이 다섯 규빗 고가 세 규빗」): 구역 전체가 받침 —
+    윗면(위 0.12)은 원근으로 얕은 사다리꼴, 앞면은 땅까지 곧은 네모. 받침 위 인물 구역은 guide.ground로 받침 밑 땅 y를 준다(scale.foot)."""
+    w, h = x1 - x0, y1 - y0
+    top = y0 + h * 0.12
+    d.polygon([(x0 + w * 0.08, y0), (x1 - w * 0.08, y0), (x1, top), (x0, top)], fill=v)
+    d.rectangle([x0, top, x1, y1], fill=v)
+
+
 def bier(d, x0, y0, x1, y1, v):
     """task 618 — 상여 위에 누운 몸(사무엘의 죽음 삼상 25:1 「그를 장사한지라」): 구역 아래 짧은 다리 넷 · 낮은 나무 판(구역 높이 0.60~0.72) ·
     그 위에 천에 싸여 가로로 누운 몸(왼쪽 끝 머리 둥근 부분). 산 사람 꼴(prostrate·kneel_bow)뿐이라 누운 몸이 서거나 덩어리로 그려질 위험(단계 ① 에이전트 보고)."""
@@ -638,7 +647,7 @@ def draw_pose(img, box, name, hip_dx=0.06):
 
 
 AIR_SHAPES = {"spear"}   # 허공을 나는 물체 꼴(recheck.AIR_SHAPES와 같음)
-SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "kneel_bow_reach": kneel_bow_reach, "seated": seated, "sit": sit, "crowd": crowd, "boat": boat, "bank": bank, "river": river, "altar": altar, "ephod_sword": ephod_sword, "horn_pour": horn_pour, "horn_pour_high": horn_pour_high, "horn_canon": horn_canon, "bier": bier}
+SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "kneel_bow_reach": kneel_bow_reach, "seated": seated, "sit": sit, "crowd": crowd, "boat": boat, "bank": bank, "river": river, "altar": altar, "ephod_sword": ephod_sword, "horn_pour": horn_pour, "horn_pour_high": horn_pour_high, "horn_canon": horn_canon, "bier": bier, "platform": platform}
 
 
 def make_pose_only(spec, backdrop=False):

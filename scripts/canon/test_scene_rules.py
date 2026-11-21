@@ -1780,3 +1780,15 @@ class QuoteErrors(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class PlatformGroundTest(__import__("unittest").TestCase):
+    """task 711 — 받침 위 인물(guide.ground): 지평선은 받침 밑 땅 y로 셈한다(상자 아래 끝이 아님)."""
+
+    def test_ground_moves_foot_not_horizon(self):
+        import scale as S
+        base = {"regions": {"a": [0.30, 0.50, 0.42, 0.92]}, "guide": {"shape": {"a": "person"}}, "figures": [{"region": "a", "cast": "solomon"}]}
+        raised = {"regions": {"a": [0.30, 0.188, 0.42, 0.608]}, "guide": {"shape": {"a": "person"}, "ground": {"a": 0.92}}, "figures": [{"region": "a", "cast": "solomon"}]}
+        self.assertAlmostEqual(S.foot(raised, "a"), 0.92)
+        self.assertAlmostEqual(S.foot(base, "a"), 0.92)
+        self.assertAlmostEqual(S.scene_horizon(raised), S.scene_horizon(base), places=6)

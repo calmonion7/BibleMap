@@ -117,6 +117,12 @@ def seated(spec):
     return _figures(spec, lambda shape, posed: shape in SEATED_SHAPES)
 
 
+def foot(spec, k):
+    """task 711 — 구역 k가 딛는 땅 높이(화면 비). 기본은 구역 아래 끝. 받침(놋대 등) 위에 선·꿇은 인물은 guide.ground[k]에 받침 밑 땅 y를 준다
+    (성전 봉헌 대하 6:13 「그 위에 서서 … 무릎을 꿇고」 — 상자를 대 높이로 올리면 아래 끝을 발로 셈해 지평선이 0.529 → 0.217로 뒤틀림, 막힘 2)."""
+    return ((spec.get("guide") or {}).get("ground") or {}).get(k, spec["regions"][k][3])
+
+
 def scene_horizon(spec):
     """장면 지평선 — 화면 키가 가장 큰(가장 가까운) 서 있는 인물이 초점. 서 있는 인물이 없으면 앉은 인물 중 가장 큰 이의
     서 있을 때 키(구역 높이 ÷ body.seated)로(task 416 — 홀로 앉은 밧세바), 그도 없으면 표 기본값."""
@@ -124,11 +130,11 @@ def scene_horizon(spec):
     people = standing(spec)
     if people:
         k, hr = max(people, key=lambda p: R[p[0]][3] - R[p[0]][1])
-        return horizon(R[k][3], R[k][3] - R[k][1], hr)
+        return horizon(foot(spec, k), R[k][3] - R[k][1], hr)
     sat = seated(spec)
     if sat:
         k, hr = max(sat, key=lambda p: R[p[0]][3] - R[p[0]][1])
-        return horizon(R[k][3], (R[k][3] - R[k][1]) / v("body.seated"), hr)
+        return horizon(foot(spec, k), (R[k][3] - R[k][1]) / v("body.seated"), hr)
     return v("perspective.horizon_default")
 
 

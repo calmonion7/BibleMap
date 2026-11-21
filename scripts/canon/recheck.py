@@ -423,11 +423,11 @@ def perspective_errors(spec):
     hy = S.scene_horizon(spec) if g else None
     out = []
     for k, shape in (g.get("shape") or {}).items():
-        if (shape != "crowd" and k not in people) or R[k][3] <= hy:
+        if (shape != "crowd" and k not in people) or S.foot(spec, k) <= hy:
             continue
-        ph, h = S.screen_height(R[k][3], hy), R[k][3] - R[k][1]
+        ph, h = S.screen_height(S.foot(spec, k), hy), R[k][3] - R[k][1]
         if ph > h:
-            out.append(f"{k}: 발 y {R[k][3]:.2f}의 어른 화면 키 {ph:.2f} > 구역 높이 {h:.2f}(지평선 {hy:.3f}) — 무리 구역이 원근보다 낮다")
+            out.append(f"{k}: 발 y {S.foot(spec, k):.2f}의 어른 화면 키 {ph:.2f} > 구역 높이 {h:.2f}(지평선 {hy:.3f}) — 무리 구역이 원근보다 낮다")
     return out
 
 
@@ -452,7 +452,7 @@ def height_ratio_errors(spec):
     for k, hr in people:
         if k == fk:
             continue
-        want, got = S.screen_height(R[k][3], hy, hr), R[k][3] - R[k][1]
+        want, got = S.screen_height(S.foot(spec, k), hy, hr), R[k][3] - R[k][1]
         if abs(got - want) / fh > HEAD_TOL:
             out.append(f"{k}: 구역 높이 {got:.2f} ≠ 지평선 {hy:.3f}에서 계산한 {want:.2f}(± 초점 {fk} 키의 {HEAD_TOL}) — 두 사람 크기가 어긋나 그려진다")
     return out
