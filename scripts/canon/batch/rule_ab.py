@@ -83,6 +83,8 @@ def gen():
     import recheck
     for sid in sorted({c["scene"] for c in FX["cases"]}):
         recheck.require_pass(sid)   # generate.spec-gate — task 509: 규칙에 걸린 명세(512토큰 넘침)로 생성이 돌았다
+        if D.load(sid).get("inset"):   # task 677: 곁 장면은 구름 틀 비율로 그려 합성해야 함 — rule_ab gen은 전폭·합성 없음(746 구름 문항 0/8)
+            sys.exit(f"[RuleAB] {sid}에 곁 장면(inset)이 있다 — batch/inset_try.py gen → comp 로 생성·합성한 뒤 그림을 복사하고 judge만 쓴다(scene-authoring 함정)")
     os.makedirs(SAMPLES, exist_ok=True)
     out = os.path.expanduser(f"~/.local/biblemap-imggen/{FX['dir']}")
     os.makedirs(out, exist_ok=True)
@@ -150,10 +152,24 @@ def votes(m, case, ab, seed, qid):
     return sum(r["answers"][qid] == "맞음" for r in reps if r.get("answers")), sum(1 for r in reps if r.get("answers"))
 
 
+def shaky(yes, n):
+    """2026-11-25 엔게디 1106→1109 — 같은 그림을 다시 재면 3표 다수결이 문항×장 208개 중 13개 뒤집혔다(2:1로 갈린 문항).
+    5표 이상이면 맞음·틀림 표 차가 1 이하인 문항을 「흔들림」으로 갈라 틀림으로 세지 않는다(화면에는 표시). 3표 판은 그대로(2:1도 다수결)."""
+    return n >= 5 and abs(2 * yes - n) <= 1
+
+
 def majority(m, case):
-    """→ {ab: {seed: {qid: 다수결 맞음}}}"""
-    return {ab: {s: {q["id"]: 2 * votes(m, case, ab, s, q["id"])[0] > votes(m, case, ab, s, q["id"])[1] for q in case["qs"]}
-                 for s in FX["seeds"]} for ab in sides(case)}
+    """→ {ab: {seed: {qid: 다수결 맞음(흔들림 포함)}}}"""
+    def ok(ab, s, qid):
+        y, n = votes(m, case, ab, s, qid)
+        return 2 * y > n or shaky(y, n)
+    return {ab: {s: {q["id"]: ok(ab, s, q["id"]) for q in case["qs"]} for s in FX["seeds"]} for ab in sides(case)}
+
+
+def shakes(m, case, ab, seed, qs):
+    """흔들림 문항 이름(표 수) — report·page 표시용."""
+    return [f"{q['q']} {votes(m, case, ab, seed, q['id'])[0]}/{votes(m, case, ab, seed, q['id'])[1]}" for q in qs
+            if shaky(*votes(m, case, ab, seed, q["id"]))]
 
 
 def adopt(ok, gated, rule):
@@ -178,6 +194,11 @@ def report():
         for ab in sides(case):
             fine = [s for s in FX["seeds"] if all(ok[ab][s][q] for q in gated)]
             print(f"통과: {case['id']}-{ab} {len(fine)}/{k}" + (f" (s{' s'.join(map(str, fine))})" if fine else ""))
+            gq = J.gating(case["qs"])
+            for s in FX["seeds"]:
+                sh = shakes(m, case, ab, s, gq)
+                if sh:
+                    print(f"  흔들림 s{s}: {' · '.join(sh)}")
         if case.get("axis"):
             s = FX["seeds"][0]
             a, b = ok["A"][s], ok["B"][s]
@@ -243,10 +264,20 @@ def page(out):
         yes = sum(r["answers"][weak["id"]] == "맞음" for r in reps)
         why = next((r["reasons"][weak["id"]] for r in reps if r["answers"][weak["id"]] == "틀림" and (r.get("reasons") or {}).get(weak["id"])), "")
         fails = [q["q"] for q in gated if not ok[s][q["id"]]]
+        sh = shakes(m, case, ab, s, gated)
         cards.append({"seed": s, "pass": not fails, "fails": fails,
-                      "note": f"{weak['q']} 맞음 {yes}/{len(reps)}표" + (f" — 틀림 이유: {why}" if why else "")})
+                      "note": f"{weak['q']} 맞음 {yes}/{len(reps)}표" + (f" — 틀림 이유: {why}" if why else "")
+                      + (f" · 흔들림(표 갈림, 틀림으로 안 셈): {' · '.join(sh)}" if sh else "")})
     cards.sort(key=lambda c: (not c["pass"], len(c["fails"]), FX["seeds"].index(c["seed"])))
-    shown = [c for c in cards if len(c["fails"]) <= MAX_FAILS]
+    # task 678 — 확정 뒤 국소 손질 비교(고정 절 control = 확정본 시드): 확정본은 늘 보이고, 손질 장은 확정본과 같은 틀림을 빼고 MAX_FAILS로 거름
+    # (길갈 761: 손질 밖 화소의 같은 문항이 확정본도 틀림 — 새로 생긴 결함만 「3개 이상은 후보로 주지 마」에 셈)
+    ctl = next((c for c in cards if c["seed"] == FX.get("control")), None)
+    base = set(ctl["fails"]) if ctl else set()
+    if ctl:
+        ctl["note"] = "지금 확정본(대조군) · " + ctl["note"]
+    shown = [c for c in cards if c is ctl or len(set(c["fails"]) - base) <= MAX_FAILS]
+    if ctl and len(shown) == 1:
+        shown = []
     if not shown:
         print(f"[RuleAB] 화면 안 만듦 — 틀린 거르기 문항 {MAX_FAILS}개 이하 장이 없음(가장 적은 장 {min(len(c['fails']) for c in cards)}개) · 다시 시도하거나 시도 상한이면 멈추고 보고")
         return

@@ -77,7 +77,9 @@ class GazeObject(unittest.TestCase):
                          ("unguarded face in profile, looking toward the cave mouth", "unguarded face in profile")):
             self.assertEqual(c.count(old), 1, old)
             c = c.replace(old, new)
-        self.assertEqual(ds.whole_prompt(engedi()), c)
+        # task 687 — 명세가 「자르는 중」(사람 2026-11-25)으로 바뀌어 C를 떠났다: 파생 코드 회귀 가드로 남기려 C 때 명세(git HEAD 판)를 고정 사본으로 파생
+        old_spec = json.load(open(os.path.join(HERE, "samples", "engedi-aftercut", "spec.json"), encoding="utf-8"))
+        self.assertEqual(ds.whole_prompt(old_spec), c)
 
     def test_object_gaze_en_in_figure_sentence(self):
         spec = engedi()
@@ -89,6 +91,26 @@ class GazeObject(unittest.TestCase):
         d["gaze"] = {**d["gaze"], "verse": ""}
         self.assertTrue(ds.check_whole(spec))
 
+
+
+class GazeTargetArticle(unittest.TestCase):
+    """fu-44c21854c05e — 시선 대상의 age가 관사로 시작해도(sheba-queen 「a queen」) 「looking toward the a queen」이 되지 않는다."""
+
+    def test_no_double_article_in_any_scene(self):
+        for path in sorted(glob.glob(os.path.join(HERE, "scenes", "*.json"))):
+            spec = json.load(open(path, encoding="utf-8"))
+            if not spec.get("figures") or not all(k in spec for k in ("regions", "relation")):
+                continue
+            try:
+                p = ds.whole_prompt(spec)
+            except Exception:  # 옛 판 명세는 파생이 안 됨 — 이 시험의 대상 아님
+                continue
+            for bad in ("toward the a ", "toward the an ", "toward the the "):
+                self.assertNotIn(bad, p, os.path.basename(path))
+
+    def test_sheba_queen_gaze(self):
+        spec = json.load(open(os.path.join(HERE, "scenes", "authored-solomon-jerusalem-sheba.json"), encoding="utf-8"))
+        self.assertIn("looking toward the queen on the left", ds.whole_prompt(spec))
 
 
 class WideQuestions(unittest.TestCase):
@@ -158,6 +180,14 @@ class GuideSide(unittest.TestCase):
                     self.assertFalse([o for o in others if o < x], f"{p}: {f['cast']} 왼쪽에 한 사람 꼴 칸")
                 elif side == "on the right":
                     self.assertFalse([o for o in others if o > x], f"{p}: {f['cast']} 오른쪽에 한 사람 꼴 칸")
+
+    def test_two_figures_no_center(self):   # task 678 규칙 derive.two-figure-sides — 길갈 756 「In the center」 사무엘 → 셋째 사람 3/8
+        for p in sorted(glob.glob(os.path.join(HERE, "scenes", "*.json"))):
+            spec = json.load(open(p, encoding="utf-8"))
+            figs = spec.get("figures") or []
+            if len(figs) != 2 or spec.get("crowds") or not spec.get("regions"):
+                continue
+            self.assertEqual(sorted(ds._side(f, spec) for f in figs), ["on the left", "on the right"], p)
 
 
 if __name__ == "__main__":

@@ -107,18 +107,30 @@ CROWD_SHOULDER = 0.45   # 무리 실루엣 어깨 반너비 ÷ 몸 아래 너비
 CROWD_BOX = 0.4         # 무리 한 사람 상자 너비 ÷ 줄 키(옛 0.3 — 가늘게 그려짐)
 CROWD_ARM_OUT = 0.8     # 무리 한 사람 손 x 반너비 ÷ 몸 아래 너비 — 팔이 몸통에서 떨어져 보이게(task 538 배교 후비 「어깨·팔 굴곡 없이 원뿔·기둥 같은 천 덩어리」 몸 꼴 3/8)
 CROWD_HAND_Y = S.v("body.shoulder") + S.v("body.upper_arm") + S.v("body.forearm")   # 무리 한 사람 손목 높이 ÷ 키(어깨 0.17 + 팔 0.34 = 0.51) — 0.45(허리)면 형들 손이 허리띠에 붙어 팔 길이 4/8(베들레헴 593, 규칙 generate.pose-arm-length 넓힘 task 594)
+CROWD_FRONT_HANDS = {"elbow": (0.5, 0.36), "wrist": (0.2, 0.46), "hand_r": 0.03, "near": 1.25}   # 장면 스위치 guide.crowd_hands {무리: "front"}일 때 맨 앞줄만 — 팔꿈치(x ÷ 몸 아래 너비, y ÷ 키) 몸 옆 허리 위 → 손목 몸 앞 허리(두 손 떨어짐) · 아래팔·손 밝기 ×near(같은 밝기면 깊이 그림에서 몸에 묻힘). 마하나임 t.hands-crowd 0→5/8(737~740) · 모든 무리에 켜면 기혼 5→4/8(744)이라 장면별로만(fu-4c8b6d87f952)
 
 
-def crowd_person(d, x0, y0, x1, y1, v):
-    """task 499 — 무리 한 사람: person과 같되 어깨가 넓은 몸(어깨 0.9 × 아래 너비). 원뿔 기둥이면 사람이 막대기처럼 그려짐(사람 판정 498). task 538 — 몸에서 떨어진 두 팔."""
+def crowd_person(d, x0, y0, x1, y1, v, front=False):
+    """task 499 — 무리 한 사람: person과 같되 어깨가 넓은 몸(어깨 0.9 × 아래 너비). 원뿔 기둥이면 사람이 막대기처럼 그려짐(사람 판정 498). task 538 — 몸에서 떨어진 두 팔.
+    front — 팔을 굽혀 두 손을 몸 앞 허리에(CROWD_FRONT_HANDS)."""
     h, cx = y1 - y0, (x0 + x1) / 2
     bw = min(x1 - x0, h * max(BODY["w"], S.build_width()))
     r = h * HEAD_R["person"]
     d.ellipse([cx - r, y0, cx + r, y0 + 2 * r], fill=v)
     sh = y0 + 2 * r
     body(d, (cx - bw * CROWD_SHOULDER, sh), (cx + bw * CROWD_SHOULDER, sh), cx, y0, y1, bw, v)
+    aw = max(1, round(h * 0.05))
     for s in (-1, 1):   # 두 팔 — 어깨에서 몸 옆으로 비껴 손목 높이(CROWD_HAND_Y)까지(팔 없는 꼴은 천 기둥으로 그려짐, task 538)
-        d.line([(cx + s * bw * CROWD_SHOULDER, sh + h * 0.02), (cx + s * bw * CROWD_ARM_OUT, y0 + h * CROWD_HAND_Y)], fill=v, width=max(1, round(h * 0.05)))
+        if not front:
+            d.line([(cx + s * bw * CROWD_SHOULDER, sh + h * 0.02), (cx + s * bw * CROWD_ARM_OUT, y0 + h * CROWD_HAND_Y)], fill=v, width=aw)
+            continue
+        F = CROWD_FRONT_HANDS
+        el = (cx + s * bw * F["elbow"][0], y0 + h * F["elbow"][1])
+        wr = (cx + s * bw * F["wrist"][0], y0 + h * F["wrist"][1])
+        near, hr = min(255, round(v * F["near"])), h * F["hand_r"]
+        d.line([(cx + s * bw * CROWD_SHOULDER, sh + h * 0.02), el], fill=v, width=aw)
+        d.line([el, wr], fill=near, width=aw)
+        d.ellipse([wr[0] - hr, wr[1] - hr, wr[0] + hr, wr[1] + hr], fill=near)
 
 
 CROWD_FEET = (0.56, 0.68, 0.82, 1.0)          # 무리 줄 발 y ÷ 상자 높이(뒤 → 앞) — 옛 두 줄(0.558 · 1.0)은 한 줄로 그려짐(길갈 즉위 623 8/8 · 미스바 621)
@@ -126,7 +138,27 @@ CROWD_CLUSTER = (5, 3, 6, 4, 7, 3, 5, 4)      # 덩이 사람 수(고정 무늬)
 CROWD_JITTER = (0.0, 0.3, -0.2, 0.15, -0.3, 0.25, -0.1, 0.2, -0.25, 0.1)   # 덩이 안 x 흔들림 ÷ 한 사람 칸
 
 
-def crowd(d, x0, y0, x1, y1, v):
+SEATED_CROWD_H = 0.62   # 땅에 책상다리로 앉은 사람 키 ÷ 선 키(머리~땅) — [저작](앉은 의자 높이 body.seated 0.75보다 낮음: 넓적다리가 땅에 붙음)
+
+
+def seated_person(d, x0, y0, x1, y1, v, front=False):
+    """task 683 — 땅에 앉은 무리 한 사람(앞에서 본 책상다리): 머리 · 몸통(어깨 ~ 엉덩이 0.62) · 무릎이 양옆으로 벌어진 넓은 밑판.
+    무리 꼴(crowd_person)은 늘 선 사람이라 「앉은 신복」이 서서 그려짐(기브온 763 0/8)."""
+    h, cx = y1 - y0, (x0 + x1) / 2
+    bw = min(x1 - x0, h * max(BODY["w"], S.build_width()))
+    r = h * HEAD_R["person"] / SEATED_CROWD_H
+    d.ellipse([cx - r, y0, cx + r, y0 + 2 * r], fill=v)
+    sh, hip = y0 + 2 * r, y0 + h * 0.66
+    d.polygon([(cx - bw * CROWD_SHOULDER, sh), (cx + bw * CROWD_SHOULDER, sh), (cx + bw * 0.45, hip), (cx - bw * 0.45, hip)], fill=v)
+    d.polygon([(cx - bw * 0.5, hip - h * 0.04), (cx + bw * 0.5, hip - h * 0.04), (cx + bw * 0.95, y1), (cx - bw * 0.95, y1)], fill=v)
+
+
+def crowd_seated(d, x0, y0, x1, y1, v):
+    """task 683 — 땅에 앉은 무리: crowd와 같은 줄·덩이 배치에 앉은 사람 꼴(키 = 그 자리 선 키 × SEATED_CROWD_H)."""
+    crowd(d, x0, y0, x1, y1, v, person=seated_person, hscale=SEATED_CROWD_H)
+
+
+def crowd(d, x0, y0, x1, y1, v, person=None, hscale=1.0):
     """여러 줄 깊이 무리. 줄 높이는 평지 발 y에서(task 409, 규칙 generate.eye-level-perspective): 보통 키 어른 화면 키 = (발 y − 지평선) ÷ 눈높이 비.
     발이 지평선 위인 줄(강 건너 둑·언덕 — 평지 눈높이 셈 밖)은 옛 상자 비(뒷줄 0.558 → 앞줄 0.62 × 상자 높이).
     눈높이 평지면 모든 머리가 지평선 한 줄에 모이므로 뒤 줄을 오르막에 올려 맨 뒤 머리가 상자 위 끝에 닿게 한다 — 상자 위로는 넘지 않음
@@ -136,7 +168,9 @@ def crowd(d, x0, y0, x1, y1, v):
     for f in CROWD_FEET:
         foot = y0 + h * f
         old = h * 0.62 * (0.9 + 0.1 * (f - CROWD_FEET[0]) / (1 - CROWD_FEET[0]))
-        rows.append((foot, S.screen_height(foot / H, PERSP["hy"]) * H if foot / H > PERSP["hy"] else old))
+        rows.append((foot, S.screen_height(foot / H, PERSP["hy"], cam=PERSP.get("cam")) * H if foot / H > PERSP["hy"] else old))
+    rows = [(f, ph * hscale) for f, ph in rows]   # task 683 앉은 무리(crowd_seated) — 선 키 × 앉은 비
+    person = person or crowd_person
     lift = max(0.0, rows[0][0] - rows[0][1] - y0)
     for row, (foot, ph) in enumerate(rows):
         back = (len(rows) - 1 - row) / (len(rows) - 1)
@@ -150,7 +184,7 @@ def crowd(d, x0, y0, x1, y1, v):
             for _ in range(CROWD_CLUSTER[c % len(CROWD_CLUSTER)]):
                 px = x + CROWD_JITTER[i % len(CROWD_JITTER)] * step
                 if px + hb <= x1:
-                    crowd_person(d, px - hb, top + (i % 3) * ph * 0.04, px + hb, top + ph, val)   # 키 들쭉날쭉(고정 무늬)
+                    person(d, px - hb, top + (i % 3) * ph * 0.04, px + hb, top + ph, val, front=BODY.get("crowd_front") and row == len(rows) - 1)   # 키 들쭉날쭉(고정 무늬)
                 x += step
                 i += 1
             x += step * 1.6
@@ -172,6 +206,12 @@ def river(d, x0, y0, x1, y1, v):
     (456 8/8: 강 칸이 없으면 강이 화면을 가로질러 「가까운 둑 먼 뒤쪽」 무리가 늘 건너편에 섬)."""
     w = x1 - x0
     d.polygon([(x0 + w * 0.45, y0), (x1, y0), (x1, y1), (x0, y1)], fill=v)
+
+
+def pool(d, x0, y0, x1, y1, v):
+    """task 682 — 못(삼하 2:13 「기브온 못가」): 땅 위 평평한 직사각형 물 면을 앞에서 본 사다리꼴(뒤 가장자리가 좁음) — 둘레 땅보다 어두운 값(river와 같은 규약)."""
+    w = x1 - x0
+    d.polygon([(x0 + w * 0.08, y0), (x1 - w * 0.08, y0), (x1, y1), (x0, y1)], fill=v)
 
 
 def leaning(d, x0, y0, x1, y1, v, lean):
@@ -313,13 +353,49 @@ def altar(d, x0, y0, x1, y1, v):
     d.ellipse([x0 + w * 0.32, top - h * 0.1, x1 - w * 0.32, top + h * 0.03], fill=v)
 
 
+def pile(d, x0, y0, x1, y1, v):
+    """task 735 — 땅에 쌓아 놓은 가져온 것 더미(마하나임 삼하 17:28-29 · 사람 734 「식량이 조금더 풍부하면 좋을듯」): 높이가 다른 둥근 덩어리
+    (자루·단지·광주리)를 바닥선에 붙여 두 줄로 — 뒷줄은 구역 위끝까지, 앞줄은 그 절반 높이. 꼴 없이 문구만이면 그릇이 한 줄로 낮게 늘어섬(733·734)."""
+    w, h = x1 - x0, y1 - y0
+    for i, (cx, top) in enumerate(((0.12, 0.25), (0.3, 0.0), (0.5, 0.12), (0.7, 0.05), (0.88, 0.3))):   # 뒷줄
+        r = w * 0.11
+        d.rounded_rectangle([x0 + w * cx - r, y0 + h * top, x0 + w * cx + r, y1 - h * 0.25], radius=r * 0.8, fill=v)
+    for cx in (0.2, 0.4, 0.6, 0.8):   # 앞줄
+        r = w * 0.09
+        d.rounded_rectangle([x0 + w * cx - r, y0 + h * 0.5, x0 + w * cx + r, y1], radius=r * 0.8, fill=v)
+
+
 def platform(d, x0, y0, x1, y1, v):
-    """task 711 — 사람이 올라선 낮은 네모 받침(성전 봉헌 대하 6:13 놋대 「장이 다섯 규빗 광이 다섯 규빗 고가 세 규빗」): 구역 전체가 받침 —
+    """task 711 — 사람이 올라선 낮은 네모 받침(성전 봉헌 대하 6:13 놋 단상 「장이 다섯 규빗 광이 다섯 규빗 고가 세 규빗」): 구역 전체가 받침 —
     윗면(위 0.12)은 원근으로 얕은 사다리꼴, 앞면은 땅까지 곧은 네모. 받침 위 인물 구역은 guide.ground로 받침 밑 땅 y를 준다(scale.foot)."""
     w, h = x1 - x0, y1 - y0
     top = y0 + h * 0.12
     d.polygon([(x0 + w * 0.08, y0), (x1 - w * 0.08, y0), (x1, top), (x0, top)], fill=v)
     d.rectangle([x0, top, x1, y1], fill=v)
+
+
+def bronze_altar(d, x0, y0, x1, y1, v):
+    """task 7195 — 놋단(번제단, 대하 4:1 「장이 이십 규빗이요 광이 이십 규빗이요 고가 십 규빗」)을 가까이서 본 오른쪽 끝(성전 봉헌 뒷모습 구도):
+    앞면 네모(구역 왼쪽 0.88) + 소실점(화면 가운데 위) 쪽으로 물러나는 옆면(오른쪽 0.12 · 아래끝이 위로 0.4 올라감 · 한 단계 어둡게) +
+    윗면 앞 모퉁이 둘에 짧은 뿔([추론] 출 27:2 「그 네 모퉁이 위에 뿔을 만들되」). 맨 네모 덩어리(platform)를 가까이 크게 주면 생성기가 빈 미색 판으로 남김(7193 8/8)."""
+    w, h = x1 - x0, y1 - y0
+    horn = h * 0.07
+    top = y0 + horn
+    fx = x0 + w * 0.88
+    d.rectangle([x0, top, fx, y1], fill=v)                                                      # 앞면
+    d.polygon([(fx, top), (x1, top - h * 0.02), (x1, y1 - h * 0.40), (fx, y1)], fill=round(v * 0.82))   # 물러나는 옆면
+    hw = w * 0.07
+    for cx in (x0 + hw * 0.9, fx - hw * 0.6):                                                   # 앞 모퉁이 뿔(왼쪽 것은 화면 끝 가까이)
+        d.polygon([(cx - hw / 2, top), (cx + hw / 2, top), (cx + hw * 0.15, y0), (cx - hw * 0.15, y0)], fill=v)
+
+
+def ark_carried(d, x0, y0, x1, y1, v):
+    """법궤 메어 올림 — 채 위에 얹혀 들린 궤(삼하 6:13 「여호와의 궤를 멘 사람들」 · 대상 15:15 「채로 … 꿰어 어깨에 메니라」 · 출 25:10 장 이 규빗 반 · 고 일 규빗 반):
+    구역 = 채 길이(앞뒤 멘 이 어깨 사이) · 가운데 0.40에 궤 상자(구역 위끝~채) · 구역 아래 0.10에 가로 채(멘 이 어깨 높이). 꼴이 없으면 두 멘 이 사이가 비어 뒤 무리가 비침(ARK-STEP1 막힘)."""
+    w, h = x1 - x0, y1 - y0
+    py0, py1 = y1 - h * 0.12, y1 - h * 0.04
+    d.rectangle([x0, py0, x1, py1], fill=v)                                                    # 채
+    d.rectangle([x0 + w * 0.30, y0, x0 + w * 0.70, py0], fill=v)                                # 궤(덮개째)
 
 
 def bier(d, x0, y0, x1, y1, v):
@@ -333,6 +409,49 @@ def bier(d, x0, y0, x1, y1, v):
     d.rounded_rectangle([x0 + w * 0.10, y0 + h * 0.30, x1 - w * 0.04, top], radius=h * 0.15, fill=v)   # 천에 싸인 몸
     r = h * 0.17
     d.ellipse([x0 + w * 0.02, y0 + h * 0.26, x0 + w * 0.02 + 2 * r * 1.2, y0 + h * 0.26 + 2 * r], fill=v)  # 머리(왼쪽)
+
+
+def bed_lying(d, x0, y0, x1, y1, v):
+    """task 676 — 침상에 누워 베개 쪽으로 위몸을 조금 일으킨 산 사람(왕상 2:1 다윗의 유언 — 침상은 1:1·1:47 [추론], 카드 「propped up on a bed」).
+    상여 꼴 bier(천에 싸인 시신)와 달리 머리·어깨가 베개 위로 들리고 얼굴이 머리 쪽 화면 밖을 본다. 크기는 구역 너비에서(규칙 generate.lying-scale):
+    서 있는 키 = 너비 ÷ body.bed_length · 요 높이 body.bed_top · 몸 가로 길이 body.lying · 일으킨 위몸 30°.
+    머리는 보는 쪽의 반대 끝 — 베개에 기댄 사람은 자기 발 쪽을 본다(task 677: 머리를 보는 쪽 끝에 두니 곁 사람을 보려고 등 뒤로 몸을 비틀어 엎드린 듯·올려다봄, 사람 750 「서로 바라볼수 있게 배치를 바꾸고」).
+    BODY sit_right(screen_facing right)면 머리는 왼쪽 끝. 몸·머리는 침상보다 밝게(×1.12) — 같은 밝기면 깊이 그림에서 침상에 묻힘(task 673 무리 손 교훈)."""
+    w = x1 - x0
+    hs = w / S.v("body.bed_length")                    # 서 있는 키(화소)
+    sg = -1 if BODY.get("sit_right") else 1           # 머리 쪽 방향(+1 = 오른쪽) — 보는 쪽의 반대
+    top = y1 - hs * S.v("body.bed_top")                # 요 위 선
+    mat = hs * 0.08                                                                                   # 두툼한 요(task 677: 749 「요가 얇다」 — 얇은 나무 판 꼴이 그대로 옮겨짐)
+    d.rectangle([x0 + w * 0.01, top, x1 - w * 0.01, top + mat], fill=round(v * 1.06))
+    frame = hs * 0.05
+    d.rectangle([x0, top + mat, x1, top + mat + frame], fill=v)                                      # 침상 틀(요 아래)
+    for lx in (x0 + w * 0.02, x1 - w * 0.02 - hs * 0.05):
+        d.rectangle([lx, top, lx + hs * 0.05, y1], fill=v)                                           # 다리
+    head_end = x1 if sg > 0 else x0
+    hb = sorted((head_end, head_end - sg * hs * 0.06))
+    d.rectangle([hb[0], top - hs * 0.25, hb[1], top + frame], fill=v)                               # 머리 쪽 머리판 — 베개 더미를 받침(머리가 보는 쪽 반대 끝이라 곁 사람과의 사이를 막지 않음)
+    near = min(255, round(v * 1.12))
+    tip = head_end - sg * hs * 0.12                                                                   # 머리 끝 x — 머리판 안쪽 베개에 붙임(남는 침상은 발 쪽에)
+    foot_x = tip - sg * hs * S.v("body.lying")                                                       # 발끝 x
+    fold_end = (x0 + w * 0.02) if sg > 0 else (x1 - w * 0.02)                                         # 발치 끝
+    fx0, fx1 = sorted((foot_x - sg * hs * 0.04, fold_end))
+    if fx1 - fx0 > hs * 0.06:   # 발 너머 개어 둔 덮개 더미 — 빈 요면 생성기가 다리를 침상 끝까지 늘임(후속 fu-aded59e40ebd 753 큰 침상 0/8 「발이 침상 발치 기둥에 닿아」)
+        d.rounded_rectangle([fx0, top - hs * 0.1, fx1, top], radius=hs * 0.03, fill=v)
+    hip_x = foot_x + sg * hs * (1 - S.v("body.crotch"))
+    thick = hs * 0.12
+    d.rounded_rectangle([min(foot_x, hip_x), top - thick, max(foot_x, hip_x), top], radius=thick * 0.45, fill=near)   # 이불 덮인 다리
+    ang = math.radians(30)
+    r = hs * HEAD_R["person"]
+    up = hs * S.v("body.crotch") - 2 * r                                                             # 엉덩이 ~ 목
+    ca, sa = math.cos(ang), math.sin(ang)
+    hip = (hip_x, top - thick / 2)
+    neck = (hip_x + sg * up * ca, hip[1] - up * sa)
+    hc = (neck[0] + sg * r * 1.15 * ca, neck[1] - r * 1.15 * sa)
+    inner = head_end - sg * hs * 0.06
+    pile = [(hip_x + sg * hs * 0.06, top), (inner, top), (inner, hc[1] - r * 0.3), (hc[0] - sg * r * 0.4, hc[1] + r)]
+    d.polygon(pile, fill=v)                                                                           # 등·머리 뒤 높이 쌓은 베개 더미(task 677: 749 어깨 밑 작은 베개 → 엎드린 몸 · 사람 750 「배게에 푹 기대는 모습이 필요」)
+    limb(d, hip, neck, hs * 0.13, near, hs * 0.15)                                                   # 일으킨 위몸(옆에서 본 가슴 두께)
+    d.ellipse([hc[0] - r, hc[1] - r, hc[0] + r, hc[1] + r], fill=near)                               # 머리(위몸 줄기 끝)
 
 
 def horn_pour(d, x0, y0, x1, y1, v):
@@ -408,6 +527,23 @@ def ephod_sword(d, x0, y0, x1, y1, v):
         d.line([(cx + s * w * 0.25, y0 + h * 0.65), (cx + s * w * 0.4, y1)], fill=v, width=max(1, round(w * 0.05)))
 
 
+def cloak_trail(d, x0, y0, x1, y1, v):
+    """task 687 — 엔게디 삼상 24:4 「사울의 겉옷자락」: 웅크린 사람의 엉덩이(상자 오른쪽 위 모서리)에서 그 발밑 땅(오른쪽 끝 0.58)으로 흘러내려
+    앞(보는 쪽)·왼쪽으로 땅 위에 낮고 납작하게 끌린 긴 겉옷 자락 — 왼쪽 아래 끝은 자르는 이의 무릎 앞 땅(상자 아래끝), 왼쪽 끝 귀퉁이 하나만
+    자르는 이의 손 높이(0.6)까지 살짝 들림. 뼈대는 손 자리만 주고 천 자리는 못 줌 — 손 아래가 빈 땅이면 손이 사울 몸·땅을 짚은 꼴로 그려질 수 있어 자락 덩어리를 깐다."""
+    h, w = y1 - y0, x1 - x0
+    d.polygon([(x1, y0), (x1, y0 + h * 0.58), (x0 + w * 0.25, y1), (x0 + w * 0.08, y0 + h * 0.85), (x0, y0 + h * 0.6),
+               (x0 + w * 0.15, y0 + h * 0.62), (x0 + w * 0.45, y0 + h * 0.7), (x0 + w * 0.8, y0 + h * 0.4)], fill=v)
+
+
+def cave_mouth(d, x0, y0, x1, y1, v):
+    """task 687 — 엔게디 굴 어귀(삼상 24:3 「굴이 있는지라 … 그 굴 깊은 곳에」): 굴 안 먼 벽에 뚫린 작고 고르지 않은 구멍.
+    가장 먼 깊이(v 보통 0)로 칠해 방 바탕(backdrop room) 뒷벽에 먼 어귀가 열린 꼴 — 사람 10-18 기준 ② 「굴 안이 어둡고 입구가 멀게」."""
+    h, w = y1 - y0, x1 - x0
+    d.polygon([(x0 + w * 0.15, y1), (x0, y0 + h * 0.45), (x0 + w * 0.2, y0 + h * 0.1), (x0 + w * 0.55, y0), (x0 + w * 0.9, y0 + h * 0.2),
+               (x1, y0 + h * 0.6), (x0 + w * 0.85, y1)], fill=v)
+
+
 # task 403 c7 — 포즈(뼈대) 제어: OpenPose 18점 규약(controlnet_aux draw_bodypose와 같은 관절 순서·팔다리 짝·색).
 # 깊이 꼴은 실루엣 덩어리만 주고 관절 각도·다리 길이는 모델이 시드마다 넓은 보폭으로 되돌렸다(c1~c6).
 LIMBS = [(1, 2), (1, 5), (2, 3), (3, 4), (5, 6), (6, 7), (1, 8), (8, 9), (9, 10), (1, 11), (11, 12), (12, 13), (1, 0), (0, 14), (14, 16), (0, 15), (15, 17)]
@@ -462,6 +598,11 @@ POSES = {
     "cradle_sit": {0: (-0.1, 0.115), 1: (-0.17, 0.19), 2: (-0.12, 0.22), 3: (-0.1, 0.42), 4: (-0.01, 0.36), 5: (-0.22, 0.22), 6: (-0.2, 0.4),
                    7: (-0.07, 0.33), 8: (-0.14, 0.62), 9: (0.17, 0.62), 10: (0.19, 0.97), 11: (-0.2, 0.62), 12: (0.13, 0.63), 13: (0.15, 0.97),
                    14: (-0.12, 0.09), 16: (-0.18, 0.085)},
+    # 후속 fu-aded59e40ebd — 걸상에 앉아 두 손을 무릎 위에(화면 오른쪽을 봄 · cradle_sit 몸에 팔만 바꿈): 위팔 0.25·아래팔 약 0.23(앉은 상자 높이 = 서 있는 키 × body.seated 0.75 → 기준표 위팔 0.186·아래팔 0.154를 ÷ 0.75)
+    #   사람 752 「솔로몬 손은 어디감?」 — 문구 「both hands resting on his knees」만으로 753 두 손 보임 0/8(손이 겉옷 무릎 천에 묻힘).
+    "sit_knees": {0: (-0.1, 0.115), 1: (-0.17, 0.19), 2: (-0.12, 0.22), 3: (-0.05, 0.46), 4: (0.12, 0.6), 5: (-0.22, 0.22), 6: (-0.15, 0.46),
+                  7: (0.03, 0.6), 8: (-0.14, 0.62), 9: (0.17, 0.62), 10: (0.19, 0.97), 11: (-0.2, 0.62), 12: (0.13, 0.63), 13: (0.15, 0.97),
+                  14: (-0.12, 0.09), 16: (-0.18, 0.085)},
     # task 424 — 곧게 서서 갓난 아기를 두 팔로 가슴에 안음(화면 오른쪽을 봄): 두 팔꿈치를 굽혀 허리 위에 두고 두 손목을 가슴 앞(0.25~0.27)에 · 고개는 듦(두 여인 다른 계집 — 참 어머니를 봄).
     "cradle_stand": {0: (0.05, 0.065), 1: (0.0, 0.14), 2: (0.05, 0.165), 3: (0.06, 0.31), 4: (0.14, 0.27), 5: (-0.05, 0.165), 6: (-0.04, 0.3),
                      7: (0.09, 0.25), 8: (0.03, 0.52), 9: (0.03, 0.74), 10: (0.03, 0.97), 11: (-0.03, 0.52), 12: (-0.03, 0.74), 13: (-0.04, 0.97),
@@ -492,6 +633,10 @@ POSES["point_chest"] = {**POSES["speak_open"], 7: (0.07, 0.30)}                 
 POSES["reach_belt"] = {**POSES["speak_open"], 7: (0.06, 0.40)}                  # 화면 오른쪽으로 손을 뻗으며 다른 손은 허리띠 앞
 POSES["reach_belt_left"] = {k: (-x, y) for k, (x, y) in POSES["reach_belt"].items()}
 POSES["reach_chest_left"] = {k: (-x, y) for k, (x, y) in POSES["point_chest"].items()}   # task 584: 허리띠 손은 몸통·옷에 묻힘(사람 582) → 다른 손도 가슴께
+# task 731 — 마하나임 바실래: point_down(땅의 것을 가리킴)의 내린 다른 손이 겉옷 소매에 묻힘(730 두 손 보임 2/8 · 늙은 남자 손 또렷함 3/8) → 다른 손을 가슴께(point_chest 선례)
+POSES["point_down_chest"] = {**POSES["point_down"], 4: (0.21, 0.47), 7: (0.07, 0.30)}   # task 736: 가리키는 손목을 허벅지 중간(0.47) — 0.40은 「손이 엉덩이 높이라 팔이 짧아 보임」(735 s23 팔 길이)
+# task 736 — 마하나임 왕: 두 손을 펴 화면 왼쪽 사람에게 내밂(가슴께 다른 손이 몸에 가려 735 두 손 보임 0/8) — plead_out을 x로 뒤집음
+POSES["plead_out_left"] = {k: (-x, y) for k, (x, y) in POSES["plead_out"].items()}
 # task 588 — A2 베들레헴 삼상 16:13 「기름 뿔을 취하여 … 그에게 부었더니」: 화면 오른쪽 앞에 선 소년의 머리 위로 앞 팔을 들어 손목이 소년 머리보다 위(0.05) ·
 # 다른 손은 가슴께(몸 앞 — 두 손 보임) → task 597: 다른 손도 뿔 아래쪽(두 손으로 쥠 — 가슴께 손은 겉옷에 묻힘 596). 고개를 조금 숙여 소년을 내려다봄. 소년 엉덩이는 이 인물 엉덩이에서 키의 약 0.40 오른쪽(명세 _regions_why).
 POSES["pour_over"] = {**POSES["point_chest"], 0: (0.06, 0.075), 3: (0.18, 0.22), 4: (0.30, 0.10), 6: (0.10, 0.30), 7: (0.24, 0.14), 14: (0.05, 0.06)}
@@ -516,6 +661,7 @@ POSES["blow_horn_left"] = {**POSES["watch_side_left"], 0: (-0.075, 0.06), 14: (-
 # 두 손목을 배 앞에 모은 listen_clasp는 손이 겉옷에 묻힘(미스바 621 사울 두 손 2/8 · 길갈 즉위 623 사무엘 두 손 보임·손 또렷함 각 6/8).
 POSES["stand_rest"] = {**POSES["listen_clasp"], 3: (-0.085, 0.33), 4: (-0.10, 0.50), 6: (0.085, 0.33), 7: (0.10, 0.50)}
 POSES["stand_rest_right"] = {k: (-x, y) for k, (x, y) in POSES["stand_rest"].items()}   # 길갈 즉위 사무엘(조용히 선 노선지자) — 화면 오른쪽을 향함
+POSES["sit_knees_left"] = {k: (-x, y) for k, (x, y) in POSES["sit_knees"].items()}   # 다윗의 유언 솔로몬 — 침상 발치 걸상에 앉아 화면 왼쪽(아버지)을 봄, 두 손 무릎 위
 # task 629 — stand_rest에서 어깨·엉덩이를 넓혀 몸을 정면 쪽으로 돌림(얼굴만 옆): 좁은 어깨 stand_rest_right 사무엘이 옆모습으로 그려져
 # 먼 손이 몸 뒤로 사라짐(길갈 즉위 627 두 손 보임 8/8 틀림).
 POSES["stand_rest_wide"] = {**POSES["stand_rest"], 2: (-0.08, 0.165), 5: (0.08, 0.165), 3: (-0.11, 0.33), 4: (-0.125, 0.50), 6: (0.11, 0.33), 7: (0.125, 0.50),
@@ -535,6 +681,21 @@ POSES["kneel_up_left"] = {**POSES["kneel_bow_left"], 0: (-0.06, 0.305), 1: (-0.0
 POSES["kneel_back_left"] = {0: (-0.06, 0.305), 1: (0.0, 0.40), 2: (0.07, 0.425), 3: (0.09, 0.55), 4: (0.085, 0.68), 5: (-0.07, 0.425), 6: (-0.09, 0.55),
                             7: (-0.085, 0.68), 8: (0.045, 0.77), 9: (0.05, 0.97), 10: (0.06, 0.995), 11: (-0.045, 0.77), 12: (-0.05, 0.97), 13: (-0.06, 0.995),
                             14: (-0.05, 0.29), 16: (-0.01, 0.295)}
+# task 718 — 성전 봉헌 뒷모습(사람 7185 「무리가 왕을 안봄」 → 「뒷모습 구도」): 보는 사람에게 등을 보이고 무릎 꿇어 두 팔을 하늘로 듦(왕상 8:54 「무릎을 꿇고 손을 펴서 하늘을 향하여」) —
+# kneel_back_left의 몸·다리(등 쪽 — 2·8이 화면 오른쪽) · 얼굴 점 없음(코·눈은 등 뒤로 안 보임), 두 귀만 · 두 손목은 머리 위 어깨너비보다 넓게.
+POSES["kneel_raise_back"] = {**{k: p for k, p in POSES["kneel_back_left"].items() if k not in (0, 14, 16)},
+                             16: (0.03, 0.31), 17: (-0.03, 0.31), 3: (0.13, 0.31), 4: (0.17, 0.19), 6: (-0.13, 0.31), 7: (-0.17, 0.19)}
+# 법궤 메어 올림(삼하 6:14-15 · 단계 ① 막힘 — ARK-STEP1) — 다윗: 화면 왼쪽(궤)을 보며 두 팔을 머리 위로 벌려 들고 한 무릎을 들어 한 발로 섬(6:14 「힘을 다하여 춤을 추는데」) ·
+# 옆얼굴 · 든 무릎은 앞(왼쪽)으로 · 두 손을 궤 쪽(왼쪽 위)으로 뻗어 올림(720 V자 두 팔 → 정면으로 그려짐). 손목은 머리 위(상자 위끝 밖으로 조금 — 팔 길이는 arm_fit이 맞춤). 두 팔·든 무릎 꼴은 본문 밖 · 저작(6:14는 춤만 말함 — 본문 검토 2차).
+POSES["dance_left"] = {0: (-0.06, 0.075), 1: (0.0, 0.14), 2: (-0.05, 0.165), 3: (-0.15, 0.09), 4: (-0.22, -0.01), 5: (0.05, 0.165), 6: (-0.06, 0.05),
+                       7: (-0.13, -0.06), 8: (-0.03, 0.52), 9: (-0.12, 0.66), 10: (-0.08, 0.84), 11: (0.03, 0.52), 12: (0.02, 0.74), 13: (0.03, 0.97),
+                       14: (-0.045, 0.06), 16: (0.0, 0.055)}
+# 레위 사람이 채를 어깨에 메고 화면 오른쪽으로 걸음(6:13 「여호와의 궤를 멘 사람들」 · 대상 15:15 「채로 … 꿰어 어깨에 메니라」): 가까운 손이 어깨 위 채를 잡음(손목 어깨 높이 바로 위) ·
+# 먼 팔은 내려 흔듦 · 걷는 다리(앞발 오른쪽). 두 멘 이 어깨가 같은 높이여야 궤가 수평.
+POSES["carry_pole_right"] = {0: (0.06, 0.075), 1: (0.0, 0.14), 2: (0.05, 0.165), 3: (0.15, 0.25), 4: (0.11, 0.11), 5: (-0.05, 0.165), 6: (-0.07, 0.33),
+                             7: (-0.05, 0.50), 8: (0.03, 0.52), 9: (0.07, 0.74), 10: (0.11, 0.97), 11: (-0.03, 0.52), 12: (-0.05, 0.74), 13: (-0.10, 0.97),
+                             14: (0.05, 0.06), 16: (0.0, 0.055)}
+POSES["blow_horn_right"] = {k: (-x, y) for k, (x, y) in POSES["blow_horn_left"].items()}   # 법궤 — 행렬 뒤에서 화면 오른쪽(궤 쪽)을 보고 양각을 붊(6:15 「나팔을 불고」)
 # task 695 — 보는 사람 쪽(정면)을 향해 무릎 꿇고 고개를 조금 왼쪽 위(붓는 이)로 들어 두 손바닥을 가슴 앞에 맞댐(베들레헴 다윗 — 사람 694 「다윗이 뒤돌아서있음」 → 「다윗 정면으로 한 판」):
 # 형들은 다윗 바로 뒤에서 정면 — kneel_back_left의 등 보임을 거두고 몸을 정면으로. 어깨·엉덩이 좌우는 앞모습(2·8 = 화면 왼쪽) · 두 눈·두 귀.
 POSES["kneel_front"] = {0: (-0.015, 0.34), 1: (0.0, 0.40), 2: (-0.075, 0.425), 3: (-0.09, 0.53), 4: (-0.012, 0.49), 5: (0.075, 0.425), 6: (0.09, 0.53),
@@ -551,6 +712,66 @@ POSES["pour_low"] = {**POSES["pour_over"], 3: (0.17, 0.30), 4: (0.31, 0.22), 6: 
 # task 665 — 두 손을 어깨 높이에 모아 뿔을 높이 들고 무릎 꿇은 이 머리 위로 붓기(사람 663 「둘다(두 손)」·「구멍 뚫린쪽으로 기름이 떨어져야함」, 664 「두 장면 모두 새 구도로」):
 # pour_low는 손목이 가슴(0.22)이라 그린 손이 머리에 붙어 끝~머리 틈이 8~13화소 — 기름 줄기가 안 보이거나 관으로 읽힘(664). 두 손목을 한 자리 가까이(먼 두 자리면 뿔 둘, 616).
 POSES["pour_high"] = {**POSES["pour_over"], 3: (0.15, 0.25), 4: (0.24, 0.11), 6: (0.09, 0.27), 7: (0.20, 0.13)}
+# task 678 — 길갈 삼상 15:27 「사울이 그의 겉옷자락을 붙잡으매」: 몸을 화면 오른쪽(앞 사람)으로 기울여(목이 엉덩이보다 0.12 앞) 앞 팔을 곧게 낮게 뻗어
+# 손목이 앞 사람 허리 아래 옷자락(0.30, 0.52) · 다른 손은 펴서 가슴 높이로 앞 사람 쪽에 내밂(간청 — 15:25 「청하오니」) · 앞발을 내디딤.
+# 뼈대 없던 755(사람 꼴 깊이만): 붙잡음 2/8 · 간청 0/8(두 주먹 치켜듦 s7 · 손이 허공 s5) · 붙잡은 손 또렷함 2/8.
+POSES["grasp_hem_right"] = {0: (0.17, 0.10), 1: (0.12, 0.18), 2: (0.16, 0.20), 3: (0.23, 0.36), 4: (0.30, 0.52), 5: (0.07, 0.19), 6: (0.13, 0.31),
+                            7: (0.24, 0.30), 8: (0.03, 0.52), 9: (0.09, 0.74), 10: (0.12, 0.97), 11: (-0.03, 0.52), 12: (-0.06, 0.74), 13: (-0.10, 0.97),
+                            14: (0.16, 0.085), 16: (0.11, 0.09)}
+# task 678 — 길갈 15:27 「사무엘이 가려고 돌이킬 때에」: 화면 오른쪽으로 걸어 떠남 — stand_rest_wide_right(두 팔 몸 옆에 띄워 내림 · 두 손 보임 task 629)에 보폭만.
+# 시도 3: 두 팔을 걸음에 맞춰 앞·뒤로 흔듦 — 몸 옆에 내린 팔(손목 0.50)은 늙은 선지자 소매에서 「손이 허리띠·엉덩이 높이」로 읽힘(756 팔 길이 1/8, 이유 전부 사무엘).
+# 시도 4: 흔든 팔도 손이 허리 높이로 읽힘(757 팔 길이 0/8 · 758 탐침 3장 모두 사무엘) — 기준표 팔 끝(손목 0.50)이라 더 못 내림 → 두 팔을 굽혀 두 손목을
+# 허리 앞(앞 손은 몸 앞쪽 바깥 0.15 — 옆모습 먼 손이 소매에 가려진 758 s23 두 손 보임)에: 내린 팔이 없으면 팔 길이 문항은 맞음.
+POSES["walk_away_right"] = {**POSES["stand_rest_wide_right"], 3: (0.07, 0.33), 4: (0.17, 0.40), 6: (-0.08, 0.32), 7: (0.05, 0.40),
+                            9: (0.08, 0.74), 10: (0.14, 0.97), 12: (-0.05, 0.74), 13: (-0.11, 0.97)}
+# task 678 시도 3 — 길갈 15:25 「청하오니」·15:27 「붙잡으매」: 선 채 붙잡기(grasp_hem_right)는 손이 앞 사람 어깨에 얹혀 「나란히 걷기」로 그려짐
+# (756 붙잡음 1/8 · 간청 0/8 「담담히 따라 걷는다」 — 선 팔 길이로는 허리 아래 자락에 못 닿아 손이 어깨로 올라감).
+# 한쪽 무릎을 땅에 대고(뒷무릎 0.97 · 앞발 디딤) 몸을 앞으로 기울여 앞 손목이 앞 사람 무릎 높이 겉옷 아랫자락(0.36, 0.74) ·
+# 다른 손은 펴서 가슴 높이로 듦(간청 — 앞 사람에게 닿지 않게 몸 가까이) · 얼굴을 들어 앞 사람을 올려다봄. 상자 = 서 있을 때 키(kneel_bow_left와 같은 규약).
+POSES["kneel_grasp_right"] = {0: (0.21, 0.33), 1: (0.14, 0.42), 2: (0.18, 0.44), 3: (0.27, 0.59), 4: (0.36, 0.74), 5: (0.10, 0.43), 6: (0.14, 0.55),
+                              7: (0.22, 0.50), 8: (0.03, 0.74), 9: (0.17, 0.78), 10: (0.17, 0.97), 11: (-0.03, 0.74), 12: (-0.04, 0.97), 13: (-0.25, 0.98),
+                              14: (0.20, 0.315), 16: (0.15, 0.335)}
+# task 678 시도 5 — 사람 761 「사무엘이 더 앞에 있어야하고 사울이 옷자락을 잡으려고하는정도」: 앞서 걸어가는 사람의 끌리는 아랫자락을 막 잡는 찰나.
+# 한쪽 무릎 꿇은 채 몸을 크게 앞으로 내밀고(목 0.24 앞 — 약 33°) 앞 팔을 곧게 앞·아래로 뻗어 손목(0.50, 0.70 — arm_fit이 0.34로 맞춤)이 멀리 ·
+# 다른 손은 앞무릎 위(두 손 보임 — 몸 앞에 모은 손은 「합장」, 757 s7).
+POSES["kneel_reach_right"] = {0: (0.31, 0.42), 1: (0.24, 0.48), 2: (0.27, 0.50), 3: (0.39, 0.60), 4: (0.52, 0.71), 5: (0.20, 0.49), 6: (0.22, 0.62),
+                              7: (0.18, 0.76), 8: (0.03, 0.74), 9: (0.19, 0.78), 10: (0.19, 0.97), 11: (-0.03, 0.74), 12: (-0.06, 0.97), 13: (-0.27, 0.98),
+                              14: (0.30, 0.405), 16: (0.25, 0.42)}
+# task 682 — 기브온 삼하 2:16 「각기 적수의 머리를 잡고」(찌름·쓰러짐은 순간 밖): 화면 오른쪽 적수와 맞서 발을 버티고 몸을 조금 기울여
+# 앞 팔을 올려 손목이 적수 머리(짝의 엉덩이가 키의 0.42 앞일 때 머리 가운데 약 0.32 · 높이 0.11) · 다른 손은 칼을 쥐고 옆구리 앞에 낮게(0.46 — 찌르기 전).
+# 무리 손동작은 문구로 안 모여 앞 한 쌍만 뼈대로 뗌(스킬 함정 · 배교 549). 짝은 grip_head_left(거울) — 엉덩이 사이 0.30이면 두 몸이 한 덩어리로 겹침(미리 그림).
+# 시도 2(763 머리를 잡음 0/8 「모두 팔을 위로 들어 칼을 맞댐」): 손목을 머리 위(0.11)에서 상대 뒷머리·목덜미(0.38, 0.14)로 — 팔꿈치를 어깨 높이로 낮춰
+# 아래팔이 거의 수평으로 상대 머리를 감아 쥠 · 두 사람이 머리를 숙여 맞댐(목 0.09 앞 · 코 0.16·0.10).
+# 시도 4(짝 엉덩이 사이 0.55 · 손목을 상대 머리 위 뒤쪽 (0.45, 0.05)로 곧게 뻗은 팔 · 깊이 엇갈림 · 지휘관 칸 좁힘)는 766에서 더 나빠져
+# (바깥 두 사람이 지휘관 곁 호위병 · 두 지휘관 2/8 · 머리를 잡음 그대로 0/8) 시도 2·3 뼈대로 되돌림.
+POSES["grip_head_right"] = {0: (0.16, 0.10), 1: (0.09, 0.165), 2: (0.14, 0.185), 3: (0.26, 0.20), 4: (0.38, 0.14), 5: (0.03, 0.18), 6: (0.03, 0.34),
+                            7: (0.08, 0.47), 8: (0.03, 0.52), 9: (0.08, 0.74), 10: (0.13, 0.97), 11: (-0.03, 0.52), 12: (-0.06, 0.74), 13: (-0.12, 0.97),
+                            14: (0.15, 0.085), 16: (0.11, 0.09)}
+# 시도 3(764 앞줄이 등을 보이고 어깨동무 — 머리를 잡음 0/8): 거울로 뒤집으면 얼굴 점이 오른눈·오른귀(14·16)로 남는다 — 왼쪽을 보는 옆모습은
+# 보는 사람 쪽이 왼쪽 몸이라 왼눈·왼귀(15·17)여야 한다(OpenPose 규약). 이 짝에만 바꿈(다른 장면 거울 뼈대는 그대로 — 가이드 불변).
+POSES["grip_head_left"] = {({14: 15, 16: 17}.get(k, k)): (-x, y) for k, (x, y) in POSES["grip_head_right"].items()}
+# task 683 시도 6 — 사람 767 뒤 「서로 마주보게 해야지.. 한쌍식.. 서로 찌르려는 자세」: 한 쌍 시험대(.forge/scratch/gibeon_pair_probe.py p1~p9 · sc1~sc3)에서 잡은 꼴.
+# 짝 엉덩이 사이 키의 0.50(0.42는 머리가 맞닿아 어깨동무 꼴). 잡는 손목은 상대 정수리 위 머리채(0.38, 0.06) — 상대 얼굴 앞(0.31, 0.10)이면
+# 두 손이 가운데서 맞잡힘(p2 팔씨름 꼴). 칼 손은 허리 아래에서 앞으로 내밂 — 높은 손(0.42)은 칼을 세워 듦(p7) · 짝 둘의 칼 손 높이를 엇갈림
+# (오른쪽을 보는 사람 0.48 · 왼쪽을 보는 사람 0.55 — 같은 높이면 두 칼날이 X자, p3~p5). 칼 방향은 뼈대로 못 줘 guide.blades 칼날 꼴과 함께 씀.
+_GRIP_STAB = {**POSES["grip_head_right"], 3: (0.20, 0.13), 4: (0.38, 0.06), 5: (0.03, 0.18)}
+POSES["grip_stab_right"] = {**_GRIP_STAB, 6: (0.00, 0.37), 7: (0.15, 0.48)}
+POSES["grip_stab_left"] = {({14: 15, 16: 17}.get(k, k)): (-x, y) for k, (x, y) in {**_GRIP_STAB, 6: (0.00, 0.43), 7: (0.15, 0.55)}.items()}
+# task 687 — 엔게디 굴 삼상 24:3 「사울이 그 발을 가리우러 들어가니라」(웅크림은 옛 사람 결정의 저작 해석 — 노골적이지 않게):
+# 화면 오른쪽(굴 어귀)을 보고 발뒤꿈치 위에 낮게 웅크려 앉음 — 엉덩이 0.81(땅 위 키의 약 0.2) · 두 무릎은 앞(오른쪽) 위로 세움 ·
+# 두 아래팔을 무릎 위에 걸쳐 두 손이 무릎 앞에(두 손 보임) · 위몸을 조금 앞으로 · 옆얼굴(14·16 — 오른쪽을 보는 옆모습)로 앞을 봄.
+# 등이 화면 왼쪽(다윗 쪽) — 10월 엔게디 래스터 6건(retro 261018-*)은 문구만으로 「사울·다윗 마주 봄」을 풀다 막힘(사람 10-18 기준 ①).
+# 상자 = 서 있을 때 키(kneel_bow_left와 같은 규약 — 크기 규칙이 그대로 잼).
+POSES["crouch_away_right"] = {0: (0.21, 0.40), 1: (0.11, 0.47), 2: (0.13, 0.49), 3: (0.20, 0.63), 4: (0.27, 0.72), 5: (0.07, 0.48), 6: (0.15, 0.62),
+                              7: (0.22, 0.73), 8: (0.01, 0.81), 9: (0.18, 0.72), 10: (0.11, 0.96), 11: (-0.05, 0.80), 12: (0.12, 0.71), 13: (0.05, 0.97),
+                              14: (0.19, 0.385), 16: (0.135, 0.395)}
+# task 687 — 엔게디 굴 삼상 24:4 「다윗이 일어나서 사울의 겉옷자락을 가만히 베니라」(사람 결정 2026-11-25 「자르는 중」 — 10-18 기준
+# 「다윗이 옷자락을 자를 때 시선은 아래, 양손·칼 위치가 행동에 맞게」): 화면 오른쪽(사울의 등 쪽)을 보고 두 무릎을 땅에 대고(0.95) 위몸을 약 50° 앞으로 숙여
+# 두 손을 땅 가까이 무릎 앞에 — 가까운 손(4)은 땅에 끌린 겉옷 귀퉁이를 살짝 들고, 먼 손(7)은 그 바로 너머에서 작은 칼로 천을 가름(먼 손을 더 앞에 두어
+# 옆모습에서도 두 손 보임 — 스킬 함정 「먼 손을 몸 앞에」) · 고개를 숙여 손을 내려다봄(코가 귀보다 아래). 상자 = 서 있을 때 키.
+POSES["kneel_cut_right"] = {0: (0.385, 0.50), 1: (0.276, 0.519), 2: (0.29, 0.54), 3: (0.33, 0.70), 4: (0.39, 0.83), 5: (0.26, 0.53), 6: (0.33, 0.68),
+                            7: (0.45, 0.84), 8: (0.02, 0.75), 9: (0.15, 0.95), 10: (-0.08, 0.98), 11: (-0.03, 0.75), 12: (0.10, 0.96), 13: (-0.13, 0.985),
+                            14: (0.37, 0.475), 16: (0.33, 0.455)}
 
 # task 574 — 뼈대 팔 길이를 크기 기준표로(규칙 generate.pose-arm-length · 사람 판정 놉 567 「손이 너무 짧잖아 비율 규칙이 적용안되었나?」):
 # 손으로 적은 뼈대 팔(어깨→팔꿈치→손목)이 키의 0.19~0.28로 기준(위팔 0.186 + 아래팔 0.154 = 0.34)보다 짧았다.
@@ -614,7 +835,8 @@ def pose_body(d, box, name, v, bw, knee=False):
     sw, hw = bw * h * 0.3, bw * h * 0.25   # 어깨·엉덩이 반폭 — person 꼴(body 어깨 ±0.3·bw)과 같은 기준
     d.polygon([(nx + px * sw, ny + py * sw), (hx + px * hw, hy + py * hw), (hx - px * hw, hy - py * hw), (nx - px * sw, ny - py * sw)], fill=v)
     r = h * HEAD_R["person"]
-    cxh, cyh = (pts[0][0] + pts[16][0]) / 2, (pts[0][1] + pts[16][1]) / 2
+    hd = (pts[0], pts[16] if 16 in pts else pts[17]) if 0 in pts else (pts[16], pts[17])   # task 718 뒷모습 뼈대(kneel_raise_back)는 코 점 없음 — 두 귀 가운데
+    cxh, cyh = (hd[0][0] + hd[1][0]) / 2, (hd[0][1] + hd[1][1]) / 2
     d.ellipse([cxh - r, cyh - r, cxh + r, cyh + r], fill=v)
     for (a, b), w in LIMB_W.items():   # f2 팔다리 × 카드 너비는 되돌림 — 굵은 팔 덩어리가 뒤로 든 팔을 「던지기 전」으로 보이게 함(f2e 5표 던진 몸짓 5/5 틀림)
         if a in pts and b in pts:
@@ -646,8 +868,34 @@ def draw_pose(img, box, name, hip_dx=0.06):
     return img
 
 
+def draw_blades(img, spec):
+    """task 683 시도 6 — guide.blades [[쥔 사람 구역, 상대 구역], …]: 쥔 사람 칼 손목(뼈대 7)에서 상대 쪽으로 자기 손 높이 수평 칼날 + 뾰족한 끝.
+    뼈대는 손 자리만 주고 칼 방향은 못 줌 — 칼끝이 자기 뒤로·세워 듦(시험대 p6·p7). 길이는 키의 0.28 또는 상대 엉덩이까지의 0.92 중 짧은 쪽.
+    한 점(상대 옆구리)을 겨누면 높이가 다른 두 칼날이 X자(p8 밑그림) — 수평으로. 두 단계 가이드 모두에 또렷하게(흐림 뒤)."""
+    g, R = spec["guide"], spec["regions"]
+    pose = g.get("pose", {})
+    pairs = [(a, b) for a, b in g.get("blades", []) if a in pose and b in pose]
+    if not pairs:
+        return img
+    W_, H_ = img.size
+    pts, hs = {}, {}
+    for k in {k for p in pairs for k in p}:
+        x0, y0, x1, y1 = R[k]
+        pts[k], hs[k] = pose_points((x0 * W_, y0 * H_, x1 * W_, y1 * H_), pose[k])
+    d = ImageDraw.Draw(img)
+    for me, op in pairs:
+        h, (wx, wy) = hs[me], pts[me][7]
+        dx = (pts[op][8][0] + pts[op][11][0]) / 2 - wx
+        L, ux = min(abs(dx) * 0.92, 0.28 * h), (1 if dx > 0 else -1)
+        t = max(3.0, h * 0.008)
+        ex, bx = wx + ux * L, wx + ux * (L - t * 4)
+        d.polygon([(wx, wy - t), (bx, wy - t), (ex, wy), (bx, wy + t), (wx, wy + t)], fill=(220, 220, 220))
+    return img
+
+
 AIR_SHAPES = {"spear"}   # 허공을 나는 물체 꼴(recheck.AIR_SHAPES와 같음)
-SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "kneel_bow_reach": kneel_bow_reach, "seated": seated, "sit": sit, "crowd": crowd, "boat": boat, "bank": bank, "river": river, "altar": altar, "ephod_sword": ephod_sword, "horn_pour": horn_pour, "horn_pour_high": horn_pour_high, "horn_canon": horn_canon, "bier": bier, "platform": platform}
+SHAPES = {"person": person, "person_throw": person_throw, "person_follow": person_follow, "person_dodge": person_dodge, "person_duck": person_duck, "spear": spear, "wall": wall, "person_bow": person_bow, "prostrate": prostrate, "kneel_bow": kneel_bow, "kneel_bow_reach": kneel_bow_reach, "seated": seated, "sit": sit, "crowd": crowd, "boat": boat, "bank": bank, "river": river, "altar": altar, "ephod_sword": ephod_sword, "horn_pour": horn_pour, "horn_pour_high": horn_pour_high, "horn_canon": horn_canon, "bier": bier, "platform": platform, "bronze_altar": bronze_altar, "ark_carried": ark_carried, "pile": pile, "bed_lying": bed_lying, "pool": pool, "crowd_seated": crowd_seated,
+          "cloak_trail": cloak_trail, "cave_mouth": cave_mouth}
 
 
 def make_pose_only(spec, backdrop=False):
@@ -667,7 +915,7 @@ def make_pose_only(spec, backdrop=False):
         for k, name in sorted(g.get("pose", {}).items()):
             x0, y0, x1, y1 = R[k]
             draw_pose(out, (x0 * W, y0 * H, x1 * W, y1 * H), name)
-        return out
+        return draw_blades(out, spec)
     layer = Image.new("L", (W, H), 0)
     d = ImageDraw.Draw(layer)
     if g.get("tip") in ("big", "leaf"):
@@ -684,7 +932,7 @@ def make_pose_only(spec, backdrop=False):
     for k, name in sorted(g.get("pose", {}).items()):
         x0, y0, x1, y1 = R[k]
         draw_pose(out, (x0 * W, y0 * H, x1 * W, y1 * H), name)
-    return out
+    return draw_blades(out, spec)
 
 
 def make(spec, stage=1):
@@ -698,6 +946,7 @@ def make(spec, stage=1):
     img = Image.new("L", (W, H), 0)
     d = ImageDraw.Draw(img)
     PERSP["hy"] = S.scene_horizon(spec)
+    PERSP["cam"] = S.camera(spec)   # task 718 높은 시점
     hy = int(PERSP["hy"] * H)
     if g.get("backdrop") == "room":   # a3 실내 바탕: 바닥선 위를 먼 뒷벽(중간 깊이)으로 — 빈 검은 띠가 캡션 자리로 읽혔다(a2 4/8 글자)
         d.rectangle([0, 0, W, hy], fill=round(255 * ROOM_WALL))
@@ -731,8 +980,9 @@ def make(spec, stage=1):
         BODY["knee"] = k in knee
         BODY["sit_right"] = facing.get(k) == "right"
         BODY["sit_front"] = facing.get(k) == "viewer"
+        BODY["crowd_front"] = g.get("crowd_hands", {}).get(k) == "front"   # 장면 스위치 — 그 무리 맨 앞줄 손을 몸 앞에(fu-4c8b6d87f952)
         SHAPES[g["shape"][k]](d, x0 * W, y0 * H, x1 * W, y1 * H, round(255 * g["depth"][k]))
-    BODY["w"], BODY["knee"], BODY["sit_right"], BODY["sit_front"] = S.build_width(), False, False, False
+    BODY["w"], BODY["knee"], BODY["sit_right"], BODY["sit_front"], BODY["crowd_front"] = S.build_width(), False, False, False, False
     img = img.filter(ImageFilter.GaussianBlur(g.get("blur", 3)))   # b6: blur 키우면 각진 몸이 누그러짐(b5 사울 상자 튜닉)
     d = ImageDraw.Draw(img)
     for k in air:
@@ -744,7 +994,7 @@ def make(spec, stage=1):
     for k, name in sorted(pose.items()) if skel else ():
         x0, y0, x1, y1 = R[k]
         draw_pose(out, (x0 * W, y0 * H, x1 * W, y1 * H), name)
-    return out
+    return draw_blades(out, spec)
 
 
 def main():
