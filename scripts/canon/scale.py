@@ -81,17 +81,24 @@ def people_count(spec):
     return len(spec.get("figures") or []) + sum(c.get("count", 0) for c in spec.get("crowds") or [])
 
 
-def horizon(foot_y, screen_h, height_rel=1.0):
-    """눈높이 카메라 지평선 y(화면 높이 비, 위 = 0) — 초점 인물 발 y·화면 키·키 등급에서."""
-    return foot_y - v("perspective.eye") * screen_h / height_rel
+def camera(spec=None):
+    """카메라 높이(서 있는 어른 키 배수) — 명세 guide.camera, 없으면 눈높이(perspective.eye).
+    task 718: 높은 시점(성전 봉헌 낭실에서 내려다봄 — 놋단 위로 솔로몬 등을 봄)도 같은 식 — 서 있는 사람 화면 키 = (발 y − 지평선) ÷ 카메라 높이."""
+    return ((spec or {}).get("guide") or {}).get("camera", v("perspective.eye"))
 
 
-def screen_height(foot_y, hy, height_rel=1.0):
-    """발 y에 서 있는 사람의 화면 키 — (발 y − 지평선) ÷ 눈높이 비 × 키 등급."""
-    return (foot_y - hy) / v("perspective.eye") * height_rel
+def horizon(foot_y, screen_h, height_rel=1.0, cam=None):
+    """지평선 y(화면 높이 비, 위 = 0) — 초점 인물 발 y·화면 키·키 등급·카메라 높이(기본 눈높이)에서."""
+    return foot_y - (cam or v("perspective.eye")) * screen_h / height_rel
+
+
+def screen_height(foot_y, hy, height_rel=1.0, cam=None):
+    """발 y에 서 있는 사람의 화면 키 — (발 y − 지평선) ÷ 카메라 높이(기본 눈높이) × 키 등급."""
+    return (foot_y - hy) / (cam or v("perspective.eye")) * height_rel
 
 
 SEATED_SHAPES = {"sit"}   # 앉은 한 사람 꼴(make_guide) — 배 안 머리·어깨 줄(seated)은 무리 꼴이라 뺌
+LYING_SHAPES = {"bed_lying"}   # 침상에 누운 산 사람 꼴(make_guide, task 676) — 상여 꼴 bier(천에 싸인 시신)는 사람 크기 규칙 밖
 
 
 def _figures(spec, pick):
@@ -117,8 +124,18 @@ def seated(spec):
     return _figures(spec, lambda shape, posed: shape in SEATED_SHAPES)
 
 
+def lying(spec):
+    """가이드 누운 꼴(LYING_SHAPES)로 그리는 figures → [(구역 이름, 카드 키 등급 값)]."""
+    return _figures(spec, lambda shape, posed: shape in LYING_SHAPES)
+
+
+def lying_box(standing_h):
+    """누운 꼴 구역 (너비, 높이) — 같은 자리 서 있는 화면 키에서(침상 길이 · 요 높이 + 일으킨 위몸). 너비·높이 같은 단위(키와 같음)."""
+    return standing_h * v("body.bed_length"), standing_h * (v("body.bed_top") + v("body.lying_rise"))
+
+
 def foot(spec, k):
-    """task 711 — 구역 k가 딛는 땅 높이(화면 비). 기본은 구역 아래 끝. 받침(놋대 등) 위에 선·꿇은 인물은 guide.ground[k]에 받침 밑 땅 y를 준다
+    """task 711 — 구역 k가 딛는 땅 높이(화면 비). 기본은 구역 아래 끝. 받침(놋 단상 등) 위에 선·꿇은 인물은 guide.ground[k]에 받침 밑 땅 y를 준다
     (성전 봉헌 대하 6:13 「그 위에 서서 … 무릎을 꿇고」 — 상자를 대 높이로 올리면 아래 끝을 발로 셈해 지평선이 0.529 → 0.217로 뒤틀림, 막힘 2)."""
     return ((spec.get("guide") or {}).get("ground") or {}).get(k, spec["regions"][k][3])
 
@@ -130,11 +147,11 @@ def scene_horizon(spec):
     people = standing(spec)
     if people:
         k, hr = max(people, key=lambda p: R[p[0]][3] - R[p[0]][1])
-        return horizon(foot(spec, k), R[k][3] - R[k][1], hr)
+        return horizon(foot(spec, k), R[k][3] - R[k][1], hr, camera(spec))
     sat = seated(spec)
     if sat:
         k, hr = max(sat, key=lambda p: R[p[0]][3] - R[p[0]][1])
-        return horizon(foot(spec, k), (R[k][3] - R[k][1]) / v("body.seated"), hr)
+        return horizon(foot(spec, k), (R[k][3] - R[k][1]) / v("body.seated"), hr, camera(spec))
     return v("perspective.horizon_default")
 
 

@@ -208,6 +208,11 @@ OUT_OF_TEXT = "본문 밖 · 저작자 정함"
 def _side(fig, spec):
     r = spec["regions"][fig["region"]]
     cx = (r[0] + r[2]) / 2
+    figs = spec.get("figures") or []
+    if len(figs) == 2 and not spec.get("crowds"):   # task 678 규칙 derive.two-figure-sides — 둘뿐인데 「in the center」면 오른쪽 빈자리에 셋째 사람(길갈 756 3/8)
+        other = next(f for f in figs if f is not fig)
+        ox = sum(spec["regions"][other["region"]][0:3:2]) / 2
+        return "on the left" if cx < ox else "on the right"
     return "on the left" if cx < 0.4 else "on the right" if cx > 0.6 else "in the center"
 
 
@@ -245,7 +250,7 @@ def whole_prompt(spec):
             looks = "eyes lowered, looking at the ground, unaware"
         else:
             tgt = by_cast[f["gaze"]]
-            looks = f"looking toward the {_cast_in_scene(tgt)['age']} {_side(tgt, spec)}"
+            looks = f"looking toward the {re.sub(r'^(?:a|an|the) ', '', _cast_in_scene(tgt)['age'])} {_side(tgt, spec)}"
         # 차림은 장면 명세가 덮어쓴다(용어집 「카드 층 / 얼굴 층」) — 정본 costume은 빼고 장면 costume을 몸짓 뒤에 한 번(task 363)
         c, cost = {**_cast_in_scene(f), "costume": ""}, [f["costume"]["en"]]
         facing = [SCREEN_FACING[f["screen_facing"]][0]] if f.get("screen_facing") else []

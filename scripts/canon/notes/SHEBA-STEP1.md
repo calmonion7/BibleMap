@@ -81,7 +81,7 @@
 
 재검: `spec_failures` → `[]` · `derive_scene --check --figures whole` 통과. 영문 파생 문구는 바뀌지 않았다(고친 칸이 모두 한국어 근거 칸).
 
-명세 밖 참고(고치지 않음): `data/person_events/solomon.json` 스바 방문 BC 950경은 위 셈(BC 946 이후)과 어긋난다.
+명세 밖 참고(2026-11-22 #672로 고침): `data/person_events/solomon.json` 스바 방문이 BC 950경이라 위 셈(BC 946 이후)과 어긋났던 것을 BC 945경으로 고쳤다.
 
 ### 2차 — 틀림 0 · 약함 1 → 고침
 

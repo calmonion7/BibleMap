@@ -2,10 +2,11 @@
 """규칙 spec.cast-canon-face 수리 — 인물마다 카드 파생 정본 얼굴 후보를 고르는 사람 판정 화면(2026-10-27).
 
   python3 batch/make_canon_face_page.py <out.html> [--dir ~/.local/biblemap-imggen/face-canon-v3] [--who id ...]
-      [--task canon-faces] [--verse "saul-elder=삼상 18:10" ...]
+      [--task canon-faces] [--verse "saul-elder=삼상 18:10" ...] [--note "<id>=<Claude 눈 확인 한 줄>" ...]
 
 한 화면에 한 사람(이전·다음). 같은 사람의 생애 단계(params.FACE_ID_SAME_PERSON)는 기준 인물 정본을 같이 보이고,
 --verse는 cast/APPEARANCE-VERSES.md의 그 인물·절 줄 원문(개역한글)을 화면에 싣는다(task 446).
+--note는 그 인물 화면에 Claude 원래 화소 눈 확인 한 줄을 싣는다(task 446 회고 → task 452).
 
 인물 한 사람 = 한 질문. 후보는 gen_face_canon.py(정면·3/4)와 judge_face_canon.py(judge-<id>.json) 산출을 읽는다.
 답은 「판정 task canon-faces」 + JSON 한 줄({"<id>": "s7" | "keep" | "none"}, 메모는 "_memo")로 대화에 붙인다.
@@ -43,7 +44,7 @@ def same_base(cid):
     return fam[0] if fam and fam[0] != cid else None
 
 
-def person(cid, d, verse=None):
+def person(cid, d, verse=None, note=None):
     j = json.load(open(os.path.join(d, f"judge-{cid}.json"), encoding="utf-8"))
     pick = ((j.get("pair") or {}).get(cid) or {}).get("pick", "")
     cands = []   # 기계 1위가 3/4여도 같은 시드 정면을 1위로 — 정본은 정면
@@ -63,7 +64,7 @@ def person(cid, d, verse=None):
     ref = {"name": ds.load_cast(base)["names"][0], "age": ds.load_cast(base)["card"]["ageBand"]["text"], "img": uri(ref_png, 300)} \
         if ref_png and os.path.exists(ref_png) else None
     vs = {"ref": verse, "text": verse_text(cid, verse)} if verse else None
-    return {"ref": ref, "verse": vs, "old_tag": old_tag, "id": cid, "name": c["names"][0], "age": card["ageBand"]["text"], "head": card["headOutline"]["text"],
+    return {"ref": ref, "verse": vs, "note": note, "old_tag": old_tag, "id": cid, "name": c["names"][0], "age": card["ageBand"]["text"], "head": card["headOutline"]["text"],
             "beard": card["beardVolume"]["text"], "dress": card["costumeColor"]["text"],
             "old": uri(old, 300) if os.path.exists(old) else None, "cands": cands}
 
@@ -173,6 +174,7 @@ for (const p of P) {
   sec.innerHTML = `<h2>${esc(p.name)} <small style="font-family:var(--sans);font-size:.8rem;color:var(--muted)">${p.id}</small></h2>
     ${verse}
     <p class="card-def">카드: ${esc(p.age)} · ${esc(p.head)} · 수염 ${esc(p.beard)} · ${esc(p.dress)}</p>
+    ${p.note ? `<p class="card-def">Claude 눈 확인: ${esc(p.note)}</p>` : ""}
     <div class="row">${ref}${cands}${old}</div>
     <div class="alt"><label class="pick" for="p-${p.id}-none"><input type="radio" name="${p.id}" id="p-${p.id}-none" value="none"> 모두 아님 — 다시 그려야 함</label></div>`;
   box.appendChild(sec);
@@ -232,10 +234,12 @@ if __name__ == "__main__":
     ap.add_argument("--task", default="canon-faces")
     ap.add_argument("--title", default="인물 정본 얼굴")
     ap.add_argument("--verse", nargs="+", default=[], help='"<id>=<책 장:절>" — APPEARANCE-VERSES.md 줄과 같은 표기')
+    ap.add_argument("--note", nargs="+", default=[], help='"<id>=<한 줄>" — Claude 원래 화소 눈 확인')
     a = ap.parse_args()
     verses = dict(v.split("=", 1) for v in a.verse)
     who = a.who or sorted(os.path.basename(p)[6:-5] for p in glob.glob(os.path.join(a.dir, "judge-*.json")))
-    people = [person(cid, a.dir, verses.get(cid)) for cid in who]
+    notes = dict(v.split("=", 1) for v in a.note)
+    people = [person(cid, a.dir, verses.get(cid), notes.get(cid)) for cid in who]
     page = PAGE.replace("/*PEOPLE*/[]", json.dumps(people, ensure_ascii=False)).replace("/*TASK*/canon-faces", a.task).replace("<title>인물 정본 얼굴</title>", f"<title>{a.title}</title>", 1)
     page = page.replace("/*N*/4", str(max(len(p["cands"]) for p in people)))
     open(a.out, "w", encoding="utf-8").write(page)

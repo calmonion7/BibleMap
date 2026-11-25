@@ -65,7 +65,14 @@ SCENES["bethlehem707r2"] = {"base": "samples/bethlehem-hires-707a/clean-s1.png",
 SCENES["bethlehem709r"] = {"base": "samples/bethlehem-hires-709/painted.png", "out": "bethlehem-hires-709",
                            "crop": (380, 190, 210), "box": (405, 240, 552, 333), "prompt": "", "tag": "p"}
 # task 710 — 사람 709 s1 확정 · 「기름뿔 쥔손이 조금 어색함」(위쪽 손은 뿔 뒤에 숨고 아래쪽 손은 편 손바닥이 뿔 아래에 떠 있음) → 두 손·뿔 몸통 자리만 좁은 크롭 klein 쥔 손(686과 같은 지시).
-SCENES["bethlehem710"] = {"grip": {"src": "samples/bethlehem-hires-709c/composition-A-s1.png", "out": "bethlehem-hires-710", "crop": (392, 240, 110), "box": (408, 266, 484, 344)}}
+# task 678 — 길갈 사람 759 「s5 · 겉옷자락을 잡는 느낌이 안남」: 사울 손이 편 채로 사무엘 겉옷 옆면에 닿음 + 흰 종이 같은 찢긴 조각 →
+# 손·조각·닿은 겉옷만 좁게(크롭 140) klein 「한 줌 움켜쥐어 당김」(베들레헴 710 쥔 손 선례 — 큰 부위 아님).
+SCENES["gilgal759"] = {"grip": {"src": "samples/amalek-step23-t4/composition-A-s5.png", "out": "amalek-fix-759", "crop": (520, 360, 140), "box": (545, 385, 628, 482),
+                                "prompt": ("The kneeling man's hand tightly clutches a fistful of the old man's brown wool robe: his fingers close around the gathered "
+                                           "cloth and pull it back toward himself, so the robe is bunched in his fist and stretched taut, and a ragged torn strip of the "
+                                           "same brown wool hangs from the tear just below his fist. Keep the old man's robe color, the kneeling man's sleeve, the faces, "
+                                           "the background and the soft pencil and colored-pencil illustration style exactly the same.")}}
+SCENES["bethlehem710"] ={"grip": {"src": "samples/bethlehem-hires-709c/composition-A-s1.png", "out": "bethlehem-hires-710", "crop": (392, 240, 110), "box": (408, 266, 484, 344)}}
 REF_PROMPT = ("Replace the horn the old man holds with the curved ram's horn from the second image — the same shape, glossy dark brown color "
               "with pale amber streaks whose wide end is closed flat with a wooden disc. He holds its thick body near the wide end in his two hands, it curves and "
               "narrows to its small cut tip just above the kneeling boy's head — the closed wide end stays up in his hands and no oil comes from it — and golden oil drips in a thin stream from that small tip hole onto "
@@ -197,7 +204,7 @@ def grip(cfg, seeds):
         name = f"grip-s{sd}.png"
         tmpo = os.path.join(os.path.expanduser(f"~/.local/biblemap-imggen/{gr['out']}"), name)
         os.makedirs(os.path.dirname(tmpo), exist_ok=True)
-        r = G.edit(os.path.join(CANON, gr["src"]), gr["crop"], gr["box"], "grip", sd, tmpo, prompt=GRIP_PROMPT, mask_shape="rect")
+        r = G.edit(os.path.join(CANON, gr["src"]), gr["crop"], gr["box"], "grip", sd, tmpo, prompt=gr.get("prompt", GRIP_PROMPT), mask_shape="rect")
         if r["status"] == "ok":
             Image.open(tmpo).save(os.path.join(CANON, "samples", gr["out"], name))
         print("[HornSceneEdit] grip", sd, r)

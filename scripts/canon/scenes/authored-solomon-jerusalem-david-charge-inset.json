@@ -1,0 +1,258 @@
+{
+  "_format": "장면 명세 v1 — 한국어 명세가 정본, 영문 프롬프트는 derive_scene.py가 파생한다(PROMPTING 1·7). 필드 설명은 notes/PROMPTING.md 「명세 → 파생」 절. 실측 주석(왜 이 문구·이 상자인가)은 notes/SCENE-1SAM17.md §22.",
+  "id": "authored-solomon-jerusalem-david-charge-inset",
+  "title": "다윗의 유언 — 말 속: 바실래의 아들들을 왕의 상에서 먹게 하라",
+  "inset_of": "authored-solomon-jerusalem-david-charge",
+  "verses": {
+    "range": "왕상 2:7",
+    "quotes": {
+      "2:7": "마땅히 길르앗 바실래의 아들들에게 은총을 베풀어 저희로 네 상에서 먹는 자 중에 참예하게 하라 내가 네 형 압살롬의 낯을 피하여 도망할 때에 저희가 내게 나아왔었느니라"
+    }
+  },
+  "moment": {
+    "verse": "2:7",
+    "why": "곁 장면(큰 장면 authored-solomon-jerusalem-david-charge의 뭉게구름 안 — 규칙 spec.speech-inset): 큰 장면 순간은 2:1 다윗이 아들 솔로몬에게 명함이고, 그 말 속 핵심으로 2:7 — 솔로몬이 길르앗 바실래의 아들들에게 은총을 베풀어 그들을 왕의 상에서 먹는 자 가운데 참예하게 함 — 을 싣는다. 말 속의 앞일이라 큰 장면의 침소 안에 있지 않다. 여호와의 말씀은 이 곁 장면에 없어 형상 문제가 없다(ADR 261025-120741). 다른 후보를 두고 이것을 고른 까닭은 notes/CHARGE-STEP1.md 「말 속 곁 장면 (task 676 S5)」에 적었다 — 2:3은 그릴 물체(율법책)가 본문에 없고(큰 장면 2:3 요소가 이미 out), 2:5-6 요압과 2:9 시므이를 피 흘려 음부로 내려가게 함은 죽임이라 단 한 순간에 몸을 해치는 모습을 그려야 하고, 2:8의 저주(삼하 16:5-13)·엎드림과 맹세(삼하 19:18·19:23)는 말 속의 지난 일이며, 요압의 죽임(삼하 3:27 · 20:10)도 그 장면 구절이 이 장면 인용 절 밖이다. 2:7은 눈에 보이는 일이 하나(상에서 먹음)이고, 구절이 인물(바실래의 아들들)·행동(은총을 베풀어 상에서 먹게 함)·지물(상)을 직접 말한다."
+  },
+  "verse_elements": [
+    {
+      "verse": "2:7",
+      "quote": "네 상에서 먹는 자 중에 참예하게 하라",
+      "kind": "행동",
+      "ko": "바실래의 아들들이 왕의 상에서 먹는 자 가운데 참예함 — 왕의 상 둘레에 앉아 먹음(상에서 먹음은 [직접] · 상에 앉은 모습은 왕상 10:5 「그 신복들의 좌석」 · 삼하 9:11 「왕의 상에서 먹으니라」에서 [추론] · 몇이 앉았는지·자리는 본문 밖 · 저작자 정함)",
+      "en": "sitting behind the table eating bread",
+      "field": "whole_background"
+    },
+    {
+      "verse": "2:7",
+      "quote": "길르앗 바실래의 아들들에게",
+      "kind": "인물",
+      "ko": "길르앗 바실래의 아들들 — 상에서 먹는 손님들(길르앗 사람은 [직접] · 아들이 몇인지는 본문에 없음 · 이름 없음)",
+      "en": "three guests from Gilead",
+      "field": "whole_background"
+    },
+    {
+      "verse": "2:7",
+      "quote": "은총을 베풀어",
+      "kind": "행동",
+      "ko": "솔로몬이 그들에게 은총을 베풀어 자기 상에서 먹게 함 — 상머리에 앉아 손님들을 마주 보고 맞이함(2:7 「네 상」 = 솔로몬의 상 [직접] · 상머리에 앉음은 [저작](이유: 왕 신원 표시·구도 — 2:7은 솔로몬이 상머리에 앉는다고 말하지 않고 삼하 9:11도 왕이 상에 앉는 자리를 말하지 않음) · 삼하 9:11 「왕의 상에서 먹으니라」는 손님이 왕의 상에서 먹은 일 [추론] · 삼하 9:7 「항상 내 상에서 먹을지니라」 — 은총을 상에서 먹임으로 베푸는 본보기 [추론] · 앉은 자세는 본문 밖 · 저작자 정함)",
+      "en": "welcoming them to eat",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "2:7",
+      "quote": "네 상에서",
+      "kind": "지물",
+      "ko": "왕의 상 — 빵이 놓인 긴 낮은 나무 상(상은 [직접] · 상 위 음식은 왕상 4:27 「왕의 상에 참여하는 모든 자를 위하여 먹을 것을 예비하여」 · 왕상 4:22 「가는 밀가루」 · 왕상 10:5 「그 상의 식물」 [추론] · 그릇·잔은 그리지 않음 — 왕상 10:21 「솔로몬 왕의 마시는 그릇은 다 금이요」라 질그릇은 틀리고, 금 그릇은 이 상 위에 있었다는 말이 없음 · 나무 상 모양은 본문 밖 · 저작자 정함)",
+      "en": "a long low wooden table set with flat bread",
+      "field": "whole_background"
+    },
+    {
+      "verse": "2:7",
+      "quote": "내가 네 형 압살롬의 낯을 피하여 도망할 때에 저희가 내게 나아왔었느니라",
+      "kind": "때",
+      "ko": "다윗이 압살롬을 피해 도망할 때 그들이 나아왔던 일",
+      "out": "곁 장면 순간 앞의 다른 때(삼하 17:27-29) — 이 장면의 상 둘레에 그리지 않음 · 이유가 되는 지난 일이라 한 장면에 함께 둘 수 없음"
+    }
+  ],
+  "background": [
+    {
+      "what": "궁 안 왕의 식당 — 다듬은 돌벽과 백향목 들보, 돌바닥",
+      "verse": "2:7 「네 상」(왕의 상은 궁 안 [추론]) · 돌벽·백향목은 삼하 5:11 · 삼하 7:2 · 왕상 7:9 큰 돌 다듬은 것 · 7:2 「기둥 위에 백향목 들보가 있으며」 [추론](큰 장면 침소와 같은 재질) · 들보·바닥은 본문 밖 · 저작자 정함"
+    }
+  ],
+  "crowds": [
+    {
+      "what": "길르앗 바실래의 아들들 — 왕의 긴 상 뒤에 둘러앉아 빵을 먹음",
+      "verse": "2:7 「길르앗 바실래의 아들들 … 네 상에서 먹는 자 중에 참예하게 하라」 · 상에 앉아 먹음은 왕상 10:5 「그 신복들의 좌석」 · 삼하 9:11 「왕의 상에서 먹으니라」 [추론] · 아들 수(셋)·자리는 본문 밖 · 저작자 정함",
+      "region": "sons",
+      "count": 3,
+      "count_why": "[저작](2:7 「아들들」 — 복수라 둘 이상이고 몇인지는 본문에 없음. 한 상에 둘러앉은 모습을 보이는 대표로 셋)",
+      "costume": {
+        "ko": "물들이지 않은 긴 양모 겉옷과 머리천",
+        "en": "in plain long undyed wool robes and head cloths",
+        "verse": "본문 밖 · 저작자 정함(시대 고증 — 철기 이스라엘 길르앗 사람 차림) · 규칙 spec.crowd-era-dress"
+      }
+    }
+  ],
+  "figures": [
+    {
+      "cast": "solomon",
+      "role": "왕 — 자기 상에서 바실래의 아들들을 먹게 하는 젊은 왕",
+      "pose": "상 오른쪽 머리에 앉아 화면 왼쪽의 손님들을 마주 보고 맞이한다",
+      "prop": "none",
+      "facing": "left",
+      "region": "solomon",
+      "verse": "2:7 「네 상」 · 상머리에 앉음은 [저작](이유: 왕 신원 표시·구도 — 2:7은 솔로몬이 상머리에 앉는다고 말하지 않고 삼하 9:11도 왕이 상에 앉는 자리를 말하지 않음) · 앉은 자세는 본문 밖 · 저작자 정함",
+      "expression": {
+        "ko": "너그럽고 곧은 젊은 얼굴",
+        "en": "a kind, steady young face",
+        "verse": "2:7 「은총을 베풀어」(은총을 베푸는 이 — 너그러운 얼굴은 [저작](이유: 은총을 베푸는 왕으로 읽히게 하는 표정 — 본문은 표정을 말하지 않음)) · 얼굴 생김은 본문 밖 · 저작자 정함"
+      },
+      "gesture": {
+        "ko": "상머리에 앉아 손님들을 마주 보고 맞이한다",
+        "en": "seated at the head of the table, facing the guests, welcoming them to eat",
+        "verse": "2:7 「마땅히 … 은총을 베풀어 저희로 네 상에서 먹는 자 중에 참예하게 하라」 · 삼하 9:11 「왕자 중 하나처럼 왕의 상에서 먹으니라」(손님이 왕의 상에서 먹음 [추론]) · 삼하 9:7 「항상 내 상에서 먹을지니라」(은총 = 상에서 먹임 [추론]) · 상머리에 앉음·맞이하는 자세는 [저작](이유: 왕 신원 표시·구도 — 2:7은 솔로몬이 상머리에 앉는다고 말하지 않고 삼하 9:11도 왕이 상에 앉는 자리를 말하지 않음) · 앉은 자세는 본문 밖 · 저작자 정함"
+      },
+      "costume": {
+        "ko": "짙은 청색 고운 베 겉옷과 수놓은 띠",
+        "en": "a deep blue fine linen robe with an embroidered belt",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색 blue와 맞춤 · 성전 건축 장면과 같음) · 왕의 금관은 cast_override(나단 언약 곁 장면·두 여인 장면과 같은 차림)"
+      },
+      "gaze": {
+        "ko": "상에 둘러앉은 손님들을 바라봄",
+        "en": "looking toward the guests at the table",
+        "verse": "본문 밖 · 저작자 정함"
+      },
+      "screen_facing": "left",
+      "stage_why": "[직접] 왕상 2:7 「네 상」은 이 말을 듣는 솔로몬의 상이다(왕상 2:1 「그 아들 솔로몬에게 명하여」). 나이는 [추론] 왕상 1:39 「솔로몬에게 기름을 부으니」 — 이 당부 때 이미 기름 부음을 받은 왕이고 프로젝트 연대 정본(data/person_events/solomon.json 출생 BC 990경 · 유언 BC 970경)으로 약 20세 → id solomon(청년 왕). 왕 표지(금관)는 나단 언약 곁 장면과 같은 값 — 혼인날 관 [직접] · 이 장면에서 씀 [추론] — 아 3:11 「솔로몬 왕을 보라 혼인날 마음이 기쁠 때에 그 모친의 씌운 면류관이 그 머리에 있구나」(혼인날 머리에 관이 있었다는 말뿐 — 금빛 모양·이 상에서 쓴다는 말은 없음) · 금빛 모양은 [저작] · 이 장면에 씌우는 까닭은 왕 신원 표지(카드 solomon headwear 항목과 같음 — 솔로몬은 큰 장면에서도 이미 왕, 왕상 1:39 · 1:46)이고 큰 장면의 맨머리는 그 침소 순간 관 언급이 없어서다.",
+      "cast_override": {
+        "card": {
+          "heightRel": "average",
+          "ageBand": {
+            "class": "young",
+            "text": "in his 20s, smooth clear face"
+          },
+          "beardVolume": {
+            "class": "none",
+            "text": "없음"
+          },
+          "silhouette": {
+            "class": "average",
+            "text": "average build, straight shoulders, narrow waist"
+          },
+          "headOutline": {
+            "class": "crown",
+            "text": "a plain gold crown over short dark hair"
+          },
+          "costumeColor": {
+            "class": "blue",
+            "text": "deep blue fine linen robe, embroidered belt"
+          }
+        },
+        "hair": "none",
+        "headwear": "gold crown"
+      },
+      "cast_override_why": "왕의 표지(금관)는 차림이라 덮어씀 — 삼하 7:12 「네 몸에서 날 자식을 네 뒤에 세워 그 나라를 견고케 하리라」 뒤를 이은 왕 [추론] · 면류관은 아 3:11 「솔로몬 왕을 보라 혼인날 마음이 기쁠 때에 그 모친의 씌운 면류관이 그 머리에 있구나」(혼인날 관이 머리에 있었음은 [직접] · 이 상에서도 썼음은 [추론]) · 금빛 모양은 [저작] · 이 장면에 씌우는 까닭은 왕 신원 표지(카드 solomon headwear 항목과 같음) · 두 여인 장면 솔로몬과 같은 차림(장면 사이 같은 사람)"
+    }
+  ],
+  "regions": {
+    "full": [
+      0,
+      0,
+      1,
+      1
+    ],
+    "table": [
+      0.16,
+      0.58,
+      0.58,
+      0.9
+    ],
+    "sons": [
+      0.2,
+      0.34,
+      0.5,
+      0.66
+    ],
+    "solomon": [
+      0.56,
+      0.5,
+      0.74,
+      0.9
+    ]
+  },
+  "_regions_why": "곁 장면은 구름 틀 비율 너비(inset_try.inset_w — 큰 장면 구름 → 976×640)로 가운데를 잘라 그림 — 잘린 틀은 1216 화면의 0.10~0.90이라 모든 구역을 그 안에 둠. 상(table)은 긴 낮은 받침(guide 꼴 platform) — 손님 셋(sons)은 상 뒤에 둘러앉아 윗몸만 보이고, 왕(solomon)은 상 오른쪽 머리에 앉아 왼쪽을 본다(앉은 꼴 sit은 화면 왼쪽 향함). 앉은 키는 서 있는 키 × body.seated(규칙 generate.seated-height). (task 677: 747에서 왕이 구름 오른쪽 가장자리에 작게 잘려 그려짐 — 「구름 안 장면」·가드 s42 6표 틀림. 곁 장면은 가이드 가운데 976폭을 잘라 타원 구름에 넣으므로 오른쪽 아래가 가려진다 → 왕 [0.66,0.5,0.84,0.9] → [0.56,0.5,0.74,0.9]로 상 끝에 붙이고, 상 [0.14→0.16, 0.62→0.58]·손님 [0.16→0.2, 0.48→0.5]도 가운데로. 구름 타원 반지름² 최대(구역 위 모서리·옆 가운데) 왕 0.88 → 0.52 · 손님 0.82 → 0.66.)",
+  "stages": [
+    {
+      "id": "S1",
+      "kind": "full",
+      "region": "full",
+      "verse": "2:7 「네 상」 · 궁 안은 삼하 5:11 · 삼하 7:2 [추론] · 상 모양 본문 밖 · 저작자 정함",
+      "prompt": "inside the king's dining hall in his house at Jerusalem, walls of dressed stone blocks, cedar wood ceiling beams, a stone floor, a long low wooden table set with flat bread, no people.",
+      "neg": [
+        "people",
+        "figures",
+        "outdoor",
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire",
+        "halo",
+        "light rays"
+      ]
+    },
+    {
+      "id": "S3",
+      "kind": "plate",
+      "region": "solomon",
+      "verse": "2:7 · 상머리에 앉음은 [저작](왕 신원 표시·구도) · 삼하 9:11 손님이 왕의 상에서 먹음 [추론]",
+      "prompt": "{cast:solomon}, sitting at the head of the table, facing the guests, facing left.",
+      "neg": [
+        "armour",
+        "sword",
+        "modern clothes",
+        "halo",
+        "standing"
+      ]
+    }
+  ],
+  "negatives": [],
+  "judge": {
+    "_why": "판정자(judge_scene.py)가 이 장면에서 재는 기하 — 임계·산식은 코드의 공통 상수다.",
+    "figures": [
+      "solomon"
+    ],
+    "gap_bands": [],
+    "crest_x": {
+      "left": [
+        0.02,
+        0.3
+      ],
+      "right": [
+        0.7,
+        0.98
+      ]
+    }
+  },
+  "meaning": {
+    "ko": "다윗이 아들에게 당부한 말 속의 앞일(다윗이 말한 앞일 — 이루어졌다는 기록은 성경 어디에도 없음) — 젊은 왕 솔로몬이 길르앗 바실래의 아들들에게 은총을 베풀어 자기 상에서 먹게 하여, 손님들이 왕의 긴 상에 둘러앉아 빵을 먹는다",
+    "en": "The word David charges his son with, still to come: the young King Solomon shows kindness to the sons of Barzillai the Gileadite and lets them eat at his table, and the guests sit around the king's long table eating bread",
+    "verse": "왕상 2:7 「길르앗 바실래의 아들들에게 은총을 베풀어 저희로 네 상에서 먹는 자 중에 참예하게 하라」 · 상에 앉아 먹음은 왕상 10:5 · 삼하 9:11 [추론] · 자리·자세·손짓은 본문 밖 · 저작자 정함"
+  },
+  "relation": {
+    "ko": "(다윗이 말한 앞일 — 이루어졌다는 기록은 성경 어디에도 없음) 손님 셋은 왼쪽에서 긴 상 뒤에 둘러앉아 빵을 먹고, 젊은 왕은 오른쪽 상머리에 앉아 왼쪽의 손님들을 마주 보며 맞이한다",
+    "en": "Three guests sit at the left behind a long table eating bread, and the young king sits at the right head of the table facing them and welcoming them to eat",
+    "verse": "2:7(상에서 먹는 자 중에 참예) · 좌우 배치·손짓은 본문 밖 · 저작자 정함"
+  },
+  "whole_background": {
+    "ko": "궁 안 왕의 식당 — 다듬은 돌벽, 백향목 들보, 돌바닥, 빵이 놓인 긴 낮은 나무 상 · 상 뒤에 길르앗에서 온 손님 셋이 둘러앉아 빵을 먹음",
+    "en": "inside the king's dining hall in his house at Jerusalem, walls of dressed stone blocks, cedar wood ceiling beams, a stone floor, a long low wooden table set with flat bread, three guests from Gilead in plain long undyed wool robes and head cloths sitting behind the table eating bread",
+    "verse": "2:7 「네 상」 · 궁 안 돌벽·백향목은 삼하 5:11 · 삼하 7:2 · 왕상 7:9 큰 돌 다듬은 것 · 7:2 「기둥 위에 백향목 들보가 있으며」 [추론](큰 장면 침소와 같은 재질) · 상에 앉아 먹음은 왕상 10:5 · 삼하 9:11 [추론] · 빵(가는 밀가루 왕상 4:22 · 상의 음식 왕상 4:27 [추론])·상 모양은 본문 밖 · 저작자 정함 · 그릇·잔은 그리지 않음(왕상 10:21 마시는 그릇·레바논 나무 궁의 그릇은 금 — 상 위 모습은 본문에 없음)"
+  },
+  "situation": {
+    "text": "큰 장면(authored-solomon-jerusalem-david-charge)에서 다윗이 솔로몬에게 명하는 말(2:2-9) 가운데 눈에 그려지는 핵심 하나를 뭉게구름으로 싣는다. 다윗은 말한다: 길르앗 바실래의 아들들에게 은총을 베풀어 저희로 네 상에서 먹는 자 중에 참예하게 하라(2:7 — 고정한 순간). 그래서 이 장면에는 솔로몬이 자기 상머리에 앉고(상머리 자리는 [저작] — 왕 신원 표시·구도), 바실래의 아들들 몇이 그 상에 앉아 먹는다. 아들이 몇인지는 본문에 없어 셋은 본문 밖 · 저작자 정함. 바실래는 마하나임에서 다윗을 공궤한 사람이고(삼하 19:32 「왕이 마하나임에 유할 때에 왕을 공궤하였더라」 · 17:27-29), 왕이 그를 예루살렘에서 공궤하겠다 하였으나 사양하였다(19:33-38) — 2:7의 아들들이 그 길르앗 바실래(삼하 17:27)의 아들들이라는 것은 같은 이름·같은 길르앗에서 [추론]이고, 2:7이 그 은혜의 보답이라는 연결도 [추론]이다(2:7 자신은 「저희가 내게 나아왔었느니라」 — 아들들 자신이 나아온 일을 이유로 듦). 상에서 먹임이 은총의 모습인 것은 삼하 9:7 「항상 내 상에서 먹을지니라」(은총을 베풀리라 한 약속) · 삼하 9:11 「왕자 중 하나처럼 왕의 상에서 먹으니라」 · 9:13). 자리: 왕의 상은 궁 안 [추론] — 왕상 10:5 「그 상의 식물과 그 신복들의 좌석」, 돌벽·백향목은 삼하 5:11 · 삼하 7:2 [추론], 들보·바닥·상 모양은 본문 밖 · 저작자 정함. 2:7 후반 「내가 네 형 압살롬의 낯을 피하여 도망할 때에 저희가 내게 나아왔었느니라」는 다윗이 도망하던 앞선 때(삼하 17:27-29)라 이 장면에 그리지 않는다. 솔로몬이 은총을 베푸는 일이 실제로 이루어졌다는 기록은 왕상 2장에 없어 이 장면은 다윗이 말한 앞일 그 자체다.",
+    "verse": "왕상 2:7",
+    "same_time": {
+      "2:7": "고정한 순간(말 속) — 솔로몬이 바실래의 아들들을 자기 상에서 먹게 함 · 후반 「압살롬의 낯을 피하여 도망할 때」는 앞선 때"
+    }
+  },
+  "guide": {
+    "depth": {
+      "table": 0.9,
+      "sons": 0.8,
+      "solomon": 1.0
+    },
+    "shape": {
+      "table": "platform",
+      "sons": "crowd",
+      "solomon": "sit"
+    },
+    "backdrop": "room",
+    "body": "card",
+    "split": true,
+    "why": "task 676 S5 — 말 속 곁 장면(spec.speech-inset). 왕(오른쪽)은 앉은 꼴 sit(화면 왼쪽 향함 — 손님들을 마주 봄, generate.seated-height로 크기를 잼) · 몸짓에 손 자리 낱말을 쓰지 않아 뼈대 없음(generate.pose-hold). 긴 상은 받침 꼴 platform(손님 앞을 가리는 낮은 상), 손님 셋은 무리 꼴 crowd(눈높이 원근 — generate.eye-level-perspective) — 상 뒤에 둘러앉아 윗몸만 보임. 깊이: 왕 1.0 · 상 0.9 · 손님 0.8(발 y 앞뒤와 같은 차례). 카드 체격 몸 너비(generate.guide-body-build). 실내 방 바탕(generate.guide-backdrop). 구역은 구름 틀 비율로 자르는 가운데 0.10~0.90 안(generate.inset-frame-aspect)."
+  }
+}

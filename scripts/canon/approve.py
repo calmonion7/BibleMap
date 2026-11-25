@@ -9,6 +9,7 @@
   approve.py --scene <id> --final --attempt a005 --seed 11           # [[장면 완료]]
   approve.py --scene <id> --night-pick --seed 11 --kind edit --image <그림>   # 한 장 경로 [[장면 완료]](task 368 [[장면 고르기]]) · --kind comp = 곁 장면 합성(task 433)
   (task 369 편집 확인 답은 batch/run_night.py record가 confirm_pick으로 적는다)
+  --kind edit·confirm_pick은 기존 승인 기록용 — 새 편집 확인은 ADR 261030-011200으로 없앰(고른 바탕이 그대로 승인본)
 
 앞 단계 승인이 이 시도가 얹힌 것과 다르면 **경고만 하고 적는다** — 그 어긋남은 곧 `scene_state.stale`이
 재검토로 계산해 보여 준다. 승인 시점에 막으면 사람이 순서를 되짚어 고칠 길이 막힌다.

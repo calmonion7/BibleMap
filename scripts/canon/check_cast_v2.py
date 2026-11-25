@@ -26,7 +26,7 @@ import params
 CAST = os.path.join(params.CANON_DIR, "cast")
 VERSES = os.path.join(params.REPO_ROOT, "data", "bible", "verses.json")
 BOOK = {"창": 1, "출": 2, "레": 3, "민": 4, "신": 5, "수": 6, "삿": 7, "룻": 8, "삼상": 9, "삼하": 10,
-        "왕상": 11, "왕하": 12, "대상": 13, "대하": 14, "느": 16, "시": 19, "잠": 20, "전": 21, "아": 22, "슥": 38,
+        "왕상": 11, "왕하": 12, "대상": 13, "대하": 14, "느": 16, "시": 19, "잠": 20, "전": 21, "아": 22, "렘": 24, "슥": 38,
         "마": 40, "막": 41, "눅": 42, "행": 44}
 CARD = {
     "heightRel": {"child", "short", "average", "tall", "towering"},
@@ -48,7 +48,7 @@ TIERS = ("[직접]", "[추론]", "[저작]")
 TRAIT = re.compile(r"\b(cold|cruel|hard|harsh|wicked|evil|sly|cunning|menacing|sinister|kind|gentle|wise|noble|arrogant|proud"
                    r"|haughty|shifty|pleading|trembling|tense|anxious|fierce|stern|serene|innocent|calm|steady|composed)\b")
 # 같은 사람의 생애 단계 — 일부러 닮게 하므로 (h)에서 뺀다.
-STAGES = {frozenset(p) for fam in [("david-boy", "david-youth", "david", "david-prime", "david-elder", "david-old"),
+STAGES = {frozenset(p) for fam in [("david-boy", "david-youth", "david", "david-prime", "david-middle", "david-elder", "david-old"),
                                    ("saul", "saul-elder", "saul-old"), ("solomon", "solomon-prime", "solomon-old")]
           for p in itertools.combinations(fam, 2)}
 # ageBand class 나이 범위(CAST.md 사다리 — youth 10대 · young 20대 · prime 30대 · middle 40~50대 · elder 60대~, task 429)
@@ -119,6 +119,30 @@ def headwear_errors(c):
     return errs
 
 
+GRAY_RE = re.compile(r"\b(?:gr[ae]y\w*|white|silver\w*)\b")
+COLOR_RE = re.compile(r"\b(?:dark|black|brown|gr[ae]y\w*|white|silver\w*)\b")
+
+
+def gray_errors(c):
+    """규칙 spec.cast-gray-agree(task 453) — 카드 글이 색을 말하면 회색 낱말 유무가 v1 `hair`·`beard`와 같은지. → [] 통과 · [오류] 걸림.
+    머리 쪽 카드 글 = ageBand.text + headOutline.text(class bare이거나 글에 hair가 있을 때만 — 「white linen turban」 쓰개 색 빼기),
+    수염 쪽 = beardVolume.text. 카드가 색을 말하지 않거나 v1이 none이면 통과. v1 두 칸은 얼굴 판정 설명(judge_face_canon.vocab)이
+    쓴다 · david-middle 「dark curly hair」가 카드 「gray at the temples」 정본의 회색을 감점했다(task 452 S5)."""
+    card = c.get("card") or {}
+    head = card.get("headOutline") or {}
+    head_text = head.get("text") or ""
+    hair_card = " ".join([(card.get("ageBand") or {}).get("text") or "",
+                          head_text if head.get("class") == "bare" or "hair" in head_text else ""])
+    errs = []
+    for k, ct in (("hair", hair_card), ("beard", (card.get("beardVolume") or {}).get("text") or "")):
+        v = (c.get(k) or "").lower()
+        if v in ("", "none") or not COLOR_RE.search(ct.lower()):
+            continue
+        if bool(GRAY_RE.search(ct.lower())) != bool(GRAY_RE.search(v)):
+            errs.append(f"{k} {c.get(k)!r}의 회색 유무가 카드 글과 안 맞음: {ct.strip()!r}")
+    return errs
+
+
 def check(c, verses):
     errs = []
     if "cast-vocab-2" not in c.get("_format", ""):
@@ -146,6 +170,7 @@ def check(c, verses):
     errs += ["(j) 나이 글에 숫자 없음(「about N」·「in his Ns」)"] if age is None else [f"(j) {e}" for e in age]
     errs += [f"(k) {e}" for e in age_word_errors(c)]
     errs += [f"(l) {e}" for e in headwear_errors(c)]
+    errs += [f"(m) {e}" for e in gray_errors(c)]
     if not c.get("role"):
         errs.append("(f) role 비어 있음")
     keys = list(V1) + [f"card.{k}" for k in CARD] + [f"face.{k}" for k in FACE] + ["role"]

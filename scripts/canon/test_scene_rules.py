@@ -3,6 +3,7 @@
 관문 실측 한 건만 venv314 토큰 검사를 탄다(그 밖은 명세 사본만 본다)."""
 import copy
 import json
+import math
 import os
 import unittest
 from unittest import mock
@@ -531,6 +532,88 @@ class CastHeadwear(unittest.TestCase):
                 self.assertNotIn(w, neg, cid)
 
 
+class CastGrayAgree(unittest.TestCase):
+    """spec.cast-gray-agree — 카드 글이 색을 말하면 회색 낱말 유무가 v1 hair·beard와 같음(task 453). 쓰개 색은 빼고 · 장면 cast_override 포함."""
+
+    def _c(self, hair="dark hair", beard="dark beard", age="in his 50s, lined brow",
+           head=("bare", "bare head, dark hair"), beard_text="full dark beard"):
+        return {"hair": hair, "beard": beard, "card": {"ageBand": {"text": age},
+                "headOutline": {"class": head[0], "text": head[1]}, "beardVolume": {"text": beard_text}}}
+
+    def _errs(self, **kw):
+        import check_cast_v2 as C
+        return C.gray_errors(self._c(**kw))
+
+    def test_hair(self):
+        self.assertEqual(self._errs(), [])
+        self.assertEqual(len(self._errs(head=("bare", "bare head, dark hair streaked with gray"))), 1)   # nathan
+        self.assertEqual(len(self._errs(age="about 50, gray at the temples", head=("bare", "bare head, dark curls"))), 1)  # david-middle
+        self.assertEqual(self._errs(hair="graying dark curly hair", age="around 60, gray streaks at the temples"), [])  # david-elder
+        self.assertEqual(len(self._errs(hair="gray hair")), 1)  # 반대쪽 — 카드는 짙은 머리만
+
+    def test_beard(self):
+        self.assertEqual(len(self._errs(beard_text="full dark beard with gray")), 1)  # abner
+        self.assertEqual(self._errs(beard="short gray beard", beard_text="close-trimmed gray beard"), [])  # jesse
+        self.assertEqual(self._errs(beard="none", beard_text="없음"), [])
+
+    def test_headwear_color_and_silence_pass(self):
+        self.assertEqual(self._errs(head=("turban", "white linen turban wound high")), [])  # ahimelech
+        self.assertEqual(self._errs(hair="gray hair", head=("shawl", "dark shawl pulled over the head")), [])  # endor-medium
+        self.assertEqual(len(self._errs(head=("headwrap", "rough wool head-cloth over graying hair"))), 1)  # 쓰개 글이 머리를 말함
+        self.assertEqual(self._errs(hair="gray hair", head=("headwrap", "brown cloth headwrap")), [])  # jesse — 카드 머리 색 침묵
+
+    def test_scene_override(self):
+        import derive_scene as ds
+        self.assertEqual(recheck.cast_gray_errors(gibeah()), [])
+        s = gibeah()
+        f = next(f for f in s["figures"] if f["cast"] == "saul-elder")
+        f["cast_override"] = {**f.get("cast_override", {}), "hair": "jet black hair"}
+        self.assertIn("greying", ds._cast_in_scene(f)["card"]["headOutline"]["text"])  # 카드는 회색 · 덮어쓰기 v1은 검정
+        self.assertEqual(len(recheck.cast_gray_errors(s)), 1)
+
+
+class CastIdentityFixed(unittest.TestCase):
+    """spec.cast-identity-fixed — 장면 cast_override.card가 카드 정체성 값(ageBand·beardVolume·silhouette)을 class·text 모두 바꾸지 않음(task 452).
+    머리 윤곽·옷 색은 차림이라 덮어써도 됨(두 여인 솔로몬 면류관)."""
+
+    def _gibeah_with(self, **card_keys):
+        import derive_scene as ds
+        s = gibeah()
+        f = next(f for f in s["figures"] if f["cast"] == "saul-elder")
+        card = copy.deepcopy(ds.load_cast(f["cast"])["card"])
+        card.update(card_keys)
+        f["cast_override"] = {**f.get("cast_override", {}), "card": card}
+        f.setdefault("cast_override_why", "시험")
+        return s, card
+
+    def test_identity_fixed_no_override_passes(self):
+        self.assertEqual(recheck.cast_identity_fixed_errors(gibeah()), [])
+
+    def test_identity_fixed_class_change_fails(self):
+        s, _ = self._gibeah_with(ageBand={"class": "elder", "text": "about 70, old face"})
+        self.assertEqual(len(recheck.cast_identity_fixed_errors(s)), 1)
+
+    def test_identity_fixed_text_only_change_fails(self):
+        """class는 같고 글만 다름 — 시므이 512토큰 줄이기·헤브론 「about 30」 꼴."""
+        import derive_scene as ds
+        s, card = self._gibeah_with()
+        card["beardVolume"] = {**card["beardVolume"], "text": card["beardVolume"]["text"] + " x"}
+        card["silhouette"] = {**card["silhouette"], "text": "spare frame"}
+        errs = recheck.cast_identity_fixed_errors(s)
+        self.assertEqual(len(errs), 1)
+        self.assertIn("beardVolume", errs[0])
+        self.assertIn("silhouette", errs[0])
+
+    def test_identity_fixed_headwear_and_color_pass(self):
+        s, _ = self._gibeah_with(headOutline={"class": "crown", "text": "a gold crown over dark hair"},
+                                 costumeColor={"class": "red", "text": "deep red robe"})
+        self.assertEqual(recheck.cast_identity_fixed_errors(s), [])
+
+    def test_identity_fixed_all_scenes_pass(self):
+        import derive_scene as ds
+        bad = {sid: e for sid in recheck.scene_ids() if (e := recheck.cast_identity_fixed_errors(ds.load(sid)))}
+        self.assertEqual(bad, {})
+
 class PoseSkeleton(unittest.TestCase):
     """generate.pose-skeleton — 몸짓에 던짐 동사가 있는 인물은 guide.pose 뼈대(task 403 c7)."""
 
@@ -812,6 +895,21 @@ class FigureScalePose(unittest.TestCase):
         self.assertTrue(any("saul-elder" in e and "가깝게" in e for e in recheck.figure_scale_errors(s)))
 
 
+class FigureScaleCrowdPeople(unittest.TestCase):
+    """generate.figure-scale(task 683) — 무리를 한 사람씩 뼈대로 준 자리(crowds[].people)는 초점 범위 밖(원근이 잼) · 다른 초점이 없으면 그 가운데 가장 큰 사람을 잼."""
+
+    def _spec(self, front_h, back_h):
+        return {"crowds": [{"region": "youths", "count": 86, "count_why": "[저작](시험 — 무리 단계 large 0.35~0.50)", "people": ["a", "b"]}],
+                "figures": [], "regions": {"a": [0.4, 0.92 - front_h, 0.5, 0.92], "b": [0.6, 0.80 - back_h, 0.7, 0.80]},
+                "guide": {"shape": {"a": "person", "b": "person"}, "pose": {}, "depth": {"a": 1.0, "b": 1.0}}}
+
+    def test_small_back_member_not_focus(self):   # 뒷줄 작은 무리 사람은 단계 하한에 걸리지 않음
+        self.assertEqual(recheck.figure_scale_errors(self._spec(0.40, 0.18)), [])
+
+    def test_largest_member_still_measured(self):   # 다른 초점이 없으면 가장 큰 무리 사람이 단계 범위 — 빈 통과 아님
+        self.assertTrue(any("a" in e for e in recheck.figure_scale_errors(self._spec(0.20, 0.10))))
+
+
 class FlightPosition(unittest.TestCase):
     """generate.flight-position — 촉은 guide.flight 지점, 그려질 뒤끝(사전 크기 × 던지는 사람 키)은 손목 앞(task 405 — 사람 「창은 3분의2쯤」 일반화)."""
 
@@ -884,6 +982,81 @@ class WidenUnmeasured(unittest.TestCase):
         s = gibeah()
         s["guide"]["pose"] = {k: v for k, v in s["guide"]["pose"].items() if v != "throw_follow"}
         self.assertTrue(any("던지는 뼈대" in e for e in recheck.flight_errors(s)))
+
+
+class LyingScale(unittest.TestCase):
+    """generate.lying-scale(task 676) — 누운 꼴(bed_lying) 인물 구역 = 침상 발 y에서 셈한 서 있는 화면 키로 낸 침상 상자(다윗의 유언 왕상 2:1)."""
+    SID = "authored-solomon-jerusalem-david-charge"
+
+    def charge(self, box=None):
+        """유언 사본 — 누운 다윗 + 선 솔로몬 가이드. box를 주면 다윗 구역을 그 값으로, 없으면 규칙 기준 상자로."""
+        import derive_scene as ds
+        import scale as S
+        s = copy.deepcopy(ds.load(self.SID))
+        s["guide"] = {"depth": {"david-old": 0.85, "solomon": 1.0}, "shape": {"david-old": "bed_lying", "solomon": "person"}, "backdrop": "room", "body": "card"}
+        s["regions"]["solomon"] = [0.62, 0.27, 0.78, 0.92]
+        if box is None:
+            (k, hr), = S.lying(s)
+            hs = S.screen_height(0.9, S.scene_horizon(s), hr, S.camera(s))
+            w, h = S.lying_box(hs)
+            box = [0.2, 0.9 - h, 0.2 + w / recheck._aspect(), 0.9]
+        s["regions"]["david-old"] = box
+        return s
+
+    def test_table_values(self):
+        import scale as S
+        self.assertAlmostEqual(S.v("body.lying"), 0.5 + 0.5 * math.cos(math.radians(30)), delta=0.01)   # 아랫몸 + 30° 일으킨 위몸
+        self.assertGreater(S.v("body.bed_length"), S.v("body.lying"))   # 침상이 누운 몸보다 김
+
+    def test_box_from_table_passes(self):
+        s = self.charge()
+        self.assertEqual(recheck.lying_scale_errors(s), [])
+        self.assertEqual(recheck.figure_scale_errors(s), [])
+
+    def test_too_wide_or_tall_fails(self):
+        wide = self.charge([0.06, 0.5, 0.58, 0.9])   # 옛 상자(기준표 전) — 너비가 침상 길이의 약 1.4배
+        self.assertTrue(any("너비" in e for e in recheck.lying_scale_errors(wide)))
+        s = self.charge()
+        s["regions"]["david-old"][1] -= 0.15
+        self.assertTrue(any("높이" in e for e in recheck.lying_scale_errors(s)))
+
+    def test_lying_only_is_measured(self):
+        """누운 사람만이면 못 잼(None)이 아니라 서 있을 때 키(너비 ÷ bed_length)로 잼."""
+        s = self.charge()
+        s["figures"] = [f for f in s["figures"] if f["region"] == "david-old"]
+        del s["guide"]["shape"]["solomon"]
+        self.assertIsNotNone(recheck.figure_scale_errors(s))
+
+    def test_head_end_follows_facing(self):
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as MG
+        from PIL import Image, ImageDraw
+        for right in (True, False):
+            img = Image.new("L", (MG.W, MG.H), 0)
+            MG.BODY["sit_right"] = right
+            MG.bed_lying(ImageDraw.Draw(img), 100, 200, 600, 500, 200)
+            MG.BODY["sit_right"] = False
+            top = next(y for y in range(MG.H) if any(img.getpixel((x, y)) for x in range(100, 600)))
+            xs = [x for x in range(100, 600) if img.getpixel((x, top))]
+            self.assertEqual(sum(xs) / len(xs) > 350, not right)   # 가장 높은 점(머리)이 보는 쪽의 반대 끝 — 베개에 기댄 사람은 발 쪽을 봄(task 677)
+
+    def test_seated_and_lying_only_measured(self):
+        """task 677 — 앉은 솔로몬 + 누운 다윗(선 사람 없음)은 height-ratio 못 잼이 아니라 앉은 키·누운 몸 규칙이 같은 지평선으로 잼."""
+        s = self.charge()
+        s["guide"]["shape"]["solomon"] = "sit"
+        s["regions"]["solomon"] = [0.62, 0.4325, 0.78, 0.92]
+        self.assertEqual(recheck.height_ratio_errors(s), [])
+        self.assertIsNotNone(recheck.figure_scale_errors(s))
+        s["regions"]["solomon"][1] = 0.27   # 앉았는데 서 있는 키만큼 — 선 사람이 없어 지평선은 앉은 솔로몬에서 잡히므로, 어긋남은 그 지평선으로 침상을 재는 누운 몸 규칙이 잡음
+        self.assertTrue(any("너비" in e for e in recheck.lying_scale_errors(s)))
+
+    def test_charge_spec_passes(self):
+        """실제 명세(task 676 S4 뒤) — 누운 다윗이 bed_lying이고 세 크기 규칙 통과."""
+        import derive_scene as ds
+        s = ds.load(self.SID)
+        self.assertEqual(s["guide"]["shape"]["david-old"], "bed_lying")
+        self.assertEqual((recheck.lying_scale_errors(s), recheck.figure_scale_errors(s), recheck.height_ratio_errors(s)), ([], [], []))
 
 
 class SeatedHeight(unittest.TestCase):
@@ -1258,7 +1431,7 @@ class Inset(unittest.TestCase):
     def test_cloud_beside_one_head_fails(self):
         """판 1 자리 — 인물 오른쪽 가운데·구름 왼쪽 위 구석: 판정 4(한 사람의 생각으로 읽힐 위험)."""
         s = birth()
-        s["regions"]["nathan"], s["regions"]["david-prime"] = [0.42, 0.27, 0.56, 0.92], [0.66, 0.27, 0.8, 0.92]
+        s["regions"]["nathan"], s["regions"]["david-middle"] = [0.42, 0.27, 0.56, 0.92], [0.66, 0.27, 0.8, 0.92]
         s["inset"]["region"] = [0.01, 0.02, 0.4, 0.58]
         self.assertTrue(any("사이" in e for e in recheck.inset_errors(s)))
 
@@ -1336,6 +1509,55 @@ class CrowdShoulders(unittest.TestCase):
         import scale as S
         self.assertAlmostEqual(MG.CROWD_HAND_Y, S.v("body.shoulder") + S.v("body.upper_arm") + S.v("body.forearm"))
         self.assertGreaterEqual(MG.CROWD_HAND_Y, 0.5)
+
+
+class CrowdFrontHands(unittest.TestCase):
+    """generate.crowd-front-hands(fu-4c8b6d87f952) — 장면 스위치 guide.crowd_hands {무리: "front"}면 그 무리 맨 앞줄만 두 손을 몸 앞 허리에(마하나임 사람 7362 「손이 보여야한는 상황인데 없는 사람들이 있음」)."""
+
+    def mg(self):
+        import sys
+        sys.path.insert(0, os.path.join(HERE, "batch"))
+        import make_guide as MG
+        return MG
+
+    def test_hands_in_front_of_waist(self):
+        F = self.mg().CROWD_FRONT_HANDS
+        self.assertLess(F["wrist"][0], self.mg().CROWD_SHOULDER)   # 손목이 몸통 너비 안(몸 앞)
+        self.assertAlmostEqual(F["wrist"][1], 0.45, delta=0.05)     # 허리 높이
+        self.assertGreaterEqual(F["wrist"][0] * 2, 0.3)             # 두 손이 떨어짐(모은 손은 한 덩어리 — 730·731)
+        self.assertGreater(F["near"], 1)                            # 아래팔·손이 몸보다 가까움(같은 밝기면 깊이 그림에서 묻힘)
+
+    def test_front_row_only_when_switched(self):
+        from PIL import Image, ImageDraw
+        MG = self.mg()
+        MG.PERSP["hy"] = 0.55
+        for on in (False, True):
+            calls = []
+            real = MG.crowd_person
+            MG.BODY["crowd_front"] = on
+            with mock.patch.object(MG, "crowd_person", side_effect=lambda *a, **k: (calls.append((a[4], k.get("front"))), real(*a, **k))):
+                MG.crowd(ImageDraw.Draw(Image.new("L", (MG.W, MG.H), 0)), 0.1 * MG.W, 0.35 * MG.H, 0.9 * MG.W, 0.75 * MG.H, 200)
+            MG.BODY["crowd_front"] = False
+            bottom = max(y1 for y1, _ in calls)
+            front = [f for y1, f in calls if abs(y1 - bottom) < 1]
+            back = [f for y1, f in calls if abs(y1 - bottom) >= 1]
+            self.assertTrue(front and back)
+            self.assertEqual({bool(f) for f in front}, {on})
+            self.assertEqual({bool(f) for f in back}, {False})
+
+    def test_switch_names_crowd_regions(self):
+        """스위치는 무리 꼴 자리에만, 값은 "front"만 — 오타·사람 자리에 켜면 조용히 무시되므로 걸러 냄."""
+        found = 0
+        for name in os.listdir(os.path.join(HERE, "scenes")):
+            if not name.endswith(".json"):
+                continue
+            with open(os.path.join(HERE, "scenes", name), encoding="utf-8") as fh:
+                g = json.load(fh).get("guide") or {}
+            for k, v in (g.get("crowd_hands") or {}).items():
+                found += 1
+                self.assertEqual(g["shape"].get(k), "crowd", f"{name} {k}")
+                self.assertEqual(v, "front", f"{name} {k}")
+        self.assertGreaterEqual(found, 1)   # 마하나임
 
 
 class CrowdDepth(unittest.TestCase):
@@ -1778,6 +2000,43 @@ class QuoteErrors(unittest.TestCase):
         self.assertEqual(self.errs("삼상 16:14-23", "16:21 「모셔 서매」(16:22 「모셔 서게 하라」)"), [])
 
 
+class CardlessPersonClause(unittest.TestCase):
+    """spec.cardless-person-clause — 카드 없는 사람 자리는 자기 단계 또는 relation 한 사람 절 + 신원 낱말(task 454 · 443 Va~Vh)."""
+
+    def _spec(self, name):
+        with open(os.path.join(HERE, "scenes", f"{name}.json"), encoding="utf-8") as fh:
+            return json.load(fh)
+
+    def _mothers(self, rel_en):
+        s = self._spec("authored-solomon-jerusalem-two-mothers")
+        s["relation"]["en"] = rel_en
+        return recheck.cardless_person_errors(s)
+
+    def test_fragment_fails(self):
+        self.assertEqual(len(self._mothers("the two women stand before the seated king, a servant with a sword at one side, "
+                                           "a servant in a plain tunic at the other; none touching")), 1)   # 442 r4 — 금관 복제
+        self.assertEqual(len(self._mothers("the two women stand before the seated king, a grey-bearded servant at the left; "
+                                           "none touching")), 1)   # Vc — 낱말 조각(동사 절 아님)
+        self.assertEqual(len(self._mothers("the two women stand before the seated king; beside him stands a servant in a plain tunic")), 1)  # 절이나 신원 낱말 없음
+
+    def test_clause_passes(self):
+        self.assertEqual(self._mothers("the two women stand before the seated king; beside him on the left stands a grey-bearded old "
+                                       "servant in a plain tunic, empty-handed; none touching"), [])   # 443 Vf
+        self.assertEqual(recheck.cardless_person_errors(self._spec("authored-solomon-jerusalem-two-mothers")), [])
+
+    def test_own_stage(self):
+        s = self._spec("authored-david-returns-jerusalem")
+        self.assertEqual(recheck.cardless_person_errors(s), [])   # 바르실래 S5 「a very old man of eighty」 · household는 crowds
+        bz = next(x for x in s["stages"] if x.get("region") == "barzillai")
+        bz["prompt"] = "beside the king at the river, Barzillai the Gileadite, who has come to see the king across the Jordan."
+        self.assertEqual(len(recheck.cardless_person_errors(s)), 1)
+        bz["skip"] = True
+        self.assertEqual(len(recheck.cardless_person_errors(s)), 1)
+
+    def test_objects_and_cast_not_targets(self):
+        self.assertEqual(recheck.cardless_person_errors(gibeah()), [])   # spear·wall은 물건 · 카드 인물은 대상 아님
+
+
 if __name__ == "__main__":
     unittest.main()
 
@@ -1792,3 +2051,15 @@ class PlatformGroundTest(__import__("unittest").TestCase):
         self.assertAlmostEqual(S.foot(raised, "a"), 0.92)
         self.assertAlmostEqual(S.foot(base, "a"), 0.92)
         self.assertAlmostEqual(S.scene_horizon(raised), S.scene_horizon(base), places=6)
+
+
+class EraVessels(unittest.TestCase):
+    """derive.era-vessels(task 734) — 용기 낱말은 고대 재료와 함께(사람 판정 마하나임 733 「그시대에 유리병이 있었나?」 — 「jars of honey」가 라벨 붙은 유리병)."""
+
+    def test_bare_and_modern(self):
+        from unittest import mock
+        for text, n in (("jars of honey, bowls of butter", 1), ("clay jars of honey, wooden bowls of butter", 0),
+                        ("a glass bottle of oil", 2), ("every chest, bowl and box rests on the floor", 0),
+                        ("wide clay basins and clay pots", 0), ("wide basins and clay pots", 1)):
+            with mock.patch.object(recheck.ds, "route_prompt", return_value=text):
+                self.assertEqual(len(recheck.era_vessel_errors({})), n, text)

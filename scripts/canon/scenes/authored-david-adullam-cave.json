@@ -49,10 +49,10 @@
       1.0
     ],
     "cave": [
-      0.1,
-      0.1,
-      0.5,
-      0.7
+      0.808,
+      0.533,
+      0.953,
+      0.98
     ],
     "followers": [
       0.55,
@@ -74,24 +74,34 @@
       "kind": "full",
       "region": "full",
       "verse": "22:1",
-      "prompt": "a dry rocky hillside with a wide cave mouth in a limestone cliff, black darkness deep inside the opening, one large boulder to one side, sparse dry scrub, pale sky, no people.",
+      "prompt": "a dry rocky hillside with a wide cave mouth in a limestone cliff, sparse dry scrub, pale sky, no people.",
       "neg": [
-        "solid unbroken rock face",
-        "flat cliff wall",
-        "shallow rock niche",
-        "built stone archway",
-        "boulders filling the cave mouth",
+        "people",
+        "figures",
+        "soldiers",
         "modern building",
         "green forest",
-        "people"
-      ]
+        "church",
+        "steeple",
+        "cathedral",
+        "chapel",
+        "cross",
+        "bell tower",
+        "spire"
+      ],
+      "approved": {
+        "attempt": "a001",
+        "seed": 11,
+        "by": "phone",
+        "on": "2026-09-06"
+      }
     },
     {
       "id": "S1b",
       "kind": "region",
       "region": "cave",
       "verse": "22:1",
-      "prompt": "a wide dark cave opening in pale limestone rock, jagged rock edges, dry ground before it, no people.",
+      "prompt": "a wide dark cave opening in pale limestone rock, seen from the side, jagged rock edges, dry ground before it, no people.",
       "neg": [
         "people",
         "figures",

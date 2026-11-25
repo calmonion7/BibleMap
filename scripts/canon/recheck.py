@@ -275,6 +275,29 @@ def cast_headwear_errors(spec):
     return [f"{f['cast']}: {e}" for f in spec["figures"] for e in check_cast_v2.headwear_errors(ds._cast_in_scene(f))]
 
 
+def cast_gray_errors(spec):
+    """v1 `hair`·`beard`의 회색 유무가 카드 글과 맞음(task 453, 규칙 spec.cast-gray-agree) — 명세 인물마다 카드(장면 cast_override 포함).
+    얼굴 판정 설명이 이 칸을 쓴다 · david-middle 「dark curly hair」 대 카드 「gray at the temples」."""
+    return [f"{f['cast']}: {e}" for f in spec["figures"] for e in check_cast_v2.gray_errors(ds._cast_in_scene(f))]
+
+
+IDENTITY_KEYS = ("ageBand", "beardVolume", "silhouette")
+
+
+def cast_identity_fixed_errors(spec):
+    """장면 덮어쓰기는 카드 정체성 값을 바꾸지 않음(task 452, 규칙 spec.cast-identity-fixed) — 명세 인물마다 `cast_override.card`의
+    ageBand·beardVolume·silhouette이 카드와 class·text 모두 같음. 정체성은 카드 문구만 나른다(ADR 261030-011200) · 나이가 갈리면 생애 단계 id로.
+    머리 윤곽·옷 색은 차림이라 덮어써도 된다 · 다윗 귀환 david-elder 체격 average → lean · 시므이 512토큰 줄이기."""
+    out = []
+    for f in spec["figures"]:
+        over = (f.get("cast_override") or {}).get("card") or {}
+        card = ds.load_cast(f["cast"]).get("card", {})
+        bad = [k for k in IDENTITY_KEYS if k in over and over[k] != card.get(k)]
+        if bad:
+            out.append(f"{f['cast']}: cast_override가 카드 정체성 값을 바꿈 {bad}")
+    return out
+
+
 def cast_canon_face_errors(spec):
     """정본 얼굴은 지금 카드에서 파생(2026-10-27, 규칙 spec.cast-canon-face) — 명세 인물마다 카드 `canon_face`가 있고 파일이 있고
     `prompt_sha`가 지금 카드의 정면 정본 문구 지문(gen_face_canon.prompt_sha)과 같음. 카드를 고치면 정본이 낡음 · 지문 없는 옛 정본은 못 맞춰 봄 = 걸림.
@@ -314,6 +337,29 @@ def wall_material_errors(spec):
     m5e: 「a bare wall behind David」 → 벽 앞 틀림 「다윗 뒤는 매끈한 회벽」(s23·s42) — 돌벽 방인데 그 벽만 회벽으로 그려짐."""
     hit = BARE_WALL.findall(ds.route_prompt(spec))
     return [f"재질 없는 벽 문구 「{'·'.join(sorted(set(h.lower() for h in hit)))}」 — 매끈한 회벽으로 그려진다"] if hit else []
+
+
+VESSEL_NOUN = re.compile(r"\b(jars?|pots?|bowls?|basins?|cups?|jugs?|pitchers?|vessels?|flasks?|cruses?|dish(?:es)?)\b", re.I)
+VESSEL_MATERIAL = re.compile(r"\b(clay|earthen|earthenware|pottery|terracotta|stone|alabaster|wooden|wood|leather|skin|bronze|brass|copper|gold|golden|silver|iron|reed|woven|wicker|gourd|horn)\b", re.I)
+MODERN_VESSEL = re.compile(r"\b(glass|bottles?|labels?|plastic|tin cans?|screw[- ]?tops?)\b", re.I)
+
+
+def era_vessel_errors(spec):
+    """용기는 시대 재료로(task 734, 규칙 derive.era-vessels — 사람 판정 마하나임 733 「그시대에 유리병이 있었나? 시대에 맞춰 용기들도 맞춰줘
+    규칙에 추가해야겠네」). 파생 프롬프트의 용기 낱말(jar·pot·bowl·basin …) 앞 세 낱말 안에 고대 재료 낱말(clay·stone·wooden·leather·bronze …)이
+    있어야 하고 glass·bottle·label 같은 현대 낱말은 없어야 함 — 「jars of honey」가 라벨 붙은 뚜껑 유리병으로 그려졌다(733 s11)."""
+    text = ds.route_prompt(spec)
+    out = [f"현대 용기 낱말 「{h.lower()}」" for h in dict.fromkeys(m.group(0) for m in MODERN_VESSEL.finditer(text))]
+    bare = []
+    for m in VESSEL_NOUN.finditer(text):
+        before = re.findall(r"[A-Za-z'-]+", text[max(0, m.start() - 60):m.start()])[-3:]
+        if any(w.lower() in ("every", "each", "no", "nothing") for w in before):   # 「every chest, bowl and box rests on the floor」 — 놓임 진술, 그릴 그릇 아님(스바)
+            continue
+        if not any(VESSEL_MATERIAL.fullmatch(w) for w in before):
+            bare.append(" ".join(before[-2:] + [m.group(0)]))
+    if bare:
+        out.append(f"재료 없는 용기 문구 「{' · '.join(dict.fromkeys(bare))}」 — 재료 낱말(clay·stone·wooden·leather·bronze …)이 없으면 현대 유리병·통으로 그려진다")
+    return out
 
 
 INFLATE_BUILD = re.compile(r"\b(barrel|massive|huge|enormous|bulky)\b(?=(?:[\s,-]+[a-z]+){0,2}?[\s,-]+(?:torso|chest|body|build|frame|physique|shoulders?|belly|waist|arms?|limbs|man|figure)\b)", re.I)   # task 488: 몸 낱말이 뒤따를 때만 — 「a huge cloth-wrapped sword」(지물)는 체격 아님
@@ -356,11 +402,13 @@ def figure_scale_errors(spec):
         [f"guide.framing {g['framing']}: framing_why에 얼굴에 실리는 구절 인용(「」)이 없다 — 자른 구도는 근거가 있을 때만"]
     if not _guide_people(spec):   # task 413: 사람이 있는데 잴 구역이 없으면 못 잼(빈 통과 아님)
         sat = S.seated(spec)   # task 416: 서 있는 사람 없이 앉은 사람만이면 서 있을 때 키(구역 높이 ÷ body.seated)로 잼 — 홀로 앉은 밧세바
-        if not sat:
+        lie = S.lying(spec)    # task 676: 누운 사람만이면 서 있을 때 키(구역 너비 ÷ body.bed_length, 화면 비 환산)로 잼
+        if not sat and not lie:
             return None if spec.get("figures") else []
         up = {k: (R[k][3] - R[k][1]) / S.v("body.seated") for k, _ in sat}
-        return why + ([f"{k}: 앉은 구역의 서 있을 때 키 {h:.2f} < {lo:.2f}(무리 단계 {stage}) — 인물이 단계 범위보다 작게 그려진다" for k, h in up.items() if h < lo]
-                + [f"{k}: 앉은 구역의 서 있을 때 키 {h:.2f} > {hi}(무리 단계 {stage}) — 단계 범위보다 가깝게 그려진다" for k, h in up.items() if h > hi])
+        up.update({k: (R[k][2] - R[k][0]) * _aspect() / S.v("body.bed_length") for k, _ in lie})
+        return why + ([f"{k}: 앉은·누운 구역의 서 있을 때 키 {h:.2f} < {lo:.2f}(무리 단계 {stage}) — 인물이 단계 범위보다 작게 그려진다" for k, h in up.items() if h < lo]
+                + [f"{k}: 앉은·누운 구역의 서 있을 때 키 {h:.2f} > {hi}(무리 단계 {stage}) — 단계 범위보다 가깝게 그려진다" for k, h in up.items() if h > hi])
     sh, pose = g.get("shape", {}), g.get("pose", {})
     def seen(k):   # h4: 뼈대 인물은 보이는 키(뼈대 머리 꼭대기 ~ 발) — 숙인 뼈대는 구역보다 작게 그려짐(h3e 숙인 다윗 「화면 절반」 5/5)
         h = R[k][3] - R[k][1]
@@ -371,6 +419,12 @@ def figure_scale_errors(spec):
         top = min(y for i, (x, y) in M.POSES[pose[k]].items() if i in (0, 14, 15, 16, 17)) - M.HEAD_R["person"]
         return h * (1 - max(0.0, top))
     people = [k for k in dict.fromkeys(list(sh) + list(pose)) if str(sh.get(k, "")).startswith("person") or k in pose]
+    # task 683 — 무리를 한 사람씩 뼈대로 준 자리(crowds[].people)는 초점이 아니라 무리 — 크기는 원근(perspective_errors가 잼)으로만.
+    # 초점 범위에 넣으면 깊이로 물러난 무리 줄(기브온 열두 쌍 뒷줄)이 늘 「단계보다 작다」로 걸린다(사람 판정 기브온 「공간을 만든 다음 한쌍씩 … 12군데」).
+    # 다른 초점 인물이 없으면 무리 속 가장 큰 사람을 초점으로 잰다(빈 통과 아님).
+    crowd_people = {k for c in spec.get("crowds") or [] for k in c.get("people") or []}
+    focus_people = [k for k in people if k not in crowd_people]
+    people = focus_people or ([max((k for k in people if k in crowd_people), key=lambda k: R[k][3] - R[k][1])] if people else [])
     # task 467: 자른 구도는 가장 앞(가장 큰) 인물 하나만 framing 범위 — 뒤 인물은 무리 단계 범위(466 두 사람 다 자르니 「몸비율 이상」)
     front = max(people, key=lambda k: R[k][3] - R[k][1]) if g.get("framing") and people else None
     cst, (clo, chi) = S.crowd_stage(S.people_count(spec))
@@ -412,6 +466,26 @@ def crowd_count_errors(spec):
             if not isinstance(c.get("count"), int) or not str(c.get("count_why", "")).startswith(COUNT_WHY)]
 
 
+IDENTITY_WORD = re.compile(r"\b(old|young|aged|elderly|grey|gray|white|bearded|beard|boy|girl|child|woman|in (his|her) \d0s|of (twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety))\b", re.I)
+PERSON_CLAUSE = re.compile(r"\b(stands|sits|kneels)\s+an?\s+[^,;]*", re.I)
+
+
+def cardless_person_errors(spec):
+    """카드 없는 사람 자리는 한 사람 절로(task 454, 규칙 spec.cardless-person-clause) — guide 사람 꼴(person·sit·kneel…) 자리 중
+    figures도 crowds region도 아닌 것은 (가) 자기 단계(region = 자리) prompt에 신원 낱말, 또는 (나) relation.en에 「stands a …」 한 사람 절 +
+    신원 낱말. 조각(「a servant in a plain tunic」·「a grey-bearded servant」)은 곁 인물 문구를 한 번 더 받아 복제가 된다(443 Va~Vh · 요단 388)."""
+    shapes = (spec.get("guide") or {}).get("shape") or {}
+    figs = {f.get(k) for f in spec.get("figures") or [] for k in ("cast", "region")}
+    crowds = {c.get("region") for c in spec.get("crowds") or []}
+    stage_text = {s.get("region"): s.get("prompt", "") for s in ss.live_stages(spec)} if spec.get("stages") else {}
+    rel = (spec.get("relation") or {}).get("en", "")
+    clause = any(IDENTITY_WORD.search(m.group(0)) for m in PERSON_CLAUSE.finditer(rel))
+    return [f"카드 없는 사람 자리 「{z}」: 자기 단계도 relation 한 사람 절(stands a … + 나이·수염·머리 낱말)도 없다"
+            for z, v in shapes.items()
+            if str(v).startswith(("person", "sit", "kneel")) and z not in figs and z not in crowds
+            and not IDENTITY_WORD.search(stage_text.get(z, "")) and not clause]
+
+
 def perspective_errors(spec):
     """무리 구역은 눈높이 원근의 사람 키를 담음(task 409, 규칙 generate.eye-level-perspective) — guide 무리 꼴(crowd) 구역의 발 y(아래 끝)가
     장면 지평선(S.scene_horizon) 아래면, 그 자리 보통 키 어른 화면 키(S.screen_height)가 구역 높이를 넘으면 걸림(가이드 무리가 구역 위로 솟음).
@@ -425,7 +499,7 @@ def perspective_errors(spec):
     for k, shape in (g.get("shape") or {}).items():
         if (shape != "crowd" and k not in people) or S.foot(spec, k) <= hy:
             continue
-        ph, h = S.screen_height(S.foot(spec, k), hy), R[k][3] - R[k][1]
+        ph, h = S.screen_height(S.foot(spec, k), hy, cam=S.camera(spec)), R[k][3] - R[k][1]
         if ph > h:
             out.append(f"{k}: 발 y {S.foot(spec, k):.2f}의 어른 화면 키 {ph:.2f} > 구역 높이 {h:.2f}(지평선 {hy:.3f}) — 무리 구역이 원근보다 낮다")
     return out
@@ -442,7 +516,8 @@ def height_ratio_errors(spec):
     R = spec.get("regions", {})
     people = S.standing(spec)
     if not people and len(spec.get("figures") or []) >= 2:   # task 413: 두 사람 이상인데 잴 구역이 없으면 못 잼
-        return None
+        # task 677: 서 있는 사람 없이 앉은·누운 사람만이면 그 크기는 seated-height·lying-scale이 같은 지평선(S.scene_horizon)으로 잰다 — 빈 통과 아님
+        return [] if (S.seated(spec) or S.lying(spec)) else None
     if len(people) < 2:
         return []
     hy = S.scene_horizon(spec)
@@ -452,13 +527,42 @@ def height_ratio_errors(spec):
     for k, hr in people:
         if k == fk:
             continue
-        want, got = S.screen_height(S.foot(spec, k), hy, hr), R[k][3] - R[k][1]
+        want, got = S.screen_height(S.foot(spec, k), hy, hr, S.camera(spec)), R[k][3] - R[k][1]
         if abs(got - want) / fh > HEAD_TOL:
             out.append(f"{k}: 구역 높이 {got:.2f} ≠ 지평선 {hy:.3f}에서 계산한 {want:.2f}(± 초점 {fk} 키의 {HEAD_TOL}) — 두 사람 크기가 어긋나 그려진다")
     return out
 
 
 SEATED_SHAPES = S.SEATED_SHAPES
+
+
+def _aspect():
+    """가이드 화면 너비 ÷ 높이 — 구역 x(너비 비)를 키 단위(높이 비)로 바꿀 때."""
+    sys.path.insert(0, os.path.join(HERE, "batch"))
+    import make_guide as M
+    return M.W / M.H
+
+
+def lying_scale_errors(spec):
+    """누운 인물의 크기도 눈높이 지평선에서(task 676, 규칙 generate.lying-scale) — guide 누운 꼴(S.LYING_SHAPES) 인물의 구역 너비·높이가
+    침상 발 y에서 계산한 서 있는 화면 키(S.screen_height × 카드 키 등급)로 셈한 침상 상자(S.lying_box — 침상 길이 · 요 높이 + 일으킨 위몸)와
+    초점 화면 키의 ± HEAD_TOL 넘게 다르면 걸림. 서 있거나 앉은 사람만 재는 크기 규칙에 침상에 누운 다윗(왕상 2:1)은 「못 잼」이었다(CHARGE-STEP1)."""
+    R = spec.get("regions", {})
+    lie = S.lying(spec)
+    if not lie:
+        return []
+    people, ar, cam = S.standing(spec), _aspect(), S.camera(spec)
+    hy = S.scene_horizon(spec)
+    out = []
+    for k, hr in lie:
+        hs = S.screen_height(S.foot(spec, k), hy, hr, cam)
+        fh = max(R[p][3] - R[p][1] for p, _ in people) if people else hs
+        (ww, wh), gw, gh = S.lying_box(hs), (R[k][2] - R[k][0]) * ar, R[k][3] - R[k][1]
+        if abs(gw - ww) / fh > HEAD_TOL:
+            out.append(f"{k}: 누운 구역 너비 {gw:.2f}(키 단위) ≠ 지평선 {hy:.3f}에서 계산한 침상 길이 {ww:.2f}(± 초점 키의 {HEAD_TOL}) — 누운 사람 크기가 어긋나 그려진다")
+        if abs(gh - wh) / fh > HEAD_TOL:
+            out.append(f"{k}: 누운 구역 높이 {gh:.2f} ≠ 지평선 {hy:.3f}에서 계산한 요 높이 + 일으킨 위몸 {wh:.2f}(± 초점 키의 {HEAD_TOL}) — 침상·위몸이 어긋나 그려진다")
+    return out
 
 
 def seated_height_errors(spec):
@@ -479,7 +583,7 @@ def seated_height_errors(spec):
     for f in seated:
         k, cls = f["region"], ds._cast_in_scene(f).get("card", {}).get("heightRel")
         hr = S.height_rel(cls) if cls in S.table()["height"] else S.height_rel("average")
-        want, got = S.screen_height(R[k][3], hy, hr) * S.v("body.seated"), R[k][3] - R[k][1]
+        want, got = S.screen_height(R[k][3], hy, hr, S.camera(spec)) * S.v("body.seated"), R[k][3] - R[k][1]
         if abs(got - want) / fh > HEAD_TOL:
             out.append(f"{k}: 앉은 구역 높이 {got:.2f} ≠ 지평선 {hy:.3f}에서 계산한 앉은 키 {want:.2f}(± 초점 키의 {HEAD_TOL}) — 앉은 사람 크기가 어긋나 그려진다")
     return out
@@ -873,16 +977,20 @@ SPEC_CHECKS = {
     "recheck.cast_age_band_errors": lambda spec, ctx: cast_age_band_errors(spec),
     "recheck.cast_age_word_errors": lambda spec, ctx: cast_age_word_errors(spec),
     "recheck.cast_headwear_errors": lambda spec, ctx: cast_headwear_errors(spec),
+    "recheck.cast_gray_errors": lambda spec, ctx: cast_gray_errors(spec),
+    "recheck.cast_identity_fixed_errors": lambda spec, ctx: cast_identity_fixed_errors(spec),
     "recheck.cast_canon_face_errors": lambda spec, ctx: cast_canon_face_errors(spec),
     "recheck.pose_skeleton_errors": lambda spec, ctx: pose_skeleton_errors(spec),
     "recheck.empty_hand_fist_errors": lambda spec, ctx: empty_hand_fist_errors(spec),
     "recheck.wall_material_errors": lambda spec, ctx: wall_material_errors(spec),
+    "recheck.era_vessel_errors": lambda spec, ctx: era_vessel_errors(spec),
     "recheck.inflating_build_errors": lambda spec, ctx: inflating_build_errors(spec),
     "recheck.figure_scale_errors": lambda spec, ctx: figure_scale_errors(spec),
     "recheck.second_point_errors": lambda spec, ctx: second_point_errors(spec),
     "recheck.youth_height_errors": lambda spec, ctx: youth_height_errors(spec),
     "recheck.height_ratio_errors": lambda spec, ctx: height_ratio_errors(spec),
     "recheck.seated_height_errors": lambda spec, ctx: seated_height_errors(spec),
+    "recheck.lying_scale_errors": lambda spec, ctx: lying_scale_errors(spec),
     "recheck.pose_hold_errors": lambda spec, ctx: pose_hold_errors(spec),
     "recheck.inset_errors": lambda spec, ctx: inset_errors(spec),
     "recheck.speech_inset_errors": lambda spec, ctx: speech_inset_errors(spec),
@@ -897,6 +1005,7 @@ SPEC_CHECKS = {
     "recheck.flight_errors": lambda spec, ctx: flight_errors(spec),
     "recheck.flight_height_errors": lambda spec, ctx: flight_height_errors(spec),
     "recheck.crowd_count_errors": lambda spec, ctx: crowd_count_errors(spec),
+    "recheck.cardless_person_errors": lambda spec, ctx: cardless_person_errors(spec),
     "recheck.perspective_errors": lambda spec, ctx: perspective_errors(spec),
     "check_scenes.lexicon_look_errors": lambda spec, ctx: check_scenes.lexicon_look_errors(spec, ds.route_prompt(spec)),
 }

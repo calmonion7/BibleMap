@@ -1,5 +1,5 @@
 {
- "rules_version": "bc9c29f32407",
+ "rules_version": "19a2767f99a2",
  "images": {
   "authored-david-gath-achish": {
    "image": "/Users/calmonion/Project/BibleMap/scripts/canon/samples/local-edit/approved-authored-david-gath-achish.png",
@@ -22,6 +22,7 @@
     "spec.cast-age-band": "pass",
     "spec.cast-age-word": "pass",
     "spec.cast-headwear": "pass",
+    "spec.cast-identity-fixed": "pass",
     "spec.cast-canon-face": "pass",
     "spec.lexicon-link": "pass",
     "derive.no-hand-prompt": "stale",
@@ -149,6 +150,7 @@
     "spec.cast-age-band": "stale",
     "spec.cast-age-word": "stale",
     "spec.cast-headwear": "stale",
+    "spec.cast-identity-fixed": "stale",
     "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "stale",
     "derive.no-hand-prompt": "stale",
@@ -200,6 +202,7 @@
     "spec.cast-age-band": "그림 뒤 명세가 바뀜",
     "spec.cast-age-word": "그림 뒤 명세가 바뀜",
     "spec.cast-headwear": "그림 뒤 명세가 바뀜",
+    "spec.cast-identity-fixed": "그림 뒤 명세가 바뀜",
     "spec.cast-canon-face": "그림 뒤 명세가 바뀜",
     "spec.lexicon-link": "그림 뒤 명세가 바뀜",
     "derive.no-hand-prompt": "그림 뒤 명세가 바뀜",
@@ -261,6 +264,7 @@
     "spec.cast-age-band": "stale",
     "spec.cast-age-word": "stale",
     "spec.cast-headwear": "stale",
+    "spec.cast-identity-fixed": "stale",
     "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "stale",
     "derive.no-hand-prompt": "stale",
@@ -312,6 +316,7 @@
     "spec.cast-age-band": "그림 뒤 명세가 바뀜",
     "spec.cast-age-word": "그림 뒤 명세가 바뀜",
     "spec.cast-headwear": "그림 뒤 명세가 바뀜",
+    "spec.cast-identity-fixed": "그림 뒤 명세가 바뀜",
     "spec.cast-canon-face": "그림 뒤 명세가 바뀜",
     "spec.lexicon-link": "그림 뒤 명세가 바뀜",
     "derive.no-hand-prompt": "그림 뒤 명세가 바뀜",
@@ -423,8 +428,8 @@
      }
     ],
     "majority": {
-     "p.boarding": "틀림",
-     "p.one-crown": "맞음"
+     "p.one-crown": "맞음",
+     "p.boarding": "틀림"
     }
    }
   },
@@ -449,6 +454,7 @@
     "spec.cast-age-band": "stale",
     "spec.cast-age-word": "stale",
     "spec.cast-headwear": "stale",
+    "spec.cast-identity-fixed": "stale",
     "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "stale",
     "derive.no-hand-prompt": "stale",
@@ -500,6 +506,7 @@
     "spec.cast-age-band": "그림 뒤 명세가 바뀜",
     "spec.cast-age-word": "그림 뒤 명세가 바뀜",
     "spec.cast-headwear": "그림 뒤 명세가 바뀜",
+    "spec.cast-identity-fixed": "그림 뒤 명세가 바뀜",
     "spec.cast-canon-face": "그림 뒤 명세가 바뀜",
     "spec.lexicon-link": "그림 뒤 명세가 바뀜",
     "derive.no-hand-prompt": "생성 때 프롬프트(plain-words r2 s42 + 국소 편집)가 지금 명세의 파생과 다름 — 생성 때 명세 기록 없음, 지금 명세의 해시",
@@ -626,6 +633,7 @@
     "spec.cast-age-band": "stale",
     "spec.cast-age-word": "stale",
     "spec.cast-headwear": "stale",
+    "spec.cast-identity-fixed": "stale",
     "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "stale",
     "derive.no-hand-prompt": "stale",
@@ -677,6 +685,7 @@
     "spec.cast-age-band": "그림 뒤 명세가 바뀜",
     "spec.cast-age-word": "그림 뒤 명세가 바뀜",
     "spec.cast-headwear": "그림 뒤 명세가 바뀜",
+    "spec.cast-identity-fixed": "그림 뒤 명세가 바뀜",
     "spec.cast-canon-face": "그림 뒤 명세가 바뀜",
     "spec.lexicon-link": "그림 뒤 명세가 바뀜",
     "derive.no-hand-prompt": "그림 뒤 명세가 바뀜",
@@ -793,6 +802,7 @@
     "spec.cast-age-band": "stale",
     "spec.cast-age-word": "stale",
     "spec.cast-headwear": "stale",
+    "spec.cast-identity-fixed": "stale",
     "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "stale",
     "derive.no-hand-prompt": "stale",
@@ -844,6 +854,7 @@
     "spec.cast-age-band": "그림 뒤 명세가 바뀜",
     "spec.cast-age-word": "그림 뒤 명세가 바뀜",
     "spec.cast-headwear": "그림 뒤 명세가 바뀜",
+    "spec.cast-identity-fixed": "그림 뒤 명세가 바뀜",
     "spec.cast-canon-face": "그림 뒤 명세가 바뀜",
     "spec.lexicon-link": "그림 뒤 명세가 바뀜",
     "derive.no-hand-prompt": "그림 뒤 명세가 바뀜",
@@ -905,6 +916,7 @@
     "spec.cast-age-band": "pass",
     "spec.cast-age-word": "pass",
     "spec.cast-headwear": "pass",
+    "spec.cast-identity-fixed": "pass",
     "spec.cast-canon-face": "pass",
     "spec.lexicon-link": "none",
     "derive.no-hand-prompt": "pass",
@@ -1033,6 +1045,7 @@
     "spec.cast-age-band": "stale",
     "spec.cast-age-word": "stale",
     "spec.cast-headwear": "stale",
+    "spec.cast-identity-fixed": "stale",
     "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "stale",
     "derive.no-hand-prompt": "stale",
@@ -1084,6 +1097,7 @@
     "spec.cast-age-band": "그림 뒤 명세가 바뀜",
     "spec.cast-age-word": "그림 뒤 명세가 바뀜",
     "spec.cast-headwear": "그림 뒤 명세가 바뀜",
+    "spec.cast-identity-fixed": "그림 뒤 명세가 바뀜",
     "spec.cast-canon-face": "그림 뒤 명세가 바뀜",
     "spec.lexicon-link": "그림 뒤 명세가 바뀜",
     "derive.no-hand-prompt": "그림 뒤 명세가 바뀜",
@@ -1145,6 +1159,7 @@
     "spec.cast-age-band": "stale",
     "spec.cast-age-word": "stale",
     "spec.cast-headwear": "stale",
+    "spec.cast-identity-fixed": "stale",
     "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "stale",
     "derive.no-hand-prompt": "stale",
@@ -1196,6 +1211,7 @@
     "spec.cast-age-band": "그림 뒤 명세가 바뀜",
     "spec.cast-age-word": "그림 뒤 명세가 바뀜",
     "spec.cast-headwear": "그림 뒤 명세가 바뀜",
+    "spec.cast-identity-fixed": "그림 뒤 명세가 바뀜",
     "spec.cast-canon-face": "그림 뒤 명세가 바뀜",
     "spec.lexicon-link": "그림 뒤 명세가 바뀜",
     "derive.no-hand-prompt": "그림 뒤 명세가 바뀜",
@@ -1312,6 +1328,7 @@
     "spec.cast-age-band": "stale",
     "spec.cast-age-word": "stale",
     "spec.cast-headwear": "stale",
+    "spec.cast-identity-fixed": "stale",
     "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "stale",
     "derive.no-hand-prompt": "stale",
@@ -1363,6 +1380,7 @@
     "spec.cast-age-band": "그림 뒤 명세가 바뀜",
     "spec.cast-age-word": "그림 뒤 명세가 바뀜",
     "spec.cast-headwear": "그림 뒤 명세가 바뀜",
+    "spec.cast-identity-fixed": "그림 뒤 명세가 바뀜",
     "spec.cast-canon-face": "그림 뒤 명세가 바뀜",
     "spec.lexicon-link": "그림 뒤 명세가 바뀜",
     "derive.no-hand-prompt": "그림 뒤 명세가 바뀜",
@@ -1485,6 +1503,7 @@
     "spec.cast-age-band": "stale",
     "spec.cast-age-word": "stale",
     "spec.cast-headwear": "stale",
+    "spec.cast-identity-fixed": "stale",
     "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "stale",
     "derive.no-hand-prompt": "stale",
@@ -1536,6 +1555,7 @@
     "spec.cast-age-band": "그림 뒤 명세가 바뀜",
     "spec.cast-age-word": "그림 뒤 명세가 바뀜",
     "spec.cast-headwear": "그림 뒤 명세가 바뀜",
+    "spec.cast-identity-fixed": "그림 뒤 명세가 바뀜",
     "spec.cast-canon-face": "그림 뒤 명세가 바뀜",
     "spec.lexicon-link": "그림 뒤 명세가 바뀜",
     "derive.no-hand-prompt": "그림 뒤 명세가 바뀜",
@@ -1656,6 +1676,7 @@
     "spec.cast-age-band": "stale",
     "spec.cast-age-word": "stale",
     "spec.cast-headwear": "stale",
+    "spec.cast-identity-fixed": "stale",
     "spec.cast-canon-face": "stale",
     "spec.lexicon-link": "stale",
     "derive.no-hand-prompt": "stale",
@@ -1707,6 +1728,7 @@
     "spec.cast-age-band": "그림 뒤 명세가 바뀜",
     "spec.cast-age-word": "그림 뒤 명세가 바뀜",
     "spec.cast-headwear": "그림 뒤 명세가 바뀜",
+    "spec.cast-identity-fixed": "그림 뒤 명세가 바뀜",
     "spec.cast-canon-face": "그림 뒤 명세가 바뀜",
     "spec.lexicon-link": "그림 뒤 명세가 바뀜",
     "derive.no-hand-prompt": "그림 뒤 명세가 바뀜",
@@ -1752,64 +1774,111 @@
    "seed": 11,
    "path": "night-pick",
    "from": "birth-inset",
-   "spec_changed": false,
+   "spec_changed": true,
    "prompt_matches_spec": null,
    "rules": {
     "judge.j1-items": "none",
     "judge.plausibility-adopted": "pass",
     "judge.style": "none",
     "human.face-matched-quality": "none",
-    "spec.required-fields": "pass",
-    "spec.whole-fields": "pass",
-    "spec.verse-elements": "pass",
-    "spec.no-compromise-words": "pass",
-    "spec.scene-all-verses": "pass",
-    "spec.cast-card-v2": "pass",
-    "spec.cast-age-band": "pass",
-    "spec.cast-age-word": "pass",
-    "spec.cast-headwear": "pass",
-    "spec.cast-canon-face": "pass",
-    "spec.lexicon-link": "pass",
-    "derive.no-hand-prompt": "pass",
-    "derive.no-bare-head": "pass",
-    "derive.prop-in-prompt": "pass",
-    "derive.512-tokens": "pass",
-    "spec.stage-from-scripture": "pass",
-    "spec.quote-matches-verse": "pass",
-    "spec.action-place-on-figure": "pass",
-    "generate.thrown-guide": "pass",
-    "generate.guide-backdrop": "pass",
-    "generate.guide-body-build": "pass",
-    "generate.dodge-clear": "pass",
-    "generate.guide-costume-legs": "pass",
-    "derive.youth-noun": "pass",
-    "generate.pose-skeleton": "pass",
-    "generate.figure-scale": "pass",
-    "derive.no-second-point": "pass",
-    "generate.youth-height": "pass",
-    "generate.height-ratio": "pass",
-    "generate.seated-height": "pass",
-    "generate.pose-hold": "pass",
-    "generate.split-control": "pass",
-    "derive.prop-size-relative": "pass",
-    "generate.flight-position": "pass",
-    "generate.flight-height": "pass",
-    "derive.empty-hand-open": "pass",
-    "derive.wall-material": "pass",
-    "derive.no-inflating-build": "pass",
-    "derive.prop-size-coverage": "pass",
-    "derive.held-hold": "pass",
-    "derive.crowd-stage": "pass",
-    "generate.eye-level-perspective": "pass",
-    "spec.solo-off-center": "pass",
-    "spec.inset": "pass",
-    "derive.plate-cast-token": "pass"
+    "spec.required-fields": "stale",
+    "spec.whole-fields": "stale",
+    "spec.verse-elements": "stale",
+    "spec.no-compromise-words": "stale",
+    "spec.scene-all-verses": "stale",
+    "spec.cast-card-v2": "stale",
+    "spec.cast-age-band": "stale",
+    "spec.cast-age-word": "stale",
+    "spec.cast-headwear": "stale",
+    "spec.cast-identity-fixed": "stale",
+    "spec.cast-canon-face": "stale",
+    "spec.lexicon-link": "stale",
+    "derive.no-hand-prompt": "stale",
+    "derive.no-bare-head": "stale",
+    "derive.prop-in-prompt": "stale",
+    "derive.512-tokens": "stale",
+    "spec.stage-from-scripture": "stale",
+    "spec.quote-matches-verse": "stale",
+    "spec.action-place-on-figure": "stale",
+    "generate.thrown-guide": "stale",
+    "generate.guide-backdrop": "stale",
+    "generate.guide-body-build": "stale",
+    "generate.dodge-clear": "stale",
+    "generate.guide-costume-legs": "stale",
+    "derive.youth-noun": "stale",
+    "generate.pose-skeleton": "stale",
+    "generate.figure-scale": "stale",
+    "derive.no-second-point": "stale",
+    "generate.youth-height": "stale",
+    "generate.height-ratio": "stale",
+    "generate.seated-height": "stale",
+    "generate.pose-hold": "stale",
+    "generate.split-control": "stale",
+    "derive.prop-size-relative": "stale",
+    "generate.flight-position": "stale",
+    "generate.flight-height": "stale",
+    "derive.empty-hand-open": "stale",
+    "derive.wall-material": "stale",
+    "derive.no-inflating-build": "stale",
+    "derive.prop-size-coverage": "stale",
+    "derive.held-hold": "stale",
+    "derive.crowd-stage": "stale",
+    "generate.eye-level-perspective": "stale",
+    "spec.solo-off-center": "stale",
+    "spec.inset": "stale",
+    "derive.plate-cast-token": "stale"
    },
    "why": {
     "judge.j1-items": "birth-inset 기록에 몸 크롭 상자가 없다(바탕과 다른 그림) — OWLv2 상자는 GPU 단계라 이번 범위 밖",
     "judge.plausibility-adopted": "걸린 채택 문항 0",
     "judge.style": "화풍 판정자 조건부(판정자 재현성) — 승인 그림 재검에 아직 안 씀",
-    "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전"
+    "human.face-matched-quality": "얼굴은 사람 판정 — 화질 맞춤 화면(task 393) 전",
+    "spec.required-fields": "그림 뒤 명세가 바뀜",
+    "spec.whole-fields": "그림 뒤 명세가 바뀜",
+    "spec.verse-elements": "그림 뒤 명세가 바뀜",
+    "spec.no-compromise-words": "그림 뒤 명세가 바뀜",
+    "spec.scene-all-verses": "그림 뒤 명세가 바뀜",
+    "spec.cast-card-v2": "그림 뒤 명세가 바뀜",
+    "spec.cast-age-band": "그림 뒤 명세가 바뀜",
+    "spec.cast-age-word": "그림 뒤 명세가 바뀜",
+    "spec.cast-headwear": "그림 뒤 명세가 바뀜",
+    "spec.cast-identity-fixed": "그림 뒤 명세가 바뀜",
+    "spec.cast-canon-face": "그림 뒤 명세가 바뀜",
+    "spec.lexicon-link": "그림 뒤 명세가 바뀜",
+    "derive.no-hand-prompt": "그림 뒤 명세가 바뀜",
+    "derive.no-bare-head": "그림 뒤 명세가 바뀜",
+    "derive.prop-in-prompt": "그림 뒤 명세가 바뀜",
+    "derive.512-tokens": "그림 뒤 명세가 바뀜",
+    "spec.stage-from-scripture": "그림 뒤 명세가 바뀜",
+    "spec.quote-matches-verse": "그림 뒤 명세가 바뀜",
+    "spec.action-place-on-figure": "그림 뒤 명세가 바뀜",
+    "generate.thrown-guide": "그림 뒤 명세가 바뀜",
+    "generate.guide-backdrop": "그림 뒤 명세가 바뀜",
+    "generate.guide-body-build": "그림 뒤 명세가 바뀜",
+    "generate.dodge-clear": "그림 뒤 명세가 바뀜",
+    "generate.guide-costume-legs": "그림 뒤 명세가 바뀜",
+    "derive.youth-noun": "그림 뒤 명세가 바뀜",
+    "generate.pose-skeleton": "그림 뒤 명세가 바뀜",
+    "generate.figure-scale": "그림 뒤 명세가 바뀜",
+    "derive.no-second-point": "그림 뒤 명세가 바뀜",
+    "generate.youth-height": "그림 뒤 명세가 바뀜",
+    "generate.height-ratio": "그림 뒤 명세가 바뀜",
+    "generate.seated-height": "그림 뒤 명세가 바뀜",
+    "generate.pose-hold": "그림 뒤 명세가 바뀜",
+    "generate.split-control": "그림 뒤 명세가 바뀜",
+    "derive.prop-size-relative": "그림 뒤 명세가 바뀜",
+    "generate.flight-position": "그림 뒤 명세가 바뀜",
+    "generate.flight-height": "그림 뒤 명세가 바뀜",
+    "derive.empty-hand-open": "그림 뒤 명세가 바뀜",
+    "derive.wall-material": "그림 뒤 명세가 바뀜",
+    "derive.no-inflating-build": "그림 뒤 명세가 바뀜",
+    "derive.prop-size-coverage": "그림 뒤 명세가 바뀜",
+    "derive.held-hold": "그림 뒤 명세가 바뀜",
+    "derive.crowd-stage": "그림 뒤 명세가 바뀜",
+    "generate.eye-level-perspective": "그림 뒤 명세가 바뀜",
+    "spec.solo-off-center": "그림 뒤 명세가 바뀜",
+    "spec.inset": "그림 뒤 명세가 바뀜",
+    "derive.plate-cast-token": "그림 뒤 명세가 바뀜"
    },
    "j1": null,
    "plausibility": null
@@ -1835,6 +1904,7 @@
     "spec.cast-age-band": "pass",
     "spec.cast-age-word": "pass",
     "spec.cast-headwear": "pass",
+    "spec.cast-identity-fixed": "pass",
     "spec.cast-canon-face": "pass",
     "spec.lexicon-link": "pass",
     "derive.no-hand-prompt": "pass",
@@ -1902,6 +1972,7 @@
     "spec.cast-age-band": "pass",
     "spec.cast-age-word": "pass",
     "spec.cast-headwear": "pass",
+    "spec.cast-identity-fixed": "pass",
     "spec.cast-canon-face": "pass",
     "spec.lexicon-link": "pass",
     "derive.no-hand-prompt": "pass",
@@ -1958,7 +2029,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -1973,10 +2043,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "spec.whole-fields",
@@ -1986,7 +2057,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2001,10 +2071,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "spec.verse-elements",
@@ -2013,7 +2084,6 @@
    "check": "check_scenes.verse_element_errors",
    "pass": [
     "authored-david-gath-achish",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2029,10 +2099,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.2667
+   "rate": 0.2
   },
   {
    "id": "spec.no-compromise-words",
@@ -2042,7 +2113,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2057,10 +2127,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "spec.scene-all-verses",
@@ -2068,7 +2139,6 @@
    "scope": "one",
    "check": "recheck.has_situation",
    "pass": [
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2085,10 +2155,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.2
+   "rate": 0.1333
   },
   {
    "id": "spec.cast-card-v2",
@@ -2098,7 +2169,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2113,10 +2183,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "spec.cast-age-band",
@@ -2126,7 +2197,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2141,10 +2211,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "spec.cast-age-word",
@@ -2154,7 +2225,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2169,10 +2239,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "spec.cast-headwear",
@@ -2182,7 +2253,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2197,10 +2267,39 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
+  },
+  {
+   "id": "spec.cast-identity-fixed",
+   "layer": "spec",
+   "scope": "all",
+   "check": "recheck.cast_identity_fixed_errors",
+   "pass": [
+    "authored-david-gath-achish",
+    "authored-saul-gilgal-amalek",
+    "authored-solomon-jerusalem-birth-inset",
+    "authored-solomon-jerusalem-two-mothers"
+   ],
+   "fail": [],
+   "stale": [
+    "authored-david-gibeah-harp",
+    "authored-david-returns-jerusalem",
+    "authored-samuel-bethlehem-david-anointing",
+    "authored-samuel-ramah-death",
+    "authored-saul-gibeah-spear",
+    "authored-saul-gilgal-coronation",
+    "authored-saul-jabesh-rescue",
+    "authored-saul-michmash-battle",
+    "authored-saul-mizpah-chosen",
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
+   ],
+   "none": [],
+   "rate": 0.2667
   },
   {
    "id": "spec.cast-canon-face",
@@ -2210,7 +2309,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2225,10 +2323,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "spec.lexicon-link",
@@ -2237,7 +2336,6 @@
    "check": "check_scenes.lexicon_look_errors",
    "pass": [
     "authored-david-gath-achish",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2252,12 +2350,13 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [
     "authored-saul-gilgal-amalek"
    ],
-   "rate": 0.2857
+   "rate": 0.2143
   },
   {
    "id": "derive.no-hand-prompt",
@@ -2266,7 +2365,6 @@
    "check": "derive_scene.route_prompt",
    "pass": [
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2282,10 +2380,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.2667
+   "rate": 0.2
   },
   {
    "id": "derive.no-bare-head",
@@ -2295,7 +2394,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2310,10 +2408,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "derive.prop-in-prompt",
@@ -2323,7 +2422,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2338,10 +2436,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "derive.512-tokens",
@@ -2351,7 +2450,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2366,10 +2464,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "judge.j1-items",
@@ -2488,7 +2587,6 @@
    "scope": "all",
    "check": "recheck.stage_why_errors",
    "pass": [
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2505,10 +2603,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.2
+   "rate": 0.1333
   },
   {
    "id": "spec.quote-matches-verse",
@@ -2518,7 +2617,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2533,10 +2631,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "spec.action-place-on-figure",
@@ -2545,7 +2644,6 @@
    "check": "check_scenes.place_on_figure_errors",
    "pass": [
     "authored-david-gath-achish",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2560,12 +2658,13 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [
     "authored-saul-gilgal-amalek"
    ],
-   "rate": 0.2857
+   "rate": 0.2143
   },
   {
    "id": "generate.thrown-guide",
@@ -2575,7 +2674,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2590,10 +2688,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "generate.guide-backdrop",
@@ -2603,7 +2702,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2618,10 +2716,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "generate.guide-body-build",
@@ -2631,7 +2730,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2646,10 +2744,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "generate.dodge-clear",
@@ -2659,7 +2758,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2674,10 +2772,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "generate.guide-costume-legs",
@@ -2687,7 +2786,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2702,10 +2800,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "derive.youth-noun",
@@ -2715,7 +2814,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2730,10 +2828,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "generate.pose-skeleton",
@@ -2743,7 +2842,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2758,10 +2856,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "generate.figure-scale",
@@ -2769,7 +2868,6 @@
    "scope": "all",
    "check": "recheck.figure_scale_errors",
    "pass": [
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2784,13 +2882,14 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek"
    ],
-   "rate": 0.2308
+   "rate": 0.1538
   },
   {
    "id": "derive.no-second-point",
@@ -2800,7 +2899,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2815,10 +2913,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "generate.youth-height",
@@ -2828,7 +2927,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2843,10 +2941,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "generate.height-ratio",
@@ -2854,7 +2953,6 @@
    "scope": "all",
    "check": "recheck.height_ratio_errors",
    "pass": [
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2869,13 +2967,14 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek"
    ],
-   "rate": 0.2308
+   "rate": 0.1538
   },
   {
    "id": "generate.seated-height",
@@ -2885,7 +2984,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2900,10 +2998,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "generate.pose-hold",
@@ -2913,7 +3012,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2928,10 +3026,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "generate.split-control",
@@ -2941,7 +3040,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2956,10 +3054,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "derive.prop-size-relative",
@@ -2969,7 +3068,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -2984,10 +3082,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "generate.flight-position",
@@ -2997,7 +3096,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -3012,10 +3110,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "generate.flight-height",
@@ -3025,7 +3124,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -3040,10 +3138,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "derive.empty-hand-open",
@@ -3053,7 +3152,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -3068,10 +3166,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "derive.wall-material",
@@ -3081,7 +3180,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -3096,10 +3194,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "derive.no-inflating-build",
@@ -3108,7 +3207,6 @@
    "check": "recheck.inflating_build_errors",
    "pass": [
     "authored-david-gath-achish",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -3124,10 +3222,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.2667
+   "rate": 0.2
   },
   {
    "id": "derive.prop-size-coverage",
@@ -3137,7 +3236,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -3152,10 +3250,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "derive.held-hold",
@@ -3165,7 +3264,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -3180,10 +3278,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "derive.crowd-stage",
@@ -3193,7 +3292,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -3208,10 +3306,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "generate.eye-level-perspective",
@@ -3221,7 +3320,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -3236,10 +3334,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "spec.solo-off-center",
@@ -3249,7 +3348,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -3264,10 +3362,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "spec.inset",
@@ -3277,7 +3376,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -3292,10 +3390,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   },
   {
    "id": "derive.plate-cast-token",
@@ -3305,7 +3404,6 @@
    "pass": [
     "authored-david-gath-achish",
     "authored-saul-gilgal-amalek",
-    "authored-solomon-jerusalem-birth",
     "authored-solomon-jerusalem-birth-inset",
     "authored-solomon-jerusalem-two-mothers"
    ],
@@ -3320,10 +3418,11 @@
     "authored-saul-jabesh-rescue",
     "authored-saul-michmash-battle",
     "authored-saul-mizpah-chosen",
-    "authored-saul-nob-massacre"
+    "authored-saul-nob-massacre",
+    "authored-solomon-jerusalem-birth"
    ],
    "none": [],
-   "rate": 0.3333
+   "rate": 0.2667
   }
  ]
 }

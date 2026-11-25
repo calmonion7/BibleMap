@@ -14,7 +14,7 @@
   "age": "middle-aged prophet",
   "sex": "male",
   "role": "prophet",
-  "hair": "dark hair",
+  "hair": "dark hair streaked with gray",
   "beard": "dark beard",
   "headwear": "none",
   "build": "average build",
@@ -68,7 +68,7 @@
   "_why": {
     "age": "[저작](왕 곁에서 오래 일한 선지자 대표값; 삼하 7:2 「왕이 선지자 나단에게 이르되」는 직분만 말하고 나이는 말하지 않음)",
     "build": "[저작](역표 동석 인물과 구분용 평균 체격, 구절은 체격을 말하지 않음)",
-    "hair": "[저작](역표 동석 인물과 구분용 검은 머리, 구절은 머리털을 말하지 않음)",
+    "hair": "[저작](역표 동석 인물과 구분용 검은 머리, 구절은 머리털을 말하지 않음 · 50대 card.headOutline 「streaked with gray」를 더함 · 카드 나이·머리 윤곽 글에 맞춤 — task 453)",
     "beard": "[저작](역표 동석 인물과 구분용 검은 수염, 구절은 수염을 말하지 않음)",
     "headwear": "[저작](맨머리 선지자 표현, 구절은 쓴 것을 말하지 않음)",
     "costume": "[저작](시대 복식 고증 — 철기 초 이스라엘 남성 어두운 모직 겉옷과 띠)",

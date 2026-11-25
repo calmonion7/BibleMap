@@ -28,7 +28,10 @@ task#379 — `--set spec-regen`: 378에서 명세를 고친 7장면(params.SPEC_
 
 편집 실행·되붙임·조작 확인은 gen_ref_edit_lightning·gen_ref_edit_2511 그대로(360·361 재현값 무변경), 몸·머리 상자만 장면 명세에서 일반화.
 생성 프로세스는 한 번에 하나(시작 전 pgrep). 산출은 레포 밖 ~/.local/biblemap-imggen/night-pilot/<장면>/{base,edit}/,
-목록은 samples/night-pilot/metrics.json(params.NIGHT_*, notes/NIGHT-PILOT.md 고정 절)."""
+목록은 samples/night-pilot/metrics.json(params.NIGHT_*, notes/NIGHT-PILOT.md 고정 절).
+
+ADR 261030-011200(2026-10-30): 정본 참조 편집은 기본 경로에서 뺐다. task 369의 `edit-pick`·편집 확인 흐름은 꺼졌고(명령은 멈춤),
+`night` 묶음(후보 편집 켬)은 368 재현 전용이다. 편집 코드와 재현값은 재현·대조 실험용으로 남긴다."""
 import json, os, subprocess, sys, time
 
 from PIL import Image, ImageDraw
@@ -326,6 +329,8 @@ def record(m, path):
 
 if __name__ == "__main__":
     cmd = ARGV[1]
+    if cmd == "edit-pick":   # ADR 261030-011200 — 고른 장 편집·확인 흐름은 없앰(편집기 통과만으로 원래 화소 화풍이 바뀜)
+        sys.exit("[Night] edit-pick은 꺼졌다 — ADR 261030-011200(정체성은 어휘 정본만, 고른 바탕이 그대로 승인본)")
     if SET in ("plain-words", "jordan-moment"):   # task#382·385 — 회차·사다리·후보 화면은 plain_words가 맡는다
         import plain_words
         plain_words.main(ARGV[1:])

@@ -3,9 +3,10 @@
   "id": "authored-saul-gilgal-amalek",
   "title": "사울 — 길갈에서 겉옷자락이 찢어지다",
   "verses": {
-    "range": "삼상 15:7-28",
+    "range": "삼상 15:24-28",
     "quotes": {
-      "15:22": "사무엘이 가로되 여호와께서 번제와 다른 제사를 그 목소리 순종하는 것을 좋아하심 같이 좋아하시겠나이까 순종이 제사보다 낫고 듣는 것이 수양의 기름보다 나으니",
+      "15:24": "사울이 사무엘에게 이르되 내가 범죄하였나이다 내가 여호와의 명령과 당신의 말씀을 어긴 것은 내가 백성을 두려워하여 그 말을 청종하였음이니이다",
+      "15:25": "청하오니 지금 내 죄를 사하고 나와 함께 돌아가서 나로 여호와께 경배하게 하소서",
       "15:26": "사무엘이 사울에게 이르되 나는 왕과 함께 돌아가지 아니하리니 이는 왕이 여호와의 말씀을 버렸으므로 여호와께서 왕을 버려 이스라엘 왕이 되지 못하게 하셨음이니이다 하고",
       "15:27": "사무엘이 가려고 돌이킬 때에 사울이 그의 겉옷자락을 붙잡으매 찢어진지라",
       "15:28": "사무엘이 그에게 이르되 여호와께서 오늘 이스라엘 나라를 왕에게서 떼어서 왕보다 나은 왕의 이웃에게 주셨나이다"
@@ -13,81 +14,191 @@
   },
   "moment": {
     "verse": "15:27",
-    "why": "사무엘이 돌이켜 떠나려 할 때 사울이 그의 겉옷자락을 붙잡아 찢어진 순간을 고정한다 — 아각 포로 처분(15:8-9)이나 이후의 심판 선언(15:28)은 이 순간의 그림 요소가 아니다."
+    "why": "사무엘이 사울과 함께 돌아가기를 거절하고(15:26) 가려고 돌이킬 때 사울이 그의 겉옷자락을 붙잡아 찢어진 순간(15:27)을 고정한다 — 아말렉을 친 일·아각을 남긴 일(15:7-9)은 앞선 원인이고, 사울이 다시 청해 사무엘이 따라감(15:30-31)과 아각을 찍어 쪼갬(15:33)은 뒤의 일이다."
   },
+  "verse_elements": [
+    {
+      "verse": "15:25",
+      "quote": "청하오니 지금 내 죄를 사하고 나와 함께 돌아가서",
+      "kind": "행동",
+      "ko": "사울이 죄 사함과 함께 돌아가기를 간청함 — 매달리는 얼굴(표정은 본문 밖 · 저작자 정함)",
+      "en": "pleading",
+      "field": "figures[0].expression"
+    },
+    {
+      "verse": "15:26",
+      "quote": "나는 왕과 함께 돌아가지 아니하리니",
+      "kind": "행동",
+      "ko": "사무엘이 왕과 함께 돌아가기를 거절함",
+      "en": "refusing to go back with the king",
+      "field": "figures[1].gesture"
+    },
+    {
+      "verse": "15:27",
+      "quote": "사무엘이 가려고 돌이킬 때에",
+      "kind": "행동",
+      "ko": "사무엘이 떠나려고 몸을 돌이킴(걸음 방향은 본문 밖 · 저작자 정함)",
+      "en": "turning away to leave",
+      "field": "figures[1].gesture"
+    },
+    {
+      "verse": "15:27",
+      "quote": "사울이 그의 겉옷자락을 붙잡으매",
+      "kind": "행동",
+      "ko": "사울이 사무엘의 겉옷 자락을 붙잡음(「그의」 = 사무엘은 [추론] · 뒤에서·한 손은 본문 밖 · 저작자 정함)",
+      "en": "clutching the lower hem of the old prophet's robe",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "15:27",
+      "quote": "겉옷자락",
+      "kind": "지물",
+      "ko": "사무엘이 입은 긴 겉옷의 자락(색·양모는 본문 밖 · 저작자 정함)",
+      "en": "a long dark brown wool robe",
+      "field": "figures[1].costume"
+    },
+    {
+      "verse": "15:27",
+      "quote": "찢어진지라",
+      "kind": "행동",
+      "ko": "붙잡힌 자락이 찢어짐",
+      "en": "the cloth tearing in his grip",
+      "field": "figures[0].gesture"
+    },
+    {
+      "verse": "15:24",
+      "quote": "내가 범죄하였나이다",
+      "kind": "행동",
+      "ko": "사울이 죄를 고백함",
+      "out": "조금 앞의 고백(말) — 순간 밖 · 매달리는 얼굴은 15:25 요소가 실음"
+    },
+    {
+      "verse": "15:24",
+      "quote": "내가 백성을 두려워하여",
+      "kind": "무리",
+      "ko": "사울이 두려워한 백성",
+      "out": "고백 속 까닭 — 백성이 이 말을 나누는 자리에 있었다는 말이 아님(순간 밖)"
+    },
+    {
+      "verse": "15:26",
+      "quote": "여호와께서 왕을 버려 이스라엘 왕이 되지 못하게 하셨음이니이다",
+      "kind": "행동",
+      "ko": "거절의 까닭(여호와께서 왕을 버리심)",
+      "out": "거절의 까닭을 밝히는 말 — 그림의 순간은 15:27 돌이킴·찢어짐"
+    },
+    {
+      "verse": "15:28",
+      "quote": "여호와께서 오늘 이스라엘 나라를 왕에게서 떼어서",
+      "kind": "행동",
+      "ko": "사무엘이 찢어짐을 나라를 떼어 냄으로 풂",
+      "out": "찢어진 직후 사무엘의 말(순간 다음) — 찢어진 자락이 이 말의 표지로 그림에 남음"
+    },
+    {
+      "verse": "15:28",
+      "quote": "왕보다 나은 왕의 이웃에게",
+      "kind": "인물",
+      "ko": "왕보다 나은 왕의 이웃(다윗)",
+      "out": "말 속의 다른 사람 — 이 자리에 없음(순간 밖)"
+    },
+    {
+      "verse": "15:28",
+      "quote": "오늘",
+      "kind": "때",
+      "ko": "찢어진 그 날",
+      "out": "날짜 표지 — 한 순간의 모습이 아님"
+    }
+  ],
   "meaning": {
-    "ko": "길갈 넓은 들에서 사무엘이 돌이켜 떠나려 할 때 사울이 뒤에서 그의 겉옷자락을 붙잡아 자락이 찢어진다",
-    "en": "On the wide open field at Gilgal, as Samuel turns to walk away, Saul seizes the hem of his robe from behind and it tears",
-    "verse": "삼상 15:27"
+    "ko": "길갈에서 사무엘이 왕과 함께 돌아가기를 거절하고 떠나려 돌이킬 때, 사울이 뒤에서 그의 겉옷 자락을 붙잡아 자락이 찢어진다",
+    "en": "At Gilgal, as Samuel refuses to go back with the king and turns away to leave, Saul seizes the hem of his robe from behind and it tears",
+    "verse": "삼상 15:26 「나는 왕과 함께 돌아가지 아니하리니」 · 15:27 「사무엘이 가려고 돌이킬 때에 사울이 그의 겉옷자락을 붙잡으매 찢어진지라」 · 자리가 길갈인 것은 15:12·15:13 [추론] · 「그의」 = 사무엘은 [추론] · 뒤에서·자세는 본문 밖 · 저작자 정함(구도)"
   },
   "relation": {
-    "ko": "사울의 손이 뒤에서 사무엘 겉옷 뒷자락을 움켜쥐어 두 사람이 닿아 있고, 사무엘이 떠나며 둘 사이에서 자락이 찢어진다",
-    "en": "Saul's hand clutches the back hem of Samuel's robe from behind, so the two men are joined by the cloth, and the robe is tearing between them as Samuel walks away",
-    "verse": "삼상 15:27 · 뒤에서·손 위치 본문 밖 · 저작자 정함(2026-10-19 그릴링)"
+    "ko": "사울의 손이 뒤에서 사무엘 겉옷 아랫자락을 움켜쥐었고, 사무엘이 떠나려 걸어 나가자 사울의 손안에서 그 아랫자락이 찢어진다",
+    "en": "Saul's hand clutches the lower hem of Samuel's robe from behind, and the hem of Samuel's robe tears in Saul's grip as Samuel strides away",
+    "verse": "삼상 15:27(돌이킴·붙잡음·찢어짐) · 뒤에서·손 위치 본문 밖 · 저작자 정함(2026-10-19 그릴링 · PROMPTING 23 접촉은 관계 문장) · task 678 시도 3: 「joined by the cloth … tearing between them」은 사울 몸에 찢긴 망토를 그림(756 찢어짐 이유 「찢긴 것은 왼쪽 남자 자신의 망토」) → 찢기는 천을 사무엘 아랫자락으로 못박음"
   },
   "whole_background": {
-    "ko": "길갈의 넓은 마른 들 — 성긴 마른 풀, 멀리 흐린 낮은 언덕, 옅은 하늘, 건물 없음",
-    "en": "a wide dry open field at Gilgal, sparse dry grass, hazy low hills far behind, pale sky, with no buildings anywhere",
-    "verse": "삼상 15:21 「길갈」 · 들의 모습 본문 밖 · 저작자 정함"
+    "ko": "길갈의 넓은 마른 평지 — 성긴 마른 풀, 멀리 모여 있는 양 떼와 소 떼, 흐린 낮은 언덕, 엷은 하늘",
+    "en": "a wide dry plain at Gilgal, sparse dry grass, flocks of sheep and cattle gathered far off, hazy low hills far behind, pale sky",
+    "verse": "삼상 15:12 「길갈로 내려 갔다」 · 15:13 「사무엘이 사울에게 이른즉」 [추론](만난 자리가 길갈) · 수 4:19 「여리고 동편 지경 길갈에 진 치매」(요단을 건넌 낮은 땅) · 양 떼·소 떼는 15:14 「이 양의 소리와 내게 들리는 소의 소리」 · 15:21 「길갈에서 당신의 하나님 여호와께 제사하려고 양과 소를 취하였나이다」 [추론](이 만남 때 길갈에 있었고 멀리 있음) · 평지·풀·언덕·하늘 모양은 본문 밖 · 저작자 정함"
+  },
+  "situation": {
+    "text": "사울이 아말렉 사람을 치고(15:7) 아각과 양과 소의 가장 좋은 것을 남겼으며(15:9), 15:12 「사울이 갈멜에 이르러 자기를 위하여 기념비를 세우고 돌이켜 행하여 길갈로 내려 갔다」 — 앞선 일이라 그리지 않는다. 사무엘이 사울에게 이르러(15:13 「사무엘이 사울에게 이른즉」) 양과 소의 소리를 듣고(15:14 「내 귀에 들어오는 이 양의 소리와 내게 들리는 소의 소리는 어찜이니이까」) 사울을 책망하였다(15:17-23) — 같은 만남의 앞부분이라 그리지 않는다. 사울이 「내가 범죄하였나이다」(15:24) 하고 「청하오니 지금 내 죄를 사하고 나와 함께 돌아가서 나로 여호와께 경배하게 하소서」(15:25) 하자, 사무엘이 「나는 왕과 함께 돌아가지 아니하리니」(15:26) 하였고, 「사무엘이 가려고 돌이킬 때에 사울이 그의 겉옷자락을 붙잡으매 찢어진지라」(15:27 — 고정한 순간). 이어 사무엘이 「여호와께서 오늘 이스라엘 나라를 왕에게서 떼어서 왕보다 나은 왕의 이웃에게 주셨나이다」(15:28) 하였다 — 찢어진 직후의 말이다. 그래서 이 장면에는 사울과 사무엘 두 사람이 있다. 「그의 겉옷자락」의 「그」가 사무엘이라는 것은 [추론] — 돌이켜 가는 사람의 겉옷을 뒤에서 붙잡았고, 15:28에서 사무엘이 찢어짐을 나라를 떼어 냄으로 풀었다. 백성과 장로들이 길갈에 있었으나(15:21 · 15:30) 이 말을 나눌 때 곁에 있었다는 말은 본문에 없어 그리지 않는다 [추론]. 아각은 15:32 「아각을 내게로 이끌어 오라」 할 때 비로소 사무엘 앞에 왔으니 이 자리에 없다 [추론]. 지리: 자리는 길갈이다 — 사울이 길갈로 내려 갔고(15:12 [직접]) 사무엘이 그에게 이르렀으니 만난 자리가 길갈이라는 것은 [추론](15:21 「길갈에서」도 받침). 길갈은 요단을 건너 진 친 여리고 동편 땅(수 4:19 「여리고 동편 지경 길갈에 진 치매」)이라 낮은 평지이고, 15:12 「내려 갔다」와 맞는다. 양 떼와 소 떼는 사무엘이 이 만남에서 그 소리를 들었고(15:14) 백성이 길갈에서 제사하려고 취하였으니(15:21) 이 만남 때 길갈에 있었다는 것은 [추론], 멀리 둔 자리는 저작자 정함. 평지·풀·언덕·하늘 모양은 본문 밖 · 저작자 정함. 화면에서는 사무엘이 오른쪽으로 떠나려 돌이키고 사울이 왼쪽 뒤에서 붙잡는다(좌우는 저작자 정함). 이어 사울이 다시 청하고(15:30) 사무엘이 돌이켜 사울을 따라감(15:31), 아각을 찍어 쪼갬(15:33)은 뒤의 일이라 그리지 않는다.",
+    "verse": "삼상 15:24-28",
+    "same_time": {
+      "15:24": "조금 앞 — 같은 대화: 사울이 「내가 범죄하였나이다」 고백",
+      "15:25": "조금 앞 — 같은 대화: 사울이 죄 사함과 함께 돌아가기를 청함",
+      "15:26": "바로 앞 — 사무엘이 함께 돌아가기를 거절함",
+      "15:27": "고정한 순간 — 사무엘이 가려고 돌이킬 때 사울이 겉옷자락을 붙잡아 찢어짐",
+      "15:28": "바로 뒤 — 같은 대화: 사무엘이 찢어짐을 나라를 떼어 냄으로 풂(말)"
+    }
   },
   "background": [
     {
-      "what": "길갈의 넓은 들",
-      "verse": "15:21"
+      "what": "길갈의 넓은 마른 평지와 멀리 모인 양 떼·소 떼",
+      "verse": "15:12 「길갈로 내려 갔다」 [직접] · 15:13 [추론](만난 자리가 길갈) · 양 떼·소 떼 15:14 · 15:21 [추론] · 평지 모양 본문 밖 · 저작자 정함"
     }
   ],
+  "crowds": [],
   "figures": [
     {
       "cast": "saul",
       "role": "사울 — 겉옷자락을 붙잡는 왕",
-      "pose": "손을 뻗어 사무엘의 겉옷자락을 붙잡는다",
+      "pose": "한쪽 무릎을 꿇고 몸을 앞으로 기울여, 떠나는 사무엘의 겉옷 아랫자락을 뒤에서 한 손으로 붙잡는다",
       "prop": "a torn robe corner",
       "facing": "right",
       "region": "saul",
-      "verse": "15:27",
+      "verse": "15:24-27 · 무릎 꿇음·몸 기울임·한 손·뒤에서는 본문 밖 · 저작자 정함(task 678 시도 3 — 선 채 붙잡기는 「어깨에 손 얹고 나란히 걷기」로 그려짐)",
       "expression": {
-        "ko": "절박하게 매달리는 얼굴",
+        "ko": "죄를 고백하고 매달리는 절박한 얼굴",
         "en": "a desperate, pleading face",
-        "verse": "삼상 15:25·27 · 표정 본문 밖 · 저작자 정함"
+        "verse": "삼상 15:24 「내가 범죄하였나이다」 · 15:25 「청하오니」 · 표정 본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "몸을 앞으로 기울여 한 손을 뻗어 노선지자 겉옷 뒷자락을 움켜쥐었고, 그 손안에서 천이 찢어진다",
-        "en": "leaning forward, one hand stretched out and clutching the back hem of the old prophet's robe, the cloth tearing in his grip",
-        "verse": "삼상 15:27 「겉옷자락을 붙잡으매 찢어진지라」 · 몸 기울임 본문 밖 · 저작자 정함"
+        "ko": "한쪽 무릎을 꿇고 몸을 앞으로 기울여, 한 손으로 늙은 선지자의 겉옷 아랫자락을 뒤에서 움켜쥐고 다른 손은 펴서 들어 간청하며, 그 손안에서 천이 찢어진다",
+        "en": "down on one knee, leaning forward, one hand clutching the lower hem of the old prophet's robe from behind, the other hand raised open in entreaty, the cloth tearing in his grip",
+        "verse": "삼상 15:27 「사울이 그의 겉옷자락을 붙잡으매 찢어진지라」 · 「그의」 = 사무엘 [추론] · 15:25 「청하오니」(간청 손) [추론] · 무릎 꿇음·몸 기울임·한 손·뒤에서는 본문 밖 · 저작자 정함"
       },
       "costume": {
-        "ko": "어두운 양모 튜닉과 가죽 띠, 관 없음",
-        "en": "a dark wool tunic with a leather belt, no crown",
-        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+        "ko": "어두운 갈색 양모 튜닉과 가죽 띠",
+        "en": "a dark brown wool tunic with a leather belt",
+        "verse": "본문 밖 · 저작자 정함(카드 층 옷 색 brown과 맞춤)"
       },
       "gaze": "samuel",
-      "screen_facing": "right"
+      "screen_facing": "right",
+      "stage_why": "[추론] 삼상 13:1 「사울이 왕이 될 때에 사십 세라」 — 즉위 때 40세. 아말렉 버림은 다윗 기름부음보다 앞선다(삼상 16:1 「내가 이미 사울을 버려 이스라엘 왕이 되지 못하게 하였거늘」 — 그 뒤 수금 타는 다윗이 오는 재위 후반은 saul-elder). 약 45세는 프로젝트 연대 정본(data/person_events/saul.json — 즉위 BC 1050경 · 아말렉 BC 1045경)에서 나온 값이라 id saul(CAST.md 즉위~아말렉 40대 구간). 키는 카드 값(삼상 10:23 「다른 사람보다 어깨 위나 더 크더라」)."
     },
     {
       "cast": "samuel",
-      "role": "사무엘 — 돌이켜 떠나는 선지자",
-      "pose": "돌아서서 걸어간다",
-      "prop": "a wooden staff",
+      "role": "사무엘 — 거절하고 돌이켜 떠나는 선지자",
+      "pose": "몸을 돌이켜 화면 오른쪽으로 걸어 떠나려 한다",
+      "prop": "none",
       "facing": "right",
       "region": "samuel",
-      "verse": "15:26-27 · 지물 본문 밖 · 저작자 정함",
+      "verse": "15:26-27 · 걸음 방향·빈손은 본문 밖 · 저작자 정함",
       "expression": {
-        "ko": "엄하고 슬픈 얼굴",
-        "en": "a stern, sorrowful face",
-        "verse": "삼상 15:26·28 · 표정 본문 밖 · 저작자 정함"
+        "ko": "엄하고 슬픈 늙은 얼굴",
+        "en": "a stern, sorrowful old face",
+        "verse": "삼상 15:26(거절) · 표정 본문 밖 · 저작자 정함"
       },
       "gesture": {
-        "ko": "뒤의 사람에게서 몸을 반쯤 돌리고 나무 지팡이를 짚은 채 화면 오른쪽 끝으로 걸어 떠난다",
-        "en": "half turned away from the man behind him, leaning on one wooden staff, striding off toward the right edge",
-        "verse": "삼상 15:27 「가려고 돌이킬 때에」 · 지팡이 본문 밖 · 저작자 정함"
+        "ko": "왕과 함께 돌아가기를 거절하고, 뒤의 왕에게서 몸을 돌이켜 걸어 떠나려 한다",
+        "en": "refusing to go back with the king, turning away to leave, stepping away from him",
+        "verse": "삼상 15:26 「나는 왕과 함께 돌아가지 아니하리니」 · 15:27 「사무엘이 가려고 돌이킬 때에」 · 걸음 방향은 본문 밖 · 저작자 정함 · task 678 시도 4: 「striding off toward the right edge」 뺌 — 시선 ahead·방향 구절과 함께 「right edge」가 세 번이라 화면 오른쪽 끝에 사무엘이 하나 더 그려짐(757 두 사람뿐 1/8)"
       },
       "costume": {
-        "ko": "어두운 양모 긴 겉옷과 천 띠 — 뒷자락이 찢어짐",
-        "en": "a long dark wool robe with a cloth belt, its back hem torn",
-        "verse": "삼상 15:27 「겉옷자락」 · 색·양모 본문 밖 · 저작자 정함(카드 층 옷 색과 같음)"
+        "ko": "긴 짙은 갈색 양모 겉옷과 천 띠 — 뒷자락이 찢어짐",
+        "en": "a long dark brown wool robe with a cloth belt, its back hem torn",
+        "verse": "삼상 15:27 「겉옷자락」 · 삼상 28:14 「그가 겉옷을 입었나이다」 [추론](사무엘의 겉옷 차림) · 색·양모·띠는 본문 밖 · 저작자 정함(카드 층 옷 색 brown과 맞춤)"
       },
-      "gaze": "ahead",
-      "screen_facing": "right"
+      "gaze": {
+        "ko": "앞을 똑바로 봄",
+        "en": "looking straight ahead",
+        "verse": "본문 밖 · 저작자 정함 · task 678 시도 4 — 예약값 ahead의 「toward the right edge of the picture」가 사무엘 복제를 부름(757)"
+      },
+      "screen_facing": "right",
+      "stage_why": "[추론] 삼상 8:1 「사무엘이 늙으매」 — 사울이 왕이 되기 전에 이미 늙었고, 삼상 12:2 「나는 늙어 머리가 희었고」. 15장은 그 뒤라 노년(id samuel · 카드 elder). 70대는 카드 값(본문 밖)."
     }
   ],
   "regions": {
@@ -98,26 +209,26 @@
       1.0
     ],
     "saul": [
-      0.15,
-      0.37,
-      0.315,
+      0.28,
+      0.23,
+      0.44,
       0.92
     ],
     "samuel": [
-      0.55,
-      0.37,
-      0.715,
+      0.45,
+      0.32,
+      0.6,
       0.92
     ]
   },
-  "_regions_why": "사울·사무엘 모두 세로 0.55(둘 다 장년~노년 성인). 좌우 배치는 15:27(돌이켜 떠나는 사무엘을 사울이 뒤에서 붙잡음) — 둘 다 오른쪽을 향해 같은 방향으로 움직인다.",
+  "_regions_why": "사람 수 2 → 무리 단계 duo(0.60~0.70). 사울 카드 키 tall · 사무엘 average라 같은 깊이·같은 발 높이에서 구역 높이 비 0.87(한 칸 = 머리 하나): 사울 0.69 · 사무엘 0.60. 사울이 사무엘 겉옷 뒷자락을 붙잡아야 해서(15:27) 두 구역 사이를 0.02로 붙였다 — 뒤에서·좌우 배치는 저작자 정함. 둘 다 오른쪽을 향해 같은 방향으로 움직인다. task 678 시도 2: 뼈대 grasp_hem_right의 손목(기운 몸으로 곧게 뻗은 팔 끝)이 사무엘 등 허리에 닿도록 사무엘 구역을 0.036 왼쪽으로(0.49 → 0.454 — 두 구역이 0.016 겹침 · 0.02 간격에선 손목이 등에서 약 40화소 모자람, 가이드 그림 측정). task 678 시도 3: 사울이 한쪽 무릎을 꿇어(상자 = 서 있을 때 키 — kneel_bow_left 규약) 사무엘 무릎 높이 아랫자락을 쥠 — 사울 0.28~0.44 · 사무엘 0.45~0.60(무릎 꿇은 사울 앞무릎과 사무엘 등 사이가 띄어져 떠나는 걸음이 보임 · 손목이 사무엘 등 쪽 겉옷 끝에 닿게 가이드 그림으로 맞춤).",
   "stages": [
     {
       "id": "S1",
       "kind": "full",
       "region": "full",
-      "verse": "15:21",
-      "prompt": "a wide dry open field, sparse dry grass, hazy low hills far behind, pale sky, no people.",
+      "verse": "15:12-14 · 15:21 [추론] · 평지 모양 본문 밖 · 저작자 정함",
+      "prompt": "a wide dry plain at Gilgal, sparse dry grass, flocks of sheep and cattle gathered far off, hazy low hills far behind, pale sky, no people.",
       "neg": [
         "people",
         "figures",
@@ -138,7 +249,7 @@
       "kind": "plate",
       "region": "saul",
       "verse": "15:27",
-      "prompt": "{cast:saul}, standing tall, reaching one hand forward, gripping one torn strip of cloth, facing right.",
+      "prompt": "{cast:saul}, leaning forward, one hand stretched out clutching a torn robe corner, facing right.",
       "neg": [
         "armour",
         "sword",
@@ -153,15 +264,15 @@
       "id": "S3",
       "kind": "plate",
       "region": "samuel",
-      "verse": "15:26",
-      "prompt": "{cast:samuel}, standing tall, gripping one wooden staff upright, walking away, facing right.",
+      "verse": "15:26-27",
+      "prompt": "{cast:samuel}, standing, slightly stooped, turning away to leave, facing right.",
       "neg": [
         "armour",
         "sword",
         "spear",
         "crown",
         "modern clothes",
-        "two staffs",
+        "staff",
         "sitting"
       ]
     }
@@ -175,8 +286,8 @@
     ],
     "gap_bands": [
       [
-        0.315,
-        0.55
+        0.47,
+        0.49
       ]
     ],
     "crest_x": {
@@ -196,7 +307,7 @@
         "S2",
         "S3"
       ],
-      "prompt": "{castc:saul} reaching out, gripping the torn robe corner of {castc:samuel}, who turns away with one wooden staff.",
+      "prompt": "{castc:saul} leaning forward, clutching the torn robe corner of {castc:samuel}, who turns away to leave.",
       "neg": [
         "armour",
         "sword",
@@ -205,24 +316,41 @@
         "royal robe",
         "modern clothes",
         "sitting",
-        "two staffs",
-        "third person"
+        "third person",
+        "staff"
       ],
       "_why": "사울이 사무엘의 겉옷자락을 붙잡는 순간(15:27)은 두 사람이 닿아야 성립한다. 판 경로는 둘을 다른 종이에 따로 그려 떨어진 상자에 얹으므로 이 순간이 그려질 수 없었다 — 묶음 A A1에서 기계 판정은 통과했는데 정작 찢는 장면이 없었다. 짧은 인물 서술을 쓰는 것은 두 사람을 한 프롬프트에 넣으면 77토큰을 넘기 때문이고, 얼굴은 앵커가 진다."
     }
   ],
+  "guide": {
+    "depth": {
+      "saul": 1.0,
+      "samuel": 1.0
+    },
+    "shape": {
+      "saul": "person",
+      "samuel": "person"
+    },
+    "body": "card",
+    "why": "단계 ① — 가이드가 없어 크기 규칙 둘(generate.figure-scale·height-ratio)이 못 잼이었다. 사울(왼쪽)·사무엘(오른쪽)은 서 있는 사람 꼴, 같은 깊이 — 사울이 바로 뒤에서 겉옷 자락을 붙잡으므로(15:27) 두 구역 사이를 0.02로 붙였다(간격은 문구가 아니라 가이드 칸 — PROMPTING 28-4). 카드 체격 몸 너비(generate.guide-body-build). 사울 키 0.69 · 사무엘 0.60은 duo(0.60~0.70) 안이고 비 0.87은 카드 키 tall·average 한 칸. task 678 시도 2 — 뼈대 둘(generate.split-control 스텝별 나눔): 사울 grasp_hem_right(몸을 앞으로 기울여 앞 팔을 곧게 낮게 뻗어 손목이 사무엘 허리 아래 옷자락 · 다른 손은 펴서 가슴 높이로 사무엘 쪽에 내밂 = 간청), 사무엘 walk_away_right(두 팔 몸 옆에 띄워 내림 + 보폭 — 화면 오른쪽으로 걸어 떠남). 뼈대 없던 시도 1(755 — 사람 꼴 깊이만)은 붙잡음 2/8 · 간청 0/8(s7 두 주먹 치켜듦 · s5 손이 허공) · 붙잡은 손 또렷함 2/8 · 사무엘 손이 허리띠 높이(팔 길이 2/8)였다. 접촉은 relation 한 문장 + 사울 gesture도 함께 맡는다(PROMPTING 23). 평지·양 떼는 문구가 맡는다. 시도 3 — 선 채 붙잡기(grasp_hem_right, 756)는 손이 사무엘 어깨에 얹혀 「나란히 걷기」(붙잡음 1/8 · 간청 0/8): 사울 kneel_grasp_right(한쪽 무릎 꿇고 앞 손목이 사무엘 무릎 높이 아랫자락 · 다른 손 펴서 가슴 높이) · 사무엘 walk_away_right는 두 팔을 걸음에 맞춰 앞뒤로 흔듦(756 팔 길이 1/8 — 몸 옆 내린 손이 허리 높이로 읽힘).",
+    "pose": {
+      "saul": "kneel_grasp_right",
+      "samuel": "walk_away_right"
+    },
+    "split": true
+  },
   "approved": {
     "final": {
       "path": "night-pick",
-      "seed": 11,
+      "seed": 5,
       "kind": "base",
-      "image": "/Users/calmonion/.local/biblemap-imggen/whole-fix/authored-saul-gilgal-amalek/base/s11.png",
+      "image": "samples/amalek-step23-t4/composition-A-s5.png",
       "by": "user",
-      "on": "2026-10-19",
-      "spec_hash": "3005474076f6",
-      "rules_version": "14fb4150e572",
-      "prompt_hash": "74d675a3f290",
-      "prompt_matches_spec": true
+      "on": "2026-11-23",
+      "spec_hash": "7b10b6a5e4a9",
+      "prompt_hash": null,
+      "rules_version": "de4b2e989b5b",
+      "prompt_hash_why": "승인 경로가 생성 프롬프트를 넘기지 않음"
     }
   }
 }

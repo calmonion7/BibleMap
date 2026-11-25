@@ -43,7 +43,7 @@
     },
     "silhouette": {
       "class": "lean",
-      "text": "gaunt bony frame, sunken chest"
+      "text": "frail, slender old frame"
     },
     "headOutline": {
       "class": "headwrap",
@@ -73,7 +73,7 @@
     "card.heightRel": "[저작](david와 같은 사람 연속)",
     "card.ageBand": "[추론] 왕상 1:1 「나이 많아 늙으니」 — 삼하 5:4 즉위 30세+재위 40년으로 70대",
     "card.beardVolume": "[저작](같은 사람 연속)",
-    "card.silhouette": "[저작](29명 전체 구별 — 사무엘(slight)과 갈림. 왕상 1:1 「이불을 덮어도 따뜻하지 아니한지라」의 쇠약함을 마른 뼈대로 그림)",
+    "card.silhouette": "[저작](29명 전체 구별 — 사무엘(slight)과 갈림. 왕상 1:1 「이불을 덮어도 따뜻하지 아니한지라」의 쇠약함을 마른 뼈대로 그림) · task 677: 「gaunt bony frame, sunken chest」 → 「frail, slender old frame」 — 사람 751 「다윗이 너무야위었고 이불을 상체도 덮고 있게」(맨가슴·갈비뼈로 그려짐), 대상 29:28 「나이 많아 늙도록 부하고 존귀하다가」라 앙상함까지는 본문이 요구하지 않음 (얼굴 정본 지문 gen_face_canon.prompt_sha는 체격 칸을 넣지 않아 정본은 그대로 유효)",
     "card.headOutline": "[저작](29명 전체 구별 — 사무엘과 갈림. 병상의 늙은 왕(왕상 1:1)이라 머리를 감싼 차림으로 정함)",
     "card.costumeColor": "[저작](같은 사람 연속)",
     "face.faceShape": "[추론] 왕상 1:1 「나이 많아 늙으니」 — david 얼굴 연속에 노령 야윔을 얹음",

@@ -24,7 +24,7 @@
       "19:18": "고정한 순간 — 나룻배가 건너가고 왕이 건너려 할 때 시므이가 엎드림(배가 서편에서 와 왕 쪽 강가에 닿아 가족이 오름은 본문 밖 · 387 사람 메모)",
       "19:19": "19:18과 한 문장 — 엎드린 채 하는 말(죄 주지 말라고 빎)",
       "19:20": "같은 말의 끝 — 엎드린 채 이어 말함",
-      "19:31": "바르실래가 왕과 「함께 요단에 이르니」 — 같은 강가에 있음",
+      "19:31": "바르실래가 왕과 「함께 요단에 이르니」 — 같은 강가에 있음 — 19:18 순간에 이미 강가에 있음은 [추론](서사 순서로는 시므이·므비보셋 뒤에 나오나 19:33 건너기 직전이라 같은 때로 봄)",
       "19:32": "같은 때 거기 있는 바르실래의 나이·모습(매우 늙어 팔십 세 · 큰 부자)"
     }
   },
@@ -37,8 +37,8 @@
       "verse": "19:15",
       "quote": "왕이 돌아와",
       "kind": "인물",
-      "ko": "돌아온 왕 다윗 — 60세 전후, 희끗한 수염(귀환 BC 978경 · 출생 1040 = 62세경 · 삼하 5:4 + 13:23·13:38·14:28·15:7 「사 년만에」 · 나이·수염은 본문 밖 · 저작자 정함 · restyle r2 사람 메모 「다윗이 누구인가?」)",
-      "en": "in his early 60s",
+      "ko": "돌아온 왕 다윗 — 60세 전후, 희끗한 수염(62세경은 프로젝트 연대 data/person_events/david.json 출생 BC 1040경 · 귀환 BC 978경으로 셈 · 삼하 5:4 + 13:23·13:38·14:28·15:7 「사 년만에」는 통치 후반 정황 · 나이·수염은 본문 밖 · 저작자 정함 · restyle r2 사람 메모 「다윗이 누구인가?」)",
+      "en": "around 60",
       "field": "figures[0].cast_override"
     },
     {
@@ -93,8 +93,8 @@
       "verse": "19:18",
       "quote": "나룻배가 건너가니",
       "kind": "지물",
-      "ko": "건너가는 나룻배 — 서편에서 건너와 왕 쪽(동편) 강가에 닿음(서편 출발·닿음은 본문 밖 · 387 사람 메모)",
-      "en": "a small flat boat that carries people across a river, which has come across from the far bank and now rests against the near bank",
+      "ko": "건너가는 나룻배 — 서편에서 건너와 왕 쪽(동편) 강가에 닿음(서편 출발·닿음은 본문 밖 · 387 사람 메모) · 크기(사람 키의 두 배 반)는 본문 밖 · 저작자 정함(사전 ferry-boat look.size [저작])",
+      "en": "a small flat boat, about two and a half times as long as a man is tall, that carries people across a river, which has come across from the far bank and now rests against the near bank",
       "field": "stages[S1b].prompt"
     },
     {
@@ -279,7 +279,7 @@
       "verse": "19:18 「왕의 가족을 건네려」 · 신복은 본문 밖 · 저작자 정함(383 사람 메모) · 닿은 배에 오름은 본문 밖 · 저작자 정함(387 사람 메모)",
       "region": "household",
       "count": 12,
-      "count_why": "[저작](「왕의 가족을 건네려 하며」 19:18 — 수 없음, 배에 오르는 가족과 신복이라 작은 무리 12로 어림)"
+      "count_why": "[저작](「왕의 가족을 건네려 하며」 19:18 — 수 없음, 배에 오르는 가족과 신복이라 작은 무리 12로 어림) · 작은 나룻배(사람 키 2.5배)에 다 오르지는 못함 — 일부가 먼저 오르는 중 [저작](19:41 「왕과 왕의 권속과 … 모든 사람」 — 여러 번 건넘을 시사)"
     },
     {
       "what": "사울의 사환 시바와 아들 열다섯·종 스무 명 — 시므이와 함께 요단을 건너 와, 엎드린 시므이 바로 뒤 가까이 왕을 향해 섬",
@@ -318,15 +318,15 @@
           "heightRel": "average",
           "ageBand": {
             "class": "elder",
-            "text": "in his early 60s, a lined face"
+            "text": "around 60, lined face, gray streaks at the temples"
           },
           "beardVolume": {
             "class": "full",
-            "text": "full greying dark beard"
+            "text": "full beard streaked with gray"
           },
           "silhouette": {
-            "class": "lean",
-            "text": "upright lean shoulders"
+            "class": "average",
+            "text": "settled shoulders, thickened waist"
           },
           "headOutline": {
             "class": "crown",
@@ -340,7 +340,7 @@
         "hair": "none",
         "headwear": "gold crown"
       },
-      "cast_override_why": "귀환 때 다윗은 62세경(삼하 5:4 + 13:23·13:38·14:28·15:7 「사 년만에」 · 보수 연대 BC 978경) — 카드 david-elder(60 전후) 위에 이 장면 나이·왕 표지만 덮어씀. 왕관 [추론] 삼하 12:30 「그 왕의 머리에서 보석 있는 면류관을 취하니 그 중량이 한 금 달란트라 다윗이 머리에 쓰니라」 — 랍바 정복(귀환 앞) 때 다윗이 머리에 쓴 금 면류관, 보석 박힘 · 이 순간 관을 썼다는 본문은 없음 · 겉옷은 본문 밖 · 저작자 정함(대상 15:27 겉옷) · restyle r2 사람 메모 「다윗이 누구인가?」 · v1 headwear 「gold crown」은 카드 머리 윤곽 crown과 맞춤(task 440, 규칙 spec.cast-headwear)",
+      "cast_override_why": "귀환 때 다윗은 62세경(프로젝트 연대 data/person_events/david.json 출생 BC 1040경 · 귀환 BC 978경으로 셈 · 삼하 5:4 + 13:23·13:38·14:28·15:7 「사 년만에」는 통치 후반 정황) — 카드 david-elder(60 전후) 그대로 — 이 장면은 왕 표지(머리 윤곽 면류관·겉옷 글)만 덮어씀(나이·수염·체격은 task 452 규칙 spec.cast-identity-fixed로 카드 값). 왕관 [추론] 삼하 12:30 「그 왕의 머리에서 보석 있는 면류관을 취하니 그 중량이 한 금 달란트라 다윗이 머리에 쓰니라」 — 랍바 정복(귀환 앞) 때 다윗이 머리에 쓴 금 면류관, 보석 박힘 · 이 순간 관을 썼다는 본문은 없음 · 겉옷은 본문 밖 · 저작자 정함(대상 15:27 겉옷) · restyle r2 사람 메모 「다윗이 누구인가?」 · v1 headwear 「gold crown」은 카드 머리 윤곽 crown과 맞춤(task 440, 규칙 spec.cast-headwear)",
       "screen_facing": "right",
       "expression": {
         "ko": "엄숙하고 생각에 잠긴 얼굴 — 노여움도 용서도 아직 드러내지 않음",
@@ -361,7 +361,8 @@
         "ko": "발 앞 조금 떨어져 엎드린 시므이를 내려다봄(구체 대상 — PROMPTING 28 ②)",
         "en": "looking down at Shimei bowed on the ground before him",
         "verse": "19:18 「왕의 앞에」 · 19:22-23 시므이를 상대함 · 내려다봄 본문 밖 · 저작자 정함(restyle r3 사람 메모)"
-      }
+      },
+      "stage_why": "[추론] 삼하 5:4 「다윗이 삼십 세에 위에 나아가서 사십 년을 다스렸으되」 · 삼하 15:7 「사 년만에」 — 압살롬 반역과 귀환은 통치 후반. 프로젝트 연대(data/person_events/david.json 출생 BC 1040경 · 압살롬 패배 뒤 귀환 BC 978경)로 약 62세 → 생애 단계 id david-elder(카드 60 전후)"
     },
     {
       "cast": "shimei",
@@ -398,15 +399,15 @@
           "heightRel": "average",
           "ageBand": {
             "class": "middle",
-            "text": "in his 50s, creased forehead"
+            "text": "in his 50s, creased forehead, gray-streaked temples"
           },
           "beardVolume": {
             "class": "full",
-            "text": "unkempt grey-streaked beard"
+            "text": "full unkempt beard, dark shot with gray"
           },
           "silhouette": {
             "class": "lean",
-            "text": "spare bony frame"
+            "text": "spare bony frame, narrow sloping shoulders"
           },
           "headOutline": {
             "class": "headwrap",
@@ -418,7 +419,8 @@
           }
         }
       },
-      "cast_override_why": "512토큰 때문에 이 장면에서만 카드 층 문구를 줄임(class는 정본 그대로) · 머리털은 머리천과 겹쳐 뺌 — 정본 cast/shimei.json은 그대로"
+      "cast_override_why": "512토큰 때문에 이 장면에서만 머리 윤곽 글을 줄임(class는 정본 그대로 · 머리털은 머리천과 겹쳐 뺌) — 나이·수염·체격은 카드 값(task 452 규칙 spec.cast-identity-fixed) · 정본 cast/shimei.json은 그대로",
+      "stage_why": "[추론] 왕상 2:8 「바후림 베냐민 사람 게라의 아들 시므이가 너와 함께 있나니」 · 왕상 2:9 「그 백발의 피를 흘려」 — 다윗이 임종(BC 970경) 때 솔로몬에게 이른 말이라 그 백발은 시므이의 것. 8년쯤 앞인 귀환(BC 978경) 때는 희끗해 가는 나이. 50대는 다윗(약 62)·바르실래(삼하 19:32 「나이 팔십 세라」)와 가르려고 저작자 정함(카드 shimei middle)"
     }
   ],
   "regions": {
@@ -476,12 +478,7 @@
       0.66,
       0.7
     ],
-    "barzillai": [
-      0.31,
-      0.38,
-      0.365,
-      0.7
-    ],
+    "barzillai": [0.30, 0.32, 0.355, 0.66],
     "david-elder": [
       0.22,
       0.31,
@@ -489,13 +486,13 @@
       0.75
     ],
     "shimei": [
-      0.37,
-      0.65,
-      0.475,
-      0.785
+      0.35,
+      0.695,
+      0.47,
+      0.85
     ]
   },
-  "_regions_why": "앞(가까움, 387 사람 메모): 다윗 세로 0.62(서서 건너려 함, 오른쪽을 봄) · 시므이는 다윗 앞 한 걸음쯤 오른쪽 아래의 낮은 몸(restyle r4 — 처음엔 발 바로 앞)(19:18 「왕의 앞에」) · 바르실래는 다윗 곁 오른쪽 조금 뒤(19:31 「함께 요단에 이르니」 — 곁 자리는 본문 밖 · 388 시험 1장: 다윗보다 왼쪽에 두면 「On the left: the king」이 왕을 맨 왼쪽 칸에 그려 시므이가 노인 앞에 엎드림). 가까운 중경: 시므이 바로 뒤 시바 일행 35명(19:17 · 15+20). 강가(오른쪽): 서편에서 건너와 왕 쪽 강가에 닿은 나룻배와 오르는 가족·신복, 배를 붙드는 유다 사람 몇(19:18 · 본문 밖 자리). 멀리: 같은 동편 강가 먼 뒤쪽(왼쪽 위 — 강·서편 둑과 겹치지 않게)에 베냐민 일천 명이 작게(원근). 강 너머 오른쪽 위: 서편 둑(길갈 쪽 — 19:40 지리 근거)에 유다 족속이 아주 작게. 배는 강 칸 아래 가장자리(왕 쪽 둑)에 닿고, 가족은 그 배 앞 둑 쪽에서 오르며(배보다 가까움), 유다 몇은 배 곁 둑에서 붙든다(388 1층 판정 표기 반영). · restyle r4(PROMPTING 28 ④ · 사람 메모 「다윗과 약간 떨어져야」): 시므이 칸을 다윗 발에서 오른쪽으로 떼고(x 0.27→0.33), 바르실래는 시므이 칸과 겹치지 않게 조금 뒤로(아래 끝 0.86→0.80 · 깊이 0.85→0.75). · restyle r6(r5 사람 메모 「시므이가 누웠음 · 배타는게 이상함」): 시므이 꼴 kneel_bow(무릎 꿇고 엉덩이 들고 머리 왼쪽 땅에) · 칸 [0.33,0.78,0.48,0.97]; 왕의 가족은 배 안에 앉은 머리·어깨 한 줄(seated, 아래 끝 = 뱃전 0.636) · 칸 [0.74,0.565,0.95,0.64] — 강가에 선 두 줄이 배 앞 줄서기로 그려졌다. 배를 붙든 유다 사람 몇(judah)은 배 가까운 끝에 선 채. · task 410(크기 기준표 ③④ — 사람 결정 「3」 요단 재저작, 배치는 387 메모 그대로): 장면 사람 수 2055 → 군중 단계(초점 화면 키 0.30~0.45)라 카메라를 뒤로 뺀 꼴로 다시 저작 — 다윗 세로 0.62 → 0.44·발 0.92 → 0.75 [0.22,0.31,0.30,0.75](지평선 = 0.75 − 0.93 × 0.44 = 0.341, 옛 0.343 근처 유지 — 베냐민 일천은 지평선 바로 아래 먼 뒤쪽 그대로). 앞 칸은 지평선 쪽으로 같은 비(0.71)로 당김: 시므이 [0.37,0.65,0.475,0.785](다윗 앞 한 걸음 오른쪽 아래, 다윗 칸과 떨어짐 유지) · 바르실래 [0.31,0.38,0.365,0.70](다윗 곁 오른쪽 조금 뒤 — 세로 0.32, 비례로만 줄이면 0.28로 단계 하한 0.30 밑이라 발을 조금 앞으로) · 강 아래 끝 0.62 → 0.55 · 배 [0.70,0.51,0.93,0.62] · 가족 [0.72,0.495,0.91,0.5485](아래 끝 = 새 뱃전). 무리는 그 발 자리 어른 화면 키(눈높이 원근)를 담게: 시바 일행 [0.42,0.30,0.66,0.70](발 0.70 → 어른 키 0.386 ≤ 0.40 · 시므이 바로 뒤) · 유다 몇 [0.64,0.31,0.76,0.64](발 0.64 → 0.322 ≤ 0.33 · 배 가까운 끝 둑) — 옛 구역(0.40·0.28)은 원근보다 낮아 무리 꼴이 구역 위로 솟음(notes/SCALE-CROWD.md 재검 2). 베냐민은 왼쪽으로 넓힘 [0.0,0.27,0.38,0.38](시바 일행 머리에 가리지 않게) · 서편 둑(길갈·crest)은 지평선 위라 그대로. 앞 세 칸·시바·유다는 오른쪽으로 0.05 옮김 — 시므이 중심이 0.4 밑이면 파생 자리 낱말이 「in the center」 → 「on the left」로 바뀌어 왕보다 바깥 자리 낱말이 됨(test_whole_prompt GuideSide, 388 회고).",
+  "_regions_why": "앞(가까움, 387 사람 메모): 다윗 세로 0.62(서서 건너려 함, 오른쪽을 봄) · 시므이는 다윗 앞 한 걸음쯤 오른쪽 아래의 낮은 몸(restyle r4 — 처음엔 발 바로 앞)(19:18 「왕의 앞에」) · 바르실래는 다윗 곁 오른쪽 조금 뒤(19:31 「함께 요단에 이르니」 — 곁 자리는 본문 밖 · 388 시험 1장: 다윗보다 왼쪽에 두면 「On the left: the king」이 왕을 맨 왼쪽 칸에 그려 시므이가 노인 앞에 엎드림). 가까운 중경: 시므이 바로 뒤 시바 일행 36명(시바 + 아들 15 + 종 20 · 19:17 · 15+20). 강가(오른쪽): 서편에서 건너와 왕 쪽 강가에 닿은 나룻배와 오르는 가족·신복, 배를 붙드는 유다 사람 몇(19:18 · 본문 밖 자리). 멀리: 같은 동편 강가 먼 뒤쪽(왼쪽 위 — 강·서편 둑과 겹치지 않게)에 베냐민 일천 명이 작게(원근). 강 너머 오른쪽 위: 서편 둑(길갈 쪽 — 19:40 지리 근거)에 유다 족속이 아주 작게. 배는 강 칸 아래 가장자리(왕 쪽 둑)에 닿고, 가족은 그 배 앞 둑 쪽에서 오르며(배보다 가까움), 유다 몇은 배 곁 둑에서 붙든다(388 1층 판정 표기 반영). · restyle r4(PROMPTING 28 ④ · 사람 메모 「다윗과 약간 떨어져야」): 시므이 칸을 다윗 발에서 오른쪽으로 떼고(x 0.27→0.33), 바르실래는 시므이 칸과 겹치지 않게 조금 뒤로(아래 끝 0.86→0.80 · 깊이 0.85→0.75). · restyle r6(r5 사람 메모 「시므이가 누웠음 · 배타는게 이상함」): 시므이 꼴 kneel_bow(무릎 꿇고 엉덩이 들고 머리 왼쪽 땅에) · 칸 [0.33,0.78,0.48,0.97]; 왕의 가족은 배 안에 앉은 머리·어깨 한 줄(seated, 아래 끝 = 뱃전 0.636) · 칸 [0.74,0.565,0.95,0.64] — 강가에 선 두 줄이 배 앞 줄서기로 그려졌다. 배를 붙든 유다 사람 몇(judah)은 배 가까운 끝에 선 채. · task 410(크기 기준표 ③④ — 사람 결정 「3」 요단 재저작, 배치는 387 메모 그대로): 장면 사람 수 2055 → 군중 단계(초점 화면 키 0.30~0.45)라 카메라를 뒤로 뺀 꼴로 다시 저작 — 다윗 세로 0.62 → 0.44·발 0.92 → 0.75 [0.22,0.31,0.30,0.75](지평선 = 0.75 − 0.93 × 0.44 = 0.341, 옛 0.343 근처 유지 — 베냐민 일천은 지평선 바로 아래 먼 뒤쪽 그대로). 앞 칸은 지평선 쪽으로 같은 비(0.71)로 당김: 시므이 [0.37,0.65,0.475,0.785](다윗 앞 한 걸음 오른쪽 아래, 다윗 칸과 떨어짐 유지) · 바르실래 [0.31,0.38,0.365,0.70](다윗 곁 오른쪽 조금 뒤 — 세로 0.32, 비례로만 줄이면 0.28로 단계 하한 0.30 밑이라 발을 조금 앞으로) · 강 아래 끝 0.62 → 0.55 · 배 [0.70,0.51,0.93,0.62] · 가족 [0.72,0.495,0.91,0.5485](아래 끝 = 새 뱃전). 무리는 그 발 자리 어른 화면 키(눈높이 원근)를 담게: 시바 일행 [0.42,0.30,0.66,0.70](발 0.70 → 어른 키 0.386 ≤ 0.40 · 시므이 바로 뒤) · 유다 몇 [0.64,0.31,0.76,0.64](발 0.64 → 0.322 ≤ 0.33 · 배 가까운 끝 둑) — 옛 구역(0.40·0.28)은 원근보다 낮아 무리 꼴이 구역 위로 솟음(notes/SCALE-CROWD.md 재검 2). 베냐민은 왼쪽으로 넓힘 [0.0,0.27,0.38,0.38](시바 일행 머리에 가리지 않게) · 서편 둑(길갈·crest)은 지평선 위라 그대로. 앞 세 칸·시바·유다는 오른쪽으로 0.05 옮김 — 시므이 중심이 0.4 밑이면 파생 자리 낱말이 「in the center」 → 「on the left」로 바뀌어 왕보다 바깥 자리 낱말이 됨(test_whole_prompt GuideSide, 388 회고). · task 456 한 장 반복 t1(s42): 410 축소로 시므이 발(0.785)이 다윗 발(0.75)과 거의 같은 줄이라, 시므이가 왕 앞이 아니라 바로 위 바르실래 앞에 엎드린 꼴로 그려짐(순간·내려다봄·엎드림 0/1) — 시므이를 다윗 발보다 앞(아래)으로 [0.35,0.695,0.47,0.85](발 0.85 · 크기는 눈높이 원근 비례 · 중심 0.41 ≥ 0.4로 자리 낱말 「in the center」 유지).",
   "stages": [
     {
       "id": "S1",
@@ -521,8 +518,8 @@
       "id": "S1b",
       "kind": "region",
       "region": "river",
-      "verse": "19:15 · 19:18 · 잔잔함·진흙 둑·갈대는 본문 밖 · 저작자 정함 · 서편 출발·왕 쪽 강가에 닿음은 본문 밖 · 387 사람 메모",
-      "prompt": "a calm wide river with a muddy bank, reeds along the edge, a small flat boat that carries people across a river, which has come across from the far bank and now rests against the near bank.",
+      "verse": "19:15 · 19:18 · 잔잔함·진흙 둑·갈대는 본문 밖 · 저작자 정함 · 서편 출발·왕 쪽 강가에 닿음은 본문 밖 · 387 사람 메모 · 배 크기(사람 키의 두 배 반)는 본문 밖 · 저작자 정함(사전 ferry-boat look.size [저작])",
+      "prompt": "a calm wide river with a muddy bank, reeds along the edge, a small flat boat, about two and a half times as long as a man is tall, that carries people across a river, which has come across from the far bank and now rests against the near bank.",
       "neg": [
         "people",
         "figures",
@@ -619,7 +616,7 @@
       "id": "S5",
       "kind": "region",
       "region": "barzillai",
-      "verse": "19:31-32 · 흰 수염·곁 자리는 본문 밖 · 저작자 정함",
+      "verse": "19:31-32 · 흰 수염·곁 자리는 본문 밖 · 저작자 정함 · 19:18 순간에 강가에 있음은 [추론](19:31 「함께 요단에 이르니」 · 19:33 건너기 직전 — 서사 순서로는 시므이·므비보셋 뒤에 나옴)",
       "prompt": "beside the king at the river, Barzillai the Gileadite, a very old man of eighty, a wealthy man, with a long white beard, who has come to see the king across the Jordan.",
       "neg": [
         "young",
@@ -664,6 +661,7 @@
   "guide": {
     "depth": {
       "crest_right": 0.08,
+      "river": 0.06,
       "benjamin": 0.22,
       "household": 0.55,
       "boat": 0.52,
@@ -676,17 +674,19 @@
     },
     "shape": {
       "crest_right": "bank",
+      "river": "river",
       "benjamin": "crowd",
       "household": "seated",
       "boat": "boat",
       "judah": "crowd",
       "ziba": "crowd",
-      "barzillai": "person",
+      "barzillai": "person_bow",
       "david-elder": "person_bow",
-      "shimei": "kneel_bow",
+      "shimei": "kneel_bow_reach",
       "gilgal": "crowd"
     },
-    "why": "387 사람 메모 구도 — 다윗·발 앞의 시므이·곁의 바르실래·시바 일행(15+20)이 앞 초점, 베냐민 일천은 먼 뒤쪽 작게(원근), 배는 왕 쪽 강가에 닿아 가족이 오름. 구역마다 가까움(1 = 가장 가까움)과 꼴만 주고 모양·화풍은 문구에 맡긴다. · restyle r5: 다윗 꼴을 person_bow(머리를 앞·아래로 숙임)로 — 시선은 문구(r3·r4 0/16)·잘라붙이기(r4e 사람 거절)로 안 되어 가이드 머리 자리로 준다. · restyle r6: 시므이 kneel_bow · 가족 seated(배 안)."
+    "why": "387 사람 메모 구도 — 다윗·발 앞의 시므이·곁의 바르실래·시바 일행(15+20)이 앞 초점, 베냐민 일천은 먼 뒤쪽 작게(원근), 배는 왕 쪽 강가에 닿아 가족이 오름. 구역마다 가까움(1 = 가장 가까움)과 꼴만 주고 모양·화풍은 문구에 맡긴다. · restyle r5: 다윗 꼴을 person_bow(머리를 앞·아래로 숙임)로 — 시선은 문구(r3·r4 0/16)·잘라붙이기(r4e 사람 거절)로 안 되어 가이드 머리 자리로 준다. · restyle r6: 시므이 kneel_bow · 가족 seated(배 안). · task 457 수리 u1: 강 칸 river 꼴(둘레 땅보다 어두운 평평한 띠 · 위쪽은 오른쪽에서만 시작하는 사선 둑) — 456 8/8 강이 화면을 가로질러 베냐민 「가까운 둑 먼 뒤쪽」 0/8. · u2: 바르실래 칸을 다윗 오른쪽 조금 뒤로 [0.30,0.32,0.355,0.66](발 0.70→0.66 · 키 원근 비례) · 꼴 person_bow(굽은 노인) — 456 8장 중 7장 왕 곁 자리가 젊은 남자로 그려지고 u1에선 왕이 그와 마주 봄. · u3: 시므이 꼴 kneel_bow_reach(정강이를 엉덩이 밑에 접고 두 팔을 머리 쪽 왼쪽 땅으로) — kneel_bow 오른쪽 정강이 막대가 앞으로 짚은 팔로 읽혀 머리가 왕 반대쪽(t2·u1·u2 s42 0/3표).",
+    "body": "card"
   },
   "approved": {
     "final": {
@@ -713,13 +713,13 @@
     "verse": "삼하 19:18-19 · 다윗이 내려다봄은 본문 밖 · 저작자 정함(restyle r3 사람 메모)"
   },
   "whole_background": {
-    "ko": "판 단계 S1·S1b·S2·S2b·S2c·S2d·S2e·S5(배경·강·유다 몇·왕의 가족·베냐민 일천·시바 일행·서편 유다 족속·바르실래) 문구를 그대로 이음 — 단계마다 근거는 stages[].verse — 구절 요소를 싣지 않는 꾸밈말(갈대·물가 자리 반복·「작은 사람들 큰 무리」)만 512토큰 때문에 뺌(PROMPTING 19 빼기만) · S1 `no people`(단계 전용 부정)도 뺌",
-    "en": "a wide dry grassy bank beside the Jordan river, the far bank across the water with low distant hills, empty pale sky. a calm wide river with a muddy bank, a small flat boat that carries people across a river, which has come across from the far bank and now rests against the near bank. at the water's edge on the near bank, a few men of Judah who came down to meet the king, holding the landed ferry boat steady to help the king across. on the near bank, the king's household and all his servants climbing into the landed boat to be carried across. far back along the same near bank, small in the distance, a thousand men of Benjamin who have just waded across the Jordan. just behind the bowing man, a close group of men facing the king, Ziba and his fifteen sons and twenty servants. across the river on the far western bank, a small distant crowd of the men of Judah waiting. beside the king at the river, Barzillai the Gileadite, a very old man of eighty, a wealthy man, with a long white beard, who has come to see the king across the Jordan",
+    "ko": "판 단계 S1·S1b·S2·S2b·S2c·S2d·S2e·S5(배경·강·유다 몇·왕의 가족·베냐민 일천·시바 일행·서편 유다 족속·바르실래) 문구를 그대로 이음 — 단계마다 근거는 stages[].verse — 구절 요소를 싣지 않는 꾸밈말(갈대·물가 자리 반복·「작은 사람들 큰 무리」)만 512토큰 때문에 뺌 · task 452: 카드 정체성 값을 되돌리며 「low distant hills」·「along the same … in the distance」·「close」도 뺌(PROMPTING 19 빼기만) · S1 `no people`(단계 전용 부정)도 뺌 · task 455: 사전 나룻배 크기 문구(+15토큰)를 실으며 꾸밈말 「wide dry」·「empty pale sky」·「at the water's edge」·「the far bank across the water」(서편 둑은 유다 족속 구절 「across the river on the far western bank」가 그대로 실음)를 뺌(후속 fu-acec — 구절 요소·사람 메모 문구는 그대로)",
+    "en": "a grassy bank beside the Jordan river. a calm wide river with a muddy bank, a small flat boat, about two and a half times as long as a man is tall, that carries people across a river, which has come across from the far bank and now rests against the near bank. on the near bank, a few men of Judah who came down to meet the king, holding the landed ferry boat steady to help the king across. on the near bank, the king's household and all his servants climbing into the landed boat to be carried across. far back on the near bank, small, a thousand men of Benjamin who have just waded across the Jordan. just behind the bowing man, a group of men facing the king, Ziba and his fifteen sons and twenty servants. across the river on the far western bank, a small distant crowd of the men of Judah waiting. beside the king at the river, Barzillai the Gileadite, a very old man of eighty, a wealthy man, with a long white beard, who has come to see the king across the Jordan",
     "verse": "삼하 19:15-18 · 19:31-32 · 단계별 근거와 본문 밖 표기는 stages[].verse 그대로"
   },
   "relation": {
     "ko": "다윗은 앞 한 걸음쯤 떨어져 엎드린 시므이를 고개 숙여 내려다보고, 시므이는 왕을 향해 엎드려 빈다",
-    "en": "The king looks down at Shimei, who lies bowed toward him a short step away",
+    "en": "The king looks down at Shimei, bowed a short step away",
     "verse": "삼하 19:18-19 「왕의 앞에 엎드려 … 왕께 고하되」 · 한 걸음쯤 거리·내려다봄은 본문 밖 · 저작자 정함(restyle r3 사람 메모 「다윗과 약간 떨어져야 · 다윗이 바라봐야지 아래로」)"
   }
 }

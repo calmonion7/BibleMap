@@ -27,9 +27,10 @@ VS = ("너는 성경 삽화 판정자다. Read 도구로 이미지들을 직접 
       '설명 없이 JSON 한 개만: {{"pick":"<파일명>","distinct":0,"reason":"한국어 두 문장"}}')
 
 
-# task 446 — 같은 사람의 생애 단계(params.FACE_ID_SAME_PERSON의 사울 묶음)는 거꾸로: 사울 정본과 같은 사람으로 보이면서 나이는 카드대로.
-SAME = ("너는 성경 삽화 판정자다. Read 도구로 이미지들을 직접 보라. 확정된 사울 정본(같은 사람의 40대): {ref}. {cid} 후보 3장: {c}.\n"
-        "후보 중 사울 정본과 같은 사람(얼굴형·눈·코·입·눈썹)으로 가장 잘 보이면서 나이·수염·머리는 정본 어휘({vocab})에 맞게 늙은 1장을 고르라. "
+# task 446 — 같은 사람의 생애 단계(params.FACE_ID_SAME_PERSON 묶음)는 거꾸로: 묶음 기준 정본과 같은 사람으로 보이면서 나이는 카드대로.
+# task 452 — 기준을 사울로 고정하던 것을 묶음 첫 id로(다윗 장년·중년이 사울과 「가장 다른」 장을 고르던 것).
+SAME = ("너는 성경 삽화 판정자다. Read 도구로 이미지들을 직접 보라. 확정된 {base} 정본(같은 사람의 {base_age}): {ref}. {cid} 후보 3장: {c}.\n"
+        "후보 중 {base} 정본과 같은 사람(얼굴형·눈·코·입·눈썹)으로 가장 잘 보이면서 나이·수염·머리는 정본 어휘({vocab})에 맞는 1장을 고르라. "
         '설명 없이 JSON 한 개만: {{"pick":"<파일명>","same":0,"reason":"한국어 두 문장"}}')
 
 
@@ -73,11 +74,16 @@ if __name__ == "__main__":
         res["pair"] = ask(PAIR.format(s=", ".join(top["saul"]), d=", ".join(top["david"])), top["saul"] + top["david"])
         out = "judge.json"
     else:
-        ref = os.path.join(HERE, "frozen", "saul.png")
         import params
-        same = next((f for f in params.FACE_ID_SAME_PERSON if "saul" in f), ())
-        res["pair"] = {cid: ask((SAME if cid in same[1:] else VS).format(ref=ref, cid=cid, c=", ".join(top[cid]), vocab=vocab(cid)), [ref] + top[cid])
-                       for cid in a.who}
+        res["pair"] = {}
+        for cid in a.who:
+            fam = next((f for f in params.FACE_ID_SAME_PERSON if cid in f[1:]), ())
+            base = fam[0] if fam else "saul"
+            ref = os.path.join(HERE, "frozen", f"{base}.png")
+            b = json.load(open(os.path.join(HERE, "cast", f"{base}.json"), encoding="utf-8"))
+            prompt = (SAME.format(base=b["names"][0], base_age=b["card"]["ageBand"]["text"], ref=ref, cid=cid, c=", ".join(top[cid]), vocab=vocab(cid))
+                      if fam else VS.format(ref=ref, cid=cid, c=", ".join(top[cid]), vocab=vocab(cid)))
+            res["pair"][cid] = ask(prompt, [ref] + top[cid])
         out = f"judge-{'-'.join(a.who)}.json"
     json.dump(res, open(os.path.join(a.dir, out), "w"), ensure_ascii=False, indent=1)
     print("PAIR", json.dumps(res["pair"], ensure_ascii=False))
